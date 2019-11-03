@@ -1,122 +1,449 @@
-From: Thierry Reding <thierry.reding@gmail.com>
-Subject: [PATCH v2 8/9] drm/nouveau: gp10b: Add custom L2 cache implementation
-Date: Sat,  2 Nov 2019 18:56:36 +0100
-Message-ID: <20191102175637.3065-9-thierry.reding@gmail.com>
-References: <20191102175637.3065-1-thierry.reding@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 112201] New: Syscall param ioctl(generic) points to
+ uninitialised byte(s)
+Date: Sun, 03 Nov 2019 02:44:05 +0000
+Message-ID: <bug-112201-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20191102175637.3065-1-thierry.reding@gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ben Skeggs <bskeggs@redhat.com>, Joerg Roedel <joro@8bytes.org>
-Cc: linux-tegra@vger.kernel.org, nouveau@lists.freedesktop.org, Ben Dooks <ben.dooks@codethink.co.uk>, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1846456461=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogVGhpZXJyeSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4KClRoZXJlIGFyZSBleHRy
-YSByZWdpc3RlcnMgdGhhdCBuZWVkIHRvIGJlIHByb2dyYW1tZWQgdG8gbWFrZSB0aGUgbGV2ZWwg
-MgpjYWNoZSB3b3JrIG9uIEdQMTBCLCBzdWNoIGFzIHRoZSBzdHJlYW0gSUQgcmVnaXN0ZXIgdGhh
-dCBpcyB1c2VkIHdoZW4gYW4KU01NVSBpcyB1c2VkIHRvIHRyYW5zbGF0ZSBtZW1vcnkgYWRkcmVz
-c2VzLgoKU2lnbmVkLW9mZi1ieTogVGhpZXJyeSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4K
-LS0tCkNoYW5nZXMgaW4gdjI6Ci0gcmVtb3ZlIElPTU1VX0FQSSBwcm90ZWN0aW9uIHRvIGluY3Jl
-YXNlIGNvbXBpbGUgY292ZXJhZ2UKLSByZWxpZXMgb24gZHVtbXkgZGV2X2lvbW11X2Z3c3BlY19n
-ZXQoKSBoZWxwZXIKCiAuLi4vZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvbHRj
-LmggfCAgMSArCiAuLi4vZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMg
-fCAgMiArLQogLi4uL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9sdGMvS2J1aWxkICAgIHwg
-IDEgKwogLi4uL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9sdGMvZ3AxMGIuYyAgIHwgNjUg
-KysrKysrKysrKysrKysrKysrKwogLi4uL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9sdGMv
-cHJpdi5oICAgIHwgIDIgKwogNSBmaWxlcyBjaGFuZ2VkLCA3MCBpbnNlcnRpb25zKCspLCAxIGRl
-bGV0aW9uKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvbHRjL2dwMTBiLmMKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9pbmNsdWRlL252a20vc3ViZGV2L2x0Yy5oIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvaW5j
-bHVkZS9udmttL3N1YmRldi9sdGMuaAppbmRleCA2NDRkNTI3YzNiOTYuLmQ3NmY2MGQ3ZDI5YSAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9s
-dGMuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2x0
-Yy5oCkBAIC00MCw0ICs0MCw1IEBAIGludCBnbTEwN19sdGNfbmV3KHN0cnVjdCBudmttX2Rldmlj
-ZSAqLCBpbnQsIHN0cnVjdCBudmttX2x0YyAqKik7CiBpbnQgZ20yMDBfbHRjX25ldyhzdHJ1Y3Qg
-bnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV9sdGMgKiopOwogaW50IGdwMTAwX2x0Y19u
-ZXcoc3RydWN0IG52a21fZGV2aWNlICosIGludCwgc3RydWN0IG52a21fbHRjICoqKTsKIGludCBn
-cDEwMl9sdGNfbmV3KHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQsIHN0cnVjdCBudmttX2x0YyAq
-Kik7CitpbnQgZ3AxMGJfbHRjX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3Qg
-bnZrbV9sdGMgKiopOwogI2VuZGlmCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9udmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZr
-bS9lbmdpbmUvZGV2aWNlL2Jhc2UuYwppbmRleCBiMDYxZGYxMzgxNDIuLjIzMWVjMDA3M2FmMyAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jh
-c2UuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvYmFz
-ZS5jCkBAIC0yMzgwLDcgKzIzODAsNyBAQCBudjEzYl9jaGlwc2V0ID0gewogCS5mdXNlID0gZ20x
-MDdfZnVzZV9uZXcsCiAJLmlidXMgPSBncDEwYl9pYnVzX25ldywKIAkuaW1lbSA9IGdrMjBhX2lu
-c3RtZW1fbmV3LAotCS5sdGMgPSBncDEwMl9sdGNfbmV3LAorCS5sdGMgPSBncDEwYl9sdGNfbmV3
-LAogCS5tYyA9IGdwMTBiX21jX25ldywKIAkubW11ID0gZ3AxMGJfbW11X25ldywKIAkuc2VjYm9v
-dCA9IGdwMTBiX3NlY2Jvb3RfbmV3LApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvbHRjL0tidWlsZCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20v
-c3ViZGV2L2x0Yy9LYnVpbGQKaW5kZXggMmI2ZDM2ZWE3MDY3Li43MjhkNzUwMTA4NDcgMTAwNjQ0
-Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2x0Yy9LYnVpbGQKKysr
-IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbHRjL0tidWlsZApAQCAtNiwz
-ICs2LDQgQEAgbnZrbS15ICs9IG52a20vc3ViZGV2L2x0Yy9nbTEwNy5vCiBudmttLXkgKz0gbnZr
-bS9zdWJkZXYvbHRjL2dtMjAwLm8KIG52a20teSArPSBudmttL3N1YmRldi9sdGMvZ3AxMDAubwog
-bnZrbS15ICs9IG52a20vc3ViZGV2L2x0Yy9ncDEwMi5vCitudmttLXkgKz0gbnZrbS9zdWJkZXYv
-bHRjL2dwMTBiLm8KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L2x0Yy9ncDEwYi5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbHRj
-L2dwMTBiLmMKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi5jMDA2M2M3
-Y2FhNTAKLS0tIC9kZXYvbnVsbAorKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1
-YmRldi9sdGMvZ3AxMGIuYwpAQCAtMCwwICsxLDY1IEBACisvKgorICogQ29weXJpZ2h0IChjKSAy
-MDE5IE5WSURJQSBDb3Jwb3JhdGlvbi4KKyAqCisgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFu
-dGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYQorICogY29weSBv
-ZiB0aGlzIHNvZnR3YXJlIGFuZCBhc3NvY2lhdGVkIGRvY3VtZW50YXRpb24gZmlsZXMgKHRoZSAi
-U29mdHdhcmUiKSwKKyAqIHRvIGRlYWwgaW4gdGhlIFNvZnR3YXJlIHdpdGhvdXQgcmVzdHJpY3Rp
-b24sIGluY2x1ZGluZyB3aXRob3V0IGxpbWl0YXRpb24KKyAqIHRoZSByaWdodHMgdG8gdXNlLCBj
-b3B5LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLCBkaXN0cmlidXRlLCBzdWJsaWNlbnNlLAorICog
-YW5kL29yIHNlbGwgY29waWVzIG9mIHRoZSBTb2Z0d2FyZSwgYW5kIHRvIHBlcm1pdCBwZXJzb25z
-IHRvIHdob20gdGhlCisgKiBTb2Z0d2FyZSBpcyBmdXJuaXNoZWQgdG8gZG8gc28sIHN1YmplY3Qg
-dG8gdGhlIGZvbGxvd2luZyBjb25kaXRpb25zOgorICoKKyAqIFRoZSBhYm92ZSBjb3B5cmlnaHQg
-bm90aWNlIGFuZCB0aGlzIHBlcm1pc3Npb24gbm90aWNlIHNoYWxsIGJlIGluY2x1ZGVkIGluCisg
-KiBhbGwgY29waWVzIG9yIHN1YnN0YW50aWFsIHBvcnRpb25zIG9mIHRoZSBTb2Z0d2FyZS4KKyAq
-CisgKiBUSEUgU09GVFdBUkUgSVMgUFJPVklERUQgIkFTIElTIiwgV0lUSE9VVCBXQVJSQU5UWSBP
-RiBBTlkgS0lORCwgRVhQUkVTUyBPUgorICogSU1QTElFRCwgSU5DTFVESU5HIEJVVCBOT1QgTElN
-SVRFRCBUTyBUSEUgV0FSUkFOVElFUyBPRiBNRVJDSEFOVEFCSUxJVFksCisgKiBGSVRORVNTIEZP
-UiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9OSU5GUklOR0VNRU5ULiAgSU4gTk8gRVZFTlQg
-U0hBTEwKKyAqIFRIRSBDT1BZUklHSFQgSE9MREVSKFMpIE9SIEFVVEhPUihTKSBCRSBMSUFCTEUg
-Rk9SIEFOWSBDTEFJTSwgREFNQUdFUyBPUgorICogT1RIRVIgTElBQklMSVRZLCBXSEVUSEVSIElO
-IEFOIEFDVElPTiBPRiBDT05UUkFDVCwgVE9SVCBPUiBPVEhFUldJU0UsCisgKiBBUklTSU5HIEZS
-T00sIE9VVCBPRiBPUiBJTiBDT05ORUNUSU9OIFdJVEggVEhFIFNPRlRXQVJFIE9SIFRIRSBVU0Ug
-T1IKKyAqIE9USEVSIERFQUxJTkdTIElOIFRIRSBTT0ZUV0FSRS4KKyAqCisgKiBBdXRob3JzOiBU
-aGllcnJ5IFJlZGluZworICovCisKKyNpbmNsdWRlICJwcml2LmgiCisKK3N0YXRpYyB2b2lkCitn
-cDEwYl9sdGNfaW5pdChzdHJ1Y3QgbnZrbV9sdGMgKmx0YykKK3sKKwlzdHJ1Y3QgbnZrbV9kZXZp
-Y2UgKmRldmljZSA9IGx0Yy0+c3ViZGV2LmRldmljZTsKKwlzdHJ1Y3QgaW9tbXVfZndzcGVjICpz
-cGVjOworCisJbnZrbV93cjMyKGRldmljZSwgMHgxN2UyN2MsIGx0Yy0+bHRjX25yKTsKKwludmtt
-X3dyMzIoZGV2aWNlLCAweDE3ZTAwMCwgbHRjLT5sdGNfbnIpOworCW52a21fd3IzMihkZXZpY2Us
-IDB4MTAwODAwLCBsdGMtPmx0Y19ucik7CisKKwlzcGVjID0gZGV2X2lvbW11X2Z3c3BlY19nZXQo
-ZGV2aWNlLT5kZXYpOworCWlmIChzcGVjKSB7CisJCXUzMiBzaWQgPSBzcGVjLT5pZHNbMF0gJiAw
-eGZmZmY7CisKKwkJLyogc3RyZWFtIElEICovCisJCW52a21fd3IzMihkZXZpY2UsIDB4MTYwMDAw
-LCBzaWQgPDwgMik7CisJfQorfQorCitzdGF0aWMgY29uc3Qgc3RydWN0IG52a21fbHRjX2Z1bmMK
-K2dwMTBiX2x0YyA9IHsKKwkub25laW5pdCA9IGdwMTAwX2x0Y19vbmVpbml0LAorCS5pbml0ID0g
-Z3AxMGJfbHRjX2luaXQsCisJLmludHIgPSBncDEwMF9sdGNfaW50ciwKKwkuY2JjX2NsZWFyID0g
-Z20xMDdfbHRjX2NiY19jbGVhciwKKwkuY2JjX3dhaXQgPSBnbTEwN19sdGNfY2JjX3dhaXQsCisJ
-LnpiYyA9IDE2LAorCS56YmNfY2xlYXJfY29sb3IgPSBnbTEwN19sdGNfemJjX2NsZWFyX2NvbG9y
-LAorCS56YmNfY2xlYXJfZGVwdGggPSBnbTEwN19sdGNfemJjX2NsZWFyX2RlcHRoLAorCS56YmNf
-Y2xlYXJfc3RlbmNpbCA9IGdwMTAyX2x0Y196YmNfY2xlYXJfc3RlbmNpbCwKKwkuaW52YWxpZGF0
-ZSA9IGdmMTAwX2x0Y19pbnZhbGlkYXRlLAorCS5mbHVzaCA9IGdmMTAwX2x0Y19mbHVzaCwKK307
-CisKK2ludAorZ3AxMGJfbHRjX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSwgaW50IGlu
-ZGV4LCBzdHJ1Y3QgbnZrbV9sdGMgKipwbHRjKQoreworCXJldHVybiBudmttX2x0Y19uZXdfKCZn
-cDEwYl9sdGMsIGRldmljZSwgaW5kZXgsIHBsdGMpOworfQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbHRjL3ByaXYuaCBiL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L2x0Yy9wcml2LmgKaW5kZXggMmZjZjE4ZTQ2Y2UzLi5lY2E1YTcx
-MWIxYjggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2x0
-Yy9wcml2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbHRjL3By
-aXYuaApAQCAtNDYsNCArNDYsNiBAQCB2b2lkIGdtMTA3X2x0Y196YmNfY2xlYXJfZGVwdGgoc3Ry
-dWN0IG52a21fbHRjICosIGludCwgY29uc3QgdTMyKTsKIGludCBncDEwMF9sdGNfb25laW5pdChz
-dHJ1Y3QgbnZrbV9sdGMgKik7CiB2b2lkIGdwMTAwX2x0Y19pbml0KHN0cnVjdCBudmttX2x0YyAq
-KTsKIHZvaWQgZ3AxMDBfbHRjX2ludHIoc3RydWN0IG52a21fbHRjICopOworCit2b2lkIGdwMTAy
-X2x0Y196YmNfY2xlYXJfc3RlbmNpbChzdHJ1Y3QgbnZrbV9sdGMgKiwgaW50LCBjb25zdCB1MzIp
-OwogI2VuZGlmCi0tIAoyLjIzLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2RyaS1kZXZlbA==
+
+--===============1846456461==
+Content-Type: multipart/alternative; boundary="15727490462.7F0b01aD.2643"
+Content-Transfer-Encoding: 7bit
+
+
+--15727490462.7F0b01aD.2643
+Date: Sun, 3 Nov 2019 02:44:06 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D112201
+
+            Bug ID: 112201
+           Summary: Syscall param ioctl(generic) points to uninitialised
+                    byte(s)
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: not set
+          Priority: not set
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: stratus-FGqvDjY7+Vo@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Dear bugzilla,
+I built the example program here:
+https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glXIntro.xml
+$ gcc -Wall -Wextra -o glxample glxample.c -lX11 -lGL
+(The test app works and shows a little yellow window then exits after 10
+seconds as it is supposed to)
+I ran it under valgrind, with the relevant packages built unstripped.
+I found the same error, but from a different initial function, with xfwm4,
+while trying to resolve an issue with that in another as yet unresolved bug
+report, which includes that valgrind trace, and more os/hw details:
+https://bugzilla.xfce.org/show_bug.cgi?id=3D16032
+I was intending to find a simple test app to try out the function
+glXQueryServerString to confirm if this problem was in mesa / libdrm but di=
+dn't
+even need to do that.
+Any ideas what is happening here, and if this apparent buffer overflow coul=
+d be
+relevant to the xfwm4 bug, or something extra besides that?
+
+$ valgrind --tool=3Dmemcheck --fullpath-after=3D/home/name/debug-xwfm4
+--num-callers=3D100 ./glxample=20
+=3D=3D3018=3D=3D Memcheck, a memory error detector
+=3D=3D3018=3D=3D Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward e=
+t al.
+=3D=3D3018=3D=3D Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyri=
+ght info
+=3D=3D3018=3D=3D Command: ./glxample
+=3D=3D3018=3D=3D=20
+=3D=3D3018=3D=3D Syscall param ioctl(generic) points to uninitialised byte(=
+s)
+=3D=3D3018=3D=3D    at 0x4B3325B: ioctl (in /usr/lib/libc-2.30.so)
+=3D=3D3018=3D=3D    by 0x52280DE: drmIoctl
+(/symbolpkgs/libdrm/src/build/../libdrm-2.4.100/xf86drm.c:180)
+=3D=3D3018=3D=3D    by 0x52290F3: drmCommandWriteRead
+(/symbolpkgs/libdrm/src/build/../libdrm-2.4.100/xf86drm.c:2644)
+=3D=3D3018=3D=3D    by 0xC0679DA: nouveau_object_ioctl
+(/symbolpkgs/libdrm/src/build/../libdrm-2.4.100/nouveau/nouveau.c:88)
+=3D=3D3018=3D=3D    by 0xC068286: nouveau_object_init
+(/symbolpkgs/libdrm/src/build/../libdrm-2.4.100/nouveau/nouveau.c:262)
+=3D=3D3018=3D=3D    by 0xC06A55C: nouveau_device_new
+(/symbolpkgs/libdrm/src/build/../libdrm-2.4.100/nouveau/nouveau.c:389)
+=3D=3D3018=3D=3D    by 0x5D5D0AD: nouveau_drm_screen_create
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/winsys/nouveau/drm/n=
+ouveau_drm_winsys.c:101)
+=3D=3D3018=3D=3D    by 0x5AD319A: pipe_nouveau_create_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/auxiliary/target-hel=
+pers/drm_helper.h:76)
+=3D=3D3018=3D=3D    by 0x5B7186C: pipe_loader_drm_create_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/auxiliary/pipe-loade=
+r/pipe_loader_drm.c:314)
+=3D=3D3018=3D=3D    by 0x5B7134E: pipe_loader_create_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/auxiliary/pipe-loade=
+r/pipe_loader.c:128)
+=3D=3D3018=3D=3D    by 0x5AD6EA1: dri2_init_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/state_trackers/dri/d=
+ri2.c:2036)
+=3D=3D3018=3D=3D    by 0x5AD4725: driCreateNewScreen2
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/mesa/drivers/dri/common/dri_=
+util.c:154)
+=3D=3D3018=3D=3D    by 0x51B7570: dri2CreateScreen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/dri2_glx.c:1288)
+=3D=3D3018=3D=3D    by 0x51A80F0: AllocAndFetchScreenConfigs
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxext.c:817)
+=3D=3D3018=3D=3D    by 0x51A84C3: __glXInitialize
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxext.c:940)
+=3D=3D3018=3D=3D    by 0x51A49D7: glXGetFBConfigs
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxcmds.c:1660)
+=3D=3D3018=3D=3D    by 0x51A5099: glXChooseFBConfig
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxcmds.c:1599)
+=3D=3D3018=3D=3D    by 0x4C386F9: glXChooseFBConfig (in /usr/lib/libGLX.so.=
+0.0.0)
+=3D=3D3018=3D=3D    by 0x109301: main (in /home/name/debug-xwfm4/glxample)
+=3D=3D3018=3D=3D  Address 0x4f1a382 is 2 bytes inside a block of size 72 al=
+loc'd
+=3D=3D3018=3D=3D    at 0x483877F: malloc
+(/build/valgrind/src/valgrind/coregrind/m_replacemalloc/vg_replace_malloc.c=
+:309)
+=3D=3D3018=3D=3D    by 0xC068237: nouveau_object_init
+(/symbolpkgs/libdrm/src/build/../libdrm-2.4.100/nouveau/nouveau.c:251)
+=3D=3D3018=3D=3D    by 0xC06A55C: nouveau_device_new
+(/symbolpkgs/libdrm/src/build/../libdrm-2.4.100/nouveau/nouveau.c:389)
+=3D=3D3018=3D=3D    by 0x5D5D0AD: nouveau_drm_screen_create
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/winsys/nouveau/drm/n=
+ouveau_drm_winsys.c:101)
+=3D=3D3018=3D=3D    by 0x5AD319A: pipe_nouveau_create_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/auxiliary/target-hel=
+pers/drm_helper.h:76)
+=3D=3D3018=3D=3D    by 0x5B7186C: pipe_loader_drm_create_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/auxiliary/pipe-loade=
+r/pipe_loader_drm.c:314)
+=3D=3D3018=3D=3D    by 0x5B7134E: pipe_loader_create_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/auxiliary/pipe-loade=
+r/pipe_loader.c:128)
+=3D=3D3018=3D=3D    by 0x5AD6EA1: dri2_init_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/state_trackers/dri/d=
+ri2.c:2036)
+=3D=3D3018=3D=3D    by 0x5AD4725: driCreateNewScreen2
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/mesa/drivers/dri/common/dri_=
+util.c:154)
+=3D=3D3018=3D=3D    by 0x51B7570: dri2CreateScreen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/dri2_glx.c:1288)
+=3D=3D3018=3D=3D    by 0x51A80F0: AllocAndFetchScreenConfigs
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxext.c:817)
+=3D=3D3018=3D=3D    by 0x51A84C3: __glXInitialize
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxext.c:940)
+=3D=3D3018=3D=3D    by 0x51A49D7: glXGetFBConfigs
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxcmds.c:1660)
+=3D=3D3018=3D=3D    by 0x51A5099: glXChooseFBConfig
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxcmds.c:1599)
+=3D=3D3018=3D=3D    by 0x4C386F9: glXChooseFBConfig (in /usr/lib/libGLX.so.=
+0.0.0)
+=3D=3D3018=3D=3D    by 0x109301: main (in /home/name/debug-xwfm4/glxample)
+=3D=3D3018=3D=3D=20
+=3D=3D3018=3D=3D=20
+=3D=3D3018=3D=3D HEAP SUMMARY:
+=3D=3D3018=3D=3D     in use at exit: 964,131 bytes in 3,934 blocks
+=3D=3D3018=3D=3D   total heap usage: 8,989 allocs, 5,055 frees, 3,301,060 b=
+ytes
+allocated
+=3D=3D3018=3D=3D=20
+=3D=3D3018=3D=3D LEAK SUMMARY:
+=3D=3D3018=3D=3D    definitely lost: 64 bytes in 2 blocks
+=3D=3D3018=3D=3D    indirectly lost: 0 bytes in 0 blocks
+=3D=3D3018=3D=3D      possibly lost: 80,104 bytes in 537 blocks
+=3D=3D3018=3D=3D    still reachable: 883,963 bytes in 3,395 blocks
+=3D=3D3018=3D=3D         suppressed: 0 bytes in 0 blocks
+=3D=3D3018=3D=3D Rerun with --leak-check=3Dfull to see details of leaked me=
+mory
+=3D=3D3018=3D=3D=20
+=3D=3D3018=3D=3D Use --track-origins=3Dyes to see where uninitialised value=
+s come from
+=3D=3D3018=3D=3D For lists of detected and suppressed errors, rerun with: -s
+=3D=3D3018=3D=3D ERROR SUMMARY: 6 errors from 1 contexts (suppressed: 0 fro=
+m 0)
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15727490462.7F0b01aD.2643
+Date: Sun, 3 Nov 2019 02:44:06 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Syscall param ioctl(generic) points to uninitialised byte=
+(s)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112201">112201</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Syscall param ioctl(generic) points to uninitialised byte(s)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>not set
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>not set
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>stratus&#64;tuta.io
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Dear bugzilla,
+I built the example program here:
+<a href=3D"https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glX=
+Intro.xml">https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glX=
+Intro.xml</a>
+$ gcc -Wall -Wextra -o glxample glxample.c -lX11 -lGL
+(The test app works and shows a little yellow window then exits after 10
+seconds as it is supposed to)
+I ran it under valgrind, with the relevant packages built unstripped.
+I found the same error, but from a different initial function, with xfwm4,
+while trying to resolve an issue with that in another as yet unresolved bug
+report, which includes that valgrind trace, and more os/hw details:
+<a href=3D"https://bugzilla.xfce.org/show_bug.cgi?id=3D16032">https://bugzi=
+lla.xfce.org/show_bug.cgi?id=3D16032</a>
+I was intending to find a simple test app to try out the function
+glXQueryServerString to confirm if this problem was in mesa / libdrm but di=
+dn't
+even need to do that.
+Any ideas what is happening here, and if this apparent buffer overflow coul=
+d be
+relevant to the xfwm4 bug, or something extra besides that?
+
+$ valgrind --tool=3Dmemcheck --fullpath-after=3D/home/name/debug-xwfm4
+--num-callers=3D100 ./glxample=20
+=3D=3D3018=3D=3D Memcheck, a memory error detector
+=3D=3D3018=3D=3D Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward e=
+t al.
+=3D=3D3018=3D=3D Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyri=
+ght info
+=3D=3D3018=3D=3D Command: ./glxample
+=3D=3D3018=3D=3D=20
+=3D=3D3018=3D=3D Syscall param ioctl(generic) points to uninitialised byte(=
+s)
+=3D=3D3018=3D=3D    at 0x4B3325B: ioctl (in /usr/lib/libc-2.30.so)
+=3D=3D3018=3D=3D    by 0x52280DE: drmIoctl
+(/symbolpkgs/libdrm/src/build/../libdrm-2.4.100/xf86drm.c:180)
+=3D=3D3018=3D=3D    by 0x52290F3: drmCommandWriteRead
+(/symbolpkgs/libdrm/src/build/../libdrm-2.4.100/xf86drm.c:2644)
+=3D=3D3018=3D=3D    by 0xC0679DA: nouveau_object_ioctl
+(/symbolpkgs/libdrm/src/build/../libdrm-2.4.100/nouveau/nouveau.c:88)
+=3D=3D3018=3D=3D    by 0xC068286: nouveau_object_init
+(/symbolpkgs/libdrm/src/build/../libdrm-2.4.100/nouveau/nouveau.c:262)
+=3D=3D3018=3D=3D    by 0xC06A55C: nouveau_device_new
+(/symbolpkgs/libdrm/src/build/../libdrm-2.4.100/nouveau/nouveau.c:389)
+=3D=3D3018=3D=3D    by 0x5D5D0AD: nouveau_drm_screen_create
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/winsys/nouveau/drm/n=
+ouveau_drm_winsys.c:101)
+=3D=3D3018=3D=3D    by 0x5AD319A: pipe_nouveau_create_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/auxiliary/target-hel=
+pers/drm_helper.h:76)
+=3D=3D3018=3D=3D    by 0x5B7186C: pipe_loader_drm_create_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/auxiliary/pipe-loade=
+r/pipe_loader_drm.c:314)
+=3D=3D3018=3D=3D    by 0x5B7134E: pipe_loader_create_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/auxiliary/pipe-loade=
+r/pipe_loader.c:128)
+=3D=3D3018=3D=3D    by 0x5AD6EA1: dri2_init_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/state_trackers/dri/d=
+ri2.c:2036)
+=3D=3D3018=3D=3D    by 0x5AD4725: driCreateNewScreen2
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/mesa/drivers/dri/common/dri_=
+util.c:154)
+=3D=3D3018=3D=3D    by 0x51B7570: dri2CreateScreen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/dri2_glx.c:1288)
+=3D=3D3018=3D=3D    by 0x51A80F0: AllocAndFetchScreenConfigs
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxext.c:817)
+=3D=3D3018=3D=3D    by 0x51A84C3: __glXInitialize
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxext.c:940)
+=3D=3D3018=3D=3D    by 0x51A49D7: glXGetFBConfigs
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxcmds.c:1660)
+=3D=3D3018=3D=3D    by 0x51A5099: glXChooseFBConfig
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxcmds.c:1599)
+=3D=3D3018=3D=3D    by 0x4C386F9: glXChooseFBConfig (in /usr/lib/libGLX.so.=
+0.0.0)
+=3D=3D3018=3D=3D    by 0x109301: main (in /home/name/debug-xwfm4/glxample)
+=3D=3D3018=3D=3D  Address 0x4f1a382 is 2 bytes inside a block of size 72 al=
+loc'd
+=3D=3D3018=3D=3D    at 0x483877F: malloc
+(/build/valgrind/src/valgrind/coregrind/m_replacemalloc/vg_replace_malloc.c=
+:309)
+=3D=3D3018=3D=3D    by 0xC068237: nouveau_object_init
+(/symbolpkgs/libdrm/src/build/../libdrm-2.4.100/nouveau/nouveau.c:251)
+=3D=3D3018=3D=3D    by 0xC06A55C: nouveau_device_new
+(/symbolpkgs/libdrm/src/build/../libdrm-2.4.100/nouveau/nouveau.c:389)
+=3D=3D3018=3D=3D    by 0x5D5D0AD: nouveau_drm_screen_create
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/winsys/nouveau/drm/n=
+ouveau_drm_winsys.c:101)
+=3D=3D3018=3D=3D    by 0x5AD319A: pipe_nouveau_create_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/auxiliary/target-hel=
+pers/drm_helper.h:76)
+=3D=3D3018=3D=3D    by 0x5B7186C: pipe_loader_drm_create_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/auxiliary/pipe-loade=
+r/pipe_loader_drm.c:314)
+=3D=3D3018=3D=3D    by 0x5B7134E: pipe_loader_create_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/auxiliary/pipe-loade=
+r/pipe_loader.c:128)
+=3D=3D3018=3D=3D    by 0x5AD6EA1: dri2_init_screen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/gallium/state_trackers/dri/d=
+ri2.c:2036)
+=3D=3D3018=3D=3D    by 0x5AD4725: driCreateNewScreen2
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/mesa/drivers/dri/common/dri_=
+util.c:154)
+=3D=3D3018=3D=3D    by 0x51B7570: dri2CreateScreen
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/dri2_glx.c:1288)
+=3D=3D3018=3D=3D    by 0x51A80F0: AllocAndFetchScreenConfigs
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxext.c:817)
+=3D=3D3018=3D=3D    by 0x51A84C3: __glXInitialize
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxext.c:940)
+=3D=3D3018=3D=3D    by 0x51A49D7: glXGetFBConfigs
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxcmds.c:1660)
+=3D=3D3018=3D=3D    by 0x51A5099: glXChooseFBConfig
+(/symbolpkgs/mesa/src/build/../mesa-19.2.2/src/glx/glxcmds.c:1599)
+=3D=3D3018=3D=3D    by 0x4C386F9: glXChooseFBConfig (in /usr/lib/libGLX.so.=
+0.0.0)
+=3D=3D3018=3D=3D    by 0x109301: main (in /home/name/debug-xwfm4/glxample)
+=3D=3D3018=3D=3D=20
+=3D=3D3018=3D=3D=20
+=3D=3D3018=3D=3D HEAP SUMMARY:
+=3D=3D3018=3D=3D     in use at exit: 964,131 bytes in 3,934 blocks
+=3D=3D3018=3D=3D   total heap usage: 8,989 allocs, 5,055 frees, 3,301,060 b=
+ytes
+allocated
+=3D=3D3018=3D=3D=20
+=3D=3D3018=3D=3D LEAK SUMMARY:
+=3D=3D3018=3D=3D    definitely lost: 64 bytes in 2 blocks
+=3D=3D3018=3D=3D    indirectly lost: 0 bytes in 0 blocks
+=3D=3D3018=3D=3D      possibly lost: 80,104 bytes in 537 blocks
+=3D=3D3018=3D=3D    still reachable: 883,963 bytes in 3,395 blocks
+=3D=3D3018=3D=3D         suppressed: 0 bytes in 0 blocks
+=3D=3D3018=3D=3D Rerun with --leak-check=3Dfull to see details of leaked me=
+mory
+=3D=3D3018=3D=3D=20
+=3D=3D3018=3D=3D Use --track-origins=3Dyes to see where uninitialised value=
+s come from
+=3D=3D3018=3D=3D For lists of detected and suppressed errors, rerun with: -s
+=3D=3D3018=3D=3D ERROR SUMMARY: 6 errors from 1 contexts (suppressed: 0 fro=
+m 0)</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15727490462.7F0b01aD.2643--
+
+--===============1846456461==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1846456461==--
