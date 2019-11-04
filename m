@@ -1,13 +1,12 @@
-From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Subject: [PATCH 2/3] drm/nouveau: slowpath for pushbuf ioctl
-Date: Mon,  4 Nov 2019 18:38:00 +0100
-Message-ID: <20191104173801.2972-2-daniel.vetter@ffwll.ch>
-References: <20191104173801.2972-1-daniel.vetter@ffwll.ch>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 112197] Black screen after resume
+Date: Mon, 04 Nov 2019 17:43:26 +0000
+Message-ID: <bug-112197-8800-vL3Hg3iubD@http.bugs.freedesktop.org/>
+References: <bug-112197-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1360949361=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20191104173801.2972-1-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+In-Reply-To: <bug-112197-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,101 +16,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2UgY2FuJ3QgY29weV8qX3VzZXIgd2hpbGUgaG9sZGluZyByZXNlcnZhdGlvbnMsIHRoYXQgd2ls
-bCAoc29vbiBldmVuCmZvciBub3V2ZWF1KSBsZWFkIHRvIGRlYWRsb2Nrcy4gQW5kIGl0IGJyZWFr
-cyB0aGUgY3Jvc3MtZHJpdmVyCmNvbnRyYWN0IGFyb3VuZCBkbWFfcmVzdi4KCkZpeCB0aGlzIGJ5
-IGFkZGluZyBhIHNsb3dwYXRoIGZvciB3aGVuIHdlIG5lZWQgcmVsb2NhdGlvbnMsIGFuZCBieQpw
-dXNoaW5nIHRoZSB3cml0ZWJhY2sgb2YgdGhlIG5ldyBwcmVzdW1lZCBvZmZzZXRzIHRvIHRoZSB2
-ZXJ5IGVuZC4KCkFzaWRlIGZyb20gIml0IGNvbXBpbGVzIiBlbnRpcmVseSB1bnRlc3RlZCB1bmZv
-cnR1bmF0ZWx5LgoKU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBp
-bnRlbC5jb20+CkNjOiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+CkNjOiBNYWFy
-dGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPgpDYzogQmVu
-IFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgpDYzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5jIHwgNTcgKysr
-KysrKysrKysrKysrKysrLS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMzggaW5zZXJ0aW9ucygr
-KSwgMTkgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bm91dmVhdV9nZW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZ2VtLmMKaW5k
-ZXggMTMyNGMxOWY0ZTVjLi4wNWVjOGVkZDZhOGIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L25vdXZlYXVfZ2VtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9nZW0uYwpAQCAtNDg0LDEyICs0ODQsOSBAQCB2YWxpZGF0ZV9pbml0KHN0cnVjdCBub3V2
-ZWF1X2NoYW5uZWwgKmNoYW4sIHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2LAogCiBzdGF0aWMg
-aW50CiB2YWxpZGF0ZV9saXN0KHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKmNoYW4sIHN0cnVjdCBu
-b3V2ZWF1X2NsaSAqY2xpLAotCSAgICAgIHN0cnVjdCBsaXN0X2hlYWQgKmxpc3QsIHN0cnVjdCBk
-cm1fbm91dmVhdV9nZW1fcHVzaGJ1Zl9ibyAqcGJibywKLQkgICAgICB1aW50NjRfdCB1c2VyX3Bi
-Ym9fcHRyKQorCSAgICAgIHN0cnVjdCBsaXN0X2hlYWQgKmxpc3QsIHN0cnVjdCBkcm1fbm91dmVh
-dV9nZW1fcHVzaGJ1Zl9ibyAqcGJibykKIHsKIAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IGNo
-YW4tPmRybTsKLQlzdHJ1Y3QgZHJtX25vdXZlYXVfZ2VtX3B1c2hidWZfYm8gX191c2VyICp1cGJi
-byA9Ci0JCQkJKHZvaWQgX19mb3JjZSBfX3VzZXIgKikodWludHB0cl90KXVzZXJfcGJib19wdHI7
-CiAJc3RydWN0IG5vdXZlYXVfYm8gKm52Ym87CiAJaW50IHJldCwgcmVsb2NzID0gMDsKIApAQCAt
-NTMzLDEwICs1MzAsNiBAQCB2YWxpZGF0ZV9saXN0KHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKmNo
-YW4sIHN0cnVjdCBub3V2ZWF1X2NsaSAqY2xpLAogCQkJYi0+cHJlc3VtZWQub2Zmc2V0ID0gbnZi
-by0+Ym8ub2Zmc2V0OwogCQkJYi0+cHJlc3VtZWQudmFsaWQgPSAwOwogCQkJcmVsb2NzKys7Ci0K
-LQkJCWlmIChjb3B5X3RvX3VzZXIoJnVwYmJvW252Ym8tPnBiYm9faW5kZXhdLnByZXN1bWVkLAot
-CQkJCQkgICAgICZiLT5wcmVzdW1lZCwgc2l6ZW9mKGItPnByZXN1bWVkKSkpCi0JCQkJcmV0dXJu
-IC1FRkFVTFQ7CiAJCX0KIAl9CiAKQEAgLTU0Nyw4ICs1NDAsOCBAQCBzdGF0aWMgaW50CiBub3V2
-ZWF1X2dlbV9wdXNoYnVmX3ZhbGlkYXRlKHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKmNoYW4sCiAJ
-CQkgICAgIHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2LAogCQkJICAgICBzdHJ1Y3QgZHJtX25v
-dXZlYXVfZ2VtX3B1c2hidWZfYm8gKnBiYm8sCi0JCQkgICAgIHVpbnQ2NF90IHVzZXJfYnVmZmVy
-cywgaW50IG5yX2J1ZmZlcnMsCi0JCQkgICAgIHN0cnVjdCB2YWxpZGF0ZV9vcCAqb3AsIGludCAq
-YXBwbHlfcmVsb2NzKQorCQkJICAgICBpbnQgbnJfYnVmZmVycywKKwkJCSAgICAgc3RydWN0IHZh
-bGlkYXRlX29wICpvcCwgYm9vbCAqYXBwbHlfcmVsb2NzKQogewogCXN0cnVjdCBub3V2ZWF1X2Ns
-aSAqY2xpID0gbm91dmVhdV9jbGkoZmlsZV9wcml2KTsKIAlpbnQgcmV0OwpAQCAtNTY1LDcgKzU1
-OCw3IEBAIG5vdXZlYXVfZ2VtX3B1c2hidWZfdmFsaWRhdGUoc3RydWN0IG5vdXZlYXVfY2hhbm5l
-bCAqY2hhbiwKIAkJcmV0dXJuIHJldDsKIAl9CiAKLQlyZXQgPSB2YWxpZGF0ZV9saXN0KGNoYW4s
-IGNsaSwgJm9wLT5saXN0LCBwYmJvLCB1c2VyX2J1ZmZlcnMpOworCXJldCA9IHZhbGlkYXRlX2xp
-c3QoY2hhbiwgY2xpLCAmb3AtPmxpc3QsIHBiYm8pOwogCWlmICh1bmxpa2VseShyZXQgPCAwKSkg
-ewogCQlpZiAocmV0ICE9IC1FUkVTVEFSVFNZUykKIAkJCU5WX1BSSU5USyhlcnIsIGNsaSwgInZh
-bGlkYXRpbmcgYm8gbGlzdFxuIik7CkBAIC02MDUsMTYgKzU5OCwxMiBAQCB1X21lbWNweWEodWlu
-dDY0X3QgdXNlciwgdW5zaWduZWQgbm1lbWIsIHVuc2lnbmVkIHNpemUpCiBzdGF0aWMgaW50CiBu
-b3V2ZWF1X2dlbV9wdXNoYnVmX3JlbG9jX2FwcGx5KHN0cnVjdCBub3V2ZWF1X2NsaSAqY2xpLAog
-CQkJCXN0cnVjdCBkcm1fbm91dmVhdV9nZW1fcHVzaGJ1ZiAqcmVxLAorCQkJCXN0cnVjdCBkcm1f
-bm91dmVhdV9nZW1fcHVzaGJ1Zl9yZWxvYyAqcmVsb2MsCiAJCQkJc3RydWN0IGRybV9ub3V2ZWF1
-X2dlbV9wdXNoYnVmX2JvICpibykKIHsKLQlzdHJ1Y3QgZHJtX25vdXZlYXVfZ2VtX3B1c2hidWZf
-cmVsb2MgKnJlbG9jID0gTlVMTDsKIAlpbnQgcmV0ID0gMDsKIAl1bnNpZ25lZCBpOwogCi0JcmVs
-b2MgPSB1X21lbWNweWEocmVxLT5yZWxvY3MsIHJlcS0+bnJfcmVsb2NzLCBzaXplb2YoKnJlbG9j
-KSk7Ci0JaWYgKElTX0VSUihyZWxvYykpCi0JCXJldHVybiBQVFJfRVJSKHJlbG9jKTsKLQogCWZv
-ciAoaSA9IDA7IGkgPCByZXEtPm5yX3JlbG9jczsgaSsrKSB7CiAJCXN0cnVjdCBkcm1fbm91dmVh
-dV9nZW1fcHVzaGJ1Zl9yZWxvYyAqciA9ICZyZWxvY1tpXTsKIAkJc3RydWN0IGRybV9ub3V2ZWF1
-X2dlbV9wdXNoYnVmX2JvICpiOwpAQCAtNjkzLDExICs2ODIsMTMgQEAgbm91dmVhdV9nZW1faW9j
-dGxfcHVzaGJ1ZihzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkICpkYXRhLAogCXN0cnVjdCBu
-b3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oZGV2KTsKIAlzdHJ1Y3QgZHJtX25vdXZlYXVf
-Z2VtX3B1c2hidWYgKnJlcSA9IGRhdGE7CiAJc3RydWN0IGRybV9ub3V2ZWF1X2dlbV9wdXNoYnVm
-X3B1c2ggKnB1c2g7CisJc3RydWN0IGRybV9ub3V2ZWF1X2dlbV9wdXNoYnVmX3JlbG9jICpyZWxv
-YyA9IE5VTEw7CiAJc3RydWN0IGRybV9ub3V2ZWF1X2dlbV9wdXNoYnVmX2JvICpibzsKIAlzdHJ1
-Y3Qgbm91dmVhdV9jaGFubmVsICpjaGFuID0gTlVMTDsKIAlzdHJ1Y3QgdmFsaWRhdGVfb3Agb3A7
-CiAJc3RydWN0IG5vdXZlYXVfZmVuY2UgKmZlbmNlID0gTlVMTDsKLQlpbnQgaSwgaiwgcmV0ID0g
-MCwgZG9fcmVsb2MgPSAwOworCWludCBpLCBqLCByZXQgPSAwOworCWJvb2wgZG9fcmVsb2MgPSBm
-YWxzZTsKIAogCWlmICh1bmxpa2VseSghYWJpMTYpKQogCQlyZXR1cm4gLUVOT01FTTsKQEAgLTc1
-NSw3ICs3NDYsOCBAQCBub3V2ZWF1X2dlbV9pb2N0bF9wdXNoYnVmKHN0cnVjdCBkcm1fZGV2aWNl
-ICpkZXYsIHZvaWQgKmRhdGEsCiAJfQogCiAJLyogVmFsaWRhdGUgYnVmZmVyIGxpc3QgKi8KLQly
-ZXQgPSBub3V2ZWF1X2dlbV9wdXNoYnVmX3ZhbGlkYXRlKGNoYW4sIGZpbGVfcHJpdiwgYm8sIHJl
-cS0+YnVmZmVycywKK3JldmFsaWRhdGU6CisJcmV0ID0gbm91dmVhdV9nZW1fcHVzaGJ1Zl92YWxp
-ZGF0ZShjaGFuLCBmaWxlX3ByaXYsIGJvLAogCQkJCQkgICByZXEtPm5yX2J1ZmZlcnMsICZvcCwg
-JmRvX3JlbG9jKTsKIAlpZiAocmV0KSB7CiAJCWlmIChyZXQgIT0gLUVSRVNUQVJUU1lTKQpAQCAt
-NzY1LDcgKzc1NywxOCBAQCBub3V2ZWF1X2dlbV9pb2N0bF9wdXNoYnVmKHN0cnVjdCBkcm1fZGV2
-aWNlICpkZXYsIHZvaWQgKmRhdGEsCiAKIAkvKiBBcHBseSBhbnkgcmVsb2NhdGlvbnMgdGhhdCBh
-cmUgcmVxdWlyZWQgKi8KIAlpZiAoZG9fcmVsb2MpIHsKLQkJcmV0ID0gbm91dmVhdV9nZW1fcHVz
-aGJ1Zl9yZWxvY19hcHBseShjbGksIHJlcSwgYm8pOworCQlpZiAoIXJlbG9jKSB7CisJCQl2YWxp
-ZGF0ZV9maW5pKCZvcCwgY2hhbiwgTlVMTCwgYm8pOworCQkJcmVsb2MgPSB1X21lbWNweWEocmVx
-LT5yZWxvY3MsIHJlcS0+bnJfcmVsb2NzLCBzaXplb2YoKnJlbG9jKSk7CisJCQlpZiAoSVNfRVJS
-KHJlbG9jKSkgeworCQkJCXJldCA9IFBUUl9FUlIocmVsb2MpOworCQkJCWdvdG8gb3V0X3ByZXZh
-bGlkOworCQkJfQorCisJCQlnb3RvIHJldmFsaWRhdGU7CisJCX0KKworCQlyZXQgPSBub3V2ZWF1
-X2dlbV9wdXNoYnVmX3JlbG9jX2FwcGx5KGNsaSwgcmVxLCByZWxvYywgYm8pOwogCQlpZiAocmV0
-KSB7CiAJCQlOVl9QUklOVEsoZXJyLCBjbGksICJyZWxvYyBhcHBseTogJWRcbiIsIHJldCk7CiAJ
-CQlnb3RvIG91dDsKQEAgLTg1MSw2ICs4NTQsMjIgQEAgbm91dmVhdV9nZW1faW9jdGxfcHVzaGJ1
-ZihzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkICpkYXRhLAogCXZhbGlkYXRlX2ZpbmkoJm9w
-LCBjaGFuLCBmZW5jZSwgYm8pOwogCW5vdXZlYXVfZmVuY2VfdW5yZWYoJmZlbmNlKTsKIAorCWlm
-IChkb19yZWxvYykgeworCQlzdHJ1Y3QgZHJtX25vdXZlYXVfZ2VtX3B1c2hidWZfYm8gX191c2Vy
-ICp1cGJibyA9CisJCQl1NjRfdG9fdXNlcl9wdHIocmVxLT5idWZmZXJzKTsKKworCQlmb3IgKGkg
-PSAwOyBpIDwgcmVxLT5ucl9idWZmZXJzOyBpKyspIHsKKwkJCWlmIChib1tpXS5wcmVzdW1lZC52
-YWxpZCkKKwkJCQljb250aW51ZTsKKworCQkJaWYgKGNvcHlfdG9fdXNlcigmdXBiYm9baV0ucHJl
-c3VtZWQsICZib1tpXS5wcmVzdW1lZCwKKwkJCQkJIHNpemVvZihib1tpXS5wcmVzdW1lZCkpKSB7
-CisJCQkJcmV0ID0gLUVGQVVMVDsKKwkJCQlicmVhazsKKwkJCX0KKwkJfQorCQl1X2ZyZWUocmVs
-b2MpOworCX0KIG91dF9wcmV2YWxpZDoKIAl1X2ZyZWUoYm8pOwogCXVfZnJlZShwdXNoKTsKLS0g
-CjIuMjQuMC5yYzIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+
+--===============1360949361==
+Content-Type: multipart/alternative; boundary="15728894062.da5e.22822"
+Content-Transfer-Encoding: 7bit
+
+
+--15728894062.da5e.22822
+Date: Mon, 4 Nov 2019 17:43:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D112197
+
+--- Comment #1 from James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> ---
+Just a note: The binary NVIDIA driver (I assume that's what the OEM driver =
+is)
+does support DisplayLink outputs if configured correctly.  It's effectively=
+ the
+same as an optimus configuration.  See these sections in our documentation =
+for
+more information if you're interested:
+
+https://download.nvidia.com/XFree86/Linux-x86_64/440.31/README/optimus.html
+https://download.nvidia.com/XFree86/Linux-x86_64/440.31/README/randr14.html
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15728894062.da5e.22822
+Date: Mon, 4 Nov 2019 17:43:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Black screen after resume"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112197#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Black screen after resume"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112197">bug 11219=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jajones&#64;nvidia.com" title=3D"James Jones &lt;jajones&#64;nvidia.com&gt;=
+"> <span class=3D"fn">James Jones</span></a>
+</span></b>
+        <pre>Just a note: The binary NVIDIA driver (I assume that's what th=
+e OEM driver is)
+does support DisplayLink outputs if configured correctly.  It's effectively=
+ the
+same as an optimus configuration.  See these sections in our documentation =
+for
+more information if you're interested:
+
+<a href=3D"https://download.nvidia.com/XFree86/Linux-x86_64/440.31/README/o=
+ptimus.html">https://download.nvidia.com/XFree86/Linux-x86_64/440.31/README=
+/optimus.html</a>
+<a href=3D"https://download.nvidia.com/XFree86/Linux-x86_64/440.31/README/r=
+andr14.html">https://download.nvidia.com/XFree86/Linux-x86_64/440.31/README=
+/randr14.html</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15728894062.da5e.22822--
+
+--===============1360949361==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1360949361==--
