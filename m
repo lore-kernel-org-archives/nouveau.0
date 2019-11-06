@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 112185] Xorg hangs from time to time
-Date: Wed, 06 Nov 2019 20:05:23 +0000
-Message-ID: <bug-112185-8800-7LwI22jOSs@http.bugs.freedesktop.org/>
+Date: Wed, 06 Nov 2019 20:06:11 +0000
+Message-ID: <bug-112185-8800-jyOg6QtFpG@http.bugs.freedesktop.org/>
 References: <bug-112185-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0653033720=="
+Content-Type: multipart/mixed; boundary="===============1873994118=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-112185-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0653033720==
-Content-Type: multipart/alternative; boundary="15730707231.9ECe24d.27185"
+--===============1873994118==
+Content-Type: multipart/alternative; boundary="15730707710.df40.27626"
 Content-Transfer-Encoding: 7bit
 
 
---15730707231.9ECe24d.27185
-Date: Wed, 6 Nov 2019 20:05:23 +0000
+--15730707710.df40.27626
+Date: Wed, 6 Nov 2019 20:06:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D112185
 
---- Comment #12 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 145906
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145906&action=3Dedit
-xfce: dmesg
+Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #145905|text/x-log                  |text/plain
+          mime type|                            |
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15730707231.9ECe24d.27185
-Date: Wed, 6 Nov 2019 20:05:23 +0000
+--15730707710.df40.27626
+Date: Wed, 6 Nov 2019 20:06:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -56,29 +58,31 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg hangs from time to time"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112185#c12">Comme=
-nt # 12</a>
-              on <a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:estellnb&=
+#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;=
+"> <span class=3D"fn">Elmar Stellnberger</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg hangs from time to time"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112185">bug 11218=
 5</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
-l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145906=
-" name=3D"attach_145906" title=3D"xfce: dmesg">attachment 145906</a> <a hre=
-f=3D"attachment.cgi?id=3D145906&amp;action=3Dedit" title=3D"xfce: dmesg">[d=
-etails]</a></span>
-xfce: dmesg</pre>
-        </div>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #145905 mime type</td>
+           <td>text/x-log
+           </td>
+           <td>text/plain
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -91,9 +95,9 @@ xfce: dmesg</pre>
     </body>
 </html>=
 
---15730707231.9ECe24d.27185--
+--15730707710.df40.27626--
 
---===============0653033720==
+--===============1873994118==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0653033720==--
+--===============1873994118==--
