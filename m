@@ -1,100 +1,49 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 112185] Xorg hangs from time to time
-Date: Fri, 08 Nov 2019 10:22:53 +0000
-Message-ID: <bug-112185-8800-du92Q88tTi@http.bugs.freedesktop.org/>
-References: <bug-112185-8800@http.bugs.freedesktop.org/>
+From: Jerome Glisse <jglisse@redhat.com>
+Subject: Re: [PATCH v2 02/15] mm/mmu_notifier: add an interval tree notifier
+Date: Fri, 8 Nov 2019 08:43:28 -0500
+Message-ID: <20191108134328.GA4456@redhat.com>
+References: <20191028201032.6352-1-jgg@ziepe.ca>
+ <20191028201032.6352-3-jgg@ziepe.ca>
+ <35c2b322-004e-0e18-87e4-1920dc71bfd5@nvidia.com>
+ <20191107200604.GB21728@mellanox.com>
+ <20191108063302.GA18778@infradead.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1516559018=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-112185-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20191108063302.GA18778@infradead.org>
+Content-Disposition: inline
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Christoph Hellwig <hch@infradead.org>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Michal Hocko <mhocko@kernel.org>, "linux-mm@kvack.org" <linux-mm@kvack.org>, Andrea Arcangeli <aarcange@redhat.com>, Stefano Stabellini <sstabellini@kernel.org>, Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>, Ralph Campbell <rcampbell@nvidia.com>, John Hubbard <jhubbard@nvidia.com>, Boris Ostrovsky <boris.ostrovsky@oracle.com>, Petr Cvek <petrcvekcz@gmail.com>, Juergen Gross <jgross@suse.com>, Mike Marciniszyn <mike.marciniszyn@intel.com>, "Felix.Kuehling@amd.com" <Felix.>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1516559018==
-Content-Type: multipart/alternative; boundary="15732085730.91eef.30877"
-Content-Transfer-Encoding: 7bit
-
-
---15732085730.91eef.30877
-Date: Fri, 8 Nov 2019 10:22:53 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D112185
-
---- Comment #16 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Any help would be very appreciated!
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15732085730.91eef.30877
-Date: Fri, 8 Nov 2019 10:22:53 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg hangs from time to time"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112185#c16">Comme=
-nt # 16</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg hangs from time to time"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112185">bug 11218=
-5</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
-l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
-</span></b>
-        <pre>Any help would be very appreciated!</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15732085730.91eef.30877--
-
---===============1516559018==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1516559018==--
+T24gVGh1LCBOb3YgMDcsIDIwMTkgYXQgMTA6MzM6MDJQTSAtMDgwMCwgQ2hyaXN0b3BoIEhlbGx3
+aWcgd3JvdGU6Cj4gT24gVGh1LCBOb3YgMDcsIDIwMTkgYXQgMDg6MDY6MDhQTSArMDAwMCwgSmFz
+b24gR3VudGhvcnBlIHdyb3RlOgo+ID4gPiAKPiA+ID4gZW51bSBtbXVfcmFuZ2Vfbm90aWZpZXJf
+ZXZlbnQgewo+ID4gPiAJTU1VX05PVElGWV9SRUxFQVNFLAo+ID4gPiB9Owo+ID4gPiAKPiA+ID4g
+Li4uYXNzdW1pbmcgdGhhdCB3ZSBzdGF5IHdpdGggIm1tdV9yYW5nZV9ub3RpZmllciIgYXMgYSBj
+b3JlIG5hbWUgZm9yIHRoaXMgCj4gPiA+IHdob2xlIHRoaW5nLgo+ID4gPiAKPiA+ID4gQWxzbywg
+aXQgaXMgYmVzdCBtb3ZlZCBkb3duIHRvIGJlIG5leHQgdG8gdGhlIG5ldyBNTlIgc3RydWN0cywg
+c28gdGhhdCBhbGwgdGhlCj4gPiA+IE1OUiBzdHVmZiBpcyBpbiBvbmUgZ3JvdXAuCj4gPiAKPiA+
+IEkgYWdyZWUgd2l0aCBKZXJvbWUsIHRoaXMgZW51bSBpcyBwYXJ0IG9mIHRoZSAnc3RydWN0Cj4g
+PiBtbXVfbm90aWZpZXJfcmFuZ2UnIChpZSB0aGUgZGVzY3JpcHRpb24gb2YgdGhlIGludmFsaWRh
+dGlvbikgYW5kIGl0Cj4gPiBkb2Vzbid0IHJlYWxseSBtYXR0ZXIgdGhhdCBvbmx5IHRoZXNlIG5l
+dyBub3RpZmllcnMgY2FuIGJlIGNhbGxlZCB3aXRoCj4gPiB0aGlzIHR5cGUsIGl0IGlzIHN0aWxs
+IHBhcnQgb2YgdGhlIG1tdV9ub3RpZmllcl9yYW5nZS4KPiA+IAo+ID4gVGhlIGNvbW1lbnQgYWxy
+ZWFkeSBzYXlzIGl0IG9ubHkgYXBwbGllcyB0byB0aGUgbW11X3JhbmdlX25vdGlmaWVyCj4gPiBz
+Y2hlbWUuLgo+IAo+IEluIGZhY3QgdGhlIGVudW0gaXMgZW50aXJlbHkgdW51c2VkLiAgV2UgbWln
+aHQgYXMgd2VsbCBqdXN0IGtpbGwgaXQgb2ZmCj4gZW50aXJlbHkuCgpJIGhhZCBwYXRjaGVzIHRv
+IHVzZSBpdCwgaSBuZWVkIHRvIHJlLXBvc3QgdGhlbS4gSSBwb3N0ZWQgdGhlbSBsb25nIGFnbwph
+bmQgaSBkcm9wZWQgdGhlIGJhbGwuIEkgd2lsbCByZS1zcGluIGFmdGVyIHRoaXMuCgpDaGVlcnMs
+CkrDqXLDtG1lCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWw=
