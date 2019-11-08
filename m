@@ -1,44 +1,110 @@
-From: Christoph Hellwig <hch@infradead.org>
-Subject: Re: [PATCH v2 02/15] mm/mmu_notifier: add an interval
- tree notifier
-Date: Thu, 7 Nov 2019 22:33:02 -0800
-Message-ID: <20191108063302.GA18778@infradead.org>
-References: <20191028201032.6352-1-jgg@ziepe.ca>
- <20191028201032.6352-3-jgg@ziepe.ca>
- <35c2b322-004e-0e18-87e4-1920dc71bfd5@nvidia.com>
- <20191107200604.GB21728@mellanox.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 112185] Xorg hangs from time to time
+Date: Fri, 08 Nov 2019 10:20:48 +0000
+Message-ID: <bug-112185-8800-jiQRmayOOj@http.bugs.freedesktop.org/>
+References: <bug-112185-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <xen-devel-bounces@lists.xenproject.org>
-Content-Disposition: inline
-In-Reply-To: <20191107200604.GB21728@mellanox.com>
-List-Unsubscribe: <https://lists.xenproject.org/mailman/options/xen-devel>,
- <mailto:xen-devel-request@lists.xenproject.org?subject=unsubscribe>
-List-Post: <mailto:xen-devel@lists.xenproject.org>
-List-Help: <mailto:xen-devel-request@lists.xenproject.org?subject=help>
-List-Subscribe: <https://lists.xenproject.org/mailman/listinfo/xen-devel>,
- <mailto:xen-devel-request@lists.xenproject.org?subject=subscribe>
-Errors-To: xen-devel-bounces@lists.xenproject.org
-Sender: "Xen-devel" <xen-devel-bounces@lists.xenproject.org>
-To: Jason Gunthorpe <jgg@mellanox.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Michal Hocko <mhocko@kernel.org>, "linux-mm@kvack.org" <linux-mm@kvack.org>, Andrea Arcangeli <aarcange@redhat.com>, David Zhou <David1.Zhou@amd.com>, Stefano Stabellini <sstabellini@kernel.org>, Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, Christoph Hellwig <hch@infradead.org>, Ben Skeggs <bskeggs@redhat.com>, "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>, Ralph Campbell <rcampbell@nvidia.com>, John Hubbard <jhubbard@nvidia.com>, Jerome Glisse <jglisse@redhat.com>, Boris Ostrovsky <boris.ostrovsky@oracle.com>, Petr Cvek <petrcvekcz@gmail.com>, Juergen Gross <jgross@suse.com>, Mike
+Content-Type: multipart/mixed; boundary="===============1262203913=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-112185-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBOb3YgMDcsIDIwMTkgYXQgMDg6MDY6MDhQTSArMDAwMCwgSmFzb24gR3VudGhvcnBl
-IHdyb3RlOgo+ID4gCj4gPiBlbnVtIG1tdV9yYW5nZV9ub3RpZmllcl9ldmVudCB7Cj4gPiAJTU1V
-X05PVElGWV9SRUxFQVNFLAo+ID4gfTsKPiA+IAo+ID4gLi4uYXNzdW1pbmcgdGhhdCB3ZSBzdGF5
-IHdpdGggIm1tdV9yYW5nZV9ub3RpZmllciIgYXMgYSBjb3JlIG5hbWUgZm9yIHRoaXMgCj4gPiB3
-aG9sZSB0aGluZy4KPiA+IAo+ID4gQWxzbywgaXQgaXMgYmVzdCBtb3ZlZCBkb3duIHRvIGJlIG5l
-eHQgdG8gdGhlIG5ldyBNTlIgc3RydWN0cywgc28gdGhhdCBhbGwgdGhlCj4gPiBNTlIgc3R1ZmYg
-aXMgaW4gb25lIGdyb3VwLgo+IAo+IEkgYWdyZWUgd2l0aCBKZXJvbWUsIHRoaXMgZW51bSBpcyBw
-YXJ0IG9mIHRoZSAnc3RydWN0Cj4gbW11X25vdGlmaWVyX3JhbmdlJyAoaWUgdGhlIGRlc2NyaXB0
-aW9uIG9mIHRoZSBpbnZhbGlkYXRpb24pIGFuZCBpdAo+IGRvZXNuJ3QgcmVhbGx5IG1hdHRlciB0
-aGF0IG9ubHkgdGhlc2UgbmV3IG5vdGlmaWVycyBjYW4gYmUgY2FsbGVkIHdpdGgKPiB0aGlzIHR5
-cGUsIGl0IGlzIHN0aWxsIHBhcnQgb2YgdGhlIG1tdV9ub3RpZmllcl9yYW5nZS4KPiAKPiBUaGUg
-Y29tbWVudCBhbHJlYWR5IHNheXMgaXQgb25seSBhcHBsaWVzIHRvIHRoZSBtbXVfcmFuZ2Vfbm90
-aWZpZXIKPiBzY2hlbWUuLgoKSW4gZmFjdCB0aGUgZW51bSBpcyBlbnRpcmVseSB1bnVzZWQuICBX
-ZSBtaWdodCBhcyB3ZWxsIGp1c3Qga2lsbCBpdCBvZmYKZW50aXJlbHkuCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpYZW4tZGV2ZWwgbWFpbGluZyBsaXN0
-Clhlbi1kZXZlbEBsaXN0cy54ZW5wcm9qZWN0Lm9yZwpodHRwczovL2xpc3RzLnhlbnByb2plY3Qu
-b3JnL21haWxtYW4vbGlzdGluZm8veGVuLWRldmVs
+
+--===============1262203913==
+Content-Type: multipart/alternative; boundary="15732084481.8f4F6e1.30373"
+Content-Transfer-Encoding: 7bit
+
+
+--15732084481.8f4F6e1.30373
+Date: Fri, 8 Nov 2019 10:20:48 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D112185
+
+--- Comment #14 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 145911
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145911&action=3Dedit
+icewm-crash: journal
+
+You are not even safe from these crashes when using icewm
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15732084481.8f4F6e1.30373
+Date: Fri, 8 Nov 2019 10:20:48 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg hangs from time to time"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112185#c14">Comme=
+nt # 14</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg hangs from time to time"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112185">bug 11218=
+5</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
+l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145911=
+" name=3D"attach_145911" title=3D"icewm-crash: journal">attachment 145911</=
+a> <a href=3D"attachment.cgi?id=3D145911&amp;action=3Dedit" title=3D"icewm-=
+crash: journal">[details]</a></span>
+icewm-crash: journal
+
+You are not even safe from these crashes when using icewm</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15732084481.8f4F6e1.30373--
+
+--===============1262203913==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1262203913==--
