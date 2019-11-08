@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 112185] Xorg hangs from time to time
-Date: Fri, 08 Nov 2019 10:20:48 +0000
-Message-ID: <bug-112185-8800-jiQRmayOOj@http.bugs.freedesktop.org/>
+Date: Fri, 08 Nov 2019 10:21:10 +0000
+Message-ID: <bug-112185-8800-ILMFMwapIy@http.bugs.freedesktop.org/>
 References: <bug-112185-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1262203913=="
+Content-Type: multipart/mixed; boundary="===============0583350722=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-112185-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1262203913==
-Content-Type: multipart/alternative; boundary="15732084481.8f4F6e1.30373"
+--===============0583350722==
+Content-Type: multipart/alternative; boundary="15732084702.90FAA7957.30864"
 Content-Transfer-Encoding: 7bit
 
 
---15732084481.8f4F6e1.30373
-Date: Fri, 8 Nov 2019 10:20:48 +0000
+--15732084702.90FAA7957.30864
+Date: Fri, 8 Nov 2019 10:21:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,19 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D112185
 
---- Comment #14 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 145911
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145911&action=3Dedit
-icewm-crash: journal
-
-You are not even safe from these crashes when using icewm
+--- Comment #15 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 145912
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145912&action=3Dedit
+icewm-crash: Xorg.0.log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15732084481.8f4F6e1.30373
-Date: Fri, 8 Nov 2019 10:20:48 +0000
+--15732084702.90FAA7957.30864
+Date: Fri, 8 Nov 2019 10:21:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg hangs from time to time"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112185#c14">Comme=
-nt # 14</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112185#c15">Comme=
+nt # 15</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg hangs from time to time"
@@ -75,13 +73,11 @@ nt # 14</a>
 estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
 l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145911=
-" name=3D"attach_145911" title=3D"icewm-crash: journal">attachment 145911</=
-a> <a href=3D"attachment.cgi?id=3D145911&amp;action=3Dedit" title=3D"icewm-=
-crash: journal">[details]</a></span>
-icewm-crash: journal
-
-You are not even safe from these crashes when using icewm</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145912=
+" name=3D"attach_145912" title=3D"icewm-crash: Xorg.0.log">attachment 14591=
+2</a> <a href=3D"attachment.cgi?id=3D145912&amp;action=3Dedit" title=3D"ice=
+wm-crash: Xorg.0.log">[details]</a></span>
+icewm-crash: Xorg.0.log</pre>
         </div>
       </p>
 
@@ -95,9 +91,9 @@ You are not even safe from these crashes when using icewm</pre>
     </body>
 </html>=
 
---15732084481.8f4F6e1.30373--
+--15732084702.90FAA7957.30864--
 
---===============1262203913==
+--===============0583350722==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1262203913==--
+--===============0583350722==--
