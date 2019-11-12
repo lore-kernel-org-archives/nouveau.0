@@ -1,111 +1,90 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105940] Display freeze caused by nouveau
-Date: Sun, 10 Nov 2019 20:54:22 +0000
-Message-ID: <bug-105940-8800-2eFXIy3IxT@http.bugs.freedesktop.org/>
-References: <bug-105940-8800@http.bugs.freedesktop.org/>
+From: Jason Gunthorpe <jgg@ziepe.ca>
+Subject: [PATCH v3 01/14] mm/mmu_notifier: define the header
+ pre-processor parts even if disabled
+Date: Tue, 12 Nov 2019 16:22:18 -0400
+Message-ID: <20191112202231.3856-2-jgg@ziepe.ca>
+References: <20191112202231.3856-1-jgg@ziepe.ca>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0661181589=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105940-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <xen-devel-bounces@lists.xenproject.org>
+In-Reply-To: <20191112202231.3856-1-jgg@ziepe.ca>
+List-Unsubscribe: <https://lists.xenproject.org/mailman/options/xen-devel>,
+ <mailto:xen-devel-request@lists.xenproject.org?subject=unsubscribe>
+List-Post: <mailto:xen-devel@lists.xenproject.org>
+List-Help: <mailto:xen-devel-request@lists.xenproject.org?subject=help>
+List-Subscribe: <https://lists.xenproject.org/mailman/listinfo/xen-devel>,
+ <mailto:xen-devel-request@lists.xenproject.org?subject=subscribe>
+Errors-To: xen-devel-bounces@lists.xenproject.org
+Sender: "Xen-devel" <xen-devel-bounces@lists.xenproject.org>
+To: linux-mm@kvack.org, Jerome Glisse <jglisse@redhat.com>, Ralph Campbell <rcampbell@nvidia.com>, John Hubbard <jhubbard@nvidia.com>, Felix.Kuehling@amd.com
+Cc: Juergen Gross <jgross@suse.com>, David Zhou <David1.Zhou@amd.com>, Mike Marciniszyn <mike.marciniszyn@intel.com>, Stefano Stabellini <sstabellini@kernel.org>, Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, linux-rdma@vger.kernel.org, nouveau@lists.freedesktop.org, Dennis Dalessandro <dennis.dalessandro@intel.com>, amd-gfx@lists.freedesktop.org, Christoph Hellwig <hch@infradead.org>, Jason Gunthorpe <jgg@mellanox.com>, dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, xen-devel@lists.xenproject.org, Boris Ostrovsky <boris.ostrovsky@oracle.com>, Petr Cvek <petrcvekcz@gmail.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0661181589==
-Content-Type: multipart/alternative; boundary="15734192620.Fc1bc8.23844"
-Content-Transfer-Encoding: 7bit
-
-
---15734192620.Fc1bc8.23844
-Date: Sun, 10 Nov 2019 20:54:22 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105940
-
-Stefano Biagiotti <stefano.biagiotti-h53T4Qt7PfY@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=3D110572
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15734192620.Fc1bc8.23844
-Date: Sun, 10 Nov 2019 20:54:22 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:stefano.b=
-iagiotti&#64;gtn.it" title=3D"Stefano Biagiotti &lt;stefano.biagiotti&#64;g=
-tn.it&gt;"> <span class=3D"fn">Stefano Biagiotti</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Display freeze caused by nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105940">bug 10594=
-0</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">See Also</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D110572
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15734192620.Fc1bc8.23844--
-
---===============0661181589==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0661181589==--
+RnJvbTogSmFzb24gR3VudGhvcnBlIDxqZ2dAbWVsbGFub3guY29tPgoKTm93IHRoYXQgd2UgaGF2
+ZSBLRVJORUxfSEVBREVSX1RFU1QgYWxsIGhlYWRlcnMgYXJlIGdlbmVyYWxseSBjb21waWxlCnRl
+c3RlZCwgc28gcmVseWluZyBvbiBtYWtlZmlsZSB0cmlja3MgdG8gYXZvaWQgY29tcGlsaW5nIGNv
+ZGUgdGhhdCBkZXBlbmRzCm9uIENPTkZJR19NTVVfTk9USUZJRVIgaXMgbW9yZSBhbm5veWluZy4K
+Ckluc3RlYWQgZm9sbG93IHRoZSB1c3VhbCBwYXR0ZXJuIGFuZCBwcm92aWRlIG1vc3Qgb2YgdGhl
+IGhlYWRlciB3aXRoIG9ubHkKdGhlIGZ1bmN0aW9ucyBzdHViYmVkIG91dCB3aGVuIENPTkZJR19N
+TVVfTk9USUZJRVIgaXMgZGlzYWJsZWQuIFRoaXMKZW5zdXJlcyBjb2RlIGNvbXBpbGVzIG5vIG1h
+dHRlciB3aGF0IHRoZSBjb25maWcgc2V0dGluZyBpcy4KCldoaWxlIGhlcmUsIHN0cnVjdCBtbXVf
+bm90aWZpZXJfbW0gaXMgcHJpdmF0ZSB0byBtbXVfbm90aWZpZXIuYywgbW92ZSBpdC4KClJldmll
+d2VkLWJ5OiBKw6lyw7RtZSBHbGlzc2UgPGpnbGlzc2VAcmVkaGF0LmNvbT4KVGVzdGVkLWJ5OiBS
+YWxwaCBDYW1wYmVsbCA8cmNhbXBiZWxsQG52aWRpYS5jb20+ClJldmlld2VkLWJ5OiBKb2huIEh1
+YmJhcmQgPGpodWJiYXJkQG52aWRpYS5jb20+ClNpZ25lZC1vZmYtYnk6IEphc29uIEd1bnRob3Jw
+ZSA8amdnQG1lbGxhbm94LmNvbT4KLS0tCiBpbmNsdWRlL2xpbnV4L21tdV9ub3RpZmllci5oIHwg
+NDYgKysrKysrKysrKysrKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiBtbS9tbXVfbm90aWZpZXIu
+YyAgICAgICAgICAgIHwgMTMgKysrKysrKysrKwogMiBmaWxlcyBjaGFuZ2VkLCAzMCBpbnNlcnRp
+b25zKCspLCAyOSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L21tdV9u
+b3RpZmllci5oIGIvaW5jbHVkZS9saW51eC9tbXVfbm90aWZpZXIuaAppbmRleCAxYmQ4ZTZhMDlh
+M2MyNy4uMTJiZDYwM2QzMThjZTcgMTAwNjQ0Ci0tLSBhL2luY2x1ZGUvbGludXgvbW11X25vdGlm
+aWVyLmgKKysrIGIvaW5jbHVkZS9saW51eC9tbXVfbm90aWZpZXIuaApAQCAtNyw4ICs3LDkgQEAK
+ICNpbmNsdWRlIDxsaW51eC9tbV90eXBlcy5oPgogI2luY2x1ZGUgPGxpbnV4L3NyY3UuaD4KIAor
+c3RydWN0IG1tdV9ub3RpZmllcl9tbTsKIHN0cnVjdCBtbXVfbm90aWZpZXI7Ci1zdHJ1Y3QgbW11
+X25vdGlmaWVyX29wczsKK3N0cnVjdCBtbXVfbm90aWZpZXJfcmFuZ2U7CiAKIC8qKgogICogZW51
+bSBtbXVfbm90aWZpZXJfZXZlbnQgLSByZWFzb24gZm9yIHRoZSBtbXUgbm90aWZpZXIgY2FsbGJh
+Y2sKQEAgLTQwLDM2ICs0MSw4IEBAIGVudW0gbW11X25vdGlmaWVyX2V2ZW50IHsKIAlNTVVfTk9U
+SUZZX1NPRlRfRElSVFksCiB9OwogCi0jaWZkZWYgQ09ORklHX01NVV9OT1RJRklFUgotCi0jaWZk
+ZWYgQ09ORklHX0xPQ0tERVAKLWV4dGVybiBzdHJ1Y3QgbG9ja2RlcF9tYXAgX19tbXVfbm90aWZp
+ZXJfaW52YWxpZGF0ZV9yYW5nZV9zdGFydF9tYXA7Ci0jZW5kaWYKLQotLyoKLSAqIFRoZSBtbXUg
+bm90aWZpZXJfbW0gc3RydWN0dXJlIGlzIGFsbG9jYXRlZCBhbmQgaW5zdGFsbGVkIGluCi0gKiBt
+bS0+bW11X25vdGlmaWVyX21tIGluc2lkZSB0aGUgbW1fdGFrZV9hbGxfbG9ja3MoKSBwcm90ZWN0
+ZWQKLSAqIGNyaXRpY2FsIHNlY3Rpb24gYW5kIGl0J3MgcmVsZWFzZWQgb25seSB3aGVuIG1tX2Nv
+dW50IHJlYWNoZXMgemVybwotICogaW4gbW1kcm9wKCkuCi0gKi8KLXN0cnVjdCBtbXVfbm90aWZp
+ZXJfbW0gewotCS8qIGFsbCBtbXUgbm90aWZpZXJzIHJlZ2lzdGVyZCBpbiB0aGlzIG1tIGFyZSBx
+dWV1ZWQgaW4gdGhpcyBsaXN0ICovCi0Jc3RydWN0IGhsaXN0X2hlYWQgbGlzdDsKLQkvKiB0byBz
+ZXJpYWxpemUgdGhlIGxpc3QgbW9kaWZpY2F0aW9ucyBhbmQgaGxpc3RfdW5oYXNoZWQgKi8KLQlz
+cGlubG9ja190IGxvY2s7Ci19OwotCiAjZGVmaW5lIE1NVV9OT1RJRklFUl9SQU5HRV9CTE9DS0FC
+TEUgKDEgPDwgMCkKIAotc3RydWN0IG1tdV9ub3RpZmllcl9yYW5nZSB7Ci0Jc3RydWN0IHZtX2Fy
+ZWFfc3RydWN0ICp2bWE7Ci0Jc3RydWN0IG1tX3N0cnVjdCAqbW07Ci0JdW5zaWduZWQgbG9uZyBz
+dGFydDsKLQl1bnNpZ25lZCBsb25nIGVuZDsKLQl1bnNpZ25lZCBmbGFnczsKLQllbnVtIG1tdV9u
+b3RpZmllcl9ldmVudCBldmVudDsKLX07Ci0KIHN0cnVjdCBtbXVfbm90aWZpZXJfb3BzIHsKIAkv
+KgogCSAqIENhbGxlZCBlaXRoZXIgYnkgbW11X25vdGlmaWVyX3VucmVnaXN0ZXIgb3Igd2hlbiB0
+aGUgbW0gaXMKQEAgLTI0OSw2ICsyMjIsMjEgQEAgc3RydWN0IG1tdV9ub3RpZmllciB7CiAJdW5z
+aWduZWQgaW50IHVzZXJzOwogfTsKIAorI2lmZGVmIENPTkZJR19NTVVfTk9USUZJRVIKKworI2lm
+ZGVmIENPTkZJR19MT0NLREVQCitleHRlcm4gc3RydWN0IGxvY2tkZXBfbWFwIF9fbW11X25vdGlm
+aWVyX2ludmFsaWRhdGVfcmFuZ2Vfc3RhcnRfbWFwOworI2VuZGlmCisKK3N0cnVjdCBtbXVfbm90
+aWZpZXJfcmFuZ2UgeworCXN0cnVjdCB2bV9hcmVhX3N0cnVjdCAqdm1hOworCXN0cnVjdCBtbV9z
+dHJ1Y3QgKm1tOworCXVuc2lnbmVkIGxvbmcgc3RhcnQ7CisJdW5zaWduZWQgbG9uZyBlbmQ7CisJ
+dW5zaWduZWQgZmxhZ3M7CisJZW51bSBtbXVfbm90aWZpZXJfZXZlbnQgZXZlbnQ7Cit9OworCiBz
+dGF0aWMgaW5saW5lIGludCBtbV9oYXNfbm90aWZpZXJzKHN0cnVjdCBtbV9zdHJ1Y3QgKm1tKQog
+ewogCXJldHVybiB1bmxpa2VseShtbS0+bW11X25vdGlmaWVyX21tKTsKZGlmZiAtLWdpdCBhL21t
+L21tdV9ub3RpZmllci5jIGIvbW0vbW11X25vdGlmaWVyLmMKaW5kZXggN2ZkZTg4Njk1ZjM1ZDYu
+LjM2NzY3MGNmZDAyYjdiIDEwMDY0NAotLS0gYS9tbS9tbXVfbm90aWZpZXIuYworKysgYi9tbS9t
+bXVfbm90aWZpZXIuYwpAQCAtMjcsNiArMjcsMTkgQEAgc3RydWN0IGxvY2tkZXBfbWFwIF9fbW11
+X25vdGlmaWVyX2ludmFsaWRhdGVfcmFuZ2Vfc3RhcnRfbWFwID0gewogfTsKICNlbmRpZgogCisv
+KgorICogVGhlIG1tdSBub3RpZmllcl9tbSBzdHJ1Y3R1cmUgaXMgYWxsb2NhdGVkIGFuZCBpbnN0
+YWxsZWQgaW4KKyAqIG1tLT5tbXVfbm90aWZpZXJfbW0gaW5zaWRlIHRoZSBtbV90YWtlX2FsbF9s
+b2NrcygpIHByb3RlY3RlZAorICogY3JpdGljYWwgc2VjdGlvbiBhbmQgaXQncyByZWxlYXNlZCBv
+bmx5IHdoZW4gbW1fY291bnQgcmVhY2hlcyB6ZXJvCisgKiBpbiBtbWRyb3AoKS4KKyAqLworc3Ry
+dWN0IG1tdV9ub3RpZmllcl9tbSB7CisJLyogYWxsIG1tdSBub3RpZmllcnMgcmVnaXN0ZXJlZCBp
+biB0aGlzIG1tIGFyZSBxdWV1ZWQgaW4gdGhpcyBsaXN0ICovCisJc3RydWN0IGhsaXN0X2hlYWQg
+bGlzdDsKKwkvKiB0byBzZXJpYWxpemUgdGhlIGxpc3QgbW9kaWZpY2F0aW9ucyBhbmQgaGxpc3Rf
+dW5oYXNoZWQgKi8KKwlzcGlubG9ja190IGxvY2s7Cit9OworCiAvKgogICogVGhpcyBmdW5jdGlv
+biBjYW4ndCBydW4gY29uY3VycmVudGx5IGFnYWluc3QgbW11X25vdGlmaWVyX3JlZ2lzdGVyCiAg
+KiBiZWNhdXNlIG1tLT5tbV91c2VycyA+IDAgZHVyaW5nIG1tdV9ub3RpZmllcl9yZWdpc3RlciBh
+bmQgZXhpdF9tbWFwCi0tIAoyLjI0LjAKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpYZW4tZGV2ZWwgbWFpbGluZyBsaXN0Clhlbi1kZXZlbEBsaXN0cy54
+ZW5wcm9qZWN0Lm9yZwpodHRwczovL2xpc3RzLnhlbnByb2plY3Qub3JnL21haWxtYW4vbGlzdGlu
+Zm8veGVuLWRldmVs
