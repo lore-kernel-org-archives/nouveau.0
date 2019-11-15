@@ -1,120 +1,56 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
- 409800 [ TIMEOUT ]
-Date: Sat, 16 Nov 2019 14:12:23 +0000
-Message-ID: <bug-100228-8800-fkD9INwCop@http.bugs.freedesktop.org/>
-References: <bug-100228-8800@http.bugs.freedesktop.org/>
+From: zhengbin <zhengbin13@huawei.com>
+Subject: [PATCH 1/2] drm/nouveau: remove set but not used variable 'pclks',
+ 'width'
+Date: Fri, 15 Nov 2019 21:42:32 +0800
+Message-ID: <1573825353-86268-2-git-send-email-zhengbin13@huawei.com>
+References: <1573825353-86268-1-git-send-email-zhengbin13@huawei.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1021821056=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <1573825353-86268-1-git-send-email-zhengbin13@huawei.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: bskeggs@redhat.com, lyude@redhat.com, airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: zhengbin13@huawei.com
 List-Id: nouveau.vger.kernel.org
 
-
---===============1021821056==
-Content-Type: multipart/alternative; boundary="157391354415.ed8Ef5fE1.25689"
-Content-Transfer-Encoding: 7bit
-
-
---157391354415.ed8Ef5fE1.25689
-Date: Sat, 16 Nov 2019 14:12:24 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
-
---- Comment #45 from Sergey Yanovich <ynvich-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Lo=C3=AFc Yhuel from comment #27)
-> No change with the new firmwares on Dell Inspiron Gaming 7567.
-
-> No issue when booting with nouveau.noaccel=3D1.
-
-The issue affects Dell G5 15 5587 as well. Ubuntu 19.04 is nearly unusable =
-on
-it with default settings. "nouveau.noaccel=3D1" helps.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---157391354415.ed8Ef5fE1.25689
-Date: Sat, 16 Nov 2019 14:12:24 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c45">Comme=
-nt # 45</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ynvich&#64;gmail.com" title=3D"Sergey Yanovich &lt;ynvich&#64;gmail.com&gt;=
-"> <span class=3D"fn">Sergey Yanovich</span></a>
-</span></b>
-        <pre>(In reply to Lo=C3=AFc Yhuel from <a href=3D"show_bug.cgi?id=
-=3D100228#c27">comment #27</a>)
-<span class=3D"quote">&gt; No change with the new firmwares on Dell Inspiro=
-n Gaming 7567.</span >
-
-<span class=3D"quote">&gt; No issue when booting with nouveau.noaccel=3D1.<=
-/span >
-
-The issue affects Dell G5 15 5587 as well. Ubuntu 19.04 is nearly unusable =
-on
-it with default settings. &quot;nouveau.noaccel=3D1&quot; helps.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---157391354415.ed8Ef5fE1.25689--
-
---===============1021821056==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1021821056==--
+Rml4ZXMgZ2NjICctV3VudXNlZC1idXQtc2V0LXZhcmlhYmxlJyB3YXJuaW5nOgoKZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvZGlzcG52MDQvYXJiLmM6IEluIGZ1bmN0aW9uIG52MDRfY2FsY19hcmI6
+CmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0L2FyYi5jOjU5OjIxOiB3YXJuaW5nOiB2
+YXJpYWJsZSBwY2xrcyBzZXQgYnV0IG5vdCB1c2VkIFstV3VudXNlZC1idXQtc2V0LXZhcmlhYmxl
+XQpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9hcmIuYzogSW4gZnVuY3Rpb24gbnYw
+NF9jYWxjX2FyYjoKZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvYXJiLmM6NTg6MjE6
+IHdhcm5pbmc6IHZhcmlhYmxlIHdpZHRoIHNldCBidXQgbm90IHVzZWQgWy1XdW51c2VkLWJ1dC1z
+ZXQtdmFyaWFibGVdCgpJdCBpcyBpbnRyb2R1Y2VkIGJ5IGNvbW1pdCA2ZWU3Mzg2MTBmNDEgKCJk
+cm0vbm91dmVhdToKQWRkIERSTSBkcml2ZXIgZm9yIE5WSURJQSBHUFVzIiksIGJ1dCBuZXZlciB1
+c2VkLApzbyByZW1vdmUgaXQuCgpSZXBvcnRlZC1ieTogSHVsayBSb2JvdCA8aHVsa2NpQGh1YXdl
+aS5jb20+ClNpZ25lZC1vZmYtYnk6IHpoZW5nYmluIDx6aGVuZ2JpbjEzQGh1YXdlaS5jb20+Ci0t
+LQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvYXJiLmMgfCA2ICsrLS0tLQogMSBm
+aWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9hcmIuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L2Rpc3BudjA0L2FyYi5jCmluZGV4IDM2MjQ5NTUuLjlkNGEyZDkgMTAwNjQ0Ci0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0L2FyYi5jCisrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0L2FyYi5jCkBAIC01Myw4ICs1Myw4IEBAIHN0cnVjdCBu
+dl9zaW1fc3RhdGUgewogc3RhdGljIHZvaWQKIG52MDRfY2FsY19hcmIoc3RydWN0IG52X2ZpZm9f
+aW5mbyAqZmlmbywgc3RydWN0IG52X3NpbV9zdGF0ZSAqYXJiKQogewotCWludCBwYWdlbWlzcywg
+Y2FzLCB3aWR0aCwgYnBwOwotCWludCBudmNsa3MsIG1jbGtzLCBwY2xrcywgY3J0cGFnZW1pc3M7
+CisJaW50IHBhZ2VtaXNzLCBjYXMsIGJwcDsKKwlpbnQgbnZjbGtzLCBtY2xrcywgY3J0cGFnZW1p
+c3M7CiAJaW50IGZvdW5kLCBtY2xrX2V4dHJhLCBtY2xrX2xvb3AsIGNicywgbTEsIHAxOwogCWlu
+dCBtY2xrX2ZyZXEsIHBjbGtfZnJlcSwgbnZjbGtfZnJlcTsKIAlpbnQgdXNfbSwgdXNfbiwgdXNf
+cCwgY3J0Y19kcmFpbl9yYXRlOwpAQCAtNjUsMTEgKzY1LDkgQEAgbnYwNF9jYWxjX2FyYihzdHJ1
+Y3QgbnZfZmlmb19pbmZvICpmaWZvLCBzdHJ1Y3QgbnZfc2ltX3N0YXRlICphcmIpCiAJbnZjbGtf
+ZnJlcSA9IGFyYi0+bnZjbGtfa2h6OwogCXBhZ2VtaXNzID0gYXJiLT5tZW1fcGFnZV9taXNzOwog
+CWNhcyA9IGFyYi0+bWVtX2xhdGVuY3k7Ci0Jd2lkdGggPSBhcmItPm1lbW9yeV93aWR0aCA+PiA2
+OwogCWJwcCA9IGFyYi0+YnBwOwogCWNicyA9IDEyODsKCi0JcGNsa3MgPSAyOwogCW52Y2xrcyA9
+IDEwOwogCW1jbGtzID0gMTMgKyBjYXM7CiAJbWNsa19leHRyYSA9IDM7Ci0tCjIuNy40CgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFp
+bGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWw=
