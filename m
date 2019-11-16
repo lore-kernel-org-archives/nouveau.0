@@ -1,71 +1,120 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 3/3] drm/nouveau/kms/nv50-: Limit MST BPC to 8
-Date: Fri, 15 Nov 2019 16:07:20 -0500
-Message-ID: <20191115210728.3467-4-lyude@redhat.com>
-References: <20191115210728.3467-1-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
+ 409800 [ TIMEOUT ]
+Date: Sat, 16 Nov 2019 14:12:23 +0000
+Message-ID: <bug-100228-8800-fkD9INwCop@http.bugs.freedesktop.org/>
+References: <bug-100228-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=WINDOWS-1252
-Content-Transfer-Encoding: quoted-printable
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20191115210728.3467-1-lyude@redhat.com>
-Sender: stable-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, David Airlie <airlied@redhat.com>, Jerry Zuo <Jerry.Zuo@amd.com>, Harry Wentland <harry.wentland@amd.com>, Juston Li <juston.li@intel.com>, Sam Ravnborg <sam@ravnborg.org>, Sean Paul <seanpaul@chromium.org>, stable@vger.kernel.org, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============1021821056=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Noticed this while working on some unrelated CRC stuff. Currently,
-userspace has very little support for BPCs higher than 8. While this
-doesn't matter for most things, on MST topologies we need to be careful
-about ensuring that we do our best to make any given display
-configuration fit within the bandwidth restraints of the topology, since
-otherwise less people's monitor configurations will work.
 
-Allowing for BPC settings higher than 8 dramatically increases the
-required bandwidth for displays in most configurations, and consequently
-makes it a lot less likely that said display configurations will pass
-the atomic check.
+--===============1021821056==
+Content-Type: multipart/alternative; boundary="157391354415.ed8Ef5fE1.25689"
+Content-Transfer-Encoding: 7bit
 
-In the future we want to fix this correctly by making it so that we
-adjust the bpp for each display in a topology to be as high as possible,
-while making sure to lower the bpp of each display in the event that we
-run out of bandwidth and need to rerun our atomic check. But for now,
-follow the behavior that both i915 and amdgpu are sticking to.
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Fixes: 232c9eec417a ("drm/nouveau: Use atomic VCPI helpers for MST")
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: David Airlie <airlied@redhat.com>
-Cc: Jerry Zuo <Jerry.Zuo@amd.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Juston Li <juston.li@intel.com>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Sean Paul <seanpaul@chromium.org>
-Cc: <stable@vger.kernel.org> # v5.1+
----
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+--157391354415.ed8Ef5fE1.25689
+Date: Sat, 16 Nov 2019 14:12:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouv=
-eau/dispnv50/disp.c
-index 93665aecce57..9ac47fe519f8 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -798,7 +798,14 @@ nv50_msto_atomic_check(struct drm_encoder *encoder,
- =09if (!state->duplicated) {
- =09=09const int clock =3D crtc_state->adjusted_mode.clock;
-=20
--=09=09asyh->or.bpc =3D connector->display_info.bpc;
-+=09=09/*
-+=09=09 * XXX: Since we don't use HDR in userspace quite yet, limit
-+=09=09 * the bpc to 8 to save bandwidth on the topology. In the
-+=09=09 * future, we'll want to properly fix this by dynamically
-+=09=09 * selecting the highest possible bpc that would fit in the
-+=09=09 * topology
-+=09=09 */
-+=09=09asyh->or.bpc =3D min(connector->display_info.bpc, 8U);
- =09=09asyh->dp.pbn =3D drm_dp_calc_pbn_mode(clock, asyh->or.bpc * 3);
- =09}
-=20
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
+
+--- Comment #45 from Sergey Yanovich <ynvich-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Lo=C3=AFc Yhuel from comment #27)
+> No change with the new firmwares on Dell Inspiron Gaming 7567.
+
+> No issue when booting with nouveau.noaccel=3D1.
+
+The issue affects Dell G5 15 5587 as well. Ubuntu 19.04 is nearly unusable =
+on
+it with default settings. "nouveau.noaccel=3D1" helps.
+
 --=20
-2.21.0
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--157391354415.ed8Ef5fE1.25689
+Date: Sat, 16 Nov 2019 14:12:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
+OUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c45">Comme=
+nt # 45</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
+OUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
+8</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+ynvich&#64;gmail.com" title=3D"Sergey Yanovich &lt;ynvich&#64;gmail.com&gt;=
+"> <span class=3D"fn">Sergey Yanovich</span></a>
+</span></b>
+        <pre>(In reply to Lo=C3=AFc Yhuel from <a href=3D"show_bug.cgi?id=
+=3D100228#c27">comment #27</a>)
+<span class=3D"quote">&gt; No change with the new firmwares on Dell Inspiro=
+n Gaming 7567.</span >
+
+<span class=3D"quote">&gt; No issue when booting with nouveau.noaccel=3D1.<=
+/span >
+
+The issue affects Dell G5 15 5587 as well. Ubuntu 19.04 is nearly unusable =
+on
+it with default settings. &quot;nouveau.noaccel=3D1&quot; helps.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--157391354415.ed8Ef5fE1.25689--
+
+--===============1021821056==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1021821056==--
