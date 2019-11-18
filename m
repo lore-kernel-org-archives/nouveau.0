@@ -1,139 +1,98 @@
-From: Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [Nouveau] [PATCH 1/3] drm/nouveau/kms/nv50-: Call
- outp_atomic_check_view() before handling PBN
-Date: Mon, 18 Nov 2019 14:41:17 +0100
-Message-ID: <20191118134117.GF2246533@ulmo>
-References: <20191115210728.3467-1-lyude@redhat.com>
- <20191115210728.3467-2-lyude@redhat.com>
+From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v2 0/9] drm/nouveau: Various fixes for GP10B
+Date: Mon, 18 Nov 2019 14:44:49 +0100
+Message-ID: <20191118134449.GG2246533@ulmo>
+References: <20191102175637.3065-1-thierry.reding@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="lIrNkN/7tmsD/ALM"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20191115210728.3467-2-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: nouveau@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org, Jerry Zuo <Jerry.Zuo@amd.com>, Sean Paul <seanpaul@chromium.org>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@redhat.com>, Harry Wentland <harry.wentland@amd.com>, Juston Li <juston.li@intel.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: multipart/mixed; boundary="===============1447320490=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20191102175637.3065-1-thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Joerg Roedel <joro-zLv9SwRftAIdnm+yROfE0A@public.gmane.org>
+Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Dooks <ben.dooks-4yDnlxn2s6sWdaTGBSpHTA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---lIrNkN/7tmsD/ALM
+--===============1447320490==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="FwyhczKCDPOVeYh6"
+Content-Disposition: inline
+
+
+--FwyhczKCDPOVeYh6
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 15, 2019 at 04:07:18PM -0500, Lyude Paul wrote:
-> Since nv50_outp_atomic_check_view() can set crtc_state->mode_changed, we
-> probably should be calling it before handling any PBN changes. Just a
-> precaution.
+On Sat, Nov 02, 2019 at 06:56:28PM +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 >=20
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Fixes: 232c9eec417a ("drm/nouveau: Use atomic VCPI helpers for MST")
-> Cc: Ben Skeggs <bskeggs@redhat.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: David Airlie <airlied@redhat.com>
-> Cc: Jerry Zuo <Jerry.Zuo@amd.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Juston Li <juston.li@intel.com>
-> Cc: Sean Paul <seanpaul@chromium.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: <stable@vger.kernel.org> # v5.1+
-> ---
->  drivers/gpu/drm/nouveau/dispnv50/disp.c | 44 ++++++++++++++-----------
->  1 file changed, 24 insertions(+), 20 deletions(-)
-
-Looks reasonable:
-
-Reviewed-by: Thierry Reding <treding@nvidia.com>
-
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/no=
-uveau/dispnv50/disp.c
-> index 549486f1d937..6327aaf37c08 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> @@ -770,32 +770,36 @@ nv50_msto_atomic_check(struct drm_encoder *encoder,
->  	struct nv50_mstm *mstm =3D mstc->mstm;
->  	struct nv50_head_atom *asyh =3D nv50_head_atom(crtc_state);
->  	int slots;
-> +	int ret;
-> =20
-> -	if (crtc_state->mode_changed || crtc_state->connectors_changed) {
-> -		/*
-> -		 * When restoring duplicated states, we need to make sure that
-> -		 * the bw remains the same and avoid recalculating it, as the
-> -		 * connector's bpc may have changed after the state was
-> -		 * duplicated
-> -		 */
-> -		if (!state->duplicated) {
-> -			const int bpp =3D connector->display_info.bpc * 3;
-> -			const int clock =3D crtc_state->adjusted_mode.clock;
-> +	ret =3D nv50_outp_atomic_check_view(encoder, crtc_state, conn_state,
-> +					  mstc->native);
-> +	if (ret)
-> +		return ret;
-> =20
-> -			asyh->dp.pbn =3D drm_dp_calc_pbn_mode(clock, bpp);
-> -		}
-> +	if (!crtc_state->mode_changed && !crtc_state->connectors_changed)
-> +		return 0;
-> =20
-> -		slots =3D drm_dp_atomic_find_vcpi_slots(state, &mstm->mgr,
-> -						      mstc->port,
-> -						      asyh->dp.pbn);
-> -		if (slots < 0)
-> -			return slots;
-> +	/*
-> +	 * When restoring duplicated states, we need to make sure that the bw
-> +	 * remains the same and avoid recalculating it, as the connector's bpc
-> +	 * may have changed after the state was duplicated
-> +	 */
-> +	if (!state->duplicated) {
-> +		const int bpp =3D connector->display_info.bpc * 3;
-> +		const int clock =3D crtc_state->adjusted_mode.clock;
-> =20
-> -		asyh->dp.tu =3D slots;
-> +		asyh->dp.pbn =3D drm_dp_calc_pbn_mode(clock, bpp);
->  	}
-> =20
-> -	return nv50_outp_atomic_check_view(encoder, crtc_state, conn_state,
-> -					   mstc->native);
-> +	slots =3D drm_dp_atomic_find_vcpi_slots(state, &mstm->mgr, mstc->port,
-> +					      asyh->dp.pbn);
-> +	if (slots < 0)
-> +		return slots;
-> +
-> +	asyh->dp.tu =3D slots;
-> +
-> +	return 0;
->  }
-> =20
->  static void
-> --=20
-> 2.21.0
+> Hi Ben,
 >=20
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+> here's a revised subset of the patches I had sent out a couple of weeks
+> ago. I've reworked the BAR2 accesses in the way that you had suggested,
+> which at least for GP10B turned out to be fairly trivial to do. I have
+> not looked in detail at this for GV11B yet, but a cursory look showed
+> that BAR2 is accessed in more places, so the equivalent for GV11B might
+> be a bit more involved.
+>=20
+> Other than that, not a lot has changed since then. I've added a couple
+> of precursory patches to add IOMMU helper dummies for the case where
+> IOMMU is disabled (as suggested by Ben Dooks).
+>=20
+> Joerg, it'd be great if you could give an Acked-by on those two patches
+> so that Ben can pick them both up into the Nouveau tree. Alternatively I
+> can put them both into a stable branch and send a pull request to both
+> of you. Or yet another alternative would be for Joerg to apply them now
+> and Ben to wait for v5.5-rc1 until he picks up the rest. All of those
+> work for me.
 
---lIrNkN/7tmsD/ALM
+Hi Joerg, Ben,
+
+do you guys have any further comments on this series? I've got an
+updated patch to silence the warning that the kbuild robot flagged, so
+if there are no other comments I can send a final v3 of the series.
+
+Thierry
+
+--FwyhczKCDPOVeYh6
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl3Sn30ACgkQ3SOs138+
-s6EyzQ/+IArAf9hKT/2e6Mlc2DorOY+nMESy0hRnHy+ojoq/Wm8ZjvaoPjFW9fIv
-Z7x5IdYTFMGyaac16UK+fQUE39VklexlzkIuGWUlIAsQ1QJG3/XGDNdKOvBoMeqD
-DTsN6xI1UseWWk6NI06e/3IhdqqqT6bYMPXebxhObxgehgtAnwEoH4mFRB0ciWE1
-Nh1anXSWdDaSG4ZdxY5RXOkGO4Nn6k3P7dEXZupjVqNon3sk/2aMPO26MKVEPpdB
-cQT6Div3Jo1nzDUMdl8suZqGpsVz6vfcRZ3rixBXIPXdPozXLMpcmx5qtTj2EJnZ
-xuhSZBQrj4yBhBQ2m6gUnS0t2kw3/r6yWUKr0vNzMpjTMa9d7Wy0bHPatPFQej6o
-z9sueVwgTQ1At0vu3kyVxxSR/OKScAkwtZfAgpKCJfQr+JrInLt7+1rAMhB/qYtF
-EIHCoxEja/K9DGLPECxIwmHAiEGAvC7dbnM4+tKYPc3z9z/mhTjZ80P33SHIz6dj
-31TGEoDSmfFmseFCg7SCbsSnOMkH+V3kANq3WGn5jVneRp/tTOo2Ha13wtwH6Ymh
-vW2Y6iMu1l1vrChmZVtGlAianrGUPuOskhyxHsukETqFQ42fYqYdffdg87P9rnWV
-C+i2ZDFyahifVws7JFAGwXAzvCkdBLXdXSwOdpCvn3Uq0z77DnU=
-=Ojn4
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl3SoFEACgkQ3SOs138+
+s6H1sw//TEml9ZrPUemKFYIMfOWf6dFC1MUTYzGiajNIxv4J/7FqdNnBqUm6RT1o
+uROgL3iqP7fAoEHg5hVhwzRzxAH/bC75nfn9PD+yiPpVOwhqfY3OTwYXyEj3wBld
+G+2TQb5RTHd1HAv14IKsw33fyTMM/P22GGkcRfOuzhu3Q6U1hJCBc7zG3VQWSSN6
+u8bWNlYl0VZ8KcDlQJpYgT6QYOFYmagQGNkCRgeAgDUUKRE7rQ8vVZ6BOjtYv+SY
+5nTKNujyFp1Yoagp3pv23OcyIVWPg6BKd48rb/uq+QqcsDwTXwqTUOlAfhZhyIwn
+CVBDmqpuQL5BJPopvAzVFP/UKZZ0ChE7kuhAPFIOkCO6RVKpKE+1Zvqgb3QXUU4q
+5U7U8hrmwPBRSEhAmTYApzDAx7rqSKIWTm5k82Nm1WfzgyqNb+NubwOwkyRr0u7Y
+RobfXOEjbUCV5F6IejMN/pnufJs6CDPRTlz09roZ32kn5u+ibJyV0Nsa9L1sIwFm
+yJESD3B8y1BA2NCllBwu6semP74zJ5h90Kp4/xvLX/poS+VcY3Owfs7GeO8bDijl
+IwV+qD3RYSlGJmxq2ILPa/fuxxMbIsXLudNeZAtC1zmO28x6aUwYvpyDdgvEEu+P
+G9k1PiUNR9g/gbTv78dAmw62CrEQoss84ESlY5A+pbjAgQh0bLg=
+=74Sg
 -----END PGP SIGNATURE-----
 
---lIrNkN/7tmsD/ALM--
+--FwyhczKCDPOVeYh6--
+
+--===============1447320490==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1447320490==--
