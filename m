@@ -1,8 +1,8 @@
-From: Mika Westerberg <mika.westerberg@intel.com>
+From: Karol Herbst <kherbst@redhat.com>
 Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into lower device
  states on certain intel bridges
-Date: Wed, 20 Nov 2019 17:15:42 +0200
-Message-ID: <20191120151542.GH11621@lahna.fi.intel.com>
+Date: Wed, 20 Nov 2019 16:37:14 +0100
+Message-ID: <CACO55tvo3rbPtYJcioEgXCEQqVXcVAm-iowr9Nim=bgTdMjgLw@mail.gmail.com>
 References: <20191119214955.GA223696@google.com>
  <CACO55tu+8VeyMw1Lb6QvNspaJm9LDgoRbooVhr0s3v9uBt=feg@mail.gmail.com>
  <20191120101816.GX11621@lahna.fi.intel.com>
@@ -13,99 +13,90 @@ References: <20191119214955.GA223696@google.com>
  <CACO55tscD_96jUVts+MTAUsCt-fZx4O5kyhRKoo4mKoC84io8A@mail.gmail.com>
  <20191120120913.GE11621@lahna.fi.intel.com>
  <CACO55tsHy6yZQZ8PkdW8iPA7+uc5rdcEwRJwYEQ3iqu85F8Sqg@mail.gmail.com>
+ <20191120151542.GH11621@lahna.fi.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <CACO55tsHy6yZQZ8PkdW8iPA7+uc5rdcEwRJwYEQ3iqu85F8Sqg@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Karol Herbst <kherbst@redhat.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@gmail.com>, Mario Limonciello <Mario.Limonciello@dell.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20191120151542.GH11621@lahna.fi.intel.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Mika Westerberg <mika.westerberg@intel.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Mario Limonciello <Mario.Limonciello@dell.com>, Bjorn Helgaas <helgaas@kernel.org>, nouveau <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Nov 20, 2019 at 01:11:52PM +0100, Karol Herbst wrote:
-> On Wed, Nov 20, 2019 at 1:09 PM Mika Westerberg
-> <mika.westerberg@intel.com> wrote:
-> >
-> > On Wed, Nov 20, 2019 at 12:58:00PM +0100, Karol Herbst wrote:
-> > > overall, what I really want to know is, _why_ does it work on windows?
-> >
-> > So do I ;-)
-> >
-> > > Or what are we doing differently on Linux so that it doesn't work? If
-> > > anybody has any idea on how we could dig into this and figure it out
-> > > on this level, this would probably allow us to get closer to the root
-> > > cause? no?
-> >
-> > Have you tried to use the acpi_rev_override parameter in your system and
-> > does it have any effect?
-> >
-> > Also did you try to trace the ACPI _ON/_OFF() methods? I think that
-> > should hopefully reveal something.
-> >
-> 
-> I think I did in the past and it seemed to have worked, there is just
-> one big issue with this: it's a Dell specific workaround afaik, and
-> this issue plagues not just Dell, but we've seen it on HP and Lenovo
-> laptops as well, and I've heard about users having the same issues on
-> Asus and MSI laptops as well.
-
-Maybe it is not a workaround at all but instead it simply determines
-whether the system supports RTD3 or something like that (IIRC Windows 8
-started supporting it). Maybe Dell added check for Linux because at that
-time Linux did not support it.
-
-In case RTD3 is supported it invokes LKDS() which probably does the L2
-or L3 entry and this is for some reason does not work the same way in
-Linux than it does with Windows 8+.
-
-I don't remember if this happens only with nouveau or with the
-proprietary driver as well but looking at the nouveau runtime PM suspend
-hook (assuming I'm looking at the correct code):
-
-static int
-nouveau_pmops_runtime_suspend(struct device *dev)
-{       
-        struct pci_dev *pdev = to_pci_dev(dev);
-        struct drm_device *drm_dev = pci_get_drvdata(pdev);
-        int ret;
-
-        if (!nouveau_pmops_runtime()) {
-                pm_runtime_forbid(dev);
-                return -EBUSY;
-        }
-
-        nouveau_switcheroo_optimus_dsm();
-        ret = nouveau_do_suspend(drm_dev, true);
-        pci_save_state(pdev);
-        pci_disable_device(pdev);
-        pci_ignore_hotplug(pdev);
-        pci_set_power_state(pdev, PCI_D3cold);
-        drm_dev->switch_power_state = DRM_SWITCH_POWER_DYNAMIC_OFF;
-        return ret;
-}
-
-Normally PCI drivers leave the PCI bus PM things to PCI core but here
-the driver does these. So I wonder if it makes any difference if we let
-the core handle all that:
-
-static int
-nouveau_pmops_runtime_suspend(struct device *dev)
-{       
-        struct pci_dev *pdev = to_pci_dev(dev);
-        struct drm_device *drm_dev = pci_get_drvdata(pdev);
-        int ret;
-
-        if (!nouveau_pmops_runtime()) {
-                pm_runtime_forbid(dev);
-                return -EBUSY;
-        }
-
-        nouveau_switcheroo_optimus_dsm();
-        ret = nouveau_do_suspend(drm_dev, true);
-        pci_ignore_hotplug(pdev);
-        drm_dev->switch_power_state = DRM_SWITCH_POWER_DYNAMIC_OFF;
-        return ret;
-}
-
-and similar for the nouveau_pmops_runtime_resume().
+T24gV2VkLCBOb3YgMjAsIDIwMTkgYXQgNDoxNSBQTSBNaWthIFdlc3RlcmJlcmcKPG1pa2Eud2Vz
+dGVyYmVyZ0BpbnRlbC5jb20+IHdyb3RlOgo+Cj4gT24gV2VkLCBOb3YgMjAsIDIwMTkgYXQgMDE6
+MTE6NTJQTSArMDEwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+ID4gT24gV2VkLCBOb3YgMjAsIDIw
+MTkgYXQgMTowOSBQTSBNaWthIFdlc3RlcmJlcmcKPiA+IDxtaWthLndlc3RlcmJlcmdAaW50ZWwu
+Y29tPiB3cm90ZToKPiA+ID4KPiA+ID4gT24gV2VkLCBOb3YgMjAsIDIwMTkgYXQgMTI6NTg6MDBQ
+TSArMDEwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+ID4gPiA+IG92ZXJhbGwsIHdoYXQgSSByZWFs
+bHkgd2FudCB0byBrbm93IGlzLCBfd2h5XyBkb2VzIGl0IHdvcmsgb24gd2luZG93cz8KPiA+ID4K
+PiA+ID4gU28gZG8gSSA7LSkKPiA+ID4KPiA+ID4gPiBPciB3aGF0IGFyZSB3ZSBkb2luZyBkaWZm
+ZXJlbnRseSBvbiBMaW51eCBzbyB0aGF0IGl0IGRvZXNuJ3Qgd29yaz8gSWYKPiA+ID4gPiBhbnli
+b2R5IGhhcyBhbnkgaWRlYSBvbiBob3cgd2UgY291bGQgZGlnIGludG8gdGhpcyBhbmQgZmlndXJl
+IGl0IG91dAo+ID4gPiA+IG9uIHRoaXMgbGV2ZWwsIHRoaXMgd291bGQgcHJvYmFibHkgYWxsb3cg
+dXMgdG8gZ2V0IGNsb3NlciB0byB0aGUgcm9vdAo+ID4gPiA+IGNhdXNlPyBubz8KPiA+ID4KPiA+
+ID4gSGF2ZSB5b3UgdHJpZWQgdG8gdXNlIHRoZSBhY3BpX3Jldl9vdmVycmlkZSBwYXJhbWV0ZXIg
+aW4geW91ciBzeXN0ZW0gYW5kCj4gPiA+IGRvZXMgaXQgaGF2ZSBhbnkgZWZmZWN0Pwo+ID4gPgo+
+ID4gPiBBbHNvIGRpZCB5b3UgdHJ5IHRvIHRyYWNlIHRoZSBBQ1BJIF9PTi9fT0ZGKCkgbWV0aG9k
+cz8gSSB0aGluayB0aGF0Cj4gPiA+IHNob3VsZCBob3BlZnVsbHkgcmV2ZWFsIHNvbWV0aGluZy4K
+PiA+ID4KPiA+Cj4gPiBJIHRoaW5rIEkgZGlkIGluIHRoZSBwYXN0IGFuZCBpdCBzZWVtZWQgdG8g
+aGF2ZSB3b3JrZWQsIHRoZXJlIGlzIGp1c3QKPiA+IG9uZSBiaWcgaXNzdWUgd2l0aCB0aGlzOiBp
+dCdzIGEgRGVsbCBzcGVjaWZpYyB3b3JrYXJvdW5kIGFmYWlrLCBhbmQKPiA+IHRoaXMgaXNzdWUg
+cGxhZ3VlcyBub3QganVzdCBEZWxsLCBidXQgd2UndmUgc2VlbiBpdCBvbiBIUCBhbmQgTGVub3Zv
+Cj4gPiBsYXB0b3BzIGFzIHdlbGwsIGFuZCBJJ3ZlIGhlYXJkIGFib3V0IHVzZXJzIGhhdmluZyB0
+aGUgc2FtZSBpc3N1ZXMgb24KPiA+IEFzdXMgYW5kIE1TSSBsYXB0b3BzIGFzIHdlbGwuCj4KPiBN
+YXliZSBpdCBpcyBub3QgYSB3b3JrYXJvdW5kIGF0IGFsbCBidXQgaW5zdGVhZCBpdCBzaW1wbHkg
+ZGV0ZXJtaW5lcwo+IHdoZXRoZXIgdGhlIHN5c3RlbSBzdXBwb3J0cyBSVEQzIG9yIHNvbWV0aGlu
+ZyBsaWtlIHRoYXQgKElJUkMgV2luZG93cyA4Cj4gc3RhcnRlZCBzdXBwb3J0aW5nIGl0KS4gTWF5
+YmUgRGVsbCBhZGRlZCBjaGVjayBmb3IgTGludXggYmVjYXVzZSBhdCB0aGF0Cj4gdGltZSBMaW51
+eCBkaWQgbm90IHN1cHBvcnQgaXQuCj4KCnRoZSBwb2ludCBpcywgaXQncyBub3QgY2hlY2tpbmcg
+aXQgYnkgZGVmYXVsdCwgc28gYnkgZGVmYXVsdCB5b3Ugc3RpbGwKcnVuIGludG8gdGhlIHdpbmRv
+d3MgOCBjb2RlcGF0aC4KCj4gSW4gY2FzZSBSVEQzIGlzIHN1cHBvcnRlZCBpdCBpbnZva2VzIExL
+RFMoKSB3aGljaCBwcm9iYWJseSBkb2VzIHRoZSBMMgo+IG9yIEwzIGVudHJ5IGFuZCB0aGlzIGlz
+IGZvciBzb21lIHJlYXNvbiBkb2VzIG5vdCB3b3JrIHRoZSBzYW1lIHdheSBpbgo+IExpbnV4IHRo
+YW4gaXQgZG9lcyB3aXRoIFdpbmRvd3MgOCsuCj4KPiBJIGRvbid0IHJlbWVtYmVyIGlmIHRoaXMg
+aGFwcGVucyBvbmx5IHdpdGggbm91dmVhdSBvciB3aXRoIHRoZQo+IHByb3ByaWV0YXJ5IGRyaXZl
+ciBhcyB3ZWxsIGJ1dCBsb29raW5nIGF0IHRoZSBub3V2ZWF1IHJ1bnRpbWUgUE0gc3VzcGVuZAo+
+IGhvb2sgKGFzc3VtaW5nIEknbSBsb29raW5nIGF0IHRoZSBjb3JyZWN0IGNvZGUpOgo+Cj4gc3Rh
+dGljIGludAo+IG5vdXZlYXVfcG1vcHNfcnVudGltZV9zdXNwZW5kKHN0cnVjdCBkZXZpY2UgKmRl
+dikKPiB7Cj4gICAgICAgICBzdHJ1Y3QgcGNpX2RldiAqcGRldiA9IHRvX3BjaV9kZXYoZGV2KTsK
+PiAgICAgICAgIHN0cnVjdCBkcm1fZGV2aWNlICpkcm1fZGV2ID0gcGNpX2dldF9kcnZkYXRhKHBk
+ZXYpOwo+ICAgICAgICAgaW50IHJldDsKPgo+ICAgICAgICAgaWYgKCFub3V2ZWF1X3Btb3BzX3J1
+bnRpbWUoKSkgewo+ICAgICAgICAgICAgICAgICBwbV9ydW50aW1lX2ZvcmJpZChkZXYpOwo+ICAg
+ICAgICAgICAgICAgICByZXR1cm4gLUVCVVNZOwo+ICAgICAgICAgfQo+Cj4gICAgICAgICBub3V2
+ZWF1X3N3aXRjaGVyb29fb3B0aW11c19kc20oKTsKPiAgICAgICAgIHJldCA9IG5vdXZlYXVfZG9f
+c3VzcGVuZChkcm1fZGV2LCB0cnVlKTsKPiAgICAgICAgIHBjaV9zYXZlX3N0YXRlKHBkZXYpOwo+
+ICAgICAgICAgcGNpX2Rpc2FibGVfZGV2aWNlKHBkZXYpOwo+ICAgICAgICAgcGNpX2lnbm9yZV9o
+b3RwbHVnKHBkZXYpOwo+ICAgICAgICAgcGNpX3NldF9wb3dlcl9zdGF0ZShwZGV2LCBQQ0lfRDNj
+b2xkKTsKPiAgICAgICAgIGRybV9kZXYtPnN3aXRjaF9wb3dlcl9zdGF0ZSA9IERSTV9TV0lUQ0hf
+UE9XRVJfRFlOQU1JQ19PRkY7Cj4gICAgICAgICByZXR1cm4gcmV0Owo+IH0KPgo+IE5vcm1hbGx5
+IFBDSSBkcml2ZXJzIGxlYXZlIHRoZSBQQ0kgYnVzIFBNIHRoaW5ncyB0byBQQ0kgY29yZSBidXQg
+aGVyZQo+IHRoZSBkcml2ZXIgZG9lcyB0aGVzZS4gU28gSSB3b25kZXIgaWYgaXQgbWFrZXMgYW55
+IGRpZmZlcmVuY2UgaWYgd2UgbGV0Cj4gdGhlIGNvcmUgaGFuZGxlIGFsbCB0aGF0Ogo+Cj4gc3Rh
+dGljIGludAo+IG5vdXZlYXVfcG1vcHNfcnVudGltZV9zdXNwZW5kKHN0cnVjdCBkZXZpY2UgKmRl
+dikKPiB7Cj4gICAgICAgICBzdHJ1Y3QgcGNpX2RldiAqcGRldiA9IHRvX3BjaV9kZXYoZGV2KTsK
+PiAgICAgICAgIHN0cnVjdCBkcm1fZGV2aWNlICpkcm1fZGV2ID0gcGNpX2dldF9kcnZkYXRhKHBk
+ZXYpOwo+ICAgICAgICAgaW50IHJldDsKPgo+ICAgICAgICAgaWYgKCFub3V2ZWF1X3Btb3BzX3J1
+bnRpbWUoKSkgewo+ICAgICAgICAgICAgICAgICBwbV9ydW50aW1lX2ZvcmJpZChkZXYpOwo+ICAg
+ICAgICAgICAgICAgICByZXR1cm4gLUVCVVNZOwo+ICAgICAgICAgfQo+Cj4gICAgICAgICBub3V2
+ZWF1X3N3aXRjaGVyb29fb3B0aW11c19kc20oKTsKPiAgICAgICAgIHJldCA9IG5vdXZlYXVfZG9f
+c3VzcGVuZChkcm1fZGV2LCB0cnVlKTsKPiAgICAgICAgIHBjaV9pZ25vcmVfaG90cGx1ZyhwZGV2
+KTsKPiAgICAgICAgIGRybV9kZXYtPnN3aXRjaF9wb3dlcl9zdGF0ZSA9IERSTV9TV0lUQ0hfUE9X
+RVJfRFlOQU1JQ19PRkY7Cj4gICAgICAgICByZXR1cm4gcmV0Owo+IH0KPgo+IGFuZCBzaW1pbGFy
+IGZvciB0aGUgbm91dmVhdV9wbW9wc19ydW50aW1lX3Jlc3VtZSgpLgo+Cgp5ZWFoLCBJIHRyaWVk
+IHRoYXQgYXQgc29tZSBwb2ludCBhbmQgaXQgZGlkbid0IGhlbHAgZWl0aGVyLiBUaGUgcmVhc29u
+CndlIGNhbGwgdGhvc2UgZnJvbSBpbnNpZGUgTm91dmVhdSBpcyB0byBzdXBwb3J0IHN5c3RlbXMg
+cHJlIF9QUiB3aGVyZQpub3V2ZWF1IGludm9rZXMgY3VzdG9tIF9EU00gY2FsbHMgb24gaXRzIG93
+bi4gV2UgY291bGQgcG90ZW50aWFsbHkKY2hlY2sgZm9yIHRoYXQgdGhvdWdoLgoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcg
+bGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
