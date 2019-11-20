@@ -1,57 +1,71 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into
- lower device states on certain intel bridges
-Date: Wed, 20 Nov 2019 13:11:52 +0100
-Message-ID: <CACO55tsHy6yZQZ8PkdW8iPA7+uc5rdcEwRJwYEQ3iqu85F8Sqg@mail.gmail.com>
-References: <20191017121901.13699-1-kherbst@redhat.com>
- <20191119214955.GA223696@google.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into lower device
+ states on certain intel bridges
+Date: Wed, 20 Nov 2019 13:14:51 +0100
+Message-ID: <CAJZ5v0h_ymqsoOVm9s2h5X0ejYdM4x03H7xPQ38uiO009OVgpQ@mail.gmail.com>
+References: <20191017121901.13699-1-kherbst@redhat.com> <20191119214955.GA223696@google.com>
  <CACO55tu+8VeyMw1Lb6QvNspaJm9LDgoRbooVhr0s3v9uBt=feg@mail.gmail.com>
- <20191120101816.GX11621@lahna.fi.intel.com>
- <CAJZ5v0g4vp1C+zHU5nOVnkGsOjBvLaphK1kK=qAT6b=mK8kpsA@mail.gmail.com>
- <20191120112212.GA11621@lahna.fi.intel.com>
- <20191120115127.GD11621@lahna.fi.intel.com>
- <CACO55tsfNOdtu5SZ-4HzO4Ji6gQtafvZ7Rm19nkPcJAgwUBFMw@mail.gmail.com>
- <CACO55tscD_96jUVts+MTAUsCt-fZx4O5kyhRKoo4mKoC84io8A@mail.gmail.com>
- <20191120120913.GE11621@lahna.fi.intel.com>
+ <20191120101816.GX11621@lahna.fi.intel.com> <CAJZ5v0g4vp1C+zHU5nOVnkGsOjBvLaphK1kK=qAT6b=mK8kpsA@mail.gmail.com>
+ <20191120112212.GA11621@lahna.fi.intel.com> <CAJZ5v0in4VSULsfLshHxhNLf+NZxVQM0xx=hzdNa2X3FW=V7DA@mail.gmail.com>
+ <CACO55tsjj+xkDjubz1J=fsPecW4H_J8AaBTeaMm+NYjp8Kiq8g@mail.gmail.com>
+ <CAJZ5v0ithxMPK2YxfTUx_Ygpze2FMDJ6LwKwJb2vx89dfgHX_A@mail.gmail.com> <CACO55tupFbq0T1DcR+C+YxtPR=csPBQhwVXz_SHWT5F8bRK8JA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20191120120913.GE11621-3PARRvDOhMZrdx17CPfAsdBPR1lH4CV8@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mika Westerberg <mika.westerberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "Rafael J . Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Mario Limonciello <Mario.Limonciello-8PEkshWhKlo@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CACO55tupFbq0T1DcR+C+YxtPR=csPBQhwVXz_SHWT5F8bRK8JA@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Karol Herbst <kherbst@redhat.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@intel.com>, Bjorn Helgaas <helgaas@kernel.org>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@gmail.com>, Mario Limonciello <Mario.Limonciello@dell.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBOb3YgMjAsIDIwMTkgYXQgMTowOSBQTSBNaWthIFdlc3RlcmJlcmcKPG1pa2Eud2Vz
-dGVyYmVyZ0BpbnRlbC5jb20+IHdyb3RlOgo+Cj4gT24gV2VkLCBOb3YgMjAsIDIwMTkgYXQgMTI6
-NTg6MDBQTSArMDEwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+ID4gb3ZlcmFsbCwgd2hhdCBJIHJl
-YWxseSB3YW50IHRvIGtub3cgaXMsIF93aHlfIGRvZXMgaXQgd29yayBvbiB3aW5kb3dzPwo+Cj4g
-U28gZG8gSSA7LSkKPgo+ID4gT3Igd2hhdCBhcmUgd2UgZG9pbmcgZGlmZmVyZW50bHkgb24gTGlu
-dXggc28gdGhhdCBpdCBkb2Vzbid0IHdvcms/IElmCj4gPiBhbnlib2R5IGhhcyBhbnkgaWRlYSBv
-biBob3cgd2UgY291bGQgZGlnIGludG8gdGhpcyBhbmQgZmlndXJlIGl0IG91dAo+ID4gb24gdGhp
-cyBsZXZlbCwgdGhpcyB3b3VsZCBwcm9iYWJseSBhbGxvdyB1cyB0byBnZXQgY2xvc2VyIHRvIHRo
-ZSByb290Cj4gPiBjYXVzZT8gbm8/Cj4KPiBIYXZlIHlvdSB0cmllZCB0byB1c2UgdGhlIGFjcGlf
-cmV2X292ZXJyaWRlIHBhcmFtZXRlciBpbiB5b3VyIHN5c3RlbSBhbmQKPiBkb2VzIGl0IGhhdmUg
-YW55IGVmZmVjdD8KPgo+IEFsc28gZGlkIHlvdSB0cnkgdG8gdHJhY2UgdGhlIEFDUEkgX09OL19P
-RkYoKSBtZXRob2RzPyBJIHRoaW5rIHRoYXQKPiBzaG91bGQgaG9wZWZ1bGx5IHJldmVhbCBzb21l
-dGhpbmcuCj4KCkkgdGhpbmsgSSBkaWQgaW4gdGhlIHBhc3QgYW5kIGl0IHNlZW1lZCB0byBoYXZl
-IHdvcmtlZCwgdGhlcmUgaXMganVzdApvbmUgYmlnIGlzc3VlIHdpdGggdGhpczogaXQncyBhIERl
-bGwgc3BlY2lmaWMgd29ya2Fyb3VuZCBhZmFpaywgYW5kCnRoaXMgaXNzdWUgcGxhZ3VlcyBub3Qg
-anVzdCBEZWxsLCBidXQgd2UndmUgc2VlbiBpdCBvbiBIUCBhbmQgTGVub3ZvCmxhcHRvcHMgYXMg
-d2VsbCwgYW5kIEkndmUgaGVhcmQgYWJvdXQgdXNlcnMgaGF2aW5nIHRoZSBzYW1lIGlzc3VlcyBv
-bgpBc3VzIGFuZCBNU0kgbGFwdG9wcyBhcyB3ZWxsLgoKSSB3aWxsIHNwZW5kIHNvbWUgdGltZSB0
-byBjb2xsZWN0IGFsbCB0aGUgbmVjZXNzYXJ5IGluZm9ybWF0aW9uLApjcmVhdGUgYSBidWcgdG8g
-cHV0IGl0IGFsbCBpbiB0aGVyZSBhbmQgc2VuZCBvdXQgYSB2NSB3aXRoIHRoZSB1cGRhdGVkCmlu
-Zm9ybWF0aW9uIGFuZCByZWZlcmVuY2VzIHRvIHRoaXMgYnVnLgoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVh
-dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9ub3V2ZWF1
+On Wed, Nov 20, 2019 at 1:10 PM Karol Herbst <kherbst@redhat.com> wrote:
+>
+> On Wed, Nov 20, 2019 at 1:06 PM Rafael J. Wysocki <rafael@kernel.org> wrote:
+> >
+> > On Wed, Nov 20, 2019 at 12:51 PM Karol Herbst <kherbst@redhat.com> wrote:
+> > >
+> > > On Wed, Nov 20, 2019 at 12:48 PM Rafael J. Wysocki <rafael@kernel.org> wrote:
+> > > >
+> > > > On Wed, Nov 20, 2019 at 12:22 PM Mika Westerberg
+> > > > <mika.westerberg@intel.com> wrote:
+> > > > >
+> > > > > On Wed, Nov 20, 2019 at 11:52:22AM +0100, Rafael J. Wysocki wrote:
+> > > > > > On Wed, Nov 20, 2019 at 11:18 AM Mika Westerberg
+> > > > > > <mika.westerberg@intel.com> wrote:
+> > > > > > >
+> >
+> > [cut]
+> >
+> > > > > >
+> > > > > > Oh, so does it look like we are trying to work around AML that tried
+> > > > > > to work around some problematic behavior in Linux at one point?
+> > > > >
+> > > > > Yes, it looks like so if I read the ASL right.
+> > > >
+> > > > OK, so that would call for a DMI-based quirk as the real cause for the
+> > > > issue seems to be the AML in question, which means a firmware problem.
+> > > >
+> > >
+> > > And I disagree as this is a linux specific workaround and windows goes
+> > > that path and succeeds. This firmware based workaround was added,
+> > > because it broke on Linux.
+> >
+> > Apparently so at the time it was added, but would it still break after
+> > the kernel changes made since then?
+> >
+> > Moreover, has it not become harmful now?  IOW, wouldn't it work after
+> > removing the "Linux workaround" from the AML?
+> >
+> > The only way to verify that I can see would be to run the system with
+> > custom ACPI tables without the "Linux workaround" in the AML in
+> > question.
+> >
+>
+> the workaround is not enabled by default, because it has to be
+> explicitly enabled by the user.
+
+I'm not sure what you are talking about.
+
+I'm taking specifically about the ((OSYS == 0x07DF) && (_REV == 0x05))
+check mentioned by Mika which doesn't seem to depend on user input in
+any way.
