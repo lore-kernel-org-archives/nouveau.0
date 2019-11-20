@@ -1,127 +1,83 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into
- lower device states on certain intel bridges
-Date: Wed, 20 Nov 2019 22:36:31 +0100
-Message-ID: <CACO55tsvTG2E7_3nn1sTdPQXzxaZA96k+gmSBBXjPvei6v=kxg@mail.gmail.com>
-References: <CAJZ5v0g4vp1C+zHU5nOVnkGsOjBvLaphK1kK=qAT6b=mK8kpsA@mail.gmail.com>
- <20191120112212.GA11621@lahna.fi.intel.com>
- <20191120115127.GD11621@lahna.fi.intel.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into lower device
+ states on certain intel bridges
+Date: Wed, 20 Nov 2019 22:37:05 +0100
+Message-ID: <CAJZ5v0hkT-fHFOQKzp2qYPyR+NUa4c-G-uGLPZuQxqsG454PiQ@mail.gmail.com>
+References: <20191120101816.GX11621@lahna.fi.intel.com> <CAJZ5v0g4vp1C+zHU5nOVnkGsOjBvLaphK1kK=qAT6b=mK8kpsA@mail.gmail.com>
+ <20191120112212.GA11621@lahna.fi.intel.com> <20191120115127.GD11621@lahna.fi.intel.com>
  <CACO55tsfNOdtu5SZ-4HzO4Ji6gQtafvZ7Rm19nkPcJAgwUBFMw@mail.gmail.com>
  <CACO55tscD_96jUVts+MTAUsCt-fZx4O5kyhRKoo4mKoC84io8A@mail.gmail.com>
- <20191120120913.GE11621@lahna.fi.intel.com>
- <CACO55tsHy6yZQZ8PkdW8iPA7+uc5rdcEwRJwYEQ3iqu85F8Sqg@mail.gmail.com>
- <20191120151542.GH11621@lahna.fi.intel.com>
- <CACO55tvo3rbPtYJcioEgXCEQqVXcVAm-iowr9Nim=bgTdMjgLw@mail.gmail.com>
+ <20191120120913.GE11621@lahna.fi.intel.com> <CACO55tsHy6yZQZ8PkdW8iPA7+uc5rdcEwRJwYEQ3iqu85F8Sqg@mail.gmail.com>
+ <20191120151542.GH11621@lahna.fi.intel.com> <CACO55tvo3rbPtYJcioEgXCEQqVXcVAm-iowr9Nim=bgTdMjgLw@mail.gmail.com>
  <20191120155301.GL11621@lahna.fi.intel.com>
- <20191120162306.GM11621@lahna.fi.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20191120162306.GM11621-3PARRvDOhMZrdx17CPfAsdBPR1lH4CV8@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mika Westerberg <mika.westerberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "Rafael J . Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Mario Limonciello <Mario.Limonciello-8PEkshWhKlo@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20191120155301.GL11621@lahna.fi.intel.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Mika Westerberg <mika.westerberg@intel.com>
+Cc: Karol Herbst <kherbst@redhat.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@gmail.com>, Mario Limonciello <Mario.Limonciello@dell.com>
 List-Id: nouveau.vger.kernel.org
 
-d2l0aCB0aGUgYnJhbmNoIGFuZCBwYXRjaCBhcHBsaWVkOgpodHRwczovL2dpc3QuZ2l0aHVidXNl
-cmNvbnRlbnQuY29tL2thcm9saGVyYnN0LzAzYzRjODE0MWIwZmEyOTJkNzgxYmFkZmExODY0Nzll
-L3Jhdy81YzYyNjQwYWZiYzU3ZDZlNjllYTkyNGMzMzhiZDI4MzZlNzcwZDAyL2dpc3RmaWxlMS50
-eHQKCk9uIFdlZCwgTm92IDIwLCAyMDE5IGF0IDU6MjMgUE0gTWlrYSBXZXN0ZXJiZXJnCjxtaWth
-Lndlc3RlcmJlcmdAaW50ZWwuY29tPiB3cm90ZToKPgo+IE9uIFdlZCwgTm92IDIwLCAyMDE5IGF0
-IDA1OjUzOjA3UE0gKzAyMDAsIE1pa2EgV2VzdGVyYmVyZyB3cm90ZToKPiA+IE9uIFdlZCwgTm92
-IDIwLCAyMDE5IGF0IDA0OjM3OjE0UE0gKzAxMDAsIEthcm9sIEhlcmJzdCB3cm90ZToKPiA+ID4g
-T24gV2VkLCBOb3YgMjAsIDIwMTkgYXQgNDoxNSBQTSBNaWthIFdlc3RlcmJlcmcKPiA+ID4gPG1p
-a2Eud2VzdGVyYmVyZ0BpbnRlbC5jb20+IHdyb3RlOgo+ID4gPiA+Cj4gPiA+ID4gT24gV2VkLCBO
-b3YgMjAsIDIwMTkgYXQgMDE6MTE6NTJQTSArMDEwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+ID4g
-PiA+ID4gT24gV2VkLCBOb3YgMjAsIDIwMTkgYXQgMTowOSBQTSBNaWthIFdlc3RlcmJlcmcKPiA+
-ID4gPiA+IDxtaWthLndlc3RlcmJlcmdAaW50ZWwuY29tPiB3cm90ZToKPiA+ID4gPiA+ID4KPiA+
-ID4gPiA+ID4gT24gV2VkLCBOb3YgMjAsIDIwMTkgYXQgMTI6NTg6MDBQTSArMDEwMCwgS2Fyb2wg
-SGVyYnN0IHdyb3RlOgo+ID4gPiA+ID4gPiA+IG92ZXJhbGwsIHdoYXQgSSByZWFsbHkgd2FudCB0
-byBrbm93IGlzLCBfd2h5XyBkb2VzIGl0IHdvcmsgb24gd2luZG93cz8KPiA+ID4gPiA+ID4KPiA+
-ID4gPiA+ID4gU28gZG8gSSA7LSkKPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gPiBPciB3aGF0IGFy
-ZSB3ZSBkb2luZyBkaWZmZXJlbnRseSBvbiBMaW51eCBzbyB0aGF0IGl0IGRvZXNuJ3Qgd29yaz8g
-SWYKPiA+ID4gPiA+ID4gPiBhbnlib2R5IGhhcyBhbnkgaWRlYSBvbiBob3cgd2UgY291bGQgZGln
-IGludG8gdGhpcyBhbmQgZmlndXJlIGl0IG91dAo+ID4gPiA+ID4gPiA+IG9uIHRoaXMgbGV2ZWws
-IHRoaXMgd291bGQgcHJvYmFibHkgYWxsb3cgdXMgdG8gZ2V0IGNsb3NlciB0byB0aGUgcm9vdAo+
-ID4gPiA+ID4gPiA+IGNhdXNlPyBubz8KPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gSGF2ZSB5b3Ug
-dHJpZWQgdG8gdXNlIHRoZSBhY3BpX3Jldl9vdmVycmlkZSBwYXJhbWV0ZXIgaW4geW91ciBzeXN0
-ZW0gYW5kCj4gPiA+ID4gPiA+IGRvZXMgaXQgaGF2ZSBhbnkgZWZmZWN0Pwo+ID4gPiA+ID4gPgo+
-ID4gPiA+ID4gPiBBbHNvIGRpZCB5b3UgdHJ5IHRvIHRyYWNlIHRoZSBBQ1BJIF9PTi9fT0ZGKCkg
-bWV0aG9kcz8gSSB0aGluayB0aGF0Cj4gPiA+ID4gPiA+IHNob3VsZCBob3BlZnVsbHkgcmV2ZWFs
-IHNvbWV0aGluZy4KPiA+ID4gPiA+ID4KPiA+ID4gPiA+Cj4gPiA+ID4gPiBJIHRoaW5rIEkgZGlk
-IGluIHRoZSBwYXN0IGFuZCBpdCBzZWVtZWQgdG8gaGF2ZSB3b3JrZWQsIHRoZXJlIGlzIGp1c3QK
-PiA+ID4gPiA+IG9uZSBiaWcgaXNzdWUgd2l0aCB0aGlzOiBpdCdzIGEgRGVsbCBzcGVjaWZpYyB3
-b3JrYXJvdW5kIGFmYWlrLCBhbmQKPiA+ID4gPiA+IHRoaXMgaXNzdWUgcGxhZ3VlcyBub3QganVz
-dCBEZWxsLCBidXQgd2UndmUgc2VlbiBpdCBvbiBIUCBhbmQgTGVub3ZvCj4gPiA+ID4gPiBsYXB0
-b3BzIGFzIHdlbGwsIGFuZCBJJ3ZlIGhlYXJkIGFib3V0IHVzZXJzIGhhdmluZyB0aGUgc2FtZSBp
-c3N1ZXMgb24KPiA+ID4gPiA+IEFzdXMgYW5kIE1TSSBsYXB0b3BzIGFzIHdlbGwuCj4gPiA+ID4K
-PiA+ID4gPiBNYXliZSBpdCBpcyBub3QgYSB3b3JrYXJvdW5kIGF0IGFsbCBidXQgaW5zdGVhZCBp
-dCBzaW1wbHkgZGV0ZXJtaW5lcwo+ID4gPiA+IHdoZXRoZXIgdGhlIHN5c3RlbSBzdXBwb3J0cyBS
-VEQzIG9yIHNvbWV0aGluZyBsaWtlIHRoYXQgKElJUkMgV2luZG93cyA4Cj4gPiA+ID4gc3RhcnRl
-ZCBzdXBwb3J0aW5nIGl0KS4gTWF5YmUgRGVsbCBhZGRlZCBjaGVjayBmb3IgTGludXggYmVjYXVz
-ZSBhdCB0aGF0Cj4gPiA+ID4gdGltZSBMaW51eCBkaWQgbm90IHN1cHBvcnQgaXQuCj4gPiA+ID4K
-PiA+ID4KPiA+ID4gdGhlIHBvaW50IGlzLCBpdCdzIG5vdCBjaGVja2luZyBpdCBieSBkZWZhdWx0
-LCBzbyBieSBkZWZhdWx0IHlvdSBzdGlsbAo+ID4gPiBydW4gaW50byB0aGUgd2luZG93cyA4IGNv
-ZGVwYXRoLgo+ID4KPiA+IFdlbGwgeW91IGNhbiBhZGQgdGhlIHF1aXJrIHRvIGFjcGlfcmV2X2Rt
-aV90YWJsZVtdIHNvIGl0IGdvZXMgdG8gdGhhdAo+ID4gcGF0aCBieSBkZWZhdWx0LiBUaGVyZSBh
-cmUgYSBidW5jaCBvZiBzaW1pbGFyIGVudHJpZXMgZm9yIERlbGwgbWFjaGluZXMuCj4gPgo+ID4g
-T2YgY291cnNlIHRoaXMgZG9lcyBub3QgaGVscCB0aGUgbm9uLURlbGwgdXNlcnMgc28gd2Ugd291
-bGQgc3RpbGwgbmVlZAo+ID4gdG8gZmlndXJlIG91dCB0aGUgcm9vdCBjYXVzZS4KPgo+IEkgdGhp
-bmsgSSBhc2tlZCB5b3UgdG8gdGVzdCB0aGUgUENJZSBkZWxheSBwYXRjaCBhbmQgaXQgZGlkIG5v
-dCBoZWxwIGJ1dAo+IEkgd29uZGVyIGlmIGl0IGhlbHBzIGlmIHdlIGluY3JlYXNlIHRoZSBkZWxh
-eS4gQXMgYW4gZXhwZXJpbWVudCBjb3VsZAo+IHlvdSB0cnkgQmpvcm4ncyBwY2kvcG0gYnJhbmNo
-LiBUaGUgbGFzdCB0d28gY29tbWl0cyBhcmUgZm9yIHRoZSBkZWxheS4KPgo+IElmIHlvdSBjb3Vs
-ZCBwdWxsIHRoYXQgYnJhbmNoIGFuZCBhcHBseSB0aGUgZm9sbG93aW5nIHBhdGNoIG9uIHRvcCBh
-bmQKPiBnaXZlIGl0IGEgdHJ5PyBUaGVuIHBvc3QgdGhlIGRtZXNnIHNvbWV3aGVyZSBzbyB3ZSBj
-YW4gc2VlIHdoZXRoZXIgaXQKPiBkaWQgdGhlIGRlbGF5IGF0IGFsbC4KPgo+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL3BjaS9wY2kuYyBiL2RyaXZlcnMvcGNpL3BjaS5jCj4gaW5kZXggMWYzMTliMTE3
-NWRhLi4xYWQ2ZjEzNzJlZDUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9wY2kvcGNpLmMKPiArKysg
-Yi9kcml2ZXJzL3BjaS9wY2kuYwo+IEBAIC00Njk3LDEyICs0Njk3LDcgQEAgdm9pZCBwY2lfYnJp
-ZGdlX3dhaXRfZm9yX3NlY29uZGFyeV9idXMoc3RydWN0IHBjaV9kZXYgKmRldikKPiAgICAgICAg
-ICAgICAgICAgcmV0dXJuOwo+ICAgICAgICAgfQo+Cj4gLSAgICAgICAvKiBUYWtlIGQzY29sZF9k
-ZWxheSByZXF1aXJlbWVudHMgaW50byBhY2NvdW50ICovCj4gLSAgICAgICBkZWxheSA9IHBjaV9i
-dXNfbWF4X2QzY29sZF9kZWxheShkZXYtPnN1Ym9yZGluYXRlKTsKPiAtICAgICAgIGlmICghZGVs
-YXkpIHsKPiAtICAgICAgICAgICAgICAgdXBfcmVhZCgmcGNpX2J1c19zZW0pOwo+IC0gICAgICAg
-ICAgICAgICByZXR1cm47Cj4gLSAgICAgICB9Cj4gKyAgICAgICBkZWxheSA9IDUwMDsKPgo+ICAg
-ICAgICAgY2hpbGQgPSBsaXN0X2ZpcnN0X2VudHJ5KCZkZXYtPnN1Ym9yZGluYXRlLT5kZXZpY2Vz
-LCBzdHJ1Y3QgcGNpX2RldiwKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBidXNf
-bGlzdCk7Cj4gQEAgLTQ3MTUsNyArNDcxMCw3IEBAIHZvaWQgcGNpX2JyaWRnZV93YWl0X2Zvcl9z
-ZWNvbmRhcnlfYnVzKHN0cnVjdCBwY2lfZGV2ICpkZXYpCj4gICAgICAgICAgKiBtYW5hZ2VtZW50
-IGZvciB0aGVtIChzZWUgcGNpX2JyaWRnZV9kM19wb3NzaWJsZSgpKS4KPiAgICAgICAgICAqLwo+
-ICAgICAgICAgaWYgKCFwY2lfaXNfcGNpZShkZXYpKSB7Cj4gLSAgICAgICAgICAgICAgIHBjaV9k
-YmcoZGV2LCAid2FpdGluZyAlZCBtcyBmb3Igc2Vjb25kYXJ5IGJ1c1xuIiwgMTAwMCArIGRlbGF5
-KTsKPiArICAgICAgICAgICAgICAgcGNpX2luZm8oZGV2LCAid2FpdGluZyAlZCBtcyBmb3Igc2Vj
-b25kYXJ5IGJ1c1xuIiwgMTAwMCArIGRlbGF5KTsKPiAgICAgICAgICAgICAgICAgbXNsZWVwKDEw
-MDAgKyBkZWxheSk7Cj4gICAgICAgICAgICAgICAgIHJldHVybjsKPiAgICAgICAgIH0KPiBAQCAt
-NDc0MSwxMCArNDczNiwxMCBAQCB2b2lkIHBjaV9icmlkZ2Vfd2FpdF9mb3Jfc2Vjb25kYXJ5X2J1
-cyhzdHJ1Y3QgcGNpX2RldiAqZGV2KQo+ICAgICAgICAgICAgICAgICByZXR1cm47Cj4KPiAgICAg
-ICAgIGlmIChwY2llX2dldF9zcGVlZF9jYXAoZGV2KSA8PSBQQ0lFX1NQRUVEXzVfMEdUKSB7Cj4g
-LSAgICAgICAgICAgICAgIHBjaV9kYmcoZGV2LCAid2FpdGluZyAlZCBtcyBmb3IgZG93bnN0cmVh
-bSBsaW5rXG4iLCBkZWxheSk7Cj4gKyAgICAgICAgICAgICAgIHBjaV9pbmZvKGRldiwgIndhaXRp
-bmcgJWQgbXMgZm9yIGRvd25zdHJlYW0gbGlua1xuIiwgZGVsYXkpOwo+ICAgICAgICAgICAgICAg
-ICBtc2xlZXAoZGVsYXkpOwo+ICAgICAgICAgfSBlbHNlIHsKPiAtICAgICAgICAgICAgICAgcGNp
-X2RiZyhkZXYsICJ3YWl0aW5nICVkIG1zIGZvciBkb3duc3RyZWFtIGxpbmssIGFmdGVyIGFjdGl2
-YXRpb25cbiIsCj4gKyAgICAgICAgICAgICAgIHBjaV9pbmZvKGRldiwgIndhaXRpbmcgJWQgbXMg
-Zm9yIGRvd25zdHJlYW0gbGluaywgYWZ0ZXIgYWN0aXZhdGlvblxuIiwKPiAgICAgICAgICAgICAg
-ICAgICAgICAgICBkZWxheSk7Cj4gICAgICAgICAgICAgICAgIGlmICghcGNpZV93YWl0X2Zvcl9s
-aW5rX2RlbGF5KGRldiwgdHJ1ZSwgZGVsYXkpKSB7Cj4gICAgICAgICAgICAgICAgICAgICAgICAg
-LyogRGlkIG5vdCB0cmFpbiwgbm8gbmVlZCB0byB3YWl0IGFueSBmdXJ0aGVyICovCj4gQEAgLTQ3
-NTMsNyArNDc0OCw3IEBAIHZvaWQgcGNpX2JyaWRnZV93YWl0X2Zvcl9zZWNvbmRhcnlfYnVzKHN0
-cnVjdCBwY2lfZGV2ICpkZXYpCj4gICAgICAgICB9Cj4KPiAgICAgICAgIGlmICghcGNpX2Rldmlj
-ZV9pc19wcmVzZW50KGNoaWxkKSkgewo+IC0gICAgICAgICAgICAgICBwY2lfZGJnKGNoaWxkLCAi
-d2FpdGluZyBhZGRpdGlvbmFsICVkIG1zIHRvIGJlY29tZSBhY2Nlc3NpYmxlXG4iLCBkZWxheSk7
-Cj4gKyAgICAgICAgICAgICAgIHBjaV9pbmZvKGNoaWxkLCAid2FpdGluZyBhZGRpdGlvbmFsICVk
-IG1zIHRvIGJlY29tZSBhY2Nlc3NpYmxlXG4iLCBkZWxheSk7Cj4gICAgICAgICAgICAgICAgIG1z
-bGVlcChkZWxheSk7Cj4gICAgICAgICB9Cj4gIH0KPgoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9ub3V2ZWF1
+On Wed, Nov 20, 2019 at 4:53 PM Mika Westerberg
+<mika.westerberg@intel.com> wrote:
+>
+> On Wed, Nov 20, 2019 at 04:37:14PM +0100, Karol Herbst wrote:
+> > On Wed, Nov 20, 2019 at 4:15 PM Mika Westerberg
+> > <mika.westerberg@intel.com> wrote:
+> > >
+> > > On Wed, Nov 20, 2019 at 01:11:52PM +0100, Karol Herbst wrote:
+> > > > On Wed, Nov 20, 2019 at 1:09 PM Mika Westerberg
+> > > > <mika.westerberg@intel.com> wrote:
+> > > > >
+> > > > > On Wed, Nov 20, 2019 at 12:58:00PM +0100, Karol Herbst wrote:
+> > > > > > overall, what I really want to know is, _why_ does it work on windows?
+> > > > >
+> > > > > So do I ;-)
+> > > > >
+> > > > > > Or what are we doing differently on Linux so that it doesn't work? If
+> > > > > > anybody has any idea on how we could dig into this and figure it out
+> > > > > > on this level, this would probably allow us to get closer to the root
+> > > > > > cause? no?
+> > > > >
+> > > > > Have you tried to use the acpi_rev_override parameter in your system and
+> > > > > does it have any effect?
+> > > > >
+> > > > > Also did you try to trace the ACPI _ON/_OFF() methods? I think that
+> > > > > should hopefully reveal something.
+> > > > >
+> > > >
+> > > > I think I did in the past and it seemed to have worked, there is just
+> > > > one big issue with this: it's a Dell specific workaround afaik, and
+> > > > this issue plagues not just Dell, but we've seen it on HP and Lenovo
+> > > > laptops as well, and I've heard about users having the same issues on
+> > > > Asus and MSI laptops as well.
+> > >
+> > > Maybe it is not a workaround at all but instead it simply determines
+> > > whether the system supports RTD3 or something like that (IIRC Windows 8
+> > > started supporting it). Maybe Dell added check for Linux because at that
+> > > time Linux did not support it.
+> > >
+> >
+> > the point is, it's not checking it by default, so by default you still
+> > run into the windows 8 codepath.
+>
+> Well you can add the quirk to acpi_rev_dmi_table[] so it goes to that
+> path by default. There are a bunch of similar entries for Dell machines.
+
+OK, so the "Linux path" works and the other doesn't.
+
+I thought that this was the other way around, sorry for the confusion.
+
+> Of course this does not help the non-Dell users so we would still need
+> to figure out the root cause.
+
+Right.
+
+Whatever it is, though, AML appears to be involved in it and AFAICS
+there's no evidence that it affects any root ports that are not
+populated with NVidia GPUs.
+
+Now, one thing is still not clear to me from the discussion so far: is
+the _PR3 method you mentioned defined under the GPU device object or
+under the port device object?
