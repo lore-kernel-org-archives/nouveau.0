@@ -1,100 +1,255 @@
-From: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into
- lower device states on certain intel bridges
-Date: Wed, 20 Nov 2019 11:52:22 +0100
-Message-ID: <CAJZ5v0g4vp1C+zHU5nOVnkGsOjBvLaphK1kK=qAT6b=mK8kpsA@mail.gmail.com>
+From: Mika Westerberg <mika.westerberg@intel.com>
+Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into lower device
+ states on certain intel bridges
+Date: Wed, 20 Nov 2019 13:22:12 +0200
+Message-ID: <20191120112212.GA11621@lahna.fi.intel.com>
 References: <20191017121901.13699-1-kherbst@redhat.com>
  <20191119214955.GA223696@google.com>
  <CACO55tu+8VeyMw1Lb6QvNspaJm9LDgoRbooVhr0s3v9uBt=feg@mail.gmail.com>
  <20191120101816.GX11621@lahna.fi.intel.com>
+ <CAJZ5v0g4vp1C+zHU5nOVnkGsOjBvLaphK1kK=qAT6b=mK8kpsA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20191120101816.GX11621-3PARRvDOhMZrdx17CPfAsdBPR1lH4CV8@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mika Westerberg <mika.westerberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Mario Limonciello <Mario.Limonciello-8PEkshWhKlo@public.gmane.org>, "Rafael J . Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CAJZ5v0g4vp1C+zHU5nOVnkGsOjBvLaphK1kK=qAT6b=mK8kpsA@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Karol Herbst <kherbst@redhat.com>, Bjorn Helgaas <helgaas@kernel.org>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@gmail.com>, Mario Limonciello <Mario.Limonciello@dell.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBOb3YgMjAsIDIwMTkgYXQgMTE6MTggQU0gTWlrYSBXZXN0ZXJiZXJnCjxtaWthLndl
-c3RlcmJlcmdAaW50ZWwuY29tPiB3cm90ZToKPgo+IEhpIEthcm9sLAo+Cj4gT24gVHVlLCBOb3Yg
-MTksIDIwMTkgYXQgMTE6MjY6NDVQTSArMDEwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+ID4gT24g
-VHVlLCBOb3YgMTksIDIwMTkgYXQgMTA6NTAgUE0gQmpvcm4gSGVsZ2FhcyA8aGVsZ2Fhc0BrZXJu
-ZWwub3JnPiB3cm90ZToKPiA+ID4KPiA+ID4gWytjYyBEYXZlXQo+ID4gPgo+ID4gPiBPbiBUaHUs
-IE9jdCAxNywgMjAxOSBhdCAwMjoxOTowMVBNICswMjAwLCBLYXJvbCBIZXJic3Qgd3JvdGU6Cj4g
-PiA+ID4gRml4ZXMgc3RhdGUgdHJhbnNpdGlvbnMgb2YgTnZpZGlhIFBhc2NhbCBHUFVzIGZyb20g
-RDNjb2xkIGludG8gaGlnaGVyIGRldmljZQo+ID4gPiA+IHN0YXRlcy4KPiA+ID4gPgo+ID4gPiA+
-IHYyOiBjb252ZXJ0IHRvIHBjaV9kZXYgcXVpcmsKPiA+ID4gPiAgICAgcHV0IGEgcHJvcGVyIHRl
-Y2huaWNhbCBleHBsYW5hdGlvbiBvZiB0aGUgaXNzdWUgYXMgYSBpbi1jb2RlIGNvbW1lbnQKPiA+
-ID4gPiB2MzogZGlzYWJsZSBpdCBvbmx5IGZvciBjZXJ0YWluIGNvbWJpbmF0aW9ucyBvZiBpbnRl
-bCBhbmQgbnZpZGlhIGhhcmR3YXJlCj4gPiA+ID4gdjQ6IHNpbXBsaWZ5IHF1aXJrIGJ5IHNldHRp
-bmcgZmxhZyBvbiB0aGUgR1BVIGl0c2VsZgo+ID4gPgo+ID4gPiBJIGhhdmUgemVybyBjb25maWRl
-bmNlIHRoYXQgd2UgdW5kZXJzdGFuZCB0aGUgcmVhbCBwcm9ibGVtLCBidXQgd2UgZG8KPiA+ID4g
-bmVlZCB0byBkbyBzb21ldGhpbmcgd2l0aCB0aGlzLiAgSSdsbCBtZXJnZSBpdCBmb3IgdjUuNSBp
-ZiB3ZSBnZXQgdGhlCj4gPiA+IG1pbm9yIHByb2NlZHVyYWwgc3R1ZmYgYmVsb3cgc3RyYWlnaHRl
-bmVkIG91dC4KPiA+ID4KPiA+Cj4gPiBUaGFua3MsIGFuZCBJIGFncmVlIHdpdGggeW91ciBzdGF0
-ZW1lbnQsIGJ1dCBhdCB0aGlzIHBvaW50IEkgdGhpbmsKPiA+IG9ubHkgSW50ZWwgY2FuIGhlbHAg
-b3V0IGRpZ2dpbmcgZGVlcGVyIGFzIEkgc2VlIG5vIHdheSB0byBkZWJ1ZyB0aGlzCj4gPiBmdXJ0
-aGVyLgo+Cj4gSSBkb24ndCBoYXZlIGFueXRoaW5nIGFnYWluc3QgdGhpcyBwYXRjaCwgYXMgbG9u
-ZyBhcyB0aGUgcXVpcmsgc3RheXMKPiBsaW1pdGVkIHRvIHRoZSBwYXJ0aWN1bGFyIHJvb3QgcG9y
-dCBsZWFkaW5nIHRvIHRoZSBOVklESUEgR1BVLiBUaGUKPiByZWFzb24gd2h5IEkgdGhpbmsgaXQg
-c2hvdWxkIHRvIGJlIGxpbWl0ZWQgaXMgdGhhdCBJJ20gcHJldHR5IGNlcnRhaW4KPiB0aGUgcHJv
-YmxlbSBpcyBub3QgaW4gdGhlIHJvb3QgcG9ydCBpdHNlbGYuIEkgaGF2ZSBoZXJlIGEgS0JMIGJh
-c2VkCj4gVGhpbmtwYWQgWDEgQ2FyYm9uIDZ0aCBnZW4gdGhhdCBjYW4gcHV0IHRoZSBUQlQgY29u
-dHJvbGxlciBpbnRvIEQzY29sZAo+IChpdCBpcyBjb25uZWN0ZWQgdG8gUENIIHJvb3QgcG9ydCkg
-YW5kIGl0IHdha2VzIHVwIHRoZXJlIGp1c3QgZmluZSwgc28KPiBkb24ndCB3YW50IHRvIGJyZWFr
-IHRoYXQuCj4KPiBOb3csIFBDSWUgZGV2aWNlcyBjYW5ub3QgZ28gaW50byBEM2NvbGQgYWxsIGJ5
-IHRoZW1zZWx2ZXMuIFRoZXkgYWx3YXlzCj4gbmVlZCBoZWxwIGZyb20gdGhlIHBsYXRmb3JtIHNp
-ZGUgd2hpY2ggaXMgQUNQSSBpbiB0aGlzIGNhc2UuIFRoaXMgaXMKPiBkb25lIGJ5IGhhdmluZyB0
-aGUgZGV2aWNlIHRvIGhhdmUgX1BSMyBtZXRob2QgdGhhdCByZXR1cm5zIG9uZSBvciBtb3JlCj4g
-cG93ZXIgcmVzb3VyY2VzIHRoYXQgdGhlIE9TIGlzIHN1cHBvc2VkIHRvIHR1cm4gb2ZmIHdoZW4g
-dGhlIGRldmljZSBpcwo+IHB1dCBpbnRvIEQzY29sZC4gQWxsIG9mIHRoYXQgaXMgaW1wbGVtZW50
-ZWQgYXMgZm9ybSBvZiBBQ1BJIG1ldGhvZHMgdGhhdAo+IHByZXR0eSBtdWNoIGRvIHRoZSBoYXJk
-d2FyZSBzcGVjaWZpYyB0aGluZ3MgdGhhdCBhcmUgb3V0c2lkZSBvZiBQQ0llCj4gc3BlYyB0byBn
-ZXQgdGhlIGRldmljZSBpbnRvIEQzY29sZC4gQXQgaGlnaCBsZXZlbCB0aGUgX09GRigpIG1ldGhv
-ZAo+IGNhdXNlcyB0aGUgcm9vdCBwb3J0IHRvIGJyb2FkY2FzdCBQTUVfVHVybl9PZmYgbWVzc2Fn
-ZSB0aGF0IHJlc3VsdHMgdGhlCj4gbGluayB0byBlbnRlciBMMi8zIHJlYWR5LCBpdCB0aGVuIGFz
-c2VydHMgUEVSU1QsIGNvbmZpZ3VyZXMgV0FLRSAoYm90aAo+IGNhbiBiZSBHUElPcykgYW5kIGZp
-bmFsbHkgcmVtb3ZlcyBwb3dlciAoaWYgdGhlIGxpbmsgZ29lcyBpbnRvIEwzLAo+IG90aGVyd2lz
-ZSBpdCBnb2VzIGludG8gTDIpLgo+Cj4gSSB0aGluayB0aGlzIGlzIHdoZXJlIHRoZSBwcm9ibGVt
-IGFjdHVhbGx5IGxpZXMgLSB0aGUgQVNMIG1ldGhvZHMgdGhhdAo+IGFyZSB1c2VkIHRvIHB1dCB0
-aGUgZGV2aWNlIGludG8gRDNjb2xkIGFuZCBiYWNrLiBXZSBrbm93IHRoYXQgaW4gV2luZG93cwo+
-IHRoaXMgYWxsIHdvcmtzIGZpbmUgc28gdW5sZXNzIFdpbmRvd3MgcXVpcmtzIHRoZSByb290IHBv
-cnQgdGhlIHNhbWUgd2F5Cj4gdGhlcmUgaXMgYW5vdGhlciByZWFzb24gYmVoaW5kIHRoaXMuCj4K
-PiBJbiBjYXNlIG9mIERlbGwgWFBTIDk1NjAgKElJUkMgdGhhdCdzIHRoZSBtYWNoaW5lIHlvdSBo
-YXZlKSB0aGUKPiBjb3JyZXNwb25kaW5nIHBvd2VyIHJlc291cmNlIGlzIGNhbGxlZCBcX1NCLlBD
-STAuUEVHMC5QRzAwIGFuZCBpdHMKPiBfT04vX09GRiBtZXRob2RzIGVuZCB1cCBjYWxsaW5nIFBH
-T04oKS9QR09GKCkgYWNjb3JkaW5nbHkuIFRoZSBtZXRob2RzCj4gaXRzZWxmIGRvIGxvdHMgb2Yg
-dGhpbmdzIGFuZCBpdCBpcyBoYXJkIHRvIGZvbGxvdyB0aGUgZGlzc2Fzc2VtYmxlZAo+IEFTTCB3
-aGljaCBkb2VzIG5vdCBoYXZlIGFueSBjb21tZW50cyBidXQgdGhlcmUgYXJlIGNvdXBsZSBvZiB0
-aGluZ3MgdGhhdAo+IHN0YW5kIG91dCB3aGVyZSB3ZSBtYXkgZ28gaW50byBhIGRpZmZlcmVudCBw
-YXRoLiBPbmUgb2YgdGhlbSBpcyB0aGlzIGluCj4gdGhlIFBHT0YoKSBtZXRob2Q6Cj4KPiAgICBJ
-ZiAoKChPU1lTIDw9IDB4MDdEOSkgfHwgKChPU1lTID09IDB4MDdERikgJiYgKF9SRVYgPT0gMHgw
-NSkpKSkKPgo+IFRoZSAoKE9TWVMgPT0gMHgwN0RGKSAmJiAoX1JFViA9PSAweDA1KSkgY2hlY2tz
-IHNwZWNpZmljYWxseSBmb3IgTGludXgKPiAoc2VlIFsxXSBhbmQgMThkNzhiNjRmZGRjICgiQUNQ
-SSAvIGluaXQ6IE1ha2UgaXQgcG9zc2libGUgdG8gb3ZlcnJpZGUKPiBfUkVWIikpIHNvIGl0IG1p
-Z2h0IGJlIHRoYXQgRGVsbCBwZW9wbGUgdGVzdGVkIHRoaXMgYXQgc29tZSBwb2ludCBpbgo+IExp
-bnV4IGFzIHdlbGwuIEFkZGVkIE1hcmlvIGluIGNhc2UgaGUgaGFzIGFueSBpZGVhcy4KPgo+IFBy
-ZXZpb3VzbHkgSSBzdWdnZXN0ZWQgeW91IHRvIHRyeSB0aGUgQUNQSSBtZXRob2QgdHJhY2luZyB0
-byBzZWUgd2hhdAo+IGhhcHBlbnMgaW5zaWRlIFBHT0YoKS4gRGlkIHlvdSBoYXZlIHRpbWUgdG8g
-dHJ5IGl0PyBJdCBtYXkgcHJvdmlkZSBtb3JlCj4gaW5mb3JtYXRpb24gYWJvdXQgdGhhdCBpcyBo
-YXBwZW5pbmcgaW5zaWRlIHRob3NlIG1ldGhvZHMgYW5kIGhvcGVmdWxseQo+IHBvaW50IHVzIHRv
-IHRoZSByb290IGNhdXNlLgo+Cj4gQWxzbyBpZiB5b3UgaGF2ZW4ndCB0cmllZCBhbHJlYWR5IHBh
-c3NpbmcgYWNwaV9yZXZfb3ZlcnJpZGUgaW4gdGhlCj4gY29tbWFuZCBsaW5lIG1ha2VzIHRoZSBf
-UkVWIHRvIHJldHVybiA1IHNvIGl0IHNob3VsZCBnbyBpbnRvIHRoZSAiTGludXgiCj4gcGF0aCBp
-biBQR09GKCkuCgpPaCwgc28gZG9lcyBpdCBsb29rIGxpa2Ugd2UgYXJlIHRyeWluZyB0byB3b3Jr
-IGFyb3VuZCBBTUwgdGhhdCB0cmllZAp0byB3b3JrIGFyb3VuZCBzb21lIHByb2JsZW1hdGljIGJl
-aGF2aW9yIGluIExpbnV4IGF0IG9uZSBwb2ludD8KCj4gWzFdIGh0dHBzOi8vd3d3Lmtlcm5lbC5v
-cmcvZG9jL2h0bWwvbGF0ZXN0L2Zpcm13YXJlLWd1aWRlL2FjcGkvb3NpLmh0bWwjZG8tbm90LXVz
-ZS1yZXYKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+On Wed, Nov 20, 2019 at 11:52:22AM +0100, Rafael J. Wysocki wrote:
+> On Wed, Nov 20, 2019 at 11:18 AM Mika Westerberg
+> <mika.westerberg@intel.com> wrote:
+> >
+> > Hi Karol,
+> >
+> > On Tue, Nov 19, 2019 at 11:26:45PM +0100, Karol Herbst wrote:
+> > > On Tue, Nov 19, 2019 at 10:50 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+> > > >
+> > > > [+cc Dave]
+> > > >
+> > > > On Thu, Oct 17, 2019 at 02:19:01PM +0200, Karol Herbst wrote:
+> > > > > Fixes state transitions of Nvidia Pascal GPUs from D3cold into higher device
+> > > > > states.
+> > > > >
+> > > > > v2: convert to pci_dev quirk
+> > > > >     put a proper technical explanation of the issue as a in-code comment
+> > > > > v3: disable it only for certain combinations of intel and nvidia hardware
+> > > > > v4: simplify quirk by setting flag on the GPU itself
+> > > >
+> > > > I have zero confidence that we understand the real problem, but we do
+> > > > need to do something with this.  I'll merge it for v5.5 if we get the
+> > > > minor procedural stuff below straightened out.
+> > > >
+> > >
+> > > Thanks, and I agree with your statement, but at this point I think
+> > > only Intel can help out digging deeper as I see no way to debug this
+> > > further.
+> >
+> > I don't have anything against this patch, as long as the quirk stays
+> > limited to the particular root port leading to the NVIDIA GPU. The
+> > reason why I think it should to be limited is that I'm pretty certain
+> > the problem is not in the root port itself. I have here a KBL based
+> > Thinkpad X1 Carbon 6th gen that can put the TBT controller into D3cold
+> > (it is connected to PCH root port) and it wakes up there just fine, so
+> > don't want to break that.
+> >
+> > Now, PCIe devices cannot go into D3cold all by themselves. They always
+> > need help from the platform side which is ACPI in this case. This is
+> > done by having the device to have _PR3 method that returns one or more
+> > power resources that the OS is supposed to turn off when the device is
+> > put into D3cold. All of that is implemented as form of ACPI methods that
+> > pretty much do the hardware specific things that are outside of PCIe
+> > spec to get the device into D3cold. At high level the _OFF() method
+> > causes the root port to broadcast PME_Turn_Off message that results the
+> > link to enter L2/3 ready, it then asserts PERST, configures WAKE (both
+> > can be GPIOs) and finally removes power (if the link goes into L3,
+> > otherwise it goes into L2).
+> >
+> > I think this is where the problem actually lies - the ASL methods that
+> > are used to put the device into D3cold and back. We know that in Windows
+> > this all works fine so unless Windows quirks the root port the same way
+> > there is another reason behind this.
+> >
+> > In case of Dell XPS 9560 (IIRC that's the machine you have) the
+> > corresponding power resource is called \_SB.PCI0.PEG0.PG00 and its
+> > _ON/_OFF methods end up calling PGON()/PGOF() accordingly. The methods
+> > itself do lots of things and it is hard to follow the dissassembled
+> > ASL which does not have any comments but there are couple of things that
+> > stand out where we may go into a different path. One of them is this in
+> > the PGOF() method:
+> >
+> >    If (((OSYS <= 0x07D9) || ((OSYS == 0x07DF) && (_REV == 0x05))))
+> >
+> > The ((OSYS == 0x07DF) && (_REV == 0x05)) checks specifically for Linux
+> > (see [1] and 18d78b64fddc ("ACPI / init: Make it possible to override
+> > _REV")) so it might be that Dell people tested this at some point in
+> > Linux as well. Added Mario in case he has any ideas.
+> >
+> > Previously I suggested you to try the ACPI method tracing to see what
+> > happens inside PGOF(). Did you have time to try it? It may provide more
+> > information about that is happening inside those methods and hopefully
+> > point us to the root cause.
+> >
+> > Also if you haven't tried already passing acpi_rev_override in the
+> > command line makes the _REV to return 5 so it should go into the "Linux"
+> > path in PGOF().
+> 
+> Oh, so does it look like we are trying to work around AML that tried
+> to work around some problematic behavior in Linux at one point?
+
+Yes, it looks like so if I read the ASL right. The whole method looks
+like below (the full acpidump was shared by Karol in v3 thread) and
+there is similar check in the _ON (PGON) method:
+
+        Method (PGOF, 1, Serialized)
+        {
+            PIOF = Arg0
+            If ((PIOF == Zero))
+            {
+                If ((SGGP == Zero))
+                {
+                    Return (Zero)
+                }
+            }
+            ElseIf ((PIOF == One))
+            {
+                If ((P1GP == Zero))
+                {
+                    Return (Zero)
+                }
+            }
+            ElseIf ((PIOF == 0x02))
+            {
+                If ((P2GP == Zero))
+                {
+                    Return (Zero)
+                }
+            }
+
+            PEBA = \XBAS /* External reference */
+            PDEV = GDEV (PIOF)
+            PFUN = GFUN (PIOF)
+            Name (SCLK, Package (0x03)
+            {
+                One, 
+                0x80, 
+                Zero
+            })
+            If ((CCHK (PIOF, Zero) == Zero))
+            {
+                Return (Zero)
+            }
+
+            \_SB.PCI0.PEG0.PEGP.LTRE = \_SB.PCI0.PEG0.LREN
+            If ((Arg0 == Zero))
+            {
+                ELC0 = LCT0 /* \_SB_.PCI0.LCT0 */
+                H0VI = S0VI /* \_SB_.PCI0.S0VI */
+                H0DI = S0DI /* \_SB_.PCI0.S0DI */
+                ECP0 = LCP0 /* \_SB_.PCI0.LCP0 */
+            }
+            ElseIf ((Arg0 == One))
+            {
+                ELC1 = LCT1 /* \_SB_.PCI0.LCT1 */
+                H1VI = S1VI /* \_SB_.PCI0.S1VI */
+                H1DI = S1DI /* \_SB_.PCI0.S1DI */
+                ECP1 = LCP1 /* \_SB_.PCI0.LCP1 */
+            }
+            ElseIf ((Arg0 == 0x02))
+            {
+                ELC2 = LCT2 /* \_SB_.PCI0.LCT2 */
+                H2VI = S2VI /* \_SB_.PCI0.S2VI */
+                H2DI = S2DI /* \_SB_.PCI0.S2DI */
+                ECP2 = LCP2 /* \_SB_.PCI0.LCP2 */
+            }
+
+            If (((OSYS <= 0x07D9) || ((OSYS == 0x07DF) && (_REV == 
+                0x05))))
+            {
+                If ((PIOF == Zero))
+                {
+                    P0LD = One
+                    TCNT = Zero
+                    While ((TCNT < LDLY))
+                    {
+                        If ((P0LT == 0x08))
+                        {
+                            Break
+                        }
+
+                        Sleep (0x10)
+                        TCNT += 0x10
+                    }
+
+                    P0RM = One
+                    P0AP = 0x03
+                }
+                ElseIf ((PIOF == One))
+                {
+                    P1LD = One
+                    TCNT = Zero
+                    While ((TCNT < LDLY))
+                    {
+                        If ((P1LT == 0x08))
+                        {
+                            Break
+                        }
+
+                        Sleep (0x10)
+                        TCNT += 0x10
+                    }
+
+                    P1RM = One
+                    P1AP = 0x03
+                }
+                ElseIf ((PIOF == 0x02))
+                {
+                    P2LD = One
+                    TCNT = Zero
+                    While ((TCNT < LDLY))
+                    {
+                        If ((P2LT == 0x08))
+                        {
+                            Break
+                        }
+
+                        Sleep (0x10)
+                        TCNT += 0x10
+                    }
+
+                    P2RM = One
+                    P2AP = 0x03
+                }
+
+                If ((PBGE != Zero))
+                {
+                    If (SBDL (PIOF))
+                    {
+                        MBDL = GMXB (PIOF)
+                        PDUB (PIOF, MBDL)
+                    }
+                }
+            }
+            Else
+            {
+                LKDS (PIOF)
+            }
+
+            If ((DerefOf (SCLK [Zero]) != Zero))
+            {
+                PCRO (0xDC, 0x100C, DerefOf (SCLK [One]))
+                Sleep (0x10)
+            }
+
+            GPPR (PIOF, Zero)
+            If ((OSYS != 0x07D9))
+            {
+                DIWK (PIOF)
+            }
+
+            \_SB.SGOV (0x01010004, Zero)
+            Sleep (0x14)
+            Return (Zero)
+        }
