@@ -1,63 +1,61 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into
- lower device states on certain intel bridges
-Date: Wed, 20 Nov 2019 13:09:51 +0100
-Message-ID: <CACO55tupFbq0T1DcR+C+YxtPR=csPBQhwVXz_SHWT5F8bRK8JA@mail.gmail.com>
-References: <20191017121901.13699-1-kherbst@redhat.com>
- <20191119214955.GA223696@google.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into lower device
+ states on certain intel bridges
+Date: Wed, 20 Nov 2019 13:11:36 +0100
+Message-ID: <CAJZ5v0hYLrmFup61kzQL_rUuRy9yb+3L-BdRUGfSKqkGpm-utw@mail.gmail.com>
+References: <20191017121901.13699-1-kherbst@redhat.com> <20191119214955.GA223696@google.com>
  <CACO55tu+8VeyMw1Lb6QvNspaJm9LDgoRbooVhr0s3v9uBt=feg@mail.gmail.com>
- <20191120101816.GX11621@lahna.fi.intel.com>
- <CAJZ5v0g4vp1C+zHU5nOVnkGsOjBvLaphK1kK=qAT6b=mK8kpsA@mail.gmail.com>
- <20191120112212.GA11621@lahna.fi.intel.com>
- <CAJZ5v0in4VSULsfLshHxhNLf+NZxVQM0xx=hzdNa2X3FW=V7DA@mail.gmail.com>
- <CACO55tsjj+xkDjubz1J=fsPecW4H_J8AaBTeaMm+NYjp8Kiq8g@mail.gmail.com>
- <CAJZ5v0ithxMPK2YxfTUx_Ygpze2FMDJ6LwKwJb2vx89dfgHX_A@mail.gmail.com>
+ <20191120101816.GX11621@lahna.fi.intel.com> <CAJZ5v0g4vp1C+zHU5nOVnkGsOjBvLaphK1kK=qAT6b=mK8kpsA@mail.gmail.com>
+ <20191120112212.GA11621@lahna.fi.intel.com> <CAJZ5v0in4VSULsfLshHxhNLf+NZxVQM0xx=hzdNa2X3FW=V7DA@mail.gmail.com>
+ <CACO55tsjj+xkDjubz1J=fsPecW4H_J8AaBTeaMm+NYjp8Kiq8g@mail.gmail.com> <CAJZ5v0ithxMPK2YxfTUx_Ygpze2FMDJ6LwKwJb2vx89dfgHX_A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAJZ5v0ithxMPK2YxfTUx_Ygpze2FMDJ6LwKwJb2vx89dfgHX_A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Cc: Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Mika Westerberg <mika.westerberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Mario Limonciello <Mario.Limonciello-8PEkshWhKlo@public.gmane.org>, "Rafael J . Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CAJZ5v0ithxMPK2YxfTUx_Ygpze2FMDJ6LwKwJb2vx89dfgHX_A@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Karol Herbst <kherbst@redhat.com>, Mika Westerberg <mika.westerberg@intel.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@gmail.com>, Mario Limonciello <Mario.Limonciello@dell.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBOb3YgMjAsIDIwMTkgYXQgMTowNiBQTSBSYWZhZWwgSi4gV3lzb2NraSA8cmFmYWVs
-QGtlcm5lbC5vcmc+IHdyb3RlOgo+Cj4gT24gV2VkLCBOb3YgMjAsIDIwMTkgYXQgMTI6NTEgUE0g
-S2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+IHdyb3RlOgo+ID4KPiA+IE9uIFdlZCwg
-Tm92IDIwLCAyMDE5IGF0IDEyOjQ4IFBNIFJhZmFlbCBKLiBXeXNvY2tpIDxyYWZhZWxAa2VybmVs
-Lm9yZz4gd3JvdGU6Cj4gPiA+Cj4gPiA+IE9uIFdlZCwgTm92IDIwLCAyMDE5IGF0IDEyOjIyIFBN
-IE1pa2EgV2VzdGVyYmVyZwo+ID4gPiA8bWlrYS53ZXN0ZXJiZXJnQGludGVsLmNvbT4gd3JvdGU6
-Cj4gPiA+ID4KPiA+ID4gPiBPbiBXZWQsIE5vdiAyMCwgMjAxOSBhdCAxMTo1MjoyMkFNICswMTAw
-LCBSYWZhZWwgSi4gV3lzb2NraSB3cm90ZToKPiA+ID4gPiA+IE9uIFdlZCwgTm92IDIwLCAyMDE5
-IGF0IDExOjE4IEFNIE1pa2EgV2VzdGVyYmVyZwo+ID4gPiA+ID4gPG1pa2Eud2VzdGVyYmVyZ0Bp
-bnRlbC5jb20+IHdyb3RlOgo+ID4gPiA+ID4gPgo+Cj4gW2N1dF0KPgo+ID4gPiA+ID4KPiA+ID4g
-PiA+IE9oLCBzbyBkb2VzIGl0IGxvb2sgbGlrZSB3ZSBhcmUgdHJ5aW5nIHRvIHdvcmsgYXJvdW5k
-IEFNTCB0aGF0IHRyaWVkCj4gPiA+ID4gPiB0byB3b3JrIGFyb3VuZCBzb21lIHByb2JsZW1hdGlj
-IGJlaGF2aW9yIGluIExpbnV4IGF0IG9uZSBwb2ludD8KPiA+ID4gPgo+ID4gPiA+IFllcywgaXQg
-bG9va3MgbGlrZSBzbyBpZiBJIHJlYWQgdGhlIEFTTCByaWdodC4KPiA+ID4KPiA+ID4gT0ssIHNv
-IHRoYXQgd291bGQgY2FsbCBmb3IgYSBETUktYmFzZWQgcXVpcmsgYXMgdGhlIHJlYWwgY2F1c2Ug
-Zm9yIHRoZQo+ID4gPiBpc3N1ZSBzZWVtcyB0byBiZSB0aGUgQU1MIGluIHF1ZXN0aW9uLCB3aGlj
-aCBtZWFucyBhIGZpcm13YXJlIHByb2JsZW0uCj4gPiA+Cj4gPgo+ID4gQW5kIEkgZGlzYWdyZWUg
-YXMgdGhpcyBpcyBhIGxpbnV4IHNwZWNpZmljIHdvcmthcm91bmQgYW5kIHdpbmRvd3MgZ29lcwo+
-ID4gdGhhdCBwYXRoIGFuZCBzdWNjZWVkcy4gVGhpcyBmaXJtd2FyZSBiYXNlZCB3b3JrYXJvdW5k
-IHdhcyBhZGRlZCwKPiA+IGJlY2F1c2UgaXQgYnJva2Ugb24gTGludXguCj4KPiBBcHBhcmVudGx5
-IHNvIGF0IHRoZSB0aW1lIGl0IHdhcyBhZGRlZCwgYnV0IHdvdWxkIGl0IHN0aWxsIGJyZWFrIGFm
-dGVyCj4gdGhlIGtlcm5lbCBjaGFuZ2VzIG1hZGUgc2luY2UgdGhlbj8KPgo+IE1vcmVvdmVyLCBo
-YXMgaXQgbm90IGJlY29tZSBoYXJtZnVsIG5vdz8gIElPVywgd291bGRuJ3QgaXQgd29yayBhZnRl
-cgo+IHJlbW92aW5nIHRoZSAiTGludXggd29ya2Fyb3VuZCIgZnJvbSB0aGUgQU1MPwo+Cj4gVGhl
-IG9ubHkgd2F5IHRvIHZlcmlmeSB0aGF0IEkgY2FuIHNlZSB3b3VsZCBiZSB0byBydW4gdGhlIHN5
-c3RlbSB3aXRoCj4gY3VzdG9tIEFDUEkgdGFibGVzIHdpdGhvdXQgdGhlICJMaW51eCB3b3JrYXJv
-dW5kIiBpbiB0aGUgQU1MIGluCj4gcXVlc3Rpb24uCj4KCnRoZSB3b3JrYXJvdW5kIGlzIG5vdCBl
-bmFibGVkIGJ5IGRlZmF1bHQsIGJlY2F1c2UgaXQgaGFzIHRvIGJlCmV4cGxpY2l0bHkgZW5hYmxl
-ZCBieSB0aGUgdXNlci4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+On Wed, Nov 20, 2019 at 1:06 PM Rafael J. Wysocki <rafael@kernel.org> wrote:
+>
+> On Wed, Nov 20, 2019 at 12:51 PM Karol Herbst <kherbst@redhat.com> wrote:
+> >
+> > On Wed, Nov 20, 2019 at 12:48 PM Rafael J. Wysocki <rafael@kernel.org> wrote:
+> > >
+> > > On Wed, Nov 20, 2019 at 12:22 PM Mika Westerberg
+> > > <mika.westerberg@intel.com> wrote:
+> > > >
+> > > > On Wed, Nov 20, 2019 at 11:52:22AM +0100, Rafael J. Wysocki wrote:
+> > > > > On Wed, Nov 20, 2019 at 11:18 AM Mika Westerberg
+> > > > > <mika.westerberg@intel.com> wrote:
+> > > > > >
+>
+> [cut]
+>
+> > > > >
+> > > > > Oh, so does it look like we are trying to work around AML that tried
+> > > > > to work around some problematic behavior in Linux at one point?
+> > > >
+> > > > Yes, it looks like so if I read the ASL right.
+> > >
+> > > OK, so that would call for a DMI-based quirk as the real cause for the
+> > > issue seems to be the AML in question, which means a firmware problem.
+> > >
+> >
+> > And I disagree as this is a linux specific workaround and windows goes
+> > that path and succeeds. This firmware based workaround was added,
+> > because it broke on Linux.
+>
+> Apparently so at the time it was added, but would it still break after
+> the kernel changes made since then?
+>
+> Moreover, has it not become harmful now?  IOW, wouldn't it work after
+> removing the "Linux workaround" from the AML?
+>
+> The only way to verify that I can see would be to run the system with
+> custom ACPI tables without the "Linux workaround" in the AML in
+> question.
+
+Or running it with acpi_rev_override as suggested by Mika, which
+effectively would be the same thing.
