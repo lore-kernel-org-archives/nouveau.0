@@ -1,255 +1,112 @@
-From: Mika Westerberg <mika.westerberg@intel.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
 Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into lower device
  states on certain intel bridges
-Date: Wed, 20 Nov 2019 13:22:12 +0200
-Message-ID: <20191120112212.GA11621@lahna.fi.intel.com>
+Date: Wed, 20 Nov 2019 12:48:35 +0100
+Message-ID: <CAJZ5v0in4VSULsfLshHxhNLf+NZxVQM0xx=hzdNa2X3FW=V7DA@mail.gmail.com>
 References: <20191017121901.13699-1-kherbst@redhat.com>
  <20191119214955.GA223696@google.com>
  <CACO55tu+8VeyMw1Lb6QvNspaJm9LDgoRbooVhr0s3v9uBt=feg@mail.gmail.com>
  <20191120101816.GX11621@lahna.fi.intel.com>
  <CAJZ5v0g4vp1C+zHU5nOVnkGsOjBvLaphK1kK=qAT6b=mK8kpsA@mail.gmail.com>
+ <20191120112212.GA11621@lahna.fi.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <CAJZ5v0g4vp1C+zHU5nOVnkGsOjBvLaphK1kK=qAT6b=mK8kpsA@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Karol Herbst <kherbst@redhat.com>, Bjorn Helgaas <helgaas@kernel.org>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@gmail.com>, Mario Limonciello <Mario.Limonciello@dell.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20191120112212.GA11621@lahna.fi.intel.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Mika Westerberg <mika.westerberg@intel.com>
+Cc: Karol Herbst <kherbst@redhat.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Mario Limonciello <Mario.Limonciello@dell.com>, Bjorn Helgaas <helgaas@kernel.org>, nouveau <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Nov 20, 2019 at 11:52:22AM +0100, Rafael J. Wysocki wrote:
-> On Wed, Nov 20, 2019 at 11:18 AM Mika Westerberg
-> <mika.westerberg@intel.com> wrote:
-> >
-> > Hi Karol,
-> >
-> > On Tue, Nov 19, 2019 at 11:26:45PM +0100, Karol Herbst wrote:
-> > > On Tue, Nov 19, 2019 at 10:50 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
-> > > >
-> > > > [+cc Dave]
-> > > >
-> > > > On Thu, Oct 17, 2019 at 02:19:01PM +0200, Karol Herbst wrote:
-> > > > > Fixes state transitions of Nvidia Pascal GPUs from D3cold into higher device
-> > > > > states.
-> > > > >
-> > > > > v2: convert to pci_dev quirk
-> > > > >     put a proper technical explanation of the issue as a in-code comment
-> > > > > v3: disable it only for certain combinations of intel and nvidia hardware
-> > > > > v4: simplify quirk by setting flag on the GPU itself
-> > > >
-> > > > I have zero confidence that we understand the real problem, but we do
-> > > > need to do something with this.  I'll merge it for v5.5 if we get the
-> > > > minor procedural stuff below straightened out.
-> > > >
-> > >
-> > > Thanks, and I agree with your statement, but at this point I think
-> > > only Intel can help out digging deeper as I see no way to debug this
-> > > further.
-> >
-> > I don't have anything against this patch, as long as the quirk stays
-> > limited to the particular root port leading to the NVIDIA GPU. The
-> > reason why I think it should to be limited is that I'm pretty certain
-> > the problem is not in the root port itself. I have here a KBL based
-> > Thinkpad X1 Carbon 6th gen that can put the TBT controller into D3cold
-> > (it is connected to PCH root port) and it wakes up there just fine, so
-> > don't want to break that.
-> >
-> > Now, PCIe devices cannot go into D3cold all by themselves. They always
-> > need help from the platform side which is ACPI in this case. This is
-> > done by having the device to have _PR3 method that returns one or more
-> > power resources that the OS is supposed to turn off when the device is
-> > put into D3cold. All of that is implemented as form of ACPI methods that
-> > pretty much do the hardware specific things that are outside of PCIe
-> > spec to get the device into D3cold. At high level the _OFF() method
-> > causes the root port to broadcast PME_Turn_Off message that results the
-> > link to enter L2/3 ready, it then asserts PERST, configures WAKE (both
-> > can be GPIOs) and finally removes power (if the link goes into L3,
-> > otherwise it goes into L2).
-> >
-> > I think this is where the problem actually lies - the ASL methods that
-> > are used to put the device into D3cold and back. We know that in Windows
-> > this all works fine so unless Windows quirks the root port the same way
-> > there is another reason behind this.
-> >
-> > In case of Dell XPS 9560 (IIRC that's the machine you have) the
-> > corresponding power resource is called \_SB.PCI0.PEG0.PG00 and its
-> > _ON/_OFF methods end up calling PGON()/PGOF() accordingly. The methods
-> > itself do lots of things and it is hard to follow the dissassembled
-> > ASL which does not have any comments but there are couple of things that
-> > stand out where we may go into a different path. One of them is this in
-> > the PGOF() method:
-> >
-> >    If (((OSYS <= 0x07D9) || ((OSYS == 0x07DF) && (_REV == 0x05))))
-> >
-> > The ((OSYS == 0x07DF) && (_REV == 0x05)) checks specifically for Linux
-> > (see [1] and 18d78b64fddc ("ACPI / init: Make it possible to override
-> > _REV")) so it might be that Dell people tested this at some point in
-> > Linux as well. Added Mario in case he has any ideas.
-> >
-> > Previously I suggested you to try the ACPI method tracing to see what
-> > happens inside PGOF(). Did you have time to try it? It may provide more
-> > information about that is happening inside those methods and hopefully
-> > point us to the root cause.
-> >
-> > Also if you haven't tried already passing acpi_rev_override in the
-> > command line makes the _REV to return 5 so it should go into the "Linux"
-> > path in PGOF().
-> 
-> Oh, so does it look like we are trying to work around AML that tried
-> to work around some problematic behavior in Linux at one point?
-
-Yes, it looks like so if I read the ASL right. The whole method looks
-like below (the full acpidump was shared by Karol in v3 thread) and
-there is similar check in the _ON (PGON) method:
-
-        Method (PGOF, 1, Serialized)
-        {
-            PIOF = Arg0
-            If ((PIOF == Zero))
-            {
-                If ((SGGP == Zero))
-                {
-                    Return (Zero)
-                }
-            }
-            ElseIf ((PIOF == One))
-            {
-                If ((P1GP == Zero))
-                {
-                    Return (Zero)
-                }
-            }
-            ElseIf ((PIOF == 0x02))
-            {
-                If ((P2GP == Zero))
-                {
-                    Return (Zero)
-                }
-            }
-
-            PEBA = \XBAS /* External reference */
-            PDEV = GDEV (PIOF)
-            PFUN = GFUN (PIOF)
-            Name (SCLK, Package (0x03)
-            {
-                One, 
-                0x80, 
-                Zero
-            })
-            If ((CCHK (PIOF, Zero) == Zero))
-            {
-                Return (Zero)
-            }
-
-            \_SB.PCI0.PEG0.PEGP.LTRE = \_SB.PCI0.PEG0.LREN
-            If ((Arg0 == Zero))
-            {
-                ELC0 = LCT0 /* \_SB_.PCI0.LCT0 */
-                H0VI = S0VI /* \_SB_.PCI0.S0VI */
-                H0DI = S0DI /* \_SB_.PCI0.S0DI */
-                ECP0 = LCP0 /* \_SB_.PCI0.LCP0 */
-            }
-            ElseIf ((Arg0 == One))
-            {
-                ELC1 = LCT1 /* \_SB_.PCI0.LCT1 */
-                H1VI = S1VI /* \_SB_.PCI0.S1VI */
-                H1DI = S1DI /* \_SB_.PCI0.S1DI */
-                ECP1 = LCP1 /* \_SB_.PCI0.LCP1 */
-            }
-            ElseIf ((Arg0 == 0x02))
-            {
-                ELC2 = LCT2 /* \_SB_.PCI0.LCT2 */
-                H2VI = S2VI /* \_SB_.PCI0.S2VI */
-                H2DI = S2DI /* \_SB_.PCI0.S2DI */
-                ECP2 = LCP2 /* \_SB_.PCI0.LCP2 */
-            }
-
-            If (((OSYS <= 0x07D9) || ((OSYS == 0x07DF) && (_REV == 
-                0x05))))
-            {
-                If ((PIOF == Zero))
-                {
-                    P0LD = One
-                    TCNT = Zero
-                    While ((TCNT < LDLY))
-                    {
-                        If ((P0LT == 0x08))
-                        {
-                            Break
-                        }
-
-                        Sleep (0x10)
-                        TCNT += 0x10
-                    }
-
-                    P0RM = One
-                    P0AP = 0x03
-                }
-                ElseIf ((PIOF == One))
-                {
-                    P1LD = One
-                    TCNT = Zero
-                    While ((TCNT < LDLY))
-                    {
-                        If ((P1LT == 0x08))
-                        {
-                            Break
-                        }
-
-                        Sleep (0x10)
-                        TCNT += 0x10
-                    }
-
-                    P1RM = One
-                    P1AP = 0x03
-                }
-                ElseIf ((PIOF == 0x02))
-                {
-                    P2LD = One
-                    TCNT = Zero
-                    While ((TCNT < LDLY))
-                    {
-                        If ((P2LT == 0x08))
-                        {
-                            Break
-                        }
-
-                        Sleep (0x10)
-                        TCNT += 0x10
-                    }
-
-                    P2RM = One
-                    P2AP = 0x03
-                }
-
-                If ((PBGE != Zero))
-                {
-                    If (SBDL (PIOF))
-                    {
-                        MBDL = GMXB (PIOF)
-                        PDUB (PIOF, MBDL)
-                    }
-                }
-            }
-            Else
-            {
-                LKDS (PIOF)
-            }
-
-            If ((DerefOf (SCLK [Zero]) != Zero))
-            {
-                PCRO (0xDC, 0x100C, DerefOf (SCLK [One]))
-                Sleep (0x10)
-            }
-
-            GPPR (PIOF, Zero)
-            If ((OSYS != 0x07D9))
-            {
-                DIWK (PIOF)
-            }
-
-            \_SB.SGOV (0x01010004, Zero)
-            Sleep (0x14)
-            Return (Zero)
-        }
+T24gV2VkLCBOb3YgMjAsIDIwMTkgYXQgMTI6MjIgUE0gTWlrYSBXZXN0ZXJiZXJnCjxtaWthLndl
+c3RlcmJlcmdAaW50ZWwuY29tPiB3cm90ZToKPgo+IE9uIFdlZCwgTm92IDIwLCAyMDE5IGF0IDEx
+OjUyOjIyQU0gKzAxMDAsIFJhZmFlbCBKLiBXeXNvY2tpIHdyb3RlOgo+ID4gT24gV2VkLCBOb3Yg
+MjAsIDIwMTkgYXQgMTE6MTggQU0gTWlrYSBXZXN0ZXJiZXJnCj4gPiA8bWlrYS53ZXN0ZXJiZXJn
+QGludGVsLmNvbT4gd3JvdGU6Cj4gPiA+Cj4gPiA+IEhpIEthcm9sLAo+ID4gPgo+ID4gPiBPbiBU
+dWUsIE5vdiAxOSwgMjAxOSBhdCAxMToyNjo0NVBNICswMTAwLCBLYXJvbCBIZXJic3Qgd3JvdGU6
+Cj4gPiA+ID4gT24gVHVlLCBOb3YgMTksIDIwMTkgYXQgMTA6NTAgUE0gQmpvcm4gSGVsZ2FhcyA8
+aGVsZ2Fhc0BrZXJuZWwub3JnPiB3cm90ZToKPiA+ID4gPiA+Cj4gPiA+ID4gPiBbK2NjIERhdmVd
+Cj4gPiA+ID4gPgo+ID4gPiA+ID4gT24gVGh1LCBPY3QgMTcsIDIwMTkgYXQgMDI6MTk6MDFQTSAr
+MDIwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+ID4gPiA+ID4gPiBGaXhlcyBzdGF0ZSB0cmFuc2l0
+aW9ucyBvZiBOdmlkaWEgUGFzY2FsIEdQVXMgZnJvbSBEM2NvbGQgaW50byBoaWdoZXIgZGV2aWNl
+Cj4gPiA+ID4gPiA+IHN0YXRlcy4KPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gdjI6IGNvbnZlcnQg
+dG8gcGNpX2RldiBxdWlyawo+ID4gPiA+ID4gPiAgICAgcHV0IGEgcHJvcGVyIHRlY2huaWNhbCBl
+eHBsYW5hdGlvbiBvZiB0aGUgaXNzdWUgYXMgYSBpbi1jb2RlIGNvbW1lbnQKPiA+ID4gPiA+ID4g
+djM6IGRpc2FibGUgaXQgb25seSBmb3IgY2VydGFpbiBjb21iaW5hdGlvbnMgb2YgaW50ZWwgYW5k
+IG52aWRpYSBoYXJkd2FyZQo+ID4gPiA+ID4gPiB2NDogc2ltcGxpZnkgcXVpcmsgYnkgc2V0dGlu
+ZyBmbGFnIG9uIHRoZSBHUFUgaXRzZWxmCj4gPiA+ID4gPgo+ID4gPiA+ID4gSSBoYXZlIHplcm8g
+Y29uZmlkZW5jZSB0aGF0IHdlIHVuZGVyc3RhbmQgdGhlIHJlYWwgcHJvYmxlbSwgYnV0IHdlIGRv
+Cj4gPiA+ID4gPiBuZWVkIHRvIGRvIHNvbWV0aGluZyB3aXRoIHRoaXMuICBJJ2xsIG1lcmdlIGl0
+IGZvciB2NS41IGlmIHdlIGdldCB0aGUKPiA+ID4gPiA+IG1pbm9yIHByb2NlZHVyYWwgc3R1ZmYg
+YmVsb3cgc3RyYWlnaHRlbmVkIG91dC4KPiA+ID4gPiA+Cj4gPiA+ID4KPiA+ID4gPiBUaGFua3Ms
+IGFuZCBJIGFncmVlIHdpdGggeW91ciBzdGF0ZW1lbnQsIGJ1dCBhdCB0aGlzIHBvaW50IEkgdGhp
+bmsKPiA+ID4gPiBvbmx5IEludGVsIGNhbiBoZWxwIG91dCBkaWdnaW5nIGRlZXBlciBhcyBJIHNl
+ZSBubyB3YXkgdG8gZGVidWcgdGhpcwo+ID4gPiA+IGZ1cnRoZXIuCj4gPiA+Cj4gPiA+IEkgZG9u
+J3QgaGF2ZSBhbnl0aGluZyBhZ2FpbnN0IHRoaXMgcGF0Y2gsIGFzIGxvbmcgYXMgdGhlIHF1aXJr
+IHN0YXlzCj4gPiA+IGxpbWl0ZWQgdG8gdGhlIHBhcnRpY3VsYXIgcm9vdCBwb3J0IGxlYWRpbmcg
+dG8gdGhlIE5WSURJQSBHUFUuIFRoZQo+ID4gPiByZWFzb24gd2h5IEkgdGhpbmsgaXQgc2hvdWxk
+IHRvIGJlIGxpbWl0ZWQgaXMgdGhhdCBJJ20gcHJldHR5IGNlcnRhaW4KPiA+ID4gdGhlIHByb2Js
+ZW0gaXMgbm90IGluIHRoZSByb290IHBvcnQgaXRzZWxmLiBJIGhhdmUgaGVyZSBhIEtCTCBiYXNl
+ZAo+ID4gPiBUaGlua3BhZCBYMSBDYXJib24gNnRoIGdlbiB0aGF0IGNhbiBwdXQgdGhlIFRCVCBj
+b250cm9sbGVyIGludG8gRDNjb2xkCj4gPiA+IChpdCBpcyBjb25uZWN0ZWQgdG8gUENIIHJvb3Qg
+cG9ydCkgYW5kIGl0IHdha2VzIHVwIHRoZXJlIGp1c3QgZmluZSwgc28KPiA+ID4gZG9uJ3Qgd2Fu
+dCB0byBicmVhayB0aGF0Lgo+ID4gPgo+ID4gPiBOb3csIFBDSWUgZGV2aWNlcyBjYW5ub3QgZ28g
+aW50byBEM2NvbGQgYWxsIGJ5IHRoZW1zZWx2ZXMuIFRoZXkgYWx3YXlzCj4gPiA+IG5lZWQgaGVs
+cCBmcm9tIHRoZSBwbGF0Zm9ybSBzaWRlIHdoaWNoIGlzIEFDUEkgaW4gdGhpcyBjYXNlLiBUaGlz
+IGlzCj4gPiA+IGRvbmUgYnkgaGF2aW5nIHRoZSBkZXZpY2UgdG8gaGF2ZSBfUFIzIG1ldGhvZCB0
+aGF0IHJldHVybnMgb25lIG9yIG1vcmUKPiA+ID4gcG93ZXIgcmVzb3VyY2VzIHRoYXQgdGhlIE9T
+IGlzIHN1cHBvc2VkIHRvIHR1cm4gb2ZmIHdoZW4gdGhlIGRldmljZSBpcwo+ID4gPiBwdXQgaW50
+byBEM2NvbGQuIEFsbCBvZiB0aGF0IGlzIGltcGxlbWVudGVkIGFzIGZvcm0gb2YgQUNQSSBtZXRo
+b2RzIHRoYXQKPiA+ID4gcHJldHR5IG11Y2ggZG8gdGhlIGhhcmR3YXJlIHNwZWNpZmljIHRoaW5n
+cyB0aGF0IGFyZSBvdXRzaWRlIG9mIFBDSWUKPiA+ID4gc3BlYyB0byBnZXQgdGhlIGRldmljZSBp
+bnRvIEQzY29sZC4gQXQgaGlnaCBsZXZlbCB0aGUgX09GRigpIG1ldGhvZAo+ID4gPiBjYXVzZXMg
+dGhlIHJvb3QgcG9ydCB0byBicm9hZGNhc3QgUE1FX1R1cm5fT2ZmIG1lc3NhZ2UgdGhhdCByZXN1
+bHRzIHRoZQo+ID4gPiBsaW5rIHRvIGVudGVyIEwyLzMgcmVhZHksIGl0IHRoZW4gYXNzZXJ0cyBQ
+RVJTVCwgY29uZmlndXJlcyBXQUtFIChib3RoCj4gPiA+IGNhbiBiZSBHUElPcykgYW5kIGZpbmFs
+bHkgcmVtb3ZlcyBwb3dlciAoaWYgdGhlIGxpbmsgZ29lcyBpbnRvIEwzLAo+ID4gPiBvdGhlcndp
+c2UgaXQgZ29lcyBpbnRvIEwyKS4KPiA+ID4KPiA+ID4gSSB0aGluayB0aGlzIGlzIHdoZXJlIHRo
+ZSBwcm9ibGVtIGFjdHVhbGx5IGxpZXMgLSB0aGUgQVNMIG1ldGhvZHMgdGhhdAo+ID4gPiBhcmUg
+dXNlZCB0byBwdXQgdGhlIGRldmljZSBpbnRvIEQzY29sZCBhbmQgYmFjay4gV2Uga25vdyB0aGF0
+IGluIFdpbmRvd3MKPiA+ID4gdGhpcyBhbGwgd29ya3MgZmluZSBzbyB1bmxlc3MgV2luZG93cyBx
+dWlya3MgdGhlIHJvb3QgcG9ydCB0aGUgc2FtZSB3YXkKPiA+ID4gdGhlcmUgaXMgYW5vdGhlciBy
+ZWFzb24gYmVoaW5kIHRoaXMuCj4gPiA+Cj4gPiA+IEluIGNhc2Ugb2YgRGVsbCBYUFMgOTU2MCAo
+SUlSQyB0aGF0J3MgdGhlIG1hY2hpbmUgeW91IGhhdmUpIHRoZQo+ID4gPiBjb3JyZXNwb25kaW5n
+IHBvd2VyIHJlc291cmNlIGlzIGNhbGxlZCBcX1NCLlBDSTAuUEVHMC5QRzAwIGFuZCBpdHMKPiA+
+ID4gX09OL19PRkYgbWV0aG9kcyBlbmQgdXAgY2FsbGluZyBQR09OKCkvUEdPRigpIGFjY29yZGlu
+Z2x5LiBUaGUgbWV0aG9kcwo+ID4gPiBpdHNlbGYgZG8gbG90cyBvZiB0aGluZ3MgYW5kIGl0IGlz
+IGhhcmQgdG8gZm9sbG93IHRoZSBkaXNzYXNzZW1ibGVkCj4gPiA+IEFTTCB3aGljaCBkb2VzIG5v
+dCBoYXZlIGFueSBjb21tZW50cyBidXQgdGhlcmUgYXJlIGNvdXBsZSBvZiB0aGluZ3MgdGhhdAo+
+ID4gPiBzdGFuZCBvdXQgd2hlcmUgd2UgbWF5IGdvIGludG8gYSBkaWZmZXJlbnQgcGF0aC4gT25l
+IG9mIHRoZW0gaXMgdGhpcyBpbgo+ID4gPiB0aGUgUEdPRigpIG1ldGhvZDoKPiA+ID4KPiA+ID4g
+ICAgSWYgKCgoT1NZUyA8PSAweDA3RDkpIHx8ICgoT1NZUyA9PSAweDA3REYpICYmIChfUkVWID09
+IDB4MDUpKSkpCj4gPiA+Cj4gPiA+IFRoZSAoKE9TWVMgPT0gMHgwN0RGKSAmJiAoX1JFViA9PSAw
+eDA1KSkgY2hlY2tzIHNwZWNpZmljYWxseSBmb3IgTGludXgKPiA+ID4gKHNlZSBbMV0gYW5kIDE4
+ZDc4YjY0ZmRkYyAoIkFDUEkgLyBpbml0OiBNYWtlIGl0IHBvc3NpYmxlIHRvIG92ZXJyaWRlCj4g
+PiA+IF9SRVYiKSkgc28gaXQgbWlnaHQgYmUgdGhhdCBEZWxsIHBlb3BsZSB0ZXN0ZWQgdGhpcyBh
+dCBzb21lIHBvaW50IGluCj4gPiA+IExpbnV4IGFzIHdlbGwuIEFkZGVkIE1hcmlvIGluIGNhc2Ug
+aGUgaGFzIGFueSBpZGVhcy4KPiA+ID4KPiA+ID4gUHJldmlvdXNseSBJIHN1Z2dlc3RlZCB5b3Ug
+dG8gdHJ5IHRoZSBBQ1BJIG1ldGhvZCB0cmFjaW5nIHRvIHNlZSB3aGF0Cj4gPiA+IGhhcHBlbnMg
+aW5zaWRlIFBHT0YoKS4gRGlkIHlvdSBoYXZlIHRpbWUgdG8gdHJ5IGl0PyBJdCBtYXkgcHJvdmlk
+ZSBtb3JlCj4gPiA+IGluZm9ybWF0aW9uIGFib3V0IHRoYXQgaXMgaGFwcGVuaW5nIGluc2lkZSB0
+aG9zZSBtZXRob2RzIGFuZCBob3BlZnVsbHkKPiA+ID4gcG9pbnQgdXMgdG8gdGhlIHJvb3QgY2F1
+c2UuCj4gPiA+Cj4gPiA+IEFsc28gaWYgeW91IGhhdmVuJ3QgdHJpZWQgYWxyZWFkeSBwYXNzaW5n
+IGFjcGlfcmV2X292ZXJyaWRlIGluIHRoZQo+ID4gPiBjb21tYW5kIGxpbmUgbWFrZXMgdGhlIF9S
+RVYgdG8gcmV0dXJuIDUgc28gaXQgc2hvdWxkIGdvIGludG8gdGhlICJMaW51eCIKPiA+ID4gcGF0
+aCBpbiBQR09GKCkuCj4gPgo+ID4gT2gsIHNvIGRvZXMgaXQgbG9vayBsaWtlIHdlIGFyZSB0cnlp
+bmcgdG8gd29yayBhcm91bmQgQU1MIHRoYXQgdHJpZWQKPiA+IHRvIHdvcmsgYXJvdW5kIHNvbWUg
+cHJvYmxlbWF0aWMgYmVoYXZpb3IgaW4gTGludXggYXQgb25lIHBvaW50Pwo+Cj4gWWVzLCBpdCBs
+b29rcyBsaWtlIHNvIGlmIEkgcmVhZCB0aGUgQVNMIHJpZ2h0LgoKT0ssIHNvIHRoYXQgd291bGQg
+Y2FsbCBmb3IgYSBETUktYmFzZWQgcXVpcmsgYXMgdGhlIHJlYWwgY2F1c2UgZm9yIHRoZQppc3N1
+ZSBzZWVtcyB0byBiZSB0aGUgQU1MIGluIHF1ZXN0aW9uLCB3aGljaCBtZWFucyBhIGZpcm13YXJl
+IHByb2JsZW0uCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbA==
