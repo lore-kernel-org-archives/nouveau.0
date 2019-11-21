@@ -1,8 +1,8 @@
-From: Mika Westerberg <mika.westerberg@intel.com>
-Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into lower device
- states on certain intel bridges
-Date: Thu, 21 Nov 2019 21:49:42 +0200
-Message-ID: <20191121194942.GY11621@lahna.fi.intel.com>
+From: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into
+ lower device states on certain intel bridges
+Date: Thu, 21 Nov 2019 23:39:23 +0100
+Message-ID: <CAJZ5v0gyna0b135uxBVfNXgB9v-U9-93EYe0uzsr2BukJ9OtuA@mail.gmail.com>
 References: <CACO55tvo3rbPtYJcioEgXCEQqVXcVAm-iowr9Nim=bgTdMjgLw@mail.gmail.com>
  <20191120155301.GL11621@lahna.fi.intel.com>
  <CAJZ5v0hkT-fHFOQKzp2qYPyR+NUa4c-G-uGLPZuQxqsG454PiQ@mail.gmail.com>
@@ -13,133 +13,160 @@ References: <CACO55tvo3rbPtYJcioEgXCEQqVXcVAm-iowr9Nim=bgTdMjgLw@mail.gmail.com>
  <20191121114610.GW11621@lahna.fi.intel.com>
  <20191121125236.GX11621@lahna.fi.intel.com>
  <CAJZ5v0iMwhudB7O0hR-6KfRfa+_iGOY=t0Zzeh6+9OiTzeYJfA@mail.gmail.com>
+ <20191121194942.GY11621@lahna.fi.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <CAJZ5v0iMwhudB7O0hR-6KfRfa+_iGOY=t0Zzeh6+9OiTzeYJfA@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Karol Herbst <kherbst@redhat.com>, Bjorn Helgaas <helgaas@kernel.org>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@gmail.com>, Mario Limonciello <Mario.Limonciello@dell.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20191121194942.GY11621-3PARRvDOhMZrdx17CPfAsdBPR1lH4CV8@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Mika Westerberg <mika.westerberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Cc: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "Rafael J . Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Mario Limonciello <Mario.Limonciello-8PEkshWhKlo@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Nov 21, 2019 at 04:43:24PM +0100, Rafael J. Wysocki wrote:
-> On Thu, Nov 21, 2019 at 1:52 PM Mika Westerberg
-> <mika.westerberg@intel.com> wrote:
-> >
-> > On Thu, Nov 21, 2019 at 01:46:14PM +0200, Mika Westerberg wrote:
-> > > On Thu, Nov 21, 2019 at 12:34:22PM +0100, Rafael J. Wysocki wrote:
-> > > > On Thu, Nov 21, 2019 at 12:28 PM Mika Westerberg
-> > > > <mika.westerberg@intel.com> wrote:
-> > > > >
-> > > > > On Wed, Nov 20, 2019 at 11:29:33PM +0100, Rafael J. Wysocki wrote:
-> > > > > > > last week or so I found systems where the GPU was under the "PCI
-> > > > > > > Express Root Port" (name from lspci) and on those systems all of that
-> > > > > > > seems to work. So I am wondering if it's indeed just the 0x1901 one,
-> > > > > > > which also explains Mikas case that Thunderbolt stuff works as devices
-> > > > > > > never get populated under this particular bridge controller, but under
-> > > > > > > those "Root Port"s
-> > > > > >
-> > > > > > It always is a PCIe port, but its location within the SoC may matter.
-> > > > >
-> > > > > Exactly. Intel hardware has PCIe ports on CPU side (these are called
-> > > > > PEG, PCI Express Graphics, ports), and the PCH side. I think the IP is
-> > > > > still the same.
-> > > > >
-> > > > > > Also some custom AML-based power management is involved and that may
-> > > > > > be making specific assumptions on the configuration of the SoC and the
-> > > > > > GPU at the time of its invocation which unfortunately are not known to
-> > > > > > us.
-> > > > > >
-> > > > > > However, it looks like the AML invoked to power down the GPU from
-> > > > > > acpi_pci_set_power_state() gets confused if it is not in PCI D0 at
-> > > > > > that point, so it looks like that AML tries to access device memory on
-> > > > > > the GPU (beyond the PCI config space) or similar which is not
-> > > > > > accessible in PCI power states below D0.
-> > > > >
-> > > > > Or the PCI config space of the GPU when the parent root port is in D3hot
-> > > > > (as it is the case here). Also then the GPU config space is not
-> > > > > accessible.
-> > > >
-> > > > Why would the parent port be in D3hot at that point?  Wouldn't that be
-> > > > a suspend ordering violation?
-> > >
-> > > No. We put the GPU into D3hot first,
-> 
-> OK
-> 
-> Does this involve any AML, like a _PS3 under the GPU object?
-
-I don't see _PS3 (nor _PS0) for that object. If I read it right the GPU
-itself is not described in ACPI tables at all.
-
-> > > then the root port and then turn
-> > > off the power resource (which is attached to the root port) resulting
-> > > the topology entering D3cold.
-> >
-> > I don't see that happening in the AML though.
-> 
-> Which AML do you mean, specifically?  The _OFF method for the root
-> port's _PR3 power resource or something else?
-
-The root port's _OFF method for the power resource returned by its _PR3.
-
-> > Basically the difference is that when Windows 7 or Linux (the _REV==5
-> > check) then we directly do link disable whereas in Windows 8+ we invoke
-> > LKDS() method that puts the link into L2/L3. None of the fields they
-> > access seem to touch the GPU itself.
-> 
-> So that may be where the problem is.
-> 
-> Putting the downstream component into PCI D[1-3] is expected to put
-> the link into L1, so I'm not sure how that plays with the later
-> attempt to put it into L2/L3 Ready.
-
-That should be fine. What I've seen the link goes into L1 when
-downstream component is put to D-state (not D0) and then it is put back
-to L0 when L2/3 ready is propagated. Eventually it goes into L2 or L3.
-
-> Also, L2/L3 Ready is expected to be transient, so finally power should
-> be removed somehow.
-
-There is GPIO for both power and PERST, I think the line here:
-
-  \_SB.SGOV (0x01010004, Zero)
-
-is the one that removes power.
-
-> > LKDS() for the first PEG port looks like this:
-> >
-> >    P0L2 = One
-> >    Sleep (0x10)
-> >    Local0 = Zero
-> >    While (P0L2)
-> >    {
-> >         If ((Local0 > 0x04))
-> >         {
-> >             Break
-> >         }
-> >
-> >         Sleep (0x10)
-> >         Local0++
-> >    }
-> >
-> > One thing that comes to mind is that the loop can end even if P0L2 is
-> > not cleared as it does only 5 iterations with 16 ms sleep between. Maybe
-> > Sleep() is implemented differently in Windows? I mean Linux may be
-> > "faster" here and return prematurely and if we leave the port into D0
-> > this does not happen, or something. I'm just throwing out ideas :)
-> 
-> But this actually works for the downstream component in D0, doesn't it?
-
-It does and that leaves the link in L0 so it could be that then the
-above AML works better or something.
-
-That reminds me, ASPM may have something to do with this as well.
-
-> Also, if the downstream component is in D0, the port actually should
-> stay in D0 too, so what would happen with the $subject patch applied?
-
-Parent port cannot be lower D-state than the child so I agree it should
-stay in D0 as well. However, it seems that what happens is that the
-issue goes away :)
+T24gVGh1LCBOb3YgMjEsIDIwMTkgYXQgODo0OSBQTSBNaWthIFdlc3RlcmJlcmcKPG1pa2Eud2Vz
+dGVyYmVyZ0BpbnRlbC5jb20+IHdyb3RlOgo+Cj4gT24gVGh1LCBOb3YgMjEsIDIwMTkgYXQgMDQ6
+NDM6MjRQTSArMDEwMCwgUmFmYWVsIEouIFd5c29ja2kgd3JvdGU6Cj4gPiBPbiBUaHUsIE5vdiAy
+MSwgMjAxOSBhdCAxOjUyIFBNIE1pa2EgV2VzdGVyYmVyZwo+ID4gPG1pa2Eud2VzdGVyYmVyZ0Bp
+bnRlbC5jb20+IHdyb3RlOgo+ID4gPgo+ID4gPiBPbiBUaHUsIE5vdiAyMSwgMjAxOSBhdCAwMTo0
+NjoxNFBNICswMjAwLCBNaWthIFdlc3RlcmJlcmcgd3JvdGU6Cj4gPiA+ID4gT24gVGh1LCBOb3Yg
+MjEsIDIwMTkgYXQgMTI6MzQ6MjJQTSArMDEwMCwgUmFmYWVsIEouIFd5c29ja2kgd3JvdGU6Cj4g
+PiA+ID4gPiBPbiBUaHUsIE5vdiAyMSwgMjAxOSBhdCAxMjoyOCBQTSBNaWthIFdlc3RlcmJlcmcK
+PiA+ID4gPiA+IDxtaWthLndlc3RlcmJlcmdAaW50ZWwuY29tPiB3cm90ZToKPiA+ID4gPiA+ID4K
+PiA+ID4gPiA+ID4gT24gV2VkLCBOb3YgMjAsIDIwMTkgYXQgMTE6Mjk6MzNQTSArMDEwMCwgUmFm
+YWVsIEouIFd5c29ja2kgd3JvdGU6Cj4gPiA+ID4gPiA+ID4gPiBsYXN0IHdlZWsgb3Igc28gSSBm
+b3VuZCBzeXN0ZW1zIHdoZXJlIHRoZSBHUFUgd2FzIHVuZGVyIHRoZSAiUENJCj4gPiA+ID4gPiA+
+ID4gPiBFeHByZXNzIFJvb3QgUG9ydCIgKG5hbWUgZnJvbSBsc3BjaSkgYW5kIG9uIHRob3NlIHN5
+c3RlbXMgYWxsIG9mIHRoYXQKPiA+ID4gPiA+ID4gPiA+IHNlZW1zIHRvIHdvcmsuIFNvIEkgYW0g
+d29uZGVyaW5nIGlmIGl0J3MgaW5kZWVkIGp1c3QgdGhlIDB4MTkwMSBvbmUsCj4gPiA+ID4gPiA+
+ID4gPiB3aGljaCBhbHNvIGV4cGxhaW5zIE1pa2FzIGNhc2UgdGhhdCBUaHVuZGVyYm9sdCBzdHVm
+ZiB3b3JrcyBhcyBkZXZpY2VzCj4gPiA+ID4gPiA+ID4gPiBuZXZlciBnZXQgcG9wdWxhdGVkIHVu
+ZGVyIHRoaXMgcGFydGljdWxhciBicmlkZ2UgY29udHJvbGxlciwgYnV0IHVuZGVyCj4gPiA+ID4g
+PiA+ID4gPiB0aG9zZSAiUm9vdCBQb3J0InMKPiA+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiA+IEl0
+IGFsd2F5cyBpcyBhIFBDSWUgcG9ydCwgYnV0IGl0cyBsb2NhdGlvbiB3aXRoaW4gdGhlIFNvQyBt
+YXkgbWF0dGVyLgo+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiBFeGFjdGx5LiBJbnRlbCBoYXJkd2Fy
+ZSBoYXMgUENJZSBwb3J0cyBvbiBDUFUgc2lkZSAodGhlc2UgYXJlIGNhbGxlZAo+ID4gPiA+ID4g
+PiBQRUcsIFBDSSBFeHByZXNzIEdyYXBoaWNzLCBwb3J0cyksIGFuZCB0aGUgUENIIHNpZGUuIEkg
+dGhpbmsgdGhlIElQIGlzCj4gPiA+ID4gPiA+IHN0aWxsIHRoZSBzYW1lLgo+ID4gPiA+ID4gPgo+
+ID4gPiA+ID4gPiA+IEFsc28gc29tZSBjdXN0b20gQU1MLWJhc2VkIHBvd2VyIG1hbmFnZW1lbnQg
+aXMgaW52b2x2ZWQgYW5kIHRoYXQgbWF5Cj4gPiA+ID4gPiA+ID4gYmUgbWFraW5nIHNwZWNpZmlj
+IGFzc3VtcHRpb25zIG9uIHRoZSBjb25maWd1cmF0aW9uIG9mIHRoZSBTb0MgYW5kIHRoZQo+ID4g
+PiA+ID4gPiA+IEdQVSBhdCB0aGUgdGltZSBvZiBpdHMgaW52b2NhdGlvbiB3aGljaCB1bmZvcnR1
+bmF0ZWx5IGFyZSBub3Qga25vd24gdG8KPiA+ID4gPiA+ID4gPiB1cy4KPiA+ID4gPiA+ID4gPgo+
+ID4gPiA+ID4gPiA+IEhvd2V2ZXIsIGl0IGxvb2tzIGxpa2UgdGhlIEFNTCBpbnZva2VkIHRvIHBv
+d2VyIGRvd24gdGhlIEdQVSBmcm9tCj4gPiA+ID4gPiA+ID4gYWNwaV9wY2lfc2V0X3Bvd2VyX3N0
+YXRlKCkgZ2V0cyBjb25mdXNlZCBpZiBpdCBpcyBub3QgaW4gUENJIEQwIGF0Cj4gPiA+ID4gPiA+
+ID4gdGhhdCBwb2ludCwgc28gaXQgbG9va3MgbGlrZSB0aGF0IEFNTCB0cmllcyB0byBhY2Nlc3Mg
+ZGV2aWNlIG1lbW9yeSBvbgo+ID4gPiA+ID4gPiA+IHRoZSBHUFUgKGJleW9uZCB0aGUgUENJIGNv
+bmZpZyBzcGFjZSkgb3Igc2ltaWxhciB3aGljaCBpcyBub3QKPiA+ID4gPiA+ID4gPiBhY2Nlc3Np
+YmxlIGluIFBDSSBwb3dlciBzdGF0ZXMgYmVsb3cgRDAuCj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+
+IE9yIHRoZSBQQ0kgY29uZmlnIHNwYWNlIG9mIHRoZSBHUFUgd2hlbiB0aGUgcGFyZW50IHJvb3Qg
+cG9ydCBpcyBpbiBEM2hvdAo+ID4gPiA+ID4gPiAoYXMgaXQgaXMgdGhlIGNhc2UgaGVyZSkuIEFs
+c28gdGhlbiB0aGUgR1BVIGNvbmZpZyBzcGFjZSBpcyBub3QKPiA+ID4gPiA+ID4gYWNjZXNzaWJs
+ZS4KPiA+ID4gPiA+Cj4gPiA+ID4gPiBXaHkgd291bGQgdGhlIHBhcmVudCBwb3J0IGJlIGluIEQz
+aG90IGF0IHRoYXQgcG9pbnQ/ICBXb3VsZG4ndCB0aGF0IGJlCj4gPiA+ID4gPiBhIHN1c3BlbmQg
+b3JkZXJpbmcgdmlvbGF0aW9uPwo+ID4gPiA+Cj4gPiA+ID4gTm8uIFdlIHB1dCB0aGUgR1BVIGlu
+dG8gRDNob3QgZmlyc3QsCj4gPgo+ID4gT0sKPiA+Cj4gPiBEb2VzIHRoaXMgaW52b2x2ZSBhbnkg
+QU1MLCBsaWtlIGEgX1BTMyB1bmRlciB0aGUgR1BVIG9iamVjdD8KPgo+IEkgZG9uJ3Qgc2VlIF9Q
+UzMgKG5vciBfUFMwKSBmb3IgdGhhdCBvYmplY3QuIElmIEkgcmVhZCBpdCByaWdodCB0aGUgR1BV
+Cj4gaXRzZWxmIGlzIG5vdCBkZXNjcmliZWQgaW4gQUNQSSB0YWJsZXMgYXQgYWxsLgoKT0sKCj4g
+PiA+ID4gdGhlbiB0aGUgcm9vdCBwb3J0IGFuZCB0aGVuIHR1cm4KPiA+ID4gPiBvZmYgdGhlIHBv
+d2VyIHJlc291cmNlICh3aGljaCBpcyBhdHRhY2hlZCB0byB0aGUgcm9vdCBwb3J0KSByZXN1bHRp
+bmcKPiA+ID4gPiB0aGUgdG9wb2xvZ3kgZW50ZXJpbmcgRDNjb2xkLgo+ID4gPgo+ID4gPiBJIGRv
+bid0IHNlZSB0aGF0IGhhcHBlbmluZyBpbiB0aGUgQU1MIHRob3VnaC4KPiA+Cj4gPiBXaGljaCBB
+TUwgZG8geW91IG1lYW4sIHNwZWNpZmljYWxseT8gIFRoZSBfT0ZGIG1ldGhvZCBmb3IgdGhlIHJv
+b3QKPiA+IHBvcnQncyBfUFIzIHBvd2VyIHJlc291cmNlIG9yIHNvbWV0aGluZyBlbHNlPwo+Cj4g
+VGhlIHJvb3QgcG9ydCdzIF9PRkYgbWV0aG9kIGZvciB0aGUgcG93ZXIgcmVzb3VyY2UgcmV0dXJu
+ZWQgYnkgaXRzIF9QUjMuCgpPSywgc28gd2l0aG91dCB0aGUgJHN1YmplY3QgcGF0Y2ggd2UgKDEp
+IHByb2dyYW0gdGhlIGRvd25zdHJlYW0KY29tcG9uZW50IChHUFUpIGludG8gRDNob3QsIHRoZW4g
+d2UgKDIpIHByb2dyYW0gdGhlIHBvcnQgaG9sZGluZyBpdAppbnRvIEQzaG90IGFuZCB0aGVuIHdl
+ICgzKSBsZXQgdGhlIEFNTCAoX09GRiBmb3IgdGhlIHBvd2VyIHJlc291cmNlCmxpc3RlZCBieSBf
+UFIzIHVuZGVyIHRoZSBwb3J0IG9iamVjdCkgcnVuLgoKU29tZXRoaW5nIHN0cmFuZ2UgaGFwcGVu
+cyBhdCB0aGlzIHBvaW50IChhbmQgSSBndWVzcyB0aGF0IF9PRkYgZG9lc24ndApldmVuIHJlYWNo
+IHRoZSBwb2ludCB3aGVyZSBpdCByZW1vdmVzIHBvd2VyIGZyb20gdGhlIHBvcnQgd2hpY2ggaXMg
+d2h5CndlIHNlZSBhIGxvY2stdXApLgoKV2Uga25vdyB0aGF0IHNraXBwaW5nICgxKSBtYWtlcyB0
+aGluZ3Mgd29yayBhbmQgd2Uga2luZCBvZiBzdXNwZWN0CnRoYXQgc2tpcHBpbmcgKDMpIHdvdWxk
+IG1ha2UgdGhpbmdzIHdvcmsgZWl0aGVyLCBidXQgd2hhdCBhYm91dCBkb2luZwooMSkgYW5kICgz
+KSB3aXRob3V0ICgyKT8KCj4gPiA+IEJhc2ljYWxseSB0aGUgZGlmZmVyZW5jZSBpcyB0aGF0IHdo
+ZW4gV2luZG93cyA3IG9yIExpbnV4ICh0aGUgX1JFVj09NQo+ID4gPiBjaGVjaykgdGhlbiB3ZSBk
+aXJlY3RseSBkbyBsaW5rIGRpc2FibGUgd2hlcmVhcyBpbiBXaW5kb3dzIDgrIHdlIGludm9rZQo+
+ID4gPiBMS0RTKCkgbWV0aG9kIHRoYXQgcHV0cyB0aGUgbGluayBpbnRvIEwyL0wzLiBOb25lIG9m
+IHRoZSBmaWVsZHMgdGhleQo+ID4gPiBhY2Nlc3Mgc2VlbSB0byB0b3VjaCB0aGUgR1BVIGl0c2Vs
+Zi4KPiA+Cj4gPiBTbyB0aGF0IG1heSBiZSB3aGVyZSB0aGUgcHJvYmxlbSBpcy4KPiA+Cj4gPiBQ
+dXR0aW5nIHRoZSBkb3duc3RyZWFtIGNvbXBvbmVudCBpbnRvIFBDSSBEWzEtM10gaXMgZXhwZWN0
+ZWQgdG8gcHV0Cj4gPiB0aGUgbGluayBpbnRvIEwxLCBzbyBJJ20gbm90IHN1cmUgaG93IHRoYXQg
+cGxheXMgd2l0aCB0aGUgbGF0ZXIKPiA+IGF0dGVtcHQgdG8gcHV0IGl0IGludG8gTDIvTDMgUmVh
+ZHkuCj4KPiBUaGF0IHNob3VsZCBiZSBmaW5lLiBXaGF0IEkndmUgc2VlbiB0aGUgbGluayBnb2Vz
+IGludG8gTDEgd2hlbgo+IGRvd25zdHJlYW0gY29tcG9uZW50IGlzIHB1dCB0byBELXN0YXRlIChu
+b3QgRDApIGFuZCB0aGVuIGl0IGlzIHB1dCBiYWNrCj4gdG8gTDAgd2hlbiBMMi8zIHJlYWR5IGlz
+IHByb3BhZ2F0ZWQuIEV2ZW50dWFsbHkgaXQgZ29lcyBpbnRvIEwyIG9yIEwzLgoKV2VsbCwgdGhh
+dCdzIHRoZSBleHBlY3RlZCBiZWhhdmlvciwgYnV0IHRoZSBvYnNlcnZlZCBiZWhhdmlvciBpc24n
+dCBhcwpleHBlY3RlZC4gOi0pCgo+ID4gQWxzbywgTDIvTDMgUmVhZHkgaXMgZXhwZWN0ZWQgdG8g
+YmUgdHJhbnNpZW50LCBzbyBmaW5hbGx5IHBvd2VyIHNob3VsZAo+ID4gYmUgcmVtb3ZlZCBzb21l
+aG93Lgo+Cj4gVGhlcmUgaXMgR1BJTyBmb3IgYm90aCBwb3dlciBhbmQgUEVSU1QsIEkgdGhpbmsg
+dGhlIGxpbmUgaGVyZToKPgo+ICAgXF9TQi5TR09WICgweDAxMDEwMDA0LCBaZXJvKQo+Cj4gaXMg
+dGhlIG9uZSB0aGF0IHJlbW92ZXMgcG93ZXIuCgpPSwoKPiA+ID4gTEtEUygpIGZvciB0aGUgZmly
+c3QgUEVHIHBvcnQgbG9va3MgbGlrZSB0aGlzOgo+ID4gPgo+ID4gPiAgICBQMEwyID0gT25lCj4g
+PiA+ICAgIFNsZWVwICgweDEwKQo+ID4gPiAgICBMb2NhbDAgPSBaZXJvCj4gPiA+ICAgIFdoaWxl
+IChQMEwyKQo+ID4gPiAgICB7Cj4gPiA+ICAgICAgICAgSWYgKChMb2NhbDAgPiAweDA0KSkKPiA+
+ID4gICAgICAgICB7Cj4gPiA+ICAgICAgICAgICAgIEJyZWFrCj4gPiA+ICAgICAgICAgfQo+ID4g
+Pgo+ID4gPiAgICAgICAgIFNsZWVwICgweDEwKQo+ID4gPiAgICAgICAgIExvY2FsMCsrCj4gPiA+
+ICAgIH0KPiA+ID4KPiA+ID4gT25lIHRoaW5nIHRoYXQgY29tZXMgdG8gbWluZCBpcyB0aGF0IHRo
+ZSBsb29wIGNhbiBlbmQgZXZlbiBpZiBQMEwyIGlzCj4gPiA+IG5vdCBjbGVhcmVkIGFzIGl0IGRv
+ZXMgb25seSA1IGl0ZXJhdGlvbnMgd2l0aCAxNiBtcyBzbGVlcCBiZXR3ZWVuLiBNYXliZQo+ID4g
+PiBTbGVlcCgpIGlzIGltcGxlbWVudGVkIGRpZmZlcmVudGx5IGluIFdpbmRvd3M/IEkgbWVhbiBM
+aW51eCBtYXkgYmUKPiA+ID4gImZhc3RlciIgaGVyZSBhbmQgcmV0dXJuIHByZW1hdHVyZWx5IGFu
+ZCBpZiB3ZSBsZWF2ZSB0aGUgcG9ydCBpbnRvIEQwCj4gPiA+IHRoaXMgZG9lcyBub3QgaGFwcGVu
+LCBvciBzb21ldGhpbmcuIEknbSBqdXN0IHRocm93aW5nIG91dCBpZGVhcyA6KQo+ID4KPiA+IEJ1
+dCB0aGlzIGFjdHVhbGx5IHdvcmtzIGZvciB0aGUgZG93bnN0cmVhbSBjb21wb25lbnQgaW4gRDAs
+IGRvZXNuJ3QgaXQ/Cj4KPiBJdCBkb2VzIGFuZCB0aGF0IGxlYXZlcyB0aGUgbGluayBpbiBMMCBz
+byBpdCBjb3VsZCBiZSB0aGF0IHRoZW4gdGhlCj4gYWJvdmUgQU1MIHdvcmtzIGJldHRlciBvciBz
+b21ldGhpbmcuCgpUaGF0IHdvdWxkIGJlIG15IGd1ZXNzLgoKPiBUaGF0IHJlbWluZHMgbWUsIEFT
+UE0gbWF5IGhhdmUgc29tZXRoaW5nIHRvIGRvIHdpdGggdGhpcyBhcyB3ZWxsLgoKTm90IHJlYWxs
+eSBpZiBELXN0YXRlcyBhcmUgaW52b2x2ZWQuCgo+ID4gQWxzbywgaWYgdGhlIGRvd25zdHJlYW0g
+Y29tcG9uZW50IGlzIGluIEQwLCB0aGUgcG9ydCBhY3R1YWxseSBzaG91bGQKPiA+IHN0YXkgaW4g
+RDAgdG9vLCBzbyB3aGF0IHdvdWxkIGhhcHBlbiB3aXRoIHRoZSAkc3ViamVjdCBwYXRjaCBhcHBs
+aWVkPwo+Cj4gUGFyZW50IHBvcnQgY2Fubm90IGJlIGxvd2VyIEQtc3RhdGUgdGhhbiB0aGUgY2hp
+bGQgc28gSSBhZ3JlZSBpdCBzaG91bGQKPiBzdGF5IGluIEQwIGFzIHdlbGwuIEhvd2V2ZXIsIGl0
+IHNlZW1zIHRoYXQgd2hhdCBoYXBwZW5zIGlzIHRoYXQgdGhlCj4gaXNzdWUgZ29lcyBhd2F5IDop
+CgpXZWxsLCBhdCBsZWFzdCB0aGlzIGlzIGtpbmQgb2Ygb3V0IG9mIHRoZSBzcGVjLgoKTm90ZSB0
+aGF0IHBjaV9wbV9zdXNwZW5kX25vaXJxKCkgd29uJ3QgbGV0IHRoZSBwb3J0IGdvIGludG8gRDMg
+aWYgdGhlCmRvd25zdHJlYW0gZGV2aWNlIGlzIGluIEQwLCBzbyB0aGUgJHN1YmplY3QgcGF0Y2gg
+d2lsbCBub3Qgd29yayBhcwpleHBlY3RlZCBpbiB0aGUgc3VzcGVuZC10by1pZGxlIGNhc2UuCgpB
+bHNvIHdlIHJlYWxseSBzaG91bGQgbWFrZSB1cCBvdXIgbWluZHMgb24gd2hldGhlciBvciBub3Qg
+dG8gZm9yY2UKUENJZSBwb3J0cyB0byBzdGF5IGluIEQwIHdoZW4gZG93bnN0cmVhbSBkZXZpY2Vz
+IGFyZSBpbiBEMCBhbmQgYmUKY29uc2VxdWVudCBhYm91dCB0aGF0LiAgUmlnaHQgbm93IHdlIGRv
+IG9uZSB0aGluZyBkdXJpbmcgc3lzdGVtLXdpZGUKc3VzcGVuZCBhbmQgdGhlIG90aGVyIG9uZSBp
+biBQTS1ydW50aW1lLCB3aGljaCBpcyBjb25mdXNpbmcuCgpUaGUgY3VycmVudCBkZXNpZ24gaXMg
+bW9zdGx5IGJhc2VkIG9uIHRoZSBQQ0kgUE0gU3BlYyAxLjIsIHNvIGl0IHdvdWxkCmJlIGNvbnNl
+cXVlbnQgdG8gZm9sbG93IHN5c3RlbS13aWRlIHN1c3BlbmQgaW4gUE0tcnVudGltZSBhbmQgYXZv
+aWQKcHV0dGluZyBQQ0llIHBvcnRzIGhvbGRpbmcgZGV2aWNlcyBpbiBEMCBpbnRvIGFueSBsb3ct
+cG93ZXIgc3RhdGVzLgpidXQgdGhhdCB3b3VsZCBtYWtlIHRoZSBhcHByb2FjaCBpbiB0aGUgJHN1
+YmplY3QgcGF0Y2ggaW5lZmZlY3RpdmUuCgpNb3Jlb3ZlciwgdGhlIGZhY3QgdGhhdCB0aGVyZSBh
+cmUgc2VwYXJhdGUgYnJhbmNoZXMgZm9yICJXaW5kb3dzIDciCmFuZCAiV2luZG93cyA4KyIga2lu
+ZCBvZiBzdWdnZXN0IGEgY2hhbmdlIGluIHRoZSBleHBlY3RlZCBiZWhhdmlvcgpiZXR3ZWVuIFdp
+bmRvd3MgNyBhbmQgV2luZG93cyA4LCBmcm9tIHRoZSBBTUwgcGVyc3BlY3RpdmUuICBJIHdvdWxk
+Cmd1ZXNzIHRoYXQgV2luZG93cyA3IGZvbGxvd2VkIFBDSSBQTSAxLjIgYW5kIFdpbmRvd3MgOCAo
+YW5kIGxhdGVyKQpkb2VzIHNvbWV0aGluZyBlbHNlLiAgTm93LCB0aGUgc3RydWN0dXJlIG9mIHRo
+ZSAiV2luZG93cyA4KyIgYnJhbmNoCmRlc2NyaWJlZCBieSB5b3Ugc3VnZ2VzdHMgdGhhdCwgYXQg
+bGVhc3QgaW4gdGhlIGNhc2VzIHdoZW4gaXQgaXMgZ29pbmcKdG8gcmVtb3ZlIHBvd2VyIGZyb20g
+dGhlIHBvcnQgZXZlbnR1YWxseSwgaXQgZ29lcyBzdHJhaWdodCBmb3IgdGhlCmxpbmsgcHJlcGFy
+YXRpb24gKHRoZSBMMi9MMyBSZWFkeSB0cmFuc2l0aW9uKSBhbmQgcG93ZXIgcmVtb3ZhbAp3aXRo
+b3V0IGJvdGhlcmluZyB0byBwcm9ncmFtIHRoZSBkb3duc3RyZWFtIGRldmljZSBhbmQgcG9ydCBp
+bnRvIEQzaG90CihiZWNhdXNlIHRoYXQncyBraW5kIG9mIHJlZHVuZGFudCkuCgpUaGF0IGh5cG90
+aGV0aWNhbCAiV2luZG93cyA4KyIgYXBwcm9hY2ggbWF5IHJlYWxseSB3b3JrIHVuaXZlcnNhbGx5
+LApiZWNhdXNlIGl0IGRvZXNuJ3Qgc2VlbSB0byBicmVhayBhbnkgcnVsZXMgKGdvaW5nIHN0cmFp
+Z2h0IGZyb20gRDAgdG8KRDNjb2xkIGlzIG5vdCBkaXNhbGxvd2VkIGFuZCBkb2luZyB0aGF0IGZv
+ciBib3RoIGEgcG9ydCBhbmQgYQpkb3duc3RyZWFtIGRldmljZSBhdCB0aGUgc2FtZSB0aW1lIGlz
+IGtpbmQgb2YgT0sgZWl0aGVyLCBhcyBsb25nIGFzCnRoZSBsaW5rIGlzIHJlYWR5IGZvciB0aGF0
+KS4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
+dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
