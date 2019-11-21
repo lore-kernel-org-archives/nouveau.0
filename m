@@ -1,67 +1,53 @@
-From: Mika Westerberg <mika.westerberg@intel.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
 Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into lower device
  states on certain intel bridges
-Date: Thu, 21 Nov 2019 13:28:21 +0200
-Message-ID: <20191121112821.GU11621@lahna.fi.intel.com>
-References: <CACO55tsfNOdtu5SZ-4HzO4Ji6gQtafvZ7Rm19nkPcJAgwUBFMw@mail.gmail.com>
- <CACO55tscD_96jUVts+MTAUsCt-fZx4O5kyhRKoo4mKoC84io8A@mail.gmail.com>
- <20191120120913.GE11621@lahna.fi.intel.com>
- <CACO55tsHy6yZQZ8PkdW8iPA7+uc5rdcEwRJwYEQ3iqu85F8Sqg@mail.gmail.com>
- <20191120151542.GH11621@lahna.fi.intel.com>
- <CACO55tvo3rbPtYJcioEgXCEQqVXcVAm-iowr9Nim=bgTdMjgLw@mail.gmail.com>
- <20191120155301.GL11621@lahna.fi.intel.com>
- <CAJZ5v0hkT-fHFOQKzp2qYPyR+NUa4c-G-uGLPZuQxqsG454PiQ@mail.gmail.com>
- <CACO55ttTPi2XpRRM_NYJU5c5=OvG0=-YngFy1BiR8WpHkavwXw@mail.gmail.com>
- <CAJZ5v0h=7zu3A+ojgUSmwTH0KeXmYP5OKDL__rwkkWaWqcJcWQ@mail.gmail.com>
+Date: Thu, 21 Nov 2019 12:31:57 +0100
+Message-ID: <CAJZ5v0h=c2d6G04kPnLzTLZ6Xn8bLfg3=F73Dz+o6fQ3w4tfPQ@mail.gmail.com>
+References: <CACO55tscD_96jUVts+MTAUsCt-fZx4O5kyhRKoo4mKoC84io8A@mail.gmail.com>
+ <20191120120913.GE11621@lahna.fi.intel.com> <CACO55tsHy6yZQZ8PkdW8iPA7+uc5rdcEwRJwYEQ3iqu85F8Sqg@mail.gmail.com>
+ <20191120151542.GH11621@lahna.fi.intel.com> <CACO55tvo3rbPtYJcioEgXCEQqVXcVAm-iowr9Nim=bgTdMjgLw@mail.gmail.com>
+ <20191120155301.GL11621@lahna.fi.intel.com> <20191120162306.GM11621@lahna.fi.intel.com>
+ <CACO55tsvTG2E7_3nn1sTdPQXzxaZA96k+gmSBBXjPvei6v=kxg@mail.gmail.com>
+ <20191121101423.GQ11621@lahna.fi.intel.com> <CAJZ5v0hAgz4Fu=83AJE2PYUsi+Jk=Lrr4MNp5ySA9yY=3wr5rg@mail.gmail.com>
+ <20191121111739.GT11621@lahna.fi.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <CAJZ5v0h=7zu3A+ojgUSmwTH0KeXmYP5OKDL__rwkkWaWqcJcWQ@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Karol Herbst <kherbst@redhat.com>, Linux PM <linux-pm@vger.kernel.org>, Linux PCI <linux-pci@vger.kernel.org>, Mario Limonciello <Mario.Limonciello@dell.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Bjorn Helgaas <helgaas@kernel.org>, nouveau <nouveau@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20191121111739.GT11621@lahna.fi.intel.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Mika Westerberg <mika.westerberg@intel.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Karol Herbst <kherbst@redhat.com>, Bjorn Helgaas <helgaas@kernel.org>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@gmail.com>, Mario Limonciello <Mario.Limonciello@dell.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBOb3YgMjAsIDIwMTkgYXQgMTE6Mjk6MzNQTSArMDEwMCwgUmFmYWVsIEouIFd5c29j
-a2kgd3JvdGU6Cj4gPiBsYXN0IHdlZWsgb3Igc28gSSBmb3VuZCBzeXN0ZW1zIHdoZXJlIHRoZSBH
-UFUgd2FzIHVuZGVyIHRoZSAiUENJCj4gPiBFeHByZXNzIFJvb3QgUG9ydCIgKG5hbWUgZnJvbSBs
-c3BjaSkgYW5kIG9uIHRob3NlIHN5c3RlbXMgYWxsIG9mIHRoYXQKPiA+IHNlZW1zIHRvIHdvcmsu
-IFNvIEkgYW0gd29uZGVyaW5nIGlmIGl0J3MgaW5kZWVkIGp1c3QgdGhlIDB4MTkwMSBvbmUsCj4g
-PiB3aGljaCBhbHNvIGV4cGxhaW5zIE1pa2FzIGNhc2UgdGhhdCBUaHVuZGVyYm9sdCBzdHVmZiB3
-b3JrcyBhcyBkZXZpY2VzCj4gPiBuZXZlciBnZXQgcG9wdWxhdGVkIHVuZGVyIHRoaXMgcGFydGlj
-dWxhciBicmlkZ2UgY29udHJvbGxlciwgYnV0IHVuZGVyCj4gPiB0aG9zZSAiUm9vdCBQb3J0InMK
-PiAKPiBJdCBhbHdheXMgaXMgYSBQQ0llIHBvcnQsIGJ1dCBpdHMgbG9jYXRpb24gd2l0aGluIHRo
-ZSBTb0MgbWF5IG1hdHRlci4KCkV4YWN0bHkuIEludGVsIGhhcmR3YXJlIGhhcyBQQ0llIHBvcnRz
-IG9uIENQVSBzaWRlICh0aGVzZSBhcmUgY2FsbGVkClBFRywgUENJIEV4cHJlc3MgR3JhcGhpY3Ms
-IHBvcnRzKSwgYW5kIHRoZSBQQ0ggc2lkZS4gSSB0aGluayB0aGUgSVAgaXMKc3RpbGwgdGhlIHNh
-bWUuCgo+IEFsc28gc29tZSBjdXN0b20gQU1MLWJhc2VkIHBvd2VyIG1hbmFnZW1lbnQgaXMgaW52
-b2x2ZWQgYW5kIHRoYXQgbWF5Cj4gYmUgbWFraW5nIHNwZWNpZmljIGFzc3VtcHRpb25zIG9uIHRo
-ZSBjb25maWd1cmF0aW9uIG9mIHRoZSBTb0MgYW5kIHRoZQo+IEdQVSBhdCB0aGUgdGltZSBvZiBp
-dHMgaW52b2NhdGlvbiB3aGljaCB1bmZvcnR1bmF0ZWx5IGFyZSBub3Qga25vd24gdG8KPiB1cy4K
-PiAKPiBIb3dldmVyLCBpdCBsb29rcyBsaWtlIHRoZSBBTUwgaW52b2tlZCB0byBwb3dlciBkb3du
-IHRoZSBHUFUgZnJvbQo+IGFjcGlfcGNpX3NldF9wb3dlcl9zdGF0ZSgpIGdldHMgY29uZnVzZWQg
-aWYgaXQgaXMgbm90IGluIFBDSSBEMCBhdAo+IHRoYXQgcG9pbnQsIHNvIGl0IGxvb2tzIGxpa2Ug
-dGhhdCBBTUwgdHJpZXMgdG8gYWNjZXNzIGRldmljZSBtZW1vcnkgb24KPiB0aGUgR1BVIChiZXlv
-bmQgdGhlIFBDSSBjb25maWcgc3BhY2UpIG9yIHNpbWlsYXIgd2hpY2ggaXMgbm90Cj4gYWNjZXNz
-aWJsZSBpbiBQQ0kgcG93ZXIgc3RhdGVzIGJlbG93IEQwLgoKT3IgdGhlIFBDSSBjb25maWcgc3Bh
-Y2Ugb2YgdGhlIEdQVSB3aGVuIHRoZSBwYXJlbnQgcm9vdCBwb3J0IGlzIGluIEQzaG90CihhcyBp
-dCBpcyB0aGUgY2FzZSBoZXJlKS4gQWxzbyB0aGVuIHRoZSBHUFUgY29uZmlnIHNwYWNlIGlzIG5v
-dAphY2Nlc3NpYmxlLgoKSSB0b29rIGEgbG9vayBhdCB0aGUgSFAgT21lbiBBQ1BJIHRhYmxlcyB3
-aGljaCBoYXMgc2ltaWxhciBwcm9ibGVtIGFuZAp0aGVyZSBpcyBhbHNvIGNoZWNrIGZvciBXaW5k
-b3dzIDcgKGJ1dCBub3QgTGludXgpIHNvIEkgdGhpbmsgb25lCmFsdGVybmF0aXZlIHdvcmthcm91
-bmQgd291bGQgYmUgdG8gYWRkIHRoZXNlIGRldmljZXMgaW50bwphY3BpX29zaV9kbWlfdGFibGVb
-XSB3aGVyZSAuY2FsbGJhY2sgaXMgc2V0IHRvIGRtaV9kaXNhYmxlX29zaV93aW44IChvcgpwYXNz
-ICdhY3BpX29zaT0iIVdpbmRvd3MgMjAxMiInIGluIHRoZSBrZXJuZWwgY29tbWFuZCBsaW5lKS4K
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
-IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
+On Thu, Nov 21, 2019 at 12:17 PM Mika Westerberg
+<mika.westerberg@intel.com> wrote:
+>
+> On Thu, Nov 21, 2019 at 12:03:52PM +0100, Rafael J. Wysocki wrote:
+> > On Thu, Nov 21, 2019 at 11:14 AM Mika Westerberg
+> > <mika.westerberg@intel.com> wrote:
+> > >
+> > > On Wed, Nov 20, 2019 at 10:36:31PM +0100, Karol Herbst wrote:
+> > > > with the branch and patch applied:
+> > > > https://gist.githubusercontent.com/karolherbst/03c4c8141b0fa292d781badfa186479e/raw/5c62640afbc57d6e69ea924c338bd2836e770d02/gistfile1.txt
+> > >
+> > > Thanks for testing. Too bad it did not help :( I suppose there is no
+> > > change if you increase the delay to say 1s?
+> >
+> > Well, look at the original patch in this thread.
+> >
+> > What it does is to prevent the device (GPU in this particular case)
+> > from going into a PCI low-power state before invoking AML to power it
+> > down (the AML is still invoked after this patch AFAICS), so why would
+> > that have anything to do with the delays?
+>
+> Yes, I know what it does :) I was just thinking that maybe it's still
+> the link that does not come up when we go back to D0 I guess that's not
+> the case here.
+
+I'm not sure why that would be related to putting the device into,
+say, PCI D3 before invoking AML to remove power from it.  If it is not
+in PCI D3 at this point, the AML still runs and still removes power
+from it IIUC, so on the way back the situation is the same regardless:
+the device has no power which (again) needs to be restored by AML.
+That (in principle) should not depend on what happened to the device
+before it lost power.
