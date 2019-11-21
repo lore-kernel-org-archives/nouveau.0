@@ -1,105 +1,82 @@
-From: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into
- lower device states on certain intel bridges
-Date: Thu, 21 Nov 2019 16:43:24 +0100
-Message-ID: <CAJZ5v0iMwhudB7O0hR-6KfRfa+_iGOY=t0Zzeh6+9OiTzeYJfA@mail.gmail.com>
-References: <CACO55tsHy6yZQZ8PkdW8iPA7+uc5rdcEwRJwYEQ3iqu85F8Sqg@mail.gmail.com>
- <20191120151542.GH11621@lahna.fi.intel.com>
- <CACO55tvo3rbPtYJcioEgXCEQqVXcVAm-iowr9Nim=bgTdMjgLw@mail.gmail.com>
- <20191120155301.GL11621@lahna.fi.intel.com>
- <CAJZ5v0hkT-fHFOQKzp2qYPyR+NUa4c-G-uGLPZuQxqsG454PiQ@mail.gmail.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into lower device
+ states on certain intel bridges
+Date: Thu, 21 Nov 2019 16:47:13 +0100
+Message-ID: <CAJZ5v0ibzcLEm44udUxW2uVgaF9NapdNBF8Ag+RE++u7gi2yNA@mail.gmail.com>
+References: <20191120120913.GE11621@lahna.fi.intel.com> <CACO55tsHy6yZQZ8PkdW8iPA7+uc5rdcEwRJwYEQ3iqu85F8Sqg@mail.gmail.com>
+ <20191120151542.GH11621@lahna.fi.intel.com> <CACO55tvo3rbPtYJcioEgXCEQqVXcVAm-iowr9Nim=bgTdMjgLw@mail.gmail.com>
+ <20191120155301.GL11621@lahna.fi.intel.com> <CAJZ5v0hkT-fHFOQKzp2qYPyR+NUa4c-G-uGLPZuQxqsG454PiQ@mail.gmail.com>
  <CACO55ttTPi2XpRRM_NYJU5c5=OvG0=-YngFy1BiR8WpHkavwXw@mail.gmail.com>
  <CAJZ5v0h=7zu3A+ojgUSmwTH0KeXmYP5OKDL__rwkkWaWqcJcWQ@mail.gmail.com>
- <20191121112821.GU11621@lahna.fi.intel.com>
- <CAJZ5v0hQhj5Wf+piU11abC4pF26yM=XHGHAcDv8Jsgdx04aN-w@mail.gmail.com>
- <20191121114610.GW11621@lahna.fi.intel.com>
- <20191121125236.GX11621@lahna.fi.intel.com>
+ <20191121112821.GU11621@lahna.fi.intel.com> <CAJZ5v0hQhj5Wf+piU11abC4pF26yM=XHGHAcDv8Jsgdx04aN-w@mail.gmail.com>
+ <20191121114610.GW11621@lahna.fi.intel.com> <CACO55ttXJgXG32HzYP_uJDfQ6T-d8zQaGjXK_AZD3kF0Rmft4g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20191121125236.GX11621-3PARRvDOhMZrdx17CPfAsdBPR1lH4CV8@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mika Westerberg <mika.westerberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "Rafael J . Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Mario Limonciello <Mario.Limonciello-8PEkshWhKlo@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CACO55ttXJgXG32HzYP_uJDfQ6T-d8zQaGjXK_AZD3kF0Rmft4g@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Karol Herbst <kherbst@redhat.com>
+Cc: Mika Westerberg <mika.westerberg@intel.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@gmail.com>, Mario Limonciello <Mario.Limonciello@dell.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBOb3YgMjEsIDIwMTkgYXQgMTo1MiBQTSBNaWthIFdlc3RlcmJlcmcKPG1pa2Eud2Vz
-dGVyYmVyZ0BpbnRlbC5jb20+IHdyb3RlOgo+Cj4gT24gVGh1LCBOb3YgMjEsIDIwMTkgYXQgMDE6
-NDY6MTRQTSArMDIwMCwgTWlrYSBXZXN0ZXJiZXJnIHdyb3RlOgo+ID4gT24gVGh1LCBOb3YgMjEs
-IDIwMTkgYXQgMTI6MzQ6MjJQTSArMDEwMCwgUmFmYWVsIEouIFd5c29ja2kgd3JvdGU6Cj4gPiA+
-IE9uIFRodSwgTm92IDIxLCAyMDE5IGF0IDEyOjI4IFBNIE1pa2EgV2VzdGVyYmVyZwo+ID4gPiA8
-bWlrYS53ZXN0ZXJiZXJnQGludGVsLmNvbT4gd3JvdGU6Cj4gPiA+ID4KPiA+ID4gPiBPbiBXZWQs
-IE5vdiAyMCwgMjAxOSBhdCAxMToyOTozM1BNICswMTAwLCBSYWZhZWwgSi4gV3lzb2NraSB3cm90
-ZToKPiA+ID4gPiA+ID4gbGFzdCB3ZWVrIG9yIHNvIEkgZm91bmQgc3lzdGVtcyB3aGVyZSB0aGUg
-R1BVIHdhcyB1bmRlciB0aGUgIlBDSQo+ID4gPiA+ID4gPiBFeHByZXNzIFJvb3QgUG9ydCIgKG5h
-bWUgZnJvbSBsc3BjaSkgYW5kIG9uIHRob3NlIHN5c3RlbXMgYWxsIG9mIHRoYXQKPiA+ID4gPiA+
-ID4gc2VlbXMgdG8gd29yay4gU28gSSBhbSB3b25kZXJpbmcgaWYgaXQncyBpbmRlZWQganVzdCB0
-aGUgMHgxOTAxIG9uZSwKPiA+ID4gPiA+ID4gd2hpY2ggYWxzbyBleHBsYWlucyBNaWthcyBjYXNl
-IHRoYXQgVGh1bmRlcmJvbHQgc3R1ZmYgd29ya3MgYXMgZGV2aWNlcwo+ID4gPiA+ID4gPiBuZXZl
-ciBnZXQgcG9wdWxhdGVkIHVuZGVyIHRoaXMgcGFydGljdWxhciBicmlkZ2UgY29udHJvbGxlciwg
-YnV0IHVuZGVyCj4gPiA+ID4gPiA+IHRob3NlICJSb290IFBvcnQicwo+ID4gPiA+ID4KPiA+ID4g
-PiA+IEl0IGFsd2F5cyBpcyBhIFBDSWUgcG9ydCwgYnV0IGl0cyBsb2NhdGlvbiB3aXRoaW4gdGhl
-IFNvQyBtYXkgbWF0dGVyLgo+ID4gPiA+Cj4gPiA+ID4gRXhhY3RseS4gSW50ZWwgaGFyZHdhcmUg
-aGFzIFBDSWUgcG9ydHMgb24gQ1BVIHNpZGUgKHRoZXNlIGFyZSBjYWxsZWQKPiA+ID4gPiBQRUcs
-IFBDSSBFeHByZXNzIEdyYXBoaWNzLCBwb3J0cyksIGFuZCB0aGUgUENIIHNpZGUuIEkgdGhpbmsg
-dGhlIElQIGlzCj4gPiA+ID4gc3RpbGwgdGhlIHNhbWUuCj4gPiA+ID4KPiA+ID4gPiA+IEFsc28g
-c29tZSBjdXN0b20gQU1MLWJhc2VkIHBvd2VyIG1hbmFnZW1lbnQgaXMgaW52b2x2ZWQgYW5kIHRo
-YXQgbWF5Cj4gPiA+ID4gPiBiZSBtYWtpbmcgc3BlY2lmaWMgYXNzdW1wdGlvbnMgb24gdGhlIGNv
-bmZpZ3VyYXRpb24gb2YgdGhlIFNvQyBhbmQgdGhlCj4gPiA+ID4gPiBHUFUgYXQgdGhlIHRpbWUg
-b2YgaXRzIGludm9jYXRpb24gd2hpY2ggdW5mb3J0dW5hdGVseSBhcmUgbm90IGtub3duIHRvCj4g
-PiA+ID4gPiB1cy4KPiA+ID4gPiA+Cj4gPiA+ID4gPiBIb3dldmVyLCBpdCBsb29rcyBsaWtlIHRo
-ZSBBTUwgaW52b2tlZCB0byBwb3dlciBkb3duIHRoZSBHUFUgZnJvbQo+ID4gPiA+ID4gYWNwaV9w
-Y2lfc2V0X3Bvd2VyX3N0YXRlKCkgZ2V0cyBjb25mdXNlZCBpZiBpdCBpcyBub3QgaW4gUENJIEQw
-IGF0Cj4gPiA+ID4gPiB0aGF0IHBvaW50LCBzbyBpdCBsb29rcyBsaWtlIHRoYXQgQU1MIHRyaWVz
-IHRvIGFjY2VzcyBkZXZpY2UgbWVtb3J5IG9uCj4gPiA+ID4gPiB0aGUgR1BVIChiZXlvbmQgdGhl
-IFBDSSBjb25maWcgc3BhY2UpIG9yIHNpbWlsYXIgd2hpY2ggaXMgbm90Cj4gPiA+ID4gPiBhY2Nl
-c3NpYmxlIGluIFBDSSBwb3dlciBzdGF0ZXMgYmVsb3cgRDAuCj4gPiA+ID4KPiA+ID4gPiBPciB0
-aGUgUENJIGNvbmZpZyBzcGFjZSBvZiB0aGUgR1BVIHdoZW4gdGhlIHBhcmVudCByb290IHBvcnQg
-aXMgaW4gRDNob3QKPiA+ID4gPiAoYXMgaXQgaXMgdGhlIGNhc2UgaGVyZSkuIEFsc28gdGhlbiB0
-aGUgR1BVIGNvbmZpZyBzcGFjZSBpcyBub3QKPiA+ID4gPiBhY2Nlc3NpYmxlLgo+ID4gPgo+ID4g
-PiBXaHkgd291bGQgdGhlIHBhcmVudCBwb3J0IGJlIGluIEQzaG90IGF0IHRoYXQgcG9pbnQ/ICBX
-b3VsZG4ndCB0aGF0IGJlCj4gPiA+IGEgc3VzcGVuZCBvcmRlcmluZyB2aW9sYXRpb24/Cj4gPgo+
-ID4gTm8uIFdlIHB1dCB0aGUgR1BVIGludG8gRDNob3QgZmlyc3QsCgpPSwoKRG9lcyB0aGlzIGlu
-dm9sdmUgYW55IEFNTCwgbGlrZSBhIF9QUzMgdW5kZXIgdGhlIEdQVSBvYmplY3Q/Cgo+ID4gdGhl
-biB0aGUgcm9vdCBwb3J0IGFuZCB0aGVuIHR1cm4KPiA+IG9mZiB0aGUgcG93ZXIgcmVzb3VyY2Ug
-KHdoaWNoIGlzIGF0dGFjaGVkIHRvIHRoZSByb290IHBvcnQpIHJlc3VsdGluZwo+ID4gdGhlIHRv
-cG9sb2d5IGVudGVyaW5nIEQzY29sZC4KPgo+IEkgZG9uJ3Qgc2VlIHRoYXQgaGFwcGVuaW5nIGlu
-IHRoZSBBTUwgdGhvdWdoLgoKV2hpY2ggQU1MIGRvIHlvdSBtZWFuLCBzcGVjaWZpY2FsbHk/ICBU
-aGUgX09GRiBtZXRob2QgZm9yIHRoZSByb290CnBvcnQncyBfUFIzIHBvd2VyIHJlc291cmNlIG9y
-IHNvbWV0aGluZyBlbHNlPwoKPiBCYXNpY2FsbHkgdGhlIGRpZmZlcmVuY2UgaXMgdGhhdCB3aGVu
-IFdpbmRvd3MgNyBvciBMaW51eCAodGhlIF9SRVY9PTUKPiBjaGVjaykgdGhlbiB3ZSBkaXJlY3Rs
-eSBkbyBsaW5rIGRpc2FibGUgd2hlcmVhcyBpbiBXaW5kb3dzIDgrIHdlIGludm9rZQo+IExLRFMo
-KSBtZXRob2QgdGhhdCBwdXRzIHRoZSBsaW5rIGludG8gTDIvTDMuIE5vbmUgb2YgdGhlIGZpZWxk
-cyB0aGV5Cj4gYWNjZXNzIHNlZW0gdG8gdG91Y2ggdGhlIEdQVSBpdHNlbGYuCgpTbyB0aGF0IG1h
-eSBiZSB3aGVyZSB0aGUgcHJvYmxlbSBpcy4KClB1dHRpbmcgdGhlIGRvd25zdHJlYW0gY29tcG9u
-ZW50IGludG8gUENJIERbMS0zXSBpcyBleHBlY3RlZCB0byBwdXQKdGhlIGxpbmsgaW50byBMMSwg
-c28gSSdtIG5vdCBzdXJlIGhvdyB0aGF0IHBsYXlzIHdpdGggdGhlIGxhdGVyCmF0dGVtcHQgdG8g
-cHV0IGl0IGludG8gTDIvTDMgUmVhZHkuCgpBbHNvLCBMMi9MMyBSZWFkeSBpcyBleHBlY3RlZCB0
-byBiZSB0cmFuc2llbnQsIHNvIGZpbmFsbHkgcG93ZXIgc2hvdWxkCmJlIHJlbW92ZWQgc29tZWhv
-dy4KCj4gTEtEUygpIGZvciB0aGUgZmlyc3QgUEVHIHBvcnQgbG9va3MgbGlrZSB0aGlzOgo+Cj4g
-ICAgUDBMMiA9IE9uZQo+ICAgIFNsZWVwICgweDEwKQo+ICAgIExvY2FsMCA9IFplcm8KPiAgICBX
-aGlsZSAoUDBMMikKPiAgICB7Cj4gICAgICAgICBJZiAoKExvY2FsMCA+IDB4MDQpKQo+ICAgICAg
-ICAgewo+ICAgICAgICAgICAgIEJyZWFrCj4gICAgICAgICB9Cj4KPiAgICAgICAgIFNsZWVwICgw
-eDEwKQo+ICAgICAgICAgTG9jYWwwKysKPiAgICB9Cj4KPiBPbmUgdGhpbmcgdGhhdCBjb21lcyB0
-byBtaW5kIGlzIHRoYXQgdGhlIGxvb3AgY2FuIGVuZCBldmVuIGlmIFAwTDIgaXMKPiBub3QgY2xl
-YXJlZCBhcyBpdCBkb2VzIG9ubHkgNSBpdGVyYXRpb25zIHdpdGggMTYgbXMgc2xlZXAgYmV0d2Vl
-bi4gTWF5YmUKPiBTbGVlcCgpIGlzIGltcGxlbWVudGVkIGRpZmZlcmVudGx5IGluIFdpbmRvd3M/
-IEkgbWVhbiBMaW51eCBtYXkgYmUKPiAiZmFzdGVyIiBoZXJlIGFuZCByZXR1cm4gcHJlbWF0dXJl
-bHkgYW5kIGlmIHdlIGxlYXZlIHRoZSBwb3J0IGludG8gRDAKPiB0aGlzIGRvZXMgbm90IGhhcHBl
-biwgb3Igc29tZXRoaW5nLiBJJ20ganVzdCB0aHJvd2luZyBvdXQgaWRlYXMgOikKCkJ1dCB0aGlz
-IGFjdHVhbGx5IHdvcmtzIGZvciB0aGUgZG93bnN0cmVhbSBjb21wb25lbnQgaW4gRDAsIGRvZXNu
-J3QgaXQ/CgpBbHNvLCBpZiB0aGUgZG93bnN0cmVhbSBjb21wb25lbnQgaXMgaW4gRDAsIHRoZSBw
-b3J0IGFjdHVhbGx5IHNob3VsZApzdGF5IGluIEQwIHRvbywgc28gd2hhdCB3b3VsZCBoYXBwZW4g
-d2l0aCB0aGUgJHN1YmplY3QgcGF0Y2ggYXBwbGllZD8KX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9ub3V2ZWF1
+On Thu, Nov 21, 2019 at 1:53 PM Karol Herbst <kherbst@redhat.com> wrote:
+>
+> On Thu, Nov 21, 2019 at 12:46 PM Mika Westerberg
+> <mika.westerberg@intel.com> wrote:
+> >
+> > On Thu, Nov 21, 2019 at 12:34:22PM +0100, Rafael J. Wysocki wrote:
+> > > On Thu, Nov 21, 2019 at 12:28 PM Mika Westerberg
+> > > <mika.westerberg@intel.com> wrote:
+> > > >
+> > > > On Wed, Nov 20, 2019 at 11:29:33PM +0100, Rafael J. Wysocki wrote:
+> > > > > > last week or so I found systems where the GPU was under the "PCI
+> > > > > > Express Root Port" (name from lspci) and on those systems all of that
+> > > > > > seems to work. So I am wondering if it's indeed just the 0x1901 one,
+> > > > > > which also explains Mikas case that Thunderbolt stuff works as devices
+> > > > > > never get populated under this particular bridge controller, but under
+> > > > > > those "Root Port"s
+> > > > >
+> > > > > It always is a PCIe port, but its location within the SoC may matter.
+> > > >
+> > > > Exactly. Intel hardware has PCIe ports on CPU side (these are called
+> > > > PEG, PCI Express Graphics, ports), and the PCH side. I think the IP is
+> > > > still the same.
+> > > >
+>
+> yeah, I meant the bridge controller with the ID 0x1901 is on the CPU
+> side. And if the Nvidia GPU is on a port on the PCH side it all seems
+> to work just fine.
+
+But that may involve different AML too, may it not?
+
+> > > > > Also some custom AML-based power management is involved and that may
+> > > > > be making specific assumptions on the configuration of the SoC and the
+> > > > > GPU at the time of its invocation which unfortunately are not known to
+> > > > > us.
+> > > > >
+> > > > > However, it looks like the AML invoked to power down the GPU from
+> > > > > acpi_pci_set_power_state() gets confused if it is not in PCI D0 at
+> > > > > that point, so it looks like that AML tries to access device memory on
+> > > > > the GPU (beyond the PCI config space) or similar which is not
+> > > > > accessible in PCI power states below D0.
+> > > >
+> > > > Or the PCI config space of the GPU when the parent root port is in D3hot
+> > > > (as it is the case here). Also then the GPU config space is not
+> > > > accessible.
+> > >
+> > > Why would the parent port be in D3hot at that point?  Wouldn't that be
+> > > a suspend ordering violation?
+> >
+> > No. We put the GPU into D3hot first, then the root port and then turn
+> > off the power resource (which is attached to the root port) resulting
+> > the topology entering D3cold.
+> >
+>
+> If the kernel does a D0 -> D3hot -> D0 cycle this works as well, but
+> the power savings are way lower, so I kind of prefer skipping D3hot
+> instead of D3cold. Skipping D3hot doesn't seem to make any difference
+> in power savings in my testing.
+
+OK
+
+What exactly did you do to skip D3cold in your testing?
