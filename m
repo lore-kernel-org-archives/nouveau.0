@@ -1,11 +1,9 @@
-From: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into
- lower device states on certain intel bridges
-Date: Thu, 21 Nov 2019 12:34:22 +0100
-Message-ID: <CAJZ5v0hQhj5Wf+piU11abC4pF26yM=XHGHAcDv8Jsgdx04aN-w@mail.gmail.com>
-References: <CACO55tsfNOdtu5SZ-4HzO4Ji6gQtafvZ7Rm19nkPcJAgwUBFMw@mail.gmail.com>
- <CACO55tscD_96jUVts+MTAUsCt-fZx4O5kyhRKoo4mKoC84io8A@mail.gmail.com>
- <20191120120913.GE11621@lahna.fi.intel.com>
+From: Mika Westerberg <mika.westerberg@intel.com>
+Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into lower device
+ states on certain intel bridges
+Date: Thu, 21 Nov 2019 13:46:10 +0200
+Message-ID: <20191121114610.GW11621@lahna.fi.intel.com>
+References: <20191120120913.GE11621@lahna.fi.intel.com>
  <CACO55tsHy6yZQZ8PkdW8iPA7+uc5rdcEwRJwYEQ3iqu85F8Sqg@mail.gmail.com>
  <20191120151542.GH11621@lahna.fi.intel.com>
  <CACO55tvo3rbPtYJcioEgXCEQqVXcVAm-iowr9Nim=bgTdMjgLw@mail.gmail.com>
@@ -14,60 +12,64 @@ References: <CACO55tsfNOdtu5SZ-4HzO4Ji6gQtafvZ7Rm19nkPcJAgwUBFMw@mail.gmail.com>
  <CACO55ttTPi2XpRRM_NYJU5c5=OvG0=-YngFy1BiR8WpHkavwXw@mail.gmail.com>
  <CAJZ5v0h=7zu3A+ojgUSmwTH0KeXmYP5OKDL__rwkkWaWqcJcWQ@mail.gmail.com>
  <20191121112821.GU11621@lahna.fi.intel.com>
+ <CAJZ5v0hQhj5Wf+piU11abC4pF26yM=XHGHAcDv8Jsgdx04aN-w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20191121112821.GU11621-3PARRvDOhMZrdx17CPfAsdBPR1lH4CV8@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mika Westerberg <mika.westerberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "Rafael J . Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Mario Limonciello <Mario.Limonciello-8PEkshWhKlo@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CAJZ5v0hQhj5Wf+piU11abC4pF26yM=XHGHAcDv8Jsgdx04aN-w@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Karol Herbst <kherbst@redhat.com>, Bjorn Helgaas <helgaas@kernel.org>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@gmail.com>, Mario Limonciello <Mario.Limonciello@dell.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBOb3YgMjEsIDIwMTkgYXQgMTI6MjggUE0gTWlrYSBXZXN0ZXJiZXJnCjxtaWthLndl
-c3RlcmJlcmdAaW50ZWwuY29tPiB3cm90ZToKPgo+IE9uIFdlZCwgTm92IDIwLCAyMDE5IGF0IDEx
-OjI5OjMzUE0gKzAxMDAsIFJhZmFlbCBKLiBXeXNvY2tpIHdyb3RlOgo+ID4gPiBsYXN0IHdlZWsg
-b3Igc28gSSBmb3VuZCBzeXN0ZW1zIHdoZXJlIHRoZSBHUFUgd2FzIHVuZGVyIHRoZSAiUENJCj4g
-PiA+IEV4cHJlc3MgUm9vdCBQb3J0IiAobmFtZSBmcm9tIGxzcGNpKSBhbmQgb24gdGhvc2Ugc3lz
-dGVtcyBhbGwgb2YgdGhhdAo+ID4gPiBzZWVtcyB0byB3b3JrLiBTbyBJIGFtIHdvbmRlcmluZyBp
-ZiBpdCdzIGluZGVlZCBqdXN0IHRoZSAweDE5MDEgb25lLAo+ID4gPiB3aGljaCBhbHNvIGV4cGxh
-aW5zIE1pa2FzIGNhc2UgdGhhdCBUaHVuZGVyYm9sdCBzdHVmZiB3b3JrcyBhcyBkZXZpY2VzCj4g
-PiA+IG5ldmVyIGdldCBwb3B1bGF0ZWQgdW5kZXIgdGhpcyBwYXJ0aWN1bGFyIGJyaWRnZSBjb250
-cm9sbGVyLCBidXQgdW5kZXIKPiA+ID4gdGhvc2UgIlJvb3QgUG9ydCJzCj4gPgo+ID4gSXQgYWx3
-YXlzIGlzIGEgUENJZSBwb3J0LCBidXQgaXRzIGxvY2F0aW9uIHdpdGhpbiB0aGUgU29DIG1heSBt
-YXR0ZXIuCj4KPiBFeGFjdGx5LiBJbnRlbCBoYXJkd2FyZSBoYXMgUENJZSBwb3J0cyBvbiBDUFUg
-c2lkZSAodGhlc2UgYXJlIGNhbGxlZAo+IFBFRywgUENJIEV4cHJlc3MgR3JhcGhpY3MsIHBvcnRz
-KSwgYW5kIHRoZSBQQ0ggc2lkZS4gSSB0aGluayB0aGUgSVAgaXMKPiBzdGlsbCB0aGUgc2FtZS4K
-Pgo+ID4gQWxzbyBzb21lIGN1c3RvbSBBTUwtYmFzZWQgcG93ZXIgbWFuYWdlbWVudCBpcyBpbnZv
-bHZlZCBhbmQgdGhhdCBtYXkKPiA+IGJlIG1ha2luZyBzcGVjaWZpYyBhc3N1bXB0aW9ucyBvbiB0
-aGUgY29uZmlndXJhdGlvbiBvZiB0aGUgU29DIGFuZCB0aGUKPiA+IEdQVSBhdCB0aGUgdGltZSBv
-ZiBpdHMgaW52b2NhdGlvbiB3aGljaCB1bmZvcnR1bmF0ZWx5IGFyZSBub3Qga25vd24gdG8KPiA+
-IHVzLgo+ID4KPiA+IEhvd2V2ZXIsIGl0IGxvb2tzIGxpa2UgdGhlIEFNTCBpbnZva2VkIHRvIHBv
-d2VyIGRvd24gdGhlIEdQVSBmcm9tCj4gPiBhY3BpX3BjaV9zZXRfcG93ZXJfc3RhdGUoKSBnZXRz
-IGNvbmZ1c2VkIGlmIGl0IGlzIG5vdCBpbiBQQ0kgRDAgYXQKPiA+IHRoYXQgcG9pbnQsIHNvIGl0
-IGxvb2tzIGxpa2UgdGhhdCBBTUwgdHJpZXMgdG8gYWNjZXNzIGRldmljZSBtZW1vcnkgb24KPiA+
-IHRoZSBHUFUgKGJleW9uZCB0aGUgUENJIGNvbmZpZyBzcGFjZSkgb3Igc2ltaWxhciB3aGljaCBp
-cyBub3QKPiA+IGFjY2Vzc2libGUgaW4gUENJIHBvd2VyIHN0YXRlcyBiZWxvdyBEMC4KPgo+IE9y
-IHRoZSBQQ0kgY29uZmlnIHNwYWNlIG9mIHRoZSBHUFUgd2hlbiB0aGUgcGFyZW50IHJvb3QgcG9y
-dCBpcyBpbiBEM2hvdAo+IChhcyBpdCBpcyB0aGUgY2FzZSBoZXJlKS4gQWxzbyB0aGVuIHRoZSBH
-UFUgY29uZmlnIHNwYWNlIGlzIG5vdAo+IGFjY2Vzc2libGUuCgpXaHkgd291bGQgdGhlIHBhcmVu
-dCBwb3J0IGJlIGluIEQzaG90IGF0IHRoYXQgcG9pbnQ/ICBXb3VsZG4ndCB0aGF0IGJlCmEgc3Vz
-cGVuZCBvcmRlcmluZyB2aW9sYXRpb24/Cgo+IEkgdG9vayBhIGxvb2sgYXQgdGhlIEhQIE9tZW4g
-QUNQSSB0YWJsZXMgd2hpY2ggaGFzIHNpbWlsYXIgcHJvYmxlbSBhbmQKPiB0aGVyZSBpcyBhbHNv
-IGNoZWNrIGZvciBXaW5kb3dzIDcgKGJ1dCBub3QgTGludXgpIHNvIEkgdGhpbmsgb25lCj4gYWx0
-ZXJuYXRpdmUgd29ya2Fyb3VuZCB3b3VsZCBiZSB0byBhZGQgdGhlc2UgZGV2aWNlcyBpbnRvCj4g
-YWNwaV9vc2lfZG1pX3RhYmxlW10gd2hlcmUgLmNhbGxiYWNrIGlzIHNldCB0byBkbWlfZGlzYWJs
-ZV9vc2lfd2luOCAob3IKPiBwYXNzICdhY3BpX29zaT0iIVdpbmRvd3MgMjAxMiInIGluIHRoZSBr
-ZXJuZWwgY29tbWFuZCBsaW5lKS4KCkknZCBsaWtlIHRvIHVuZGVyc3RhbmQgdGhlIGZhY3RzIHRo
-YXQgaGF2ZSBiZWVuIGVzdGFibGlzaGVkIHNvIGZhcgpiZWZvcmUgZGVjaWRpbmcgd2hhdCB0byBk
-byBhYm91dCB0aGVtLiA6LSkKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+On Thu, Nov 21, 2019 at 12:34:22PM +0100, Rafael J. Wysocki wrote:
+> On Thu, Nov 21, 2019 at 12:28 PM Mika Westerberg
+> <mika.westerberg@intel.com> wrote:
+> >
+> > On Wed, Nov 20, 2019 at 11:29:33PM +0100, Rafael J. Wysocki wrote:
+> > > > last week or so I found systems where the GPU was under the "PCI
+> > > > Express Root Port" (name from lspci) and on those systems all of that
+> > > > seems to work. So I am wondering if it's indeed just the 0x1901 one,
+> > > > which also explains Mikas case that Thunderbolt stuff works as devices
+> > > > never get populated under this particular bridge controller, but under
+> > > > those "Root Port"s
+> > >
+> > > It always is a PCIe port, but its location within the SoC may matter.
+> >
+> > Exactly. Intel hardware has PCIe ports on CPU side (these are called
+> > PEG, PCI Express Graphics, ports), and the PCH side. I think the IP is
+> > still the same.
+> >
+> > > Also some custom AML-based power management is involved and that may
+> > > be making specific assumptions on the configuration of the SoC and the
+> > > GPU at the time of its invocation which unfortunately are not known to
+> > > us.
+> > >
+> > > However, it looks like the AML invoked to power down the GPU from
+> > > acpi_pci_set_power_state() gets confused if it is not in PCI D0 at
+> > > that point, so it looks like that AML tries to access device memory on
+> > > the GPU (beyond the PCI config space) or similar which is not
+> > > accessible in PCI power states below D0.
+> >
+> > Or the PCI config space of the GPU when the parent root port is in D3hot
+> > (as it is the case here). Also then the GPU config space is not
+> > accessible.
+> 
+> Why would the parent port be in D3hot at that point?  Wouldn't that be
+> a suspend ordering violation?
+
+No. We put the GPU into D3hot first, then the root port and then turn
+off the power resource (which is attached to the root port) resulting
+the topology entering D3cold.
+
+> > I took a look at the HP Omen ACPI tables which has similar problem and
+> > there is also check for Windows 7 (but not Linux) so I think one
+> > alternative workaround would be to add these devices into
+> > acpi_osi_dmi_table[] where .callback is set to dmi_disable_osi_win8 (or
+> > pass 'acpi_osi="!Windows 2012"' in the kernel command line).
+> 
+> I'd like to understand the facts that have been established so far
+> before deciding what to do about them. :-)
+
+Yes, I agree :)
