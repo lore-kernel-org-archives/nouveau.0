@@ -1,219 +1,199 @@
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Subject: Re: [PATCH v5] pci: prevent putting nvidia GPUs into lower device
+From: Mika Westerberg <mika.westerberg@intel.com>
+Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into lower device
  states on certain intel bridges
-Date: Fri, 22 Nov 2019 10:48:57 +0100
-Message-ID: <CAJZ5v0iQttGB4m5TbzCtjp2C1j5qEkUhqhpWb++LhSk3mbW=Lw@mail.gmail.com>
-References: <20191122002159.4159-1-kherbst@redhat.com>
+Date: Fri, 22 Nov 2019 12:36:37 +0200
+Message-ID: <20191122103637.GA11621@lahna.fi.intel.com>
+References: <CAJZ5v0hkT-fHFOQKzp2qYPyR+NUa4c-G-uGLPZuQxqsG454PiQ@mail.gmail.com>
+ <CACO55ttTPi2XpRRM_NYJU5c5=OvG0=-YngFy1BiR8WpHkavwXw@mail.gmail.com>
+ <CAJZ5v0h=7zu3A+ojgUSmwTH0KeXmYP5OKDL__rwkkWaWqcJcWQ@mail.gmail.com>
+ <20191121112821.GU11621@lahna.fi.intel.com>
+ <CAJZ5v0hQhj5Wf+piU11abC4pF26yM=XHGHAcDv8Jsgdx04aN-w@mail.gmail.com>
+ <20191121114610.GW11621@lahna.fi.intel.com>
+ <20191121125236.GX11621@lahna.fi.intel.com>
+ <CAJZ5v0iMwhudB7O0hR-6KfRfa+_iGOY=t0Zzeh6+9OiTzeYJfA@mail.gmail.com>
+ <20191121194942.GY11621@lahna.fi.intel.com>
+ <CAJZ5v0gyna0b135uxBVfNXgB9v-U9-93EYe0uzsr2BukJ9OtuA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20191122002159.4159-1-kherbst@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Karol Herbst <kherbst@redhat.com>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Mika Westerberg <mika.westerberg@intel.com>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <CAJZ5v0gyna0b135uxBVfNXgB9v-U9-93EYe0uzsr2BukJ9OtuA@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Karol Herbst <kherbst@redhat.com>, Linux PM <linux-pm@vger.kernel.org>, Linux PCI <linux-pci@vger.kernel.org>, Mario Limonciello <Mario.Limonciello@dell.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Bjorn Helgaas <helgaas@kernel.org>, nouveau <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Nov 22, 2019 at 1:22 AM Karol Herbst <kherbst@redhat.com> wrote:
->
-> Fixes state transitions of Nvidia Pascal GPUs from D3cold into higher device
-> states.
->
-> v2: convert to pci_dev quirk
->     put a proper technical explanation of the issue as a in-code comment
-> v3: disable it only for certain combinations of intel and nvidia hardware
-> v4: simplify quirk by setting flag on the GPU itself
-> v5: restructure quirk to make it easier to add new IDs
->     fix whitespace issues
->     fix potential NULL pointer access
->     update the quirk documentation
->
-> Signed-off-by: Karol Herbst <kherbst@redhat.com>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Rafael J. Wysocki <rjw@rjwysocki.net>
-> Cc: Mika Westerberg <mika.westerberg@intel.com>
-> Cc: linux-pci@vger.kernel.org
-> Cc: linux-pm@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.org
-> Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=205623
-> ---
->  drivers/pci/pci.c    |  7 ++++++
->  drivers/pci/quirks.c | 51 ++++++++++++++++++++++++++++++++++++++++++++
->  include/linux/pci.h  |  1 +
->  3 files changed, 59 insertions(+)
->
-> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-> index 57f15a7e6f0b..e08db2daa924 100644
-> --- a/drivers/pci/pci.c
-> +++ b/drivers/pci/pci.c
-> @@ -850,6 +850,13 @@ static int pci_raw_set_power_state(struct pci_dev *dev, pci_power_t state)
->            || (state == PCI_D2 && !dev->d2_support))
->                 return -EIO;
->
-> +       /*
-> +        * Check if we have a bad combination of bridge controller and nvidia
-> +        * GPU, see quirk_broken_nv_runpm for more info
-> +        */
-> +       if (state != PCI_D0 && dev->broken_nv_runpm)
-> +               return 0;
-
-The result of this change in the suspend-to-idle path will be leaving
-the device and its PCIe port in D0 while suspended, unless the device
-itself has power management methods in the ACPI tables (according to
-Mika that is not the case).
-
-I don't think that this is desirable.
-
-> +
->         pci_read_config_word(dev, dev->pm_cap + PCI_PM_CTRL, &pmcsr);
->
->         /*
-> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-> index 44c4ae1abd00..24e3f247d291 100644
-> --- a/drivers/pci/quirks.c
-> +++ b/drivers/pci/quirks.c
-> @@ -5268,3 +5268,54 @@ static void quirk_reset_lenovo_thinkpad_p50_nvgpu(struct pci_dev *pdev)
->  DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_NVIDIA, 0x13b1,
->                               PCI_CLASS_DISPLAY_VGA, 8,
->                               quirk_reset_lenovo_thinkpad_p50_nvgpu);
-> +
-> +/*
-> + * Some Intel PCIe bridge controllers cause devices to not reappear doing a
-> + * D0 -> D3hot -> D3cold -> D0 sequence.
-
-This is inaccurate and not entirely fair AFAICS.
-
-First off, what is a "PCIe bridge controller"?  A PCIe root complex?
-
-Second, I don't think that you really can blame hardware here, because
-the problem is related to AML (forcing a different code path in AML
-makes it go away, so the same hardware with different AML would work).
-
-More precisely, the behavior of the kernel is not what is expected by
-AML associated with the PCIe port holding the device.
-
-> Skipping the intermediate D3hot step
-> + * seems to make it work again.
-
-Yes, but the change would need to cover both the PM-runtime and
-suspend-to-idle code paths.
-
-Also it may be driver-induced rather than quirk-based.
-
-> + *
-> + * This leads to various manifestations of this issue:
-> + *  - AIML code execution hits an infinite loop (as the coe waits on device
-
-Typo: coe -> code
-
-> + *    memory to change).
-
-Which AML code is this, the power-off part or power-on part?  Is this
-AML code associated with the GPU or with the PCIe port holding it (I
-guess the latter from what Mika said)?
-
-Also IIRC ACPICA has a mechanism to break infinite loops in AML by
-aborting the looping method after a timeout.
-
-> + *  - kernel crashes, as all PCI reads return -1, which most code isn't able
-> + *    to handle well enough.
-> + *  - sudden shutdowns, as the kernel identified an unrecoverable error after
-> + *    userspace tries to access the GPU.
-
-IMO it would be enough to say that the GPU is not accessible after an
-attempt to remove power from it.
-
-> + *
-> + * In all cases dmesg will contain at least one line like this:
-> + * 'nouveau 0000:01:00.0: Refused to change power state, currently in D3'
-> + * followed by a lot of nouveau timeouts.
-> + *
-> + * ACPI code
-
-Which ACPI code?
-
-> writes bit 0x80 to the not documented PCI register 0x248 of the
-
-0x248 relative to what?  A PCI bar (if so then which one) or the PCI
-config space (and which part of it if so)?
-
-> + * Intel PCIe bridge controller (0x1901) in order to power down the GPU.
-
-This doesn't seem accurate.  It rather writes to this register to
-change the state of the PCIe link between the GPU and the PCIe port
-holding it, which is not the same as powering off.
-
-> + * Nonetheless, there are other code paths inside the ACPI firmware which use
-> + * other registers, which seem to work fine:
-
-The meaning of the above is unclear.
-
-Does "other" mean "alternative"?
-
-> + *  - 0xbc bit 0x20 (publicly available documentation claims 'reserved')
-
-A pointer to that documentation, please (yes, it should be included in
-the comment).
-
-> + *  - 0xb0 bit 0x10 (link disable)
-> + * Changing the conditions inside the firmware by poking into the relevant
-> + * addresses does resolve the issue,
-
-What does this mean, precisely?
-
-> but it seemed to be ACPI private memory
-> + * and not any device accessible memory at all, so there is no portable way of
-> + * changing the conditions.
-> + *
-> + * The only systems where this behavior can be seen are hybrid graphics laptops
-> + * with a secondary Nvidia Maxwell, Pascal or Turing GPU. It cannot be ruled
-> + * out that this issue only occurs in combination with listed Intel PCIe
-> + * bridge controllers and the mentioned GPUs or if it's only a hw bug in the
-> + * bridge controller.
-> + */
-
-So again, this is AML-related, so talking about hardware bugs at this
-point is premature at best.
-
-> +
-> +static void quirk_broken_nv_runpm(struct pci_dev *dev)
-> +{
-> +       struct pci_dev *bridge = pci_upstream_bridge(dev);
-> +
-> +       if (!bridge || bridge->vendor != PCI_VENDOR_ID_INTEL)
-> +               return;
-> +
-> +       switch (bridge->device) {
-> +       case 0x1901:
-> +               dev->broken_nv_runpm = 1;
-> +       }
-> +}
-> +DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_NVIDIA, PCI_ANY_ID,
-> +                             PCI_BASE_CLASS_DISPLAY, 16,
-> +                             quirk_broken_nv_runpm);
-> diff --git a/include/linux/pci.h b/include/linux/pci.h
-> index ac8a6c4e1792..903a0b3a39ec 100644
-> --- a/include/linux/pci.h
-> +++ b/include/linux/pci.h
-> @@ -416,6 +416,7 @@ struct pci_dev {
->         unsigned int    __aer_firmware_first_valid:1;
->         unsigned int    __aer_firmware_first:1;
->         unsigned int    broken_intx_masking:1;  /* INTx masking can't be used */
-> +       unsigned int    broken_nv_runpm:1;      /* some combinations of intel bridge controller and nvidia GPUs break rtd3 */
->         unsigned int    io_window_1k:1;         /* Intel bridge 1K I/O windows */
->         unsigned int    irq_managed:1;
->         unsigned int    has_secondary_link:1;
-> --
-
-Based of what has been uncovered so far, I would propose the following
-way to address this issue:
-
-(1) Introduce a "parent_d3cold" PCI device flag that would indicate to
-the PCI layer to leave the given device in D0 during suspend (both
-system-wide and runtime) and power-manage the parent instead as long
-as the parent PCIe port can be put into D3cold via ACPI (and as long
-as the downstream device itself has no ACPI PM).
-(2) Set this new flag for the GPUs in question from the nouveau driver.
-
-So what about this?
+T24gVGh1LCBOb3YgMjEsIDIwMTkgYXQgMTE6Mzk6MjNQTSArMDEwMCwgUmFmYWVsIEouIFd5c29j
+a2kgd3JvdGU6Cj4gT24gVGh1LCBOb3YgMjEsIDIwMTkgYXQgODo0OSBQTSBNaWthIFdlc3RlcmJl
+cmcKPiA8bWlrYS53ZXN0ZXJiZXJnQGludGVsLmNvbT4gd3JvdGU6Cj4gPgo+ID4gT24gVGh1LCBO
+b3YgMjEsIDIwMTkgYXQgMDQ6NDM6MjRQTSArMDEwMCwgUmFmYWVsIEouIFd5c29ja2kgd3JvdGU6
+Cj4gPiA+IE9uIFRodSwgTm92IDIxLCAyMDE5IGF0IDE6NTIgUE0gTWlrYSBXZXN0ZXJiZXJnCj4g
+PiA+IDxtaWthLndlc3RlcmJlcmdAaW50ZWwuY29tPiB3cm90ZToKPiA+ID4gPgo+ID4gPiA+IE9u
+IFRodSwgTm92IDIxLCAyMDE5IGF0IDAxOjQ2OjE0UE0gKzAyMDAsIE1pa2EgV2VzdGVyYmVyZyB3
+cm90ZToKPiA+ID4gPiA+IE9uIFRodSwgTm92IDIxLCAyMDE5IGF0IDEyOjM0OjIyUE0gKzAxMDAs
+IFJhZmFlbCBKLiBXeXNvY2tpIHdyb3RlOgo+ID4gPiA+ID4gPiBPbiBUaHUsIE5vdiAyMSwgMjAx
+OSBhdCAxMjoyOCBQTSBNaWthIFdlc3RlcmJlcmcKPiA+ID4gPiA+ID4gPG1pa2Eud2VzdGVyYmVy
+Z0BpbnRlbC5jb20+IHdyb3RlOgo+ID4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+ID4gT24gV2VkLCBO
+b3YgMjAsIDIwMTkgYXQgMTE6Mjk6MzNQTSArMDEwMCwgUmFmYWVsIEouIFd5c29ja2kgd3JvdGU6
+Cj4gPiA+ID4gPiA+ID4gPiA+IGxhc3Qgd2VlayBvciBzbyBJIGZvdW5kIHN5c3RlbXMgd2hlcmUg
+dGhlIEdQVSB3YXMgdW5kZXIgdGhlICJQQ0kKPiA+ID4gPiA+ID4gPiA+ID4gRXhwcmVzcyBSb290
+IFBvcnQiIChuYW1lIGZyb20gbHNwY2kpIGFuZCBvbiB0aG9zZSBzeXN0ZW1zIGFsbCBvZiB0aGF0
+Cj4gPiA+ID4gPiA+ID4gPiA+IHNlZW1zIHRvIHdvcmsuIFNvIEkgYW0gd29uZGVyaW5nIGlmIGl0
+J3MgaW5kZWVkIGp1c3QgdGhlIDB4MTkwMSBvbmUsCj4gPiA+ID4gPiA+ID4gPiA+IHdoaWNoIGFs
+c28gZXhwbGFpbnMgTWlrYXMgY2FzZSB0aGF0IFRodW5kZXJib2x0IHN0dWZmIHdvcmtzIGFzIGRl
+dmljZXMKPiA+ID4gPiA+ID4gPiA+ID4gbmV2ZXIgZ2V0IHBvcHVsYXRlZCB1bmRlciB0aGlzIHBh
+cnRpY3VsYXIgYnJpZGdlIGNvbnRyb2xsZXIsIGJ1dCB1bmRlcgo+ID4gPiA+ID4gPiA+ID4gPiB0
+aG9zZSAiUm9vdCBQb3J0InMKPiA+ID4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+ID4gPiBJdCBhbHdh
+eXMgaXMgYSBQQ0llIHBvcnQsIGJ1dCBpdHMgbG9jYXRpb24gd2l0aGluIHRoZSBTb0MgbWF5IG1h
+dHRlci4KPiA+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiA+IEV4YWN0bHkuIEludGVsIGhhcmR3YXJl
+IGhhcyBQQ0llIHBvcnRzIG9uIENQVSBzaWRlICh0aGVzZSBhcmUgY2FsbGVkCj4gPiA+ID4gPiA+
+ID4gUEVHLCBQQ0kgRXhwcmVzcyBHcmFwaGljcywgcG9ydHMpLCBhbmQgdGhlIFBDSCBzaWRlLiBJ
+IHRoaW5rIHRoZSBJUCBpcwo+ID4gPiA+ID4gPiA+IHN0aWxsIHRoZSBzYW1lLgo+ID4gPiA+ID4g
+PiA+Cj4gPiA+ID4gPiA+ID4gPiBBbHNvIHNvbWUgY3VzdG9tIEFNTC1iYXNlZCBwb3dlciBtYW5h
+Z2VtZW50IGlzIGludm9sdmVkIGFuZCB0aGF0IG1heQo+ID4gPiA+ID4gPiA+ID4gYmUgbWFraW5n
+IHNwZWNpZmljIGFzc3VtcHRpb25zIG9uIHRoZSBjb25maWd1cmF0aW9uIG9mIHRoZSBTb0MgYW5k
+IHRoZQo+ID4gPiA+ID4gPiA+ID4gR1BVIGF0IHRoZSB0aW1lIG9mIGl0cyBpbnZvY2F0aW9uIHdo
+aWNoIHVuZm9ydHVuYXRlbHkgYXJlIG5vdCBrbm93biB0bwo+ID4gPiA+ID4gPiA+ID4gdXMuCj4g
+PiA+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiA+ID4gSG93ZXZlciwgaXQgbG9va3MgbGlrZSB0aGUg
+QU1MIGludm9rZWQgdG8gcG93ZXIgZG93biB0aGUgR1BVIGZyb20KPiA+ID4gPiA+ID4gPiA+IGFj
+cGlfcGNpX3NldF9wb3dlcl9zdGF0ZSgpIGdldHMgY29uZnVzZWQgaWYgaXQgaXMgbm90IGluIFBD
+SSBEMCBhdAo+ID4gPiA+ID4gPiA+ID4gdGhhdCBwb2ludCwgc28gaXQgbG9va3MgbGlrZSB0aGF0
+IEFNTCB0cmllcyB0byBhY2Nlc3MgZGV2aWNlIG1lbW9yeSBvbgo+ID4gPiA+ID4gPiA+ID4gdGhl
+IEdQVSAoYmV5b25kIHRoZSBQQ0kgY29uZmlnIHNwYWNlKSBvciBzaW1pbGFyIHdoaWNoIGlzIG5v
+dAo+ID4gPiA+ID4gPiA+ID4gYWNjZXNzaWJsZSBpbiBQQ0kgcG93ZXIgc3RhdGVzIGJlbG93IEQw
+Lgo+ID4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+ID4gT3IgdGhlIFBDSSBjb25maWcgc3BhY2Ugb2Yg
+dGhlIEdQVSB3aGVuIHRoZSBwYXJlbnQgcm9vdCBwb3J0IGlzIGluIEQzaG90Cj4gPiA+ID4gPiA+
+ID4gKGFzIGl0IGlzIHRoZSBjYXNlIGhlcmUpLiBBbHNvIHRoZW4gdGhlIEdQVSBjb25maWcgc3Bh
+Y2UgaXMgbm90Cj4gPiA+ID4gPiA+ID4gYWNjZXNzaWJsZS4KPiA+ID4gPiA+ID4KPiA+ID4gPiA+
+ID4gV2h5IHdvdWxkIHRoZSBwYXJlbnQgcG9ydCBiZSBpbiBEM2hvdCBhdCB0aGF0IHBvaW50PyAg
+V291bGRuJ3QgdGhhdCBiZQo+ID4gPiA+ID4gPiBhIHN1c3BlbmQgb3JkZXJpbmcgdmlvbGF0aW9u
+Pwo+ID4gPiA+ID4KPiA+ID4gPiA+IE5vLiBXZSBwdXQgdGhlIEdQVSBpbnRvIEQzaG90IGZpcnN0
+LAo+ID4gPgo+ID4gPiBPSwo+ID4gPgo+ID4gPiBEb2VzIHRoaXMgaW52b2x2ZSBhbnkgQU1MLCBs
+aWtlIGEgX1BTMyB1bmRlciB0aGUgR1BVIG9iamVjdD8KPiA+Cj4gPiBJIGRvbid0IHNlZSBfUFMz
+IChub3IgX1BTMCkgZm9yIHRoYXQgb2JqZWN0LiBJZiBJIHJlYWQgaXQgcmlnaHQgdGhlIEdQVQo+
+ID4gaXRzZWxmIGlzIG5vdCBkZXNjcmliZWQgaW4gQUNQSSB0YWJsZXMgYXQgYWxsLgo+IAo+IE9L
+Cj4gCj4gPiA+ID4gPiB0aGVuIHRoZSByb290IHBvcnQgYW5kIHRoZW4gdHVybgo+ID4gPiA+ID4g
+b2ZmIHRoZSBwb3dlciByZXNvdXJjZSAod2hpY2ggaXMgYXR0YWNoZWQgdG8gdGhlIHJvb3QgcG9y
+dCkgcmVzdWx0aW5nCj4gPiA+ID4gPiB0aGUgdG9wb2xvZ3kgZW50ZXJpbmcgRDNjb2xkLgo+ID4g
+PiA+Cj4gPiA+ID4gSSBkb24ndCBzZWUgdGhhdCBoYXBwZW5pbmcgaW4gdGhlIEFNTCB0aG91Z2gu
+Cj4gPiA+Cj4gPiA+IFdoaWNoIEFNTCBkbyB5b3UgbWVhbiwgc3BlY2lmaWNhbGx5PyAgVGhlIF9P
+RkYgbWV0aG9kIGZvciB0aGUgcm9vdAo+ID4gPiBwb3J0J3MgX1BSMyBwb3dlciByZXNvdXJjZSBv
+ciBzb21ldGhpbmcgZWxzZT8KPiA+Cj4gPiBUaGUgcm9vdCBwb3J0J3MgX09GRiBtZXRob2QgZm9y
+IHRoZSBwb3dlciByZXNvdXJjZSByZXR1cm5lZCBieSBpdHMgX1BSMy4KPiAKPiBPSywgc28gd2l0
+aG91dCB0aGUgJHN1YmplY3QgcGF0Y2ggd2UgKDEpIHByb2dyYW0gdGhlIGRvd25zdHJlYW0KPiBj
+b21wb25lbnQgKEdQVSkgaW50byBEM2hvdCwgdGhlbiB3ZSAoMikgcHJvZ3JhbSB0aGUgcG9ydCBo
+b2xkaW5nIGl0Cj4gaW50byBEM2hvdCBhbmQgdGhlbiB3ZSAoMykgbGV0IHRoZSBBTUwgKF9PRkYg
+Zm9yIHRoZSBwb3dlciByZXNvdXJjZQo+IGxpc3RlZCBieSBfUFIzIHVuZGVyIHRoZSBwb3J0IG9i
+amVjdCkgcnVuLgo+IAo+IFNvbWV0aGluZyBzdHJhbmdlIGhhcHBlbnMgYXQgdGhpcyBwb2ludCAo
+YW5kIEkgZ3Vlc3MgdGhhdCBfT0ZGIGRvZXNuJ3QKPiBldmVuIHJlYWNoIHRoZSBwb2ludCB3aGVy
+ZSBpdCByZW1vdmVzIHBvd2VyIGZyb20gdGhlIHBvcnQgd2hpY2ggaXMgd2h5Cj4gd2Ugc2VlIGEg
+bG9jay11cCkuCgpJdCBkb2VzIG5vdCBuZWNlc3NhcnkgbGVhZCB0byBsb2NrLXVwLiBIZXJlIGlz
+IGRtZXNnIGZyb20gS2Fyb2wncwpzeXN0ZW06CgogIGh0dHBzOi8vZ2lzdC5naXRodWJ1c2VyY29u
+dGVudC5jb20va2Fyb2xoZXJic3QvNDBlYjA5MWM3YjdiMzNlZjk5MzUyNWRlNjYwZjFhM2IvcmF3
+LzIzODBlMzFmNTY2ZTkzZTViYTdjODdlZjU0NTQyMDk2NWQ0YzQ5MmMvZ2lzdGZpbGUxLnR4dAoK
+d2hhdCBzZWVtcyB0byBoYXBwZW4gaXMgdGhhdCB0aGUgR1BVIG5ldmVyICJjb21lcyBiYWNrIiBm
+cm9tIEQzY29sZCBzbwp0aGUgZHJpdmVyIHN0YXJ0cyBicmVha2luZyBhcGFydCBhcyB0aGUgaGFy
+ZHdhcmUgaXMgZ29uZSBub3cuCgo+IFdlIGtub3cgdGhhdCBza2lwcGluZyAoMSkgbWFrZXMgdGhp
+bmdzIHdvcmsgYW5kIHdlIGtpbmQgb2Ygc3VzcGVjdAo+IHRoYXQgc2tpcHBpbmcgKDMpIHdvdWxk
+IG1ha2UgdGhpbmdzIHdvcmsgZWl0aGVyLCBidXQgd2hhdCBhYm91dCBkb2luZwo+ICgxKSBhbmQg
+KDMpIHdpdGhvdXQgKDIpPwoKWW91IG1lYW4gaW4gdGhpcyBwYXJ0aWN1bGFyIGNhc2Ugb3IgaW4g
+Z2VuZXJhbD8gQmVjYXVzZSBpZiB0aGUgcG9ydCBoYXMKX1BTeCBtZXRob2RzIHdlIG5lZWQgdG8g
+cHV0IGl0IGludG8gRDNob3QgQUZBSUsuCgo+ID4gPiA+IEJhc2ljYWxseSB0aGUgZGlmZmVyZW5j
+ZSBpcyB0aGF0IHdoZW4gV2luZG93cyA3IG9yIExpbnV4ICh0aGUgX1JFVj09NQo+ID4gPiA+IGNo
+ZWNrKSB0aGVuIHdlIGRpcmVjdGx5IGRvIGxpbmsgZGlzYWJsZSB3aGVyZWFzIGluIFdpbmRvd3Mg
+OCsgd2UgaW52b2tlCj4gPiA+ID4gTEtEUygpIG1ldGhvZCB0aGF0IHB1dHMgdGhlIGxpbmsgaW50
+byBMMi9MMy4gTm9uZSBvZiB0aGUgZmllbGRzIHRoZXkKPiA+ID4gPiBhY2Nlc3Mgc2VlbSB0byB0
+b3VjaCB0aGUgR1BVIGl0c2VsZi4KPiA+ID4KPiA+ID4gU28gdGhhdCBtYXkgYmUgd2hlcmUgdGhl
+IHByb2JsZW0gaXMuCj4gPiA+Cj4gPiA+IFB1dHRpbmcgdGhlIGRvd25zdHJlYW0gY29tcG9uZW50
+IGludG8gUENJIERbMS0zXSBpcyBleHBlY3RlZCB0byBwdXQKPiA+ID4gdGhlIGxpbmsgaW50byBM
+MSwgc28gSSdtIG5vdCBzdXJlIGhvdyB0aGF0IHBsYXlzIHdpdGggdGhlIGxhdGVyCj4gPiA+IGF0
+dGVtcHQgdG8gcHV0IGl0IGludG8gTDIvTDMgUmVhZHkuCj4gPgo+ID4gVGhhdCBzaG91bGQgYmUg
+ZmluZS4gV2hhdCBJJ3ZlIHNlZW4gdGhlIGxpbmsgZ29lcyBpbnRvIEwxIHdoZW4KPiA+IGRvd25z
+dHJlYW0gY29tcG9uZW50IGlzIHB1dCB0byBELXN0YXRlIChub3QgRDApIGFuZCB0aGVuIGl0IGlz
+IHB1dCBiYWNrCj4gPiB0byBMMCB3aGVuIEwyLzMgcmVhZHkgaXMgcHJvcGFnYXRlZC4gRXZlbnR1
+YWxseSBpdCBnb2VzIGludG8gTDIgb3IgTDMuCj4gCj4gV2VsbCwgdGhhdCdzIHRoZSBleHBlY3Rl
+ZCBiZWhhdmlvciwgYnV0IHRoZSBvYnNlcnZlZCBiZWhhdmlvciBpc24ndCBhcwo+IGV4cGVjdGVk
+LiA6LSkKClJpZ2h0IDopCgo+ID4gPiBBbHNvLCBMMi9MMyBSZWFkeSBpcyBleHBlY3RlZCB0byBi
+ZSB0cmFuc2llbnQsIHNvIGZpbmFsbHkgcG93ZXIgc2hvdWxkCj4gPiA+IGJlIHJlbW92ZWQgc29t
+ZWhvdy4KPiA+Cj4gPiBUaGVyZSBpcyBHUElPIGZvciBib3RoIHBvd2VyIGFuZCBQRVJTVCwgSSB0
+aGluayB0aGUgbGluZSBoZXJlOgo+ID4KPiA+ICAgXF9TQi5TR09WICgweDAxMDEwMDA0LCBaZXJv
+KQo+ID4KPiA+IGlzIHRoZSBvbmUgdGhhdCByZW1vdmVzIHBvd2VyLgo+IAo+IE9LCj4gCj4gPiA+
+ID4gTEtEUygpIGZvciB0aGUgZmlyc3QgUEVHIHBvcnQgbG9va3MgbGlrZSB0aGlzOgo+ID4gPiA+
+Cj4gPiA+ID4gICAgUDBMMiA9IE9uZQo+ID4gPiA+ICAgIFNsZWVwICgweDEwKQo+ID4gPiA+ICAg
+IExvY2FsMCA9IFplcm8KPiA+ID4gPiAgICBXaGlsZSAoUDBMMikKPiA+ID4gPiAgICB7Cj4gPiA+
+ID4gICAgICAgICBJZiAoKExvY2FsMCA+IDB4MDQpKQo+ID4gPiA+ICAgICAgICAgewo+ID4gPiA+
+ICAgICAgICAgICAgIEJyZWFrCj4gPiA+ID4gICAgICAgICB9Cj4gPiA+ID4KPiA+ID4gPiAgICAg
+ICAgIFNsZWVwICgweDEwKQo+ID4gPiA+ICAgICAgICAgTG9jYWwwKysKPiA+ID4gPiAgICB9Cj4g
+PiA+ID4KPiA+ID4gPiBPbmUgdGhpbmcgdGhhdCBjb21lcyB0byBtaW5kIGlzIHRoYXQgdGhlIGxv
+b3AgY2FuIGVuZCBldmVuIGlmIFAwTDIgaXMKPiA+ID4gPiBub3QgY2xlYXJlZCBhcyBpdCBkb2Vz
+IG9ubHkgNSBpdGVyYXRpb25zIHdpdGggMTYgbXMgc2xlZXAgYmV0d2Vlbi4gTWF5YmUKPiA+ID4g
+PiBTbGVlcCgpIGlzIGltcGxlbWVudGVkIGRpZmZlcmVudGx5IGluIFdpbmRvd3M/IEkgbWVhbiBM
+aW51eCBtYXkgYmUKPiA+ID4gPiAiZmFzdGVyIiBoZXJlIGFuZCByZXR1cm4gcHJlbWF0dXJlbHkg
+YW5kIGlmIHdlIGxlYXZlIHRoZSBwb3J0IGludG8gRDAKPiA+ID4gPiB0aGlzIGRvZXMgbm90IGhh
+cHBlbiwgb3Igc29tZXRoaW5nLiBJJ20ganVzdCB0aHJvd2luZyBvdXQgaWRlYXMgOikKPiA+ID4K
+PiA+ID4gQnV0IHRoaXMgYWN0dWFsbHkgd29ya3MgZm9yIHRoZSBkb3duc3RyZWFtIGNvbXBvbmVu
+dCBpbiBEMCwgZG9lc24ndCBpdD8KPiA+Cj4gPiBJdCBkb2VzIGFuZCB0aGF0IGxlYXZlcyB0aGUg
+bGluayBpbiBMMCBzbyBpdCBjb3VsZCBiZSB0aGF0IHRoZW4gdGhlCj4gPiBhYm92ZSBBTUwgd29y
+a3MgYmV0dGVyIG9yIHNvbWV0aGluZy4KPiAKPiBUaGF0IHdvdWxkIGJlIG15IGd1ZXNzLgo+IAo+
+ID4gVGhhdCByZW1pbmRzIG1lLCBBU1BNIG1heSBoYXZlIHNvbWV0aGluZyB0byBkbyB3aXRoIHRo
+aXMgYXMgd2VsbC4KPiAKPiBOb3QgcmVhbGx5IGlmIEQtc3RhdGVzIGFyZSBpbnZvbHZlZC4KPiAK
+PiA+ID4gQWxzbywgaWYgdGhlIGRvd25zdHJlYW0gY29tcG9uZW50IGlzIGluIEQwLCB0aGUgcG9y
+dCBhY3R1YWxseSBzaG91bGQKPiA+ID4gc3RheSBpbiBEMCB0b28sIHNvIHdoYXQgd291bGQgaGFw
+cGVuIHdpdGggdGhlICRzdWJqZWN0IHBhdGNoIGFwcGxpZWQ/Cj4gPgo+ID4gUGFyZW50IHBvcnQg
+Y2Fubm90IGJlIGxvd2VyIEQtc3RhdGUgdGhhbiB0aGUgY2hpbGQgc28gSSBhZ3JlZSBpdCBzaG91
+bGQKPiA+IHN0YXkgaW4gRDAgYXMgd2VsbC4gSG93ZXZlciwgaXQgc2VlbXMgdGhhdCB3aGF0IGhh
+cHBlbnMgaXMgdGhhdCB0aGUKPiA+IGlzc3VlIGdvZXMgYXdheSA6KQo+IAo+IFdlbGwsIGF0IGxl
+YXN0IHRoaXMgaXMga2luZCBvZiBvdXQgb2YgdGhlIHNwZWMuCj4gCj4gTm90ZSB0aGF0IHBjaV9w
+bV9zdXNwZW5kX25vaXJxKCkgd29uJ3QgbGV0IHRoZSBwb3J0IGdvIGludG8gRDMgaWYgdGhlCj4g
+ZG93bnN0cmVhbSBkZXZpY2UgaXMgaW4gRDAsIHNvIHRoZSAkc3ViamVjdCBwYXRjaCB3aWxsIG5v
+dCB3b3JrIGFzCj4gZXhwZWN0ZWQgaW4gdGhlIHN1c3BlbmQtdG8taWRsZSBjYXNlLgo+IAo+IEFs
+c28gd2UgcmVhbGx5IHNob3VsZCBtYWtlIHVwIG91ciBtaW5kcyBvbiB3aGV0aGVyIG9yIG5vdCB0
+byBmb3JjZQo+IFBDSWUgcG9ydHMgdG8gc3RheSBpbiBEMCB3aGVuIGRvd25zdHJlYW0gZGV2aWNl
+cyBhcmUgaW4gRDAgYW5kIGJlCj4gY29uc2VxdWVudCBhYm91dCB0aGF0LiAgUmlnaHQgbm93IHdl
+IGRvIG9uZSB0aGluZyBkdXJpbmcgc3lzdGVtLXdpZGUKPiBzdXNwZW5kIGFuZCB0aGUgb3RoZXIg
+b25lIGluIFBNLXJ1bnRpbWUsIHdoaWNoIGlzIGNvbmZ1c2luZy4KPiAKPiBUaGUgY3VycmVudCBk
+ZXNpZ24gaXMgbW9zdGx5IGJhc2VkIG9uIHRoZSBQQ0kgUE0gU3BlYyAxLjIsIHNvIGl0IHdvdWxk
+Cj4gYmUgY29uc2VxdWVudCB0byBmb2xsb3cgc3lzdGVtLXdpZGUgc3VzcGVuZCBpbiBQTS1ydW50
+aW1lIGFuZCBhdm9pZAo+IHB1dHRpbmcgUENJZSBwb3J0cyBob2xkaW5nIGRldmljZXMgaW4gRDAg
+aW50byBhbnkgbG93LXBvd2VyIHN0YXRlcy4KPiBidXQgdGhhdCB3b3VsZCBtYWtlIHRoZSBhcHBy
+b2FjaCBpbiB0aGUgJHN1YmplY3QgcGF0Y2ggaW5lZmZlY3RpdmUuCj4gCj4gTW9yZW92ZXIsIHRo
+ZSBmYWN0IHRoYXQgdGhlcmUgYXJlIHNlcGFyYXRlIGJyYW5jaGVzIGZvciAiV2luZG93cyA3Igo+
+IGFuZCAiV2luZG93cyA4KyIga2luZCBvZiBzdWdnZXN0IGEgY2hhbmdlIGluIHRoZSBleHBlY3Rl
+ZCBiZWhhdmlvcgo+IGJldHdlZW4gV2luZG93cyA3IGFuZCBXaW5kb3dzIDgsIGZyb20gdGhlIEFN
+TCBwZXJzcGVjdGl2ZS4gIEkgd291bGQKPiBndWVzcyB0aGF0IFdpbmRvd3MgNyBmb2xsb3dlZCBQ
+Q0kgUE0gMS4yIGFuZCBXaW5kb3dzIDggKGFuZCBsYXRlcikKPiBkb2VzIHNvbWV0aGluZyBlbHNl
+LgoKTXkgdW5kZXJzdGFuZGluZyAod2hpY2ggbWF5IG5vdCBiZSBjb3JyZWN0KSBpcyB0aGF0IHVw
+IHRvIFdpbmRvd3MgNyBpdApuZXZlciBwdXQgdGhlIGRldmljZXMgaW50byBEM2NvbGQgcnVudGlt
+ZS4gT25seSB3aGVuIHRoZSBzeXN0ZW0gZW50ZXJlZApTeCBzdGF0ZXMgaXQgZXZhbHVhdGVkIHRo
+ZSBfT0ZGIG1ldGhvZHMuCgpTdGFydGluZyBmcm9tIFdpbmRvd3MgOCBpdCBzdGFydGVkIGRvaW5n
+IHRoaXMgcnVudGltZSBzbyBkZXZpY2VzIGNhbgplbnRlciBEM2NvbGQgZXZlbiB3aGVuIHN5c3Rl
+bSBpcyBpbiBTMC4KCj4gTm93LCB0aGUgc3RydWN0dXJlIG9mIHRoZSAiV2luZG93cyA4KyIgYnJh
+bmNoCj4gZGVzY3JpYmVkIGJ5IHlvdSBzdWdnZXN0cyB0aGF0LCBhdCBsZWFzdCBpbiB0aGUgY2Fz
+ZXMgd2hlbiBpdCBpcyBnb2luZwo+IHRvIHJlbW92ZSBwb3dlciBmcm9tIHRoZSBwb3J0IGV2ZW50
+dWFsbHksIGl0IGdvZXMgc3RyYWlnaHQgZm9yIHRoZQo+IGxpbmsgcHJlcGFyYXRpb24gKHRoZSBM
+Mi9MMyBSZWFkeSB0cmFuc2l0aW9uKSBhbmQgcG93ZXIgcmVtb3ZhbAo+IHdpdGhvdXQgYm90aGVy
+aW5nIHRvIHByb2dyYW0gdGhlIGRvd25zdHJlYW0gZGV2aWNlIGFuZCBwb3J0IGludG8gRDNob3QK
+PiAoYmVjYXVzZSB0aGF0J3Mga2luZCBvZiByZWR1bmRhbnQpLgo+IAo+IFRoYXQgaHlwb3RoZXRp
+Y2FsICJXaW5kb3dzIDgrIiBhcHByb2FjaCBtYXkgcmVhbGx5IHdvcmsgdW5pdmVyc2FsbHksCj4g
+YmVjYXVzZSBpdCBkb2Vzbid0IHNlZW0gdG8gYnJlYWsgYW55IHJ1bGVzIChnb2luZyBzdHJhaWdo
+dCBmcm9tIEQwIHRvCj4gRDNjb2xkIGlzIG5vdCBkaXNhbGxvd2VkIGFuZCBkb2luZyB0aGF0IGZv
+ciBib3RoIGEgcG9ydCBhbmQgYQo+IGRvd25zdHJlYW0gZGV2aWNlIGF0IHRoZSBzYW1lIHRpbWUg
+aXMga2luZCBvZiBPSyBlaXRoZXIsIGFzIGxvbmcgYXMKPiB0aGUgbGluayBpcyByZWFkeSBmb3Ig
+dGhhdCkuCgpJIGd1ZXNzIGl0IGRlcGVuZHMgb24gaG93IHlvdSBpbnRlcnByZXQgdGhlIHNwZWNz
+IDstKSBGcm9tIFBDSWUgNS4wIHNlYwo1Ljggd2UgY2FuIHNlZSB0aGUgc3VwcG9ydGVkIFBNIHN0
+YXRlIHRyYW5zaXRpb25zIGFuZCBpdCBzaG93cyB0aGF0IHlvdQpnZXQgdG8gRDNjb2xkIHRocm91
+Z2ggRDNob3QuIE9mIGNvdXJzZSB0aGUgZGV2aWNlIGdvZXMgaW50byBEM2NvbGQgaWYKeW91IHNp
+bXBseSByZW1vdmUgaXRzIHBvd2VyIHNvIEkgYWdyZWUgd2l0aCB5b3UgYXMgd2VsbC4gSG93ZXZl
+ciwgaWYKdGhlcmUgaXMgX1BTMyBtZXRob2Qgd2UgY2FuJ3Qgc2tpcCB0aGUgRDNob3QgcGhhc2Uu
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZl
+bCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbA==
