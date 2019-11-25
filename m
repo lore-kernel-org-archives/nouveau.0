@@ -1,60 +1,114 @@
-From: Jason Gunthorpe <jgg@mellanox.com>
-Subject: Re: [PATCH v3 02/14] mm/mmu_notifier: add an interval
- tree notifier
-Date: Sat, 23 Nov 2019 23:59:53 +0000
-Message-ID: <20191123235949.GE7481@mellanox.com>
-References: <20191112202231.3856-1-jgg@ziepe.ca>
- <20191112202231.3856-3-jgg@ziepe.ca> <20191113135952.GB20531@infradead.org>
- <20191113164620.GG21728@mellanox.com>
- <cc5d4d76-df30-af7f-931c-eed8a7ada122@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 104509] Unable to set "Content Type" bit for HDMI
+ and DisplayPort
+Date: Mon, 25 Nov 2019 08:01:53 +0000
+Message-ID: <bug-104509-8800-8KmyixoHyu@http.bugs.freedesktop.org/>
+References: <bug-104509-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <xen-devel-bounces@lists.xenproject.org>
-In-Reply-To: <cc5d4d76-df30-af7f-931c-eed8a7ada122@nvidia.com>
-Content-Language: en-US
-Content-ID: <2C9272320C17A343A8D1A92DF2D430C9@eurprd05.prod.outlook.com>
-List-Unsubscribe: <https://lists.xenproject.org/mailman/options/xen-devel>,
- <mailto:xen-devel-request@lists.xenproject.org?subject=unsubscribe>
-List-Post: <mailto:xen-devel@lists.xenproject.org>
-List-Help: <mailto:xen-devel-request@lists.xenproject.org?subject=help>
-List-Subscribe: <https://lists.xenproject.org/mailman/listinfo/xen-devel>,
- <mailto:xen-devel-request@lists.xenproject.org?subject=subscribe>
-Errors-To: xen-devel-bounces@lists.xenproject.org
-Sender: "Xen-devel" <xen-devel-bounces@lists.xenproject.org>
-To: Ralph Campbell <rcampbell@nvidia.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "linux-mm@kvack.org" <linux-mm@kvack.org>, David Zhou <David1.Zhou@amd.com>, Stefano Stabellini <sstabellini@kernel.org>, Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, Christoph Hellwig <hch@infradead.org>, Ben Skeggs <bskeggs@redhat.com>, "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>, Philip Yang <Philip.Yang@amd.com>, John Hubbard <jhubbard@nvidia.com>, Jerome Glisse <jglisse@redhat.com>, Boris Ostrovsky <boris.ostrovsky@oracle.com>, Petr Cvek <petrcvekcz@gmail.com>, Juergen Gross <jgross@suse.com>, Mike Marciniszyn <mike.marciniszyn@intel.com>, "Felix.Kuehling@amd.com" <Felix.Kuehl>
+Content-Type: multipart/mixed; boundary="===============1428585246=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-104509-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBOb3YgMjIsIDIwMTkgYXQgMDQ6NTQ6MDhQTSAtMDgwMCwgUmFscGggQ2FtcGJlbGwg
-d3JvdGU6Cgo+IEFjdHVhbGx5LCBJIHRoaW5rIHlvdSBjYW4gcmVtb3ZlIHRoZSAibmVlZF93YWtl
-IiB2YXJpYWJsZSBzaW5jZSBpdCBpcwo+IHVuY29uZGl0aW9uYWxseSBzZXQgdG8gInRydWUiLgoK
-T2gsIHllcywgdGhhbmsgeW91LiBBbiBlYXJsaWVyIHJldmlzaW9uIGhhZCBhIGRpZmZlcmVudCBj
-b250cm9sIGZsb3cKIAo+IEFsc28sIHRoZSBjb21tZW50IGluX19tbXVfaW50ZXJ2YWxfbm90aWZp
-ZXJfaW5zZXJ0KCkgc2F5cwo+ICJtbmktPm1yX2ludmFsaWRhdGVfc2VxIiBhbmQgSSB0aGluayB0
-aGF0IHNob3VsZCBiZQo+ICJtbmktPmludmFsaWRhdGVfc2VxIi4KCkdvdCBpdC4KCkkgc3F1YXNo
-ZWQgdGhpcyBpbjoKCmRpZmYgLS1naXQgYS9tbS9tbXVfbm90aWZpZXIuYyBiL21tL21tdV9ub3Rp
-Zmllci5jCmluZGV4IGIzYTA2NGIzYjMxODA3Li4zMGFiYmZkYzI1YmU1NSAxMDA2NDQKLS0tIGEv
-bW0vbW11X25vdGlmaWVyLmMKKysrIGIvbW0vbW11X25vdGlmaWVyLmMKQEAgLTEyOSw3ICsxMjks
-NiBAQCBzdGF0aWMgdm9pZCBtbl9pdHJlZV9pbnZfZW5kKHN0cnVjdCBtbXVfbm90aWZpZXJfbW0g
-Km1tbl9tbSkKIHsKIAlzdHJ1Y3QgbW11X2ludGVydmFsX25vdGlmaWVyICptbmk7CiAJc3RydWN0
-IGhsaXN0X25vZGUgKm5leHQ7Ci0JYm9vbCBuZWVkX3dha2UgPSBmYWxzZTsKIAogCXNwaW5fbG9j
-aygmbW1uX21tLT5sb2NrKTsKIAlpZiAoLS1tbW5fbW0tPmFjdGl2ZV9pbnZhbGlkYXRlX3Jhbmdl
-cyB8fApAQCAtMTQwLDcgKzEzOSw2IEBAIHN0YXRpYyB2b2lkIG1uX2l0cmVlX2ludl9lbmQoc3Ry
-dWN0IG1tdV9ub3RpZmllcl9tbSAqbW1uX21tKQogCiAJLyogTWFrZSBpbnZhbGlkYXRlX3NlcSBl
-dmVuICovCiAJbW1uX21tLT5pbnZhbGlkYXRlX3NlcSsrOwotCW5lZWRfd2FrZSA9IHRydWU7CiAK
-IAkvKgogCSAqIFRoZSBpbnZfZW5kIGluY29ycG9yYXRlcyBhIGRlZmVycmVkIG1lY2hhbmlzbSBs
-aWtlIHJ0bmxfdW5sb2NrKCkuCkBAIC0xNjAsOCArMTU4LDcgQEAgc3RhdGljIHZvaWQgbW5faXRy
-ZWVfaW52X2VuZChzdHJ1Y3QgbW11X25vdGlmaWVyX21tICptbW5fbW0pCiAJfQogCXNwaW5fdW5s
-b2NrKCZtbW5fbW0tPmxvY2spOwogCi0JaWYgKG5lZWRfd2FrZSkKLQkJd2FrZV91cF9hbGwoJm1t
-bl9tbS0+d3EpOworCXdha2VfdXBfYWxsKCZtbW5fbW0tPndxKTsKIH0KIAogLyoqCkBAIC04ODQs
-NyArODgxLDcgQEAgc3RhdGljIGludCBfX21tdV9pbnRlcnZhbF9ub3RpZmllcl9pbnNlcnQoCiAJ
-ICogcG9zc2liaWxpdHkgZm9yIGxpdmUgbG9jaywgaW5zdGVhZCBkZWZlciB0aGUgYWRkIHRvCiAJ
-ICogbW5faXRyZWVfaW52X2VuZCgpIHNvIHRoaXMgYWxnb3JpdGhtIGlzIGRldGVybWluaXN0aWMu
-CiAJICoKLQkgKiBJbiBhbGwgY2FzZXMgdGhlIHZhbHVlIGZvciB0aGUgbW5pLT5tcl9pbnZhbGlk
-YXRlX3NlcSBzaG91bGQgYmUKKwkgKiBJbiBhbGwgY2FzZXMgdGhlIHZhbHVlIGZvciB0aGUgbW5p
-LT5pbnZhbGlkYXRlX3NlcSBzaG91bGQgYmUKIAkgKiBvZGQsIHNlZSBtbXVfaW50ZXJ2YWxfcmVh
-ZF9iZWdpbigpCiAJICovCiAJc3Bpbl9sb2NrKCZtbW5fbW0tPmxvY2spOwoKSmFzb24KCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClhlbi1kZXZlbCBtYWls
-aW5nIGxpc3QKWGVuLWRldmVsQGxpc3RzLnhlbnByb2plY3Qub3JnCmh0dHBzOi8vbGlzdHMueGVu
-cHJvamVjdC5vcmcvbWFpbG1hbi9saXN0aW5mby94ZW4tZGV2ZWw=
+
+--===============1428585246==
+Content-Type: multipart/alternative; boundary="15746689120.B91e.8761"
+Content-Transfer-Encoding: 7bit
+
+
+--15746689120.B91e.8761
+Date: Mon, 25 Nov 2019 08:01:52 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104509
+
+--- Comment #4 from TabethaHoye <zongdatasims-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+You are right, I have experienced this problem and fixed it by watching vid=
+eos
+on youtube which https://www.bestdissertation.com/services/coursework.html
+provides best option for quality work. There is an option on your graphics
+driver which is named as default settings. You can change it by updating
+different settings and shades.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15746689120.B91e.8761
+Date: Mon, 25 Nov 2019 08:01:52 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Unable to set &quot;Content Type&quot; bit for HDMI and D=
+isplayPort"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104509#c4">Commen=
+t # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Unable to set &quot;Content Type&quot; bit for HDMI and D=
+isplayPort"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104509">bug 10450=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+zongdatasims&#64;gmail.com" title=3D"TabethaHoye &lt;zongdatasims&#64;gmail=
+.com&gt;"> <span class=3D"fn">TabethaHoye</span></a>
+</span></b>
+        <pre>You are right, I have experienced this problem and fixed it by=
+ watching videos
+on youtube which <a href=3D"https://www.bestdissertation.com/services/cours=
+ework.html">https://www.bestdissertation.com/services/coursework.html</a>
+provides best option for quality work. There is an option on your graphics
+driver which is named as default settings. You can change it by updating
+different settings and shades.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15746689120.B91e.8761--
+
+--===============1428585246==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1428585246==--
