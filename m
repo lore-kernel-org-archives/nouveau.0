@@ -1,97 +1,67 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: nouveau regression [bisected] hotplug broken on gf108
- since 4.1
-Date: Tue, 26 Nov 2019 16:26:04 +0100
-Message-ID: <28490f16-2813-9b08-ae50-04bacc0c20c2@redhat.com>
+From: Navid Emamdoost <navid.emamdoost@gmail.com>
+Subject: Re: [PATCH] drm/nouveau: Fix memory leak in nouveau_bo_alloc
+Date: Tue, 26 Nov 2019 11:50:44 -0600
+Message-ID: <CAEkB2ER4dof02PcH6BDQoFNhkkds=zrPf+5-rSygUh=XU8H0zQ@mail.gmail.com>
+References: <20191021211449.9104-1-navid.emamdoost@gmail.com> <CAEkB2ERA6Rx9fZiwXH+m8_OV8to0TuLJRVRiUKfKtSoeoT0uJw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CAEkB2ERA6Rx9fZiwXH+m8_OV8to0TuLJRVRiUKfKtSoeoT0uJw@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
+Cc: Navid Emamdoost <emamd001@umn.edu>, LKML <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-SGkgQWxsLAoKSSdtIGhhdmluZyB0aGlzIHJlYWxseSB3ZWlyZCBpc3N1ZSB3aXRoIGJyb2tlbiBo
-b3RwbHVnIG9uIGEgRGVsbCBMYXRpdHVkZSBFNjQzMCB3aXRoCmh5YnJpZCBnZngsIHdpdGggYSBn
-ZjEwOCBhcyBkaXNjcmV0ZSBHUFUuCgpUaGUgTENEIHBhbmVsIGFuZCBWR0EgYXJlIGNvbm5lY3Rl
-ZCB0aHJvdWdoIGEgbXV4IHRvIHRoZSBpR1BVLCBidXQgdGhlIEhETUkgaXMgb25seQpjb25uZWN0
-ZWQgdG8gdGhlIG52aWRpYSBkR1BVLiBQbHVnZ2luZyBpbiBhIEhETUkgbW9uaXRvciB3aGVuIHRo
-ZSBkR1BVIGlzIHN1c3BlbmQKd29ya3MgZmluZSwgdGhlIEFDUEkgZXZlbnQgZmlyZXMgYW5kIGV2
-ZXJ5dGhpbmcgd29ya3MgYXMgaXQgc2hvdWxkLgoKVW5wbHVnZ2luZyB0aGUgSERNSSBPVE9ILCBv
-ciBwbHVnZ2luZyBpdCBpbiB3aGVuIHRoZSBkR1BVIGlzIF9ub3RfIHN1c3BlbmRlZCBkb2VzCm5v
-dCB3b3JrIHVudGlsIEkgbWFudWFsbHkgcnVuIHhyYW5kci4KCkkndmUgYmlzZWN0ZWQgdGhpcyBh
-bmQgdGhlIGJpc2VjdCBwb2ludHMgdG86CgpjZmVhODhhNGQ4NjYgKCJkcm0vbm91dmVhdTogU3Rh
-cnQgdXNpbmcgbmV3IGRybV9kZXYgaW5pdGlhbGl6YXRpb24gaGVscGVycyIpLAp3aGljaCBsYW5k
-ZWQgaW4gNC4yMAoKV2hpY2ggZnVuY3Rpb25hbGx5IG1ha2VzIG5vIGNoYW5nZXMgb3RoZXIgdGhl
-biBzb21lIHN1YnRsZSBjaGFuZ2VzIHRvIHRoZQppbml0aWFsaXphdGlvbiBvcmRlci4gSSd2ZSBi
-ZWVuIHBva2luZyB0aGluZ3Mgc3Vycm91bmRpbmcgdGhpcyB0aGUgZW50aXJlCmRheSBidXQgbm8g
-bHVjay4KCk9uZSB0aGluZyB3aGljaCBJIGRpZCBmb3VuZCBvdXQsIGlzIHRoYXQgSSBjYW4gYnJl
-YWsgdGhlIGNvbW1pdCBiZWZvcmUgdGhlCnRyb3VibGVzb21lIGNvbW1pdCB0byBiZWhhdmUgaW4g
-dGhlIGV4YWN0IHNhbWUgd2F5IGJ5IGNvbW1lbnRpbmcgb3V0IHRoZQpkcm1fc3lzZnNfaG90cGx1
-Z19ldmVudCgpIGNhbGwgZnJvbSBkcm1fc3lzZnNfY29ubmVjdG9yX2FkZCgpLgoKT25lIHRoaW5n
-IHRvIG5vdGUgaGVyZSBpcyB0aGF0IGRybV9yZWdpc3Rlcl9jb25uZWN0b3IgaGFzIHRoZSBmb2xs
-b3dpbmcgYXQKdGhlIHRvcDoKCiAgICAgICAgIGlmICghY29ubmVjdG9yLT5kZXYtPnJlZ2lzdGVy
-ZWQpCiAgICAgICAgICAgICAgICAgcmV0dXJuIDA7CgpCZWZvcmUgdGhlIHRyb3VibGVzb21lIGNv
-bW1pdCwgd2hlbiB3ZSBzdGlsbCBoYWQgYSBsb2FkIGNhbGxiYWNrLCB0aGlzCmNoZWNrIHdvdWxk
-IG5vdCBiZSBoaXQgd2hlbiBub3V2ZWF1X2RybV9sb2FkKCkgKG5vdyBub3V2ZWF1X2RybV9kZXZp
-Y2VfaW5pdCgpCnJhbiBhcyBkcm1fZGV2X3JlZ2lzdGVyIGRvZXM6CgogICAgICAgICBkZXYtPnJl
-Z2lzdGVyZWQgPSB0cnVlOwoKICAgICAgICAgaWYgKGRldi0+ZHJpdmVyLT5sb2FkKSB7CiAgICAg
-ICAgICAgICAgICAgcmV0ID0gZGV2LT5kcml2ZXItPmxvYWQoZGV2LCBmbGFncyk7CiAgICAgICAg
-ICAgICAgICAgaWYgKHJldCkKICAgICAgICAgICAgICAgICAgICAgICAgIGdvdG8gZXJyX21pbm9y
-czsKICAgICAgICAgfQoKU28gd291bGQgcmVnaXN0ZXIgdGhlIGNvbm5lY3RvcnMgZGlyZWN0bHkg
-ZnJvbSBub3V2ZWF1X2RybV9sb2FkKCkvbm91dmVhdV9kcm1fZGV2aWNlX2luaXQoKQoodGhyb3Vn
-aCB0aGUgIGRybV9yZWdpc3Rlcl9jb25uZWN0b3IoKSBjYWxsIGF0IHRoZSBlbmQgb2Ygbm91dmVh
-dV9jb25uZWN0b3JfY3JlYXRlKS4KClNpbmNlIHRoZSB0cm91Ymxlc29tZSBjb21taXQgd2UgZG8g
-aGl0IHRoZSBpZiBpbiBxdWVzdGlvbiBzaW5jZSB3ZSBub3cgY2FsbApub3V2ZWF1X2RybV9kZXZp
-Y2VfaW5pdCgpIGJlZm9yZSBkcm1fZGV2X3JlZ2lzdGVyKCksIHR1cm5pbmcgdGhlIGRybV9yZWdp
-c3Rlcl9jb25uZWN0b3IoKQpjYWxsIGF0IHRoZSBlbmQgb2Ygbm91dmVhdV9jb25uZWN0b3JfY3Jl
-YXRlIGluIGEgbm8tb3AgZm9yIG5vbiBkcC1tc3QgY29ubmVjdG9ycy4KClRoZSBjb25uZWN0b3Jz
-IGRvIGdldCByZWdpc3RlcmVkIGEgYml0IGxhdGVyIHdoZW4gZHJtX2Rldl9yZWdpc3RlcigpIGNh
-bGxzCmRybV9tb2Rlc2V0X3JlZ2lzdGVyX2FsbCgpCgpUaGlzIHN1YnRsZSBjaGFuZ2UgaW4gb3Jk
-ZXJpbmcgaXMgd2h5IEkgc3RhcnRlZCBwb2tpbmcgYXQgZHJtX2Nvbm5lY3Rvcl9yZWdpc3Rlcgph
-bmQgdGhlIGZ1bmN0aW9ucyBpdCBjYWxscyBhbmQgaG93IEkgZm91bmQgb3V0IHRoYXQgY29tbWVu
-dGluZyBvdXQgdGhlCmRybV9zeXNmc19ob3RwbHVnX2V2ZW50KCkgY2FsbCByZXByb2R1Y2VzIHRo
-ZSBiZWhhdmlvciBvbiBvbGRlciB3b3JraW5nIGtlcm5lbHMuCgpJIGhhdmUgdHJpZWQgcmVwbGFj
-aW5nIHRoaXMgd2l0aCBhIHNsZWVwIGNhbGwgdG8gcnVsZSBvdXQgdGltaW5nIGlzc3VlcywgdGhh
-dApkb2VzIG5vdCBoZWxwLgoKT3RoZXIgdGhpbmdzIEkgaGF2ZSBjaGVja2VkIGlzIHRoYXQgb25l
-IGNvbW1pdCBiZWZvcmUgdGhlIHRyb3VibGVzb21lIGNvbW1pdApub3V2ZWF1X2Nvbm5lY3Rvcl9o
-b3RwbHVnKCkgcHJvcGVybHkgcnVuczsgYW5kIHRoYXQgYWZ0ZXIgdGhlIHRyb3VibGVzb21lCmNv
-bW1pdCB3ZSBzdGlsbCBwcm9wZXJseSBjYWxsIG52aWZfbm90aWZ5X2dldCgmY29ubi0+aHBkKTsK
-ClNvIG5vdyBJJ20gYWxsIG91dCBvZiBpZGVhcyBob3cgdG8gZGVidWcgdGhpcyBmdXJ0aGVyIGFu
-ZCBJIGhvcGUgc29tZW9uZSBvbgp0aGUgbGlzdCBoYXMgYW4gaWRlYSBob3cgdG8gZGVidWcgdGhp
-cy4KClJlZ2FyZHMsCgpIYW5zCgpwLnMuCgpJJ3ZlIGFsc28gdHJpZWQgYSBsaXR0bGUgaGFjayBs
-aWtlIHRoaXM6CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9k
-cm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKaW5kZXggMmIyYmFm
-NmUwZTBkLi5lZmM3YmE2NjZiMWIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L25vdXZlYXVfZHJtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0u
-YwpAQCAtNDU5LDcgKzQ1OSw3IEBAIG5vdXZlYXVfYWNjZWxfaW5pdChzdHJ1Y3Qgbm91dmVhdV9k
-cm0gKmRybSkKICB9CgogIHN0YXRpYyBpbnQKLW5vdXZlYXVfZHJtX2RldmljZV9pbml0KHN0cnVj
-dCBkcm1fZGV2aWNlICpkZXYpCitub3V2ZWF1X2RybV9sb2FkKHN0cnVjdCBkcm1fZGV2aWNlICpk
-ZXYsIHVuc2lnbmVkIGxvbmcgZmxhZ3MpCiAgewogIAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybTsK
-ICAJaW50IHJldDsKQEAgLTY0Nyw5ICs2NDcsOSBAQCBzdGF0aWMgaW50IG5vdXZlYXVfZHJtX3By
-b2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LAogIAlkcm1fZGV2LT5wZGV2ID0gcGRldjsKICAJcGNp
-X3NldF9kcnZkYXRhKHBkZXYsIGRybV9kZXYpOwoKLQlyZXQgPSBub3V2ZWF1X2RybV9kZXZpY2Vf
-aW5pdChkcm1fZGV2KTsKKy8qCXJldCA9IG5vdXZlYXVfZHJtX2RldmljZV9pbml0KGRybV9kZXYp
-OwogIAlpZiAocmV0KQotCQlnb3RvIGZhaWxfcGNpOworCQlnb3RvIGZhaWxfcGNpOyAqLwoKICAJ
-cmV0ID0gZHJtX2Rldl9yZWdpc3Rlcihkcm1fZGV2LCBwZW50LT5kcml2ZXJfZGF0YSk7CiAgCWlm
-IChyZXQpCkBAIC0xMDUxLDYgKzEwNTEsNyBAQCBkcml2ZXJfc3R1YiA9IHsKICAJCURSSVZFUl9H
-RU0gfCBEUklWRVJfTU9ERVNFVCB8IERSSVZFUl9QUklNRSB8IERSSVZFUl9SRU5ERVIgfAogIAkJ
-RFJJVkVSX0tNU19MRUdBQ1lfQ09OVEVYVCwKCisJLmxvYWQgPSBub3V2ZWF1X2RybV9sb2FkLAog
-IAkub3BlbiA9IG5vdXZlYXVfZHJtX29wZW4sCiAgCS5wb3N0Y2xvc2UgPSBub3V2ZWF1X2RybV9w
-b3N0Y2xvc2UsCiAgCS5sYXN0Y2xvc2UgPSBub3V2ZWF1X3ZnYV9sYXN0Y2xvc2UsCgpBbmQgd2l0
-aCA0LjIwIHRoYXQgZml4ZXMgdGhpbmdzLCBvbiA1LjQgSSBnZXQgYW4gb29wcyB3aXRoIHRoaXMg
-aGFjawp3aGljaCBJJ3ZlIG5vdCBkZWJ1Z2dlZCBmdXJ0aGVyIHNpbmNlIHRoaXMgaXMgbm90IGEg
-cHJvcGVyIHNvbHV0aW9uLgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQ==
+ping...
+
+On Thu, Nov 21, 2019 at 12:09 PM Navid Emamdoost
+<navid.emamdoost@gmail.com> wrote:
+>
+> On Mon, Oct 21, 2019 at 4:14 PM Navid Emamdoost
+> <navid.emamdoost@gmail.com> wrote:
+> >
+> > In the implementation of nouveau_bo_alloc() if it fails to determine the
+> > target page size via pi, then the allocated memory for nvbo should be
+> > released.
+> >
+> > Fixes: 019cbd4a4feb ("drm/nouveau: Initialize GEM object before TTM object")
+> > Signed-off-by: Navid Emamdoost <navid.emamdoost@gmail.com>
+>
+> Would you please review this patch?
+>
+>
+> Thanks,
+> Navid.
+>
+> > ---
+> >  drivers/gpu/drm/nouveau/nouveau_bo.c | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> > index f8015e0318d7..18857cf44068 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> > @@ -276,8 +276,10 @@ nouveau_bo_alloc(struct nouveau_cli *cli, u64 *size, int *align, u32 flags,
+> >                         break;
+> >         }
+> >
+> > -       if (WARN_ON(pi < 0))
+> > +       if (WARN_ON(pi < 0)) {
+> > +               kfree(nvbo);
+> >                 return ERR_PTR(-EINVAL);
+> > +       }
+> >
+> >         /* Disable compression if suitable settings couldn't be found. */
+> >         if (nvbo->comp && !vmm->page[pi].comp) {
+> > --
+> > 2.17.1
+> >
+>
+>
+> --
+> Navid.
+
+
+
+-- 
+Navid.
