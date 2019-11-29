@@ -1,14 +1,12 @@
-From: Joerg Roedel <joro-zLv9SwRftAIdnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH v2 0/9] drm/nouveau: Various fixes for GP10B
-Date: Fri, 29 Nov 2019 12:20:39 +0100
-Message-ID: <20191129112039.GB11039@8bytes.org>
-References: <20191102175637.3065-1-thierry.reding@gmail.com>
+From: Colin King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: [PATCH] nouveau: fix incorrect sizeof on args.src an
+ args.dst
+Date: Fri, 29 Nov 2019 16:28:28 +0000
+Message-ID: <20191129162828.84570-1-colin.king@canonical.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20191102175637.3065-1-thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,14 +16,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Dooks <ben.dooks-4yDnlxn2s6sWdaTGBSpHTA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBOb3YgMDIsIDIwMTkgYXQgMDY6NTY6MjhQTSArMDEwMCwgVGhpZXJyeSBSZWRpbmcg
-d3JvdGU6Cj4gVGhpZXJyeSBSZWRpbmcgKDkpOgo+ICAgaW9tbXU6IERvY3VtZW50IGlvbW11X2Z3
-c3BlYzo6ZmxhZ3MgZmllbGQKPiAgIGlvbW11OiBBZGQgZHVtbXkgZGV2X2lvbW11X2Z3c3BlY19n
-ZXQoKSBoZWxwZXIKCkFja2VkLWJ5OiBKb2VyZyBSb2VkZWwgPGpyb2VkZWxAc3VzZS5kZT4KCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+RnJvbTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KClRoZSBzaXpl
+b2YgaXMgY3VycmVudGx5IG9uIGFyZ3Muc3JjIGFuZCBhcmdzLmRzdCBhbmQgc2hvdWxkIGJlIG9u
+CiphcmdzLnNyYyBhbmQgKmFyZ3MuZHN0LiBGb3J0dW5hdGVseSB0aGVzZSBzaXplcyBqdXN0IHNv
+IGhhcHBlbgp0byBiZSB0aGUgc2FtZSBzaXplIHNvIGl0IHdvcmtlZCwgaG93ZXZlciwgdGhpcyBz
+aG91bGQgYmUgZml4ZWQKYW5kIGl0IGFsc28gY2xlYW5zIHVwIHN0YXRpYyBhbmFseXNpcyB3YXJu
+aW5ncwoKQWRkcmVzc2VzLUNvdmVyaXR5OiAoInNpemVvZiBub3QgcG9ydGFibGUiKQpGaXhlczog
+ZjI2ODMwN2VjN2M3ICgibm91dmVhdTogc2ltcGxpZnkgbm91dmVhdV9kbWVtX21pZ3JhdGVfdm1h
+IikKU2lnbmVkLW9mZi1ieTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNv
+bT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RtZW0uYyB8IDQgKystLQog
+MSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RtZW0uYyBiL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L25vdXZlYXVfZG1lbS5jCmluZGV4IGZhMTQzOTk0MTU5Ni4uMGFkNWQ4N2I1
+YThlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RtZW0uYwor
+KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RtZW0uYwpAQCAtNjM1LDEwICs2
+MzUsMTAgQEAgbm91dmVhdV9kbWVtX21pZ3JhdGVfdm1hKHN0cnVjdCBub3V2ZWF1X2RybSAqZHJt
+LAogCXVuc2lnbmVkIGxvbmcgYywgaTsKIAlpbnQgcmV0ID0gLUVOT01FTTsKIAotCWFyZ3Muc3Jj
+ID0ga2NhbGxvYyhtYXgsIHNpemVvZihhcmdzLnNyYyksIEdGUF9LRVJORUwpOworCWFyZ3Muc3Jj
+ID0ga2NhbGxvYyhtYXgsIHNpemVvZigqYXJncy5zcmMpLCBHRlBfS0VSTkVMKTsKIAlpZiAoIWFy
+Z3Muc3JjKQogCQlnb3RvIG91dDsKLQlhcmdzLmRzdCA9IGtjYWxsb2MobWF4LCBzaXplb2YoYXJn
+cy5kc3QpLCBHRlBfS0VSTkVMKTsKKwlhcmdzLmRzdCA9IGtjYWxsb2MobWF4LCBzaXplb2YoKmFy
+Z3MuZHN0KSwgR0ZQX0tFUk5FTCk7CiAJaWYgKCFhcmdzLmRzdCkKIAkJZ290byBvdXRfZnJlZV9z
+cmM7CiAKLS0gCjIuMjQuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
