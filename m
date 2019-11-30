@@ -1,12 +1,13 @@
-From: Colin King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Subject: [PATCH] nouveau: fix incorrect sizeof on args.src an
- args.dst
-Date: Fri, 29 Nov 2019 16:28:28 +0000
-Message-ID: <20191129162828.84570-1-colin.king@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 56615] [NVD9] Unable to start X on ThinkPad T420s
+ laptop
+Date: Sat, 30 Nov 2019 15:47:21 +0000
+Message-ID: <bug-56615-8800-c2iTrRISwh@http.bugs.freedesktop.org/>
+References: <bug-56615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1666849136=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,31 +17,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KClRoZSBzaXpl
-b2YgaXMgY3VycmVudGx5IG9uIGFyZ3Muc3JjIGFuZCBhcmdzLmRzdCBhbmQgc2hvdWxkIGJlIG9u
-CiphcmdzLnNyYyBhbmQgKmFyZ3MuZHN0LiBGb3J0dW5hdGVseSB0aGVzZSBzaXplcyBqdXN0IHNv
-IGhhcHBlbgp0byBiZSB0aGUgc2FtZSBzaXplIHNvIGl0IHdvcmtlZCwgaG93ZXZlciwgdGhpcyBz
-aG91bGQgYmUgZml4ZWQKYW5kIGl0IGFsc28gY2xlYW5zIHVwIHN0YXRpYyBhbmFseXNpcyB3YXJu
-aW5ncwoKQWRkcmVzc2VzLUNvdmVyaXR5OiAoInNpemVvZiBub3QgcG9ydGFibGUiKQpGaXhlczog
-ZjI2ODMwN2VjN2M3ICgibm91dmVhdTogc2ltcGxpZnkgbm91dmVhdV9kbWVtX21pZ3JhdGVfdm1h
-IikKU2lnbmVkLW9mZi1ieTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNv
-bT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RtZW0uYyB8IDQgKystLQog
-MSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RtZW0uYyBiL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfZG1lbS5jCmluZGV4IGZhMTQzOTk0MTU5Ni4uMGFkNWQ4N2I1
-YThlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RtZW0uYwor
-KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RtZW0uYwpAQCAtNjM1LDEwICs2
-MzUsMTAgQEAgbm91dmVhdV9kbWVtX21pZ3JhdGVfdm1hKHN0cnVjdCBub3V2ZWF1X2RybSAqZHJt
-LAogCXVuc2lnbmVkIGxvbmcgYywgaTsKIAlpbnQgcmV0ID0gLUVOT01FTTsKIAotCWFyZ3Muc3Jj
-ID0ga2NhbGxvYyhtYXgsIHNpemVvZihhcmdzLnNyYyksIEdGUF9LRVJORUwpOworCWFyZ3Muc3Jj
-ID0ga2NhbGxvYyhtYXgsIHNpemVvZigqYXJncy5zcmMpLCBHRlBfS0VSTkVMKTsKIAlpZiAoIWFy
-Z3Muc3JjKQogCQlnb3RvIG91dDsKLQlhcmdzLmRzdCA9IGtjYWxsb2MobWF4LCBzaXplb2YoYXJn
-cy5kc3QpLCBHRlBfS0VSTkVMKTsKKwlhcmdzLmRzdCA9IGtjYWxsb2MobWF4LCBzaXplb2YoKmFy
-Z3MuZHN0KSwgR0ZQX0tFUk5FTCk7CiAJaWYgKCFhcmdzLmRzdCkKIAkJZ290byBvdXRfZnJlZV9z
-cmM7CiAKLS0gCjIuMjQuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1666849136==
+Content-Type: multipart/alternative; boundary="15751288410.0711cE85.10691"
+Content-Transfer-Encoding: 7bit
+
+
+--15751288410.0711cE85.10691
+Date: Sat, 30 Nov 2019 15:47:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D56615
+
+takkarton <majidtalebloo1388-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                URL|                            |http://www.kartonbox.ir
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15751288410.0711cE85.10691
+Date: Sat, 30 Nov 2019 15:47:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:majidtale=
+bloo1388&#64;gmail.com" title=3D"takkarton &lt;majidtalebloo1388&#64;gmail.=
+com&gt;"> <span class=3D"fn">takkarton</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVD9] Unable to start X on ThinkPad T420s laptop"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D56615">bug 56615<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">URL</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>http://www.kartonbox.ir
+           </td>
+         </tr></table>
+      <p>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15751288410.0711cE85.10691--
+
+--===============1666849136==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1666849136==--
