@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 56615] [NVD9] Unable to start X on ThinkPad T420s
  laptop
-Date: Sat, 30 Nov 2019 15:47:21 +0000
-Message-ID: <bug-56615-8800-c2iTrRISwh@http.bugs.freedesktop.org/>
+Date: Sat, 30 Nov 2019 17:01:57 +0000
+Message-ID: <bug-56615-8800-ysnE4dFpZ9@http.bugs.freedesktop.org/>
 References: <bug-56615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1666849136=="
+Content-Type: multipart/mixed; boundary="===============1965992363=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1666849136==
-Content-Type: multipart/alternative; boundary="15751288410.0711cE85.10691"
+--===============1965992363==
+Content-Type: multipart/alternative; boundary="15751333162.9dcF6d.16009"
 Content-Transfer-Encoding: 7bit
 
 
---15751288410.0711cE85.10691
-Date: Sat, 30 Nov 2019 15:47:21 +0000
+--15751333162.9dcF6d.16009
+Date: Sat, 30 Nov 2019 17:01:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D56615
 
-takkarton <majidtalebloo1388-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                URL|                            |http://www.kartonbox.ir
+                URL|http://www.kartonbox.ir     |
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15751288410.0711cE85.10691
-Date: Sat, 30 Nov 2019 15:47:21 +0000
+--15751333162.9dcF6d.16009
+Date: Sat, 30 Nov 2019 17:01:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,9 +58,9 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:majidtale=
-bloo1388&#64;gmail.com" title=3D"takkarton &lt;majidtalebloo1388&#64;gmail.=
-com&gt;"> <span class=3D"fn">takkarton</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:a9016009&=
+#64;gmx.de" title=3D"Andre Klapper &lt;a9016009&#64;gmx.de&gt;"> <span clas=
+s=3D"fn">Andre Klapper</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
@@ -77,10 +77,10 @@ com&gt;"> <span class=3D"fn">takkarton</span></a>
 
          <tr>
            <td style=3D"text-align:right;">URL</td>
+           <td>http://www.kartonbox.ir
+           </td>
            <td>
                &nbsp;
-           </td>
-           <td>http://www.kartonbox.ir
            </td>
          </tr></table>
       <p>
@@ -96,9 +96,9 @@ com&gt;"> <span class=3D"fn">takkarton</span></a>
     </body>
 </html>=
 
---15751288410.0711cE85.10691--
+--15751333162.9dcF6d.16009--
 
---===============1666849136==
+--===============1965992363==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1666849136==--
+--===============1965992363==--
