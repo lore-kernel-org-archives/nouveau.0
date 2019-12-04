@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93557] Kernel Panic on Linux Kernel 4.4 when loading
- KDE/KDM on Nvidia GeForce 7025 / nForce 630a
-Date: Wed, 04 Dec 2019 09:09:04 +0000
-Message-ID: <bug-93557-8800-884yUF2sIE@http.bugs.freedesktop.org/>
-References: <bug-93557-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93612] Unable to force-enable output if monitor
+ disconnected
+Date: Wed, 04 Dec 2019 09:09:06 +0000
+Message-ID: <bug-93612-8800-3vybEW7SYM@http.bugs.freedesktop.org/>
+References: <bug-93612-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1102771991=="
+Content-Type: multipart/mixed; boundary="===============1193547166=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93612-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1102771991==
-Content-Type: multipart/alternative; boundary="15754505430.Ad57c.23183"
+--===============1193547166==
+Content-Type: multipart/alternative; boundary="15754505460.bB07.23183"
 Content-Transfer-Encoding: 7bit
 
 
---15754505430.Ad57c.23183
-Date: Wed, 4 Dec 2019 09:09:03 +0000
+--15754505460.bB07.23183
+Date: Wed, 4 Dec 2019 09:09:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93557
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93612
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
@@ -43,7 +43,7 @@ Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |MOVED
 
---- Comment #12 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #1 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/246.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/247.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754505430.Ad57c.23183
-Date: Wed, 4 Dec 2019 09:09:03 +0000
+--15754505460.bB07.23183
+Date: Wed, 4 Dec 2019 09:09:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +76,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Kernel Panic on Linux Kernel 4.4 when loading =
-KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93557">bug 93557<=
+   title=3D"RESOLVED MOVED - Unable to force-enable output if monitor disco=
+nnected"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93612">bug 93612<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -107,15 +107,15 @@ KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Kernel Panic on Linux Kernel 4.4 when loading =
-KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93557#c12">Commen=
-t # 12</a>
+   title=3D"RESOLVED MOVED - Unable to force-enable output if monitor disco=
+nnected"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93612#c1">Comment=
+ # 1</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Kernel Panic on Linux Kernel 4.4 when loading =
-KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93557">bug 93557<=
+   title=3D"RESOLVED MOVED - Unable to force-enable output if monitor disco=
+nnected"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93612">bug 93612<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -130,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/246">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/246</a>.</pre>
+sues/247">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/247</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +145,9 @@ ues/246</a>.</pre>
     </body>
 </html>=
 
---15754505430.Ad57c.23183--
+--15754505460.bB07.23183--
 
---===============1102771991==
+--===============1193547166==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1102771991==--
+--===============1193547166==--
