@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97922] Having easily reproducible xorg hang on
- extensive blender 3d editor usage
-Date: Wed, 04 Dec 2019 09:17:42 +0000
-Message-ID: <bug-97922-8800-245QktqIpo@http.bugs.freedesktop.org/>
-References: <bug-97922-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98129] X hung with nouveau 'INVALID_CMD' and
+ 'INVALID_ADDRESS_ALIGNMENT' errors on GeForce 9600 GT [10de:0622]
+Date: Wed, 04 Dec 2019 09:17:45 +0000
+Message-ID: <bug-98129-8800-HW0kFVl137@http.bugs.freedesktop.org/>
+References: <bug-98129-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1394871701=="
+Content-Type: multipart/mixed; boundary="===============1104677779=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98129-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1394871701==
-Content-Type: multipart/alternative; boundary="15754510620.D7f5899.24832"
+--===============1104677779==
+Content-Type: multipart/alternative; boundary="15754510643.D9b1AF4C.24832"
 Content-Transfer-Encoding: 7bit
 
 
---15754510620.D7f5899.24832
-Date: Wed, 4 Dec 2019 09:17:42 +0000
+--15754510643.D9b1AF4C.24832
+Date: Wed, 4 Dec 2019 09:17:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97922
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98129
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
@@ -52,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/287.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/288.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754510620.D7f5899.24832
-Date: Wed, 4 Dec 2019 09:17:42 +0000
+--15754510643.D9b1AF4C.24832
+Date: Wed, 4 Dec 2019 09:17:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +76,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Having easily reproducible xorg hang on extens=
-ive blender 3d editor usage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97922">bug 97922<=
+   title=3D"RESOLVED MOVED - X hung with nouveau 'INVALID_CMD' and 'INVALID=
+_ADDRESS_ALIGNMENT' errors on GeForce 9600 GT [10de:0622]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98129">bug 98129<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -107,15 +107,15 @@ ive blender 3d editor usage"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Having easily reproducible xorg hang on extens=
-ive blender 3d editor usage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97922#c1">Comment=
+   title=3D"RESOLVED MOVED - X hung with nouveau 'INVALID_CMD' and 'INVALID=
+_ADDRESS_ALIGNMENT' errors on GeForce 9600 GT [10de:0622]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98129#c1">Comment=
  # 1</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Having easily reproducible xorg hang on extens=
-ive blender 3d editor usage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97922">bug 97922<=
+   title=3D"RESOLVED MOVED - X hung with nouveau 'INVALID_CMD' and 'INVALID=
+_ADDRESS_ALIGNMENT' errors on GeForce 9600 GT [10de:0622]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98129">bug 98129<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -130,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/287">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/287</a>.</pre>
+sues/288">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/288</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +145,9 @@ ues/287</a>.</pre>
     </body>
 </html>=
 
---15754510620.D7f5899.24832--
+--15754510643.D9b1AF4C.24832--
 
---===============1394871701==
+--===============1104677779==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1394871701==--
+--===============1104677779==--
