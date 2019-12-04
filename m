@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103721] [GM107] Frequent freezes with nouveau on
- Thinkpad P50
-Date: Wed, 04 Dec 2019 09:33:14 +0000
-Message-ID: <bug-103721-8800-ThzzPaGJ35@http.bugs.freedesktop.org/>
-References: <bug-103721-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
+ [CTXSW_TIMEOUT]
+Date: Wed, 04 Dec 2019 09:33:15 +0000
+Message-ID: <bug-100567-8800-iC9iilX4N3@http.bugs.freedesktop.org/>
+References: <bug-100567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0673779825=="
+Content-Type: multipart/mixed; boundary="===============1510328331=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,45 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0673779825==
-Content-Type: multipart/alternative; boundary="15754519943.6831b.28225"
+--===============1510328331==
+Content-Type: multipart/alternative; boundary="15754519960.98aD.28225"
 Content-Transfer-Encoding: 7bit
 
 
---15754519943.6831b.28225
-Date: Wed, 4 Dec 2019 09:33:14 +0000
+--15754519960.98aD.28225
+Date: Wed, 4 Dec 2019 09:33:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103721
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
+Bug 100567 depends on bug 103721, which changed state.
 
-Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
+Bug 103721 Summary: [GM107] Frequent freezes with nouveau on Thinkpad P50
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103721
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
-
---- Comment #17 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
--- GitLab Migration Automatic Message --
-
-This bug has been migrated to freedesktop.org's GitLab instance and has been
-closed from further activity.
-
-You can subscribe and participate further through the new bug through this =
-link
-to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/381.
+         Resolution|---                         |MOVED
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754519943.6831b.28225
-Date: Wed, 4 Dec 2019 09:33:14 +0000
+--15754519960.98aD.28225
+Date: Wed, 4 Dec 2019 09:33:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,16 +61,20 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:martin.pe=
-res&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.fr&gt;"> <=
-span class=3D"fn">Martin Peres</span></a>
-</span> changed
+    <body><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED MOVED - Nouveau system freeze fifo: SCHED_ERROR 0a [CT=
+XSW_TIMEOUT]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">Bug 10056=
+7</a>
+          depends on
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
    title=3D"RESOLVED MOVED - [GM107] Frequent freezes with nouveau on Think=
 pad P50"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721">bug 10372=
-1</a>
+1</a>,
+          which changed state.
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -89,50 +84,21 @@ pad P50"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>MOVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Status</td>
            <td>NEW
            </td>
            <td>RESOLVED
            </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>MOVED
+           </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [GM107] Frequent freezes with nouveau on Think=
-pad P50"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721#c17">Comme=
-nt # 17</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [GM107] Frequent freezes with nouveau on Think=
-pad P50"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721">bug 10372=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
-r&gt;"> <span class=3D"fn">Martin Peres</span></a>
-</span></b>
-        <pre>-- GitLab Migration Automatic Message --
-
-This bug has been migrated to freedesktop.org's GitLab instance and has been
-closed from further activity.
-
-You can subscribe and participate further through the new bug through this =
-link
-to our GitLab instance:
-<a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/381">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/381</a>.</pre>
-        </div>
       </p>
 
 
@@ -145,9 +111,9 @@ ues/381</a>.</pre>
     </body>
 </html>=
 
---15754519943.6831b.28225--
+--15754519960.98aD.28225--
 
---===============0673779825==
+--===============1510328331==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0673779825==--
+--===============1510328331==--
