@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69952] [NVAA] Xorg crash+restart after glxgears on
- 3.12-rc2
-Date: Wed, 04 Dec 2019 08:37:38 +0000
-Message-ID: <bug-69952-8800-u9g4xfxpgw@http.bugs.freedesktop.org/>
-References: <bug-69952-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70213] [git-v3.12-rc3 + nouveau HEAD] Vmalloc
+ failure -> pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12
+Date: Wed, 04 Dec 2019 08:37:43 +0000
+Message-ID: <bug-70213-8800-dCGGRlOzCE@http.bugs.freedesktop.org/>
+References: <bug-70213-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1911726798=="
+Content-Type: multipart/mixed; boundary="===============0267051075=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69952-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1911726798==
-Content-Type: multipart/alternative; boundary="15754486570.E29fb.16275"
+--===============0267051075==
+Content-Type: multipart/alternative; boundary="15754486630.bA4D.16275"
 Content-Transfer-Encoding: 7bit
 
 
---15754486570.E29fb.16275
-Date: Wed, 4 Dec 2019 08:37:37 +0000
+--15754486630.bA4D.16275
+Date: Wed, 4 Dec 2019 08:37:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D69952
+https://bugs.freedesktop.org/show_bug.cgi?id=3D70213
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
          Resolution|---                         |MOVED
-             Status|NEEDINFO                    |RESOLVED
+             Status|NEW                         |RESOLVED
 
---- Comment #7 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #9 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/61.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/62.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754486570.E29fb.16275
-Date: Wed, 4 Dec 2019 08:37:37 +0000
+--15754486630.bA4D.16275
+Date: Wed, 4 Dec 2019 08:37:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +76,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVAA] Xorg crash+restart after glxgears on 3.=
-12-rc2"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69952">bug 69952<=
+   title=3D"RESOLVED MOVED - [git-v3.12-rc3 + nouveau HEAD] Vmalloc failure=
+ -&gt; pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70213">bug 70213<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -98,7 +98,7 @@ span class=3D"fn">Martin Peres</span></a>
 
          <tr>
            <td style=3D"text-align:right;">Status</td>
-           <td>NEEDINFO
+           <td>NEW
            </td>
            <td>RESOLVED
            </td>
@@ -107,15 +107,15 @@ span class=3D"fn">Martin Peres</span></a>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVAA] Xorg crash+restart after glxgears on 3.=
-12-rc2"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69952#c7">Comment=
- # 7</a>
+   title=3D"RESOLVED MOVED - [git-v3.12-rc3 + nouveau HEAD] Vmalloc failure=
+ -&gt; pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70213#c9">Comment=
+ # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVAA] Xorg crash+restart after glxgears on 3.=
-12-rc2"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69952">bug 69952<=
+   title=3D"RESOLVED MOVED - [git-v3.12-rc3 + nouveau HEAD] Vmalloc failure=
+ -&gt; pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x50 returns -12"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70213">bug 70213<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -130,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/61">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issu=
-es/61</a>.</pre>
+sues/62">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issu=
+es/62</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +145,9 @@ es/61</a>.</pre>
     </body>
 </html>=
 
---15754486570.E29fb.16275--
+--15754486630.bA4D.16275--
 
---===============1911726798==
+--===============0267051075==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1911726798==--
+--===============0267051075==--
