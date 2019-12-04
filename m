@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87771] [NV63] X freezes after login
-Date: Wed, 04 Dec 2019 08:53:26 +0000
-Message-ID: <bug-87771-8800-LOMClRbIF8@http.bugs.freedesktop.org/>
-References: <bug-87771-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87830] [GF116] I got bright noise screen (static)
+ like on TV after boot.
+Date: Wed, 04 Dec 2019 08:53:47 +0000
+Message-ID: <bug-87830-8800-GrFDsJzhbk@http.bugs.freedesktop.org/>
+References: <bug-87830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0173099407=="
+Content-Type: multipart/mixed; boundary="===============0377297501=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87771-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-87830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0173099407==
-Content-Type: multipart/alternative; boundary="15754496061.dfee5.20215"
+--===============0377297501==
+Content-Type: multipart/alternative; boundary="15754496272.b35b5DBDC.20215"
 Content-Transfer-Encoding: 7bit
 
 
---15754496061.dfee5.20215
-Date: Wed, 4 Dec 2019 08:53:26 +0000
+--15754496272.b35b5DBDC.20215
+Date: Wed, 4 Dec 2019 08:53:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D87771
+https://bugs.freedesktop.org/show_bug.cgi?id=3D87830
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
@@ -42,7 +43,7 @@ Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
          Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
 
---- Comment #13 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #22 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -51,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/159.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/160.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754496061.dfee5.20215
-Date: Wed, 4 Dec 2019 08:53:26 +0000
+--15754496272.b35b5DBDC.20215
+Date: Wed, 4 Dec 2019 08:53:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,8 +76,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NV63] X freezes after login"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D87771">bug 87771<=
+   title=3D"RESOLVED MOVED - [GF116] I got bright noise screen (static) lik=
+e on TV after boot."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D87830">bug 87830<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -105,13 +107,15 @@ span class=3D"fn">Martin Peres</span></a>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NV63] X freezes after login"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D87771#c13">Commen=
-t # 13</a>
+   title=3D"RESOLVED MOVED - [GF116] I got bright noise screen (static) lik=
+e on TV after boot."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D87830#c22">Commen=
+t # 22</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NV63] X freezes after login"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D87771">bug 87771<=
+   title=3D"RESOLVED MOVED - [GF116] I got bright noise screen (static) lik=
+e on TV after boot."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D87830">bug 87830<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -126,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/159">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/159</a>.</pre>
+sues/160">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/160</a>.</pre>
         </div>
       </p>
 
@@ -141,9 +145,9 @@ ues/159</a>.</pre>
     </body>
 </html>=
 
---15754496061.dfee5.20215--
+--15754496272.b35b5DBDC.20215--
 
---===============0173099407==
+--===============0377297501==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -153,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0173099407==--
+--===============0377297501==--
