@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104413] [NV11] GPU Lockup on GeForce2 MX/MX 400
-Date: Wed, 04 Dec 2019 09:34:57 +0000
-Message-ID: <bug-104413-8800-8EZY8qSb5i@http.bugs.freedesktop.org/>
-References: <bug-104413-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104421] System freeze on wayland with nouveau on
+ NV137 (GP107) and NVE4 (GK104) and GK107
+Date: Wed, 04 Dec 2019 09:35:04 +0000
+Message-ID: <bug-104421-8800-1NGy0QYf8d@http.bugs.freedesktop.org/>
+References: <bug-104421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0916936729=="
+Content-Type: multipart/mixed; boundary="===============0973126862=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104413-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-104421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0916936729==
-Content-Type: multipart/alternative; boundary="15754520962.d9D2e.28233"
+--===============0973126862==
+Content-Type: multipart/alternative; boundary="15754521030.F99BFa.28233"
 Content-Transfer-Encoding: 7bit
 
 
---15754520962.d9D2e.28233
-Date: Wed, 4 Dec 2019 09:34:56 +0000
+--15754521030.F99BFa.28233
+Date: Wed, 4 Dec 2019 09:35:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104413
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
          Resolution|---                         |MOVED
+             Status|NEW                         |RESOLVED
 
---- Comment #8 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #14 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -51,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/395.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/396.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754520962.d9D2e.28233
-Date: Wed, 4 Dec 2019 09:34:56 +0000
+--15754521030.F99BFa.28233
+Date: Wed, 4 Dec 2019 09:35:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,9 +76,10 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NV11] GPU Lockup on GeForce2 MX/MX 400"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104413">bug 10441=
-3</a>
+   title=3D"RESOLVED MOVED - System freeze on wayland with nouveau on NV137=
+ (GP107) and NVE4 (GK104) and GK107"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
+1</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -87,32 +89,34 @@ span class=3D"fn">Martin Peres</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Resolution</td>
            <td>---
            </td>
            <td>MOVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NV11] GPU Lockup on GeForce2 MX/MX 400"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104413#c8">Commen=
-t # 8</a>
+   title=3D"RESOLVED MOVED - System freeze on wayland with nouveau on NV137=
+ (GP107) and NVE4 (GK104) and GK107"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421#c14">Comme=
+nt # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NV11] GPU Lockup on GeForce2 MX/MX 400"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104413">bug 10441=
-3</a>
+   title=3D"RESOLVED MOVED - System freeze on wayland with nouveau on NV137=
+ (GP107) and NVE4 (GK104) and GK107"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
+1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
 r&gt;"> <span class=3D"fn">Martin Peres</span></a>
@@ -126,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/395">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/395</a>.</pre>
+sues/396">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/396</a>.</pre>
         </div>
       </p>
 
@@ -141,9 +145,9 @@ ues/395</a>.</pre>
     </body>
 </html>=
 
---15754520962.d9D2e.28233--
+--15754521030.F99BFa.28233--
 
---===============0916936729==
+--===============0973126862==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -153,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0916936729==--
+--===============0973126862==--
