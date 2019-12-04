@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104845] Nouveau NV98 on Linux 4.15.0 : 0 A.D. game
- creates memory mess after short time
-Date: Wed, 04 Dec 2019 09:36:01 +0000
-Message-ID: <bug-104845-8800-b5R683P1Sw@http.bugs.freedesktop.org/>
-References: <bug-104845-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104897] nouveau memory allocation issue causes
+ screen distortions under KDE
+Date: Wed, 04 Dec 2019 09:36:07 +0000
+Message-ID: <bug-104897-8800-zpKc6NIQXA@http.bugs.freedesktop.org/>
+References: <bug-104897-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0882622543=="
+Content-Type: multipart/mixed; boundary="===============1117023960=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104845-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-104897-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0882622543==
-Content-Type: multipart/alternative; boundary="15754521603.F4ddfed.28233"
+--===============1117023960==
+Content-Type: multipart/alternative; boundary="15754521673.E811f.28233"
 Content-Transfer-Encoding: 7bit
 
 
---15754521603.F4ddfed.28233
-Date: Wed, 4 Dec 2019 09:36:00 +0000
+--15754521673.E811f.28233
+Date: Wed, 4 Dec 2019 09:36:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104845
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104897
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
@@ -52,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/406.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/407.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754521603.F4ddfed.28233
-Date: Wed, 4 Dec 2019 09:36:00 +0000
+--15754521673.E811f.28233
+Date: Wed, 4 Dec 2019 09:36:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,10 +76,10 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Nouveau NV98 on Linux 4.15.0 : 0 A.D. game cre=
-ates memory mess after short time"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104845">bug 10484=
-5</a>
+   title=3D"RESOLVED MOVED - nouveau memory allocation issue causes screen =
+distortions under KDE"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104897">bug 10489=
+7</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -107,16 +107,16 @@ ates memory mess after short time"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Nouveau NV98 on Linux 4.15.0 : 0 A.D. game cre=
-ates memory mess after short time"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104845#c1">Commen=
+   title=3D"RESOLVED MOVED - nouveau memory allocation issue causes screen =
+distortions under KDE"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104897#c1">Commen=
 t # 1</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Nouveau NV98 on Linux 4.15.0 : 0 A.D. game cre=
-ates memory mess after short time"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104845">bug 10484=
-5</a>
+   title=3D"RESOLVED MOVED - nouveau memory allocation issue causes screen =
+distortions under KDE"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104897">bug 10489=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
 r&gt;"> <span class=3D"fn">Martin Peres</span></a>
@@ -130,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/406">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/406</a>.</pre>
+sues/407">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/407</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +145,9 @@ ues/406</a>.</pre>
     </body>
 </html>=
 
---15754521603.F4ddfed.28233--
+--15754521673.E811f.28233--
 
---===============0882622543==
+--===============1117023960==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0882622543==--
+--===============1117023960==--
