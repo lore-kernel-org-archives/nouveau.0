@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85570] DPMS does not turn off LCD backlight on G73
- (NV4B) [GeForce 7600 GS]
-Date: Wed, 04 Dec 2019 08:51:09 +0000
-Message-ID: <bug-85570-8800-XxT1pMGZYn@http.bugs.freedesktop.org/>
-References: <bug-85570-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 85605] gk106: GPU lockup on resume (3.16)
+Date: Wed, 04 Dec 2019 08:51:12 +0000
+Message-ID: <bug-85605-8800-PYL6OGYBpq@http.bugs.freedesktop.org/>
+References: <bug-85605-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1526160640=="
+Content-Type: multipart/mixed; boundary="===============0636809556=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85570-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-85605-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +20,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1526160640==
-Content-Type: multipart/alternative; boundary="15754494690.C1f55E1.19860"
+--===============0636809556==
+Content-Type: multipart/alternative; boundary="15754494723.9A6fd310.19860"
 Content-Transfer-Encoding: 7bit
 
 
---15754494690.C1f55E1.19860
-Date: Wed, 4 Dec 2019 08:51:09 +0000
+--15754494723.9A6fd310.19860
+Date: Wed, 4 Dec 2019 08:51:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D85570
+https://bugs.freedesktop.org/show_bug.cgi?id=3D85605
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
@@ -43,7 +42,7 @@ Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |MOVED
 
---- Comment #4 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #1 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,14 +51,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/145.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/146.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754494690.C1f55E1.19860
-Date: Wed, 4 Dec 2019 08:51:09 +0000
+--15754494723.9A6fd310.19860
+Date: Wed, 4 Dec 2019 08:51:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +75,8 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - DPMS does not turn off LCD backlight on G73 (N=
-V4B) [GeForce 7600 GS]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D85570">bug 85570<=
+   title=3D"RESOLVED MOVED - gk106: GPU lockup on resume (3.16)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D85605">bug 85605<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -107,15 +105,13 @@ V4B) [GeForce 7600 GS]"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - DPMS does not turn off LCD backlight on G73 (N=
-V4B) [GeForce 7600 GS]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D85570#c4">Comment=
- # 4</a>
+   title=3D"RESOLVED MOVED - gk106: GPU lockup on resume (3.16)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D85605#c1">Comment=
+ # 1</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - DPMS does not turn off LCD backlight on G73 (N=
-V4B) [GeForce 7600 GS]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D85570">bug 85570<=
+   title=3D"RESOLVED MOVED - gk106: GPU lockup on resume (3.16)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D85605">bug 85605<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -130,8 +126,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/145">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/145</a>.</pre>
+sues/146">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/146</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +141,9 @@ ues/145</a>.</pre>
     </body>
 </html>=
 
---15754494690.C1f55E1.19860--
+--15754494723.9A6fd310.19860--
 
---===============1526160640==
+--===============0636809556==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +153,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1526160640==--
+--===============0636809556==--
