@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 49786] In xterm,
- some rectangles are not redrawn when the window is partly covered
-Date: Wed, 04 Dec 2019 08:28:05 +0000
-Message-ID: <bug-49786-8800-sEEacb7Zth@http.bugs.freedesktop.org/>
-References: <bug-49786-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51579] [NVA8] Xv shows black image on ION chipset
+Date: Wed, 04 Dec 2019 08:28:20 +0000
+Message-ID: <bug-51579-8800-x4Q371lZEr@http.bugs.freedesktop.org/>
+References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1730031262=="
+Content-Type: multipart/mixed; boundary="===============1932072648=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-49786-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51579-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1730031262==
-Content-Type: multipart/alternative; boundary="15754480851.F2DCC8.15243"
+--===============1932072648==
+Content-Type: multipart/alternative; boundary="15754481001.6CF6.15243"
 Content-Transfer-Encoding: 7bit
 
 
---15754480851.F2DCC8.15243
-Date: Wed, 4 Dec 2019 08:28:05 +0000
+--15754481001.6CF6.15243
+Date: Wed, 4 Dec 2019 08:28:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D49786
+https://bugs.freedesktop.org/show_bug.cgi?id=3D51579
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEEDINFO                    |RESOLVED
+             Status|REOPENED                    |RESOLVED
          Resolution|---                         |MOVED
 
---- Comment #20 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #32 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,14 +51,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/23.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/24.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754480851.F2DCC8.15243
-Date: Wed, 4 Dec 2019 08:28:05 +0000
+--15754481001.6CF6.15243
+Date: Wed, 4 Dec 2019 08:28:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +75,8 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - In xterm, some rectangles are not redrawn when=
- the window is partly covered"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D49786">bug 49786<=
+   title=3D"RESOLVED MOVED - [NVA8] Xv shows black image on ION chipset"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D51579">bug 51579<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -90,7 +88,7 @@ span class=3D"fn">Martin Peres</span></a>
 
          <tr>
            <td style=3D"text-align:right;">Status</td>
-           <td>NEEDINFO
+           <td>REOPENED
            </td>
            <td>RESOLVED
            </td>
@@ -107,15 +105,13 @@ span class=3D"fn">Martin Peres</span></a>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - In xterm, some rectangles are not redrawn when=
- the window is partly covered"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D49786#c20">Commen=
-t # 20</a>
+   title=3D"RESOLVED MOVED - [NVA8] Xv shows black image on ION chipset"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D51579#c32">Commen=
+t # 32</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - In xterm, some rectangles are not redrawn when=
- the window is partly covered"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D49786">bug 49786<=
+   title=3D"RESOLVED MOVED - [NVA8] Xv shows black image on ION chipset"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D51579">bug 51579<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -130,8 +126,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/23">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issu=
-es/23</a>.</pre>
+sues/24">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issu=
+es/24</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +141,9 @@ es/23</a>.</pre>
     </body>
 </html>=
 
---15754480851.F2DCC8.15243--
+--15754481001.6CF6.15243--
 
---===============1730031262==
+--===============1932072648==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +153,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1730031262==--
+--===============1932072648==--
