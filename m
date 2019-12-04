@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103780] Nouveau causes lockup - fifo: read fault at
- 00005ac000 engine 00 [GR] client 02 [GPC1/PE_0] reason 02 [PTE] on channel
- 24 [103b5b2000 Xwayland[1507]]
-Date: Wed, 04 Dec 2019 09:33:21 +0000
-Message-ID: <bug-103780-8800-Ad5UCUB3w8@http.bugs.freedesktop.org/>
-References: <bug-103780-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 103889] [NV50/G86] disp: ERROR 1 [] 01 [] chid 0
+ mthd 0000 data 00000000
+Date: Wed, 04 Dec 2019 09:33:40 +0000
+Message-ID: <bug-103889-8800-ZPsHT2NVG6@http.bugs.freedesktop.org/>
+References: <bug-103889-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0427519605=="
+Content-Type: multipart/mixed; boundary="===============1663363462=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103780-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-103889-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,29 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0427519605==
-Content-Type: multipart/alternative; boundary="15754520014.db14b4.28225"
+--===============1663363462==
+Content-Type: multipart/alternative; boundary="15754520201.Ae20E9CfD.28225"
 Content-Transfer-Encoding: 7bit
 
 
---15754520014.db14b4.28225
-Date: Wed, 4 Dec 2019 09:33:21 +0000
+--15754520201.Ae20E9CfD.28225
+Date: Wed, 4 Dec 2019 09:33:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103780
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103889
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
+         Resolution|---                         |MOVED
 
---- Comment #2 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #10 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -53,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/382.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/383.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754520014.db14b4.28225
-Date: Wed, 4 Dec 2019 09:33:21 +0000
+--15754520201.Ae20E9CfD.28225
+Date: Wed, 4 Dec 2019 09:33:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,11 +76,10 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Nouveau causes lockup - fifo: read fault at 00=
-005ac000 engine 00 [GR] client 02 [GPC1/PE_0] reason 02 [PTE] on channel 24=
- [103b5b2000 Xwayland[1507]]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103780">bug 10378=
-0</a>
+   title=3D"RESOLVED MOVED - [NV50/G86] disp: ERROR 1 [] 01 [] chid 0 mthd =
+0000 data 00000000"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103889">bug 10388=
+9</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -91,36 +89,34 @@ span class=3D"fn">Martin Peres</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>MOVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Status</td>
            <td>NEW
            </td>
            <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>MOVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Nouveau causes lockup - fifo: read fault at 00=
-005ac000 engine 00 [GR] client 02 [GPC1/PE_0] reason 02 [PTE] on channel 24=
- [103b5b2000 Xwayland[1507]]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103780#c2">Commen=
-t # 2</a>
+   title=3D"RESOLVED MOVED - [NV50/G86] disp: ERROR 1 [] 01 [] chid 0 mthd =
+0000 data 00000000"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103889#c10">Comme=
+nt # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Nouveau causes lockup - fifo: read fault at 00=
-005ac000 engine 00 [GR] client 02 [GPC1/PE_0] reason 02 [PTE] on channel 24=
- [103b5b2000 Xwayland[1507]]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103780">bug 10378=
-0</a>
+   title=3D"RESOLVED MOVED - [NV50/G86] disp: ERROR 1 [] 01 [] chid 0 mthd =
+0000 data 00000000"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103889">bug 10388=
+9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
 r&gt;"> <span class=3D"fn">Martin Peres</span></a>
@@ -134,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/382">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/382</a>.</pre>
+sues/383">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/383</a>.</pre>
         </div>
       </p>
 
@@ -149,9 +145,9 @@ ues/382</a>.</pre>
     </body>
 </html>=
 
---15754520014.db14b4.28225--
+--15754520201.Ae20E9CfD.28225--
 
---===============0427519605==
+--===============1663363462==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -161,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0427519605==--
+--===============1663363462==--
