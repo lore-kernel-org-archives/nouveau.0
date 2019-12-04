@@ -1,15 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99202] system freeze - fifo: SCHED_ERROR 0a
- [CTXSW_TIMEOUT] - MULTIPLE_WARP_ERRORS - DATA_ERROR 00000004
- [INVALID_VALUE] - ILLEGAL_CLASS ch 11 - RT_STORAGE_TYPE_MISMATCH -
- CLASS_SUBCH_MISMATCH
-Date: Wed, 04 Dec 2019 09:22:47 +0000
-Message-ID: <bug-99202-8800-ZAvVkQymhp@http.bugs.freedesktop.org/>
-References: <bug-99202-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99289] Display freezes after "gr: TRAP ch 6"
+Date: Wed, 04 Dec 2019 09:22:53 +0000
+Message-ID: <bug-99289-8800-TR9XoOuqka@http.bugs.freedesktop.org/>
+References: <bug-99289-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0515830990=="
+Content-Type: multipart/mixed; boundary="===============0105239453=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99202-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99289-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -23,20 +20,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0515830990==
-Content-Type: multipart/alternative; boundary="15754513674.CbdFd5f6d.25468"
+--===============0105239453==
+Content-Type: multipart/alternative; boundary="15754513721.79AA.25468"
 Content-Transfer-Encoding: 7bit
 
 
---15754513674.CbdFd5f6d.25468
-Date: Wed, 4 Dec 2019 09:22:47 +0000
+--15754513721.79AA.25468
+Date: Wed, 4 Dec 2019 09:22:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99202
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99289
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
@@ -45,7 +42,7 @@ Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
          Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
 
---- Comment #6 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #3 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -54,14 +51,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/312.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/313.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754513674.CbdFd5f6d.25468
-Date: Wed, 4 Dec 2019 09:22:47 +0000
+--15754513721.79AA.25468
+Date: Wed, 4 Dec 2019 09:22:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,10 +75,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - system freeze - fifo: SCHED_ERROR 0a [CTXSW_TI=
-MEOUT] - MULTIPLE_WARP_ERRORS - DATA_ERROR 00000004 [INVALID_VALUE] - ILLEG=
-AL_CLASS ch 11 - RT_STORAGE_TYPE_MISMATCH - CLASS_SUBCH_MISMATCH"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99202">bug 99202<=
+   title=3D"RESOLVED MOVED - Display freezes after &quot;gr: TRAP ch 6&quot=
+;"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99289">bug 99289<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -110,17 +106,15 @@ AL_CLASS ch 11 - RT_STORAGE_TYPE_MISMATCH - CLASS_SUBCH_MISMATCH"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - system freeze - fifo: SCHED_ERROR 0a [CTXSW_TI=
-MEOUT] - MULTIPLE_WARP_ERRORS - DATA_ERROR 00000004 [INVALID_VALUE] - ILLEG=
-AL_CLASS ch 11 - RT_STORAGE_TYPE_MISMATCH - CLASS_SUBCH_MISMATCH"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99202#c6">Comment=
- # 6</a>
+   title=3D"RESOLVED MOVED - Display freezes after &quot;gr: TRAP ch 6&quot=
+;"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99289#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - system freeze - fifo: SCHED_ERROR 0a [CTXSW_TI=
-MEOUT] - MULTIPLE_WARP_ERRORS - DATA_ERROR 00000004 [INVALID_VALUE] - ILLEG=
-AL_CLASS ch 11 - RT_STORAGE_TYPE_MISMATCH - CLASS_SUBCH_MISMATCH"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99202">bug 99202<=
+   title=3D"RESOLVED MOVED - Display freezes after &quot;gr: TRAP ch 6&quot=
+;"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99289">bug 99289<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -135,8 +129,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/312">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/312</a>.</pre>
+sues/313">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/313</a>.</pre>
         </div>
       </p>
 
@@ -150,9 +144,9 @@ ues/312</a>.</pre>
     </body>
 </html>=
 
---15754513674.CbdFd5f6d.25468--
+--15754513721.79AA.25468--
 
---===============0515830990==
+--===============0105239453==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -162,4 +156,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0515830990==--
+--===============0105239453==--
