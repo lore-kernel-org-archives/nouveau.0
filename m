@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67597] nouveau E Xorg failed to idle channel on NVA0
-Date: Wed, 04 Dec 2019 08:34:55 +0000
-Message-ID: <bug-67597-8800-W4BH4doiHG@http.bugs.freedesktop.org/>
-References: <bug-67597-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 67878] [NV98] [BISECTED] Hardware freeze after
+ resume from suspend
+Date: Wed, 04 Dec 2019 08:35:26 +0000
+Message-ID: <bug-67878-8800-C4eO1vhJcW@http.bugs.freedesktop.org/>
+References: <bug-67878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1965386077=="
+Content-Type: multipart/mixed; boundary="===============0858770645=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67597-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1965386077==
-Content-Type: multipart/alternative; boundary="15754484951.879Ffc9d.16181"
+--===============0858770645==
+Content-Type: multipart/alternative; boundary="15754485290.A1c40E9ef.16665"
 Content-Transfer-Encoding: 7bit
 
 
---15754484951.879Ffc9d.16181
-Date: Wed, 4 Dec 2019 08:34:55 +0000
+--15754485290.A1c40E9ef.16665
+Date: Wed, 4 Dec 2019 08:35:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D67597
+https://bugs.freedesktop.org/show_bug.cgi?id=3D67878
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
@@ -42,7 +43,7 @@ Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
          Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
 
---- Comment #10 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #54 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -51,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/49.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/50.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754484951.879Ffc9d.16181
-Date: Wed, 4 Dec 2019 08:34:55 +0000
+--15754485290.A1c40E9ef.16665
+Date: Wed, 4 Dec 2019 08:35:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,8 +76,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - nouveau E Xorg failed to idle channel on NVA0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D67597">bug 67597<=
+   title=3D"RESOLVED MOVED - [NV98] [BISECTED] Hardware freeze after resume=
+ from suspend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D67878">bug 67878<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -105,13 +107,15 @@ span class=3D"fn">Martin Peres</span></a>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - nouveau E Xorg failed to idle channel on NVA0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D67597#c10">Commen=
-t # 10</a>
+   title=3D"RESOLVED MOVED - [NV98] [BISECTED] Hardware freeze after resume=
+ from suspend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D67878#c54">Commen=
+t # 54</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - nouveau E Xorg failed to idle channel on NVA0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D67597">bug 67597<=
+   title=3D"RESOLVED MOVED - [NV98] [BISECTED] Hardware freeze after resume=
+ from suspend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D67878">bug 67878<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -126,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/49">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issu=
-es/49</a>.</pre>
+sues/50">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issu=
+es/50</a>.</pre>
         </div>
       </p>
 
@@ -141,9 +145,9 @@ es/49</a>.</pre>
     </body>
 </html>=
 
---15754484951.879Ffc9d.16181--
+--15754485290.A1c40E9ef.16665--
 
---===============1965386077==
+--===============0858770645==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -153,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1965386077==--
+--===============0858770645==--
