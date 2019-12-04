@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88463] Black screen on "Unlocking the disk" screen
-Date: Wed, 04 Dec 2019 08:54:53 +0000
-Message-ID: <bug-88463-8800-tFqY0kkPIY@http.bugs.freedesktop.org/>
-References: <bug-88463-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 88801] Xorg segfaults while playing a video on
+ kaffeine causing immediate logout
+Date: Wed, 04 Dec 2019 08:54:56 +0000
+Message-ID: <bug-88801-8800-yNPqgPI6kz@http.bugs.freedesktop.org/>
+References: <bug-88801-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1847342422=="
+Content-Type: multipart/mixed; boundary="===============0878960625=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88463-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-88801-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1847342422==
-Content-Type: multipart/alternative; boundary="15754496931.e9a8Af5D.20215"
+--===============0878960625==
+Content-Type: multipart/alternative; boundary="15754496960.A68A74B.20215"
 Content-Transfer-Encoding: 7bit
 
 
---15754496931.e9a8Af5D.20215
-Date: Wed, 4 Dec 2019 08:54:53 +0000
+--15754496960.A68A74B.20215
+Date: Wed, 4 Dec 2019 08:54:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D88463
+https://bugs.freedesktop.org/show_bug.cgi?id=3D88801
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
+         Resolution|---                         |MOVED
 
 --- Comment #1 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
@@ -51,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/165.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/166.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754496931.e9a8Af5D.20215
-Date: Wed, 4 Dec 2019 08:54:53 +0000
+--15754496960.A68A74B.20215
+Date: Wed, 4 Dec 2019 08:54:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,9 +76,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Black screen on &quot;Unlocking the disk&quot;=
- screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D88463">bug 88463<=
+   title=3D"RESOLVED MOVED - Xorg segfaults while playing a video on kaffei=
+ne causing immediate logout"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D88801">bug 88801<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -88,33 +89,33 @@ span class=3D"fn">Martin Peres</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>MOVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Status</td>
            <td>NEW
            </td>
            <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>MOVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Black screen on &quot;Unlocking the disk&quot;=
- screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D88463#c1">Comment=
+   title=3D"RESOLVED MOVED - Xorg segfaults while playing a video on kaffei=
+ne causing immediate logout"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D88801#c1">Comment=
  # 1</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Black screen on &quot;Unlocking the disk&quot;=
- screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D88463">bug 88463<=
+   title=3D"RESOLVED MOVED - Xorg segfaults while playing a video on kaffei=
+ne causing immediate logout"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D88801">bug 88801<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -129,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/165">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/165</a>.</pre>
+sues/166">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/166</a>.</pre>
         </div>
       </p>
 
@@ -144,9 +145,9 @@ ues/165</a>.</pre>
     </body>
 </html>=
 
---15754496931.e9a8Af5D.20215--
+--15754496960.A68A74B.20215--
 
---===============1847342422==
+--===============0878960625==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -156,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1847342422==--
+--===============0878960625==--
