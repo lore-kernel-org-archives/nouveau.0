@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92327] Tearing and drm_wait_vblank kernel log spam
- with reverse PRIME (intel+nouveau)
-Date: Wed, 04 Dec 2019 09:04:50 +0000
-Message-ID: <bug-92327-8800-TVYN3FWyBK@http.bugs.freedesktop.org/>
-References: <bug-92327-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92377] Add support for early voltage table as seen
+ on nv43
+Date: Wed, 04 Dec 2019 09:04:57 +0000
+Message-ID: <bug-92377-8800-Ea2d2bYGul@http.bugs.freedesktop.org/>
+References: <bug-92377-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0265695855=="
+Content-Type: multipart/mixed; boundary="===============0458990317=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92327-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92377-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0265695855==
-Content-Type: multipart/alternative; boundary="15754502890.bA1B99.22397"
+--===============0458990317==
+Content-Type: multipart/alternative; boundary="15754502963.3D5e6.22397"
 Content-Transfer-Encoding: 7bit
 
 
---15754502890.bA1B99.22397
-Date: Wed, 4 Dec 2019 09:04:49 +0000
+--15754502963.3D5e6.22397
+Date: Wed, 4 Dec 2019 09:04:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92327
+https://bugs.freedesktop.org/show_bug.cgi?id=3D92377
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
+         Resolution|---                         |MOVED
 
 --- Comment #2 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
@@ -52,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/222.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/223.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754502890.bA1B99.22397
-Date: Wed, 4 Dec 2019 09:04:49 +0000
+--15754502963.3D5e6.22397
+Date: Wed, 4 Dec 2019 09:04:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +76,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Tearing and drm_wait_vblank kernel log spam wi=
-th reverse PRIME (intel+nouveau)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92327">bug 92327<=
+   title=3D"RESOLVED MOVED - Add support for early voltage table as seen on=
+ nv43"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92377">bug 92377<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -89,33 +89,33 @@ th reverse PRIME (intel+nouveau)"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>MOVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Status</td>
            <td>NEW
            </td>
            <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>MOVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Tearing and drm_wait_vblank kernel log spam wi=
-th reverse PRIME (intel+nouveau)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92327#c2">Comment=
+   title=3D"RESOLVED MOVED - Add support for early voltage table as seen on=
+ nv43"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92377#c2">Comment=
  # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Tearing and drm_wait_vblank kernel log spam wi=
-th reverse PRIME (intel+nouveau)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92327">bug 92327<=
+   title=3D"RESOLVED MOVED - Add support for early voltage table as seen on=
+ nv43"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92377">bug 92377<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -130,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/222">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/222</a>.</pre>
+sues/223">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/223</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +145,9 @@ ues/222</a>.</pre>
     </body>
 </html>=
 
---15754502890.bA1B99.22397--
+--15754502963.3D5e6.22397--
 
---===============0265695855==
+--===============0458990317==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0265695855==--
+--===============0458990317==--
