@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71035] [NV86] PDISP evo flush (?) errors,
- broken modesetting
-Date: Wed, 04 Dec 2019 08:39:35 +0000
-Message-ID: <bug-71035-8800-7uOvxv5JuJ@http.bugs.freedesktop.org/>
-References: <bug-71035-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71351] [NVE7] xset dpms force off only works after
+ suspend
+Date: Wed, 04 Dec 2019 08:39:44 +0000
+Message-ID: <bug-71351-8800-SzRMhX9dpW@http.bugs.freedesktop.org/>
+References: <bug-71351-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1746950835=="
+Content-Type: multipart/mixed; boundary="===============0605969013=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71035-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1746950835==
-Content-Type: multipart/alternative; boundary="15754487753.dAD5E0B.17474"
+--===============0605969013==
+Content-Type: multipart/alternative; boundary="15754487840.A1ceB4.17474"
 Content-Transfer-Encoding: 7bit
 
 
---15754487753.dAD5E0B.17474
-Date: Wed, 4 Dec 2019 08:39:35 +0000
+--15754487840.A1ceB4.17474
+Date: Wed, 4 Dec 2019 08:39:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D71035
+https://bugs.freedesktop.org/show_bug.cgi?id=3D71351
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
@@ -43,7 +43,7 @@ Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
          Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
 
---- Comment #2 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #5 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/69.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/70.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754487753.dAD5E0B.17474
-Date: Wed, 4 Dec 2019 08:39:35 +0000
+--15754487840.A1ceB4.17474
+Date: Wed, 4 Dec 2019 08:39:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +76,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NV86] PDISP evo flush (?) errors, broken mode=
-setting"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71035">bug 71035<=
+   title=3D"RESOLVED MOVED - [NVE7] xset dpms force off only works after su=
+spend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71351">bug 71351<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -107,15 +107,15 @@ setting"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NV86] PDISP evo flush (?) errors, broken mode=
-setting"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71035#c2">Comment=
- # 2</a>
+   title=3D"RESOLVED MOVED - [NVE7] xset dpms force off only works after su=
+spend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71351#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NV86] PDISP evo flush (?) errors, broken mode=
-setting"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71035">bug 71035<=
+   title=3D"RESOLVED MOVED - [NVE7] xset dpms force off only works after su=
+spend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71351">bug 71351<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -130,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/69">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issu=
-es/69</a>.</pre>
+sues/70">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issu=
+es/70</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +145,9 @@ es/69</a>.</pre>
     </body>
 </html>=
 
---15754487753.dAD5E0B.17474--
+--15754487840.A1ceB4.17474--
 
---===============1746950835==
+--===============0605969013==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1746950835==--
+--===============0605969013==--
