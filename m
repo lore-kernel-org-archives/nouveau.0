@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91333] Connecting second of two monitors to a Lenovo
- W520 causes displays to go crazy
-Date: Wed, 04 Dec 2019 09:01:41 +0000
-Message-ID: <bug-91333-8800-ANFl1o7yr8@http.bugs.freedesktop.org/>
-References: <bug-91333-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91354] [NV108] Quadro K610M: "xset dpms force on"
+ blinks the screen
+Date: Wed, 04 Dec 2019 09:01:43 +0000
+Message-ID: <bug-91354-8800-THapj8k6ON@http.bugs.freedesktop.org/>
+References: <bug-91354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0954848639=="
+Content-Type: multipart/mixed; boundary="===============1223547914=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91333-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0954848639==
-Content-Type: multipart/alternative; boundary="15754501001.5B6dfB958.21838"
+--===============1223547914==
+Content-Type: multipart/alternative; boundary="15754501031.b9Bb10E.21838"
 Content-Transfer-Encoding: 7bit
 
 
---15754501001.5B6dfB958.21838
-Date: Wed, 4 Dec 2019 09:01:40 +0000
+--15754501031.b9Bb10E.21838
+Date: Wed, 4 Dec 2019 09:01:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91333
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91354
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
@@ -43,7 +43,7 @@ Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
          Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
 
---- Comment #17 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #3 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/201.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/202.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754501001.5B6dfB958.21838
-Date: Wed, 4 Dec 2019 09:01:40 +0000
+--15754501031.b9Bb10E.21838
+Date: Wed, 4 Dec 2019 09:01:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +76,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Connecting second of two monitors to a Lenovo =
-W520 causes displays to go crazy"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91333">bug 91333<=
+   title=3D"RESOLVED MOVED - [NV108] Quadro K610M: &quot;xset dpms force on=
+&quot; blinks the screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91354">bug 91354<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -107,15 +107,15 @@ W520 causes displays to go crazy"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Connecting second of two monitors to a Lenovo =
-W520 causes displays to go crazy"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91333#c17">Commen=
-t # 17</a>
+   title=3D"RESOLVED MOVED - [NV108] Quadro K610M: &quot;xset dpms force on=
+&quot; blinks the screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91354#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Connecting second of two monitors to a Lenovo =
-W520 causes displays to go crazy"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91333">bug 91333<=
+   title=3D"RESOLVED MOVED - [NV108] Quadro K610M: &quot;xset dpms force on=
+&quot; blinks the screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91354">bug 91354<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -130,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/201">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/201</a>.</pre>
+sues/202">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/202</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +145,9 @@ ues/201</a>.</pre>
     </body>
 </html>=
 
---15754501001.5B6dfB958.21838--
+--15754501031.b9Bb10E.21838--
 
---===============0954848639==
+--===============1223547914==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0954848639==--
+--===============1223547914==--
