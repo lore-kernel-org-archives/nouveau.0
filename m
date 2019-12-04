@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102106] xorg crashes when running gscan2pdf
- (libgtk2-perl) test case
-Date: Wed, 04 Dec 2019 09:30:12 +0000
-Message-ID: <bug-102106-8800-hnvuyK4fh4@http.bugs.freedesktop.org/>
-References: <bug-102106-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 102135] WARN_ON hit when loading G71 with v4.13-rc4
+Date: Wed, 04 Dec 2019 09:30:19 +0000
+Message-ID: <bug-102135-8800-Xe78kJtJZS@http.bugs.freedesktop.org/>
+References: <bug-102135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0598186583=="
+Content-Type: multipart/mixed; boundary="===============0191047312=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-102106-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-102135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0598186583==
-Content-Type: multipart/alternative; boundary="15754518120.114B.27381"
+--===============0191047312==
+Content-Type: multipart/alternative; boundary="15754518182.a5a67.27381"
 Content-Transfer-Encoding: 7bit
 
 
---15754518120.114B.27381
-Date: Wed, 4 Dec 2019 09:30:12 +0000
+--15754518182.a5a67.27381
+Date: Wed, 4 Dec 2019 09:30:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102106
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102135
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
+             Status|NEEDINFO                    |RESOLVED
          Resolution|---                         |MOVED
-             Status|NEW                         |RESOLVED
 
---- Comment #12 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #5 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,14 +51,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/361.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/362.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754518120.114B.27381
-Date: Wed, 4 Dec 2019 09:30:12 +0000
+--15754518182.a5a67.27381
+Date: Wed, 4 Dec 2019 09:30:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,10 +75,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - xorg crashes when running gscan2pdf (libgtk2-p=
-erl) test case"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106">bug 10210=
-6</a>
+   title=3D"RESOLVED MOVED - WARN_ON hit when loading G71 with v4.13-rc4"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102135">bug 10213=
+5</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -89,34 +87,32 @@ erl) test case"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEEDINFO
            </td>
-           <td>MOVED
+           <td>RESOLVED
            </td>
          </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
            </td>
-           <td>RESOLVED
+           <td>MOVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - xorg crashes when running gscan2pdf (libgtk2-p=
-erl) test case"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106#c12">Comme=
-nt # 12</a>
+   title=3D"RESOLVED MOVED - WARN_ON hit when loading G71 with v4.13-rc4"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102135#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - xorg crashes when running gscan2pdf (libgtk2-p=
-erl) test case"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106">bug 10210=
-6</a>
+   title=3D"RESOLVED MOVED - WARN_ON hit when loading G71 with v4.13-rc4"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102135">bug 10213=
+5</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
 r&gt;"> <span class=3D"fn">Martin Peres</span></a>
@@ -130,8 +126,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/361">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/361</a>.</pre>
+sues/362">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/362</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +141,9 @@ ues/361</a>.</pre>
     </body>
 </html>=
 
---15754518120.114B.27381--
+--15754518182.a5a67.27381--
 
---===============0598186583==
+--===============0191047312==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +153,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0598186583==--
+--===============0191047312==--
