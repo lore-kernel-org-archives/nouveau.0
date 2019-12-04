@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89484] [NVD9] xrandr no output to DisplayPort with
- GeForce GT 520M.
-Date: Wed, 04 Dec 2019 08:56:29 +0000
-Message-ID: <bug-89484-8800-M4fVoTpANG@http.bugs.freedesktop.org/>
-References: <bug-89484-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
+Date: Wed, 04 Dec 2019 08:57:08 +0000
+Message-ID: <bug-89558-8800-bjH8q5MfAW@http.bugs.freedesktop.org/>
+References: <bug-89558-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0551924979=="
+Content-Type: multipart/mixed; boundary="===============1096123895=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89484-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0551924979==
-Content-Type: multipart/alternative; boundary="15754497893.AfcBf.20438"
+--===============1096123895==
+Content-Type: multipart/alternative; boundary="15754498285.881d9e.20438"
 Content-Transfer-Encoding: 7bit
 
 
---15754497893.AfcBf.20438
-Date: Wed, 4 Dec 2019 08:56:29 +0000
+--15754498285.881d9e.20438
+Date: Wed, 4 Dec 2019 08:57:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D89484
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89558
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
+         Resolution|---                         |MOVED
 
---- Comment #18 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #50 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,14 +51,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/174.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/175.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754497893.AfcBf.20438
-Date: Wed, 4 Dec 2019 08:56:29 +0000
+--15754498285.881d9e.20438
+Date: Wed, 4 Dec 2019 08:57:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +75,8 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVD9] xrandr no output to DisplayPort with Ge=
-Force GT 520M."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89484">bug 89484<=
+   title=3D"RESOLVED MOVED - [NV118] GM108 not supported by nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89558">bug 89558<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -89,33 +87,31 @@ Force GT 520M."
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>MOVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Status</td>
            <td>NEW
            </td>
            <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>MOVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVD9] xrandr no output to DisplayPort with Ge=
-Force GT 520M."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89484#c18">Commen=
-t # 18</a>
+   title=3D"RESOLVED MOVED - [NV118] GM108 not supported by nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89558#c50">Commen=
+t # 50</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVD9] xrandr no output to DisplayPort with Ge=
-Force GT 520M."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89484">bug 89484<=
+   title=3D"RESOLVED MOVED - [NV118] GM108 not supported by nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89558">bug 89558<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -130,8 +126,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/174">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/174</a>.</pre>
+sues/175">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/175</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +141,9 @@ ues/174</a>.</pre>
     </body>
 </html>=
 
---15754497893.AfcBf.20438--
+--15754498285.881d9e.20438--
 
---===============0551924979==
+--===============1096123895==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +153,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0551924979==--
+--===============1096123895==--
