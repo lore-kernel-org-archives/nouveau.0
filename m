@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77674] [NVE7] "failed to read DPCD" on wake up with
- external monitor
-Date: Wed, 04 Dec 2019 08:45:05 +0000
-Message-ID: <bug-77674-8800-i0NJ9xOmUb@http.bugs.freedesktop.org/>
-References: <bug-77674-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77757] [NV4E] [v3.15-rc2] nouveau fails after 6
+ resumes
+Date: Wed, 04 Dec 2019 08:45:09 +0000
+Message-ID: <bug-77757-8800-CmTEhtwvy2@http.bugs.freedesktop.org/>
+References: <bug-77757-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0188464666=="
+Content-Type: multipart/mixed; boundary="===============1277275848=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77674-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-77757-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0188464666==
-Content-Type: multipart/alternative; boundary="15754491040.8CaEea.18097"
+--===============1277275848==
+Content-Type: multipart/alternative; boundary="15754491093.d5dFE0bF.18097"
 Content-Transfer-Encoding: 7bit
 
 
---15754491040.8CaEea.18097
-Date: Wed, 4 Dec 2019 08:45:04 +0000
+--15754491093.d5dFE0bF.18097
+Date: Wed, 4 Dec 2019 08:45:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D77674
+https://bugs.freedesktop.org/show_bug.cgi?id=3D77757
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
          Resolution|---                         |MOVED
+             Status|NEW                         |RESOLVED
 
---- Comment #9 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #2 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/104.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/105.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754491040.8CaEea.18097
-Date: Wed, 4 Dec 2019 08:45:04 +0000
+--15754491093.d5dFE0bF.18097
+Date: Wed, 4 Dec 2019 08:45:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +76,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVE7] &quot;failed to read DPCD&quot; on wake=
- up with external monitor"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77674">bug 77674<=
+   title=3D"RESOLVED MOVED - [NV4E] [v3.15-rc2] nouveau fails after 6 resum=
+es"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77757">bug 77757<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -89,33 +89,33 @@ span class=3D"fn">Martin Peres</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Resolution</td>
            <td>---
            </td>
            <td>MOVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVE7] &quot;failed to read DPCD&quot; on wake=
- up with external monitor"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77674#c9">Comment=
- # 9</a>
+   title=3D"RESOLVED MOVED - [NV4E] [v3.15-rc2] nouveau fails after 6 resum=
+es"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77757#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVE7] &quot;failed to read DPCD&quot; on wake=
- up with external monitor"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77674">bug 77674<=
+   title=3D"RESOLVED MOVED - [NV4E] [v3.15-rc2] nouveau fails after 6 resum=
+es"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77757">bug 77757<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -130,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/104">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/104</a>.</pre>
+sues/105">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/105</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +145,9 @@ ues/104</a>.</pre>
     </body>
 </html>=
 
---15754491040.8CaEea.18097--
+--15754491093.d5dFE0bF.18097--
 
---===============0188464666==
+--===============1277275848==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0188464666==--
+--===============1277275848==--
