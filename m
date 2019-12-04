@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93201] When running a basic OpenGL program with
- DRI_PRIME=1, Xorg crashes
-Date: Wed, 04 Dec 2019 09:08:05 +0000
-Message-ID: <bug-93201-8800-5I6VCPQASn@http.bugs.freedesktop.org/>
-References: <bug-93201-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93267] BUG: unable to handle kernel paging request
+ in reservation_object_wait_timeout_rcu
+Date: Wed, 04 Dec 2019 09:08:08 +0000
+Message-ID: <bug-93267-8800-ydoDmkUSH5@http.bugs.freedesktop.org/>
+References: <bug-93267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1603187879=="
+Content-Type: multipart/mixed; boundary="===============0860963261=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93201-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93267-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1603187879==
-Content-Type: multipart/alternative; boundary="15754504840.194aFF.22786"
+--===============0860963261==
+Content-Type: multipart/alternative; boundary="15754504882.3DD1a8b6A.22786"
 Content-Transfer-Encoding: 7bit
 
 
---15754504840.194aFF.22786
-Date: Wed, 4 Dec 2019 09:08:04 +0000
+--15754504882.3DD1a8b6A.22786
+Date: Wed, 4 Dec 2019 09:08:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93201
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93267
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
@@ -43,7 +43,7 @@ Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |MOVED
 
---- Comment #7 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #1 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/242.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/243.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754504840.194aFF.22786
-Date: Wed, 4 Dec 2019 09:08:04 +0000
+--15754504882.3DD1a8b6A.22786
+Date: Wed, 4 Dec 2019 09:08:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +76,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - When running a basic OpenGL program with DRI_P=
-RIME=3D1, Xorg crashes"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93201">bug 93201<=
+   title=3D"RESOLVED MOVED - BUG: unable to handle kernel paging request in=
+ reservation_object_wait_timeout_rcu"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93267">bug 93267<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -107,15 +107,15 @@ RIME=3D1, Xorg crashes"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - When running a basic OpenGL program with DRI_P=
-RIME=3D1, Xorg crashes"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93201#c7">Comment=
- # 7</a>
+   title=3D"RESOLVED MOVED - BUG: unable to handle kernel paging request in=
+ reservation_object_wait_timeout_rcu"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93267#c1">Comment=
+ # 1</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - When running a basic OpenGL program with DRI_P=
-RIME=3D1, Xorg crashes"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93201">bug 93201<=
+   title=3D"RESOLVED MOVED - BUG: unable to handle kernel paging request in=
+ reservation_object_wait_timeout_rcu"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93267">bug 93267<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -130,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/242">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/242</a>.</pre>
+sues/243">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/243</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +145,9 @@ ues/242</a>.</pre>
     </body>
 </html>=
 
---15754504840.194aFF.22786--
+--15754504882.3DD1a8b6A.22786--
 
---===============1603187879==
+--===============0860963261==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1603187879==--
+--===============0860963261==--
