@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111793] double free or corruption (fasttop) in
- nouveau_bo_del
-Date: Wed, 04 Dec 2019 09:53:23 +0000
-Message-ID: <bug-111793-8800-TnYZR6YtLZ@http.bugs.freedesktop.org/>
-References: <bug-111793-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 111841] Setting gamma or color temperature on GK104
+ causes horizontal artifacts / flickering
+Date: Wed, 04 Dec 2019 09:53:28 +0000
+Message-ID: <bug-111841-8800-PSZbWD3VRJ@http.bugs.freedesktop.org/>
+References: <bug-111841-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1720481398=="
+Content-Type: multipart/mixed; boundary="===============0575630986=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111793-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-111841-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1720481398==
-Content-Type: multipart/alternative; boundary="15754532033.bfE9106A.32211"
+--===============0575630986==
+Content-Type: multipart/alternative; boundary="15754532081.6BA47f8f3.32211"
 Content-Transfer-Encoding: 7bit
 
 
---15754532033.bfE9106A.32211
-Date: Wed, 4 Dec 2019 09:53:23 +0000
+--15754532081.6BA47f8f3.32211
+Date: Wed, 4 Dec 2019 09:53:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111793
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111841
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
          Resolution|---                         |MOVED
+             Status|NEW                         |RESOLVED
 
 --- Comment #5 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
@@ -52,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/504.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/505.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754532033.bfE9106A.32211
-Date: Wed, 4 Dec 2019 09:53:23 +0000
+--15754532081.6BA47f8f3.32211
+Date: Wed, 4 Dec 2019 09:53:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,10 +76,10 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - double free or corruption (fasttop) in nouveau=
-_bo_del"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111793">bug 11179=
-3</a>
+   title=3D"RESOLVED MOVED - Setting gamma or color temperature on GK104 ca=
+uses horizontal artifacts / flickering"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111841">bug 11184=
+1</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -89,34 +89,34 @@ _bo_del"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Resolution</td>
            <td>---
            </td>
            <td>MOVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - double free or corruption (fasttop) in nouveau=
-_bo_del"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111793#c5">Commen=
+   title=3D"RESOLVED MOVED - Setting gamma or color temperature on GK104 ca=
+uses horizontal artifacts / flickering"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111841#c5">Commen=
 t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - double free or corruption (fasttop) in nouveau=
-_bo_del"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111793">bug 11179=
-3</a>
+   title=3D"RESOLVED MOVED - Setting gamma or color temperature on GK104 ca=
+uses horizontal artifacts / flickering"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111841">bug 11184=
+1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
 r&gt;"> <span class=3D"fn">Martin Peres</span></a>
@@ -130,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/504">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/504</a>.</pre>
+sues/505">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/505</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +145,9 @@ ues/504</a>.</pre>
     </body>
 </html>=
 
---15754532033.bfE9106A.32211--
+--15754532081.6BA47f8f3.32211--
 
---===============1720481398==
+--===============0575630986==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1720481398==--
+--===============0575630986==--
