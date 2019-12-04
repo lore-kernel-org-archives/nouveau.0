@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 84721] [NVC1] Nvidia Geforce GT 630 using nouveau on
- 3.16 kernel. dangerous Fan speed
-Date: Wed, 04 Dec 2019 08:50:02 +0000
-Message-ID: <bug-84721-8800-KplJ0FfATx@http.bugs.freedesktop.org/>
-References: <bug-84721-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 84759] EXTREME and blocking drawing delay
+ accumulation with certain websites and programs (e.g. rdesktop) since
+ forever
+Date: Wed, 04 Dec 2019 08:50:08 +0000
+Message-ID: <bug-84759-8800-5rsOG4FyBp@http.bugs.freedesktop.org/>
+References: <bug-84759-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1332991334=="
+Content-Type: multipart/mixed; boundary="===============0961291393=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-84721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-84759-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +22,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1332991334==
-Content-Type: multipart/alternative; boundary="15754494030.8EE3bd.19402"
+--===============0961291393==
+Content-Type: multipart/alternative; boundary="15754494080.f8bBe.19402"
 Content-Transfer-Encoding: 7bit
 
 
---15754494030.8EE3bd.19402
-Date: Wed, 4 Dec 2019 08:50:03 +0000
+--15754494080.f8bBe.19402
+Date: Wed, 4 Dec 2019 08:50:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D84721
+https://bugs.freedesktop.org/show_bug.cgi?id=3D84759
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
@@ -43,7 +44,7 @@ Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |MOVED
 
---- Comment #22 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #2 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,14 +53,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/136.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/137.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754494030.8EE3bd.19402
-Date: Wed, 4 Dec 2019 08:50:03 +0000
+--15754494080.f8bBe.19402
+Date: Wed, 4 Dec 2019 08:50:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +77,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVC1] Nvidia Geforce GT 630 using nouveau on =
-3.16 kernel. dangerous Fan speed"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D84721">bug 84721<=
+   title=3D"RESOLVED MOVED - EXTREME and blocking drawing delay accumulatio=
+n with certain websites and programs (e.g. rdesktop) since forever"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D84759">bug 84759<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -107,15 +108,15 @@ span class=3D"fn">Martin Peres</span></a>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVC1] Nvidia Geforce GT 630 using nouveau on =
-3.16 kernel. dangerous Fan speed"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D84721#c22">Commen=
-t # 22</a>
+   title=3D"RESOLVED MOVED - EXTREME and blocking drawing delay accumulatio=
+n with certain websites and programs (e.g. rdesktop) since forever"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D84759#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVC1] Nvidia Geforce GT 630 using nouveau on =
-3.16 kernel. dangerous Fan speed"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D84721">bug 84721<=
+   title=3D"RESOLVED MOVED - EXTREME and blocking drawing delay accumulatio=
+n with certain websites and programs (e.g. rdesktop) since forever"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D84759">bug 84759<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -130,8 +131,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/136">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/136</a>.</pre>
+sues/137">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/137</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +146,9 @@ ues/136</a>.</pre>
     </body>
 </html>=
 
---15754494030.8EE3bd.19402--
+--15754494080.f8bBe.19402--
 
---===============1332991334==
+--===============0961291393==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +158,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1332991334==--
+--===============0961291393==--
