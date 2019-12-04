@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58984] [NV98] Probe error on SPARC with 8kb pages
-Date: Wed, 04 Dec 2019 08:32:16 +0000
-Message-ID: <bug-58984-8800-kwGsJjBTIG@http.bugs.freedesktop.org/>
-References: <bug-58984-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 60020] [NV42] Resuming Dell Precision M70 crashes
+Date: Wed, 04 Dec 2019 08:32:24 +0000
+Message-ID: <bug-60020-8800-3ggd7J2mS3@http.bugs.freedesktop.org/>
+References: <bug-60020-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1418250212=="
+Content-Type: multipart/mixed; boundary="===============1539922834=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58984-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-60020-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,20 +20,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1418250212==
-Content-Type: multipart/alternative; boundary="15754483361.bbaDE57.15810"
+--===============1539922834==
+Content-Type: multipart/alternative; boundary="15754483430.FE1a7ADb.15810"
 Content-Transfer-Encoding: 7bit
 
 
---15754483361.bbaDE57.15810
-Date: Wed, 4 Dec 2019 08:32:16 +0000
+--15754483430.FE1a7ADb.15810
+Date: Wed, 4 Dec 2019 08:32:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D58984
+https://bugs.freedesktop.org/show_bug.cgi?id=3D60020
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
@@ -42,7 +42,7 @@ Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
          Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
 
---- Comment #18 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #6 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -51,14 +51,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/33.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/34.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754483361.bbaDE57.15810
-Date: Wed, 4 Dec 2019 08:32:16 +0000
+--15754483430.FE1a7ADb.15810
+Date: Wed, 4 Dec 2019 08:32:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,8 +75,8 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NV98] Probe error on SPARC with 8kb pages"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D58984">bug 58984<=
+   title=3D"RESOLVED MOVED - [NV42] Resuming Dell Precision M70 crashes"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D60020">bug 60020<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -105,13 +105,13 @@ span class=3D"fn">Martin Peres</span></a>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NV98] Probe error on SPARC with 8kb pages"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D58984#c18">Commen=
-t # 18</a>
+   title=3D"RESOLVED MOVED - [NV42] Resuming Dell Precision M70 crashes"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D60020#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NV98] Probe error on SPARC with 8kb pages"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D58984">bug 58984<=
+   title=3D"RESOLVED MOVED - [NV42] Resuming Dell Precision M70 crashes"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D60020">bug 60020<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -126,8 +126,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/33">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issu=
-es/33</a>.</pre>
+sues/34">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issu=
+es/34</a>.</pre>
         </div>
       </p>
 
@@ -141,9 +141,9 @@ es/33</a>.</pre>
     </body>
 </html>=
 
---15754483361.bbaDE57.15810--
+--15754483430.FE1a7ADb.15810--
 
---===============1418250212==
+--===============1539922834==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -153,4 +153,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1418250212==--
+--===============1539922834==--
