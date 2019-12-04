@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96968] [NVC0] disp: ERROR 7 [INVALID_HANDLE] 00 []
- chid 0 mthd 0088 data f000000
-Date: Wed, 04 Dec 2019 09:15:28 +0000
-Message-ID: <bug-96968-8800-ep3L6R6U5S@http.bugs.freedesktop.org/>
-References: <bug-96968-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97021] Screen locks up randomly while only mouse
+ pointer moves, system responsive via ssh
+Date: Wed, 04 Dec 2019 09:15:33 +0000
+Message-ID: <bug-97021-8800-vJrgr86rlS@http.bugs.freedesktop.org/>
+References: <bug-97021-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0061915036=="
+Content-Type: multipart/mixed; boundary="===============1548447505=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-96968-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97021-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0061915036==
-Content-Type: multipart/alternative; boundary="15754509270.078AAD.24079"
+--===============1548447505==
+Content-Type: multipart/alternative; boundary="15754509330.2A4C7aF.24079"
 Content-Transfer-Encoding: 7bit
 
 
---15754509270.078AAD.24079
-Date: Wed, 4 Dec 2019 09:15:27 +0000
+--15754509330.2A4C7aF.24079
+Date: Wed, 4 Dec 2019 09:15:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96968
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97021
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
@@ -43,7 +43,7 @@ Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
          Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
 
---- Comment #3 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #2 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/277.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/278.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754509270.078AAD.24079
-Date: Wed, 4 Dec 2019 09:15:27 +0000
+--15754509330.2A4C7aF.24079
+Date: Wed, 4 Dec 2019 09:15:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +76,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVC0] disp: ERROR 7 [INVALID_HANDLE] 00 [] ch=
-id 0 mthd 0088 data f000000"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96968">bug 96968<=
+   title=3D"RESOLVED MOVED - Screen locks up randomly while only mouse poin=
+ter moves, system responsive via ssh"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97021">bug 97021<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -107,15 +107,15 @@ id 0 mthd 0088 data f000000"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVC0] disp: ERROR 7 [INVALID_HANDLE] 00 [] ch=
-id 0 mthd 0088 data f000000"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96968#c3">Comment=
- # 3</a>
+   title=3D"RESOLVED MOVED - Screen locks up randomly while only mouse poin=
+ter moves, system responsive via ssh"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97021#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVC0] disp: ERROR 7 [INVALID_HANDLE] 00 [] ch=
-id 0 mthd 0088 data f000000"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96968">bug 96968<=
+   title=3D"RESOLVED MOVED - Screen locks up randomly while only mouse poin=
+ter moves, system responsive via ssh"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97021">bug 97021<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -130,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/277">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/277</a>.</pre>
+sues/278">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/278</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +145,9 @@ ues/277</a>.</pre>
     </body>
 </html>=
 
---15754509270.078AAD.24079--
+--15754509330.2A4C7aF.24079--
 
---===============0061915036==
+--===============1548447505==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0061915036==--
+--===============1548447505==--
