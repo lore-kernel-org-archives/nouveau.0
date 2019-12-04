@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110830] [nouveau] GeForce GTX 1660 Ti (mobile) not
- supported (NV168/TU116)
-Date: Wed, 04 Dec 2019 09:49:53 +0000
-Message-ID: <bug-110830-8800-uQt3vnwfWR@http.bugs.freedesktop.org/>
-References: <bug-110830-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 110931] Timeout initializing Falcon after cold boot
+Date: Wed, 04 Dec 2019 09:50:06 +0000
+Message-ID: <bug-110931-8800-p7LVtkdRj1@http.bugs.freedesktop.org/>
+References: <bug-110931-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0662690525=="
+Content-Type: multipart/mixed; boundary="===============1393563148=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-110931-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +20,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0662690525==
-Content-Type: multipart/alternative; boundary="15754529933.48D71.31189"
+--===============1393563148==
+Content-Type: multipart/alternative; boundary="15754530062.0B56515C0.31189"
 Content-Transfer-Encoding: 7bit
 
 
---15754529933.48D71.31189
-Date: Wed, 4 Dec 2019 09:49:53 +0000
+--15754530062.0B56515C0.31189
+Date: Wed, 4 Dec 2019 09:50:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110830
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110931
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
@@ -43,7 +42,7 @@ Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
          Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
 
---- Comment #16 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #6 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,14 +51,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/488.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/489.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754529933.48D71.31189
-Date: Wed, 4 Dec 2019 09:49:53 +0000
+--15754530062.0B56515C0.31189
+Date: Wed, 4 Dec 2019 09:50:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,10 +75,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [nouveau] GeForce GTX 1660 Ti (mobile) not sup=
-ported (NV168/TU116)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110830">bug 11083=
-0</a>
+   title=3D"RESOLVED MOVED - Timeout initializing Falcon after cold boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110931">bug 11093=
+1</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -107,16 +105,14 @@ ported (NV168/TU116)"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [nouveau] GeForce GTX 1660 Ti (mobile) not sup=
-ported (NV168/TU116)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110830#c16">Comme=
-nt # 16</a>
+   title=3D"RESOLVED MOVED - Timeout initializing Falcon after cold boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110931#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [nouveau] GeForce GTX 1660 Ti (mobile) not sup=
-ported (NV168/TU116)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110830">bug 11083=
-0</a>
+   title=3D"RESOLVED MOVED - Timeout initializing Falcon after cold boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110931">bug 11093=
+1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
 r&gt;"> <span class=3D"fn">Martin Peres</span></a>
@@ -130,8 +126,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/488">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/488</a>.</pre>
+sues/489">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/489</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +141,9 @@ ues/488</a>.</pre>
     </body>
 </html>=
 
---15754529933.48D71.31189--
+--15754530062.0B56515C0.31189--
 
---===============0662690525==
+--===============1393563148==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +153,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0662690525==--
+--===============1393563148==--
