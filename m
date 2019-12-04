@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95188] GeForce 840M (GM108) troubles
-Date: Wed, 04 Dec 2019 09:13:29 +0000
-Message-ID: <bug-95188-8800-a7ySI8bsIQ@http.bugs.freedesktop.org/>
-References: <bug-95188-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 95282] G96: system hang on video playback via vdpau
+Date: Wed, 04 Dec 2019 09:13:58 +0000
+Message-ID: <bug-95282-8800-hBnIKQCjWe@http.bugs.freedesktop.org/>
+References: <bug-95282-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0023654054=="
+Content-Type: multipart/mixed; boundary="===============0430537466=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95188-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-95282-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0023654054==
-Content-Type: multipart/alternative; boundary="15754508093.3A6AB4c.24083"
+--===============0430537466==
+Content-Type: multipart/alternative; boundary="15754508370.EA3f36.24079"
 Content-Transfer-Encoding: 7bit
 
 
---15754508093.3A6AB4c.24083
-Date: Wed, 4 Dec 2019 09:13:29 +0000
+--15754508370.EA3f36.24079
+Date: Wed, 4 Dec 2019 09:13:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95188
+https://bugs.freedesktop.org/show_bug.cgi?id=3D95282
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
          Resolution|---                         |MOVED
+             Status|NEW                         |RESOLVED
 
---- Comment #12 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #23 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -51,14 +51,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/265.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/266.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754508093.3A6AB4c.24083
-Date: Wed, 4 Dec 2019 09:13:29 +0000
+--15754508370.EA3f36.24079
+Date: Wed, 4 Dec 2019 09:13:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,8 +75,8 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - GeForce 840M (GM108) troubles"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95188">bug 95188<=
+   title=3D"RESOLVED MOVED - G96: system hang on video playback via vdpau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282">bug 95282<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -87,31 +87,31 @@ span class=3D"fn">Martin Peres</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Resolution</td>
            <td>---
            </td>
            <td>MOVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - GeForce 840M (GM108) troubles"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95188#c12">Commen=
-t # 12</a>
+   title=3D"RESOLVED MOVED - G96: system hang on video playback via vdpau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282#c23">Commen=
+t # 23</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - GeForce 840M (GM108) troubles"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95188">bug 95188<=
+   title=3D"RESOLVED MOVED - G96: system hang on video playback via vdpau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282">bug 95282<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -126,8 +126,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/265">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/265</a>.</pre>
+sues/266">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/266</a>.</pre>
         </div>
       </p>
 
@@ -141,9 +141,9 @@ ues/265</a>.</pre>
     </body>
 </html>=
 
---15754508093.3A6AB4c.24083--
+--15754508370.EA3f36.24079--
 
---===============0023654054==
+--===============0430537466==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -153,4 +153,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0023654054==--
+--===============0430537466==--
