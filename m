@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103946] [nouveau] Slowish and rough graphical
- interface with GTX 1060
-Date: Wed, 04 Dec 2019 09:33:58 +0000
-Message-ID: <bug-103946-8800-lb9xqVz5j0@http.bugs.freedesktop.org/>
-References: <bug-103946-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104109] After upgrade to kernel 4.13.16-302 one
+ monitor in a two monitor displayport setup isn't working anymore.
+Date: Wed, 04 Dec 2019 09:34:06 +0000
+Message-ID: <bug-104109-8800-hwqjAM7TYE@http.bugs.freedesktop.org/>
+References: <bug-104109-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0518341971=="
+Content-Type: multipart/mixed; boundary="===============0240552361=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103946-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-104109-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0518341971==
-Content-Type: multipart/alternative; boundary="15754520381.DDFC62efe.28225"
+--===============0240552361==
+Content-Type: multipart/alternative; boundary="15754520463.2d192C5de.28225"
 Content-Transfer-Encoding: 7bit
 
 
---15754520381.DDFC62efe.28225
-Date: Wed, 4 Dec 2019 09:33:58 +0000
+--15754520463.2d192C5de.28225
+Date: Wed, 4 Dec 2019 09:34:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103946
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104109
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
@@ -43,7 +43,7 @@ Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
          Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
 
---- Comment #7 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #4 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/386.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/387.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754520381.DDFC62efe.28225
-Date: Wed, 4 Dec 2019 09:33:58 +0000
+--15754520463.2d192C5de.28225
+Date: Wed, 4 Dec 2019 09:34:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,10 +76,10 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [nouveau] Slowish and rough graphical interfac=
-e with GTX 1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103946">bug 10394=
-6</a>
+   title=3D"RESOLVED MOVED - After upgrade to kernel 4.13.16-302 one monito=
+r in a two monitor displayport setup isn't working anymore."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104109">bug 10410=
+9</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -107,16 +107,16 @@ e with GTX 1060"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [nouveau] Slowish and rough graphical interfac=
-e with GTX 1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103946#c7">Commen=
-t # 7</a>
+   title=3D"RESOLVED MOVED - After upgrade to kernel 4.13.16-302 one monito=
+r in a two monitor displayport setup isn't working anymore."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104109#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [nouveau] Slowish and rough graphical interfac=
-e with GTX 1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103946">bug 10394=
-6</a>
+   title=3D"RESOLVED MOVED - After upgrade to kernel 4.13.16-302 one monito=
+r in a two monitor displayport setup isn't working anymore."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104109">bug 10410=
+9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
 r&gt;"> <span class=3D"fn">Martin Peres</span></a>
@@ -130,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/386">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/386</a>.</pre>
+sues/387">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/387</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +145,9 @@ ues/386</a>.</pre>
     </body>
 </html>=
 
---15754520381.DDFC62efe.28225--
+--15754520463.2d192C5de.28225--
 
---===============0518341971==
+--===============0240552361==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0518341971==--
+--===============0240552361==--
