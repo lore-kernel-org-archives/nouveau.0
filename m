@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98582] nouveau on a GM108 fails to resume properly
- from suspension
-Date: Wed, 04 Dec 2019 09:19:09 +0000
-Message-ID: <bug-98582-8800-xmCFRkQyDQ@http.bugs.freedesktop.org/>
-References: <bug-98582-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98631] GPU lock ups when starting GDM, SDDM,
+ and Plasma Desktop
+Date: Wed, 04 Dec 2019 09:19:15 +0000
+Message-ID: <bug-98631-8800-9a5yC07F2l@http.bugs.freedesktop.org/>
+References: <bug-98631-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0496648335=="
+Content-Type: multipart/mixed; boundary="===============1376102149=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98582-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98631-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0496648335==
-Content-Type: multipart/alternative; boundary="15754511493.b8ad8Cd.24832"
+--===============1376102149==
+Content-Type: multipart/alternative; boundary="15754511553.Ab2f4d0.24832"
 Content-Transfer-Encoding: 7bit
 
 
---15754511493.b8ad8Cd.24832
-Date: Wed, 4 Dec 2019 09:19:09 +0000
+--15754511553.Ab2f4d0.24832
+Date: Wed, 4 Dec 2019 09:19:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98582
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98631
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
          Resolution|---                         |MOVED
-             Status|REOPENED                    |RESOLVED
+             Status|NEEDINFO                    |RESOLVED
 
---- Comment #15 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+--- Comment #8 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/297.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/298.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754511493.b8ad8Cd.24832
-Date: Wed, 4 Dec 2019 09:19:09 +0000
+--15754511553.Ab2f4d0.24832
+Date: Wed, 4 Dec 2019 09:19:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +76,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - nouveau on a GM108 fails to resume properly fr=
-om suspension"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582">bug 98582<=
+   title=3D"RESOLVED MOVED - GPU lock ups when starting GDM, SDDM, and Plas=
+ma Desktop"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98631">bug 98631<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -98,7 +98,7 @@ om suspension"
 
          <tr>
            <td style=3D"text-align:right;">Status</td>
-           <td>REOPENED
+           <td>NEEDINFO
            </td>
            <td>RESOLVED
            </td>
@@ -107,15 +107,15 @@ om suspension"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - nouveau on a GM108 fails to resume properly fr=
-om suspension"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582#c15">Commen=
-t # 15</a>
+   title=3D"RESOLVED MOVED - GPU lock ups when starting GDM, SDDM, and Plas=
+ma Desktop"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98631#c8">Comment=
+ # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - nouveau on a GM108 fails to resume properly fr=
-om suspension"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582">bug 98582<=
+   title=3D"RESOLVED MOVED - GPU lock ups when starting GDM, SDDM, and Plas=
+ma Desktop"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98631">bug 98631<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -130,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/297">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/297</a>.</pre>
+sues/298">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/298</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +145,9 @@ ues/297</a>.</pre>
     </body>
 </html>=
 
---15754511493.b8ad8Cd.24832--
+--15754511553.Ab2f4d0.24832--
 
---===============0496648335==
+--===============1376102149==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0496648335==--
+--===============1376102149==--
