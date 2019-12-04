@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97021] Screen locks up randomly while only mouse
- pointer moves, system responsive via ssh
-Date: Wed, 04 Dec 2019 09:15:33 +0000
-Message-ID: <bug-97021-8800-vJrgr86rlS@http.bugs.freedesktop.org/>
-References: <bug-97021-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97152] xorg freezes (crash) right after resume with
+ nouveau [Nvidia 8600]
+Date: Wed, 04 Dec 2019 09:15:38 +0000
+Message-ID: <bug-97152-8800-SVsGqr34rK@http.bugs.freedesktop.org/>
+References: <bug-97152-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1548447505=="
+Content-Type: multipart/mixed; boundary="===============1020080779=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97021-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97152-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1548447505==
-Content-Type: multipart/alternative; boundary="15754509330.2A4C7aF.24079"
+--===============1020080779==
+Content-Type: multipart/alternative; boundary="15754509383.C90e0745.24079"
 Content-Transfer-Encoding: 7bit
 
 
---15754509330.2A4C7aF.24079
-Date: Wed, 4 Dec 2019 09:15:33 +0000
+--15754509383.C90e0745.24079
+Date: Wed, 4 Dec 2019 09:15:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97021
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97152
 
 Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
+         Resolution|---                         |MOVED
 
 --- Comment #2 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
@@ -52,14 +52,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/278.
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/279.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15754509330.2A4C7aF.24079
-Date: Wed, 4 Dec 2019 09:15:33 +0000
+--15754509383.C90e0745.24079
+Date: Wed, 4 Dec 2019 09:15:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +76,9 @@ span class=3D"fn">Martin Peres</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Screen locks up randomly while only mouse poin=
-ter moves, system responsive via ssh"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97021">bug 97021<=
+   title=3D"RESOLVED MOVED - xorg freezes (crash) right after resume with n=
+ouveau [Nvidia 8600]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97152">bug 97152<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -89,33 +89,33 @@ ter moves, system responsive via ssh"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>MOVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Status</td>
            <td>NEW
            </td>
            <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>MOVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Screen locks up randomly while only mouse poin=
-ter moves, system responsive via ssh"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97021#c2">Comment=
+   title=3D"RESOLVED MOVED - xorg freezes (crash) right after resume with n=
+ouveau [Nvidia 8600]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97152#c2">Comment=
  # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Screen locks up randomly while only mouse poin=
-ter moves, system responsive via ssh"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97021">bug 97021<=
+   title=3D"RESOLVED MOVED - xorg freezes (crash) right after resume with n=
+ouveau [Nvidia 8600]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97152">bug 97152<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
@@ -130,8 +130,8 @@ You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance:
 <a href=3D"https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/is=
-sues/278">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
-ues/278</a>.</pre>
+sues/279">https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/iss=
+ues/279</a>.</pre>
         </div>
       </p>
 
@@ -145,9 +145,9 @@ ues/278</a>.</pre>
     </body>
 </html>=
 
---15754509330.2A4C7aF.24079--
+--15754509383.C90e0745.24079--
 
---===============1548447505==
+--===============1020080779==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1548447505==--
+--===============1020080779==--
