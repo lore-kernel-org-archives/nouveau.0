@@ -1,93 +1,101 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into lower device
- states on certain intel bridges
-Date: Mon, 9 Dec 2019 12:17:10 +0100
-Message-ID: <CACO55tu+hT1WGbBn_nxLR=A-X6YWmeuz-UztJKw0QAFQDDV_xg@mail.gmail.com>
+From: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into
+ lower device states on certain intel bridges
+Date: Mon, 9 Dec 2019 12:38:53 +0100
+Message-ID: <CAJZ5v0hcONxiWD+jpBe62H1SZ-84iNxT+QCn8mcesB1C7SVWjw@mail.gmail.com>
 References: <CACO55ttTPi2XpRRM_NYJU5c5=OvG0=-YngFy1BiR8WpHkavwXw@mail.gmail.com>
  <CAJZ5v0h=7zu3A+ojgUSmwTH0KeXmYP5OKDL__rwkkWaWqcJcWQ@mail.gmail.com>
- <20191121112821.GU11621@lahna.fi.intel.com> <CAJZ5v0hQhj5Wf+piU11abC4pF26yM=XHGHAcDv8Jsgdx04aN-w@mail.gmail.com>
- <20191121114610.GW11621@lahna.fi.intel.com> <CACO55ttXJgXG32HzYP_uJDfQ6T-d8zQaGjXK_AZD3kF0Rmft4g@mail.gmail.com>
+ <20191121112821.GU11621@lahna.fi.intel.com>
+ <CAJZ5v0hQhj5Wf+piU11abC4pF26yM=XHGHAcDv8Jsgdx04aN-w@mail.gmail.com>
+ <20191121114610.GW11621@lahna.fi.intel.com>
+ <CACO55ttXJgXG32HzYP_uJDfQ6T-d8zQaGjXK_AZD3kF0Rmft4g@mail.gmail.com>
  <CAJZ5v0ibzcLEm44udUxW2uVgaF9NapdNBF8Ag+RE++u7gi2yNA@mail.gmail.com>
  <CACO55ttBkZD9dm0Y_jT931NnzHHtDFyLz28aoo+ZG0pnLzPgbA@mail.gmail.com>
  <CAJZ5v0jbh7jz+YQcw-gC5ztmMOc4E9+KFBCy4VGRsRFxBw-gnw@mail.gmail.com>
  <e0eeddf4214f54dfac08e428dfb30cbd39f20680.camel@redhat.com>
- <20191127114856.GZ11621@lahna.fi.intel.com> <CACO55tt5SAf24vk0XrKguhh2J=WuKirDsdY7T+u7PsGFCpnFxg@mail.gmail.com>
+ <20191127114856.GZ11621@lahna.fi.intel.com>
+ <CACO55tt5SAf24vk0XrKguhh2J=WuKirDsdY7T+u7PsGFCpnFxg@mail.gmail.com>
  <e7aec10d789b322ca98f4b250923b0f14f2b8226.camel@redhat.com>
+ <CACO55tu+hT1WGbBn_nxLR=A-X6YWmeuz-UztJKw0QAFQDDV_xg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <e7aec10d789b322ca98f4b250923b0f14f2b8226.camel@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: Mika Westerberg <mika.westerberg@intel.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>, LKML <linux-kernel@vger.kernel.org>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@gmail.com>, Mario Limonciello <Mario.Limonciello@dell.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CACO55tu+hT1WGbBn_nxLR=A-X6YWmeuz-UztJKw0QAFQDDV_xg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Mika Westerberg <mika.westerberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "Rafael J . Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Mario Limonciello <Mario.Limonciello-8PEkshWhKlo@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-anybody any other ideas? It seems that both patches don't really fix
-the issue and I have no idea left on my side to try out. The only
-thing left I could do to further investigate would be to reverse
-engineer the Nvidia driver as they support runpm on Turing+ GPUs now,
-but I've heard users having similar issues to the one Lyude told us
-about... and I couldn't verify that the patches help there either in a
-reliable way.
-
-On Wed, Nov 27, 2019 at 8:55 PM Lyude Paul <lyude@redhat.com> wrote:
->
-> On Wed, 2019-11-27 at 12:51 +0100, Karol Herbst wrote:
-> > On Wed, Nov 27, 2019 at 12:49 PM Mika Westerberg
-> > <mika.westerberg@intel.com> wrote:
-> > > On Tue, Nov 26, 2019 at 06:10:36PM -0500, Lyude Paul wrote:
-> > > > Hey-this is almost certainly not the right place in this thread to
-> > > > respond,
-> > > > but this thread has gotten so deep evolution can't push the subject
-> > > > further to
-> > > > the right, heh. So I'll just respond here.
-> > >
-> > > :)
-> > >
-> > > > I've been following this and helping out Karol with testing here an=
-d
-> > > > there.
-> > > > They had me test Bjorn's PCI branch on the X1 Extreme 2nd generatio=
-n,
-> > > > which
-> > > > has a turing GPU and 8086:1901 PCI bridge.
-> > > >
-> > > > I was about to say "the patch fixed things, hooray!" but it seems t=
-hat
-> > > > after
-> > > > trying runtime suspend/resume a couple times things fall apart agai=
-n:
-> > >
-> > > You mean $subject patch, no?
-> > >
-> >
-> > no, I told Lyude to test the pci/pm branch as the runpm errors we saw
-> > on that machine looked different. Some BAR error the GPU reported
-> > after it got resumed, so I was wondering if the delays were helping
-> > with that. But after some cycles it still caused the same issue, that
-> > the GPU disappeared. Later testing also showed that my patch also
-> > didn't seem to help with this error sadly :/
-> >
-> > > > [  686.883247] nouveau 0000:01:00.0: DRM: suspending object tree...
-> > > > [  752.866484] ACPI Error: Aborting method \_SB.PCI0.PEG0.PEGP.NVPO=
- due
-> > > > to previous error (AE_AML_LOOP_TIMEOUT) (20190816/psparse-529)
-> > > > [  752.866508] ACPI Error: Aborting method \_SB.PCI0.PGON due to
-> > > > previous error (AE_AML_LOOP_TIMEOUT) (20190816/psparse-529)
-> > > > [  752.866521] ACPI Error: Aborting method \_SB.PCI0.PEG0.PG00._ON =
-due
-> > > > to previous error (AE_AML_LOOP_TIMEOUT) (20190816/psparse-529)
-> > >
-> > > This is probably the culprit. The same AML code fails to properly tur=
-n
-> > > on the device.
-> > >
-> > > Is acpidump from this system available somewhere?
->
-> Attached it to this email
->
-> > >
-> --
-> Cheers,
->         Lyude Paul
+T24gTW9uLCBEZWMgOSwgMjAxOSBhdCAxMjoxNyBQTSBLYXJvbCBIZXJic3QgPGtoZXJic3RAcmVk
+aGF0LmNvbT4gd3JvdGU6Cj4KPiBhbnlib2R5IGFueSBvdGhlciBpZGVhcz8KCk5vdCB5ZXQsIGJ1
+dCBJJ20gdHJ5aW5nIHRvIGNvbGxlY3Qgc29tZSBtb3JlIGluZm9ybWF0aW9uLgoKPiBJdCBzZWVt
+cyB0aGF0IGJvdGggcGF0Y2hlcyBkb24ndCByZWFsbHkgZml4Cj4gdGhlIGlzc3VlIGFuZCBJIGhh
+dmUgbm8gaWRlYSBsZWZ0IG9uIG15IHNpZGUgdG8gdHJ5IG91dC4gVGhlIG9ubHkKPiB0aGluZyBs
+ZWZ0IEkgY291bGQgZG8gdG8gZnVydGhlciBpbnZlc3RpZ2F0ZSB3b3VsZCBiZSB0byByZXZlcnNl
+Cj4gZW5naW5lZXIgdGhlIE52aWRpYSBkcml2ZXIgYXMgdGhleSBzdXBwb3J0IHJ1bnBtIG9uIFR1
+cmluZysgR1BVcyBub3csCj4gYnV0IEkndmUgaGVhcmQgdXNlcnMgaGF2aW5nIHNpbWlsYXIgaXNz
+dWVzIHRvIHRoZSBvbmUgTHl1ZGUgdG9sZCB1cwo+IGFib3V0Li4uIGFuZCBJIGNvdWxkbid0IHZl
+cmlmeSB0aGF0IHRoZSBwYXRjaGVzIGhlbHAgdGhlcmUgZWl0aGVyIGluIGEKPiByZWxpYWJsZSB3
+YXkuCgpJdCBsb29rcyBsaWtlIHRoZSBuZXdlciAoOCspIHZlcnNpb25zIG9mIFdpbmRvd3MgZXhw
+ZWN0IHRoZSBHUFUgZHJpdmVyCnRvIHByZXBhcmUgdGhlIEdQVSBmb3IgcG93ZXIgcmVtb3ZhbCBp
+biBzb21lIHNwZWNpZmljIHdheSBhbmQgdGhlCmxhdHRlciBmYWlscyBpZiB0aGUgR1BVIGhhcyBu
+b3QgYmVlbiBwcmVwYXJlZCBhcyBleHBlY3RlZC4KCkJlY2F1c2UgdGVzdGluZyBpbmRpY2F0ZXMg
+dGhhdCB0aGUgV2luZG93cyA3IHBhdGggaW4gdGhlIHBsYXRmb3JtCmZpcm13YXJlIHdvcmtzLCBp
+dCBtYXkgYmUgd29ydGggdHJ5aW5nIHRvIGRvIHdoYXQgaXQgZG9lcyB0byB0aGUgUENJZQpsaW5r
+IGJlZm9yZSBpbnZva2luZyB0aGUgX09GRiBtZXRob2QgZm9yIHRoZSBwb3dlciByZXNvdXJjZQpj
+b250cm9sbGluZyB0aGUgR1BVIHBvd2VyLgoKSWYgdGhlIE1pa2EncyB0aGVvcnkgdGhhdCB0aGUg
+V2luNyBwYXRoIHNpbXBseSB0dXJucyB0aGUgUENJZSBsaW5rIG9mZgppcyBjb3JyZWN0LCB0aGVu
+IHdoYXRldmVyIHRoZSBfT0ZGIG1ldGhvZCB0cmllcyB0byBkbyB0byB0aGUgbGluawphZnRlciB0
+aGF0IHNob3VsZCBub3QgbWF0dGVyLgoKPiBPbiBXZWQsIE5vdiAyNywgMjAxOSBhdCA4OjU1IFBN
+IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+IHdyb3RlOgo+ID4KPiA+IE9uIFdlZCwgMjAx
+OS0xMS0yNyBhdCAxMjo1MSArMDEwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+ID4gPiBPbiBXZWQs
+IE5vdiAyNywgMjAxOSBhdCAxMjo0OSBQTSBNaWthIFdlc3RlcmJlcmcKPiA+ID4gPG1pa2Eud2Vz
+dGVyYmVyZ0BpbnRlbC5jb20+IHdyb3RlOgo+ID4gPiA+IE9uIFR1ZSwgTm92IDI2LCAyMDE5IGF0
+IDA2OjEwOjM2UE0gLTA1MDAsIEx5dWRlIFBhdWwgd3JvdGU6Cj4gPiA+ID4gPiBIZXktdGhpcyBp
+cyBhbG1vc3QgY2VydGFpbmx5IG5vdCB0aGUgcmlnaHQgcGxhY2UgaW4gdGhpcyB0aHJlYWQgdG8K
+PiA+ID4gPiA+IHJlc3BvbmQsCj4gPiA+ID4gPiBidXQgdGhpcyB0aHJlYWQgaGFzIGdvdHRlbiBz
+byBkZWVwIGV2b2x1dGlvbiBjYW4ndCBwdXNoIHRoZSBzdWJqZWN0Cj4gPiA+ID4gPiBmdXJ0aGVy
+IHRvCj4gPiA+ID4gPiB0aGUgcmlnaHQsIGhlaC4gU28gSSdsbCBqdXN0IHJlc3BvbmQgaGVyZS4K
+PiA+ID4gPgo+ID4gPiA+IDopCj4gPiA+ID4KPiA+ID4gPiA+IEkndmUgYmVlbiBmb2xsb3dpbmcg
+dGhpcyBhbmQgaGVscGluZyBvdXQgS2Fyb2wgd2l0aCB0ZXN0aW5nIGhlcmUgYW5kCj4gPiA+ID4g
+PiB0aGVyZS4KPiA+ID4gPiA+IFRoZXkgaGFkIG1lIHRlc3QgQmpvcm4ncyBQQ0kgYnJhbmNoIG9u
+IHRoZSBYMSBFeHRyZW1lIDJuZCBnZW5lcmF0aW9uLAo+ID4gPiA+ID4gd2hpY2gKPiA+ID4gPiA+
+IGhhcyBhIHR1cmluZyBHUFUgYW5kIDgwODY6MTkwMSBQQ0kgYnJpZGdlLgo+ID4gPiA+ID4KPiA+
+ID4gPiA+IEkgd2FzIGFib3V0IHRvIHNheSAidGhlIHBhdGNoIGZpeGVkIHRoaW5ncywgaG9vcmF5
+ISIgYnV0IGl0IHNlZW1zIHRoYXQKPiA+ID4gPiA+IGFmdGVyCj4gPiA+ID4gPiB0cnlpbmcgcnVu
+dGltZSBzdXNwZW5kL3Jlc3VtZSBhIGNvdXBsZSB0aW1lcyB0aGluZ3MgZmFsbCBhcGFydCBhZ2Fp
+bjoKPiA+ID4gPgo+ID4gPiA+IFlvdSBtZWFuICRzdWJqZWN0IHBhdGNoLCBubz8KPiA+ID4gPgo+
+ID4gPgo+ID4gPiBubywgSSB0b2xkIEx5dWRlIHRvIHRlc3QgdGhlIHBjaS9wbSBicmFuY2ggYXMg
+dGhlIHJ1bnBtIGVycm9ycyB3ZSBzYXcKPiA+ID4gb24gdGhhdCBtYWNoaW5lIGxvb2tlZCBkaWZm
+ZXJlbnQuIFNvbWUgQkFSIGVycm9yIHRoZSBHUFUgcmVwb3J0ZWQKPiA+ID4gYWZ0ZXIgaXQgZ290
+IHJlc3VtZWQsIHNvIEkgd2FzIHdvbmRlcmluZyBpZiB0aGUgZGVsYXlzIHdlcmUgaGVscGluZwo+
+ID4gPiB3aXRoIHRoYXQuIEJ1dCBhZnRlciBzb21lIGN5Y2xlcyBpdCBzdGlsbCBjYXVzZWQgdGhl
+IHNhbWUgaXNzdWUsIHRoYXQKPiA+ID4gdGhlIEdQVSBkaXNhcHBlYXJlZC4gTGF0ZXIgdGVzdGlu
+ZyBhbHNvIHNob3dlZCB0aGF0IG15IHBhdGNoIGFsc28KPiA+ID4gZGlkbid0IHNlZW0gdG8gaGVs
+cCB3aXRoIHRoaXMgZXJyb3Igc2FkbHkgOi8KPiA+ID4KPiA+ID4gPiA+IFsgIDY4Ni44ODMyNDdd
+IG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IHN1c3BlbmRpbmcgb2JqZWN0IHRyZWUuLi4KPiA+
+ID4gPiA+IFsgIDc1Mi44NjY0ODRdIEFDUEkgRXJyb3I6IEFib3J0aW5nIG1ldGhvZCBcX1NCLlBD
+STAuUEVHMC5QRUdQLk5WUE8gZHVlCj4gPiA+ID4gPiB0byBwcmV2aW91cyBlcnJvciAoQUVfQU1M
+X0xPT1BfVElNRU9VVCkgKDIwMTkwODE2L3BzcGFyc2UtNTI5KQo+ID4gPiA+ID4gWyAgNzUyLjg2
+NjUwOF0gQUNQSSBFcnJvcjogQWJvcnRpbmcgbWV0aG9kIFxfU0IuUENJMC5QR09OIGR1ZSB0bwo+
+ID4gPiA+ID4gcHJldmlvdXMgZXJyb3IgKEFFX0FNTF9MT09QX1RJTUVPVVQpICgyMDE5MDgxNi9w
+c3BhcnNlLTUyOSkKPiA+ID4gPiA+IFsgIDc1Mi44NjY1MjFdIEFDUEkgRXJyb3I6IEFib3J0aW5n
+IG1ldGhvZCBcX1NCLlBDSTAuUEVHMC5QRzAwLl9PTiBkdWUKPiA+ID4gPiA+IHRvIHByZXZpb3Vz
+IGVycm9yIChBRV9BTUxfTE9PUF9USU1FT1VUKSAoMjAxOTA4MTYvcHNwYXJzZS01MjkpCj4gPiA+
+ID4KPiA+ID4gPiBUaGlzIGlzIHByb2JhYmx5IHRoZSBjdWxwcml0LiBUaGUgc2FtZSBBTUwgY29k
+ZSBmYWlscyB0byBwcm9wZXJseSB0dXJuCj4gPiA+ID4gb24gdGhlIGRldmljZS4KPiA+ID4gPgo+
+ID4gPiA+IElzIGFjcGlkdW1wIGZyb20gdGhpcyBzeXN0ZW0gYXZhaWxhYmxlIHNvbWV3aGVyZT8K
+PiA+Cj4gPiBBdHRhY2hlZCBpdCB0byB0aGlzIGVtYWlsCj4gPgo+ID4gPiA+Cj4gPiAtLQo+ID4g
+Q2hlZXJzLAo+ID4gICAgICAgICBMeXVkZSBQYXVsCj4KX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9ub3V2ZWF1
