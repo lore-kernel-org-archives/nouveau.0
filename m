@@ -1,86 +1,94 @@
-From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 5.4 146/350] drm/nouveau: Don't grab runtime PM refs
- for HPD IRQs
-Date: Tue, 10 Dec 2019 16:04:11 -0500
-Message-ID: <20191210210735.9077-107-sashal@kernel.org>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH AUTOSEL 5.4 143/350] drm/nouveau: Resume hotplug
+ interrupts earlier
+Date: Tue, 10 Dec 2019 16:29:54 -0500
+Message-ID: <90e9126b9692ce6a1b0fcd85a4d0327bf818e58a.camel@redhat.com>
 References: <20191210210735.9077-1-sashal@kernel.org>
+         <20191210210735.9077-104-sashal@kernel.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20191210210735.9077-1-sashal@kernel.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc: Sean Paul <sean@poorly.run>, Sasha Levin <sashal@kernel.org>, Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org, Juston Li <juston.li@intel.com>, nouveau@lists.freedesktop.org, Harry Wentland <hwentlan@amd.com>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20191210210735.9077-104-sashal@kernel.org>
+Sender: stable-owner@vger.kernel.org
+To: Sasha Levin <sashal@kernel.org>, linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc: Juston Li <juston.li@intel.com>, Imre Deak <imre.deak@intel.com>, Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, Harry Wentland <hwentlan@amd.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KClsgVXBzdHJlYW0gY29tbWl0IDA5
-ZTUzMDY1N2UxYzk4MmQzZGJjNWU0MzAyYmY5MjA3OTUwYzNkMGEgXQoKSW4gb3JkZXIgZm9yIHN1
-c3BlbmQvcmVzdW1lIHJlcHJvYmluZyB0byB3b3JrLCB3ZSBuZWVkIHRvIGJlIGFibGUgdG8KcGVy
-Zm9ybSBzaWRlYmFuZCBjb21tdW5pY2F0aW9ucyBkdXJpbmcgc3VzcGVuZC9yZXN1bWUsIGFsb25n
-IHdpdGgKcnVudGltZSBQTSBzdXNwZW5kL3Jlc3VtZS4gSW4gb3JkZXIgdG8gZG8gc28sIHdlIGFs
-c28gbmVlZCB0byBtYWtlIHN1cmUKdGhhdCBub3V2ZWF1IGRvZXNuJ3QgYm90aGVyIGdyYWJiaW5n
-IGEgcnVudGltZSBQTSByZWZlcmVuY2UgdG8gZG8gc28sCnNpbmNlIG90aGVyd2lzZSB3ZSdsbCBz
-dGFydCBkZWFkbG9ja2luZyBydW50aW1lIFBNIGFnYWluLgoKTm90ZSB0aGF0IHdlIHdlcmVuJ3Qg
-YWJsZSB0byBkbyB0aGlzIGJlZm9yZSwgYmVjYXVzZSBvZiB0aGUgRFAgTVNUCmhlbHBlcnMgcHJv
-Y2Vzc2luZyBVUCByZXF1ZXN0cyBmcm9tIHRvcG9sb2dpZXMgaW4gdGhlIHNhbWUgY29udGV4dCBh
-cwpkcm1fZHBfbXN0X2hwZF9pcnEoKSB3aGljaCB3b3VsZCBoYXZlIGNhdXNlZCB1cyB0byBvcGVu
-IG91cnNlbHZlcyB1cCB0bwpyZWNlaXZpbmcgaG90cGx1ZyBldmVudHMgYW5kIGRlYWRsb2NraW5n
-IHdpdGggcnVudGltZSBzdXNwZW5kL3Jlc3VtZS4KTm93IHRoYXQgdGhvc2UgcmVxdWVzdHMgYXJl
-IGhhbmRsZWQgYXN5bmNocm9ub3VzbHksIHRoaXMgY2hhbmdlIHNob3VsZApiZSBjb21wbGV0ZWx5
-IHNhZmUuCgpDYzogSnVzdG9uIExpIDxqdXN0b24ubGlAaW50ZWwuY29tPgpDYzogSW1yZSBEZWFr
-IDxpbXJlLmRlYWtAaW50ZWwuY29tPgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxh
-QGxpbnV4LmludGVsLmNvbT4KQ2M6IEhhcnJ5IFdlbnRsYW5kIDxod2VudGxhbkBhbWQuY29tPgpD
-YzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KUmV2aWV3ZWQtYnk6IEJl
-biBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KUmV2aWV3ZWQtYnk6IFNlYW4gUGF1bCA8c2Vh
-bkBwb29ybHkucnVuPgpTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29t
-PgpMaW5rOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gvbXNnaWQvMjAx
-OTEwMjIwMjM2NDEuODAyNi0xMC1seXVkZUByZWRoYXQuY29tClNpZ25lZC1vZmYtYnk6IFNhc2hh
-IExldmluIDxzYXNoYWxAa2VybmVsLm9yZz4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2Nvbm5lY3Rvci5jIHwgMzMgKysrKysrKysrKystLS0tLS0tLS0tCiAxIGZpbGUgY2hh
-bmdlZCwgMTcgaW5zZXJ0aW9ucygrKSwgMTYgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMKaW5kZXggOTRkZmEyZTVhOWFiZS4uYTQ0MmE5
-NTVmOThjYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25u
-ZWN0b3IuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5j
-CkBAIC0xMTMxLDYgKzExMzEsMTYgQEAgbm91dmVhdV9jb25uZWN0b3JfaG90cGx1ZyhzdHJ1Y3Qg
-bnZpZl9ub3RpZnkgKm5vdGlmeSkKIAljb25zdCBjaGFyICpuYW1lID0gY29ubmVjdG9yLT5uYW1l
-OwogCXN0cnVjdCBub3V2ZWF1X2VuY29kZXIgKm52X2VuY29kZXI7CiAJaW50IHJldDsKKwlib29s
-IHBsdWdnZWQgPSAocmVwLT5tYXNrICE9IE5WSUZfTk9USUZZX0NPTk5fVjBfVU5QTFVHKTsKKwor
-CWlmIChyZXAtPm1hc2sgJiBOVklGX05PVElGWV9DT05OX1YwX0lSUSkgeworCQlOVl9ERUJVRyhk
-cm0sICJzZXJ2aWNlICVzXG4iLCBuYW1lKTsKKwkJZHJtX2RwX2NlY19pcnEoJm52X2Nvbm5lY3Rv
-ci0+YXV4KTsKKwkJaWYgKChudl9lbmNvZGVyID0gZmluZF9lbmNvZGVyKGNvbm5lY3RvciwgRENC
-X09VVFBVVF9EUCkpKQorCQkJbnY1MF9tc3RtX3NlcnZpY2UobnZfZW5jb2Rlci0+ZHAubXN0bSk7
-CisKKwkJcmV0dXJuIE5WSUZfTk9USUZZX0tFRVA7CisJfQogCiAJcmV0ID0gcG1fcnVudGltZV9n
-ZXQoZHJtLT5kZXYtPmRldik7CiAJaWYgKHJldCA9PSAwKSB7CkBAIC0xMTUxLDI1ICsxMTYxLDE2
-IEBAIG5vdXZlYXVfY29ubmVjdG9yX2hvdHBsdWcoc3RydWN0IG52aWZfbm90aWZ5ICpub3RpZnkp
-CiAJCXJldHVybiBOVklGX05PVElGWV9EUk9QOwogCX0KIAotCWlmIChyZXAtPm1hc2sgJiBOVklG
-X05PVElGWV9DT05OX1YwX0lSUSkgewotCQlOVl9ERUJVRyhkcm0sICJzZXJ2aWNlICVzXG4iLCBu
-YW1lKTsKLQkJZHJtX2RwX2NlY19pcnEoJm52X2Nvbm5lY3Rvci0+YXV4KTsKLQkJaWYgKChudl9l
-bmNvZGVyID0gZmluZF9lbmNvZGVyKGNvbm5lY3RvciwgRENCX09VVFBVVF9EUCkpKQotCQkJbnY1
-MF9tc3RtX3NlcnZpY2UobnZfZW5jb2Rlci0+ZHAubXN0bSk7Ci0JfSBlbHNlIHsKLQkJYm9vbCBw
-bHVnZ2VkID0gKHJlcC0+bWFzayAhPSBOVklGX05PVElGWV9DT05OX1YwX1VOUExVRyk7Ci0KKwlp
-ZiAoIXBsdWdnZWQpCisJCWRybV9kcF9jZWNfdW5zZXRfZWRpZCgmbnZfY29ubmVjdG9yLT5hdXgp
-OworCU5WX0RFQlVHKGRybSwgIiVzcGx1Z2dlZCAlc1xuIiwgcGx1Z2dlZCA/ICIiIDogInVuIiwg
-bmFtZSk7CisJaWYgKChudl9lbmNvZGVyID0gZmluZF9lbmNvZGVyKGNvbm5lY3RvciwgRENCX09V
-VFBVVF9EUCkpKSB7CiAJCWlmICghcGx1Z2dlZCkKLQkJCWRybV9kcF9jZWNfdW5zZXRfZWRpZCgm
-bnZfY29ubmVjdG9yLT5hdXgpOwotCQlOVl9ERUJVRyhkcm0sICIlc3BsdWdnZWQgJXNcbiIsIHBs
-dWdnZWQgPyAiIiA6ICJ1biIsIG5hbWUpOwotCQlpZiAoKG52X2VuY29kZXIgPSBmaW5kX2VuY29k
-ZXIoY29ubmVjdG9yLCBEQ0JfT1VUUFVUX0RQKSkpIHsKLQkJCWlmICghcGx1Z2dlZCkKLQkJCQlu
-djUwX21zdG1fcmVtb3ZlKG52X2VuY29kZXItPmRwLm1zdG0pOwotCQl9Ci0KLQkJZHJtX2hlbHBl
-cl9ocGRfaXJxX2V2ZW50KGNvbm5lY3Rvci0+ZGV2KTsKKwkJCW52NTBfbXN0bV9yZW1vdmUobnZf
-ZW5jb2Rlci0+ZHAubXN0bSk7CiAJfQogCisJZHJtX2hlbHBlcl9ocGRfaXJxX2V2ZW50KGNvbm5l
-Y3Rvci0+ZGV2KTsKKwogCXBtX3J1bnRpbWVfbWFya19sYXN0X2J1c3koZHJtLT5kZXYtPmRldik7
-CiAJcG1fcnVudGltZV9wdXRfYXV0b3N1c3BlbmQoZHJtLT5kZXYtPmRldik7CiAJcmV0dXJuIE5W
-SUZfTk9USUZZX0tFRVA7Ci0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2RyaS1kZXZlbAo=
+huh? Not sure how this got put in the stable queue, but this probably shoul=
+d
+be dropped. this was prepatory work for some MST functionality that got add=
+ed
+recently, not a fix.
+
+On Tue, 2019-12-10 at 16:04 -0500, Sasha Levin wrote:
+> From: Lyude Paul <lyude@redhat.com>
+>=20
+> [ Upstream commit ac0de16a38a9ec7026ca96132e3883c564497068 ]
+>=20
+> Currently, we enable hotplug detection only after we re-enable the
+> display. However, this is too late if we're planning on sending sideband
+> messages during the resume process - which we'll need to do in order to
+> reprobe the topology on resume.
+>=20
+> So, enable hotplug events before reinitializing the display.
+>=20
+> Cc: Juston Li <juston.li@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Harry Wentland <hwentlan@amd.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Reviewed-by: Sean Paul <sean@poorly.run>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Link:=20
+> https://patchwork.freedesktop.org/patch/msgid/20191022023641.8026-11-lyud=
+e@redhat.com
+> Signed-off-by: Sasha Levin <sashal@kernel.org>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_display.c | 19 +++++++++++--------
+>  1 file changed, 11 insertions(+), 8 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c
+> b/drivers/gpu/drm/nouveau/nouveau_display.c
+> index 6f038511a03a9..53f9bceaf17a5 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+> @@ -407,6 +407,17 @@ nouveau_display_init(struct drm_device *dev, bool
+> resume, bool runtime)
+>  =09struct drm_connector_list_iter conn_iter;
+>  =09int ret;
+> =20
+> +=09/*
+> +=09 * Enable hotplug interrupts (done as early as possible, since we nee=
+d
+> +=09 * them for MST)
+> +=09 */
+> +=09drm_connector_list_iter_begin(dev, &conn_iter);
+> +=09nouveau_for_each_non_mst_connector_iter(connector, &conn_iter) {
+> +=09=09struct nouveau_connector *conn =3D nouveau_connector(connector);
+> +=09=09nvif_notify_get(&conn->hpd);
+> +=09}
+> +=09drm_connector_list_iter_end(&conn_iter);
+> +
+>  =09ret =3D disp->init(dev, resume, runtime);
+>  =09if (ret)
+>  =09=09return ret;
+> @@ -416,14 +427,6 @@ nouveau_display_init(struct drm_device *dev, bool
+> resume, bool runtime)
+>  =09 */
+>  =09drm_kms_helper_poll_enable(dev);
+> =20
+> -=09/* enable hotplug interrupts */
+> -=09drm_connector_list_iter_begin(dev, &conn_iter);
+> -=09nouveau_for_each_non_mst_connector_iter(connector, &conn_iter) {
+> -=09=09struct nouveau_connector *conn =3D nouveau_connector(connector);
+> -=09=09nvif_notify_get(&conn->hpd);
+> -=09}
+> -=09drm_connector_list_iter_end(&conn_iter);
+> -
+>  =09return ret;
+>  }
+> =20
+--=20
+Cheers,
+=09Lyude Paul
