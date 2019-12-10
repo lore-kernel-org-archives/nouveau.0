@@ -1,138 +1,92 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into lower device
- states on certain intel bridges
-Date: Mon, 9 Dec 2019 13:24:04 +0100
-Message-ID: <CACO55tu19-14nVnnCpWz3r3nf15j6tGWzHNBRmbbs2R6O4gMCA@mail.gmail.com>
-References: <CACO55ttTPi2XpRRM_NYJU5c5=OvG0=-YngFy1BiR8WpHkavwXw@mail.gmail.com>
- <CAJZ5v0h=7zu3A+ojgUSmwTH0KeXmYP5OKDL__rwkkWaWqcJcWQ@mail.gmail.com>
- <20191121112821.GU11621@lahna.fi.intel.com> <CAJZ5v0hQhj5Wf+piU11abC4pF26yM=XHGHAcDv8Jsgdx04aN-w@mail.gmail.com>
- <20191121114610.GW11621@lahna.fi.intel.com> <CACO55ttXJgXG32HzYP_uJDfQ6T-d8zQaGjXK_AZD3kF0Rmft4g@mail.gmail.com>
- <CAJZ5v0ibzcLEm44udUxW2uVgaF9NapdNBF8Ag+RE++u7gi2yNA@mail.gmail.com>
- <CACO55ttBkZD9dm0Y_jT931NnzHHtDFyLz28aoo+ZG0pnLzPgbA@mail.gmail.com>
- <CAJZ5v0jbh7jz+YQcw-gC5ztmMOc4E9+KFBCy4VGRsRFxBw-gnw@mail.gmail.com>
- <e0eeddf4214f54dfac08e428dfb30cbd39f20680.camel@redhat.com>
- <20191127114856.GZ11621@lahna.fi.intel.com> <CACO55tt5SAf24vk0XrKguhh2J=WuKirDsdY7T+u7PsGFCpnFxg@mail.gmail.com>
- <e7aec10d789b322ca98f4b250923b0f14f2b8226.camel@redhat.com>
- <CACO55tu+hT1WGbBn_nxLR=A-X6YWmeuz-UztJKw0QAFQDDV_xg@mail.gmail.com> <CAJZ5v0hcONxiWD+jpBe62H1SZ-84iNxT+QCn8mcesB1C7SVWjw@mail.gmail.com>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [Nouveau] [PATCH v3 0/9] drm/nouveau: Various fixes for GP10B
+Date: Tue, 10 Dec 2019 18:15:30 +1000
+Message-ID: <CACAvsv4NX7jvZb5_X5auU4-KKk9PfmtJvmnQNjY7ihqgXaRS6A@mail.gmail.com>
+References: <20191209120005.2254786-1-thierry.reding@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAJZ5v0hcONxiWD+jpBe62H1SZ-84iNxT+QCn8mcesB1C7SVWjw@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Lyude Paul <lyude@redhat.com>, Mika Westerberg <mika.westerberg@intel.com>, Bjorn Helgaas <helgaas@kernel.org>, LKML <linux-kernel@vger.kernel.org>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@gmail.com>, Mario Limonciello <Mario.Limonciello@dell.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20191209120005.2254786-1-thierry.reding@gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: linux-tegra@vger.kernel.org, ML nouveau <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, ML dri-devel <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Dec 9, 2019 at 12:39 PM Rafael J. Wysocki <rafael@kernel.org> wrote=
-:
+On Mon, 9 Dec 2019 at 22:00, Thierry Reding <thierry.reding@gmail.com> wrote:
 >
-> On Mon, Dec 9, 2019 at 12:17 PM Karol Herbst <kherbst@redhat.com> wrote:
-> >
-> > anybody any other ideas?
+> From: Thierry Reding <treding@nvidia.com>
 >
-> Not yet, but I'm trying to collect some more information.
+> Hi Ben,
 >
-> > It seems that both patches don't really fix
-> > the issue and I have no idea left on my side to try out. The only
-> > thing left I could do to further investigate would be to reverse
-> > engineer the Nvidia driver as they support runpm on Turing+ GPUs now,
-> > but I've heard users having similar issues to the one Lyude told us
-> > about... and I couldn't verify that the patches help there either in a
-> > reliable way.
+> here's a revised subset of the patches I had sent out a couple of weeks
+> ago. I've reworked the BAR2 accesses in the way that you had suggested,
+> which at least for GP10B turned out to be fairly trivial to do. I have
+> not looked in detail at this for GV11B yet, but a cursory look showed
+> that BAR2 is accessed in more places, so the equivalent for GV11B might
+> be a bit more involved.
 >
-> It looks like the newer (8+) versions of Windows expect the GPU driver
-> to prepare the GPU for power removal in some specific way and the
-> latter fails if the GPU has not been prepared as expected.
+> Other than that, not a lot has changed since then. I've added a couple
+> of precursory patches to add IOMMU helper dummies for the case where
+> IOMMU is disabled (as suggested by Ben Dooks).
 >
-> Because testing indicates that the Windows 7 path in the platform
-> firmware works, it may be worth trying to do what it does to the PCIe
-> link before invoking the _OFF method for the power resource
-> controlling the GPU power.
->
+> Joerg has given an Acked-by on the first two patches, so I think it'd be
+> easiest if you picked those up into the Nouveau tree because of the
+> build dependency of subsequent patches on them.
+I've merged all the patches in my tree, after fixing a small build
+issue on !TEGRA in the WPR config readout patch.
 
-ohh, that actually makes sense. Didn't think of that yet.
+Thanks Thierry!
+Ben.
 
-> If the Mika's theory that the Win7 path simply turns the PCIe link off
-> is correct, then whatever the _OFF method tries to do to the link
-> after that should not matter.
 >
-
-By the way, and I was only thinking about it after sending my last
-email out, do you think we should fail the runtime resume path if the
-device gets stuck in a power state?
-
-Currently pci core always calls into the driver regardless, but maybe
-for D3cold it really makes sense to just bail and refuse to resume? I
-think I tried that as an early "fix" and might even have a patch
-around. This should at least prevent crashes inside drivers trying to
-access invalid memory or getting stuck in loops.
-
-> > On Wed, Nov 27, 2019 at 8:55 PM Lyude Paul <lyude@redhat.com> wrote:
-> > >
-> > > On Wed, 2019-11-27 at 12:51 +0100, Karol Herbst wrote:
-> > > > On Wed, Nov 27, 2019 at 12:49 PM Mika Westerberg
-> > > > <mika.westerberg@intel.com> wrote:
-> > > > > On Tue, Nov 26, 2019 at 06:10:36PM -0500, Lyude Paul wrote:
-> > > > > > Hey-this is almost certainly not the right place in this thread=
- to
-> > > > > > respond,
-> > > > > > but this thread has gotten so deep evolution can't push the sub=
-ject
-> > > > > > further to
-> > > > > > the right, heh. So I'll just respond here.
-> > > > >
-> > > > > :)
-> > > > >
-> > > > > > I've been following this and helping out Karol with testing her=
-e and
-> > > > > > there.
-> > > > > > They had me test Bjorn's PCI branch on the X1 Extreme 2nd gener=
-ation,
-> > > > > > which
-> > > > > > has a turing GPU and 8086:1901 PCI bridge.
-> > > > > >
-> > > > > > I was about to say "the patch fixed things, hooray!" but it see=
-ms that
-> > > > > > after
-> > > > > > trying runtime suspend/resume a couple times things fall apart =
-again:
-> > > > >
-> > > > > You mean $subject patch, no?
-> > > > >
-> > > >
-> > > > no, I told Lyude to test the pci/pm branch as the runpm errors we s=
-aw
-> > > > on that machine looked different. Some BAR error the GPU reported
-> > > > after it got resumed, so I was wondering if the delays were helping
-> > > > with that. But after some cycles it still caused the same issue, th=
-at
-> > > > the GPU disappeared. Later testing also showed that my patch also
-> > > > didn't seem to help with this error sadly :/
-> > > >
-> > > > > > [  686.883247] nouveau 0000:01:00.0: DRM: suspending object tre=
-e...
-> > > > > > [  752.866484] ACPI Error: Aborting method \_SB.PCI0.PEG0.PEGP.=
-NVPO due
-> > > > > > to previous error (AE_AML_LOOP_TIMEOUT) (20190816/psparse-529)
-> > > > > > [  752.866508] ACPI Error: Aborting method \_SB.PCI0.PGON due t=
-o
-> > > > > > previous error (AE_AML_LOOP_TIMEOUT) (20190816/psparse-529)
-> > > > > > [  752.866521] ACPI Error: Aborting method \_SB.PCI0.PEG0.PG00.=
-_ON due
-> > > > > > to previous error (AE_AML_LOOP_TIMEOUT) (20190816/psparse-529)
-> > > > >
-> > > > > This is probably the culprit. The same AML code fails to properly=
- turn
-> > > > > on the device.
-> > > > >
-> > > > > Is acpidump from this system available somewhere?
-> > >
-> > > Attached it to this email
-> > >
-> > > > >
-> > > --
-> > > Cheers,
-> > >         Lyude Paul
-> >
+> Thierry
 >
+> Thierry Reding (9):
+>   iommu: Document iommu_fwspec::flags field
+>   iommu: Add dummy dev_iommu_fwspec_get() helper
+>   drm/nouveau: fault: Add support for GP10B
+>   drm/nouveau: tegra: Do not try to disable PCI device
+>   drm/nouveau: tegra: Avoid pulsing reset twice
+>   drm/nouveau: tegra: Set clock rate if not set
+>   drm/nouveau: secboot: Read WPR configuration from GPU registers
+>   drm/nouveau: gp10b: Add custom L2 cache implementation
+>   drm/nouveau: gp10b: Use correct copy engine
+>
+>  .../drm/nouveau/include/nvkm/subdev/fault.h   |  1 +
+>  .../gpu/drm/nouveau/include/nvkm/subdev/ltc.h |  1 +
+>  drivers/gpu/drm/nouveau/nouveau_drm.c         |  3 +-
+>  .../gpu/drm/nouveau/nvkm/engine/device/base.c |  6 +-
+>  .../drm/nouveau/nvkm/engine/device/tegra.c    | 24 ++++--
+>  .../gpu/drm/nouveau/nvkm/subdev/fault/Kbuild  |  1 +
+>  .../gpu/drm/nouveau/nvkm/subdev/fault/base.c  |  2 +-
+>  .../gpu/drm/nouveau/nvkm/subdev/fault/gp100.c | 17 ++--
+>  .../gpu/drm/nouveau/nvkm/subdev/fault/gp10b.c | 53 ++++++++++++
+>  .../gpu/drm/nouveau/nvkm/subdev/fault/gv100.c |  1 +
+>  .../gpu/drm/nouveau/nvkm/subdev/fault/priv.h  | 10 +++
+>  .../gpu/drm/nouveau/nvkm/subdev/ltc/Kbuild    |  1 +
+>  .../gpu/drm/nouveau/nvkm/subdev/ltc/gp10b.c   | 65 +++++++++++++++
+>  .../gpu/drm/nouveau/nvkm/subdev/ltc/priv.h    |  2 +
+>  .../drm/nouveau/nvkm/subdev/secboot/gm200.h   |  2 +-
+>  .../drm/nouveau/nvkm/subdev/secboot/gm20b.c   | 81 ++++++++++++-------
+>  .../drm/nouveau/nvkm/subdev/secboot/gp10b.c   |  4 +-
+>  include/linux/iommu.h                         | 47 ++++++-----
+>  18 files changed, 249 insertions(+), 72 deletions(-)
+>  create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/fault/gp10b.c
+>  create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/ltc/gp10b.c
+>
+> --
+> 2.23.0
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
