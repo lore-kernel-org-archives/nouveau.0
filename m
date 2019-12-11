@@ -1,7 +1,8 @@
 From: James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 3/3] drm/nouveau: Support NVIDIA format modifiers
-Date: Wed, 11 Dec 2019 12:59:22 -0800
-Message-ID: <20191211205922.7096-4-jajones@nvidia.com>
+Subject: [PATCH 1/3] drm/nouveau: Add format mod prop to
+ base/ovly/nvdisp
+Date: Wed, 11 Dec 2019 12:59:20 -0800
+Message-ID: <20191211205922.7096-2-jajones@nvidia.com>
 References: <20191211205922.7096-1-jajones@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,181 +22,231 @@ To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Allow setting the block layout of a nouveau FB
-object using DRM format modifiers.  When
-specified, the format modifier block layout and
-kind overrides the GEM buffer's implicit layout
-and kind.  The specified format modifier is
-validated against he list of modifiers supported
-by the target display hardware.
+Advertise support for the full list of format
+modifiers supported by each class of NVIDIA
+desktop GPU display hardware.  Stash the array
+of modifiers in the nouveau_display struct for
+use when validating userspace framebuffer
+creation requests, which will be supportd in
+a subsequent change.
 
 Signed-off-by: James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/dispnv50/wndw.c   |  8 +--
- drivers/gpu/drm/nouveau/nouveau_display.c | 65 ++++++++++++++++++++++-
- drivers/gpu/drm/nouveau/nouveau_display.h |  2 +
- 3 files changed, 69 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/base507c.c |  7 +--
+ drivers/gpu/drm/nouveau/dispnv50/disp.c     | 59 +++++++++++++++++++++
+ drivers/gpu/drm/nouveau/dispnv50/disp.h     |  4 ++
+ drivers/gpu/drm/nouveau/dispnv50/wndw.c     | 27 +++++++++-
+ drivers/gpu/drm/nouveau/dispnv50/wndwc57e.c | 17 ++++++
+ drivers/gpu/drm/nouveau/nouveau_display.h   |  2 +
+ 6 files changed, 112 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-index 70ad64cb2d34..06c1b18479c1 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-@@ -43,7 +43,7 @@ nv50_wndw_ctxdma_new(struct nv50_wndw *wndw, struct nouveau_framebuffer *fb)
- {
- 	struct nouveau_drm *drm = nouveau_drm(fb->base.dev);
- 	struct nv50_wndw_ctxdma *ctxdma;
--	const u8    kind = fb->nvbo->kind;
-+	const u8    kind = fb->kind;
- 	const u32 handle = 0xfb000000 | kind;
- 	struct {
- 		struct nv_dma_v0 base;
-@@ -243,7 +243,7 @@ nv50_wndw_atomic_check_acquire(struct nv50_wndw *wndw, bool modeset,
- 	if (asyw->state.fb != armw->state.fb || !armw->visible || modeset) {
- 		asyw->image.w = fb->base.width;
- 		asyw->image.h = fb->base.height;
--		asyw->image.kind = fb->nvbo->kind;
-+		asyw->image.kind = fb->kind;
- 
- 		ret = nv50_wndw_atomic_check_acquire_rgb(asyw);
- 		if (ret) {
-@@ -255,9 +255,9 @@ nv50_wndw_atomic_check_acquire(struct nv50_wndw *wndw, bool modeset,
- 		if (asyw->image.kind) {
- 			asyw->image.layout = 0;
- 			if (drm->client.device.info.chipset >= 0xc0)
--				asyw->image.blockh = fb->nvbo->mode >> 4;
-+				asyw->image.blockh = fb->tile_mode >> 4;
- 			else
--				asyw->image.blockh = fb->nvbo->mode;
-+				asyw->image.blockh = fb->tile_mode;
- 			asyw->image.blocks[0] = fb->base.pitches[0] / 64;
- 			asyw->image.pitch[0] = 0;
- 		} else {
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index f1509392d7b7..351b58410e1a 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -224,6 +224,50 @@ static const struct drm_framebuffer_funcs nouveau_framebuffer_funcs = {
- 	.create_handle = nouveau_user_framebuffer_create_handle,
- };
- 
-+static int
-+nouveau_decode_mod(struct nouveau_drm *drm,
-+		   uint64_t modifier,
-+		   uint32_t *tile_mode,
-+		   uint8_t *kind)
-+{
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/base507c.c b/drivers/gpu/drm/nouveau/dispnv50/base507c.c
+index 00a85f1e1a4a..025b8f996a0a 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/base507c.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/base507c.c
+@@ -262,7 +262,8 @@ base507c_new_(const struct nv50_wndw_func *func, const u32 *format,
+ 	struct nv50_disp_base_channel_dma_v0 args = {
+ 		.head = head,
+ 	};
+-	struct nv50_disp *disp = nv50_disp(drm->dev);
 +	struct nouveau_display *disp = nouveau_display(drm->dev);
-+	int mod;
-+
-+	BUG_ON(!tile_mode || !kind);
-+
-+	if (drm->client.device.info.chipset < 0x50) {
-+		return -EINVAL;
-+	}
-+
-+	BUG_ON(!disp->format_modifiers);
-+
-+	for (mod = 0;
-+	     (disp->format_modifiers[mod] != DRM_FORMAT_MOD_INVALID) &&
-+	     (disp->format_modifiers[mod] != modifier);
-+	     mod++);
-+
-+	if (disp->format_modifiers[mod] == DRM_FORMAT_MOD_INVALID)
-+		return -EINVAL;
-+
-+	if (modifier == DRM_FORMAT_MOD_LINEAR) {
-+		/* tile_mode will not be used in this case */
-+		*tile_mode = 0;
-+		*kind = 0;
-+	} else {
-+		/*
-+		 * Extract the block height and kind from the corresponding
-+		 * modifier fields.  See drm_fourcc.h for details.
-+		 */
-+		*tile_mode = (uint32_t)(modifier & 0xF);
-+		*kind = (uint8_t)((modifier >> 12) & 0xFF);
-+
-+		if (drm->client.device.info.chipset >= 0xc0)
-+			*tile_mode <<= 4;
-+	}
-+
-+	return 0;
-+}
-+
- static inline uint32_t
- nouveau_get_width_in_blocks(uint32_t stride)
- {
-@@ -300,6 +344,8 @@ nouveau_framebuffer_new(struct drm_device *dev,
- 	struct nouveau_framebuffer *fb;
- 	const struct drm_format_info *info;
- 	unsigned int width, height, i;
-+	uint32_t tile_mode;
-+	uint8_t kind;
++	struct nv50_disp *disp50 = nv50_disp(drm->dev);
+ 	struct nv50_wndw *wndw;
  	int ret;
  
-         /* YUV overlays have special requirements pre-NV50 */
-@@ -322,6 +368,18 @@ nouveau_framebuffer_new(struct drm_device *dev,
- 		return -EINVAL;
- 	}
+@@ -272,9 +273,9 @@ base507c_new_(const struct nv50_wndw_func *func, const u32 *format,
+ 	if (*pwndw = wndw, ret)
+ 		return ret;
  
-+	if (mode_cmd->flags & DRM_MODE_FB_MODIFIERS) {
-+		if (nouveau_decode_mod(drm, mode_cmd->modifier[0], &tile_mode,
-+				       &kind)) {
-+			DRM_DEBUG_KMS("Unsupported modifier: 0x%llx\n",
-+				      mode_cmd->modifier[0]);
-+			return -EINVAL;
-+		}
-+	} else {
-+		tile_mode = nvbo->mode;
-+		kind = nvbo->kind;
+-	ret = nv50_dmac_create(&drm->client.device, &disp->disp->object,
++	ret = nv50_dmac_create(&drm->client.device, &disp->disp.object,
+ 			       &oclass, head, &args, sizeof(args),
+-			       disp->sync->bo.offset, &wndw->wndw);
++			       disp50->sync->bo.offset, &wndw->wndw);
+ 	if (ret) {
+ 		NV_ERROR(drm, "base%04x allocation failed: %d\n", oclass, ret);
+ 		return ret;
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index 064a69d161e3..0956367d27a2 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -2337,6 +2337,15 @@ nv50_display_create(struct drm_device *dev)
+ 	if (ret)
+ 		goto out;
+ 
++	/* Assign the correct format modifiers */
++	if (disp->disp->object.oclass >= TU102_DISP)
++		nouveau_display(dev)->format_modifiers = wndwc57e_modifiers;
++	else
++	if (disp->disp->object.oclass >= GF110_DISP)
++		nouveau_display(dev)->format_modifiers = disp90xx_modifiers;
++	else
++		nouveau_display(dev)->format_modifiers = disp50xx_modifiers;
++
+ 	/* create crtc objects to represent the hw heads */
+ 	if (disp->disp->object.oclass >= GV100_DISP)
+ 		crtcs = nvif_rd32(&device->object, 0x610060) & 0xff;
+@@ -2404,3 +2413,53 @@ nv50_display_create(struct drm_device *dev)
+ 		nv50_display_destroy(dev);
+ 	return ret;
+ }
++
++/******************************************************************************
++ * Format modifiers
++ *****************************************************************************/
++
++/****************************************************************
++ *            Log2(block height) ----------------------------+  *
++ *            Page Kind ----------------------------------+  |  *
++ *            Gob Height/Page Kind Generation ------+     |  |  *
++ *                          Sector layout -------+  |     |  |  *
++ *                          Compression ------+  |  |     |  |  */
++const u64 disp50xx_modifiers[] = { /*         |  |  |     |  |  */
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x7a, 0),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x7a, 1),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x7a, 2),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x7a, 3),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x7a, 4),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x7a, 5),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x78, 0),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x78, 1),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x78, 2),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x78, 3),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x78, 4),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x78, 5),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x70, 0),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x70, 1),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x70, 2),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x70, 3),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x70, 4),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 1, 0x70, 5),
++	DRM_FORMAT_MOD_LINEAR,
++	DRM_FORMAT_MOD_INVALID
++};
++
++/****************************************************************
++ *            Log2(block height) ----------------------------+  *
++ *            Page Kind ----------------------------------+  |  *
++ *            Gob Height/Page Kind Generation ------+     |  |  *
++ *                          Sector layout -------+  |     |  |  *
++ *                          Compression ------+  |  |     |  |  */
++const u64 disp90xx_modifiers[] = { /*         |  |  |     |  |  */
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 0, 0xfe, 0),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 0, 0xfe, 1),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 0, 0xfe, 2),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 0, 0xfe, 3),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 0, 0xfe, 4),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 0, 0xfe, 5),
++	DRM_FORMAT_MOD_LINEAR,
++	DRM_FORMAT_MOD_INVALID
++};
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.h b/drivers/gpu/drm/nouveau/dispnv50/disp.h
+index 7c41b0599d1a..49982b632f82 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.h
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.h
+@@ -76,6 +76,10 @@ void nv50_dmac_destroy(struct nv50_dmac *);
+ u32 *evo_wait(struct nv50_dmac *, int nr);
+ void evo_kick(u32 *, struct nv50_dmac *);
+ 
++extern const u64 disp50xx_modifiers[];
++extern const u64 disp90xx_modifiers[];
++extern const u64 wndwc57e_modifiers[];
++
+ #define evo_mthd(p, m, s) do {						\
+ 	const u32 _m = (m), _s = (s);					\
+ 	if (drm_debug & DRM_UT_KMS)					\
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+index 2db029371c91..70ad64cb2d34 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+@@ -594,6 +594,29 @@ nv50_wndw_destroy(struct drm_plane *plane)
+ 	kfree(wndw);
+ }
+ 
++/* This function assumes the format has already been validated against the plane
++ * and the modifier was validated against the device-wides modifier list at FB
++ * creation time.
++ */
++static bool nv50_plane_format_mod_supported(struct drm_plane *plane,
++					    u32 format, u64 modifier)
++{
++	struct nouveau_drm *drm = nouveau_drm(plane->dev);
++	uint8_t i;
++
++	if (drm->client.device.info.chipset < 0xc0) {
++		const struct drm_format_info *info = drm_format_info(format);
++		const uint8_t kind = (modifier >> 12) & 0xff;
++
++		if (!format) return false;
++
++		for (i = 0; i < info->num_planes; i++)
++			if ((info->cpp[i] != 4) && kind != 0x70) return false;
 +	}
 +
- 	info = drm_get_format_info(dev, mode_cmd);
++	return true;
++}
++
+ const struct drm_plane_funcs
+ nv50_wndw = {
+ 	.update_plane = drm_atomic_helper_update_plane,
+@@ -602,6 +625,7 @@ nv50_wndw = {
+ 	.reset = nv50_wndw_reset,
+ 	.atomic_duplicate_state = nv50_wndw_atomic_duplicate_state,
+ 	.atomic_destroy_state = nv50_wndw_atomic_destroy_state,
++	.format_mod_supported = nv50_plane_format_mod_supported,
+ };
  
- 	for (i = 0; i < info->num_planes; i++) {
-@@ -332,11 +390,11 @@ nouveau_framebuffer_new(struct drm_device *dev,
- 						      mode_cmd->height,
- 						      i);
+ static int
+@@ -649,7 +673,8 @@ nv50_wndw_new_(const struct nv50_wndw_func *func, struct drm_device *dev,
+ 	for (nformat = 0; format[nformat]; nformat++);
  
--		if (nvbo->kind) {
-+		if (kind) {
- 			ret = nouveau_check_bl_size(drm, nvbo,
- 						    mode_cmd->offsets[i],
- 						    mode_cmd->pitches[i],
--						    height, nvbo->mode);
-+						    height, tile_mode);
- 			if (ret)
- 				return ret;
- 		} else {
-@@ -352,6 +410,8 @@ nouveau_framebuffer_new(struct drm_device *dev,
+ 	ret = drm_universal_plane_init(dev, &wndw->plane, heads, &nv50_wndw,
+-				       format, nformat, NULL,
++				       format, nformat,
++				       nouveau_display(dev)->format_modifiers,
+ 				       type, "%s-%d", name, index);
+ 	if (ret) {
+ 		kfree(*pwndw);
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndwc57e.c b/drivers/gpu/drm/nouveau/dispnv50/wndwc57e.c
+index a311c79e5295..e887e44b54c9 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/wndwc57e.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/wndwc57e.c
+@@ -171,6 +171,23 @@ wndwc57e_ilut(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
+ 	asyw->xlut.i.load = wndwc57e_ilut_load;
+ }
  
- 	drm_helper_mode_fill_fb_struct(dev, &fb->base, mode_cmd);
- 	fb->nvbo = nvbo;
-+	fb->tile_mode = tile_mode;
-+	fb->kind = kind;
- 
- 	ret = drm_framebuffer_init(dev, &fb->base, &nouveau_framebuffer_funcs);
- 	if (ret)
-@@ -625,6 +685,7 @@ nouveau_display_create(struct drm_device *dev)
- 
- 	dev->mode_config.preferred_depth = 24;
- 	dev->mode_config.prefer_shadow = 1;
-+	dev->mode_config.allow_fb_modifiers = true;
- 
- 	if (drm->client.device.info.chipset < 0x11)
- 		dev->mode_config.async_page_flip = false;
++/****************************************************************
++ *            Log2(block height) ----------------------------+  *
++ *            Page Kind ----------------------------------+  |  *
++ *            Gob Height/Page Kind Generation ------+     |  |  *
++ *                          Sector layout -------+  |     |  |  *
++ *                          Compression ------+  |  |     |  |  */
++const u64 wndwc57e_modifiers[] = { /*         |  |  |     |  |  */
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 2, 0x06, 0),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 2, 0x06, 1),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 2, 0x06, 2),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 2, 0x06, 3),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 2, 0x06, 4),
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 1, 2, 0x06, 5),
++	DRM_FORMAT_MOD_LINEAR,
++	DRM_FORMAT_MOD_INVALID
++};
++
+ static const struct nv50_wndw_func
+ wndwc57e = {
+ 	.acquire = wndwc37e_acquire,
 diff --git a/drivers/gpu/drm/nouveau/nouveau_display.h b/drivers/gpu/drm/nouveau/nouveau_display.h
-index c54682f00b01..0dad57b21983 100644
+index 6e8e66882e45..c54682f00b01 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_display.h
 +++ b/drivers/gpu/drm/nouveau/nouveau_display.h
-@@ -15,6 +15,8 @@ struct nouveau_framebuffer {
- 	u32 r_handle;
- 	u32 r_format;
- 	u32 r_pitch;
-+	u32 tile_mode;
-+	u8 kind;
- 	struct nvif_object h_base[4];
- 	struct nvif_object h_core;
+@@ -47,6 +47,8 @@ struct nouveau_display {
+ 	struct drm_property *color_vibrance_property;
+ 
+ 	struct drm_atomic_state *suspend;
++
++	const u64 *format_modifiers;
  };
+ 
+ static inline struct nouveau_display *
 -- 
 2.17.1
