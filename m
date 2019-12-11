@@ -1,78 +1,228 @@
-From: Navid Emamdoost <navid.emamdoost@gmail.com>
-Subject: Re: [PATCH] drm/nouveau: Fix memory leak in nouveau_bo_alloc
-Date: Tue, 10 Dec 2019 20:32:58 -0600
-Message-ID: <CAEkB2EQiJXmc6U9axYEg8cgh5L9vFtoD5x0byAey+GCc-WTwOA@mail.gmail.com>
-References: <20191021211449.9104-1-navid.emamdoost@gmail.com>
- <CAEkB2ERA6Rx9fZiwXH+m8_OV8to0TuLJRVRiUKfKtSoeoT0uJw@mail.gmail.com> <CAEkB2ER4dof02PcH6BDQoFNhkkds=zrPf+5-rSygUh=XU8H0zQ@mail.gmail.com>
+From: James Jones <jajones@nvidia.com>
+Subject: [PATCH v3] drm: Generalized NV Block Linear DRM format mod
+Date: Wed, 11 Dec 2019 12:55:47 -0800
+Message-ID: <20191211205547.6907-1-jajones@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAEkB2ER4dof02PcH6BDQoFNhkkds=zrPf+5-rSygUh=XU8H0zQ@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
-Cc: Navid Emamdoost <emamd001@umn.edu>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Cc: nouveau@lists.freedesktop.org, James Jones <jajones@nvidia.com>, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-ping ...
+Builds upon the existing NVIDIA 16Bx2 block linear
+format modifiers by adding more "fields" to the
+existing parameterized
+DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK format modifier
+macro that allow fully defining a unique-across-
+all-NVIDIA-hardware bit layout using a minimal
+set of fields and values.  The new modifier macro
+DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D is
+effectively backwards compatible with the existing
+macro, introducing a superset of the previously
+definable format modifiers.
 
-On Tue, Nov 26, 2019 at 11:50 AM Navid Emamdoost
-<navid.emamdoost@gmail.com> wrote:
->
-> ping...
->
-> On Thu, Nov 21, 2019 at 12:09 PM Navid Emamdoost
-> <navid.emamdoost@gmail.com> wrote:
-> >
-> > On Mon, Oct 21, 2019 at 4:14 PM Navid Emamdoost
-> > <navid.emamdoost@gmail.com> wrote:
-> > >
-> > > In the implementation of nouveau_bo_alloc() if it fails to determine the
-> > > target page size via pi, then the allocated memory for nvbo should be
-> > > released.
-> > >
-> > > Fixes: 019cbd4a4feb ("drm/nouveau: Initialize GEM object before TTM object")
-> > > Signed-off-by: Navid Emamdoost <navid.emamdoost@gmail.com>
-> >
-> > Would you please review this patch?
-> >
-> >
-> > Thanks,
-> > Navid.
-> >
-> > > ---
-> > >  drivers/gpu/drm/nouveau/nouveau_bo.c | 4 +++-
-> > >  1 file changed, 3 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> > > index f8015e0318d7..18857cf44068 100644
-> > > --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-> > > +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> > > @@ -276,8 +276,10 @@ nouveau_bo_alloc(struct nouveau_cli *cli, u64 *size, int *align, u32 flags,
-> > >                         break;
-> > >         }
-> > >
-> > > -       if (WARN_ON(pi < 0))
-> > > +       if (WARN_ON(pi < 0)) {
-> > > +               kfree(nvbo);
-> > >                 return ERR_PTR(-EINVAL);
-> > > +       }
-> > >
-> > >         /* Disable compression if suitable settings couldn't be found. */
-> > >         if (nvbo->comp && !vmm->page[pi].comp) {
-> > > --
-> > > 2.17.1
-> > >
-> >
-> >
-> > --
-> > Navid.
->
->
->
-> --
-> Navid.
+Backwards compatibility has two quirks.  First,
+the zero value for the "kind" field, which is
+implied by the DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK
+macro, must be special cased in drivers and
+assumed to map to the pre-Turing generic kind of
+0xfe, since a kind of "zero" is reserved for
+linear buffer layouts on all GPUs.
 
+Second, it is assumed backwards compatibility
+is only needed when running on Tegra GPUs, and
+specifically Tegra GPUs prior to Xavier.  This
+is based on two assertions:
 
+-Tegra GPUs prior to Xavier used a slightly
+ different raw bit layout than desktop GPUs,
+ making it impossible to directly share block
+ linear buffers between the two.
 
+-Support for the existing block linear modifiers
+ was incomplete, making them useful only for
+ exporting buffers created by nouveau and
+ importing them to Tegra DRM as framebuffers for
+ scan out.  There was no support for adding
+ framebuffers using format modifiers in nouveau,
+ nor importing dma-buf/PRIME GEM objects into
+ nouveau userspace drivers with modifiers in Mesa.
+
+Hence it is assumed the prior modifiers were not
+intended for use on desktop GPUs, and as a
+corollary, were not intended to support sharing
+block linear buffers across two different NVIDIA
+GPUs.
+
+v2:
+  - Added canonicalize helper function
+
+v3:
+  - Added additional bit to compression field to
+    support Tesla (NV5x,G8x,G9x,GT1xx,GT2xx) class
+    chips.
+
+Signed-off-by: James Jones <jajones@nvidia.com>
+---
+ include/uapi/drm/drm_fourcc.h | 122 +++++++++++++++++++++++++++++++---
+ 1 file changed, 114 insertions(+), 8 deletions(-)
+
+diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+index 3feeaa3f987a..4330d930bdbb 100644
+--- a/include/uapi/drm/drm_fourcc.h
++++ b/include/uapi/drm/drm_fourcc.h
+@@ -497,7 +497,113 @@ extern "C" {
+ #define DRM_FORMAT_MOD_NVIDIA_TEGRA_TILED fourcc_mod_code(NVIDIA, 1)
+ 
+ /*
+- * 16Bx2 Block Linear layout, used by desktop GPUs, and Tegra K1 and later
++ * Generalized Block Linear layout, used by desktop GPUs starting with NV50/G80,
++ * and Tegra GPUs starting with Tegra K1.
++ *
++ * Pixels are arranged in Groups of Bytes (GOBs).  GOB size and layout varies
++ * based on the architecture generation.  GOBs themselves are then arranged in
++ * 3D blocks, with the block dimensions (in terms of GOBs) always being a power
++ * of two, and hence expressible as their log2 equivalent (E.g., "2" represents
++ * a block depth or height of "4").
++ *
++ * Chapter 20 "Pixel Memory Formats" of the Tegra X1 TRM describes this format
++ * in full detail.
++ *
++ *       Macro
++ * Bits  Param Description
++ * ----  ----- -----------------------------------------------------------------
++ *
++ *  3:0  h     log2(height) of each block, in GOBs.  Placed here for
++ *             compatibility with the existing
++ *             DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK()-based modifiers.
++ *
++ *  4:4  -     Must be 1, to indicate block-linear layout.  Necessary for
++ *             compatibility with the existing
++ *             DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK()-based modifiers.
++ *
++ *  8:5  -     Reserved (To support 3D-surfaces with variable log2(depth) block
++ *             size).  Must be zero.
++ *
++ *             Note there is no log2(width) parameter.  Some portions of the
++ *             hardware support a block width of two gobs, but it is impractical
++ *             to use due to lack of support elsewhere, and has no known
++ *             benefits.
++ *
++ * 11:9  -     Reserved (To support 2D-array textures with variable array stride
++ *             in blocks, specified via log2(tile width in blocks)).  Must be
++ *             zero.
++ *
++ * 19:12 k     Page Kind.  This value directly maps to a field in the page
++ *             tables of all GPUs >= NV50.  It affects the exact layout of bits
++ *             in memory and can be derived from the tuple
++ *
++ *               (format, GPU model, compression type, samples per pixel)
++ *
++ *             Where compression type is defined below.  If GPU model were
++ *             implied by the format modifier, format, or memory buffer, page
++ *             kind would not need to be included in the modifier itself, but
++ *             since the modifier should define the layout of the associated
++ *             memory buffer independent from any device or other context, it
++ *             must be included here.
++ *
++ * 21:20 g     GOB Height and Page Kind Generation.  The height of a GOB changed
++ *             starting with Fermi GPUs.  Additionally, the mapping between page
++ *             kind and bit layout has changed at various points.
++ *
++ *               0 = Gob Height 8, Fermi - Volta, Tegra K1+ Page Kind mapping
++ *               1 = Gob Height 4, G80 - GT2XX Page Kind mapping
++ *               2 = Gob Height 8, Turing+ Page Kind mapping
++ *               3 = Reserved for future use.
++ *
++ * 22:22 s     Sector layout.  On Tegra GPUs prior to Xavier, there is a further
++ *             bit remapping step that occurs at an even lower level than the
++ *             page kind and block linear swizzles.  This causes the layout of
++ *             surfaces mapped in those SOC's GPUs to be incompatible with the
++ *             equivalent mapping on other GPUs in the same system.
++ *
++ *               0 = Tegra K1 - Tegra Parker/TX2 Layout.
++ *               1 = Desktop GPU and Tegra Xavier+ Layout
++ *
++ * 25:23 c     Lossless Framebuffer Compression type.
++ *
++ *               0 = none
++ *               1 = ROP/3D, layout 1, exact compression format implied by Page
++ *                   Kind field
++ *               2 = ROP/3D, layout 2, exact compression format implied by Page
++ *                   Kind field
++ *               3 = CDE horizontal
++ *               4 = CDE vertical
++ *               5 = Reserved for future use
++ *               6 = Reserved for future use
++ *               7 = Reserved for future use
++ *
++ * 55:25 -     Reserved for future use.  Must be zero.
++ */
++#define DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(c, s, g, k, h) \
++	fourcc_mod_code(NVIDIA, (0x10 | \
++				 ((h) & 0xf) | \
++				 (((k) & 0xff) << 12) | \
++				 (((g) & 0x3) << 20) | \
++				 (((s) & 0x1) << 22) | \
++				 (((c) & 0x7) << 23)))
++
++/* To grandfather in prior block linear format modifiers to the above layout,
++ * the page kind "0", which corresponds to "pitch/linear" and hence is unusable
++ * with block-linear layouts, is remapped within drivers to the value 0xfe,
++ * which corresponds to the "generic" kind used for simple single-sample
++ * uncompressed color formats on Fermi - Volta GPUs.
++ */
++static inline __u64
++drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
++{
++	if (!(modifier & 0x10) || (modifier & (0xff << 12)))
++		return modifier;
++	else
++		return modifier | (0xfe << 12);
++}
++
++/*
++ * 16Bx2 Block Linear layout, used by Tegra K1 and later
+  *
+  * Pixels are arranged in 64x8 Groups Of Bytes (GOBs). GOBs are then stacked
+  * vertically by a power of 2 (1 to 32 GOBs) to form a block.
+@@ -518,20 +624,20 @@ extern "C" {
+  * in full detail.
+  */
+ #define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(v) \
+-	fourcc_mod_code(NVIDIA, 0x10 | ((v) & 0xf))
++	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0, (v))
+ 
+ #define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_ONE_GOB \
+-	fourcc_mod_code(NVIDIA, 0x10)
++	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(0)
+ #define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_TWO_GOB \
+-	fourcc_mod_code(NVIDIA, 0x11)
++	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(1)
+ #define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_FOUR_GOB \
+-	fourcc_mod_code(NVIDIA, 0x12)
++	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(2)
+ #define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_EIGHT_GOB \
+-	fourcc_mod_code(NVIDIA, 0x13)
++	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(3)
+ #define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_SIXTEEN_GOB \
+-	fourcc_mod_code(NVIDIA, 0x14)
++	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(4)
+ #define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_THIRTYTWO_GOB \
+-	fourcc_mod_code(NVIDIA, 0x15)
++	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(5)
+ 
+ /*
+  * Some Broadcom modifiers take parameters, for example the number of
 -- 
-Navid.
+2.17.1
