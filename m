@@ -1,11 +1,13 @@
 From: James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 0/3] drm/nouveau: Support NVIDIA format modifiers
-Date: Wed, 11 Dec 2019 12:59:19 -0800
-Message-ID: <20191211205922.7096-1-jajones@nvidia.com>
+Subject: [PATCH 3/3] drm/nouveau: Support NVIDIA format modifiers
+Date: Wed, 11 Dec 2019 12:59:22 -0800
+Message-ID: <20191211205922.7096-4-jajones@nvidia.com>
+References: <20191211205922.7096-1-jajones@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20191211205922.7096-1-jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,123 +21,181 @@ To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This series modifies the NV5x+ nouveau display backends to advertise
-appropriate format modifiers on their display planes in atomic mode
-setting blobs.
-
-Corresponding modifications to Mesa/userspace are available here:
-
-https://gitlab.freedesktop.org/cubanismo/mesa/tree/nouveau_work
-
-But those need a bit of cleanup before they're ready to submit.
-
-I've tested this on Tesla, Kepler, Pascal, and Turing-class hardware
-using various formats and all the exposed format modifiers, plus some
-negative testing with invalid ones.
-
-NOTE: this series depends on the "[PATCH v3] drm: Generalized NV Block
-Linear DRM format mod" patch submitted to dri-devel.
+Allow setting the block layout of a nouveau FB
+object using DRM format modifiers.  When
+specified, the format modifier block layout and
+kind overrides the GEM buffer's implicit layout
+and kind.  The specified format modifier is
+validated against he list of modifiers supported
+by the target display hardware.
 
 Signed-off-by: James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/tegra/dc.c  | 10 ++++++++++
- drivers/gpu/drm/tegra/fb.c  | 14 +++++++-------
- drivers/gpu/drm/tegra/hub.c | 10 ++++++++++
- 3 files changed, 27 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/wndw.c   |  8 +--
+ drivers/gpu/drm/nouveau/nouveau_display.c | 65 ++++++++++++++++++++++-
+ drivers/gpu/drm/nouveau/nouveau_display.h |  2 +
+ 3 files changed, 69 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/tegra/dc.c b/drivers/gpu/drm/tegra/dc.c
-index fbf57bc3cdab..a2cc687dc2d8 100644
---- a/drivers/gpu/drm/tegra/dc.c
-+++ b/drivers/gpu/drm/tegra/dc.c
-@@ -588,6 +588,16 @@ static const u32 tegra124_primary_formats[] = {
- 
- static const u64 tegra124_modifiers[] = {
- 	DRM_FORMAT_MOD_LINEAR,
-+	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 0),
-+	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 1),
-+	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 2),
-+	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 3),
-+	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 4),
-+	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 5),
-+	/*
-+	 * For backwards compatibility with older userspace that may have
-+	 * baked in usage of the less-descriptive modifiers
-+	 */
- 	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(0),
- 	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(1),
- 	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(2),
-diff --git a/drivers/gpu/drm/tegra/fb.c b/drivers/gpu/drm/tegra/fb.c
-index e34325c83d28..d04e0b1c61ea 100644
---- a/drivers/gpu/drm/tegra/fb.c
-+++ b/drivers/gpu/drm/tegra/fb.c
-@@ -44,7 +44,7 @@ int tegra_fb_get_tiling(struct drm_framebuffer *framebuffer,
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+index 70ad64cb2d34..06c1b18479c1 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+@@ -43,7 +43,7 @@ nv50_wndw_ctxdma_new(struct nv50_wndw *wndw, struct nouveau_framebuffer *fb)
  {
- 	uint64_t modifier = framebuffer->modifier;
+ 	struct nouveau_drm *drm = nouveau_drm(fb->base.dev);
+ 	struct nv50_wndw_ctxdma *ctxdma;
+-	const u8    kind = fb->nvbo->kind;
++	const u8    kind = fb->kind;
+ 	const u32 handle = 0xfb000000 | kind;
+ 	struct {
+ 		struct nv_dma_v0 base;
+@@ -243,7 +243,7 @@ nv50_wndw_atomic_check_acquire(struct nv50_wndw *wndw, bool modeset,
+ 	if (asyw->state.fb != armw->state.fb || !armw->visible || modeset) {
+ 		asyw->image.w = fb->base.width;
+ 		asyw->image.h = fb->base.height;
+-		asyw->image.kind = fb->nvbo->kind;
++		asyw->image.kind = fb->kind;
  
--	switch (modifier) {
-+	switch (drm_fourcc_canonicalize_nvidia_format_mod(modifier)) {
- 	case DRM_FORMAT_MOD_LINEAR:
- 		tiling->mode = TEGRA_BO_TILING_MODE_PITCH;
- 		tiling->value = 0;
-@@ -55,32 +55,32 @@ int tegra_fb_get_tiling(struct drm_framebuffer *framebuffer,
- 		tiling->value = 0;
- 		break;
+ 		ret = nv50_wndw_atomic_check_acquire_rgb(asyw);
+ 		if (ret) {
+@@ -255,9 +255,9 @@ nv50_wndw_atomic_check_acquire(struct nv50_wndw *wndw, bool modeset,
+ 		if (asyw->image.kind) {
+ 			asyw->image.layout = 0;
+ 			if (drm->client.device.info.chipset >= 0xc0)
+-				asyw->image.blockh = fb->nvbo->mode >> 4;
++				asyw->image.blockh = fb->tile_mode >> 4;
+ 			else
+-				asyw->image.blockh = fb->nvbo->mode;
++				asyw->image.blockh = fb->tile_mode;
+ 			asyw->image.blocks[0] = fb->base.pitches[0] / 64;
+ 			asyw->image.pitch[0] = 0;
+ 		} else {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index f1509392d7b7..351b58410e1a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -224,6 +224,50 @@ static const struct drm_framebuffer_funcs nouveau_framebuffer_funcs = {
+ 	.create_handle = nouveau_user_framebuffer_create_handle,
+ };
  
--	case DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(0):
-+	case DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 0):
- 		tiling->mode = TEGRA_BO_TILING_MODE_BLOCK;
- 		tiling->value = 0;
- 		break;
++static int
++nouveau_decode_mod(struct nouveau_drm *drm,
++		   uint64_t modifier,
++		   uint32_t *tile_mode,
++		   uint8_t *kind)
++{
++	struct nouveau_display *disp = nouveau_display(drm->dev);
++	int mod;
++
++	BUG_ON(!tile_mode || !kind);
++
++	if (drm->client.device.info.chipset < 0x50) {
++		return -EINVAL;
++	}
++
++	BUG_ON(!disp->format_modifiers);
++
++	for (mod = 0;
++	     (disp->format_modifiers[mod] != DRM_FORMAT_MOD_INVALID) &&
++	     (disp->format_modifiers[mod] != modifier);
++	     mod++);
++
++	if (disp->format_modifiers[mod] == DRM_FORMAT_MOD_INVALID)
++		return -EINVAL;
++
++	if (modifier == DRM_FORMAT_MOD_LINEAR) {
++		/* tile_mode will not be used in this case */
++		*tile_mode = 0;
++		*kind = 0;
++	} else {
++		/*
++		 * Extract the block height and kind from the corresponding
++		 * modifier fields.  See drm_fourcc.h for details.
++		 */
++		*tile_mode = (uint32_t)(modifier & 0xF);
++		*kind = (uint8_t)((modifier >> 12) & 0xFF);
++
++		if (drm->client.device.info.chipset >= 0xc0)
++			*tile_mode <<= 4;
++	}
++
++	return 0;
++}
++
+ static inline uint32_t
+ nouveau_get_width_in_blocks(uint32_t stride)
+ {
+@@ -300,6 +344,8 @@ nouveau_framebuffer_new(struct drm_device *dev,
+ 	struct nouveau_framebuffer *fb;
+ 	const struct drm_format_info *info;
+ 	unsigned int width, height, i;
++	uint32_t tile_mode;
++	uint8_t kind;
+ 	int ret;
  
--	case DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(1):
-+	case DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 1):
- 		tiling->mode = TEGRA_BO_TILING_MODE_BLOCK;
- 		tiling->value = 1;
- 		break;
+         /* YUV overlays have special requirements pre-NV50 */
+@@ -322,6 +368,18 @@ nouveau_framebuffer_new(struct drm_device *dev,
+ 		return -EINVAL;
+ 	}
  
--	case DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(2):
-+	case DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 2):
- 		tiling->mode = TEGRA_BO_TILING_MODE_BLOCK;
- 		tiling->value = 2;
- 		break;
++	if (mode_cmd->flags & DRM_MODE_FB_MODIFIERS) {
++		if (nouveau_decode_mod(drm, mode_cmd->modifier[0], &tile_mode,
++				       &kind)) {
++			DRM_DEBUG_KMS("Unsupported modifier: 0x%llx\n",
++				      mode_cmd->modifier[0]);
++			return -EINVAL;
++		}
++	} else {
++		tile_mode = nvbo->mode;
++		kind = nvbo->kind;
++	}
++
+ 	info = drm_get_format_info(dev, mode_cmd);
  
--	case DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(3):
-+	case DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 3):
- 		tiling->mode = TEGRA_BO_TILING_MODE_BLOCK;
- 		tiling->value = 3;
- 		break;
+ 	for (i = 0; i < info->num_planes; i++) {
+@@ -332,11 +390,11 @@ nouveau_framebuffer_new(struct drm_device *dev,
+ 						      mode_cmd->height,
+ 						      i);
  
--	case DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(4):
-+	case DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 4):
- 		tiling->mode = TEGRA_BO_TILING_MODE_BLOCK;
- 		tiling->value = 4;
- 		break;
+-		if (nvbo->kind) {
++		if (kind) {
+ 			ret = nouveau_check_bl_size(drm, nvbo,
+ 						    mode_cmd->offsets[i],
+ 						    mode_cmd->pitches[i],
+-						    height, nvbo->mode);
++						    height, tile_mode);
+ 			if (ret)
+ 				return ret;
+ 		} else {
+@@ -352,6 +410,8 @@ nouveau_framebuffer_new(struct drm_device *dev,
  
--	case DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(5):
-+	case DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 5):
- 		tiling->mode = TEGRA_BO_TILING_MODE_BLOCK;
- 		tiling->value = 5;
- 		break;
-diff --git a/drivers/gpu/drm/tegra/hub.c b/drivers/gpu/drm/tegra/hub.c
-index 839b49c40e51..03c97b10b122 100644
---- a/drivers/gpu/drm/tegra/hub.c
-+++ b/drivers/gpu/drm/tegra/hub.c
-@@ -49,6 +49,16 @@ static const u32 tegra_shared_plane_formats[] = {
+ 	drm_helper_mode_fill_fb_struct(dev, &fb->base, mode_cmd);
+ 	fb->nvbo = nvbo;
++	fb->tile_mode = tile_mode;
++	fb->kind = kind;
  
- static const u64 tegra_shared_plane_modifiers[] = {
- 	DRM_FORMAT_MOD_LINEAR,
-+	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 0),
-+	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 1),
-+	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 2),
-+	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 3),
-+	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 4),
-+	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0xfe, 5),
-+	/*
-+	 * For backwards compatibility with older userspace that may have
-+	 * baked in usage of the less-descriptive modifiers
-+	 */
- 	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(0),
- 	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(1),
- 	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(2),
+ 	ret = drm_framebuffer_init(dev, &fb->base, &nouveau_framebuffer_funcs);
+ 	if (ret)
+@@ -625,6 +685,7 @@ nouveau_display_create(struct drm_device *dev)
+ 
+ 	dev->mode_config.preferred_depth = 24;
+ 	dev->mode_config.prefer_shadow = 1;
++	dev->mode_config.allow_fb_modifiers = true;
+ 
+ 	if (drm->client.device.info.chipset < 0x11)
+ 		dev->mode_config.async_page_flip = false;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.h b/drivers/gpu/drm/nouveau/nouveau_display.h
+index c54682f00b01..0dad57b21983 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.h
++++ b/drivers/gpu/drm/nouveau/nouveau_display.h
+@@ -15,6 +15,8 @@ struct nouveau_framebuffer {
+ 	u32 r_handle;
+ 	u32 r_format;
+ 	u32 r_pitch;
++	u32 tile_mode;
++	u8 kind;
+ 	struct nvif_object h_base[4];
+ 	struct nvif_object h_core;
+ };
 -- 
 2.17.1
