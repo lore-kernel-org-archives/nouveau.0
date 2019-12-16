@@ -1,13 +1,14 @@
-From: =?UTF-8?Q?Marcin_Zaj=c4=85czkowski?= <mszpak-5tc4TXWwyLM@public.gmane.org>
-Subject: Tracking down severe regression in 5.3-rc4/5.4 for TU116
- - assistance needed
-Date: Mon, 16 Dec 2019 17:35:57 +0100
-Message-ID: <c34a6fe1-80dd-a4db-c605-0a13c69e803f@wp.pl>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Tracking down severe regression in 5.3-rc4/5.4 for
+ TU116 - assistance needed
+Date: Mon, 16 Dec 2019 12:08:30 -0500
+Message-ID: <CAKb7UviSYORoeDm1sbDFEzkGd68+DV=StCpzsiaGbA=1VQX3gw@mail.gmail.com>
+References: <c34a6fe1-80dd-a4db-c605-0a13c69e803f@wp.pl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <c34a6fe1-80dd-a4db-c605-0a13c69e803f-5tc4TXWwyLM@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,51 +18,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?UTF-8?Q?Marcin_Zaj=C4=85czkowski?= <mszpak-5tc4TXWwyLM@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi,
-
-I've encountered a severe regression in TU116 (probably also TU117)
-introduced in 5.3-rc4 (valid also for recent 5.4.2) [1]. The system
-usually hangs on the subsequent graphic mode related operation (calling
-xrandr after login is enough) with the following error:
-
-> kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 08 []
-...
-> kernel: nouveau 0000:01:00.0: DRM: failed to idle channel 0 [DRM]
-> kernel: nouveau 0000:01:00.0: i2c: aux 0007: begin idle timeout ffffffff
-> kernel: nouveau 0000:01:00.0: tmr: stalled at ffffffffffffffff
-> kernel: ------------[ cut here ]------------
-> kernel: nouveau 0000:01:00.0: timeout
-> kernel: WARNING: CPU: 10 PID: 384 at drivers/gpu/drm/nouveau/nvkm/subdev/bar/g84.c:35 g84_bar_flush+0xcf/> 0xe0 [nouveau]
-
-(detailed log in a corresponding issue - [1])
-
-With earlier kernels there was no hardware acceleration for NVidia GTX
-1660 Ti, but at least I could use nouveau to disable it (to save
-battery, trees and lower temperature) or even have an external output
-(with Wayland). Now, the system is unusable with nouveau :(.
-
-I spent some time trying to narrow the scope using on the existing
-kernel builds for Fedora. I was able to determine that the problem was
-introduced between 5.3.0-0.rc3.git1.1 (commit 33920f1ec5bf - works fine)
-and 5.3.0-0.rc4.git0.1 (tag v5.3-rc4 - fails with errors).
-
-It's just a few days (7-11 Aug) and "only" around 250 commits. I went
-through them, but (based on the commits name) I haven't seen any nouveau
-related changes and in general no very suspected drm related changes.
-
-> git log 33920f1ec5bf..v5.3-rc4 --stat
-
-
-Maybe some of more nouveau/drm-experienced developers could take a look
-at that to determine which commit could break it (to make it easier to
-find out what should be fixed to prevent that regression)?
-
-
-[1] -
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/516
-
-Thanks in advance
-Marcin
+SGkgTWFyY2luLAoKWW91IHNob3VsZCBkbyBhIGdpdCBiaXNlY3QgcmF0aGVyIHRoYW4gZ3Vlc3Np
+bmcgYWJvdXQgY29tbWl0cy4gSQpzdXNwZWN0IHRoYXQgc2VhcmNoaW5nIGZvciAia2VybmVsIGdp
+dCBiaXNlY3QgZmVkb3JhIiBzaG91bGQgcHJvdmUKaW5zdHJ1Y3RpdmUgaWYgeW91J3JlIG5vdCBz
+dXJlIGhvdyB0byBkbyB0aGlzLgoKQ2hlZXJzLAoKICAtaWxpYQoKT24gTW9uLCBEZWMgMTYsIDIw
+MTkgYXQgMTE6NDIgQU0gTWFyY2luIFphasSFY3prb3dza2kgPG1zenBha0B3cC5wbD4gd3JvdGU6
+Cj4KPiBIaSwKPgo+IEkndmUgZW5jb3VudGVyZWQgYSBzZXZlcmUgcmVncmVzc2lvbiBpbiBUVTEx
+NiAocHJvYmFibHkgYWxzbyBUVTExNykKPiBpbnRyb2R1Y2VkIGluIDUuMy1yYzQgKHZhbGlkIGFs
+c28gZm9yIHJlY2VudCA1LjQuMikgWzFdLiBUaGUgc3lzdGVtCj4gdXN1YWxseSBoYW5ncyBvbiB0
+aGUgc3Vic2VxdWVudCBncmFwaGljIG1vZGUgcmVsYXRlZCBvcGVyYXRpb24gKGNhbGxpbmcKPiB4
+cmFuZHIgYWZ0ZXIgbG9naW4gaXMgZW5vdWdoKSB3aXRoIHRoZSBmb2xsb3dpbmcgZXJyb3I6Cj4K
+PiA+IGtlcm5lbDogbm91dmVhdSAwMDAwOjAxOjAwLjA6IGZpZm86IFNDSEVEX0VSUk9SIDA4IFtd
+Cj4gLi4uCj4gPiBrZXJuZWw6IG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IGZhaWxlZCB0byBp
+ZGxlIGNoYW5uZWwgMCBbRFJNXQo+ID4ga2VybmVsOiBub3V2ZWF1IDAwMDA6MDE6MDAuMDogaTJj
+OiBhdXggMDAwNzogYmVnaW4gaWRsZSB0aW1lb3V0IGZmZmZmZmZmCj4gPiBrZXJuZWw6IG5vdXZl
+YXUgMDAwMDowMTowMC4wOiB0bXI6IHN0YWxsZWQgYXQgZmZmZmZmZmZmZmZmZmZmZgo+ID4ga2Vy
+bmVsOiAtLS0tLS0tLS0tLS1bIGN1dCBoZXJlIF0tLS0tLS0tLS0tLS0KPiA+IGtlcm5lbDogbm91
+dmVhdSAwMDAwOjAxOjAwLjA6IHRpbWVvdXQKPiA+IGtlcm5lbDogV0FSTklORzogQ1BVOiAxMCBQ
+SUQ6IDM4NCBhdCBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iYXIvZzg0LmM6
+MzUgZzg0X2Jhcl9mbHVzaCsweGNmLz4gMHhlMCBbbm91dmVhdV0KPgo+IChkZXRhaWxlZCBsb2cg
+aW4gYSBjb3JyZXNwb25kaW5nIGlzc3VlIC0gWzFdKQo+Cj4gV2l0aCBlYXJsaWVyIGtlcm5lbHMg
+dGhlcmUgd2FzIG5vIGhhcmR3YXJlIGFjY2VsZXJhdGlvbiBmb3IgTlZpZGlhIEdUWAo+IDE2NjAg
+VGksIGJ1dCBhdCBsZWFzdCBJIGNvdWxkIHVzZSBub3V2ZWF1IHRvIGRpc2FibGUgaXQgKHRvIHNh
+dmUKPiBiYXR0ZXJ5LCB0cmVlcyBhbmQgbG93ZXIgdGVtcGVyYXR1cmUpIG9yIGV2ZW4gaGF2ZSBh
+biBleHRlcm5hbCBvdXRwdXQKPiAod2l0aCBXYXlsYW5kKS4gTm93LCB0aGUgc3lzdGVtIGlzIHVu
+dXNhYmxlIHdpdGggbm91dmVhdSA6KC4KPgo+IEkgc3BlbnQgc29tZSB0aW1lIHRyeWluZyB0byBu
+YXJyb3cgdGhlIHNjb3BlIHVzaW5nIG9uIHRoZSBleGlzdGluZwo+IGtlcm5lbCBidWlsZHMgZm9y
+IEZlZG9yYS4gSSB3YXMgYWJsZSB0byBkZXRlcm1pbmUgdGhhdCB0aGUgcHJvYmxlbSB3YXMKPiBp
+bnRyb2R1Y2VkIGJldHdlZW4gNS4zLjAtMC5yYzMuZ2l0MS4xIChjb21taXQgMzM5MjBmMWVjNWJm
+IC0gd29ya3MgZmluZSkKPiBhbmQgNS4zLjAtMC5yYzQuZ2l0MC4xICh0YWcgdjUuMy1yYzQgLSBm
+YWlscyB3aXRoIGVycm9ycykuCj4KPiBJdCdzIGp1c3QgYSBmZXcgZGF5cyAoNy0xMSBBdWcpIGFu
+ZCAib25seSIgYXJvdW5kIDI1MCBjb21taXRzLiBJIHdlbnQKPiB0aHJvdWdoIHRoZW0sIGJ1dCAo
+YmFzZWQgb24gdGhlIGNvbW1pdHMgbmFtZSkgSSBoYXZlbid0IHNlZW4gYW55IG5vdXZlYXUKPiBy
+ZWxhdGVkIGNoYW5nZXMgYW5kIGluIGdlbmVyYWwgbm8gdmVyeSBzdXNwZWN0ZWQgZHJtIHJlbGF0
+ZWQgY2hhbmdlcy4KPgo+ID4gZ2l0IGxvZyAzMzkyMGYxZWM1YmYuLnY1LjMtcmM0IC0tc3RhdAo+
+Cj4KPiBNYXliZSBzb21lIG9mIG1vcmUgbm91dmVhdS9kcm0tZXhwZXJpZW5jZWQgZGV2ZWxvcGVy
+cyBjb3VsZCB0YWtlIGEgbG9vawo+IGF0IHRoYXQgdG8gZGV0ZXJtaW5lIHdoaWNoIGNvbW1pdCBj
+b3VsZCBicmVhayBpdCAodG8gbWFrZSBpdCBlYXNpZXIgdG8KPiBmaW5kIG91dCB3aGF0IHNob3Vs
+ZCBiZSBmaXhlZCB0byBwcmV2ZW50IHRoYXQgcmVncmVzc2lvbik/Cj4KPgo+IFsxXSAtCj4gaHR0
+cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL3hvcmcvZHJpdmVyL3hmODYtdmlkZW8tbm91dmVh
+dS9pc3N1ZXMvNTE2Cj4KPiBUaGFua3MgaW4gYWR2YW5jZQo+IE1hcmNpbgo+IF9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxp
+c3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
