@@ -1,61 +1,67 @@
-From: zhengbin <zhengbin13@huawei.com>
-Subject: [PATCH] drm/nouveau/mmu: Remove unneeded semicolon
-Date: Mon, 16 Dec 2019 11:48:16 +0800
-Message-ID: <1576468096-63366-1-git-send-email-zhengbin13@huawei.com>
+From: =?UTF-8?Q?Marcin_Zaj=c4=85czkowski?= <mszpak-5tc4TXWwyLM@public.gmane.org>
+Subject: Tracking down severe regression in 5.3-rc4/5.4 for TU116
+ - assistance needed
+Date: Mon, 16 Dec 2019 17:35:57 +0100
+Message-ID: <c34a6fe1-80dd-a4db-c605-0a13c69e803f@wp.pl>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: zhengbin13@huawei.com
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Fixes coccicheck warning:
+Hi,
 
-drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c:583:2-3: Unneeded semicolon
-drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h:307:2-3: Unneeded semicolon
+I've encountered a severe regression in TU116 (probably also TU117)
+introduced in 5.3-rc4 (valid also for recent 5.4.2) [1]. The system
+usually hangs on the subsequent graphic mode related operation (calling
+xrandr after login is enough) with the following error:
 
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: zhengbin <zhengbin13@huawei.com>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+> kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 08 []
+...
+> kernel: nouveau 0000:01:00.0: DRM: failed to idle channel 0 [DRM]
+> kernel: nouveau 0000:01:00.0: i2c: aux 0007: begin idle timeout ffffffff
+> kernel: nouveau 0000:01:00.0: tmr: stalled at ffffffffffffffff
+> kernel: ------------[ cut here ]------------
+> kernel: nouveau 0000:01:00.0: timeout
+> kernel: WARNING: CPU: 10 PID: 384 at drivers/gpu/drm/nouveau/nvkm/subdev/bar/g84.c:35 g84_bar_flush+0xcf/> 0xe0 [nouveau]
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-index 41640e0..199f94e 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-@@ -580,7 +580,7 @@ nvkm_vmm_iter(struct nvkm_vmm *vmm, const struct nvkm_vmm_page *page,
- 				it.pte[it.lvl]++;
- 			}
- 		}
--	};
-+	}
+(detailed log in a corresponding issue - [1])
 
- 	nvkm_vmm_flush(&it);
- 	return ~0ULL;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
-index 5e55ecb..321bfca 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
-@@ -304,7 +304,7 @@ int tu102_vmm_new(struct nvkm_mmu *, bool, u64, u64, void *, u32,
- 		FILL(VMM, PT, PTEI, _ptes, MAP, _addr);                        \
- 		PTEI += _ptes;                                                 \
- 		PTEN -= _ptes;                                                 \
--	};                                                                     \
-+	}                                                                     \
- 	nvkm_done((PT)->memory);                                               \
- } while(0)
+With earlier kernels there was no hardware acceleration for NVidia GTX
+1660 Ti, but at least I could use nouveau to disable it (to save
+battery, trees and lower temperature) or even have an external output
+(with Wayland). Now, the system is unusable with nouveau :(.
 
---
-2.7.4
+I spent some time trying to narrow the scope using on the existing
+kernel builds for Fedora. I was able to determine that the problem was
+introduced between 5.3.0-0.rc3.git1.1 (commit 33920f1ec5bf - works fine)
+and 5.3.0-0.rc4.git0.1 (tag v5.3-rc4 - fails with errors).
+
+It's just a few days (7-11 Aug) and "only" around 250 commits. I went
+through them, but (based on the commits name) I haven't seen any nouveau
+related changes and in general no very suspected drm related changes.
+
+> git log 33920f1ec5bf..v5.3-rc4 --stat
+
+
+Maybe some of more nouveau/drm-experienced developers could take a look
+at that to determine which commit could break it (to make it easier to
+find out what should be fixed to prevent that regression)?
+
+
+[1] -
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/issues/516
+
+Thanks in advance
+Marcin
