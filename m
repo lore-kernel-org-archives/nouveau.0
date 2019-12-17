@@ -1,16 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Tracking down severe regression in 5.3-rc4/5.4 for
- TU116 - assistance needed
-Date: Mon, 16 Dec 2019 13:45:25 -0500
-Message-ID: <CAKb7UvgOVrwC91ys19uTAG2p_MRVqcsV_MAHOSL4-m3f+j=dNg@mail.gmail.com>
-References: <c34a6fe1-80dd-a4db-c605-0a13c69e803f@wp.pl>
- <CAKb7UviSYORoeDm1sbDFEzkGd68+DV=StCpzsiaGbA=1VQX3gw@mail.gmail.com>
- <233aafa2-1474-39bf-8ea0-fe1a3ecef167@wp.pl>
+From: James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v2 0/3] drm/nouveau: Support NVIDIA format
+ modifiers
+Date: Mon, 16 Dec 2019 16:45:17 -0800
+Message-ID: <20191217004520.2404-1-jajones@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <233aafa2-1474-39bf-8ea0-fe1a3ecef167-5tc4TXWwyLM@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,74 +16,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?Q?Marcin_Zaj=C4=85czkowski?= <mszpak-5tc4TXWwyLM@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIG9idmlvdXMgY2FuZGlkYXRlIGJhc2VkIG9uIGEgcXVpY2sgc2NhbiBpcwowYWNmNTY3NmRj
-MGZmZTA2ODM1NDNhMjBkNWVjYmQxMTJhZjViOGVlIC0tIGl0IG1lcmdlcyBhIGZpeCB0aGF0Cm1l
-c3NlcyB3aXRoIFBDSSBzdHVmZiwgYW5kIHRoZXJlIGxpZSBkcmFnb25zLiBZb3UgY291bGQgdHJ5
-IGJ1aWxkaW5nCnRoYXQgY29tbWl0LCBhbmQgaWYgdGhpbmdzIHN0aWxsIHdvcmssIHRoZW4gSSBo
-YXZlIG5vIGlkZWEgKGFuZCB5b3UndmUKbmFycm93ZWQgdGhlIHJhbmdlKS4gQWxzbyBJJ2QgcmVj
-b21tZW5kIGVuc3VyaW5nIHRoYXQgdGhlIGdvb2Qga2VybmVsCmlzIHJlYWxseSBnb29kIGFuZCB0
-aGUgYmFkIGtlcm5lbCBpcyByZWFsbHkgYmFkIC0tIGJvb3QgdGhlbSBhIGZldwp0aW1lcy4KCkNo
-ZWVycywKCiAgLWlsaWEKCk9uIE1vbiwgRGVjIDE2LCAyMDE5IGF0IDEyOjQyIFBNIE1hcmNpbiBa
-YWrEhWN6a293c2tpIDxtc3pwYWtAd3AucGw+IHdyb3RlOgo+Cj4gT24gMjAxOS0xMi0xNiAxODow
-OCwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gPiBIaSBNYXJjaW4sCj4gPgo+ID4gWW91IHNob3VsZCBk
-byBhIGdpdCBiaXNlY3QgcmF0aGVyIHRoYW4gZ3Vlc3NpbmcgYWJvdXQgY29tbWl0cy4gSQo+ID4g
-c3VzcGVjdCB0aGF0IHNlYXJjaGluZyBmb3IgImtlcm5lbCBnaXQgYmlzZWN0IGZlZG9yYSIgc2hv
-dWxkIHByb3ZlCj4gPiBpbnN0cnVjdGl2ZSBpZiB5b3UncmUgbm90IHN1cmUgaG93IHRvIGRvIHRo
-aXMuCj4KPiBUaGFua3MgZm9yIHlvdXIgc3VnZ2VzdGlvbi4gSSByZWFsaXplIHRoYXQgSSBjYW4g
-ZG8gaXQgYXQgdGhlIEdpdCBsZXZlbAo+IGFuZCBpdCBpcyB0aGUgdWx0aW1hdGUgd2F5IHRvIGdv
-LiBIb3dldmVyLCBidWlsZGluZyB0aGUga2VybmVsIHZlcnNpb24KPiBmcm9tIHNvdXJjZXMgdGFr
-ZXMgc29tZSB0aW1lIChpbiBhZGRpdGlvbiB0byBhIHJlZ3VsYXIgdGltZSBuZWVkZWQgdG8KPiBp
-bnN0YWxsL3Jlc3RhcnQvdmVyaWZ5IHdoaWNoIEkgYWxyZWFkeSBleHBlcmllbmNlZCBuYXJyb3dp
-bmcgZG93biB0byBhCj4gImp1c3QiIH4yNTAgY29tbWl0cykuCj4KPiBUaGVyZWZvcmUsIEkgd291
-bGQgYmUgcmVhbGx5IHRoYW5rZnVsIGZvciBhIHN1Z2dlc3Rpb24gd2hpY2ggY29tbWl0cwo+IGNv
-dWxkIGJlIGdvb2QgdG8gY2hlY2sgZmlyc3QgLSBoYXZpbmcgMiwgNCBpcyBiZXR0ZXIgdGhhbiA4
-LTEwIChhc3N1bWluZwo+IHNvbWVvbmUgaXMgcmlnaHQgOikgKS4KPgo+IE1hcmNpbgo+Cj4KPgo+
-ID4gT24gTW9uLCBEZWMgMTYsIDIwMTkgYXQgMTE6NDIgQU0gTWFyY2luIFphasSFY3prb3dza2kg
-PG1zenBha0B3cC5wbD4gd3JvdGU6Cj4gPj4KPiA+PiBIaSwKPiA+Pgo+ID4+IEkndmUgZW5jb3Vu
-dGVyZWQgYSBzZXZlcmUgcmVncmVzc2lvbiBpbiBUVTExNiAocHJvYmFibHkgYWxzbyBUVTExNykK
-PiA+PiBpbnRyb2R1Y2VkIGluIDUuMy1yYzQgKHZhbGlkIGFsc28gZm9yIHJlY2VudCA1LjQuMikg
-WzFdLiBUaGUgc3lzdGVtCj4gPj4gdXN1YWxseSBoYW5ncyBvbiB0aGUgc3Vic2VxdWVudCBncmFw
-aGljIG1vZGUgcmVsYXRlZCBvcGVyYXRpb24gKGNhbGxpbmcKPiA+PiB4cmFuZHIgYWZ0ZXIgbG9n
-aW4gaXMgZW5vdWdoKSB3aXRoIHRoZSBmb2xsb3dpbmcgZXJyb3I6Cj4gPj4KPiA+Pj4ga2VybmVs
-OiBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmlmbzogU0NIRURfRVJST1IgMDggW10KPiA+PiAuLi4K
-PiA+Pj4ga2VybmVsOiBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBmYWlsZWQgdG8gaWRsZSBj
-aGFubmVsIDAgW0RSTV0KPiA+Pj4ga2VybmVsOiBub3V2ZWF1IDAwMDA6MDE6MDAuMDogaTJjOiBh
-dXggMDAwNzogYmVnaW4gaWRsZSB0aW1lb3V0IGZmZmZmZmZmCj4gPj4+IGtlcm5lbDogbm91dmVh
-dSAwMDAwOjAxOjAwLjA6IHRtcjogc3RhbGxlZCBhdCBmZmZmZmZmZmZmZmZmZmZmCj4gPj4+IGtl
-cm5lbDogLS0tLS0tLS0tLS0tWyBjdXQgaGVyZSBdLS0tLS0tLS0tLS0tCj4gPj4+IGtlcm5lbDog
-bm91dmVhdSAwMDAwOjAxOjAwLjA6IHRpbWVvdXQKPiA+Pj4ga2VybmVsOiBXQVJOSU5HOiBDUFU6
-IDEwIFBJRDogMzg0IGF0IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jhci9n
-ODQuYzozNSBnODRfYmFyX2ZsdXNoKzB4Y2YvPiAweGUwIFtub3V2ZWF1XQo+ID4+Cj4gPj4gKGRl
-dGFpbGVkIGxvZyBpbiBhIGNvcnJlc3BvbmRpbmcgaXNzdWUgLSBbMV0pCj4gPj4KPiA+PiBXaXRo
-IGVhcmxpZXIga2VybmVscyB0aGVyZSB3YXMgbm8gaGFyZHdhcmUgYWNjZWxlcmF0aW9uIGZvciBO
-VmlkaWEgR1RYCj4gPj4gMTY2MCBUaSwgYnV0IGF0IGxlYXN0IEkgY291bGQgdXNlIG5vdXZlYXUg
-dG8gZGlzYWJsZSBpdCAodG8gc2F2ZQo+ID4+IGJhdHRlcnksIHRyZWVzIGFuZCBsb3dlciB0ZW1w
-ZXJhdHVyZSkgb3IgZXZlbiBoYXZlIGFuIGV4dGVybmFsIG91dHB1dAo+ID4+ICh3aXRoIFdheWxh
-bmQpLiBOb3csIHRoZSBzeXN0ZW0gaXMgdW51c2FibGUgd2l0aCBub3V2ZWF1IDooLgo+ID4+Cj4g
-Pj4gSSBzcGVudCBzb21lIHRpbWUgdHJ5aW5nIHRvIG5hcnJvdyB0aGUgc2NvcGUgdXNpbmcgb24g
-dGhlIGV4aXN0aW5nCj4gPj4ga2VybmVsIGJ1aWxkcyBmb3IgRmVkb3JhLiBJIHdhcyBhYmxlIHRv
-IGRldGVybWluZSB0aGF0IHRoZSBwcm9ibGVtIHdhcwo+ID4+IGludHJvZHVjZWQgYmV0d2VlbiA1
-LjMuMC0wLnJjMy5naXQxLjEgKGNvbW1pdCAzMzkyMGYxZWM1YmYgLSB3b3JrcyBmaW5lKQo+ID4+
-IGFuZCA1LjMuMC0wLnJjNC5naXQwLjEgKHRhZyB2NS4zLXJjNCAtIGZhaWxzIHdpdGggZXJyb3Jz
-KS4KPiA+Pgo+ID4+IEl0J3MganVzdCBhIGZldyBkYXlzICg3LTExIEF1ZykgYW5kICJvbmx5IiBh
-cm91bmQgMjUwIGNvbW1pdHMuIEkgd2VudAo+ID4+IHRocm91Z2ggdGhlbSwgYnV0IChiYXNlZCBv
-biB0aGUgY29tbWl0cyBuYW1lKSBJIGhhdmVuJ3Qgc2VlbiBhbnkgbm91dmVhdQo+ID4+IHJlbGF0
-ZWQgY2hhbmdlcyBhbmQgaW4gZ2VuZXJhbCBubyB2ZXJ5IHN1c3BlY3RlZCBkcm0gcmVsYXRlZCBj
-aGFuZ2VzLgo+ID4+Cj4gPj4+IGdpdCBsb2cgMzM5MjBmMWVjNWJmLi52NS4zLXJjNCAtLXN0YXQK
-PiA+Pgo+ID4+Cj4gPj4gTWF5YmUgc29tZSBvZiBtb3JlIG5vdXZlYXUvZHJtLWV4cGVyaWVuY2Vk
-IGRldmVsb3BlcnMgY291bGQgdGFrZSBhIGxvb2sKPiA+PiBhdCB0aGF0IHRvIGRldGVybWluZSB3
-aGljaCBjb21taXQgY291bGQgYnJlYWsgaXQgKHRvIG1ha2UgaXQgZWFzaWVyIHRvCj4gPj4gZmlu
-ZCBvdXQgd2hhdCBzaG91bGQgYmUgZml4ZWQgdG8gcHJldmVudCB0aGF0IHJlZ3Jlc3Npb24pPwo+
-ID4+Cj4gPj4KPiA+PiBbMV0gLQo+ID4+IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy94
-b3JnL2RyaXZlci94Zjg2LXZpZGVvLW5vdXZlYXUvaXNzdWVzLzUxNgo+ID4+Cj4gPj4gVGhhbmtz
-IGluIGFkdmFuY2UKPiA+PiBNYXJjaW4KPiA+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwo+ID4+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gPj4gTm91dmVh
-dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9ub3V2ZWF1Cg==
+This series modifies the NV5x+ nouveau display backends to advertise
+appropriate format modifiers on their display planes in atomic mode
+setting blobs.
+
+Corresponding modifications to Mesa/userspace are available here:
+
+https://gitlab.freedesktop.org/cubanismo/mesa/tree/nouveau_work
+
+But those need a bit of cleanup before they're ready to submit.
+
+I've tested this on Tesla, Kepler, Pascal, and Turing-class hardware
+using various formats and all the exposed format modifiers, plus some
+negative testing with invalid ones.
+
+NOTE: this series depends on the "[PATCH v3] drm: Generalized NV Block
+Linear DRM format mod" patch submitted to dri-devel.
+
+v2: Used Tesla family instead of NV50 chipset compare to avoid treating
+    oddly numbered NV4x-class chipsets as NV50+ GPUs.  Other instances
+    of compares with chipset number in the series were audited, deemed
+    safe, and left as-is for consistency with existing code.
+
+James Jones (3):
+  drm/nouveau: Add format mod prop to base/ovly/nvdisp
+  drm/nouveau: Check framebuffer size against bo
+  drm/nouveau: Support NVIDIA format modifiers
+
+ drivers/gpu/drm/nouveau/dispnv50/base507c.c |   7 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c     |  59 ++++++++
+ drivers/gpu/drm/nouveau/dispnv50/disp.h     |   4 +
+ drivers/gpu/drm/nouveau/dispnv50/wndw.c     |  35 ++++-
+ drivers/gpu/drm/nouveau/dispnv50/wndwc57e.c |  17 +++
+ drivers/gpu/drm/nouveau/nouveau_display.c   | 154 ++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_display.h   |   4 +
+ 7 files changed, 272 insertions(+), 8 deletions(-)
+
+-- 
+2.17.1
