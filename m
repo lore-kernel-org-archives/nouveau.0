@@ -1,7 +1,7 @@
 From: wuxu.wu <wuxu.wu@huawei.com>
 Subject: [PATCH] drm/nouveau/bios: fix incorrect kfree in platform_init
-Date: Fri, 20 Dec 2019 22:05:26 +0800
-Message-ID: <1576850726-5684-1-git-send-email-wuxu.wu@huawei.com>
+Date: Sat, 21 Dec 2019 11:52:29 +0800
+Message-ID: <1576900349-3786-1-git-send-email-wuxu.wu@huawei.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -20,6 +20,8 @@ Cc: hushiyuan@huawei.com, nouveau@lists.freedesktop.org, linux-kernel@vger.kerne
 List-Id: nouveau.vger.kernel.org
 
 priv porinter could be free only when priv != null and priv->rom is null.
+
+Signed-off-by: wuxu.wu <wuxu.wu@huawei.com>
 ---
  drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
