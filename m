@@ -1,11 +1,13 @@
-From: Jairo Quintanilla <jairo_6875-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
-Subject: Flickering Nvidia GeForce GT210
-Date: Fri, 20 Dec 2019 03:44:06 +0000
-Message-ID: <BN6PR01MB233713E4E456F3C33AF3CAB9E32D0@BN6PR01MB2337.prod.exchangelabs.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Support for older GPU
+Date: Fri, 27 Dec 2019 08:30:03 -0500
+Message-ID: <CAKb7Uvjdt6ypoK3O-HNGYr=Xn9CcU7p5k-dqvu4OAFyUJkqYcg@mail.gmail.com>
+References: <CAPm7QYwHte2HzRWGS--BLGvh8aT8EFnc=145KgChFOVuKR5DOg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0323425899=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <CAPm7QYwHte2HzRWGS--BLGvh8aT8EFnc=145KgChFOVuKR5DOg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,103 +17,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Jerry Sanders <dragonspark30-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0323425899==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR01MB233713E4E456F3C33AF3CAB9E32D0BN6PR01MB2337prod_"
+Nouveau should work largely OK, although the Tesla series (to which
+your card belongs) has some unfortunate random hang issues due to what
+we suspect is an incorrect FIFO channel switch procedure.
 
---_000_BN6PR01MB233713E4E456F3C33AF3CAB9E32D0BN6PR01MB2337prod_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Support should already exist in any linux distro, so as long as you
+don't do anything to proactively disable that support, it should work
+out of the box. You can try with a live cd or something if you don't
+want to commit.
 
-Hi mates,
+Cheers,
 
-First to all thanks for your help.
+  -ilia
 
-I've installed Nouveau driver for my Nvidia GeForce GT210 using Archlinux, =
-but I have some flickering issues when playing videos, only in the video wi=
-ndows.
-
-Sometimes I can see some flickering when scrolling.
-
-Please help. I don't know how to fix it.
-
-
-Atte. Jairo Quintanilla
-
---_000_BN6PR01MB233713E4E456F3C33AF3CAB9E32D0BN6PR01MB2337prod_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Hi mates,</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-First to all thanks for your help.</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-I've installed Nouveau driver for my Nvidia GeForce GT210 using Archlinux, =
-but I have some flickering issues when playing videos, only in the video wi=
-ndows.</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Sometimes I can see some flickering when scrolling.</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Please help. I don't know how to fix it.<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div id=3D"Signature">Atte. Jairo Quintanilla<br>
-</div>
-</body>
-</html>
-
---_000_BN6PR01MB233713E4E456F3C33AF3CAB9E32D0BN6PR01MB2337prod_--
-
---===============0323425899==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0323425899==--
+On Fri, Dec 27, 2019 at 3:13 AM Jerry Sanders <dragonspark30-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>
+> Hello, Name's Jerry. I have GeForce 8500 GT on my computer and I found out that Nvidia does not support my GPU anymore for linux. I wanted to ask you several questions.
+> 1. Will your team support  drivers for old GPUs  on new Linux distros?
+> 2. How can I make a driver work on a kernel that is not meant to work on?
+> 3. Can I somehow solve this problem without updating my card, which i can't do due to lack or cash.
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
