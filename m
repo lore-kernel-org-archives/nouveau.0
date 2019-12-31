@@ -1,41 +1,33 @@
 From: Wambui Karuga <wambui.karugax@gmail.com>
-Subject: [PATCH] drm/nouveau: remove set but unused variable.
-Date: Tue, 31 Dec 2019 23:56:07 +0300
-Message-ID: <20191231205607.1005-1-wambui.karugax@gmail.com>
+Subject: [PATCH] drm/nouveau: use NULL for pointer assignment.
+Date: Tue, 31 Dec 2019 23:57:34 +0300
+Message-ID: <20191231205734.1452-1-wambui.karugax@gmail.com>
 Return-path: <linux-kernel-owner@vger.kernel.org>
 Sender: linux-kernel-owner@vger.kernel.org
 To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-The local variable `pclks` is defined and set but not used and can
-therefore be removed.
-Issue found by coccinelle.
+Replace the use of 0 in the pointer assignment with NULL to address the
+following sparse warning:
+drivers/gpu/drm/nouveau/nouveau_hwmon.c:744:29: warning: Using plain integer as NULL pointer
 
 Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
 ---
- drivers/gpu/drm/nouveau/dispnv04/arb.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_hwmon.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/arb.c b/drivers/gpu/drm/nouveau/dispnv04/arb.c
-index 362495535e69..f607a04d262d 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/arb.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/arb.c
-@@ -54,7 +54,7 @@ static void
- nv04_calc_arb(struct nv_fifo_info *fifo, struct nv_sim_state *arb)
- {
- 	int pagemiss, cas, width, bpp;
--	int nvclks, mclks, pclks, crtpagemiss;
-+	int nvclks, mclks, crtpagemiss;
- 	int found, mclk_extra, mclk_loop, cbs, m1, p1;
- 	int mclk_freq, pclk_freq, nvclk_freq;
- 	int us_m, us_n, us_p, crtc_drain_rate;
-@@ -69,7 +69,6 @@ nv04_calc_arb(struct nv_fifo_info *fifo, struct nv_sim_state *arb)
- 	bpp = arb->bpp;
- 	cbs = 128;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+index d445c6f3fece..1c3104d20571 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+@@ -741,7 +741,7 @@ nouveau_hwmon_init(struct drm_device *dev)
+ 			special_groups[i++] = &pwm_fan_sensor_group;
+ 	}
  
--	pclks = 2;
- 	nvclks = 10;
- 	mclks = 13 + cas;
- 	mclk_extra = 3;
+-	special_groups[i] = 0;
++	special_groups[i] = NULL;
+ 	hwmon_dev = hwmon_device_register_with_info(dev->dev, "nouveau", dev,
+ 							&nouveau_chip_info,
+ 							special_groups);
 -- 
 2.17.1
