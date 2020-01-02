@@ -1,62 +1,108 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH] drm/nouveau: use NULL for pointer assignment.
-Date: Wed, 1 Jan 2020 19:51:47 +0100
-Message-ID: <20200101185147.GB3856@dvetter-linux.ger.corp.intel.com>
-References: <20191231205734.1452-1-wambui.karugax@gmail.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20191231205734.1452-1-wambui.karugax@gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Wambui Karuga <wambui.karugax@gmail.com>
-Cc: airlied@linux.ie, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, bskeggs@redhat.com
+From: Wambui Karuga <wambui.karugax@gmail.com>
+Subject: [PATCH v2] drm/nouveau: declare constants as unsigned long long.
+Date: Thu,  2 Jan 2020 15:25:48 +0300
+Message-ID: <20200102122548.25696-1-wambui.karugax@gmail.com>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Dec 31, 2019 at 11:57:34PM +0300, Wambui Karuga wrote:
-> Replace the use of 0 in the pointer assignment with NULL to address the
-> following sparse warning:
-> drivers/gpu/drm/nouveau/nouveau_hwmon.c:744:29: warning: Using plain integer as NULL pointer
-> 
-> Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
+Explicitly declare constants as unsigned long long to address the
+following sparse warnings:
+warning: constant is so big it is long
 
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+v2: convert to unsigned long long for compatibility with 32-bit
+architectures.
 
-I'll check with Ben next week or so whether he wants to pick these up or
-whether I should stuff them into drm-misc-next.
--Daniel
+Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
+Suggested by: lia Mirkin <imirkin@alum.mit.edu>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgf100.c | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgf108.c | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgm107.c | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgm200.c | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgp100.c | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
 
-> ---
->  drivers/gpu/drm/nouveau/nouveau_hwmon.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-> index d445c6f3fece..1c3104d20571 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-> @@ -741,7 +741,7 @@ nouveau_hwmon_init(struct drm_device *dev)
->  			special_groups[i++] = &pwm_fan_sensor_group;
->  	}
->  
-> -	special_groups[i] = 0;
-> +	special_groups[i] = NULL;
->  	hwmon_dev = hwmon_device_register_with_info(dev->dev, "nouveau", dev,
->  							&nouveau_chip_info,
->  							special_groups);
-> -- 
-> 2.17.1
-> 
-
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgf100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgf100.c
+index ac87a3b6b7c9..ba43fe158b22 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgf100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgf100.c
+@@ -655,7 +655,7 @@ gf100_ram_new_(const struct nvkm_ram_func *func,
+ 
+ static const struct nvkm_ram_func
+ gf100_ram = {
+-	.upper = 0x0200000000,
++	.upper = 0x0200000000ULL,
+ 	.probe_fbp = gf100_ram_probe_fbp,
+ 	.probe_fbp_amount = gf100_ram_probe_fbp_amount,
+ 	.probe_fbpa_amount = gf100_ram_probe_fbpa_amount,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgf108.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgf108.c
+index 70a06e3cd55a..d97fa43efb91 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgf108.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgf108.c
+@@ -43,7 +43,7 @@ gf108_ram_probe_fbp_amount(const struct nvkm_ram_func *func, u32 fbpao,
+ 
+ static const struct nvkm_ram_func
+ gf108_ram = {
+-	.upper = 0x0200000000,
++	.upper = 0x0200000000ULL,
+ 	.probe_fbp = gf100_ram_probe_fbp,
+ 	.probe_fbp_amount = gf108_ram_probe_fbp_amount,
+ 	.probe_fbpa_amount = gf100_ram_probe_fbpa_amount,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c
+index 456aed1f2a02..d350d92852d2 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c
+@@ -1698,7 +1698,7 @@ gk104_ram_new_(const struct nvkm_ram_func *func, struct nvkm_fb *fb,
+ 
+ static const struct nvkm_ram_func
+ gk104_ram = {
+-	.upper = 0x0200000000,
++	.upper = 0x0200000000ULL,
+ 	.probe_fbp = gf100_ram_probe_fbp,
+ 	.probe_fbp_amount = gf108_ram_probe_fbp_amount,
+ 	.probe_fbpa_amount = gf100_ram_probe_fbpa_amount,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgm107.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgm107.c
+index 27c68e3f9772..be91da854dca 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgm107.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgm107.c
+@@ -33,7 +33,7 @@ gm107_ram_probe_fbp(const struct nvkm_ram_func *func,
+ 
+ static const struct nvkm_ram_func
+ gm107_ram = {
+-	.upper = 0x1000000000,
++	.upper = 0x1000000000ULL,
+ 	.probe_fbp = gm107_ram_probe_fbp,
+ 	.probe_fbp_amount = gf108_ram_probe_fbp_amount,
+ 	.probe_fbpa_amount = gf100_ram_probe_fbpa_amount,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgm200.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgm200.c
+index 6b0cac1fe7b4..8f91ea91ee25 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgm200.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgm200.c
+@@ -48,7 +48,7 @@ gm200_ram_probe_fbp_amount(const struct nvkm_ram_func *func, u32 fbpao,
+ 
+ static const struct nvkm_ram_func
+ gm200_ram = {
+-	.upper = 0x1000000000,
++	.upper = 0x1000000000ULL,
+ 	.probe_fbp = gm107_ram_probe_fbp,
+ 	.probe_fbp_amount = gm200_ram_probe_fbp_amount,
+ 	.probe_fbpa_amount = gf100_ram_probe_fbpa_amount,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgp100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgp100.c
+index adb62a6beb63..378f6fb70990 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgp100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgp100.c
+@@ -79,7 +79,7 @@ gp100_ram_probe_fbpa(struct nvkm_device *device, int fbpa)
+ 
+ static const struct nvkm_ram_func
+ gp100_ram = {
+-	.upper = 0x1000000000,
++	.upper = 0x1000000000ULL,
+ 	.probe_fbp = gm107_ram_probe_fbp,
+ 	.probe_fbp_amount = gm200_ram_probe_fbp_amount,
+ 	.probe_fbpa_amount = gp100_ram_probe_fbpa,
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.17.1
