@@ -1,14 +1,16 @@
-From: Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
+From: "Wuxu (Max)" <wuxu.wu-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
 Subject: Re: [PATCH] drm/nouveau/bios: fix incorrect kfree in
  platform_init
-Date: Fri, 3 Jan 2020 12:58:23 +0100
-Message-ID: <fd3273d3-5814-be43-dbec-e49bc7990705@spliet.org>
+Date: Fri, 3 Jan 2020 21:25:38 +0800
+Message-ID: <9a86afda-9ee3-058d-a4b1-88606b8bfcc1@huawei.com>
 References: <1578039033-6458-1-git-send-email-wuxu.wu@huawei.com>
+ <fd3273d3-5814-be43-dbec-e49bc7990705@spliet.org>
+Reply-To: wuxu.wu-hv44wF8Li93QT0dZR+AlfA@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1578039033-6458-1-git-send-email-wuxu.wu-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <fd3273d3-5814-be43-dbec-e49bc7990705-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
 Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,39 +21,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "wuxu.wu" <wuxu.wu-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+To: Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-(re-sending as plain text)
-
-NACK. The before and after of this patch are functionally identical. The 
-if-block returns unconditionally ("return priv;"), so the kfree will 
-only ever be reached if the condition in the if-statement evaluates to 
-false. Explicitly writing out an else-block is thus superfluous.
-
-Op 03-01-2020 om 09:10 schreef wuxu.wu:
-> Hi, I think there has a incorrect kfree in pcirom_init function. In
-> pcirom_init function priv porinter could be free only when priv != null
-> and priv->rom is null.
-> 
-> Signed-off-by: wuxu.wu <wuxu.wu-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
-> ---
->   drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c
-> index 9b91da0..d776e01 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c
-> @@ -70,8 +70,9 @@ pcirom_init(struct nvkm_bios *bios, const char *name)
->   			    (priv->rom = pci_map_rom(pdev, &priv->size))) {
->   				priv->pdev = pdev;
->   				return priv;
-> +			} else {
-> +			    kfree(priv);
->   			}
-> -			kfree(priv);
->   		}
->   		pci_disable_rom(pdev);
->   	}
-> 
+VGhhbmsgeW91LCBJIGdvdCBpdAoKT24gMjAyMC8xLzMgMTk6NTgsIFJveSBTcGxpZXQgd3JvdGU6
+Cj4gKHJlLXNlbmRpbmcgYXMgcGxhaW4gdGV4dCkKPiAKPiBOQUNLLiBUaGUgYmVmb3JlIGFuZCBh
+ZnRlciBvZiB0aGlzIHBhdGNoIGFyZSBmdW5jdGlvbmFsbHkgaWRlbnRpY2FsLiBUaGUgaWYtYmxv
+Y2sgcmV0dXJucyB1bmNvbmRpdGlvbmFsbHkgKCJyZXR1cm4gcHJpdjsiKSwgc28gdGhlIGtmcmVl
+IHdpbGwgb25seSBldmVyIGJlIHJlYWNoZWQgaWYgdGhlIGNvbmRpdGlvbiBpbiB0aGUgaWYtc3Rh
+dGVtZW50IGV2YWx1YXRlcyB0byBmYWxzZS4gRXhwbGljaXRseSB3cml0aW5nIG91dCBhbiBlbHNl
+LWJsb2NrIGlzIHRodXMgc3VwZXJmbHVvdXMuCj4gCj4gT3AgMDMtMDEtMjAyMCBvbSAwOToxMCBz
+Y2hyZWVmIHd1eHUud3U6Cj4+IEhpLCBJIHRoaW5rIHRoZXJlIGhhcyBhIGluY29ycmVjdCBrZnJl
+ZSBpbiBwY2lyb21faW5pdCBmdW5jdGlvbi4gSW4KPj4gcGNpcm9tX2luaXQgZnVuY3Rpb24gcHJp
+diBwb3JpbnRlciBjb3VsZCBiZSBmcmVlIG9ubHkgd2hlbiBwcml2ICE9IG51bGwKPj4gYW5kIHBy
+aXYtPnJvbSBpcyBudWxsLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiB3dXh1Lnd1IDx3dXh1Lnd1QGh1
+YXdlaS5jb20+Cj4+IC0tLQo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRl
+di9iaW9zL3NoYWRvd3BjaS5jIHwgMyArKy0KPj4gwqAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0
+aW9ucygrKSwgMSBkZWxldGlvbigtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9zaGFkb3dwY2kuYyBiL2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mvc2hhZG93cGNpLmMKPj4gaW5kZXggOWI5MWRhMC4uZDc3
+NmUwMSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
+Ymlvcy9zaGFkb3dwY2kuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1
+YmRldi9iaW9zL3NoYWRvd3BjaS5jCj4+IEBAIC03MCw4ICs3MCw5IEBAIHBjaXJvbV9pbml0KHN0
+cnVjdCBudmttX2Jpb3MgKmJpb3MsIGNvbnN0IGNoYXIgKm5hbWUpCj4+IMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgKHByaXYtPnJvbSA9IHBjaV9tYXBfcm9tKHBkZXYsICZwcml2
+LT5zaXplKSkpIHsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBwcml2LT5w
+ZGV2ID0gcGRldjsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4g
+cHJpdjsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfSBlbHNlIHsKPj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCBrZnJlZShwcml2KTsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgfQo+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBrZnJlZShwcml2KTsKPj4gwqDCoMKg
+wqDCoMKgwqDCoMKgIH0KPj4gwqDCoMKgwqDCoMKgwqDCoMKgIHBjaV9kaXNhYmxlX3JvbShwZGV2
+KTsKPj4gwqDCoMKgwqDCoCB9Cj4+Cj4gCj4gLgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1Cg==
