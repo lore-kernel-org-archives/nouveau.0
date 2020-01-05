@@ -1,57 +1,76 @@
-From: "Wuxu (Max)" <wuxu.wu-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/bios: fix incorrect kfree in
- platform_init
-Date: Fri, 3 Jan 2020 21:25:38 +0800
-Message-ID: <9a86afda-9ee3-058d-a4b1-88606b8bfcc1@huawei.com>
-References: <1578039033-6458-1-git-send-email-wuxu.wu@huawei.com>
- <fd3273d3-5814-be43-dbec-e49bc7990705@spliet.org>
-Reply-To: wuxu.wu-hv44wF8Li93QT0dZR+AlfA@public.gmane.org
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [Nouveau] [PATCH] drm/nouveau: remove set but unused variable.
+Date: Mon, 6 Jan 2020 08:06:45 +1000
+Message-ID: <CACAvsv5YEB0njcvFBhHWiCumuHroAqMm-T+fA8gJfsXijy+LVg@mail.gmail.com>
+References: <20191231205607.1005-1-wambui.karugax@gmail.com> <20200101184843.GA3856@dvetter-linux.ger.corp.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <fd3273d3-5814-be43-dbec-e49bc7990705-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200101184843.GA3856@dvetter-linux.ger.corp.intel.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Wambui Karuga <wambui.karugax@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@linux.ie>, ML dri-devel <dri-devel@lists.freedesktop.org>, ML nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
+Cc: Daniel Vetter <daniel@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
-VGhhbmsgeW91LCBJIGdvdCBpdAoKT24gMjAyMC8xLzMgMTk6NTgsIFJveSBTcGxpZXQgd3JvdGU6
-Cj4gKHJlLXNlbmRpbmcgYXMgcGxhaW4gdGV4dCkKPiAKPiBOQUNLLiBUaGUgYmVmb3JlIGFuZCBh
-ZnRlciBvZiB0aGlzIHBhdGNoIGFyZSBmdW5jdGlvbmFsbHkgaWRlbnRpY2FsLiBUaGUgaWYtYmxv
-Y2sgcmV0dXJucyB1bmNvbmRpdGlvbmFsbHkgKCJyZXR1cm4gcHJpdjsiKSwgc28gdGhlIGtmcmVl
-IHdpbGwgb25seSBldmVyIGJlIHJlYWNoZWQgaWYgdGhlIGNvbmRpdGlvbiBpbiB0aGUgaWYtc3Rh
-dGVtZW50IGV2YWx1YXRlcyB0byBmYWxzZS4gRXhwbGljaXRseSB3cml0aW5nIG91dCBhbiBlbHNl
-LWJsb2NrIGlzIHRodXMgc3VwZXJmbHVvdXMuCj4gCj4gT3AgMDMtMDEtMjAyMCBvbSAwOToxMCBz
-Y2hyZWVmIHd1eHUud3U6Cj4+IEhpLCBJIHRoaW5rIHRoZXJlIGhhcyBhIGluY29ycmVjdCBrZnJl
-ZSBpbiBwY2lyb21faW5pdCBmdW5jdGlvbi4gSW4KPj4gcGNpcm9tX2luaXQgZnVuY3Rpb24gcHJp
-diBwb3JpbnRlciBjb3VsZCBiZSBmcmVlIG9ubHkgd2hlbiBwcml2ICE9IG51bGwKPj4gYW5kIHBy
-aXYtPnJvbSBpcyBudWxsLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiB3dXh1Lnd1IDx3dXh1Lnd1QGh1
-YXdlaS5jb20+Cj4+IC0tLQo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di9iaW9zL3NoYWRvd3BjaS5jIHwgMyArKy0KPj4gwqAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0
-aW9ucygrKSwgMSBkZWxldGlvbigtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9zaGFkb3dwY2kuYyBiL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mvc2hhZG93cGNpLmMKPj4gaW5kZXggOWI5MWRhMC4uZDc3
-NmUwMSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
-Ymlvcy9zaGFkb3dwY2kuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1
-YmRldi9iaW9zL3NoYWRvd3BjaS5jCj4+IEBAIC03MCw4ICs3MCw5IEBAIHBjaXJvbV9pbml0KHN0
-cnVjdCBudmttX2Jpb3MgKmJpb3MsIGNvbnN0IGNoYXIgKm5hbWUpCj4+IMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgKHByaXYtPnJvbSA9IHBjaV9tYXBfcm9tKHBkZXYsICZwcml2
-LT5zaXplKSkpIHsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBwcml2LT5w
-ZGV2ID0gcGRldjsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4g
-cHJpdjsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfSBlbHNlIHsKPj4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBrZnJlZShwcml2KTsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgfQo+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBrZnJlZShwcml2KTsKPj4gwqDCoMKg
-wqDCoMKgwqDCoMKgIH0KPj4gwqDCoMKgwqDCoMKgwqDCoMKgIHBjaV9kaXNhYmxlX3JvbShwZGV2
-KTsKPj4gwqDCoMKgwqDCoCB9Cj4+Cj4gCj4gLgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9ub3V2ZWF1Cg==
+On Thu, 2 Jan 2020 at 04:48, Daniel Vetter <daniel@ffwll.ch> wrote:
+>
+> On Tue, Dec 31, 2019 at 11:56:07PM +0300, Wambui Karuga wrote:
+> > The local variable `pclks` is defined and set but not used and can
+> > therefore be removed.
+> > Issue found by coccinelle.
+> >
+> > Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
+> > ---
+> >  drivers/gpu/drm/nouveau/dispnv04/arb.c | 3 +--
+> >  1 file changed, 1 insertion(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/dispnv04/arb.c b/drivers/gpu/drm/nouveau/dispnv04/arb.c
+> > index 362495535e69..f607a04d262d 100644
+> > --- a/drivers/gpu/drm/nouveau/dispnv04/arb.c
+> > +++ b/drivers/gpu/drm/nouveau/dispnv04/arb.c
+> > @@ -54,7 +54,7 @@ static void
+> >  nv04_calc_arb(struct nv_fifo_info *fifo, struct nv_sim_state *arb)
+> >  {
+> >       int pagemiss, cas, width, bpp;
+> > -     int nvclks, mclks, pclks, crtpagemiss;
+> > +     int nvclks, mclks, crtpagemiss;
+>
+> Hm, reading the code (just from how stuff is named) I wonder whether the
+> original idea was that the calculation for us_p should us pclks, not
+> nvclks, but given that this code is as old as the initial nouveau merge
+> probably not a good idea to touch it. Plus I guess not many with a vintage
+> nv04 in working condition around to even test stuff ...
+>
+> Ben, what should we do here?
+I looked at the original code from xf86-video-nv, and pclks is
+similarly unused there also, so, I'd vote for just picking up this
+patch.  I don't believe anyone has the knowledge+hw anymore to mess
+with it in any other way.
+
+Ben.
+
+> -Daniel
+>
+> >       int found, mclk_extra, mclk_loop, cbs, m1, p1;
+> >       int mclk_freq, pclk_freq, nvclk_freq;
+> >       int us_m, us_n, us_p, crtc_drain_rate;
+> > @@ -69,7 +69,6 @@ nv04_calc_arb(struct nv_fifo_info *fifo, struct nv_sim_state *arb)
+> >       bpp = arb->bpp;
+> >       cbs = 128;
+> >
+> > -     pclks = 2;
+> >       nvclks = 10;
+> >       mclks = 13 + cas;
+> >       mclk_extra = 3;
+> > --
+> > 2.17.1
+> >
+>
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
