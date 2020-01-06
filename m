@@ -1,13 +1,15 @@
 From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Add correct turing page kinds
-Date: Mon, 6 Jan 2020 11:16:59 +1000
-Message-ID: <CACAvsv4o1RR-+GkhjvUpGntKVkX7YtsPPEe5-RbpkHrhf8ROWw@mail.gmail.com>
-References: <20191217005805.2931-1-jajones@nvidia.com>
+Subject: Re: [PATCH v2 2/3] drm/nouveau: Check framebuffer size
+ against bo
+Date: Mon, 6 Jan 2020 11:25:09 +1000
+Message-ID: <CACAvsv656x+PL7pP=_JVgkJXnLaoUJOD=-H_6k2-UVwXSsREnA@mail.gmail.com>
+References: <20191217004520.2404-1-jajones@nvidia.com>
+ <20191217004520.2404-3-jajones@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20191217005805.2931-1-jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <20191217004520.2404-3-jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,330 +23,139 @@ To: James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 17 Dec 2019 at 10:57, James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+On Tue, 17 Dec 2019 at 10:45, James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
 >
-> Turing introduced a new simplified page kind
-> scheme, reducing the number of possible page
-> kinds from 256 to 16.  It also is the first
-> NVIDIA GPU in which the highest possible page
-> kind value is not reserved as an "invalid" page
-> kind.
->
-> To address this, the invalid page kind is made
-> an explicit property of the MMU HAL, and a new
-> table of page kinds is added to the tu102 MMU
-> HAL.
->
-> One hardware change not addressed here is that
-> 0x00 is technically no longer a supported page
-> kind, and pitch surfaces are instead intended to
-> share the block-linear generic page kind 0x06.
-> However, because that will be a rather invasive
-> change to nouveau and 0x00 still works fine in
-> practice on Turing hardware, addressing this new
-> behavior is deferred.
-Thanks James, I've merged this and the BO move fix into my tree.
-
+> Make sure framebuffer dimensions and tiling
+> parameters will not result in accesses beyond the
+> end of the GEM buffer they are bound to.
 >
 > Signed-off-by: James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 > ---
->  drivers/gpu/drm/nouveau/include/nvif/if0008.h    |  2 +-
->  drivers/gpu/drm/nouveau/include/nvif/mmu.h       |  4 ++--
->  drivers/gpu/drm/nouveau/nvif/mmu.c               |  1 +
->  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gf100.c  |  3 ++-
->  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gm200.c  |  3 ++-
->  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/nv50.c   |  3 ++-
->  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/priv.h   |  8 ++++----
->  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/tu102.c  | 16 +++++++++++++++-
->  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/ummu.c   |  7 +++++--
->  .../gpu/drm/nouveau/nvkm/subdev/mmu/vmmgf100.c   |  6 +++---
->  .../gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c   |  6 +++---
->  .../gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv50.c    |  6 +++---
->  12 files changed, 43 insertions(+), 22 deletions(-)
+>  drivers/gpu/drm/nouveau/nouveau_display.c | 93 +++++++++++++++++++++++
+>  1 file changed, 93 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/nouveau/include/nvif/if0008.h b/drivers/gpu/drm/nouveau/include/nvif/if0008.h
-> index 8450127420f5..c21d09f04f1d 100644
-> --- a/drivers/gpu/drm/nouveau/include/nvif/if0008.h
-> +++ b/drivers/gpu/drm/nouveau/include/nvif/if0008.h
-> @@ -35,7 +35,7 @@ struct nvif_mmu_type_v0 {
->
->  struct nvif_mmu_kind_v0 {
->         __u8  version;
-> -       __u8  pad01[1];
-> +       __u8  kind_inv;
->         __u16 count;
->         __u8  data[];
->  };
-> diff --git a/drivers/gpu/drm/nouveau/include/nvif/mmu.h b/drivers/gpu/drm/nouveau/include/nvif/mmu.h
-> index 747ecf67e403..cec1e88a0a05 100644
-> --- a/drivers/gpu/drm/nouveau/include/nvif/mmu.h
-> +++ b/drivers/gpu/drm/nouveau/include/nvif/mmu.h
-> @@ -7,6 +7,7 @@ struct nvif_mmu {
->         u8  dmabits;
->         u8  heap_nr;
->         u8  type_nr;
-> +       u8  kind_inv;
->         u16 kind_nr;
->         s32 mem;
->
-> @@ -36,9 +37,8 @@ void nvif_mmu_fini(struct nvif_mmu *);
->  static inline bool
->  nvif_mmu_kind_valid(struct nvif_mmu *mmu, u8 kind)
->  {
-> -       const u8 invalid = mmu->kind_nr - 1;
->         if (kind) {
-> -               if (kind >= mmu->kind_nr || mmu->kind[kind] == invalid)
-> +               if (kind >= mmu->kind_nr || mmu->kind[kind] == mmu->kind_inv)
->                         return false;
->         }
->         return true;
-> diff --git a/drivers/gpu/drm/nouveau/nvif/mmu.c b/drivers/gpu/drm/nouveau/nvif/mmu.c
-> index 5641bda2046d..47efc408efa6 100644
-> --- a/drivers/gpu/drm/nouveau/nvif/mmu.c
-> +++ b/drivers/gpu/drm/nouveau/nvif/mmu.c
-> @@ -121,6 +121,7 @@ nvif_mmu_init(struct nvif_object *parent, s32 oclass, struct nvif_mmu *mmu)
->                                        kind, argc);
->                 if (ret == 0)
->                         memcpy(mmu->kind, kind->data, kind->count);
-> +               mmu->kind_inv = kind->kind_inv;
->                 kfree(kind);
->         }
->
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gf100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gf100.c
-> index 2d075246dc46..2cd5ec81c0d0 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gf100.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gf100.c
-> @@ -30,7 +30,7 @@
->   * The value 0xff represents an invalid storage type.
->   */
->  const u8 *
-> -gf100_mmu_kind(struct nvkm_mmu *mmu, int *count)
-> +gf100_mmu_kind(struct nvkm_mmu *mmu, int *count, u8 *invalid)
->  {
->         static const u8
->         kind[256] = {
-> @@ -69,6 +69,7 @@ gf100_mmu_kind(struct nvkm_mmu *mmu, int *count)
->         };
->
->         *count = ARRAY_SIZE(kind);
-> +       *invalid = 0xff;
->         return kind;
->  }
->
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gm200.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gm200.c
-> index dbf644ebac97..83990c83f9f8 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gm200.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gm200.c
-> @@ -27,7 +27,7 @@
->  #include <nvif/class.h>
->
->  const u8 *
-> -gm200_mmu_kind(struct nvkm_mmu *mmu, int *count)
-> +gm200_mmu_kind(struct nvkm_mmu *mmu, int *count, u8 *invalid)
->  {
->         static const u8
->         kind[256] = {
-> @@ -65,6 +65,7 @@ gm200_mmu_kind(struct nvkm_mmu *mmu, int *count)
->                 0xfe, 0xfe, 0xfe, 0xfe, 0xff, 0xfd, 0xfe, 0xff
->         };
->         *count = ARRAY_SIZE(kind);
-> +       *invalid = 0xff;
->         return kind;
->  }
->
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/nv50.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/nv50.c
-> index db3dfbbb2aa0..c0083ddda65a 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/nv50.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/nv50.c
-> @@ -27,7 +27,7 @@
->  #include <nvif/class.h>
->
->  const u8 *
-> -nv50_mmu_kind(struct nvkm_mmu *base, int *count)
-> +nv50_mmu_kind(struct nvkm_mmu *base, int *count, u8 *invalid)
->  {
->         /* 0x01: no bank swizzle
->          * 0x02: bank swizzled
-> @@ -57,6 +57,7 @@ nv50_mmu_kind(struct nvkm_mmu *base, int *count)
->                 0x01, 0x01, 0x02, 0x02, 0x01, 0x01, 0x7f, 0x7f
->         };
->         *count = ARRAY_SIZE(kind);
-> +       *invalid = 0x7f;
->         return kind;
->  }
->
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/priv.h b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/priv.h
-> index 07f2fcd18f3d..479b02344271 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/priv.h
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/priv.h
-> @@ -35,17 +35,17 @@ struct nvkm_mmu_func {
->                 u32 pd_offset;
->         } vmm;
->
-> -       const u8 *(*kind)(struct nvkm_mmu *, int *count);
-> +       const u8 *(*kind)(struct nvkm_mmu *, int *count, u8 *invalid);
->         bool kind_sys;
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+> index 6f038511a03a..f1509392d7b7 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+> @@ -224,6 +224,72 @@ static const struct drm_framebuffer_funcs nouveau_framebuffer_funcs = {
+>         .create_handle = nouveau_user_framebuffer_create_handle,
 >  };
 >
->  extern const struct nvkm_mmu_func nv04_mmu;
->
-> -const u8 *nv50_mmu_kind(struct nvkm_mmu *, int *count);
-> +const u8 *nv50_mmu_kind(struct nvkm_mmu *, int *count, u8 *invalid);
->
-> -const u8 *gf100_mmu_kind(struct nvkm_mmu *, int *count);
-> +const u8 *gf100_mmu_kind(struct nvkm_mmu *, int *count, u8 *invalid);
->
-> -const u8 *gm200_mmu_kind(struct nvkm_mmu *, int *);
-> +const u8 *gm200_mmu_kind(struct nvkm_mmu *, int *, u8 *);
->
->  struct nvkm_mmu_pt {
->         union {
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/tu102.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/tu102.c
-> index c0db0ce10cba..b21e82eb0916 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/tu102.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/tu102.c
-> @@ -1,5 +1,6 @@
->  /*
->   * Copyright 2018 Red Hat Inc.
-> + * Copyright 2019 NVIDIA Corporation.
->   *
->   * Permission is hereby granted, free of charge, to any person obtaining a
->   * copy of this software and associated documentation files (the "Software"),
-> @@ -26,13 +27,26 @@
->
->  #include <nvif/class.h>
->
-> +const u8 *
-> +tu102_mmu_kind(struct nvkm_mmu *mmu, int *count, u8 *invalid)
+> +static inline uint32_t
+> +nouveau_get_width_in_blocks(uint32_t stride)
 > +{
-> +       static const u8
-> +       kind[16] = {
-> +               0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, /* 0x00 */
-> +               0x06, 0x06, 0x02, 0x01, 0x03, 0x04, 0x05, 0x07,
-> +       };
-> +       *count = ARRAY_SIZE(kind);
-> +       *invalid = 0x07;
-> +       return kind;
+> +       /* GOBs per block in the x direction is always one, and GOBs are
+> +        * 64 bytes wide
+> +        */
+> +       static const uint32_t log_block_width = 6;
+> +
+> +       return (stride + (1 << log_block_width) - 1) >> log_block_width;
 > +}
 > +
->  static const struct nvkm_mmu_func
->  tu102_mmu = {
->         .dma_bits = 47,
->         .mmu = {{ -1, -1, NVIF_CLASS_MMU_GF100}},
->         .mem = {{ -1,  0, NVIF_CLASS_MEM_GF100}, gf100_mem_new, gf100_mem_map },
->         .vmm = {{ -1,  0, NVIF_CLASS_VMM_GP100}, tu102_vmm_new },
-> -       .kind = gm200_mmu_kind,
-> +       .kind = tu102_mmu_kind,
->         .kind_sys = true,
->  };
+> +static inline uint32_t
+> +nouveau_get_height_in_blocks(struct nouveau_drm *drm,
+> +                            uint32_t height,
+> +                            uint32_t log_block_height_in_gobs)
+> +{
+> +       uint32_t log_gob_height;
+> +       uint32_t log_block_height;
+> +
+> +       BUG_ON(drm->client.device.info.family < NV_DEVICE_INFO_V0_TESLA);
+> +
+> +       if (drm->client.device.info.family < NV_DEVICE_INFO_V0_FERMI)
+> +               log_gob_height = 2;
+> +       else
+> +               log_gob_height = 3;
+> +
+> +       log_block_height = log_block_height_in_gobs + log_gob_height;
+> +
+> +       return (height + (1 << log_block_height) - 1) >> log_block_height;
+> +}
+> +
+> +static int
+> +nouveau_check_bl_size(struct nouveau_drm *drm, struct nouveau_bo *nvbo,
+> +                     uint32_t offset, uint32_t stride, uint32_t h,
+> +                     uint32_t tile_mode)
+> +{
+> +       uint32_t gob_size, bw, bh;
+> +       uint64_t bl_size;
+> +
+> +       BUG_ON(drm->client.device.info.family < NV_DEVICE_INFO_V0_TESLA);
+> +
+> +       if (drm->client.device.info.chipset >= 0xc0)
+> +               tile_mode >>= 4;
+> +
+> +       BUG_ON(tile_mode & 0xFFFFFFF0);
+As far as I can tell, tile_mode can be fed into this function
+unsanitised from userspace, so we probably want something different to
+a BUG_ON() here.
+
+> +
+> +       if (drm->client.device.info.family < NV_DEVICE_INFO_V0_FERMI)
+> +               gob_size = 256;
+> +       else
+> +               gob_size = 512;
+> +
+> +       bw = nouveau_get_width_in_blocks(stride);
+> +       bh = nouveau_get_height_in_blocks(drm, h, tile_mode);
+> +
+> +       bl_size = bw * bh * (1 << tile_mode) * gob_size;
+> +
+> +       DRM_DEBUG_KMS("offset=%u stride=%u h=%u tile_mode=0x%02x bw=%u bh=%u gob_size=%u bl_size=%llu size=%lu\n",
+> +                     offset, stride, h, tile_mode, bw, bh, gob_size, bl_size,
+> +                     nvbo->bo.mem.size);
+> +
+> +       if (bl_size + offset > nvbo->bo.mem.size)
+> +               return -ERANGE;
+> +
+> +       return 0;
+> +}
+> +
+>  int
+>  nouveau_framebuffer_new(struct drm_device *dev,
+>                         const struct drm_mode_fb_cmd2 *mode_cmd,
+> @@ -232,6 +298,8 @@ nouveau_framebuffer_new(struct drm_device *dev,
+>  {
+>         struct nouveau_drm *drm = nouveau_drm(dev);
+>         struct nouveau_framebuffer *fb;
+> +       const struct drm_format_info *info;
+> +       unsigned int width, height, i;
+>         int ret;
 >
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/ummu.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/ummu.c
-> index 353f10f92b77..0e4b8941da37 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/ummu.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/ummu.c
-> @@ -111,15 +111,17 @@ nvkm_ummu_kind(struct nvkm_ummu *ummu, void *argv, u32 argc)
->         } *args = argv;
->         const u8 *kind = NULL;
->         int ret = -ENOSYS, count = 0;
-> +       u8 kind_inv = 0;
->
->         if (mmu->func->kind)
-> -               kind = mmu->func->kind(mmu, &count);
-> +               kind = mmu->func->kind(mmu, &count, &kind_inv);
->
->         if (!(ret = nvif_unpack(ret, &argv, &argc, args->v0, 0, 0, true))) {
->                 if (argc != args->v0.count * sizeof(*args->v0.data))
->                         return -EINVAL;
->                 if (args->v0.count > count)
->                         return -EINVAL;
-> +               args->v0.kind_inv = kind_inv;
->                 memcpy(args->v0.data, kind, args->v0.count);
->         } else
->                 return ret;
-> @@ -157,9 +159,10 @@ nvkm_ummu_new(struct nvkm_device *device, const struct nvkm_oclass *oclass,
->         struct nvkm_mmu *mmu = device->mmu;
->         struct nvkm_ummu *ummu;
->         int ret = -ENOSYS, kinds = 0;
-> +       u8 unused = 0;
->
->         if (mmu->func->kind)
-> -               mmu->func->kind(mmu, &kinds);
-> +               mmu->func->kind(mmu, &kinds, &unused);
->
->         if (!(ret = nvif_unpack(ret, &argv, &argc, args->v0, 0, 0, false))) {
->                 args->v0.dmabits = mmu->dma_bits;
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgf100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgf100.c
-> index ab6424faf84c..6a2d9eb8e1ea 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgf100.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgf100.c
-> @@ -247,7 +247,7 @@ gf100_vmm_valid(struct nvkm_vmm *vmm, void *argv, u32 argc,
->         } *args = argv;
->         struct nvkm_device *device = vmm->mmu->subdev.device;
->         struct nvkm_memory *memory = map->memory;
-> -       u8  kind, priv, ro, vol;
-> +       u8  kind, kind_inv, priv, ro, vol;
->         int kindn, aper, ret = -ENOSYS;
->         const u8 *kindm;
->
-> @@ -274,8 +274,8 @@ gf100_vmm_valid(struct nvkm_vmm *vmm, void *argv, u32 argc,
->         if (WARN_ON(aper < 0))
->                 return aper;
->
-> -       kindm = vmm->mmu->func->kind(vmm->mmu, &kindn);
-> -       if (kind >= kindn || kindm[kind] == 0xff) {
-> +       kindm = vmm->mmu->func->kind(vmm->mmu, &kindn, &kind_inv);
-> +       if (kind >= kindn || kindm[kind] == kind_inv) {
->                 VMM_DEBUG(vmm, "kind %02x", kind);
->                 return -EINVAL;
->         }
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c
-> index b4f519768d5e..d86287565542 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c
-> @@ -320,7 +320,7 @@ gp100_vmm_valid(struct nvkm_vmm *vmm, void *argv, u32 argc,
->         } *args = argv;
->         struct nvkm_device *device = vmm->mmu->subdev.device;
->         struct nvkm_memory *memory = map->memory;
-> -       u8  kind, priv, ro, vol;
-> +       u8  kind, kind_inv, priv, ro, vol;
->         int kindn, aper, ret = -ENOSYS;
->         const u8 *kindm;
->
-> @@ -347,8 +347,8 @@ gp100_vmm_valid(struct nvkm_vmm *vmm, void *argv, u32 argc,
->         if (WARN_ON(aper < 0))
->                 return aper;
->
-> -       kindm = vmm->mmu->func->kind(vmm->mmu, &kindn);
-> -       if (kind >= kindn || kindm[kind] == 0xff) {
-> +       kindm = vmm->mmu->func->kind(vmm->mmu, &kindn, &kind_inv);
-> +       if (kind >= kindn || kindm[kind] == kind_inv) {
->                 VMM_DEBUG(vmm, "kind %02x", kind);
->                 return -EINVAL;
->         }
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv50.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv50.c
-> index c98afe3134ee..2d89e27e8e9e 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv50.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv50.c
-> @@ -235,7 +235,7 @@ nv50_vmm_valid(struct nvkm_vmm *vmm, void *argv, u32 argc,
->         struct nvkm_device *device = vmm->mmu->subdev.device;
->         struct nvkm_ram *ram = device->fb->ram;
->         struct nvkm_memory *memory = map->memory;
-> -       u8  aper, kind, comp, priv, ro;
-> +       u8  aper, kind, kind_inv, comp, priv, ro;
->         int kindn, ret = -ENOSYS;
->         const u8 *kindm;
->
-> @@ -278,8 +278,8 @@ nv50_vmm_valid(struct nvkm_vmm *vmm, void *argv, u32 argc,
+>          /* YUV overlays have special requirements pre-NV50 */
+> @@ -254,6 +322,31 @@ nouveau_framebuffer_new(struct drm_device *dev,
 >                 return -EINVAL;
 >         }
 >
-> -       kindm = vmm->mmu->func->kind(vmm->mmu, &kindn);
-> -       if (kind >= kindn || kindm[kind] == 0x7f) {
-> +       kindm = vmm->mmu->func->kind(vmm->mmu, &kindn, &kind_inv);
-> +       if (kind >= kindn || kindm[kind] == kind_inv) {
->                 VMM_DEBUG(vmm, "kind %02x", kind);
->                 return -EINVAL;
->         }
+> +       info = drm_get_format_info(dev, mode_cmd);
+> +
+> +       for (i = 0; i < info->num_planes; i++) {
+> +               width = drm_format_info_plane_width(info,
+> +                                                   mode_cmd->width,
+> +                                                   i);
+> +               height = drm_format_info_plane_height(info,
+> +                                                     mode_cmd->height,
+> +                                                     i);
+> +
+> +               if (nvbo->kind) {
+> +                       ret = nouveau_check_bl_size(drm, nvbo,
+> +                                                   mode_cmd->offsets[i],
+> +                                                   mode_cmd->pitches[i],
+> +                                                   height, nvbo->mode);
+> +                       if (ret)
+> +                               return ret;
+> +               } else {
+> +                       uint32_t size = mode_cmd->pitches[i] * height;
+> +
+> +                       if (size + mode_cmd->offsets[i] > nvbo->bo.mem.size)
+> +                               return -ERANGE;
+> +               }
+> +       }
+> +
+>         if (!(fb = *pfb = kzalloc(sizeof(*fb), GFP_KERNEL)))
+>                 return -ENOMEM;
+>
 > --
 > 2.17.1
 >
