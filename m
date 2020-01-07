@@ -1,8 +1,8 @@
 From: Krzysztof Kozlowski <krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [RFT 10/13] net: wireless: ath5k: Constify ioreadX()
- iomem argument (as in generic implementation)
-Date: Tue,  7 Jan 2020 17:53:09 +0100
-Message-ID: <1578415992-24054-13-git-send-email-krzk__34010.2643867553$1578771283$gmane$org@kernel.org>
+Subject: [RFT 02/13] sh: Constify ioreadX() iomem argument (as in
+ generic implementation)
+Date: Tue,  7 Jan 2020 17:53:00 +0100
+Message-ID: <1578415992-24054-4-git-send-email-krzk__45005.6477844313$1578771284$gmane$org@kernel.org>
 References: <1578415992-24054-1-git-send-email-krzk@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -29,51 +29,52 @@ Implementations of ioreadX() do not modify the memory under the address
 so they can be converted to a "const" version for const-safety and
 consistency among architectures.
 
+Suggested-by: Geert Uytterhoeven <geert-Td1EMuHUCqxL1ZNQvxDV9g@public.gmane.org>
 Signed-off-by: Krzysztof Kozlowski <krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 ---
- drivers/net/wireless/ath/ath5k/ahb.c | 10 +++++-----
+ arch/sh/kernel/iomap.c | 10 +++++-----
  1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath5k/ahb.c b/drivers/net/wireless/ath/ath5k/ahb.c
-index 2c9cec8b53d9..8bd01df369fb 100644
---- a/drivers/net/wireless/ath/ath5k/ahb.c
-+++ b/drivers/net/wireless/ath/ath5k/ahb.c
-@@ -138,18 +138,18 @@ static int ath_ahb_probe(struct platform_device *pdev)
+diff --git a/arch/sh/kernel/iomap.c b/arch/sh/kernel/iomap.c
+index ef9e2c97cbb7..bd5e212c6ea6 100644
+--- a/arch/sh/kernel/iomap.c
++++ b/arch/sh/kernel/iomap.c
+@@ -8,31 +8,31 @@
+ #include <linux/module.h>
+ #include <linux/io.h>
  
- 	if (bcfg->devid >= AR5K_SREV_AR2315_R6) {
- 		/* Enable WMAC AHB arbitration */
--		reg = ioread32((void __iomem *) AR5K_AR2315_AHB_ARB_CTL);
-+		reg = ioread32((const void __iomem *) AR5K_AR2315_AHB_ARB_CTL);
- 		reg |= AR5K_AR2315_AHB_ARB_CTL_WLAN;
- 		iowrite32(reg, (void __iomem *) AR5K_AR2315_AHB_ARB_CTL);
+-unsigned int ioread8(void __iomem *addr)
++unsigned int ioread8(const void __iomem *addr)
+ {
+ 	return readb(addr);
+ }
+ EXPORT_SYMBOL(ioread8);
  
- 		/* Enable global WMAC swapping */
--		reg = ioread32((void __iomem *) AR5K_AR2315_BYTESWAP);
-+		reg = ioread32((const void __iomem *) AR5K_AR2315_BYTESWAP);
- 		reg |= AR5K_AR2315_BYTESWAP_WMAC;
- 		iowrite32(reg, (void __iomem *) AR5K_AR2315_BYTESWAP);
- 	} else {
- 		/* Enable WMAC DMA access (assuming 5312 or 231x*/
- 		/* TODO: check other platforms */
--		reg = ioread32((void __iomem *) AR5K_AR5312_ENABLE);
-+		reg = ioread32((const void __iomem *) AR5K_AR5312_ENABLE);
- 		if (to_platform_device(ah->dev)->id == 0)
- 			reg |= AR5K_AR5312_ENABLE_WLAN0;
- 		else
-@@ -202,12 +202,12 @@ static int ath_ahb_remove(struct platform_device *pdev)
+-unsigned int ioread16(void __iomem *addr)
++unsigned int ioread16(const void __iomem *addr)
+ {
+ 	return readw(addr);
+ }
+ EXPORT_SYMBOL(ioread16);
  
- 	if (bcfg->devid >= AR5K_SREV_AR2315_R6) {
- 		/* Disable WMAC AHB arbitration */
--		reg = ioread32((void __iomem *) AR5K_AR2315_AHB_ARB_CTL);
-+		reg = ioread32((const void __iomem *) AR5K_AR2315_AHB_ARB_CTL);
- 		reg &= ~AR5K_AR2315_AHB_ARB_CTL_WLAN;
- 		iowrite32(reg, (void __iomem *) AR5K_AR2315_AHB_ARB_CTL);
- 	} else {
- 		/*Stop DMA access */
--		reg = ioread32((void __iomem *) AR5K_AR5312_ENABLE);
-+		reg = ioread32((const void __iomem *) AR5K_AR5312_ENABLE);
- 		if (to_platform_device(ah->dev)->id == 0)
- 			reg &= ~AR5K_AR5312_ENABLE_WLAN0;
- 		else
+-unsigned int ioread16be(void __iomem *addr)
++unsigned int ioread16be(const void __iomem *addr)
+ {
+ 	return be16_to_cpu(__raw_readw(addr));
+ }
+ EXPORT_SYMBOL(ioread16be);
+ 
+-unsigned int ioread32(void __iomem *addr)
++unsigned int ioread32(const void __iomem *addr)
+ {
+ 	return readl(addr);
+ }
+ EXPORT_SYMBOL(ioread32);
+ 
+-unsigned int ioread32be(void __iomem *addr)
++unsigned int ioread32be(const void __iomem *addr)
+ {
+ 	return be32_to_cpu(__raw_readl(addr));
+ }
 -- 
 2.7.4
