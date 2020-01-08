@@ -1,8 +1,8 @@
 From: Krzysztof Kozlowski <krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH v2 2/9] net: wireless: rtl818x: Constify ioreadX()
- iomem argument (as in generic implementation)
-Date: Wed,  8 Jan 2020 21:05:21 +0100
-Message-ID: <20200108200528.4614-3-krzk__32402.9458731943$1578771240$gmane$org@kernel.org>
+Subject: [PATCH v2 7/9] drm/nouveau: Constify ioreadX() iomem
+ argument (as in generic implementation)
+Date: Wed,  8 Jan 2020 21:05:26 +0100
+Message-ID: <20200108200528.4614-8-krzk__20279.6258310386$1578771241$gmane$org@kernel.org>
 References: <20200108200528.4614-1-krzk@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -29,40 +29,22 @@ so they can be converted to a "const" version for const-safety and
 consistency among architectures.
 
 Signed-off-by: Krzysztof Kozlowski <krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Reviewed-by: Geert Uytterhoeven <geert+renesas-gXvu3+zWzMSzQB+pC5nmwQ@public.gmane.org>
-
 ---
+ drivers/gpu/drm/nouveau/nouveau_bo.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Changes since v1:
-1. Add Geert's review.
----
- drivers/net/wireless/realtek/rtl818x/rtl8180/rtl8180.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/net/wireless/realtek/rtl818x/rtl8180/rtl8180.h b/drivers/net/wireless/realtek/rtl818x/rtl8180/rtl8180.h
-index 7948a2da195a..2ff00800d45b 100644
---- a/drivers/net/wireless/realtek/rtl818x/rtl8180/rtl8180.h
-+++ b/drivers/net/wireless/realtek/rtl818x/rtl8180/rtl8180.h
-@@ -150,17 +150,17 @@ void rtl8180_write_phy(struct ieee80211_hw *dev, u8 addr, u32 data);
- void rtl8180_set_anaparam(struct rtl8180_priv *priv, u32 anaparam);
- void rtl8180_set_anaparam2(struct rtl8180_priv *priv, u32 anaparam2);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index f8015e0318d7..5120d062c2df 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -613,7 +613,7 @@ nouveau_bo_rd32(struct nouveau_bo *nvbo, unsigned index)
+ 	mem += index;
  
--static inline u8 rtl818x_ioread8(struct rtl8180_priv *priv, u8 __iomem *addr)
-+static inline u8 rtl818x_ioread8(struct rtl8180_priv *priv, const u8 __iomem *addr)
- {
- 	return ioread8(addr);
- }
- 
--static inline u16 rtl818x_ioread16(struct rtl8180_priv *priv, __le16 __iomem *addr)
-+static inline u16 rtl818x_ioread16(struct rtl8180_priv *priv, const __le16 __iomem *addr)
- {
- 	return ioread16(addr);
- }
- 
--static inline u32 rtl818x_ioread32(struct rtl8180_priv *priv, __le32 __iomem *addr)
-+static inline u32 rtl818x_ioread32(struct rtl8180_priv *priv, const __le32 __iomem *addr)
- {
- 	return ioread32(addr);
+ 	if (is_iomem)
+-		return ioread32_native((void __force __iomem *)mem);
++		return ioread32_native((const void __force __iomem *)mem);
+ 	else
+ 		return *mem;
  }
 -- 
 2.17.1
