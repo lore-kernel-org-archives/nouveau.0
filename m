@@ -1,50 +1,50 @@
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: Re: [PATCH v2 1/9] iomap: Constify ioreadX() iomem argument (as in
- generic implementation)
-Date: Thu, 9 Jan 2020 13:00:40 +0100
-Message-ID: <CAMuHMdV8NYiq0744EGw2zit7DZc5=rOpL7en_NeCx2GTD3F3ZQ@mail.gmail.com>
-References: <20200108200528.4614-1-krzk@kernel.org>
- <20200108200528.4614-2-krzk@kernel.org>
+From: Jason Gunthorpe <jgg@mellanox.com>
+Subject: Re: [BUG] nouveau lockdep splat
+Date: Thu, 9 Jan 2020 14:53:09 +0000
+Message-ID: <20200109145305.GV20978@mellanox.com>
+References: <20200109011640.19678-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20200108200528.4614-2-krzk@kernel.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rich Felker <dalias@libc.org>, Jiri Slaby <jirislaby@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, "Michael S. Tsirkin" <mst@redhat.com>, David Airlie <airlied@linux.ie>, Jason Wang <jasowang@redhat.com>, DRI Development <dri-devel@lists.freedesktop.org>, virtualization@lists.linux-foundation.org, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, netdev <netdev@vger.kernel.org>, Paul Mackerras <paulus@samba.org>, Linux-Arch <linux-arch@vger.kernel.org>, Dave Jiang <dave.jiang@intel.com>, Yoshinori Sato <ysato@users.sourceforge.jp>, Michael Ellerman <mpe@ellerman.id.au>, Helge Deller <deller@gmx.de>, Linux-sh list <linux-sh@vger.kernel.org>, Alexey Brodkin <abrodkin@synopsys.com>, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>, Matt Turner <mattst88@gmail.com>, arcml <linux-snps-arc@lists.infrade>
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200109011640.19678-1-rcampbell@nvidia.com>
+Content-Language: en-US
+Content-ID: <EFCCE5C3CA7FC54D9497CF2317C63284@eurprd05.prod.outlook.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ralph Campbell <rcampbell@nvidia.com>
+Cc: "linux-mm@kvack.org" <linux-mm@kvack.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Andrew Morton <akpm@linux-foundation.org>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jan 8, 2020 at 9:05 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> The ioreadX() and ioreadX_rep() helpers have inconsistent interface.  On
-> some architectures void *__iomem address argument is a pointer to const,
-> on some not.
->
-> Implementations of ioreadX() do not modify the memory under the address
-> so they can be converted to a "const" version for const-safety and
-> consistency among architectures.
->
-> Suggested-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Wed, Jan 08, 2020 at 05:16:40PM -0800, Ralph Campbell wrote:
+> I hit this while testing HMM with nouveau on linux-5.5-rc5.
+> I'm not a lockdep expert but my understanding of this is that an
+> invalidation callback could potentially call kzalloc(GFP_KERNEL)
+> which could cause another invalidation and recursively deadlock.
+> Looking at the drivers/gpu/drm/nouveau/nvkm/ layer, I do see a
+> number of places where GFP_KERNEL is used for allocations and I
+> don't see an easy way to avoid that.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Not quite..
 
-Gr{oetje,eeting}s,
+Any lock held by the invalidation callback becomes a lock where
+GFP_KERNEL cannot be used within it's critical region.
 
-                        Geert
+Ie we can't have a notifier callback block on a lock which is held by
+another thread which is blocked on GFP_KERNEL as we now risk
+deadlocking on other mm locks if that allocation triggers reclaim.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+AFAIK there is no fix from the core side. The driver must respect this
+and be organized to deal with it. Daniel fixed the intel driver
+already, I fixed RDMA recently, the other drivers must also be fixed.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Some choices
+ - Split up the lock held by the notifier callback so it doesn't need
+   to cover allocations
+ - Use GFP_ATOMIC for allocations
+ - Speculatively do allocations before obtaining the lock and free if
+   they were not needed.
+
+I suppose it will be some troublbe for nouveau, but it must be done
+there..
+
+Jason
