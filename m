@@ -1,107 +1,216 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 10/23] drm: Evaluate struct drm_device.vblank_disable_immediate on each use
-Date: Fri, 10 Jan 2020 10:21:14 +0100
-Message-ID: <20200110092127.27847-11-tzimmermann@suse.de>
+Subject: [PATCH 03/23] drm/i915: Don't use struct
+ drm_driver.get_scanout_position()
+Date: Fri, 10 Jan 2020 10:21:07 +0100
+Message-ID: <20200110092127.27847-4-tzimmermann@suse.de>
 References: <20200110092127.27847-1-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-arm-msm-owner@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
 In-Reply-To: <20200110092127.27847-1-tzimmermann@suse.de>
-Sender: linux-arm-msm-owner@vger.kernel.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
 To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com, maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com, robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org, vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com, mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, linux-graphics-maintainer@vmware.com, thellstrom@vmware.com, bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, nouveau@lists.freedesktop.org, freedreno@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-VBLANK interrupts can be disabled immediately or with a delay, where the
-latter is the default. The former option can be selected by setting
-get_vblank_timestamp, and enabling vblank_disable_immediate in struct
-drm_device.
+The callback struct drm_driver.get_scanout_position() is deprecated in
+favor of struct drm_crtc_helper_funcs.get_scanout_position().
 
-The setup is only evaluated once when DRM initializes VBLANKs. Evaluating
-the settings on each use of vblank_disable_immediate will allow for easy
-integration of CRTC VBLANK functions.
+i915 doesn't use CRTC helpers. The patch duplicates the caller
+drm_calc_vbltimestamp_from_scanoutpos() for i915, such that the callback
+function is not needed.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/drm_vblank.c | 31 ++++++++++++++-----------------
- 1 file changed, 14 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/i915_drv.c |   3 +-
+ drivers/gpu/drm/i915/i915_irq.c | 117 ++++++++++++++++++++++++++++++--
+ drivers/gpu/drm/i915/i915_irq.h |   9 +--
+ 3 files changed, 119 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index b84065911d69..cbe8f3009df5 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -481,19 +481,6 @@ int drm_vblank_init(struct drm_device *dev, unsigned int num_crtcs)
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index f7385abdd74b..4a0a7fb85c53 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -2769,8 +2769,7 @@ static struct drm_driver driver = {
+ 	.gem_prime_export = i915_gem_prime_export,
+ 	.gem_prime_import = i915_gem_prime_import,
  
- 	DRM_INFO("Supports vblank timestamp caching Rev 2 (21.10.2013).\n");
+-	.get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
+-	.get_scanout_position = i915_get_crtc_scanoutpos,
++	.get_vblank_timestamp = i915_calc_vbltimestamp_from_scanoutpos,
  
--	/* Driver specific high-precision vblank timestamping supported? */
--	if (dev->driver->get_vblank_timestamp)
--		DRM_INFO("Driver supports precise vblank timestamp query.\n");
--	else
--		DRM_INFO("No driver support for vblank timestamp query.\n");
--
--	/* Must have precise timestamping for reliable vblank instant disable */
--	if (dev->vblank_disable_immediate && !dev->driver->get_vblank_timestamp) {
--		dev->vblank_disable_immediate = false;
--		DRM_INFO("Setting vblank_disable_immediate to false because "
--			 "get_vblank_timestamp == NULL\n");
--	}
--
- 	return 0;
+ 	.dumb_create = i915_gem_dumb_create,
+ 	.dumb_map_offset = i915_gem_dumb_mmap_offset,
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index afc6aad9bf8c..99d0c3b0feae 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -52,6 +52,11 @@
+ #include "i915_trace.h"
+ #include "intel_pm.h"
  
- err:
-@@ -1061,6 +1048,15 @@ int drm_crtc_vblank_get(struct drm_crtc *crtc)
++/* Retry timestamp calculation up to 3 times to satisfy
++ * drm_timestamp_precision before giving up.
++ */
++#define I915_TIMESTAMP_MAXRETRIES 3
++
+ /**
+  * DOC: interrupt handling
+  *
+@@ -762,10 +767,11 @@ static int __intel_get_crtc_scanline(struct intel_crtc *crtc)
+ 	return (position + crtc->scanline_offset) % vtotal;
  }
- EXPORT_SYMBOL(drm_crtc_vblank_get);
  
-+static bool __vblank_disable_immediate(struct drm_device *dev, unsigned int pipe)
+-bool i915_get_crtc_scanoutpos(struct drm_device *dev, unsigned int index,
+-			      bool in_vblank_irq, int *vpos, int *hpos,
+-			      ktime_t *stime, ktime_t *etime,
+-			      const struct drm_display_mode *mode)
++static bool i915_get_crtc_scanoutpos(struct drm_device *dev,
++				     unsigned int index, bool in_vblank_irq,
++				     int *vpos, int *hpos,
++				     ktime_t *stime, ktime_t *etime,
++				     const struct drm_display_mode *mode)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	struct intel_crtc *crtc = to_intel_crtc(drm_crtc_from_index(dev, index));
+@@ -879,6 +885,109 @@ bool i915_get_crtc_scanoutpos(struct drm_device *dev, unsigned int index,
+ 	return true;
+ }
+ 
++bool i915_calc_vbltimestamp_from_scanoutpos(struct drm_device *dev,
++					    unsigned int pipe,
++					    int *max_error,
++					    ktime_t *vblank_time,
++					    bool in_vblank_irq)
 +{
-+	if (!dev->vblank_disable_immediate)
++	struct timespec64 ts_etime, ts_vblank_time;
++	ktime_t stime, etime;
++	bool vbl_status;
++	struct drm_crtc *crtc;
++	const struct drm_display_mode *mode;
++	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	int vpos, hpos, i;
++	int delta_ns, duration_ns;
++
++	crtc = drm_crtc_from_index(dev, pipe);
++
++	if (pipe >= dev->num_crtcs || !crtc) {
++		DRM_ERROR("Invalid crtc %u\n", pipe);
 +		return false;
-+	if (!dev->driver->get_vblank_timestamp)
++	}
++
++	if (drm_drv_uses_atomic_modeset(dev))
++		mode = &vblank->hwmode;
++	else
++		mode = &crtc->hwmode;
++
++	/* If mode timing undefined, just return as no-op:
++	 * Happens during initial modesetting of a crtc.
++	 */
++	if (mode->crtc_clock == 0) {
++		DRM_DEBUG("crtc %u: Noop due to uninitialized mode.\n", pipe);
++		WARN_ON_ONCE(drm_drv_uses_atomic_modeset(dev));
++
 +		return false;
++	}
++
++	/* Get current scanout position with system timestamp.
++	 * Repeat query up to DRM_TIMESTAMP_MAXRETRIES times
++	 * if single query takes longer than max_error nanoseconds.
++	 *
++	 * This guarantees a tight bound on maximum error if
++	 * code gets preempted or delayed for some reason.
++	 */
++	for (i = 0; i < I915_TIMESTAMP_MAXRETRIES; i++) {
++		/*
++		 * Get vertical and horizontal scanout position vpos, hpos,
++		 * and bounding timestamps stime, etime, pre/post query.
++		 */
++		vbl_status = i915_get_crtc_scanoutpos(dev, pipe, in_vblank_irq,
++						      &vpos, &hpos, &stime,
++						      &etime, mode);
++		/* Return as no-op if scanout query unsupported or failed. */
++		if (!vbl_status) {
++			DRM_DEBUG("crtc %u : scanoutpos query failed.\n",
++				  pipe);
++			return false;
++		}
++
++		/* Compute uncertainty in timestamp of scanout position query. */
++		duration_ns = ktime_to_ns(etime) - ktime_to_ns(stime);
++
++		/* Accept result with <  max_error nsecs timing uncertainty. */
++		if (duration_ns <= *max_error)
++			break;
++	}
++
++	/* Noisy system timing? */
++	if (i == I915_TIMESTAMP_MAXRETRIES) {
++		DRM_DEBUG("crtc %u: Noisy timestamp %d us > %d us [%d reps].\n",
++			  pipe, duration_ns/1000, *max_error/1000, i);
++	}
++
++	/* Return upper bound of timestamp precision error. */
++	*max_error = duration_ns;
++
++	/* Convert scanout position into elapsed time at raw_time query
++	 * since start of scanout at first display scanline. delta_ns
++	 * can be negative if start of scanout hasn't happened yet.
++	 */
++	delta_ns = div_s64(1000000LL * (vpos * mode->crtc_htotal + hpos),
++			   mode->crtc_clock);
++
++	/* Subtract time delta from raw timestamp to get final
++	 * vblank_time timestamp for end of vblank.
++	 */
++	*vblank_time = ktime_sub_ns(etime, delta_ns);
++
++	if (!drm_debug_enabled(DRM_UT_VBL))
++		return true;
++
++	ts_etime = ktime_to_timespec64(etime);
++	ts_vblank_time = ktime_to_timespec64(*vblank_time);
++
++	DRM_DEBUG_VBL("crtc %u : v p(%d,%d)@ %lld.%06ld -> %lld.%06ld [e %d us, %d rep]\n",
++		      pipe, hpos, vpos,
++		      (u64)ts_etime.tv_sec, ts_etime.tv_nsec / 1000,
++		      (u64)ts_vblank_time.tv_sec, ts_vblank_time.tv_nsec / 1000,
++		      duration_ns / 1000, i);
++
 +	return true;
 +}
 +
- static void drm_vblank_put(struct drm_device *dev, unsigned int pipe)
+ int intel_get_crtc_scanline(struct intel_crtc *crtc)
  {
- 	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
-@@ -1077,7 +1073,7 @@ static void drm_vblank_put(struct drm_device *dev, unsigned int pipe)
- 			return;
- 		else if (drm_vblank_offdelay < 0)
- 			vblank_disable_fn(&vblank->disable_timer);
--		else if (!dev->vblank_disable_immediate)
-+		else if (__vblank_disable_immediate(dev, pipe))
- 			mod_timer(&vblank->disable_timer,
- 				  jiffies + ((drm_vblank_offdelay * HZ)/1000));
- 	}
-@@ -1654,7 +1650,7 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
- 	/* If the counter is currently enabled and accurate, short-circuit
- 	 * queries to return the cached timestamp of the last vblank.
- 	 */
--	if (dev->vblank_disable_immediate &&
-+	if (__vblank_disable_immediate(dev, pipe) &&
- 	    drm_wait_vblank_is_query(vblwait) &&
- 	    READ_ONCE(vblank->enabled)) {
- 		drm_wait_vblank_reply(dev, pipe, &vblwait->reply);
-@@ -1811,7 +1807,7 @@ bool drm_handle_vblank(struct drm_device *dev, unsigned int pipe)
- 	 * been signaled. The disable has to be last (after
- 	 * drm_handle_vblank_events) so that the timestamp is always accurate.
- 	 */
--	disable_irq = (dev->vblank_disable_immediate &&
-+	disable_irq = (__vblank_disable_immediate(dev, pipe) &&
- 		       drm_vblank_offdelay > 0 &&
- 		       !atomic_read(&vblank->refcount));
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+diff --git a/drivers/gpu/drm/i915/i915_irq.h b/drivers/gpu/drm/i915/i915_irq.h
+index 812c47a9c2d6..5f7b133ce721 100644
+--- a/drivers/gpu/drm/i915/i915_irq.h
++++ b/drivers/gpu/drm/i915/i915_irq.h
+@@ -101,10 +101,11 @@ void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
+ void gen8_irq_power_well_pre_disable(struct drm_i915_private *dev_priv,
+ 				     u8 pipe_mask);
  
-@@ -1884,7 +1880,8 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *dev, void *data,
- 	pipe = drm_crtc_index(crtc);
+-bool i915_get_crtc_scanoutpos(struct drm_device *dev, unsigned int pipe,
+-			      bool in_vblank_irq, int *vpos, int *hpos,
+-			      ktime_t *stime, ktime_t *etime,
+-			      const struct drm_display_mode *mode);
++bool i915_calc_vbltimestamp_from_scanoutpos(struct drm_device *dev,
++					    unsigned int pipe,
++					    int *max_error,
++					    ktime_t *vblank_time,
++					    bool in_vblank_irq);
  
- 	vblank = &dev->vblank[pipe];
--	vblank_enabled = dev->vblank_disable_immediate && READ_ONCE(vblank->enabled);
-+	vblank_enabled = __vblank_disable_immediate(dev, pipe) &&
-+			 READ_ONCE(vblank->enabled);
- 
- 	if (!vblank_enabled) {
- 		ret = drm_crtc_vblank_get(crtc);
+ u32 i915_get_vblank_counter(struct drm_crtc *crtc);
+ u32 g4x_get_vblank_counter(struct drm_crtc *crtc);
 -- 
 2.24.1
