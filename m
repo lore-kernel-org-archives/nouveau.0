@@ -1,50 +1,36 @@
-From: Jason Gunthorpe <jgg@mellanox.com>
-Subject: Re: [BUG] nouveau lockdep splat
-Date: Thu, 9 Jan 2020 14:53:09 +0000
-Message-ID: <20200109145305.GV20978@mellanox.com>
-References: <20200109011640.19678-1-rcampbell@nvidia.com>
+From: YueHaibing <yuehaibing@huawei.com>
+Subject: [PATCH] drm/nouveau: Fix copy-paste error in nouveau_fence_wait_uevent_handler
+Date: Fri, 10 Jan 2020 14:32:01 +0800
+Message-ID: <20200110063201.47560-1-yuehaibing@huawei.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200109011640.19678-1-rcampbell@nvidia.com>
-Content-Language: en-US
-Content-ID: <EFCCE5C3CA7FC54D9497CF2317C63284@eurprd05.prod.outlook.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Ralph Campbell <rcampbell@nvidia.com>
-Cc: "linux-mm@kvack.org" <linux-mm@kvack.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Andrew Morton <akpm@linux-foundation.org>, Ben Skeggs <bskeggs@redhat.com>
+To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch, maarten.lankhorst@canonical.com, sumit.semwal@linaro.org
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, YueHaibing <yuehaibing@huawei.com>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jan 08, 2020 at 05:16:40PM -0800, Ralph Campbell wrote:
-> I hit this while testing HMM with nouveau on linux-5.5-rc5.
-> I'm not a lockdep expert but my understanding of this is that an
-> invalidation callback could potentially call kzalloc(GFP_KERNEL)
-> which could cause another invalidation and recursively deadlock.
-> Looking at the drivers/gpu/drm/nouveau/nvkm/ layer, I do see a
-> number of places where GFP_KERNEL is used for allocations and I
-> don't see an easy way to avoid that.
+Like other cases, it should use rcu protected 'chan' rather
+than 'fence->channel' in nouveau_fence_wait_uevent_handler.
 
-Not quite..
+Fixes: 0ec5f02f0e2c ("drm/nouveau: prevent stale fence->channel pointers, and protect with rcu")
+Signed-off-by: YueHaibing <yuehaibing@huawei.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_fence.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Any lock held by the invalidation callback becomes a lock where
-GFP_KERNEL cannot be used within it's critical region.
-
-Ie we can't have a notifier callback block on a lock which is held by
-another thread which is blocked on GFP_KERNEL as we now risk
-deadlocking on other mm locks if that allocation triggers reclaim.
-
-AFAIK there is no fix from the core side. The driver must respect this
-and be organized to deal with it. Daniel fixed the intel driver
-already, I fixed RDMA recently, the other drivers must also be fixed.
-
-Some choices
- - Split up the lock held by the notifier callback so it doesn't need
-   to cover allocations
- - Use GFP_ATOMIC for allocations
- - Speculatively do allocations before obtaining the lock and free if
-   they were not needed.
-
-I suppose it will be some troublbe for nouveau, but it must be done
-there..
-
-Jason
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
+index 9118df0..70bb6bb 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fence.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+@@ -156,7 +156,7 @@ nouveau_fence_wait_uevent_handler(struct nvif_notify *notify)
+ 
+ 		fence = list_entry(fctx->pending.next, typeof(*fence), head);
+ 		chan = rcu_dereference_protected(fence->channel, lockdep_is_held(&fctx->lock));
+-		if (nouveau_fence_update(fence->channel, fctx))
++		if (nouveau_fence_update(chan, fctx))
+ 			ret = NVIF_NOTIFY_DROP;
+ 	}
+ 	spin_unlock_irqrestore(&fctx->lock, flags);
+-- 
+2.7.4
