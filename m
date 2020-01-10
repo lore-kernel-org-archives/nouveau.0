@@ -1,7 +1,7 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 16/23] drm/nouveau: Convert to CRTC VBLANK callbacks
-Date: Fri, 10 Jan 2020 10:21:20 +0100
-Message-ID: <20200110092127.27847-17-tzimmermann@suse.de>
+Subject: [PATCH 21/23] drm/vkms: Convert to CRTC VBLANK callbacks
+Date: Fri, 10 Jan 2020 10:21:25 +0100
+Message-ID: <20200110092127.27847-22-tzimmermann@suse.de>
 References: <20200110092127.27847-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -13,120 +13,69 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@li
 List-Id: nouveau.vger.kernel.org
 
 VBLANK callbacks in struct drm_driver are deprecated in favor of
-their equivalents in struct drm_crtc_funcs. Convert nouvean over.
+their equivalents in struct drm_crtc_funcs. Convert vkms over.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/nouveau/dispnv04/crtc.c   |  3 +++
- drivers/gpu/drm/nouveau/dispnv50/head.c   |  4 ++++
- drivers/gpu/drm/nouveau/nouveau_display.c | 14 ++------------
- drivers/gpu/drm/nouveau/nouveau_display.h |  4 ++--
- drivers/gpu/drm/nouveau/nouveau_drm.c     |  4 ----
- 5 files changed, 11 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/vkms/vkms_crtc.c | 9 ++++++---
+ drivers/gpu/drm/vkms/vkms_drv.c  | 1 -
+ drivers/gpu/drm/vkms/vkms_drv.h  | 4 ----
+ 3 files changed, 6 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-index 17e9d1c078a0..4a4122a1c057 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-@@ -1248,6 +1248,9 @@ static const struct drm_crtc_funcs nv04_crtc_funcs = {
- 	.set_config = drm_crtc_helper_set_config,
- 	.page_flip = nv04_crtc_page_flip,
- 	.destroy = nv_crtc_destroy,
-+	.enable_vblank = nouveau_display_vblank_enable,
-+	.disable_vblank = nouveau_display_vblank_disable,
-+	.get_vblank_timestamp = drm_crtc_calc_vbltimestamp_from_scanoutpos,
- };
- 
- static const struct drm_crtc_helper_funcs nv04_crtc_helper_funcs = {
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/head.c b/drivers/gpu/drm/nouveau/dispnv50/head.c
-index 1354d19d9a18..a6b7416ca270 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/head.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/head.c
-@@ -29,6 +29,7 @@
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_crtc_helper.h>
-+#include <drm/drm_vblank.h>
- #include "nouveau_connector.h"
- void
- nv50_head_flush_clr(struct nv50_head *head,
-@@ -472,6 +473,9 @@ nv50_head_func = {
- 	.page_flip = drm_atomic_helper_page_flip,
- 	.atomic_duplicate_state = nv50_head_atomic_duplicate_state,
- 	.atomic_destroy_state = nv50_head_atomic_destroy_state,
-+	.enable_vblank = nouveau_display_vblank_enable,
-+	.disable_vblank = nouveau_display_vblank_disable,
-+	.get_vblank_timestamp = drm_crtc_calc_vbltimestamp_from_scanoutpos,
- };
- 
- int
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index 86f99dc8fcef..700817dc4fa0 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -54,15 +54,10 @@ nouveau_display_vblank_handler(struct nvif_notify *notify)
+diff --git a/drivers/gpu/drm/vkms/vkms_crtc.c b/drivers/gpu/drm/vkms/vkms_crtc.c
+index 74f703b8d22a..ac85e17428f8 100644
+--- a/drivers/gpu/drm/vkms/vkms_crtc.c
++++ b/drivers/gpu/drm/vkms/vkms_crtc.c
+@@ -76,10 +76,12 @@ static void vkms_disable_vblank(struct drm_crtc *crtc)
+ 	hrtimer_cancel(&out->vblank_hrtimer);
  }
  
- int
--nouveau_display_vblank_enable(struct drm_device *dev, unsigned int pipe)
-+nouveau_display_vblank_enable(struct drm_crtc *crtc)
+-bool vkms_get_vblank_timestamp(struct drm_device *dev, unsigned int pipe,
+-			       int *max_error, ktime_t *vblank_time,
+-			       bool in_vblank_irq)
++static bool vkms_get_vblank_timestamp(struct drm_crtc *crtc,
++				      int *max_error, ktime_t *vblank_time,
++				      bool in_vblank_irq)
  {
--	struct drm_crtc *crtc;
- 	struct nouveau_crtc *nv_crtc;
++	struct drm_device *dev = crtc->dev;
++	unsigned int pipe = crtc->index;
+ 	struct vkms_device *vkmsdev = drm_device_to_vkms_device(dev);
+ 	struct vkms_output *output = &vkmsdev->output;
+ 	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
+@@ -154,6 +156,7 @@ static const struct drm_crtc_funcs vkms_crtc_funcs = {
+ 	.atomic_destroy_state   = vkms_atomic_crtc_destroy_state,
+ 	.enable_vblank		= vkms_enable_vblank,
+ 	.disable_vblank		= vkms_disable_vblank,
++	.get_vblank_timestamp	= vkms_get_vblank_timestamp,
+ 	.get_crc_sources	= vkms_get_crc_sources,
+ 	.set_crc_source		= vkms_set_crc_source,
+ 	.verify_crc_source	= vkms_verify_crc_source,
+diff --git a/drivers/gpu/drm/vkms/vkms_drv.c b/drivers/gpu/drm/vkms/vkms_drv.c
+index 25bd7519295f..860de052e820 100644
+--- a/drivers/gpu/drm/vkms/vkms_drv.c
++++ b/drivers/gpu/drm/vkms/vkms_drv.c
+@@ -103,7 +103,6 @@ static struct drm_driver vkms_driver = {
+ 	.dumb_create		= vkms_dumb_create,
+ 	.gem_vm_ops		= &vkms_gem_vm_ops,
+ 	.gem_free_object_unlocked = vkms_gem_free_object,
+-	.get_vblank_timestamp	= vkms_get_vblank_timestamp,
+ 	.prime_fd_to_handle	= drm_gem_prime_fd_to_handle,
+ 	.gem_prime_import_sg_table = vkms_prime_import_sg_table,
  
--	crtc = drm_crtc_from_index(dev, pipe);
--	if (!crtc)
--		return -EINVAL;
+diff --git a/drivers/gpu/drm/vkms/vkms_drv.h b/drivers/gpu/drm/vkms/vkms_drv.h
+index 7d52e24564db..eda04ffba7b1 100644
+--- a/drivers/gpu/drm/vkms/vkms_drv.h
++++ b/drivers/gpu/drm/vkms/vkms_drv.h
+@@ -111,10 +111,6 @@ struct vkms_gem_object {
+ int vkms_crtc_init(struct drm_device *dev, struct drm_crtc *crtc,
+ 		   struct drm_plane *primary, struct drm_plane *cursor);
+ 
+-bool vkms_get_vblank_timestamp(struct drm_device *dev, unsigned int pipe,
+-			       int *max_error, ktime_t *vblank_time,
+-			       bool in_vblank_irq);
 -
- 	nv_crtc = nouveau_crtc(crtc);
- 	nvif_notify_get(&nv_crtc->vblank);
+ int vkms_output_init(struct vkms_device *vkmsdev, int index);
  
-@@ -70,15 +65,10 @@ nouveau_display_vblank_enable(struct drm_device *dev, unsigned int pipe)
- }
- 
- void
--nouveau_display_vblank_disable(struct drm_device *dev, unsigned int pipe)
-+nouveau_display_vblank_disable(struct drm_crtc *crtc)
- {
--	struct drm_crtc *crtc;
- 	struct nouveau_crtc *nv_crtc;
- 
--	crtc = drm_crtc_from_index(dev, pipe);
--	if (!crtc)
--		return;
--
- 	nv_crtc = nouveau_crtc(crtc);
- 	nvif_notify_put(&nv_crtc->vblank);
- }
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.h b/drivers/gpu/drm/nouveau/nouveau_display.h
-index 71e2af693f7f..71c7048948f3 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.h
-@@ -61,8 +61,8 @@ int  nouveau_display_init(struct drm_device *dev, bool resume, bool runtime);
- void nouveau_display_fini(struct drm_device *dev, bool suspend, bool runtime);
- int  nouveau_display_suspend(struct drm_device *dev, bool runtime);
- void nouveau_display_resume(struct drm_device *dev, bool runtime);
--int  nouveau_display_vblank_enable(struct drm_device *, unsigned int);
--void nouveau_display_vblank_disable(struct drm_device *, unsigned int);
-+int  nouveau_display_vblank_enable(struct drm_crtc *);
-+void nouveau_display_vblank_disable(struct drm_crtc *);
- bool  nouveau_display_scanoutpos(struct drm_crtc *,
- 				 bool, int *, int *, ktime_t *,
- 				 ktime_t *, const struct drm_display_mode *);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 9fb38a018240..0003343014ce 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -1121,10 +1121,6 @@ driver_stub = {
- 	.debugfs_init = nouveau_drm_debugfs_init,
- #endif
- 
--	.enable_vblank = nouveau_display_vblank_enable,
--	.disable_vblank = nouveau_display_vblank_disable,
--	.get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
--
- 	.ioctls = nouveau_ioctls,
- 	.num_ioctls = ARRAY_SIZE(nouveau_ioctls),
- 	.fops = &nouveau_driver_fops,
+ struct drm_plane *vkms_plane_init(struct vkms_device *vkmsdev,
 -- 
 2.24.1
