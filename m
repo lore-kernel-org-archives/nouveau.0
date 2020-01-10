@@ -1,209 +1,180 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 12/23] drm/amdgpu: Convert to CRTC VBLANK callbacks
-Date: Fri, 10 Jan 2020 10:21:16 +0100
-Message-ID: <20200110092127.27847-13-tzimmermann@suse.de>
+Subject: [PATCH 17/23] drm/radeon: Convert to CRTC VBLANK callbacks
+Date: Fri, 10 Jan 2020 10:21:21 +0100
+Message-ID: <20200110092127.27847-18-tzimmermann@suse.de>
 References: <20200110092127.27847-1-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-arm-msm-owner@vger.kernel.org>
 In-Reply-To: <20200110092127.27847-1-tzimmermann@suse.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+Sender: linux-arm-msm-owner@vger.kernel.org
 To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com, maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com, robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org, vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com, mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, linux-graphics-maintainer@vmware.com, thellstrom@vmware.com, bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
-Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, nouveau@lists.freedesktop.org, freedreno@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
 List-Id: nouveau.vger.kernel.org
 
 VBLANK callbacks in struct drm_driver are deprecated in favor of
-their equivalents in struct drm_crtc_funcs. Convert amdgpu over.
+their equivalents in struct drm_crtc_funcs. Convert radeon over.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  3 +++
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  4 ----
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       | 24 +++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        |  4 ++++
- drivers/gpu/drm/amd/amdgpu/dce_v11_0.c        |  4 ++++
- drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         |  4 ++++
- drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         |  4 ++++
- drivers/gpu/drm/amd/amdgpu/dce_virtual.c      |  4 ++++
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  2 ++
- 9 files changed, 49 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/radeon/radeon_display.c | 12 ++++++++--
+ drivers/gpu/drm/radeon/radeon_drv.c     |  7 ------
+ drivers/gpu/drm/radeon/radeon_kms.c     | 29 ++++++++++++++-----------
+ 3 files changed, 26 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 81a531b652aa..c1262ab588c9 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -1197,6 +1197,9 @@ int amdgpu_device_resume(struct drm_device *dev, bool fbcon);
- u32 amdgpu_get_vblank_counter_kms(struct drm_device *dev, unsigned int pipe);
- int amdgpu_enable_vblank_kms(struct drm_device *dev, unsigned int pipe);
- void amdgpu_disable_vblank_kms(struct drm_device *dev, unsigned int pipe);
-+u32 amdgpu_crtc_get_vblank_counter(struct drm_crtc *crtc);
-+int amdgpu_crtc_enable_vblank(struct drm_crtc *crtc);
-+void amdgpu_crtc_disable_vblank(struct drm_crtc *crtc);
- long amdgpu_kms_compat_ioctl(struct file *filp, unsigned int cmd,
- 			     unsigned long arg);
+diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
+index 7187158b9963..9116975b6eb9 100644
+--- a/drivers/gpu/drm/radeon/radeon_display.c
++++ b/drivers/gpu/drm/radeon/radeon_display.c
+@@ -45,6 +45,10 @@
+ #include "atom.h"
+ #include "radeon.h"
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 0749285dd1c7..9baa1ddf8693 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -1377,10 +1377,6 @@ static struct drm_driver kms_driver = {
- 	.postclose = amdgpu_driver_postclose_kms,
- 	.lastclose = amdgpu_driver_lastclose_kms,
- 	.unload = amdgpu_driver_unload_kms,
--	.get_vblank_counter = amdgpu_get_vblank_counter_kms,
--	.enable_vblank = amdgpu_enable_vblank_kms,
--	.disable_vblank = amdgpu_disable_vblank_kms,
++u32 radeon_get_vblank_counter_kms(struct drm_crtc *crtc);
++int radeon_enable_vblank_kms(struct drm_crtc *crtc);
++void radeon_disable_vblank_kms(struct drm_crtc *crtc);
++
+ static void avivo_crtc_load_lut(struct drm_crtc *crtc)
+ {
+ 	struct radeon_crtc *radeon_crtc = to_radeon_crtc(crtc);
+@@ -458,7 +462,7 @@ static void radeon_flip_work_func(struct work_struct *__work)
+ 		(DRM_SCANOUTPOS_VALID | DRM_SCANOUTPOS_IN_VBLANK) &&
+ 		(!ASIC_IS_AVIVO(rdev) ||
+ 		((int) (work->target_vblank -
+-		dev->driver->get_vblank_counter(dev, work->crtc_id)) > 0)))
++		crtc->funcs->get_vblank_counter(crtc)) > 0)))
+ 		usleep_range(1000, 2000);
+ 
+ 	/* We borrow the event spin lock for protecting flip_status */
+@@ -574,7 +578,7 @@ static int radeon_crtc_page_flip_target(struct drm_crtc *crtc,
+ 	}
+ 	work->base = base;
+ 	work->target_vblank = target - (uint32_t)drm_crtc_vblank_count(crtc) +
+-		dev->driver->get_vblank_counter(dev, work->crtc_id);
++		crtc->funcs->get_vblank_counter(crtc);
+ 
+ 	/* We borrow the event spin lock for protecting flip_work */
+ 	spin_lock_irqsave(&crtc->dev->event_lock, flags);
+@@ -666,6 +670,10 @@ static const struct drm_crtc_funcs radeon_crtc_funcs = {
+ 	.set_config = radeon_crtc_set_config,
+ 	.destroy = radeon_crtc_destroy,
+ 	.page_flip_target = radeon_crtc_page_flip_target,
++	.get_vblank_counter = radeon_get_vblank_counter_kms,
++	.enable_vblank = radeon_enable_vblank_kms,
++	.disable_vblank = radeon_disable_vblank_kms,
++	.get_vblank_timestamp = drm_crtc_calc_vbltimestamp_from_scanoutpos,
+ };
+ 
+ static void radeon_crtc_init(struct drm_device *dev, int index)
+diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
+index 1f597f166bff..49ce2e7d5f9e 100644
+--- a/drivers/gpu/drm/radeon/radeon_drv.c
++++ b/drivers/gpu/drm/radeon/radeon_drv.c
+@@ -119,9 +119,6 @@ void radeon_driver_postclose_kms(struct drm_device *dev,
+ int radeon_suspend_kms(struct drm_device *dev, bool suspend,
+ 		       bool fbcon, bool freeze);
+ int radeon_resume_kms(struct drm_device *dev, bool resume, bool fbcon);
+-u32 radeon_get_vblank_counter_kms(struct drm_device *dev, unsigned int pipe);
+-int radeon_enable_vblank_kms(struct drm_device *dev, unsigned int pipe);
+-void radeon_disable_vblank_kms(struct drm_device *dev, unsigned int pipe);
+ void radeon_driver_irq_preinstall_kms(struct drm_device *dev);
+ int radeon_driver_irq_postinstall_kms(struct drm_device *dev);
+ void radeon_driver_irq_uninstall_kms(struct drm_device *dev);
+@@ -571,10 +568,6 @@ static struct drm_driver kms_driver = {
+ 	.postclose = radeon_driver_postclose_kms,
+ 	.lastclose = radeon_driver_lastclose_kms,
+ 	.unload = radeon_driver_unload_kms,
+-	.get_vblank_counter = radeon_get_vblank_counter_kms,
+-	.enable_vblank = radeon_enable_vblank_kms,
+-	.disable_vblank = radeon_disable_vblank_kms,
 -	.get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
- 	.irq_handler = amdgpu_irq_handler,
- 	.ioctls = amdgpu_ioctls_kms,
- 	.gem_free_object_unlocked = amdgpu_gem_object_free,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index 60591dbc2097..efe4671fb032 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -1174,6 +1174,14 @@ u32 amdgpu_get_vblank_counter_kms(struct drm_device *dev, unsigned int pipe)
- 	return count;
- }
- 
-+u32 amdgpu_crtc_get_vblank_counter(struct drm_crtc *crtc)
-+{
-+	struct drm_device *dev = crtc->dev;
-+	unsigned int pipe = crtc->index;
-+
-+	return amdgpu_get_vblank_counter_kms(dev, pipe);
-+}
-+
+ 	.irq_preinstall = radeon_driver_irq_preinstall_kms,
+ 	.irq_postinstall = radeon_driver_irq_postinstall_kms,
+ 	.irq_uninstall = radeon_driver_irq_uninstall_kms,
+diff --git a/drivers/gpu/drm/radeon/radeon_kms.c b/drivers/gpu/drm/radeon/radeon_kms.c
+index d24f23a81656..cab891f86dc0 100644
+--- a/drivers/gpu/drm/radeon/radeon_kms.c
++++ b/drivers/gpu/drm/radeon/radeon_kms.c
+@@ -739,14 +739,15 @@ void radeon_driver_postclose_kms(struct drm_device *dev,
  /**
-  * amdgpu_enable_vblank_kms - enable vblank interrupt
+  * radeon_get_vblank_counter_kms - get frame count
   *
-@@ -1191,6 +1199,14 @@ int amdgpu_enable_vblank_kms(struct drm_device *dev, unsigned int pipe)
- 	return amdgpu_irq_get(adev, &adev->crtc_irq, idx);
- }
- 
-+int amdgpu_crtc_enable_vblank(struct drm_crtc *crtc)
-+{
+- * @dev: drm dev pointer
+- * @pipe: crtc to get the frame count from
++ * @crtc: crtc to get the frame count from
+  *
+  * Gets the frame count on the requested crtc (all asics).
+  * Returns frame count on success, -EINVAL on failure.
+  */
+-u32 radeon_get_vblank_counter_kms(struct drm_device *dev, unsigned int pipe)
++u32 radeon_get_vblank_counter_kms(struct drm_crtc *crtc)
+ {
 +	struct drm_device *dev = crtc->dev;
 +	unsigned int pipe = crtc->index;
-+
-+	return amdgpu_enable_vblank_kms(dev, pipe);
-+}
-+
+ 	int vpos, hpos, stat;
+ 	u32 count;
+ 	struct radeon_device *rdev = dev->dev_private;
+@@ -808,25 +809,26 @@ u32 radeon_get_vblank_counter_kms(struct drm_device *dev, unsigned int pipe)
  /**
-  * amdgpu_disable_vblank_kms - disable vblank interrupt
+  * radeon_enable_vblank_kms - enable vblank interrupt
   *
-@@ -1207,6 +1223,14 @@ void amdgpu_disable_vblank_kms(struct drm_device *dev, unsigned int pipe)
- 	amdgpu_irq_put(adev, &adev->crtc_irq, idx);
- }
- 
-+void amdgpu_crtc_disable_vblank(struct drm_crtc *crtc)
-+{
+- * @dev: drm dev pointer
+  * @crtc: crtc to enable vblank interrupt for
+  *
+  * Enable the interrupt on the requested crtc (all asics).
+  * Returns 0 on success, -EINVAL on failure.
+  */
+-int radeon_enable_vblank_kms(struct drm_device *dev, int crtc)
++int radeon_enable_vblank_kms(struct drm_crtc *crtc)
+ {
 +	struct drm_device *dev = crtc->dev;
 +	unsigned int pipe = crtc->index;
-+
-+	amdgpu_disable_vblank_kms(dev, pipe);
-+}
-+
- const struct drm_ioctl_desc amdgpu_ioctls_kms[] = {
- 	DRM_IOCTL_DEF_DRV(AMDGPU_GEM_CREATE, amdgpu_gem_create_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(AMDGPU_CTX, amdgpu_ctx_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-index bdc1e0f036d4..8e62f46f0bfd 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-@@ -2494,6 +2494,10 @@ static const struct drm_crtc_funcs dce_v10_0_crtc_funcs = {
- 	.set_config = amdgpu_display_crtc_set_config,
- 	.destroy = dce_v10_0_crtc_destroy,
- 	.page_flip_target = amdgpu_display_crtc_page_flip_target,
-+	.get_vblank_counter = amdgpu_crtc_get_vblank_counter,
-+	.enable_vblank = amdgpu_crtc_enable_vblank,
-+	.disable_vblank = amdgpu_crtc_disable_vblank,
-+	.get_vblank_timestamp = drm_crtc_calc_vbltimestamp_from_scanoutpos,
- };
+ 	struct radeon_device *rdev = dev->dev_private;
+ 	unsigned long irqflags;
+ 	int r;
  
- static void dce_v10_0_crtc_dpms(struct drm_crtc *crtc, int mode)
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-index 0319da5f7bf9..9e37e4a78403 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-@@ -2573,6 +2573,10 @@ static const struct drm_crtc_funcs dce_v11_0_crtc_funcs = {
- 	.set_config = amdgpu_display_crtc_set_config,
- 	.destroy = dce_v11_0_crtc_destroy,
- 	.page_flip_target = amdgpu_display_crtc_page_flip_target,
-+	.get_vblank_counter = amdgpu_crtc_get_vblank_counter,
-+	.enable_vblank = amdgpu_crtc_enable_vblank,
-+	.disable_vblank = amdgpu_crtc_disable_vblank,
-+	.get_vblank_timestamp = drm_crtc_calc_vbltimestamp_from_scanoutpos,
- };
+-	if (crtc < 0 || crtc >= rdev->num_crtc) {
+-		DRM_ERROR("Invalid crtc %d\n", crtc);
++	if (pipe < 0 || pipe >= rdev->num_crtc) {
++		DRM_ERROR("Invalid crtc %d\n", pipe);
+ 		return -EINVAL;
+ 	}
  
- static void dce_v11_0_crtc_dpms(struct drm_crtc *crtc, int mode)
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-index 78642c3b14fc..2d4c99d3b352 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-@@ -2388,6 +2388,10 @@ static const struct drm_crtc_funcs dce_v6_0_crtc_funcs = {
- 	.set_config = amdgpu_display_crtc_set_config,
- 	.destroy = dce_v6_0_crtc_destroy,
- 	.page_flip_target = amdgpu_display_crtc_page_flip_target,
-+	.get_vblank_counter = amdgpu_crtc_get_vblank_counter,
-+	.enable_vblank = amdgpu_crtc_enable_vblank,
-+	.disable_vblank = amdgpu_crtc_disable_vblank,
-+	.get_vblank_timestamp = drm_crtc_calc_vbltimestamp_from_scanoutpos,
- };
+ 	spin_lock_irqsave(&rdev->irq.lock, irqflags);
+-	rdev->irq.crtc_vblank_int[crtc] = true;
++	rdev->irq.crtc_vblank_int[pipe] = true;
+ 	r = radeon_irq_set(rdev);
+ 	spin_unlock_irqrestore(&rdev->irq.lock, irqflags);
+ 	return r;
+@@ -835,23 +837,24 @@ int radeon_enable_vblank_kms(struct drm_device *dev, int crtc)
+ /**
+  * radeon_disable_vblank_kms - disable vblank interrupt
+  *
+- * @dev: drm dev pointer
+  * @crtc: crtc to disable vblank interrupt for
+  *
+  * Disable the interrupt on the requested crtc (all asics).
+  */
+-void radeon_disable_vblank_kms(struct drm_device *dev, int crtc)
++void radeon_disable_vblank_kms(struct drm_crtc *crtc)
+ {
++	struct drm_device *dev = crtc->dev;
++	unsigned int pipe = crtc->index;
+ 	struct radeon_device *rdev = dev->dev_private;
+ 	unsigned long irqflags;
  
- static void dce_v6_0_crtc_dpms(struct drm_crtc *crtc, int mode)
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-index 1e8d4975435a..cd51fd155349 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-@@ -2395,6 +2395,10 @@ static const struct drm_crtc_funcs dce_v8_0_crtc_funcs = {
- 	.set_config = amdgpu_display_crtc_set_config,
- 	.destroy = dce_v8_0_crtc_destroy,
- 	.page_flip_target = amdgpu_display_crtc_page_flip_target,
-+	.get_vblank_counter = amdgpu_crtc_get_vblank_counter,
-+	.enable_vblank = amdgpu_crtc_enable_vblank,
-+	.disable_vblank = amdgpu_crtc_disable_vblank,
-+	.get_vblank_timestamp = drm_crtc_calc_vbltimestamp_from_scanoutpos,
- };
+-	if (crtc < 0 || crtc >= rdev->num_crtc) {
+-		DRM_ERROR("Invalid crtc %d\n", crtc);
++	if (pipe < 0 || pipe >= rdev->num_crtc) {
++		DRM_ERROR("Invalid crtc %d\n", pipe);
+ 		return;
+ 	}
  
- static void dce_v8_0_crtc_dpms(struct drm_crtc *crtc, int mode)
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_virtual.c b/drivers/gpu/drm/amd/amdgpu/dce_virtual.c
-index 4b2f915aba47..53c260deb384 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_virtual.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_virtual.c
-@@ -123,6 +123,10 @@ static const struct drm_crtc_funcs dce_virtual_crtc_funcs = {
- 	.set_config = amdgpu_display_crtc_set_config,
- 	.destroy = dce_virtual_crtc_destroy,
- 	.page_flip_target = amdgpu_display_crtc_page_flip_target,
-+	.get_vblank_counter = amdgpu_crtc_get_vblank_counter,
-+	.enable_vblank = amdgpu_crtc_enable_vblank,
-+	.disable_vblank = amdgpu_crtc_disable_vblank,
-+	.get_vblank_timestamp = drm_crtc_calc_vbltimestamp_from_scanoutpos,
- };
- 
- static void dce_virtual_crtc_dpms(struct drm_crtc *crtc, int mode)
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 39c5cf242c1b..0c51c4dd8c46 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -4214,8 +4214,10 @@ static const struct drm_crtc_funcs amdgpu_dm_crtc_funcs = {
- 	.set_crc_source = amdgpu_dm_crtc_set_crc_source,
- 	.verify_crc_source = amdgpu_dm_crtc_verify_crc_source,
- 	.get_crc_sources = amdgpu_dm_crtc_get_crc_sources,
-+	.get_vblank_counter = amdgpu_crtc_get_vblank_counter,
- 	.enable_vblank = dm_enable_vblank,
- 	.disable_vblank = dm_disable_vblank,
-+	.get_vblank_timestamp = drm_crtc_calc_vbltimestamp_from_scanoutpos,
- };
- 
- static enum drm_connector_status
+ 	spin_lock_irqsave(&rdev->irq.lock, irqflags);
+-	rdev->irq.crtc_vblank_int[crtc] = false;
++	rdev->irq.crtc_vblank_int[pipe] = false;
+ 	radeon_irq_set(rdev);
+ 	spin_unlock_irqrestore(&rdev->irq.lock, irqflags);
+ }
 -- 
 2.24.1
