@@ -1,132 +1,159 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 05/23] drm/radeon: Convert to struct
- drm_crtc_helper_funcs.get_scanout_position()
-Date: Fri, 10 Jan 2020 10:21:09 +0100
-Message-ID: <20200110092127.27847-6-tzimmermann@suse.de>
+Subject: [PATCH 22/23] drm/vmwgfx: Convert to CRTC VBLANK callbacks
+Date: Fri, 10 Jan 2020 10:21:26 +0100
+Message-ID: <20200110092127.27847-23-tzimmermann@suse.de>
 References: <20200110092127.27847-1-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-arm-msm-owner@vger.kernel.org>
 In-Reply-To: <20200110092127.27847-1-tzimmermann@suse.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+Sender: linux-arm-msm-owner@vger.kernel.org
 To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com, maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com, robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org, vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com, mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, linux-graphics-maintainer@vmware.com, thellstrom@vmware.com, bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
-Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, nouveau@lists.freedesktop.org, freedreno@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
 List-Id: nouveau.vger.kernel.org
 
-The callback struct drm_driver.get_scanout_position() is deprecated in
-favor of struct drm_crtc_helper_funcs.get_scanout_position(). Convert
-radeon over.
+VBLANK callbacks in struct drm_driver are deprecated in favor of
+their equivalents in struct drm_crtc_funcs. Convert vmwgfx over.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/radeon/atombios_crtc.c      |  1 +
- drivers/gpu/drm/radeon/radeon_display.c     | 13 +++++++++++++
- drivers/gpu/drm/radeon/radeon_drv.c         | 11 -----------
- drivers/gpu/drm/radeon/radeon_legacy_crtc.c |  3 ++-
- drivers/gpu/drm/radeon/radeon_mode.h        |  6 ++++++
- 5 files changed, 22 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c  | 5 +----
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.h  | 6 +++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c  | 8 ++++----
+ drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c  | 3 +++
+ drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c | 5 ++++-
+ drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c | 3 +++
+ 6 files changed, 18 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/atombios_crtc.c b/drivers/gpu/drm/radeon/atombios_crtc.c
-index da2c9e295408..447d74b78f19 100644
---- a/drivers/gpu/drm/radeon/atombios_crtc.c
-+++ b/drivers/gpu/drm/radeon/atombios_crtc.c
-@@ -2232,6 +2232,7 @@ static const struct drm_crtc_helper_funcs atombios_helper_funcs = {
- 	.prepare = atombios_crtc_prepare,
- 	.commit = atombios_crtc_commit,
- 	.disable = atombios_crtc_disable,
-+	.get_scanout_position = radeon_get_crtc_scanout_position,
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+index e962048f65d2..f5ab04468522 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+@@ -1329,7 +1329,7 @@ static int vmw_pm_freeze(struct device *kdev)
+ 
+ 	vmw_fence_fifo_down(dev_priv->fman);
+ 	__vmw_svga_disable(dev_priv);
+-	
++
+ 	vmw_release_device_late(dev_priv);
+ 	return 0;
+ }
+@@ -1393,9 +1393,6 @@ static struct drm_driver driver = {
+ 	DRIVER_MODESET | DRIVER_RENDER | DRIVER_ATOMIC,
+ 	.load = vmw_driver_load,
+ 	.unload = vmw_driver_unload,
+-	.get_vblank_counter = vmw_get_vblank_counter,
+-	.enable_vblank = vmw_enable_vblank,
+-	.disable_vblank = vmw_disable_vblank,
+ 	.ioctls = vmw_ioctls,
+ 	.num_ioctls = ARRAY_SIZE(vmw_ioctls),
+ 	.master_set = vmw_master_set,
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.h b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.h
+index a31e726d6d71..845b3b8c29ca 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.h
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.h
+@@ -1100,9 +1100,9 @@ int vmw_kms_write_svga(struct vmw_private *vmw_priv,
+ bool vmw_kms_validate_mode_vram(struct vmw_private *dev_priv,
+ 				uint32_t pitch,
+ 				uint32_t height);
+-u32 vmw_get_vblank_counter(struct drm_device *dev, unsigned int pipe);
+-int vmw_enable_vblank(struct drm_device *dev, unsigned int pipe);
+-void vmw_disable_vblank(struct drm_device *dev, unsigned int pipe);
++u32 vmw_get_vblank_counter(struct drm_crtc *crtc);
++int vmw_enable_vblank(struct drm_crtc *crtc);
++void vmw_disable_vblank(struct drm_crtc *crtc);
+ int vmw_kms_present(struct vmw_private *dev_priv,
+ 		    struct drm_file *file_priv,
+ 		    struct vmw_framebuffer *vfb,
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
+index f47d5710cc95..9f0fee62904a 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
+@@ -1991,7 +1991,7 @@ bool vmw_kms_validate_mode_vram(struct vmw_private *dev_priv,
+ /**
+  * Function called by DRM code called with vbl_lock held.
+  */
+-u32 vmw_get_vblank_counter(struct drm_device *dev, unsigned int pipe)
++u32 vmw_get_vblank_counter(struct drm_crtc *crtc)
+ {
+ 	return 0;
+ }
+@@ -1999,7 +1999,7 @@ u32 vmw_get_vblank_counter(struct drm_device *dev, unsigned int pipe)
+ /**
+  * Function called by DRM code called with vbl_lock held.
+  */
+-int vmw_enable_vblank(struct drm_device *dev, unsigned int pipe)
++int vmw_enable_vblank(struct drm_crtc *crtc)
+ {
+ 	return -EINVAL;
+ }
+@@ -2007,7 +2007,7 @@ int vmw_enable_vblank(struct drm_device *dev, unsigned int pipe)
+ /**
+  * Function called by DRM code called with vbl_lock held.
+  */
+-void vmw_disable_vblank(struct drm_device *dev, unsigned int pipe)
++void vmw_disable_vblank(struct drm_crtc *crtc)
+ {
+ }
+ 
+@@ -2088,7 +2088,7 @@ static int vmw_du_update_layout(struct vmw_private *dev_priv,
+ 	drm_modeset_drop_locks(&ctx);
+ 	drm_modeset_acquire_fini(&ctx);
+ 	mutex_unlock(&dev->mode_config.mutex);
+- 
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c b/drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c
+index 5702219ec38f..16dafff5cab1 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c
+@@ -236,6 +236,9 @@ static const struct drm_crtc_funcs vmw_legacy_crtc_funcs = {
+ 	.atomic_duplicate_state = vmw_du_crtc_duplicate_state,
+ 	.atomic_destroy_state = vmw_du_crtc_destroy_state,
+ 	.set_config = drm_atomic_helper_set_config,
++	.get_vblank_counter = vmw_get_vblank_counter,
++	.enable_vblank = vmw_enable_vblank,
++	.disable_vblank = vmw_disable_vblank,
  };
  
- void radeon_atombios_init_crtc(struct drm_device *dev,
-diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
-index 962575e27cde..7187158b9963 100644
---- a/drivers/gpu/drm/radeon/radeon_display.c
-+++ b/drivers/gpu/drm/radeon/radeon_display.c
-@@ -1978,3 +1978,16 @@ int radeon_get_crtc_scanoutpos(struct drm_device *dev, unsigned int pipe,
  
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c b/drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c
+index e5a283263211..207a4053e769 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c
+@@ -319,6 +319,9 @@ static const struct drm_crtc_funcs vmw_screen_object_crtc_funcs = {
+ 	.atomic_destroy_state = vmw_du_crtc_destroy_state,
+ 	.set_config = drm_atomic_helper_set_config,
+ 	.page_flip = drm_atomic_helper_page_flip,
++	.get_vblank_counter = vmw_get_vblank_counter,
++	.enable_vblank = vmw_enable_vblank,
++	.disable_vblank = vmw_disable_vblank,
+ };
+ 
+ /*
+@@ -1388,6 +1391,6 @@ int vmw_kms_sou_readback(struct vmw_private *dev_priv,
+ 	vmw_validation_revert(&val_ctx);
+ out_unref:
+ 	vmw_validation_unref_lists(&val_ctx);
+-	
++
  	return ret;
  }
-+
-+bool
-+radeon_get_crtc_scanout_position(struct drm_crtc *crtc,
-+				 bool in_vblank_irq, int *vpos, int *hpos,
-+				 ktime_t *stime, ktime_t *etime,
-+				 const struct drm_display_mode *mode)
-+{
-+	struct drm_device *dev = crtc->dev;
-+	unsigned int pipe = crtc->index;
-+
-+	return radeon_get_crtc_scanoutpos(dev, pipe, 0, vpos, hpos,
-+					  stime, etime, mode);
-+}
-diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
-index fd74e2611185..1f597f166bff 100644
---- a/drivers/gpu/drm/radeon/radeon_drv.c
-+++ b/drivers/gpu/drm/radeon/radeon_drv.c
-@@ -563,16 +563,6 @@ static const struct file_operations radeon_driver_kms_fops = {
- #endif
- };
- 
--static bool
--radeon_get_crtc_scanout_position(struct drm_device *dev, unsigned int pipe,
--				 bool in_vblank_irq, int *vpos, int *hpos,
--				 ktime_t *stime, ktime_t *etime,
--				 const struct drm_display_mode *mode)
--{
--	return radeon_get_crtc_scanoutpos(dev, pipe, 0, vpos, hpos,
--					  stime, etime, mode);
--}
--
- static struct drm_driver kms_driver = {
- 	.driver_features =
- 	    DRIVER_USE_AGP | DRIVER_GEM | DRIVER_RENDER,
-@@ -585,7 +575,6 @@ static struct drm_driver kms_driver = {
- 	.enable_vblank = radeon_enable_vblank_kms,
- 	.disable_vblank = radeon_disable_vblank_kms,
- 	.get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
--	.get_scanout_position = radeon_get_crtc_scanout_position,
- 	.irq_preinstall = radeon_driver_irq_preinstall_kms,
- 	.irq_postinstall = radeon_driver_irq_postinstall_kms,
- 	.irq_uninstall = radeon_driver_irq_uninstall_kms,
-diff --git a/drivers/gpu/drm/radeon/radeon_legacy_crtc.c b/drivers/gpu/drm/radeon/radeon_legacy_crtc.c
-index a1985a552794..8817fd033cd0 100644
---- a/drivers/gpu/drm/radeon/radeon_legacy_crtc.c
-+++ b/drivers/gpu/drm/radeon/radeon_legacy_crtc.c
-@@ -1111,7 +1111,8 @@ static const struct drm_crtc_helper_funcs legacy_helper_funcs = {
- 	.mode_set_base_atomic = radeon_crtc_set_base_atomic,
- 	.prepare = radeon_crtc_prepare,
- 	.commit = radeon_crtc_commit,
--	.disable = radeon_crtc_disable
-+	.disable = radeon_crtc_disable,
-+	.get_scanout_position = radeon_get_crtc_scanout_position,
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c b/drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c
+index 41a96fb49835..570687a1a327 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c
+@@ -916,6 +916,9 @@ static const struct drm_crtc_funcs vmw_stdu_crtc_funcs = {
+ 	.atomic_destroy_state = vmw_du_crtc_destroy_state,
+ 	.set_config = drm_atomic_helper_set_config,
+ 	.page_flip = drm_atomic_helper_page_flip,
++	.get_vblank_counter = vmw_get_vblank_counter,
++	.enable_vblank = vmw_enable_vblank,
++	.disable_vblank = vmw_disable_vblank,
  };
  
  
-diff --git a/drivers/gpu/drm/radeon/radeon_mode.h b/drivers/gpu/drm/radeon/radeon_mode.h
-index fd470d6bf3f4..06c4c527d376 100644
---- a/drivers/gpu/drm/radeon/radeon_mode.h
-+++ b/drivers/gpu/drm/radeon/radeon_mode.h
-@@ -881,6 +881,12 @@ extern int radeon_get_crtc_scanoutpos(struct drm_device *dev, unsigned int pipe,
- 				      ktime_t *stime, ktime_t *etime,
- 				      const struct drm_display_mode *mode);
- 
-+extern bool radeon_get_crtc_scanout_position(struct drm_crtc *crtc,
-+					     bool in_vblank_irq, int *vpos,
-+					     int *hpos, ktime_t *stime,
-+					     ktime_t *etime,
-+					     const struct drm_display_mode *mode);
-+
- extern bool radeon_combios_check_hardcoded_edid(struct radeon_device *rdev);
- extern struct edid *
- radeon_bios_get_hardcoded_edid(struct radeon_device *rdev);
 -- 
 2.24.1
