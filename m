@@ -1,95 +1,146 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v4] pci: prevent putting nvidia GPUs into
- lower device states on certain intel bridges
-Date: Mon, 13 Jan 2020 16:31:50 +0100
-Message-ID: <CACO55tsCRzSOz4GcLuuvGP3hfbz8gYtYXqtYHy5XCpCi3tmPeA@mail.gmail.com>
-References: <CACO55ttTPi2XpRRM_NYJU5c5=OvG0=-YngFy1BiR8WpHkavwXw@mail.gmail.com>
- <CAJZ5v0h=7zu3A+ojgUSmwTH0KeXmYP5OKDL__rwkkWaWqcJcWQ@mail.gmail.com>
- <20191121112821.GU11621@lahna.fi.intel.com>
- <CAJZ5v0hQhj5Wf+piU11abC4pF26yM=XHGHAcDv8Jsgdx04aN-w@mail.gmail.com>
- <20191121114610.GW11621@lahna.fi.intel.com>
- <CACO55ttXJgXG32HzYP_uJDfQ6T-d8zQaGjXK_AZD3kF0Rmft4g@mail.gmail.com>
- <CAJZ5v0ibzcLEm44udUxW2uVgaF9NapdNBF8Ag+RE++u7gi2yNA@mail.gmail.com>
- <CACO55ttBkZD9dm0Y_jT931NnzHHtDFyLz28aoo+ZG0pnLzPgbA@mail.gmail.com>
- <CAJZ5v0jbh7jz+YQcw-gC5ztmMOc4E9+KFBCy4VGRsRFxBw-gnw@mail.gmail.com>
- <e0eeddf4214f54dfac08e428dfb30cbd39f20680.camel@redhat.com>
- <20191127114856.GZ11621@lahna.fi.intel.com>
- <CACO55tt5SAf24vk0XrKguhh2J=WuKirDsdY7T+u7PsGFCpnFxg@mail.gmail.com>
- <e7aec10d789b322ca98f4b250923b0f14f2b8226.camel@redhat.com>
- <CACO55tu+hT1WGbBn_nxLR=A-X6YWmeuz-UztJKw0QAFQDDV_xg@mail.gmail.com>
- <CAJZ5v0hcONxiWD+jpBe62H1SZ-84iNxT+QCn8mcesB1C7SVWjw@mail.gmail.com>
- <CAPM=9txefUg9_EO82an3b313mZz7J7-ydTuJtWD-hOQwE4QXkQ@mail.gmail.com>
- <CACO55tvhSM0aATBOK05-05aOc6LeN67=US2zO2jqXKWGTpUZFw@mail.gmail.com>
+From: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 05/23] drm/radeon: Convert to struct
+ drm_crtc_helper_funcs.get_scanout_position()
+Date: Mon, 13 Jan 2020 13:53:36 -0500
+Message-ID: <CADnq5_NWuue-Y38vrU3mxawW6S0My5EvpgjWT2WFHm8ohwS2mQ@mail.gmail.com>
+References: <20200110092127.27847-1-tzimmermann@suse.de>
+ <20200110092127.27847-6-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACO55tvhSM0aATBOK05-05aOc6LeN67=US2zO2jqXKWGTpUZFw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Mika Westerberg <mika.westerberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "Rafael J . Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Mario Limonciello <Mario.Limonciello-8PEkshWhKlo@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Return-path: <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200110092127.27847-6-tzimmermann-l3A5Bk7waGM@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/freedreno>,
+ <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/freedreno>
+List-Post: <mailto:freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/freedreno>,
+ <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Freedreno" <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+Cc: hamohammed.sa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Joonas Lahtinen <joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Eric Anholt <eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org>, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Benjamin Gaignard <benjamin.gaignard-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>, alexandre.torgue-qxv4g6HH51o@public.gmane.org, Chunming Zhou <David1.Zhou-5C7GfCeVMHo@public.gmane.org>, Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, Sean Paul <sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org>, Patrik Jakobsson <patrik.r.jakobsson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, VMware Graphics <linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "Wentland, Harry" <harry.wentland-5C7GfCeVMHo@public.gmane.org>, mcoquelin.stm32-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, "Leo (Sunpeng) Li" <sunpeng.li-5C7GfCeVMHo@public.gmane.org>, linux-arm-msm <linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1562uYJLRA6qg5Q@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-okay.. so checking whatever is the difference with _REV being 5
-(meaning the firmware uses the legacy paths) doesn't help in any way.
-It's using a different method to turn the link of and the other ACPI
-variables touched either point to undocumented registers on the PCI
-bridge or internal ACPI memory...
-
-so, anybody with any other ideas? I really wished the nvidia driver
-would enable runpm on pre turing GPUs, but that's sadly not the case
-and on Turing things seem to be totally different, so it wouldn't help
-to check there as well... *sigh*
-
-On Tue, Dec 10, 2019 at 9:49 PM Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
+On Fri, Jan 10, 2020 at 4:22 AM Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org> wrote:
 >
-> On Tue, Dec 10, 2019 at 8:58 PM Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> >
-> > On Mon, 9 Dec 2019 at 21:39, Rafael J. Wysocki <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org> wrote:
-> > >
-> > > On Mon, Dec 9, 2019 at 12:17 PM Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
-> > > >
-> > > > anybody any other ideas?
-> > >
-> > > Not yet, but I'm trying to collect some more information.
-> > >
-> > > > It seems that both patches don't really fix
-> > > > the issue and I have no idea left on my side to try out. The only
-> > > > thing left I could do to further investigate would be to reverse
-> > > > engineer the Nvidia driver as they support runpm on Turing+ GPUs now,
-> > > > but I've heard users having similar issues to the one Lyude told us
-> > > > about... and I couldn't verify that the patches help there either in a
-> > > > reliable way.
-> > >
-> > > It looks like the newer (8+) versions of Windows expect the GPU driver
-> > > to prepare the GPU for power removal in some specific way and the
-> > > latter fails if the GPU has not been prepared as expected.
-> > >
-> > > Because testing indicates that the Windows 7 path in the platform
-> > > firmware works, it may be worth trying to do what it does to the PCIe
-> > > link before invoking the _OFF method for the power resource
-> > > controlling the GPU power.
-> > >
-> >
-> > Remember the pre Win8 path required calling a DSM method to actually
-> > power the card down, I think by the time we reach these methods in
-> > those cases the card is already gone.
-> >
-> > Dave.
-> >
+> The callback struct drm_driver.get_scanout_position() is deprecated in
+> favor of struct drm_crtc_helper_funcs.get_scanout_position(). Convert
+> radeon over.
 >
-> The point was that the firmware seems to do more in the legacy paths
-> and maybe we just have to do those things inside the driver instead
-> when using the new method. Also the _DSM call just wraps around the
-> interfaces on newer firmware anyway. The OS check is usually what
-> makes the difference. I might be wrong about the _DSM call just
-> wrapping though, but I think I saw it at least in some firmware at
-> some point.
+
+I'd prefer to just change the signature of
+radeon_get_crtc_scanoutpos() to match the new API.
+
+Alex
+
+> Signed-off-by: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+> ---
+>  drivers/gpu/drm/radeon/atombios_crtc.c      |  1 +
+>  drivers/gpu/drm/radeon/radeon_display.c     | 13 +++++++++++++
+>  drivers/gpu/drm/radeon/radeon_drv.c         | 11 -----------
+>  drivers/gpu/drm/radeon/radeon_legacy_crtc.c |  3 ++-
+>  drivers/gpu/drm/radeon/radeon_mode.h        |  6 ++++++
+>  5 files changed, 22 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/radeon/atombios_crtc.c b/drivers/gpu/drm/radeon/atombios_crtc.c
+> index da2c9e295408..447d74b78f19 100644
+> --- a/drivers/gpu/drm/radeon/atombios_crtc.c
+> +++ b/drivers/gpu/drm/radeon/atombios_crtc.c
+> @@ -2232,6 +2232,7 @@ static const struct drm_crtc_helper_funcs atombios_helper_funcs = {
+>         .prepare = atombios_crtc_prepare,
+>         .commit = atombios_crtc_commit,
+>         .disable = atombios_crtc_disable,
+> +       .get_scanout_position = radeon_get_crtc_scanout_position,
+>  };
+>
+>  void radeon_atombios_init_crtc(struct drm_device *dev,
+> diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
+> index 962575e27cde..7187158b9963 100644
+> --- a/drivers/gpu/drm/radeon/radeon_display.c
+> +++ b/drivers/gpu/drm/radeon/radeon_display.c
+> @@ -1978,3 +1978,16 @@ int radeon_get_crtc_scanoutpos(struct drm_device *dev, unsigned int pipe,
+>
+>         return ret;
+>  }
+> +
+> +bool
+> +radeon_get_crtc_scanout_position(struct drm_crtc *crtc,
+> +                                bool in_vblank_irq, int *vpos, int *hpos,
+> +                                ktime_t *stime, ktime_t *etime,
+> +                                const struct drm_display_mode *mode)
+> +{
+> +       struct drm_device *dev = crtc->dev;
+> +       unsigned int pipe = crtc->index;
+> +
+> +       return radeon_get_crtc_scanoutpos(dev, pipe, 0, vpos, hpos,
+> +                                         stime, etime, mode);
+> +}
+> diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
+> index fd74e2611185..1f597f166bff 100644
+> --- a/drivers/gpu/drm/radeon/radeon_drv.c
+> +++ b/drivers/gpu/drm/radeon/radeon_drv.c
+> @@ -563,16 +563,6 @@ static const struct file_operations radeon_driver_kms_fops = {
+>  #endif
+>  };
+>
+> -static bool
+> -radeon_get_crtc_scanout_position(struct drm_device *dev, unsigned int pipe,
+> -                                bool in_vblank_irq, int *vpos, int *hpos,
+> -                                ktime_t *stime, ktime_t *etime,
+> -                                const struct drm_display_mode *mode)
+> -{
+> -       return radeon_get_crtc_scanoutpos(dev, pipe, 0, vpos, hpos,
+> -                                         stime, etime, mode);
+> -}
+> -
+>  static struct drm_driver kms_driver = {
+>         .driver_features =
+>             DRIVER_USE_AGP | DRIVER_GEM | DRIVER_RENDER,
+> @@ -585,7 +575,6 @@ static struct drm_driver kms_driver = {
+>         .enable_vblank = radeon_enable_vblank_kms,
+>         .disable_vblank = radeon_disable_vblank_kms,
+>         .get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
+> -       .get_scanout_position = radeon_get_crtc_scanout_position,
+>         .irq_preinstall = radeon_driver_irq_preinstall_kms,
+>         .irq_postinstall = radeon_driver_irq_postinstall_kms,
+>         .irq_uninstall = radeon_driver_irq_uninstall_kms,
+> diff --git a/drivers/gpu/drm/radeon/radeon_legacy_crtc.c b/drivers/gpu/drm/radeon/radeon_legacy_crtc.c
+> index a1985a552794..8817fd033cd0 100644
+> --- a/drivers/gpu/drm/radeon/radeon_legacy_crtc.c
+> +++ b/drivers/gpu/drm/radeon/radeon_legacy_crtc.c
+> @@ -1111,7 +1111,8 @@ static const struct drm_crtc_helper_funcs legacy_helper_funcs = {
+>         .mode_set_base_atomic = radeon_crtc_set_base_atomic,
+>         .prepare = radeon_crtc_prepare,
+>         .commit = radeon_crtc_commit,
+> -       .disable = radeon_crtc_disable
+> +       .disable = radeon_crtc_disable,
+> +       .get_scanout_position = radeon_get_crtc_scanout_position,
+>  };
+>
+>
+> diff --git a/drivers/gpu/drm/radeon/radeon_mode.h b/drivers/gpu/drm/radeon/radeon_mode.h
+> index fd470d6bf3f4..06c4c527d376 100644
+> --- a/drivers/gpu/drm/radeon/radeon_mode.h
+> +++ b/drivers/gpu/drm/radeon/radeon_mode.h
+> @@ -881,6 +881,12 @@ extern int radeon_get_crtc_scanoutpos(struct drm_device *dev, unsigned int pipe,
+>                                       ktime_t *stime, ktime_t *etime,
+>                                       const struct drm_display_mode *mode);
+>
+> +extern bool radeon_get_crtc_scanout_position(struct drm_crtc *crtc,
+> +                                            bool in_vblank_irq, int *vpos,
+> +                                            int *hpos, ktime_t *stime,
+> +                                            ktime_t *etime,
+> +                                            const struct drm_display_mode *mode);
+> +
+>  extern bool radeon_combios_check_hardcoded_edid(struct radeon_device *rdev);
+>  extern struct edid *
+>  radeon_bios_get_hardcoded_edid(struct radeon_device *rdev);
+> --
+> 2.24.1
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
