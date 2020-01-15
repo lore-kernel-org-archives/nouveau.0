@@ -1,7 +1,7 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 09/21] drm/nouveau: Convert to CRTC VBLANK callbacks
-Date: Wed, 15 Jan 2020 13:16:40 +0100
-Message-ID: <20200115121652.7050-10-tzimmermann@suse.de>
+Subject: [PATCH v2 02/21] drm: Evaluate struct drm_device.vblank_disable_immediate on each use
+Date: Wed, 15 Jan 2020 13:16:33 +0100
+Message-ID: <20200115121652.7050-3-tzimmermann@suse.de>
 References: <20200115121652.7050-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -12,121 +12,96 @@ To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koen
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
 List-Id: nouveau.vger.kernel.org
 
-VBLANK callbacks in struct drm_driver are deprecated in favor of
-their equivalents in struct drm_crtc_funcs. Convert nouvean over.
+VBLANK interrupts can be disabled immediately or with a delay, where the
+latter is the default. The former option can be selected by setting
+get_vblank_timestamp, and enabling vblank_disable_immediate in struct
+drm_device.
+
+The setup is only evaluated once when DRM initializes VBLANKs. Evaluating
+the settings on each use of vblank_disable_immediate will allow for easy
+integration of CRTC VBLANK functions.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/nouveau/dispnv04/crtc.c   |  3 +++
- drivers/gpu/drm/nouveau/dispnv50/head.c   |  4 ++++
- drivers/gpu/drm/nouveau/nouveau_display.c | 14 ++------------
- drivers/gpu/drm/nouveau/nouveau_display.h |  4 ++--
- drivers/gpu/drm/nouveau/nouveau_drm.c     |  4 ----
- 5 files changed, 11 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/drm_vblank.c | 31 ++++++++++++++-----------------
+ 1 file changed, 14 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-index 17e9d1c078a0..1f08de4241e0 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-@@ -1248,6 +1248,9 @@ static const struct drm_crtc_funcs nv04_crtc_funcs = {
- 	.set_config = drm_crtc_helper_set_config,
- 	.page_flip = nv04_crtc_page_flip,
- 	.destroy = nv_crtc_destroy,
-+	.enable_vblank = nouveau_display_vblank_enable,
-+	.disable_vblank = nouveau_display_vblank_disable,
-+	.get_vblank_timestamp = drm_crtc_vblank_helper_get_vblank_timestamp,
- };
+diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+index 3f1dd54cc8bb..abb085c67d82 100644
+--- a/drivers/gpu/drm/drm_vblank.c
++++ b/drivers/gpu/drm/drm_vblank.c
+@@ -481,19 +481,6 @@ int drm_vblank_init(struct drm_device *dev, unsigned int num_crtcs)
  
- static const struct drm_crtc_helper_funcs nv04_crtc_helper_funcs = {
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/head.c b/drivers/gpu/drm/nouveau/dispnv50/head.c
-index 1354d19d9a18..0b4c7a6fb39c 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/head.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/head.c
-@@ -29,6 +29,7 @@
+ 	DRM_INFO("Supports vblank timestamp caching Rev 2 (21.10.2013).\n");
  
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_crtc_helper.h>
-+#include <drm/drm_vblank.h>
- #include "nouveau_connector.h"
- void
- nv50_head_flush_clr(struct nv50_head *head,
-@@ -472,6 +473,9 @@ nv50_head_func = {
- 	.page_flip = drm_atomic_helper_page_flip,
- 	.atomic_duplicate_state = nv50_head_atomic_duplicate_state,
- 	.atomic_destroy_state = nv50_head_atomic_destroy_state,
-+	.enable_vblank = nouveau_display_vblank_enable,
-+	.disable_vblank = nouveau_display_vblank_disable,
-+	.get_vblank_timestamp = drm_crtc_vblank_helper_get_vblank_timestamp,
- };
+-	/* Driver specific high-precision vblank timestamping supported? */
+-	if (dev->driver->get_vblank_timestamp)
+-		DRM_INFO("Driver supports precise vblank timestamp query.\n");
+-	else
+-		DRM_INFO("No driver support for vblank timestamp query.\n");
+-
+-	/* Must have precise timestamping for reliable vblank instant disable */
+-	if (dev->vblank_disable_immediate && !dev->driver->get_vblank_timestamp) {
+-		dev->vblank_disable_immediate = false;
+-		DRM_INFO("Setting vblank_disable_immediate to false because "
+-			 "get_vblank_timestamp == NULL\n");
+-	}
+-
+ 	return 0;
  
- int
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index 86f99dc8fcef..700817dc4fa0 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -54,15 +54,10 @@ nouveau_display_vblank_handler(struct nvif_notify *notify)
+ err:
+@@ -1070,6 +1057,15 @@ int drm_crtc_vblank_get(struct drm_crtc *crtc)
  }
+ EXPORT_SYMBOL(drm_crtc_vblank_get);
  
- int
--nouveau_display_vblank_enable(struct drm_device *dev, unsigned int pipe)
-+nouveau_display_vblank_enable(struct drm_crtc *crtc)
++static bool __vblank_disable_immediate(struct drm_device *dev, unsigned int pipe)
++{
++	if (!dev->vblank_disable_immediate)
++		return false;
++	if (!dev->driver->get_vblank_timestamp)
++		return false;
++	return true;
++}
++
+ static void drm_vblank_put(struct drm_device *dev, unsigned int pipe)
  {
--	struct drm_crtc *crtc;
- 	struct nouveau_crtc *nv_crtc;
+ 	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
+@@ -1086,7 +1082,7 @@ static void drm_vblank_put(struct drm_device *dev, unsigned int pipe)
+ 			return;
+ 		else if (drm_vblank_offdelay < 0)
+ 			vblank_disable_fn(&vblank->disable_timer);
+-		else if (!dev->vblank_disable_immediate)
++		else if (__vblank_disable_immediate(dev, pipe))
+ 			mod_timer(&vblank->disable_timer,
+ 				  jiffies + ((drm_vblank_offdelay * HZ)/1000));
+ 	}
+@@ -1663,7 +1659,7 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
+ 	/* If the counter is currently enabled and accurate, short-circuit
+ 	 * queries to return the cached timestamp of the last vblank.
+ 	 */
+-	if (dev->vblank_disable_immediate &&
++	if (__vblank_disable_immediate(dev, pipe) &&
+ 	    drm_wait_vblank_is_query(vblwait) &&
+ 	    READ_ONCE(vblank->enabled)) {
+ 		drm_wait_vblank_reply(dev, pipe, &vblwait->reply);
+@@ -1820,7 +1816,7 @@ bool drm_handle_vblank(struct drm_device *dev, unsigned int pipe)
+ 	 * been signaled. The disable has to be last (after
+ 	 * drm_handle_vblank_events) so that the timestamp is always accurate.
+ 	 */
+-	disable_irq = (dev->vblank_disable_immediate &&
++	disable_irq = (__vblank_disable_immediate(dev, pipe) &&
+ 		       drm_vblank_offdelay > 0 &&
+ 		       !atomic_read(&vblank->refcount));
  
--	crtc = drm_crtc_from_index(dev, pipe);
--	if (!crtc)
--		return -EINVAL;
--
- 	nv_crtc = nouveau_crtc(crtc);
- 	nvif_notify_get(&nv_crtc->vblank);
+@@ -1893,7 +1889,8 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *dev, void *data,
+ 	pipe = drm_crtc_index(crtc);
  
-@@ -70,15 +65,10 @@ nouveau_display_vblank_enable(struct drm_device *dev, unsigned int pipe)
- }
+ 	vblank = &dev->vblank[pipe];
+-	vblank_enabled = dev->vblank_disable_immediate && READ_ONCE(vblank->enabled);
++	vblank_enabled = __vblank_disable_immediate(dev, pipe) &&
++			 READ_ONCE(vblank->enabled);
  
- void
--nouveau_display_vblank_disable(struct drm_device *dev, unsigned int pipe)
-+nouveau_display_vblank_disable(struct drm_crtc *crtc)
- {
--	struct drm_crtc *crtc;
- 	struct nouveau_crtc *nv_crtc;
- 
--	crtc = drm_crtc_from_index(dev, pipe);
--	if (!crtc)
--		return;
--
- 	nv_crtc = nouveau_crtc(crtc);
- 	nvif_notify_put(&nv_crtc->vblank);
- }
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.h b/drivers/gpu/drm/nouveau/nouveau_display.h
-index 71e2af693f7f..71c7048948f3 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.h
-@@ -61,8 +61,8 @@ int  nouveau_display_init(struct drm_device *dev, bool resume, bool runtime);
- void nouveau_display_fini(struct drm_device *dev, bool suspend, bool runtime);
- int  nouveau_display_suspend(struct drm_device *dev, bool runtime);
- void nouveau_display_resume(struct drm_device *dev, bool runtime);
--int  nouveau_display_vblank_enable(struct drm_device *, unsigned int);
--void nouveau_display_vblank_disable(struct drm_device *, unsigned int);
-+int  nouveau_display_vblank_enable(struct drm_crtc *);
-+void nouveau_display_vblank_disable(struct drm_crtc *);
- bool  nouveau_display_scanoutpos(struct drm_crtc *,
- 				 bool, int *, int *, ktime_t *,
- 				 ktime_t *, const struct drm_display_mode *);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 9fb38a018240..0003343014ce 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -1121,10 +1121,6 @@ driver_stub = {
- 	.debugfs_init = nouveau_drm_debugfs_init,
- #endif
- 
--	.enable_vblank = nouveau_display_vblank_enable,
--	.disable_vblank = nouveau_display_vblank_disable,
--	.get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
--
- 	.ioctls = nouveau_ioctls,
- 	.num_ioctls = ARRAY_SIZE(nouveau_ioctls),
- 	.fops = &nouveau_driver_fops,
+ 	if (!vblank_enabled) {
+ 		ret = drm_crtc_vblank_get(crtc);
 -- 
 2.24.1
