@@ -1,152 +1,131 @@
-From: Ralph Campbell <rcampbell@nvidia.com>
-Subject: Re: [PATCH v6 5/6] nouveau: use new mmu interval notifiers
-Date: Wed, 15 Jan 2020 14:09:47 -0800
-Message-ID: <5845f50e-8bc0-8068-ee21-4f910beb1255@nvidia.com>
-References: <20200113224703.5917-1-rcampbell@nvidia.com>
- <20200113224703.5917-6-rcampbell@nvidia.com>
- <20200114125957.GO20978@mellanox.com>
+From: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
+Subject: Re: [PATCH v2 19/21] drm/vkms: Convert to CRTC VBLANK callbacks
+Date: Wed, 15 Jan 2020 18:18:23 -0500
+Message-ID: <20200115231823.v6uyxtgxnfgwmsqq@smtp.gmail.com>
+References: <20200115121652.7050-1-tzimmermann@suse.de>
+ <20200115121652.7050-20-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <owner-linux-mm@kvack.org>
-In-Reply-To: <20200114125957.GO20978@mellanox.com>
-Content-Language: en-US
-Sender: owner-linux-mm@kvack.org
-To: Jason Gunthorpe <jgg@mellanox.com>
-Cc: "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>, Jerome Glisse <jglisse@redhat.com>, John
- Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Andrew Morton <akpm@linux-foundation.org>, Ben Skeggs <bskeggs@redhat.com>, Shuah Khan <shuah@kernel.org>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="mkcm5mxh5ewyz3eu"
+Return-path: <linux-arm-msm-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20200115121652.7050-20-tzimmermann@suse.de>
+Sender: linux-arm-msm-owner@vger.kernel.org
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com, maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com, robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org, vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com, mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net, hamohammed.sa@gmail.com, linux-graphics-maintainer@vmware.com, thellstrom@vmware.com, bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.f
 List-Id: nouveau.vger.kernel.org
 
 
-On 1/14/20 5:00 AM, Jason Gunthorpe wrote:
-> On Mon, Jan 13, 2020 at 02:47:02PM -0800, Ralph Campbell wrote:
->>   void
->>   nouveau_svmm_fini(struct nouveau_svmm **psvmm)
->>   {
->>   	struct nouveau_svmm *svmm = *psvmm;
->> +	struct mmu_interval_notifier *mni;
->> +
->>   	if (svmm) {
->>   		mutex_lock(&svmm->mutex);
->> +		while (true) {
->> +			mni = mmu_interval_notifier_find(svmm->mm,
->> +					&nouveau_svm_mni_ops, 0UL, ~0UL);
->> +			if (!mni)
->> +				break;
->> +			mmu_interval_notifier_put(mni);
-> 
-> Oh, now I really don't like the name 'put'. It looks like mni is
-> refcounted here, and it isn't. put should be called 'remove_deferred'
+--mkcm5mxh5ewyz3eu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-OK.
+Hi,
 
-> And then you also need a way to barrier this scheme on driver unload.
+Thanks for the patch, I reviewed and tested it. Everything looks fine
+for VKMS.
 
-Good point. I can add something like
-void mmu_interval_notifier_synchronize(struct mm_struct *mm)
-that waits for deferred operations to complete similar to
-mmu_interval_read_begin().
+Reviewed-by: Rodrigo Siqueira <rodrigosiqueira@gmail.com>
+Tested-by: Rodrigo Siqueira <rodrigosiqueira@gmail.com>
 
->> +		}
->>   		svmm->vmm = NULL;
->>   		mutex_unlock(&svmm->mutex);
->> -		mmu_notifier_put(&svmm->notifier);
-> 
-> While here it was actually a refcount.
-> 
->> +static void nouveau_svmm_do_unmap(struct mmu_interval_notifier *mni,
->> +				 const struct mmu_notifier_range *range)
->> +{
->> +	struct svmm_interval *smi =
->> +		container_of(mni, struct svmm_interval, notifier);
->> +	struct nouveau_svmm *svmm = smi->svmm;
->> +	unsigned long start = mmu_interval_notifier_start(mni);
->> +	unsigned long last = mmu_interval_notifier_last(mni);
-> 
-> This whole algorithm only works if it is protected by the read side of
-> the interval tree lock. Deserves at least a comment if not an
-> assertion too.
+On 01/15, Thomas Zimmermann wrote:
+> VBLANK callbacks in struct drm_driver are deprecated in favor of
+> their equivalents in struct drm_crtc_funcs. Convert vkms over.
+>=20
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>  drivers/gpu/drm/vkms/vkms_crtc.c | 9 ++++++---
+>  drivers/gpu/drm/vkms/vkms_drv.c  | 1 -
+>  drivers/gpu/drm/vkms/vkms_drv.h  | 4 ----
+>  3 files changed, 6 insertions(+), 8 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/vkms/vkms_crtc.c b/drivers/gpu/drm/vkms/vkms=
+_crtc.c
+> index 74f703b8d22a..ac85e17428f8 100644
+> --- a/drivers/gpu/drm/vkms/vkms_crtc.c
+> +++ b/drivers/gpu/drm/vkms/vkms_crtc.c
+> @@ -76,10 +76,12 @@ static void vkms_disable_vblank(struct drm_crtc *crtc)
+>  	hrtimer_cancel(&out->vblank_hrtimer);
+>  }
+> =20
+> -bool vkms_get_vblank_timestamp(struct drm_device *dev, unsigned int pipe,
+> -			       int *max_error, ktime_t *vblank_time,
+> -			       bool in_vblank_irq)
+> +static bool vkms_get_vblank_timestamp(struct drm_crtc *crtc,
+> +				      int *max_error, ktime_t *vblank_time,
+> +				      bool in_vblank_irq)
+>  {
+> +	struct drm_device *dev =3D crtc->dev;
+> +	unsigned int pipe =3D crtc->index;
+>  	struct vkms_device *vkmsdev =3D drm_device_to_vkms_device(dev);
+>  	struct vkms_output *output =3D &vkmsdev->output;
+>  	struct drm_vblank_crtc *vblank =3D &dev->vblank[pipe];
+> @@ -154,6 +156,7 @@ static const struct drm_crtc_funcs vkms_crtc_funcs =
+=3D {
+>  	.atomic_destroy_state   =3D vkms_atomic_crtc_destroy_state,
+>  	.enable_vblank		=3D vkms_enable_vblank,
+>  	.disable_vblank		=3D vkms_disable_vblank,
+> +	.get_vblank_timestamp	=3D vkms_get_vblank_timestamp,
+>  	.get_crc_sources	=3D vkms_get_crc_sources,
+>  	.set_crc_source		=3D vkms_set_crc_source,
+>  	.verify_crc_source	=3D vkms_verify_crc_source,
+> diff --git a/drivers/gpu/drm/vkms/vkms_drv.c b/drivers/gpu/drm/vkms/vkms_=
+drv.c
+> index 25bd7519295f..860de052e820 100644
+> --- a/drivers/gpu/drm/vkms/vkms_drv.c
+> +++ b/drivers/gpu/drm/vkms/vkms_drv.c
+> @@ -103,7 +103,6 @@ static struct drm_driver vkms_driver =3D {
+>  	.dumb_create		=3D vkms_dumb_create,
+>  	.gem_vm_ops		=3D &vkms_gem_vm_ops,
+>  	.gem_free_object_unlocked =3D vkms_gem_free_object,
+> -	.get_vblank_timestamp	=3D vkms_get_vblank_timestamp,
+>  	.prime_fd_to_handle	=3D drm_gem_prime_fd_to_handle,
+>  	.gem_prime_import_sg_table =3D vkms_prime_import_sg_table,
+> =20
+> diff --git a/drivers/gpu/drm/vkms/vkms_drv.h b/drivers/gpu/drm/vkms/vkms_=
+drv.h
+> index 7d52e24564db..eda04ffba7b1 100644
+> --- a/drivers/gpu/drm/vkms/vkms_drv.h
+> +++ b/drivers/gpu/drm/vkms/vkms_drv.h
+> @@ -111,10 +111,6 @@ struct vkms_gem_object {
+>  int vkms_crtc_init(struct drm_device *dev, struct drm_crtc *crtc,
+>  		   struct drm_plane *primary, struct drm_plane *cursor);
+> =20
+> -bool vkms_get_vblank_timestamp(struct drm_device *dev, unsigned int pipe,
+> -			       int *max_error, ktime_t *vblank_time,
+> -			       bool in_vblank_irq);
+> -
+>  int vkms_output_init(struct vkms_device *vkmsdev, int index);
+> =20
+>  struct drm_plane *vkms_plane_init(struct vkms_device *vkmsdev,
+> --=20
+> 2.24.1
+>=20
 
-This is called from the invalidate() callback and while holding the
-driver page table lock so the struct mmu_interval_notifier and
-the interval tree can't change.
-I will add comments for v7.
+--=20
+Rodrigo Siqueira
+Software Engineer, Advanced Micro Devices (AMD)
+https://siqueira.tech
 
->>   static int nouveau_range_fault(struct nouveau_svmm *svmm,
->>   			       struct nouveau_drm *drm, void *data, u32 size,
->> -			       u64 *pfns, struct svm_notifier *notifier)
->> +			       u64 *pfns, u64 start, u64 end)
->>   {
->>   	unsigned long timeout =
->>   		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
->>   	/* Have HMM fault pages within the fault window to the GPU. */
->>   	struct hmm_range range = {
->> -		.notifier = &notifier->notifier,
->> -		.start = notifier->notifier.interval_tree.start,
->> -		.end = notifier->notifier.interval_tree.last + 1,
->> +		.start = start,
->> +		.end = end,
->>   		.pfns = pfns,
->>   		.flags = nouveau_svm_pfn_flags,
->>   		.values = nouveau_svm_pfn_values,
->> +		.default_flags = 0,
->> +		.pfn_flags_mask = ~0UL,
->>   		.pfn_shift = NVIF_VMM_PFNMAP_V0_ADDR_SHIFT,
->>   	};
->> -	struct mm_struct *mm = notifier->notifier.mm;
->> +	struct mm_struct *mm = svmm->mm;
->>   	long ret;
->>   
->>   	while (true) {
->>   		if (time_after(jiffies, timeout))
->>   			return -EBUSY;
->>   
->> -		range.notifier_seq = mmu_interval_read_begin(range.notifier);
->> -		range.default_flags = 0;
->> -		range.pfn_flags_mask = -1UL;
->>   		down_read(&mm->mmap_sem);
-> 
-> mmap sem doesn't have to be held for the interval search, and again we
-> have lifetime issues with the membership here.
+--mkcm5mxh5ewyz3eu
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I agree mmap_sem isn't needed for the interval search, it is needed if
-the search doesn't find a registered interval and one needs to be created
-to cover the underlying VMA. If an arbitrary size interval was created
-instead, then mmap_sem wouldn't be needed.
-I don't understand the lifetime/membership issue. The driver is the only thing
-that allocates, inserts, or removes struct mmu_interval_notifier and thus
-completely controls the lifetime.
+-----BEGIN PGP SIGNATURE-----
 
->> +		ret = nouveau_svmm_interval_find(svmm, &range);
->> +		if (ret) {
->> +			up_read(&mm->mmap_sem);
->> +			return ret;
->> +		}
->> +		range.notifier_seq = mmu_interval_read_begin(range.notifier);
->>   		ret = hmm_range_fault(&range, 0);
->>   		up_read(&mm->mmap_sem);
->>   		if (ret <= 0) {
-> 
-> I'm still not sure this is a better approach than what ODP does. It
-> looks very expensive on the fault path..
-> 
-> Jason
-> 
+iQIzBAEBCgAdFiEE4tZ+ii1mjMCMQbfkWJzP/comvP8FAl4fnb8ACgkQWJzP/com
+vP/gKw/+MnM27NT0QpqQpa6WMwn9PCq/07UFLOG7BuTGP2CvZOJv8Tma7U6bu9Sf
+Z3IwiMYNJV8FJtwdRd+BTThIYGPTtofxsJ2R3ybhUj/VEeUaEhC2ifzwVrphEePR
+3/b4QFlf/vrMfsdJSOSam6vvaiI+jE4X1ZASrUKbcl5w9KeBhs2VmcwVKmtqQgaD
+YHWIWUwiwsd544GltP+mx7qxZ5+ZHVC+OuJq/GNzhwD9MyXTliBcM6nov+FPV/HE
+aT4WrhBCiDHhISO9sTYPqiV6Vo7XV6sPzDMFncNqueMwP4qQr/mFebxPtlUtPYOO
+jwg0ZTq/6KL+QeJM55Ygg0cvVUvG14G8ZSktb4s7rPRWE4k7/DZWP2w/xP1xVsoP
+H+Q2jvjTV1qu+G2A7vtP2gYBsCx7WoYfIoR045pAIEKEz5FLF38GFY04uS/T0M3u
+eez0yNDC1EojMWeTTPM5Lm7MCUPx7sR6V14gGDDVs/QBmZpgyJkWj4unYBCwk9Ge
+oMSZkUhnnJT4FutLRaJk0awg7iMw7yj4XNJgKB1vEVwS2/RkJ6jrgw/PoihwOBLZ
+Gmm6Ys+btER/e9zHA+u8Z5z0guAkI8r9H8ikMtqSza6RipedsEIrncLV8U2l+hwT
+ooPnCySDn8Xkw985ZR+/UW0I+FjjWDVdn3jmwcyRZ99fksmbvkY=
+=KRlQ
+-----END PGP SIGNATURE-----
 
-ODP doesn't have this problem because users have to call ib_reg_mr()
-before any I/O can happen to the process address space. That is when
-mmu_interval_notifier_insert() / mmu_interval_notifier_remove() can
-be called and the driver doesn't have to worry about the interval
-changing sizes or being removed while I/O is happening.
-For GPU like devices, I'm trying to allow hardware access to any user
-level address without pre-registering it. That means inserting mmu
-interval notifiers for the ranges the GPU page faults on and updating
-the intervals as munmap() calls remove parts of the address space.
-I don't want to register an interval per page so the logical range
-is the underlying VMA.
-
-It isn't that expensive, there is an extra driver lock/unlock as
-part of the lookup and possibly a find_vma() and kmalloc(GFP_ATOMIC)
-for new intervals. Also, the deferred interval updates for munmap().
-Compared to the cost of updating PTEs in the device and GPU fault
-handling, this is minimal overhead.
+--mkcm5mxh5ewyz3eu--
