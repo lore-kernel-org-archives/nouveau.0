@@ -1,10 +1,9 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 14/21] drm/stm: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
-Date: Wed, 15 Jan 2020 13:16:45 +0100
-Message-ID: <20200115121652.7050-15-tzimmermann@suse.de>
+Subject: [PATCH v2 08/21] drm/nouveau: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+Date: Wed, 15 Jan 2020 13:16:39 +0100
+Message-ID: <20200115121652.7050-9-tzimmermann@suse.de>
 References: <20200115121652.7050-1-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-arm-msm-owner@vger.kernel.org>
 In-Reply-To: <20200115121652.7050-1-tzimmermann@suse.de>
@@ -14,128 +13,95 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@li
 List-Id: nouveau.vger.kernel.org
 
 The callback struct drm_driver.get_scanout_position() is deprecated in
-favor of struct drm_crtc_helper_funcs.get_scanout_position(). Convert stm
-over.
+favor of struct drm_crtc_helper_funcs.get_scanout_position(). Convert
+nouveau over.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Tested-by: Yannick Fertré <yannick.fertre@st.com>
 ---
- drivers/gpu/drm/stm/drv.c  |  1 -
- drivers/gpu/drm/stm/ltdc.c | 65 ++++++++++++++++++++------------------
- drivers/gpu/drm/stm/ltdc.h |  5 ---
- 3 files changed, 34 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c   |  1 +
+ drivers/gpu/drm/nouveau/dispnv50/head.c   |  1 +
+ drivers/gpu/drm/nouveau/nouveau_display.c | 14 +++-----------
+ drivers/gpu/drm/nouveau/nouveau_display.h |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c     |  1 -
+ 5 files changed, 6 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/stm/drv.c b/drivers/gpu/drm/stm/drv.c
-index 5a9f9aca8bc2..486985604109 100644
---- a/drivers/gpu/drm/stm/drv.c
-+++ b/drivers/gpu/drm/stm/drv.c
-@@ -72,7 +72,6 @@ static struct drm_driver drv_driver = {
- 	.gem_prime_vmap = drm_gem_cma_prime_vmap,
- 	.gem_prime_vunmap = drm_gem_cma_prime_vunmap,
- 	.gem_prime_mmap = drm_gem_cma_prime_mmap,
--	.get_scanout_position = ltdc_crtc_scanoutpos,
- 	.get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+index 37c50ea8f847..17e9d1c078a0 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+@@ -1258,6 +1258,7 @@ static const struct drm_crtc_helper_funcs nv04_crtc_helper_funcs = {
+ 	.mode_set_base = nv04_crtc_mode_set_base,
+ 	.mode_set_base_atomic = nv04_crtc_mode_set_base_atomic,
+ 	.disable = nv_crtc_disable,
++	.get_scanout_position = nouveau_display_scanoutpos,
  };
  
-diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
-index c2815e8ae1da..8b6d1a2252e3 100644
---- a/drivers/gpu/drm/stm/ltdc.c
-+++ b/drivers/gpu/drm/stm/ltdc.c
-@@ -636,38 +636,13 @@ static void ltdc_crtc_atomic_flush(struct drm_crtc *crtc,
- 	}
+ static const uint32_t modeset_formats[] = {
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/head.c b/drivers/gpu/drm/nouveau/dispnv50/head.c
+index c9692df2b76c..1354d19d9a18 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/head.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/head.c
+@@ -403,6 +403,7 @@ nv50_head_atomic_check(struct drm_crtc *crtc, struct drm_crtc_state *state)
+ static const struct drm_crtc_helper_funcs
+ nv50_head_help = {
+ 	.atomic_check = nv50_head_atomic_check,
++	.get_scanout_position = nouveau_display_scanoutpos,
+ };
+ 
+ static void
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index 53f9bceaf17a..86f99dc8fcef 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -136,21 +136,13 @@ nouveau_display_scanoutpos_head(struct drm_crtc *crtc, int *vpos, int *hpos,
  }
  
--static const struct drm_crtc_helper_funcs ltdc_crtc_helper_funcs = {
--	.mode_valid = ltdc_crtc_mode_valid,
--	.mode_fixup = ltdc_crtc_mode_fixup,
--	.mode_set_nofb = ltdc_crtc_mode_set_nofb,
--	.atomic_flush = ltdc_crtc_atomic_flush,
--	.atomic_enable = ltdc_crtc_atomic_enable,
--	.atomic_disable = ltdc_crtc_atomic_disable,
--};
--
--static int ltdc_crtc_enable_vblank(struct drm_crtc *crtc)
--{
--	struct ltdc_device *ldev = crtc_to_ltdc(crtc);
--
--	DRM_DEBUG_DRIVER("\n");
--	reg_set(ldev->regs, LTDC_IER, IER_LIE);
--
--	return 0;
--}
--
--static void ltdc_crtc_disable_vblank(struct drm_crtc *crtc)
--{
--	struct ltdc_device *ldev = crtc_to_ltdc(crtc);
--
--	DRM_DEBUG_DRIVER("\n");
--	reg_clear(ldev->regs, LTDC_IER, IER_LIE);
--}
--
--bool ltdc_crtc_scanoutpos(struct drm_device *ddev, unsigned int pipe,
--			  bool in_vblank_irq, int *vpos, int *hpos,
--			  ktime_t *stime, ktime_t *etime,
--			  const struct drm_display_mode *mode)
-+static bool ltdc_crtc_get_scanout_position(struct drm_crtc *crtc,
-+					   bool in_vblank_irq,
-+					   int *vpos, int *hpos,
-+					   ktime_t *stime, ktime_t *etime,
-+					   const struct drm_display_mode *mode)
+ bool
+-nouveau_display_scanoutpos(struct drm_device *dev, unsigned int pipe,
++nouveau_display_scanoutpos(struct drm_crtc *crtc,
+ 			   bool in_vblank_irq, int *vpos, int *hpos,
+ 			   ktime_t *stime, ktime_t *etime,
+ 			   const struct drm_display_mode *mode)
  {
-+	struct drm_device *ddev = crtc->dev;
- 	struct ltdc_device *ldev = ddev->dev_private;
- 	int line, vactive_start, vactive_end, vtotal;
- 
-@@ -710,6 +685,34 @@ bool ltdc_crtc_scanoutpos(struct drm_device *ddev, unsigned int pipe,
- 	return true;
+-	struct drm_crtc *crtc;
+-
+-	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
+-		if (nouveau_crtc(crtc)->index == pipe) {
+-			return nouveau_display_scanoutpos_head(crtc, vpos, hpos,
+-							       stime, etime);
+-		}
+-	}
+-
+-	return false;
++	return nouveau_display_scanoutpos_head(crtc, vpos, hpos,
++					       stime, etime);
  }
  
-+static const struct drm_crtc_helper_funcs ltdc_crtc_helper_funcs = {
-+	.mode_valid = ltdc_crtc_mode_valid,
-+	.mode_fixup = ltdc_crtc_mode_fixup,
-+	.mode_set_nofb = ltdc_crtc_mode_set_nofb,
-+	.atomic_flush = ltdc_crtc_atomic_flush,
-+	.atomic_enable = ltdc_crtc_atomic_enable,
-+	.atomic_disable = ltdc_crtc_atomic_disable,
-+	.get_scanout_position = ltdc_crtc_get_scanout_position,
-+};
-+
-+static int ltdc_crtc_enable_vblank(struct drm_crtc *crtc)
-+{
-+	struct ltdc_device *ldev = crtc_to_ltdc(crtc);
-+
-+	DRM_DEBUG_DRIVER("\n");
-+	reg_set(ldev->regs, LTDC_IER, IER_LIE);
-+
-+	return 0;
-+}
-+
-+static void ltdc_crtc_disable_vblank(struct drm_crtc *crtc)
-+{
-+	struct ltdc_device *ldev = crtc_to_ltdc(crtc);
-+
-+	DRM_DEBUG_DRIVER("\n");
-+	reg_clear(ldev->regs, LTDC_IER, IER_LIE);
-+}
-+
- static const struct drm_crtc_funcs ltdc_crtc_funcs = {
- 	.destroy = drm_crtc_cleanup,
- 	.set_config = drm_atomic_helper_set_config,
-diff --git a/drivers/gpu/drm/stm/ltdc.h b/drivers/gpu/drm/stm/ltdc.h
-index a1ad0ae3b006..c5467d74e707 100644
---- a/drivers/gpu/drm/stm/ltdc.h
-+++ b/drivers/gpu/drm/stm/ltdc.h
-@@ -39,11 +39,6 @@ struct ltdc_device {
- 	struct drm_atomic_state *suspend_state;
- };
+ static void
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.h b/drivers/gpu/drm/nouveau/nouveau_display.h
+index 6e8e66882e45..71e2af693f7f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.h
++++ b/drivers/gpu/drm/nouveau/nouveau_display.h
+@@ -63,7 +63,7 @@ int  nouveau_display_suspend(struct drm_device *dev, bool runtime);
+ void nouveau_display_resume(struct drm_device *dev, bool runtime);
+ int  nouveau_display_vblank_enable(struct drm_device *, unsigned int);
+ void nouveau_display_vblank_disable(struct drm_device *, unsigned int);
+-bool  nouveau_display_scanoutpos(struct drm_device *, unsigned int,
++bool  nouveau_display_scanoutpos(struct drm_crtc *,
+ 				 bool, int *, int *, ktime_t *,
+ 				 ktime_t *, const struct drm_display_mode *);
  
--bool ltdc_crtc_scanoutpos(struct drm_device *dev, unsigned int pipe,
--			  bool in_vblank_irq, int *vpos, int *hpos,
--			  ktime_t *stime, ktime_t *etime,
--			  const struct drm_display_mode *mode);
--
- int ltdc_load(struct drm_device *ddev);
- void ltdc_unload(struct drm_device *ddev);
- void ltdc_suspend(struct drm_device *ddev);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 2cd83849600f..9fb38a018240 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -1123,7 +1123,6 @@ driver_stub = {
+ 
+ 	.enable_vblank = nouveau_display_vblank_enable,
+ 	.disable_vblank = nouveau_display_vblank_disable,
+-	.get_scanout_position = nouveau_display_scanoutpos,
+ 	.get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
+ 
+ 	.ioctls = nouveau_ioctls,
 -- 
 2.24.1
