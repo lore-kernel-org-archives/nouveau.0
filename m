@@ -1,7 +1,7 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 11/21] drm/radeon: Convert to CRTC VBLANK callbacks
-Date: Wed, 15 Jan 2020 13:16:42 +0100
-Message-ID: <20200115121652.7050-12-tzimmermann@suse.de>
+Subject: [PATCH v2 07/21] drm/i915: Convert to CRTC VBLANK callbacks
+Date: Wed, 15 Jan 2020 13:16:38 +0100
+Message-ID: <20200115121652.7050-8-tzimmermann@suse.de>
 References: <20200115121652.7050-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -12,170 +12,157 @@ To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koen
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
 List-Id: nouveau.vger.kernel.org
 
-VBLANK callbacks in struct drm_driver are deprecated in favor of
-their equivalents in struct drm_crtc_funcs. Convert radeon over.
+VBLANK callbacks in struct drm_driver are deprecated in favor of their
+equivalents in struct drm_crtc_funcs. Convert i915 over.
+
+The callback struct drm_driver.get_scanout_position() is deprecated
+in favor of struct drm_crtc_helper_funcs.get_scanout_position().
+i915 doesn't use CRTC helpers. Instead pass i915's implementation of
+get_scanout_position() to DRM core's
+drm_crtc_vblank_helper_get_vblank_timestamp_internal().
+
+v2:
+	* use DRM's implementation of get_vblank_timestamp()
+	* simplify function names
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/radeon/radeon_display.c | 12 ++++++++--
- drivers/gpu/drm/radeon/radeon_drv.c     |  7 ------
- drivers/gpu/drm/radeon/radeon_kms.c     | 29 ++++++++++++++-----------
- 3 files changed, 26 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c |  7 +++++++
+ drivers/gpu/drm/i915/i915_drv.c              |  3 ---
+ drivers/gpu/drm/i915/i915_irq.c              | 20 +++++++++++++++-----
+ drivers/gpu/drm/i915/i915_irq.h              |  6 ++----
+ 4 files changed, 24 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
-index 7187158b9963..91dda2125661 100644
---- a/drivers/gpu/drm/radeon/radeon_display.c
-+++ b/drivers/gpu/drm/radeon/radeon_display.c
-@@ -45,6 +45,10 @@
- #include "atom.h"
- #include "radeon.h"
- 
-+u32 radeon_get_vblank_counter_kms(struct drm_crtc *crtc);
-+int radeon_enable_vblank_kms(struct drm_crtc *crtc);
-+void radeon_disable_vblank_kms(struct drm_crtc *crtc);
-+
- static void avivo_crtc_load_lut(struct drm_crtc *crtc)
- {
- 	struct radeon_crtc *radeon_crtc = to_radeon_crtc(crtc);
-@@ -458,7 +462,7 @@ static void radeon_flip_work_func(struct work_struct *__work)
- 		(DRM_SCANOUTPOS_VALID | DRM_SCANOUTPOS_IN_VBLANK) &&
- 		(!ASIC_IS_AVIVO(rdev) ||
- 		((int) (work->target_vblank -
--		dev->driver->get_vblank_counter(dev, work->crtc_id)) > 0)))
-+		crtc->funcs->get_vblank_counter(crtc)) > 0)))
- 		usleep_range(1000, 2000);
- 
- 	/* We borrow the event spin lock for protecting flip_status */
-@@ -574,7 +578,7 @@ static int radeon_crtc_page_flip_target(struct drm_crtc *crtc,
- 	}
- 	work->base = base;
- 	work->target_vblank = target - (uint32_t)drm_crtc_vblank_count(crtc) +
--		dev->driver->get_vblank_counter(dev, work->crtc_id);
-+		crtc->funcs->get_vblank_counter(crtc);
- 
- 	/* We borrow the event spin lock for protecting flip_work */
- 	spin_lock_irqsave(&crtc->dev->event_lock, flags);
-@@ -666,6 +670,10 @@ static const struct drm_crtc_funcs radeon_crtc_funcs = {
- 	.set_config = radeon_crtc_set_config,
- 	.destroy = radeon_crtc_destroy,
- 	.page_flip_target = radeon_crtc_page_flip_target,
-+	.get_vblank_counter = radeon_get_vblank_counter_kms,
-+	.enable_vblank = radeon_enable_vblank_kms,
-+	.disable_vblank = radeon_disable_vblank_kms,
-+	.get_vblank_timestamp = drm_crtc_vblank_helper_get_vblank_timestamp,
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 59c375879186..c8f1da845e7d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -16336,6 +16336,7 @@ static const struct drm_crtc_funcs bdw_crtc_funcs = {
+ 	.get_vblank_counter = g4x_get_vblank_counter,
+ 	.enable_vblank = bdw_enable_vblank,
+ 	.disable_vblank = bdw_disable_vblank,
++	.get_vblank_timestamp = i915_crtc_get_vblank_timestamp,
  };
  
- static void radeon_crtc_init(struct drm_device *dev, int index)
-diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
-index 1f597f166bff..49ce2e7d5f9e 100644
---- a/drivers/gpu/drm/radeon/radeon_drv.c
-+++ b/drivers/gpu/drm/radeon/radeon_drv.c
-@@ -119,9 +119,6 @@ void radeon_driver_postclose_kms(struct drm_device *dev,
- int radeon_suspend_kms(struct drm_device *dev, bool suspend,
- 		       bool fbcon, bool freeze);
- int radeon_resume_kms(struct drm_device *dev, bool resume, bool fbcon);
--u32 radeon_get_vblank_counter_kms(struct drm_device *dev, unsigned int pipe);
--int radeon_enable_vblank_kms(struct drm_device *dev, unsigned int pipe);
--void radeon_disable_vblank_kms(struct drm_device *dev, unsigned int pipe);
- void radeon_driver_irq_preinstall_kms(struct drm_device *dev);
- int radeon_driver_irq_postinstall_kms(struct drm_device *dev);
- void radeon_driver_irq_uninstall_kms(struct drm_device *dev);
-@@ -571,10 +568,6 @@ static struct drm_driver kms_driver = {
- 	.postclose = radeon_driver_postclose_kms,
- 	.lastclose = radeon_driver_lastclose_kms,
- 	.unload = radeon_driver_unload_kms,
--	.get_vblank_counter = radeon_get_vblank_counter_kms,
--	.enable_vblank = radeon_enable_vblank_kms,
--	.disable_vblank = radeon_disable_vblank_kms,
+ static const struct drm_crtc_funcs ilk_crtc_funcs = {
+@@ -16344,6 +16345,7 @@ static const struct drm_crtc_funcs ilk_crtc_funcs = {
+ 	.get_vblank_counter = g4x_get_vblank_counter,
+ 	.enable_vblank = ilk_enable_vblank,
+ 	.disable_vblank = ilk_disable_vblank,
++	.get_vblank_timestamp = i915_crtc_get_vblank_timestamp,
+ };
+ 
+ static const struct drm_crtc_funcs g4x_crtc_funcs = {
+@@ -16352,6 +16354,7 @@ static const struct drm_crtc_funcs g4x_crtc_funcs = {
+ 	.get_vblank_counter = g4x_get_vblank_counter,
+ 	.enable_vblank = i965_enable_vblank,
+ 	.disable_vblank = i965_disable_vblank,
++	.get_vblank_timestamp = i915_crtc_get_vblank_timestamp,
+ };
+ 
+ static const struct drm_crtc_funcs i965_crtc_funcs = {
+@@ -16360,6 +16363,7 @@ static const struct drm_crtc_funcs i965_crtc_funcs = {
+ 	.get_vblank_counter = i915_get_vblank_counter,
+ 	.enable_vblank = i965_enable_vblank,
+ 	.disable_vblank = i965_disable_vblank,
++	.get_vblank_timestamp = i915_crtc_get_vblank_timestamp,
+ };
+ 
+ static const struct drm_crtc_funcs i915gm_crtc_funcs = {
+@@ -16368,6 +16372,7 @@ static const struct drm_crtc_funcs i915gm_crtc_funcs = {
+ 	.get_vblank_counter = i915_get_vblank_counter,
+ 	.enable_vblank = i915gm_enable_vblank,
+ 	.disable_vblank = i915gm_disable_vblank,
++	.get_vblank_timestamp = i915_crtc_get_vblank_timestamp,
+ };
+ 
+ static const struct drm_crtc_funcs i915_crtc_funcs = {
+@@ -16376,6 +16381,7 @@ static const struct drm_crtc_funcs i915_crtc_funcs = {
+ 	.get_vblank_counter = i915_get_vblank_counter,
+ 	.enable_vblank = i8xx_enable_vblank,
+ 	.disable_vblank = i8xx_disable_vblank,
++	.get_vblank_timestamp = i915_crtc_get_vblank_timestamp,
+ };
+ 
+ static const struct drm_crtc_funcs i8xx_crtc_funcs = {
+@@ -16384,6 +16390,7 @@ static const struct drm_crtc_funcs i8xx_crtc_funcs = {
+ 	/* no hw vblank counter */
+ 	.enable_vblank = i8xx_enable_vblank,
+ 	.disable_vblank = i8xx_disable_vblank,
++	.get_vblank_timestamp = i915_crtc_get_vblank_timestamp,
+ };
+ 
+ static struct intel_crtc *intel_crtc_alloc(void)
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index f7385abdd74b..30b9ba136a81 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -2769,9 +2769,6 @@ static struct drm_driver driver = {
+ 	.gem_prime_export = i915_gem_prime_export,
+ 	.gem_prime_import = i915_gem_prime_import,
+ 
 -	.get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
- 	.irq_preinstall = radeon_driver_irq_preinstall_kms,
- 	.irq_postinstall = radeon_driver_irq_postinstall_kms,
- 	.irq_uninstall = radeon_driver_irq_uninstall_kms,
-diff --git a/drivers/gpu/drm/radeon/radeon_kms.c b/drivers/gpu/drm/radeon/radeon_kms.c
-index d24f23a81656..cab891f86dc0 100644
---- a/drivers/gpu/drm/radeon/radeon_kms.c
-+++ b/drivers/gpu/drm/radeon/radeon_kms.c
-@@ -739,14 +739,15 @@ void radeon_driver_postclose_kms(struct drm_device *dev,
- /**
-  * radeon_get_vblank_counter_kms - get frame count
-  *
-- * @dev: drm dev pointer
-- * @pipe: crtc to get the frame count from
-+ * @crtc: crtc to get the frame count from
-  *
-  * Gets the frame count on the requested crtc (all asics).
-  * Returns frame count on success, -EINVAL on failure.
-  */
--u32 radeon_get_vblank_counter_kms(struct drm_device *dev, unsigned int pipe)
-+u32 radeon_get_vblank_counter_kms(struct drm_crtc *crtc)
- {
-+	struct drm_device *dev = crtc->dev;
-+	unsigned int pipe = crtc->index;
- 	int vpos, hpos, stat;
- 	u32 count;
- 	struct radeon_device *rdev = dev->dev_private;
-@@ -808,25 +809,26 @@ u32 radeon_get_vblank_counter_kms(struct drm_device *dev, unsigned int pipe)
- /**
-  * radeon_enable_vblank_kms - enable vblank interrupt
-  *
-- * @dev: drm dev pointer
-  * @crtc: crtc to enable vblank interrupt for
-  *
-  * Enable the interrupt on the requested crtc (all asics).
-  * Returns 0 on success, -EINVAL on failure.
-  */
--int radeon_enable_vblank_kms(struct drm_device *dev, int crtc)
-+int radeon_enable_vblank_kms(struct drm_crtc *crtc)
- {
-+	struct drm_device *dev = crtc->dev;
-+	unsigned int pipe = crtc->index;
- 	struct radeon_device *rdev = dev->dev_private;
- 	unsigned long irqflags;
- 	int r;
+-	.get_scanout_position = i915_get_crtc_scanoutpos,
+-
+ 	.dumb_create = i915_gem_dumb_create,
+ 	.dumb_map_offset = i915_gem_dumb_mmap_offset,
  
--	if (crtc < 0 || crtc >= rdev->num_crtc) {
--		DRM_ERROR("Invalid crtc %d\n", crtc);
-+	if (pipe < 0 || pipe >= rdev->num_crtc) {
-+		DRM_ERROR("Invalid crtc %d\n", pipe);
- 		return -EINVAL;
- 	}
- 
- 	spin_lock_irqsave(&rdev->irq.lock, irqflags);
--	rdev->irq.crtc_vblank_int[crtc] = true;
-+	rdev->irq.crtc_vblank_int[pipe] = true;
- 	r = radeon_irq_set(rdev);
- 	spin_unlock_irqrestore(&rdev->irq.lock, irqflags);
- 	return r;
-@@ -835,23 +837,24 @@ int radeon_enable_vblank_kms(struct drm_device *dev, int crtc)
- /**
-  * radeon_disable_vblank_kms - disable vblank interrupt
-  *
-- * @dev: drm dev pointer
-  * @crtc: crtc to disable vblank interrupt for
-  *
-  * Disable the interrupt on the requested crtc (all asics).
-  */
--void radeon_disable_vblank_kms(struct drm_device *dev, int crtc)
-+void radeon_disable_vblank_kms(struct drm_crtc *crtc)
- {
-+	struct drm_device *dev = crtc->dev;
-+	unsigned int pipe = crtc->index;
- 	struct radeon_device *rdev = dev->dev_private;
- 	unsigned long irqflags;
- 
--	if (crtc < 0 || crtc >= rdev->num_crtc) {
--		DRM_ERROR("Invalid crtc %d\n", crtc);
-+	if (pipe < 0 || pipe >= rdev->num_crtc) {
-+		DRM_ERROR("Invalid crtc %d\n", pipe);
- 		return;
- 	}
- 
- 	spin_lock_irqsave(&rdev->irq.lock, irqflags);
--	rdev->irq.crtc_vblank_int[crtc] = false;
-+	rdev->irq.crtc_vblank_int[pipe] = false;
- 	radeon_irq_set(rdev);
- 	spin_unlock_irqrestore(&rdev->irq.lock, irqflags);
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index afc6aad9bf8c..c39e3ef6e4a2 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -762,13 +762,15 @@ static int __intel_get_crtc_scanline(struct intel_crtc *crtc)
+ 	return (position + crtc->scanline_offset) % vtotal;
  }
+ 
+-bool i915_get_crtc_scanoutpos(struct drm_device *dev, unsigned int index,
+-			      bool in_vblank_irq, int *vpos, int *hpos,
+-			      ktime_t *stime, ktime_t *etime,
+-			      const struct drm_display_mode *mode)
++static bool i915_get_crtc_scanoutpos(struct drm_crtc *dcrtc,
++				     bool in_vblank_irq,
++				     int *vpos, int *hpos,
++				     ktime_t *stime, ktime_t *etime,
++				     const struct drm_display_mode *mode)
+ {
++	struct drm_device *dev = dcrtc->dev;
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+-	struct intel_crtc *crtc = to_intel_crtc(drm_crtc_from_index(dev, index));
++	struct intel_crtc *crtc = to_intel_crtc(dcrtc);
+ 	enum pipe pipe = crtc->pipe;
+ 	int position;
+ 	int vbl_start, vbl_end, hsync_start, htotal, vtotal;
+@@ -879,6 +881,14 @@ bool i915_get_crtc_scanoutpos(struct drm_device *dev, unsigned int index,
+ 	return true;
+ }
+ 
++bool i915_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
++				    ktime_t *vblank_time, bool in_vblank_irq)
++{
++	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
++		crtc, max_error, vblank_time, in_vblank_irq,
++		i915_get_crtc_scanoutpos);
++}
++
+ int intel_get_crtc_scanline(struct intel_crtc *crtc)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+diff --git a/drivers/gpu/drm/i915/i915_irq.h b/drivers/gpu/drm/i915/i915_irq.h
+index 812c47a9c2d6..53ec921c1c67 100644
+--- a/drivers/gpu/drm/i915/i915_irq.h
++++ b/drivers/gpu/drm/i915/i915_irq.h
+@@ -101,10 +101,8 @@ void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
+ void gen8_irq_power_well_pre_disable(struct drm_i915_private *dev_priv,
+ 				     u8 pipe_mask);
+ 
+-bool i915_get_crtc_scanoutpos(struct drm_device *dev, unsigned int pipe,
+-			      bool in_vblank_irq, int *vpos, int *hpos,
+-			      ktime_t *stime, ktime_t *etime,
+-			      const struct drm_display_mode *mode);
++bool i915_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
++				    ktime_t *vblank_time, bool in_vblank_irq);
+ 
+ u32 i915_get_vblank_counter(struct drm_crtc *crtc);
+ u32 g4x_get_vblank_counter(struct drm_crtc *crtc);
 -- 
 2.24.1
