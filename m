@@ -1,85 +1,152 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v6 4/6] mm/mmu_notifier: add mmu_interval_notifier_find()
-Date: Wed, 15 Jan 2020 14:05:24 -0800
-Message-ID: <528c1cff-608c-d342-1e72-90d780555204@nvidia.com>
+From: Ralph Campbell <rcampbell@nvidia.com>
+Subject: Re: [PATCH v6 5/6] nouveau: use new mmu interval notifiers
+Date: Wed, 15 Jan 2020 14:09:47 -0800
+Message-ID: <5845f50e-8bc0-8068-ee21-4f910beb1255@nvidia.com>
 References: <20200113224703.5917-1-rcampbell@nvidia.com>
- <20200113224703.5917-5-rcampbell@nvidia.com>
- <20200114124956.GN20978@mellanox.com>
+ <20200113224703.5917-6-rcampbell@nvidia.com>
+ <20200114125957.GO20978@mellanox.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <20200114124956.GN20978-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Return-path: <owner-linux-mm@kvack.org>
+In-Reply-To: <20200114125957.GO20978@mellanox.com>
 Content-Language: en-US
-Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-Cc: "linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Sender: owner-linux-mm@kvack.org
+To: Jason Gunthorpe <jgg@mellanox.com>
+Cc: "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>, Jerome Glisse <jglisse@redhat.com>, John
+ Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Andrew Morton <akpm@linux-foundation.org>, Ben Skeggs <bskeggs@redhat.com>, Shuah Khan <shuah@kernel.org>
 List-Id: nouveau.vger.kernel.org
 
 
-On 1/14/20 4:49 AM, Jason Gunthorpe wrote:
-> On Mon, Jan 13, 2020 at 02:47:01PM -0800, Ralph Campbell wrote:
->> diff --git a/mm/mmu_notifier.c b/mm/mmu_notifier.c
->> index 47ad9cc89aab..4efecc0f13cb 100644
->> +++ b/mm/mmu_notifier.c
->> @@ -1171,6 +1171,39 @@ void mmu_interval_notifier_update(struct mmu_interval_notifier *mni,
->>   }
->>   EXPORT_SYMBOL_GPL(mmu_interval_notifier_update);
->>   
->> +struct mmu_interval_notifier *mmu_interval_notifier_find(struct mm_struct *mm,
->> +				const struct mmu_interval_notifier_ops *ops,
->> +				unsigned long start, unsigned long last)
->> +{
->> +	struct mmu_notifier_mm *mmn_mm = mm->mmu_notifier_mm;
->> +	struct interval_tree_node *node;
+On 1/14/20 5:00 AM, Jason Gunthorpe wrote:
+> On Mon, Jan 13, 2020 at 02:47:02PM -0800, Ralph Campbell wrote:
+>>   void
+>>   nouveau_svmm_fini(struct nouveau_svmm **psvmm)
+>>   {
+>>   	struct nouveau_svmm *svmm = *psvmm;
 >> +	struct mmu_interval_notifier *mni;
->> +	struct mmu_interval_notifier *res = NULL;
 >> +
->> +	spin_lock(&mmn_mm->lock);
->> +	node = interval_tree_iter_first(&mmn_mm->itree, start, last);
->> +	if (node) {
->> +		mni = container_of(node, struct mmu_interval_notifier,
->> +				   interval_tree);
+>>   	if (svmm) {
+>>   		mutex_lock(&svmm->mutex);
 >> +		while (true) {
->> +			if (mni->ops == ops) {
->> +				res = mni;
+>> +			mni = mmu_interval_notifier_find(svmm->mm,
+>> +					&nouveau_svm_mni_ops, 0UL, ~0UL);
+>> +			if (!mni)
 >> +				break;
->> +			}
->> +			node = interval_tree_iter_next(&mni->interval_tree,
->> +						       start, last);
->> +			if (!node)
->> +				break;
->> +			mni = container_of(node, struct mmu_interval_notifier,
->> +					   interval_tree);
+>> +			mmu_interval_notifier_put(mni);
+> 
+> Oh, now I really don't like the name 'put'. It looks like mni is
+> refcounted here, and it isn't. put should be called 'remove_deferred'
+
+OK.
+
+> And then you also need a way to barrier this scheme on driver unload.
+
+Good point. I can add something like
+void mmu_interval_notifier_synchronize(struct mm_struct *mm)
+that waits for deferred operations to complete similar to
+mmu_interval_read_begin().
+
 >> +		}
->> +	}
->> +	spin_unlock(&mmn_mm->lock);
+>>   		svmm->vmm = NULL;
+>>   		mutex_unlock(&svmm->mutex);
+>> -		mmu_notifier_put(&svmm->notifier);
 > 
-> This doesn't seem safe at all, here we are returning a pointer to
-> memory from the interval tree with out any kind of lifetime
-> protection.
-
-It is memory that the driver has allocated and has full control over
-the lifetime since the driver does all the insertions and removals.
-The driver does have to hold the HW page table lock so lookups are
-synchronized with interval insertions and removals and page table
-entry insertions and removals.
-
-> If the interval tree is read it must be left in the read lock state
-> until the caller is done with the pointer.
+> While here it was actually a refcount.
 > 
-> .. and this poses all sorts of questions about consistency with items
-> on the deferred list. Should find return an item undergoing deletion?
+>> +static void nouveau_svmm_do_unmap(struct mmu_interval_notifier *mni,
+>> +				 const struct mmu_notifier_range *range)
+>> +{
+>> +	struct svmm_interval *smi =
+>> +		container_of(mni, struct svmm_interval, notifier);
+>> +	struct nouveau_svmm *svmm = smi->svmm;
+>> +	unsigned long start = mmu_interval_notifier_start(mni);
+>> +	unsigned long last = mmu_interval_notifier_last(mni);
+> 
+> This whole algorithm only works if it is protected by the read side of
+> the interval tree lock. Deserves at least a comment if not an
+> assertion too.
 
-I don't think so. The deferred operations are all complete when
-mmu_interval_read_begin() returns, and the sequence number check
-with mmu_interval_read_retry() guarantees there have been no changes
-while not holding the driver page table lock and calling hmm_range_fault().
+This is called from the invalidate() callback and while holding the
+driver page table lock so the struct mmu_interval_notifier and
+the interval tree can't change.
+I will add comments for v7.
 
-> Should find return items using the old interval tree values or their
-> new updated values?
+>>   static int nouveau_range_fault(struct nouveau_svmm *svmm,
+>>   			       struct nouveau_drm *drm, void *data, u32 size,
+>> -			       u64 *pfns, struct svm_notifier *notifier)
+>> +			       u64 *pfns, u64 start, u64 end)
+>>   {
+>>   	unsigned long timeout =
+>>   		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+>>   	/* Have HMM fault pages within the fault window to the GPU. */
+>>   	struct hmm_range range = {
+>> -		.notifier = &notifier->notifier,
+>> -		.start = notifier->notifier.interval_tree.start,
+>> -		.end = notifier->notifier.interval_tree.last + 1,
+>> +		.start = start,
+>> +		.end = end,
+>>   		.pfns = pfns,
+>>   		.flags = nouveau_svm_pfn_flags,
+>>   		.values = nouveau_svm_pfn_values,
+>> +		.default_flags = 0,
+>> +		.pfn_flags_mask = ~0UL,
+>>   		.pfn_shift = NVIF_VMM_PFNMAP_V0_ADDR_SHIFT,
+>>   	};
+>> -	struct mm_struct *mm = notifier->notifier.mm;
+>> +	struct mm_struct *mm = svmm->mm;
+>>   	long ret;
+>>   
+>>   	while (true) {
+>>   		if (time_after(jiffies, timeout))
+>>   			return -EBUSY;
+>>   
+>> -		range.notifier_seq = mmu_interval_read_begin(range.notifier);
+>> -		range.default_flags = 0;
+>> -		range.pfn_flags_mask = -1UL;
+>>   		down_read(&mm->mmap_sem);
+> 
+> mmap sem doesn't have to be held for the interval search, and again we
+> have lifetime issues with the membership here.
+
+I agree mmap_sem isn't needed for the interval search, it is needed if
+the search doesn't find a registered interval and one needs to be created
+to cover the underlying VMA. If an arbitrary size interval was created
+instead, then mmap_sem wouldn't be needed.
+I don't understand the lifetime/membership issue. The driver is the only thing
+that allocates, inserts, or removes struct mmu_interval_notifier and thus
+completely controls the lifetime.
+
+>> +		ret = nouveau_svmm_interval_find(svmm, &range);
+>> +		if (ret) {
+>> +			up_read(&mm->mmap_sem);
+>> +			return ret;
+>> +		}
+>> +		range.notifier_seq = mmu_interval_read_begin(range.notifier);
+>>   		ret = hmm_range_fault(&range, 0);
+>>   		up_read(&mm->mmap_sem);
+>>   		if (ret <= 0) {
+> 
+> I'm still not sure this is a better approach than what ODP does. It
+> looks very expensive on the fault path..
 > 
 > Jason
+> 
 
-I think it should only look at the old interval tree and not the deferred
-insert/remove/updates as explained above.
+ODP doesn't have this problem because users have to call ib_reg_mr()
+before any I/O can happen to the process address space. That is when
+mmu_interval_notifier_insert() / mmu_interval_notifier_remove() can
+be called and the driver doesn't have to worry about the interval
+changing sizes or being removed while I/O is happening.
+For GPU like devices, I'm trying to allow hardware access to any user
+level address without pre-registering it. That means inserting mmu
+interval notifiers for the ranges the GPU page faults on and updating
+the intervals as munmap() calls remove parts of the address space.
+I don't want to register an interval per page so the logical range
+is the underlying VMA.
+
+It isn't that expensive, there is an extra driver lock/unlock as
+part of the lookup and possibly a find_vma() and kmalloc(GFP_ATOMIC)
+for new intervals. Also, the deferred interval updates for munmap().
+Compared to the cost of updating PTEs in the device and GPU fault
+handling, this is minimal overhead.
