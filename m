@@ -1,7 +1,7 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 02/21] drm: Evaluate struct drm_device.vblank_disable_immediate on each use
-Date: Wed, 15 Jan 2020 13:16:33 +0100
-Message-ID: <20200115121652.7050-3-tzimmermann@suse.de>
+Subject: [PATCH v2 10/21] drm/radeon: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+Date: Wed, 15 Jan 2020 13:16:41 +0100
+Message-ID: <20200115121652.7050-11-tzimmermann@suse.de>
 References: <20200115121652.7050-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -12,96 +12,111 @@ To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koen
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
 List-Id: nouveau.vger.kernel.org
 
-VBLANK interrupts can be disabled immediately or with a delay, where the
-latter is the default. The former option can be selected by setting
-get_vblank_timestamp, and enabling vblank_disable_immediate in struct
-drm_device.
-
-The setup is only evaluated once when DRM initializes VBLANKs. Evaluating
-the settings on each use of vblank_disable_immediate will allow for easy
-integration of CRTC VBLANK functions.
+The callback struct drm_driver.get_scanout_position() is deprecated in
+favor of struct drm_crtc_helper_funcs.get_scanout_position(). Convert
+radeon over.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/drm_vblank.c | 31 ++++++++++++++-----------------
- 1 file changed, 14 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/radeon/atombios_crtc.c      |  1 +
+ drivers/gpu/drm/radeon/radeon_display.c     | 13 +++++++++++++
+ drivers/gpu/drm/radeon/radeon_drv.c         | 11 -----------
+ drivers/gpu/drm/radeon/radeon_legacy_crtc.c |  3 ++-
+ drivers/gpu/drm/radeon/radeon_mode.h        |  6 ++++++
+ 5 files changed, 22 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index 3f1dd54cc8bb..abb085c67d82 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -481,19 +481,6 @@ int drm_vblank_init(struct drm_device *dev, unsigned int num_crtcs)
+diff --git a/drivers/gpu/drm/radeon/atombios_crtc.c b/drivers/gpu/drm/radeon/atombios_crtc.c
+index da2c9e295408..447d74b78f19 100644
+--- a/drivers/gpu/drm/radeon/atombios_crtc.c
++++ b/drivers/gpu/drm/radeon/atombios_crtc.c
+@@ -2232,6 +2232,7 @@ static const struct drm_crtc_helper_funcs atombios_helper_funcs = {
+ 	.prepare = atombios_crtc_prepare,
+ 	.commit = atombios_crtc_commit,
+ 	.disable = atombios_crtc_disable,
++	.get_scanout_position = radeon_get_crtc_scanout_position,
+ };
  
- 	DRM_INFO("Supports vblank timestamp caching Rev 2 (21.10.2013).\n");
+ void radeon_atombios_init_crtc(struct drm_device *dev,
+diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
+index 962575e27cde..7187158b9963 100644
+--- a/drivers/gpu/drm/radeon/radeon_display.c
++++ b/drivers/gpu/drm/radeon/radeon_display.c
+@@ -1978,3 +1978,16 @@ int radeon_get_crtc_scanoutpos(struct drm_device *dev, unsigned int pipe,
  
--	/* Driver specific high-precision vblank timestamping supported? */
--	if (dev->driver->get_vblank_timestamp)
--		DRM_INFO("Driver supports precise vblank timestamp query.\n");
--	else
--		DRM_INFO("No driver support for vblank timestamp query.\n");
--
--	/* Must have precise timestamping for reliable vblank instant disable */
--	if (dev->vblank_disable_immediate && !dev->driver->get_vblank_timestamp) {
--		dev->vblank_disable_immediate = false;
--		DRM_INFO("Setting vblank_disable_immediate to false because "
--			 "get_vblank_timestamp == NULL\n");
--	}
--
- 	return 0;
- 
- err:
-@@ -1070,6 +1057,15 @@ int drm_crtc_vblank_get(struct drm_crtc *crtc)
+ 	return ret;
  }
- EXPORT_SYMBOL(drm_crtc_vblank_get);
- 
-+static bool __vblank_disable_immediate(struct drm_device *dev, unsigned int pipe)
-+{
-+	if (!dev->vblank_disable_immediate)
-+		return false;
-+	if (!dev->driver->get_vblank_timestamp)
-+		return false;
-+	return true;
-+}
 +
- static void drm_vblank_put(struct drm_device *dev, unsigned int pipe)
- {
- 	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
-@@ -1086,7 +1082,7 @@ static void drm_vblank_put(struct drm_device *dev, unsigned int pipe)
- 			return;
- 		else if (drm_vblank_offdelay < 0)
- 			vblank_disable_fn(&vblank->disable_timer);
--		else if (!dev->vblank_disable_immediate)
-+		else if (__vblank_disable_immediate(dev, pipe))
- 			mod_timer(&vblank->disable_timer,
- 				  jiffies + ((drm_vblank_offdelay * HZ)/1000));
- 	}
-@@ -1663,7 +1659,7 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
- 	/* If the counter is currently enabled and accurate, short-circuit
- 	 * queries to return the cached timestamp of the last vblank.
- 	 */
--	if (dev->vblank_disable_immediate &&
-+	if (__vblank_disable_immediate(dev, pipe) &&
- 	    drm_wait_vblank_is_query(vblwait) &&
- 	    READ_ONCE(vblank->enabled)) {
- 		drm_wait_vblank_reply(dev, pipe, &vblwait->reply);
-@@ -1820,7 +1816,7 @@ bool drm_handle_vblank(struct drm_device *dev, unsigned int pipe)
- 	 * been signaled. The disable has to be last (after
- 	 * drm_handle_vblank_events) so that the timestamp is always accurate.
- 	 */
--	disable_irq = (dev->vblank_disable_immediate &&
-+	disable_irq = (__vblank_disable_immediate(dev, pipe) &&
- 		       drm_vblank_offdelay > 0 &&
- 		       !atomic_read(&vblank->refcount));
++bool
++radeon_get_crtc_scanout_position(struct drm_crtc *crtc,
++				 bool in_vblank_irq, int *vpos, int *hpos,
++				 ktime_t *stime, ktime_t *etime,
++				 const struct drm_display_mode *mode)
++{
++	struct drm_device *dev = crtc->dev;
++	unsigned int pipe = crtc->index;
++
++	return radeon_get_crtc_scanoutpos(dev, pipe, 0, vpos, hpos,
++					  stime, etime, mode);
++}
+diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
+index fd74e2611185..1f597f166bff 100644
+--- a/drivers/gpu/drm/radeon/radeon_drv.c
++++ b/drivers/gpu/drm/radeon/radeon_drv.c
+@@ -563,16 +563,6 @@ static const struct file_operations radeon_driver_kms_fops = {
+ #endif
+ };
  
-@@ -1893,7 +1889,8 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *dev, void *data,
- 	pipe = drm_crtc_index(crtc);
+-static bool
+-radeon_get_crtc_scanout_position(struct drm_device *dev, unsigned int pipe,
+-				 bool in_vblank_irq, int *vpos, int *hpos,
+-				 ktime_t *stime, ktime_t *etime,
+-				 const struct drm_display_mode *mode)
+-{
+-	return radeon_get_crtc_scanoutpos(dev, pipe, 0, vpos, hpos,
+-					  stime, etime, mode);
+-}
+-
+ static struct drm_driver kms_driver = {
+ 	.driver_features =
+ 	    DRIVER_USE_AGP | DRIVER_GEM | DRIVER_RENDER,
+@@ -585,7 +575,6 @@ static struct drm_driver kms_driver = {
+ 	.enable_vblank = radeon_enable_vblank_kms,
+ 	.disable_vblank = radeon_disable_vblank_kms,
+ 	.get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
+-	.get_scanout_position = radeon_get_crtc_scanout_position,
+ 	.irq_preinstall = radeon_driver_irq_preinstall_kms,
+ 	.irq_postinstall = radeon_driver_irq_postinstall_kms,
+ 	.irq_uninstall = radeon_driver_irq_uninstall_kms,
+diff --git a/drivers/gpu/drm/radeon/radeon_legacy_crtc.c b/drivers/gpu/drm/radeon/radeon_legacy_crtc.c
+index a1985a552794..8817fd033cd0 100644
+--- a/drivers/gpu/drm/radeon/radeon_legacy_crtc.c
++++ b/drivers/gpu/drm/radeon/radeon_legacy_crtc.c
+@@ -1111,7 +1111,8 @@ static const struct drm_crtc_helper_funcs legacy_helper_funcs = {
+ 	.mode_set_base_atomic = radeon_crtc_set_base_atomic,
+ 	.prepare = radeon_crtc_prepare,
+ 	.commit = radeon_crtc_commit,
+-	.disable = radeon_crtc_disable
++	.disable = radeon_crtc_disable,
++	.get_scanout_position = radeon_get_crtc_scanout_position,
+ };
  
- 	vblank = &dev->vblank[pipe];
--	vblank_enabled = dev->vblank_disable_immediate && READ_ONCE(vblank->enabled);
-+	vblank_enabled = __vblank_disable_immediate(dev, pipe) &&
-+			 READ_ONCE(vblank->enabled);
  
- 	if (!vblank_enabled) {
- 		ret = drm_crtc_vblank_get(crtc);
+diff --git a/drivers/gpu/drm/radeon/radeon_mode.h b/drivers/gpu/drm/radeon/radeon_mode.h
+index fd470d6bf3f4..06c4c527d376 100644
+--- a/drivers/gpu/drm/radeon/radeon_mode.h
++++ b/drivers/gpu/drm/radeon/radeon_mode.h
+@@ -881,6 +881,12 @@ extern int radeon_get_crtc_scanoutpos(struct drm_device *dev, unsigned int pipe,
+ 				      ktime_t *stime, ktime_t *etime,
+ 				      const struct drm_display_mode *mode);
+ 
++extern bool radeon_get_crtc_scanout_position(struct drm_crtc *crtc,
++					     bool in_vblank_irq, int *vpos,
++					     int *hpos, ktime_t *stime,
++					     ktime_t *etime,
++					     const struct drm_display_mode *mode);
++
+ extern bool radeon_combios_check_hardcoded_edid(struct radeon_device *rdev);
+ extern struct edid *
+ radeon_bios_get_hardcoded_edid(struct radeon_device *rdev);
 -- 
 2.24.1
