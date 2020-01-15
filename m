@@ -1,67 +1,50 @@
-From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau: gp10b: Use gp100_grctx and gp100_gr_zbc
-Date: Wed, 15 Jan 2020 15:07:56 +0100
-Message-ID: <20200115140756.70830-1-thierry.reding@gmail.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v2 18/21] drm/vc4: Convert to CRTC VBLANK callbacks
+Date: Wed, 15 Jan 2020 13:16:49 +0100
+Message-ID: <20200115121652.7050-19-tzimmermann@suse.de>
+References: <20200115121652.7050-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Return-path: <linux-arm-msm-owner@vger.kernel.org>
+In-Reply-To: <20200115121652.7050-1-tzimmermann@suse.de>
+Sender: linux-arm-msm-owner@vger.kernel.org
+To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com, maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com, robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org, vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com, mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, linux-graphics-maintainer@vmware.com, thellstrom@vmware.com, bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
 List-Id: nouveau.vger.kernel.org
 
-From: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+VBLANK callbacks in struct drm_driver are deprecated in favor of
+their equivalents in struct drm_crtc_funcs. Convert vc4 over.
 
-gp10b doesn't have all the registers that gp102_gr_zbc wants to access,
-which causes IBUS MMIO faults to occur. Avoid this by using the gp100
-variants of grctx and gr_zbc.
-
-Signed-off-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.h | 1 +
- drivers/gpu/drm/nouveau/nvkm/engine/gr/gp100.c | 2 +-
- drivers/gpu/drm/nouveau/nvkm/engine/gr/gp10b.c | 4 ++--
- 3 files changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/vc4/vc4_crtc.c | 1 +
+ drivers/gpu/drm/vc4/vc4_drv.c  | 2 --
+ 2 files changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.h b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.h
-index fafdd0bbea9b..c4b2e6346684 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.h
-@@ -245,6 +245,7 @@ void gp100_gr_init_fecs_exceptions(struct gf100_gr *);
- void gp100_gr_init_shader_exceptions(struct gf100_gr *, int, int);
- void gp100_gr_zbc_clear_color(struct gf100_gr *, int);
- void gp100_gr_zbc_clear_depth(struct gf100_gr *, int);
-+extern const struct gf100_gr_func_zbc gp100_gr_zbc;
+diff --git a/drivers/gpu/drm/vc4/vc4_crtc.c b/drivers/gpu/drm/vc4/vc4_crtc.c
+index f1e7597ea17e..1208258ad3b2 100644
+--- a/drivers/gpu/drm/vc4/vc4_crtc.c
++++ b/drivers/gpu/drm/vc4/vc4_crtc.c
+@@ -1031,6 +1031,7 @@ static const struct drm_crtc_funcs vc4_crtc_funcs = {
+ 	.gamma_set = drm_atomic_helper_legacy_gamma_set,
+ 	.enable_vblank = vc4_enable_vblank,
+ 	.disable_vblank = vc4_disable_vblank,
++	.get_vblank_timestamp = drm_crtc_vblank_helper_get_vblank_timestamp,
+ };
  
- void gp102_gr_init_swdx_pes_mask(struct gf100_gr *);
- extern const struct gf100_gr_func_zbc gp102_gr_zbc;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gp100.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gp100.c
-index 9d0521ce309a..ef16fee61327 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gp100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gp100.c
-@@ -62,7 +62,7 @@ gp100_gr_zbc_clear_depth(struct gf100_gr *gr, int zbc)
- 			  gr->zbc_depth[zbc].format << ((znum % 4) * 7));
- }
+ static const struct drm_crtc_helper_funcs vc4_crtc_helper_funcs = {
+diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
+index e6982a7b0c5e..76f93b662766 100644
+--- a/drivers/gpu/drm/vc4/vc4_drv.c
++++ b/drivers/gpu/drm/vc4/vc4_drv.c
+@@ -190,8 +190,6 @@ static struct drm_driver vc4_drm_driver = {
+ 	.irq_postinstall = vc4_irq_postinstall,
+ 	.irq_uninstall = vc4_irq_uninstall,
  
--static const struct gf100_gr_func_zbc
-+const struct gf100_gr_func_zbc
- gp100_gr_zbc = {
- 	.clear_color = gp100_gr_zbc_clear_color,
- 	.clear_depth = gp100_gr_zbc_clear_depth,
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gp10b.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gp10b.c
-index 303dceddd4a8..0b375b2587d2 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gp10b.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gp10b.c
-@@ -48,8 +48,8 @@ gp10b_gr = {
- 	.gpc_nr = 1,
- 	.tpc_nr = 2,
- 	.ppc_nr = 1,
--	.grctx = &gp102_grctx,
--	.zbc = &gp102_gr_zbc,
-+	.grctx = &gp100_grctx,
-+	.zbc = &gp100_gr_zbc,
- 	.sclass = {
- 		{ -1, -1, FERMI_TWOD_A },
- 		{ -1, -1, KEPLER_INLINE_TO_MEMORY_B },
+-	.get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
+-
+ #if defined(CONFIG_DEBUG_FS)
+ 	.debugfs_init = vc4_debugfs_init,
+ #endif
 -- 
 2.24.1
