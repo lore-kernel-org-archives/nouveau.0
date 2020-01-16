@@ -1,131 +1,213 @@
-From: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
-Subject: Re: [PATCH v2 19/21] drm/vkms: Convert to CRTC VBLANK callbacks
-Date: Wed, 15 Jan 2020 18:18:23 -0500
-Message-ID: <20200115231823.v6uyxtgxnfgwmsqq@smtp.gmail.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [Intel-gfx] [PATCH v2 02/21] drm: Evaluate struct
+ drm_device.vblank_disable_immediate on each use
+Date: Thu, 16 Jan 2020 09:03:38 +0100
+Message-ID: <646e4236-ff5e-acd0-32f2-e6d33cba70e3@suse.de>
 References: <20200115121652.7050-1-tzimmermann@suse.de>
- <20200115121652.7050-20-tzimmermann@suse.de>
+ <20200115121652.7050-3-tzimmermann@suse.de>
+ <20200115143757.GZ13686@intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mkcm5mxh5ewyz3eu"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="3eAvSttXZQZFdMeghjaqeDuI1UsRNq3sn"
 Return-path: <linux-arm-msm-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20200115121652.7050-20-tzimmermann@suse.de>
+In-Reply-To: <20200115143757.GZ13686@intel.com>
 Sender: linux-arm-msm-owner@vger.kernel.org
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com, maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com, robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org, vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com, mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net, hamohammed.sa@gmail.com, linux-graphics-maintainer@vmware.com, thellstrom@vmware.com, bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.f
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com, maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com, robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org, vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com, mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, linux-graphics-maintainer@vmware.com, thellstrom@vmware.com, bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.fre
 List-Id: nouveau.vger.kernel.org
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--3eAvSttXZQZFdMeghjaqeDuI1UsRNq3sn
+Content-Type: multipart/mixed; boundary="IDhA7LRVBgaf9BIUqPyHk8du8qIhBJ2s0";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com,
+ christian.koenig@amd.com, David1.Zhou@amd.com,
+ maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com,
+ robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org,
+ vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net,
+ rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com,
+ linux-graphics-maintainer@vmware.com, thellstrom@vmware.com,
+ bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org
+Message-ID: <646e4236-ff5e-acd0-32f2-e6d33cba70e3@suse.de>
+Subject: Re: [Intel-gfx] [PATCH v2 02/21] drm: Evaluate struct
+ drm_device.vblank_disable_immediate on each use
+References: <20200115121652.7050-1-tzimmermann@suse.de>
+ <20200115121652.7050-3-tzimmermann@suse.de>
+ <20200115143757.GZ13686@intel.com>
+In-Reply-To: <20200115143757.GZ13686@intel.com>
 
---mkcm5mxh5ewyz3eu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--IDhA7LRVBgaf9BIUqPyHk8du8qIhBJ2s0
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi
 
-Thanks for the patch, I reviewed and tested it. Everything looks fine
-for VKMS.
+Am 15.01.20 um 15:37 schrieb Ville Syrj=C3=A4l=C3=A4:
+> On Wed, Jan 15, 2020 at 01:16:33PM +0100, Thomas Zimmermann wrote:
+>> VBLANK interrupts can be disabled immediately or with a delay, where t=
+he
+>> latter is the default. The former option can be selected by setting
+>> get_vblank_timestamp, and enabling vblank_disable_immediate in struct
+>> drm_device.
+>>
+>> The setup is only evaluated once when DRM initializes VBLANKs. Evaluat=
+ing
+>> the settings on each use of vblank_disable_immediate will allow for ea=
+sy
+>> integration of CRTC VBLANK functions.
+>>
+>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>> ---
+>>  drivers/gpu/drm/drm_vblank.c | 31 ++++++++++++++-----------------
+>>  1 file changed, 14 insertions(+), 17 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank=
+=2Ec
+>> index 3f1dd54cc8bb..abb085c67d82 100644
+>> --- a/drivers/gpu/drm/drm_vblank.c
+>> +++ b/drivers/gpu/drm/drm_vblank.c
+>> @@ -481,19 +481,6 @@ int drm_vblank_init(struct drm_device *dev, unsig=
+ned int num_crtcs)
+>> =20
+>>  	DRM_INFO("Supports vblank timestamp caching Rev 2 (21.10.2013).\n");=
 
-Reviewed-by: Rodrigo Siqueira <rodrigosiqueira@gmail.com>
-Tested-by: Rodrigo Siqueira <rodrigosiqueira@gmail.com>
-
-On 01/15, Thomas Zimmermann wrote:
-> VBLANK callbacks in struct drm_driver are deprecated in favor of
-> their equivalents in struct drm_crtc_funcs. Convert vkms over.
+>> =20
+>> -	/* Driver specific high-precision vblank timestamping supported? */
+>> -	if (dev->driver->get_vblank_timestamp)
+>> -		DRM_INFO("Driver supports precise vblank timestamp query.\n");
+>> -	else
+>> -		DRM_INFO("No driver support for vblank timestamp query.\n");
+>> -
+>> -	/* Must have precise timestamping for reliable vblank instant disabl=
+e */
+>> -	if (dev->vblank_disable_immediate && !dev->driver->get_vblank_timest=
+amp) {
+>> -		dev->vblank_disable_immediate =3D false;
+>> -		DRM_INFO("Setting vblank_disable_immediate to false because "
+>> -			 "get_vblank_timestamp =3D=3D NULL\n");
+>> -	}
 >=20
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
->  drivers/gpu/drm/vkms/vkms_crtc.c | 9 ++++++---
->  drivers/gpu/drm/vkms/vkms_drv.c  | 1 -
->  drivers/gpu/drm/vkms/vkms_drv.h  | 4 ----
->  3 files changed, 6 insertions(+), 8 deletions(-)
+> Which drivers are so broken they set vblank_disable_immediate to true
+> without having the vfunc specified? IMO this code should just go away
+> (or converted to a WARN).
+
+It's probably not a problem in practice. I'll put WARN_ON around the
+condition.
+
+Best regards
+Thomas
+
 >=20
-> diff --git a/drivers/gpu/drm/vkms/vkms_crtc.c b/drivers/gpu/drm/vkms/vkms=
-_crtc.c
-> index 74f703b8d22a..ac85e17428f8 100644
-> --- a/drivers/gpu/drm/vkms/vkms_crtc.c
-> +++ b/drivers/gpu/drm/vkms/vkms_crtc.c
-> @@ -76,10 +76,12 @@ static void vkms_disable_vblank(struct drm_crtc *crtc)
->  	hrtimer_cancel(&out->vblank_hrtimer);
->  }
-> =20
-> -bool vkms_get_vblank_timestamp(struct drm_device *dev, unsigned int pipe,
-> -			       int *max_error, ktime_t *vblank_time,
-> -			       bool in_vblank_irq)
-> +static bool vkms_get_vblank_timestamp(struct drm_crtc *crtc,
-> +				      int *max_error, ktime_t *vblank_time,
-> +				      bool in_vblank_irq)
->  {
-> +	struct drm_device *dev =3D crtc->dev;
-> +	unsigned int pipe =3D crtc->index;
->  	struct vkms_device *vkmsdev =3D drm_device_to_vkms_device(dev);
->  	struct vkms_output *output =3D &vkmsdev->output;
->  	struct drm_vblank_crtc *vblank =3D &dev->vblank[pipe];
-> @@ -154,6 +156,7 @@ static const struct drm_crtc_funcs vkms_crtc_funcs =
-=3D {
->  	.atomic_destroy_state   =3D vkms_atomic_crtc_destroy_state,
->  	.enable_vblank		=3D vkms_enable_vblank,
->  	.disable_vblank		=3D vkms_disable_vblank,
-> +	.get_vblank_timestamp	=3D vkms_get_vblank_timestamp,
->  	.get_crc_sources	=3D vkms_get_crc_sources,
->  	.set_crc_source		=3D vkms_set_crc_source,
->  	.verify_crc_source	=3D vkms_verify_crc_source,
-> diff --git a/drivers/gpu/drm/vkms/vkms_drv.c b/drivers/gpu/drm/vkms/vkms_=
-drv.c
-> index 25bd7519295f..860de052e820 100644
-> --- a/drivers/gpu/drm/vkms/vkms_drv.c
-> +++ b/drivers/gpu/drm/vkms/vkms_drv.c
-> @@ -103,7 +103,6 @@ static struct drm_driver vkms_driver =3D {
->  	.dumb_create		=3D vkms_dumb_create,
->  	.gem_vm_ops		=3D &vkms_gem_vm_ops,
->  	.gem_free_object_unlocked =3D vkms_gem_free_object,
-> -	.get_vblank_timestamp	=3D vkms_get_vblank_timestamp,
->  	.prime_fd_to_handle	=3D drm_gem_prime_fd_to_handle,
->  	.gem_prime_import_sg_table =3D vkms_prime_import_sg_table,
-> =20
-> diff --git a/drivers/gpu/drm/vkms/vkms_drv.h b/drivers/gpu/drm/vkms/vkms_=
-drv.h
-> index 7d52e24564db..eda04ffba7b1 100644
-> --- a/drivers/gpu/drm/vkms/vkms_drv.h
-> +++ b/drivers/gpu/drm/vkms/vkms_drv.h
-> @@ -111,10 +111,6 @@ struct vkms_gem_object {
->  int vkms_crtc_init(struct drm_device *dev, struct drm_crtc *crtc,
->  		   struct drm_plane *primary, struct drm_plane *cursor);
-> =20
-> -bool vkms_get_vblank_timestamp(struct drm_device *dev, unsigned int pipe,
-> -			       int *max_error, ktime_t *vblank_time,
-> -			       bool in_vblank_irq);
-> -
->  int vkms_output_init(struct vkms_device *vkmsdev, int index);
-> =20
->  struct drm_plane *vkms_plane_init(struct vkms_device *vkmsdev,
-> --=20
-> 2.24.1
+>> -
+>>  	return 0;
+>> =20
+>>  err:
+>> @@ -1070,6 +1057,15 @@ int drm_crtc_vblank_get(struct drm_crtc *crtc)
+>>  }
+>>  EXPORT_SYMBOL(drm_crtc_vblank_get);
+>> =20
+>> +static bool __vblank_disable_immediate(struct drm_device *dev, unsign=
+ed int pipe)
+>> +{
+>> +	if (!dev->vblank_disable_immediate)
+>> +		return false;
+>> +	if (!dev->driver->get_vblank_timestamp)
+>> +		return false;
+>> +	return true;
+>> +}
+>> +
+>>  static void drm_vblank_put(struct drm_device *dev, unsigned int pipe)=
+
+>>  {
+>>  	struct drm_vblank_crtc *vblank =3D &dev->vblank[pipe];
+>> @@ -1086,7 +1082,7 @@ static void drm_vblank_put(struct drm_device *de=
+v, unsigned int pipe)
+>>  			return;
+>>  		else if (drm_vblank_offdelay < 0)
+>>  			vblank_disable_fn(&vblank->disable_timer);
+>> -		else if (!dev->vblank_disable_immediate)
+>> +		else if (__vblank_disable_immediate(dev, pipe))
+>>  			mod_timer(&vblank->disable_timer,
+>>  				  jiffies + ((drm_vblank_offdelay * HZ)/1000));
+>>  	}
+>> @@ -1663,7 +1659,7 @@ int drm_wait_vblank_ioctl(struct drm_device *dev=
+, void *data,
+>>  	/* If the counter is currently enabled and accurate, short-circuit
+>>  	 * queries to return the cached timestamp of the last vblank.
+>>  	 */
+>> -	if (dev->vblank_disable_immediate &&
+>> +	if (__vblank_disable_immediate(dev, pipe) &&
+>>  	    drm_wait_vblank_is_query(vblwait) &&
+>>  	    READ_ONCE(vblank->enabled)) {
+>>  		drm_wait_vblank_reply(dev, pipe, &vblwait->reply);
+>> @@ -1820,7 +1816,7 @@ bool drm_handle_vblank(struct drm_device *dev, u=
+nsigned int pipe)
+>>  	 * been signaled. The disable has to be last (after
+>>  	 * drm_handle_vblank_events) so that the timestamp is always accurat=
+e.
+>>  	 */
+>> -	disable_irq =3D (dev->vblank_disable_immediate &&
+>> +	disable_irq =3D (__vblank_disable_immediate(dev, pipe) &&
+>>  		       drm_vblank_offdelay > 0 &&
+>>  		       !atomic_read(&vblank->refcount));
+>> =20
+>> @@ -1893,7 +1889,8 @@ int drm_crtc_get_sequence_ioctl(struct drm_devic=
+e *dev, void *data,
+>>  	pipe =3D drm_crtc_index(crtc);
+>> =20
+>>  	vblank =3D &dev->vblank[pipe];
+>> -	vblank_enabled =3D dev->vblank_disable_immediate && READ_ONCE(vblank=
+->enabled);
+>> +	vblank_enabled =3D __vblank_disable_immediate(dev, pipe) &&
+>> +			 READ_ONCE(vblank->enabled);
+>> =20
+>>  	if (!vblank_enabled) {
+>>  		ret =3D drm_crtc_vblank_get(crtc);
+>> --=20
+>> 2.24.1
+>>
+>> _______________________________________________
+>> Intel-gfx mailing list
+>> Intel-gfx@lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 >=20
 
 --=20
-Rodrigo Siqueira
-Software Engineer, Advanced Micro Devices (AMD)
-https://siqueira.tech
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
 
---mkcm5mxh5ewyz3eu
+
+--IDhA7LRVBgaf9BIUqPyHk8du8qIhBJ2s0--
+
+--3eAvSttXZQZFdMeghjaqeDuI1UsRNq3sn
 Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE4tZ+ii1mjMCMQbfkWJzP/comvP8FAl4fnb8ACgkQWJzP/com
-vP/gKw/+MnM27NT0QpqQpa6WMwn9PCq/07UFLOG7BuTGP2CvZOJv8Tma7U6bu9Sf
-Z3IwiMYNJV8FJtwdRd+BTThIYGPTtofxsJ2R3ybhUj/VEeUaEhC2ifzwVrphEePR
-3/b4QFlf/vrMfsdJSOSam6vvaiI+jE4X1ZASrUKbcl5w9KeBhs2VmcwVKmtqQgaD
-YHWIWUwiwsd544GltP+mx7qxZ5+ZHVC+OuJq/GNzhwD9MyXTliBcM6nov+FPV/HE
-aT4WrhBCiDHhISO9sTYPqiV6Vo7XV6sPzDMFncNqueMwP4qQr/mFebxPtlUtPYOO
-jwg0ZTq/6KL+QeJM55Ygg0cvVUvG14G8ZSktb4s7rPRWE4k7/DZWP2w/xP1xVsoP
-H+Q2jvjTV1qu+G2A7vtP2gYBsCx7WoYfIoR045pAIEKEz5FLF38GFY04uS/T0M3u
-eez0yNDC1EojMWeTTPM5Lm7MCUPx7sR6V14gGDDVs/QBmZpgyJkWj4unYBCwk9Ge
-oMSZkUhnnJT4FutLRaJk0awg7iMw7yj4XNJgKB1vEVwS2/RkJ6jrgw/PoihwOBLZ
-Gmm6Ys+btER/e9zHA+u8Z5z0guAkI8r9H8ikMtqSza6RipedsEIrncLV8U2l+hwT
-ooPnCySDn8Xkw985ZR+/UW0I+FjjWDVdn3jmwcyRZ99fksmbvkY=
-=KRlQ
+iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl4gGNoACgkQaA3BHVML
+eiNPFgf/b563UWPp0EQB+KhHbYFGNwBE93tVR9rTSpEC68YSAq0sKTzsWZs/jY3R
+mUdR9mw1M4FQ100hBNlBMYuy9IcCPVTZrCQx1fWG4Dq2z8LIgKQ+LTibOoV9uHjx
+5UjyTv7ewlYhBtJf6Jxd3M3mnhJmA5MMn4/FTxvTwHBvSD/eaIFhMCiJSVTqhbG7
+ITyKWyxaAgqjB0Vqdt5Vnf5P4F0zYD4ucI3qBGIz/9ucGY5UqZV9HDDofG5qvRD+
+hjaD2rUB4UuK/Pn+O6CkxjrdY+pTn1RVepXnlNmfoDAPlL1JGaZbCUN0pOL9TOCT
+NHm/tc5uOXP9Kvk30ipDAftWo99msA==
+=42jk
 -----END PGP SIGNATURE-----
 
---mkcm5mxh5ewyz3eu--
+--3eAvSttXZQZFdMeghjaqeDuI1UsRNq3sn--
