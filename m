@@ -1,81 +1,52 @@
-From: Jason Gunthorpe <jgg@mellanox.com>
-Subject: Re: [PATCH v6 5/6] nouveau: use new mmu interval notifiers
-Date: Thu, 16 Jan 2020 16:00:06 +0000
-Message-ID: <20200116160002.GL20978@mellanox.com>
-References: <20200113224703.5917-1-rcampbell@nvidia.com>
- <20200113224703.5917-6-rcampbell@nvidia.com>
- <20200114125957.GO20978@mellanox.com>
- <5845f50e-8bc0-8068-ee21-4f910beb1255@nvidia.com>
+From: Sasha Levin <sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 112/371] drm/nouveau/pmu: don't print reply values if exec is false
+Date: Thu, 16 Jan 2020 12:19:44 -0500
+Message-ID: <20200116172403.18149-55-sashal@kernel.org>
+References: <20200116172403.18149-1-sashal@kernel.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <owner-linux-mm@kvack.org>
-In-Reply-To: <5845f50e-8bc0-8068-ee21-4f910beb1255@nvidia.com>
-Content-Language: en-US
-Content-ID: <ECF78F37AB44F842AECF3474CA80857C@eurprd05.prod.outlook.com>
-Sender: owner-linux-mm@kvack.org
-To: Ralph Campbell <rcampbell@nvidia.com>
-Cc: "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Andrew Morton <akpm@linux-foundation.org>, Ben Skeggs <bskeggs@redhat.com>, Shuah Khan <shuah@kernel.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200116172403.18149-1-sashal@kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc: Colin Ian King <colin.king@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jan 15, 2020 at 02:09:47PM -0800, Ralph Campbell wrote:
+From: Colin Ian King <colin.king@canonical.com>
 
-> I don't understand the lifetime/membership issue. The driver is the only =
-thing
-> that allocates, inserts, or removes struct mmu_interval_notifier and thus
-> completely controls the lifetime.
+[ Upstream commit b1d03fc36ec9834465a08c275c8d563e07f6f6bf ]
 
-If the returned value is on the defered list it could be freed at any
-moment. The existing locks do not prevent it.
+Currently the uninitialized values in the array reply are printed out
+when exec is false and nvkm_pmu_send has not updated the array. Avoid
+confusion by only dumping out these values if they have been actually
+updated.
 
-> > > +		ret =3D nouveau_svmm_interval_find(svmm, &range);
-> > > +		if (ret) {
-> > > +			up_read(&mm->mmap_sem);
-> > > +			return ret;
-> > > +		}
-> > > +		range.notifier_seq =3D mmu_interval_read_begin(range.notifier);
-> > >   		ret =3D hmm_range_fault(&range, 0);
-> > >   		up_read(&mm->mmap_sem);
-> > >   		if (ret <=3D 0) {
-> >=20
-> > I'm still not sure this is a better approach than what ODP does. It
-> > looks very expensive on the fault path..
-> >=20
-> > Jason
-> >=20
->=20
-> ODP doesn't have this problem because users have to call ib_reg_mr()
-> before any I/O can happen to the process address space.
+Detected by CoverityScan, CID#1271291 ("Uninitialized scaler variable")
+Fixes: ebb58dc2ef8c ("drm/nouveau/pmu: rename from pwr (no binary change)")
 
-ODP supports a single 'full VA' call at process startup, just like
-these cases.
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> That is when mmu_interval_notifier_insert() /
-> mmu_interval_notifier_remove() can be called and the driver doesn't
-> have to worry about the interval changing sizes or being removed
-> while I/O is happening. =20
-
-No, for the 'ODP full process VA' (aka implicit ODP) mode it
-dynamically maintains a list of intervals. ODP chooses the align the
-dynamic intervals to it's HW page table levels, and not to SW VMAs.
-This is much simpler to manage and faster to fault, at the cost of
-capturing more VA for invalidations which have to be probed against
-the HW shadow PTEs.
-
-> It isn't that expensive, there is an extra driver lock/unlock as
-> part of the lookup and possibly a find_vma() and kmalloc(GFP_ATOMIC)
-> for new intervals. Also, the deferred interval updates for munmap().
-> Compared to the cost of updating PTEs in the device and GPU fault
-> handling, this is minimal overhead.
-
-Well, compared to ODP which does a single xa lookup with no lock to
-find its interval, this looks very expensive and not parallel.
-
-I think if there is merit in having ranges cover the vmas and track
-changes then there is probably merit in having the core code provide
-much of that logic, not the driver.
-
-But it would be interesting to see some kind of analysis on the two
-methods to decide if the complexity is worthwhile.
-
-Jason
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c
+index 11b28b086a06..7b052879af72 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c
+@@ -88,10 +88,10 @@ nvkm_memx_fini(struct nvkm_memx **pmemx, bool exec)
+ 	if (exec) {
+ 		nvkm_pmu_send(pmu, reply, PROC_MEMX, MEMX_MSG_EXEC,
+ 			      memx->base, finish);
++		nvkm_debug(subdev, "Exec took %uns, PMU_IN %08x\n",
++			   reply[0], reply[1]);
+ 	}
+ 
+-	nvkm_debug(subdev, "Exec took %uns, PMU_IN %08x\n",
+-		   reply[0], reply[1]);
+ 	kfree(memx);
+ 	return 0;
+ }
+-- 
+2.20.1
