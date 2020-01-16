@@ -1,7 +1,7 @@
 From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 4.19 204/671] drm/nouveau: fix missing break in switch statement
-Date: Thu, 16 Jan 2020 11:51:53 -0500
-Message-ID: <20200116165940.10720-87-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 203/671] drm/nouveau/pmu: don't print reply values if exec is false
+Date: Thu, 16 Jan 2020 11:51:52 -0500
+Message-ID: <20200116165940.10720-86-sashal@kernel.org>
 References: <20200116165940.10720-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -9,40 +9,44 @@ Return-path: <linux-kernel-owner@vger.kernel.org>
 In-Reply-To: <20200116165940.10720-1-sashal@kernel.org>
 Sender: linux-kernel-owner@vger.kernel.org
 To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc: Colin Ian King <colin.king@canonical.com>, "Gustavo A . R . Silva" <gustavo@embeddedor.com>, Ben Skeggs <bskeggs@redhat.com>, Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: Colin Ian King <colin.king@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
 From: Colin Ian King <colin.king@canonical.com>
 
-[ Upstream commit 785cf1eeafa23ec63f426d322401054d13abe2a3 ]
+[ Upstream commit b1d03fc36ec9834465a08c275c8d563e07f6f6bf ]
 
-The NOUVEAU_GETPARAM_PCI_DEVICE case is missing a break statement and falls
-through to the following NOUVEAU_GETPARAM_BUS_TYPE case and may end up
-re-assigning the getparam->value to an undesired value. Fix this by adding
-in the missing break.
+Currently the uninitialized values in the array reply are printed out
+when exec is false and nvkm_pmu_send has not updated the array. Avoid
+confusion by only dumping out these values if they have been actually
+updated.
 
-Detected by CoverityScan, CID#1460507 ("Missing break in switch")
+Detected by CoverityScan, CID#1271291 ("Uninitialized scaler variable")
+Fixes: ebb58dc2ef8c ("drm/nouveau/pmu: rename from pwr (no binary change)")
 
-Fixes: 359088d5b8ec ("drm/nouveau: remove trivial cases of nvxx_device() usage")
 Signed-off-by: Colin Ian King <colin.king@canonical.com>
-Reviewed-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
 Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_abi16.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-index e67a471331b5..6ec745873bc5 100644
---- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-@@ -214,6 +214,7 @@ nouveau_abi16_ioctl_getparam(ABI16_IOCTL_ARGS)
- 			WARN_ON(1);
- 			break;
- 		}
-+		break;
- 	case NOUVEAU_GETPARAM_FB_SIZE:
- 		getparam->value = drm->gem.vram_available;
- 		break;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c
+index 11b28b086a06..7b052879af72 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c
+@@ -88,10 +88,10 @@ nvkm_memx_fini(struct nvkm_memx **pmemx, bool exec)
+ 	if (exec) {
+ 		nvkm_pmu_send(pmu, reply, PROC_MEMX, MEMX_MSG_EXEC,
+ 			      memx->base, finish);
++		nvkm_debug(subdev, "Exec took %uns, PMU_IN %08x\n",
++			   reply[0], reply[1]);
+ 	}
+ 
+-	nvkm_debug(subdev, "Exec took %uns, PMU_IN %08x\n",
+-		   reply[0], reply[1]);
+ 	kfree(memx);
+ 	return 0;
+ }
 -- 
 2.20.1
