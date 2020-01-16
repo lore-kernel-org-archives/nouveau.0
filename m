@@ -1,12 +1,12 @@
 From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 4.14 112/371] drm/nouveau/pmu: don't print reply values if exec is false
-Date: Thu, 16 Jan 2020 12:19:44 -0500
-Message-ID: <20200116172403.18149-55-sashal@kernel.org>
-References: <20200116172403.18149-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.9 081/251] drm/nouveau/pmu: don't print reply values if exec is false
+Date: Thu, 16 Jan 2020 12:33:50 -0500
+Message-ID: <20200116173641.22137-41-sashal@kernel.org>
+References: <20200116173641.22137-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200116172403.18149-1-sashal@kernel.org>
+In-Reply-To: <20200116173641.22137-1-sashal@kernel.org>
 Sender: linux-kernel-owner@vger.kernel.org
 To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc: Colin Ian King <colin.king@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
@@ -32,10 +32,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c
-index 11b28b086a06..7b052879af72 100644
+index e6f74168238c..2ef9e942f43a 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c
 +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c
-@@ -88,10 +88,10 @@ nvkm_memx_fini(struct nvkm_memx **pmemx, bool exec)
+@@ -87,10 +87,10 @@ nvkm_memx_fini(struct nvkm_memx **pmemx, bool exec)
  	if (exec) {
  		nvkm_pmu_send(pmu, reply, PROC_MEMX, MEMX_MSG_EXEC,
  			      memx->base, finish);
