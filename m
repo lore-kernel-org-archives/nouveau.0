@@ -1,13 +1,13 @@
 From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 4.9 080/251] drm/nouveau/bios/ramcfg: fix missing parentheses when calculating RON
-Date: Thu, 16 Jan 2020 12:33:49 -0500
-Message-ID: <20200116173641.22137-40-sashal@kernel.org>
-References: <20200116173641.22137-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 111/371] drm/nouveau/bios/ramcfg: fix missing parentheses when calculating RON
+Date: Thu, 16 Jan 2020 12:19:43 -0500
+Message-ID: <20200116172403.18149-54-sashal@kernel.org>
+References: <20200116172403.18149-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200116173641.22137-1-sashal@kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20200116172403.18149-1-sashal@kernel.org>
+Sender: stable-owner@vger.kernel.org
 To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc: Colin Ian King <colin.king@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
