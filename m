@@ -1,51 +1,42 @@
-From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 4.14 111/371] drm/nouveau/bios/ramcfg: fix missing parentheses when calculating RON
-Date: Thu, 16 Jan 2020 12:19:43 -0500
-Message-ID: <20200116172403.18149-54-sashal@kernel.org>
-References: <20200116172403.18149-1-sashal@kernel.org>
+From: Randy Dunlap <rdunlap@infradead.org>
+Subject: [PATCH] MAINTAINERS: nouveau mailing list is moderated
+Date: Thu, 16 Jan 2020 09:06:40 -0800
+Message-ID: <2684257e-1027-1c1b-d794-78bb1864b437@infradead.org>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20200116172403.18149-1-sashal@kernel.org>
-Sender: stable-owner@vger.kernel.org
-To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc: Colin Ian King <colin.king@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Language: en-US
+Sender: linux-kernel-owner@vger.kernel.org
+To: LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Andrew Morton <akpm@linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
-From: Colin Ian King <colin.king@canonical.com>
+From: Randy Dunlap <rdunlap@infradead.org>
 
-[ Upstream commit 13649101a25c53c87f4ab98a076dfe61f3636ab1 ]
+Mark the nouveau@ mailing list as moderated for non-subscribers.
 
-Currently, the expression for calculating RON is always going to result
-in zero no matter the value of ram->mr[1] because the ! operator has
-higher precedence than the shift >> operator.  I believe the missing
-parentheses around the expression before appying the ! operator will
-result in the desired result.
-
-[ Note, not tested ]
-
-Detected by CoveritScan, CID#1324005 ("Operands don't affect result")
-
-Fixes: c25bf7b6155c ("drm/nouveau/bios/ramcfg: Separate out RON pull value")
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
-Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ MAINTAINERS |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.c
-index 60ece0a8a2e1..1d2d6bae73cd 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.c
-@@ -87,7 +87,7 @@ nvkm_gddr3_calc(struct nvkm_ram *ram)
- 		WR  = (ram->next->bios.timing[2] & 0x007f0000) >> 16;
- 		/* XXX: Get these values from the VBIOS instead */
- 		DLL = !(ram->mr[1] & 0x1);
--		RON = !(ram->mr[1] & 0x300) >> 8;
-+		RON = !((ram->mr[1] & 0x300) >> 8);
- 		break;
- 	default:
- 		return -ENOSYS;
--- 
-2.20.1
+--- linux-next-20200116.orig/MAINTAINERS
++++ linux-next-20200116/MAINTAINERS
+@@ -5315,7 +5315,7 @@ F:	Documentation/devicetree/bindings/dis
+ DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS
+ M:	Ben Skeggs <bskeggs@redhat.com>
+ L:	dri-devel@lists.freedesktop.org
+-L:	nouveau@lists.freedesktop.org
++L:	nouveau@lists.freedesktop.org (moderated for non-subscribers)
+ T:	git git://github.com/skeggsb/linux
+ S:	Supported
+ F:	drivers/gpu/drm/nouveau/
+@@ -16914,7 +16914,7 @@ R:	Karol Herbst <karolherbst@gmail.com>
+ R:	Pekka Paalanen <ppaalanen@gmail.com>
+ S:	Maintained
+ L:	linux-kernel@vger.kernel.org
+-L:	nouveau@lists.freedesktop.org
++L:	nouveau@lists.freedesktop.org (moderated for non-subscribers)
+ F:	kernel/trace/trace_mmiotrace.c
+ F:	include/linux/mmiotrace.h
+ F:	arch/x86/mm/kmmio.c
