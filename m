@@ -1,51 +1,52 @@
 From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 4.4 048/174] drm/nouveau/bios/ramcfg: fix missing parentheses when calculating RON
-Date: Thu, 16 Jan 2020 12:40:45 -0500
-Message-ID: <20200116174251.24326-48-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.4 049/174] drm/nouveau/pmu: don't print reply values if exec is false
+Date: Thu, 16 Jan 2020 12:40:46 -0500
+Message-ID: <20200116174251.24326-49-sashal@kernel.org>
 References: <20200116174251.24326-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Return-path: <stable-owner@vger.kernel.org>
 In-Reply-To: <20200116174251.24326-1-sashal@kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
+Sender: stable-owner@vger.kernel.org
 To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc: Colin Ian King <colin.king@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
 From: Colin Ian King <colin.king@canonical.com>
 
-[ Upstream commit 13649101a25c53c87f4ab98a076dfe61f3636ab1 ]
+[ Upstream commit b1d03fc36ec9834465a08c275c8d563e07f6f6bf ]
 
-Currently, the expression for calculating RON is always going to result
-in zero no matter the value of ram->mr[1] because the ! operator has
-higher precedence than the shift >> operator.  I believe the missing
-parentheses around the expression before appying the ! operator will
-result in the desired result.
+Currently the uninitialized values in the array reply are printed out
+when exec is false and nvkm_pmu_send has not updated the array. Avoid
+confusion by only dumping out these values if they have been actually
+updated.
 
-[ Note, not tested ]
+Detected by CoverityScan, CID#1271291 ("Uninitialized scaler variable")
+Fixes: ebb58dc2ef8c ("drm/nouveau/pmu: rename from pwr (no binary change)")
 
-Detected by CoveritScan, CID#1324005 ("Operands don't affect result")
-
-Fixes: c25bf7b6155c ("drm/nouveau/bios/ramcfg: Separate out RON pull value")
 Signed-off-by: Colin Ian King <colin.king@canonical.com>
 Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.c
-index 60ece0a8a2e1..1d2d6bae73cd 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.c
-@@ -87,7 +87,7 @@ nvkm_gddr3_calc(struct nvkm_ram *ram)
- 		WR  = (ram->next->bios.timing[2] & 0x007f0000) >> 16;
- 		/* XXX: Get these values from the VBIOS instead */
- 		DLL = !(ram->mr[1] & 0x1);
--		RON = !(ram->mr[1] & 0x300) >> 8;
-+		RON = !((ram->mr[1] & 0x300) >> 8);
- 		break;
- 	default:
- 		return -ENOSYS;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c
+index e6f74168238c..2ef9e942f43a 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c
+@@ -87,10 +87,10 @@ nvkm_memx_fini(struct nvkm_memx **pmemx, bool exec)
+ 	if (exec) {
+ 		nvkm_pmu_send(pmu, reply, PROC_MEMX, MEMX_MSG_EXEC,
+ 			      memx->base, finish);
++		nvkm_debug(subdev, "Exec took %uns, PMU_IN %08x\n",
++			   reply[0], reply[1]);
+ 	}
+ 
+-	nvkm_debug(subdev, "Exec took %uns, PMU_IN %08x\n",
+-		   reply[0], reply[1]);
+ 	kfree(memx);
+ 	return 0;
+ }
 -- 
 2.20.1
