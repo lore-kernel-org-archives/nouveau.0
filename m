@@ -1,56 +1,35 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH -next] drm/nouveau/kms/nv50: remove set but not unused
- variable 'nv_connector'
-Date: Fri, 17 Jan 2020 19:19:00 -0500
-Message-ID: <c99174eefb65688c3db3fc25ddec819a58dccc6a.camel@redhat.com>
-References: <20200117033642.50656-1-yuehaibing@huawei.com>
+From: Chen Zhou <chenzhou10@huawei.com>
+Subject: [PATCH -next] drm/ttm: remove unnecessary conversion to bool
+Date: Sun, 19 Jan 2020 21:19:19 +0800
+Message-ID: <20200119131919.36490-1-chenzhou10@huawei.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200117033642.50656-1-yuehaibing@huawei.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: YueHaibing <yuehaibing@huawei.com>, bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, sam@ravnborg.org
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, chenzhou10@huawei.com
 List-Id: nouveau.vger.kernel.org
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
+The conversion to bool is not needed, remove it.
 
-On Fri, 2020-01-17 at 11:36 +0800, YueHaibing wrote:
-> drivers/gpu/drm/nouveau/dispnv50/disp.c: In function nv50_pior_enable:
-> drivers/gpu/drm/nouveau/dispnv50/disp.c:1672:28: warning:
->  variable nv_connector set but not used [-Wunused-but-set-variable]
-> 
-> commit ac2d9275f371 ("drm/nouveau/kms/nv50-: Store the
-> bpc we're using in nv50_head_atom") left behind this.
-> 
-> Reported-by: Hulk Robot <hulkci@huawei.com>
-> Signed-off-by: YueHaibing <yuehaibing@huawei.com>
-> ---
->  drivers/gpu/drm/nouveau/dispnv50/disp.c | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> index 5fabe2b..a82b354 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> @@ -1669,7 +1669,6 @@ nv50_pior_enable(struct drm_encoder *encoder)
->  {
->  	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
->  	struct nouveau_crtc *nv_crtc = nouveau_crtc(encoder->crtc);
-> -	struct nouveau_connector *nv_connector;
->  	struct nv50_head_atom *asyh = nv50_head_atom(nv_crtc->base.state);
->  	struct nv50_core *core = nv50_disp(encoder->dev)->core;
->  	u8 owner = 1 << nv_crtc->index;
-> @@ -1677,7 +1676,6 @@ nv50_pior_enable(struct drm_encoder *encoder)
->  
->  	nv50_outp_acquire(nv_encoder);
->  
-> -	nv_connector = nouveau_encoder_connector_get(nv_encoder);
->  	switch (asyh->or.bpc) {
->  	case 10: asyh->or.depth = 0x6; break;
->  	case  8: asyh->or.depth = 0x5; break;
+Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_ttm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+index 7ca0a24..0cbcbe1 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+@@ -233,7 +233,7 @@ nouveau_ttm_init(struct nouveau_drm *drm)
+ 				  &nouveau_bo_driver,
+ 				  dev->anon_inode->i_mapping,
+ 				  dev->vma_offset_manager,
+-				  drm->client.mmu.dmabits <= 32 ? true : false);
++				  drm->client.mmu.dmabits <= 32);
+ 	if (ret) {
+ 		NV_ERROR(drm, "error initialising bo driver, %d\n", ret);
+ 		return ret;
 -- 
-Cheers,
-	Lyude Paul
+2.7.4
