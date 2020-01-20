@@ -1,7 +1,7 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v3 22/22] drm: Remove legacy version of get_scanout_position()
-Date: Mon, 20 Jan 2020 09:23:14 +0100
-Message-ID: <20200120082314.14756-23-tzimmermann@suse.de>
+Subject: [PATCH v3 20/22] drm/vmwgfx: Convert to CRTC VBLANK callbacks
+Date: Mon, 20 Jan 2020 09:23:12 +0100
+Message-ID: <20200120082314.14756-21-tzimmermann@suse.de>
 References: <20200120082314.14756-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -12,121 +12,125 @@ To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koen
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
 List-Id: nouveau.vger.kernel.org
 
-The legacy version of get_scanout_position() was only useful while
-drivers still used drm_driver.get_scanout_position(). With no such
-drivers left, the related typedef and code can be removed
+VBLANK callbacks in struct drm_driver are deprecated in favor of
+their equivalents in struct drm_crtc_funcs. Convert vmwgfx over.
+
+v2:
+	* remove accidental whitespace fixes
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/drm_vblank.c    | 27 +++++++--------------------
- drivers/gpu/drm/i915/i915_irq.c |  2 +-
- include/drm/drm_vblank.h        | 10 +---------
- 3 files changed, 9 insertions(+), 30 deletions(-)
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c  | 3 ---
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.h  | 6 +++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c  | 6 +++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c  | 3 +++
+ drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c | 3 +++
+ drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c | 3 +++
+ 6 files changed, 15 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index 34428ce3c676..0bda7d7a0af2 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -576,9 +576,6 @@ EXPORT_SYMBOL(drm_calc_timestamping_constants);
-  * @get_scanout_position:
-  *     Callback function to retrieve the scanout position. See
-  *     @struct drm_crtc_helper_funcs.get_scanout_position.
-- * @get_scanout_position_legacy:
-- *     Callback function to retrieve the scanout position. See
-- *     @struct drm_driver.get_scanout_position.
-  *
-  * Implements calculation of exact vblank timestamps from given drm_display_mode
-  * timings and current video scanout position of a CRTC.
-@@ -601,8 +598,7 @@ bool
- drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	struct drm_crtc *crtc, int *max_error, ktime_t *vblank_time,
- 	bool in_vblank_irq,
--	drm_vblank_get_scanout_position_func get_scanout_position,
--	drm_vblank_get_scanout_position_legacy_func get_scanout_position_legacy)
-+	drm_vblank_get_scanout_position_func get_scanout_position)
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+index e962048f65d2..673d6920fc29 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+@@ -1393,9 +1393,6 @@ static struct drm_driver driver = {
+ 	DRIVER_MODESET | DRIVER_RENDER | DRIVER_ATOMIC,
+ 	.load = vmw_driver_load,
+ 	.unload = vmw_driver_unload,
+-	.get_vblank_counter = vmw_get_vblank_counter,
+-	.enable_vblank = vmw_enable_vblank,
+-	.disable_vblank = vmw_disable_vblank,
+ 	.ioctls = vmw_ioctls,
+ 	.num_ioctls = ARRAY_SIZE(vmw_ioctls),
+ 	.master_set = vmw_master_set,
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.h b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.h
+index a31e726d6d71..845b3b8c29ca 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.h
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.h
+@@ -1100,9 +1100,9 @@ int vmw_kms_write_svga(struct vmw_private *vmw_priv,
+ bool vmw_kms_validate_mode_vram(struct vmw_private *dev_priv,
+ 				uint32_t pitch,
+ 				uint32_t height);
+-u32 vmw_get_vblank_counter(struct drm_device *dev, unsigned int pipe);
+-int vmw_enable_vblank(struct drm_device *dev, unsigned int pipe);
+-void vmw_disable_vblank(struct drm_device *dev, unsigned int pipe);
++u32 vmw_get_vblank_counter(struct drm_crtc *crtc);
++int vmw_enable_vblank(struct drm_crtc *crtc);
++void vmw_disable_vblank(struct drm_crtc *crtc);
+ int vmw_kms_present(struct vmw_private *dev_priv,
+ 		    struct drm_file *file_priv,
+ 		    struct vmw_framebuffer *vfb,
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
+index f47d5710cc95..eb6e23e8d8ef 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
+@@ -1991,7 +1991,7 @@ bool vmw_kms_validate_mode_vram(struct vmw_private *dev_priv,
+ /**
+  * Function called by DRM code called with vbl_lock held.
+  */
+-u32 vmw_get_vblank_counter(struct drm_device *dev, unsigned int pipe)
++u32 vmw_get_vblank_counter(struct drm_crtc *crtc)
  {
- 	struct drm_device *dev = crtc->dev;
- 	unsigned int pipe = crtc->index;
-@@ -620,7 +616,7 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	}
- 
- 	/* Scanout position query not supported? Should not happen. */
--	if (!get_scanout_position && !get_scanout_position_legacy) {
-+	if (!get_scanout_position) {
- 		DRM_ERROR("Called from CRTC w/o get_scanout_position()!?\n");
- 		return false;
- 	}
-@@ -651,19 +647,10 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 		 * Get vertical and horizontal scanout position vpos, hpos,
- 		 * and bounding timestamps stime, etime, pre/post query.
- 		 */
--		if (get_scanout_position) {
--			vbl_status = get_scanout_position(crtc,
--							  in_vblank_irq,
--							  &vpos, &hpos,
--							  &stime, &etime,
--							  mode);
--		} else {
--			vbl_status = get_scanout_position_legacy(dev, pipe,
--								 in_vblank_irq,
--								 &vpos, &hpos,
--								 &stime, &etime,
--								 mode);
--		}
-+		vbl_status = get_scanout_position(crtc, in_vblank_irq,
-+						  &vpos, &hpos,
-+						  &stime, &etime,
-+						  mode);
- 
- 		/* Return as no-op if scanout query unsupported or failed. */
- 		if (!vbl_status) {
-@@ -755,7 +742,7 @@ bool drm_crtc_vblank_helper_get_vblank_timestamp(struct drm_crtc *crtc,
- {
- 	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 		crtc, max_error, vblank_time, in_vblank_irq,
--		crtc->helper_private->get_scanout_position, NULL);
-+		crtc->helper_private->get_scanout_position);
+ 	return 0;
  }
- EXPORT_SYMBOL(drm_crtc_vblank_helper_get_vblank_timestamp);
- 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 29bf847999f5..3245f7c5c84f 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -886,7 +886,7 @@ bool intel_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
+@@ -1999,7 +1999,7 @@ u32 vmw_get_vblank_counter(struct drm_device *dev, unsigned int pipe)
+ /**
+  * Function called by DRM code called with vbl_lock held.
+  */
+-int vmw_enable_vblank(struct drm_device *dev, unsigned int pipe)
++int vmw_enable_vblank(struct drm_crtc *crtc)
  {
- 	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 		crtc, max_error, vblank_time, in_vblank_irq,
--		i915_get_crtc_scanoutpos, NULL);
-+		i915_get_crtc_scanoutpos);
+ 	return -EINVAL;
+ }
+@@ -2007,7 +2007,7 @@ int vmw_enable_vblank(struct drm_device *dev, unsigned int pipe)
+ /**
+  * Function called by DRM code called with vbl_lock held.
+  */
+-void vmw_disable_vblank(struct drm_device *dev, unsigned int pipe)
++void vmw_disable_vblank(struct drm_crtc *crtc)
+ {
  }
  
- int intel_get_crtc_scanline(struct intel_crtc *crtc)
-diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
-index a6ca8be93dd8..0f474e855e7f 100644
---- a/include/drm/drm_vblank.h
-+++ b/include/drm/drm_vblank.h
-@@ -245,20 +245,12 @@ typedef bool (*drm_vblank_get_scanout_position_func)(struct drm_crtc *crtc,
- 						     ktime_t *stime, ktime_t *etime,
- 						     const struct drm_display_mode *mode);
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c b/drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c
+index 5702219ec38f..16dafff5cab1 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c
+@@ -236,6 +236,9 @@ static const struct drm_crtc_funcs vmw_legacy_crtc_funcs = {
+ 	.atomic_duplicate_state = vmw_du_crtc_duplicate_state,
+ 	.atomic_destroy_state = vmw_du_crtc_destroy_state,
+ 	.set_config = drm_atomic_helper_set_config,
++	.get_vblank_counter = vmw_get_vblank_counter,
++	.enable_vblank = vmw_enable_vblank,
++	.disable_vblank = vmw_disable_vblank,
+ };
  
--typedef bool (*drm_vblank_get_scanout_position_legacy_func)(struct drm_device *dev,
--							    unsigned int pipe,
--							    bool in_vblank_irq,
--							    int *vpos, int *hpos,
--							    ktime_t *stime, ktime_t *etime,
--							    const struct drm_display_mode *mode);
--
- bool
- drm_crtc_vblank_helper_get_vblank_timestamp_internal(struct drm_crtc *crtc,
- 						     int *max_error,
- 						     ktime_t *vblank_time,
- 						     bool in_vblank_irq,
--						     drm_vblank_get_scanout_position_func get_scanout_position,
--						     drm_vblank_get_scanout_position_legacy_func get_scanout_position_legacy);
-+						     drm_vblank_get_scanout_position_func get_scanout_position);
- bool drm_crtc_vblank_helper_get_vblank_timestamp(struct drm_crtc *crtc,
- 						 int *max_error,
- 						 ktime_t *vblank_time,
+ 
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c b/drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c
+index e5a283263211..32a22e4eddb1 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c
+@@ -319,6 +319,9 @@ static const struct drm_crtc_funcs vmw_screen_object_crtc_funcs = {
+ 	.atomic_destroy_state = vmw_du_crtc_destroy_state,
+ 	.set_config = drm_atomic_helper_set_config,
+ 	.page_flip = drm_atomic_helper_page_flip,
++	.get_vblank_counter = vmw_get_vblank_counter,
++	.enable_vblank = vmw_enable_vblank,
++	.disable_vblank = vmw_disable_vblank,
+ };
+ 
+ /*
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c b/drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c
+index 41a96fb49835..570687a1a327 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c
+@@ -916,6 +916,9 @@ static const struct drm_crtc_funcs vmw_stdu_crtc_funcs = {
+ 	.atomic_destroy_state = vmw_du_crtc_destroy_state,
+ 	.set_config = drm_atomic_helper_set_config,
+ 	.page_flip = drm_atomic_helper_page_flip,
++	.get_vblank_counter = vmw_get_vblank_counter,
++	.enable_vblank = vmw_enable_vblank,
++	.disable_vblank = vmw_disable_vblank,
+ };
+ 
+ 
 -- 
 2.24.1
