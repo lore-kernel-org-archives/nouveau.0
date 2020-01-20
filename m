@@ -1,83 +1,383 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v3 19/22] drm/vkms: Convert to CRTC VBLANK callbacks
-Date: Mon, 20 Jan 2020 09:23:11 +0100
-Message-ID: <20200120082314.14756-20-tzimmermann@suse.de>
+Subject: [PATCH v3 21/22] drm: Clean-up VBLANK-related callbacks in struct drm_driver
+Date: Mon, 20 Jan 2020 09:23:13 +0100
+Message-ID: <20200120082314.14756-22-tzimmermann@suse.de>
 References: <20200120082314.14756-1-tzimmermann@suse.de>
 Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-arm-msm-owner@vger.kernel.org>
 In-Reply-To: <20200120082314.14756-1-tzimmermann@suse.de>
 Sender: linux-arm-msm-owner@vger.kernel.org
 To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com, maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com, robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org, vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com, mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, linux-graphics-maintainer@vmware.com, thellstrom@vmware.com, bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Siqueira <rodrigosiqueira@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel.vetter@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
-VBLANK callbacks in struct drm_driver are deprecated in favor of
-their equivalents in struct drm_crtc_funcs. Convert vkms over.
+All non-legacy users of VBLANK functions in struct drm_driver have been
+converted to use the respective interfaces in struct drm_crtc_funcs. The
+remaining users of VBLANK callbacks in struct drm_driver are legacy drivers
+with userspace modesetting.
+
+All users of struct drm_driver.get_scanout_position() have been
+converted to the respective CRTC helper function. Remove the callback
+from struct drm_driver.
+
+There are no users left of get_vblank_timestamp(), so the callback is
+being removed. The other VBLANK callbacks are being moved to the legacy
+section at the end of struct drm_driver.
+
+Also removed is drm_calc_vbltimestamp_from_scanoutpos(). Callers of this
+function have been converted to use the CRTC instead.
+
+v2:
+	* merge with removal of struct drm_driver.get_scanout_position()
+	* remove drm_calc_vbltimestamp_from_scanoutpos()
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Rodrigo Siqueira <rodrigosiqueira@gmail.com>
-Tested-by: Rodrigo Siqueira <rodrigosiqueira@gmail.com>
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Tested-by: Yannick Fertré <yannick.fertre@st.com>
 ---
- drivers/gpu/drm/vkms/vkms_crtc.c | 9 ++++++---
- drivers/gpu/drm/vkms/vkms_drv.c  | 1 -
- drivers/gpu/drm/vkms/vkms_drv.h  | 4 ----
- 3 files changed, 6 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/drm_vblank.c |  86 +++-----------------
+ include/drm/drm_drv.h        | 153 +----------------------------------
+ include/drm/drm_vblank.h     |   4 -
+ 3 files changed, 14 insertions(+), 229 deletions(-)
 
-diff --git a/drivers/gpu/drm/vkms/vkms_crtc.c b/drivers/gpu/drm/vkms/vkms_crtc.c
-index 74f703b8d22a..ac85e17428f8 100644
---- a/drivers/gpu/drm/vkms/vkms_crtc.c
-+++ b/drivers/gpu/drm/vkms/vkms_crtc.c
-@@ -76,10 +76,12 @@ static void vkms_disable_vblank(struct drm_crtc *crtc)
- 	hrtimer_cancel(&out->vblank_hrtimer);
+diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+index fc297043e3ba..34428ce3c676 100644
+--- a/drivers/gpu/drm/drm_vblank.c
++++ b/drivers/gpu/drm/drm_vblank.c
+@@ -138,10 +138,9 @@ static u32 __get_vblank_counter(struct drm_device *dev, unsigned int pipe)
+ 
+ 		if (crtc->funcs->get_vblank_counter)
+ 			return crtc->funcs->get_vblank_counter(crtc);
+-	}
+-
+-	if (dev->driver->get_vblank_counter)
++	} else if (dev->driver->get_vblank_counter) {
+ 		return dev->driver->get_vblank_counter(dev, pipe);
++	}
+ 
+ 	return drm_vblank_no_hw_counter(dev, pipe);
+ }
+@@ -334,8 +333,7 @@ u64 drm_crtc_accurate_vblank_count(struct drm_crtc *crtc)
+ 	unsigned long flags;
+ 
+ 	WARN_ONCE(drm_debug_enabled(DRM_UT_VBL) &&
+-		  !crtc->funcs->get_vblank_timestamp &&
+-		  !dev->driver->get_vblank_timestamp,
++		  !crtc->funcs->get_vblank_timestamp,
+ 		  "This function requires support for accurate vblank timestamps.");
+ 
+ 	spin_lock_irqsave(&dev->vblank_time_lock, flags);
+@@ -357,13 +355,11 @@ static void __disable_vblank(struct drm_device *dev, unsigned int pipe)
+ 		if (WARN_ON(!crtc))
+ 			return;
+ 
+-		if (crtc->funcs->disable_vblank) {
++		if (crtc->funcs->disable_vblank)
+ 			crtc->funcs->disable_vblank(crtc);
+-			return;
+-		}
++	} else {
++		dev->driver->disable_vblank(dev, pipe);
+ 	}
+-
+-	dev->driver->disable_vblank(dev, pipe);
  }
  
--bool vkms_get_vblank_timestamp(struct drm_device *dev, unsigned int pipe,
--			       int *max_error, ktime_t *vblank_time,
--			       bool in_vblank_irq)
-+static bool vkms_get_vblank_timestamp(struct drm_crtc *crtc,
-+				      int *max_error, ktime_t *vblank_time,
-+				      bool in_vblank_irq)
- {
-+	struct drm_device *dev = crtc->dev;
-+	unsigned int pipe = crtc->index;
- 	struct vkms_device *vkmsdev = drm_device_to_vkms_device(dev);
- 	struct vkms_output *output = &vkmsdev->output;
- 	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
-@@ -154,6 +156,7 @@ static const struct drm_crtc_funcs vkms_crtc_funcs = {
- 	.atomic_destroy_state   = vkms_atomic_crtc_destroy_state,
- 	.enable_vblank		= vkms_enable_vblank,
- 	.disable_vblank		= vkms_disable_vblank,
-+	.get_vblank_timestamp	= vkms_get_vblank_timestamp,
- 	.get_crc_sources	= vkms_get_crc_sources,
- 	.set_crc_source		= vkms_set_crc_source,
- 	.verify_crc_source	= vkms_verify_crc_source,
-diff --git a/drivers/gpu/drm/vkms/vkms_drv.c b/drivers/gpu/drm/vkms/vkms_drv.c
-index 25bd7519295f..860de052e820 100644
---- a/drivers/gpu/drm/vkms/vkms_drv.c
-+++ b/drivers/gpu/drm/vkms/vkms_drv.c
-@@ -103,7 +103,6 @@ static struct drm_driver vkms_driver = {
- 	.dumb_create		= vkms_dumb_create,
- 	.gem_vm_ops		= &vkms_gem_vm_ops,
- 	.gem_free_object_unlocked = vkms_gem_free_object,
--	.get_vblank_timestamp	= vkms_get_vblank_timestamp,
- 	.prime_fd_to_handle	= drm_gem_prime_fd_to_handle,
- 	.gem_prime_import_sg_table = vkms_prime_import_sg_table,
+ /*
+@@ -565,62 +561,6 @@ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
+ }
+ EXPORT_SYMBOL(drm_calc_timestamping_constants);
  
-diff --git a/drivers/gpu/drm/vkms/vkms_drv.h b/drivers/gpu/drm/vkms/vkms_drv.h
-index 7d52e24564db..eda04ffba7b1 100644
---- a/drivers/gpu/drm/vkms/vkms_drv.h
-+++ b/drivers/gpu/drm/vkms/vkms_drv.h
-@@ -111,10 +111,6 @@ struct vkms_gem_object {
- int vkms_crtc_init(struct drm_device *dev, struct drm_crtc *crtc,
- 		   struct drm_plane *primary, struct drm_plane *cursor);
- 
--bool vkms_get_vblank_timestamp(struct drm_device *dev, unsigned int pipe,
--			       int *max_error, ktime_t *vblank_time,
--			       bool in_vblank_irq);
+-/**
+- * drm_calc_vbltimestamp_from_scanoutpos - precise vblank timestamp helper
+- * @dev: DRM device
+- * @pipe: index of CRTC whose vblank timestamp to retrieve
+- * @max_error: Desired maximum allowable error in timestamps (nanosecs)
+- *             On return contains true maximum error of timestamp
+- * @vblank_time: Pointer to time which should receive the timestamp
+- * @in_vblank_irq:
+- *     True when called from drm_crtc_handle_vblank().  Some drivers
+- *     need to apply some workarounds for gpu-specific vblank irq quirks
+- *     if flag is set.
+- *
+- * Implements calculation of exact vblank timestamps from given drm_display_mode
+- * timings and current video scanout position of a CRTC. This can be directly
+- * used as the &drm_crtc_funcs.get_vblank_timestamp implementation of a kms
+- * driver if &drm_crtc_helper_funcs.get_scanout_position or
+- * &drm_driver.get_scanout_position is implemented.
+- *
+- * The current implementation only handles standard video modes. For double scan
+- * and interlaced modes the driver is supposed to adjust the hardware mode
+- * (taken from &drm_crtc_state.adjusted mode for atomic modeset drivers) to
+- * match the scanout position reported.
+- *
+- * Note that atomic drivers must call drm_calc_timestamping_constants() before
+- * enabling a CRTC. The atomic helpers already take care of that in
+- * drm_atomic_helper_update_legacy_modeset_state().
+- *
+- * Returns:
+- *
+- * Returns true on success, and false on failure, i.e. when no accurate
+- * timestamp could be acquired.
+- */
+-bool drm_calc_vbltimestamp_from_scanoutpos(struct drm_device *dev,
+-					   unsigned int pipe,
+-					   int *max_error,
+-					   ktime_t *vblank_time,
+-					   bool in_vblank_irq)
+-{
+-	struct drm_crtc *crtc;
 -
- int vkms_output_init(struct vkms_device *vkmsdev, int index);
+-	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+-		return false;
+-
+-	crtc = drm_crtc_from_index(dev, pipe);
+-	if (!crtc)
+-		return false;
+-
+-	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(crtc,
+-								    max_error,
+-								    vblank_time,
+-								    in_vblank_irq,
+-								    crtc->helper_private->get_scanout_position,
+-								    dev->driver->get_scanout_position);
+-}
+-EXPORT_SYMBOL(drm_calc_vbltimestamp_from_scanoutpos);
+-
+ /**
+  * drm_crtc_vblank_helper_get_vblank_timestamp_internal - precise vblank
+  *                                                        timestamp helper
+@@ -856,9 +796,6 @@ drm_get_last_vbltimestamp(struct drm_device *dev, unsigned int pipe,
  
- struct drm_plane *vkms_plane_init(struct vkms_device *vkmsdev,
+ 		ret = crtc->funcs->get_vblank_timestamp(crtc, &max_error,
+ 							tvblank, in_vblank_irq);
+-	} else if (dev->driver->get_vblank_timestamp && max_error > 0) {
+-		ret = dev->driver->get_vblank_timestamp(dev, pipe, &max_error,
+-							tvblank, in_vblank_irq);
+ 	}
+ 
+ 	/* GPU high precision timestamp query unsupported or failed.
+@@ -1081,9 +1018,11 @@ static int __enable_vblank(struct drm_device *dev, unsigned int pipe)
+ 
+ 		if (crtc->funcs->enable_vblank)
+ 			return crtc->funcs->enable_vblank(crtc);
++	} else if (dev->driver->enable_vblank) {
++		return dev->driver->enable_vblank(dev, pipe);
+ 	}
+ 
+-	return dev->driver->enable_vblank(dev, pipe);
++	return -EINVAL;
+ }
+ 
+ static int drm_vblank_enable(struct drm_device *dev, unsigned int pipe)
+@@ -1846,7 +1785,6 @@ static void drm_handle_vblank_events(struct drm_device *dev, unsigned int pipe)
+ 	struct drm_pending_vblank_event *e, *t;
+ 	ktime_t now;
+ 	u64 seq;
+-	bool high_prec;
+ 
+ 	assert_spin_locked(&dev->event_lock);
+ 
+@@ -1866,10 +1804,8 @@ static void drm_handle_vblank_events(struct drm_device *dev, unsigned int pipe)
+ 		send_vblank_event(dev, e, seq, now);
+ 	}
+ 
+-	high_prec = crtc && crtc->funcs->get_vblank_timestamp ||
+-		    dev->driver->get_vblank_timestamp;
+-
+-	trace_drm_vblank_event(pipe, seq, now, high_prec);
++	trace_drm_vblank_event(pipe, seq, now,
++			       crtc && crtc->funcs->get_vblank_timestamp);
+ }
+ 
+ /**
+diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+index d0049e5786fc..e290b3aca6eb 100644
+--- a/include/drm/drm_drv.h
++++ b/include/drm/drm_drv.h
+@@ -268,156 +268,6 @@ struct drm_driver {
+ 	 */
+ 	void (*release) (struct drm_device *);
+ 
+-	/**
+-	 * @get_vblank_counter:
+-	 *
+-	 * Driver callback for fetching a raw hardware vblank counter for the
+-	 * CRTC specified with the pipe argument.  If a device doesn't have a
+-	 * hardware counter, the driver can simply leave the hook as NULL.
+-	 * The DRM core will account for missed vblank events while interrupts
+-	 * where disabled based on system timestamps.
+-	 *
+-	 * Wraparound handling and loss of events due to modesetting is dealt
+-	 * with in the DRM core code, as long as drivers call
+-	 * drm_crtc_vblank_off() and drm_crtc_vblank_on() when disabling or
+-	 * enabling a CRTC.
+-	 *
+-	 * This is deprecated and should not be used by new drivers.
+-	 * Use &drm_crtc_funcs.get_vblank_counter instead.
+-	 *
+-	 * Returns:
+-	 *
+-	 * Raw vblank counter value.
+-	 */
+-	u32 (*get_vblank_counter) (struct drm_device *dev, unsigned int pipe);
+-
+-	/**
+-	 * @enable_vblank:
+-	 *
+-	 * Enable vblank interrupts for the CRTC specified with the pipe
+-	 * argument.
+-	 *
+-	 * This is deprecated and should not be used by new drivers.
+-	 * Use &drm_crtc_funcs.enable_vblank instead.
+-	 *
+-	 * Returns:
+-	 *
+-	 * Zero on success, appropriate errno if the given @crtc's vblank
+-	 * interrupt cannot be enabled.
+-	 */
+-	int (*enable_vblank) (struct drm_device *dev, unsigned int pipe);
+-
+-	/**
+-	 * @disable_vblank:
+-	 *
+-	 * Disable vblank interrupts for the CRTC specified with the pipe
+-	 * argument.
+-	 *
+-	 * This is deprecated and should not be used by new drivers.
+-	 * Use &drm_crtc_funcs.disable_vblank instead.
+-	 */
+-	void (*disable_vblank) (struct drm_device *dev, unsigned int pipe);
+-
+-	/**
+-	 * @get_scanout_position:
+-	 *
+-	 * Called by vblank timestamping code.
+-	 *
+-	 * Returns the current display scanout position from a crtc, and an
+-	 * optional accurate ktime_get() timestamp of when position was
+-	 * measured. Note that this is a helper callback which is only used if a
+-	 * driver uses drm_calc_vbltimestamp_from_scanoutpos() for the
+-	 * @get_vblank_timestamp callback.
+-	 *
+-	 * Parameters:
+-	 *
+-	 * dev:
+-	 *     DRM device.
+-	 * pipe:
+-	 *     Id of the crtc to query.
+-	 * in_vblank_irq:
+-	 *     True when called from drm_crtc_handle_vblank().  Some drivers
+-	 *     need to apply some workarounds for gpu-specific vblank irq quirks
+-	 *     if flag is set.
+-	 * vpos:
+-	 *     Target location for current vertical scanout position.
+-	 * hpos:
+-	 *     Target location for current horizontal scanout position.
+-	 * stime:
+-	 *     Target location for timestamp taken immediately before
+-	 *     scanout position query. Can be NULL to skip timestamp.
+-	 * etime:
+-	 *     Target location for timestamp taken immediately after
+-	 *     scanout position query. Can be NULL to skip timestamp.
+-	 * mode:
+-	 *     Current display timings.
+-	 *
+-	 * Returns vpos as a positive number while in active scanout area.
+-	 * Returns vpos as a negative number inside vblank, counting the number
+-	 * of scanlines to go until end of vblank, e.g., -1 means "one scanline
+-	 * until start of active scanout / end of vblank."
+-	 *
+-	 * Returns:
+-	 *
+-	 * True on success, false if a reliable scanout position counter could
+-	 * not be read out.
+-	 *
+-	 * This is deprecated and should not be used by new drivers.
+-	 * Use &drm_crtc_helper_funcs.get_scanout_position instead.
+-	 */
+-	bool (*get_scanout_position) (struct drm_device *dev, unsigned int pipe,
+-				      bool in_vblank_irq, int *vpos, int *hpos,
+-				      ktime_t *stime, ktime_t *etime,
+-				      const struct drm_display_mode *mode);
+-
+-	/**
+-	 * @get_vblank_timestamp:
+-	 *
+-	 * Called by drm_get_last_vbltimestamp(). Should return a precise
+-	 * timestamp when the most recent VBLANK interval ended or will end.
+-	 *
+-	 * Specifically, the timestamp in @vblank_time should correspond as
+-	 * closely as possible to the time when the first video scanline of
+-	 * the video frame after the end of VBLANK will start scanning out,
+-	 * the time immediately after end of the VBLANK interval. If the
+-	 * @crtc is currently inside VBLANK, this will be a time in the future.
+-	 * If the @crtc is currently scanning out a frame, this will be the
+-	 * past start time of the current scanout. This is meant to adhere
+-	 * to the OpenML OML_sync_control extension specification.
+-	 *
+-	 * Paramters:
+-	 *
+-	 * dev:
+-	 *     dev DRM device handle.
+-	 * pipe:
+-	 *     crtc for which timestamp should be returned.
+-	 * max_error:
+-	 *     Maximum allowable timestamp error in nanoseconds.
+-	 *     Implementation should strive to provide timestamp
+-	 *     with an error of at most max_error nanoseconds.
+-	 *     Returns true upper bound on error for timestamp.
+-	 * vblank_time:
+-	 *     Target location for returned vblank timestamp.
+-	 * in_vblank_irq:
+-	 *     True when called from drm_crtc_handle_vblank().  Some drivers
+-	 *     need to apply some workarounds for gpu-specific vblank irq quirks
+-	 *     if flag is set.
+-	 *
+-	 * Returns:
+-	 *
+-	 * True on success, false on failure, which means the core should
+-	 * fallback to a simple timestamp taken in drm_crtc_handle_vblank().
+-	 *
+-	 * FIXME:
+-	 *
+-	 * We should move this hook to &struct drm_crtc_funcs like all the other
+-	 * vblank hooks.
+-	 */
+-	bool (*get_vblank_timestamp) (struct drm_device *dev, unsigned int pipe,
+-				     int *max_error,
+-				     ktime_t *vblank_time,
+-				     bool in_vblank_irq);
+-
+ 	/**
+ 	 * @irq_handler:
+ 	 *
+@@ -772,6 +622,9 @@ struct drm_driver {
+ 	int (*dma_ioctl) (struct drm_device *dev, void *data, struct drm_file *file_priv);
+ 	int (*dma_quiescent) (struct drm_device *);
+ 	int (*context_dtor) (struct drm_device *dev, int context);
++	u32 (*get_vblank_counter)(struct drm_device *dev, unsigned int pipe);
++	int (*enable_vblank)(struct drm_device *dev, unsigned int pipe);
++	void (*disable_vblank)(struct drm_device *dev, unsigned int pipe);
+ 	int dev_priv_size;
+ };
+ 
+diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
+index 4bfffe990828..a6ca8be93dd8 100644
+--- a/include/drm/drm_vblank.h
++++ b/include/drm/drm_vblank.h
+@@ -229,10 +229,6 @@ u64 drm_crtc_accurate_vblank_count(struct drm_crtc *crtc);
+ void drm_vblank_restore(struct drm_device *dev, unsigned int pipe);
+ void drm_crtc_vblank_restore(struct drm_crtc *crtc);
+ 
+-bool drm_calc_vbltimestamp_from_scanoutpos(struct drm_device *dev,
+-					   unsigned int pipe, int *max_error,
+-					   ktime_t *vblank_time,
+-					   bool in_vblank_irq);
+ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
+ 				     const struct drm_display_mode *mode);
+ wait_queue_head_t *drm_crtc_vblank_waitqueue(struct drm_crtc *crtc);
 -- 
 2.24.1
