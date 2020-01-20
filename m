@@ -1,7 +1,7 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v3 06/22] drm/gma500: Convert to CRTC VBLANK callbacks
-Date: Mon, 20 Jan 2020 09:22:58 +0100
-Message-ID: <20200120082314.14756-7-tzimmermann@suse.de>
+Subject: [PATCH v3 11/22] drm/radeon: Convert to CRTC VBLANK callbacks
+Date: Mon, 20 Jan 2020 09:23:03 +0100
+Message-ID: <20200120082314.14756-12-tzimmermann@suse.de>
 References: <20200120082314.14756-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -13,155 +13,169 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@li
 List-Id: nouveau.vger.kernel.org
 
 VBLANK callbacks in struct drm_driver are deprecated in favor of
-their equivalents in struct drm_crtc_funcs. Convert gma500 over.
+their equivalents in struct drm_crtc_funcs. Convert radeon over.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/gma500/cdv_intel_display.c |  3 +++
- drivers/gpu/drm/gma500/psb_drv.c           |  4 ----
- drivers/gpu/drm/gma500/psb_drv.h           |  6 +++---
- drivers/gpu/drm/gma500/psb_intel_display.c |  3 +++
- drivers/gpu/drm/gma500/psb_irq.c           | 12 +++++++++---
- drivers/gpu/drm/gma500/psb_irq.h           |  7 ++++---
- 6 files changed, 22 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/radeon/radeon_display.c | 12 ++++++++--
+ drivers/gpu/drm/radeon/radeon_drv.c     |  7 ------
+ drivers/gpu/drm/radeon/radeon_kms.c     | 29 ++++++++++++++-----------
+ 3 files changed, 26 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/gma500/cdv_intel_display.c b/drivers/gpu/drm/gma500/cdv_intel_display.c
-index 1ed854f498b7..686385a66167 100644
---- a/drivers/gpu/drm/gma500/cdv_intel_display.c
-+++ b/drivers/gpu/drm/gma500/cdv_intel_display.c
-@@ -977,6 +977,9 @@ const struct drm_crtc_funcs cdv_intel_crtc_funcs = {
- 	.set_config = gma_crtc_set_config,
- 	.destroy = gma_crtc_destroy,
- 	.page_flip = gma_crtc_page_flip,
-+	.enable_vblank = psb_enable_vblank,
-+	.disable_vblank = psb_disable_vblank,
-+	.get_vblank_counter = psb_get_vblank_counter,
+diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
+index 2f641f3b39e7..fa722b7c8df3 100644
+--- a/drivers/gpu/drm/radeon/radeon_display.c
++++ b/drivers/gpu/drm/radeon/radeon_display.c
+@@ -45,6 +45,10 @@
+ #include "atom.h"
+ #include "radeon.h"
+ 
++u32 radeon_get_vblank_counter_kms(struct drm_crtc *crtc);
++int radeon_enable_vblank_kms(struct drm_crtc *crtc);
++void radeon_disable_vblank_kms(struct drm_crtc *crtc);
++
+ static void avivo_crtc_load_lut(struct drm_crtc *crtc)
+ {
+ 	struct radeon_crtc *radeon_crtc = to_radeon_crtc(crtc);
+@@ -458,7 +462,7 @@ static void radeon_flip_work_func(struct work_struct *__work)
+ 		(DRM_SCANOUTPOS_VALID | DRM_SCANOUTPOS_IN_VBLANK) &&
+ 		(!ASIC_IS_AVIVO(rdev) ||
+ 		((int) (work->target_vblank -
+-		dev->driver->get_vblank_counter(dev, work->crtc_id)) > 0)))
++		crtc->funcs->get_vblank_counter(crtc)) > 0)))
+ 		usleep_range(1000, 2000);
+ 
+ 	/* We borrow the event spin lock for protecting flip_status */
+@@ -574,7 +578,7 @@ static int radeon_crtc_page_flip_target(struct drm_crtc *crtc,
+ 	}
+ 	work->base = base;
+ 	work->target_vblank = target - (uint32_t)drm_crtc_vblank_count(crtc) +
+-		dev->driver->get_vblank_counter(dev, work->crtc_id);
++		crtc->funcs->get_vblank_counter(crtc);
+ 
+ 	/* We borrow the event spin lock for protecting flip_work */
+ 	spin_lock_irqsave(&crtc->dev->event_lock, flags);
+@@ -666,6 +670,10 @@ static const struct drm_crtc_funcs radeon_crtc_funcs = {
+ 	.set_config = radeon_crtc_set_config,
+ 	.destroy = radeon_crtc_destroy,
+ 	.page_flip_target = radeon_crtc_page_flip_target,
++	.get_vblank_counter = radeon_get_vblank_counter_kms,
++	.enable_vblank = radeon_enable_vblank_kms,
++	.disable_vblank = radeon_disable_vblank_kms,
++	.get_vblank_timestamp = drm_crtc_vblank_helper_get_vblank_timestamp,
  };
  
- const struct gma_clock_funcs cdv_clock_funcs = {
-diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/psb_drv.c
-index 52591416f8fe..36cb292fdebe 100644
---- a/drivers/gpu/drm/gma500/psb_drv.c
-+++ b/drivers/gpu/drm/gma500/psb_drv.c
-@@ -363,7 +363,6 @@ static int psb_driver_load(struct drm_device *dev, unsigned long flags)
- 	drm_irq_install(dev, dev->pdev->irq);
- 
- 	dev->max_vblank_count = 0xffffff; /* only 24 bits of frame count */
--	dev->driver->get_vblank_counter = psb_get_vblank_counter;
- 
- 	psb_modeset_init(dev);
- 	psb_fbdev_init(dev);
-@@ -507,9 +506,6 @@ static struct drm_driver driver = {
- 	.irq_postinstall = psb_irq_postinstall,
- 	.irq_uninstall = psb_irq_uninstall,
- 	.irq_handler = psb_irq_handler,
--	.enable_vblank = psb_enable_vblank,
--	.disable_vblank = psb_disable_vblank,
--	.get_vblank_counter = psb_get_vblank_counter,
- 
- 	.gem_free_object = psb_gem_free_object,
- 	.gem_vm_ops = &psb_gem_vm_ops,
-diff --git a/drivers/gpu/drm/gma500/psb_drv.h b/drivers/gpu/drm/gma500/psb_drv.h
-index 3d4ef3071d45..956926341316 100644
---- a/drivers/gpu/drm/gma500/psb_drv.h
-+++ b/drivers/gpu/drm/gma500/psb_drv.h
-@@ -681,15 +681,15 @@ extern void psb_irq_turn_off_dpst(struct drm_device *dev);
- extern void psb_irq_uninstall_islands(struct drm_device *dev, int hw_islands);
- extern int psb_vblank_wait2(struct drm_device *dev, unsigned int *sequence);
- extern int psb_vblank_wait(struct drm_device *dev, unsigned int *sequence);
--extern int psb_enable_vblank(struct drm_device *dev, unsigned int pipe);
--extern void psb_disable_vblank(struct drm_device *dev, unsigned int pipe);
-+extern int psb_enable_vblank(struct drm_crtc *crtc);
-+extern void psb_disable_vblank(struct drm_crtc *crtc);
- void
- psb_enable_pipestat(struct drm_psb_private *dev_priv, int pipe, u32 mask);
- 
- void
- psb_disable_pipestat(struct drm_psb_private *dev_priv, int pipe, u32 mask);
- 
--extern u32 psb_get_vblank_counter(struct drm_device *dev, unsigned int pipe);
-+extern u32 psb_get_vblank_counter(struct drm_crtc *crtc);
- 
- /* framebuffer.c */
- extern int psbfb_probed(struct drm_device *dev);
-diff --git a/drivers/gpu/drm/gma500/psb_intel_display.c b/drivers/gpu/drm/gma500/psb_intel_display.c
-index fed3b563e62e..531c5485be17 100644
---- a/drivers/gpu/drm/gma500/psb_intel_display.c
-+++ b/drivers/gpu/drm/gma500/psb_intel_display.c
-@@ -433,6 +433,9 @@ const struct drm_crtc_funcs psb_intel_crtc_funcs = {
- 	.set_config = gma_crtc_set_config,
- 	.destroy = gma_crtc_destroy,
- 	.page_flip = gma_crtc_page_flip,
-+	.enable_vblank = psb_enable_vblank,
-+	.disable_vblank = psb_disable_vblank,
-+	.get_vblank_counter = psb_get_vblank_counter,
- };
- 
- const struct gma_clock_funcs psb_clock_funcs = {
-diff --git a/drivers/gpu/drm/gma500/psb_irq.c b/drivers/gpu/drm/gma500/psb_irq.c
-index 91f90016dba9..15eb3770d817 100644
---- a/drivers/gpu/drm/gma500/psb_irq.c
-+++ b/drivers/gpu/drm/gma500/psb_irq.c
-@@ -506,8 +506,10 @@ int psb_irq_disable_dpst(struct drm_device *dev)
- /*
-  * It is used to enable VBLANK interrupt
+ static void radeon_crtc_init(struct drm_device *dev, int index)
+diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
+index 1f597f166bff..49ce2e7d5f9e 100644
+--- a/drivers/gpu/drm/radeon/radeon_drv.c
++++ b/drivers/gpu/drm/radeon/radeon_drv.c
+@@ -119,9 +119,6 @@ void radeon_driver_postclose_kms(struct drm_device *dev,
+ int radeon_suspend_kms(struct drm_device *dev, bool suspend,
+ 		       bool fbcon, bool freeze);
+ int radeon_resume_kms(struct drm_device *dev, bool resume, bool fbcon);
+-u32 radeon_get_vblank_counter_kms(struct drm_device *dev, unsigned int pipe);
+-int radeon_enable_vblank_kms(struct drm_device *dev, unsigned int pipe);
+-void radeon_disable_vblank_kms(struct drm_device *dev, unsigned int pipe);
+ void radeon_driver_irq_preinstall_kms(struct drm_device *dev);
+ int radeon_driver_irq_postinstall_kms(struct drm_device *dev);
+ void radeon_driver_irq_uninstall_kms(struct drm_device *dev);
+@@ -571,10 +568,6 @@ static struct drm_driver kms_driver = {
+ 	.postclose = radeon_driver_postclose_kms,
+ 	.lastclose = radeon_driver_lastclose_kms,
+ 	.unload = radeon_driver_unload_kms,
+-	.get_vblank_counter = radeon_get_vblank_counter_kms,
+-	.enable_vblank = radeon_enable_vblank_kms,
+-	.disable_vblank = radeon_disable_vblank_kms,
+-	.get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
+ 	.irq_preinstall = radeon_driver_irq_preinstall_kms,
+ 	.irq_postinstall = radeon_driver_irq_postinstall_kms,
+ 	.irq_uninstall = radeon_driver_irq_uninstall_kms,
+diff --git a/drivers/gpu/drm/radeon/radeon_kms.c b/drivers/gpu/drm/radeon/radeon_kms.c
+index d24f23a81656..cab891f86dc0 100644
+--- a/drivers/gpu/drm/radeon/radeon_kms.c
++++ b/drivers/gpu/drm/radeon/radeon_kms.c
+@@ -739,14 +739,15 @@ void radeon_driver_postclose_kms(struct drm_device *dev,
+ /**
+  * radeon_get_vblank_counter_kms - get frame count
+  *
+- * @dev: drm dev pointer
+- * @pipe: crtc to get the frame count from
++ * @crtc: crtc to get the frame count from
+  *
+  * Gets the frame count on the requested crtc (all asics).
+  * Returns frame count on success, -EINVAL on failure.
   */
--int psb_enable_vblank(struct drm_device *dev, unsigned int pipe)
-+int psb_enable_vblank(struct drm_crtc *crtc)
+-u32 radeon_get_vblank_counter_kms(struct drm_device *dev, unsigned int pipe)
++u32 radeon_get_vblank_counter_kms(struct drm_crtc *crtc)
  {
 +	struct drm_device *dev = crtc->dev;
 +	unsigned int pipe = crtc->index;
- 	struct drm_psb_private *dev_priv = dev->dev_private;
+ 	int vpos, hpos, stat;
+ 	u32 count;
+ 	struct radeon_device *rdev = dev->dev_private;
+@@ -808,25 +809,26 @@ u32 radeon_get_vblank_counter_kms(struct drm_device *dev, unsigned int pipe)
+ /**
+  * radeon_enable_vblank_kms - enable vblank interrupt
+  *
+- * @dev: drm dev pointer
+  * @crtc: crtc to enable vblank interrupt for
+  *
+  * Enable the interrupt on the requested crtc (all asics).
+  * Returns 0 on success, -EINVAL on failure.
+  */
+-int radeon_enable_vblank_kms(struct drm_device *dev, int crtc)
++int radeon_enable_vblank_kms(struct drm_crtc *crtc)
+ {
++	struct drm_device *dev = crtc->dev;
++	unsigned int pipe = crtc->index;
+ 	struct radeon_device *rdev = dev->dev_private;
  	unsigned long irqflags;
- 	uint32_t reg_val = 0;
-@@ -545,8 +547,10 @@ int psb_enable_vblank(struct drm_device *dev, unsigned int pipe)
- /*
-  * It is used to disable VBLANK interrupt
+ 	int r;
+ 
+-	if (crtc < 0 || crtc >= rdev->num_crtc) {
+-		DRM_ERROR("Invalid crtc %d\n", crtc);
++	if (pipe < 0 || pipe >= rdev->num_crtc) {
++		DRM_ERROR("Invalid crtc %d\n", pipe);
+ 		return -EINVAL;
+ 	}
+ 
+ 	spin_lock_irqsave(&rdev->irq.lock, irqflags);
+-	rdev->irq.crtc_vblank_int[crtc] = true;
++	rdev->irq.crtc_vblank_int[pipe] = true;
+ 	r = radeon_irq_set(rdev);
+ 	spin_unlock_irqrestore(&rdev->irq.lock, irqflags);
+ 	return r;
+@@ -835,23 +837,24 @@ int radeon_enable_vblank_kms(struct drm_device *dev, int crtc)
+ /**
+  * radeon_disable_vblank_kms - disable vblank interrupt
+  *
+- * @dev: drm dev pointer
+  * @crtc: crtc to disable vblank interrupt for
+  *
+  * Disable the interrupt on the requested crtc (all asics).
   */
--void psb_disable_vblank(struct drm_device *dev, unsigned int pipe)
-+void psb_disable_vblank(struct drm_crtc *crtc)
+-void radeon_disable_vblank_kms(struct drm_device *dev, int crtc)
++void radeon_disable_vblank_kms(struct drm_crtc *crtc)
  {
 +	struct drm_device *dev = crtc->dev;
 +	unsigned int pipe = crtc->index;
- 	struct drm_psb_private *dev_priv = dev->dev_private;
+ 	struct radeon_device *rdev = dev->dev_private;
  	unsigned long irqflags;
  
-@@ -618,8 +622,10 @@ void mdfld_disable_te(struct drm_device *dev, int pipe)
- /* Called from drm generic code, passed a 'crtc', which
-  * we use as a pipe index
-  */
--u32 psb_get_vblank_counter(struct drm_device *dev, unsigned int pipe)
-+u32 psb_get_vblank_counter(struct drm_crtc *crtc)
- {
-+	struct drm_device *dev = crtc->dev;
-+	unsigned int pipe = crtc->index;
- 	uint32_t high_frame = PIPEAFRAMEHIGH;
- 	uint32_t low_frame = PIPEAFRAMEPIXEL;
- 	uint32_t pipeconf_reg = PIPEACONF;
-diff --git a/drivers/gpu/drm/gma500/psb_irq.h b/drivers/gpu/drm/gma500/psb_irq.h
-index 58fd502e3b9d..4f73998848d1 100644
---- a/drivers/gpu/drm/gma500/psb_irq.h
-+++ b/drivers/gpu/drm/gma500/psb_irq.h
-@@ -12,6 +12,7 @@
- #ifndef _PSB_IRQ_H_
- #define _PSB_IRQ_H_
+-	if (crtc < 0 || crtc >= rdev->num_crtc) {
+-		DRM_ERROR("Invalid crtc %d\n", crtc);
++	if (pipe < 0 || pipe >= rdev->num_crtc) {
++		DRM_ERROR("Invalid crtc %d\n", pipe);
+ 		return;
+ 	}
  
-+struct drm_crtc;
- struct drm_device;
- 
- bool sysirq_init(struct drm_device *dev);
-@@ -26,9 +27,9 @@ int psb_irq_enable_dpst(struct drm_device *dev);
- int psb_irq_disable_dpst(struct drm_device *dev);
- void psb_irq_turn_on_dpst(struct drm_device *dev);
- void psb_irq_turn_off_dpst(struct drm_device *dev);
--int  psb_enable_vblank(struct drm_device *dev, unsigned int pipe);
--void psb_disable_vblank(struct drm_device *dev, unsigned int pipe);
--u32  psb_get_vblank_counter(struct drm_device *dev, unsigned int pipe);
-+int  psb_enable_vblank(struct drm_crtc *crtc);
-+void psb_disable_vblank(struct drm_crtc *crtc);
-+u32  psb_get_vblank_counter(struct drm_crtc *crtc);
- 
- int mdfld_enable_te(struct drm_device *dev, int pipe);
- void mdfld_disable_te(struct drm_device *dev, int pipe);
+ 	spin_lock_irqsave(&rdev->irq.lock, irqflags);
+-	rdev->irq.crtc_vblank_int[crtc] = false;
++	rdev->irq.crtc_vblank_int[pipe] = false;
+ 	radeon_irq_set(rdev);
+ 	spin_unlock_irqrestore(&rdev->irq.lock, irqflags);
+ }
 -- 
 2.24.1
