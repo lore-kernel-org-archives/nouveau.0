@@ -1,10 +1,9 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v4 14/22] drm/stm: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
-Date: Thu, 23 Jan 2020 14:59:35 +0100
-Message-ID: <20200123135943.24140-15-tzimmermann@suse.de>
+Subject: [PATCH v4 16/22] drm/sti: Convert to CRTC VBLANK callbacks
+Date: Thu, 23 Jan 2020 14:59:37 +0100
+Message-ID: <20200123135943.24140-17-tzimmermann@suse.de>
 References: <20200123135943.24140-1-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-arm-msm-owner@vger.kernel.org>
 In-Reply-To: <20200123135943.24140-1-tzimmermann@suse.de>
@@ -13,129 +12,95 @@ To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koen
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
 List-Id: nouveau.vger.kernel.org
 
-The callback struct drm_driver.get_scanout_position() is deprecated in
-favor of struct drm_crtc_helper_funcs.get_scanout_position(). Convert stm
-over.
+VBLANK callbacks in struct drm_driver are deprecated in favor of
+their equivalents in struct drm_crtc_funcs. Convert sti over.
+
+v2:
+	* remove unnecessary include of sti_crtc.h from sti_drv.c
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Tested-by: Yannick Fertré <yannick.fertre@st.com>
+Acked-by: Benjamin Gaignard <benjamin.gaignard@linaro.org>
 ---
- drivers/gpu/drm/stm/drv.c  |  1 -
- drivers/gpu/drm/stm/ltdc.c | 65 ++++++++++++++++++++------------------
- drivers/gpu/drm/stm/ltdc.h |  5 ---
- 3 files changed, 34 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/sti/sti_crtc.c | 11 ++++++++---
+ drivers/gpu/drm/sti/sti_crtc.h |  2 --
+ drivers/gpu/drm/sti/sti_drv.c  |  4 ----
+ 3 files changed, 8 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/stm/drv.c b/drivers/gpu/drm/stm/drv.c
-index 5a9f9aca8bc2..486985604109 100644
---- a/drivers/gpu/drm/stm/drv.c
-+++ b/drivers/gpu/drm/stm/drv.c
-@@ -72,7 +72,6 @@ static struct drm_driver drv_driver = {
- 	.gem_prime_vmap = drm_gem_cma_prime_vmap,
- 	.gem_prime_vunmap = drm_gem_cma_prime_vunmap,
- 	.gem_prime_mmap = drm_gem_cma_prime_mmap,
--	.get_scanout_position = ltdc_crtc_scanoutpos,
- 	.get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
- };
- 
-diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
-index c2815e8ae1da..8b6d1a2252e3 100644
---- a/drivers/gpu/drm/stm/ltdc.c
-+++ b/drivers/gpu/drm/stm/ltdc.c
-@@ -636,38 +636,13 @@ static void ltdc_crtc_atomic_flush(struct drm_crtc *crtc,
- 	}
+diff --git a/drivers/gpu/drm/sti/sti_crtc.c b/drivers/gpu/drm/sti/sti_crtc.c
+index dc64fbfc4e61..49e6cb8f5836 100644
+--- a/drivers/gpu/drm/sti/sti_crtc.c
++++ b/drivers/gpu/drm/sti/sti_crtc.c
+@@ -279,12 +279,13 @@ int sti_crtc_vblank_cb(struct notifier_block *nb,
+ 	return 0;
  }
  
--static const struct drm_crtc_helper_funcs ltdc_crtc_helper_funcs = {
--	.mode_valid = ltdc_crtc_mode_valid,
--	.mode_fixup = ltdc_crtc_mode_fixup,
--	.mode_set_nofb = ltdc_crtc_mode_set_nofb,
--	.atomic_flush = ltdc_crtc_atomic_flush,
--	.atomic_enable = ltdc_crtc_atomic_enable,
--	.atomic_disable = ltdc_crtc_atomic_disable,
--};
--
--static int ltdc_crtc_enable_vblank(struct drm_crtc *crtc)
--{
--	struct ltdc_device *ldev = crtc_to_ltdc(crtc);
--
--	DRM_DEBUG_DRIVER("\n");
--	reg_set(ldev->regs, LTDC_IER, IER_LIE);
--
--	return 0;
--}
--
--static void ltdc_crtc_disable_vblank(struct drm_crtc *crtc)
--{
--	struct ltdc_device *ldev = crtc_to_ltdc(crtc);
--
--	DRM_DEBUG_DRIVER("\n");
--	reg_clear(ldev->regs, LTDC_IER, IER_LIE);
--}
--
--bool ltdc_crtc_scanoutpos(struct drm_device *ddev, unsigned int pipe,
--			  bool in_vblank_irq, int *vpos, int *hpos,
--			  ktime_t *stime, ktime_t *etime,
--			  const struct drm_display_mode *mode)
-+static bool ltdc_crtc_get_scanout_position(struct drm_crtc *crtc,
-+					   bool in_vblank_irq,
-+					   int *vpos, int *hpos,
-+					   ktime_t *stime, ktime_t *etime,
-+					   const struct drm_display_mode *mode)
+-int sti_crtc_enable_vblank(struct drm_device *dev, unsigned int pipe)
++static int sti_crtc_enable_vblank(struct drm_crtc *crtc)
  {
-+	struct drm_device *ddev = crtc->dev;
- 	struct ltdc_device *ldev = ddev->dev_private;
- 	int line, vactive_start, vactive_end, vtotal;
++	struct drm_device *dev = crtc->dev;
++	unsigned int pipe = crtc->index;
+ 	struct sti_private *dev_priv = dev->dev_private;
+ 	struct sti_compositor *compo = dev_priv->compo;
+ 	struct notifier_block *vtg_vblank_nb = &compo->vtg_vblank_nb[pipe];
+-	struct drm_crtc *crtc = &compo->mixer[pipe]->drm_crtc;
+ 	struct sti_vtg *vtg = compo->vtg[pipe];
  
-@@ -710,6 +685,34 @@ bool ltdc_crtc_scanoutpos(struct drm_device *ddev, unsigned int pipe,
- 	return true;
+ 	DRM_DEBUG_DRIVER("\n");
+@@ -297,8 +298,10 @@ int sti_crtc_enable_vblank(struct drm_device *dev, unsigned int pipe)
+ 	return 0;
  }
  
-+static const struct drm_crtc_helper_funcs ltdc_crtc_helper_funcs = {
-+	.mode_valid = ltdc_crtc_mode_valid,
-+	.mode_fixup = ltdc_crtc_mode_fixup,
-+	.mode_set_nofb = ltdc_crtc_mode_set_nofb,
-+	.atomic_flush = ltdc_crtc_atomic_flush,
-+	.atomic_enable = ltdc_crtc_atomic_enable,
-+	.atomic_disable = ltdc_crtc_atomic_disable,
-+	.get_scanout_position = ltdc_crtc_get_scanout_position,
-+};
-+
-+static int ltdc_crtc_enable_vblank(struct drm_crtc *crtc)
-+{
-+	struct ltdc_device *ldev = crtc_to_ltdc(crtc);
-+
-+	DRM_DEBUG_DRIVER("\n");
-+	reg_set(ldev->regs, LTDC_IER, IER_LIE);
-+
-+	return 0;
-+}
-+
-+static void ltdc_crtc_disable_vblank(struct drm_crtc *crtc)
-+{
-+	struct ltdc_device *ldev = crtc_to_ltdc(crtc);
-+
-+	DRM_DEBUG_DRIVER("\n");
-+	reg_clear(ldev->regs, LTDC_IER, IER_LIE);
-+}
-+
- static const struct drm_crtc_funcs ltdc_crtc_funcs = {
- 	.destroy = drm_crtc_cleanup,
- 	.set_config = drm_atomic_helper_set_config,
-diff --git a/drivers/gpu/drm/stm/ltdc.h b/drivers/gpu/drm/stm/ltdc.h
-index a1ad0ae3b006..c5467d74e707 100644
---- a/drivers/gpu/drm/stm/ltdc.h
-+++ b/drivers/gpu/drm/stm/ltdc.h
-@@ -39,11 +39,6 @@ struct ltdc_device {
- 	struct drm_atomic_state *suspend_state;
+-void sti_crtc_disable_vblank(struct drm_device *drm_dev, unsigned int pipe)
++static void sti_crtc_disable_vblank(struct drm_crtc *crtc)
+ {
++	struct drm_device *drm_dev = crtc->dev;
++	unsigned int pipe = crtc->index;
+ 	struct sti_private *priv = drm_dev->dev_private;
+ 	struct sti_compositor *compo = priv->compo;
+ 	struct notifier_block *vtg_vblank_nb = &compo->vtg_vblank_nb[pipe];
+@@ -330,6 +333,8 @@ static const struct drm_crtc_funcs sti_crtc_funcs = {
+ 	.atomic_duplicate_state = drm_atomic_helper_crtc_duplicate_state,
+ 	.atomic_destroy_state = drm_atomic_helper_crtc_destroy_state,
+ 	.late_register = sti_crtc_late_register,
++	.enable_vblank = sti_crtc_enable_vblank,
++	.disable_vblank = sti_crtc_disable_vblank,
  };
  
--bool ltdc_crtc_scanoutpos(struct drm_device *dev, unsigned int pipe,
--			  bool in_vblank_irq, int *vpos, int *hpos,
--			  ktime_t *stime, ktime_t *etime,
--			  const struct drm_display_mode *mode);
+ bool sti_crtc_is_main(struct drm_crtc *crtc)
+diff --git a/drivers/gpu/drm/sti/sti_crtc.h b/drivers/gpu/drm/sti/sti_crtc.h
+index df489ab14e2b..1132b4586712 100644
+--- a/drivers/gpu/drm/sti/sti_crtc.h
++++ b/drivers/gpu/drm/sti/sti_crtc.h
+@@ -15,8 +15,6 @@ struct sti_mixer;
+ 
+ int sti_crtc_init(struct drm_device *drm_dev, struct sti_mixer *mixer,
+ 		  struct drm_plane *primary, struct drm_plane *cursor);
+-int sti_crtc_enable_vblank(struct drm_device *dev, unsigned int pipe);
+-void sti_crtc_disable_vblank(struct drm_device *dev, unsigned int pipe);
+ int sti_crtc_vblank_cb(struct notifier_block *nb,
+ 		       unsigned long event, void *data);
+ bool sti_crtc_is_main(struct drm_crtc *drm_crtc);
+diff --git a/drivers/gpu/drm/sti/sti_drv.c b/drivers/gpu/drm/sti/sti_drv.c
+index a39fc36f815b..50870d8cbb76 100644
+--- a/drivers/gpu/drm/sti/sti_drv.c
++++ b/drivers/gpu/drm/sti/sti_drv.c
+@@ -21,7 +21,6 @@
+ #include <drm/drm_of.h>
+ #include <drm/drm_probe_helper.h>
+ 
+-#include "sti_crtc.h"
+ #include "sti_drv.h"
+ #include "sti_plane.h"
+ 
+@@ -146,9 +145,6 @@ static struct drm_driver sti_driver = {
+ 	.dumb_create = drm_gem_cma_dumb_create,
+ 	.fops = &sti_driver_fops,
+ 
+-	.enable_vblank = sti_crtc_enable_vblank,
+-	.disable_vblank = sti_crtc_disable_vblank,
 -
- int ltdc_load(struct drm_device *ddev);
- void ltdc_unload(struct drm_device *ddev);
- void ltdc_suspend(struct drm_device *ddev);
+ 	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
+ 	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
+ 	.gem_prime_get_sg_table = drm_gem_cma_prime_get_sg_table,
 -- 
 2.24.1
