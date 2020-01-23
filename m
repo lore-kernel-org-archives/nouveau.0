@@ -1,322 +1,135 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v4 02/22] drm: Add get_scanout_position() to struct drm_crtc_helper_funcs
-Date: Thu, 23 Jan 2020 14:59:23 +0100
-Message-ID: <20200123135943.24140-3-tzimmermann@suse.de>
+Subject: [PATCH v4 09/22] drm/nouveau: Convert to CRTC VBLANK callbacks
+Date: Thu, 23 Jan 2020 14:59:30 +0100
+Message-ID: <20200123135943.24140-10-tzimmermann@suse.de>
 References: <20200123135943.24140-1-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-arm-msm-owner@vger.kernel.org>
 In-Reply-To: <20200123135943.24140-1-tzimmermann@suse.de>
 Sender: linux-arm-msm-owner@vger.kernel.org
 To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com, maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com, robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org, vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com, mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, linux-graphics-maintainer@vmware.com, thellstrom@vmware.com, bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
 List-Id: nouveau.vger.kernel.org
 
-The new callback get_scanout_position() reads the current location
-of the scanout process. The operation is currently located in struct
-drm_driver, but really belongs to the CRTC. Drivers will be converted
-in separate patches.
-
-To help with the conversion, the timestamp calculation has been
-moved from drm_calc_vbltimestamp_from_scanoutpos() to
-drm_crtc_vblank_helper_get_vblank_timestamp_internal(). The helper
-function supports the new and old interface of get_scanout_position().
-drm_calc_vbltimestamp_from_scanoutpos() remains as a wrapper around
-the new function.
-
-Callback functions return the scanout position from the CRTC. The
-legacy version of the interface receives the device and pipe index,
-the modern version receives a pointer to the CRTC. We keep the
-legacy version until all drivers have been converted.
+VBLANK callbacks in struct drm_driver are deprecated in favor of
+their equivalents in struct drm_crtc_funcs. Convert nouvean over.
 
 v4:
-	* 80-character line fixes
-v3:
-	* refactor drm_calc_vbltimestamp_from_scanoutpos() to minimize
-	  code duplication
-	* define types for get_scanout_position() callbacks
-v2:
-	* fix logical op in drm_calc_vbltimestamp_from_scanoutpos()
+	* add argument names in function declaration
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Tested-by: Yannick Fertré <yannick.fertre@st.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/drm_vblank.c             | 101 +++++++++++++++++++----
- include/drm/drm_drv.h                    |   7 +-
- include/drm/drm_modeset_helper_vtables.h |  47 +++++++++++
- include/drm/drm_vblank.h                 |  25 ++++++
- 4 files changed, 157 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c   |  3 +++
+ drivers/gpu/drm/nouveau/dispnv50/head.c   |  4 ++++
+ drivers/gpu/drm/nouveau/nouveau_display.c | 14 ++------------
+ drivers/gpu/drm/nouveau/nouveau_display.h |  4 ++--
+ drivers/gpu/drm/nouveau/nouveau_drm.c     |  4 ----
+ 5 files changed, 11 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index 326db52f2ad8..7e962c29780c 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -30,6 +30,7 @@
- #include <drm/drm_crtc.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_framebuffer.h>
-+#include <drm/drm_modeset_helper_vtables.h>
- #include <drm/drm_print.h>
- #include <drm/drm_vblank.h>
- 
-@@ -577,7 +578,7 @@ EXPORT_SYMBOL(drm_calc_timestamping_constants);
-  * Implements calculation of exact vblank timestamps from given drm_display_mode
-  * timings and current video scanout position of a CRTC. This can be directly
-  * used as the &drm_driver.get_vblank_timestamp implementation of a kms driver
-- * if &drm_driver.get_scanout_position is implemented.
-+ * if &drm_crtc_helper_funcs.get_scanout_position is implemented.
-  *
-  * The current implementation only handles standard video modes. For double scan
-  * and interlaced modes the driver is supposed to adjust the hardware mode
-@@ -599,28 +600,85 @@ bool drm_calc_vbltimestamp_from_scanoutpos(struct drm_device *dev,
- 					   ktime_t *vblank_time,
- 					   bool in_vblank_irq)
- {
--	struct timespec64 ts_etime, ts_vblank_time;
--	ktime_t stime, etime;
--	bool vbl_status;
- 	struct drm_crtc *crtc;
--	const struct drm_display_mode *mode;
--	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
--	int vpos, hpos, i;
--	int delta_ns, duration_ns;
- 
- 	if (!drm_core_check_feature(dev, DRIVER_MODESET))
- 		return false;
- 
- 	crtc = drm_crtc_from_index(dev, pipe);
-+	if (!crtc)
-+		return false;
- 
--	if (pipe >= dev->num_crtcs || !crtc) {
-+	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(crtc,
-+								    max_error,
-+								    vblank_time,
-+								    in_vblank_irq,
-+								    crtc->helper_private->get_scanout_position,
-+								    dev->driver->get_scanout_position);
-+}
-+EXPORT_SYMBOL(drm_calc_vbltimestamp_from_scanoutpos);
-+
-+/**
-+ * drm_crtc_vblank_helper_get_vblank_timestamp_internal - precise vblank
-+ *                                                        timestamp helper
-+ * @dev: DRM device
-+ * @pipe: index of CRTC whose vblank timestamp to retrieve
-+ * @max_error: Desired maximum allowable error in timestamps (nanosecs)
-+ *             On return contains true maximum error of timestamp
-+ * @vblank_time: Pointer to time which should receive the timestamp
-+ * @in_vblank_irq:
-+ *     True when called from drm_crtc_handle_vblank().  Some drivers
-+ *     need to apply some workarounds for gpu-specific vblank irq quirks
-+ *     if flag is set.
-+ * @get_scanout_position:
-+ *     Callback function to retrieve the scanout position. See
-+ *     @struct drm_crtc_helper_funcs.get_scanout_position.
-+ * @get_scanout_position_legacy:
-+ *     Callback function to retrieve the scanout position. See
-+ *     @struct drm_driver.get_scanout_position.
-+ *
-+ * Implements calculation of exact vblank timestamps from given drm_display_mode
-+ * timings and current video scanout position of a CRTC.
-+ *
-+ * The current implementation only handles standard video modes. For double scan
-+ * and interlaced modes the driver is supposed to adjust the hardware mode
-+ * (taken from &drm_crtc_state.adjusted mode for atomic modeset drivers) to
-+ * match the scanout position reported.
-+ *
-+ * Note that atomic drivers must call drm_calc_timestamping_constants() before
-+ * enabling a CRTC. The atomic helpers already take care of that in
-+ * drm_atomic_helper_update_legacy_modeset_state().
-+ *
-+ * Returns:
-+ *
-+ * Returns true on success, and false on failure, i.e. when no accurate
-+ * timestamp could be acquired.
-+ */
-+bool
-+drm_crtc_vblank_helper_get_vblank_timestamp_internal(
-+	struct drm_crtc *crtc, int *max_error, ktime_t *vblank_time,
-+	bool in_vblank_irq,
-+	drm_vblank_get_scanout_position_func get_scanout_position,
-+	drm_vblank_get_scanout_position_legacy_func get_scanout_position_legacy)
-+{
-+	struct drm_device *dev = crtc->dev;
-+	unsigned int pipe = crtc->index;
-+	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
-+	struct timespec64 ts_etime, ts_vblank_time;
-+	ktime_t stime, etime;
-+	bool vbl_status;
-+	const struct drm_display_mode *mode;
-+	int vpos, hpos, i;
-+	int delta_ns, duration_ns;
-+
-+	if (pipe >= dev->num_crtcs) {
- 		DRM_ERROR("Invalid crtc %u\n", pipe);
- 		return false;
- 	}
- 
- 	/* Scanout position query not supported? Should not happen. */
--	if (!dev->driver->get_scanout_position) {
--		DRM_ERROR("Called from driver w/o get_scanout_position()!?\n");
-+	if (!get_scanout_position && !get_scanout_position_legacy) {
-+		DRM_ERROR("Called from CRTC w/o get_scanout_position()!?\n");
- 		return false;
- 	}
- 
-@@ -635,7 +693,6 @@ bool drm_calc_vbltimestamp_from_scanoutpos(struct drm_device *dev,
- 	if (mode->crtc_clock == 0) {
- 		DRM_DEBUG("crtc %u: Noop due to uninitialized mode.\n", pipe);
- 		WARN_ON_ONCE(drm_drv_uses_atomic_modeset(dev));
--
- 		return false;
- 	}
- 
-@@ -651,11 +708,19 @@ bool drm_calc_vbltimestamp_from_scanoutpos(struct drm_device *dev,
- 		 * Get vertical and horizontal scanout position vpos, hpos,
- 		 * and bounding timestamps stime, etime, pre/post query.
- 		 */
--		vbl_status = dev->driver->get_scanout_position(dev, pipe,
--							       in_vblank_irq,
--							       &vpos, &hpos,
--							       &stime, &etime,
--							       mode);
-+		if (get_scanout_position) {
-+			vbl_status = get_scanout_position(crtc,
-+							  in_vblank_irq,
-+							  &vpos, &hpos,
-+							  &stime, &etime,
-+							  mode);
-+		} else {
-+			vbl_status = get_scanout_position_legacy(dev, pipe,
-+								 in_vblank_irq,
-+								 &vpos, &hpos,
-+								 &stime, &etime,
-+								 mode);
-+		}
- 
- 		/* Return as no-op if scanout query unsupported or failed. */
- 		if (!vbl_status) {
-@@ -707,7 +772,7 @@ bool drm_calc_vbltimestamp_from_scanoutpos(struct drm_device *dev,
- 
- 	return true;
- }
--EXPORT_SYMBOL(drm_calc_vbltimestamp_from_scanoutpos);
-+EXPORT_SYMBOL(drm_crtc_vblank_helper_get_vblank_timestamp_internal);
- 
- /**
-  * drm_get_last_vbltimestamp - retrieve raw timestamp for the most recent
-diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-index cf13470810a5..d0049e5786fc 100644
---- a/include/drm/drm_drv.h
-+++ b/include/drm/drm_drv.h
-@@ -362,11 +362,8 @@ struct drm_driver {
- 	 * True on success, false if a reliable scanout position counter could
- 	 * not be read out.
- 	 *
--	 * FIXME:
--	 *
--	 * Since this is a helper to implement @get_vblank_timestamp, we should
--	 * move it to &struct drm_crtc_helper_funcs, like all the other
--	 * helper-internal hooks.
-+	 * This is deprecated and should not be used by new drivers.
-+	 * Use &drm_crtc_helper_funcs.get_scanout_position instead.
- 	 */
- 	bool (*get_scanout_position) (struct drm_device *dev, unsigned int pipe,
- 				      bool in_vblank_irq, int *vpos, int *hpos,
-diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/drm_modeset_helper_vtables.h
-index 5a87f1bd7a3f..e398512bfd5f 100644
---- a/include/drm/drm_modeset_helper_vtables.h
-+++ b/include/drm/drm_modeset_helper_vtables.h
-@@ -450,6 +450,53 @@ struct drm_crtc_helper_funcs {
- 	 */
- 	void (*atomic_disable)(struct drm_crtc *crtc,
- 			       struct drm_crtc_state *old_crtc_state);
-+
-+	/**
-+	 * @get_scanout_position:
-+	 *
-+	 * Called by vblank timestamping code.
-+	 *
-+	 * Returns the current display scanout position from a CRTC and an
-+	 * optional accurate ktime_get() timestamp of when the position was
-+	 * measured. Note that this is a helper callback which is only used
-+	 * if a driver uses drm_calc_vbltimestamp_from_scanoutpos() for the
-+	 * @drm_driver.get_vblank_timestamp callback.
-+	 *
-+	 * Parameters:
-+	 *
-+	 * crtc:
-+	 *     The CRTC.
-+	 * in_vblank_irq:
-+	 *     True when called from drm_crtc_handle_vblank(). Some drivers
-+	 *     need to apply some workarounds for gpu-specific vblank irq
-+	 *     quirks if the flag is set.
-+	 * vpos:
-+	 *     Target location for current vertical scanout position.
-+	 * hpos:
-+	 *     Target location for current horizontal scanout position.
-+	 * stime:
-+	 *     Target location for timestamp taken immediately before
-+	 *     scanout position query. Can be NULL to skip timestamp.
-+	 * etime:
-+	 *     Target location for timestamp taken immediately after
-+	 *     scanout position query. Can be NULL to skip timestamp.
-+	 * mode:
-+	 *     Current display timings.
-+	 *
-+	 * Returns vpos as a positive number while in active scanout area.
-+	 * Returns vpos as a negative number inside vblank, counting the number
-+	 * of scanlines to go until end of vblank, e.g., -1 means "one scanline
-+	 * until start of active scanout / end of vblank."
-+	 *
-+	 * Returns:
-+	 *
-+	 * True on success, false if a reliable scanout position counter could
-+	 * not be read out.
-+	 */
-+	bool (*get_scanout_position)(struct drm_crtc *crtc,
-+				     bool in_vblank_irq, int *vpos, int *hpos,
-+				     ktime_t *stime, ktime_t *etime,
-+				     const struct drm_display_mode *mode);
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+index 17e9d1c078a0..1f08de4241e0 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+@@ -1248,6 +1248,9 @@ static const struct drm_crtc_funcs nv04_crtc_funcs = {
+ 	.set_config = drm_crtc_helper_set_config,
+ 	.page_flip = nv04_crtc_page_flip,
+ 	.destroy = nv_crtc_destroy,
++	.enable_vblank = nouveau_display_vblank_enable,
++	.disable_vblank = nouveau_display_vblank_disable,
++	.get_vblank_timestamp = drm_crtc_vblank_helper_get_vblank_timestamp,
  };
  
- /**
-diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
-index c16c44052b3d..66d1fb376600 100644
---- a/include/drm/drm_vblank.h
-+++ b/include/drm/drm_vblank.h
-@@ -238,4 +238,29 @@ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
- wait_queue_head_t *drm_crtc_vblank_waitqueue(struct drm_crtc *crtc);
- void drm_crtc_set_max_vblank_count(struct drm_crtc *crtc,
- 				   u32 max_vblank_count);
-+
-+typedef bool (*drm_vblank_get_scanout_position_func)(struct drm_crtc *crtc,
-+						     bool in_vblank_irq,
-+						     int *vpos, int *hpos,
-+						     ktime_t *stime,
-+						     ktime_t *etime,
-+						     const struct drm_display_mode *mode);
-+
-+typedef bool (*drm_vblank_get_scanout_position_legacy_func)(struct drm_device *dev,
-+							    unsigned int pipe,
-+							    bool in_vblank_irq,
-+							    int *vpos,
-+							    int *hpos,
-+							    ktime_t *stime,
-+							    ktime_t *etime,
-+							    const struct drm_display_mode *mode);
-+
-+bool
-+drm_crtc_vblank_helper_get_vblank_timestamp_internal(struct drm_crtc *crtc,
-+						     int *max_error,
-+						     ktime_t *vblank_time,
-+						     bool in_vblank_irq,
-+						     drm_vblank_get_scanout_position_func get_scanout_position,
-+						     drm_vblank_get_scanout_position_legacy_func get_scanout_position_legacy);
-+
+ static const struct drm_crtc_helper_funcs nv04_crtc_helper_funcs = {
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/head.c b/drivers/gpu/drm/nouveau/dispnv50/head.c
+index 41852dd8fdbd..8f6455697ba7 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/head.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/head.c
+@@ -29,6 +29,7 @@
+ 
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_crtc_helper.h>
++#include <drm/drm_vblank.h>
+ #include "nouveau_connector.h"
+ void
+ nv50_head_flush_clr(struct nv50_head *head,
+@@ -482,6 +483,9 @@ nv50_head_func = {
+ 	.page_flip = drm_atomic_helper_page_flip,
+ 	.atomic_duplicate_state = nv50_head_atomic_duplicate_state,
+ 	.atomic_destroy_state = nv50_head_atomic_destroy_state,
++	.enable_vblank = nouveau_display_vblank_enable,
++	.disable_vblank = nouveau_display_vblank_disable,
++	.get_vblank_timestamp = drm_crtc_vblank_helper_get_vblank_timestamp,
+ };
+ 
+ struct nv50_head *
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index 86f99dc8fcef..700817dc4fa0 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -54,15 +54,10 @@ nouveau_display_vblank_handler(struct nvif_notify *notify)
+ }
+ 
+ int
+-nouveau_display_vblank_enable(struct drm_device *dev, unsigned int pipe)
++nouveau_display_vblank_enable(struct drm_crtc *crtc)
+ {
+-	struct drm_crtc *crtc;
+ 	struct nouveau_crtc *nv_crtc;
+ 
+-	crtc = drm_crtc_from_index(dev, pipe);
+-	if (!crtc)
+-		return -EINVAL;
+-
+ 	nv_crtc = nouveau_crtc(crtc);
+ 	nvif_notify_get(&nv_crtc->vblank);
+ 
+@@ -70,15 +65,10 @@ nouveau_display_vblank_enable(struct drm_device *dev, unsigned int pipe)
+ }
+ 
+ void
+-nouveau_display_vblank_disable(struct drm_device *dev, unsigned int pipe)
++nouveau_display_vblank_disable(struct drm_crtc *crtc)
+ {
+-	struct drm_crtc *crtc;
+ 	struct nouveau_crtc *nv_crtc;
+ 
+-	crtc = drm_crtc_from_index(dev, pipe);
+-	if (!crtc)
+-		return;
+-
+ 	nv_crtc = nouveau_crtc(crtc);
+ 	nvif_notify_put(&nv_crtc->vblank);
+ }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.h b/drivers/gpu/drm/nouveau/nouveau_display.h
+index 26d34f1a77da..de004018ab5c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.h
++++ b/drivers/gpu/drm/nouveau/nouveau_display.h
+@@ -61,8 +61,8 @@ int  nouveau_display_init(struct drm_device *dev, bool resume, bool runtime);
+ void nouveau_display_fini(struct drm_device *dev, bool suspend, bool runtime);
+ int  nouveau_display_suspend(struct drm_device *dev, bool runtime);
+ void nouveau_display_resume(struct drm_device *dev, bool runtime);
+-int  nouveau_display_vblank_enable(struct drm_device *, unsigned int);
+-void nouveau_display_vblank_disable(struct drm_device *, unsigned int);
++int  nouveau_display_vblank_enable(struct drm_crtc *crtc);
++void nouveau_display_vblank_disable(struct drm_crtc *crtc);
+ bool nouveau_display_scanoutpos(struct drm_crtc *crtc,
+ 				bool in_vblank_irq, int *vpos, int *hpos,
+ 				ktime_t *stime, ktime_t *etime,
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index fcc036a08965..6b1629c14dd7 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -1120,10 +1120,6 @@ driver_stub = {
+ 	.debugfs_init = nouveau_drm_debugfs_init,
  #endif
+ 
+-	.enable_vblank = nouveau_display_vblank_enable,
+-	.disable_vblank = nouveau_display_vblank_disable,
+-	.get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
+-
+ 	.ioctls = nouveau_ioctls,
+ 	.num_ioctls = ARRAY_SIZE(nouveau_ioctls),
+ 	.fops = &nouveau_driver_fops,
 -- 
 2.24.1
