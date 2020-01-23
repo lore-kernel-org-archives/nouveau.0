@@ -1,83 +1,136 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v4 19/22] drm/vkms: Convert to CRTC VBLANK callbacks
-Date: Thu, 23 Jan 2020 14:59:40 +0100
-Message-ID: <20200123135943.24140-20-tzimmermann@suse.de>
+Subject: [PATCH v4 22/22] drm: Remove legacy version of get_scanout_position()
+Date: Thu, 23 Jan 2020 14:59:43 +0100
+Message-ID: <20200123135943.24140-23-tzimmermann@suse.de>
 References: <20200123135943.24140-1-tzimmermann@suse.de>
 Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-arm-msm-owner@vger.kernel.org>
 In-Reply-To: <20200123135943.24140-1-tzimmermann@suse.de>
 Sender: linux-arm-msm-owner@vger.kernel.org
 To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com, maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com, robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org, vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com, mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, linux-graphics-maintainer@vmware.com, thellstrom@vmware.com, bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Siqueira <rodrigosiqueira@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
 List-Id: nouveau.vger.kernel.org
 
-VBLANK callbacks in struct drm_driver are deprecated in favor of
-their equivalents in struct drm_crtc_funcs. Convert vkms over.
+The legacy version of get_scanout_position() was only useful while
+drivers still used drm_driver.get_scanout_position(). With no such
+drivers left, the related typedef and code can be removed
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Rodrigo Siqueira <rodrigosiqueira@gmail.com>
-Tested-by: Rodrigo Siqueira <rodrigosiqueira@gmail.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/vkms/vkms_crtc.c | 9 ++++++---
- drivers/gpu/drm/vkms/vkms_drv.c  | 1 -
- drivers/gpu/drm/vkms/vkms_drv.h  | 4 ----
- 3 files changed, 6 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/drm_vblank.c    | 27 +++++++--------------------
+ drivers/gpu/drm/i915/i915_irq.c |  2 +-
+ include/drm/drm_vblank.h        | 12 +-----------
+ 3 files changed, 9 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/gpu/drm/vkms/vkms_crtc.c b/drivers/gpu/drm/vkms/vkms_crtc.c
-index 74f703b8d22a..ac85e17428f8 100644
---- a/drivers/gpu/drm/vkms/vkms_crtc.c
-+++ b/drivers/gpu/drm/vkms/vkms_crtc.c
-@@ -76,10 +76,12 @@ static void vkms_disable_vblank(struct drm_crtc *crtc)
- 	hrtimer_cancel(&out->vblank_hrtimer);
+diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+index 90d62430a6ae..ab0a0fca589a 100644
+--- a/drivers/gpu/drm/drm_vblank.c
++++ b/drivers/gpu/drm/drm_vblank.c
+@@ -576,9 +576,6 @@ EXPORT_SYMBOL(drm_calc_timestamping_constants);
+  * @get_scanout_position:
+  *     Callback function to retrieve the scanout position. See
+  *     @struct drm_crtc_helper_funcs.get_scanout_position.
+- * @get_scanout_position_legacy:
+- *     Callback function to retrieve the scanout position. See
+- *     @struct drm_driver.get_scanout_position.
+  *
+  * Implements calculation of exact vblank timestamps from given drm_display_mode
+  * timings and current video scanout position of a CRTC.
+@@ -601,8 +598,7 @@ bool
+ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+ 	struct drm_crtc *crtc, int *max_error, ktime_t *vblank_time,
+ 	bool in_vblank_irq,
+-	drm_vblank_get_scanout_position_func get_scanout_position,
+-	drm_vblank_get_scanout_position_legacy_func get_scanout_position_legacy)
++	drm_vblank_get_scanout_position_func get_scanout_position)
+ {
+ 	struct drm_device *dev = crtc->dev;
+ 	unsigned int pipe = crtc->index;
+@@ -620,7 +616,7 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+ 	}
+ 
+ 	/* Scanout position query not supported? Should not happen. */
+-	if (!get_scanout_position && !get_scanout_position_legacy) {
++	if (!get_scanout_position) {
+ 		DRM_ERROR("Called from CRTC w/o get_scanout_position()!?\n");
+ 		return false;
+ 	}
+@@ -651,19 +647,10 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+ 		 * Get vertical and horizontal scanout position vpos, hpos,
+ 		 * and bounding timestamps stime, etime, pre/post query.
+ 		 */
+-		if (get_scanout_position) {
+-			vbl_status = get_scanout_position(crtc,
+-							  in_vblank_irq,
+-							  &vpos, &hpos,
+-							  &stime, &etime,
+-							  mode);
+-		} else {
+-			vbl_status = get_scanout_position_legacy(dev, pipe,
+-								 in_vblank_irq,
+-								 &vpos, &hpos,
+-								 &stime, &etime,
+-								 mode);
+-		}
++		vbl_status = get_scanout_position(crtc, in_vblank_irq,
++						  &vpos, &hpos,
++						  &stime, &etime,
++						  mode);
+ 
+ 		/* Return as no-op if scanout query unsupported or failed. */
+ 		if (!vbl_status) {
+@@ -755,7 +742,7 @@ bool drm_crtc_vblank_helper_get_vblank_timestamp(struct drm_crtc *crtc,
+ {
+ 	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+ 		crtc, max_error, vblank_time, in_vblank_irq,
+-		crtc->helper_private->get_scanout_position, NULL);
++		crtc->helper_private->get_scanout_position);
+ }
+ EXPORT_SYMBOL(drm_crtc_vblank_helper_get_vblank_timestamp);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 29bf847999f5..3245f7c5c84f 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -886,7 +886,7 @@ bool intel_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
+ {
+ 	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+ 		crtc, max_error, vblank_time, in_vblank_irq,
+-		i915_get_crtc_scanoutpos, NULL);
++		i915_get_crtc_scanoutpos);
  }
  
--bool vkms_get_vblank_timestamp(struct drm_device *dev, unsigned int pipe,
--			       int *max_error, ktime_t *vblank_time,
--			       bool in_vblank_irq)
-+static bool vkms_get_vblank_timestamp(struct drm_crtc *crtc,
-+				      int *max_error, ktime_t *vblank_time,
-+				      bool in_vblank_irq)
- {
-+	struct drm_device *dev = crtc->dev;
-+	unsigned int pipe = crtc->index;
- 	struct vkms_device *vkmsdev = drm_device_to_vkms_device(dev);
- 	struct vkms_output *output = &vkmsdev->output;
- 	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
-@@ -154,6 +156,7 @@ static const struct drm_crtc_funcs vkms_crtc_funcs = {
- 	.atomic_destroy_state   = vkms_atomic_crtc_destroy_state,
- 	.enable_vblank		= vkms_enable_vblank,
- 	.disable_vblank		= vkms_disable_vblank,
-+	.get_vblank_timestamp	= vkms_get_vblank_timestamp,
- 	.get_crc_sources	= vkms_get_crc_sources,
- 	.set_crc_source		= vkms_set_crc_source,
- 	.verify_crc_source	= vkms_verify_crc_source,
-diff --git a/drivers/gpu/drm/vkms/vkms_drv.c b/drivers/gpu/drm/vkms/vkms_drv.c
-index 25bd7519295f..860de052e820 100644
---- a/drivers/gpu/drm/vkms/vkms_drv.c
-+++ b/drivers/gpu/drm/vkms/vkms_drv.c
-@@ -103,7 +103,6 @@ static struct drm_driver vkms_driver = {
- 	.dumb_create		= vkms_dumb_create,
- 	.gem_vm_ops		= &vkms_gem_vm_ops,
- 	.gem_free_object_unlocked = vkms_gem_free_object,
--	.get_vblank_timestamp	= vkms_get_vblank_timestamp,
- 	.prime_fd_to_handle	= drm_gem_prime_fd_to_handle,
- 	.gem_prime_import_sg_table = vkms_prime_import_sg_table,
+ int intel_get_crtc_scanline(struct intel_crtc *crtc)
+diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
+index 87fcf4034d1f..5ef94137fe75 100644
+--- a/include/drm/drm_vblank.h
++++ b/include/drm/drm_vblank.h
+@@ -246,22 +246,12 @@ typedef bool (*drm_vblank_get_scanout_position_func)(struct drm_crtc *crtc,
+ 						     ktime_t *etime,
+ 						     const struct drm_display_mode *mode);
  
-diff --git a/drivers/gpu/drm/vkms/vkms_drv.h b/drivers/gpu/drm/vkms/vkms_drv.h
-index 7d52e24564db..eda04ffba7b1 100644
---- a/drivers/gpu/drm/vkms/vkms_drv.h
-+++ b/drivers/gpu/drm/vkms/vkms_drv.h
-@@ -111,10 +111,6 @@ struct vkms_gem_object {
- int vkms_crtc_init(struct drm_device *dev, struct drm_crtc *crtc,
- 		   struct drm_plane *primary, struct drm_plane *cursor);
- 
--bool vkms_get_vblank_timestamp(struct drm_device *dev, unsigned int pipe,
--			       int *max_error, ktime_t *vblank_time,
--			       bool in_vblank_irq);
+-typedef bool (*drm_vblank_get_scanout_position_legacy_func)(struct drm_device *dev,
+-							    unsigned int pipe,
+-							    bool in_vblank_irq,
+-							    int *vpos,
+-							    int *hpos,
+-							    ktime_t *stime,
+-							    ktime_t *etime,
+-							    const struct drm_display_mode *mode);
 -
- int vkms_output_init(struct vkms_device *vkmsdev, int index);
- 
- struct drm_plane *vkms_plane_init(struct vkms_device *vkmsdev,
+ bool
+ drm_crtc_vblank_helper_get_vblank_timestamp_internal(struct drm_crtc *crtc,
+ 						     int *max_error,
+ 						     ktime_t *vblank_time,
+ 						     bool in_vblank_irq,
+-						     drm_vblank_get_scanout_position_func get_scanout_position,
+-						     drm_vblank_get_scanout_position_legacy_func get_scanout_position_legacy);
++						     drm_vblank_get_scanout_position_func get_scanout_position);
+ bool drm_crtc_vblank_helper_get_vblank_timestamp(struct drm_crtc *crtc,
+ 						 int *max_error,
+ 						 ktime_t *vblank_time,
 -- 
 2.24.1
