@@ -1,152 +1,141 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v4 00/22] drm: Clean up VBLANK callbacks in struct drm_driver
-Date: Thu, 23 Jan 2020 14:59:21 +0100
-Message-ID: <20200123135943.24140-1-tzimmermann@suse.de>
+Subject: [PATCH v4 14/22] drm/stm: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+Date: Thu, 23 Jan 2020 14:59:35 +0100
+Message-ID: <20200123135943.24140-15-tzimmermann@suse.de>
+References: <20200123135943.24140-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-arm-msm-owner@vger.kernel.org>
+In-Reply-To: <20200123135943.24140-1-tzimmermann@suse.de>
 Sender: linux-arm-msm-owner@vger.kernel.org
 To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com, maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com, robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org, vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com, mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, linux-graphics-maintainer@vmware.com, thellstrom@vmware.com, bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
 List-Id: nouveau.vger.kernel.org
 
-VBLANK handlers in struct drm_driver are deprecated. Only legacy,
-non-KMS drivers are supposed to used them. DRM drivers with kernel
-modesetting are supposed to use VBLANK callbacks of the CRTC
-infrastructure.
+The callback struct drm_driver.get_scanout_position() is deprecated in
+favor of struct drm_crtc_helper_funcs.get_scanout_position(). Convert stm
+over.
 
-This patchset converts all DRM drivers to CRTC VBLANK callbacks and
-cleans up struct drm_driver. The remaining VBLANK callbacks in struct
-drm_driver are only used by legacy drivers.
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Tested-by: Yannick Fertré <yannick.fertre@st.com>
+---
+ drivers/gpu/drm/stm/drv.c  |  1 -
+ drivers/gpu/drm/stm/ltdc.c | 65 ++++++++++++++++++++------------------
+ drivers/gpu/drm/stm/ltdc.h |  5 ---
+ 3 files changed, 34 insertions(+), 37 deletions(-)
 
-Patch 1 removes an additional setup step of vblank_disable_immediate
-in struct drm_device. This simplifies the integration of CRTC VBLANK
-callbacks in patch 3. If necessary, a future patch could move
-vblank_disable_immedate to struct drm_crtc, so that high-precision
-VBLANKs could be enabled on a per-CRTC basis.
-
-Patches 2 and 3 prepare the DRM infrastructure. These patches add
-get_scanout_position() to struct drm_crtc_helper_funcs,
-get_vblank_timestamp() to struct drm_crtc_funcs, and add helpers for
-the new interfaces.
-
-Patches 4 to 20 convert drivers over.
-
-In patch 21, all VBLANK callbacks are removed from struct drm_driver,
-except for get_vblank_counter(), enable_vblank(), and disable_vblank().
-These interfaces are moved to the legacy section at the end of the
-structure. Old helper code is now unused and being removed as well.
-Finally, patch 22 removes an older version of get_scanout_position()
-from the VBLANK interface.
-
-To cover all affected drivers, I build the patchset in x86, x86-64,
-arm and aarch64. I smoke-tested amdgpu, gma500, i915, radeon and vc4 on
-respective hardware.
-
-v4:
-	* fixed warnings and improved code readability (Ville, Jani)
-v3:
-	* refactor drm_calc_vbltimestamp_from_scanout_pos to share code
-	  with new helper (Villa, Jani)
-	* do more checks for crtc != NULL to cover non-KMS drivers (Ville)
-	* add function typedefs for readability (Ville)
-v2:
-	* reorder patches so the i915 can be converted without duplicating
-	  helper code.
-	* merged cleanup patches
-	* changed VBLANK function signatures in amdgpu (Alex)
-
-Thomas Zimmermann (22):
-  drm: Remove internal setup of struct
-    drm_device.vblank_disable_immediate
-  drm: Add get_scanout_position() to struct drm_crtc_helper_funcs
-  drm: Add get_vblank_timestamp() to struct drm_crtc_funcs
-  drm/amdgpu: Convert to struct
-    drm_crtc_helper_funcs.get_scanout_position()
-  drm/amdgpu: Convert to CRTC VBLANK callbacks
-  drm/gma500: Convert to CRTC VBLANK callbacks
-  drm/i915: Convert to CRTC VBLANK callbacks
-  drm/nouveau: Convert to struct
-    drm_crtc_helper_funcs.get_scanout_position()
-  drm/nouveau: Convert to CRTC VBLANK callbacks
-  drm/radeon: Convert to struct
-    drm_crtc_helper_funcs.get_scanout_position()
-  drm/radeon: Convert to CRTC VBLANK callbacks
-  drm/msm: Convert to struct
-    drm_crtc_helper_funcs.get_scanout_position()
-  drm/msm: Convert to CRTC VBLANK callbacks
-  drm/stm: Convert to struct
-    drm_crtc_helper_funcs.get_scanout_position()
-  drm/stm: Convert to CRTC VBLANK callbacks
-  drm/sti: Convert to CRTC VBLANK callbacks
-  drm/vc4: Convert to struct
-    drm_crtc_helper_funcs.get_scanout_position()
-  drm/vc4: Convert to CRTC VBLANK callbacks
-  drm/vkms: Convert to CRTC VBLANK callbacks
-  drm/vmwgfx: Convert to CRTC VBLANK callbacks
-  drm: Clean-up VBLANK-related callbacks in struct drm_driver
-  drm: Remove legacy version of get_scanout_position()
-
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   6 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  16 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  15 --
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       |  21 ++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h      |   5 +
- drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        |   5 +
- drivers/gpu/drm/amd/amdgpu/dce_v11_0.c        |   5 +
- drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         |   5 +
- drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         |   5 +
- drivers/gpu/drm/amd/amdgpu/dce_virtual.c      |   5 +
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  13 +-
- drivers/gpu/drm/drm_vblank.c                  | 146 +++++++++-------
- drivers/gpu/drm/gma500/cdv_intel_display.c    |   3 +
- drivers/gpu/drm/gma500/psb_drv.c              |   4 -
- drivers/gpu/drm/gma500/psb_drv.h              |   6 +-
- drivers/gpu/drm/gma500/psb_intel_display.c    |   3 +
- drivers/gpu/drm/gma500/psb_irq.c              |  12 +-
- drivers/gpu/drm/gma500/psb_irq.h              |   7 +-
- drivers/gpu/drm/i915/display/intel_display.c  |   7 +
- drivers/gpu/drm/i915/i915_drv.c               |   3 -
- drivers/gpu/drm/i915/i915_irq.c               |  20 ++-
- drivers/gpu/drm/i915/i915_irq.h               |   6 +-
- drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c      |   2 +
- drivers/gpu/drm/msm/disp/mdp4/mdp4_crtc.c     |   2 +
- drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c     |  82 +++++++++
- drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c      |  95 -----------
- drivers/gpu/drm/msm/msm_drv.c                 |  10 +-
- drivers/gpu/drm/msm/msm_drv.h                 |   3 +
- drivers/gpu/drm/nouveau/dispnv04/crtc.c       |   4 +
- drivers/gpu/drm/nouveau/dispnv50/head.c       |   5 +
- drivers/gpu/drm/nouveau/nouveau_display.c     |  28 +---
- drivers/gpu/drm/nouveau/nouveau_display.h     |  11 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c         |   5 -
- drivers/gpu/drm/radeon/atombios_crtc.c        |   1 +
- drivers/gpu/drm/radeon/radeon_display.c       |  25 ++-
- drivers/gpu/drm/radeon/radeon_drv.c           |  18 --
- drivers/gpu/drm/radeon/radeon_kms.c           |  29 ++--
- drivers/gpu/drm/radeon/radeon_legacy_crtc.c   |   3 +-
- drivers/gpu/drm/radeon/radeon_mode.h          |   6 +
- drivers/gpu/drm/sti/sti_crtc.c                |  11 +-
- drivers/gpu/drm/sti/sti_crtc.h                |   2 -
- drivers/gpu/drm/sti/sti_drv.c                 |   4 -
- drivers/gpu/drm/stm/drv.c                     |   2 -
- drivers/gpu/drm/stm/ltdc.c                    |  66 ++++----
- drivers/gpu/drm/stm/ltdc.h                    |   5 -
- drivers/gpu/drm/vc4/vc4_crtc.c                |  13 +-
- drivers/gpu/drm/vc4/vc4_drv.c                 |   3 -
- drivers/gpu/drm/vc4/vc4_drv.h                 |   4 -
- drivers/gpu/drm/vkms/vkms_crtc.c              |   9 +-
- drivers/gpu/drm/vkms/vkms_drv.c               |   1 -
- drivers/gpu/drm/vkms/vkms_drv.h               |   4 -
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           |   3 -
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.h           |   6 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.c           |   6 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c           |   3 +
- drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c          |   3 +
- drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c          |   3 +
- include/drm/drm_crtc.h                        |  46 +++++-
- include/drm/drm_drv.h                         | 156 +-----------------
- include/drm/drm_modeset_helper_vtables.h      |  47 ++++++
- include/drm/drm_vblank.h                      |  35 +++-
- 61 files changed, 559 insertions(+), 520 deletions(-)
+diff --git a/drivers/gpu/drm/stm/drv.c b/drivers/gpu/drm/stm/drv.c
+index 5a9f9aca8bc2..486985604109 100644
+--- a/drivers/gpu/drm/stm/drv.c
++++ b/drivers/gpu/drm/stm/drv.c
+@@ -72,7 +72,6 @@ static struct drm_driver drv_driver = {
+ 	.gem_prime_vmap = drm_gem_cma_prime_vmap,
+ 	.gem_prime_vunmap = drm_gem_cma_prime_vunmap,
+ 	.gem_prime_mmap = drm_gem_cma_prime_mmap,
+-	.get_scanout_position = ltdc_crtc_scanoutpos,
+ 	.get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
+ };
+ 
+diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
+index c2815e8ae1da..8b6d1a2252e3 100644
+--- a/drivers/gpu/drm/stm/ltdc.c
++++ b/drivers/gpu/drm/stm/ltdc.c
+@@ -636,38 +636,13 @@ static void ltdc_crtc_atomic_flush(struct drm_crtc *crtc,
+ 	}
+ }
+ 
+-static const struct drm_crtc_helper_funcs ltdc_crtc_helper_funcs = {
+-	.mode_valid = ltdc_crtc_mode_valid,
+-	.mode_fixup = ltdc_crtc_mode_fixup,
+-	.mode_set_nofb = ltdc_crtc_mode_set_nofb,
+-	.atomic_flush = ltdc_crtc_atomic_flush,
+-	.atomic_enable = ltdc_crtc_atomic_enable,
+-	.atomic_disable = ltdc_crtc_atomic_disable,
+-};
+-
+-static int ltdc_crtc_enable_vblank(struct drm_crtc *crtc)
+-{
+-	struct ltdc_device *ldev = crtc_to_ltdc(crtc);
+-
+-	DRM_DEBUG_DRIVER("\n");
+-	reg_set(ldev->regs, LTDC_IER, IER_LIE);
+-
+-	return 0;
+-}
+-
+-static void ltdc_crtc_disable_vblank(struct drm_crtc *crtc)
+-{
+-	struct ltdc_device *ldev = crtc_to_ltdc(crtc);
+-
+-	DRM_DEBUG_DRIVER("\n");
+-	reg_clear(ldev->regs, LTDC_IER, IER_LIE);
+-}
+-
+-bool ltdc_crtc_scanoutpos(struct drm_device *ddev, unsigned int pipe,
+-			  bool in_vblank_irq, int *vpos, int *hpos,
+-			  ktime_t *stime, ktime_t *etime,
+-			  const struct drm_display_mode *mode)
++static bool ltdc_crtc_get_scanout_position(struct drm_crtc *crtc,
++					   bool in_vblank_irq,
++					   int *vpos, int *hpos,
++					   ktime_t *stime, ktime_t *etime,
++					   const struct drm_display_mode *mode)
+ {
++	struct drm_device *ddev = crtc->dev;
+ 	struct ltdc_device *ldev = ddev->dev_private;
+ 	int line, vactive_start, vactive_end, vtotal;
+ 
+@@ -710,6 +685,34 @@ bool ltdc_crtc_scanoutpos(struct drm_device *ddev, unsigned int pipe,
+ 	return true;
+ }
+ 
++static const struct drm_crtc_helper_funcs ltdc_crtc_helper_funcs = {
++	.mode_valid = ltdc_crtc_mode_valid,
++	.mode_fixup = ltdc_crtc_mode_fixup,
++	.mode_set_nofb = ltdc_crtc_mode_set_nofb,
++	.atomic_flush = ltdc_crtc_atomic_flush,
++	.atomic_enable = ltdc_crtc_atomic_enable,
++	.atomic_disable = ltdc_crtc_atomic_disable,
++	.get_scanout_position = ltdc_crtc_get_scanout_position,
++};
++
++static int ltdc_crtc_enable_vblank(struct drm_crtc *crtc)
++{
++	struct ltdc_device *ldev = crtc_to_ltdc(crtc);
++
++	DRM_DEBUG_DRIVER("\n");
++	reg_set(ldev->regs, LTDC_IER, IER_LIE);
++
++	return 0;
++}
++
++static void ltdc_crtc_disable_vblank(struct drm_crtc *crtc)
++{
++	struct ltdc_device *ldev = crtc_to_ltdc(crtc);
++
++	DRM_DEBUG_DRIVER("\n");
++	reg_clear(ldev->regs, LTDC_IER, IER_LIE);
++}
++
+ static const struct drm_crtc_funcs ltdc_crtc_funcs = {
+ 	.destroy = drm_crtc_cleanup,
+ 	.set_config = drm_atomic_helper_set_config,
+diff --git a/drivers/gpu/drm/stm/ltdc.h b/drivers/gpu/drm/stm/ltdc.h
+index a1ad0ae3b006..c5467d74e707 100644
+--- a/drivers/gpu/drm/stm/ltdc.h
++++ b/drivers/gpu/drm/stm/ltdc.h
+@@ -39,11 +39,6 @@ struct ltdc_device {
+ 	struct drm_atomic_state *suspend_state;
+ };
+ 
+-bool ltdc_crtc_scanoutpos(struct drm_device *dev, unsigned int pipe,
+-			  bool in_vblank_irq, int *vpos, int *hpos,
+-			  ktime_t *stime, ktime_t *etime,
+-			  const struct drm_display_mode *mode);
+-
+ int ltdc_load(struct drm_device *ddev);
+ void ltdc_unload(struct drm_device *ddev);
+ void ltdc_suspend(struct drm_device *ddev);
+-- 
+2.24.1
