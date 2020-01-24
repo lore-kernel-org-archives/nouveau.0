@@ -1,136 +1,48 @@
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v4 22/22] drm: Remove legacy version of get_scanout_position()
-Date: Thu, 23 Jan 2020 14:59:43 +0100
-Message-ID: <20200123135943.24140-23-tzimmermann@suse.de>
+From: Philippe CORNU <philippe.cornu@st.com>
+Subject: Re: [PATCH v4 15/22] drm/stm: Convert to CRTC VBLANK callbacks
+Date: Fri, 24 Jan 2020 10:43:04 +0000
+Message-ID: <40c4b198-0796-631e-b533-494822af9c47@st.com>
 References: <20200123135943.24140-1-tzimmermann@suse.de>
+ <20200123135943.24140-16-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <linux-arm-msm-owner@vger.kernel.org>
-In-Reply-To: <20200123135943.24140-1-tzimmermann@suse.de>
+In-Reply-To: <20200123135943.24140-16-tzimmermann@suse.de>
+Content-Language: en-US
+Content-ID: <DB2A5D2782CBB040AC5BB0FB174AA7FD@st.com>
 Sender: linux-arm-msm-owner@vger.kernel.org
-To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com, maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com, robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org, vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com, mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, linux-graphics-maintainer@vmware.com, thellstrom@vmware.com, bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, "airlied@linux.ie" <airlied@linux.ie>, "daniel@ffwll.ch" <daniel@ffwll.ch>, "alexander.deucher@amd.com" <alexander.deucher@amd.com>, "christian.koenig@amd.com" <christian.koenig@amd.com>, "David1.Zhou@amd.com" <David1.Zhou@amd.com>, "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, "patrik.r.jakobsson@gmail.com" <patrik.r.jakobsson@gmail.com>, "robdclark@gmail.com" <robdclark@gmail.com>, "sean@poorly.run" <sean@poorly.run>, "benjamin.gaignard@linaro.org" <benjamin.gaignard@linaro.org>, Vincent ABRIOU <vincent.abriou@st.com>, Yannick FERTRE <yannick.fertre@st.com>, "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>, Alexandre TORGUE <alexandre.torgue@st.com>, "eric@anholt.net" <eric@anholt.>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-The legacy version of get_scanout_position() was only useful while
-drivers still used drm_driver.get_scanout_position(). With no such
-drivers left, the related typedef and code can be removed
-
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/drm_vblank.c    | 27 +++++++--------------------
- drivers/gpu/drm/i915/i915_irq.c |  2 +-
- include/drm/drm_vblank.h        | 12 +-----------
- 3 files changed, 9 insertions(+), 32 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index 90d62430a6ae..ab0a0fca589a 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -576,9 +576,6 @@ EXPORT_SYMBOL(drm_calc_timestamping_constants);
-  * @get_scanout_position:
-  *     Callback function to retrieve the scanout position. See
-  *     @struct drm_crtc_helper_funcs.get_scanout_position.
-- * @get_scanout_position_legacy:
-- *     Callback function to retrieve the scanout position. See
-- *     @struct drm_driver.get_scanout_position.
-  *
-  * Implements calculation of exact vblank timestamps from given drm_display_mode
-  * timings and current video scanout position of a CRTC.
-@@ -601,8 +598,7 @@ bool
- drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	struct drm_crtc *crtc, int *max_error, ktime_t *vblank_time,
- 	bool in_vblank_irq,
--	drm_vblank_get_scanout_position_func get_scanout_position,
--	drm_vblank_get_scanout_position_legacy_func get_scanout_position_legacy)
-+	drm_vblank_get_scanout_position_func get_scanout_position)
- {
- 	struct drm_device *dev = crtc->dev;
- 	unsigned int pipe = crtc->index;
-@@ -620,7 +616,7 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	}
- 
- 	/* Scanout position query not supported? Should not happen. */
--	if (!get_scanout_position && !get_scanout_position_legacy) {
-+	if (!get_scanout_position) {
- 		DRM_ERROR("Called from CRTC w/o get_scanout_position()!?\n");
- 		return false;
- 	}
-@@ -651,19 +647,10 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 		 * Get vertical and horizontal scanout position vpos, hpos,
- 		 * and bounding timestamps stime, etime, pre/post query.
- 		 */
--		if (get_scanout_position) {
--			vbl_status = get_scanout_position(crtc,
--							  in_vblank_irq,
--							  &vpos, &hpos,
--							  &stime, &etime,
--							  mode);
--		} else {
--			vbl_status = get_scanout_position_legacy(dev, pipe,
--								 in_vblank_irq,
--								 &vpos, &hpos,
--								 &stime, &etime,
--								 mode);
--		}
-+		vbl_status = get_scanout_position(crtc, in_vblank_irq,
-+						  &vpos, &hpos,
-+						  &stime, &etime,
-+						  mode);
- 
- 		/* Return as no-op if scanout query unsupported or failed. */
- 		if (!vbl_status) {
-@@ -755,7 +742,7 @@ bool drm_crtc_vblank_helper_get_vblank_timestamp(struct drm_crtc *crtc,
- {
- 	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 		crtc, max_error, vblank_time, in_vblank_irq,
--		crtc->helper_private->get_scanout_position, NULL);
-+		crtc->helper_private->get_scanout_position);
- }
- EXPORT_SYMBOL(drm_crtc_vblank_helper_get_vblank_timestamp);
- 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 29bf847999f5..3245f7c5c84f 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -886,7 +886,7 @@ bool intel_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
- {
- 	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 		crtc, max_error, vblank_time, in_vblank_irq,
--		i915_get_crtc_scanoutpos, NULL);
-+		i915_get_crtc_scanoutpos);
- }
- 
- int intel_get_crtc_scanline(struct intel_crtc *crtc)
-diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
-index 87fcf4034d1f..5ef94137fe75 100644
---- a/include/drm/drm_vblank.h
-+++ b/include/drm/drm_vblank.h
-@@ -246,22 +246,12 @@ typedef bool (*drm_vblank_get_scanout_position_func)(struct drm_crtc *crtc,
- 						     ktime_t *etime,
- 						     const struct drm_display_mode *mode);
- 
--typedef bool (*drm_vblank_get_scanout_position_legacy_func)(struct drm_device *dev,
--							    unsigned int pipe,
--							    bool in_vblank_irq,
--							    int *vpos,
--							    int *hpos,
--							    ktime_t *stime,
--							    ktime_t *etime,
--							    const struct drm_display_mode *mode);
--
- bool
- drm_crtc_vblank_helper_get_vblank_timestamp_internal(struct drm_crtc *crtc,
- 						     int *max_error,
- 						     ktime_t *vblank_time,
- 						     bool in_vblank_irq,
--						     drm_vblank_get_scanout_position_func get_scanout_position,
--						     drm_vblank_get_scanout_position_legacy_func get_scanout_position_legacy);
-+						     drm_vblank_get_scanout_position_func get_scanout_position);
- bool drm_crtc_vblank_helper_get_vblank_timestamp(struct drm_crtc *crtc,
- 						 int *max_error,
- 						 ktime_t *vblank_time,
--- 
-2.24.1
+RGVhciBUaG9tYXMsDQpUaGFuayB5b3UgZm9yIHlvdXIgcGF0Y2gsDQpGb3IgdGhpcyBzdG0gcGFy
+dCwNCkFja2VkLWJ5OiBQaGlsaXBwZSBDb3JudSA8cGhpbGlwcGUuY29ybnVAc3QuY29tPg0KDQpQ
+aGlsaXBwZSA6LSkNCg0KT24gMS8yMy8yMCAyOjU5IFBNLCBUaG9tYXMgWmltbWVybWFubiB3cm90
+ZToNCj4gVkJMQU5LIGNhbGxiYWNrcyBpbiBzdHJ1Y3QgZHJtX2RyaXZlciBhcmUgZGVwcmVjYXRl
+ZCBpbiBmYXZvciBvZg0KPiB0aGVpciBlcXVpdmFsZW50cyBpbiBzdHJ1Y3QgZHJtX2NydGNfZnVu
+Y3MuIENvbnZlcnQgc3RtIG92ZXIuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBUaG9tYXMgWmltbWVy
+bWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4NCj4gVGVzdGVkLWJ5OiBZYW5uaWNrIEZlcnRyw6kg
+PHlhbm5pY2suZmVydHJlQHN0LmNvbT4NCj4gLS0tDQo+ICAgZHJpdmVycy9ncHUvZHJtL3N0bS9k
+cnYuYyAgfCAxIC0NCj4gICBkcml2ZXJzL2dwdS9kcm0vc3RtL2x0ZGMuYyB8IDEgKw0KPiAgIDIg
+ZmlsZXMgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vc3RtL2Rydi5jIGIvZHJpdmVycy9ncHUvZHJtL3N0bS9k
+cnYuYw0KPiBpbmRleCA0ODY5ODU2MDQxMDkuLmVhOWZjYmRjNjhiMyAxMDA2NDQNCj4gLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL3N0bS9kcnYuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vc3RtL2Ry
+di5jDQo+IEBAIC03Miw3ICs3Miw2IEBAIHN0YXRpYyBzdHJ1Y3QgZHJtX2RyaXZlciBkcnZfZHJp
+dmVyID0gew0KPiAgIAkuZ2VtX3ByaW1lX3ZtYXAgPSBkcm1fZ2VtX2NtYV9wcmltZV92bWFwLA0K
+PiAgIAkuZ2VtX3ByaW1lX3Z1bm1hcCA9IGRybV9nZW1fY21hX3ByaW1lX3Z1bm1hcCwNCj4gICAJ
+LmdlbV9wcmltZV9tbWFwID0gZHJtX2dlbV9jbWFfcHJpbWVfbW1hcCwNCj4gLQkuZ2V0X3ZibGFu
+a190aW1lc3RhbXAgPSBkcm1fY2FsY192Ymx0aW1lc3RhbXBfZnJvbV9zY2Fub3V0cG9zLA0KPiAg
+IH07DQo+ICAgDQo+ICAgc3RhdGljIGludCBkcnZfbG9hZChzdHJ1Y3QgZHJtX2RldmljZSAqZGRl
+dikNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9zdG0vbHRkYy5jIGIvZHJpdmVycy9n
+cHUvZHJtL3N0bS9sdGRjLmMNCj4gaW5kZXggOGI2ZDFhMjI1MmUzLi5lZTJhOGNhYzU5Y2IgMTAw
+NjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9zdG0vbHRkYy5jDQo+ICsrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9zdG0vbHRkYy5jDQo+IEBAIC03MjIsNiArNzIyLDcgQEAgc3RhdGljIGNvbnN0IHN0
+cnVjdCBkcm1fY3J0Y19mdW5jcyBsdGRjX2NydGNfZnVuY3MgPSB7DQo+ICAgCS5hdG9taWNfZGVz
+dHJveV9zdGF0ZSA9IGRybV9hdG9taWNfaGVscGVyX2NydGNfZGVzdHJveV9zdGF0ZSwNCj4gICAJ
+LmVuYWJsZV92YmxhbmsgPSBsdGRjX2NydGNfZW5hYmxlX3ZibGFuaywNCj4gICAJLmRpc2FibGVf
+dmJsYW5rID0gbHRkY19jcnRjX2Rpc2FibGVfdmJsYW5rLA0KPiArCS5nZXRfdmJsYW5rX3RpbWVz
+dGFtcCA9IGRybV9jcnRjX3ZibGFua19oZWxwZXJfZ2V0X3ZibGFua190aW1lc3RhbXAsDQo+ICAg
+CS5nYW1tYV9zZXQgPSBkcm1fYXRvbWljX2hlbHBlcl9sZWdhY3lfZ2FtbWFfc2V0LA0KPiAgIH07
+DQo+ICAgDQo+IA==
