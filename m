@@ -1,144 +1,117 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH v4 09/22] drm/nouveau: Convert to CRTC VBLANK callbacks
-Date: Wed, 29 Jan 2020 18:25:49 +1000
-Message-ID: <CACAvsv4Yp99w845A8kERpnx+mSax16PLzEBx-uEpZyfAoLu_Qg@mail.gmail.com>
-References: <20200123135943.24140-1-tzimmermann@suse.de> <20200123135943.24140-10-tzimmermann@suse.de>
+From: =?UTF-8?B?RnLDqWTDqXJpYyBQaWVycmV0?=
+        <frederic.pierret@qubes-os.org>
+Subject: nv50_disp_chan_mthd: ensure mthd is not NULL
+Date: Wed, 29 Jan 2020 17:22:13 +0100
+Message-ID: <8a82672e-1a8d-b08e-b387-11ffecd5ba07@qubes-os.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-arm-msm-owner@vger.kernel.org>
-In-Reply-To: <20200123135943.24140-10-tzimmermann@suse.de>
-Sender: linux-arm-msm-owner@vger.kernel.org
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, David1.Zhou@amd.com, maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com, Rob Clark <robdclark@gmail.com>, sean@poorly.run, benjamin.gaignard@linaro.org, vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com, mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, linux-graphics-maintainer@vmware.com, thellstrom@vmware.com, Ben Skeggs <bskeggs@redhat.com>, Harry Wentland <harry.wentland@amd.com>, sunpeng.li@amd.com, Jani Nikula <jani.nikula@linux.intel.com>, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="WtQVe9uAsSNEoXDlyAZi0KODmrWFpX0CC"
+Return-path: <stable-owner@vger.kernel.org>
+Sender: stable-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org, stable@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 24 Jan 2020 at 00:00, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->
-> VBLANK callbacks in struct drm_driver are deprecated in favor of
-> their equivalents in struct drm_crtc_funcs. Convert nouvean over.
->
-> v4:
->         * add argument names in function declaration
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Ben Skeggs <bskeggs@redhat.com>
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--WtQVe9uAsSNEoXDlyAZi0KODmrWFpX0CC
+Content-Type: multipart/mixed; boundary="7myXQXT16OI7eX115fyWfxDrwq34iJ4jY"
 
-> ---
->  drivers/gpu/drm/nouveau/dispnv04/crtc.c   |  3 +++
->  drivers/gpu/drm/nouveau/dispnv50/head.c   |  4 ++++
->  drivers/gpu/drm/nouveau/nouveau_display.c | 14 ++------------
->  drivers/gpu/drm/nouveau/nouveau_display.h |  4 ++--
->  drivers/gpu/drm/nouveau/nouveau_drm.c     |  4 ----
->  5 files changed, 11 insertions(+), 18 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-> index 17e9d1c078a0..1f08de4241e0 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-> @@ -1248,6 +1248,9 @@ static const struct drm_crtc_funcs nv04_crtc_funcs = {
->         .set_config = drm_crtc_helper_set_config,
->         .page_flip = nv04_crtc_page_flip,
->         .destroy = nv_crtc_destroy,
-> +       .enable_vblank = nouveau_display_vblank_enable,
-> +       .disable_vblank = nouveau_display_vblank_disable,
-> +       .get_vblank_timestamp = drm_crtc_vblank_helper_get_vblank_timestamp,
->  };
->
->  static const struct drm_crtc_helper_funcs nv04_crtc_helper_funcs = {
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/head.c b/drivers/gpu/drm/nouveau/dispnv50/head.c
-> index 41852dd8fdbd..8f6455697ba7 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/head.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/head.c
-> @@ -29,6 +29,7 @@
->
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_crtc_helper.h>
-> +#include <drm/drm_vblank.h>
->  #include "nouveau_connector.h"
->  void
->  nv50_head_flush_clr(struct nv50_head *head,
-> @@ -482,6 +483,9 @@ nv50_head_func = {
->         .page_flip = drm_atomic_helper_page_flip,
->         .atomic_duplicate_state = nv50_head_atomic_duplicate_state,
->         .atomic_destroy_state = nv50_head_atomic_destroy_state,
-> +       .enable_vblank = nouveau_display_vblank_enable,
-> +       .disable_vblank = nouveau_display_vblank_disable,
-> +       .get_vblank_timestamp = drm_crtc_vblank_helper_get_vblank_timestamp,
->  };
->
->  struct nv50_head *
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-> index 86f99dc8fcef..700817dc4fa0 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-> @@ -54,15 +54,10 @@ nouveau_display_vblank_handler(struct nvif_notify *notify)
->  }
->
->  int
-> -nouveau_display_vblank_enable(struct drm_device *dev, unsigned int pipe)
-> +nouveau_display_vblank_enable(struct drm_crtc *crtc)
->  {
-> -       struct drm_crtc *crtc;
->         struct nouveau_crtc *nv_crtc;
->
-> -       crtc = drm_crtc_from_index(dev, pipe);
-> -       if (!crtc)
-> -               return -EINVAL;
-> -
->         nv_crtc = nouveau_crtc(crtc);
->         nvif_notify_get(&nv_crtc->vblank);
->
-> @@ -70,15 +65,10 @@ nouveau_display_vblank_enable(struct drm_device *dev, unsigned int pipe)
->  }
->
->  void
-> -nouveau_display_vblank_disable(struct drm_device *dev, unsigned int pipe)
-> +nouveau_display_vblank_disable(struct drm_crtc *crtc)
->  {
-> -       struct drm_crtc *crtc;
->         struct nouveau_crtc *nv_crtc;
->
-> -       crtc = drm_crtc_from_index(dev, pipe);
-> -       if (!crtc)
-> -               return;
-> -
->         nv_crtc = nouveau_crtc(crtc);
->         nvif_notify_put(&nv_crtc->vblank);
->  }
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.h b/drivers/gpu/drm/nouveau/nouveau_display.h
-> index 26d34f1a77da..de004018ab5c 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_display.h
-> +++ b/drivers/gpu/drm/nouveau/nouveau_display.h
-> @@ -61,8 +61,8 @@ int  nouveau_display_init(struct drm_device *dev, bool resume, bool runtime);
->  void nouveau_display_fini(struct drm_device *dev, bool suspend, bool runtime);
->  int  nouveau_display_suspend(struct drm_device *dev, bool runtime);
->  void nouveau_display_resume(struct drm_device *dev, bool runtime);
-> -int  nouveau_display_vblank_enable(struct drm_device *, unsigned int);
-> -void nouveau_display_vblank_disable(struct drm_device *, unsigned int);
-> +int  nouveau_display_vblank_enable(struct drm_crtc *crtc);
-> +void nouveau_display_vblank_disable(struct drm_crtc *crtc);
->  bool nouveau_display_scanoutpos(struct drm_crtc *crtc,
->                                 bool in_vblank_irq, int *vpos, int *hpos,
->                                 ktime_t *stime, ktime_t *etime,
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> index fcc036a08965..6b1629c14dd7 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> @@ -1120,10 +1120,6 @@ driver_stub = {
->         .debugfs_init = nouveau_drm_debugfs_init,
->  #endif
->
-> -       .enable_vblank = nouveau_display_vblank_enable,
-> -       .disable_vblank = nouveau_display_vblank_disable,
-> -       .get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
-> -
->         .ioctls = nouveau_ioctls,
->         .num_ioctls = ARRAY_SIZE(nouveau_ioctls),
->         .fops = &nouveau_driver_fops,
-> --
-> 2.24.1
->
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+--7myXQXT16OI7eX115fyWfxDrwq34iJ4jY
+Content-Type: multipart/mixed;
+ boundary="------------96B7C175C78789148090E248"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------96B7C175C78789148090E248
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Dear Ben Skeggs,
+
+Please find attached a patch solving a blocking issue I encountered:
+https://bugzilla.kernel.org/show_bug.cgi?id=3D206299
+
+Basically, running at least a RTX2080TI on Xen makes a bad mmio error
+which causes having 'mthd' pointer to be NULL in 'channv50.c'. From the
+code, it's assumed to be not NULL by accessing directly 'mthd->data[0]'
+which is the reason of the kernel panic. I simply check if the pointer
+is not NULL before continuing.
+
+Best regards,
+
+Fr=C3=A9d=C3=A9ric Pierret
+
+
+--------------96B7C175C78789148090E248
+Content-Type: text/x-patch; charset=UTF-8;
+ name="0001-nv50_disp_chan_mthd-ensure-mthd-is-not-NULL.patch"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+ filename="0001-nv50_disp_chan_mthd-ensure-mthd-is-not-NULL.patch"
+
+From: =3D?UTF-8?q?Fr=3DC3=3DA9d=3DC3=3DA9ric=3D20Pierret=3D20=3D28fepitre=
+=3D29?=3D
+ <frederic.pierret@qubes-os.org>
+Date: Sun, 26 Jan 2020 23:24:33 +0100
+Subject: [PATCH] nv50_disp_chan_mthd: ensure mthd is not NULL
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3DUTF-8
+Content-Transfer-Encoding: 8bit
+
+Pointer to structure array is assumed not NULL by default. It has
+the consequence to raise a kernel panic when it's not the case.
+
+BugLink: https://bugzilla.kernel.org/show_bug.cgi?id=3D206299
+Signed-off-by: Fr=C3=A9d=C3=A9ric Pierret (fepitre) <frederic.pierret@qub=
+es-os.org>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c b/driver=
+s/gpu/drm/nouveau/nvkm/engine/disp/channv50.c
+index bcf32d92ee5a..50e3539f33d2 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c
+@@ -74,6 +74,8 @@ nv50_disp_chan_mthd(struct nv50_disp_chan *chan, int de=
+bug)
+=20
+ 	if (debug > subdev->debug)
+ 		return;
++	if (!mthd)
++		return;
+=20
+ 	for (i =3D 0; (list =3D mthd->data[i].mthd) !=3D NULL; i++) {
+ 		u32 base =3D chan->head * mthd->addr;
+--=20
+2.21.0
+
+
+--------------96B7C175C78789148090E248--
+
+--7myXQXT16OI7eX115fyWfxDrwq34iJ4jY--
+
+--WtQVe9uAsSNEoXDlyAZi0KODmrWFpX0CC
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEn6ZLkvlecGvyjiymSEAQtc3FduIFAl4xsTMACgkQSEAQtc3F
+duLH1g//YG5jYl0TjeQVx9BMrx5bLgOo/XTiajguTQwUBSHoJ/Q36zzKZr9D+VUx
++ihJ48G2koPaUTZWxWrARB7mCXU/LFPOzQ7LvokA8ZQ2MtVOjyGKJfxHBhQaBmZq
++R0RTS0rDi74NyVuCzkXEhgYm/uPoQsaVhy5fdbNF+GHrFODuAIsdBYeVfOalsSH
+UtoNyYOA/ccfGfZJHT7XRZNOP3x1UfsfMinInbVrWCEmmQ+g1+pfN837cKf/fILb
+5vPoVn7Lx0hZ7vdPduLMSTvdboddj7AhLREGkpS+szPj1HlNM4t/WVgKBR0YZrUf
+k26xUVNtXNfK14hg3eb43E/63kBWJak+dVy01xhjsn/gCHBzUX4L/8MWoeRtA5zx
+9g4r2BvEKwGiKyvoVtdRec0Mzu0Vf3LzFPo6/V1Pqceelhqh+nS6fWIoCuTEeFeL
+NBGcIPyycIMpYhEHmQoGuJCou1T+RwtDFPGHOvjdiKNvbkt1QbpBlhrQ6uRVyG4I
+tXG2sHJWsLCSboIUPf1pefxT+11LlYp9uU21Zy/vWQT6NsRXHwqTTv8zkrl6pOBd
+j7hBKUCtW2q3UuShmXg85h9UDAJd8j45xwdv+CzlmVaENdhfFdWX3adepE3Sv09q
+CsNDlnOtSa+UKdyP8UWoR8k0LKelQCT5X0HtRGVCxf4hccUR0Ro=
+=X6Bt
+-----END PGP SIGNATURE-----
+
+--WtQVe9uAsSNEoXDlyAZi0KODmrWFpX0CC--
