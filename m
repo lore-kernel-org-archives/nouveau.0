@@ -1,82 +1,85 @@
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Subject: [PATCH] x86/mm/kmmio: Use this_cpu_ptr() instead get_cpu_var() for kmmio_ctx
-Date: Wed,  5 Feb 2020 15:34:26 +0100
-Message-ID: <20200205143426.2592512-1-bigeasy@linutronix.de>
+From: =?UTF-8?B?RnLDqWTDqXJpYyBQaWVycmV0?=
+        <frederic.pierret@qubes-os.org>
+Subject: [PATCH] nv50_disp_chan_mthd: ensure mthd is not NULL
+Date: Sat, 8 Feb 2020 20:43:27 +0100
+Message-ID: <dac89843-5258-5bed-ee86-7038e94e56da@qubes-os.org>
 Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="B4yCyaNyqdN68C01OPt6rR5nIf1KF21jl"
 Return-path: <linux-kernel-owner@vger.kernel.org>
 Sender: linux-kernel-owner@vger.kernel.org
-To: linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
-Cc: Steven Rostedt <rostedt@goodmis.org>, Ingo Molnar <mingo@kernel.org>, Karol Herbst <karolherbst@gmail.com>, Pekka Paalanen <ppaalanen@gmail.com>, Dave Hansen <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@linutronix.de>, Borislav Petkov <bp@alien8.de>, "H. Peter Anvin" <hpa@zytor.com>, x86@kernel.org, Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Both call sites, that access kmmio_ctx, access kmmio_ctx with interrupts
-disabled. There is no need to use get_cpu_var() which additionally
-disables preemption.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--B4yCyaNyqdN68C01OPt6rR5nIf1KF21jl
+Content-Type: multipart/mixed; boundary="TIhELMerY5yoVKYrPM88CXOKjlxsWwbcW"
 
-Use this_cpu_ptr() to access the kmmio_ctx variable of the current CPU.
+--TIhELMerY5yoVKYrPM88CXOKjlxsWwbcW
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Pointer to structure array is assumed not NULL by default. It has
+the consequence to raise a kernel panic when it's not the case.
+
+Basically, running at least a RTX2080TI on Xen makes a bad mmio error
+which causes having 'mthd' pointer to be NULL in 'channv50.c'. From the
+code, it's assumed to be not NULL by accessing directly 'mthd->data[0]'
+which is the reason of the kernel panic. Simply check if the pointer
+is not NULL before continuing.
+
+BugLink: https://bugzilla.kernel.org/show_bug.cgi?id=3D206299
+Cc: stable@vger.kernel.org
+Signed-off-by: Fr=C3=A9d=C3=A9ric Pierret (fepitre) <frederic.pierret@qub=
+es-os.org>
 ---
- arch/x86/mm/kmmio.c | 10 +++-------
- 1 file changed, 3 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/x86/mm/kmmio.c b/arch/x86/mm/kmmio.c
-index 49d7814b59a9b..9994353fb75de 100644
---- a/arch/x86/mm/kmmio.c
-+++ b/arch/x86/mm/kmmio.c
-@@ -260,7 +260,7 @@ int kmmio_handler(struct pt_regs *regs, unsigned long a=
-ddr)
- 		goto no_kmmio;
- 	}
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c b/driver=
+s/gpu/drm/nouveau/nvkm/engine/disp/channv50.c
+index bcf32d92ee5a..50e3539f33d2 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c
+@@ -74,6 +74,8 @@ nv50_disp_chan_mthd(struct nv50_disp_chan *chan, int de=
+bug)
 =20
--	ctx =3D &get_cpu_var(kmmio_ctx);
-+	ctx =3D this_cpu_ptr(&kmmio_ctx);
- 	if (ctx->active) {
- 		if (page_base =3D=3D ctx->addr) {
- 			/*
-@@ -285,7 +285,7 @@ int kmmio_handler(struct pt_regs *regs, unsigned long a=
-ddr)
- 			pr_emerg("previous hit was at 0x%08lx.\n", ctx->addr);
- 			disarm_kmmio_fault_page(faultpage);
- 		}
--		goto no_kmmio_ctx;
-+		goto no_kmmio;
- 	}
- 	ctx->active++;
+ 	if (debug > subdev->debug)
+ 		return;
++	if (!mthd)
++		return;
 =20
-@@ -314,11 +314,8 @@ int kmmio_handler(struct pt_regs *regs, unsigned long =
-addr)
- 	 * the user should drop to single cpu before tracing.
- 	 */
-=20
--	put_cpu_var(kmmio_ctx);
- 	return 1; /* fault handled */
-=20
--no_kmmio_ctx:
--	put_cpu_var(kmmio_ctx);
- no_kmmio:
- 	rcu_read_unlock();
- 	preempt_enable_no_resched();
-@@ -333,7 +330,7 @@ int kmmio_handler(struct pt_regs *regs, unsigned long a=
-ddr)
- static int post_kmmio_handler(unsigned long condition, struct pt_regs *reg=
-s)
- {
- 	int ret =3D 0;
--	struct kmmio_context *ctx =3D &get_cpu_var(kmmio_ctx);
-+	struct kmmio_context *ctx =3D this_cpu_ptr(&kmmio_ctx);
-=20
- 	if (!ctx->active) {
- 		/*
-@@ -371,7 +368,6 @@ static int post_kmmio_handler(unsigned long condition, =
-struct pt_regs *regs)
- 	if (!(regs->flags & X86_EFLAGS_TF))
- 		ret =3D 1;
- out:
--	put_cpu_var(kmmio_ctx);
- 	return ret;
- }
-=20
+ 	for (i =3D 0; (list =3D mthd->data[i].mthd) !=3D NULL; i++) {
+ 		u32 base =3D chan->head * mthd->addr;
 --=20
-2.25.0
+2.21.0
+
+
+
+--TIhELMerY5yoVKYrPM88CXOKjlxsWwbcW--
+
+--B4yCyaNyqdN68C01OPt6rR5nIf1KF21jl
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEn6ZLkvlecGvyjiymSEAQtc3FduIFAl4/D18ACgkQSEAQtc3F
+duIJFhAAzN4V0d2b9UNZOSl5OOGjbUHnimbJA3Y51i+r3r+rEInrItxwl2c8asfm
+mHaq3BdBfcGVrb0rkFssztpze7mtt+UBBvmDYSGGHrStyGEpeoZJ659PI0EmZr/U
+PwRHspPkOwb5N2DSDZJ83j/O/lZE3x61YFOAum11JW6xOJOT7lTLlzO/NYosktnj
+VNM/WAbUt5muS3ZZAlPCpaX8vMS3oFG7ssPCYtq56w9BaaOZuWiAA41vtCAc79Sm
+pE6BjWEmcD22tBF19/V0wnbENXfv2AKgw2X1VIChjXDYW0+Rd7DVOMiNnRU+9brD
+3pyyKppbrakHy6u9S7762NDCJvtLDL2dkYaN/VdtKw41jwTCRg0O/IG16jjRT/Z2
+OZRPWBo1wibMsgXB6LfAvE6Y/GDS6N0imGsJgq/mZe6j7wexDTLwLu5GCLWUDFP3
+RvBpHBx5w17KCMQ0pYnFkLdZTc7gkqhqdI5FeDK4QBbNTi8tKvmSNzs7/ZWLaUI9
+vGqteuMnmrs8+mMZxrfIk7oijIFNKnv3JJIM2Hbovfx9e7haKuIZ7M5LqEC3fNuY
+4d9BCj4xnF0S5UFM+VP0lGB5PoMXnTuwHzsIjBqDErpsFH3J69Inh/7+hVECbs2U
+Yg3Ui9xyK9AEEFw83u9BXS90ZlvwIFWKJvgenDQs9zarslW0vQE=
+=8SIN
+-----END PGP SIGNATURE-----
+
+--B4yCyaNyqdN68C01OPt6rR5nIf1KF21jl--
