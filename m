@@ -1,122 +1,75 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 1/4] drm/nouveau/kms/nv50-: Probe SOR caps for DP interlacing support
-Date: Wed, 12 Feb 2020 18:00:35 -0500
-Message-ID: <20200212230043.170477-2-lyude@redhat.com>
+Subject: [PATCH 3/4] drm/nouveau/kms/nv50-: Move 8BPC limit for MST into nv50_mstc_get_modes()
+Date: Wed, 12 Feb 2020 18:00:37 -0500
+Message-ID: <20200212230043.170477-4-lyude@redhat.com>
 References: <20200212230043.170477-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Return-path: <stable-owner@vger.kernel.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
 In-Reply-To: <20200212230043.170477-1-lyude@redhat.com>
-Sender: stable-owner@vger.kernel.org
+Sender: linux-kernel-owner@vger.kernel.org
 To: nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Sean Paul <seanpaul@chromium.org>, Alex Deucher <alexander.deucher@amd.com>, Manasi Navare <manasi.d.navare@intel.com>, Takashi Iwai <tiwai@suse.de>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Sean Paul <seanpaul@chromium.org>, Mikita Lipski <mikita.lipski@amd.com>, Manasi Navare <manasi.d.navare@intel.com>, Takashi Iwai <tiwai@suse.de>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Right now, we make the mistake of allowing interlacing on all
-connectors. Nvidia hardware does not always support interlacing with DP
-though, so we need to make sure that we don't allow interlaced modes to
-be set in such situations as otherwise we'll end up accidentally hanging
-the display HW.
-
-This fixes some hangs with Turing, which would be caused by attempting
-to set an interlaced mode on hardware that doesn't support it. This
-patch likely fixes other hardware hanging in the same way as well.
+This just limits the BPC for MST connectors to a maximum of 8 from
+nv50_mstc_get_modes(), instead of doing so during
+nv50_msto_atomic_check(). This doesn't introduce any functional changes
+yet (other then userspace now lying about the max bpc, but we can't
+support that yet anyway so meh). But, we'll need this in a moment so
+that we can share mode validation between SST and MST which will fix
+some real world issues.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 Cc: stable@vger.kernel.org
 ---
- drivers/gpu/drm/nouveau/dispnv50/disp.c     | 21 ++++++++++++++-------
- drivers/gpu/drm/nouveau/nouveau_connector.c | 10 +++++++++-
- drivers/gpu/drm/nouveau/nouveau_encoder.h   |  3 +++
- 3 files changed, 26 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 25 ++++++++++++++-----------
+ 1 file changed, 14 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/no=
 uveau/dispnv50/disp.c
-index a3dc2ba19fb2..32a1c4221f1e 100644
+index 32a1c4221f1e..766b8e80a8f5 100644
 --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
 +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -1714,6 +1714,9 @@ nv50_sor_create(struct drm_connector *connector, st=
-ruct dcb_output *dcbe)
- 		struct nv50_disp *disp =3D nv50_disp(encoder->dev);
- 		struct nvkm_i2c_aux *aux =3D
- 			nvkm_i2c_aux_find(i2c, dcbe->i2c_index);
-+		u32 caps =3D nvif_rd32(&disp->disp->object,
-+				     0x00640144 + (nv_encoder->or * 8));
-+
- 		if (aux) {
- 			if (disp->disp->object.oclass < GF110_DISP) {
- 				/* HW has no support for address-only
-@@ -1727,13 +1730,17 @@ nv50_sor_create(struct drm_connector *connector, =
-struct dcb_output *dcbe)
- 			nv_encoder->aux =3D aux;
- 		}
+@@ -903,15 +903,9 @@ nv50_msto_atomic_check(struct drm_encoder *encoder,
+ 	if (!state->duplicated) {
+ 		const int clock =3D crtc_state->adjusted_mode.clock;
 =20
--		if (nv_connector->type !=3D DCB_CONNECTOR_eDP &&
--		    nv50_has_mst(drm)) {
--			ret =3D nv50_mstm_new(nv_encoder, &nv_connector->aux,
--					    16, nv_connector->base.base.id,
--					    &nv_encoder->dp.mstm);
--			if (ret)
--				return ret;
-+		if (nv_connector->type !=3D DCB_CONNECTOR_eDP) {
-+			if (nv50_has_mst(drm)) {
-+				ret =3D nv50_mstm_new(nv_encoder,
-+						    &nv_connector->aux,
-+						    16,
-+						    connector->base.id,
-+						    &nv_encoder->dp.mstm);
-+				if (ret)
-+					return ret;
-+			}
-+			nv_encoder->dp.caps.interlace =3D !!(caps & 0x04000000);
- 		}
- 	} else {
- 		struct nvkm_i2c_bus *bus =3D
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/dr=
-m/nouveau/nouveau_connector.c
-index 9a9a7f5003d3..97a84daf8eab 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -509,7 +509,11 @@ nouveau_connector_set_encoder(struct drm_connector *=
-connector,
- 	nv_connector->detected_encoder =3D nv_encoder;
+-		/*
+-		 * XXX: Since we don't use HDR in userspace quite yet, limit
+-		 * the bpc to 8 to save bandwidth on the topology. In the
+-		 * future, we'll want to properly fix this by dynamically
+-		 * selecting the highest possible bpc that would fit in the
+-		 * topology
+-		 */
+-		asyh->or.bpc =3D min(connector->display_info.bpc, 8U);
+-		asyh->dp.pbn =3D drm_dp_calc_pbn_mode(clock, asyh->or.bpc * 3, false);
++		asyh->or.bpc =3D connector->display_info.bpc;
++		asyh->dp.pbn =3D drm_dp_calc_pbn_mode(clock, asyh->or.bpc * 3,
++						    false);
+ 	}
 =20
- 	if (drm->client.device.info.family >=3D NV_DEVICE_INFO_V0_TESLA) {
--		connector->interlace_allowed =3D true;
-+		if (nv_encoder->dcb->type =3D=3D DCB_OUTPUT_DP)
-+			connector->interlace_allowed =3D
-+				nv_encoder->dp.caps.interlace;
-+		else
-+			connector->interlace_allowed =3D true;
- 		connector->doublescan_allowed =3D true;
- 	} else
- 	if (nv_encoder->dcb->type =3D=3D DCB_OUTPUT_LVDS ||
-@@ -1060,6 +1064,10 @@ nouveau_connector_mode_valid(struct drm_connector =
-*connector,
- 	case DCB_OUTPUT_TV:
- 		return get_slave_funcs(encoder)->mode_valid(encoder, mode);
- 	case DCB_OUTPUT_DP:
-+		if (mode->flags & DRM_MODE_FLAG_INTERLACE &&
-+		    !nv_encoder->dp.caps.interlace)
-+			return MODE_NO_INTERLACE;
-+
- 		max_clock  =3D nv_encoder->dp.link_nr;
- 		max_clock *=3D nv_encoder->dp.link_bw;
- 		clock =3D clock * (connector->display_info.bpc * 3) / 10;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_encoder.h b/drivers/gpu/drm/=
-nouveau/nouveau_encoder.h
-index 3517f920bf89..2a8a7aec48c4 100644
---- a/drivers/gpu/drm/nouveau/nouveau_encoder.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_encoder.h
-@@ -63,6 +63,9 @@ struct nouveau_encoder {
- 			struct nv50_mstm *mstm;
- 			int link_nr;
- 			int link_bw;
-+			struct {
-+				bool interlace : 1;
-+			} caps;
- 		} dp;
- 	};
+ 	slots =3D drm_dp_atomic_find_vcpi_slots(state, &mstm->mgr, mstc->port,
+@@ -1071,8 +1065,17 @@ nv50_mstc_get_modes(struct drm_connector *connecto=
+r)
+ 	if (mstc->edid)
+ 		ret =3D drm_add_edid_modes(&mstc->connector, mstc->edid);
 =20
+-	if (!mstc->connector.display_info.bpc)
+-		mstc->connector.display_info.bpc =3D 8;
++	/*
++	 * XXX: Since we don't use HDR in userspace quite yet, limit the bpc
++	 * to 8 to save bandwidth on the topology. In the future, we'll want
++	 * to properly fix this by dynamically selecting the highest possible
++	 * bpc that would fit in the topology
++	 */
++	if (connector->display_info.bpc)
++		connector->display_info.bpc =3D
++			clamp(connector->display_info.bpc, 6U, 8U);
++	else
++		connector->display_info.bpc =3D 8;
+=20
+ 	if (mstc->native)
+ 		drm_mode_destroy(mstc->connector.dev, mstc->native);
 --=20
 2.24.1
