@@ -1,49 +1,46 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH] drm/nouveau/kms/gv100-: Re-set LUT after clearing for modesets
-Date: Wed, 12 Feb 2020 18:11:49 -0500
-Message-ID: <20200212231150.171495-1-lyude@redhat.com>
+Subject: Re: [PATCH] drm/nouveau/kms/gv100-: Re-set LUT after clearing for
+ modesets
+Date: Thu, 13 Feb 2020 16:19:21 -0500
+Message-ID: <ca9cf8a812f4dabcfd74d66c1170c31e97f9c7b9.camel@redhat.com>
+References: <20200212231150.171495-1-lyude@redhat.com>
+         <20200213173705.3FD89206ED@mail.kernel.org>
 Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20200213173705.3FD89206ED@mail.kernel.org>
 Sender: stable-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Ilia Mirkin <imirkin@alum.mit.edu>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Sam Ravnborg <sam@ravnborg.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Gerd Hoffmann <kraxel@redhat.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+To: Sasha Levin <sashal@kernel.org>, nouveau@lists.freedesktop.org
+Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-While certain modeset operations on gv100+ need us to temporarily
-disable the LUT, we make the mistake of sometimes neglecting to
-reprogram the LUT after such modesets. In particular, moving a head from
-one encoder to another seems to trigger this quite often. GV100+ is very
-picky about having a LUT in most scenarios, so this causes the display
-engine to hang with the following error code:
+On Thu, 2020-02-13 at 17:37 +0000, Sasha Levin wrote:
+> Hi,
+> 
+> [This is an automated email]
+> 
+> This commit has been processed because it contains a "Fixes:" tag,
+> fixing commit: facaed62b4cb ("drm/nouveau/kms/gv100: initial support").
+> 
+> The bot has tested the following trees: v5.5.3, v5.4.19, v4.19.103.
+> 
+> v5.5.3: Build OK!
+> v5.4.19: Build OK!
+> v4.19.103: Failed to apply! Possible dependencies:
+>     88b703527ba7 ("drm/nouveau/kms/gf119-: add ctm property support")
+>     cb55cd0c66a1 ("drm/nouveau/kms/nv50-: allow more flexibility with lut
+> formats")
+> 
+> 
+> NOTE: The patch will not be queued to stable trees until it is upstream.
+> 
+> How should we proceed with this patch?
 
-disp: chid 1 stat 00005080 reason 5 [INVALID_STATE] mthd 0200 data
-00000001 code 0000002d)
+Apply it to 5.5.3, 5.4.19. We can drop the rest
 
-So, fix this by always re-programming the LUT if we're clearing it in a
-state where the wndw is still visible, and has a XLUT handle programmed.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Fixes: facaed62b4cb ("drm/nouveau/kms/gv100: initial support")
-Cc: <stable@vger.kernel.org> # v4.18+
----
- drivers/gpu/drm/nouveau/dispnv50/wndw.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/no=
-uveau/dispnv50/wndw.c
-index 890315291b01..bb737f9281e6 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-@@ -458,6 +458,8 @@ nv50_wndw_atomic_check(struct drm_plane *plane, struc=
-t drm_plane_state *state)
- 		asyw->clr.ntfy =3D armw->ntfy.handle !=3D 0;
- 		asyw->clr.sema =3D armw->sema.handle !=3D 0;
- 		asyw->clr.xlut =3D armw->xlut.handle !=3D 0;
-+		if (asyw->clr.xlut && asyw->visible)
-+			asyw->set.xlut =3D asyw->xlut.handle !=3D 0;
- 		asyw->clr.csc  =3D armw->csc.valid;
- 		if (wndw->func->image_clr)
- 			asyw->clr.image =3D armw->image.handle[0] !=3D 0;
---=20
-2.24.1
+> 
+-- 
+Cheers,
+	Lyude Paul (she/her)
+	Associate Software Engineer at Red Hat
