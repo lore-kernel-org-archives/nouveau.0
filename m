@@ -1,8 +1,8 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 5.4 309/459] drm/nouveau/secboot/gm20b:
- initialize pointer in gm20b_secboot_new()
-Date: Fri, 14 Feb 2020 10:59:19 -0500
-Message-ID: <20200214160149.11681-309-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 312/459] drm/nouveau/drm/ttm: Remove
+ set but not used variable 'mem'
+Date: Fri, 14 Feb 2020 10:59:22 -0500
+Message-ID: <20200214160149.11681-312-sashal@kernel.org>
 References: <20200214160149.11681-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -19,48 +19,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
+Cc: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, YueHaibing <yuehaibing-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Hulk Robot <hulkci-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-From: Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
+From: YueHaibing <yuehaibing-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
 
-[ Upstream commit 3613a9bea95a1470dd42e4ed1cc7d86ebe0a2dc0 ]
+[ Upstream commit 2e4534a22794746b11a794b2229b8d58797eccce ]
 
-We accidentally set "psb" which is a no-op instead of "*psb" so it
-generates a static checker warning.  We should probably set it before
-the first error return so that it's always initialized.
+drivers/gpu/drm/nouveau/nouveau_ttm.c: In function nouveau_vram_manager_new:
+drivers/gpu/drm/nouveau/nouveau_ttm.c:66:22: warning: variable mem set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/nouveau/nouveau_ttm.c: In function nouveau_gart_manager_new:
+drivers/gpu/drm/nouveau/nouveau_ttm.c:106:22: warning: variable mem set but not used [-Wunused-but-set-variable]
 
-Fixes: 923f1bd27bf1 ("drm/nouveau/secboot/gm20b: add secure boot support")
-Signed-off-by: Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
+They are not used any more, so remove it.
+
+Reported-by: Hulk Robot <hulkci-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+Signed-off-by: YueHaibing <yuehaibing-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_ttm.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c
-index df8b919dcf09b..ace6fefba4280 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c
-@@ -108,6 +108,7 @@ gm20b_secboot_new(struct nvkm_device *device, int index,
- 	struct gm200_secboot *gsb;
- 	struct nvkm_acr *acr;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+index f0daf958e03a2..621d28f094bc7 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+@@ -63,14 +63,12 @@ nouveau_vram_manager_new(struct ttm_mem_type_manager *man,
+ {
+ 	struct nouveau_bo *nvbo = nouveau_bo(bo);
+ 	struct nouveau_drm *drm = nouveau_bdev(bo->bdev);
+-	struct nouveau_mem *mem;
+ 	int ret;
  
-+	*psb = NULL;
- 	acr = acr_r352_new(BIT(NVKM_SECBOOT_FALCON_FECS) |
- 			   BIT(NVKM_SECBOOT_FALCON_PMU));
- 	if (IS_ERR(acr))
-@@ -116,10 +117,8 @@ gm20b_secboot_new(struct nvkm_device *device, int index,
- 	acr->optional_falcons = BIT(NVKM_SECBOOT_FALCON_PMU);
- 
- 	gsb = kzalloc(sizeof(*gsb), GFP_KERNEL);
--	if (!gsb) {
--		psb = NULL;
-+	if (!gsb)
+ 	if (drm->client.device.info.ram_size == 0)
  		return -ENOMEM;
--	}
- 	*psb = &gsb->base;
  
- 	ret = nvkm_secboot_ctor(&gm20b_secboot, acr, device, index, &gsb->base);
+ 	ret = nouveau_mem_new(&drm->master, nvbo->kind, nvbo->comp, reg);
+-	mem = nouveau_mem(reg);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -103,11 +101,9 @@ nouveau_gart_manager_new(struct ttm_mem_type_manager *man,
+ {
+ 	struct nouveau_bo *nvbo = nouveau_bo(bo);
+ 	struct nouveau_drm *drm = nouveau_bdev(bo->bdev);
+-	struct nouveau_mem *mem;
+ 	int ret;
+ 
+ 	ret = nouveau_mem_new(&drm->master, nvbo->kind, nvbo->comp, reg);
+-	mem = nouveau_mem(reg);
+ 	if (ret)
+ 		return ret;
+ 
 -- 
 2.20.1
