@@ -1,8 +1,8 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 5.4 313/459] drm/nouveau/fault/gv100-: fix
- memory leak on module unload
-Date: Fri, 14 Feb 2020 10:59:23 -0500
-Message-ID: <20200214160149.11681-313-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 379/459] drm/nouveau/mmu: fix comptag
+ memory leak
+Date: Fri, 14 Feb 2020 11:00:29 -0500
+Message-ID: <20200214160149.11681-379-sashal@kernel.org>
 References: <20200214160149.11681-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,25 +24,27 @@ List-Id: nouveau.vger.kernel.org
 
 From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
-[ Upstream commit 633cc9beeb6f9b5fa2f17a2a9d0e2790cb6c3de7 ]
+[ Upstream commit 35e4909b6a2b4005ced3c4238da60d926b78fdea ]
 
 Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/fault/base.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/nouveau/nvkm/core/memory.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fault/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fault/base.c
-index ca251560d3e09..bb4a4266897c3 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/fault/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fault/base.c
-@@ -146,6 +146,7 @@ nvkm_fault_dtor(struct nvkm_subdev *subdev)
- 	struct nvkm_fault *fault = nvkm_fault(subdev);
- 	int i;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/core/memory.c b/drivers/gpu/drm/nouveau/nvkm/core/memory.c
+index e85a08ecd9da5..4cc186262d344 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/core/memory.c
++++ b/drivers/gpu/drm/nouveau/nvkm/core/memory.c
+@@ -91,8 +91,8 @@ nvkm_memory_tags_get(struct nvkm_memory *memory, struct nvkm_device *device,
+ 	}
  
-+	nvkm_notify_fini(&fault->nrpfb);
- 	nvkm_event_fini(&fault->event);
+ 	refcount_set(&tags->refcount, 1);
++	*ptags = memory->tags = tags;
+ 	mutex_unlock(&fb->subdev.mutex);
+-	*ptags = tags;
+ 	return 0;
+ }
  
- 	for (i = 0; i < fault->buffer_nr; i++) {
 -- 
 2.20.1
