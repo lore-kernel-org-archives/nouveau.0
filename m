@@ -1,8 +1,8 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 4.19 208/252] drm/nouveau/mmu: fix comptag
- memory leak
-Date: Fri, 14 Feb 2020 11:11:03 -0500
-Message-ID: <20200214161147.15842-208-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 232/252] drm/nouveau/disp/nv50-:
+ prevent oops when no channel method map provided
+Date: Fri, 14 Feb 2020 11:11:27 -0500
+Message-ID: <20200214161147.15842-232-sashal@kernel.org>
 References: <20200214161147.15842-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,27 +24,35 @@ List-Id: nouveau.vger.kernel.org
 
 From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
-[ Upstream commit 35e4909b6a2b4005ced3c4238da60d926b78fdea ]
+[ Upstream commit 0e6176c6d286316e9431b4f695940cfac4ffe6c2 ]
 
+The implementations for most channel types contains a map of methods to
+priv registers in order to provide debugging info when a disp exception
+has been raised.
+
+This info is missing from the implementation of PIO channels as they're
+rather simplistic already, however, if an exception is raised by one of
+them, we'd end up triggering a NULL-pointer deref.  Not ideal...
+
+Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=206299
 Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/core/memory.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/core/memory.c b/drivers/gpu/drm/nouveau/nvkm/core/memory.c
-index e85a08ecd9da5..4cc186262d344 100644
---- a/drivers/gpu/drm/nouveau/nvkm/core/memory.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/core/memory.c
-@@ -91,8 +91,8 @@ nvkm_memory_tags_get(struct nvkm_memory *memory, struct nvkm_device *device,
- 	}
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c
+index bcf32d92ee5a9..50e3539f33d22 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c
+@@ -74,6 +74,8 @@ nv50_disp_chan_mthd(struct nv50_disp_chan *chan, int debug)
  
- 	refcount_set(&tags->refcount, 1);
-+	*ptags = memory->tags = tags;
- 	mutex_unlock(&fb->subdev.mutex);
--	*ptags = tags;
- 	return 0;
- }
+ 	if (debug > subdev->debug)
+ 		return;
++	if (!mthd)
++		return;
  
+ 	for (i = 0; (list = mthd->data[i].mthd) != NULL; i++) {
+ 		u32 base = chan->head * mthd->addr;
 -- 
 2.20.1
