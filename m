@@ -1,8 +1,8 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 4.9 098/141] drm/nouveau/gr/gk20a,
- gm200-: add terminators to method lists read from fw
-Date: Fri, 14 Feb 2020 11:20:38 -0500
-Message-ID: <20200214162122.19794-98-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.9 127/141] drm/nouveau/disp/nv50-:
+ prevent oops when no channel method map provided
+Date: Fri, 14 Feb 2020 11:21:07 -0500
+Message-ID: <20200214162122.19794-127-sashal@kernel.org>
 References: <20200214162122.19794-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,70 +24,35 @@ List-Id: nouveau.vger.kernel.org
 
 From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
-[ Upstream commit 7adc77aa0e11f25b0e762859219c70852cd8d56f ]
+[ Upstream commit 0e6176c6d286316e9431b4f695940cfac4ffe6c2 ]
 
-Method init is typically ordered by class in the FW image as ThreeD,
-TwoD, Compute.
+The implementations for most channel types contains a map of methods to
+priv registers in order to provide debugging info when a disp exception
+has been raised.
 
-Due to a bug in parsing the FW into our internal format, we've been
-accidentally sending Twod + Compute methods to the ThreeD class, as
-well as Compute methods to the TwoD class - oops.
+This info is missing from the implementation of PIO channels as they're
+rather simplistic already, however, if an exception is raised by one of
+them, we'd end up triggering a NULL-pointer deref.  Not ideal...
 
+Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=206299
 Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 ---
- .../gpu/drm/nouveau/nvkm/engine/gr/gk20a.c    | 21 ++++++++++---------
- 1 file changed, 11 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk20a.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk20a.c
-index de8b806b88fd9..7618b2eb4fdfd 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk20a.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk20a.c
-@@ -143,23 +143,24 @@ gk20a_gr_av_to_method(struct gf100_gr *gr, const char *fw_name,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c
+index 9d90d8b4b7e65..f5a8db1bb8b72 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c
+@@ -72,6 +72,8 @@ nv50_disp_chan_mthd(struct nv50_disp_chan *chan, int debug)
  
- 	nent = (fuc.size / sizeof(struct gk20a_fw_av));
+ 	if (debug > subdev->debug)
+ 		return;
++	if (!mthd)
++		return;
  
--	pack = vzalloc((sizeof(*pack) * max_classes) +
--		       (sizeof(*init) * (nent + 1)));
-+	pack = vzalloc((sizeof(*pack) * (max_classes + 1)) +
-+		       (sizeof(*init) * (nent + max_classes + 1)));
- 	if (!pack) {
- 		ret = -ENOMEM;
- 		goto end;
- 	}
- 
--	init = (void *)(pack + max_classes);
-+	init = (void *)(pack + max_classes + 1);
- 
--	for (i = 0; i < nent; i++) {
--		struct gf100_gr_init *ent = &init[i];
-+	for (i = 0; i < nent; i++, init++) {
- 		struct gk20a_fw_av *av = &((struct gk20a_fw_av *)fuc.data)[i];
- 		u32 class = av->addr & 0xffff;
- 		u32 addr = (av->addr & 0xffff0000) >> 14;
- 
- 		if (prevclass != class) {
--			pack[classidx].init = ent;
-+			if (prevclass) /* Add terminator to the method list. */
-+				init++;
-+			pack[classidx].init = init;
- 			pack[classidx].type = class;
- 			prevclass = class;
- 			if (++classidx >= max_classes) {
-@@ -169,10 +170,10 @@ gk20a_gr_av_to_method(struct gf100_gr *gr, const char *fw_name,
- 			}
- 		}
- 
--		ent->addr = addr;
--		ent->data = av->data;
--		ent->count = 1;
--		ent->pitch = 1;
-+		init->addr = addr;
-+		init->data = av->data;
-+		init->count = 1;
-+		init->pitch = 1;
- 	}
- 
- 	*ppack = pack;
+ 	for (i = 0; (list = mthd->data[i].mthd) != NULL; i++) {
+ 		u32 base = chan->head * mthd->addr;
 -- 
 2.20.1
