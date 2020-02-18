@@ -1,291 +1,141 @@
-From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
-Subject: Re: [PATCH 8/8] drm/ttm: do not keep GPU dependent addresses
-Date: Tue, 18 Feb 2020 19:16:08 +0100
-Message-ID: <5b8db944-5a55-8161-6ab6-98490cfb0562@suse.de>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
+Subject: Re: [PATCH 8/8] drm/ttm: do not keep GPU dependent
+ addresses
+Date: Tue, 18 Feb 2020 19:23:04 +0100
+Message-ID: <f8534965-ea14-bbac-bd34-06b951766a7c@amd.com>
 References: <20200217150427.49994-1-nirmoy.das@amd.com>
  <20200217150427.49994-9-nirmoy.das@amd.com>
  <c3a20c1b-0520-1995-7445-9e3f3ea77394@suse.de>
  <9db59846-90b4-2b9a-8200-69297112693a@amd.com>
  <edc985f1-8856-4d1a-8960-efe4d21b960d@amd.com>
+ <5b8db944-5a55-8161-6ab6-98490cfb0562@suse.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0439664713=="
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <edc985f1-8856-4d1a-8960-efe4d21b960d-5C7GfCeVMHo@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nirmoy <nirmodas-5C7GfCeVMHo@public.gmane.org>, =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Nirmoy Das <nirmoy.aiemd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <5b8db944-5a55-8161-6ab6-98490cfb0562-l3A5Bk7waGM@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, Nirmoy <nirmodas-5C7GfCeVMHo@public.gmane.org>, Nirmoy Das <nirmoy.aiemd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Cc: thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, kenny.ho-5C7GfCeVMHo@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nirmoy.das-5C7GfCeVMHo@public.gmane.org, linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org, sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org, kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0439664713==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="2FpYNFovlXIxQgABC0dwSvgcJqNG8hZKH"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---2FpYNFovlXIxQgABC0dwSvgcJqNG8hZKH
-Content-Type: multipart/mixed; boundary="8kFX9osUBXFmJcRTklmEoYxEWgDw3kiMW";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
-To: Nirmoy <nirmodas-5C7GfCeVMHo@public.gmane.org>, =?UTF-8?Q?Christian_K=c3=b6nig?=
- <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Nirmoy Das <nirmoy.aiemd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>,
- dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, kenny.ho-5C7GfCeVMHo@public.gmane.org,
- amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nirmoy.das-5C7GfCeVMHo@public.gmane.org,
- linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org,
- nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org, sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org,
- kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
-Message-ID: <5b8db944-5a55-8161-6ab6-98490cfb0562-l3A5Bk7waGM@public.gmane.org>
-Subject: Re: [PATCH 8/8] drm/ttm: do not keep GPU dependent addresses
-References: <20200217150427.49994-1-nirmoy.das-5C7GfCeVMHo@public.gmane.org>
- <20200217150427.49994-9-nirmoy.das-5C7GfCeVMHo@public.gmane.org>
- <c3a20c1b-0520-1995-7445-9e3f3ea77394-l3A5Bk7waGM@public.gmane.org>
- <9db59846-90b4-2b9a-8200-69297112693a-5C7GfCeVMHo@public.gmane.org>
- <edc985f1-8856-4d1a-8960-efe4d21b960d-5C7GfCeVMHo@public.gmane.org>
-In-Reply-To: <edc985f1-8856-4d1a-8960-efe4d21b960d-5C7GfCeVMHo@public.gmane.org>
-
---8kFX9osUBXFmJcRTklmEoYxEWgDw3kiMW
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-Am 18.02.20 um 18:13 schrieb Nirmoy:
->=20
-> On 2/18/20 1:44 PM, Christian K=C3=B6nig wrote:
->> Am 18.02.20 um 13:40 schrieb Thomas Zimmermann:
->>> Hi
->>>
->>> Am 17.02.20 um 16:04 schrieb Nirmoy Das:
->>>> GPU address handling is device specific and should be handle by its
->>>> device
->>>> driver.
->>>>
->>>> Signed-off-by: Nirmoy Das <nirmoy.das-5C7GfCeVMHo@public.gmane.org>
->>>> ---
->>>> =C2=A0 drivers/gpu/drm/ttm/ttm_bo.c=C2=A0=C2=A0=C2=A0 | 7 -------
->>>> =C2=A0 include/drm/ttm/ttm_bo_api.h=C2=A0=C2=A0=C2=A0 | 2 --
->>>> =C2=A0 include/drm/ttm/ttm_bo_driver.h | 1 -
->>>> =C2=A0 3 files changed, 10 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
->>>> b/drivers/gpu/drm/ttm/ttm_bo.c
->>>> index 151edfd8de77..d5885cd609a3 100644
->>>> --- a/drivers/gpu/drm/ttm/ttm_bo.c
->>>> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
->>>> @@ -85,7 +85,6 @@ static void ttm_mem_type_debug(struct
->>>> ttm_bo_device *bdev, struct drm_printer *p
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_printf(p, "=C2=A0=C2=A0=C2=A0 has=
-_type: %d\n", man->has_type);
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_printf(p, "=C2=A0=C2=A0=C2=A0 use=
-_type: %d\n", man->use_type);
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_printf(p, "=C2=A0=C2=A0=C2=A0 fla=
-gs: 0x%08X\n", man->flags);
->>>> -=C2=A0=C2=A0=C2=A0 drm_printf(p, "=C2=A0=C2=A0=C2=A0 gpu_offset: 0x=
-%08llX\n", man->gpu_offset);
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_printf(p, "=C2=A0=C2=A0=C2=A0 siz=
-e: %llu\n", man->size);
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_printf(p, "=C2=A0=C2=A0=C2=A0 ava=
-ilable_caching: 0x%08X\n",
->>>> man->available_caching);
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_printf(p, "=C2=A0=C2=A0=C2=A0 def=
-ault_caching: 0x%08X\n",
->>>> man->default_caching);
->>>> @@ -345,12 +344,6 @@ static int ttm_bo_handle_move_mem(struct
->>>> ttm_buffer_object *bo,
->>>> =C2=A0 moved:
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bo->evicted =3D false;
->>>> =C2=A0 -=C2=A0=C2=A0=C2=A0 if (bo->mem.mm_node)
->>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bo->offset =3D (bo->mem.=
-start << PAGE_SHIFT) +
->>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-bdev->man[bo->mem.mem_type].gpu_offset;
->>>> -=C2=A0=C2=A0=C2=A0 else
->>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bo->offset =3D 0;
->>>> -
->>> After moving this into users, the else branch has been lost. Is
->>> 'bo->mem.mm_node' always true?
->>
->> At least for the amdgpu and radeon use cases, yes.
->>
->> But that is a rather good question I mean for it is illegal to get the=
-
->> GPU BO address if it is inaccessible (e.g. in the system domain).
->>
->> Could be that some driver relied on the behavior to get 0 for the
->> system domain here.
->=20
-> I wonder how to verify that ?
->=20
-> If I understand correctly:
->=20
-> 1 qxl uses bo->offset only in qxl_bo_physical_address() which is not in=
-=C2=A0
-> system domain.
->=20
-> 2 unfortunately I can't say the same for bochs but it works with this
-> patch series so I think bochs is fine as well.
->=20
-> 3 vmwgfx uses bo->offset only when bo->mem.mem_type =3D=3D TTM_PL_VRAM =
-so
-> vmwgfx should be fine.
->=20
-> 4 amdgpu and radeon runs with 'bo->mem.mm_node' always true
->=20
-> I am not sure about=C2=A0 nouveau as bo->offset is being used in many p=
-laces.
->=20
-> I could probably mirror the removed logic to nouveau as
-
-I suggest to introduce a ttm helper that contains the original branching
-and use it everywhere. Something like
-
-  s64 ttm_bo_offset(struct ttm_buffer_object *bo)
-  {
-     if (WARN_ON_ONCE(!bo->mem.mm_node))
-         return 0;
-     return bo->mem.start << PAGE_SHIFT;
-  }
-
-Could be static inline. The warning should point to broken drivers. This
-also gets rid of the ugly shift in the drivers.
-
-Best regards
-Thomas
-
-
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c
-> b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> index f8015e0318d7..5a6a2af91318 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> @@ -1317,6 +1317,10 @@ nouveau_bo_move_ntfy(struct ttm_buffer_object
-> *bo, bool evict,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 list_for_each_entry(vma, &nvbo->vma_list, head) {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nouvea=
-u_vma_map(vma, mem);
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 }
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 if (bo->mem.mm_node)
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nvbo->offset=
- =3D (new_reg->start << PAGE_SHIFT);
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 else
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nvbo->offset=
- =3D 0;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 } else {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 list_for_each_entry(vma, &nvbo->vma_list, head) {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WARN_O=
-N(ttm_bo_wait(bo, false, false));
->=20
-> Regards,
->=20
-> Nirmoy
->=20
->=20
->>
->> Regards,
->> Christian.
->>
->>>
->>> Best regards
->>> Thomas
->>>
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ctx->bytes_moved +=3D bo->num_pages <=
-< PAGE_SHIFT;
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return 0;
->>>> =C2=A0 diff --git a/include/drm/ttm/ttm_bo_api.h
->>>> b/include/drm/ttm/ttm_bo_api.h
->>>> index b9bc1b00142e..d6f39ee5bf5d 100644
->>>> --- a/include/drm/ttm/ttm_bo_api.h
->>>> +++ b/include/drm/ttm/ttm_bo_api.h
->>>> @@ -213,8 +213,6 @@ struct ttm_buffer_object {
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * either of these locks held.
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
->>>> =C2=A0 -=C2=A0=C2=A0=C2=A0 uint64_t offset; /* GPU address space is =
-independent of CPU
->>>> word size */
->>>> -
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct sg_table *sg;
->>>> =C2=A0 };
->>>> =C2=A0 diff --git a/include/drm/ttm/ttm_bo_driver.h
->>>> b/include/drm/ttm/ttm_bo_driver.h
->>>> index c9e0fd09f4b2..c8ce6c181abe 100644
->>>> --- a/include/drm/ttm/ttm_bo_driver.h
->>>> +++ b/include/drm/ttm/ttm_bo_driver.h
->>>> @@ -177,7 +177,6 @@ struct ttm_mem_type_manager {
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool has_type;
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool use_type;
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uint32_t flags;
->>>> -=C2=A0=C2=A0=C2=A0 uint64_t gpu_offset; /* GPU address space is ind=
-ependent of CPU
->>>> word size */
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uint64_t size;
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uint32_t available_caching;
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uint32_t default_caching;
->>>>
->>
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---8kFX9osUBXFmJcRTklmEoYxEWgDw3kiMW--
-
---2FpYNFovlXIxQgABC0dwSvgcJqNG8hZKH
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl5MKegACgkQaA3BHVML
-eiPLmAf/XSJQY4qYaVUbzr30C7lZmwph8iZD5GCExhr5eurd8ybw8/97o+9aiwH0
-mdEclOvgJFaTanaObGvcqhi6bry7dA3KtCFKkcgdKUdXd+YLdHnsjAr+IO1opkVI
-QrRUHYjKKE64PsYYmGL5OjFVYnXQZoaR++dJ1K9n0Ywyc4uKbAaanlJdCPmtZTSA
-sHQdWkmBoMpmUlW+yTE5OWmX6y3Odv7cDYEHI1xD4L9lUvEd/kTWp1w6ZEH0hx3U
-vO1Mq7IQ2LuC3ZEpYg0Kn5t4MSdEL6gl60fRs8nrlvinksRG8CJL+B/BdV+jUKm9
-vOTorceJITCSTqK5PfepaphzJfwMnQ==
-=MYTX
------END PGP SIGNATURE-----
-
---2FpYNFovlXIxQgABC0dwSvgcJqNG8hZKH--
-
---===============0439664713==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0439664713==--
+QW0gMTguMDIuMjAgdW0gMTk6MTYgc2NocmllYiBUaG9tYXMgWmltbWVybWFubjoKPiBIaQo+Cj4g
+QW0gMTguMDIuMjAgdW0gMTg6MTMgc2NocmllYiBOaXJtb3k6Cj4+IE9uIDIvMTgvMjAgMTo0NCBQ
+TSwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPj4+IEFtIDE4LjAyLjIwIHVtIDEzOjQwIHNjaHJp
+ZWIgVGhvbWFzIFppbW1lcm1hbm46Cj4+Pj4gSGkKPj4+Pgo+Pj4+IEFtIDE3LjAyLjIwIHVtIDE2
+OjA0IHNjaHJpZWIgTmlybW95IERhczoKPj4+Pj4gR1BVIGFkZHJlc3MgaGFuZGxpbmcgaXMgZGV2
+aWNlIHNwZWNpZmljIGFuZCBzaG91bGQgYmUgaGFuZGxlIGJ5IGl0cwo+Pj4+PiBkZXZpY2UKPj4+
+Pj4gZHJpdmVyLgo+Pj4+Pgo+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBOaXJtb3kgRGFzIDxuaXJtb3ku
+ZGFzQGFtZC5jb20+Cj4+Pj4+IC0tLQo+Pj4+PiAgwqAgZHJpdmVycy9ncHUvZHJtL3R0bS90dG1f
+Ym8uY8KgwqDCoCB8IDcgLS0tLS0tLQo+Pj4+PiAgwqAgaW5jbHVkZS9kcm0vdHRtL3R0bV9ib19h
+cGkuaMKgwqDCoCB8IDIgLS0KPj4+Pj4gIMKgIGluY2x1ZGUvZHJtL3R0bS90dG1fYm9fZHJpdmVy
+LmggfCAxIC0KPj4+Pj4gIMKgIDMgZmlsZXMgY2hhbmdlZCwgMTAgZGVsZXRpb25zKC0pCj4+Pj4+
+Cj4+Pj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jCj4+Pj4+IGIv
+ZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm8uYwo+Pj4+PiBpbmRleCAxNTFlZGZkOGRlNzcuLmQ1
+ODg1Y2Q2MDlhMyAxMDA2NDQKPj4+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm8u
+Ywo+Pj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jCj4+Pj4+IEBAIC04NSw3
+ICs4NSw2IEBAIHN0YXRpYyB2b2lkIHR0bV9tZW1fdHlwZV9kZWJ1ZyhzdHJ1Y3QKPj4+Pj4gdHRt
+X2JvX2RldmljZSAqYmRldiwgc3RydWN0IGRybV9wcmludGVyICpwCj4+Pj4+ICDCoMKgwqDCoMKg
+IGRybV9wcmludGYocCwgIsKgwqDCoCBoYXNfdHlwZTogJWRcbiIsIG1hbi0+aGFzX3R5cGUpOwo+
+Pj4+PiAgwqDCoMKgwqDCoCBkcm1fcHJpbnRmKHAsICLCoMKgwqAgdXNlX3R5cGU6ICVkXG4iLCBt
+YW4tPnVzZV90eXBlKTsKPj4+Pj4gIMKgwqDCoMKgwqAgZHJtX3ByaW50ZihwLCAiwqDCoMKgIGZs
+YWdzOiAweCUwOFhcbiIsIG1hbi0+ZmxhZ3MpOwo+Pj4+PiAtwqDCoMKgIGRybV9wcmludGYocCwg
+IsKgwqDCoCBncHVfb2Zmc2V0OiAweCUwOGxsWFxuIiwgbWFuLT5ncHVfb2Zmc2V0KTsKPj4+Pj4g
+IMKgwqDCoMKgwqAgZHJtX3ByaW50ZihwLCAiwqDCoMKgIHNpemU6ICVsbHVcbiIsIG1hbi0+c2l6
+ZSk7Cj4+Pj4+ICDCoMKgwqDCoMKgIGRybV9wcmludGYocCwgIsKgwqDCoCBhdmFpbGFibGVfY2Fj
+aGluZzogMHglMDhYXG4iLAo+Pj4+PiBtYW4tPmF2YWlsYWJsZV9jYWNoaW5nKTsKPj4+Pj4gIMKg
+wqDCoMKgwqAgZHJtX3ByaW50ZihwLCAiwqDCoMKgIGRlZmF1bHRfY2FjaGluZzogMHglMDhYXG4i
+LAo+Pj4+PiBtYW4tPmRlZmF1bHRfY2FjaGluZyk7Cj4+Pj4+IEBAIC0zNDUsMTIgKzM0NCw2IEBA
+IHN0YXRpYyBpbnQgdHRtX2JvX2hhbmRsZV9tb3ZlX21lbShzdHJ1Y3QKPj4+Pj4gdHRtX2J1ZmZl
+cl9vYmplY3QgKmJvLAo+Pj4+PiAgwqAgbW92ZWQ6Cj4+Pj4+ICDCoMKgwqDCoMKgIGJvLT5ldmlj
+dGVkID0gZmFsc2U7Cj4+Pj4+ICDCoCAtwqDCoMKgIGlmIChiby0+bWVtLm1tX25vZGUpCj4+Pj4+
+IC3CoMKgwqDCoMKgwqDCoCBiby0+b2Zmc2V0ID0gKGJvLT5tZW0uc3RhcnQgPDwgUEFHRV9TSElG
+VCkgKwo+Pj4+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBiZGV2LT5tYW5bYm8tPm1lbS5tZW1f
+dHlwZV0uZ3B1X29mZnNldDsKPj4+Pj4gLcKgwqDCoCBlbHNlCj4+Pj4+IC3CoMKgwqDCoMKgwqDC
+oCBiby0+b2Zmc2V0ID0gMDsKPj4+Pj4gLQo+Pj4+IEFmdGVyIG1vdmluZyB0aGlzIGludG8gdXNl
+cnMsIHRoZSBlbHNlIGJyYW5jaCBoYXMgYmVlbiBsb3N0LiBJcwo+Pj4+ICdiby0+bWVtLm1tX25v
+ZGUnIGFsd2F5cyB0cnVlPwo+Pj4gQXQgbGVhc3QgZm9yIHRoZSBhbWRncHUgYW5kIHJhZGVvbiB1
+c2UgY2FzZXMsIHllcy4KPj4+Cj4+PiBCdXQgdGhhdCBpcyBhIHJhdGhlciBnb29kIHF1ZXN0aW9u
+IEkgbWVhbiBmb3IgaXQgaXMgaWxsZWdhbCB0byBnZXQgdGhlCj4+PiBHUFUgQk8gYWRkcmVzcyBp
+ZiBpdCBpcyBpbmFjY2Vzc2libGUgKGUuZy4gaW4gdGhlIHN5c3RlbSBkb21haW4pLgo+Pj4KPj4+
+IENvdWxkIGJlIHRoYXQgc29tZSBkcml2ZXIgcmVsaWVkIG9uIHRoZSBiZWhhdmlvciB0byBnZXQg
+MCBmb3IgdGhlCj4+PiBzeXN0ZW0gZG9tYWluIGhlcmUuCj4+IEkgd29uZGVyIGhvdyB0byB2ZXJp
+ZnkgdGhhdCA/Cj4+Cj4+IElmIEkgdW5kZXJzdGFuZCBjb3JyZWN0bHk6Cj4+Cj4+IDEgcXhsIHVz
+ZXMgYm8tPm9mZnNldCBvbmx5IGluIHF4bF9ib19waHlzaWNhbF9hZGRyZXNzKCkgd2hpY2ggaXMg
+bm90IGluCj4+IHN5c3RlbSBkb21haW4uCj4+Cj4+IDIgdW5mb3J0dW5hdGVseSBJIGNhbid0IHNh
+eSB0aGUgc2FtZSBmb3IgYm9jaHMgYnV0IGl0IHdvcmtzIHdpdGggdGhpcwo+PiBwYXRjaCBzZXJp
+ZXMgc28gSSB0aGluayBib2NocyBpcyBmaW5lIGFzIHdlbGwuCj4+Cj4+IDMgdm13Z2Z4IHVzZXMg
+Ym8tPm9mZnNldCBvbmx5IHdoZW4gYm8tPm1lbS5tZW1fdHlwZSA9PSBUVE1fUExfVlJBTSBzbwo+
+PiB2bXdnZnggc2hvdWxkIGJlIGZpbmUuCj4+Cj4+IDQgYW1kZ3B1IGFuZCByYWRlb24gcnVucyB3
+aXRoICdiby0+bWVtLm1tX25vZGUnIGFsd2F5cyB0cnVlCj4+Cj4+IEkgYW0gbm90IHN1cmUgYWJv
+dXTCoCBub3V2ZWF1IGFzIGJvLT5vZmZzZXQgaXMgYmVpbmcgdXNlZCBpbiBtYW55IHBsYWNlcy4K
+Pj4KPj4gSSBjb3VsZCBwcm9iYWJseSBtaXJyb3IgdGhlIHJlbW92ZWQgbG9naWMgdG8gbm91dmVh
+dSBhcwo+IEkgc3VnZ2VzdCB0byBpbnRyb2R1Y2UgYSB0dG0gaGVscGVyIHRoYXQgY29udGFpbnMg
+dGhlIG9yaWdpbmFsIGJyYW5jaGluZwo+IGFuZCB1c2UgaXQgZXZlcnl3aGVyZS4gU29tZXRoaW5n
+IGxpa2UKPgo+ICAgIHM2NCB0dG1fYm9fb2Zmc2V0KHN0cnVjdCB0dG1fYnVmZmVyX29iamVjdCAq
+Ym8pCj4gICAgewo+ICAgICAgIGlmIChXQVJOX09OX09OQ0UoIWJvLT5tZW0ubW1fbm9kZSkpCj4g
+ICAgICAgICAgIHJldHVybiAwOwo+ICAgICAgIHJldHVybiBiby0+bWVtLnN0YXJ0IDw8IFBBR0Vf
+U0hJRlQ7Cj4gICAgfQo+Cj4gQ291bGQgYmUgc3RhdGljIGlubGluZS4gVGhlIHdhcm5pbmcgc2hv
+dWxkIHBvaW50IHRvIGJyb2tlbiBkcml2ZXJzLiBUaGlzCj4gYWxzbyBnZXRzIHJpZCBvZiB0aGUg
+dWdseSBzaGlmdCBpbiB0aGUgZHJpdmVycy4KCkJpZyBOQUsgb24gdGhpcy4gVGhhdCBpcyBleGFj
+dGx5IHdoYXQgd2Ugc2hvdWxkIE5PVCBkby4KClNlZSB0aGUgc2hpZnQgYmVsb25ncyBpbnRvIHRo
+ZSBkcml2ZXIsIGJlY2F1c2UgaXQgaXMgZHJpdmVyIGRlcGVuZGVudCBpZiAKd2Ugd29yayB3aXRo
+IHBhZ2Ugb3IgYnl0ZSBvZmZzZXRzLgoKRm9yIGFtZGdwdSB3ZSBmb3IgZXhhbXBsZSB3YW50IHRv
+IHdvcmsgd2l0aCBieXRlIG9mZnNldHMgYW5kIFRUTSBzaG91bGQgCm5vdCBtYWtlIGFueSBhc3N1
+bXB0aW9uIGFib3V0IHdoYXQgYm8tPm1lbS5zdGFydCBhY3R1YWxseSBjb250YWlucy4KClJlZ2Fy
+ZHMsCkNocmlzdGlhbi4KCj4KPiBCZXN0IHJlZ2FyZHMKPiBUaG9tYXMKPgo+Cj4+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMKPj4gYi9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMKPj4gaW5kZXggZjgwMTVlMDMxOGQ3Li41YTZhMmFm
+OTEzMTggMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8u
+Ywo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMKPj4gQEAgLTEz
+MTcsNiArMTMxNywxMCBAQCBub3V2ZWF1X2JvX21vdmVfbnRmeShzdHJ1Y3QgdHRtX2J1ZmZlcl9v
+YmplY3QKPj4gKmJvLCBib29sIGV2aWN0LAo+PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIGxpc3RfZm9yX2VhY2hfZW50cnkodm1hLCAmbnZiby0+dm1hX2xpc3QsIGhlYWQpIHsKPj4g
+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbm91dmVhdV92
+bWFfbWFwKHZtYSwgbWVtKTsKPj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Cj4+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGlmIChiby0+bWVtLm1tX25vZGUpCj4+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBudmJvLT5vZmZzZXQg
+PSAobmV3X3JlZy0+c3RhcnQgPDwgUEFHRV9TSElGVCk7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIGVsc2UKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIG52Ym8tPm9mZnNldCA9IDA7Cj4+ICDCoMKgwqDCoMKgwqDCoCB9IGVsc2Ugewo+PiAg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGxpc3RfZm9yX2VhY2hfZW50cnkodm1hLCAm
+bnZiby0+dm1hX2xpc3QsIGhlYWQpIHsKPj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgV0FSTl9PTih0dG1fYm9fd2FpdChibywgZmFsc2UsIGZhbHNlKSk7
+Cj4+Cj4+IFJlZ2FyZHMsCj4+Cj4+IE5pcm1veQo+Pgo+Pgo+Pj4gUmVnYXJkcywKPj4+IENocmlz
+dGlhbi4KPj4+Cj4+Pj4gQmVzdCByZWdhcmRzCj4+Pj4gVGhvbWFzCj4+Pj4KPj4+Pj4gIMKgwqDC
+oMKgwqAgY3R4LT5ieXRlc19tb3ZlZCArPSBiby0+bnVtX3BhZ2VzIDw8IFBBR0VfU0hJRlQ7Cj4+
+Pj4+ICDCoMKgwqDCoMKgIHJldHVybiAwOwo+Pj4+PiAgwqAgZGlmZiAtLWdpdCBhL2luY2x1ZGUv
+ZHJtL3R0bS90dG1fYm9fYXBpLmgKPj4+Pj4gYi9pbmNsdWRlL2RybS90dG0vdHRtX2JvX2FwaS5o
+Cj4+Pj4+IGluZGV4IGI5YmMxYjAwMTQyZS4uZDZmMzllZTViZjVkIDEwMDY0NAo+Pj4+PiAtLS0g
+YS9pbmNsdWRlL2RybS90dG0vdHRtX2JvX2FwaS5oCj4+Pj4+ICsrKyBiL2luY2x1ZGUvZHJtL3R0
+bS90dG1fYm9fYXBpLmgKPj4+Pj4gQEAgLTIxMyw4ICsyMTMsNiBAQCBzdHJ1Y3QgdHRtX2J1ZmZl
+cl9vYmplY3Qgewo+Pj4+PiAgwqDCoMKgwqDCoMKgICogZWl0aGVyIG9mIHRoZXNlIGxvY2tzIGhl
+bGQuCj4+Pj4+ICDCoMKgwqDCoMKgwqAgKi8KPj4+Pj4gIMKgIC3CoMKgwqAgdWludDY0X3Qgb2Zm
+c2V0OyAvKiBHUFUgYWRkcmVzcyBzcGFjZSBpcyBpbmRlcGVuZGVudCBvZiBDUFUKPj4+Pj4gd29y
+ZCBzaXplICovCj4+Pj4+IC0KPj4+Pj4gIMKgwqDCoMKgwqAgc3RydWN0IHNnX3RhYmxlICpzZzsK
+Pj4+Pj4gIMKgIH07Cj4+Pj4+ICDCoCBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vdHRtL3R0bV9i
+b19kcml2ZXIuaAo+Pj4+PiBiL2luY2x1ZGUvZHJtL3R0bS90dG1fYm9fZHJpdmVyLmgKPj4+Pj4g
+aW5kZXggYzllMGZkMDlmNGIyLi5jOGNlNmMxODFhYmUgMTAwNjQ0Cj4+Pj4+IC0tLSBhL2luY2x1
+ZGUvZHJtL3R0bS90dG1fYm9fZHJpdmVyLmgKPj4+Pj4gKysrIGIvaW5jbHVkZS9kcm0vdHRtL3R0
+bV9ib19kcml2ZXIuaAo+Pj4+PiBAQCAtMTc3LDcgKzE3Nyw2IEBAIHN0cnVjdCB0dG1fbWVtX3R5
+cGVfbWFuYWdlciB7Cj4+Pj4+ICDCoMKgwqDCoMKgIGJvb2wgaGFzX3R5cGU7Cj4+Pj4+ICDCoMKg
+wqDCoMKgIGJvb2wgdXNlX3R5cGU7Cj4+Pj4+ICDCoMKgwqDCoMKgIHVpbnQzMl90IGZsYWdzOwo+
+Pj4+PiAtwqDCoMKgIHVpbnQ2NF90IGdwdV9vZmZzZXQ7IC8qIEdQVSBhZGRyZXNzIHNwYWNlIGlz
+IGluZGVwZW5kZW50IG9mIENQVQo+Pj4+PiB3b3JkIHNpemUgKi8KPj4+Pj4gIMKgwqDCoMKgwqAg
+dWludDY0X3Qgc2l6ZTsKPj4+Pj4gIMKgwqDCoMKgwqAgdWludDMyX3QgYXZhaWxhYmxlX2NhY2hp
+bmc7Cj4+Pj4+ICDCoMKgwqDCoMKgIHVpbnQzMl90IGRlZmF1bHRfY2FjaGluZzsKPj4+Pj4KPj4g
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gZHJpLWRl
+dmVsIG1haWxpbmcgbGlzdAo+PiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
+aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
