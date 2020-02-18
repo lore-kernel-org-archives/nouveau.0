@@ -1,221 +1,115 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v2 5/5] drm/nouveau/kms/nv50-: Share DP SST
- mode_valid() handling with MST
-Date: Fri, 14 Feb 2020 17:58:56 -0500
-Message-ID: <20200214225910.695210-6-lyude@redhat.com>
-References: <20200214225910.695210-1-lyude@redhat.com>
+From: Nirmoy <nirmodas-5C7GfCeVMHo@public.gmane.org>
+Subject: Re: [PATCH 8/8] drm/ttm: do not keep GPU dependent addresses
+Date: Tue, 18 Feb 2020 18:13:15 +0100
+Message-ID: <edc985f1-8856-4d1a-8960-efe4d21b960d@amd.com>
+References: <20200217150427.49994-1-nirmoy.das@amd.com>
+ <20200217150427.49994-9-nirmoy.das@amd.com>
+ <c3a20c1b-0520-1995-7445-9e3f3ea77394@suse.de>
+ <9db59846-90b4-2b9a-8200-69297112693a@amd.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200214225910.695210-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Manasi Navare <manasi.d.navare-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org>, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Mikita Lipski <mikita.lipski-5C7GfCeVMHo@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <9db59846-90b4-2b9a-8200-69297112693a-5C7GfCeVMHo@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, Nirmoy Das <nirmoy.aiemd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, kenny.ho-5C7GfCeVMHo@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nirmoy.das-5C7GfCeVMHo@public.gmane.org, linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org, sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org, kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Currently, the nv50_mstc_mode_valid() function is happy to take any and
-all modes, even the ones we can't actually support sometimes like
-interlaced modes.
-
-Luckily, the only difference between the mode validation that needs to
-be performed for MST vs. SST is that eventually we'll need to check the
-minimum PBN against the MSTB's full PBN capabilities (remember-we don't
-care about the current bw state here). Otherwise, all of the other code
-can be shared.
-
-So, we move all of the common mode validation in
-nouveau_connector_mode_valid() into a separate helper,
-nv50_dp_mode_valid(), and use that from both nv50_mstc_mode_valid() and
-nouveau_connector_mode_valid(). Note that we allow for returning the
-calculated clock that nv50_dp_mode_valid() came up with, since we'll
-eventually want to use that for PBN calculation in
-nv50_mstc_mode_valid().
-
-Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
----
- drivers/gpu/drm/nouveau/dispnv50/disp.c     |  9 ++++-
- drivers/gpu/drm/nouveau/nouveau_connector.c | 41 +++++++++++----------
- drivers/gpu/drm/nouveau/nouveau_connector.h |  5 +++
- drivers/gpu/drm/nouveau/nouveau_dp.c        | 31 ++++++++++++++++
- drivers/gpu/drm/nouveau/nouveau_encoder.h   |  4 ++
- 5 files changed, 70 insertions(+), 20 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 020058811831..684e2c081ea2 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -1051,7 +1051,14 @@ static enum drm_mode_status
- nv50_mstc_mode_valid(struct drm_connector *connector,
- 		     struct drm_display_mode *mode)
- {
--	return MODE_OK;
-+	struct nv50_mstc *mstc = nv50_mstc(connector);
-+	struct nouveau_encoder *outp = mstc->mstm->outp;
-+
-+	/* TODO: calculate the PBN from the dotclock and validate against the
-+	 * MSTB's max possible PBN
-+	 */
-+
-+	return nv50_dp_mode_valid(connector, outp, mode, NULL);
- }
- 
- static int
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 6dae00da5d7e..a82a51661ca1 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -38,6 +38,7 @@
- #include "nouveau_reg.h"
- #include "nouveau_drv.h"
- #include "dispnv04/hw.h"
-+#include "dispnv50/disp.h"
- #include "nouveau_acpi.h"
- 
- #include "nouveau_display.h"
-@@ -1033,6 +1034,24 @@ get_tmds_link_bandwidth(struct drm_connector *connector)
- 		return 112000 * duallink_scale;
- }
- 
-+enum drm_mode_status
-+nouveau_conn_mode_clock_valid(const struct drm_display_mode *mode,
-+			      const unsigned min_clock,
-+			      const unsigned max_clock,
-+			      unsigned *clock)
-+{
-+	if ((mode->flags & DRM_MODE_FLAG_3D_MASK) ==
-+	    DRM_MODE_FLAG_3D_FRAME_PACKING)
-+		*clock *= 2;
-+
-+	if (*clock < min_clock)
-+		return MODE_CLOCK_LOW;
-+	if (*clock > max_clock)
-+		return MODE_CLOCK_HIGH;
-+
-+	return MODE_OK;
-+}
-+
- static enum drm_mode_status
- nouveau_connector_mode_valid(struct drm_connector *connector,
- 			     struct drm_display_mode *mode)
-@@ -1041,7 +1060,6 @@ nouveau_connector_mode_valid(struct drm_connector *connector,
- 	struct nouveau_encoder *nv_encoder = nv_connector->detected_encoder;
- 	struct drm_encoder *encoder = to_drm_encoder(nv_encoder);
- 	unsigned min_clock = 25000, max_clock = min_clock;
--	unsigned clock = mode->clock;
- 
- 	switch (nv_encoder->dcb->type) {
- 	case DCB_OUTPUT_LVDS:
-@@ -1064,29 +1082,14 @@ nouveau_connector_mode_valid(struct drm_connector *connector,
- 	case DCB_OUTPUT_TV:
- 		return get_slave_funcs(encoder)->mode_valid(encoder, mode);
- 	case DCB_OUTPUT_DP:
--		if (mode->flags & DRM_MODE_FLAG_INTERLACE &&
--		    !nv_encoder->caps.dp_interlace)
--			return MODE_NO_INTERLACE;
--
--		max_clock  = nv_encoder->dp.link_nr;
--		max_clock *= nv_encoder->dp.link_bw;
--		clock = clock * (connector->display_info.bpc * 3) / 10;
--		break;
-+		return nv50_dp_mode_valid(connector, nv_encoder, mode, NULL);
- 	default:
- 		BUG();
- 		return MODE_BAD;
- 	}
- 
--	if ((mode->flags & DRM_MODE_FLAG_3D_MASK) == DRM_MODE_FLAG_3D_FRAME_PACKING)
--		clock *= 2;
--
--	if (clock < min_clock)
--		return MODE_CLOCK_LOW;
--
--	if (clock > max_clock)
--		return MODE_CLOCK_HIGH;
--
--	return MODE_OK;
-+	return nouveau_conn_mode_clock_valid(mode, min_clock, max_clock,
-+					     NULL);
- }
- 
- static struct drm_encoder *
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.h b/drivers/gpu/drm/nouveau/nouveau_connector.h
-index de84fb4708c7..9e062c7adec8 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.h
-@@ -195,6 +195,11 @@ int nouveau_conn_atomic_get_property(struct drm_connector *,
- 				     const struct drm_connector_state *,
- 				     struct drm_property *, u64 *);
- struct drm_display_mode *nouveau_conn_native_mode(struct drm_connector *);
-+enum drm_mode_status
-+nouveau_conn_mode_clock_valid(const struct drm_display_mode *,
-+			      const unsigned min_clock,
-+			      const unsigned max_clock,
-+			      unsigned *clock);
- 
- #ifdef CONFIG_DRM_NOUVEAU_BACKLIGHT
- extern int nouveau_backlight_init(struct drm_connector *);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
-index 2674f1587457..8a0f7994e1ae 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dp.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
-@@ -98,3 +98,34 @@ nouveau_dp_detect(struct nouveau_encoder *nv_encoder)
- 		return NOUVEAU_DP_SST;
- 	return ret;
- }
-+
-+/* TODO:
-+ * - Use the minimum possible BPC here, once we add support for the max bpc
-+ *   property.
-+ * - Validate the mode against downstream port caps (see
-+ *   drm_dp_downstream_max_clock())
-+ * - Validate against the DP caps advertised by the GPU (we don't check these
-+ *   yet)
-+ */
-+enum drm_mode_status
-+nv50_dp_mode_valid(struct drm_connector *connector,
-+		   struct nouveau_encoder *outp,
-+		   const struct drm_display_mode *mode,
-+		   unsigned *out_clock)
-+{
-+	const unsigned min_clock = 25000;
-+	unsigned max_clock, clock;
-+	enum drm_mode_status ret;
-+
-+	if (mode->flags & DRM_MODE_FLAG_INTERLACE && !outp->caps.dp_interlace)
-+		return MODE_NO_INTERLACE;
-+
-+	max_clock = outp->dp.link_nr * outp->dp.link_bw;
-+	clock = mode->clock * (connector->display_info.bpc * 3) / 10;
-+
-+	ret = nouveau_conn_mode_clock_valid(mode, min_clock, max_clock,
-+					    &clock);
-+	if (out_clock)
-+		*out_clock = clock;
-+	return ret;
-+}
-diff --git a/drivers/gpu/drm/nouveau/nouveau_encoder.h b/drivers/gpu/drm/nouveau/nouveau_encoder.h
-index 3217f587eceb..de51733b0476 100644
---- a/drivers/gpu/drm/nouveau/nouveau_encoder.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_encoder.h
-@@ -104,6 +104,10 @@ enum nouveau_dp_status {
- };
- 
- int nouveau_dp_detect(struct nouveau_encoder *);
-+enum drm_mode_status nv50_dp_mode_valid(struct drm_connector *,
-+					struct nouveau_encoder *,
-+					const struct drm_display_mode *,
-+					unsigned *clock);
- 
- struct nouveau_connector *
- nouveau_encoder_connector_get(struct nouveau_encoder *encoder);
--- 
-2.24.1
+Ck9uIDIvMTgvMjAgMTo0NCBQTSwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPiBBbSAxOC4wMi4y
+MCB1bSAxMzo0MCBzY2hyaWViIFRob21hcyBaaW1tZXJtYW5uOgo+PiBIaQo+Pgo+PiBBbSAxNy4w
+Mi4yMCB1bSAxNjowNCBzY2hyaWViIE5pcm1veSBEYXM6Cj4+PiBHUFUgYWRkcmVzcyBoYW5kbGlu
+ZyBpcyBkZXZpY2Ugc3BlY2lmaWMgYW5kIHNob3VsZCBiZSBoYW5kbGUgYnkgaXRzIAo+Pj4gZGV2
+aWNlCj4+PiBkcml2ZXIuCj4+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogTmlybW95IERhcyA8bmlybW95
+LmRhc0BhbWQuY29tPgo+Pj4gLS0tCj4+PiDCoCBkcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5j
+wqDCoMKgIHwgNyAtLS0tLS0tCj4+PiDCoCBpbmNsdWRlL2RybS90dG0vdHRtX2JvX2FwaS5owqDC
+oMKgIHwgMiAtLQo+Pj4gwqAgaW5jbHVkZS9kcm0vdHRtL3R0bV9ib19kcml2ZXIuaCB8IDEgLQo+
+Pj4gwqAgMyBmaWxlcyBjaGFuZ2VkLCAxMCBkZWxldGlvbnMoLSkKPj4+Cj4+PiBkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm8uYyAKPj4+IGIvZHJpdmVycy9ncHUvZHJtL3R0
+bS90dG1fYm8uYwo+Pj4gaW5kZXggMTUxZWRmZDhkZTc3Li5kNTg4NWNkNjA5YTMgMTAwNjQ0Cj4+
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jCj4+PiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vdHRtL3R0bV9iby5jCj4+PiBAQCAtODUsNyArODUsNiBAQCBzdGF0aWMgdm9pZCB0dG1f
+bWVtX3R5cGVfZGVidWcoc3RydWN0IAo+Pj4gdHRtX2JvX2RldmljZSAqYmRldiwgc3RydWN0IGRy
+bV9wcmludGVyICpwCj4+PiDCoMKgwqDCoMKgIGRybV9wcmludGYocCwgIsKgwqDCoCBoYXNfdHlw
+ZTogJWRcbiIsIG1hbi0+aGFzX3R5cGUpOwo+Pj4gwqDCoMKgwqDCoCBkcm1fcHJpbnRmKHAsICLC
+oMKgwqAgdXNlX3R5cGU6ICVkXG4iLCBtYW4tPnVzZV90eXBlKTsKPj4+IMKgwqDCoMKgwqAgZHJt
+X3ByaW50ZihwLCAiwqDCoMKgIGZsYWdzOiAweCUwOFhcbiIsIG1hbi0+ZmxhZ3MpOwo+Pj4gLcKg
+wqDCoCBkcm1fcHJpbnRmKHAsICLCoMKgwqAgZ3B1X29mZnNldDogMHglMDhsbFhcbiIsIG1hbi0+
+Z3B1X29mZnNldCk7Cj4+PiDCoMKgwqDCoMKgIGRybV9wcmludGYocCwgIsKgwqDCoCBzaXplOiAl
+bGx1XG4iLCBtYW4tPnNpemUpOwo+Pj4gwqDCoMKgwqDCoCBkcm1fcHJpbnRmKHAsICLCoMKgwqAg
+YXZhaWxhYmxlX2NhY2hpbmc6IDB4JTA4WFxuIiwgCj4+PiBtYW4tPmF2YWlsYWJsZV9jYWNoaW5n
+KTsKPj4+IMKgwqDCoMKgwqAgZHJtX3ByaW50ZihwLCAiwqDCoMKgIGRlZmF1bHRfY2FjaGluZzog
+MHglMDhYXG4iLCAKPj4+IG1hbi0+ZGVmYXVsdF9jYWNoaW5nKTsKPj4+IEBAIC0zNDUsMTIgKzM0
+NCw2IEBAIHN0YXRpYyBpbnQgdHRtX2JvX2hhbmRsZV9tb3ZlX21lbShzdHJ1Y3QgCj4+PiB0dG1f
+YnVmZmVyX29iamVjdCAqYm8sCj4+PiDCoCBtb3ZlZDoKPj4+IMKgwqDCoMKgwqAgYm8tPmV2aWN0
+ZWQgPSBmYWxzZTsKPj4+IMKgIC3CoMKgwqAgaWYgKGJvLT5tZW0ubW1fbm9kZSkKPj4+IC3CoMKg
+wqDCoMKgwqDCoCBiby0+b2Zmc2V0ID0gKGJvLT5tZW0uc3RhcnQgPDwgUEFHRV9TSElGVCkgKwo+
+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYmRldi0+bWFuW2JvLT5tZW0ubWVtX3R5cGVdLmdw
+dV9vZmZzZXQ7Cj4+PiAtwqDCoMKgIGVsc2UKPj4+IC3CoMKgwqDCoMKgwqDCoCBiby0+b2Zmc2V0
+ID0gMDsKPj4+IC0KPj4gQWZ0ZXIgbW92aW5nIHRoaXMgaW50byB1c2VycywgdGhlIGVsc2UgYnJh
+bmNoIGhhcyBiZWVuIGxvc3QuIElzCj4+ICdiby0+bWVtLm1tX25vZGUnIGFsd2F5cyB0cnVlPwo+
+Cj4gQXQgbGVhc3QgZm9yIHRoZSBhbWRncHUgYW5kIHJhZGVvbiB1c2UgY2FzZXMsIHllcy4KPgo+
+IEJ1dCB0aGF0IGlzIGEgcmF0aGVyIGdvb2QgcXVlc3Rpb24gSSBtZWFuIGZvciBpdCBpcyBpbGxl
+Z2FsIHRvIGdldCB0aGUgCj4gR1BVIEJPIGFkZHJlc3MgaWYgaXQgaXMgaW5hY2Nlc3NpYmxlIChl
+LmcuIGluIHRoZSBzeXN0ZW0gZG9tYWluKS4KPgo+IENvdWxkIGJlIHRoYXQgc29tZSBkcml2ZXIg
+cmVsaWVkIG9uIHRoZSBiZWhhdmlvciB0byBnZXQgMCBmb3IgdGhlIAo+IHN5c3RlbSBkb21haW4g
+aGVyZS4KCkkgd29uZGVyIGhvdyB0byB2ZXJpZnkgdGhhdCA/CgpJZiBJIHVuZGVyc3RhbmQgY29y
+cmVjdGx5OgoKMSBxeGwgdXNlcyBiby0+b2Zmc2V0IG9ubHkgaW4gcXhsX2JvX3BoeXNpY2FsX2Fk
+ZHJlc3MoKSB3aGljaCBpcyBub3QgaW7CoCAKc3lzdGVtIGRvbWFpbi4KCjIgdW5mb3J0dW5hdGVs
+eSBJIGNhbid0IHNheSB0aGUgc2FtZSBmb3IgYm9jaHMgYnV0IGl0IHdvcmtzIHdpdGggdGhpcyAK
+cGF0Y2ggc2VyaWVzIHNvIEkgdGhpbmsgYm9jaHMgaXMgZmluZSBhcyB3ZWxsLgoKMyB2bXdnZngg
+dXNlcyBiby0+b2Zmc2V0IG9ubHkgd2hlbiBiby0+bWVtLm1lbV90eXBlID09IFRUTV9QTF9WUkFN
+IHNvIAp2bXdnZnggc2hvdWxkIGJlIGZpbmUuCgo0IGFtZGdwdSBhbmQgcmFkZW9uIHJ1bnMgd2l0
+aCAnYm8tPm1lbS5tbV9ub2RlJyBhbHdheXMgdHJ1ZQoKSSBhbSBub3Qgc3VyZSBhYm91dMKgIG5v
+dXZlYXUgYXMgYm8tPm9mZnNldCBpcyBiZWluZyB1c2VkIGluIG1hbnkgcGxhY2VzLgoKSSBjb3Vs
+ZCBwcm9iYWJseSBtaXJyb3IgdGhlIHJlbW92ZWQgbG9naWMgdG8gbm91dmVhdSBhcwoKZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYyAKYi9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMKaW5kZXggZjgwMTVlMDMxOGQ3Li41YTZhMmFmOTEz
+MTggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYworKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMKQEAgLTEzMTcsNiArMTMxNywx
+MCBAQCBub3V2ZWF1X2JvX21vdmVfbnRmeShzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QgCipibywg
+Ym9vbCBldmljdCwKIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBsaXN0X2Zvcl9lYWNo
+X2VudHJ5KHZtYSwgJm52Ym8tPnZtYV9saXN0LCBoZWFkKSB7CiDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG5vdXZlYXVfdm1hX21hcCh2bWEsIG1lbSk7CiDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfQorwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBpZiAoYm8tPm1lbS5tbV9ub2RlKQorwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgbnZiby0+b2Zmc2V0ID0gKG5ld19yZWctPnN0YXJ0IDw8IFBBR0VfU0hJ
+RlQpOworwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBlbHNlCivCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBudmJvLT5vZmZzZXQgPSAwOwogwqDCoMKgwqDC
+oMKgwqAgfSBlbHNlIHsKIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBsaXN0X2Zvcl9l
+YWNoX2VudHJ5KHZtYSwgJm52Ym8tPnZtYV9saXN0LCBoZWFkKSB7CiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFdBUk5fT04odHRtX2JvX3dhaXQoYm8sIGZh
+bHNlLCBmYWxzZSkpOwoKUmVnYXJkcywKCk5pcm1veQoKCj4KPiBSZWdhcmRzLAo+IENocmlzdGlh
+bi4KPgo+Pgo+PiBCZXN0IHJlZ2FyZHMKPj4gVGhvbWFzCj4+Cj4+PiDCoMKgwqDCoMKgIGN0eC0+
+Ynl0ZXNfbW92ZWQgKz0gYm8tPm51bV9wYWdlcyA8PCBQQUdFX1NISUZUOwo+Pj4gwqDCoMKgwqDC
+oCByZXR1cm4gMDsKPj4+IMKgIGRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS90dG0vdHRtX2JvX2Fw
+aS5oIAo+Pj4gYi9pbmNsdWRlL2RybS90dG0vdHRtX2JvX2FwaS5oCj4+PiBpbmRleCBiOWJjMWIw
+MDE0MmUuLmQ2ZjM5ZWU1YmY1ZCAxMDA2NDQKPj4+IC0tLSBhL2luY2x1ZGUvZHJtL3R0bS90dG1f
+Ym9fYXBpLmgKPj4+ICsrKyBiL2luY2x1ZGUvZHJtL3R0bS90dG1fYm9fYXBpLmgKPj4+IEBAIC0y
+MTMsOCArMjEzLDYgQEAgc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0IHsKPj4+IMKgwqDCoMKgwqDC
+oCAqIGVpdGhlciBvZiB0aGVzZSBsb2NrcyBoZWxkLgo+Pj4gwqDCoMKgwqDCoMKgICovCj4+PiDC
+oCAtwqDCoMKgIHVpbnQ2NF90IG9mZnNldDsgLyogR1BVIGFkZHJlc3Mgc3BhY2UgaXMgaW5kZXBl
+bmRlbnQgb2YgQ1BVIAo+Pj4gd29yZCBzaXplICovCj4+PiAtCj4+PiDCoMKgwqDCoMKgIHN0cnVj
+dCBzZ190YWJsZSAqc2c7Cj4+PiDCoCB9Owo+Pj4gwqAgZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJt
+L3R0bS90dG1fYm9fZHJpdmVyLmggCj4+PiBiL2luY2x1ZGUvZHJtL3R0bS90dG1fYm9fZHJpdmVy
+LmgKPj4+IGluZGV4IGM5ZTBmZDA5ZjRiMi4uYzhjZTZjMTgxYWJlIDEwMDY0NAo+Pj4gLS0tIGEv
+aW5jbHVkZS9kcm0vdHRtL3R0bV9ib19kcml2ZXIuaAo+Pj4gKysrIGIvaW5jbHVkZS9kcm0vdHRt
+L3R0bV9ib19kcml2ZXIuaAo+Pj4gQEAgLTE3Nyw3ICsxNzcsNiBAQCBzdHJ1Y3QgdHRtX21lbV90
+eXBlX21hbmFnZXIgewo+Pj4gwqDCoMKgwqDCoCBib29sIGhhc190eXBlOwo+Pj4gwqDCoMKgwqDC
+oCBib29sIHVzZV90eXBlOwo+Pj4gwqDCoMKgwqDCoCB1aW50MzJfdCBmbGFnczsKPj4+IC3CoMKg
+wqAgdWludDY0X3QgZ3B1X29mZnNldDsgLyogR1BVIGFkZHJlc3Mgc3BhY2UgaXMgaW5kZXBlbmRl
+bnQgb2YgQ1BVIAo+Pj4gd29yZCBzaXplICovCj4+PiDCoMKgwqDCoMKgIHVpbnQ2NF90IHNpemU7
+Cj4+PiDCoMKgwqDCoMKgIHVpbnQzMl90IGF2YWlsYWJsZV9jYWNoaW5nOwo+Pj4gwqDCoMKgwqDC
+oCB1aW50MzJfdCBkZWZhdWx0X2NhY2hpbmc7Cj4+Pgo+Cl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vYW1kLWdmeAo=
