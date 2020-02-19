@@ -1,8 +1,8 @@
 From: Krzysztof Kozlowski <krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [RESEND PATCH v2 8/9] media: fsl-viu: Constify ioreadX()
- iomem argument (as in generic implementation)
-Date: Wed, 19 Feb 2020 18:50:06 +0100
-Message-ID: <20200219175007.13627-9-krzk__48722.4161670142$1582564400$gmane$org@kernel.org>
+Subject: [RESEND PATCH v2 5/9] arc: Constify ioreadX() iomem
+ argument (as in generic implementation)
+Date: Wed, 19 Feb 2020 18:50:03 +0100
+Message-ID: <20200219175007.13627-6-krzk__17617.9934803926$1582564403$gmane$org@kernel.org>
 References: <20200219175007.13627-1-krzk@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -25,27 +25,42 @@ List-Id: nouveau.vger.kernel.org
 The ioreadX() helpers have inconsistent interface.  On some architectures
 void *__iomem address argument is a pointer to const, on some not.
 
-Implementations of ioreadX() do not modify the memory under the address
-so they can be converted to a "const" version for const-safety and
-consistency among architectures.
+Implementations of ioreadX() do not modify the memory under the
+address so they can be converted to a "const" version for const-safety
+and consistency among architectures.
 
 Signed-off-by: Krzysztof Kozlowski <krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
----
- drivers/media/platform/fsl-viu.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Acked-by: Alexey Brodkin <abrodkin-HKixBCOQz3hWk0Htik3J/w@public.gmane.org>
 
-diff --git a/drivers/media/platform/fsl-viu.c b/drivers/media/platform/fsl-viu.c
-index 81a8faedbba6..991d9dc82749 100644
---- a/drivers/media/platform/fsl-viu.c
-+++ b/drivers/media/platform/fsl-viu.c
-@@ -34,7 +34,7 @@
- /* Allow building this driver with COMPILE_TEST */
- #if !defined(CONFIG_PPC) && !defined(CONFIG_MICROBLAZE)
- #define out_be32(v, a)	iowrite32be(a, (void __iomem *)v)
--#define in_be32(a)	ioread32be((void __iomem *)a)
-+#define in_be32(a)	ioread32be((const void __iomem *)a)
- #endif
+---
+
+Changes since v1:
+1. Add Alexey's ack.
+---
+ arch/arc/plat-axs10x/axs10x.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arc/plat-axs10x/axs10x.c b/arch/arc/plat-axs10x/axs10x.c
+index 63ea5a606ecd..180c260a8221 100644
+--- a/arch/arc/plat-axs10x/axs10x.c
++++ b/arch/arc/plat-axs10x/axs10x.c
+@@ -84,7 +84,7 @@ static void __init axs10x_print_board_ver(unsigned int creg, const char *str)
+ 		unsigned int val;
+ 	} board;
  
- #define BUFFER_TIMEOUT		msecs_to_jiffies(500)  /* 0.5 seconds */
+-	board.val = ioread32((void __iomem *)creg);
++	board.val = ioread32((const void __iomem *)creg);
+ 	pr_info("AXS: %s FPGA Date: %u-%u-%u\n", str, board.d, board.m,
+ 		board.y);
+ }
+@@ -95,7 +95,7 @@ static void __init axs10x_early_init(void)
+ 	char mb[32];
+ 
+ 	/* Determine motherboard version */
+-	if (ioread32((void __iomem *) CREG_MB_CONFIG) & (1 << 28))
++	if (ioread32((const void __iomem *) CREG_MB_CONFIG) & (1 << 28))
+ 		mb_rev = 3;	/* HT-3 (rev3.0) */
+ 	else
+ 		mb_rev = 2;	/* HT-2 (rev2.0) */
 -- 
 2.17.1
