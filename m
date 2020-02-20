@@ -1,71 +1,40 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v6 5/6] nouveau: use new mmu interval notifiers
-Date: Wed, 19 Feb 2020 17:10:45 -0800
-Message-ID: <770d0aab-726a-12b0-944d-ef71722ad587@nvidia.com>
-References: <20200113224703.5917-1-rcampbell@nvidia.com>
- <20200113224703.5917-6-rcampbell@nvidia.com>
- <20200114125957.GO20978@mellanox.com>
- <5845f50e-8bc0-8068-ee21-4f910beb1255@nvidia.com>
- <20200116160002.GL20978@mellanox.com>
- <01adb7dd-589e-2cde-4fa9-68baa44c0976@nvidia.com>
- <20200116202151.GS20978@mellanox.com>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Subject: Re: [PATCH 04/12] drm: Nuke mode->vrefresh
+Date: Thu, 20 Feb 2020 12:00:04 +0000
+Message-ID: <CACvgo52gOX7OioTqaLUEi1Luc49y2FpREv5ERRP5DPYxodRMLw@mail.gmail.com>
+References: <20200219203544.31013-1-ville.syrjala@linux.intel.com>
+ <20200219203544.31013-5-ville.syrjala@linux.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200116202151.GS20978-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-Cc: "linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20200219203544.31013-5-ville.syrjala@linux.intel.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, ML nouveau <nouveau@lists.freedesktop.org>, =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>, ML dri-devel <dri-devel@lists.freedesktop.org>, Andrzej Hajda <a.hajda@samsung.com>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Sam Ravnborg <sam@ravnborg.org>, Thomas Hellstrom <thellstrom@vmware.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Stefan Mavrodiev <stefan@olimex.com>, Jerry Han <hanxu5@huaqin.corp-partner.google.com>, VMware Graphics <linux-graphics-maintainer@vmware.com>, Jagan Teki <jagan@amarulasolutions.com>, Robert Chiras <robert.chiras@nxp.com>, Icenowy Zheng <icenowy@aosc.io>, Jonas Karlman <jonas@kwiboo.se>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, linux-amlogic@lists.infradead.org, Vincent Abriou <vincent.abriou@st.com>, Jernej Skrabec <jernej.skrab>
 List-Id: nouveau.vger.kernel.org
 
-
-On 1/16/20 12:21 PM, Jason Gunthorpe wrote:
-> On Thu, Jan 16, 2020 at 12:16:30PM -0800, Ralph Campbell wrote:
->> Can you point me to the latest ODP code? Seems like my understanding is
->> quite off.
-> 
-> https://elixir.bootlin.com/linux/v5.5-rc6/source/drivers/infiniband/hw/mlx5/odp.c
-> 
-> Look for the word 'implicit'
-> 
-> mlx5_ib_invalidate_range() releases the interval_notifier when there are
-> no populated shadow PTEs in its leaf
-> 
-> pagefault_implicit_mr() creates an interval_notifier that covers the
-> level in the page table that needs population. Notice it just uses an
-> unlocked xa_load to find the page table level.
-> 
-> The locking is pretty tricky as it relies on RCU, but the fault flow
-> is fairly lightweight.
-> 
-> Jason
-> 
-Thanks for the information, Jason.
-
-I'm still interested in finding a way to support range based hints to device drivers.
-madvise() looks like it only sets a bit in vma->vm_flags or acts on the
-advice immediately. mbind() and set_mempolicy() only work with CPUs and memory
-with NUMA a node number. What I'm looking for is a way for the device to know
-whether to migrate pages to device private memory on a fault, whether to duplicate
-read-only pages in device private memory, or remote map/access a page instead of migrating it.
-For example, there is a working draft extension to OpenCL,
-https://github.com/intel/llvm/blob/sycl/sycl/doc/extensions/USM/cl_intel_unified_shared_memory.asciidoc
-that could provide a way to specify this sort of advice.
-C++ is also looking at extentions for specifying affinity attributes.
-In any case, these are probably a long ways off before being finalized and implemented.
-
-I also have some changes to support THP migration to device private memory but that
-will require updating nouveau to use 2MB TLB mappings.
-
-In the mean time, I can update the HMM self tests to do something like ODP without
-changing mm/mmu_notifier.c but I don't think I can easily change nouveau to that model.
+T24gV2VkLCAxOSBGZWIgMjAyMCBhdCAyMDozNiwgVmlsbGUgU3lyamFsYQo8dmlsbGUuc3lyamFs
+YUBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+Cj4gRnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxs
+ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPgo+IEdldCByaWQgb2YgbW9kZS0+dnJlZnJlc2gg
+YW5kIGp1c3QgY2FsY3VsYXRlIGl0IG9uIGRlbWFuZC4gU2F2ZXMKPiBhIGJpdCBvZiBzcGFjZSBh
+bmQgYXZvaWRzIHRoZSBjYWNoZWQgdmFsdWUgZ2V0dGluZyBvdXQgb2Ygc3luYwo+IHdpdGggcmVh
+bGl0eS4KPgo+IE1vc3RseSBkb25lIHdpdGggY29jY2ksIHdpdGggdGhlIGZvbGxvd2luZyBtYW51
+YWwgZml4dXBzOgo+IC0gUmVtb3ZlIHRoZSBub3cgZW1wdHkgbG9vcCBpbiBkcm1faGVscGVyX3By
+b2JlX3NpbmdsZV9jb25uZWN0b3JfbW9kZXMoKQo+IC0gRml4IF9fTU9ERSgpIG1hY3JvIGluIGNo
+NzAwNl9tb2RlLmMKClNwZWFraW5nIG9mIGNoNzAwNl9tb2RlLmMsIGl0IGhhcyBpdHMgb3duICJm
+aXhlZCB2cmVmcmVzaCIsIHdoaWNoCmRvZXNuJ3Qgc2VlbSB0byBiZSB1c2VkIGFueXdoZXJlLgpP
+bmUgY291bGQgcG90ZW50aWFsbHkgbnVrZSBpdCwgYWx0aG91Z2ggaXQgY2FuIGJlIGEgY29tcGxl
+dGVseSBzZXBhcmF0ZSBwYXRjaC4KClRoaXMgcGF0Y2ggaXM6ClJldmlld2VkLWJ5OiBFbWlsIFZl
+bGlrb3YgPGVtaWwudmVsaWtvdkBjb2xsYWJvcmEuY29tPgoKLUVtaWwKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
+bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
