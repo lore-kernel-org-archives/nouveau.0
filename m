@@ -1,58 +1,41 @@
-From: Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH 04/12] drm: Nuke mode->vrefresh
-Date: Sat, 22 Feb 2020 13:32:40 +0100
-Message-ID: <20200222123240.GD28287@ravnborg.org>
-References: <20200219203544.31013-1-ville.syrjala@linux.intel.com>
- <20200219203544.31013-5-ville.syrjala@linux.intel.com>
+From: "Lukas Schubert" <lukas.schubert-Mmb7MZpHnFY@public.gmane.org>
+Subject: NV40 under Debian
+Date: Sat, 22 Feb 2020 18:57:04 +0100
+Message-ID: <trinity-c5570114-8f17-4b15-bb54-f6a39340ef19-1582394224520@3c-app-gmx-bs13>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20200219203544.31013-5-ville.syrjala@linux.intel.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, nouveau@lists.freedesktop.org, Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>, dri-devel@lists.freedesktop.org, Andrzej Hajda <a.hajda@samsung.com>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Benjamin Gaignard <benjamin.gaignard@linaro.org>, Thomas Hellstrom <thellstrom@vmware.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Stefan Mavrodiev <stefan@olimex.com>, Jerry Han <hanxu5@huaqin.corp-partner.google.com>, Ben Skeggs <bskeggs@redhat.com>, VMware Graphics <linux-graphics-maintainer@vmware.com>, Jagan Teki <jagan@amarulasolutions.com>, Robert Chiras <robert.chiras@nxp.com>, Linus Walleij <linus.walleij@linaro.org>, Icenowy Zheng <icenowy@aosc.io>, Jonas Karlman <jonas@kwiboo.se>, intel-gfx@lists.freedesktop.org, Inki Dae <inki.dae@samsung.com>, CK Hu <ck.hu@mediatek.com>, linux-amlogic@lists.infradead.org, Vinc
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi Ville.
+Hi list,
 
-Nice patch - and diffstat looks good:
->  63 files changed, 217 insertions(+), 392 deletions(-)
+my media center PC is freshly installed with Debian 10.2 "Buster". It doesn't support Geforce 6800 GT (NV40) boards through the nvidia nor the nvidia-legacy drivers any longer. The legacy drivers worked up until Debian 9 "Stretch", but no longer.
 
-There is an item in the Documentation/gpu/todo.rst that
-describes this.
-Could you drop this from todo.rst in this patch too.
+I know that the hardware works because I can boot SystemRescueCD from CD and get a flawless desktop presentation on the attached full HD TV.
 
-> diff --git a/drivers/gpu/drm/mcde/mcde_dsi.c b/drivers/gpu/drm/mcde/mcde_dsi.c
-> index bb6528b01cd0..6dca5344c0b3 100644
-> --- a/drivers/gpu/drm/mcde/mcde_dsi.c
-> +++ b/drivers/gpu/drm/mcde/mcde_dsi.c
-> @@ -538,7 +538,7 @@ static void mcde_dsi_setup_video_mode(struct mcde_dsi *d,
->  	 */
->  	/* (ps/s) / (pixels/s) = ps/pixels */
->  	pclk = DIV_ROUND_UP_ULL(1000000000000,
-> -				(mode->vrefresh * mode->htotal * mode->vtotal));
-> +				(drm_mode_vrefresh(mode) * mode->htotal * mode->vtotal));
->  	dev_dbg(d->dev, "picoseconds between two pixels: %llu\n",
->  		pclk);
->  
+But in Debian 10, the colours are distorted. Have a look at "Nouveau.jpg" here: https://jumpshare.com/b/Se5d7xMu5tBSsR2Zcz8p
+I can get the colours to work by starting the kernel with "nomodeset". Look at the same link, "NoModeSet.jpg".
 
-This just caught my eye while browsing the patch.
-It looks like a backward way to get the clock.
+SystemRescueCD (working nouveau version) uses an older kernel:
+root@sysresccd /root % uname -a
+Linux sysresccd 3.2.28-std300-amd64 #2 SMP Tue Aug 21 18:35:38 UTC 2012 x86_64 Intel(R) Core(TM)2 CPU 6420 @ 2.13GHz GenuineIntel GNU/Linux
 
-But patch is fine, it was just a drive-by comment.
+Debian 10.2 (distorted colours) uses this kernel:
+luker@michael:~$ uname -a
+Linux michael 4.19.0-8-amd64 #1 SMP Debian 4.19.98-1 (2020-01-26) x86_64 GNU/Linux
 
-Whole patch is:
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-(with or without removal of todo item added)
+Is there a configuration setting in nouveau that causes those weird colours?
+Bit order/byte order maybe?
 
-	Sam
+Thanks
