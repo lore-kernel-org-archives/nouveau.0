@@ -1,38 +1,57 @@
-From: Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 8/8] drm/ttm: do not keep GPU dependent addresses
-Date: Mon, 24 Feb 2020 09:04:18 +0100
-Message-ID: <20200224080418.3cggiohw43afc2hp@sirius.home.kraxel.org>
-References: <20200217150427.49994-1-nirmoy.das@amd.com>
- <20200217150427.49994-9-nirmoy.das@amd.com>
- <c3a20c1b-0520-1995-7445-9e3f3ea77394@suse.de>
- <9db59846-90b4-2b9a-8200-69297112693a@amd.com>
- <edc985f1-8856-4d1a-8960-efe4d21b960d@amd.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [RESEND PATCH v2 9/9] ath5k: Constify ioreadX() iomem argument
+ (as in generic implementation)
+Date: Mon, 24 Feb 2020 13:47:44 +0100
+Message-ID: <20200224124744.GA1949@pi3>
+References: <20200219175007.13627-1-krzk@kernel.org>
+ <20200219175007.13627-10-krzk@kernel.org>
+ <518a9023-f802-17b3-fca5-582400bc34ae@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <edc985f1-8856-4d1a-8960-efe4d21b960d-5C7GfCeVMHo@public.gmane.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+Return-path: <linux-alpha-owner@vger.kernel.org>
 Content-Disposition: inline
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nirmoy <nirmodas-5C7GfCeVMHo@public.gmane.org>
-Cc: thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, kenny.ho-5C7GfCeVMHo@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nirmoy.das-5C7GfCeVMHo@public.gmane.org, linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org, sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org, Christian =?utf-8?B?S8O2bmln?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Nirmoy Das <nirmoy.aiemd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <518a9023-f802-17b3-fca5-582400bc34ae@gmail.com>
+Sender: linux-alpha-owner@vger.kernel.org
+To: Jiri Slaby <jirislaby@gmail.com>
+Cc: Richard Henderson <rth@twiddle.net>, Ivan Kokshaysky <ink@jurassic.park.msu.ru>, Matt Turner <mattst88@gmail.com>, Alexey Brodkin <abrodkin@synopsys.com>, Vineet Gupta <vgupta@synopsys.com>, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, Helge Deller <deller@gmx.de>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>, Yoshinori Sato <ysato@users.sourceforge.jp>, Rich Felker <dalias@libc.org>, Dave Airlie <airlied@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Ben Skeggs <bskeggs@redhat.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Nick Kossifidis <mickflemm@gmail.com>, Luis Chamberlain <mcgrof@kernel.org>, Kall
 List-Id: nouveau.vger.kernel.org
 
-  Hi,
+On Thu, Feb 20, 2020 at 10:48:33AM +0100, Jiri Slaby wrote:
+> On 19. 02. 20, 18:50, Krzysztof Kozlowski wrote:
+> > The ioreadX() helpers have inconsistent interface.  On some architectures
+> > void *__iomem address argument is a pointer to const, on some not.
+> > 
+> > Implementations of ioreadX() do not modify the memory under the address
+> > so they can be converted to a "const" version for const-safety and
+> > consistency among architectures.
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > Acked-by: Kalle Valo <kvalo@codeaurora.org>
+> > ---
+> >  drivers/net/wireless/ath/ath5k/ahb.c | 10 +++++-----
+> >  1 file changed, 5 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/drivers/net/wireless/ath/ath5k/ahb.c b/drivers/net/wireless/ath/ath5k/ahb.c
+> > index 2c9cec8b53d9..8bd01df369fb 100644
+> > --- a/drivers/net/wireless/ath/ath5k/ahb.c
+> > +++ b/drivers/net/wireless/ath/ath5k/ahb.c
+> > @@ -138,18 +138,18 @@ static int ath_ahb_probe(struct platform_device *pdev)
+> >  
+> >  	if (bcfg->devid >= AR5K_SREV_AR2315_R6) {
+> >  		/* Enable WMAC AHB arbitration */
+> > -		reg = ioread32((void __iomem *) AR5K_AR2315_AHB_ARB_CTL);
+> > +		reg = ioread32((const void __iomem *) AR5K_AR2315_AHB_ARB_CTL);
+> 
+> While I understand why the parameter of ioread32 should be const, I
+> don't see a reason for these casts on the users' side. What does it
+> bring except longer code to read?
 
-> 2 unfortunately I can't say the same for bochs but it works with this patch
-> series so I think bochs is fine as well.
+Because the argument is an int:
 
-bochs needs the offset only to scanout framebuffers, which in turn
-requires framebuffers being pinned to vram.  So all green here.
+drivers/net/wireless/ath/ath5k/ahb.c: In function ‘ath_ahb_probe’:
+drivers/net/wireless/ath/ath5k/ahb.c:141:18: warning: passing argument 1 of ‘ioread32’ makes pointer from integer without a cast [-Wint-conversion]
+   reg = ioread32(AR5K_AR2315_AHB_ARB_CTL);
 
-cheers,
-  Gerd
+Best regards,
+Krzysztof
