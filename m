@@ -1,95 +1,116 @@
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Subject: Re: (no subject)
-Date: Wed, 26 Feb 2020 17:08:19 +0200
-Message-ID: <20200226150819.GK13686@intel.com>
-References: <86d0ec$ae4ffc@fmsmga001.fm.intel.com>
- <CACRpkdZ4H5fdWsxsXnsbyxb6fwKbgm0h5a6CdqEjU9w5+z0a7Q@mail.gmail.com>
- <20200226143409.GJ13686@intel.com>
- <CACRpkdZSapEh3sCqGjpnOuX-vbf1C=AjzN7Ryu2v6V5npoWgoA@mail.gmail.com>
+From: Wambui Karuga <wambui.karugax-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 09/21] drm/nouveau: remove checks for return value
+ of debugfs functions
+Date: Thu, 27 Feb 2020 15:02:20 +0300
+Message-ID: <20200227120232.19413-10-wambui.karugax@gmail.com>
+References: <20200227120232.19413-1-wambui.karugax@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <CACRpkdZSapEh3sCqGjpnOuX-vbf1C=AjzN7Ryu2v6V5npoWgoA@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Josh Wu <josh.wu@atmel.com>, Bhuvanchandra DV <bhuvanchandra.dv@toradex.com>, Neil Armstrong <narmstrong@baylibre.com>, Eric Anholt <eric@anholt.net>, nouveau@lists.freedesktop.org, Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>, "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>, Gustaf =?iso-8859-1?Q?Lindstr=F6m?= <gl@axentia.se>, Andrzej Hajda <a.hajda@samsung.com>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Philipp Zabel <philipp.zabel@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>, Jagan Teki <jagan@amarulasolutions.com>, Thomas Hellstrom <thellstrom@vmware.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Jonathan Marek <jonathan@marek.ca>, Stefan Mavrodiev <stefan@olimex.com>, Adam Ford <aford173@gmail.com>, Jerry Han <hanxu5@huaqin.corp-partner.google.com>, VMware
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200227120232.19413-1-wambui.karugax-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: daniel-/w4YWyX8dFk@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Feb 26, 2020 at 03:56:36PM +0100, Linus Walleij wrote:
-> On Wed, Feb 26, 2020 at 3:34 PM Ville Syrj=E4l=E4
-> <ville.syrjala@linux.intel.com> wrote:
-> > On Wed, Feb 26, 2020 at 01:08:06PM +0100, Linus Walleij wrote:
-> > > On Wed, Feb 26, 2020 at 12:57 PM Ville Syrj=E4l=E4
-> > > <ville.syrjala@linux.intel.com> wrote:
-> > > > On Tue, Feb 25, 2020 at 10:52:25PM +0100, Linus Walleij wrote:
-> > >
-> > > > > I have long suspected that a whole bunch of the "simple" displays
-> > > > > are not simple but contains a display controller and memory.
-> > > > > That means that the speed over the link to the display and
-> > > > > actual refresh rate on the actual display is asymmetric because
-> > > > > well we are just updating a RAM, the resolution just limits how
-> > > > > much data we are sending, the clock limits the speed on the
-> > > > > bus over to the RAM on the other side.
-> > > >
-> > > > IMO even in command mode mode->clock should probably be the actual
-> > > > dotclock used by the display. If there's another clock for the bus
-> > > > speed/etc. it should be stored somewhere else.
-> > >
-> > > Good point. For the DSI panels we have the field hs_rate
-> > > for the HS clock in struct mipi_dsi_device which is based
-> > > on exactly this reasoning. And that is what I actually use for
-> > > setting the HS clock.
-> > >
-> > > The problem is however that we in many cases have so
-> > > substandard documentation of these panels that we have
-> > > absolutely no idea about the dotclock. Maybe we should
-> > > just set it to 0 in these cases?
-> >
-> > Don't you always have a TE interrupt or something like that
-> > available? Could just measure it from that if no better
-> > information is available?
-> =
+Since 987d65d01356 (drm: debugfs: make
+drm_debugfs_create_files() never fail), there is no need to ever check
+for the the return value of debugfs_create_file() and
+drm_debugfs_create_files(). Therefore, remove unnecessary checks and
+error handling in nouveau_drm_debugfs_init.
 
-> Yes and I did exactly that, so that is why this comment is in
-> the driver:
-> =
+These changes also enable nouveau_drm_debugfs_init() to be declared
+as void.
 
-> static const struct drm_display_mode sony_acx424akp_cmd_mode =3D {
-> (...)
->         /*
->          * Some desired refresh rate, experiments at the maximum "pixel"
->          * clock speed (HS clock 420 MHz) yields around 117Hz.
->          */
->         .vrefresh =3D 60,
-> =
+Signed-off-by: Wambui Karuga <wambui.karugax-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_debugfs.c | 26 +++++++++--------------
+ drivers/gpu/drm/nouveau/nouveau_debugfs.h |  5 ++---
+ 2 files changed, 12 insertions(+), 19 deletions(-)
 
-> I got a review comment at the time saying 117 Hz was weird.
-> We didn't reach a proper conclusion on this:
-> https://lore.kernel.org/dri-devel/CACRpkdYW3YNPSNMY3A44GQn8DqK-n9TLvr7uip=
-F7LM_DHZ5=3DLg@mail.gmail.com/
-> =
-
-> Thierry wasn't sure if 60Hz was good or not, so I just had to
-> go with something.
-> =
-
-> We could calculate the resulting pixel clock for ~117 Hz with
-> this resolution and put that in the clock field but ... don't know
-> what is the best?
-
-I would vote for that approach.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+index 7dfbbbc1beea..63cb5e432f8a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
++++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+@@ -217,39 +217,33 @@ static const struct nouveau_debugfs_files {
+ 	{"pstate", &nouveau_pstate_fops},
+ };
+ 
+-int
++void
+ nouveau_drm_debugfs_init(struct drm_minor *minor)
+ {
+ 	struct nouveau_drm *drm = nouveau_drm(minor->dev);
+ 	struct dentry *dentry;
+-	int i, ret;
++	int i;
+ 
+ 	for (i = 0; i < ARRAY_SIZE(nouveau_debugfs_files); i++) {
+-		dentry = debugfs_create_file(nouveau_debugfs_files[i].name,
+-					     S_IRUGO | S_IWUSR,
+-					     minor->debugfs_root, minor->dev,
+-					     nouveau_debugfs_files[i].fops);
+-		if (!dentry)
+-			return -ENOMEM;
++		debugfs_create_file(nouveau_debugfs_files[i].name,
++				    S_IRUGO | S_IWUSR,
++				    minor->debugfs_root, minor->dev,
++				    nouveau_debugfs_files[i].fops);
+ 	}
+ 
+-	ret = drm_debugfs_create_files(nouveau_debugfs_list,
+-				       NOUVEAU_DEBUGFS_ENTRIES,
+-				       minor->debugfs_root, minor);
+-	if (ret)
+-		return ret;
++	drm_debugfs_create_files(nouveau_debugfs_list,
++				 NOUVEAU_DEBUGFS_ENTRIES,
++				 minor->debugfs_root, minor);
+ 
+ 	/* Set the size of the vbios since we know it, and it's confusing to
+ 	 * userspace if it wants to seek() but the file has a length of 0
+ 	 */
+ 	dentry = debugfs_lookup("vbios.rom", minor->debugfs_root);
+ 	if (!dentry)
+-		return 0;
++		return;
+ 
+ 	d_inode(dentry)->i_size = drm->vbios.length;
+ 	dput(dentry);
+-
+-	return 0;
+ }
+ 
+ int
+diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.h b/drivers/gpu/drm/nouveau/nouveau_debugfs.h
+index 8909c010e8ea..ccb842d9da87 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_debugfs.h
++++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.h
+@@ -18,14 +18,13 @@ nouveau_debugfs(struct drm_device *dev)
+ 	return nouveau_drm(dev)->debugfs;
+ }
+ 
+-extern int  nouveau_drm_debugfs_init(struct drm_minor *);
++extern void nouveau_drm_debugfs_init(struct drm_minor *);
+ extern int  nouveau_debugfs_init(struct nouveau_drm *);
+ extern void nouveau_debugfs_fini(struct nouveau_drm *);
+ #else
+-static inline int
++static inline void
+ nouveau_drm_debugfs_init(struct drm_minor *minor)
+ {
+-       return 0;
+ }
+ 
+ static inline int
+-- 
+2.25.0
