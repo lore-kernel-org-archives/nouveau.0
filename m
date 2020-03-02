@@ -1,15 +1,14 @@
-From: Jasmin <jasmin.pm-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org>
-Subject: Re: DP MST with GK107 and lenovo ultra dock
-Date: Mon, 02 Mar 2020 00:40:28 +0000
-Message-ID: <D-hdgPgWmiyZfEPUXCL_D132ZWmQVAopKtR2up1uwjNtaxsXUkRzrVNBTNLNM_tMLRaa_dv7s25AhRW5xRfSxhqJC39Ngw04rIbGoHnFRAI=@protonmail.com>
-References: <QoDOhTStpq2yEF5SaIbKoDh3i_nTSTVGy5rrV-8827WSM5NlVnXJ8pQ9HTvQnOL-XfnXry0duLHZgOyq2qD2Xg7RWqpswmIZ_O_wicapPrs=@protonmail.com>
- <CAKb7UviVqPZKuZ-Mj94FSDV=3+FDjEzk0RfENacMmU-3Nd2GqQ@mail.gmail.com>
-Reply-To: Jasmin <jasmin.pm-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org>
+From: Juan Manuel Alvarez <alvarez_juanma-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
+Subject: Re: Problems with nouveau driver in Ubuntu 18.04
+Date: Mon, 2 Mar 2020 13:58:05 +0000
+Message-ID: <AM6PR09MB34475CCDB0389669141C7803FBE70@AM6PR09MB3447.eurprd09.prod.outlook.com>
+References: <AM6PR09MB3447992A0A96D6377F7B9CF8FBEB0@AM6PR09MB3447.eurprd09.prod.outlook.com>,
+ <CAKb7UvgpgsmddaVwSxF8mWhyPyOxZ9JxCG10hNXU=9UGEbvNwQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1277883636=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UviVqPZKuZ-Mj94FSDV=3+FDjEzk0RfENacMmU-3Nd2GqQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAKb7UvgpgsmddaVwSxF8mWhyPyOxZ9JxCG10hNXU=9UGEbvNwQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Language: es-ES
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -23,82 +22,201 @@ To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi Ilia,
+--===============1277883636==
+Content-Language: es-ES
+Content-Type: multipart/alternative;
+	boundary="_000_AM6PR09MB34475CCDB0389669141C7803FBE70AM6PR09MB3447eurp_"
 
-thanks for your reply.
+--_000_AM6PR09MB34475CCDB0389669141C7803FBE70AM6PR09MB3447eurp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-> DP-MST support was first added to nouveau for precisely these kinds of
-> setups. It does, generally, work, so that means there's something
-> extra-special about your setup.
+Hi!
 
-Yes... this is what it looks like.
+It seems that it works! Thanks!
 
-Even the proprietary driver, which works after bootup, has its problems with the setup after multiple consecutive VT switches (e.g. after 8-12 times).
-At some stage, the external displays do not switch on again. VT switches take > 30-60s in this case, and only the internal display (reverse PRIME) comes back/system is extremly slow then.
-In this case, even a reboot does not help. The system needs to be powered off completely(!). Something "bad" stored in the video memory?
-After turning it back on, everything is normal/stable again; even for several months uptime.
+Regars!
 
-Perhaps this behavior of the dock in conjunction with the proprietary driver is somehow related to the displays not recognized at all when using nouveau...
+________________________________
+De: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Enviado: s=E1bado, 29 de febrero de 2020 20:25
+Para: Juan Manuel Alvarez <alvarez_juanma-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Asunto: Re: [Nouveau] Problems with nouveau driver in Ubuntu 18.04
 
-> > Feb 28 23:07:11 laptop kernel: [ 13.746813] nouveau 0000:01:00.0: DRM: DCB conn 00: 01000046
+Can you try to figure out what was updated in the latest updates? My
+guess would be that it's actually the software used to display your
+desktop/etc which changed.
+
+You can disable all accel by booting with nouveau.noaccel=3D1.
+
+Cheers,
+
+  -ilia
+
+On Sat, Feb 29, 2020 at 12:31 AM Juan Manuel Alvarez
+<alvarez_juanma-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> wrote:
 >
-> This is the DP connector.
-
-The NVIDIA Doc mentions some bits for AUX I2C GPIO... which are not set here. But that is probably nothing unusual.
-
-> I think it may be interesting to boot with
+> Hello,
 >
-> drm.debug=0x1e nouveau.debug=i2c=trace,aux=trace,disp=trace
+>
+> I use Ubuntu 18.04, since one of the last upgrades I have problems with n=
+ouveau drivers.
+>
+> My screen look like the picture atteched.
+>
+>
+>  [~]$ uname -a
+> Linux  5.3.0-40-generic #32~18.04.1-Ubuntu SMP Mon Feb 3 14:05:59 UTC 202=
+0 x86_64 x86_64 x86_64 GNU/Linux
+>
+> [~]$ inxi -Gx
+> Graphics:  Card: NVIDIA G71GL [Quadro FX 1500] bus-ID: 01:00.0
+>            Display Server: x11 (X.Org 1.20.5 ) driver: nouveau Resolution=
+: 1920x1080-qEAkLYPErqw@public.gmane.org, 1920x1080-qEAkLYPErqw@public.gmane.org
+>            OpenGL: renderer: NV49 version: 2.1 Mesa 19.2.8 Direct Render:=
+ Yes
+>
+> I have tried to install Nvidia driver 304.137, but it seems is not suppor=
+ted in Ubuntu 18.04 anymore.
+>
+>
+> Are there any nouveau upgrade (that it is not on Canonical) that fixes th=
+is problem?
+>
+> Or how I can downgrade nouveau driver to any previous one that works fine=
+ in ubuntu 18.04 with my graphics card?
+>
+>
+> Regards!
+>
+> Juanma
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
 
-I have just made that trace:
-https://pastebin.com/7GZLRY8F
+--_000_AM6PR09MB34475CCDB0389669141C7803FBE70AM6PR09MB3447eurp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Hi!</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+It seems that it works! Thanks!</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Regars!</div>
+<div>
+<div id=3D"appendonsend"></div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
+lor=3D"#000000" style=3D"font-size:11pt"><b>De:</b> Ilia Mirkin &lt;imirkin=
+@alum.mit.edu&gt;<br>
+<b>Enviado:</b> s=E1bado, 29 de febrero de 2020 20:25<br>
+<b>Para:</b> Juan Manuel Alvarez &lt;alvarez_juanma-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org&gt;<br>
+<b>Cc:</b> nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org &lt;nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org&=
+gt;<br>
+<b>Asunto:</b> Re: [Nouveau] Problems with nouveau driver in Ubuntu 18.04</=
+font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt"=
+>
+<div class=3D"PlainText">Can you try to figure out what was updated in the =
+latest updates? My<br>
+guess would be that it's actually the software used to display your<br>
+desktop/etc which changed.<br>
+<br>
+You can disable all accel by booting with nouveau.noaccel=3D1.<br>
+<br>
+Cheers,<br>
+<br>
+&nbsp; -ilia<br>
+<br>
+On Sat, Feb 29, 2020 at 12:31 AM Juan Manuel Alvarez<br>
+&lt;alvarez_juanma-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org&gt; wrote:<br>
+&gt;<br>
+&gt; Hello,<br>
+&gt;<br>
+&gt;<br>
+&gt; I use Ubuntu 18.04, since one of the last upgrades I have problems wit=
+h nouveau drivers.<br>
+&gt;<br>
+&gt; My screen look like the picture atteched.<br>
+&gt;<br>
+&gt;<br>
+&gt;&nbsp; [~]$ uname -a<br>
+&gt; Linux&nbsp; 5.3.0-40-generic #32~18.04.1-Ubuntu SMP Mon Feb 3 14:05:59=
+ UTC 2020 x86_64 x86_64 x86_64 GNU/Linux<br>
+&gt;<br>
+&gt; [~]$ inxi -Gx<br>
+&gt; Graphics:&nbsp; Card: NVIDIA G71GL [Quadro FX 1500] bus-ID: 01:00.0<br=
+>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disp=
+lay Server: x11 (X.Org 1.20.5 ) driver: nouveau Resolution: 1920x1080-A9UFjWEnGtU@public.gmane.org=
+hz, 1920x1080-qEAkLYPErqw@public.gmane.org<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Open=
+GL: renderer: NV49 version: 2.1 Mesa 19.2.8 Direct Render: Yes<br>
+&gt;<br>
+&gt; I have tried to install Nvidia driver 304.137, but it seems is not sup=
+ported in Ubuntu 18.04 anymore.<br>
+&gt;<br>
+&gt;<br>
+&gt; Are there any nouveau upgrade (that it is not on Canonical) that fixes=
+ this problem?<br>
+&gt;<br>
+&gt; Or how I can downgrade nouveau driver to any previous one that works f=
+ine in ubuntu 18.04 with my graphics card?<br>
+&gt;<br>
+&gt;<br>
+&gt; Regards!<br>
+&gt;<br>
+&gt; Juanma<br>
+&gt; _______________________________________________<br>
+&gt; Nouveau mailing list<br>
+&gt; Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org<br>
+&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau">htt=
+ps://lists.freedesktop.org/mailman/listinfo/nouveau</a><br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
 
-Mar  1 21:30:59 laptop kernel: [   14.228427] nouveau 0000:01:00.0: disp: init running...
-Mar  1 21:30:59 laptop kernel: [   14.228427] nouveau 0000:01:00.0: disp: one-time init running...
-Mar  1 21:30:59 laptop kernel: [   14.228432] nouveau 0000:01:00.0: disp: outp 00:0006:0f48: type 06 loc 0 or 8 link 1 con 0 edid c bus 0 head f
-Mar  1 21:30:59 laptop kernel: [   14.228435] nouveau 0000:01:00.0: disp: outp 00:0006:0f48: bios dp 40 13 00 00
-Mar  1 21:30:59 laptop kernel: [   14.228437] nouveau 0000:01:00.0: disp: outp 01:0002:0f48: type 02 loc 0 or 8 link 1 con 0 edid 8 bus 0 head f
-Mar  1 21:30:59 laptop kernel: [   14.228439] nouveau 0000:01:00.0: disp: conn ffffffff:00ff: type ff loc 0 hpd 00 dp 0 di 0 sr 0 lcdid 0
-Mar  1 21:30:59 laptop kernel: [   14.228440] nouveau 0000:01:00.0: disp: conn ffffffff:00ff: type ff loc 0 hpd 00 dp 0 di 0 sr 0 lcdid 0
-Mar  1 21:30:59 laptop kernel: [   14.228461] nouveau 0000:01:00.0: disp:   Head(s): 4 (0f)
-Mar  1 21:30:59 laptop kernel: [   14.228462] nouveau 0000:01:00.0: disp: head-0: ctor
-Mar  1 21:30:59 laptop kernel: [   14.228463] nouveau 0000:01:00.0: disp: head-1: ctor
-Mar  1 21:30:59 laptop kernel: [   14.228463] nouveau 0000:01:00.0: disp: head-2: ctor
-Mar  1 21:30:59 laptop kernel: [   14.228464] nouveau 0000:01:00.0: disp: head-3: ctor
-Mar  1 21:30:59 laptop kernel: [   14.228468] nouveau 0000:01:00.0: disp:    DAC(s): 4 (02)
-Mar  1 21:30:59 laptop kernel: [   14.228469] nouveau 0000:01:00.0: disp: DAC-1: ctor
-Mar  1 21:30:59 laptop kernel: [   14.228473] nouveau 0000:01:00.0: disp:    SOR(s): 8 (0f)
-Mar  1 21:30:59 laptop kernel: [   14.228473] nouveau 0000:01:00.0: disp: SOR-0: ctor
-Mar  1 21:30:59 laptop kernel: [   14.228474] nouveau 0000:01:00.0: disp: SOR-1: ctor
-Mar  1 21:30:59 laptop kernel: [   14.228474] nouveau 0000:01:00.0: disp: SOR-2: ctor
-Mar  1 21:30:59 laptop kernel: [   14.228475] nouveau 0000:01:00.0: disp: SOR-3: ctor
-Mar  1 21:30:59 laptop kernel: [   14.228522] nouveau 0000:01:00.0: disp: one-time init completed in 94us
-Mar  1 21:30:59 laptop kernel: [   14.228526] nouveau 0000:01:00.0: disp: outp 00:0006:0f48: no heads (0 3 4)
+--_000_AM6PR09MB34475CCDB0389669141C7803FBE70AM6PR09MB3447eurp_--
 
-"4 Heads" looks not-so-bad... but, at least when trying to configure it (e.g. with arandr/xrandr), there is only "one" display available on that port, which does not work.
-I hope this is not a xorg.conf configuration-issue?
-At least ddcutil shows "no display detected".
+--===============1277883636==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-> Also, after everything boots up, can you look at what "grep .
-> /sys/class/drm/-/status" produces?
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+https://lists.freedesktop.org/mailman/listinfo/nouveau
 
-Here is the output:
-
-/sys/class/drm/card0-DP-1/status:disconnected
-/sys/class/drm/card0-DP-2/status:disconnected
-/sys/class/drm/card0-eDP-1/status:connected
-/sys/class/drm/card0-HDMI-A-1/status:disconnected
-/sys/class/drm/card0-HDMI-A-2/status:disconnected
-/sys/class/drm/card0-VGA-1/status:disconnected
-/sys/class/drm/card1-DVI-D-1/status:disconnected
-/sys/class/drm/card1-eDP-2/status:connected
-
-> I suspect figuring this out will require some amount of back and
-> forth, and I'm not really the best person for display issues. Try
-> #nouveau on irc.freenode.net on a week day.
-
-OK... if the trace does not obviously (more or less ^^) show what the cause is, I will try that.
-
-Best
-Jasmin
+--===============1277883636==--
