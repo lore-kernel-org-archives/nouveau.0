@@ -1,304 +1,124 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v2] nouveau/hmm: map pages after migration
-Date: Mon, 2 Mar 2020 17:00:23 -0800
-Message-ID: <20200303010023.2983-1-rcampbell@nvidia.com>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v6] pci: prevent putting nvidia GPUs into lower
+ device states on certain intel bridges
+Date: Tue,  3 Mar 2020 11:10:52 +0100
+Message-ID: <20200303101052.133631-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Mika Westerberg <mika.westerberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, "Rafael J . Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-When memory is migrated to the GPU, it is likely to be accessed by GPU
-code soon afterwards. Instead of waiting for a GPU fault, map the
-migrated memory into the GPU page tables with the same access permissions
-as the source CPU page table entries. This preserves copy on write
-semantics.
-
-Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Cc: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-Cc: "J=C3=A9r=C3=B4me Glisse" <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
----
-
-Originally this patch was targeted for Jason's rdma tree since other HMM
-related changes were queued there. Now that those have been merged, this
-patch just contains changes to nouveau so it could go through any tree.
-I guess Ben Skeggs' tree would be appropriate.
-
-Changes since v1:
- Rebase to linux-5.6.0-rc4
- Address Christoph Hellwig's comments
-
- drivers/gpu/drm/nouveau/nouveau_dmem.c | 44 ++++++++-----
- drivers/gpu/drm/nouveau/nouveau_svm.c  | 85 ++++++++++++++++++++++++++
- drivers/gpu/drm/nouveau/nouveau_svm.h  |  5 ++
- 3 files changed, 118 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouve=
-au/nouveau_dmem.c
-index 0ad5d87b5a8e..172e0c98cec5 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -25,11 +25,13 @@
- #include "nouveau_dma.h"
- #include "nouveau_mem.h"
- #include "nouveau_bo.h"
-+#include "nouveau_svm.h"
-=20
- #include <nvif/class.h>
- #include <nvif/object.h>
- #include <nvif/if500b.h>
- #include <nvif/if900b.h>
-+#include <nvif/if000c.h>
-=20
- #include <linux/sched/mm.h>
- #include <linux/hmm.h>
-@@ -558,10 +560,11 @@ nouveau_dmem_init(struct nouveau_drm *drm)
- }
-=20
- static unsigned long nouveau_dmem_migrate_copy_one(struct nouveau_drm *drm=
-,
--		unsigned long src, dma_addr_t *dma_addr)
-+		unsigned long src, dma_addr_t *dma_addr, u64 *pfn)
- {
- 	struct device *dev =3D drm->dev->dev;
- 	struct page *dpage, *spage;
-+	unsigned long paddr;
-=20
- 	spage =3D migrate_pfn_to_page(src);
- 	if (!spage || !(src & MIGRATE_PFN_MIGRATE))
-@@ -569,17 +572,21 @@ static unsigned long nouveau_dmem_migrate_copy_one(st=
-ruct nouveau_drm *drm,
-=20
- 	dpage =3D nouveau_dmem_page_alloc_locked(drm);
- 	if (!dpage)
--		return 0;
-+		goto out;
-=20
- 	*dma_addr =3D dma_map_page(dev, spage, 0, PAGE_SIZE, DMA_BIDIRECTIONAL);
- 	if (dma_mapping_error(dev, *dma_addr))
- 		goto out_free_page;
-=20
-+	paddr =3D nouveau_dmem_page_addr(dpage);
- 	if (drm->dmem->migrate.copy_func(drm, 1, NOUVEAU_APER_VRAM,
--			nouveau_dmem_page_addr(dpage), NOUVEAU_APER_HOST,
--			*dma_addr))
-+			paddr, NOUVEAU_APER_HOST, *dma_addr))
- 		goto out_dma_unmap;
-=20
-+	*pfn =3D NVIF_VMM_PFNMAP_V0_V | NVIF_VMM_PFNMAP_V0_VRAM |
-+		((paddr >> PAGE_SHIFT) << NVIF_VMM_PFNMAP_V0_ADDR_SHIFT);
-+	if (src & MIGRATE_PFN_WRITE)
-+		*pfn |=3D NVIF_VMM_PFNMAP_V0_W;
- 	return migrate_pfn(page_to_pfn(dpage)) | MIGRATE_PFN_LOCKED;
-=20
- out_dma_unmap:
-@@ -587,18 +594,19 @@ static unsigned long nouveau_dmem_migrate_copy_one(st=
-ruct nouveau_drm *drm,
- out_free_page:
- 	nouveau_dmem_page_free_locked(drm, dpage);
- out:
-+	*pfn =3D NVIF_VMM_PFNMAP_V0_NONE;
- 	return 0;
- }
-=20
- static void nouveau_dmem_migrate_chunk(struct nouveau_drm *drm,
--		struct migrate_vma *args, dma_addr_t *dma_addrs)
-+		struct migrate_vma *args, dma_addr_t *dma_addrs, u64 *pfns)
- {
- 	struct nouveau_fence *fence;
- 	unsigned long addr =3D args->start, nr_dma =3D 0, i;
-=20
- 	for (i =3D 0; addr < args->end; i++) {
- 		args->dst[i] =3D nouveau_dmem_migrate_copy_one(drm, args->src[i],
--				dma_addrs + nr_dma);
-+				dma_addrs + nr_dma, pfns + i);
- 		if (args->dst[i])
- 			nr_dma++;
- 		addr +=3D PAGE_SIZE;
-@@ -607,15 +615,12 @@ static void nouveau_dmem_migrate_chunk(struct nouveau=
-_drm *drm,
- 	nouveau_fence_new(drm->dmem->migrate.chan, false, &fence);
- 	migrate_vma_pages(args);
- 	nouveau_dmem_fence_done(&fence);
-+	nouveau_pfns_map(drm, args->vma->vm_mm, args->start, pfns, i);
-=20
- 	while (nr_dma--) {
- 		dma_unmap_page(drm->dev->dev, dma_addrs[nr_dma], PAGE_SIZE,
- 				DMA_BIDIRECTIONAL);
- 	}
--	/*
--	 * FIXME optimization: update GPU page table to point to newly migrated
--	 * memory.
--	 */
- 	migrate_vma_finalize(args);
- }
-=20
-@@ -632,7 +637,8 @@ nouveau_dmem_migrate_vma(struct nouveau_drm *drm,
- 		.vma		=3D vma,
- 		.start		=3D start,
- 	};
--	unsigned long c, i;
-+	unsigned long i;
-+	u64 *pfns;
- 	int ret =3D -ENOMEM;
-=20
- 	args.src =3D kcalloc(max, sizeof(*args.src), GFP_KERNEL);
-@@ -646,19 +652,25 @@ nouveau_dmem_migrate_vma(struct nouveau_drm *drm,
- 	if (!dma_addrs)
- 		goto out_free_dst;
-=20
--	for (i =3D 0; i < npages; i +=3D c) {
--		c =3D min(SG_MAX_SINGLE_ALLOC, npages);
--		args.end =3D start + (c << PAGE_SHIFT);
-+	pfns =3D nouveau_pfns_alloc(max);
-+	if (!pfns)
-+		goto out_free_dma;
-+
-+	for (i =3D 0; i < npages; i +=3D max) {
-+		args.end =3D start + (max << PAGE_SHIFT);
- 		ret =3D migrate_vma_setup(&args);
- 		if (ret)
--			goto out_free_dma;
-+			goto out_free_pfns;
-=20
- 		if (args.cpages)
--			nouveau_dmem_migrate_chunk(drm, &args, dma_addrs);
-+			nouveau_dmem_migrate_chunk(drm, &args, dma_addrs,
-+						   pfns);
- 		args.start =3D args.end;
- 	}
-=20
- 	ret =3D 0;
-+out_free_pfns:
-+	nouveau_pfns_free(pfns);
- out_free_dma:
- 	kfree(dma_addrs);
- out_free_dst:
-diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouvea=
-u/nouveau_svm.c
-index df9bf1fd1bc0..8c629918a3c6 100644
---- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-@@ -70,6 +70,12 @@ struct nouveau_svm {
- #define SVM_DBG(s,f,a...) NV_DEBUG((s)->drm, "svm: "f"\n", ##a)
- #define SVM_ERR(s,f,a...) NV_WARN((s)->drm, "svm: "f"\n", ##a)
-=20
-+struct nouveau_pfnmap_args {
-+	struct nvif_ioctl_v0 i;
-+	struct nvif_ioctl_mthd_v0 m;
-+	struct nvif_vmm_pfnmap_v0 p;
-+};
-+
- struct nouveau_ivmm {
- 	struct nouveau_svmm *svmm;
- 	u64 inst;
-@@ -782,6 +788,85 @@ nouveau_svm_fault(struct nvif_notify *notify)
- 	return NVIF_NOTIFY_KEEP;
- }
-=20
-+static inline struct nouveau_pfnmap_args *
-+nouveau_pfns_to_args(void *pfns)
-+{
-+	struct nvif_vmm_pfnmap_v0 *p =3D
-+		container_of(pfns, struct nvif_vmm_pfnmap_v0, phys);
-+
-+	return container_of(p, struct nouveau_pfnmap_args, p);
-+}
-+
-+u64 *
-+nouveau_pfns_alloc(unsigned long npages)
-+{
-+	struct nouveau_pfnmap_args *args;
-+
-+	args =3D kzalloc(struct_size(args, p.phys, npages), GFP_KERNEL);
-+	if (!args)
-+		return NULL;
-+
-+	args->i.type =3D NVIF_IOCTL_V0_MTHD;
-+	args->m.method =3D NVIF_VMM_V0_PFNMAP;
-+	args->p.page =3D PAGE_SHIFT;
-+
-+	return args->p.phys;
-+}
-+
-+void
-+nouveau_pfns_free(u64 *pfns)
-+{
-+	struct nouveau_pfnmap_args *args =3D nouveau_pfns_to_args(pfns);
-+
-+	kfree(args);
-+}
-+
-+static struct nouveau_svmm *
-+nouveau_find_svmm(struct nouveau_svm *svm, struct mm_struct *mm)
-+{
-+	struct nouveau_ivmm *ivmm;
-+
-+	list_for_each_entry(ivmm, &svm->inst, head) {
-+		if (ivmm->svmm->notifier.mm =3D=3D mm)
-+			return ivmm->svmm;
-+	}
-+	return NULL;
-+}
-+
-+void
-+nouveau_pfns_map(struct nouveau_drm *drm, struct mm_struct *mm,
-+		 unsigned long addr, u64 *pfns, unsigned long npages)
-+{
-+	struct nouveau_svm *svm =3D drm->svm;
-+	struct nouveau_svmm *svmm;
-+	struct nouveau_pfnmap_args *args;
-+	int ret;
-+
-+	if (!svm)
-+		return;
-+
-+	mutex_lock(&svm->mutex);
-+	svmm =3D nouveau_find_svmm(svm, mm);
-+	if (!svmm) {
-+		mutex_unlock(&svm->mutex);
-+		return;
-+	}
-+	mutex_unlock(&svm->mutex);
-+
-+	args =3D nouveau_pfns_to_args(pfns);
-+	args->p.addr =3D addr;
-+	args->p.size =3D npages << PAGE_SHIFT;
-+
-+	mutex_lock(&svmm->mutex);
-+
-+	svmm->vmm->vmm.object.client->super =3D true;
-+	ret =3D nvif_object_ioctl(&svmm->vmm->vmm.object, args, sizeof(*args) +
-+				npages * sizeof(args->p.phys[0]), NULL);
-+	svmm->vmm->vmm.object.client->super =3D false;
-+
-+	mutex_unlock(&svmm->mutex);
-+}
-+
- static void
- nouveau_svm_fault_buffer_fini(struct nouveau_svm *svm, int id)
- {
-diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.h b/drivers/gpu/drm/nouvea=
-u/nouveau_svm.h
-index e839d8189461..0649f8d587a8 100644
---- a/drivers/gpu/drm/nouveau/nouveau_svm.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_svm.h
-@@ -18,6 +18,11 @@ void nouveau_svmm_fini(struct nouveau_svmm **);
- int nouveau_svmm_join(struct nouveau_svmm *, u64 inst);
- void nouveau_svmm_part(struct nouveau_svmm *, u64 inst);
- int nouveau_svmm_bind(struct drm_device *, void *, struct drm_file *);
-+
-+u64 *nouveau_pfns_alloc(unsigned long npages);
-+void nouveau_pfns_free(u64 *pfns);
-+void nouveau_pfns_map(struct nouveau_drm *drm, struct mm_struct *mm,
-+		      unsigned long addr, u64 *pfns, unsigned long npages);
- #else /* IS_ENABLED(CONFIG_DRM_NOUVEAU_SVM) */
- static inline void nouveau_svm_init(struct nouveau_drm *drm) {}
- static inline void nouveau_svm_fini(struct nouveau_drm *drm) {}
---=20
-2.20.1
+Rml4ZXMgc3RhdGUgdHJhbnNpdGlvbnMgb2YgTnZpZGlhIFBhc2NhbCBHUFVzIGZyb20gRDNjb2xk
+IGludG8gaGlnaGVyIGRldmljZQpzdGF0ZXMuCgp2MjogY29udmVydCB0byBwY2lfZGV2IHF1aXJr
+CiAgICBwdXQgYSBwcm9wZXIgdGVjaG5pY2FsIGV4cGxhbmF0aW9uIG9mIHRoZSBpc3N1ZSBhcyBh
+IGluLWNvZGUgY29tbWVudAp2MzogZGlzYWJsZSBpdCBvbmx5IGZvciBjZXJ0YWluIGNvbWJpbmF0
+aW9ucyBvZiBpbnRlbCBhbmQgbnZpZGlhIGhhcmR3YXJlCnY0OiBzaW1wbGlmeSBxdWlyayBieSBz
+ZXR0aW5nIGZsYWcgb24gdGhlIEdQVSBpdHNlbGYKdjU6IHJlc3RydWN0dXJlIHF1aXJrIHRvIG1h
+a2UgaXQgZWFzaWVyIHRvIGFkZCBuZXcgSURzCiAgICBmaXggd2hpdGVzcGFjZSBpc3N1ZXMKICAg
+IGZpeCBwb3RlbnRpYWwgTlVMTCBwb2ludGVyIGFjY2VzcwogICAgdXBkYXRlIHRoZSBxdWlyayBk
+b2N1bWVudGF0aW9uCnY2OiBtb3ZlIHF1aXJrIGludG8gbm91dmVhdQoKU2lnbmVkLW9mZi1ieTog
+S2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+CkNjOiBCam9ybiBIZWxnYWFzIDxiaGVs
+Z2Fhc0Bnb29nbGUuY29tPgpDYzogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KQ2M6IFJh
+ZmFlbCBKLiBXeXNvY2tpIDxyandAcmp3eXNvY2tpLm5ldD4KQ2M6IE1pa2EgV2VzdGVyYmVyZyA8
+bWlrYS53ZXN0ZXJiZXJnQGludGVsLmNvbT4KQ2M6IGxpbnV4LXBjaUB2Z2VyLmtlcm5lbC5vcmcK
+Q2M6IGxpbnV4LXBtQHZnZXIua2VybmVsLm9yZwpDYzogZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpDYzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKQnVnemlsbGE6IGh0dHBz
+Oi8vYnVnemlsbGEua2VybmVsLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjA1NjIzCi0tLQogZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyB8IDU2ICsrKysrKysrKysrKysrKysrKysr
+KysrKysrKwogZHJpdmVycy9wY2kvcGNpLmMgICAgICAgICAgICAgICAgICAgICB8ICA4ICsrKysK
+IGluY2x1ZGUvbGludXgvcGNpLmggICAgICAgICAgICAgICAgICAgfCAgMSArCiAzIGZpbGVzIGNo
+YW5nZWQsIDY1IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9ub3V2ZWF1X2RybS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0u
+YwppbmRleCAyY2Q4Mzg0OTYwMGYuLjUxZDNhN2JhNzczMSAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9ub3V2ZWF1X2RybS5jCkBAIC02MTgsNiArNjE4LDU5IEBAIG5vdXZlYXVfZHJtX2RldmljZV9m
+aW5pKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAJa2ZyZWUoZHJtKTsKIH0KIAorLyoKKyAqIE9u
+IHNvbWUgSW50ZWwgUENJZSBicmlkZ2UgY29udHJvbGxlcnMgZG9pbmcgYQorICogRDAgLT4gRDNo
+b3QgLT4gRDNjb2xkIC0+IEQwIHNlcXVlbmNlIGNhdXNlcyBOdmlkaWEgR1BVcyB0byBub3QgcmVh
+cHBlYXIuCisgKiBTa2lwcGluZyB0aGUgaW50ZXJtZWRpYXRlIEQzaG90IHN0ZXAgc2VlbXMgdG8g
+bWFrZSBpdCB3b3JrIGFnYWluLiBUaGlzZSBpcworICogcHJvYmFibHkgY2F1c2VkIGJ5IG5vdCBt
+ZWV0aW5nIHRoZSBleHBlY3RhdGlvbiB0aGUgaW52b2x2ZWQgQU1MIGNvZGUgaGFzCisgKiB3aGVu
+IHRoZSBHUFUgaXMgcHV0IGludG8gRDNob3Qgc3RhdGUgYmVmb3JlIGludm9raW5nIGl0LgorICoK
+KyAqIFRoaXMgbGVhZHMgdG8gdmFyaW91cyBtYW5pZmVzdGF0aW9ucyBvZiB0aGlzIGlzc3VlOgor
+ICogIC0gQU1MIGNvZGUgZXhlY3V0aW9uIHRvIHBvd2VyIG9uIHRoZSBHUFUgaGl0cyBhbiBpbmZp
+bml0ZSBsb29wIChhcyB0aGUKKyAqICAgIGNvZGUgd2FpdHMgb24gZGV2aWNlIG1lbW9yeSB0byBj
+aGFuZ2UpLgorICogIC0ga2VybmVsIGNyYXNoZXMsIGFzIGFsbCBQQ0kgcmVhZHMgcmV0dXJuIC0x
+LCB3aGljaCBtb3N0IGNvZGUgaXNuJ3QgYWJsZQorICogICAgdG8gaGFuZGxlIHdlbGwgZW5vdWdo
+LgorICoKKyAqIEluIGFsbCBjYXNlcyBkbWVzZyB3aWxsIGNvbnRhaW4gYXQgbGVhc3Qgb25lIGxp
+bmUgbGlrZSB0aGlzOgorICogJ25vdXZlYXUgMDAwMDowMTowMC4wOiBSZWZ1c2VkIHRvIGNoYW5n
+ZSBwb3dlciBzdGF0ZSwgY3VycmVudGx5IGluIEQzJworICogZm9sbG93ZWQgYnkgYSBsb3Qgb2Yg
+bm91dmVhdSB0aW1lb3V0cy4KKyAqCisgKiBJbiB0aGUgXF9TQi5QQ0kwLlBFRzAuUEcwMC5fT0ZG
+IGNvZGUgZGVlcGVyIGRvd24gd3JpdGVzIGJpdCAweDgwIHRvIHRoZSBub3QKKyAqIGRvY3VtZW50
+ZWQgUENJIGNvbmZpZyBzcGFjZSByZWdpc3RlciAweDI0OCBvZiB0aGUgSW50ZWwgUENJZSBicmlk
+Z2UKKyAqIGNvbnRyb2xsZXIgKDB4MTkwMSkgaW4gb3JkZXIgdG8gY2hhbmdlIHRoZSBzdGF0ZSBv
+ZiB0aGUgUENJZSBsaW5rIGJldHdlZW4KKyAqIHRoZSBQQ0llIHBvcnQgYW5kIHRoZSBHUFUuIFRo
+ZXJlIGFyZSBhbHRlcm5hdGl2ZSBjb2RlIHBhdGhzIHVzaW5nIG90aGVyCisgKiByZWdpc3RlcnMs
+IHdoaWNoIHNlZW0gdG8gd29yayBmaW5lIChleGVjdXRlZCBwcmUgV2luZG93cyA4KToKKyAqICAt
+IDB4YmMgYml0IDB4MjAgKHB1YmxpY2x5IGF2YWlsYWJsZSBkb2N1bWVudGF0aW9uIGNsYWltcyAn
+cmVzZXJ2ZWQnKQorICogIC0gMHhiMCBiaXQgMHgxMCAobGluayBkaXNhYmxlKQorICogQ2hhbmdp
+bmcgdGhlIGNvbmRpdGlvbnMgaW5zaWRlIHRoZSBmaXJtd2FyZSBieSBwb2tpbmcgaW50byB0aGUg
+cmVsZXZhbnQKKyAqIGFkZHJlc3NlcyBkb2VzIHJlc29sdmUgdGhlIGlzc3VlLCBidXQgaXQgc2Vl
+bWVkIHRvIGJlIEFDUEkgcHJpdmF0ZSBtZW1vcnkKKyAqIGFuZCBub3QgYW55IGRldmljZSBhY2Nl
+c3NpYmxlIG1lbW9yeSBhdCBhbGwsIHNvIHRoZXJlIGlzIG5vIHBvcnRhYmxlIHdheSBvZgorICog
+Y2hhbmdpbmcgdGhlIGNvbmRpdGlvbnMuCisgKiBPbiBhIFhQUyA5NTYwIHRoYXQgbWVhbnMgYml0
+cyBbMCwzXSBvbiBcQ1BFWCBuZWVkIHRvIGJlIGNsZWFyZWQuCisgKgorICogVGhlIG9ubHkgc3lz
+dGVtcyB3aGVyZSB0aGlzIGJlaGF2aW9yIGNhbiBiZSBzZWVuIGFyZSBoeWJyaWQgZ3JhcGhpY3Mg
+bGFwdG9wcworICogd2l0aCBhIHNlY29uZGFyeSBOdmlkaWEgTWF4d2VsbCwgUGFzY2FsIG9yIFR1
+cmluZyBHUFUuIEl0cyB1bmNsZWFyIHdoZWF0aGVyCisgKiB0aGlzIGlzc3VlIG9ubHkgb2NjdXJz
+IGluIGNvbWJpbmF0aW9uIHdpdGggbGlzdGVkIEludGVsIFBDSWUgYnJpZGdlCisgKiBjb250cm9s
+bGVycyBhbmQgdGhlIG1lbnRpb25lZCBHUFVzIG9yIG90aGVyIGRldmljZXMgYXMgd2VsbC4KKyAq
+CisgKiBkb2N1bWVudGF0aW9uIG9uIHRoZSBQQ0llIGJyaWRnZSBjb250cm9sbGVyIGNhbiBiZSBm
+b3VuZCBpbiB0aGUKKyAqICI3dGggR2VuZXJhdGlvbiBJbnRlbMKuIFByb2Nlc3NvciBGYW1pbGll
+cyBmb3IgSCBQbGF0Zm9ybXMgRGF0YXNoZWV0IFZvbHVtZSAyIgorICogU2VjdGlvbiAiMTIgUENJ
+IEV4cHJlc3MqIENvbnRyb2xsZXIgKHgxNikgUmVnaXN0ZXJzIgorICovCisKK3N0YXRpYyB2b2lk
+IHF1aXJrX2Jyb2tlbl9udl9ydW5wbShzdHJ1Y3QgcGNpX2RldiAqZGV2KQoreworCXN0cnVjdCBw
+Y2lfZGV2ICpicmlkZ2UgPSBwY2lfdXBzdHJlYW1fYnJpZGdlKGRldik7CisKKwlpZiAoIWJyaWRn
+ZSB8fCBicmlkZ2UtPnZlbmRvciAhPSBQQ0lfVkVORE9SX0lEX0lOVEVMKQorCQlyZXR1cm47CisK
+Kwlzd2l0Y2ggKGJyaWRnZS0+ZGV2aWNlKSB7CisJY2FzZSAweDE5MDE6CisJCWRldi0+cGFyZW50
+X2QzY29sZCA9IDE7CisJfQorfQorCiBzdGF0aWMgaW50IG5vdXZlYXVfZHJtX3Byb2JlKHN0cnVj
+dCBwY2lfZGV2ICpwZGV2LAogCQkJICAgICBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAqcGVu
+dCkKIHsKQEAgLTY5OSw2ICs3NTIsNyBAQCBzdGF0aWMgaW50IG5vdXZlYXVfZHJtX3Byb2JlKHN0
+cnVjdCBwY2lfZGV2ICpwZGV2LAogCWlmIChyZXQpCiAJCWdvdG8gZmFpbF9kcm1fZGV2X2luaXQ7
+CiAKKwlxdWlya19icm9rZW5fbnZfcnVucG0ocGRldik7CiAJcmV0dXJuIDA7CiAKIGZhaWxfZHJt
+X2Rldl9pbml0OgpAQCAtNzM3LDYgKzc5MSw4IEBAIG5vdXZlYXVfZHJtX3JlbW92ZShzdHJ1Y3Qg
+cGNpX2RldiAqcGRldikKIHsKIAlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2ID0gcGNpX2dldF9kcnZk
+YXRhKHBkZXYpOwogCisJLyogcmV2ZXJ0IG91ciB3b3JrYXJvdW5kICovCisJcGRldi0+cGFyZW50
+X2QzY29sZCA9IGZhbHNlOwogCW5vdXZlYXVfZHJtX2RldmljZV9yZW1vdmUoZGV2KTsKIH0KIApk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9wY2kvcGNpLmMgYi9kcml2ZXJzL3BjaS9wY2kuYwppbmRleCA5
+NTEwOTkyNzkxOTIuLjZlY2UwNTcyM2ZhMiAxMDA2NDQKLS0tIGEvZHJpdmVycy9wY2kvcGNpLmMK
+KysrIGIvZHJpdmVycy9wY2kvcGNpLmMKQEAgLTg2MCw2ICs4NjAsMTQgQEAgc3RhdGljIGludCBw
+Y2lfcmF3X3NldF9wb3dlcl9zdGF0ZShzdHJ1Y3QgcGNpX2RldiAqZGV2LCBwY2lfcG93ZXJfdCBz
+dGF0ZSkKIAkgICB8fCAoc3RhdGUgPT0gUENJX0QyICYmICFkZXYtPmQyX3N1cHBvcnQpKQogCQly
+ZXR1cm4gLUVJTzsKIAorCS8qCisJICogUG93ZXIgbWFuYWdlbWVudCBjYW4gYmUgZGlzYWJsZWQg
+Zm9yIGNlcnRhaW4gZGV2aWNlcyBhcyB0aGV5IGRvbid0CisJICogY29tZSBiYWNrIHVwIGxhdGVy
+IG9uIHJ1bnRpbWVfcmVzdW1lLiBXZSByZWx5IG9uIHBsYXRmb3JtIG1lYW5zIHRvCisJICogY3V0
+IHBvd2VyIGNvbnN1bXB0aW9uIGluc3RlYWQgKGUuZy4gQUNQSSkuCisJICovCisJaWYgKHN0YXRl
+ICE9IFBDSV9EMCAmJiBkZXYtPnBhcmVudF9kM2NvbGQpCisJCXJldHVybiAwOworCiAJcGNpX3Jl
+YWRfY29uZmlnX3dvcmQoZGV2LCBkZXYtPnBtX2NhcCArIFBDSV9QTV9DVFJMLCAmcG1jc3IpOwog
+CWlmIChwbWNzciA9PSAodTE2KSB+MCkgewogCQlwY2lfZXJyKGRldiwgImNhbid0IGNoYW5nZSBw
+b3dlciBzdGF0ZSBmcm9tICVzIHRvICVzIChjb25maWcgc3BhY2UgaW5hY2Nlc3NpYmxlKVxuIiwK
+ZGlmZiAtLWdpdCBhL2luY2x1ZGUvbGludXgvcGNpLmggYi9pbmNsdWRlL2xpbnV4L3BjaS5oCmlu
+ZGV4IDkzMGZhYjI5MzA3My4uM2U1OTM4YjkxOTY2IDEwMDY0NAotLS0gYS9pbmNsdWRlL2xpbnV4
+L3BjaS5oCisrKyBiL2luY2x1ZGUvbGludXgvcGNpLmgKQEAgLTM0MCw2ICszNDAsNyBAQCBzdHJ1
+Y3QgcGNpX2RldiB7CiAJdW5zaWduZWQgaW50CW5vX2QzY29sZDoxOwkvKiBEM2NvbGQgaXMgZm9y
+YmlkZGVuICovCiAJdW5zaWduZWQgaW50CWJyaWRnZV9kMzoxOwkvKiBBbGxvdyBEMyBmb3IgYnJp
+ZGdlICovCiAJdW5zaWduZWQgaW50CWQzY29sZF9hbGxvd2VkOjE7CS8qIEQzY29sZCBpcyBhbGxv
+d2VkIGJ5IHVzZXIgKi8KKwl1bnNpZ25lZCBpbnQJcGFyZW50X2QzY29sZDoxOwkvKiBwb3dlciBt
+YW5hZ2UgdGhlIHBhcmVudCBpbnN0ZWFkICovCiAJdW5zaWduZWQgaW50CW1taW9fYWx3YXlzX29u
+OjE7CS8qIERpc2FsbG93IHR1cm5pbmcgb2ZmIGlvL21lbQogCQkJCQkJICAgZGVjb2RpbmcgZHVy
+aW5nIEJBUiBzaXppbmcgKi8KIAl1bnNpZ25lZCBpbnQJd2FrZXVwX3ByZXBhcmVkOjE7Ci0tIAoy
+LjI0LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
+dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
