@@ -1,420 +1,304 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v4 02/22] drm: Add get_scanout_position() to struct drm_crtc_helper_funcs
-Date: Mon, 2 Mar 2020 22:55:43 +0100
-Message-ID: <CAKMK7uFKHoPrpEDpQzFS2fnr9XeuhEjA-2MxynknCindFHYEvg@mail.gmail.com>
-References: <20200123135943.24140-1-tzimmermann@suse.de> <20200123135943.24140-3-tzimmermann@suse.de>
+From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v2] nouveau/hmm: map pages after migration
+Date: Mon, 2 Mar 2020 17:00:23 -0800
+Message-ID: <20200303010023.2983-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-arm-msm-owner@vger.kernel.org>
-In-Reply-To: <20200123135943.24140-3-tzimmermann@suse.de>
-Sender: linux-arm-msm-owner@vger.kernel.org
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Dave Airlie <airlied@linux.ie>, Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, Chunming Zhou <David1.Zhou@amd.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Patrik Jakobsson <patrik.r.jakobsson@gmail.com>, "Clark, Rob" <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, Benjamin Gaignard <benjamin.gaignard@linaro.org>, Vincent Abriou <vincent.abriou@st.com>, Yannick Fertre <yannick.fertre@st.com>, Philippe Cornu <philippe.cornu@st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre TORGUE <alexandre.torgue@st.com>, "Anholt, Eric" <eric@anholt.net>, Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>, Haneen Mohammed <hamohammed.sa@gmail.com>, VMware Graphics <linux-graphics-maintaine>
+Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jan 23, 2020 at 2:59 PM Thomas Zimmermann <tzimmermann@suse.de> wro=
-te:
->
-> The new callback get_scanout_position() reads the current location
-> of the scanout process. The operation is currently located in struct
-> drm_driver, but really belongs to the CRTC. Drivers will be converted
-> in separate patches.
->
-> To help with the conversion, the timestamp calculation has been
-> moved from drm_calc_vbltimestamp_from_scanoutpos() to
-> drm_crtc_vblank_helper_get_vblank_timestamp_internal(). The helper
-> function supports the new and old interface of get_scanout_position().
-> drm_calc_vbltimestamp_from_scanoutpos() remains as a wrapper around
-> the new function.
->
-> Callback functions return the scanout position from the CRTC. The
-> legacy version of the interface receives the device and pipe index,
-> the modern version receives a pointer to the CRTC. We keep the
-> legacy version until all drivers have been converted.
->
-> v4:
->         * 80-character line fixes
-> v3:
->         * refactor drm_calc_vbltimestamp_from_scanoutpos() to minimize
->           code duplication
->         * define types for get_scanout_position() callbacks
-> v2:
->         * fix logical op in drm_calc_vbltimestamp_from_scanoutpos()
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Tested-by: Yannick Fertr=C3=A9 <yannick.fertre@st.com>
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+When memory is migrated to the GPU, it is likely to be accessed by GPU
+code soon afterwards. Instead of waiting for a GPU fault, map the
+migrated memory into the GPU page tables with the same access permissions
+as the source CPU page table entries. This preserves copy on write
+semantics.
 
-This patch causes new kerneldoc build warnings:
+Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Cc: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Cc: "J=C3=A9r=C3=B4me Glisse" <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+---
 
-./drivers/gpu/drm/drm_vblank.c:623: warning: Excess function parameter
-'dev' description in
-'drm_crtc_vblank_helper_get_vblank_timestamp_internal'
-./drivers/gpu/drm/drm_vblank.c:623: warning: Excess function parameter
-'pipe' description in
-'drm_crtc_vblank_helper_get_vblank_timestamp_internal'
-./drivers/gpu/drm/drm_vblank.c:624: warning: Function parameter or
-member 'crtc' not described in
-'drm_crtc_vblank_helper_get_vblank_timestamp_internal'
-./drivers/gpu/drm/drm_vblank.c:624: warning: Excess function parameter
-'dev' description in
-'drm_crtc_vblank_helper_get_vblank_timestamp_internal'
-./drivers/gpu/drm/drm_vblank.c:624: warning: Excess function parameter
-'pipe' description in
-'drm_crtc_vblank_helper_get_vblank_timestamp_internal'
+Originally this patch was targeted for Jason's rdma tree since other HMM
+related changes were queued there. Now that those have been merged, this
+patch just contains changes to nouveau so it could go through any tree.
+I guess Ben Skeggs' tree would be appropriate.
 
+Changes since v1:
+ Rebase to linux-5.6.0-rc4
+ Address Christoph Hellwig's comments
 
-Please fix.
--Daniel
+ drivers/gpu/drm/nouveau/nouveau_dmem.c | 44 ++++++++-----
+ drivers/gpu/drm/nouveau/nouveau_svm.c  | 85 ++++++++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_svm.h  |  5 ++
+ 3 files changed, 118 insertions(+), 16 deletions(-)
 
-> ---
->  drivers/gpu/drm/drm_vblank.c             | 101 +++++++++++++++++++----
->  include/drm/drm_drv.h                    |   7 +-
->  include/drm/drm_modeset_helper_vtables.h |  47 +++++++++++
->  include/drm/drm_vblank.h                 |  25 ++++++
->  4 files changed, 157 insertions(+), 23 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-> index 326db52f2ad8..7e962c29780c 100644
-> --- a/drivers/gpu/drm/drm_vblank.c
-> +++ b/drivers/gpu/drm/drm_vblank.c
-> @@ -30,6 +30,7 @@
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_drv.h>
->  #include <drm/drm_framebuffer.h>
-> +#include <drm/drm_modeset_helper_vtables.h>
->  #include <drm/drm_print.h>
->  #include <drm/drm_vblank.h>
->
-> @@ -577,7 +578,7 @@ EXPORT_SYMBOL(drm_calc_timestamping_constants);
->   * Implements calculation of exact vblank timestamps from given drm_disp=
-lay_mode
->   * timings and current video scanout position of a CRTC. This can be dir=
-ectly
->   * used as the &drm_driver.get_vblank_timestamp implementation of a kms =
-driver
-> - * if &drm_driver.get_scanout_position is implemented.
-> + * if &drm_crtc_helper_funcs.get_scanout_position is implemented.
->   *
->   * The current implementation only handles standard video modes. For dou=
-ble scan
->   * and interlaced modes the driver is supposed to adjust the hardware mo=
-de
-> @@ -599,28 +600,85 @@ bool drm_calc_vbltimestamp_from_scanoutpos(struct d=
-rm_device *dev,
->                                            ktime_t *vblank_time,
->                                            bool in_vblank_irq)
->  {
-> -       struct timespec64 ts_etime, ts_vblank_time;
-> -       ktime_t stime, etime;
-> -       bool vbl_status;
->         struct drm_crtc *crtc;
-> -       const struct drm_display_mode *mode;
-> -       struct drm_vblank_crtc *vblank =3D &dev->vblank[pipe];
-> -       int vpos, hpos, i;
-> -       int delta_ns, duration_ns;
->
->         if (!drm_core_check_feature(dev, DRIVER_MODESET))
->                 return false;
->
->         crtc =3D drm_crtc_from_index(dev, pipe);
-> +       if (!crtc)
-> +               return false;
->
-> -       if (pipe >=3D dev->num_crtcs || !crtc) {
-> +       return drm_crtc_vblank_helper_get_vblank_timestamp_internal(crtc,
-> +                                                                   max_e=
-rror,
-> +                                                                   vblan=
-k_time,
-> +                                                                   in_vb=
-lank_irq,
-> +                                                                   crtc-=
->helper_private->get_scanout_position,
-> +                                                                   dev->=
-driver->get_scanout_position);
-> +}
-> +EXPORT_SYMBOL(drm_calc_vbltimestamp_from_scanoutpos);
-> +
-> +/**
-> + * drm_crtc_vblank_helper_get_vblank_timestamp_internal - precise vblank
-> + *                                                        timestamp help=
-er
-> + * @dev: DRM device
-> + * @pipe: index of CRTC whose vblank timestamp to retrieve
-> + * @max_error: Desired maximum allowable error in timestamps (nanosecs)
-> + *             On return contains true maximum error of timestamp
-> + * @vblank_time: Pointer to time which should receive the timestamp
-> + * @in_vblank_irq:
-> + *     True when called from drm_crtc_handle_vblank().  Some drivers
-> + *     need to apply some workarounds for gpu-specific vblank irq quirks
-> + *     if flag is set.
-> + * @get_scanout_position:
-> + *     Callback function to retrieve the scanout position. See
-> + *     @struct drm_crtc_helper_funcs.get_scanout_position.
-> + * @get_scanout_position_legacy:
-> + *     Callback function to retrieve the scanout position. See
-> + *     @struct drm_driver.get_scanout_position.
-> + *
-> + * Implements calculation of exact vblank timestamps from given drm_disp=
-lay_mode
-> + * timings and current video scanout position of a CRTC.
-> + *
-> + * The current implementation only handles standard video modes. For dou=
-ble scan
-> + * and interlaced modes the driver is supposed to adjust the hardware mo=
-de
-> + * (taken from &drm_crtc_state.adjusted mode for atomic modeset drivers)=
- to
-> + * match the scanout position reported.
-> + *
-> + * Note that atomic drivers must call drm_calc_timestamping_constants() =
-before
-> + * enabling a CRTC. The atomic helpers already take care of that in
-> + * drm_atomic_helper_update_legacy_modeset_state().
-> + *
-> + * Returns:
-> + *
-> + * Returns true on success, and false on failure, i.e. when no accurate
-> + * timestamp could be acquired.
-> + */
-> +bool
-> +drm_crtc_vblank_helper_get_vblank_timestamp_internal(
-> +       struct drm_crtc *crtc, int *max_error, ktime_t *vblank_time,
-> +       bool in_vblank_irq,
-> +       drm_vblank_get_scanout_position_func get_scanout_position,
-> +       drm_vblank_get_scanout_position_legacy_func get_scanout_position_=
-legacy)
-> +{
-> +       struct drm_device *dev =3D crtc->dev;
-> +       unsigned int pipe =3D crtc->index;
-> +       struct drm_vblank_crtc *vblank =3D &dev->vblank[pipe];
-> +       struct timespec64 ts_etime, ts_vblank_time;
-> +       ktime_t stime, etime;
-> +       bool vbl_status;
-> +       const struct drm_display_mode *mode;
-> +       int vpos, hpos, i;
-> +       int delta_ns, duration_ns;
-> +
-> +       if (pipe >=3D dev->num_crtcs) {
->                 DRM_ERROR("Invalid crtc %u\n", pipe);
->                 return false;
->         }
->
->         /* Scanout position query not supported? Should not happen. */
-> -       if (!dev->driver->get_scanout_position) {
-> -               DRM_ERROR("Called from driver w/o get_scanout_position()!=
-?\n");
-> +       if (!get_scanout_position && !get_scanout_position_legacy) {
-> +               DRM_ERROR("Called from CRTC w/o get_scanout_position()!?\=
-n");
->                 return false;
->         }
->
-> @@ -635,7 +693,6 @@ bool drm_calc_vbltimestamp_from_scanoutpos(struct drm=
-_device *dev,
->         if (mode->crtc_clock =3D=3D 0) {
->                 DRM_DEBUG("crtc %u: Noop due to uninitialized mode.\n", p=
-ipe);
->                 WARN_ON_ONCE(drm_drv_uses_atomic_modeset(dev));
-> -
->                 return false;
->         }
->
-> @@ -651,11 +708,19 @@ bool drm_calc_vbltimestamp_from_scanoutpos(struct d=
-rm_device *dev,
->                  * Get vertical and horizontal scanout position vpos, hpo=
-s,
->                  * and bounding timestamps stime, etime, pre/post query.
->                  */
-> -               vbl_status =3D dev->driver->get_scanout_position(dev, pip=
-e,
-> -                                                              in_vblank_=
-irq,
-> -                                                              &vpos, &hp=
-os,
-> -                                                              &stime, &e=
-time,
-> -                                                              mode);
-> +               if (get_scanout_position) {
-> +                       vbl_status =3D get_scanout_position(crtc,
-> +                                                         in_vblank_irq,
-> +                                                         &vpos, &hpos,
-> +                                                         &stime, &etime,
-> +                                                         mode);
-> +               } else {
-> +                       vbl_status =3D get_scanout_position_legacy(dev, p=
-ipe,
-> +                                                                in_vblan=
-k_irq,
-> +                                                                &vpos, &=
-hpos,
-> +                                                                &stime, =
-&etime,
-> +                                                                mode);
-> +               }
->
->                 /* Return as no-op if scanout query unsupported or failed=
-. */
->                 if (!vbl_status) {
-> @@ -707,7 +772,7 @@ bool drm_calc_vbltimestamp_from_scanoutpos(struct drm=
-_device *dev,
->
->         return true;
->  }
-> -EXPORT_SYMBOL(drm_calc_vbltimestamp_from_scanoutpos);
-> +EXPORT_SYMBOL(drm_crtc_vblank_helper_get_vblank_timestamp_internal);
->
->  /**
->   * drm_get_last_vbltimestamp - retrieve raw timestamp for the most recen=
-t
-> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-> index cf13470810a5..d0049e5786fc 100644
-> --- a/include/drm/drm_drv.h
-> +++ b/include/drm/drm_drv.h
-> @@ -362,11 +362,8 @@ struct drm_driver {
->          * True on success, false if a reliable scanout position counter =
-could
->          * not be read out.
->          *
-> -        * FIXME:
-> -        *
-> -        * Since this is a helper to implement @get_vblank_timestamp, we =
-should
-> -        * move it to &struct drm_crtc_helper_funcs, like all the other
-> -        * helper-internal hooks.
-> +        * This is deprecated and should not be used by new drivers.
-> +        * Use &drm_crtc_helper_funcs.get_scanout_position instead.
->          */
->         bool (*get_scanout_position) (struct drm_device *dev, unsigned in=
-t pipe,
->                                       bool in_vblank_irq, int *vpos, int =
-*hpos,
-> diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/drm_m=
-odeset_helper_vtables.h
-> index 5a87f1bd7a3f..e398512bfd5f 100644
-> --- a/include/drm/drm_modeset_helper_vtables.h
-> +++ b/include/drm/drm_modeset_helper_vtables.h
-> @@ -450,6 +450,53 @@ struct drm_crtc_helper_funcs {
->          */
->         void (*atomic_disable)(struct drm_crtc *crtc,
->                                struct drm_crtc_state *old_crtc_state);
-> +
-> +       /**
-> +        * @get_scanout_position:
-> +        *
-> +        * Called by vblank timestamping code.
-> +        *
-> +        * Returns the current display scanout position from a CRTC and a=
-n
-> +        * optional accurate ktime_get() timestamp of when the position w=
-as
-> +        * measured. Note that this is a helper callback which is only us=
-ed
-> +        * if a driver uses drm_calc_vbltimestamp_from_scanoutpos() for t=
-he
-> +        * @drm_driver.get_vblank_timestamp callback.
-> +        *
-> +        * Parameters:
-> +        *
-> +        * crtc:
-> +        *     The CRTC.
-> +        * in_vblank_irq:
-> +        *     True when called from drm_crtc_handle_vblank(). Some drive=
-rs
-> +        *     need to apply some workarounds for gpu-specific vblank irq
-> +        *     quirks if the flag is set.
-> +        * vpos:
-> +        *     Target location for current vertical scanout position.
-> +        * hpos:
-> +        *     Target location for current horizontal scanout position.
-> +        * stime:
-> +        *     Target location for timestamp taken immediately before
-> +        *     scanout position query. Can be NULL to skip timestamp.
-> +        * etime:
-> +        *     Target location for timestamp taken immediately after
-> +        *     scanout position query. Can be NULL to skip timestamp.
-> +        * mode:
-> +        *     Current display timings.
-> +        *
-> +        * Returns vpos as a positive number while in active scanout area=
-.
-> +        * Returns vpos as a negative number inside vblank, counting the =
-number
-> +        * of scanlines to go until end of vblank, e.g., -1 means "one sc=
-anline
-> +        * until start of active scanout / end of vblank."
-> +        *
-> +        * Returns:
-> +        *
-> +        * True on success, false if a reliable scanout position counter =
-could
-> +        * not be read out.
-> +        */
-> +       bool (*get_scanout_position)(struct drm_crtc *crtc,
-> +                                    bool in_vblank_irq, int *vpos, int *=
-hpos,
-> +                                    ktime_t *stime, ktime_t *etime,
-> +                                    const struct drm_display_mode *mode)=
-;
->  };
->
->  /**
-> diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
-> index c16c44052b3d..66d1fb376600 100644
-> --- a/include/drm/drm_vblank.h
-> +++ b/include/drm/drm_vblank.h
-> @@ -238,4 +238,29 @@ void drm_calc_timestamping_constants(struct drm_crtc=
- *crtc,
->  wait_queue_head_t *drm_crtc_vblank_waitqueue(struct drm_crtc *crtc);
->  void drm_crtc_set_max_vblank_count(struct drm_crtc *crtc,
->                                    u32 max_vblank_count);
-> +
-> +typedef bool (*drm_vblank_get_scanout_position_func)(struct drm_crtc *cr=
-tc,
-> +                                                    bool in_vblank_irq,
-> +                                                    int *vpos, int *hpos=
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouve=
+au/nouveau_dmem.c
+index 0ad5d87b5a8e..172e0c98cec5 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+@@ -25,11 +25,13 @@
+ #include "nouveau_dma.h"
+ #include "nouveau_mem.h"
+ #include "nouveau_bo.h"
++#include "nouveau_svm.h"
+=20
+ #include <nvif/class.h>
+ #include <nvif/object.h>
+ #include <nvif/if500b.h>
+ #include <nvif/if900b.h>
++#include <nvif/if000c.h>
+=20
+ #include <linux/sched/mm.h>
+ #include <linux/hmm.h>
+@@ -558,10 +560,11 @@ nouveau_dmem_init(struct nouveau_drm *drm)
+ }
+=20
+ static unsigned long nouveau_dmem_migrate_copy_one(struct nouveau_drm *drm=
 ,
-> +                                                    ktime_t *stime,
-> +                                                    ktime_t *etime,
-> +                                                    const struct drm_dis=
-play_mode *mode);
-> +
-> +typedef bool (*drm_vblank_get_scanout_position_legacy_func)(struct drm_d=
-evice *dev,
-> +                                                           unsigned int =
-pipe,
-> +                                                           bool in_vblan=
-k_irq,
-> +                                                           int *vpos,
-> +                                                           int *hpos,
-> +                                                           ktime_t *stim=
-e,
-> +                                                           ktime_t *etim=
-e,
-> +                                                           const struct =
-drm_display_mode *mode);
-> +
-> +bool
-> +drm_crtc_vblank_helper_get_vblank_timestamp_internal(struct drm_crtc *cr=
-tc,
-> +                                                    int *max_error,
-> +                                                    ktime_t *vblank_time=
-,
-> +                                                    bool in_vblank_irq,
-> +                                                    drm_vblank_get_scano=
-ut_position_func get_scanout_position,
-> +                                                    drm_vblank_get_scano=
-ut_position_legacy_func get_scanout_position_legacy);
-> +
->  #endif
-> --
-> 2.24.1
->
-
-
+-		unsigned long src, dma_addr_t *dma_addr)
++		unsigned long src, dma_addr_t *dma_addr, u64 *pfn)
+ {
+ 	struct device *dev =3D drm->dev->dev;
+ 	struct page *dpage, *spage;
++	unsigned long paddr;
+=20
+ 	spage =3D migrate_pfn_to_page(src);
+ 	if (!spage || !(src & MIGRATE_PFN_MIGRATE))
+@@ -569,17 +572,21 @@ static unsigned long nouveau_dmem_migrate_copy_one(st=
+ruct nouveau_drm *drm,
+=20
+ 	dpage =3D nouveau_dmem_page_alloc_locked(drm);
+ 	if (!dpage)
+-		return 0;
++		goto out;
+=20
+ 	*dma_addr =3D dma_map_page(dev, spage, 0, PAGE_SIZE, DMA_BIDIRECTIONAL);
+ 	if (dma_mapping_error(dev, *dma_addr))
+ 		goto out_free_page;
+=20
++	paddr =3D nouveau_dmem_page_addr(dpage);
+ 	if (drm->dmem->migrate.copy_func(drm, 1, NOUVEAU_APER_VRAM,
+-			nouveau_dmem_page_addr(dpage), NOUVEAU_APER_HOST,
+-			*dma_addr))
++			paddr, NOUVEAU_APER_HOST, *dma_addr))
+ 		goto out_dma_unmap;
+=20
++	*pfn =3D NVIF_VMM_PFNMAP_V0_V | NVIF_VMM_PFNMAP_V0_VRAM |
++		((paddr >> PAGE_SHIFT) << NVIF_VMM_PFNMAP_V0_ADDR_SHIFT);
++	if (src & MIGRATE_PFN_WRITE)
++		*pfn |=3D NVIF_VMM_PFNMAP_V0_W;
+ 	return migrate_pfn(page_to_pfn(dpage)) | MIGRATE_PFN_LOCKED;
+=20
+ out_dma_unmap:
+@@ -587,18 +594,19 @@ static unsigned long nouveau_dmem_migrate_copy_one(st=
+ruct nouveau_drm *drm,
+ out_free_page:
+ 	nouveau_dmem_page_free_locked(drm, dpage);
+ out:
++	*pfn =3D NVIF_VMM_PFNMAP_V0_NONE;
+ 	return 0;
+ }
+=20
+ static void nouveau_dmem_migrate_chunk(struct nouveau_drm *drm,
+-		struct migrate_vma *args, dma_addr_t *dma_addrs)
++		struct migrate_vma *args, dma_addr_t *dma_addrs, u64 *pfns)
+ {
+ 	struct nouveau_fence *fence;
+ 	unsigned long addr =3D args->start, nr_dma =3D 0, i;
+=20
+ 	for (i =3D 0; addr < args->end; i++) {
+ 		args->dst[i] =3D nouveau_dmem_migrate_copy_one(drm, args->src[i],
+-				dma_addrs + nr_dma);
++				dma_addrs + nr_dma, pfns + i);
+ 		if (args->dst[i])
+ 			nr_dma++;
+ 		addr +=3D PAGE_SIZE;
+@@ -607,15 +615,12 @@ static void nouveau_dmem_migrate_chunk(struct nouveau=
+_drm *drm,
+ 	nouveau_fence_new(drm->dmem->migrate.chan, false, &fence);
+ 	migrate_vma_pages(args);
+ 	nouveau_dmem_fence_done(&fence);
++	nouveau_pfns_map(drm, args->vma->vm_mm, args->start, pfns, i);
+=20
+ 	while (nr_dma--) {
+ 		dma_unmap_page(drm->dev->dev, dma_addrs[nr_dma], PAGE_SIZE,
+ 				DMA_BIDIRECTIONAL);
+ 	}
+-	/*
+-	 * FIXME optimization: update GPU page table to point to newly migrated
+-	 * memory.
+-	 */
+ 	migrate_vma_finalize(args);
+ }
+=20
+@@ -632,7 +637,8 @@ nouveau_dmem_migrate_vma(struct nouveau_drm *drm,
+ 		.vma		=3D vma,
+ 		.start		=3D start,
+ 	};
+-	unsigned long c, i;
++	unsigned long i;
++	u64 *pfns;
+ 	int ret =3D -ENOMEM;
+=20
+ 	args.src =3D kcalloc(max, sizeof(*args.src), GFP_KERNEL);
+@@ -646,19 +652,25 @@ nouveau_dmem_migrate_vma(struct nouveau_drm *drm,
+ 	if (!dma_addrs)
+ 		goto out_free_dst;
+=20
+-	for (i =3D 0; i < npages; i +=3D c) {
+-		c =3D min(SG_MAX_SINGLE_ALLOC, npages);
+-		args.end =3D start + (c << PAGE_SHIFT);
++	pfns =3D nouveau_pfns_alloc(max);
++	if (!pfns)
++		goto out_free_dma;
++
++	for (i =3D 0; i < npages; i +=3D max) {
++		args.end =3D start + (max << PAGE_SHIFT);
+ 		ret =3D migrate_vma_setup(&args);
+ 		if (ret)
+-			goto out_free_dma;
++			goto out_free_pfns;
+=20
+ 		if (args.cpages)
+-			nouveau_dmem_migrate_chunk(drm, &args, dma_addrs);
++			nouveau_dmem_migrate_chunk(drm, &args, dma_addrs,
++						   pfns);
+ 		args.start =3D args.end;
+ 	}
+=20
+ 	ret =3D 0;
++out_free_pfns:
++	nouveau_pfns_free(pfns);
+ out_free_dma:
+ 	kfree(dma_addrs);
+ out_free_dst:
+diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouvea=
+u/nouveau_svm.c
+index df9bf1fd1bc0..8c629918a3c6 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_svm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+@@ -70,6 +70,12 @@ struct nouveau_svm {
+ #define SVM_DBG(s,f,a...) NV_DEBUG((s)->drm, "svm: "f"\n", ##a)
+ #define SVM_ERR(s,f,a...) NV_WARN((s)->drm, "svm: "f"\n", ##a)
+=20
++struct nouveau_pfnmap_args {
++	struct nvif_ioctl_v0 i;
++	struct nvif_ioctl_mthd_v0 m;
++	struct nvif_vmm_pfnmap_v0 p;
++};
++
+ struct nouveau_ivmm {
+ 	struct nouveau_svmm *svmm;
+ 	u64 inst;
+@@ -782,6 +788,85 @@ nouveau_svm_fault(struct nvif_notify *notify)
+ 	return NVIF_NOTIFY_KEEP;
+ }
+=20
++static inline struct nouveau_pfnmap_args *
++nouveau_pfns_to_args(void *pfns)
++{
++	struct nvif_vmm_pfnmap_v0 *p =3D
++		container_of(pfns, struct nvif_vmm_pfnmap_v0, phys);
++
++	return container_of(p, struct nouveau_pfnmap_args, p);
++}
++
++u64 *
++nouveau_pfns_alloc(unsigned long npages)
++{
++	struct nouveau_pfnmap_args *args;
++
++	args =3D kzalloc(struct_size(args, p.phys, npages), GFP_KERNEL);
++	if (!args)
++		return NULL;
++
++	args->i.type =3D NVIF_IOCTL_V0_MTHD;
++	args->m.method =3D NVIF_VMM_V0_PFNMAP;
++	args->p.page =3D PAGE_SHIFT;
++
++	return args->p.phys;
++}
++
++void
++nouveau_pfns_free(u64 *pfns)
++{
++	struct nouveau_pfnmap_args *args =3D nouveau_pfns_to_args(pfns);
++
++	kfree(args);
++}
++
++static struct nouveau_svmm *
++nouveau_find_svmm(struct nouveau_svm *svm, struct mm_struct *mm)
++{
++	struct nouveau_ivmm *ivmm;
++
++	list_for_each_entry(ivmm, &svm->inst, head) {
++		if (ivmm->svmm->notifier.mm =3D=3D mm)
++			return ivmm->svmm;
++	}
++	return NULL;
++}
++
++void
++nouveau_pfns_map(struct nouveau_drm *drm, struct mm_struct *mm,
++		 unsigned long addr, u64 *pfns, unsigned long npages)
++{
++	struct nouveau_svm *svm =3D drm->svm;
++	struct nouveau_svmm *svmm;
++	struct nouveau_pfnmap_args *args;
++	int ret;
++
++	if (!svm)
++		return;
++
++	mutex_lock(&svm->mutex);
++	svmm =3D nouveau_find_svmm(svm, mm);
++	if (!svmm) {
++		mutex_unlock(&svm->mutex);
++		return;
++	}
++	mutex_unlock(&svm->mutex);
++
++	args =3D nouveau_pfns_to_args(pfns);
++	args->p.addr =3D addr;
++	args->p.size =3D npages << PAGE_SHIFT;
++
++	mutex_lock(&svmm->mutex);
++
++	svmm->vmm->vmm.object.client->super =3D true;
++	ret =3D nvif_object_ioctl(&svmm->vmm->vmm.object, args, sizeof(*args) +
++				npages * sizeof(args->p.phys[0]), NULL);
++	svmm->vmm->vmm.object.client->super =3D false;
++
++	mutex_unlock(&svmm->mutex);
++}
++
+ static void
+ nouveau_svm_fault_buffer_fini(struct nouveau_svm *svm, int id)
+ {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.h b/drivers/gpu/drm/nouvea=
+u/nouveau_svm.h
+index e839d8189461..0649f8d587a8 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_svm.h
++++ b/drivers/gpu/drm/nouveau/nouveau_svm.h
+@@ -18,6 +18,11 @@ void nouveau_svmm_fini(struct nouveau_svmm **);
+ int nouveau_svmm_join(struct nouveau_svmm *, u64 inst);
+ void nouveau_svmm_part(struct nouveau_svmm *, u64 inst);
+ int nouveau_svmm_bind(struct drm_device *, void *, struct drm_file *);
++
++u64 *nouveau_pfns_alloc(unsigned long npages);
++void nouveau_pfns_free(u64 *pfns);
++void nouveau_pfns_map(struct nouveau_drm *drm, struct mm_struct *mm,
++		      unsigned long addr, u64 *pfns, unsigned long npages);
+ #else /* IS_ENABLED(CONFIG_DRM_NOUVEAU_SVM) */
+ static inline void nouveau_svm_init(struct nouveau_drm *drm) {}
+ static inline void nouveau_svm_fini(struct nouveau_drm *drm) {}
 --=20
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+2.20.1
