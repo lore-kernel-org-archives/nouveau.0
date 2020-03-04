@@ -1,7 +1,7 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 2/3] drm/dp_mst: Don't show connectors as connected before probing available PBN
-Date: Wed,  4 Mar 2020 17:36:12 -0500
-Message-ID: <20200304223614.312023-3-lyude@redhat.com>
+Subject: [PATCH 3/3] drm/dp_mst: Rewrite and fix bandwidth limit checks
+Date: Wed,  4 Mar 2020 17:36:13 -0500
+Message-ID: <20200304223614.312023-4-lyude@redhat.com>
 References: <20200304223614.312023-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
@@ -12,21 +12,42 @@ To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, nouveau@list
 Cc: Mikita Lipski <mikita.lipski@amd.com>, Alex Deucher <alexander.deucher@amd.com>, Sean Paul <seanpaul@google.com>, Hans de Goede <hdegoede@redhat.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-It's next to impossible for us to do connector probing on topologies
-without occasionally racing with userspace, since creating a connector
-itself causes a hotplug event which we have to send before probing the
-available PBN of a connector. Even if we didn't have this hotplug event
-sent, there's still always a chance that userspace started probing
-connectors before we finished probing the topology.
+Sigh, this is mostly my fault for not giving commit cd82d82cbc04
+("drm/dp_mst: Add branch bandwidth validation to MST atomic check")
+enough scrutiny during review. The way we're checking bandwidth
+limitations here is mostly wrong.
 
-This can be a problem when validating a new MST state since the
-connector will be shown as connected briefly, but without any available
-PBN - causing any atomic state which would enable said connector to fail
-with -ENOSPC. So, let's simply workaround this by telling userspace new
-MST connectors are disconnected until we've finished probing their PBN.
-Since we always send a hotplug event at the end of the link address
-probing process, userspace will still know to reprobe the connector when
-we're ready.
+First things first, we need to follow the locking conventions for MST.
+Whenever traversing downwards (upwards is always safe) in the topology,
+we need to hold &mgr->lock to prevent the topology from changing under
+us. We don't currently do that when performing bandwidth limit checks.
+
+Next we need to figure out the actual PBN limit for the primary MSTB.
+Here we actually want to use the highest available_pbn value we can find
+on each level of the topology, then make sure that the combined sum of
+allocated PBN on each port of the branch device doesn't exceed that
+amount. Currently, we just loop through each level of the topology and
+use the last non-zero PBN we find.
+
+Once we've done that, we then want to traverse down each branch device
+we find in the topology with at least one downstream port that has PBN
+allocated in our atomic state, and repeat the whole process on each
+level of the topology as we travel down. While doing this, we need to
+take care to avoid attempting to traverse down end devices. We don't
+currently do this, although I'm not actually sure whether or not this
+broke anything before.
+
+Since there's a bit too many issues here to try to fix one by one, and
+the drm_dp_mst_atomic_check_bw_limit() code is not entirely clear on all
+of these pain points anyway, let's just take the easy way out and
+rewrite the whole function. Additionally, we also add a kernel warning
+if we find that any ports we performed bandwidth limit checks on didn't
+actually have available_pbn populated - as this is always a bug in the
+MST helpers.
+
+This should fix regressions seen on nouveau, i915 and amdgpu where we
+erroneously reject atomic states that should fit within bandwidth
+limitations.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 Fixes: cd82d82cbc04 ("drm/dp_mst: Add branch bandwidth validation to MST =
@@ -36,34 +57,146 @@ Cc: Alex Deucher <alexander.deucher@amd.com>
 Cc: Sean Paul <seanpaul@google.com>
 Cc: Hans de Goede <hdegoede@redhat.com>
 ---
- drivers/gpu/drm/drm_dp_mst_topology.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/gpu/drm/drm_dp_mst_topology.c | 101 ++++++++++++++++++++------
+ 1 file changed, 78 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_=
 dp_mst_topology.c
-index 207eef08d12c..7b0ff0cff954 100644
+index 7b0ff0cff954..87dc7c92d339 100644
 --- a/drivers/gpu/drm/drm_dp_mst_topology.c
 +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-@@ -4033,6 +4033,19 @@ drm_dp_mst_detect_port(struct drm_connector *conne=
-ctor,
- 			ret =3D connector_status_connected;
- 		break;
- 	}
+@@ -4853,41 +4853,90 @@ static bool drm_dp_mst_port_downstream_of_branch(=
+struct drm_dp_mst_port *port,
+ 	return false;
+ }
+=20
+-static inline
+-int drm_dp_mst_atomic_check_bw_limit(struct drm_dp_mst_branch *branch,
+-				     struct drm_dp_mst_topology_state *mst_state)
++static int
++drm_dp_mst_atomic_check_bw_limit(struct drm_dp_mst_branch *branch,
++				 struct drm_dp_mst_topology_state *mst_state)
+ {
+ 	struct drm_dp_mst_port *port;
+ 	struct drm_dp_vcpi_allocation *vcpi;
+-	int pbn_limit =3D 0, pbn_used =3D 0;
++	int pbn_limit =3D 0, pbn_used =3D 0, ret;
+=20
+-	list_for_each_entry(port, &branch->ports, next) {
+-		if (port->mstb)
+-			if (drm_dp_mst_atomic_check_bw_limit(port->mstb, mst_state))
+-				return -ENOSPC;
++	if (branch->port_parent)
++		DRM_DEBUG_ATOMIC("[MSTB:%p] [MST PORT:%p] checking [MSTB:%p]\n",
++				 branch->port_parent->parent,
++				 branch->port_parent, branch);
++	else
++		DRM_DEBUG_ATOMIC("Checking [MSTB:%p]\n", branch);
+=20
+-		if (port->available_pbn > 0)
++	list_for_each_entry(port, &branch->ports, next) {
++		/* Since each port shares a link, the highest PBN we find
++		 * should be assumed to be the limit for this branch device
++		 */
++		if (pbn_limit < port->available_pbn)
+ 			pbn_limit =3D port->available_pbn;
+-	}
+-	DRM_DEBUG_ATOMIC("[MST BRANCH:%p] branch has %d PBN available\n",
+-			 branch, pbn_limit);
+=20
+-	list_for_each_entry(vcpi, &mst_state->vcpis, next) {
+-		if (!vcpi->pbn)
++		if (port->pdt =3D=3D DP_PEER_DEVICE_NONE)
+ 			continue;
+=20
+-		if (drm_dp_mst_port_downstream_of_branch(vcpi->port, branch))
+-			pbn_used +=3D vcpi->pbn;
++		if (drm_dp_mst_is_end_device(port->pdt, port->mcs)) {
++			list_for_each_entry(vcpi, &mst_state->vcpis, next) {
++				if (vcpi->port !=3D port)
++					continue;
++				if (!vcpi->pbn)
++					break;
 +
-+	/* We don't want to tell userspace the port is actually plugged into
-+	 * anything until we've finished probing it's available_pbn, otherwise
-+	 * userspace will see racy atomic check failures
-+	 *
-+	 * Since we always send a hotplug at the end of probing topology
-+	 * state, we can just let userspace reprobe this connector later.
-+	 */
-+	if (ret =3D=3D connector_status_connected && !port->available_pbn) {
-+		DRM_DEBUG_KMS("[CONNECTOR:%d:%s] not ready yet (PBN not probed)\n",
-+			      connector->base.id, connector->name);
-+		ret =3D connector_status_disconnected;
-+	}
- out:
- 	drm_dp_mst_topology_put_port(port);
++				/* This should never happen, as it means we
++				 * tried to set a mode before querying the
++				 * available_pbn
++				 */
++				if (WARN_ON(!port->available_pbn))
++					return -EINVAL;
++
++				if (vcpi->pbn > port->available_pbn) {
++					DRM_DEBUG_ATOMIC("[MSTB:%p] [MST PORT:%p] %d exceeds available PBN =
+of %d\n",
++							 branch, port,
++							 vcpi->pbn,
++							 port->available_pbn);
++					return -ENOSPC;
++				}
++
++				DRM_DEBUG_ATOMIC("[MSTB:%p] [MST PORT:%p] using %d PBN\n",
++						 branch, port, vcpi->pbn);
++				pbn_used +=3D vcpi->pbn;
++				break;
++			}
++		} else {
++			list_for_each_entry(vcpi, &mst_state->vcpis, next) {
++				if (!vcpi->pbn ||
++				    !drm_dp_mst_port_downstream_of_branch(vcpi->port,
++									  port->mstb))
++					continue;
++
++				ret =3D drm_dp_mst_atomic_check_bw_limit(port->mstb,
++								       mst_state);
++				if (ret < 0)
++					return ret;
++
++				pbn_used +=3D ret;
++				break;
++			}
++		}
+ 	}
+-	DRM_DEBUG_ATOMIC("[MST BRANCH:%p] branch used %d PBN\n",
+-			 branch, pbn_used);
++	if (!pbn_used)
++		return 0;
++
++	DRM_DEBUG_ATOMIC("[MSTB:%p] has total available PBN of %d\n",
++			 branch, pbn_limit);
+=20
+ 	if (pbn_used > pbn_limit) {
+-		DRM_DEBUG_ATOMIC("[MST BRANCH:%p] No available bandwidth\n",
+-				 branch);
++		DRM_DEBUG_ATOMIC("[MSTB:%p] Not enough bandwidth (need: %d)\n",
++				 branch, pbn_used);
+ 		return -ENOSPC;
+ 	}
+-	return 0;
++
++	DRM_DEBUG_ATOMIC("[MSTB:%p] using %d PBN\n", branch, pbn_used);
++
++	return pbn_used;
+ }
+=20
+ static inline int
+@@ -5085,9 +5134,15 @@ int drm_dp_mst_atomic_check(struct drm_atomic_stat=
+e *state)
+ 		ret =3D drm_dp_mst_atomic_check_vcpi_alloc_limit(mgr, mst_state);
+ 		if (ret)
+ 			break;
+-		ret =3D drm_dp_mst_atomic_check_bw_limit(mgr->mst_primary, mst_state);
+-		if (ret)
++
++		mutex_lock(&mgr->lock);
++		ret =3D drm_dp_mst_atomic_check_bw_limit(mgr->mst_primary,
++						       mst_state);
++		mutex_unlock(&mgr->lock);
++		if (ret < 0)
+ 			break;
++		else
++			ret =3D 0;
+ 	}
+=20
  	return ret;
 --=20
 2.24.1
