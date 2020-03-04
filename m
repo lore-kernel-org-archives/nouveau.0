@@ -1,306 +1,186 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v3 4/4] nouveau/hmm: map pages after migration
-Date: Tue, 3 Mar 2020 16:13:39 -0800
-Message-ID: <20200304001339.8248-5-rcampbell@nvidia.com>
-References: <20200304001339.8248-1-rcampbell@nvidia.com>
+From: Mika Westerberg <mika.westerberg@intel.com>
+Subject: Re: [PATCH v6] pci: prevent putting nvidia GPUs into lower device
+ states on certain intel bridges
+Date: Wed, 4 Mar 2020 11:33:24 +0200
+Message-ID: <20200304093324.GI2540@lahna.fi.intel.com>
+References: <20200303101052.133631-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <20200304001339.8248-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-pci-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20200303101052.133631-1-kherbst@redhat.com>
+Sender: linux-pci-owner@vger.kernel.org
+To: Karol Herbst <kherbst@redhat.com>
+Cc: linux-kernel@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-When memory is migrated to the GPU, it is likely to be accessed by GPU
-code soon afterwards. Instead of waiting for a GPU fault, map the
-migrated memory into the GPU page tables with the same access permissions
-as the source CPU page table entries. This preserves copy on write
-semantics.
+Hi,
 
-Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Cc: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-Cc: "J=C3=A9r=C3=B4me Glisse" <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_dmem.c | 46 +++++++++++++-------
- drivers/gpu/drm/nouveau/nouveau_dmem.h |  2 +
- drivers/gpu/drm/nouveau/nouveau_svm.c  | 59 +++++++++++++++++++++++++-
- drivers/gpu/drm/nouveau/nouveau_svm.h  |  5 +++
- 4 files changed, 95 insertions(+), 17 deletions(-)
+On Tue, Mar 03, 2020 at 11:10:52AM +0100, Karol Herbst wrote:
+> Fixes state transitions of Nvidia Pascal GPUs from D3cold into higher device
+> states.
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouve=
-au/nouveau_dmem.c
-index 0ad5d87b5a8e..981c05a2a6ca 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -25,11 +25,13 @@
- #include "nouveau_dma.h"
- #include "nouveau_mem.h"
- #include "nouveau_bo.h"
-+#include "nouveau_svm.h"
-=20
- #include <nvif/class.h>
- #include <nvif/object.h>
- #include <nvif/if500b.h>
- #include <nvif/if900b.h>
-+#include <nvif/if000c.h>
-=20
- #include <linux/sched/mm.h>
- #include <linux/hmm.h>
-@@ -558,10 +560,11 @@ nouveau_dmem_init(struct nouveau_drm *drm)
- }
-=20
- static unsigned long nouveau_dmem_migrate_copy_one(struct nouveau_drm *drm=
-,
--		unsigned long src, dma_addr_t *dma_addr)
-+		unsigned long src, dma_addr_t *dma_addr, u64 *pfn)
- {
- 	struct device *dev =3D drm->dev->dev;
- 	struct page *dpage, *spage;
-+	unsigned long paddr;
-=20
- 	spage =3D migrate_pfn_to_page(src);
- 	if (!spage || !(src & MIGRATE_PFN_MIGRATE))
-@@ -569,17 +572,21 @@ static unsigned long nouveau_dmem_migrate_copy_one(st=
-ruct nouveau_drm *drm,
-=20
- 	dpage =3D nouveau_dmem_page_alloc_locked(drm);
- 	if (!dpage)
--		return 0;
-+		goto out;
-=20
- 	*dma_addr =3D dma_map_page(dev, spage, 0, PAGE_SIZE, DMA_BIDIRECTIONAL);
- 	if (dma_mapping_error(dev, *dma_addr))
- 		goto out_free_page;
-=20
-+	paddr =3D nouveau_dmem_page_addr(dpage);
- 	if (drm->dmem->migrate.copy_func(drm, 1, NOUVEAU_APER_VRAM,
--			nouveau_dmem_page_addr(dpage), NOUVEAU_APER_HOST,
--			*dma_addr))
-+			paddr, NOUVEAU_APER_HOST, *dma_addr))
- 		goto out_dma_unmap;
-=20
-+	*pfn =3D NVIF_VMM_PFNMAP_V0_V | NVIF_VMM_PFNMAP_V0_VRAM |
-+		((paddr >> PAGE_SHIFT) << NVIF_VMM_PFNMAP_V0_ADDR_SHIFT);
-+	if (src & MIGRATE_PFN_WRITE)
-+		*pfn |=3D NVIF_VMM_PFNMAP_V0_W;
- 	return migrate_pfn(page_to_pfn(dpage)) | MIGRATE_PFN_LOCKED;
-=20
- out_dma_unmap:
-@@ -587,18 +594,20 @@ static unsigned long nouveau_dmem_migrate_copy_one(st=
-ruct nouveau_drm *drm,
- out_free_page:
- 	nouveau_dmem_page_free_locked(drm, dpage);
- out:
-+	*pfn =3D NVIF_VMM_PFNMAP_V0_NONE;
- 	return 0;
- }
-=20
- static void nouveau_dmem_migrate_chunk(struct nouveau_drm *drm,
--		struct migrate_vma *args, dma_addr_t *dma_addrs)
-+		struct nouveau_svmm *svmm, struct migrate_vma *args,
-+		dma_addr_t *dma_addrs, u64 *pfns)
- {
- 	struct nouveau_fence *fence;
- 	unsigned long addr =3D args->start, nr_dma =3D 0, i;
-=20
- 	for (i =3D 0; addr < args->end; i++) {
- 		args->dst[i] =3D nouveau_dmem_migrate_copy_one(drm, args->src[i],
--				dma_addrs + nr_dma);
-+				dma_addrs + nr_dma, pfns + i);
- 		if (args->dst[i])
- 			nr_dma++;
- 		addr +=3D PAGE_SIZE;
-@@ -607,20 +616,18 @@ static void nouveau_dmem_migrate_chunk(struct nouveau=
-_drm *drm,
- 	nouveau_fence_new(drm->dmem->migrate.chan, false, &fence);
- 	migrate_vma_pages(args);
- 	nouveau_dmem_fence_done(&fence);
-+	nouveau_pfns_map(svmm, args->vma->vm_mm, args->start, pfns, i);
-=20
- 	while (nr_dma--) {
- 		dma_unmap_page(drm->dev->dev, dma_addrs[nr_dma], PAGE_SIZE,
- 				DMA_BIDIRECTIONAL);
- 	}
--	/*
--	 * FIXME optimization: update GPU page table to point to newly migrated
--	 * memory.
--	 */
- 	migrate_vma_finalize(args);
- }
-=20
- int
- nouveau_dmem_migrate_vma(struct nouveau_drm *drm,
-+			 struct nouveau_svmm *svmm,
- 			 struct vm_area_struct *vma,
- 			 unsigned long start,
- 			 unsigned long end)
-@@ -632,7 +639,8 @@ nouveau_dmem_migrate_vma(struct nouveau_drm *drm,
- 		.vma		=3D vma,
- 		.start		=3D start,
- 	};
--	unsigned long c, i;
-+	unsigned long i;
-+	u64 *pfns;
- 	int ret =3D -ENOMEM;
-=20
- 	args.src =3D kcalloc(max, sizeof(*args.src), GFP_KERNEL);
-@@ -646,19 +654,25 @@ nouveau_dmem_migrate_vma(struct nouveau_drm *drm,
- 	if (!dma_addrs)
- 		goto out_free_dst;
-=20
--	for (i =3D 0; i < npages; i +=3D c) {
--		c =3D min(SG_MAX_SINGLE_ALLOC, npages);
--		args.end =3D start + (c << PAGE_SHIFT);
-+	pfns =3D nouveau_pfns_alloc(max);
-+	if (!pfns)
-+		goto out_free_dma;
-+
-+	for (i =3D 0; i < npages; i +=3D max) {
-+		args.end =3D start + (max << PAGE_SHIFT);
- 		ret =3D migrate_vma_setup(&args);
- 		if (ret)
--			goto out_free_dma;
-+			goto out_free_pfns;
-=20
- 		if (args.cpages)
--			nouveau_dmem_migrate_chunk(drm, &args, dma_addrs);
-+			nouveau_dmem_migrate_chunk(drm, svmm, &args, dma_addrs,
-+						   pfns);
- 		args.start =3D args.end;
- 	}
-=20
- 	ret =3D 0;
-+out_free_pfns:
-+	nouveau_pfns_free(pfns);
- out_free_dma:
- 	kfree(dma_addrs);
- out_free_dst:
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.h b/drivers/gpu/drm/nouve=
-au/nouveau_dmem.h
-index 92394be5d649..3e03d9629a38 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.h
-@@ -25,6 +25,7 @@
- struct drm_device;
- struct drm_file;
- struct nouveau_drm;
-+struct nouveau_svmm;
- struct hmm_range;
-=20
- #if IS_ENABLED(CONFIG_DRM_NOUVEAU_SVM)
-@@ -34,6 +35,7 @@ void nouveau_dmem_suspend(struct nouveau_drm *);
- void nouveau_dmem_resume(struct nouveau_drm *);
-=20
- int nouveau_dmem_migrate_vma(struct nouveau_drm *drm,
-+			     struct nouveau_svmm *svmm,
- 			     struct vm_area_struct *vma,
- 			     unsigned long start,
- 			     unsigned long end);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouvea=
-u/nouveau_svm.c
-index 8dfa5cb74826..d33ae94c28ba 100644
---- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-@@ -70,6 +70,12 @@ struct nouveau_svm {
- #define SVM_DBG(s,f,a...) NV_DEBUG((s)->drm, "svm: "f"\n", ##a)
- #define SVM_ERR(s,f,a...) NV_WARN((s)->drm, "svm: "f"\n", ##a)
-=20
-+struct nouveau_pfnmap_args {
-+	struct nvif_ioctl_v0 i;
-+	struct nvif_ioctl_mthd_v0 m;
-+	struct nvif_vmm_pfnmap_v0 p;
-+};
-+
- struct nouveau_ivmm {
- 	struct nouveau_svmm *svmm;
- 	u64 inst;
-@@ -187,7 +193,8 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
- 		addr =3D max(addr, vma->vm_start);
- 		next =3D min(vma->vm_end, end);
- 		/* This is a best effort so we ignore errors */
--		nouveau_dmem_migrate_vma(cli->drm, vma, addr, next);
-+		nouveau_dmem_migrate_vma(cli->drm, cli->svm.svmm, vma, addr,
-+					 next);
- 		addr =3D next;
- 	}
-=20
-@@ -785,6 +792,56 @@ nouveau_svm_fault(struct nvif_notify *notify)
- 	return NVIF_NOTIFY_KEEP;
- }
-=20
-+static struct nouveau_pfnmap_args *
-+nouveau_pfns_to_args(void *pfns)
-+{
-+	return container_of(pfns, struct nouveau_pfnmap_args, p.phys);
-+}
-+
-+u64 *
-+nouveau_pfns_alloc(unsigned long npages)
-+{
-+	struct nouveau_pfnmap_args *args;
-+
-+	args =3D kzalloc(struct_size(args, p.phys, npages), GFP_KERNEL);
-+	if (!args)
-+		return NULL;
-+
-+	args->i.type =3D NVIF_IOCTL_V0_MTHD;
-+	args->m.method =3D NVIF_VMM_V0_PFNMAP;
-+	args->p.page =3D PAGE_SHIFT;
-+
-+	return args->p.phys;
-+}
-+
-+void
-+nouveau_pfns_free(u64 *pfns)
-+{
-+	struct nouveau_pfnmap_args *args =3D nouveau_pfns_to_args(pfns);
-+
-+	kfree(args);
-+}
-+
-+void
-+nouveau_pfns_map(struct nouveau_svmm *svmm, struct mm_struct *mm,
-+		 unsigned long addr, u64 *pfns, unsigned long npages)
-+{
-+	struct nouveau_pfnmap_args *args =3D nouveau_pfns_to_args(pfns);
-+	int ret;
-+
-+	args->p.addr =3D addr;
-+	args->p.size =3D npages << PAGE_SHIFT;
-+
-+	mutex_lock(&svmm->mutex);
-+
-+	svmm->vmm->vmm.object.client->super =3D true;
-+	ret =3D nvif_object_ioctl(&svmm->vmm->vmm.object, args, sizeof(*args) +
-+				npages * sizeof(args->p.phys[0]), NULL);
-+	svmm->vmm->vmm.object.client->super =3D false;
-+
-+	mutex_unlock(&svmm->mutex);
-+}
-+
- static void
- nouveau_svm_fault_buffer_fini(struct nouveau_svm *svm, int id)
- {
-diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.h b/drivers/gpu/drm/nouvea=
-u/nouveau_svm.h
-index e839d8189461..f0fcd1b72e8b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_svm.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_svm.h
-@@ -18,6 +18,11 @@ void nouveau_svmm_fini(struct nouveau_svmm **);
- int nouveau_svmm_join(struct nouveau_svmm *, u64 inst);
- void nouveau_svmm_part(struct nouveau_svmm *, u64 inst);
- int nouveau_svmm_bind(struct drm_device *, void *, struct drm_file *);
-+
-+u64 *nouveau_pfns_alloc(unsigned long npages);
-+void nouveau_pfns_free(u64 *pfns);
-+void nouveau_pfns_map(struct nouveau_svmm *svmm, struct mm_struct *mm,
-+		      unsigned long addr, u64 *pfns, unsigned long npages);
- #else /* IS_ENABLED(CONFIG_DRM_NOUVEAU_SVM) */
- static inline void nouveau_svm_init(struct nouveau_drm *drm) {}
- static inline void nouveau_svm_fini(struct nouveau_drm *drm) {}
---=20
-2.20.1
+I think it is good to explain bit more here why this fix is needed.
+
+> v2: convert to pci_dev quirk
+>     put a proper technical explanation of the issue as a in-code comment
+> v3: disable it only for certain combinations of intel and nvidia hardware
+> v4: simplify quirk by setting flag on the GPU itself
+> v5: restructure quirk to make it easier to add new IDs
+>     fix whitespace issues
+>     fix potential NULL pointer access
+>     update the quirk documentation
+> v6: move quirk into nouveau
+
+This information typically goes under the '---' line.
+
+> Signed-off-by: Karol Herbst <kherbst@redhat.com>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Rafael J. Wysocki <rjw@rjwysocki.net>
+> Cc: Mika Westerberg <mika.westerberg@intel.com>
+
+I have few minor comments but regardless,
+
+Reviewed-by: Mika Westerberg <mika.westerberg@linux.intel.com>
+
+> Cc: linux-pci@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: nouveau@lists.freedesktop.org
+> Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=205623
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_drm.c | 56 +++++++++++++++++++++++++++
+>  drivers/pci/pci.c                     |  8 ++++
+>  include/linux/pci.h                   |  1 +
+>  3 files changed, 65 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> index 2cd83849600f..51d3a7ba7731 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> @@ -618,6 +618,59 @@ nouveau_drm_device_fini(struct drm_device *dev)
+>  	kfree(drm);
+>  }
+>  
+> +/*
+> + * On some Intel PCIe bridge controllers doing a
+> + * D0 -> D3hot -> D3cold -> D0 sequence causes Nvidia GPUs to not reappear.
+> + * Skipping the intermediate D3hot step seems to make it work again. Thise is
+                                                                        ^^^^^
+Thise -> This
+
+> + * probably caused by not meeting the expectation the involved AML code has
+> + * when the GPU is put into D3hot state before invoking it.
+> + *
+> + * This leads to various manifestations of this issue:
+> + *  - AML code execution to power on the GPU hits an infinite loop (as the
+> + *    code waits on device memory to change).
+> + *  - kernel crashes, as all PCI reads return -1, which most code isn't able
+> + *    to handle well enough.
+> + *
+> + * In all cases dmesg will contain at least one line like this:
+> + * 'nouveau 0000:01:00.0: Refused to change power state, currently in D3'
+> + * followed by a lot of nouveau timeouts.
+> + *
+> + * In the \_SB.PCI0.PEG0.PG00._OFF code deeper down writes bit 0x80 to the not
+> + * documented PCI config space register 0x248 of the Intel PCIe bridge
+> + * controller (0x1901) in order to change the state of the PCIe link between
+> + * the PCIe port and the GPU. There are alternative code paths using other
+> + * registers, which seem to work fine (executed pre Windows 8):
+> + *  - 0xbc bit 0x20 (publicly available documentation claims 'reserved')
+> + *  - 0xb0 bit 0x10 (link disable)
+> + * Changing the conditions inside the firmware by poking into the relevant
+> + * addresses does resolve the issue, but it seemed to be ACPI private memory
+> + * and not any device accessible memory at all, so there is no portable way of
+> + * changing the conditions.
+> + * On a XPS 9560 that means bits [0,3] on \CPEX need to be cleared.
+> + *
+> + * The only systems where this behavior can be seen are hybrid graphics laptops
+> + * with a secondary Nvidia Maxwell, Pascal or Turing GPU. Its unclear wheather
+                                                             ^^^         ^^^^^^^^
+Its -> It's
+wheather -> whether
+
+> + * this issue only occurs in combination with listed Intel PCIe bridge
+> + * controllers and the mentioned GPUs or other devices as well.
+> + *
+> + * documentation on the PCIe bridge controller can be found in the
+> + * "7th Generation Intel® Processor Families for H Platforms Datasheet Volume 2"
+> + * Section "12 PCI Express* Controller (x16) Registers"
+> + */
+> +
+> +static void quirk_broken_nv_runpm(struct pci_dev *dev)
+> +{
+> +	struct pci_dev *bridge = pci_upstream_bridge(dev);
+> +
+> +	if (!bridge || bridge->vendor != PCI_VENDOR_ID_INTEL)
+> +		return;
+> +
+> +	switch (bridge->device) {
+> +	case 0x1901:
+> +		dev->parent_d3cold = 1;
+
+I think it is better to add
+
+		break;
+
+here.
+
+> +	}
+> +}
+> +
+>  static int nouveau_drm_probe(struct pci_dev *pdev,
+>  			     const struct pci_device_id *pent)
+>  {
+> @@ -699,6 +752,7 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+>  	if (ret)
+>  		goto fail_drm_dev_init;
+>  
+> +	quirk_broken_nv_runpm(pdev);
+>  	return 0;
+>  
+>  fail_drm_dev_init:
+> @@ -737,6 +791,8 @@ nouveau_drm_remove(struct pci_dev *pdev)
+>  {
+>  	struct drm_device *dev = pci_get_drvdata(pdev);
+>  
+> +	/* revert our workaround */
+> +	pdev->parent_d3cold = false;
+>  	nouveau_drm_device_remove(dev);
+>  }
+>  
+> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> index 951099279192..6ece05723fa2 100644
+> --- a/drivers/pci/pci.c
+> +++ b/drivers/pci/pci.c
+> @@ -860,6 +860,14 @@ static int pci_raw_set_power_state(struct pci_dev *dev, pci_power_t state)
+>  	   || (state == PCI_D2 && !dev->d2_support))
+>  		return -EIO;
+>  
+> +	/*
+> +	 * Power management can be disabled for certain devices as they don't
+> +	 * come back up later on runtime_resume. We rely on platform means to
+> +	 * cut power consumption instead (e.g. ACPI).
+> +	 */
+> +	if (state != PCI_D0 && dev->parent_d3cold)
+> +		return 0;
+> +
+>  	pci_read_config_word(dev, dev->pm_cap + PCI_PM_CTRL, &pmcsr);
+>  	if (pmcsr == (u16) ~0) {
+>  		pci_err(dev, "can't change power state from %s to %s (config space inaccessible)\n",
+> diff --git a/include/linux/pci.h b/include/linux/pci.h
+> index 930fab293073..3e5938b91966 100644
+> --- a/include/linux/pci.h
+> +++ b/include/linux/pci.h
+> @@ -340,6 +340,7 @@ struct pci_dev {
+>  	unsigned int	no_d3cold:1;	/* D3cold is forbidden */
+>  	unsigned int	bridge_d3:1;	/* Allow D3 for bridge */
+>  	unsigned int	d3cold_allowed:1;	/* D3cold is allowed by user */
+> +	unsigned int	parent_d3cold:1;	/* power manage the parent instead */
+
+Just to be consistent with the other comments, start with a capital
+letter:
+
+	unsigned int	parent_d3cold:1;	/* Power manage the parent instead */
