@@ -1,39 +1,41 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: Re: [PATCH v2] nouveau/hmm: map pages after migration
-Date: Wed, 4 Mar 2020 17:27:52 +0100
-Message-ID: <20200304162752.GB11616@lst.de>
-References: <20200303010023.2983-1-rcampbell@nvidia.com> <20200303124229.GH26318@mellanox.com> <1f27ac9e-7ddf-6e4f-25ea-063ef6c78761@nvidia.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH 0/3] drm/dp_mst: Fix bandwidth checking regressions from DSC patches
+Date: Wed,  4 Mar 2020 17:36:10 -0500
+Message-ID: <20200304223614.312023-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1f27ac9e-7ddf-6e4f-25ea-063ef6c78761-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: Mikita Lipski <mikita.lipski@amd.com>, Alex Deucher <alexander.deucher@amd.com>, Sean Paul <seanpaul@google.com>, Hans de Goede <hdegoede@redhat.com>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, Lyude Paul <lyude@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Mar 03, 2020 at 01:15:21PM -0800, Ralph Campbell wrote:
->>> +static inline struct nouveau_pfnmap_args *
->>> +nouveau_pfns_to_args(void *pfns)
->>
->> don't use static inline inside C files
->
-> OK.
->
->>> +{
->>> +	struct nvif_vmm_pfnmap_v0 *p =
->>> +		container_of(pfns, struct nvif_vmm_pfnmap_v0, phys);
->>> +
->>> +	return container_of(p, struct nouveau_pfnmap_args, p);
->>
->> And this should just be
->>
->>     return container_of(pfns, struct nouveau_pfnmap_args, p.phys);
->
-> Much simpler, thanks.
+AMD's patch series for adding DSC support to the MST helpers
+unfortunately introduced a few regressions into the kernel that I didn't
+get around to fixing until just now. I would have reverted the changes
+earlier, but seeing as that would have reverted all of amd's DSC support
++ everything that was done on top of that I realllllly wanted to avoid
+doing that.
 
-Btw, for the case where we just have an container_of wrapper I strongly
-disagree with avoiding the inline - not inlining this would be stupid,
-but unfortunately compilers often behave stupidly.  It also is a very
-clear marker.
+Anyway, this should fix everything as far as I can tell. Note that I
+don't have any DSC displays locally yet, so if someone from AMD could
+sanity check this I would appreciate it =E2=99=A5.
+
+Cc: Mikita Lipski <mikita.lipski@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Sean Paul <seanpaul@google.com>
+Cc: Hans de Goede <hdegoede@redhat.com>
+
+Lyude Paul (3):
+  drm/dp_mst: Rename drm_dp_mst_is_dp_mst_end_device() to be less
+    redundant
+  drm/dp_mst: Don't show connectors as connected before probing
+    available PBN
+  drm/dp_mst: Rewrite and fix bandwidth limit checks
+
+ drivers/gpu/drm/drm_dp_mst_topology.c | 124 ++++++++++++++++++++------
+ 1 file changed, 96 insertions(+), 28 deletions(-)
+
+--=20
+2.24.1
