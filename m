@@ -1,202 +1,27 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 3/3] drm/dp_mst: Rewrite and fix bandwidth limit checks
-Date: Wed,  4 Mar 2020 17:36:13 -0500
-Message-ID: <20200304223614.312023-4-lyude@redhat.com>
-References: <20200304223614.312023-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200304223614.312023-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Mikita Lipski <mikita.lipski@amd.com>, Alex Deucher <alexander.deucher@amd.com>, Sean Paul <seanpaul@google.com>, Hans de Goede <hdegoede@redhat.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org
+From: Mikel Rychliski <mikel@mikelr.com>
+Subject: [PATCH v2 0/2] Fix loading of platform ROM from 32-bit EFI
+Date: Wed,  4 Mar 2020 22:41:24 -0500
+Message-ID: <20200305034126.6989-1-mikel@mikelr.com>
+Return-path: <linux-pci-owner@vger.kernel.org>
+Sender: linux-pci-owner@vger.kernel.org
+To: amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, Bjorn Helgaas <bhelgaas@google.com>, Matthew Garrett <matthewgarrett@google.com>, Ben Skeggs <bskeggs@redhat.com>, Mikel Rychliski <mikel@mikelr.com>
 List-Id: nouveau.vger.kernel.org
 
-Sigh, this is mostly my fault for not giving commit cd82d82cbc04
-("drm/dp_mst: Add branch bandwidth validation to MST atomic check")
-enough scrutiny during review. The way we're checking bandwidth
-limitations here is mostly wrong.
+This patch series fixes an oops when loading the radeon driver on old Macs
+with a 32-bit EFI implementation.
 
-First things first, we need to follow the locking conventions for MST.
-Whenever traversing downwards (upwards is always safe) in the topology,
-we need to hold &mgr->lock to prevent the topology from changing under
-us. We don't currently do that when performing bandwidth limit checks.
+Tested on a MacPro 1,1 with a Radeon X1900 XT card and 32-bit kernel.
 
-Next we need to figure out the actual PBN limit for the primary MSTB.
-Here we actually want to use the highest available_pbn value we can find
-on each level of the topology, then make sure that the combined sum of
-allocated PBN on each port of the branch device doesn't exceed that
-amount. Currently, we just loop through each level of the topology and
-use the last non-zero PBN we find.
+Mikel Rychliski (2):
+  drm/radeon: Stop directly referencing iomem
+  PCI: Use ioremap(), not phys_to_virt() for platform ROM
 
-Once we've done that, we then want to traverse down each branch device
-we find in the topology with at least one downstream port that has PBN
-allocated in our atomic state, and repeat the whole process on each
-level of the topology as we travel down. While doing this, we need to
-take care to avoid attempting to traverse down end devices. We don't
-currently do this, although I'm not actually sure whether or not this
-broke anything before.
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c             |  1 +
+ drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c | 11 ++++++++++-
+ drivers/gpu/drm/radeon/radeon_bios.c                 | 12 ++++++++----
+ drivers/pci/rom.c                                    |  9 ++++++---
+ 4 files changed, 25 insertions(+), 8 deletions(-)
 
-Since there's a bit too many issues here to try to fix one by one, and
-the drm_dp_mst_atomic_check_bw_limit() code is not entirely clear on all
-of these pain points anyway, let's just take the easy way out and
-rewrite the whole function. Additionally, we also add a kernel warning
-if we find that any ports we performed bandwidth limit checks on didn't
-actually have available_pbn populated - as this is always a bug in the
-MST helpers.
-
-This should fix regressions seen on nouveau, i915 and amdgpu where we
-erroneously reject atomic states that should fit within bandwidth
-limitations.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Fixes: cd82d82cbc04 ("drm/dp_mst: Add branch bandwidth validation to MST =
-atomic check")
-Cc: Mikita Lipski <mikita.lipski@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Sean Paul <seanpaul@google.com>
-Cc: Hans de Goede <hdegoede@redhat.com>
----
- drivers/gpu/drm/drm_dp_mst_topology.c | 101 ++++++++++++++++++++------
- 1 file changed, 78 insertions(+), 23 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_=
-dp_mst_topology.c
-index 7b0ff0cff954..87dc7c92d339 100644
---- a/drivers/gpu/drm/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-@@ -4853,41 +4853,90 @@ static bool drm_dp_mst_port_downstream_of_branch(=
-struct drm_dp_mst_port *port,
- 	return false;
- }
-=20
--static inline
--int drm_dp_mst_atomic_check_bw_limit(struct drm_dp_mst_branch *branch,
--				     struct drm_dp_mst_topology_state *mst_state)
-+static int
-+drm_dp_mst_atomic_check_bw_limit(struct drm_dp_mst_branch *branch,
-+				 struct drm_dp_mst_topology_state *mst_state)
- {
- 	struct drm_dp_mst_port *port;
- 	struct drm_dp_vcpi_allocation *vcpi;
--	int pbn_limit =3D 0, pbn_used =3D 0;
-+	int pbn_limit =3D 0, pbn_used =3D 0, ret;
-=20
--	list_for_each_entry(port, &branch->ports, next) {
--		if (port->mstb)
--			if (drm_dp_mst_atomic_check_bw_limit(port->mstb, mst_state))
--				return -ENOSPC;
-+	if (branch->port_parent)
-+		DRM_DEBUG_ATOMIC("[MSTB:%p] [MST PORT:%p] checking [MSTB:%p]\n",
-+				 branch->port_parent->parent,
-+				 branch->port_parent, branch);
-+	else
-+		DRM_DEBUG_ATOMIC("Checking [MSTB:%p]\n", branch);
-=20
--		if (port->available_pbn > 0)
-+	list_for_each_entry(port, &branch->ports, next) {
-+		/* Since each port shares a link, the highest PBN we find
-+		 * should be assumed to be the limit for this branch device
-+		 */
-+		if (pbn_limit < port->available_pbn)
- 			pbn_limit =3D port->available_pbn;
--	}
--	DRM_DEBUG_ATOMIC("[MST BRANCH:%p] branch has %d PBN available\n",
--			 branch, pbn_limit);
-=20
--	list_for_each_entry(vcpi, &mst_state->vcpis, next) {
--		if (!vcpi->pbn)
-+		if (port->pdt =3D=3D DP_PEER_DEVICE_NONE)
- 			continue;
-=20
--		if (drm_dp_mst_port_downstream_of_branch(vcpi->port, branch))
--			pbn_used +=3D vcpi->pbn;
-+		if (drm_dp_mst_is_end_device(port->pdt, port->mcs)) {
-+			list_for_each_entry(vcpi, &mst_state->vcpis, next) {
-+				if (vcpi->port !=3D port)
-+					continue;
-+				if (!vcpi->pbn)
-+					break;
-+
-+				/* This should never happen, as it means we
-+				 * tried to set a mode before querying the
-+				 * available_pbn
-+				 */
-+				if (WARN_ON(!port->available_pbn))
-+					return -EINVAL;
-+
-+				if (vcpi->pbn > port->available_pbn) {
-+					DRM_DEBUG_ATOMIC("[MSTB:%p] [MST PORT:%p] %d exceeds available PBN =
-of %d\n",
-+							 branch, port,
-+							 vcpi->pbn,
-+							 port->available_pbn);
-+					return -ENOSPC;
-+				}
-+
-+				DRM_DEBUG_ATOMIC("[MSTB:%p] [MST PORT:%p] using %d PBN\n",
-+						 branch, port, vcpi->pbn);
-+				pbn_used +=3D vcpi->pbn;
-+				break;
-+			}
-+		} else {
-+			list_for_each_entry(vcpi, &mst_state->vcpis, next) {
-+				if (!vcpi->pbn ||
-+				    !drm_dp_mst_port_downstream_of_branch(vcpi->port,
-+									  port->mstb))
-+					continue;
-+
-+				ret =3D drm_dp_mst_atomic_check_bw_limit(port->mstb,
-+								       mst_state);
-+				if (ret < 0)
-+					return ret;
-+
-+				pbn_used +=3D ret;
-+				break;
-+			}
-+		}
- 	}
--	DRM_DEBUG_ATOMIC("[MST BRANCH:%p] branch used %d PBN\n",
--			 branch, pbn_used);
-+	if (!pbn_used)
-+		return 0;
-+
-+	DRM_DEBUG_ATOMIC("[MSTB:%p] has total available PBN of %d\n",
-+			 branch, pbn_limit);
-=20
- 	if (pbn_used > pbn_limit) {
--		DRM_DEBUG_ATOMIC("[MST BRANCH:%p] No available bandwidth\n",
--				 branch);
-+		DRM_DEBUG_ATOMIC("[MSTB:%p] Not enough bandwidth (need: %d)\n",
-+				 branch, pbn_used);
- 		return -ENOSPC;
- 	}
--	return 0;
-+
-+	DRM_DEBUG_ATOMIC("[MSTB:%p] using %d PBN\n", branch, pbn_used);
-+
-+	return pbn_used;
- }
-=20
- static inline int
-@@ -5085,9 +5134,15 @@ int drm_dp_mst_atomic_check(struct drm_atomic_stat=
-e *state)
- 		ret =3D drm_dp_mst_atomic_check_vcpi_alloc_limit(mgr, mst_state);
- 		if (ret)
- 			break;
--		ret =3D drm_dp_mst_atomic_check_bw_limit(mgr->mst_primary, mst_state);
--		if (ret)
-+
-+		mutex_lock(&mgr->lock);
-+		ret =3D drm_dp_mst_atomic_check_bw_limit(mgr->mst_primary,
-+						       mst_state);
-+		mutex_unlock(&mgr->lock);
-+		if (ret < 0)
- 			break;
-+		else
-+			ret =3D 0;
- 	}
-=20
- 	return ret;
---=20
-2.24.1
+-- 
+2.13.7
