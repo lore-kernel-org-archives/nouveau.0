@@ -1,63 +1,107 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 0/3] drm/dp_mst: Fix bandwidth checking
- regressions from DSC patches
-Date: Thu, 5 Mar 2020 17:41:04 +0100
-Message-ID: <89275eb6-662d-73d1-a593-8271df5aadc0@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH 2/3] drm/dp_mst: Don't show connectors as connected
+ before probing available PBN
+Date: Thu, 05 Mar 2020 13:13:36 -0500
+Message-ID: <73f52c392431cd21a80a118dd2fd1986e2c535df.camel@redhat.com>
 References: <20200304223614.312023-1-lyude@redhat.com>
+         <20200304223614.312023-3-lyude@redhat.com>
+         <20200305131119.GJ13686@intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200304223614.312023-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Sean Paul <seanpaul-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Maxime Ripard <mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Mikita Lipski <mikita.lipski-5C7GfCeVMHo@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200305131119.GJ13686@intel.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, Sean Paul <seanpaul@google.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>, Alex Deucher <alexander.deucher@amd.com>, Mikita Lipski <mikita.lipski@amd.com>
 List-Id: nouveau.vger.kernel.org
 
-SGkgTHl1ZGUsCgpPbiAzLzQvMjAgMTE6MzYgUE0sIEx5dWRlIFBhdWwgd3JvdGU6Cj4gQU1EJ3Mg
-cGF0Y2ggc2VyaWVzIGZvciBhZGRpbmcgRFNDIHN1cHBvcnQgdG8gdGhlIE1TVCBoZWxwZXJzCj4g
-dW5mb3J0dW5hdGVseSBpbnRyb2R1Y2VkIGEgZmV3IHJlZ3Jlc3Npb25zIGludG8gdGhlIGtlcm5l
-bCB0aGF0IEkgZGlkbid0Cj4gZ2V0IGFyb3VuZCB0byBmaXhpbmcgdW50aWwganVzdCBub3cuIEkg
-d291bGQgaGF2ZSByZXZlcnRlZCB0aGUgY2hhbmdlcwo+IGVhcmxpZXIsIGJ1dCBzZWVpbmcgYXMg
-dGhhdCB3b3VsZCBoYXZlIHJldmVydGVkIGFsbCBvZiBhbWQncyBEU0Mgc3VwcG9ydAo+ICsgZXZl
-cnl0aGluZyB0aGF0IHdhcyBkb25lIG9uIHRvcCBvZiB0aGF0IEkgcmVhbGxsbGxseSB3YW50ZWQg
-dG8gYXZvaWQKPiBkb2luZyB0aGF0Lgo+IAo+IEFueXdheSwgdGhpcyBzaG91bGQgZml4IGV2ZXJ5
-dGhpbmcgYXMgZmFyIGFzIEkgY2FuIHRlbGwuIE5vdGUgdGhhdCBJCj4gZG9uJ3QgaGF2ZSBhbnkg
-RFNDIGRpc3BsYXlzIGxvY2FsbHkgeWV0LCBzbyBpZiBzb21lb25lIGZyb20gQU1EIGNvdWxkCj4g
-c2FuaXR5IGNoZWNrIHRoaXMgSSB3b3VsZCBhcHByZWNpYXRlIGl0IOKZpS4KClRoYW5rIHlvdSBm
-b3IgdHJ5aW5nIHRvIGZpeCB0aGlzLCB1bmZvcnR1bmF0ZWx5IGZvciBtZSB0aGlzIGlzIG5vdCBm
-aXhlZCwKd2l0aCB0aGlzIHNlcmllcy4gTXkgc2V0dXA6Cgo1LjYtcmM0ICsgeW91ciAzIHBhdGNo
-ZXMgKCsgc29tZSB1bnJlbGF0ZWQgcGF0Y2hlcyBvdXRzaWRlIG9mIGRybSkKCi1MZW5vdm8geDEg
-N3RoIGdlbiArCiAgTGVub3ZvIFRCMyBkb2NrIGdlbiAyICsKICAyIGV4dGVybmFsIDE5MjB4MTA4
-MEA2MCBtb25pdG9ycyBjb25uZWN0ZWQgdG8gdGhlIDIgSERNSSBpbnRlcmZhY2VzIG9uIHRoZSBk
-b2NrCi1TeXN0ZW0gYm9vdGVkIHdpdGggdGhlIExJRCBjbG9zZWQsIHNvIHRoYXQgdGhlIGZpcm13
-YXJlL0JJT1MgaGFzIGFscmVhZHkKICBpbml0aWFsaXplZCBib3RoIG1vbml0b3JzIHdoZW4gdGhl
-IGtlcm5lbCBib290cwoKVGhpcyBzaG91bGQgYmUgZmFpcmx5IGVhc3kgdG8gcmVwcm9kdWNlIG9u
-IGEgc2ltaWxhciBzZXR1cCwgb3RoZXIKdXNlcnMgYXJlIHNlZWluZyBzaW1pbGFyIHByb2JsZW1z
-IHdoZW4gY29ubmVjdGluZyBtb3JlIHRoZW4gMSBtb25pdG9yCnRvIERQLU1TVCBkb2Nrcywgc2Vl
-IGUuZy4gOgoKaHR0cHM6Ly9idWd6aWxsYS5yZWRoYXQuY29tL3Nob3dfYnVnLmNnaT9pZD0xODA5
-NjgxCmh0dHBzOi8vYnVnemlsbGEucmVkaGF0LmNvbS9zaG93X2J1Zy5jZ2k/aWQ9MTgxMDA3MAoK
-TGV0IG1lIGtub3cgaWYgeW91IHdhbnQgbWUgdG8gY29sbGVjdCBzb21lIGRybS5kZWJ1ZyBsb2dz
-LCBJIGd1ZXNzCmlmIHlvdSBkbywgeW91IHdhbnQgbWUgdG8gdXNlIGRybS5kZWJ1Zz0weDExNCA/
-CgpSZWdhcmRzLAoKSGFucwoKCgoKCj4gCj4gQ2M6IE1pa2l0YSBMaXBza2kgPG1pa2l0YS5saXBz
-a2lAYW1kLmNvbT4KPiBDYzogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29t
-Pgo+IENjOiBTZWFuIFBhdWwgPHNlYW5wYXVsQGdvb2dsZS5jb20+Cj4gQ2M6IEhhbnMgZGUgR29l
-ZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+Cj4gCj4gTHl1ZGUgUGF1bCAoMyk6Cj4gICAgZHJtL2Rw
-X21zdDogUmVuYW1lIGRybV9kcF9tc3RfaXNfZHBfbXN0X2VuZF9kZXZpY2UoKSB0byBiZSBsZXNz
-Cj4gICAgICByZWR1bmRhbnQKPiAgICBkcm0vZHBfbXN0OiBEb24ndCBzaG93IGNvbm5lY3RvcnMg
-YXMgY29ubmVjdGVkIGJlZm9yZSBwcm9iaW5nCj4gICAgICBhdmFpbGFibGUgUEJOCj4gICAgZHJt
-L2RwX21zdDogUmV3cml0ZSBhbmQgZml4IGJhbmR3aWR0aCBsaW1pdCBjaGVja3MKPiAKPiAgIGRy
-aXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMgfCAxMjQgKysrKysrKysrKysrKysr
-KysrKystLS0tLS0KPiAgIDEgZmlsZSBjaGFuZ2VkLCA5NiBpbnNlcnRpb25zKCspLCAyOCBkZWxl
-dGlvbnMoLSkKPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+On Thu, 2020-03-05 at 15:11 +0200, Ville Syrjälä wrote:
+> On Wed, Mar 04, 2020 at 05:36:12PM -0500, Lyude Paul wrote:
+> > It's next to impossible for us to do connector probing on topologies
+> > without occasionally racing with userspace, since creating a connector
+> > itself causes a hotplug event which we have to send before probing the
+> > available PBN of a connector. Even if we didn't have this hotplug event
+> > sent, there's still always a chance that userspace started probing
+> > connectors before we finished probing the topology.
+> > 
+> > This can be a problem when validating a new MST state since the
+> > connector will be shown as connected briefly, but without any available
+> > PBN - causing any atomic state which would enable said connector to fail
+> > with -ENOSPC. So, let's simply workaround this by telling userspace new
+> > MST connectors are disconnected until we've finished probing their PBN.
+> > Since we always send a hotplug event at the end of the link address
+> > probing process, userspace will still know to reprobe the connector when
+> > we're ready.
+> > 
+> > Signed-off-by: Lyude Paul <lyude@redhat.com>
+> > Fixes: cd82d82cbc04 ("drm/dp_mst: Add branch bandwidth validation to MST
+> > atomic check")
+> > Cc: Mikita Lipski <mikita.lipski@amd.com>
+> > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > Cc: Sean Paul <seanpaul@google.com>
+> > Cc: Hans de Goede <hdegoede@redhat.com>
+> > ---
+> >  drivers/gpu/drm/drm_dp_mst_topology.c | 13 +++++++++++++
+> >  1 file changed, 13 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c
+> > b/drivers/gpu/drm/drm_dp_mst_topology.c
+> > index 207eef08d12c..7b0ff0cff954 100644
+> > --- a/drivers/gpu/drm/drm_dp_mst_topology.c
+> > +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+> > @@ -4033,6 +4033,19 @@ drm_dp_mst_detect_port(struct drm_connector
+> > *connector,
+> >  			ret = connector_status_connected;
+> >  		break;
+> >  	}
+> > +
+> > +	/* We don't want to tell userspace the port is actually plugged into
+> > +	 * anything until we've finished probing it's available_pbn, otherwise
+> 
+> "its"
+> 
+> Why is the connector even registered before we've finished the probe?
+> 
+Oops, I'm not sure how I did this by accident but the explanation I gave in
+the commit message was uh, completely wrong. I must have forgotten that I made
+sure we didn't expose connectors before probing their PBN back when I started
+my MST cleanup....
+
+So: despite what I said before it's not actually when new connectors are
+created, it's when downstream hotplugs happen which means that the conenctor's
+always going to be there before we probe the available_pbn. I did just notice
+though that we send a hotplug on connection status notifications even before
+we've finished the PBN probe, so I might be able to improve on that as well.
+We still definitely want to report the connector as disconnected before we
+have the available PBN though, in case another probe was already going before
+we got the connection status notification.
+
+I'll make sure to fixup the explanation in the commit message on the next
+respin
+
+> > +	 * userspace will see racy atomic check failures
+> > +	 *
+> > +	 * Since we always send a hotplug at the end of probing topology
+> > +	 * state, we can just let userspace reprobe this connector later.
+> > +	 */
+> > +	if (ret == connector_status_connected && !port->available_pbn) {
+> > +		DRM_DEBUG_KMS("[CONNECTOR:%d:%s] not ready yet (PBN not
+> > probed)\n",
+> > +			      connector->base.id, connector->name);
+> > +		ret = connector_status_disconnected;
+> > +	}
+> >  out:
+> >  	drm_dp_mst_topology_put_port(port);
+> >  	return ret;
+> > -- 
+> > 2.24.1
+> > 
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+-- 
+Cheers,
+	Lyude Paul (she/her)
+	Associate Software Engineer at Red Hat
