@@ -1,85 +1,228 @@
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 2/3] drm/dp_mst: Don't show connectors as connected
- before probing available PBN
-Date: Thu, 5 Mar 2020 15:11:19 +0200
-Message-ID: <20200305131119.GJ13686@intel.com>
-References: <20200304223614.312023-1-lyude@redhat.com>
- <20200304223614.312023-3-lyude@redhat.com>
+From: Karol Herbst <kherbst@redhat.com>
+Subject: Re: [PATCH v6] pci: prevent putting nvidia GPUs into lower device
+ states on certain intel bridges
+Date: Thu, 5 Mar 2020 17:11:57 +0100
+Message-ID: <CACO55ts7VGUJoSM_X_huZ0o68+P6SaWgFKbQzkw=-F+Kh5WfcA@mail.gmail.com>
+References: <20200303101052.133631-1-kherbst@redhat.com> <20200304093324.GI2540@lahna.fi.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20200304223614.312023-3-lyude@redhat.com>
+In-Reply-To: <20200304093324.GI2540@lahna.fi.intel.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, Sean Paul <seanpaul@google.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>, Alex Deucher <alexander.deucher@amd.com>, Mikita Lipski <mikita.lipski@amd.com>
+To: Mika Westerberg <mika.westerberg@intel.com>
+Cc: LKML <linux-kernel@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Mar 04, 2020 at 05:36:12PM -0500, Lyude Paul wrote:
-> It's next to impossible for us to do connector probing on topologies
-> without occasionally racing with userspace, since creating a connector
-> itself causes a hotplug event which we have to send before probing the
-> available PBN of a connector. Even if we didn't have this hotplug event
-> sent, there's still always a chance that userspace started probing
-> connectors before we finished probing the topology.
-> 
-> This can be a problem when validating a new MST state since the
-> connector will be shown as connected briefly, but without any available
-> PBN - causing any atomic state which would enable said connector to fail
-> with -ENOSPC. So, let's simply workaround this by telling userspace new
-> MST connectors are disconnected until we've finished probing their PBN.
-> Since we always send a hotplug event at the end of the link address
-> probing process, userspace will still know to reprobe the connector when
-> we're ready.
-> 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Fixes: cd82d82cbc04 ("drm/dp_mst: Add branch bandwidth validation to MST atomic check")
-> Cc: Mikita Lipski <mikita.lipski@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Sean Paul <seanpaul@google.com>
-> Cc: Hans de Goede <hdegoede@redhat.com>
-> ---
->  drivers/gpu/drm/drm_dp_mst_topology.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-> index 207eef08d12c..7b0ff0cff954 100644
-> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> @@ -4033,6 +4033,19 @@ drm_dp_mst_detect_port(struct drm_connector *connector,
->  			ret = connector_status_connected;
->  		break;
->  	}
-> +
-> +	/* We don't want to tell userspace the port is actually plugged into
-> +	 * anything until we've finished probing it's available_pbn, otherwise
+On Wed, Mar 4, 2020 at 10:33 AM Mika Westerberg
+<mika.westerberg@intel.com> wrote:
+>
+> Hi,
+>
+> On Tue, Mar 03, 2020 at 11:10:52AM +0100, Karol Herbst wrote:
+> > Fixes state transitions of Nvidia Pascal GPUs from D3cold into higher d=
+evice
+> > states.
+>
+> I think it is good to explain bit more here why this fix is needed.
+>
 
-"its"
+is something like this fine?
 
-Why is the connector even registered before we've finished the probe?
+Fixes the infamous 'runpm' bug many users are facing on Laptops with Nvidia
+Pascal GPUs by skipping PCI power state changes on the GPU.
 
-> +	 * userspace will see racy atomic check failures
-> +	 *
-> +	 * Since we always send a hotplug at the end of probing topology
-> +	 * state, we can just let userspace reprobe this connector later.
-> +	 */
-> +	if (ret == connector_status_connected && !port->available_pbn) {
-> +		DRM_DEBUG_KMS("[CONNECTOR:%d:%s] not ready yet (PBN not probed)\n",
-> +			      connector->base.id, connector->name);
-> +		ret = connector_status_disconnected;
-> +	}
->  out:
->  	drm_dp_mst_topology_put_port(port);
->  	return ret;
-> -- 
-> 2.24.1
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+It's still unknown why this issue exists, but this is a reliable workaround
+and solves a very annoying issue for user having to choose between a
+crashing kernel or higher power consumption of their Laptops.
 
--- 
-Ville Syrjälä
-Intel
+> > v2: convert to pci_dev quirk
+> >     put a proper technical explanation of the issue as a in-code commen=
+t
+> > v3: disable it only for certain combinations of intel and nvidia hardwa=
+re
+> > v4: simplify quirk by setting flag on the GPU itself
+> > v5: restructure quirk to make it easier to add new IDs
+> >     fix whitespace issues
+> >     fix potential NULL pointer access
+> >     update the quirk documentation
+> > v6: move quirk into nouveau
+>
+> This information typically goes under the '---' line.
+>
+> > Signed-off-by: Karol Herbst <kherbst@redhat.com>
+> > Cc: Bjorn Helgaas <bhelgaas@google.com>
+> > Cc: Lyude Paul <lyude@redhat.com>
+> > Cc: Rafael J. Wysocki <rjw@rjwysocki.net>
+> > Cc: Mika Westerberg <mika.westerberg@intel.com>
+>
+> I have few minor comments but regardless,
+>
+> Reviewed-by: Mika Westerberg <mika.westerberg@linux.intel.com>
+>
+> > Cc: linux-pci@vger.kernel.org
+> > Cc: linux-pm@vger.kernel.org
+> > Cc: dri-devel@lists.freedesktop.org
+> > Cc: nouveau@lists.freedesktop.org
+> > Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=3D205623
+> > ---
+> >  drivers/gpu/drm/nouveau/nouveau_drm.c | 56 +++++++++++++++++++++++++++
+> >  drivers/pci/pci.c                     |  8 ++++
+> >  include/linux/pci.h                   |  1 +
+> >  3 files changed, 65 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/no=
+uveau/nouveau_drm.c
+> > index 2cd83849600f..51d3a7ba7731 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> > @@ -618,6 +618,59 @@ nouveau_drm_device_fini(struct drm_device *dev)
+> >       kfree(drm);
+> >  }
+> >
+> > +/*
+> > + * On some Intel PCIe bridge controllers doing a
+> > + * D0 -> D3hot -> D3cold -> D0 sequence causes Nvidia GPUs to not reap=
+pear.
+> > + * Skipping the intermediate D3hot step seems to make it work again. T=
+hise is
+>                                                                         ^=
+^^^^
+> Thise -> This
+>
+> > + * probably caused by not meeting the expectation the involved AML cod=
+e has
+> > + * when the GPU is put into D3hot state before invoking it.
+> > + *
+> > + * This leads to various manifestations of this issue:
+> > + *  - AML code execution to power on the GPU hits an infinite loop (as=
+ the
+> > + *    code waits on device memory to change).
+> > + *  - kernel crashes, as all PCI reads return -1, which most code isn'=
+t able
+> > + *    to handle well enough.
+> > + *
+> > + * In all cases dmesg will contain at least one line like this:
+> > + * 'nouveau 0000:01:00.0: Refused to change power state, currently in =
+D3'
+> > + * followed by a lot of nouveau timeouts.
+> > + *
+> > + * In the \_SB.PCI0.PEG0.PG00._OFF code deeper down writes bit 0x80 to=
+ the not
+> > + * documented PCI config space register 0x248 of the Intel PCIe bridge
+> > + * controller (0x1901) in order to change the state of the PCIe link b=
+etween
+> > + * the PCIe port and the GPU. There are alternative code paths using o=
+ther
+> > + * registers, which seem to work fine (executed pre Windows 8):
+> > + *  - 0xbc bit 0x20 (publicly available documentation claims 'reserved=
+')
+> > + *  - 0xb0 bit 0x10 (link disable)
+> > + * Changing the conditions inside the firmware by poking into the rele=
+vant
+> > + * addresses does resolve the issue, but it seemed to be ACPI private =
+memory
+> > + * and not any device accessible memory at all, so there is no portabl=
+e way of
+> > + * changing the conditions.
+> > + * On a XPS 9560 that means bits [0,3] on \CPEX need to be cleared.
+> > + *
+> > + * The only systems where this behavior can be seen are hybrid graphic=
+s laptops
+> > + * with a secondary Nvidia Maxwell, Pascal or Turing GPU. Its unclear =
+wheather
+>                                                              ^^^         =
+^^^^^^^^
+> Its -> It's
+> wheather -> whether
+>
+> > + * this issue only occurs in combination with listed Intel PCIe bridge
+> > + * controllers and the mentioned GPUs or other devices as well.
+> > + *
+> > + * documentation on the PCIe bridge controller can be found in the
+> > + * "7th Generation Intel=C2=AE Processor Families for H Platforms Data=
+sheet Volume 2"
+> > + * Section "12 PCI Express* Controller (x16) Registers"
+> > + */
+> > +
+> > +static void quirk_broken_nv_runpm(struct pci_dev *dev)
+> > +{
+> > +     struct pci_dev *bridge =3D pci_upstream_bridge(dev);
+> > +
+> > +     if (!bridge || bridge->vendor !=3D PCI_VENDOR_ID_INTEL)
+> > +             return;
+> > +
+> > +     switch (bridge->device) {
+> > +     case 0x1901:
+> > +             dev->parent_d3cold =3D 1;
+>
+> I think it is better to add
+>
+>                 break;
+>
+> here.
+>
+> > +     }
+> > +}
+> > +
+> >  static int nouveau_drm_probe(struct pci_dev *pdev,
+> >                            const struct pci_device_id *pent)
+> >  {
+> > @@ -699,6 +752,7 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+> >       if (ret)
+> >               goto fail_drm_dev_init;
+> >
+> > +     quirk_broken_nv_runpm(pdev);
+> >       return 0;
+> >
+> >  fail_drm_dev_init:
+> > @@ -737,6 +791,8 @@ nouveau_drm_remove(struct pci_dev *pdev)
+> >  {
+> >       struct drm_device *dev =3D pci_get_drvdata(pdev);
+> >
+> > +     /* revert our workaround */
+> > +     pdev->parent_d3cold =3D false;
+> >       nouveau_drm_device_remove(dev);
+> >  }
+> >
+> > diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> > index 951099279192..6ece05723fa2 100644
+> > --- a/drivers/pci/pci.c
+> > +++ b/drivers/pci/pci.c
+> > @@ -860,6 +860,14 @@ static int pci_raw_set_power_state(struct pci_dev =
+*dev, pci_power_t state)
+> >          || (state =3D=3D PCI_D2 && !dev->d2_support))
+> >               return -EIO;
+> >
+> > +     /*
+> > +      * Power management can be disabled for certain devices as they d=
+on't
+> > +      * come back up later on runtime_resume. We rely on platform mean=
+s to
+> > +      * cut power consumption instead (e.g. ACPI).
+> > +      */
+> > +     if (state !=3D PCI_D0 && dev->parent_d3cold)
+> > +             return 0;
+> > +
+> >       pci_read_config_word(dev, dev->pm_cap + PCI_PM_CTRL, &pmcsr);
+> >       if (pmcsr =3D=3D (u16) ~0) {
+> >               pci_err(dev, "can't change power state from %s to %s (con=
+fig space inaccessible)\n",
+> > diff --git a/include/linux/pci.h b/include/linux/pci.h
+> > index 930fab293073..3e5938b91966 100644
+> > --- a/include/linux/pci.h
+> > +++ b/include/linux/pci.h
+> > @@ -340,6 +340,7 @@ struct pci_dev {
+> >       unsigned int    no_d3cold:1;    /* D3cold is forbidden */
+> >       unsigned int    bridge_d3:1;    /* Allow D3 for bridge */
+> >       unsigned int    d3cold_allowed:1;       /* D3cold is allowed by u=
+ser */
+> > +     unsigned int    parent_d3cold:1;        /* power manage the paren=
+t instead */
+>
+> Just to be consistent with the other comments, start with a capital
+> letter:
+>
+>         unsigned int    parent_d3cold:1;        /* Power manage the paren=
+t instead */
+>
