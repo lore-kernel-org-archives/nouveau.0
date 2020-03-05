@@ -1,228 +1,63 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [PATCH v6] pci: prevent putting nvidia GPUs into lower device
- states on certain intel bridges
-Date: Thu, 5 Mar 2020 17:11:57 +0100
-Message-ID: <CACO55ts7VGUJoSM_X_huZ0o68+P6SaWgFKbQzkw=-F+Kh5WfcA@mail.gmail.com>
-References: <20200303101052.133631-1-kherbst@redhat.com> <20200304093324.GI2540@lahna.fi.intel.com>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH 0/3] drm/dp_mst: Fix bandwidth checking
+ regressions from DSC patches
+Date: Thu, 5 Mar 2020 17:41:04 +0100
+Message-ID: <89275eb6-662d-73d1-a593-8271df5aadc0@redhat.com>
+References: <20200304223614.312023-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200304093324.GI2540@lahna.fi.intel.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Mika Westerberg <mika.westerberg@intel.com>
-Cc: LKML <linux-kernel@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200304223614.312023-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Sean Paul <seanpaul-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Maxime Ripard <mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Mikita Lipski <mikita.lipski-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Mar 4, 2020 at 10:33 AM Mika Westerberg
-<mika.westerberg@intel.com> wrote:
->
-> Hi,
->
-> On Tue, Mar 03, 2020 at 11:10:52AM +0100, Karol Herbst wrote:
-> > Fixes state transitions of Nvidia Pascal GPUs from D3cold into higher d=
-evice
-> > states.
->
-> I think it is good to explain bit more here why this fix is needed.
->
-
-is something like this fine?
-
-Fixes the infamous 'runpm' bug many users are facing on Laptops with Nvidia
-Pascal GPUs by skipping PCI power state changes on the GPU.
-
-It's still unknown why this issue exists, but this is a reliable workaround
-and solves a very annoying issue for user having to choose between a
-crashing kernel or higher power consumption of their Laptops.
-
-> > v2: convert to pci_dev quirk
-> >     put a proper technical explanation of the issue as a in-code commen=
-t
-> > v3: disable it only for certain combinations of intel and nvidia hardwa=
-re
-> > v4: simplify quirk by setting flag on the GPU itself
-> > v5: restructure quirk to make it easier to add new IDs
-> >     fix whitespace issues
-> >     fix potential NULL pointer access
-> >     update the quirk documentation
-> > v6: move quirk into nouveau
->
-> This information typically goes under the '---' line.
->
-> > Signed-off-by: Karol Herbst <kherbst@redhat.com>
-> > Cc: Bjorn Helgaas <bhelgaas@google.com>
-> > Cc: Lyude Paul <lyude@redhat.com>
-> > Cc: Rafael J. Wysocki <rjw@rjwysocki.net>
-> > Cc: Mika Westerberg <mika.westerberg@intel.com>
->
-> I have few minor comments but regardless,
->
-> Reviewed-by: Mika Westerberg <mika.westerberg@linux.intel.com>
->
-> > Cc: linux-pci@vger.kernel.org
-> > Cc: linux-pm@vger.kernel.org
-> > Cc: dri-devel@lists.freedesktop.org
-> > Cc: nouveau@lists.freedesktop.org
-> > Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=3D205623
-> > ---
-> >  drivers/gpu/drm/nouveau/nouveau_drm.c | 56 +++++++++++++++++++++++++++
-> >  drivers/pci/pci.c                     |  8 ++++
-> >  include/linux/pci.h                   |  1 +
-> >  3 files changed, 65 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/no=
-uveau/nouveau_drm.c
-> > index 2cd83849600f..51d3a7ba7731 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> > @@ -618,6 +618,59 @@ nouveau_drm_device_fini(struct drm_device *dev)
-> >       kfree(drm);
-> >  }
-> >
-> > +/*
-> > + * On some Intel PCIe bridge controllers doing a
-> > + * D0 -> D3hot -> D3cold -> D0 sequence causes Nvidia GPUs to not reap=
-pear.
-> > + * Skipping the intermediate D3hot step seems to make it work again. T=
-hise is
->                                                                         ^=
-^^^^
-> Thise -> This
->
-> > + * probably caused by not meeting the expectation the involved AML cod=
-e has
-> > + * when the GPU is put into D3hot state before invoking it.
-> > + *
-> > + * This leads to various manifestations of this issue:
-> > + *  - AML code execution to power on the GPU hits an infinite loop (as=
- the
-> > + *    code waits on device memory to change).
-> > + *  - kernel crashes, as all PCI reads return -1, which most code isn'=
-t able
-> > + *    to handle well enough.
-> > + *
-> > + * In all cases dmesg will contain at least one line like this:
-> > + * 'nouveau 0000:01:00.0: Refused to change power state, currently in =
-D3'
-> > + * followed by a lot of nouveau timeouts.
-> > + *
-> > + * In the \_SB.PCI0.PEG0.PG00._OFF code deeper down writes bit 0x80 to=
- the not
-> > + * documented PCI config space register 0x248 of the Intel PCIe bridge
-> > + * controller (0x1901) in order to change the state of the PCIe link b=
-etween
-> > + * the PCIe port and the GPU. There are alternative code paths using o=
-ther
-> > + * registers, which seem to work fine (executed pre Windows 8):
-> > + *  - 0xbc bit 0x20 (publicly available documentation claims 'reserved=
-')
-> > + *  - 0xb0 bit 0x10 (link disable)
-> > + * Changing the conditions inside the firmware by poking into the rele=
-vant
-> > + * addresses does resolve the issue, but it seemed to be ACPI private =
-memory
-> > + * and not any device accessible memory at all, so there is no portabl=
-e way of
-> > + * changing the conditions.
-> > + * On a XPS 9560 that means bits [0,3] on \CPEX need to be cleared.
-> > + *
-> > + * The only systems where this behavior can be seen are hybrid graphic=
-s laptops
-> > + * with a secondary Nvidia Maxwell, Pascal or Turing GPU. Its unclear =
-wheather
->                                                              ^^^         =
-^^^^^^^^
-> Its -> It's
-> wheather -> whether
->
-> > + * this issue only occurs in combination with listed Intel PCIe bridge
-> > + * controllers and the mentioned GPUs or other devices as well.
-> > + *
-> > + * documentation on the PCIe bridge controller can be found in the
-> > + * "7th Generation Intel=C2=AE Processor Families for H Platforms Data=
-sheet Volume 2"
-> > + * Section "12 PCI Express* Controller (x16) Registers"
-> > + */
-> > +
-> > +static void quirk_broken_nv_runpm(struct pci_dev *dev)
-> > +{
-> > +     struct pci_dev *bridge =3D pci_upstream_bridge(dev);
-> > +
-> > +     if (!bridge || bridge->vendor !=3D PCI_VENDOR_ID_INTEL)
-> > +             return;
-> > +
-> > +     switch (bridge->device) {
-> > +     case 0x1901:
-> > +             dev->parent_d3cold =3D 1;
->
-> I think it is better to add
->
->                 break;
->
-> here.
->
-> > +     }
-> > +}
-> > +
-> >  static int nouveau_drm_probe(struct pci_dev *pdev,
-> >                            const struct pci_device_id *pent)
-> >  {
-> > @@ -699,6 +752,7 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
-> >       if (ret)
-> >               goto fail_drm_dev_init;
-> >
-> > +     quirk_broken_nv_runpm(pdev);
-> >       return 0;
-> >
-> >  fail_drm_dev_init:
-> > @@ -737,6 +791,8 @@ nouveau_drm_remove(struct pci_dev *pdev)
-> >  {
-> >       struct drm_device *dev =3D pci_get_drvdata(pdev);
-> >
-> > +     /* revert our workaround */
-> > +     pdev->parent_d3cold =3D false;
-> >       nouveau_drm_device_remove(dev);
-> >  }
-> >
-> > diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-> > index 951099279192..6ece05723fa2 100644
-> > --- a/drivers/pci/pci.c
-> > +++ b/drivers/pci/pci.c
-> > @@ -860,6 +860,14 @@ static int pci_raw_set_power_state(struct pci_dev =
-*dev, pci_power_t state)
-> >          || (state =3D=3D PCI_D2 && !dev->d2_support))
-> >               return -EIO;
-> >
-> > +     /*
-> > +      * Power management can be disabled for certain devices as they d=
-on't
-> > +      * come back up later on runtime_resume. We rely on platform mean=
-s to
-> > +      * cut power consumption instead (e.g. ACPI).
-> > +      */
-> > +     if (state !=3D PCI_D0 && dev->parent_d3cold)
-> > +             return 0;
-> > +
-> >       pci_read_config_word(dev, dev->pm_cap + PCI_PM_CTRL, &pmcsr);
-> >       if (pmcsr =3D=3D (u16) ~0) {
-> >               pci_err(dev, "can't change power state from %s to %s (con=
-fig space inaccessible)\n",
-> > diff --git a/include/linux/pci.h b/include/linux/pci.h
-> > index 930fab293073..3e5938b91966 100644
-> > --- a/include/linux/pci.h
-> > +++ b/include/linux/pci.h
-> > @@ -340,6 +340,7 @@ struct pci_dev {
-> >       unsigned int    no_d3cold:1;    /* D3cold is forbidden */
-> >       unsigned int    bridge_d3:1;    /* Allow D3 for bridge */
-> >       unsigned int    d3cold_allowed:1;       /* D3cold is allowed by u=
-ser */
-> > +     unsigned int    parent_d3cold:1;        /* power manage the paren=
-t instead */
->
-> Just to be consistent with the other comments, start with a capital
-> letter:
->
->         unsigned int    parent_d3cold:1;        /* Power manage the paren=
-t instead */
->
+SGkgTHl1ZGUsCgpPbiAzLzQvMjAgMTE6MzYgUE0sIEx5dWRlIFBhdWwgd3JvdGU6Cj4gQU1EJ3Mg
+cGF0Y2ggc2VyaWVzIGZvciBhZGRpbmcgRFNDIHN1cHBvcnQgdG8gdGhlIE1TVCBoZWxwZXJzCj4g
+dW5mb3J0dW5hdGVseSBpbnRyb2R1Y2VkIGEgZmV3IHJlZ3Jlc3Npb25zIGludG8gdGhlIGtlcm5l
+bCB0aGF0IEkgZGlkbid0Cj4gZ2V0IGFyb3VuZCB0byBmaXhpbmcgdW50aWwganVzdCBub3cuIEkg
+d291bGQgaGF2ZSByZXZlcnRlZCB0aGUgY2hhbmdlcwo+IGVhcmxpZXIsIGJ1dCBzZWVpbmcgYXMg
+dGhhdCB3b3VsZCBoYXZlIHJldmVydGVkIGFsbCBvZiBhbWQncyBEU0Mgc3VwcG9ydAo+ICsgZXZl
+cnl0aGluZyB0aGF0IHdhcyBkb25lIG9uIHRvcCBvZiB0aGF0IEkgcmVhbGxsbGxseSB3YW50ZWQg
+dG8gYXZvaWQKPiBkb2luZyB0aGF0Lgo+IAo+IEFueXdheSwgdGhpcyBzaG91bGQgZml4IGV2ZXJ5
+dGhpbmcgYXMgZmFyIGFzIEkgY2FuIHRlbGwuIE5vdGUgdGhhdCBJCj4gZG9uJ3QgaGF2ZSBhbnkg
+RFNDIGRpc3BsYXlzIGxvY2FsbHkgeWV0LCBzbyBpZiBzb21lb25lIGZyb20gQU1EIGNvdWxkCj4g
+c2FuaXR5IGNoZWNrIHRoaXMgSSB3b3VsZCBhcHByZWNpYXRlIGl0IOKZpS4KClRoYW5rIHlvdSBm
+b3IgdHJ5aW5nIHRvIGZpeCB0aGlzLCB1bmZvcnR1bmF0ZWx5IGZvciBtZSB0aGlzIGlzIG5vdCBm
+aXhlZCwKd2l0aCB0aGlzIHNlcmllcy4gTXkgc2V0dXA6Cgo1LjYtcmM0ICsgeW91ciAzIHBhdGNo
+ZXMgKCsgc29tZSB1bnJlbGF0ZWQgcGF0Y2hlcyBvdXRzaWRlIG9mIGRybSkKCi1MZW5vdm8geDEg
+N3RoIGdlbiArCiAgTGVub3ZvIFRCMyBkb2NrIGdlbiAyICsKICAyIGV4dGVybmFsIDE5MjB4MTA4
+MEA2MCBtb25pdG9ycyBjb25uZWN0ZWQgdG8gdGhlIDIgSERNSSBpbnRlcmZhY2VzIG9uIHRoZSBk
+b2NrCi1TeXN0ZW0gYm9vdGVkIHdpdGggdGhlIExJRCBjbG9zZWQsIHNvIHRoYXQgdGhlIGZpcm13
+YXJlL0JJT1MgaGFzIGFscmVhZHkKICBpbml0aWFsaXplZCBib3RoIG1vbml0b3JzIHdoZW4gdGhl
+IGtlcm5lbCBib290cwoKVGhpcyBzaG91bGQgYmUgZmFpcmx5IGVhc3kgdG8gcmVwcm9kdWNlIG9u
+IGEgc2ltaWxhciBzZXR1cCwgb3RoZXIKdXNlcnMgYXJlIHNlZWluZyBzaW1pbGFyIHByb2JsZW1z
+IHdoZW4gY29ubmVjdGluZyBtb3JlIHRoZW4gMSBtb25pdG9yCnRvIERQLU1TVCBkb2Nrcywgc2Vl
+IGUuZy4gOgoKaHR0cHM6Ly9idWd6aWxsYS5yZWRoYXQuY29tL3Nob3dfYnVnLmNnaT9pZD0xODA5
+NjgxCmh0dHBzOi8vYnVnemlsbGEucmVkaGF0LmNvbS9zaG93X2J1Zy5jZ2k/aWQ9MTgxMDA3MAoK
+TGV0IG1lIGtub3cgaWYgeW91IHdhbnQgbWUgdG8gY29sbGVjdCBzb21lIGRybS5kZWJ1ZyBsb2dz
+LCBJIGd1ZXNzCmlmIHlvdSBkbywgeW91IHdhbnQgbWUgdG8gdXNlIGRybS5kZWJ1Zz0weDExNCA/
+CgpSZWdhcmRzLAoKSGFucwoKCgoKCj4gCj4gQ2M6IE1pa2l0YSBMaXBza2kgPG1pa2l0YS5saXBz
+a2lAYW1kLmNvbT4KPiBDYzogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29t
+Pgo+IENjOiBTZWFuIFBhdWwgPHNlYW5wYXVsQGdvb2dsZS5jb20+Cj4gQ2M6IEhhbnMgZGUgR29l
+ZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+Cj4gCj4gTHl1ZGUgUGF1bCAoMyk6Cj4gICAgZHJtL2Rw
+X21zdDogUmVuYW1lIGRybV9kcF9tc3RfaXNfZHBfbXN0X2VuZF9kZXZpY2UoKSB0byBiZSBsZXNz
+Cj4gICAgICByZWR1bmRhbnQKPiAgICBkcm0vZHBfbXN0OiBEb24ndCBzaG93IGNvbm5lY3RvcnMg
+YXMgY29ubmVjdGVkIGJlZm9yZSBwcm9iaW5nCj4gICAgICBhdmFpbGFibGUgUEJOCj4gICAgZHJt
+L2RwX21zdDogUmV3cml0ZSBhbmQgZml4IGJhbmR3aWR0aCBsaW1pdCBjaGVja3MKPiAKPiAgIGRy
+aXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMgfCAxMjQgKysrKysrKysrKysrKysr
+KysrKystLS0tLS0KPiAgIDEgZmlsZSBjaGFuZ2VkLCA5NiBpbnNlcnRpb25zKCspLCAyOCBkZWxl
+dGlvbnMoLSkKPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
