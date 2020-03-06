@@ -1,142 +1,184 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+From: Lyude Paul <lyude@redhat.com>
 Subject: Re: [PATCH 2/3] drm/dp_mst: Don't show connectors as connected
  before probing available PBN
-Date: Fri, 06 Mar 2020 15:03:04 -0500
-Message-ID: <082a7ac697ade8145afe45001fdf9541d5304748.camel@redhat.com>
+Date: Fri, 06 Mar 2020 16:22:20 -0500
+Message-ID: <eec59ee986aa161458fcaf2de29e5a702ad1fdb0.camel@redhat.com>
 References: <20200304223614.312023-1-lyude@redhat.com>
- <20200304223614.312023-3-lyude@redhat.com>
- <20200305131119.GJ13686@intel.com>
- <73f52c392431cd21a80a118dd2fd1986e2c535df.camel@redhat.com>
- <20200305182942.GP13686@intel.com>
+         <20200304223614.312023-3-lyude@redhat.com>
+         <20200305131119.GJ13686@intel.com>
+         <73f52c392431cd21a80a118dd2fd1986e2c535df.camel@redhat.com>
+         <20200305182942.GP13686@intel.com>
+         <082a7ac697ade8145afe45001fdf9541d5304748.camel@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200305182942.GP13686-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Cc: Sean Paul <seanpaul-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Mikita Lipski <mikita.lipski-5C7GfCeVMHo@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <082a7ac697ade8145afe45001fdf9541d5304748.camel@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, Sean Paul <seanpaul@google.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>, Alex Deucher <alexander.deucher@amd.com>, Mikita Lipski <mikita.lipski@amd.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCAyMDIwLTAzLTA1IGF0IDIwOjI5ICswMjAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
-Cj4gT24gVGh1LCBNYXIgMDUsIDIwMjAgYXQgMDE6MTM6MzZQTSAtMDUwMCwgTHl1ZGUgUGF1bCB3
-cm90ZToKPiA+IE9uIFRodSwgMjAyMC0wMy0wNSBhdCAxNToxMSArMDIwMCwgVmlsbGUgU3lyasOk
-bMOkIHdyb3RlOgo+ID4gPiBPbiBXZWQsIE1hciAwNCwgMjAyMCBhdCAwNTozNjoxMlBNIC0wNTAw
-LCBMeXVkZSBQYXVsIHdyb3RlOgo+ID4gPiA+IEl0J3MgbmV4dCB0byBpbXBvc3NpYmxlIGZvciB1
-cyB0byBkbyBjb25uZWN0b3IgcHJvYmluZyBvbiB0b3BvbG9naWVzCj4gPiA+ID4gd2l0aG91dCBv
-Y2Nhc2lvbmFsbHkgcmFjaW5nIHdpdGggdXNlcnNwYWNlLCBzaW5jZSBjcmVhdGluZyBhIGNvbm5l
-Y3Rvcgo+ID4gPiA+IGl0c2VsZiBjYXVzZXMgYSBob3RwbHVnIGV2ZW50IHdoaWNoIHdlIGhhdmUg
-dG8gc2VuZCBiZWZvcmUgcHJvYmluZyB0aGUKPiA+ID4gPiBhdmFpbGFibGUgUEJOIG9mIGEgY29u
-bmVjdG9yLiBFdmVuIGlmIHdlIGRpZG4ndCBoYXZlIHRoaXMgaG90cGx1Zwo+ID4gPiA+IGV2ZW50
-Cj4gPiA+ID4gc2VudCwgdGhlcmUncyBzdGlsbCBhbHdheXMgYSBjaGFuY2UgdGhhdCB1c2Vyc3Bh
-Y2Ugc3RhcnRlZCBwcm9iaW5nCj4gPiA+ID4gY29ubmVjdG9ycyBiZWZvcmUgd2UgZmluaXNoZWQg
-cHJvYmluZyB0aGUgdG9wb2xvZ3kuCj4gPiA+ID4gCj4gPiA+ID4gVGhpcyBjYW4gYmUgYSBwcm9i
-bGVtIHdoZW4gdmFsaWRhdGluZyBhIG5ldyBNU1Qgc3RhdGUgc2luY2UgdGhlCj4gPiA+ID4gY29u
-bmVjdG9yIHdpbGwgYmUgc2hvd24gYXMgY29ubmVjdGVkIGJyaWVmbHksIGJ1dCB3aXRob3V0IGFu
-eQo+ID4gPiA+IGF2YWlsYWJsZQo+ID4gPiA+IFBCTiAtIGNhdXNpbmcgYW55IGF0b21pYyBzdGF0
-ZSB3aGljaCB3b3VsZCBlbmFibGUgc2FpZCBjb25uZWN0b3IgdG8KPiA+ID4gPiBmYWlsCj4gPiA+
-ID4gd2l0aCAtRU5PU1BDLiBTbywgbGV0J3Mgc2ltcGx5IHdvcmthcm91bmQgdGhpcyBieSB0ZWxs
-aW5nIHVzZXJzcGFjZQo+ID4gPiA+IG5ldwo+ID4gPiA+IE1TVCBjb25uZWN0b3JzIGFyZSBkaXNj
-b25uZWN0ZWQgdW50aWwgd2UndmUgZmluaXNoZWQgcHJvYmluZyB0aGVpcgo+ID4gPiA+IFBCTi4K
-PiA+ID4gPiBTaW5jZSB3ZSBhbHdheXMgc2VuZCBhIGhvdHBsdWcgZXZlbnQgYXQgdGhlIGVuZCBv
-ZiB0aGUgbGluayBhZGRyZXNzCj4gPiA+ID4gcHJvYmluZyBwcm9jZXNzLCB1c2Vyc3BhY2Ugd2ls
-bCBzdGlsbCBrbm93IHRvIHJlcHJvYmUgdGhlIGNvbm5lY3Rvcgo+ID4gPiA+IHdoZW4KPiA+ID4g
-PiB3ZSdyZSByZWFkeS4KPiA+ID4gPiAKPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVs
-IDxseXVkZUByZWRoYXQuY29tPgo+ID4gPiA+IEZpeGVzOiBjZDgyZDgyY2JjMDQgKCJkcm0vZHBf
-bXN0OiBBZGQgYnJhbmNoIGJhbmR3aWR0aCB2YWxpZGF0aW9uIHRvCj4gPiA+ID4gTVNUCj4gPiA+
-ID4gYXRvbWljIGNoZWNrIikKPiA+ID4gPiBDYzogTWlraXRhIExpcHNraSA8bWlraXRhLmxpcHNr
-aUBhbWQuY29tPgo+ID4gPiA+IENjOiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFt
-ZC5jb20+Cj4gPiA+ID4gQ2M6IFNlYW4gUGF1bCA8c2VhbnBhdWxAZ29vZ2xlLmNvbT4KPiA+ID4g
-PiBDYzogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KPiA+ID4gPiAtLS0KPiA+
-ID4gPiAgZHJpdmVycy9ncHUvZHJtL2RybV9kcF9tc3RfdG9wb2xvZ3kuYyB8IDEzICsrKysrKysr
-KysrKysKPiA+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDEzIGluc2VydGlvbnMoKykKPiA+ID4gPiAK
-PiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9kcF9tc3RfdG9wb2xvZ3ku
-Ywo+ID4gPiA+IGIvZHJpdmVycy9ncHUvZHJtL2RybV9kcF9tc3RfdG9wb2xvZ3kuYwo+ID4gPiA+
-IGluZGV4IDIwN2VlZjA4ZDEyYy4uN2IwZmYwY2ZmOTU0IDEwMDY0NAo+ID4gPiA+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMKPiA+ID4gPiArKysgYi9kcml2ZXJz
-L2dwdS9kcm0vZHJtX2RwX21zdF90b3BvbG9neS5jCj4gPiA+ID4gQEAgLTQwMzMsNiArNDAzMywx
-OSBAQCBkcm1fZHBfbXN0X2RldGVjdF9wb3J0KHN0cnVjdCBkcm1fY29ubmVjdG9yCj4gPiA+ID4g
-KmNvbm5lY3RvciwKPiA+ID4gPiAgCQkJcmV0ID0gY29ubmVjdG9yX3N0YXR1c19jb25uZWN0ZWQ7
-Cj4gPiA+ID4gIAkJYnJlYWs7Cj4gPiA+ID4gIAl9Cj4gPiA+ID4gKwo+ID4gPiA+ICsJLyogV2Ug
-ZG9uJ3Qgd2FudCB0byB0ZWxsIHVzZXJzcGFjZSB0aGUgcG9ydCBpcyBhY3R1YWxseQo+ID4gPiA+
-IHBsdWdnZWQgaW50bwo+ID4gPiA+ICsJICogYW55dGhpbmcgdW50aWwgd2UndmUgZmluaXNoZWQg
-cHJvYmluZyBpdCdzIGF2YWlsYWJsZV9wYm4sCj4gPiA+ID4gb3RoZXJ3aXNlCj4gPiA+IAo+ID4g
-PiAiaXRzIgo+ID4gPiAKPiA+ID4gV2h5IGlzIHRoZSBjb25uZWN0b3IgZXZlbiByZWdpc3RlcmVk
-IGJlZm9yZSB3ZSd2ZSBmaW5pc2hlZCB0aGUgcHJvYmU/Cj4gPiA+IAo+ID4gT29wcywgSSdtIG5v
-dCBzdXJlIGhvdyBJIGRpZCB0aGlzIGJ5IGFjY2lkZW50IGJ1dCB0aGUgZXhwbGFuYXRpb24gSSBn
-YXZlCj4gPiBpbgo+ID4gdGhlIGNvbW1pdCBtZXNzYWdlIHdhcyB1aCwgY29tcGxldGVseSB3cm9u
-Zy4gSSBtdXN0IGhhdmUgZm9yZ290dGVuIHRoYXQgSQo+ID4gbWFkZQo+ID4gc3VyZSB3ZSBkaWRu
-J3QgZXhwb3NlIGNvbm5lY3RvcnMgYmVmb3JlIHByb2JpbmcgdGhlaXIgUEJOIGJhY2sgd2hlbiBJ
-Cj4gPiBzdGFydGVkCj4gPiBteSBNU1QgY2xlYW51cC4uLi4KPiA+IAo+ID4gU286IGRlc3BpdGUg
-d2hhdCBJIHNhaWQgYmVmb3JlIGl0J3Mgbm90IGFjdHVhbGx5IHdoZW4gbmV3IGNvbm5lY3RvcnMg
-YXJlCj4gPiBjcmVhdGVkLCBpdCdzIHdoZW4gZG93bnN0cmVhbSBob3RwbHVncyBoYXBwZW4gd2hp
-Y2ggbWVhbnMgdGhhdCB0aGUKPiA+IGNvbmVuY3RvcidzCj4gPiBhbHdheXMgZ29pbmcgdG8gYmUg
-dGhlcmUgYmVmb3JlIHdlIHByb2JlIHRoZSBhdmFpbGFibGVfcGJuLgo+IAo+IE5vdCBzdXJlIEkg
-dW5kZXJzdGFuZC4gWW91J3JlIHNheWluZyB0aGlzIGlzIGdvaW5nIHRvIGNoYW5nZSBmb3IgYWxy
-ZWFkeQo+IGV4aXN0aW5nIGNvbm5lY3RvcnMgd2hlbiBzb21ldGhpbmcgZWxzZSBnZXRzIHBsdWdn
-ZWQgaW4sIGFuZCBlaXRoZXIgd2UKPiB6ZXJvIGl0IG91dCBkdXJpbmcgdGhlIHByb2JlIG9yIGl0
-IGFsd2F5cyB3YXMgemVybyB0byBiZWdpbiB3aXRoIGZvcgo+IHdoYXRldmVyIHJlYXNvbj8KCm9r
-LW1lIGFuZCBTZWFuIFBhdWwgZGlkIHNvbWUgcGxheWluZyBhcm91bmQgd2l0aCBhdmFpbGFibGVf
-cGJuIGFuZCBmdWxsX3BibgooSSdsbCBnZXQgaW50byB0aGlzIG9uZSBpbiBhIG1vbWVudCksIGFu
-ZCBJIGFsc28gcGxheWVkIGFyb3VuZCB3aXRoIGEgY291cGxlCm9mIGRpZmZlcmVudCBodWJzIGFu
-ZCBoYXZlIGEgbXVjaCBiZXR0ZXIgdW5kZXJzdGFuZGluZyBvZiBob3cgdGhpcyBzaG91bGQgd29y
-awpub3cuCgpTbzogZmlyc3Qgb2ZmIHRsO2RyIGF2YWlsYWJsZV9wYm4gaXMgYWJzb2x1dGVseSBu
-b3Qgd2hhdCB3ZSB3YW50IGluIGJhc2ljYWxseQphbnkgc2NlbmFyaW8sIHdlIGFjdHVhbGx5IHdh
-bnQgdG8gdXNlIHRoZSBmdWxsX3BibiBmaWVsZCB0aGF0IHdlIGdldCB3aGVuCnNlbmRpbmcgRU5V
-TV9QQVRIX1JFU09VUkNFUy4gU2Vjb25kLCBmdWxsX3BibiByZXByZXNlbnRzIHRoZSBfc21hbGxl
-c3RfIGJhbmR3aWR0aCBsaW1pdGF0aW9uIGVuY291bnRlcmVkIGluIHRoZSBwYXRoIGJldHdlZW4g
-dGhlIHJvb3QgTVNUQiBhbmQgZWFjaCBjb25uZWN0ZWQgc2luay4gUmVtZW1iZXIgdGhhdCB0aGVy
-ZSdzIHRlY2huaWNhbGx5IGEgRGlzcGxheVBvcnQgbGluayB0cmFpbmVkIGJldHdlZW4gZWFjaCBi
-cmFuY2ggZGV2aWNlIGdvaW5nIGRvd24gdGhlIHRvcG9sb2d5LCBzbyB0aGF0IGJhbmR3aWR0aCBs
-aW1pdGF0aW9uIGJhc2ljYWxseSBlcXVhdGVzIHRvICJ3aGF0IGlzIHRoZSBsb3dlc3QgdHJhaW5l
-ZCBsaW5rIHJhdGUgdGhhdCBleGlzdHMgZG93biB0aGUgcGF0aCB0byB0aGlzIHBvcnQ/Ii4gVGhp
-cyBhbHNvIG1lYW5zIHRoYXQgZnVsbF9wYm4gd2lsbCBwb3RlbnRpYWxseSBjaGFuZ2UgZXZlcnkg
-dGltZSBhIG5ldyBjb25uZWN0b3IgaXMgcGx1Z2dlZCBpbiwgYXMgc29tZSBodWJzIHdpbGwgYmUg
-Y2xldmVyIGFuZCBvcHRpbWl6ZSB0aGUgbGluayByYXRlIHRoZXkgZGVjaWRlIHRvIHVzZS4gTGlr
-ZXdpc2UsIHNpbmNlIHRoZXJlJ3Mgbm90IGdvaW5nIHRvIGJlIGFueXRoaW5nIHRyYWluZWQgb24g
-YSBkaXNjb25uZWN0ZWQgcG9ydCAoZS5nLiBkZHBzPTApIHRoZXJlJ3Mgbm8gcG9pbnQgaW4ga2Vl
-cGluZyBmdWxsX3BibiBhcm91bmQgZm9yIGRpc2Nvbm5lY3RlZCBwb3J0cywgc2luY2Ugb3RoZXJ3
-aXNlIHdlIG1pZ2h0IGxldCB1c2Vyc3BhY2Ugc2VlIGEgY29ubmVjdGVkIHBvcnQgd2l0aCBhIHN0
-YWxlIGZ1bGxfcGJuIHZhbHVlLgoKU28tSU1ITyB0aGUgYmVoYXZpb3Igb2Ygbm90IGxldHRpbmcg
-Y29ubmVjdG9ycyBzaG93IGFzIGNvbm5lY3RlZCB1bnRpbCB3ZSBhbHNvCmhhdmUgdGhlaXIgZnVs
-bF9wYm4gcHJvYmVkIHNob3VsZCBkZWZpbml0ZWx5IGJlIHRoZSByaWdodCBzb2x1dGlvbiBoZXJl
-LgpFc3BlY2lhbGx5IGlmIHdlIHdhbnQgdG8gZXZlbnR1YWxseSBzdGFydCBwcnVuaW5nIG1vZGVz
-IGJhc2VkIG9uIGZ1bGxfcGJuIGF0CnNvbWUgcG9pbnQgaW4gdGhlIGZ1dHVyZS4KCj4gCj4gPiBJ
-IGRpZCBqdXN0IG5vdGljZQo+ID4gdGhvdWdoIHRoYXQgd2Ugc2VuZCBhIGhvdHBsdWcgb24gY29u
-bmVjdGlvbiBzdGF0dXMgbm90aWZpY2F0aW9ucyBldmVuCj4gPiBiZWZvcmUKPiA+IHdlJ3ZlIGZp
-bmlzaGVkIHRoZSBQQk4gcHJvYmUsIHNvIEkgbWlnaHQgYmUgYWJsZSB0byBpbXByb3ZlIG9uIHRo
-YXQgYXMKPiA+IHdlbGwuCj4gPiBXZSBzdGlsbCBkZWZpbml0ZWx5IHdhbnQgdG8gcmVwb3J0IHRo
-ZSBjb25uZWN0b3IgYXMgZGlzY29ubmVjdGVkIGJlZm9yZSB3ZQo+ID4gaGF2ZSB0aGUgYXZhaWxh
-YmxlIFBCTiB0aG91Z2gsIGluIGNhc2UgYW5vdGhlciBwcm9iZSB3YXMgYWxyZWFkeSBnb2luZwo+
-ID4gYmVmb3JlCj4gPiB3ZSBnb3QgdGhlIGNvbm5lY3Rpb24gc3RhdHVzIG5vdGlmaWNhdGlvbi4K
-PiA+IAo+ID4gSSdsbCBtYWtlIHN1cmUgdG8gZml4dXAgdGhlIGV4cGxhbmF0aW9uIGluIHRoZSBj
-b21taXQgbWVzc2FnZSBvbiB0aGUgbmV4dAo+ID4gcmVzcGluCj4gPiAKPiA+ID4gPiArCSAqIHVz
-ZXJzcGFjZSB3aWxsIHNlZSByYWN5IGF0b21pYyBjaGVjayBmYWlsdXJlcwo+ID4gPiA+ICsJICoK
-PiA+ID4gPiArCSAqIFNpbmNlIHdlIGFsd2F5cyBzZW5kIGEgaG90cGx1ZyBhdCB0aGUgZW5kIG9m
-IHByb2JpbmcKPiA+ID4gPiB0b3BvbG9neQo+ID4gPiA+ICsJICogc3RhdGUsIHdlIGNhbiBqdXN0
-IGxldCB1c2Vyc3BhY2UgcmVwcm9iZSB0aGlzIGNvbm5lY3Rvcgo+ID4gPiA+IGxhdGVyLgo+ID4g
-PiA+ICsJICovCj4gPiA+ID4gKwlpZiAocmV0ID09IGNvbm5lY3Rvcl9zdGF0dXNfY29ubmVjdGVk
-ICYmICFwb3J0LT5hdmFpbGFibGVfcGJuKSAKPiA+ID4gPiB7Cj4gPiA+ID4gKwkJRFJNX0RFQlVH
-X0tNUygiW0NPTk5FQ1RPUjolZDolc10gbm90IHJlYWR5IHlldCAoUEJOCj4gPiA+ID4gbm90Cj4g
-PiA+ID4gcHJvYmVkKVxuIiwKPiA+ID4gPiArCQkJICAgICAgY29ubmVjdG9yLT5iYXNlLmlkLCBj
-b25uZWN0b3ItPm5hbWUpOwo+ID4gPiA+ICsJCXJldCA9IGNvbm5lY3Rvcl9zdGF0dXNfZGlzY29u
-bmVjdGVkOwo+ID4gPiA+ICsJfQo+ID4gPiA+ICBvdXQ6Cj4gPiA+ID4gIAlkcm1fZHBfbXN0X3Rv
-cG9sb2d5X3B1dF9wb3J0KHBvcnQpOwo+ID4gPiA+ICAJcmV0dXJuIHJldDsKPiA+ID4gPiAtLSAK
-PiA+ID4gPiAyLjI0LjEKPiA+ID4gPiAKPiA+ID4gPiBfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwo+ID4gPiA+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKPiA+
-ID4gPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiA+ID4gaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwKPiA+IC0tIAo+ID4g
-Q2hlZXJzLAo+ID4gCUx5dWRlIFBhdWwgKHNoZS9oZXIpCj4gPiAJQXNzb2NpYXRlIFNvZnR3YXJl
-IEVuZ2luZWVyIGF0IFJlZCBIYXQKLS0gCkNoZWVycywKCUx5dWRlIFBhdWwgKHNoZS9oZXIpCglB
-c3NvY2lhdGUgU29mdHdhcmUgRW5naW5lZXIgYXQgUmVkIEhhdAoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+final correction: I probably could actually get rid of this patch and do this
+a bit more nicely by just making sure that we reprobe path resources for
+connectors while under drm_dp_mst_topology_mgr->base.lock on CSNs, instead of
+punting it off to the link address work like we seem to be doing. So, going to
+try doing that instead.
+
+On Fri, 2020-03-06 at 15:03 -0500, Lyude Paul wrote:
+> On Thu, 2020-03-05 at 20:29 +0200, Ville Syrjälä wrote:
+> > On Thu, Mar 05, 2020 at 01:13:36PM -0500, Lyude Paul wrote:
+> > > On Thu, 2020-03-05 at 15:11 +0200, Ville Syrjälä wrote:
+> > > > On Wed, Mar 04, 2020 at 05:36:12PM -0500, Lyude Paul wrote:
+> > > > > It's next to impossible for us to do connector probing on topologies
+> > > > > without occasionally racing with userspace, since creating a
+> > > > > connector
+> > > > > itself causes a hotplug event which we have to send before probing
+> > > > > the
+> > > > > available PBN of a connector. Even if we didn't have this hotplug
+> > > > > event
+> > > > > sent, there's still always a chance that userspace started probing
+> > > > > connectors before we finished probing the topology.
+> > > > > 
+> > > > > This can be a problem when validating a new MST state since the
+> > > > > connector will be shown as connected briefly, but without any
+> > > > > available
+> > > > > PBN - causing any atomic state which would enable said connector to
+> > > > > fail
+> > > > > with -ENOSPC. So, let's simply workaround this by telling userspace
+> > > > > new
+> > > > > MST connectors are disconnected until we've finished probing their
+> > > > > PBN.
+> > > > > Since we always send a hotplug event at the end of the link address
+> > > > > probing process, userspace will still know to reprobe the connector
+> > > > > when
+> > > > > we're ready.
+> > > > > 
+> > > > > Signed-off-by: Lyude Paul <lyude@redhat.com>
+> > > > > Fixes: cd82d82cbc04 ("drm/dp_mst: Add branch bandwidth validation to
+> > > > > MST
+> > > > > atomic check")
+> > > > > Cc: Mikita Lipski <mikita.lipski@amd.com>
+> > > > > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > > > > Cc: Sean Paul <seanpaul@google.com>
+> > > > > Cc: Hans de Goede <hdegoede@redhat.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/drm_dp_mst_topology.c | 13 +++++++++++++
+> > > > >  1 file changed, 13 insertions(+)
+> > > > > 
+> > > > > diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c
+> > > > > b/drivers/gpu/drm/drm_dp_mst_topology.c
+> > > > > index 207eef08d12c..7b0ff0cff954 100644
+> > > > > --- a/drivers/gpu/drm/drm_dp_mst_topology.c
+> > > > > +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+> > > > > @@ -4033,6 +4033,19 @@ drm_dp_mst_detect_port(struct drm_connector
+> > > > > *connector,
+> > > > >  			ret = connector_status_connected;
+> > > > >  		break;
+> > > > >  	}
+> > > > > +
+> > > > > +	/* We don't want to tell userspace the port is actually
+> > > > > plugged into
+> > > > > +	 * anything until we've finished probing it's available_pbn,
+> > > > > otherwise
+> > > > 
+> > > > "its"
+> > > > 
+> > > > Why is the connector even registered before we've finished the probe?
+> > > > 
+> > > Oops, I'm not sure how I did this by accident but the explanation I gave
+> > > in
+> > > the commit message was uh, completely wrong. I must have forgotten that
+> > > I
+> > > made
+> > > sure we didn't expose connectors before probing their PBN back when I
+> > > started
+> > > my MST cleanup....
+> > > 
+> > > So: despite what I said before it's not actually when new connectors are
+> > > created, it's when downstream hotplugs happen which means that the
+> > > conenctor's
+> > > always going to be there before we probe the available_pbn.
+> > 
+> > Not sure I understand. You're saying this is going to change for already
+> > existing connectors when something else gets plugged in, and either we
+> > zero it out during the probe or it always was zero to begin with for
+> > whatever reason?
+> 
+> ok-me and Sean Paul did some playing around with available_pbn and full_pbn
+> (I'll get into this one in a moment), and I also played around with a couple
+> of different hubs and have a much better understanding of how this should
+> work
+> now.
+> 
+> So: first off tl;dr available_pbn is absolutely not what we want in
+> basically
+> any scenario, we actually want to use the full_pbn field that we get when
+> sending ENUM_PATH_RESOURCES. Second, full_pbn represents the _smallest_
+> bandwidth limitation encountered in the path between the root MSTB and each
+> connected sink. Remember that there's technically a DisplayPort link trained
+> between each branch device going down the topology, so that bandwidth
+> limitation basically equates to "what is the lowest trained link rate that
+> exists down the path to this port?". This also means that full_pbn will
+> potentially change every time a new connector is plugged in, as some hubs
+> will be clever and optimize the link rate they decide to use. Likewise,
+> since there's not going to be anything trained on a disconnected port (e.g.
+> ddps=0) there's no point in keeping full_pbn around for disconnected ports,
+> since otherwise we might let userspace see a connected port with a stale
+> full_pbn value.
+> 
+> So-IMHO the behavior of not letting connectors show as connected until we
+> also
+> have their full_pbn probed should definitely be the right solution here.
+> Especially if we want to eventually start pruning modes based on full_pbn at
+> some point in the future.
+> 
+> > > I did just notice
+> > > though that we send a hotplug on connection status notifications even
+> > > before
+> > > we've finished the PBN probe, so I might be able to improve on that as
+> > > well.
+> > > We still definitely want to report the connector as disconnected before
+> > > we
+> > > have the available PBN though, in case another probe was already going
+> > > before
+> > > we got the connection status notification.
+> > > 
+> > > I'll make sure to fixup the explanation in the commit message on the
+> > > next
+> > > respin
+> > > 
+> > > > > +	 * userspace will see racy atomic check failures
+> > > > > +	 *
+> > > > > +	 * Since we always send a hotplug at the end of probing
+> > > > > topology
+> > > > > +	 * state, we can just let userspace reprobe this connector
+> > > > > later.
+> > > > > +	 */
+> > > > > +	if (ret == connector_status_connected && !port-
+> > > > > >available_pbn) 
+> > > > > {
+> > > > > +		DRM_DEBUG_KMS("[CONNECTOR:%d:%s] not ready yet (PBN
+> > > > > not
+> > > > > probed)\n",
+> > > > > +			      connector->base.id, connector->name);
+> > > > > +		ret = connector_status_disconnected;
+> > > > > +	}
+> > > > >  out:
+> > > > >  	drm_dp_mst_topology_put_port(port);
+> > > > >  	return ret;
+> > > > > -- 
+> > > > > 2.24.1
+> > > > > 
+> > > > > _______________________________________________
+> > > > > dri-devel mailing list
+> > > > > dri-devel@lists.freedesktop.org
+> > > > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> > > -- 
+> > > Cheers,
+> > > 	Lyude Paul (she/her)
+> > > 	Associate Software Engineer at Red Hat
+-- 
+Cheers,
+	Lyude Paul (she/her)
+	Associate Software Engineer at Red Hat
