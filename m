@@ -1,16 +1,16 @@
-From: Petri Latvala <petri.latvala-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Subject: Re: [igt-dev] [PATCH i-g-t 4/4] tests: Add nouveau-crc
- tests
-Date: Wed, 18 Mar 2020 10:19:13 +0200
-Message-ID: <20200318081913.GJ9497@platvala-desk.ger.corp.intel.com>
-References: <20200318010047.237024-1-lyude@redhat.com>
- <20200318010047.237024-5-lyude@redhat.com>
+From: Hans Verkuil <hverkuil-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org>
+Subject: Re: [RESEND PATCH v2 8/9] media: fsl-viu: Constify
+ ioreadX() iomem argument (as in generic implementation)
+Date: Thu, 12 Mar 2020 09:01:22 +0100
+Message-ID: <1c4a11b5-5ca6-7555-de3c-ff30f707fac7__33712.6738204219$1585552981$gmane$org@xs4all.nl>
+References: <20200219175007.13627-1-krzk@kernel.org>
+ <20200219175007.13627-9-krzk@kernel.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20200318010047.237024-5-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <20200219175007.13627-9-krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,132 +20,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: igt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Krzysztof Kozlowski <krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Richard Henderson <rth-hL46jP5Bxq7R7s880joybQ@public.gmane.org>, Ivan Kokshaysky <ink-biIs/Y0ymYJMZLIVYojuPNP0rXTJTi09@public.gmane.org>, Matt Turner <mattst88-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Alexey Brodkin <abrodkin-HKixBCOQz3hWk0Htik3J/w@public.gmane.org>, Vineet Gupta <vgupta-HKixBCOQz3hWk0Htik3J/w@public.gmane.org>, "James E.J. Bottomley" <James.Bottomley-d9PhHud1JfjCXq6kfMZ53/egYHeGw8Jk@public.gmane.org>, Helge Deller <deller-Mmb7MZpHnFY@public.gmane.org>, Benjamin Herrenschmidt <benh-XVmvHMARGAS8U2dJNN8I7kB+6BGkLq7r@public.gmane.org>, Paul Mackerras <paulus-eUNUBHrolfbYtjvyW6yDsg@public.gmane.org>, Michael Ellerman <mpe-Gsx/Oe8HsFggBc27wqDAHg@public.gmane.org>, Yoshinori Sato <ysato-Rn4VEauK+AKRv+LV9MX5uooqe+aC9MnS@public.gmane.org>, Rich Felker <dalias-8zAoT0mYgF4@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Jiri Slaby <jirislaby-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Nick Kossifidis <mickflemm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Luis Chamberlain <mcgrof-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Kalle Valo <kvalo-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>, "David S. Miller" <davem@davemloft>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Mar 17, 2020 at 09:00:47PM -0400, Lyude wrote:
-> From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> =
+On 2/19/20 6:50 PM, Krzysztof Kozlowski wrote:
+> The ioreadX() helpers have inconsistent interface.  On some architectures
+> void *__iomem address argument is a pointer to const, on some not.
+> 
+> Implementations of ioreadX() do not modify the memory under the address
+> so they can be converted to a "const" version for const-safety and
+> consistency among architectures.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 
-> We're finally getting CRC support in nouveau, so let's start testing
-> this in igt as well! While the normal CRC capture tests are nice,
-> there's a number of Nvidia-specific hardware characteristics that we
-> need to test as well.
-> =
+Acked-by: Hans Verkuil <hverkuil-cisco-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org>
 
-> The most important one is known as a "notifier context flip". Basically,
-> Nvidia GPUs store generated CRCs in an allocated memory region, referred
-> to as the notifier context, that the driver programs itself. Strangely,
-> this region can only hold a limited number of CRC entries, and once it
-> runs out of available entries the hardware simply sets an overrun bit
-> and stops writing any new CRC entries.
-> =
+Regards,
 
-> Since igt-gpu-tools doesn't really have an expectation of only being
-> able to grab a limited number of CRCs, we work around this in nouveau by
-> allocating two separate CRC notifier regions each time we start
-> capturing CRCs, and then flip between them whenever we get close to
-> filling our currently programmed notifier context. While this keeps the
-> number of CRC entries we lose to an absolute minimum, we are guaranteed
-> to lose exactly one CRC entry between context flips. Thus, we add some
-> tests to ensure that nouveau handles these flips correctly
-> (pipe-[A-F]-ctx-flip-detection), and that igt itself is also able to
-> handle them correctly (pipe-[A-F]-ctx-flip-skip-current-frame). Since
-> these tests use a debugfs interface to manually control the notifier
-> context flip threshold, we also add one test to ensure that any flip
-> thresholds we set are cleared after a single CRC capture
-> (ctx-flip-threshold-reset-after-capture).
-> =
+	Hans
 
-> In addition, we also add some simple tests to test Nvidia-specific CRC
-> sources.
-> =
-
-> Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 > ---
->  lib/drmtest.c       |  10 ++
->  lib/drmtest.h       |   2 +
->  tests/meson.build   |   1 +
->  tests/nouveau_crc.c | 396 ++++++++++++++++++++++++++++++++++++++++++++
->  4 files changed, 409 insertions(+)
->  create mode 100644 tests/nouveau_crc.c
-> =
-
-> diff --git a/lib/drmtest.c b/lib/drmtest.c
-> index 1fc39925..53c01754 100644
-> --- a/lib/drmtest.c
-> +++ b/lib/drmtest.c
-> @@ -112,6 +112,11 @@ bool is_i915_device(int fd)
->  	return __is_device(fd, "i915");
->  }
->  =
-
-> +bool is_nouveau_device(int fd)
-> +{
-> +	return __is_device(fd, "nouveau");
-> +}
-> +
->  bool is_vc4_device(int fd)
->  {
->  	return __is_device(fd, "vc4");
-> @@ -537,6 +542,11 @@ void igt_require_intel(int fd)
->  	igt_require(is_i915_device(fd) && has_known_intel_chipset(fd));
->  }
->  =
-
-> +void igt_require_nouveau(int fd)
-> +{
-> +	igt_require(is_nouveau_device(fd));
-> +}
-> +
->  void igt_require_vc4(int fd)
->  {
->  	igt_require(is_vc4_device(fd));
-> diff --git a/lib/drmtest.h b/lib/drmtest.h
-> index 632c616b..4937e9d2 100644
-> --- a/lib/drmtest.h
-> +++ b/lib/drmtest.h
-> @@ -97,10 +97,12 @@ void gem_quiescent_gpu(int fd);
->  =
-
->  void igt_require_amdgpu(int fd);
->  void igt_require_intel(int fd);
-> +void igt_require_nouveau(int fd);
->  void igt_require_vc4(int fd);
->  =
-
->  bool is_amdgpu_device(int fd);
->  bool is_i915_device(int fd);
-> +bool is_nouveau_device(int fd);
->  bool is_vc4_device(int fd);
->  =
-
->  /**
-> diff --git a/tests/meson.build b/tests/meson.build
-> index 7629afde..9ff74cc6 100644
-> --- a/tests/meson.build
-> +++ b/tests/meson.build
-> @@ -70,6 +70,7 @@ test_progs =3D [
->  	'kms_vblank',
->  	'kms_vrr',
->  	'meta_test',
-> +	'nouveau_crc',
->  	'panfrost_get_param',
->  	'panfrost_gem_new',
->  	'panfrost_prime',
-> diff --git a/tests/nouveau_crc.c b/tests/nouveau_crc.c
-> new file mode 100644
-> index 00000000..09e17a6f
-> --- /dev/null
-> +++ b/tests/nouveau_crc.c
-> @@ -0,0 +1,396 @@
-> +/*
-> + * Copyright =A9 2019 Red Hat Inc.
-
-Verify that the authoring year is correct.
-
-
--- =
-
-Petri Latvala
+>  drivers/media/platform/fsl-viu.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/media/platform/fsl-viu.c b/drivers/media/platform/fsl-viu.c
+> index 81a8faedbba6..991d9dc82749 100644
+> --- a/drivers/media/platform/fsl-viu.c
+> +++ b/drivers/media/platform/fsl-viu.c
+> @@ -34,7 +34,7 @@
+>  /* Allow building this driver with COMPILE_TEST */
+>  #if !defined(CONFIG_PPC) && !defined(CONFIG_MICROBLAZE)
+>  #define out_be32(v, a)	iowrite32be(a, (void __iomem *)v)
+> -#define in_be32(a)	ioread32be((void __iomem *)a)
+> +#define in_be32(a)	ioread32be((const void __iomem *)a)
+>  #endif
+>  
+>  #define BUFFER_TIMEOUT		msecs_to_jiffies(500)  /* 0.5 seconds */
+> 
