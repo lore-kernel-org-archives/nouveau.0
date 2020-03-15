@@ -1,16 +1,12 @@
-From: Petri Latvala <petri.latvala-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Subject: Re: [igt-dev] [PATCH i-g-t 1/4] lib/igt_core: Add
- igt_require_fd()
-Date: Wed, 18 Mar 2020 10:12:18 +0200
-Message-ID: <20200318081218.GI9497@platvala-desk.ger.corp.intel.com>
-References: <20200318010047.237024-1-lyude@redhat.com>
- <20200318010047.237024-2-lyude@redhat.com>
+From: =?UTF-8?Q?Jes=C3=BAs_J=2E_Guerrero_Botella?=
+ <jesus.guerrero.botella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Status of GF108GLM [NVS 5200M]
+Date: Sun, 15 Mar 2020 21:58:13 +0100
+Message-ID: <CAMix8LH00FU9VmT1uGXhTN+PiCM+i8J1uk=Ps-Fdy9jXmN3TVQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20200318010047.237024-2-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,57 +16,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: igt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Mar 17, 2020 at 09:00:44PM -0400, Lyude wrote:
-> From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> 
-> Like igt_assert_fd(), but using igt_require() instead
-> 
-> Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> ---
->  lib/igt_core.h | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/lib/igt_core.h b/lib/igt_core.h
-> index fae5f59e..b66336cf 100644
-> --- a/lib/igt_core.h
-> +++ b/lib/igt_core.h
-> @@ -1008,6 +1008,18 @@ void igt_describe_f(const char *fmt, ...);
->  	else igt_debug("Test requirement passed: %s\n", #expr); \
->  } while (0)
->  
-> +/**
-> + * igt_require_fd:
-> + * @fd: file descriptor
-> + *
-> + * Skips (sub-) test if the given file descriptor is invalid.
-> + *
-> + * Like igt_require(), but displays the values being compared on failure instead
-> + * of simply printing the stringified expression..
-
-igt_assert_fd has this documentation comment, but that's mistakenly
-copypasted from igt_assert_eq and pals. Let's not propagate the
-copypaste error further.
-
-
--- 
-Petri Latvala
-
-
-> + */
-> +#define igt_require_fd(fd) \
-> +	igt_require_f(fd >= 0, "file descriptor " #fd " failed\n");
-> +
->  /**
->   * igt_skip_on_f:
->   * @expr: condition to test
-> -- 
-> 2.24.1
-> 
-> _______________________________________________
-> igt-dev mailing list
-> igt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/igt-dev
+SGVsbG8uCgpJIGFtIG5vdCBzdWJzY3JpYmVkIHRvIHRoZSBsaXN0LCBzbywgcGxlYXNlLCBpZiBJ
+IGRvIGFueXRoaW5nIHdyb25nCmp1c3QgbGV0IG1lIGtub3cgcG9saXRlbHkgYW5kIEknbGwgdHJ5
+IHRvIGltcHJvdmUgOikKCkkganVzdCB3YW50IHRvIGtub3cgaWYgdGhlcmUncyBhbnkgYnJhbmNo
+IG9mIG5vdXZlYXUgdmVyc2lvbiB0aGF0IHdpbGwKd29yayB3aXRoIHRoaXMgY2hpcC4gbHNwY2kg
+bGlzdHMgaXQgYXM6CgowMTowMC4wIFZHQSBjb21wYXRpYmxlIGNvbnRyb2xsZXI6IE5WSURJQSBD
+b3Jwb3JhdGlvbiBHRjEwOEdMTSBbTlZTCjUyMDBNXSAocmV2IGExKQoKSSB0aGluayBpdCdzIEZl
+cm1pLCBidXQgSSBhbSBub3Qgc3VyZS4gV2hlbiBJIHRyeSB0byBjaGFuZ2UgcHN0YXRlIGl0IHNh
+eXM6CgojIExDX0FMTD1DIGVjaG8gJzBmJyA+IC9zeXMva2VybmVsL2RlYnVnL2RyaS8xL3BzdGF0
+ZQpiYXNoOiBlY2hvOiB3cml0ZSBlcnJvcjogRnVuY3Rpb24gbm90IGltcGxlbWVudGVkCiMgTENf
+QUxMPUMgY2F0IC9zeXMva2VybmVsL2RlYnVnL2RyaS8xL3BzdGF0ZQowMzogY29yZSA1MCBNSHog
+bWVtb3J5IDEzNSBNSHoKMDc6IGNvcmUgMjAyIE1IeiBtZW1vcnkgMzI0IE1IegowZjogY29yZSA2
+NzIgTUh6IG1lbW9yeSAxNTY5IE1IegpBQzogY29yZSAwIE1IeiBtZW1vcnkgMCBNSHoKCkl0J3Mg
+d29ydGggbm90aW5nIHRoYXQncyBhIHNlY29uZGFyeSBncHUuIEkganVzdCB1c2UgdGhlIGludGVs
+IGNoaXAKZm9yIGV2ZXJ5ZGF5J3Mgd29yaywgYnV0IEkgaGF2ZSBzb21lIGZyZWUgZGF5cyBhbmQg
+SSBhbSB0cnlpbmcgdG8gZ2V0CnRoZSBzZWNvbmRhcnkgb25lIHdvcmtpbmcgYW5kIHB1dCBpdCB0
+byBnb29kIHVzZSwgaWYgcG9zc2libGUuCgpUaGFua3MgZm9yIGFueSBoZWxwIHlvdSBjYW4gcHJv
+dmlkZS4gUGxlYXNlLCBDQyBtZSwgYXMgc2FpZCwgSSBhbSBub3QKc3Vic2NyaWJlZCB0byB0aGUg
+bGlzdCBldmVuIHRob3VnaCBJJ2xsIHRyeSB0byBrZWVwIGFuIGV5ZSBvbiB0aGlzLgoKCi0tIApK
+ZXPDunMgR3VlcnJlcm8gQm90ZWxsYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
+dXZlYXUK
