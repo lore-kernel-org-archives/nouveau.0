@@ -1,7 +1,7 @@
 From: Christoph Hellwig <hch@lst.de>
-Subject: [PATCH 1/4] memremap: add an owner field to struct dev_pagemap
-Date: Mon, 16 Mar 2020 20:32:13 +0100
-Message-ID: <20200316193216.920734-2-hch@lst.de>
+Subject: [PATCH 2/4] mm: handle multiple owners of device private pages in migrate_vma
+Date: Mon, 16 Mar 2020 20:32:14 +0100
+Message-ID: <20200316193216.920734-3-hch@lst.de>
 References: <20200316193216.920734-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -12,79 +12,100 @@ To: Jason Gunthorpe <jgg@ziepe.ca>, Dan Williams <dan.j.williams@intel.com>, Bha
 Cc: Jerome Glisse <jglisse@redhat.com>, kvm-ppc@vger.kernel.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-mm@kvack.org
 List-Id: nouveau.vger.kernel.org
 
-Add a new opaque owner field to struct dev_pagemap, which will allow
-the hmm and migrate_vma code to identify who owns ZONE_DEVICE memory,
-and refuse to work on mappings not owned by the calling entity.
+Add a new src_owner field to struct migrate_vma.  If the field is set,
+only device private pages with page->pgmap->owner equal to that field
+are migrated.  If the field is not set only "normal" pages are migrated.
 
 Signed-off-by: Christoph Hellwig <hch@lst.de>
+Fixes: df6ad69838fc ("mm/device-public-memory: device memory cache coherent with CPU")
 ---
- arch/powerpc/kvm/book3s_hv_uvmem.c     | 2 ++
+ arch/powerpc/kvm/book3s_hv_uvmem.c     | 1 +
  drivers/gpu/drm/nouveau/nouveau_dmem.c | 1 +
- include/linux/memremap.h               | 4 ++++
- mm/memremap.c                          | 4 ++++
- 4 files changed, 11 insertions(+)
+ include/linux/migrate.h                | 8 ++++++++
+ mm/migrate.c                           | 9 ++++++---
+ 4 files changed, 16 insertions(+), 3 deletions(-)
 
 diff --git a/arch/powerpc/kvm/book3s_hv_uvmem.c b/arch/powerpc/kvm/book3s_hv_uvmem.c
-index 79b1202b1c62..67fefb03b9b7 100644
+index 67fefb03b9b7..f44f6b27950f 100644
 --- a/arch/powerpc/kvm/book3s_hv_uvmem.c
 +++ b/arch/powerpc/kvm/book3s_hv_uvmem.c
-@@ -779,6 +779,8 @@ int kvmppc_uvmem_init(void)
- 	kvmppc_uvmem_pgmap.type = MEMORY_DEVICE_PRIVATE;
- 	kvmppc_uvmem_pgmap.res = *res;
- 	kvmppc_uvmem_pgmap.ops = &kvmppc_uvmem_ops;
-+	/* just one global instance: */
-+	kvmppc_uvmem_pgmap.owner = &kvmppc_uvmem_pgmap;
- 	addr = memremap_pages(&kvmppc_uvmem_pgmap, NUMA_NO_NODE);
- 	if (IS_ERR(addr)) {
- 		ret = PTR_ERR(addr);
+@@ -563,6 +563,7 @@ kvmppc_svm_page_out(struct vm_area_struct *vma, unsigned long start,
+ 	mig.end = end;
+ 	mig.src = &src_pfn;
+ 	mig.dst = &dst_pfn;
++	mig.src_owner = &kvmppc_uvmem_pgmap;
+ 
+ 	mutex_lock(&kvm->arch.uvmem_lock);
+ 	/* The requested page is already paged-out, nothing to do */
 diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-index 0ad5d87b5a8e..a4682272586e 100644
+index a4682272586e..0e36345d395c 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -526,6 +526,7 @@ nouveau_dmem_init(struct nouveau_drm *drm)
- 	drm->dmem->pagemap.type = MEMORY_DEVICE_PRIVATE;
- 	drm->dmem->pagemap.res = *res;
- 	drm->dmem->pagemap.ops = &nouveau_dmem_pagemap_ops;
-+	drm->dmem->pagemap.owner = drm->dev;
- 	if (IS_ERR(devm_memremap_pages(device, &drm->dmem->pagemap)))
- 		goto out_free;
+@@ -176,6 +176,7 @@ static vm_fault_t nouveau_dmem_migrate_to_ram(struct vm_fault *vmf)
+ 		.end		= vmf->address + PAGE_SIZE,
+ 		.src		= &src,
+ 		.dst		= &dst,
++		.src_owner	= drm->dev,
+ 	};
  
-diff --git a/include/linux/memremap.h b/include/linux/memremap.h
-index 6fefb09af7c3..60d97e8fd3c0 100644
---- a/include/linux/memremap.h
-+++ b/include/linux/memremap.h
-@@ -103,6 +103,9 @@ struct dev_pagemap_ops {
-  * @type: memory type: see MEMORY_* in memory_hotplug.h
-  * @flags: PGMAP_* flags to specify defailed behavior
-  * @ops: method table
-+ * @owner: an opaque pointer identifying the entity that manages this
-+ *	instance.  Used by various helpers to make sure that no
-+ *	foreign ZONE_DEVICE memory is accessed.
-  */
- struct dev_pagemap {
- 	struct vmem_altmap altmap;
-@@ -113,6 +116,7 @@ struct dev_pagemap {
- 	enum memory_type type;
- 	unsigned int flags;
- 	const struct dev_pagemap_ops *ops;
-+	void *owner;
+ 	/*
+diff --git a/include/linux/migrate.h b/include/linux/migrate.h
+index 72120061b7d4..3e546cbf03dd 100644
+--- a/include/linux/migrate.h
++++ b/include/linux/migrate.h
+@@ -196,6 +196,14 @@ struct migrate_vma {
+ 	unsigned long		npages;
+ 	unsigned long		start;
+ 	unsigned long		end;
++
++	/*
++	 * Set to the owner value also stored in page->pgmap->owner for
++	 * migrating out of device private memory.  If set only device
++	 * private pages with this owner are migrated.  If not set
++	 * device private pages are not migrated at all.
++	 */
++	void			*src_owner;
  };
  
- static inline struct vmem_altmap *pgmap_altmap(struct dev_pagemap *pgmap)
-diff --git a/mm/memremap.c b/mm/memremap.c
-index 09b5b7adc773..9b2c97ceb775 100644
---- a/mm/memremap.c
-+++ b/mm/memremap.c
-@@ -181,6 +181,10 @@ void *memremap_pages(struct dev_pagemap *pgmap, int nid)
- 			WARN(1, "Missing migrate_to_ram method\n");
- 			return ERR_PTR(-EINVAL);
+ int migrate_vma_setup(struct migrate_vma *args);
+diff --git a/mm/migrate.c b/mm/migrate.c
+index b1092876e537..7605d2c23433 100644
+--- a/mm/migrate.c
++++ b/mm/migrate.c
+@@ -2241,7 +2241,7 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+ 	arch_enter_lazy_mmu_mode();
+ 
+ 	for (; addr < end; addr += PAGE_SIZE, ptep++) {
+-		unsigned long mpfn, pfn;
++		unsigned long mpfn = 0, pfn;
+ 		struct page *page;
+ 		swp_entry_t entry;
+ 		pte_t pte;
+@@ -2255,8 +2255,6 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
  		}
-+		if (!pgmap->owner) {
-+			WARN(1, "Missing owner\n");
-+			return ERR_PTR(-EINVAL);
-+		}
- 		break;
- 	case MEMORY_DEVICE_FS_DAX:
- 		if (!IS_ENABLED(CONFIG_ZONE_DEVICE) ||
+ 
+ 		if (!pte_present(pte)) {
+-			mpfn = 0;
+-
+ 			/*
+ 			 * Only care about unaddressable device page special
+ 			 * page table entry. Other special swap entries are not
+@@ -2267,11 +2265,16 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+ 				goto next;
+ 
+ 			page = device_private_entry_to_page(entry);
++			if (page->pgmap->owner != migrate->src_owner)
++				goto next;
++
+ 			mpfn = migrate_pfn(page_to_pfn(page)) |
+ 					MIGRATE_PFN_MIGRATE;
+ 			if (is_write_device_private_entry(entry))
+ 				mpfn |= MIGRATE_PFN_WRITE;
+ 		} else {
++			if (migrate->src_owner)
++				goto next;
+ 			pfn = pte_pfn(pte);
+ 			if (is_zero_pfn(pfn)) {
+ 				mpfn = MIGRATE_PFN_MIGRATE;
 -- 
 2.24.1
