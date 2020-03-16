@@ -1,21 +1,28 @@
-From: Christoph Hellwig <hch@lst.de>
-Subject: ensure device private pages have an owner
-Date: Mon, 16 Mar 2020 18:52:57 +0100
-Message-ID: <20200316175259.908713-1-hch@lst.de>
+From: Jason Gunthorpe <jgg@ziepe.ca>
+Subject: Re: [PATCH 1/2] mm: handle multiple owners of device private pages
+ in migrate_vma
+Date: Mon, 16 Mar 2020 15:17:07 -0300
+Message-ID: <20200316181707.GJ20941@ziepe.ca>
+References: <20200316175259.908713-1-hch@lst.de>
+ <20200316175259.908713-2-hch@lst.de>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
 Return-path: <kvm-ppc-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20200316175259.908713-2-hch@lst.de>
 Sender: kvm-ppc-owner@vger.kernel.org
-To: Jason Gunthorpe <jgg@ziepe.ca>, Dan Williams <dan.j.williams@intel.com>, Bharata B Rao <bharata@linux.ibm.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: Jerome Glisse <jglisse@redhat.com>, kvm-ppc@vger.kernel.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-mm@kvack.org
+To: Christoph Hellwig <hch@lst.de>
+Cc: Dan Williams <dan.j.williams@intel.com>, Bharata B Rao <bharata@linux.ibm.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, Ben Skeggs <bskeggs@redhat.com>, Jerome Glisse <jglisse@redhat.com>, kvm-ppc@vger.kernel.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-mm@kvack.org
 List-Id: nouveau.vger.kernel.org
 
-When acting on device private mappings a driver needs to know if the
-device (or other entity in case of kvmppc) actually owns this private
-mapping.  This series adds an owner field and converts the migrate_vma
-code over to check it.  I looked into doing the same for
-hmm_range_fault, but as far as I can tell that code has never been
-wired up to actually work for device private memory, so instead of
-trying to fix some unused code the second patch just remove the code.
-We can add it back once we have a working and fully tested code, and
-then should pass the expected owner in the hmm_range structure.
+On Mon, Mar 16, 2020 at 06:52:58PM +0100, Christoph Hellwig wrote:
+> Add a new opaque owner field to struct dev_pagemap, which will allow
+> the hmm and migrate_vma code to identify who owns ZONE_DEVICE memory,
+> and refuse to work on mappings not owned by the calling entity.
+
+Using a pointer seems like a good solution to me.
+
+Is this a bug fix? What is the downside for migrate on pages it
+doesn't work? I'm not up to speed on migrate..
+
+Jason
