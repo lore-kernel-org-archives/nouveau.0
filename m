@@ -1,80 +1,98 @@
 From: Ralph Campbell <rcampbell@nvidia.com>
-Subject: Re: [PATCH 2/2] mm: remove device private page support from
- hmm_range_fault
-Date: Mon, 16 Mar 2020 13:24:09 -0700
-Message-ID: <6de7ee97-45c7-b814-4dab-64e311dd86ce@nvidia.com>
-References: <20200316175259.908713-1-hch@lst.de>
- <20200316175259.908713-3-hch@lst.de>
- <c099cc3c-c19f-9d61-4297-2e83df899ca4@nvidia.com>
- <20200316184935.GA25322@lst.de> <20200316200929.GB20010@ziepe.ca>
+Subject: Re: [PATCH 1/4] memremap: add an owner field to struct dev_pagemap
+Date: Mon, 16 Mar 2020 13:55:40 -0700
+Message-ID: <afaadfde-94b1-5b7d-802b-812b0b448b78@nvidia.com>
+References: <20200316193216.920734-1-hch@lst.de>
+ <20200316193216.920734-2-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 Return-path: <kvm-ppc-owner@vger.kernel.org>
-In-Reply-To: <20200316200929.GB20010@ziepe.ca>
+In-Reply-To: <20200316193216.920734-2-hch@lst.de>
 Content-Language: en-US
 Sender: kvm-ppc-owner@vger.kernel.org
-To: Jason Gunthorpe <jgg@ziepe.ca>, Christoph Hellwig <hch@lst.de>
-Cc: Dan Williams <dan.j.williams@intel.com>, Bharata B Rao <bharata@linux.ibm.com>, =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>, Ben Skeggs <bskeggs@redhat.com>, Jerome Glisse <jglisse@redhat.com>, kvm-ppc@vger.kernel.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-mm@kvack.org
+To: Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@ziepe.ca>, Dan Williams <dan.j.williams@intel.com>, Bharata B Rao <bharata@linux.ibm.com>, =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: Jerome Glisse <jglisse@redhat.com>, kvm-ppc@vger.kernel.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-mm@kvack.org
 List-Id: nouveau.vger.kernel.org
 
 
-On 3/16/20 1:09 PM, Jason Gunthorpe wrote:
-> On Mon, Mar 16, 2020 at 07:49:35PM +0100, Christoph Hellwig wrote:
->> On Mon, Mar 16, 2020 at 11:42:19AM -0700, Ralph Campbell wrote:
->>>
->>> On 3/16/20 10:52 AM, Christoph Hellwig wrote:
->>>> No driver has actually used properly wire up and support this feature.
->>>> There is various code related to it in nouveau, but as far as I can tell
->>>> it never actually got turned on, and the only changes since the initial
->>>> commit are global cleanups.
->>>
->>> This is not actually true. OpenCL 2.x does support SVM with nouveau and
->>> device private memory via clEnqueueSVMMigrateMem().
->>> Also, Ben Skeggs has accepted a set of patches to map GPU memory after being
->>> migrated and this change would conflict with that.
->>
->> Can you explain me how we actually invoke this code?
->>
->> For that we'd need HMM_PFN_DEVICE_PRIVATE NVIF_VMM_PFNMAP_V0_VRAM
->> set in ->pfns before calling hmm_range_fault, which isn't happening.
+On 3/16/20 12:32 PM, Christoph Hellwig wrote:
+> Add a new opaque owner field to struct dev_pagemap, which will allow
+> the hmm and migrate_vma code to identify who owns ZONE_DEVICE memory,
+> and refuse to work on mappings not owned by the calling entity.
 > 
-> Oh, I got tripped on this too
-> 
-> The logic is backwards from what you'd think.. If you *set*
-> HMM_PFN_DEVICE_PRIVATE then this triggers:
-> 
-> hmm_pte_need_fault():
-> 	if ((cpu_flags & range->flags[HMM_PFN_DEVICE_PRIVATE])) {
-> 		/* Do we fault on device memory ? */
-> 		if (pfns & range->flags[HMM_PFN_DEVICE_PRIVATE]) {
-> 			*write_fault = pfns & range->flags[HMM_PFN_WRITE];
-> 			*fault = true;
-> 		}
-> 		return;
-> 	}
-> 
-> Ie if the cpu page is a DEVICE_PRIVATE and the caller sets
-> HMM_PFN_DEVICE_PRIVATE in the input flags (pfns) then it always faults
-> it and never sets HMM_PFN_DEVICE_PRIVATE in the output flags.
-> 
-> So setting 0 enabled device_private support, and nouveau is Ok.
-> 
-> AMDGPU is broken because it can't handle device private and can't set
-> the flag to supress it.
-> 
-> I was going to try and sort this out as part of getting rid of range->flags
-> 
-> Jason
-> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
 
-The reason for it being backwards is that "normally" a device doesn't want
-the device private page to be faulted back to system memory, it wants to
-get the device private struct page so it can update its page table to point
-to the memory already in the device.
-Also, a device like Nvidia's GPUs may have an alternate path for copying
-one GPU's memory to another (nvlink) without going through system memory
-so getting a device private struct page/PFN from hmm_range_fault() that isn't
-"owned" by the faulting GPU is useful.
-I agree that the current code isn't well tested or thought out for multiple devices
-(rdma, NVMe drives, GPUs, etc.) but it also ties in with peer-to-peer access via PCIe.
+This looks like a reasonable approach to take.
+Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
+
+> ---
+>   arch/powerpc/kvm/book3s_hv_uvmem.c     | 2 ++
+>   drivers/gpu/drm/nouveau/nouveau_dmem.c | 1 +
+>   include/linux/memremap.h               | 4 ++++
+>   mm/memremap.c                          | 4 ++++
+>   4 files changed, 11 insertions(+)
+> 
+> diff --git a/arch/powerpc/kvm/book3s_hv_uvmem.c b/arch/powerpc/kvm/book3s_hv_uvmem.c
+> index 79b1202b1c62..67fefb03b9b7 100644
+> --- a/arch/powerpc/kvm/book3s_hv_uvmem.c
+> +++ b/arch/powerpc/kvm/book3s_hv_uvmem.c
+> @@ -779,6 +779,8 @@ int kvmppc_uvmem_init(void)
+>   	kvmppc_uvmem_pgmap.type = MEMORY_DEVICE_PRIVATE;
+>   	kvmppc_uvmem_pgmap.res = *res;
+>   	kvmppc_uvmem_pgmap.ops = &kvmppc_uvmem_ops;
+> +	/* just one global instance: */
+> +	kvmppc_uvmem_pgmap.owner = &kvmppc_uvmem_pgmap;
+>   	addr = memremap_pages(&kvmppc_uvmem_pgmap, NUMA_NO_NODE);
+>   	if (IS_ERR(addr)) {
+>   		ret = PTR_ERR(addr);
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+> index 0ad5d87b5a8e..a4682272586e 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+> @@ -526,6 +526,7 @@ nouveau_dmem_init(struct nouveau_drm *drm)
+>   	drm->dmem->pagemap.type = MEMORY_DEVICE_PRIVATE;
+>   	drm->dmem->pagemap.res = *res;
+>   	drm->dmem->pagemap.ops = &nouveau_dmem_pagemap_ops;
+> +	drm->dmem->pagemap.owner = drm->dev;
+>   	if (IS_ERR(devm_memremap_pages(device, &drm->dmem->pagemap)))
+>   		goto out_free;
+>   
+> diff --git a/include/linux/memremap.h b/include/linux/memremap.h
+> index 6fefb09af7c3..60d97e8fd3c0 100644
+> --- a/include/linux/memremap.h
+> +++ b/include/linux/memremap.h
+> @@ -103,6 +103,9 @@ struct dev_pagemap_ops {
+>    * @type: memory type: see MEMORY_* in memory_hotplug.h
+>    * @flags: PGMAP_* flags to specify defailed behavior
+>    * @ops: method table
+> + * @owner: an opaque pointer identifying the entity that manages this
+> + *	instance.  Used by various helpers to make sure that no
+> + *	foreign ZONE_DEVICE memory is accessed.
+>    */
+>   struct dev_pagemap {
+>   	struct vmem_altmap altmap;
+> @@ -113,6 +116,7 @@ struct dev_pagemap {
+>   	enum memory_type type;
+>   	unsigned int flags;
+>   	const struct dev_pagemap_ops *ops;
+> +	void *owner;
+>   };
+>   
+>   static inline struct vmem_altmap *pgmap_altmap(struct dev_pagemap *pgmap)
+> diff --git a/mm/memremap.c b/mm/memremap.c
+> index 09b5b7adc773..9b2c97ceb775 100644
+> --- a/mm/memremap.c
+> +++ b/mm/memremap.c
+> @@ -181,6 +181,10 @@ void *memremap_pages(struct dev_pagemap *pgmap, int nid)
+>   			WARN(1, "Missing migrate_to_ram method\n");
+>   			return ERR_PTR(-EINVAL);
+>   		}
+> +		if (!pgmap->owner) {
+> +			WARN(1, "Missing owner\n");
+> +			return ERR_PTR(-EINVAL);
+> +		}
+>   		break;
+>   	case MEMORY_DEVICE_FS_DAX:
+>   		if (!IS_ENABLED(CONFIG_ZONE_DEVICE) ||
+> 
