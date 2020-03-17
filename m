@@ -1,37 +1,46 @@
-From: Christoph Hellwig <hch@infradead.org>
-Subject: Re: [PATCH RESEND v2 2/2] PCI: Use ioremap(), not phys_to_virt() for
- platform ROM
-Date: Tue, 17 Mar 2020 07:47:31 -0700
-Message-ID: <20200317144731.GG23471@infradead.org>
-References: <20200313222258.15659-1-mikel@mikelr.com>
- <20200313222258.15659-3-mikel@mikelr.com>
+From: Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>
+Subject: Re: [PATCH 3/4] mm: simplify device private page handling
+ in hmm_range_fault
+Date: Tue, 17 Mar 2020 14:32:14 -0300
+Message-ID: <20200317173214.GT20941@ziepe.ca>
+References: <20200316193216.920734-1-hch@lst.de>
+ <20200316193216.920734-4-hch@lst.de>
+ <7256f88d-809e-4aba-3c46-a223bd8cc521@nvidia.com>
+ <20200317121536.GQ20941@ziepe.ca> <20200317122445.GA11662@lst.de>
+ <20200317122813.GA11866@lst.de> <20200317124755.GR20941@ziepe.ca>
+ <20200317125955.GA12847@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-pci-owner@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20200313222258.15659-3-mikel@mikelr.com>
-Sender: linux-pci-owner@vger.kernel.org
-To: Mikel Rychliski <mikel@mikelr.com>
-Cc: amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, Bjorn Helgaas <bhelgaas@google.com>, Matthew Garrett <matthewgarrett@google.com>, Ben Skeggs <bskeggs@redhat.com>
+In-Reply-To: <20200317125955.GA12847-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, kvm-ppc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Mar 13, 2020 at 06:22:58PM -0400, Mikel Rychliski wrote:
->  /**
-> + * pci_platform_rom - ioremap() the ROM image provided by the platform
->   * @pdev: pointer to pci device struct
->   * @size: pointer to receive size of pci window over ROM
-> + *
-> + * Return: kernel virtual pointer to image of ROM
-> + *
-> + * The caller is responsible for removing the mapping with iounmap()
->   */
->  void __iomem *pci_platform_rom(struct pci_dev *pdev, size_t *size)
->  {
->  	if (pdev->rom && pdev->romlen) {
->  		*size = pdev->romlen;
-> -		return phys_to_virt((phys_addr_t)pdev->rom);
-> +		return ioremap(pdev->rom, pdev->romlen);
->  	}
+On Tue, Mar 17, 2020 at 01:59:55PM +0100, Christoph Hellwig wrote:
+> On Tue, Mar 17, 2020 at 09:47:55AM -0300, Jason Gunthorpe wrote:
+> > I've been using v7 of Ralph's tester and it is working well - it has
+> > DEVICE_PRIVATE support so I think it can test this flow too. Ralph are
+> > you able?
+> > 
+> > This hunk seems trivial enough to me, can we include it now?
+> 
+> I can send a separate patch for it once the tester covers it.  I don't
+> want to add it to the original patch as it is a significant behavior
+> change compared to the existing code.
 
-What is the value of this helper over just open coding an ioremap
-of pdev->rom in the callers?
+Okay. I'm happy enough for now that amdgpu will get ERROR on
+device_private pages. That is a bug fix in of itself.
+
+Jason
