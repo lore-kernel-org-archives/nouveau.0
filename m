@@ -1,38 +1,76 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 2/2] drm/nouveau/connector: Fix DDC error when probing force-disabled connectors
-Date: Tue, 17 Mar 2020 20:04:23 -0400
-Message-ID: <20200318000423.205005-2-lyude@redhat.com>
-References: <20200318000423.205005-1-lyude@redhat.com>
+Subject: [PATCH 0/9] drm/nouveau: Introduce CRC support for gf119+
+Date: Tue, 17 Mar 2020 20:40:57 -0400
+Message-ID: <20200318004159.235623-1-lyude@redhat.com>
 Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200318000423.205005-1-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, Alex Deucher <alexander.deucher@amd.com>, Ben Skeggs <bskeggs@redhat.com>, Ilia Mirkin <imirkin@alum.mit.edu>, Peteris Rudzusiks <peteris.rudzusiks@gmail.com>, Lyude Paul <lyude@redhat.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, Takashi Iwai <tiwai@suse.de>, Sean Paul <seanpaul@chromium.org>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/nouveau_connector.c | 3 +++
- 1 file changed, 3 insertions(+)
+Nvidia released some documentation on how CRC support works on their
+GPUs, hooray!
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/dr=
-m/nouveau/nouveau_connector.c
-index 0d42a7e5deff..9fb00c4b9764 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -550,6 +550,9 @@ nouveau_connector_detect(struct drm_connector *connec=
-tor, bool force)
- 	int ret;
- 	enum drm_connector_status conn_status =3D connector_status_disconnected=
-;
-=20
-+	if (connector->force =3D=3D DRM_FORCE_OFF)
-+		return conn_status;
-+
- 	/* Cleanup the previous EDID block. */
- 	if (nv_connector->edid) {
- 		drm_connector_update_edid_property(connector, NULL);
+So: this patch series implements said CRC support in nouveau, along with
+adding some special debugfs interfaces for some relevant igt-gpu-tools
+tests that we'll be sending in just a short bit.
+
+This additionally adds a feature that Ville Syrj=C3=A4l=C3=A4 came up wit=
+h: vblank
+works. Basically, this is just a generic DRM interface that allows for
+scheduling high-priority workers that start on a given vblank interrupt.
+Note that while we're currently only using this in nouveau, Intel has
+plans to use this for i915 as well (hence why they came up with it!).
+
+Anyway-welcome to the future! :)
+
+Lyude Paul (8):
+  drm/nouveau/kms/nv50-: Unroll error cleanup in nv50_head_create()
+  drm/nouveau/kms/nv140-: Don't modify depth in state during atomic
+    commit
+  drm/nouveau/kms/nv50-: Fix disabling dithering
+  drm/nouveau/kms/nv50-: s/harm/armh/g
+  drm/nouveau/kms/nv140-: Track wndw mappings in nv50_head_atom
+  drm/nouveau/kms/nv50-: Expose nv50_outp_atom in disp.h
+  drm/nouveau/kms/nv50-: Move hard-coded object handles into header
+  drm/nouveau/kms/nvd9-: Add CRC support
+
+Ville Syrj=C3=A4l=C3=A4 (1):
+  drm/vblank: Add vblank works
+
+ drivers/gpu/drm/drm_vblank.c                | 322 +++++++++
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c     |  25 +-
+ drivers/gpu/drm/nouveau/dispnv50/Kbuild     |   4 +
+ drivers/gpu/drm/nouveau/dispnv50/atom.h     |  21 +
+ drivers/gpu/drm/nouveau/dispnv50/core.h     |   4 +
+ drivers/gpu/drm/nouveau/dispnv50/core907d.c |   3 +
+ drivers/gpu/drm/nouveau/dispnv50/core917d.c |   3 +
+ drivers/gpu/drm/nouveau/dispnv50/corec37d.c |   3 +
+ drivers/gpu/drm/nouveau/dispnv50/corec57d.c |   3 +
+ drivers/gpu/drm/nouveau/dispnv50/crc.c      | 716 ++++++++++++++++++++
+ drivers/gpu/drm/nouveau/dispnv50/crc.h      | 125 ++++
+ drivers/gpu/drm/nouveau/dispnv50/crc907d.c  | 139 ++++
+ drivers/gpu/drm/nouveau/dispnv50/crcc37d.c  | 153 +++++
+ drivers/gpu/drm/nouveau/dispnv50/disp.c     |  65 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.h     |  24 +
+ drivers/gpu/drm/nouveau/dispnv50/handles.h  |  16 +
+ drivers/gpu/drm/nouveau/dispnv50/head.c     | 142 +++-
+ drivers/gpu/drm/nouveau/dispnv50/head.h     |  13 +-
+ drivers/gpu/drm/nouveau/dispnv50/head907d.c |  14 +-
+ drivers/gpu/drm/nouveau/dispnv50/headc37d.c |  27 +-
+ drivers/gpu/drm/nouveau/dispnv50/headc57d.c |  20 +-
+ drivers/gpu/drm/nouveau/dispnv50/wndw.c     |  15 +-
+ drivers/gpu/drm/nouveau/nouveau_display.c   |  60 +-
+ include/drm/drm_vblank.h                    |  34 +
+ 24 files changed, 1821 insertions(+), 130 deletions(-)
+ create mode 100644 drivers/gpu/drm/nouveau/dispnv50/crc.c
+ create mode 100644 drivers/gpu/drm/nouveau/dispnv50/crc.h
+ create mode 100644 drivers/gpu/drm/nouveau/dispnv50/crc907d.c
+ create mode 100644 drivers/gpu/drm/nouveau/dispnv50/crcc37d.c
+ create mode 100644 drivers/gpu/drm/nouveau/dispnv50/handles.h
+
 --=20
 2.24.1
