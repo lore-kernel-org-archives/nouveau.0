@@ -1,7 +1,8 @@
 From: Lyude <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH i-g-t 1/4] lib/igt_core: Add igt_require_fd()
-Date: Tue, 17 Mar 2020 21:00:44 -0400
-Message-ID: <20200318010047.237024-2-lyude@redhat.com>
+Subject: [PATCH i-g-t 2/4] lib/igt_debugfs: Add
+ igt_debugfs_pipe_dir()
+Date: Tue, 17 Mar 2020 21:00:45 -0400
+Message-ID: <20200318010047.237024-3-lyude@redhat.com>
 References: <20200318010047.237024-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,35 +24,65 @@ List-Id: nouveau.vger.kernel.org
 
 From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
-Like igt_assert_fd(), but using igt_require() instead
+Like igt_debugfs_connector_dir(), but for pipes instead.
 
 Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 ---
- lib/igt_core.h | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ lib/igt_debugfs.c | 29 +++++++++++++++++++++++++++++
+ lib/igt_debugfs.h |  1 +
+ 2 files changed, 30 insertions(+)
 
-diff --git a/lib/igt_core.h b/lib/igt_core.h
-index fae5f59e..b66336cf 100644
---- a/lib/igt_core.h
-+++ b/lib/igt_core.h
-@@ -1008,6 +1008,18 @@ void igt_describe_f(const char *fmt, ...);
- 	else igt_debug("Test requirement passed: %s\n", #expr); \
- } while (0)
+diff --git a/lib/igt_debugfs.c b/lib/igt_debugfs.c
+index bf6be552..3c3b11e1 100644
+--- a/lib/igt_debugfs.c
++++ b/lib/igt_debugfs.c
+@@ -260,6 +260,35 @@ int igt_debugfs_connector_dir(int device, char *conn_name, int mode)
+ 	return ret;
+ }
  
 +/**
-+ * igt_require_fd:
-+ * @fd: file descriptor
++ * igt_debugfs_pipe_dir:
++ * @device: fd of the device
++ * @pipe: index of pipe
++ * @mode: mode bits as used by open()
 + *
-+ * Skips (sub-) test if the given file descriptor is invalid.
++ * This opens the debugfs directory corresponding to the pipe index on the
++ * device for use with igt_sysfs_get() and related functions.
 + *
-+ * Like igt_require(), but displays the values being compared on failure instead
-+ * of simply printing the stringified expression..
++ * Returns:
++ * The directory fd, or -1 on failure.
 + */
-+#define igt_require_fd(fd) \
-+	igt_require_f(fd >= 0, "file descriptor " #fd " failed\n");
++int igt_debugfs_pipe_dir(int device, int pipe, int mode)
++{
++	char buf[128];
++	int dir, ret;
++
++	dir = igt_debugfs_dir(device);
++	if (dir < 0)
++		return dir;
++
++	snprintf(buf, sizeof(buf), "crtc-%d", pipe);
++	ret = openat(dir, buf, mode);
++
++	close(dir);
++
++	return ret;
++}
 +
  /**
-  * igt_skip_on_f:
-  * @expr: condition to test
+  * igt_debugfs_open:
+  * @filename: name of the debugfs node to open
+diff --git a/lib/igt_debugfs.h b/lib/igt_debugfs.h
+index 7d1a6175..15741a40 100644
+--- a/lib/igt_debugfs.h
++++ b/lib/igt_debugfs.h
+@@ -36,6 +36,7 @@ char *igt_debugfs_path(int device, char *path, int pathlen);
+ 
+ int igt_debugfs_dir(int device);
+ int igt_debugfs_connector_dir(int device, char *conn_name, int mode);
++int igt_debugfs_pipe_dir(int device, int pipe, int mode);
+ 
+ int igt_debugfs_open(int fd, const char *filename, int mode);
+ void __igt_debugfs_read(int fd, const char *filename, char *buf, int size);
 -- 
 2.24.1
