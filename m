@@ -1,37 +1,30 @@
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH 9/9] drm/nouveau/kms/nvd9-: Add CRC support
-Date: Wed, 18 Mar 2020 07:02:54 +0100
-Message-ID: <20200318060254.GB1594891@kroah.com>
-References: <20200318004159.235623-1-lyude@redhat.com>
- <20200318004159.235623-10-lyude@redhat.com>
+From: Christoph Hellwig <hch@infradead.org>
+Subject: Re: [PATCH RESEND v2 2/2] PCI: Use ioremap(), not phys_to_virt() for
+ platform ROM
+Date: Tue, 17 Mar 2020 23:51:19 -0700
+Message-ID: <20200318065119.GA14425@infradead.org>
+References: <20200313222258.15659-1-mikel@mikelr.com>
+ <20200313222258.15659-3-mikel@mikelr.com>
+ <20200317144731.GG23471@infradead.org>
+ <49518530.5kixuQOrMm@glidewell>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Return-path: <linux-pci-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20200318004159.235623-10-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>, Sam Ravnborg <sam@ravnborg.org>, Alex Deucher <alexander.deucher@amd.com>, Kate Stewart <kstewart@linuxfoundation.org>, Ilia Mirkin <imirkin@alum.mit.edu>, Sean Paul <seanpaul@chromium.org>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, Takashi Iwai <tiwai@suse.de>, Jani Nikula <jani.nikula@intel.com>, Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, linux-kernel@vger.kernel.org
+In-Reply-To: <49518530.5kixuQOrMm@glidewell>
+Sender: linux-pci-owner@vger.kernel.org
+To: Mikel Rychliski <mikel@mikelr.com>
+Cc: Christoph Hellwig <hch@infradead.org>, amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, Bjorn Helgaas <bhelgaas@google.com>, Matthew Garrett <matthewgarrett@google.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Mar 17, 2020 at 08:41:06PM -0400, Lyude Paul wrote:
-> +	root = debugfs_create_dir("nv_crc", crtc->debugfs_entry);
-> +	if (IS_ERR(root))
-> +		return PTR_ERR(root);
+On Tue, Mar 17, 2020 at 09:34:33PM -0400, Mikel Rychliski wrote:
+> I think the direct access to pdev->rom you suggest makes sense, especially 
+> because users of the pci_platform_rom() are exposed to the fact that it just 
+> calls ioremap().
+> 
+> I decided against wrapping the iounmap() with a pci_unmap_platform_rom(), but 
+> I didn't apply the same consideration to the existing function.
+> 
+> How about something like this (with pci_platform_rom() removed)?
 
-No need to check this, just take the return value and move on.
-
-> +
-> +	dent = debugfs_create_file("flip_threshold", 0644, root, head,
-> +				   &nv50_crc_flip_threshold_fops);
-> +	if (IS_ERR(dent))
-> +		return PTR_ERR(dent);
-
-No need to check this either, in fact this test is incorrect :(
-
-Just make the call, and move on.  See the loads of debugfs cleanups I
-have been doing for examples.
-
-thanks,
-
-greg k-h
+That looks sensible to me.
