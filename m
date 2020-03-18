@@ -1,90 +1,37 @@
-From: Mikel Rychliski <mikel@mikelr.com>
-Subject: Re: [PATCH RESEND v2 2/2] PCI: Use ioremap(), not phys_to_virt() for platform ROM
-Date: Tue, 17 Mar 2020 21:34:33 -0400
-Message-ID: <49518530.5kixuQOrMm@glidewell>
-References: <20200313222258.15659-1-mikel@mikelr.com> <20200313222258.15659-3-mikel@mikelr.com> <20200317144731.GG23471@infradead.org>
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH 9/9] drm/nouveau/kms/nvd9-: Add CRC support
+Date: Wed, 18 Mar 2020 07:02:54 +0100
+Message-ID: <20200318060254.GB1594891@kroah.com>
+References: <20200318004159.235623-1-lyude@redhat.com>
+ <20200318004159.235623-10-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-Return-path: <linux-pci-owner@vger.kernel.org>
-In-Reply-To: <20200317144731.GG23471@infradead.org>
-Sender: linux-pci-owner@vger.kernel.org
-To: Christoph Hellwig <hch@infradead.org>
-Cc: amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, Bjorn Helgaas <bhelgaas@google.com>, Matthew Garrett <matthewgarrett@google.com>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20200318004159.235623-10-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>, Sam Ravnborg <sam@ravnborg.org>, Alex Deucher <alexander.deucher@amd.com>, Kate Stewart <kstewart@linuxfoundation.org>, Ilia Mirkin <imirkin@alum.mit.edu>, Sean Paul <seanpaul@chromium.org>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, Takashi Iwai <tiwai@suse.de>, Jani Nikula <jani.nikula@intel.com>, Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Hi Christoph,
+On Tue, Mar 17, 2020 at 08:41:06PM -0400, Lyude Paul wrote:
+> +	root = debugfs_create_dir("nv_crc", crtc->debugfs_entry);
+> +	if (IS_ERR(root))
+> +		return PTR_ERR(root);
 
-Thanks for your comments. I'm also replying here to your comments on the 
-previous series.
+No need to check this, just take the return value and move on.
 
-On Tuesday, March 17, 2020 10:28:35 AM EDT Christoph Hellwig wrote:
-> Any reason drivers can't just use pci_map_rom insteadἅ which already
-> does the right thing?
+> +
+> +	dent = debugfs_create_file("flip_threshold", 0644, root, head,
+> +				   &nv50_crc_flip_threshold_fops);
+> +	if (IS_ERR(dent))
+> +		return PTR_ERR(dent);
 
-Some machines don't expose the video BIOS in the PCI BAR and instead only make 
-it available via EFI boot services calls. So drivers need to be able to use 
-the ROM provided by EFI calls, but only if they can't find a valid one anywhere 
-else.
+No need to check this either, in fact this test is incorrect :(
 
-At one point, the EFI provided ROM in pdev->rom *was* exposed via 
-pci_map_rom(). However it had to be split out into a separate function so that 
-drivers could have more control over which sources were preferred.
+Just make the call, and move on.  See the loads of debugfs cleanups I
+have been doing for examples.
 
-On Tuesday, March 17, 2020 10:29:13 AM EDT Christoph Hellwig wrote:
-> This and the next patch really need to be folded into the previous
-> one to avoid regressions (assuming my other suggestion doesn't work
-> for some reason).
+thanks,
 
-Addressed in v2
-
-On Tuesday, March 17, 2020 10:47:31 AM EDT Christoph Hellwig wrote:
-> What is the value of this helper over just open coding an ioremap
-> of pdev->rom in the callers?
-
-I think the direct access to pdev->rom you suggest makes sense, especially 
-because users of the pci_platform_rom() are exposed to the fact that it just 
-calls ioremap().
-
-I decided against wrapping the iounmap() with a pci_unmap_platform_rom(), but 
-I didn't apply the same consideration to the existing function.
-
-How about something like this (with pci_platform_rom() removed)?
-
-static bool radeon_read_platform_bios(struct radeon_device *rdev)
-{
-	phys_addr_t rom = rdev->pdev->rom;
-	size_t romlen = rdev->pdev->romlen;
-	void __iomem *bios;
-
-	rdev->bios = NULL;
-
-	if (!rom || romlen == 0)
-		return false;
-
-	rdev->bios = kzalloc(romlen, GFP_KERNEL);
-	if (!rdev->bios)
-		return false;
-
-	bios = ioremap(rom, romlen);
-	if (!bios)
-		goto free_bios;
-
-	memcpy_fromio(rdev->bios, bios, romlen);
-	iounmap(bios);
-
-	if (rdev->bios[0] != 0x55 || rdev->bios[1] != 0xaa)
-		goto free_bios;
-
-	return true;
-free_bios:
-	kfree(rdev->bios);
-	return false;
-}
-
-If this is preferred, I'll send an updated series. I'm assuming that the 
-removal of pci_platform_rom() and updating of all the callers should be 
-combined into this patch.
-
-Thanks,
-Mikel
+greg k-h
