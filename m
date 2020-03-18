@@ -1,76 +1,86 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 0/9] drm/nouveau: Introduce CRC support for gf119+
-Date: Tue, 17 Mar 2020 20:40:57 -0400
-Message-ID: <20200318004159.235623-1-lyude@redhat.com>
+Subject: [PATCH 2/9] drm/nouveau/kms/nv50-: Unroll error cleanup in nv50_head_create()
+Date: Tue, 17 Mar 2020 20:40:59 -0400
+Message-ID: <20200318004159.235623-3-lyude@redhat.com>
+References: <20200318004159.235623-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200318004159.235623-1-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
 To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, Alex Deucher <alexander.deucher@amd.com>, Ben Skeggs <bskeggs@redhat.com>, Ilia Mirkin <imirkin@alum.mit.edu>, Peteris Rudzusiks <peteris.rudzusiks@gmail.com>, Lyude Paul <lyude@redhat.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, Takashi Iwai <tiwai@suse.de>, Sean Paul <seanpaul@chromium.org>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Ilia Mirkin <imirkin@alum.mit.edu>, Thomas Zimmermann <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Nvidia released some documentation on how CRC support works on their
-GPUs, hooray!
+We'll be rolling back more things in this function, and the way it's
+structured is a bit confusing. So, let's clean this up a bit and just
+unroll in the event of failure.
 
-So: this patch series implements said CRC support in nouveau, along with
-adding some special debugfs interfaces for some relevant igt-gpu-tools
-tests that we'll be sending in just a short bit.
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+---
+ drivers/gpu/drm/nouveau/dispnv50/head.c | 33 +++++++++++++++++--------
+ 1 file changed, 23 insertions(+), 10 deletions(-)
 
-This additionally adds a feature that Ville Syrj=C3=A4l=C3=A4 came up wit=
-h: vblank
-works. Basically, this is just a generic DRM interface that allows for
-scheduling high-priority workers that start on a given vblank interrupt.
-Note that while we're currently only using this in nouveau, Intel has
-plans to use this for i915 as well (hence why they came up with it!).
-
-Anyway-welcome to the future! :)
-
-Lyude Paul (8):
-  drm/nouveau/kms/nv50-: Unroll error cleanup in nv50_head_create()
-  drm/nouveau/kms/nv140-: Don't modify depth in state during atomic
-    commit
-  drm/nouveau/kms/nv50-: Fix disabling dithering
-  drm/nouveau/kms/nv50-: s/harm/armh/g
-  drm/nouveau/kms/nv140-: Track wndw mappings in nv50_head_atom
-  drm/nouveau/kms/nv50-: Expose nv50_outp_atom in disp.h
-  drm/nouveau/kms/nv50-: Move hard-coded object handles into header
-  drm/nouveau/kms/nvd9-: Add CRC support
-
-Ville Syrj=C3=A4l=C3=A4 (1):
-  drm/vblank: Add vblank works
-
- drivers/gpu/drm/drm_vblank.c                | 322 +++++++++
- drivers/gpu/drm/nouveau/dispnv04/crtc.c     |  25 +-
- drivers/gpu/drm/nouveau/dispnv50/Kbuild     |   4 +
- drivers/gpu/drm/nouveau/dispnv50/atom.h     |  21 +
- drivers/gpu/drm/nouveau/dispnv50/core.h     |   4 +
- drivers/gpu/drm/nouveau/dispnv50/core907d.c |   3 +
- drivers/gpu/drm/nouveau/dispnv50/core917d.c |   3 +
- drivers/gpu/drm/nouveau/dispnv50/corec37d.c |   3 +
- drivers/gpu/drm/nouveau/dispnv50/corec57d.c |   3 +
- drivers/gpu/drm/nouveau/dispnv50/crc.c      | 716 ++++++++++++++++++++
- drivers/gpu/drm/nouveau/dispnv50/crc.h      | 125 ++++
- drivers/gpu/drm/nouveau/dispnv50/crc907d.c  | 139 ++++
- drivers/gpu/drm/nouveau/dispnv50/crcc37d.c  | 153 +++++
- drivers/gpu/drm/nouveau/dispnv50/disp.c     |  65 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.h     |  24 +
- drivers/gpu/drm/nouveau/dispnv50/handles.h  |  16 +
- drivers/gpu/drm/nouveau/dispnv50/head.c     | 142 +++-
- drivers/gpu/drm/nouveau/dispnv50/head.h     |  13 +-
- drivers/gpu/drm/nouveau/dispnv50/head907d.c |  14 +-
- drivers/gpu/drm/nouveau/dispnv50/headc37d.c |  27 +-
- drivers/gpu/drm/nouveau/dispnv50/headc57d.c |  20 +-
- drivers/gpu/drm/nouveau/dispnv50/wndw.c     |  15 +-
- drivers/gpu/drm/nouveau/nouveau_display.c   |  60 +-
- include/drm/drm_vblank.h                    |  34 +
- 24 files changed, 1821 insertions(+), 130 deletions(-)
- create mode 100644 drivers/gpu/drm/nouveau/dispnv50/crc.c
- create mode 100644 drivers/gpu/drm/nouveau/dispnv50/crc.h
- create mode 100644 drivers/gpu/drm/nouveau/dispnv50/crc907d.c
- create mode 100644 drivers/gpu/drm/nouveau/dispnv50/crcc37d.c
- create mode 100644 drivers/gpu/drm/nouveau/dispnv50/handles.h
-
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/head.c b/drivers/gpu/drm/no=
+uveau/dispnv50/head.c
+index 8f6455697ba7..e29ea40e7c33 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/head.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/head.c
+@@ -507,20 +507,28 @@ nv50_head_create(struct drm_device *dev, int index)
+=20
+ 	if (disp->disp->object.oclass < GV100_DISP) {
+ 		ret =3D nv50_base_new(drm, head->base.index, &base);
++		if (ret)
++			goto fail_free;
++
+ 		ret =3D nv50_ovly_new(drm, head->base.index, &ovly);
++		if (ret)
++			goto fail_free;
+ 	} else {
+ 		ret =3D nv50_wndw_new(drm, DRM_PLANE_TYPE_PRIMARY,
+ 				    head->base.index * 2 + 0, &base);
++		if (ret)
++			goto fail_free;
++
+ 		ret =3D nv50_wndw_new(drm, DRM_PLANE_TYPE_OVERLAY,
+ 				    head->base.index * 2 + 1, &ovly);
+-	}
+-	if (ret =3D=3D 0)
+-		ret =3D nv50_curs_new(drm, head->base.index, &curs);
+-	if (ret) {
+-		kfree(head);
+-		return ERR_PTR(ret);
++		if (ret)
++			goto fail_free;
+ 	}
+=20
++	ret =3D nv50_curs_new(drm, head->base.index, &curs);
++	if (ret)
++		goto fail_free;
++
+ 	crtc =3D &head->base.base;
+ 	drm_crtc_init_with_planes(dev, crtc, &base->plane, &curs->plane,
+ 				  &nv50_head_func, "head-%d", head->base.index);
+@@ -533,11 +541,16 @@ nv50_head_create(struct drm_device *dev, int index)
+=20
+ 	if (head->func->olut_set) {
+ 		ret =3D nv50_lut_init(disp, &drm->client.mmu, &head->olut);
+-		if (ret) {
+-			nv50_head_destroy(crtc);
+-			return ERR_PTR(ret);
+-		}
++		if (ret)
++			goto fail_crtc_cleanup;
+ 	}
+=20
+ 	return head;
++
++fail_crtc_cleanup:
++	drm_crtc_cleanup(crtc);
++fail_free:
++	kfree(head);
++
++	return ERR_PTR(ret);
+ }
 --=20
 2.24.1
