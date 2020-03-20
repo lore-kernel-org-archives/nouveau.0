@@ -1,78 +1,67 @@
-From: Ralph Campbell <rcampbell@nvidia.com>
-Subject: Re: [PATCH 3/4] mm: simplify device private page handling in
- hmm_range_fault
-Date: Thu, 19 Mar 2020 18:33:04 -0700
-Message-ID: <8d549ef6-14ae-7055-58c8-d56de8bf4ba6@nvidia.com>
-References: <20200316193216.920734-1-hch@lst.de>
- <20200316193216.920734-4-hch@lst.de>
- <7256f88d-809e-4aba-3c46-a223bd8cc521@nvidia.com>
- <20200317121536.GQ20941@ziepe.ca> <20200317122445.GA11662@lst.de>
- <20200317122813.GA11866@lst.de> <20200317124755.GR20941@ziepe.ca>
- <20200317125955.GA12847@lst.de>
- <24fca825-3b0f-188f-bcf2-fadcf3a9f05a@nvidia.com>
- <20200320001428.GA9199@ziepe.ca>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <kvm-ppc-owner@vger.kernel.org>
-In-Reply-To: <20200320001428.GA9199@ziepe.ca>
-Content-Language: en-US
-Sender: kvm-ppc-owner@vger.kernel.org
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Christoph Hellwig <hch@lst.de>, Dan Williams <dan.j.williams@intel.com>, Bharata B Rao <bharata@linux.ibm.com>, =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>, Ben Skeggs <bskeggs@redhat.com>, Jerome Glisse <jglisse@redhat.com>, kvm-ppc@vger.kernel.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-mm@kvack.org
+From: Anshuman Khandual <anshuman.khandual@arm.com>
+Subject: [PATCH 0/2] mm/thp: Rename pmd_mknotpresent() as pmd_mknotvalid()
+Date: Fri, 20 Mar 2020 10:24:15 +0530
+Message-ID: <1584680057-13753-1-git-send-email-anshuman.khandual@arm.com>
+Return-path: <linux-mips-owner@vger.kernel.org>
+Sender: linux-mips-owner@vger.kernel.org
+To: linux-mm@kvack.org
+Cc: Anshuman Khandual <anshuman.khandual@arm.com>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, Michael Ellerman <mpe@ellerman.id.au>, Paul Mackerras <paulus@samba.org>, Vineet Gupta <vgupta@synopsys.com>, Russell King <linux@armlinux.org.uk>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, "H. Peter Anvin" <hpa@zytor.com>, Steven Rostedt <rostedt@goodmis.org>, Dave Hansen <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Andrew Morton <akpm@linux-foundation.org>, nouveau@lists.freedesktop.org, linuxppc-dev@lists.ozlabs.
 List-Id: nouveau.vger.kernel.org
 
+This series renames pmd_mknotpresent() as pmd_mknotvalid(). Before that it
+drops an existing pmd_mknotpresent() definition from powerpc platform which
+was never required as it defines it's pmdp_invalidate() through subscribing
+__HAVE_ARCH_PMDP_INVALIDATE. This does not create any functional change.
 
-On 3/19/20 5:14 PM, Jason Gunthorpe wrote:
-> On Tue, Mar 17, 2020 at 04:14:31PM -0700, Ralph Campbell wrote:
-> 
->> +static int dmirror_fault(struct dmirror *dmirror, unsigned long start,
->> +			 unsigned long end, bool write)
->> +{
->> +	struct mm_struct *mm = dmirror->mm;
->> +	unsigned long addr;
->> +	uint64_t pfns[64];
->> +	struct hmm_range range = {
->> +		.notifier = &dmirror->notifier,
->> +		.pfns = pfns,
->> +		.flags = dmirror_hmm_flags,
->> +		.values = dmirror_hmm_values,
->> +		.pfn_shift = DPT_SHIFT,
->> +		.pfn_flags_mask = ~(dmirror_hmm_flags[HMM_PFN_VALID] |
->> +				    dmirror_hmm_flags[HMM_PFN_WRITE]),
-> 
-> Since pfns is not initialized pfn_flags_mask should be 0.
+This rename was suggested by Catalin during a previous discussion while we
+were trying to change the THP helpers on arm64 platform for migration.
 
-Good point.
+https://patchwork.kernel.org/patch/11019637/
 
->> +		.default_flags = dmirror_hmm_flags[HMM_PFN_VALID] |
->> +				(write ? dmirror_hmm_flags[HMM_PFN_WRITE] : 0),
->> +		.dev_private_owner = dmirror->mdevice,
->> +	};
->> +	int ret = 0;
-> 
->> +static int dmirror_snapshot(struct dmirror *dmirror,
->> +			    struct hmm_dmirror_cmd *cmd)
->> +{
->> +	struct mm_struct *mm = dmirror->mm;
->> +	unsigned long start, end;
->> +	unsigned long size = cmd->npages << PAGE_SHIFT;
->> +	unsigned long addr;
->> +	unsigned long next;
->> +	uint64_t pfns[64];
->> +	unsigned char perm[64];
->> +	char __user *uptr;
->> +	struct hmm_range range = {
->> +		.pfns = pfns,
->> +		.flags = dmirror_hmm_flags,
->> +		.values = dmirror_hmm_values,
->> +		.pfn_shift = DPT_SHIFT,
->> +		.pfn_flags_mask = ~0ULL,
-> 
-> Same here, especially since this is snapshot
-> 
-> Jason
+This series is based on v5.6-rc6.
 
-Actually, snapshot ignores pfn_flags_mask and default_flags.
-In hmm_pte_need_fault(), HMM_FAULT_SNAPSHOT is checked and returns early before
-checking pfn_flags_mask and default_flags since no faults are being requested.
+Boot tested on arm64 and x86 platforms.
+Built tested on many other platforms including the ones changed here.
+
+Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Cc: Michael Ellerman <mpe@ellerman.id.au>
+Cc: Paul Mackerras <paulus@samba.org>
+Cc: Vineet Gupta <vgupta@synopsys.com>
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: Catalin Marinas <catalin.marinas@arm.com>
+Cc: Will Deacon <will@kernel.org>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Borislav Petkov <bp@alien8.de>
+Cc: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Steven Rostedt <rostedt@goodmis.org>
+Cc: Dave Hansen <dave.hansen@linux.intel.com>
+Cc: Andy Lutomirski <luto@kernel.org>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: nouveau@lists.freedesktop.org
+Cc: linuxppc-dev@lists.ozlabs.org
+Cc: linux-snps-arc@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-mips@vger.kernel.org
+Cc: x86@kernel.org
+Cc: linux-mm@kvack.org
+Cc: linux-kernel@vger.kernel.org
+
+Anshuman Khandual (2):
+  powerpc/mm: Drop platform defined pmd_mknotpresent()
+  mm/thp: Rename pmd_mknotpresent() as pmd_mknotvalid()
+
+ arch/arc/include/asm/hugepage.h              | 2 +-
+ arch/arm/include/asm/pgtable-3level.h        | 2 +-
+ arch/arm64/include/asm/pgtable.h             | 2 +-
+ arch/mips/include/asm/pgtable.h              | 2 +-
+ arch/powerpc/include/asm/book3s/64/pgtable.h | 4 ----
+ arch/x86/include/asm/pgtable.h               | 2 +-
+ arch/x86/mm/kmmio.c                          | 2 +-
+ mm/pgtable-generic.c                         | 2 +-
+ 8 files changed, 7 insertions(+), 11 deletions(-)
+
+-- 
+2.20.1
