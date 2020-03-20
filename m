@@ -1,50 +1,86 @@
-From: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH 4/4] mm: check the device private page owner in
- hmm_range_fault
-Date: Fri, 20 Mar 2020 10:41:09 -0300
-Message-ID: <20200320134109.GA30230@ziepe.ca>
-References: <20200316193216.920734-1-hch@lst.de>
- <20200316193216.920734-5-hch@lst.de>
+From: Bjorn Helgaas <helgaas@kernel.org>
+Subject: Re: [PATCH v7] pci: prevent putting nvidia GPUs into lower device
+ states on certain intel bridges
+Date: Fri, 20 Mar 2020 17:19:31 -0500
+Message-ID: <20200320221931.GA23783@google.com>
+References: <20200310192627.437947-1-kherbst@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
-Return-path: <kvm-ppc-owner@vger.kernel.org>
+Return-path: <linux-pci-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20200316193216.920734-5-hch@lst.de>
-Sender: kvm-ppc-owner@vger.kernel.org
-To: Christoph Hellwig <hch@lst.de>
-Cc: Dan Williams <dan.j.williams@intel.com>, Bharata B Rao <bharata@linux.ibm.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, Ben Skeggs <bskeggs@redhat.com>, Jerome Glisse <jglisse@redhat.com>, kvm-ppc@vger.kernel.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-mm@kvack.org
+In-Reply-To: <20200310192627.437947-1-kherbst@redhat.com>
+Sender: linux-pci-owner@vger.kernel.org
+To: Karol Herbst <kherbst@redhat.com>
+Cc: linux-kernel@vger.kernel.org, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Mika Westerberg <mika.westerberg@intel.com>, linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, Mika Westerberg <mika.westerberg@linux.intel.com>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Mar 16, 2020 at 08:32:16PM +0100, Christoph Hellwig wrote:
-> diff --git a/mm/hmm.c b/mm/hmm.c
-> index cfad65f6a67b..b75b3750e03d 100644
-> +++ b/mm/hmm.c
-> @@ -216,6 +216,14 @@ int hmm_vma_handle_pmd(struct mm_walk *walk, unsigned long addr,
->  		unsigned long end, uint64_t *pfns, pmd_t pmd);
->  #endif /* CONFIG_TRANSPARENT_HUGEPAGE */
->  
-> +static inline bool hmm_is_device_private_entry(struct hmm_range *range,
-> +		swp_entry_t entry)
-> +{
-> +	return is_device_private_entry(entry) &&
-> +		device_private_entry_to_page(entry)->pgmap->owner ==
-> +		range->dev_private_owner;
-> +}
+On Tue, Mar 10, 2020 at 08:26:27PM +0100, Karol Herbst wrote:
+> Fixes the infamous 'runtime PM' bug many users are facing on Laptops with
+> Nvidia Pascal GPUs by skipping said PCI power state changes on the GPU.
+> 
+> Depending on the used kernel there might be messages like those in demsg:
+> 
+> "nouveau 0000:01:00.0: Refused to change power state, currently in D3"
+> "nouveau 0000:01:00.0: can't change power state from D3cold to D0 (config
+> space inaccessible)"
+> followed by backtraces of kernel crashes or timeouts within nouveau.
+> 
+> It's still unkown why this issue exists, but this is a reliable workaround
+> and solves a very annoying issue for user having to choose between a
+> crashing kernel or higher power consumption of their Laptops.
 
-Thinking about this some more, does the locking work out here?
+Thanks for the bugzilla link.  The bugzilla mentions lots of mailing
+list discussion.  Can you include links to some of that?
 
-hmm_range_fault() runs with mmap_sem in read, and does not lock any of
-the page table levels.
+IIUC this basically just turns off PCI power management for the GPU.
+Can you do that with something like the following?  I don't know
+anything about DRM, so I don't know where you could save the pm_cap,
+but I'm sure the driver could keep it somewhere.
 
-So it relies on accessing stale pte data being safe, and here we
-introduce for the first time a page pointer dereference and a pgmap
-dereference without any locking/refcounting.
 
-The get_dev_pagemap() worked on the PFN and obtained a refcount, so it
-created safety.
-
-Is there some tricky reason this is safe, eg a DEVICE_PRIVATE page
-cannot be removed from the vma without holding mmap_sem in write or
-something?
-
-Jason
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index b65ae817eabf..2ad825e8891c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -618,6 +618,23 @@ nouveau_drm_device_fini(struct drm_device *dev)
+ 	kfree(drm);
+ }
+ 
++static void quirk_broken_nv_runpm(struct drm_device *drm_dev)
++{
++	struct pci_dev *pdev = drm_dev->pdev;
++	struct pci_dev *bridge = pci_upstream_bridge(pdev);
++
++	if (!bridge || bridge->vendor != PCI_VENDOR_ID_INTEL)
++		return;
++
++	switch (bridge->device) {
++	case 0x1901:
++		STASH->pm_cap = pdev->pm_cap;
++		pdev->pm_cap = 0;
++		NV_INFO(drm_dev, "Disabling PCI power management to avoid bug\n");
++		break;
++	}
++}
++
+ static int nouveau_drm_probe(struct pci_dev *pdev,
+ 			     const struct pci_device_id *pent)
+ {
+@@ -699,6 +716,7 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+ 	if (ret)
+ 		goto fail_drm_dev_init;
+ 
++	quirk_broken_nv_runpm(drm_dev);
+ 	return 0;
+ 
+ fail_drm_dev_init:
+@@ -735,6 +753,9 @@ nouveau_drm_remove(struct pci_dev *pdev)
+ {
+ 	struct drm_device *dev = pci_get_drvdata(pdev);
+ 
++	/* If we disabled PCI power management, restore it */
++	if (STASH->pm_cap)
++		pdev->pm_cap = STASH->pm_cap;
+ 	nouveau_drm_device_remove(dev);
+ 	pci_disable_device(pdev);
+ }
