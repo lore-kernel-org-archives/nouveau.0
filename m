@@ -1,124 +1,108 @@
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [RESEND PATCH v2 6/9] drm/mgag200: Constify ioreadX() iomem
- argument (as in generic implementation)
-Date: Tue, 24 Mar 2020 09:39:18 +0100
-Message-ID: <b19bd919-3af5-855f-65a7-fa6f16b07b31@suse.de>
-References: <20200219175007.13627-1-krzk@kernel.org>
- <20200219175007.13627-7-krzk@kernel.org>
- <90baef2d-25fe-fac4-6a7e-b103b4b6721e@suse.de>
- <20200314105944.GA16044@kozik-lap>
+From: Karol Herbst <kherbst@redhat.com>
+Subject: Re: [PATCH v7] pci: prevent putting nvidia GPUs into lower device
+ states on certain intel bridges
+Date: Tue, 24 Mar 2020 18:31:08 +0100
+Message-ID: <CACO55ttvb5uC37ORiLuVBidhfSn-+WSReJ+aCfWR3k-fLtPBnA@mail.gmail.com>
+References: <20200310192627.437947-1-kherbst@redhat.com> <20200320221931.GA23783@google.com>
+ <CACO55tsamLG5WE16U=psJpRWfz=7Fy5K8haGKHnhic1h0WAmqA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="5JHKoPMDjFIljnahlEBkrPhFBMFaUgU8x"
-Return-path: <linux-parisc-owner@vger.kernel.org>
-In-Reply-To: <20200314105944.GA16044@kozik-lap>
-Sender: linux-parisc-owner@vger.kernel.org
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Richard Henderson <rth@twiddle.net>, Ivan Kokshaysky <ink@jurassic.park.msu.ru>, Matt Turner <mattst88@gmail.com>, Alexey Brodkin <abrodkin@synopsys.com>, Vineet Gupta <vgupta@synopsys.com>, "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, Helge Deller <deller@gmx.de>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>, Yoshinori Sato <ysato@users.sourceforge.jp>, Rich Felker <dalias@libc.org>, Dave Airlie <airlied@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Ben Skeggs <bskeggs@redhat.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Jiri Slaby <jirislaby@gmail.com>, Nick Kossifidis <mickflemm@gmail.com>, Luis
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CACO55tsamLG5WE16U=psJpRWfz=7Fy5K8haGKHnhic1h0WAmqA@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Mika Westerberg <mika.westerberg@intel.com>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Mika Westerberg <mika.westerberg@linux.intel.com>
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---5JHKoPMDjFIljnahlEBkrPhFBMFaUgU8x
-Content-Type: multipart/mixed; boundary="hhPGeJseFbtGrgGh6f1kgq7y0jySVSvgE";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Richard Henderson <rth@twiddle.net>,
- Ivan Kokshaysky <ink@jurassic.park.msu.ru>, Matt Turner
- <mattst88@gmail.com>, Alexey Brodkin <abrodkin@synopsys.com>,
- Vineet Gupta <vgupta@synopsys.com>,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- Helge Deller <deller@gmx.de>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>,
- Yoshinori Sato <ysato@users.sourceforge.jp>, Rich Felker <dalias@libc.org>,
- Dave Airlie <airlied@redhat.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Ben Skeggs <bskeggs@redhat.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Jiri Slaby
- <jirislaby@gmail.com>, Nick Kossifidis <mickflemm@gmail.com>,
- Luis Chamberlain <mcgrof@kernel.org>, Kalle Valo <kvalo@codeaurora.org>,
- "David S. Miller" <davem@davemloft.net>, Dave Jiang <dave.jiang@intel.com>,
- Jon Mason <jdmason@kudzu.us>, Allen Hubbe <allenbh@gmail.com>,
- "Michael S. Tsirkin" <mst@redhat.com>, Jason Wang <jasowang@redhat.com>,
- Arnd Bergmann <arnd@arndb.de>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Andrew Morton <akpm@linux-foundation.org>,
- Thomas Gleixner <tglx@linutronix.de>, linux-alpha@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-snps-arc@lists.infradead.org,
- linux-parisc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-sh@vger.kernel.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-media@vger.kernel.org,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- linux-ntb@googlegroups.com, virtualization@lists.linux-foundation.org,
- linux-arch@vger.kernel.org
-Message-ID: <b19bd919-3af5-855f-65a7-fa6f16b07b31@suse.de>
-Subject: Re: [RESEND PATCH v2 6/9] drm/mgag200: Constify ioreadX() iomem
- argument (as in generic implementation)
-References: <20200219175007.13627-1-krzk@kernel.org>
- <20200219175007.13627-7-krzk@kernel.org>
- <90baef2d-25fe-fac4-6a7e-b103b4b6721e@suse.de>
- <20200314105944.GA16044@kozik-lap>
-In-Reply-To: <20200314105944.GA16044@kozik-lap>
+On Sat, Mar 21, 2020 at 2:02 AM Karol Herbst <kherbst@redhat.com> wrote:
+>
+> On Fri, Mar 20, 2020 at 11:19 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+> >
+> > On Tue, Mar 10, 2020 at 08:26:27PM +0100, Karol Herbst wrote:
+> > > Fixes the infamous 'runtime PM' bug many users are facing on Laptops with
+> > > Nvidia Pascal GPUs by skipping said PCI power state changes on the GPU.
+> > >
+> > > Depending on the used kernel there might be messages like those in demsg:
+> > >
+> > > "nouveau 0000:01:00.0: Refused to change power state, currently in D3"
+> > > "nouveau 0000:01:00.0: can't change power state from D3cold to D0 (config
+> > > space inaccessible)"
+> > > followed by backtraces of kernel crashes or timeouts within nouveau.
+> > >
+> > > It's still unkown why this issue exists, but this is a reliable workaround
+> > > and solves a very annoying issue for user having to choose between a
+> > > crashing kernel or higher power consumption of their Laptops.
+> >
+> > Thanks for the bugzilla link.  The bugzilla mentions lots of mailing
+> > list discussion.  Can you include links to some of that?
+> >
+> > IIUC this basically just turns off PCI power management for the GPU.
+> > Can you do that with something like the following?  I don't know
+> > anything about DRM, so I don't know where you could save the pm_cap,
+> > but I'm sure the driver could keep it somewhere.
+> >
+>
+> Sure this would work? From a quick look over the pci code, it looks
+> like a of code would be skipped we really need, like the platform code
+> to turn off the GPU via ACPI. But I could also remember incorrectly on
+> how all of that worked again. I can of course try and see what the
+> effect of this patch would be. And would the parent bus even go into
+> D3hot if it knows one of its children is still at D0? Because that's
+> what the result of that would be as well, no? And I know that if the
+> bus stays in D0, that it has a negative impact on power consumption.
+>
+> Anyway, I will try that out, I am just not seeing how that would help.
+>
 
---hhPGeJseFbtGrgGh6f1kgq7y0jySVSvgE
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+so it seems like that has worked unless I screwed up locally. Will do
+some proper testing and then I think we won't need to go through the
+pci tree anymore as no changes are required there with that.
 
-Hi
-
-Am 14.03.20 um 11:59 schrieb Krzysztof Kozlowski:
-> On Thu, Mar 12, 2020 at 11:49:05AM +0100, Thomas Zimmermann wrote:
->> Hi Krzysztof,
->>
->> I just received a resend email from 3 weeks ago :/
->>
->> Do you want me to merge the mgag200 patch into drm-misc-next?
->=20
-> Thanks but it depends on the first patch in the series so either it
-> could go with your ack through other tree or I will send it later (once=
-
-> 1st patch gets to mainline).
-
-Ok. You're welcome to send it through any tree that works best for you.
-mgag200 sees only little change. I wouldn't expect major merge
-conflicts, if any.
-
-Best regards
-Thomas
-
->=20
->=20
-> Best regards,
-> Krzysztof
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---hhPGeJseFbtGrgGh6f1kgq7y0jySVSvgE--
-
---5JHKoPMDjFIljnahlEBkrPhFBMFaUgU8x
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl55xzYACgkQaA3BHVML
-eiNG1wgAnt3qyju9VoZCaXPbgeTj4gxLN24UZYPowzBMiEUgsJRz8b2iRuEoEKGb
-X+o80inBpVTWe/a+HI6wAQWEwidrIXUquQe1fSSpn2+h69aSApCBWBuxTuKZOLWq
-z9ZpyDKo+VD0/zWGgOZttJXPQJYEfckuCoLN9qcVf+CmgXQNC0m6ZVg6kf59xrca
-KEMDM4x2XhouIaoAtLYLQpt3U9YKgTphMMisTdha7xJt4h7CVx1uztnUyD2triFq
-meU3vxWwePFuQF/1reT0Vr5FU18Z88+wOLZyu3oa+GMA5lp/DKlJJmTGH+VsQA9l
-T/IiW9kxcWlBxT0ylEqlmHr82hqCAQ==
-=iz+q
------END PGP SIGNATURE-----
-
---5JHKoPMDjFIljnahlEBkrPhFBMFaUgU8x--
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> > index b65ae817eabf..2ad825e8891c 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> > @@ -618,6 +618,23 @@ nouveau_drm_device_fini(struct drm_device *dev)
+> >         kfree(drm);
+> >  }
+> >
+> > +static void quirk_broken_nv_runpm(struct drm_device *drm_dev)
+> > +{
+> > +       struct pci_dev *pdev = drm_dev->pdev;
+> > +       struct pci_dev *bridge = pci_upstream_bridge(pdev);
+> > +
+> > +       if (!bridge || bridge->vendor != PCI_VENDOR_ID_INTEL)
+> > +               return;
+> > +
+> > +       switch (bridge->device) {
+> > +       case 0x1901:
+> > +               STASH->pm_cap = pdev->pm_cap;
+> > +               pdev->pm_cap = 0;
+> > +               NV_INFO(drm_dev, "Disabling PCI power management to avoid bug\n");
+> > +               break;
+> > +       }
+> > +}
+> > +
+> >  static int nouveau_drm_probe(struct pci_dev *pdev,
+> >                              const struct pci_device_id *pent)
+> >  {
+> > @@ -699,6 +716,7 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+> >         if (ret)
+> >                 goto fail_drm_dev_init;
+> >
+> > +       quirk_broken_nv_runpm(drm_dev);
+> >         return 0;
+> >
+> >  fail_drm_dev_init:
+> > @@ -735,6 +753,9 @@ nouveau_drm_remove(struct pci_dev *pdev)
+> >  {
+> >         struct drm_device *dev = pci_get_drvdata(pdev);
+> >
+> > +       /* If we disabled PCI power management, restore it */
+> > +       if (STASH->pm_cap)
+> > +               pdev->pm_cap = STASH->pm_cap;
+> >         nouveau_drm_device_remove(dev);
+> >         pci_disable_device(pdev);
+> >  }
+> >
