@@ -1,194 +1,39 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [PATCH v8] pci: prevent putting nvidia GPUs into lower device
- states on certain intel bridges
-Date: Tue, 24 Mar 2020 21:31:24 +0100
-Message-ID: <CACO55tv0+T7oz9bLa02Wqh2xS3ZY=5CC-bzeT2YfWn7Fi=d1Ng@mail.gmail.com>
-References: <20200324202923.64625-1-kherbst@redhat.com>
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: [PATCH 5/6] drm/nouveau/therm: convert to use i2c_new_client_device()
+Date: Thu, 26 Mar 2020 22:10:03 +0100
+Message-ID: <20200326211005.13301-6-wsa+renesas@sang-engineering.com>
+References: <20200326211005.13301-1-wsa+renesas@sang-engineering.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200324202923.64625-1-kherbst@redhat.com>
+In-Reply-To: <20200326211005.13301-1-wsa+renesas@sang-engineering.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: LKML <linux-kernel@vger.kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Mika Westerberg <mika.westerberg@intel.com>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>
+To: linux-i2c@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-just noticed that the patch title should be changed..
+Move away from the deprecated API and return the shiny new ERRPTR where
+useful.
 
-drm/nouveau: prevent putting nvidia GPUs into lower device states on
-certain intel bridges
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/therm/ic.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-or
-
-drm/nouveau: workaround runpm fail by disabling PCI power management
-on certain intel bridges
-
-On Tue, Mar 24, 2020 at 9:29 PM Karol Herbst <kherbst@redhat.com> wrote:
->
-> Fixes the infamous 'runtime PM' bug many users are facing on Laptops with
-> Nvidia Pascal GPUs by skipping said PCI power state changes on the GPU.
->
-> Depending on the used kernel there might be messages like those in demsg:
->
-> "nouveau 0000:01:00.0: Refused to change power state, currently in D3"
-> "nouveau 0000:01:00.0: can't change power state from D3cold to D0 (config
-> space inaccessible)"
-> followed by backtraces of kernel crashes or timeouts within nouveau.
->
-> It's still unkown why this issue exists, but this is a reliable workaroun=
-d
-> and solves a very annoying issue for user having to choose between a
-> crashing kernel or higher power consumption of their Laptops.
->
-> Signed-off-by: Karol Herbst <kherbst@redhat.com>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Rafael J. Wysocki <rjw@rjwysocki.net>
-> Cc: Mika Westerberg <mika.westerberg@intel.com>
-> Cc: linux-pci@vger.kernel.org
-> Cc: linux-pm@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.org
-> Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=3D205623
-> ---
-> v2: convert to pci_dev quirk
->     put a proper technical explanation of the issue as a in-code comment
-> v3: disable it only for certain combinations of intel and nvidia hardware
-> v4: simplify quirk by setting flag on the GPU itself
-> v5: restructure quirk to make it easier to add new IDs
->     fix whitespace issues
->     fix potential NULL pointer access
->     update the quirk documentation
-> v6: move quirk into nouveau
-> v7: fix typos and commit message
-> v8: reset the pm_cap field to get rid of changes in pci core (thanks to
->     Bjorn for this idea)
->
->  drivers/gpu/drm/nouveau/nouveau_drm.c | 63 +++++++++++++++++++++++++++
->  drivers/gpu/drm/nouveau/nouveau_drv.h |  2 +
->  2 files changed, 65 insertions(+)
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouv=
-eau/nouveau_drm.c
-> index 2cd83849600f..b1beed40e746 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> @@ -618,6 +618,64 @@ nouveau_drm_device_fini(struct drm_device *dev)
->         kfree(drm);
->  }
->
-> +/*
-> + * On some Intel PCIe bridge controllers doing a
-> + * D0 -> D3hot -> D3cold -> D0 sequence causes Nvidia GPUs to not reappe=
-ar.
-> + * Skipping the intermediate D3hot step seems to make it work again. Thi=
-s is
-> + * probably caused by not meeting the expectation the involved AML code =
-has
-> + * when the GPU is put into D3hot state before invoking it.
-> + *
-> + * This leads to various manifestations of this issue:
-> + *  - AML code execution to power on the GPU hits an infinite loop (as t=
-he
-> + *    code waits on device memory to change).
-> + *  - kernel crashes, as all PCI reads return -1, which most code isn't =
-able
-> + *    to handle well enough.
-> + *
-> + * In all cases dmesg will contain at least one line like this:
-> + * 'nouveau 0000:01:00.0: Refused to change power state, currently in D3=
-'
-> + * followed by a lot of nouveau timeouts.
-> + *
-> + * In the \_SB.PCI0.PEG0.PG00._OFF code deeper down writes bit 0x80 to t=
-he not
-> + * documented PCI config space register 0x248 of the Intel PCIe bridge
-> + * controller (0x1901) in order to change the state of the PCIe link bet=
-ween
-> + * the PCIe port and the GPU. There are alternative code paths using oth=
-er
-> + * registers, which seem to work fine (executed pre Windows 8):
-> + *  - 0xbc bit 0x20 (publicly available documentation claims 'reserved')
-> + *  - 0xb0 bit 0x10 (link disable)
-> + * Changing the conditions inside the firmware by poking into the releva=
-nt
-> + * addresses does resolve the issue, but it seemed to be ACPI private me=
-mory
-> + * and not any device accessible memory at all, so there is no portable =
-way of
-> + * changing the conditions.
-> + * On a XPS 9560 that means bits [0,3] on \CPEX need to be cleared.
-> + *
-> + * The only systems where this behavior can be seen are hybrid graphics =
-laptops
-> + * with a secondary Nvidia Maxwell, Pascal or Turing GPU. It's unclear w=
-hether
-> + * this issue only occurs in combination with listed Intel PCIe bridge
-> + * controllers and the mentioned GPUs or other devices as well.
-> + *
-> + * documentation on the PCIe bridge controller can be found in the
-> + * "7th Generation Intel=C2=AE Processor Families for H Platforms Datash=
-eet Volume 2"
-> + * Section "12 PCI Express* Controller (x16) Registers"
-> + */
-> +
-> +static void quirk_broken_nv_runpm(struct pci_dev *pdev)
-> +{
-> +       struct drm_device *dev =3D pci_get_drvdata(pdev);
-> +       struct nouveau_drm *drm =3D nouveau_drm(dev);
-> +       struct pci_dev *bridge =3D pci_upstream_bridge(pdev);
-> +
-> +       if (!bridge || bridge->vendor !=3D PCI_VENDOR_ID_INTEL)
-> +               return;
-> +
-> +       switch (bridge->device) {
-> +       case 0x1901:
-> +               drm->old_pm_cap =3D pdev->pm_cap;
-> +               pdev->pm_cap =3D 0;
-> +               NV_INFO(drm, "Disabling PCI power management to avoid bug=
-\n");
-> +               break;
-> +       }
-> +}
-> +
->  static int nouveau_drm_probe(struct pci_dev *pdev,
->                              const struct pci_device_id *pent)
->  {
-> @@ -699,6 +757,7 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
->         if (ret)
->                 goto fail_drm_dev_init;
->
-> +       quirk_broken_nv_runpm(pdev);
->         return 0;
->
->  fail_drm_dev_init:
-> @@ -736,7 +795,11 @@ static void
->  nouveau_drm_remove(struct pci_dev *pdev)
->  {
->         struct drm_device *dev =3D pci_get_drvdata(pdev);
-> +       struct nouveau_drm *drm =3D nouveau_drm(dev);
->
-> +       /* revert our workaround */
-> +       if (drm->old_pm_cap)
-> +               pdev->pm_cap =3D drm->old_pm_cap;
->         nouveau_drm_device_remove(dev);
->  }
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouv=
-eau/nouveau_drv.h
-> index 70f34cacc552..8104e3806499 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-> @@ -138,6 +138,8 @@ struct nouveau_drm {
->
->         struct list_head clients;
->
-> +       u8 old_pm_cap;
-> +
->         struct {
->                 struct agp_bridge_data *bridge;
->                 u32 base;
-> --
-> 2.25.1
->
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/ic.c b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/ic.c
+index 03b355dabab3..abf3eda683f0 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/ic.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/ic.c
+@@ -36,8 +36,8 @@ probe_monitoring_device(struct nvkm_i2c_bus *bus,
+ 
+ 	request_module("%s%s", I2C_MODULE_PREFIX, info->type);
+ 
+-	client = i2c_new_device(&bus->i2c, info);
+-	if (!client)
++	client = i2c_new_client_device(&bus->i2c, info);
++	if (IS_ERR(client))
+ 		return false;
+ 
+ 	if (!client->dev.driver ||
+-- 
+2.20.1
