@@ -1,51 +1,35 @@
-From: Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH 0/6] gpu: convert to use new I2C API
-Date: Sat, 28 Mar 2020 22:49:37 +0100
-Message-ID: <20200328214937.GA9505@ravnborg.org>
-References: <20200326211005.13301-1-wsa+renesas@sang-engineering.com>
+From: Anshuman Khandual <anshuman.khandual@arm.com>
+Subject: Re: [PATCH 0/2] mm/thp: Rename pmd_mknotpresent() as pmd_mknotvalid()
+Date: Sun, 29 Mar 2020 19:12:35 +0530
+Message-ID: <2e67f1b8-d196-89e4-aee1-f552db1433a0@arm.com>
+References: <1584680057-13753-1-git-send-email-anshuman.khandual@arm.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-i2c-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20200326211005.13301-1-wsa+renesas@sang-engineering.com>
-Sender: linux-i2c-owner@vger.kernel.org
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-i2c@vger.kernel.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-mips-owner@vger.kernel.org>
+In-Reply-To: <1584680057-13753-1-git-send-email-anshuman.khandual@arm.com>
+Content-Language: en-US
+Sender: linux-mips-owner@vger.kernel.org
+To: linux-mm@kvack.org
+Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>, Michael Ellerman <mpe@ellerman.id.au>, Paul Mackerras <paulus@samba.org>, Vineet Gupta <vgupta@synopsys.com>, Russell King <linux@armlinux.org.uk>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, "H. Peter Anvin" <hpa@zytor.com>, Steven Rostedt <rostedt@goodmis.org>, Dave Hansen <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Andrew Morton <akpm@linux-foundation.org>, nouveau@lists.freedesktop.org, linuxppc-dev@lists.ozlabs.org, linux-snps-arc@lists.infradead.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Mar 26, 2020 at 10:09:58PM +0100, Wolfram Sang wrote:
-> We are deprecating calls which return NULL in favor of new variants which
-> return an ERR_PTR. Only build tested.
-> 
-> 
-> Wolfram Sang (6):
->   drm/amdgpu: convert to use i2c_new_client_device()
->   drm/gma500: convert to use i2c_new_client_device()
->   drm/i2c/sil164: convert to use i2c_new_client_device()
->   drm/i2c/tda998x: convert to use i2c_new_client_device()
->   drm/nouveau/therm: convert to use i2c_new_client_device()
->   drm/radeon: convert to use i2c_new_client_device()
-
-With the ack from Alex I went ahead and applied the patches to
-drm-misc-next.
-
-	Sam
 
 
+On 03/20/2020 10:24 AM, Anshuman Khandual wrote:
+> This series renames pmd_mknotpresent() as pmd_mknotvalid(). Before that it
+> drops an existing pmd_mknotpresent() definition from powerpc platform which
+> was never required as it defines it's pmdp_invalidate() through subscribing
+> __HAVE_ARCH_PMDP_INVALIDATE. This does not create any functional change.
 > 
->  drivers/gpu/drm/amd/amdgpu/amdgpu_dpm.c        | 2 +-
->  drivers/gpu/drm/gma500/tc35876x-dsi-lvds.c     | 8 ++++----
->  drivers/gpu/drm/i2c/sil164_drv.c               | 7 +++++--
->  drivers/gpu/drm/i2c/tda998x_drv.c              | 6 +++---
->  drivers/gpu/drm/nouveau/nvkm/subdev/therm/ic.c | 4 ++--
->  drivers/gpu/drm/radeon/radeon_atombios.c       | 4 ++--
->  drivers/gpu/drm/radeon/radeon_combios.c        | 4 ++--
->  7 files changed, 19 insertions(+), 16 deletions(-)
+> This rename was suggested by Catalin during a previous discussion while we
+> were trying to change the THP helpers on arm64 platform for migration.
 > 
-> -- 
-> 2.20.1
+> https://patchwork.kernel.org/patch/11019637/
 > 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> This series is based on v5.6-rc6.
+> 
+> Boot tested on arm64 and x86 platforms.
+> Built tested on many other platforms including the ones changed here.
+
+Gentle ping, any updates regarding this ?
