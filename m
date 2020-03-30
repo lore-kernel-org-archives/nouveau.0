@@ -1,16 +1,13 @@
-From: Hans Verkuil <hverkuil-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org>
-Subject: Re: [RESEND PATCH v2 8/9] media: fsl-viu: Constify
- ioreadX() iomem argument (as in generic implementation)
-Date: Thu, 12 Mar 2020 09:01:22 +0100
-Message-ID: <1c4a11b5-5ca6-7555-de3c-ff30f707fac7__33712.6738204219$1585552981$gmane$org@xs4all.nl>
-References: <20200219175007.13627-1-krzk@kernel.org>
- <20200219175007.13627-9-krzk@kernel.org>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Status of GF108GLM [NVS 5200M]
+Date: Mon, 30 Mar 2020 07:38:17 -0400
+Message-ID: <CAKb7UvjALZp1mYwxkTeU=HLCwDt42ztFasRDv3YM0WHyNPKGNQ@mail.gmail.com>
+References: <CAMix8LH00FU9VmT1uGXhTN+PiCM+i8J1uk=Ps-Fdy9jXmN3TVQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200219175007.13627-9-krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <CAMix8LH00FU9VmT1uGXhTN+PiCM+i8J1uk=Ps-Fdy9jXmN3TVQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,40 +17,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Krzysztof Kozlowski <krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Richard Henderson <rth-hL46jP5Bxq7R7s880joybQ@public.gmane.org>, Ivan Kokshaysky <ink-biIs/Y0ymYJMZLIVYojuPNP0rXTJTi09@public.gmane.org>, Matt Turner <mattst88-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Alexey Brodkin <abrodkin-HKixBCOQz3hWk0Htik3J/w@public.gmane.org>, Vineet Gupta <vgupta-HKixBCOQz3hWk0Htik3J/w@public.gmane.org>, "James E.J. Bottomley" <James.Bottomley-d9PhHud1JfjCXq6kfMZ53/egYHeGw8Jk@public.gmane.org>, Helge Deller <deller-Mmb7MZpHnFY@public.gmane.org>, Benjamin Herrenschmidt <benh-XVmvHMARGAS8U2dJNN8I7kB+6BGkLq7r@public.gmane.org>, Paul Mackerras <paulus-eUNUBHrolfbYtjvyW6yDsg@public.gmane.org>, Michael Ellerman <mpe-Gsx/Oe8HsFggBc27wqDAHg@public.gmane.org>, Yoshinori Sato <ysato-Rn4VEauK+AKRv+LV9MX5uooqe+aC9MnS@public.gmane.org>, Rich Felker <dalias-8zAoT0mYgF4@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Jiri Slaby <jirislaby-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Nick Kossifidis <mickflemm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Luis Chamberlain <mcgrof-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Kalle Valo <kvalo-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>, "David S. Miller" <davem@davemloft>
+To: =?UTF-8?Q?Jes=C3=BAs_J=2E_Guerrero_Botella?= <jesus.guerrero.botella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On 2/19/20 6:50 PM, Krzysztof Kozlowski wrote:
-> The ioreadX() helpers have inconsistent interface.  On some architectures
-> void *__iomem address argument is a pointer to const, on some not.
-> 
-> Implementations of ioreadX() do not modify the memory under the address
-> so they can be converted to a "const" version for const-safety and
-> consistency among architectures.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-
-Acked-by: Hans Verkuil <hverkuil-cisco-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org>
-
-Regards,
-
-	Hans
-
-> ---
->  drivers/media/platform/fsl-viu.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/platform/fsl-viu.c b/drivers/media/platform/fsl-viu.c
-> index 81a8faedbba6..991d9dc82749 100644
-> --- a/drivers/media/platform/fsl-viu.c
-> +++ b/drivers/media/platform/fsl-viu.c
-> @@ -34,7 +34,7 @@
->  /* Allow building this driver with COMPILE_TEST */
->  #if !defined(CONFIG_PPC) && !defined(CONFIG_MICROBLAZE)
->  #define out_be32(v, a)	iowrite32be(a, (void __iomem *)v)
-> -#define in_be32(a)	ioread32be((void __iomem *)a)
-> +#define in_be32(a)	ioread32be((const void __iomem *)a)
->  #endif
->  
->  #define BUFFER_TIMEOUT		msecs_to_jiffies(500)  /* 0.5 seconds */
-> 
+WWVzLCBHRjEwOCBpcyBGZXJtaSAoRiA9IEZlcm1pKS4gUmVjbG9ja2luZyBpcyBjdXJyZW50bHkg
+bm90IGF2YWlsYWJsZQpmb3IgdGhhdCBnZW5lcmF0aW9uLCB1bmZvcnR1bmF0ZWx5LiBZb3Ugc2hv
+dWxkIGJlIGFibGUgdG8gb3RoZXJ3aXNlCnVzZSB5b3VyIEdQVSBqdXN0IGZpbmUsIGJ1dCBJJ20g
+Z3Vlc3NpbmcgaXQnbGwgY29tZSB1cCBpbiB0aGUgIjA3IgpzdGF0ZSB3aGVuIGl0IHBvd2VycyBv
+biAoaW4gdGhlIHN0YXRlIGFzLWlzIGl0IGFwcGVhcnMgcG93ZXJlZCBvZmYsCndoaWNoIGl0IHdp
+bGwgZG8gYXV0b21hdGljYWxseSB3aGVuIG5vdCBpbiB1c2UpLCB3aGljaCBhcyB5b3UgY2FuIHNl
+ZQppcyBhIGZyYWN0aW9uIG9mIHRoZSB0b3RhbCBHUFUgYXZhaWxhYmxlIHBlcmYuCgpGb3IgZXhh
+bXBsZSBgRFJJX1BSSU1FPTEgZ2x4aW5mb2Agc2hvdWxkIHNob3cgeW91IHRoYXQgaXQncyB1c2lu
+ZyBub3V2ZWF1LgoKVGhlcmUncyBhIHZlcnkgZXhwZXJpbWVudGFsIGJyYW5jaCB0aGF0IGRvZXMg
+ZW5hYmxlIHJlY2xvY2tpbmcgZm9yCkZlcm1pIGF0IGh0dHBzOi8vZ2l0aHViLmNvbS9za2VnZ3Ni
+L25vdXZlYXUvY29tbWl0cy9kZXZlbC1jbGsgLgpIb3dldmVyIEkgYmVsaWV2ZSBpdCB3YXMgb25s
+eSB0ZXN0ZWQgd2l0aCBhIHNpbmdsZSBHUFUsIGFuZCBteSB0ZXN0aW5nCndpdGggYW4gaWRlbnRp
+Y2FsIHN1Y2ggR1BVIHdhcyBuZWdhdGl2ZS4gT24gdGhlIG90aGVyIGhhbmQsIHlvdSBkb24ndApo
+YXZlIGEgZGlzcGxheSBoYW5naW5nIG9mZiB0aGUgY2FyZCwgd2hpY2ggZ3JlYXRseSBpbmNyZWFz
+ZXMgY2hhbmNlcwpvZiBzdWNjZXNzLiBGZWVsIGZyZWUgdG8gam9pbiAjbm91dmVhdSBvbiBpcmMu
+ZnJlZW5vZGUubmV0IGlmIHlvdSBwbGFuCm9uIGV4cGxvcmluZyB0aGlzLgoKQ2hlZXJzLAoKICAt
+aWxpYQoKT24gTW9uLCBNYXIgMzAsIDIwMjAgYXQgMzoyMiBBTSBKZXPDunMgSi4gR3VlcnJlcm8g
+Qm90ZWxsYQo8amVzdXMuZ3VlcnJlcm8uYm90ZWxsYUBnbWFpbC5jb20+IHdyb3RlOgo+Cj4gSGVs
+bG8uCj4KPiBJIGFtIG5vdCBzdWJzY3JpYmVkIHRvIHRoZSBsaXN0LCBzbywgcGxlYXNlLCBpZiBJ
+IGRvIGFueXRoaW5nIHdyb25nCj4ganVzdCBsZXQgbWUga25vdyBwb2xpdGVseSBhbmQgSSdsbCB0
+cnkgdG8gaW1wcm92ZSA6KQo+Cj4gSSBqdXN0IHdhbnQgdG8ga25vdyBpZiB0aGVyZSdzIGFueSBi
+cmFuY2ggb2Ygbm91dmVhdSB2ZXJzaW9uIHRoYXQgd2lsbAo+IHdvcmsgd2l0aCB0aGlzIGNoaXAu
+IGxzcGNpIGxpc3RzIGl0IGFzOgo+Cj4gMDE6MDAuMCBWR0EgY29tcGF0aWJsZSBjb250cm9sbGVy
+OiBOVklESUEgQ29ycG9yYXRpb24gR0YxMDhHTE0gW05WUwo+IDUyMDBNXSAocmV2IGExKQo+Cj4g
+SSB0aGluayBpdCdzIEZlcm1pLCBidXQgSSBhbSBub3Qgc3VyZS4gV2hlbiBJIHRyeSB0byBjaGFu
+Z2UgcHN0YXRlIGl0IHNheXM6Cj4KPiAjIExDX0FMTD1DIGVjaG8gJzBmJyA+IC9zeXMva2VybmVs
+L2RlYnVnL2RyaS8xL3BzdGF0ZQo+IGJhc2g6IGVjaG86IHdyaXRlIGVycm9yOiBGdW5jdGlvbiBu
+b3QgaW1wbGVtZW50ZWQKPiAjIExDX0FMTD1DIGNhdCAvc3lzL2tlcm5lbC9kZWJ1Zy9kcmkvMS9w
+c3RhdGUKPiAwMzogY29yZSA1MCBNSHogbWVtb3J5IDEzNSBNSHoKPiAwNzogY29yZSAyMDIgTUh6
+IG1lbW9yeSAzMjQgTUh6Cj4gMGY6IGNvcmUgNjcyIE1IeiBtZW1vcnkgMTU2OSBNSHoKPiBBQzog
+Y29yZSAwIE1IeiBtZW1vcnkgMCBNSHoKPgo+IEl0J3Mgd29ydGggbm90aW5nIHRoYXQncyBhIHNl
+Y29uZGFyeSBncHUuIEkganVzdCB1c2UgdGhlIGludGVsIGNoaXAKPiBmb3IgZXZlcnlkYXkncyB3
+b3JrLCBidXQgSSBoYXZlIHNvbWUgZnJlZSBkYXlzIGFuZCBJIGFtIHRyeWluZyB0byBnZXQKPiB0
+aGUgc2Vjb25kYXJ5IG9uZSB3b3JraW5nIGFuZCBwdXQgaXQgdG8gZ29vZCB1c2UsIGlmIHBvc3Np
+YmxlLgo+Cj4gVGhhbmtzIGZvciBhbnkgaGVscCB5b3UgY2FuIHByb3ZpZGUuIFBsZWFzZSwgQ0Mg
+bWUsIGFzIHNhaWQsIEkgYW0gbm90Cj4gc3Vic2NyaWJlZCB0byB0aGUgbGlzdCBldmVuIHRob3Vn
+aCBJJ2xsIHRyeSB0byBrZWVwIGFuIGV5ZSBvbiB0aGlzLgo+Cj4KPiAtLQo+IEplc8O6cyBHdWVy
+cmVybyBCb3RlbGxhCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
+ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
+YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
