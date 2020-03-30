@@ -1,66 +1,344 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Status of GF108GLM [NVS 5200M]
-Date: Mon, 30 Mar 2020 07:38:17 -0400
-Message-ID: <CAKb7UvjALZp1mYwxkTeU=HLCwDt42ztFasRDv3YM0WHyNPKGNQ@mail.gmail.com>
-References: <CAMix8LH00FU9VmT1uGXhTN+PiCM+i8J1uk=Ps-Fdy9jXmN3TVQ@mail.gmail.com>
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Subject: RE: [PATCH v3] PCI: Use ioremap(), not phys_to_virt() for platform
+ ROM
+Date: Mon, 30 Mar 2020 13:54:33 +0000
+Message-ID: <MN2PR12MB4488EE5C6D38690716D658C6F7CB0@MN2PR12MB4488.namprd12.prod.outlook.com>
+References: <20200319021623.5426-1-mikel@mikelr.com>
+ <20200328201846.GA108818@google.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAMix8LH00FU9VmT1uGXhTN+PiCM+i8J1uk=Ps-Fdy9jXmN3TVQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?Q?Jes=C3=BAs_J=2E_Guerrero_Botella?= <jesus.guerrero.botella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-pci-owner@vger.kernel.org>
+In-Reply-To: <20200328201846.GA108818@google.com>
+Content-Language: en-US
+Sender: linux-pci-owner@vger.kernel.org
+To: Bjorn Helgaas <helgaas@kernel.org>, Mikel Rychliski <mikel@mikelr.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "Koenig, Christian" <Christian.Koenig@amd.com>, "Zhou, David(ChunMing)" <David1.Zhou@amd.com>, Matthew Garrett <matthewgarrett@google.com>, Ben Skeggs <bskeggs@redhat.com>, Christoph Hellwig <hch@lst.de>
 List-Id: nouveau.vger.kernel.org
 
-WWVzLCBHRjEwOCBpcyBGZXJtaSAoRiA9IEZlcm1pKS4gUmVjbG9ja2luZyBpcyBjdXJyZW50bHkg
-bm90IGF2YWlsYWJsZQpmb3IgdGhhdCBnZW5lcmF0aW9uLCB1bmZvcnR1bmF0ZWx5LiBZb3Ugc2hv
-dWxkIGJlIGFibGUgdG8gb3RoZXJ3aXNlCnVzZSB5b3VyIEdQVSBqdXN0IGZpbmUsIGJ1dCBJJ20g
-Z3Vlc3NpbmcgaXQnbGwgY29tZSB1cCBpbiB0aGUgIjA3IgpzdGF0ZSB3aGVuIGl0IHBvd2VycyBv
-biAoaW4gdGhlIHN0YXRlIGFzLWlzIGl0IGFwcGVhcnMgcG93ZXJlZCBvZmYsCndoaWNoIGl0IHdp
-bGwgZG8gYXV0b21hdGljYWxseSB3aGVuIG5vdCBpbiB1c2UpLCB3aGljaCBhcyB5b3UgY2FuIHNl
-ZQppcyBhIGZyYWN0aW9uIG9mIHRoZSB0b3RhbCBHUFUgYXZhaWxhYmxlIHBlcmYuCgpGb3IgZXhh
-bXBsZSBgRFJJX1BSSU1FPTEgZ2x4aW5mb2Agc2hvdWxkIHNob3cgeW91IHRoYXQgaXQncyB1c2lu
-ZyBub3V2ZWF1LgoKVGhlcmUncyBhIHZlcnkgZXhwZXJpbWVudGFsIGJyYW5jaCB0aGF0IGRvZXMg
-ZW5hYmxlIHJlY2xvY2tpbmcgZm9yCkZlcm1pIGF0IGh0dHBzOi8vZ2l0aHViLmNvbS9za2VnZ3Ni
-L25vdXZlYXUvY29tbWl0cy9kZXZlbC1jbGsgLgpIb3dldmVyIEkgYmVsaWV2ZSBpdCB3YXMgb25s
-eSB0ZXN0ZWQgd2l0aCBhIHNpbmdsZSBHUFUsIGFuZCBteSB0ZXN0aW5nCndpdGggYW4gaWRlbnRp
-Y2FsIHN1Y2ggR1BVIHdhcyBuZWdhdGl2ZS4gT24gdGhlIG90aGVyIGhhbmQsIHlvdSBkb24ndApo
-YXZlIGEgZGlzcGxheSBoYW5naW5nIG9mZiB0aGUgY2FyZCwgd2hpY2ggZ3JlYXRseSBpbmNyZWFz
-ZXMgY2hhbmNlcwpvZiBzdWNjZXNzLiBGZWVsIGZyZWUgdG8gam9pbiAjbm91dmVhdSBvbiBpcmMu
-ZnJlZW5vZGUubmV0IGlmIHlvdSBwbGFuCm9uIGV4cGxvcmluZyB0aGlzLgoKQ2hlZXJzLAoKICAt
-aWxpYQoKT24gTW9uLCBNYXIgMzAsIDIwMjAgYXQgMzoyMiBBTSBKZXPDunMgSi4gR3VlcnJlcm8g
-Qm90ZWxsYQo8amVzdXMuZ3VlcnJlcm8uYm90ZWxsYUBnbWFpbC5jb20+IHdyb3RlOgo+Cj4gSGVs
-bG8uCj4KPiBJIGFtIG5vdCBzdWJzY3JpYmVkIHRvIHRoZSBsaXN0LCBzbywgcGxlYXNlLCBpZiBJ
-IGRvIGFueXRoaW5nIHdyb25nCj4ganVzdCBsZXQgbWUga25vdyBwb2xpdGVseSBhbmQgSSdsbCB0
-cnkgdG8gaW1wcm92ZSA6KQo+Cj4gSSBqdXN0IHdhbnQgdG8ga25vdyBpZiB0aGVyZSdzIGFueSBi
-cmFuY2ggb2Ygbm91dmVhdSB2ZXJzaW9uIHRoYXQgd2lsbAo+IHdvcmsgd2l0aCB0aGlzIGNoaXAu
-IGxzcGNpIGxpc3RzIGl0IGFzOgo+Cj4gMDE6MDAuMCBWR0EgY29tcGF0aWJsZSBjb250cm9sbGVy
-OiBOVklESUEgQ29ycG9yYXRpb24gR0YxMDhHTE0gW05WUwo+IDUyMDBNXSAocmV2IGExKQo+Cj4g
-SSB0aGluayBpdCdzIEZlcm1pLCBidXQgSSBhbSBub3Qgc3VyZS4gV2hlbiBJIHRyeSB0byBjaGFu
-Z2UgcHN0YXRlIGl0IHNheXM6Cj4KPiAjIExDX0FMTD1DIGVjaG8gJzBmJyA+IC9zeXMva2VybmVs
-L2RlYnVnL2RyaS8xL3BzdGF0ZQo+IGJhc2g6IGVjaG86IHdyaXRlIGVycm9yOiBGdW5jdGlvbiBu
-b3QgaW1wbGVtZW50ZWQKPiAjIExDX0FMTD1DIGNhdCAvc3lzL2tlcm5lbC9kZWJ1Zy9kcmkvMS9w
-c3RhdGUKPiAwMzogY29yZSA1MCBNSHogbWVtb3J5IDEzNSBNSHoKPiAwNzogY29yZSAyMDIgTUh6
-IG1lbW9yeSAzMjQgTUh6Cj4gMGY6IGNvcmUgNjcyIE1IeiBtZW1vcnkgMTU2OSBNSHoKPiBBQzog
-Y29yZSAwIE1IeiBtZW1vcnkgMCBNSHoKPgo+IEl0J3Mgd29ydGggbm90aW5nIHRoYXQncyBhIHNl
-Y29uZGFyeSBncHUuIEkganVzdCB1c2UgdGhlIGludGVsIGNoaXAKPiBmb3IgZXZlcnlkYXkncyB3
-b3JrLCBidXQgSSBoYXZlIHNvbWUgZnJlZSBkYXlzIGFuZCBJIGFtIHRyeWluZyB0byBnZXQKPiB0
-aGUgc2Vjb25kYXJ5IG9uZSB3b3JraW5nIGFuZCBwdXQgaXQgdG8gZ29vZCB1c2UsIGlmIHBvc3Np
-YmxlLgo+Cj4gVGhhbmtzIGZvciBhbnkgaGVscCB5b3UgY2FuIHByb3ZpZGUuIFBsZWFzZSwgQ0Mg
-bWUsIGFzIHNhaWQsIEkgYW0gbm90Cj4gc3Vic2NyaWJlZCB0byB0aGUgbGlzdCBldmVuIHRob3Vn
-aCBJJ2xsIHRyeSB0byBrZWVwIGFuIGV5ZSBvbiB0aGlzLgo+Cj4KPiAtLQo+IEplc8O6cyBHdWVy
-cmVybyBCb3RlbGxhCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+[AMD Public Use]
+
+> -----Original Message-----
+> From: Bjorn Helgaas <helgaas@kernel.org>
+> Sent: Saturday, March 28, 2020 4:19 PM
+> To: Mikel Rychliski <mikel@mikelr.com>
+> Cc: amd-gfx@lists.freedesktop.org; linux-pci@vger.kernel.org;
+> nouveau@lists.freedesktop.org; Deucher, Alexander
+> <Alexander.Deucher@amd.com>; Koenig, Christian
+> <Christian.Koenig@amd.com>; Zhou, David(ChunMing)
+> <David1.Zhou@amd.com>; Matthew Garrett
+> <matthewgarrett@google.com>; Ben Skeggs <bskeggs@redhat.com>;
+> Christoph Hellwig <hch@lst.de>
+> Subject: Re: [PATCH v3] PCI: Use ioremap(), not phys_to_virt() for platfo=
+rm
+> ROM
+>=20
+> On Wed, Mar 18, 2020 at 10:16:23PM -0400, Mikel Rychliski wrote:
+> > On some EFI systems, the video BIOS is provided by the EFI firmware.
+> > The boot stub code stores the physical address of the ROM image in pdev=
+-
+> >rom.
+> > Currently we attempt to access this pointer using phys_to_virt(),
+> > which doesn't work with CONFIG_HIGHMEM.
+> >
+> > On these systems, attempting to load the radeon module on a x86_32
+> > kernel can result in the following:
+> >
+> >     BUG: unable to handle page fault for address: 3e8ed03c
+> >     #PF: supervisor read access in kernel mode
+> >     #PF: error_code(0x0000) - not-present page
+> >     *pde =3D 00000000
+> >     Oops: 0000 [#1] PREEMPT SMP
+> >     CPU: 0 PID: 317 Comm: systemd-udevd Not tainted 5.6.0-rc3-next-
+> 20200228 #2
+> >     Hardware name: Apple Computer, Inc. MacPro1,1/Mac-F4208DC8, BIOS
+> MP11.88Z.005C.B08.0707021221 07/02/07
+> >     EIP: radeon_get_bios+0x5ed/0xe50 [radeon]
+> >     Code: 00 00 84 c0 0f 85 12 fd ff ff c7 87 64 01 00 00 00 00 00 00 8=
+b 47 08 8b
+> 55 b0 e8 1e 83 e1 d6 85 c0 74 1a 8b 55 c0 85 d2 74 13 <80> 38 55 75 0e 80=
+ 78 01
+> aa 0f 84 a4 03 00 00 8d 74 26 00 68 dc 06
+> >     EAX: 3e8ed03c EBX: 00000000 ECX: 3e8ed03c EDX: 00010000
+> >     ESI: 00040000 EDI: eec04000 EBP: eef3fc60 ESP: eef3fbe0
+> >     DS: 007b ES: 007b FS: 00d8 GS: 00e0 SS: 0068 EFLAGS: 00010206
+> >     CR0: 80050033 CR2: 3e8ed03c CR3: 2ec77000 CR4: 000006d0
+> >     Call Trace:
+> >      ? register_client+0x34/0xe0
+> >      ? register_client+0xab/0xe0
+> >      r520_init+0x26/0x240 [radeon]
+> >      radeon_device_init+0x533/0xa50 [radeon]
+> >      radeon_driver_load_kms+0x80/0x220 [radeon]
+> >      drm_dev_register+0xa7/0x180 [drm]
+> >      radeon_pci_probe+0x10f/0x1a0 [radeon]
+> >      pci_device_probe+0xd4/0x140
+> >      really_probe+0x13d/0x3b0
+> >      driver_probe_device+0x56/0xd0
+> >      device_driver_attach+0x49/0x50
+> >      __driver_attach+0x79/0x130
+> >      ? device_driver_attach+0x50/0x50
+> >      bus_for_each_dev+0x5b/0xa0
+> >      driver_attach+0x19/0x20
+> >      ? device_driver_attach+0x50/0x50
+> >      bus_add_driver+0x117/0x1d0
+> >      ? pci_bus_num_vf+0x20/0x20
+> >      driver_register+0x66/0xb0
+> >      ? 0xf80f4000
+> >      __pci_register_driver+0x3d/0x40
+> >      radeon_init+0x82/0x1000 [radeon]
+> >      do_one_initcall+0x42/0x200
+> >      ? kvfree+0x25/0x30
+> >      ? __vunmap+0x206/0x230
+> >      ? kmem_cache_alloc_trace+0x16f/0x220
+> >      ? do_init_module+0x21/0x220
+> >      do_init_module+0x50/0x220
+> >      load_module+0x1f26/0x2200
+> >      sys_init_module+0x12d/0x160
+> >      do_fast_syscall_32+0x82/0x250
+> >      entry_SYSENTER_32+0xa5/0xf8
+> >
+> > Fix the issue by updating all drivers which can access a platform
+> > provided ROM. Instead of calling the helper function
+> > pci_platform_rom() which uses phys_to_virt(), call ioremap() directly o=
+n
+> the pdev->rom.
+> >
+> > radeon_read_platform_bios() previously directly accessed an __iomem
+> > pointer. Avoid this by calling memcpy_fromio() instead of kmemdup().
+> >
+> > pci_platform_rom() now has no remaining callers, so remove it.
+> >
+> > Signed-off-by: Mikel Rychliski <mikel@mikelr.com>
+>=20
+> I applied this to pci/resource for v5.7.  I would feel better if some of =
+the
+> graphics guys chimed in, or even applied it via the DRM tree since most o=
+f the
+> changes are actually in drivers/gpu.
+
+Feel free to take it through the PCI tree.  These areas of radeon and amdgp=
+u don't really change much at all so, I'm not too concerned about a conflic=
+t.
+
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+
+>=20
+> Feel free to add my
+>=20
+>   Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+>=20
+> and let me know if you do that.
+>=20
+> > ---
+> >
+> > Tested on a MacPro 1,1 with a Radeon X1900 XT card and 32-bit kernel.
+> >
+> > Changes in v3:
+> >  - Inline pci_platform_rom()
+> >
+> > Changes in v2:
+> >  - Add iounmap() call in nouveau
+> >  - Update function comment for pci_platform_rom()
+> >  - Minor changes to commit messages
+> >
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c           | 31
+> +++++++++++++---------
+> >  .../gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c   | 17 ++++++++++-
+> -
+> >  drivers/gpu/drm/radeon/radeon_bios.c               | 30 +++++++++++++-=
+------
+> -
+> >  drivers/pci/rom.c                                  | 17 ------------
+> >  include/linux/pci.h                                |  1 -
+> >  5 files changed, 52 insertions(+), 44 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+> > index 50dff69a0f6e..b1172d93c99c 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+> > @@ -192,30 +192,35 @@ static bool amdgpu_read_bios_from_rom(struct
+> > amdgpu_device *adev)
+> >
+> >  static bool amdgpu_read_platform_bios(struct amdgpu_device *adev)  {
+> > -	uint8_t __iomem *bios;
+> > -	size_t size;
+> > +	phys_addr_t rom =3D adev->pdev->rom;
+> > +	size_t romlen =3D adev->pdev->romlen;
+> > +	void __iomem *bios;
+> >
+> >  	adev->bios =3D NULL;
+> >
+> > -	bios =3D pci_platform_rom(adev->pdev, &size);
+> > -	if (!bios) {
+> > +	if (!rom || romlen =3D=3D 0)
+> >  		return false;
+> > -	}
+> >
+> > -	adev->bios =3D kzalloc(size, GFP_KERNEL);
+> > -	if (adev->bios =3D=3D NULL)
+> > +	adev->bios =3D kzalloc(romlen, GFP_KERNEL);
+> > +	if (!adev->bios)
+> >  		return false;
+> >
+> > -	memcpy_fromio(adev->bios, bios, size);
+> > +	bios =3D ioremap(rom, romlen);
+> > +	if (!bios)
+> > +		goto free_bios;
+> >
+> > -	if (!check_atom_bios(adev->bios, size)) {
+> > -		kfree(adev->bios);
+> > -		return false;
+> > -	}
+> > +	memcpy_fromio(adev->bios, bios, romlen);
+> > +	iounmap(bios);
+> >
+> > -	adev->bios_size =3D size;
+> > +	if (!check_atom_bios(adev->bios, romlen))
+> > +		goto free_bios;
+> > +
+> > +	adev->bios_size =3D romlen;
+> >
+> >  	return true;
+> > +free_bios:
+> > +	kfree(adev->bios);
+> > +	return false;
+> >  }
+> >
+> >  #ifdef CONFIG_ACPI
+> > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c
+> > b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c
+> > index 9b91da09dc5f..8d9812a51ef6 100644
+> > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c
+> > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c
+> > @@ -101,9 +101,13 @@ platform_init(struct nvkm_bios *bios, const char
+> *name)
+> >  	else
+> >  		return ERR_PTR(-ENODEV);
+> >
+> > +	if (!pdev->rom || pdev->romlen =3D=3D 0)
+> > +		return ERR_PTR(-ENODEV);
+> > +
+> >  	if ((priv =3D kmalloc(sizeof(*priv), GFP_KERNEL))) {
+> > +		priv->size =3D pdev->romlen;
+> >  		if (ret =3D -ENODEV,
+> > -		    (priv->rom =3D pci_platform_rom(pdev, &priv->size)))
+> > +		    (priv->rom =3D ioremap(pdev->rom, pdev->romlen)))
+> >  			return priv;
+> >  		kfree(priv);
+> >  	}
+> > @@ -111,11 +115,20 @@ platform_init(struct nvkm_bios *bios, const char
+> *name)
+> >  	return ERR_PTR(ret);
+> >  }
+> >
+> > +static void
+> > +platform_fini(void *data)
+> > +{
+> > +	struct priv *priv =3D data;
+> > +
+> > +	iounmap(priv->rom);
+> > +	kfree(priv);
+> > +}
+> > +
+> >  const struct nvbios_source
+> >  nvbios_platform =3D {
+> >  	.name =3D "PLATFORM",
+> >  	.init =3D platform_init,
+> > -	.fini =3D (void(*)(void *))kfree,
+> > +	.fini =3D platform_fini,
+> >  	.read =3D pcirom_read,
+> >  	.rw =3D true,
+> >  };
+> > diff --git a/drivers/gpu/drm/radeon/radeon_bios.c
+> > b/drivers/gpu/drm/radeon/radeon_bios.c
+> > index c42f73fad3e3..bb29cf02974d 100644
+> > --- a/drivers/gpu/drm/radeon/radeon_bios.c
+> > +++ b/drivers/gpu/drm/radeon/radeon_bios.c
+> > @@ -108,25 +108,33 @@ static bool radeon_read_bios(struct
+> > radeon_device *rdev)
+> >
+> >  static bool radeon_read_platform_bios(struct radeon_device *rdev)  {
+> > -	uint8_t __iomem *bios;
+> > -	size_t size;
+> > +	phys_addr_t rom =3D rdev->pdev->rom;
+> > +	size_t romlen =3D rdev->pdev->romlen;
+> > +	void __iomem *bios;
+> >
+> >  	rdev->bios =3D NULL;
+> >
+> > -	bios =3D pci_platform_rom(rdev->pdev, &size);
+> > -	if (!bios) {
+> > +	if (!rom || romlen =3D=3D 0)
+> >  		return false;
+> > -	}
+> >
+> > -	if (size =3D=3D 0 || bios[0] !=3D 0x55 || bios[1] !=3D 0xaa) {
+> > +	rdev->bios =3D kzalloc(romlen, GFP_KERNEL);
+> > +	if (!rdev->bios)
+> >  		return false;
+> > -	}
+> > -	rdev->bios =3D kmemdup(bios, size, GFP_KERNEL);
+> > -	if (rdev->bios =3D=3D NULL) {
+> > -		return false;
+> > -	}
+> > +
+> > +	bios =3D ioremap(rom, romlen);
+> > +	if (!bios)
+> > +		goto free_bios;
+> > +
+> > +	memcpy_fromio(rdev->bios, bios, romlen);
+> > +	iounmap(bios);
+> > +
+> > +	if (rdev->bios[0] !=3D 0x55 || rdev->bios[1] !=3D 0xaa)
+> > +		goto free_bios;
+> >
+> >  	return true;
+> > +free_bios:
+> > +	kfree(rdev->bios);
+> > +	return false;
+> >  }
+> >
+> >  #ifdef CONFIG_ACPI
+> > diff --git a/drivers/pci/rom.c b/drivers/pci/rom.c index
+> > 137bf0cee897..8fc9a4e911e3 100644
+> > --- a/drivers/pci/rom.c
+> > +++ b/drivers/pci/rom.c
+> > @@ -195,20 +195,3 @@ void pci_unmap_rom(struct pci_dev *pdev, void
+> __iomem *rom)
+> >  		pci_disable_rom(pdev);
+> >  }
+> >  EXPORT_SYMBOL(pci_unmap_rom);
+> > -
+> > -/**
+> > - * pci_platform_rom - provides a pointer to any ROM image provided by
+> > the
+> > - * platform
+> > - * @pdev: pointer to pci device struct
+> > - * @size: pointer to receive size of pci window over ROM
+> > - */
+> > -void __iomem *pci_platform_rom(struct pci_dev *pdev, size_t *size) -{
+> > -	if (pdev->rom && pdev->romlen) {
+> > -		*size =3D pdev->romlen;
+> > -		return phys_to_virt((phys_addr_t)pdev->rom);
+> > -	}
+> > -
+> > -	return NULL;
+> > -}
+> > -EXPORT_SYMBOL(pci_platform_rom);
+> > diff --git a/include/linux/pci.h b/include/linux/pci.h index
+> > 3840a541a9de..7268dcf1f23e 100644
+> > --- a/include/linux/pci.h
+> > +++ b/include/linux/pci.h
+> > @@ -1214,7 +1214,6 @@ int pci_enable_rom(struct pci_dev *pdev);  void
+> > pci_disable_rom(struct pci_dev *pdev);  void __iomem __must_check
+> > *pci_map_rom(struct pci_dev *pdev, size_t *size);  void
+> > pci_unmap_rom(struct pci_dev *pdev, void __iomem *rom); -void
+> __iomem
+> > __must_check *pci_platform_rom(struct pci_dev *pdev, size_t *size);
+> >
+> >  /* Power management related routines */  int pci_save_state(struct
+> > pci_dev *dev);
+> > --
+> > 2.13.7
+> >
