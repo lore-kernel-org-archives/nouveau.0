@@ -1,12 +1,12 @@
-From: Geoffrey Allott <geoffrey-7+OH0nGT2YffYlcmKV82iw@public.gmane.org>
-Subject: Reproducable Crashes in Nouveau with GM204 [GeForce GTX
- 980]
-Date: Sun, 5 Apr 2020 11:48:30 +0100 (BST)
-Message-ID: <123831959.52748.1586083710760@email.ionos.co.uk>
-Reply-To: Geoffrey Allott <geoffrey-7+OH0nGT2YffYlcmKV82iw@public.gmane.org>
+From: Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: gp104: regression on Linux 5.6
+Date: Wed, 1 Apr 2020 21:56:21 +0300
+Message-ID: <20200401185621.GA24692@avx2>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1871102133=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,121 +17,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1871102133==
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+gp104 refuses to switch to "graphic" mode and show anything past
+this line:
 
-<!doctype html>
-<html>
- <head> 
-  <meta charset="UTF-8"> 
- </head>
- <body>
-  <div>
-   Greetings, I hope this bug report is in the right place; the documentation at&nbsp;
-   <a href="https://nouveau.freedesktop.org/wiki/Bugs/">https://nouveau.freedesktop.org/wiki/Bugs/</a>&nbsp;links to a defunct bugzilla page.
-  </div>
-  <div>
-   <br>
-  </div>
-  <div>
-   I'm running an NVIDIA Corporation GM204 &nbsp;[GeForce GTX 980] graphics card in an EVGA X99 classified motherboard, outputting over DisplayPort. I'm running Arch Linux with kernel&nbsp;5.5.13-arch2-1, and I'm using gnome under wayland (so no X server except for Xwayland).
-  </div>
-  <div>
-   <br>
-  </div>
-  <div>
-   When running OpenGL applications, the driver appears to crash very frequently. I've managed to reproduce the issue with the following script (epiphany is gnome web, based on webkit):
-  </div>
-  <div>
-   <br>
-  </div>
-  <div>
-   <div>
-    #!/bin/sh
-   </div>
-   <br>
-   <div>
-    time=$(date +%F.%T)
-   </div>
-   <div>
-    stdbuf -oL dmesg --color=always --follow &gt; dmesg.$time.log &amp; disown
-   </div>
-   <div>
-    stdbuf -eL epiphany --private-instance https://webglsamples.org/aquarium/aquarium.html 2&gt;epiphany.$time.log &amp; disown
-   </div>
-   <br>
-   <div>
-    for i in $(seq 1 120); do
-   </div>&nbsp; &nbsp; sleep 1
-   <br>&nbsp; &nbsp; sync
-   <div>
-    done
-   </div>
-   <div>
-    reboot
-   </div>
-   <div>
-    <br>
-   </div>
-   <div>
-    The visible effect of this is:
-   </div>
-   <div>
-    * I see the web page open and fish swimming around the aquarium
-   </div>
-   <div>
-    * After a couple of seconds one of a few things will happen:
-   </div>
-   <div>
-    &nbsp; 1. The screen and mouse pointer completely freezes
-   </div>
-   <div>
-    &nbsp; 2. The graphics will glitch out (partially, improperly rendered etc.)
-   </div>
-   <div>
-    &nbsp; 3. Sometimes the web page will just go blank but I'll be able to move the mouse and close it
-   </div>
-   <div>
-    * After this, there is about an 80% chance that my script will actually run the `reboot` command; the other 20% of the time I have to power off manually
-    <br>
-    <br>The errors I'm seeing in the dmesg log are various but here's a few of them:
-    <br>*&nbsp;WARNING: CPU: 12 PID: 232 at drivers/gpu/drm/nouveau/nvif/vmm.c:68 nvif_vmm_put+0x6a/0x80 [nouveau]
-    <br>*&nbsp;nouveau 0000:02:00.0: fifo: SCHED_ERROR 06 []
-    <br>*&nbsp;nouveau 0000:02:00.0: fifo: runlist 0 update timeout
-    <br>*&nbsp;nouveau 0000:02:00.0: gr: TRAP ch 3 [00fee57000 WebKitWebProces[1328]]
-    <br>*&nbsp;nouveau 0000:02:00.0: gr: GPC0/PROP trap: 00000020 [RT_HEIGHT_OVERRUN] x = 336, y = 1176, format = 11, storage type = 0
-    <br>
-    <br>There is also an error that occurs /before/ I run my script at bootup which is
-    <br>*&nbsp;nouveau 0000:02:00.0: bus: MMIO write of 80000136 FAULT at 10eb14 [ IBUS ]
-    <br>
-    <br>From epiphany I'm seeing errors like:
-    <br>*&nbsp;Gdk-Message: 09:45:34.493: Error reading events from display: Connection reset by peer
-    <br>*&nbsp;Gdk-Message: 09:53:08.281: Error flushing display: Broken pipe
-    <br>*&nbsp;WebKitWebProcess: ../libdrm-2.4.100/nouveau/pushbuf.c:723: nouveau_pushbuf_data: Assertion `kref' failed.
-    <br>*&nbsp;nouveau: kernel rejected pushbuf: Invalid argument
-    <br>
-    <br>I ran the script 10 times and I've uploaded the full logs here:&nbsp;
-    <a href="https://easyupload.io/ieil63">https://easyupload.io/ieil63</a>
-    <br>
-    <br>Regards
-    <br>Geoffrey Allott
-   </div>
-  </div> 
- </body>
-</html>
+	fb0: switching to nouveaufb from EFI VGA
 
---===============1871102133==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Machine is fine, as it I can press Ctrl+Alt+Delete and reboot it
+normally.
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
+5.5 is OK. 5.6 is broken.
+Bisecting is kinda painful with miscompilation and init/main.c breakage.
 
---===============1871102133==--
+BTW do I need all those megabytes of firmware?
+
+[    0.923273] fb0: switching to nouveaufb from EFI VGA
+[    0.923440] nouveau 0000:02:00.0: NVIDIA GP104 (134000a1)
+[    1.026681] nouveau 0000:02:00.0: bios: version 86.04.1e.00.01
+[    1.026930] nouveau 0000:02:00.0: gr: failed to load firmware "gr/sw_nonctx"
+[    1.026934] nouveau 0000:02:00.0: gr: failed to load gr/sw_nonctx
+[    1.027196] nouveau 0000:02:00.0: fb: 8192 MiB GDDR5
+[    1.040683] nouveau 0000:02:00.0: DRM: VRAM: 8192 MiB
+[    1.040686] nouveau 0000:02:00.0: DRM: GART: 536870912 MiB
+[    1.040689] nouveau 0000:02:00.0: DRM: BIT table 'A' not found
+[    1.040692] nouveau 0000:02:00.0: DRM: BIT table 'L' not found
+[    1.040695] nouveau 0000:02:00.0: DRM: TMDS table version 2.0
+[    1.040698] nouveau 0000:02:00.0: DRM: DCB version 4.1
+[    1.040701] nouveau 0000:02:00.0: DRM: DCB outp 00: 01000f42 00020030
+[    1.040704] nouveau 0000:02:00.0: DRM: DCB outp 01: 04811f96 04600020
+[    1.040707] nouveau 0000:02:00.0: DRM: DCB outp 02: 04011f92 00020020
+[    1.040710] nouveau 0000:02:00.0: DRM: DCB outp 03: 04822f86 04600010
+[    1.040713] nouveau 0000:02:00.0: DRM: DCB outp 04: 04022f82 00020010
+[    1.040716] nouveau 0000:02:00.0: DRM: DCB outp 06: 02033f62 00020010
+[    1.040718] nouveau 0000:02:00.0: DRM: DCB outp 07: 02844f76 04600020
+[    1.040721] nouveau 0000:02:00.0: DRM: DCB outp 08: 02044f72 00020020
+[    1.040724] nouveau 0000:02:00.0: DRM: DCB conn 00: 00001031
+[    1.040727] nouveau 0000:02:00.0: DRM: DCB conn 01: 02000146
+[    1.040729] nouveau 0000:02:00.0: DRM: DCB conn 02: 01000246
+[    1.040732] nouveau 0000:02:00.0: DRM: DCB conn 03: 00010361
+[    1.040734] nouveau 0000:02:00.0: DRM: DCB conn 04: 00020446
+[    1.041003] nouveau 0000:02:00.0: DRM: failed to create kernel channel, -22
+[    1.041145] nouveau 0000:02:00.0: DRM: MM: using COPY for buffer copies
+[    1.322372] nouveau 0000:02:00.0: DRM: allocated 1920x1200 fb: 0x200000, bo 000000002ca87195
+[    1.322442] fbcon: nouveaudrmfb (fb0) is primary device
+[    1.646937] nouveau 0000:02:00.0: fb0: nouveaudrmfb frame buffer device
+[    1.647186] [drm] Initialized nouveau 1.3.1 20120801 for 0000:02:00.0 on minor 0
