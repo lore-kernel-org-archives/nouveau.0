@@ -1,91 +1,73 @@
-From: Zeno Davatz <zdavatz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: acr: failed to load firmware with Kernel 5.6. Kernel
- 5.5 works just fine.
-Date: Sat, 4 Apr 2020 12:12:49 +0200
-Message-ID: <CAOkhzLXV-nsy=B32iLZt48EW6ufDG6ESmX_ZKU5bA0-7G+U9jQ@mail.gmail.com>
-References: <CAOkhzLWMB8rr0x4KKfqruCcTLVq4dH6nZ365auMqA1arZ57J7g@mail.gmail.com>
- <CAOkhzLVvmoB0TgS4bioP4PnxwmnT_+h0LbCya2=KkcHu1UT_Zw@mail.gmail.com>
- <CAKb7UvgLr2A88jbx9Zvi3SjXoKbk4iZEg7LNQ4aL3VZhKVQu3A@mail.gmail.com>
- <CAOkhzLU+buL3J3XUbzC6JUAfbnMR-27qwS3Vm7ofrAPPCipXuw@mail.gmail.com>
- <CAKb7UvhvBG49P7t6XD==26q70YywmhUHvP=hW=wj8mT6V0gpHA@mail.gmail.com>
- <CAOkhzLW42a66wNL7Pz8+d+yO_oyZZJBEps=8WPHaXXFjb54dTQ@mail.gmail.com>
- <CAKb7Uvh=44_S_EAfma+JX9j_igaE3CSWws_TUqLWwJ50zcmA9Q@mail.gmail.com>
+From: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH v2 03/17] drm: Nuke mode->vrefresh
+Date: Mon, 06 Apr 2020 11:32:38 +0300
+Message-ID: <87tv1xko9l.fsf@intel.com>
+References: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
+ <20200403204008.14864-4-ville.syrjala@linux.intel.com>
+ <5d677ff317089267407609a1faa64b13@codeaurora.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvh=44_S_EAfma+JX9j_igaE3CSWws_TUqLWwJ50zcmA9Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <5d677ff317089267407609a1faa64b13@codeaurora.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: abhinavk@codeaurora.org, Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, nouveau@lists.freedesktop.org, Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>, dri-devel@lists.freedesktop.org, Andrzej Hajda <a.hajda@samsung.com>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Sam Ravnborg <sam@ravnborg.org>, aravindh@quicinc.com, Emil Velikov <emil.velikov@collabora.com>, Thomas Hellstrom <thellstrom@vmware.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Stefan Mavrodiev <stefan@olimex.com>, Jerry Han <hanxu5@huaqin.corp-partner.google.com>, VMware Graphics <linux-graphics-maintainer@vmware.com>, Jagan Teki <jagan@amarulasolutions.com>, Robert Chiras <robert.chiras@nxp.com>, pdhaval@quicinc.com, Ben Skeggs <bskeggs@redhat.com>, Jonas Karlman <jonas@kwiboo.se>, intel-gfx@lists.freedesktop.org, nganji@quicinc.com, linux-amlogic@lists.infradead.org, Vincent Abriou <vincent.abriou@st.com>, Jernej
 List-Id: nouveau.vger.kernel.org
 
-RGVhciBJbGlhCgpGWUk6CgpPbiBGcmksIEFwciAzLCAyMDIwIGF0IDg6MzEgUE0gSWxpYSBNaXJr
-aW4gPGltaXJraW5AYWx1bS5taXQuZWR1PiB3cm90ZToKCj4gRGVwZW5kcyBvbiBkaXN0cm8gc3Bl
-Y2lmaWNzLiBBbHNvIHRoZSBmaXJtd2FyZSBoYXMgdG8gYmUgYXZhaWxhYmxlIGF0Cj4gdGhlIHRp
-bWUgdGhhdCBub3V2ZWF1IGxvYWRzLiBUaGUgY29yb2xsYXJ5IHRvIHRoaXMgaXM6Cj4KPiBJZiBp
-dCdzIGJ1aWx0IGludG8gdGhlIGtlcm5lbCwgdGhlbiB0aGUgZmlybXdhcmUgbXVzdCBhbHNvIGJl
-IGluY2x1ZGVkCj4gaW4gdGhlIGtlcm5lbCAoc2luY2UgdGhpcyBoYXBwZW5zIGJlZm9yZSBhbnkg
-RlMgc3R1ZmYpCj4gSWYgaXQncyBsb2FkZWQgYXMgYSBtb2R1bGUgZnJvbSBpbml0cmQsIHRoZW4g
-aW5pdHJkIG11c3QgY29udGFpbiB0aGUgZmlybXdhcmUKPgo+IElmIHlvdSBuZWVkIGhlbHAgaW5j
-bHVkaW5nIGZpcm13YXJlIGluIHRoZSByaWdodCBwbGFjZSwgYSBkaXN0cm8KPiBzdXBwb3J0IGNo
-YW5uZWwgaXMgcHJvYmFibHkgeW91ciBiZXN0IHNob3QuCgpodHRwczovL2ZvcnVtcy5kZXZlbG9w
-ZXIubnZpZGlhLmNvbS90L252aWRpYS1kcml2ZXItZG9lcy1ub3Qtd29yay1mb3Ita2VybmVsLTUt
-Ni1udmlkaWEtZ3AxMDcvMTE4NDEzLzYKCi91c3Ivc3JjL2xpbnV4PiBkbWVzZyB8IGdyZXAgbnZp
-ZGlhClsgICAgMy4yMDMwODBdIG52aWRpYTogbG9hZGluZyBvdXQtb2YtdHJlZSBtb2R1bGUgdGFp
-bnRzIGtlcm5lbC4KWyAgICAzLjIwMzA4OF0gbnZpZGlhOiBtb2R1bGUgbGljZW5zZSAnTlZJRElB
-JyB0YWludHMga2VybmVsLgpbICAgIDMuMjE4MzI0XSBudmlkaWEtbnZsaW5rOiBOdmxpbmsgQ29y
-ZSBpcyBiZWluZyBpbml0aWFsaXplZCwgbWFqb3IKZGV2aWNlIG51bWJlciAyNDgKWyAgICAzLjIx
-ODY0MF0gbnZpZGlhIDAwMDA6MDU6MDAuMDogdmdhYXJiOiBjaGFuZ2VkIFZHQSBkZWNvZGVzOgpv
-bGRkZWNvZGVzPWlvK21lbSxkZWNvZGVzPW5vbmU6b3ducz1pbyttZW0KWyAgICAzLjQzMTAzMl0g
-bnZpZGlhLW1vZGVzZXQ6IExvYWRpbmcgTlZJRElBIEtlcm5lbCBNb2RlIFNldHRpbmcKRHJpdmVy
-IGZvciBVTklYIHBsYXRmb3JtcyAgNDQwLjY0ICBGcmkgRmViIDIxIDAwOjQzOjE5IFVUQyAyMDIw
-ClsgICAgMy40NTE5NTRdIFtkcm1dIFtudmlkaWEtZHJtXSBbR1BVIElEIDB4MDAwMDA1MDBdIExv
-YWRpbmcgZHJpdmVyClsgICAgMy40NTE5NTZdIFtkcm1dIEluaXRpYWxpemVkIG52aWRpYS1kcm0g
-MC4wLjAgMjAxNjAyMDIgZm9yCjAwMDA6MDU6MDAuMCBvbiBtaW5vciAxCgpCZXN0Clplbm8KCk9u
-IEZyaSwgQXByIDMsIDIwMjAgYXQgODozMSBQTSBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1p
-dC5lZHU+IHdyb3RlOgo+Cj4gT24gRnJpLCBBcHIgMywgMjAyMCBhdCAxOjU5IFBNIFplbm8gRGF2
-YXR6IDx6ZGF2YXR6QGdtYWlsLmNvbT4gd3JvdGU6Cj4gPgo+ID4gT24gRnJpLCBBcHIgMywgMjAy
-MCBhdCA3OjIzIFBNIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4g
-PiA+Cj4gPiA+IE9uIEZyaSwgQXByIDMsIDIwMjAgYXQgMToyMSBQTSBaZW5vIERhdmF0eiA8emRh
-dmF0ekBnbWFpbC5jb20+IHdyb3RlOgo+ID4gPiA+Cj4gPiA+ID4gT24gRnJpLCBBcHIgMywgMjAy
-MCBhdCA2OjU5IFBNIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4g
-PiA+ID4gPgo+ID4gPiA+ID4gQmVuIC0tIHByb2JhYmx5IHRoZSBBQ1IgY2hhbmdlcyBpbiA1LjYg
-ZG9uJ3QgZmFsbCBiYWNrIG5pY2VseSBhbnltb3JlCj4gPiA+ID4gPiB3aGVuIHRoZXJlJ3Mgbm8g
-ZmlybXdhcmU/IFRoZSBsb2FkIHNob3VsZG4ndCBiZSBmYWlsZWQsIGp1c3QgR1IKPiA+ID4gPiA+
-IGRpc2FibGVkLi4uCj4gPiA+ID4gPgo+ID4gPiA+ID4gWmVubyAtLSBpZiB5b3UgZ3JhYiBsaW51
-eC1maXJtd2FyZSwgaXQgc2hvdWxkIGJlIGFsbCBiZXR0ZXIuIE5vdCBzdXJlCj4gPiA+ID4gPiBp
-ZiB5b3UncmUgbWlzc2luZyBpdCBvbiBwdXJwb3NlIG9yIGJ5IGFjY2lkZW50Lgo+ID4gPiA+Cj4g
-PiA+ID4gVGhhbmsgeW91LCBJbGlhCj4gPiA+ID4KPiA+ID4gPiBJIHdpbGwgdHJ5IHRoYXQgb24g
-bXkgR2VudG9vL0Z1bnRvbyBtYWNoaW5lIG5vdy4gU28gZmFyIGxpbnV4LWZpcm13YXJlCj4gPiA+
-ID4gd2FzIG5vdCBuZWVkZWQgd2l0aCBLZXJuZWwgNS41LCBzbyBpdCB3YXMgbm90IGluc3RhbGxl
-ZCBvbiBteSBtYWNoaW5lLgo+ID4gPgo+ID4gPiBJdCB3YXMgbmVlZGVkIG9uIDUuNSBhcyB3ZWxs
-LiBJdCdzIGp1c3QgdGhhdCBpdCBmZWxsIGJhY2sgZ3JhY2VmdWxseQo+ID4gPiB3aXRob3V0IGZp
-cm13YXJlLCBhbmQgeW91IGRpZG4ndCBnZXQgYW55IGFjY2VsZXJhdGlvbiBmZWF0dXJlcy4KPiA+
-Cj4gPiBEbyBJIG5lZWQgYW55IG9mIHRoZXNlIGVuYWJsZWQgZm9yIGxpbnV4LWZpcm13YXJlIHRv
-IGxvYWQgcHJvcGVybHkgaW4KPiA+IEtlcm5lbCA1LjY/Cj4gPgo+ID4gIC0qLSBGaXJtd2FyZSBs
-b2FkaW5nIGZhY2lsaXR5Cj4gPiAgIOKUgiDilIIgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICgpICAgIEJ1aWxkIG5hbWVkIGZpcm13YXJlCj4gPiBibG9icyBpbnRvIHRoZSBr
-ZXJuZWwgYmluYXJ5Cj4gPiAgIOKUgiDilIIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIFsgXSAgIEVuYWJsZSB0aGUgZmlybXdhcmUKPiA+IHN5c2ZzIGZhbGxiYWNrIG1lY2hh
-bmlzbQo+ID4gICDilIIg4pSCICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBb
-IF0gICBFbmFibGUgY29tcHJlc3NlZAo+ID4gZmlybXdhcmUgc3VwcG9ydAo+Cj4gRGVwZW5kcyBv
-biBkaXN0cm8gc3BlY2lmaWNzLiBBbHNvIHRoZSBmaXJtd2FyZSBoYXMgdG8gYmUgYXZhaWxhYmxl
-IGF0Cj4gdGhlIHRpbWUgdGhhdCBub3V2ZWF1IGxvYWRzLiBUaGUgY29yb2xsYXJ5IHRvIHRoaXMg
-aXM6Cj4KPiBJZiBpdCdzIGJ1aWx0IGludG8gdGhlIGtlcm5lbCwgdGhlbiB0aGUgZmlybXdhcmUg
-bXVzdCBhbHNvIGJlIGluY2x1ZGVkCj4gaW4gdGhlIGtlcm5lbCAoc2luY2UgdGhpcyBoYXBwZW5z
-IGJlZm9yZSBhbnkgRlMgc3R1ZmYpCj4gSWYgaXQncyBsb2FkZWQgYXMgYSBtb2R1bGUgZnJvbSBp
-bml0cmQsIHRoZW4gaW5pdHJkIG11c3QgY29udGFpbiB0aGUgZmlybXdhcmUKPgo+IElmIHlvdSBu
-ZWVkIGhlbHAgaW5jbHVkaW5nIGZpcm13YXJlIGluIHRoZSByaWdodCBwbGFjZSwgYSBkaXN0cm8K
-PiBzdXBwb3J0IGNoYW5uZWwgaXMgcHJvYmFibHkgeW91ciBiZXN0IHNob3QuCj4KPiBDaGVlcnMs
-Cj4KPiAgIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+On Fri, 03 Apr 2020, abhinavk@codeaurora.org wrote:
+> On 2020-04-03 13:39, Ville Syrjala wrote:
+>> diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
+>> index fec1c33b3045..e3d5f011f7bd 100644
+>> --- a/drivers/gpu/drm/drm_modes.c
+>> +++ b/drivers/gpu/drm/drm_modes.c
+>> @@ -759,9 +759,7 @@ int drm_mode_vrefresh(const struct drm_display_mode 
+>> *mode)
+>>  {
+>>  	int refresh = 0;
+>> 
+>> -	if (mode->vrefresh > 0)
+>> -		refresh = mode->vrefresh;
+>
+> The mode->vrefresh has been replaced with calling this API in all its 
+> usages.
+> However in this API, the above if statement was returning the vrefresh 
+> if it was already
+> set. mode->clock is holding the pixel clock . So this will not cause any 
+> issues in non-compressed cases.
+> In case of compression like DSC, the pixel
+> clock will be different based on the compression ratio hence the 
+> mode->clock will change but fps will not.
+> So we did have usages in our downstream driver where we would use this 
+> API and the refresh rate
+> returned will be the mode->vrefresh which did not change but after this 
+> change for those cases it will end up returning the refresh rate 
+> calculated using mode->clock which will result in a different value now.
+> So is the recommendation that even in the case of compression 
+> mode->clock should always hold
+> uncompressed pixel clock value because with this part of the change we 
+> will now get a different value when we call this API.
+
+Yes. The mode remains the same regardless of compression, and
+compression is just an implementation detail of the transport.
+
+You may need to maintain separate "physical port clock" and "logical
+port clock" for DSC, where the latter is a function of the former and
+the DSC parameters. And then you can see if your logical port clock
+provides enough bandwidth for your mode. But this is up to your driver
+and encoder implementation.
+
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
