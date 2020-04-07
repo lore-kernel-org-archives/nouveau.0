@@ -1,15 +1,14 @@
-From: abhinavk@codeaurora.org
-Subject: Re: [PATCH v2 03/17] drm: Nuke mode->vrefresh
-Date: Mon, 06 Apr 2020 18:23:39 -0700
-Message-ID: <db6db406ab0c1378fdac427d9112cf97@codeaurora.org>
-References: <20200403204008.14864-1-ville.syrjala@linux.intel.com>
- <20200403204008.14864-4-ville.syrjala@linux.intel.com>
- <5d677ff317089267407609a1faa64b13@codeaurora.org> <87tv1xko9l.fsf@intel.com>
+From: Jeevan B <jeevan.b@intel.com>
+Subject: [PATCH 3/5] drm/nouveau: utilize subconnector property
+ for DP
+Date: Tue,  7 Apr 2020 12:20:05 +0530
+Message-ID: <1586242207-23214-3-git-send-email-jeevan.b@intel.com>
+References: <1586242207-23214-1-git-send-email-jeevan.b@intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <87tv1xko9l.fsf@intel.com>
+In-Reply-To: <1586242207-23214-1-git-send-email-jeevan.b@intel.com>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
@@ -19,67 +18,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, nouveau@lists.freedesktop.org, =?UTF-8?Q?Gu?= =?UTF-8?Q?ido_G=C3=BCnther?= <agx@sigxcpu.org>, dri-devel@lists.freedesktop.org, Andrzej Hajda <a.hajda@samsung.com>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Sam Ravnborg <sam@ravnborg.org>, aravindh@quicinc.com, Emil Velikov <emil.velikov@collabora.com>, Thomas Hellstrom <thellstrom@vmware.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Stefan Mavrodiev <stefan@olimex.com>, Jerry Han <hanxu5@huaqin.corp-partner.google.com>, VMware Graphics <linux-graphics-maintainer@vmware.com>, Jagan Teki <jagan@amarulasolutions.com>, Robert Chiras <robert.chiras@nxp.com>, pdhaval@quicinc.com, Ben Skeggs <bskeggs@redhat.com>, Jonas Karlman <jonas@kwiboo.se>, intel-gfx@lists.freedesktop.org, nganji@quicinc.com, linux-amlogic@lists.infradead.org, Vincent Abriou <vincent.abriou@st.com>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, nouveau@lists.freedesktop.org, Oleg Vasilev <oleg.vasilev@intel.com>, Jeevan B <jeevan.b@intel.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-Hi Jani
+From: Oleg Vasilev <oleg.vasilev@intel.com>
 
-On 2020-04-06 01:32, Jani Nikula wrote:
-> On Fri, 03 Apr 2020, abhinavk@codeaurora.org wrote:
->> On 2020-04-03 13:39, Ville Syrjala wrote:
->>> diff --git a/drivers/gpu/drm/drm_modes.c 
->>> b/drivers/gpu/drm/drm_modes.c
->>> index fec1c33b3045..e3d5f011f7bd 100644
->>> --- a/drivers/gpu/drm/drm_modes.c
->>> +++ b/drivers/gpu/drm/drm_modes.c
->>> @@ -759,9 +759,7 @@ int drm_mode_vrefresh(const struct 
->>> drm_display_mode
->>> *mode)
->>>  {
->>>  	int refresh = 0;
->>> 
->>> -	if (mode->vrefresh > 0)
->>> -		refresh = mode->vrefresh;
->> 
->> The mode->vrefresh has been replaced with calling this API in all its
->> usages.
->> However in this API, the above if statement was returning the vrefresh
->> if it was already
->> set. mode->clock is holding the pixel clock . So this will not cause 
->> any
->> issues in non-compressed cases.
->> In case of compression like DSC, the pixel
->> clock will be different based on the compression ratio hence the
->> mode->clock will change but fps will not.
->> So we did have usages in our downstream driver where we would use this
->> API and the refresh rate
->> returned will be the mode->vrefresh which did not change but after 
->> this
->> change for those cases it will end up returning the refresh rate
->> calculated using mode->clock which will result in a different value 
->> now.
->> So is the recommendation that even in the case of compression
->> mode->clock should always hold
->> uncompressed pixel clock value because with this part of the change we
->> will now get a different value when we call this API.
-> 
-> Yes. The mode remains the same regardless of compression, and
-> compression is just an implementation detail of the transport.
-> 
-> You may need to maintain separate "physical port clock" and "logical
-> port clock" for DSC, where the latter is a function of the former and
-> the DSC parameters. And then you can see if your logical port clock
-> provides enough bandwidth for your mode. But this is up to your driver
-> and encoder implementation.
-> 
-> BR,
-> Jani.
+Since DP-specific information is stored in driver's structures, every
+driver needs to implement subconnector property by itself.
 
-Thanks for the information. We will make changes to our driver to 
-accommodate the changes in the
-drm_mode_vrefresh API.
+v2: rebase
 
-Thanks
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org
+Signed-off-by: Jeevan B <jeevan.b@intel.com>
+Signed-off-by: Oleg Vasilev <oleg.vasilev@intel.com>
+Reviewed-by: Emil Velikov <emil.velikov@collabora.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20190829114854.1539-5-oleg.vasilev@intel.com
+---
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 13 +++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_dp.c        |  9 +++++++++
+ drivers/gpu/drm/nouveau/nouveau_encoder.h   |  1 +
+ 3 files changed, 23 insertions(+)
 
-Abhinav
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 9a9a7f5..6464e48 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -648,6 +648,17 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
+ 	pm_runtime_mark_last_busy(dev->dev);
+ 	pm_runtime_put_autosuspend(dev->dev);
+ 
++	if (connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
++	    connector->connector_type == DRM_MODE_CONNECTOR_eDP) {
++		enum drm_mode_subconnector subconnector = DRM_MODE_SUBCONNECTOR_Unknown;
++
++		if (conn_status == connector_status_connected && nv_encoder)
++			subconnector = nv_encoder->dp.subconnector;
++		drm_object_property_set_value(&connector->base,
++			connector->dev->mode_config.dp_subconnector_property,
++			subconnector);
++	}
++
+ 	return conn_status;
+ }
+ 
+@@ -1373,6 +1384,8 @@ nouveau_connector_create(struct drm_device *dev,
+ 			kfree(nv_connector);
+ 			return ERR_PTR(ret);
+ 		}
++
++		drm_mode_add_dp_subconnector_property(connector);
+ 		funcs = &nouveau_connector_funcs;
+ 		break;
+ 	default:
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+index 2674f15..85eac85 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dp.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+@@ -62,6 +62,7 @@ nouveau_dp_detect(struct nouveau_encoder *nv_encoder)
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nvkm_i2c_aux *aux;
+ 	u8 dpcd[8];
++	u8 port_cap[DP_MAX_DOWNSTREAM_PORTS] = {};
+ 	int ret;
+ 
+ 	aux = nv_encoder->aux;
+@@ -72,6 +73,14 @@ nouveau_dp_detect(struct nouveau_encoder *nv_encoder)
+ 	if (ret)
+ 		return ret;
+ 
++	if (dpcd[DP_DPCD_REV] > 0x10) {
++		ret = nvkm_rdaux(aux, DP_DOWNSTREAM_PORT_0,
++				 port_cap, DP_MAX_DOWNSTREAM_PORTS);
++		if (ret)
++			memset(port_cap, 0, DP_MAX_DOWNSTREAM_PORTS);
++	}
++	nv_encoder->dp.subconnector = drm_dp_subconnector_type(dpcd, port_cap);
++
+ 	nv_encoder->dp.link_bw = 27000 * dpcd[1];
+ 	nv_encoder->dp.link_nr = dpcd[2] & DP_MAX_LANE_COUNT_MASK;
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_encoder.h b/drivers/gpu/drm/nouveau/nouveau_encoder.h
+index 3517f92..e17971a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_encoder.h
++++ b/drivers/gpu/drm/nouveau/nouveau_encoder.h
+@@ -63,6 +63,7 @@ struct nouveau_encoder {
+ 			struct nv50_mstm *mstm;
+ 			int link_nr;
+ 			int link_bw;
++			enum drm_mode_subconnector subconnector;
+ 		} dp;
+ 	};
+ 
+-- 
+2.7.4
