@@ -1,87 +1,80 @@
-From: Sedat Dilek <sedat.dilek@gmail.com>
-Subject: Re: [PATCH] x86: mmiotrace: Use cpumask_available for cpumask_var_t variables
-Date: Wed, 8 Apr 2020 23:36:47 +0200
-Message-ID: <CA+icZUWq=_qjvAf40PqQAj3tQ0WAZ2QAR9hojTuYqZH_=RWd_w@mail.gmail.com>
-References: <20200408205323.44490-1-natechancellor@gmail.com> <CA+icZUUTEEZww3qT0jfFP0ZgUPXoF1_uOHMT4ZecrQxumE1Zmg@mail.gmail.com>
-Reply-To: sedat.dilek@gmail.com
+From: =?UTF-8?Q?Jes=C3=BAs_J=2E_Guerrero_Botella?=
+ <jesus.guerrero.botella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Status of GF108GLM [NVS 5200M]
+Date: Fri, 10 Apr 2020 20:06:38 +0200
+Message-ID: <CAMix8LE797N0NczzW10yj409QQTujre43=rR307W7un6SG+R0w@mail.gmail.com>
+References: <CAMix8LH00FU9VmT1uGXhTN+PiCM+i8J1uk=Ps-Fdy9jXmN3TVQ@mail.gmail.com>
+ <CAKb7UvjALZp1mYwxkTeU=HLCwDt42ztFasRDv3YM0WHyNPKGNQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CA+icZUUTEEZww3qT0jfFP0ZgUPXoF1_uOHMT4ZecrQxumE1Zmg@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Nathan Chancellor <natechancellor@gmail.com>
-Cc: Steven Rostedt <rostedt@goodmis.org>, Ingo Molnar <mingo@kernel.org>, Karol Herbst <karolherbst@gmail.com>, Pekka Paalanen <ppaalanen@gmail.com>, x86@kernel.org, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, Clang-Built-Linux ML <clang-built-linux@googlegroups.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7UvjALZp1mYwxkTeU=HLCwDt42ztFasRDv3YM0WHyNPKGNQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Apr 8, 2020 at 11:12 PM Sedat Dilek <sedat.dilek@gmail.com> wrote:
->
-> On Wed, Apr 8, 2020 at 10:53 PM Nathan Chancellor
-> <natechancellor@gmail.com> wrote:
-> >
-> > When building with Clang + -Wtautological-compare and
-> > CONFIG_CPUMASK_OFFSTACK unset:
-> >
->
-> Hi Nathan,
->
-> thanks for the quick patch.
->
-> I can confirm I have no CONFIG_CPUMASK_OFFSTACK set.
->
-
-Feel free to add appropriate credits:
-
-   Tested-by: Sedat Dilek <sedat.dilek@gmail.com>
-
-Regards,
-- Sedat -
-
->
-> > arch/x86/mm/mmio-mod.c:375:6: warning: comparison of array 'downed_cpus'
-> > equal to a null pointer is always false [-Wtautological-pointer-compare]
-> >         if (downed_cpus == NULL &&
-> >             ^~~~~~~~~~~    ~~~~
-> > arch/x86/mm/mmio-mod.c:405:6: warning: comparison of array 'downed_cpus'
-> > equal to a null pointer is always false [-Wtautological-pointer-compare]
-> >         if (downed_cpus == NULL || cpumask_weight(downed_cpus) == 0)
-> >             ^~~~~~~~~~~    ~~~~
-> > 2 warnings generated.
-> >
-> > Commit f7e30f01a9e2 ("cpumask: Add helper cpumask_available()") added
-> > cpumask_available to fix warnings of this nature. Use that here so that
-> > clang does not warn regardless of CONFIG_CPUMASK_OFFSTACK's value.
-> >
-> > Link: https://github.com/ClangBuiltLinux/linux/issues/982
-> > Reported-by: Sedat Dilek <sedat.dilek@gmail.com>
-> > Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
-> > ---
-> >  arch/x86/mm/mmio-mod.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/x86/mm/mmio-mod.c b/arch/x86/mm/mmio-mod.c
-> > index 109325d77b3e..43fd19b3f118 100644
-> > --- a/arch/x86/mm/mmio-mod.c
-> > +++ b/arch/x86/mm/mmio-mod.c
-> > @@ -372,7 +372,7 @@ static void enter_uniprocessor(void)
-> >         int cpu;
-> >         int err;
-> >
-> > -       if (downed_cpus == NULL &&
-> > +       if (!cpumask_available(downed_cpus) &&
-> >             !alloc_cpumask_var(&downed_cpus, GFP_KERNEL)) {
-> >                 pr_notice("Failed to allocate mask\n");
-> >                 goto out;
-> > @@ -402,7 +402,7 @@ static void leave_uniprocessor(void)
-> >         int cpu;
-> >         int err;
-> >
-> > -       if (downed_cpus == NULL || cpumask_weight(downed_cpus) == 0)
-> > +       if (!cpumask_available(downed_cpus) || cpumask_weight(downed_cpus) == 0)
-> >                 return;
-> >         pr_notice("Re-enabling CPUs...\n");
-> >         for_each_cpu(cpu, downed_cpus) {
-> >
-> > base-commit: ae46d2aa6a7fbe8ca0946f24b061b6ccdc6c3f25
-> > --
-> > 2.26.0
-> >
+SGksIElsaWEuCgpTb3JyeSBmb3Igc3VjaCBhIGJpZyBkZWxheSBpbiBhbnN3ZXJpbmcuIFJlYWwg
+bGlmZSBhbmQgdGhhdCBzdHVmZi4uLgoKSSBhbSBhIG5ld2NvbWVyIHNvLCBwbGVhc2UsIGlmIEkg
+ZG8gc29tZXRoaW5nIHdyb25nIHJlZ2FyZGluZyBteQpxdW90aW5nIHN0eWxlIG9yIHdoYXRldmVy
+LCBqdXN0IGxldCBtZSBrbm93IGFuZCBJJ2xsIHF1aWNrbHkgaW1wcm92ZS4gOikKCkVsIGx1bi4s
+IDMwIG1hci4gMjAyMCBhIGxhcyAxMzozOCwgSWxpYSBNaXJraW4KKDxpbWlya2luQGFsdW0ubWl0
+LmVkdT4pIGVzY3JpYmnDszoKPgo+IFllcywgR0YxMDggaXMgRmVybWkgKEYgPSBGZXJtaSkuIFJl
+Y2xvY2tpbmcgaXMgY3VycmVudGx5IG5vdCBhdmFpbGFibGUKPiBmb3IgdGhhdCBnZW5lcmF0aW9u
+LCB1bmZvcnR1bmF0ZWx5LiBZb3Ugc2hvdWxkIGJlIGFibGUgdG8gb3RoZXJ3aXNlCj4gdXNlIHlv
+dXIgR1BVIGp1c3QgZmluZSwgYnV0IEknbSBndWVzc2luZyBpdCdsbCBjb21lIHVwIGluIHRoZSAi
+MDciCj4gc3RhdGUgd2hlbiBpdCBwb3dlcnMgb24gKGluIHRoZSBzdGF0ZSBhcy1pcyBpdCBhcHBl
+YXJzIHBvd2VyZWQgb2ZmLAo+IHdoaWNoIGl0IHdpbGwgZG8gYXV0b21hdGljYWxseSB3aGVuIG5v
+dCBpbiB1c2UpLCB3aGljaCBhcyB5b3UgY2FuIHNlZQo+IGlzIGEgZnJhY3Rpb24gb2YgdGhlIHRv
+dGFsIEdQVSBhdmFpbGFibGUgcGVyZi4KClllcywgaXQgY29tZXMgdXAgaW4gMDcgd2hlbiBJIGxh
+dW5jaCwgbGV0J3Mgc2F5IGdseGdlYXJzIGluIERSSV9QUklNRT0xLgpJdCBwZXJmb3JtcyBzaW1p
+bGFybHkgdG8gdGhlIGludGVsIGNoaXAsIG9yIG1heWJlIGEgYml0IHdvcnNlLgpGb3IgdGhlIHJl
+c3QsIHllcywgaXQgbW9zdGx5IHdvcmtzLiBCdXQgaXQncyBubyBnb29kIG9mIGNvdXJzZS4KCgo+
+IFRoZXJlJ3MgYSB2ZXJ5IGV4cGVyaW1lbnRhbCBicmFuY2ggdGhhdCBkb2VzIGVuYWJsZSByZWNs
+b2NraW5nIGZvcgo+IEZlcm1pIGF0IGh0dHBzOi8vZ2l0aHViLmNvbS9za2VnZ3NiL25vdXZlYXUv
+Y29tbWl0cy9kZXZlbC1jbGsgLgo+IEhvd2V2ZXIgSSBiZWxpZXZlIGl0IHdhcyBvbmx5IHRlc3Rl
+ZCB3aXRoIGEgc2luZ2xlIEdQVSwgYW5kIG15IHRlc3RpbmcKPiB3aXRoIGFuIGlkZW50aWNhbCBz
+dWNoIEdQVSB3YXMgbmVnYXRpdmUuIE9uIHRoZSBvdGhlciBoYW5kLCB5b3UgZG9uJ3QKPiBoYXZl
+IGEgZGlzcGxheSBoYW5naW5nIG9mZiB0aGUgY2FyZCwgd2hpY2ggZ3JlYXRseSBpbmNyZWFzZXMg
+Y2hhbmNlcwo+IG9mIHN1Y2Nlc3MuIEZlZWwgZnJlZSB0byBqb2luICNub3V2ZWF1IG9uIGlyYy5m
+cmVlbm9kZS5uZXQgaWYgeW91IHBsYW4KPiBvbiBleHBsb3JpbmcgdGhpcy4KCkkgZmV0Y2hlZCB0
+aGF0IGFuZCB0cmllZCB0byBjb21waWxlIGl0LiBGaXJzdCBmYWlsZWQgYmVjYXVzZSBvZiBtaXNz
+aW5nIGVudnlhcywKd2hpY2ggSSBjb21waWxlZCBhbmQgaW5zdGFsbGVkLiBUaGVuIGZhaWxlZCB3
+aXRoIHNvbWUgdW5kZWZpbmVkIHN5bWJvbCBraW5kCm9mIGVycm9yIHdoaWNoIHJpZ2h0IG5vdyBJ
+IGRvbid0IGhhdmUgdGhlIHRpbWUgdG8gZGlhZ25vc2UuCgpJZiBJIGNhbiBnZXQgdGhpcyB0byBj
+b21waWxlIEknbGwgZ2V0IGJhY2sgdG8gdGhpcyB0aHJlYWQuIEFueSByZWNvbW1lbmRhdGlvbnMK
+b24ga2VybmVsIHZlcnNpb24sIGNvbXBpbGVyIG9yIHdoYXRldmVyIG1pZ2h0IHdvcmsgYmV0dGVy
+IGZvciB0aGF0IGJyYW5jaAppcyB3ZWxjb21lIHRob3VnaC4KCiAgQ0NMRCAgICAgYmluL252X3Jk
+MTYKICBDQ0xEICAgICBiaW4vbnZfd3MzMgogIENDTEQgICAgIGJpbi9udl9yaTA4CiAgQ0NMRCAg
+ICAgYmluL252X3dpMzIKICBDQ0xEICAgICBiaW4vbnZfd2kxNgogIENDTEQgICAgIGJpbi9udl9p
+bml0CiAgQ0NMRCAgICAgYmluL252X3dzMTYKICBDQ0xEICAgICBiaW4vbnZfcmkxNgogIENDTEQg
+ICAgIGJpbi9udl9yZDMyCiAgQ0NMRCAgICAgYmluL252X3JkMDgKICBDQ0xEICAgICBiaW4vbnZf
+cnMwOAogIENDTEQgICAgIGJpbi9udl9ydjMyCiAgQ0NMRCAgICAgYmluL252X3BlcmZtb24KYmlu
+L252X3BlcmZtb24uYzogRW4gbGEgZnVuY2nDs24g4oCYdWlfcGVyZm1vbl9xdWVyeV9zaWduYWxz
+4oCZOgpiaW4vbnZfcGVyZm1vbi5jOjMxNjo0MDogYXZpc286IGVsIGFyZ3VtZW50byBkZSDigJhz
+aXplb2bigJkgZW4gbGEgbGxhbWFkYQrigJhzdHJuY3B54oCZIGVzIGxhIG1pc21hIGV4cHJlc2nD
+s24gcXVlIGVsIG9yaWdlbjsgwr9wcmV0ZW5kw61hIHVzYXIgZWwKdGFtYcOxbyBkZWwgZGVzdGlu
+bz8gWy1Xc2l6ZW9mLXBvaW50ZXItbWVtYWNjZXNzXQogICAgc3RybmNweShzaWctPm5hbWUsIGFy
+Z3MubmFtZSwgc2l6ZW9mKGFyZ3MubmFtZSkpOwogICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgXgogIENDTEQgICAgIGJpbi9udl9ydjA4CiAgQ0NMRCAgICAgYmluL252X3Jz
+MzIKICBDQ0xEICAgICBiaW4vbnZfd3YwOAogIENDTEQgICAgIGJpbi9udl93djE2CiAgQ0NMRCAg
+ICAgYmluL252X3dmMTYKICBDQ0xEICAgICBiaW4vbnZfd2kwOAogIENDTEQgICAgIGJpbi9udl9y
+ZjE2Ci91c3IvbGliL2djYy94ODZfNjQtcGMtbGludXgtZ251LzguMy4wLy4uLy4uLy4uLy4uL3g4
+Nl82NC1wYy1saW51eC1nbnUvYmluL2xkOgovdG1wL2NjWUp2eTdnLm86IHVuZGVmaW5lZCByZWZl
+cmVuY2UgdG8gc3ltYm9sICdrZXlwYWQnCi91c3IvbGliL2djYy94ODZfNjQtcGMtbGludXgtZ251
+LzguMy4wLy4uLy4uLy4uLy4uL3g4Nl82NC1wYy1saW51eC1nbnUvYmluL2xkOgovbGliNjQvbGli
+dGluZm8uc28uNjogZXJyb3IgYWwgYcOxYWRpciBzw61tYm9sb3M6IERTTyBmYWx0YW50ZSBkZXNk
+ZQpsw61uZWEgZGUgb3JkZW4KY29sbGVjdDI6IGVycm9yOiBsZCBkZXZvbHZpw7MgZWwgZXN0YWRv
+IGRlIHNhbGlkYSAxCgotLSAKSmVzw7pzIEd1ZXJyZXJvIEJvdGVsbGEKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
