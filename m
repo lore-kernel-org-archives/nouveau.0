@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 5.6 149/149] PCI: Use ioremap(),
+Subject: [PATCH AUTOSEL 5.5 121/121] PCI: Use ioremap(),
  not phys_to_virt() for platform ROM
-Date: Sat, 11 Apr 2020 19:03:46 -0400
-Message-ID: <20200411230347.22371-149-sashal@kernel.org>
-References: <20200411230347.22371-1-sashal@kernel.org>
+Date: Sat, 11 Apr 2020 19:07:06 -0400
+Message-ID: <20200411230706.23855-121-sashal@kernel.org>
+References: <20200411230706.23855-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200411230347.22371-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <20200411230706.23855-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -172,7 +172,7 @@ index 9b91da09dc5f8..8d9812a51ef63 100644
  	.rw = true,
  };
 diff --git a/drivers/gpu/drm/radeon/radeon_bios.c b/drivers/gpu/drm/radeon/radeon_bios.c
-index c42f73fad3e31..bb29cf02974d1 100644
+index 4d1490fbb0750..756a50e8aff20 100644
 --- a/drivers/gpu/drm/radeon/radeon_bios.c
 +++ b/drivers/gpu/drm/radeon/radeon_bios.c
 @@ -108,25 +108,33 @@ static bool radeon_read_bios(struct radeon_device *rdev)
@@ -246,10 +246,10 @@ index 137bf0cee897c..8fc9a4e911e3a 100644
 -}
 -EXPORT_SYMBOL(pci_platform_rom);
 diff --git a/include/linux/pci.h b/include/linux/pci.h
-index 3840a541a9de5..7268dcf1f23e9 100644
+index 930fab2930736..73d97d12c9b11 100644
 --- a/include/linux/pci.h
 +++ b/include/linux/pci.h
-@@ -1214,7 +1214,6 @@ int pci_enable_rom(struct pci_dev *pdev);
+@@ -1213,7 +1213,6 @@ int pci_enable_rom(struct pci_dev *pdev);
  void pci_disable_rom(struct pci_dev *pdev);
  void __iomem __must_check *pci_map_rom(struct pci_dev *pdev, size_t *size);
  void pci_unmap_rom(struct pci_dev *pdev, void __iomem *rom);
