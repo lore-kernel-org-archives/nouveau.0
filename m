@@ -1,28 +1,18 @@
-From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 5.4 108/108] PCI: Use ioremap(),
- not phys_to_virt() for platform ROM
-Date: Sat, 11 Apr 2020 19:09:43 -0400
-Message-ID: <20200411230943.24951-108-sashal@kernel.org>
-References: <20200411230943.24951-1-sashal@kernel.org>
+From: Sasha Levin <sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 66/66] PCI: Use ioremap(), not phys_to_virt() for platform ROM
+Date: Sat, 11 Apr 2020 19:12:03 -0400
+Message-ID: <20200411231203.25933-66-sashal@kernel.org>
+References: <20200411231203.25933-1-sashal@kernel.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200411230943.24951-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Mikel Rychliski <mikel-BYxjvSLQxR3QT0dZR+AlfA@public.gmane.org>, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20200411231203.25933-1-sashal@kernel.org>
+Sender: stable-owner@vger.kernel.org
+To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc: Mikel Rychliski <mikel@mikelr.com>, Bjorn Helgaas <bhelgaas@google.com>, Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-pci@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-From: Mikel Rychliski <mikel-BYxjvSLQxR3QT0dZR+AlfA@public.gmane.org>
+From: Mikel Rychliski <mikel@mikelr.com>
 
 [ Upstream commit 72e0ef0e5f067fd991f702f0b2635d911d0cf208 ]
 
@@ -64,11 +54,11 @@ pointer. Avoid this by calling memcpy_fromio() instead of kmemdup().
 
 pci_platform_rom() now has no remaining callers, so remove it.
 
-Link: https://lore.kernel.org/r/20200319021623.5426-1-mikel-BYxjvSLQxR3QT0dZR+AlfA@public.gmane.org
-Signed-off-by: Mikel Rychliski <mikel-BYxjvSLQxR3QT0dZR+AlfA@public.gmane.org>
-Signed-off-by: Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
-Acked-by: Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
-Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Link: https://lore.kernel.org/r/20200319021623.5426-1-mikel@mikelr.com
+Signed-off-by: Mikel Rychliski <mikel@mikelr.com>
+Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
  drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c      | 31 +++++++++++--------
  .../drm/nouveau/nvkm/subdev/bios/shadowpci.c  | 17 ++++++++--
@@ -78,10 +68,10 @@ Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
  5 files changed, 52 insertions(+), 44 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-index 50dff69a0f6e3..b1172d93c99c3 100644
+index a5df80d50d447..6cf3dd5edffda 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-@@ -192,30 +192,35 @@ static bool amdgpu_read_bios_from_rom(struct amdgpu_device *adev)
+@@ -191,30 +191,35 @@ static bool amdgpu_read_bios_from_rom(struct amdgpu_device *adev)
  
  static bool amdgpu_read_platform_bios(struct amdgpu_device *adev)
  {
@@ -172,10 +162,10 @@ index 9b91da09dc5f8..8d9812a51ef63 100644
  	.rw = true,
  };
 diff --git a/drivers/gpu/drm/radeon/radeon_bios.c b/drivers/gpu/drm/radeon/radeon_bios.c
-index 4d1490fbb0750..756a50e8aff20 100644
+index 04c0ed41374f1..dd0528cf98183 100644
 --- a/drivers/gpu/drm/radeon/radeon_bios.c
 +++ b/drivers/gpu/drm/radeon/radeon_bios.c
-@@ -108,25 +108,33 @@ static bool radeon_read_bios(struct radeon_device *rdev)
+@@ -104,25 +104,33 @@ static bool radeon_read_bios(struct radeon_device *rdev)
  
  static bool radeon_read_platform_bios(struct radeon_device *rdev)
  {
@@ -246,10 +236,10 @@ index 137bf0cee897c..8fc9a4e911e3a 100644
 -}
 -EXPORT_SYMBOL(pci_platform_rom);
 diff --git a/include/linux/pci.h b/include/linux/pci.h
-index f39f22f9ee474..e92bd9b32f369 100644
+index b1f297f4b7b0b..993051f60a009 100644
 --- a/include/linux/pci.h
 +++ b/include/linux/pci.h
-@@ -1216,7 +1216,6 @@ int pci_enable_rom(struct pci_dev *pdev);
+@@ -1141,7 +1141,6 @@ int pci_enable_rom(struct pci_dev *pdev);
  void pci_disable_rom(struct pci_dev *pdev);
  void __iomem __must_check *pci_map_rom(struct pci_dev *pdev, size_t *size);
  void pci_unmap_rom(struct pci_dev *pdev, void __iomem *rom);
