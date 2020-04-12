@@ -1,251 +1,95 @@
-From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 4.19 66/66] PCI: Use ioremap(), not phys_to_virt() for platform ROM
-Date: Sat, 11 Apr 2020 19:12:03 -0400
-Message-ID: <20200411231203.25933-66-sashal@kernel.org>
-References: <20200411231203.25933-1-sashal@kernel.org>
+From: =?UTF-8?Q?Jes=C3=BAs_J=2E_Guerrero_Botella?=
+ <jesus.guerrero.botella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Status of GF108GLM [NVS 5200M]
+Date: Sun, 12 Apr 2020 19:22:20 +0200
+Message-ID: <CAMix8LG9RNLkY1TECmj7Y8VwEkS8R7hDcB7yQTH157BOZ+b0Dg@mail.gmail.com>
+References: <CAMix8LH00FU9VmT1uGXhTN+PiCM+i8J1uk=Ps-Fdy9jXmN3TVQ@mail.gmail.com>
+ <CAKb7UvjALZp1mYwxkTeU=HLCwDt42ztFasRDv3YM0WHyNPKGNQ@mail.gmail.com>
+ <CAMix8LE797N0NczzW10yj409QQTujre43=rR307W7un6SG+R0w@mail.gmail.com>
+ <CAKb7UvheeoFKCYhQmaf5fw6W1eR+1R2CPoo=E7ZFF8OO099XmA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20200411231203.25933-1-sashal@kernel.org>
-Sender: stable-owner@vger.kernel.org
-To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc: Mikel Rychliski <mikel@mikelr.com>, Bjorn Helgaas <bhelgaas@google.com>, Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-pci@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7UvheeoFKCYhQmaf5fw6W1eR+1R2CPoo=E7ZFF8OO099XmA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-From: Mikel Rychliski <mikel@mikelr.com>
-
-[ Upstream commit 72e0ef0e5f067fd991f702f0b2635d911d0cf208 ]
-
-On some EFI systems, the video BIOS is provided by the EFI firmware.  The
-boot stub code stores the physical address of the ROM image in pdev->rom.
-Currently we attempt to access this pointer using phys_to_virt(), which
-doesn't work with CONFIG_HIGHMEM.
-
-On these systems, attempting to load the radeon module on a x86_32 kernel
-can result in the following:
-
-  BUG: unable to handle page fault for address: 3e8ed03c
-  #PF: supervisor read access in kernel mode
-  #PF: error_code(0x0000) - not-present page
-  *pde = 00000000
-  Oops: 0000 [#1] PREEMPT SMP
-  CPU: 0 PID: 317 Comm: systemd-udevd Not tainted 5.6.0-rc3-next-20200228 #2
-  Hardware name: Apple Computer, Inc. MacPro1,1/Mac-F4208DC8, BIOS     MP11.88Z.005C.B08.0707021221 07/02/07
-  EIP: radeon_get_bios+0x5ed/0xe50 [radeon]
-  Code: 00 00 84 c0 0f 85 12 fd ff ff c7 87 64 01 00 00 00 00 00 00 8b 47 08 8b 55 b0 e8 1e 83 e1 d6 85 c0 74 1a 8b 55 c0 85 d2 74 13 <80> 38 55 75 0e 80 78 01 aa 0f 84 a4 03 00 00 8d 74 26 00 68 dc 06
-  EAX: 3e8ed03c EBX: 00000000 ECX: 3e8ed03c EDX: 00010000
-  ESI: 00040000 EDI: eec04000 EBP: eef3fc60 ESP: eef3fbe0
-  DS: 007b ES: 007b FS: 00d8 GS: 00e0 SS: 0068 EFLAGS: 00010206
-  CR0: 80050033 CR2: 3e8ed03c CR3: 2ec77000 CR4: 000006d0
-  Call Trace:
-   r520_init+0x26/0x240 [radeon]
-   radeon_device_init+0x533/0xa50 [radeon]
-   radeon_driver_load_kms+0x80/0x220 [radeon]
-   drm_dev_register+0xa7/0x180 [drm]
-   radeon_pci_probe+0x10f/0x1a0 [radeon]
-   pci_device_probe+0xd4/0x140
-
-Fix the issue by updating all drivers which can access a platform provided
-ROM. Instead of calling the helper function pci_platform_rom() which uses
-phys_to_virt(), call ioremap() directly on the pdev->rom.
-
-radeon_read_platform_bios() previously directly accessed an __iomem
-pointer. Avoid this by calling memcpy_fromio() instead of kmemdup().
-
-pci_platform_rom() now has no remaining callers, so remove it.
-
-Link: https://lore.kernel.org/r/20200319021623.5426-1-mikel@mikelr.com
-Signed-off-by: Mikel Rychliski <mikel@mikelr.com>
-Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c      | 31 +++++++++++--------
- .../drm/nouveau/nvkm/subdev/bios/shadowpci.c  | 17 ++++++++--
- drivers/gpu/drm/radeon/radeon_bios.c          | 30 +++++++++++-------
- drivers/pci/rom.c                             | 17 ----------
- include/linux/pci.h                           |  1 -
- 5 files changed, 52 insertions(+), 44 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-index a5df80d50d447..6cf3dd5edffda 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-@@ -191,30 +191,35 @@ static bool amdgpu_read_bios_from_rom(struct amdgpu_device *adev)
- 
- static bool amdgpu_read_platform_bios(struct amdgpu_device *adev)
- {
--	uint8_t __iomem *bios;
--	size_t size;
-+	phys_addr_t rom = adev->pdev->rom;
-+	size_t romlen = adev->pdev->romlen;
-+	void __iomem *bios;
- 
- 	adev->bios = NULL;
- 
--	bios = pci_platform_rom(adev->pdev, &size);
--	if (!bios) {
-+	if (!rom || romlen == 0)
- 		return false;
--	}
- 
--	adev->bios = kzalloc(size, GFP_KERNEL);
--	if (adev->bios == NULL)
-+	adev->bios = kzalloc(romlen, GFP_KERNEL);
-+	if (!adev->bios)
- 		return false;
- 
--	memcpy_fromio(adev->bios, bios, size);
-+	bios = ioremap(rom, romlen);
-+	if (!bios)
-+		goto free_bios;
- 
--	if (!check_atom_bios(adev->bios, size)) {
--		kfree(adev->bios);
--		return false;
--	}
-+	memcpy_fromio(adev->bios, bios, romlen);
-+	iounmap(bios);
- 
--	adev->bios_size = size;
-+	if (!check_atom_bios(adev->bios, romlen))
-+		goto free_bios;
-+
-+	adev->bios_size = romlen;
- 
- 	return true;
-+free_bios:
-+	kfree(adev->bios);
-+	return false;
- }
- 
- #ifdef CONFIG_ACPI
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c
-index 9b91da09dc5f8..8d9812a51ef63 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.c
-@@ -101,9 +101,13 @@ platform_init(struct nvkm_bios *bios, const char *name)
- 	else
- 		return ERR_PTR(-ENODEV);
- 
-+	if (!pdev->rom || pdev->romlen == 0)
-+		return ERR_PTR(-ENODEV);
-+
- 	if ((priv = kmalloc(sizeof(*priv), GFP_KERNEL))) {
-+		priv->size = pdev->romlen;
- 		if (ret = -ENODEV,
--		    (priv->rom = pci_platform_rom(pdev, &priv->size)))
-+		    (priv->rom = ioremap(pdev->rom, pdev->romlen)))
- 			return priv;
- 		kfree(priv);
- 	}
-@@ -111,11 +115,20 @@ platform_init(struct nvkm_bios *bios, const char *name)
- 	return ERR_PTR(ret);
- }
- 
-+static void
-+platform_fini(void *data)
-+{
-+	struct priv *priv = data;
-+
-+	iounmap(priv->rom);
-+	kfree(priv);
-+}
-+
- const struct nvbios_source
- nvbios_platform = {
- 	.name = "PLATFORM",
- 	.init = platform_init,
--	.fini = (void(*)(void *))kfree,
-+	.fini = platform_fini,
- 	.read = pcirom_read,
- 	.rw = true,
- };
-diff --git a/drivers/gpu/drm/radeon/radeon_bios.c b/drivers/gpu/drm/radeon/radeon_bios.c
-index 04c0ed41374f1..dd0528cf98183 100644
---- a/drivers/gpu/drm/radeon/radeon_bios.c
-+++ b/drivers/gpu/drm/radeon/radeon_bios.c
-@@ -104,25 +104,33 @@ static bool radeon_read_bios(struct radeon_device *rdev)
- 
- static bool radeon_read_platform_bios(struct radeon_device *rdev)
- {
--	uint8_t __iomem *bios;
--	size_t size;
-+	phys_addr_t rom = rdev->pdev->rom;
-+	size_t romlen = rdev->pdev->romlen;
-+	void __iomem *bios;
- 
- 	rdev->bios = NULL;
- 
--	bios = pci_platform_rom(rdev->pdev, &size);
--	if (!bios) {
-+	if (!rom || romlen == 0)
- 		return false;
--	}
- 
--	if (size == 0 || bios[0] != 0x55 || bios[1] != 0xaa) {
-+	rdev->bios = kzalloc(romlen, GFP_KERNEL);
-+	if (!rdev->bios)
- 		return false;
--	}
--	rdev->bios = kmemdup(bios, size, GFP_KERNEL);
--	if (rdev->bios == NULL) {
--		return false;
--	}
-+
-+	bios = ioremap(rom, romlen);
-+	if (!bios)
-+		goto free_bios;
-+
-+	memcpy_fromio(rdev->bios, bios, romlen);
-+	iounmap(bios);
-+
-+	if (rdev->bios[0] != 0x55 || rdev->bios[1] != 0xaa)
-+		goto free_bios;
- 
- 	return true;
-+free_bios:
-+	kfree(rdev->bios);
-+	return false;
- }
- 
- #ifdef CONFIG_ACPI
-diff --git a/drivers/pci/rom.c b/drivers/pci/rom.c
-index 137bf0cee897c..8fc9a4e911e3a 100644
---- a/drivers/pci/rom.c
-+++ b/drivers/pci/rom.c
-@@ -195,20 +195,3 @@ void pci_unmap_rom(struct pci_dev *pdev, void __iomem *rom)
- 		pci_disable_rom(pdev);
- }
- EXPORT_SYMBOL(pci_unmap_rom);
--
--/**
-- * pci_platform_rom - provides a pointer to any ROM image provided by the
-- * platform
-- * @pdev: pointer to pci device struct
-- * @size: pointer to receive size of pci window over ROM
-- */
--void __iomem *pci_platform_rom(struct pci_dev *pdev, size_t *size)
--{
--	if (pdev->rom && pdev->romlen) {
--		*size = pdev->romlen;
--		return phys_to_virt((phys_addr_t)pdev->rom);
--	}
--
--	return NULL;
--}
--EXPORT_SYMBOL(pci_platform_rom);
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index b1f297f4b7b0b..993051f60a009 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -1141,7 +1141,6 @@ int pci_enable_rom(struct pci_dev *pdev);
- void pci_disable_rom(struct pci_dev *pdev);
- void __iomem __must_check *pci_map_rom(struct pci_dev *pdev, size_t *size);
- void pci_unmap_rom(struct pci_dev *pdev, void __iomem *rom);
--void __iomem __must_check *pci_platform_rom(struct pci_dev *pdev, size_t *size);
- 
- /* Power management related routines */
- int pci_save_state(struct pci_dev *dev);
--- 
-2.20.1
+SGkhCgpScnJpZ2h0LCBJIHdpbGwgYmUgZ2l2aW5nIHRoaXMgYSB0cnkgdG9kYXkgb3IgdG9tb3Jy
+b3csIGFzIHRpbWUgcGVybWl0cy4KCkhpbnRzIHdpbGwgY29tZSBpbiBoYW5keSwgY2VydGFpbmx5
+LiBGaXJzdCB0aGluZyBJJ2xsIG5lZWQgaXMgZ2NjIDcuNSwKc2luY2UgdGhhdCBrZXJuZWwgdmVy
+c2lvbiB3b24ndCBjb21waWxlIG9uIDggb3IgOSB3aGljaCBhcmUgdGhlCnZlcnNpb25zIEkgaGF2
+ZSBhdCBoYW5kIGF0IHRoZSBtb21tZW50LiBTbyBjb21waWxpbmcgdGhhdCBub3cuIEl0J2xsCnRh
+a2UgYSBiaXQgb24gbXkgbGFwdG9wLgoKSSB3aWxsIGNvbWUgYmFjayB3aGVuIEkgaGF2ZSBzb21l
+IChtYXliZSB1c2VmdWwpIGZlZWRiYWNrLgoKQ2hlZXJzIGFuZCB0aGFuayB5b3UgZm9yIGFsbCB0
+aGUgZ3VpZGFuY2UsIGl0J3MgcXVpdGUgYXBwcmVjaWF0ZWQuCgpFbCB2aWUuLCAxMCBhYnIuIDIw
+MjAgYSBsYXMgMjA6MjMsIElsaWEgTWlya2luCig8aW1pcmtpbkBhbHVtLm1pdC5lZHU+KSBlc2Ny
+aWJpw7M6Cj4KPiBPbiBGcmksIEFwciAxMCwgMjAyMCBhdCAyOjA2IFBNIEplc8O6cyBKLiBHdWVy
+cmVybyBCb3RlbGxhCj4gPGplc3VzLmd1ZXJyZXJvLmJvdGVsbGFAZ21haWwuY29tPiB3cm90ZToK
+PiA+Cj4gPiBIaSwgSWxpYS4KPiA+Cj4gPiBTb3JyeSBmb3Igc3VjaCBhIGJpZyBkZWxheSBpbiBh
+bnN3ZXJpbmcuIFJlYWwgbGlmZSBhbmQgdGhhdCBzdHVmZi4uLgo+ID4KPiA+IEkgYW0gYSBuZXdj
+b21lciBzbywgcGxlYXNlLCBpZiBJIGRvIHNvbWV0aGluZyB3cm9uZyByZWdhcmRpbmcgbXkKPiA+
+IHF1b3Rpbmcgc3R5bGUgb3Igd2hhdGV2ZXIsIGp1c3QgbGV0IG1lIGtub3cgYW5kIEknbGwgcXVp
+Y2tseSBpbXByb3ZlLiA6KQo+Cj4gUGVyZmVjdCBzbyBmYXIhCj4KPiA+Cj4gPiBFbCBsdW4uLCAz
+MCBtYXIuIDIwMjAgYSBsYXMgMTM6MzgsIElsaWEgTWlya2luCj4gPiAoPGltaXJraW5AYWx1bS5t
+aXQuZWR1PikgZXNjcmliacOzOgo+ID4gPgo+ID4gPiBZZXMsIEdGMTA4IGlzIEZlcm1pIChGID0g
+RmVybWkpLiBSZWNsb2NraW5nIGlzIGN1cnJlbnRseSBub3QgYXZhaWxhYmxlCj4gPiA+IGZvciB0
+aGF0IGdlbmVyYXRpb24sIHVuZm9ydHVuYXRlbHkuIFlvdSBzaG91bGQgYmUgYWJsZSB0byBvdGhl
+cndpc2UKPiA+ID4gdXNlIHlvdXIgR1BVIGp1c3QgZmluZSwgYnV0IEknbSBndWVzc2luZyBpdCds
+bCBjb21lIHVwIGluIHRoZSAiMDciCj4gPiA+IHN0YXRlIHdoZW4gaXQgcG93ZXJzIG9uIChpbiB0
+aGUgc3RhdGUgYXMtaXMgaXQgYXBwZWFycyBwb3dlcmVkIG9mZiwKPiA+ID4gd2hpY2ggaXQgd2ls
+bCBkbyBhdXRvbWF0aWNhbGx5IHdoZW4gbm90IGluIHVzZSksIHdoaWNoIGFzIHlvdSBjYW4gc2Vl
+Cj4gPiA+IGlzIGEgZnJhY3Rpb24gb2YgdGhlIHRvdGFsIEdQVSBhdmFpbGFibGUgcGVyZi4KPiA+
+Cj4gPiBZZXMsIGl0IGNvbWVzIHVwIGluIDA3IHdoZW4gSSBsYXVuY2gsIGxldCdzIHNheSBnbHhn
+ZWFycyBpbiBEUklfUFJJTUU9MS4KPiA+IEl0IHBlcmZvcm1zIHNpbWlsYXJseSB0byB0aGUgaW50
+ZWwgY2hpcCwgb3IgbWF5YmUgYSBiaXQgd29yc2UuCj4gPiBGb3IgdGhlIHJlc3QsIHllcywgaXQg
+bW9zdGx5IHdvcmtzLiBCdXQgaXQncyBubyBnb29kIG9mIGNvdXJzZS4KPgo+IE5vdGUgdGhhdCBn
+bHhnZWFycyBpcyBwcmltYXJpbHkgYSBtZWFzdXJlIG9mIFBDSWUgYmFuZHdpZHRoIGluIHRoZXNl
+Cj4gc2V0dXBzIHRoYW4gYWN0dWFsIHJlbmRlciBwZXJmb3JtYW5jZSAoYmFzaWNhbGx5IGl0J3Mg
+anVzdCBmZXJyeWluZwo+IHRob3NlIGZyYW1lcyBvdmVyIHRoZSBQQ0llIGJ1cyBhcyBmYXN0IGFz
+IHBvc3NpYmxlIHRvIHRoZSBJbnRlbCBHUFUpLgo+IE5vdCBzdXJlIHdoaWNoIGludGVsIGNoaXAg
+eW91IGhhdmUgLi4uIGlmIGl0J3MgYSBTTkIsIGl0IHNob3VsZCBiZQo+IGZhc3RlciBhbmQgbW9y
+ZSBmZWF0dXJlZnVsICh5b3UgZ2V0IEdMIDQuMyBhZHZlcnRpc2VkIGFuZCBhbGwgdGhlIEdMCj4g
+NC41IGFuZCBtb3N0IDQuNiBleHRzKS4gSWYgaXQncyBJVkIgb3IgSFNXLCB0aGVuIGl0J2xsIGJl
+IGEgYml0Cj4gc2xvd2VyLCBJIGV4cGVjdCAoZXNwIEhTVykuCj4KPgo+ID4gPiBUaGVyZSdzIGEg
+dmVyeSBleHBlcmltZW50YWwgYnJhbmNoIHRoYXQgZG9lcyBlbmFibGUgcmVjbG9ja2luZyBmb3IK
+PiA+ID4gRmVybWkgYXQgaHR0cHM6Ly9naXRodWIuY29tL3NrZWdnc2Ivbm91dmVhdS9jb21taXRz
+L2RldmVsLWNsayAuCj4gPiA+IEhvd2V2ZXIgSSBiZWxpZXZlIGl0IHdhcyBvbmx5IHRlc3RlZCB3
+aXRoIGEgc2luZ2xlIEdQVSwgYW5kIG15IHRlc3RpbmcKPiA+ID4gd2l0aCBhbiBpZGVudGljYWwg
+c3VjaCBHUFUgd2FzIG5lZ2F0aXZlLiBPbiB0aGUgb3RoZXIgaGFuZCwgeW91IGRvbid0Cj4gPiA+
+IGhhdmUgYSBkaXNwbGF5IGhhbmdpbmcgb2ZmIHRoZSBjYXJkLCB3aGljaCBncmVhdGx5IGluY3Jl
+YXNlcyBjaGFuY2VzCj4gPiA+IG9mIHN1Y2Nlc3MuIEZlZWwgZnJlZSB0byBqb2luICNub3V2ZWF1
+IG9uIGlyYy5mcmVlbm9kZS5uZXQgaWYgeW91IHBsYW4KPiA+ID4gb24gZXhwbG9yaW5nIHRoaXMu
+Cj4gPgo+ID4gSSBmZXRjaGVkIHRoYXQgYW5kIHRyaWVkIHRvIGNvbXBpbGUgaXQuIEZpcnN0IGZh
+aWxlZCBiZWNhdXNlIG9mIG1pc3NpbmcgZW52eWFzLAo+ID4gd2hpY2ggSSBjb21waWxlZCBhbmQg
+aW5zdGFsbGVkLiBUaGVuIGZhaWxlZCB3aXRoIHNvbWUgdW5kZWZpbmVkIHN5bWJvbCBraW5kCj4g
+PiBvZiBlcnJvciB3aGljaCByaWdodCBub3cgSSBkb24ndCBoYXZlIHRoZSB0aW1lIHRvIGRpYWdu
+b3NlLgo+Cj4gSSdtIGltcHJlc3NlZCB5b3UgZ290IHRoaXMgZmFyLiBZb3Ugc2hvdWxkbid0IG5l
+ZWQgZW52eWFzIHRvIGJ1aWxkLCBieQo+IHRoZSB3YXksIG9ubHkgdG8gcmVnZW5lcmF0ZSBhZnRl
+ciBlZGl0aW5nIGZ1YyBzb3VyY2UuCj4KPiBTbyAuLi4gdGhpcyBpcyBhIGZ1bm55IHJlcG9zaXRv
+cnkuIEJhc2ljYWxseSBpdCdzIG1lYW50IHRvIHdvcmsKPiBhbG9uZ3NpZGUgdGhlIGxpbnV4IGtl
+cm5lbCB0cmVlLiBJdCBhbHNvIGluY2x1ZGVzIHNvbWUgdXRpbGl0aWVzIChsaWtlCj4gdGhlIG9u
+ZXMgaW4gYmluLyopIHdoaWNoIGVzc2VudGlhbGx5IHJ1biBub3V2ZWF1IGluIHVzZXJzcGFjZS4g
+VGhpcwo+IGNhbiBiZSB1c2VmdWwgZm9yIG5vdXZlYXUgZGV2ZWxvcG1lbnQsIGJ1dCBtb3N0IGxp
+a2VseSBub3QgaW4geW91cgo+IGNhc2UuCj4KPiBXaGF0IHlvdSB3YW50IHRvIGRvIGlzIGdyYWIg
+a2VybmVsIHY0LjE2LXJjNSAob3IgdjQuMTYgaWYgeW91J3JlCj4gZmVlbGluZyBsdWNreSksIGJ1
+aWxkICsgcnVuIHRoYXQgKG9yIGFsdGVybmF0aXZlbHksIGFzayBCZW4gdG8gcmViYXNlCj4gdGhl
+IGJyYW5jaCBvbiBhIG1vcmUgcmVjZW50IHRoaW5nIC4uLiBvciBldmVuIHRyeSB0aGF0IHlvdXJz
+ZWxmKS4gVGhlbgo+IGdvIGludG8gdGhlICJkcm0iIGRpcmVjdG9yeSBhbmQgcnVuICJtYWtlIiB0
+aGVyZS4gVGhhdCBzaG91bGQgY2F1c2UKPiB0aGUgbm91dmVhdSBtb2R1bGUgdG8gZ2V0IGJ1aWx0
+IGFnYWluc3QgeW91ciBrZXJuZWwuIFRoZW4gdXNlIHRoYXQKPiBidWlsdCBtb2R1bGUgZm9yIHlv
+dXIgdGVzdGluZyAoeW91IGNvdWxkIG1ha2UgbW9kdWxlc19pbnN0YWxsIGZyb20KPiB0aGVyZSwg
+YXMgSSByZWNhbGwpLgo+Cj4gQ2hlZXJzLAo+Cj4gICAtaWxpYQoKCgotLSAKSmVzw7pzIEd1ZXJy
+ZXJvIEJvdGVsbGEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
