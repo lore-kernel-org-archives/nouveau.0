@@ -1,21 +1,14 @@
-From: Tejun Heo <tj-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH 1/9] drm/vblank: Add vblank works
-Date: Tue, 14 Apr 2020 14:17:11 -0400
-Message-ID: <20200414181711.GO60335@mtj.duckdns.org>
-References: <20200318004159.235623-1-lyude@redhat.com>
- <20200318004159.235623-2-lyude@redhat.com>
- <20200318134657.GV2363188@phenom.ffwll.local>
- <e4fb0c39ec024d60587e5e1e70b171b99eb537f4.camel@redhat.com>
- <faf63d8a9ed23c16af69762f59d0dca6b2bf085f.camel@redhat.com>
- <96cb912809f99d04cd5cdd46c77b66b8c1163380.camel@redhat.com>
- <20200413204243.GL60335@mtj.duckdns.org>
- <a2d9da054ace3f0ff59373c5a6252f25e1c3df4b.camel@redhat.com>
+From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: [PATCH AUTOSEL 5.6 077/129] drm/nouveau/svm: check for
+ SVM initialized before migrating
+Date: Wed, 15 Apr 2020 07:33:52 -0400
+Message-ID: <20200415113445.11881-77-sashal@kernel.org>
+References: <20200415113445.11881-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <a2d9da054ace3f0ff59373c5a6252f25e1c3df4b.camel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <20200415113445.11881-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -25,26 +18,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maxime Ripard <mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello,
+From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 
-On Tue, Apr 14, 2020 at 12:52:51PM -0400, Lyude Paul wrote:
-> Hi, thanks for the response! And yes-I think this would actually be perfect
-> for what we need, I guess one question I might as well ask since I've got you
-> here: would patches to expose an unlocked version of kthread_queue_worker() be
-> accepted? With something like that I should be able to just reuse the
-> delayed_work_list and spinlocks that come with kthread_worker which would make
-> the vblank works implementation a bit easier
+[ Upstream commit 822cab6150d3002952407a8297ff5a0d32bb7b54 ]
 
-Difficult to tell w/o looking at the code but if technically reasonable and
-justified, I don't see a reason why something like that couldn't be accepted.
-That said, whatever gain coming from sharing an inner lock like that usually
-is miniscule and API and logic simplicity often easily outweighs.
+When migrating system memory to GPU memory, check that SVM has been
+enabled. Even though most errors can be ignored since migration is
+a performance optimization, return an error because this is a violation
+of the API.
 
-Thanks.
+Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_svm.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+index df9bf1fd1bc0b..3ec5da025bea7 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_svm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+@@ -171,6 +171,11 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ 	mm = get_task_mm(current);
+ 	down_read(&mm->mmap_sem);
+ 
++	if (!cli->svm.svmm) {
++		up_read(&mm->mmap_sem);
++		return -EINVAL;
++	}
++
+ 	for (addr = args->va_start, end = args->va_start + size; addr < end;) {
+ 		struct vm_area_struct *vma;
+ 		unsigned long next;
 -- 
-tejun
+2.20.1
