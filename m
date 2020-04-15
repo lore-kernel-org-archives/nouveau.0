@@ -1,8 +1,8 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 5.4 48/84] drm/nouveau/svm: check for SVM
- initialized before migrating
-Date: Wed, 15 Apr 2020 07:44:05 -0400
-Message-ID: <20200415114442.14166-48-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 49/84] drm/nouveau/svm: fix vma range
+ check for migration
+Date: Wed, 15 Apr 2020 07:44:06 -0400
+Message-ID: <20200415114442.14166-49-sashal@kernel.org>
 References: <20200415114442.14166-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,35 +24,35 @@ List-Id: nouveau.vger.kernel.org
 
 From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 
-[ Upstream commit 822cab6150d3002952407a8297ff5a0d32bb7b54 ]
+[ Upstream commit b92103b559c77abc5f8b7bec269230a219c880b7 ]
 
-When migrating system memory to GPU memory, check that SVM has been
-enabled. Even though most errors can be ignored since migration is
-a performance optimization, return an error because this is a violation
-of the API.
+find_vma_intersection(mm, start, end) only guarantees that end is greater
+than or equal to vma->vm_start but doesn't guarantee that start is
+greater than or equal to vma->vm_start. The calculation for the
+intersecting range in nouveau_svmm_bind() isn't accounting for this and
+can call migrate_vma_setup() with a starting address less than
+vma->vm_start. This results in migrate_vma_setup() returning -EINVAL for
+the range instead of nouveau skipping that part of the range and migrating
+the rest.
 
 Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_svm.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/nouveau/nouveau_svm.c | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-index 668d4bd0c118f..25b7055949c45 100644
+index 25b7055949c45..824654742a604 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-@@ -173,6 +173,11 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
- 	mm = get_task_mm(current);
- 	down_read(&mm->mmap_sem);
+@@ -186,6 +186,7 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ 		if (!vma)
+ 			break;
  
-+	if (!cli->svm.svmm) {
-+		up_read(&mm->mmap_sem);
-+		return -EINVAL;
-+	}
-+
- 	for (addr = args->va_start, end = args->va_start + size; addr < end;) {
- 		struct vm_area_struct *vma;
- 		unsigned long next;
++		addr = max(addr, vma->vm_start);
+ 		next = min(vma->vm_end, end);
+ 		/* This is a best effort so we ignore errors */
+ 		nouveau_dmem_migrate_vma(cli->drm, vma, addr, next);
 -- 
 2.20.1
