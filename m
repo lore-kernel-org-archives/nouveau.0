@@ -1,8 +1,7 @@
 From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v2 2/3] device: detect if changing endianness
- failed
-Date: Fri, 17 Apr 2020 20:09:31 +0200
-Message-ID: <20200417180932.111335-2-kherbst@redhat.com>
+Subject: [PATCH v2 3/3] device: detect vGPUs
+Date: Fri, 17 Apr 2020 20:09:32 +0200
+Message-ID: <20200417180932.111335-3-kherbst@redhat.com>
 References: <20200417180932.111335-1-kherbst@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,58 +20,46 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-v2: relax the checks a little
+Using ENODEV as this prevents probe failed errors in dmesg.
 
 Signed-off-by: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 ---
- drm/nouveau/nvkm/engine/device/base.c | 26 +++++++++++++++++++++-----
- 1 file changed, 21 insertions(+), 5 deletions(-)
+ drm/nouveau/nvkm/engine/device/base.c | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
 diff --git a/drm/nouveau/nvkm/engine/device/base.c b/drm/nouveau/nvkm/engine/device/base.c
-index 17676c75a..ddaa96a75 100644
+index ddaa96a75..70effb36e 100644
 --- a/drm/nouveau/nvkm/engine/device/base.c
 +++ b/drm/nouveau/nvkm/engine/device/base.c
-@@ -2924,6 +2924,20 @@ nvkm_device_del(struct nvkm_device **pdevice)
- 	}
- }
- 
-+static inline bool
-+nvkm_device_endianness(void __iomem *pri)
-+{
-+	u32 boot1 = ioread32_native(pri + 0x000004) & 0x01000001;
-+#ifdef __BIG_ENDIAN
-+	if (!boot1)
-+		return false;
-+#else
-+	if (boot1)
-+		return false;
-+#endif
-+	return true;
-+}
-+
- int
- nvkm_device_ctor(const struct nvkm_device_func *func,
- 		 const struct nvkm_device_quirk *quirk,
-@@ -2968,13 +2982,15 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
- 			goto done;
- 
- 		/* switch mmio to cpu's native endianness */
--#ifndef __BIG_ENDIAN
--		if (ioread32_native(map + 0x000004) != 0x00000000) {
--#else
--		if (ioread32_native(map + 0x000004) == 0x00000000) {
--#endif
-+		if (!nvkm_device_endianness(map)) {
- 			iowrite32_native(0x01000001, map + 0x000004);
- 			ioread32_native(map);
-+			if (!nvkm_device_endianness(map)) {
-+				nvdev_error(device,
-+					    "GPU not supported on big-endian\n");
-+				ret = -ENOSYS;
-+				goto done;
-+			}
+@@ -2948,7 +2948,7 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
+ {
+ 	struct nvkm_subdev *subdev;
+ 	u64 mmio_base, mmio_size;
+-	u32 boot0, strap;
++	u32 boot0, boot1, strap;
+ 	void __iomem *map;
+ 	int ret = -EEXIST, i;
+ 	unsigned chipset;
+@@ -2993,8 +2993,19 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
+ 			}
  		}
  
- 		/* read boot0 and strapping information */
+-		/* read boot0 and strapping information */
++		/* vGPU detection */
+ 		boot0 = ioread32_native(map + 0x000000);
++		boot1 = ioread32_native(map + 0x000004);
++		chipset = (boot0 & 0x1ff00000) >> 20;
++
++		if (chipset >= 0x160 && (boot1 & 0x00030000)) {
++			iounmap(map);
++			nvdev_info(device, "vGPUs are not supported\n");
++			ret = -ENODEV;
++			goto done;
++		}
++
++		/* read strapping information */
+ 		strap = ioread32_native(map + 0x101000);
+ 		iounmap(map);
+ 
 -- 
 2.25.2
