@@ -1,14 +1,11 @@
 From: Lyude <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH i-g-t v3 3/5] lib/igt_debugfs: Add
- igt_debugfs_pipe_dir()
-Date: Fri, 17 Apr 2020 17:10:23 -0400
-Message-ID: <20200417211025.109574-4-lyude@redhat.com>
-References: <20200417211025.109574-1-lyude@redhat.com>
+Subject: [PATCH i-g-t v3 0/5] Add nouveau-crc tests
+Date: Fri, 17 Apr 2020 17:10:20 -0400
+Message-ID: <20200417211025.109574-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200417211025.109574-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -23,65 +20,42 @@ List-Id: nouveau.vger.kernel.org
 
 From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
-Like igt_debugfs_connector_dir(), but for pipes instead.
+Nouveau has finally gotten CRC support, hooray! Well, it's under review
+at least:
 
-Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
----
- lib/igt_debugfs.c | 29 +++++++++++++++++++++++++++++
- lib/igt_debugfs.h |  1 +
- 2 files changed, 30 insertions(+)
+https://patchwork.freedesktop.org/series/74804/
+(it has a cover letter, but nouveau's mailing list configuration has
+blocked the email so I'm waiting for a moderator to fix that)
 
-diff --git a/lib/igt_debugfs.c b/lib/igt_debugfs.c
-index bf6be552..3c3b11e1 100644
---- a/lib/igt_debugfs.c
-+++ b/lib/igt_debugfs.c
-@@ -260,6 +260,35 @@ int igt_debugfs_connector_dir(int device, char *conn_name, int mode)
- 	return ret;
- }
- 
-+/**
-+ * igt_debugfs_pipe_dir:
-+ * @device: fd of the device
-+ * @pipe: index of pipe
-+ * @mode: mode bits as used by open()
-+ *
-+ * This opens the debugfs directory corresponding to the pipe index on the
-+ * device for use with igt_sysfs_get() and related functions.
-+ *
-+ * Returns:
-+ * The directory fd, or -1 on failure.
-+ */
-+int igt_debugfs_pipe_dir(int device, int pipe, int mode)
-+{
-+	char buf[128];
-+	int dir, ret;
-+
-+	dir = igt_debugfs_dir(device);
-+	if (dir < 0)
-+		return dir;
-+
-+	snprintf(buf, sizeof(buf), "crtc-%d", pipe);
-+	ret = openat(dir, buf, mode);
-+
-+	close(dir);
-+
-+	return ret;
-+}
-+
- /**
-  * igt_debugfs_open:
-  * @filename: name of the debugfs node to open
-diff --git a/lib/igt_debugfs.h b/lib/igt_debugfs.h
-index 7d1a6175..15741a40 100644
---- a/lib/igt_debugfs.h
-+++ b/lib/igt_debugfs.h
-@@ -36,6 +36,7 @@ char *igt_debugfs_path(int device, char *path, int pathlen);
- 
- int igt_debugfs_dir(int device);
- int igt_debugfs_connector_dir(int device, char *conn_name, int mode);
-+int igt_debugfs_pipe_dir(int device, int pipe, int mode);
- 
- int igt_debugfs_open(int fd, const char *filename, int mode);
- void __igt_debugfs_read(int fd, const char *filename, char *buf, int size);
+So, this series adds the relevant tests for it since nvidia's CRC
+implementation has some rather interesting design choices that needed to
+be worked around.
+
+Changes since v2:
+* Fix build errors on mips/arm/aarch64
+Changes since v1:
+* fix documentation errors Petri pointed out
+* Fix documentation for igt_require_fd()
+* Fix copyright year in tests/nouveau_crc.c
+
+Lyude Paul (5):
+  lib/igt_core: Fix igt_assert_fd() documentation
+  lib/igt_core: Add igt_require_fd()
+  lib/igt_debugfs: Add igt_debugfs_pipe_dir()
+  lib/igt_kms: Hook up connector dithering prop
+  tests: Add nouveau-crc tests
+
+ lib/drmtest.c       |  10 ++
+ lib/drmtest.h       |   2 +
+ lib/igt_core.h      |  16 +-
+ lib/igt_debugfs.c   |  29 ++++
+ lib/igt_debugfs.h   |   1 +
+ lib/igt_kms.c       |   6 +
+ lib/igt_kms.h       |   1 +
+ tests/meson.build   |   1 +
+ tests/nouveau_crc.c | 397 ++++++++++++++++++++++++++++++++++++++++++++
+ 9 files changed, 461 insertions(+), 2 deletions(-)
+ create mode 100644 tests/nouveau_crc.c
+
 -- 
 2.25.1
