@@ -1,8 +1,7 @@
 From: Lyude <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH i-g-t v3 1/5] lib/igt_core: Fix igt_assert_fd()
- documentation
-Date: Fri, 17 Apr 2020 17:10:21 -0400
-Message-ID: <20200417211025.109574-2-lyude@redhat.com>
+Subject: [PATCH i-g-t v3 2/5] lib/igt_core: Add igt_require_fd()
+Date: Fri, 17 Apr 2020 17:10:22 -0400
+Message-ID: <20200417211025.109574-3-lyude@redhat.com>
 References: <20200417211025.109574-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,28 +22,38 @@ List-Id: nouveau.vger.kernel.org
 
 From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
-As Petri Latvala pointed out, some of the documentation in this macro is
-mistakenly copied from the other igt_assert*() macros. Let's fix that.
+Like igt_assert_fd(), but using igt_require() instead
+
+Changes since v1:
+* Fix documentation error in igt_require_fd() - Petri Latvala
 
 Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 ---
- lib/igt_core.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ lib/igt_core.h | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/lib/igt_core.h b/lib/igt_core.h
-index b97fa2fa..3f69b072 100644
+index 3f69b072..8f68b2dd 100644
 --- a/lib/igt_core.h
 +++ b/lib/igt_core.h
-@@ -966,8 +966,8 @@ void igt_describe_f(const char *fmt, ...);
-  *
-  * Fails (sub-) test if the given file descriptor is invalid.
-  *
-- * Like igt_assert(), but displays the values being compared on failure instead
-- * of simply printing the stringified expression.
-+ * Like igt_assert(), but displays the stringified identifier that was supposed
+@@ -1021,6 +1021,18 @@ void igt_describe_f(const char *fmt, ...);
+ 	else igt_debug("Test requirement passed: %s\n", #expr); \
+ } while (0)
+ 
++/**
++ * igt_require_fd:
++ * @fd: file descriptor
++ *
++ * Skips (sub-) test if the given file descriptor is invalid.
++ *
++ * Like igt_require(), but displays the stringified identifier that was supposed
 + * to contain a valid fd on failure.
-  */
- #define igt_assert_fd(fd) \
- 	igt_assert_f(fd >= 0, "file descriptor " #fd " failed\n");
++ */
++#define igt_require_fd(fd) \
++	igt_require_f(fd >= 0, "file descriptor " #fd " failed\n");
++
+ /**
+  * igt_skip_on_f:
+  * @expr: condition to test
 -- 
 2.25.1
