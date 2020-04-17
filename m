@@ -1,86 +1,74 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [RFC v3 04/11] drm/nouveau/kms/nv50-: Unroll error cleanup in nv50_head_create()
-Date: Fri, 17 Apr 2020 15:40:51 -0400
-Message-ID: <20200417194145.36350-5-lyude@redhat.com>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [RFC v3 06/11] drm/nouveau/kms/nv50-: Fix disabling
+ dithering
+Date: Fri, 17 Apr 2020 15:40:53 -0400
+Message-ID: <20200417194145.36350-7-lyude@redhat.com>
 References: <20200417194145.36350-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200417194145.36350-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: dri-devel@lists.freedesktop.org
-Cc: Daniel Vetter <daniel@ffwll.ch>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Ilia Mirkin <imirkin@alum.mit.edu>, Thomas Zimmermann <tzimmermann@suse.de>, Peteris Rudzusiks <peteris.rudzusiks@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200417194145.36350-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-We'll be rolling back more things in this function, and the way it's
-structured is a bit confusing. So, let's clean this up a bit and just
-unroll in the event of failure.
+While we expose the ability to turn off hardware dithering for nouveau,
+we actually make the mistake of turning it on anyway, due to
+dithering_depth containing a non-zero value if our dithering depth isn't
+also set to 6 bpc.
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
+So, fix it by never enabling dithering when it's disabled.
+
+Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/dispnv50/head.c | 33 +++++++++++++++++--------
- 1 file changed, 23 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/head.c | 24 +++++++++++++-----------
+ 1 file changed, 13 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/head.c b/drivers/gpu/drm/no=
-uveau/dispnv50/head.c
-index 8f6455697ba7..e29ea40e7c33 100644
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/head.c b/drivers/gpu/drm/nouveau/dispnv50/head.c
+index e29ea40e7c33..72bc3bce396a 100644
 --- a/drivers/gpu/drm/nouveau/dispnv50/head.c
 +++ b/drivers/gpu/drm/nouveau/dispnv50/head.c
-@@ -507,20 +507,28 @@ nv50_head_create(struct drm_device *dev, int index)
-=20
- 	if (disp->disp->object.oclass < GV100_DISP) {
- 		ret =3D nv50_base_new(drm, head->base.index, &base);
-+		if (ret)
-+			goto fail_free;
-+
- 		ret =3D nv50_ovly_new(drm, head->base.index, &ovly);
-+		if (ret)
-+			goto fail_free;
- 	} else {
- 		ret =3D nv50_wndw_new(drm, DRM_PLANE_TYPE_PRIMARY,
- 				    head->base.index * 2 + 0, &base);
-+		if (ret)
-+			goto fail_free;
-+
- 		ret =3D nv50_wndw_new(drm, DRM_PLANE_TYPE_OVERLAY,
- 				    head->base.index * 2 + 1, &ovly);
+@@ -84,18 +84,20 @@ nv50_head_atomic_check_dither(struct nv50_head_atom *armh,
+ {
+ 	u32 mode = 0x00;
+ 
+-	if (asyc->dither.mode == DITHERING_MODE_AUTO) {
+-		if (asyh->base.depth > asyh->or.bpc * 3)
+-			mode = DITHERING_MODE_DYNAMIC2X2;
+-	} else {
+-		mode = asyc->dither.mode;
 -	}
--	if (ret =3D=3D 0)
--		ret =3D nv50_curs_new(drm, head->base.index, &curs);
--	if (ret) {
--		kfree(head);
--		return ERR_PTR(ret);
-+		if (ret)
-+			goto fail_free;
++	if (asyc->dither.mode) {
++		if (asyc->dither.mode == DITHERING_MODE_AUTO) {
++			if (asyh->base.depth > asyh->or.bpc * 3)
++				mode = DITHERING_MODE_DYNAMIC2X2;
++		} else {
++			mode = asyc->dither.mode;
++		}
+ 
+-	if (asyc->dither.depth == DITHERING_DEPTH_AUTO) {
+-		if (asyh->or.bpc >= 8)
+-			mode |= DITHERING_DEPTH_8BPC;
+-	} else {
+-		mode |= asyc->dither.depth;
++		if (asyc->dither.depth == DITHERING_DEPTH_AUTO) {
++			if (asyh->or.bpc >= 8)
++				mode |= DITHERING_DEPTH_8BPC;
++		} else {
++			mode |= asyc->dither.depth;
++		}
  	}
-=20
-+	ret =3D nv50_curs_new(drm, head->base.index, &curs);
-+	if (ret)
-+		goto fail_free;
-+
- 	crtc =3D &head->base.base;
- 	drm_crtc_init_with_planes(dev, crtc, &base->plane, &curs->plane,
- 				  &nv50_head_func, "head-%d", head->base.index);
-@@ -533,11 +541,16 @@ nv50_head_create(struct drm_device *dev, int index)
-=20
- 	if (head->func->olut_set) {
- 		ret =3D nv50_lut_init(disp, &drm->client.mmu, &head->olut);
--		if (ret) {
--			nv50_head_destroy(crtc);
--			return ERR_PTR(ret);
--		}
-+		if (ret)
-+			goto fail_crtc_cleanup;
- 	}
-=20
- 	return head;
-+
-+fail_crtc_cleanup:
-+	drm_crtc_cleanup(crtc);
-+fail_free:
-+	kfree(head);
-+
-+	return ERR_PTR(ret);
- }
---=20
+ 
+ 	asyh->dither.enable = mode;
+-- 
 2.25.1
