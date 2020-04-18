@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 5.5 32/75] drm/nouveau: workaround runpm
+Subject: [PATCH AUTOSEL 5.4 30/78] drm/nouveau: workaround runpm
  fail by disabling PCI power management on certain intel bridges
-Date: Sat, 18 Apr 2020 10:08:27 -0400
-Message-ID: <20200418140910.8280-32-sashal@kernel.org>
-References: <20200418140910.8280-1-sashal@kernel.org>
+Date: Sat, 18 Apr 2020 10:39:59 -0400
+Message-ID: <20200418144047.9013-30-sashal@kernel.org>
+References: <20200418144047.9013-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200418140910.8280-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <20200418144047.9013-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
