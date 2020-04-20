@@ -1,75 +1,40 @@
-From: Petri Latvala <petri.latvala-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Subject: Re: [igt-dev] [PATCH i-g-t v3 2/5] lib/igt_core: Add
- igt_require_fd()
-Date: Mon, 20 Apr 2020 12:29:55 +0300
-Message-ID: <20200420092955.GX9497@platvala-desk.ger.corp.intel.com>
-References: <20200417211025.109574-1-lyude@redhat.com>
- <20200417211025.109574-3-lyude@redhat.com>
+From: Will Deacon <will@kernel.org>
+Subject: Re: [PATCH 2/2] mm/thp: Rename pmd_mknotpresent() as pmd_mknotvalid()
+Date: Mon, 20 Apr 2020 22:03:55 +0100
+Message-ID: <20200420210354.GD29998@willie-the-truck>
+References: <1584680057-13753-1-git-send-email-anshuman.khandual@arm.com>
+ <1584680057-13753-3-git-send-email-anshuman.khandual@arm.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20200417211025.109574-3-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: igt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+In-Reply-To: <1584680057-13753-3-git-send-email-anshuman.khandual@arm.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Anshuman Khandual <anshuman.khandual@arm.com>
+Cc: linux-mm@kvack.org, Vineet Gupta <vgupta@synopsys.com>, Russell King <linux@armlinux.org.uk>, Catalin Marinas <catalin.marinas@arm.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, "H. Peter Anvin" <hpa@zytor.com>, Steven Rostedt <rostedt@goodmis.org>, Dave Hansen <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Andrew Morton <akpm@linux-foundation.org>, nouveau@lists.freedesktop.org, linux-snps-arc@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, x86@kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Apr 17, 2020 at 05:10:22PM -0400, Lyude wrote:
-> From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+On Fri, Mar 20, 2020 at 10:24:17AM +0530, Anshuman Khandual wrote:
+> pmd_present() is expected to test positive after pmdp_mknotpresent() as the
+> PMD entry still points to a valid huge page in memory. pmdp_mknotpresent()
+> implies that given PMD entry is just invalidated from MMU perspective while
+> still holding on to pmd_page() referred valid huge page thus also clearing
+> pmd_present() test. This creates the following situation which is counter
+> intuitive.
 > 
-> Like igt_assert_fd(), but using igt_require() instead
+> [pmd_present(pmd_mknotpresent(pmd)) = true]
 > 
-> Changes since v1:
-> * Fix documentation error in igt_require_fd() - Petri Latvala
+> This renames pmd_mknotpresent() as pmd_mknotvalid() reflecting the helper's
+> functionality more accurately while changing the above mentioned situation
+> as follows. This does not create any functional change.
 > 
-> Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-
-
-Reviewed-by: Petri Latvala <petri.latvala-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-
-
-
-> ---
->  lib/igt_core.h | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> [pmd_present(pmd_mknotvalid(pmd)) = true]
 > 
-> diff --git a/lib/igt_core.h b/lib/igt_core.h
-> index 3f69b072..8f68b2dd 100644
-> --- a/lib/igt_core.h
-> +++ b/lib/igt_core.h
-> @@ -1021,6 +1021,18 @@ void igt_describe_f(const char *fmt, ...);
->  	else igt_debug("Test requirement passed: %s\n", #expr); \
->  } while (0)
->  
-> +/**
-> + * igt_require_fd:
-> + * @fd: file descriptor
-> + *
-> + * Skips (sub-) test if the given file descriptor is invalid.
-> + *
-> + * Like igt_require(), but displays the stringified identifier that was supposed
-> + * to contain a valid fd on failure.
-> + */
-> +#define igt_require_fd(fd) \
-> +	igt_require_f(fd >= 0, "file descriptor " #fd " failed\n");
-> +
->  /**
->   * igt_skip_on_f:
->   * @expr: condition to test
-> -- 
-> 2.25.1
-> 
-> _______________________________________________
-> igt-dev mailing list
-> igt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/igt-dev
+> This is not applicable for platforms that define own pmdp_invalidate() via
+> __HAVE_ARCH_PMDP_INVALIDATE. Suggestion for renaming came during a previous
+> discussion here.
+
+Bikeshed alert: maybe pmd_mkinvalid() would be better, given that this is
+a one-trick pony for pmdp_invalidate()?
+
+Will
