@@ -1,13 +1,16 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Error -28
-Date: Sun, 19 Apr 2020 12:11:12 -0400
-Message-ID: <CAKb7Uvh6i2566_N71wSvvLerggD-AkV2AogbnS2kX8mp+8uYXA@mail.gmail.com>
-References: <9CF7997B-7987-4444-85BF-2FB3AC0E030F@gmail.com>
+From: Petri Latvala <petri.latvala-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Subject: Re: [igt-dev] [PATCH i-g-t v3 1/5] lib/igt_core: Fix
+ igt_assert_fd() documentation
+Date: Mon, 20 Apr 2020 12:29:10 +0300
+Message-ID: <20200420092910.GW9497@platvala-desk.ger.corp.intel.com>
+References: <20200417211025.109574-1-lyude@redhat.com>
+ <20200417211025.109574-2-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <9CF7997B-7987-4444-85BF-2FB3AC0E030F-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20200417211025.109574-2-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,29 +20,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Christian Calderon <calderonchristian73-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lyude <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: igt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RG9lcyBpdCBwcmludCBhbnl0aGluZyBlbHNlIGJlZm9yZSB0aGF0PwoKVGhlcmUncyBkZWZpbml0
-ZWx5IHNvbWUgZHViaW91cyBlbmRpYW4tdW5zYWZlIGNvZGUgaW4gdGhlIGxhdGVyCm5vdXZlYXUg
-c3R1ZmYuIEZvciBleGFtcGxlLCBudmttX2ZhbGNvbl92MV9yZWFkX2RtZW0gc2VlbXMgdG8gbWFr
-ZQphc3N1bXB0aW9ucyBhYm91dCBDUFUgYmVpbmcgTEUsIGJhc2VkIG9uIGEgcXVpY2sgcmVhZCBv
-ZiB0aGUgY29kZSwgYW5kCkkgd291bGQgZXhwZWN0IHRoZSBmaWxlIGhlYWRlciBwYXJzaW5nIHN0
-dWZmIGRvZXMgdG9vLgoKQ2hlZXJzLAoKICAtaWxpYQoKT24gU3VuLCBBcHIgMTksIDIwMjAgYXQg
-Mzo0NCBBTSBDaHJpc3RpYW4gQ2FsZGVyb24KPGNhbGRlcm9uY2hyaXN0aWFuNzNAZ21haWwuY29t
-PiB3cm90ZToKPgo+IEnigJltIGhhdmluZyB0cm91YmxlIGdldHRpbmcgbXkgR1RYIDEwNTAgVGkg
-d29ya2luZyBpbiBEZWJpYW4gU2lkLiBUaGlzIG1hY2hpbmUgaXMgYSBQb3dlck1hYyBHNSwgMi4z
-IEdIeiBEdWFsIENvcmUuIEnigJltIHVzaW5nIGEgUXVhZHJvIEZYIDQ1MDAgYXMgd2VsbCBhbmQg
-aXQgc2VlbXMgdG8gd29yayBhcyBleHBlY3RlZC4gSeKAmXZlIGluc3RhbGxlZCB0aGUgZmlybXdh
-cmUtbGludXgtbm9uZnJlZSBwYWNrYWdlLCB3aGljaCBzZWVtcyB0byBoYXZlIHRoZSByZXF1aXJl
-ZCBmaXJtd2FyZSBmb3IgdGhlIEdUWCAxMDUwIFRpLiBJbiBkbWVzZyBJIHNlZSB0aGlzIGVycm9y
-IGFmdGVyIHNvbWUgbGluZXMgd2hpY2ggbWVudGlvbiDigJxkaXJlY3QtbG9hZGluZyBmaXJtd2Fy
-ZeKAnToKPgo+ICAgICBub3V2ZWF1IDAwMDE6MDY6MDAuMDogZ3IgY3RvciBmYWlsZWQsIC0yOAo+
-Cj4gQW55IGlkZWFzIG9uIGhvdyB0byBmaXggdGhpcz8KPiBfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVh
-dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+On Fri, Apr 17, 2020 at 05:10:21PM -0400, Lyude wrote:
+> From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> 
+> As Petri Latvala pointed out, some of the documentation in this macro is
+> mistakenly copied from the other igt_assert*() macros. Let's fix that.
+> 
+> Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> ---
+>  lib/igt_core.h | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/lib/igt_core.h b/lib/igt_core.h
+> index b97fa2fa..3f69b072 100644
+> --- a/lib/igt_core.h
+> +++ b/lib/igt_core.h
+> @@ -966,8 +966,8 @@ void igt_describe_f(const char *fmt, ...);
+>   *
+>   * Fails (sub-) test if the given file descriptor is invalid.
+>   *
+> - * Like igt_assert(), but displays the values being compared on failure instead
+> - * of simply printing the stringified expression.
+> + * Like igt_assert(), but displays the stringified identifier that was supposed
+> + * to contain a valid fd on failure.
+
+
+For some values of "like" this is like igt_assert, but for some it's
+not. I don't have enough coffee to suggest a better wording though.
+
+
+Reviewed-by: Petri Latvala <petri.latvala-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+
+
+>   */
+>  #define igt_assert_fd(fd) \
+>  	igt_assert_f(fd >= 0, "file descriptor " #fd " failed\n");
+> -- 
+> 2.25.1
+> 
+> _______________________________________________
+> igt-dev mailing list
+> igt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/igt-dev
