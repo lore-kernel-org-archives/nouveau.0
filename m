@@ -1,69 +1,60 @@
-From: Anshuman Khandual <anshuman.khandual@arm.com>
-Subject: Re: [PATCH 2/2] mm/thp: Rename pmd_mknotpresent() as pmd_mknotvalid()
-Date: Tue, 21 Apr 2020 13:39:15 +0530
-Message-ID: <73e2d20a-4009-c2f3-03b7-fcd29d098491@arm.com>
-References: <1584680057-13753-1-git-send-email-anshuman.khandual@arm.com>
- <1584680057-13753-3-git-send-email-anshuman.khandual@arm.com>
- <20200420210354.GD29998@willie-the-truck>
- <78fee884-78fc-6102-1a37-12106dc21336@arm.com>
- <20200421070703.GC14448@willie-the-truck>
+From: Zou Wei <zou_wei@huawei.com>
+Subject: [PATCH -next] drm/nouveau/acr: Use kmemdup instead of kmalloc and memcpy
+Date: Tue, 21 Apr 2020 20:37:31 +0800
+Message-ID: <1587472651-105308-1-git-send-email-zou_wei@huawei.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-mips-owner@vger.kernel.org>
-In-Reply-To: <20200421070703.GC14448@willie-the-truck>
-Content-Language: en-US
-Sender: linux-mips-owner@vger.kernel.org
-To: Will Deacon <will@kernel.org>
-Cc: linux-mm@kvack.org, Vineet Gupta <vgupta@synopsys.com>, Russell King <linux@armlinux.org.uk>, Catalin Marinas <catalin.marinas@arm.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, "H. Peter Anvin" <hpa@zytor.com>, Steven Rostedt <rostedt@goodmis.org>, Dave Hansen <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Andrew Morton <akpm@linux-foundation.org>, nouveau@lists.freedesktop.org, linux-snps-arc@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, x86@kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Zou Wei <zou_wei@huawei.com>
 List-Id: nouveau.vger.kernel.org
 
+Fixes coccicheck warning:
 
+drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c:103:23-30: WARNING opportunity for kmemdup
+drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c:113:22-29: WARNING opportunity for kmemdup
 
-On 04/21/2020 12:37 PM, Will Deacon wrote:
-> On Tue, Apr 21, 2020 at 04:57:26AM +0530, Anshuman Khandual wrote:
->>
->>
->> On 04/21/2020 02:33 AM, Will Deacon wrote:
->>> On Fri, Mar 20, 2020 at 10:24:17AM +0530, Anshuman Khandual wrote:
->>>> pmd_present() is expected to test positive after pmdp_mknotpresent() as the
->>>> PMD entry still points to a valid huge page in memory. pmdp_mknotpresent()
->>>> implies that given PMD entry is just invalidated from MMU perspective while
->>>> still holding on to pmd_page() referred valid huge page thus also clearing
->>>> pmd_present() test. This creates the following situation which is counter
->>>> intuitive.
->>>>
->>>> [pmd_present(pmd_mknotpresent(pmd)) = true]
->>>>
->>>> This renames pmd_mknotpresent() as pmd_mknotvalid() reflecting the helper's
->>>> functionality more accurately while changing the above mentioned situation
->>>> as follows. This does not create any functional change.
->>>>
->>>> [pmd_present(pmd_mknotvalid(pmd)) = true]
->>>>
->>>> This is not applicable for platforms that define own pmdp_invalidate() via
->>>> __HAVE_ARCH_PMDP_INVALIDATE. Suggestion for renaming came during a previous
->>>> discussion here.
->>>
->>> Bikeshed alert: maybe pmd_mkinvalid() would be better, given that this is
->>> a one-trick pony for pmdp_invalidate()?
->>
->> I had thought about making it pmd_mkinvalid() earlier. But as we were replacing
->> pmd_mknotpresent(), hence went with similar pattern pmd_mknotvalid() which was
->> originally suggested by Catalin. There is an existing pte_mknotpresent() in arc
->> platform as well. I dont have a very strong opinion either way, will be happy
->> to rename. But then still wondering if we really need to.
-> 
-> I just think that having pmdp_invalidate() call pmd_mkinvalid() makes a lot
-> of sense and, since this is a pure renaming patch, then that's worth taking
-> into consideration.
+Fixes: 22dcda45a3d1 ("drm/nouveau/acr: implement new subdev to replace "secure boot"")
+Reported-by: Hulk Robot <hulkci@huawei.com>
+Signed-off-by: Zou Wei <zou_wei@huawei.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
 
-Sure np, will do.
-
-> 
-> If you go with pmd_mkinvalid(), then:
-> 
-> Acked-by: Will Deacon <will@kernel.org>
-> 
-> Will
-> 
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c b/drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c
+index aecce2d..667fa01 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c
+@@ -100,25 +100,21 @@ nvkm_acr_hsfw_load_image(struct nvkm_acr *acr, const char *name, int ver,
+ 	hsfw->data_size = lhdr->data_size;
+ 
+ 	hsfw->sig.prod.size = fwhdr->sig_prod_size;
+-	hsfw->sig.prod.data = kmalloc(hsfw->sig.prod.size, GFP_KERNEL);
++	hsfw->sig.prod.data = kmemdup(fw->data + fwhdr->sig_prod_offset + sig,
++				      hsfw->sig.prod.size, GFP_KERNEL);
+ 	if (!hsfw->sig.prod.data) {
+ 		ret = -ENOMEM;
+ 		goto done;
+ 	}
+ 
+-	memcpy(hsfw->sig.prod.data, fw->data + fwhdr->sig_prod_offset + sig,
+-	       hsfw->sig.prod.size);
+-
+ 	hsfw->sig.dbg.size = fwhdr->sig_dbg_size;
+-	hsfw->sig.dbg.data = kmalloc(hsfw->sig.dbg.size, GFP_KERNEL);
++	hsfw->sig.dbg.data = kmemdup(fw->data + fwhdr->sig_dbg_offset + sig,
++				     hsfw->sig.dbg.size, GFP_KERNEL);
+ 	if (!hsfw->sig.dbg.data) {
+ 		ret = -ENOMEM;
+ 		goto done;
+ 	}
+ 
+-	memcpy(hsfw->sig.dbg.data, fw->data + fwhdr->sig_dbg_offset + sig,
+-	       hsfw->sig.dbg.size);
+-
+ 	hsfw->sig.patch_loc = loc;
+ done:
+ 	nvkm_firmware_put(fw);
+-- 
+2.6.2
