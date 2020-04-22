@@ -1,32 +1,73 @@
-From: Sasha Levin <sashal@kernel.org>
-Subject: Re: [PATCH AUTOSEL 5.6 084/129] drm/nouveau: workaround runpm fail
- by disabling PCI power management on certain intel bridges
-Date: Tue, 21 Apr 2020 20:55:23 -0400
-Message-ID: <20200422005523.GV1809@sasha-vm>
-References: <20200415113445.11881-1-sashal@kernel.org>
- <20200415113445.11881-84-sashal@kernel.org>
- <CACO55ttpvfoyt1p_5Y-Q1=+5NruF5kMoug85jE9y+jG+FW=HGw@mail.gmail.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+From: Anshuman Khandual <anshuman.khandual@arm.com>
+Subject: [PATCH V2 0/2] mm/thp: Rename pmd_mknotpresent() as pmd_mkinvalid()
+Date: Wed, 22 Apr 2020 07:22:04 +0530
+Message-ID: <1587520326-10099-1-git-send-email-anshuman.khandual@arm.com>
 Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <CACO55ttpvfoyt1p_5Y-Q1=+5NruF5kMoug85jE9y+jG+FW=HGw@mail.gmail.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Karol Herbst <kherbst@redhat.com>
-Cc: LKML <linux-kernel@vger.kernel.org>, stable@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Mika Westerberg <mika.westerberg@intel.com>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
+To: linux-mm@kvack.org
+Cc: Anshuman Khandual <anshuman.khandual@arm.com>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, Michael Ellerman <mpe@ellerman.id.au>, Paul Mackerras <paulus@samba.org>, Vineet Gupta <vgupta@synopsys.com>, Russell King <linux@armlinux.org.uk>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, "H. Peter Anvin" <hpa@zytor.com>, Steven Rostedt <rostedt@goodmis.org>, Dave Hansen <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Andrew Morton <akpm@linux-foundation.org>, nouveau@lists.freedesktop.org, linuxppc-dev@lists.ozlabs.
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Apr 15, 2020 at 06:11:10PM +0200, Karol Herbst wrote:
->in addition to that 028a12f5aa829 "drm/nouveau/gr/gp107,gp108:
->implement workaround for HW hanging during init" should probably get
->picked as well as it's fixing some runtime pm related issue on a
->handful of additional GPUs. I have a laptop myself which requires both
->of those patches.
->
->Applies to 5.5 and 5..4 as well.
+This series renames pmd_mknotpresent() as pmd_mkinvalid(). Before that it
+drops an existing pmd_mknotpresent() definition from powerpc platform which
+was never required as it defines it's pmdp_invalidate() through subscribing
+__HAVE_ARCH_PMDP_INVALIDATE. This does not create any functional change.
 
-I've grabbed it for 5.6 and 5.4 (5.5 is EOL), thanks!
+This rename was suggested by Catalin during a previous discussion while we
+were trying to change the THP helpers on arm64 platform for migration.
+
+https://patchwork.kernel.org/patch/11019637/
+
+This series is based on v5.7-rc2.
+
+Boot tested on arm64 and x86 platforms.
+Built tested on many other platforms including the ones changed here.
+
+Changes in V2:
+
+- Changed pmd_mknotvalid() as pmd_mkinvalid() per Will
+
+Changes in V1: (https://patchwork.kernel.org/project/linux-mm/list/?series=259139)
+
+Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Cc: Michael Ellerman <mpe@ellerman.id.au>
+Cc: Paul Mackerras <paulus@samba.org>
+Cc: Vineet Gupta <vgupta@synopsys.com>
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: Catalin Marinas <catalin.marinas@arm.com>
+Cc: Will Deacon <will@kernel.org>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Borislav Petkov <bp@alien8.de>
+Cc: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Steven Rostedt <rostedt@goodmis.org>
+Cc: Dave Hansen <dave.hansen@linux.intel.com>
+Cc: Andy Lutomirski <luto@kernel.org>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: nouveau@lists.freedesktop.org
+Cc: linuxppc-dev@lists.ozlabs.org
+Cc: linux-snps-arc@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-mips@vger.kernel.org
+Cc: x86@kernel.org
+Cc: linux-mm@kvack.org
+Cc: linux-kernel@vger.kernel.org
+
+Anshuman Khandual (2):
+  powerpc/mm: Drop platform defined pmd_mknotpresent()
+  mm/thp: Rename pmd_mknotpresent() as pmd_mkinvalid()
+
+ arch/arc/include/asm/hugepage.h              | 2 +-
+ arch/arm/include/asm/pgtable-3level.h        | 2 +-
+ arch/arm64/include/asm/pgtable.h             | 2 +-
+ arch/mips/include/asm/pgtable.h              | 2 +-
+ arch/powerpc/include/asm/book3s/64/pgtable.h | 4 ----
+ arch/x86/include/asm/pgtable.h               | 2 +-
+ arch/x86/mm/kmmio.c                          | 2 +-
+ mm/pgtable-generic.c                         | 2 +-
+ 8 files changed, 7 insertions(+), 11 deletions(-)
 
 -- 
-Thanks,
-Sasha
+2.20.1
