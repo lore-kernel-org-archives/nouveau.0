@@ -1,31 +1,58 @@
-From: Ralph Campbell <rcampbell@nvidia.com>
-Subject: Re: [PATCH hmm 0/5] Adjust hmm_range_fault() API
-Date: Wed, 22 Apr 2020 12:09:09 -0700
-Message-ID: <17ce2fdc-4f9f-7772-c10c-6f339a4183e8@nvidia.com>
-References: <0-v1-4eb72686de3c+5062-hmm_no_flags_jgg@mellanox.com>
+From: Christoph Hellwig <hch@lst.de>
+Subject: Re: [PATCH hmm 5/5] mm/hmm: remove the customizable pfn format
+ from hmm_range_fault
+Date: Thu, 23 Apr 2020 08:10:23 +0200
+Message-ID: <20200423061023.GA9856@lst.de>
+References: <0-v1-4eb72686de3c+5062-hmm_no_flags_jgg@mellanox.com> <5-v1-4eb72686de3c+5062-hmm_no_flags_jgg@mellanox.com> <20200422060329.GD22366@lst.de> <20200422123911.GV26002@ziepe.ca>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <0-v1-4eb72686de3c+5062-hmm_no_flags_jgg@mellanox.com>
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <20200422123911.GV26002@ziepe.ca>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Jason Gunthorpe <jgg@ziepe.ca>, linux-mm@kvack.org
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, dri-devel@lists.freedesktop.org, "Kuehling, Felix" <Felix.Kuehling@amd.com>, Christoph Hellwig <hch@lst.de>, intel-gfx@lists.freedesktop.org, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, linux-kernel@vger.kernel.org, Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>, nouveau@lists.freedesktop.org
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Christoph Hellwig <hch@lst.de>, linux-mm@kvack.org, Ralph Campbell <rcampbell@nvidia.com>, Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, dri-devel@lists.freedesktop.org, "Kuehling, Felix" <Felix.Kuehling@amd.com>, intel-gfx@lists.freedesktop.org, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, linux-kernel@vger.kernel.org, Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+On Wed, Apr 22, 2020 at 09:39:11AM -0300, Jason Gunthorpe wrote:
+> > Nice callchain from hell..  Unfortunately such "code listings" tend to
+> > get out of date very quickly, so I'm not sure it is worth keeping in
+> > the code.  What would be really worthile is consolidating the two
+> > different sets of defines (NVIF_VMM_PFNMAP_V0_ vs NVKM_VMM_PFN_)
+> > to make the code a little easier to follow.
+> 
+> I was mainly concerned that this function is using hmm properly,
+> becuase it sure looks like it is just forming the CPU physical address
+> into a HW specific data. But it turns out it is just an internal data
+> for some other code and the dma_map is impossibly far away
+> 
+> It took forever to find, I figured I'd leave a hint for the next poor
+> soul that has to look at this.. 
+> 
+> Also, I think it shows there is no 'performance' argument here, if
+> this path needs more performance the above should be cleaned
+> before we abuse hmm_range_fault.
+> 
+> Put it in the commit message instead?
 
-On 4/21/20 5:21 PM, Jason Gunthorpe wrote:
-> From: Jason Gunthorpe <jgg@mellanox.com>
-> 
-> The API is a bit complicated for the uses we actually have, and
-> disucssions for simplifying have come up a number of times.
-> 
-> This small series removes the customizable pfn format and simplifies the
-> return code of hmm_range_fault()
-> 
-> All the drivers are adjusted to process in the simplified format.
-> I would appreciated tested-by's for the two drivers, thanks!
+Yes, the graph itself sounds reasonable for the commit log as a point
+of time information.
 
-For nouveau you can add:
-Tested-by: Ralph Campbell <rcampbell@nvidia.com>
+> > >  	npages = (range->end - range->start) >> PAGE_SHIFT;
+> > >  	for (i = 0; i < npages; ++i) {
+> > >  		struct page *page;
+> > >  
+> > > +		if (!(range->hmm_pfns[i] & HMM_PFN_VALID)) {
+> > > +			ioctl_addr[i] = 0;
+> > >  			continue;
+> > > +		}
+> > 
+> > Can't we rely on the caller pre-zeroing the array?
+> 
+> This ends up as args.phys in nouveau_svm_fault - I didn't see a
+> zeroing?
+> 
+> I think it makes sense that this routine fully sets the output array
+> and does not assume pre-initialize
+
+Ok.
