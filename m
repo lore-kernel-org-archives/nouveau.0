@@ -1,45 +1,61 @@
-From: Ralph Campbell <rcampbell@nvidia.com>
-Subject: Re: [PATCH] nouveau/hmm: fix nouveau_dmem_chunk allocations
-Date: Thu, 23 Apr 2020 11:32:31 -0700
-Message-ID: <a4a405d7-c136-b479-2bbe-5a2304f59c99@nvidia.com>
-References: <20200421231107.30958-1-rcampbell@nvidia.com>
- <20200423121744.GY11945@mellanox.com>
+From: Zheng Bin <zhengbin13-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] drm/nouveau/mmu: Remove unneeded semicolon
+Date: Fri, 24 Apr 2020 15:36:01 +0800
+Message-ID: <20200424073601.143549-1-zhengbin13@huawei.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200423121744.GY11945@mellanox.com>
-Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Jason Gunthorpe <jgg@mellanox.com>
-Cc: nouveau@lists.freedesktop.org, linux-rdma@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Ben Skeggs <bskeggs@redhat.com>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: zhengbin13-hv44wF8Li93QT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Fixes coccicheck warning:
 
-On 4/23/20 5:17 AM, Jason Gunthorpe wrote:
-> On Tue, Apr 21, 2020 at 04:11:07PM -0700, Ralph Campbell wrote:
->> In nouveau_dmem_init(), a number of struct nouveau_dmem_chunk are allocated
->> and put on the dmem->chunk_empty list. Then in nouveau_dmem_pages_alloc(),
->> a nouveau_dmem_chunk is removed from the list and GPU memory is allocated.
->> However, the nouveau_dmem_chunk is never removed from the chunk_empty
->> list nor placed on the chunk_free or chunk_full lists. This results
->> in only one chunk ever being actually used (2MB) and quickly leads to
->> migration to device private memory failures.
->>
->> Fix this by having just one list of free device private pages and if no
->> pages are free, allocate a chunk of device private pages and GPU memory.
->>
->> Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
->> ---
->>   drivers/gpu/drm/nouveau/nouveau_dmem.c | 304 +++++++++----------------
->>   1 file changed, 112 insertions(+), 192 deletions(-)
-> 
-> Does this generate any conflicts with my series to rework
-> hmm_range_fault?
-> 
-> Jason
+drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h:307:2-3: Unneeded semicolon
+drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c:583:2-3: Unneeded semicolon
 
-I based it on top of your series and the patch that Ben already has queued
-("nouveau/hmm: map pages after migration") so it shouldn't have any conflicts.
+Reported-by: Hulk Robot <hulkci-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+Signed-off-by: Zheng Bin <zhengbin13-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-I guess I should have mentioned that in a cover letter.
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+index 41640e0584ac..199f94e15c5f 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+@@ -580,7 +580,7 @@ nvkm_vmm_iter(struct nvkm_vmm *vmm, const struct nvkm_vmm_page *page,
+ 				it.pte[it.lvl]++;
+ 			}
+ 		}
+-	};
++	}
+
+ 	nvkm_vmm_flush(&it);
+ 	return ~0ULL;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+index 5e55ecbd8005..d3f8f916d0db 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+@@ -304,7 +304,7 @@ int tu102_vmm_new(struct nvkm_mmu *, bool, u64, u64, void *, u32,
+ 		FILL(VMM, PT, PTEI, _ptes, MAP, _addr);                        \
+ 		PTEI += _ptes;                                                 \
+ 		PTEN -= _ptes;                                                 \
+-	};                                                                     \
++	}                                                                      \
+ 	nvkm_done((PT)->memory);                                               \
+ } while(0)
+
+--
+2.26.0.106.g9fadedd
