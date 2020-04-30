@@ -1,15 +1,11 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: gp104: regression on Linux 5.6
-Date: Thu, 30 Apr 2020 08:27:50 -0400
-Message-ID: <CAKb7UvjP5NfMjvBqydQ3Q53OsLT_eQX3F+s1E4Ornr1LrG6b=Q@mail.gmail.com>
-References: <20200401185621.GA24692@avx2>
- <CAKb7UvhLF7Qdx7W_0Ft4G8NujW6XbELcCP09DSkubj_duBXVkg@mail.gmail.com>
- <20200430073243.GA8620@avx2>
+From: Souptick Joarder <jrdr.linux-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau/dispnv04: Remove dead code
+Date: Fri,  1 May 2020 01:56:53 +0530
+Message-ID: <1588278413-21682-1-git-send-email-jrdr.linux@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200430073243.GA8620@avx2>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,43 +15,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, tzimmermann-l3A5Bk7waGM@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org, lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, inux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Souptick Joarder <jrdr.linux-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Apr 30, 2020 at 3:32 AM Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->
-> On Thu, Apr 30, 2020 at 12:15:28AM -0400, Ilia Mirkin wrote:
-> > Hi Alexey,
-> >
-> > On Fri, Apr 24, 2020 at 10:52 PM Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> > >
-> > > gp104 refuses to switch to "graphic" mode and show anything past
-> > > this line:
-> > >
-> > >         fb0: switching to nouveaufb from EFI VGA
-> > >
-> > > Machine is fine, as it I can press Ctrl+Alt+Delete and reboot it
-> > > normally.
-> > >
-> > > 5.5 is OK. 5.6 is broken.
-> >
-> > I've heard some issues relating to missing firmware lately. It should
-> > work fine without firmware, but perhaps that got broken. Can you log
-> > into the machine and check dmesg to see what's there? My guess is that
-> > nouveau takes over from efifb, and then fails to load at some point in
-> > the middle.
->
-> I've fixed the issue by including all firmware until "failed to load"
-> messages disappeared. X works and fbconsole on VT1-VT6 works too.
->
-> CONFIG_EXTRA_FIRMWARE="nvidia/gp104/gr/sw_nonctx.bin nvidia/gp104/gr/sw_ctx.bin nvidia/gp104/gr/sw_bundle_init.bin nvidia/gp104/gr/sw_method_init.bin nvidia/gp104/gr/fecs_bl.bin nvidia/gp104/gr/fecs_inst.bin nvidia/gp104/gr/fecs_data.bin nvidia/gp104/gr/fecs_sig.bin nvidia/gp104/gr/gpccs_bl.bin nvidia/gp104/gr/gpccs_inst.bin nvidia/gp104/gr/gpccs_data.bin nvidia/gp104/gr/gpccs_sig.bin nvidia/gp104/sec2/image.bin nvidia/gp104/sec2/desc.bin nvidia/gp104/sec2/sig.bin nvidia/gp104/acr/ucode_load.bin nvidia/gp104/acr/ucode_unload.bin nvidia/gp104/acr/bl.bin nvidia/gp104/acr/unload_bl.bin nvidia/gp104/nvdec/scrubber.bin"
+These are dead code since 3.10. If there is no plan to use
+it further, these can be removed forever.
 
-Ben -- another report of firmware-less load being broken on v5.6.
+Signed-off-by: Souptick Joarder <jrdr.linux-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c | 28 ----------------------------
+ 1 file changed, 28 deletions(-)
 
-Alexey -- If you compile nouveau as a module, then these can live on
-your filesystem or initrd, depending on your boot process.
-
-Cheers,
-
-  -ilia
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+index 1f08de4..ad0ef7d 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+@@ -269,31 +269,11 @@ static void nv_crtc_calc_state_ext(struct drm_crtc *crtc, struct drm_display_mod
+ 		horizStart = horizTotal - 5;
+ 		horizEnd = horizTotal - 2;
+ 		horizBlankEnd = horizTotal + 4;
+-#if 0
+-		if (dev->overlayAdaptor && drm->client.device.info.family >= NV_DEVICE_INFO_V0_CELSIUS)
+-			/* This reportedly works around some video overlay bandwidth problems */
+-			horizTotal += 2;
+-#endif
+ 	}
+ 
+ 	if (mode->flags & DRM_MODE_FLAG_INTERLACE)
+ 		vertTotal |= 1;
+ 
+-#if 0
+-	ErrorF("horizDisplay: 0x%X \n", horizDisplay);
+-	ErrorF("horizStart: 0x%X \n", horizStart);
+-	ErrorF("horizEnd: 0x%X \n", horizEnd);
+-	ErrorF("horizTotal: 0x%X \n", horizTotal);
+-	ErrorF("horizBlankStart: 0x%X \n", horizBlankStart);
+-	ErrorF("horizBlankEnd: 0x%X \n", horizBlankEnd);
+-	ErrorF("vertDisplay: 0x%X \n", vertDisplay);
+-	ErrorF("vertStart: 0x%X \n", vertStart);
+-	ErrorF("vertEnd: 0x%X \n", vertEnd);
+-	ErrorF("vertTotal: 0x%X \n", vertTotal);
+-	ErrorF("vertBlankStart: 0x%X \n", vertBlankStart);
+-	ErrorF("vertBlankEnd: 0x%X \n", vertBlankEnd);
+-#endif
+-
+ 	/*
+ 	* compute correct Hsync & Vsync polarity
+ 	*/
+@@ -492,14 +472,6 @@ static void nv_crtc_calc_state_ext(struct drm_crtc *crtc, struct drm_display_mod
+ 	/* Except for rare conditions I2C is enabled on the primary crtc */
+ 	if (nv_crtc->index == 0)
+ 		regp->crtc_eng_ctrl |= NV_CRTC_FSEL_I2C;
+-#if 0
+-	/* Set overlay to desired crtc. */
+-	if (dev->overlayAdaptor) {
+-		NVPortPrivPtr pPriv = GET_OVERLAY_PRIVATE(dev);
+-		if (pPriv->overlayCRTC == nv_crtc->index)
+-			regp->crtc_eng_ctrl |= NV_CRTC_FSEL_OVERLAY;
+-	}
+-#endif
+ 
+ 	/* ADDRESS_SPACE_PNVM is the same as setting HCUR_ASI */
+ 	regp->cursor_cfg = NV_PCRTC_CURSOR_CONFIG_CUR_LINES_64 |
+-- 
+1.9.1
