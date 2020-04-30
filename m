@@ -1,112 +1,72 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH 1/1] drm/nouveau: Use generic helper to check _PR3 presence
-Date: Thu, 30 Apr 2020 13:59:39 +1000
-Message-ID: <CACAvsv6XmvsnRz7=Brd0dMBfh7FqGA0X_6rz=tTt9M_ess9Lvw@mail.gmail.com>
-References: <20200423062358.1810-1-kai.heng.feng@canonical.com>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/mmu: Remove unneeded semicolon
+Date: Thu, 30 Apr 2020 14:00:52 +1000
+Message-ID: <CACAvsv4P8UWPTeRqTX1=3utdaPud_H01ANdTb567WiFLJB84pA@mail.gmail.com>
+References: <20200424073601.143549-1-zhengbin13@huawei.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200423062358.1810-1-kai.heng.feng@canonical.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Kai-Heng Feng <kai.heng.feng@canonical.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200424073601.143549-1-zhengbin13-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Zheng Bin <zhengbin13-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+Cc: Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 Thanks!
 
-On Thu, 23 Apr 2020 at 17:37, Kai-Heng Feng <kai.heng.feng@canonical.com> wrote:
+On Fri, 24 Apr 2020 at 17:29, Zheng Bin <zhengbin13-hv44wF8Li93QT0dZR+AlfA@public.gmane.org> wrote:
 >
-> Replace nouveau_pr3_present() in favor of a more generic one,
-> pci_pr3_present().
+> Fixes coccicheck warning:
 >
-> Also the presence of upstream bridge _PR3 doesn't need to go hand in
-> hand with device's _DSM, so check _PR3 before _DSM.
+> drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h:307:2-3: Unneeded semicolon
+> drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c:583:2-3: Unneeded semicolon
 >
-> Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> Reported-by: Hulk Robot <hulkci-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+> Signed-off-by: Zheng Bin <zhengbin13-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
 > ---
->  drivers/gpu/drm/nouveau/nouveau_acpi.c | 44 ++++++--------------------
->  1 file changed, 10 insertions(+), 34 deletions(-)
+>  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 2 +-
+>  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
-> index fe3a10255c36..b84dff1b0f28 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
-> @@ -212,37 +212,6 @@ static const struct vga_switcheroo_handler nouveau_dsm_handler = {
->         .get_client_id = nouveau_dsm_get_client_id,
->  };
->
-> -/*
-> - * Firmware supporting Windows 8 or later do not use _DSM to put the device into
-> - * D3cold, they instead rely on disabling power resources on the parent.
-> - */
-> -static bool nouveau_pr3_present(struct pci_dev *pdev)
-> -{
-> -       struct pci_dev *parent_pdev = pci_upstream_bridge(pdev);
-> -       struct acpi_device *parent_adev;
-> -
-> -       if (!parent_pdev)
-> -               return false;
-> -
-> -       if (!parent_pdev->bridge_d3) {
-> -               /*
-> -                * Parent PCI bridge is currently not power managed.
-> -                * Since userspace can change these afterwards to be on
-> -                * the safe side we stick with _DSM and prevent usage of
-> -                * _PR3 from the bridge.
-> -                */
-> -               pci_d3cold_disable(pdev);
-> -               return false;
-> -       }
-> -
-> -       parent_adev = ACPI_COMPANION(&parent_pdev->dev);
-> -       if (!parent_adev)
-> -               return false;
-> -
-> -       return parent_adev->power.flags.power_resources &&
-> -               acpi_has_method(parent_adev->handle, "_PR3");
-> -}
-> -
->  static void nouveau_dsm_pci_probe(struct pci_dev *pdev, acpi_handle *dhandle_out,
->                                   bool *has_mux, bool *has_opt,
->                                   bool *has_opt_flags, bool *has_pr3)
-> @@ -250,6 +219,16 @@ static void nouveau_dsm_pci_probe(struct pci_dev *pdev, acpi_handle *dhandle_out
->         acpi_handle dhandle;
->         bool supports_mux;
->         int optimus_funcs;
-> +       struct pci_dev *parent_pdev;
-> +
-> +       *has_pr3 = false;
-> +       parent_pdev = pci_upstream_bridge(pdev);
-> +       if (parent_pdev) {
-> +               if (parent_pdev->bridge_d3)
-> +                       *has_pr3 = pci_pr3_present(parent_pdev);
-> +               else
-> +                       pci_d3cold_disable(pdev);
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+> index 41640e0584ac..199f94e15c5f 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+> @@ -580,7 +580,7 @@ nvkm_vmm_iter(struct nvkm_vmm *vmm, const struct nvkm_vmm_page *page,
+>                                 it.pte[it.lvl]++;
+>                         }
+>                 }
+> -       };
 > +       }
 >
->         dhandle = ACPI_HANDLE(&pdev->dev);
->         if (!dhandle)
-> @@ -270,7 +249,6 @@ static void nouveau_dsm_pci_probe(struct pci_dev *pdev, acpi_handle *dhandle_out
->         *has_mux = supports_mux;
->         *has_opt = !!optimus_funcs;
->         *has_opt_flags = optimus_funcs & (1 << NOUVEAU_DSM_OPTIMUS_FLAGS);
-> -       *has_pr3 = false;
->
->         if (optimus_funcs) {
->                 uint32_t result;
-> @@ -280,8 +258,6 @@ static void nouveau_dsm_pci_probe(struct pci_dev *pdev, acpi_handle *dhandle_out
->                          (result & OPTIMUS_ENABLED) ? "enabled" : "disabled",
->                          (result & OPTIMUS_DYNAMIC_PWR_CAP) ? "dynamic power, " : "",
->                          (result & OPTIMUS_HDA_CODEC_MASK) ? "hda bios codec supported" : "");
-> -
-> -               *has_pr3 = nouveau_pr3_present(pdev);
->         }
->  }
+>         nvkm_vmm_flush(&it);
+>         return ~0ULL;
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+> index 5e55ecbd8005..d3f8f916d0db 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+> @@ -304,7 +304,7 @@ int tu102_vmm_new(struct nvkm_mmu *, bool, u64, u64, void *, u32,
+>                 FILL(VMM, PT, PTEI, _ptes, MAP, _addr);                        \
+>                 PTEI += _ptes;                                                 \
+>                 PTEN -= _ptes;                                                 \
+> -       };                                                                     \
+> +       }                                                                      \
+>         nvkm_done((PT)->memory);                                               \
+>  } while(0)
 >
 > --
-> 2.17.1
+> 2.26.0.106.g9fadedd
 >
 > _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
