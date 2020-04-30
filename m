@@ -1,101 +1,60 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau: Fix regression by audio component transition
-Date: Thu, 30 Apr 2020 14:13:36 +1000
-Message-ID: <CACAvsv7pZX+h_JqWeu=0yK1u2nwzDGODKWpHarzB-80u89JLZg@mail.gmail.com>
-References: <20200416075428.25521-1-tiwai@suse.de>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: gp104: regression on Linux 5.6
+Date: Thu, 30 Apr 2020 00:15:28 -0400
+Message-ID: <CAKb7UvhLF7Qdx7W_0Ft4G8NujW6XbELcCP09DSkubj_duBXVkg@mail.gmail.com>
+References: <20200401185621.GA24692@avx2>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200416075428.25521-1-tiwai@suse.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Takashi Iwai <tiwai@suse.de>
-Cc: Ben Skeggs <bskeggs@redhat.com>, ML nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200401185621.GA24692@avx2>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Good catch!  The OR is definitely a far better choice than the head
-here, as it's what we use to select the GPU-side HDA registers too.
+Hi Alexey,
 
-Merged.
+On Fri, Apr 24, 2020 at 10:52 PM Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>
+> gp104 refuses to switch to "graphic" mode and show anything past
+> this line:
+>
+>         fb0: switching to nouveaufb from EFI VGA
+>
+> Machine is fine, as it I can press Ctrl+Alt+Delete and reboot it
+> normally.
+>
+> 5.5 is OK. 5.6 is broken.
 
-On Thu, 16 Apr 2020 at 17:54, Takashi Iwai <tiwai@suse.de> wrote:
+I've heard some issues relating to missing firmware lately. It should
+work fine without firmware, but perhaps that got broken. Can you log
+into the machine and check dmesg to see what's there? My guess is that
+nouveau takes over from efifb, and then fails to load at some point in
+the middle.
+
+> Bisecting is kinda painful with miscompilation and init/main.c breakage.
 >
-> Since the commit 742db30c4ee6 ("drm/nouveau: Add HD-audio component
-> notifier support"), the nouveau driver notifies and pokes the HD-audio
-> HPD and ELD via audio component, but this seems broken.  The culprit
-> is the naive assumption that crtc->index corresponds to the HDA pin.
-> Actually this rather corresponds to the MST dev_id (alias "pipe" in
-> the audio component framework) while the actual port number is given
-> from the output ior id number.
+> BTW do I need all those megabytes of firmware?
 >
-> This patch corrects the assignment of port and dev_id arguments in the
-> audio component ops to recover from the HDMI/DP audio regression.
->
-> Fixes: 742db30c4ee6 ("drm/nouveau: Add HD-audio component notifier support")
-> BugLink: https://bugzilla.kernel.org/show_bug.cgi?id=207223
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Takashi Iwai <tiwai@suse.de>
-> ---
->  drivers/gpu/drm/nouveau/dispnv50/disp.c | 16 ++++++++++------
->  1 file changed, 10 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> index a3dc2ba19fb2..3a9fd565079d 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> @@ -481,15 +481,16 @@ nv50_dac_create(struct drm_connector *connector, struct dcb_output *dcbe)
->   * audio component binding for ELD notification
->   */
->  static void
-> -nv50_audio_component_eld_notify(struct drm_audio_component *acomp, int port)
-> +nv50_audio_component_eld_notify(struct drm_audio_component *acomp, int port,
-> +                               int dev_id)
->  {
->         if (acomp && acomp->audio_ops && acomp->audio_ops->pin_eld_notify)
->                 acomp->audio_ops->pin_eld_notify(acomp->audio_ops->audio_ptr,
-> -                                                port, -1);
-> +                                                port, dev_id);
->  }
->
->  static int
-> -nv50_audio_component_get_eld(struct device *kdev, int port, int pipe,
-> +nv50_audio_component_get_eld(struct device *kdev, int port, int dev_id,
->                              bool *enabled, unsigned char *buf, int max_bytes)
->  {
->         struct drm_device *drm_dev = dev_get_drvdata(kdev);
-> @@ -505,7 +506,8 @@ nv50_audio_component_get_eld(struct device *kdev, int port, int pipe,
->                 nv_encoder = nouveau_encoder(encoder);
->                 nv_connector = nouveau_encoder_connector_get(nv_encoder);
->                 nv_crtc = nouveau_crtc(encoder->crtc);
-> -               if (!nv_connector || !nv_crtc || nv_crtc->index != port)
-> +               if (!nv_connector || !nv_crtc || nv_encoder->or != port ||
-> +                   nv_crtc->index != dev_id)
->                         continue;
->                 *enabled = drm_detect_monitor_audio(nv_connector->edid);
->                 if (*enabled) {
-> @@ -599,7 +601,8 @@ nv50_audio_disable(struct drm_encoder *encoder, struct nouveau_crtc *nv_crtc)
->
->         nvif_mthd(&disp->disp->object, 0, &args, sizeof(args));
->
-> -       nv50_audio_component_eld_notify(drm->audio.component, nv_crtc->index);
-> +       nv50_audio_component_eld_notify(drm->audio.component, nv_encoder->or,
-> +                                       nv_crtc->index);
->  }
->
->  static void
-> @@ -633,7 +636,8 @@ nv50_audio_enable(struct drm_encoder *encoder, struct drm_display_mode *mode)
->         nvif_mthd(&disp->disp->object, 0, &args,
->                   sizeof(args.base) + drm_eld_size(args.data));
->
-> -       nv50_audio_component_eld_notify(drm->audio.component, nv_crtc->index);
-> +       nv50_audio_component_eld_notify(drm->audio.component, nv_encoder->or,
-> +                                       nv_crtc->index);
->  }
->
->  /******************************************************************************
-> --
-> 2.16.4
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+> [    0.923273] fb0: switching to nouveaufb from EFI VGA
+> [    0.923440] nouveau 0000:02:00.0: NVIDIA GP104 (134000a1)
+> [    1.026681] nouveau 0000:02:00.0: bios: version 86.04.1e.00.01
+> [    1.026930] nouveau 0000:02:00.0: gr: failed to load firmware "gr/sw_nonctx"
+> [    1.026934] nouveau 0000:02:00.0: gr: failed to load gr/sw_nonctx
+
+This is necessary to provide any sort of acceleration. Otherwise this
+is just a dumb scanout engine. You only need the firmware for your
+chipset, not all of it.
+
+Cheers,
+
+  -ilia
