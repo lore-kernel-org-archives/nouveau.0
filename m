@@ -1,13 +1,14 @@
 From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/mmu: Remove unneeded semicolon
-Date: Thu, 30 Apr 2020 14:00:52 +1000
-Message-ID: <CACAvsv4P8UWPTeRqTX1=3utdaPud_H01ANdTb567WiFLJB84pA@mail.gmail.com>
-References: <20200424073601.143549-1-zhengbin13@huawei.com>
+Subject: Re: [PATCH v3 1/3] device: rework mmio mapping code to
+ get rid of second map
+Date: Thu, 30 Apr 2020 14:10:43 +1000
+Message-ID: <CACAvsv5ZPB53bm6nhmDioT05jW-8EeVzbP3jDiR_uQ5+8g5Y2Q@mail.gmail.com>
+References: <20200428165404.936235-1-kherbst@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200424073601.143549-1-zhengbin13-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <20200428165404.936235-1-kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,54 +18,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Zheng Bin <zhengbin13-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
-Cc: Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Thanks!
+Merged all 3 patches.  Thanks!
 
-On Fri, 24 Apr 2020 at 17:29, Zheng Bin <zhengbin13-hv44wF8Li93QT0dZR+AlfA@public.gmane.org> wrote:
+On Wed, 29 Apr 2020 at 02:55, Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
 >
-> Fixes coccicheck warning:
+> Fixes warnings on GPUs with smaller a smaller mmio region like vGPUs.
 >
-> drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h:307:2-3: Unneeded semicolon
-> drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c:583:2-3: Unneeded semicolon
->
-> Reported-by: Hulk Robot <hulkci-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
-> Signed-off-by: Zheng Bin <zhengbin13-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+> Signed-off-by: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 > ---
->  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 2 +-
->  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+>  drm/nouveau/nvkm/engine/device/base.c | 27 +++++++++++++++------------
+>  1 file changed, 15 insertions(+), 12 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-> index 41640e0584ac..199f94e15c5f 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-> @@ -580,7 +580,7 @@ nvkm_vmm_iter(struct nvkm_vmm *vmm, const struct nvkm_vmm_page *page,
->                                 it.pte[it.lvl]++;
->                         }
->                 }
-> -       };
+> diff --git a/drm/nouveau/nvkm/engine/device/base.c b/drm/nouveau/nvkm/engine/device/base.c
+> index 8ebbe1656..37589f365 100644
+> --- a/drm/nouveau/nvkm/engine/device/base.c
+> +++ b/drm/nouveau/nvkm/engine/device/base.c
+> @@ -2935,7 +2935,7 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
+>         struct nvkm_subdev *subdev;
+>         u64 mmio_base, mmio_size;
+>         u32 boot0, strap;
+> -       void __iomem *map;
+> +       void __iomem *map = NULL;
+>         int ret = -EEXIST, i;
+>         unsigned chipset;
+>
+> @@ -2961,12 +2961,17 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
+>         mmio_base = device->func->resource_addr(device, 0);
+>         mmio_size = device->func->resource_size(device, 0);
+>
+> -       /* identify the chipset, and determine classes of subdev/engines */
+> -       if (detect) {
+> -               map = ioremap(mmio_base, 0x102000);
+> -               if (ret = -ENOMEM, map == NULL)
+> +       if (detect || mmio) {
+> +               map = ioremap(mmio_base, mmio_size);
+> +               if (map == NULL) {
+> +                       nvdev_error(device, "unable to map PRI\n");
+> +                       ret = -ENOMEM;
+>                         goto done;
+> +               }
 > +       }
 >
->         nvkm_vmm_flush(&it);
->         return ~0ULL;
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
-> index 5e55ecbd8005..d3f8f916d0db 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
-> @@ -304,7 +304,7 @@ int tu102_vmm_new(struct nvkm_mmu *, bool, u64, u64, void *, u32,
->                 FILL(VMM, PT, PTEI, _ptes, MAP, _addr);                        \
->                 PTEI += _ptes;                                                 \
->                 PTEN -= _ptes;                                                 \
-> -       };                                                                     \
-> +       }                                                                      \
->         nvkm_done((PT)->memory);                                               \
->  } while(0)
+> +       /* identify the chipset, and determine classes of subdev/engines */
+> +       if (detect) {
+>                 /* switch mmio to cpu's native endianness */
+>  #ifndef __BIG_ENDIAN
+>                 if (ioread32_native(map + 0x000004) != 0x00000000) {
+> @@ -2980,7 +2985,6 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
+>                 /* read boot0 and strapping information */
+>                 boot0 = ioread32_native(map + 0x000000);
+>                 strap = ioread32_native(map + 0x101000);
+> -               iounmap(map);
 >
+>                 /* chipset can be overridden for devel/testing purposes */
+>                 chipset = nvkm_longopt(device->cfgopt, "NvChipset", 0);
+> @@ -3159,12 +3163,7 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
+>                 device->name = device->chip->name;
+>
+>         if (mmio) {
+> -               device->pri = ioremap(mmio_base, mmio_size);
+> -               if (!device->pri) {
+> -                       nvdev_error(device, "unable to map PRI\n");
+> -                       ret = -ENOMEM;
+> -                       goto done;
+> -               }
+> +               device->pri = map;
+>         }
+>
+>         mutex_init(&device->mutex);
+> @@ -3254,6 +3253,10 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
+>
+>         ret = 0;
+>  done:
+> +       if (map && (!mmio || ret)) {
+> +               device->pri = NULL;
+> +               iounmap(map);
+> +       }
+>         mutex_unlock(&nv_devices_mutex);
+>         return ret;
+>  }
 > --
-> 2.26.0.106.g9fadedd
+> 2.25.3
 >
 > _______________________________________________
 > Nouveau mailing list
