@@ -1,60 +1,71 @@
-From: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH hmm 5/5] mm/hmm: remove the customizable pfn format from
- hmm_range_fault
-Date: Wed, 29 Apr 2020 19:41:27 -0300
-Message-ID: <20200429224127.GB3824@ziepe.ca>
-References: <5-v1-4eb72686de3c+5062-hmm_no_flags_jgg@mellanox.com>
- <ec276ac2-a346-5728-4ac6-9c9bd9ffcd41@amd.com>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [PATCH -next] drm/nouveau/acr: Use kmemdup instead of kmalloc and memcpy
+Date: Thu, 30 Apr 2020 13:58:30 +1000
+Message-ID: <CACAvsv5qXhLkspF0==z36xY1R1Uv=-XUHEwnH52GDurivbF5Tw@mail.gmail.com>
+References: <1587472651-105308-1-git-send-email-zou_wei@huawei.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="UTF-8"
 Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <ec276ac2-a346-5728-4ac6-9c9bd9ffcd41@amd.com>
+In-Reply-To: <1587472651-105308-1-git-send-email-zou_wei@huawei.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Felix Kuehling <felix.kuehling@amd.com>
-Cc: linux-mm@kvack.org, Ralph Campbell <rcampbell@nvidia.com>, "Yang, Philip" <Philip.Yang@amd.com>, Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, dri-devel@lists.freedesktop.org, Christoph Hellwig <hch@lst.de>, intel-gfx@lists.freedesktop.org, =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, linux-kernel@vger.kernel.org, Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>, nouveau@lists.freedesktop.org
+To: Zou Wei <zou_wei@huawei.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, ML dri-devel <dri-devel@lists.freedesktop.org>, ML nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Apr 22, 2020 at 01:52:32PM -0400, Felix Kuehling wrote:
-> [+Philip Yang]
-> 
-> Am 2020-04-21 um 8:21 p.m. schrieb Jason Gunthorpe:
-> > From: Jason Gunthorpe <jgg@mellanox.com>
-> >
-> > Presumably the intent here was that hmm_range_fault() could put the data
-> > into some HW specific format and thus avoid some work. However, nothing
-> > actually does that, and it isn't clear how anything actually could do that
-> > as hmm_range_fault() provides CPU addresses which must be DMA mapped.
-> >
-> > Perhaps there is some special HW that does not need DMA mapping, but we
-> > don't have any examples of this, and the theoretical performance win of
-> > avoiding an extra scan over the pfns array doesn't seem worth the
-> > complexity. Plus pfns needs to be scanned anyhow to sort out any
-> > DEVICE_PRIVATE pages.
-> >
-> > This version replaces the uint64_t with an usigned long containing a pfn
-> > and fix flags. On input flags is filled with the HMM_PFN_REQ_* values, on
-> > successful output it is filled with HMM_PFN_* values, describing the state
-> > of the pages.
-> >
-> > amdgpu is simple to convert, it doesn't use snapshot and doesn't use
-> > per-page flags.
-> >
-> > nouveau uses only 16 hmm_pte entries at most (ie fits in a few cache
-> > lines), and it sweeps over its pfns array a couple of times anyhow.
-> >
-> > Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
-> > Signed-off-by: Christoph Hellwig <hch@lst.de>
-> 
-> Hi Jason,
-> 
-> I pointed out a typo in the documentation inline. Other than that, the
-> series is
-> 
-> Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
-> 
-> I'll try to build it and run some basic tests later.
+Thanks!
 
-Got it, thanks! Let me know if there are problems
-
-Jason
+On Wed, 22 Apr 2020 at 16:56, Zou Wei <zou_wei@huawei.com> wrote:
+>
+> Fixes coccicheck warning:
+>
+> drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c:103:23-30: WARNING opportunity for kmemdup
+> drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c:113:22-29: WARNING opportunity for kmemdup
+>
+> Fixes: 22dcda45a3d1 ("drm/nouveau/acr: implement new subdev to replace "secure boot"")
+> Reported-by: Hulk Robot <hulkci@huawei.com>
+> Signed-off-by: Zou Wei <zou_wei@huawei.com>
+> ---
+>  drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c | 12 ++++--------
+>  1 file changed, 4 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c b/drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c
+> index aecce2d..667fa01 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c
+> @@ -100,25 +100,21 @@ nvkm_acr_hsfw_load_image(struct nvkm_acr *acr, const char *name, int ver,
+>         hsfw->data_size = lhdr->data_size;
+>
+>         hsfw->sig.prod.size = fwhdr->sig_prod_size;
+> -       hsfw->sig.prod.data = kmalloc(hsfw->sig.prod.size, GFP_KERNEL);
+> +       hsfw->sig.prod.data = kmemdup(fw->data + fwhdr->sig_prod_offset + sig,
+> +                                     hsfw->sig.prod.size, GFP_KERNEL);
+>         if (!hsfw->sig.prod.data) {
+>                 ret = -ENOMEM;
+>                 goto done;
+>         }
+>
+> -       memcpy(hsfw->sig.prod.data, fw->data + fwhdr->sig_prod_offset + sig,
+> -              hsfw->sig.prod.size);
+> -
+>         hsfw->sig.dbg.size = fwhdr->sig_dbg_size;
+> -       hsfw->sig.dbg.data = kmalloc(hsfw->sig.dbg.size, GFP_KERNEL);
+> +       hsfw->sig.dbg.data = kmemdup(fw->data + fwhdr->sig_dbg_offset + sig,
+> +                                    hsfw->sig.dbg.size, GFP_KERNEL);
+>         if (!hsfw->sig.dbg.data) {
+>                 ret = -ENOMEM;
+>                 goto done;
+>         }
+>
+> -       memcpy(hsfw->sig.dbg.data, fw->data + fwhdr->sig_dbg_offset + sig,
+> -              hsfw->sig.dbg.size);
+> -
+>         hsfw->sig.patch_loc = loc;
+>  done:
+>         nvkm_firmware_put(fw);
+> --
+> 2.6.2
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
