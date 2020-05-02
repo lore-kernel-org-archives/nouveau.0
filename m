@@ -1,110 +1,98 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH hmm v2 5/5] mm/hmm: remove the customizable
- pfn format from hmm_range_fault
-Date: Fri, 1 May 2020 17:53:26 -0700
-Message-ID: <3c06a94c-c17f-dc31-537e-f3f6e1ace9a2@nvidia.com>
-References: <5-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
+From: John Hubbard <jhubbard@nvidia.com>
+Subject: Re: [PATCH hmm v2 1/5] mm/hmm: make CONFIG_DEVICE_PRIVATE into a
+ select
+Date: Fri, 1 May 2020 22:47:37 -0700
+Message-ID: <17b40a00-658a-1bf4-c14a-7543dd0d2f8c@nvidia.com>
+References: <1-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <1-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
 Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org
-Cc: "David (ChunMing) Zhou" <David1.Zhou-5C7GfCeVMHo@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "Yang, Philip" <Philip.Yang-5C7GfCeVMHo@public.gmane.org>, Felix Kuehling <Felix.Kuehling-5C7GfCeVMHo@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Niranjana Vishwanathapura <niranjana.vishwanathapura-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Jason Gunthorpe <jgg@ziepe.ca>, linux-mm@kvack.org, Ralph Campbell <rcampbell@nvidia.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, dri-devel@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>, Christoph Hellwig <hch@lst.de>, intel-gfx@lists.freedesktop.org, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, linux-kernel@vger.kernel.org, Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>, nouveau@lists.freedesktop.org, "Yang, Philip" <Philip.Yang@amd.com>
 List-Id: nouveau.vger.kernel.org
 
+On 2020-05-01 11:20, Jason Gunthorpe wrote:
+> From: Jason Gunthorpe <jgg@mellanox.com>
+> 
+> There is no reason for a user to select this or not directly - it should
+> be selected by drivers that are going to use the feature, similar to how
+> CONFIG_HMM_MIRROR works.
 
-On 5/1/20 11:20 AM, Jason Gunthorpe wrote:
-> From: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Yes, this is a nice touch.
+
+Reviewed-by: John Hubbard <jhubbard@nvidia.com>
+
+thanks,
+-- 
+John Hubbard
+NVIDIA
+
 > 
-> Presumably the intent here was that hmm_range_fault() could put the data
-> into some HW specific format and thus avoid some work. However, nothing
-> actually does that, and it isn't clear how anything actually could do that
-> as hmm_range_fault() provides CPU addresses which must be DMA mapped.
+> Currently all drivers provide a feature kconfig that will disable use of
+> DEVICE_PRIVATE in that driver, allowing users to avoid enabling this if
+> they don't want the overhead.
 > 
-> Perhaps there is some special HW that does not need DMA mapping, but we
-> don't have any examples of this, and the theoretical performance win of
-> avoiding an extra scan over the pfns array doesn't seem worth the
-> complexity. Plus pfns needs to be scanned anyhow to sort out any
-> DEVICE_PRIVATE pages.
-> 
-> This version replaces the uint64_t with an usigned long containing a pfn
-> and fixed flags. On input flags is filled with the HMM_PFN_REQ_* values,
-> on successful output it is filled with HMM_PFN_* values, describing the
-> state of the pages.
-> 
-> amdgpu is simple to convert, it doesn't use snapshot and doesn't use
-> per-page flags.
-> 
-> nouveau uses only 16 hmm_pte entries at most (ie fits in a few cache
-> lines), and it sweeps over its pfns array a couple of times anyhow. It
-> also has a nasty call chain before it reaches the dma map and hardware
-> suggesting performance isn't important:
-> 
->     nouveau_svm_fault():
->       args.i.m.method = NVIF_VMM_V0_PFNMAP
->       nouveau_range_fault()
->        nvif_object_ioctl()
->         client->driver->ioctl()
-> 	  struct nvif_driver nvif_driver_nvkm:
-> 	    .ioctl = nvkm_client_ioctl
-> 	   nvkm_ioctl()
-> 	    nvkm_ioctl_path()
-> 	      nvkm_ioctl_v0[type].func(..)
-> 	      nvkm_ioctl_mthd()
-> 	       nvkm_object_mthd()
-> 		  struct nvkm_object_func nvkm_uvmm:
-> 		    .mthd = nvkm_uvmm_mthd
-> 		   nvkm_uvmm_mthd()
-> 		    nvkm_uvmm_mthd_pfnmap()
-> 		     nvkm_vmm_pfn_map()
-> 		      nvkm_vmm_ptes_get_map()
-> 		       func == gp100_vmm_pgt_pfn
-> 			struct nvkm_vmm_desc_func gp100_vmm_desc_spt:
-> 			  .pfn = gp100_vmm_pgt_pfn
-> 			 nvkm_vmm_iter()
-> 			  REF_PTES == func == gp100_vmm_pgt_pfn()
-> 			    dma_map_page()
-> 
-> Acked-by: Felix Kuehling <Felix.Kuehling-5C7GfCeVMHo@public.gmane.org>
-> Tested-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> Signed-off-by: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-> Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+> Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
 > ---
->   Documentation/vm/hmm.rst                |  26 ++--
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |  35 ++----
->   drivers/gpu/drm/nouveau/nouveau_dmem.c  |  27 +---
->   drivers/gpu/drm/nouveau/nouveau_dmem.h  |   3 +-
->   drivers/gpu/drm/nouveau/nouveau_svm.c   |  87 ++++++++-----
->   include/linux/hmm.h                     |  99 ++++++---------
->   mm/hmm.c                                | 160 +++++++++++-------------
->   7 files changed, 192 insertions(+), 245 deletions(-)
+>   arch/powerpc/Kconfig            | 2 +-
+>   drivers/gpu/drm/nouveau/Kconfig | 2 +-
+>   mm/Kconfig                      | 7 +------
+>   3 files changed, 3 insertions(+), 8 deletions(-)
 > 
-
-...snip...
-
+> diff --git a/arch/powerpc/Kconfig b/arch/powerpc/Kconfig
+> index 924c541a926008..8de52aefdc74cc 100644
+> --- a/arch/powerpc/Kconfig
+> +++ b/arch/powerpc/Kconfig
+> @@ -455,7 +455,7 @@ config PPC_TRANSACTIONAL_MEM
+>   config PPC_UV
+>   	bool "Ultravisor support"
+>   	depends on KVM_BOOK3S_HV_POSSIBLE
+> -	depends on DEVICE_PRIVATE
+> +	select DEVICE_PRIVATE
+>   	default n
+>   	help
+>   	  This option paravirtualizes the kernel to run in POWER platforms that
+> diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
+> index d6e4ae1ef7053a..af5793f3e7c2cf 100644
+> --- a/drivers/gpu/drm/nouveau/Kconfig
+> +++ b/drivers/gpu/drm/nouveau/Kconfig
+> @@ -86,10 +86,10 @@ config DRM_NOUVEAU_BACKLIGHT
 >   
-> +static void nouveau_hmm_convert_pfn(struct nouveau_drm *drm,
-> +				    struct hmm_range *range, u64 *ioctl_addr)
-> +{
-> +	unsigned long i, npages;
-> +
-> +	/*
-> +	 * The ioctl_addr prepared here is passed through nvif_object_ioctl()
-> +	 * to an eventual DMA map in something like gp100_vmm_pgt_pfn()
-> +	 *
-> +	 * This is all just encoding the internal hmm reprensetation into a
-
-s/reprensetation/representation/
-
-Looks good and still tests OK with nouveau.
+>   config DRM_NOUVEAU_SVM
+>   	bool "(EXPERIMENTAL) Enable SVM (Shared Virtual Memory) support"
+> -	depends on DEVICE_PRIVATE
+>   	depends on DRM_NOUVEAU
+>   	depends on MMU
+>   	depends on STAGING
+> +	select DEVICE_PRIVATE
+>   	select HMM_MIRROR
+>   	select MMU_NOTIFIER
+>   	default n
+> diff --git a/mm/Kconfig b/mm/Kconfig
+> index c1acc34c1c358c..7ca36bf5f5058e 100644
+> --- a/mm/Kconfig
+> +++ b/mm/Kconfig
+> @@ -805,15 +805,10 @@ config HMM_MIRROR
+>   	depends on MMU
+>   
+>   config DEVICE_PRIVATE
+> -	bool "Unaddressable device memory (GPU memory, ...)"
+> +	bool
+>   	depends on ZONE_DEVICE
+>   	select DEV_PAGEMAP_OPS
+>   
+> -	help
+> -	  Allows creation of struct pages to represent unaddressable device
+> -	  memory; i.e., memory that is only accessible from the device (or
+> -	  group of devices). You likely also want to select HMM_MIRROR.
+> -
+>   config FRAME_VECTOR
+>   	bool
+>   
+> 
