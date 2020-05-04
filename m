@@ -1,54 +1,19 @@
-From: Jason Yan <yanaijie@huawei.com>
-Subject: [PATCH] drm/nouveau/mmu: remove unneeded semicolon
-Date: Mon, 4 May 2020 19:32:40 +0800
-Message-ID: <20200504113240.40683-1-yanaijie@huawei.com>
+From: Christoph Hellwig <hch@lst.de>
+Subject: Re: [PATCH hmm v2 5/5] mm/hmm: remove the customizable pfn format
+ from hmm_range_fault
+Date: Mon, 4 May 2020 15:14:55 +0200
+Message-ID: <20200504131455.GA19096@lst.de>
+References: <0-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com> <5-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7BIT
+Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <5-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: Jason Yan <yanaijie@huawei.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: linux-mm@kvack.org, Ralph Campbell <rcampbell@nvidia.com>, Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, dri-devel@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>, Christoph Hellwig <hch@lst.de>, intel-gfx@lists.freedesktop.org, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, linux-kernel@vger.kernel.org, Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>, nouveau@lists.freedesktop.org, "Yang, Philip" <Philip.Yang@amd.com>
 List-Id: nouveau.vger.kernel.org
 
-Fix the following coccicheck warning:
+Looks good,
 
-drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h:307:2-3: Unneeded
-semicolon
-drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c:583:2-3: Unneeded
-semicolon
-
-Signed-off-by: Jason Yan <yanaijie@huawei.com>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-index 41640e0584ac..199f94e15c5f 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-@@ -580,7 +580,7 @@ nvkm_vmm_iter(struct nvkm_vmm *vmm, const struct nvkm_vmm_page *page,
- 				it.pte[it.lvl]++;
- 			}
- 		}
--	};
-+	}
- 
- 	nvkm_vmm_flush(&it);
- 	return ~0ULL;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
-index 5e55ecbd8005..d3f8f916d0db 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
-@@ -304,7 +304,7 @@ int tu102_vmm_new(struct nvkm_mmu *, bool, u64, u64, void *, u32,
- 		FILL(VMM, PT, PTEI, _ptes, MAP, _addr);                        \
- 		PTEI += _ptes;                                                 \
- 		PTEN -= _ptes;                                                 \
--	};                                                                     \
-+	}                                                                      \
- 	nvkm_done((PT)->memory);                                               \
- } while(0)
- 
--- 
-2.21.1
+Reviewed-by: Christoph Hellwig <hch@lst.de>
