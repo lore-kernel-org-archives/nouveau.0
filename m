@@ -1,15 +1,17 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+From: Alberto Sentieri <22t-TKBR8cLbdHhWk0Htik3J/w@public.gmane.org>
 Subject: Re: problems with NVS310
-Date: Tue, 5 May 2020 11:17:04 -0400
-Message-ID: <CAKb7Uvjt77zM0ATjwCNcCAh46+kj8HkOAinuN8vdUACKcPPGjg@mail.gmail.com>
+Date: Tue, 5 May 2020 12:49:12 -0400
+Message-ID: <ff90c308-a015-0dff-debc-40d618d9a579@tripolho.com>
 References: <46ba2ff8-c8cf-0f72-62d0-b17178b0f2ac@tripolho.com>
  <CAKb7UvguvnBnauKhcc4CPoZE=vRzj46JWKQDND=MBJZ89p13vg@mail.gmail.com>
  <a6346e40-a4ed-0d59-47c9-3afea2dd7274@tripolho.com>
+ <CAKb7Uvjt77zM0ATjwCNcCAh46+kj8HkOAinuN8vdUACKcPPGjg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <a6346e40-a4ed-0d59-47c9-3afea2dd7274-TKBR8cLbdHhWk0Htik3J/w@public.gmane.org>
+In-Reply-To: <CAKb7Uvjt77zM0ATjwCNcCAh46+kj8HkOAinuN8vdUACKcPPGjg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,32 +21,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alberto Sentieri <22t-TKBR8cLbdHhWk0Htik3J/w@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, May 5, 2020 at 11:02 AM Alberto Sentieri <22t-TKBR8cLbdHhWk0Htik3J/w@public.gmane.org> wrote:
->
-> I have two monitors connected to the PC. One is an AOC 23" (1920 x 1080)
-> and the other is a BenQ 27" (2560 x 1440). Nothing special about them.
-> BenQ has a display port and the AOC uses some sort of DVI adapter.
-
-Do you know if the DVI adapter is active or passive? (If you include
-the EDID, that should become apparent. It should be visible in "xrandr
---props")
-
->
-> I have this event many times and I captured dmesg twice. At least at one
-> time I captured dmesg my computer was under high load: it had about 15
-> to 20 windows opened (spreadsheets, Thunderbird, Firefox, virtual
-> machines under virtual box), there was a lot of disk activity and I was
-> as trying to capture a screenshot from Firefox using the screenshot
-> tool. I could not make everything fit into one screen, so I hit F11
-> (while in Firefox), captured what I needed (now it fit), and when I
-> pressed F11 again to make Firefox come back to a regular window, it
-> locked: I could not move the mouse and caps lock led was frozen.
-
-Hm, moving between full screen/not is at least a page-flip if wayland
-is being used. I guess it's plausible.
-
-  -ilia
+SSBndWVzcyB0aGUgRFZJIGFkYXB0ZXIgaXMgcGFzc2l2ZS4KCiQgeHJhbmRyIC0tcHJvcHMKU2Ny
+ZWVuIDA6IG1pbmltdW0gMzIwIHggMjAwLCBjdXJyZW50IDQ0ODAgeCAxNDQwLCBtYXhpbXVtIDgx
+OTIgeCA4MTkyClhXQVlMQU5EMSBjb25uZWN0ZWQgMTkyMHgxMDgwKzArMCAobm9ybWFsIGxlZnQg
+aW52ZXJ0ZWQgcmlnaHQgeCBheGlzIHkgCmF4aXMpIDUxMG1tIHggMjkwbW0KIMKgwqDCoCBub24t
+ZGVza3RvcDogMAogwqDCoMKgIMKgwqDCoCBzdXBwb3J0ZWQ6IDAsIDEKIMKgwqAgMTkyMHgxMDgw
+wqDCoMKgwqAgNTkuOTYqKwpYV0FZTEFORDQgY29ubmVjdGVkIDI1NjB4MTQ0MCsxOTIwKzAgKG5v
+cm1hbCBsZWZ0IGludmVydGVkIHJpZ2h0IHggYXhpcyAKeSBheGlzKSA2MDBtbSB4IDM0MG1tCiDC
+oMKgwqAgbm9uLWRlc2t0b3A6IDAKIMKgwqDCoCDCoMKgwqAgc3VwcG9ydGVkOiAwLCAxCiDCoMKg
+IDI1NjB4MTQ0MMKgwqDCoMKgIDU5LjkxKisKCk9uIDUvNS8yMCAxMToxNyBBTSwgSWxpYSBNaXJr
+aW4gd3JvdGU6Cj4gT24gVHVlLCBNYXkgNSwgMjAyMCBhdCAxMTowMiBBTSBBbGJlcnRvIFNlbnRp
+ZXJpIDwyMnRAdHJpcG9saG8uY29tPiB3cm90ZToKPj4gSSBoYXZlIHR3byBtb25pdG9ycyBjb25u
+ZWN0ZWQgdG8gdGhlIFBDLiBPbmUgaXMgYW4gQU9DIDIzIiAoMTkyMCB4IDEwODApCj4+IGFuZCB0
+aGUgb3RoZXIgaXMgYSBCZW5RIDI3IiAoMjU2MCB4IDE0NDApLiBOb3RoaW5nIHNwZWNpYWwgYWJv
+dXQgdGhlbS4KPj4gQmVuUSBoYXMgYSBkaXNwbGF5IHBvcnQgYW5kIHRoZSBBT0MgdXNlcyBzb21l
+IHNvcnQgb2YgRFZJIGFkYXB0ZXIuCj4gRG8geW91IGtub3cgaWYgdGhlIERWSSBhZGFwdGVyIGlz
+IGFjdGl2ZSBvciBwYXNzaXZlPyAoSWYgeW91IGluY2x1ZGUKPiB0aGUgRURJRCwgdGhhdCBzaG91
+bGQgYmVjb21lIGFwcGFyZW50LiBJdCBzaG91bGQgYmUgdmlzaWJsZSBpbiAieHJhbmRyCj4gLS1w
+cm9wcyIpCj4KPj4gSSBoYXZlIHRoaXMgZXZlbnQgbWFueSB0aW1lcyBhbmQgSSBjYXB0dXJlZCBk
+bWVzZyB0d2ljZS4gQXQgbGVhc3QgYXQgb25lCj4+IHRpbWUgSSBjYXB0dXJlZCBkbWVzZyBteSBj
+b21wdXRlciB3YXMgdW5kZXIgaGlnaCBsb2FkOiBpdCBoYWQgYWJvdXQgMTUKPj4gdG8gMjAgd2lu
+ZG93cyBvcGVuZWQgKHNwcmVhZHNoZWV0cywgVGh1bmRlcmJpcmQsIEZpcmVmb3gsIHZpcnR1YWwK
+Pj4gbWFjaGluZXMgdW5kZXIgdmlydHVhbCBib3gpLCB0aGVyZSB3YXMgYSBsb3Qgb2YgZGlzayBh
+Y3Rpdml0eSBhbmQgSSB3YXMKPj4gYXMgdHJ5aW5nIHRvIGNhcHR1cmUgYSBzY3JlZW5zaG90IGZy
+b20gRmlyZWZveCB1c2luZyB0aGUgc2NyZWVuc2hvdAo+PiB0b29sLiBJIGNvdWxkIG5vdCBtYWtl
+IGV2ZXJ5dGhpbmcgZml0IGludG8gb25lIHNjcmVlbiwgc28gSSBoaXQgRjExCj4+ICh3aGlsZSBp
+biBGaXJlZm94KSwgY2FwdHVyZWQgd2hhdCBJIG5lZWRlZCAobm93IGl0IGZpdCksIGFuZCB3aGVu
+IEkKPj4gcHJlc3NlZCBGMTEgYWdhaW4gdG8gbWFrZSBGaXJlZm94IGNvbWUgYmFjayB0byBhIHJl
+Z3VsYXIgd2luZG93LCBpdAo+PiBsb2NrZWQ6IEkgY291bGQgbm90IG1vdmUgdGhlIG1vdXNlIGFu
+ZCBjYXBzIGxvY2sgbGVkIHdhcyBmcm96ZW4uCj4gSG0sIG1vdmluZyBiZXR3ZWVuIGZ1bGwgc2Ny
+ZWVuL25vdCBpcyBhdCBsZWFzdCBhIHBhZ2UtZmxpcCBpZiB3YXlsYW5kCj4gaXMgYmVpbmcgdXNl
+ZC4gSSBndWVzcyBpdCdzIHBsYXVzaWJsZS4KPgo+ICAgIC1pbGlhCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
