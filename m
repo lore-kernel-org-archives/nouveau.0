@@ -1,13 +1,13 @@
 From: John Hubbard <jhubbard@nvidia.com>
-Subject: Re: [PATCH hmm v2 2/5] mm/hmm: make hmm_range_fault return 0 or -1
-Date: Mon, 4 May 2020 17:20:58 -0700
-Message-ID: <9cf9f4f0-58b7-1992-6c6e-eed226ba42c0@nvidia.com>
-References: <2-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
+Subject: Re: [PATCH hmm v2 4/5] mm/hmm: remove HMM_PFN_SPECIAL
+Date: Mon, 4 May 2020 17:23:46 -0700
+Message-ID: <11e39f2e-e244-a75f-15f4-83d2f5dd2f26@nvidia.com>
+References: <4-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <2-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
+In-Reply-To: <4-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
 Content-Language: en-US
 Sender: linux-kernel-owner@vger.kernel.org
 To: Jason Gunthorpe <jgg@ziepe.ca>, linux-mm@kvack.org, Ralph Campbell <rcampbell@nvidia.com>
@@ -17,59 +17,98 @@ List-Id: nouveau.vger.kernel.org
 On 2020-05-01 11:20, Jason Gunthorpe wrote:
 > From: Jason Gunthorpe <jgg@mellanox.com>
 > 
-> hmm_vma_walk->last is supposed to be updated after every write to the
-> pfns, so that it can be returned by hmm_range_fault(). However, this is
-> not done consistently. Fortunately nothing checks the return code of
-> hmm_range_fault() for anything other than error.
-> 
-> More importantly last must be set before returning -EBUSY as it is used to
-> prevent reading an output pfn as an input flags when the loop restarts.
-> 
-> For clarity and simplicity make hmm_range_fault() return 0 or -ERRNO. Only
-> set last when returning -EBUSY.
+> This is just an alias for HMM_PFN_ERROR, nothing cares that the error was
+> because of a special page vs any other error case.
 
-Yes, this is also a nice simplification.
-
-> ...
-> @@ -590,10 +580,13 @@ long hmm_range_fault(struct hmm_range *range)
->   			return -EBUSY;
->   		ret = walk_page_range(mm, hmm_vma_walk.last, range->end,
->   				      &hmm_walk_ops, &hmm_vma_walk);
-> +		/*
-> +		 * When -EBUSY is returned the loop restarts with
-> +		 * hmm_vma_walk.last set to an address that has not been stored
-> +		 * in pfns. All entries < last in the pfn array are set to their
-> +		 * output, and all >= are still at their input values.
-> +		 */
-
-I'm glad you added that comment. This is much easier to figure out with
-that in place. After poking around this patch and eventually understanding the
-.last handling, I wondered if you might like this slightly tweaked wording
-instead:
-
-		/*
-		 * Each of the hmm_walk_ops routines returns -EBUSY if and only
-		 * hmm_vma_walk.last has been set to an address that has not yet
-		 * been stored in pfns. All entries < last in the pfn array are
-		 * set to their output, and all >= are still at their input
-		 * values.
-		 */
-
-Either way,
-
-     Reviewed-by: John Hubbard <jhubbard@nvidia.com>
+Reviewed-by: John Hubbard <jhubbard@nvidia.com>
 
 thanks,
 -- 
 John Hubbard
 NVIDIA
-
->   	} while (ret == -EBUSY);
-> -
-> -	if (ret)
-> -		return ret;
-> -	return (hmm_vma_walk.last - range->start) >> PAGE_SHIFT;
-> +	return ret;
->   }
->   EXPORT_SYMBOL(hmm_range_fault);
+> 
+> Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 1 -
+>   drivers/gpu/drm/nouveau/nouveau_svm.c   | 1 -
+>   include/linux/hmm.h                     | 8 --------
+>   mm/hmm.c                                | 2 +-
+>   4 files changed, 1 insertion(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> index 41ae7f96f48194..76b4a4fa39ed04 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> @@ -775,7 +775,6 @@ static const uint64_t hmm_range_flags[HMM_PFN_FLAG_MAX] = {
+>   static const uint64_t hmm_range_values[HMM_PFN_VALUE_MAX] = {
+>   	0xfffffffffffffffeUL, /* HMM_PFN_ERROR */
+>   	0, /* HMM_PFN_NONE */
+> -	0xfffffffffffffffcUL /* HMM_PFN_SPECIAL */
+>   };
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> index c68e9317cf0740..cf0d9bd61bebf9 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> @@ -379,7 +379,6 @@ static const u64
+>   nouveau_svm_pfn_values[HMM_PFN_VALUE_MAX] = {
+>   	[HMM_PFN_ERROR  ] = ~NVIF_VMM_PFNMAP_V0_V,
+>   	[HMM_PFN_NONE   ] =  NVIF_VMM_PFNMAP_V0_NONE,
+> -	[HMM_PFN_SPECIAL] = ~NVIF_VMM_PFNMAP_V0_V,
+>   };
+>   
+>   /* Issue fault replay for GPU to retry accesses that faulted previously. */
+> diff --git a/include/linux/hmm.h b/include/linux/hmm.h
+> index 0df27dd03d53d7..81c302c884c0e3 100644
+> --- a/include/linux/hmm.h
+> +++ b/include/linux/hmm.h
+> @@ -44,10 +44,6 @@ enum hmm_pfn_flag_e {
+>    * Flags:
+>    * HMM_PFN_ERROR: corresponding CPU page table entry points to poisoned memory
+>    * HMM_PFN_NONE: corresponding CPU page table entry is pte_none()
+> - * HMM_PFN_SPECIAL: corresponding CPU page table entry is special; i.e., the
+> - *      result of vmf_insert_pfn() or vm_insert_page(). Therefore, it should not
+> - *      be mirrored by a device, because the entry will never have HMM_PFN_VALID
+> - *      set and the pfn value is undefined.
+>    *
+>    * Driver provides values for none entry, error entry, and special entry.
+>    * Driver can alias (i.e., use same value) error and special, but
+> @@ -56,12 +52,10 @@ enum hmm_pfn_flag_e {
+>    * HMM pfn value returned by hmm_vma_get_pfns() or hmm_vma_fault() will be:
+>    * hmm_range.values[HMM_PFN_ERROR] if CPU page table entry is poisonous,
+>    * hmm_range.values[HMM_PFN_NONE] if there is no CPU page table entry,
+> - * hmm_range.values[HMM_PFN_SPECIAL] if CPU page table entry is a special one
+>    */
+>   enum hmm_pfn_value_e {
+>   	HMM_PFN_ERROR,
+>   	HMM_PFN_NONE,
+> -	HMM_PFN_SPECIAL,
+>   	HMM_PFN_VALUE_MAX
+>   };
+>   
+> @@ -110,8 +104,6 @@ static inline struct page *hmm_device_entry_to_page(const struct hmm_range *rang
+>   		return NULL;
+>   	if (entry == range->values[HMM_PFN_ERROR])
+>   		return NULL;
+> -	if (entry == range->values[HMM_PFN_SPECIAL])
+> -		return NULL;
+>   	if (!(entry & range->flags[HMM_PFN_VALID]))
+>   		return NULL;
+>   	return pfn_to_page(entry >> range->pfn_shift);
+> diff --git a/mm/hmm.c b/mm/hmm.c
+> index f06bcac948a79b..2e975eedb14f89 100644
+> --- a/mm/hmm.c
+> +++ b/mm/hmm.c
+> @@ -301,7 +301,7 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
+>   			pte_unmap(ptep);
+>   			return -EFAULT;
+>   		}
+> -		*pfn = range->values[HMM_PFN_SPECIAL];
+> +		*pfn = range->values[HMM_PFN_ERROR];
+>   		return 0;
+>   	}
+>   
 > 
