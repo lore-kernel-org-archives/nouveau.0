@@ -1,10 +1,13 @@
-From: =?UTF-8?B?TWlsYW4gQnXFoWth?= <milan.buska-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: GeForce(R) GT 710 1GB PCIE x 1 on arm64
-Date: Wed, 6 May 2020 15:53:26 +0200
-Message-ID: <CAFCWPP+WKRhhXG3CRfqRztWbFJwUqeeY6tiip4fT9gwtyjKNwQ@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: GeForce(R) GT 710 1GB PCIE x 1 on arm64
+Date: Wed, 6 May 2020 10:00:22 -0400
+Message-ID: <CAKb7UvhNDFKHkOV8p0v8cVHf7cMadNLVKi0iD_mCZnH_j5=2OA@mail.gmail.com>
+References: <CAFCWPP+WKRhhXG3CRfqRztWbFJwUqeeY6tiip4fT9gwtyjKNwQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1848318347=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAFCWPP+WKRhhXG3CRfqRztWbFJwUqeeY6tiip4fT9gwtyjKNwQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -14,73 +17,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?UTF-8?B?TWlsYW4gQnXFoWth?= <milan.buska-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1848318347==
-Content-Type: multipart/alternative; boundary="0000000000002802dd05a4fb1899"
-
---0000000000002802dd05a4fb1899
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi to all.
-I'm experimenting with running a
-https://www.zotac.com/us/product/graphics_card/geforce%C2%AE-gt-710-1gb-pci=
-e-x-1
-card on an Nvidia Jetson TX2 arm64 device.
-Possible?
-Linux kernel aarch64 5.6.10.
-Because Nvidia did not list drivers for this architecture, I'm
-experimenting with a nouveau driver.
-The Jetson TX2 has a default driver for the host1x framebuffer for output
-from the board via HDMI.
-I changed the video kernel parameter to nouveau. Booting the system OK only
-there is no output on the monitor.
-The device can only be controlled via the serial console.
-Can anyone advise me where to start setting up - (if something needs to be
-set up)
-
-Greeting
-
-Milan Bu=C5=A1ka
-
---=20
-
-Remember, no question is too stupid and no problem too small
-       -- We've all been beginners
-
---0000000000002802dd05a4fb1899
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi to all.<br>I&#39;m experimenting with running a <a href=
-=3D"https://www.zotac.com/us/product/graphics_card/geforce%C2%AE-gt-710-1gb=
--pcie-x-1">https://www.zotac.com/us/product/graphics_card/geforce%C2%AE-gt-=
-710-1gb-pcie-x-1</a> card on an Nvidia Jetson TX2 arm64 device.<br>Possible=
-?<br>Linux kernel aarch64 5.6.10.<br>Because Nvidia did not list drivers fo=
-r this architecture, I&#39;m experimenting with a nouveau driver.<br>The Je=
-tson TX2 has a default driver for the host1x framebuffer for output from th=
-e board via HDMI.<br>I changed the video kernel parameter to nouveau. Booti=
-ng the system OK only there is no output on the monitor.<br>The device can =
-only be controlled via the serial console.<br>Can anyone advise me where to=
- start setting up - (if something needs to be set up)<br><br>Greeting<br><b=
-r>Milan Bu=C5=A1ka<br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr" =
-class=3D"gmail_signature" data-smartmail=3D"gmail_signature">=C2=A0 =C2=A0 =
-=C2=A0<br>Remember, no question is too stupid and no problem too small<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0-- We&#39;ve all been beginners</div></div>
-
---0000000000002802dd05a4fb1899--
-
---===============1848318347==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1848318347==--
+SW4gZ2VuZXJhbCBpdCBzaG91bGQgYmUgcG9zc2libGUuIElmIHlvdSdyZSBoYXZpbmcgaXNzdWVz
+LCBwbGVhc2UgaW5jbHVkZSBkbWVzZy4KCk9uZSBpc3N1ZSB0aGF0IGhhcyBjb21lIHVwIGlzIHRo
+YXQgdGhlIFBDSWUgY29udHJvbGxlcnMgb24gc3VjaCBib2FyZHMKaGF2ZSB2ZXJ5IG5hcnJvdyBt
+ZW1vcnkgd2luZG93cywgbm90IGVub3VnaCB0byBtYXAgY2VydGFpbiAocmVxdWlyZWQpCkJBUnMg
+b2YgTlZJRElBIEdQVXMgKG9yIG90aGVyIEdQVXMsIEknZCBleHBlY3QpLiBUaGlzIGNvbWVzIHVw
+IGluCmRtZXNnIHdpdGggUENJLXJlbGF0ZWQgZXJyb3JzLgoKQ2hlZXJzLAoKICAtaWxpYQoKT24g
+V2VkLCBNYXkgNiwgMjAyMCBhdCA5OjUzIEFNIE1pbGFuIEJ1xaFrYSA8bWlsYW4uYnVza2FAZ21h
+aWwuY29tPiB3cm90ZToKPgo+IEhpIHRvIGFsbC4KPiBJJ20gZXhwZXJpbWVudGluZyB3aXRoIHJ1
+bm5pbmcgYSBodHRwczovL3d3dy56b3RhYy5jb20vdXMvcHJvZHVjdC9ncmFwaGljc19jYXJkL2dl
+Zm9yY2UlQzIlQUUtZ3QtNzEwLTFnYi1wY2llLXgtMSBjYXJkIG9uIGFuIE52aWRpYSBKZXRzb24g
+VFgyIGFybTY0IGRldmljZS4KPiBQb3NzaWJsZT8KPiBMaW51eCBrZXJuZWwgYWFyY2g2NCA1LjYu
+MTAuCj4gQmVjYXVzZSBOdmlkaWEgZGlkIG5vdCBsaXN0IGRyaXZlcnMgZm9yIHRoaXMgYXJjaGl0
+ZWN0dXJlLCBJJ20gZXhwZXJpbWVudGluZyB3aXRoIGEgbm91dmVhdSBkcml2ZXIuCj4gVGhlIEpl
+dHNvbiBUWDIgaGFzIGEgZGVmYXVsdCBkcml2ZXIgZm9yIHRoZSBob3N0MXggZnJhbWVidWZmZXIg
+Zm9yIG91dHB1dCBmcm9tIHRoZSBib2FyZCB2aWEgSERNSS4KPiBJIGNoYW5nZWQgdGhlIHZpZGVv
+IGtlcm5lbCBwYXJhbWV0ZXIgdG8gbm91dmVhdS4gQm9vdGluZyB0aGUgc3lzdGVtIE9LIG9ubHkg
+dGhlcmUgaXMgbm8gb3V0cHV0IG9uIHRoZSBtb25pdG9yLgo+IFRoZSBkZXZpY2UgY2FuIG9ubHkg
+YmUgY29udHJvbGxlZCB2aWEgdGhlIHNlcmlhbCBjb25zb2xlLgo+IENhbiBhbnlvbmUgYWR2aXNl
+IG1lIHdoZXJlIHRvIHN0YXJ0IHNldHRpbmcgdXAgLSAoaWYgc29tZXRoaW5nIG5lZWRzIHRvIGJl
+IHNldCB1cCkKPgo+IEdyZWV0aW5nCj4KPiBNaWxhbiBCdcWha2EKPgo+IC0tCj4KPiBSZW1lbWJl
+ciwgbm8gcXVlc3Rpb24gaXMgdG9vIHN0dXBpZCBhbmQgbm8gcHJvYmxlbSB0b28gc21hbGwKPiAg
+ICAgICAgLS0gV2UndmUgYWxsIGJlZW4gYmVnaW5uZXJzCj4gX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
