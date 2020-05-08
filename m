@@ -1,92 +1,112 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [RFC v4 10/12] drm/nouveau/kms/nv50-: Expose
- nv50_outp_atom in disp.h
-Date: Fri,  8 May 2020 16:47:00 -0400
-Message-ID: <20200508204751.155488-11-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [RFC v4 11/12] drm/nouveau/kms/nv50-: Move hard-coded object handles into header
+Date: Fri,  8 May 2020 16:47:01 -0400
+Message-ID: <20200508204751.155488-12-lyude@redhat.com>
 References: <20200508204751.155488-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200508204751.155488-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Jani Nikula <jani.nikula-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org>, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200508204751.155488-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, Sean Paul <seanpaul@chromium.org>, Alex Deucher <alexander.deucher@amd.com>, Takashi Iwai <tiwai@suse.de>, Ilia Mirkin <imirkin@alum.mit.edu>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 List-Id: nouveau.vger.kernel.org
 
-In order to make sure that we flush disable updates at the right time
-when disabling CRCs, we'll need to be able to look at the outp state to
-see if we're changing it at the same time that we're disabling CRCs.
+While most of the functionality on Nvidia GPUs doesn't require using an
+explicit handle instead of the main VRAM handle + offset, there are a
+couple of places that do require explicit handles, such as CRC
+functionality. Since this means we're about to add another
+nouveau-chosen handle, let's just go ahead and move any hard-coded
+handles into a single header. This is just to keep things slightly
+organized, and to make it a little bit easier if we need to add more
+handles in the future.
 
-So, expose the struct in disp.h.
+This patch should contain no functional changes.
 
-Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Changes since v3:
+* Correct SPDX license identifier (checkpatch)
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
 ---
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 18 ------------------
- drivers/gpu/drm/nouveau/dispnv50/disp.h | 14 ++++++++++++++
- 2 files changed, 14 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/disp.c    |  7 +++++--
+ drivers/gpu/drm/nouveau/dispnv50/handles.h | 15 +++++++++++++++
+ drivers/gpu/drm/nouveau/dispnv50/wndw.c    |  3 ++-
+ 3 files changed, 22 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/gpu/drm/nouveau/dispnv50/handles.h
 
 diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 5be036b3b533..5d5661967d50 100644
+index 5d5661967d50..568029825f62 100644
 --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
 +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -57,24 +57,6 @@
+@@ -26,6 +26,7 @@
+ #include "core.h"
+ #include "head.h"
+ #include "wndw.h"
++#include "handles.h"
  
- #include <subdev/bios/dp.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/hdmi.h>
+@@ -154,7 +155,8 @@ nv50_dmac_create(struct nvif_device *device, struct nvif_object *disp,
+ 	if (!syncbuf)
+ 		return 0;
  
--/******************************************************************************
-- * Atomic state
-- *****************************************************************************/
--
--struct nv50_outp_atom {
--	struct list_head head;
--
--	struct drm_encoder *encoder;
--	bool flush_disable;
--
--	union nv50_outp_atom_mask {
--		struct {
--			bool ctrl:1;
--		};
--		u8 mask;
--	} set, clr;
--};
--
- /******************************************************************************
-  * EVO channel
-  *****************************************************************************/
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.h b/drivers/gpu/drm/nouveau/dispnv50/disp.h
-index d54fe00ac3a3..8935ebce8ab0 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.h
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.h
-@@ -70,6 +70,20 @@ struct nv50_dmac {
- 	struct mutex lock;
- };
+-	ret = nvif_object_init(&dmac->base.user, 0xf0000000, NV_DMA_IN_MEMORY,
++	ret = nvif_object_init(&dmac->base.user, NV50_DISP_HANDLE_SYNCBUF,
++			       NV_DMA_IN_MEMORY,
+ 			       &(struct nv_dma_v0) {
+ 					.target = NV_DMA_V0_TARGET_VRAM,
+ 					.access = NV_DMA_V0_ACCESS_RDWR,
+@@ -165,7 +167,8 @@ nv50_dmac_create(struct nvif_device *device, struct nvif_object *disp,
+ 	if (ret)
+ 		return ret;
  
-+struct nv50_outp_atom {
-+	struct list_head head;
+-	ret = nvif_object_init(&dmac->base.user, 0xf0000001, NV_DMA_IN_MEMORY,
++	ret = nvif_object_init(&dmac->base.user, NV50_DISP_HANDLE_VRAM,
++			       NV_DMA_IN_MEMORY,
+ 			       &(struct nv_dma_v0) {
+ 					.target = NV_DMA_V0_TARGET_VRAM,
+ 					.access = NV_DMA_V0_ACCESS_RDWR,
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/handles.h b/drivers/gpu/drm/nouveau/dispnv50/handles.h
+new file mode 100644
+index 000000000000..d1beeb9a444d
+--- /dev/null
++++ b/drivers/gpu/drm/nouveau/dispnv50/handles.h
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: MIT
++#ifndef __NV50_KMS_HANDLES_H__
++#define __NV50_KMS_HANDLES_H__
 +
-+	struct drm_encoder *encoder;
-+	bool flush_disable;
++/*
++ * Various hard-coded object handles that nouveau uses. These are made-up by
++ * nouveau developers, not Nvidia. The only significance of the handles chosen
++ * is that they must all be unique.
++ */
++#define NV50_DISP_HANDLE_SYNCBUF                                        0xf0000000
++#define NV50_DISP_HANDLE_VRAM                                           0xf0000001
 +
-+	union nv50_outp_atom_mask {
-+		struct {
-+			bool ctrl:1;
-+		};
-+		u8 mask;
-+	} set, clr;
-+};
++#define NV50_DISP_HANDLE_WNDW_CTX(kind)                        (0xfb000000 | kind)
 +
- int nv50_dmac_create(struct nvif_device *device, struct nvif_object *disp,
- 		     const s32 *oclass, u8 head, void *data, u32 size,
- 		     u64 syncbuf, struct nv50_dmac *dmac);
++#endif /* !__NV50_KMS_HANDLES_H__ */
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+index 39cca8eaa066..cb67a715bd69 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+@@ -21,6 +21,7 @@
+  */
+ #include "wndw.h"
+ #include "wimm.h"
++#include "handles.h"
+ 
+ #include <nvif/class.h>
+ #include <nvif/cl0002.h>
+@@ -44,7 +45,7 @@ nv50_wndw_ctxdma_new(struct nv50_wndw *wndw, struct nouveau_framebuffer *fb)
+ 	struct nouveau_drm *drm = nouveau_drm(fb->base.dev);
+ 	struct nv50_wndw_ctxdma *ctxdma;
+ 	const u8    kind = fb->nvbo->kind;
+-	const u32 handle = 0xfb000000 | kind;
++	const u32 handle = NV50_DISP_HANDLE_WNDW_CTX(kind);
+ 	struct {
+ 		struct nv_dma_v0 base;
+ 		union {
 -- 
 2.25.4
