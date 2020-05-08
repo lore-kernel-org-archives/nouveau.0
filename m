@@ -1,7 +1,7 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [RFC v4 03/12] drm/vblank: Register drmm cleanup action once per drm_vblank_crtc
-Date: Fri,  8 May 2020 16:46:53 -0400
-Message-ID: <20200508204751.155488-4-lyude@redhat.com>
+Subject: [RFC v4 02/12] kthread: Add kthread_(un)block_work_queuing() and kthread_work_queuable()
+Date: Fri,  8 May 2020 16:46:52 -0400
+Message-ID: <20200508204751.155488-3-lyude@redhat.com>
 References: <20200508204751.155488-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -10,83 +10,114 @@ Return-path: <linux-kernel-owner@vger.kernel.org>
 In-Reply-To: <20200508204751.155488-1-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
 To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: Daniel Vetter <daniel@ffwll.ch>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>, Tejun Heo <tj@kernel.org>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Andrew Morton <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, Suren Baghdasaryan <surenb@google.com>, Johannes Weiner <hannes@cmpxchg.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Liang Chen <cl@rock-chips.com>, Ben Dooks <ben.dooks@codethink.co.uk>, Thomas Gleixner <tglx@linutronix.de>
 List-Id: nouveau.vger.kernel.org
 
-Since we'll be allocating resources for kthread_create_worker() in the
-next commit (which could fail and require us to clean up the mess),
-let's simplify the cleanup process a bit by registering a
-drm_vblank_init_release() action for each drm_vblank_crtc so they're
-still cleaned up if we fail to initialize one of them.
-
-Changes since v3:
-* Use drmm_add_action_or_reset() - Daniel Vetter
+Add some simple wrappers around incrementing/decrementing
+kthread_work.cancelling under lock, along with checking whether queuing
+is currently allowed on a given kthread_work, which we'll use want to
+implement work cancelling with DRM's vblank work helpers.
 
 Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Tejun Heo <tj@kernel.org>
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Cc: dri-devel@lists.freedesktop.org
 Cc: nouveau@lists.freedesktop.org
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 ---
- drivers/gpu/drm/drm_vblank.c | 23 ++++++++++-------------
- 1 file changed, 10 insertions(+), 13 deletions(-)
+ include/linux/kthread.h | 19 +++++++++++++++++
+ kernel/kthread.c        | 46 +++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 65 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index 758bf74e1cab..a4a9013584e2 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -491,16 +491,12 @@ static void vblank_disable_fn(struct timer_list *t)
+diff --git a/include/linux/kthread.h b/include/linux/kthread.h
+index 0006540ce7f9..c6fee200fced 100644
+--- a/include/linux/kthread.h
++++ b/include/linux/kthread.h
+@@ -211,9 +211,28 @@ void kthread_flush_worker(struct kthread_worker *worker);
  
- static void drm_vblank_init_release(struct drm_device *dev, void *ptr)
- {
--	unsigned int pipe;
--
--	for (pipe = 0; pipe < dev->num_crtcs; pipe++) {
--		struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
-+	struct drm_vblank_crtc *vblank = ptr;
+ bool kthread_cancel_work_sync(struct kthread_work *work);
+ bool kthread_cancel_delayed_work_sync(struct kthread_delayed_work *work);
++void kthread_block_work_queuing(struct kthread_worker *worker,
++				struct kthread_work *work);
++void kthread_unblock_work_queuing(struct kthread_worker *worker,
++				  struct kthread_work *work);
  
--		WARN_ON(READ_ONCE(vblank->enabled) &&
--			drm_core_check_feature(dev, DRIVER_MODESET));
-+	WARN_ON(READ_ONCE(vblank->enabled) &&
-+		drm_core_check_feature(dev, DRIVER_MODESET));
+ void kthread_destroy_worker(struct kthread_worker *worker);
  
--		del_timer_sync(&vblank->disable_timer);
--	}
-+	del_timer_sync(&vblank->disable_timer);
- }
- 
- /**
-@@ -510,7 +506,7 @@ static void drm_vblank_init_release(struct drm_device *dev, void *ptr)
-  *
-  * This function initializes vblank support for @num_crtcs display pipelines.
-  * Cleanup is handled automatically through a cleanup function added with
-- * drmm_add_action().
-+ * drmm_add_action_or_reset().
-  *
-  * Returns:
-  * Zero on success or a negative error code on failure.
-@@ -529,10 +525,6 @@ int drm_vblank_init(struct drm_device *dev, unsigned int num_crtcs)
- 
- 	dev->num_crtcs = num_crtcs;
- 
--	ret = drmm_add_action(dev, drm_vblank_init_release, NULL);
--	if (ret)
--		return ret;
--
- 	for (i = 0; i < num_crtcs; i++) {
- 		struct drm_vblank_crtc *vblank = &dev->vblank[i];
- 
-@@ -541,6 +533,11 @@ int drm_vblank_init(struct drm_device *dev, unsigned int num_crtcs)
- 		init_waitqueue_head(&vblank->queue);
- 		timer_setup(&vblank->disable_timer, vblank_disable_fn, 0);
- 		seqlock_init(&vblank->seqlock);
++/**
++ * kthread_work_queuable - whether or not a kthread work can be queued
++ * @work: The kthread work to check
++ *
++ * Checks whether or not queuing @work is currently blocked from queuing,
++ * either by kthread_cancel_work_sync() and friends or
++ * kthread_block_work_queuing().
++ *
++ * Returns: whether or not the @work may be queued.
++ */
++static inline bool kthread_work_queuable(struct kthread_work *work)
++{
++	return READ_ONCE(work->canceling) == 0;
++}
 +
-+		ret = drmm_add_action_or_reset(dev, drm_vblank_init_release,
-+					       vblank);
-+		if (ret)
-+			return ret;
- 	}
+ struct cgroup_subsys_state;
  
- 	DRM_INFO("Supports vblank timestamp caching Rev 2 (21.10.2013).\n");
+ #ifdef CONFIG_BLK_CGROUP
+diff --git a/kernel/kthread.c b/kernel/kthread.c
+index c1f8ec9d5836..f8a5c5a87cc6 100644
+--- a/kernel/kthread.c
++++ b/kernel/kthread.c
+@@ -1187,6 +1187,52 @@ bool kthread_cancel_delayed_work_sync(struct kthread_delayed_work *dwork)
+ }
+ EXPORT_SYMBOL_GPL(kthread_cancel_delayed_work_sync);
+ 
++/**
++ * kthread_block_work_queuing - prevent a kthread_work from being queued
++ * without actually cancelling it
++ * @worker: kthread worker to use
++ * @work: work to block queuing on
++ *
++ * Prevents @work from being queued using kthread_queue_work() and friends,
++ * but doesn't attempt to cancel any previous queuing. The caller must unblock
++ * queuing later by calling kthread_unblock_work_queuing(). This call can be
++ * called multiple times.
++ *
++ * See also: kthread_work_queuable()
++ */
++void kthread_block_work_queuing(struct kthread_worker *worker,
++				struct kthread_work *work)
++{
++	unsigned long flags;
++
++	raw_spin_lock_irqsave(&worker->lock, flags);
++	work->canceling++;
++	raw_spin_unlock_irqrestore(&worker->lock, flags);
++}
++EXPORT_SYMBOL_GPL(kthread_block_work_queuing);
++
++/**
++ * kthread_unblock_work_queuing - unblock queuing on a kthread_work
++ * @worker: kthread worker to use
++ * @work: work to unblock queuing on
++ *
++ * Removes a request to prevent @work from being queued with
++ * kthread_queue_work() and friends, so that it may potentially be queued
++ * again.
++ *
++ * See also: kthread_work_queuable()
++ */
++void kthread_unblock_work_queuing(struct kthread_worker *worker,
++				  struct kthread_work *work)
++{
++	unsigned long flags;
++
++	raw_spin_lock_irqsave(&worker->lock, flags);
++	WARN_ON_ONCE(--work->canceling < 0);
++	raw_spin_unlock_irqrestore(&worker->lock, flags);
++}
++EXPORT_SYMBOL_GPL(kthread_unblock_work_queuing);
++
+ /**
+  * kthread_flush_worker - flush all current works on a kthread_worker
+  * @worker: worker to flush
 -- 
 2.25.4
