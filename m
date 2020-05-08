@@ -1,95 +1,94 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [RFC v4 05/12] drm/nouveau/kms/nv50-: Unroll error
- cleanup in nv50_head_create()
-Date: Fri,  8 May 2020 16:46:55 -0400
-Message-ID: <20200508204751.155488-6-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [RFC v4 06/12] drm/nouveau/kms/nv140-: Don't modify depth in state during atomic commit
+Date: Fri,  8 May 2020 16:46:56 -0400
+Message-ID: <20200508204751.155488-7-lyude@redhat.com>
 References: <20200508204751.155488-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200508204751.155488-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Peteris Rudzusiks <peteris.rudzusiks-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200508204751.155488-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Ilia Mirkin <imirkin@alum.mit.edu>
 List-Id: nouveau.vger.kernel.org
 
-We'll be rolling back more things in this function, and the way it's
-structured is a bit confusing. So, let's clean this up a bit and just
-unroll in the event of failure.
+Currently, we modify the depth value stored in the atomic state when
+performing a commit in order to workaround the fact we haven't
+implemented support for depths higher then 10 yet. This isn't idempotent
+though, as it will happen every atomic commit where we modify the OR
+state even if the head's depth in the atomic state hasn't been modified.
 
-Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Normally this wouldn't matter, since we don't modify OR state outside of
+modesets, but since the CRC capture region is implemented as part of the
+OR state in hardware we'll want to make sure all commits modifying OR
+state are idempotent so as to avoid changing the depth unexpectedly.
+
+So, fix this by simply not writing the reduced depth value we come up
+with to the atomic state.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
 ---
- drivers/gpu/drm/nouveau/dispnv50/head.c | 33 +++++++++++++++++--------
- 1 file changed, 23 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/headc37d.c | 11 +++++++----
+ drivers/gpu/drm/nouveau/dispnv50/headc57d.c | 11 +++++++----
+ 2 files changed, 14 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/head.c b/drivers/gpu/drm/nouveau/dispnv50/head.c
-index 8f6455697ba7..e29ea40e7c33 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/head.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/head.c
-@@ -507,20 +507,28 @@ nv50_head_create(struct drm_device *dev, int index)
- 
- 	if (disp->disp->object.oclass < GV100_DISP) {
- 		ret = nv50_base_new(drm, head->base.index, &base);
-+		if (ret)
-+			goto fail_free;
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/headc37d.c b/drivers/gpu/drm/nouveau/dispnv50/headc37d.c
+index 00011ce109a6..68920f8d9c79 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/headc37d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/headc37d.c
+@@ -27,17 +27,20 @@ static void
+ headc37d_or(struct nv50_head *head, struct nv50_head_atom *asyh)
+ {
+ 	struct nv50_dmac *core = &nv50_disp(head->base.base.dev)->core->chan;
++	u8 depth;
+ 	u32 *push;
 +
- 		ret = nv50_ovly_new(drm, head->base.index, &ovly);
-+		if (ret)
-+			goto fail_free;
- 	} else {
- 		ret = nv50_wndw_new(drm, DRM_PLANE_TYPE_PRIMARY,
- 				    head->base.index * 2 + 0, &base);
-+		if (ret)
-+			goto fail_free;
+ 	if ((push = evo_wait(core, 2))) {
+ 		/*XXX: This is a dirty hack until OR depth handling is
+ 		 *     improved later for deep colour etc.
+ 		 */
+ 		switch (asyh->or.depth) {
+-		case 6: asyh->or.depth = 5; break;
+-		case 5: asyh->or.depth = 4; break;
+-		case 2: asyh->or.depth = 1; break;
+-		case 0:	asyh->or.depth = 4; break;
++		case 6: depth = 5; break;
++		case 5: depth = 4; break;
++		case 2: depth = 1; break;
++		case 0:	depth = 4; break;
+ 		default:
++			depth = asyh->or.depth;
+ 			WARN_ON(1);
+ 			break;
+ 		}
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/headc57d.c b/drivers/gpu/drm/nouveau/dispnv50/headc57d.c
+index 938d910a1b1e..0296cd1d761f 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/headc57d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/headc57d.c
+@@ -27,17 +27,20 @@ static void
+ headc57d_or(struct nv50_head *head, struct nv50_head_atom *asyh)
+ {
+ 	struct nv50_dmac *core = &nv50_disp(head->base.base.dev)->core->chan;
++	u8 depth;
+ 	u32 *push;
 +
- 		ret = nv50_wndw_new(drm, DRM_PLANE_TYPE_OVERLAY,
- 				    head->base.index * 2 + 1, &ovly);
--	}
--	if (ret == 0)
--		ret = nv50_curs_new(drm, head->base.index, &curs);
--	if (ret) {
--		kfree(head);
--		return ERR_PTR(ret);
-+		if (ret)
-+			goto fail_free;
- 	}
- 
-+	ret = nv50_curs_new(drm, head->base.index, &curs);
-+	if (ret)
-+		goto fail_free;
-+
- 	crtc = &head->base.base;
- 	drm_crtc_init_with_planes(dev, crtc, &base->plane, &curs->plane,
- 				  &nv50_head_func, "head-%d", head->base.index);
-@@ -533,11 +541,16 @@ nv50_head_create(struct drm_device *dev, int index)
- 
- 	if (head->func->olut_set) {
- 		ret = nv50_lut_init(disp, &drm->client.mmu, &head->olut);
--		if (ret) {
--			nv50_head_destroy(crtc);
--			return ERR_PTR(ret);
--		}
-+		if (ret)
-+			goto fail_crtc_cleanup;
- 	}
- 
- 	return head;
-+
-+fail_crtc_cleanup:
-+	drm_crtc_cleanup(crtc);
-+fail_free:
-+	kfree(head);
-+
-+	return ERR_PTR(ret);
- }
+ 	if ((push = evo_wait(core, 2))) {
+ 		/*XXX: This is a dirty hack until OR depth handling is
+ 		 *     improved later for deep colour etc.
+ 		 */
+ 		switch (asyh->or.depth) {
+-		case 6: asyh->or.depth = 5; break;
+-		case 5: asyh->or.depth = 4; break;
+-		case 2: asyh->or.depth = 1; break;
+-		case 0:	asyh->or.depth = 4; break;
++		case 6: depth = 5; break;
++		case 5: depth = 4; break;
++		case 2: depth = 1; break;
++		case 0:	depth = 4; break;
+ 		default:
++			depth = asyh->or.depth;
+ 			WARN_ON(1);
+ 			break;
+ 		}
 -- 
 2.25.4
