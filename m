@@ -1,96 +1,231 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [RFC v4 00/12] drm/nouveau: Introduce CRC support for gf119+
-Date: Fri,  8 May 2020 16:46:50 -0400
-Message-ID: <20200508204751.155488-1-lyude@redhat.com>
+Subject: [RFC v4 01/12] kthread: Add kthread_queue_flush_work()
+Date: Fri,  8 May 2020 16:46:51 -0400
+Message-ID: <20200508204751.155488-2-lyude@redhat.com>
+References: <20200508204751.155488-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200508204751.155488-1-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
 To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: Liang Chen <cl@rock-chips.com>, Andrew Morton <akpm@linux-foundation.org>, Thomas Gleixner <tglx@linutronix.de>, Ben Dooks <ben.dooks@codethink.co.uk>, Tejun Heo <tj@kernel.org>, Petr Mladek <pmladek@suse.com>, Suren Baghdasaryan <surenb@google.com>, Lyude Paul <lyude@redhat.com>, "Peter Zijlstra (Intel)" <peterz@infradead.org>, Johannes Weiner <hannes@cmpxchg.org>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>, Ilia Mirkin <imirkin@alum.mit.edu>, Peteris Rudzusiks <peteris.rudzusiks@gmail.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <chris>
+Cc: Daniel Vetter <daniel@ffwll.ch>, Tejun Heo <tj@kernel.org>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Andrew Morton <akpm@linux-foundation.org>, Suren Baghdasaryan <surenb@google.com>, Petr Mladek <pmladek@suse.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Steven Rostedt (VMware)" <rostedt@goodmis.org>, Thomas Gleixner <tglx@linutronix.de>, Ben Dooks <ben.dooks@codethink.co.uk>, Liang Chen <cl@rock-chips.com>
 List-Id: nouveau.vger.kernel.org
 
-Nvidia released some documentation on how CRC support works on their
-GPUs, hooray!
+Currently, it's only possible to flush on a kthread_work in contexts
+where it's possible to block. This can be kind of painful though when
+trying to implement new types of delayed work which use kthread_work,
+since it means we'd need to drop any spinlocks for new delayed work
+implementations before we can actually call kthread_flush_work().
 
-So: this patch series implements said CRC support in nouveau, along with
-adding some special debugfs interfaces for some relevant igt-gpu-tools
-tests (already on the ML).
+In the time between dropping locks and calling kthread_flush_work(), the
+work might have already executed once and have gotten re-queued by the
+time we're ready. This would mean that once the user finally executes
+kthread_flush_work(), we'd accidentally wait for someone else's queued
+work instead of our own.
 
-First - we add some new functionality to kthread_work in the kernel, and
-then use this to add a new feature to DRM that Ville Syrjälä came up
-with: vblank workers. Basically, this is just a generic DRM interface
-that allows for scheduling high-priority workers that start on a given
-vblank interrupt. Note that while we're currently only using this in
-nouveau, Intel has plans to use this for i915 as well (hence why they
-came up with it!).
+For DRM vblank works it's preferable that we just return immediately
+during such races, instead of blocking on the re-queue. Additionally, we
+also want to be able to use kthread_flush_work structs in our own
+contexts so that we can block until a vblank work's target vblank has
+passed, _and_ said work has executed once since. And finally, we also
+want to be able to finish flushing on a work early if it's been
+cancelled at any point (e.g. before or after it's actually been queued
+on the kthread_worker).
 
-And finally: in order to implement the last feature, we expose some new
-functions in the kernel's kthread_worker infrastructure so that we can
-de-complicate our implementation of this.
+So, let's make all of these things possible by exposing struct
+kthread_flush_work, and then splitting kthread_flush_work() into two
+functions: kthread_queue_flush_work(); which handles possibly queuing up
+the kthread_flush_work on the work's respective kthread_worker, and
+kthread_flush_work(); which performs a simple synchronous flush just
+like before. We also add a DEFINE_KTHREAD_FLUSH_WORK() macro, which
+simply initializes a kthread_flush_work struct inline (I can't see
+anyone needing to use a kthread_flush_work that gets used outside of the
+scope of a single function, and that seems like it would be a bit
+overkill anyway).
 
-Anyway-welcome to the future! :)
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Tejun Heo <tj@kernel.org>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+---
+ include/linux/kthread.h | 16 ++++++++
+ kernel/kthread.c        | 87 ++++++++++++++++++++++++++---------------
+ 2 files changed, 71 insertions(+), 32 deletions(-)
 
-Major changes since v3:
-* Style fixes on nouveau patches from checkpatch, no functional changes
-* Don't integrate so tightly with kthread_work (and use our own lock),
-  instead introduce some new functions for doing simple async flushing
-  and cancelling. I think this interface looks a lot more acceptable
-  then what I was previously trying.
-* Apply some changes requested by danvet
-Major changes since v2:
-* Use kthread_worker instead of kthreadd for vblank workers
-* Don't check debugfs return values
-
-Lyude Paul (12):
-  kthread: Add kthread_queue_flush_work()
-  kthread: Add kthread_(un)block_work_queuing() and
-    kthread_work_queuable()
-  drm/vblank: Register drmm cleanup action once per drm_vblank_crtc
-  drm/vblank: Add vblank works
-  drm/nouveau/kms/nv50-: Unroll error cleanup in nv50_head_create()
-  drm/nouveau/kms/nv140-: Don't modify depth in state during atomic
-    commit
-  drm/nouveau/kms/nv50-: Fix disabling dithering
-  drm/nouveau/kms/nv50-: s/harm/armh/g
-  drm/nouveau/kms/nv140-: Track wndw mappings in nv50_head_atom
-  drm/nouveau/kms/nv50-: Expose nv50_outp_atom in disp.h
-  drm/nouveau/kms/nv50-: Move hard-coded object handles into header
-  drm/nouveau/kms/nvd9-: Add CRC support
-
- drivers/gpu/drm/drm_vblank.c                | 280 +++++++-
- drivers/gpu/drm/nouveau/dispnv04/crtc.c     |  25 +-
- drivers/gpu/drm/nouveau/dispnv50/Kbuild     |   4 +
- drivers/gpu/drm/nouveau/dispnv50/atom.h     |  21 +
- drivers/gpu/drm/nouveau/dispnv50/core.h     |   4 +
- drivers/gpu/drm/nouveau/dispnv50/core907d.c |   3 +
- drivers/gpu/drm/nouveau/dispnv50/core917d.c |   3 +
- drivers/gpu/drm/nouveau/dispnv50/corec37d.c |   3 +
- drivers/gpu/drm/nouveau/dispnv50/corec57d.c |   3 +
- drivers/gpu/drm/nouveau/dispnv50/crc.c      | 715 ++++++++++++++++++++
- drivers/gpu/drm/nouveau/dispnv50/crc.h      | 125 ++++
- drivers/gpu/drm/nouveau/dispnv50/crc907d.c  | 139 ++++
- drivers/gpu/drm/nouveau/dispnv50/crcc37d.c  | 153 +++++
- drivers/gpu/drm/nouveau/dispnv50/disp.c     |  65 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.h     |  24 +
- drivers/gpu/drm/nouveau/dispnv50/handles.h  |  16 +
- drivers/gpu/drm/nouveau/dispnv50/head.c     | 142 +++-
- drivers/gpu/drm/nouveau/dispnv50/head.h     |  13 +-
- drivers/gpu/drm/nouveau/dispnv50/head907d.c |  14 +-
- drivers/gpu/drm/nouveau/dispnv50/headc37d.c |  27 +-
- drivers/gpu/drm/nouveau/dispnv50/headc57d.c |  20 +-
- drivers/gpu/drm/nouveau/dispnv50/wndw.c     |  15 +-
- drivers/gpu/drm/nouveau/nouveau_display.c   |  60 +-
- include/drm/drm_vblank.h                    |  35 +
- include/linux/kthread.h                     |  35 +
- kernel/kthread.c                            | 133 +++-
- 26 files changed, 1903 insertions(+), 174 deletions(-)
- create mode 100644 drivers/gpu/drm/nouveau/dispnv50/crc.c
- create mode 100644 drivers/gpu/drm/nouveau/dispnv50/crc.h
- create mode 100644 drivers/gpu/drm/nouveau/dispnv50/crc907d.c
- create mode 100644 drivers/gpu/drm/nouveau/dispnv50/crcc37d.c
- create mode 100644 drivers/gpu/drm/nouveau/dispnv50/handles.h
-
+diff --git a/include/linux/kthread.h b/include/linux/kthread.h
+index 8bbcaad7ef0f..0006540ce7f9 100644
+--- a/include/linux/kthread.h
++++ b/include/linux/kthread.h
+@@ -105,6 +105,11 @@ struct kthread_delayed_work {
+ 	struct timer_list timer;
+ };
+ 
++struct kthread_flush_work {
++	struct kthread_work	work;
++	struct completion	done;
++};
++
+ #define KTHREAD_WORKER_INIT(worker)	{				\
+ 	.lock = __RAW_SPIN_LOCK_UNLOCKED((worker).lock),		\
+ 	.work_list = LIST_HEAD_INIT((worker).work_list),		\
+@@ -122,6 +127,11 @@ struct kthread_delayed_work {
+ 				     TIMER_IRQSAFE),			\
+ 	}
+ 
++#define KTHREAD_FLUSH_WORK_INIT(fwork) { \
++	KTHREAD_WORK_INIT((fwork).work, __kthread_flush_work_fn), \
++	COMPLETION_INITIALIZER_ONSTACK((fwork).done), \
++	}
++
+ #define DEFINE_KTHREAD_WORKER(worker)					\
+ 	struct kthread_worker worker = KTHREAD_WORKER_INIT(worker)
+ 
+@@ -132,6 +142,9 @@ struct kthread_delayed_work {
+ 	struct kthread_delayed_work dwork =				\
+ 		KTHREAD_DELAYED_WORK_INIT(dwork, fn)
+ 
++#define DEFINE_KTHREAD_FLUSH_WORK(fwork) \
++	struct kthread_flush_work fwork = KTHREAD_FLUSH_WORK_INIT(fwork);
++
+ /*
+  * kthread_worker.lock needs its own lockdep class key when defined on
+  * stack with lockdep enabled.  Use the following macros in such cases.
+@@ -190,6 +203,9 @@ bool kthread_mod_delayed_work(struct kthread_worker *worker,
+ 			      struct kthread_delayed_work *dwork,
+ 			      unsigned long delay);
+ 
++bool kthread_queue_flush_work(struct kthread_work *work,
++			      struct kthread_flush_work *fwork);
++void __kthread_flush_work_fn(struct kthread_work *work);
+ void kthread_flush_work(struct kthread_work *work);
+ void kthread_flush_worker(struct kthread_worker *worker);
+ 
+diff --git a/kernel/kthread.c b/kernel/kthread.c
+index bfbfa481be3a..c1f8ec9d5836 100644
+--- a/kernel/kthread.c
++++ b/kernel/kthread.c
+@@ -943,52 +943,78 @@ bool kthread_queue_delayed_work(struct kthread_worker *worker,
+ }
+ EXPORT_SYMBOL_GPL(kthread_queue_delayed_work);
+ 
+-struct kthread_flush_work {
+-	struct kthread_work	work;
+-	struct completion	done;
+-};
+-
+-static void kthread_flush_work_fn(struct kthread_work *work)
+-{
+-	struct kthread_flush_work *fwork =
+-		container_of(work, struct kthread_flush_work, work);
+-	complete(&fwork->done);
+-}
+-
+ /**
+- * kthread_flush_work - flush a kthread_work
+- * @work: work to flush
++ * kthread_queue_flush_work - try queuing a kthread_flush_work after a
++ * queued kthread_work to synchronize with later.
++ * @work: The &kthread_work to synchronize with later
++ * @fwork: The &kthread_flush_work to queue
++ *
++ * When working with &kthread_work structs in contexts where sleeping isn't
++ * possible it may be desirable to synchronize with a &kthread_work that's
++ * currently queued, but only after we've entered a context where it's safe to
++ * sleep again, and while making sure we don't block on any later re-queues of
++ * the work.
++ *
++ * If @work is queued or executing when kthread_queue_flush_work() is called,
++ * @fwork will be scheduled for execution immediately after @work. The caller
++ * can then later synchronize on @fwork.done, which will complete once @work
++ * has executed once or been cancelled since kthread_queue_flush_work() was
++ * called.
++ *
++ * Returns: %true% if @fwork was queued,and the caller needs to call
++ * wait_for_completion() on @fwork.done to finish synchronizing, %false%
++ * otherwise.
+  *
+- * If @work is queued or executing, wait for it to finish execution.
+  */
+-void kthread_flush_work(struct kthread_work *work)
++bool kthread_queue_flush_work(struct kthread_work *work,
++			      struct kthread_flush_work *fwork)
+ {
+-	struct kthread_flush_work fwork = {
+-		KTHREAD_WORK_INIT(fwork.work, kthread_flush_work_fn),
+-		COMPLETION_INITIALIZER_ONSTACK(fwork.done),
+-	};
+ 	struct kthread_worker *worker;
+-	bool noop = false;
++	unsigned long flags;
++	bool queued = true;
+ 
+ 	worker = work->worker;
+ 	if (!worker)
+-		return;
++		return false;
+ 
+-	raw_spin_lock_irq(&worker->lock);
++	raw_spin_lock_irqsave(&worker->lock, flags);
+ 	/* Work must not be used with >1 worker, see kthread_queue_work(). */
+ 	WARN_ON_ONCE(work->worker != worker);
+ 
+ 	if (!list_empty(&work->node))
+-		kthread_insert_work(worker, &fwork.work, work->node.next);
++		kthread_insert_work(worker, &fwork->work, work->node.next);
+ 	else if (worker->current_work == work)
+-		kthread_insert_work(worker, &fwork.work,
++		kthread_insert_work(worker, &fwork->work,
+ 				    worker->work_list.next);
+ 	else
+-		noop = true;
++		queued = false;
+ 
+-	raw_spin_unlock_irq(&worker->lock);
++	raw_spin_unlock_irqrestore(&worker->lock, flags);
++	return queued;
++}
++EXPORT_SYMBOL_GPL(kthread_queue_flush_work);
++
++void __kthread_flush_work_fn(struct kthread_work *work)
++{
++	struct kthread_flush_work *fwork =
++		container_of(work, struct kthread_flush_work, work);
++	complete(&fwork->done);
++}
++EXPORT_SYMBOL_GPL(__kthread_flush_work_fn);
++
++/**
++ * kthread_flush_work - flush a kthread_work
++ * @work: work to flush
++ *
++ * If @work is queued or executing, wait for it to finish execution.
++ */
++void kthread_flush_work(struct kthread_work *work)
++{
++	bool queued;
++	DEFINE_KTHREAD_FLUSH_WORK(fwork);
+ 
+-	if (!noop)
++	queued = kthread_queue_flush_work(work, &fwork);
++	if (queued)
+ 		wait_for_completion(&fwork.done);
+ }
+ EXPORT_SYMBOL_GPL(kthread_flush_work);
+@@ -1170,10 +1196,7 @@ EXPORT_SYMBOL_GPL(kthread_cancel_delayed_work_sync);
+  */
+ void kthread_flush_worker(struct kthread_worker *worker)
+ {
+-	struct kthread_flush_work fwork = {
+-		KTHREAD_WORK_INIT(fwork.work, kthread_flush_work_fn),
+-		COMPLETION_INITIALIZER_ONSTACK(fwork.done),
+-	};
++	DEFINE_KTHREAD_FLUSH_WORK(fwork);
+ 
+ 	kthread_queue_work(worker, &fwork.work);
+ 	wait_for_completion(&fwork.done);
 -- 
 2.25.4
