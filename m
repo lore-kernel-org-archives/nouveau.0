@@ -1,53 +1,60 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: GeForce(R) GT 710 1GB PCIE x 1 on arm64
-Date: Fri, 8 May 2020 11:19:25 -0400
-Message-ID: <CAKb7UvjAkKAHFSd2Dggf2JY5GPeGB_kQTcR1EM3QucP1VvOC0A@mail.gmail.com>
-References: <CAFCWPP+WKRhhXG3CRfqRztWbFJwUqeeY6tiip4fT9gwtyjKNwQ@mail.gmail.com>
- <CAKb7UvhNDFKHkOV8p0v8cVHf7cMadNLVKi0iD_mCZnH_j5=2OA@mail.gmail.com>
- <CAFCWPP+WmbjM0O2T9ODi-iVU1qGXjpk9V9LeE9PsuT7t+APLQA@mail.gmail.com>
- <CAKb7Uvj6nMk2U6MD-iMXEWQzc4ok2xxuq7K3C8ti6mfFDqhuDw@mail.gmail.com>
- <e681b4315b596dca39bb4a28866d509e23a150c1.camel@lynxeye.de>
- <CAFCWPPKhbbk=um2pv+ytgd+WVaT+M=-mLXXAR427QgQj=w_q3A@mail.gmail.com>
- <CAKb7Uvi7-UCoEb7GJmT2CseMkhrkg4wO5vfk06KhrVWYfAP9WQ@mail.gmail.com>
- <CAFCWPPJVwVrb5atD+Ny4rOxwPJQCrYeZzXQJN4k6yzJtyR-FEQ@mail.gmail.com>
+From: Randy Dunlap <rdunlap@infradead.org>
+Subject: Re: [PATCH 2/2] nouveau: fix dependencies for DEVICE_PRIVATE
+Date: Fri, 8 May 2020 11:05:26 -0700
+Message-ID: <a84bb114-c2c2-b15a-4e00-89e4abd01564@infradead.org>
+References: <20200508144017.3501418-1-arnd@arndb.de>
+ <20200508144017.3501418-2-arnd@arndb.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAFCWPPJVwVrb5atD+Ny4rOxwPJQCrYeZzXQJN4k6yzJtyR-FEQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?B?TWlsYW4gQnXFoWth?= <milan.buska-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200508144017.3501418-2-arnd@arndb.de>
+Content-Language: en-US
+Sender: linux-kernel-owner@vger.kernel.org
+To: Arnd Bergmann <arnd@arndb.de>, Ben Skeggs <bskeggs@redhat.com>, Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Felix Kuehling <Felix.Kuehling@amd.com>, Christoph Hellwig <hch@lst.de>, John Hubbard <jhubbard@nvidia.com>, Jason Gunthorpe <jgg@mellanox.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Dan Williams <dan.j.williams@intel.com>, Ira Weiny <ira.weiny@intel.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-SSBkb24ndCB0aGluayB0aGF0IGxvZ2ljIGhhcyBjaGFuZ2VkIGluIG92ZXIgYSB5ZWFyLCBub3Ig
-ZG8gSSBleHBlY3QKaXQgd2lsbCBpbiB0aGUgZnV0dXJlLCB1bmxlc3Mgc29tZW9uZSBjb21lcyBp
-biBhbmQgZG9lcyB0aGUgd29yayB0bwpmaWd1cmUgb3V0IHdoYXQncyB3cm9uZy4gSWYgdGhhdCdz
-IG5vdCB5b3UsIHRoZW4geW91IGhhdmUgdG8gaG9wZQp0aGVyZSB3aWxsIGJlIHNvbWVvbmUgZWxz
-ZSBpbnRlcmVzdGVkIGluIHJ1bm5pbmcgYSBkZXNrdG9wIEdQVSBvbiBhbgphcm0tYmFzZWQgYm9h
-cmQuCgpPbiBGcmksIE1heSA4LCAyMDIwIGF0IDExOjEzIEFNIE1pbGFuIEJ1xaFrYSA8bWlsYW4u
-YnVza2FAZ21haWwuY29tPiB3cm90ZToKPgo+IFRoYW5rcyBmb3IgdGhlIGluZm8uCj4gSSdsbCBw
-dWxsIGl0IG91dCBpbiBhIHllYXIgYW5kIHRyeSBpdC4KPgo+IEdyZWV0aW5nCj4KPiBww6EgOC4g
-NS4gMjAyMCB2IDE1OjI3IG9kZXPDrWxhdGVsIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0
-LmVkdT4gbmFwc2FsOgo+ID4KPiA+IE9uIEZyaSwgTWF5IDgsIDIwMjAgYXQgNDozNCBBTSBNaWxh
-biBCdcWha2EgPG1pbGFuLmJ1c2thQGdtYWlsLmNvbT4gd3JvdGU6Cj4gPiA+Cj4gPiA+IEdvb2Qg
-ZGF5Lgo+ID4gPiBJJ20gbm90IGEgcHJvZ3JhbW1lciwgc28gSSBkb24ndCB1bmRlcnN0YW5kLgo+
-ID4gPgo+ID4gPiBKdXN0IGEgcXVlc3Rpb246Cj4gPiA+IFdoYXQncyB3cm9uZyA9Pgo+ID4gPiA9
-PiBub3V2ZWF1IGRyaXZlcgo+ID4gPiA9PiBwY2llIGRyaXZlcgo+ID4gPiA9PiBncmFwaGljcyBj
-YXJkCj4gPiA+Cj4gPiA+IEl0IHdpbGwgaGVscCBtZSBzYXZlIHVubmVjZXNzYXJ5IGxvc3QgdGlt
-ZS4KPiA+Cj4gPiBNb3N0IGxpa2VseSB0aGUgaXNzdWUgaXMgaW4gbm91dmVhdS4gVGhlcmUncyBh
-IG11Y2ggc21hbGxlciBsaWtlbGlob29kCj4gPiB0aGF0IHRoZSBpc3N1ZSBpcyB3aXRoIGUuZy4g
-dGhlIGlvbW11L2RtYS1hcGkgaW1wbGVtZW50YXRpb24uCj4gPgo+ID4gQ2hlZXJzLAo+ID4KPiA+
-ICAgLWlsaWEKPgo+Cj4KPiAtLQo+Cj4gUmVtZW1iZXIsIG5vIHF1ZXN0aW9uIGlzIHRvbyBzdHVw
-aWQgYW5kIG5vIHByb2JsZW0gdG9vIHNtYWxsCj4gICAgICAgIC0tIFdlJ3ZlIGFsbCBiZWVuIGJl
-Z2lubmVycwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+On 5/8/20 7:40 AM, Arnd Bergmann wrote:
+> CONFIG_DEVICE_PRIVATE cannot be selected in configurations
+> without ZONE_DEVICE:
+> 
+> WARNING: unmet direct dependencies detected for DEVICE_PRIVATE
+>   Depends on [n]: ZONE_DEVICE [=n]
+>   Selected by [y]:
+>   - DRM_NOUVEAU_SVM [=y] && HAS_IOMEM [=y] && DRM_NOUVEAU [=y] && MMU [=y] && STAGING [=y]
+> kernel/resource.c:1653:28: error: use of undeclared identifier 'PA_SECTION_SHIFT'
+>         size = ALIGN(size, 1UL << PA_SECTION_SHIFT);
+>                                   ^
+> kernel/resource.c:1654:48: error: use of undeclared identifier 'MAX_PHYSMEM_BITS'
+> 
+> Add a dependency for Nouveau to avoid broken randconfig builds.
+> 
+> Fixes: d2c63df2242e ("mm/hmm: make CONFIG_DEVICE_PRIVATE into a select")
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+
+Acked-by: Randy Dunlap <rdunlap@infradead.org> # build-tested
+
+Thanks.
+
+> ---
+>  drivers/gpu/drm/nouveau/Kconfig | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
+> index af5793f3e7c2..996ec5475908 100644
+> --- a/drivers/gpu/drm/nouveau/Kconfig
+> +++ b/drivers/gpu/drm/nouveau/Kconfig
+> @@ -87,6 +87,7 @@ config DRM_NOUVEAU_BACKLIGHT
+>  config DRM_NOUVEAU_SVM
+>  	bool "(EXPERIMENTAL) Enable SVM (Shared Virtual Memory) support"
+>  	depends on DRM_NOUVEAU
+> +	depends on ZONE_DEVICE
+>  	depends on MMU
+>  	depends on STAGING
+>  	select DEVICE_PRIVATE
+> 
+
+
+-- 
+~Randy
