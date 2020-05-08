@@ -1,7 +1,7 @@
-From: =?UTF-8?B?TWlsYW4gQnXFoWth?= <milan.buska-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Subject: Re: GeForce(R) GT 710 1GB PCIE x 1 on arm64
-Date: Fri, 8 May 2020 17:12:41 +0200
-Message-ID: <CAFCWPPJVwVrb5atD+Ny4rOxwPJQCrYeZzXQJN4k6yzJtyR-FEQ@mail.gmail.com>
+Date: Fri, 8 May 2020 11:19:25 -0400
+Message-ID: <CAKb7UvjAkKAHFSd2Dggf2JY5GPeGB_kQTcR1EM3QucP1VvOC0A@mail.gmail.com>
 References: <CAFCWPP+WKRhhXG3CRfqRztWbFJwUqeeY6tiip4fT9gwtyjKNwQ@mail.gmail.com>
  <CAKb7UvhNDFKHkOV8p0v8cVHf7cMadNLVKi0iD_mCZnH_j5=2OA@mail.gmail.com>
  <CAFCWPP+WmbjM0O2T9ODi-iVU1qGXjpk9V9LeE9PsuT7t+APLQA@mail.gmail.com>
@@ -9,11 +9,12 @@ References: <CAFCWPP+WKRhhXG3CRfqRztWbFJwUqeeY6tiip4fT9gwtyjKNwQ@mail.gmail.com>
  <e681b4315b596dca39bb4a28866d509e23a150c1.camel@lynxeye.de>
  <CAFCWPPKhbbk=um2pv+ytgd+WVaT+M=-mLXXAR427QgQj=w_q3A@mail.gmail.com>
  <CAKb7Uvi7-UCoEb7GJmT2CseMkhrkg4wO5vfk06KhrVWYfAP9WQ@mail.gmail.com>
+ <CAFCWPPJVwVrb5atD+Ny4rOxwPJQCrYeZzXQJN4k6yzJtyR-FEQ@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvi7-UCoEb7GJmT2CseMkhrkg4wO5vfk06KhrVWYfAP9WQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAFCWPPJVwVrb5atD+Ny4rOxwPJQCrYeZzXQJN4k6yzJtyR-FEQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -23,23 +24,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+To: =?UTF-8?B?TWlsYW4gQnXFoWth?= <milan.buska-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-VGhhbmtzIGZvciB0aGUgaW5mby4KSSdsbCBwdWxsIGl0IG91dCBpbiBhIHllYXIgYW5kIHRyeSBp
-dC4KCkdyZWV0aW5nCgpww6EgOC4gNS4gMjAyMCB2IDE1OjI3IG9kZXPDrWxhdGVsIElsaWEgTWly
-a2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gbmFwc2FsOgo+Cj4gT24gRnJpLCBNYXkgOCwgMjAy
-MCBhdCA0OjM0IEFNIE1pbGFuIEJ1xaFrYSA8bWlsYW4uYnVza2FAZ21haWwuY29tPiB3cm90ZToK
-PiA+Cj4gPiBHb29kIGRheS4KPiA+IEknbSBub3QgYSBwcm9ncmFtbWVyLCBzbyBJIGRvbid0IHVu
-ZGVyc3RhbmQuCj4gPgo+ID4gSnVzdCBhIHF1ZXN0aW9uOgo+ID4gV2hhdCdzIHdyb25nID0+Cj4g
-PiA9PiBub3V2ZWF1IGRyaXZlcgo+ID4gPT4gcGNpZSBkcml2ZXIKPiA+ID0+IGdyYXBoaWNzIGNh
-cmQKPiA+Cj4gPiBJdCB3aWxsIGhlbHAgbWUgc2F2ZSB1bm5lY2Vzc2FyeSBsb3N0IHRpbWUuCj4K
-PiBNb3N0IGxpa2VseSB0aGUgaXNzdWUgaXMgaW4gbm91dmVhdS4gVGhlcmUncyBhIG11Y2ggc21h
-bGxlciBsaWtlbGlob29kCj4gdGhhdCB0aGUgaXNzdWUgaXMgd2l0aCBlLmcuIHRoZSBpb21tdS9k
-bWEtYXBpIGltcGxlbWVudGF0aW9uLgo+Cj4gQ2hlZXJzLAo+Cj4gICAtaWxpYQoKCgotLSAKClJl
-bWVtYmVyLCBubyBxdWVzdGlvbiBpcyB0b28gc3R1cGlkIGFuZCBubyBwcm9ibGVtIHRvbyBzbWFs
-bAogICAgICAgLS0gV2UndmUgYWxsIGJlZW4gYmVnaW5uZXJzCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQo=
+SSBkb24ndCB0aGluayB0aGF0IGxvZ2ljIGhhcyBjaGFuZ2VkIGluIG92ZXIgYSB5ZWFyLCBub3Ig
+ZG8gSSBleHBlY3QKaXQgd2lsbCBpbiB0aGUgZnV0dXJlLCB1bmxlc3Mgc29tZW9uZSBjb21lcyBp
+biBhbmQgZG9lcyB0aGUgd29yayB0bwpmaWd1cmUgb3V0IHdoYXQncyB3cm9uZy4gSWYgdGhhdCdz
+IG5vdCB5b3UsIHRoZW4geW91IGhhdmUgdG8gaG9wZQp0aGVyZSB3aWxsIGJlIHNvbWVvbmUgZWxz
+ZSBpbnRlcmVzdGVkIGluIHJ1bm5pbmcgYSBkZXNrdG9wIEdQVSBvbiBhbgphcm0tYmFzZWQgYm9h
+cmQuCgpPbiBGcmksIE1heSA4LCAyMDIwIGF0IDExOjEzIEFNIE1pbGFuIEJ1xaFrYSA8bWlsYW4u
+YnVza2FAZ21haWwuY29tPiB3cm90ZToKPgo+IFRoYW5rcyBmb3IgdGhlIGluZm8uCj4gSSdsbCBw
+dWxsIGl0IG91dCBpbiBhIHllYXIgYW5kIHRyeSBpdC4KPgo+IEdyZWV0aW5nCj4KPiBww6EgOC4g
+NS4gMjAyMCB2IDE1OjI3IG9kZXPDrWxhdGVsIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0
+LmVkdT4gbmFwc2FsOgo+ID4KPiA+IE9uIEZyaSwgTWF5IDgsIDIwMjAgYXQgNDozNCBBTSBNaWxh
+biBCdcWha2EgPG1pbGFuLmJ1c2thQGdtYWlsLmNvbT4gd3JvdGU6Cj4gPiA+Cj4gPiA+IEdvb2Qg
+ZGF5Lgo+ID4gPiBJJ20gbm90IGEgcHJvZ3JhbW1lciwgc28gSSBkb24ndCB1bmRlcnN0YW5kLgo+
+ID4gPgo+ID4gPiBKdXN0IGEgcXVlc3Rpb246Cj4gPiA+IFdoYXQncyB3cm9uZyA9Pgo+ID4gPiA9
+PiBub3V2ZWF1IGRyaXZlcgo+ID4gPiA9PiBwY2llIGRyaXZlcgo+ID4gPiA9PiBncmFwaGljcyBj
+YXJkCj4gPiA+Cj4gPiA+IEl0IHdpbGwgaGVscCBtZSBzYXZlIHVubmVjZXNzYXJ5IGxvc3QgdGlt
+ZS4KPiA+Cj4gPiBNb3N0IGxpa2VseSB0aGUgaXNzdWUgaXMgaW4gbm91dmVhdS4gVGhlcmUncyBh
+IG11Y2ggc21hbGxlciBsaWtlbGlob29kCj4gPiB0aGF0IHRoZSBpc3N1ZSBpcyB3aXRoIGUuZy4g
+dGhlIGlvbW11L2RtYS1hcGkgaW1wbGVtZW50YXRpb24uCj4gPgo+ID4gQ2hlZXJzLAo+ID4KPiA+
+ICAgLWlsaWEKPgo+Cj4KPiAtLQo+Cj4gUmVtZW1iZXIsIG5vIHF1ZXN0aW9uIGlzIHRvbyBzdHVw
+aWQgYW5kIG5vIHByb2JsZW0gdG9vIHNtYWxsCj4gICAgICAgIC0tIFdlJ3ZlIGFsbCBiZWVuIGJl
+Z2lubmVycwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
+b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
