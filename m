@@ -1,65 +1,149 @@
-From: =?UTF-8?B?TWlsYW4gQnXFoWth?= <milan.buska-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: GeForce(R) GT 710 1GB PCIE x 1 on arm64
-Date: Sat, 9 May 2020 07:47:03 +0200
-Message-ID: <CAFCWPPLTBnN4+khtU=7ZMBDFqH8y4PYG47sTM+0584d44Ah96w@mail.gmail.com>
-References: <CAFCWPP+WKRhhXG3CRfqRztWbFJwUqeeY6tiip4fT9gwtyjKNwQ@mail.gmail.com>
- <CAKb7UvhNDFKHkOV8p0v8cVHf7cMadNLVKi0iD_mCZnH_j5=2OA@mail.gmail.com>
- <CAFCWPP+WmbjM0O2T9ODi-iVU1qGXjpk9V9LeE9PsuT7t+APLQA@mail.gmail.com>
- <CAKb7Uvj6nMk2U6MD-iMXEWQzc4ok2xxuq7K3C8ti6mfFDqhuDw@mail.gmail.com>
- <e681b4315b596dca39bb4a28866d509e23a150c1.camel@lynxeye.de>
- <CAFCWPPKhbbk=um2pv+ytgd+WVaT+M=-mLXXAR427QgQj=w_q3A@mail.gmail.com>
- <CAKb7Uvi7-UCoEb7GJmT2CseMkhrkg4wO5vfk06KhrVWYfAP9WQ@mail.gmail.com>
- <CAFCWPPJVwVrb5atD+Ny4rOxwPJQCrYeZzXQJN4k6yzJtyR-FEQ@mail.gmail.com>
- <CAKb7UvjAkKAHFSd2Dggf2JY5GPeGB_kQTcR1EM3QucP1VvOC0A@mail.gmail.com>
+From: "Valdis =?utf-8?Q?Kl=c4=93tnieks?=" <valdis.kletnieks@vt.edu>
+Subject: linux-next 20200508 - build failure in kernel/resource.c w/ SPARSEMEM=n
+Date: Sat, 09 May 2020 07:09:48 -0400
+Message-ID: <17362.1589022588@turing-police>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvjAkKAHFSd2Dggf2JY5GPeGB_kQTcR1EM3QucP1VvOC0A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/signed; boundary="==_Exmh_1589022587_4501P";
+         micalg=pgp-sha1; protocol="application/pgp-signature"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Christoph Hellwig <hch@lst.de>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-TWF5YmUgdGhlcmUgYXJlIG1vcmUgb2YgdXMgdHJ5aW5nIHRvIGdldCBvdXIgaGFuZHMKb24gdGhl
-IGRlc2t0b3AganVzdCBub3QgdG8gdGFsayBhYm91dCBpdCBtdWNoLgpoZSBvcmlnaW5hbCBkcml2
-ZXIgZnJvbSBudmlkaWEgYWxzbyBoYXMgaXRzIGxpbWl0cywKYnV0IHdoZW4gdGhlIGNhcmQgaXMg
-YWRkZWQgdXNpbmcgUENJLCB0aGUgcG9zc2liaWxpdGllcwpleHBhbmQgY29uc2lkZXJhYmx5LgpB
-bmQgd2UgYWxzbyBoYXZlIHRvIGxvb2sgYXQgdGhlIGVuZXJneSBhc3BlY3QuCk92ZXJhbGwsIHRo
-aXMgbW9kZWwgY2FuIHJlZHVjZSBlbmVyZ3kgY29uc3VtcHRpb24uCgpww6EgOC4gNS4gMjAyMCB2
-IDE3OjE5IG9kZXPDrWxhdGVsIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gbmFw
-c2FsOgo+Cj4gSSBkb24ndCB0aGluayB0aGF0IGxvZ2ljIGhhcyBjaGFuZ2VkIGluIG92ZXIgYSB5
-ZWFyLCBub3IgZG8gSSBleHBlY3QKPiBpdCB3aWxsIGluIHRoZSBmdXR1cmUsIHVubGVzcyBzb21l
-b25lIGNvbWVzIGluIGFuZCBkb2VzIHRoZSB3b3JrIHRvCj4gZmlndXJlIG91dCB3aGF0J3Mgd3Jv
-bmcuIElmIHRoYXQncyBub3QgeW91LCB0aGVuIHlvdSBoYXZlIHRvIGhvcGUKPiB0aGVyZSB3aWxs
-IGJlIHNvbWVvbmUgZWxzZSBpbnRlcmVzdGVkIGluIHJ1bm5pbmcgYSBkZXNrdG9wIEdQVSBvbiBh
-bgo+IGFybS1iYXNlZCBib2FyZC4KPgo+IE9uIEZyaSwgTWF5IDgsIDIwMjAgYXQgMTE6MTMgQU0g
-TWlsYW4gQnXFoWthIDxtaWxhbi5idXNrYUBnbWFpbC5jb20+IHdyb3RlOgo+ID4KPiA+IFRoYW5r
-cyBmb3IgdGhlIGluZm8uCj4gPiBJJ2xsIHB1bGwgaXQgb3V0IGluIGEgeWVhciBhbmQgdHJ5IGl0
-Lgo+ID4KPiA+IEdyZWV0aW5nCj4gPgo+ID4gcMOhIDguIDUuIDIwMjAgdiAxNToyNyBvZGVzw61s
-YXRlbCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IG5hcHNhbDoKPiA+ID4KPiA+
-ID4gT24gRnJpLCBNYXkgOCwgMjAyMCBhdCA0OjM0IEFNIE1pbGFuIEJ1xaFrYSA8bWlsYW4uYnVz
-a2FAZ21haWwuY29tPiB3cm90ZToKPiA+ID4gPgo+ID4gPiA+IEdvb2QgZGF5Lgo+ID4gPiA+IEkn
-bSBub3QgYSBwcm9ncmFtbWVyLCBzbyBJIGRvbid0IHVuZGVyc3RhbmQuCj4gPiA+ID4KPiA+ID4g
-PiBKdXN0IGEgcXVlc3Rpb246Cj4gPiA+ID4gV2hhdCdzIHdyb25nID0+Cj4gPiA+ID4gPT4gbm91
-dmVhdSBkcml2ZXIKPiA+ID4gPiA9PiBwY2llIGRyaXZlcgo+ID4gPiA+ID0+IGdyYXBoaWNzIGNh
-cmQKPiA+ID4gPgo+ID4gPiA+IEl0IHdpbGwgaGVscCBtZSBzYXZlIHVubmVjZXNzYXJ5IGxvc3Qg
-dGltZS4KPiA+ID4KPiA+ID4gTW9zdCBsaWtlbHkgdGhlIGlzc3VlIGlzIGluIG5vdXZlYXUuIFRo
-ZXJlJ3MgYSBtdWNoIHNtYWxsZXIgbGlrZWxpaG9vZAo+ID4gPiB0aGF0IHRoZSBpc3N1ZSBpcyB3
-aXRoIGUuZy4gdGhlIGlvbW11L2RtYS1hcGkgaW1wbGVtZW50YXRpb24uCj4gPiA+Cj4gPiA+IENo
-ZWVycywKPiA+ID4KPiA+ID4gICAtaWxpYQo+ID4KPiA+Cj4gPgo+ID4gLS0KPiA+Cj4gPiBSZW1l
-bWJlciwgbm8gcXVlc3Rpb24gaXMgdG9vIHN0dXBpZCBhbmQgbm8gcHJvYmxlbSB0b28gc21hbGwK
-PiA+ICAgICAgICAtLSBXZSd2ZSBhbGwgYmVlbiBiZWdpbm5lcnMKCgoKLS0gCgpSZW1lbWJlciwg
-bm8gcXVlc3Rpb24gaXMgdG9vIHN0dXBpZCBhbmQgbm8gcHJvYmxlbSB0b28gc21hbGwKICAgICAg
-IC0tIFdlJ3ZlIGFsbCBiZWVuIGJlZ2lubmVycwpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL25vdXZlYXUK
+--==_Exmh_1589022587_4501P
+Content-Type: text/plain; charset=us-ascii
+
+So I did a 'make allmodconfig' and then a 'make' on an RPi4 ARM box, and it
+decided that CONFIG_SPARSEMEM=n was OK (so an include of linux/mmzone.h doesn't
+define some needed values).
+
+The offending code in resource.c is wrapped in a #ifdef CONFIG_DEVICE_PRIVATE,
+which throws a whinge during 'make menuconfig' or 'make allmodconfig':
+
+WARNING: unmet direct dependencies detected for DEVICE_PRIVATE
+  Depends on [n]: ZONE_DEVICE [=n]
+  Selected by [m]:
+  - DRM_NOUVEAU_SVM [=y] && HAS_IOMEM [=y] && DRM_NOUVEAU [=m] && MMU [=y] && STAGING [=y]
+
+after which I end up with CONFIG_DEVICE_PRIVATE=y in the .config file.
+
+make menuconfig tells me:
+Symbol: ZONE_DEVICE [=n]
+   Type  : bool
+   Defined at mm/Kconfig:779
+     Prompt: Device memory (pmem, HMM, etc...) hotplug support
+     Depends on: MEMORY_HOTPLUG [=n] && MEMORY_HOTREMOVE [=n] && SPARSEMEM_VMEMMAP [=n] && ARCH_HAS_PTE_DEVMAP [=n]
+     Location:
+   (1) -> Memory Management options
+   Selects: XARRAY_MULTI [=n]
+
+Pretty obviously a Kconfig whoops, but I have no idea what the proper Kconfig
+fix is for this..
+
+May be related to:
+
+commit 0092908d16c604b8207c2141ec64b0fa4473bb03
+Author: Christoph Hellwig <hch@lst.de>
+Date:   Wed Jun 26 14:27:06 2019 +0200
+
+    mm: factor out a devm_request_free_mem_region helper
+
+which added the #ifdef CONFIG_DEVICE_PRIVATE code in question, except that's a
+pretty old commit...  The only thing I'm sure of is that DEVICE_PRIVATE=y and
+SPARSEMEM=n blows up. :)
+
+  CC      kernel/resource.o
+In file included from ./include/linux/cache.h:5,
+                 from ./include/linux/printk.h:9,
+                 from ./include/linux/kernel.h:15,
+                 from ./include/asm-generic/bug.h:19,
+                 from ./arch/arm/include/asm/bug.h:60,
+                 from ./include/linux/bug.h:5,
+                 from ./include/linux/mmdebug.h:5,
+                 from ./include/linux/gfp.h:5,
+                 from ./include/linux/slab.h:15,
+                 from kernel/resource.c:17:
+kernel/resource.c: In function '__request_free_mem_region':
+kernel/resource.c:1653:28: error: 'PA_SECTION_SHIFT' undeclared (first use in this function); did you mean 'SECTION_SHIFT'?
+  size = ALIGN(size, 1UL << PA_SECTION_SHIFT);
+                            ^~~~~~~~~~~~~~~~
+./include/uapi/linux/kernel.h:11:47: note: in definition of macro '__ALIGN_KERNEL_MASK'
+ #define __ALIGN_KERNEL_MASK(x, mask) (((x) + (mask)) & ~(mask))
+                                               ^~~~
+./include/linux/kernel.h:33:22: note: in expansion of macro '__ALIGN_KERNEL'
+ #define ALIGN(x, a)  __ALIGN_KERNEL((x), (a))
+                      ^~~~~~~~~~~~~~
+kernel/resource.c:1653:9: note: in expansion of macro 'ALIGN'
+  size = ALIGN(size, 1UL << PA_SECTION_SHIFT);
+         ^~~~~
+kernel/resource.c:1653:28: note: each undeclared identifier is reported only once for each function it appears in
+  size = ALIGN(size, 1UL << PA_SECTION_SHIFT);
+                            ^~~~~~~~~~~~~~~~
+./include/uapi/linux/kernel.h:11:47: note: in definition of macro '__ALIGN_KERNEL_MASK'
+ #define __ALIGN_KERNEL_MASK(x, mask) (((x) + (mask)) & ~(mask))
+                                               ^~~~
+./include/linux/kernel.h:33:22: note: in expansion of macro '__ALIGN_KERNEL'
+ #define ALIGN(x, a)  __ALIGN_KERNEL((x), (a))
+                      ^~~~~~~~~~~~~~
+kernel/resource.c:1653:9: note: in expansion of macro 'ALIGN'
+  size = ALIGN(size, 1UL << PA_SECTION_SHIFT);
+         ^~~~~
+In file included from ./include/asm-generic/bug.h:19,
+                 from ./arch/arm/include/asm/bug.h:60,
+                 from ./include/linux/bug.h:5,
+                 from ./include/linux/mmdebug.h:5,
+                 from ./include/linux/gfp.h:5,
+                 from ./include/linux/slab.h:15,
+                 from kernel/resource.c:17:
+kernel/resource.c:1654:48: error: 'MAX_PHYSMEM_BITS' undeclared (first use in this function); did you mean 'MAX_UINSN_BYTES'?
+  end = min_t(unsigned long, base->end, (1UL << MAX_PHYSMEM_BITS) - 1);
+                                                ^~~~~~~~~~~~~~~~
+./include/linux/kernel.h:848:40: note: in definition of macro '__typecheck'
+   (!!(sizeof((typeof(x) *)1 == (typeof(y) *)1)))
+                                        ^
+./include/linux/kernel.h:872:24: note: in expansion of macro '__safe_cmp'
+  __builtin_choose_expr(__safe_cmp(x, y), \
+                        ^~~~~~~~~~
+./include/linux/kernel.h:940:27: note: in expansion of macro '__careful_cmp'
+ #define min_t(type, x, y) __careful_cmp((type)(x), (type)(y), <)
+                           ^~~~~~~~~~~~~
+kernel/resource.c:1654:8: note: in expansion of macro 'min_t'
+  end = min_t(unsigned long, base->end, (1UL << MAX_PHYSMEM_BITS) - 1);
+        ^~~~~
+./include/linux/kernel.h:872:2: error: first argument to '__builtin_choose_expr' not a constant
+  __builtin_choose_expr(__safe_cmp(x, y), \
+  ^~~~~~~~~~~~~~~~~~~~~
+./include/linux/kernel.h:940:27: note: in expansion of macro '__careful_cmp'
+ #define min_t(type, x, y) __careful_cmp((type)(x), (type)(y), <)
+                           ^~~~~~~~~~~~~
+kernel/resource.c:1654:8: note: in expansion of macro 'min_t'
+  end = min_t(unsigned long, base->end, (1UL << MAX_PHYSMEM_BITS) - 1);
+        ^~~~~
+make[1]: *** [scripts/Makefile.build:273: kernel/resource.o] Error 1
+make: *** [Makefile:1726: kernel] Error 2
+
+
+--==_Exmh_1589022587_4501P
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Comment: Exmh version 2.9.0 11/07/2018
+
+iQIVAwUBXraPewdmEQWDXROgAQJVZQ//ZMYAfRDOaGeRcZmhKpgaMq3MR3P7L5Aa
+w4TzHp31ZVyuGt7Tb9o7WZRYlgPHPQoBqWUbI0ZL5Ev80E//7g+fXQqxrPtpUGGR
+LAyOaQ/adybmzSTW79V1Yf2tTIfBwqRQ/WnYQkXl3azERaU62sAGETWoFyVfAspo
+kEBKh07eWfhTk2e0Gh2BQzNw0215kh9pyEhnkDizYkUe9yx/wMBSwrBpO6s3xTCx
+/qJmwzs8VvXE482CAL5qcyzZAr+A8cnWhIzi9tLQHT2hDu+LSY2jENHpvY18fUMr
+nRZtx4oNwz6rW7s7CQMX0QB/yo1ZIahJzGbzOM7Pm+fcMR+uj6THFRj4sElu/bqY
+u/d+dDYj1x7GbBenCiK06lGLHnM0RThzLSKQblGCy93B9hQSJFx5vtmxH/asb7uU
+qUh0F12kGZ9iVBQkEhhcxMtf8mGOAIdGZtqf+wvG1vPIWywf4V0pIIOW4gEk3/RP
+KFlM0/GqulJzCvM1I1t5vufM19vJxcz5W20HldN1y1+zyWL6vw7KpUesHp2342oj
+uRij4XiNEgI5W+dyb5XSJIwvIlTBuKu6JC4dAU19vAbN9sY8Ot5fMmwp6Z8gLX1k
+c0PMIOewx6jKfsg6vJQEV/zy9SMaMM7Tp9ePDkzyAyXYDLzVRhUSCg2HuIeVCHRt
+6xH7VQNFUvg=
+=t/Th
+-----END PGP SIGNATURE-----
+
+--==_Exmh_1589022587_4501P--
