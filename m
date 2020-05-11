@@ -1,7 +1,7 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v3 4/5] drm/nouveau/kms/nv50-: Move 8BPC limit for MST into nv50_mstc_get_modes()
-Date: Mon, 11 May 2020 18:41:26 -0400
-Message-ID: <20200511224148.598468-5-lyude@redhat.com>
+Subject: [PATCH v3 5/5] drm/nouveau/kms/nv50-: Share DP SST mode_valid() handling with MST
+Date: Mon, 11 May 2020 18:41:27 -0400
+Message-ID: <20200511224148.598468-6-lyude@redhat.com>
 References: <20200511224148.598468-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -9,64 +9,208 @@ Return-path: <linux-kernel-owner@vger.kernel.org>
 In-Reply-To: <20200511224148.598468-1-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
 To: nouveau@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, Sean Paul <seanpaul@chromium.org>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, Takashi Iwai <tiwai@suse.de>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, Sean Paul <seanpaul@chromium.org>, Alex Deucher <alexander.deucher@amd.com>, Takashi Iwai <tiwai@suse.de>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-This just limits the BPC for MST connectors to a maximum of 8 from
-nv50_mstc_get_modes(), instead of doing so during
-nv50_msto_atomic_check(). This doesn't introduce any functional changes
-yet (other then userspace now lying about the max bpc, but we can't
-support that yet anyway so meh). But, we'll need this in a moment so
-that we can share mode validation between SST and MST which will fix
-some real world issues.
+Currently, the nv50_mstc_mode_valid() function is happy to take any and
+all modes, even the ones we can't actually support sometimes like
+interlaced modes.
+
+Luckily, the only difference between the mode validation that needs to
+be performed for MST vs. SST is that eventually we'll need to check the
+minimum PBN against the MSTB's full PBN capabilities (remember-we don't
+care about the current bw state here). Otherwise, all of the other code
+can be shared.
+
+So, we move all of the common mode validation in
+nouveau_connector_mode_valid() into a separate helper,
+nv50_dp_mode_valid(), and use that from both nv50_mstc_mode_valid() and
+nouveau_connector_mode_valid(). Note that we allow for returning the
+calculated clock that nv50_dp_mode_valid() came up with, since we'll
+eventually want to use that for PBN calculation in
+nv50_mstc_mode_valid().
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 ---
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 25 ++++++++++++++-----------
- 1 file changed, 14 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/disp.c     |  9 +++-
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 46 ++++++++++++---------
+ drivers/gpu/drm/nouveau/nouveau_connector.h |  5 +++
+ drivers/gpu/drm/nouveau/nouveau_dp.c        | 31 ++++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_encoder.h   |  4 ++
+ 5 files changed, 75 insertions(+), 20 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index f67dffe8c005..c49a6c47c66f 100644
+index c49a6c47c66f..f3a77267ff09 100644
 --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
 +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -904,15 +904,9 @@ nv50_msto_atomic_check(struct drm_encoder *encoder,
- 	if (!state->duplicated) {
- 		const int clock = crtc_state->adjusted_mode.clock;
+@@ -1052,7 +1052,14 @@ static enum drm_mode_status
+ nv50_mstc_mode_valid(struct drm_connector *connector,
+ 		     struct drm_display_mode *mode)
+ {
+-	return MODE_OK;
++	struct nv50_mstc *mstc = nv50_mstc(connector);
++	struct nouveau_encoder *outp = mstc->mstm->outp;
++
++	/* TODO: calculate the PBN from the dotclock and validate against the
++	 * MSTB's max possible PBN
++	 */
++
++	return nv50_dp_mode_valid(connector, outp, mode, NULL);
+ }
  
--		/*
--		 * XXX: Since we don't use HDR in userspace quite yet, limit
--		 * the bpc to 8 to save bandwidth on the topology. In the
--		 * future, we'll want to properly fix this by dynamically
--		 * selecting the highest possible bpc that would fit in the
--		 * topology
--		 */
--		asyh->or.bpc = min(connector->display_info.bpc, 8U);
--		asyh->dp.pbn = drm_dp_calc_pbn_mode(clock, asyh->or.bpc * 3, false);
-+		asyh->or.bpc = connector->display_info.bpc;
-+		asyh->dp.pbn = drm_dp_calc_pbn_mode(clock, asyh->or.bpc * 3,
-+						    false);
+ static int
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 6dae00da5d7e..1b383ae0248f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -38,6 +38,7 @@
+ #include "nouveau_reg.h"
+ #include "nouveau_drv.h"
+ #include "dispnv04/hw.h"
++#include "dispnv50/disp.h"
+ #include "nouveau_acpi.h"
+ 
+ #include "nouveau_display.h"
+@@ -1033,6 +1034,29 @@ get_tmds_link_bandwidth(struct drm_connector *connector)
+ 		return 112000 * duallink_scale;
+ }
+ 
++enum drm_mode_status
++nouveau_conn_mode_clock_valid(const struct drm_display_mode *mode,
++			      const unsigned min_clock,
++			      const unsigned max_clock,
++			      unsigned int *clock_out)
++{
++	unsigned int clock = mode->clock;
++
++	if ((mode->flags & DRM_MODE_FLAG_3D_MASK) ==
++	    DRM_MODE_FLAG_3D_FRAME_PACKING)
++		clock *= 2;
++
++	if (clock < min_clock)
++		return MODE_CLOCK_LOW;
++	if (clock > max_clock)
++		return MODE_CLOCK_HIGH;
++
++	if (clock_out)
++		*clock_out = clock;
++
++	return MODE_OK;
++}
++
+ static enum drm_mode_status
+ nouveau_connector_mode_valid(struct drm_connector *connector,
+ 			     struct drm_display_mode *mode)
+@@ -1041,7 +1065,6 @@ nouveau_connector_mode_valid(struct drm_connector *connector,
+ 	struct nouveau_encoder *nv_encoder = nv_connector->detected_encoder;
+ 	struct drm_encoder *encoder = to_drm_encoder(nv_encoder);
+ 	unsigned min_clock = 25000, max_clock = min_clock;
+-	unsigned clock = mode->clock;
+ 
+ 	switch (nv_encoder->dcb->type) {
+ 	case DCB_OUTPUT_LVDS:
+@@ -1064,29 +1087,14 @@ nouveau_connector_mode_valid(struct drm_connector *connector,
+ 	case DCB_OUTPUT_TV:
+ 		return get_slave_funcs(encoder)->mode_valid(encoder, mode);
+ 	case DCB_OUTPUT_DP:
+-		if (mode->flags & DRM_MODE_FLAG_INTERLACE &&
+-		    !nv_encoder->caps.dp_interlace)
+-			return MODE_NO_INTERLACE;
+-
+-		max_clock  = nv_encoder->dp.link_nr;
+-		max_clock *= nv_encoder->dp.link_bw;
+-		clock = clock * (connector->display_info.bpc * 3) / 10;
+-		break;
++		return nv50_dp_mode_valid(connector, nv_encoder, mode, NULL);
+ 	default:
+ 		BUG();
+ 		return MODE_BAD;
  	}
  
- 	slots = drm_dp_atomic_find_vcpi_slots(state, &mstm->mgr, mstc->port,
-@@ -1072,8 +1066,17 @@ nv50_mstc_get_modes(struct drm_connector *connector)
- 	if (mstc->edid)
- 		ret = drm_add_edid_modes(&mstc->connector, mstc->edid);
+-	if ((mode->flags & DRM_MODE_FLAG_3D_MASK) == DRM_MODE_FLAG_3D_FRAME_PACKING)
+-		clock *= 2;
+-
+-	if (clock < min_clock)
+-		return MODE_CLOCK_LOW;
+-
+-	if (clock > max_clock)
+-		return MODE_CLOCK_HIGH;
+-
+-	return MODE_OK;
++	return nouveau_conn_mode_clock_valid(mode, min_clock, max_clock,
++					     NULL);
+ }
  
--	if (!mstc->connector.display_info.bpc)
--		mstc->connector.display_info.bpc = 8;
-+	/*
-+	 * XXX: Since we don't use HDR in userspace quite yet, limit the bpc
-+	 * to 8 to save bandwidth on the topology. In the future, we'll want
-+	 * to properly fix this by dynamically selecting the highest possible
-+	 * bpc that would fit in the topology
-+	 */
-+	if (connector->display_info.bpc)
-+		connector->display_info.bpc =
-+			clamp(connector->display_info.bpc, 6U, 8U);
-+	else
-+		connector->display_info.bpc = 8;
+ static struct drm_encoder *
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.h b/drivers/gpu/drm/nouveau/nouveau_connector.h
+index de84fb4708c7..9e062c7adec8 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.h
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.h
+@@ -195,6 +195,11 @@ int nouveau_conn_atomic_get_property(struct drm_connector *,
+ 				     const struct drm_connector_state *,
+ 				     struct drm_property *, u64 *);
+ struct drm_display_mode *nouveau_conn_native_mode(struct drm_connector *);
++enum drm_mode_status
++nouveau_conn_mode_clock_valid(const struct drm_display_mode *,
++			      const unsigned min_clock,
++			      const unsigned max_clock,
++			      unsigned *clock);
  
- 	if (mstc->native)
- 		drm_mode_destroy(mstc->connector.dev, mstc->native);
+ #ifdef CONFIG_DRM_NOUVEAU_BACKLIGHT
+ extern int nouveau_backlight_init(struct drm_connector *);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+index 2674f1587457..8a0f7994e1ae 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dp.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+@@ -98,3 +98,34 @@ nouveau_dp_detect(struct nouveau_encoder *nv_encoder)
+ 		return NOUVEAU_DP_SST;
+ 	return ret;
+ }
++
++/* TODO:
++ * - Use the minimum possible BPC here, once we add support for the max bpc
++ *   property.
++ * - Validate the mode against downstream port caps (see
++ *   drm_dp_downstream_max_clock())
++ * - Validate against the DP caps advertised by the GPU (we don't check these
++ *   yet)
++ */
++enum drm_mode_status
++nv50_dp_mode_valid(struct drm_connector *connector,
++		   struct nouveau_encoder *outp,
++		   const struct drm_display_mode *mode,
++		   unsigned *out_clock)
++{
++	const unsigned min_clock = 25000;
++	unsigned max_clock, clock;
++	enum drm_mode_status ret;
++
++	if (mode->flags & DRM_MODE_FLAG_INTERLACE && !outp->caps.dp_interlace)
++		return MODE_NO_INTERLACE;
++
++	max_clock = outp->dp.link_nr * outp->dp.link_bw;
++	clock = mode->clock * (connector->display_info.bpc * 3) / 10;
++
++	ret = nouveau_conn_mode_clock_valid(mode, min_clock, max_clock,
++					    &clock);
++	if (out_clock)
++		*out_clock = clock;
++	return ret;
++}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_encoder.h b/drivers/gpu/drm/nouveau/nouveau_encoder.h
+index 3217f587eceb..de51733b0476 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_encoder.h
++++ b/drivers/gpu/drm/nouveau/nouveau_encoder.h
+@@ -104,6 +104,10 @@ enum nouveau_dp_status {
+ };
+ 
+ int nouveau_dp_detect(struct nouveau_encoder *);
++enum drm_mode_status nv50_dp_mode_valid(struct drm_connector *,
++					struct nouveau_encoder *,
++					const struct drm_display_mode *,
++					unsigned *clock);
+ 
+ struct nouveau_connector *
+ nouveau_encoder_connector_get(struct nouveau_encoder *encoder);
 -- 
 2.26.2
