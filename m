@@ -1,39 +1,44 @@
-From: Jason Gunthorpe <jgg@mellanox.com>
-Subject: Re: [PATCH 2/2] nouveau: fix dependencies for DEVICE_PRIVATE
-Date: Mon, 11 May 2020 10:52:57 -0300
-Message-ID: <20200511135257.GT19158@mellanox.com>
-References: <20200508144017.3501418-1-arnd@arndb.de>
- <20200508144017.3501418-2-arnd@arndb.de>
+From: Tejun Heo <tj@kernel.org>
+Subject: Re: [RFC v4 01/12] kthread: Add kthread_queue_flush_work()
+Date: Mon, 11 May 2020 10:49:35 -0400
+Message-ID: <20200511144935.GD16815@mtj.duckdns.org>
+References: <20200508204751.155488-1-lyude@redhat.com>
+ <20200508204751.155488-2-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20200508144017.3501418-2-arnd@arndb.de>
+In-Reply-To: <20200508204751.155488-2-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Ben Skeggs <bskeggs@redhat.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Christoph Hellwig <hch@lst.de>, John Hubbard <jhubbard@nvidia.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Dan Williams <dan.j.williams@intel.com>, Ira Weiny <ira.weiny@intel.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>, Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, Andrew Morton <akpm@linux-foundation.org>, Suren Baghdasaryan <surenb@google.com>, Petr Mladek <pmladek@suse.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Steven Rostedt (VMware)" <rostedt@goodmis.org>, Thomas Gleixner <tglx@linutronix.de>, Ben Dooks <ben.dooks@codethink.co.uk>, Liang Chen <cl@rock-chips.com>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, May 08, 2020 at 04:40:09PM +0200, Arnd Bergmann wrote:
-> CONFIG_DEVICE_PRIVATE cannot be selected in configurations
-> without ZONE_DEVICE:
-> 
-> WARNING: unmet direct dependencies detected for DEVICE_PRIVATE
->   Depends on [n]: ZONE_DEVICE [=n]
->   Selected by [y]:
->   - DRM_NOUVEAU_SVM [=y] && HAS_IOMEM [=y] && DRM_NOUVEAU [=y] && MMU [=y] && STAGING [=y]
-> kernel/resource.c:1653:28: error: use of undeclared identifier 'PA_SECTION_SHIFT'
->         size = ALIGN(size, 1UL << PA_SECTION_SHIFT);
->                                   ^
-> kernel/resource.c:1654:48: error: use of undeclared identifier 'MAX_PHYSMEM_BITS'
-> 
-> Add a dependency for Nouveau to avoid broken randconfig builds.
-> 
-> Fixes: d2c63df2242e ("mm/hmm: make CONFIG_DEVICE_PRIVATE into a
-> select")
+Hello,
 
-I've reverted the patch this fixes, it seems more trouble than it is
-worth.
+On Fri, May 08, 2020 at 04:46:51PM -0400, Lyude Paul wrote:
+> +bool kthread_queue_flush_work(struct kthread_work *work,
+> +			      struct kthread_flush_work *fwork);
+> +void __kthread_flush_work_fn(struct kthread_work *work);
 
-Thanks,
-Jason
+As an exposed interface, this doesn't seem great. What the user wants to say
+is "wait for the current instance of this guy" and the interface is asking
+them to queue an extra work item whose queueing return state should be
+checked and depending on that result wait on its internal completion.
+
+I'm skeptical this is a good idea in general given that unless you define
+"this instance" at the time of queueing the work item which is being
+waited-upon, there's no way to guarantee that the instance you're queueing
+the flush work item on is the instance you want unless the queuer is holding
+external synchronization which prevents the instance from running. That's a
+really confusing semantics to expose in the interface.
+
+What the above means is that the ordering that you want is only defined
+through your own locking and that maybe suggests that the sequencing should
+be implemented on that side too. It may be a bit more code but a sequence
+counter + wait queue might be the better solution here.
+
+Thanks.
+
+-- 
+tejun
