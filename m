@@ -1,15 +1,16 @@
 From: Al Dunsmuir <al.dunsmuir-rieW9WUcm8FFJ04o6PK0Fg@public.gmane.org>
 Subject: Re: [RFC] Remove AGP support from Radeon/Nouveau/TTM
-Date: Mon, 11 May 2020 16:46:52 -0400
-Message-ID: <1199527036.20200511164652@sympatico.ca>
+Date: Mon, 11 May 2020 16:56:48 -0400
+Message-ID: <1266714942.20200511165648@sympatico.ca>
 References: <20200511171722.96576-1-christian.koenig@amd.com>
  <1815605280.20200511161440@sympatico.ca>
  <CADnq5_MYPcAoWzCcBkJAkd858gCVbJpCJobiwH_BBbwgEdx5rA@mail.gmail.com>
+ <CAPM=9tysbcgQ-KR8+icQ=3e6+SECxkwHdVpP8=w0Pmh9ML_+Lw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CADnq5_MYPcAoWzCcBkJAkd858gCVbJpCJobiwH_BBbwgEdx5rA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAPM=9tysbcgQ-KR8+icQ=3e6+SECxkwHdVpP8=w0Pmh9ML_+Lw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
  <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
@@ -19,41 +20,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: =?utf-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uZGF5LCBNYXkgMTEsIDIwMjAsIDQ6Mjc6NTUgUE0sIEFsZXggRGV1Y2hlciB3cm90ZToK
-PiBPbiBNb24sIE1heSAxMSwgMjAyMCBhdCA0OjIyIFBNIEFsIER1bnNtdWlyIDxhbC5kdW5zbXVp
-ckBzeW1wYXRpY28uY2E+IHdyb3RlOgo+Pgo+PiBPbiBNb25kYXksIE1heSAxMSwgMjAyMCwgMTox
-NzoxOSBQTSwgIkNocmlzdGlhbiBLw7ZuaWciIHdyb3RlOgo+PiA+IEhpIGd1eXMsCj4+Cj4+ID4g
-V2VsbCBsZXQncyBmYWNlIGl0IEFHUCBpcyBhIHRvdGFsIGhlYWRhY2hlIHRvIG1haW50YWluIGFu
-ZCBkZWFkIGZvciBhdCBsZWFzdCAxMCsgeWVhcnMuCj4+Cj4+ID4gV2UgaGF2ZSBhIGxvdCBvZiB4
-ODYgc3BlY2lmaWMgc3R1ZmYgaW4gdGhlIGFyY2hpdGVjdHVyZSBpbmRlcGVuZGVudAo+PiA+IGdy
-YXBoaWNzIG1lbW9yeSBtYW5hZ2VtZW50IHRvIGdldCB0aGUgY2FjaGluZyByaWdodCwgYWJ1c2lu
-ZyB0aGUgRE1BCj4+ID4gQVBJIG9uIG11bHRpcGxlIG9jY2FzaW9ucywgbmVlZCB0byBkaXN0aW5j
-dCBiZXR3ZWVuIEFHUCBhbmQgZHJpdmVyIHNwZWNpZmljIHBhZ2UgdGFibGVzIGV0YyBldGMuLi4K
-Pj4KPj4gPiBTbyB0aGUgaWRlYSBoZXJlIGlzIHRvIGp1c3QgZ28gYWhlYWQgYW5kIHJlbW92ZSB0
-aGUgc3VwcG9ydCBmcm9tCj4+ID4gUmFkZW9uIGFuZCBOb3V2ZWF1IGFuZCB0aGVuIGRyb3AgdGhl
-IG5lY2Vzc2FyeSBjb2RlIGZyb20gVFRNLgo+Pgo+PiA+IEZvciBSYWRlb24gdGhpcyBtZWFucyB0
-aGF0IHdlIGp1c3Qgc3dpdGNoIG92ZXIgdG8gdGhlIGRyaXZlcgo+PiA+IHNwZWNpZmljIHBhZ2Ug
-dGFibGVzIGFuZCBldmVyeXRoaW5nIHNob3VsZCBtb3JlIG9yIGxlc3MgY29udGludWUgdG8gd29y
-ay4KPj4KPj4gPiBGb3IgTm91dmVhdSBJJ20gbm90IDEwMCUgc3VyZSwgYnV0IGZyb20gdGhlIGNv
-ZGUgaXQgb2YgaGFuZCBsb29rcwo+PiA+IGxpa2Ugd2UgY2FuIGRvIGl0IHNpbWlsYXIgdG8gUmFk
-ZW9uLgoKPiBOb3RlIHRoZXJlIGlzIG5vIGxvc3Mgb2YgZnVuY3Rpb25hbGl0eSBoZXJlLCBhdCBs
-ZWFzdCBvbiByYWRlb24KPiBoYXJkd2FyZS4gIEl0IGp1c3QgY29tZXMgZG93biB0byB3aGljaCBN
-TVUgZ2V0cyB1c2VkIGZvciBhY2Nlc3MgdG8KPiBzeXN0ZW0gbWVtb3J5LCB0aGUgQUdQIE1NVSBv
-biB0aGUgY2hpcHNldCBvciB0aGUgTU1VIGJ1aWx0IGludG8gdGhlCj4gR1BVLiAgT24gcG93ZXJw
-YyBoYXJkd2FyZSwgQUdQIGhhcyBiZWVuIHBhcnRpY3VsYXJseSB1bnN0YWJsZSwgYW5kIEFHUAo+
-IGhhcyBiZWVuIGRpc2FibGVkIGJ5IGRlZmF1bHQgb24gcmFkZW9uIG9uIHBvd2VycGMgZm9yIHll
-YXJzIG5vdy4gIEluCj4gZmFjdCwgdGhpcyB3aWxsIHByb2JhYmx5IG1ha2Ugb2xkZXIgaGFyZHdh
-cmUgbW9yZSByZWxpYWJsZSBhcyBpdCB0YWtlcwo+IEFHUCBvdXQgb2YgdGhlIGVxdWF0aW9uLgoK
-QWxleCwKClRoYW5rcyBmb3IgdGhlIGNsYXJpZmljYXRpb24uCgpJZiB0aGUgYWN0dWFsIHBlcmZv
-cm1hbmNlIGltcGFjdCBpcyBsaXR0bGUgdG8gbm9uZSwgYW5kIHdlIGVuZCB1cCB3aXRoCm1vcmUg
-cmVsaWFibGUgb3BlcmF0aW9uIHRoYXQgaXMgY2VydGFpbmx5IGJlbmVmaWNpYWwgdGhlbiB0aGUg
-Y2hhbmdlCmlzIGluZGVlZCBmb3IgdGhlIGdvb2QuCgpUaGUgIFBob3Jvbml4ICB0aXRsZSBzY3Jl
-YW1pbmcgIkFHUCBHcmFwaGljcyBDYXJkIFN1cHBvcnQgUHJvcG9zZWQgRm9yClJlbW92YWwgIEZy
-b20gIExpbnV4ICBSYWRlb24vTlZJRElBIERyaXZlcnMiIHdhcyBuZWl0aGVyIGFjY3VyYXRlLCBu
-b3IKaGVscGZ1bC4KCkFsCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+Hello Dave,
+
+On Monday, May 11, 2020, 4:43:01 PM, Dave Airlie wrote:
+> On Tue, 12 May 2020 at 06:28, Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>>
+>> On Mon, May 11, 2020 at 4:22 PM Al Dunsmuir <al.dunsmuir-rieW9WUcm8FFJ04o6PK0Fg@public.gmane.org> wrote:
+>> Note there is no loss of functionality here, at least on radeon
+>> hardware.  It just comes down to which MMU gets used for access to
+>> system memory, the AGP MMU on the chipset or the MMU built into the
+>> GPU.  On powerpc hardware, AGP has been particularly unstable, and AGP
+>> has been disabled by default on radeon on powerpc for years now.  In
+>> fact, this will probably make older hardware more reliable as it takes
+>> AGP out of the equation.
+>>
+
+> From memory there is quite a loss in speed though, like pretty severe.
+
+> The radeon PCI GART has a single slot TLB, if memory serves.
+
+> I think this is going to be a hard sell at this stage, I'm guessing
+> users will crawl out of the woodwork, I'm sure with 2 hours after I'm
+> able to access the office, I can boot the 865 AGP box with an rv350 in
+> it on a modern distro.
+
+> Maybe we can find some way to compartmentalise AGP further?
+
+> Dave.
+
+Significantly   reduced  caching  on memory accesses definitely sounds
+like something that would be noticeable and objectionable.
+
+I would speculate that this would also vary a lot across chipsets,
+depending on the capabilities of the PCI MMU vs the AGP MMU.
+
+In the end, it may be best to leave things as is, or as Dave suggested
+try to keep AGP in the picture.  
+
+Nothing is ever simple, is it?
+Al
