@@ -1,66 +1,446 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v3 0/5] drm/nouveau: DP interlace fixes
-Date: Mon, 11 May 2020 18:41:22 -0400
-Message-ID: <20200511224148.598468-1-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v3 2/5] drm/nouveau/kms/nv50-: Probe SOR and PIOR caps for DP interlacing support
+Date: Mon, 11 May 2020 18:41:24 -0400
+Message-ID: <20200511224148.598468-3-lyude@redhat.com>
+References: <20200511224148.598468-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Jani Nikula <jani.nikula-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org>, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200511224148.598468-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, Sean Paul <seanpaul@chromium.org>, Takashi Iwai <tiwai@suse.de>, Jani Nikula <jani.nikula@intel.com>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Currently, nouveau doesn't actually bother to try probing whether or not
-it can actually handle interlaced modes over DisplayPort. As a result,
-on volta and later we'll end up trying to set an interlaced mode even
-when it's not supported and cause the front end for the display engine
-to hang.
+Right now, we make the mistake of allowing interlacing on all
+connectors. Nvidia hardware does not always support interlacing with DP
+though, so we need to make sure that we don't allow interlaced modes to
+be set in such situations as otherwise we'll end up accidentally hanging
+the display HW.
 
-So, let's teach nouveau to reject interlaced modes on hardware that
-can't actually handle it. Additionally for MST, since we accomplish this
-by simply reusing more of the SST mode validation we also get (some)
-basic bw validation for modes we detect on MST connectors completely for
-free.
+This fixes some hangs with Turing, which would be caused by attempting
+to set an interlaced mode on hardware that doesn't support it. This
+patch likely fixes other hardware hanging in the same way as well.
 
-Lyude Paul (5):
-  drm/nouveau/kms/nv50-: Initialize core channel in
-    nouveau_display_create()
-  drm/nouveau/kms/nv50-: Probe SOR and PIOR caps for DP interlacing
-    support
-  drm/nouveau/kms/gv100-: Add support for interlaced modes
-  drm/nouveau/kms/nv50-: Move 8BPC limit for MST into
-    nv50_mstc_get_modes()
-  drm/nouveau/kms/nv50-: Share DP SST mode_valid() handling with MST
+Note that we say we probe PIOR caps, but they don't actually have any
+interlacing caps. So, the get_caps() function for PIORs just sets
+interlacing support to true.
 
- drivers/gpu/drm/nouveau/dispnv50/core.h     |  7 +++
- drivers/gpu/drm/nouveau/dispnv50/core507d.c | 15 ++++++
+Changes since v1:
+* Actually probe caps correctly this time, both on EVO and NVDisplay.
+Changes since v2:
+* Fix probing for < GF119
+* Use vfunc table, in prep for adding more caps in the future.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+---
+ drivers/gpu/drm/nouveau/dispnv50/core.h     |  7 ++++++
+ drivers/gpu/drm/nouveau/dispnv50/core507d.c | 15 ++++++++++++
  drivers/gpu/drm/nouveau/dispnv50/core827d.c |  1 +
  drivers/gpu/drm/nouveau/dispnv50/core907d.c |  1 +
  drivers/gpu/drm/nouveau/dispnv50/core917d.c |  1 +
- drivers/gpu/drm/nouveau/dispnv50/corec37d.c | 26 +++++++++
+ drivers/gpu/drm/nouveau/dispnv50/corec37d.c | 26 +++++++++++++++++++++
  drivers/gpu/drm/nouveau/dispnv50/corec57d.c |  1 +
- drivers/gpu/drm/nouveau/dispnv50/disp.c     | 58 +++++++++++++++------
+ drivers/gpu/drm/nouveau/dispnv50/disp.c     | 19 +++++++++++++--
  drivers/gpu/drm/nouveau/dispnv50/disp.h     |  1 +
- drivers/gpu/drm/nouveau/dispnv50/headc37d.c |  5 +-
- drivers/gpu/drm/nouveau/dispnv50/headc57d.c |  5 +-
- drivers/gpu/drm/nouveau/dispnv50/pior507d.c |  8 +++
- drivers/gpu/drm/nouveau/dispnv50/sor507d.c  |  7 +++
- drivers/gpu/drm/nouveau/dispnv50/sor907d.c  | 11 ++++
- drivers/gpu/drm/nouveau/dispnv50/sorc37d.c  |  9 ++++
- drivers/gpu/drm/nouveau/nouveau_connector.c | 48 +++++++++++------
- drivers/gpu/drm/nouveau/nouveau_connector.h |  5 ++
- drivers/gpu/drm/nouveau/nouveau_dp.c        | 31 +++++++++++
- drivers/gpu/drm/nouveau/nouveau_encoder.h   |  8 +++
- 19 files changed, 213 insertions(+), 35 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/pior507d.c |  8 +++++++
+ drivers/gpu/drm/nouveau/dispnv50/sor507d.c  |  7 ++++++
+ drivers/gpu/drm/nouveau/dispnv50/sor907d.c  | 11 +++++++++
+ drivers/gpu/drm/nouveau/dispnv50/sorc37d.c  |  9 +++++++
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 10 +++++++-
+ drivers/gpu/drm/nouveau/nouveau_encoder.h   |  4 ++++
+ 15 files changed, 118 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/core.h b/drivers/gpu/drm/nouveau/dispnv50/core.h
+index ff94f3f6f264..99157dc94d23 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/core.h
++++ b/drivers/gpu/drm/nouveau/dispnv50/core.h
+@@ -2,6 +2,7 @@
+ #define __NV50_KMS_CORE_H__
+ #include "disp.h"
+ #include "atom.h"
++#include <nouveau_encoder.h>
+ 
+ struct nv50_core {
+ 	const struct nv50_core_func *func;
+@@ -15,6 +16,7 @@ void nv50_core_del(struct nv50_core **);
+ struct nv50_core_func {
+ 	void (*init)(struct nv50_core *);
+ 	void (*ntfy_init)(struct nouveau_bo *, u32 offset);
++	int (*caps_init)(struct nouveau_drm *, struct nv50_disp *);
+ 	int (*ntfy_wait_done)(struct nouveau_bo *, u32 offset,
+ 			      struct nvif_device *);
+ 	void (*update)(struct nv50_core *, u32 *interlock, bool ntfy);
+@@ -27,6 +29,9 @@ struct nv50_core_func {
+ 	const struct nv50_outp_func {
+ 		void (*ctrl)(struct nv50_core *, int or, u32 ctrl,
+ 			     struct nv50_head_atom *);
++		/* XXX: Only used by SORs and PIORs for now */
++		void (*get_caps)(struct nv50_disp *,
++				 struct nouveau_encoder *, int or);
+ 	} *dac, *pior, *sor;
+ };
+ 
+@@ -35,6 +40,7 @@ int core507d_new_(const struct nv50_core_func *, struct nouveau_drm *, s32,
+ 		  struct nv50_core **);
+ void core507d_init(struct nv50_core *);
+ void core507d_ntfy_init(struct nouveau_bo *, u32);
++int core507d_caps_init(struct nouveau_drm *, struct nv50_disp *);
+ int core507d_ntfy_wait_done(struct nouveau_bo *, u32, struct nvif_device *);
+ void core507d_update(struct nv50_core *, u32 *, bool);
+ 
+@@ -51,6 +57,7 @@ extern const struct nv50_outp_func sor907d;
+ int core917d_new(struct nouveau_drm *, s32, struct nv50_core **);
+ 
+ int corec37d_new(struct nouveau_drm *, s32, struct nv50_core **);
++int corec37d_caps_init(struct nouveau_drm *, struct nv50_disp *);
+ int corec37d_ntfy_wait_done(struct nouveau_bo *, u32, struct nvif_device *);
+ void corec37d_update(struct nv50_core *, u32 *, bool);
+ void corec37d_wndw_owner(struct nv50_core *);
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/core507d.c b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
+index c5152c39c684..e341f572c269 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/core507d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
+@@ -62,6 +62,20 @@ core507d_ntfy_init(struct nouveau_bo *bo, u32 offset)
+ 	nouveau_bo_wr32(bo, offset / 4, 0x00000000);
+ }
+ 
++int
++core507d_caps_init(struct nouveau_drm *drm, struct nv50_disp *disp)
++{
++	u32 *push = evo_wait(&disp->core->chan, 2);
++
++	if (push) {
++		evo_mthd(push, 0x008c, 1);
++		evo_data(push, 0x0);
++		evo_kick(push, &disp->core->chan);
++	}
++
++	return 0;
++}
++
+ void
+ core507d_init(struct nv50_core *core)
+ {
+@@ -77,6 +91,7 @@ static const struct nv50_core_func
+ core507d = {
+ 	.init = core507d_init,
+ 	.ntfy_init = core507d_ntfy_init,
++	.caps_init = core507d_caps_init,
+ 	.ntfy_wait_done = core507d_ntfy_wait_done,
+ 	.update = core507d_update,
+ 	.head = &head507d,
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/core827d.c b/drivers/gpu/drm/nouveau/dispnv50/core827d.c
+index 6123a068f836..2e0c1c536afe 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/core827d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/core827d.c
+@@ -26,6 +26,7 @@ static const struct nv50_core_func
+ core827d = {
+ 	.init = core507d_init,
+ 	.ntfy_init = core507d_ntfy_init,
++	.caps_init = core507d_caps_init,
+ 	.ntfy_wait_done = core507d_ntfy_wait_done,
+ 	.update = core507d_update,
+ 	.head = &head827d,
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/core907d.c b/drivers/gpu/drm/nouveau/dispnv50/core907d.c
+index ef822f813435..271629832629 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/core907d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/core907d.c
+@@ -26,6 +26,7 @@ static const struct nv50_core_func
+ core907d = {
+ 	.init = core507d_init,
+ 	.ntfy_init = core507d_ntfy_init,
++	.caps_init = core507d_caps_init,
+ 	.ntfy_wait_done = core507d_ntfy_wait_done,
+ 	.update = core507d_update,
+ 	.head = &head907d,
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/core917d.c b/drivers/gpu/drm/nouveau/dispnv50/core917d.c
+index 392338df5bfd..5cc072d4c30f 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/core917d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/core917d.c
+@@ -26,6 +26,7 @@ static const struct nv50_core_func
+ core917d = {
+ 	.init = core507d_init,
+ 	.ntfy_init = core507d_ntfy_init,
++	.caps_init = core507d_caps_init,
+ 	.ntfy_wait_done = core507d_ntfy_wait_done,
+ 	.update = core507d_update,
+ 	.head = &head917d,
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/corec37d.c b/drivers/gpu/drm/nouveau/dispnv50/corec37d.c
+index c03cb987856b..e0c8811fb8e4 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/corec37d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/corec37d.c
+@@ -22,6 +22,7 @@
+ #include "core.h"
+ #include "head.h"
+ 
++#include <nvif/class.h>
+ #include <nouveau_bo.h>
+ 
+ #include <nvif/timer.h>
+@@ -87,6 +88,30 @@ corec37d_ntfy_init(struct nouveau_bo *bo, u32 offset)
+ 	nouveau_bo_wr32(bo, offset / 4 + 3, 0x00000000);
+ }
+ 
++int corec37d_caps_init(struct nouveau_drm *drm, struct nv50_disp *disp)
++{
++	int ret;
++
++	ret = nvif_object_init(&disp->disp->object, 0, GV100_DISP_CAPS,
++			       NULL, 0, &disp->caps);
++	if (ret) {
++		NV_ERROR(drm,
++			 "Failed to init notifier caps region: %d\n",
++			 ret);
++		return ret;
++	}
++
++	ret = nvif_object_map(&disp->caps, NULL, 0);
++	if (ret) {
++		NV_ERROR(drm,
++			 "Failed to map notifier caps region: %d\n",
++			 ret);
++		return ret;
++	}
++
++	return 0;
++}
++
+ static void
+ corec37d_init(struct nv50_core *core)
+ {
+@@ -111,6 +136,7 @@ static const struct nv50_core_func
+ corec37d = {
+ 	.init = corec37d_init,
+ 	.ntfy_init = corec37d_ntfy_init,
++	.caps_init = corec37d_caps_init,
+ 	.ntfy_wait_done = corec37d_ntfy_wait_done,
+ 	.update = corec37d_update,
+ 	.wndw.owner = corec37d_wndw_owner,
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/corec57d.c b/drivers/gpu/drm/nouveau/dispnv50/corec57d.c
+index 147adcd60937..10ba9e9e4ae6 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/corec57d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/corec57d.c
+@@ -46,6 +46,7 @@ static const struct nv50_core_func
+ corec57d = {
+ 	.init = corec57d_init,
+ 	.ntfy_init = corec37d_ntfy_init,
++	.caps_init = corec37d_caps_init,
+ 	.ntfy_wait_done = corec37d_ntfy_wait_done,
+ 	.update = corec37d_update,
+ 	.wndw.owner = corec37d_wndw_owner,
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index 05b458b16e3f..f67dffe8c005 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -1659,6 +1659,7 @@ nv50_sor_create(struct drm_connector *connector, struct dcb_output *dcbe)
+ 	struct nvkm_i2c *i2c = nvxx_i2c(&drm->client.device);
+ 	struct nouveau_encoder *nv_encoder;
+ 	struct drm_encoder *encoder;
++	struct nv50_disp *disp = nv50_disp(connector->dev);
+ 	int type, ret;
+ 
+ 	switch (dcbe->type) {
+@@ -1685,10 +1686,12 @@ nv50_sor_create(struct drm_connector *connector, struct dcb_output *dcbe)
+ 
+ 	drm_connector_attach_encoder(connector, encoder);
+ 
++	disp->core->func->sor->get_caps(disp, nv_encoder, ffs(dcbe->or) - 1);
++
+ 	if (dcbe->type == DCB_OUTPUT_DP) {
+-		struct nv50_disp *disp = nv50_disp(encoder->dev);
+ 		struct nvkm_i2c_aux *aux =
+ 			nvkm_i2c_aux_find(i2c, dcbe->i2c_index);
++
+ 		if (aux) {
+ 			if (disp->disp->object.oclass < GF110_DISP) {
+ 				/* HW has no support for address-only
+@@ -1801,7 +1804,9 @@ nv50_pior_func = {
+ static int
+ nv50_pior_create(struct drm_connector *connector, struct dcb_output *dcbe)
+ {
+-	struct nouveau_drm *drm = nouveau_drm(connector->dev);
++	struct drm_device *dev = connector->dev;
++	struct nouveau_drm *drm = nouveau_drm(dev);
++	struct nv50_disp *disp = nv50_disp(dev);
+ 	struct nvkm_i2c *i2c = nvxx_i2c(&drm->client.device);
+ 	struct nvkm_i2c_bus *bus = NULL;
+ 	struct nvkm_i2c_aux *aux = NULL;
+@@ -1840,6 +1845,9 @@ nv50_pior_create(struct drm_connector *connector, struct dcb_output *dcbe)
+ 	drm_encoder_helper_add(encoder, &nv50_pior_help);
+ 
+ 	drm_connector_attach_encoder(connector, encoder);
++
++	disp->core->func->pior->get_caps(disp, nv_encoder, ffs(dcbe->or) - 1);
++
+ 	return 0;
+ }
+ 
+@@ -2397,6 +2405,8 @@ nv50_display_destroy(struct drm_device *dev)
+ 
+ 	nv50_audio_component_fini(nouveau_drm(dev));
+ 
++	nvif_object_unmap(&disp->caps);
++	nvif_object_fini(&disp->caps);
+ 	nv50_core_del(&disp->core);
+ 
+ 	nouveau_bo_unmap(disp->sync);
+@@ -2458,6 +2468,11 @@ nv50_display_create(struct drm_device *dev)
+ 		goto out;
+ 
+ 	disp->core->func->init(disp->core);
++	if (disp->core->func->caps_init) {
++		ret = disp->core->func->caps_init(drm, disp);
++		if (ret)
++			goto out;
++	}
+ 
+ 	/* create crtc objects to represent the hw heads */
+ 	if (disp->disp->object.oclass >= GV100_DISP)
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.h b/drivers/gpu/drm/nouveau/dispnv50/disp.h
+index d54fe00ac3a3..89c3b38c32a5 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.h
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.h
+@@ -9,6 +9,7 @@ struct nv50_msto;
+ struct nv50_disp {
+ 	struct nvif_disp *disp;
+ 	struct nv50_core *core;
++	struct nvif_object caps;
+ 
+ #define NV50_DISP_SYNC(c, o)                                ((c) * 0x040 + (o))
+ #define NV50_DISP_CORE_NTFY                       NV50_DISP_SYNC(0      , 0x00)
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/pior507d.c b/drivers/gpu/drm/nouveau/dispnv50/pior507d.c
+index d2bac6a341dc..45d8ce7d2c28 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/pior507d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/pior507d.c
+@@ -38,7 +38,15 @@ pior507d_ctrl(struct nv50_core *core, int or, u32 ctrl,
+ 	}
+ }
+ 
++static void
++pior507d_get_caps(struct nv50_disp *disp, struct nouveau_encoder *outp,
++		  int or)
++{
++	outp->caps.dp_interlace = true;
++}
++
+ const struct nv50_outp_func
+ pior507d = {
+ 	.ctrl = pior507d_ctrl,
++	.get_caps = pior507d_get_caps,
+ };
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/sor507d.c b/drivers/gpu/drm/nouveau/dispnv50/sor507d.c
+index 5222fe6a9b21..9a59fa7da00d 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/sor507d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/sor507d.c
+@@ -38,7 +38,14 @@ sor507d_ctrl(struct nv50_core *core, int or, u32 ctrl,
+ 	}
+ }
+ 
++static void
++sor507d_get_caps(struct nv50_disp *core, struct nouveau_encoder *outp, int or)
++{
++	outp->caps.dp_interlace = true;
++}
++
+ const struct nv50_outp_func
+ sor507d = {
+ 	.ctrl = sor507d_ctrl,
++	.get_caps = sor507d_get_caps,
+ };
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/sor907d.c b/drivers/gpu/drm/nouveau/dispnv50/sor907d.c
+index b0314ec11fb3..9577ccf1c809 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/sor907d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/sor907d.c
+@@ -21,6 +21,7 @@
+  */
+ #include "core.h"
+ 
++#include <nouveau_bo.h>
+ #include <nvif/class.h>
+ 
+ static void
+@@ -35,7 +36,17 @@ sor907d_ctrl(struct nv50_core *core, int or, u32 ctrl,
+ 	}
+ }
+ 
++static void
++sor907d_get_caps(struct nv50_disp *disp, struct nouveau_encoder *outp, int or)
++{
++	const int off = or * 2;
++	u32 tmp = nouveau_bo_rd32(disp->sync, 0x000014 + off);
++
++	outp->caps.dp_interlace = !!(tmp & 0x04000000);
++}
++
+ const struct nv50_outp_func
+ sor907d = {
+ 	.ctrl = sor907d_ctrl,
++	.get_caps = sor907d_get_caps,
+ };
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/sorc37d.c b/drivers/gpu/drm/nouveau/dispnv50/sorc37d.c
+index dff059241c5d..c86ca955fdcd 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/sorc37d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/sorc37d.c
+@@ -33,7 +33,16 @@ sorc37d_ctrl(struct nv50_core *core, int or, u32 ctrl,
+ 	}
+ }
+ 
++static void
++sorc37d_get_caps(struct nv50_disp *disp, struct nouveau_encoder *outp, int or)
++{
++	u32 tmp = nvif_rd32(&disp->caps, 0x000144 + (or * 8));
++
++	outp->caps.dp_interlace = !!(tmp & 0x04000000);
++}
++
+ const struct nv50_outp_func
+ sorc37d = {
+ 	.ctrl = sorc37d_ctrl,
++	.get_caps = sorc37d_get_caps,
+ };
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 9a9a7f5003d3..43bcbb6d73c4 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -509,7 +509,11 @@ nouveau_connector_set_encoder(struct drm_connector *connector,
+ 	nv_connector->detected_encoder = nv_encoder;
+ 
+ 	if (drm->client.device.info.family >= NV_DEVICE_INFO_V0_TESLA) {
+-		connector->interlace_allowed = true;
++		if (nv_encoder->dcb->type == DCB_OUTPUT_DP)
++			connector->interlace_allowed =
++				nv_encoder->caps.dp_interlace;
++		else
++			connector->interlace_allowed = true;
+ 		connector->doublescan_allowed = true;
+ 	} else
+ 	if (nv_encoder->dcb->type == DCB_OUTPUT_LVDS ||
+@@ -1060,6 +1064,10 @@ nouveau_connector_mode_valid(struct drm_connector *connector,
+ 	case DCB_OUTPUT_TV:
+ 		return get_slave_funcs(encoder)->mode_valid(encoder, mode);
+ 	case DCB_OUTPUT_DP:
++		if (mode->flags & DRM_MODE_FLAG_INTERLACE &&
++		    !nv_encoder->dp.caps.interlace)
++			return MODE_NO_INTERLACE;
++
+ 		max_clock  = nv_encoder->dp.link_nr;
+ 		max_clock *= nv_encoder->dp.link_bw;
+ 		clock = clock * (connector->display_info.bpc * 3) / 10;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_encoder.h b/drivers/gpu/drm/nouveau/nouveau_encoder.h
+index 3517f920bf89..3217f587eceb 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_encoder.h
++++ b/drivers/gpu/drm/nouveau/nouveau_encoder.h
+@@ -66,6 +66,10 @@ struct nouveau_encoder {
+ 		} dp;
+ 	};
+ 
++	struct {
++		bool dp_interlace : 1;
++	} caps;
++
+ 	void (*enc_save)(struct drm_encoder *encoder);
+ 	void (*enc_restore)(struct drm_encoder *encoder);
+ 	void (*update)(struct nouveau_encoder *, u8 head,
 -- 
 2.26.2
