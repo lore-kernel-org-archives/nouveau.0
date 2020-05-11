@@ -1,56 +1,39 @@
-From: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH hmm v2 1/5] mm/hmm: make CONFIG_DEVICE_PRIVATE into a
- select
-Date: Mon, 11 May 2020 10:49:54 -0300
-Message-ID: <20200511134954.GS26002@ziepe.ca>
-References: <0-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
- <1-v2-b4e84f444c7d+24f57-hmm_no_flags_jgg@mellanox.com>
- <20200509171612.94ee332ad4f494521d911ac0@linux-foundation.org>
+From: Jason Gunthorpe <jgg@mellanox.com>
+Subject: Re: [PATCH 2/2] nouveau: fix dependencies for DEVICE_PRIVATE
+Date: Mon, 11 May 2020 10:52:57 -0300
+Message-ID: <20200511135257.GT19158@mellanox.com>
+References: <20200508144017.3501418-1-arnd@arndb.de>
+ <20200508144017.3501418-2-arnd@arndb.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20200509171612.94ee332ad4f494521d911ac0@linux-foundation.org>
+In-Reply-To: <20200508144017.3501418-2-arnd@arndb.de>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Andrew Morton <akpm@linux-foundation.org>
-Cc: linux-mm@kvack.org, Ralph Campbell <rcampbell@nvidia.com>, Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, dri-devel@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>, Christoph Hellwig <hch@lst.de>, intel-gfx@lists.freedesktop.org, =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, linux-kernel@vger.kernel.org, Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>, nouveau@lists.freedesktop.org, "Yang, Philip" <Philip.Yang@amd.com>
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Ben Skeggs <bskeggs@redhat.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Christoph Hellwig <hch@lst.de>, John Hubbard <jhubbard@nvidia.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Dan Williams <dan.j.williams@intel.com>, Ira Weiny <ira.weiny@intel.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, May 09, 2020 at 05:16:12PM -0700, Andrew Morton wrote:
-> On Fri,  1 May 2020 15:20:44 -0300 Jason Gunthorpe <jgg@ziepe.ca> wrote:
+On Fri, May 08, 2020 at 04:40:09PM +0200, Arnd Bergmann wrote:
+> CONFIG_DEVICE_PRIVATE cannot be selected in configurations
+> without ZONE_DEVICE:
 > 
-> > From: Jason Gunthorpe <jgg@mellanox.com>
-> > 
-> > There is no reason for a user to select this or not directly - it should
-> > be selected by drivers that are going to use the feature, similar to how
-> > CONFIG_HMM_MIRROR works.
-> > 
-> > Currently all drivers provide a feature kconfig that will disable use of
-> > DEVICE_PRIVATE in that driver, allowing users to avoid enabling this if
-> > they don't want the overhead.
-> > 
+> WARNING: unmet direct dependencies detected for DEVICE_PRIVATE
+>   Depends on [n]: ZONE_DEVICE [=n]
+>   Selected by [y]:
+>   - DRM_NOUVEAU_SVM [=y] && HAS_IOMEM [=y] && DRM_NOUVEAU [=y] && MMU [=y] && STAGING [=y]
+> kernel/resource.c:1653:28: error: use of undeclared identifier 'PA_SECTION_SHIFT'
+>         size = ALIGN(size, 1UL << PA_SECTION_SHIFT);
+>                                   ^
+> kernel/resource.c:1654:48: error: use of undeclared identifier 'MAX_PHYSMEM_BITS'
 > 
-> I'm not too sure what's going on here, but i386 allmodconfig broke.
+> Add a dependency for Nouveau to avoid broken randconfig builds.
 > 
-> kernel/resource.c: In function '__request_free_mem_region':
-> kernel/resource.c:1653:28: error: 'PA_SECTION_SHIFT' undeclared (first use in this function); did you mean 'SECTIONS_PGSHIFT'?
->   size = ALIGN(size, 1UL << PA_SECTION_SHIFT);
-> 
-> because in current mainline, allmodconfig produces
-> CONFIG_DEVICE_PRIVATE=n but in current linux-next, allmodconfig
-> produces CONFIG_DEVICE_PRIVATE=y.  But CONFIG_SPARSEMEM=n so the build
-> breaks.
+> Fixes: d2c63df2242e ("mm/hmm: make CONFIG_DEVICE_PRIVATE into a
+> select")
 
-I think Arnd identified this, let us just revet the patch that caused
-it.
+I've reverted the patch this fixes, it seems more trouble than it is
+worth.
 
-> Bisection fingers this commit, but reverting it doesn't seem to fix
-> things.  Could you take a look please?
-
-There is a latter patch adding a 'select DEVICE_PRIVATE' so reverting
-this needs to swap that to 'depends on'.
-
-I've done both and updated git
-
-Regards,
+Thanks,
 Jason
