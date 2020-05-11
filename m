@@ -1,14 +1,14 @@
-From: Al Dunsmuir <al.dunsmuir-rieW9WUcm8FFJ04o6PK0Fg@public.gmane.org>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [RFC] Remove AGP support from Radeon/Nouveau/TTM
-Date: Mon, 11 May 2020 16:56:48 -0400
-Message-ID: <1266714942.20200511165648@sympatico.ca>
+Date: Mon, 11 May 2020 21:59:38 +0100
+Message-ID: <CACvgo50j-AC9LpR9oN065g4EmBVF3EYLNRe2sxfD99JFCE2Nxw@mail.gmail.com>
 References: <20200511171722.96576-1-christian.koenig@amd.com>
  <1815605280.20200511161440@sympatico.ca>
  <CADnq5_MYPcAoWzCcBkJAkd858gCVbJpCJobiwH_BBbwgEdx5rA@mail.gmail.com>
  <CAPM=9tysbcgQ-KR8+icQ=3e6+SECxkwHdVpP8=w0Pmh9ML_+Lw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <CAPM=9tysbcgQ-KR8+icQ=3e6+SECxkwHdVpP8=w0Pmh9ML_+Lw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
@@ -20,46 +20,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: =?utf-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hello Dave,
-
-On Monday, May 11, 2020, 4:43:01 PM, Dave Airlie wrote:
-> On Tue, 12 May 2020 at 06:28, Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->>
->> On Mon, May 11, 2020 at 4:22 PM Al Dunsmuir <al.dunsmuir-rieW9WUcm8FFJ04o6PK0Fg@public.gmane.org> wrote:
->> Note there is no loss of functionality here, at least on radeon
->> hardware.  It just comes down to which MMU gets used for access to
->> system memory, the AGP MMU on the chipset or the MMU built into the
->> GPU.  On powerpc hardware, AGP has been particularly unstable, and AGP
->> has been disabled by default on radeon on powerpc for years now.  In
->> fact, this will probably make older hardware more reliable as it takes
->> AGP out of the equation.
->>
-
-> From memory there is quite a loss in speed though, like pretty severe.
-
-> The radeon PCI GART has a single slot TLB, if memory serves.
-
-> I think this is going to be a hard sell at this stage, I'm guessing
-> users will crawl out of the woodwork, I'm sure with 2 hours after I'm
-> able to access the office, I can boot the 865 AGP box with an rv350 in
-> it on a modern distro.
-
-> Maybe we can find some way to compartmentalise AGP further?
-
-> Dave.
-
-Significantly   reduced  caching  on memory accesses definitely sounds
-like something that would be noticeable and objectionable.
-
-I would speculate that this would also vary a lot across chipsets,
-depending on the capabilities of the PCI MMU vs the AGP MMU.
-
-In the end, it may be best to leave things as is, or as Dave suggested
-try to keep AGP in the picture.  
-
-Nothing is ever simple, is it?
-Al
+T24gTW9uLCAxMSBNYXkgMjAyMCBhdCAyMTo0MywgRGF2ZSBBaXJsaWUgPGFpcmxpZWRAZ21haWwu
+Y29tPiB3cm90ZToKPgo+IE9uIFR1ZSwgMTIgTWF5IDIwMjAgYXQgMDY6MjgsIEFsZXggRGV1Y2hl
+ciA8YWxleGRldWNoZXJAZ21haWwuY29tPiB3cm90ZToKPiA+Cj4gPiBPbiBNb24sIE1heSAxMSwg
+MjAyMCBhdCA0OjIyIFBNIEFsIER1bnNtdWlyIDxhbC5kdW5zbXVpckBzeW1wYXRpY28uY2E+IHdy
+b3RlOgo+ID4gPgo+ID4gPiBPbiBNb25kYXksIE1heSAxMSwgMjAyMCwgMToxNzoxOSBQTSwgIkNo
+cmlzdGlhbiBLw7ZuaWciIHdyb3RlOgo+ID4gPiA+IEhpIGd1eXMsCj4gPiA+Cj4gPiA+ID4gV2Vs
+bCBsZXQncyBmYWNlIGl0IEFHUCBpcyBhIHRvdGFsIGhlYWRhY2hlIHRvIG1haW50YWluIGFuZCBk
+ZWFkIGZvciBhdCBsZWFzdCAxMCsgeWVhcnMuCj4gPiA+Cj4gPiA+ID4gV2UgaGF2ZSBhIGxvdCBv
+ZiB4ODYgc3BlY2lmaWMgc3R1ZmYgaW4gdGhlIGFyY2hpdGVjdHVyZSBpbmRlcGVuZGVudAo+ID4g
+PiA+IGdyYXBoaWNzIG1lbW9yeSBtYW5hZ2VtZW50IHRvIGdldCB0aGUgY2FjaGluZyByaWdodCwg
+YWJ1c2luZyB0aGUgRE1BCj4gPiA+ID4gQVBJIG9uIG11bHRpcGxlIG9jY2FzaW9ucywgbmVlZCB0
+byBkaXN0aW5jdCBiZXR3ZWVuIEFHUCBhbmQgZHJpdmVyIHNwZWNpZmljIHBhZ2UgdGFibGVzIGV0
+YyBldGMuLi4KPiA+ID4KPiA+ID4gPiBTbyB0aGUgaWRlYSBoZXJlIGlzIHRvIGp1c3QgZ28gYWhl
+YWQgYW5kIHJlbW92ZSB0aGUgc3VwcG9ydCBmcm9tCj4gPiA+ID4gUmFkZW9uIGFuZCBOb3V2ZWF1
+IGFuZCB0aGVuIGRyb3AgdGhlIG5lY2Vzc2FyeSBjb2RlIGZyb20gVFRNLgo+ID4gPgo+ID4gPiA+
+IEZvciBSYWRlb24gdGhpcyBtZWFucyB0aGF0IHdlIGp1c3Qgc3dpdGNoIG92ZXIgdG8gdGhlIGRy
+aXZlcgo+ID4gPiA+IHNwZWNpZmljIHBhZ2UgdGFibGVzIGFuZCBldmVyeXRoaW5nIHNob3VsZCBt
+b3JlIG9yIGxlc3MgY29udGludWUgdG8gd29yay4KPiA+ID4KPiA+ID4gPiBGb3IgTm91dmVhdSBJ
+J20gbm90IDEwMCUgc3VyZSwgYnV0IGZyb20gdGhlIGNvZGUgaXQgb2YgaGFuZCBsb29rcwo+ID4g
+PiA+IGxpa2Ugd2UgY2FuIGRvIGl0IHNpbWlsYXIgdG8gUmFkZW9uLgo+ID4gPgo+ID4gPiA+IFBs
+ZWFzZSBjb21tZW50IHdoYXQgeW91IHRoaW5rIGFib3V0IHRoaXMuCj4gPiA+Cj4gPiA+ID4gUmVn
+YXJkcywKPiA+ID4gPiBDaHJpc3RpYW4uCj4gPiA+Cj4gPiA+IENocmlzdGlhbiwKPiA+ID4KPiA+
+ID4gSSB3b3VsZCByZXNwZWN0ZnVsbHkgYXNrIHRoYXQgdGhpcyBjaGFuZ2UgYmUgcmVqZWN0ZWQu
+Cj4gPiA+Cj4gPiA+IEknbSAgY3VycmVudGx5ICBhbiAgZW5kIHVzZXIgb24gYm90aCBJbnRlbCAo
+MzItYml0IGFuZCA2NC1iaXQpIGFuZCBQUEMKPiA+ID4gKE1hY3MsIElCTSBQb3dlciAtIEJFIGFu
+ZCBMRSkuCj4gPiA+Cj4gPiA+IExpbnV4IGlzIG5vdCBqdXN0IHVzZWQgZm9yIG1vZGVybiBoYXJk
+d2FyZS4gVGhlcmUgaXMgYWxzbyBhIHN1YnNldCBvZgo+ID4gPiB0aGUgdXNlciBiYXNlIHRoYXQg
+dXNlcyBpdCBmb3Igd2hhdCBpcyBvZnRlbiB0ZXJtZWQgcmV0cm8tY29tcHV0aW5nLgo+ID4gPiBO
+byBpdCdzIG5vdCBjb21tZXJjaWFsIHVzYWdlLCBidXQgbm8gb25lIGNhbiBzZXJpb3VzbHkgY2xh
+aW0gdGhhdCB0aGF0Cj4gPiA+IExpbnV4IGlzIGZvciBidXNpbmVzcyBvbmx5Lgo+ID4gPgo+ID4g
+PiBPZnRlbiB0aGUgb2xkIGhhcmR3YXJlIGlzIGJ1aWx0IGZhciBiYXR0ZXIgdGhhbiB0aGUgbW9k
+ZXJuIGp1bmssIGFuZAo+ID4gPiB3aWxsIGNvbnRpbnVlIHRvIHJ1biBmb3IgeWVhcnMgdG8gY29t
+ZS4gVGhpcyBncm91cCBvZiBmb2xrcyBlaXRoZXIgaGFzCj4gPiA+IGV4aXN0aW5nIGhhcmR3YXJl
+IHRoZXkgd2lzaCB0byBjb250aW51ZSB0byB1c2UsIG9yIGFyZSBhY3F1aXJpbmcgdGhlCj4gPiA+
+IHNhbWUgYmVjYXVzZSB0aGV5IGFyZSB0aXJlZCBvZiBnZW5lcmljIGxvY2tlZC1kb3duIGhhcmR3
+YXJlLgo+ID4gPgo+ID4gPiBBIHNpZ25pZmljYW50IHBlcmNlbnRhZ2Ugb2YgdGhlIHZpZGVvIGhh
+cmR3YXJlIHRoYXQgZmFsbHMgaW4gdGhlIHJldHJvCj4gPiA+IGNhdGVnb3J5IHVzZXMgdGhlIEFH
+UCB2aWRlbyBidXMuIFJlbW92aW5nIHRoYXQgc3VwcG9ydCBmb3IgdGhvc2UgY2FzZXMKPiA+ID4g
+d2hlcmUgaXQgd29ya3Mgd291bGQgc2V2ZXJlbHkgbGltaXQgcGVyZm9ybWFuY2UgYW5kIGluIHNv
+bWUgY2FzZXMKPiA+ID4gZnVuY3Rpb25hbGl0eS4gVGhpcyBjYW4gbWVhbiB0aGUgZGlmZmVyZW5j
+ZSBiZXR3ZWVuIGJlaW5nIGFibGUgdG8gcnVuCj4gPiA+IGFuIGFwcGxpY2F0aW9uLCBvciBoYXZp
+bmcgaXQgZmFpbC4KPiA+ID4KPiA+Cj4gPiBOb3RlIHRoZXJlIGlzIG5vIGxvc3Mgb2YgZnVuY3Rp
+b25hbGl0eSBoZXJlLCBhdCBsZWFzdCBvbiByYWRlb24KPiA+IGhhcmR3YXJlLiAgSXQganVzdCBj
+b21lcyBkb3duIHRvIHdoaWNoIE1NVSBnZXRzIHVzZWQgZm9yIGFjY2VzcyB0bwo+ID4gc3lzdGVt
+IG1lbW9yeSwgdGhlIEFHUCBNTVUgb24gdGhlIGNoaXBzZXQgb3IgdGhlIE1NVSBidWlsdCBpbnRv
+IHRoZQo+ID4gR1BVLiAgT24gcG93ZXJwYyBoYXJkd2FyZSwgQUdQIGhhcyBiZWVuIHBhcnRpY3Vs
+YXJseSB1bnN0YWJsZSwgYW5kIEFHUAo+ID4gaGFzIGJlZW4gZGlzYWJsZWQgYnkgZGVmYXVsdCBv
+biByYWRlb24gb24gcG93ZXJwYyBmb3IgeWVhcnMgbm93LiAgSW4KPiA+IGZhY3QsIHRoaXMgd2ls
+bCBwcm9iYWJseSBtYWtlIG9sZGVyIGhhcmR3YXJlIG1vcmUgcmVsaWFibGUgYXMgaXQgdGFrZXMK
+PiA+IEFHUCBvdXQgb2YgdGhlIGVxdWF0aW9uLgo+ID4KPgo+IEZyb20gbWVtb3J5IHRoZXJlIGlz
+IHF1aXRlIGEgbG9zcyBpbiBzcGVlZCB0aG91Z2gsIGxpa2UgcHJldHR5IHNldmVyZS4KPgo+IFRo
+ZSByYWRlb24gUENJIEdBUlQgaGFzIGEgc2luZ2xlIHNsb3QgVExCLCBpZiBtZW1vcnkgc2VydmVz
+Lgo+Cj4gSSB0aGluayB0aGlzIGlzIGdvaW5nIHRvIGJlIGEgaGFyZCBzZWxsIGF0IHRoaXMgc3Rh
+Z2UsIEknbSBndWVzc2luZwo+IHVzZXJzIHdpbGwgY3Jhd2wgb3V0IG9mIHRoZSB3b29kd29yaywg
+SSdtIHN1cmUgd2l0aCAyIGhvdXJzIGFmdGVyIEknbQo+IGFibGUgdG8gYWNjZXNzIHRoZSBvZmZp
+Y2UsIEkgY2FuIGJvb3QgdGhlIDg2NSBBR1AgYm94IHdpdGggYW4gcnYzNTAgaW4KPiBpdCBvbiBh
+IG1vZGVybiBkaXN0cm8uCj4KSSBoYXZlIGEgc3lzdGVtIHdpdGggbmZvcmNlMiBtb3RoZXJib2Fy
+ZCBhbmQgTnZpZGlhIGZ4NTUwMCBHUFUuIEkKY291bGQgZHVzdCBpdCBvZmYgYW5kIHNvbWUgcXVp
+Y2sgcGVyZm9ybWFuY2UgdGVzdHMgb3ZlciB0aGUgd2Vla2VuZC4KClVubGVzcyBzb21lb25lIGJl
+YXRzIG1lIHRvIGl0LCBvZiBjb3Vyc2UgOi0pCgotRW1pbApfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2FtZC1nZngK
