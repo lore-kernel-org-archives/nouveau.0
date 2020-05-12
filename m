@@ -1,12 +1,14 @@
-From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+From: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [Nouveau] [RFC] Remove AGP support from Radeon/Nouveau/TTM
-Date: Tue, 12 May 2020 20:29:43 +0200
-Message-ID: <1f7b3774-8724-7653-3481-9429ae991acc@suse.de>
+Date: Tue, 12 May 2020 14:32:01 -0400
+Message-ID: <CADnq5_OnoH3YhhEjD7eOrBPPqxQZ+S1cKWRBaUMVnA0V=E0i+Q@mail.gmail.com>
 References: <20200511171722.96576-1-christian.koenig@amd.com>
+ <1f7b3774-8724-7653-3481-9429ae991acc@suse.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1310300533=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200511171722.96576-1-christian.koenig-5C7GfCeVMHo@public.gmane.org>
+In-Reply-To: <1f7b3774-8724-7653-3481-9429ae991acc-l3A5Bk7waGM@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
  <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
@@ -16,117 +18,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1310300533==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="XYg86twiVKksAsvYo9LMBYSw5Mu9e8bTQ"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---XYg86twiVKksAsvYo9LMBYSw5Mu9e8bTQ
-Content-Type: multipart/mixed; boundary="4417UGSA9ZHxDkKbeOefL9hpeZxzUXtlz";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>,
- dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org,
- nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Message-ID: <1f7b3774-8724-7653-3481-9429ae991acc-l3A5Bk7waGM@public.gmane.org>
-Subject: Re: [Nouveau] [RFC] Remove AGP support from Radeon/Nouveau/TTM
-References: <20200511171722.96576-1-christian.koenig-5C7GfCeVMHo@public.gmane.org>
-In-Reply-To: <20200511171722.96576-1-christian.koenig-5C7GfCeVMHo@public.gmane.org>
-
---4417UGSA9ZHxDkKbeOefL9hpeZxzUXtlz
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-Am 11.05.20 um 19:17 schrieb Christian K=C3=B6nig:
-> Hi guys,
->=20
-> Well let's face it AGP is a total headache to maintain and dead for at =
-least 10+ years.
->=20
-> We have a lot of x86 specific stuff in the architecture independent gra=
-phics memory management to get the caching right, abusing the DMA API on =
-multiple occasions, need to distinct between AGP and driver specific page=
- tables etc etc...
->=20
-> So the idea here is to just go ahead and remove the support from Radeon=
- and Nouveau and then drop the necessary code from TTM.
->=20
-> For Radeon this means that we just switch over to the driver specific p=
-age tables and everything should more or less continue to work.
->=20
-> For Nouveau I'm not 100% sure, but from the code it of hand looks like =
-we can do it similar to Radeon.
->=20
-> Please comment what you think about this.
-
-There's some AGP support code in the DRM core. Can some of that declared
-as legacy?
-
-Specifically, what about these AGP-related ioctl calls? Can they be
-declared as legacy? It would appear to me that KMS-based drivers don't
-have to manage AGP by themselves. (?)
-
-Best regards
-Thomas
-
->=20
-> Regards,
-> Christian.
->=20
->=20
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---4417UGSA9ZHxDkKbeOefL9hpeZxzUXtlz--
-
---XYg86twiVKksAsvYo9LMBYSw5Mu9e8bTQ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl666xcACgkQaA3BHVML
-eiMKGQgAsI0A8WPKZ1qfU4YU6Bk0bcQSwsNBNjj8fnK7dO4zoUovRX2WQbEQfSHn
-gTCXramN+vtT5WKKotFx4lyKAxZaRflbDeXncLCjFzTPts4bdYaLmFGyeseLBeYZ
-yXfTr9uylnkuCogztxOEU3HO+xTz5qX/eGQlznOLs1pwWFsCvhwPZzFHqgEyqFXR
-OpKOAGLXc/UgvGDqNdV1+bfNJrE8smJvIuD7OMS7v4SvEUSTxGO5khVaItsdpjr5
-V10LoyDkEIS10pB1zUde7iBabMsg39EwqyGGrEzvcmdT/ViSyfrEVS4fBChhCE01
-fwOIY+6MsgTMw/k2kMngsph0XwmRag==
-=dP9q
------END PGP SIGNATURE-----
-
---XYg86twiVKksAsvYo9LMBYSw5Mu9e8bTQ--
-
---===============1310300533==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============1310300533==--
+T24gVHVlLCBNYXkgMTIsIDIwMjAgYXQgMjoyOSBQTSBUaG9tYXMgWmltbWVybWFubiA8dHppbW1l
+cm1hbm5Ac3VzZS5kZT4gd3JvdGU6Cj4KPiBIaQo+Cj4gQW0gMTEuMDUuMjAgdW0gMTk6MTcgc2No
+cmllYiBDaHJpc3RpYW4gS8O2bmlnOgo+ID4gSGkgZ3V5cywKPiA+Cj4gPiBXZWxsIGxldCdzIGZh
+Y2UgaXQgQUdQIGlzIGEgdG90YWwgaGVhZGFjaGUgdG8gbWFpbnRhaW4gYW5kIGRlYWQgZm9yIGF0
+IGxlYXN0IDEwKyB5ZWFycy4KPiA+Cj4gPiBXZSBoYXZlIGEgbG90IG9mIHg4NiBzcGVjaWZpYyBz
+dHVmZiBpbiB0aGUgYXJjaGl0ZWN0dXJlIGluZGVwZW5kZW50IGdyYXBoaWNzIG1lbW9yeSBtYW5h
+Z2VtZW50IHRvIGdldCB0aGUgY2FjaGluZyByaWdodCwgYWJ1c2luZyB0aGUgRE1BIEFQSSBvbiBt
+dWx0aXBsZSBvY2Nhc2lvbnMsIG5lZWQgdG8gZGlzdGluY3QgYmV0d2VlbiBBR1AgYW5kIGRyaXZl
+ciBzcGVjaWZpYyBwYWdlIHRhYmxlcyBldGMgZXRjLi4uCj4gPgo+ID4gU28gdGhlIGlkZWEgaGVy
+ZSBpcyB0byBqdXN0IGdvIGFoZWFkIGFuZCByZW1vdmUgdGhlIHN1cHBvcnQgZnJvbSBSYWRlb24g
+YW5kIE5vdXZlYXUgYW5kIHRoZW4gZHJvcCB0aGUgbmVjZXNzYXJ5IGNvZGUgZnJvbSBUVE0uCj4g
+Pgo+ID4gRm9yIFJhZGVvbiB0aGlzIG1lYW5zIHRoYXQgd2UganVzdCBzd2l0Y2ggb3ZlciB0byB0
+aGUgZHJpdmVyIHNwZWNpZmljIHBhZ2UgdGFibGVzIGFuZCBldmVyeXRoaW5nIHNob3VsZCBtb3Jl
+IG9yIGxlc3MgY29udGludWUgdG8gd29yay4KPiA+Cj4gPiBGb3IgTm91dmVhdSBJJ20gbm90IDEw
+MCUgc3VyZSwgYnV0IGZyb20gdGhlIGNvZGUgaXQgb2YgaGFuZCBsb29rcyBsaWtlIHdlIGNhbiBk
+byBpdCBzaW1pbGFyIHRvIFJhZGVvbi4KPiA+Cj4gPiBQbGVhc2UgY29tbWVudCB3aGF0IHlvdSB0
+aGluayBhYm91dCB0aGlzLgo+Cj4gVGhlcmUncyBzb21lIEFHUCBzdXBwb3J0IGNvZGUgaW4gdGhl
+IERSTSBjb3JlLiBDYW4gc29tZSBvZiB0aGF0IGRlY2xhcmVkCj4gYXMgbGVnYWN5Pwo+Cj4gU3Bl
+Y2lmaWNhbGx5LCB3aGF0IGFib3V0IHRoZXNlIEFHUC1yZWxhdGVkIGlvY3RsIGNhbGxzPyBDYW4g
+dGhleSBiZQo+IGRlY2xhcmVkIGFzIGxlZ2FjeT8gSXQgd291bGQgYXBwZWFyIHRvIG1lIHRoYXQg
+S01TLWJhc2VkIGRyaXZlcnMgZG9uJ3QKPiBoYXZlIHRvIG1hbmFnZSBBR1AgYnkgdGhlbXNlbHZl
+cy4gKD8pCgpUaGUgb2xkIGRybSBjb3JlIEFHUCBjb2RlIGlzIG1haW5seSAob25seT8pIGZvciB0
+aGUgbm9uLUtNUyBkcml2ZXJzLgpFLmcuLCBtYWNoNjQsIHIxMjgsIHNpcywgc2F2YWdlLCBldGMu
+CgpBbGV4Cgo+Cj4gQmVzdCByZWdhcmRzCj4gVGhvbWFzCj4KPiA+Cj4gPiBSZWdhcmRzLAo+ID4g
+Q2hyaXN0aWFuLgo+ID4KPiA+Cj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwo+ID4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiA+IE5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCj4gPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUKPiA+Cj4KPiAtLQo+IFRob21hcyBaaW1tZXJtYW5uCj4gR3JhcGhp
+Y3MgRHJpdmVyIERldmVsb3Blcgo+IFNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21i
+SAo+IE1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2VybWFueQo+IChIUkIgMzY4MDks
+IEFHIE7DvHJuYmVyZykKPiBHZXNjaMOkZnRzZsO8aHJlcjogRmVsaXggSW1lbmTDtnJmZmVyCj4K
+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGFtZC1n
+ZnggbWFpbGluZyBsaXN0Cj4gYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxp
+c3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
