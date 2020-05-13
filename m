@@ -1,21 +1,17 @@
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel-otUistvHUpPR7s880joybQ@public.gmane.org>
-Subject: Re: [PATCH 1/3] drm/radeon: remove AGP support
-Date: Wed, 13 May 2020 09:52:28 +0200
-Message-ID: <ef9026a7-11d4-c011-a434-d0d018a0bc18@daenzer.net>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [RFC] Remove AGP support from Radeon/Nouveau/TTM
+Date: Wed, 13 May 2020 10:27:30 +0100
+Message-ID: <CACvgo53k72T+-WUHr2XEwcgMFh-JonQME-He5Pc6hfOk3pr+7A@mail.gmail.com>
 References: <20200511171722.96576-1-christian.koenig@amd.com>
- <20200511171722.96576-2-christian.koenig@amd.com>
- <CADnq5_MyO_L+1w69qDLzhg34W6Qer-uSRR2tb7-2uXLC_6PXSg@mail.gmail.com>
- <ba0b1ab7-3078-a6f2-41cd-326ca21ee99f@daenzer.net>
- <CADnq5_MdbJUXs7wbG=HCOKj4Vp_NmLkcJng=EXynSXPe9gsyOQ@mail.gmail.com>
- <777c08d1-3ac3-16ca-0222-e2d62c281e50@spliet.org>
- <CADnq5_NK6ziShvkDug5xGHm7oZTf9qEu41gOxvNANQHFD2a-qQ@mail.gmail.com>
- <5c3da9d3-8b77-e97f-28a2-e1083a53a1d7@gmail.com>
+ <1f7b3774-8724-7653-3481-9429ae991acc@suse.de>
+ <CADnq5_OnoH3YhhEjD7eOrBPPqxQZ+S1cKWRBaUMVnA0V=E0i+Q@mail.gmail.com>
+ <1706b8de-bf4a-e9e1-2163-e782d1c2cc19@suse.de>
+ <CADnq5_P6sWt=0zkRm6ySmOb1zr-7VTwLwx+ecEKg-ntJTRfY5A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5c3da9d3-8b77-e97f-28a2-e1083a53a1d7-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Content-Language: en-CA
+In-Reply-To: <CADnq5_P6sWt=0zkRm6ySmOb1zr-7VTwLwx+ecEKg-ntJTRfY5A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -25,41 +21,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: christian.koenig-5C7GfCeVMHo@public.gmane.org, Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gMjAyMC0wNS0xMyA5OjQ2IGEubS4sIENocmlzdGlhbiBLw7ZuaWcgd3JvdGU6Cj4gQW0gMTIu
-MDUuMjAgdW0gMjM6MTIgc2NocmllYiBBbGV4IERldWNoZXI6Cj4+IE9uIFR1ZSwgTWF5IDEyLCAy
-MDIwIGF0IDQ6NTIgUE0gUm95IFNwbGlldCA8bm91dmVhdUBzcGxpZXQub3JnPiB3cm90ZToKPj4+
-Cj4+PiBJJ2xsIHZvbHVudGVlciB0byBiZSB0aGUgb25lIGFza2luZzogaG93IGJpZyBpcyB0aGlz
-IHBlcmZvcm1hbmNlCj4+PiBkaWZmZXJlbmNlPyBIYXZlIGFueSBiZW5jaG1hcmtzIGJlZW4gcnVu
-IGJlZm9yZSBhbmQgYWZ0ZXIgcmVtb3ZhbCBvZiBBR1AKPj4+IEdBUlQgY29kZSBvbiBhZmZlY3Rl
-ZCBub3V2ZWF1L3JhZGVvbiBzeXN0ZW1zPyBPciBpcyB0aGlzIGNvZGUgYmVpbmcKPj4+IGRyb3Bw
-ZWQgX2p1c3RfIGJlY2F1c2UgaXQncyBjdW1iZXJzb21lLCB3aXRoIG5vIHJlZ2FyZCBmb3IgbWV0
-cmljcyB0aGF0Cj4+PiBkZXRlcm1pbmUgdGhlIHZhbHVlIG9mIEFHUCBHQVJUIHN1cHBvcnQ/Cj4+
-Pgo+PiBJIGRvbid0IHRoaW5rIGFueW9uZSBoYXMgYW55IHNvbGlkIG51bWJlcnMsIGp1c3QgYW5l
-Y2RvdGFsIGZyb20KPj4gbWVtb3J5LsKgIEkgY2VydGFpbmx5IGRvbid0IGhhdmUgYW55IGZ1bmN0
-aW9uYWwgQUdQIHN5c3RlbXMgYXQgdGhpcwo+PiBwb2ludC7CoCBJdCdzIG1vc3RseSBqdXN0IGN1
-bWJlcnNvbWUgYW5kIHdvdWxkIGFsbG93IHVzIHRvIGNsZWFuIHR0bQo+PiBhbmQgcHJvYmFibHkg
-aW1wcm92ZSBzdGFiaWxpdHkgYXQgdGhlIHNhbWUgdGltZS7CoCBBdCBsZWFzdCBvbiB0aGUKPj4g
-cmFkZW9uIHNpZGUsIHRoZSBvbmx5IG5hdGl2ZSBBR1AgY2FyZHMgd2VyZSByMXh4LCByMnh4LCBh
-bmQgc29tZSBvZgo+PiB0aGUgZWFybHkgcjN4eCBib2FyZHMuwqAgT25jZSB3ZSBzd2l0Y2hlZCB0
-byBwY2llIG1pZC13YXkgdGhyb3VnaCByM3h4LAo+PiBldmVyeXRoaW5nIHdhcyBuYXRpdmUgcGNp
-ZSBhbmQgdGhlIEFHUCBjYXJkcyB1c2VkIGEgcGNpZSB0byBBR1AgYnJpZGdlCj4+IGNoaXAgc28g
-dGhleSBoYWQgYSBkZWNlbnQgb24gY2hpcCBNTVUuwqAgVGhvc2Ugb2xkZXIgY2FyZHMgdG9wcGVk
-IG91dAo+PiBhdCBtYXliZSAzMiBvciA2NCBNQiBvZiB2cmFtLCBzbyB0aGV5IGFyZSBnb2luZyB0
-byBiZSBoYXJkIHByZXNzZWQgdG8KPj4gZGVhbCB3aXRoIG1vZGVybiBkZXNrdG9wcyBhbnl3YXku
-wqAgTm8gaWRlYSB3aGF0IHNvcnQgb2YgR0FSVAo+PiBjYXBhYmlsaXRpZXMgTlYgQUdQIGhhcmR3
-YXJlIGF0IHRoaXMgdGltZSBoYWQuCj4gCj4gSSBjb3VsZCBvbmx5IHRlc3Qgd2l0aCBhbiBvbGQg
-eDg2IE1hYyBhbmQgYW4gcjN4eCBnZW5lcmF0aW9uIGh3IGFuZCBpbgo+IHRoaXMgY2FzZSBtYWtp
-bmcgdGhlIHN3aXRjaCBkaWRuJ3QgaGFkIGFueSBub3RpY2VhYmxlIGVmZmVjdCBhdCBhbGwuCj4g
-Cj4gQnV0IEkgZGlkbid0IGRvIG1vcmUgdGhhbiBwbGF5aW5nIGFyb3VuZCB3aXRoIHRoZSBkZXNr
-dG9wIGVmZmVjdHMgYW5kCj4gcGxheWluZyBhIHZpZGVvLgoKWWVhaCwgdGhhdCdzIG5vdCBlbm91
-Z2ggdG8gc2VlIGEgZGlmZmVyZW5jZS4gVHJ5IGFuIE9wZW5HTCBnYW1lLCBvciBldmVuCmp1c3Qg
-Z2x4Z2VhcnMuCgoKLS0gCkVhcnRobGluZyBNaWNoZWwgRMOkbnplciAgICAgICAgICAgICAgIHwg
-ICAgICAgICAgICAgICBodHRwczovL3JlZGhhdC5jb20KTGlicmUgc29mdHdhcmUgZW50aHVzaWFz
-dCAgICAgICAgICAgICB8ICAgICAgICAgICAgIE1lc2EgYW5kIFggZGV2ZWxvcGVyCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
-aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+On Tue, 12 May 2020 at 20:48, Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+
+> > >>
+> > >> There's some AGP support code in the DRM core. Can some of that declared
+> > >> as legacy?
+> > >>
+> > >> Specifically, what about these AGP-related ioctl calls? Can they be
+> > >> declared as legacy? It would appear to me that KMS-based drivers don't
+> > >> have to manage AGP by themselves. (?)
+> > >
+> > > The old drm core AGP code is mainly (only?) for the non-KMS drivers.
+> > > E.g., mach64, r128, sis, savage, etc.
+> >
+> > Exactly my point. There's one drm_agp_init() call left in radeon. The
+> > rest of the AGP code is apparently for legacy non-KMS drivers. Should
+> > the related ioctl calls be declared as legacy (i.e., listed with
+> > DRM_LEGACY_IOCTL_DEF instead of DRM_IOCTL_DEF)? If so, much of the AGP
+> > core code could probably be moved behind CONFIG_DRM_LEGACY as well.
+>
+> Ah, I forgot about drm_agp_init().  I was just thinking the other AGP
+> stuff.  Yeah, I think we could make it legacy.
+>
+Fwiw I've got local patches a) removing drm_agp_init() from radeon and
+b) making the core drm code legacy only.
+Will try to finish them over the weekend and send out.
+
+Even if AGP GART gets dropped the b) patches will be good ;-)
+
+-Emil
