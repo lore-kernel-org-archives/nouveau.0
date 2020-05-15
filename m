@@ -1,98 +1,92 @@
-From: William Lewis <minutemaidpark-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
-Subject: Re: [RFC v4 02/12] kthread: Add
- kthread_(un)block_work_queuing() and kthread_work_queuable()
-Date: Thu, 14 May 2020 10:07:19 -0500
-Message-ID: <MW2PR02MB37884675611A8D5325E5E30CC8BC0@MW2PR02MB3788.namprd02.prod.outlook.com>
-References: <20200508204751.155488-1-lyude@redhat.com>
- <20200508204751.155488-3-lyude@redhat.com>
+From: "Szwichtenberg, Radoslaw" <radoslaw.szwichtenberg@intel.com>
+Subject: XDC 2020: Registration & Call for Proposals now open!
+Date: Fri, 15 May 2020 14:15:10 +0000
+Message-ID: <9a4392829de747a9a752a5b13f31f90b@intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200508204751.155488-3-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
 Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: "events@lists.x.org" <events@lists.x.org>, "xorg-devel@lists.freedesktop.org" <xorg-devel@lists.freedesktop.org>, "wayland-devel@lists.freedesktop.org" <wayland-devel@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "etnaviv@lists.freedesktop.org" <etnaviv@lists.freedesktop.org>, "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "board@foundation.x.org" <board@foundation.x.org>
 List-Id: nouveau.vger.kernel.org
 
-TWlub3Igbml0cGljay7CoCBzL3F1ZXVpbmcvcXVldWVpbmcvIGFuZCBzL3F1ZXVhYmxlL3F1ZXVl
-YWJsZS8uCgpPbiAyMDIwLTA1LTA4IDE1OjQ2LCBMeXVkZSBQYXVsIHdyb3RlOgo+IEFkZCBzb21l
-IHNpbXBsZSB3cmFwcGVycyBhcm91bmQgaW5jcmVtZW50aW5nL2RlY3JlbWVudGluZwo+IGt0aHJl
-YWRfd29yay5jYW5jZWxsaW5nIHVuZGVyIGxvY2ssIGFsb25nIHdpdGggY2hlY2tpbmcgd2hldGhl
-ciBxdWV1aW5nCj4gaXMgY3VycmVudGx5IGFsbG93ZWQgb24gYSBnaXZlbiBrdGhyZWFkX3dvcmss
-IHdoaWNoIHdlJ2xsIHVzZSB3YW50IHRvCj4gaW1wbGVtZW50IHdvcmsgY2FuY2VsbGluZyB3aXRo
-IERSTSdzIHZibGFuayB3b3JrIGhlbHBlcnMuCj4KPiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVs
-QGZmd2xsLmNoPgo+IENjOiBUZWp1biBIZW8gPHRqQGtlcm5lbC5vcmc+Cj4gQ2M6IFZpbGxlIFN5
-cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IGRyaS1kZXZlbEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKPiBDYzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-PiBTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgo+IC0tLQo+ICAg
-aW5jbHVkZS9saW51eC9rdGhyZWFkLmggfCAxOSArKysrKysrKysrKysrKysrKwo+ICAga2VybmVs
-L2t0aHJlYWQuYyAgICAgICAgfCA0NiArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKwo+ICAgMiBmaWxlcyBjaGFuZ2VkLCA2NSBpbnNlcnRpb25zKCspCj4KPiBkaWZmIC0t
-Z2l0IGEvaW5jbHVkZS9saW51eC9rdGhyZWFkLmggYi9pbmNsdWRlL2xpbnV4L2t0aHJlYWQuaAo+
-IGluZGV4IDAwMDY1NDBjZTdmOS4uYzZmZWUyMDBmY2VkIDEwMDY0NAo+IC0tLSBhL2luY2x1ZGUv
-bGludXgva3RocmVhZC5oCj4gKysrIGIvaW5jbHVkZS9saW51eC9rdGhyZWFkLmgKPiBAQCAtMjEx
-LDkgKzIxMSwyOCBAQCB2b2lkIGt0aHJlYWRfZmx1c2hfd29ya2VyKHN0cnVjdCBrdGhyZWFkX3dv
-cmtlciAqd29ya2VyKTsKPiAgIAo+ICAgYm9vbCBrdGhyZWFkX2NhbmNlbF93b3JrX3N5bmMoc3Ry
-dWN0IGt0aHJlYWRfd29yayAqd29yayk7Cj4gICBib29sIGt0aHJlYWRfY2FuY2VsX2RlbGF5ZWRf
-d29ya19zeW5jKHN0cnVjdCBrdGhyZWFkX2RlbGF5ZWRfd29yayAqd29yayk7Cj4gK3ZvaWQga3Ro
-cmVhZF9ibG9ja193b3JrX3F1ZXVpbmcoc3RydWN0IGt0aHJlYWRfd29ya2VyICp3b3JrZXIsCj4g
-KwkJCQlzdHJ1Y3Qga3RocmVhZF93b3JrICp3b3JrKTsKPiArdm9pZCBrdGhyZWFkX3VuYmxvY2tf
-d29ya19xdWV1aW5nKHN0cnVjdCBrdGhyZWFkX3dvcmtlciAqd29ya2VyLAo+ICsJCQkJICBzdHJ1
-Y3Qga3RocmVhZF93b3JrICp3b3JrKTsKPiAgIAo+ICAgdm9pZCBrdGhyZWFkX2Rlc3Ryb3lfd29y
-a2VyKHN0cnVjdCBrdGhyZWFkX3dvcmtlciAqd29ya2VyKTsKPiAgIAo+ICsvKioKPiArICoga3Ro
-cmVhZF93b3JrX3F1ZXVhYmxlIC0gd2hldGhlciBvciBub3QgYSBrdGhyZWFkIHdvcmsgY2FuIGJl
-IHF1ZXVlZAo+ICsgKiBAd29yazogVGhlIGt0aHJlYWQgd29yayB0byBjaGVjawo+ICsgKgo+ICsg
-KiBDaGVja3Mgd2hldGhlciBvciBub3QgcXVldWluZyBAd29yayBpcyBjdXJyZW50bHkgYmxvY2tl
-ZCBmcm9tIHF1ZXVpbmcsCj4gKyAqIGVpdGhlciBieSBrdGhyZWFkX2NhbmNlbF93b3JrX3N5bmMo
-KSBhbmQgZnJpZW5kcyBvcgo+ICsgKiBrdGhyZWFkX2Jsb2NrX3dvcmtfcXVldWluZygpLgo+ICsg
-Kgo+ICsgKiBSZXR1cm5zOiB3aGV0aGVyIG9yIG5vdCB0aGUgQHdvcmsgbWF5IGJlIHF1ZXVlZC4K
-PiArICovCj4gK3N0YXRpYyBpbmxpbmUgYm9vbCBrdGhyZWFkX3dvcmtfcXVldWFibGUoc3RydWN0
-IGt0aHJlYWRfd29yayAqd29yaykKPiArewo+ICsJcmV0dXJuIFJFQURfT05DRSh3b3JrLT5jYW5j
-ZWxpbmcpID09IDA7Cj4gK30KPiArCj4gICBzdHJ1Y3QgY2dyb3VwX3N1YnN5c19zdGF0ZTsKPiAg
-IAo+ICAgI2lmZGVmIENPTkZJR19CTEtfQ0dST1VQCj4gZGlmZiAtLWdpdCBhL2tlcm5lbC9rdGhy
-ZWFkLmMgYi9rZXJuZWwva3RocmVhZC5jCj4gaW5kZXggYzFmOGVjOWQ1ODM2Li5mOGE1YzVhODdj
-YzYgMTAwNjQ0Cj4gLS0tIGEva2VybmVsL2t0aHJlYWQuYwo+ICsrKyBiL2tlcm5lbC9rdGhyZWFk
-LmMKPiBAQCAtMTE4Nyw2ICsxMTg3LDUyIEBAIGJvb2wga3RocmVhZF9jYW5jZWxfZGVsYXllZF93
-b3JrX3N5bmMoc3RydWN0IGt0aHJlYWRfZGVsYXllZF93b3JrICpkd29yaykKPiAgIH0KPiAgIEVY
-UE9SVF9TWU1CT0xfR1BMKGt0aHJlYWRfY2FuY2VsX2RlbGF5ZWRfd29ya19zeW5jKTsKPiAgIAo+
-ICsvKioKPiArICoga3RocmVhZF9ibG9ja193b3JrX3F1ZXVpbmcgLSBwcmV2ZW50IGEga3RocmVh
-ZF93b3JrIGZyb20gYmVpbmcgcXVldWVkCj4gKyAqIHdpdGhvdXQgYWN0dWFsbHkgY2FuY2VsbGlu
-ZyBpdAo+ICsgKiBAd29ya2VyOiBrdGhyZWFkIHdvcmtlciB0byB1c2UKPiArICogQHdvcms6IHdv
-cmsgdG8gYmxvY2sgcXVldWluZyBvbgo+ICsgKgo+ICsgKiBQcmV2ZW50cyBAd29yayBmcm9tIGJl
-aW5nIHF1ZXVlZCB1c2luZyBrdGhyZWFkX3F1ZXVlX3dvcmsoKSBhbmQgZnJpZW5kcywKPiArICog
-YnV0IGRvZXNuJ3QgYXR0ZW1wdCB0byBjYW5jZWwgYW55IHByZXZpb3VzIHF1ZXVpbmcuIFRoZSBj
-YWxsZXIgbXVzdCB1bmJsb2NrCj4gKyAqIHF1ZXVpbmcgbGF0ZXIgYnkgY2FsbGluZyBrdGhyZWFk
-X3VuYmxvY2tfd29ya19xdWV1aW5nKCkuIFRoaXMgY2FsbCBjYW4gYmUKPiArICogY2FsbGVkIG11
-bHRpcGxlIHRpbWVzLgo+ICsgKgo+ICsgKiBTZWUgYWxzbzoga3RocmVhZF93b3JrX3F1ZXVhYmxl
-KCkKPiArICovCj4gK3ZvaWQga3RocmVhZF9ibG9ja193b3JrX3F1ZXVpbmcoc3RydWN0IGt0aHJl
-YWRfd29ya2VyICp3b3JrZXIsCj4gKwkJCQlzdHJ1Y3Qga3RocmVhZF93b3JrICp3b3JrKQo+ICt7
-Cj4gKwl1bnNpZ25lZCBsb25nIGZsYWdzOwo+ICsKPiArCXJhd19zcGluX2xvY2tfaXJxc2F2ZSgm
-d29ya2VyLT5sb2NrLCBmbGFncyk7Cj4gKwl3b3JrLT5jYW5jZWxpbmcrKzsKPiArCXJhd19zcGlu
-X3VubG9ja19pcnFyZXN0b3JlKCZ3b3JrZXItPmxvY2ssIGZsYWdzKTsKPiArfQo+ICtFWFBPUlRf
-U1lNQk9MX0dQTChrdGhyZWFkX2Jsb2NrX3dvcmtfcXVldWluZyk7Cj4gKwo+ICsvKioKPiArICog
-a3RocmVhZF91bmJsb2NrX3dvcmtfcXVldWluZyAtIHVuYmxvY2sgcXVldWluZyBvbiBhIGt0aHJl
-YWRfd29yawo+ICsgKiBAd29ya2VyOiBrdGhyZWFkIHdvcmtlciB0byB1c2UKPiArICogQHdvcms6
-IHdvcmsgdG8gdW5ibG9jayBxdWV1aW5nIG9uCj4gKyAqCj4gKyAqIFJlbW92ZXMgYSByZXF1ZXN0
-IHRvIHByZXZlbnQgQHdvcmsgZnJvbSBiZWluZyBxdWV1ZWQgd2l0aAo+ICsgKiBrdGhyZWFkX3F1
-ZXVlX3dvcmsoKSBhbmQgZnJpZW5kcywgc28gdGhhdCBpdCBtYXkgcG90ZW50aWFsbHkgYmUgcXVl
-dWVkCj4gKyAqIGFnYWluLgo+ICsgKgo+ICsgKiBTZWUgYWxzbzoga3RocmVhZF93b3JrX3F1ZXVh
-YmxlKCkKPiArICovCj4gK3ZvaWQga3RocmVhZF91bmJsb2NrX3dvcmtfcXVldWluZyhzdHJ1Y3Qg
-a3RocmVhZF93b3JrZXIgKndvcmtlciwKPiArCQkJCSAgc3RydWN0IGt0aHJlYWRfd29yayAqd29y
-aykKPiArewo+ICsJdW5zaWduZWQgbG9uZyBmbGFnczsKPiArCj4gKwlyYXdfc3Bpbl9sb2NrX2ly
-cXNhdmUoJndvcmtlci0+bG9jaywgZmxhZ3MpOwo+ICsJV0FSTl9PTl9PTkNFKC0td29yay0+Y2Fu
-Y2VsaW5nIDwgMCk7Cj4gKwlyYXdfc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmd29ya2VyLT5sb2Nr
-LCBmbGFncyk7Cj4gK30KPiArRVhQT1JUX1NZTUJPTF9HUEwoa3RocmVhZF91bmJsb2NrX3dvcmtf
-cXVldWluZyk7Cj4gKwo+ICAgLyoqCj4gICAgKiBrdGhyZWFkX2ZsdXNoX3dvcmtlciAtIGZsdXNo
-IGFsbCBjdXJyZW50IHdvcmtzIG9uIGEga3RocmVhZF93b3JrZXIKPiAgICAqIEB3b3JrZXI6IHdv
-cmtlciB0byBmbHVzaAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+Hello!
+
+Registration & Call for Proposals are now open for XDC 2020, which will
+take place at the Gda=F1sk University of Technology in Gda=F1sk, Poland on =
+September 16-18, 2020.
+
+Thanks to LWN.net for hosting the website again this year!
+
+    https://xdc2020.x.org
+    =
+
+As usual, the conference is free of charge and open to the general public. =
+If you plan on attending, please make sure to register as early as possible=
+! However, don't book any travel or hotel until the organization decides if=
+ we keep the conference as it is or there is any change. Please read this m=
+essage on the website for more information:
+
+https://xdc2020.x.org/event/9/page/78-covid-19
+
+In order to register as attendee, you will therefore need to register via t=
+he XDC
+website. However, as XDC is sharing the same Indico infrastructure as
+LPC, if you previously registered on the LPC website
+(linuxplumbersconference.org) or on the XDC 2019 website (xdc2019.x.org), t=
+hen you already have an active account
+and can use the same username & password to login!
+
+    https://xdc2020.x.org/event/9/registrations/7/
+
+In addition to registration, the CfP is now open for talks, workshops
+and demos at XDC 2020. While any serious proposal will be gratefully
+considered, topics of interest to X.Org and freedesktop.org developers
+are encouraged. The program focus is on new development, ongoing
+challenges and anything else that will spark discussions among
+attendees in the hallway track.
+
+We are open to talks across all layers of the graphics stack, from the
+kernel to desktop environments / graphical applications and about how
+to make things better for the developers who build them. Head to the
+CfP page to learn more: =
+
+
+    https://xdc2020.x.org/event/9/abstracts/
+
+The deadline for submissions is Sunday, 5 July 2020.
+
+Notice that the event may end up being postponed, converted to a fully onli=
+ne conference, or even a hybrid one (physical event + some remote talks). I=
+t depends on how COVID-19 situation evolves in the different countries and =
+the restrictions we will have at that time.
+Also, some people may decide to skip the physical conference to avoid any r=
+isk of infection. Because of that, please indicate in your talk submission =
+if you prefer to give a remote talk in the case that XDC keeps being a phys=
+ical event this year. Similarly, if you think that your talk makes no sense=
+ if XDC ends up being a fully-virtual conference, please indicate that in t=
+he notes of the talk submission.
+
+If COVID-19 situation allows it, we are looking forward to seeing you in Gd=
+a=F1sk! If you have any questions, please send me an email to radoslaw.szwi=
+chtenberg@intel.com,  adding on CC the X.org board (board at foundation.x.o=
+rg).
+
+And don't forget, you can follow us on Twitter for all the latest
+updates and to stay connected:
+
+    https://twitter.com/xdc2020
+
+Best,
+
+Radek
