@@ -1,92 +1,73 @@
-From: "Szwichtenberg, Radoslaw" <radoslaw.szwichtenberg@intel.com>
-Subject: XDC 2020: Registration & Call for Proposals now open!
-Date: Fri, 15 May 2020 14:15:10 +0000
-Message-ID: <9a4392829de747a9a752a5b13f31f90b@intel.com>
+From: Nathan Chancellor <natechancellor@gmail.com>
+Subject: Re: [PATCH] x86: mmiotrace: Use cpumask_available for cpumask_var_t
+ variables
+Date: Mon, 18 May 2020 02:31:17 -0700
+Message-ID: <20200518093117.GA719849@ubuntu-s3-xlarge-x86>
+References: <20200408205323.44490-1-natechancellor@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: "events@lists.x.org" <events@lists.x.org>, "xorg-devel@lists.freedesktop.org" <xorg-devel@lists.freedesktop.org>, "wayland-devel@lists.freedesktop.org" <wayland-devel@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "etnaviv@lists.freedesktop.org" <etnaviv@lists.freedesktop.org>, "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "board@foundation.x.org" <board@foundation.x.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20200408205323.44490-1-natechancellor@gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Steven Rostedt <rostedt@goodmis.org>, Ingo Molnar <mingo@kernel.org>
+Cc: Karol Herbst <karolherbst@gmail.com>, Pekka Paalanen <ppaalanen@gmail.com>, x86@kernel.org, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, clang-built-linux@googlegroups.com, Sedat Dilek <sedat.dilek@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
-Hello!
+On Wed, Apr 08, 2020 at 01:53:23PM -0700, Nathan Chancellor wrote:
+> When building with Clang + -Wtautological-compare and
+> CONFIG_CPUMASK_OFFSTACK unset:
+> 
+> arch/x86/mm/mmio-mod.c:375:6: warning: comparison of array 'downed_cpus'
+> equal to a null pointer is always false [-Wtautological-pointer-compare]
+>         if (downed_cpus == NULL &&
+>             ^~~~~~~~~~~    ~~~~
+> arch/x86/mm/mmio-mod.c:405:6: warning: comparison of array 'downed_cpus'
+> equal to a null pointer is always false [-Wtautological-pointer-compare]
+>         if (downed_cpus == NULL || cpumask_weight(downed_cpus) == 0)
+>             ^~~~~~~~~~~    ~~~~
+> 2 warnings generated.
+> 
+> Commit f7e30f01a9e2 ("cpumask: Add helper cpumask_available()") added
+> cpumask_available to fix warnings of this nature. Use that here so that
+> clang does not warn regardless of CONFIG_CPUMASK_OFFSTACK's value.
+> 
+> Link: https://github.com/ClangBuiltLinux/linux/issues/982
+> Reported-by: Sedat Dilek <sedat.dilek@gmail.com>
+> Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+> ---
+>  arch/x86/mm/mmio-mod.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/x86/mm/mmio-mod.c b/arch/x86/mm/mmio-mod.c
+> index 109325d77b3e..43fd19b3f118 100644
+> --- a/arch/x86/mm/mmio-mod.c
+> +++ b/arch/x86/mm/mmio-mod.c
+> @@ -372,7 +372,7 @@ static void enter_uniprocessor(void)
+>  	int cpu;
+>  	int err;
+>  
+> -	if (downed_cpus == NULL &&
+> +	if (!cpumask_available(downed_cpus) &&
+>  	    !alloc_cpumask_var(&downed_cpus, GFP_KERNEL)) {
+>  		pr_notice("Failed to allocate mask\n");
+>  		goto out;
+> @@ -402,7 +402,7 @@ static void leave_uniprocessor(void)
+>  	int cpu;
+>  	int err;
+>  
+> -	if (downed_cpus == NULL || cpumask_weight(downed_cpus) == 0)
+> +	if (!cpumask_available(downed_cpus) || cpumask_weight(downed_cpus) == 0)
+>  		return;
+>  	pr_notice("Re-enabling CPUs...\n");
+>  	for_each_cpu(cpu, downed_cpus) {
+> 
+> base-commit: ae46d2aa6a7fbe8ca0946f24b061b6ccdc6c3f25
+> -- 
+> 2.26.0
+> 
 
-Registration & Call for Proposals are now open for XDC 2020, which will
-take place at the Gda=F1sk University of Technology in Gda=F1sk, Poland on =
-September 16-18, 2020.
+Gentle ping for acceptance, I am not sure who should take this.
 
-Thanks to LWN.net for hosting the website again this year!
-
-    https://xdc2020.x.org
-    =
-
-As usual, the conference is free of charge and open to the general public. =
-If you plan on attending, please make sure to register as early as possible=
-! However, don't book any travel or hotel until the organization decides if=
- we keep the conference as it is or there is any change. Please read this m=
-essage on the website for more information:
-
-https://xdc2020.x.org/event/9/page/78-covid-19
-
-In order to register as attendee, you will therefore need to register via t=
-he XDC
-website. However, as XDC is sharing the same Indico infrastructure as
-LPC, if you previously registered on the LPC website
-(linuxplumbersconference.org) or on the XDC 2019 website (xdc2019.x.org), t=
-hen you already have an active account
-and can use the same username & password to login!
-
-    https://xdc2020.x.org/event/9/registrations/7/
-
-In addition to registration, the CfP is now open for talks, workshops
-and demos at XDC 2020. While any serious proposal will be gratefully
-considered, topics of interest to X.Org and freedesktop.org developers
-are encouraged. The program focus is on new development, ongoing
-challenges and anything else that will spark discussions among
-attendees in the hallway track.
-
-We are open to talks across all layers of the graphics stack, from the
-kernel to desktop environments / graphical applications and about how
-to make things better for the developers who build them. Head to the
-CfP page to learn more: =
-
-
-    https://xdc2020.x.org/event/9/abstracts/
-
-The deadline for submissions is Sunday, 5 July 2020.
-
-Notice that the event may end up being postponed, converted to a fully onli=
-ne conference, or even a hybrid one (physical event + some remote talks). I=
-t depends on how COVID-19 situation evolves in the different countries and =
-the restrictions we will have at that time.
-Also, some people may decide to skip the physical conference to avoid any r=
-isk of infection. Because of that, please indicate in your talk submission =
-if you prefer to give a remote talk in the case that XDC keeps being a phys=
-ical event this year. Similarly, if you think that your talk makes no sense=
- if XDC ends up being a fully-virtual conference, please indicate that in t=
-he notes of the talk submission.
-
-If COVID-19 situation allows it, we are looking forward to seeing you in Gd=
-a=F1sk! If you have any questions, please send me an email to radoslaw.szwi=
-chtenberg@intel.com,  adding on CC the X.org board (board at foundation.x.o=
-rg).
-
-And don't forget, you can follow us on Twitter for all the latest
-updates and to stay connected:
-
-    https://twitter.com/xdc2020
-
-Best,
-
-Radek
+Cheers,
+Nathan
