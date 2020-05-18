@@ -1,49 +1,105 @@
-From: Zeno Davatz <zdavatz@gmail.com>
-Subject: Kernel 5.7.0, nouveau 1.0.15-r1, sudo lshw -C display, *-display UNCLAIMED
-Date: Thu, 11 Jun 2020 10:12:12 +0200
-Message-ID: <CAOkhzLUrm6bS1ejmBdCOmU4G7O=t0XU_0PqYPx4AssGm5z1uCw@mail.gmail.com>
-References: <CAOkhzLUrNYk6JKTbTQuFkfuGKxGvW9XVq6+p9igsBgX1-e9Cxg@mail.gmail.com>
- <CAKb7Uvg0W_1qUjf3G4JrCb2oJgkwz4G5T6PwkyeL-rZEp4UnTw@mail.gmail.com>
- <CAOkhzLV+suVNAoyiaHKOkbwP-KKgTLEa7S8kp8+GSTLm_-wWFw@mail.gmail.com>
- <CAKb7UvgWMsLSHCayzdY7UYMVTjN3OHbH2WhKd-BP46K=r4Ra8A@mail.gmail.com>
- <CAOkhzLXZVNdpgwV=iiO0TEvLp3Hx28Zk8iYzwy5BvJ1pWi4QxQ@mail.gmail.com>
- <CAKb7UviB22HxSJ6j4ts=fU=J24Hh69NCBw4uHC5vsi902Pp6bA@mail.gmail.com> <CAOkhzLUQXAB1-=2VasSeJC9-LDgsd0Sk-pJY2LBbHaLqpcBeLg@mail.gmail.com>
+From: Andreas Schwab <schwab-Td1EMuHUCqxL1ZNQvxDV9g@public.gmane.org>
+Subject: Re: [PATCH v2 2/2] powerpc/configs: replace deprecated
+ riva/nvidia with nouveau
+Date: Mon, 18 May 2020 17:48:59 +0200
+Message-ID: <87blmlp7kk.fsf@igel.home>
+References: <20200517220524.4036334-1-emil.l.velikov@gmail.com>
+ <20200517220524.4036334-2-emil.l.velikov@gmail.com>
+ <87d071aedu.fsf@mpe.ellerman.id.au> <87v9ktpd4v.fsf@igel.home>
+ <CAKb7UvgBhvE-dEfva+n5SUTJ4CZT2KKkno=SVb9Jx5KBbZWR+A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAOkhzLUQXAB1-=2VasSeJC9-LDgsd0Sk-pJY2LBbHaLqpcBeLg@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc: Ilia Mirkin <imirkin@alum.mit.edu>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="=-=-="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7UvgBhvE-dEfva+n5SUTJ4CZT2KKkno=SVb9Jx5KBbZWR+A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+ (Ilia Mirkin's message of "Mon, 18 May 2020 10:38:47 -0400")
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi
+--=-=-=
+Content-Type: text/plain
 
-With Kernel 5.7.0, nouveau drivers 1.0.15-r1
+Here are the contents of
+/proc/device-tree/pci\@0,f0000000/NVDA,Parent@10/NVDA,BMP:
 
-sudo `lshw -C display`
 
-will show me:
+--=-=-=
+Content-Type: application/octet-stream
+Content-Disposition: inline; filename="NVDA,BMP"
+Content-Transfer-Encoding: base64
 
- *-display UNCLAIMED
+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
+AFFQAAAAAAD/
+--=-=-=
+Content-Type: text/plain
 
-Also `xrandr -q` will not work:
 
-xrandr: Failed to get size of gamma for output default
-Screen 0: minimum 1680 x 1050, current 1680 x 1050, maximum 1680 x 1050
-default connected primary 1680x1050+0+0 0mm x 0mm
-   1680x1050      0.00*
+Andreas.
 
-So I can not start up my second monitor with this command:
+-- 
+Andreas Schwab, schwab-Td1EMuHUCqxL1ZNQvxDV9g@public.gmane.org
+GPG Key fingerprint = 7578 EB47 D4E5 4D69 2510  2552 DF73 E780 A9DA AEC1
+"And now for something completely different."
 
-xrandr --output DVI-D-1 --auto --output DP-1 --auto --left-of DVI-D-1
+--=-=-=
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-This used to work with Kernel 5.5.
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+https://lists.freedesktop.org/mailman/listinfo/nouveau
 
-It was "completely broken" in 5.6 and with 5.7 my first display is
-back, but not my second.
-
-I am on Gentoo Linux. Please CC for replies.
-
-Best
-Zeno
+--=-=-=--
