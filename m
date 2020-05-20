@@ -1,25 +1,38 @@
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Subject: Re: [PATCH] x86: mmiotrace: Use cpumask_available for cpumask_var_t variables
-Date: Mon, 18 May 2020 17:29:13 -0700
-Message-ID: <CAHk-=wiwom6EF4DqStcZD0cJwXRMwAmLx2Z-wcn5xTiaJpgEkA@mail.gmail.com>
-References: <20200408205323.44490-1-natechancellor@gmail.com>
- <20200518093117.GA719849@ubuntu-s3-xlarge-x86> <CAKwvOdmXgYThHRDpt5dFZy5T1zS6MYQhcBNcq6-rsuc5fjiE6Q@mail.gmail.com>
- <20200518183513.53b94f11@gandalf.local.home>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+From: Dinghao Liu <dinghao.liu@zju.edu.cn>
+Subject: [PATCH] drm/nouveau/debugfs: fix runtime pm imbalance on error
+Date: Wed, 20 May 2020 18:14:53 +0800
+Message-ID: <20200520101453.15221-1-dinghao.liu@zju.edu.cn>
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200518183513.53b94f11@gandalf.local.home>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Steven Rostedt <rostedt@goodmis.org>
-Cc: Nick Desaulniers <ndesaulniers@google.com>, Nathan Chancellor <natechancellor@gmail.com>, Ingo Molnar <mingo@kernel.org>, Karol Herbst <karolherbst@gmail.com>, Pekka Paalanen <ppaalanen@gmail.com>, "maintainer:X86 ARCHITECTURE (32-BIT AND 64-BIT)" <x86@kernel.org>, LKML <linux-kernel@vger.kernel.org>, nouveau@lists.freedesktop.org, clang-built-linux <clang-built-linux@googlegroups.com>, Sedat Dilek <sedat.dilek@gmail.com>
+To: dinghao.liu@zju.edu.cn, kjlu@umn.edu
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, May 18, 2020 at 3:35 PM Steven Rostedt <rostedt@goodmis.org> wrote:
->
-> Linus,
->
-> Are you OK with this patch?
+pm_runtime_get_sync() increments the runtime PM usage counter even
+the call returns an error code. Thus a pairing decrement is needed
+on the error handling path to keep the counter balanced.
 
-Yup, I don't care deeply either way, as long as we can get rid of the warning.
+Signed-off-by: Dinghao Liu <dinghao.liu@zju.edu.cn>
+---
+ drivers/gpu/drm/nouveau/nouveau_debugfs.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-                Linus
+diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+index 15a3d40edf02..db3711436577 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
++++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+@@ -181,8 +181,11 @@ nouveau_debugfs_pstate_set(struct file *file, const char __user *ubuf,
+ 	}
+ 
+ 	ret = pm_runtime_get_sync(drm->dev);
+-	if (ret < 0 && ret != -EACCES)
++	if (ret < 0 && ret != -EACCES) {
++		pm_runtime_put_autosuspend(drm->dev);
+ 		return ret;
++	}
++
+ 	ret = nvif_mthd(ctrl, NVIF_CONTROL_PSTATE_USER, &args, sizeof(args));
+ 	pm_runtime_put_autosuspend(drm->dev);
+ 	if (ret < 0)
+-- 
+2.17.1
