@@ -1,37 +1,56 @@
-From: Dinghao Liu <dinghao.liu@zju.edu.cn>
-Subject: [PATCH] drm/nouveau/dispnv50: fix runtime pm imbalance on error
-Date: Wed, 20 May 2020 18:47:48 +0800
-Message-ID: <20200520104750.21335-1-dinghao.liu@zju.edu.cn>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: dinghao.liu@zju.edu.cn, kjlu@umn.edu
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Lyude Paul <lyude@redhat.com>, Sean Paul <seanpaul@chromium.org>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, Alex Deucher <alexander.deucher@amd.com>, Takashi Iwai <tiwai@suse.de>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [RFC] Deprecate AGP GART support for Radeon/Nouveau/TTM
+Date: Wed, 20 May 2020 16:43:04 +0200
+Message-ID: <9d784383-905e-59af-b17c-923c92474ece@gmail.com>
+References: <20200513110313.12979-1-christian.koenig@amd.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200513110313.12979-1-christian.koenig-5C7GfCeVMHo@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, debian-powerpc-0aAXYlwwYIJuHlm7Suoebg@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-pm_runtime_get_sync() increments the runtime PM usage counter even
-the call returns an error code. Thus a pairing decrement is needed
-on the error handling path to keep the counter balanced.
-
-Signed-off-by: Dinghao Liu <dinghao.liu@zju.edu.cn>
----
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 6be9df1820c5..e670756664ff 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -1123,8 +1123,10 @@ nv50_mstc_detect(struct drm_connector *connector,
- 		return connector_status_disconnected;
- 
- 	ret = pm_runtime_get_sync(connector->dev->dev);
--	if (ret < 0 && ret != -EACCES)
-+	if (ret < 0 && ret != -EACCES) {
-+		pm_runtime_put_autosuspend(connector->dev->dev);
- 		return connector_status_disconnected;
-+	}
- 
- 	ret = drm_dp_mst_detect_port(connector, ctx, mstc->port->mgr,
- 				     mstc->port);
--- 
-2.17.1
+QW0gMTMuMDUuMjAgdW0gMTM6MDMgc2NocmllYiBDaHJpc3RpYW4gS8O2bmlnOgo+IFVuZm9ydHVu
+YXRlbHkgQUdQIGlzIHN0aWxsIHRvIHdpZGVseSB1c2VkIGFzIHdlIGNvdWxkIGp1c3QgZHJvcCBz
+dXBwb3J0IGZvciB1c2luZyBpdHMgR0FSVC4KPgo+IE5vdCB1c2luZyB0aGUgQUdQIEdBUlQgYWxz
+byBkb2Vzbid0IG1lYW4gYSBsb3NzIGluIGZ1bmN0aW9uYWxpdHkgc2luY2UgZHJpdmVycyB3aWxs
+IGp1c3QgZmFsbGJhY2sgdG8gdGhlIGRyaXZlciBzcGVjaWZpYyBQQ0kgR0FSVC4KPgo+IEZvciBu
+b3cganVzdCBkZXByZWNhdGUgdGhlIGNvZGUgYW5kIGRvbid0IGVuYWJsZSB0aGUgQUdQIEdBUlQg
+aW4gVFRNIGV2ZW4gd2hlbiBnZW5lcmFsIEFHUCBzdXBwb3J0IGlzIGF2YWlsYWJsZS4KClNvIEkn
+dmUgdXNlZCBhbiBhbmNpZW50IHN5c3RlbSAoMzJiaXQpIHRvIHNldHVwIGEgdGVzdCBib3ggZm9y
+IHRoaXMuCgoKVGhlIGZpcnN0IEdQVSBJIGNvdWxkIHRlc3QgaXMgYW4gUlYyODAgKFJhZGVvbiA5
+MjAwIFBSTykgd2hpY2ggaXMgZWFzaWx5IAoxNSB5ZWFycyBvbGQuCgpXaGF0IGhhcHBlbnMgaW4g
+QUdQIG1vZGUgaXMgdGhhdCBnbHhnZWFycyBzaG93cyBhcnRpZmFjdHMgZHVyaW5nIApyZW5kZXJp
+bmcgb24gdGhpcyBzeXN0ZW0uCgpJbiBQQ0kgbW9kZSB0aG9zZSByZW5kZXJpbmcgYXJ0aWZhY3Rz
+IGFyZSBnb25lIGFuZCBnbHhnZWFycyBzZWVtcyB0byAKZHJhdyBldmVyeXRoaW5nIGNvcnJlY3Rs
+eSBub3cuCgpQZXJmb3JtYW5jZSBpcyBvYnZpb3VzbHkgbm90IGNvbXBhcmFibGUsIGNhdXNlIGlu
+IEFHUCB3ZSBkb24ndCByZW5kZXIgCmFsbCB0cmlhbmdsZXMgY29ycmVjdGx5LgoKClRoZSBzZWNv
+bmQgR1BVIEkgY291bGQgdGVzdCBpcyBhbiBSVjYzMCBQUk8gKFJhZGVvbiBIRCAyNjAwIFBSTyBB
+R1ApIAp3aGljaCBpcyBtb3JlIHRoYW4gMTAgeWVhcnMgb2xkLgoKQXMgZmFyIGFzIEkgY2FuIHRl
+bGwgdGhpcyBvbmUgd29ya3MgaW4gYm90aCBBR1AgYW5kIFBDSWUgbW9kZSBwZXJmZWN0bHkgCmZp
+bmUuCgpTaW5jZSB0aGlzIGlzIG9ubHkgYSAzMmJpdCBzeXN0ZW0gSSBjb3VsZG4ndCByZWFsbHkg
+dGVzdCBhbnkgT3BlbkdMIGdhbWUgCnRoYXQgd2VsbC4KCkJ1dCBmb3IgZ2x4Z2VhcnMgc3dpdGNo
+aW5nIGZyb20gQUdQIHRvIFBDSWUgbW9kZSBzZWVtcyB0byByZXN1bHQgaW4gYSAKcm91Z2hseSA1
+JSBwZXJmb3JtYW5jZSBkcm9wLgoKVGhlIHN1cnByaXNpbmcgcmVhc29uIGZvciB0aGlzIGlzIG5v
+dCB0aGUgYmV0dGVyIFRMQiBwZXJmb3JtYW5jZSwgYnV0IAp0aGUgbGFjayBvZiBVU1dDIHN1cHBv
+cnQgZm9yIHRoZSBQQ0llIEdBUlQgaW4gcmFkZW9uLgoKClNvIGlmIGFueWJvZHkgd2FudHMgdG8g
+Z2V0IGhpcyBoYW5kcyBkaXJ0eSBhbmQgc3F1ZWV6ZSBhIGJpdCBtb3JlIApwZXJmb3JtYW5jZSBv
+dXQgb2YgdGhlIG9sZCBoYXJkd2FyZSwgcG9ydGluZyBVU1dDIGZyb20gYW1kZ3B1IHRvIHJhZGVv
+biAKc2hvdWxkbid0IGJlIHRvIG11Y2ggb2YgYSBwcm9ibGVtLgoKClN1bW1pbmcgaXQgdXAgSSdt
+IHN0aWxsIGxlYW5pbmcgdG93YXJkcyBkaXNhYmxpbmcgQUdQIGNvbXBsZXRlbHkgYnkgCmRlZmF1
+bHQgZm9yIHJhZGVvbiBhbmQgZGVwcmVjYXRlIGl0IGluIFRUTSBhcyB3ZWxsLgoKVGhvdWdodHM/
+IEVzcGVjaWFsbHkgQWxleCB3aGF0IGRvIHlvdSB0aGluay4KClJlZ2FyZHMsCkNocmlzdGlhbi4K
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
