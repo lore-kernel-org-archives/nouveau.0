@@ -1,7 +1,7 @@
 From: Dinghao Liu <dinghao.liu@zju.edu.cn>
-Subject: [PATCH] drm/nouveau/debugfs: fix runtime pm imbalance on error
-Date: Wed, 20 May 2020 18:14:53 +0800
-Message-ID: <20200520101453.15221-1-dinghao.liu@zju.edu.cn>
+Subject: [PATCH] drm/nouveau: fix runtime pm imbalance on error
+Date: Wed, 20 May 2020 18:25:49 +0800
+Message-ID: <20200520102549.17252-1-dinghao.liu@zju.edu.cn>
 Return-path: <linux-kernel-owner@vger.kernel.org>
 Sender: linux-kernel-owner@vger.kernel.org
 To: dinghao.liu@zju.edu.cn, kjlu@umn.edu
@@ -14,25 +14,24 @@ on the error handling path to keep the counter balanced.
 
 Signed-off-by: Dinghao Liu <dinghao.liu@zju.edu.cn>
 ---
- drivers/gpu/drm/nouveau/nouveau_debugfs.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nouveau_gem.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-index 15a3d40edf02..db3711436577 100644
---- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-@@ -181,8 +181,11 @@ nouveau_debugfs_pstate_set(struct file *file, const char __user *ubuf,
- 	}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index f5ece1f94973..6697f960dd89 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -76,8 +76,10 @@ nouveau_gem_object_open(struct drm_gem_object *gem, struct drm_file *file_priv)
+ 		return ret;
  
- 	ret = pm_runtime_get_sync(drm->dev);
+ 	ret = pm_runtime_get_sync(dev);
 -	if (ret < 0 && ret != -EACCES)
 +	if (ret < 0 && ret != -EACCES) {
-+		pm_runtime_put_autosuspend(drm->dev);
- 		return ret;
++		pm_runtime_put_autosuspend(dev);
+ 		goto out;
 +	}
-+
- 	ret = nvif_mthd(ctrl, NVIF_CONTROL_PSTATE_USER, &args, sizeof(args));
- 	pm_runtime_put_autosuspend(drm->dev);
- 	if (ret < 0)
+ 
+ 	ret = nouveau_vma_new(nvbo, vmm, &vma);
+ 	pm_runtime_mark_last_busy(dev);
 -- 
 2.17.1
