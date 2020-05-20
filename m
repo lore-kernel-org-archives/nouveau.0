@@ -1,17 +1,10 @@
-From: Andreas Schwab <schwab-Td1EMuHUCqxL1ZNQvxDV9g@public.gmane.org>
-Subject: Re: [PATCH v2 2/2] powerpc/configs: replace deprecated
- riva/nvidia with nouveau
-Date: Mon, 18 May 2020 17:48:59 +0200
-Message-ID: <87blmlp7kk.fsf@igel.home>
-References: <20200517220524.4036334-1-emil.l.velikov@gmail.com>
- <20200517220524.4036334-2-emil.l.velikov@gmail.com>
- <87d071aedu.fsf@mpe.ellerman.id.au> <87v9ktpd4v.fsf@igel.home>
- <CAKb7UvgBhvE-dEfva+n5SUTJ4CZT2KKkno=SVb9Jx5KBbZWR+A@mail.gmail.com>
+From: Rosh <roshardxy-owx2hJZ4zUXNt1qHJZwQnwC/G2K4zDHf@public.gmane.org>
+Subject: nouveau-for-ReactOS
+Date: Wed, 20 May 2020 01:55:03 -0000
+Message-ID: <158993970189.32422.10493492135631561199@startmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="=-=-="
+Content-Type: multipart/mixed; boundary="===============0485860918=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgBhvE-dEfva+n5SUTJ4CZT2KKkno=SVb9Jx5KBbZWR+A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
- (Ilia Mirkin's message of "Mon, 18 May 2020 10:38:47 -0400")
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,77 +14,235 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
+--===============0485860918==
+Content-Type: multipart/alternative;
+ boundary="===============1771180240317170858=="
 
-Here are the contents of
-/proc/device-tree/pci\@0,f0000000/NVDA,Parent@10/NVDA,BMP:
+--===============1771180240317170858==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+ =20
+
+ =20
+
+> To nouveau developers, =20
+
+>
+
+> =20
+
+>
+
+> I am writting to know if you are interesting in developing a Windows
+XP/Server 2003 (for using in ReactOS), cause I only see that GNU/Linux =
+as
+target and not other OSS OSes like Haiku OS, ReactOS. =20
+
+>
+
+> ReactOS is an effort to do a Windows like OS (for the moment NT 5.2 k=
+ernel
+like Windows XP and Server 2003) open, an OSS Windows. =20
+
+>
+
+> =20
+
+>
+
+> Haiku OS is an independent OS. =20
+
+>
+
+> =20
+
+>
+
+> Is it possible to you to port GNU/Linux edition to a native Win32 edi=
+tion? =20
+
+>
+
+> =20
+
+>
+
+> =20
+
+>
+
+> I am a GNU/Linux user with an nvidia cards and nouveau is my favorite
+driver. I don=C2=B4t use the propietary driver. =20
+
+>
+
+> =20
+
+>
+
+> =20
+
+>
+
+> I hope to hear from you as soon as possible,} =20
+
+>
+
+> Regards, Rosh =20
+
+>
+
+> =20
+
+>
+
+> =20
+
+>
+
+> =20
+
+>
+
+> This email has been sent with a [free StartMail
+account](https://www.startmail.com/en/)! =20
+
+>
+
+> StartMail makes private and encrypted email easy. [Try it here for
+free](https://www.startmail.com/en/)! =20
+
+>
+
+> =20
+
+>
+
+> =20
+
+ =20
 
 
---=-=-=
-Content-Type: application/octet-stream
-Content-Disposition: inline; filename="NVDA,BMP"
-Content-Transfer-Encoding: base64
+--===============1771180240317170858==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-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
-AFFQAAAAAAD/
---=-=-=
-Content-Type: text/plain
+<p xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"word-wrap: break-wor=
+d; overflow-wrap: break-word; margin: 0; color: rgb(59, 67, 92); font-f=
+amily: arial, helvetica; font-size: medium;"><br /></p><p xmlns=3D"http=
+://www.w3.org/1999/xhtml" style=3D"word-wrap: break-word; overflow-wrap=
+: break-word; margin: 0; color: rgb(59, 67, 92); font-family: arial, he=
+lvetica; font-size: medium;"><br /></p><blockquote xmlns=3D"http://www.=
+w3.org/1999/xhtml"><p xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"o=
+verflow-wrap: break-word; margin: 0px;"><span class=3D"colour" style=3D=
+"color:rgb(59, 67, 92)"><span class=3D"font" style=3D"font-family:arial=
+, helvetica"><span class=3D"size" style=3D"font-size:medium">To nouveau=
+ developers,</span></span></span><br /></p><p xmlns=3D"http://www.w3.or=
+g/1999/xhtml" style=3D"overflow-wrap: break-word; margin: 0px;"><span c=
+lass=3D"colour" style=3D"color:rgb(59, 67, 92)"><span class=3D"font" st=
+yle=3D"font-family:arial, helvetica"><span class=3D"size" style=3D"font=
+-size:medium"></span></span></span><br /></p><p xmlns=3D"http://www.w3.=
+org/1999/xhtml" style=3D"overflow-wrap: break-word; margin: 0px;"><span=
+ class=3D"colour" style=3D"color:rgb(59, 67, 92)"><span class=3D"font" =
+style=3D"font-family:arial, helvetica"><span class=3D"size" style=3D"fo=
+nt-size:medium">I am writting to know if you are interesting in develop=
+ing a Windows XP/Server 2003 (for using in ReactOS), cause I only see t=
+hat GNU/Linux as target and not other OSS OSes like Haiku OS, ReactOS.<=
+/span></span></span><br /></p><p xmlns=3D"http://www.w3.org/1999/xhtml"=
+ style=3D"overflow-wrap: break-word; margin: 0px;"><span class=3D"colou=
+r" style=3D"color:rgb(59, 67, 92)"><span class=3D"font" style=3D"font-f=
+amily:arial, helvetica"><span class=3D"size" style=3D"font-size:medium"=
+>ReactOS is an effort to do a Windows like OS (for the moment NT 5.2 ke=
+rnel like Windows XP and Server 2003) open, an OSS Windows.</span></spa=
+n></span><br /></p><p xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"o=
+verflow-wrap: break-word; margin: 0px;"><span class=3D"colour" style=3D=
+"color:rgb(59, 67, 92)"><span class=3D"font" style=3D"font-family:arial=
+, helvetica"><span class=3D"size" style=3D"font-size:medium"></span></s=
+pan></span><br /></p><p xmlns=3D"http://www.w3.org/1999/xhtml" style=3D=
+"overflow-wrap: break-word; margin: 0px;"><span class=3D"colour" style=
+=3D"color:rgb(59, 67, 92)"><span class=3D"font" style=3D"font-family:ar=
+ial, helvetica"><span class=3D"size" style=3D"font-size:medium">Haiku O=
+S is an independent OS.</span></span></span><br /></p><p xmlns=3D"http:=
+//www.w3.org/1999/xhtml" style=3D"overflow-wrap: break-word; margin: 0p=
+x;"><span class=3D"colour" style=3D"color:rgb(59, 67, 92)"><span class=
+=3D"font" style=3D"font-family:arial, helvetica"><span class=3D"size" s=
+tyle=3D"font-size:medium"></span></span></span><br /></p><p xmlns=3D"ht=
+tp://www.w3.org/1999/xhtml" style=3D"overflow-wrap: break-word; margin:=
+ 0px;"><span class=3D"colour" style=3D"color:rgb(59, 67, 92)"><span cla=
+ss=3D"font" style=3D"font-family:arial, helvetica"><span class=3D"size"=
+ style=3D"font-size:medium">Is it possible to you to port GNU/Linux edi=
+tion to a native Win32 edition?</span></span></span><br /></p><p xmlns=
+=3D"http://www.w3.org/1999/xhtml" style=3D"overflow-wrap: break-word; m=
+argin: 0px;"><span class=3D"colour" style=3D"color:rgb(59, 67, 92)"><sp=
+an class=3D"font" style=3D"font-family:arial, helvetica"><span class=3D=
+"size" style=3D"font-size:medium"></span></span></span><br /></p><p xml=
+ns=3D"http://www.w3.org/1999/xhtml" style=3D"overflow-wrap: break-word;=
+ margin: 0px;"><span class=3D"colour" style=3D"color:rgb(59, 67, 92)"><=
+span class=3D"font" style=3D"font-family:arial, helvetica"><span class=
+=3D"size" style=3D"font-size:medium"></span></span></span><br /></p><p =
+xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"overflow-wrap: break-wo=
+rd; margin: 0px;"><span class=3D"colour" style=3D"color:rgb(59, 67, 92)=
+"><span class=3D"font" style=3D"font-family:arial, helvetica"><span cla=
+ss=3D"size" style=3D"font-size:medium">I am a GNU/Linux user with an nv=
+idia cards and nouveau is my favorite driver. I don=C2=B4t use the prop=
+ietary driver.</span></span></span><br /></p><p xmlns=3D"http://www.w3.=
+org/1999/xhtml" style=3D"overflow-wrap: break-word; margin: 0px;"><span=
+ class=3D"colour" style=3D"color:rgb(59, 67, 92)"><span class=3D"font" =
+style=3D"font-family:arial, helvetica"><span class=3D"size" style=3D"fo=
+nt-size:medium"></span></span></span><br /></p><p xmlns=3D"http://www.w=
+3.org/1999/xhtml" style=3D"overflow-wrap: break-word; margin: 0px;"><sp=
+an class=3D"colour" style=3D"color:rgb(59, 67, 92)"><span class=3D"font=
+" style=3D"font-family:arial, helvetica"><span class=3D"size" style=3D"=
+font-size:medium"></span></span></span><br /></p><p xmlns=3D"http://www=
+.w3.org/1999/xhtml" style=3D"overflow-wrap: break-word; margin: 0px;"><=
+span class=3D"colour" style=3D"color:rgb(59, 67, 92)"><span class=3D"fo=
+nt" style=3D"font-family:arial, helvetica"><span class=3D"size" style=
+=3D"font-size:medium">I hope to hear from you as soon as possible,}</sp=
+an></span></span><br /></p><p xmlns=3D"http://www.w3.org/1999/xhtml" st=
+yle=3D"overflow-wrap: break-word; margin: 0px;"><span class=3D"colour" =
+style=3D"color:rgb(59, 67, 92)"><span class=3D"font" style=3D"font-fami=
+ly:arial, helvetica"><span class=3D"size" style=3D"font-size:medium">Re=
+gards, Rosh</span></span></span><br /></p><p xmlns=3D"http://www.w3.org=
+/1999/xhtml" style=3D"overflow-wrap: break-word; margin: 0px;"><span cl=
+ass=3D"colour" style=3D"color:rgb(59, 67, 92)"><span class=3D"font" sty=
+le=3D"font-family:arial, helvetica"><span class=3D"size" style=3D"font-=
+size:medium"></span></span></span><br /></p><p xmlns=3D"http://www.w3.o=
+rg/1999/xhtml" style=3D"overflow-wrap: break-word; margin: 0px;"><span =
+class=3D"colour" style=3D"color:rgb(59, 67, 92)"><span class=3D"font" s=
+tyle=3D"font-family:arial, helvetica"><span class=3D"size" style=3D"fon=
+t-size:medium"></span></span></span><br /></p><p xmlns=3D"http://www.w3=
+.org/1999/xhtml" style=3D"overflow-wrap: break-word; margin: 0px;"><spa=
+n class=3D"colour" style=3D"color:rgb(59, 67, 92)"><span class=3D"font"=
+ style=3D"font-family:arial, helvetica"><span class=3D"size" style=3D"f=
+ont-size:medium"></span></span></span><br /></p><p xmlns=3D"http://www.=
+w3.org/1999/xhtml" style=3D"overflow-wrap: break-word; margin: 0px;"><s=
+pan class=3D"colour" style=3D"color:rgb(59, 67, 92)"><span class=3D"fon=
+t" style=3D"font-family:arial, helvetica"><span class=3D"size" style=3D=
+"font-size:medium">This email has been sent with a <a href=3D"https://w=
+ww.startmail.com/en/" rel=3D"noopener noreferrer" target=3D"_blank">fre=
+e StartMail account</a>!</span></span></span><br /></p><p xmlns=3D"http=
+://www.w3.org/1999/xhtml" style=3D"overflow-wrap: break-word; margin: 0=
+px;"><span class=3D"colour" style=3D"color:rgb(59, 67, 92)"><span class=
+=3D"font" style=3D"font-family:arial, helvetica"><span class=3D"size" s=
+tyle=3D"font-size:medium">StartMail makes private and encrypted email e=
+asy. <a href=3D"https://www.startmail.com/en/" rel=3D"noopener noreferr=
+er" target=3D"_blank">Try it here for free</a>!</span></span></span><br=
+ /></p><p xmlns=3D"http://www.w3.org/1999/xhtml"><br /></p><p xmlns=3D"=
+http://www.w3.org/1999/xhtml" style=3D"overflow-wrap: break-word; margi=
+n: 0px;"><span class=3D"colour" style=3D"color:rgb(59, 67, 92)"><span c=
+lass=3D"font" style=3D"font-family:arial, helvetica"><span class=3D"siz=
+e" style=3D"font-size:medium"></span></span></span><br /></p></blockquo=
+te><p xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"word-wrap: break-=
+word; overflow-wrap: break-word; margin: 0; color: rgb(59, 67, 92); fon=
+t-family: arial, helvetica; font-size: medium;"><br /></p>
 
+--===============1771180240317170858==--
 
-Andreas.
-
--- 
-Andreas Schwab, schwab-Td1EMuHUCqxL1ZNQvxDV9g@public.gmane.org
-GPG Key fingerprint = 7578 EB47 D4E5 4D69 2510  2552 DF73 E780 A9DA AEC1
-"And now for something completely different."
-
---=-=-=
+--===============0485860918==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +253,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 https://lists.freedesktop.org/mailman/listinfo/nouveau
 
---=-=-=--
+--===============0485860918==--
