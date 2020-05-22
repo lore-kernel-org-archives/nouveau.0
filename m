@@ -1,15 +1,18 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nouveau/hmm: fix migrate zero page to GPU
-Date: Fri, 22 May 2020 10:47:32 +1000
-Message-ID: <CACAvsv6TYCaChfsp4LNcVUZ6b0f6F5vDiKqfpzRTVRnRM7373g@mail.gmail.com>
-References: <20200520183652.21633-1-rcampbell@nvidia.com>
- <20200520192045.GH24561@mellanox.com>
- <0ef69e08-7f5d-7a3d-c657-55b3a8df1dfe@nvidia.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [RFC] Deprecate AGP GART support for
+ Radeon/Nouveau/TTM
+Date: Fri, 22 May 2020 12:40:05 +0200
+Message-ID: <39241451-b25e-759f-6d52-455d806add09@gmail.com>
+References: <20200513110313.12979-1-christian.koenig@amd.com>
+ <9d784383-905e-59af-b17c-923c92474ece@gmail.com>
+ <ea2dfaaa-a7ca-5e4a-9264-0a82f1d5ea9b@daenzer.net>
+Reply-To: christian.koenig-5C7GfCeVMHo@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <0ef69e08-7f5d-7a3d-c657-55b3a8df1dfe-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <ea2dfaaa-a7ca-5e4a-9264-0a82f1d5ea9b-otUistvHUpPR7s880joybQ@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,46 +22,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+To: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel-otUistvHUpPR7s880joybQ@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
+Cc: debian-powerpc-0aAXYlwwYIJuHlm7Suoebg@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 21 May 2020 at 07:05, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
->
->
-> On 5/20/20 12:20 PM, Jason Gunthorpe wrote:
-> > On Wed, May 20, 2020 at 11:36:52AM -0700, Ralph Campbell wrote:
-> >> When calling OpenCL clEnqueueSVMMigrateMem() on a region of memory that
-> >> is backed by pte_none() or zero pages, migrate_vma_setup() will fill the
-> >> source PFN array with an entry indicating the source page is zero.
-> >> Use this to optimize migration to device private memory by allocating
-> >> GPU memory and zero filling it instead of failing to migrate the page.
-> >>
-> >> Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> >>
-> >> This patch applies cleanly to Jason's Gunthorpe's hmm tree plus two
-> >> patches I posted earlier. The first is queued in Ben Skegg's nouveau
-> >> tree and the second is still pending review/not queued.
-> >> [1] ("nouveau/hmm: map pages after migration")
-> >> https://lore.kernel.org/linux-mm/20200304001339.8248-5-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org/
-> >> [2] ("nouveau/hmm: fix nouveau_dmem_chunk allocations")
-> >> https://lore.kernel.org/lkml/20200421231107.30958-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org/
-> >
-> > It would be best if it goes through Ben's tree if it doesn't have
-> > conflicts with the hunks I have in the hmm tree.. Is it the case?
-> >
-> > Jason
->
-> I think there might be some merge conflicts even though it is semantically
-> independent of the other changes. I guess since we are at 5.7-rc6 and not
-> far from the merge window, I can rebase after 5.8-rc1 and resend.
-> I posted this mostly to get some review and as a "heads up" of the issue.
-Both look alright to me, and apply cleanly on top of my tree already,
-so I've got them locally.
-
-Ben.
-
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+QW0gMjAuMDUuMjAgdW0gMTg6MjUgc2NocmllYiBNaWNoZWwgRMOkbnplcjoKPiBPbiAyMDIwLTA1
+LTIwIDQ6NDMgcC5tLiwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPj4gQW0gMTMuMDUuMjAgdW0g
+MTM6MDMgc2NocmllYiBDaHJpc3RpYW4gS8O2bmlnOgo+Pj4gVW5mb3J0dW5hdGVseSBBR1AgaXMg
+c3RpbGwgdG8gd2lkZWx5IHVzZWQgYXMgd2UgY291bGQganVzdCBkcm9wCj4+PiBzdXBwb3J0IGZv
+ciB1c2luZyBpdHMgR0FSVC4KPj4+Cj4+PiBOb3QgdXNpbmcgdGhlIEFHUCBHQVJUIGFsc28gZG9l
+c24ndCBtZWFuIGEgbG9zcyBpbiBmdW5jdGlvbmFsaXR5IHNpbmNlCj4+PiBkcml2ZXJzIHdpbGwg
+anVzdCBmYWxsYmFjayB0byB0aGUgZHJpdmVyIHNwZWNpZmljIFBDSSBHQVJULgo+Pj4KPj4+IEZv
+ciBub3cganVzdCBkZXByZWNhdGUgdGhlIGNvZGUgYW5kIGRvbid0IGVuYWJsZSB0aGUgQUdQIEdB
+UlQgaW4gVFRNCj4+PiBldmVuIHdoZW4gZ2VuZXJhbCBBR1Agc3VwcG9ydCBpcyBhdmFpbGFibGUu
+Cj4+IFNvIEkndmUgdXNlZCBhbiBhbmNpZW50IHN5c3RlbSAoMzJiaXQpIHRvIHNldHVwIGEgdGVz
+dCBib3ggZm9yIHRoaXMuCj4+Cj4+Cj4+IFRoZSBmaXJzdCBHUFUgSSBjb3VsZCB0ZXN0IGlzIGFu
+IFJWMjgwIChSYWRlb24gOTIwMCBQUk8pIHdoaWNoIGlzIGVhc2lseQo+PiAxNSB5ZWFycyBvbGQu
+Cj4+Cj4+IFdoYXQgaGFwcGVucyBpbiBBR1AgbW9kZSBpcyB0aGF0IGdseGdlYXJzIHNob3dzIGFy
+dGlmYWN0cyBkdXJpbmcKPj4gcmVuZGVyaW5nIG9uIHRoaXMgc3lzdGVtLgo+Pgo+PiBJbiBQQ0kg
+bW9kZSB0aG9zZSByZW5kZXJpbmcgYXJ0aWZhY3RzIGFyZSBnb25lIGFuZCBnbHhnZWFycyBzZWVt
+cyB0bwo+PiBkcmF3IGV2ZXJ5dGhpbmcgY29ycmVjdGx5IG5vdy4KPj4KPj4gUGVyZm9ybWFuY2Ug
+aXMgb2J2aW91c2x5IG5vdCBjb21wYXJhYmxlLCBjYXVzZSBpbiBBR1Agd2UgZG9uJ3QgcmVuZGVy
+Cj4+IGFsbCB0cmlhbmdsZXMgY29ycmVjdGx5Lgo+Pgo+Pgo+PiBUaGUgc2Vjb25kIEdQVSBJIGNv
+dWxkIHRlc3QgaXMgYW4gUlY2MzAgUFJPIChSYWRlb24gSEQgMjYwMCBQUk8gQUdQKQo+PiB3aGlj
+aCBpcyBtb3JlIHRoYW4gMTAgeWVhcnMgb2xkLgo+Pgo+PiBBcyBmYXIgYXMgSSBjYW4gdGVsbCB0
+aGlzIG9uZSB3b3JrcyBpbiBib3RoIEFHUCBhbmQgUENJZSBtb2RlIHBlcmZlY3RseQo+PiBmaW5l
+Lgo+Pgo+PiBTaW5jZSB0aGlzIGlzIG9ubHkgYSAzMmJpdCBzeXN0ZW0gSSBjb3VsZG4ndCByZWFs
+bHkgdGVzdCBhbnkgT3BlbkdMIGdhbWUKPj4gdGhhdCB3ZWxsLgo+Pgo+PiBCdXQgZm9yIGdseGdl
+YXJzIHN3aXRjaGluZyBmcm9tIEFHUCB0byBQQ0llIG1vZGUgc2VlbXMgdG8gcmVzdWx0IGluIGEK
+Pj4gcm91Z2hseSA1JSBwZXJmb3JtYW5jZSBkcm9wLgo+Pgo+PiBUaGUgc3VycHJpc2luZyByZWFz
+b24gZm9yIHRoaXMgaXMgbm90IHRoZSBiZXR0ZXIgVExCIHBlcmZvcm1hbmNlLCBidXQKPj4gdGhl
+IGxhY2sgb2YgVVNXQyBzdXBwb3J0IGZvciB0aGUgUENJZSBHQVJUIGluIHJhZGVvbi4KPiBJIHN1
+c3BlY3QgdGhlIG1haW4gcmVhc29uIGl0J3Mgb25seSA1JSBpcyB0aGF0IFBDSWUgR0FSVCBwYWdl
+IHRhYmxlcyBhcmUKPiBzdG9yZWQgaW4gVlJBTSwgc28gdGhleSBkb24ndCBuZWVkIHRvIGJlIGZl
+dGNoZWQgYWNyb3NzIHRoZSBQQ0llIGxpbmsKPiAoYW5kIHByZXN1bWFibHkgaXQgaGFzIG1vcmUg
+dGhhbiBvbmUgVExCIGVudHJ5IGFzIHdlbGwpLiBUaGUgZGlmZmVyZW5jZQo+IGlzIG11Y2ggYmln
+Z2VyIHdpdGggbmF0aXZlIEFHUCBBU0lDcyB3aXRoIFBDSSBHQVJULgoKRG8geW91IGhhdmUgc29t
+ZSBoYXJkd2FyZSB5b3UgY291bGQgZ2l2ZSB0aGF0IGEgdHJ5IG9uPwoKSSBtZWFuIHRoZSBmaXJz
+dCBjYXJkIEkgcHV0IGludG8gdGhlIHN5c3RlbSBvYnZpb3VzbHkgb25seSB3b3JrZWQgCmNvcnJl
+Y3RseSB3aXRoIEFHUCBkaXNhYmxlZC4KCldoaWxlIEkgYWdyZWUgdGhhdCBpdCBtZWFucyBhIHBl
+cmZvcm1hbmNlIHJlZ3Jlc3Npb24sIHRoaXMgaXMgYSByYXRoZXIgCmhpZ2ggbW90aXZhdGlvbiB0
+byBnbyBhaGVhZCB3aXRoIGF0IGxlYXN0IHRoZSBmaXJzdCBwYXRjaC4KCkNocmlzdGlhbi4KX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
+aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
