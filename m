@@ -1,81 +1,43 @@
-From: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [RFC] Deprecate AGP GART support for Radeon/Nouveau/TTM
-Date: Fri, 22 May 2020 10:46:50 -0400
-Message-ID: <CADnq5_PeGnkDoHdpPL6uK_hgih6aNsjYrVaiiDYjD0T43udgGw@mail.gmail.com>
-References: <20200513110313.12979-1-christian.koenig@amd.com>
- <9d784383-905e-59af-b17c-923c92474ece@gmail.com>
- <CADnq5_PxUD546E852r918xEc=MddzArLDciBKtJRpuoiC4e-qQ@mail.gmail.com>
- <9e87c7db-3129-42fb-e1b3-0b8dfe3bca8f@gmail.com>
+From: Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>
+Subject: Re: [PATCH 0/6] nouveau/hmm: add support for mapping large pages
+Date: Mon, 25 May 2020 10:41:18 -0300
+Message-ID: <20200525134118.GA2536@ziepe.ca>
+References: <20200508192009.15302-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <9e87c7db-3129-42fb-e1b3-0b8dfe3bca8f-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Christian Koenig <christian.koenig-5C7GfCeVMHo@public.gmane.org>
-Cc: Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, debian-powerpc-0aAXYlwwYIJuHlm7Suoebg@public.gmane.org, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20200508192009.15302-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBNYXkgMjIsIDIwMjAgYXQgNjo0MSBBTSBDaHJpc3RpYW4gS8O2bmlnCjxja29lbmln
-LmxlaWNodHp1bWVya2VuQGdtYWlsLmNvbT4gd3JvdGU6Cj4KPiBBbSAyMC4wNS4yMCB1bSAxODox
-OCBzY2hyaWViIEFsZXggRGV1Y2hlcjoKPiA+IE9uIFdlZCwgTWF5IDIwLCAyMDIwIGF0IDEwOjQz
-IEFNIENocmlzdGlhbiBLw7ZuaWcKPiA+IDxja29lbmlnLmxlaWNodHp1bWVya2VuQGdtYWlsLmNv
-bT4gd3JvdGU6Cj4gPj4gQW0gMTMuMDUuMjAgdW0gMTM6MDMgc2NocmllYiBDaHJpc3RpYW4gS8O2
-bmlnOgo+ID4+PiBVbmZvcnR1bmF0ZWx5IEFHUCBpcyBzdGlsbCB0byB3aWRlbHkgdXNlZCBhcyB3
-ZSBjb3VsZCBqdXN0IGRyb3Agc3VwcG9ydCBmb3IgdXNpbmcgaXRzIEdBUlQuCj4gPj4+Cj4gPj4+
-IE5vdCB1c2luZyB0aGUgQUdQIEdBUlQgYWxzbyBkb2Vzbid0IG1lYW4gYSBsb3NzIGluIGZ1bmN0
-aW9uYWxpdHkgc2luY2UgZHJpdmVycyB3aWxsIGp1c3QgZmFsbGJhY2sgdG8gdGhlIGRyaXZlciBz
-cGVjaWZpYyBQQ0kgR0FSVC4KPiA+Pj4KPiA+Pj4gRm9yIG5vdyBqdXN0IGRlcHJlY2F0ZSB0aGUg
-Y29kZSBhbmQgZG9uJ3QgZW5hYmxlIHRoZSBBR1AgR0FSVCBpbiBUVE0gZXZlbiB3aGVuIGdlbmVy
-YWwgQUdQIHN1cHBvcnQgaXMgYXZhaWxhYmxlLgo+ID4+IFNvIEkndmUgdXNlZCBhbiBhbmNpZW50
-IHN5c3RlbSAoMzJiaXQpIHRvIHNldHVwIGEgdGVzdCBib3ggZm9yIHRoaXMuCj4gPj4KPiA+Pgo+
-ID4+IFRoZSBmaXJzdCBHUFUgSSBjb3VsZCB0ZXN0IGlzIGFuIFJWMjgwIChSYWRlb24gOTIwMCBQ
-Uk8pIHdoaWNoIGlzIGVhc2lseQo+ID4+IDE1IHllYXJzIG9sZC4KPiA+Pgo+ID4+IFdoYXQgaGFw
-cGVucyBpbiBBR1AgbW9kZSBpcyB0aGF0IGdseGdlYXJzIHNob3dzIGFydGlmYWN0cyBkdXJpbmcK
-PiA+PiByZW5kZXJpbmcgb24gdGhpcyBzeXN0ZW0uCj4gPj4KPiA+PiBJbiBQQ0kgbW9kZSB0aG9z
-ZSByZW5kZXJpbmcgYXJ0aWZhY3RzIGFyZSBnb25lIGFuZCBnbHhnZWFycyBzZWVtcyB0bwo+ID4+
-IGRyYXcgZXZlcnl0aGluZyBjb3JyZWN0bHkgbm93Lgo+ID4+Cj4gPj4gUGVyZm9ybWFuY2UgaXMg
-b2J2aW91c2x5IG5vdCBjb21wYXJhYmxlLCBjYXVzZSBpbiBBR1Agd2UgZG9uJ3QgcmVuZGVyCj4g
-Pj4gYWxsIHRyaWFuZ2xlcyBjb3JyZWN0bHkuCj4gPj4KPiA+Pgo+ID4+IFRoZSBzZWNvbmQgR1BV
-IEkgY291bGQgdGVzdCBpcyBhbiBSVjYzMCBQUk8gKFJhZGVvbiBIRCAyNjAwIFBSTyBBR1ApCj4g
-Pj4gd2hpY2ggaXMgbW9yZSB0aGFuIDEwIHllYXJzIG9sZC4KPiA+Pgo+ID4+IEFzIGZhciBhcyBJ
-IGNhbiB0ZWxsIHRoaXMgb25lIHdvcmtzIGluIGJvdGggQUdQIGFuZCBQQ0llIG1vZGUgcGVyZmVj
-dGx5Cj4gPj4gZmluZS4KPiA+Pgo+ID4+IFNpbmNlIHRoaXMgaXMgb25seSBhIDMyYml0IHN5c3Rl
-bSBJIGNvdWxkbid0IHJlYWxseSB0ZXN0IGFueSBPcGVuR0wgZ2FtZQo+ID4+IHRoYXQgd2VsbC4K
-PiA+Pgo+ID4+IEJ1dCBmb3IgZ2x4Z2VhcnMgc3dpdGNoaW5nIGZyb20gQUdQIHRvIFBDSWUgbW9k
-ZSBzZWVtcyB0byByZXN1bHQgaW4gYQo+ID4+IHJvdWdobHkgNSUgcGVyZm9ybWFuY2UgZHJvcC4K
-PiA+Pgo+ID4+IFRoZSBzdXJwcmlzaW5nIHJlYXNvbiBmb3IgdGhpcyBpcyBub3QgdGhlIGJldHRl
-ciBUTEIgcGVyZm9ybWFuY2UsIGJ1dAo+ID4+IHRoZSBsYWNrIG9mIFVTV0Mgc3VwcG9ydCBmb3Ig
-dGhlIFBDSWUgR0FSVCBpbiByYWRlb24uCj4gPj4KPiA+Pgo+ID4+IFNvIGlmIGFueWJvZHkgd2Fu
-dHMgdG8gZ2V0IGhpcyBoYW5kcyBkaXJ0eSBhbmQgc3F1ZWV6ZSBhIGJpdCBtb3JlCj4gPj4gcGVy
-Zm9ybWFuY2Ugb3V0IG9mIHRoZSBvbGQgaGFyZHdhcmUsIHBvcnRpbmcgVVNXQyBmcm9tIGFtZGdw
-dSB0byByYWRlb24KPiA+PiBzaG91bGRuJ3QgYmUgdG8gbXVjaCBvZiBhIHByb2JsZW0uCj4gPiBX
-ZSBkbyBzdXBwb3J0IFVTV0Mgb24gcmFkZW9uLCBhbHRob3VnaCBJIHRoaW5rIHdlIGhhZCBzZXBh
-cmF0ZSBmbGFncwo+ID4gZm9yIGNhY2hlZCBhbmQgV0MuICBUaGF0IHNhaWQgd2UgaGFkIGEgbG90
-IG9mIHByb2JsZW1zIHdpdGggV0Mgb24gMzIKPiA+IGJpdCAoc2VlIHJhZGVvbl9ib19jcmVhdGUo
-KSkuICBUaGUgb3RoZXIgcHJvYmxlbSBpcyB0aGF0LCBhdCBsZWFzdCBvbgo+ID4gdGhlIHJlYWxs
-eSBvbGQgcmFkZW9ucywgdGhlIFBDSSBnYXJ0IGRpZG4ndCBzdXBwb3J0IHNub29wZWQgYW5kCj4g
-PiB1bnNub29wZWQuICBJdCB3YXMgYWx3YXlzIHNub29wZWQuICBJdCB3YXNuJ3QgdW50aWwgcGNp
-ZSB0aGF0IHRoZSBnYXJ0Cj4gPiBodyBnb3Qgc3VwcG9ydCBmb3IgYm90aC4gIEZvciBBR1AsIHRo
-ZSBleHBlY3RhdGlvbiB3YXMgdGhhdCBBR1AKPiA+IHByb3ZpZGVkIHRoZSB1bmNhY2hlZCBtZW1v
-cnkuCj4KPiBPaCwgaW5kZWVkLiBJIGRpZG4ndCByZW1lbWJlcmVkIHRoYXQuCj4KPiBJbnRlcmVz
-dGluZyBpcyB0aGF0IGluIHRoaXMgY2FzZSBJIGhhdmUgbm8gaWRlYSB3aGVyZSB0aGUgcGVyZm9y
-bWFuY2UKPiBkaWZmZXJlbmNlIGlzIGNvbWluZyBmcm9tLgo+Cj4gPgo+ID4+Cj4gPj4gU3VtbWlu
-ZyBpdCB1cCBJJ20gc3RpbGwgbGVhbmluZyB0b3dhcmRzIGRpc2FibGluZyBBR1AgY29tcGxldGVs
-eSBieQo+ID4+IGRlZmF1bHQgZm9yIHJhZGVvbiBhbmQgZGVwcmVjYXRlIGl0IGluIFRUTSBhcyB3
-ZWxsLgo+ID4+Cj4gPj4gVGhvdWdodHM/IEVzcGVjaWFsbHkgQWxleCB3aGF0IGRvIHlvdSB0aGlu
-ay4KPiA+IFdvcmtzIGZvciBtZS4KPgo+IEkgd2lsbCB0YWtlIHRoYXQgYXMgYW4gcmIgYW5kIGNv
-bW1pdCBhdCBsZWFzdCB0aGUgZmlyc3QgcGF0Y2guCgpZZWFoLCBSZXZpZXdlZC1ieTogQWxleCBE
-ZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgoKPgo+IFRoYW5rcywKPiBDaHJpc3Rp
-YW4uCj4KPiA+Cj4gPiBBbGV4Cj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQt
-Z2Z4Cg==
+On Fri, May 08, 2020 at 12:20:03PM -0700, Ralph Campbell wrote:
+> hmm_range_fault() returns an array of page frame numbers and flags for
+> how the pages are mapped in the requested process' page tables. The PFN
+> can be used to get the struct page with hmm_pfn_to_page() and the page size
+> order can be determined with compound_order(page) but if the page is larger
+> than order 0 (PAGE_SIZE), there is no indication that the page is mapped
+> using a larger page size. To be fully general, hmm_range_fault() would need
+> to return the mapping size to handle cases like a 1GB compound page being
+> mapped with 2MB PMD entries. However, the most common case is the mapping
+> size the same as the underlying compound page size.
+> This series adds a new output flag to indicate this so that callers know it
+> is safe to use a large device page table mapping if one is available.
+> Nouveau and the HMM tests are updated to use the new flag.
+> 
+> Note that this series depends on a patch queued in Ben Skeggs' nouveau
+> tree ("nouveau/hmm: map pages after migration") and the patches queued
+> in Jason's HMM tree.
+> There is also a patch outstanding ("nouveau/hmm: fix nouveau_dmem_chunk
+> allocations") that is independent of the above and could be applied
+> before or after.
+
+Did Christoph and Matt's remarks get addressed here?
+
+I think ODP could use something like this, currently it checks every
+page to get back to the huge page size and this flag would optimze
+that
+
+Jason
