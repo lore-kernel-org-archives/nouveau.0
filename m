@@ -1,63 +1,61 @@
-From: Marc MERLIN <marc_nouveau-xnduUnryOU1AfugRpC6u6w@public.gmane.org>
-Subject: Re: 5.5 kernel: using nouveau or something else just long
- enough to turn off Quadro RTX 4000 Mobile for hybrid graphics?
-Date: Fri, 29 May 2020 12:46:05 -0700
-Message-ID: <20200529194605.GB18804@merlins.org>
-References: <20200529180315.GA18804@merlins.org>
- <CAKb7Uvhw2EYo1RR-=NGgLO3CU9QTRWchcAw1injffybZbJ-zOA@mail.gmail.com>
+From: Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>
+Subject: Re: [PATCH 0/6] nouveau/hmm: add support for mapping large pages
+Date: Fri, 29 May 2020 20:24:49 -0300
+Message-ID: <20200529232449.GC21651@ziepe.ca>
+References: <20200508192009.15302-1-rcampbell@nvidia.com>
+ <20200525134118.GA2536@ziepe.ca>
+ <4743ec6e-a5a0-16ac-a1b8-992f851515f0@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Resent-Message-ID: <20200529194800.GC18804@merlins.org>
-Resent-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <CAKb7Uvhw2EYo1RR-=NGgLO3CU9QTRWchcAw1injffybZbJ-zOA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <4743ec6e-a5a0-16ac-a1b8-992f851515f0-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, May 29, 2020 at 02:53:51PM -0400, Ilia Mirkin wrote:
-> > moving to new window moves the mouse, but not windows get displayed.
+On Tue, May 26, 2020 at 10:32:48AM -0700, Ralph Campbell wrote:
 > 
-> Do you see anything in dmesg after this is set up? I'd expect some
-> errors about timeouts or something else.
- 
-Nothing other than what I pasted.
+> On 5/25/20 6:41 AM, Jason Gunthorpe wrote:
+> > On Fri, May 08, 2020 at 12:20:03PM -0700, Ralph Campbell wrote:
+> > > hmm_range_fault() returns an array of page frame numbers and flags for
+> > > how the pages are mapped in the requested process' page tables. The PFN
+> > > can be used to get the struct page with hmm_pfn_to_page() and the page size
+> > > order can be determined with compound_order(page) but if the page is larger
+> > > than order 0 (PAGE_SIZE), there is no indication that the page is mapped
+> > > using a larger page size. To be fully general, hmm_range_fault() would need
+> > > to return the mapping size to handle cases like a 1GB compound page being
+> > > mapped with 2MB PMD entries. However, the most common case is the mapping
+> > > size the same as the underlying compound page size.
+> > > This series adds a new output flag to indicate this so that callers know it
+> > > is safe to use a large device page table mapping if one is available.
+> > > Nouveau and the HMM tests are updated to use the new flag.
+> > > 
+> > > Note that this series depends on a patch queued in Ben Skeggs' nouveau
+> > > tree ("nouveau/hmm: map pages after migration") and the patches queued
+> > > in Jason's HMM tree.
+> > > There is also a patch outstanding ("nouveau/hmm: fix nouveau_dmem_chunk
+> > > allocations") that is independent of the above and could be applied
+> > > before or after.
+> > 
+> > Did Christoph and Matt's remarks get addressed here?
+> 
+> Both questioned the need to add the HMM_PFN_COMPOUND flag to the
+> hmm_range_fault() output array saying that the PFN can be used to get the
+> struct page pointer and the page can be examined to determine the page size.
+> My response is that while is true, it is also important that the device only
+> access the same parts of a large page that the process/cpu has access to.
+> There are places where a large page is mapped with smaller page table entries
+> when a page is shared by multiple processes.
+> After I explained this, I haven't seen any further comments from Christoph
+> and Matt. I'm still looking for reviews, acks, or suggested changes.
 
-> Which kernel are you using? There have been some turing-specific fixes recently.
+Okay, well, we reached the merge window, so since there may be some
+conflicts repost again in three weeks.
 
-5.5.11. I can put 5.6 if needed.
+It would be more compelling if there was some performance data if it
+is much of a win vs the 'compute large page' algorithm something like
+ODP uses.
 
-> Also note that TLP has a problem where it forces the audio
-> sub-function to always-on which prevents the GPU from suspending.
-
-Ah, thanks for that.
-I have
-#RUNTIME_PM_DRIVER_BLACKLIST="amdgpu mei_me nouveau nvidia pcieport radeon"
-
-sauron:~$ lspci |grep -i nvidia
-01:00.0 VGA compatible controller: NVIDIA Corporation TU104GLM [Quadro RTX 4000 Mobile / Max-Q] (rev a1)
-01:00.1 Audio device: NVIDIA Corporation TU104 HD Audio Controller (rev a1)
-01:00.2 USB controller: NVIDIA Corporation TU104 USB 3.1 Host Controller (rev a1)
-01:00.3 Serial bus controller [0c80]: NVIDIA Corporation TU104 USB Type-C UCSI Controller (rev a1)
-
-So you're saying that I need to blacklist 01:00.1 and without that it hangs
-when suspending the powered off nvidia chip, which is what I'm experiencing
-as a hang when I unplug power?
-
-Thanks,
-Marc
--- 
-"A mouse is a device used to point at the xterm you want to type in" - A.S.R.
- 
-Home page: http://marc.merlins.org/  
+Jason
