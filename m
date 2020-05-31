@@ -1,25 +1,30 @@
-From: dinghao.liu@zju.edu.cn
-Subject: Re: Re: drm/nouveau/clk/gm20b: Fix memory leak in gm20b_clk_new()
-Date: Sun, 31 May 2020 16:52:09 +0800 (GMT+08:00)
-Message-ID: <286858ff.db7e3.17269ee5f3f.Coremail.dinghao.liu@zju.edu.cn>
+From: Markus Elfring <Markus.Elfring@web.de>
+Subject: Re: drm/nouveau/clk/gm20b: Fix memory leak in gm20b_clk_new()
+Date: Sun, 31 May 2020 11:00:17 +0200
+Message-ID: <5a073b2b-5102-adec-84dd-b62dc48c7451@web.de>
 References: <dd729c13-fbc8-22e7-7d8e-e3e126f66943@web.de>
  <40d8fb01.db721.17269d3d620.Coremail.dinghao.liu@zju.edu.cn>
  <74977dc6-7ace-6ef7-4fcd-3f6c89a3eb5f@web.de>
+ <286858ff.db7e3.17269ee5f3f.Coremail.dinghao.liu@zju.edu.cn>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <74977dc6-7ace-6ef7-4fcd-3f6c89a3eb5f@web.de>
+In-Reply-To: <286858ff.db7e3.17269ee5f3f.Coremail.dinghao.liu@zju.edu.cn>
+Content-Language: en-GB
 Sender: linux-kernel-owner@vger.kernel.org
-To: Markus Elfring <Markus.Elfring@web.de>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Kangjie Lu <kjlu@umn.edu>
+To: Dinghao Liu <dinghao.liu@zju.edu.cn>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Kangjie Lu <kjlu@umn.edu>
 List-Id: nouveau.vger.kernel.org
 
-PiAKPiA+IEZvciBzZWN1cml0eSwgSSB3aWxsIHJlbGVhc2UgdGhpcyBwb2ludGVyIG9ubHkgb24g
-ZXJyb3IgcGF0aHMgaW4gdGhpcyBmdW5jdGlvbi4KPiAKPiBEbyB5b3UgdGVuZCB0byByZWxlYXNl
-IG9iamVjdHMgKHdoaWNoIGFyZSByZWZlcmVuY2VkIGJ5IHBvaW50ZXJzKT8KPiAKCkkganVzdCBm
-b3VuZCB0aGF0IGNsayBpcyByZWZlcmVuY2VkIGJ5IHBjbGsgaW4gdGhpcyBmdW5jdGlvbi4gV2hl
-biBjbGsgaXMgZnJlZWQsIApwY2xrIHdpbGwgYmUgYWxsb2NhdGVkIGluIGdtMjBiX2Nsa19uZXdf
-c3BlZWRvMCgpLiBUaHVzIHdlIHNob3VsZCBub3QgcmVsZWFzZSBjbGsKaW4gdGhpcyBmdW5jdGlv
-biBhbmQgdGhlcmUgaXMgbm8gYnVnIGhlcmUuIFRoYW5rIHlvdSBmb3IgcmVtaW5kaW5nIG1lIQoK
-UmVnYXJkcywKRGluZ2hhbw==
+> I just found that clk is referenced by pclk in this function. When clk i=
+s freed,
+> pclk will be allocated in gm20b_clk_new_speedo0(). Thus we should not re=
+lease clk
+> in this function and there is no bug here.
+
+Can there be a need to release a clock object after a failed gk20a_clk_cto=
+r() call?
+
+Regards,
+Markus
