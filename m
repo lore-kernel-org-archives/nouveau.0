@@ -1,28 +1,38 @@
-From: dinghao.liu@zju.edu.cn
-Subject: Re: Re: [PATCH] drm/nouveau/clk/gm20b: Fix memory leak in
+From: Markus Elfring <Markus.Elfring-S0/GAf8tV78@public.gmane.org>
+Subject: Re: drm/nouveau/clk/gm20b: Fix memory leak in
  gm20b_clk_new()
-Date: Sun, 31 May 2020 16:23:10 +0800 (GMT+08:00)
-Message-ID: <40d8fb01.db721.17269d3d620.Coremail.dinghao.liu@zju.edu.cn>
+Date: Sun, 31 May 2020 10:38:03 +0200
+Message-ID: <74977dc6-7ace-6ef7-4fcd-3f6c89a3eb5f@web.de>
 References: <dd729c13-fbc8-22e7-7d8e-e3e126f66943@web.de>
+ <40d8fb01.db721.17269d3d620.Coremail.dinghao.liu@zju.edu.cn>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <dd729c13-fbc8-22e7-7d8e-e3e126f66943@web.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Markus Elfring <Markus.Elfring@web.de>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Kangjie Lu <kjlu@umn.edu>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <40d8fb01.db721.17269d3d620.Coremail.dinghao.liu-Y5EWUtBUdg4nDS1+zs4M5A@public.gmane.org>
+Content-Language: en-GB
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Dinghao Liu <dinghao.liu-Y5EWUtBUdg4nDS1+zs4M5A@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Kangjie Lu <kjlu-OJFnDUYgAso@public.gmane.org>, kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-PiAKPiA+IEl0J3MgdGhlIHNhbWUgd2hlbiBnbTIwYl9jbGtfbmV3KCkgcmV0dXJucyBmcm9tIGVs
-c2V3aGVyZSBmb2xsb3dpbmcgdGhpcyBjYWxsLgo+IAo+IEkgc3VnZ2VzdCB0byByZWNvbnNpZGVy
-IHRoZSBpbnRlcnByZXRhdGlvbiBvZiB0aGUgc29mdHdhcmUgc2l0dWF0aW9uIG9uY2UgbW9yZS4K
-PiBDYW4gaXQgYmUgdGhhdCB0aGUgYWxsb2NhdGVkIGNsb2NrIG9iamVjdCBzaG91bGQgYmUga2Vw
-dCB1c2FibGUgZXZlbiBhZnRlcgo+IGEgc3VjY2Vzc2Z1bCByZXR1cm4gZnJvbSB0aGlzIGZ1bmN0
-aW9uPwo+IAoKSXQncyBwb3NzaWJsZSB0aGF0IHdlIGV4cGVjdCBhbiB1c2FibGUgY2xrIHBvaW50
-ZXIsIHRob3VnaCBJIGNvdWxkIG5vdCBmaW5kCnRoZSBleGFjdCB1c2FnZSB5ZXQuIEZvciBzZWN1
-cml0eSwgSSB3aWxsIHJlbGVhc2UgdGhpcyBwb2ludGVyIG9ubHkgb24gZXJyb3IgCnBhdGhzIGlu
-IHRoaXMgZnVuY3Rpb24uCgo+IAo+IFdvdWxkIHlvdSBsaWtlIHRvIGFkZCB0aGUgdGFnIOKAnEZp
-eGVz4oCdIHRvIHRoZSBjb21taXQgbWVzc2FnZT8KPiAKClRoYW5rIHlvdSBmb3IgeW91ciBhZHZp
-Y2UhIEkgd2lsbCBhZGQgdGhpcyB0YWcgaW4gdGhlIG5leHQgdmVyc2lvbiBvZiBwYXRjaC4KClJl
-Z2FyZHMsCkRpbmdoYW8=
+> It's possible that we expect an usable clk pointer, though I could not find
+> the exact usage yet.
+
+I am curious if another developer would like to add helpful background information.
+
+
+> For security, I will release this pointer only on error paths in this function.
+
+Do you tend to release objects (which are referenced by pointers)?
+
+Regards,
+Markus
