@@ -1,7 +1,8 @@
-From: dinghao.liu@zju.edu.cn
-Subject: Re: Re: drm/nouveau/clk/gm20b: Fix memory leak in gm20b_clk_new()
-Date: Sun, 31 May 2020 18:42:59 +0800 (GMT+08:00)
-Message-ID: <599cd7d4.dbaba.1726a53da96.Coremail.dinghao.liu@zju.edu.cn>
+From: Markus Elfring <Markus.Elfring-S0/GAf8tV78@public.gmane.org>
+Subject: Re: drm/nouveau/clk/gm20b: Fix memory leaks after failed
+ gk20a_clk_ctor() calls
+Date: Sun, 31 May 2020 14:14:05 +0200
+Message-ID: <f02d4f00-965a-12d0-d306-a943e2551184@web.de>
 References: <dd729c13-fbc8-22e7-7d8e-e3e126f66943@web.de>
  <40d8fb01.db721.17269d3d620.Coremail.dinghao.liu@zju.edu.cn>
  <74977dc6-7ace-6ef7-4fcd-3f6c89a3eb5f@web.de>
@@ -9,27 +10,37 @@ References: <dd729c13-fbc8-22e7-7d8e-e3e126f66943@web.de>
  <5a073b2b-5102-adec-84dd-b62dc48c7451@web.de>
  <1c5b64dc.db888.1726a03b710.Coremail.dinghao.liu@zju.edu.cn>
  <d05224e4-d682-de3e-928f-5af7b8597a8d@web.de>
+ <599cd7d4.dbaba.1726a53da96.Coremail.dinghao.liu@zju.edu.cn>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
-Return-path: <kernel-janitors-owner@vger.kernel.org>
-In-Reply-To: <d05224e4-d682-de3e-928f-5af7b8597a8d@web.de>
-Sender: kernel-janitors-owner@vger.kernel.org
-To: Markus Elfring <Markus.Elfring@web.de>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Kangjie Lu <kjlu@umn.edu>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <599cd7d4.dbaba.1726a53da96.Coremail.dinghao.liu-Y5EWUtBUdg4nDS1+zs4M5A@public.gmane.org>
+Content-Language: en-GB
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Dinghao Liu <dinghao.liu-Y5EWUtBUdg4nDS1+zs4M5A@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Kangjie Lu <kjlu-OJFnDUYgAso@public.gmane.org>, kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-PiA+IElmIGdrMjBhX2Nsa19jdG9yKCkgbmV2ZXIgcmV0dXJucyBzdWNoIGFuIGVycm9yIGNvZGUs
-Cj4gPiB3ZSBtYXkgbmVlZCBub3QgdG8gcmVsZWFzZSB0aGlzIGNsb2NrIG9iamVjdC4KPiAKPiBX
-b3VsZCB5b3UgbGlrZSB0byBhY2hpZXZlIGNvbXBsZXRlIGV4Y2VwdGlvbiBoYW5kbGluZwo+IGFs
-c28gZm9yIHRoaXMgZnVuY3Rpb24gaW1wbGVtZW50YXRpb24/Cj4gCgpJdCBzZWVtcyB0aGF0IGl0
-J3MgcG9zc2libGUgdG8gZ2V0IC1FTk9NRU0gZnJvbSBnazIwYV9jbGtfY3RvcigpLgpUaGUgY2Fs
-bCBjaGFpbiBpcyBhcyBmb2xsb3dzOgpnazIwYV9jbGtfY3RvcigpIDwtIG52a21fY2xrX2N0b3Io
-KSA8LSBudmttX25vdGlmeV9pbml0KCkKCldoZW4gbnZrbV9ub3RpZnlfaW5pdCgpIHJldHVybnMg
-LUVOT01FTSwgYWxsIG9mIGl0cyBjYWxsZXJzIChhbmQgCmNhbGxlcnMgb2YgY2FsbGVycykgd2ls
-bCBiZSBpbmZsdWVuY2VkIGlmIHRoZXJlIGlzIGEgZmFpbGVkCmt6YWxsb2MgaW5zaWRlIHdoaWNo
-LiAKCkluIHRoaXMgY2FzZSwgbWF5YmUgd2Ugc2hvdWxkIGNoZWNrIHRoZSByZXR1cm4gdmFsdWUg
-b2YgCmdrMjBhX2Nsa19jdG9yKCkgYW5kIHJlbGVhc2UgY2xrIGlmIGl0IHJldHVybnMgLUVOT01F
-TS4gCkFuZCBtYW55IG90aGVyIGZ1bmN0aW9ucyBhbHNvIGhhdmUgdGhlIHNhbWUgaXNzdWUgKGUu
-Zy4sCmdtMjBiX2Nsa19uZXdfc3BlZWRvMCkuIERvIHlvdSBoYXZlIGFueSBpZGVhIGFib3V0IHRo
-aXMgCnByb2JsZW0/CgpSZWdhcmRzLApEaW5naGFv
+> In this case, maybe we should check the return value of
+> gk20a_clk_ctor() and release clk if it returns -ENOMEM.
+
+All error situations (including failed memory allocations) can matter here.
+
+
+> And many other functions also have the same issue
+> (e.g. gm20b_clk_new_speedo0).
+
+I recommend to increase the error detection and improve the desired
+exception handling accordingly.
+
+Regards,
+Markus
