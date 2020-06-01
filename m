@@ -1,67 +1,33 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/clk/gm20b: Fix memory leak in
+From: dinghao.liu@zju.edu.cn
+Subject: Re: Re: Re: [PATCH] drm/nouveau/clk/gm20b: Fix memory leak in
  gm20b_clk_new
-Date: Mon, 1 Jun 2020 13:41:48 +1000
-Message-ID: <CACAvsv5t2gWDae_8b0-fH9e8fzgmxfiUtZTPeFuhmKXDFAmvGw@mail.gmail.com>
+Date: Mon, 1 Jun 2020 13:21:27 +0800 (GMT+08:00)
+Message-ID: <b3db4d2.ddd1e.1726e53d54b.Coremail.dinghao.liu@zju.edu.cn>
 References: <20200529080042.6082-1-dinghao.liu@zju.edu.cn>
  <CACAvsv73wZK_pKk4TDHaTeBUqxYHvK0KhLQBgPC8Be_VviY2jg@mail.gmail.com>
  <6a65a5b1.dd4b7.1726deaea0a.Coremail.dinghao.liu@zju.edu.cn>
  <CACAvsv5kcUC_kOfMPxqY-irSAexmhm=WKO8Vk=wTZWdsbaartw@mail.gmail.com>
+ <CACAvsv5t2gWDae_8b0-fH9e8fzgmxfiUtZTPeFuhmKXDFAmvGw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACAvsv5kcUC_kOfMPxqY-irSAexmhm=WKO8Vk=wTZWdsbaartw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dinghao.liu-Y5EWUtBUdg4nDS1+zs4M5A@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, kjlu-OJFnDUYgAso@public.gmane.org, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Markus.Elfring-S0/GAf8tV78@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CACAvsv5t2gWDae_8b0-fH9e8fzgmxfiUtZTPeFuhmKXDFAmvGw@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <skeggsb@gmail.com>
+Cc: kjlu@umn.edu, David Airlie <airlied@linux.ie>, ML nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, ML dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Markus.Elfring@web.de
 List-Id: nouveau.vger.kernel.org
 
-On Mon, 1 Jun 2020 at 13:37, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->
-> On Mon, 1 Jun 2020 at 13:27, <dinghao.liu-Y5EWUtBUdg4nDS1+zs4M5A@public.gmane.org> wrote:
-> >
-> >
-> > Hi Ben,
-> >
-> > > > When gk20a_clk_ctor() returns an error code, pointer "clk"
-> > > > should be released. It's the same when gm20b_clk_new()
-> > > > returns from elsewhere following this call.
-> > > This shouldn't be necessary.  If a subdev constructor fails, and
-> > > returns a pointer, the core will call the destructor to clean things
-> > > up.
-> > >
-> >
-> > I'm not familiar with the behavior of the caller of gm20b_clk_new().
-> > If the subdev constructor fails, the core will check the pointer
-> > (here is "pclk"), then it's ok and there is no bug (Do you mean
-> > this?). If the core executes error handling code only according to
-> > the error code, there may be a memory leak bug (the caller cannot
-> > know if -ENOMEM comes from the failure of kzalloc or gk20a_clk_ctor).
-> > If the core always calls the destructor as long as the constructor
-> > fails (even if the kzalloc fails), we may have a double free bug.
-> >
-> > Would you like to give a more detailed explanation about the behavior
-> > of the core?
-> If there's *any* error, it'll check the pointer, if it's non-NULL,
-> it'll call the destructor.  If kzalloc() fails, the pointer will be
-> NULL, there's no double-free bug.  *every* subdev is written this way
-> to avoid duplicating cleanup logic.
-Actually, gm20b_clk_new_speedo0() may have a bug here if kzalloc()
-fails as it doesn't overwrite the previous pointer from
-gm20b_clk_new().  That whole ctor() sequence is written a little
-strangely.
-
->
-> Ben.
-> >
-> > Regards,
-> > Dinghao
+PiA+IElmIHRoZXJlJ3MgKmFueSogZXJyb3IsIGl0J2xsIGNoZWNrIHRoZSBwb2ludGVyLCBpZiBp
+dCdzIG5vbi1OVUxMLAo+ID4gaXQnbGwgY2FsbCB0aGUgZGVzdHJ1Y3Rvci4gIElmIGt6YWxsb2Mo
+KSBmYWlscywgdGhlIHBvaW50ZXIgd2lsbCBiZQo+ID4gTlVMTCwgdGhlcmUncyBubyBkb3VibGUt
+ZnJlZSBidWcuICAqZXZlcnkqIHN1YmRldiBpcyB3cml0dGVuIHRoaXMgd2F5Cj4gPiB0byBhdm9p
+ZCBkdXBsaWNhdGluZyBjbGVhbnVwIGxvZ2ljLgo+IEFjdHVhbGx5LCBnbTIwYl9jbGtfbmV3X3Nw
+ZWVkbzAoKSBtYXkgaGF2ZSBhIGJ1ZyBoZXJlIGlmIGt6YWxsb2MoKQo+IGZhaWxzIGFzIGl0IGRv
+ZXNuJ3Qgb3ZlcndyaXRlIHRoZSBwcmV2aW91cyBwb2ludGVyIGZyb20KPiBnbTIwYl9jbGtfbmV3
+KCkuICBUaGF0IHdob2xlIGN0b3IoKSBzZXF1ZW5jZSBpcyB3cml0dGVuIGEgbGl0dGxlCj4gc3Ry
+YW5nZWx5Lgo+IAoKSXQncyBjbGVhciB0byBtZSwgdGhhbmsgeW91ciBmb3IgeW91ciBleHBsYW5h
+dGlvbiEgQXMgZm9yIApnbTIwYl9jbGtfbmV3X3NwZWVkbzAoKSwgSSB0aGluayBpdHMgYnVnIHBh
+dHRlcm4gaXMgbm90IHZlcnkgCmNsZWFyLiBNYXliZSB3ZSBzaG91bGQga2VlcCBpdCB1bnRpbCB3
+ZSBmaW5kIGFuIHVzZSBjaGFpbiB0aGF0CmNvdWxkIGxlYWQgdG8gYSBidWcuCgpSZWdhcmRzLApE
+aW5naGFvCg==
