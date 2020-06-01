@@ -1,35 +1,59 @@
-From: dinghao.liu@zju.edu.cn
-Subject: Re: Re: [PATCH] drm/nouveau/clk/gm20b: Fix memory leak in
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/clk/gm20b: Fix memory leak in
  gm20b_clk_new
-Date: Mon, 1 Jun 2020 11:26:51 +0800 (GMT+08:00)
-Message-ID: <6a65a5b1.dd4b7.1726deaea0a.Coremail.dinghao.liu@zju.edu.cn>
+Date: Mon, 1 Jun 2020 13:37:20 +1000
+Message-ID: <CACAvsv5kcUC_kOfMPxqY-irSAexmhm=WKO8Vk=wTZWdsbaartw@mail.gmail.com>
 References: <20200529080042.6082-1-dinghao.liu@zju.edu.cn>
  <CACAvsv73wZK_pKk4TDHaTeBUqxYHvK0KhLQBgPC8Be_VviY2jg@mail.gmail.com>
+ <6a65a5b1.dd4b7.1726deaea0a.Coremail.dinghao.liu@zju.edu.cn>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CACAvsv73wZK_pKk4TDHaTeBUqxYHvK0KhLQBgPC8Be_VviY2jg@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <skeggsb@gmail.com>
-Cc: kjlu@umn.edu, David Airlie <airlied@linux.ie>, ML nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, ML dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Markus.Elfring@web.de
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <6a65a5b1.dd4b7.1726deaea0a.Coremail.dinghao.liu-Y5EWUtBUdg4nDS1+zs4M5A@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: dinghao.liu-Y5EWUtBUdg4nDS1+zs4M5A@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, kjlu-OJFnDUYgAso@public.gmane.org, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Markus.Elfring-S0/GAf8tV78@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-CkhpIEJlbiwKCj4gPiBXaGVuIGdrMjBhX2Nsa19jdG9yKCkgcmV0dXJucyBhbiBlcnJvciBjb2Rl
-LCBwb2ludGVyICJjbGsiCj4gPiBzaG91bGQgYmUgcmVsZWFzZWQuIEl0J3MgdGhlIHNhbWUgd2hl
-biBnbTIwYl9jbGtfbmV3KCkKPiA+IHJldHVybnMgZnJvbSBlbHNld2hlcmUgZm9sbG93aW5nIHRo
-aXMgY2FsbC4KPiBUaGlzIHNob3VsZG4ndCBiZSBuZWNlc3NhcnkuICBJZiBhIHN1YmRldiBjb25z
-dHJ1Y3RvciBmYWlscywgYW5kCj4gcmV0dXJucyBhIHBvaW50ZXIsIHRoZSBjb3JlIHdpbGwgY2Fs
-bCB0aGUgZGVzdHJ1Y3RvciB0byBjbGVhbiB0aGluZ3MKPiB1cC4KPiAKCkknbSBub3QgZmFtaWxp
-YXIgd2l0aCB0aGUgYmVoYXZpb3Igb2YgdGhlIGNhbGxlciBvZiBnbTIwYl9jbGtfbmV3KCkuIApJ
-ZiB0aGUgc3ViZGV2IGNvbnN0cnVjdG9yIGZhaWxzLCB0aGUgY29yZSB3aWxsIGNoZWNrIHRoZSBw
-b2ludGVyCihoZXJlIGlzICJwY2xrIiksIHRoZW4gaXQncyBvayBhbmQgdGhlcmUgaXMgbm8gYnVn
-IChEbyB5b3UgbWVhbiAKdGhpcz8pLiBJZiB0aGUgY29yZSBleGVjdXRlcyBlcnJvciBoYW5kbGlu
-ZyBjb2RlIG9ubHkgYWNjb3JkaW5nIHRvIAp0aGUgZXJyb3IgY29kZSwgdGhlcmUgbWF5IGJlIGEg
-bWVtb3J5IGxlYWsgYnVnICh0aGUgY2FsbGVyIGNhbm5vdCAKa25vdyBpZiAtRU5PTUVNIGNvbWVz
-IGZyb20gdGhlIGZhaWx1cmUgb2Yga3phbGxvYyBvciBnazIwYV9jbGtfY3RvcikuIApJZiB0aGUg
-Y29yZSBhbHdheXMgY2FsbHMgdGhlIGRlc3RydWN0b3IgYXMgbG9uZyBhcyB0aGUgY29uc3RydWN0
-b3IgCmZhaWxzIChldmVuIGlmIHRoZSBremFsbG9jIGZhaWxzKSwgd2UgbWF5IGhhdmUgYSBkb3Vi
-bGUgZnJlZSBidWcuIAoKV291bGQgeW91IGxpa2UgdG8gZ2l2ZSBhIG1vcmUgZGV0YWlsZWQgZXhw
-bGFuYXRpb24gYWJvdXQgdGhlIGJlaGF2aW9yCm9mIHRoZSBjb3JlPyAKClJlZ2FyZHMsCkRpbmdo
-YW8=
+On Mon, 1 Jun 2020 at 13:27, <dinghao.liu-Y5EWUtBUdg4nDS1+zs4M5A@public.gmane.org> wrote:
+>
+>
+> Hi Ben,
+>
+> > > When gk20a_clk_ctor() returns an error code, pointer "clk"
+> > > should be released. It's the same when gm20b_clk_new()
+> > > returns from elsewhere following this call.
+> > This shouldn't be necessary.  If a subdev constructor fails, and
+> > returns a pointer, the core will call the destructor to clean things
+> > up.
+> >
+>
+> I'm not familiar with the behavior of the caller of gm20b_clk_new().
+> If the subdev constructor fails, the core will check the pointer
+> (here is "pclk"), then it's ok and there is no bug (Do you mean
+> this?). If the core executes error handling code only according to
+> the error code, there may be a memory leak bug (the caller cannot
+> know if -ENOMEM comes from the failure of kzalloc or gk20a_clk_ctor).
+> If the core always calls the destructor as long as the constructor
+> fails (even if the kzalloc fails), we may have a double free bug.
+>
+> Would you like to give a more detailed explanation about the behavior
+> of the core?
+If there's *any* error, it'll check the pointer, if it's non-NULL,
+it'll call the destructor.  If kzalloc() fails, the pointer will be
+NULL, there's no double-free bug.  *every* subdev is written this way
+to avoid duplicating cleanup logic.
+
+Ben.
+>
+> Regards,
+> Dinghao
