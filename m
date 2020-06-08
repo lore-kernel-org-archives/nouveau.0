@@ -1,7 +1,7 @@
 From: Zeno Davatz <zdavatz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: NVIDIA GP107 (137000a1) - acr: failed to load firmware
-Date: Thu, 4 Jun 2020 18:23:00 +0200
-Message-ID: <CAOkhzLV3zpzh4dKOxYUT6a_-kQQyxBxexY0MML4t4LZLK8dOpw@mail.gmail.com>
+Subject: xrandr: Failed to get size of gamma for output default
+Date: Mon, 8 Jun 2020 09:52:25 +0200
+Message-ID: <CAOkhzLUQXAB1-=2VasSeJC9-LDgsd0Sk-pJY2LBbHaLqpcBeLg@mail.gmail.com>
 References: <CAOkhzLUrNYk6JKTbTQuFkfuGKxGvW9XVq6+p9igsBgX1-e9Cxg@mail.gmail.com>
  <CAKb7Uvg0W_1qUjf3G4JrCb2oJgkwz4G5T6PwkyeL-rZEp4UnTw@mail.gmail.com>
  <CAOkhzLV+suVNAoyiaHKOkbwP-KKgTLEa7S8kp8+GSTLm_-wWFw@mail.gmail.com>
@@ -26,18 +26,37 @@ To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Dear Ilia
+
 On Thu, Jun 4, 2020 at 6:13 PM Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
 
 > Not sure why you bother asking questions when you're just going to
 > dump nouveau anyways. This is the second time I've answered your
 > questions on this very topic, I think it'll be the last too.
 
-Actually, what I will try next is emerging
-"x11-drivers/xf86-video-nouveau" Version-1.0.15-r1. It that works for
-Nvidia, I guess it will also work for Nouveau. ;)
+I tried again and removed the Nvidia-Drivers with
 
-I would have preferred to have it all in the Kernel but that does not
-seem possible.
+sudo emerge -C x11-drivers/nvidia-drivers
+
+and installed
+
+sudo emerge x11-drivers/xf86-video-nouveau
+
+this works with Kernel 5.7.0!
+
+~> inxi -G
+Graphics:  Device-1: NVIDIA GP107 driver: N/A
+           Display: server: X.Org 1.20.5 driver: nouveau,vesa
+unloaded: modesetting resolution: 1680x1050~N/A
+           OpenGL: renderer: Rasterizer v: 2.1 Mesa 19.1.4
+
+but now xrandr no longer works.
+
+~> xrandr -q
+
+Screen 0: minimum 1680 x 1050, current 1680 x 1050, maximum 1680 x 1050
+default connected 1680x1050+0+0 0mm x 0mm
+   1680x1050      0.00*
 
 Best
 Zeno
