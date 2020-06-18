@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 5.7 314/388] drm/nouveau/disp/gm200-: fix
+Subject: [PATCH AUTOSEL 5.4 215/266] drm/nouveau/disp/gm200-: fix
  NV_PDISP_SOR_HDMI2_CTRL(n) selection
-Date: Wed, 17 Jun 2020 21:06:51 -0400
-Message-ID: <20200618010805.600873-314-sashal@kernel.org>
-References: <20200618010805.600873-1-sashal@kernel.org>
+Date: Wed, 17 Jun 2020 21:15:40 -0400
+Message-ID: <20200618011631.604574-215-sashal@kernel.org>
+References: <20200618011631.604574-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200618010805.600873-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <20200618011631.604574-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
