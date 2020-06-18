@@ -1,58 +1,49 @@
-From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 5.4 215/266] drm/nouveau/disp/gm200-: fix
- NV_PDISP_SOR_HDMI2_CTRL(n) selection
-Date: Wed, 17 Jun 2020 21:15:40 -0400
-Message-ID: <20200618011631.604574-215-sashal@kernel.org>
-References: <20200618011631.604574-1-sashal@kernel.org>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH] drm/noveau: fix reference count leak in
+ nv50_disp_atomic_commit
+Date: Thu, 18 Jun 2020 11:18:25 -0400
+Message-ID: <0b1c1a07b6589e91701a1815400a56b66c5f480d.camel@redhat.com>
+References: <20200614012920.121567-1-pakki001@umn.edu>
+Reply-To: lyude@redhat.com
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200618011631.604574-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200614012920.121567-1-pakki001@umn.edu>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Aditya Pakki <pakki001@umn.edu>
+Cc: kjlu@umn.edu, wu000273@umn.edu, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, Takashi Iwai <tiwai@suse.de>, James Jones <jajones@nvidia.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+On Sat, 2020-06-13 at 20:29 -0500, Aditya Pakki wrote:
+> nv50_disp_atomic_commit() calls calls pm_runtime_get_sync and in turn
+> increments the reference count. In case of failure, decrement the
+> ref count before returning the error.
+> 
+> Signed-off-by: Aditya Pakki <pakki001@umn.edu>
+> ---
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> index d472942102f5..b4039907f0d6 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> @@ -2157,8 +2157,10 @@ nv50_disp_atomic_commit(struct drm_device *dev,
+>  	int ret, i;
+>  
+>  	ret = pm_runtime_get_sync(dev->dev);
+> -	if (ret < 0 && ret != -EACCES)
+> +	if (ret < 0 && ret != -EACCES) {
+> +		pm_runtime_put_autosuspend(dev->dev);
 
-[ Upstream commit a1ef8bad506e4ffa0c57ac5f8cb99ab5cbc3b1fc ]
+s/noveau/nouveau/ in the commit title, but other than that:
 
-This is a SOR register, and not indexed by the bound head.
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-Fixes display not coming up on high-bandwidth HDMI displays under a
-number of configurations.
-
-Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmigm200.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmigm200.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmigm200.c
-index 9b16a08eb4d9..bf6d41fb0c9f 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmigm200.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmigm200.c
-@@ -27,10 +27,10 @@ void
- gm200_hdmi_scdc(struct nvkm_ior *ior, int head, u8 scdc)
- {
- 	struct nvkm_device *device = ior->disp->engine.subdev.device;
--	const u32 hoff = head * 0x800;
-+	const u32 soff = nv50_ior_base(ior);
- 	const u32 ctrl = scdc & 0x3;
- 
--	nvkm_mask(device, 0x61c5bc + hoff, 0x00000003, ctrl);
-+	nvkm_mask(device, 0x61c5bc + soff, 0x00000003, ctrl);
- 
- 	ior->tmds.high_speed = !!(scdc & 0x2);
- }
--- 
-2.25.1
+>  		return ret;
+> +	}
+>  
+>  	ret = drm_atomic_helper_setup_commit(state, nonblock);
+>  	if (ret)
