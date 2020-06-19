@@ -1,8 +1,7 @@
 From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 05/16] mm/hmm/test: remove redundant page table
- invalidate
-Date: Fri, 19 Jun 2020 14:56:38 -0700
-Message-ID: <20200619215649.32297-6-rcampbell@nvidia.com>
+Subject: [PATCH 04/16] mm/hmm: fix test timeout on slower machines
+Date: Fri, 19 Jun 2020 14:56:37 -0700
+Message-ID: <20200619215649.32297-5-rcampbell@nvidia.com>
 References: <20200619215649.32297-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,48 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rdma-u79uwX
 Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-When migrating pages to or from device private memory, the device's
-page tables will be invalidated as part of migrate_vma_setup() locking
-and isolating the pages. The HMM self test driver doesn't need to
-invalidate the page table a second time after migrating pages to system
-memory so remove that bit of extra code.
+The HMM self test "migrate_multiple" can timeout on slower machines.
+Lower the number of loop iterations to fix this.
 
 Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- lib/test_hmm.c | 14 ++++----------
- 1 file changed, 4 insertions(+), 10 deletions(-)
+ tools/testing/selftests/vm/hmm-tests.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/lib/test_hmm.c b/lib/test_hmm.c
-index 28528285942c..f7c2b51a7a9d 100644
---- a/lib/test_hmm.c
-+++ b/lib/test_hmm.c
-@@ -1018,15 +1018,6 @@ static vm_fault_t dmirror_devmem_fault_alloc_and_copy(struct migrate_vma *args,
- 	return 0;
- }
+diff --git a/tools/testing/selftests/vm/hmm-tests.c b/tools/testing/selftests/vm/hmm-tests.c
+index 79db22604019..bdfa95ac9a7d 100644
+--- a/tools/testing/selftests/vm/hmm-tests.c
++++ b/tools/testing/selftests/vm/hmm-tests.c
+@@ -45,7 +45,7 @@ struct hmm_buffer {
+ #define TWOMEG		(1 << 21)
+ #define HMM_BUFFER_SIZE (1024 << 12)
+ #define HMM_PATH_MAX    64
+-#define NTIMES		256
++#define NTIMES		50
  
--static void dmirror_devmem_fault_finalize_and_map(struct migrate_vma *args,
--						  struct dmirror *dmirror)
--{
--	/* Invalidate the device's page table mapping. */
--	mutex_lock(&dmirror->mutex);
--	dmirror_do_update(dmirror, args->start, args->end);
--	mutex_unlock(&dmirror->mutex);
--}
--
- static vm_fault_t dmirror_devmem_fault(struct vm_fault *vmf)
- {
- 	struct migrate_vma args;
-@@ -1059,7 +1050,10 @@ static vm_fault_t dmirror_devmem_fault(struct vm_fault *vmf)
- 	if (ret)
- 		return ret;
- 	migrate_vma_pages(&args);
--	dmirror_devmem_fault_finalize_and_map(&args, dmirror);
-+	/*
-+	 * No device finalize step is needed since migrate_vma_setup() will
-+	 * have already invalidated the device page table.
-+	 */
- 	migrate_vma_finalize(&args);
- 	return 0;
- }
+ #define ALIGN(x, a) (((x) + (a - 1)) & (~((a) - 1)))
+ 
 -- 
 2.20.1
