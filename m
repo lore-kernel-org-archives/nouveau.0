@@ -1,8 +1,7 @@
 From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 01/16] mm: fix migrate_vma_setup() src_owner and
- normal pages
-Date: Fri, 19 Jun 2020 14:56:34 -0700
-Message-ID: <20200619215649.32297-2-rcampbell@nvidia.com>
+Subject: [PATCH 14/16] mm/thp: add THP allocation helper
+Date: Fri, 19 Jun 2020 14:56:47 -0700
+Message-ID: <20200619215649.32297-15-rcampbell@nvidia.com>
 References: <20200619215649.32297-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,35 +21,63 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rdma-u79uwX
 Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-The caller of migrate_vma_setup() does not know what type of page is
-stored in the CPU's page tables. Pages within the specified range are
-free to be swapped out, migrated, or freed until after migrate_vma_setup()
-returns. The caller needs to set struct migrate_vma.src_owner in case a
-page is a ZONE device private page that the device owns and might want to
-migrate. However, the current code skips normal anonymous pages if
-src_owner is set, thus preventing those pages from being migrated.
-Remove the src_owner check for normal pages since src_owner only applies
-to device private pages and allow a range of normal and device private
-pages to be migrated.
+Transparent huge page allocation policy is controlled by several sysfs
+variables. Rather than expose these to each device driver that needs to
+allocate THPs, provide a helper function.
 
-Fixes: 800bb1c8dc80 ("mm: handle multiple owners of device private pages in migrate_vma")
 Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- mm/migrate.c | 2 --
- 1 file changed, 2 deletions(-)
+ include/linux/gfp.h | 10 ++++++++++
+ mm/huge_memory.c    | 16 ++++++++++++++++
+ 2 files changed, 26 insertions(+)
 
-diff --git a/mm/migrate.c b/mm/migrate.c
-index f37729673558..24535281cea3 100644
---- a/mm/migrate.c
-+++ b/mm/migrate.c
-@@ -2295,8 +2295,6 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
- 			if (is_write_device_private_entry(entry))
- 				mpfn |= MIGRATE_PFN_WRITE;
- 		} else {
--			if (migrate->src_owner)
--				goto next;
- 			pfn = pte_pfn(pte);
- 			if (is_zero_pfn(pfn)) {
- 				mpfn = MIGRATE_PFN_MIGRATE;
+diff --git a/include/linux/gfp.h b/include/linux/gfp.h
+index 67a0774e080b..1c7d968a27d3 100644
+--- a/include/linux/gfp.h
++++ b/include/linux/gfp.h
+@@ -562,6 +562,16 @@ extern struct page *alloc_pages_vma(gfp_t gfp_mask, int order,
+ 	alloc_pages_vma(gfp_mask, 0, vma, addr, numa_node_id(), false)
+ #define alloc_page_vma_node(gfp_mask, vma, addr, node)		\
+ 	alloc_pages_vma(gfp_mask, 0, vma, addr, node, false)
++#ifdef CONFIG_ARCH_ENABLE_THP_MIGRATION
++extern struct page *alloc_transhugepage(struct vm_area_struct *vma,
++					unsigned long addr);
++#else
++static inline struct page *alloc_transhugepage(struct vm_area_struct *vma,
++						unsigned long addr)
++{
++	return NULL;
++}
++#endif
+ 
+ extern unsigned long __get_free_pages(gfp_t gfp_mask, unsigned int order);
+ extern unsigned long get_zeroed_page(gfp_t gfp_mask);
+diff --git a/mm/huge_memory.c b/mm/huge_memory.c
+index 25d95f7b1e98..f749633ed350 100644
+--- a/mm/huge_memory.c
++++ b/mm/huge_memory.c
+@@ -775,6 +775,22 @@ vm_fault_t do_huge_pmd_anonymous_page(struct vm_fault *vmf)
+ 	return __do_huge_pmd_anonymous_page(vmf, page, gfp);
+ }
+ 
++#ifdef CONFIG_ARCH_ENABLE_THP_MIGRATION
++struct page *alloc_transhugepage(struct vm_area_struct *vma,
++				 unsigned long haddr)
++{
++	gfp_t gfp;
++	struct page *page;
++
++	gfp = alloc_hugepage_direct_gfpmask(vma);
++	page = alloc_hugepage_vma(gfp, vma, haddr, HPAGE_PMD_ORDER);
++	if (page)
++		prep_transhuge_page(page);
++	return page;
++}
++EXPORT_SYMBOL_GPL(alloc_transhugepage);
++#endif
++
+ static void insert_pfn_pmd(struct vm_area_struct *vma, unsigned long addr,
+ 		pmd_t *pmd, pfn_t pfn, pgprot_t prot, bool write,
+ 		pgtable_t pgtable)
 -- 
 2.20.1
