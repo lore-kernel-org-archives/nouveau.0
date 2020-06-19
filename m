@@ -1,7 +1,8 @@
 From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 04/16] mm/hmm: fix test timeout on slower machines
-Date: Fri, 19 Jun 2020 14:56:37 -0700
-Message-ID: <20200619215649.32297-5-rcampbell@nvidia.com>
+Subject: [PATCH 03/16] nouveau: fix mixed normal and device
+ private page migration
+Date: Fri, 19 Jun 2020 14:56:36 -0700
+Message-ID: <20200619215649.32297-4-rcampbell@nvidia.com>
 References: <20200619215649.32297-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,26 +22,52 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rdma-u79uwX
 Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-The HMM self test "migrate_multiple" can timeout on slower machines.
-Lower the number of loop iterations to fix this.
+The OpenCL function clEnqueueSVMMigrateMem(), without any flags, will
+migrate memory in the given address range to device private memory. The
+source pages might already have been migrated to device private memory.
+In that case, the source struct page is not checked to see if it is
+a device private page and incorrectly computes the GPU's physical
+address of local memory leading to data corruption.
+Fix this by checking the source struct page and computing the correct
+physical address.
 
 Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- tools/testing/selftests/vm/hmm-tests.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nouveau_dmem.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/tools/testing/selftests/vm/hmm-tests.c b/tools/testing/selftests/vm/hmm-tests.c
-index 79db22604019..bdfa95ac9a7d 100644
---- a/tools/testing/selftests/vm/hmm-tests.c
-+++ b/tools/testing/selftests/vm/hmm-tests.c
-@@ -45,7 +45,7 @@ struct hmm_buffer {
- #define TWOMEG		(1 << 21)
- #define HMM_BUFFER_SIZE (1024 << 12)
- #define HMM_PATH_MAX    64
--#define NTIMES		256
-+#define NTIMES		50
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+index cc9993837508..f6a806ba3caa 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+@@ -540,6 +540,12 @@ static unsigned long nouveau_dmem_migrate_copy_one(struct nouveau_drm *drm,
+ 	if (!(src & MIGRATE_PFN_MIGRATE))
+ 		goto out;
  
- #define ALIGN(x, a) (((x) + (a - 1)) & (~((a) - 1)))
++	if (spage && is_device_private_page(spage)) {
++		paddr = nouveau_dmem_page_addr(spage);
++		*dma_addr = DMA_MAPPING_ERROR;
++		goto done;
++	}
++
+ 	dpage = nouveau_dmem_page_alloc_locked(drm);
+ 	if (!dpage)
+ 		goto out;
+@@ -560,6 +566,7 @@ static unsigned long nouveau_dmem_migrate_copy_one(struct nouveau_drm *drm,
+ 			goto out_free_page;
+ 	}
  
++done:
+ 	*pfn = NVIF_VMM_PFNMAP_V0_V | NVIF_VMM_PFNMAP_V0_VRAM |
+ 		((paddr >> PAGE_SHIFT) << NVIF_VMM_PFNMAP_V0_ADDR_SHIFT);
+ 	if (src & MIGRATE_PFN_WRITE)
+@@ -615,6 +622,7 @@ nouveau_dmem_migrate_vma(struct nouveau_drm *drm,
+ 	struct migrate_vma args = {
+ 		.vma		= vma,
+ 		.start		= start,
++		.src_owner	= drm->dev,
+ 	};
+ 	unsigned long i;
+ 	u64 *pfns;
 -- 
 2.20.1
