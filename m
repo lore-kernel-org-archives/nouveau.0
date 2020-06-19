@@ -1,8 +1,8 @@
 From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 03/16] nouveau: fix mixed normal and device
- private page migration
-Date: Fri, 19 Jun 2020 14:56:36 -0700
-Message-ID: <20200619215649.32297-4-rcampbell@nvidia.com>
+Subject: [PATCH 01/16] mm: fix migrate_vma_setup() src_owner and
+ normal pages
+Date: Fri, 19 Jun 2020 14:56:34 -0700
+Message-ID: <20200619215649.32297-2-rcampbell@nvidia.com>
 References: <20200619215649.32297-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,52 +22,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rdma-u79uwX
 Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-The OpenCL function clEnqueueSVMMigrateMem(), without any flags, will
-migrate memory in the given address range to device private memory. The
-source pages might already have been migrated to device private memory.
-In that case, the source struct page is not checked to see if it is
-a device private page and incorrectly computes the GPU's physical
-address of local memory leading to data corruption.
-Fix this by checking the source struct page and computing the correct
-physical address.
+The caller of migrate_vma_setup() does not know what type of page is
+stored in the CPU's page tables. Pages within the specified range are
+free to be swapped out, migrated, or freed until after migrate_vma_setup()
+returns. The caller needs to set struct migrate_vma.src_owner in case a
+page is a ZONE device private page that the device owns and might want to
+migrate. However, the current code skips normal anonymous pages if
+src_owner is set, thus preventing those pages from being migrated.
+Remove the src_owner check for normal pages since src_owner only applies
+to device private pages and allow a range of normal and device private
+pages to be migrated.
 
+Fixes: 800bb1c8dc80 ("mm: handle multiple owners of device private pages in migrate_vma")
 Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_dmem.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ mm/migrate.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-index cc9993837508..f6a806ba3caa 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -540,6 +540,12 @@ static unsigned long nouveau_dmem_migrate_copy_one(struct nouveau_drm *drm,
- 	if (!(src & MIGRATE_PFN_MIGRATE))
- 		goto out;
- 
-+	if (spage && is_device_private_page(spage)) {
-+		paddr = nouveau_dmem_page_addr(spage);
-+		*dma_addr = DMA_MAPPING_ERROR;
-+		goto done;
-+	}
-+
- 	dpage = nouveau_dmem_page_alloc_locked(drm);
- 	if (!dpage)
- 		goto out;
-@@ -560,6 +566,7 @@ static unsigned long nouveau_dmem_migrate_copy_one(struct nouveau_drm *drm,
- 			goto out_free_page;
- 	}
- 
-+done:
- 	*pfn = NVIF_VMM_PFNMAP_V0_V | NVIF_VMM_PFNMAP_V0_VRAM |
- 		((paddr >> PAGE_SHIFT) << NVIF_VMM_PFNMAP_V0_ADDR_SHIFT);
- 	if (src & MIGRATE_PFN_WRITE)
-@@ -615,6 +622,7 @@ nouveau_dmem_migrate_vma(struct nouveau_drm *drm,
- 	struct migrate_vma args = {
- 		.vma		= vma,
- 		.start		= start,
-+		.src_owner	= drm->dev,
- 	};
- 	unsigned long i;
- 	u64 *pfns;
+diff --git a/mm/migrate.c b/mm/migrate.c
+index f37729673558..24535281cea3 100644
+--- a/mm/migrate.c
++++ b/mm/migrate.c
+@@ -2295,8 +2295,6 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+ 			if (is_write_device_private_entry(entry))
+ 				mpfn |= MIGRATE_PFN_WRITE;
+ 		} else {
+-			if (migrate->src_owner)
+-				goto next;
+ 			pfn = pte_pfn(pte);
+ 			if (is_zero_pfn(pfn)) {
+ 				mpfn = MIGRATE_PFN_MIGRATE;
 -- 
 2.20.1
