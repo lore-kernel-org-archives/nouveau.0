@@ -1,92 +1,92 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [RFC v5 00/10] drm/nouveau: Introduce CRC support for
- gf119+
-Date: Mon, 22 Jun 2020 16:07:20 -0400
-Message-ID: <20200622200730.120716-1-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [RFC v5 01/10] drm/vblank: Register drmm cleanup action once per drm_vblank_crtc
+Date: Mon, 22 Jun 2020 16:07:21 -0400
+Message-ID: <20200622200730.120716-2-lyude@redhat.com>
+References: <20200622200730.120716-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200622200730.120716-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: Daniel Vetter <daniel@ffwll.ch>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-TnZpZGlhIHJlbGVhc2VkIHNvbWUgZG9jdW1lbnRhdGlvbiBvbiBob3cgQ1JDIHN1cHBvcnQgd29y
-a3Mgb24gdGhlaXIKR1BVcywgaG9vcmF5IQoKU286IHRoaXMgcGF0Y2ggc2VyaWVzIGltcGxlbWVu
-dHMgc2FpZCBDUkMgc3VwcG9ydCBpbiBub3V2ZWF1LCBhbG9uZyB3aXRoCmFkZGluZyBzb21lIHNw
-ZWNpYWwgZGVidWdmcyBpbnRlcmZhY2VzIGZvciBzb21lIHJlbGV2YW50IGlndC1ncHUtdG9vbHMK
-dGVzdHMgKGFscmVhZHkgb24gdGhlIE1MKS4KCkZpcnN0IC0gd2UgYWRkIHNvbWUgbmV3IGZ1bmN0
-aW9uYWxpdHkgdG8ga3RocmVhZF93b3JrIGluIHRoZSBrZXJuZWwsIGFuZAp0aGVuIHVzZSB0aGlz
-IHRvIGFkZCBhIG5ldyBmZWF0dXJlIHRvIERSTSB0aGF0IFZpbGxlIFN5cmrDpGzDpCBjYW1lIHVw
-CndpdGg6IHZibGFuayB3b3JrZXJzLiBCYXNpY2FsbHksIHRoaXMgaXMganVzdCBhIGdlbmVyaWMg
-RFJNIGludGVyZmFjZQp0aGF0IGFsbG93cyBmb3Igc2NoZWR1bGluZyBoaWdoLXByaW9yaXR5IHdv
-cmtlcnMgdGhhdCBzdGFydCBvbiBhIGdpdmVuCnZibGFuayBpbnRlcnJ1cHQuIE5vdGUgdGhhdCB3
-aGlsZSB3ZSdyZSBjdXJyZW50bHkgb25seSB1c2luZyB0aGlzIGluCm5vdXZlYXUsIEludGVsIGhh
-cyBwbGFucyB0byB1c2UgdGhpcyBmb3IgaTkxNSBhcyB3ZWxsIChoZW5jZSB3aHkgdGhleQpjYW1l
-IHVwIHdpdGggaXQhKS4KCkFuZCBmaW5hbGx5OiBpbiBvcmRlciB0byBpbXBsZW1lbnQgdGhlIGxh
-c3QgZmVhdHVyZSwgd2UgZXhwb3NlIHNvbWUgbmV3CmZ1bmN0aW9ucyBpbiB0aGUga2VybmVsJ3Mg
-a3RocmVhZF93b3JrZXIgaW5mcmFzdHJ1Y3R1cmUgc28gdGhhdCB3ZSBjYW4KZGUtY29tcGxpY2F0
-ZSBvdXIgaW1wbGVtZW50YXRpb24gb2YgdGhpcy4KCkFueXdheS13ZWxjb21lIHRvIHRoZSBmdXR1
-cmUhIDopCgpNYWpvciBjaGFuZ2VzIHNpbmNlIHY0OgoqIFJlbW92ZSB0aGUgaW50ZXJmYWNlcyB3
-ZSB0cmllZCBhZGRpbmcgdG8ga3RocmVhZF93b3JrZXIgYW5kIHVzZSBhIHdhaXQKICBxdWV1ZSAr
-IHNlcWNvdW50IGluIG9yZGVyIHRvIGltcGxlbWVudCBmbHVzaGluZyB2Ymxhbmsgd29ya2Vycy4K
-KiBSZWJhc2UKTWFqb3IgY2hhbmdlcyBzaW5jZSB2MzoKKiBTdHlsZSBmaXhlcyBvbiBub3V2ZWF1
-IHBhdGNoZXMgZnJvbSBjaGVja3BhdGNoLCBubyBmdW5jdGlvbmFsIGNoYW5nZXMKKiBEb24ndCBp
-bnRlZ3JhdGUgc28gdGlnaHRseSB3aXRoIGt0aHJlYWRfd29yayAoYW5kIHVzZSBvdXIgb3duIGxv
-Y2spLAogIGluc3RlYWQgaW50cm9kdWNlIHNvbWUgbmV3IGZ1bmN0aW9ucyBmb3IgZG9pbmcgc2lt
-cGxlIGFzeW5jIGZsdXNoaW5nCiAgYW5kIGNhbmNlbGxpbmcuIEkgdGhpbmsgdGhpcyBpbnRlcmZh
-Y2UgbG9va3MgYSBsb3QgbW9yZSBhY2NlcHRhYmxlCiAgdGhlbiB3aGF0IEkgd2FzIHByZXZpb3Vz
-bHkgdHJ5aW5nLgoqIEFwcGx5IHNvbWUgY2hhbmdlcyByZXF1ZXN0ZWQgYnkgZGFudmV0Ck1ham9y
-IGNoYW5nZXMgc2luY2UgdjI6CiogVXNlIGt0aHJlYWRfd29ya2VyIGluc3RlYWQgb2Yga3RocmVh
-ZGQgZm9yIHZibGFuayB3b3JrZXJzCiogRG9uJ3QgY2hlY2sgZGVidWdmcyByZXR1cm4gdmFsdWVz
-CgpMeXVkZSBQYXVsICgxMCk6CiAgZHJtL3ZibGFuazogUmVnaXN0ZXIgZHJtbSBjbGVhbnVwIGFj
-dGlvbiBvbmNlIHBlciBkcm1fdmJsYW5rX2NydGMKICBkcm0vdmJsYW5rOiBBZGQgdmJsYW5rIHdv
-cmtzCiAgZHJtL25vdXZlYXUva21zL252NTAtOiBVbnJvbGwgZXJyb3IgY2xlYW51cCBpbiBudjUw
-X2hlYWRfY3JlYXRlKCkKICBkcm0vbm91dmVhdS9rbXMvbnYxNDAtOiBEb24ndCBtb2RpZnkgZGVw
-dGggaW4gc3RhdGUgZHVyaW5nIGF0b21pYwogICAgY29tbWl0CiAgZHJtL25vdXZlYXUva21zL252
-NTAtOiBGaXggZGlzYWJsaW5nIGRpdGhlcmluZwogIGRybS9ub3V2ZWF1L2ttcy9udjUwLTogcy9o
-YXJtL2FybWgvZwogIGRybS9ub3V2ZWF1L2ttcy9udjE0MC06IFRyYWNrIHduZHcgbWFwcGluZ3Mg
-aW4gbnY1MF9oZWFkX2F0b20KICBkcm0vbm91dmVhdS9rbXMvbnY1MC06IEV4cG9zZSBudjUwX291
-dHBfYXRvbSBpbiBkaXNwLmgKICBkcm0vbm91dmVhdS9rbXMvbnY1MC06IE1vdmUgaGFyZC1jb2Rl
-ZCBvYmplY3QgaGFuZGxlcyBpbnRvIGhlYWRlcgogIGRybS9ub3V2ZWF1L2ttcy9udmQ5LTogQWRk
-IENSQyBzdXBwb3J0CgogZHJpdmVycy9ncHUvZHJtL2RybV92YmxhbmsuYyAgICAgICAgICAgICAg
-ICB8IDI4NyArKysrKysrLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvY3J0Yy5j
-ICAgICB8ICAyNSArLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvS2J1aWxkICAg
-ICB8ICAgNCArCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9hdG9tLmggICAgIHwg
-IDIxICsKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NvcmUuaCAgICAgfCAgIDQg
-KwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvY29yZTkwN2QuYyB8ICAgMyArCiBk
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jb3JlOTE3ZC5jIHwgICAzICsKIGRyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NvcmVjMzdkLmMgfCAgIDMgKwogZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvZGlzcG52NTAvY29yZWM1N2QuYyB8ICAgMyArCiBkcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9kaXNwbnY1MC9jcmMuYyAgICAgIHwgNzE0ICsrKysrKysrKysrKysrKysrKysr
-CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jcmMuaCAgICAgIHwgMTI1ICsrKysK
-IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NyYzkwN2QuYyAgfCAxMzkgKysrKwog
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvY3JjYzM3ZC5jICB8IDE1MyArKysrKwog
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jICAgICB8ICA1OCArLQogZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5oICAgICB8ICAyNCArCiBkcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9oYW5kbGVzLmggIHwgIDE2ICsKIGRyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQuYyAgICAgfCAxMzQgKysrLQogZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvZGlzcG52NTAvaGVhZC5oICAgICB8ICAxMiArLQogZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvZGlzcG52NTAvaGVhZDkwN2QuYyB8ICAxNCArLQogZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvZGlzcG52NTAvaGVhZGMzN2QuYyB8ICAyNyArLQogZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvZGlzcG52NTAvaGVhZGM1N2QuYyB8ICAyMCArLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-ZGlzcG52NTAvd25kdy5jICAgICB8ICAxNSArLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9kaXNwbGF5LmMgICB8ICA2MCArLQogaW5jbHVkZS9kcm0vZHJtX3ZibGFuay5oICAgICAg
-ICAgICAgICAgICAgICB8ICA0OSArKwogMjQgZmlsZXMgY2hhbmdlZCwgMTc3NSBpbnNlcnRpb25z
-KCspLCAxMzggZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvZGlzcG52NTAvY3JjLmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9kaXNwbnY1MC9jcmMuaAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NyYzkwN2QuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NyY2MzN2QuYwogY3JlYXRlIG1vZGUgMTAwNjQ0
-IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hhbmRsZXMuaAoKLS0gCjIuMjYuMgoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+Since we'll be allocating resources for kthread_create_worker() in the
+next commit (which could fail and require us to clean up the mess),
+let's simplify the cleanup process a bit by registering a
+drm_vblank_init_release() action for each drm_vblank_crtc so they're
+still cleaned up if we fail to initialize one of them.
+
+Changes since v3:
+* Use drmm_add_action_or_reset() - Daniel Vetter
+
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+---
+ drivers/gpu/drm/drm_vblank.c | 23 ++++++++++-------------
+ 1 file changed, 10 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+index 85e5f2db16085..ce5c1e1d29963 100644
+--- a/drivers/gpu/drm/drm_vblank.c
++++ b/drivers/gpu/drm/drm_vblank.c
+@@ -492,16 +492,12 @@ static void vblank_disable_fn(struct timer_list *t)
+ 
+ static void drm_vblank_init_release(struct drm_device *dev, void *ptr)
+ {
+-	unsigned int pipe;
+-
+-	for (pipe = 0; pipe < dev->num_crtcs; pipe++) {
+-		struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = ptr;
+ 
+-		drm_WARN_ON(dev, READ_ONCE(vblank->enabled) &&
+-			    drm_core_check_feature(dev, DRIVER_MODESET));
++	drm_WARN_ON(dev, READ_ONCE(vblank->enabled) &&
++		    drm_core_check_feature(dev, DRIVER_MODESET));
+ 
+-		del_timer_sync(&vblank->disable_timer);
+-	}
++	del_timer_sync(&vblank->disable_timer);
+ }
+ 
+ /**
+@@ -511,7 +507,7 @@ static void drm_vblank_init_release(struct drm_device *dev, void *ptr)
+  *
+  * This function initializes vblank support for @num_crtcs display pipelines.
+  * Cleanup is handled automatically through a cleanup function added with
+- * drmm_add_action().
++ * drmm_add_action_or_reset().
+  *
+  * Returns:
+  * Zero on success or a negative error code on failure.
+@@ -530,10 +526,6 @@ int drm_vblank_init(struct drm_device *dev, unsigned int num_crtcs)
+ 
+ 	dev->num_crtcs = num_crtcs;
+ 
+-	ret = drmm_add_action(dev, drm_vblank_init_release, NULL);
+-	if (ret)
+-		return ret;
+-
+ 	for (i = 0; i < num_crtcs; i++) {
+ 		struct drm_vblank_crtc *vblank = &dev->vblank[i];
+ 
+@@ -542,6 +534,11 @@ int drm_vblank_init(struct drm_device *dev, unsigned int num_crtcs)
+ 		init_waitqueue_head(&vblank->queue);
+ 		timer_setup(&vblank->disable_timer, vblank_disable_fn, 0);
+ 		seqlock_init(&vblank->seqlock);
++
++		ret = drmm_add_action_or_reset(dev, drm_vblank_init_release,
++					       vblank);
++		if (ret)
++			return ret;
+ 	}
+ 
+ 	return 0;
+-- 
+2.26.2
