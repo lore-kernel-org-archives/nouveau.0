@@ -1,8 +1,7 @@
 From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [RFC v5 04/10] drm/nouveau/kms/nv140-: Don't modify depth
- in state during atomic commit
-Date: Mon, 22 Jun 2020 16:07:24 -0400
-Message-ID: <20200622200730.120716-5-lyude@redhat.com>
+Subject: [RFC v5 06/10] drm/nouveau/kms/nv50-: s/harm/armh/g
+Date: Mon, 22 Jun 2020 16:07:26 -0400
+Message-ID: <20200622200730.120716-7-lyude@redhat.com>
 References: <20200622200730.120716-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -19,86 +18,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Currently, we modify the depth value stored in the atomic state when
-performing a commit in order to workaround the fact we haven't
-implemented support for depths higher then 10 yet. This isn't idempotent
-though, as it will happen every atomic commit where we modify the OR
-state even if the head's depth in the atomic state hasn't been modified.
+We refer to the armed hardware assembly as armh elsewhere in nouveau, so
+fix the naming here to make it consistent.
 
-Normally this wouldn't matter, since we don't modify OR state outside of
-modesets, but since the CRC capture region is implemented as part of the
-OR state in hardware we'll want to make sure all commits modifying OR
-state are idempotent so as to avoid changing the depth unexpectedly.
-
-So, fix this by simply not writing the reduced depth value we come up
-with to the atomic state.
+This patch contains no functional changes.
 
 Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/dispnv50/headc37d.c | 11 +++++++----
- drivers/gpu/drm/nouveau/dispnv50/headc57d.c | 11 +++++++----
- 2 files changed, 14 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/wndw.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/headc37d.c b/drivers/gpu/drm/nouveau/dispnv50/headc37d.c
-index 4a9a32b89f746..9ef3c603fc43e 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/headc37d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/headc37d.c
-@@ -27,17 +27,20 @@ static void
- headc37d_or(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
- 	struct nv50_dmac *core = &nv50_disp(head->base.base.dev)->core->chan;
-+	u8 depth;
- 	u32 *push;
-+
- 	if ((push = evo_wait(core, 2))) {
- 		/*XXX: This is a dirty hack until OR depth handling is
- 		 *     improved later for deep colour etc.
- 		 */
- 		switch (asyh->or.depth) {
--		case 6: asyh->or.depth = 5; break;
--		case 5: asyh->or.depth = 4; break;
--		case 2: asyh->or.depth = 1; break;
--		case 0:	asyh->or.depth = 4; break;
-+		case 6: depth = 5; break;
-+		case 5: depth = 4; break;
-+		case 2: depth = 1; break;
-+		case 0:	depth = 4; break;
- 		default:
-+			depth = asyh->or.depth;
- 			WARN_ON(1);
- 			break;
- 		}
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/headc57d.c b/drivers/gpu/drm/nouveau/dispnv50/headc57d.c
-index 859131a8bc3c8..97141eb8e75ab 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/headc57d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/headc57d.c
-@@ -27,17 +27,20 @@ static void
- headc57d_or(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
- 	struct nv50_dmac *core = &nv50_disp(head->base.base.dev)->core->chan;
-+	u8 depth;
- 	u32 *push;
-+
- 	if ((push = evo_wait(core, 2))) {
- 		/*XXX: This is a dirty hack until OR depth handling is
- 		 *     improved later for deep colour etc.
- 		 */
- 		switch (asyh->or.depth) {
--		case 6: asyh->or.depth = 5; break;
--		case 5: asyh->or.depth = 4; break;
--		case 2: asyh->or.depth = 1; break;
--		case 0:	asyh->or.depth = 4; break;
-+		case 6: depth = 5; break;
-+		case 5: depth = 4; break;
-+		case 2: depth = 1; break;
-+		case 0:	depth = 4; break;
- 		default:
-+			depth = asyh->or.depth;
- 			WARN_ON(1);
- 			break;
- 		}
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+index 99b9b681736da..cfee61f14aa49 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+@@ -408,7 +408,7 @@ nv50_wndw_atomic_check(struct drm_plane *plane, struct drm_plane_state *state)
+ 	struct nv50_wndw *wndw = nv50_wndw(plane);
+ 	struct nv50_wndw_atom *armw = nv50_wndw_atom(wndw->plane.state);
+ 	struct nv50_wndw_atom *asyw = nv50_wndw_atom(state);
+-	struct nv50_head_atom *harm = NULL, *asyh = NULL;
++	struct nv50_head_atom *armh = NULL, *asyh = NULL;
+ 	bool modeset = false;
+ 	int ret;
+ 
+@@ -429,9 +429,9 @@ nv50_wndw_atomic_check(struct drm_plane *plane, struct drm_plane_state *state)
+ 
+ 	/* Fetch assembly state for the head the window used to belong to. */
+ 	if (armw->state.crtc) {
+-		harm = nv50_head_atom_get(asyw->state.state, armw->state.crtc);
+-		if (IS_ERR(harm))
+-			return PTR_ERR(harm);
++		armh = nv50_head_atom_get(asyw->state.state, armw->state.crtc);
++		if (IS_ERR(armh))
++			return PTR_ERR(armh);
+ 	}
+ 
+ 	/* LUT configuration can potentially cause the window to be disabled. */
+@@ -455,8 +455,8 @@ nv50_wndw_atomic_check(struct drm_plane *plane, struct drm_plane_state *state)
+ 		asyh->wndw.mask |= BIT(wndw->id);
+ 	} else
+ 	if (armw->visible) {
+-		nv50_wndw_atomic_check_release(wndw, asyw, harm);
+-		harm->wndw.mask &= ~BIT(wndw->id);
++		nv50_wndw_atomic_check_release(wndw, asyw, armh);
++		armh->wndw.mask &= ~BIT(wndw->id);
+ 	} else {
+ 		return 0;
+ 	}
 -- 
 2.26.2
