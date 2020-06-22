@@ -1,72 +1,164 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [RFC v5 06/10] drm/nouveau/kms/nv50-: s/harm/armh/g
-Date: Mon, 22 Jun 2020 16:07:26 -0400
-Message-ID: <20200622200730.120716-7-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [RFC v5 07/10] drm/nouveau/kms/nv140-: Track wndw mappings in nv50_head_atom
+Date: Mon, 22 Jun 2020 16:07:27 -0400
+Message-ID: <20200622200730.120716-8-lyude@redhat.com>
 References: <20200622200730.120716-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200622200730.120716-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200622200730.120716-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Ilia Mirkin <imirkin@alum.mit.edu>, Alex Deucher <alexander.deucher@amd.com>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, Takashi Iwai <tiwai@suse.de>, James Jones <jajones@nvidia.com>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-We refer to the armed hardware assembly as armh elsewhere in nouveau, so
-fix the naming here to make it consistent.
+While we're not quite ready yet to add support for flexible wndw
+mappings, we are going to need to at least keep track of the static wndw
+mappings we're currently using in each head's atomic state. We'll likely
+use this in the future to implement real flexible window mapping, but
+the primary reason we'll need this is for CRC support.
 
-This patch contains no functional changes.
+See: on nvidia hardware, each CRC entry in the CRC notifier dma context
+has a "tag". This tag corresponds to the nth update on a specific
+EVO/NvDisplay channel, which itself is referred to as the "controlling
+channel". For gf119+ this can be the core channel, ovly channel, or base
+channel. Since we don't expose CRC entry tags to userspace, we simply
+ignore this feature and always use the core channel as the controlling
+channel. Simple.
 
-Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Things get a little bit more complicated on gv100+ though. GV100+ only
+lets us set the controlling channel to a specific wndw channel, and that
+wndw must be owned by the head that we're grabbing CRCs when we enable
+CRC generation. Thus, we always need to make sure that each atomic head
+state has at least one wndw that is mapped to the head, which will be
+used as the controlling channel.
+
+Note that since we don't have flexible wndw mappings yet, we don't
+expect to run into any scenarios yet where we'd have a head with no
+mapped wndws. When we do add support for flexible wndw mappings however,
+we'll need to make sure that we handle reprogramming CRC capture if our
+controlling wndw is moved to another head (and potentially reject the
+new head state entirely if we can't find another available wndw to
+replace it).
+
+With that being said, nouveau currently tracks wndw visibility on heads.
+It does not keep track of the actual ownership mappings, which are
+(currently) statically programmed. To fix this, we introduce another
+bitmask into nv50_head_atom.wndw to keep track of ownership separately
+from visibility. We then introduce a nv50_head callback to handle
+populating the wndw ownership map, and call it during the atomic check
+phase when core->assign_windows is set to true.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
 ---
- drivers/gpu/drm/nouveau/dispnv50/wndw.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/atom.h     |  1 +
+ drivers/gpu/drm/nouveau/dispnv50/disp.c     | 16 ++++++++++++++++
+ drivers/gpu/drm/nouveau/dispnv50/head.h     |  2 ++
+ drivers/gpu/drm/nouveau/dispnv50/headc37d.c | 10 ++++++++++
+ drivers/gpu/drm/nouveau/dispnv50/headc57d.c |  2 ++
+ 5 files changed, 31 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-index 99b9b681736da..cfee61f14aa49 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-@@ -408,7 +408,7 @@ nv50_wndw_atomic_check(struct drm_plane *plane, struct drm_plane_state *state)
- 	struct nv50_wndw *wndw = nv50_wndw(plane);
- 	struct nv50_wndw_atom *armw = nv50_wndw_atom(wndw->plane.state);
- 	struct nv50_wndw_atom *asyw = nv50_wndw_atom(state);
--	struct nv50_head_atom *harm = NULL, *asyh = NULL;
-+	struct nv50_head_atom *armh = NULL, *asyh = NULL;
- 	bool modeset = false;
- 	int ret;
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/atom.h b/drivers/gpu/drm/nouveau/dispnv50/atom.h
+index 24f7700768dab..62faaf60f47a5 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/atom.h
++++ b/drivers/gpu/drm/nouveau/dispnv50/atom.h
+@@ -18,6 +18,7 @@ struct nv50_head_atom {
  
-@@ -429,9 +429,9 @@ nv50_wndw_atomic_check(struct drm_plane *plane, struct drm_plane_state *state)
+ 	struct {
+ 		u32 mask;
++		u32 owned;
+ 		u32 olut;
+ 	} wndw;
  
- 	/* Fetch assembly state for the head the window used to belong to. */
- 	if (armw->state.crtc) {
--		harm = nv50_head_atom_get(asyw->state.state, armw->state.crtc);
--		if (IS_ERR(harm))
--			return PTR_ERR(harm);
-+		armh = nv50_head_atom_get(asyw->state.state, armw->state.crtc);
-+		if (IS_ERR(armh))
-+			return PTR_ERR(armh);
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index d472942102f50..368069a5b181a 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -2287,12 +2287,28 @@ static int
+ nv50_disp_atomic_check(struct drm_device *dev, struct drm_atomic_state *state)
+ {
+ 	struct nv50_atom *atom = nv50_atom(state);
++	struct nv50_core *core = nv50_disp(dev)->core;
+ 	struct drm_connector_state *old_connector_state, *new_connector_state;
+ 	struct drm_connector *connector;
+ 	struct drm_crtc_state *new_crtc_state;
+ 	struct drm_crtc *crtc;
++	struct nv50_head *head;
++	struct nv50_head_atom *asyh;
+ 	int ret, i;
+ 
++	if (core->assign_windows && core->func->head->static_wndw_map) {
++		drm_for_each_crtc(crtc, dev) {
++			new_crtc_state = drm_atomic_get_crtc_state(state,
++								   crtc);
++			if (IS_ERR(new_crtc_state))
++				return PTR_ERR(new_crtc_state);
++
++			head = nv50_head(crtc);
++			asyh = nv50_head_atom(new_crtc_state);
++			core->func->head->static_wndw_map(head, asyh);
++		}
++	}
++
+ 	/* We need to handle colour management on a per-plane basis. */
+ 	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
+ 		if (new_crtc_state->color_mgmt_changed) {
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/head.h b/drivers/gpu/drm/nouveau/dispnv50/head.h
+index c32b27cdaefc9..c05bbba9e247c 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/head.h
++++ b/drivers/gpu/drm/nouveau/dispnv50/head.h
+@@ -40,6 +40,7 @@ struct nv50_head_func {
+ 	void (*dither)(struct nv50_head *, struct nv50_head_atom *);
+ 	void (*procamp)(struct nv50_head *, struct nv50_head_atom *);
+ 	void (*or)(struct nv50_head *, struct nv50_head_atom *);
++	void (*static_wndw_map)(struct nv50_head *, struct nv50_head_atom *);
+ };
+ 
+ extern const struct nv50_head_func head507d;
+@@ -86,6 +87,7 @@ int headc37d_curs_format(struct nv50_head *, struct nv50_wndw_atom *,
+ void headc37d_curs_set(struct nv50_head *, struct nv50_head_atom *);
+ void headc37d_curs_clr(struct nv50_head *);
+ void headc37d_dither(struct nv50_head *, struct nv50_head_atom *);
++void headc37d_static_wndw_map(struct nv50_head *, struct nv50_head_atom *);
+ 
+ extern const struct nv50_head_func headc57d;
+ #endif
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/headc37d.c b/drivers/gpu/drm/nouveau/dispnv50/headc37d.c
+index 9ef3c603fc43e..c2619652ff2ee 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/headc37d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/headc37d.c
+@@ -204,6 +204,15 @@ headc37d_view(struct nv50_head *head, struct nv50_head_atom *asyh)
  	}
+ }
  
- 	/* LUT configuration can potentially cause the window to be disabled. */
-@@ -455,8 +455,8 @@ nv50_wndw_atomic_check(struct drm_plane *plane, struct drm_plane_state *state)
- 		asyh->wndw.mask |= BIT(wndw->id);
- 	} else
- 	if (armw->visible) {
--		nv50_wndw_atomic_check_release(wndw, asyw, harm);
--		harm->wndw.mask &= ~BIT(wndw->id);
-+		nv50_wndw_atomic_check_release(wndw, asyw, armh);
-+		armh->wndw.mask &= ~BIT(wndw->id);
- 	} else {
- 		return 0;
- 	}
++void
++headc37d_static_wndw_map(struct nv50_head *head, struct nv50_head_atom *asyh)
++{
++	int i, end;
++
++	for (i = head->base.index * 2, end = i + 2; i < end; i++)
++		asyh->wndw.owned |= BIT(i);
++}
++
+ const struct nv50_head_func
+ headc37d = {
+ 	.view = headc37d_view,
+@@ -219,4 +228,5 @@ headc37d = {
+ 	.dither = headc37d_dither,
+ 	.procamp = headc37d_procamp,
+ 	.or = headc37d_or,
++	.static_wndw_map = headc37d_static_wndw_map,
+ };
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/headc57d.c b/drivers/gpu/drm/nouveau/dispnv50/headc57d.c
+index 97141eb8e75ab..1c1887749f4c5 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/headc57d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/headc57d.c
+@@ -211,4 +211,6 @@ headc57d = {
+ 	.dither = headc37d_dither,
+ 	.procamp = headc57d_procamp,
+ 	.or = headc57d_or,
++	/* TODO: flexible window mappings */
++	.static_wndw_map = headc37d_static_wndw_map,
+ };
 -- 
 2.26.2
