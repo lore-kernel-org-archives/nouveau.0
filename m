@@ -1,10 +1,10 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [RESEND PATCH 0/3] nouveau: fixes for SVM
-Date: Mon, 22 Jun 2020 16:38:51 -0700
-Message-ID: <20200622233854.10889-1-rcampbell@nvidia.com>
+From: Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: valgrind-mmt: rebased against latest upstream valgrind
+ release v3.16.1
+Date: Tue, 23 Jun 2020 09:47:57 +1000
+Message-ID: <CA+iOQUHn1x8HQ1+_QrSb9wEiH8m2G7mmd2Q3V4Gz6WAPnp8TWw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2146040201=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,30 +15,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-These are based on 5.8.0-rc2 and intended for Ben Skeggs' nouveau tree.
-I believe the changes can be queued for 5.8-rcX after being reviewed.
-These were part of a larger series but I'm resending them separately as
-suggested by Jason Gunthorpe.
-https://lore.kernel.org/linux-mm/20200619215649.32297-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org/
-Note that in order to exercise/test patch 2 here, you will need a
-kernel with patch 1 from the original series (the fix to mm/migrate.c).
-It is safe to apply these changes before the fix to mm/migrate.c
-though.
+--===============2146040201==
+Content-Type: multipart/alternative; boundary="000000000000f36d6405a8b4df77"
 
-Ralph Campbell (3):
-  nouveau: fix migrate page regression
-  nouveau: fix mixed normal and device private page migration
-  nouveau: make nvkm_vmm_ctor() and nvkm_mmu_ptp_get() static
+--000000000000f36d6405a8b4df77
+Content-Type: text/plain; charset="UTF-8"
 
- drivers/gpu/drm/nouveau/nouveau_dmem.c         | 10 +++++++++-
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/base.c |  2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c  |  2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h  |  3 ---
- 4 files changed, 11 insertions(+), 6 deletions(-)
+As an update to the nouveau development community, the downstream fork of
+Valgrind with a mmap tracing tool ("mmt") we maintain has been rebased
+against the latest upstream release of Valgrind, v3.16.1
 
--- 
-2.20.1
+Code branch: https://github.com/envytools/valgrind/tree/mmt-3.16.1
+
+Features of upstream Valgrind 3.16.x:
+https://www.valgrind.org/docs/manual/dist.news.html
+
+In selected highlights, the benefits of tracking the latest version of
+Valgrind is added support for AArch64 v8.1 and reduced memcheck false
+positive rate on highly optimised code. There are, as ever, many smaller
+refinements and bug fixes. v3.16.1 includes two bugs fixed after 3.16.0 was
+frozen. As our downstream valgrind-mmt was last released against v3.14, we
+also get the benefit of all bug fixes and features since then, including
+that the RDRAND and F16C insn set extensions are now supported.
+
+For anyone unfamiliar with valgrind-mmt, it is a userspace mmio tracer that
+assists nouveau reverse engineering efforts by tracing the commands sent to
+the card. There is an accompanying demmt tool within the enytools repo to
+better understand these trace logs.
+
+I would like to thank all the other nouveau developers who have worked on
+mmt over many years, including specifically airlied, mslusarz and kherbst.
+
+Best,
+Rhys
+
+--000000000000f36d6405a8b4df77
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>As an update to the nouveau development community, th=
+e downstream fork of Valgrind with a mmap tracing tool (&quot;mmt&quot;) we=
+ maintain has been rebased against the latest upstream release of Valgrind,=
+ v3.16.1</div><div><br></div><div>Code branch: <a href=3D"https://github.co=
+m/envytools/valgrind/tree/mmt-3.16.1">https://github.com/envytools/valgrind=
+/tree/mmt-3.16.1</a></div><div><br></div><div>Features of upstream Valgrind=
+ 3.16.x: <a href=3D"https://www.valgrind.org/docs/manual/dist.news.html">ht=
+tps://www.valgrind.org/docs/manual/dist.news.html</a></div><div><br></div><=
+div>In selected highlights, the benefits of tracking the latest version of =
+Valgrind is added support for AArch64
+    v8.1 and reduced memcheck false positive rate on highly optimised code.
+    There are, as ever, many smaller refinements and bug fixes. v3.16.1 inc=
+ludes two bugs fixed after 3.16.0 was frozen. As our downstream valgrind-mm=
+t was last released against v3.14, we also get the benefit of all bug fixes=
+ and features since then, including that the=C2=A0RDRAND=C2=A0and=C2=A0F16C=
+=C2=A0insn=C2=A0set=C2=A0extensions=C2=A0are=C2=A0now=C2=A0supported.</div>=
+<div><br></div><div>For anyone unfamiliar with valgrind-mmt, it is a usersp=
+ace mmio tracer that assists nouveau reverse engineering efforts by tracing=
+ the commands sent to the card. There is an accompanying demmt tool within =
+the enytools repo to better understand these trace logs.<br></div><div><br>=
+</div><div>I would like to thank all the other nouveau developers who have =
+worked on mmt over many years, including specifically airlied, mslusarz and=
+ kherbst.</div><div><br></div><div>Best,</div><div>Rhys<br></div></div>
+
+--000000000000f36d6405a8b4df77--
+
+--===============2146040201==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+https://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2146040201==--
