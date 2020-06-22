@@ -1,74 +1,50 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: nouveau on G5 Macs
-Date: Mon, 22 Jun 2020 13:27:03 -0400
-Message-ID: <CAKb7UviLWdO6Tm2ya7XFSGVLex_3rduM6Mxj-DFx-CZ+mksnoQ@mail.gmail.com>
-References: <abb79c7114a58cf5b31542009531897c@zonnet.nl>
- <CAKb7UvidTyx6+yQbJ-sy=yh9YqrMQ0=gh6a0WHmqS94VvZSUPQ@mail.gmail.com>
- <45fa1029cf5f0610e4a3e1d65bb26b32@zonnet.nl>
+From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH 09/16] mm/hmm: add output flag for compound page mapping
+Date: Mon, 22 Jun 2020 11:10:05 -0700
+Message-ID: <15ba19a9-5f71-546b-bdea-31e65fc39693@nvidia.com>
+References: <20200619215649.32297-1-rcampbell@nvidia.com>
+ <20200619215649.32297-10-rcampbell@nvidia.com>
+ <20200622172520.GB2874652@mellanox.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <45fa1029cf5f0610e4a3e1d65bb26b32-RSh1/+X/PmFmR6Xm/wNWPw@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Jeroen Diederen <jjhdiederen-RSh1/+X/PmFmR6Xm/wNWPw@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <20200622172520.GB2874652-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Content-Language: en-US
+Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-I suspect screen tearing (as it's usually defined) is to be expected.
-Can you take a photo of what you're seeing, since I'm suspecting it's
-more than regular screen tearing?
 
-On Mon, Jun 22, 2020 at 12:08 PM Jeroen Diederen <jjhdiederen-RSh1/+X/PmFmR6Xm/wNWPw@public.gmane.org> wrote:
->
-> Hi Ilia,
->
-> I experience screen tearing for both 64k and 4k page size.
-> My iMac G5 has an nVidia Geforce FX 5200 Ultra GPU.
->
-> Regards,
-> Jeroen
->
->   Ilia Mirkin schreef op 2020-06-22 17:25:
-> > Which GPU do you have? The NV40 AGP board (GeForce 6800) works
-> > particularly poorly. However as long as you go with 4k pages (and
-> > there's no real benefit to 64k pages for most applications), basic
-> > things should work. I wouldn't recommend using a GL-based compositor
-> > though.
-> >
-> > Which distortion are you talking about?
-> >
-> > Cheers,
-> >
-> >   -ilia
-> >
-> > On Mon, Jun 22, 2020 at 11:10 AM Jeroen Diederen
-> > <jjhdiederen-RSh1/+X/PmFmR6Xm/wNWPw@public.gmane.org> wrote:
-> >>
-> >> Hi all,
-> >>
-> >> I have been trying to solve nouveau issues on my iMac G5 for ages. As
-> >> far as I can understand it, there is a problem with nouveau and page
-> >> size mapping. I tried both 64K and 4K page size kernels and the the
-> >> result is always distorted video.
-> >> There is an old To-Do list, which says "fix the page size mapping
-> >> problem on G5/64 bit for exposing fifo regs" on
-> >> https://nouveau.freedesktop.org/wiki/ToDo/.
-> >>
-> >> Is there any chance that this bug will be fixed ? I am not a
-> >> programmer,
-> >> so I can't be of any help.
-> >>
-> >> Jeroen Diederen
-> >> _______________________________________________
-> >> Nouveau mailing list
-> >> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> >> https://lists.freedesktop.org/mailman/listinfo/nouveau
+On 6/22/20 10:25 AM, Jason Gunthorpe wrote:
+> On Fri, Jun 19, 2020 at 02:56:42PM -0700, Ralph Campbell wrote:
+>> hmm_range_fault() returns an array of page frame numbers and flags for
+>> how the pages are mapped in the requested process' page tables. The PFN
+>> can be used to get the struct page with hmm_pfn_to_page() and the page size
+>> order can be determined with compound_order(page) but if the page is larger
+>> than order 0 (PAGE_SIZE), there is no indication that the page is mapped
+>> using a larger page size. To be fully general, hmm_range_fault() would need
+>> to return the mapping size to handle cases like a 1GB compound page being
+>> mapped with 2MB PMD entries. However, the most common case is the mapping
+>> size is the same as the underlying compound page size.
+>> Add a new output flag to indicate this so that callers know it is safe to
+>> use a large device page table mapping if one is available.
+> 
+> But what size should the caller use?
+> 
+> You already explained that the caller cannot use compound_ordet() to
+> get the size, so what should it be?
+> 
+> Probably this needs to be two flags, PUD and PMD, and the caller should
+> use the PUD and PMD sizes to figure out how big it is?
+> 
+> Jason
+> 
+
+I guess I didn't explain it as clearly as I thought. :-)
+
+The page size *can* be determined with compound_order(page) but without the
+flag, the caller doesn't know how much of that page is being mapped by the
+CPU. The flag says the CPU is mapping the whole compound page (based on compound_order)
+and that the caller can use device mappings up to the size of compound_order(page).
