@@ -1,111 +1,92 @@
-From: Ralph Campbell <rcampbell@nvidia.com>
-Subject: Re: [PATCH 13/16] mm: support THP migration to device private memory
-Date: Mon, 22 Jun 2020 12:36:13 -0700
-Message-ID: <b6eed976-c515-72d6-a7be-2296cab8f0d4@nvidia.com>
-References: <20200619215649.32297-1-rcampbell@nvidia.com>
- <20200619215649.32297-14-rcampbell@nvidia.com>
- <F1872509-3B1F-4A8A-BFF5-E4D44E451920@nvidia.com>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [RFC v5 00/10] drm/nouveau: Introduce CRC support for
+ gf119+
+Date: Mon, 22 Jun 2020 16:07:20 -0400
+Message-ID: <20200622200730.120716-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <F1872509-3B1F-4A8A-BFF5-E4D44E451920@nvidia.com>
-Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Zi Yan <ziy@nvidia.com>
-Cc: nouveau@lists.freedesktop.org, linux-rdma@vger.kernel.org, linux-mm@kvack.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Andrew Morton <akpm@linux-foundation.org>, Shuah Khan <shuah@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
-On 6/21/20 4:20 PM, Zi Yan wrote:
-> On 19 Jun 2020, at 17:56, Ralph Campbell wrote:
-> 
->> Support transparent huge page migration to ZONE_DEVICE private memory.
->> A new flag (MIGRATE_PFN_COMPOUND) is added to the input PFN array to
->> indicate the huge page was fully mapped by the CPU.
->> Export prep_compound_page() so that device drivers can create huge
->> device private pages after calling memremap_pages().
->>
->> Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
->> ---
->>   include/linux/migrate.h |   1 +
->>   include/linux/mm.h      |   1 +
->>   mm/huge_memory.c        |  30 ++++--
->>   mm/internal.h           |   1 -
->>   mm/memory.c             |  10 +-
->>   mm/memremap.c           |   9 +-
->>   mm/migrate.c            | 226 ++++++++++++++++++++++++++++++++--------
->>   mm/page_alloc.c         |   1 +
->>   8 files changed, 226 insertions(+), 53 deletions(-)
->>
->> diff --git a/include/linux/migrate.h b/include/linux/migrate.h
->> index 3e546cbf03dd..f6a64965c8bd 100644
->> --- a/include/linux/migrate.h
->> +++ b/include/linux/migrate.h
->> @@ -166,6 +166,7 @@ static inline int migrate_misplaced_transhuge_page(struct mm_struct *mm,
->>   #define MIGRATE_PFN_MIGRATE	(1UL << 1)
->>   #define MIGRATE_PFN_LOCKED	(1UL << 2)
->>   #define MIGRATE_PFN_WRITE	(1UL << 3)
->> +#define MIGRATE_PFN_COMPOUND	(1UL << 4)
->>   #define MIGRATE_PFN_SHIFT	6
->>
->>   static inline struct page *migrate_pfn_to_page(unsigned long mpfn)
->> diff --git a/include/linux/mm.h b/include/linux/mm.h
->> index dc7b87310c10..020b9dd3cddb 100644
->> --- a/include/linux/mm.h
->> +++ b/include/linux/mm.h
->> @@ -932,6 +932,7 @@ static inline unsigned int page_shift(struct page *page)
->>   }
->>
->>   void free_compound_page(struct page *page);
->> +void prep_compound_page(struct page *page, unsigned int order);
->>
->>   #ifdef CONFIG_MMU
->>   /*
->> diff --git a/mm/huge_memory.c b/mm/huge_memory.c
->> index 78c84bee7e29..25d95f7b1e98 100644
->> --- a/mm/huge_memory.c
->> +++ b/mm/huge_memory.c
->> @@ -1663,23 +1663,35 @@ int zap_huge_pmd(struct mmu_gather *tlb, struct vm_area_struct *vma,
->>   	} else {
->>   		struct page *page = NULL;
->>   		int flush_needed = 1;
->> +		bool is_anon = false;
->>
->>   		if (pmd_present(orig_pmd)) {
->>   			page = pmd_page(orig_pmd);
->> +			is_anon = PageAnon(page);
->>   			page_remove_rmap(page, true);
->>   			VM_BUG_ON_PAGE(page_mapcount(page) < 0, page);
->>   			VM_BUG_ON_PAGE(!PageHead(page), page);
->>   		} else if (thp_migration_supported()) {
->>   			swp_entry_t entry;
->>
->> -			VM_BUG_ON(!is_pmd_migration_entry(orig_pmd));
->>   			entry = pmd_to_swp_entry(orig_pmd);
->> -			page = pfn_to_page(swp_offset(entry));
->> +			if (is_device_private_entry(entry)) {
->> +				page = device_private_entry_to_page(entry);
->> +				is_anon = PageAnon(page);
->> +				page_remove_rmap(page, true);
->> +				VM_BUG_ON_PAGE(page_mapcount(page) < 0, page);
->> +				VM_BUG_ON_PAGE(!PageHead(page), page);
->> +				put_page(page);
-> 
-> Why do you hide this code behind thp_migration_supported()? It seems that you just need
-> pmd swap entry not pmd migration entry. Also the condition is not consistent with the code
-> in __handle_mm_fault(), in which you handle is_device_private_entry() directly without
-> checking thp_migration_support().
-
-Good point, I think "else if (thp_migration_supported())" should be
-"else if (is_pmd_migration_entry(orig_pmd))" since if the PMD *is*
-a device private or migration entry, then it should be handled and the
-VM_BUG_ON() should be that thp_migration_supported() is true
-(or maybe remove the VM_BUG_ON?).
-
-> Do we need to support split_huge_pmd() if a page is migrated to device? Any new code
-> needed in split_huge_pmd()?
-
-I was thinking that any CPU usage of the device private page would cause it to be
-migrated back to system memory as a whole PMD/PUD page but I'll double check.
-At least there should be a check that the page isn't a device private page.
+TnZpZGlhIHJlbGVhc2VkIHNvbWUgZG9jdW1lbnRhdGlvbiBvbiBob3cgQ1JDIHN1cHBvcnQgd29y
+a3Mgb24gdGhlaXIKR1BVcywgaG9vcmF5IQoKU286IHRoaXMgcGF0Y2ggc2VyaWVzIGltcGxlbWVu
+dHMgc2FpZCBDUkMgc3VwcG9ydCBpbiBub3V2ZWF1LCBhbG9uZyB3aXRoCmFkZGluZyBzb21lIHNw
+ZWNpYWwgZGVidWdmcyBpbnRlcmZhY2VzIGZvciBzb21lIHJlbGV2YW50IGlndC1ncHUtdG9vbHMK
+dGVzdHMgKGFscmVhZHkgb24gdGhlIE1MKS4KCkZpcnN0IC0gd2UgYWRkIHNvbWUgbmV3IGZ1bmN0
+aW9uYWxpdHkgdG8ga3RocmVhZF93b3JrIGluIHRoZSBrZXJuZWwsIGFuZAp0aGVuIHVzZSB0aGlz
+IHRvIGFkZCBhIG5ldyBmZWF0dXJlIHRvIERSTSB0aGF0IFZpbGxlIFN5cmrDpGzDpCBjYW1lIHVw
+CndpdGg6IHZibGFuayB3b3JrZXJzLiBCYXNpY2FsbHksIHRoaXMgaXMganVzdCBhIGdlbmVyaWMg
+RFJNIGludGVyZmFjZQp0aGF0IGFsbG93cyBmb3Igc2NoZWR1bGluZyBoaWdoLXByaW9yaXR5IHdv
+cmtlcnMgdGhhdCBzdGFydCBvbiBhIGdpdmVuCnZibGFuayBpbnRlcnJ1cHQuIE5vdGUgdGhhdCB3
+aGlsZSB3ZSdyZSBjdXJyZW50bHkgb25seSB1c2luZyB0aGlzIGluCm5vdXZlYXUsIEludGVsIGhh
+cyBwbGFucyB0byB1c2UgdGhpcyBmb3IgaTkxNSBhcyB3ZWxsIChoZW5jZSB3aHkgdGhleQpjYW1l
+IHVwIHdpdGggaXQhKS4KCkFuZCBmaW5hbGx5OiBpbiBvcmRlciB0byBpbXBsZW1lbnQgdGhlIGxh
+c3QgZmVhdHVyZSwgd2UgZXhwb3NlIHNvbWUgbmV3CmZ1bmN0aW9ucyBpbiB0aGUga2VybmVsJ3Mg
+a3RocmVhZF93b3JrZXIgaW5mcmFzdHJ1Y3R1cmUgc28gdGhhdCB3ZSBjYW4KZGUtY29tcGxpY2F0
+ZSBvdXIgaW1wbGVtZW50YXRpb24gb2YgdGhpcy4KCkFueXdheS13ZWxjb21lIHRvIHRoZSBmdXR1
+cmUhIDopCgpNYWpvciBjaGFuZ2VzIHNpbmNlIHY0OgoqIFJlbW92ZSB0aGUgaW50ZXJmYWNlcyB3
+ZSB0cmllZCBhZGRpbmcgdG8ga3RocmVhZF93b3JrZXIgYW5kIHVzZSBhIHdhaXQKICBxdWV1ZSAr
+IHNlcWNvdW50IGluIG9yZGVyIHRvIGltcGxlbWVudCBmbHVzaGluZyB2Ymxhbmsgd29ya2Vycy4K
+KiBSZWJhc2UKTWFqb3IgY2hhbmdlcyBzaW5jZSB2MzoKKiBTdHlsZSBmaXhlcyBvbiBub3V2ZWF1
+IHBhdGNoZXMgZnJvbSBjaGVja3BhdGNoLCBubyBmdW5jdGlvbmFsIGNoYW5nZXMKKiBEb24ndCBp
+bnRlZ3JhdGUgc28gdGlnaHRseSB3aXRoIGt0aHJlYWRfd29yayAoYW5kIHVzZSBvdXIgb3duIGxv
+Y2spLAogIGluc3RlYWQgaW50cm9kdWNlIHNvbWUgbmV3IGZ1bmN0aW9ucyBmb3IgZG9pbmcgc2lt
+cGxlIGFzeW5jIGZsdXNoaW5nCiAgYW5kIGNhbmNlbGxpbmcuIEkgdGhpbmsgdGhpcyBpbnRlcmZh
+Y2UgbG9va3MgYSBsb3QgbW9yZSBhY2NlcHRhYmxlCiAgdGhlbiB3aGF0IEkgd2FzIHByZXZpb3Vz
+bHkgdHJ5aW5nLgoqIEFwcGx5IHNvbWUgY2hhbmdlcyByZXF1ZXN0ZWQgYnkgZGFudmV0Ck1ham9y
+IGNoYW5nZXMgc2luY2UgdjI6CiogVXNlIGt0aHJlYWRfd29ya2VyIGluc3RlYWQgb2Yga3RocmVh
+ZGQgZm9yIHZibGFuayB3b3JrZXJzCiogRG9uJ3QgY2hlY2sgZGVidWdmcyByZXR1cm4gdmFsdWVz
+CgpMeXVkZSBQYXVsICgxMCk6CiAgZHJtL3ZibGFuazogUmVnaXN0ZXIgZHJtbSBjbGVhbnVwIGFj
+dGlvbiBvbmNlIHBlciBkcm1fdmJsYW5rX2NydGMKICBkcm0vdmJsYW5rOiBBZGQgdmJsYW5rIHdv
+cmtzCiAgZHJtL25vdXZlYXUva21zL252NTAtOiBVbnJvbGwgZXJyb3IgY2xlYW51cCBpbiBudjUw
+X2hlYWRfY3JlYXRlKCkKICBkcm0vbm91dmVhdS9rbXMvbnYxNDAtOiBEb24ndCBtb2RpZnkgZGVw
+dGggaW4gc3RhdGUgZHVyaW5nIGF0b21pYwogICAgY29tbWl0CiAgZHJtL25vdXZlYXUva21zL252
+NTAtOiBGaXggZGlzYWJsaW5nIGRpdGhlcmluZwogIGRybS9ub3V2ZWF1L2ttcy9udjUwLTogcy9o
+YXJtL2FybWgvZwogIGRybS9ub3V2ZWF1L2ttcy9udjE0MC06IFRyYWNrIHduZHcgbWFwcGluZ3Mg
+aW4gbnY1MF9oZWFkX2F0b20KICBkcm0vbm91dmVhdS9rbXMvbnY1MC06IEV4cG9zZSBudjUwX291
+dHBfYXRvbSBpbiBkaXNwLmgKICBkcm0vbm91dmVhdS9rbXMvbnY1MC06IE1vdmUgaGFyZC1jb2Rl
+ZCBvYmplY3QgaGFuZGxlcyBpbnRvIGhlYWRlcgogIGRybS9ub3V2ZWF1L2ttcy9udmQ5LTogQWRk
+IENSQyBzdXBwb3J0CgogZHJpdmVycy9ncHUvZHJtL2RybV92YmxhbmsuYyAgICAgICAgICAgICAg
+ICB8IDI4NyArKysrKysrLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvY3J0Yy5j
+ICAgICB8ICAyNSArLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvS2J1aWxkICAg
+ICB8ICAgNCArCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9hdG9tLmggICAgIHwg
+IDIxICsKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NvcmUuaCAgICAgfCAgIDQg
+KwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvY29yZTkwN2QuYyB8ICAgMyArCiBk
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jb3JlOTE3ZC5jIHwgICAzICsKIGRyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NvcmVjMzdkLmMgfCAgIDMgKwogZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvZGlzcG52NTAvY29yZWM1N2QuYyB8ICAgMyArCiBkcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9kaXNwbnY1MC9jcmMuYyAgICAgIHwgNzE0ICsrKysrKysrKysrKysrKysrKysr
+CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jcmMuaCAgICAgIHwgMTI1ICsrKysK
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NyYzkwN2QuYyAgfCAxMzkgKysrKwog
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvY3JjYzM3ZC5jICB8IDE1MyArKysrKwog
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jICAgICB8ICA1OCArLQogZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5oICAgICB8ICAyNCArCiBkcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9oYW5kbGVzLmggIHwgIDE2ICsKIGRyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQuYyAgICAgfCAxMzQgKysrLQogZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvZGlzcG52NTAvaGVhZC5oICAgICB8ICAxMiArLQogZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvZGlzcG52NTAvaGVhZDkwN2QuYyB8ICAxNCArLQogZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvZGlzcG52NTAvaGVhZGMzN2QuYyB8ICAyNyArLQogZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvZGlzcG52NTAvaGVhZGM1N2QuYyB8ICAyMCArLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+ZGlzcG52NTAvd25kdy5jICAgICB8ICAxNSArLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9kaXNwbGF5LmMgICB8ICA2MCArLQogaW5jbHVkZS9kcm0vZHJtX3ZibGFuay5oICAgICAg
+ICAgICAgICAgICAgICB8ICA0OSArKwogMjQgZmlsZXMgY2hhbmdlZCwgMTc3NSBpbnNlcnRpb25z
+KCspLCAxMzggZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvZGlzcG52NTAvY3JjLmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9kaXNwbnY1MC9jcmMuaAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NyYzkwN2QuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NyY2MzN2QuYwogY3JlYXRlIG1vZGUgMTAwNjQ0
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hhbmRsZXMuaAoKLS0gCjIuMjYuMgoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
