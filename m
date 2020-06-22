@@ -1,96 +1,109 @@
-From: Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: valgrind-mmt: rebased against latest upstream valgrind
- release v3.16.1
-Date: Tue, 23 Jun 2020 09:47:57 +1000
-Message-ID: <CA+iOQUHn1x8HQ1+_QrSb9wEiH8m2G7mmd2Q3V4Gz6WAPnp8TWw@mail.gmail.com>
+From: Yang Shi <shy828301-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 13/16] mm: support THP migration to device private memory
+Date: Mon, 22 Jun 2020 16:54:45 -0700
+Message-ID: <CAHbLzkrR4-s+ye1F3XDV_0q+iyZOcyMQNHTggDY3Mn_e2yOZ7g@mail.gmail.com>
+References: <20200619215649.32297-1-rcampbell@nvidia.com> <20200619215649.32297-14-rcampbell@nvidia.com>
+ <F1872509-3B1F-4A8A-BFF5-E4D44E451920@nvidia.com> <b6eed976-c515-72d6-a7be-2296cab8f0d4@nvidia.com>
+ <C7BEB563-3698-442C-A188-1B66CBE4CF63@nvidia.com> <a5f502f8-70cd-014b-8066-bbaeb8024a29@nvidia.com>
+ <4C364E23-0716-4D59-85A1-0C293B86BC2C@nvidia.com> <CAHbLzkqe50+KUsRH92O4Be2PjuwAYGw9nK+d-73syxi2Xnf9-Q@mail.gmail.com>
+ <CAHbLzko=BqtPhxgf7f1bKKqoQxK9XCCPdp4YdL80K_uXFfcETQ@mail.gmail.com> <fa056e5e-ca87-aef1-e66e-58e8ebe5403e@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2146040201=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <fa056e5e-ca87-aef1-e66e-58e8ebe5403e-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: Zi Yan <ziy-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, "Huang, Ying" <ying.huang-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============2146040201==
-Content-Type: multipart/alternative; boundary="000000000000f36d6405a8b4df77"
+On Mon, Jun 22, 2020 at 4:02 PM John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+>
+> On 2020-06-22 15:33, Yang Shi wrote:
+> > On Mon, Jun 22, 2020 at 3:30 PM Yang Shi <shy828301-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> >> On Mon, Jun 22, 2020 at 2:53 PM Zi Yan <ziy-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+> >>> On 22 Jun 2020, at 17:31, Ralph Campbell wrote:
+> >>>> On 6/22/20 1:10 PM, Zi Yan wrote:
+> >>>>> On 22 Jun 2020, at 15:36, Ralph Campbell wrote:
+> >>>>>> On 6/21/20 4:20 PM, Zi Yan wrote:
+> >>>>>>> On 19 Jun 2020, at 17:56, Ralph Campbell wrote:
+> ...
+> >>> Ying(cc=E2=80=99d) developed the code to swapout and swapin THP in on=
+e piece: https://lore.kernel.org/linux-mm/20181207054122.27822-1-ying.huang=
+@intel.com/.
+> >>> I am not sure whether the patchset makes into mainstream or not. It c=
+ould be a good technical reference
+> >>> for swapping in device private pages, although swapping in pages from=
+ disk and from device private
+> >>> memory are two different scenarios.
+> >>>
+> >>> Since the device private memory swapin impacts core mm performance, w=
+e might want to discuss your patches
+> >>> with more people, like the ones from Ying=E2=80=99s patchset, in the =
+next version.
+> >>
+> >> I believe Ying will give you more insights about how THP swap works.
+> >>
+> >> But, IMHO device memory migration (migrate to system memory) seems
+> >> like THP CoW more than swap.
+>
+>
+> A fine point: overall, the desired behavior is "migrate", not CoW.
+> That's important. Migrate means that you don't leave a page behind, even
+> a read-only one. And that's exactly how device private migration is
+> specified.
+>
+> We should try to avoid any erosion of clarity here. Even if somehow
+> (really?) the underlying implementation calls this THP CoW, the actual
+> goal is to migrate pages over to the device (and back).
+>
+>
+> >>
+> >> When migrating in:
+> >
+> > Sorry for my fat finger, hit sent button inadvertently, let me finish h=
+ere.
+> >
+> > When migrating in:
+> >
+> >          - if THP is enabled: allocate THP, but need handle allocation
+> > failure by falling back to base page
+> >          - if THP is disabled: fallback to base page
+> >
+>
+> OK, but *all* page entries (base and huge/large pages) need to be cleared=
+,
+> when migrating to device memory, unless I'm really confused here.
+> So: not CoW.
 
---000000000000f36d6405a8b4df77
-Content-Type: text/plain; charset="UTF-8"
+I realized the comment caused more confusion. I apologize for the
+confusion. Yes, the trigger condition for swap/migration and CoW are
+definitely different. Here I mean the fault handling part of migrating
+into system memory.
 
-As an update to the nouveau development community, the downstream fork of
-Valgrind with a mmap tracing tool ("mmt") we maintain has been rebased
-against the latest upstream release of Valgrind, v3.16.1
+Swap-in just needs to handle the base page case since THP swapin is
+not supported in upstream yet and the PMD is split in swap-out phase
+(see shrink_page_list).
 
-Code branch: https://github.com/envytools/valgrind/tree/mmt-3.16.1
+The patch adds THP migration support to device memory, but you need to
+handle migrate in (back to system memory) case correctly. The fault
+handling should look like THP CoW fault handling behavior (before
+5.8):
+    - if THP is enabled: allocate THP, fallback if allocation is failed
+    - if THP is disabled: fallback to base page
 
-Features of upstream Valgrind 3.16.x:
-https://www.valgrind.org/docs/manual/dist.news.html
+Swap fault handling doesn't look like the above. So, I said it seems
+like more THP CoW (fault handling part only before 5.8). I hope I
+articulate my mind.
 
-In selected highlights, the benefits of tracking the latest version of
-Valgrind is added support for AArch64 v8.1 and reduced memcheck false
-positive rate on highly optimised code. There are, as ever, many smaller
-refinements and bug fixes. v3.16.1 includes two bugs fixed after 3.16.0 was
-frozen. As our downstream valgrind-mmt was last released against v3.14, we
-also get the benefit of all bug fixes and features since then, including
-that the RDRAND and F16C insn set extensions are now supported.
+However, I didn't see such fallback is handled. It looks if THP
+allocation is failed, it just returns SIGBUS; and no check about THP
+status if I read the patches correctly. The THP might be disabled for
+the specific vma or system wide before migrating from device memory
+back to system memory.
 
-For anyone unfamiliar with valgrind-mmt, it is a userspace mmio tracer that
-assists nouveau reverse engineering efforts by tracing the commands sent to
-the card. There is an accompanying demmt tool within the enytools repo to
-better understand these trace logs.
-
-I would like to thank all the other nouveau developers who have worked on
-mmt over many years, including specifically airlied, mslusarz and kherbst.
-
-Best,
-Rhys
-
---000000000000f36d6405a8b4df77
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>As an update to the nouveau development community, th=
-e downstream fork of Valgrind with a mmap tracing tool (&quot;mmt&quot;) we=
- maintain has been rebased against the latest upstream release of Valgrind,=
- v3.16.1</div><div><br></div><div>Code branch: <a href=3D"https://github.co=
-m/envytools/valgrind/tree/mmt-3.16.1">https://github.com/envytools/valgrind=
-/tree/mmt-3.16.1</a></div><div><br></div><div>Features of upstream Valgrind=
- 3.16.x: <a href=3D"https://www.valgrind.org/docs/manual/dist.news.html">ht=
-tps://www.valgrind.org/docs/manual/dist.news.html</a></div><div><br></div><=
-div>In selected highlights, the benefits of tracking the latest version of =
-Valgrind is added support for AArch64
-    v8.1 and reduced memcheck false positive rate on highly optimised code.
-    There are, as ever, many smaller refinements and bug fixes. v3.16.1 inc=
-ludes two bugs fixed after 3.16.0 was frozen. As our downstream valgrind-mm=
-t was last released against v3.14, we also get the benefit of all bug fixes=
- and features since then, including that the=C2=A0RDRAND=C2=A0and=C2=A0F16C=
-=C2=A0insn=C2=A0set=C2=A0extensions=C2=A0are=C2=A0now=C2=A0supported.</div>=
-<div><br></div><div>For anyone unfamiliar with valgrind-mmt, it is a usersp=
-ace mmio tracer that assists nouveau reverse engineering efforts by tracing=
- the commands sent to the card. There is an accompanying demmt tool within =
-the enytools repo to better understand these trace logs.<br></div><div><br>=
-</div><div>I would like to thank all the other nouveau developers who have =
-worked on mmt over many years, including specifically airlied, mslusarz and=
- kherbst.</div><div><br></div><div>Best,</div><div>Rhys<br></div></div>
-
---000000000000f36d6405a8b4df77--
-
---===============2146040201==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============2146040201==--
+>
+> thanks,
+> --
+> John Hubbard
+> NVIDIA
