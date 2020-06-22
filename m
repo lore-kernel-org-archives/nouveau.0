@@ -1,69 +1,76 @@
-From: Ralph Campbell <rcampbell@nvidia.com>
-Subject: Re: [PATCH 09/16] mm/hmm: add output flag for compound page mapping
-Date: Mon, 22 Jun 2020 16:26:41 -0700
-Message-ID: <f5ae2cdd-5774-8d1e-5a30-657b611568b8@nvidia.com>
-References: <20200619215649.32297-1-rcampbell@nvidia.com>
- <20200619215649.32297-10-rcampbell@nvidia.com>
- <20200622172520.GB2874652@mellanox.com>
- <15ba19a9-5f71-546b-bdea-31e65fc39693@nvidia.com>
- <20200622231835.GD2874652@mellanox.com>
+From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [RESEND PATCH 3/3] nouveau: make nvkm_vmm_ctor() and
+ nvkm_mmu_ptp_get() static
+Date: Mon, 22 Jun 2020 16:38:54 -0700
+Message-ID: <20200622233854.10889-4-rcampbell@nvidia.com>
+References: <20200622233854.10889-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200622231835.GD2874652@mellanox.com>
-Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Jason Gunthorpe <jgg@mellanox.com>
-Cc: nouveau@lists.freedesktop.org, linux-rdma@vger.kernel.org, linux-mm@kvack.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Ben Skeggs <bskeggs@redhat.com>, Andrew Morton <akpm@linux-foundation.org>, Shuah Khan <shuah@kernel.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200622233854.10889-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+The functions nvkm_vmm_ctor() and nvkm_mmu_ptp_get() are not called outside
+of the file defining them so make them static.
 
-On 6/22/20 4:18 PM, Jason Gunthorpe wrote:
-> On Mon, Jun 22, 2020 at 11:10:05AM -0700, Ralph Campbell wrote:
->>
->> On 6/22/20 10:25 AM, Jason Gunthorpe wrote:
->>> On Fri, Jun 19, 2020 at 02:56:42PM -0700, Ralph Campbell wrote:
->>>> hmm_range_fault() returns an array of page frame numbers and flags for
->>>> how the pages are mapped in the requested process' page tables. The PFN
->>>> can be used to get the struct page with hmm_pfn_to_page() and the page size
->>>> order can be determined with compound_order(page) but if the page is larger
->>>> than order 0 (PAGE_SIZE), there is no indication that the page is mapped
->>>> using a larger page size. To be fully general, hmm_range_fault() would need
->>>> to return the mapping size to handle cases like a 1GB compound page being
->>>> mapped with 2MB PMD entries. However, the most common case is the mapping
->>>> size is the same as the underlying compound page size.
->>>> Add a new output flag to indicate this so that callers know it is safe to
->>>> use a large device page table mapping if one is available.
->>>
->>> But what size should the caller use?
->>>
->>> You already explained that the caller cannot use compound_ordet() to
->>> get the size, so what should it be?
->>>
->>> Probably this needs to be two flags, PUD and PMD, and the caller should
->>> use the PUD and PMD sizes to figure out how big it is?
->>>
->>> Jason
->>>
->>
->> I guess I didn't explain it as clearly as I thought. :-)
->>
->> The page size *can* be determined with compound_order(page) but without the
->> flag, the caller doesn't know how much of that page is being mapped by the
->> CPU. The flag says the CPU is mapping the whole compound page (based on compound_order)
->> and that the caller can use device mappings up to the size of compound_order(page).
-> 
-> No, I got it, I just don't like the assumption that just because a PMD
-> or PUD points to a page that the only possible value for
-> compound_page() is PMD or PUD respectively. Partial mapping should be
-> possible in both cases, if not today, then maybe down the road with
-> some of the large page work that has been floating about
-> 
-> It seems much safer to just directly encode the PUD/PMD size in the
-> flags
-> 
-> Jason
+Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/mmu/base.c | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c  | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h  | 3 ---
+ 3 files changed, 2 insertions(+), 5 deletions(-)
 
-That is fine with me. I'll make that change for v2.
-I was just trying to minimize the number of flags being added.
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/base.c
+index ee11ccaf0563..de91e9a26172 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/base.c
+@@ -61,7 +61,7 @@ nvkm_mmu_ptp_put(struct nvkm_mmu *mmu, bool force, struct nvkm_mmu_pt *pt)
+ 	kfree(pt);
+ }
+ 
+-struct nvkm_mmu_pt *
++static struct nvkm_mmu_pt *
+ nvkm_mmu_ptp_get(struct nvkm_mmu *mmu, u32 size, bool zero)
+ {
+ 	struct nvkm_mmu_pt *pt;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+index 199f94e15c5f..67b00dcef4b8 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+@@ -1030,7 +1030,7 @@ nvkm_vmm_ctor_managed(struct nvkm_vmm *vmm, u64 addr, u64 size)
+ 	return 0;
+ }
+ 
+-int
++static int
+ nvkm_vmm_ctor(const struct nvkm_vmm_func *func, struct nvkm_mmu *mmu,
+ 	      u32 pd_header, bool managed, u64 addr, u64 size,
+ 	      struct lock_class_key *key, const char *name,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+index d3f8f916d0db..a2b179568970 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+@@ -163,9 +163,6 @@ int nvkm_vmm_new_(const struct nvkm_vmm_func *, struct nvkm_mmu *,
+ 		  u32 pd_header, bool managed, u64 addr, u64 size,
+ 		  struct lock_class_key *, const char *name,
+ 		  struct nvkm_vmm **);
+-int nvkm_vmm_ctor(const struct nvkm_vmm_func *, struct nvkm_mmu *,
+-		  u32 pd_header, bool managed, u64 addr, u64 size,
+-		  struct lock_class_key *, const char *name, struct nvkm_vmm *);
+ struct nvkm_vma *nvkm_vmm_node_search(struct nvkm_vmm *, u64 addr);
+ struct nvkm_vma *nvkm_vmm_node_split(struct nvkm_vmm *, struct nvkm_vma *,
+ 				     u64 addr, u64 size);
+-- 
+2.20.1
