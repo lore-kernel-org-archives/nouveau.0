@@ -1,121 +1,164 @@
-From: "Huang\, Ying" <ying.huang-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 13/16] mm: support THP migration to device private memory
-Date: Tue, 23 Jun 2020 10:51:23 +0800
-Message-ID: <87zh8uze8k.fsf@yhuang-dev.intel.com>
-References: <20200619215649.32297-1-rcampbell@nvidia.com>
-        <20200619215649.32297-14-rcampbell@nvidia.com>
-        <F1872509-3B1F-4A8A-BFF5-E4D44E451920@nvidia.com>
-        <b6eed976-c515-72d6-a7be-2296cab8f0d4@nvidia.com>
-        <C7BEB563-3698-442C-A188-1B66CBE4CF63@nvidia.com>
-        <a5f502f8-70cd-014b-8066-bbaeb8024a29@nvidia.com>
-        <4C364E23-0716-4D59-85A1-0C293B86BC2C@nvidia.com>
-        <CAHbLzkqe50+KUsRH92O4Be2PjuwAYGw9nK+d-73syxi2Xnf9-Q@mail.gmail.com>
-        <CAHbLzko=BqtPhxgf7f1bKKqoQxK9XCCPdp4YdL80K_uXFfcETQ@mail.gmail.com>
-        <fa056e5e-ca87-aef1-e66e-58e8ebe5403e@nvidia.com>
-        <CAHbLzkrR4-s+ye1F3XDV_0q+iyZOcyMQNHTggDY3Mn_e2yOZ7g@mail.gmail.com>
-        <a778dcec-045b-85c0-2dd3-ac700e4208c5@nvidia.com>
+From: Samuel Iglesias =?ISO-8859-1?Q?Gons=E1lvez?= <siglesias-wEGTBA9jqPzQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [Mesa-dev] XDC 2020: Registration & Call for Proposals now open!
+Date: Tue, 23 Jun 2020 09:29:25 +0200
+Message-ID: <78d5ab87f0dfb7e3e1286a5f3f4f10fefa33e077.camel@igalia.com>
+References: <9a4392829de747a9a752a5b13f31f90b@intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <a778dcec-045b-85c0-2dd3-ac700e4208c5-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> (Ralph
-        Campbell's message of "Mon, 22 Jun 2020 17:05:37 -0700")
-Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Yang Shi <shy828301-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Zi Yan <ziy-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0676235394=="
+Return-path: <wayland-devel-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <9a4392829de747a9a752a5b13f31f90b-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/wayland-devel>,
+ <mailto:wayland-devel-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/wayland-devel>
+List-Post: <mailto:wayland-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:wayland-devel-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/wayland-devel>,
+ <mailto:wayland-devel-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: wayland-devel-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "wayland-devel" <wayland-devel-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: "Szwichtenberg, Radoslaw" <radoslaw.szwichtenberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, "events-go0+a7rfsptAfugRpC6u6w@public.gmane.org" <events-go0+a7rfsptAfugRpC6u6w@public.gmane.org>, "xorg-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <xorg-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "wayland-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <wayland-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: "board-UUNKDCO5ciMA0k6STJqGzw@public.gmane.org" <board-UUNKDCO5ciMA0k6STJqGzw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> writes:
 
-> On 6/22/20 4:54 PM, Yang Shi wrote:
->> On Mon, Jun 22, 2020 at 4:02 PM John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
->>>
->>> On 2020-06-22 15:33, Yang Shi wrote:
->>>> On Mon, Jun 22, 2020 at 3:30 PM Yang Shi <shy828301-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->>>>> On Mon, Jun 22, 2020 at 2:53 PM Zi Yan <ziy-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
->>>>>> On 22 Jun 2020, at 17:31, Ralph Campbell wrote:
->>>>>>> On 6/22/20 1:10 PM, Zi Yan wrote:
->>>>>>>> On 22 Jun 2020, at 15:36, Ralph Campbell wrote:
->>>>>>>>> On 6/21/20 4:20 PM, Zi Yan wrote:
->>>>>>>>>> On 19 Jun 2020, at 17:56, Ralph Campbell wrote:
->>> ...
->>>>>> Ying(cc’d) developed the code to swapout and swapin THP in one piece: https://lore.kernel.org/linux-mm/20181207054122.27822-1-ying.huang-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org/.
->>>>>> I am not sure whether the patchset makes into mainstream or not. It could be a good technical reference
->>>>>> for swapping in device private pages, although swapping in pages from disk and from device private
->>>>>> memory are two different scenarios.
->>>>>>
->>>>>> Since the device private memory swapin impacts core mm performance, we might want to discuss your patches
->>>>>> with more people, like the ones from Ying’s patchset, in the next version.
->>>>>
->>>>> I believe Ying will give you more insights about how THP swap works.
->>>>>
->>>>> But, IMHO device memory migration (migrate to system memory) seems
->>>>> like THP CoW more than swap.
->>>
->>>
->>> A fine point: overall, the desired behavior is "migrate", not CoW.
->>> That's important. Migrate means that you don't leave a page behind, even
->>> a read-only one. And that's exactly how device private migration is
->>> specified.
->>>
->>> We should try to avoid any erosion of clarity here. Even if somehow
->>> (really?) the underlying implementation calls this THP CoW, the actual
->>> goal is to migrate pages over to the device (and back).
->>>
->>>
->>>>>
->>>>> When migrating in:
->>>>
->>>> Sorry for my fat finger, hit sent button inadvertently, let me finish here.
->>>>
->>>> When migrating in:
->>>>
->>>>           - if THP is enabled: allocate THP, but need handle allocation
->>>> failure by falling back to base page
->>>>           - if THP is disabled: fallback to base page
->>>>
->>>
->>> OK, but *all* page entries (base and huge/large pages) need to be cleared,
->>> when migrating to device memory, unless I'm really confused here.
->>> So: not CoW.
->>
->> I realized the comment caused more confusion. I apologize for the
->> confusion. Yes, the trigger condition for swap/migration and CoW are
->> definitely different. Here I mean the fault handling part of migrating
->> into system memory.
->>
->> Swap-in just needs to handle the base page case since THP swapin is
->> not supported in upstream yet and the PMD is split in swap-out phase
->> (see shrink_page_list).
->>
->> The patch adds THP migration support to device memory, but you need to
->> handle migrate in (back to system memory) case correctly. The fault
->> handling should look like THP CoW fault handling behavior (before
->> 5.8):
->>      - if THP is enabled: allocate THP, fallback if allocation is failed
->>      - if THP is disabled: fallback to base page
->>
->> Swap fault handling doesn't look like the above. So, I said it seems
->> like more THP CoW (fault handling part only before 5.8). I hope I
->> articulate my mind.
->>
->> However, I didn't see such fallback is handled. It looks if THP
->> allocation is failed, it just returns SIGBUS; and no check about THP
->> status if I read the patches correctly. The THP might be disabled for
->> the specific vma or system wide before migrating from device memory
->> back to system memory.
->
-> You are correct, the patch wasn't handling the fallback case.
-> I'll add that in the next version.
+--===============0676235394==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-9+orxlxz86sWcnKf/R+o"
 
-For fallback, you need to split the THP in device firstly.  Because you
-will migrate a base page instead a whole THP now.
 
-Best Regards,
-Huang, Ying
+--=-9+orxlxz86sWcnKf/R+o
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
->>>
->>> thanks,
->>> --
->>> John Hubbard
->>> NVIDIA
+Hi,
+
+This is a kindly reminder that the CFP deadline is in less than two
+weeks :)
+
+On Fri, 2020-05-15 at 14:15 +0000, Szwichtenberg, Radoslaw wrote:
+> Hello!
+>=20
+> Registration & Call for Proposals are now open for XDC 2020, which
+> will
+> take place at the Gda=C5=84sk University of Technology in Gda=C5=84sk, Po=
+land
+> on September 16-18, 2020.
+>=20
+> Thanks to LWN.net for hosting the website again this year!
+>=20
+>     https://xdc2020.x.org
+>    =20
+> As usual, the conference is free of charge and open to the general
+> public. If you plan on attending, please make sure to register as
+> early as possible! However, don't book any travel or hotel until the
+> organization decides if we keep the conference as it is or there is
+> any change. Please read this message on the website for more
+> information:
+>=20
+> https://xdc2020.x.org/event/9/page/78-covid-19
+>=20
+> In order to register as attendee, you will therefore need to register
+> via the XDC
+> website. However, as XDC is sharing the same Indico infrastructure as
+> LPC, if you previously registered on the LPC website
+> (linuxplumbersconference.org) or on the XDC 2019 website
+> (xdc2019.x.org), then you already have an active account
+> and can use the same username & password to login!
+>=20
+>     https://xdc2020.x.org/event/9/registrations/7/
+>=20
+> In addition to registration, the CfP is now open for talks, workshops
+> and demos at XDC 2020. While any serious proposal will be gratefully
+> considered, topics of interest to X.Org and freedesktop.org
+> developers
+> are encouraged. The program focus is on new development, ongoing
+> challenges and anything else that will spark discussions among
+> attendees in the hallway track.
+>=20
+> We are open to talks across all layers of the graphics stack, from
+> the
+> kernel to desktop environments / graphical applications and about how
+> to make things better for the developers who build them. Head to the
+> CfP page to learn more:=20
+>=20
+>     https://xdc2020.x.org/event/9/abstracts/
+>=20
+> The deadline for submissions is Sunday, 5 July 2020.
+>=20
+> Notice that the event may end up being postponed, converted to a
+> fully online conference, or even a hybrid one (physical event + some
+> remote talks). It depends on how COVID-19 situation evolves in the
+> different countries and the restrictions we will have at that time.
+> Also, some people may decide to skip the physical conference to avoid
+> any risk of infection. Because of that, please indicate in your talk
+> submission if you prefer to give a remote talk in the case that XDC
+> keeps being a physical event this year. Similarly, if you think that
+> your talk makes no sense if XDC ends up being a fully-virtual
+> conference, please indicate that in the notes of the talk submission.
+>=20
+
+We are gathering all the information in order to make a decision at the
+beginning of July. Stay tuned [0]!
+
+Sam
+
+[0] https://xdc2020.x.org/event/9/page/78-covid-19
+
+> If COVID-19 situation allows it, we are looking forward to seeing you
+> in Gda=C5=84sk! If you have any questions, please send me an email to=20
+> radoslaw.szwichtenberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org,  adding on CC the X.org board
+> (board at foundation.x.org).
+>=20
+> And don't forget, you can follow us on Twitter for all the latest
+> updates and to stay connected:
+>=20
+>     https://twitter.com/xdc2020
+>=20
+> Best,
+>=20
+> Radek
+>=20
+>=20
+> _______________________________________________
+> mesa-dev mailing list
+> mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/mesa-dev
+>=20
+
+--=-9+orxlxz86sWcnKf/R+o
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEQP+ZAvaXWkfuKXiEf/S6MvF9w0MFAl7xr1UACgkQf/S6MvF9
+w0OLkA//X2kk/vAbrnL+0CSgFbOfhaOJAhjB2KAGpfsKVdDYKXcRCIgoJE9ZAUDY
+HaWB/8mFfZPgfjHbqVQ7qTsQ1bITBHM0uAQ0L0PEgg/qpfaZIW5mI3jwmCWnVaXY
+NqgeicXisv2y4Fl+VzZe2qE1GWsnfnfW6NDV3rTUMckNiy1sQ9edF1vuTg1e31NB
+hCNy/50FUOR09EZAhjnMl8WfU6HSBxQNGeJK1k34TX7xGmPIjO17v4KmknZohLBd
+C441QmBG+144xV3so35CgNbtclyyJArHqUhSgsI9PoQjF6aCpw/1LFN54LPVg+dm
+848rSTgIdHNX432Zso605nv+QiU6DWCGX5/5RJ8iR9Nim3WKGZTPgdJfId3EI0BJ
+yzxIh/dJvTnoCPyYOUv4nAVdRnpAVtEBxiC4OuNnBo7szzp/qxfM/e6t0Zc6nWkx
+1gBTb5uG8JfHA6E534ktRU8INpEbwJnzsFk/GJX2oJ0CsPhhBQyBhtTAbFIDwYNP
+gHtJMzVVvp3dnYZfamqdON3fWH7/j75GT8fwGuutM/H17l4dShjKLtDX/+sLwfcn
+6dVX7Keg8PeDb6YvJhKAlT0TA2l0kqiKW7td1wkJvwp69Owkc/J81MQ5ky6vmxjT
+h/mk6pyEp31lIWNHovnfv21NWIriU7qnEc2FiPQIKsg3NJGb3n4=
+=BV8w
+-----END PGP SIGNATURE-----
+
+--=-9+orxlxz86sWcnKf/R+o--
+
+
+--===============0676235394==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+wayland-devel mailing list
+wayland-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+https://lists.freedesktop.org/mailman/listinfo/wayland-devel
+
+--===============0676235394==--
