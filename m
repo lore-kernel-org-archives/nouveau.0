@@ -1,8 +1,8 @@
 From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [RFC v7 05/11] drm/nouveau/kms/nv140-: Don't modify depth
- in state during atomic commit
-Date: Wed, 24 Jun 2020 19:03:12 -0400
-Message-ID: <20200624230318.126256-6-lyude@redhat.com>
+Subject: [RFC v7 08/11] drm/nouveau/kms/nv140-: Track wndw
+ mappings in nv50_head_atom
+Date: Wed, 24 Jun 2020 19:03:15 -0400
+Message-ID: <20200624230318.126256-9-lyude@redhat.com>
 References: <20200624230318.126256-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -19,86 +19,156 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Mikita Lipski <mikita.lipski-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Currently, we modify the depth value stored in the atomic state when
-performing a commit in order to workaround the fact we haven't
-implemented support for depths higher then 10 yet. This isn't idempotent
-though, as it will happen every atomic commit where we modify the OR
-state even if the head's depth in the atomic state hasn't been modified.
+While we're not quite ready yet to add support for flexible wndw
+mappings, we are going to need to at least keep track of the static wndw
+mappings we're currently using in each head's atomic state. We'll likely
+use this in the future to implement real flexible window mapping, but
+the primary reason we'll need this is for CRC support.
 
-Normally this wouldn't matter, since we don't modify OR state outside of
-modesets, but since the CRC capture region is implemented as part of the
-OR state in hardware we'll want to make sure all commits modifying OR
-state are idempotent so as to avoid changing the depth unexpectedly.
+See: on nvidia hardware, each CRC entry in the CRC notifier dma context
+has a "tag". This tag corresponds to the nth update on a specific
+EVO/NvDisplay channel, which itself is referred to as the "controlling
+channel". For gf119+ this can be the core channel, ovly channel, or base
+channel. Since we don't expose CRC entry tags to userspace, we simply
+ignore this feature and always use the core channel as the controlling
+channel. Simple.
 
-So, fix this by simply not writing the reduced depth value we come up
-with to the atomic state.
+Things get a little bit more complicated on gv100+ though. GV100+ only
+lets us set the controlling channel to a specific wndw channel, and that
+wndw must be owned by the head that we're grabbing CRCs when we enable
+CRC generation. Thus, we always need to make sure that each atomic head
+state has at least one wndw that is mapped to the head, which will be
+used as the controlling channel.
+
+Note that since we don't have flexible wndw mappings yet, we don't
+expect to run into any scenarios yet where we'd have a head with no
+mapped wndws. When we do add support for flexible wndw mappings however,
+we'll need to make sure that we handle reprogramming CRC capture if our
+controlling wndw is moved to another head (and potentially reject the
+new head state entirely if we can't find another available wndw to
+replace it).
+
+With that being said, nouveau currently tracks wndw visibility on heads.
+It does not keep track of the actual ownership mappings, which are
+(currently) statically programmed. To fix this, we introduce another
+bitmask into nv50_head_atom.wndw to keep track of ownership separately
+from visibility. We then introduce a nv50_head callback to handle
+populating the wndw ownership map, and call it during the atomic check
+phase when core->assign_windows is set to true.
 
 Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/dispnv50/headc37d.c | 11 +++++++----
- drivers/gpu/drm/nouveau/dispnv50/headc57d.c | 11 +++++++----
- 2 files changed, 14 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/atom.h     |  1 +
+ drivers/gpu/drm/nouveau/dispnv50/disp.c     | 16 ++++++++++++++++
+ drivers/gpu/drm/nouveau/dispnv50/head.h     |  2 ++
+ drivers/gpu/drm/nouveau/dispnv50/headc37d.c | 10 ++++++++++
+ drivers/gpu/drm/nouveau/dispnv50/headc57d.c |  2 ++
+ 5 files changed, 31 insertions(+)
 
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/atom.h b/drivers/gpu/drm/nouveau/dispnv50/atom.h
+index 24f7700768dab..62faaf60f47a5 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/atom.h
++++ b/drivers/gpu/drm/nouveau/dispnv50/atom.h
+@@ -18,6 +18,7 @@ struct nv50_head_atom {
+ 
+ 	struct {
+ 		u32 mask;
++		u32 owned;
+ 		u32 olut;
+ 	} wndw;
+ 
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index d472942102f50..368069a5b181a 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -2287,12 +2287,28 @@ static int
+ nv50_disp_atomic_check(struct drm_device *dev, struct drm_atomic_state *state)
+ {
+ 	struct nv50_atom *atom = nv50_atom(state);
++	struct nv50_core *core = nv50_disp(dev)->core;
+ 	struct drm_connector_state *old_connector_state, *new_connector_state;
+ 	struct drm_connector *connector;
+ 	struct drm_crtc_state *new_crtc_state;
+ 	struct drm_crtc *crtc;
++	struct nv50_head *head;
++	struct nv50_head_atom *asyh;
+ 	int ret, i;
+ 
++	if (core->assign_windows && core->func->head->static_wndw_map) {
++		drm_for_each_crtc(crtc, dev) {
++			new_crtc_state = drm_atomic_get_crtc_state(state,
++								   crtc);
++			if (IS_ERR(new_crtc_state))
++				return PTR_ERR(new_crtc_state);
++
++			head = nv50_head(crtc);
++			asyh = nv50_head_atom(new_crtc_state);
++			core->func->head->static_wndw_map(head, asyh);
++		}
++	}
++
+ 	/* We need to handle colour management on a per-plane basis. */
+ 	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
+ 		if (new_crtc_state->color_mgmt_changed) {
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/head.h b/drivers/gpu/drm/nouveau/dispnv50/head.h
+index c32b27cdaefc9..c05bbba9e247c 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/head.h
++++ b/drivers/gpu/drm/nouveau/dispnv50/head.h
+@@ -40,6 +40,7 @@ struct nv50_head_func {
+ 	void (*dither)(struct nv50_head *, struct nv50_head_atom *);
+ 	void (*procamp)(struct nv50_head *, struct nv50_head_atom *);
+ 	void (*or)(struct nv50_head *, struct nv50_head_atom *);
++	void (*static_wndw_map)(struct nv50_head *, struct nv50_head_atom *);
+ };
+ 
+ extern const struct nv50_head_func head507d;
+@@ -86,6 +87,7 @@ int headc37d_curs_format(struct nv50_head *, struct nv50_wndw_atom *,
+ void headc37d_curs_set(struct nv50_head *, struct nv50_head_atom *);
+ void headc37d_curs_clr(struct nv50_head *);
+ void headc37d_dither(struct nv50_head *, struct nv50_head_atom *);
++void headc37d_static_wndw_map(struct nv50_head *, struct nv50_head_atom *);
+ 
+ extern const struct nv50_head_func headc57d;
+ #endif
 diff --git a/drivers/gpu/drm/nouveau/dispnv50/headc37d.c b/drivers/gpu/drm/nouveau/dispnv50/headc37d.c
-index 4a9a32b89f746..9ef3c603fc43e 100644
+index 9ef3c603fc43e..c2619652ff2ee 100644
 --- a/drivers/gpu/drm/nouveau/dispnv50/headc37d.c
 +++ b/drivers/gpu/drm/nouveau/dispnv50/headc37d.c
-@@ -27,17 +27,20 @@ static void
- headc37d_or(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
- 	struct nv50_dmac *core = &nv50_disp(head->base.base.dev)->core->chan;
-+	u8 depth;
- 	u32 *push;
+@@ -204,6 +204,15 @@ headc37d_view(struct nv50_head *head, struct nv50_head_atom *asyh)
+ 	}
+ }
+ 
++void
++headc37d_static_wndw_map(struct nv50_head *head, struct nv50_head_atom *asyh)
++{
++	int i, end;
 +
- 	if ((push = evo_wait(core, 2))) {
- 		/*XXX: This is a dirty hack until OR depth handling is
- 		 *     improved later for deep colour etc.
- 		 */
- 		switch (asyh->or.depth) {
--		case 6: asyh->or.depth = 5; break;
--		case 5: asyh->or.depth = 4; break;
--		case 2: asyh->or.depth = 1; break;
--		case 0:	asyh->or.depth = 4; break;
-+		case 6: depth = 5; break;
-+		case 5: depth = 4; break;
-+		case 2: depth = 1; break;
-+		case 0:	depth = 4; break;
- 		default:
-+			depth = asyh->or.depth;
- 			WARN_ON(1);
- 			break;
- 		}
++	for (i = head->base.index * 2, end = i + 2; i < end; i++)
++		asyh->wndw.owned |= BIT(i);
++}
++
+ const struct nv50_head_func
+ headc37d = {
+ 	.view = headc37d_view,
+@@ -219,4 +228,5 @@ headc37d = {
+ 	.dither = headc37d_dither,
+ 	.procamp = headc37d_procamp,
+ 	.or = headc37d_or,
++	.static_wndw_map = headc37d_static_wndw_map,
+ };
 diff --git a/drivers/gpu/drm/nouveau/dispnv50/headc57d.c b/drivers/gpu/drm/nouveau/dispnv50/headc57d.c
-index 859131a8bc3c8..97141eb8e75ab 100644
+index 97141eb8e75ab..1c1887749f4c5 100644
 --- a/drivers/gpu/drm/nouveau/dispnv50/headc57d.c
 +++ b/drivers/gpu/drm/nouveau/dispnv50/headc57d.c
-@@ -27,17 +27,20 @@ static void
- headc57d_or(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
- 	struct nv50_dmac *core = &nv50_disp(head->base.base.dev)->core->chan;
-+	u8 depth;
- 	u32 *push;
-+
- 	if ((push = evo_wait(core, 2))) {
- 		/*XXX: This is a dirty hack until OR depth handling is
- 		 *     improved later for deep colour etc.
- 		 */
- 		switch (asyh->or.depth) {
--		case 6: asyh->or.depth = 5; break;
--		case 5: asyh->or.depth = 4; break;
--		case 2: asyh->or.depth = 1; break;
--		case 0:	asyh->or.depth = 4; break;
-+		case 6: depth = 5; break;
-+		case 5: depth = 4; break;
-+		case 2: depth = 1; break;
-+		case 0:	depth = 4; break;
- 		default:
-+			depth = asyh->or.depth;
- 			WARN_ON(1);
- 			break;
- 		}
+@@ -211,4 +211,6 @@ headc57d = {
+ 	.dither = headc37d_dither,
+ 	.procamp = headc57d_procamp,
+ 	.or = headc57d_or,
++	/* TODO: flexible window mappings */
++	.static_wndw_map = headc37d_static_wndw_map,
+ };
 -- 
 2.26.2
