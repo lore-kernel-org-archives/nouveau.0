@@ -1,106 +1,70 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [RFC v7 00/11] drm/nouveau: Introduce CRC support for
- gf119+
-Date: Wed, 24 Jun 2020 19:03:07 -0400
-Message-ID: <20200624230318.126256-1-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [RFC v7 02/11] drm/vblank: Use spin_(un)lock_irq() in drm_crtc_vblank_off()
+Date: Wed, 24 Jun 2020 19:03:09 -0400
+Message-ID: <20200624230318.126256-3-lyude@redhat.com>
+References: <20200624230318.126256-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200624230318.126256-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: Daniel Vetter <daniel@ffwll.ch>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-TnZpZGlhIHJlbGVhc2VkIHNvbWUgZG9jdW1lbnRhdGlvbiBvbiBob3cgQ1JDIHN1cHBvcnQgd29y
-a3Mgb24gdGhlaXIKR1BVcywgaG9vcmF5IQoKU286IHRoaXMgcGF0Y2ggc2VyaWVzIGltcGxlbWVu
-dHMgc2FpZCBDUkMgc3VwcG9ydCBpbiBub3V2ZWF1LCBhbG9uZyB3aXRoCmFkZGluZyBzb21lIHNw
-ZWNpYWwgZGVidWdmcyBpbnRlcmZhY2VzIGZvciBzb21lIHJlbGV2YW50IGlndC1ncHUtdG9vbHMK
-dGVzdHMgKGFscmVhZHkgb24gdGhlIE1MKS4KCkZpcnN0IC0gd2UgYWRkIHNvbWUgbmV3IGZ1bmN0
-aW9uYWxpdHkgdG8ga3RocmVhZF93b3JrIGluIHRoZSBrZXJuZWwsIGFuZAp0aGVuIHVzZSB0aGlz
-IHRvIGFkZCBhIG5ldyBmZWF0dXJlIHRvIERSTSB0aGF0IFZpbGxlIFN5cmrDpGzDpCBjYW1lIHVw
-CndpdGg6IHZibGFuayB3b3JrZXJzLiBCYXNpY2FsbHksIHRoaXMgaXMganVzdCBhIGdlbmVyaWMg
-RFJNIGludGVyZmFjZQp0aGF0IGFsbG93cyBmb3Igc2NoZWR1bGluZyBoaWdoLXByaW9yaXR5IHdv
-cmtlcnMgdGhhdCBzdGFydCBvbiBhIGdpdmVuCnZibGFuayBpbnRlcnJ1cHQuIE5vdGUgdGhhdCB3
-aGlsZSB3ZSdyZSBjdXJyZW50bHkgb25seSB1c2luZyB0aGlzIGluCm5vdXZlYXUsIEludGVsIGhh
-cyBwbGFucyB0byB1c2UgdGhpcyBmb3IgaTkxNSBhcyB3ZWxsIChoZW5jZSB3aHkgdGhleQpjYW1l
-IHVwIHdpdGggaXQhKS4KCkFuZCBmaW5hbGx5OiBpbiBvcmRlciB0byBpbXBsZW1lbnQgdGhlIGxh
-c3QgZmVhdHVyZSwgd2UgZXhwb3NlIHNvbWUgbmV3CmZ1bmN0aW9ucyBpbiB0aGUga2VybmVsJ3Mg
-a3RocmVhZF93b3JrZXIgaW5mcmFzdHJ1Y3R1cmUgc28gdGhhdCB3ZSBjYW4KZGUtY29tcGxpY2F0
-ZSBvdXIgaW1wbGVtZW50YXRpb24gb2YgdGhpcy4KCkFueXdheS13ZWxjb21lIHRvIHRoZSBmdXR1
-cmUhIDopCgpNYWpvciBjaGFuZ2VzIHNpbmNlIHY2OgoqIE1vdmUgdmJsYW5rX3dvcmsgcmVsYXRl
-ZCBmdW5jdGlvbnMgaW50byB0aGVpciBvd24gZmlsZXMKKiBXcml0ZSBkb2N1bWVudGF0aW9uCiog
-U2ltcGxpZnkgd29yayBmbHVzaGluZyBhbmQgY2FuY2VsbGF0aW9uIGJ5IGdldHRpbmcgcmlkIG9m
-IHNlcWNvdW50cwogIGFuZCAtPnBlbmRpbmcKTWFqb3IgY2hhbmdlcyBzaW5jZSB2NDoKKiBSZW1v
-dmUgdGhlIGludGVyZmFjZXMgd2UgdHJpZWQgYWRkaW5nIHRvIGt0aHJlYWRfd29ya2VyIGFuZCB1
-c2UgYSB3YWl0CiAgcXVldWUgKyBzZXFjb3VudCBpbiBvcmRlciB0byBpbXBsZW1lbnQgZmx1c2hp
-bmcgdmJsYW5rIHdvcmtlcnMuCiogUmViYXNlCk1ham9yIGNoYW5nZXMgc2luY2UgdjM6CiogU3R5
-bGUgZml4ZXMgb24gbm91dmVhdSBwYXRjaGVzIGZyb20gY2hlY2twYXRjaCwgbm8gZnVuY3Rpb25h
-bCBjaGFuZ2VzCiogRG9uJ3QgaW50ZWdyYXRlIHNvIHRpZ2h0bHkgd2l0aCBrdGhyZWFkX3dvcmsg
-KGFuZCB1c2Ugb3VyIG93biBsb2NrKSwKICBpbnN0ZWFkIGludHJvZHVjZSBzb21lIG5ldyBmdW5j
-dGlvbnMgZm9yIGRvaW5nIHNpbXBsZSBhc3luYyBmbHVzaGluZwogIGFuZCBjYW5jZWxsaW5nLiBJ
-IHRoaW5rIHRoaXMgaW50ZXJmYWNlIGxvb2tzIGEgbG90IG1vcmUgYWNjZXB0YWJsZQogIHRoZW4g
-d2hhdCBJIHdhcyBwcmV2aW91c2x5IHRyeWluZy4KKiBBcHBseSBzb21lIGNoYW5nZXMgcmVxdWVz
-dGVkIGJ5IGRhbnZldApNYWpvciBjaGFuZ2VzIHNpbmNlIHYyOgoqIFVzZSBrdGhyZWFkX3dvcmtl
-ciBpbnN0ZWFkIG9mIGt0aHJlYWRkIGZvciB2Ymxhbmsgd29ya2VycwoqIERvbid0IGNoZWNrIGRl
-YnVnZnMgcmV0dXJuIHZhbHVlcwoKTHl1ZGUgUGF1bCAoMTEpOgogIGRybS92Ymxhbms6IFJlZ2lz
-dGVyIGRybW0gY2xlYW51cCBhY3Rpb24gb25jZSBwZXIgZHJtX3ZibGFua19jcnRjCiAgZHJtL3Zi
-bGFuazogVXNlIHNwaW5fKHVuKWxvY2tfaXJxKCkgaW4gZHJtX2NydGNfdmJsYW5rX29mZigpCiAg
-ZHJtL3ZibGFuazogQWRkIHZibGFuayB3b3JrcwogIGRybS9ub3V2ZWF1L2ttcy9udjUwLTogVW5y
-b2xsIGVycm9yIGNsZWFudXAgaW4gbnY1MF9oZWFkX2NyZWF0ZSgpCiAgZHJtL25vdXZlYXUva21z
-L252MTQwLTogRG9uJ3QgbW9kaWZ5IGRlcHRoIGluIHN0YXRlIGR1cmluZyBhdG9taWMKICAgIGNv
-bW1pdAogIGRybS9ub3V2ZWF1L2ttcy9udjUwLTogRml4IGRpc2FibGluZyBkaXRoZXJpbmcKICBk
-cm0vbm91dmVhdS9rbXMvbnY1MC06IHMvaGFybS9hcm1oL2cKICBkcm0vbm91dmVhdS9rbXMvbnYx
-NDAtOiBUcmFjayB3bmR3IG1hcHBpbmdzIGluIG52NTBfaGVhZF9hdG9tCiAgZHJtL25vdXZlYXUv
-a21zL252NTAtOiBFeHBvc2UgbnY1MF9vdXRwX2F0b20gaW4gZGlzcC5oCiAgZHJtL25vdXZlYXUv
-a21zL252NTAtOiBNb3ZlIGhhcmQtY29kZWQgb2JqZWN0IGhhbmRsZXMgaW50byBoZWFkZXIKICBk
-cm0vbm91dmVhdS9rbXMvbnZkOS06IEFkZCBDUkMgc3VwcG9ydAoKIERvY3VtZW50YXRpb24vZ3B1
-L2RybS1rbXMucnN0ICAgICAgICAgICAgICAgfCAgMTUgKwogZHJpdmVycy9ncHUvZHJtL01ha2Vm
-aWxlICAgICAgICAgICAgICAgICAgICB8ICAgMiArLQogZHJpdmVycy9ncHUvZHJtL2RybV92Ymxh
-bmsuYyAgICAgICAgICAgICAgICB8ICA4MyArKy0KIGRyaXZlcnMvZ3B1L2RybS9kcm1fdmJsYW5r
-X2ludGVybmFsLmggICAgICAgfCAgMTkgKwogZHJpdmVycy9ncHUvZHJtL2RybV92Ymxhbmtfd29y
-ay5jICAgICAgICAgICB8IDI1OSArKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vZHJtX3ZibGFua193
-b3JrX2ludGVybmFsLmggIHwgIDI0ICsKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0
-L2NydGMuYyAgICAgfCAgMjUgKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL0ti
-dWlsZCAgICAgfCAgIDQgKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvYXRvbS5o
-ICAgICB8ICAyMSArCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jb3JlLmggICAg
-IHwgICA0ICsKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NvcmU5MDdkLmMgfCAg
-IDMgKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvY29yZTkxN2QuYyB8ICAgMyAr
-CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jb3JlYzM3ZC5jIHwgICAzICsKIGRy
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NvcmVjNTdkLmMgfCAgIDMgKwogZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvY3JjLmMgICAgICB8IDcxNCArKysrKysrKysrKysr
-KysrKysrKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvY3JjLmggICAgICB8IDEy
-NSArKysrCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jcmM5MDdkLmMgIHwgMTM5
-ICsrKysKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NyY2MzN2QuYyAgfCAxNTMg
-KysrKysKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyAgICAgfCAgNTgg
-Ky0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuaCAgICAgfCAgMjQgKwog
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvaGFuZGxlcy5oICB8ICAxNiArCiBkcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9oZWFkLmMgICAgIHwgMTM0ICsrKy0KIGRyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQuaCAgICAgfCAgMTIgKy0KIGRyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQ5MDdkLmMgfCAgMTQgKy0KIGRyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWRjMzdkLmMgfCAgMjcgKy0KIGRyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWRjNTdkLmMgfCAgMjAgKy0KIGRyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L2Rpc3BudjUwL3duZHcuYyAgICAgfCAgMTUgKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfZGlzcGxheS5jICAgfCAgNjAgKy0KIGluY2x1ZGUvZHJtL2RybV92Ymxhbmsu
-aCAgICAgICAgICAgICAgICAgICAgfCAgMjAgKwogaW5jbHVkZS9kcm0vZHJtX3ZibGFua193b3Jr
-LmggICAgICAgICAgICAgICB8ICA3MSArKwogMzAgZmlsZXMgY2hhbmdlZCwgMTkxMCBpbnNlcnRp
-b25zKCspLCAxNjAgZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUv
-ZHJtL2RybV92YmxhbmtfaW50ZXJuYWwuaAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1
-L2RybS9kcm1fdmJsYW5rX3dvcmsuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2Ry
-bS9kcm1fdmJsYW5rX3dvcmtfaW50ZXJuYWwuaAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NyYy5jCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvY3JjLmgKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jcmM5MDdkLmMKIGNyZWF0ZSBtb2RlIDEwMDY0
-NCBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jcmNjMzdkLmMKIGNyZWF0ZSBtb2Rl
-IDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9oYW5kbGVzLmgKIGNyZWF0
-ZSBtb2RlIDEwMDY0NCBpbmNsdWRlL2RybS9kcm1fdmJsYW5rX3dvcmsuaAoKLS0gCjIuMjYuMgoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+This got me confused for a bit while looking over this code: I had been
+planning on adding some blocking function calls into this function, but
+seeing the irqsave/irqrestore variants of spin_(un)lock() didn't make it
+very clear whether or not that would actually be safe.
+
+So I went ahead and reviewed every single driver in the kernel that uses
+this function, and they all fall into three categories:
+
+* Driver probe code
+* ->atomic_disable() callbacks
+* Legacy modesetting callbacks
+
+All of these will be guaranteed to have IRQs enabled, which means it's
+perfectly safe to block here. Just to make things a little less
+confusing to others in the future, let's switch over to
+spin_lock_irq()/spin_unlock_irq() to make that fact a little more
+obvious.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/drm_vblank.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+index ce5c1e1d29963..e895f5331fdb4 100644
+--- a/drivers/gpu/drm/drm_vblank.c
++++ b/drivers/gpu/drm/drm_vblank.c
+@@ -1283,13 +1283,12 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
+ 	struct drm_pending_vblank_event *e, *t;
+ 
+ 	ktime_t now;
+-	unsigned long irqflags;
+ 	u64 seq;
+ 
+ 	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
+ 		return;
+ 
+-	spin_lock_irqsave(&dev->event_lock, irqflags);
++	spin_lock_irq(&dev->event_lock);
+ 
+ 	spin_lock(&dev->vbl_lock);
+ 	drm_dbg_vbl(dev, "crtc %d, vblank enabled %d, inmodeset %d\n",
+@@ -1325,7 +1324,7 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
+ 		drm_vblank_put(dev, pipe);
+ 		send_vblank_event(dev, e, seq, now);
+ 	}
+-	spin_unlock_irqrestore(&dev->event_lock, irqflags);
++	spin_unlock_irq(&dev->event_lock);
+ 
+ 	/* Will be reset by the modeset helpers when re-enabling the crtc by
+ 	 * calling drm_calc_timestamping_constants(). */
+-- 
+2.26.2
