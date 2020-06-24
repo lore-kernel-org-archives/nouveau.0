@@ -1,32 +1,70 @@
-From: Christoph Hellwig <hch@lst.de>
-Subject: Re: [RESEND PATCH 2/3] nouveau: fix mixed normal and device
- private page migration
-Date: Wed, 24 Jun 2020 09:23:55 +0200
-Message-ID: <20200624072355.GB18609@lst.de>
-References: <20200622233854.10889-1-rcampbell@nvidia.com> <20200622233854.10889-3-rcampbell@nvidia.com>
+From: Mathieu Malaterre <malat-8fiUuRrzOP0dnm+yROfE0A@public.gmane.org>
+Subject: Re: Remove debug info from nouveau driver
+Date: Wed, 24 Jun 2020 11:53:24 +0200
+Message-ID: <CA+7wUsxhEz_xdVo2S33Ozf-wQ7Z5PDLk6sq0kbaJC0Oy-K-XJA@mail.gmail.com>
+References: <CA+7wUswEqHJmmLx+bD4qeLnOEWdhxAK2mt-OXL37-e9NKCuBmQ@mail.gmail.com>
+ <CAKb7UvhzgbjGjKzCETzLGJFR_H4+CUak88ZuNKK=dKqMoker4g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20200622233854.10889-3-rcampbell@nvidia.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ralph Campbell <rcampbell@nvidia.com>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7UvhzgbjGjKzCETzLGJFR_H4+CUak88ZuNKK=dKqMoker4g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jun 22, 2020 at 04:38:53PM -0700, Ralph Campbell wrote:
-> The OpenCL function clEnqueueSVMMigrateMem(), without any flags, will
-> migrate memory in the given address range to device private memory. The
-> source pages might already have been migrated to device private memory.
-> In that case, the source struct page is not checked to see if it is
-> a device private page and incorrectly computes the GPU's physical
-> address of local memory leading to data corruption.
-> Fix this by checking the source struct page and computing the correct
-> physical address.
+Much better now. thanks !
 
-I'm really worried about all this delicate code to fix the mixed
-ranges.  Can't we make it clear at the migrate_vma_* level if we want
-to migrate from or two device private memory, and then skip all the work
-for regions of memory that already are in the right place?  This might be
-a little more work initially, but I think it leads to a much better
-API.
+On Tue, Jun 23, 2020 at 5:11 PM Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+>
+> You probably have drm.debug set to something.
+>
+> On Tue, Jun 23, 2020 at 4:42 AM Mathieu Malaterre <malat-8fiUuRrzOP0dnm+yROfE0A@public.gmane.org> wrote:
+> >
+> > Hi there,
+> >
+> > I am gettings tons of messages in dmesg output such as:
+> >
+> > [...]
+> > [ 2419.238990] [drm:drm_mode_addfb2 [drm]] [FB:65]
+> > [ 2419.243388] 00a0 2 base507c_ntfy_set
+> > [ 2419.243391] 00000060
+> > [ 2419.243391] f0000000
+> > [ 2419.243393] 0084 1 base827c_image_set
+> > [ 2419.243394] 00000010
+> > [ 2419.243395] 00c0 1 base827c_image_set
+> > [ 2419.243395] fb00007a
+> > [ 2419.243396] 0110 2 base827c_image_set
+> > [ 2419.243397] 00000000
+> > [ 2419.243398] 00000000
+> > [ 2419.243399] 0800 5 base827c_image_set
+> > [ 2419.243399] 0007ce00
+> > [ 2419.243400] 00000000
+> > [ 2419.243400] 04380780
+> > [ 2419.243401] 00007804
+> > [ 2419.243402] 0000cf00
+> > [ 2419.243408] 0080 1 base507c_update
+> > [ 2419.243409] 00000000
+> > [...]
+> >
+> > Does anyone know how to remove those extra debug info from nouveau driver ?
+> >
+> > For reference:
+> >
+> > # cat /sys/module/nouveau/parameters/debug
+> > (null)
+> >
+> > Thanks much
+> > _______________________________________________
+> > Nouveau mailing list
+> > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> > https://lists.freedesktop.org/mailman/listinfo/nouveau
