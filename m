@@ -1,77 +1,87 @@
-From: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [RESEND PATCH 2/3] nouveau: fix mixed normal and device private
- page migration
-Date: Thu, 25 Jun 2020 14:31:44 -0300
-Message-ID: <20200625173144.GT6578@ziepe.ca>
+From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [RESEND PATCH 2/3] nouveau: fix mixed normal and
+ device private page migration
+Date: Thu, 25 Jun 2020 10:42:24 -0700
+Message-ID: <412b3a51-619a-4f94-da96-f4596e5eb510@nvidia.com>
 References: <20200622233854.10889-1-rcampbell@nvidia.com>
- <20200622233854.10889-3-rcampbell@nvidia.com>
- <20200624072355.GB18609@lst.de>
+ <20200622233854.10889-3-rcampbell@nvidia.com> <20200624072355.GB18609@lst.de>
  <330f6a82-d01d-db97-1dec-69346f41e707@nvidia.com>
  <a9aba057-3786-8204-f782-6e8f3c290b35@nvidia.com>
+ <20200625173144.GT6578@ziepe.ca>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <a9aba057-3786-8204-f782-6e8f3c290b35@nvidia.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ralph Campbell <rcampbell@nvidia.com>
-Cc: Christoph Hellwig <hch@lst.de>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, Bharata B Rao <bharata@linux.ibm.com>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200625173144.GT6578-uk2M96/98Pc@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jun 25, 2020 at 10:25:38AM -0700, Ralph Campbell wrote:
-> Making sure to include linux-mm and Bharata B Rao for IBM's
-> use of migrate_vma*().
-> 
-> On 6/24/20 11:10 AM, Ralph Campbell wrote:
-> > 
-> > On 6/24/20 12:23 AM, Christoph Hellwig wrote:
-> > > On Mon, Jun 22, 2020 at 04:38:53PM -0700, Ralph Campbell wrote:
-> > > > The OpenCL function clEnqueueSVMMigrateMem(), without any flags, will
-> > > > migrate memory in the given address range to device private memory. The
-> > > > source pages might already have been migrated to device private memory.
-> > > > In that case, the source struct page is not checked to see if it is
-> > > > a device private page and incorrectly computes the GPU's physical
-> > > > address of local memory leading to data corruption.
-> > > > Fix this by checking the source struct page and computing the correct
-> > > > physical address.
-> > > 
-> > > I'm really worried about all this delicate code to fix the mixed
-> > > ranges.  Can't we make it clear at the migrate_vma_* level if we want
-> > > to migrate from or two device private memory, and then skip all the work
-> > > for regions of memory that already are in the right place?  This might be
-> > > a little more work initially, but I think it leads to a much better
-> > > API.
-> > > 
-> > 
-> > The current code does encode the direction with src_owner != NULL meaning
-> > device private to system memory and src_owner == NULL meaning system
-> > memory to device private memory. This patch would obviously defeat that
-> > so perhaps a flag could be added to the struct migrate_vma to indicate the
-> > direction but I'm unclear how that makes things less delicate.
-> > Can you expand on what you are worried about?
-> > 
-> > The issue with invalidations might be better addressed by letting the device
-> > driver handle device private page TLB invalidations when migrating to
-> > system memory and changing migrate_vma_setup() to only invalidate CPU
-> > TLB entries for normal pages being migrated to device private memory.
-> > If a page isn't migrating, it seems inefficient to invalidate those TLB
-> > entries.
-> > 
-> > Any other suggestions?
-> 
-> After a night's sleep, I think this might work. What do others think?
-> 
-> 1) Add a new MMU_NOTIFY_MIGRATE enum to mmu_notifier_event.
-> 
-> 2) Change migrate_vma_collect() to use the new MMU_NOTIFY_MIGRATE event type.
->
-> 3) Modify nouveau_svmm_invalidate_range_start() to simply return (no invalidations)
-> for MMU_NOTIFY_MIGRATE mmu notifier callbacks.
-
-Isn't it a bit of an assumption that migrate_vma_collect() is only
-used by nouveau itself?
-
-What if some other devices' device_private pages are being migrated?
-
-Jason
+Ck9uIDYvMjUvMjAgMTA6MzEgQU0sIEphc29uIEd1bnRob3JwZSB3cm90ZToKPiBPbiBUaHUsIEp1
+biAyNSwgMjAyMCBhdCAxMDoyNTozOEFNIC0wNzAwLCBSYWxwaCBDYW1wYmVsbCB3cm90ZToKPj4g
+TWFraW5nIHN1cmUgdG8gaW5jbHVkZSBsaW51eC1tbSBhbmQgQmhhcmF0YSBCIFJhbyBmb3IgSUJN
+J3MKPj4gdXNlIG9mIG1pZ3JhdGVfdm1hKigpLgo+Pgo+PiBPbiA2LzI0LzIwIDExOjEwIEFNLCBS
+YWxwaCBDYW1wYmVsbCB3cm90ZToKPj4+Cj4+PiBPbiA2LzI0LzIwIDEyOjIzIEFNLCBDaHJpc3Rv
+cGggSGVsbHdpZyB3cm90ZToKPj4+PiBPbiBNb24sIEp1biAyMiwgMjAyMCBhdCAwNDozODo1M1BN
+IC0wNzAwLCBSYWxwaCBDYW1wYmVsbCB3cm90ZToKPj4+Pj4gVGhlIE9wZW5DTCBmdW5jdGlvbiBj
+bEVucXVldWVTVk1NaWdyYXRlTWVtKCksIHdpdGhvdXQgYW55IGZsYWdzLCB3aWxsCj4+Pj4+IG1p
+Z3JhdGUgbWVtb3J5IGluIHRoZSBnaXZlbiBhZGRyZXNzIHJhbmdlIHRvIGRldmljZSBwcml2YXRl
+IG1lbW9yeS4gVGhlCj4+Pj4+IHNvdXJjZSBwYWdlcyBtaWdodCBhbHJlYWR5IGhhdmUgYmVlbiBt
+aWdyYXRlZCB0byBkZXZpY2UgcHJpdmF0ZSBtZW1vcnkuCj4+Pj4+IEluIHRoYXQgY2FzZSwgdGhl
+IHNvdXJjZSBzdHJ1Y3QgcGFnZSBpcyBub3QgY2hlY2tlZCB0byBzZWUgaWYgaXQgaXMKPj4+Pj4g
+YSBkZXZpY2UgcHJpdmF0ZSBwYWdlIGFuZCBpbmNvcnJlY3RseSBjb21wdXRlcyB0aGUgR1BVJ3Mg
+cGh5c2ljYWwKPj4+Pj4gYWRkcmVzcyBvZiBsb2NhbCBtZW1vcnkgbGVhZGluZyB0byBkYXRhIGNv
+cnJ1cHRpb24uCj4+Pj4+IEZpeCB0aGlzIGJ5IGNoZWNraW5nIHRoZSBzb3VyY2Ugc3RydWN0IHBh
+Z2UgYW5kIGNvbXB1dGluZyB0aGUgY29ycmVjdAo+Pj4+PiBwaHlzaWNhbCBhZGRyZXNzLgo+Pj4+
+Cj4+Pj4gSSdtIHJlYWxseSB3b3JyaWVkIGFib3V0IGFsbCB0aGlzIGRlbGljYXRlIGNvZGUgdG8g
+Zml4IHRoZSBtaXhlZAo+Pj4+IHJhbmdlcy7CoCBDYW4ndCB3ZSBtYWtlIGl0IGNsZWFyIGF0IHRo
+ZSBtaWdyYXRlX3ZtYV8qIGxldmVsIGlmIHdlIHdhbnQKPj4+PiB0byBtaWdyYXRlIGZyb20gb3Ig
+dHdvIGRldmljZSBwcml2YXRlIG1lbW9yeSwgYW5kIHRoZW4gc2tpcCBhbGwgdGhlIHdvcmsKPj4+
+PiBmb3IgcmVnaW9ucyBvZiBtZW1vcnkgdGhhdCBhbHJlYWR5IGFyZSBpbiB0aGUgcmlnaHQgcGxh
+Y2U/wqAgVGhpcyBtaWdodCBiZQo+Pj4+IGEgbGl0dGxlIG1vcmUgd29yayBpbml0aWFsbHksIGJ1
+dCBJIHRoaW5rIGl0IGxlYWRzIHRvIGEgbXVjaCBiZXR0ZXIKPj4+PiBBUEkuCj4+Pj4KPj4+Cj4+
+PiBUaGUgY3VycmVudCBjb2RlIGRvZXMgZW5jb2RlIHRoZSBkaXJlY3Rpb24gd2l0aCBzcmNfb3du
+ZXIgIT0gTlVMTCBtZWFuaW5nCj4+PiBkZXZpY2UgcHJpdmF0ZSB0byBzeXN0ZW0gbWVtb3J5IGFu
+ZCBzcmNfb3duZXIgPT0gTlVMTCBtZWFuaW5nIHN5c3RlbQo+Pj4gbWVtb3J5IHRvIGRldmljZSBw
+cml2YXRlIG1lbW9yeS4gVGhpcyBwYXRjaCB3b3VsZCBvYnZpb3VzbHkgZGVmZWF0IHRoYXQKPj4+
+IHNvIHBlcmhhcHMgYSBmbGFnIGNvdWxkIGJlIGFkZGVkIHRvIHRoZSBzdHJ1Y3QgbWlncmF0ZV92
+bWEgdG8gaW5kaWNhdGUgdGhlCj4+PiBkaXJlY3Rpb24gYnV0IEknbSB1bmNsZWFyIGhvdyB0aGF0
+IG1ha2VzIHRoaW5ncyBsZXNzIGRlbGljYXRlLgo+Pj4gQ2FuIHlvdSBleHBhbmQgb24gd2hhdCB5
+b3UgYXJlIHdvcnJpZWQgYWJvdXQ/Cj4+Pgo+Pj4gVGhlIGlzc3VlIHdpdGggaW52YWxpZGF0aW9u
+cyBtaWdodCBiZSBiZXR0ZXIgYWRkcmVzc2VkIGJ5IGxldHRpbmcgdGhlIGRldmljZQo+Pj4gZHJp
+dmVyIGhhbmRsZSBkZXZpY2UgcHJpdmF0ZSBwYWdlIFRMQiBpbnZhbGlkYXRpb25zIHdoZW4gbWln
+cmF0aW5nIHRvCj4+PiBzeXN0ZW0gbWVtb3J5IGFuZCBjaGFuZ2luZyBtaWdyYXRlX3ZtYV9zZXR1
+cCgpIHRvIG9ubHkgaW52YWxpZGF0ZSBDUFUKPj4+IFRMQiBlbnRyaWVzIGZvciBub3JtYWwgcGFn
+ZXMgYmVpbmcgbWlncmF0ZWQgdG8gZGV2aWNlIHByaXZhdGUgbWVtb3J5Lgo+Pj4gSWYgYSBwYWdl
+IGlzbid0IG1pZ3JhdGluZywgaXQgc2VlbXMgaW5lZmZpY2llbnQgdG8gaW52YWxpZGF0ZSB0aG9z
+ZSBUTEIKPj4+IGVudHJpZXMuCj4+Pgo+Pj4gQW55IG90aGVyIHN1Z2dlc3Rpb25zPwo+Pgo+PiBB
+ZnRlciBhIG5pZ2h0J3Mgc2xlZXAsIEkgdGhpbmsgdGhpcyBtaWdodCB3b3JrLiBXaGF0IGRvIG90
+aGVycyB0aGluaz8KPj4KPj4gMSkgQWRkIGEgbmV3IE1NVV9OT1RJRllfTUlHUkFURSBlbnVtIHRv
+IG1tdV9ub3RpZmllcl9ldmVudC4KPj4KPj4gMikgQ2hhbmdlIG1pZ3JhdGVfdm1hX2NvbGxlY3Qo
+KSB0byB1c2UgdGhlIG5ldyBNTVVfTk9USUZZX01JR1JBVEUgZXZlbnQgdHlwZS4KPj4KPj4gMykg
+TW9kaWZ5IG5vdXZlYXVfc3ZtbV9pbnZhbGlkYXRlX3JhbmdlX3N0YXJ0KCkgdG8gc2ltcGx5IHJl
+dHVybiAobm8gaW52YWxpZGF0aW9ucykKPj4gZm9yIE1NVV9OT1RJRllfTUlHUkFURSBtbXUgbm90
+aWZpZXIgY2FsbGJhY2tzLgo+IAo+IElzbid0IGl0IGEgYml0IG9mIGFuIGFzc3VtcHRpb24gdGhh
+dCBtaWdyYXRlX3ZtYV9jb2xsZWN0KCkgaXMgb25seQo+IHVzZWQgYnkgbm91dmVhdSBpdHNlbGY/
+Cj4gCj4gV2hhdCBpZiBzb21lIG90aGVyIGRldmljZXMnIGRldmljZV9wcml2YXRlIHBhZ2VzIGFy
+ZSBiZWluZyBtaWdyYXRlZD8KPiAKPiBKYXNvbgo+IAoKR29vZCBwb2ludC4gVGhlIGRyaXZlciBu
+ZWVkcyBhIHdheSBvZiBrbm93aW5nIHRoZSBjYWxsYmFjayBpcyBkdWUgaXRzIGNhbGwKdG8gbWln
+cmF0ZV92bWFfc2V0dXAoKSBhbmQgbm90IHNvbWUgb3RoZXIgbWlncmF0aW9uIGludmFsaWRhdGlv
+bi4KSG93IGFib3V0IGFkZGluZyBhIHZvaWQgcG9pbnRlciB0byBzdHJ1Y3QgbW11X25vdGlmaWVy
+X3JhbmdlCndoaWNoIG1pZ3JhdGVfdm1hX2NvbGxlY3QoKSBjYW4gc2V0IHRvIHNyY19vd25lci4g
+SWYgdGhlIGV2ZW50IGlzCk1NVV9OT1RJRllfTUlHUkFURSBhbmQgdGhlIHNyY19vd25lciBtYXRj
+aGVzIHRoZSB2b2lkIHBvaW50ZXIsIHRoZW4gdGhlCmNhbGxiYWNrIHNob3VsZCBiZSB0aGUgb25l
+IHRoZSBkcml2ZXIgaW5pdGlhdGVkLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
+dXZlYXUK
