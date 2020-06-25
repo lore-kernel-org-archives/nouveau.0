@@ -1,75 +1,98 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [Nouveau] [RESEND PATCH 1/3] nouveau: fix migrate page regression
-Date: Thu, 25 Jun 2020 15:25:04 +1000
-Message-ID: <CACAvsv6x5PPjFcpz0VD1e6PcXhJ9ENkOr1p=X4dFarJ-OF-Wvw@mail.gmail.com>
-References: <20200622233854.10889-1-rcampbell@nvidia.com> <20200622233854.10889-2-rcampbell@nvidia.com>
- <53751f8e-d901-df2e-a2e0-1b1484b31b81@nvidia.com> <CACAvsv5NqqF704HyvTd6DH43-one06OO7Z=uENUS5RSOJzP8Jg@mail.gmail.com>
+From: Ralph Campbell <rcampbell@nvidia.com>
+Subject: Re: [RESEND PATCH 2/3] nouveau: fix mixed normal and device private
+ page migration
+Date: Thu, 25 Jun 2020 10:25:38 -0700
+Message-ID: <a9aba057-3786-8204-f782-6e8f3c290b35@nvidia.com>
+References: <20200622233854.10889-1-rcampbell@nvidia.com>
+ <20200622233854.10889-3-rcampbell@nvidia.com> <20200624072355.GB18609@lst.de>
+ <330f6a82-d01d-db97-1dec-69346f41e707@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CACAvsv5NqqF704HyvTd6DH43-one06OO7Z=uENUS5RSOJzP8Jg@mail.gmail.com>
+In-Reply-To: <330f6a82-d01d-db97-1dec-69346f41e707@nvidia.com>
+Content-Language: en-US
 Sender: linux-kernel-owner@vger.kernel.org
-To: John Hubbard <jhubbard@nvidia.com>
-Cc: Ralph Campbell <rcampbell@nvidia.com>, ML nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, Jason Gunthorpe <jgg@mellanox.com>, Christoph Hellwig <hch@lst.de>, Ben Skeggs <bskeggs@redhat.com>
+To: Christoph Hellwig <hch@lst.de>
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, Bharata B Rao <bharata@linux.ibm.com>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 25 Jun 2020 at 15:23, Ben Skeggs <skeggsb@gmail.com> wrote:
->
-> On Tue, 23 Jun 2020 at 10:51, John Hubbard <jhubbard@nvidia.com> wrote:
-> >
-> > On 2020-06-22 16:38, Ralph Campbell wrote:
-> > > The patch to add zero page migration to GPU memory inadvertantly included
-> >
-> > inadvertently
-> >
-> > > part of a future change which broke normal page migration to GPU memory
-> > > by copying too much data and corrupting GPU memory.
-> > > Fix this by only copying one page instead of a byte count.
-> > >
-> > > Fixes: 9d4296a7d4b3 ("drm/nouveau/nouveau/hmm: fix migrate zero page to GPU")
-> > > Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
-> > > ---
-> > >   drivers/gpu/drm/nouveau/nouveau_dmem.c | 2 +-
-> > >   1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> > > index e5c230d9ae24..cc9993837508 100644
-> > > --- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> > > +++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> > > @@ -550,7 +550,7 @@ static unsigned long nouveau_dmem_migrate_copy_one(struct nouveau_drm *drm,
-> > >                                        DMA_BIDIRECTIONAL);
-> > >               if (dma_mapping_error(dev, *dma_addr))
-> > >                       goto out_free_page;
-> > > -             if (drm->dmem->migrate.copy_func(drm, page_size(spage),
-> > > +             if (drm->dmem->migrate.copy_func(drm, 1,
-> > >                       NOUVEAU_APER_VRAM, paddr, NOUVEAU_APER_HOST, *dma_addr))
-> > >                       goto out_dma_unmap;
-> > >       } else {
-> > >
-> >
-> >
-> > I Am Not A Nouveau Expert, nor is it really clear to me how
-> > page_size(spage) came to contain something other than a page's worth of
-> > byte count, but this fix looks accurate to me. It's better for
-> > maintenance, too, because the function never intends to migrate "some
-> > number of bytes". It intends to migrate exactly one page.
-> >
-> > Hope I'm not missing something fundamental, but:
-> I'm actually a bit confused here too.  Because, it *looks* like the
-> function takes a byte count, not a page count, and unless I'm missing
-> something too, it's setup the copy class for a byte count also.
-No, nevermind.. I was looking at nvc0b5_migrate_clear() :)
+Making sure to include linux-mm and Bharata B Rao for IBM's
+use of migrate_vma*().
 
->
-> >
-> > Reviewed-by: John Hubbard <jhubbard@nvidia.com
-> >
-> >
-> > thanks,
-> > --
-> > John Hubbard
-> > NVIDIA
-> > _______________________________________________
-> > Nouveau mailing list
-> > Nouveau@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/nouveau
+On 6/24/20 11:10 AM, Ralph Campbell wrote:
+>=20
+> On 6/24/20 12:23 AM, Christoph Hellwig wrote:
+>> On Mon, Jun 22, 2020 at 04:38:53PM -0700, Ralph Campbell wrote:
+>>> The OpenCL function clEnqueueSVMMigrateMem(), without any flags, will
+>>> migrate memory in the given address range to device private memory. The
+>>> source pages might already have been migrated to device private memory.
+>>> In that case, the source struct page is not checked to see if it is
+>>> a device private page and incorrectly computes the GPU's physical
+>>> address of local memory leading to data corruption.
+>>> Fix this by checking the source struct page and computing the correct
+>>> physical address.
+>>
+>> I'm really worried about all this delicate code to fix the mixed
+>> ranges.=C2=A0 Can't we make it clear at the migrate_vma_* level if we wa=
+nt
+>> to migrate from or two device private memory, and then skip all the work
+>> for regions of memory that already are in the right place?=C2=A0 This mi=
+ght be
+>> a little more work initially, but I think it leads to a much better
+>> API.
+>>
+>=20
+> The current code does encode the direction with src_owner !=3D NULL meani=
+ng
+> device private to system memory and src_owner =3D=3D NULL meaning system
+> memory to device private memory. This patch would obviously defeat that
+> so perhaps a flag could be added to the struct migrate_vma to indicate th=
+e
+> direction but I'm unclear how that makes things less delicate.
+> Can you expand on what you are worried about?
+>=20
+> The issue with invalidations might be better addressed by letting the dev=
+ice
+> driver handle device private page TLB invalidations when migrating to
+> system memory and changing migrate_vma_setup() to only invalidate CPU
+> TLB entries for normal pages being migrated to device private memory.
+> If a page isn't migrating, it seems inefficient to invalidate those TLB
+> entries.
+>=20
+> Any other suggestions?
+
+After a night's sleep, I think this might work. What do others think?
+
+1) Add a new MMU_NOTIFY_MIGRATE enum to mmu_notifier_event.
+
+2) Change migrate_vma_collect() to use the new MMU_NOTIFY_MIGRATE event typ=
+e.
+
+3) Modify nouveau_svmm_invalidate_range_start() to simply return (no invali=
+dations)
+for MMU_NOTIFY_MIGRATE mmu notifier callbacks.
+
+4) Leave the src_owner check in migrate_vma_collect_pmd() for normal pages =
+so if the
+device driver is migrating normal pages to device private memory, the drive=
+r would
+set src_owner =3D NULL and already migrated device private pages would be s=
+kipped.
+Since the mmu notifier callback did nothing, the device private entries rem=
+ain valid
+in the device's MMU. migrate_vma_collect_pmd() would still invalidate the C=
+PU page
+tables for migrated normal pages.
+If the driver is migrating device private pages to system memory, it would =
+set
+src_owner !=3D NULL, normal pages would be skipped, but now the device driv=
+er has to
+invalidate device MMU mappings in the "alloc and copy" before doing the cop=
+y.
+This would be after migrate_vma_setup() returns so the list of migrating de=
+vice
+pages is known to the driver.
+
+The rest of the migrate_vma_pages() and migrate_vma_finalize() remain the s=
+ame.
