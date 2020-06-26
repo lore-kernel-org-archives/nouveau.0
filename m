@@ -1,65 +1,94 @@
-From: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] nouveau: fix page fault on device private
- memory
-Date: Fri, 26 Jun 2020 11:05:14 -0700
-Message-ID: <1c004a46-c818-7d4c-254a-60b5c932d67b@nvidia.com>
-References: <20200626172626.19207-1-rcampbell@nvidia.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [RFC v7 02/11] drm/vblank: Use spin_(un)lock_irq() in
+ drm_crtc_vblank_off()
+Date: Fri, 26 Jun 2020 22:47:13 +0200
+Message-ID: <20200626204713.GG3278063@phenom.ffwll.local>
+References: <20200624230318.126256-1-lyude@redhat.com>
+ <20200624230318.126256-3-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200626172626.19207-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20200624230318.126256-3-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>, Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-On 2020-06-26 10:26, Ralph Campbell wrote:
-> If system memory is migrated to device private memory and no GPU MMU
-> page table entry exists, the GPU will fault and call hmm_range_fault()
-> to get the PFN for the page. Since the .dev_private_owner pointer in
-> struct hmm_range is not set, hmm_range_fault returns an error which
-> results in the GPU program stopping with a fatal fault.
-> Fix this by setting .dev_private_owner appropriately.
+On Wed, Jun 24, 2020 at 07:03:09PM -0400, Lyude Paul wrote:
+> This got me confused for a bit while looking over this code: I had been
+> planning on adding some blocking function calls into this function, but
+> seeing the irqsave/irqrestore variants of spin_(un)lock() didn't make it
+> very clear whether or not that would actually be safe.
 > 
-> Fixes: 08ddddda667b ("mm/hmm: check the device private page owner in hmm_range_fault()")
-> Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> So I went ahead and reviewed every single driver in the kernel that uses
+> this function, and they all fall into three categories:
+> 
+> * Driver probe code
+> * ->atomic_disable() callbacks
+> * Legacy modesetting callbacks
+> 
+> All of these will be guaranteed to have IRQs enabled, which means it's
+> perfectly safe to block here. Just to make things a little less
+> confusing to others in the future, let's switch over to
+> spin_lock_irq()/spin_unlock_irq() to make that fact a little more
+> obvious.
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+I think the patch is correct, but now we're having a bit a inconsistency,
+since all other functions where the same applies still use _irqsave. I
+looked through the file and I think drm_vblank_get, drm_crtc_vblank_reset,
+drm_crtc_vblank_on and drm_legacy_vblank_post_modeset,
+drm_queue_vblank_event and drm_crtc_queue_sequence_ioctl are all candiates
+for the same cleanup.
+
+Maybe follow up patches for less confusion?
+
+On this:
+
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+
 > ---
+>  drivers/gpu/drm/drm_vblank.c | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
 > 
-> This is based on Linux-5.8.0-rc2 and is for Ben Skeggs nouveau tree.
-> It doesn't depend on any of the other nouveau/HMM changes I have
-> recently posted.
+> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+> index ce5c1e1d29963..e895f5331fdb4 100644
+> --- a/drivers/gpu/drm/drm_vblank.c
+> +++ b/drivers/gpu/drm/drm_vblank.c
+> @@ -1283,13 +1283,12 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
+>  	struct drm_pending_vblank_event *e, *t;
+>  
+>  	ktime_t now;
+> -	unsigned long irqflags;
+>  	u64 seq;
+>  
+>  	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
+>  		return;
+>  
+> -	spin_lock_irqsave(&dev->event_lock, irqflags);
+> +	spin_lock_irq(&dev->event_lock);
+>  
+>  	spin_lock(&dev->vbl_lock);
+>  	drm_dbg_vbl(dev, "crtc %d, vblank enabled %d, inmodeset %d\n",
+> @@ -1325,7 +1324,7 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
+>  		drm_vblank_put(dev, pipe);
+>  		send_vblank_event(dev, e, seq, now);
+>  	}
+> -	spin_unlock_irqrestore(&dev->event_lock, irqflags);
+> +	spin_unlock_irq(&dev->event_lock);
+>  
+>  	/* Will be reset by the modeset helpers when re-enabling the crtc by
+>  	 * calling drm_calc_timestamping_constants(). */
+> -- 
+> 2.26.2
+> 
 
-Maybe cc stable, seeing as how the problem affect Linux 5.7?
-
-thanks,
 -- 
-John Hubbard
-NVIDIA
-
-> 
->   drivers/gpu/drm/nouveau/nouveau_svm.c | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-> index ba9f9359c30e..6586d9d39874 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-> @@ -562,6 +562,7 @@ static int nouveau_range_fault(struct nouveau_svmm *svmm,
->   		.end = notifier->notifier.interval_tree.last + 1,
->   		.pfn_flags_mask = HMM_PFN_REQ_FAULT | HMM_PFN_REQ_WRITE,
->   		.hmm_pfns = hmm_pfns,
-> +		.dev_private_owner = drm->dev,
->   	};
->   	struct mm_struct *mm = notifier->notifier.mm;
->   	int ret;
-> 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
