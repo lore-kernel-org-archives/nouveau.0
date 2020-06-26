@@ -1,87 +1,48 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [RESEND PATCH 2/3] nouveau: fix mixed normal and
- device private page migration
-Date: Thu, 25 Jun 2020 10:42:24 -0700
-Message-ID: <412b3a51-619a-4f94-da96-f4596e5eb510@nvidia.com>
-References: <20200622233854.10889-1-rcampbell@nvidia.com>
- <20200622233854.10889-3-rcampbell@nvidia.com> <20200624072355.GB18609@lst.de>
- <330f6a82-d01d-db97-1dec-69346f41e707@nvidia.com>
- <a9aba057-3786-8204-f782-6e8f3c290b35@nvidia.com>
- <20200625173144.GT6578@ziepe.ca>
+From: Ralph Campbell <rcampbell@nvidia.com>
+Subject: [PATCH] nouveau: fix page fault on device private memory
+Date: Fri, 26 Jun 2020 10:26:26 -0700
+Message-ID: <20200626172626.19207-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200625173144.GT6578-uk2M96/98Pc@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Ralph Campbell <rcampbell@nvidia.com>
 List-Id: nouveau.vger.kernel.org
 
-Ck9uIDYvMjUvMjAgMTA6MzEgQU0sIEphc29uIEd1bnRob3JwZSB3cm90ZToKPiBPbiBUaHUsIEp1
-biAyNSwgMjAyMCBhdCAxMDoyNTozOEFNIC0wNzAwLCBSYWxwaCBDYW1wYmVsbCB3cm90ZToKPj4g
-TWFraW5nIHN1cmUgdG8gaW5jbHVkZSBsaW51eC1tbSBhbmQgQmhhcmF0YSBCIFJhbyBmb3IgSUJN
-J3MKPj4gdXNlIG9mIG1pZ3JhdGVfdm1hKigpLgo+Pgo+PiBPbiA2LzI0LzIwIDExOjEwIEFNLCBS
-YWxwaCBDYW1wYmVsbCB3cm90ZToKPj4+Cj4+PiBPbiA2LzI0LzIwIDEyOjIzIEFNLCBDaHJpc3Rv
-cGggSGVsbHdpZyB3cm90ZToKPj4+PiBPbiBNb24sIEp1biAyMiwgMjAyMCBhdCAwNDozODo1M1BN
-IC0wNzAwLCBSYWxwaCBDYW1wYmVsbCB3cm90ZToKPj4+Pj4gVGhlIE9wZW5DTCBmdW5jdGlvbiBj
-bEVucXVldWVTVk1NaWdyYXRlTWVtKCksIHdpdGhvdXQgYW55IGZsYWdzLCB3aWxsCj4+Pj4+IG1p
-Z3JhdGUgbWVtb3J5IGluIHRoZSBnaXZlbiBhZGRyZXNzIHJhbmdlIHRvIGRldmljZSBwcml2YXRl
-IG1lbW9yeS4gVGhlCj4+Pj4+IHNvdXJjZSBwYWdlcyBtaWdodCBhbHJlYWR5IGhhdmUgYmVlbiBt
-aWdyYXRlZCB0byBkZXZpY2UgcHJpdmF0ZSBtZW1vcnkuCj4+Pj4+IEluIHRoYXQgY2FzZSwgdGhl
-IHNvdXJjZSBzdHJ1Y3QgcGFnZSBpcyBub3QgY2hlY2tlZCB0byBzZWUgaWYgaXQgaXMKPj4+Pj4g
-YSBkZXZpY2UgcHJpdmF0ZSBwYWdlIGFuZCBpbmNvcnJlY3RseSBjb21wdXRlcyB0aGUgR1BVJ3Mg
-cGh5c2ljYWwKPj4+Pj4gYWRkcmVzcyBvZiBsb2NhbCBtZW1vcnkgbGVhZGluZyB0byBkYXRhIGNv
-cnJ1cHRpb24uCj4+Pj4+IEZpeCB0aGlzIGJ5IGNoZWNraW5nIHRoZSBzb3VyY2Ugc3RydWN0IHBh
-Z2UgYW5kIGNvbXB1dGluZyB0aGUgY29ycmVjdAo+Pj4+PiBwaHlzaWNhbCBhZGRyZXNzLgo+Pj4+
-Cj4+Pj4gSSdtIHJlYWxseSB3b3JyaWVkIGFib3V0IGFsbCB0aGlzIGRlbGljYXRlIGNvZGUgdG8g
-Zml4IHRoZSBtaXhlZAo+Pj4+IHJhbmdlcy7CoCBDYW4ndCB3ZSBtYWtlIGl0IGNsZWFyIGF0IHRo
-ZSBtaWdyYXRlX3ZtYV8qIGxldmVsIGlmIHdlIHdhbnQKPj4+PiB0byBtaWdyYXRlIGZyb20gb3Ig
-dHdvIGRldmljZSBwcml2YXRlIG1lbW9yeSwgYW5kIHRoZW4gc2tpcCBhbGwgdGhlIHdvcmsKPj4+
-PiBmb3IgcmVnaW9ucyBvZiBtZW1vcnkgdGhhdCBhbHJlYWR5IGFyZSBpbiB0aGUgcmlnaHQgcGxh
-Y2U/wqAgVGhpcyBtaWdodCBiZQo+Pj4+IGEgbGl0dGxlIG1vcmUgd29yayBpbml0aWFsbHksIGJ1
-dCBJIHRoaW5rIGl0IGxlYWRzIHRvIGEgbXVjaCBiZXR0ZXIKPj4+PiBBUEkuCj4+Pj4KPj4+Cj4+
-PiBUaGUgY3VycmVudCBjb2RlIGRvZXMgZW5jb2RlIHRoZSBkaXJlY3Rpb24gd2l0aCBzcmNfb3du
-ZXIgIT0gTlVMTCBtZWFuaW5nCj4+PiBkZXZpY2UgcHJpdmF0ZSB0byBzeXN0ZW0gbWVtb3J5IGFu
-ZCBzcmNfb3duZXIgPT0gTlVMTCBtZWFuaW5nIHN5c3RlbQo+Pj4gbWVtb3J5IHRvIGRldmljZSBw
-cml2YXRlIG1lbW9yeS4gVGhpcyBwYXRjaCB3b3VsZCBvYnZpb3VzbHkgZGVmZWF0IHRoYXQKPj4+
-IHNvIHBlcmhhcHMgYSBmbGFnIGNvdWxkIGJlIGFkZGVkIHRvIHRoZSBzdHJ1Y3QgbWlncmF0ZV92
-bWEgdG8gaW5kaWNhdGUgdGhlCj4+PiBkaXJlY3Rpb24gYnV0IEknbSB1bmNsZWFyIGhvdyB0aGF0
-IG1ha2VzIHRoaW5ncyBsZXNzIGRlbGljYXRlLgo+Pj4gQ2FuIHlvdSBleHBhbmQgb24gd2hhdCB5
-b3UgYXJlIHdvcnJpZWQgYWJvdXQ/Cj4+Pgo+Pj4gVGhlIGlzc3VlIHdpdGggaW52YWxpZGF0aW9u
-cyBtaWdodCBiZSBiZXR0ZXIgYWRkcmVzc2VkIGJ5IGxldHRpbmcgdGhlIGRldmljZQo+Pj4gZHJp
-dmVyIGhhbmRsZSBkZXZpY2UgcHJpdmF0ZSBwYWdlIFRMQiBpbnZhbGlkYXRpb25zIHdoZW4gbWln
-cmF0aW5nIHRvCj4+PiBzeXN0ZW0gbWVtb3J5IGFuZCBjaGFuZ2luZyBtaWdyYXRlX3ZtYV9zZXR1
-cCgpIHRvIG9ubHkgaW52YWxpZGF0ZSBDUFUKPj4+IFRMQiBlbnRyaWVzIGZvciBub3JtYWwgcGFn
-ZXMgYmVpbmcgbWlncmF0ZWQgdG8gZGV2aWNlIHByaXZhdGUgbWVtb3J5Lgo+Pj4gSWYgYSBwYWdl
-IGlzbid0IG1pZ3JhdGluZywgaXQgc2VlbXMgaW5lZmZpY2llbnQgdG8gaW52YWxpZGF0ZSB0aG9z
-ZSBUTEIKPj4+IGVudHJpZXMuCj4+Pgo+Pj4gQW55IG90aGVyIHN1Z2dlc3Rpb25zPwo+Pgo+PiBB
-ZnRlciBhIG5pZ2h0J3Mgc2xlZXAsIEkgdGhpbmsgdGhpcyBtaWdodCB3b3JrLiBXaGF0IGRvIG90
-aGVycyB0aGluaz8KPj4KPj4gMSkgQWRkIGEgbmV3IE1NVV9OT1RJRllfTUlHUkFURSBlbnVtIHRv
-IG1tdV9ub3RpZmllcl9ldmVudC4KPj4KPj4gMikgQ2hhbmdlIG1pZ3JhdGVfdm1hX2NvbGxlY3Qo
-KSB0byB1c2UgdGhlIG5ldyBNTVVfTk9USUZZX01JR1JBVEUgZXZlbnQgdHlwZS4KPj4KPj4gMykg
-TW9kaWZ5IG5vdXZlYXVfc3ZtbV9pbnZhbGlkYXRlX3JhbmdlX3N0YXJ0KCkgdG8gc2ltcGx5IHJl
-dHVybiAobm8gaW52YWxpZGF0aW9ucykKPj4gZm9yIE1NVV9OT1RJRllfTUlHUkFURSBtbXUgbm90
-aWZpZXIgY2FsbGJhY2tzLgo+IAo+IElzbid0IGl0IGEgYml0IG9mIGFuIGFzc3VtcHRpb24gdGhh
-dCBtaWdyYXRlX3ZtYV9jb2xsZWN0KCkgaXMgb25seQo+IHVzZWQgYnkgbm91dmVhdSBpdHNlbGY/
-Cj4gCj4gV2hhdCBpZiBzb21lIG90aGVyIGRldmljZXMnIGRldmljZV9wcml2YXRlIHBhZ2VzIGFy
-ZSBiZWluZyBtaWdyYXRlZD8KPiAKPiBKYXNvbgo+IAoKR29vZCBwb2ludC4gVGhlIGRyaXZlciBu
-ZWVkcyBhIHdheSBvZiBrbm93aW5nIHRoZSBjYWxsYmFjayBpcyBkdWUgaXRzIGNhbGwKdG8gbWln
-cmF0ZV92bWFfc2V0dXAoKSBhbmQgbm90IHNvbWUgb3RoZXIgbWlncmF0aW9uIGludmFsaWRhdGlv
-bi4KSG93IGFib3V0IGFkZGluZyBhIHZvaWQgcG9pbnRlciB0byBzdHJ1Y3QgbW11X25vdGlmaWVy
-X3JhbmdlCndoaWNoIG1pZ3JhdGVfdm1hX2NvbGxlY3QoKSBjYW4gc2V0IHRvIHNyY19vd25lci4g
-SWYgdGhlIGV2ZW50IGlzCk1NVV9OT1RJRllfTUlHUkFURSBhbmQgdGhlIHNyY19vd25lciBtYXRj
-aGVzIHRoZSB2b2lkIHBvaW50ZXIsIHRoZW4gdGhlCmNhbGxiYWNrIHNob3VsZCBiZSB0aGUgb25l
-IHRoZSBkcml2ZXIgaW5pdGlhdGVkLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+If system memory is migrated to device private memory and no GPU MMU
+page table entry exists, the GPU will fault and call hmm_range_fault()
+to get the PFN for the page. Since the .dev_private_owner pointer in
+struct hmm_range is not set, hmm_range_fault returns an error which
+results in the GPU program stopping with a fatal fault.
+Fix this by setting .dev_private_owner appropriately.
+
+Fixes: 08ddddda667b ("mm/hmm: check the device private page owner in hmm_ra=
+nge_fault()")
+Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
+---
+
+This is based on Linux-5.8.0-rc2 and is for Ben Skeggs nouveau tree.
+It doesn't depend on any of the other nouveau/HMM changes I have
+recently posted.
+
+ drivers/gpu/drm/nouveau/nouveau_svm.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouvea=
+u/nouveau_svm.c
+index ba9f9359c30e..6586d9d39874 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_svm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+@@ -562,6 +562,7 @@ static int nouveau_range_fault(struct nouveau_svmm *svm=
+m,
+ 		.end =3D notifier->notifier.interval_tree.last + 1,
+ 		.pfn_flags_mask =3D HMM_PFN_REQ_FAULT | HMM_PFN_REQ_WRITE,
+ 		.hmm_pfns =3D hmm_pfns,
++		.dev_private_owner =3D drm->dev,
+ 	};
+ 	struct mm_struct *mm =3D notifier->notifier.mm;
+ 	int ret;
+--=20
+2.20.1
