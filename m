@@ -1,8 +1,7 @@
 From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v3 4/5] nouveau/hmm: support mapping large sysmem
- pages
-Date: Wed, 1 Jul 2020 15:53:51 -0700
-Message-ID: <20200701225352.9649-5-rcampbell@nvidia.com>
+Subject: [PATCH v3 5/5] hmm: add tests for hmm_pfn_to_map_order()
+Date: Wed, 1 Jul 2020 15:53:52 -0700
+Message-ID: <20200701225352.9649-6-rcampbell@nvidia.com>
 References: <20200701225352.9649-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,132 +21,139 @@ To: linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3Ytjv
 Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Nouveau currently only supports mapping PAGE_SIZE sized pages of system
-memory when shared virtual memory (SVM) is enabled. Use the new
-hmm_pfn_to_map_order() function to support mapping system memory pages
-that are PMD_SIZE.
+Add a sanity test for hmm_range_fault() returning the page mapping size
+order.
 
 Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_svm.c | 53 ++++++++++++++++++++-------
- 1 file changed, 40 insertions(+), 13 deletions(-)
+ lib/test_hmm.c                         |  4 ++
+ lib/test_hmm_uapi.h                    |  4 ++
+ tools/testing/selftests/vm/hmm-tests.c | 76 ++++++++++++++++++++++++++
+ 3 files changed, 84 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-index 665dede69bd1..c5f8ca6fb2e3 100644
---- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-@@ -514,38 +514,57 @@ static const struct mmu_interval_notifier_ops nouveau_svm_mni_ops = {
- };
- 
- static void nouveau_hmm_convert_pfn(struct nouveau_drm *drm,
--				    struct hmm_range *range, u64 *ioctl_addr)
-+				    struct hmm_range *range,
-+				    struct nouveau_pfnmap_args *args)
- {
- 	struct page *page;
- 
- 	/*
--	 * The ioctl_addr prepared here is passed through nvif_object_ioctl()
-+	 * The address prepared here is passed through nvif_object_ioctl()
- 	 * to an eventual DMA map in something like gp100_vmm_pgt_pfn()
- 	 *
- 	 * This is all just encoding the internal hmm representation into a
- 	 * different nouveau internal representation.
- 	 */
- 	if (!(range->hmm_pfns[0] & HMM_PFN_VALID)) {
--		ioctl_addr[0] = 0;
-+		args->p.phys[0] = 0;
- 		return;
- 	}
- 
- 	page = hmm_pfn_to_page(range->hmm_pfns[0]);
-+	/*
-+	 * Only map compound pages to the GPU if the CPU is also mapping the
-+	 * page as a compound page. Otherwise, the PTE protections might not be
-+	 * consistent (e.g., CPU only maps part of a compound page).
-+	 * Note that the underlying page might still be larger than the
-+	 * CPU mapping (e.g., a PUD sized compound page partially mapped with
-+	 * a PMD sized page table entry).
-+	 */
-+	if (hmm_pfn_to_map_order(range->hmm_pfns[0])) {
-+		unsigned long addr = args->p.addr;
-+
-+		args->p.page = hmm_pfn_to_map_order(range->hmm_pfns[0]) +
-+				PAGE_SHIFT;
-+		args->p.size = 1UL << args->p.page;
-+		args->p.addr &= ~(args->p.size - 1);
-+		page -= (addr - args->p.addr) >> PAGE_SHIFT;
-+	}
- 	if (is_device_private_page(page))
--		ioctl_addr[0] = nouveau_dmem_page_addr(page) |
-+		args->p.phys[0] = nouveau_dmem_page_addr(page) |
- 				NVIF_VMM_PFNMAP_V0_V |
- 				NVIF_VMM_PFNMAP_V0_VRAM;
+diff --git a/lib/test_hmm.c b/lib/test_hmm.c
+index a2a82262b97b..9aa577afc269 100644
+--- a/lib/test_hmm.c
++++ b/lib/test_hmm.c
+@@ -766,6 +766,10 @@ static void dmirror_mkentry(struct dmirror *dmirror, struct hmm_range *range,
+ 		*perm |= HMM_DMIRROR_PROT_WRITE;
  	else
--		ioctl_addr[0] = page_to_phys(page) |
-+		args->p.phys[0] = page_to_phys(page) |
- 				NVIF_VMM_PFNMAP_V0_V |
- 				NVIF_VMM_PFNMAP_V0_HOST;
- 	if (range->hmm_pfns[0] & HMM_PFN_WRITE)
--		ioctl_addr[0] |= NVIF_VMM_PFNMAP_V0_W;
-+		args->p.phys[0] |= NVIF_VMM_PFNMAP_V0_W;
+ 		*perm |= HMM_DMIRROR_PROT_READ;
++	if (hmm_pfn_to_map_order(entry) + PAGE_SHIFT == PMD_SHIFT)
++		*perm |= HMM_DMIRROR_PROT_PMD;
++	else if (hmm_pfn_to_map_order(entry) + PAGE_SHIFT == PUD_SHIFT)
++		*perm |= HMM_DMIRROR_PROT_PUD;
  }
  
- static int nouveau_range_fault(struct nouveau_svmm *svmm,
--			       struct nouveau_drm *drm, void *data, u32 size,
--			       u64 *ioctl_addr, unsigned long hmm_flags,
-+			       struct nouveau_drm *drm,
-+			       struct nouveau_pfnmap_args *args, u32 size,
-+			       unsigned long hmm_flags,
- 			       struct svm_notifier *notifier)
- {
- 	unsigned long timeout =
-@@ -585,10 +604,10 @@ static int nouveau_range_fault(struct nouveau_svmm *svmm,
- 		break;
- 	}
+ static bool dmirror_snapshot_invalidate(struct mmu_interval_notifier *mni,
+diff --git a/lib/test_hmm_uapi.h b/lib/test_hmm_uapi.h
+index 67b3b2e6ff5d..670b4ef2a5b6 100644
+--- a/lib/test_hmm_uapi.h
++++ b/lib/test_hmm_uapi.h
+@@ -40,6 +40,8 @@ struct hmm_dmirror_cmd {
+  * HMM_DMIRROR_PROT_NONE: unpopulated PTE or PTE with no access
+  * HMM_DMIRROR_PROT_READ: read-only PTE
+  * HMM_DMIRROR_PROT_WRITE: read/write PTE
++ * HMM_DMIRROR_PROT_PMD: PMD sized page is fully mapped by same permissions
++ * HMM_DMIRROR_PROT_PUD: PUD sized page is fully mapped by same permissions
+  * HMM_DMIRROR_PROT_ZERO: special read-only zero page
+  * HMM_DMIRROR_PROT_DEV_PRIVATE_LOCAL: Migrated device private page on the
+  *					device the ioctl() is made
+@@ -51,6 +53,8 @@ enum {
+ 	HMM_DMIRROR_PROT_NONE			= 0x00,
+ 	HMM_DMIRROR_PROT_READ			= 0x01,
+ 	HMM_DMIRROR_PROT_WRITE			= 0x02,
++	HMM_DMIRROR_PROT_PMD			= 0x04,
++	HMM_DMIRROR_PROT_PUD			= 0x08,
+ 	HMM_DMIRROR_PROT_ZERO			= 0x10,
+ 	HMM_DMIRROR_PROT_DEV_PRIVATE_LOCAL	= 0x20,
+ 	HMM_DMIRROR_PROT_DEV_PRIVATE_REMOTE	= 0x30,
+diff --git a/tools/testing/selftests/vm/hmm-tests.c b/tools/testing/selftests/vm/hmm-tests.c
+index 79db22604019..b533dd08da1d 100644
+--- a/tools/testing/selftests/vm/hmm-tests.c
++++ b/tools/testing/selftests/vm/hmm-tests.c
+@@ -1291,6 +1291,82 @@ TEST_F(hmm2, snapshot)
+ 	hmm_buffer_free(buffer);
+ }
  
--	nouveau_hmm_convert_pfn(drm, &range, ioctl_addr);
-+	nouveau_hmm_convert_pfn(drm, &range, args);
- 
- 	svmm->vmm->vmm.object.client->super = true;
--	ret = nvif_object_ioctl(&svmm->vmm->vmm.object, data, size, NULL);
-+	ret = nvif_object_ioctl(&svmm->vmm->vmm.object, args, size, NULL);
- 	svmm->vmm->vmm.object.client->super = false;
- 	mutex_unlock(&svmm->mutex);
- 
-@@ -717,12 +736,13 @@ nouveau_svm_fault(struct nvif_notify *notify)
- 						   args.i.p.addr, args.i.p.size,
- 						   &nouveau_svm_mni_ops);
- 		if (!ret) {
--			ret = nouveau_range_fault(svmm, svm->drm, &args,
--				sizeof(args), args.phys, hmm_flags, &notifier);
-+			ret = nouveau_range_fault(svmm, svm->drm, &args.i,
-+				sizeof(args), hmm_flags, &notifier);
- 			mmu_interval_notifier_remove(&notifier.notifier);
- 		}
- 		mmput(mm);
- 
-+		limit = args.i.p.addr + args.i.p.size;
- 		for (fn = fi; ++fn < buffer->fault_nr; ) {
- 			/* It's okay to skip over duplicate addresses from the
- 			 * same SVMM as faults are ordered by access type such
-@@ -730,9 +750,16 @@ nouveau_svm_fault(struct nvif_notify *notify)
- 			 *
- 			 * ie. WRITE faults appear first, thus any handling of
- 			 * pending READ faults will already be satisfied.
-+			 * But if a large page is mapped, make sure subsequent
-+			 * fault addresses have sufficient access permission.
- 			 */
- 			if (buffer->fault[fn]->svmm != svmm ||
--			    buffer->fault[fn]->addr >= limit)
-+			    buffer->fault[fn]->addr >= limit ||
-+			    (buffer->fault[fi]->access == 0 /* READ. */ &&
-+			     !(args.phys[0] & NVIF_VMM_PFNMAP_V0_V)) ||
-+			    (buffer->fault[fi]->access != 0 /* READ. */ &&
-+			     buffer->fault[fi]->access != 3 /* PREFETCH. */ &&
-+			     !(args.phys[0] & NVIF_VMM_PFNMAP_V0_W)))
- 				break;
- 		}
- 
++/*
++ * Test the hmm_range_fault() HMM_PFN_PMD flag for large pages that
++ * should be mapped by a large page table entry.
++ */
++TEST_F(hmm, compound)
++{
++	struct hmm_buffer *buffer;
++	unsigned long npages;
++	unsigned long size;
++	int *ptr;
++	unsigned char *m;
++	int ret;
++	long pagesizes[4];
++	int n, idx;
++	unsigned long i;
++
++	/* Skip test if we can't allocate a hugetlbfs page. */
++
++	n = gethugepagesizes(pagesizes, 4);
++	if (n <= 0)
++		return;
++	for (idx = 0; --n > 0; ) {
++		if (pagesizes[n] < pagesizes[idx])
++			idx = n;
++	}
++	size = ALIGN(TWOMEG, pagesizes[idx]);
++	npages = size >> self->page_shift;
++
++	buffer = malloc(sizeof(*buffer));
++	ASSERT_NE(buffer, NULL);
++
++	buffer->ptr = get_hugepage_region(size, GHR_STRICT);
++	if (buffer->ptr == NULL) {
++		free(buffer);
++		return;
++	}
++
++	buffer->size = size;
++	buffer->mirror = malloc(npages);
++	ASSERT_NE(buffer->mirror, NULL);
++
++	/* Initialize the pages the device will snapshot in buffer->ptr. */
++	for (i = 0, ptr = buffer->ptr; i < size / sizeof(*ptr); ++i)
++		ptr[i] = i;
++
++	/* Simulate a device snapshotting CPU pagetables. */
++	ret = hmm_dmirror_cmd(self->fd, HMM_DMIRROR_SNAPSHOT, buffer, npages);
++	ASSERT_EQ(ret, 0);
++	ASSERT_EQ(buffer->cpages, npages);
++
++	/* Check what the device saw. */
++	m = buffer->mirror;
++	for (i = 0; i < npages; ++i)
++		ASSERT_EQ(m[i], HMM_DMIRROR_PROT_WRITE |
++				HMM_DMIRROR_PROT_PMD);
++
++	/* Make the region read-only. */
++	ret = mprotect(buffer->ptr, size, PROT_READ);
++	ASSERT_EQ(ret, 0);
++
++	/* Simulate a device snapshotting CPU pagetables. */
++	ret = hmm_dmirror_cmd(self->fd, HMM_DMIRROR_SNAPSHOT, buffer, npages);
++	ASSERT_EQ(ret, 0);
++	ASSERT_EQ(buffer->cpages, npages);
++
++	/* Check what the device saw. */
++	m = buffer->mirror;
++	for (i = 0; i < npages; ++i)
++		ASSERT_EQ(m[i], HMM_DMIRROR_PROT_READ |
++				HMM_DMIRROR_PROT_PMD);
++
++	free_hugepage_region(buffer->ptr);
++	buffer->ptr = NULL;
++	hmm_buffer_free(buffer);
++}
++
+ /*
+  * Test two devices reading the same memory (double mapped).
+  */
 -- 
 2.20.1
