@@ -1,7 +1,8 @@
 From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v3 3/5] nouveau: fix mapping 2MB sysmem pages
-Date: Wed, 1 Jul 2020 15:53:50 -0700
-Message-ID: <20200701225352.9649-4-rcampbell@nvidia.com>
+Subject: [PATCH v3 4/5] nouveau/hmm: support mapping large sysmem
+ pages
+Date: Wed, 1 Jul 2020 15:53:51 -0700
+Message-ID: <20200701225352.9649-5-rcampbell@nvidia.com>
 References: <20200701225352.9649-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,138 +22,132 @@ To: linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3Ytjv
 Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-The nvif_object_ioctl() method NVIF_VMM_V0_PFNMAP wasn't correctly
-setting the hardware specific GPU page table entries for 2MB sized
-pages. Fix this by adding functions to set and clear PD0 GPU page
-table entries.
+Nouveau currently only supports mapping PAGE_SIZE sized pages of system
+memory when shared virtual memory (SVM) is enabled. Use the new
+hmm_pfn_to_map_order() function to support mapping system memory pages
+that are PMD_SIZE.
 
 Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c |  5 +-
- .../drm/nouveau/nvkm/subdev/mmu/vmmgp100.c    | 82 +++++++++++++++++++
- 2 files changed, 84 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_svm.c | 53 ++++++++++++++++++++-------
+ 1 file changed, 40 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-index 199f94e15c5f..19a6804e3989 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-@@ -1204,7 +1204,6 @@ nvkm_vmm_pfn_unmap(struct nvkm_vmm *vmm, u64 addr, u64 size)
- /*TODO:
-  * - Avoid PT readback (for dma_unmap etc), this might end up being dealt
-  *   with inside HMM, which would be a lot nicer for us to deal with.
-- * - Multiple page sizes (particularly for huge page support).
-  * - Support for systems without a 4KiB page size.
-  */
- int
-@@ -1220,8 +1219,8 @@ nvkm_vmm_pfn_map(struct nvkm_vmm *vmm, u8 shift, u64 addr, u64 size, u64 *pfn)
- 	/* Only support mapping where the page size of the incoming page
- 	 * array matches a page size available for direct mapping.
- 	 */
--	while (page->shift && page->shift != shift &&
--	       page->desc->func->pfn == NULL)
-+	while (page->shift && (page->shift != shift ||
-+	       page->desc->func->pfn == NULL))
- 		page++;
- 
- 	if (!page->shift || !IS_ALIGNED(addr, 1ULL << shift) ||
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c
-index d86287565542..ed37fddd063f 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c
-@@ -258,12 +258,94 @@ gp100_vmm_pd0_unmap(struct nvkm_vmm *vmm,
- 	VMM_FO128(pt, vmm, pdei * 0x10, 0ULL, 0ULL, pdes);
- }
- 
-+static void
-+gp100_vmm_pd0_pfn_unmap(struct nvkm_vmm *vmm,
-+			struct nvkm_mmu_pt *pt, u32 ptei, u32 ptes)
-+{
-+	struct device *dev = vmm->mmu->subdev.device->dev;
-+	dma_addr_t addr;
-+
-+	nvkm_kmap(pt->memory);
-+	while (ptes--) {
-+		u32 datalo = nvkm_ro32(pt->memory, pt->base + ptei * 16 + 0);
-+		u32 datahi = nvkm_ro32(pt->memory, pt->base + ptei * 16 + 4);
-+		u64 data   = (u64)datahi << 32 | datalo;
-+
-+		if ((data & (3ULL << 1)) != 0) {
-+			addr = (data >> 8) << 12;
-+			dma_unmap_page(dev, addr, 1UL << 21, DMA_BIDIRECTIONAL);
-+		}
-+		ptei++;
-+	}
-+	nvkm_done(pt->memory);
-+}
-+
-+static bool
-+gp100_vmm_pd0_pfn_clear(struct nvkm_vmm *vmm,
-+			struct nvkm_mmu_pt *pt, u32 ptei, u32 ptes)
-+{
-+	bool dma = false;
-+
-+	nvkm_kmap(pt->memory);
-+	while (ptes--) {
-+		u32 datalo = nvkm_ro32(pt->memory, pt->base + ptei * 16 + 0);
-+		u32 datahi = nvkm_ro32(pt->memory, pt->base + ptei * 16 + 4);
-+		u64 data   = (u64)datahi << 32 | datalo;
-+
-+		if ((data & BIT_ULL(0)) && (data & (3ULL << 1)) != 0) {
-+			VMM_WO064(pt, vmm, ptei * 16, data & ~BIT_ULL(0));
-+			dma = true;
-+		}
-+		ptei++;
-+	}
-+	nvkm_done(pt->memory);
-+	return dma;
-+}
-+
-+static void
-+gp100_vmm_pd0_pfn(struct nvkm_vmm *vmm, struct nvkm_mmu_pt *pt,
-+		  u32 ptei, u32 ptes, struct nvkm_vmm_map *map)
-+{
-+	struct device *dev = vmm->mmu->subdev.device->dev;
-+	dma_addr_t addr;
-+
-+	nvkm_kmap(pt->memory);
-+	while (ptes--) {
-+		u64 data = 0;
-+
-+		if (!(*map->pfn & NVKM_VMM_PFN_W))
-+			data |= BIT_ULL(6); /* RO. */
-+
-+		if (!(*map->pfn & NVKM_VMM_PFN_VRAM)) {
-+			addr = *map->pfn >> NVKM_VMM_PFN_ADDR_SHIFT;
-+			addr = dma_map_page(dev, pfn_to_page(addr), 0,
-+					    1UL << 21, DMA_BIDIRECTIONAL);
-+			if (!WARN_ON(dma_mapping_error(dev, addr))) {
-+				data |= addr >> 4;
-+				data |= 2ULL << 1; /* SYSTEM_COHERENT_MEMORY. */
-+				data |= BIT_ULL(3); /* VOL. */
-+				data |= BIT_ULL(0); /* VALID. */
-+			}
-+		} else {
-+			data |= (*map->pfn & NVKM_VMM_PFN_ADDR) >> 4;
-+			data |= BIT_ULL(0); /* VALID. */
-+		}
-+
-+		VMM_WO064(pt, vmm, ptei++ * 16, data);
-+		map->pfn++;
-+	}
-+	nvkm_done(pt->memory);
-+}
-+
- static const struct nvkm_vmm_desc_func
- gp100_vmm_desc_pd0 = {
- 	.unmap = gp100_vmm_pd0_unmap,
- 	.sparse = gp100_vmm_pd0_sparse,
- 	.pde = gp100_vmm_pd0_pde,
- 	.mem = gp100_vmm_pd0_mem,
-+	.pfn = gp100_vmm_pd0_pfn,
-+	.pfn_clear = gp100_vmm_pd0_pfn_clear,
-+	.pfn_unmap = gp100_vmm_pd0_pfn_unmap,
+diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+index 665dede69bd1..c5f8ca6fb2e3 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_svm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+@@ -514,38 +514,57 @@ static const struct mmu_interval_notifier_ops nouveau_svm_mni_ops = {
  };
  
- static void
+ static void nouveau_hmm_convert_pfn(struct nouveau_drm *drm,
+-				    struct hmm_range *range, u64 *ioctl_addr)
++				    struct hmm_range *range,
++				    struct nouveau_pfnmap_args *args)
+ {
+ 	struct page *page;
+ 
+ 	/*
+-	 * The ioctl_addr prepared here is passed through nvif_object_ioctl()
++	 * The address prepared here is passed through nvif_object_ioctl()
+ 	 * to an eventual DMA map in something like gp100_vmm_pgt_pfn()
+ 	 *
+ 	 * This is all just encoding the internal hmm representation into a
+ 	 * different nouveau internal representation.
+ 	 */
+ 	if (!(range->hmm_pfns[0] & HMM_PFN_VALID)) {
+-		ioctl_addr[0] = 0;
++		args->p.phys[0] = 0;
+ 		return;
+ 	}
+ 
+ 	page = hmm_pfn_to_page(range->hmm_pfns[0]);
++	/*
++	 * Only map compound pages to the GPU if the CPU is also mapping the
++	 * page as a compound page. Otherwise, the PTE protections might not be
++	 * consistent (e.g., CPU only maps part of a compound page).
++	 * Note that the underlying page might still be larger than the
++	 * CPU mapping (e.g., a PUD sized compound page partially mapped with
++	 * a PMD sized page table entry).
++	 */
++	if (hmm_pfn_to_map_order(range->hmm_pfns[0])) {
++		unsigned long addr = args->p.addr;
++
++		args->p.page = hmm_pfn_to_map_order(range->hmm_pfns[0]) +
++				PAGE_SHIFT;
++		args->p.size = 1UL << args->p.page;
++		args->p.addr &= ~(args->p.size - 1);
++		page -= (addr - args->p.addr) >> PAGE_SHIFT;
++	}
+ 	if (is_device_private_page(page))
+-		ioctl_addr[0] = nouveau_dmem_page_addr(page) |
++		args->p.phys[0] = nouveau_dmem_page_addr(page) |
+ 				NVIF_VMM_PFNMAP_V0_V |
+ 				NVIF_VMM_PFNMAP_V0_VRAM;
+ 	else
+-		ioctl_addr[0] = page_to_phys(page) |
++		args->p.phys[0] = page_to_phys(page) |
+ 				NVIF_VMM_PFNMAP_V0_V |
+ 				NVIF_VMM_PFNMAP_V0_HOST;
+ 	if (range->hmm_pfns[0] & HMM_PFN_WRITE)
+-		ioctl_addr[0] |= NVIF_VMM_PFNMAP_V0_W;
++		args->p.phys[0] |= NVIF_VMM_PFNMAP_V0_W;
+ }
+ 
+ static int nouveau_range_fault(struct nouveau_svmm *svmm,
+-			       struct nouveau_drm *drm, void *data, u32 size,
+-			       u64 *ioctl_addr, unsigned long hmm_flags,
++			       struct nouveau_drm *drm,
++			       struct nouveau_pfnmap_args *args, u32 size,
++			       unsigned long hmm_flags,
+ 			       struct svm_notifier *notifier)
+ {
+ 	unsigned long timeout =
+@@ -585,10 +604,10 @@ static int nouveau_range_fault(struct nouveau_svmm *svmm,
+ 		break;
+ 	}
+ 
+-	nouveau_hmm_convert_pfn(drm, &range, ioctl_addr);
++	nouveau_hmm_convert_pfn(drm, &range, args);
+ 
+ 	svmm->vmm->vmm.object.client->super = true;
+-	ret = nvif_object_ioctl(&svmm->vmm->vmm.object, data, size, NULL);
++	ret = nvif_object_ioctl(&svmm->vmm->vmm.object, args, size, NULL);
+ 	svmm->vmm->vmm.object.client->super = false;
+ 	mutex_unlock(&svmm->mutex);
+ 
+@@ -717,12 +736,13 @@ nouveau_svm_fault(struct nvif_notify *notify)
+ 						   args.i.p.addr, args.i.p.size,
+ 						   &nouveau_svm_mni_ops);
+ 		if (!ret) {
+-			ret = nouveau_range_fault(svmm, svm->drm, &args,
+-				sizeof(args), args.phys, hmm_flags, &notifier);
++			ret = nouveau_range_fault(svmm, svm->drm, &args.i,
++				sizeof(args), hmm_flags, &notifier);
+ 			mmu_interval_notifier_remove(&notifier.notifier);
+ 		}
+ 		mmput(mm);
+ 
++		limit = args.i.p.addr + args.i.p.size;
+ 		for (fn = fi; ++fn < buffer->fault_nr; ) {
+ 			/* It's okay to skip over duplicate addresses from the
+ 			 * same SVMM as faults are ordered by access type such
+@@ -730,9 +750,16 @@ nouveau_svm_fault(struct nvif_notify *notify)
+ 			 *
+ 			 * ie. WRITE faults appear first, thus any handling of
+ 			 * pending READ faults will already be satisfied.
++			 * But if a large page is mapped, make sure subsequent
++			 * fault addresses have sufficient access permission.
+ 			 */
+ 			if (buffer->fault[fn]->svmm != svmm ||
+-			    buffer->fault[fn]->addr >= limit)
++			    buffer->fault[fn]->addr >= limit ||
++			    (buffer->fault[fi]->access == 0 /* READ. */ &&
++			     !(args.phys[0] & NVIF_VMM_PFNMAP_V0_V)) ||
++			    (buffer->fault[fi]->access != 0 /* READ. */ &&
++			     buffer->fault[fi]->access != 3 /* PREFETCH. */ &&
++			     !(args.phys[0] & NVIF_VMM_PFNMAP_V0_W)))
+ 				break;
+ 		}
+ 
 -- 
 2.20.1
