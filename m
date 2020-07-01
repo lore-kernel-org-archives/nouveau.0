@@ -1,12 +1,13 @@
 From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v3 0/5] mm/hmm/nouveau: add PMD system memory
- mapping
-Date: Wed, 1 Jul 2020 15:53:47 -0700
-Message-ID: <20200701225352.9649-1-rcampbell@nvidia.com>
+Subject: [PATCH v3 3/5] nouveau: fix mapping 2MB sysmem pages
+Date: Wed, 1 Jul 2020 15:53:50 -0700
+Message-ID: <20200701225352.9649-4-rcampbell@nvidia.com>
+References: <20200701225352.9649-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200701225352.9649-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,45 +21,138 @@ To: linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3Ytjv
 Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-The goal for this series is to introduce the hmm_pfn_to_map_order()
-function. This allows a device driver to know that a given 4K PFN is
-actually mapped by the CPU using a larger sized CPU page table entry and
-therefore the device driver can safely map system memory using larger
-device MMU PTEs.
-The series is based on 5.8.0-rc3 and is intended for Jason Gunthorpe's
-hmm tree. These were originally part of a larger series:
-https://lore.kernel.org/linux-mm/20200619215649.32297-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org/
+The nvif_object_ioctl() method NVIF_VMM_V0_PFNMAP wasn't correctly
+setting the hardware specific GPU page table entries for 2MB sized
+pages. Fix this by adding functions to set and clear PD0 GPU page
+table entries.
 
-Changes in v3:
-Replaced the HMM_PFN_P[MU]D flags with hmm_pfn_to_map_order() to
-indicate the size of the CPU mapping.
+Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c |  5 +-
+ .../drm/nouveau/nvkm/subdev/mmu/vmmgp100.c    | 82 +++++++++++++++++++
+ 2 files changed, 84 insertions(+), 3 deletions(-)
 
-Changes in v2:
-Make the hmm_range_fault() API changes into a separate series and add
-  two output flags for PMD/PUD instead of a single compund page flag as
-  suggested by Jason Gunthorpe.
-Make the nouveau page table changes a separate patch as suggested by
-  Ben Skeggs.
-Only add support for 2MB nouveau mappings initially since changing the
-1:1 CPU/GPU page table size assumptions requires a bigger set of changes.
-Rebase to 5.8.0-rc3.
-
-Ralph Campbell (5):
-  nouveau/hmm: fault one page at a time
-  mm/hmm: add hmm_mapping order
-  nouveau: fix mapping 2MB sysmem pages
-  nouveau/hmm: support mapping large sysmem pages
-  hmm: add tests for HMM_PFN_PMD flag
-
- drivers/gpu/drm/nouveau/nouveau_svm.c         | 236 ++++++++----------
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c |   5 +-
- .../drm/nouveau/nvkm/subdev/mmu/vmmgp100.c    |  82 ++++++
- include/linux/hmm.h                           |  24 +-
- lib/test_hmm.c                                |   4 +
- lib/test_hmm_uapi.h                           |   4 +
- mm/hmm.c                                      |  14 +-
- tools/testing/selftests/vm/hmm-tests.c        |  76 ++++++
- 8 files changed, 299 insertions(+), 146 deletions(-)
-
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+index 199f94e15c5f..19a6804e3989 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+@@ -1204,7 +1204,6 @@ nvkm_vmm_pfn_unmap(struct nvkm_vmm *vmm, u64 addr, u64 size)
+ /*TODO:
+  * - Avoid PT readback (for dma_unmap etc), this might end up being dealt
+  *   with inside HMM, which would be a lot nicer for us to deal with.
+- * - Multiple page sizes (particularly for huge page support).
+  * - Support for systems without a 4KiB page size.
+  */
+ int
+@@ -1220,8 +1219,8 @@ nvkm_vmm_pfn_map(struct nvkm_vmm *vmm, u8 shift, u64 addr, u64 size, u64 *pfn)
+ 	/* Only support mapping where the page size of the incoming page
+ 	 * array matches a page size available for direct mapping.
+ 	 */
+-	while (page->shift && page->shift != shift &&
+-	       page->desc->func->pfn == NULL)
++	while (page->shift && (page->shift != shift ||
++	       page->desc->func->pfn == NULL))
+ 		page++;
+ 
+ 	if (!page->shift || !IS_ALIGNED(addr, 1ULL << shift) ||
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c
+index d86287565542..ed37fddd063f 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c
+@@ -258,12 +258,94 @@ gp100_vmm_pd0_unmap(struct nvkm_vmm *vmm,
+ 	VMM_FO128(pt, vmm, pdei * 0x10, 0ULL, 0ULL, pdes);
+ }
+ 
++static void
++gp100_vmm_pd0_pfn_unmap(struct nvkm_vmm *vmm,
++			struct nvkm_mmu_pt *pt, u32 ptei, u32 ptes)
++{
++	struct device *dev = vmm->mmu->subdev.device->dev;
++	dma_addr_t addr;
++
++	nvkm_kmap(pt->memory);
++	while (ptes--) {
++		u32 datalo = nvkm_ro32(pt->memory, pt->base + ptei * 16 + 0);
++		u32 datahi = nvkm_ro32(pt->memory, pt->base + ptei * 16 + 4);
++		u64 data   = (u64)datahi << 32 | datalo;
++
++		if ((data & (3ULL << 1)) != 0) {
++			addr = (data >> 8) << 12;
++			dma_unmap_page(dev, addr, 1UL << 21, DMA_BIDIRECTIONAL);
++		}
++		ptei++;
++	}
++	nvkm_done(pt->memory);
++}
++
++static bool
++gp100_vmm_pd0_pfn_clear(struct nvkm_vmm *vmm,
++			struct nvkm_mmu_pt *pt, u32 ptei, u32 ptes)
++{
++	bool dma = false;
++
++	nvkm_kmap(pt->memory);
++	while (ptes--) {
++		u32 datalo = nvkm_ro32(pt->memory, pt->base + ptei * 16 + 0);
++		u32 datahi = nvkm_ro32(pt->memory, pt->base + ptei * 16 + 4);
++		u64 data   = (u64)datahi << 32 | datalo;
++
++		if ((data & BIT_ULL(0)) && (data & (3ULL << 1)) != 0) {
++			VMM_WO064(pt, vmm, ptei * 16, data & ~BIT_ULL(0));
++			dma = true;
++		}
++		ptei++;
++	}
++	nvkm_done(pt->memory);
++	return dma;
++}
++
++static void
++gp100_vmm_pd0_pfn(struct nvkm_vmm *vmm, struct nvkm_mmu_pt *pt,
++		  u32 ptei, u32 ptes, struct nvkm_vmm_map *map)
++{
++	struct device *dev = vmm->mmu->subdev.device->dev;
++	dma_addr_t addr;
++
++	nvkm_kmap(pt->memory);
++	while (ptes--) {
++		u64 data = 0;
++
++		if (!(*map->pfn & NVKM_VMM_PFN_W))
++			data |= BIT_ULL(6); /* RO. */
++
++		if (!(*map->pfn & NVKM_VMM_PFN_VRAM)) {
++			addr = *map->pfn >> NVKM_VMM_PFN_ADDR_SHIFT;
++			addr = dma_map_page(dev, pfn_to_page(addr), 0,
++					    1UL << 21, DMA_BIDIRECTIONAL);
++			if (!WARN_ON(dma_mapping_error(dev, addr))) {
++				data |= addr >> 4;
++				data |= 2ULL << 1; /* SYSTEM_COHERENT_MEMORY. */
++				data |= BIT_ULL(3); /* VOL. */
++				data |= BIT_ULL(0); /* VALID. */
++			}
++		} else {
++			data |= (*map->pfn & NVKM_VMM_PFN_ADDR) >> 4;
++			data |= BIT_ULL(0); /* VALID. */
++		}
++
++		VMM_WO064(pt, vmm, ptei++ * 16, data);
++		map->pfn++;
++	}
++	nvkm_done(pt->memory);
++}
++
+ static const struct nvkm_vmm_desc_func
+ gp100_vmm_desc_pd0 = {
+ 	.unmap = gp100_vmm_pd0_unmap,
+ 	.sparse = gp100_vmm_pd0_sparse,
+ 	.pde = gp100_vmm_pd0_pde,
+ 	.mem = gp100_vmm_pd0_mem,
++	.pfn = gp100_vmm_pd0_pfn,
++	.pfn_clear = gp100_vmm_pd0_pfn_clear,
++	.pfn_unmap = gp100_vmm_pd0_pfn_unmap,
+ };
+ 
+ static void
 -- 
 2.20.1
