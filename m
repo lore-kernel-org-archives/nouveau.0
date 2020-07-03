@@ -1,11 +1,10 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Getting reviews for nouveau contributions in igt?
-Date: Thu, 02 Jul 2020 14:16:11 -0400
-Message-ID: <5fcb1490dd12b0e2da3fbb34e5431ab3ce162839.camel@redhat.com>
-Reply-To: lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+From: Samuel Iglesias =?ISO-8859-1?Q?Gons=E1lvez?= <siglesias-wEGTBA9jqPzQT0dZR+AlfA@public.gmane.org>
+Subject: [XDC 2020] Virtual conference + Call for Proposals
+ extended 2 weeks more
+Date: Fri, 03 Jul 2020 16:41:42 +0200
+Message-ID: <4e5319c905109f9fe4ca48dee0e89d83ec73f2da.camel@igalia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0987586378=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -16,40 +15,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: IGT development <igt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: "Szwichtenberg, Radoslaw" <radoslaw.szwichtenberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, "events-go0+a7rfsptAfugRpC6u6w@public.gmane.org" <events-go0+a7rfsptAfugRpC6u6w@public.gmane.org>, "xorg-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <xorg-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "wayland-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <wayland-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: "board-UUNKDCO5ciMA0k6STJqGzw@public.gmane.org" <board-UUNKDCO5ciMA0k6STJqGzw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi! I haven't had much luck asking around in IRC, so I figured this would be the
-next place to start. As many of you know I've been working on getting nouveau
-into good shape with igt-gpu-tools, now that we've finally finished implementing
-CRC support thannks to nvidia's help. I should note that the patches for this
-have been accepted into nouveau, Ben's just working on rebasing them on top of
-some of the display refactoring + other stuff he's been working on. So they
-should appear in drm-tip in the near future, but they're still available on
-patchwork for anyone who wants to try them:
 
-   https://patchwork.freedesktop.org/series/78803/
-(also needs https://patchwork.freedesktop.org/series/78915/ )
+--===============0987586378==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-UA8V1+yvXFwTWVEJGo8l"
 
-ANYWAY-the first question I had was whether anyone on here would be willing to
-help me with getting acks and/or reviews for some of the nouveau-related igt
-patches I've sent upstream? One of the patch series adds some nouveau-specific
-CRC tests:
 
-   https://patchwork.freedesktop.org/series/74811/
+--=-UA8V1+yvXFwTWVEJGo8l
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The others add some missing bits to some basic kms tests that I noticed while
-doing CRC bringup:
+Hi,
 
-   https://patchwork.freedesktop.org/series/74806/ - fixes false-positives in
-   kms_plane plane-position-hole tests
+In the last meeting, X.Org Foundation board has decided that XDC 2020
+will be a virtual conference, given the uncertain COVID-19 situation in
+Europe by September, including the possibility of a second wave,
+outbreaks and travel restrictions, either in Poland or in other
+countries.
 
-   https://patchwork.freedesktop.org/series/74808/ - adds a test to
-   kms_pipe_crc_basic to exercise disabling CRC capture on a pipe immediately
-   after said pipe being disabled.
+XDC 2020 organization team agrees on this decision and it volunteered
+to organize our first virtual XDC!
 
-The second question that I had is in the future, for adding nouveau-specific
-tests is it acceptable for me to just get reviews from other nouveau developers
-or should I be trying to pull people in from this mailing list from outside the
-project?
+We would like to announce as well that the new CFP deadline is Sunday
+July 19th 2020. Don't forget to submit your talk, demo and workshop
+proposals!
+
+Thanks,
+
+Sam
+
+--=-UA8V1+yvXFwTWVEJGo8l
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEQP+ZAvaXWkfuKXiEf/S6MvF9w0MFAl7/Q6YACgkQf/S6MvF9
+w0PrUw/9Hx3/w07dFx2Eyn/tQnhsAYXs+ZSTHUZ0wuFlv+pWrLQ0g1swQF/GNpbO
+ZeJt2nKTqc8bbwdn/yQzf+ktt0jsKAktwCyJBVlHhjsvIj/tJx5IvD8iRfNZRftz
+OhE+UAqwPCUqc3QZ/R11IRyVr7XVu1RTarTGsC6Clk8tFzIuaRDEKJWTJ9B9jjy0
+WHh8ufEVVQsU3qlSNS+C7BvKKIJlHfYQvaEBDHjMYT3z9pc0ZwExMtM4zeedtCLz
+tUS9yynRrtXlrZuwvDAXZAnURMl9oj8SOPhyk1zwPoPF6FX6imurQkP9BbNeqX17
+f81vAOm4fhX5VPnFPHQ1QiwCOj8xaCiwaMPZEwr6qZbbIKQEFgRpJYzgMF8nis+K
+MOf9fPdsEbRm1B2wSNT3pcoPYkn15TztF0kq0seWhgESzXCnr+5k+1UyO66Cp22x
+xx1thK5P3Y2/nYAKy827fWc1NrDXpUOxaAaWvRAvfWNVjG37sUSFcoHE0/Sc4QZN
+cZCDfFIO1+UwYQZXHjotslrW3He4APqgRm+pZgdKLufuPuaCpdFRNYPqdpBcmSI0
+aYm3QmeCmXxiTLZak6I8wardeR9bgDBdVmexBOONbOZjIXzRg/dijn8YjxvzeiOQ
+vJslTubiFcKRbbrZnr5gBaBtp0rFGN/nSQlUT4A7loMlianuavA=
+=pmv+
+-----END PGP SIGNATURE-----
+
+--=-UA8V1+yvXFwTWVEJGo8l--
+
+
+--===============0987586378==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+https://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0987586378==--
