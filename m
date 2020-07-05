@@ -1,16 +1,16 @@
-From: "Michael T. Kloos" <michael-RKkoRtUCbzKq0/6D4rpXzw@public.gmane.org>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Subject: Re: Framebuffer double buffering (via FBIOPAN_DISPLAY)
-Date: Sun, 5 Jul 2020 19:01:59 -0400
-Message-ID: <1a21e9f1-4ba8-51f2-045b-13bbcbfc13d5@michaelkloos.com>
+Date: Sun, 5 Jul 2020 19:17:21 -0400
+Message-ID: <CAKb7UvjshMUGwLP0bBsgNcvEjN_oV0rGrHYu1pLFavzCk=pb9A@mail.gmail.com>
 References: <CAKb7UvjHqAtH4+R70VbpE-dXe3y0=ZWdvRdWpQC1m-gK=NxoDw@mail.gmail.com>
  <f4f3a042-78a3-46d9-b452-bb1d251a7391@email.android.com>
  <CAKb7Uvi5=H3pNO4eKT37jsN8+KUS6a7dLKOpYsOwkc44pVc6Xg@mail.gmail.com>
+ <1a21e9f1-4ba8-51f2-045b-13bbcbfc13d5@michaelkloos.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvi5=H3pNO4eKT37jsN8+KUS6a7dLKOpYsOwkc44pVc6Xg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <1a21e9f1-4ba8-51f2-045b-13bbcbfc13d5-RKkoRtUCbzKq0/6D4rpXzw@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,65 +20,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+To: "Michael T. Kloos" <michael-RKkoRtUCbzKq0/6D4rpXzw@public.gmane.org>
 Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-V2VsbC4uLml0J3MgYmVlbiBhIGJpdCBvZiBhIG1peGVkIGJhZy7CoCBTZXR0aW5nIApkcm1fa21z
-X2hlbHBlci5kcm1fZmJkZXZfb3ZlcmFsbG9jPTIwMCBzZXQgdGhlIHZpbmZvLnlyZXNfdmlydHVh
-bCB0byAKMjE2MCBhcyBvcHBvc2VkIHRvIDEwODAgKE15IG1vbml0b3IgdmVydGljYWwgcmVzb2x1
-dGlvbinCoCBUaGlzIGZpeGVkIHRoZSAKbW1hcCgpIHByb2JsZW0uwqAgSG93ZXZlciwgaXQgb25s
-eSB3b3JrZWQgb24gbXkgbWFpbiB3b3Jrc3RhdGlvbi7CoCBNeSAKbGFwdG9wIHJ1bm5pbmcgSW50
-ZWwgZ3JhcGhpY3Mgd2Fzbid0IGFmZmVjdGVkIGJ5IHRoZSBjaGFuZ2UgaW4ga2VybmVsIApjbWRs
-aW5lLsKgIE15IHdvcmtzdGF0aW9uIGlzIGEgY3VzdG9tIGJ1aWxkIGZyb20gYSBmZXcgeWVhcnMg
-YWdvIHdpdGggYSAKR1RYIDEwNjAgNkdCLCBydW5uaW5nIEdlbnRvbyhLZXJuZWwgdmVyc2lvbjog
-NS40KSBtYWNoaW5lLCBhbmQgbXkgbGFwdG9wIApydW5uaW5nIE1hbmphcm8uwqAgSSBhbHNvIGNh
-biBub3QgZ2V0IHRoZSBJT0NUTCBGQklPUEFOX0RJU1BMQVkgdG8gd29yay7CoCAKSXQgaXMgbm93
-IGdpdmluZyBtZSBhbiBpbnZhbGlkIGFyZ3VtZW50IGVycm9yLsKgIEkgaGF2ZSBzZXQgdmluZm8u
-eG9mZnNldCAKYW5kIHZpbmZvLnlvZmZzZXQgdG8gMCBlYXJsaWVyIGluIG15IHByb2dyYW0gdG8g
-dHJ5IHRvIGVsaW1pbmF0ZSB0aGVtIGFzIAp2YXJpYWJsZXMuCgpPdGhlciBmYWN0b3JzIHRoYXQg
-bWF5IGJlIGF0IHBsYXk6CgotSSBhbSB0cnlpbmcgdG8gcnVuIHRoaXMgZnJvbSBhbiBhbHRlcm5h
-dGUgVFRZLsKgIEkgaGF2ZSBhIGdyYXBoaWNhbCAKZW52aXJvbm1lbnQgb24gVFRZNyB3aXRoIHgu
-b3JnLsKgIEkgdGhpbmsgaXQgaXMgdXNpbmcgdGhlIERSTSBpbnRlcmZhY2UuwqAgCk1heWJlIHRo
-ZXJlIGlzIGEgY29uZmxpY3QuCi1NYXliZSBJIGFtIG1pc3NpbmcgYSBkcml2ZXIgaW4gbXkgR2Vu
-dG9vIGtlcm5lbCBjb25maWc/wqAgSSdtIHN0aWxsIApsZWFybmluZyBhYm91dCBpdCwgYnV0IGdv
-aW5nIGludG8gbXkgd29ya3N0YXRpb24ncyBrZXJuZWwgY29uZmlnLCBJIApub3RpY2VkIHRoYXQg
-Q09ORklHX0ZCX05WSURJQSB3YXMgc2V0IHRvICJuIi4KCkRvIHlvdSBrbm93IHdoZW4gQ09ORklH
-X0RSTV9GQkRFVl9PVkVSQUxMT0Mgd2VudCBpbnRvIHRoZSBrZXJuZWw/wqAgSSB3YXMgCmFib3V0
-IHRvIHRyeSB0aGlzIG9uIG15IE1hY0Jvb2sgUHJvIHJ1bm5pbmcgR2VudG9vLCBidXQgSSB3aWxs
-IGhhdmUgdG8gCnJlY29tcGlsZSB1cGdyYWRlIHRoZSBrZXJuZWwgYmVmb3JlIEkgY2FuIGdpdmUg
-YSByZXBvcnQgKEl0IGlzIGN1cnJlbnRseSAKcnVubmluZzogNC45KS7CoCBJIGNvdWxkbid0IGZp
-bmQgaXQgaW4gbWVudWNvbmZpZyBzbyBJIGRvdWJ0IHRoZSBjbWRsaW5lIAp3b3VsZCBtYWtlIGEg
-ZGlmZmVyZW5jZS4KCkkgcmVhbGx5IGFwcHJlY2lhdGUgdGhlIGhlbHAuwqAgSSd2ZSBiZWVuIGxv
-b2tpbmcgaGVhZGVyIGZpbGVzIGFuZCBhIHN1Y2ggCnRyeWluZyB0byBjb2JibGUgdG9nZXRoZXIg
-c29tZSBpbmZvcm1hdGlvbiB0byBmaWd1cmUgdGhpcyBvdXQuwqAgSSBoYXRlIAp0byBib3RoZXIg
-eW91IHdpdGggdGhpcyBiZWNhdXNlIGl0IHNlZW1zIHNsaWdodGx5IG9mZiB0b3BpYy4KCk9uIDcv
-NS8yMCAzOjQ1IFBNLCBJbGlhIE1pcmtpbiB3cm90ZToKPiBUcnkgYm9vdGluZyB3aXRoIGRybV9r
-bXNfaGVscGVyLmRybV9mYmRldl9vdmVyYWxsb2M9MjAwIGFuZCBzZWUgaWYgaXQKPiB3b3JrcyB3
-aXRoIHRoYXQuIChUaGVyZSdzIGFsc28gQ09ORklHX0RSTV9GQkRFVl9PVkVSQUxMT0Mgd2hpY2gg
-c2V0cwo+IHRoZSBkZWZhdWx0LikKPgo+IENoZWVycywKPgo+ICAgIC1pbGlhCj4KPiBPbiBTdW4s
-IEp1bCA1LCAyMDIwIGF0IDM6NDEgUE0gPG1pY2hhZWxAbWljaGFlbGtsb29zLmNvbT4gd3JvdGU6
-Cj4+IEkgYW0gbm90IGZhbWlsaWFyIHdpdGggdGhhdCBzZXR0aW5nLCBidXQgSSBoYXZlIHJlYWxs
-eSBzdHJ1Z2dsZWQgdG8gZmluZCBkb2N1bWVudGF0aW9uIG9uIGRlYWxpbmcgd2l0aCB0aGUgZnJh
-bWVidWZmZXIuICBSZWZlcnJpbmcgdG8gdGhpcyBndWlkZSwgImh0dHA6Ly9iZXR0ZXJvcy5vcmcv
-dHV0L2dyYXBoaWNzMS5waHAjZG91YmxlYnVmZmVyIiwgSSBhdHRlbXB0ZWQgdG8gc2V0IHRoZSBt
-bWFwIGFsbG9jYXRpb24gc2l6ZSB0byBkb3VibGUsIGJ1dCBpdCBjYXVzZWQgdGhlIG1tYXAgdG8g
-ZmFpbC4gIEkgbm8gbG9uZ2VyIGJlbGlldmUgdGhhdCBpdCBpcyBhIGRyaXZlciBpc3N1ZSwgdGhv
-dWdoLCBiZWNhdXNlIEkganVzdCB0cmllZCBpdCBhZ2FpbiBvbiBhIGRlbGwgbGFwdG9wIHdpdGgg
-SW50ZWwgSEQgR3JhcGhpY3MgNDQwMCB0byB0aGUgc2FtZSBmYWlsdXJlLgo+Pgo+PiBPbiBKdWwg
-NSwgMjAyMCAxMjozNSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PiB3cm90ZToK
-Pj4KPj4gQXJlIHlvdSBzZXR0aW5nIHRoZSBvdmVyYWxsb2NhdGlvbiB0byAyMDA/Cj4+Cj4+IE9u
-IFN1biwgSnVsIDUsIDIwMjAgYXQgMzo0MSBBTSBNaWNoYWVsIFQuIEtsb29zCj4+IDxtaWNoYWVs
-QG1pY2hhZWxrbG9vcy5jb20+IHdyb3RlOgo+Pj4gRG9lcyBOT1VWRUFVIHN1cHBvcnQgbW1hcGlu
-ZyBhIGRvdWJsZS1zaXplZCBGcmFtZWJ1ZmZlcj8KPj4+IFdoZW4gYXR0ZW1wdGluZyB0byBydW4s
-IHdoZXJlIGZkIHJlZmVycyB0byAiL2Rldi9mYjAiOgo+Pj4KPj4+IG1tYXAocHRyLCBzY3JlZW5z
-aXplICogMiwgUFJPVF9SRUFEIHwgUFJPVF9XUklURSwgTUFQX1NIQVJFRCwgZmQsIDApOwo+Pj4K
-Pj4+IEkgZ2V0IGJhY2sgYW4gaW52YWxpZCBhcmd1bWVudCBlcnJvci4gIFRoaXMgZG9lc24ndCBo
-YXBwZW4gaWYgSSBvbmx5Cj4+PiByZXF1ZXN0IGEgc2luZ2xlIHNjcmVlbnNpemUuICBJcyB0aGlz
-IGEgbGltaXRhdGlvbiBvZiB0aGUgZHJpdmVyPwo+Pj4KPj4+IF9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+Pj4g
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+PgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUK
+Check fb_pan_display in drivers/video/fbdev/core/fbmem.c for the
+argument validation of the FBIOPAN_DISPLAY ioctl.
+
+CONFIG_FB_NVIDIA is a dedicated fbdev driver, not compatible with
+nouveau (it takes over the relevant PCI device). It also won't support
+your Pascal GPU, I believe -- I think it MIGHT support the Tesla
+generation (i.e. G80..GT21x) but definitely not anything newer. Most
+likely it supports pre-G80 GPUs, and again, not compatible with
+nouveau.
+
+DRM-based drivers use the DRM <-> FBDEV emulation layer to provide an
+fbdev interface for legacy applications. The fbdev emulation acts as
+sort of a regular DRM client and exposes the FBDEV API.
+
+The overallocation logic was added to this emulation layer in commit
+5f15257689bfa, which is included in v4.12 and later kernels.
+
+Hope this helps,
+
+  -ilia
+
+On Sun, Jul 5, 2020 at 7:02 PM Michael T. Kloos
+<michael-RKkoRtUCbzKq0/6D4rpXzw@public.gmane.org> wrote:
+>
+> Well...it's been a bit of a mixed bag.  Setting
+> drm_kms_helper.drm_fbdev_overalloc=200 set the vinfo.yres_virtual to
+> 2160 as opposed to 1080 (My monitor vertical resolution)  This fixed the
+> mmap() problem.  However, it only worked on my main workstation.  My
+> laptop running Intel graphics wasn't affected by the change in kernel
+> cmdline.  My workstation is a custom build from a few years ago with a
+> GTX 1060 6GB, running Gentoo(Kernel version: 5.4) machine, and my laptop
+> running Manjaro.  I also can not get the IOCTL FBIOPAN_DISPLAY to work.
+> It is now giving me an invalid argument error.  I have set vinfo.xoffset
+> and vinfo.yoffset to 0 earlier in my program to try to eliminate them as
+> variables.
+>
+> Other factors that may be at play:
+>
+> -I am trying to run this from an alternate TTY.  I have a graphical
+> environment on TTY7 with x.org.  I think it is using the DRM interface.
+> Maybe there is a conflict.
+> -Maybe I am missing a driver in my Gentoo kernel config?  I'm still
+> learning about it, but going into my workstation's kernel config, I
+> noticed that CONFIG_FB_NVIDIA was set to "n".
+>
+> Do you know when CONFIG_DRM_FBDEV_OVERALLOC went into the kernel?  I was
+> about to try this on my MacBook Pro running Gentoo, but I will have to
+> recompile upgrade the kernel before I can give a report (It is currently
+> running: 4.9).  I couldn't find it in menuconfig so I doubt the cmdline
+> would make a difference.
+>
+> I really appreciate the help.  I've been looking header files and a such
+> trying to cobble together some information to figure this out.  I hate
+> to bother you with this because it seems slightly off topic.
+>
+> On 7/5/20 3:45 PM, Ilia Mirkin wrote:
+> > Try booting with drm_kms_helper.drm_fbdev_overalloc=200 and see if it
+> > works with that. (There's also CONFIG_DRM_FBDEV_OVERALLOC which sets
+> > the default.)
+> >
+> > Cheers,
+> >
+> >    -ilia
+> >
+> > On Sun, Jul 5, 2020 at 3:41 PM <michael-RKkoRtUCbzKq0/6D4rpXzw@public.gmane.org> wrote:
+> >> I am not familiar with that setting, but I have really struggled to find documentation on dealing with the framebuffer.  Referring to this guide, "http://betteros.org/tut/graphics1.php#doublebuffer", I attempted to set the mmap allocation size to double, but it caused the mmap to fail.  I no longer believe that it is a driver issue, though, because I just tried it again on a dell laptop with Intel HD Graphics 4400 to the same failure.
+> >>
+> >> On Jul 5, 2020 12:35, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+> >>
+> >> Are you setting the overallocation to 200?
+> >>
+> >> On Sun, Jul 5, 2020 at 3:41 AM Michael T. Kloos
+> >> <michael-RKkoRtUCbzKq0/6D4rpXzw@public.gmane.org> wrote:
+> >>> Does NOUVEAU support mmaping a double-sized Framebuffer?
+> >>> When attempting to run, where fd refers to "/dev/fb0":
+> >>>
+> >>> mmap(ptr, screensize * 2, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+> >>>
+> >>> I get back an invalid argument error.  This doesn't happen if I only
+> >>> request a single screensize.  Is this a limitation of the driver?
+> >>>
+> >>> _______________________________________________
+> >>> Nouveau mailing list
+> >>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> >>> https://lists.freedesktop.org/mailman/listinfo/nouveau
+> >>
