@@ -1,35 +1,44 @@
-From: Joe Perches <joe@perches.com>
-Subject: Re: [PATCH][next] drm/nouveau: Use fallthrough pseudo-keyword
-Date: Tue, 07 Jul 2020 20:27:12 -0700
-Message-ID: <1c37340fba4afb910a37cae43182f6c48302fa28.camel@perches.com>
-References: <20200707173628.GA29695@embeddedor>
-         <CACAvsv4ahps=4gWwGXwvHFZOTBg1ubW86t3++dN4fAJ6JsBhDw@mail.gmail.com>
+From: Bharata B Rao <bharata@linux.ibm.com>
+Subject: Re: [PATCH 0/5] mm/migrate: avoid device private invalidations
+Date: Wed, 8 Jul 2020 18:48:03 +0530
+Message-ID: <20200708131803.GB7902@in.ibm.com>
+References: <20200706222347.32290-1-rcampbell@nvidia.com>
+Reply-To: bharata@linux.ibm.com
 Mime-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CACAvsv4ahps=4gWwGXwvHFZOTBg1ubW86t3++dN4fAJ6JsBhDw@mail.gmail.com>
+Content-Disposition: inline
+In-Reply-To: <20200706222347.32290-1-rcampbell@nvidia.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <skeggsb@gmail.com>, "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, ML nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, ML dri-devel <dri-devel@lists.freedesktop.org>
+To: Ralph Campbell <rcampbell@nvidia.com>
+Cc: linux-rdma@vger.kernel.org, linux-mm@kvack.org, nouveau@lists.freedesktop.org, kvm-ppc@vger.kernel.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@mellanox.com>, Andrew Morton <akpm@linux-foundation.org>, Shuah Khan <shuah@kernel.org>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 2020-07-08 at 13:22 +1000, Ben Skeggs wrote:
-> On Wed, 8 Jul 2020 at 03:31, Gustavo A. R. Silva <gustavoars@kernel.org> wrote:
-> > Replace the existing /* fall through */ comments and its variants with
-> > the new pseudo-keyword macro fallthrough[1]. Also, remove unnecessary
-> > fall-through markings when it is the case.
-> I really like this!  I was not a fan of explicitly marking those with comments.
-> 
-> Thank you, taken in my tree.
-[]
-> > diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-[]
-> > @@ -932,7 +932,7 @@ nv50_dp_bpc_to_depth(unsigned int bpc)
-> >         switch (bpc) {
-> >         case  6: return 0x2;
-> >         case  8: return 0x5;
-> > -       case 10: /* fall-through */
-> > +       case 10: fallthrough;
+On Mon, Jul 06, 2020 at 03:23:42PM -0700, Ralph Campbell wrote:
+> The goal for this series is to avoid device private memory TLB
+> invalidations when migrating a range of addresses from system
+> memory to device private memory and some of those pages have already
+> been migrated. The approach taken is to introduce a new mmu notifier
+> invalidation event type and use that in the device driver to skip
+> invalidation callbacks from migrate_vma_setup(). The device driver is
+> also then expected to handle device MMU invalidations as part of the
+> migrate_vma_setup(), migrate_vma_pages(), migrate_vma_finalize() process.
+> Note that this is opt-in. A device driver can simply invalidate its MMU
+> in the mmu notifier callback and not handle MMU invalidations in the
+> migration sequence.
 
-IMO: this comment/fallthrough should be removed instead.
+In the kvmppc secure guest usecase,
+
+1. We ensure that we don't issue migrate_vma() calls for pages that have
+already been migrated to the device side (which is actually secure memory
+for us that is managed by Ultravisor firmware)
+
+2. The page table mappings on the device side (secure memory) are managed
+transparent to the kernel by the Ultravisor firmware.
+
+Hence I assume that no specific action would be required by the kvmppc
+usecase due to this patchset. In fact, we never registered for this
+mmu notifier events.
+
+Regards,
+Bharata.
