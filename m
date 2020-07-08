@@ -1,44 +1,54 @@
 From: Bharata B Rao <bharata@linux.ibm.com>
-Subject: Re: [PATCH 0/5] mm/migrate: avoid device private invalidations
-Date: Wed, 8 Jul 2020 18:48:03 +0530
-Message-ID: <20200708131803.GB7902@in.ibm.com>
+Subject: Re: [PATCH 2/5] mm/migrate: add a direction parameter to migrate_vma
+Date: Wed, 8 Jul 2020 18:49:11 +0530
+Message-ID: <20200708131911.GC7902@in.ibm.com>
 References: <20200706222347.32290-1-rcampbell@nvidia.com>
+ <20200706222347.32290-3-rcampbell@nvidia.com>
 Reply-To: bharata@linux.ibm.com
 Mime-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Return-path: <kvm-ppc-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20200706222347.32290-1-rcampbell@nvidia.com>
-Sender: linux-kernel-owner@vger.kernel.org
+In-Reply-To: <20200706222347.32290-3-rcampbell@nvidia.com>
+Sender: kvm-ppc-owner@vger.kernel.org
 To: Ralph Campbell <rcampbell@nvidia.com>
 Cc: linux-rdma@vger.kernel.org, linux-mm@kvack.org, nouveau@lists.freedesktop.org, kvm-ppc@vger.kernel.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@mellanox.com>, Andrew Morton <akpm@linux-foundation.org>, Shuah Khan <shuah@kernel.org>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jul 06, 2020 at 03:23:42PM -0700, Ralph Campbell wrote:
-> The goal for this series is to avoid device private memory TLB
-> invalidations when migrating a range of addresses from system
-> memory to device private memory and some of those pages have already
-> been migrated. The approach taken is to introduce a new mmu notifier
-> invalidation event type and use that in the device driver to skip
-> invalidation callbacks from migrate_vma_setup(). The device driver is
-> also then expected to handle device MMU invalidations as part of the
-> migrate_vma_setup(), migrate_vma_pages(), migrate_vma_finalize() process.
-> Note that this is opt-in. A device driver can simply invalidate its MMU
-> in the mmu notifier callback and not handle MMU invalidations in the
-> migration sequence.
+On Mon, Jul 06, 2020 at 03:23:44PM -0700, Ralph Campbell wrote:
+> The src_owner field in struct migrate_vma is being used for two purposes,
+> it implies the direction of the migration and it identifies device private
+> pages owned by the caller. Split this into separate parameters so the
+> src_owner field can be used just to identify device private pages owned
+> by the caller of migrate_vma_setup().
+> 
+> Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
+> ---
+>  arch/powerpc/kvm/book3s_hv_uvmem.c     |  2 ++
+>  drivers/gpu/drm/nouveau/nouveau_dmem.c |  2 ++
+>  include/linux/migrate.h                | 12 +++++++++---
+>  lib/test_hmm.c                         |  2 ++
+>  mm/migrate.c                           |  5 +++--
+>  5 files changed, 18 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/powerpc/kvm/book3s_hv_uvmem.c b/arch/powerpc/kvm/book3s_hv_uvmem.c
+> index 09d8119024db..acbf14cd2d72 100644
+> --- a/arch/powerpc/kvm/book3s_hv_uvmem.c
+> +++ b/arch/powerpc/kvm/book3s_hv_uvmem.c
+> @@ -400,6 +400,7 @@ kvmppc_svm_page_in(struct vm_area_struct *vma, unsigned long start,
+>  	mig.end = end;
+>  	mig.src = &src_pfn;
+>  	mig.dst = &dst_pfn;
+> +	mig.dir = MIGRATE_VMA_FROM_SYSTEM;
+>  
+>  	/*
+>  	 * We come here with mmap_lock write lock held just for
+> @@ -578,6 +579,7 @@ kvmppc_svm_page_out(struct vm_area_struct *vma, unsigned long start,
+>  	mig.src = &src_pfn;
+>  	mig.dst = &dst_pfn;
+>  	mig.src_owner = &kvmppc_uvmem_pgmap;
+> +	mig.dir = MIGRATE_VMA_FROM_DEVICE_PRIVATE;
 
-In the kvmppc secure guest usecase,
+Reviewed-by: Bharata B Rao <bharata@linux.ibm.com>
 
-1. We ensure that we don't issue migrate_vma() calls for pages that have
-already been migrated to the device side (which is actually secure memory
-for us that is managed by Ultravisor firmware)
-
-2. The page table mappings on the device side (secure memory) are managed
-transparent to the kernel by the Ultravisor firmware.
-
-Hence I assume that no specific action would be required by the kvmppc
-usecase due to this patchset. In fact, we never registered for this
-mmu notifier events.
-
-Regards,
-Bharata.
+for the above kvmppc change.
