@@ -1,59 +1,80 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v3 0/5] mm/hmm/nouveau: add PMD system memory mapping
-Date: Fri, 10 Jul 2020 13:13:46 -0700
-Message-ID: <886151ff-c8e7-7b49-cc8d-c0e32fdc770b@nvidia.com>
-References: <20200701225352.9649-1-rcampbell@nvidia.com>
- <20200710192704.GA2128670@nvidia.com>
+From: Ralph Campbell <rcampbell@nvidia.com>
+Subject: Re: [PATCH 3/5] mm/notifier: add migration invalidation type
+Date: Fri, 10 Jul 2020 13:17:50 -0700
+Message-ID: <9364c81b-10a1-1fe4-b2c2-f48a73d2e04a@nvidia.com>
+References: <20200706222347.32290-1-rcampbell@nvidia.com>
+ <20200706222347.32290-4-rcampbell@nvidia.com>
+ <20200710193939.GA2129070@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <20200710192704.GA2128670-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Return-path: <kvm-ppc-owner@vger.kernel.org>
+In-Reply-To: <20200710193939.GA2129070@nvidia.com>
 Content-Language: en-US
-Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Jason Gunthorpe <jgg-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Sender: kvm-ppc-owner@vger.kernel.org
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: linux-rdma@vger.kernel.org, linux-mm@kvack.org, nouveau@lists.freedesktop.org, kvm-ppc@vger.kernel.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Andrew Morton <akpm@linux-foundation.org>, Shuah Khan <shuah@kernel.org>, Ben Skeggs <bskeggs@redhat.com>, Bharata B Rao <bharata@linux.ibm.com>
 List-Id: nouveau.vger.kernel.org
 
 
-On 7/10/20 12:27 PM, Jason Gunthorpe wrote:
-> On Wed, Jul 01, 2020 at 03:53:47PM -0700, Ralph Campbell wrote:
->> The goal for this series is to introduce the hmm_pfn_to_map_order()
->> function. This allows a device driver to know that a given 4K PFN is
->> actually mapped by the CPU using a larger sized CPU page table entry and
->> therefore the device driver can safely map system memory using larger
->> device MMU PTEs.
->> The series is based on 5.8.0-rc3 and is intended for Jason Gunthorpe's
->> hmm tree. These were originally part of a larger series:
->> https://lore.kernel.org/linux-mm/20200619215649.32297-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org/
+On 7/10/20 12:39 PM, Jason Gunthorpe wrote:
+> On Mon, Jul 06, 2020 at 03:23:45PM -0700, Ralph Campbell wrote:
+>> Currently migrate_vma_setup() calls mmu_notifier_invalidate_range_start()
+>> which flushes all device private page mappings whether or not a page
+>> is being migrated to/from device private memory. In order to not disrupt
+>> device mappings that are not being migrated, shift the responsibility
+>> for clearing device private mappings to the device driver and leave
+>> CPU page table unmapping handled by migrate_vma_setup(). To support
+>> this, the caller of migrate_vma_setup() should always set struct
+>> migrate_vma::src_owner to a non NULL value that matches the device
+>> private page->pgmap->owner. This value is then passed to the struct
+>> mmu_notifier_range with a new event type which the driver's invalidation
+>> function can use to avoid device MMU invalidations.
 >>
->> Changes in v3:
->> Replaced the HMM_PFN_P[MU]D flags with hmm_pfn_to_map_order() to
->> indicate the size of the CPU mapping.
+>> Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
+>>   include/linux/mmu_notifier.h | 7 +++++++
+>>   mm/migrate.c                 | 8 +++++++-
+>>   2 files changed, 14 insertions(+), 1 deletion(-)
 >>
->> Changes in v2:
->> Make the hmm_range_fault() API changes into a separate series and add
->>    two output flags for PMD/PUD instead of a single compund page flag as
->>    suggested by Jason Gunthorpe.
->> Make the nouveau page table changes a separate patch as suggested by
->>    Ben Skeggs.
->> Only add support for 2MB nouveau mappings initially since changing the
->> 1:1 CPU/GPU page table size assumptions requires a bigger set of changes.
->> Rebase to 5.8.0-rc3.
->>
->> Ralph Campbell (5):
->>    nouveau/hmm: fault one page at a time
->>    mm/hmm: add hmm_mapping order
->>    nouveau: fix mapping 2MB sysmem pages
->>    nouveau/hmm: support mapping large sysmem pages
->>    hmm: add tests for HMM_PFN_PMD flag
+>> diff --git a/include/linux/mmu_notifier.h b/include/linux/mmu_notifier.h
+>> index fc68f3570e19..bd0b34dbe4de 100644
+>> +++ b/include/linux/mmu_notifier.h
+>> @@ -38,6 +38,10 @@ struct mmu_interval_notifier;
+>>    *
+>>    * @MMU_NOTIFY_RELEASE: used during mmu_interval_notifier invalidate to signal
+>>    * that the mm refcount is zero and the range is no longer accessible.
+>> + *
+>> + * @MMU_NOTIFY_MIGRATE: used during migrate_vma_collect() invalidate to signal
+>> + * a device driver to possibly ignore the invalidation if the src_own
+>> + * field matches.
+>>    */
+>>   enum mmu_notifier_event {
+>>   	MMU_NOTIFY_UNMAP = 0,
+>> @@ -46,6 +50,7 @@ enum mmu_notifier_event {
+>>   	MMU_NOTIFY_PROTECTION_PAGE,
+>>   	MMU_NOTIFY_SOFT_DIRTY,
+>>   	MMU_NOTIFY_RELEASE,
+>> +	MMU_NOTIFY_MIGRATE,
+>>   };
+>>   
+>>   #define MMU_NOTIFIER_RANGE_BLOCKABLE (1 << 0)
+>> @@ -264,6 +269,7 @@ struct mmu_notifier_range {
+>>   	unsigned long end;
+>>   	unsigned flags;
+>>   	enum mmu_notifier_event event;
+>> +	void *data;
+>>   };
 > 
-> Applied to hmm.git.
+> This generic member usually ends up a bit ugly, can we do a tagged
+> union instead?
 > 
-> I edited the comment for hmm_pfn_to_map_order() and added a function
-> to compute the field.
+> union
+> {
+>       void *migrate_pgmap_owner;
+> };
 > 
-> Thanks,
+> and probably drop the union until we actually need two things here.
+> 
 > Jason
 
-Looks good, thanks.
+OK, I'll send a v2 with this change.
