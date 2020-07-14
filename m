@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 4.14 12/12] drm/nouveau/i2c/g94-: increase
+Subject: [PATCH AUTOSEL 4.9 10/10] drm/nouveau/i2c/g94-: increase
  NV_PMGR_DP_AUXCTL_TRANSACTREQ timeout
-Date: Tue, 14 Jul 2020 10:39:54 -0400
-Message-ID: <20200714143954.4035840-12-sashal@kernel.org>
-References: <20200714143954.4035840-1-sashal@kernel.org>
+Date: Tue, 14 Jul 2020 10:40:10 -0400
+Message-ID: <20200714144010.4035987-10-sashal@kernel.org>
+References: <20200714144010.4035987-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200714143954.4035840-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <20200714144010.4035987-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -37,7 +37,7 @@ Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
  2 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
-index c8ab1b5741a3e..db7769cb33eba 100644
+index 954f5b76bfcf7..d44965f805fe9 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
 +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
 @@ -118,10 +118,10 @@ g94_i2c_aux_xfer(struct nvkm_i2c_aux *obj, bool retry,
@@ -54,7 +54,7 @@ index c8ab1b5741a3e..db7769cb33eba 100644
  			ctrl = nvkm_rd32(device, 0x00e4e4 + base);
  			udelay(1);
 diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
-index 7ef60895f43a7..edb6148cbca04 100644
+index 61d729b82c69b..a5783f4d972e3 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
 +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
 @@ -118,10 +118,10 @@ gm200_i2c_aux_xfer(struct nvkm_i2c_aux *obj, bool retry,
