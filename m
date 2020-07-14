@@ -1,112 +1,64 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v2 5/5] mm/hmm/test: use the new migration invalidation
-Date: Mon, 13 Jul 2020 10:21:49 -0700
-Message-ID: <20200713172149.2310-6-rcampbell@nvidia.com>
-References: <20200713172149.2310-1-rcampbell@nvidia.com>
+From: Sasha Levin <sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.7 15/19] drm/nouveau/i2c/g94-: increase NV_PMGR_DP_AUXCTL_TRANSACTREQ timeout
+Date: Tue, 14 Jul 2020 10:38:45 -0400
+Message-ID: <20200714143849.4035283-15-sashal@kernel.org>
+References: <20200714143849.4035283-1-sashal@kernel.org>
 Mime-Version: 1.0
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <20200713172149.2310-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, kvm-ppc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20200714143849.4035283-1-sashal@kernel.org>
+Sender: stable-owner@vger.kernel.org
+To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Use the new MMU_NOTIFY_MIGRATE event to skip MMU invalidations of device
-private memory and handle the invalidation in the driver as part of
-migrating device private memory.
+From: Ben Skeggs <bskeggs@redhat.com>
 
-Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+[ Upstream commit 0156e76d388310a490aeb0f2fbb5b284ded3aecc ]
+
+Tegra TRM says worst-case reply time is 1216us, and this should fix some
+spurious timeouts that have been popping up.
+
+Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- lib/test_hmm.c | 31 ++++++++++++++++++-------------
- 1 file changed, 18 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c   | 4 ++--
+ drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/lib/test_hmm.c b/lib/test_hmm.c
-index 1bd60cfb5a25..77875fc4e7c1 100644
---- a/lib/test_hmm.c
-+++ b/lib/test_hmm.c
-@@ -214,6 +214,14 @@ static bool dmirror_interval_invalidate(struct mmu_int=
-erval_notifier *mni,
- {
- 	struct dmirror *dmirror =3D container_of(mni, struct dmirror, notifier);
-=20
-+	/*
-+	 * Ignore invalidation callbacks for device private pages since
-+	 * the invalidation is handled as part of the migration process.
-+	 */
-+	if (range->event =3D=3D MMU_NOTIFY_MIGRATE &&
-+	    range->migrate_pgmap_owner =3D=3D dmirror->mdevice)
-+		return true;
-+
- 	if (mmu_notifier_range_blockable(range))
- 		mutex_lock(&dmirror->mutex);
- 	else if (!mutex_trylock(&dmirror->mutex))
-@@ -702,7 +710,7 @@ static int dmirror_migrate(struct dmirror *dmirror,
- 		args.dst =3D dst_pfns;
- 		args.start =3D addr;
- 		args.end =3D next;
--		args.src_owner =3D NULL;
-+		args.src_owner =3D dmirror->mdevice;
- 		args.dir =3D MIGRATE_VMA_FROM_SYSTEM;
- 		ret =3D migrate_vma_setup(&args);
- 		if (ret)
-@@ -992,7 +1000,7 @@ static void dmirror_devmem_free(struct page *page)
- }
-=20
- static vm_fault_t dmirror_devmem_fault_alloc_and_copy(struct migrate_vma *=
-args,
--						struct dmirror_device *mdevice)
-+						      struct dmirror *dmirror)
- {
- 	const unsigned long *src =3D args->src;
- 	unsigned long *dst =3D args->dst;
-@@ -1014,6 +1022,7 @@ static vm_fault_t dmirror_devmem_fault_alloc_and_copy=
-(struct migrate_vma *args,
- 			continue;
-=20
- 		lock_page(dpage);
-+		xa_erase(&dmirror->pt, addr >> PAGE_SHIFT);
- 		copy_highpage(dpage, spage);
- 		*dst =3D migrate_pfn(page_to_pfn(dpage)) | MIGRATE_PFN_LOCKED;
- 		if (*src & MIGRATE_PFN_WRITE)
-@@ -1022,15 +1031,6 @@ static vm_fault_t dmirror_devmem_fault_alloc_and_cop=
-y(struct migrate_vma *args,
- 	return 0;
- }
-=20
--static void dmirror_devmem_fault_finalize_and_map(struct migrate_vma *args=
-,
--						  struct dmirror *dmirror)
--{
--	/* Invalidate the device's page table mapping. */
--	mutex_lock(&dmirror->mutex);
--	dmirror_do_update(dmirror, args->start, args->end);
--	mutex_unlock(&dmirror->mutex);
--}
--
- static vm_fault_t dmirror_devmem_fault(struct vm_fault *vmf)
- {
- 	struct migrate_vma args;
-@@ -1060,11 +1060,16 @@ static vm_fault_t dmirror_devmem_fault(struct vm_fa=
-ult *vmf)
- 	if (migrate_vma_setup(&args))
- 		return VM_FAULT_SIGBUS;
-=20
--	ret =3D dmirror_devmem_fault_alloc_and_copy(&args, dmirror->mdevice);
-+	ret =3D dmirror_devmem_fault_alloc_and_copy(&args, dmirror);
- 	if (ret)
- 		return ret;
- 	migrate_vma_pages(&args);
--	dmirror_devmem_fault_finalize_and_map(&args, dmirror);
-+	/*
-+	 * No device finalize step is needed since
-+	 * dmirror_devmem_fault_alloc_and_copy() will have already
-+	 * invalidated the device page table. We could reinstate device MMU
-+	 * entries for pages that didn't migrate but that should be rare.
-+	 */
- 	migrate_vma_finalize(&args);
- 	return 0;
- }
---=20
-2.20.1
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
+index c8ab1b5741a3e..db7769cb33eba 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
+@@ -118,10 +118,10 @@ g94_i2c_aux_xfer(struct nvkm_i2c_aux *obj, bool retry,
+ 		if (retries)
+ 			udelay(400);
+ 
+-		/* transaction request, wait up to 1ms for it to complete */
++		/* transaction request, wait up to 2ms for it to complete */
+ 		nvkm_wr32(device, 0x00e4e4 + base, 0x00010000 | ctrl);
+ 
+-		timeout = 1000;
++		timeout = 2000;
+ 		do {
+ 			ctrl = nvkm_rd32(device, 0x00e4e4 + base);
+ 			udelay(1);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
+index 7ef60895f43a7..edb6148cbca04 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
+@@ -118,10 +118,10 @@ gm200_i2c_aux_xfer(struct nvkm_i2c_aux *obj, bool retry,
+ 		if (retries)
+ 			udelay(400);
+ 
+-		/* transaction request, wait up to 1ms for it to complete */
++		/* transaction request, wait up to 2ms for it to complete */
+ 		nvkm_wr32(device, 0x00d954 + base, 0x00010000 | ctrl);
+ 
+-		timeout = 1000;
++		timeout = 2000;
+ 		do {
+ 			ctrl = nvkm_rd32(device, 0x00d954 + base);
+ 			udelay(1);
+-- 
+2.25.1
