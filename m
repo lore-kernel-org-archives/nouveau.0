@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 4.19 12/13] drm/nouveau/i2c/g94-: increase
+Subject: [PATCH AUTOSEL 4.14 12/12] drm/nouveau/i2c/g94-: increase
  NV_PMGR_DP_AUXCTL_TRANSACTREQ timeout
-Date: Tue, 14 Jul 2020 10:39:36 -0400
-Message-ID: <20200714143937.4035685-12-sashal@kernel.org>
-References: <20200714143937.4035685-1-sashal@kernel.org>
+Date: Tue, 14 Jul 2020 10:39:54 -0400
+Message-ID: <20200714143954.4035840-12-sashal@kernel.org>
+References: <20200714143954.4035840-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200714143937.4035685-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <20200714143954.4035840-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
