@@ -1,55 +1,42 @@
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 2/4] drm/ttm: cleanup io_mem interface with nouveau
-Date: Wed, 15 Jul 2020 13:40:04 +0200
-Message-ID: <20200715114006.2873-2-christian.koenig@amd.com>
-References: <20200715114006.2873-1-christian.koenig@amd.com>
+From: Markus Elfring <Markus.Elfring@web.de>
+Subject: Re: [PATCH] drm/nouveau: add the missed kfree() for
+ nouveau_bo_alloc()
+Date: Wed, 15 Jul 2020 20:12:16 +0200
+Message-ID: <df40519c-1850-6dfc-35bf-bdcc2eb6c117@web.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200715114006.2873-1-christian.koenig-5C7GfCeVMHo@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Language: en-GB
+Sender: linux-kernel-owner@vger.kernel.org
+To: Jing Xiangfeng <jingxiangfeng@huawei.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>
 List-Id: nouveau.vger.kernel.org
 
-Tm91dmVhdSBpcyB0aGUgb25seSB1c2VyIG9mIHRoaXMgZnVuY3Rpb25hbGl0eSBhbmQgZXZpY3Rp
-bmcgaW8gc3BhY2UKb24gLUVBR0FJTiBpcyByZWFsbHkgYSBtaXN1c2Ugb2YgdGhlIHJldHVybiBj
-b2RlLgoKSW5zdGVhZCBzd2l0Y2ggdG8gdXNpbmcgLUVOT1NQQyBoZXJlIHdoaWNoIG1ha2VzIG11
-Y2ggbW9yZSBzZW5zZSBhbmQKc2ltcGxpZmllcyB0aGUgY29kZS4KClNpZ25lZC1vZmYtYnk6IENo
-cmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KLS0tCiBkcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMgfCAyIC0tCiBkcml2ZXJzL2dwdS9kcm0vdHRtL3R0
-bV9ib191dGlsLmMgICAgfCA0ICsrLS0KIDIgZmlsZXMgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCsp
-LCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
-dXZlYXVfYm8uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYwppbmRleCA2
-MTM1NWNmYjczMzUuLmE0ODY1MjgyNmY2NyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9iby5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-Ym8uYwpAQCAtMTUwNSw4ICsxNTA1LDYgQEAgbm91dmVhdV90dG1faW9fbWVtX3Jlc2VydmUoc3Ry
-dWN0IHR0bV9ib19kZXZpY2UgKmJkZXYsIHN0cnVjdCB0dG1fbWVtX3JlZyAqcmVnKQogCQkJaWYg
-KHJldCAhPSAxKSB7CiAJCQkJaWYgKFdBUk5fT04ocmV0ID09IDApKQogCQkJCQlyZXR1cm4gLUVJ
-TlZBTDsKLQkJCQlpZiAocmV0ID09IC1FTk9TUEMpCi0JCQkJCXJldHVybiAtRUFHQUlOOwogCQkJ
-CXJldHVybiByZXQ7CiAJCQl9CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRt
-X2JvX3V0aWwuYyBiL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvX3V0aWwuYwppbmRleCA1ZTBm
-M2E5Y2FlZGMuLjdkMmM1MGZlZjQ1NiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL3R0bS90
-dG1fYm9fdXRpbC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvX3V0aWwuYwpAQCAt
-MTE2LDcgKzExNiw3IEBAIHN0YXRpYyBpbnQgdHRtX21lbV9pb19ldmljdChzdHJ1Y3QgdHRtX21l
-bV90eXBlX21hbmFnZXIgKm1hbikKIAlzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QgKmJvOwogCiAJ
-aWYgKCFtYW4tPnVzZV9pb19yZXNlcnZlX2xydSB8fCBsaXN0X2VtcHR5KCZtYW4tPmlvX3Jlc2Vy
-dmVfbHJ1KSkKLQkJcmV0dXJuIC1FQUdBSU47CisJCXJldHVybiAtRU5PU1BDOwogCiAJYm8gPSBs
-aXN0X2ZpcnN0X2VudHJ5KCZtYW4tPmlvX3Jlc2VydmVfbHJ1LAogCQkJICAgICAgc3RydWN0IHR0
-bV9idWZmZXJfb2JqZWN0LApAQCAtMTQzLDcgKzE0Myw3IEBAIGludCB0dG1fbWVtX2lvX3Jlc2Vy
-dmUoc3RydWN0IHR0bV9ib19kZXZpY2UgKmJkZXYsCiAJICAgIG1lbS0+YnVzLmlvX3Jlc2VydmVk
-X2NvdW50KysgPT0gMCkgewogcmV0cnk6CiAJCXJldCA9IGJkZXYtPmRyaXZlci0+aW9fbWVtX3Jl
-c2VydmUoYmRldiwgbWVtKTsKLQkJaWYgKHJldCA9PSAtRUFHQUlOKSB7CisJCWlmIChyZXQgPT0g
-LUVOT1NQQykgewogCQkJcmV0ID0gdHRtX21lbV9pb19ldmljdChtYW4pOwogCQkJaWYgKHJldCA9
-PSAwKQogCQkJCWdvdG8gcmV0cnk7Ci0tIAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQo=
+> =E2=80=A6 to fix it.
+
+I suggest to replace this wording by the tag =E2=80=9CFixes=E2=80=9D.
+
+
+=E2=80=A6
+> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> @@ -276,8 +276,10 @@  nouveau_bo_alloc(struct nouveau_cli *cli, u64 *siz=
+e, int *align, u32 flags,
+>  			break;
+>  	}
+>
+> -	if (WARN_ON(pi < 0))
+> +	if (WARN_ON(pi < 0)) {
+> +		kfree(nvbo);
+>  		return ERR_PTR(-EINVAL);
+> +	}
+
+I propose to move such common exception handling to the end of
+this function implementation so that a bit of duplicate code will be avoid=
+ed.
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
+cumentation/process/coding-style.rst?id=3De9919e11e219eaa5e8041b7b1a196839=
+143e9125#n481
+
+Regards,
+Markus
