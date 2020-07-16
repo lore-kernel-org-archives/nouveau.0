@@ -1,90 +1,75 @@
-From: Karol Herbst <kherbst@redhat.com>
+From: Bjorn Helgaas <helgaas@kernel.org>
 Subject: Re: nouveau regression with 5.7 caused by "PCI/PM: Assume ports
  without DLL Link Active train links in 100 ms"
-Date: Fri, 17 Jul 2020 00:10:39 +0200
-Message-ID: <CACO55tuA+XMgv=GREf178NzTLTHri4kyD5mJjKuDpKxExauvVg@mail.gmail.com>
-References: <CACO55tsAEa5GXw5oeJPG=mcn+qxNvspXreJYWDJGZBy5v82JDA@mail.gmail.com>
+Date: Thu, 16 Jul 2020 18:54:40 -0500
+Message-ID: <20200716235440.GA675421@bjorn-Precision-5520>
+References: <CACO55tuA+XMgv=GREf178NzTLTHri4kyD5mJjKuDpKxExauvVg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-pci-owner@vger.kernel.org>
-In-Reply-To: <CACO55tsAEa5GXw5oeJPG=mcn+qxNvspXreJYWDJGZBy5v82JDA@mail.gmail.com>
+Content-Disposition: inline
+In-Reply-To: <CACO55tuA+XMgv=GREf178NzTLTHri4kyD5mJjKuDpKxExauvVg@mail.gmail.com>
 Sender: linux-pci-owner@vger.kernel.org
-To: Linux PCI <linux-pci@vger.kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>, Lyude Paul <lyude@redhat.com>, nouveau <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>
+To: Karol Herbst <kherbst@redhat.com>
+Cc: Linux PCI <linux-pci@vger.kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, Ben Skeggs <bskeggs@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>, Lyude Paul <lyude@redhat.com>, nouveau <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>, Patrick Volkerding <volkerdi@gmail.com>, linux-kernel@vger.kernel.org, Kai-Heng Feng <kai.heng.feng@canonical.com>, Sasha Levin <sashal@kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jul 7, 2020 at 9:30 PM Karol Herbst <kherbst@redhat.com> wrote:
->
-> Hi everybody,
->
-> with the mentioned commit Nouveau isn't able to load firmware onto the
-> GPU on one of my systems here. Even though the issue doesn't always
-> happen I am quite confident this is the commit breaking it.
->
-> I am still digging into the issue and trying to figure out what
-> exactly breaks, but it shows up in different ways. Either we are not
-> able to boot the engines on the GPU or the GPU becomes unresponsive.
-> Btw, this is also a system where our runtime power management issue
-> shows up, so maybe there is indeed something funky with the bridge
-> controller.
->
-> Just pinging you in case you have an idea on how this could break Nouveau
->
-> most of the times it shows up like this:
-> nouveau 0000:01:00.0: acr: AHESASC binary failed
->
-> Sometimes it works at boot and fails at runtime resuming with random
-> faults. So I will be investigating a bit more, but yeah... I am super
-> sure the commit triggered this issue, no idea if it actually causes
-> it.
->
+[+cc Sasha -- stable kernel regression]
+[+cc Patrick, Kai-Heng, LKML]
 
-so yeah.. I reverted that locally and never ran into issues again.
-Still valid on latest 5.7. So can we get this reverted or properly
-fixed? This breaks runtime pm for us on at least some hardware.
+On Fri, Jul 17, 2020 at 12:10:39AM +0200, Karol Herbst wrote:
+> On Tue, Jul 7, 2020 at 9:30 PM Karol Herbst <kherbst@redhat.com> wrote:
+> >
+> > Hi everybody,
+> >
+> > with the mentioned commit Nouveau isn't able to load firmware onto the
+> > GPU on one of my systems here. Even though the issue doesn't always
+> > happen I am quite confident this is the commit breaking it.
+> >
+> > I am still digging into the issue and trying to figure out what
+> > exactly breaks, but it shows up in different ways. Either we are not
+> > able to boot the engines on the GPU or the GPU becomes unresponsive.
+> > Btw, this is also a system where our runtime power management issue
+> > shows up, so maybe there is indeed something funky with the bridge
+> > controller.
+> >
+> > Just pinging you in case you have an idea on how this could break Nouveau
+> >
+> > most of the times it shows up like this:
+> > nouveau 0000:01:00.0: acr: AHESASC binary failed
+> >
+> > Sometimes it works at boot and fails at runtime resuming with random
+> > faults. So I will be investigating a bit more, but yeah... I am super
+> > sure the commit triggered this issue, no idea if it actually causes
+> > it.
+> 
+> so yeah.. I reverted that locally and never ran into issues again.
+> Still valid on latest 5.7. So can we get this reverted or properly
+> fixed? This breaks runtime pm for us on at least some hardware.
 
-> git bisect log (had to do a second bisect, that's why the first bad
-> and good commits appear a bit random):
->
-> git bisect start
-> # bad: [a92b984a110863b42a3abf32e3f049b02b19e350] clk: samsung:
-> exynos5433: Add IGNORE_UNUSED flag to sclk_i2s1
-> git bisect bad a92b984a110863b42a3abf32e3f049b02b19e350
-> # good: [4da858c086433cd012c0bb16b5921f6fafe3f803] Merge branch
-> 'linux-5.7' of git://github.com/skeggsb/linux into drm-fixes
-> git bisect good 4da858c086433cd012c0bb16b5921f6fafe3f803
-> # good: [d5dfe4f1b44ed532653c2335267ad9599c8a698e] Merge tag
-> 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/rdma/rdma
-> git bisect good d5dfe4f1b44ed532653c2335267ad9599c8a698e
-> # good: [b24e451cfb8c33ef5b8b4a80e232706b089914fb] ipv6: fix
-> IPV6_ADDRFORM operation logic
-> git bisect good b24e451cfb8c33ef5b8b4a80e232706b089914fb
-> # good: [d843ffbce812742986293f974d55ba404e91872f] nvmet: fix memory
-> leak when removing namespaces and controllers concurrently
-> git bisect good d843ffbce812742986293f974d55ba404e91872f
-> # good: [be66f10a60e3ec0b589898f78a428bcb34095730] staging: wfx: fix
-> output of rx_stats on big endian hosts
-> git bisect good be66f10a60e3ec0b589898f78a428bcb34095730
-> # good: [a4482984c41f5cc1d217aa189fe51bbbc0500f98] s390/qdio:
-> consistently restore the IRQ handler
-> git bisect good a4482984c41f5cc1d217aa189fe51bbbc0500f98
-> # good: [bec32a54a4de62b46466f4da1beb9ddd42db81b8] f2fs: fix potential
-> use-after-free issue
-> git bisect good bec32a54a4de62b46466f4da1beb9ddd42db81b8
-> # bad: [044aaaa8b1b15adb397ce423a6d97920a46b3893] habanalabs: increase
-> timeout during reset
-> git bisect bad 044aaaa8b1b15adb397ce423a6d97920a46b3893
-> # good: [6fe8ed270763a6a2e350bf37eee0f3857482ed48] arm64: dts: qcom:
-> db820c: Fix invalid pm8994 supplies
-> git bisect good 6fe8ed270763a6a2e350bf37eee0f3857482ed48
-> # good: [363e8bfc96b4e9d9e0a885408cecaf23df468523] tty: n_gsm: Fix
-> waking up upper tty layer when room available
-> git bisect good 363e8bfc96b4e9d9e0a885408cecaf23df468523
-> # bad: [afaff825e3a436f9d1e3986530133b1c91b54cd1] PCI/PM: Assume ports
-> without DLL Link Active train links in 100 ms
-> git bisect bad afaff825e3a436f9d1e3986530133b1c91b54cd1
-> # good: [be0ed15d88c65de0e28ff37a3b242e65a782fd98] HID: Add quirks for
-> Trust Panora Graphic Tablet
-> git bisect good be0ed15d88c65de0e28ff37a3b242e65a782fd98
-> # first bad commit: [afaff825e3a436f9d1e3986530133b1c91b54cd1] PCI/PM:
-> Assume ports without DLL Link Active train links in 100 ms
+Yeah, that stinks.  We had another similar report from Patrick:
+
+  https://lore.kernel.org/r/CAErSpo5sTeK_my1dEhWp7aHD0xOp87+oHYWkTjbL7ALgDbXo-Q@mail.gmail.com
+
+Apparently the problem is ec411e02b7a2 ("PCI/PM: Assume ports without
+DLL Link Active train links in 100 ms"), which Patrick found was
+backported to v5.4.49 as 828b192c57e8, and you found was backported to
+v5.7.6 as afaff825e3a4.
+
+Oddly, Patrick reported that v5.7.7 worked correctly, even though it
+still contains afaff825e3a4.
+
+I guess in the absence of any other clues we'll have to revert it.
+I hate to do that because that means we'll have slow resume of
+Thunderbolt-connected devices again, but that's better than having
+GPUs completely broken.
+
+Could you and Patrick open bugzilla.kernel.org reports, attach dmesg
+logs and "sudo lspci -vv" output, and add the URLs to Kai-Heng's
+original report at https://bugzilla.kernel.org/show_bug.cgi?id=206837
+and to this thread?
+
+There must be a way to fix the slow resume problem without breaking
+the GPUs.
+
+Bjorn
