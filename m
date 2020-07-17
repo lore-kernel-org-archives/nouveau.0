@@ -1,14 +1,15 @@
-From: James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Accept 'legacy' format modifiers
-Date: Fri, 17 Jul 2020 12:03:54 -0700
-Message-ID: <30456e2c-7a46-257b-fccf-7f9f964d8cec@nvidia.com>
-References: <20200717185757.2786-1-jajones@nvidia.com>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: nouveau regression with 5.7 caused by "PCI/PM: Assume
+ ports without DLL Link Active train links in 100 ms"
+Date: Fri, 17 Jul 2020 15:04:10 -0400
+Message-ID: <ec6623032131fc3e656713b8ec644cdff89a8066.camel@redhat.com>
+References: <20200716235440.GA675421@bjorn-Precision-5520>
+Reply-To: lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200717185757.2786-1-jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <20200716235440.GA675421@bjorn-Precision-5520>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,85 +19,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "Kirill A . Shutemov" <kirill-oKw7cIdHH8eLwutG50LtGA@public.gmane.org>
-Cc: Nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Patrick Volkerding <volkerdi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Kai-Heng Feng <kai.heng.feng-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This should resolve the inability to start X with the new NV format 
-modifier support in nouveau.  FYI, I'm offline next week, but I'll check 
-in tonight in case there are any review comments.  When I'm back, I'll 
-get the associated userspace fixes cleaned up and out to the appropriate 
-lists.
+On Thu, 2020-07-16 at 18:54 -0500, Bjorn Helgaas wrote:
+> [+cc Sasha -- stable kernel regression]
+> [+cc Patrick, Kai-Heng, LKML]
+> 
+> On Fri, Jul 17, 2020 at 12:10:39AM +0200, Karol Herbst wrote:
+> > On Tue, Jul 7, 2020 at 9:30 PM Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
+> > > Hi everybody,
+> > > 
+> > > with the mentioned commit Nouveau isn't able to load firmware onto the
+> > > GPU on one of my systems here. Even though the issue doesn't always
+> > > happen I am quite confident this is the commit breaking it.
+> > > 
+> > > I am still digging into the issue and trying to figure out what
+> > > exactly breaks, but it shows up in different ways. Either we are not
+> > > able to boot the engines on the GPU or the GPU becomes unresponsive.
+> > > Btw, this is also a system where our runtime power management issue
+> > > shows up, so maybe there is indeed something funky with the bridge
+> > > controller.
+> > > 
+> > > Just pinging you in case you have an idea on how this could break Nouveau
+> > > 
+> > > most of the times it shows up like this:
+> > > nouveau 0000:01:00.0: acr: AHESASC binary failed
+> > > 
+> > > Sometimes it works at boot and fails at runtime resuming with random
+> > > faults. So I will be investigating a bit more, but yeah... I am super
+> > > sure the commit triggered this issue, no idea if it actually causes
+> > > it.
+> > 
+> > so yeah.. I reverted that locally and never ran into issues again.
+> > Still valid on latest 5.7. So can we get this reverted or properly
+> > fixed? This breaks runtime pm for us on at least some hardware.
+> 
+> Yeah, that stinks.  We had another similar report from Patrick:
+> 
+>   
+> https://lore.kernel.org/r/CAErSpo5sTeK_my1dEhWp7aHD0xOp87+oHYWkTjbL7ALgDbXo-Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org
+> 
+> Apparently the problem is ec411e02b7a2 ("PCI/PM: Assume ports without
+> DLL Link Active train links in 100 ms"), which Patrick found was
+> backported to v5.4.49 as 828b192c57e8, and you found was backported to
+> v5.7.6 as afaff825e3a4.
+> 
+> Oddly, Patrick reported that v5.7.7 worked correctly, even though it
+> still contains afaff825e3a4.
+> 
+> I guess in the absence of any other clues we'll have to revert it.
+> I hate to do that because that means we'll have slow resume of
+> Thunderbolt-connected devices again, but that's better than having
+> GPUs completely broken.
+> 
+> Could you and Patrick open bugzilla.kernel.org reports, attach dmesg
+> logs and "sudo lspci -vv" output, and add the URLs to Kai-Heng's
+> original report at https://bugzilla.kernel.org/show_bug.cgi?id=206837
+> and to this thread?
+> 
+> There must be a way to fix the slow resume problem without breaking
+> the GPUs.
 
-Thanks,
--James
+Isn't it possible to tell whether a PCI device is connected through thunderbolt
+or not? We could probably get away with just defaulting to 100ms for thunderbolt
+devices without DLL Link Active specified, and then default to the old delay
+value for non-thunderbolt devices.
 
-On 7/17/20 11:57 AM, James Jones wrote:
-> Accept the DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK()
-> family of modifiers to handle broken userspace
-> Xorg modesetting and Mesa drivers.
 > 
-> Tested with Xorg 1.20 modesetting driver,
-> weston@c46c70dac84a4b3030cd05b380f9f410536690fc,
-> gnome & KDE wayland desktops from Ubuntu 18.04,
-> and sway 1.5
-> 
-> Signed-off-by: James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> ---
->   drivers/gpu/drm/nouveau/nouveau_display.c | 26 +++++++++++++++++++++--
->   1 file changed, 24 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-> index 496c4621cc78..31543086254b 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-> @@ -191,8 +191,14 @@ nouveau_decode_mod(struct nouveau_drm *drm,
->   		   uint32_t *tile_mode,
->   		   uint8_t *kind)
->   {
-> +	struct nouveau_display *disp = nouveau_display(drm->dev);
->   	BUG_ON(!tile_mode || !kind);
->   
-> +	if ((modifier & (0xffull << 12)) == 0ull) {
-> +		/* Legacy modifier.  Translate to this device's 'kind.' */
-> +		modifier |= disp->format_modifiers[0] & (0xffull << 12);
-> +	}
-> +
->   	if (modifier == DRM_FORMAT_MOD_LINEAR) {
->   		/* tile_mode will not be used in this case */
->   		*tile_mode = 0;
-> @@ -227,6 +233,16 @@ nouveau_framebuffer_get_layout(struct drm_framebuffer *fb,
->   	}
->   }
->   
-> +static const u64 legacy_modifiers[] = {
-> +	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(0),
-> +	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(1),
-> +	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(2),
-> +	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(3),
-> +	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(4),
-> +	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(5),
-> +	DRM_FORMAT_MOD_INVALID
-> +};
-> +
->   static int
->   nouveau_validate_decode_mod(struct nouveau_drm *drm,
->   			    uint64_t modifier,
-> @@ -247,8 +263,14 @@ nouveau_validate_decode_mod(struct nouveau_drm *drm,
->   	     (disp->format_modifiers[mod] != modifier);
->   	     mod++);
->   
-> -	if (disp->format_modifiers[mod] == DRM_FORMAT_MOD_INVALID)
-> -		return -EINVAL;
-> +	if (disp->format_modifiers[mod] == DRM_FORMAT_MOD_INVALID) {
-> +		for (mod = 0;
-> +		     (legacy_modifiers[mod] != DRM_FORMAT_MOD_INVALID) &&
-> +		     (legacy_modifiers[mod] != modifier);
-> +		     mod++);
-> +		if (legacy_modifiers[mod] == DRM_FORMAT_MOD_INVALID)
-> +			return -EINVAL;
-> +	}
->   
->   	nouveau_decode_mod(drm, modifier, tile_mode, kind);
->   
+> Bjorn
 > 
