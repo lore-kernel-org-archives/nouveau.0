@@ -1,114 +1,117 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH] RFC: ACPI / OSI: remove workarounds for hybrid graphics
- laptops
-Date: Fri, 17 Jul 2020 15:19:47 -0400
-Message-ID: <7bc7287b5cbac6535765b3490bd55da1e1cb4d07.camel@redhat.com>
-References: <20200717190547.648604-1-kherbst@redhat.com>
-Reply-To: lyude@redhat.com
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Accept 'legacy' format modifiers
+Date: Fri, 17 Jul 2020 21:47:51 +0200
+Message-ID: <20200717194751.GS3278063@phenom.ffwll.local>
+References: <20200717185757.2786-1-jajones@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-acpi-owner@vger.kernel.org>
-In-Reply-To: <20200717190547.648604-1-kherbst@redhat.com>
-Sender: linux-acpi-owner@vger.kernel.org
-To: Karol Herbst <kherbst@redhat.com>, linux-acpi@vger.kernel.org
-Cc: Alex Hung <alex.hung@canonical.com>, "Rafael J. Wysocki" <rjw@rjwysocki.net>, Len Brown <lenb@kernel.org>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20200717185757.2786-1-jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: Nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "Kirill A . Shutemov" <kirill-oKw7cIdHH8eLwutG50LtGA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hey-just wanted to give some additional context I think Karol missed here. It
-should be noted that since the last time me and Karol looked at reverting these,
-we've already fixed all of the nasty runtime PM (e.g. runtime D3) issues we
-could find. This includes the infamous one that was affecting nearly all of the
-nvidia pascal (+ some maxwell 2 and turing, it ended up being that the intel PCI
-bridge was the culprit) machines on the market. Right now I'm only aware of one
-major issue we have, which is the result of a recent PCI core change that we're
-already in the process of getting reverted:
+On Fri, Jul 17, 2020 at 11:57:57AM -0700, James Jones wrote:
+> Accept the DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK()
+> family of modifiers to handle broken userspace
+> Xorg modesetting and Mesa drivers.
+> 
+> Tested with Xorg 1.20 modesetting driver,
+> weston@c46c70dac84a4b3030cd05b380f9f410536690fc,
+> gnome & KDE wayland desktops from Ubuntu 18.04,
+> and sway 1.5
 
-https://lkml.org/lkml/2020/7/16/1288
+Just bikeshed, but maybe a few more words on what exactly is broken and
+how this works around it. Specifically why we only accept these, but don't
+advertise them.
 
-[if you do any testing of runtime PM, you may need to temporarily revert this
-patch to make things work]
+> 
+> Signed-off-by: James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 
-So, really-runtime D3 is very much supported with nouveau. And we've put a _lot_
-of effort into making sure of that, and are happy to fix any issues you're still
-finding. It also works just fine in AMD, but if you're finding systems it
-doesn't work with amd on then please let the amdgpu folks know upstream so they
-can properly fix it. Otherwise, these ACPI workarounds are likely making the
-power consumption on these systems (for nouveau, amdgpu, and radeon)
-dramatically higher then it needs to be.
+Needs Fixes: line here. Also nice to mention the bug reporter/link.
 
-On Fri, 2020-07-17 at 21:05 +0200, Karol Herbst wrote:
-> It's hard to figure out what systems are actually affected and right now I
-> don't see a good way of removing those...
-> 
-> But I'd like to see thos getting removed and drivers fixed instead (which
-> happened at least for nouveau).
-> 
-> And as mentioned before, I prefer people working on fixing issues instead
-> of spending time to add firmware level workarounds which are hard to know
-> to which systems they apply to, hard to remove and basically a big huge
-> pain to work with.
-> In the end I have no idea how to even figure out what systems are affected
-> and which not by this, so I have no idea how to even verify we can safely
-> remove this (which just means those are impossible to remove unless we risk
-> breaking systems, which again makes those supper annoying to deal with).
-> 
-> Also from the comments it's hard to get what those bits really do. Are they
-> just preventing runtime pm or do the devices are powered down when booting?
-> I am sure it's the former, still...
-> 
-> Please, don't do this again.
-> 
-> For now, those workaround prevent power savings on systems those workaround
-> applies to, which might be any so those should get removed asap and if
-> new issues arrise removing those please do a proper bug report and we can
-> look into it and come up with a proper fix (and keep this patch out until
-> we resolve all of those).
-> 
-> Signed-off-by: Karol Herbst <kherbst@redhat.com>
-> CC: Alex Hung <alex.hung@canonical.com>
-> CC: "Rafael J. Wysocki" <rjw@rjwysocki.net>
-> CC: Len Brown <lenb@kernel.org>
-> CC: Lyude Paul <lyude@redhat.com>
-> CC: linux-kernel@vger.kernel.org
-> CC: dri-devel@lists.freedesktop.org
-> CC: nouveau@lists.freedesktop.org
 > ---
->  drivers/acpi/osi.c | 24 ------------------------
->  1 file changed, 24 deletions(-)
+>  drivers/gpu/drm/nouveau/nouveau_display.c | 26 +++++++++++++++++++++--
+>  1 file changed, 24 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/acpi/osi.c b/drivers/acpi/osi.c
-> index 9f68538091384..d4405e1ca9b97 100644
-> --- a/drivers/acpi/osi.c
-> +++ b/drivers/acpi/osi.c
-> @@ -44,30 +44,6 @@ osi_setup_entries[OSI_STRING_ENTRIES_MAX] __initdata = {
->  	{"Processor Device", true},
->  	{"3.0 _SCP Extensions", true},
->  	{"Processor Aggregator Device", true},
-> -	/*
-> -	 * Linux-Dell-Video is used by BIOS to disable RTD3 for NVidia graphics
-> -	 * cards as RTD3 is not supported by drivers now.  Systems with NVidia
-> -	 * cards will hang without RTD3 disabled.
-> -	 *
-> -	 * Once NVidia drivers officially support RTD3, this _OSI strings can
-> -	 * be removed if both new and old graphics cards are supported.
-> -	 */
-> -	{"Linux-Dell-Video", true},
-> -	/*
-> -	 * Linux-Lenovo-NV-HDMI-Audio is used by BIOS to power on NVidia's HDMI
-> -	 * audio device which is turned off for power-saving in Windows OS.
-> -	 * This power management feature observed on some Lenovo Thinkpad
-> -	 * systems which will not be able to output audio via HDMI without
-> -	 * a BIOS workaround.
-> -	 */
-> -	{"Linux-Lenovo-NV-HDMI-Audio", true},
-> -	/*
-> -	 * Linux-HPI-Hybrid-Graphics is used by BIOS to enable dGPU to
-> -	 * output video directly to external monitors on HP Inc. mobile
-> -	 * workstations as Nvidia and AMD VGA drivers provide limited
-> -	 * hybrid graphics supports.
-> -	 */
-> -	{"Linux-HPI-Hybrid-Graphics", true},
->  };
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+> index 496c4621cc78..31543086254b 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+> @@ -191,8 +191,14 @@ nouveau_decode_mod(struct nouveau_drm *drm,
+>  		   uint32_t *tile_mode,
+>  		   uint8_t *kind)
+>  {
+> +	struct nouveau_display *disp = nouveau_display(drm->dev);
+>  	BUG_ON(!tile_mode || !kind);
 >  
->  static u32 acpi_osi_handler(acpi_string interface, u32 supported)
+> +	if ((modifier & (0xffull << 12)) == 0ull) {
+> +		/* Legacy modifier.  Translate to this device's 'kind.' */
+> +		modifier |= disp->format_modifiers[0] & (0xffull << 12);
+> +	}
+
+Hm I tried to understand what this magic does by looking at drm_fourcc.h,
+but the drm_fourcc_canonicalize_nvidia_format_mod() in there implements
+something else. Is that function wrong, or should we use it here instead?
+
+Or is there something else going on entirely?
+
+Cheers, Daniel
+
+> +
+>  	if (modifier == DRM_FORMAT_MOD_LINEAR) {
+>  		/* tile_mode will not be used in this case */
+>  		*tile_mode = 0;
+> @@ -227,6 +233,16 @@ nouveau_framebuffer_get_layout(struct drm_framebuffer *fb,
+>  	}
+>  }
+>  
+> +static const u64 legacy_modifiers[] = {
+> +	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(0),
+> +	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(1),
+> +	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(2),
+> +	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(3),
+> +	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(4),
+> +	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(5),
+> +	DRM_FORMAT_MOD_INVALID
+> +};
+> +
+>  static int
+>  nouveau_validate_decode_mod(struct nouveau_drm *drm,
+>  			    uint64_t modifier,
+> @@ -247,8 +263,14 @@ nouveau_validate_decode_mod(struct nouveau_drm *drm,
+>  	     (disp->format_modifiers[mod] != modifier);
+>  	     mod++);
+>  
+> -	if (disp->format_modifiers[mod] == DRM_FORMAT_MOD_INVALID)
+> -		return -EINVAL;
+> +	if (disp->format_modifiers[mod] == DRM_FORMAT_MOD_INVALID) {
+> +		for (mod = 0;
+> +		     (legacy_modifiers[mod] != DRM_FORMAT_MOD_INVALID) &&
+> +		     (legacy_modifiers[mod] != modifier);
+> +		     mod++);
+> +		if (legacy_modifiers[mod] == DRM_FORMAT_MOD_INVALID)
+> +			return -EINVAL;
+> +	}
+>  
+>  	nouveau_decode_mod(drm, modifier, tile_mode, kind);
+>  
+> -- 
+> 2.17.1
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
