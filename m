@@ -1,15 +1,17 @@
-From: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-Subject: Re: [PATCH v2 0/5] mm/migrate: avoid device private
- invalidations
-Date: Mon, 20 Jul 2020 15:41:19 -0300
-Message-ID: <20200720184119.GT2021248@mellanox.com>
+From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH v2 2/5] mm/migrate: add a direction parameter
+ to migrate_vma
+Date: Mon, 20 Jul 2020 12:54:53 -0700
+Message-ID: <2e775a5d-9d62-de52-6799-3bbb09c88c5a@nvidia.com>
 References: <20200713172149.2310-1-rcampbell@nvidia.com>
+ <20200713172149.2310-3-rcampbell@nvidia.com>
+ <20200720183643.GA3028737@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20200713172149.2310-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <20200720183643.GA3028737-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,39 +21,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: Jason Gunthorpe <jgg-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 Cc: linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, kvm-ppc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jul 13, 2020 at 10:21:44AM -0700, Ralph Campbell wrote:
-> The goal for this series is to avoid device private memory TLB
-> invalidations when migrating a range of addresses from system
-> memory to device private memory and some of those pages have already
-> been migrated. The approach taken is to introduce a new mmu notifier
-> invalidation event type and use that in the device driver to skip
-> invalidation callbacks from migrate_vma_setup(). The device driver is
-> also then expected to handle device MMU invalidations as part of the
-> migrate_vma_setup(), migrate_vma_pages(), migrate_vma_finalize() process.
-> Note that this is opt-in. A device driver can simply invalidate its MMU
-> in the mmu notifier callback and not handle MMU invalidations in the
-> migration sequence.
-> 
-> This series is based on Jason Gunthorpe's HMM tree (linux-5.8.0-rc4).
-> 
-> Also, this replaces the need for the following two patches I sent:
-> ("mm: fix migrate_vma_setup() src_owner and normal pages")
-> https://lore.kernel.org/linux-mm/20200622222008.9971-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
-> ("nouveau: fix mixed normal and device private page migration")
-> https://lore.kernel.org/lkml/20200622233854.10889-3-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
-> 
-> Changes in v2:
-> Rebase to Jason Gunthorpe's HMM tree.
-> Added reviewed-by from Bharata B Rao.
-> Rename the mmu_notifier_range::data field to migrate_pgmap_owner as
->   suggested by Jason Gunthorpe.
 
-I didn't see anything stand out in this at this point, did you intend
-this to go to the HMM tree?
+On 7/20/20 11:36 AM, Jason Gunthorpe wrote:
+> On Mon, Jul 13, 2020 at 10:21:46AM -0700, Ralph Campbell wrote:
+>> The src_owner field in struct migrate_vma is being used for two purposes,
+>> it implies the direction of the migration and it identifies device private
+>> pages owned by the caller. Split this into separate parameters so the
+>> src_owner field can be used just to identify device private pages owned
+>> by the caller of migrate_vma_setup().
+>>
+>> Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>> Reviewed-by: Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>
+>>   arch/powerpc/kvm/book3s_hv_uvmem.c     |  2 ++
+>>   drivers/gpu/drm/nouveau/nouveau_dmem.c |  2 ++
+>>   include/linux/migrate.h                | 12 +++++++++---
+>>   lib/test_hmm.c                         |  2 ++
+>>   mm/migrate.c                           |  5 +++--
+>>   5 files changed, 18 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/arch/powerpc/kvm/book3s_hv_uvmem.c b/arch/powerpc/kvm/book3s_hv_uvmem.c
+>> index 09d8119024db..acbf14cd2d72 100644
+>> +++ b/arch/powerpc/kvm/book3s_hv_uvmem.c
+>> @@ -400,6 +400,7 @@ kvmppc_svm_page_in(struct vm_area_struct *vma, unsigned long start,
+>>   	mig.end = end;
+>>   	mig.src = &src_pfn;
+>>   	mig.dst = &dst_pfn;
+>> +	mig.dir = MIGRATE_VMA_FROM_SYSTEM;
+>>   
+>>   	/*
+>>   	 * We come here with mmap_lock write lock held just for
+>> @@ -578,6 +579,7 @@ kvmppc_svm_page_out(struct vm_area_struct *vma, unsigned long start,
+>>   	mig.src = &src_pfn;
+>>   	mig.dst = &dst_pfn;
+>>   	mig.src_owner = &kvmppc_uvmem_pgmap;
+>> +	mig.dir = MIGRATE_VMA_FROM_DEVICE_PRIVATE;
+>>   
+>>   	mutex_lock(&kvm->arch.uvmem_lock);
+>>   	/* The requested page is already paged-out, nothing to do */
+>> diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+>> index e5c230d9ae24..e5c83b8ee82e 100644
+>> +++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+>> @@ -183,6 +183,7 @@ static vm_fault_t nouveau_dmem_migrate_to_ram(struct vm_fault *vmf)
+>>   		.src		= &src,
+>>   		.dst		= &dst,
+>>   		.src_owner	= drm->dev,
+>> +		.dir		= MIGRATE_VMA_FROM_DEVICE_PRIVATE,
+>>   	};
+>>   
+>>   	/*
+>> @@ -615,6 +616,7 @@ nouveau_dmem_migrate_vma(struct nouveau_drm *drm,
+>>   	struct migrate_vma args = {
+>>   		.vma		= vma,
+>>   		.start		= start,
+>> +		.dir		= MIGRATE_VMA_FROM_SYSTEM,
+>>   	};
+>>   	unsigned long i;
+>>   	u64 *pfns;
+>> diff --git a/include/linux/migrate.h b/include/linux/migrate.h
+>> index 3e546cbf03dd..620f2235d7d4 100644
+>> +++ b/include/linux/migrate.h
+>> @@ -180,6 +180,11 @@ static inline unsigned long migrate_pfn(unsigned long pfn)
+>>   	return (pfn << MIGRATE_PFN_SHIFT) | MIGRATE_PFN_VALID;
+>>   }
+>>   
+>> +enum migrate_vma_direction {
+>> +	MIGRATE_VMA_FROM_SYSTEM,
+>> +	MIGRATE_VMA_FROM_DEVICE_PRIVATE,
+>> +};
+> 
+> I would have guessed this is more natural as _FROM_DEVICE_ and
+> TO_DEVICE_ ?
 
-Thanks,
-Jason
+The caller controls where the destination memory is allocated so it isn't
+necessarily device private memory, it could be from system to system.
+The use case for system to system memory migration is for hardware
+like ARM SMMU or PCIe ATS where a single set of page tables is shared by
+the device and a CPU process over a coherent system memory bus.
+Also many integrated GPUs in SOCs fall into this category too.
+
+So to me, it makes more sense to specify the direction based on the
+source location.
+
+> All the callers of this API are device drivers managing their
+> DEVICE_PRIVATE, right?
+
+True for now, yes.
+
+> Jason
+> 
