@@ -1,69 +1,142 @@
-From: Ralph Campbell <rcampbell@nvidia.com>
-Subject: Re: [PATCH v2 2/5] mm/migrate: add a direction parameter to
- migrate_vma
-Date: Mon, 20 Jul 2020 13:49:09 -0700
-Message-ID: <fdfde6a0-f2bf-c0b2-0283-c882aa755292@nvidia.com>
-References: <20200713172149.2310-1-rcampbell@nvidia.com>
- <20200713172149.2310-3-rcampbell@nvidia.com>
- <20200720183643.GA3028737@nvidia.com>
- <2e775a5d-9d62-de52-6799-3bbb09c88c5a@nvidia.com>
- <20200720195943.GH2021234@nvidia.com>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] drm/nouveau/kms/nv50-: Fix CRC-related compile
+ errors with debugfs disabled
+Date: Mon, 20 Jul 2020 16:56:56 -0400
+Message-ID: <20200720205659.296879-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200720195943.GH2021234@nvidia.com>
-Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: linux-rdma@vger.kernel.org, linux-mm@kvack.org, nouveau@lists.freedesktop.org, kvm-ppc@vger.kernel.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Andrew Morton <akpm@linux-foundation.org>, Shuah Khan <shuah@kernel.org>, Ben Skeggs <bskeggs@redhat.com>, Bharata B Rao <bharata@linux.ibm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: kernel test robot <lkp-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
-On 7/20/20 12:59 PM, Jason Gunthorpe wrote:
-> On Mon, Jul 20, 2020 at 12:54:53PM -0700, Ralph Campbell wrote:
->>>> diff --git a/include/linux/migrate.h b/include/linux/migrate.h
->>>> index 3e546cbf03dd..620f2235d7d4 100644
->>>> +++ b/include/linux/migrate.h
->>>> @@ -180,6 +180,11 @@ static inline unsigned long migrate_pfn(unsigned long pfn)
->>>>    	return (pfn << MIGRATE_PFN_SHIFT) | MIGRATE_PFN_VALID;
->>>>    }
->>>> +enum migrate_vma_direction {
->>>> +	MIGRATE_VMA_FROM_SYSTEM,
->>>> +	MIGRATE_VMA_FROM_DEVICE_PRIVATE,
->>>> +};
->>>
->>> I would have guessed this is more natural as _FROM_DEVICE_ and
->>> TO_DEVICE_ ?
->>
->> The caller controls where the destination memory is allocated so it isn't
->> necessarily device private memory, it could be from system to system.
->> The use case for system to system memory migration is for hardware
->> like ARM SMMU or PCIe ATS where a single set of page tables is shared by
->> the device and a CPU process over a coherent system memory bus.
->> Also many integrated GPUs in SOCs fall into this category too.
-> 
-> Maybe just TO/FROM_DEIVCE then? Even though the memory is not
-> DEVICE_PRIVATE it is still device owned pages right?
-> 
->> So to me, it makes more sense to specify the direction based on the
->> source location.
-> 
-> It feels strange because the driver doesn't always know or control the
-> source?
-> 
-> Jason
-> 
-
-The driver can't really know where the source is currently located because the
-API is designed to not initially hold the page locks, migrate_vma_setup() only knows
-the source once it holds the page table locks and isolates/locks the pages being
-migrated. The direction and pgmap_owner are supposed to filter which pages
-the caller is interested in migrating.
-Perhaps the direction should instead be a flags field with separate bits for
-system memory and device private memory selecting source candidates for
-migration. I can imagine use cases for all 4 combinations of
-d->d, d->s, s->d, and s->s being valid.
-
-I didn't really think a direction was needed, this was something that
-Christoph Hellwig seemed to think made the API safer.
+TG9va3MgbGlrZSBJIG1hZGUgdGhlIG1pc3Rha2Ugb2YgZm9yZ2V0dGluZyB0byBjaGVjayB3aGV0
+aGVyIG9yIG5vdCB0aGlzCndvdWxkIGJ1aWxkIHdpdGhvdXQgQ09ORklHX0RFQlVHX0ZTLCBhcyB0
+aGUgS2J1aWxkIGJvdCByZXBvcnRlZCBzb21lCmlzc3VlcyBidWlsZGluZyB3aXRoIHRlZ3JhX2Rl
+ZmNvbmZpZzoKCkluIGZpbGUgaW5jbHVkZWQgZnJvbSBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2Rpc3BsYXkuYzo0NzoKLi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9j
+cmMuaDogSW4gZnVuY3Rpb24K4oCYbnY1MF9oZWFkX2NyY19sYXRlX3JlZ2lzdGVy4oCZOgouL2Ry
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NyYy5oOjEwNjo0NzogZXJyb3I6IHBhcmFt
+ZXRlciBuYW1lCm9taXR0ZWQKICAxMDYgfCBzdGF0aWMgaW5saW5lIGludCBudjUwX2hlYWRfY3Jj
+X2xhdGVfcmVnaXN0ZXIoc3RydWN0IG52NTBfaGVhZCAqKSB7fQogICAgICB8ICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn4KLi9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jcmMuaDoxMDY6NTQ6IHdhcm5pbmc6IG5v
+IHJldHVybgpzdGF0ZW1lbnQgaW4gZnVuY3Rpb24gcmV0dXJuaW5nIG5vbi12b2lkIFstV3JldHVy
+bi10eXBlXQogIDEwNiB8IHN0YXRpYyBpbmxpbmUgaW50IG52NTBfaGVhZF9jcmNfbGF0ZV9yZWdp
+c3RlcihzdHJ1Y3QgbnY1MF9oZWFkICopIHt9CiAgICAgIHwgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9kaXNwbnY1MC9jcmMuaDogSW4gZnVuY3Rpb24K4oCYbnY1MF9jcmNfaGFuZGxl
+X3ZibGFua+KAmToKLi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jcmMuaDoxMDg6
+NTc6IHdhcm5pbmc6IOKAmHJldHVybuKAmSB3aXRoCmEgdmFsdWUsIGluIGZ1bmN0aW9uIHJldHVy
+bmluZyB2b2lkIFstV3JldHVybi10eXBlXQogIDEwOCB8IG52NTBfY3JjX2hhbmRsZV92Ymxhbmso
+c3RydWN0IG52NTBfaGVhZCAqaGVhZCkgeyByZXR1cm4gMDsgfQogICAgICB8ICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXgouL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NyYy5oOjEwODoxOiBub3RlOiBkZWNsYXJlZCBoZXJl
+CiAgMTA4IHwgbnY1MF9jcmNfaGFuZGxlX3ZibGFuayhzdHJ1Y3QgbnY1MF9oZWFkICpoZWFkKSB7
+IHJldHVybiAwOyB9CiAgICAgIHwgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fgouL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NyYy5oOiBJbiBmdW5jdGlvbgrigJhudjUwX2NyY19hdG9t
+aWNfY2hlY2vigJk6Ci4vZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvY3JjLmg6MTEx
+OjIzOiBlcnJvcjogcGFyYW1ldGVyIG5hbWUKb21pdHRlZAogIDExMSB8IG52NTBfY3JjX2F0b21p
+Y19jaGVjayhzdHJ1Y3QgbnY1MF9oZWFkICosIHN0cnVjdCBudjUwX2hlYWRfYXRvbSAqLAogICAg
+ICB8ICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn4KLi9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jcmMuaDoxMTE6NDM6IGVycm9yOiBwYXJhbWV0ZXIgbmFt
+ZQpvbWl0dGVkCiAgMTExIHwgbnY1MF9jcmNfYXRvbWljX2NoZWNrKHN0cnVjdCBudjUwX2hlYWQg
+Kiwgc3RydWN0IG52NTBfaGVhZF9hdG9tICosCiAgICAgIHwgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fn4KLi9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jcmMuaDoxMTI6OTogZXJyb3I6IHBhcmFtZXRlciBuYW1l
+Cm9taXR0ZWQKICAxMTIgfCAgICAgICAgIHN0cnVjdCBudjUwX2hlYWRfYXRvbSAqKSB7fQogICAg
+ICB8ICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9kaXNwbnY1MC9jcmMuaDoxMTI6MTY6IHdhcm5pbmc6IG5vIHJldHVybgpzdGF0ZW1lbnQg
+aW4gZnVuY3Rpb24gcmV0dXJuaW5nIG5vbi12b2lkIFstV3JldHVybi10eXBlXQogIDExMiB8ICAg
+ICAgICAgc3RydWN0IG52NTBfaGVhZF9hdG9tICopIHt9CiAgICAgIHwgICAgICAgICAgICAgICAg
+Xn5+fn5+fn5+fn5+fn4KLi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jcmMuaDog
+SW4gZnVuY3Rpb24K4oCYbnY1MF9jcmNfYXRvbWljX3N0b3BfcmVwb3J0aW5n4oCZOgouL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NyYy5oOjExNDozMjogZXJyb3I6IHBhcmFtZXRl
+ciBuYW1lCm9taXR0ZWQKICAxMTQgfCBudjUwX2NyY19hdG9taWNfc3RvcF9yZXBvcnRpbmcoc3Ry
+dWN0IGRybV9hdG9taWNfc3RhdGUgKikge30KICAgICAgfCAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fgouL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L2Rpc3BudjUwL2NyYy5oOiBJbiBmdW5jdGlvbgrigJhudjUwX2NyY19hdG9taWNfcHJlcGFy
+ZV9ub3RpZmllcl9jb250ZXh0c+KAmToKLi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1
+MC9jcmMuaDoxMTY6NDM6IGVycm9yOiBwYXJhbWV0ZXIgbmFtZQpvbWl0dGVkCiAgMTE2IHwgbnY1
+MF9jcmNfYXRvbWljX3ByZXBhcmVfbm90aWZpZXJfY29udGV4dHMoc3RydWN0IGRybV9hdG9taWNf
+c3RhdGUgKikge30KICAgICAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICBefn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+Ci4vZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+ZGlzcG52NTAvY3JjLmg6IEluIGZ1bmN0aW9uCuKAmG52NTBfY3JjX2F0b21pY19zdGFydF9yZXBv
+cnRpbmfigJk6Ci4vZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvY3JjLmg6MTE4OjMz
+OiBlcnJvcjogcGFyYW1ldGVyIG5hbWUKb21pdHRlZAogIDExOCB8IG52NTBfY3JjX2F0b21pY19z
+dGFydF9yZXBvcnRpbmcoc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKikge30KICAgICAgfCAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn4KLi9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jcmMuaDogSW4gZnVuY3Rpb24K4oCYbnY1
+MF9jcmNfYXRvbWljX3NldOKAmToKLi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9j
+cmMuaDoxMjA6MjE6IGVycm9yOiBwYXJhbWV0ZXIgbmFtZQpvbWl0dGVkCiAgMTIwIHwgbnY1MF9j
+cmNfYXRvbWljX3NldChzdHJ1Y3QgbnY1MF9oZWFkICosIHN0cnVjdCBudjUwX2hlYWRfYXRvbSAq
+KSB7fQogICAgICB8ICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+Ci4vZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvY3JjLmg6MTIwOjQxOiBlcnJvcjogcGFyYW1l
+dGVyIG5hbWUKb21pdHRlZAogIDEyMCB8IG52NTBfY3JjX2F0b21pY19zZXQoc3RydWN0IG52NTBf
+aGVhZCAqLCBzdHJ1Y3QgbnY1MF9oZWFkX2F0b20gKikge30KICAgICAgfCAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fn4KLi9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jcmMuaDogSW4gZnVuY3Rpb24K4oCYbnY1MF9j
+cmNfYXRvbWljX2NscuKAmToKLi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jcmMu
+aDoxMjI6MjE6IGVycm9yOiBwYXJhbWV0ZXIgbmFtZQpvbWl0dGVkCiAgMTIyIHwgbnY1MF9jcmNf
+YXRvbWljX2NscihzdHJ1Y3QgbnY1MF9oZWFkICopIHt9CiAgICAgIHwgICAgICAgICAgICAgICAg
+ICAgICBefn5+fn5+fn5+fn5+fn5+fn4KZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9k
+aXNwbGF5LmM6IEluIGZ1bmN0aW9uCuKAmG5vdXZlYXVfZnJhbWVidWZmZXJfbmV34oCZOgpkcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYzoyODY6MTU6IHdhcm5pbmc6IHZh
+cmlhYmxlCuKAmHdpZHRo4oCZIHNldCBidXQgbm90IHVzZWQgWy1XdW51c2VkLWJ1dC1zZXQtdmFy
+aWFibGVdCiAgMjg2IHwgIHVuc2lnbmVkIGludCB3aWR0aCwgaGVpZ2h0LCBpOwogICAgICB8ICAg
+ICAgICAgICAgICAgXn5+fn4KClNvLCBmaXggdGhlIGlubGluZSBmdW5jdGlvbiBkZWNsYXJhdGlv
+bnMgd2UgdXNlIGluCmRybS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9jcmMuaCB3
+aGVuIENPTkZJR19ERUJVR19GUyBpcwplbmFibGVkLgoKRml4ZXM6IDEyODg1ZWNiZmU2MiAoImRy
+bS9ub3V2ZWF1L2ttcy9udmQ5LTogQWRkIENSQyBzdXBwb3J0IikKUmVwb3J0ZWQtYnk6IGtlcm5l
+bCB0ZXN0IHJvYm90IDxsa3BAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxs
+eXVkZUByZWRoYXQuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Ny
+Yy5oIHwgMjMgKysrKysrKysrKysrLS0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxMiBpbnNl
+cnRpb25zKCspLCAxMSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9kaXNwbnY1MC9jcmMuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUw
+L2NyYy5oCmluZGV4IDRiYzU5ZTc3OTMxNTEuLjkyZGYwODQ0OTJhOGMgMTAwNjQ0Ci0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2NyYy5oCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L2Rpc3BudjUwL2NyYy5oCkBAIC0xMDYsMjYgKzEwNiwyNyBAQCBzdHJ1Y3QgbnY1
+MF9jcmNfYXRvbSB7fTsKICNkZWZpbmUgbnY1MF9jcmNfc2V0X3NvdXJjZSBOVUxMCiAKIHN0YXRp
+YyBpbmxpbmUgdm9pZCBudjUwX2NyY19pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpIHt9Ci1z
+dGF0aWMgaW5saW5lIGludCBudjUwX2hlYWRfY3JjX2xhdGVfcmVnaXN0ZXIoc3RydWN0IG52NTBf
+aGVhZCAqKSB7fQotc3RhdGljIGlubGluZSB2b2lkCi1udjUwX2NyY19oYW5kbGVfdmJsYW5rKHN0
+cnVjdCBudjUwX2hlYWQgKmhlYWQpIHsgcmV0dXJuIDA7IH0KK3N0YXRpYyBpbmxpbmUgaW50Citu
+djUwX2hlYWRfY3JjX2xhdGVfcmVnaXN0ZXIoc3RydWN0IG52NTBfaGVhZCAqaGVhZCkgeyByZXR1
+cm4gMDsgfQorc3RhdGljIGlubGluZSB2b2lkIG52NTBfY3JjX2hhbmRsZV92Ymxhbmsoc3RydWN0
+IG52NTBfaGVhZCAqaGVhZCkge30KIAogc3RhdGljIGlubGluZSBpbnQKLW52NTBfY3JjX2F0b21p
+Y19jaGVja19oZWFkKHN0cnVjdCBudjUwX2hlYWQgKiwgc3RydWN0IG52NTBfaGVhZF9hdG9tICos
+Ci0JCQkgICBzdHJ1Y3QgbnY1MF9oZWFkX2F0b20gKikge30KK252NTBfY3JjX2F0b21pY19jaGVj
+a19oZWFkKHN0cnVjdCBudjUwX2hlYWQgKmhlYWQsCisJCQkgICBzdHJ1Y3QgbnY1MF9oZWFkX2F0
+b20gKmFzeWgsCisJCQkgICBzdHJ1Y3QgbnY1MF9oZWFkX2F0b20gKmFybWgpIHsgcmV0dXJuIDA7
+IH0KIHN0YXRpYyBpbmxpbmUgdm9pZCBudjUwX2NyY19hdG9taWNfY2hlY2tfb3V0cChzdHJ1Y3Qg
+bnY1MF9hdG9tICphdG9tKSB7fQogc3RhdGljIGlubGluZSB2b2lkCi1udjUwX2NyY19hdG9taWNf
+c3RvcF9yZXBvcnRpbmcoc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKikge30KK252NTBfY3JjX2F0
+b21pY19zdG9wX3JlcG9ydGluZyhzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUpIHt9CiBz
+dGF0aWMgaW5saW5lIHZvaWQKLW52NTBfY3JjX2F0b21pY19pbml0X25vdGlmaWVyX2NvbnRleHRz
+KHN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICopIHt9CitudjUwX2NyY19hdG9taWNfaW5pdF9ub3Rp
+Zmllcl9jb250ZXh0cyhzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUpIHt9CiBzdGF0aWMg
+aW5saW5lIHZvaWQKLW52NTBfY3JjX2F0b21pY19yZWxlYXNlX25vdGlmaWVyX2NvbnRleHRzKHN0
+cnVjdCBkcm1fYXRvbWljX3N0YXRlICopIHt9CitudjUwX2NyY19hdG9taWNfcmVsZWFzZV9ub3Rp
+Zmllcl9jb250ZXh0cyhzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUpIHt9CiBzdGF0aWMg
+aW5saW5lIHZvaWQKLW52NTBfY3JjX2F0b21pY19zdGFydF9yZXBvcnRpbmcoc3RydWN0IGRybV9h
+dG9taWNfc3RhdGUgKikge30KK252NTBfY3JjX2F0b21pY19zdGFydF9yZXBvcnRpbmcoc3RydWN0
+IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlKSB7fQogc3RhdGljIGlubGluZSB2b2lkCi1udjUwX2Ny
+Y19hdG9taWNfc2V0KHN0cnVjdCBudjUwX2hlYWQgKiwgc3RydWN0IG52NTBfaGVhZF9hdG9tICop
+IHt9CitudjUwX2NyY19hdG9taWNfc2V0KHN0cnVjdCBudjUwX2hlYWQgKmhlYWQsIHN0cnVjdCBu
+djUwX2hlYWRfYXRvbSAqc3RhdGUpIHt9CiBzdGF0aWMgaW5saW5lIHZvaWQKLW52NTBfY3JjX2F0
+b21pY19jbHIoc3RydWN0IG52NTBfaGVhZCAqKSB7fQorbnY1MF9jcmNfYXRvbWljX2NscihzdHJ1
+Y3QgbnY1MF9oZWFkICpoZWFkKSB7fQogCiAjZW5kaWYgLyogSVNfRU5BQkxFRChDT05GSUdfREVC
+VUdfRlMpICovCiAjZW5kaWYgLyogIV9fTlY1MF9DUkNfSF9fICovCi0tIAoyLjI2LjIKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
+ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
