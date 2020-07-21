@@ -1,33 +1,52 @@
-From: Mika Westerberg <mika.westerberg@linux.intel.com>
-Subject: Re: nouveau regression with 5.7 caused by "PCI/PM: Assume ports
- without DLL Link Active train links in 100 ms"
-Date: Tue, 21 Jul 2020 18:27:37 +0300
-Message-ID: <20200721152737.GS5180@lahna.fi.intel.com>
-References: <CACO55tuA+XMgv=GREf178NzTLTHri4kyD5mJjKuDpKxExauvVg@mail.gmail.com>
- <20200716235440.GA675421@bjorn-Precision-5520>
- <CACO55tuVJHjEbsW657ToczN++_iehXA8pimPAkzc=NOnx4Ztnw@mail.gmail.com>
- <CACO55tso5SVipAR=AZfqhp6GGkKO9angv6f+nd61wvgAJtrOKg@mail.gmail.com>
- <20200721122247.GI5180@lahna.fi.intel.com>
- <f951fba07ca7fa2fdfd590cd5023d1b31f515fa2.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH -next] drm/nouveau/kms/nvd9-: Fix file release memory
+ leak
+Date: Tue, 21 Jul 2020 11:50:20 -0400
+Message-ID: <4e90a54c61e3ecb19802d7ea811c58a51ac457ed.camel@redhat.com>
+References: <20200721151701.51412-1-weiyongjun1@huawei.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-pci-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <f951fba07ca7fa2fdfd590cd5023d1b31f515fa2.camel@redhat.com>
-Sender: linux-pci-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: Karol Herbst <kherbst@redhat.com>, Bjorn Helgaas <helgaas@kernel.org>, Linux PCI <linux-pci@vger.kernel.org>, Ben Skeggs <bskeggs@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>, nouveau <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>, Patrick Volkerding <volkerdi@gmail.com>, LKML <linux-kernel@vger.kernel.org>, Kai-Heng Feng <kai.heng.feng@canonical.com>, Sasha Levin <sashal@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Return-path: <kernel-janitors-owner@vger.kernel.org>
+In-Reply-To: <20200721151701.51412-1-weiyongjun1@huawei.com>
+Sender: kernel-janitors-owner@vger.kernel.org
+To: Wei Yongjun <weiyongjun1@huawei.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org, Hulk Robot <hulkci@huawei.com>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jul 21, 2020 at 11:01:55AM -0400, Lyude Paul wrote:
-> Sure thing. Also, feel free to let me know if you'd like access to one of the
-> systems we saw breaking with this patch - I'm fairly sure I've got one of them
-> locally at my apartment and don't mind setting up AMT/KVM/SSH
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-Probably no need for remote access (thanks for the offer, though). I
-attached a test patch to the bug report:
+Thanks!
 
-  https://bugzilla.kernel.org/show_bug.cgi?id=208597
-
-that tries to work it around (based on the ->pm_cap == 0). I wonder if
-anyone would have time to try it out.
+On Tue, 2020-07-21 at 15:17 +0000, Wei Yongjun wrote:
+> When using single_open() for opening, single_release() should be
+> used instead of seq_release(), otherwise there is a memory leak.
+> 
+> Fixes: 12885ecbfe62 ("drm/nouveau/kms/nvd9-: Add CRC support")
+> Reported-by: Hulk Robot <hulkci@huawei.com>
+> Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
+> ---
+>  drivers/gpu/drm/nouveau/dispnv50/crc.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/crc.c
+> b/drivers/gpu/drm/nouveau/dispnv50/crc.c
+> index f17fb6d56757..4971a1042415 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/crc.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/crc.c
+> @@ -706,6 +706,7 @@ static const struct file_operations
+> nv50_crc_flip_threshold_fops = {
+>  	.open = nv50_crc_debugfs_flip_threshold_open,
+>  	.read = seq_read,
+>  	.write = nv50_crc_debugfs_flip_threshold_set,
+> +	.release = single_release,
+>  };
+>  
+>  int nv50_head_crc_late_register(struct nv50_head *head)
+> 
+> 
+> 
+-- 
+Cheers,
+	Lyude Paul (she/her)
+	Software Engineer at Red Hat
