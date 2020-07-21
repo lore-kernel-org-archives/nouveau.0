@@ -1,45 +1,114 @@
-From: Patrick Volkerding <volkerdi@gmail.com>
-Subject: Re: nouveau regression with 5.7 caused by "PCI/PM: Assume ports
- without DLL Link Active train links in 100 ms"
-Date: Tue, 21 Jul 2020 13:37:12 -0500
-Message-ID: <d3253a47-09ff-8bc7-3ca1-a80bdc09d1c2@gmail.com>
-References: <CACO55tuA+XMgv=GREf178NzTLTHri4kyD5mJjKuDpKxExauvVg@mail.gmail.com>
- <20200716235440.GA675421@bjorn-Precision-5520>
- <CACO55tuVJHjEbsW657ToczN++_iehXA8pimPAkzc=NOnx4Ztnw@mail.gmail.com>
- <CACO55tso5SVipAR=AZfqhp6GGkKO9angv6f+nd61wvgAJtrOKg@mail.gmail.com>
- <20200721122247.GI5180@lahna.fi.intel.com>
- <f951fba07ca7fa2fdfd590cd5023d1b31f515fa2.camel@redhat.com>
- <20200721152737.GS5180@lahna.fi.intel.com>
+From: Ralph Campbell <rcampbell@nvidia.com>
+Subject: [PATCH v3 3/5] mm/notifier: add migration invalidation type
+Date: Tue, 21 Jul 2020 14:31:17 -0700
+Message-ID: <20200721213119.32344-4-rcampbell@nvidia.com>
+References: <20200721213119.32344-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-pci-owner@vger.kernel.org>
-In-Reply-To: <20200721152737.GS5180@lahna.fi.intel.com>
-Content-Language: en-US
-Sender: linux-pci-owner@vger.kernel.org
-To: Mika Westerberg <mika.westerberg@linux.intel.com>, Lyude Paul <lyude@redhat.com>
-Cc: Karol Herbst <kherbst@redhat.com>, Bjorn Helgaas <helgaas@kernel.org>, Linux PCI <linux-pci@vger.kernel.org>, Ben Skeggs <bskeggs@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>, nouveau <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, Kai-Heng Feng <kai.heng.feng@canonical.com>, Sasha Levin <sashal@kernel.org>
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
+Return-path: <kvm-ppc-owner@vger.kernel.org>
+In-Reply-To: <20200721213119.32344-1-rcampbell@nvidia.com>
+Sender: kvm-ppc-owner@vger.kernel.org
+To: linux-rdma@vger.kernel.org, linux-mm@kvack.org, nouveau@lists.freedesktop.org, kvm-ppc@vger.kernel.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@mellanox.com>, Andrew Morton <akpm@linux-foundation.org>, Shuah Khan <shuah@kernel.org>, Ben Skeggs <bskeggs@redhat.com>, Bharata B Rao <bharata@linux.ibm.com>, Ralph Campbell <rcampbell@nvidia.com>
 List-Id: nouveau.vger.kernel.org
 
-On 7/21/20 10:27 AM, Mika Westerberg wrote:
-> On Tue, Jul 21, 2020 at 11:01:55AM -0400, Lyude Paul wrote:
->> Sure thing. Also, feel free to let me know if you'd like access to one of the
->> systems we saw breaking with this patch - I'm fairly sure I've got one of them
->> locally at my apartment and don't mind setting up AMT/KVM/SSH
-> Probably no need for remote access (thanks for the offer, though). I
-> attached a test patch to the bug report:
->
->   https://bugzilla.kernel.org/show_bug.cgi?id=208597
->
-> that tries to work it around (based on the ->pm_cap == 0). I wonder if
-> anyone would have time to try it out.
+Currently migrate_vma_setup() calls mmu_notifier_invalidate_range_start()
+which flushes all device private page mappings whether or not a page
+is being migrated to/from device private memory. In order to not disrupt
+device mappings that are not being migrated, shift the responsibility
+for clearing device private mappings to the device driver and leave
+CPU page table unmapping handled by migrate_vma_setup(). To support
+this, the caller of migrate_vma_setup() should always set struct
+migrate_vma::pgmap_owner to a non NULL value that matches the device
+private page->pgmap->owner. This value is then passed to the struct
+mmu_notifier_range with a new event type which the driver's invalidation
+function can use to avoid device MMU invalidations.
 
+Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
+---
+ include/linux/migrate.h      | 3 +++
+ include/linux/mmu_notifier.h | 7 +++++++
+ mm/migrate.c                 | 8 +++++++-
+ 3 files changed, 17 insertions(+), 1 deletion(-)
 
-Hi Mika,
-
-I can confirm that this patch applied to 5.4.52 fixes the issue with
-hybrid graphics on the Thinkpad X1 Extreme gen2.
-
-Thanks,
-
-Pat
+diff --git a/include/linux/migrate.h b/include/linux/migrate.h
+index aafec0ca7b41..4cc7097d0271 100644
+--- a/include/linux/migrate.h
++++ b/include/linux/migrate.h
+@@ -206,6 +206,9 @@ struct migrate_vma {
+ 	 * Set to the owner value also stored in page->pgmap->owner for
+ 	 * migrating out of device private memory. The flags also need to
+ 	 * be set to MIGRATE_VMA_SELECT_DEVICE_PRIVATE.
++	 * The caller should always set this field when using mmu notifier
++	 * callbacks to avoid device MMU invalidations for device private
++	 * pages that are not being migrated.
+ 	 */
+ 	void			*pgmap_owner;
+ 	unsigned long		flags;
+diff --git a/include/linux/mmu_notifier.h b/include/linux/mmu_notifier.h
+index fc68f3570e19..1921fcf6be5b 100644
+--- a/include/linux/mmu_notifier.h
++++ b/include/linux/mmu_notifier.h
+@@ -38,6 +38,10 @@ struct mmu_interval_notifier;
+  *
+  * @MMU_NOTIFY_RELEASE: used during mmu_interval_notifier invalidate to si=
+gnal
+  * that the mm refcount is zero and the range is no longer accessible.
++ *
++ * @MMU_NOTIFY_MIGRATE: used during migrate_vma_collect() invalidate to si=
+gnal
++ * a device driver to possibly ignore the invalidation if the
++ * migrate_pgmap_owner field matches the driver's device private pgmap own=
+er.
+  */
+ enum mmu_notifier_event {
+ 	MMU_NOTIFY_UNMAP =3D 0,
+@@ -46,6 +50,7 @@ enum mmu_notifier_event {
+ 	MMU_NOTIFY_PROTECTION_PAGE,
+ 	MMU_NOTIFY_SOFT_DIRTY,
+ 	MMU_NOTIFY_RELEASE,
++	MMU_NOTIFY_MIGRATE,
+ };
+=20
+ #define MMU_NOTIFIER_RANGE_BLOCKABLE (1 << 0)
+@@ -264,6 +269,7 @@ struct mmu_notifier_range {
+ 	unsigned long end;
+ 	unsigned flags;
+ 	enum mmu_notifier_event event;
++	void *migrate_pgmap_owner;
+ };
+=20
+ static inline int mm_has_notifiers(struct mm_struct *mm)
+@@ -513,6 +519,7 @@ static inline void mmu_notifier_range_init(struct mmu_n=
+otifier_range *range,
+ 	range->start =3D start;
+ 	range->end =3D end;
+ 	range->flags =3D flags;
++	range->migrate_pgmap_owner =3D NULL;
+ }
+=20
+ #define ptep_clear_flush_young_notify(__vma, __address, __ptep)		\
+diff --git a/mm/migrate.c b/mm/migrate.c
+index e3ea68e3a08b..96e1f41a991e 100644
+--- a/mm/migrate.c
++++ b/mm/migrate.c
+@@ -2392,8 +2392,14 @@ static void migrate_vma_collect(struct migrate_vma *=
+migrate)
+ {
+ 	struct mmu_notifier_range range;
+=20
+-	mmu_notifier_range_init(&range, MMU_NOTIFY_CLEAR, 0, NULL,
++	/*
++	 * Note that the pgmap_owner is passed to the mmu notifier callback so
++	 * that the registered device driver can skip invalidating device
++	 * private page mappings that won't be migrated.
++	 */
++	mmu_notifier_range_init(&range, MMU_NOTIFY_MIGRATE, 0, migrate->vma,
+ 			migrate->vma->vm_mm, migrate->start, migrate->end);
++	range.migrate_pgmap_owner =3D migrate->pgmap_owner;
+ 	mmu_notifier_invalidate_range_start(&range);
+=20
+ 	walk_page_range(migrate->vma->vm_mm, migrate->start, migrate->end,
+--=20
+2.20.1
