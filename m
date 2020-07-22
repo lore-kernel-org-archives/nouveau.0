@@ -1,22 +1,17 @@
-From: Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Subject: Re: nouveau regression with 5.7 caused by "PCI/PM: Assume
- ports without DLL Link Active train links in 100 ms"
-Date: Wed, 22 Jul 2020 12:25:07 +0300
-Message-ID: <20200722092507.GC5180@lahna.fi.intel.com>
-References: <CACO55tuA+XMgv=GREf178NzTLTHri4kyD5mJjKuDpKxExauvVg@mail.gmail.com>
- <20200716235440.GA675421@bjorn-Precision-5520>
- <CACO55tuVJHjEbsW657ToczN++_iehXA8pimPAkzc=NOnx4Ztnw@mail.gmail.com>
- <CACO55tso5SVipAR=AZfqhp6GGkKO9angv6f+nd61wvgAJtrOKg@mail.gmail.com>
- <20200721122247.GI5180@lahna.fi.intel.com>
- <f951fba07ca7fa2fdfd590cd5023d1b31f515fa2.camel@redhat.com>
- <20200721152737.GS5180@lahna.fi.intel.com>
- <d3253a47-09ff-8bc7-3ca1-a80bdc09d1c2@gmail.com>
+From: Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>
+Subject: Re: [PATCH v3 2/5] mm/migrate: add a flags parameter to
+ migrate_vma
+Date: Wed, 22 Jul 2020 17:21:11 +0530
+Message-ID: <20200722115111.GR7902@in.ibm.com>
+References: <20200721213119.32344-1-rcampbell@nvidia.com>
+ <20200721213119.32344-3-rcampbell@nvidia.com>
+Reply-To: bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <d3253a47-09ff-8bc7-3ca1-a80bdc09d1c2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <20200721213119.32344-3-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -26,28 +21,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Patrick Volkerding <volkerdi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Kai-Heng Feng <kai.heng.feng-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
+To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, kvm-ppc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jul 21, 2020 at 01:37:12PM -0500, Patrick Volkerding wrote:
-> On 7/21/20 10:27 AM, Mika Westerberg wrote:
-> > On Tue, Jul 21, 2020 at 11:01:55AM -0400, Lyude Paul wrote:
-> >> Sure thing. Also, feel free to let me know if you'd like access to one of the
-> >> systems we saw breaking with this patch - I'm fairly sure I've got one of them
-> >> locally at my apartment and don't mind setting up AMT/KVM/SSH
-> > Probably no need for remote access (thanks for the offer, though). I
-> > attached a test patch to the bug report:
-> >
-> >   https://bugzilla.kernel.org/show_bug.cgi?id=208597
-> >
-> > that tries to work it around (based on the ->pm_cap == 0). I wonder if
-> > anyone would have time to try it out.
+On Tue, Jul 21, 2020 at 02:31:16PM -0700, Ralph Campbell wrote:
+> The src_owner field in struct migrate_vma is being used for two purposes,
+> it acts as a selection filter for which types of pages are to be migrated
+> and it identifies device private pages owned by the caller. Split this
+> into separate parameters so the src_owner field can be used just to
+> identify device private pages owned by the caller of migrate_vma_setup().
+> Rename the src_owner field to pgmap_owner to reflect it is now used only
+> to identify which device private pages to migrate.
 > 
+> Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> ---
+>  arch/powerpc/kvm/book3s_hv_uvmem.c     |  4 +++-
+>  drivers/gpu/drm/nouveau/nouveau_dmem.c |  4 +++-
+>  include/linux/migrate.h                | 13 +++++++++----
+>  lib/test_hmm.c                         |  6 ++++--
+>  mm/migrate.c                           |  6 ++++--
+>  5 files changed, 23 insertions(+), 10 deletions(-)
 > 
-> Hi Mika,
-> 
-> I can confirm that this patch applied to 5.4.52 fixes the issue with
-> hybrid graphics on the Thinkpad X1 Extreme gen2.
+> diff --git a/arch/powerpc/kvm/book3s_hv_uvmem.c b/arch/powerpc/kvm/book3s_hv_uvmem.c
+> index 09d8119024db..6850bd04bcb9 100644
+> --- a/arch/powerpc/kvm/book3s_hv_uvmem.c
+> +++ b/arch/powerpc/kvm/book3s_hv_uvmem.c
+> @@ -400,6 +400,7 @@ kvmppc_svm_page_in(struct vm_area_struct *vma, unsigned long start,
+>  	mig.end = end;
+>  	mig.src = &src_pfn;
+>  	mig.dst = &dst_pfn;
+> +	mig.flags = MIGRATE_VMA_SELECT_SYSTEM;
+>  
+>  	/*
+>  	 * We come here with mmap_lock write lock held just for
+> @@ -577,7 +578,8 @@ kvmppc_svm_page_out(struct vm_area_struct *vma, unsigned long start,
+>  	mig.end = end;
+>  	mig.src = &src_pfn;
+>  	mig.dst = &dst_pfn;
+> -	mig.src_owner = &kvmppc_uvmem_pgmap;
+> +	mig.pgmap_owner = &kvmppc_uvmem_pgmap;
+> +	mig.flags = MIGRATE_VMA_SELECT_DEVICE_PRIVATE;
+>  
+>  	mutex_lock(&kvm->arch.uvmem_lock);
 
-Great, thanks for testing!
+For the kvmppc changes above,
+Reviewed-by: Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>
