@@ -1,8 +1,8 @@
 From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v4 3/6] mm/notifier: add migration invalidation
- type
-Date: Thu, 23 Jul 2020 15:30:01 -0700
-Message-ID: <20200723223004.9586-4-rcampbell@nvidia.com>
+Subject: [PATCH v4 6/6] mm/migrate: remove range invalidation in
+ migrate_vma_pages()
+Date: Thu, 23 Jul 2020 15:30:04 -0700
+Message-ID: <20200723223004.9586-7-rcampbell@nvidia.com>
 References: <20200723223004.9586-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,97 +22,74 @@ To: linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3Ytjv
 Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Currently migrate_vma_setup() calls mmu_notifier_invalidate_range_start()
-which flushes all device private page mappings whether or not a page
-is being migrated to/from device private memory. In order to not disrupt
-device mappings that are not being migrated, shift the responsibility
-for clearing device private mappings to the device driver and leave
-CPU page table unmapping handled by migrate_vma_setup(). To support
-this, the caller of migrate_vma_setup() should always set struct
-migrate_vma::pgmap_owner to a non NULL value that matches the device
-private page->pgmap->owner. This value is then passed to the struct
-mmu_notifier_range with a new event type which the driver's invalidation
-function can use to avoid device MMU invalidations.
+When migrating the special zero page, migrate_vma_pages() calls
+mmu_notifier_invalidate_range_start() before replacing the zero page
+PFN in the CPU page tables. This is unnecessary since the range was
+invalidated in migrate_vma_setup() and the page table entry is checked
+to be sure it hasn't changed between migrate_vma_setup() and
+migrate_vma_pages(). Therefore, remove the redundant invalidation.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+	t95543388; bh=Y8qnSzc0udfc4m+P6cziRmRJk5XEGcgDU5ImloLrCuE=;
+	h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+	 In-Reply-To:References:MIME-Version:X-NVConfidentiality:
+	 Content-Transfer-Encoding:Content-Type;
+	b=rIyLVqKU1Kxf67Qz9TIZ2f1lAaP7YxvFgCZR8v0Vw1fwq7aUbMbgfzcF0bd6+XzG6
+	 ZHtBRMp/Zu/ZLGRxP6lBqZo4wHMHbuW3fXOvPCrYTD5YsCCLv+Ao4RmreWyec2wBTk
+	 uBo3ZylCHJ0ckD85BcjQQxpXyY99cBsvIomZw9wzg6QGm7Ksbq6d+UKSkb0L04d6v8
+	 fiRvvLNq3kCbPzrifaBTj3klQcVcKXz34km0XUoRQlSaftlq4BJWopBPX8U7gQtstO
+	 OvA7Al9t87sCpKjSnqjE7N1jThU0KzjPrCxJiEHq/0Vf4sqeUA42bOkc+bk/CV1ZSF
+	 n9jm36j4kRTUg=
 
 Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- include/linux/migrate.h      | 3 +++
- include/linux/mmu_notifier.h | 7 +++++++
- mm/migrate.c                 | 8 +++++++-
- 3 files changed, 17 insertions(+), 1 deletion(-)
+ mm/migrate.c | 20 --------------------
+ 1 file changed, 20 deletions(-)
 
-diff --git a/include/linux/migrate.h b/include/linux/migrate.h
-index aafec0ca7b41..4cc7097d0271 100644
---- a/include/linux/migrate.h
-+++ b/include/linux/migrate.h
-@@ -206,6 +206,9 @@ struct migrate_vma {
- 	 * Set to the owner value also stored in page->pgmap->owner for
- 	 * migrating out of device private memory. The flags also need to
- 	 * be set to MIGRATE_VMA_SELECT_DEVICE_PRIVATE.
-+	 * The caller should always set this field when using mmu notifier
-+	 * callbacks to avoid device MMU invalidations for device private
-+	 * pages that are not being migrated.
- 	 */
- 	void			*pgmap_owner;
- 	unsigned long		flags;
-diff --git a/include/linux/mmu_notifier.h b/include/linux/mmu_notifier.h
-index fc68f3570e19..1921fcf6be5b 100644
---- a/include/linux/mmu_notifier.h
-+++ b/include/linux/mmu_notifier.h
-@@ -38,6 +38,10 @@ struct mmu_interval_notifier;
-  *
-  * @MMU_NOTIFY_RELEASE: used during mmu_interval_notifier invalidate to signal
-  * that the mm refcount is zero and the range is no longer accessible.
-+ *
-+ * @MMU_NOTIFY_MIGRATE: used during migrate_vma_collect() invalidate to signal
-+ * a device driver to possibly ignore the invalidation if the
-+ * migrate_pgmap_owner field matches the driver's device private pgmap owner.
-  */
- enum mmu_notifier_event {
- 	MMU_NOTIFY_UNMAP = 0,
-@@ -46,6 +50,7 @@ enum mmu_notifier_event {
- 	MMU_NOTIFY_PROTECTION_PAGE,
- 	MMU_NOTIFY_SOFT_DIRTY,
- 	MMU_NOTIFY_RELEASE,
-+	MMU_NOTIFY_MIGRATE,
- };
- 
- #define MMU_NOTIFIER_RANGE_BLOCKABLE (1 << 0)
-@@ -264,6 +269,7 @@ struct mmu_notifier_range {
- 	unsigned long end;
- 	unsigned flags;
- 	enum mmu_notifier_event event;
-+	void *migrate_pgmap_owner;
- };
- 
- static inline int mm_has_notifiers(struct mm_struct *mm)
-@@ -513,6 +519,7 @@ static inline void mmu_notifier_range_init(struct mmu_notifier_range *range,
- 	range->start = start;
- 	range->end = end;
- 	range->flags = flags;
-+	range->migrate_pgmap_owner = NULL;
- }
- 
- #define ptep_clear_flush_young_notify(__vma, __address, __ptep)		\
 diff --git a/mm/migrate.c b/mm/migrate.c
-index e3ea68e3a08b..96e1f41a991e 100644
+index 96e1f41a991e..36076ba2f51a 100644
 --- a/mm/migrate.c
 +++ b/mm/migrate.c
-@@ -2392,8 +2392,14 @@ static void migrate_vma_collect(struct migrate_vma *migrate)
+@@ -2877,9 +2877,7 @@ void migrate_vma_pages(struct migrate_vma *migrate)
  {
- 	struct mmu_notifier_range range;
+ 	const unsigned long npages = migrate->npages;
+ 	const unsigned long start = migrate->start;
+-	struct mmu_notifier_range range;
+ 	unsigned long addr, i;
+-	bool notified = false;
  
--	mmu_notifier_range_init(&range, MMU_NOTIFY_CLEAR, 0, NULL,
-+	/*
-+	 * Note that the pgmap_owner is passed to the mmu notifier callback so
-+	 * that the registered device driver can skip invalidating device
-+	 * private page mappings that won't be migrated.
-+	 */
-+	mmu_notifier_range_init(&range, MMU_NOTIFY_MIGRATE, 0, migrate->vma,
- 			migrate->vma->vm_mm, migrate->start, migrate->end);
-+	range.migrate_pgmap_owner = migrate->pgmap_owner;
- 	mmu_notifier_invalidate_range_start(&range);
+ 	for (i = 0, addr = start; i < npages; addr += PAGE_SIZE, i++) {
+ 		struct page *newpage = migrate_pfn_to_page(migrate->dst[i]);
+@@ -2895,16 +2893,6 @@ void migrate_vma_pages(struct migrate_vma *migrate)
+ 		if (!page) {
+ 			if (!(migrate->src[i] & MIGRATE_PFN_MIGRATE))
+ 				continue;
+-			if (!notified) {
+-				notified = true;
+-
+-				mmu_notifier_range_init(&range,
+-							MMU_NOTIFY_CLEAR, 0,
+-							NULL,
+-							migrate->vma->vm_mm,
+-							addr, migrate->end);
+-				mmu_notifier_invalidate_range_start(&range);
+-			}
+ 			migrate_vma_insert_page(migrate, addr, newpage,
+ 						&migrate->src[i],
+ 						&migrate->dst[i]);
+@@ -2937,14 +2925,6 @@ void migrate_vma_pages(struct migrate_vma *migrate)
+ 		if (r != MIGRATEPAGE_SUCCESS)
+ 			migrate->src[i] &= ~MIGRATE_PFN_MIGRATE;
+ 	}
+-
+-	/*
+-	 * No need to double call mmu_notifier->invalidate_range() callback as
+-	 * the above ptep_clear_flush_notify() inside migrate_vma_insert_page()
+-	 * did already call it.
+-	 */
+-	if (notified)
+-		mmu_notifier_invalidate_range_only_end(&range);
+ }
+ EXPORT_SYMBOL(migrate_vma_pages);
  
- 	walk_page_range(migrate->vma->vm_mm, migrate->start, migrate->end,
 -- 
 2.20.1
