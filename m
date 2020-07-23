@@ -1,152 +1,118 @@
 From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v4 5/6] mm/hmm/test: use the new migration invalidation
-Date: Thu, 23 Jul 2020 15:30:03 -0700
-Message-ID: <20200723223004.9586-6-rcampbell@nvidia.com>
+Subject: [PATCH v4 3/6] mm/notifier: add migration invalidation
+ type
+Date: Thu, 23 Jul 2020 15:30:01 -0700
+Message-ID: <20200723223004.9586-4-rcampbell@nvidia.com>
 References: <20200723223004.9586-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <20200723223004.9586-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, kvm-ppc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Use the new MMU_NOTIFY_MIGRATE event to skip MMU invalidations of device
-private memory and handle the invalidation in the driver as part of
-migrating device private memory.
+Currently migrate_vma_setup() calls mmu_notifier_invalidate_range_start()
+which flushes all device private page mappings whether or not a page
+is being migrated to/from device private memory. In order to not disrupt
+device mappings that are not being migrated, shift the responsibility
+for clearing device private mappings to the device driver and leave
+CPU page table unmapping handled by migrate_vma_setup(). To support
+this, the caller of migrate_vma_setup() should always set struct
+migrate_vma::pgmap_owner to a non NULL value that matches the device
+private page->pgmap->owner. This value is then passed to the struct
+mmu_notifier_range with a new event type which the driver's invalidation
+function can use to avoid device MMU invalidations.
 
 Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- lib/test_hmm.c                         | 30 +++++++++++++++-----------
- tools/testing/selftests/vm/hmm-tests.c | 18 ++++++++++++----
- 2 files changed, 31 insertions(+), 17 deletions(-)
+ include/linux/migrate.h      | 3 +++
+ include/linux/mmu_notifier.h | 7 +++++++
+ mm/migrate.c                 | 8 +++++++-
+ 3 files changed, 17 insertions(+), 1 deletion(-)
 
-diff --git a/lib/test_hmm.c b/lib/test_hmm.c
-index e78a1414f58e..e7dc3de355b7 100644
---- a/lib/test_hmm.c
-+++ b/lib/test_hmm.c
-@@ -214,6 +214,14 @@ static bool dmirror_interval_invalidate(struct mmu_int=
-erval_notifier *mni,
- {
- 	struct dmirror *dmirror =3D container_of(mni, struct dmirror, notifier);
-=20
-+	/*
-+	 * Ignore invalidation callbacks for device private pages since
-+	 * the invalidation is handled as part of the migration process.
-+	 */
-+	if (range->event =3D=3D MMU_NOTIFY_MIGRATE &&
-+	    range->migrate_pgmap_owner =3D=3D dmirror->mdevice)
-+		return true;
-+
- 	if (mmu_notifier_range_blockable(range))
- 		mutex_lock(&dmirror->mutex);
- 	else if (!mutex_trylock(&dmirror->mutex))
-@@ -693,7 +701,7 @@ static int dmirror_migrate(struct dmirror *dmirror,
- 		args.dst =3D dst_pfns;
- 		args.start =3D addr;
- 		args.end =3D next;
--		args.pgmap_owner =3D NULL;
-+		args.pgmap_owner =3D dmirror->mdevice;
- 		args.flags =3D MIGRATE_VMA_SELECT_SYSTEM;
- 		ret =3D migrate_vma_setup(&args);
- 		if (ret)
-@@ -983,7 +991,7 @@ static void dmirror_devmem_free(struct page *page)
- }
-=20
- static vm_fault_t dmirror_devmem_fault_alloc_and_copy(struct migrate_vma *=
-args,
--						struct dmirror_device *mdevice)
-+						      struct dmirror *dmirror)
- {
- 	const unsigned long *src =3D args->src;
- 	unsigned long *dst =3D args->dst;
-@@ -1005,6 +1013,7 @@ static vm_fault_t dmirror_devmem_fault_alloc_and_copy=
-(struct migrate_vma *args,
- 			continue;
-=20
- 		lock_page(dpage);
-+		xa_erase(&dmirror->pt, addr >> PAGE_SHIFT);
- 		copy_highpage(dpage, spage);
- 		*dst =3D migrate_pfn(page_to_pfn(dpage)) | MIGRATE_PFN_LOCKED;
- 		if (*src & MIGRATE_PFN_WRITE)
-@@ -1013,15 +1022,6 @@ static vm_fault_t dmirror_devmem_fault_alloc_and_cop=
-y(struct migrate_vma *args,
- 	return 0;
- }
-=20
--static void dmirror_devmem_fault_finalize_and_map(struct migrate_vma *args=
-,
--						  struct dmirror *dmirror)
--{
--	/* Invalidate the device's page table mapping. */
--	mutex_lock(&dmirror->mutex);
--	dmirror_do_update(dmirror, args->start, args->end);
--	mutex_unlock(&dmirror->mutex);
--}
--
- static vm_fault_t dmirror_devmem_fault(struct vm_fault *vmf)
- {
- 	struct migrate_vma args;
-@@ -1051,11 +1051,15 @@ static vm_fault_t dmirror_devmem_fault(struct vm_fa=
-ult *vmf)
- 	if (migrate_vma_setup(&args))
- 		return VM_FAULT_SIGBUS;
-=20
--	ret =3D dmirror_devmem_fault_alloc_and_copy(&args, dmirror->mdevice);
-+	ret =3D dmirror_devmem_fault_alloc_and_copy(&args, dmirror);
- 	if (ret)
- 		return ret;
- 	migrate_vma_pages(&args);
--	dmirror_devmem_fault_finalize_and_map(&args, dmirror);
-+	/*
-+	 * No device finalize step is needed since
-+	 * dmirror_devmem_fault_alloc_and_copy() will have already
-+	 * invalidated the device page table.
-+	 */
- 	migrate_vma_finalize(&args);
- 	return 0;
- }
-diff --git a/tools/testing/selftests/vm/hmm-tests.c b/tools/testing/selftes=
-ts/vm/hmm-tests.c
-index b533dd08da1d..91d38a29956b 100644
---- a/tools/testing/selftests/vm/hmm-tests.c
-+++ b/tools/testing/selftests/vm/hmm-tests.c
-@@ -881,8 +881,9 @@ TEST_F(hmm, migrate)
- }
-=20
- /*
-- * Migrate anonymous memory to device private memory and fault it back to =
-system
-- * memory.
-+ * Migrate anonymous memory to device private memory and fault some of it =
-back
-+ * to system memory, then try migrating the resulting mix of system and de=
-vice
-+ * private memory to the device.
+diff --git a/include/linux/migrate.h b/include/linux/migrate.h
+index aafec0ca7b41..4cc7097d0271 100644
+--- a/include/linux/migrate.h
++++ b/include/linux/migrate.h
+@@ -206,6 +206,9 @@ struct migrate_vma {
+ 	 * Set to the owner value also stored in page->pgmap->owner for
+ 	 * migrating out of device private memory. The flags also need to
+ 	 * be set to MIGRATE_VMA_SELECT_DEVICE_PRIVATE.
++	 * The caller should always set this field when using mmu notifier
++	 * callbacks to avoid device MMU invalidations for device private
++	 * pages that are not being migrated.
+ 	 */
+ 	void			*pgmap_owner;
+ 	unsigned long		flags;
+diff --git a/include/linux/mmu_notifier.h b/include/linux/mmu_notifier.h
+index fc68f3570e19..1921fcf6be5b 100644
+--- a/include/linux/mmu_notifier.h
++++ b/include/linux/mmu_notifier.h
+@@ -38,6 +38,10 @@ struct mmu_interval_notifier;
+  *
+  * @MMU_NOTIFY_RELEASE: used during mmu_interval_notifier invalidate to signal
+  * that the mm refcount is zero and the range is no longer accessible.
++ *
++ * @MMU_NOTIFY_MIGRATE: used during migrate_vma_collect() invalidate to signal
++ * a device driver to possibly ignore the invalidation if the
++ * migrate_pgmap_owner field matches the driver's device private pgmap owner.
   */
- TEST_F(hmm, migrate_fault)
+ enum mmu_notifier_event {
+ 	MMU_NOTIFY_UNMAP = 0,
+@@ -46,6 +50,7 @@ enum mmu_notifier_event {
+ 	MMU_NOTIFY_PROTECTION_PAGE,
+ 	MMU_NOTIFY_SOFT_DIRTY,
+ 	MMU_NOTIFY_RELEASE,
++	MMU_NOTIFY_MIGRATE,
+ };
+ 
+ #define MMU_NOTIFIER_RANGE_BLOCKABLE (1 << 0)
+@@ -264,6 +269,7 @@ struct mmu_notifier_range {
+ 	unsigned long end;
+ 	unsigned flags;
+ 	enum mmu_notifier_event event;
++	void *migrate_pgmap_owner;
+ };
+ 
+ static inline int mm_has_notifiers(struct mm_struct *mm)
+@@ -513,6 +519,7 @@ static inline void mmu_notifier_range_init(struct mmu_notifier_range *range,
+ 	range->start = start;
+ 	range->end = end;
+ 	range->flags = flags;
++	range->migrate_pgmap_owner = NULL;
+ }
+ 
+ #define ptep_clear_flush_young_notify(__vma, __address, __ptep)		\
+diff --git a/mm/migrate.c b/mm/migrate.c
+index e3ea68e3a08b..96e1f41a991e 100644
+--- a/mm/migrate.c
++++ b/mm/migrate.c
+@@ -2392,8 +2392,14 @@ static void migrate_vma_collect(struct migrate_vma *migrate)
  {
-@@ -924,8 +925,17 @@ TEST_F(hmm, migrate_fault)
- 	for (i =3D 0, ptr =3D buffer->mirror; i < size / sizeof(*ptr); ++i)
- 		ASSERT_EQ(ptr[i], i);
-=20
--	/* Fault pages back to system memory and check them. */
--	for (i =3D 0, ptr =3D buffer->ptr; i < size / sizeof(*ptr); ++i)
-+	/* Fault half the pages back to system memory and check them. */
-+	for (i =3D 0, ptr =3D buffer->ptr; i < size / (2 * sizeof(*ptr)); ++i)
-+		ASSERT_EQ(ptr[i], i);
-+
-+	/* Migrate memory to the device again. */
-+	ret =3D hmm_dmirror_cmd(self->fd, HMM_DMIRROR_MIGRATE, buffer, npages);
-+	ASSERT_EQ(ret, 0);
-+	ASSERT_EQ(buffer->cpages, npages);
-+
-+	/* Check what the device read. */
-+	for (i =3D 0, ptr =3D buffer->mirror; i < size / sizeof(*ptr); ++i)
- 		ASSERT_EQ(ptr[i], i);
-=20
- 	hmm_buffer_free(buffer);
---=20
+ 	struct mmu_notifier_range range;
+ 
+-	mmu_notifier_range_init(&range, MMU_NOTIFY_CLEAR, 0, NULL,
++	/*
++	 * Note that the pgmap_owner is passed to the mmu notifier callback so
++	 * that the registered device driver can skip invalidating device
++	 * private page mappings that won't be migrated.
++	 */
++	mmu_notifier_range_init(&range, MMU_NOTIFY_MIGRATE, 0, migrate->vma,
+ 			migrate->vma->vm_mm, migrate->start, migrate->end);
++	range.migrate_pgmap_owner = migrate->pgmap_owner;
+ 	mmu_notifier_invalidate_range_start(&range);
+ 
+ 	walk_page_range(migrate->vma->vm_mm, migrate->start, migrate->end,
+-- 
 2.20.1
