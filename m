@@ -1,11 +1,13 @@
 From: Daniel Dadap <ddadap-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 0/4] drm: add support for retrieving EDID via ACPI _DDC
-Date: Mon, 27 Jul 2020 15:53:53 -0500
-Message-ID: <20200727205357.27839-1-ddadap@nvidia.com>
+Subject: [PATCH 3/4] nouveau: fall back to ACPI EDID retrieval
+Date: Mon, 27 Jul 2020 15:53:56 -0500
+Message-ID: <20200727205357.27839-4-ddadap@nvidia.com>
+References: <20200727205357.27839-1-ddadap@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200727205357.27839-1-ddadap-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
  <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
@@ -19,34 +21,31 @@ To: dri-devel-PD4FTy7X32lNgt0PjOBp9/egYHeGw8Jk@public.gmane.org, intel-gfx-PD4FT
 Cc: Daniel Dadap <ddadap-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Some notebook systems provide the EDID for the internal panel via the
-_DDC method in ACPI, instead of or in addition to providing the EDID via
-DDC on LVDS/eDP. Add a DRM helper to search for an ACP _DDC method under
-the ACPI namespace for each VGA/3D controller, and return the first EDID
-successfully retrieved via _DDC. Update the i915, nouveau, and radeon
-DRM-KMS drivers to fall back to retrieving the EDID via ACPI _DDC on
-notebook internal display panels after failing to retrieve an EDID via
-other means.
+Fall back to retrieving the EDID via the ACPI _DDC method, when present
+for notebook internal panels, when EDID retrieval via the standard EDID
+paths is unsuccessful.
 
-This is useful for retrieving an internal panel's EDID both on hybrid
-graphics systems with muxed display output, when the display is muxed
-away, as well as on a small number of non-muxed and/or non-hybrid
-systems where ACPI _DDC is the only means of accessing the EDID for
-the internal panel.
+Signed-off-by: Daniel Dadap <ddadap-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Daniel Dadap (4):
-  drm: retrieve EDID via ACPI _DDC method
-  i915: fall back to ACPI EDID retrieval
-  nouveau: fall back to ACPI EDID retrieval
-  radeon: fall back to ACPI EDID retrieval
-
- drivers/gpu/drm/drm_edid.c                  | 161 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.c     |   8 +-
- drivers/gpu/drm/i915/display/intel_lvds.c   |   4 +
- drivers/gpu/drm/nouveau/nouveau_connector.c |   6 +
- drivers/gpu/drm/radeon/radeon_combios.c     |   6 +-
- include/drm/drm_edid.h                      |   1 +
- 6 files changed, 182 insertions(+), 4 deletions(-)
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 9a9a7f5003d3..95836a02a06b 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -581,6 +581,12 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
+ 		else
+ 			nv_connector->edid = drm_get_edid(connector, i2c);
+ 
++		if (!nv_connector->edid &&
++			(nv_connector->type == DCB_CONNECTOR_LVDS ||
++			nv_connector->type == DCB_CONNECTOR_eDP)) {
++			nv_connector->edid = drm_get_edid_acpi();
++		}
++
+ 		drm_connector_update_edid_property(connector,
+ 							nv_connector->edid);
+ 		if (!nv_connector->edid) {
 -- 
 2.18.4
