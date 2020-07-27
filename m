@@ -1,7 +1,7 @@
 From: Daniel Dadap <ddadap-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 2/4] i915: fall back to ACPI EDID retrieval
-Date: Mon, 27 Jul 2020 15:53:55 -0500
-Message-ID: <20200727205357.27839-3-ddadap@nvidia.com>
+Subject: [PATCH 4/4] radeon: fall back to ACPI EDID retrieval
+Date: Mon, 27 Jul 2020 15:53:57 -0500
+Message-ID: <20200727205357.27839-5-ddadap@nvidia.com>
 References: <20200727205357.27839-1-ddadap@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,56 +22,37 @@ Cc: Daniel Dadap <ddadap-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 Fall back to retrieving the EDID via the ACPI _DDC method, when present
-for notebook internal panels, when EDID retrieval via the standard EDID
-paths is unsuccessful.
+for notebook internal panels, when retrieving BIOS-embedded EDIDs.
 
 Signed-off-by: Daniel Dadap <ddadap-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c   | 8 +++++++-
- drivers/gpu/drm/i915/display/intel_lvds.c | 4 ++++
- 2 files changed, 11 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/radeon/radeon_combios.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 804b1d966f66..ff402cef8183 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5657,6 +5657,7 @@ static struct edid *
- intel_dp_get_edid(struct intel_dp *intel_dp)
+diff --git a/drivers/gpu/drm/radeon/radeon_combios.c b/drivers/gpu/drm/radeon/radeon_combios.c
+index c3e49c973812..de801d9fca54 100644
+--- a/drivers/gpu/drm/radeon/radeon_combios.c
++++ b/drivers/gpu/drm/radeon/radeon_combios.c
+@@ -401,9 +401,8 @@ bool radeon_combios_check_hardcoded_edid(struct radeon_device *rdev)
+ struct edid *
+ radeon_bios_get_hardcoded_edid(struct radeon_device *rdev)
  {
- 	struct intel_connector *intel_connector = intel_dp->attached_connector;
-+	struct edid *edid;
- 
- 	/* use cached edid if we have one */
- 	if (intel_connector->edid) {
-@@ -5666,8 +5667,13 @@ intel_dp_get_edid(struct intel_dp *intel_dp)
- 
- 		return drm_edid_duplicate(intel_connector->edid);
- 	} else
--		return drm_get_edid(&intel_connector->base,
-+		edid = drm_get_edid(&intel_connector->base,
- 				    &intel_dp->aux.ddc);
+-	struct edid *edid;
+-
+ 	if (rdev->mode_info.bios_hardcoded_edid) {
++		struct edid *edid;
+ 		edid = kmalloc(rdev->mode_info.bios_hardcoded_edid_size, GFP_KERNEL);
+ 		if (edid) {
+ 			memcpy((unsigned char *)edid,
+@@ -412,7 +411,8 @@ radeon_bios_get_hardcoded_edid(struct radeon_device *rdev)
+ 			return edid;
+ 		}
+ 	}
+-	return NULL;
 +
-+	if (!edid && intel_dp_is_edp(intel_dp))
-+		edid = drm_get_edid_acpi();
-+
-+	return edid;
++	return drm_get_edid_acpi();
  }
  
- static void
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 9a067effcfa0..811eea3f5d9f 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -946,6 +946,10 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
- 	else
- 		edid = drm_get_edid(connector,
- 				    intel_gmbus_get_adapter(dev_priv, pin));
-+
-+	if (!edid)
-+		edid = drm_get_edid_acpi();
-+
- 	if (edid) {
- 		if (drm_add_edid_modes(connector, edid)) {
- 			drm_connector_update_edid_property(connector,
+ static struct radeon_i2c_bus_rec combios_setup_i2c_bus(struct radeon_device *rdev,
 -- 
 2.18.4
