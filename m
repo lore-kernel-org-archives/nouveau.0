@@ -1,138 +1,61 @@
-From: Peng Wu <wupeng58@huawei.com>
-Subject: [PATCH -next] crc:Fix build errors
-Date: Mon, 27 Jul 2020 12:00:18 +0800
-Message-ID: <1595822418-34124-1-git-send-email-wupeng58@huawei.com>
+From: Jasmin <jasmin.pm-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org>
+Subject: Re: DP MST with GK107 and lenovo ultra dock
+Date: Mon, 27 Jul 2020 12:10:50 +0000
+Message-ID: <kLkT-zEG64cmSAUlvGzfN4XjERRX_PZqLoFPl0EDQ19SnYH32-CUapgYB-X4Wp3srfM60UkRgia1b5h0CCHkqXkFWmheERcPYLnn4yE0Tm4=@protonmail.com>
+References: <QoDOhTStpq2yEF5SaIbKoDh3i_nTSTVGy5rrV-8827WSM5NlVnXJ8pQ9HTvQnOL-XfnXry0duLHZgOyq2qD2Xg7RWqpswmIZ_O_wicapPrs=@protonmail.com>
+ <CAKb7UviVqPZKuZ-Mj94FSDV=3+FDjEzk0RfENacMmU-3Nd2GqQ@mail.gmail.com>
+ <D-hdgPgWmiyZfEPUXCL_D132ZWmQVAopKtR2up1uwjNtaxsXUkRzrVNBTNLNM_tMLRaa_dv7s25AhRW5xRfSxhqJC39Ngw04rIbGoHnFRAI=@protonmail.com>
+Reply-To: Jasmin <jasmin.pm-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch, airlied@gmail.com, lyude@redhat.com
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <D-hdgPgWmiyZfEPUXCL_D132ZWmQVAopKtR2up1uwjNtaxsXUkRzrVNBTNLNM_tMLRaa_dv7s25AhRW5xRfSxhqJC39Ngw04rIbGoHnFRAI=@protonmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-If CONFIG_DRM_NOUVEAU=y,the following errors
-are seen while building crc.h.
-
-In file included from /scratch/linux/drivers/gpu/drm/nouveau/nouveau_display.c:47:
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h: In function ‘nv50_head_crc_late_register’:
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h:109:47: error: parameter name omitted
- static inline int nv50_head_crc_late_register(struct nv50_head *) {}
-                                               ^~~~~~~~~~~~~~~~~~
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h:109:54: warning: no return statement in function returning non-void [-Wreturn-type]
- static inline int nv50_head_crc_late_register(struct nv50_head *) {}
-                                                      ^~~~~~~~~
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h: In function ‘nv50_crc_handle_vblank’:
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h:111:57: warning: ‘return’ with a value, in function returning void
- nv50_crc_handle_vblank(struct nv50_head *head) { return 0; }
-                                                         ^
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h:111:1: note: declared here
- nv50_crc_handle_vblank(struct nv50_head *head) { return 0; }
- ^~~~~~~~~~~~~~~~~~~~~~
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h: In function ‘nv50_crc_atomic_check_head’:
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h:114:28: error: parameter name omitted
- nv50_crc_atomic_check_head(struct nv50_head *, struct nv50_head_atom *,
-                            ^~~~~~~~~~~~~~~~~~
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h:114:48: error: parameter name omitted
- nv50_crc_atomic_check_head(struct nv50_head *, struct nv50_head_atom *,
-                                                ^~~~~~~~~~~~~~~~~~~~~~~
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h:115:7: error: parameter name omitted
-       struct nv50_head_atom *) {}
-       ^~~~~~~~~~~~~~~~~~~~~~~
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h:115:14: warning: no return statement in function returning non-void [-Wreturn-type]
-       struct nv50_head_atom *) {}
-              ^~~~~~~~~~~~~~
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h: In function ‘nv50_crc_atomic_stop_reporting’:
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h:118:32: error: parameter name omitted
- nv50_crc_atomic_stop_reporting(struct drm_atomic_state *) {}
-                                ^~~~~~~~~~~~~~~~~~~~~~~~~
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h: In function ‘nv50_crc_atomic_init_notifier_contexts’:
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h:120:40: error: parameter name omitted
- nv50_crc_atomic_init_notifier_contexts(struct drm_atomic_state *) {}
-                                        ^~~~~~~~~~~~~~~~~~~~~~~~~
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h: In function ‘nv50_crc_atomic_release_notifier_contexts’:
-/scratch/linux/drivers/gpu/drm/nouveau/dispnv50/crc.h:122:43: error: parameter name omitted
-
-Signed-off-by: Peng Wu <wupeng58@huawei.com>
----
- drivers/gpu/drm/nouveau/dispnv50/crc.h | 44 +++++++++++++++++-----------------
- 1 file changed, 22 insertions(+), 22 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/crc.h b/drivers/gpu/drm/nouveau/dispnv50/crc.h
-index 4bc59e7..3da16cd 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/crc.h
-+++ b/drivers/gpu/drm/nouveau/dispnv50/crc.h
-@@ -76,22 +76,22 @@ struct nv50_crc {
- };
- 
- void nv50_crc_init(struct drm_device *dev);
--int nv50_head_crc_late_register(struct nv50_head *);
-+int nv50_head_crc_late_register(struct nv50_head *head);
- void nv50_crc_handle_vblank(struct nv50_head *head);
- 
--int nv50_crc_verify_source(struct drm_crtc *, const char *, size_t *);
--const char *const *nv50_crc_get_sources(struct drm_crtc *, size_t *);
--int nv50_crc_set_source(struct drm_crtc *, const char *);
-+int nv50_crc_verify_source(struct drm_crtc *crtc, const char *source_name, size_t *values_cnt);
-+const char *const *nv50_crc_get_sources(struct drm_crtc *crtc, size_t *count);
-+int nv50_crc_set_source(struct drm_crtc *crtc, const char *source_str);
- 
--int nv50_crc_atomic_check_head(struct nv50_head *, struct nv50_head_atom *,
--			       struct nv50_head_atom *);
-+int nv50_crc_atomic_check_head(struct nv50_head *head, struct nv50_head_atom *asyh,
-+			       struct nv50_head_atom *armh);
- void nv50_crc_atomic_check_outp(struct nv50_atom *atom);
--void nv50_crc_atomic_stop_reporting(struct drm_atomic_state *);
--void nv50_crc_atomic_init_notifier_contexts(struct drm_atomic_state *);
--void nv50_crc_atomic_release_notifier_contexts(struct drm_atomic_state *);
--void nv50_crc_atomic_start_reporting(struct drm_atomic_state *);
--void nv50_crc_atomic_set(struct nv50_head *, struct nv50_head_atom *);
--void nv50_crc_atomic_clr(struct nv50_head *);
-+void nv50_crc_atomic_stop_reporting(struct drm_atomic_state *state);
-+void nv50_crc_atomic_init_notifier_contexts(struct drm_atomic_state *state);
-+void nv50_crc_atomic_release_notifier_contexts(struct drm_atomic_state *state);
-+void nv50_crc_atomic_start_reporting(struct drm_atomic_state *state);
-+void nv50_crc_atomic_set(struct nv50_head *head, struct nv50_head_atom *asyh);
-+void nv50_crc_atomic_clr(struct nv50_head *head);
- 
- extern const struct nv50_crc_func crc907d;
- extern const struct nv50_crc_func crcc37d;
-@@ -106,26 +106,26 @@ struct nv50_crc_atom {};
- #define nv50_crc_set_source NULL
- 
- static inline void nv50_crc_init(struct drm_device *dev) {}
--static inline int nv50_head_crc_late_register(struct nv50_head *) {}
-+static inline int nv50_head_crc_late_register(struct nv50_head *head) { return 0; }
- static inline void
--nv50_crc_handle_vblank(struct nv50_head *head) { return 0; }
-+nv50_crc_handle_vblank(struct nv50_head *head) {}
- 
- static inline int
--nv50_crc_atomic_check_head(struct nv50_head *, struct nv50_head_atom *,
--			   struct nv50_head_atom *) {}
-+nv50_crc_atomic_check_head(struct nv50_head *head, struct nv50_head_atom *asyh,
-+			   struct nv50_head_atom *armh) { return 0; }
- static inline void nv50_crc_atomic_check_outp(struct nv50_atom *atom) {}
- static inline void
--nv50_crc_atomic_stop_reporting(struct drm_atomic_state *) {}
-+nv50_crc_atomic_stop_reporting(struct drm_atomic_state *state) {}
- static inline void
--nv50_crc_atomic_init_notifier_contexts(struct drm_atomic_state *) {}
-+nv50_crc_atomic_init_notifier_contexts(struct drm_atomic_state *state) {}
- static inline void
--nv50_crc_atomic_release_notifier_contexts(struct drm_atomic_state *) {}
-+nv50_crc_atomic_release_notifier_contexts(struct drm_atomic_state *state) {}
- static inline void
--nv50_crc_atomic_start_reporting(struct drm_atomic_state *) {}
-+nv50_crc_atomic_start_reporting(struct drm_atomic_state *state) {}
- static inline void
--nv50_crc_atomic_set(struct nv50_head *, struct nv50_head_atom *) {}
-+nv50_crc_atomic_set(struct nv50_head *head, struct nv50_head_atom *asyh) {}
- static inline void
--nv50_crc_atomic_clr(struct nv50_head *) {}
-+nv50_crc_atomic_clr(struct nv50_head *head) {}
- 
- #endif /* IS_ENABLED(CONFIG_DEBUG_FS) */
- #endif /* !__NV50_CRC_H__ */
--- 
-2.7.4
+SGksCgptZWFud2hpbGUgSSBmaWd1cmVkIG91dCB3aHkgZGlzcGxheXBvcnQgTVNUIGRpZCBub3Qg
+d29yayB3aXRoIG5vdXZlYXUgb24gR0sxMDcgd2l0aCBMZW5vdm8gVzU0MCBhbmQgTGVub3ZvIFVs
+dHJhIERvY2suCgpOb3V2ZWF1IGRvZXMgbm90IHRyeSB0byBlc3RhYmxpc2ggTVNULCBpZiB0aGUg
+Y29ubmVjdG9yIHR5cGUgaXMgcmVjb2duaXplZCBhcyBlRFAgKGVtYmVkZGVkIGRpc3BsYXlwb3J0
+KSwgd2hpY2ggZG9lcyBub3Qgc3VwcG9ydCBNU1QuCgpUaGUgY29ubmVjdG9yIHR5cGUgaXMgcmVj
+b2duaXplZCBieSByZWFkaW5nIERDQiBjb25uZWN0b3IgdGFibGUgZnJvbSB0aGUgVkJJT1MuCmh0
+dHA6Ly9kb3dubG9hZC5udmlkaWEuY29tL29wZW4tZ3B1LWRvYy9EQ0IvCkluIHRoaXMgY2FzZSwg
+dGhlIERDQiBjb25uZWN0b3IgdGFibGUgaGVhZGVyIHNlZW1lZCB0byBjb250YWluICJ2ZXJzaW9u
+IDAiICh6ZXJvIGluIHRoZSB2ZXJzaW9uIGZpZWxkKSwgc28gaXQgd2FzIG5vdCB1c2VkIGFuZCBu
+b3V2ZWF1IHRyaWVkIHRvIGRldGVybWluZSB0aGUgY29ubmVjdG9ycyBhdXRvbWF0aWNhbGx5LCB3
+aGljaCB3cm9uZ2x5IHJlc3VsdGVkIGluIGVEUCBpbnN0ZWFkIG9mIERQLgoKQnV0IHRoZSBWQklP
+UyBpdHNlbGYgZGlkIF9ub3RfIGNvbnRhaW4gdGhpcyAidmVyc2lvbiAwIi4gSW5zdGVhZCwgdGhp
+cyB3YXMgYSByZXN1bHQgcHJvZHVjZWQgYnkgbm91dmVhdSBpdHNlbGYgd2hlbiBwYXJzaW5nIHRo
+ZSBEQ0IgYmVmb3JlaGFuZDoKbm91dmVhdV9iaW9zLmM6ZGNiX2Zha2VfY29ubmVjdG9ycyhzdHJ1
+Y3QgbnZiaW9zICpiaW9zKQoKPiAgICAgICAgLyogaGV1cmlzdGljOiBpZiB3ZSBldmVyIGdldCBh
+IG5vbi16ZXJvIGNvbm5lY3RvciBmaWVsZCwgYXNzdW1lCj4gICAgICAgICAqIHRoYXQgYWxsIHRo
+ZSBpbmRpY2VzIGFyZSB2YWxpZCBhbmQgd2UgZG9uJ3QgbmVlZCBmYWtlIHRoZW0uCj4gICAgICAg
+ICAqCgpBdCBsZWFzdCBpZiB0aGUgbGFwdG9wJ3MgZGVkaWNhdGVkIG52aWRpYSBHUFUgaXMgY29u
+ZmlndXJlZCAoaW4gVUVGSSkgdG8gc3VwcGx5IHRoZSBkb2NraW5nIHN0YXRpb24gd2l0aCBkaXNw
+bGF5cG9ydC1zaWduYWxzIChhZHZhbmNlZCBtb2RlKSwgdGhlIGNvbm5lY3RvciBmaWVsZCBmb3Ig
+Ym90aCBEQ0ItZW50cmllcyBpcyAiemVybyIg4oCTIGFuIGl0IGlzIHZhbGlkL2NvcnJlY3QsIGJl
+Y2F1c2UgdGhlcmUgaXMgbm8gb3RoZXIgY29ubmVjdG9yIHRoYW4gdGhpcyAiemVybyIgb25lLgoK
+U28gdGhlIGhldXJpc3RpY2FsIGRldGVybWluYXRpb24gb2YgdmFsaWQgY29ubmVjdG9yIGRhdGEg
+ZmFpbHMgaW4gdGhpcyBjYXNlLCBhbmQgaXQgImRpc2FibGVzIiB0aGUgZGNiLWNvbm5lY3RvciB0
+YWJsZSBpbmFkZXF1YXRlbHkgYnkgd3JpdGluZyB2ZXJzaW9uIDAgaW50byB0aGUgZGIgY29ubmVj
+dG9yIHRhYmxlIGhlYWRlci4KClNvIEkgbWFuYWdlZCB0byBmaXggdGhpcyBieSBpbnNlcnRpbmcg
+dGhlIGZvbGxvd2luZyBhdCB0aGUgYmVnaW5uaW5nIG9mIGRjYl9mYWtlX2Nvbm5lY3RvcnM6Cgor
+ICAgICAgICAvLyBoYXMgMiBEQ0IgZW50cmllcyB3aXRoIGNvbm5lY3RvciBpbmRleCB6ZXJvIChj
+b3JyZWN0KQorICAgICAgICBpZihudl9tYXRjaF9kZXZpY2UoYmlvcy0+ZGV2LCAweDBmZjYsIDB4
+MTdhYSwgMHgyMjFhKSkKKyAgICAgICAgICAgICAgICByZXR1cm47CgpJTUhPIGl0IG1ha2VzIHNl
+bnNlIHRvIGludHJvZHVjZSBhIG1vZHVsZSBwYXJhbWV0ZXI6ICJhbHdheXNUcnVzdERDQkNvbm50
+YWIiLCB3aGljaCBjb3VsZCBiZSBzZXQgdG8gInRydWUiIGZvciBzdWNoIGNhc2VzLgoKQmVzdApK
+YXNtaW4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
+dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
