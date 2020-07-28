@@ -1,58 +1,30 @@
-From: Daniel Dadap <ddadap-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 4/4] radeon: fall back to ACPI EDID retrieval
-Date: Mon, 27 Jul 2020 15:53:57 -0500
-Message-ID: <20200727205357.27839-5-ddadap@nvidia.com>
-References: <20200727205357.27839-1-ddadap@nvidia.com>
+From: Jason Gunthorpe <jgg@nvidia.com>
+Subject: Re: [PATCH v4 3/6] mm/notifier: add migration invalidation type
+Date: Tue, 28 Jul 2020 16:15:18 -0300
+Message-ID: <20200728191518.GA159104@nvidia.com>
+References: <20200723223004.9586-1-rcampbell@nvidia.com>
+ <20200723223004.9586-4-rcampbell@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200727205357.27839-1-ddadap-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9/egYHeGw8Jk@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9/egYHeGw8Jk@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org, christian.koenig-5C7GfCeVMHo@public.gmane.org, david1.zhou-5C7GfCeVMHo@public.gmane.org
-Cc: Daniel Dadap <ddadap-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20200723223004.9586-4-rcampbell@nvidia.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ralph Campbell <rcampbell@nvidia.com>
+Cc: linux-rdma@vger.kernel.org, linux-mm@kvack.org, nouveau@lists.freedesktop.org, kvm-ppc@vger.kernel.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Andrew Morton <akpm@linux-foundation.org>, Shuah Khan <shuah@kernel.org>, Ben Skeggs <bskeggs@redhat.com>, Bharata B Rao <bharata@linux.ibm.com>
 List-Id: nouveau.vger.kernel.org
 
-Fall back to retrieving the EDID via the ACPI _DDC method, when present
-for notebook internal panels, when retrieving BIOS-embedded EDIDs.
+On Thu, Jul 23, 2020 at 03:30:01PM -0700, Ralph Campbell wrote:
+>  static inline int mm_has_notifiers(struct mm_struct *mm)
+> @@ -513,6 +519,7 @@ static inline void mmu_notifier_range_init(struct mmu_notifier_range *range,
+>  	range->start = start;
+>  	range->end = end;
+>  	range->flags = flags;
+> +	range->migrate_pgmap_owner = NULL;
+>  }
 
-Signed-off-by: Daniel Dadap <ddadap-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
----
- drivers/gpu/drm/radeon/radeon_combios.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Since this function is commonly called and nobody should read
+migrate_pgmap_owner unless MMU_NOTIFY_MIGRATE is set as the event,
+this assignment can be dropped.
 
-diff --git a/drivers/gpu/drm/radeon/radeon_combios.c b/drivers/gpu/drm/radeon/radeon_combios.c
-index c3e49c973812..de801d9fca54 100644
---- a/drivers/gpu/drm/radeon/radeon_combios.c
-+++ b/drivers/gpu/drm/radeon/radeon_combios.c
-@@ -401,9 +401,8 @@ bool radeon_combios_check_hardcoded_edid(struct radeon_device *rdev)
- struct edid *
- radeon_bios_get_hardcoded_edid(struct radeon_device *rdev)
- {
--	struct edid *edid;
--
- 	if (rdev->mode_info.bios_hardcoded_edid) {
-+		struct edid *edid;
- 		edid = kmalloc(rdev->mode_info.bios_hardcoded_edid_size, GFP_KERNEL);
- 		if (edid) {
- 			memcpy((unsigned char *)edid,
-@@ -412,7 +411,8 @@ radeon_bios_get_hardcoded_edid(struct radeon_device *rdev)
- 			return edid;
- 		}
- 	}
--	return NULL;
-+
-+	return drm_get_edid_acpi();
- }
- 
- static struct radeon_i2c_bus_rec combios_setup_i2c_bus(struct radeon_device *rdev,
--- 
-2.18.4
+Jason
