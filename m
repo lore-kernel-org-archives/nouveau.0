@@ -1,92 +1,37 @@
-From: Daniel Dadap <ddadap-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 4/4] radeon: fall back to ACPI EDID retrieval
-Date: Tue, 28 Jul 2020 13:44:42 -0500
-Message-ID: <4101c4a9-d97d-ee99-8c67-b8f92fcb4bfa@nvidia.com>
-References: <20200727205357.27839-1-ddadap@nvidia.com>
- <20200727205357.27839-5-ddadap@nvidia.com>
- <3c355e4d-b9ff-66b7-e9e3-86027deeba6d@amd.com>
+From: Ralph Campbell <rcampbell@nvidia.com>
+Subject: Re: [PATCH v4 3/6] mm/notifier: add migration invalidation type
+Date: Tue, 28 Jul 2020 13:57:31 -0700
+Message-ID: <08eb43d9-9650-f050-9cfb-d8ba5df6c5dd@nvidia.com>
+References: <20200723223004.9586-1-rcampbell@nvidia.com>
+ <20200723223004.9586-4-rcampbell@nvidia.com>
+ <20200728191518.GA159104@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <3c355e4d-b9ff-66b7-e9e3-86027deeba6d-5C7GfCeVMHo@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Return-path: <kvm-ppc-owner@vger.kernel.org>
+In-Reply-To: <20200728191518.GA159104@nvidia.com>
 Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9/egYHeGw8Jk@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9/egYHeGw8Jk@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org, david1.zhou-5C7GfCeVMHo@public.gmane.org
+Sender: kvm-ppc-owner@vger.kernel.org
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: linux-rdma@vger.kernel.org, linux-mm@kvack.org, nouveau@lists.freedesktop.org, kvm-ppc@vger.kernel.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Andrew Morton <akpm@linux-foundation.org>, Shuah Khan <shuah@kernel.org>, Ben Skeggs <bskeggs@redhat.com>, Bharata B Rao <bharata@linux.ibm.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gNy8yOC8yMCAxOjUwIEFNLCBDaHJpc3RpYW4gS8O2bmlnIHdyb3RlOgo+Cj4gQW0gMjcuMDcu
-MjAgdW0gMjI6NTMgc2NocmllYiBEYW5pZWwgRGFkYXA6Cj4+IEZhbGwgYmFjayB0byByZXRyaWV2
-aW5nIHRoZSBFRElEIHZpYSB0aGUgQUNQSSBfRERDIG1ldGhvZCwgd2hlbiBwcmVzZW50Cj4+IGZv
-ciBub3RlYm9vayBpbnRlcm5hbCBwYW5lbHMsIHdoZW4gcmV0cmlldmluZyBCSU9TLWVtYmVkZGVk
-IEVESURzLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgRGFkYXAgPGRkYWRhcEBudmlkaWEu
-Y29tPgo+PiAtLS0KPj4gwqAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fY29tYmlvcy5j
-IHwgNiArKystLS0KPj4gwqAgMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMyBkZWxl
-dGlvbnMoLSkKPj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9u
-X2NvbWJpb3MuYyAKPj4gYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9jb21iaW9zLmMK
-Pj4gaW5kZXggYzNlNDljOTczODEyLi5kZTgwMWQ5ZmNhNTQgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2NvbWJpb3MuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vcmFkZW9uL3JhZGVvbl9jb21iaW9zLmMKPj4gQEAgLTQwMSw5ICs0MDEsOCBAQCBib29sIHJh
-ZGVvbl9jb21iaW9zX2NoZWNrX2hhcmRjb2RlZF9lZGlkKHN0cnVjdCAKPj4gcmFkZW9uX2Rldmlj
-ZSAqcmRldikKPj4gwqAgc3RydWN0IGVkaWQgKgo+PiDCoCByYWRlb25fYmlvc19nZXRfaGFyZGNv
-ZGVkX2VkaWQoc3RydWN0IHJhZGVvbl9kZXZpY2UgKnJkZXYpCj4+IMKgIHsKPj4gLcKgwqDCoMKg
-IHN0cnVjdCBlZGlkICplZGlkOwo+PiAtCj4+IMKgwqDCoMKgwqAgaWYgKHJkZXYtPm1vZGVfaW5m
-by5iaW9zX2hhcmRjb2RlZF9lZGlkKSB7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3Ry
-dWN0IGVkaWQgKmVkaWQ7Cj4KPiBUaGF0J3MgYW4gdW5yZWxhdGVkIGFuIGluY29ycmVjdCBzdHls
-ZSBjaGFuZ2UuIFlvdSBuZWVkIGEgYmxhbmsgbGluZQo+IGFmdGVyIGRlY2xhcmF0aW9uLgoKCkFo
-LCB5ZXMsIHRoYXQgZG9lc24ndCByZWFsbHkgbmVlZCB0byBiZSBjaGFuZ2VkLiBJJ2xsIHJlbW92
-ZSBpdCBmcm9tIAp0aGlzIHBhdGNoLiBXb3VsZCBhIHNlcGFyYXRlIHBhdGNoIHRvIGNoYW5nZSB0
-aGUgc2NvcGUgb2YgdGhhdCAKZGVjbGFyYXRpb24gKHdpdGggYSBibGFuayBsaW5lIGFmdGVyKSBi
-ZSB3ZWxjb21lLCBvciBzaG91bGQgSSBqdXN0IGxlYXZlIAppdCBhbG9uZT8KCgo+Cj4+IMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVkaWQgPSAKPj4ga21hbGxvYyhyZGV2LT5tb2RlX2luZm8u
-Ymlvc19oYXJkY29kZWRfZWRpZF9zaXplLCBHRlBfS0VSTkVMKTsKPj4gwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgaWYgKGVkaWQpIHsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIG1lbWNweSgodW5zaWduZWQgY2hhciAqKWVkaWQsCj4+IEBAIC00MTIsNyAr
-NDExLDggQEAgcmFkZW9uX2Jpb3NfZ2V0X2hhcmRjb2RlZF9lZGlkKHN0cnVjdCAKPj4gcmFkZW9u
-X2RldmljZSAqcmRldikKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIHJldHVybiBlZGlkOwo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Cj4+IMKgwqDC
-oMKgwqAgfQo+PiAtwqDCoMKgwqAgcmV0dXJuIE5VTEw7Cj4+ICsKPj4gK8KgwqDCoMKgIHJldHVy
-biBkcm1fZ2V0X2VkaWRfYWNwaSgpOwo+Cj4gSW4gZ2VuZXJhbCBhIGdvb2QgaWRlYSwgYnV0IEkn
-bSB3b25kZXJpbmcgaWYgd2Ugc2hvdWxkIHJlYWxseSBkbyB0aGlzIHNvCj4gdW5jb25kaXRpb25h
-bGx5IGhlcmUuCj4KCkknbSBub3QgcGVyc29uYWxseSBhd2FyZSBvZiBhbnkgQU1EIG5vdGVib29r
-IGRlc2lnbnMgdGhhdCByZXF1aXJlIHRoZSAKQUNQSSBfRERDIEVESUQgcmV0cmlldmFsLiBJJ3Zl
-IG9ubHkgc2VlbiBpdCBvbiBOVklESUErSW50ZWwgaHlicmlkIApzeXN0ZW1zIGFuZCBvbiBhIHNt
-YWxsIG51bWJlciBvZiBOVklESUEgZGlzY3JldGUtb25seSBzeXN0ZW1zLiBJIGp1c3QgCmZpZ3Vy
-ZWQgSSdkIHVwZGF0ZSB0aGUgcmFkZW9uIERSTS1LTVMgZHJpdmVyIHdoaWxlIHVwZGF0aW5nIGk5
-MTUgYW5kIApOb3V2ZWF1LCBmb3IgY29tcGxldGVuZXNzLCBhcyBpdCBjb3VsZCBiZSBoZWxwZnVs
-IHNob3VsZCBzdWNoIGEgZGVzaWduIApleGlzdC4gQXMgZm9yIHdoZXRoZXIgdGhlcmUgc2hvdWxk
-IGJlIHNvbWUgY29uZGl0aW9uIGFyb3VuZCB0aGlzLCBJIApzdXBwb3NlIHRoYXQncyByZWFzb25h
-YmxlLCBidXQgSSdtIG5vdCByZWFsbHkgc3VyZSB3aGF0IHdvdWxkIG1ha2Ugc2Vuc2UgCmFzIGEg
-Y29uZGl0aW9uLiBBcyBpdCBzdGFuZHMsIGRybV9lZGlkX2FjcGkoKSBvbmx5IHJldHVybnMgYSB2
-YWx1ZSBpZiBhdCAKbGVhc3Qgb25lIG9mIHRoZSBWR0Egb3IgM0QgY29udHJvbGxlcnMgb24gdGhl
-IHN5c3RlbSBwcm92aWRlcyBhbiBBQ1BJIApfRERDIG1ldGhvZCwgYW5kIGlmIHRoYXQgQUNQSSBt
-ZXRob2Qgc3VjY2Vzc2Z1bGx5IHJldHVybnMgYW4gRURJRC4KCk9uIHRoZSBjYWxsZXIncyBlbmQs
-IGl0J3MgY3VycmVudGx5IHBhcnQgb2YgdGhlIHBhdGggd2hlcmUgdGhlIHJhZGVvbiAKZHJpdmVy
-IGlzIGFscmVhZHkgdHJ5aW5nIHRvIGZhbGwgYmFjayB0byBhIGhhcmRjb2RlZCBFRElEIHByb3Zp
-ZGVkIGJ5IAp0aGUgc3lzdGVtLiBQZXJoYXBzIGluc3RlYWQgaWYgd2UgY2FsbCBpdCB3aXRoaW4g
-dGhlIExWRFMgfHwgZURQIApjb25kaXRpb24gaGVyZSwgaW5zdGVhZD8KCgogwqDCoMKgwqDCoMKg
-wqAgaWYgKHJkZXYtPmlzX2F0b21fYmlvcykgewogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAvKiBz
-b21lIGxhcHRvcHMgcHJvdmlkZSBhIGhhcmRjb2RlZCBlZGlkIGluIHJvbSBmb3IgTENEcyAqLwog
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoKChjb25uZWN0b3ItPmNvbm5lY3Rvcl90eXBlID09
-IERSTV9NT0RFX0NPTk5FQ1RPUl9MVkRTKSB8fAogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgKGNvbm5lY3Rvci0+Y29ubmVjdG9yX3R5cGUgPT0gRFJNX01PREVfQ09OTkVDVE9SX2VE
-UCkpKQogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJhZGVvbl9jb25uZWN0b3ItPmVk
-aWQgPSAKcmFkZW9uX2Jpb3NfZ2V0X2hhcmRjb2RlZF9lZGlkKHJkZXYpOwogwqDCoMKgwqDCoMKg
-wqAgfSBlbHNlIHsKIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLyogc29tZSBzZXJ2ZXJzIHByb3Zp
-ZGUgYSBoYXJkY29kZWQgZWRpZCBpbiByb20gZm9yIEtWTXMgKi8KIMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgcmFkZW9uX2Nvbm5lY3Rvci0+ZWRpZCA9IHJhZGVvbl9iaW9zX2dldF9oYXJkY29kZWRf
-ZWRpZChyZGV2KTsKfQoKVGhhdCB3b3VsZCBiZSBtb3JlIGluIGxpbmUgd2l0aCB0aGUgY2hhbmdl
-cyBpbiB0aGlzIHBhdGNoc2V0IGZvciBpOTE1IAphbmQgbm91dmVhdS4KCgo+IFJlZ2FyZHMsCj4g
-Q2hyaXN0aWFuLgo+Cj4+IMKgIH0KPj4KPj4gwqAgc3RhdGljIHN0cnVjdCByYWRlb25faTJjX2J1
-c19yZWMgY29tYmlvc19zZXR1cF9pMmNfYnVzKHN0cnVjdCAKPj4gcmFkZW9uX2RldmljZSAqcmRl
-diwKPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQt
-Z2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+
+On 7/28/20 12:15 PM, Jason Gunthorpe wrote:
+> On Thu, Jul 23, 2020 at 03:30:01PM -0700, Ralph Campbell wrote:
+>>   static inline int mm_has_notifiers(struct mm_struct *mm)
+>> @@ -513,6 +519,7 @@ static inline void mmu_notifier_range_init(struct mmu_notifier_range *range,
+>>   	range->start = start;
+>>   	range->end = end;
+>>   	range->flags = flags;
+>> +	range->migrate_pgmap_owner = NULL;
+>>   }
+> 
+> Since this function is commonly called and nobody should read
+> migrate_pgmap_owner unless MMU_NOTIFY_MIGRATE is set as the event,
+> this assignment can be dropped.
+> 
+> Jason
+
+I agree.
+Acked-by: Ralph Campbell <rcampbell@nvidia.com>
