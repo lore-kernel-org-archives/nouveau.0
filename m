@@ -1,32 +1,76 @@
-From: Jason Gunthorpe <jgg@nvidia.com>
-Subject: Re: [PATCH v4 6/6] mm/migrate: remove range invalidation in
- migrate_vma_pages()
-Date: Tue, 28 Jul 2020 16:19:40 -0300
-Message-ID: <20200728191940.GB159104@nvidia.com>
+From: Jason Gunthorpe <jgg-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH v4 0/6] mm/migrate: avoid device private invalidations
+Date: Tue, 28 Jul 2020 16:22:36 -0300
+Message-ID: <20200728192236.GA160260@nvidia.com>
 References: <20200723223004.9586-1-rcampbell@nvidia.com>
- <20200723223004.9586-7-rcampbell@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
-Return-path: <kvm-ppc-owner@vger.kernel.org>
+Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20200723223004.9586-7-rcampbell@nvidia.com>
-Sender: kvm-ppc-owner@vger.kernel.org
-To: Ralph Campbell <rcampbell@nvidia.com>
-Cc: linux-rdma@vger.kernel.org, linux-mm@kvack.org, nouveau@lists.freedesktop.org, kvm-ppc@vger.kernel.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Christoph Hellwig <hch@lst.de>, Andrew Morton <akpm@linux-foundation.org>, Shuah Khan <shuah@kernel.org>, Ben Skeggs <bskeggs@redhat.com>, Bharata B Rao <bharata@linux.ibm.com>
+In-Reply-To: <20200723223004.9586-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, kvm-ppc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jul 23, 2020 at 03:30:04PM -0700, Ralph Campbell wrote:
-> When migrating the special zero page, migrate_vma_pages() calls
-> mmu_notifier_invalidate_range_start() before replacing the zero page
-> PFN in the CPU page tables. This is unnecessary since the range was
-> invalidated in migrate_vma_setup() and the page table entry is checked
-> to be sure it hasn't changed between migrate_vma_setup() and
-> migrate_vma_pages(). Therefore, remove the redundant invalidation.
+On Thu, Jul 23, 2020 at 03:29:58PM -0700, Ralph Campbell wrote:
+> The goal for this series is to avoid device private memory TLB
+> invalidations when migrating a range of addresses from system
+> memory to device private memory and some of those pages have already
+> been migrated. The approach taken is to introduce a new mmu notifier
+> invalidation event type and use that in the device driver to skip
+> invalidation callbacks from migrate_vma_setup(). The device driver is
+> also then expected to handle device MMU invalidations as part of the
+> migrate_vma_setup(), migrate_vma_pages(), migrate_vma_finalize() process.
+> Note that this is opt-in. A device driver can simply invalidate its MMU
+> in the mmu notifier callback and not handle MMU invalidations in the
+> migration sequence.
+> 
+> This series is based on Jason Gunthorpe's HMM tree (linux-5.8.0-rc4).
+> 
+> Also, this replaces the need for the following two patches I sent:
+> ("mm: fix migrate_vma_setup() src_owner and normal pages")
+> https://lore.kernel.org/linux-mm/20200622222008.9971-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
+> ("nouveau: fix mixed normal and device private page migration")
+> https://lore.kernel.org/lkml/20200622233854.10889-3-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
+> 
+> Changes in v4:
+> Added reviewed-by from Bharata B Rao.
+> Removed dead code checking for source device private page in lib/test_hmm.c
+>   dmirror_migrate_alloc_and_copy() since the source filter flag guarantees
+>   that.
+> Added patch 6 to remove a redundant invalidation in migrate_vma_pages().
+> 
+> Changes in v3:
+> Changed the direction field "dir" to a "flags" field and renamed
+>   src_owner to pgmap_owner.
+> Fixed a locking issue in nouveau for the migration invalidation.
+> Added a HMM selftest test case to exercise the HMM test driver
+>   invalidation changes.
+> Removed reviewed-by Bharata B Rao since this version is moderately
+>   changed.
+> 
+> Changes in v2:
+> Rebase to Jason Gunthorpe's HMM tree.
+> Added reviewed-by from Bharata B Rao.
+> Rename the mmu_notifier_range::data field to migrate_pgmap_owner as
+>   suggested by Jason Gunthorpe.
+> 
+> Ralph Campbell (6):
+>   nouveau: fix storing invalid ptes
+>   mm/migrate: add a flags parameter to migrate_vma
+>   mm/notifier: add migration invalidation type
+>   nouveau/svm: use the new migration invalidation
+>   mm/hmm/test: use the new migration invalidation
 
-I don't follow this logic, the purpose of the invalidation is also to
-clear out anything that may be mirroring this VA, and "the page hasn't
-changed" doesn't seem to rule out that case?
+Applied to the hmm tree with the modification I noted, I think all the
+comments in the past versions were addressed. I will accumulate more
+Reviews if any come.
 
-I'm also not sure I follow where the zero page came from?
+>   mm/migrate: remove range invalidation in migrate_vma_pages()
 
+Let's have some discussion on this new patch please, at least I don't
+follow it yet.
+
+Thanks,
 Jason
