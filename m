@@ -1,76 +1,92 @@
-From: Jason Gunthorpe <jgg-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v4 0/6] mm/migrate: avoid device private invalidations
-Date: Tue, 28 Jul 2020 16:22:36 -0300
-Message-ID: <20200728192236.GA160260@nvidia.com>
-References: <20200723223004.9586-1-rcampbell@nvidia.com>
+From: Daniel Dadap <ddadap-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH 4/4] radeon: fall back to ACPI EDID retrieval
+Date: Tue, 28 Jul 2020 13:44:42 -0500
+Message-ID: <4101c4a9-d97d-ee99-8c67-b8f92fcb4bfa@nvidia.com>
+References: <20200727205357.27839-1-ddadap@nvidia.com>
+ <20200727205357.27839-5-ddadap@nvidia.com>
+ <3c355e4d-b9ff-66b7-e9e3-86027deeba6d@amd.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20200723223004.9586-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, kvm-ppc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <3c355e4d-b9ff-66b7-e9e3-86027deeba6d-5C7GfCeVMHo@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9/egYHeGw8Jk@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9/egYHeGw8Jk@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org, david1.zhou-5C7GfCeVMHo@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jul 23, 2020 at 03:29:58PM -0700, Ralph Campbell wrote:
-> The goal for this series is to avoid device private memory TLB
-> invalidations when migrating a range of addresses from system
-> memory to device private memory and some of those pages have already
-> been migrated. The approach taken is to introduce a new mmu notifier
-> invalidation event type and use that in the device driver to skip
-> invalidation callbacks from migrate_vma_setup(). The device driver is
-> also then expected to handle device MMU invalidations as part of the
-> migrate_vma_setup(), migrate_vma_pages(), migrate_vma_finalize() process.
-> Note that this is opt-in. A device driver can simply invalidate its MMU
-> in the mmu notifier callback and not handle MMU invalidations in the
-> migration sequence.
-> 
-> This series is based on Jason Gunthorpe's HMM tree (linux-5.8.0-rc4).
-> 
-> Also, this replaces the need for the following two patches I sent:
-> ("mm: fix migrate_vma_setup() src_owner and normal pages")
-> https://lore.kernel.org/linux-mm/20200622222008.9971-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
-> ("nouveau: fix mixed normal and device private page migration")
-> https://lore.kernel.org/lkml/20200622233854.10889-3-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
-> 
-> Changes in v4:
-> Added reviewed-by from Bharata B Rao.
-> Removed dead code checking for source device private page in lib/test_hmm.c
->   dmirror_migrate_alloc_and_copy() since the source filter flag guarantees
->   that.
-> Added patch 6 to remove a redundant invalidation in migrate_vma_pages().
-> 
-> Changes in v3:
-> Changed the direction field "dir" to a "flags" field and renamed
->   src_owner to pgmap_owner.
-> Fixed a locking issue in nouveau for the migration invalidation.
-> Added a HMM selftest test case to exercise the HMM test driver
->   invalidation changes.
-> Removed reviewed-by Bharata B Rao since this version is moderately
->   changed.
-> 
-> Changes in v2:
-> Rebase to Jason Gunthorpe's HMM tree.
-> Added reviewed-by from Bharata B Rao.
-> Rename the mmu_notifier_range::data field to migrate_pgmap_owner as
->   suggested by Jason Gunthorpe.
-> 
-> Ralph Campbell (6):
->   nouveau: fix storing invalid ptes
->   mm/migrate: add a flags parameter to migrate_vma
->   mm/notifier: add migration invalidation type
->   nouveau/svm: use the new migration invalidation
->   mm/hmm/test: use the new migration invalidation
-
-Applied to the hmm tree with the modification I noted, I think all the
-comments in the past versions were addressed. I will accumulate more
-Reviews if any come.
-
->   mm/migrate: remove range invalidation in migrate_vma_pages()
-
-Let's have some discussion on this new patch please, at least I don't
-follow it yet.
-
-Thanks,
-Jason
+T24gNy8yOC8yMCAxOjUwIEFNLCBDaHJpc3RpYW4gS8O2bmlnIHdyb3RlOgo+Cj4gQW0gMjcuMDcu
+MjAgdW0gMjI6NTMgc2NocmllYiBEYW5pZWwgRGFkYXA6Cj4+IEZhbGwgYmFjayB0byByZXRyaWV2
+aW5nIHRoZSBFRElEIHZpYSB0aGUgQUNQSSBfRERDIG1ldGhvZCwgd2hlbiBwcmVzZW50Cj4+IGZv
+ciBub3RlYm9vayBpbnRlcm5hbCBwYW5lbHMsIHdoZW4gcmV0cmlldmluZyBCSU9TLWVtYmVkZGVk
+IEVESURzLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgRGFkYXAgPGRkYWRhcEBudmlkaWEu
+Y29tPgo+PiAtLS0KPj4gwqAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fY29tYmlvcy5j
+IHwgNiArKystLS0KPj4gwqAgMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMyBkZWxl
+dGlvbnMoLSkKPj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9u
+X2NvbWJpb3MuYyAKPj4gYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9jb21iaW9zLmMK
+Pj4gaW5kZXggYzNlNDljOTczODEyLi5kZTgwMWQ5ZmNhNTQgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2NvbWJpb3MuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9k
+cm0vcmFkZW9uL3JhZGVvbl9jb21iaW9zLmMKPj4gQEAgLTQwMSw5ICs0MDEsOCBAQCBib29sIHJh
+ZGVvbl9jb21iaW9zX2NoZWNrX2hhcmRjb2RlZF9lZGlkKHN0cnVjdCAKPj4gcmFkZW9uX2Rldmlj
+ZSAqcmRldikKPj4gwqAgc3RydWN0IGVkaWQgKgo+PiDCoCByYWRlb25fYmlvc19nZXRfaGFyZGNv
+ZGVkX2VkaWQoc3RydWN0IHJhZGVvbl9kZXZpY2UgKnJkZXYpCj4+IMKgIHsKPj4gLcKgwqDCoMKg
+IHN0cnVjdCBlZGlkICplZGlkOwo+PiAtCj4+IMKgwqDCoMKgwqAgaWYgKHJkZXYtPm1vZGVfaW5m
+by5iaW9zX2hhcmRjb2RlZF9lZGlkKSB7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3Ry
+dWN0IGVkaWQgKmVkaWQ7Cj4KPiBUaGF0J3MgYW4gdW5yZWxhdGVkIGFuIGluY29ycmVjdCBzdHls
+ZSBjaGFuZ2UuIFlvdSBuZWVkIGEgYmxhbmsgbGluZQo+IGFmdGVyIGRlY2xhcmF0aW9uLgoKCkFo
+LCB5ZXMsIHRoYXQgZG9lc24ndCByZWFsbHkgbmVlZCB0byBiZSBjaGFuZ2VkLiBJJ2xsIHJlbW92
+ZSBpdCBmcm9tIAp0aGlzIHBhdGNoLiBXb3VsZCBhIHNlcGFyYXRlIHBhdGNoIHRvIGNoYW5nZSB0
+aGUgc2NvcGUgb2YgdGhhdCAKZGVjbGFyYXRpb24gKHdpdGggYSBibGFuayBsaW5lIGFmdGVyKSBi
+ZSB3ZWxjb21lLCBvciBzaG91bGQgSSBqdXN0IGxlYXZlIAppdCBhbG9uZT8KCgo+Cj4+IMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVkaWQgPSAKPj4ga21hbGxvYyhyZGV2LT5tb2RlX2luZm8u
+Ymlvc19oYXJkY29kZWRfZWRpZF9zaXplLCBHRlBfS0VSTkVMKTsKPj4gwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgaWYgKGVkaWQpIHsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIG1lbWNweSgodW5zaWduZWQgY2hhciAqKWVkaWQsCj4+IEBAIC00MTIsNyAr
+NDExLDggQEAgcmFkZW9uX2Jpb3NfZ2V0X2hhcmRjb2RlZF9lZGlkKHN0cnVjdCAKPj4gcmFkZW9u
+X2RldmljZSAqcmRldikKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIHJldHVybiBlZGlkOwo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Cj4+IMKgwqDC
+oMKgwqAgfQo+PiAtwqDCoMKgwqAgcmV0dXJuIE5VTEw7Cj4+ICsKPj4gK8KgwqDCoMKgIHJldHVy
+biBkcm1fZ2V0X2VkaWRfYWNwaSgpOwo+Cj4gSW4gZ2VuZXJhbCBhIGdvb2QgaWRlYSwgYnV0IEkn
+bSB3b25kZXJpbmcgaWYgd2Ugc2hvdWxkIHJlYWxseSBkbyB0aGlzIHNvCj4gdW5jb25kaXRpb25h
+bGx5IGhlcmUuCj4KCkknbSBub3QgcGVyc29uYWxseSBhd2FyZSBvZiBhbnkgQU1EIG5vdGVib29r
+IGRlc2lnbnMgdGhhdCByZXF1aXJlIHRoZSAKQUNQSSBfRERDIEVESUQgcmV0cmlldmFsLiBJJ3Zl
+IG9ubHkgc2VlbiBpdCBvbiBOVklESUErSW50ZWwgaHlicmlkIApzeXN0ZW1zIGFuZCBvbiBhIHNt
+YWxsIG51bWJlciBvZiBOVklESUEgZGlzY3JldGUtb25seSBzeXN0ZW1zLiBJIGp1c3QgCmZpZ3Vy
+ZWQgSSdkIHVwZGF0ZSB0aGUgcmFkZW9uIERSTS1LTVMgZHJpdmVyIHdoaWxlIHVwZGF0aW5nIGk5
+MTUgYW5kIApOb3V2ZWF1LCBmb3IgY29tcGxldGVuZXNzLCBhcyBpdCBjb3VsZCBiZSBoZWxwZnVs
+IHNob3VsZCBzdWNoIGEgZGVzaWduIApleGlzdC4gQXMgZm9yIHdoZXRoZXIgdGhlcmUgc2hvdWxk
+IGJlIHNvbWUgY29uZGl0aW9uIGFyb3VuZCB0aGlzLCBJIApzdXBwb3NlIHRoYXQncyByZWFzb25h
+YmxlLCBidXQgSSdtIG5vdCByZWFsbHkgc3VyZSB3aGF0IHdvdWxkIG1ha2Ugc2Vuc2UgCmFzIGEg
+Y29uZGl0aW9uLiBBcyBpdCBzdGFuZHMsIGRybV9lZGlkX2FjcGkoKSBvbmx5IHJldHVybnMgYSB2
+YWx1ZSBpZiBhdCAKbGVhc3Qgb25lIG9mIHRoZSBWR0Egb3IgM0QgY29udHJvbGxlcnMgb24gdGhl
+IHN5c3RlbSBwcm92aWRlcyBhbiBBQ1BJIApfRERDIG1ldGhvZCwgYW5kIGlmIHRoYXQgQUNQSSBt
+ZXRob2Qgc3VjY2Vzc2Z1bGx5IHJldHVybnMgYW4gRURJRC4KCk9uIHRoZSBjYWxsZXIncyBlbmQs
+IGl0J3MgY3VycmVudGx5IHBhcnQgb2YgdGhlIHBhdGggd2hlcmUgdGhlIHJhZGVvbiAKZHJpdmVy
+IGlzIGFscmVhZHkgdHJ5aW5nIHRvIGZhbGwgYmFjayB0byBhIGhhcmRjb2RlZCBFRElEIHByb3Zp
+ZGVkIGJ5IAp0aGUgc3lzdGVtLiBQZXJoYXBzIGluc3RlYWQgaWYgd2UgY2FsbCBpdCB3aXRoaW4g
+dGhlIExWRFMgfHwgZURQIApjb25kaXRpb24gaGVyZSwgaW5zdGVhZD8KCgogwqDCoMKgwqDCoMKg
+wqAgaWYgKHJkZXYtPmlzX2F0b21fYmlvcykgewogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAvKiBz
+b21lIGxhcHRvcHMgcHJvdmlkZSBhIGhhcmRjb2RlZCBlZGlkIGluIHJvbSBmb3IgTENEcyAqLwog
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoKChjb25uZWN0b3ItPmNvbm5lY3Rvcl90eXBlID09
+IERSTV9NT0RFX0NPTk5FQ1RPUl9MVkRTKSB8fAogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgKGNvbm5lY3Rvci0+Y29ubmVjdG9yX3R5cGUgPT0gRFJNX01PREVfQ09OTkVDVE9SX2VE
+UCkpKQogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJhZGVvbl9jb25uZWN0b3ItPmVk
+aWQgPSAKcmFkZW9uX2Jpb3NfZ2V0X2hhcmRjb2RlZF9lZGlkKHJkZXYpOwogwqDCoMKgwqDCoMKg
+wqAgfSBlbHNlIHsKIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLyogc29tZSBzZXJ2ZXJzIHByb3Zp
+ZGUgYSBoYXJkY29kZWQgZWRpZCBpbiByb20gZm9yIEtWTXMgKi8KIMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgcmFkZW9uX2Nvbm5lY3Rvci0+ZWRpZCA9IHJhZGVvbl9iaW9zX2dldF9oYXJkY29kZWRf
+ZWRpZChyZGV2KTsKfQoKVGhhdCB3b3VsZCBiZSBtb3JlIGluIGxpbmUgd2l0aCB0aGUgY2hhbmdl
+cyBpbiB0aGlzIHBhdGNoc2V0IGZvciBpOTE1IAphbmQgbm91dmVhdS4KCgo+IFJlZ2FyZHMsCj4g
+Q2hyaXN0aWFuLgo+Cj4+IMKgIH0KPj4KPj4gwqAgc3RhdGljIHN0cnVjdCByYWRlb25faTJjX2J1
+c19yZWMgY29tYmlvc19zZXR1cF9pMmNfYnVzKHN0cnVjdCAKPj4gcmFkZW9uX2RldmljZSAqcmRl
+diwKPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQt
+Z2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
