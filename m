@@ -1,83 +1,106 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v4 6/6] mm/migrate: remove range invalidation in
- migrate_vma_pages()
-Date: Tue, 28 Jul 2020 15:04:07 -0700
-Message-ID: <7f947311-0034-9148-1dca-fb9b9a10abc4@nvidia.com>
-References: <20200723223004.9586-1-rcampbell@nvidia.com>
- <20200723223004.9586-7-rcampbell@nvidia.com>
- <20200728191940.GB159104@nvidia.com>
+From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v2] drm/nouveau: Accept 'legacy' format
+ modifiers
+Date: Wed, 29 Jul 2020 12:48:23 +1000
+Message-ID: <CAPM=9twQfg6QiiL2fn=qaBRrWCsnoByoch+1vAN94ZwqzYDFxg@mail.gmail.com>
+References: <20200718033352.1810-1-jajones@nvidia.com>
+ <CACAvsv6a6Td=igGXwrpPUASMfYPCH9VvWdEY6PBaY+0cybJNxA@mail.gmail.com>
+ <561f3a10-82af-cff5-b771-2e56b6eb973a@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <20200728191940.GB159104-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Content-Language: en-US
-Sender: linux-rdma-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Jason Gunthorpe <jgg-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, kvm-ppc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <561f3a10-82af-cff5-b771-2e56b6eb973a-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: Nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "Kirill A . Shutemov" <kirill-oKw7cIdHH8eLwutG50LtGA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Tue, 28 Jul 2020 at 04:51, James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+>
+> On 7/23/20 9:06 PM, Ben Skeggs wrote:
+> > On Sat, 18 Jul 2020 at 13:34, James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+> >>
+> >> Accept the DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK()
+> >> family of modifiers to handle broken userspace
+> >> Xorg modesetting and Mesa drivers. Existing Mesa
+> >> drivers are still aware of only these older
+> >> format modifiers which do not differentiate
+> >> between different variations of the block linear
+> >> layout. When the format modifier support flag was
+> >> flipped in the nouveau kernel driver, the X.org
+> >> modesetting driver began attempting to use its
+> >> format modifier-enabled framebuffer path. Because
+> >> the set of format modifiers advertised by the
+> >> kernel prior to this change do not intersect with
+> >> the set of format modifiers advertised by Mesa,
+> >> allocating GBM buffers using format modifiers
+> >> fails and the modesetting driver falls back to
+> >> non-modifier allocation. However, it still later
+> >> queries the modifier of the GBM buffer when
+> >> creating its DRM-KMS framebuffer object, receives
+> >> the old-format modifier from Mesa, and attempts
+> >> to create a framebuffer with it. Since the kernel
+> >> is still not aware of these formats, this fails.
+> >>
+> >> Userspace should not be attempting to query format
+> >> modifiers of GBM buffers allocated with a non-
+> >> format-modifier-aware allocation path, but to
+> >> avoid breaking existing userspace behavior, this
+> >> change accepts the old-style format modifiers when
+> >> creating framebuffers and applying them to planes
+> >> by translating them to the equivalent new-style
+> >> modifier. To accomplish this, some layout
+> >> parameters must be assumed to match properties of
+> >> the device targeted by the relevant ioctls. To
+> >> avoid perpetuating misuse of the old-style
+> >> modifiers, this change does not advertise support
+> >> for them. Doing so would imply compatibility
+> >> between devices with incompatible memory layouts.
+> >>
+> >> Tested with Xorg 1.20 modesetting driver,
+> >> weston@c46c70dac84a4b3030cd05b380f9f410536690fc,
+> >> gnome & KDE wayland desktops from Ubuntu 18.04,
+> >> and sway 1.5
+> >>
+> >> Reported-by: Kirill A. Shutemov <kirill-oKw7cIdHH8eLwutG50LtGA@public.gmane.org>
+> >> Fixes: fa4f4c213f5f ("drm/nouveau/kms: Support NVIDIA format modifiers")
+> >> Link: https://lkml.org/lkml/2020/6/30/1251
+> >> Signed-off-by: James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> >> ---
+> >>   drivers/gpu/drm/nouveau/nouveau_display.c | 26 +++++++++++++++++++++--
+> >>   1 file changed, 24 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+> >> index 496c4621cc78..31543086254b 100644
+> >> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
+> >> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+> >> @@ -191,8 +191,14 @@ nouveau_decode_mod(struct nouveau_drm *drm,
+> >>                     uint32_t *tile_mode,
+> >>                     uint8_t *kind)
+> >>   {
+> >> +       struct nouveau_display *disp = nouveau_display(drm->dev);
+> >>          BUG_ON(!tile_mode || !kind);
+> >>
+> >> +       if ((modifier & (0xffull << 12)) == 0ull) {
+> >> +               /* Legacy modifier.  Translate to this device's 'kind.' */
+> >> +               modifier |= disp->format_modifiers[0] & (0xffull << 12);
+> >> +       }
+> > I believe this should be moved into the != MOD_LINEAR case.
+>
+> Yes, of course, thanks.  I need to re-evaluate my testing yet again to
+> make sure I hit that case too.  Preparing a v3...
 
-On 7/28/20 12:19 PM, Jason Gunthorpe wrote:
-> On Thu, Jul 23, 2020 at 03:30:04PM -0700, Ralph Campbell wrote:
->> When migrating the special zero page, migrate_vma_pages() calls
->> mmu_notifier_invalidate_range_start() before replacing the zero page
->> PFN in the CPU page tables. This is unnecessary since the range was
->> invalidated in migrate_vma_setup() and the page table entry is checked
->> to be sure it hasn't changed between migrate_vma_setup() and
->> migrate_vma_pages(). Therefore, remove the redundant invalidation.
-> 
-> I don't follow this logic, the purpose of the invalidation is also to
-> clear out anything that may be mirroring this VA, and "the page hasn't
-> changed" doesn't seem to rule out that case?
-> 
-> I'm also not sure I follow where the zero page came from?
+Going to need something here in the next day, two max.
 
-The zero page comes from an anonymous private VMA that is read-only
-and the user level CPU process tries to read the page data (or any
-other read page fault).
+Linus may wait for another week, but it's not guaranteed.
 
-> Jason
-> 
-
-The overall migration process is:
-
-mmap_read_lock()
-
-migrate_vma_setup()
-       // invalidates range, locks/isolates pages, puts migration entry in page table
-
-<driver allocates destination pages and copies source to dest>
-
-migrate_vma_pages()
-       // moves source struct page info to destination struct page info.
-       // clears migration flag for pages that can't be migrated.
-
-<driver updates device page tables for pages still migrating, rollback pages not migrating>
-
-migrate_vma_finalize()
-       // replaces migration page table entry with destination page PFN.
-
-mmap_read_unlock()
-
-Since the address range is invalidated in the migrate_vma_setup() stage,
-and the page is isolated from the LRU cache, locked, unmapped, and the page table
-holds a migration entry (so the page can't be faulted and the CPU page table set
-valid again), and there are no extra page references (pins), the page
-"should not be modified".
-
-For pte_none()/is_zero_pfn() entries, migrate_vma_setup() leaves the
-pte_none()/is_zero_pfn() entry in place but does still call
-mmu_notifier_invalidate_range_start() for the whole range being migrated.
-
-In the migrate_vma_pages() step, the pte page table is locked and the
-pte entry checked to be sure it is still pte_none/is_zero_pfn(). If not,
-the new page isn't inserted. If it is still none/zero, the new device private
-struct page is inserted into the page table, replacing the pte_none()/is_zero_pfn()
-page table entry. The secondary MMUs were already invalidated in the migrate_vma_setup()
-step and a pte_none() or zero page can't be modified so the only invalidation needed
-is the CPU TLB(s) for clearing the special zero page PTE entry.
-
-Two devices could both try to do the migrate_vma_*() sequence and proceed in parallel up
-to the migrate_vma_pages() step and try to install a new page for the hole/zero PTE but
-only one will win and the other fail.
+Dave.
