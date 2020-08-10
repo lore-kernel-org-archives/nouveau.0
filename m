@@ -1,7 +1,7 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 1/2] drm/nouveau/kms/nv140-: Include correct push header in crcc37d.c
-Date: Mon, 10 Aug 2020 17:18:37 -0400
-Message-ID: <20200810211838.37862-2-lyude@redhat.com>
+Subject: [PATCH 2/2] drm/nouveau/kms/nv50-: Don't call HEAD_SET_CRC_CONTROL in head907d_mode()
+Date: Mon, 10 Aug 2020 17:18:38 -0400
+Message-ID: <20200810211838.37862-3-lyude@redhat.com>
 References: <20200810211838.37862-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -9,41 +9,50 @@ Return-path: <linux-kernel-owner@vger.kernel.org>
 In-Reply-To: <20200810211838.37862-1-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
 To: nouveau@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@gmail.com>, "open list:DRM DRIVER FOR NVIDIA
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, "open list:DRM DRIVER FOR NVIDIA
         GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-Looks like when we converted everything over to Nvidia's class headers,
-we mistakenly included the nvif/push507b.h instead of nvif/pushc37b.h,
-which resulted in breaking CRC reporting for volta+:
+This was a mistake that was present before, but never got noticed until
+we converted over to using nvidia's class headers for display
+programming. Luckily though it never caused any problems, since we
+always end up calling crc907d_set_src() after head907d_mode().
 
-nouveau 0000:1f:00.0: disp: chid 0 stat 10003361 reason 3
-[RESERVED_METHOD] mthd 0d84 data 00000000 code 00000000
-nouveau 0000:1f:00.0: disp: chid 0 stat 10003360 reason 3
-[RESERVED_METHOD] mthd 0d80 data 00000000 code 00000000
-nouveau 0000:1f:00.0: DRM: CRC notifier ctx for head 3 not finished
-after 50ms
-
-So, fix that.
+So, let's get rid of this.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
-Fixes: c4b27bc8682c ("drm/nouveau/kms/nv50-: convert core crc_set_src() to new push macros")
 ---
- drivers/gpu/drm/nouveau/dispnv50/crcc37d.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/dispnv50/head907d.c | 11 ++---------
+ 1 file changed, 2 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/crcc37d.c b/drivers/gpu/drm/nouveau/dispnv50/crcc37d.c
-index 9afe9a87bde0c..814e5bd974460 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/crcc37d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/crcc37d.c
-@@ -6,7 +6,7 @@
- #include "disp.h"
- #include "head.h"
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/head907d.c b/drivers/gpu/drm/nouveau/dispnv50/head907d.c
+index 8f860e9c52247..85648d790743f 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/head907d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/head907d.c
+@@ -322,7 +322,7 @@ head907d_mode(struct nv50_head *head, struct nv50_head_atom *asyh)
+ 	const int i = head->base.index;
+ 	int ret;
  
--#include <nvif/push507c.h>
-+#include <nvif/pushc37b.h>
+-	if ((ret = PUSH_WAIT(push, 14)))
++	if ((ret = PUSH_WAIT(push, 13)))
+ 		return ret;
  
- #include <nvhw/class/clc37d.h>
+ 	PUSH_MTHD(push, NV907D, HEAD_SET_OVERSCAN_COLOR(i),
+@@ -353,14 +353,7 @@ head907d_mode(struct nv50_head *head, struct nv50_head_atom *asyh)
+ 	PUSH_MTHD(push, NV907D, HEAD_SET_DEFAULT_BASE_COLOR(i),
+ 		  NVVAL(NV907D, HEAD_SET_DEFAULT_BASE_COLOR, RED, 0) |
+ 		  NVVAL(NV907D, HEAD_SET_DEFAULT_BASE_COLOR, GREEN, 0) |
+-		  NVVAL(NV907D, HEAD_SET_DEFAULT_BASE_COLOR, BLUE, 0),
+-
+-				HEAD_SET_CRC_CONTROL(i),
+-		  NVDEF(NV907D, HEAD_SET_CRC_CONTROL, CONTROLLING_CHANNEL, CORE) |
+-		  NVDEF(NV907D, HEAD_SET_CRC_CONTROL, EXPECT_BUFFER_COLLAPSE, FALSE) |
+-		  NVDEF(NV907D, HEAD_SET_CRC_CONTROL, TIMESTAMP_MODE, FALSE) |
+-		  NVDEF(NV907D, HEAD_SET_CRC_CONTROL, PRIMARY_OUTPUT, NONE) |
+-		  NVDEF(NV907D, HEAD_SET_CRC_CONTROL, SECONDARY_OUTPUT, NONE));
++		  NVVAL(NV907D, HEAD_SET_DEFAULT_BASE_COLOR, BLUE, 0));
  
+ 	PUSH_MTHD(push, NV907D, HEAD_SET_PIXEL_CLOCK_FREQUENCY(i),
+ 		  NVVAL(NV907D, HEAD_SET_PIXEL_CLOCK_FREQUENCY, HERTZ, m->clock * 1000) |
 -- 
 2.26.2
