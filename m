@@ -1,8 +1,8 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 5.7 20/60] drm/nouveau: fix reference
- count leak in nouveau_debugfs_strap_peek
-Date: Mon, 10 Aug 2020 15:09:48 -0400
-Message-ID: <20200810191028.3793884-20-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.7 21/60] drm/nouveau: fix multiple
+ instances of reference count leaks
+Date: Mon, 10 Aug 2020 15:09:49 -0400
+Message-ID: <20200810191028.3793884-21-sashal@kernel.org>
 References: <20200810191028.3793884-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,34 +24,63 @@ List-Id: nouveau.vger.kernel.org
 
 From: Aditya Pakki <pakki001-OJFnDUYgAso@public.gmane.org>
 
-[ Upstream commit 8f29432417b11039ef960ab18987c7d61b2b5396 ]
+[ Upstream commit 659fb5f154c3434c90a34586f3b7aa1c39cf6062 ]
 
-nouveau_debugfs_strap_peek() calls pm_runtime_get_sync() that
-increments the reference count. In case of failure, decrement the
+On calling pm_runtime_get_sync() the reference count of the device
+is incremented. In case of failure, decrement the
 ref count before returning the error.
 
 Signed-off-by: Aditya Pakki <pakki001-OJFnDUYgAso@public.gmane.org>
 Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_debugfs.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 8 ++++++--
+ drivers/gpu/drm/nouveau/nouveau_gem.c | 4 +++-
+ 2 files changed, 9 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-index 15a3d40edf029..3e15a9d5e8faa 100644
---- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-@@ -54,8 +54,10 @@ nouveau_debugfs_strap_peek(struct seq_file *m, void *data)
- 	int ret;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index ca4087f5a15b6..c484d21820c9b 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -1051,8 +1051,10 @@ nouveau_drm_open(struct drm_device *dev, struct drm_file *fpriv)
  
- 	ret = pm_runtime_get_sync(drm->dev->dev);
+ 	/* need to bring up power immediately if opening device */
+ 	ret = pm_runtime_get_sync(dev->dev);
 -	if (ret < 0 && ret != -EACCES)
 +	if (ret < 0 && ret != -EACCES) {
-+		pm_runtime_put_autosuspend(drm->dev->dev);
++		pm_runtime_put_autosuspend(dev->dev);
  		return ret;
 +	}
  
- 	seq_printf(m, "0x%08x\n",
- 		   nvif_rd32(&drm->client.device.object, 0x101000));
+ 	get_task_comm(tmpname, current);
+ 	snprintf(name, sizeof(name), "%s[%d]", tmpname, pid_nr(fpriv->pid));
+@@ -1134,8 +1136,10 @@ nouveau_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+ 	long ret;
+ 
+ 	ret = pm_runtime_get_sync(dev->dev);
+-	if (ret < 0 && ret != -EACCES)
++	if (ret < 0 && ret != -EACCES) {
++		pm_runtime_put_autosuspend(dev->dev);
+ 		return ret;
++	}
+ 
+ 	switch (_IOC_NR(cmd) - DRM_COMMAND_BASE) {
+ 	case DRM_NOUVEAU_NVIF:
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index f5ece1f949734..f941ce8f81e3a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -45,8 +45,10 @@ nouveau_gem_object_del(struct drm_gem_object *gem)
+ 	int ret;
+ 
+ 	ret = pm_runtime_get_sync(dev);
+-	if (WARN_ON(ret < 0 && ret != -EACCES))
++	if (WARN_ON(ret < 0 && ret != -EACCES)) {
++		pm_runtime_put_autosuspend(dev);
+ 		return;
++	}
+ 
+ 	if (gem->import_attach)
+ 		drm_prime_gem_destroy(gem, nvbo->bo.sg);
 -- 
 2.25.1
