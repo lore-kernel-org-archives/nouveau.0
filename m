@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 4.19 13/31] drm/nouveau: fix multiple
+Subject: [PATCH AUTOSEL 4.14 08/22] drm/nouveau: fix multiple
  instances of reference count leaks
-Date: Mon, 10 Aug 2020 15:12:41 -0400
-Message-ID: <20200810191259.3794858-13-sashal@kernel.org>
-References: <20200810191259.3794858-1-sashal@kernel.org>
+Date: Mon, 10 Aug 2020 15:13:30 -0400
+Message-ID: <20200810191345.3795166-8-sashal@kernel.org>
+References: <20200810191345.3795166-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200810191259.3794858-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <20200810191345.3795166-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -39,10 +39,10 @@ Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
  2 files changed, 9 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 2b7a54cc3c9ef..81999bed1e4a5 100644
+index d00524a5d7f08..fb6b1d0f7fef3 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -899,8 +899,10 @@ nouveau_drm_open(struct drm_device *dev, struct drm_file *fpriv)
+@@ -840,8 +840,10 @@ nouveau_drm_open(struct drm_device *dev, struct drm_file *fpriv)
  
  	/* need to bring up power immediately if opening device */
  	ret = pm_runtime_get_sync(dev->dev);
@@ -54,7 +54,7 @@ index 2b7a54cc3c9ef..81999bed1e4a5 100644
  
  	get_task_comm(tmpname, current);
  	snprintf(name, sizeof(name), "%s[%d]", tmpname, pid_nr(fpriv->pid));
-@@ -980,8 +982,10 @@ nouveau_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+@@ -930,8 +932,10 @@ nouveau_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
  	long ret;
  
  	ret = pm_runtime_get_sync(dev->dev);
@@ -67,10 +67,10 @@ index 2b7a54cc3c9ef..81999bed1e4a5 100644
  	switch (_IOC_NR(cmd) - DRM_COMMAND_BASE) {
  	case DRM_NOUVEAU_NVIF:
 diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index b56524d343c3e..791f970714ed6 100644
+index 60ffb70bb9089..c6149b5be073e 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_gem.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -46,8 +46,10 @@ nouveau_gem_object_del(struct drm_gem_object *gem)
+@@ -42,8 +42,10 @@ nouveau_gem_object_del(struct drm_gem_object *gem)
  	int ret;
  
  	ret = pm_runtime_get_sync(dev);
