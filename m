@@ -1,51 +1,49 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [RFC 03/20] drm/nouveau/kms/nv50-: Just use drm_dp_dpcd_read() in nouveau_dp.c
-Date: Tue, 11 Aug 2020 16:04:40 -0400
-Message-ID: <20200811200457.134743-4-lyude@redhat.com>
+Subject: [RFC 05/20] drm/nouveau/kms: Don't clear DP_MST_CTRL DPCD in nv50_mstm_new()
+Date: Tue, 11 Aug 2020 16:04:42 -0400
+Message-ID: <20200811200457.134743-6-lyude@redhat.com>
 References: <20200811200457.134743-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
 In-Reply-To: <20200811200457.134743-1-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
 To: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, open list <linux-kernel@vger.kernel.org>
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@gmail.com>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, Alex Deucher <alexander.deucher@amd.com>, Takashi Iwai <tiwai@suse.de>, James Jones <jajones@nvidia.com>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-Since this actually logs accesses, we should probably always be using
-this imho…
+Since fa3cdf8d0b09 ("drm/nouveau: Reset MST branching unit before
+enabling") we've been clearing DP_MST_CTRL before we start enabling MST.
+Since then clearing DP_MST_CTRL in nv50_mstm_new() has been unnecessary
+and redundant, so let's remove it.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 Reviewed-by: Ben Skeggs <bskeggs@redhat.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_dp.c | 12 ++++--------
- 1 file changed, 4 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 11 -----------
+ 1 file changed, 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
-index c4e9c21d4dd2b..8db9216d52c69 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dp.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
-@@ -42,16 +42,12 @@ nouveau_dp_detect(struct nouveau_connector *nv_connector,
- {
- 	struct drm_device *dev = nv_encoder->base.base.dev;
- 	struct nouveau_drm *drm = nouveau_drm(dev);
--	struct nvkm_i2c_aux *aux;
--	u8 dpcd[8];
-+	struct drm_dp_aux *aux = &nv_connector->aux;
-+	u8 dpcd[DP_RECEIVER_CAP_SIZE];
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index e7874877da858..c4d138f0ca054 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -1535,17 +1535,6 @@ nv50_mstm_new(struct nouveau_encoder *outp, struct drm_dp_aux *aux, int aux_max,
+ 	struct drm_device *dev = outp->base.base.dev;
+ 	struct nv50_mstm *mstm;
  	int ret;
- 
--	aux = nv_encoder->aux;
--	if (!aux)
--		return -ENODEV;
+-	u8 dpcd;
 -
--	ret = nvkm_rdaux(aux, DP_DPCD_REV, dpcd, sizeof(dpcd));
--	if (ret)
-+	ret = drm_dp_dpcd_read(aux, DP_DPCD_REV, dpcd, DP_RECEIVER_CAP_SIZE);
-+	if (ret != sizeof(dpcd))
- 		return ret;
+-	/* This is a workaround for some monitors not functioning
+-	 * correctly in MST mode on initial module load.  I think
+-	 * some bad interaction with the VBIOS may be responsible.
+-	 *
+-	 * A good ol' off and on again seems to work here ;)
+-	 */
+-	ret = drm_dp_dpcd_readb(aux, DP_DPCD_REV, &dpcd);
+-	if (ret >= 0 && dpcd >= 0x12)
+-		drm_dp_dpcd_writeb(aux, DP_MSTM_CTRL, 0);
  
- 	nv_encoder->dp.link_bw = 27000 * dpcd[1];
+ 	if (!(mstm = *pmstm = kzalloc(sizeof(*mstm), GFP_KERNEL)))
+ 		return -ENOMEM;
 -- 
 2.26.2
