@@ -1,128 +1,121 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [RFC 00/20] drm/dp, i915,
- nouveau: Cleanup nouveau HPD and add DP features from i915
-Date: Tue, 11 Aug 2020 16:04:37 -0400
-Message-ID: <20200811200457.134743-1-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [RFC 02/20] drm/nouveau/kms/nv50-: Remove open-coded drm_dp_read_desc()
+Date: Tue, 11 Aug 2020 16:04:39 -0400
+Message-ID: <20200811200457.134743-3-lyude@redhat.com>
+References: <20200811200457.134743-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200811200457.134743-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-To start off: this patch series is less work to review then it looks -
-most (but not all) of the nouveau related work has already been reviewed
-elsewhere. Most of the reason I'm asking for an RFC here is because this
-code pulls a lot of code out of i915 and into shared DP helpers.
+Noticed this while going through our DP code - we use an open-coded
+version of drm_dp_read_desc() instead of just using the helper, so
+change that. This will also let us use quirks in the future if we end up
+needing them.
 
-Anyway-nouveau's HPD related code has been collecting dust for a while.
-Other then the occasional runtime PM related and MST related fixes,
-we're missing a lot of nice things that have been added to DRM since
-this was originally written. Additionally, the code is just really
-unoptimized in general:
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Reviewed-by: Ben Skeggs <bskeggs@redhat.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_connector.c |  3 ++-
+ drivers/gpu/drm/nouveau/nouveau_dp.c        | 30 +++++++--------------
+ drivers/gpu/drm/nouveau/nouveau_encoder.h   |  4 ++-
+ 3 files changed, 14 insertions(+), 23 deletions(-)
 
-* We handle connector probing in the same context that we handle short
-  IRQs in for DP, which means connector probing could potentially block
-  ESI handling for MST
-* When we receive a hotplug event from a connector, we reprobe every
-  single connector instead of just the connector that was hotplugged
-* Additionally because of the above reason, combined with the fact I had
-  the bad idea of reusing some of the MST locks when I last rewrote
-  nouveau's DP MST detection, trying to handle any other events that
-  require short HPD IRQs is a bit awkward to actually implement.
-* We don't actually properly check whether EDIDs change or not when
-  reprobing, which means we basically send out a hotplug event every
-  single time we receive one even if nothing has changed
-
-Additionally, the code for handling DP that we have in nouveau is also
-quite unoptimized in general, doesn't use a lot of helpers that have
-been added since it was written, and is also missing quite a number of
-features:
-
-* Downstream port capability probing
-* Extended DPRX cap parsing
-* SINK_COUNT handling for hpd on dongles
-
-Luckily for us - all of these are implemented in i915 already. Since
-there's no reason for us to reinvent the wheel, and having more shared
-code is always nice, I decided to take the opportunity to extract the
-code for all of these features from i915 into a set of core DP helpers,
-which both i915 and nouveau (and hopefully other drivers in the future)
-can use.
-
-As well, this patch series also addesses the other general
-connector probing related issues I mentioned above, along with rewriting
-how we handle MST probing so we don't hit any surprise locking design
-issues in the future.
-
-As a note - most of this work is motivated by the fact that I'm
-planning on adding max_bpc/output_bpc prop support, DSC support (for
-both MST and SST, along with proper helpers for handling bandwidth
-limitations and DSC), and fallback link retraining. I figured I might as
-clean this code up and implement missing DP features like the ones
-mentioned here before moving on to those tasks.
-
-Also, I'm intending for this patch series to get merged through
-drm-misc-next. Once that happens, upstream maintainers will probably
-have an easier time with merging if they pull the pending patches for
-nouveau from Ben's tree before merging drm-misc-next.
-
-Lyude Paul (20):
-  drm/nouveau/kms: Fix some indenting in nouveau_dp_detect()
-  drm/nouveau/kms/nv50-: Remove open-coded drm_dp_read_desc()
-  drm/nouveau/kms/nv50-: Just use drm_dp_dpcd_read() in nouveau_dp.c
-  drm/nouveau/kms/nv50-: Use macros for DP registers in nouveau_dp.c
-  drm/nouveau/kms: Don't clear DP_MST_CTRL DPCD in nv50_mstm_new()
-  drm/nouveau/kms: Search for encoders' connectors properly
-  drm/nouveau/kms/nv50-: Use drm_dp_dpcd_(readb|writeb)() in
-    nv50_sor_disable()
-  drm/nouveau/kms/nv50-: Refactor and cleanup DP HPD handling
-  drm/i915/dp: Extract drm_dp_has_mst()
-  drm/nouveau/kms: Use new drm_dp_has_mst() helper for checking MST caps
-  drm/nouveau/kms: Move drm_dp_cec_unset_edid() into
-    nouveau_connector_detect()
-  drm/nouveau/kms: Only use hpd_work for reprobing in HPD paths
-  drm/i915/dp: Extract drm_dp_downstream_read_info()
-  drm/nouveau/kms/nv50-: Use downstream DP clock limits for mode
-    validation
-  drm/i915/dp: Extract drm_dp_has_sink_count()
-  drm/i915/dp: Extract drm_dp_get_sink_count()
-  drm/nouveau/kms/nv50-: Add support for DP_SINK_COUNT
-  drm/nouveau/kms: Don't change EDID when it hasn't actually changed
-  drm/i915/dp: Extract drm_dp_read_dpcd_caps()
-  drm/nouveau/kms: Start using drm_dp_read_dpcd_caps()
-
- drivers/gpu/drm/drm_dp_helper.c             | 150 ++++++++++
- drivers/gpu/drm/i915/display/intel_dp.c     | 130 ++-------
- drivers/gpu/drm/i915/display/intel_dp.h     |   1 -
- drivers/gpu/drm/i915/display/intel_lspcon.c |   2 +-
- drivers/gpu/drm/nouveau/dispnv04/dac.c      |   2 +-
- drivers/gpu/drm/nouveau/dispnv04/dfp.c      |   7 +-
- drivers/gpu/drm/nouveau/dispnv04/disp.c     |  24 +-
- drivers/gpu/drm/nouveau/dispnv04/disp.h     |   4 +
- drivers/gpu/drm/nouveau/dispnv04/tvnv04.c   |   2 +-
- drivers/gpu/drm/nouveau/dispnv04/tvnv17.c   |   2 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.c     | 308 +++++++++++---------
- drivers/gpu/drm/nouveau/nouveau_connector.c | 132 ++++-----
- drivers/gpu/drm/nouveau/nouveau_connector.h |   1 +
- drivers/gpu/drm/nouveau/nouveau_display.c   |  72 ++++-
- drivers/gpu/drm/nouveau/nouveau_display.h   |   3 +-
- drivers/gpu/drm/nouveau/nouveau_dp.c        | 201 ++++++++++---
- drivers/gpu/drm/nouveau/nouveau_drm.c       |   4 +-
- drivers/gpu/drm/nouveau/nouveau_drv.h       |   2 +
- drivers/gpu/drm/nouveau/nouveau_encoder.h   |  48 ++-
- include/drm/drm_dp_helper.h                 |  15 +-
- include/drm/drm_dp_mst_helper.h             |  22 ++
- 21 files changed, 741 insertions(+), 391 deletions(-)
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 7674025a4bfe8..e12957e6faa7c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -435,7 +435,8 @@ nouveau_connector_ddc_detect(struct drm_connector *connector)
+ 
+ 		switch (nv_encoder->dcb->type) {
+ 		case DCB_OUTPUT_DP:
+-			ret = nouveau_dp_detect(nv_encoder);
++			ret = nouveau_dp_detect(nouveau_connector(connector),
++						nv_encoder);
+ 			if (ret == NOUVEAU_DP_MST)
+ 				return NULL;
+ 			else if (ret == NOUVEAU_DP_SST)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+index ee778ddc95fae..c4e9c21d4dd2b 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dp.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+@@ -36,27 +36,9 @@ MODULE_PARM_DESC(mst, "Enable DisplayPort multi-stream (default: enabled)");
+ static int nouveau_mst = 1;
+ module_param_named(mst, nouveau_mst, int, 0400);
+ 
+-static void
+-nouveau_dp_probe_oui(struct drm_device *dev, struct nvkm_i2c_aux *aux, u8 *dpcd)
+-{
+-	struct nouveau_drm *drm = nouveau_drm(dev);
+-	u8 buf[3];
+-
+-	if (!(dpcd[DP_DOWN_STREAM_PORT_COUNT] & DP_OUI_SUPPORT))
+-		return;
+-
+-	if (!nvkm_rdaux(aux, DP_SINK_OUI, buf, 3))
+-		NV_DEBUG(drm, "Sink OUI: %02hx%02hx%02hx\n",
+-			     buf[0], buf[1], buf[2]);
+-
+-	if (!nvkm_rdaux(aux, DP_BRANCH_OUI, buf, 3))
+-		NV_DEBUG(drm, "Branch OUI: %02hx%02hx%02hx\n",
+-			     buf[0], buf[1], buf[2]);
+-
+-}
+-
+ int
+-nouveau_dp_detect(struct nouveau_encoder *nv_encoder)
++nouveau_dp_detect(struct nouveau_connector *nv_connector,
++		  struct nouveau_encoder *nv_encoder)
+ {
+ 	struct drm_device *dev = nv_encoder->base.base.dev;
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+@@ -89,7 +71,13 @@ nouveau_dp_detect(struct nouveau_encoder *nv_encoder)
+ 	NV_DEBUG(drm, "maximum: %dx%d\n",
+ 		 nv_encoder->dp.link_nr, nv_encoder->dp.link_bw);
+ 
+-	nouveau_dp_probe_oui(dev, aux, dpcd);
++	ret = drm_dp_read_desc(&nv_connector->aux, &nv_encoder->dp.desc,
++			       drm_dp_is_branch(dpcd));
++	if (ret) {
++		NV_ERROR(drm, "Failed to read DP descriptor on %s: %d\n",
++			 nv_connector->base.name, ret);
++		return ret;
++	}
+ 
+ 	ret = nv50_mstm_detect(nv_encoder->dp.mstm, dpcd, nouveau_mst);
+ 	if (ret == 1)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_encoder.h b/drivers/gpu/drm/nouveau/nouveau_encoder.h
+index a72c412ac8b14..6424cdcb4913f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_encoder.h
++++ b/drivers/gpu/drm/nouveau/nouveau_encoder.h
+@@ -33,6 +33,7 @@
+ #include <drm/drm_dp_mst_helper.h>
+ #include "dispnv04/disp.h"
+ struct nv50_head_atom;
++struct nouveau_connector;
+ 
+ #define NV_DPMS_CLEARED 0x80
+ 
+@@ -64,6 +65,7 @@ struct nouveau_encoder {
+ 			struct nv50_mstm *mstm;
+ 			int link_nr;
+ 			int link_bw;
++			struct drm_dp_desc desc;
+ 		} dp;
+ 	};
+ 
+@@ -104,7 +106,7 @@ enum nouveau_dp_status {
+ 	NOUVEAU_DP_MST,
+ };
+ 
+-int nouveau_dp_detect(struct nouveau_encoder *);
++int nouveau_dp_detect(struct nouveau_connector *, struct nouveau_encoder *);
+ enum drm_mode_status nv50_dp_mode_valid(struct drm_connector *,
+ 					struct nouveau_encoder *,
+ 					const struct drm_display_mode *,
 -- 
 2.26.2
