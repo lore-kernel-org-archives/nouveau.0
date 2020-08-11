@@ -1,55 +1,66 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [RFC 07/20] drm/nouveau/kms/nv50-: Use drm_dp_dpcd_(readb|writeb)() in nv50_sor_disable()
-Date: Tue, 11 Aug 2020 16:04:44 -0400
-Message-ID: <20200811200457.134743-8-lyude@redhat.com>
+Subject: [RFC 10/20] drm/nouveau/kms: Use new drm_dp_has_mst()
+ helper for checking MST caps
+Date: Tue, 11 Aug 2020 16:04:47 -0400
+Message-ID: <20200811200457.134743-11-lyude@redhat.com>
 References: <20200811200457.134743-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
 In-Reply-To: <20200811200457.134743-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 To: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@gmail.com>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, Alex Deucher <alexander.deucher@amd.com>, Takashi Iwai <tiwai@suse.de>, James Jones <jajones@nvidia.com>, open list <linux-kernel@vger.kernel.org>
+Cc: David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-Just use drm_dp_dpcd_(readb|writeb)() so we get automatic DPCD logging
-
 Signed-off-by: Lyude Paul <lyude@redhat.com>
-Reviewed-by: Ben Skeggs <bskeggs@redhat.com>
 ---
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_dp.c | 16 +++-------------
+ 1 file changed, 3 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 71c65f0a68a27..e06e8537f21e1 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -1631,19 +1631,22 @@ nv50_sor_disable(struct drm_encoder *encoder,
- {
- 	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
- 	struct nouveau_crtc *nv_crtc = nouveau_crtc(nv_encoder->crtc);
-+	struct nouveau_connector *nv_connector =
-+		nv50_outp_get_old_connector(nv_encoder, state);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+index d701f09aea645..bb85d81c25244 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dp.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+@@ -44,7 +44,6 @@ nouveau_dp_probe_dpcd(struct nouveau_connector *nv_connector,
+ 	struct nv50_mstm *mstm = NULL;
+ 	int ret;
+ 	u8 *dpcd = outp->dp.dpcd;
+-	u8 tmp;
  
- 	nv_encoder->crtc = NULL;
+ 	ret = drm_dp_dpcd_read(aux, DP_DPCD_REV, dpcd, DP_RECEIVER_CAP_SIZE);
+ 	if (ret == DP_RECEIVER_CAP_SIZE && dpcd[DP_DPCD_REV]) {
+@@ -56,19 +55,10 @@ nouveau_dp_probe_dpcd(struct nouveau_connector *nv_connector,
+ 		return connector_status_disconnected;
+ 	}
  
- 	if (nv_crtc) {
--		struct nvkm_i2c_aux *aux = nv_encoder->aux;
-+		struct drm_dp_aux *aux = &nv_connector->aux;
- 		u8 pwr;
+-	if (nouveau_mst)
++	if (nouveau_mst) {
+ 		mstm = outp->dp.mstm;
+-
+-	if (mstm) {
+-		if (dpcd[DP_DPCD_REV] >= DP_DPCD_REV_12) {
+-			ret = drm_dp_dpcd_readb(aux, DP_MSTM_CAP, &tmp);
+-			if (ret < 0)
+-				return connector_status_disconnected;
+-
+-			mstm->can_mst = !!(tmp & DP_MST_CAP);
+-		} else {
+-			mstm->can_mst = false;
+-		}
++		if (mstm)
++			mstm->can_mst = drm_dp_has_mst(aux, dpcd);
+ 	}
  
--		if (aux) {
--			int ret = nvkm_rdaux(aux, DP_SET_POWER, &pwr, 1);
-+		if (nv_encoder->dcb->type == DCB_OUTPUT_DP) {
-+			int ret = drm_dp_dpcd_readb(aux, DP_SET_POWER, &pwr);
-+
- 			if (ret == 0) {
- 				pwr &= ~DP_SET_POWER_MASK;
- 				pwr |=  DP_SET_POWER_D3;
--				nvkm_wraux(aux, DP_SET_POWER, &pwr, 1);
-+				drm_dp_dpcd_writeb(aux, DP_SET_POWER, pwr);
- 			}
- 		}
- 
+ 	return connector_status_connected;
 -- 
 2.26.2
