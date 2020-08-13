@@ -1,102 +1,118 @@
-From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
-Subject: [PATCH 02/20] drm/armada: Introduce GEM object functions
-Date: Thu, 13 Aug 2020 10:36:26 +0200
-Message-ID: <20200813083644.31711-3-tzimmermann@suse.de>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH 03/20] drm/etnaviv: Introduce GEM object functions
+Date: Thu, 13 Aug 2020 10:36:27 +0200
+Message-ID: <20200813083644.31711-4-tzimmermann@suse.de>
 References: <20200813083644.31711-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <20200813083644.31711-1-tzimmermann-l3A5Bk7waGM@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: alexander.deucher-5C7GfCeVMHo@public.gmane.org, christian.koenig-5C7GfCeVMHo@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org, maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org, christian.gmeiner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, inki.dae-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, sw0312.kim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, kyungmin.park-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, kgene-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, patrik.r.jakobsson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, chunkuang.hu-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org, matthias.bgg-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, tomi.valkeinen-l0cyMroinI0@public.gmane.org, eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org, hjc-TNX95d0MmH7DzftRWevZcw@public.gmane.org, heiko-4mtYJXux2i+zQB+pC5nmwQ@public.gmane.org, thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, rodrigosiqueiramelo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, hamohammed.sa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, olek
-Cc: amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mediatek-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rockchip-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, xen-devel-GuqFBffKawtpuQazS67q72D2FQJk+8+b@public.gmane.org, Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+Return-path: <linux-samsung-soc-owner@vger.kernel.org>
+In-Reply-To: <20200813083644.31711-1-tzimmermann@suse.de>
+Sender: linux-samsung-soc-owner@vger.kernel.org
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch, linux@armlinux.org.uk, maarten.lankhorst@linux.intel.com, mripard@kernel.org, l.stach@pengutronix.de, christian.gmeiner@gmail.com, inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org, patrik.r.jakobsson@gmail.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, chunkuang.hu@kernel.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com, robdclark@gmail.com, sean@poorly.run, bskeggs@redhat.com, tomi.valkeinen@ti.com, eric@anholt.net, hjc@rock-chips.com, heiko@sntech.de, thierry.reding@gmail.com, jonathanh@nvidia.com, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, olek
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org, Thomas Zimmermann <tzimmermann@suse.de>
 List-Id: nouveau.vger.kernel.org
 
 GEM object functions deprecate several similar callback interfaces in
 struct drm_driver. This patch replaces the per-driver callbacks with
-per-instance callbacks in armada.
+per-instance callbacks in etnaviv. The only exception is gem_prime_mmap,
+which is non-trivial to convert.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/armada/armada_drv.c |  3 ---
- drivers/gpu/drm/armada/armada_gem.c | 12 +++++++++++-
- drivers/gpu/drm/armada/armada_gem.h |  2 --
- 3 files changed, 11 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/etnaviv/etnaviv_drv.c | 13 -------------
+ drivers/gpu/drm/etnaviv/etnaviv_drv.h |  1 -
+ drivers/gpu/drm/etnaviv/etnaviv_gem.c | 19 ++++++++++++++++++-
+ 3 files changed, 18 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada/armada_drv.c
-index 5fc25c3f445c..9bccfd894be9 100644
---- a/drivers/gpu/drm/armada/armada_drv.c
-+++ b/drivers/gpu/drm/armada/armada_drv.c
-@@ -37,13 +37,10 @@ DEFINE_DRM_GEM_FOPS(armada_drm_fops);
- 
- static struct drm_driver armada_drm_driver = {
- 	.lastclose		= drm_fb_helper_lastclose,
--	.gem_free_object_unlocked = armada_gem_free_object,
- 	.prime_handle_to_fd	= drm_gem_prime_handle_to_fd,
- 	.prime_fd_to_handle	= drm_gem_prime_fd_to_handle,
--	.gem_prime_export	= armada_gem_prime_export,
- 	.gem_prime_import	= armada_gem_prime_import,
- 	.dumb_create		= armada_gem_dumb_create,
--	.gem_vm_ops		= &armada_gem_vm_ops,
- 	.major			= 1,
- 	.minor			= 0,
- 	.name			= "armada-drm",
-diff --git a/drivers/gpu/drm/armada/armada_gem.c b/drivers/gpu/drm/armada/armada_gem.c
-index 8005614d2e6b..81c9da65045c 100644
---- a/drivers/gpu/drm/armada/armada_gem.c
-+++ b/drivers/gpu/drm/armada/armada_gem.c
-@@ -25,7 +25,7 @@ static vm_fault_t armada_gem_vm_fault(struct vm_fault *vmf)
- 	return vmf_insert_pfn(vmf->vma, vmf->address, pfn);
- }
- 
--const struct vm_operations_struct armada_gem_vm_ops = {
-+static const struct vm_operations_struct armada_gem_vm_ops = {
- 	.fault	= armada_gem_vm_fault,
- 	.open	= drm_gem_vm_open,
- 	.close	= drm_gem_vm_close,
-@@ -184,6 +184,12 @@ armada_gem_map_object(struct drm_device *dev, struct armada_gem_object *dobj)
- 	return dobj->addr;
- }
- 
-+static const struct drm_gem_object_funcs armada_gem_object_funcs = {
-+	.free = armada_gem_free_object,
-+	.export = armada_gem_prime_export,
-+	.vm_ops = &armada_gem_vm_ops,
-+};
-+
- struct armada_gem_object *
- armada_gem_alloc_private_object(struct drm_device *dev, size_t size)
- {
-@@ -195,6 +201,8 @@ armada_gem_alloc_private_object(struct drm_device *dev, size_t size)
- 	if (!obj)
- 		return NULL;
- 
-+	obj->obj.funcs = &armada_gem_object_funcs;
-+
- 	drm_gem_private_object_init(dev, &obj->obj, size);
- 
- 	DRM_DEBUG_DRIVER("alloc private obj %p size %zu\n", obj, size);
-@@ -214,6 +222,8 @@ static struct armada_gem_object *armada_gem_alloc_object(struct drm_device *dev,
- 	if (!obj)
- 		return NULL;
- 
-+	obj->obj.funcs = &armada_gem_object_funcs;
-+
- 	if (drm_gem_object_init(dev, &obj->obj, size)) {
- 		kfree(obj);
- 		return NULL;
-diff --git a/drivers/gpu/drm/armada/armada_gem.h b/drivers/gpu/drm/armada/armada_gem.h
-index de04cc2c8f0e..ffcc7e8dd351 100644
---- a/drivers/gpu/drm/armada/armada_gem.h
-+++ b/drivers/gpu/drm/armada/armada_gem.h
-@@ -21,8 +21,6 @@ struct armada_gem_object {
- 	void			*update_data;
+diff --git a/drivers/gpu/drm/etnaviv/etnaviv_drv.c b/drivers/gpu/drm/etnaviv/etnaviv_drv.c
+index a9a3afaef9a1..aa270b79e585 100644
+--- a/drivers/gpu/drm/etnaviv/etnaviv_drv.c
++++ b/drivers/gpu/drm/etnaviv/etnaviv_drv.c
+@@ -468,12 +468,6 @@ static const struct drm_ioctl_desc etnaviv_ioctls[] = {
+ 	ETNA_IOCTL(PM_QUERY_SIG, pm_query_sig, DRM_RENDER_ALLOW),
  };
  
--extern const struct vm_operations_struct armada_gem_vm_ops;
+-static const struct vm_operations_struct vm_ops = {
+-	.fault = etnaviv_gem_fault,
+-	.open = drm_gem_vm_open,
+-	.close = drm_gem_vm_close,
+-};
 -
- #define drm_to_armada_gem(o) container_of(o, struct armada_gem_object, obj)
+ static const struct file_operations fops = {
+ 	.owner              = THIS_MODULE,
+ 	.open               = drm_open,
+@@ -490,16 +484,9 @@ static struct drm_driver etnaviv_drm_driver = {
+ 	.driver_features    = DRIVER_GEM | DRIVER_RENDER,
+ 	.open               = etnaviv_open,
+ 	.postclose           = etnaviv_postclose,
+-	.gem_free_object_unlocked = etnaviv_gem_free_object,
+-	.gem_vm_ops         = &vm_ops,
+ 	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
+ 	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
+-	.gem_prime_pin      = etnaviv_gem_prime_pin,
+-	.gem_prime_unpin    = etnaviv_gem_prime_unpin,
+-	.gem_prime_get_sg_table = etnaviv_gem_prime_get_sg_table,
+ 	.gem_prime_import_sg_table = etnaviv_gem_prime_import_sg_table,
+-	.gem_prime_vmap     = etnaviv_gem_prime_vmap,
+-	.gem_prime_vunmap   = etnaviv_gem_prime_vunmap,
+ 	.gem_prime_mmap     = etnaviv_gem_prime_mmap,
+ #ifdef CONFIG_DEBUG_FS
+ 	.debugfs_init       = etnaviv_debugfs_init,
+diff --git a/drivers/gpu/drm/etnaviv/etnaviv_drv.h b/drivers/gpu/drm/etnaviv/etnaviv_drv.h
+index 4d8dc9236e5f..914f0867ff71 100644
+--- a/drivers/gpu/drm/etnaviv/etnaviv_drv.h
++++ b/drivers/gpu/drm/etnaviv/etnaviv_drv.h
+@@ -49,7 +49,6 @@ int etnaviv_ioctl_gem_submit(struct drm_device *dev, void *data,
+ 		struct drm_file *file);
  
- void armada_gem_free_object(struct drm_gem_object *);
+ int etnaviv_gem_mmap(struct file *filp, struct vm_area_struct *vma);
+-vm_fault_t etnaviv_gem_fault(struct vm_fault *vmf);
+ int etnaviv_gem_mmap_offset(struct drm_gem_object *obj, u64 *offset);
+ struct sg_table *etnaviv_gem_prime_get_sg_table(struct drm_gem_object *obj);
+ void *etnaviv_gem_prime_vmap(struct drm_gem_object *obj);
+diff --git a/drivers/gpu/drm/etnaviv/etnaviv_gem.c b/drivers/gpu/drm/etnaviv/etnaviv_gem.c
+index f06e19e7be04..66de9f299c76 100644
+--- a/drivers/gpu/drm/etnaviv/etnaviv_gem.c
++++ b/drivers/gpu/drm/etnaviv/etnaviv_gem.c
+@@ -170,7 +170,7 @@ int etnaviv_gem_mmap(struct file *filp, struct vm_area_struct *vma)
+ 	return obj->ops->mmap(obj, vma);
+ }
+ 
+-vm_fault_t etnaviv_gem_fault(struct vm_fault *vmf)
++static vm_fault_t etnaviv_gem_fault(struct vm_fault *vmf)
+ {
+ 	struct vm_area_struct *vma = vmf->vma;
+ 	struct drm_gem_object *obj = vma->vm_private_data;
+@@ -560,6 +560,22 @@ void etnaviv_gem_obj_add(struct drm_device *dev, struct drm_gem_object *obj)
+ 	mutex_unlock(&priv->gem_lock);
+ }
+ 
++static const struct vm_operations_struct vm_ops = {
++	.fault = etnaviv_gem_fault,
++	.open = drm_gem_vm_open,
++	.close = drm_gem_vm_close,
++};
++
++static const struct drm_gem_object_funcs etnaviv_gem_object_funcs = {
++	.free = etnaviv_gem_free_object,
++	.pin = etnaviv_gem_prime_pin,
++	.unpin = etnaviv_gem_prime_unpin,
++	.get_sg_table = etnaviv_gem_prime_get_sg_table,
++	.vmap = etnaviv_gem_prime_vmap,
++	.vunmap = etnaviv_gem_prime_vunmap,
++	.vm_ops = &vm_ops,
++};
++
+ static int etnaviv_gem_new_impl(struct drm_device *dev, u32 size, u32 flags,
+ 	const struct etnaviv_gem_ops *ops, struct drm_gem_object **obj)
+ {
+@@ -594,6 +610,7 @@ static int etnaviv_gem_new_impl(struct drm_device *dev, u32 size, u32 flags,
+ 	INIT_LIST_HEAD(&etnaviv_obj->vram_list);
+ 
+ 	*obj = &etnaviv_obj->base;
++	(*obj)->funcs = &etnaviv_gem_object_funcs;
+ 
+ 	return 0;
+ }
 -- 
 2.28.0
