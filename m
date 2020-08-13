@@ -1,97 +1,88 @@
-From: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH 1/4] drm: retrieve EDID via ACPI _DDC method
-Date: Wed, 12 Aug 2020 23:05:20 -0400
-Message-ID: <CADnq5_Mzgb=KsqCzmRc_wc+NB_a7OqkEzfV-upJQ=77B7zcpgA@mail.gmail.com>
-References: <20200727205357.27839-1-ddadap@nvidia.com>
- <20200727205357.27839-2-ddadap@nvidia.com>
- <20200808221114.5rfnys76ozoj62wv@wunner.de>
- <3aa06548-b7b4-6753-7169-88e9b2d80acc@nvidia.com>
+From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+Subject: [PATCH 01/20] drm/amdgpu: Introduce GEM object functions
+Date: Thu, 13 Aug 2020 10:36:25 +0200
+Message-ID: <20200813083644.31711-2-tzimmermann@suse.de>
+References: <20200813083644.31711-1-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <3aa06548-b7b4-6753-7169-88e9b2d80acc-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Dadap <ddadap-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Chunming Zhou <david1.zhou-5C7GfCeVMHo@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Joonas Lahtinen <joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Jani Nikula <jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, intel-gfx-PD4FTy7X32lNgt0PjOBp9/egYHeGw8Jk@public.gmane.org, Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Rodrigo Vivi <rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, "Deucher,
- Alexander" <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Christian Koenig <christian.koenig-5C7GfCeVMHo@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9/egYHeGw8Jk@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <20200813083644.31711-1-tzimmermann-l3A5Bk7waGM@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: alexander.deucher-5C7GfCeVMHo@public.gmane.org, christian.koenig-5C7GfCeVMHo@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org, maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org, christian.gmeiner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, inki.dae-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, sw0312.kim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, kyungmin.park-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, kgene-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, patrik.r.jakobsson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, chunkuang.hu-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org, matthias.bgg-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, tomi.valkeinen-l0cyMroinI0@public.gmane.org, eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org, hjc-TNX95d0MmH7DzftRWevZcw@public.gmane.org, heiko-4mtYJXux2i+zQB+pC5nmwQ@public.gmane.org, thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, rodrigosiqueiramelo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, hamohammed.sa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, olek
+Cc: amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mediatek-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rockchip-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, xen-devel-GuqFBffKawtpuQazS67q72D2FQJk+8+b@public.gmane.org, Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Aug 12, 2020 at 10:31 PM Daniel Dadap <ddadap-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
->
-> Thanks, Lukas. I've incorporated your feedback into my local tree, but
-> will wait for additional feedback from the individual DRM driver
-> maintainers before sending out a series v2.
->
-> On 8/8/20 5:11 PM, Lukas Wunner wrote:
-> > On Mon, Jul 27, 2020 at 03:53:54PM -0500, Daniel Dadap wrote:
-> >> +             for (i = 0; i < num_dod_entries; i++) {
-> >> +                     if (adr == dod_entries[i]) {
-> >> +                             ret = do_acpi_ddc(child->handle);
-> >> +
-> >> +                             if (ret != NULL)
-> >> +                                     goto done;
-> > I guess ideally we'd want to correlate the display objects with
-> > drm_connectors or at least constrain the search to Display Type
-> > "Internal/Integrated Digital Flat Panel" instead of picking the
-> > first EDID found.  Otherwise we might erroneously use the DDC
-> > for an externally attached display.
->
->
-> Yes, we'd definitely need a way to do this if this functionality ever
-> needs to be extended to systems with more than one _DDC method.
-> Unfortunately, this will be much easier said than done, since I'm not
-> aware of any way to reliably do map _DOD entries to connectors in a GPU
-> driver, especially when we're talking about possibly correlating
-> connectors on multiple GPUs which mux to the same internal display or
-> external connector. All systems which I am aware of that implement ACPI
-> _DDC do so for a single internal panel. I don't believe there's any
-> reason to ever retrieve an EDID via ACPI _DDC for an external panel, but
-> a hypothetical design with multiple internal panels, more than one of
-> which needs to retrieve an EDID via ACPI _DDC, would certainly be
-> problematic.
->
->
-> On at least the system I'm working with for the various switcheroo and
-> platform-x86 driver patches I've recently sent off, the dGPU has an ACPI
-> _DOD table and one _DDC method corresponding to one of the _DOD entries,
-> but the iGPU has neither a _DOD table nor a _DDC method. Either GPU can
-> be connected to the internal panel via the dynamically switchable mux,
-> and the internal panel's EDID is available via _DDC to allow a
-> disconnected GPU to read the EDID. Since only the DGPU has _DOD and
-> _DDC, and there's no obvious way to associate connectors on the iGPU
-> with connectors on the dGPU, I've implemented the ACPI _DDC EDID
-> retrieval with the "first available" implementation you see here. I'm
-> open to other ideas if you have them, but didn't see a good way to
-> search for the "right" _DDC implementation should there be more than one.
->
->
-> As for preventing the ACPI EDID retrieval from being used for external
-> panels, I've done this in the individual DRM drivers that call into the
-> new drm_edid_acpi() API since it seemed that each DRM driver had its own
-> way of distinguishing display connector types. If there's a good way to
-> filter for internal panels in DRM core, I'd be happy to do that instead.
+GEM object functions deprecate several similar callback interfaces in
+struct drm_driver. This patch replaces the per-driver callbacks with
+per-instance callbacks in amdgpu. The only exception is gem_prime_mmap,
+which is non-trivial to convert.
 
-I can double check with our ACPI and vbios teams, but I'm not sure
-that we ever used the _DDC method on any AMD platforms.  Even if we
-did, the driver is still able to get the integrated panel's mode info
-via other means.  In general, external connectors would always get the
-EDID via i2c or aux.  The only use case we ever had to hardcoding an
-EDID was for some really old server chips so they would always think
-something was connected if you wanted to attach a crash cart.  That
-EDID was stored in the vbios, not ACPI.
+Signed-off-by: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  6 ------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 12 ++++++++++++
+ 2 files changed, 12 insertions(+), 6 deletions(-)
 
-As for enumerating which displays were muxed or not and the local
-mappings to acpi ids, etc., we had a whole set of ATPX methods to do
-that if anyone is interested:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/amd/include/amd_acpi.h
-
-Alex
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 81a79760ca61..51525b8774c9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -1468,19 +1468,13 @@ static struct drm_driver kms_driver = {
+ 	.lastclose = amdgpu_driver_lastclose_kms,
+ 	.irq_handler = amdgpu_irq_handler,
+ 	.ioctls = amdgpu_ioctls_kms,
+-	.gem_free_object_unlocked = amdgpu_gem_object_free,
+-	.gem_open_object = amdgpu_gem_object_open,
+-	.gem_close_object = amdgpu_gem_object_close,
+ 	.dumb_create = amdgpu_mode_dumb_create,
+ 	.dumb_map_offset = amdgpu_mode_dumb_mmap,
+ 	.fops = &amdgpu_driver_kms_fops,
+ 
+ 	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
+ 	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
+-	.gem_prime_export = amdgpu_gem_prime_export,
+ 	.gem_prime_import = amdgpu_gem_prime_import,
+-	.gem_prime_vmap = amdgpu_gem_prime_vmap,
+-	.gem_prime_vunmap = amdgpu_gem_prime_vunmap,
+ 	.gem_prime_mmap = amdgpu_gem_prime_mmap,
+ 
+ 	.name = DRIVER_NAME,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+index 43f4966331dd..ca2b79f94e99 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+@@ -36,6 +36,7 @@
+ #include <drm/amdgpu_drm.h>
+ #include <drm/drm_cache.h>
+ #include "amdgpu.h"
++#include "amdgpu_dma_buf.h"
+ #include "amdgpu_trace.h"
+ #include "amdgpu_amdkfd.h"
+ 
+@@ -510,6 +511,15 @@ bool amdgpu_bo_support_uswc(u64 bo_flags)
+ #endif
+ }
+ 
++static const struct drm_gem_object_funcs amdgpu_gem_object_funcs = {
++	.free = amdgpu_gem_object_free,
++	.open = amdgpu_gem_object_open,
++	.close = amdgpu_gem_object_close,
++	.export = amdgpu_gem_prime_export,
++	.vmap = amdgpu_gem_prime_vmap,
++	.vunmap = amdgpu_gem_prime_vunmap,
++};
++
+ static int amdgpu_bo_do_create(struct amdgpu_device *adev,
+ 			       struct amdgpu_bo_param *bp,
+ 			       struct amdgpu_bo **bo_ptr)
+@@ -552,6 +562,8 @@ static int amdgpu_bo_do_create(struct amdgpu_device *adev,
+ 	bo = kzalloc(sizeof(struct amdgpu_bo), GFP_KERNEL);
+ 	if (bo == NULL)
+ 		return -ENOMEM;
++
++	bo->tbo.base.funcs = &amdgpu_gem_object_funcs;
+ 	drm_gem_private_object_init(adev->ddev, &bo->tbo.base, size);
+ 	INIT_LIST_HEAD(&bo->shadow_list);
+ 	bo->vm_bo = NULL;
+-- 
+2.28.0
