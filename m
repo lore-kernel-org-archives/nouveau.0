@@ -1,10 +1,10 @@
 From: Sasha Levin <sashal@kernel.org>
-Subject: Re: [PATCH v2 1/2] drm/nouveau/kms/nv50-: Program notifier offset before requesting disp caps
-Date: Thu, 13 Aug 2020 16:25:37 +0000
-Message-ID: <20200813162537.E46BE20829@mail.kernel.org>
-References: <20200807213405.442877-1-lyude@redhat.com>
+Subject: Re: [PATCH] drm/nouveau/kms/nv50-: Program notifier offset before requesting disp caps
+Date: Thu, 13 Aug 2020 16:25:45 +0000
+Message-ID: <20200813162545.9C0C520866@mail.kernel.org>
+References: <20200806230129.324035-1-lyude@redhat.com>
 Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20200807213405.442877-1-lyude@redhat.com>
+In-Reply-To: <20200806230129.324035-1-lyude@redhat.com>
 Sender: stable-owner@vger.kernel.org
 To: Sasha Levin <sashal@kernel.org>, Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org
 Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>stable@vger.kernel.org
