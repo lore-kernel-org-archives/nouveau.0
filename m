@@ -1,105 +1,183 @@
-From: Oleksandr Andrushchenko <Oleksandr_Andrushchenko@epam.com>
-Subject: Re: [PATCH 18/20] drm/xen: Introduce GEM object functions
-Date: Thu, 13 Aug 2020 11:19:44 +0000
-Message-ID: <1fe5f918-2445-d2e6-a501-881e70929404@epam.com>
-References: <20200813083644.31711-1-tzimmermann@suse.de>
- <20200813083644.31711-19-tzimmermann@suse.de>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Add fine-grain temperature
+ reporting
+Date: Thu, 13 Aug 2020 14:43:57 +0200
+Message-ID: <CACO55tuYkFvSXL+i1zcAROq7T=LvGuOzdhzy+2DZVG0O2L4mjA@mail.gmail.com>
+References: <20200812204952.1921587-1-jcline@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <xen-devel-bounces@lists.xenproject.org>
-In-Reply-To: <20200813083644.31711-19-tzimmermann@suse.de>
-Content-Language: en-US
-Content-ID: <73B83228210C8B4092A3A2E420A1C72C@eurprd03.prod.outlook.com>
-List-Unsubscribe: <https://lists.xenproject.org/mailman/options/xen-devel>,
- <mailto:xen-devel-request@lists.xenproject.org?subject=unsubscribe>
-List-Post: <mailto:xen-devel@lists.xenproject.org>
-List-Help: <mailto:xen-devel-request@lists.xenproject.org?subject=help>
-List-Subscribe: <https://lists.xenproject.org/mailman/listinfo/xen-devel>,
- <mailto:xen-devel-request@lists.xenproject.org?subject=subscribe>
-Errors-To: xen-devel-bounces@lists.xenproject.org
-Sender: "Xen-devel" <xen-devel-bounces@lists.xenproject.org>
-To: Thomas Zimmermann <tzimmermann@suse.de>, "alexander.deucher@amd.com" <alexander.deucher@amd.com>, "christian.koenig@amd.com" <christian.koenig@amd.com>, "airlied@linux.ie" <airlied@linux.ie>, "daniel@ffwll.ch" <daniel@ffwll.ch>, "linux@armlinux.org.uk" <linux@armlinux.org.uk>, "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, "mripard@kernel.org" <mripard@kernel.org>, "l.stach@pengutronix.de" <l.stach@pengutronix.de>, "christian.gmeiner@gmail.com" <christian.gmeiner@gmail.com>, "inki.dae@samsung.com" <inki.dae@samsung.com>, "jy0922.shim@samsung.com" <jy0922.shim@samsung.com>, "sw0312.kim@samsung.com" <sw0312.kim@samsung.com>, "kyungmin.park@samsung.com" <kyungmin.park@samsung.com>, "kgene@kernel.org" <kgene@kernel.org>, "krzk@kernel.org" <krzk@kernel.org>, "patrik.r.jakobsson@gmail.com" <patrik.r.jakobsson@gmail.com>, jani.nikula@linux.intel.com
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "etnaviv@lists.freedesktop.org" <etnaviv@lists.freedesktop.org>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>, "xen-devel@lists.xenproject.org" <xen-devel@lists.xen>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200812204952.1921587-1-jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SGksDQoNCk9uIDgvMTMvMjAgMTE6MzYgQU0sIFRob21hcyBaaW1tZXJtYW5uIHdyb3RlOg0KPiBH
-RU0gb2JqZWN0IGZ1bmN0aW9ucyBkZXByZWNhdGUgc2V2ZXJhbCBzaW1pbGFyIGNhbGxiYWNrIGlu
-dGVyZmFjZXMgaW4NCj4gc3RydWN0IGRybV9kcml2ZXIuIFRoaXMgcGF0Y2ggcmVwbGFjZXMgdGhl
-IHBlci1kcml2ZXIgY2FsbGJhY2tzIHdpdGgNCj4gcGVyLWluc3RhbmNlIGNhbGxiYWNrcyBpbiB4
-ZW4uIFRoZSBvbmx5IGV4Y2VwdGlvbiBpcyBnZW1fcHJpbWVfbW1hcCwNCj4gd2hpY2ggaXMgbm9u
-LXRyaXZpYWwgdG8gY29udmVydC4NCj4NCj4gU2lnbmVkLW9mZi1ieTogVGhvbWFzIFppbW1lcm1h
-bm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+DQo+IC0tLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS94ZW4v
-eGVuX2RybV9mcm9udC5jICAgICB8IDEyICstLS0tLS0tLS0tLQ0KPiAgIGRyaXZlcnMvZ3B1L2Ry
-bS94ZW4veGVuX2RybV9mcm9udC5oICAgICB8ICAyICsrDQo+ICAgZHJpdmVycy9ncHUvZHJtL3hl
-bi94ZW5fZHJtX2Zyb250X2dlbS5jIHwgMTUgKysrKysrKysrKysrKysrDQo+ICAgMyBmaWxlcyBj
-aGFuZ2VkLCAxOCBpbnNlcnRpb25zKCspLCAxMSBkZWxldGlvbnMoLSkNCj4NCj4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS94ZW4veGVuX2RybV9mcm9udC5jIGIvZHJpdmVycy9ncHUvZHJt
-L3hlbi94ZW5fZHJtX2Zyb250LmMNCj4gaW5kZXggM2U2NjBmYjExMWIzLi5iZDlhZjE4NzVhZjEg
-MTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZW4veGVuX2RybV9mcm9udC5jDQo+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS94ZW4veGVuX2RybV9mcm9udC5jDQo+IEBAIC00MzMsNyArNDMz
-LDcgQEAgc3RhdGljIGludCB4ZW5fZHJtX2Rydl9kdW1iX2NyZWF0ZShzdHJ1Y3QgZHJtX2ZpbGUg
-KmZpbHAsDQo+ICAgCXJldHVybiByZXQ7DQo+ICAgfQ0KPiAgIA0KPiAtc3RhdGljIHZvaWQgeGVu
-X2RybV9kcnZfZnJlZV9vYmplY3RfdW5sb2NrZWQoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmop
-DQo+ICt2b2lkIHhlbl9kcm1fZHJ2X2ZyZWVfb2JqZWN0X3VubG9ja2VkKHN0cnVjdCBkcm1fZ2Vt
-X29iamVjdCAqb2JqKQ0KDQpDYW4gd2UgcGxlYXNlIGhhdmUgbmFtaW5nIGNvbnNpc3RlbnQgYW5k
-IG5hbWUgaXQgYXMNCg0KeGVuX2RybV9mcm9udF9kcnZfZnJlZV9vYmplY3RfdW5sb2NrZWQgb3Ig
-YW55IG90aGVyIG5hbWUgaWYgdGhpcyBzZWVtcyB0byBiZSB0b28gbG9uZywNCg0KYnV0IHN0YXJ0
-aW5nIHdpdGggeGVuX2RybV9mcm9udF8gYXMgdGhlIHJlc3Qgb2YgZXhwb3J0ZWQgZnVuY3Rpb25z
-Pw0KDQpXaXRoIHRoaXMsDQoNCkFja2VkLWJ5OiBPbGVrc2FuZHIgQW5kcnVzaGNoZW5rbyA8b2xl
-a3NhbmRyX2FuZHJ1c2hjaGVua29AZXBhbS5jb20+DQoNClRoYW5rIHlvdSwNCg0KT2xla3NhbmRy
-DQoNCj4gICB7DQo+ICAgCXN0cnVjdCB4ZW5fZHJtX2Zyb250X2RybV9pbmZvICpkcm1faW5mbyA9
-IG9iai0+ZGV2LT5kZXZfcHJpdmF0ZTsNCj4gICAJaW50IGlkeDsNCj4gQEAgLTQ4MSwyMiArNDgx
-LDEyIEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZmlsZV9vcGVyYXRpb25zIHhlbl9kcm1fZGV2X2Zv
-cHMgPSB7DQo+ICAgCS5tbWFwICAgICAgICAgICA9IHhlbl9kcm1fZnJvbnRfZ2VtX21tYXAsDQo+
-ICAgfTsNCj4gICANCj4gLXN0YXRpYyBjb25zdCBzdHJ1Y3Qgdm1fb3BlcmF0aW9uc19zdHJ1Y3Qg
-eGVuX2RybV9kcnZfdm1fb3BzID0gew0KPiAtCS5vcGVuICAgICAgICAgICA9IGRybV9nZW1fdm1f
-b3BlbiwNCj4gLQkuY2xvc2UgICAgICAgICAgPSBkcm1fZ2VtX3ZtX2Nsb3NlLA0KPiAtfTsNCj4g
-LQ0KPiAgIHN0YXRpYyBzdHJ1Y3QgZHJtX2RyaXZlciB4ZW5fZHJtX2RyaXZlciA9IHsNCj4gICAJ
-LmRyaXZlcl9mZWF0dXJlcyAgICAgICAgICAgPSBEUklWRVJfR0VNIHwgRFJJVkVSX01PREVTRVQg
-fCBEUklWRVJfQVRPTUlDLA0KPiAgIAkucmVsZWFzZSAgICAgICAgICAgICAgICAgICA9IHhlbl9k
-cm1fZHJ2X3JlbGVhc2UsDQo+IC0JLmdlbV92bV9vcHMgICAgICAgICAgICAgICAgPSAmeGVuX2Ry
-bV9kcnZfdm1fb3BzLA0KPiAtCS5nZW1fZnJlZV9vYmplY3RfdW5sb2NrZWQgID0geGVuX2RybV9k
-cnZfZnJlZV9vYmplY3RfdW5sb2NrZWQsDQo+ICAgCS5wcmltZV9oYW5kbGVfdG9fZmQgICAgICAg
-ID0gZHJtX2dlbV9wcmltZV9oYW5kbGVfdG9fZmQsDQo+ICAgCS5wcmltZV9mZF90b19oYW5kbGUg
-ICAgICAgID0gZHJtX2dlbV9wcmltZV9mZF90b19oYW5kbGUsDQo+ICAgCS5nZW1fcHJpbWVfaW1w
-b3J0X3NnX3RhYmxlID0geGVuX2RybV9mcm9udF9nZW1faW1wb3J0X3NnX3RhYmxlLA0KPiAtCS5n
-ZW1fcHJpbWVfZ2V0X3NnX3RhYmxlICAgID0geGVuX2RybV9mcm9udF9nZW1fZ2V0X3NnX3RhYmxl
-LA0KPiAtCS5nZW1fcHJpbWVfdm1hcCAgICAgICAgICAgID0geGVuX2RybV9mcm9udF9nZW1fcHJp
-bWVfdm1hcCwNCj4gLQkuZ2VtX3ByaW1lX3Z1bm1hcCAgICAgICAgICA9IHhlbl9kcm1fZnJvbnRf
-Z2VtX3ByaW1lX3Z1bm1hcCwNCj4gICAJLmdlbV9wcmltZV9tbWFwICAgICAgICAgICAgPSB4ZW5f
-ZHJtX2Zyb250X2dlbV9wcmltZV9tbWFwLA0KPiAgIAkuZHVtYl9jcmVhdGUgICAgICAgICAgICAg
-ICA9IHhlbl9kcm1fZHJ2X2R1bWJfY3JlYXRlLA0KPiAgIAkuZm9wcyAgICAgICAgICAgICAgICAg
-ICAgICA9ICZ4ZW5fZHJtX2Rldl9mb3BzLA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L3hlbi94ZW5fZHJtX2Zyb250LmggYi9kcml2ZXJzL2dwdS9kcm0veGVuL3hlbl9kcm1fZnJvbnQu
-aA0KPiBpbmRleCBmOTJjMjU4MzUwY2EuLjkzZTYwYzFkYjU1MCAxMDA2NDQNCj4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL3hlbi94ZW5fZHJtX2Zyb250LmgNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
-L3hlbi94ZW5fZHJtX2Zyb250LmgNCj4gQEAgLTE2MCw0ICsxNjAsNiBAQCBpbnQgeGVuX2RybV9m
-cm9udF9wYWdlX2ZsaXAoc3RydWN0IHhlbl9kcm1fZnJvbnRfaW5mbyAqZnJvbnRfaW5mbywNCj4g
-ICB2b2lkIHhlbl9kcm1fZnJvbnRfb25fZnJhbWVfZG9uZShzdHJ1Y3QgeGVuX2RybV9mcm9udF9p
-bmZvICpmcm9udF9pbmZvLA0KPiAgIAkJCQkgaW50IGNvbm5faWR4LCB1NjQgZmJfY29va2llKTsN
-Cj4gICANCj4gK3ZvaWQgeGVuX2RybV9kcnZfZnJlZV9vYmplY3RfdW5sb2NrZWQoc3RydWN0IGRy
-bV9nZW1fb2JqZWN0ICpvYmopOw0KPiArDQo+ICAgI2VuZGlmIC8qIF9fWEVOX0RSTV9GUk9OVF9I
-XyAqLw0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlbi94ZW5fZHJtX2Zyb250X2dl
-bS5jIGIvZHJpdmVycy9ncHUvZHJtL3hlbi94ZW5fZHJtX2Zyb250X2dlbS5jDQo+IGluZGV4IGYw
-Yjg1ZTA5NDExMS4uN2IzMTVjMDhiY2ZjIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-eGVuL3hlbl9kcm1fZnJvbnRfZ2VtLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlbi94ZW5f
-ZHJtX2Zyb250X2dlbS5jDQo+IEBAIC01Niw2ICs1NiwxOSBAQCBzdGF0aWMgdm9pZCBnZW1fZnJl
-ZV9wYWdlc19hcnJheShzdHJ1Y3QgeGVuX2dlbV9vYmplY3QgKnhlbl9vYmopDQo+ICAgCXhlbl9v
-YmotPnBhZ2VzID0gTlVMTDsNCj4gICB9DQo+ICAgDQo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IHZt
-X29wZXJhdGlvbnNfc3RydWN0IHhlbl9kcm1fZHJ2X3ZtX29wcyA9IHsNCj4gKwkub3BlbiAgICAg
-ICAgICAgPSBkcm1fZ2VtX3ZtX29wZW4sDQo+ICsJLmNsb3NlICAgICAgICAgID0gZHJtX2dlbV92
-bV9jbG9zZSwNCj4gK307DQo+ICsNCj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2dlbV9vYmpl
-Y3RfZnVuY3MgeGVuX2RybV9mcm9udF9nZW1fb2JqZWN0X2Z1bmNzID0gew0KPiArCS5mcmVlID0g
-eGVuX2RybV9kcnZfZnJlZV9vYmplY3RfdW5sb2NrZWQsDQo+ICsJLmdldF9zZ190YWJsZSA9IHhl
-bl9kcm1fZnJvbnRfZ2VtX2dldF9zZ190YWJsZSwNCj4gKwkudm1hcCA9IHhlbl9kcm1fZnJvbnRf
-Z2VtX3ByaW1lX3ZtYXAsDQo+ICsJLnZ1bm1hcCA9IHhlbl9kcm1fZnJvbnRfZ2VtX3ByaW1lX3Z1
-bm1hcCwNCj4gKwkudm1fb3BzID0gJnhlbl9kcm1fZHJ2X3ZtX29wcywNCj4gK307DQo+ICsNCj4g
-ICBzdGF0aWMgc3RydWN0IHhlbl9nZW1fb2JqZWN0ICpnZW1fY3JlYXRlX29iaihzdHJ1Y3QgZHJt
-X2RldmljZSAqZGV2LA0KPiAgIAkJCQkJICAgICBzaXplX3Qgc2l6ZSkNCj4gICB7DQo+IEBAIC02
-Niw2ICs3OSw4IEBAIHN0YXRpYyBzdHJ1Y3QgeGVuX2dlbV9vYmplY3QgKmdlbV9jcmVhdGVfb2Jq
-KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsDQo+ICAgCWlmICgheGVuX29iaikNCj4gICAJCXJldHVy
-biBFUlJfUFRSKC1FTk9NRU0pOw0KPiAgIA0KPiArCXhlbl9vYmotPmJhc2UuZnVuY3MgPSAmeGVu
-X2RybV9mcm9udF9nZW1fb2JqZWN0X2Z1bmNzOw0KPiArDQo+ICAgCXJldCA9IGRybV9nZW1fb2Jq
-ZWN0X2luaXQoZGV2LCAmeGVuX29iai0+YmFzZSwgc2l6ZSk7DQo+ICAgCWlmIChyZXQgPCAwKSB7
-DQo+ICAgCQlrZnJlZSh4ZW5fb2JqKTs=
+Reviewed-by: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+
+On Wed, Aug 12, 2020 at 10:50 PM Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
+>
+> Commit d32656373857 ("drm/nouveau/therm/gp100: initial implementation of
+> new gp1xx temperature sensor") added support for reading finer-grain
+> temperatures, but continued to report temperatures in 1 degree Celsius
+> increments via nvkm_therm_temp_get().
+>
+> Rather than altering nvkm_therm_temp_get() to report finer-grain
+> temperatures, which would be inconvenient for other users of the
+> function, a second interface has been added to line up with hwmon's
+> native unit of temperature.
+>
+> Signed-off-by: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> ---
+>  .../drm/nouveau/include/nvkm/subdev/therm.h   | 18 +++++++++++++
+>  drivers/gpu/drm/nouveau/nouveau_hwmon.c       |  4 +--
+>  .../gpu/drm/nouveau/nvkm/subdev/therm/base.c  | 16 ++++++++++++
+>  .../gpu/drm/nouveau/nvkm/subdev/therm/gp100.c | 25 +++++++++++++++++--
+>  .../gpu/drm/nouveau/nvkm/subdev/therm/priv.h  |  1 +
+>  5 files changed, 60 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/therm.h b/drivers/gpu/drm/nouveau/include/nvkm/subdev/therm.h
+> index 62c34f98c930..7b9928dd001c 100644
+> --- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/therm.h
+> +++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/therm.h
+> @@ -100,6 +100,24 @@ struct nvkm_therm {
+>  };
+>
+>  int nvkm_therm_temp_get(struct nvkm_therm *);
+> +
+> +/**
+> + * nvkm_therm_temp_millidegree_get() - get the temperature in millidegrees
+> + * @therm: The thermal device to read from.
+> + *
+> + * This interface reports temperatures in units of millidegree Celsius to
+> + * align with the hwmon API. Some cards may only be capable of reporting in
+> + * units of Celsius, and those that report finer grain temperatures may not be
+> + * capable of millidegree Celsius accuracy,
+> + *
+> + * For cases where millidegree temperature is too fine-grain, the
+> + * nvkm_therm_temp_get() interface reports temperatures in one degree Celsius
+> + * increments.
+> + *
+> + * Return: The temperature in millidegrees Celsius, or -ENODEV if temperature
+> + *         reporting is not supported.
+> + */
+> +int nvkm_therm_temp_millidegree_get(struct nvkm_therm *therm);
+>  int nvkm_therm_fan_sense(struct nvkm_therm *);
+>  int nvkm_therm_cstate(struct nvkm_therm *, int, int);
+>  void nvkm_therm_clkgate_init(struct nvkm_therm *,
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> index 1c3104d20571..e96355f93ce5 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> @@ -428,8 +428,8 @@ nouveau_temp_read(struct device *dev, u32 attr, int channel, long *val)
+>         case hwmon_temp_input:
+>                 if (drm_dev->switch_power_state != DRM_SWITCH_POWER_ON)
+>                         return -EINVAL;
+> -               ret = nvkm_therm_temp_get(therm);
+> -               *val = ret < 0 ? ret : (ret * 1000);
+> +               ret = nvkm_therm_temp_millidegree_get(therm);
+> +               *val = ret;
+>                 break;
+>         case hwmon_temp_max:
+>                 *val = therm->attr_get(therm, NVKM_THERM_ATTR_THRS_DOWN_CLK)
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/base.c
+> index 4a4d1e224126..e655b32c78b8 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/base.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/base.c
+> @@ -34,6 +34,22 @@ nvkm_therm_temp_get(struct nvkm_therm *therm)
+>         return -ENODEV;
+>  }
+>
+> +int
+> +nvkm_therm_temp_millidegree_get(struct nvkm_therm *therm)
+> +{
+> +       int ret = -ENODEV;
+> +
+> +       if (therm->func->temp_millidegree_get)
+> +               return therm->func->temp_millidegree_get(therm);
+> +
+> +       if (therm->func->temp_get) {
+> +               ret = therm->func->temp_get(therm);
+> +               if (ret > 0)
+> +                       ret *= 1000;
+> +       }
+> +       return ret;
+> +}
+> +
+>  static int
+>  nvkm_therm_update_trip(struct nvkm_therm *therm)
+>  {
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c
+> index 9f0dea3f61dc..4c3c2895a3cb 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c
+> @@ -24,7 +24,7 @@
+>  #include "priv.h"
+>
+>  static int
+> -gp100_temp_get(struct nvkm_therm *therm)
+> +gp100_temp_get_raw(struct nvkm_therm *therm)
+>  {
+>         struct nvkm_device *device = therm->subdev.device;
+>         struct nvkm_subdev *subdev = &therm->subdev;
+> @@ -37,14 +37,35 @@ gp100_temp_get(struct nvkm_therm *therm)
+>
+>         /* device valid */
+>         if (tsensor & 0x20000000)
+> -               return (inttemp >> 8);
+> +               return inttemp;
+>         else
+>                 return -ENODEV;
+>  }
+>
+> +static int
+> +gp100_temp_millidegree_get(struct nvkm_therm *therm)
+> +{
+> +       int raw_temp = gp100_temp_get_raw(therm);
+> +
+> +       if (raw_temp < 0)
+> +               return raw_temp;
+> +       return raw_temp * 1000 >> 8;
+> +}
+> +
+> +static int
+> +gp100_temp_get(struct nvkm_therm *therm)
+> +{
+> +       int raw_temp = gp100_temp_get_raw(therm);
+> +
+> +       if (raw_temp < 0)
+> +               return raw_temp;
+> +       return raw_temp >> 8;
+> +}
+> +
+>  static const struct nvkm_therm_func
+>  gp100_therm = {
+>         .temp_get = gp100_temp_get,
+> +       .temp_millidegree_get = gp100_temp_millidegree_get,
+>         .program_alarms = nvkm_therm_program_alarms_polling,
+>  };
+>
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/priv.h b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/priv.h
+> index 21659daf1864..a53068b4f0b9 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/priv.h
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/priv.h
+> @@ -92,6 +92,7 @@ struct nvkm_therm_func {
+>         int (*pwm_clock)(struct nvkm_therm *, int line);
+>
+>         int (*temp_get)(struct nvkm_therm *);
+> +       int (*temp_millidegree_get)(struct nvkm_therm *therm);
+>
+>         int (*fan_sense)(struct nvkm_therm *);
+>
+> --
+> 2.26.2
+>
