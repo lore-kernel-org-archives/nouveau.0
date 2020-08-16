@@ -1,34 +1,97 @@
-From: Gaurav Singh <gaurav1086@gmail.com>
-Subject: [PATCH] drivers/nouveau_svm: fix bounds check in nouveau_svm_fault_buffer_dtor
-Date: Sun, 16 Aug 2020 10:51:41 -0400
-Message-ID: <20200816145142.25062-1-gaurav1086@gmail.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: gaurav1086@gmail.com, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, "open list:DRM DRIVER FOR NVIDIA
-        GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, "open list:DRM DRIVER FOR NVIDIA
-        GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Accumulating CPU load from Xorg process with DRI3
+Date: Sun, 16 Aug 2020 13:42:58 -0400
+Message-ID: <CAKb7UvhiZwAAQF9yjGocw57doLTNZgP9J0G04anLAHEvYaWN=w@mail.gmail.com>
+References: <202008140136.33013.randrianasulu@gmail.com>
+ <202008160657.20480.randrianasulu@gmail.com>
+ <CAKb7Uvgb9a5_6nvFpX7CNtWJko04GF3i3y1higZWj_ptqsMjWQ@mail.gmail.com>
+ <202008161510.44578.randrianasulu@gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <202008161510.44578.randrianasulu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Andrew Randrianasulu <randrianasulu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-do the bounds check before accessing the buffer element.
-
-Fixes: eeaf06ac1a558 ("drm/nouveau/svm: initial support for shared virtual memory")
-Signed-off-by: Gaurav Singh <gaurav1086@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_svm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-index 6586d9d39874..35d24946787d 100644
---- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-@@ -897,7 +897,7 @@ nouveau_svm_fault_buffer_dtor(struct nouveau_svm *svm, int id)
- 	int i;
- 
- 	if (buffer->fault) {
--		for (i = 0; buffer->fault[i] && i < buffer->entries; i++)
-+		for (i = 0; i < buffer->entries && buffer->fault[i]; i++)
- 			kfree(buffer->fault[i]);
- 		kvfree(buffer->fault);
- 	}
--- 
-2.17.1
+T24gU3VuLCBBdWcgMTYsIDIwMjAgYXQgODoyMCBBTSBBbmRyZXcgUmFuZHJpYW5hc3VsdQo8cmFu
+ZHJpYW5hc3VsdUBnbWFpbC5jb20+IHdyb3RlOgo+Cj4g0JIg0YHQvtC+0LHRidC10L3QuNC4INC+
+0YIgU3VuZGF5IDE2IEF1Z3VzdCAyMDIwIDA3OjIwOjE4IElsaWEgTWlya2luINC90LDQv9C40YHQ
+sNC7KNCwKToKPiA+IFdlbGwsIGlmIGl0J3MgZWFzeSwgdHJ5IHRoZSBwYXRjaGVzIEkgbWFpbGVk
+IHRvIG5vdXZlYXVAIGZvciB0aGUgZGR4Lgo+Cj4gSSBhcHBsaWVkIHBhdGNoZXMgbWFudWFsbHkg
+KGNvcHktcGFzdGVkIHBhdGNoZXMgZmFpbGVkIHRvIGFwcGx5IGJ5IGdpdCBhcHBseSwKPiBwcm9i
+YWJseSB3aGl0ZXNwYWNlL2VuZCBvZiBsaW5lIGlzc3VlcyksIGFuZCBub3cgSSBzZWUgaW4gWCBs
+b2cgKGFmdGVyIEkgbGVmdCBtYWNoaW5lIHRvIHJ1biBhbG9uZSk6Cj4KPiBbICAzNTg0LjU1M10g
+KERCKSBOT1VWRUFVKDApOiBQUkVTRU5UOiBXYWl0IGZvciBWQmxhbmsgZmFpbGVkOiBJbnZhbGlk
+IGFyZ3VtZW50Cj4gWyAgMzU4NC41NTNdIChEQikgTk9VVkVBVSgwKTogUFJFU0VOVDogV2FpdCBm
+b3IgVkJsYW5rIGZhaWxlZDogSW52YWxpZCBhcmd1bWVudAo+IFsgIDM1ODQuNTcwXSAoREIpIE5P
+VVZFQVUoMCk6IFBSRVNFTlQ6IFdhaXQgZm9yIFZCbGFuayBmYWlsZWQ6IEludmFsaWQgYXJndW1l
+bnQKPiBbICAzNTg0LjU4Nl0gKERCKSBOT1VWRUFVKDApOiBQUkVTRU5UOiBXYWl0IGZvciBWQmxh
+bmsgZmFpbGVkOiBJbnZhbGlkIGFyZ3VtZW50Cj4gWyAgMzU4NC42MDJdIChEQikgTk9VVkVBVSgw
+KTogUFJFU0VOVDogV2FpdCBmb3IgVkJsYW5rIGZhaWxlZDogSW52YWxpZCBhcmd1bWVudAo+IFsg
+IDM1ODQuNjE5XSAoREIpIE5PVVZFQVUoMCk6IFBSRVNFTlQ6IFdhaXQgZm9yIFZCbGFuayBmYWls
+ZWQ6IEludmFsaWQgYXJndW1lbnQKPiBbICAzNTg0LjYzNV0gKERCKSBOT1VWRUFVKDApOiBQUkVT
+RU5UOiBXYWl0IGZvciBWQmxhbmsgZmFpbGVkOiBJbnZhbGlkIGFyZ3VtZW50Cj4gWyAgMzU4NC42
+NTFdIChEQikgTk9VVkVBVSgwKTogUFJFU0VOVDogV2FpdCBmb3IgVkJsYW5rIGZhaWxlZDogSW52
+YWxpZCBhcmd1bWVudAo+IFsgIDM1ODQuNjY4XSAoREIpIE5PVVZFQVUoMCk6IFBSRVNFTlQ6IFdh
+aXQgZm9yIFZCbGFuayBmYWlsZWQ6IEludmFsaWQgYXJndW1lbnQKPiBbICAzNTg0LjY4NF0gKERC
+KSBOT1VWRUFVKDApOiBQUkVTRU5UOiBXYWl0IGZvciBWQmxhbmsgZmFpbGVkOiBJbnZhbGlkIGFy
+Z3VtZW50Cj4gWyAgMzU4NC43MDBdIChEQikgTk9VVkVBVSgwKTogUFJFU0VOVDogV2FpdCBmb3Ig
+VkJsYW5rIGZhaWxlZDogSW52YWxpZCBhcmd1bWVudAo+IFsgIDM1ODQuNzE3XSAoREIpIE5PVVZF
+QVUoMCk6IFBSRVNFTlQ6IFdhaXQgZm9yIFZCbGFuayBmYWlsZWQ6IEludmFsaWQgYXJndW1lbnQK
+PiBbICAzNTg0LjczM10gKERCKSBOT1VWRUFVKDApOiBQUkVTRU5UOiBXYWl0IGZvciBWQmxhbmsg
+ZmFpbGVkOiBJbnZhbGlkIGFyZ3VtZW50Cj4gWyAgMzU4NC43NDldIChEQikgTk9VVkVBVSgwKTog
+UFJFU0VOVDogV2FpdCBmb3IgVkJsYW5rIGZhaWxlZDogSW52YWxpZCBhcmd1bWVudAo+IFsgIDM1
+ODQuNzY2XSAoREIpIE5PVVZFQVUoMCk6IFBSRVNFTlQ6IFdhaXQgZm9yIFZCbGFuayBmYWlsZWQ6
+IEludmFsaWQgYXJndW1lbnQKPiBbICAzNTg0Ljc4Ml0gKERCKSBOT1VWRUFVKDApOiBQUkVTRU5U
+OiBXYWl0IGZvciBWQmxhbmsgZmFpbGVkOiBJbnZhbGlkIGFyZ3VtZW50Cj4gWyAgMzU4NC43OThd
+IChEQikgTk9VVkVBVSgwKTogUFJFU0VOVDogV2FpdCBmb3IgVkJsYW5rIGZhaWxlZDogSW52YWxp
+ZCBhcmd1bWVudAoKQWhhLCBhcHBlYXJzIG15IGFzc3VtcHRpb24gdGhhdCBYX0RFQlVHIHdvdWxk
+IGdldCBza2lwcGVkIHVuZGVyIG5vcm1hbApYb3JnIGludm9jYXRpb25zIHdhcyB3cm9uZy4gSSBk
+aWRuJ3QgbWVhbiBmb3IgdGhlc2UgdG8gYXBwZWFyIHVuZGVyCm5vcm1hbCBjaXJjdW1zdGFuY2Vz
+LiBJIGd1ZXNzIEknbGwgI2lmIDAgaXQgb3V0LgoKPgo+IGFuZCBhcm91bmQgNm1iIG1vcmUgb2Yg
+dGhvc2UgLi4uLgo+Cj4gYnV0IFggc3RpbGwgdXNlcyBzbWFsbCBhbW91bnQgb2YgQ1BVOgo+Cj4g
+IG9wIC0gMTU6MDQ6NDEgdXAgIDE6MzIsICAyIHVzZXJzLCAgbG9hZCBhdmVyYWdlOiAxLDI1LCAx
+LDY3LCAxLDYwCj4gVGFza3M6IDIyMCB0b3RhbCwgICAyIHJ1bm5pbmcsIDIxOCBzbGVlcGluZywg
+ICAwIHN0b3BwZWQsICAgMCB6b21iaWUKPiAlQ3B1KHMpOiAyMiw4IHVzLCAgNSw5IHN5LCAgMCwz
+IG5pLCA2OSwyIGlkLCAgMSw0IHdhLCAgMCwwIGhpLCAgMCw0IHNpLCAgMCwwIHN0Cj4gTWlCIE1l
+bSA6ICAxMTg3NSwzIHRvdGFsLCAgIDc2MzAsMSBmcmVlLCAgIDE5NjcsNSB1c2VkLCAgIDIyNzcs
+NyBidWZmL2NhY2hlCj4gTWlCIFN3YXA6ICAgMTE0NSwwIHRvdGFsLCAgIDExNDUsMCBmcmVlLCAg
+ICAgIDAsMCB1c2VkLiAgIDkxNzIsMSBhdmFpbCBNZW0KPgo+ICAgUElEIFVTRVIgICAgICBQUiAg
+TkkgICAgVklSVCAgICBSRVMgICAgU0hSIFMgICVDUFUgICVNRU0gICAgIFRJTUUrIENPTU1BTkQK
+PiAgMjc3NyBndWVzdCAgICAgMjAgICAwIDIxNTUwNzYgICAxLDJnIDEyNjEwOCBSICA4NCw0ICAx
+MCw3ICA2OToyNC40NiBzZWFtb25rZXkKPiAgMTk5MSByb290ICAgICAgMjAgICAwICAxNDU3NjQg
+IDc4NDQ0ICAyNzkzNiBTICAxNCw2ICAgMCw2ICAgNjo0Mi4xMCBYb3JnCj4gIDM2OTcgZ3Vlc3Qg
+ICAgIDIwICAgMCAgIDYxMjA4ICAxNzI2OCAgMTM1ODAgUyAgMTIsNiAgIDAsMSAgIDc6MzQuNzUg
+eG1tcwo+ICAyMDQ1IGd1ZXN0ICAgICAyMCAgIDAgICAgNjM2MCAgIDM5MzIgICAyNjY4IFMgICAy
+LDMgICAwLDAgICAwOjM1LjkwIGtvbXBtZ3IKPiAgMjA2OCBndWVzdCAgICAgMjAgICAwICAxMDI2
+NjQgIDQ4OTUyICAzMDc2NCBTICAgMiwzICAgMCw0ICAgMjozNS45OCBrdG9ycmVudAo+ICAyMDQ5
+IGd1ZXN0ICAgICAyMCAgIDAgICA0Mjc5MiAgMjc5MDggIDIzNjg0IFMgICAxLDcgICAwLDIgICAw
+OjEyLjcyIGtpY2tlcgo+ICAyMzE5IGd1ZXN0ICAgICAyMCAgIDAgICA0MDE2MCAgMjEyNDggIDE4
+NTQ4IFMgICAxLDMgICAwLDIgICAwOjU1LjYzIGdrcmVsbG0KPiAgMjA2NCBndWVzdCAgICAgMjAg
+ICAwICAgNTA5MDAgIDMxNTkyICAyMzcyMCBTICAgMSwwICAgMCwzICAgMDoyNS41MyBrb25zb2xl
+Cj4gIDUwODYgcm9vdCAgICAgIDIwICAgMCAgICAgICAwICAgICAgMCAgICAgIDAgSSAgIDAsNyAg
+IDAsMCAgIDA6MDIuNTcga3dvcmtlci8wOjItZXZlbnRzCj4gICAgMTAgcm9vdCAgICAgIDIwICAg
+MCAgICAgICAwICAgICAgMCAgICAgIDAgSSAgIDAsMyAgIDAsMCAgIDA6MDkuOTYgcmN1X3ByZWVt
+cHQKPiAgMTkxOCByb290ICAgICAgMjAgICAwICAgICAgIDAgICAgICAwICAgICAgMCBJICAgMCwz
+ICAgMCwwICAgMDowNC43OCBrd29ya2VyLzM6MC1ldmVudHMKPiAgMjI0MCBndWVzdCAgICAgMjAg
+ICAwICAgNTk2NjAgIDM3ODQ4ICAzMDI0OCBTICAgMCwzICAgMCwzICAgMDowMi4zNiBrb25xdWVy
+b3IKPiAgMjM4OSBndWVzdCAgICAgMjAgICAwICAgMzMwNDggIDIyNTkyICAyMDM3NiBTICAgMCwz
+ICAgMCwyICAgMDowMC4yNCBrZGVzdQo+Cj4gd2l0aCBDUFUgZnJlcXVlbmN5IHNldCB0byAxLjRH
+aHogKG1pbmltdW0gcG9zc2libGUpLiBVc3VhbGx5IGFyb3VuZCA1LjYlLTYuMCUKPiB2Ymxhbmtz
+IHN0aWxsIHdvcmssIGF0IGxlYXN0IGdseGdlYXJzIGZyb20gYm90aCBjYXJkcyBzdGlsbCBydW4g
+YXQgfjYwIGZwcyBieSBkZWZhdWx0Cj4KPiBJJ2xsIHJ1biB3aXRoIHRob3NlIHBhdGNoZXMgZm9y
+IGZldyBtb3JlIGhvdXJzLCBidXQgc28gZmFyIHRoZXkgc2VlbXMgdG8gYmUgaGVscGZ1bC4KCkdy
+ZWF0IQoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
