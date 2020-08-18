@@ -1,186 +1,279 @@
-From: Andrew Randrianasulu <randrianasulu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: qemu -display sdl,gl=on also eats CPU
-Date: Mon, 17 Aug 2020 16:44:28 +0300
-Message-ID: <202008171644.28566.randrianasulu@gmail.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="cp1251"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 1/2] drm: allow limiting the scatter list size.
+Date: Tue, 18 Aug 2020 09:48:27 +0200
+Message-ID: <20200818074828.9509-2-kraxel@redhat.com>
+References: <20200818074828.9509-1-kraxel@redhat.com>
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <20200818074828.9509-1-kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Maxime Ripard <mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>, Russell King <linux+etnaviv-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>, Christian Gmeiner <christian.gmeiner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Rob Clark <robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Sean Paul <sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Sandy Huang <hjc-TNX95d0MmH7DzftRWevZcw@public.gmane.org>, =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko-4mtYJXux2i+zQB+pC5nmwQ@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Jonathan Hunter <jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SSByZWJ1aWxkIG1lc2Egd2l0aCBkZWJ1ZyBzeW1ib2xzLCBhbmQgbm93IHRvcCBmdW5jdGlvbnMg
-dXNpbmcgQ1BVIGxvb2tzIGxpa2UgdGhpczoKCgpDUFU6IEFNRDY0IGZhbWlseTE1aCwgc3BlZWQg
-MzgwMCBNSHogKGVzdGltYXRlZCkKQ291bnRlZCBDUFVfQ0xLX1VOSEFMVEVEIGV2ZW50cyAoQ1BV
-IENsb2NrcyBub3QgSGFsdGVkKSB3aXRoIGEgdW5pdCBtYXNrIG9mIDB4MDAgKE5vIHVuaXQgbWFz
-aykgY291bnQgMTAwMDAwCnNhbXBsZXMgICUgICAgICAgIGltYWdlIG5hbWUgICAgICAgICAgICAg
-ICBzeW1ib2wgbmFtZQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCjIyMjk3OCAgIDQ1LjE0ODkgIG5v
-dXZlYXVfZHJpLnNvICAgICAgICAgICBudjUwX2J1ZmN0eF9mZW5jZQogIDIyMjk3OCAgIDEwMC4w
-MDAgIG5vdXZlYXVfZHJpLnNvICAgICAgICAgICBudjUwX2J1ZmN0eF9mZW5jZSBbc2VsZl0KLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLQoxNTA1NzYgICAzMC40ODg5ICBsaWJkcm1fbm91dmVhdS5zby4y
-LjAuMCAgL3Vzci9YMTFSNy9saWIvbGliZHJtX25vdXZlYXUuc28uMi4wLjAKICAxNTA1NzYgICAx
-MDAuMDAwICBsaWJkcm1fbm91dmVhdS5zby4yLjAuMCAgL3Vzci9YMTFSNy9saWIvbGliZHJtX25v
-dXZlYXUuc28uMi4wLjAgW3NlbGZdCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KMzk1MjQgICAgIDgu
-MDAyOSAgbGlicGl4bWFuLTEuc28uMC4zOC4wICAgIC91c3IvWDExUjcvbGliL2xpYnBpeG1hbi0x
-LnNvLjAuMzguMAogIDM5NTI0ICAgIDEwMC4wMDAgIGxpYnBpeG1hbi0xLnNvLjAuMzguMCAgICAv
-dXNyL1gxMVI3L2xpYi9saWJwaXhtYW4tMS5zby4wLjM4LjAgW3NlbGZdCi0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0KMjgwOTQgICAgIDUuNjg4NSAgbGliYy0yLjMwLnNvICAgICAgICAgICAgIG1lbWNw
-eQogIDI4MDk0ICAgIDEwMC4wMDAgIGxpYmMtMi4zMC5zbyAgICAgICAgICAgICBtZW1jcHkgW3Nl
-bGZdCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KMTM3NTggICAgIDIuNzg1NyAga2FsbHN5bXMgICAg
-ICAgICAgICAgICAgIGRtYV9kaXJlY3RfYWxsb2NfcGFnZXMKICAxMzc1OCAgICAxMDAuMDAwICBr
-YWxsc3ltcyAgICAgICAgICAgICAgICAgZG1hX2RpcmVjdF9hbGxvY19wYWdlcyBbc2VsZl0KLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLQoyNTA4ICAgICAgMC41MDc4ICBxZW11LXN5c3RlbS14ODZfNjQg
-ICAgICAgL3Vzci9iaW4vcWVtdS1zeXN0ZW0teDg2XzY0CiAgMjUwOCAgICAgMTAwLjAwMCAgcWVt
-dS1zeXN0ZW0teDg2XzY0ICAgICAgIC91c3IvYmluL3FlbXUtc3lzdGVtLXg4Nl82NCBbc2VsZl0K
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoxOTUzICAgICAgMC4zOTU0ICB0dG0gICAgICAgICAgICAg
-ICAgICAgICAgL3R0bQogIDE5NTMgICAgIDEwMC4wMDAgIHR0bSAgICAgICAgICAgICAgICAgICAg
-ICAvdHRtIFtzZWxmXQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCjE2NjEgICAgICAwLjMzNjMgIG5v
-dXZlYXUgICAgICAgICAgICAgICAgICAvbm91dmVhdQogIDE2NjEgICAgIDEwMC4wMDAgIG5vdXZl
-YXUgICAgICAgICAgICAgICAgICAvbm91dmVhdSBbc2VsZl0KLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LQoxNDYyICAgICAgMC4yOTYwICBrYWxsc3ltcyAgICAgICAgICAgICAgICAgZmluZF9uZXh0X2lv
-bWVtX3JlcwogIDE0NjIgICAgIDEwMC4wMDAgIGthbGxzeW1zICAgICAgICAgICAgICAgICBmaW5k
-X25leHRfaW9tZW1fcmVzIFtzZWxmXQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCjEzNTUgICAgICAw
-LjI3NDQgIGt2bV9hbWQgICAgICAgICAgICAgICAgICAva3ZtX2FtZAogIDEzNTUgICAgIDEwMC4w
-MDAgIGt2bV9hbWQgICAgICAgICAgICAgICAgICAva3ZtX2FtZCBbc2VsZl0KLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLQoxMjczICAgICAgMC4yNTc4ICBrdm0gICAgICAgICAgICAgICAgICAgICAgL2t2
-bQogIDEyNzMgICAgIDEwMC4wMDAgIGt2bSAgICAgICAgICAgICAgICAgICAgICAva3ZtIFtzZWxm
-XQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCjEyMDggICAgICAwLjI0NDYgIGxkLTIuMzAuc28gICAg
-ICAgICAgICAgICBfZGxfdXBkYXRlX3Nsb3RpbmZvCiAgMTIwOCAgICAgMTAwLjAwMCAgbGQtMi4z
-MC5zbyAgICAgICAgICAgICAgIF9kbF91cGRhdGVfc2xvdGluZm8gW3NlbGZdCi0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0KMTEyNiAgICAgIDAuMjI4MCAga2FsbHN5bXMgICAgICAgICAgICAgICAgIGF0
-b21pY190cnlfY21weGNoZwogIDExMjYgICAgIDEwMC4wMDAgIGthbGxzeW1zICAgICAgICAgICAg
-ICAgICBhdG9taWNfdHJ5X2NtcHhjaGcgW3NlbGZdCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KOTky
-ICAgICAgIDAuMjAwOSAgbGliYy0yLjMwLnNvICAgICAgICAgICAgIGNmcmVlQEdMSUJDXzIuMAog
-IDk5MiAgICAgIDEwMC4wMDAgIGxpYmMtMi4zMC5zbyAgICAgICAgICAgICBjZnJlZUBHTElCQ18y
-LjAgW3NlbGZdCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KODMzICAgICAgIDAuMTY4NyAgbGliYy0y
-LjMwLnNvICAgICAgICAgICAgIG1hbGxvYwogIDgzMyAgICAgIDEwMC4wMDAgIGxpYmMtMi4zMC5z
-byAgICAgICAgICAgICBtYWxsb2MgW3NlbGZdCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KODEwICAg
-ICAgIDAuMTY0MCAgbGliYy0yLjMwLnNvICAgICAgICAgICAgIF9pbnRfZnJlZQogIDgxMCAgICAg
-IDEwMC4wMDAgIGxpYmMtMi4zMC5zbyAgICAgICAgICAgICBfaW50X2ZyZWUgW3NlbGZdCi0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0KNzcyICAgICAgIDAuMTU2MyAga2FsbHN5bXMgICAgICAgICAgICAg
-ICAgIF9feDg2X2luZGlyZWN0X3RodW5rX3JheAogIDc3MiAgICAgIDEwMC4wMDAgIGthbGxzeW1z
-ICAgICAgICAgICAgICAgICBfX3g4Nl9pbmRpcmVjdF90aHVua19yYXggW3NlbGZdCi0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0KCgpDUFUgdXNhZ2Ugcm9zZSBmcm9tIDQwJSB0byA4MCUgKGF0IDEuNEdo
-eikgb3ZlciA2IGhvdXJzIG9mIGd1ZXN0J3MgdXB0aW1lLgoKLS0tLS0tLS0tLSAgz+Xw5fHr4O3t
-7uUg8e7u4fnl7ejlICAtLS0tLS0tLS0tCgrS5ezgOiBSZTogW05vdXZlYXVdIHFlbXUgLWRpc3Bs
-YXkgc2RsLGdsPW9uIGFsc28gZWF0cyBDUFUKxODy4Dogz+7t5eTl6/zt6OogMTcg4OLj8/Hy4CAy
-MDIwCs7y7/Dg4ujy5ev8OiBBbmRyZXcgUmFuZHJpYW5hc3VsdSA8cmFuZHJpYW5hc3VsdUBnbWFp
-bC5jb20+Cs/u6/P34PLl6/w6ICBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+LCBu
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwoKwiDx7u7h+eXt6Ogg7vIgTW9uZGF5IDE3IEF1
-Z3VzdCAyMDIwIDA4OjA5OjM3IOL7IO3g7+jx4OvoOgo+IFRoZSBERFggZWF0aW5nIENQVSBpc24n
-dCBpbnRyaW5zaWNhbGx5IGJhZC4gRGlkIHlvdSBjaGVjayB3aGVyZSBwZXJmCj4gc2F5cyB0aGUg
-Q1BVIHRpbWUgaXMgZ29pbmc/IENvdWxkIGJlIGRvaW5nIGNvcGllcy9ldGMuCgpJIHRoaW5rIFhv
-cmcgZW5kZWQgdXAgZWF0aW5nIH4xMyUgQ1BVICBhZnRlciBJIHF1aXQgbW9zdCBwcm9ncmFtcywg
-YnV0IGl0IAp3YXMgZGVmaW5pdGVseSBiZXR0ZXIgdGhhbiBtdWNoIGhpZ2hlciBDUFUgdXNhZ2Ug
-YmVmb3JlIHlvdXIgcGF0Y2hlcy4KCkkgc2F3IG5vIGFkZGl0aW9uYWwgZGVidWcgbWVzc2FnZXMg
-aW4gWCBsb2csIHNvIHByb2JhYmx5IHlvdSBjb3ZlcmVkIApteSBzcGVjaWZpYyBjYXNlIHdlbGwu
-CgpxZW11IHdhcyBlYXRpbmcgQ1BVIGluICBub3V2ZWF1X2RyaS5zby9saWJkcm1fbm91dmVhdS5z
-by4yLjAuMCwKc28gSSBzdXNwZWN0ZWQgc29tZXRoaW5nIGxpa2UgJ3RvbyBtYW55IGVycm9yIHJl
-cG9ydHMgZnJvbSB2YmxhbmtzJyAKbWF5IGhhcHBlbiB0aGVyZSwgdG9vLgoKVW5mb3J0dW5hdGVs
-eSwgbXkgc3RhbmRhcmQgYnVpbGQgY29tbWFuZCBmb3IgbWVzYSBpbmNsdWRlZCAtLXN0cmlwLApz
-byBvcHJlcG9ydCAtYyB3YXMgbm90IGdpdmluZyBhbnkgYWRkaXRpb25hbCBkZXRhaWxzIC4uLgoK
-SSBqdXN0IHJlY29tcGlsZWQgRERYIGFnYWluIHdpdGggaWYgMCdlZCBkZWJ1ZyBtZXNzYWdlLCB3
-aWxsIHNlZSBob3cgCml0IHdvcmtzIGFsb25lLCBhbmQgdGhlbiByZXRyeSBtZXNhIGJ1aWxkL3Fl
-bXUgbG9uZy11cHRpbWUgdGVzdGluZyAuLi4KCj4gCj4gT24gTW9uLCBBdWcgMTcsIDIwMjAgYXQg
-MTI6NTIgQU0gQW5kcmV3IFJhbmRyaWFuYXN1bHUKPiA8cmFuZHJpYW5hc3VsdUBnbWFpbC5jb20+
-IHdyb3RlOgo+ID4KPiA+IEkgd2FzIHRlc3RpbmcgSWxpYSdzIHBhdGNoZXMgZm9yIGRkeCwgYW5k
-IHdoaWxlIHRoZXkgZGVmaW5pdGVseSBoZWxwZWQgZm9yIFhvcmcgaXRzZWxmLAo+ID4gcWVtdSBz
-dGlsbCBlYXRzIGEgbG90IG9mIENQVSBpZiBsYXVuY2hlZCBsaWtlIHRoaXMKPiA+Cj4gPiBxZW11
-LXN5c3RlbS14ODZfNjQgLWNkcm9tIH4vRG93bmxvYWRzL0lTTy9zbGF4LUVuZ2xpc2gtVVMtNy4w
-LjgteDg2XzY0LmlzbyAtbSAxRyAtZGlzcGxheSBzZGwsZ2w9b24gLWVuYWJsZS1rdm0KPiA+Cj4g
-PiBhbmQgbGVmdCBmb3IgZmV3IGhvdXJzLgo+ID4KPiA+IHRvcCAtIDA3OjM4OjAxIHVwIDE4OjA1
-LCAgMiB1c2VycywgIGxvYWQgYXZlcmFnZTogMiwwMCwgMSw4OSwgMSw4Mwo+ID4gVGFza3M6IDIy
-NCB0b3RhbCwgICAzIHJ1bm5pbmcsIDIyMSBzbGVlcGluZywgICAwIHN0b3BwZWQsICAgMCB6b21i
-aWUKPiA+ICVDcHUocyk6IDQwLDYgdXMsICA2LDEgc3ksICAwLDMgbmksIDQ5LDIgaWQsICAwLDgg
-d2EsICAwLDAgaGksICAyLDkgc2ksICAwLDAgc3QKPiA+IE1pQiBNZW0gOiAgMTE4NzUsMyB0b3Rh
-bCwgICAzNTM1LDcgZnJlZSwgICAzMzM5LDMgdXNlZCwgICA1MDAwLDMgYnVmZi9jYWNoZQo+ID4g
-TWlCIFN3YXA6ICAgMTE0NSwwIHRvdGFsLCAgIDExMzEsMiBmcmVlLCAgICAgMTMsOCB1c2VkLiAg
-IDQ4NzQsNyBhdmFpbCBNZW0KPiA+Cj4gPiAgIFBJRCBVU0VSICAgICAgUFIgIE5JICAgIFZJUlQg
-ICAgUkVTICAgIFNIUiBTICAlQ1BVICAlTUVNICAgICBUSU1FKyBDT01NQU5ECj4gPiAgNjIxNSBn
-dWVzdCAgICAgMjAgICAwIDE0NTUxNjAgOTUxNzY4ICA0NTU2MCBSICA5OSwzICAgNyw4IDcxMDo0
-NC40NCBxZW11LXN5c3RlbS14ODYKPiA+IDEyNjU1IGd1ZXN0ICAgICAyMCAgIDAgMjQ1OTg0OCAg
-IDEsNWcgMTI2NzA4IFIgIDU5LDEgIDEyLDYgMjE3OjUzLjIxIHNlYW1vbmtleQo+ID4gIDE5OTEg
-cm9vdCAgICAgIDIwICAgMCAgMTc4MTEyIDEwOTUwMCAgMjg4NDAgUyAgMjAsOSAgIDAsOSAxODc6
-MjAuMDUgWG9yZwo+ID4gIDIwNjggZ3Vlc3QgICAgIDIwICAgMCAgMTA0OTMyICA1MTY2MCAgMzA3
-NjQgUyAgIDUsNiAgIDAsNCAgNTQ6MDguOTkga3RvcnJlbnQKPiA+ICA2MDMxIHJvb3QgICAgICAy
-MCAgIDAgICAgICAgMCAgICAgIDAgICAgICAwIEkgICAyLDAgICAwLDAgICAwOjIwLjI0IGt3b3Jr
-ZXIvMDozLWV2ZW50cwo+ID4gIDM2OTcgZ3Vlc3QgICAgIDIwICAgMCAgMzgyNDMyICAyMDMwOCAg
-MTM2OTYgUyAgIDEsNyAgIDAsMiAgOTE6MzguMTMgeG1tcwo+ID4gIDIwNjQgZ3Vlc3QgICAgIDIw
-ICAgMCAgIDU1ODY4ICAzNzA0OCAgMjM5NzYgUyAgIDEsMyAgIDAsMyAgIDI6MzguNDcga29uc29s
-ZQo+ID4gIDIzMTkgZ3Vlc3QgICAgIDIwICAgMCAgIDQwMTYwICAyMTI0OCAgMTg1NDggUyAgIDEs
-MyAgIDAsMiAgMTI6MzYuNjMgZ2tyZWxsbQo+ID4gIDU4NTMgcm9vdCAgICAgIDIwICAgMCAgICAg
-ICAwICAgICAgMCAgICAgIDAgSSAgIDAsNyAgIDAsMCAgIDA6MDcuMjEga3dvcmtlci8yOjItZXZl
-bnRzCj4gPgo+ID4gb3ByZXBvcnQgYWZ0ZXIgIG9wZXJmIC0tcGlkIDYyMTUgc2FpZDoKPiA+Cj4g
-PiBvcHJlcG9ydAo+ID4gVXNpbmcgL2hvbWUvZ3Vlc3QvYm90dmEvc3JjL3hmODYtdmlkZW8tbm91
-dmVhdS9vcHJvZmlsZV9kYXRhL3NhbXBsZXMvIGZvciBzYW1wbGVzIGRpcmVjdG9yeS4KPiA+IENQ
-VTogQU1ENjQgZmFtaWx5MTVoLCBzcGVlZCAzODAwIE1IeiAoZXN0aW1hdGVkKQo+ID4gQ291bnRl
-ZCBDUFVfQ0xLX1VOSEFMVEVEIGV2ZW50cyAoQ1BVIENsb2NrcyBub3QgSGFsdGVkKSB3aXRoIGEg
-dW5pdCBtYXNrIG9mIDB4MDAgKE5vIHVuaXQgbWFzaykgY291bnQgMTAwMDAwCj4gPiBDUFVfQ0xL
-X1VOSEFMVC4uLnwKPiA+ICAgc2FtcGxlc3wgICAgICAlfAo+ID4gLS0tLS0tLS0tLS0tLS0tLS0t
-Cj4gPiAgICAyNjAxNjMgMTAwLjAwMCBxZW11LXN5c3RlbS14ODZfNjQKPiA+ICAgICAgICAgQ1BV
-X0NMS19VTkhBTFQuLi58Cj4gPiAgICAgICAgICAgc2FtcGxlc3wgICAgICAlfAo+ID4gICAgICAg
-ICAtLS0tLS0tLS0tLS0tLS0tLS0KPiA+ICAgICAgICAgICAgMTQ0MTIwIDU1LjM5NjAgbm91dmVh
-dV9kcmkuc28KPiA+ICAgICAgICAgICAgIDg3OTkwIDMzLjgyMTEgbGliZHJtX25vdXZlYXUuc28u
-Mi4wLjAKPiA+ICAgICAgICAgICAgIDExNzgzICA0LjUyOTEgbGlicGl4bWFuLTEuc28uMC4zOC4w
-Cj4gPiAgICAgICAgICAgICAgNzg4NCAgMy4wMzA0IGthbGxzeW1zCj4gPiAgICAgICAgICAgICAg
-NTMxMCAgMi4wNDEwIGxpYmMtMi4zMC5zbwo+ID4gICAgICAgICAgICAgICA2ODkgIDAuMjY0OCBs
-ZC0yLjMwLnNvCj4gPiAgICAgICAgICAgICAgIDUxOSAgMC4xOTk1IG5vdXZlYXUKPiA+ICAgICAg
-ICAgICAgICAgNTAxICAwLjE5MjYgcWVtdS1zeXN0ZW0teDg2XzY0Cj4gPiAgICAgICAgICAgICAg
-IDQ1NiAgMC4xNzUzIHR0bQo+ID4gICAgICAgICAgICAgICAyMzkgIDAuMDkxOSBrdm0KPiA+ICAg
-ICAgICAgICAgICAgMjExICAwLjA4MTEga3ZtX2FtZAo+ID4gICAgICAgICAgICAgICAgODEgIDAu
-MDMxMSBsaWJwdGhyZWFkLTIuMzAuc28KPiA+ICAgICAgICAgICAgICAgIDc2ICAwLjAyOTIgZHJt
-Cj4gPiAgICAgICAgICAgICAgICA0OSAgMC4wMTg4IGxpYlNETDItMi4wLnNvLjAuMTIuMAo+ID4g
-ICAgICAgICAgICAgICAgNDMgIDAuMDE2NSBsaWJ4Y2Iuc28uMS4xLjAKPiA+ICAgICAgICAgICAg
-ICAgIDM2ICAwLjAxMzggbGliR0wuc28uMS4yLjAKPiA+ICAgICAgICAgICAgICAgIDMxICAwLjAx
-MTkgbGliWDExLnNvLjYuMy4wCj4gPiAgICAgICAgICAgICAgICAyNCAgMC4wMDkyIHNuZF9wY20K
-PiA+ICAgICAgICAgICAgICAgIDIzICAwLjAwODggc25kX2hkYV9jb2RlYwo+ID4gICAgICAgICAg
-ICAgICAgMjAgIDAuMDA3NyBsaWJnbGliLTIuMC5zby4wLjU4MDAuMQo+ID4gICAgICAgICAgICAg
-ICAgMTEgIDAuMDA0MiBzbmRfdGltZXIKPiA+ICAgICAgICAgICAgICAgICA5ICAwLjAwMzUgbGli
-Z2xhcGkuc28uMC4wLjAKPiA+ICAgICAgICAgICAgICAgICA4ICAwLjAwMzEgbGliZHJtLnNvLjIu
-NC4wCj4gPiAgICAgICAgICAgICAgICAgNyAgMC4wMDI3IHNuZF9hbG9vcAo+ID4gICAgICAgICAg
-ICAgICAgIDcgIDAuMDAyNyBzbmRfaGRhX2ludGVsCj4gPiAgICAgICAgICAgICAgICAgNyAgMC4w
-MDI3IGxpYnhzaG1mZW5jZS5zby4xLjAuMAo+ID4gICAgICAgICAgICAgICAgIDcgIDAuMDAyNyBs
-aWJnY2Nfcy5zby4xCj4gPiAgICAgICAgICAgICAgICAgNSAgMC4wMDE5IFt2ZHNvXSAodGdpZDo2
-MjE1IHJhbmdlOjB4ZjdmOWYwMDAtMHhmN2Y5ZmZmZikKPiA+ICAgICAgICAgICAgICAgICA1ICAw
-LjAwMTkgc25kX2hkYV9jb3JlCj4gPiAgICAgICAgICAgICAgICAgNCAgMC4wMDE1IHI4MTY5Cj4g
-PiAgICAgICAgICAgICAgICAgMyAgMC4wMDEyIGxpYmFoY2kKPiA+ICAgICAgICAgICAgICAgICAy
-IDcuN2UtMDQgb2hjaV9oY2QKPiA+ICAgICAgICAgICAgICAgICAyIDcuN2UtMDQgbGlieGNiLXBy
-ZXNlbnQuc28uMC4wLjAKPiA+ICAgICAgICAgICAgICAgICAxIDMuOGUtMDQgbGliYXRvbWljLnNv
-LjEuMS4wCj4gPgo+ID4gc28sIG1heSBiZSBzaW1pbGFyIGZpeCBuZWVkZWQgZm9yIG1lc2EsIHRv
-bz8KPiA+Cj4gPiBvdywgSSBzdGFydGVkIGl0IGluIGRkeCBzcmMgZGlyZWN0b3J5IDp9IG5lZWQg
-dG8gY2xlYW51cCB0aGVyZS4gQnV0IGF0IGxlYXN0IGRhdGEgaXMgMTAwCj4gPgo+ID4gX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+IE5vdXZlYXUgbWFp
-bGluZyBsaXN0Cj4gPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4gCgoKCi0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
-IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+Add max_segment argument to drm_prime_pages_to_sg().  When set pass it
+through to the __sg_alloc_table_from_pages() call, otherwise use
+SCATTERLIST_MAX_SEGMENT.
+
+Also add max_segment field to gem objects and pass it to
+drm_prime_pages_to_sg() calls in drivers and helpers.
+
+Signed-off-by: Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+---
+ include/drm/drm_gem.h                       |  8 ++++++++
+ include/drm/drm_prime.h                     |  3 ++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c |  3 ++-
+ drivers/gpu/drm/drm_gem_shmem_helper.c      |  3 ++-
+ drivers/gpu/drm/drm_prime.c                 | 10 +++++++---
+ drivers/gpu/drm/etnaviv/etnaviv_gem.c       |  3 ++-
+ drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c |  3 ++-
+ drivers/gpu/drm/msm/msm_gem.c               |  3 ++-
+ drivers/gpu/drm/msm/msm_gem_prime.c         |  3 ++-
+ drivers/gpu/drm/nouveau/nouveau_prime.c     |  3 ++-
+ drivers/gpu/drm/radeon/radeon_prime.c       |  3 ++-
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.c |  6 ++++--
+ drivers/gpu/drm/tegra/gem.c                 |  3 ++-
+ drivers/gpu/drm/vgem/vgem_drv.c             |  3 ++-
+ drivers/gpu/drm/xen/xen_drm_front_gem.c     |  3 ++-
+ 15 files changed, 43 insertions(+), 17 deletions(-)
+
+diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+index 337a48321705..dea5e92e745b 100644
+--- a/include/drm/drm_gem.h
++++ b/include/drm/drm_gem.h
+@@ -241,6 +241,14 @@ struct drm_gem_object {
+ 	 */
+ 	size_t size;
+ 
++	/**
++	 * @max_segment:
++	 *
++	 * Max size for scatter list segments.  When unset the default
++	 * (SCATTERLIST_MAX_SEGMENT) is used.
++	 */
++	size_t max_segment;
++
+ 	/**
+ 	 * @name:
+ 	 *
+diff --git a/include/drm/drm_prime.h b/include/drm/drm_prime.h
+index 9af7422b44cf..2c3689435cb4 100644
+--- a/include/drm/drm_prime.h
++++ b/include/drm/drm_prime.h
+@@ -88,7 +88,8 @@ void drm_gem_dmabuf_vunmap(struct dma_buf *dma_buf, void *vaddr);
+ int drm_gem_prime_mmap(struct drm_gem_object *obj, struct vm_area_struct *vma);
+ int drm_gem_dmabuf_mmap(struct dma_buf *dma_buf, struct vm_area_struct *vma);
+ 
+-struct sg_table *drm_prime_pages_to_sg(struct page **pages, unsigned int nr_pages);
++struct sg_table *drm_prime_pages_to_sg(struct page **pages, unsigned int nr_pages,
++				       size_t max_segment);
+ struct dma_buf *drm_gem_prime_export(struct drm_gem_object *obj,
+ 				     int flags);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+index 519ce4427fce..5e8a9760b33f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+@@ -303,7 +303,8 @@ static struct sg_table *amdgpu_dma_buf_map(struct dma_buf_attachment *attach,
+ 	switch (bo->tbo.mem.mem_type) {
+ 	case TTM_PL_TT:
+ 		sgt = drm_prime_pages_to_sg(bo->tbo.ttm->pages,
+-					    bo->tbo.num_pages);
++					    bo->tbo.num_pages,
++					    obj->max_segment);
+ 		if (IS_ERR(sgt))
+ 			return sgt;
+ 
+diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
+index 4b7cfbac4daa..cfb979d808fd 100644
+--- a/drivers/gpu/drm/drm_gem_shmem_helper.c
++++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+@@ -656,7 +656,8 @@ struct sg_table *drm_gem_shmem_get_sg_table(struct drm_gem_object *obj)
+ 
+ 	WARN_ON(shmem->base.import_attach);
+ 
+-	return drm_prime_pages_to_sg(shmem->pages, obj->size >> PAGE_SHIFT);
++	return drm_prime_pages_to_sg(shmem->pages, obj->size >> PAGE_SHIFT,
++				     obj->max_segment);
+ }
+ EXPORT_SYMBOL_GPL(drm_gem_shmem_get_sg_table);
+ 
+diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prime.c
+index 1693aa7c14b5..27c783fd6633 100644
+--- a/drivers/gpu/drm/drm_prime.c
++++ b/drivers/gpu/drm/drm_prime.c
+@@ -802,7 +802,8 @@ static const struct dma_buf_ops drm_gem_prime_dmabuf_ops =  {
+  *
+  * This is useful for implementing &drm_gem_object_funcs.get_sg_table.
+  */
+-struct sg_table *drm_prime_pages_to_sg(struct page **pages, unsigned int nr_pages)
++struct sg_table *drm_prime_pages_to_sg(struct page **pages, unsigned int nr_pages,
++				       size_t max_segment)
+ {
+ 	struct sg_table *sg = NULL;
+ 	int ret;
+@@ -813,8 +814,11 @@ struct sg_table *drm_prime_pages_to_sg(struct page **pages, unsigned int nr_page
+ 		goto out;
+ 	}
+ 
+-	ret = sg_alloc_table_from_pages(sg, pages, nr_pages, 0,
+-				nr_pages << PAGE_SHIFT, GFP_KERNEL);
++	if (max_segment == 0 || max_segment > SCATTERLIST_MAX_SEGMENT)
++		max_segment = SCATTERLIST_MAX_SEGMENT;
++	ret = __sg_alloc_table_from_pages(sg, pages, nr_pages, 0,
++					  nr_pages << PAGE_SHIFT,
++					  max_segment, GFP_KERNEL);
+ 	if (ret)
+ 		goto out;
+ 
+diff --git a/drivers/gpu/drm/etnaviv/etnaviv_gem.c b/drivers/gpu/drm/etnaviv/etnaviv_gem.c
+index f06e19e7be04..e5b6e7996f80 100644
+--- a/drivers/gpu/drm/etnaviv/etnaviv_gem.c
++++ b/drivers/gpu/drm/etnaviv/etnaviv_gem.c
+@@ -103,7 +103,8 @@ struct page **etnaviv_gem_get_pages(struct etnaviv_gem_object *etnaviv_obj)
+ 		int npages = etnaviv_obj->base.size >> PAGE_SHIFT;
+ 		struct sg_table *sgt;
+ 
+-		sgt = drm_prime_pages_to_sg(etnaviv_obj->pages, npages);
++		sgt = drm_prime_pages_to_sg(etnaviv_obj->pages, npages,
++					    etnaviv_obj->base.max_segment);
+ 		if (IS_ERR(sgt)) {
+ 			dev_err(dev->dev, "failed to allocate sgt: %ld\n",
+ 				PTR_ERR(sgt));
+diff --git a/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c b/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c
+index 6d9e5c3c4dd5..f327676450bd 100644
+--- a/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c
++++ b/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c
+@@ -19,7 +19,8 @@ struct sg_table *etnaviv_gem_prime_get_sg_table(struct drm_gem_object *obj)
+ 	if (WARN_ON(!etnaviv_obj->pages))  /* should have already pinned! */
+ 		return ERR_PTR(-EINVAL);
+ 
+-	return drm_prime_pages_to_sg(etnaviv_obj->pages, npages);
++	return drm_prime_pages_to_sg(etnaviv_obj->pages, npages,
++				     obj->max_segment);
+ }
+ 
+ void *etnaviv_gem_prime_vmap(struct drm_gem_object *obj)
+diff --git a/drivers/gpu/drm/msm/msm_gem.c b/drivers/gpu/drm/msm/msm_gem.c
+index b2f49152b4d4..f805419bb84a 100644
+--- a/drivers/gpu/drm/msm/msm_gem.c
++++ b/drivers/gpu/drm/msm/msm_gem.c
+@@ -126,7 +126,8 @@ static struct page **get_pages(struct drm_gem_object *obj)
+ 
+ 		msm_obj->pages = p;
+ 
+-		msm_obj->sgt = drm_prime_pages_to_sg(p, npages);
++		msm_obj->sgt = drm_prime_pages_to_sg(p, npages,
++						     obj->max_segment);
+ 		if (IS_ERR(msm_obj->sgt)) {
+ 			void *ptr = ERR_CAST(msm_obj->sgt);
+ 
+diff --git a/drivers/gpu/drm/msm/msm_gem_prime.c b/drivers/gpu/drm/msm/msm_gem_prime.c
+index d7c8948427fe..a5a412564c7f 100644
+--- a/drivers/gpu/drm/msm/msm_gem_prime.c
++++ b/drivers/gpu/drm/msm/msm_gem_prime.c
+@@ -19,7 +19,8 @@ struct sg_table *msm_gem_prime_get_sg_table(struct drm_gem_object *obj)
+ 	if (WARN_ON(!msm_obj->pages))  /* should have already pinned! */
+ 		return NULL;
+ 
+-	return drm_prime_pages_to_sg(msm_obj->pages, npages);
++	return drm_prime_pages_to_sg(msm_obj->pages, npages,
++				     obj->max_segment);
+ }
+ 
+ void *msm_gem_prime_vmap(struct drm_gem_object *obj)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_prime.c b/drivers/gpu/drm/nouveau/nouveau_prime.c
+index bae6a3eccee0..56a2e916d51a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_prime.c
++++ b/drivers/gpu/drm/nouveau/nouveau_prime.c
+@@ -32,7 +32,8 @@ struct sg_table *nouveau_gem_prime_get_sg_table(struct drm_gem_object *obj)
+ 	struct nouveau_bo *nvbo = nouveau_gem_object(obj);
+ 	int npages = nvbo->bo.num_pages;
+ 
+-	return drm_prime_pages_to_sg(nvbo->bo.ttm->pages, npages);
++	return drm_prime_pages_to_sg(nvbo->bo.ttm->pages, npages,
++				     obj->max_segment);
+ }
+ 
+ void *nouveau_gem_prime_vmap(struct drm_gem_object *obj)
+diff --git a/drivers/gpu/drm/radeon/radeon_prime.c b/drivers/gpu/drm/radeon/radeon_prime.c
+index b906e8fbd5f3..503e35625045 100644
+--- a/drivers/gpu/drm/radeon/radeon_prime.c
++++ b/drivers/gpu/drm/radeon/radeon_prime.c
+@@ -36,7 +36,8 @@ struct sg_table *radeon_gem_prime_get_sg_table(struct drm_gem_object *obj)
+ 	struct radeon_bo *bo = gem_to_radeon_bo(obj);
+ 	int npages = bo->tbo.num_pages;
+ 
+-	return drm_prime_pages_to_sg(bo->tbo.ttm->pages, npages);
++	return drm_prime_pages_to_sg(bo->tbo.ttm->pages, npages,
++				     obj->max_segment);
+ }
+ 
+ void *radeon_gem_prime_vmap(struct drm_gem_object *obj)
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
+index b9275ba7c5a5..444657e03c16 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
+@@ -85,7 +85,8 @@ static int rockchip_gem_get_pages(struct rockchip_gem_object *rk_obj)
+ 
+ 	rk_obj->num_pages = rk_obj->base.size >> PAGE_SHIFT;
+ 
+-	rk_obj->sgt = drm_prime_pages_to_sg(rk_obj->pages, rk_obj->num_pages);
++	rk_obj->sgt = drm_prime_pages_to_sg(rk_obj->pages, rk_obj->num_pages,
++					    rk_obj->base.max_segment);
+ 	if (IS_ERR(rk_obj->sgt)) {
+ 		ret = PTR_ERR(rk_obj->sgt);
+ 		goto err_put_pages;
+@@ -442,7 +443,8 @@ struct sg_table *rockchip_gem_prime_get_sg_table(struct drm_gem_object *obj)
+ 	int ret;
+ 
+ 	if (rk_obj->pages)
+-		return drm_prime_pages_to_sg(rk_obj->pages, rk_obj->num_pages);
++		return drm_prime_pages_to_sg(rk_obj->pages, rk_obj->num_pages,
++					     obj->max_segment);
+ 
+ 	sgt = kzalloc(sizeof(*sgt), GFP_KERNEL);
+ 	if (!sgt)
+diff --git a/drivers/gpu/drm/tegra/gem.c b/drivers/gpu/drm/tegra/gem.c
+index 723df142a981..8d98b02a8d21 100644
+--- a/drivers/gpu/drm/tegra/gem.c
++++ b/drivers/gpu/drm/tegra/gem.c
+@@ -284,7 +284,8 @@ static int tegra_bo_get_pages(struct drm_device *drm, struct tegra_bo *bo)
+ 
+ 	bo->num_pages = bo->gem.size >> PAGE_SHIFT;
+ 
+-	bo->sgt = drm_prime_pages_to_sg(bo->pages, bo->num_pages);
++	bo->sgt = drm_prime_pages_to_sg(bo->pages, bo->num_pages,
++					bo->gem.max_segment);
+ 	if (IS_ERR(bo->sgt)) {
+ 		err = PTR_ERR(bo->sgt);
+ 		goto put_pages;
+diff --git a/drivers/gpu/drm/vgem/vgem_drv.c b/drivers/gpu/drm/vgem/vgem_drv.c
+index 313339bbff90..d25c93b5a2c1 100644
+--- a/drivers/gpu/drm/vgem/vgem_drv.c
++++ b/drivers/gpu/drm/vgem/vgem_drv.c
+@@ -321,7 +321,8 @@ static struct sg_table *vgem_prime_get_sg_table(struct drm_gem_object *obj)
+ {
+ 	struct drm_vgem_gem_object *bo = to_vgem_bo(obj);
+ 
+-	return drm_prime_pages_to_sg(bo->pages, bo->base.size >> PAGE_SHIFT);
++	return drm_prime_pages_to_sg(bo->pages, bo->base.size >> PAGE_SHIFT,
++				     obj->max_segment);
+ }
+ 
+ static struct drm_gem_object* vgem_prime_import(struct drm_device *dev,
+diff --git a/drivers/gpu/drm/xen/xen_drm_front_gem.c b/drivers/gpu/drm/xen/xen_drm_front_gem.c
+index f0b85e094111..362fe5311b1b 100644
+--- a/drivers/gpu/drm/xen/xen_drm_front_gem.c
++++ b/drivers/gpu/drm/xen/xen_drm_front_gem.c
+@@ -179,7 +179,8 @@ struct sg_table *xen_drm_front_gem_get_sg_table(struct drm_gem_object *gem_obj)
+ 	if (!xen_obj->pages)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	return drm_prime_pages_to_sg(xen_obj->pages, xen_obj->num_pages);
++	return drm_prime_pages_to_sg(xen_obj->pages, xen_obj->num_pages,
++				     gem_obj->max_segment);
+ }
+ 
+ struct drm_gem_object *
+-- 
+2.18.4
