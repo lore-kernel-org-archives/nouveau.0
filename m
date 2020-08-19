@@ -1,146 +1,160 @@
-From: Sean Paul <sean@poorly.run>
-Subject: Re: [RFC 13/20] drm/i915/dp: Extract
- drm_dp_downstream_read_info()
-Date: Wed, 19 Aug 2020 11:15:53 -0400
-Message-ID: <20200819151547.GB46474@art_vandelay>
+From: Sean Paul <sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org>
+Subject: Re: [RFC 15/20] drm/i915/dp: Extract
+ drm_dp_has_sink_count()
+Date: Wed, 19 Aug 2020 11:20:02 -0400
+Message-ID: <20200819152002.GC46474@art_vandelay>
 References: <20200811200457.134743-1-lyude@redhat.com>
- <20200811200457.134743-14-lyude@redhat.com>
+ <20200811200457.134743-16-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20200811200457.134743-14-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Lyude Paul <lyude@redhat.com>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>, open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, Wambui Karuga <wambui.karugax@gmail.com>
+In-Reply-To: <20200811200457.134743-16-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Lucas De Marchi <lucas.demarchi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Gwan-gyeong Mun <gwan-gyeong.mun-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Manasi Navare <manasi.d.navare-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Uma Shankar <uma.shankar-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Rodrigo Vivi <rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Wambui Karuga <wambui.karugax-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Aug 11, 2020 at 04:04:50PM -0400, Lyude Paul wrote:
-> We're going to be doing the same probing process in nouveau for
-> determining downstream DP port capabilities, so let's deduplicate the
-> work by moving i915's code for handling this into a shared helper:
-> drm_dp_downstream_read_info().
+On Tue, Aug 11, 2020 at 04:04:52PM -0400, Lyude Paul wrote:
+> Since other drivers are also going to need to be aware of the sink count
+> in order to do proper dongle detection, we might as well steal i915's
+> DP_SINK_COUNT helpers and move them into DRM helpers so that other
+> dirvers can use them as well.
 > 
-> Note that when we do this, we also do make some functional changes while
-> we're at it:
-> * We always clear the downstream port info before trying to read it,
->   just to make things easier for the caller
-> * We skip reading downstream port info if the DPCD indicates that we
->   don't support downstream port info
-> * We only read as many bytes as needed for the reported number of
->   downstream ports, no sense in reading the whole thing every time
+> Note that this also starts using intel_dp_has_sink_count() in
+> intel_dp_detect_dpcd(), which is a functional change.
 > 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
+
+Reviewed-by: Sean Paul <sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org>
+
+> Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 > ---
->  drivers/gpu/drm/drm_dp_helper.c         | 32 +++++++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_dp.c | 14 ++---------
->  include/drm/drm_dp_helper.h             |  3 +++
->  3 files changed, 37 insertions(+), 12 deletions(-)
+>  drivers/gpu/drm/drm_dp_helper.c         | 22 ++++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dp.c | 21 ++++++++++++---------
+>  include/drm/drm_dp_helper.h             |  8 +++++++-
+>  3 files changed, 41 insertions(+), 10 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-> index 4c21cf69dad5a..9703b33599c3b 100644
+> index 9703b33599c3b..05bb47e589731 100644
 > --- a/drivers/gpu/drm/drm_dp_helper.c
 > +++ b/drivers/gpu/drm/drm_dp_helper.c
-> @@ -423,6 +423,38 @@ bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
+> @@ -700,6 +700,28 @@ void drm_dp_set_subconnector_property(struct drm_connector *connector,
 >  }
->  EXPORT_SYMBOL(drm_dp_send_real_edid_checksum);
+>  EXPORT_SYMBOL(drm_dp_set_subconnector_property);
 >  
 > +/**
-> + * drm_dp_downstream_read_info() - read DPCD downstream port info if available
-> + * @aux: DisplayPort AUX channel
-> + * @dpcd: A cached copy of the port's DPCD
-> + * @downstream_ports: buffer to store the downstream port info in
+> + * drm_dp_has_sink_count() - Check whether a given connector has a valid sink
+> + * count
+> + * @connector: The DRM connector to check
+> + * @dpcd: A cached copy of the connector's DPCD RX capabilities
+> + * @desc: A cached copy of the connector's DP descriptor
 > + *
-> + * Returns: 0 if either the downstream port info was read successfully or
-> + * there was no downstream info to read, or a negative error code otherwise.
+> + * Returns: %True if the (e)DP connector has a valid sink count that should
+> + * be probed, %false otherwise.
 > + */
-> +int drm_dp_downstream_read_info(struct drm_dp_aux *aux,
-> +				const u8 dpcd[DP_RECEIVER_CAP_SIZE],
-> +				u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS])
+> +bool drm_dp_has_sink_count(struct drm_connector *connector,
+> +			   const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> +			   const struct drm_dp_desc *desc)
 > +{
-> +	int ret;
-> +	u8 len;
-> +
-> +	memset(downstream_ports, 0, DP_MAX_DOWNSTREAM_PORTS);
-> +
-> +	/* No downstream info to read */
-> +	if (!drm_dp_is_branch(dpcd) ||
-> +	    dpcd[DP_DPCD_REV] < DP_DPCD_REV_10 ||
-> +	    !(dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DWN_STRM_PORT_PRESENT))
-> +		return 0;
-> +
-> +	len = (dpcd[DP_DOWN_STREAM_PORT_COUNT] & DP_PORT_COUNT_MASK) * 4;
-
-I'm having a hard time rationalizing DP_MAX_DOWNSTREAM_PORTS being 16, but only
-having 4 ports worth of data in the DP_DOWNSTREAM_PORT_* registers. Do you know
-what's supposed to happen if dpcd[DP_DOWN_STREAM_PORT_COUNT] is > 4?
-
-Sean
-
-> +	ret = drm_dp_dpcd_read(aux, DP_DOWNSTREAM_PORT_0, downstream_ports,
-> +			       len);
-> +
-> +	return ret == len ? 0 : -EIO;
+> +	/* Some eDP panels don't set a valid value for the sink count */
+> +	return connector->connector_type != DRM_MODE_CONNECTOR_eDP &&
+> +		dpcd[DP_DPCD_REV] >= DP_DPCD_REV_11 &&
+> +		dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DWN_STRM_PORT_PRESENT &&
+> +		!drm_dp_has_quirk(desc, 0, DP_DPCD_QUIRK_NO_SINK_COUNT);
 > +}
-> +EXPORT_SYMBOL(drm_dp_downstream_read_info);
+> +EXPORT_SYMBOL(drm_dp_has_sink_count);
 > +
->  /**
->   * drm_dp_downstream_max_clock() - extract branch device max
->   *                                 pixel rate for legacy VGA
+>  /*
+>   * I2C-over-AUX implementation
+>   */
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 1e29d3a012856..984e49194ca31 100644
+> index 984e49194ca31..35a4779a442e2 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -4685,18 +4685,8 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
->  			return false;
->  	}
->  
-> -	if (!drm_dp_is_branch(intel_dp->dpcd))
-> -		return true; /* native DP sink */
-> -
-> -	if (intel_dp->dpcd[DP_DPCD_REV] == 0x10)
-> -		return true; /* no per-port downstream info */
-> -
-> -	if (drm_dp_dpcd_read(&intel_dp->aux, DP_DOWNSTREAM_PORT_0,
-> -			     intel_dp->downstream_ports,
-> -			     DP_MAX_DOWNSTREAM_PORTS) < 0)
-> -		return false; /* downstream port status fetch failed */
-> -
-> -	return true;
-> +	return drm_dp_downstream_read_info(&intel_dp->aux, intel_dp->dpcd,
-> +					   intel_dp->downstream_ports) == 0;
+> @@ -4634,6 +4634,16 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
+>  	return true;
 >  }
 >  
+> +static bool
+> +intel_dp_has_sink_count(struct intel_dp *intel_dp)
+> +{
+> +	if (!intel_dp->attached_connector)
+> +		return false;
+> +
+> +	return drm_dp_has_sink_count(&intel_dp->attached_connector->base,
+> +				     intel_dp->dpcd,
+> +				     &intel_dp->desc);
+> +}
+>  
 >  static bool
+>  intel_dp_get_dpcd(struct intel_dp *intel_dp)
+> @@ -4653,13 +4663,7 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
+>  		intel_dp_set_common_rates(intel_dp);
+>  	}
+>  
+> -	/*
+> -	 * Some eDP panels do not set a valid value for sink count, that is why
+> -	 * it don't care about read it here and in intel_edp_init_dpcd().
+> -	 */
+> -	if (!intel_dp_is_edp(intel_dp) &&
+> -	    !drm_dp_has_quirk(&intel_dp->desc, 0,
+> -			      DP_DPCD_QUIRK_NO_SINK_COUNT)) {
+> +	if (intel_dp_has_sink_count(intel_dp)) {
+>  		u8 count;
+>  		ssize_t r;
+>  
+> @@ -5939,9 +5943,8 @@ intel_dp_detect_dpcd(struct intel_dp *intel_dp)
+>  		return connector_status_connected;
+>  
+>  	/* If we're HPD-aware, SINK_COUNT changes dynamically */
+> -	if (intel_dp->dpcd[DP_DPCD_REV] >= 0x11 &&
+> +	if (intel_dp_has_sink_count(intel_dp) &&
+>  	    intel_dp->downstream_ports[0] & DP_DS_PORT_HPD) {
+> -
+>  		return intel_dp->sink_count ?
+>  		connector_status_connected : connector_status_disconnected;
+>  	}
 > diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> index 5c28199248626..1349f16564ace 100644
+> index 1349f16564ace..a1413a531eaf4 100644
 > --- a/include/drm/drm_dp_helper.h
 > +++ b/include/drm/drm_dp_helper.h
-> @@ -1613,6 +1613,9 @@ int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
->  bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
->  				    u8 real_edid_checksum);
+> @@ -1631,6 +1631,11 @@ void drm_dp_set_subconnector_property(struct drm_connector *connector,
+>  				      const u8 *dpcd,
+>  				      const u8 port_cap[4]);
 >  
-> +int drm_dp_downstream_read_info(struct drm_dp_aux *aux,
-> +				const u8 dpcd[DP_RECEIVER_CAP_SIZE],
-> +				u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS]);
->  int drm_dp_downstream_max_clock(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
->  				const u8 port_cap[4]);
->  int drm_dp_downstream_max_bpc(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> +struct drm_dp_desc;
+> +bool drm_dp_has_sink_count(struct drm_connector *connector,
+> +			   const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> +			   const struct drm_dp_desc *desc);
+> +
+>  void drm_dp_remote_aux_init(struct drm_dp_aux *aux);
+>  void drm_dp_aux_init(struct drm_dp_aux *aux);
+>  int drm_dp_aux_register(struct drm_dp_aux *aux);
+> @@ -1689,7 +1694,8 @@ enum drm_dp_quirk {
+>  	 * @DP_DPCD_QUIRK_NO_SINK_COUNT:
+>  	 *
+>  	 * The device does not set SINK_COUNT to a non-zero value.
+> -	 * The driver should ignore SINK_COUNT during detection.
+> +	 * The driver should ignore SINK_COUNT during detection. Note that
+> +	 * drm_dp_has_sink_count() automatically checks for this quirk.
+>  	 */
+>  	DP_DPCD_QUIRK_NO_SINK_COUNT,
+>  	/**
 > -- 
 > 2.26.2
 > 
 > _______________________________________________
 > dri-devel mailing list
-> dri-devel@lists.freedesktop.org
+> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 > https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
 -- 
