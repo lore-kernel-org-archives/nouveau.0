@@ -1,8 +1,7 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 13/28] dma-direct: lift gfp_t manipulation out
- of__dma_direct_alloc_pages
-Date: Wed, 19 Aug 2020 08:55:40 +0200
-Message-ID: <20200819065555.1802761-14-hch@lst.de>
+Subject: [PATCH 14/28] dma-direct: use phys_to_dma_direct in dma_direct_alloc
+Date: Wed, 19 Aug 2020 08:55:41 +0200
+Message-ID: <20200819065555.1802761-15-hch@lst.de>
 References: <20200819065555.1802761-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,57 +21,28 @@ To: Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Tho
 Cc: Tom Lendacky <thomas.lendacky-5C7GfCeVMHo@public.gmane.org>, alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-ia64-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-nvme-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Move the detailed gfp_t setup from __dma_direct_alloc_pages into the
-caller to clean things up a little.
+Replace the currently open code copy.
 
 Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 ---
- kernel/dma/direct.c | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+ kernel/dma/direct.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
 diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
-index 8da9a62dd9a72c..01120510968fa1 100644
+index 01120510968fa1..2e280b9c063449 100644
 --- a/kernel/dma/direct.c
 +++ b/kernel/dma/direct.c
-@@ -108,7 +108,7 @@ static inline bool dma_should_free_from_pool(struct device *dev,
- }
- 
- static struct page *__dma_direct_alloc_pages(struct device *dev, size_t size,
--		gfp_t gfp, unsigned long attrs)
-+		gfp_t gfp)
- {
- 	int node = dev_to_node(dev);
- 	struct page *page = NULL;
-@@ -116,11 +116,6 @@ static struct page *__dma_direct_alloc_pages(struct device *dev, size_t size,
- 
- 	WARN_ON_ONCE(!PAGE_ALIGNED(size));
- 
--	if (attrs & DMA_ATTR_NO_WARN)
--		gfp |= __GFP_NOWARN;
--
--	/* we always manually zero the memory once we are done: */
--	gfp &= ~__GFP_ZERO;
- 	gfp |= dma_direct_optimal_gfp_mask(dev, dev->coherent_dma_mask,
- 					   &phys_limit);
- 	page = dma_alloc_contiguous(dev, size, gfp);
-@@ -164,6 +159,8 @@ void *dma_direct_alloc(struct device *dev, size_t size,
- 		return arch_dma_alloc(dev, size, dma_handle, gfp, attrs);
- 
- 	size = PAGE_ALIGN(size);
-+	if (attrs & DMA_ATTR_NO_WARN)
-+		gfp |= __GFP_NOWARN;
- 
- 	if (dma_should_alloc_from_pool(dev, gfp, attrs)) {
- 		ret = dma_alloc_from_pool(dev, size, &page, gfp);
-@@ -172,7 +169,8 @@ void *dma_direct_alloc(struct device *dev, size_t size,
- 		goto done;
+@@ -235,10 +235,7 @@ void *dma_direct_alloc(struct device *dev, size_t size,
+ 			goto out_encrypt_pages;
  	}
+ done:
+-	if (force_dma_unencrypted(dev))
+-		*dma_handle = __phys_to_dma(dev, page_to_phys(page));
+-	else
+-		*dma_handle = phys_to_dma(dev, page_to_phys(page));
++	*dma_handle = phys_to_dma_direct(dev, page_to_phys(page));
+ 	return ret;
  
--	page = __dma_direct_alloc_pages(dev, size, gfp, attrs);
-+	/* we always manually zero the memory once we are done */
-+	page = __dma_direct_alloc_pages(dev, size, gfp & ~__GFP_ZERO);
- 	if (!page)
- 		return NULL;
- 
+ out_encrypt_pages:
 -- 
 2.28.0
