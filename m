@@ -1,227 +1,131 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 28/28] nvme-pci: use dma_alloc_pages backed dmapools
-Date: Wed, 19 Aug 2020 08:55:55 +0200
-Message-ID: <20200819065555.1802761-29-hch@lst.de>
-References: <20200819065555.1802761-1-hch@lst.de>
+From: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Subject: Re: [PATCH 10/20] drm/omapdrm: Introduce GEM object functions
+Date: Wed, 19 Aug 2020 13:43:14 +0300
+Message-ID: <8739b085-0342-4c43-60e3-a21d6b257319@ti.com>
+References: <20200813083644.31711-1-tzimmermann@suse.de>
+ <20200813083644.31711-11-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Return-path: <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
-In-Reply-To: <20200819065555.1802761-1-hch-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/iommu>,
- <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.linuxfoundation.org/pipermail/iommu/>
-List-Post: <mailto:iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
-List-Help: <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/iommu>,
- <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=subscribe>
-Errors-To: iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
-Sender: "iommu" <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
-To: Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Thomas Bogendoerfer <tsbogend-I1c7kopa9pxLokYuJOExCg@public.gmane.org>, "James E.J. Bottomley" <James.Bottomley-d9PhHud1JfjCXq6kfMZ53/egYHeGw8Jk@public.gmane.org>, Joonyoung Shim <jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Seung-Woo Kim <sw0312.kim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Kyungmin Park <kyungmin.park-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Pawel Osciak <pawel-FA/gS7QP4orQT0dZR+AlfA@public.gmane.org>, Marek Szyprowski <m.szyprowski-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Matt Porter <mporter-XVmvHMARGAS8U2dJNN8I7kB+6BGkLq7r@public.gmane.org>, iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
-Cc: Tom Lendacky <thomas.lendacky-5C7GfCeVMHo@public.gmane.org>, alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-ia64-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-nvme-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Return-path: <xen-devel-bounces@lists.xenproject.org>
+In-Reply-To: <20200813083644.31711-11-tzimmermann@suse.de>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.xenproject.org/mailman/options/xen-devel>,
+ <mailto:xen-devel-request@lists.xenproject.org?subject=unsubscribe>
+List-Post: <mailto:xen-devel@lists.xenproject.org>
+List-Help: <mailto:xen-devel-request@lists.xenproject.org?subject=help>
+List-Subscribe: <https://lists.xenproject.org/mailman/listinfo/xen-devel>,
+ <mailto:xen-devel-request@lists.xenproject.org?subject=subscribe>
+Errors-To: xen-devel-bounces@lists.xenproject.org
+Sender: "Xen-devel" <xen-devel-bounces@lists.xenproject.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>, alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch, linux@armlinux.org.uk, maarten.lankhorst@linux.intel.com, mripard@kernel.org, l.stach@pengutronix.de, christian.gmeiner@gmail.com, inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org, patrik.r.jakobsson@gmail.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, chunkuang.hu@kernel.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com, robdclark@gmail.com, sean@poorly.run, bskeggs@redhat.com, eric@anholt.net, hjc@rock-chips.com, heiko@sntech.de, thierry.reding@gmail.com, jonathanh@nvidia.com, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, oleksandr_andrushch
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org
 List-Id: nouveau.vger.kernel.org
 
-Switch from coherent DMA pools to those backed by dma_alloc_pages.  This
-helps device with non-coherent DMA to avoid host accesses to uncached
-memory for every submission of a larger than single entry I/O.
+Hi,
 
-Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
----
- drivers/nvme/host/pci.c | 80 ++++++++++++++++++++---------------------
- 1 file changed, 40 insertions(+), 40 deletions(-)
+On 13/08/2020 11:36, Thomas Zimmermann wrote:
+> GEM object functions deprecate several similar callback interfaces in
+> struct drm_driver. This patch replaces the per-driver callbacks with
+> per-instance callbacks in omapdrm.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>  drivers/gpu/drm/omapdrm/omap_drv.c |  9 ---------
+>  drivers/gpu/drm/omapdrm/omap_gem.c | 16 +++++++++++++++-
+>  drivers/gpu/drm/omapdrm/omap_gem.h |  1 -
+>  3 files changed, 15 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/omapdrm/omap_drv.c b/drivers/gpu/drm/omapdrm/omap_drv.c
+> index 53d5e184ee77..2e598b8b72af 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_drv.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_drv.c
+> @@ -521,12 +521,6 @@ static int dev_open(struct drm_device *dev, struct drm_file *file)
+>  	return 0;
+>  }
+>  
+> -static const struct vm_operations_struct omap_gem_vm_ops = {
+> -	.fault = omap_gem_fault,
+> -	.open = drm_gem_vm_open,
+> -	.close = drm_gem_vm_close,
+> -};
+> -
+>  static const struct file_operations omapdriver_fops = {
+>  	.owner = THIS_MODULE,
+>  	.open = drm_open,
+> @@ -549,10 +543,7 @@ static struct drm_driver omap_drm_driver = {
+>  #endif
+>  	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
+>  	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
+> -	.gem_prime_export = omap_gem_prime_export,
+>  	.gem_prime_import = omap_gem_prime_import,
+> -	.gem_free_object_unlocked = omap_gem_free_object,
+> -	.gem_vm_ops = &omap_gem_vm_ops,
+>  	.dumb_create = omap_gem_dumb_create,
+>  	.dumb_map_offset = omap_gem_dumb_map_offset,
+>  	.ioctls = ioctls,
+> diff --git a/drivers/gpu/drm/omapdrm/omap_gem.c b/drivers/gpu/drm/omapdrm/omap_gem.c
+> index d0d12d5dd76c..d68dc63dea0a 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_gem.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_gem.c
+> @@ -487,7 +487,7 @@ static vm_fault_t omap_gem_fault_2d(struct drm_gem_object *obj,
+>   * vma->vm_private_data points to the GEM object that is backing this
+>   * mapping.
+>   */
+> -vm_fault_t omap_gem_fault(struct vm_fault *vmf)
+> +static vm_fault_t omap_gem_fault(struct vm_fault *vmf)
+>  {
+>  	struct vm_area_struct *vma = vmf->vma;
+>  	struct drm_gem_object *obj = vma->vm_private_data;
+> @@ -1169,6 +1169,18 @@ static bool omap_gem_validate_flags(struct drm_device *dev, u32 flags)
+>  	return true;
+>  }
+>  
+> +static const struct vm_operations_struct omap_gem_vm_ops = {
+> +	.fault = omap_gem_fault,
+> +	.open = drm_gem_vm_open,
+> +	.close = drm_gem_vm_close,
+> +};
+> +
+> +static const struct drm_gem_object_funcs omap_gem_object_funcs = {
+> +	.free = omap_gem_free_object,
+> +	.export = omap_gem_prime_export,
+> +	.vm_ops = &omap_gem_vm_ops,
+> +};
+> +
+>  /* GEM buffer object constructor */
+>  struct drm_gem_object *omap_gem_new(struct drm_device *dev,
+>  		union omap_gem_size gsize, u32 flags)
+> @@ -1236,6 +1248,8 @@ struct drm_gem_object *omap_gem_new(struct drm_device *dev,
+>  		size = PAGE_ALIGN(gsize.bytes);
+>  	}
+>  
+> +	obj->funcs = &omap_gem_object_funcs;
+> +
+>  	/* Initialize the GEM object. */
+>  	if (!(flags & OMAP_BO_MEM_SHMEM)) {
+>  		drm_gem_private_object_init(dev, obj, size);
+> diff --git a/drivers/gpu/drm/omapdrm/omap_gem.h b/drivers/gpu/drm/omapdrm/omap_gem.h
+> index 729b7812a815..9e6b5c8195d9 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_gem.h
+> +++ b/drivers/gpu/drm/omapdrm/omap_gem.h
+> @@ -69,7 +69,6 @@ struct dma_buf *omap_gem_prime_export(struct drm_gem_object *obj, int flags);
+>  struct drm_gem_object *omap_gem_prime_import(struct drm_device *dev,
+>  		struct dma_buf *buffer);
+>  
+> -vm_fault_t omap_gem_fault(struct vm_fault *vmf);
+>  int omap_gem_roll(struct drm_gem_object *obj, u32 roll);
+>  void omap_gem_cpu_sync_page(struct drm_gem_object *obj, int pgoff);
+>  void omap_gem_dma_sync_buffer(struct drm_gem_object *obj,
 
-diff --git a/drivers/nvme/host/pci.c b/drivers/nvme/host/pci.c
-index a33adab62acbaf..fb34dbcb973673 100644
---- a/drivers/nvme/host/pci.c
-+++ b/drivers/nvme/host/pci.c
-@@ -114,8 +114,8 @@ struct nvme_dev {
- 	struct blk_mq_tag_set admin_tagset;
- 	u32 __iomem *dbs;
- 	struct device *dev;
--	struct dma_pool *prp_page_pool;
--	struct dma_pool *prp_small_pool;
-+	struct dma_pool prp_page_pool;
-+	struct dma_pool prp_small_pool;
- 	unsigned online_queues;
- 	unsigned max_qid;
- 	unsigned io_queues[HCTX_MAX_TYPES];
-@@ -536,7 +536,7 @@ static void nvme_unmap_data(struct nvme_dev *dev, struct request *req)
- 
- 
- 	if (iod->npages == 0)
--		dma_pool_free(dev->prp_small_pool, nvme_pci_iod_list(req)[0],
-+		dma_pool_free(&dev->prp_small_pool, nvme_pci_iod_list(req)[0],
- 			dma_addr);
- 
- 	for (i = 0; i < iod->npages; i++) {
-@@ -553,7 +553,7 @@ static void nvme_unmap_data(struct nvme_dev *dev, struct request *req)
- 			next_dma_addr = le64_to_cpu(prp_list[last_prp]);
- 		}
- 
--		dma_pool_free(dev->prp_page_pool, addr, dma_addr);
-+		dma_pool_free(&dev->prp_page_pool, addr, dma_addr);
- 		dma_addr = next_dma_addr;
- 	}
- 
-@@ -611,10 +611,10 @@ static blk_status_t nvme_pci_setup_prps(struct nvme_dev *dev,
- 
- 	nprps = DIV_ROUND_UP(length, NVME_CTRL_PAGE_SIZE);
- 	if (nprps <= (256 / 8)) {
--		pool = dev->prp_small_pool;
-+		pool = &dev->prp_small_pool;
- 		iod->npages = 0;
- 	} else {
--		pool = dev->prp_page_pool;
-+		pool = &dev->prp_page_pool;
- 		iod->npages = 1;
- 	}
- 
-@@ -630,6 +630,11 @@ static blk_status_t nvme_pci_setup_prps(struct nvme_dev *dev,
- 	for (;;) {
- 		if (i == NVME_CTRL_PAGE_SIZE >> 3) {
- 			__le64 *old_prp_list = prp_list;
-+
-+			dma_sync_single_for_device(dev->dev, prp_dma,
-+						   i * sizeof(*prp_list),
-+						   DMA_TO_DEVICE);
-+
- 			prp_list = dma_pool_alloc(pool, GFP_ATOMIC, &prp_dma);
- 			if (!prp_list)
- 				return BLK_STS_RESOURCE;
-@@ -653,6 +658,8 @@ static blk_status_t nvme_pci_setup_prps(struct nvme_dev *dev,
- 		dma_len = sg_dma_len(sg);
- 	}
- 
-+	dma_sync_single_for_device(dev->dev, prp_dma, i * sizeof(*prp_list),
-+				   DMA_TO_DEVICE);
- done:
- 	cmnd->dptr.prp1 = cpu_to_le64(sg_dma_address(iod->sg));
- 	cmnd->dptr.prp2 = cpu_to_le64(iod->first_dma);
-@@ -706,10 +713,10 @@ static blk_status_t nvme_pci_setup_sgls(struct nvme_dev *dev,
- 	}
- 
- 	if (entries <= (256 / sizeof(struct nvme_sgl_desc))) {
--		pool = dev->prp_small_pool;
-+		pool = &dev->prp_small_pool;
- 		iod->npages = 0;
- 	} else {
--		pool = dev->prp_page_pool;
-+		pool = &dev->prp_page_pool;
- 		iod->npages = 1;
- 	}
- 
-@@ -728,6 +735,10 @@ static blk_status_t nvme_pci_setup_sgls(struct nvme_dev *dev,
- 		if (i == SGES_PER_PAGE) {
- 			struct nvme_sgl_desc *old_sg_desc = sg_list;
- 			struct nvme_sgl_desc *link = &old_sg_desc[i - 1];
-+	
-+			dma_sync_single_for_device(dev->dev, sgl_dma,
-+						   i * sizeof(*sg_list),
-+						   DMA_TO_DEVICE);
- 
- 			sg_list = dma_pool_alloc(pool, GFP_ATOMIC, &sgl_dma);
- 			if (!sg_list)
-@@ -743,6 +754,8 @@ static blk_status_t nvme_pci_setup_sgls(struct nvme_dev *dev,
- 		sg = sg_next(sg);
- 	} while (--entries > 0);
- 
-+	dma_sync_single_for_device(dev->dev, sgl_dma, i * sizeof(*sg_list),
-+				   DMA_TO_DEVICE);
- 	return BLK_STS_OK;
- }
- 
-@@ -2457,30 +2470,6 @@ static int nvme_disable_prepare_reset(struct nvme_dev *dev, bool shutdown)
- 	return 0;
- }
- 
--static int nvme_setup_prp_pools(struct nvme_dev *dev)
--{
--	dev->prp_page_pool = dma_pool_create("prp list page", dev->dev,
--						NVME_CTRL_PAGE_SIZE,
--						NVME_CTRL_PAGE_SIZE, 0);
--	if (!dev->prp_page_pool)
--		return -ENOMEM;
--
--	/* Optimisation for I/Os between 4k and 128k */
--	dev->prp_small_pool = dma_pool_create("prp list 256", dev->dev,
--						256, 256, 0);
--	if (!dev->prp_small_pool) {
--		dma_pool_destroy(dev->prp_page_pool);
--		return -ENOMEM;
--	}
--	return 0;
--}
--
--static void nvme_release_prp_pools(struct nvme_dev *dev)
--{
--	dma_pool_destroy(dev->prp_page_pool);
--	dma_pool_destroy(dev->prp_small_pool);
--}
--
- static void nvme_free_tagset(struct nvme_dev *dev)
- {
- 	if (dev->tagset.tags)
-@@ -2851,10 +2840,6 @@ static int nvme_probe(struct pci_dev *pdev, const struct pci_device_id *id)
- 	INIT_WORK(&dev->remove_work, nvme_remove_dead_ctrl_work);
- 	mutex_init(&dev->shutdown_lock);
- 
--	result = nvme_setup_prp_pools(dev);
--	if (result)
--		goto unmap;
--
- 	quirks |= check_vendor_combination_bug(pdev);
- 
- 	if (!noacpi && nvme_acpi_storage_d3(pdev)) {
-@@ -2867,6 +2852,18 @@ static int nvme_probe(struct pci_dev *pdev, const struct pci_device_id *id)
- 		quirks |= NVME_QUIRK_SIMPLE_SUSPEND;
- 	}
- 
-+	result = dma_pool_init(dev->dev, &dev->prp_page_pool, "prp list page",
-+			NVME_CTRL_PAGE_SIZE, NVME_CTRL_PAGE_SIZE, 0,
-+			DMA_TO_DEVICE);
-+	if (result)
-+		goto unmap;
-+
-+	/* Optimisation for I/Os between 4k and 128k */
-+	result = dma_pool_init(dev->dev, &dev->prp_small_pool, "prp list 256",
-+			256, 256, 0, DMA_TO_DEVICE);
-+	if (result)
-+		goto release_prp_page_pool;
-+
- 	/*
- 	 * Double check that our mempool alloc size will cover the biggest
- 	 * command we support.
-@@ -2880,7 +2877,7 @@ static int nvme_probe(struct pci_dev *pdev, const struct pci_device_id *id)
- 						GFP_KERNEL, node);
- 	if (!dev->iod_mempool) {
- 		result = -ENOMEM;
--		goto release_pools;
-+		goto release_prp_small_pool;
- 	}
- 
- 	result = nvme_init_ctrl(&dev->ctrl, &pdev->dev, &nvme_pci_ctrl_ops,
-@@ -2897,8 +2894,10 @@ static int nvme_probe(struct pci_dev *pdev, const struct pci_device_id *id)
- 
-  release_mempool:
- 	mempool_destroy(dev->iod_mempool);
-- release_pools:
--	nvme_release_prp_pools(dev);
-+ release_prp_small_pool:
-+	dma_pool_exit(&dev->prp_small_pool);
-+ release_prp_page_pool:
-+	dma_pool_exit(&dev->prp_page_pool);
-  unmap:
- 	nvme_dev_unmap(dev);
-  put_pci:
-@@ -2963,7 +2962,8 @@ static void nvme_remove(struct pci_dev *pdev)
- 	nvme_free_host_mem(dev);
- 	nvme_dev_remove_admin(dev);
- 	nvme_free_queues(dev, 0);
--	nvme_release_prp_pools(dev);
-+	dma_pool_exit(&dev->prp_small_pool);
-+	dma_pool_exit(&dev->prp_page_pool);
- 	nvme_dev_unmap(dev);
- 	nvme_uninit_ctrl(&dev->ctrl);
- }
+omap_gem_free_object() can also be made static, and removed from omap_gem.h.
+
+Tested on AM5 EVM.
+
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+
+ Tomi
+
 -- 
-2.28.0
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
