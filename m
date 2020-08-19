@@ -1,7 +1,8 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 12/28] dma-direct: remove dma_direct_{alloc,free}_pages
-Date: Wed, 19 Aug 2020 08:55:39 +0200
-Message-ID: <20200819065555.1802761-13-hch@lst.de>
+Subject: [PATCH 06/28] lib82596: move DMA allocation into the callers of
+ i82596_probe
+Date: Wed, 19 Aug 2020 08:55:33 +0200
+Message-ID: <20200819065555.1802761-7-hch@lst.de>
 References: <20200819065555.1802761-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,148 +22,186 @@ To: Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Tho
 Cc: Tom Lendacky <thomas.lendacky-5C7GfCeVMHo@public.gmane.org>, alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-ia64-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-nvme-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Just merge these helpers into the main dma_direct_{alloc,free} routines,
-as the additional checks are always false for the two callers.
+This allows us to get rid of the LIB82596_DMA_ATTR defined and prepare
+for untangling the coherent vs non-coherent DMA allocation API.
 
 Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 ---
- arch/x86/kernel/amd_gart_64.c |  6 +++---
- include/linux/dma-direct.h    |  4 ----
- kernel/dma/direct.c           | 39 ++++++++++++++---------------------
- kernel/dma/pool.c             |  2 +-
- 4 files changed, 19 insertions(+), 32 deletions(-)
+ drivers/net/ethernet/i825xx/lasi_82596.c | 24 ++++++++++------
+ drivers/net/ethernet/i825xx/lib82596.c   | 36 ++++++++----------------
+ drivers/net/ethernet/i825xx/sni_82596.c  | 19 +++++++++----
+ 3 files changed, 40 insertions(+), 39 deletions(-)
 
-diff --git a/arch/x86/kernel/amd_gart_64.c b/arch/x86/kernel/amd_gart_64.c
-index e89031e9c84761..adbf616d35d15d 100644
---- a/arch/x86/kernel/amd_gart_64.c
-+++ b/arch/x86/kernel/amd_gart_64.c
-@@ -468,7 +468,7 @@ gart_alloc_coherent(struct device *dev, size_t size, dma_addr_t *dma_addr,
- {
- 	void *vaddr;
+diff --git a/drivers/net/ethernet/i825xx/lasi_82596.c b/drivers/net/ethernet/i825xx/lasi_82596.c
+index aec7e98bcc853a..8c5ab9b7553e75 100644
+--- a/drivers/net/ethernet/i825xx/lasi_82596.c
++++ b/drivers/net/ethernet/i825xx/lasi_82596.c
+@@ -96,8 +96,6 @@
  
--	vaddr = dma_direct_alloc_pages(dev, size, dma_addr, flag, attrs);
-+	vaddr = dma_direct_alloc(dev, size, dma_addr, flag, attrs);
- 	if (!vaddr ||
- 	    !force_iommu || dev->coherent_dma_mask <= DMA_BIT_MASK(24))
- 		return vaddr;
-@@ -480,7 +480,7 @@ gart_alloc_coherent(struct device *dev, size_t size, dma_addr_t *dma_addr,
- 		goto out_free;
- 	return vaddr;
- out_free:
--	dma_direct_free_pages(dev, size, vaddr, *dma_addr, attrs);
-+	dma_direct_free(dev, size, vaddr, *dma_addr, attrs);
- 	return NULL;
- }
+ #define OPT_SWAP_PORT	0x0001	/* Need to wordswp on the MPU port */
  
-@@ -490,7 +490,7 @@ gart_free_coherent(struct device *dev, size_t size, void *vaddr,
- 		   dma_addr_t dma_addr, unsigned long attrs)
- {
- 	gart_unmap_page(dev, dma_addr, size, DMA_BIDIRECTIONAL, 0);
--	dma_direct_free_pages(dev, size, vaddr, dma_addr, attrs);
-+	dma_direct_free(dev, size, vaddr, dma_addr, attrs);
- }
- 
- static int no_agp;
-diff --git a/include/linux/dma-direct.h b/include/linux/dma-direct.h
-index 738485b3578062..6a96a8ecac7cbc 100644
---- a/include/linux/dma-direct.h
-+++ b/include/linux/dma-direct.h
-@@ -80,10 +80,6 @@ void *dma_direct_alloc(struct device *dev, size_t size, dma_addr_t *dma_handle,
- 		gfp_t gfp, unsigned long attrs);
- void dma_direct_free(struct device *dev, size_t size, void *cpu_addr,
- 		dma_addr_t dma_addr, unsigned long attrs);
--void *dma_direct_alloc_pages(struct device *dev, size_t size,
--		dma_addr_t *dma_handle, gfp_t gfp, unsigned long attrs);
--void dma_direct_free_pages(struct device *dev, size_t size, void *cpu_addr,
--		dma_addr_t dma_addr, unsigned long attrs);
- int dma_direct_get_sgtable(struct device *dev, struct sg_table *sgt,
- 		void *cpu_addr, dma_addr_t dma_addr, size_t size,
- 		unsigned long attrs);
-diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
-index 1123e767f4315f..8da9a62dd9a72c 100644
---- a/kernel/dma/direct.c
-+++ b/kernel/dma/direct.c
-@@ -151,13 +151,18 @@ static struct page *__dma_direct_alloc_pages(struct device *dev, size_t size,
- 	return page;
- }
- 
--void *dma_direct_alloc_pages(struct device *dev, size_t size,
-+void *dma_direct_alloc(struct device *dev, size_t size,
- 		dma_addr_t *dma_handle, gfp_t gfp, unsigned long attrs)
- {
- 	struct page *page;
- 	void *ret;
- 	int err;
- 
-+	if (!IS_ENABLED(CONFIG_ARCH_HAS_DMA_SET_UNCACHED) &&
-+	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
-+	    dma_alloc_need_uncached(dev, attrs))
-+		return arch_dma_alloc(dev, size, dma_handle, gfp, attrs);
-+
- 	size = PAGE_ALIGN(size);
- 
- 	if (dma_should_alloc_from_pool(dev, gfp, attrs)) {
-@@ -251,11 +256,18 @@ void *dma_direct_alloc_pages(struct device *dev, size_t size,
- 	return NULL;
- }
- 
--void dma_direct_free_pages(struct device *dev, size_t size, void *cpu_addr,
--		dma_addr_t dma_addr, unsigned long attrs)
-+void dma_direct_free(struct device *dev, size_t size,
-+		void *cpu_addr, dma_addr_t dma_addr, unsigned long attrs)
- {
- 	unsigned int page_order = get_order(size);
- 
-+	if (!IS_ENABLED(CONFIG_ARCH_HAS_DMA_SET_UNCACHED) &&
-+	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
-+	    dma_alloc_need_uncached(dev, attrs)) {
-+		arch_dma_free(dev, size, cpu_addr, dma_addr, attrs);
-+		return;
-+	}
-+
- 	/* If cpu_addr is not from an atomic pool, dma_free_from_pool() fails */
- 	if (dma_should_free_from_pool(dev, attrs) &&
- 	    dma_free_from_pool(dev, cpu_addr, PAGE_ALIGN(size)))
-@@ -279,27 +291,6 @@ void dma_direct_free_pages(struct device *dev, size_t size, void *cpu_addr,
- 	dma_free_contiguous(dev, dma_direct_to_page(dev, dma_addr), size);
- }
- 
--void *dma_direct_alloc(struct device *dev, size_t size,
--		dma_addr_t *dma_handle, gfp_t gfp, unsigned long attrs)
--{
--	if (!IS_ENABLED(CONFIG_ARCH_HAS_DMA_SET_UNCACHED) &&
--	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
--	    dma_alloc_need_uncached(dev, attrs))
--		return arch_dma_alloc(dev, size, dma_handle, gfp, attrs);
--	return dma_direct_alloc_pages(dev, size, dma_handle, gfp, attrs);
--}
+-#define LIB82596_DMA_ATTR	DMA_ATTR_NON_CONSISTENT
 -
--void dma_direct_free(struct device *dev, size_t size,
--		void *cpu_addr, dma_addr_t dma_addr, unsigned long attrs)
--{
--	if (!IS_ENABLED(CONFIG_ARCH_HAS_DMA_SET_UNCACHED) &&
--	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
--	    dma_alloc_need_uncached(dev, attrs))
--		arch_dma_free(dev, size, cpu_addr, dma_addr, attrs);
--	else
--		dma_direct_free_pages(dev, size, cpu_addr, dma_addr, attrs);
--}
+ #define DMA_WBACK(ndev, addr, len) \
+ 	do { dma_cache_sync((ndev)->dev.parent, (void *)addr, len, DMA_TO_DEVICE); } while (0)
+ 
+@@ -155,7 +153,7 @@ lan_init_chip(struct parisc_device *dev)
+ {
+ 	struct	net_device *netdevice;
+ 	struct i596_private *lp;
+-	int	retval;
++	int retval = -ENOMEM;
+ 	int i;
+ 
+ 	if (!dev->irq) {
+@@ -186,12 +184,22 @@ lan_init_chip(struct parisc_device *dev)
+ 
+ 	lp = netdev_priv(netdevice);
+ 	lp->options = dev->id.sversion == 0x72 ? OPT_SWAP_PORT : 0;
++	lp->dma = dma_alloc_attrs(dev->dev.parent, sizeof(struct i596_dma),
++			      &lp->dma_addr, GFP_KERNEL,
++			      DMA_ATTR_NON_CONSISTENT);
++	if (!lp->dma)
++		goto out_free_netdev;
+ 
+ 	retval = i82596_probe(netdevice);
+-	if (retval) {
+-		free_netdev(netdevice);
+-		return -ENODEV;
+-	}
++	if (retval)
++		goto out_free_dma;
++	return 0;
++
++out_free_dma:
++	dma_free_attrs(dev->dev.parent, sizeof(struct i596_dma),
++		       lp->dma, lp->dma_addr, DMA_ATTR_NON_CONSISTENT);
++out_free_netdev:
++	free_netdev(netdevice);
+ 	return retval;
+ }
+ 
+@@ -202,7 +210,7 @@ static int __exit lan_remove_chip(struct parisc_device *pdev)
+ 
+ 	unregister_netdev (dev);
+ 	dma_free_attrs(&pdev->dev, sizeof(struct i596_private), lp->dma,
+-		       lp->dma_addr, LIB82596_DMA_ATTR);
++		       lp->dma_addr, DMA_ATTR_NON_CONSISTENT);
+ 	free_netdev (dev);
+ 	return 0;
+ }
+diff --git a/drivers/net/ethernet/i825xx/lib82596.c b/drivers/net/ethernet/i825xx/lib82596.c
+index b03757e169e475..b4e4b3eb5758b5 100644
+--- a/drivers/net/ethernet/i825xx/lib82596.c
++++ b/drivers/net/ethernet/i825xx/lib82596.c
+@@ -1047,9 +1047,8 @@ static const struct net_device_ops i596_netdev_ops = {
+ 
+ static int i82596_probe(struct net_device *dev)
+ {
+-	int i;
+ 	struct i596_private *lp = netdev_priv(dev);
+-	struct i596_dma *dma;
++	int ret;
+ 
+ 	/* This lot is ensure things have been cache line aligned. */
+ 	BUILD_BUG_ON(sizeof(struct i596_rfd) != 32);
+@@ -1063,41 +1062,28 @@ static int i82596_probe(struct net_device *dev)
+ 	if (!dev->base_addr || !dev->irq)
+ 		return -ENODEV;
+ 
+-	dma = dma_alloc_attrs(dev->dev.parent, sizeof(struct i596_dma),
+-			      &lp->dma_addr, GFP_KERNEL,
+-			      LIB82596_DMA_ATTR);
+-	if (!dma) {
+-		printk(KERN_ERR "%s: Couldn't get shared memory\n", __FILE__);
+-		return -ENOMEM;
+-	}
 -
- #if defined(CONFIG_ARCH_HAS_SYNC_DMA_FOR_DEVICE) || \
-     defined(CONFIG_SWIOTLB)
- void dma_direct_sync_sg_for_device(struct device *dev,
-diff --git a/kernel/dma/pool.c b/kernel/dma/pool.c
-index 6bc74a2d51273e..222cebf1f10548 100644
---- a/kernel/dma/pool.c
-+++ b/kernel/dma/pool.c
-@@ -86,7 +86,7 @@ static int atomic_pool_expand(struct gen_pool *pool, size_t pool_size,
- #endif
- 	/*
- 	 * Memory in the atomic DMA pools must be unencrypted, the pools do not
--	 * shrink so no re-encryption occurs in dma_direct_free_pages().
-+	 * shrink so no re-encryption occurs in dma_direct_free().
- 	 */
- 	ret = set_memory_decrypted((unsigned long)page_to_virt(page),
- 				   1 << order);
+ 	dev->netdev_ops = &i596_netdev_ops;
+ 	dev->watchdog_timeo = TX_TIMEOUT;
+ 
+-	memset(dma, 0, sizeof(struct i596_dma));
+-	lp->dma = dma;
+-
+-	dma->scb.command = 0;
+-	dma->scb.cmd = I596_NULL;
+-	dma->scb.rfd = I596_NULL;
++	memset(lp->dma, 0, sizeof(struct i596_dma));
++	lp->dma->scb.command = 0;
++	lp->dma->scb.cmd = I596_NULL;
++	lp->dma->scb.rfd = I596_NULL;
+ 	spin_lock_init(&lp->lock);
+ 
+-	DMA_WBACK_INV(dev, dma, sizeof(struct i596_dma));
++	DMA_WBACK_INV(dev, lp->dma, sizeof(struct i596_dma));
+ 
+-	i = register_netdev(dev);
+-	if (i) {
+-		dma_free_attrs(dev->dev.parent, sizeof(struct i596_dma),
+-			       dma, lp->dma_addr, LIB82596_DMA_ATTR);
+-		return i;
+-	}
++	ret = register_netdev(dev);
++	if (ret)
++		return ret;
+ 
+ 	DEB(DEB_PROBE, printk(KERN_INFO "%s: 82596 at %#3lx, %pM IRQ %d.\n",
+ 			      dev->name, dev->base_addr, dev->dev_addr,
+ 			      dev->irq));
+ 	DEB(DEB_INIT, printk(KERN_INFO
+ 			     "%s: dma at 0x%p (%d bytes), lp->scb at 0x%p\n",
+-			     dev->name, dma, (int)sizeof(struct i596_dma),
+-			     &dma->scb));
++			     dev->name, lp->dma, (int)sizeof(struct i596_dma),
++			     &lp->dma->scb));
+ 
+ 	return 0;
+ }
+diff --git a/drivers/net/ethernet/i825xx/sni_82596.c b/drivers/net/ethernet/i825xx/sni_82596.c
+index 22f5887578b2bd..e80e790ffbd4d4 100644
+--- a/drivers/net/ethernet/i825xx/sni_82596.c
++++ b/drivers/net/ethernet/i825xx/sni_82596.c
+@@ -24,8 +24,6 @@
+ 
+ static const char sni_82596_string[] = "snirm_82596";
+ 
+-#define LIB82596_DMA_ATTR	0
+-
+ #define DMA_WBACK(priv, addr, len)     do { } while (0)
+ #define DMA_INV(priv, addr, len)       do { } while (0)
+ #define DMA_WBACK_INV(priv, addr, len) do { } while (0)
+@@ -134,10 +132,19 @@ static int sni_82596_probe(struct platform_device *dev)
+ 	lp->ca = ca_addr;
+ 	lp->mpu_port = mpu_addr;
+ 
++	lp->dma = dma_alloc_coherent(dev->dev.parent, sizeof(struct i596_dma),
++				     &lp->dma_addr, GFP_KERNEL);
++	if (!lp->dma)
++		goto probe_failed;
++
+ 	retval = i82596_probe(netdevice);
+-	if (retval == 0)
+-		return 0;
++	if (retval)
++		goto probe_failed_free_dma;
++	return 0;
+ 
++probe_failed_free_dma:
++	dma_free_coherent(dev->dev.parent, sizeof(struct i596_dma), lp->dma,
++			  lp->dma_addr);
+ probe_failed:
+ 	free_netdev(netdevice);
+ probe_failed_free_ca:
+@@ -153,8 +160,8 @@ static int sni_82596_driver_remove(struct platform_device *pdev)
+ 	struct i596_private *lp = netdev_priv(dev);
+ 
+ 	unregister_netdev(dev);
+-	dma_free_attrs(dev->dev.parent, sizeof(struct i596_private), lp->dma,
+-		       lp->dma_addr, LIB82596_DMA_ATTR);
++	dma_free_coherent(dev->dev.parent, sizeof(struct i596_private), lp->dma,
++			  lp->dma_addr);
+ 	iounmap(lp->ca);
+ 	iounmap(lp->mpu_port);
+ 	free_netdev (dev);
 -- 
 2.28.0
