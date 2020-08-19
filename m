@@ -1,8 +1,7 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 20/28] sgiwd93: convert from dma_cache_sync to
- dma_sync_single_for_device
-Date: Wed, 19 Aug 2020 08:55:47 +0200
-Message-ID: <20200819065555.1802761-21-hch@lst.de>
+Subject: [PATCH 27/28] nvme-pci: fix PRP pool size
+Date: Wed, 19 Aug 2020 08:55:54 +0200
+Message-ID: <20200819065555.1802761-28-hch@lst.de>
 References: <20200819065555.1802761-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,54 +21,28 @@ To: Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Tho
 Cc: Tom Lendacky <thomas.lendacky-5C7GfCeVMHo@public.gmane.org>, alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-ia64-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-nvme-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Use the proper modern API to transfer cache ownership for incoherent DMA.
-This also means we can allocate the memory as DMA_TO_DEVICE instead
-of bidirectional.
+All operations are based on the controller, not the host page size.
+Switch the dma pool to use the controller page size as well to avoid
+massive overallocations on large page size systems.
 
 Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 ---
- drivers/scsi/sgiwd93.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/nvme/host/pci.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/scsi/sgiwd93.c b/drivers/scsi/sgiwd93.c
-index 133adcf99e9340..1538f65307f22f 100644
---- a/drivers/scsi/sgiwd93.c
-+++ b/drivers/scsi/sgiwd93.c
-@@ -95,7 +95,7 @@ void fill_hpc_entries(struct ip22_hostdata *hd, struct scsi_cmnd *cmd, int din)
- 	 */
- 	hcp->desc.pbuf = 0;
- 	hcp->desc.cntinfo = HPCDMA_EOX;
--	dma_cache_sync(hd->dev, hd->cpu,
-+	dma_sync_single_for_device(hd->dev, hd->dma,
- 		       (unsigned long)(hcp + 1) - (unsigned long)hd->cpu,
- 		       DMA_TO_DEVICE);
- }
-@@ -235,7 +235,7 @@ static int sgiwd93_probe(struct platform_device *pdev)
- 	hdata = host_to_hostdata(host);
- 	hdata->dev = &pdev->dev;
- 	hdata->cpu = dma_alloc_pages(&pdev->dev, HPC_DMA_SIZE, &hdata->dma,
--				     DMA_BIDIRECTIONAL, GFP_KERNEL);
-+				     DMA_TO_DEVICE, GFP_KERNEL);
- 	if (!hdata->cpu) {
- 		printk(KERN_WARNING "sgiwd93: Could not allocate memory for "
- 		       "host %d buffer.\n", unit);
-@@ -275,7 +275,7 @@ static int sgiwd93_probe(struct platform_device *pdev)
- 	free_irq(irq, host);
- out_free:
- 	dma_free_pages(&pdev->dev, HPC_DMA_SIZE, hdata->cpu, hdata->dma,
--			DMA_BIDIRECTIONAL);
-+			DMA_TO_DEVICE);
- out_put:
- 	scsi_host_put(host);
- out:
-@@ -292,7 +292,7 @@ static int sgiwd93_remove(struct platform_device *pdev)
- 	scsi_remove_host(host);
- 	free_irq(pd->irq, host);
- 	dma_free_pages(&pdev->dev, HPC_DMA_SIZE, hdata->cpu, hdata->dma,
--			DMA_BIDIRECTIONAL);
-+			DMA_TO_DEVICE);
- 	scsi_host_put(host);
- 	return 0;
- }
+diff --git a/drivers/nvme/host/pci.c b/drivers/nvme/host/pci.c
+index ba725ae47305ef..a33adab62acbaf 100644
+--- a/drivers/nvme/host/pci.c
++++ b/drivers/nvme/host/pci.c
+@@ -2460,7 +2460,8 @@ static int nvme_disable_prepare_reset(struct nvme_dev *dev, bool shutdown)
+ static int nvme_setup_prp_pools(struct nvme_dev *dev)
+ {
+ 	dev->prp_page_pool = dma_pool_create("prp list page", dev->dev,
+-						PAGE_SIZE, PAGE_SIZE, 0);
++						NVME_CTRL_PAGE_SIZE,
++						NVME_CTRL_PAGE_SIZE, 0);
+ 	if (!dev->prp_page_pool)
+ 		return -ENOMEM;
+ 
 -- 
 2.28.0
