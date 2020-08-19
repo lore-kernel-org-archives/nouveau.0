@@ -1,8 +1,7 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 17/28] dma-mapping: move dma_common_{mmap,
- get_sgtable} out of mapping.c
-Date: Wed, 19 Aug 2020 08:55:44 +0200
-Message-ID: <20200819065555.1802761-18-hch@lst.de>
+Subject: [PATCH 09/28] MIPS/jazzdma: remove the unused vdma_remap function
+Date: Wed, 19 Aug 2020 08:55:36 +0200
+Message-ID: <20200819065555.1802761-10-hch@lst.de>
 References: <20200819065555.1802761-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,157 +21,105 @@ To: Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Tho
 Cc: Tom Lendacky <thomas.lendacky-5C7GfCeVMHo@public.gmane.org>, alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-ia64-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-nvme-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Add a new file that contains helpera for misc DMA ops, which is only
-built when CONFIG_DMA_OPS is set.
-
 Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 ---
- kernel/dma/Makefile      |  1 +
- kernel/dma/mapping.c     | 47 +-----------------------------------
- kernel/dma/ops_helpers.c | 51 ++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 53 insertions(+), 46 deletions(-)
- create mode 100644 kernel/dma/ops_helpers.c
+ arch/mips/include/asm/jazzdma.h |  2 -
+ arch/mips/jazz/jazzdma.c        | 70 ---------------------------------
+ 2 files changed, 72 deletions(-)
 
-diff --git a/kernel/dma/Makefile b/kernel/dma/Makefile
-index 32c7c1942bbd6c..dc755ab68aabf9 100644
---- a/kernel/dma/Makefile
-+++ b/kernel/dma/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
+diff --git a/arch/mips/include/asm/jazzdma.h b/arch/mips/include/asm/jazzdma.h
+index d13f940022d5f9..c831da7fa89803 100644
+--- a/arch/mips/include/asm/jazzdma.h
++++ b/arch/mips/include/asm/jazzdma.h
+@@ -10,8 +10,6 @@
+  */
+ extern unsigned long vdma_alloc(unsigned long paddr, unsigned long size);
+ extern int vdma_free(unsigned long laddr);
+-extern int vdma_remap(unsigned long laddr, unsigned long paddr,
+-		      unsigned long size);
+ extern unsigned long vdma_phys2log(unsigned long paddr);
+ extern unsigned long vdma_log2phys(unsigned long laddr);
+ extern void vdma_stats(void);		/* for debugging only */
+diff --git a/arch/mips/jazz/jazzdma.c b/arch/mips/jazz/jazzdma.c
+index 014773f0bfcd74..fe40dbed04c1d6 100644
+--- a/arch/mips/jazz/jazzdma.c
++++ b/arch/mips/jazz/jazzdma.c
+@@ -209,76 +209,6 @@ int vdma_free(unsigned long laddr)
  
- obj-$(CONFIG_HAS_DMA)			+= mapping.o direct.o
-+obj-$(CONFIG_DMA_OPS)			+= ops_helpers.o
- obj-$(CONFIG_DMA_OPS)			+= dummy.o
- obj-$(CONFIG_DMA_CMA)			+= contiguous.o
- obj-$(CONFIG_DMA_DECLARE_COHERENT)	+= coherent.o
-diff --git a/kernel/dma/mapping.c b/kernel/dma/mapping.c
-index 0d129421e75fc8..848c95c27d79ff 100644
---- a/kernel/dma/mapping.c
-+++ b/kernel/dma/mapping.c
-@@ -8,7 +8,7 @@
- #include <linux/memblock.h> /* for max_pfn */
- #include <linux/acpi.h>
- #include <linux/dma-direct.h>
--#include <linux/dma-noncoherent.h>
-+#include <linux/dma-mapping.h>
- #include <linux/export.h>
- #include <linux/gfp.h>
- #include <linux/of_device.h>
-@@ -295,22 +295,6 @@ void dma_sync_sg_for_device(struct device *dev, struct scatterlist *sg,
- }
- EXPORT_SYMBOL(dma_sync_sg_for_device);
+ EXPORT_SYMBOL(vdma_free);
  
 -/*
-- * Create scatter-list for the already allocated DMA buffer.
+- * Map certain page(s) to another physical address.
+- * Caller must have allocated the page(s) before.
 - */
--int dma_common_get_sgtable(struct device *dev, struct sg_table *sgt,
--		 void *cpu_addr, dma_addr_t dma_addr, size_t size,
--		 unsigned long attrs)
+-int vdma_remap(unsigned long laddr, unsigned long paddr, unsigned long size)
 -{
--	struct page *page = virt_to_page(cpu_addr);
--	int ret;
+-	int first, pages;
 -
--	ret = sg_alloc_table(sgt, 1, GFP_KERNEL);
--	if (!ret)
--		sg_set_page(sgt->sgl, page, PAGE_ALIGN(size), 0);
--	return ret;
+-	if (laddr > 0xffffff) {
+-		if (vdma_debug)
+-			printk
+-			    ("vdma_map: Invalid logical address: %08lx\n",
+-			     laddr);
+-		return -EINVAL; /* invalid logical address */
+-	}
+-	if (paddr > 0x1fffffff) {
+-		if (vdma_debug)
+-			printk
+-			    ("vdma_map: Invalid physical address: %08lx\n",
+-			     paddr);
+-		return -EINVAL; /* invalid physical address */
+-	}
+-
+-	pages = (((paddr & (VDMA_PAGESIZE - 1)) + size) >> 12) + 1;
+-	first = laddr >> 12;
+-	if (vdma_debug)
+-		printk("vdma_remap: first=%x, pages=%x\n", first, pages);
+-	if (first + pages > VDMA_PGTBL_ENTRIES) {
+-		if (vdma_debug)
+-			printk("vdma_alloc: Invalid size: %08lx\n", size);
+-		return -EINVAL;
+-	}
+-
+-	paddr &= ~(VDMA_PAGESIZE - 1);
+-	while (pages > 0 && first < VDMA_PGTBL_ENTRIES) {
+-		if (pgtbl[first].owner != laddr) {
+-			if (vdma_debug)
+-				printk("Trying to remap other's pages.\n");
+-			return -EPERM;	/* not owner */
+-		}
+-		pgtbl[first].frame = paddr;
+-		paddr += VDMA_PAGESIZE;
+-		first++;
+-		pages--;
+-	}
+-
+-	/*
+-	 * Update translation table
+-	 */
+-	r4030_write_reg32(JAZZ_R4030_TRSTBL_INV, 0);
+-
+-	if (vdma_debug > 2) {
+-		int i;
+-		pages = (((paddr & (VDMA_PAGESIZE - 1)) + size) >> 12) + 1;
+-		first = laddr >> 12;
+-		printk("LADDR: ");
+-		for (i = first; i < first + pages; i++)
+-			printk("%08x ", i << 12);
+-		printk("\nPADDR: ");
+-		for (i = first; i < first + pages; i++)
+-			printk("%08x ", pgtbl[i].frame);
+-		printk("\nOWNER: ");
+-		for (i = first; i < first + pages; i++)
+-			printk("%08x ", pgtbl[i].owner);
+-		printk("\n");
+-	}
+-
+-	return 0;
 -}
 -
  /*
-  * The whole dma_get_sgtable() idea is fundamentally unsafe - it seems
-  * that the intention is to allow exporting memory allocated via the
-@@ -358,35 +342,6 @@ pgprot_t dma_pgprot(struct device *dev, pgprot_t prot, unsigned long attrs)
- }
- #endif /* CONFIG_MMU */
- 
--/*
-- * Create userspace mapping for the DMA-coherent memory.
-- */
--int dma_common_mmap(struct device *dev, struct vm_area_struct *vma,
--		void *cpu_addr, dma_addr_t dma_addr, size_t size,
--		unsigned long attrs)
--{
--#ifdef CONFIG_MMU
--	unsigned long user_count = vma_pages(vma);
--	unsigned long count = PAGE_ALIGN(size) >> PAGE_SHIFT;
--	unsigned long off = vma->vm_pgoff;
--	int ret = -ENXIO;
--
--	vma->vm_page_prot = dma_pgprot(dev, vma->vm_page_prot, attrs);
--
--	if (dma_mmap_from_dev_coherent(dev, vma, cpu_addr, size, &ret))
--		return ret;
--
--	if (off >= count || user_count > count - off)
--		return -ENXIO;
--
--	return remap_pfn_range(vma, vma->vm_start,
--			page_to_pfn(virt_to_page(cpu_addr)) + vma->vm_pgoff,
--			user_count << PAGE_SHIFT, vma->vm_page_prot);
--#else
--	return -ENXIO;
--#endif /* CONFIG_MMU */
--}
--
- /**
-  * dma_can_mmap - check if a given device supports dma_mmap_*
-  * @dev: device to check
-diff --git a/kernel/dma/ops_helpers.c b/kernel/dma/ops_helpers.c
-new file mode 100644
-index 00000000000000..e443c69be4299f
---- /dev/null
-+++ b/kernel/dma/ops_helpers.c
-@@ -0,0 +1,51 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Helpers for DMA ops implementations.  These generally rely on the fact that
-+ * the allocated memory contains normal pages in the direct kernel mapping.
-+ */
-+#include <linux/dma-noncoherent.h>
-+
-+/*
-+ * Create scatter-list for the already allocated DMA buffer.
-+ */
-+int dma_common_get_sgtable(struct device *dev, struct sg_table *sgt,
-+		 void *cpu_addr, dma_addr_t dma_addr, size_t size,
-+		 unsigned long attrs)
-+{
-+	struct page *page = virt_to_page(cpu_addr);
-+	int ret;
-+
-+	ret = sg_alloc_table(sgt, 1, GFP_KERNEL);
-+	if (!ret)
-+		sg_set_page(sgt->sgl, page, PAGE_ALIGN(size), 0);
-+	return ret;
-+}
-+
-+/*
-+ * Create userspace mapping for the DMA-coherent memory.
-+ */
-+int dma_common_mmap(struct device *dev, struct vm_area_struct *vma,
-+		void *cpu_addr, dma_addr_t dma_addr, size_t size,
-+		unsigned long attrs)
-+{
-+#ifdef CONFIG_MMU
-+	unsigned long user_count = vma_pages(vma);
-+	unsigned long count = PAGE_ALIGN(size) >> PAGE_SHIFT;
-+	unsigned long off = vma->vm_pgoff;
-+	int ret = -ENXIO;
-+
-+	vma->vm_page_prot = dma_pgprot(dev, vma->vm_page_prot, attrs);
-+
-+	if (dma_mmap_from_dev_coherent(dev, vma, cpu_addr, size, &ret))
-+		return ret;
-+
-+	if (off >= count || user_count > count - off)
-+		return -ENXIO;
-+
-+	return remap_pfn_range(vma, vma->vm_start,
-+			page_to_pfn(virt_to_page(cpu_addr)) + vma->vm_pgoff,
-+			user_count << PAGE_SHIFT, vma->vm_page_prot);
-+#else
-+	return -ENXIO;
-+#endif /* CONFIG_MMU */
-+}
+  * Translate a physical address to a logical address.
+  * This will return the logical address of the first
 -- 
 2.28.0
