@@ -1,8 +1,8 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 18/28] dma-mapping: move the dma_declare_coherent_memory
- documentation
-Date: Wed, 19 Aug 2020 08:55:45 +0200
-Message-ID: <20200819065555.1802761-19-hch@lst.de>
+Subject: [PATCH 22/28] sgiseeq: convert from dma_cache_sync to
+ dma_sync_single_for_device
+Date: Wed, 19 Aug 2020 08:55:49 +0200
+Message-ID: <20200819065555.1802761-23-hch@lst.de>
 References: <20200819065555.1802761-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,78 +22,39 @@ To: Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Tho
 Cc: Tom Lendacky <thomas.lendacky-5C7GfCeVMHo@public.gmane.org>, alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-ia64-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-nvme-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-dma_declare_coherent_memory should not be in a DMA API guide aimed
-at driver writers (that is consumers of the API).  Move it to a comment
-near the function instead.
+Use the proper modern API to transfer cache ownership for incoherent DMA.
 
 Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 ---
- Documentation/core-api/dma-api.rst | 24 ------------------------
- kernel/dma/coherent.c              | 17 +++++++++++++++++
- 2 files changed, 17 insertions(+), 24 deletions(-)
+ drivers/net/ethernet/seeq/sgiseeq.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/core-api/dma-api.rst b/Documentation/core-api/dma-api.rst
-index 3b3abbbb4b9a6f..90239348b30f6f 100644
---- a/Documentation/core-api/dma-api.rst
-+++ b/Documentation/core-api/dma-api.rst
-@@ -586,30 +586,6 @@ the DMA_ATTR_NON_CONSISTENT flag starting at virtual address vaddr and
- continuing on for size.  Again, you *must* observe the cache line
- boundaries when doing this.
+diff --git a/drivers/net/ethernet/seeq/sgiseeq.c b/drivers/net/ethernet/seeq/sgiseeq.c
+index 39599bbb5d45b6..f91dae16d69a19 100644
+--- a/drivers/net/ethernet/seeq/sgiseeq.c
++++ b/drivers/net/ethernet/seeq/sgiseeq.c
+@@ -112,14 +112,18 @@ struct sgiseeq_private {
  
--::
--
--	int
--	dma_declare_coherent_memory(struct device *dev, phys_addr_t phys_addr,
--				    dma_addr_t device_addr, size_t size);
--
--Declare region of memory to be handed out by dma_alloc_coherent() when
--it's asked for coherent memory for this device.
--
--phys_addr is the CPU physical address to which the memory is currently
--assigned (this will be ioremapped so the CPU can access the region).
--
--device_addr is the DMA address the device needs to be programmed
--with to actually address this memory (this will be handed out as the
--dma_addr_t in dma_alloc_coherent()).
--
--size is the size of the area (must be multiples of PAGE_SIZE).
--
--As a simplification for the platforms, only *one* such region of
--memory may be declared per device.
--
--For reasons of efficiency, most platforms choose to track the declared
--region only at the granularity of a page.  For smaller allocations,
--you should use the dma_pool() API.
- 
- Part III - Debug drivers use of the DMA-API
- -------------------------------------------
-diff --git a/kernel/dma/coherent.c b/kernel/dma/coherent.c
-index 2a0c4985f38e41..f85d14bbfcbe03 100644
---- a/kernel/dma/coherent.c
-+++ b/kernel/dma/coherent.c
-@@ -107,6 +107,23 @@ static int dma_assign_coherent_memory(struct device *dev,
- 	return 0;
+ static inline void dma_sync_desc_cpu(struct net_device *dev, void *addr)
+ {
+-	dma_cache_sync(dev->dev.parent, addr, sizeof(struct sgiseeq_rx_desc),
+-		       DMA_FROM_DEVICE);
++	struct sgiseeq_private *sp = netdev_priv(dev);
++
++	dma_sync_single_for_cpu(dev->dev.parent, VIRT_TO_DMA(sp, addr),
++			sizeof(struct sgiseeq_rx_desc), DMA_BIDIRECTIONAL);
  }
  
-+/*
-+ * Declare a region of memory to be handed out by dma_alloc_coherent() when it
-+ * is asked for coherent memory for this device.  This shall only be used
-+ * from platform code, usually based on the device tree description.
-+ * 
-+ * phys_addr is the CPU physical address to which the memory is currently
-+ * assigned (this will be ioremapped so the CPU can access the region).
-+ *
-+ * device_addr is the DMA address the device needs to be programmed with to
-+ * actually address this memory (this will be handed out as the dma_addr_t in
-+ * dma_alloc_coherent()).
-+ *
-+ * size is the size of the area (must be a multiple of PAGE_SIZE).
-+ *
-+ * As a simplification for the platforms, only *one* such region of memory may
-+ * be declared per device.
-+ */
- int dma_declare_coherent_memory(struct device *dev, phys_addr_t phys_addr,
- 				dma_addr_t device_addr, size_t size)
+ static inline void dma_sync_desc_dev(struct net_device *dev, void *addr)
  {
+-	dma_cache_sync(dev->dev.parent, addr, sizeof(struct sgiseeq_rx_desc),
+-		       DMA_TO_DEVICE);
++	struct sgiseeq_private *sp = netdev_priv(dev);
++
++	dma_sync_single_for_device(dev->dev.parent, VIRT_TO_DMA(sp, addr),
++			sizeof(struct sgiseeq_rx_desc), DMA_BIDIRECTIONAL);
+ }
+ 
+ static inline void hpc3_eth_reset(struct hpc3_ethregs *hregs)
 -- 
 2.28.0
