@@ -1,148 +1,183 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [RFC 13/20] drm/i915/dp: Extract
- drm_dp_downstream_read_info()
-Date: Wed, 19 Aug 2020 13:28:57 -0400
-Message-ID: <e949791af3a41321c10bec8b862914e3c9952f4f.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [RFC 13/20] drm/i915/dp: Extract drm_dp_downstream_read_info()
+Date: Wed, 19 Aug 2020 17:34:15 -0400
+Message-ID: <4d74a74aefcd8d0ea048b70252efda18820bc911.camel@redhat.com>
 References: <20200811200457.134743-1-lyude@redhat.com>
- <20200811200457.134743-14-lyude@redhat.com>
- <20200819151547.GB46474@art_vandelay>
-Reply-To: lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+         <20200811200457.134743-14-lyude@redhat.com>
+         <20200819151547.GB46474@art_vandelay>
+Reply-To: lyude@redhat.com
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
 In-Reply-To: <20200819151547.GB46474@art_vandelay>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Sean Paul <sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Lucas De Marchi <lucas.demarchi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Gwan-gyeong Mun <gwan-gyeong.mun-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Manasi Navare <manasi.d.navare-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Uma Shankar <uma.shankar-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?ISO-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Rodrigo Vivi <rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Wambui Karuga <wambui.karugax-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Sean Paul <sean@poorly.run>, Ville Syrjala <ville.syrjala@linux.intel.com>, Imre Deak <imre.deak@intel.com>
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>, open list <linux-kernel@vger.kernel.org>, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>, Manasi Navare <manasi.d.navare@intel.com>, Uma Shankar <uma.shankar@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, =?ISO-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>, Wambui Karuga <wambui.karugax@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCAyMDIwLTA4LTE5IGF0IDExOjE1IC0wNDAwLCBTZWFuIFBhdWwgd3JvdGU6Cj4gT24g
-VHVlLCBBdWcgMTEsIDIwMjAgYXQgMDQ6MDQ6NTBQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90ZToK
-PiA+IFdlJ3JlIGdvaW5nIHRvIGJlIGRvaW5nIHRoZSBzYW1lIHByb2JpbmcgcHJvY2VzcyBpbiBu
-b3V2ZWF1IGZvcgo+ID4gZGV0ZXJtaW5pbmcgZG93bnN0cmVhbSBEUCBwb3J0IGNhcGFiaWxpdGll
-cywgc28gbGV0J3MgZGVkdXBsaWNhdGUgdGhlCj4gPiB3b3JrIGJ5IG1vdmluZyBpOTE1J3MgY29k
-ZSBmb3IgaGFuZGxpbmcgdGhpcyBpbnRvIGEgc2hhcmVkIGhlbHBlcjoKPiA+IGRybV9kcF9kb3du
-c3RyZWFtX3JlYWRfaW5mbygpLgo+ID4gCj4gPiBOb3RlIHRoYXQgd2hlbiB3ZSBkbyB0aGlzLCB3
-ZSBhbHNvIGRvIG1ha2Ugc29tZSBmdW5jdGlvbmFsIGNoYW5nZXMgd2hpbGUKPiA+IHdlJ3JlIGF0
-IGl0Ogo+ID4gKiBXZSBhbHdheXMgY2xlYXIgdGhlIGRvd25zdHJlYW0gcG9ydCBpbmZvIGJlZm9y
-ZSB0cnlpbmcgdG8gcmVhZCBpdCwKPiA+ICAganVzdCB0byBtYWtlIHRoaW5ncyBlYXNpZXIgZm9y
-IHRoZSBjYWxsZXIKPiA+ICogV2Ugc2tpcCByZWFkaW5nIGRvd25zdHJlYW0gcG9ydCBpbmZvIGlm
-IHRoZSBEUENEIGluZGljYXRlcyB0aGF0IHdlCj4gPiAgIGRvbid0IHN1cHBvcnQgZG93bnN0cmVh
-bSBwb3J0IGluZm8KPiA+ICogV2Ugb25seSByZWFkIGFzIG1hbnkgYnl0ZXMgYXMgbmVlZGVkIGZv
-ciB0aGUgcmVwb3J0ZWQgbnVtYmVyIG9mCj4gPiAgIGRvd25zdHJlYW0gcG9ydHMsIG5vIHNlbnNl
-IGluIHJlYWRpbmcgdGhlIHdob2xlIHRoaW5nIGV2ZXJ5IHRpbWUKPiA+IAo+ID4gU2lnbmVkLW9m
-Zi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KPiA+IC0tLQo+ID4gIGRyaXZlcnMv
-Z3B1L2RybS9kcm1fZHBfaGVscGVyLmMgICAgICAgICB8IDMyICsrKysrKysrKysrKysrKysrKysr
-KysrKysKPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgfCAxNCAr
-Ky0tLS0tLS0tLQo+ID4gIGluY2x1ZGUvZHJtL2RybV9kcF9oZWxwZXIuaCAgICAgICAgICAgICB8
-ICAzICsrKwo+ID4gIDMgZmlsZXMgY2hhbmdlZCwgMzcgaW5zZXJ0aW9ucygrKSwgMTIgZGVsZXRp
-b25zKC0pCj4gPiAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2RwX2hlbHBl
-ci5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfaGVscGVyLmMKPiA+IGluZGV4IDRjMjFj
-ZjY5ZGFkNWEuLjk3MDNiMzM1OTljM2IgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-ZHJtX2RwX2hlbHBlci5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2RwX2hlbHBlci5j
-Cj4gPiBAQCAtNDIzLDYgKzQyMywzOCBAQCBib29sIGRybV9kcF9zZW5kX3JlYWxfZWRpZF9jaGVj
-a3N1bShzdHJ1Y3QgZHJtX2RwX2F1eAo+ID4gKmF1eCwKPiA+ICB9Cj4gPiAgRVhQT1JUX1NZTUJP
-TChkcm1fZHBfc2VuZF9yZWFsX2VkaWRfY2hlY2tzdW0pOwo+ID4gIAo+ID4gKy8qKgo+ID4gKyAq
-IGRybV9kcF9kb3duc3RyZWFtX3JlYWRfaW5mbygpIC0gcmVhZCBEUENEIGRvd25zdHJlYW0gcG9y
-dCBpbmZvIGlmCj4gPiBhdmFpbGFibGUKPiA+ICsgKiBAYXV4OiBEaXNwbGF5UG9ydCBBVVggY2hh
-bm5lbAo+ID4gKyAqIEBkcGNkOiBBIGNhY2hlZCBjb3B5IG9mIHRoZSBwb3J0J3MgRFBDRAo+ID4g
-KyAqIEBkb3duc3RyZWFtX3BvcnRzOiBidWZmZXIgdG8gc3RvcmUgdGhlIGRvd25zdHJlYW0gcG9y
-dCBpbmZvIGluCj4gPiArICoKPiA+ICsgKiBSZXR1cm5zOiAwIGlmIGVpdGhlciB0aGUgZG93bnN0
-cmVhbSBwb3J0IGluZm8gd2FzIHJlYWQgc3VjY2Vzc2Z1bGx5IG9yCj4gPiArICogdGhlcmUgd2Fz
-IG5vIGRvd25zdHJlYW0gaW5mbyB0byByZWFkLCBvciBhIG5lZ2F0aXZlIGVycm9yIGNvZGUKPiA+
-IG90aGVyd2lzZS4KPiA+ICsgKi8KPiA+ICtpbnQgZHJtX2RwX2Rvd25zdHJlYW1fcmVhZF9pbmZv
-KHN0cnVjdCBkcm1fZHBfYXV4ICphdXgsCj4gPiArCQkJCWNvbnN0IHU4IGRwY2RbRFBfUkVDRUlW
-RVJfQ0FQX1NJWkVdLAo+ID4gKwkJCQl1OCBkb3duc3RyZWFtX3BvcnRzW0RQX01BWF9ET1dOU1RS
-RUFNX1BPUlRTXSkKPiA+ICt7Cj4gPiArCWludCByZXQ7Cj4gPiArCXU4IGxlbjsKPiA+ICsKPiA+
-ICsJbWVtc2V0KGRvd25zdHJlYW1fcG9ydHMsIDAsIERQX01BWF9ET1dOU1RSRUFNX1BPUlRTKTsK
-PiA+ICsKPiA+ICsJLyogTm8gZG93bnN0cmVhbSBpbmZvIHRvIHJlYWQgKi8KPiA+ICsJaWYgKCFk
-cm1fZHBfaXNfYnJhbmNoKGRwY2QpIHx8Cj4gPiArCSAgICBkcGNkW0RQX0RQQ0RfUkVWXSA8IERQ
-X0RQQ0RfUkVWXzEwIHx8Cj4gPiArCSAgICAhKGRwY2RbRFBfRE9XTlNUUkVBTVBPUlRfUFJFU0VO
-VF0gJiBEUF9EV05fU1RSTV9QT1JUX1BSRVNFTlQpKQo+ID4gKwkJcmV0dXJuIDA7Cj4gPiArCj4g
-PiArCWxlbiA9IChkcGNkW0RQX0RPV05fU1RSRUFNX1BPUlRfQ09VTlRdICYgRFBfUE9SVF9DT1VO
-VF9NQVNLKSAqIDQ7Cj4gCj4gSSdtIGhhdmluZyBhIGhhcmQgdGltZSByYXRpb25hbGl6aW5nIERQ
-X01BWF9ET1dOU1RSRUFNX1BPUlRTIGJlaW5nIDE2LCBidXQKPiBvbmx5Cj4gaGF2aW5nIDQgcG9y
-dHMgd29ydGggb2YgZGF0YSBpbiB0aGUgRFBfRE9XTlNUUkVBTV9QT1JUXyogcmVnaXN0ZXJzLiBE
-byB5b3UKPiBrbm93Cj4gd2hhdCdzIHN1cHBvc2VkIHRvIGhhcHBlbiBpZiBkcGNkW0RQX0RPV05f
-U1RSRUFNX1BPUlRfQ09VTlRdIGlzID4gND8KCkkgdGhvdWdodCBJIGhhZCBhZGRyZXNzZWQgdGhp
-cyBiaXQgYnV0IEkgZ3Vlc3MgSSBtaXNzZWQgc29tZSBwYXJ0cyBoZXJlLgoKU287IHRoZXJlJ3Mg
-YWN0dWFsbHkgdHdvIGRpZmZlcmVudCBwb3NzaWJsZSBsZW5ndGhzIGZvciBob3cgbG9uZyBlYWNo
-IGRvd25zdHJlYW0KcG9ydCdzIGNhcGFiaWxpdGllcyBjYW4gYmU6IDEgYnl0ZSBsb25nIChpZiBE
-RVRBSUxFRF9DQVBfSU5GT19BVkFJTEFCTEUgaW4gdGhlCkRPV05fU1RSRUFNX1BPUlRfUFJFU0VO
-VCBpcyAwLCBlLmcuIDAwNWggYml0IDQpLCBhbmQgNCBieXRlcyBsb25nIGlmIHRoYXQgYml0IGlz
-CjEuIFdoYXQncyB1bmZvcnR1bmF0ZWx5IG5vdCBhcyBjbGVhciwgaXMgd2hldGhlciBvciBub3Qg
-MSBieXRlIGxvbmcgY2FwIGZpZWxkcwptZWFuICJlYWNoIHBvcnQgaGFzIGZvdXIgYnl0ZXMsIGJ1
-dCBvbmx5IG9uZSBieXRlIGlzIHVzZWQiIG9yICJlYWNoIHBvcnQgdHJ1bHkKb25seSBoYXMgb25l
-IGJ5dGUiLiBUaGUgRFAgc3BlYyBzYXlzOgoKICAgREZQWF9DQVAKICAgMSBieXRlL0RGUAogICBY
-ID0gREZQIG51bWJlci4gUG9ydF94IGNhcGFiaWxpdHkgaXMgc3RvcmVkIGF0IHRoZSBERlAgbnVt
-YmVy4oCZcyBhZGRyZXNzIHBsdXMKICAgODBoCgpXaGljaCBhdCBmaXJzdCBzZWVtcyB0byBpbXBs
-eSB0aGF0IGVhY2ggY2FwIGlzIGF0IDgwICsgWCwgZS5nLiBvbmx5IG9uZSBieXRlCmxvbmcuIEhv
-d2V2ZXIsIHRoZSBleHBsYW5hdGlvbiBmb3Igd2hlbiBERVRBSUxFRF9DQVBfSU5GT19BVkFJTEFC
-TEUgPT0gMSBzYXlzCmFsbW9zdCB0aGUgc2FtZSB0aGluZzoKCiAgIERGUFhfQ0FQCiAgIFggPSBE
-RlAgbnVtYmVyLiBQb3J0X3ggY2FwYWJpbGl0eSBpcyBzdG9yZWQgYXQgdGhlIERGUCBudW1iZXLi
-gJlzIGFkZHJlc3MgcGx1cwogICA4MGguCgpBbHRob3VnaCByaWdodCBhYm92ZSB0aGF0IHVubGlr
-ZSB0aGUgcHJldmlvdXMgc2VjdGlvbiwgdGhleSBtZW50aW9uIHRoYXQgREZQMApnb2VzIGZyb20g
-ODAtODMsIERGUDEgODQtODcsIGV0Yy4uLgoKTm90IGVudGlyZWx5IHN1cmUgd2hhdCB0byB0aGlu
-ayBoZXJlIHNpbmNlIEkgZG9uJ3QgcmVhbGx5IGhhdmUgYW55IGRldmljZXMgKG5vcgpkbyBJIHRo
-aW5rIEkndmUgZXZlciBzZWVuIGFueSkgdGhhdCBoYXZlIG1vcmUgdGhlbiBvbmUgREZQLiBBcyB3
-ZWxsLCBmb3IgdGhlCmNhc2Ugd2hlcmUgd2UgaGF2ZSBtdWx0aXBsZSBERlBzICh3aGljaCBhY2Nv
-cmRpbmcgdG8gdGhlIHNwZWMgYXBwZWFycyB0byBvbmx5IGJlCnNvbWV0aGluZyB3ZSBuZWVkIHRv
-IHdvcnJ5IGFib3V0IGZvciBTU1QpIHRoZXkncmUgbm90IHJlYWxseSBleHBsaWNpdCBvbiBob3cg
-dG8KY29tYmluZSB0aGUgZG93bnN0cmVhbSBjYXBhYmlsaXRpZXMgZnJvbSBlYWNoIERGUC4gTXkg
-Z3Vlc3MgaXMgbWF5YmUgeW91CmRldGVybWluZSB0aGUgbWF4IGRvd25zdHJlYW0gY2xvY2sgYW5k
-IGJwcCBmcm9tIHRoZSBsb3dlc3QgY2xvY2sgbGltaXRzCmFkdmVydGlzZWQgYWNyb3NzIGVhY2gg
-cG9ydD8KKGlmIHlvdSBoYXZlIGEgRFAgZGV2aWNlIHdpdGggbXVsdGlwbGUgREZQcyBhbmQgY2Fu
-IHRlc3QgdGhpcywgdGhhdCB3b3VsZCByb2NrCjopLCBidXQgSSBoYXZlIGEgZmVlbGluZyB5b3Ug
-cHJvYmFibHkgZG9uJ3QgaGF2ZSBvbmUgZWl0aGVyKQo+IAo+IFNlYW4KPiAKPiA+ICsJcmV0ID0g
-ZHJtX2RwX2RwY2RfcmVhZChhdXgsIERQX0RPV05TVFJFQU1fUE9SVF8wLCBkb3duc3RyZWFtX3Bv
-cnRzLAo+ID4gKwkJCSAgICAgICBsZW4pOwo+ID4gKwo+ID4gKwlyZXR1cm4gcmV0ID09IGxlbiA/
-IDAgOiAtRUlPOwo+ID4gK30KPiA+ICtFWFBPUlRfU1lNQk9MKGRybV9kcF9kb3duc3RyZWFtX3Jl
-YWRfaW5mbyk7Cj4gPiArCj4gPiAgLyoqCj4gPiAgICogZHJtX2RwX2Rvd25zdHJlYW1fbWF4X2Ns
-b2NrKCkgLSBleHRyYWN0IGJyYW5jaCBkZXZpY2UgbWF4Cj4gPiAgICogICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICBwaXhlbCByYXRlIGZvciBsZWdhY3kgVkdBCj4gPiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4gPiBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+ID4gaW5kZXggMWUyOWQzYTAxMjg1Ni4u
-OTg0ZTQ5MTk0Y2EzMSAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZHAuYwo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kcC5jCj4gPiBAQCAtNDY4NSwxOCArNDY4NSw4IEBAIGludGVsX2RwX2dldF9kcGNkKHN0cnVj
-dCBpbnRlbF9kcCAqaW50ZWxfZHApCj4gPiAgCQkJcmV0dXJuIGZhbHNlOwo+ID4gIAl9Cj4gPiAg
-Cj4gPiAtCWlmICghZHJtX2RwX2lzX2JyYW5jaChpbnRlbF9kcC0+ZHBjZCkpCj4gPiAtCQlyZXR1
-cm4gdHJ1ZTsgLyogbmF0aXZlIERQIHNpbmsgKi8KPiA+IC0KPiA+IC0JaWYgKGludGVsX2RwLT5k
-cGNkW0RQX0RQQ0RfUkVWXSA9PSAweDEwKQo+ID4gLQkJcmV0dXJuIHRydWU7IC8qIG5vIHBlci1w
-b3J0IGRvd25zdHJlYW0gaW5mbyAqLwo+ID4gLQo+ID4gLQlpZiAoZHJtX2RwX2RwY2RfcmVhZCgm
-aW50ZWxfZHAtPmF1eCwgRFBfRE9XTlNUUkVBTV9QT1JUXzAsCj4gPiAtCQkJICAgICBpbnRlbF9k
-cC0+ZG93bnN0cmVhbV9wb3J0cywKPiA+IC0JCQkgICAgIERQX01BWF9ET1dOU1RSRUFNX1BPUlRT
-KSA8IDApCj4gPiAtCQlyZXR1cm4gZmFsc2U7IC8qIGRvd25zdHJlYW0gcG9ydCBzdGF0dXMgZmV0
-Y2ggZmFpbGVkICovCj4gPiAtCj4gPiAtCXJldHVybiB0cnVlOwo+ID4gKwlyZXR1cm4gZHJtX2Rw
-X2Rvd25zdHJlYW1fcmVhZF9pbmZvKCZpbnRlbF9kcC0+YXV4LCBpbnRlbF9kcC0+ZHBjZCwKPiA+
-ICsJCQkJCSAgIGludGVsX2RwLT5kb3duc3RyZWFtX3BvcnRzKSA9PSAwOwo+ID4gIH0KPiA+ICAK
-PiA+ICBzdGF0aWMgYm9vbAo+ID4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2RybV9kcF9oZWxw
-ZXIuaCBiL2luY2x1ZGUvZHJtL2RybV9kcF9oZWxwZXIuaAo+ID4gaW5kZXggNWMyODE5OTI0ODYy
-Ni4uMTM0OWYxNjU2NGFjZSAxMDA2NDQKPiA+IC0tLSBhL2luY2x1ZGUvZHJtL2RybV9kcF9oZWxw
-ZXIuaAo+ID4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX2RwX2hlbHBlci5oCj4gPiBAQCAtMTYxMyw2
-ICsxNjEzLDkgQEAgaW50IGRybV9kcF9kcGNkX3JlYWRfbGlua19zdGF0dXMoc3RydWN0IGRybV9k
-cF9hdXgKPiA+ICphdXgsCj4gPiAgYm9vbCBkcm1fZHBfc2VuZF9yZWFsX2VkaWRfY2hlY2tzdW0o
-c3RydWN0IGRybV9kcF9hdXggKmF1eCwKPiA+ICAJCQkJICAgIHU4IHJlYWxfZWRpZF9jaGVja3N1
-bSk7Cj4gPiAgCj4gPiAraW50IGRybV9kcF9kb3duc3RyZWFtX3JlYWRfaW5mbyhzdHJ1Y3QgZHJt
-X2RwX2F1eCAqYXV4LAo+ID4gKwkJCQljb25zdCB1OCBkcGNkW0RQX1JFQ0VJVkVSX0NBUF9TSVpF
-XSwKPiA+ICsJCQkJdTggZG93bnN0cmVhbV9wb3J0c1tEUF9NQVhfRE9XTlNUUkVBTV9QT1JUU10p
-Owo+ID4gIGludCBkcm1fZHBfZG93bnN0cmVhbV9tYXhfY2xvY2soY29uc3QgdTggZHBjZFtEUF9S
-RUNFSVZFUl9DQVBfU0laRV0sCj4gPiAgCQkJCWNvbnN0IHU4IHBvcnRfY2FwWzRdKTsKPiA+ICBp
-bnQgZHJtX2RwX2Rvd25zdHJlYW1fbWF4X2JwYyhjb25zdCB1OCBkcGNkW0RQX1JFQ0VJVkVSX0NB
-UF9TSVpFXSwKPiA+IC0tIAo+ID4gMi4yNi4yCj4gPiAKPiA+IF9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiBkcmktZGV2ZWwgbWFpbGluZyBsaXN0Cj4g
-PiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiBodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAotLSAKU2luY2VyZWx5LAogICAg
-ICBMeXVkZSBQYXVsIChzaGUvaGVyKQogICAgICBTb2Z0d2FyZSBFbmdpbmVlciBhdCBSZWQgSGF0
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
-IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+(adding Ville and Imre to the cc here, they might be interested to know about
+this, comments down below)
+
+On Wed, 2020-08-19 at 11:15 -0400, Sean Paul wrote:
+> On Tue, Aug 11, 2020 at 04:04:50PM -0400, Lyude Paul wrote:
+> > We're going to be doing the same probing process in nouveau for
+> > determining downstream DP port capabilities, so let's deduplicate the
+> > work by moving i915's code for handling this into a shared helper:
+> > drm_dp_downstream_read_info().
+> > 
+> > Note that when we do this, we also do make some functional changes while
+> > we're at it:
+> > * We always clear the downstream port info before trying to read it,
+> >   just to make things easier for the caller
+> > * We skip reading downstream port info if the DPCD indicates that we
+> >   don't support downstream port info
+> > * We only read as many bytes as needed for the reported number of
+> >   downstream ports, no sense in reading the whole thing every time
+> > 
+> > Signed-off-by: Lyude Paul <lyude@redhat.com>
+> > ---
+> >  drivers/gpu/drm/drm_dp_helper.c         | 32 +++++++++++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 14 ++---------
+> >  include/drm/drm_dp_helper.h             |  3 +++
+> >  3 files changed, 37 insertions(+), 12 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_dp_helper.c
+> > b/drivers/gpu/drm/drm_dp_helper.c
+> > index 4c21cf69dad5a..9703b33599c3b 100644
+> > --- a/drivers/gpu/drm/drm_dp_helper.c
+> > +++ b/drivers/gpu/drm/drm_dp_helper.c
+> > @@ -423,6 +423,38 @@ bool drm_dp_send_real_edid_checksum(struct drm_dp_aux
+> > *aux,
+> >  }
+> >  EXPORT_SYMBOL(drm_dp_send_real_edid_checksum);
+> >  
+> > +/**
+> > + * drm_dp_downstream_read_info() - read DPCD downstream port info if
+> > available
+> > + * @aux: DisplayPort AUX channel
+> > + * @dpcd: A cached copy of the port's DPCD
+> > + * @downstream_ports: buffer to store the downstream port info in
+> > + *
+> > + * Returns: 0 if either the downstream port info was read successfully or
+> > + * there was no downstream info to read, or a negative error code
+> > otherwise.
+> > + */
+> > +int drm_dp_downstream_read_info(struct drm_dp_aux *aux,
+> > +				const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> > +				u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS])
+> > +{
+> > +	int ret;
+> > +	u8 len;
+> > +
+> > +	memset(downstream_ports, 0, DP_MAX_DOWNSTREAM_PORTS);
+> > +
+> > +	/* No downstream info to read */
+> > +	if (!drm_dp_is_branch(dpcd) ||
+> > +	    dpcd[DP_DPCD_REV] < DP_DPCD_REV_10 ||
+> > +	    !(dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DWN_STRM_PORT_PRESENT))
+> > +		return 0;
+> > +
+> > +	len = (dpcd[DP_DOWN_STREAM_PORT_COUNT] & DP_PORT_COUNT_MASK) * 4;
+> 
+> I'm having a hard time rationalizing DP_MAX_DOWNSTREAM_PORTS being 16, but
+> only
+> having 4 ports worth of data in the DP_DOWNSTREAM_PORT_* registers. Do you
+> know
+> what's supposed to happen if dpcd[DP_DOWN_STREAM_PORT_COUNT] is > 4?
+> 
+ok!! Taking a lesson from our available_pbn/full_pbn confusion in the past, I
+squinted very hard at the specification and eventually found something that I
+think clears this up. Surprise - we definitely had this implemented incorrectly
+in i915
+
+From section 5.3.3.1:
+
+   Either one or four bytes are used, per DFP type indication. Therefore, up to
+   16 (with 1-byte descriptor) or four (with 4-byte descriptor) DFP capabilities
+   can be stored.
+
+So, a couple takeaways from this:
+
+ * A DisplayPort connector can have *multiple* different downstream port types,
+   which I think actually makes sense as I've seen an adapter like this before.
+ * We actually added the ability to determine the downstream port type for DP
+   connectors using the subconnector prop, but it seems like if we want to aim
+   for completeness we're going to need to come up with a new prop that can
+   report multiple downstream port types :\.
+ * It's not explicitly mentioned, but I'm assuming the correct way of handling
+   multiple downstream BPC/pixel clock capabilities is to assume the max
+   BPC/pixel clock is derived from the lowest max BPC/pixel clock we find on
+   *connected* downstream ports (anything else wouldn't really make sense, imho)
+
+So I'm going to rewrite this so we handle this properly in
+drm_dp_downstream_read_info() and related helpers. I don't currently have the
+time to do this, but if there's interest upstream in properly reporting the
+downstream port types of DP ports in userspace someone might want to consider
+coming up with another prop that accounts for multiple different downstream port
+types.
+
+> Sean
+> 
+> > +	ret = drm_dp_dpcd_read(aux, DP_DOWNSTREAM_PORT_0, downstream_ports,
+> > +			       len);
+> > +
+> > +	return ret == len ? 0 : -EIO;
+> > +}
+> > +EXPORT_SYMBOL(drm_dp_downstream_read_info);
+> > +
+> >  /**
+> >   * drm_dp_downstream_max_clock() - extract branch device max
+> >   *                                 pixel rate for legacy VGA
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index 1e29d3a012856..984e49194ca31 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -4685,18 +4685,8 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
+> >  			return false;
+> >  	}
+> >  
+> > -	if (!drm_dp_is_branch(intel_dp->dpcd))
+> > -		return true; /* native DP sink */
+> > -
+> > -	if (intel_dp->dpcd[DP_DPCD_REV] == 0x10)
+> > -		return true; /* no per-port downstream info */
+> > -
+> > -	if (drm_dp_dpcd_read(&intel_dp->aux, DP_DOWNSTREAM_PORT_0,
+> > -			     intel_dp->downstream_ports,
+> > -			     DP_MAX_DOWNSTREAM_PORTS) < 0)
+> > -		return false; /* downstream port status fetch failed */
+> > -
+> > -	return true;
+> > +	return drm_dp_downstream_read_info(&intel_dp->aux, intel_dp->dpcd,
+> > +					   intel_dp->downstream_ports) == 0;
+> >  }
+> >  
+> >  static bool
+> > diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+> > index 5c28199248626..1349f16564ace 100644
+> > --- a/include/drm/drm_dp_helper.h
+> > +++ b/include/drm/drm_dp_helper.h
+> > @@ -1613,6 +1613,9 @@ int drm_dp_dpcd_read_link_status(struct drm_dp_aux
+> > *aux,
+> >  bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
+> >  				    u8 real_edid_checksum);
+> >  
+> > +int drm_dp_downstream_read_info(struct drm_dp_aux *aux,
+> > +				const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> > +				u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS]);
+> >  int drm_dp_downstream_max_clock(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> >  				const u8 port_cap[4]);
+> >  int drm_dp_downstream_max_bpc(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> > -- 
+> > 2.26.2
+> > 
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+-- 
+Sincerely,
+      Lyude Paul (she/her)
+      Software Engineer at Red Hat
