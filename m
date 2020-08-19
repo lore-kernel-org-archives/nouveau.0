@@ -1,128 +1,122 @@
-From: Tomasz Figa <tfiga@chromium.org>
-Subject: Re: [PATCH 05/28] media/v4l2: remove V4L2-FLAG-MEMORY-NON-CONSISTENT
-Date: Wed, 19 Aug 2020 16:22:29 +0200
-Message-ID: <CAAFQd5DrEq7UVi_aH=-DO4xYC3SbjJ3m1aQSbt=8THL-W+orMQ@mail.gmail.com>
-References: <20200819065555.1802761-1-hch@lst.de> <20200819065555.1802761-6-hch@lst.de>
- <CAAFQd5COLxjydDYrfx47ht8tj-aNPiaVnC+WyQA7nvpW4gs=ww@mail.gmail.com>
- <62e4f4fc-c8a5-3ee8-c576-fe7178cb4356@arm.com> <CAAFQd5AcCTDguB2C9KyDiutXWoEvBL8tL7+a==Uo8vj_8CLOJw@mail.gmail.com>
- <2b32f1d8-16f7-3352-40a5-420993d52fb5@arm.com>
+From: Sean Paul <sean@poorly.run>
+Subject: Re: [RFC 09/20] drm/i915/dp: Extract drm_dp_has_mst()
+Date: Wed, 19 Aug 2020 11:03:59 -0400
+Message-ID: <20200819150359.GA46474@art_vandelay>
+References: <20200811200457.134743-1-lyude@redhat.com>
+ <20200811200457.134743-10-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-media-owner@vger.kernel.org>
-In-Reply-To: <2b32f1d8-16f7-3352-40a5-420993d52fb5@arm.com>
-Sender: linux-media-owner@vger.kernel.org
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Christoph Hellwig <hch@lst.de>, alsa-devel@alsa-project.org, linux-ia64@vger.kernel.org, Linux Doc Mailing List <linux-doc@vger.kernel.org>, nouveau@lists.freedesktop.org, linux-nvme@lists.infradead.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, linux-mm@kvack.org, Marek Szyprowski <m.szyprowski@samsung.com>, linux-samsung-soc <linux-samsung-soc@vger.kernel.org>, Joonyoung Shim <jy0922.shim@samsung.com>, linux-scsi@vger.kernel.org, Kyungmin Park <kyungmin.park@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Matt Porter <mporter@kernel.crashing.org>, Linux Media Mailing List <linux-media@vger.kernel.org>, Tom Lendacky <thomas.lendacky@amd.com>, Pawel Osciak <pawel@osciak.com>, Maur
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20200811200457.134743-10-lyude@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Lyude Paul <lyude@redhat.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>, open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, Wambui Karuga <wambui.karugax@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Aug 19, 2020 at 4:07 PM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 2020-08-19 13:49, Tomasz Figa wrote:
-> > On Wed, Aug 19, 2020 at 1:51 PM Robin Murphy <robin.murphy@arm.com> wrote:
-> >>
-> >> Hi Tomasz,
-> >>
-> >> On 2020-08-19 12:16, Tomasz Figa wrote:
-> >>> Hi Christoph,
-> >>>
-> >>> On Wed, Aug 19, 2020 at 8:56 AM Christoph Hellwig <hch@lst.de> wrote:
-> >>>>
-> >>>> The V4L2-FLAG-MEMORY-NON-CONSISTENT flag is entirely unused,
-> >>>
-> >>> Could you explain what makes you think it's unused? It's a feature of
-> >>> the UAPI generally supported by the videobuf2 framework and relied on
-> >>> by Chromium OS to get any kind of reasonable performance when
-> >>> accessing V4L2 buffers in the userspace.
-> >>>
-> >>>> and causes
-> >>>> weird gymanstics with the DMA_ATTR_NON_CONSISTENT flag, which is
-> >>>> unimplemented except on PARISC and some MIPS configs, and about to be
-> >>>> removed.
-> >>>
-> >>> It is implemented by the generic DMA mapping layer [1], which is used
-> >>> by a number of architectures including ARM64 and supposed to be used
-> >>> by new architectures going forward.
-> >>
-> >> AFAICS all that V4L2_FLAG_MEMORY_NON_CONSISTENT does is end up
-> >> controling whether DMA_ATTR_NON_CONSISTENT is added to vb2_queue::dma_attrs.
-> >>
-> >> Please can you point to where DMA_ATTR_NON_CONSISTENT does anything at
-> >> all on arm64?
-> >>
-> >
-> > With the default config it doesn't, but with
-> > CONFIG_DMA_NONCOHERENT_CACHE_SYNC enabled it makes dma_pgprot() keep
-> > the pgprot value as is, without enforcing coherence attributes.
->
-> How active are the PA-RISC and MIPS ports of Chromium OS?
+On Tue, Aug 11, 2020 at 04:04:46PM -0400, Lyude Paul wrote:
+> Just a tiny drive-by cleanup, we can consolidate i915's code for
+> checking for MST support into a helper to be shared across drivers.
+> 
 
-Not active. We enable CONFIG_DMA_NONCOHERENT_CACHE_SYNC for ARM64,
-given the directions received back in April when discussing the
-noncoherent memory functionality on the mailing list in the thread I
-pointed out in my previous message and no clarification on why it is
-disabled for ARM64 in upstream, despite making several attempts to get
-some.
+Reviewed-by: Sean Paul <sean@poorly.run>
 
->
-> Hacking CONFIG_DMA_NONCOHERENT_CACHE_SYNC into an architecture that
-> doesn't provide dma_cache_sync() is wrong, since at worst it may break
-> other drivers. If downstream is wildly misusing an API then so be it,
-> but it's hardly a strong basis for an upstream argument.
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 18 ++----------------
+>  include/drm/drm_dp_mst_helper.h         | 22 ++++++++++++++++++++++
+>  2 files changed, 24 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 79c27f91f42c0..1e29d3a012856 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4699,20 +4699,6 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
+>  	return true;
+>  }
+>  
+> -static bool
+> -intel_dp_sink_can_mst(struct intel_dp *intel_dp)
+> -{
+> -	u8 mstm_cap;
+> -
+> -	if (intel_dp->dpcd[DP_DPCD_REV] < 0x12)
+> -		return false;
+> -
+> -	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_MSTM_CAP, &mstm_cap) != 1)
+> -		return false;
+> -
+> -	return mstm_cap & DP_MST_CAP;
+> -}
+> -
+>  static bool
+>  intel_dp_can_mst(struct intel_dp *intel_dp)
+>  {
+> @@ -4720,7 +4706,7 @@ intel_dp_can_mst(struct intel_dp *intel_dp)
+>  
+>  	return i915->params.enable_dp_mst &&
+>  		intel_dp->can_mst &&
+> -		intel_dp_sink_can_mst(intel_dp);
+> +		drm_dp_has_mst(&intel_dp->aux, intel_dp->dpcd);
+>  }
+>  
+>  static void
+> @@ -4729,7 +4715,7 @@ intel_dp_configure_mst(struct intel_dp *intel_dp)
+>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	struct intel_encoder *encoder =
+>  		&dp_to_dig_port(intel_dp)->base;
+> -	bool sink_can_mst = intel_dp_sink_can_mst(intel_dp);
+> +	bool sink_can_mst = drm_dp_has_mst(&intel_dp->aux, intel_dp->dpcd);
+>  
+>  	drm_dbg_kms(&i915->drm,
+>  		    "[ENCODER:%d:%s] MST support: port: %s, sink: %s, modparam: %s\n",
+> diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
+> index 8b9eb4db3381c..2d8983a713e8c 100644
+> --- a/include/drm/drm_dp_mst_helper.h
+> +++ b/include/drm/drm_dp_mst_helper.h
+> @@ -911,4 +911,26 @@ __drm_dp_mst_state_iter_get(struct drm_atomic_state *state,
+>  	for ((__i) = 0; (__i) < (__state)->num_private_objs; (__i)++) \
+>  		for_each_if(__drm_dp_mst_state_iter_get((__state), &(mgr), NULL, &(new_state), (__i)))
+>  
+> +/**
+> + * drm_dp_has_mst() - check whether or not a sink supports MST
+> + * @aux: The DP AUX channel to use
+> + * @dpcd: A cached copy of the DPCD capabilities for this sink
+> + *
+> + * Returns: %True if the sink supports MST, %false otherwise
+> + */
+> +static inline bool
+> +drm_dp_has_mst(struct drm_dp_aux *aux,
+> +	       const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+> +{
+> +	u8 mstm_cap;
+> +
+> +	if (dpcd[DP_DPCD_REV] < DP_DPCD_REV_12)
+> +		return false;
+> +
+> +	if (drm_dp_dpcd_readb(aux, DP_MSTM_CAP, &mstm_cap) != 1)
+> +		return false;
+> +
+> +	return !!(mstm_cap & DP_MST_CAP);
+> +}
+> +
+>  #endif
+> -- 
+> 2.26.2
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
-I guess it means that we're wildly misusing the API, but it still does
-work. Could you explain how it could break other drivers?
-
->
-> >> Also, I posit that videobuf2 is not actually relying on
-> >> DMA_ATTR_NON_CONSISTENT anyway, since it's clearly not using it properly:
-> >>
-> >> "By using this API, you are guaranteeing to the platform
-> >> that you have all the correct and necessary sync points for this memory
-> >> in the driver should it choose to return non-consistent memory."
-> >>
-> >> $ git grep dma_cache_sync drivers/media
-> >> $
-> >
-> > AFAIK dma_cache_sync() isn't the only way to perform the cache
-> > synchronization. The earlier patch series that I reviewed relied on
-> > dma_get_sgtable() and then dma_sync_sg_*() (which existed in the
-> > vb2-dc since forever [1]). However, it looks like with the final code
-> > the sgtable isn't acquired and the synchronization isn't happening, so
-> > you have a point.
->
-> Using the streaming sync calls on coherent allocations has also always
-> been wrong per the API, regardless of the bodies of code that have
-> happened to get away with it for so long.
->
-> > FWIW, I asked back in time what the plan is for non-coherent
-> > allocations and it seemed like DMA_ATTR_NON_CONSISTENT and
-> > dma_sync_*() was supposed to be the right thing to go with. [2] The
-> > same thread also explains why dma_alloc_pages() isn't suitable for the
-> > users of dma_alloc_attrs() and DMA_ATTR_NON_CONSISTENT.
->
-> AFAICS even back then Christoph was implying getting rid of
-> NON_CONSISTENT and *replacing* it with something streaming-API-based -
-
-That's not how I read his reply from the thread I pointed to, but that
-might of course be my misunderstanding.
-
-> i.e. this series - not encouraging mixing the existing APIs. It doesn't
-> seem impossible to implement a remapping version of this new
-> dma_alloc_pages() for IOMMU-backed ops if it's really warranted
-> (although at that point it seems like "non-coherent" vb2-dc starts to
-> have significant conceptual overlap with vb2-sg).
-
-No, there is no overlap between vb2-dc and vb2-sg. They differ on
-another level - the former is to be used by devices without
-scatter-gather or internal mapping capabilities and gives the driver a
-single DMA address for the whole buffer, regardless of whether it's
-IOVA-contiguous (for devices behind an IOMMU) or physically contiguous
-(for the others), while the latter gives the driver an sgtable, which
-of course may be DMA-contiguous internally, but doesn't have to and
-usually isn't. This model makes it possible to hide the SoC
-implementation details from particular drivers, since those are very
-often reused on many SoCs which differ in the availability of IOMMU,
-DMA addressing restrictions and so on.
-
-Best regards,
-Tomasz
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
