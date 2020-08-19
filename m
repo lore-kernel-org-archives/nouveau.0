@@ -1,7 +1,7 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 04/28] net/au1000-eth: stop using DMA_ATTR_NON_CONSISTENT
-Date: Wed, 19 Aug 2020 08:55:31 +0200
-Message-ID: <20200819065555.1802761-5-hch@lst.de>
+Subject: [PATCH 02/28] drm/exynos: stop setting DMA_ATTR_NON_CONSISTENT
+Date: Wed, 19 Aug 2020 08:55:29 +0200
+Message-ID: <20200819065555.1802761-3-hch@lst.de>
 References: <20200819065555.1802761-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,56 +21,26 @@ To: Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Tho
 Cc: Tom Lendacky <thomas.lendacky-5C7GfCeVMHo@public.gmane.org>, alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-ia64-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-nvme-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-The au1000-eth driver contains none of the manual cache synchronization
-required for using DMA_ATTR_NON_CONSISTENT.  From what I can tell it
-can be used on both dma coherent and non-coherent DMA platforms, but
-I suspect it has been buggy on the non-coherent platforms all along.
+DMA_ATTR_NON_CONSISTENT is a no-op except on PARISC and some mips
+configs, so don't set it in this ARM specific driver.
 
 Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 ---
- drivers/net/ethernet/amd/au1000_eth.c | 15 ++++++---------
- 1 file changed, 6 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/exynos/exynos_drm_gem.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/net/ethernet/amd/au1000_eth.c b/drivers/net/ethernet/amd/au1000_eth.c
-index 75dbd221dc594b..19e195420e2434 100644
---- a/drivers/net/ethernet/amd/au1000_eth.c
-+++ b/drivers/net/ethernet/amd/au1000_eth.c
-@@ -1131,10 +1131,9 @@ static int au1000_probe(struct platform_device *pdev)
- 	/* Allocate the data buffers
- 	 * Snooping works fine with eth on all au1xxx
- 	 */
--	aup->vaddr = (u32)dma_alloc_attrs(&pdev->dev, MAX_BUF_SIZE *
-+	aup->vaddr = (u32)dma_alloc_coherent(&pdev->dev, MAX_BUF_SIZE *
- 					  (NUM_TX_BUFFS + NUM_RX_BUFFS),
--					  &aup->dma_addr, 0,
--					  DMA_ATTR_NON_CONSISTENT);
-+					  &aup->dma_addr, 0);
- 	if (!aup->vaddr) {
- 		dev_err(&pdev->dev, "failed to allocate data buffers\n");
- 		err = -ENOMEM;
-@@ -1310,9 +1309,8 @@ static int au1000_probe(struct platform_device *pdev)
- err_remap2:
- 	iounmap(aup->mac);
- err_remap1:
--	dma_free_attrs(&pdev->dev, MAX_BUF_SIZE * (NUM_TX_BUFFS + NUM_RX_BUFFS),
--			(void *)aup->vaddr, aup->dma_addr,
--			DMA_ATTR_NON_CONSISTENT);
-+	dma_free_coherent(&pdev->dev, MAX_BUF_SIZE * (NUM_TX_BUFFS + NUM_RX_BUFFS),
-+			(void *)aup->vaddr, aup->dma_addr);
- err_vaddr:
- 	free_netdev(dev);
- err_alloc:
-@@ -1344,9 +1342,8 @@ static int au1000_remove(struct platform_device *pdev)
- 		if (aup->tx_db_inuse[i])
- 			au1000_ReleaseDB(aup, aup->tx_db_inuse[i]);
+diff --git a/drivers/gpu/drm/exynos/exynos_drm_gem.c b/drivers/gpu/drm/exynos/exynos_drm_gem.c
+index efa476858db54b..07073222b8f691 100644
+--- a/drivers/gpu/drm/exynos/exynos_drm_gem.c
++++ b/drivers/gpu/drm/exynos/exynos_drm_gem.c
+@@ -42,8 +42,6 @@ static int exynos_drm_alloc_buf(struct exynos_drm_gem *exynos_gem, bool kvmap)
+ 	if (exynos_gem->flags & EXYNOS_BO_WC ||
+ 			!(exynos_gem->flags & EXYNOS_BO_CACHABLE))
+ 		attr |= DMA_ATTR_WRITE_COMBINE;
+-	else
+-		attr |= DMA_ATTR_NON_CONSISTENT;
  
--	dma_free_attrs(&pdev->dev, MAX_BUF_SIZE * (NUM_TX_BUFFS + NUM_RX_BUFFS),
--			(void *)aup->vaddr, aup->dma_addr,
--			DMA_ATTR_NON_CONSISTENT);
-+	dma_free_coherent(&pdev->dev, MAX_BUF_SIZE * (NUM_TX_BUFFS + NUM_RX_BUFFS),
-+			(void *)aup->vaddr, aup->dma_addr);
- 
- 	iounmap(aup->macdma);
- 	iounmap(aup->mac);
+ 	/* FBDev emulation requires kernel mapping */
+ 	if (!kvmap)
 -- 
 2.28.0
