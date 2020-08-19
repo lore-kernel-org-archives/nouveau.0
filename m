@@ -1,134 +1,147 @@
-From: Tomasz Figa <tfiga@chromium.org>
-Subject: Re: [PATCH 19/28] dma-mapping: replace DMA_ATTR_NON_CONSISTENT with
- dma_{alloc, free}_pages
-Date: Wed, 19 Aug 2020 17:03:52 +0200
-Message-ID: <CAAFQd5Bbp-eAVKS1MKS8xtrT4ZoOmBPfZyw9mys=eOmDb6r8Lw@mail.gmail.com>
-References: <20200819065555.1802761-1-hch@lst.de> <20200819065555.1802761-20-hch@lst.de>
+From: Sean Paul <sean@poorly.run>
+Subject: Re: [RFC 13/20] drm/i915/dp: Extract
+ drm_dp_downstream_read_info()
+Date: Wed, 19 Aug 2020 11:15:53 -0400
+Message-ID: <20200819151547.GB46474@art_vandelay>
+References: <20200811200457.134743-1-lyude@redhat.com>
+ <20200811200457.134743-14-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-ia64-owner@vger.kernel.org>
-In-Reply-To: <20200819065555.1802761-20-hch@lst.de>
-Sender: linux-ia64-owner@vger.kernel.org
-To: Christoph Hellwig <hch@lst.de>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Pawel Osciak <pawel@osciak.com>, Marek Szyprowski <m.szyprowski@samsung.com>, Matt Porter <mporter@kernel.crashing.org>, "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>, Tom Lendacky <thomas.lendacky@amd.com>, alsa-devel@alsa-project.org, linux-samsung-soc <linux-samsung-soc@vger.kernel.org>, linux-ia64@vger.kernel.org, linux-scsi@vger.kernel.org, linux-parisc@vger.k
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20200811200457.134743-14-lyude@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Lyude Paul <lyude@redhat.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>, open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, Wambui Karuga <wambui.karugax@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
-Hi Christoph,
-
-On Wed, Aug 19, 2020 at 8:57 AM Christoph Hellwig <hch@lst.de> wrote:
->
-> Add a new API to allocate and free pages that are guaranteed to be
-> addressable by a device, but otherwise behave like pages allocated by
-> alloc_pages.  The intended APIs to sync them for use with the device
-> and cpu are dma_sync_single_for_{device,cpu} that are also used for
-> streaming mappings.
->
-> Switch all drivers over to this new API, but keep the usage of the
-> crufty dma_cache_sync API for now, which will be cleaned up on a driver
-> by driver basis.
->
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
+On Tue, Aug 11, 2020 at 04:04:50PM -0400, Lyude Paul wrote:
+> We're going to be doing the same probing process in nouveau for
+> determining downstream DP port capabilities, so let's deduplicate the
+> work by moving i915's code for handling this into a shared helper:
+> drm_dp_downstream_read_info().
+> 
+> Note that when we do this, we also do make some functional changes while
+> we're at it:
+> * We always clear the downstream port info before trying to read it,
+>   just to make things easier for the caller
+> * We skip reading downstream port info if the DPCD indicates that we
+>   don't support downstream port info
+> * We only read as many bytes as needed for the reported number of
+>   downstream ports, no sense in reading the whole thing every time
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
 > ---
->  Documentation/core-api/dma-api.rst        | 68 +++++++++++------------
->  Documentation/core-api/dma-attributes.rst |  8 ---
->  arch/alpha/kernel/pci_iommu.c             |  2 +
->  arch/arm/mm/dma-mapping-nommu.c           |  2 +
->  arch/arm/mm/dma-mapping.c                 |  4 ++
->  arch/ia64/hp/common/sba_iommu.c           |  2 +
->  arch/mips/jazz/jazzdma.c                  |  7 +--
->  arch/powerpc/kernel/dma-iommu.c           |  2 +
->  arch/powerpc/platforms/ps3/system-bus.c   |  4 ++
->  arch/powerpc/platforms/pseries/vio.c      |  2 +
->  arch/s390/pci/pci_dma.c                   |  2 +
->  arch/x86/kernel/amd_gart_64.c             |  2 +
->  drivers/iommu/dma-iommu.c                 |  2 +
->  drivers/iommu/intel/iommu.c               |  4 ++
->  drivers/net/ethernet/i825xx/lasi_82596.c  | 13 ++---
->  drivers/net/ethernet/seeq/sgiseeq.c       | 12 ++--
->  drivers/parisc/ccio-dma.c                 |  2 +
->  drivers/parisc/sba_iommu.c                |  2 +
->  drivers/scsi/53c700.c                     |  8 +--
->  drivers/scsi/sgiwd93.c                    | 12 ++--
->  drivers/xen/swiotlb-xen.c                 |  2 +
->  include/linux/dma-direct.h                |  5 ++
->  include/linux/dma-mapping.h               | 29 ++++++++--
->  include/linux/dma-noncoherent.h           |  3 -
->  kernel/dma/direct.c                       | 51 ++++++++++++++++-
->  kernel/dma/mapping.c                      | 43 +++++++++++++-
->  kernel/dma/ops_helpers.c                  | 35 ++++++++++++
->  kernel/dma/virt.c                         |  2 +
->  sound/mips/hal2.c                         | 20 +++----
->  29 files changed, 254 insertions(+), 96 deletions(-)
->
-
-Thanks for the patch. The general design looks quite nice, but please
-see my comments inline.
-
-
-> diff --git a/Documentation/core-api/dma-api.rst b/Documentation/core-api/dma-api.rst
-> index 90239348b30f6f..047fcfffa0e5cf 100644
-> --- a/Documentation/core-api/dma-api.rst
-> +++ b/Documentation/core-api/dma-api.rst
-> @@ -516,48 +516,53 @@ routines, e.g.:::
->         }
->
->
-> -Part II - Advanced dma usage
-> -----------------------------
-> +Part II - Non-coherent DMA allocations
-> +--------------------------------------
->
-> -Warning: These pieces of the DMA API should not be used in the
-> -majority of cases, since they cater for unlikely corner cases that
-> -don't belong in usual drivers.
-> +These APIs allow to allocate pages that can be used like normal pages
-> +in the kernel direct mapping, but are guaranteed to be DMA addressable.
-
-Could we elaborate a bit more on what "like normal pages in kernel
-direct mapping" mean from the driver perspective?
-
->
->  If you don't understand how cache line coherency works between a
->  processor and an I/O device, you should not be using this part of the
-> -API at all.
-> +API.
->
->  ::
->
->         void *
-> -       dma_alloc_attrs(struct device *dev, size_t size, dma_addr_t *dma_handle,
-> -                       gfp_t flag, unsigned long attrs)
-> +       dma_alloc_pages(struct device *dev, size_t size, dma_addr_t *dma_handle,
-> +                       enum dma_data_direction dir, gfp_t gfp)
+>  drivers/gpu/drm/drm_dp_helper.c         | 32 +++++++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dp.c | 14 ++---------
+>  include/drm/drm_dp_helper.h             |  3 +++
+>  3 files changed, 37 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
+> index 4c21cf69dad5a..9703b33599c3b 100644
+> --- a/drivers/gpu/drm/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/drm_dp_helper.c
+> @@ -423,6 +423,38 @@ bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
+>  }
+>  EXPORT_SYMBOL(drm_dp_send_real_edid_checksum);
+>  
+> +/**
+> + * drm_dp_downstream_read_info() - read DPCD downstream port info if available
+> + * @aux: DisplayPort AUX channel
+> + * @dpcd: A cached copy of the port's DPCD
+> + * @downstream_ports: buffer to store the downstream port info in
+> + *
+> + * Returns: 0 if either the downstream port info was read successfully or
+> + * there was no downstream info to read, or a negative error code otherwise.
+> + */
+> +int drm_dp_downstream_read_info(struct drm_dp_aux *aux,
+> +				const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> +				u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS])
+> +{
+> +	int ret;
+> +	u8 len;
 > +
-> +This routine allocates a region of <size> bytes of consistent memory.  It
-> +returns a pointer to the allocated region (in the processor's virtual address
-> +space) or NULL if the allocation failed. The returned memory is guanteed to
-> +behave like memory allocated using alloc_pages.
+> +	memset(downstream_ports, 0, DP_MAX_DOWNSTREAM_PORTS);
+> +
+> +	/* No downstream info to read */
+> +	if (!drm_dp_is_branch(dpcd) ||
+> +	    dpcd[DP_DPCD_REV] < DP_DPCD_REV_10 ||
+> +	    !(dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DWN_STRM_PORT_PRESENT))
+> +		return 0;
+> +
+> +	len = (dpcd[DP_DOWN_STREAM_PORT_COUNT] & DP_PORT_COUNT_MASK) * 4;
 
-There is one aspect that the existing dma_alloc_attrs() handles, but
-this new function doesn't: IOMMU support. The function will always
-allocate a physically-contiguous block memory, which is a costly
-operation and not even guaranteed to succeed, even if enough free
-memory is available.
+I'm having a hard time rationalizing DP_MAX_DOWNSTREAM_PORTS being 16, but only
+having 4 ports worth of data in the DP_DOWNSTREAM_PORT_* registers. Do you know
+what's supposed to happen if dpcd[DP_DOWN_STREAM_PORT_COUNT] is > 4?
 
-Modern SoCs employ IOMMUs to avoid the need to allocate
-physically-contiguous memory and those happen to be also the devices
-that could benefit from non-coherent allocations a lot. One of the
-tasks of the DMA API was making it possible to allocate suitable
-memory for a given device, without having the driver know about the
-SoC integration details, such as the presence of an IOMMU.
+Sean
 
-Today, dma_alloc_attrs() uses the .alloc callback of the dma_ops
-struct and the IOMMU-aware implementations, like the dma-iommu helpers
-[1], would allocate discontiguous pages. Therefore, while I see the
-DMA-aware page allocation functionality as a useful functionality on
-its own for scatter-gather-capable hardware, I believe it is not a
-complete replacement for dma_alloc_attrs() with the
-DMA_ATTR_NON_CONSISTENT attribute.
+> +	ret = drm_dp_dpcd_read(aux, DP_DOWNSTREAM_PORT_0, downstream_ports,
+> +			       len);
+> +
+> +	return ret == len ? 0 : -EIO;
+> +}
+> +EXPORT_SYMBOL(drm_dp_downstream_read_info);
+> +
+>  /**
+>   * drm_dp_downstream_max_clock() - extract branch device max
+>   *                                 pixel rate for legacy VGA
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 1e29d3a012856..984e49194ca31 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4685,18 +4685,8 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
+>  			return false;
+>  	}
+>  
+> -	if (!drm_dp_is_branch(intel_dp->dpcd))
+> -		return true; /* native DP sink */
+> -
+> -	if (intel_dp->dpcd[DP_DPCD_REV] == 0x10)
+> -		return true; /* no per-port downstream info */
+> -
+> -	if (drm_dp_dpcd_read(&intel_dp->aux, DP_DOWNSTREAM_PORT_0,
+> -			     intel_dp->downstream_ports,
+> -			     DP_MAX_DOWNSTREAM_PORTS) < 0)
+> -		return false; /* downstream port status fetch failed */
+> -
+> -	return true;
+> +	return drm_dp_downstream_read_info(&intel_dp->aux, intel_dp->dpcd,
+> +					   intel_dp->downstream_ports) == 0;
+>  }
+>  
+>  static bool
+> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+> index 5c28199248626..1349f16564ace 100644
+> --- a/include/drm/drm_dp_helper.h
+> +++ b/include/drm/drm_dp_helper.h
+> @@ -1613,6 +1613,9 @@ int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
+>  bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
+>  				    u8 real_edid_checksum);
+>  
+> +int drm_dp_downstream_read_info(struct drm_dp_aux *aux,
+> +				const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> +				u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS]);
+>  int drm_dp_downstream_max_clock(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+>  				const u8 port_cap[4]);
+>  int drm_dp_downstream_max_bpc(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> -- 
+> 2.26.2
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
-[1] https://elixir.bootlin.com/linux/v5.9-rc1/source/drivers/iommu/dma-iommu.c#L510
-
-Best regards,
-Tomasz
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
