@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH v2 1/2] drm/nouveau/kms/nv50-: Program
- notifier offset before requesting disp caps
-Date: Wed, 19 Aug 2020 23:56:30 +0000
-Message-ID: <20200819235631.172AD20888@mail.kernel.org>
-References: <20200807213405.442877-1-lyude@redhat.com>
+Subject: Re: [PATCH] drm/nouveau/kms/nv50-: Program notifier
+ offset before requesting disp caps
+Date: Wed, 19 Aug 2020 23:56:41 +0000
+Message-ID: <20200819235642.0BB6921744@mail.kernel.org>
+References: <20200806230129.324035-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200807213405.442877-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <20200806230129.324035-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
