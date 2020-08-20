@@ -1,8 +1,8 @@
 From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [RFC v2 18/20] drm/nouveau/kms: Don't change EDID when it
- hasn't actually changed
-Date: Thu, 20 Aug 2020 14:30:10 -0400
-Message-ID: <20200820183012.288794-19-lyude@redhat.com>
+Subject: [RFC v2 20/20] drm/nouveau/kms: Start using
+ drm_dp_read_dpcd_caps()
+Date: Thu, 20 Aug 2020 14:30:12 -0400
+Message-ID: <20200820183012.288794-21-lyude@redhat.com>
 References: <20200820183012.288794-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,158 +22,41 @@ To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FT
 Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Currently in nouveau_connector_ddc_detect() and
-nouveau_connector_detect_lvds(), we start the connector probing process
-by releasing the previous EDID and informing DRM of the change. However,
-since commit 5186421cbfe2 ("drm: Introduce epoch counter to
-drm_connector") drm_connector_update_edid_property() actually checks
-whether the new EDID we've specified is different from the previous one,
-and updates the connector's epoch accordingly if it is. But, because we
-always set the EDID to NULL first in nouveau_connector_ddc_detect() and
-nouveau_connector_detect_lvds() we end up making DRM think that the EDID
-changes every single time we do a connector probe - which isn't needed.
-
-So, let's fix this by not clearing the EDID at the start of the
-connector probing process, and instead simply changing or removing it
-once near the end of the probing process. This will help prevent us from
-sending unneeded hotplug events to userspace when nothing has actually
-changed.
+Now that we've extracted i915's code for reading both the normal DPCD
+caps and extended DPCD caps into a shared helper, let's start using this
+in nouveau to enable us to start checking extended DPCD caps for free.
 
 Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Reviewed-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_connector.c | 54 ++++++++++-----------
- 1 file changed, 27 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_dp.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 637e91594fbe8..49dd0cbc332ff 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -528,6 +528,17 @@ nouveau_connector_set_encoder(struct drm_connector *connector,
- 	}
- }
- 
-+static void
-+nouveau_connector_set_edid(struct nouveau_connector *nv_connector,
-+			   struct edid *edid)
-+{
-+	struct edid *old_edid = nv_connector->edid;
-+
-+	drm_connector_update_edid_property(&nv_connector->base, edid);
-+	kfree(old_edid);
-+	nv_connector->edid = edid;
-+}
-+
- static enum drm_connector_status
- nouveau_connector_detect(struct drm_connector *connector, bool force)
- {
-@@ -541,13 +552,6 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+index 89afc97ee2591..271a0a863a0e1 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dp.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+@@ -55,15 +55,13 @@ nouveau_dp_probe_dpcd(struct nouveau_connector *nv_connector,
  	int ret;
- 	enum drm_connector_status conn_status = connector_status_disconnected;
+ 	u8 *dpcd = outp->dp.dpcd;
  
--	/* Cleanup the previous EDID block. */
--	if (nv_connector->edid) {
--		drm_connector_update_edid_property(connector, NULL);
--		kfree(nv_connector->edid);
--		nv_connector->edid = NULL;
--	}
--
- 	/* Outputs are only polled while runtime active, so resuming the
- 	 * device here is unnecessary (and would deadlock upon runtime suspend
- 	 * because it waits for polling to finish). We do however, want to
-@@ -560,22 +564,23 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
- 		ret = pm_runtime_get_sync(dev->dev);
- 		if (ret < 0 && ret != -EACCES) {
- 			pm_runtime_put_autosuspend(dev->dev);
-+			nouveau_connector_set_edid(nv_connector, NULL);
- 			return conn_status;
- 		}
- 	}
- 
- 	nv_encoder = nouveau_connector_ddc_detect(connector);
- 	if (nv_encoder && (i2c = nv_encoder->i2c) != NULL) {
-+		struct edid *new_edid;
-+
- 		if ((vga_switcheroo_handler_flags() &
- 		     VGA_SWITCHEROO_CAN_SWITCH_DDC) &&
- 		    nv_connector->type == DCB_CONNECTOR_LVDS)
--			nv_connector->edid = drm_get_edid_switcheroo(connector,
--								     i2c);
-+			new_edid = drm_get_edid_switcheroo(connector, i2c);
- 		else
--			nv_connector->edid = drm_get_edid(connector, i2c);
-+			new_edid = drm_get_edid(connector, i2c);
- 
--		drm_connector_update_edid_property(connector,
--							nv_connector->edid);
-+		nouveau_connector_set_edid(nv_connector, new_edid);
- 		if (!nv_connector->edid) {
- 			NV_ERROR(drm, "DDC responded, but no EDID for %s\n",
- 				 connector->name);
-@@ -609,6 +614,8 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
- 		conn_status = connector_status_connected;
- 		drm_dp_cec_set_edid(&nv_connector->aux, nv_connector->edid);
- 		goto out;
-+	} else {
-+		nouveau_connector_set_edid(nv_connector, NULL);
- 	}
- 
- 	nv_encoder = nouveau_connector_of_detect(connector);
-@@ -652,18 +659,12 @@ nouveau_connector_detect_lvds(struct drm_connector *connector, bool force)
- 	struct nouveau_drm *drm = nouveau_drm(dev);
- 	struct nouveau_connector *nv_connector = nouveau_connector(connector);
- 	struct nouveau_encoder *nv_encoder = NULL;
-+	struct edid *edid = NULL;
- 	enum drm_connector_status status = connector_status_disconnected;
- 
--	/* Cleanup the previous EDID block. */
--	if (nv_connector->edid) {
--		drm_connector_update_edid_property(connector, NULL);
--		kfree(nv_connector->edid);
--		nv_connector->edid = NULL;
--	}
--
- 	nv_encoder = find_encoder(connector, DCB_OUTPUT_LVDS);
- 	if (!nv_encoder)
--		return connector_status_disconnected;
+-	ret = drm_dp_dpcd_read(aux, DP_DPCD_REV, dpcd, DP_RECEIVER_CAP_SIZE);
+-	if (ret == DP_RECEIVER_CAP_SIZE && dpcd[DP_DPCD_REV]) {
+-		ret = drm_dp_read_desc(aux, &outp->dp.desc,
+-				       drm_dp_is_branch(dpcd));
+-		if (ret < 0)
+-			goto out;
+-	} else {
++	ret = drm_dp_read_dpcd_caps(aux, dpcd);
++	if (ret < 0)
 +		goto out;
++
++	ret = drm_dp_read_desc(aux, &outp->dp.desc, drm_dp_is_branch(dpcd));
++	if (ret < 0)
+ 		goto out;
+-	}
  
- 	/* Try retrieving EDID via DDC */
- 	if (!drm->vbios.fp_no_ddc) {
-@@ -682,7 +683,8 @@ nouveau_connector_detect_lvds(struct drm_connector *connector, bool force)
- 	 * valid - it's not (rh#613284)
- 	 */
- 	if (nv_encoder->dcb->lvdsconf.use_acpi_for_edid) {
--		if ((nv_connector->edid = nouveau_acpi_edid(dev, connector))) {
-+		edid = nouveau_acpi_edid(dev, connector);
-+		if (edid) {
- 			status = connector_status_connected;
- 			goto out;
- 		}
-@@ -702,12 +704,10 @@ nouveau_connector_detect_lvds(struct drm_connector *connector, bool force)
- 	 * stored for the panel stored in them.
- 	 */
- 	if (!drm->vbios.fp_no_ddc) {
--		struct edid *edid =
--			(struct edid *)nouveau_bios_embedded_edid(dev);
-+		edid = (struct edid *)nouveau_bios_embedded_edid(dev);
- 		if (edid) {
--			nv_connector->edid =
--					kmemdup(edid, EDID_LENGTH, GFP_KERNEL);
--			if (nv_connector->edid)
-+			edid = kmemdup(edid, EDID_LENGTH, GFP_KERNEL);
-+			if (edid)
- 				status = connector_status_connected;
- 		}
- 	}
-@@ -720,7 +720,7 @@ nouveau_connector_detect_lvds(struct drm_connector *connector, bool force)
- 		status = connector_status_unknown;
- #endif
- 
--	drm_connector_update_edid_property(connector, nv_connector->edid);
-+	nouveau_connector_set_edid(nv_connector, edid);
- 	nouveau_connector_set_encoder(connector, nv_encoder);
- 	return status;
- }
+ 	if (nouveau_mst) {
+ 		mstm = outp->dp.mstm;
 -- 
 2.26.2
