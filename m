@@ -1,8 +1,8 @@
 From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Subject: Re: [RFC 19/20] drm/i915/dp: Extract
  drm_dp_read_dpcd_caps()
-Date: Thu, 20 Aug 2020 12:07:44 -0400
-Message-ID: <a8a6065678f7874abfde2a41ec891f31aa2a8e03.camel@redhat.com>
+Date: Thu, 20 Aug 2020 12:49:41 -0400
+Message-ID: <501a431dce94fdaa086324ed6660b1188e1f3390.camel@redhat.com>
 References: <20200811200457.134743-1-lyude@redhat.com>
  <20200811200457.134743-20-lyude@redhat.com>
  <20200819152914.GE46474@art_vandelay>
@@ -84,6 +84,9 @@ On Wed, 2020-08-19 at 11:29 -0400, Sean Paul wrote:
 > > +			      dpcd_ext[DP_DPCD_REV]);
 > 
 > Might be a good opportunity to convert all of these to drm_dbg_dp()?
+Oh also - thought about this as well, but this would be easier as a follow-up
+patch since we'd want to add a backpointer to the original DRM device (not 100%
+sure we can just determine the drm device parent from the aux device's parent)
 > 
 > > +		return 0;
 > > +	}
@@ -129,12 +132,6 @@ On Wed, 2020-08-19 at 11:29 -0400, Sean Paul wrote:
 > I wonder if we should just go with the "regular" dpcd caps we just read in
 > this
 > case?
-FWIW - we generally want to just abort on failed DPCD reads since if a device
-doesn't implement a feature like this, it'll usually read all zeroes. Failed
-DPCD reads are almost always just the result of something suddenly being
-disconnected (excluding some cases I've seen on MST, but I think those more have
-to do with us sending incorrect dpcd read/write requests...)
-
 > 
 > Regardless of my nits,
 > 
