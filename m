@@ -1,34 +1,36 @@
-From: Sasha Levin <sashal@kernel.org>
-Subject: Re: [PATCH v2 1/2] drm/nouveau/kms/nv50-: Program notifier offset before requesting disp caps
-Date: Wed, 19 Aug 2020 23:56:30 +0000
-Message-ID: <20200819235631.172AD20888__15867.7466841013$1597881413$gmane$org@mail.kernel.org>
-References: <20200807213405.442877-1-lyude@redhat.com>
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20200807213405.442877-1-lyude@redhat.com>
-Sender: stable-owner@vger.kernel.org
-To: Sasha Levin <sashal@kernel.org>, Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>stable@vger.kernel.org
+From: Christoph Hellwig <hch@lst.de>
+Subject: Re: [PATCH 05/28] media/v4l2: remove
+ V4L2-FLAG-MEMORY-NON-CONSISTENT
+Date: Thu, 20 Aug 2020 06:43:47 +0200
+Message-ID: <20200820044347.GA4533@lst.de>
+References: <20200819065555.1802761-1-hch@lst.de> <20200819065555.1802761-6-hch@lst.de> <CAAFQd5COLxjydDYrfx47ht8tj-aNPiaVnC+WyQA7nvpW4gs=ww@mail.gmail.com> <20200819135454.GA17098@lst.de> <CAAFQd5BuXP7t3d-Rwft85j=KTyXq7y4s24mQxLr=VoY9krEGZw@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-parisc-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CAAFQd5BuXP7t3d-Rwft85j=KTyXq7y4s24mQxLr=VoY9krEGZw@mail.gmail.com>
+Sender: linux-parisc-owner@vger.kernel.org
+To: Tomasz Figa <tfiga@chromium.org>
+Cc: Christoph Hellwig <hch@lst.de>, Mauro Carvalho Chehab <mchehab@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Pawel Osciak <pawel@osciak.com>, Marek Szyprowski <m.szyprowski@samsung.com>, Matt Porter <mporter@kernel.crashing.org>, "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>, Tom Lendacky <thomas.lendacky@amd.com>, alsa-devel@alsa-project.org, linux-samsung-soc <linux-samsung-soc@vger.kernel.org>, linux-ia64@vger.kernel.org, linux-scsi@vger
 List-Id: nouveau.vger.kernel.org
 
-Hi
+On Wed, Aug 19, 2020 at 03:57:53PM +0200, Tomasz Figa wrote:
+> > > Could you explain what makes you think it's unused? It's a feature of
+> > > the UAPI generally supported by the videobuf2 framework and relied on
+> > > by Chromium OS to get any kind of reasonable performance when
+> > > accessing V4L2 buffers in the userspace.
+> >
+> > Because it doesn't do anything except on PARISC and non-coherent MIPS,
+> > so by definition it isn't used by any of these media drivers.
+> 
+> It's still an UAPI feature, so we can't simply remove the flag, it
+> must stay there as a no-op, until the problem is resolved.
 
-[This is an automated email]
+Ok, I'll switch to just ignoring it for the next version.
 
-This commit has been processed because it contains a "Fixes:" tag
-fixing commit: 4a2cb4181b07 ("drm/nouveau/kms/nv50-: Probe SOR and PIOR caps for DP interlacing support").
+> Also, it of course might be disputable as an out-of-tree usage, but
+> selecting CONFIG_DMA_NONCOHERENT_CACHE_SYNC makes the flag actually do
+> something on other platforms, including ARM64.
 
-The bot has tested the following trees: v5.8.1.
-
-v5.8.1: Failed to apply! Possible dependencies:
-    3c43c362b3a5 ("drm/nouveau/kms/nv50-: convert core caps_init() to new push macros")
-    5e691222eac6 ("drm/nouveau/kms/nv50-: convert core init() to new push macros")
-    d8b24526ef68 ("drm/nouveau/kms/nv50-: use NVIDIA's headers for core caps_init()")
-
-
-NOTE: The patch will not be queued to stable trees until it is upstream.
-
-How should we proceed with this patch?
-
--- 
-Thanks
-Sasha
+It isn't just disputable, but by kernel policies simply is not relevant.
