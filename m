@@ -1,46 +1,128 @@
-From: Tomasz Figa <tfiga@chromium.org>
-Subject: Re: [PATCH 05/28] media/v4l2: remove V4L2-FLAG-MEMORY-NON-CONSISTENT
-Date: Thu, 20 Aug 2020 19:41:03 +0200
-Message-ID: <CAAFQd5BcH-_S=WDvqYvSPxMvQuN5atO8q=xktbMaPS-DOCAYbw@mail.gmail.com>
-References: <20200819065555.1802761-1-hch@lst.de> <20200819065555.1802761-6-hch@lst.de>
- <CAAFQd5COLxjydDYrfx47ht8tj-aNPiaVnC+WyQA7nvpW4gs=ww@mail.gmail.com>
- <62e4f4fc-c8a5-3ee8-c576-fe7178cb4356@arm.com> <CAAFQd5AcCTDguB2C9KyDiutXWoEvBL8tL7+a==Uo8vj_8CLOJw@mail.gmail.com>
- <2b32f1d8-16f7-3352-40a5-420993d52fb5@arm.com> <20200820050214.GA4815@lst.de>
- <CAAFQd5AknYpP5BamC=wJkEJyO-q47V6Gc+HT65h6B+HyT+-xjQ@mail.gmail.com> <20200820165213.GC12693@lst.de>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [RFC v2 00/20] drm/dp, i915,
+ nouveau: Cleanup nouveau HPD and add DP features from i915
+Date: Thu, 20 Aug 2020 14:29:52 -0400
+Message-ID: <20200820183012.288794-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-samsung-soc-owner@vger.kernel.org>
-In-Reply-To: <20200820165213.GC12693@lst.de>
-Sender: linux-samsung-soc-owner@vger.kernel.org
-To: Christoph Hellwig <hch@lst.de>
-Cc: Robin Murphy <robin.murphy@arm.com>, alsa-devel@alsa-project.org, linux-ia64@vger.kernel.org, Linux Doc Mailing List <linux-doc@vger.kernel.org>, nouveau@lists.freedesktop.org, linux-nvme@lists.infradead.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, linux-mm@kvack.org, Marek Szyprowski <m.szyprowski@samsung.com>, linux-samsung-soc <linux-samsung-soc@vger.kernel.org>, Joonyoung Shim <jy0922.shim@samsung.com>, linux-scsi@vger.kernel.org, Kyungmin Park <kyungmin.park@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Matt Porter <mporter@kernel.crashing.org>, Linux Media Mailing List <linux-media@vger.kernel.org>, Tom Lendacky <thomas.lendacky@amd.com>, Pawel Osciak <pawel@osciak.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Aug 20, 2020 at 6:52 PM Christoph Hellwig <hch@lst.de> wrote:
->
-> On Thu, Aug 20, 2020 at 12:24:31PM +0200, Tomasz Figa wrote:
-> > > Of course this still uses the scatterlist structure with its annoying
-> > > mix of input and output parametes, so I'd rather not expose it as
-> > > an official API at the DMA layer.
-> >
-> > The problem with the above open coded approach is that it requires
-> > explicit handling of the non-IOMMU and IOMMU cases and this is exactly
-> > what we don't want to have in vb2 and what was actually the job of the
-> > DMA API to hide. Is the plan to actually move the IOMMU handling out
-> > of the DMA API?
-> >
-> > Do you think we could instead turn it into a dma_alloc_noncoherent()
-> > helper, which has similar semantics as dma_alloc_attrs() and handles
-> > the various corner cases (e.g. invalidate_kernel_vmap_range and
-> > flush_kernel_vmap_range) to achieve the desired functionality without
-> > delegating the "hell", as you called it, to the users?
->
-> Yes, I guess I could do something in that direction.  At least for
-> dma-iommu, which thanks to Robin should be all you'll need in the
-> foreseeable future.
+To start off: this patch series is less work to review then it looks -
+most (but not all) of the nouveau related work has already been reviewed
+elsewhere. Most of the reason I'm asking for an RFC here is because this
+code pulls a lot of code out of i915 and into shared DP helpers.
 
-That would be really great. Let me know if we can help by testing with
-V4L2/vb2 or in any other way.
+Anyway-nouveau's HPD related code has been collecting dust for a while.
+Other then the occasional runtime PM related and MST related fixes,
+we're missing a lot of nice things that have been added to DRM since
+this was originally written. Additionally, the code is just really
+unoptimized in general:
 
-Best regards,
-Tomasz
+* We handle connector probing in the same context that we handle short
+  IRQs in for DP, which means connector probing could potentially block
+  ESI handling for MST
+* When we receive a hotplug event from a connector, we reprobe every
+  single connector instead of just the connector that was hotplugged
+* Additionally because of the above reason, combined with the fact I had
+  the bad idea of reusing some of the MST locks when I last rewrote
+  nouveau's DP MST detection, trying to handle any other events that
+  require short HPD IRQs is a bit awkward to actually implement.
+* We don't actually properly check whether EDIDs change or not when
+  reprobing, which means we basically send out a hotplug event every
+  single time we receive one even if nothing has changed
+
+Additionally, the code for handling DP that we have in nouveau is also
+quite unoptimized in general, doesn't use a lot of helpers that have
+been added since it was written, and is also missing quite a number of
+features:
+
+* Downstream port capability probing
+* Extended DPRX cap parsing
+* SINK_COUNT handling for hpd on dongles
+
+Luckily for us - all of these are implemented in i915 already. Since
+there's no reason for us to reinvent the wheel, and having more shared
+code is always nice, I decided to take the opportunity to extract the
+code for all of these features from i915 into a set of core DP helpers,
+which both i915 and nouveau (and hopefully other drivers in the future)
+can use.
+
+As well, this patch series also addesses the other general
+connector probing related issues I mentioned above, along with rewriting
+how we handle MST probing so we don't hit any surprise locking design
+issues in the future.
+
+As a note - most of this work is motivated by the fact that I'm
+planning on adding max_bpc/output_bpc prop support, DSC support (for
+both MST and SST, along with proper helpers for handling bandwidth
+limitations and DSC), and fallback link retraining. I figured I might as
+clean this code up and implement missing DP features like the ones
+mentioned here before moving on to those tasks.
+
+Also, I'm intending for this patch series to get merged through
+drm-misc-next. Once that happens, upstream maintainers will probably
+have an easier time with merging if they pull the pending patches for
+nouveau from Ben's tree before merging drm-misc-next.
+
+Lyude Paul (20):
+  drm/nouveau/kms: Fix some indenting in nouveau_dp_detect()
+  drm/nouveau/kms/nv50-: Remove open-coded drm_dp_read_desc()
+  drm/nouveau/kms/nv50-: Just use drm_dp_dpcd_read() in nouveau_dp.c
+  drm/nouveau/kms/nv50-: Use macros for DP registers in nouveau_dp.c
+  drm/nouveau/kms: Don't clear DP_MST_CTRL DPCD in nv50_mstm_new()
+  drm/nouveau/kms: Search for encoders' connectors properly
+  drm/nouveau/kms/nv50-: Use drm_dp_dpcd_(readb|writeb)() in
+    nv50_sor_disable()
+  drm/nouveau/kms/nv50-: Refactor and cleanup DP HPD handling
+  drm/i915/dp: Extract drm_dp_has_mst()
+  drm/nouveau/kms: Use new drm_dp_has_mst() helper for checking MST caps
+  drm/nouveau/kms: Move drm_dp_cec_unset_edid() into
+    nouveau_connector_detect()
+  drm/nouveau/kms: Only use hpd_work for reprobing in HPD paths
+  drm/i915/dp: Extract drm_dp_downstream_read_info()
+  drm/nouveau/kms/nv50-: Use downstream DP clock limits for mode
+    validation
+  drm/i915/dp: Extract drm_dp_has_sink_count()
+  drm/i915/dp: Extract drm_dp_get_sink_count()
+  drm/nouveau/kms/nv50-: Add support for DP_SINK_COUNT
+  drm/nouveau/kms: Don't change EDID when it hasn't actually changed
+  drm/i915/dp: Extract drm_dp_read_dpcd_caps()
+  drm/nouveau/kms: Start using drm_dp_read_dpcd_caps()
+
+ drivers/gpu/drm/drm_dp_helper.c             | 167 +++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.c     | 124 ++------
+ drivers/gpu/drm/i915/display/intel_dp.h     |   1 -
+ drivers/gpu/drm/i915/display/intel_lspcon.c |   2 +-
+ drivers/gpu/drm/nouveau/dispnv04/dac.c      |   2 +-
+ drivers/gpu/drm/nouveau/dispnv04/dfp.c      |   7 +-
+ drivers/gpu/drm/nouveau/dispnv04/disp.c     |  24 +-
+ drivers/gpu/drm/nouveau/dispnv04/disp.h     |   4 +
+ drivers/gpu/drm/nouveau/dispnv04/tvnv04.c   |   2 +-
+ drivers/gpu/drm/nouveau/dispnv04/tvnv17.c   |   2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c     | 306 +++++++++++---------
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 132 ++++-----
+ drivers/gpu/drm/nouveau/nouveau_connector.h |   1 +
+ drivers/gpu/drm/nouveau/nouveau_display.c   |  72 ++++-
+ drivers/gpu/drm/nouveau/nouveau_display.h   |   3 +-
+ drivers/gpu/drm/nouveau/nouveau_dp.c        | 211 +++++++++++---
+ drivers/gpu/drm/nouveau/nouveau_drm.c       |   4 +-
+ drivers/gpu/drm/nouveau/nouveau_drv.h       |   2 +
+ drivers/gpu/drm/nouveau/nouveau_encoder.h   |  48 ++-
+ include/drm/drm_dp_helper.h                 |  15 +-
+ include/drm/drm_dp_mst_helper.h             |  22 ++
+ 21 files changed, 760 insertions(+), 391 deletions(-)
+
+-- 
+2.26.2
