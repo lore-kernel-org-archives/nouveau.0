@@ -1,49 +1,38 @@
 From: Christoph Hellwig <hch@lst.de>
-Subject: Re: [PATCH 19/28] dma-mapping: replace DMA_ATTR_NON_CONSISTENT
- with dma_{alloc, free}_pages
-Date: Thu, 20 Aug 2020 07:15:12 +0200
-Message-ID: <20200820051512.GA5141@lst.de>
-References: <20200819065555.1802761-1-hch@lst.de> <20200819065555.1802761-20-hch@lst.de> <CAAFQd5Bbp-eAVKS1MKS8xtrT4ZoOmBPfZyw9mys=eOmDb6r8Lw@mail.gmail.com>
+Subject: Re: [PATCH 05/28] media/v4l2: remove
+ V4L2-FLAG-MEMORY-NON-CONSISTENT
+Date: Thu, 20 Aug 2020 07:20:04 +0200
+Message-ID: <20200820052004.GA5305@lst.de>
+References: <20200819065555.1802761-1-hch@lst.de> <20200819065555.1802761-6-hch@lst.de> <CAAFQd5COLxjydDYrfx47ht8tj-aNPiaVnC+WyQA7nvpW4gs=ww@mail.gmail.com> <20200819135454.GA17098@lst.de> <CAAFQd5BuXP7t3d-Rwft85j=KTyXq7y4s24mQxLr=VoY9krEGZw@mail.gmail.com> <20200820044347.GA4533@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-media-owner@vger.kernel.org>
+Return-path: <linux-ia64-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <CAAFQd5Bbp-eAVKS1MKS8xtrT4ZoOmBPfZyw9mys=eOmDb6r8Lw@mail.gmail.com>
-Sender: linux-media-owner@vger.kernel.org
+In-Reply-To: <20200820044347.GA4533@lst.de>
+Sender: linux-ia64-owner@vger.kernel.org
 To: Tomasz Figa <tfiga@chromium.org>
-Cc: Christoph Hellwig <hch@lst.de>, Mauro Carvalho Chehab <mchehab@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Pawel Osciak <pawel@osciak.com>, Marek Szyprowski <m.szyprowski@samsung.com>, Matt Porter <mporter@kernel.crashing.org>, "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>, Tom Lendacky <thomas.lendacky@amd.com>, alsa-devel@alsa-project.org, linux-samsung-soc <linux-samsung-soc@vger.kernel.org>, linux-ia64@vger.kernel.org, linux-scsi@vger
+Cc: alsa-devel@alsa-project.org, linux-ia64@vger.kernel.org, Linux Doc Mailing List <linux-doc@vger.kernel.org>, nouveau@lists.freedesktop.org, linux-nvme@lists.infradead.org, linux-mips@vger.kernel.org, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, linux-mm@kvack.org, Christoph Hellwig <hch@lst.de>, linux-samsung-soc <linux-samsung-soc@vger.kernel.org>, Joonyoung Shim <jy0922.shim@samsung.com>, linux-scsi@vger.kernel.org, Kyungmin Park <kyungmin.park@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Matt Porter <mporter@kernel.crashing.org>, Linux Media Mailing List <linux-media@vger.kernel.org>, Tom Lendacky <thomas.lendacky@amd.com>, Pawel Osciak <pawel@osciak.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, list@263.net:IOMMU DRIVERS <iommu@
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Aug 19, 2020 at 05:03:52PM +0200, Tomasz Figa wrote:
-> >
-> > -Warning: These pieces of the DMA API should not be used in the
-> > -majority of cases, since they cater for unlikely corner cases that
-> > -don't belong in usual drivers.
-> > +These APIs allow to allocate pages that can be used like normal pages
-> > +in the kernel direct mapping, but are guaranteed to be DMA addressable.
+On Thu, Aug 20, 2020 at 06:43:47AM +0200, Christoph Hellwig wrote:
+> On Wed, Aug 19, 2020 at 03:57:53PM +0200, Tomasz Figa wrote:
+> > > > Could you explain what makes you think it's unused? It's a feature of
+> > > > the UAPI generally supported by the videobuf2 framework and relied on
+> > > > by Chromium OS to get any kind of reasonable performance when
+> > > > accessing V4L2 buffers in the userspace.
+> > >
+> > > Because it doesn't do anything except on PARISC and non-coherent MIPS,
+> > > so by definition it isn't used by any of these media drivers.
+> > 
+> > It's still an UAPI feature, so we can't simply remove the flag, it
+> > must stay there as a no-op, until the problem is resolved.
 > 
-> Could we elaborate a bit more on what "like normal pages in kernel
-> direct mapping" mean from the driver perspective?
+> Ok, I'll switch to just ignoring it for the next version.
 
-It mostly means you can call virt_to_page and then do anything you'd
-do with a page struct.  Unlike dma_alloc_attrs that just return an
-opaque virtual address that the caller is not allowed to poke into.
-
-> There is one aspect that the existing dma_alloc_attrs() handles, but
-> this new function doesn't: IOMMU support. The function will always
-> allocate a physically-contiguous block memory, which is a costly
-> operation and not even guaranteed to succeed, even if enough free
-> memory is available.
-> 
-> Modern SoCs employ IOMMUs to avoid the need to allocate
-> physically-contiguous memory and those happen to be also the devices
-> that could benefit from non-coherent allocations a lot. One of the
-> tasks of the DMA API was making it possible to allocate suitable
-> memory for a given device, without having the driver know about the
-> SoC integration details, such as the presence of an IOMMU.
-
-This is completely out of scope for this API exactly because it
-guarantees a page in the direct mapping.  But see my previous mail
-in reply to Robin on how you can implement the funtionality you
-want right now without any help from the dma-mapping subsystem.
+So I took a deeper look.  I don't really think it qualifies as a UAPI
+in our traditional sense.  For one it only appeared in 5.9-rc1, so we
+can trivially expedite the patch into 5.9-rc and not actually make it
+show up in any released kernel version.  And even as of the current
+Linus' tree the only user is a test driver.  So I really think the best
+way to go ahead is to just revert it ASAP as the design wasn't thought
+out at all.
