@@ -1,11 +1,14 @@
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Moving LRU handling into Nouveau v3
-Date: Fri, 21 Aug 2020 18:00:47 +0200
-Message-ID: <20200821160050.1368-1-christian.koenig@amd.com>
+Subject: [PATCH 1/3] drm/ttm: make sure that we always zero init
+ mem.bus
+Date: Fri, 21 Aug 2020 18:00:48 +0200
+Message-ID: <20200821160050.1368-2-christian.koenig@amd.com>
+References: <20200821160050.1368-1-christian.koenig@amd.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200821160050.1368-1-christian.koenig-5C7GfCeVMHo@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,11 +21,30 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi guys,
-
-so I got some hardware and tested this and after hammering out tons of typos it now seems to work fine.
-
-Could you give it more testing?
-
-Thanks in advance,
-Christian
+V2UgYXJlIHRyeWluZyB0byByZW1vdmUgdGhlIGlvX2xydSBoYW5kbGluZyBhbmQgZGVwZW5kCm9u
+IHplcm8gaW5pdCBiYXNlIGFuZCBvZmZzZXQgaGVyZS4KClNpZ25lZC1vZmYtYnk6IENocmlzdGlh
+biBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
+dHRtL3R0bV9iby5jIHwgNiArKysrKysKIDEgZmlsZSBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKykK
+CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jIGIvZHJpdmVycy9ncHUv
+ZHJtL3R0bS90dG1fYm8uYwppbmRleCBlMzkzMWU1MTU5MDYuLjYwYjU4M2QwN2IwNCAxMDA2NDQK
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm8uYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
+dHRtL3R0bV9iby5jCkBAIC02NTAsNiArNjUwLDggQEAgc3RhdGljIGludCB0dG1fYm9fZXZpY3Qo
+c3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpibywKIAlldmljdF9tZW0ubW1fbm9kZSA9IE5VTEw7
+CiAJZXZpY3RfbWVtLmJ1cy5pb19yZXNlcnZlZF92bSA9IGZhbHNlOwogCWV2aWN0X21lbS5idXMu
+aW9fcmVzZXJ2ZWRfY291bnQgPSAwOworCWV2aWN0X21lbS5idXMuYmFzZSA9IDA7CisJZXZpY3Rf
+bWVtLmJ1cy5vZmZzZXQgPSAwOwogCiAJcmV0ID0gdHRtX2JvX21lbV9zcGFjZShibywgJnBsYWNl
+bWVudCwgJmV2aWN0X21lbSwgY3R4KTsKIAlpZiAocmV0KSB7CkBAIC0xMDg0LDYgKzEwODYsOCBA
+QCBzdGF0aWMgaW50IHR0bV9ib19tb3ZlX2J1ZmZlcihzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3Qg
+KmJvLAogCW1lbS5wYWdlX2FsaWdubWVudCA9IGJvLT5tZW0ucGFnZV9hbGlnbm1lbnQ7CiAJbWVt
+LmJ1cy5pb19yZXNlcnZlZF92bSA9IGZhbHNlOwogCW1lbS5idXMuaW9fcmVzZXJ2ZWRfY291bnQg
+PSAwOworCW1lbS5idXMuYmFzZSA9IDA7CisJbWVtLmJ1cy5vZmZzZXQgPSAwOwogCW1lbS5tbV9u
+b2RlID0gTlVMTDsKIAogCS8qCkBAIC0xMjQzLDYgKzEyNDcsOCBAQCBpbnQgdHRtX2JvX2luaXRf
+cmVzZXJ2ZWQoc3RydWN0IHR0bV9ib19kZXZpY2UgKmJkZXYsCiAJYm8tPm1lbS5wYWdlX2FsaWdu
+bWVudCA9IHBhZ2VfYWxpZ25tZW50OwogCWJvLT5tZW0uYnVzLmlvX3Jlc2VydmVkX3ZtID0gZmFs
+c2U7CiAJYm8tPm1lbS5idXMuaW9fcmVzZXJ2ZWRfY291bnQgPSAwOworCWJvLT5tZW0uYnVzLmJh
+c2UgPSAwOworCWJvLT5tZW0uYnVzLm9mZnNldCA9IDA7CiAJYm8tPm1vdmluZyA9IE5VTEw7CiAJ
+Ym8tPm1lbS5wbGFjZW1lbnQgPSAoVFRNX1BMX0ZMQUdfU1lTVEVNIHwgVFRNX1BMX0ZMQUdfQ0FD
+SEVEKTsKIAliby0+YWNjX3NpemUgPSBhY2Nfc2l6ZTsKLS0gCjIuMTcuMQoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
