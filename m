@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 5.8 50/62] drm/nouveau: Fix reference
- count leak in nouveau_connector_detect
-Date: Fri, 21 Aug 2020 12:14:11 -0400
-Message-ID: <20200821161423.347071-50-sashal@kernel.org>
-References: <20200821161423.347071-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.7 47/61] drm/nouveau/drm/noveau: fix
+ reference count leak in nouveau_fbcon_open
+Date: Fri, 21 Aug 2020 12:15:31 -0400
+Message-ID: <20200821161545.347622-47-sashal@kernel.org>
+References: <20200821161545.347622-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200821161423.347071-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <20200821161545.347622-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -24,9 +24,9 @@ List-Id: nouveau.vger.kernel.org
 
 From: Aditya Pakki <pakki001-OJFnDUYgAso@public.gmane.org>
 
-[ Upstream commit 990a1162986e8eff7ca18cc5a0e03b4304392ae2 ]
+[ Upstream commit bfad51c7633325b5d4b32444efe04329d53297b2 ]
 
-nouveau_connector_detect() calls pm_runtime_get_sync and in turn
+nouveau_fbcon_open() calls calls pm_runtime_get_sync() that
 increments the reference count. In case of failure, decrement the
 ref count before returning the error.
 
@@ -34,24 +34,24 @@ Signed-off-by: Aditya Pakki <pakki001-OJFnDUYgAso@public.gmane.org>
 Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_connector.c | 4 +++-
+ drivers/gpu/drm/nouveau/nouveau_fbcon.c | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 1b383ae0248f3..ef8ddbe445812 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -572,8 +572,10 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
- 		pm_runtime_get_noresume(dev->dev);
- 	} else {
- 		ret = pm_runtime_get_sync(dev->dev);
--		if (ret < 0 && ret != -EACCES)
-+		if (ret < 0 && ret != -EACCES) {
-+			pm_runtime_put_autosuspend(dev->dev);
- 			return conn_status;
-+		}
- 	}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+index 47883f225941d..8936b91aaeed9 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+@@ -189,8 +189,10 @@ nouveau_fbcon_open(struct fb_info *info, int user)
+ 	struct nouveau_fbdev *fbcon = info->par;
+ 	struct nouveau_drm *drm = nouveau_drm(fbcon->helper.dev);
+ 	int ret = pm_runtime_get_sync(drm->dev->dev);
+-	if (ret < 0 && ret != -EACCES)
++	if (ret < 0 && ret != -EACCES) {
++		pm_runtime_put(drm->dev->dev);
+ 		return ret;
++	}
+ 	return 0;
+ }
  
- 	nv_encoder = nouveau_connector_ddc_detect(connector);
 -- 
 2.25.1
