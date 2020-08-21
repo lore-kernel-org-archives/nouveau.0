@@ -1,8 +1,8 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 5.4 37/48] drm/nouveau: fix reference
- count leak in nv50_disp_atomic_commit
-Date: Fri, 21 Aug 2020 12:16:53 -0400
-Message-ID: <20200821161704.348164-37-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 38/48] drm/nouveau: Fix reference
+ count leak in nouveau_connector_detect
+Date: Fri, 21 Aug 2020 12:16:54 -0400
+Message-ID: <20200821161704.348164-38-sashal@kernel.org>
 References: <20200821161704.348164-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,9 +24,9 @@ List-Id: nouveau.vger.kernel.org
 
 From: Aditya Pakki <pakki001-OJFnDUYgAso@public.gmane.org>
 
-[ Upstream commit a2cdf39536b0d21fb06113f5e16692513d7bcb9c ]
+[ Upstream commit 990a1162986e8eff7ca18cc5a0e03b4304392ae2 ]
 
-nv50_disp_atomic_commit() calls calls pm_runtime_get_sync and in turn
+nouveau_connector_detect() calls pm_runtime_get_sync and in turn
 increments the reference count. In case of failure, decrement the
 ref count before returning the error.
 
@@ -34,24 +34,24 @@ Signed-off-by: Aditya Pakki <pakki001-OJFnDUYgAso@public.gmane.org>
 Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 4 +++-
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index d735ea7e2d886..419a02260bfa7 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -2032,8 +2032,10 @@ nv50_disp_atomic_commit(struct drm_device *dev,
- 	int ret, i;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index eb31c5b6c8e93..0994aee7671ad 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -568,8 +568,10 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
+ 		pm_runtime_get_noresume(dev->dev);
+ 	} else {
+ 		ret = pm_runtime_get_sync(dev->dev);
+-		if (ret < 0 && ret != -EACCES)
++		if (ret < 0 && ret != -EACCES) {
++			pm_runtime_put_autosuspend(dev->dev);
+ 			return conn_status;
++		}
+ 	}
  
- 	ret = pm_runtime_get_sync(dev->dev);
--	if (ret < 0 && ret != -EACCES)
-+	if (ret < 0 && ret != -EACCES) {
-+		pm_runtime_put_autosuspend(dev->dev);
- 		return ret;
-+	}
- 
- 	ret = drm_atomic_helper_setup_commit(state, nonblock);
- 	if (ret)
+ 	nv_encoder = nouveau_connector_ddc_detect(connector);
 -- 
 2.25.1
