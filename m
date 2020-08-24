@@ -1,69 +1,71 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 2/2] drm/nouveau/kms/nv50-: Log SOR/PIOR caps
-Date: Mon, 24 Aug 2020 14:32:53 -0400
-Message-ID: <20200824183253.826343-3-lyude@redhat.com>
-References: <20200824183253.826343-1-lyude@redhat.com>
+From: Alexander Kapshuk <alexander.kapshuk@gmail.com>
+Subject: nouveau PUSHBUFFER_ERR on 5.9.0-rc2-next-20200824
+Date: Mon, 24 Aug 2020 22:08:25 +0300
+Message-ID: <CAJ1xhMUpqtKMuGUZdComskTqd0oOKCfDuVQT3+c13u=NSJLkBw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200824183253.826343-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Manasi Navare <manasi.d.navare-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Cc: dri-devel <dri-devel@lists.freedesktop.org>, nouveau@lists.freedesktop.org, linux-kernel <linux-kernel@vger.kernel.org>, Linux-Next <linux-next@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-Since I'm almost certain I didn't get capability checking right for
-pre-volta chipsets, let's start logging any caps we find to make things
-like this obvious in the future.
+Since upgrading to linux-next based on 5.9.0-rc1 and 5.9.0-rc2 I have
+had my mouse pointer disappear soon after logging in, and I have
+observed the system freezing temporarily when clicking on objects and
+when typing text.
+I have also found records of push buffer errors in dmesg output:
+[ 6625.450394] nouveau 0000:01:00.0: disp: ERROR 1 [PUSHBUFFER_ERR] 02
+[] chid 0 mthd 0000 data 00000400
 
-Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
----
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+I tried setting CONFIG_NOUVEAU_DEBUG=5 (tracing) to try and collect
+further debug info, but nothing caught the eye.
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 800b7757252e3..6210ee1c145a2 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -258,6 +258,14 @@ evo_kick(u32 *push, struct nv50_dmac *evoc)
- /******************************************************************************
-  * Output path helpers
-  *****************************************************************************/
-+static void
-+nv50_outp_dump_caps(struct nouveau_drm *drm,
-+		    struct nouveau_encoder *outp)
-+{
-+	NV_DEBUG(drm, "%s caps: dp_interlace=%d\n",
-+		 outp->base.base.name, outp->caps.dp_interlace);
-+}
-+
- static void
- nv50_outp_release(struct nouveau_encoder *nv_encoder)
- {
-@@ -1715,6 +1723,7 @@ nv50_sor_create(struct drm_connector *connector, struct dcb_output *dcbe)
- 	drm_connector_attach_encoder(connector, encoder);
- 
- 	disp->core->func->sor->get_caps(disp, nv_encoder, ffs(dcbe->or) - 1);
-+	nv50_outp_dump_caps(drm, nv_encoder);
- 
- 	if (dcbe->type == DCB_OUTPUT_DP) {
- 		struct nvkm_i2c_aux *aux =
-@@ -1875,6 +1884,7 @@ nv50_pior_create(struct drm_connector *connector, struct dcb_output *dcbe)
- 	drm_connector_attach_encoder(connector, encoder);
- 
- 	disp->core->func->pior->get_caps(disp, nv_encoder, ffs(dcbe->or) - 1);
-+	nv50_outp_dump_caps(drm, nv_encoder);
- 
- 	return 0;
- }
--- 
-2.26.2
+The error message in question comes from nv50_disp_intr_error in
+drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c:613,645.
+And nv50_disp_intr_error is called from nv50_disp_intr in the
+following while block:
+drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c:647,658
+void
+nv50_disp_intr(struct nv50_disp *disp)
+{
+        struct nvkm_device *device = disp->base.engine.subdev.device;
+        u32 intr0 = nvkm_rd32(device, 0x610020);
+        u32 intr1 = nvkm_rd32(device, 0x610024);
+
+        while (intr0 & 0x001f0000) {
+                u32 chid = __ffs(intr0 & 0x001f0000) - 16;
+                nv50_disp_intr_error(disp, chid);
+                intr0 &= ~(0x00010000 << chid);
+        }
+...
+}
+
+Could this be in any way related to this series of commits?
+commit 0a96099691c8cd1ac0744ef30b6846869dc2b566
+Author: Ben Skeggs <bskeggs@redhat.com>
+Date:   Tue Jul 21 11:34:07 2020 +1000
+
+    drm/nouveau/kms/nv50-: implement proper push buffer control logic
+
+    We had a, what was supposed to be temporary, hack in the KMS code where we'd
+    completely drain an EVO/NVD channel's push buffer when wrapping to the start
+    again, instead of treating it as a ring buffer.
+
+    Let's fix that, finally.
+
+    Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
+
+Here are my GPU details:
+01:00.0 VGA compatible controller: NVIDIA Corporation GT216 [GeForce
+210] (rev a1)
+        Subsystem: Micro-Star International Co., Ltd. [MSI] Device 8a93
+        Kernel driver in use: nouveau
+
+The last linux-next kernel I built where the problem reported does not
+manifest itself is 5.8.0-rc6-next-20200720.
+
+I would appreciate being given any pointers on how to further debug this.
+Or is git bisect the only way to proceed with this?
+
+Thanks.
