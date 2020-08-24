@@ -1,71 +1,89 @@
-From: Alexander Kapshuk <alexander.kapshuk@gmail.com>
-Subject: nouveau PUSHBUFFER_ERR on 5.9.0-rc2-next-20200824
-Date: Mon, 24 Aug 2020 22:08:25 +0300
-Message-ID: <CAJ1xhMUpqtKMuGUZdComskTqd0oOKCfDuVQT3+c13u=NSJLkBw@mail.gmail.com>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [Nouveau] [PATCH 1/2] drm/nouveau/kms/nv50-: Program notifier
+ offset before requesting disp caps
+Date: Tue, 25 Aug 2020 08:28:56 +1000
+Message-ID: <CACAvsv6hymdcGkEcigL3fWACZ_1POpB+aefq9d9ChnYv_dHnVg@mail.gmail.com>
+References: <20200824183253.826343-1-lyude@redhat.com> <20200824183253.826343-2-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>, nouveau@lists.freedesktop.org, linux-kernel <linux-kernel@vger.kernel.org>, Linux-Next <linux-next@vger.kernel.org>
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20200824183253.826343-2-lyude@redhat.com>
+Sender: stable-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>
+Cc: ML nouveau <nouveau@lists.freedesktop.org>, Sasha Levin <sashal@kernel.org>, David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>, stable@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Since upgrading to linux-next based on 5.9.0-rc1 and 5.9.0-rc2 I have
-had my mouse pointer disappear soon after logging in, and I have
-observed the system freezing temporarily when clicking on objects and
-when typing text.
-I have also found records of push buffer errors in dmesg output:
-[ 6625.450394] nouveau 0000:01:00.0: disp: ERROR 1 [PUSHBUFFER_ERR] 02
-[] chid 0 mthd 0000 data 00000400
+On Tue, 25 Aug 2020 at 04:33, Lyude Paul <lyude@redhat.com> wrote:
+>
+> Not entirely sure why this never came up when I originally tested this
+> (maybe some BIOSes already have this setup?) but the ->caps_init vfunc
+> appears to cause the display engine to throw an exception on driver
+> init, at least on my ThinkPad P72:
+>
+> nouveau 0000:01:00.0: disp: chid 0 mthd 008c data 00000000 0000508c 0000102b
+>
+> This is magic nvidia speak for "You need to have the DMA notifier offset
+> programmed before you can call NV507D_GET_CAPABILITIES." So, let's fix
+> this by doing that, and also perform an update afterwards to prevent
+> racing with the GPU when reading capabilities.
+>
+> Changes since v1:
+> * Don't just program the DMA notifier offset, make sure to actually
+>   perform an update
+I'm not sure there's a need to send an Update() method here, I believe
+GetCapabilities() is an action method on its own right?
 
-I tried setting CONFIG_NOUVEAU_DEBUG=5 (tracing) to try and collect
-further debug info, but nothing caught the eye.
+Ben.
 
-The error message in question comes from nv50_disp_intr_error in
-drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c:613,645.
-And nv50_disp_intr_error is called from nv50_disp_intr in the
-following while block:
-drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c:647,658
-void
-nv50_disp_intr(struct nv50_disp *disp)
-{
-        struct nvkm_device *device = disp->base.engine.subdev.device;
-        u32 intr0 = nvkm_rd32(device, 0x610020);
-        u32 intr1 = nvkm_rd32(device, 0x610024);
-
-        while (intr0 & 0x001f0000) {
-                u32 chid = __ffs(intr0 & 0x001f0000) - 16;
-                nv50_disp_intr_error(disp, chid);
-                intr0 &= ~(0x00010000 << chid);
-        }
-...
-}
-
-Could this be in any way related to this series of commits?
-commit 0a96099691c8cd1ac0744ef30b6846869dc2b566
-Author: Ben Skeggs <bskeggs@redhat.com>
-Date:   Tue Jul 21 11:34:07 2020 +1000
-
-    drm/nouveau/kms/nv50-: implement proper push buffer control logic
-
-    We had a, what was supposed to be temporary, hack in the KMS code where we'd
-    completely drain an EVO/NVD channel's push buffer when wrapping to the start
-    again, instead of treating it as a ring buffer.
-
-    Let's fix that, finally.
-
-    Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
-
-Here are my GPU details:
-01:00.0 VGA compatible controller: NVIDIA Corporation GT216 [GeForce
-210] (rev a1)
-        Subsystem: Micro-Star International Co., Ltd. [MSI] Device 8a93
-        Kernel driver in use: nouveau
-
-The last linux-next kernel I built where the problem reported does not
-manifest itself is 5.8.0-rc6-next-20200720.
-
-I would appreciate being given any pointers on how to further debug this.
-Or is git bisect the only way to proceed with this?
-
-Thanks.
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Fixes: 4a2cb4181b07 ("drm/nouveau/kms/nv50-: Probe SOR and PIOR caps for DP interlacing support")
+> Cc: <stable@vger.kernel.org> # v5.8+
+> ---
+>  drivers/gpu/drm/nouveau/dispnv50/core507d.c | 25 ++++++++++++++++-----
+>  1 file changed, 19 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/core507d.c b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
+> index e341f572c2696..5e86feec3b720 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/core507d.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
+> @@ -65,13 +65,26 @@ core507d_ntfy_init(struct nouveau_bo *bo, u32 offset)
+>  int
+>  core507d_caps_init(struct nouveau_drm *drm, struct nv50_disp *disp)
+>  {
+> -       u32 *push = evo_wait(&disp->core->chan, 2);
+> +       struct nv50_core *core = disp->core;
+> +       u32 interlock[NV50_DISP_INTERLOCK__SIZE] = {0};
+> +       u32 *push;
+>
+> -       if (push) {
+> -               evo_mthd(push, 0x008c, 1);
+> -               evo_data(push, 0x0);
+> -               evo_kick(push, &disp->core->chan);
+> -       }
+> +       core->func->ntfy_init(disp->sync, NV50_DISP_CORE_NTFY);
+> +
+> +       push = evo_wait(&core->chan, 4);
+> +       if (!push)
+> +               return 0;
+> +
+> +       evo_mthd(push, 0x0084, 1);
+> +       evo_data(push, 0x80000000 | NV50_DISP_CORE_NTFY);
+> +       evo_mthd(push, 0x008c, 1);
+> +       evo_data(push, 0x0);
+> +       evo_kick(push, &core->chan);
+> +
+> +       core->func->update(core, interlock, false);
+> +       if (core->func->ntfy_wait_done(disp->sync, NV50_DISP_CORE_NTFY,
+> +                                      core->chan.base.device))
+> +               NV_ERROR(drm, "core notifier timeout\n");
+>
+>         return 0;
+>  }
+> --
+> 2.26.2
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
