@@ -1,163 +1,34 @@
-From: Sean Paul <sean@poorly.run>
-Subject: Re: [RFC v2 13/20] drm/i915/dp: Extract
- drm_dp_downstream_read_info()
-Date: Fri, 21 Aug 2020 15:27:15 -0400
-Message-ID: <CAMavQKL75YiiTn9woovnfUzTosYUQeBhTsJs6Ne0HxBQ4Ap6NA@mail.gmail.com>
-References: <20200820183012.288794-1-lyude@redhat.com>
- <20200820183012.288794-14-lyude@redhat.com>
+From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Moving LRU handling into Nouveau v3
+Date: Mon, 24 Aug 2020 17:26:43 +1000
+Message-ID: <CAPM=9tyip4mbTT_rjz115xGtMCLr4LTu2pu2G4n99mpx4VHWgQ@mail.gmail.com>
+References: <20200821160050.1368-1-christian.koenig@amd.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <20200820183012.288794-14-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Lyude Paul <lyude@redhat.com>
-Cc: David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Lucas De Marchi <lucas.demarchi@intel.com>, open list <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Wambui Karuga <wambui.karugax@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200821160050.1368-1-christian.koenig-5C7GfCeVMHo@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Aug 20, 2020 at 2:31 PM Lyude Paul <lyude@redhat.com> wrote:
->
-> We're going to be doing the same probing process in nouveau for
-> determining downstream DP port capabilities, so let's deduplicate the
-> work by moving i915's code for handling this into a shared helper:
-> drm_dp_downstream_read_info().
->
-> Note that when we do this, we also do make some functional changes while
-> we're at it:
-> * We always clear the downstream port info before trying to read it,
->   just to make things easier for the caller
-> * We skip reading downstream port info if the DPCD indicates that we
->   don't support downstream port info
-> * We only read as many bytes as needed for the reported number of
->   downstream ports, no sense in reading the whole thing every time
->
-> v2:
-> * Fixup logic for calculating the downstream port length to account for
->   the fact that downstream port caps can be either 1 byte or 4 bytes
->   long. We can actually skip fixing the max_clock/max_bpc helpers here
->   since they all check for DP_DETAILED_CAP_INFO_AVAILABLE anyway.
-> * Fix ret code check for drm_dp_dpcd_read
->
-
-Thanks for sorting this out!
-
-Reviewed-by: Sean Paul <sean@poorly.run>
-
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> ---
->  drivers/gpu/drm/drm_dp_helper.c         | 46 +++++++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_dp.c | 14 ++------
->  include/drm/drm_dp_helper.h             |  3 ++
->  3 files changed, 51 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-> index 4c21cf69dad5a..4f845995f1f66 100644
-> --- a/drivers/gpu/drm/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/drm_dp_helper.c
-> @@ -423,6 +423,52 @@ bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
->  }
->  EXPORT_SYMBOL(drm_dp_send_real_edid_checksum);
->
-> +static u8 drm_dp_downstream_port_count(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
-> +{
-> +       u8 port_count = dpcd[DP_DOWN_STREAM_PORT_COUNT] & DP_PORT_COUNT_MASK;
-> +
-> +       if (dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DETAILED_CAP_INFO_AVAILABLE && port_count > 4)
-> +               port_count = 4;
-> +
-> +       return port_count;
-> +}
-> +
-> +/**
-> + * drm_dp_downstream_read_info() - read DPCD downstream port info if available
-> + * @aux: DisplayPort AUX channel
-> + * @dpcd: A cached copy of the port's DPCD
-> + * @downstream_ports: buffer to store the downstream port info in
-> + *
-> + * Returns: 0 if either the downstream port info was read successfully or
-> + * there was no downstream info to read, or a negative error code otherwise.
-> + */
-> +int drm_dp_downstream_read_info(struct drm_dp_aux *aux,
-> +                               const u8 dpcd[DP_RECEIVER_CAP_SIZE],
-> +                               u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS])
-> +{
-> +       int ret;
-> +       u8 len;
-> +
-> +       memset(downstream_ports, 0, DP_MAX_DOWNSTREAM_PORTS);
-> +
-> +       /* No downstream info to read */
-> +       if (!drm_dp_is_branch(dpcd) ||
-> +           dpcd[DP_DPCD_REV] < DP_DPCD_REV_10 ||
-> +           !(dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DWN_STRM_PORT_PRESENT))
-> +               return 0;
-> +
-> +       len = drm_dp_downstream_port_count(dpcd);
-> +       if (dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DETAILED_CAP_INFO_AVAILABLE)
-> +               len *= 4;
-> +
-> +       ret = drm_dp_dpcd_read(aux, DP_DOWNSTREAM_PORT_0, downstream_ports, len);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       return ret == len ? 0 : -EIO;
-> +}
-> +EXPORT_SYMBOL(drm_dp_downstream_read_info);
-> +
->  /**
->   * drm_dp_downstream_max_clock() - extract branch device max
->   *                                 pixel rate for legacy VGA
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 1e29d3a012856..984e49194ca31 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -4685,18 +4685,8 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
->                         return false;
->         }
->
-> -       if (!drm_dp_is_branch(intel_dp->dpcd))
-> -               return true; /* native DP sink */
-> -
-> -       if (intel_dp->dpcd[DP_DPCD_REV] == 0x10)
-> -               return true; /* no per-port downstream info */
-> -
-> -       if (drm_dp_dpcd_read(&intel_dp->aux, DP_DOWNSTREAM_PORT_0,
-> -                            intel_dp->downstream_ports,
-> -                            DP_MAX_DOWNSTREAM_PORTS) < 0)
-> -               return false; /* downstream port status fetch failed */
-> -
-> -       return true;
-> +       return drm_dp_downstream_read_info(&intel_dp->aux, intel_dp->dpcd,
-> +                                          intel_dp->downstream_ports) == 0;
->  }
->
->  static bool
-> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> index 5c28199248626..1349f16564ace 100644
-> --- a/include/drm/drm_dp_helper.h
-> +++ b/include/drm/drm_dp_helper.h
-> @@ -1613,6 +1613,9 @@ int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
->  bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
->                                     u8 real_edid_checksum);
->
-> +int drm_dp_downstream_read_info(struct drm_dp_aux *aux,
-> +                               const u8 dpcd[DP_RECEIVER_CAP_SIZE],
-> +                               u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS]);
->  int drm_dp_downstream_max_clock(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
->                                 const u8 port_cap[4]);
->  int drm_dp_downstream_max_bpc(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
-> --
-> 2.26.2
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SSd2ZSBhbHNvIGdpdmVuIHRoaXMgYSBzcGluIGhlcmUsIHNlZW1zIHRvIGJlIG9rYXkuCgpJJ3Zl
+IHJlYWQgdGhlIHBhdGNoZXMgYW5kIHRoZXkgYWxsIHNlZW0gZmluZS4KUmV2aWV3ZWQtYnk6IERh
+dmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+CmZvciBhbGwgMyBwYXRjaGVzLgoKRGF2ZS4K
+Ck9uIFNhdCwgMjIgQXVnIDIwMjAgYXQgMDI6MDAsIENocmlzdGlhbiBLw7ZuaWcKPGNrb2VuaWcu
+bGVpY2h0enVtZXJrZW5AZ21haWwuY29tPiB3cm90ZToKPgo+IEhpIGd1eXMsCj4KPiBzbyBJIGdv
+dCBzb21lIGhhcmR3YXJlIGFuZCB0ZXN0ZWQgdGhpcyBhbmQgYWZ0ZXIgaGFtbWVyaW5nIG91dCB0
+b25zIG9mIHR5cG9zIGl0IG5vdyBzZWVtcyB0byB3b3JrIGZpbmUuCj4KPiBDb3VsZCB5b3UgZ2l2
+ZSBpdCBtb3JlIHRlc3Rpbmc/Cj4KPiBUaGFua3MgaW4gYWR2YW5jZSwKPiBDaHJpc3RpYW4KPgo+
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
+bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
