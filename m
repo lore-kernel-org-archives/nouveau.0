@@ -1,8 +1,7 @@
 From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 1/2] drm/nouveau/kms/nv50-: Program notifier
- offset before requesting disp caps
-Date: Mon, 24 Aug 2020 14:32:52 -0400
-Message-ID: <20200824183253.826343-2-lyude@redhat.com>
+Subject: [PATCH 2/2] drm/nouveau/kms/nv50-: Log SOR/PIOR caps
+Date: Mon, 24 Aug 2020 14:32:53 -0400
+Message-ID: <20200824183253.826343-3-lyude@redhat.com>
 References: <20200824183253.826343-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -19,66 +18,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Manasi Navare <manasi.d.navare-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Not entirely sure why this never came up when I originally tested this
-(maybe some BIOSes already have this setup?) but the ->caps_init vfunc
-appears to cause the display engine to throw an exception on driver
-init, at least on my ThinkPad P72:
-
-nouveau 0000:01:00.0: disp: chid 0 mthd 008c data 00000000 0000508c 0000102b
-
-This is magic nvidia speak for "You need to have the DMA notifier offset
-programmed before you can call NV507D_GET_CAPABILITIES." So, let's fix
-this by doing that, and also perform an update afterwards to prevent
-racing with the GPU when reading capabilities.
-
-Changes since v1:
-* Don't just program the DMA notifier offset, make sure to actually
-  perform an update
+Since I'm almost certain I didn't get capability checking right for
+pre-volta chipsets, let's start logging any caps we find to make things
+like this obvious in the future.
 
 Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Fixes: 4a2cb4181b07 ("drm/nouveau/kms/nv50-: Probe SOR and PIOR caps for DP interlacing support")
-Cc: <stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org> # v5.8+
 ---
- drivers/gpu/drm/nouveau/dispnv50/core507d.c | 25 ++++++++++++++++-----
- 1 file changed, 19 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/core507d.c b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
-index e341f572c2696..5e86feec3b720 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/core507d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
-@@ -65,13 +65,26 @@ core507d_ntfy_init(struct nouveau_bo *bo, u32 offset)
- int
- core507d_caps_init(struct nouveau_drm *drm, struct nv50_disp *disp)
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index 800b7757252e3..6210ee1c145a2 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -258,6 +258,14 @@ evo_kick(u32 *push, struct nv50_dmac *evoc)
+ /******************************************************************************
+  * Output path helpers
+  *****************************************************************************/
++static void
++nv50_outp_dump_caps(struct nouveau_drm *drm,
++		    struct nouveau_encoder *outp)
++{
++	NV_DEBUG(drm, "%s caps: dp_interlace=%d\n",
++		 outp->base.base.name, outp->caps.dp_interlace);
++}
++
+ static void
+ nv50_outp_release(struct nouveau_encoder *nv_encoder)
  {
--	u32 *push = evo_wait(&disp->core->chan, 2);
-+	struct nv50_core *core = disp->core;
-+	u32 interlock[NV50_DISP_INTERLOCK__SIZE] = {0};
-+	u32 *push;
+@@ -1715,6 +1723,7 @@ nv50_sor_create(struct drm_connector *connector, struct dcb_output *dcbe)
+ 	drm_connector_attach_encoder(connector, encoder);
  
--	if (push) {
--		evo_mthd(push, 0x008c, 1);
--		evo_data(push, 0x0);
--		evo_kick(push, &disp->core->chan);
--	}
-+	core->func->ntfy_init(disp->sync, NV50_DISP_CORE_NTFY);
-+
-+	push = evo_wait(&core->chan, 4);
-+	if (!push)
-+		return 0;
-+
-+	evo_mthd(push, 0x0084, 1);
-+	evo_data(push, 0x80000000 | NV50_DISP_CORE_NTFY);
-+	evo_mthd(push, 0x008c, 1);
-+	evo_data(push, 0x0);
-+	evo_kick(push, &core->chan);
-+
-+	core->func->update(core, interlock, false);
-+	if (core->func->ntfy_wait_done(disp->sync, NV50_DISP_CORE_NTFY,
-+				       core->chan.base.device))
-+		NV_ERROR(drm, "core notifier timeout\n");
+ 	disp->core->func->sor->get_caps(disp, nv_encoder, ffs(dcbe->or) - 1);
++	nv50_outp_dump_caps(drm, nv_encoder);
+ 
+ 	if (dcbe->type == DCB_OUTPUT_DP) {
+ 		struct nvkm_i2c_aux *aux =
+@@ -1875,6 +1884,7 @@ nv50_pior_create(struct drm_connector *connector, struct dcb_output *dcbe)
+ 	drm_connector_attach_encoder(connector, encoder);
+ 
+ 	disp->core->func->pior->get_caps(disp, nv_encoder, ffs(dcbe->or) - 1);
++	nv50_outp_dump_caps(drm, nv_encoder);
  
  	return 0;
  }
