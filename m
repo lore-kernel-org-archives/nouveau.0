@@ -1,23 +1,114 @@
-From: Christoph Hellwig <hch@lst.de>
-Subject: Re: a saner API for allocating DMA addressable pages
-Date: Tue, 25 Aug 2020 15:26:12 +0200
-Message-ID: <20200825132612.GA22318@lst.de>
-References: <CGME20200819065610eucas1p2fde88e81917071b1888e7cc01ba0f298@eucas1p2.samsung.com> <20200819065555.1802761-1-hch@lst.de> <8fa1ce36-c783-1a02-6890-211eb504a33b@samsung.com>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH 1/2] drm/nouveau/kms/nv50-: Program notifier
+ offset before requesting disp caps
+Date: Tue, 25 Aug 2020 12:52:05 -0400
+Message-ID: <76392bff28359a88fbdf0857f011e0ed9f666dc4.camel@redhat.com>
+References: <20200824183253.826343-1-lyude@redhat.com>
+ <20200824183253.826343-2-lyude@redhat.com>
+ <CACAvsv6hymdcGkEcigL3fWACZ_1POpB+aefq9d9ChnYv_dHnVg@mail.gmail.com>
+Reply-To: lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-doc-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <8fa1ce36-c783-1a02-6890-211eb504a33b@samsung.com>
-Sender: linux-doc-owner@vger.kernel.org
-To: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: Christoph Hellwig <hch@lst.de>, Mauro Carvalho Chehab <mchehab@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Pawel Osciak <pawel@osciak.com>, Matt Porter <mporter@kernel.crashing.org>, iommu@lists.linux-foundation.org, Tom Lendacky <thomas.lendacky@amd.com>, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-ia64@vger.kernel.org, linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org, linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CACAvsv6hymdcGkEcigL3fWACZ_1POpB+aefq9d9ChnYv_dHnVg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "open list:DRM DRIVER FOR NVIDIA
+ GEFORCE/QUADRO GPUS" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Aug 25, 2020 at 01:30:41PM +0200, Marek Szyprowski wrote:
-> I really wonder what is the difference between this new API and 
-> alloc_pages(GFP_DMA, n). Is this API really needed? I thought that this 
-> is legacy thing to be removed one day...
+On Tue, 2020-08-25 at 08:28 +1000, Ben Skeggs wrote:
+> On Tue, 25 Aug 2020 at 04:33, Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
+> > Not entirely sure why this never came up when I originally tested this
+> > (maybe some BIOSes already have this setup?) but the ->caps_init vfunc
+> > appears to cause the display engine to throw an exception on driver
+> > init, at least on my ThinkPad P72:
+> > 
+> > nouveau 0000:01:00.0: disp: chid 0 mthd 008c data 00000000 0000508c 0000102b
+> > 
+> > This is magic nvidia speak for "You need to have the DMA notifier offset
+> > programmed before you can call NV507D_GET_CAPABILITIES." So, let's fix
+> > this by doing that, and also perform an update afterwards to prevent
+> > racing with the GPU when reading capabilities.
+> > 
+> > Changes since v1:
+> > * Don't just program the DMA notifier offset, make sure to actually
+> >   perform an update
+> I'm not sure there's a need to send an Update() method here, I believe
+> GetCapabilities() is an action method on its own right?
+> 
 
-The difference is that the pages returned are guranteed to be addressable
-by the devie.  This is a very important difference that matters for
-a lot of use cases.
+I'm not entirely sure about this part tbh. I do know that we need to call
+GetCapabilities() _after_ the DMA notifier offset is programmed. But, my
+assumption was that if GetCapabilities() requires a DMA notifier offset to store
+its results in, we'd probably want to fire an update or something to make sure
+that we're not reading before it finishes writing capabilities?
+
+> Ben.
+> 
+> > Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> > Fixes: 4a2cb4181b07 ("drm/nouveau/kms/nv50-: Probe SOR and PIOR caps for DP
+> > interlacing support")
+> > Cc: <stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org> # v5.8+
+> > ---
+> >  drivers/gpu/drm/nouveau/dispnv50/core507d.c | 25 ++++++++++++++++-----
+> >  1 file changed, 19 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/nouveau/dispnv50/core507d.c
+> > b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
+> > index e341f572c2696..5e86feec3b720 100644
+> > --- a/drivers/gpu/drm/nouveau/dispnv50/core507d.c
+> > +++ b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
+> > @@ -65,13 +65,26 @@ core507d_ntfy_init(struct nouveau_bo *bo, u32 offset)
+> >  int
+> >  core507d_caps_init(struct nouveau_drm *drm, struct nv50_disp *disp)
+> >  {
+> > -       u32 *push = evo_wait(&disp->core->chan, 2);
+> > +       struct nv50_core *core = disp->core;
+> > +       u32 interlock[NV50_DISP_INTERLOCK__SIZE] = {0};
+> > +       u32 *push;
+> > 
+> > -       if (push) {
+> > -               evo_mthd(push, 0x008c, 1);
+> > -               evo_data(push, 0x0);
+> > -               evo_kick(push, &disp->core->chan);
+> > -       }
+> > +       core->func->ntfy_init(disp->sync, NV50_DISP_CORE_NTFY);
+> > +
+> > +       push = evo_wait(&core->chan, 4);
+> > +       if (!push)
+> > +               return 0;
+> > +
+> > +       evo_mthd(push, 0x0084, 1);
+> > +       evo_data(push, 0x80000000 | NV50_DISP_CORE_NTFY);
+> > +       evo_mthd(push, 0x008c, 1);
+> > +       evo_data(push, 0x0);
+> > +       evo_kick(push, &core->chan);
+> > +
+> > +       core->func->update(core, interlock, false);
+> > +       if (core->func->ntfy_wait_done(disp->sync, NV50_DISP_CORE_NTFY,
+> > +                                      core->chan.base.device))
+> > +               NV_ERROR(drm, "core notifier timeout\n");
+> > 
+> >         return 0;
+> >  }
+> > --
+> > 2.26.2
+> > 
+> > _______________________________________________
+> > Nouveau mailing list
+> > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> > https://lists.freedesktop.org/mailman/listinfo/nouveau
+-- 
+Sincerely,
+      Lyude Paul (she/her)
+      Software Engineer at Red Hat
