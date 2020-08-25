@@ -1,89 +1,65 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [Nouveau] [PATCH 1/2] drm/nouveau/kms/nv50-: Program notifier
- offset before requesting disp caps
-Date: Tue, 25 Aug 2020 08:28:56 +1000
-Message-ID: <CACAvsv6hymdcGkEcigL3fWACZ_1POpB+aefq9d9ChnYv_dHnVg@mail.gmail.com>
-References: <20200824183253.826343-1-lyude@redhat.com> <20200824183253.826343-2-lyude@redhat.com>
+From: Marek Szyprowski <m.szyprowski-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>
+Subject: Re: a saner API for allocating DMA addressable pages
+Date: Tue, 25 Aug 2020 13:30:41 +0200
+Message-ID: <8fa1ce36-c783-1a02-6890-211eb504a33b@samsung.com>
+References: <CGME20200819065610eucas1p2fde88e81917071b1888e7cc01ba0f298@eucas1p2.samsung.com>
+ <20200819065555.1802761-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20200824183253.826343-2-lyude@redhat.com>
-Sender: stable-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: ML nouveau <nouveau@lists.freedesktop.org>, Sasha Levin <sashal@kernel.org>, David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>, stable@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
+In-Reply-To: <20200819065555.1802761-1-hch-jcswGhMUV9g@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/iommu>,
+ <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.linuxfoundation.org/pipermail/iommu/>
+List-Post: <mailto:iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
+List-Help: <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/iommu>,
+ <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=subscribe>
+Errors-To: iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
+Sender: "iommu" <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
+To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Thomas Bogendoerfer <tsbogend-I1c7kopa9pxLokYuJOExCg@public.gmane.org>, "James E.J. Bottomley" <James.Bottomley-d9PhHud1JfjCXq6kfMZ53/egYHeGw8Jk@public.gmane.org>, Joonyoung Shim <jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Seung-Woo Kim <sw0312.kim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Kyungmin Park <kyungmin.park-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Pawel Osciak <pawel-FA/gS7QP4orQT0dZR+AlfA@public.gmane.org>, Matt Porter <mporter-XVmvHMARGAS8U2dJNN8I7kB+6BGkLq7r@public.gmane.org>, iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
+Cc: Tom Lendacky <thomas.lendacky-5C7GfCeVMHo@public.gmane.org>, alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-ia64-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-nvme-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 25 Aug 2020 at 04:33, Lyude Paul <lyude@redhat.com> wrote:
->
-> Not entirely sure why this never came up when I originally tested this
-> (maybe some BIOSes already have this setup?) but the ->caps_init vfunc
-> appears to cause the display engine to throw an exception on driver
-> init, at least on my ThinkPad P72:
->
-> nouveau 0000:01:00.0: disp: chid 0 mthd 008c data 00000000 0000508c 0000102b
->
-> This is magic nvidia speak for "You need to have the DMA notifier offset
-> programmed before you can call NV507D_GET_CAPABILITIES." So, let's fix
-> this by doing that, and also perform an update afterwards to prevent
-> racing with the GPU when reading capabilities.
->
-> Changes since v1:
-> * Don't just program the DMA notifier offset, make sure to actually
->   perform an update
-I'm not sure there's a need to send an Update() method here, I believe
-GetCapabilities() is an action method on its own right?
+Hi Christoph,
 
-Ben.
+On 19.08.2020 08:55, Christoph Hellwig wrote:
+> this series replaced the DMA_ATTR_NON_CONSISTENT flag to dma_alloc_attrs
+> with a separate new dma_alloc_pages API, which is available on all
+> platforms.  In addition to cleaning up the convoluted code path, this
+> ensures that other drivers that have asked for better support for
+> non-coherent DMA to pages with incurring bounce buffering over can finally
+> be properly supported.
+>
+> I'm still a little unsure about the API naming, as alloc_pages sort of
+> implies a struct page return value, but we return a kernel virtual
+> address.  The other alternative would be to name the API
+> dma_alloc_noncoherent, but the whole non-coherent naming seems to put
+> people off.  As a follow up I plan to move the implementation of the
+> DMA_ATTR_NO_KERNEL_MAPPING flag over to this framework as well, given
+> that is also is a fundamentally non coherent allocation.  The replacement
+> for that flag would then return a struct page, as it is allowed to
+> actually return pages without a kernel mapping as the name suggested
+> (although most of the time they will actually have a kernel mapping..)
+>
+> In addition to the conversions of the existing non-coherent DMA users
+> the last three patches also convert the DMA coherent allocations in
+> the NVMe driver to use this new framework through a dmapool addition.
+> This was both to give me a good testing vehicle, but also because it
+> should speed up the NVMe driver on platforms with non-coherent DMA
+> nicely, without a downside on platforms with cache coherent DMA.
 
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Fixes: 4a2cb4181b07 ("drm/nouveau/kms/nv50-: Probe SOR and PIOR caps for DP interlacing support")
-> Cc: <stable@vger.kernel.org> # v5.8+
-> ---
->  drivers/gpu/drm/nouveau/dispnv50/core507d.c | 25 ++++++++++++++++-----
->  1 file changed, 19 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/core507d.c b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
-> index e341f572c2696..5e86feec3b720 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/core507d.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
-> @@ -65,13 +65,26 @@ core507d_ntfy_init(struct nouveau_bo *bo, u32 offset)
->  int
->  core507d_caps_init(struct nouveau_drm *drm, struct nv50_disp *disp)
->  {
-> -       u32 *push = evo_wait(&disp->core->chan, 2);
-> +       struct nv50_core *core = disp->core;
-> +       u32 interlock[NV50_DISP_INTERLOCK__SIZE] = {0};
-> +       u32 *push;
->
-> -       if (push) {
-> -               evo_mthd(push, 0x008c, 1);
-> -               evo_data(push, 0x0);
-> -               evo_kick(push, &disp->core->chan);
-> -       }
-> +       core->func->ntfy_init(disp->sync, NV50_DISP_CORE_NTFY);
-> +
-> +       push = evo_wait(&core->chan, 4);
-> +       if (!push)
-> +               return 0;
-> +
-> +       evo_mthd(push, 0x0084, 1);
-> +       evo_data(push, 0x80000000 | NV50_DISP_CORE_NTFY);
-> +       evo_mthd(push, 0x008c, 1);
-> +       evo_data(push, 0x0);
-> +       evo_kick(push, &core->chan);
-> +
-> +       core->func->update(core, interlock, false);
-> +       if (core->func->ntfy_wait_done(disp->sync, NV50_DISP_CORE_NTFY,
-> +                                      core->chan.base.device))
-> +               NV_ERROR(drm, "core notifier timeout\n");
->
->         return 0;
->  }
-> --
-> 2.26.2
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+I really wonder what is the difference between this new API and 
+alloc_pages(GFP_DMA, n). Is this API really needed? I thought that this 
+is legacy thing to be removed one day...
+
+Maybe it would make more sense to convert the few remaining drivers to 
+regular dma_map_page()/dma_sync_*()/dma_unmap_page() or have I missed 
+something?
+
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
