@@ -1,59 +1,49 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [RFC v4 01/20] drm/nouveau/kms: Fix some indenting in
- nouveau_dp_detect()
-Date: Tue, 25 Aug 2020 15:50:08 -0400
-Message-ID: <20200825195027.74681-2-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [RFC v4 05/20] drm/nouveau/kms: Don't clear DP_MST_CTRL DPCD in nv50_mstm_new()
+Date: Tue, 25 Aug 2020 15:50:12 -0400
+Message-ID: <20200825195027.74681-6-lyude@redhat.com>
 References: <20200825195027.74681-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200825195027.74681-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200825195027.74681-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@gmail.com>, Alex Deucher <alexander.deucher@amd.com>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, Takashi Iwai <tiwai@suse.de>, James Jones <jajones@nvidia.com>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Reviewed-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_dp.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Since fa3cdf8d0b09 ("drm/nouveau: Reset MST branching unit before
+enabling") we've been clearing DP_MST_CTRL before we start enabling MST.
+Since then clearing DP_MST_CTRL in nv50_mstm_new() has been unnecessary
+and redundant, so let's remove it.
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
-index 8a0f7994e1aeb..ee778ddc95fae 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dp.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
-@@ -76,10 +76,10 @@ nouveau_dp_detect(struct nouveau_encoder *nv_encoder)
- 	nv_encoder->dp.link_nr = dpcd[2] & DP_MAX_LANE_COUNT_MASK;
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Reviewed-by: Ben Skeggs <bskeggs@redhat.com>
+---
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 11 -----------
+ 1 file changed, 11 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index e7874877da858..c4d138f0ca054 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -1535,17 +1535,6 @@ nv50_mstm_new(struct nouveau_encoder *outp, struct drm_dp_aux *aux, int aux_max,
+ 	struct drm_device *dev = outp->base.base.dev;
+ 	struct nv50_mstm *mstm;
+ 	int ret;
+-	u8 dpcd;
+-
+-	/* This is a workaround for some monitors not functioning
+-	 * correctly in MST mode on initial module load.  I think
+-	 * some bad interaction with the VBIOS may be responsible.
+-	 *
+-	 * A good ol' off and on again seems to work here ;)
+-	 */
+-	ret = drm_dp_dpcd_readb(aux, DP_DPCD_REV, &dpcd);
+-	if (ret >= 0 && dpcd >= 0x12)
+-		drm_dp_dpcd_writeb(aux, DP_MSTM_CTRL, 0);
  
- 	NV_DEBUG(drm, "display: %dx%d dpcd 0x%02x\n",
--		     nv_encoder->dp.link_nr, nv_encoder->dp.link_bw, dpcd[0]);
-+		 nv_encoder->dp.link_nr, nv_encoder->dp.link_bw, dpcd[0]);
- 	NV_DEBUG(drm, "encoder: %dx%d\n",
--		     nv_encoder->dcb->dpconf.link_nr,
--		     nv_encoder->dcb->dpconf.link_bw);
-+		 nv_encoder->dcb->dpconf.link_nr,
-+		 nv_encoder->dcb->dpconf.link_bw);
- 
- 	if (nv_encoder->dcb->dpconf.link_nr < nv_encoder->dp.link_nr)
- 		nv_encoder->dp.link_nr = nv_encoder->dcb->dpconf.link_nr;
-@@ -87,7 +87,7 @@ nouveau_dp_detect(struct nouveau_encoder *nv_encoder)
- 		nv_encoder->dp.link_bw = nv_encoder->dcb->dpconf.link_bw;
- 
- 	NV_DEBUG(drm, "maximum: %dx%d\n",
--		     nv_encoder->dp.link_nr, nv_encoder->dp.link_bw);
-+		 nv_encoder->dp.link_nr, nv_encoder->dp.link_bw);
- 
- 	nouveau_dp_probe_oui(dev, aux, dpcd);
- 
+ 	if (!(mstm = *pmstm = kzalloc(sizeof(*mstm), GFP_KERNEL)))
+ 		return -ENOMEM;
 -- 
 2.26.2
