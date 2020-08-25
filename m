@@ -1,131 +1,436 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [RFC v4 02/20] drm/nouveau/kms/nv50-: Remove open-coded
- drm_dp_read_desc()
-Date: Tue, 25 Aug 2020 15:50:09 -0400
-Message-ID: <20200825195027.74681-3-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [RFC v4 06/20] drm/nouveau/kms: Search for encoders'
+ connectors properly
+Date: Tue, 25 Aug 2020 15:50:13 -0400
+Message-ID: <20200825195027.74681-7-lyude@redhat.com>
 References: <20200825195027.74681-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200825195027.74681-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20200825195027.74681-1-lyude@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, James Jones <jajones@nvidia.com>, YueHaibing <yuehaibing@huawei.com>, open list <linux-kernel@vger.kernel.org>, Takashi Iwai <tiwai@suse.de>, Ben Skeggs <bskeggs@redhat.com>, Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Nirmoy Das <nirmoy.aiemd@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
-Noticed this while going through our DP code - we use an open-coded
-version of drm_dp_read_desc() instead of just using the helper, so
-change that. This will also let us use quirks in the future if we end up
-needing them.
+While the way we find the associated connector for an encoder is just
+fine for legacy modesetting, it's not correct for nv50+ since that uses
+atomic modesetting. For reference, see the drm_encoder kdocs.
 
-Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Reviewed-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Fix this by removing nouveau_encoder_connector_get(), and replacing it
+with nv04_encoder_get_connector(), nv50_outp_get_old_connector(), and
+nv50_outp_get_new_connector().
+
+v2:
+* Don't line-wrap for_each_(old|new)_connector_in_state in
+  nv50_outp_get_(old|new)_connector() - sravn
+v3:
+* Fix potential uninitialized usage of nv_connector (needs to be
+  initialized to NULL at the start). Thanks kernel test robot!
+v4:
+* Actually fix uninitialized nv_connector usage in
+  nv50_audio_component_get_eld(). The previous fix wouldn't have worked
+  since we would have started out with nv_connector == NULL, but
+  wouldn't clear it after a single drm_for_each_encoder() iteration.
+  Thanks again Kernel bot!
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Reviewed-by: Ben Skeggs <bskeggs@redhat.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_connector.c |  3 ++-
- drivers/gpu/drm/nouveau/nouveau_dp.c        | 30 +++++++--------------
- drivers/gpu/drm/nouveau/nouveau_encoder.h   |  4 ++-
- 3 files changed, 14 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv04/dac.c      |  2 +-
+ drivers/gpu/drm/nouveau/dispnv04/dfp.c      |  7 +-
+ drivers/gpu/drm/nouveau/dispnv04/disp.c     | 18 +++++
+ drivers/gpu/drm/nouveau/dispnv04/disp.h     |  4 +
+ drivers/gpu/drm/nouveau/dispnv04/tvnv04.c   |  2 +-
+ drivers/gpu/drm/nouveau/dispnv04/tvnv17.c   |  2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c     | 88 +++++++++++++++++----
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 14 ----
+ drivers/gpu/drm/nouveau/nouveau_encoder.h   |  6 +-
+ 9 files changed, 105 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 7674025a4bfe8..e12957e6faa7c 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -435,7 +435,8 @@ nouveau_connector_ddc_detect(struct drm_connector *connector)
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/dac.c b/drivers/gpu/drm/nouveau/dispnv04/dac.c
+index ffdd447d87068..22d10f3285597 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/dac.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/dac.c
+@@ -419,7 +419,7 @@ static void nv04_dac_commit(struct drm_encoder *encoder)
+ 	helper->dpms(encoder, DRM_MODE_DPMS_ON);
  
- 		switch (nv_encoder->dcb->type) {
- 		case DCB_OUTPUT_DP:
--			ret = nouveau_dp_detect(nv_encoder);
-+			ret = nouveau_dp_detect(nouveau_connector(connector),
-+						nv_encoder);
- 			if (ret == NOUVEAU_DP_MST)
- 				return NULL;
- 			else if (ret == NOUVEAU_DP_SST)
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
-index ee778ddc95fae..c4e9c21d4dd2b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dp.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
-@@ -36,27 +36,9 @@ MODULE_PARM_DESC(mst, "Enable DisplayPort multi-stream (default: enabled)");
- static int nouveau_mst = 1;
- module_param_named(mst, nouveau_mst, int, 0400);
+ 	NV_DEBUG(drm, "Output %s is running on CRTC %d using output %c\n",
+-		 nouveau_encoder_connector_get(nv_encoder)->base.name,
++		 nv04_encoder_get_connector(nv_encoder)->base.name,
+ 		 nv_crtc->index, '@' + ffs(nv_encoder->dcb->or));
+ }
  
--static void
--nouveau_dp_probe_oui(struct drm_device *dev, struct nvkm_i2c_aux *aux, u8 *dpcd)
--{
--	struct nouveau_drm *drm = nouveau_drm(dev);
--	u8 buf[3];
--
--	if (!(dpcd[DP_DOWN_STREAM_PORT_COUNT] & DP_OUI_SUPPORT))
--		return;
--
--	if (!nvkm_rdaux(aux, DP_SINK_OUI, buf, 3))
--		NV_DEBUG(drm, "Sink OUI: %02hx%02hx%02hx\n",
--			     buf[0], buf[1], buf[2]);
--
--	if (!nvkm_rdaux(aux, DP_BRANCH_OUI, buf, 3))
--		NV_DEBUG(drm, "Branch OUI: %02hx%02hx%02hx\n",
--			     buf[0], buf[1], buf[2]);
--
--}
--
- int
--nouveau_dp_detect(struct nouveau_encoder *nv_encoder)
-+nouveau_dp_detect(struct nouveau_connector *nv_connector,
-+		  struct nouveau_encoder *nv_encoder)
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/dfp.c b/drivers/gpu/drm/nouveau/dispnv04/dfp.c
+index f9f4482c79b54..42687ea2a4ca3 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/dfp.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/dfp.c
+@@ -184,7 +184,8 @@ static bool nv04_dfp_mode_fixup(struct drm_encoder *encoder,
+ 				struct drm_display_mode *adjusted_mode)
  {
- 	struct drm_device *dev = nv_encoder->base.base.dev;
- 	struct nouveau_drm *drm = nouveau_drm(dev);
-@@ -89,7 +71,13 @@ nouveau_dp_detect(struct nouveau_encoder *nv_encoder)
- 	NV_DEBUG(drm, "maximum: %dx%d\n",
- 		 nv_encoder->dp.link_nr, nv_encoder->dp.link_bw);
+ 	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
+-	struct nouveau_connector *nv_connector = nouveau_encoder_connector_get(nv_encoder);
++	struct nouveau_connector *nv_connector =
++		nv04_encoder_get_connector(nv_encoder);
  
--	nouveau_dp_probe_oui(dev, aux, dpcd);
-+	ret = drm_dp_read_desc(&nv_connector->aux, &nv_encoder->dp.desc,
-+			       drm_dp_is_branch(dpcd));
-+	if (ret) {
-+		NV_ERROR(drm, "Failed to read DP descriptor on %s: %d\n",
-+			 nv_connector->base.name, ret);
-+		return ret;
+ 	if (!nv_connector->native_mode ||
+ 	    nv_connector->scaling_mode == DRM_MODE_SCALE_NONE ||
+@@ -478,7 +479,7 @@ static void nv04_dfp_commit(struct drm_encoder *encoder)
+ 	helper->dpms(encoder, DRM_MODE_DPMS_ON);
+ 
+ 	NV_DEBUG(drm, "Output %s is running on CRTC %d using output %c\n",
+-		 nouveau_encoder_connector_get(nv_encoder)->base.name,
++		 nv04_encoder_get_connector(nv_encoder)->base.name,
+ 		 nv_crtc->index, '@' + ffs(nv_encoder->dcb->or));
+ }
+ 
+@@ -591,7 +592,7 @@ static void nv04_dfp_restore(struct drm_encoder *encoder)
+ 
+ 	if (nv_encoder->dcb->type == DCB_OUTPUT_LVDS) {
+ 		struct nouveau_connector *connector =
+-			nouveau_encoder_connector_get(nv_encoder);
++			nv04_encoder_get_connector(nv_encoder);
+ 
+ 		if (connector && connector->native_mode)
+ 			call_lvds_script(dev, nv_encoder->dcb, head,
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/disp.c b/drivers/gpu/drm/nouveau/dispnv04/disp.c
+index 900ab69df7e8f..3f046b917c85c 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/disp.c
+@@ -35,6 +35,24 @@
+ 
+ #include <nvif/if0004.h>
+ 
++struct nouveau_connector *
++nv04_encoder_get_connector(struct nouveau_encoder *encoder)
++{
++	struct drm_device *dev = to_drm_encoder(encoder)->dev;
++	struct drm_connector *connector;
++	struct drm_connector_list_iter conn_iter;
++	struct nouveau_connector *nv_connector = NULL;
++
++	drm_connector_list_iter_begin(dev, &conn_iter);
++	drm_for_each_connector_iter(connector, &conn_iter) {
++		if (connector->encoder == to_drm_encoder(encoder))
++			nv_connector = nouveau_connector(connector);
 +	}
++	drm_connector_list_iter_end(&conn_iter);
++
++	return nv_connector;
++}
++
+ static void
+ nv04_display_fini(struct drm_device *dev, bool suspend)
+ {
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/disp.h b/drivers/gpu/drm/nouveau/dispnv04/disp.h
+index 495d3284e8766..5ace5e906949a 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/disp.h
++++ b/drivers/gpu/drm/nouveau/dispnv04/disp.h
+@@ -6,6 +6,8 @@
  
- 	ret = nv50_mstm_detect(nv_encoder->dp.mstm, dpcd, nouveau_mst);
- 	if (ret == 1)
-diff --git a/drivers/gpu/drm/nouveau/nouveau_encoder.h b/drivers/gpu/drm/nouveau/nouveau_encoder.h
-index a72c412ac8b14..6424cdcb4913f 100644
---- a/drivers/gpu/drm/nouveau/nouveau_encoder.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_encoder.h
-@@ -33,6 +33,7 @@
- #include <drm/drm_dp_mst_helper.h>
- #include "dispnv04/disp.h"
- struct nv50_head_atom;
-+struct nouveau_connector;
+ #include "nouveau_display.h"
  
- #define NV_DPMS_CLEARED 0x80
++struct nouveau_encoder;
++
+ enum nv04_fp_display_regs {
+ 	FP_DISPLAY_END,
+ 	FP_TOTAL,
+@@ -93,6 +95,8 @@ nv04_display(struct drm_device *dev)
  
-@@ -64,6 +65,7 @@ struct nouveau_encoder {
- 			struct nv50_mstm *mstm;
- 			int link_nr;
- 			int link_bw;
-+			struct drm_dp_desc desc;
- 		} dp;
+ /* nv04_display.c */
+ int nv04_display_create(struct drm_device *);
++struct nouveau_connector *
++nv04_encoder_get_connector(struct nouveau_encoder *nv_encoder);
+ 
+ /* nv04_crtc.c */
+ int nv04_crtc_create(struct drm_device *, int index);
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/tvnv04.c b/drivers/gpu/drm/nouveau/dispnv04/tvnv04.c
+index b701a4d8fe760..3ba7b59580d59 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/tvnv04.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/tvnv04.c
+@@ -172,7 +172,7 @@ static void nv04_tv_commit(struct drm_encoder *encoder)
+ 	helper->dpms(encoder, DRM_MODE_DPMS_ON);
+ 
+ 	NV_DEBUG(drm, "Output %s is running on CRTC %d using output %c\n",
+-		 nouveau_encoder_connector_get(nv_encoder)->base.name,
++		 nv04_encoder_get_connector(nv_encoder)->base.name,
+ 		 nv_crtc->index, '@' + ffs(nv_encoder->dcb->or));
+ }
+ 
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+index 3a9489ed6544f..be28e7bd74903 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+@@ -599,7 +599,7 @@ static void nv17_tv_commit(struct drm_encoder *encoder)
+ 	helper->dpms(encoder, DRM_MODE_DPMS_ON);
+ 
+ 	NV_INFO(drm, "Output %s is running on CRTC %d using output %c\n",
+-		nouveau_encoder_connector_get(nv_encoder)->base.name,
++		nv04_encoder_get_connector(nv_encoder)->base.name,
+ 		nv_crtc->index, '@' + ffs(nv_encoder->dcb->or));
+ }
+ 
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index c4d138f0ca054..255a281249bc8 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -411,6 +411,40 @@ nv50_outp_atomic_check(struct drm_encoder *encoder,
+ 	return 0;
+ }
+ 
++struct nouveau_connector *
++nv50_outp_get_new_connector(struct nouveau_encoder *outp,
++			    struct drm_atomic_state *state)
++{
++	struct drm_connector *connector;
++	struct drm_connector_state *connector_state;
++	struct drm_encoder *encoder = to_drm_encoder(outp);
++	int i;
++
++	for_each_new_connector_in_state(state, connector, connector_state, i) {
++		if (connector_state->best_encoder == encoder)
++			return nouveau_connector(connector);
++	}
++
++	return NULL;
++}
++
++struct nouveau_connector *
++nv50_outp_get_old_connector(struct nouveau_encoder *outp,
++			    struct drm_atomic_state *state)
++{
++	struct drm_connector *connector;
++	struct drm_connector_state *connector_state;
++	struct drm_encoder *encoder = to_drm_encoder(outp);
++	int i;
++
++	for_each_old_connector_in_state(state, connector, connector_state, i) {
++		if (connector_state->best_encoder == encoder)
++			return nouveau_connector(connector);
++	}
++
++	return NULL;
++}
++
+ /******************************************************************************
+  * DAC
+  *****************************************************************************/
+@@ -552,16 +586,31 @@ nv50_audio_component_get_eld(struct device *kdev, int port, int dev_id,
+ 	struct nouveau_drm *drm = nouveau_drm(drm_dev);
+ 	struct drm_encoder *encoder;
+ 	struct nouveau_encoder *nv_encoder;
+-	struct nouveau_connector *nv_connector;
++	struct drm_connector *connector;
+ 	struct nouveau_crtc *nv_crtc;
++	struct drm_connector_list_iter conn_iter;
+ 	int ret = 0;
+ 
+ 	*enabled = false;
++
+ 	drm_for_each_encoder(encoder, drm->dev) {
++		struct nouveau_connector *nv_connector = NULL;
++
+ 		nv_encoder = nouveau_encoder(encoder);
+-		nv_connector = nouveau_encoder_connector_get(nv_encoder);
++
++		drm_connector_list_iter_begin(drm_dev, &conn_iter);
++		drm_for_each_connector_iter(connector, &conn_iter) {
++			if (connector->state->best_encoder == encoder) {
++				nv_connector = nouveau_connector(connector);
++				break;
++			}
++		}
++		drm_connector_list_iter_end(&conn_iter);
++		if (!nv_connector)
++			continue;
++
+ 		nv_crtc = nouveau_crtc(encoder->crtc);
+-		if (!nv_connector || !nv_crtc || nv_encoder->or != port ||
++		if (!nv_crtc || nv_encoder->or != port ||
+ 		    nv_crtc->index != dev_id)
+ 			continue;
+ 		*enabled = nv_encoder->audio;
+@@ -572,6 +621,7 @@ nv50_audio_component_get_eld(struct device *kdev, int port, int dev_id,
+ 		}
+ 		break;
+ 	}
++
+ 	return ret;
+ }
+ 
+@@ -665,7 +715,8 @@ nv50_audio_disable(struct drm_encoder *encoder, struct nouveau_crtc *nv_crtc)
+ }
+ 
+ static void
+-nv50_audio_enable(struct drm_encoder *encoder, struct drm_display_mode *mode)
++nv50_audio_enable(struct drm_encoder *encoder, struct drm_atomic_state *state,
++		  struct drm_display_mode *mode)
+ {
+ 	struct nouveau_drm *drm = nouveau_drm(encoder->dev);
+ 	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
+@@ -686,7 +737,7 @@ nv50_audio_enable(struct drm_encoder *encoder, struct drm_display_mode *mode)
+ 				     (0x0100 << nv_crtc->index),
  	};
  
-@@ -104,7 +106,7 @@ enum nouveau_dp_status {
- 	NOUVEAU_DP_MST,
+-	nv_connector = nouveau_encoder_connector_get(nv_encoder);
++	nv_connector = nv50_outp_get_new_connector(nv_encoder, state);
+ 	if (!drm_detect_monitor_audio(nv_connector->edid))
+ 		return;
+ 
+@@ -723,7 +774,8 @@ nv50_hdmi_disable(struct drm_encoder *encoder, struct nouveau_crtc *nv_crtc)
+ }
+ 
+ static void
+-nv50_hdmi_enable(struct drm_encoder *encoder, struct drm_display_mode *mode)
++nv50_hdmi_enable(struct drm_encoder *encoder, struct drm_atomic_state *state,
++		 struct drm_display_mode *mode)
+ {
+ 	struct nouveau_drm *drm = nouveau_drm(encoder->dev);
+ 	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
+@@ -752,7 +804,7 @@ nv50_hdmi_enable(struct drm_encoder *encoder, struct drm_display_mode *mode)
+ 	int ret;
+ 	int size;
+ 
+-	nv_connector = nouveau_encoder_connector_get(nv_encoder);
++	nv_connector = nv50_outp_get_new_connector(nv_encoder, state);
+ 	if (!drm_detect_hdmi_monitor(nv_connector->edid))
+ 		return;
+ 
+@@ -798,7 +850,7 @@ nv50_hdmi_enable(struct drm_encoder *encoder, struct drm_display_mode *mode)
+ 		+ args.pwr.vendor_infoframe_length;
+ 	nvif_mthd(&disp->disp->object, 0, &args, size);
+ 
+-	nv50_audio_enable(encoder, mode);
++	nv50_audio_enable(encoder, state, mode);
+ 
+ 	/* If SCDC is supported by the downstream monitor, update
+ 	 * divider / scrambling settings to what we programmed above.
+@@ -1573,7 +1625,8 @@ nv50_sor_update(struct nouveau_encoder *nv_encoder, u8 head,
+ }
+ 
+ static void
+-nv50_sor_disable(struct drm_encoder *encoder)
++nv50_sor_disable(struct drm_encoder *encoder,
++		 struct drm_atomic_state *state)
+ {
+ 	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
+ 	struct nouveau_crtc *nv_crtc = nouveau_crtc(nv_encoder->crtc);
+@@ -1601,7 +1654,8 @@ nv50_sor_disable(struct drm_encoder *encoder)
+ }
+ 
+ static void
+-nv50_sor_enable(struct drm_encoder *encoder)
++nv50_sor_enable(struct drm_encoder *encoder,
++		struct drm_atomic_state *state)
+ {
+ 	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
+ 	struct nouveau_crtc *nv_crtc = nouveau_crtc(encoder->crtc);
+@@ -1625,7 +1679,7 @@ nv50_sor_enable(struct drm_encoder *encoder)
+ 	u8 proto = NV507D_SOR_SET_CONTROL_PROTOCOL_CUSTOM;
+ 	u8 depth = NV837D_SOR_SET_CONTROL_PIXEL_DEPTH_DEFAULT;
+ 
+-	nv_connector = nouveau_encoder_connector_get(nv_encoder);
++	nv_connector = nv50_outp_get_new_connector(nv_encoder, state);
+ 	nv_encoder->crtc = encoder->crtc;
+ 
+ 	if ((disp->disp->object.oclass == GT214_DISP ||
+@@ -1652,7 +1706,7 @@ nv50_sor_enable(struct drm_encoder *encoder)
+ 			proto = NV507D_SOR_SET_CONTROL_PROTOCOL_SINGLE_TMDS_B;
+ 		}
+ 
+-		nv50_hdmi_enable(&nv_encoder->base.base, mode);
++		nv50_hdmi_enable(&nv_encoder->base.base, state, mode);
+ 		break;
+ 	case DCB_OUTPUT_LVDS:
+ 		proto = NV507D_SOR_SET_CONTROL_PROTOCOL_LVDS_CUSTOM;
+@@ -1693,7 +1747,7 @@ nv50_sor_enable(struct drm_encoder *encoder)
+ 		else
+ 			proto = NV887D_SOR_SET_CONTROL_PROTOCOL_DP_B;
+ 
+-		nv50_audio_enable(encoder, mode);
++		nv50_audio_enable(encoder, state, mode);
+ 		break;
+ 	default:
+ 		BUG();
+@@ -1706,8 +1760,8 @@ nv50_sor_enable(struct drm_encoder *encoder)
+ static const struct drm_encoder_helper_funcs
+ nv50_sor_help = {
+ 	.atomic_check = nv50_outp_atomic_check,
+-	.enable = nv50_sor_enable,
+-	.disable = nv50_sor_disable,
++	.atomic_enable = nv50_sor_enable,
++	.atomic_disable = nv50_sor_disable,
  };
  
--int nouveau_dp_detect(struct nouveau_encoder *);
-+int nouveau_dp_detect(struct nouveau_connector *, struct nouveau_encoder *);
- enum drm_mode_status nv50_dp_mode_valid(struct drm_connector *,
- 					struct nouveau_encoder *,
- 					const struct drm_display_mode *,
+ static void
+@@ -2066,7 +2120,7 @@ nv50_disp_atomic_commit_tail(struct drm_atomic_state *state)
+ 			  outp->clr.mask, outp->set.mask);
+ 
+ 		if (outp->clr.mask) {
+-			help->disable(encoder);
++			help->atomic_disable(encoder, state);
+ 			interlock[NV50_DISP_INTERLOCK_CORE] |= 1;
+ 			if (outp->flush_disable) {
+ 				nv50_disp_atomic_commit_wndw(state, interlock);
+@@ -2105,7 +2159,7 @@ nv50_disp_atomic_commit_tail(struct drm_atomic_state *state)
+ 			  outp->set.mask, outp->clr.mask);
+ 
+ 		if (outp->set.mask) {
+-			help->enable(encoder);
++			help->atomic_enable(encoder, state);
+ 			interlock[NV50_DISP_INTERLOCK_CORE] = 1;
+ 		}
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index e12957e6faa7c..1d5696c39792a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -391,20 +391,6 @@ find_encoder(struct drm_connector *connector, int type)
+ 	return NULL;
+ }
+ 
+-struct nouveau_connector *
+-nouveau_encoder_connector_get(struct nouveau_encoder *encoder)
+-{
+-	struct drm_device *dev = to_drm_encoder(encoder)->dev;
+-	struct drm_connector *drm_connector;
+-
+-	list_for_each_entry(drm_connector, &dev->mode_config.connector_list, head) {
+-		if (drm_connector->encoder == to_drm_encoder(encoder))
+-			return nouveau_connector(drm_connector);
+-	}
+-
+-	return NULL;
+-}
+-
+ static void
+ nouveau_connector_destroy(struct drm_connector *connector)
+ {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_encoder.h b/drivers/gpu/drm/nouveau/nouveau_encoder.h
+index 6424cdcb4913f..b0e1dad2367d6 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_encoder.h
++++ b/drivers/gpu/drm/nouveau/nouveau_encoder.h
+@@ -113,7 +113,11 @@ enum drm_mode_status nv50_dp_mode_valid(struct drm_connector *,
+ 					unsigned *clock);
+ 
+ struct nouveau_connector *
+-nouveau_encoder_connector_get(struct nouveau_encoder *encoder);
++nv50_outp_get_new_connector(struct nouveau_encoder *outp,
++			    struct drm_atomic_state *state);
++struct nouveau_connector *
++nv50_outp_get_old_connector(struct nouveau_encoder *outp,
++			    struct drm_atomic_state *state);
+ 
+ int nv50_mstm_detect(struct nv50_mstm *, u8 dpcd[8], int allow);
+ void nv50_mstm_remove(struct nv50_mstm *);
 -- 
 2.26.2
