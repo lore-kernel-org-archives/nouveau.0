@@ -1,134 +1,313 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v5 09/20] drm/i915/dp: Extract
- drm_dp_read_mst_cap()
-Date: Wed, 26 Aug 2020 14:24:45 -0400
-Message-ID: <20200826182456.322681-10-lyude@redhat.com>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v5 12/20] drm/nouveau/kms: Only use hpd_work for
+ reprobing in HPD paths
+Date: Wed, 26 Aug 2020 14:24:48 -0400
+Message-ID: <20200826182456.322681-13-lyude@redhat.com>
 References: <20200826182456.322681-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <20200826182456.322681-1-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>, open list <linux-kernel@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>, Wambui Karuga <wambui.karugax@gmail.com>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200826182456.322681-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Just a tiny drive-by cleanup, we can consolidate i915's code for
-checking for MST support into a helper to be shared across drivers.
+Currently we perform both short IRQ handling for DP, and connector
+reprobing in the HPD IRQ handler. However since we need to grab
+connection_mutex in order to reprobe a connector, in theory we could
+accidentally block ourselves from handling any short IRQs until after a
+modeset completes if a connector hotplug happens to occur in parallel
+with a modeset.
 
-v5:
-* Drop !!()
-* Move drm_dp_has_mst() out of header
-* Change name from drm_dp_has_mst() to drm_dp_read_mst_cap()
+I haven't seen this actually happen yet, but since we're cleaning up
+nouveau's hotplug handling code anyway and we already have a hpd worker,
+we can simply fix this by only relying on the HPD worker to actually
+reprobe connectors when we receive a HPD IRQ. We also add a mask to
+nouveau_drm to keep track of which connectors are waiting to be reprobed
+in response to an HPD IRQ.
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Reviewed-by: Sean Paul <sean@poorly.run>
+Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Reviewed-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/drm_dp_mst_topology.c   | 22 ++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.c | 18 ++----------------
- include/drm/drm_dp_mst_helper.h         |  3 +--
- 3 files changed, 25 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 42 +++++--------
+ drivers/gpu/drm/nouveau/nouveau_connector.h |  1 +
+ drivers/gpu/drm/nouveau/nouveau_display.c   | 70 ++++++++++++++++++---
+ drivers/gpu/drm/nouveau/nouveau_display.h   |  1 +
+ drivers/gpu/drm/nouveau/nouveau_dp.c        |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c       |  4 +-
+ drivers/gpu/drm/nouveau/nouveau_drv.h       |  2 +
+ 7 files changed, 86 insertions(+), 36 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-index 67dd72ea200e0..17dbed0a9800d 100644
---- a/drivers/gpu/drm/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-@@ -3486,6 +3486,28 @@ static int drm_dp_get_vc_payload_bw(u8 dp_link_bw, u8  dp_link_count)
- 	return dp_link_bw * dp_link_count / 2;
- }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 4a29f691c08e4..637e91594fbe8 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -1138,6 +1138,20 @@ nouveau_connector_funcs_lvds = {
+ 	.early_unregister = nouveau_connector_early_unregister,
+ };
  
-+/**
-+ * drm_dp_read_mst_cap() - check whether or not a sink supports MST
-+ * @aux: The DP AUX channel to use
-+ * @dpcd: A cached copy of the DPCD capabilities for this sink
-+ *
-+ * Returns: %True if the sink supports MST, %false otherwise
-+ */
-+bool drm_dp_read_mst_cap(struct drm_dp_aux *aux,
-+			 const u8 dpcd[DP_RECEIVER_CAP_SIZE])
++void
++nouveau_connector_hpd(struct drm_connector *connector)
 +{
-+	u8 mstm_cap;
++	struct nouveau_drm *drm = nouveau_drm(connector->dev);
++	u32 mask = drm_connector_mask(connector);
 +
-+	if (dpcd[DP_DPCD_REV] < DP_DPCD_REV_12)
-+		return false;
-+
-+	if (drm_dp_dpcd_readb(aux, DP_MSTM_CAP, &mstm_cap) != 1)
-+		return false;
-+
-+	return mstm_cap & DP_MST_CAP;
++	mutex_lock(&drm->hpd_lock);
++	if (!(drm->hpd_pending & mask)) {
++		drm->hpd_pending |= mask;
++		schedule_work(&drm->hpd_work);
++	}
++	mutex_unlock(&drm->hpd_lock);
 +}
-+EXPORT_SYMBOL(drm_dp_read_mst_cap);
 +
- /**
-  * drm_dp_mst_topology_mgr_set_mst() - Set the MST state for a topology manager
-  * @mgr: manager to set state for
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 79c27f91f42c0..4c7314b7a84e4 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4699,20 +4699,6 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
- 	return true;
- }
- 
--static bool
--intel_dp_sink_can_mst(struct intel_dp *intel_dp)
--{
--	u8 mstm_cap;
--
--	if (intel_dp->dpcd[DP_DPCD_REV] < 0x12)
--		return false;
--
--	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_MSTM_CAP, &mstm_cap) != 1)
--		return false;
--
--	return mstm_cap & DP_MST_CAP;
--}
--
- static bool
- intel_dp_can_mst(struct intel_dp *intel_dp)
+ static int
+ nouveau_connector_hotplug(struct nvif_notify *notify)
  {
-@@ -4720,7 +4706,7 @@ intel_dp_can_mst(struct intel_dp *intel_dp)
+@@ -1147,8 +1161,6 @@ nouveau_connector_hotplug(struct nvif_notify *notify)
+ 	struct drm_device *dev = connector->dev;
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	const struct nvif_notify_conn_rep_v0 *rep = notify->data;
+-	const char *name = connector->name;
+-	int ret;
+ 	bool plugged = (rep->mask != NVIF_NOTIFY_CONN_V0_UNPLUG);
  
- 	return i915->params.enable_dp_mst &&
- 		intel_dp->can_mst &&
--		intel_dp_sink_can_mst(intel_dp);
-+		drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dpcd);
+ 	if (rep->mask & NVIF_NOTIFY_CONN_V0_IRQ) {
+@@ -1156,31 +1168,9 @@ nouveau_connector_hotplug(struct nvif_notify *notify)
+ 		return NVIF_NOTIFY_KEEP;
+ 	}
+ 
+-	ret = pm_runtime_get(drm->dev->dev);
+-	if (ret == 0) {
+-		/* We can't block here if there's a pending PM request
+-		 * running, as we'll deadlock nouveau_display_fini() when it
+-		 * calls nvif_put() on our nvif_notify struct. So, simply
+-		 * defer the hotplug event until the device finishes resuming
+-		 */
+-		NV_DEBUG(drm, "Deferring HPD on %s until runtime resume\n",
+-			 name);
+-		schedule_work(&drm->hpd_work);
+-
+-		pm_runtime_put_noidle(drm->dev->dev);
+-		return NVIF_NOTIFY_KEEP;
+-	} else if (ret != 1 && ret != -EACCES) {
+-		NV_WARN(drm, "HPD on %s dropped due to RPM failure: %d\n",
+-			name, ret);
+-		return NVIF_NOTIFY_DROP;
+-	}
+-
+-	NV_DEBUG(drm, "%splugged %s\n", plugged ? "" : "un", name);
+-
+-	drm_helper_hpd_irq_event(connector->dev);
++	NV_DEBUG(drm, "%splugged %s\n", plugged ? "" : "un", connector->name);
++	nouveau_connector_hpd(connector);
+ 
+-	pm_runtime_mark_last_busy(drm->dev->dev);
+-	pm_runtime_put_autosuspend(drm->dev->dev);
+ 	return NVIF_NOTIFY_KEEP;
  }
  
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.h b/drivers/gpu/drm/nouveau/nouveau_connector.h
+index d6de5cb8e2238..d0b859c4a80ea 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.h
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.h
+@@ -187,6 +187,7 @@ nouveau_crtc_connector_get(struct nouveau_crtc *nv_crtc)
+ 
+ struct drm_connector *
+ nouveau_connector_create(struct drm_device *, const struct dcb_output *);
++void nouveau_connector_hpd(struct drm_connector *connector);
+ 
+ extern int nouveau_tv_disable;
+ extern int nouveau_ignorelid;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index 13016769a194b..bceb48a2dfca6 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -457,16 +457,70 @@ static struct nouveau_drm_prop_enum_list dither_depth[] = {
+ 	}                                                                      \
+ } while(0)
+ 
++void
++nouveau_display_hpd_resume(struct drm_device *dev)
++{
++	struct nouveau_drm *drm = nouveau_drm(dev);
++
++	mutex_lock(&drm->hpd_lock);
++	drm->hpd_pending = ~0;
++	mutex_unlock(&drm->hpd_lock);
++
++	schedule_work(&drm->hpd_work);
++}
++
  static void
-@@ -4729,7 +4715,7 @@ intel_dp_configure_mst(struct intel_dp *intel_dp)
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	struct intel_encoder *encoder =
- 		&dp_to_dig_port(intel_dp)->base;
--	bool sink_can_mst = intel_dp_sink_can_mst(intel_dp);
-+	bool sink_can_mst = drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dpcd);
+ nouveau_display_hpd_work(struct work_struct *work)
+ {
+ 	struct nouveau_drm *drm = container_of(work, typeof(*drm), hpd_work);
++	struct drm_device *dev = drm->dev;
++	struct drm_connector *connector;
++	struct drm_connector_list_iter conn_iter;
++	u32 pending;
++	bool changed = false;
++
++	pm_runtime_get_sync(dev->dev);
  
- 	drm_dbg_kms(&i915->drm,
- 		    "[ENCODER:%d:%s] MST support: port: %s, sink: %s, modparam: %s\n",
-diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
-index 8b9eb4db3381c..6ae5860d8644e 100644
---- a/include/drm/drm_dp_mst_helper.h
-+++ b/include/drm/drm_dp_mst_helper.h
-@@ -728,10 +728,9 @@ int drm_dp_mst_topology_mgr_init(struct drm_dp_mst_topology_mgr *mgr,
+-	pm_runtime_get_sync(drm->dev->dev);
++	mutex_lock(&drm->hpd_lock);
++	pending = drm->hpd_pending;
++	drm->hpd_pending = 0;
++	mutex_unlock(&drm->hpd_lock);
  
- void drm_dp_mst_topology_mgr_destroy(struct drm_dp_mst_topology_mgr *mgr);
+-	drm_helper_hpd_irq_event(drm->dev);
++	/* Nothing to do, exit early without updating the last busy counter */
++	if (!pending)
++		goto noop;
++
++	mutex_lock(&dev->mode_config.mutex);
++	drm_connector_list_iter_begin(dev, &conn_iter);
++
++	nouveau_for_each_non_mst_connector_iter(connector, &conn_iter) {
++		enum drm_connector_status old_status = connector->status;
++		u64 old_epoch_counter = connector->epoch_counter;
++
++		if (!(pending & drm_connector_mask(connector)))
++			continue;
++
++		connector->status = drm_helper_probe_detect(connector, NULL,
++							    false);
++		if (old_epoch_counter == connector->epoch_counter)
++			continue;
++
++		changed = true;
++		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] status updated from %s to %s (epoch counter %llu->%llu)\n",
++			    connector->base.id, connector->name,
++			    drm_get_connector_status_name(old_status),
++			    drm_get_connector_status_name(connector->status),
++			    old_epoch_counter, connector->epoch_counter);
++	}
++
++	drm_connector_list_iter_end(&conn_iter);
++	mutex_unlock(&dev->mode_config.mutex);
++
++	if (changed)
++		drm_kms_helper_hotplug_event(dev);
  
--
-+bool drm_dp_read_mst_cap(struct drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
- int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool mst_state);
+ 	pm_runtime_mark_last_busy(drm->dev->dev);
++noop:
+ 	pm_runtime_put_sync(drm->dev->dev);
+ }
  
--
- int drm_dp_mst_hpd_irq(struct drm_dp_mst_topology_mgr *mgr, u8 *esi, bool *handled);
+@@ -490,12 +544,11 @@ nouveau_display_acpi_ntfy(struct notifier_block *nb, unsigned long val,
+ 				 */
+ 				pm_runtime_put_autosuspend(drm->dev->dev);
+ 			} else if (ret == 0) {
+-				/* This may be the only indication we receive
+-				 * of a connector hotplug on a runtime
+-				 * suspended GPU, schedule hpd_work to check.
++				/* We've started resuming the GPU already, so
++				 * it will handle scheduling a full reprobe
++				 * itself
+ 				 */
+ 				NV_DEBUG(drm, "ACPI requested connector reprobe\n");
+-				schedule_work(&drm->hpd_work);
+ 				pm_runtime_put_noidle(drm->dev->dev);
+ 			} else {
+ 				NV_WARN(drm, "Dropped ACPI reprobe event due to RPM error: %d\n",
+@@ -686,6 +739,7 @@ nouveau_display_create(struct drm_device *dev)
+ 	}
  
+ 	INIT_WORK(&drm->hpd_work, nouveau_display_hpd_work);
++	mutex_init(&drm->hpd_lock);
+ #ifdef CONFIG_ACPI
+ 	drm->acpi_nb.notifier_call = nouveau_display_acpi_ntfy;
+ 	register_acpi_notifier(&drm->acpi_nb);
+@@ -705,9 +759,10 @@ void
+ nouveau_display_destroy(struct drm_device *dev)
+ {
+ 	struct nouveau_display *disp = nouveau_display(dev);
++	struct nouveau_drm *drm = nouveau_drm(dev);
  
+ #ifdef CONFIG_ACPI
+-	unregister_acpi_notifier(&nouveau_drm(dev)->acpi_nb);
++	unregister_acpi_notifier(&drm->acpi_nb);
+ #endif
+ 
+ 	drm_kms_helper_poll_fini(dev);
+@@ -719,6 +774,7 @@ nouveau_display_destroy(struct drm_device *dev)
+ 	nvif_disp_dtor(&disp->disp);
+ 
+ 	nouveau_drm(dev)->display = NULL;
++	mutex_destroy(&drm->hpd_lock);
+ 	kfree(disp);
+ }
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.h b/drivers/gpu/drm/nouveau/nouveau_display.h
+index 76ba93e01aff4..616c434270594 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.h
++++ b/drivers/gpu/drm/nouveau/nouveau_display.h
+@@ -45,6 +45,7 @@ nouveau_display(struct drm_device *dev)
+ int  nouveau_display_create(struct drm_device *dev);
+ void nouveau_display_destroy(struct drm_device *dev);
+ int  nouveau_display_init(struct drm_device *dev, bool resume, bool runtime);
++void nouveau_display_hpd_resume(struct drm_device *dev);
+ void nouveau_display_fini(struct drm_device *dev, bool suspend, bool runtime);
+ int  nouveau_display_suspend(struct drm_device *dev, bool runtime);
+ void nouveau_display_resume(struct drm_device *dev, bool runtime);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+index a5934064a75ea..005750aeb6d4f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dp.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+@@ -165,7 +165,7 @@ void nouveau_dp_irq(struct nouveau_drm *drm,
+ 
+ 	if (mstm && mstm->is_mst) {
+ 		if (!nv50_mstm_service(drm, nv_connector, mstm))
+-			schedule_work(&drm->hpd_work);
++			nouveau_connector_hpd(connector);
+ 	} else {
+ 		drm_dp_cec_irq(&nv_connector->aux);
+ 	}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 22d246acc5e52..42fc5c813a9bb 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -953,7 +953,7 @@ nouveau_pmops_resume(struct device *dev)
+ 	ret = nouveau_do_resume(drm_dev, false);
+ 
+ 	/* Monitors may have been connected / disconnected during suspend */
+-	schedule_work(&nouveau_drm(drm_dev)->hpd_work);
++	nouveau_display_hpd_resume(drm_dev);
+ 
+ 	return ret;
+ }
+@@ -1036,7 +1036,7 @@ nouveau_pmops_runtime_resume(struct device *dev)
+ 	drm_dev->switch_power_state = DRM_SWITCH_POWER_ON;
+ 
+ 	/* Monitors may have been connected / disconnected during suspend */
+-	schedule_work(&nouveau_drm(drm_dev)->hpd_work);
++	nouveau_display_hpd_resume(drm_dev);
+ 
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
+index f63ac72aa556f..73ebf5fba2fcd 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.h
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
+@@ -198,6 +198,8 @@ struct nouveau_drm {
+ 	struct nvbios vbios;
+ 	struct nouveau_display *display;
+ 	struct work_struct hpd_work;
++	struct mutex hpd_lock;
++	u32 hpd_pending;
+ 	struct work_struct fbcon_work;
+ 	int fbcon_new_state;
+ #ifdef CONFIG_ACPI
 -- 
 2.26.2
