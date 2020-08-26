@@ -1,157 +1,123 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [RFC v4 16/20] drm/i915/dp: Extract
- drm_dp_get_sink_count()
-Date: Wed, 26 Aug 2020 13:12:52 -0400
-Message-ID: <0b9fe80d058320b4e8e4fdf51a5445eddb1b0467.camel@redhat.com>
-References: <20200825195027.74681-1-lyude@redhat.com>
- <20200825195027.74681-17-lyude@redhat.com> <87o8mx6g6a.fsf@intel.com>
-Reply-To: lyude@redhat.com
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v5 00/20] drm/dp, i915,
+ nouveau: Cleanup nouveau HPD and add DP features from i915
+Date: Wed, 26 Aug 2020 14:24:36 -0400
+Message-ID: <20200826182456.322681-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <87o8mx6g6a.fsf@intel.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>, open list <linux-kernel@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>, Wambui Karuga <wambui.karugax@gmail.com>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 2020-08-26 at 10:05 +0300, Jani Nikula wrote:
-> On Tue, 25 Aug 2020, Lyude Paul <lyude@redhat.com> wrote:
-> > And of course, we'll also need to read the sink count from other drivers
-> > as well if we're checking whether or not it's supported. So, let's
-> > extract the code for this into another helper.
-> > 
-> > v2:
-> > * Fix drm_dp_dpcd_readb() ret check
-> > * Add back comment and move back sink_count assignment in
-> > intel_dp_get_dpcd()
-> > 
-> > Signed-off-by: Lyude Paul <lyude@redhat.com>
-> > Reviewed-by: Sean Paul <sean@poorly.run>
-> > ---
-> >  drivers/gpu/drm/drm_dp_helper.c         | 22 ++++++++++++++++++++++
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 11 +++++------
-> >  include/drm/drm_dp_helper.h             |  1 +
-> >  3 files changed, 28 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_dp_helper.c
-> > b/drivers/gpu/drm/drm_dp_helper.c
-> > index 863e0babc1903..67ad05eb05b7e 100644
-> > --- a/drivers/gpu/drm/drm_dp_helper.c
-> > +++ b/drivers/gpu/drm/drm_dp_helper.c
-> > @@ -736,6 +736,28 @@ bool drm_dp_has_sink_count(struct drm_connector
-> > *connector,
-> >  }
-> >  EXPORT_SYMBOL(drm_dp_has_sink_count);
-> >  
-> > +/**
-> > + * drm_dp_get_sink_count() - Retrieve the sink count for a given sink
-> 
-> From the department of bikeshedding...
-> 
-> Should we have a naming scheme where it's obvious whether a function
-> will do DPCD access, or just shuffle existing data?
-> 
-> For example, drm_dp_read_foo() for anything with DPCD access
-> vs. drm_dp_get_foo() or even simpler for anything that only processes
-> pre-read data?
+Most of the reason I'm asking for an RFC here is because this
+code pulls a lot of code out of i915 and into shared DP helpers.
 
-Forgot to address this comment - yeah, I think that would be a good idea. I'll
-go through my previous patches and make sure that they match this naming scheme
-as well.
-> 
-> > + * @aux: The DP AUX channel to use
-> > + *
-> > + * Returns: The current sink count reported by @aux, or a negative error
-> > code
-> > + * otherwise.
-> > + */
-> > +int drm_dp_get_sink_count(struct drm_dp_aux *aux)
-> > +{
-> > +	u8 count;
-> > +	int ret;
-> > +
-> > +	ret = drm_dp_dpcd_readb(aux, DP_SINK_COUNT, &count);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +	if (ret != 1)
-> > +		return -EIO;
-> 
-> Makes me wonder if that shouldn't be at drm_dp_dpcd_read() level, for
-> reads returning 0..len-1 bytes. Not necessarily part of this series, but
-> seems silly to set a precedent to start handling that return value all
-> over the place.
-> 
-> BR,
-> Jani.
-> 
-> > +
-> > +	return DP_GET_SINK_COUNT(count);
-> > +}
-> > +EXPORT_SYMBOL(drm_dp_get_sink_count);
-> > +
-> >  /*
-> >   * I2C-over-AUX implementation
-> >   */
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 35a4779a442e2..4337321a3be4f 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -4648,6 +4648,8 @@ intel_dp_has_sink_count(struct intel_dp *intel_dp)
-> >  static bool
-> >  intel_dp_get_dpcd(struct intel_dp *intel_dp)
-> >  {
-> > +	int ret;
-> > +
-> >  	if (!intel_dp_read_dpcd(intel_dp))
-> >  		return false;
-> >  
-> > @@ -4664,11 +4666,8 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
-> >  	}
-> >  
-> >  	if (intel_dp_has_sink_count(intel_dp)) {
-> > -		u8 count;
-> > -		ssize_t r;
-> > -
-> > -		r = drm_dp_dpcd_readb(&intel_dp->aux, DP_SINK_COUNT, &count);
-> > -		if (r < 1)
-> > +		ret = drm_dp_get_sink_count(&intel_dp->aux);
-> > +		if (ret < 0)
-> >  			return false;
-> >  
-> >  		/*
-> > @@ -4676,7 +4675,7 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
-> >  		 * a member variable in intel_dp will track any changes
-> >  		 * between short pulse interrupts.
-> >  		 */
-> > -		intel_dp->sink_count = DP_GET_SINK_COUNT(count);
-> > +		intel_dp->sink_count = ret;
-> >  
-> >  		/*
-> >  		 * SINK_COUNT == 0 and DOWNSTREAM_PORT_PRESENT == 1 implies that
-> > diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> > index a1413a531eaf4..0c141fc81aaa8 100644
-> > --- a/include/drm/drm_dp_helper.h
-> > +++ b/include/drm/drm_dp_helper.h
-> > @@ -1635,6 +1635,7 @@ struct drm_dp_desc;
-> >  bool drm_dp_has_sink_count(struct drm_connector *connector,
-> >  			   const u8 dpcd[DP_RECEIVER_CAP_SIZE],
-> >  			   const struct drm_dp_desc *desc);
-> > +int drm_dp_get_sink_count(struct drm_dp_aux *aux);
-> >  
-> >  void drm_dp_remote_aux_init(struct drm_dp_aux *aux);
-> >  void drm_dp_aux_init(struct drm_dp_aux *aux);
+Anyway-nouveau's HPD related code has been collecting dust for a while.
+Other then the occasional runtime PM related and MST related fixes,
+we're missing a lot of nice things that have been added to DRM since
+this was originally written. Additionally, the code is just really
+unoptimized in general:
+
+* We handle connector probing in the same context that we handle short
+  IRQs in for DP, which means connector probing could potentially block
+  ESI handling for MST
+* When we receive a hotplug event from a connector, we reprobe every
+  single connector instead of just the connector that was hotplugged
+* Additionally because of the above reason, combined with the fact I had
+  the bad idea of reusing some of the MST locks when I last rewrote
+  nouveau's DP MST detection, trying to handle any other events that
+  require short HPD IRQs is a bit awkward to actually implement.
+* We don't actually properly check whether EDIDs change or not when
+  reprobing, which means we basically send out a hotplug event every
+  single time we receive one even if nothing has changed
+
+Additionally, the code for handling DP that we have in nouveau is also
+quite unoptimized in general, doesn't use a lot of helpers that have
+been added since it was written, and is also missing quite a number of
+features:
+
+* Downstream port capability probing
+* Extended DPRX cap parsing
+* SINK_COUNT handling for hpd on dongles
+
+Luckily for us - all of these are implemented in i915 already. Since
+there's no reason for us to reinvent the wheel, and having more shared
+code is always nice, I decided to take the opportunity to extract the
+code for all of these features from i915 into a set of core DP helpers,
+which both i915 and nouveau (and hopefully other drivers in the future)
+can use.
+
+As well, this patch series also addesses the other general
+connector probing related issues I mentioned above, along with rewriting
+how we handle MST probing so we don't hit any surprise locking design
+issues in the future.
+
+As a note - most of this work is motivated by the fact that I'm
+planning on adding max_bpc/output_bpc prop support, DSC support (for
+both MST and SST, along with proper helpers for handling bandwidth
+limitations and DSC), and fallback link retraining. I figured I might as
+clean this code up and implement missing DP features like the ones
+mentioned here before moving on to those tasks.
+
+Lyude Paul (20):
+  drm/nouveau/kms: Fix some indenting in nouveau_dp_detect()
+  drm/nouveau/kms/nv50-: Remove open-coded drm_dp_read_desc()
+  drm/nouveau/kms/nv50-: Just use drm_dp_dpcd_read() in nouveau_dp.c
+  drm/nouveau/kms/nv50-: Use macros for DP registers in nouveau_dp.c
+  drm/nouveau/kms: Don't clear DP_MST_CTRL DPCD in nv50_mstm_new()
+  drm/nouveau/kms: Search for encoders' connectors properly
+  drm/nouveau/kms/nv50-: Use drm_dp_dpcd_(readb|writeb)() in
+    nv50_sor_disable()
+  drm/nouveau/kms/nv50-: Refactor and cleanup DP HPD handling
+  drm/i915/dp: Extract drm_dp_read_mst_cap()
+  drm/nouveau/kms: Use new drm_dp_read_mst_cap() helper for checking MST
+    caps
+  drm/nouveau/kms: Move drm_dp_cec_unset_edid() into
+    nouveau_connector_detect()
+  drm/nouveau/kms: Only use hpd_work for reprobing in HPD paths
+  drm/i915/dp: Extract drm_dp_read_downstream_info()
+  drm/nouveau/kms/nv50-: Use downstream DP clock limits for mode
+    validation
+  drm/i915/dp: Extract drm_dp_read_sink_count_cap()
+  drm/i915/dp: Extract drm_dp_read_sink_count()
+  drm/nouveau/kms/nv50-: Add support for DP_SINK_COUNT
+  drm/nouveau/kms: Don't change EDID when it hasn't actually changed
+  drm/i915/dp: Extract drm_dp_read_dpcd_caps()
+  drm/nouveau/kms: Start using drm_dp_read_dpcd_caps()
+
+ drivers/gpu/drm/drm_dp_helper.c             | 187 +++++++++++-
+ drivers/gpu/drm/drm_dp_mst_topology.c       |  22 ++
+ drivers/gpu/drm/i915/display/intel_dp.c     | 124 ++------
+ drivers/gpu/drm/i915/display/intel_dp.h     |   1 -
+ drivers/gpu/drm/i915/display/intel_lspcon.c |   2 +-
+ drivers/gpu/drm/nouveau/dispnv04/dac.c      |   2 +-
+ drivers/gpu/drm/nouveau/dispnv04/dfp.c      |   7 +-
+ drivers/gpu/drm/nouveau/dispnv04/disp.c     |  24 +-
+ drivers/gpu/drm/nouveau/dispnv04/disp.h     |   4 +
+ drivers/gpu/drm/nouveau/dispnv04/tvnv04.c   |   2 +-
+ drivers/gpu/drm/nouveau/dispnv04/tvnv17.c   |   2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c     | 305 +++++++++++---------
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 132 ++++-----
+ drivers/gpu/drm/nouveau/nouveau_connector.h |   1 +
+ drivers/gpu/drm/nouveau/nouveau_display.c   |  72 ++++-
+ drivers/gpu/drm/nouveau/nouveau_display.h   |   3 +-
+ drivers/gpu/drm/nouveau/nouveau_dp.c        | 210 +++++++++++---
+ drivers/gpu/drm/nouveau/nouveau_drm.c       |   4 +-
+ drivers/gpu/drm/nouveau/nouveau_drv.h       |   2 +
+ drivers/gpu/drm/nouveau/nouveau_encoder.h   |  48 ++-
+ include/drm/drm_dp_helper.h                 |  15 +-
+ include/drm/drm_dp_mst_helper.h             |   3 +-
+ 22 files changed, 779 insertions(+), 393 deletions(-)
+
 -- 
-Sincerely,
-      Lyude Paul (she/her)
-      Software Engineer at Red Hat
+2.26.2
