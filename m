@@ -1,46 +1,150 @@
-From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/kms/nv50-: Program notifier
- offset before requesting disp caps
-Date: Wed, 26 Aug 2020 13:53:55 +0000
-Message-ID: <20200826135356.0FF7222B49@mail.kernel.org>
-References: <20200806230129.324035-1-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [RFC v4 16/20] drm/i915/dp: Extract drm_dp_get_sink_count()
+Date: Wed, 26 Aug 2020 13:10:45 -0400
+Message-ID: <2c1f86e1688e866dbae1e49d5032a7d4d8a2ca1c.camel@redhat.com>
+References: <20200825195027.74681-1-lyude@redhat.com>
+         <20200825195027.74681-17-lyude@redhat.com> <87o8mx6g6a.fsf@intel.com>
+Reply-To: lyude@redhat.com
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200806230129.324035-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <87o8mx6g6a.fsf@intel.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Jani Nikula <jani.nikula@linux.intel.com>, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: Sean Paul <sean@poorly.run>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, =?ISO-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>, Manasi Navare <manasi.d.navare@intel.com>, Uma Shankar <uma.shankar@intel.com>, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>, Imre Deak <imre.deak@intel.com>, Wambui Karuga <wambui.karugax@gmail.com>, Lucas De Marchi <lucas.demarchi@intel.com>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi
+On Wed, 2020-08-26 at 10:05 +0300, Jani Nikula wrote:
+> On Tue, 25 Aug 2020, Lyude Paul <lyude@redhat.com> wrote:
+> > And of course, we'll also need to read the sink count from other drivers
+> > as well if we're checking whether or not it's supported. So, let's
+> > extract the code for this into another helper.
+> > 
+> > v2:
+> > * Fix drm_dp_dpcd_readb() ret check
+> > * Add back comment and move back sink_count assignment in
+> > intel_dp_get_dpcd()
+> > 
+> > Signed-off-by: Lyude Paul <lyude@redhat.com>
+> > Reviewed-by: Sean Paul <sean@poorly.run>
+> > ---
+> >  drivers/gpu/drm/drm_dp_helper.c         | 22 ++++++++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 11 +++++------
+> >  include/drm/drm_dp_helper.h             |  1 +
+> >  3 files changed, 28 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_dp_helper.c
+> > b/drivers/gpu/drm/drm_dp_helper.c
+> > index 863e0babc1903..67ad05eb05b7e 100644
+> > --- a/drivers/gpu/drm/drm_dp_helper.c
+> > +++ b/drivers/gpu/drm/drm_dp_helper.c
+> > @@ -736,6 +736,28 @@ bool drm_dp_has_sink_count(struct drm_connector
+> > *connector,
+> >  }
+> >  EXPORT_SYMBOL(drm_dp_has_sink_count);
+> >  
+> > +/**
+> > + * drm_dp_get_sink_count() - Retrieve the sink count for a given sink
+> 
+> From the department of bikeshedding...
+> 
+> Should we have a naming scheme where it's obvious whether a function
+> will do DPCD access, or just shuffle existing data?
+> 
+> For example, drm_dp_read_foo() for anything with DPCD access
+> vs. drm_dp_get_foo() or even simpler for anything that only processes
+> pre-read data?
+> 
+> > + * @aux: The DP AUX channel to use
+> > + *
+> > + * Returns: The current sink count reported by @aux, or a negative error
+> > code
+> > + * otherwise.
+> > + */
+> > +int drm_dp_get_sink_count(struct drm_dp_aux *aux)
+> > +{
+> > +	u8 count;
+> > +	int ret;
+> > +
+> > +	ret = drm_dp_dpcd_readb(aux, DP_SINK_COUNT, &count);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +	if (ret != 1)
+> > +		return -EIO;
+> 
+> Makes me wonder if that shouldn't be at drm_dp_dpcd_read() level, for
+> reads returning 0..len-1 bytes. Not necessarily part of this series, but
+> seems silly to set a precedent to start handling that return value all
+> over the place.
+> 
+Yeah definitely - I'm probably going to keep this code here for now, but I would
+like to convert drm_dp_dpcd_readb/writeb() to just return 0 on success (all
+bytes written, I've never once seen a situation where we got less bytes than we
+read - it's always all or nothing) and negative error code on failure. I'll get
+to that soon
 
-[This is an automated email]
-
-This commit has been processed because it contains a "Fixes:" tag
-fixing commit: 4a2cb4181b07 ("drm/nouveau/kms/nv50-: Probe SOR and PIOR caps for DP interlacing support").
-
-The bot has tested the following trees: v5.8.2.
-
-v5.8.2: Failed to apply! Possible dependencies:
-    3c43c362b3a5 ("drm/nouveau/kms/nv50-: convert core caps_init() to new push macros")
-    5e691222eac6 ("drm/nouveau/kms/nv50-: convert core init() to new push macros")
-    d8b24526ef68 ("drm/nouveau/kms/nv50-: use NVIDIA's headers for core caps_init()")
-
-
-NOTE: The patch will not be queued to stable trees until it is upstream.
-
-How should we proceed with this patch?
-
+> BR,
+> Jani.
+> 
+> > +
+> > +	return DP_GET_SINK_COUNT(count);
+> > +}
+> > +EXPORT_SYMBOL(drm_dp_get_sink_count);
+> > +
+> >  /*
+> >   * I2C-over-AUX implementation
+> >   */
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index 35a4779a442e2..4337321a3be4f 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -4648,6 +4648,8 @@ intel_dp_has_sink_count(struct intel_dp *intel_dp)
+> >  static bool
+> >  intel_dp_get_dpcd(struct intel_dp *intel_dp)
+> >  {
+> > +	int ret;
+> > +
+> >  	if (!intel_dp_read_dpcd(intel_dp))
+> >  		return false;
+> >  
+> > @@ -4664,11 +4666,8 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
+> >  	}
+> >  
+> >  	if (intel_dp_has_sink_count(intel_dp)) {
+> > -		u8 count;
+> > -		ssize_t r;
+> > -
+> > -		r = drm_dp_dpcd_readb(&intel_dp->aux, DP_SINK_COUNT, &count);
+> > -		if (r < 1)
+> > +		ret = drm_dp_get_sink_count(&intel_dp->aux);
+> > +		if (ret < 0)
+> >  			return false;
+> >  
+> >  		/*
+> > @@ -4676,7 +4675,7 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
+> >  		 * a member variable in intel_dp will track any changes
+> >  		 * between short pulse interrupts.
+> >  		 */
+> > -		intel_dp->sink_count = DP_GET_SINK_COUNT(count);
+> > +		intel_dp->sink_count = ret;
+> >  
+> >  		/*
+> >  		 * SINK_COUNT == 0 and DOWNSTREAM_PORT_PRESENT == 1 implies that
+> > diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+> > index a1413a531eaf4..0c141fc81aaa8 100644
+> > --- a/include/drm/drm_dp_helper.h
+> > +++ b/include/drm/drm_dp_helper.h
+> > @@ -1635,6 +1635,7 @@ struct drm_dp_desc;
+> >  bool drm_dp_has_sink_count(struct drm_connector *connector,
+> >  			   const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> >  			   const struct drm_dp_desc *desc);
+> > +int drm_dp_get_sink_count(struct drm_dp_aux *aux);
+> >  
+> >  void drm_dp_remote_aux_init(struct drm_dp_aux *aux);
+> >  void drm_dp_aux_init(struct drm_dp_aux *aux);
 -- 
-Thanks
-Sasha
+Sincerely,
+      Lyude Paul (she/her)
+      Software Engineer at Red Hat
