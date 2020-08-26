@@ -1,18 +1,27 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [RFC v4 16/20] drm/i915/dp: Extract drm_dp_get_sink_count()
-Date: Wed, 26 Aug 2020 13:10:45 -0400
-Message-ID: <2c1f86e1688e866dbae1e49d5032a7d4d8a2ca1c.camel@redhat.com>
+Subject: Re: [RFC v4 16/20] drm/i915/dp: Extract
+ drm_dp_get_sink_count()
+Date: Wed, 26 Aug 2020 13:12:52 -0400
+Message-ID: <0b9fe80d058320b4e8e4fdf51a5445eddb1b0467.camel@redhat.com>
 References: <20200825195027.74681-1-lyude@redhat.com>
-         <20200825195027.74681-17-lyude@redhat.com> <87o8mx6g6a.fsf@intel.com>
+ <20200825195027.74681-17-lyude@redhat.com> <87o8mx6g6a.fsf@intel.com>
 Reply-To: lyude@redhat.com
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
 In-Reply-To: <87o8mx6g6a.fsf@intel.com>
-Sender: linux-kernel-owner@vger.kernel.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 To: Jani Nikula <jani.nikula@linux.intel.com>, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Sean Paul <sean@poorly.run>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, =?ISO-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>, Manasi Navare <manasi.d.navare@intel.com>, Uma Shankar <uma.shankar@intel.com>, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>, Imre Deak <imre.deak@intel.com>, Wambui Karuga <wambui.karugax@gmail.com>, Lucas De Marchi <lucas.demarchi@intel.com>, open list <linux-kernel@vger.kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>, open list <linux-kernel@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>, Wambui Karuga <wambui.karugax@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
 On Wed, 2020-08-26 at 10:05 +0300, Jani Nikula wrote:
@@ -55,6 +64,10 @@ On Wed, 2020-08-26 at 10:05 +0300, Jani Nikula wrote:
 > For example, drm_dp_read_foo() for anything with DPCD access
 > vs. drm_dp_get_foo() or even simpler for anything that only processes
 > pre-read data?
+
+Forgot to address this comment - yeah, I think that would be a good idea. I'll
+go through my previous patches and make sure that they match this naming scheme
+as well.
 > 
 > > + * @aux: The DP AUX channel to use
 > > + *
@@ -78,12 +91,6 @@ On Wed, 2020-08-26 at 10:05 +0300, Jani Nikula wrote:
 > seems silly to set a precedent to start handling that return value all
 > over the place.
 > 
-Yeah definitely - I'm probably going to keep this code here for now, but I would
-like to convert drm_dp_dpcd_readb/writeb() to just return 0 on success (all
-bytes written, I've never once seen a situation where we got less bytes than we
-read - it's always all or nothing) and negative error code on failure. I'll get
-to that soon
-
 > BR,
 > Jani.
 > 
