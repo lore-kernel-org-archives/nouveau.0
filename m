@@ -1,50 +1,138 @@
-From: Jason Yan <yanaijie-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] drm/nouveau/svm: remove set but not used 'ret'
-Date: Thu, 27 Aug 2020 21:00:47 +0800
-Message-ID: <20200827130047.429089-1-yanaijie@huawei.com>
+From: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH v5 09/20] drm/i915/dp: Extract
+ drm_dp_read_mst_cap()
+Date: Thu, 27 Aug 2020 16:50:46 +0300
+Message-ID: <87d03c5hah.fsf@intel.com>
+References: <20200826182456.322681-1-lyude@redhat.com>
+ <20200826182456.322681-10-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, jgg-uk2M96/98Pc@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Hulk Robot <hulkci-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>, Jason Yan <yanaijie-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20200826182456.322681-10-lyude@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Lyude Paul <lyude@redhat.com>, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>, open list <linux-kernel@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>, Wambui Karuga <wambui.karugax@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBhZGRyZXNzZXMgdGhlIGZvbGxvd2luZyBnY2Mgd2FybmluZyB3aXRoICJtYWtlIFc9MSI6
-Cgpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N2bS5jOiBJbiBmdW5jdGlvbiDigJhu
-b3V2ZWF1X3BmbnNfbWFw4oCZOgpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N2bS5j
-OjgxODo2OiB3YXJuaW5nOiB2YXJpYWJsZSDigJhyZXTigJkgc2V0CmJ1dCBub3QgdXNlZCBbLVd1
-bnVzZWQtYnV0LXNldC12YXJpYWJsZV0KICA4MTggfCAgaW50IHJldDsKICAgICAgfCAgICAgIF5+
-fgoKUmVwb3J0ZWQtYnk6IEh1bGsgUm9ib3QgPGh1bGtjaUBodWF3ZWkuY29tPgpTaWduZWQtb2Zm
-LWJ5OiBKYXNvbiBZYW4gPHlhbmFpamllQGh1YXdlaS5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9zdm0uYyB8IDUgKystLS0KIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2Vy
-dGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9zdm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfc3Zt
-LmMKaW5kZXggMmRmMWMwNDYwNTU5Li43Yzk1ZmZjYmQxOGYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfc3ZtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9zdm0uYwpAQCAtODE1LDcgKzgxNSw2IEBAIG5vdXZlYXVfcGZuc19tYXAoc3Ry
-dWN0IG5vdXZlYXVfc3ZtbSAqc3ZtbSwgc3RydWN0IG1tX3N0cnVjdCAqbW0sCiAJCSB1bnNpZ25l
-ZCBsb25nIGFkZHIsIHU2NCAqcGZucywgdW5zaWduZWQgbG9uZyBucGFnZXMpCiB7CiAJc3RydWN0
-IG5vdXZlYXVfcGZubWFwX2FyZ3MgKmFyZ3MgPSBub3V2ZWF1X3BmbnNfdG9fYXJncyhwZm5zKTsK
-LQlpbnQgcmV0OwogCiAJYXJncy0+cC5hZGRyID0gYWRkcjsKIAlhcmdzLT5wLnNpemUgPSBucGFn
-ZXMgPDwgUEFHRV9TSElGVDsKQEAgLTgyMyw4ICs4MjIsOCBAQCBub3V2ZWF1X3BmbnNfbWFwKHN0
-cnVjdCBub3V2ZWF1X3N2bW0gKnN2bW0sIHN0cnVjdCBtbV9zdHJ1Y3QgKm1tLAogCW11dGV4X2xv
-Y2soJnN2bW0tPm11dGV4KTsKIAogCXN2bW0tPnZtbS0+dm1tLm9iamVjdC5jbGllbnQtPnN1cGVy
-ID0gdHJ1ZTsKLQlyZXQgPSBudmlmX29iamVjdF9pb2N0bCgmc3ZtbS0+dm1tLT52bW0ub2JqZWN0
-LCBhcmdzLCBzaXplb2YoKmFyZ3MpICsKLQkJCQlucGFnZXMgKiBzaXplb2YoYXJncy0+cC5waHlz
-WzBdKSwgTlVMTCk7CisJbnZpZl9vYmplY3RfaW9jdGwoJnN2bW0tPnZtbS0+dm1tLm9iamVjdCwg
-YXJncywgc2l6ZW9mKCphcmdzKSArCisJCQkgIG5wYWdlcyAqIHNpemVvZihhcmdzLT5wLnBoeXNb
-MF0pLCBOVUxMKTsKIAlzdm1tLT52bW0tPnZtbS5vYmplY3QuY2xpZW50LT5zdXBlciA9IGZhbHNl
-OwogCiAJbXV0ZXhfdW5sb2NrKCZzdm1tLT5tdXRleCk7Ci0tIAoyLjI1LjQKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
-Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+On Wed, 26 Aug 2020, Lyude Paul <lyude@redhat.com> wrote:
+> Just a tiny drive-by cleanup, we can consolidate i915's code for
+> checking for MST support into a helper to be shared across drivers.
+>
+> v5:
+> * Drop !!()
+> * Move drm_dp_has_mst() out of header
+> * Change name from drm_dp_has_mst() to drm_dp_read_mst_cap()
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Reviewed-by: Sean Paul <sean@poorly.run>
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+> ---
+>  drivers/gpu/drm/drm_dp_mst_topology.c   | 22 ++++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dp.c | 18 ++----------------
+>  include/drm/drm_dp_mst_helper.h         |  3 +--
+>  3 files changed, 25 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
+> index 67dd72ea200e0..17dbed0a9800d 100644
+> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
+> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+> @@ -3486,6 +3486,28 @@ static int drm_dp_get_vc_payload_bw(u8 dp_link_bw, u8  dp_link_count)
+>  	return dp_link_bw * dp_link_count / 2;
+>  }
+>  
+> +/**
+> + * drm_dp_read_mst_cap() - check whether or not a sink supports MST
+> + * @aux: The DP AUX channel to use
+> + * @dpcd: A cached copy of the DPCD capabilities for this sink
+> + *
+> + * Returns: %True if the sink supports MST, %false otherwise
+> + */
+> +bool drm_dp_read_mst_cap(struct drm_dp_aux *aux,
+> +			 const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+> +{
+> +	u8 mstm_cap;
+> +
+> +	if (dpcd[DP_DPCD_REV] < DP_DPCD_REV_12)
+> +		return false;
+> +
+> +	if (drm_dp_dpcd_readb(aux, DP_MSTM_CAP, &mstm_cap) != 1)
+> +		return false;
+> +
+> +	return mstm_cap & DP_MST_CAP;
+> +}
+> +EXPORT_SYMBOL(drm_dp_read_mst_cap);
+> +
+>  /**
+>   * drm_dp_mst_topology_mgr_set_mst() - Set the MST state for a topology manager
+>   * @mgr: manager to set state for
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 79c27f91f42c0..4c7314b7a84e4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4699,20 +4699,6 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
+>  	return true;
+>  }
+>  
+> -static bool
+> -intel_dp_sink_can_mst(struct intel_dp *intel_dp)
+> -{
+> -	u8 mstm_cap;
+> -
+> -	if (intel_dp->dpcd[DP_DPCD_REV] < 0x12)
+> -		return false;
+> -
+> -	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_MSTM_CAP, &mstm_cap) != 1)
+> -		return false;
+> -
+> -	return mstm_cap & DP_MST_CAP;
+> -}
+> -
+>  static bool
+>  intel_dp_can_mst(struct intel_dp *intel_dp)
+>  {
+> @@ -4720,7 +4706,7 @@ intel_dp_can_mst(struct intel_dp *intel_dp)
+>  
+>  	return i915->params.enable_dp_mst &&
+>  		intel_dp->can_mst &&
+> -		intel_dp_sink_can_mst(intel_dp);
+> +		drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dpcd);
+>  }
+>  
+>  static void
+> @@ -4729,7 +4715,7 @@ intel_dp_configure_mst(struct intel_dp *intel_dp)
+>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	struct intel_encoder *encoder =
+>  		&dp_to_dig_port(intel_dp)->base;
+> -	bool sink_can_mst = intel_dp_sink_can_mst(intel_dp);
+> +	bool sink_can_mst = drm_dp_read_mst_cap(&intel_dp->aux, intel_dp->dpcd);
+>  
+>  	drm_dbg_kms(&i915->drm,
+>  		    "[ENCODER:%d:%s] MST support: port: %s, sink: %s, modparam: %s\n",
+> diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
+> index 8b9eb4db3381c..6ae5860d8644e 100644
+> --- a/include/drm/drm_dp_mst_helper.h
+> +++ b/include/drm/drm_dp_mst_helper.h
+> @@ -728,10 +728,9 @@ int drm_dp_mst_topology_mgr_init(struct drm_dp_mst_topology_mgr *mgr,
+>  
+>  void drm_dp_mst_topology_mgr_destroy(struct drm_dp_mst_topology_mgr *mgr);
+>  
+> -
+> +bool drm_dp_read_mst_cap(struct drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
+>  int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool mst_state);
+>  
+> -
+>  int drm_dp_mst_hpd_irq(struct drm_dp_mst_topology_mgr *mgr, u8 *esi, bool *handled);
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
