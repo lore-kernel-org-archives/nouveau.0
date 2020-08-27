@@ -1,207 +1,62 @@
-From: Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [PATCH v5 13/20] drm/i915/dp: Extract
- drm_dp_read_downstream_info()
-Date: Thu, 27 Aug 2020 17:09:42 +0300
-Message-ID: <87a6yg5gex.fsf@intel.com>
-References: <20200826182456.322681-1-lyude@redhat.com>
- <20200826182456.322681-14-lyude@redhat.com>
+From: =?UTF-8?Q?Ortwin_Gl=c3=bcck?= <odi-L693kI9kcNY@public.gmane.org>
+Subject: 5.8.4: WARNING at drivers/gpu/drm/nouveau/nvif/vmm.c:68
+Date: Thu, 27 Aug 2020 17:12:12 +0200
+Message-ID: <9a8bd359-1179-f000-e1f8-7246cd9f02ca@odi.ch>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <20200826182456.322681-14-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Lyude Paul <lyude@redhat.com>, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>, open list <linux-kernel@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>, Wambui Karuga <wambui.karugax@gmail.com>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 26 Aug 2020, Lyude Paul <lyude@redhat.com> wrote:
-> We're going to be doing the same probing process in nouveau for
-> determining downstream DP port capabilities, so let's deduplicate the
-> work by moving i915's code for handling this into a shared helper:
-> drm_dp_read_downstream_info().
->
-> Note that when we do this, we also do make some functional changes while
-> we're at it:
-> * We always clear the downstream port info before trying to read it,
->   just to make things easier for the caller
-> * We skip reading downstream port info if the DPCD indicates that we
->   don't support downstream port info
-> * We only read as many bytes as needed for the reported number of
->   downstream ports, no sense in reading the whole thing every time
->
-> v2:
-> * Fixup logic for calculating the downstream port length to account for
->   the fact that downstream port caps can be either 1 byte or 4 bytes
->   long. We can actually skip fixing the max_clock/max_bpc helpers here
->   since they all check for DP_DETAILED_CAP_INFO_AVAILABLE anyway.
-> * Fix ret code check for drm_dp_dpcd_read
-> v5:
-> * Change name from drm_dp_downstream_read_info() to
->   drm_dp_read_downstream_info()
-> * Also, add "See Also" sections for the various downstream info
->   functions (drm_dp_read_downstream_info(), drm_dp_downstream_max_clock(),
->   drm_dp_downstream_max_bpc())
->
-> Reviewed-by: Sean Paul <sean@poorly.run>
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
->
-> squash! drm/i915/dp: Extract drm_dp_read_downstream_info()
+Hi,
 
-Whoops!
+I just found this new WARNING in dmesg. Maybe you want to know.
+I haven't seen this before in 5.7.
 
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> ---
->  drivers/gpu/drm/drm_dp_helper.c         | 62 ++++++++++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_dp.c | 14 +-----
->  include/drm/drm_dp_helper.h             |  3 ++
->  3 files changed, 65 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-> index 4c21cf69dad5a..f3643894ad951 100644
-> --- a/drivers/gpu/drm/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/drm_dp_helper.c
-> @@ -423,6 +423,56 @@ bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
->  }
->  EXPORT_SYMBOL(drm_dp_send_real_edid_checksum);
->  
-> +static u8 drm_dp_downstream_port_count(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
-> +{
-> +	u8 port_count = dpcd[DP_DOWN_STREAM_PORT_COUNT] & DP_PORT_COUNT_MASK;
-> +
-> +	if (dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DETAILED_CAP_INFO_AVAILABLE && port_count > 4)
-> +		port_count = 4;
-> +
-> +	return port_count;
-> +}
-> +
-> +/**
-> + * drm_dp_read_downstream_info() - read DPCD downstream port info if available
-> + * @aux: DisplayPort AUX channel
-> + * @dpcd: A cached copy of the port's DPCD
-> + * @downstream_ports: buffer to store the downstream port info in
-> + *
-> + * See also:
-> + * drm_dp_downstream_max_clock()
-> + * drm_dp_downstream_max_bpc()
-> + *
-> + * Returns: 0 if either the downstream port info was read successfully or
-> + * there was no downstream info to read, or a negative error code otherwise.
-> + */
-> +int drm_dp_read_downstream_info(struct drm_dp_aux *aux,
-> +				const u8 dpcd[DP_RECEIVER_CAP_SIZE],
-> +				u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS])
-> +{
-> +	int ret;
-> +	u8 len;
-> +
-> +	memset(downstream_ports, 0, DP_MAX_DOWNSTREAM_PORTS);
-> +
-> +	/* No downstream info to read */
-> +	if (!drm_dp_is_branch(dpcd) ||
-> +	    dpcd[DP_DPCD_REV] < DP_DPCD_REV_10 ||
-> +	    !(dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DWN_STRM_PORT_PRESENT))
-> +		return 0;
+BR
 
-Generally I think stuff like this is easier and faster to read with
-multiple if statements and early returns, but *shrug*.
+Ortwin
 
-I really hope we didn't have a reason to not check
-DP_DWN_STRM_PORT_PRESENT here... there's been a lot of junk branch
-devices in the past. Fingers crossed.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-> +
-> +	len = drm_dp_downstream_port_count(dpcd);
-> +	if (dpcd[DP_DOWNSTREAMPORT_PRESENT] & DP_DETAILED_CAP_INFO_AVAILABLE)
-> +		len *= 4;
-> +
-> +	ret = drm_dp_dpcd_read(aux, DP_DOWNSTREAM_PORT_0, downstream_ports, len);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return ret == len ? 0 : -EIO;
-> +}
-> +EXPORT_SYMBOL(drm_dp_read_downstream_info);
-> +
->  /**
->   * drm_dp_downstream_max_clock() - extract branch device max
->   *                                 pixel rate for legacy VGA
-> @@ -431,7 +481,11 @@ EXPORT_SYMBOL(drm_dp_send_real_edid_checksum);
->   * @dpcd: DisplayPort configuration data
->   * @port_cap: port capabilities
->   *
-> - * Returns max clock in kHz on success or 0 if max clock not defined
-> + * See also:
-> + * drm_dp_read_downstream_info()
-> + * drm_dp_downstream_max_bpc()
-> + *
-> + * Returns: Max clock in kHz on success or 0 if max clock not defined
->   */
->  int drm_dp_downstream_max_clock(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
->  				const u8 port_cap[4])
-> @@ -462,7 +516,11 @@ EXPORT_SYMBOL(drm_dp_downstream_max_clock);
->   * @dpcd: DisplayPort configuration data
->   * @port_cap: port capabilities
->   *
-> - * Returns max bpc on success or 0 if max bpc not defined
-> + * See also:
-> + * drm_dp_read_downstream_info()
-> + * drm_dp_downstream_max_clock()
-> + *
-> + * Returns: Max bpc on success or 0 if max bpc not defined
->   */
->  int drm_dp_downstream_max_bpc(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
->  			      const u8 port_cap[4])
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 4c7314b7a84e4..9c4b806af8c79 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -4685,18 +4685,8 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
->  			return false;
->  	}
->  
-> -	if (!drm_dp_is_branch(intel_dp->dpcd))
-> -		return true; /* native DP sink */
-> -
-> -	if (intel_dp->dpcd[DP_DPCD_REV] == 0x10)
-> -		return true; /* no per-port downstream info */
-> -
-> -	if (drm_dp_dpcd_read(&intel_dp->aux, DP_DOWNSTREAM_PORT_0,
-> -			     intel_dp->downstream_ports,
-> -			     DP_MAX_DOWNSTREAM_PORTS) < 0)
-> -		return false; /* downstream port status fetch failed */
-> -
-> -	return true;
-> +	return drm_dp_read_downstream_info(&intel_dp->aux, intel_dp->dpcd,
-> +					   intel_dp->downstream_ports) == 0;
->  }
->  
->  static bool
-> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> index 5c28199248626..b8716b200666f 100644
-> --- a/include/drm/drm_dp_helper.h
-> +++ b/include/drm/drm_dp_helper.h
-> @@ -1613,6 +1613,9 @@ int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
->  bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
->  				    u8 real_edid_checksum);
->  
-> +int drm_dp_read_downstream_info(struct drm_dp_aux *aux,
-> +				const u8 dpcd[DP_RECEIVER_CAP_SIZE],
-> +				u8 downstream_ports[DP_MAX_DOWNSTREAM_PORTS]);
->  int drm_dp_downstream_max_clock(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
->  				const u8 port_cap[4]);
->  int drm_dp_downstream_max_bpc(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+[Thu Aug 27 15:40:48 2020] ------------[ cut here ]------------
+[Thu Aug 27 15:40:48 2020] WARNING: CPU: 6 PID: 23542 at drivers/gpu/drm/nouveau/nvif/vmm.c:68 
+nvif_vmm_put+0x65/0x70
+[Thu Aug 27 15:40:48 2020] CPU: 6 PID: 23542 Comm: kworker/6:2 Tainted: G                T 5.8.4 #4
+[Thu Aug 27 15:40:48 2020] Hardware name: Hewlett-Packard HP ZBook 15/1909, BIOS L70 Ver. 01.21 
+08/13/2014
+[Thu Aug 27 15:40:48 2020] Workqueue: events nouveau_cli_work
+[Thu Aug 27 15:40:48 2020] RIP: 0010:nvif_vmm_put+0x65/0x70
+[Thu Aug 27 15:40:48 2020] Code: 00 00 48 89 e2 be 02 00 00 00 48 c7 04 24 00 00 00 00 48 89 44 24 
+08 e8 e9 e5 ff ff 85 c0 75 0a 48 c7 43 08 00 00 00 00 eb b7 <0f> 0b eb f2 e8 52 ef 6a 00 66 90 53 48 
+83 ec 20 65 48 8b 04 25 28
+[Thu Aug 27 15:40:48 2020] RSP: 0018:ffffb81bc41bfdc8 EFLAGS: 00010282
+[Thu Aug 27 15:40:48 2020] RAX: 00000000fffffffe RBX: ffffb81bc41bfdf0 RCX: 0000000000000000
+[Thu Aug 27 15:40:48 2020] RDX: 0000000000000010 RSI: ffffb81bc41bfd38 RDI: ffffb81bc41bfdd8
+[Thu Aug 27 15:40:48 2020] RBP: ffff9ea0172f5d00 R08: 00000000fffffffe R09: 0000000000000000
+[Thu Aug 27 15:40:48 2020] R10: 0000000000000030 R11: 0000000000000001 R12: ffff9ea02e7b1a20
+[Thu Aug 27 15:40:48 2020] R13: dead000000000100 R14: ffff9ea02e7b1b40 R15: ffff9ea02e7b1bb0
+[Thu Aug 27 15:40:48 2020] FS:  0000000000000000(0000) GS:ffff9ea0ced80000(0000) knlGS:0000000000000000
+[Thu Aug 27 15:40:48 2020] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[Thu Aug 27 15:40:48 2020] CR2: 00007fb2f154a5ca CR3: 00000003f623e003 CR4: 00000000001606e0
+[Thu Aug 27 15:40:48 2020] Call Trace:
+[Thu Aug 27 15:40:48 2020]  nouveau_vma_del+0x73/0xc0
+[Thu Aug 27 15:40:48 2020]  nouveau_gem_object_delete_work+0x31/0x60
+[Thu Aug 27 15:40:48 2020]  nouveau_cli_work+0xc7/0x120
+[Thu Aug 27 15:40:48 2020]  process_one_work+0x185/0x2d0
+[Thu Aug 27 15:40:48 2020]  worker_thread+0x4b/0x390
+[Thu Aug 27 15:40:48 2020]  ? process_one_work+0x2d0/0x2d0
+[Thu Aug 27 15:40:48 2020]  kthread+0x10c/0x150
+[Thu Aug 27 15:40:48 2020]  ? __kthread_create_on_node+0x190/0x190
+[Thu Aug 27 15:40:48 2020]  ret_from_fork+0x22/0x30
+[Thu Aug 27 15:40:48 2020] ---[ end trace e1a138f248609cd4 ]---
