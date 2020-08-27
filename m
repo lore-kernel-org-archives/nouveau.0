@@ -1,62 +1,62 @@
-From: =?UTF-8?Q?Ortwin_Gl=c3=bcck?= <odi-L693kI9kcNY@public.gmane.org>
-Subject: 5.8.4: WARNING at drivers/gpu/drm/nouveau/nvif/vmm.c:68
-Date: Thu, 27 Aug 2020 17:12:12 +0200
-Message-ID: <9a8bd359-1179-f000-e1f8-7246cd9f02ca@odi.ch>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+From: trix@redhat.com
+Subject: [PATCH] drm/nouveau: remove redundant check
+Date: Thu, 27 Aug 2020 11:37:23 -0700
+Message-ID: <20200827183723.7767-1-trix@redhat.com>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Tom Rix <trix@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-Hi,
+From: Tom Rix <trix@redhat.com>
 
-I just found this new WARNING in dmesg. Maybe you want to know.
-I haven't seen this before in 5.7.
+clang static analysis flags this problem
 
-BR
+hw.c:271:12: warning: The left operand of '>=' is a
+  garbage value
+    if (pv.M1 >= pll_lim.vco1.min_m ...
+        ~~~~~ ^
 
-Ortwin
+This is mostly not a problem because an early check in
+nouveau_hw_fix_bad_vpll()
 
+    	if (nvbios_pll_parse(bios, pll, &pll_lim))
+		return;
+	nouveau_hw_get_pllvals(dev, pll, &pv);
 
-[Thu Aug 27 15:40:48 2020] ------------[ cut here ]------------
-[Thu Aug 27 15:40:48 2020] WARNING: CPU: 6 PID: 23542 at drivers/gpu/drm/nouveau/nvif/vmm.c:68 
-nvif_vmm_put+0x65/0x70
-[Thu Aug 27 15:40:48 2020] CPU: 6 PID: 23542 Comm: kworker/6:2 Tainted: G                T 5.8.4 #4
-[Thu Aug 27 15:40:48 2020] Hardware name: Hewlett-Packard HP ZBook 15/1909, BIOS L70 Ver. 01.21 
-08/13/2014
-[Thu Aug 27 15:40:48 2020] Workqueue: events nouveau_cli_work
-[Thu Aug 27 15:40:48 2020] RIP: 0010:nvif_vmm_put+0x65/0x70
-[Thu Aug 27 15:40:48 2020] Code: 00 00 48 89 e2 be 02 00 00 00 48 c7 04 24 00 00 00 00 48 89 44 24 
-08 e8 e9 e5 ff ff 85 c0 75 0a 48 c7 43 08 00 00 00 00 eb b7 <0f> 0b eb f2 e8 52 ef 6a 00 66 90 53 48 
-83 ec 20 65 48 8b 04 25 28
-[Thu Aug 27 15:40:48 2020] RSP: 0018:ffffb81bc41bfdc8 EFLAGS: 00010282
-[Thu Aug 27 15:40:48 2020] RAX: 00000000fffffffe RBX: ffffb81bc41bfdf0 RCX: 0000000000000000
-[Thu Aug 27 15:40:48 2020] RDX: 0000000000000010 RSI: ffffb81bc41bfd38 RDI: ffffb81bc41bfdd8
-[Thu Aug 27 15:40:48 2020] RBP: ffff9ea0172f5d00 R08: 00000000fffffffe R09: 0000000000000000
-[Thu Aug 27 15:40:48 2020] R10: 0000000000000030 R11: 0000000000000001 R12: ffff9ea02e7b1a20
-[Thu Aug 27 15:40:48 2020] R13: dead000000000100 R14: ffff9ea02e7b1b40 R15: ffff9ea02e7b1bb0
-[Thu Aug 27 15:40:48 2020] FS:  0000000000000000(0000) GS:ffff9ea0ced80000(0000) knlGS:0000000000000000
-[Thu Aug 27 15:40:48 2020] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[Thu Aug 27 15:40:48 2020] CR2: 00007fb2f154a5ca CR3: 00000003f623e003 CR4: 00000000001606e0
-[Thu Aug 27 15:40:48 2020] Call Trace:
-[Thu Aug 27 15:40:48 2020]  nouveau_vma_del+0x73/0xc0
-[Thu Aug 27 15:40:48 2020]  nouveau_gem_object_delete_work+0x31/0x60
-[Thu Aug 27 15:40:48 2020]  nouveau_cli_work+0xc7/0x120
-[Thu Aug 27 15:40:48 2020]  process_one_work+0x185/0x2d0
-[Thu Aug 27 15:40:48 2020]  worker_thread+0x4b/0x390
-[Thu Aug 27 15:40:48 2020]  ? process_one_work+0x2d0/0x2d0
-[Thu Aug 27 15:40:48 2020]  kthread+0x10c/0x150
-[Thu Aug 27 15:40:48 2020]  ? __kthread_create_on_node+0x190/0x190
-[Thu Aug 27 15:40:48 2020]  ret_from_fork+0x22/0x30
-[Thu Aug 27 15:40:48 2020] ---[ end trace e1a138f248609cd4 ]---
+shadows a similar check in nouveau_hw_get_pllvals()
+
+	ret = nvbios_pll_parse(bios, plltype, &pll_lim);
+	if (ret || !(reg1 = pll_lim.reg))
+		return -ENOENT;
+
+Since the first check is redundant, remove it and
+check the status of nouveau_hw_get_pllvals().
+
+Signed-off-by: Tom Rix <trix@redhat.com>
+---
+ drivers/gpu/drm/nouveau/dispnv04/hw.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/hw.c b/drivers/gpu/drm/nouveau/dispnv04/hw.c
+index b674d68ef28a..b96c5628c33b 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/hw.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/hw.c
+@@ -259,14 +259,12 @@ nouveau_hw_fix_bad_vpll(struct drm_device *dev, int head)
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nvif_device *device = &drm->client.device;
+ 	struct nvkm_clk *clk = nvxx_clk(device);
+-	struct nvkm_bios *bios = nvxx_bios(device);
+ 	struct nvbios_pll pll_lim;
+ 	struct nvkm_pll_vals pv;
+ 	enum nvbios_pll_type pll = head ? PLL_VPLL1 : PLL_VPLL0;
+ 
+-	if (nvbios_pll_parse(bios, pll, &pll_lim))
++	if (nouveau_hw_get_pllvals(dev, pll, &pv))
+ 		return;
+-	nouveau_hw_get_pllvals(dev, pll, &pv);
+ 
+ 	if (pv.M1 >= pll_lim.vco1.min_m && pv.M1 <= pll_lim.vco1.max_m &&
+ 	    pv.N1 >= pll_lim.vco1.min_n && pv.N1 <= pll_lim.vco1.max_n &&
+-- 
+2.18.1
