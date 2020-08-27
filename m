@@ -1,261 +1,50 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v5 19/20] drm/i915/dp: Extract
- drm_dp_read_dpcd_caps()
-Date: Wed, 26 Aug 2020 14:24:55 -0400
-Message-ID: <20200826182456.322681-20-lyude@redhat.com>
-References: <20200826182456.322681-1-lyude@redhat.com>
+From: Jason Yan <yanaijie-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] drm/nouveau/svm: remove set but not used 'ret'
+Date: Thu, 27 Aug 2020 21:00:47 +0800
+Message-ID: <20200827130047.429089-1-yanaijie@huawei.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <20200826182456.322681-1-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>, open list <linux-kernel@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>, Wambui Karuga <wambui.karugax@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, jgg-uk2M96/98Pc@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: Hulk Robot <hulkci-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>, Jason Yan <yanaijie-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Since DP 1.3, it's been possible for DP receivers to specify an
-additional set of DPCD capabilities, which can take precedence over the
-capabilities reported at DP_DPCD_REV.
-
-Basically any device supporting DP is going to need to read these in an
-identical manner, in particular nouveau, so let's go ahead and just move
-this code out of i915 into a shared DRM DP helper that we can use in
-other drivers.
-
-v2:
-* Remove redundant dpcd[DP_DPCD_REV] == 0 check
-* Fix drm_dp_dpcd_read() ret checks
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Reviewed-by: Sean Paul <sean@poorly.run>
----
- drivers/gpu/drm/drm_dp_helper.c             | 77 +++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.c     | 60 +---------------
- drivers/gpu/drm/i915/display/intel_dp.h     |  1 -
- drivers/gpu/drm/i915/display/intel_lspcon.c |  2 +-
- include/drm/drm_dp_helper.h                 |  3 +
- 5 files changed, 83 insertions(+), 60 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-index 46d88ef4f59ac..9ca88e6c78820 100644
---- a/drivers/gpu/drm/drm_dp_helper.c
-+++ b/drivers/gpu/drm/drm_dp_helper.c
-@@ -433,6 +433,83 @@ static u8 drm_dp_downstream_port_count(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
- 	return port_count;
- }
- 
-+static int drm_dp_read_extended_dpcd_caps(struct drm_dp_aux *aux,
-+					  u8 dpcd[DP_RECEIVER_CAP_SIZE])
-+{
-+	u8 dpcd_ext[6];
-+	int ret;
-+
-+	/*
-+	 * Prior to DP1.3 the bit represented by
-+	 * DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT was reserved.
-+	 * If it is set DP_DPCD_REV at 0000h could be at a value less than
-+	 * the true capability of the panel. The only way to check is to
-+	 * then compare 0000h and 2200h.
-+	 */
-+	if (!(dpcd[DP_TRAINING_AUX_RD_INTERVAL] &
-+	      DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT))
-+		return 0;
-+
-+	ret = drm_dp_dpcd_read(aux, DP_DP13_DPCD_REV, &dpcd_ext,
-+			       sizeof(dpcd_ext));
-+	if (ret < 0)
-+		return ret;
-+	if (ret != sizeof(dpcd_ext))
-+		return -EIO;
-+
-+	if (dpcd[DP_DPCD_REV] > dpcd_ext[DP_DPCD_REV]) {
-+		DRM_DEBUG_KMS("%s: Extended DPCD rev less than base DPCD rev (%d > %d)\n",
-+			      aux->name, dpcd[DP_DPCD_REV],
-+			      dpcd_ext[DP_DPCD_REV]);
-+		return 0;
-+	}
-+
-+	if (!memcmp(dpcd, dpcd_ext, sizeof(dpcd_ext)))
-+		return 0;
-+
-+	DRM_DEBUG_KMS("%s: Base DPCD: %*ph\n",
-+		      aux->name, DP_RECEIVER_CAP_SIZE, dpcd);
-+
-+	memcpy(dpcd, dpcd_ext, sizeof(dpcd_ext));
-+
-+	return 0;
-+}
-+
-+/**
-+ * drm_dp_read_dpcd_caps() - read DPCD caps and extended DPCD caps if
-+ * available
-+ * @aux: DisplayPort AUX channel
-+ * @dpcd: Buffer to store the resulting DPCD in
-+ *
-+ * Attempts to read the base DPCD caps for @aux. Additionally, this function
-+ * checks for and reads the extended DPRX caps (%DP_DP13_DPCD_REV) if
-+ * present.
-+ *
-+ * Returns: %0 if the DPCD was read successfully, negative error code
-+ * otherwise.
-+ */
-+int drm_dp_read_dpcd_caps(struct drm_dp_aux *aux,
-+			  u8 dpcd[DP_RECEIVER_CAP_SIZE])
-+{
-+	int ret;
-+
-+	ret = drm_dp_dpcd_read(aux, DP_DPCD_REV, dpcd, DP_RECEIVER_CAP_SIZE);
-+	if (ret < 0)
-+		return ret;
-+	if (ret != DP_RECEIVER_CAP_SIZE || dpcd[DP_DPCD_REV] == 0)
-+		return -EIO;
-+
-+	ret = drm_dp_read_extended_dpcd_caps(aux, dpcd);
-+	if (ret < 0)
-+		return ret;
-+
-+	DRM_DEBUG_KMS("%s: DPCD: %*ph\n",
-+		      aux->name, DP_RECEIVER_CAP_SIZE, dpcd);
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL(drm_dp_read_dpcd_caps);
-+
- /**
-  * drm_dp_read_downstream_info() - read DPCD downstream port info if available
-  * @aux: DisplayPort AUX channel
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 0de94fc6289be..284b15f845926 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4449,62 +4449,6 @@ intel_dp_link_down(struct intel_encoder *encoder,
- 	}
- }
- 
--static void
--intel_dp_extended_receiver_capabilities(struct intel_dp *intel_dp)
--{
--	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
--	u8 dpcd_ext[6];
--
--	/*
--	 * Prior to DP1.3 the bit represented by
--	 * DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT was reserved.
--	 * if it is set DP_DPCD_REV at 0000h could be at a value less than
--	 * the true capability of the panel. The only way to check is to
--	 * then compare 0000h and 2200h.
--	 */
--	if (!(intel_dp->dpcd[DP_TRAINING_AUX_RD_INTERVAL] &
--	      DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT))
--		return;
--
--	if (drm_dp_dpcd_read(&intel_dp->aux, DP_DP13_DPCD_REV,
--			     &dpcd_ext, sizeof(dpcd_ext)) != sizeof(dpcd_ext)) {
--		drm_err(&i915->drm,
--			"DPCD failed read at extended capabilities\n");
--		return;
--	}
--
--	if (intel_dp->dpcd[DP_DPCD_REV] > dpcd_ext[DP_DPCD_REV]) {
--		drm_dbg_kms(&i915->drm,
--			    "DPCD extended DPCD rev less than base DPCD rev\n");
--		return;
--	}
--
--	if (!memcmp(intel_dp->dpcd, dpcd_ext, sizeof(dpcd_ext)))
--		return;
--
--	drm_dbg_kms(&i915->drm, "Base DPCD: %*ph\n",
--		    (int)sizeof(intel_dp->dpcd), intel_dp->dpcd);
--
--	memcpy(intel_dp->dpcd, dpcd_ext, sizeof(dpcd_ext));
--}
--
--bool
--intel_dp_read_dpcd(struct intel_dp *intel_dp)
--{
--	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
--
--	if (drm_dp_dpcd_read(&intel_dp->aux, 0x000, intel_dp->dpcd,
--			     sizeof(intel_dp->dpcd)) < 0)
--		return false; /* aux transfer failed */
--
--	intel_dp_extended_receiver_capabilities(intel_dp);
--
--	drm_dbg_kms(&i915->drm, "DPCD: %*ph\n", (int)sizeof(intel_dp->dpcd),
--		    intel_dp->dpcd);
--
--	return intel_dp->dpcd[DP_DPCD_REV] != 0;
--}
--
- bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
- {
- 	u8 dprx = 0;
-@@ -4563,7 +4507,7 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
- 	/* this function is meant to be called only once */
- 	drm_WARN_ON(&dev_priv->drm, intel_dp->dpcd[DP_DPCD_REV] != 0);
- 
--	if (!intel_dp_read_dpcd(intel_dp))
-+	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd) != 0)
- 		return false;
- 
- 	drm_dp_read_desc(&intel_dp->aux, &intel_dp->desc,
-@@ -4650,7 +4594,7 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
- {
- 	int ret;
- 
--	if (!intel_dp_read_dpcd(intel_dp))
-+	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd))
- 		return false;
- 
- 	/*
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index b901ab850cbd9..0a3af3410d52e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -99,7 +99,6 @@ bool intel_dp_source_supports_hbr3(struct intel_dp *intel_dp);
- bool
- intel_dp_get_link_status(struct intel_dp *intel_dp, u8 *link_status);
- 
--bool intel_dp_read_dpcd(struct intel_dp *intel_dp);
- bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp);
- int intel_dp_link_required(int pixel_clock, int bpp);
- int intel_dp_max_data_rate(int max_link_clock, int max_lanes);
-diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-index b781bf4696443..dc1b35559afdf 100644
---- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-+++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-@@ -571,7 +571,7 @@ bool lspcon_init(struct intel_digital_port *dig_port)
- 		return false;
- 	}
- 
--	if (!intel_dp_read_dpcd(dp)) {
-+	if (drm_dp_read_dpcd_caps(&dp->aux, dp->dpcd) != 0) {
- 		DRM_ERROR("LSPCON DPCD read failed\n");
- 		return false;
- 	}
-diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-index bc5cb8c503fbc..85513eeb21966 100644
---- a/include/drm/drm_dp_helper.h
-+++ b/include/drm/drm_dp_helper.h
-@@ -1607,6 +1607,9 @@ static inline ssize_t drm_dp_dpcd_writeb(struct drm_dp_aux *aux,
- 	return drm_dp_dpcd_write(aux, offset, &value, 1);
- }
- 
-+int drm_dp_read_dpcd_caps(struct drm_dp_aux *aux,
-+			  u8 dpcd[DP_RECEIVER_CAP_SIZE]);
-+
- int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
- 				 u8 status[DP_LINK_STATUS_SIZE]);
- 
--- 
-2.26.2
+VGhpcyBhZGRyZXNzZXMgdGhlIGZvbGxvd2luZyBnY2Mgd2FybmluZyB3aXRoICJtYWtlIFc9MSI6
+Cgpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N2bS5jOiBJbiBmdW5jdGlvbiDigJhu
+b3V2ZWF1X3BmbnNfbWFw4oCZOgpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N2bS5j
+OjgxODo2OiB3YXJuaW5nOiB2YXJpYWJsZSDigJhyZXTigJkgc2V0CmJ1dCBub3QgdXNlZCBbLVd1
+bnVzZWQtYnV0LXNldC12YXJpYWJsZV0KICA4MTggfCAgaW50IHJldDsKICAgICAgfCAgICAgIF5+
+fgoKUmVwb3J0ZWQtYnk6IEh1bGsgUm9ib3QgPGh1bGtjaUBodWF3ZWkuY29tPgpTaWduZWQtb2Zm
+LWJ5OiBKYXNvbiBZYW4gPHlhbmFpamllQGh1YXdlaS5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9zdm0uYyB8IDUgKystLS0KIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2Vy
+dGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9zdm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfc3Zt
+LmMKaW5kZXggMmRmMWMwNDYwNTU5Li43Yzk1ZmZjYmQxOGYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfc3ZtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbm91dmVhdV9zdm0uYwpAQCAtODE1LDcgKzgxNSw2IEBAIG5vdXZlYXVfcGZuc19tYXAoc3Ry
+dWN0IG5vdXZlYXVfc3ZtbSAqc3ZtbSwgc3RydWN0IG1tX3N0cnVjdCAqbW0sCiAJCSB1bnNpZ25l
+ZCBsb25nIGFkZHIsIHU2NCAqcGZucywgdW5zaWduZWQgbG9uZyBucGFnZXMpCiB7CiAJc3RydWN0
+IG5vdXZlYXVfcGZubWFwX2FyZ3MgKmFyZ3MgPSBub3V2ZWF1X3BmbnNfdG9fYXJncyhwZm5zKTsK
+LQlpbnQgcmV0OwogCiAJYXJncy0+cC5hZGRyID0gYWRkcjsKIAlhcmdzLT5wLnNpemUgPSBucGFn
+ZXMgPDwgUEFHRV9TSElGVDsKQEAgLTgyMyw4ICs4MjIsOCBAQCBub3V2ZWF1X3BmbnNfbWFwKHN0
+cnVjdCBub3V2ZWF1X3N2bW0gKnN2bW0sIHN0cnVjdCBtbV9zdHJ1Y3QgKm1tLAogCW11dGV4X2xv
+Y2soJnN2bW0tPm11dGV4KTsKIAogCXN2bW0tPnZtbS0+dm1tLm9iamVjdC5jbGllbnQtPnN1cGVy
+ID0gdHJ1ZTsKLQlyZXQgPSBudmlmX29iamVjdF9pb2N0bCgmc3ZtbS0+dm1tLT52bW0ub2JqZWN0
+LCBhcmdzLCBzaXplb2YoKmFyZ3MpICsKLQkJCQlucGFnZXMgKiBzaXplb2YoYXJncy0+cC5waHlz
+WzBdKSwgTlVMTCk7CisJbnZpZl9vYmplY3RfaW9jdGwoJnN2bW0tPnZtbS0+dm1tLm9iamVjdCwg
+YXJncywgc2l6ZW9mKCphcmdzKSArCisJCQkgIG5wYWdlcyAqIHNpemVvZihhcmdzLT5wLnBoeXNb
+MF0pLCBOVUxMKTsKIAlzdm1tLT52bW0tPnZtbS5vYmplY3QuY2xpZW50LT5zdXBlciA9IGZhbHNl
+OwogCiAJbXV0ZXhfdW5sb2NrKCZzdm1tLT5tdXRleCk7Ci0tIAoyLjI1LjQKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
