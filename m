@@ -1,62 +1,94 @@
-From: trix@redhat.com
-Subject: [PATCH] drm/nouveau: remove redundant check
-Date: Thu, 27 Aug 2020 11:37:23 -0700
-Message-ID: <20200827183723.7767-1-trix@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Tom Rix <trix@redhat.com>
+From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] nouveau: fix the start/end range for migration
+Date: Thu, 27 Aug 2020 14:37:44 -0700
+Message-ID: <20200827213744.14074-1-rcampbell@nvidia.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-From: Tom Rix <trix@redhat.com>
+The user level OpenCL code shouldn't have to align start and end
+addresses to a page boundary. That is better handled in the nouveau
+driver. The npages field is also redundant since it can be computed
+from the start and end addresses.
 
-clang static analysis flags this problem
-
-hw.c:271:12: warning: The left operand of '>=' is a
-  garbage value
-    if (pv.M1 >= pll_lim.vco1.min_m ...
-        ~~~~~ ^
-
-This is mostly not a problem because an early check in
-nouveau_hw_fix_bad_vpll()
-
-    	if (nvbios_pll_parse(bios, pll, &pll_lim))
-		return;
-	nouveau_hw_get_pllvals(dev, pll, &pv);
-
-shadows a similar check in nouveau_hw_get_pllvals()
-
-	ret = nvbios_pll_parse(bios, plltype, &pll_lim);
-	if (ret || !(reg1 = pll_lim.reg))
-		return -ENOENT;
-
-Since the first check is redundant, remove it and
-check the status of nouveau_hw_get_pllvals().
-
-Signed-off-by: Tom Rix <trix@redhat.com>
+Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/dispnv04/hw.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/hw.c b/drivers/gpu/drm/nouveau/dispnv04/hw.c
-index b674d68ef28a..b96c5628c33b 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/hw.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/hw.c
-@@ -259,14 +259,12 @@ nouveau_hw_fix_bad_vpll(struct drm_device *dev, int head)
- 	struct nouveau_drm *drm = nouveau_drm(dev);
- 	struct nvif_device *device = &drm->client.device;
- 	struct nvkm_clk *clk = nvxx_clk(device);
--	struct nvkm_bios *bios = nvxx_bios(device);
- 	struct nvbios_pll pll_lim;
- 	struct nvkm_pll_vals pv;
- 	enum nvbios_pll_type pll = head ? PLL_VPLL1 : PLL_VPLL0;
+This is for Ben Skegg's nouveau tree.
+
+I have been working with Karol Herbst on the OpenCL mesa changes for
+nouveau which will be merged upstream soon.
+With or without those changes, the user visible effect of this patch
+only extends the range by one page (round up vs. round down to page
+boundary).
+
+ drivers/gpu/drm/nouveau/nouveau_svm.c | 17 ++++++-----------
+ 1 file changed, 6 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+index 2df1c0460559..888aa0908c5a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_svm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+@@ -105,11 +105,14 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ 	struct nouveau_cli *cli = nouveau_cli(file_priv);
+ 	struct drm_nouveau_svm_bind *args = data;
+ 	unsigned target, cmd, priority;
+-	unsigned long addr, end, size;
++	unsigned long addr, end;
+ 	struct mm_struct *mm;
  
--	if (nvbios_pll_parse(bios, pll, &pll_lim))
-+	if (nouveau_hw_get_pllvals(dev, pll, &pv))
- 		return;
--	nouveau_hw_get_pllvals(dev, pll, &pv);
+ 	args->va_start &= PAGE_MASK;
+-	args->va_end &= PAGE_MASK;
++	args->va_end = ALIGN(args->va_end, PAGE_SIZE);
++	/* If no end address is given, assume a single page. */
++	if (args->va_end == 0)
++		args->va_end = args->va_start + PAGE_SIZE;
  
- 	if (pv.M1 >= pll_lim.vco1.min_m && pv.M1 <= pll_lim.vco1.max_m &&
- 	    pv.N1 >= pll_lim.vco1.min_n && pv.N1 <= pll_lim.vco1.max_n &&
+ 	/* Sanity check arguments */
+ 	if (args->reserved0 || args->reserved1)
+@@ -118,8 +121,6 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ 		return -EINVAL;
+ 	if (args->va_start >= args->va_end)
+ 		return -EINVAL;
+-	if (!args->npages)
+-		return -EINVAL;
+ 
+ 	cmd = args->header >> NOUVEAU_SVM_BIND_COMMAND_SHIFT;
+ 	cmd &= NOUVEAU_SVM_BIND_COMMAND_MASK;
+@@ -151,12 +152,6 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ 	if (args->stride)
+ 		return -EINVAL;
+ 
+-	size = ((unsigned long)args->npages) << PAGE_SHIFT;
+-	if ((args->va_start + size) <= args->va_start)
+-		return -EINVAL;
+-	if ((args->va_start + size) > args->va_end)
+-		return -EINVAL;
+-
+ 	/*
+ 	 * Ok we are ask to do something sane, for now we only support migrate
+ 	 * commands but we will add things like memory policy (what to do on
+@@ -171,7 +166,7 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ 		return -EINVAL;
+ 	}
+ 
+-	for (addr = args->va_start, end = args->va_start + size; addr < end;) {
++	for (addr = args->va_start, end = args->va_end; addr < end;) {
+ 		struct vm_area_struct *vma;
+ 		unsigned long next;
+ 
 -- 
-2.18.1
+2.20.1
