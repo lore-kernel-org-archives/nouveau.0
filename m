@@ -1,13 +1,14 @@
-From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 6/6] drm/nouveau: Allow zero pushbuffer submits
-Date: Fri, 28 Aug 2020 12:40:16 +0200
-Message-ID: <20200828104016.1672195-7-thierry.reding@gmail.com>
-References: <20200828104016.1672195-1-thierry.reding@gmail.com>
+From: Frantisek Hrbata <frantisek-ktf8V493EB/QT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] drm/nouveau: bail out of nouveau_channel_new if
+ channel init fails
+Date: Fri, 28 Aug 2020 11:28:46 +0200
+Message-ID: <20200828092846.GA11454@localhost.localdomain>
+Reply-To: Frantisek Hrbata <frantisek-ktf8V493EB/QT0dZR+AlfA@public.gmane.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200828104016.1672195-1-thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,281 +18,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-From: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Unprivileged user can crash kernel by using DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC
+ioctl. This was reported by trinity[1] fuzzer.
 
-These are useful in cases where only a fence is to be created to wait
-for existing jobs in the command stream.
+[   71.073906] nouveau 0000:01:00.0: crashme[1329]: channel failed to initialise, -17
+[   71.081730] BUG: kernel NULL pointer dereference, address: 00000000000000a0
+[   71.088928] #PF: supervisor read access in kernel mode
+[   71.094059] #PF: error_code(0x0000) - not-present page
+[   71.099189] PGD 119590067 P4D 119590067 PUD 1054f5067 PMD 0
+[   71.104842] Oops: 0000 [#1] SMP NOPTI
+[   71.108498] CPU: 2 PID: 1329 Comm: crashme Not tainted 5.8.0-rc6+ #2
+[   71.114993] Hardware name: AMD Pike/Pike, BIOS RPK1506A 09/03/2014
+[   71.121213] RIP: 0010:nouveau_abi16_ioctl_channel_alloc+0x108/0x380 [nouveau]
+[   71.128339] Code: 48 89 9d f0 00 00 00 41 8b 4c 24 04 41 8b 14 24 45 31 c0 4c 8d 4b 10 48 89 ee 4c 89 f7 e8 10 11 00 00 85 c0 75 78 48 8b 43 10 <8b> 90 a0 00 00 00 41 89 54 24 08 80 7d 3d 05 0f 86 bb 01 00 00 41
+[   71.147074] RSP: 0018:ffffb4a1809cfd38 EFLAGS: 00010246
+[   71.152526] RAX: 0000000000000000 RBX: ffff98cedbaa1d20 RCX: 00000000000003bf
+[   71.159651] RDX: 00000000000003be RSI: 0000000000000000 RDI: 0000000000030160
+[   71.166774] RBP: ffff98cee776de00 R08: ffffdc0144198a08 R09: ffff98ceeefd4000
+[   71.173901] R10: ffff98cee7e81780 R11: 0000000000000001 R12: ffffb4a1809cfe08
+[   71.181214] R13: ffff98cee776d000 R14: ffff98cec519e000 R15: ffff98cee776def0
+[   71.188339] FS:  00007fd926250500(0000) GS:ffff98ceeac80000(0000) knlGS:0000000000000000
+[   71.196418] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   71.202155] CR2: 00000000000000a0 CR3: 0000000106622000 CR4: 00000000000406e0
+[   71.209297] Call Trace:
+[   71.211777]  ? nouveau_abi16_ioctl_getparam+0x1f0/0x1f0 [nouveau]
+[   71.218053]  drm_ioctl_kernel+0xac/0xf0 [drm]
+[   71.222421]  drm_ioctl+0x211/0x3c0 [drm]
+[   71.226379]  ? nouveau_abi16_ioctl_getparam+0x1f0/0x1f0 [nouveau]
+[   71.232500]  nouveau_drm_ioctl+0x57/0xb0 [nouveau]
+[   71.237285]  ksys_ioctl+0x86/0xc0
+[   71.240595]  __x64_sys_ioctl+0x16/0x20
+[   71.244340]  do_syscall_64+0x4c/0x90
+[   71.248110]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   71.253162] RIP: 0033:0x7fd925d4b88b
+[   71.256731] Code: Bad RIP value.
+[   71.259955] RSP: 002b:00007ffc743592d8 EFLAGS: 00000206 ORIG_RAX: 0000000000000010
+[   71.267514] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fd925d4b88b
+[   71.274637] RDX: 0000000000601080 RSI: 00000000c0586442 RDI: 0000000000000003
+[   71.281986] RBP: 00007ffc74359340 R08: 00007fd926016ce0 R09: 00007fd926016ce0
+[   71.289111] R10: 0000000000000003 R11: 0000000000000206 R12: 0000000000400620
+[   71.296235] R13: 00007ffc74359420 R14: 0000000000000000 R15: 0000000000000000
+[   71.303361] Modules linked in: rfkill sunrpc snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio snd_hda_intel snd_intel_dspcfg snd_hda_codec snd_hda_core edac_mce_amd snd_hwdep kvm_amd snd_seq ccp snd_seq_device snd_pcm kvm snd_timer snd irqbypass soundcore sp5100_tco pcspkr crct10dif_pclmul crc32_pclmul ghash_clmulni_intel wmi_bmof joydev i2c_piix4 fam15h_power k10temp acpi_cpufreq ip_tables xfs libcrc32c sd_mod t10_pi sg nouveau video mxm_wmi i2c_algo_bit drm_kms_helper syscopyarea sysfillrect sysimgblt fb_sys_fops ttm broadcom bcm_phy_lib ata_generic ahci drm e1000 crc32c_intel libahci serio_raw tg3 libata firewire_ohci firewire_core wmi crc_itu_t dm_mirror dm_region_hash dm_log dm_mod
+[   71.365269] CR2: 00000000000000a0
 
-Signed-off-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+simplified reproducer
+---------------------------------8<----------------------------------------
+/*
+ * gcc -o crashme crashme.c
+ * ./crashme /dev/dri/renderD128
+ */
+
+struct drm_nouveau_channel_alloc {
+	uint32_t     fb_ctxdma_handle;
+	uint32_t     tt_ctxdma_handle;
+
+	int          channel;
+	uint32_t     pushbuf_domains;
+
+	/* Notifier memory */
+	uint32_t     notifier_handle;
+
+	/* DRM-enforced subchannel assignments */
+	struct {
+		uint32_t handle;
+		uint32_t grclass;
+	} subchan[8];
+	uint32_t nr_subchan;
+};
+
+static struct drm_nouveau_channel_alloc channel;
+
+int main(int argc, char *argv[]) {
+	int fd;
+	int rv;
+
+	if (argc != 2)
+		die("usage: %s <dev>", 0, argv[0]);
+
+	if ((fd = open(argv[1], O_RDONLY)) == -1)
+		die("open %s", errno, argv[1]);
+
+	if (ioctl(fd, DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC, &channel) == -1 &&
+			errno == EACCES)
+		die("ioctl %s", errno, argv[1]);
+
+	close(fd);
+
+	printf("PASS\n");
+
+	return 0;
+}
+---------------------------------8<----------------------------------------
+
+[1] https://github.com/kernelslacker/trinity
+
+Fixes: eeaf06ac1a55 ("drm/nouveau/svm: initial support for shared virtual memory")
+Signed-off-by: Frantisek Hrbata <frantisek-ktf8V493EB/QT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_gem.c | 197 +++++++++++++-------------
- 1 file changed, 99 insertions(+), 98 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_chan.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index b3ece731e4e1..c70a045d7141 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -816,9 +816,9 @@ __nouveau_gem_ioctl_pushbuf(struct drm_device *dev,
- 	struct nouveau_abi16_chan *temp;
- 	struct nouveau_drm *drm = nouveau_drm(dev);
- 	struct drm_nouveau_gem_pushbuf *req = &request->base;
--	struct drm_nouveau_gem_pushbuf_push *push;
- 	struct drm_nouveau_gem_pushbuf_reloc *reloc = NULL;
--	struct drm_nouveau_gem_pushbuf_bo *bo;
-+	struct drm_nouveau_gem_pushbuf_push *push = NULL;
-+	struct drm_nouveau_gem_pushbuf_bo *bo = NULL;
- 	struct drm_nouveau_gem_fence *fences = NULL;
- 	struct nouveau_channel *chan = NULL;
- 	struct validate_op op;
-@@ -850,8 +850,6 @@ __nouveau_gem_ioctl_pushbuf(struct drm_device *dev,
- 
- 	req->vram_available = drm->gem.vram_available;
- 	req->gart_available = drm->gem.gart_available;
--	if (unlikely(req->nr_push == 0))
--		goto out_next;
- 
- 	if (unlikely(req->nr_push > NOUVEAU_GEM_MAX_PUSH)) {
- 		NV_PRINTK(err, cli, "pushbuf push count exceeds limit: %d max %d\n",
-@@ -871,33 +869,35 @@ __nouveau_gem_ioctl_pushbuf(struct drm_device *dev,
- 		return nouveau_abi16_put(abi16, -EINVAL);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
+index b80e4ebf1..a7a47b325 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_chan.c
++++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
+@@ -533,6 +533,7 @@ nouveau_channel_new(struct nouveau_drm *drm, struct nvif_device *device,
+ 	if (ret) {
+ 		NV_PRINTK(err, cli, "channel failed to initialise, %d\n", ret);
+ 		nouveau_channel_del(pchan);
++		goto done;
  	}
  
--	push = u_memcpya(req->push, req->nr_push, sizeof(*push));
--	if (IS_ERR(push))
--		return nouveau_abi16_put(abi16, PTR_ERR(push));
-+	if (req->nr_push > 0) {
-+		push = u_memcpya(req->push, req->nr_push, sizeof(*push));
-+		if (IS_ERR(push))
-+			return nouveau_abi16_put(abi16, PTR_ERR(push));
- 
--	bo = u_memcpya(req->buffers, req->nr_buffers, sizeof(*bo));
--	if (IS_ERR(bo)) {
--		u_free(push);
--		return nouveau_abi16_put(abi16, PTR_ERR(bo));
--	}
-+		bo = u_memcpya(req->buffers, req->nr_buffers, sizeof(*bo));
-+		if (IS_ERR(bo)) {
-+			u_free(push);
-+			return nouveau_abi16_put(abi16, PTR_ERR(bo));
-+		}
- 
--	/* Ensure all push buffers are on validate list */
--	for (i = 0; i < req->nr_push; i++) {
--		if (push[i].bo_index >= req->nr_buffers) {
--			NV_PRINTK(err, cli, "push %d buffer not in list\n", i);
--			ret = -EINVAL;
--			goto out_prevalid;
-+		/* Ensure all push buffers are on validate list */
-+		for (i = 0; i < req->nr_push; i++) {
-+			if (push[i].bo_index >= req->nr_buffers) {
-+				NV_PRINTK(err, cli, "push %d buffer not in list\n", i);
-+				ret = -EINVAL;
-+				goto out_prevalid;
-+			}
- 		}
--	}
- 
--	/* Validate buffer list */
-+		/* Validate buffer list */
- revalidate:
--	ret = nouveau_gem_pushbuf_validate(chan, file_priv, bo,
--					   req->nr_buffers, &op, &do_reloc);
--	if (ret) {
--		if (ret != -ERESTARTSYS)
--			NV_PRINTK(err, cli, "validate: %d\n", ret);
--		goto out_prevalid;
-+		ret = nouveau_gem_pushbuf_validate(chan, file_priv, bo,
-+						   req->nr_buffers, &op, &do_reloc);
-+		if (ret) {
-+			if (ret != -ERESTARTSYS)
-+				NV_PRINTK(err, cli, "validate: %d\n", ret);
-+			goto out_prevalid;
-+		}
- 	}
- 
- 	if (request->num_fences > 0) {
-@@ -915,89 +915,89 @@ __nouveau_gem_ioctl_pushbuf(struct drm_device *dev,
- 	}
- 
- 	/* Apply any relocations that are required */
--	if (do_reloc) {
--		if (!reloc) {
--			validate_fini(&op, chan, NULL, bo);
--			reloc = u_memcpya(req->relocs, req->nr_relocs, sizeof(*reloc));
--			if (IS_ERR(reloc)) {
--				ret = PTR_ERR(reloc);
--				goto out_prevalid;
--			}
-+	if (req->nr_push > 0) {
-+		if (do_reloc) {
-+			if (!reloc) {
-+				validate_fini(&op, chan, NULL, bo);
-+				reloc = u_memcpya(req->relocs, req->nr_relocs, sizeof(*reloc));
-+				if (IS_ERR(reloc)) {
-+					ret = PTR_ERR(reloc);
-+					goto out_prevalid;
-+				}
- 
--			goto revalidate;
--		}
-+				goto revalidate;
-+			}
- 
--		ret = nouveau_gem_pushbuf_reloc_apply(cli, req, reloc, bo);
--		if (ret) {
--			NV_PRINTK(err, cli, "reloc apply: %d\n", ret);
--			goto out;
-+			ret = nouveau_gem_pushbuf_reloc_apply(cli, req, reloc, bo);
-+			if (ret) {
-+				NV_PRINTK(err, cli, "reloc apply: %d\n", ret);
-+				goto out;
-+			}
- 		}
--	}
- 
--	if (chan->dma.ib_max) {
--		ret = nouveau_dma_wait(chan, req->nr_push + 1, 16);
--		if (ret) {
--			NV_PRINTK(err, cli, "nv50cal_space: %d\n", ret);
--			goto out;
--		}
-+		if (chan->dma.ib_max) {
-+			ret = nouveau_dma_wait(chan, req->nr_push + 1, 16);
-+			if (ret) {
-+				NV_PRINTK(err, cli, "nv50cal_space: %d\n", ret);
-+				goto out;
-+			}
- 
--		for (i = 0; i < req->nr_push; i++) {
--			struct nouveau_vma *vma = (void *)(unsigned long)
--				bo[push[i].bo_index].user_priv;
-+			for (i = 0; i < req->nr_push; i++) {
-+				struct nouveau_vma *vma = (void *)(unsigned long)
-+					bo[push[i].bo_index].user_priv;
- 
--			nv50_dma_push(chan, vma->addr + push[i].offset,
--				      push[i].length);
--		}
--	} else
--	if (drm->client.device.info.chipset >= 0x25) {
--		ret = PUSH_WAIT(chan->chan.push, req->nr_push * 2);
--		if (ret) {
--			NV_PRINTK(err, cli, "cal_space: %d\n", ret);
--			goto out;
--		}
-+				nv50_dma_push(chan, vma->addr + push[i].offset,
-+					      push[i].length);
-+			}
-+		} else if (drm->client.device.info.chipset >= 0x25) {
-+			ret = PUSH_WAIT(chan->chan.push, req->nr_push * 2);
-+			if (ret) {
-+				NV_PRINTK(err, cli, "cal_space: %d\n", ret);
-+				goto out;
-+			}
- 
--		for (i = 0; i < req->nr_push; i++) {
--			struct nouveau_bo *nvbo = (void *)(unsigned long)
--				bo[push[i].bo_index].user_priv;
-+			for (i = 0; i < req->nr_push; i++) {
-+				struct nouveau_bo *nvbo = (void *)(unsigned long)
-+					bo[push[i].bo_index].user_priv;
- 
--			PUSH_CALL(chan->chan.push, nvbo->offset + push[i].offset);
--			PUSH_DATA(chan->chan.push, 0);
--		}
--	} else {
--		ret = PUSH_WAIT(chan->chan.push, req->nr_push * (2 + NOUVEAU_DMA_SKIPS));
--		if (ret) {
--			NV_PRINTK(err, cli, "jmp_space: %d\n", ret);
--			goto out;
--		}
-+				PUSH_CALL(chan->chan.push, nvbo->offset + push[i].offset);
-+				PUSH_DATA(chan->chan.push, 0);
-+			}
-+		} else {
-+			ret = PUSH_WAIT(chan->chan.push, req->nr_push * (2 + NOUVEAU_DMA_SKIPS));
-+			if (ret) {
-+				NV_PRINTK(err, cli, "jmp_space: %d\n", ret);
-+				goto out;
-+			}
- 
--		for (i = 0; i < req->nr_push; i++) {
--			struct nouveau_bo *nvbo = (void *)(unsigned long)
--				bo[push[i].bo_index].user_priv;
--			uint32_t cmd;
--
--			cmd = chan->push.addr + ((chan->dma.cur + 2) << 2);
--			cmd |= 0x20000000;
--			if (unlikely(cmd != req->suffix0)) {
--				if (!nvbo->kmap.virtual) {
--					ret = ttm_bo_kmap(&nvbo->bo, 0,
--							  nvbo->bo.mem.
--							  num_pages,
--							  &nvbo->kmap);
--					if (ret) {
--						WIND_RING(chan);
--						goto out;
-+			for (i = 0; i < req->nr_push; i++) {
-+				struct nouveau_bo *nvbo = (void *)(unsigned long)
-+					bo[push[i].bo_index].user_priv;
-+				uint32_t cmd;
-+
-+				cmd = chan->push.addr + ((chan->dma.cur + 2) << 2);
-+				cmd |= 0x20000000;
-+				if (unlikely(cmd != req->suffix0)) {
-+					if (!nvbo->kmap.virtual) {
-+						ret = ttm_bo_kmap(&nvbo->bo, 0,
-+								  nvbo->bo.mem.num_pages,
-+								  &nvbo->kmap);
-+						if (ret) {
-+							WIND_RING(chan);
-+							goto out;
-+						}
-+						nvbo->validate_mapped = true;
- 					}
--					nvbo->validate_mapped = true;
--				}
- 
--				nouveau_bo_wr32(nvbo, (push[i].offset +
--						push[i].length - 8) / 4, cmd);
--			}
-+					nouveau_bo_wr32(nvbo, (push[i].offset +
-+							push[i].length - 8) / 4, cmd);
-+				}
- 
--			PUSH_JUMP(chan->chan.push, nvbo->offset + push[i].offset);
--			PUSH_DATA(chan->chan.push, 0);
--			for (j = 0; j < NOUVEAU_DMA_SKIPS; j++)
-+				PUSH_JUMP(chan->chan.push, nvbo->offset + push[i].offset);
- 				PUSH_DATA(chan->chan.push, 0);
-+				for (j = 0; j < NOUVEAU_DMA_SKIPS; j++)
-+					PUSH_DATA(chan->chan.push, 0);
-+			}
- 		}
- 	}
- 
-@@ -1031,7 +1031,9 @@ __nouveau_gem_ioctl_pushbuf(struct drm_device *dev,
- out:
- 	u_free(fences);
- 
--	validate_fini(&op, chan, fence, bo);
-+	if (req->nr_push > 0)
-+		validate_fini(&op, chan, fence, bo);
-+
- 	nouveau_fence_unref(&fence);
- 
- 	if (do_reloc) {
-@@ -1054,7 +1056,6 @@ __nouveau_gem_ioctl_pushbuf(struct drm_device *dev,
- 	u_free(bo);
- 	u_free(push);
- 
--out_next:
- 	if (chan->dma.ib_max) {
- 		req->suffix0 = 0x00000000;
- 		req->suffix1 = 0x00000000;
+ 	ret = nouveau_svmm_join((*pchan)->vmm->svmm, (*pchan)->inst);
 -- 
-2.28.0
+Frantisek Hrbata
