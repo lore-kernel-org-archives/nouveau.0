@@ -1,7 +1,7 @@
 From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 2/6] drm/nouveau: Add nouveau_fence_ref()
-Date: Fri, 28 Aug 2020 12:40:12 +0200
-Message-ID: <20200828104016.1672195-3-thierry.reding@gmail.com>
+Subject: [PATCH 1/6] drm/nouveau: Split nouveau_fence_sync()
+Date: Fri, 28 Aug 2020 12:40:11 +0200
+Message-ID: <20200828104016.1672195-2-thierry.reding@gmail.com>
 References: <20200828104016.1672195-1-thierry.reding@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,46 +23,227 @@ List-Id: nouveau.vger.kernel.org
 
 From: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 
-This is a simple wrapper that increments the reference count of the
-backing DMA fence.
+Turn nouveau_fence_sync() into a low-level helper that adds fence waits
+to the channel command stream. The new nouveau_bo_sync() helper replaces
+the previous nouveau_fence_sync() implementation. It passes each of the
+buffer object's fences to nouveau_fence_sync() in turn.
+
+This provides more fine-grained control over fences which is needed by
+subsequent patches for sync fd support.
+
+Heavily based on work by Lauri Peltonen <lpeltonen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>.
 
 Signed-off-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_fence.c | 9 +++++++++
- drivers/gpu/drm/nouveau/nouveau_fence.h | 1 +
- 2 files changed, 10 insertions(+)
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c |  4 +-
+ drivers/gpu/drm/nouveau/nouveau_bo.c    | 38 +++++++++++++-
+ drivers/gpu/drm/nouveau/nouveau_bo.h    |  2 +
+ drivers/gpu/drm/nouveau/nouveau_fence.c | 68 +++++--------------------
+ drivers/gpu/drm/nouveau/nouveau_fence.h |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_gem.c   |  2 +-
+ 6 files changed, 57 insertions(+), 59 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
-index 8e7550553584..8530c2684832 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-@@ -363,6 +363,15 @@ nouveau_fence_sync(struct dma_fence *fence, struct nouveau_channel *chan,
- 	return ret;
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+index 6416b6907aeb..4af702d0d6bf 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+@@ -1117,7 +1117,7 @@ nv04_page_flip_emit(struct nouveau_channel *chan,
+ 	spin_unlock_irqrestore(&dev->event_lock, flags);
+ 
+ 	/* Synchronize with the old framebuffer */
+-	ret = nouveau_fence_sync(old_bo, chan, false, false);
++	ret = nouveau_bo_sync(old_bo, chan, false, false);
+ 	if (ret)
+ 		goto fail;
+ 
+@@ -1183,7 +1183,7 @@ nv04_crtc_page_flip(struct drm_crtc *crtc, struct drm_framebuffer *fb,
+ 		goto fail_unpin;
+ 
+ 	/* synchronise rendering channel with the kernel's channel */
+-	ret = nouveau_fence_sync(new_bo, chan, false, true);
++	ret = nouveau_bo_sync(new_bo, chan, false, true);
+ 	if (ret) {
+ 		ttm_bo_unreserve(&new_bo->bo);
+ 		goto fail_unpin;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index 9140387f30dc..25ceabfa741c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -574,6 +574,42 @@ nouveau_bo_sync_for_cpu(struct nouveau_bo *nvbo)
+ 					PAGE_SIZE, DMA_FROM_DEVICE);
  }
  
-+struct nouveau_fence *
-+nouveau_fence_ref(struct nouveau_fence *fence)
++int
++nouveau_bo_sync(struct nouveau_bo *nvbo, struct nouveau_channel *chan,
++		bool exclusive, bool intr)
 +{
-+	if (fence)
-+		dma_fence_get(&fence->base);
++	struct dma_resv *resv = nvbo->bo.base.resv;
++	struct dma_resv_list *fobj;
++	struct dma_fence *fence;
++	int ret = 0, i;
 +
-+	return fence;
++	if (!exclusive) {
++		ret = dma_resv_reserve_shared(resv, 1);
++		if (ret < 0)
++			return ret;
++	}
++
++	fobj = dma_resv_get_list(resv);
++	fence = dma_resv_get_excl(resv);
++
++	if (fence && (!exclusive || !fobj || !fobj->shared_count))
++		return nouveau_fence_sync(fence, chan, intr);
++
++	if (!exclusive || !fobj)
++		return ret;
++
++	for (i = 0; i < fobj->shared_count && !ret; ++i) {
++		fence = rcu_dereference_protected(fobj->shared[i],
++						  dma_resv_held(resv));
++
++		ret = nouveau_fence_sync(fence, chan, intr);
++		if (ret < 0)
++			break;
++	}
++
++	return ret;
 +}
 +
- void
- nouveau_fence_unref(struct nouveau_fence **pfence)
+ int
+ nouveau_bo_validate(struct nouveau_bo *nvbo, bool interruptible,
+ 		    bool no_wait_gpu)
+@@ -717,7 +753,7 @@ nouveau_bo_move_m2mf(struct ttm_buffer_object *bo, int evict, bool intr,
+ 	}
+ 
+ 	mutex_lock_nested(&cli->mutex, SINGLE_DEPTH_NESTING);
+-	ret = nouveau_fence_sync(nouveau_bo(bo), chan, true, intr);
++	ret = nouveau_bo_sync(nouveau_bo(bo), chan, true, intr);
+ 	if (ret == 0) {
+ 		ret = drm->ttm.move(chan, bo, &bo->mem, new_reg);
+ 		if (ret == 0) {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.h b/drivers/gpu/drm/nouveau/nouveau_bo.h
+index aecb7481df0d..93d1706619a1 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.h
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.h
+@@ -96,6 +96,8 @@ int  nouveau_bo_validate(struct nouveau_bo *, bool interruptible,
+ 			 bool no_wait_gpu);
+ void nouveau_bo_sync_for_device(struct nouveau_bo *nvbo);
+ void nouveau_bo_sync_for_cpu(struct nouveau_bo *nvbo);
++int nouveau_bo_sync(struct nouveau_bo *nvbo, struct nouveau_channel *channel,
++		    bool exclusive, bool intr);
+ 
+ /* TODO: submit equivalent to TTM generic API upstream? */
+ static inline void __iomem *
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
+index e5dcbf67de7e..8e7550553584 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fence.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+@@ -339,66 +339,26 @@ nouveau_fence_wait(struct nouveau_fence *fence, bool lazy, bool intr)
+ }
+ 
+ int
+-nouveau_fence_sync(struct nouveau_bo *nvbo, struct nouveau_channel *chan, bool exclusive, bool intr)
++nouveau_fence_sync(struct dma_fence *fence, struct nouveau_channel *chan,
++		   bool intr)
  {
+ 	struct nouveau_fence_chan *fctx = chan->fence;
+-	struct dma_fence *fence;
+-	struct dma_resv *resv = nvbo->bo.base.resv;
+-	struct dma_resv_list *fobj;
++	struct nouveau_channel *prev = NULL;
+ 	struct nouveau_fence *f;
+-	int ret = 0, i;
+-
+-	if (!exclusive) {
+-		ret = dma_resv_reserve_shared(resv, 1);
++	bool must_wait = true;
++	int ret = 0;
+ 
+-		if (ret)
+-			return ret;
++	f = nouveau_local_fence(fence, chan->drm);
++	if (f) {
++		rcu_read_lock();
++		prev = rcu_dereference(f->channel);
++		if (prev && (prev == chan || fctx->sync(f, prev, chan) == 0))
++			must_wait = false;
++		rcu_read_unlock();
+ 	}
+ 
+-	fobj = dma_resv_get_list(resv);
+-	fence = dma_resv_get_excl(resv);
+-
+-	if (fence && (!exclusive || !fobj || !fobj->shared_count)) {
+-		struct nouveau_channel *prev = NULL;
+-		bool must_wait = true;
+-
+-		f = nouveau_local_fence(fence, chan->drm);
+-		if (f) {
+-			rcu_read_lock();
+-			prev = rcu_dereference(f->channel);
+-			if (prev && (prev == chan || fctx->sync(f, prev, chan) == 0))
+-				must_wait = false;
+-			rcu_read_unlock();
+-		}
+-
+-		if (must_wait)
+-			ret = dma_fence_wait(fence, intr);
+-
+-		return ret;
+-	}
+-
+-	if (!exclusive || !fobj)
+-		return ret;
+-
+-	for (i = 0; i < fobj->shared_count && !ret; ++i) {
+-		struct nouveau_channel *prev = NULL;
+-		bool must_wait = true;
+-
+-		fence = rcu_dereference_protected(fobj->shared[i],
+-						dma_resv_held(resv));
+-
+-		f = nouveau_local_fence(fence, chan->drm);
+-		if (f) {
+-			rcu_read_lock();
+-			prev = rcu_dereference(f->channel);
+-			if (prev && (prev == chan || fctx->sync(f, prev, chan) == 0))
+-				must_wait = false;
+-			rcu_read_unlock();
+-		}
+-
+-		if (must_wait)
+-			ret = dma_fence_wait(fence, intr);
+-	}
++	if (must_wait)
++		ret = dma_fence_wait(fence, intr);
+ 
+ 	return ret;
+ }
 diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.h b/drivers/gpu/drm/nouveau/nouveau_fence.h
-index 76cbf0c27a30..b8afd4b06445 100644
+index 4887caa69c65..76cbf0c27a30 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_fence.h
 +++ b/drivers/gpu/drm/nouveau/nouveau_fence.h
-@@ -19,6 +19,7 @@ struct nouveau_fence {
- 
- int  nouveau_fence_new(struct nouveau_channel *, bool sysmem,
- 		       struct nouveau_fence **);
-+struct nouveau_fence *nouveau_fence_ref(struct nouveau_fence *);
- void nouveau_fence_unref(struct nouveau_fence **);
- 
+@@ -24,7 +24,7 @@ void nouveau_fence_unref(struct nouveau_fence **);
  int  nouveau_fence_emit(struct nouveau_fence *, struct nouveau_channel *);
+ bool nouveau_fence_done(struct nouveau_fence *);
+ int  nouveau_fence_wait(struct nouveau_fence *, bool lazy, bool intr);
+-int  nouveau_fence_sync(struct nouveau_bo *, struct nouveau_channel *, bool exclusive, bool intr);
++int  nouveau_fence_sync(struct dma_fence *, struct nouveau_channel *, bool intr);
+ 
+ struct nouveau_fence_chan {
+ 	spinlock_t lock;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index 81f111ad3f4f..590e4c1d2e8a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -513,7 +513,7 @@ validate_list(struct nouveau_channel *chan, struct nouveau_cli *cli,
+ 			return ret;
+ 		}
+ 
+-		ret = nouveau_fence_sync(nvbo, chan, !!b->write_domains, true);
++		ret = nouveau_bo_sync(nvbo, chan, !!b->write_domains, true);
+ 		if (unlikely(ret)) {
+ 			if (ret != -ERESTARTSYS)
+ 				NV_PRINTK(err, cli, "fail post-validate sync\n");
 -- 
 2.28.0
