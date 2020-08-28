@@ -1,11 +1,13 @@
 From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 0/6] drm/nouveau: Support sync FDs and sync objects
-Date: Fri, 28 Aug 2020 12:40:10 +0200
-Message-ID: <20200828104016.1672195-1-thierry.reding@gmail.com>
+Subject: [PATCH 2/6] drm/nouveau: Add nouveau_fence_ref()
+Date: Fri, 28 Aug 2020 12:40:12 +0200
+Message-ID: <20200828104016.1672195-3-thierry.reding@gmail.com>
+References: <20200828104016.1672195-1-thierry.reding@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200828104016.1672195-1-thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,48 +23,46 @@ List-Id: nouveau.vger.kernel.org
 
 From: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 
-Hi,
+This is a simple wrapper that increments the reference count of the
+backing DMA fence.
 
-This series implements a new IOCTL to submit push buffers that can
-optionally return a sync FD or sync object to userspace. This is useful
-in cases where userspace wants to synchronize operations between the GPU
-and another driver (such as KMS for display). Among other things this
-allows extensions such as eglDupNativeFenceFDANDROID to be implemented.
+Signed-off-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_fence.c | 9 +++++++++
+ drivers/gpu/drm/nouveau/nouveau_fence.h | 1 +
+ 2 files changed, 10 insertions(+)
 
-Note that patch 4 modifies the ABI introduced in patch 3 by allowing DRM
-sync objects to be passed rather than only sync FDs. It also allows any
-number of sync FDs/objects to be passed in or emitted. I think those are
-useful features, but I left them in a separate patch in case everybody
-else thinks that this won't be needed. If we decide to merge the new ABI
-then patch 4 should be squashed into patch 3.
-
-The corresponding userspace changes can be found here:
-
-  libdrm: https://gitlab.freedesktop.org/tagr/drm/-/commits/nouveau-sync-fd-v2/
-  mesa: https://gitlab.freedesktop.org/tagr/mesa/-/commits/nouveau-sync-fd/
-
-I've verified that this works with kmscube's --atomic mode and Weston.
-
-Thierry
-
-Thierry Reding (6):
-  drm/nouveau: Split nouveau_fence_sync()
-  drm/nouveau: Add nouveau_fence_ref()
-  drm/nouveau: Support fence FDs at kickoff
-  drm/nouveau: Support sync FDs and syncobjs
-  drm/nouveau: Support DMA fence arrays
-  drm/nouveau: Allow zero pushbuffer submits
-
- drivers/gpu/drm/nouveau/dispnv04/crtc.c |   4 +-
- drivers/gpu/drm/nouveau/nouveau_bo.c    |  38 ++-
- drivers/gpu/drm/nouveau/nouveau_bo.h    |   2 +
- drivers/gpu/drm/nouveau/nouveau_drm.c   |   1 +
- drivers/gpu/drm/nouveau/nouveau_fence.c |  90 +++---
- drivers/gpu/drm/nouveau/nouveau_fence.h |   3 +-
- drivers/gpu/drm/nouveau/nouveau_gem.c   | 402 ++++++++++++++++++------
- drivers/gpu/drm/nouveau/nouveau_gem.h   |   2 +
- include/uapi/drm/nouveau_drm.h          |  23 ++
- 9 files changed, 410 insertions(+), 155 deletions(-)
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
+index 8e7550553584..8530c2684832 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fence.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+@@ -363,6 +363,15 @@ nouveau_fence_sync(struct dma_fence *fence, struct nouveau_channel *chan,
+ 	return ret;
+ }
+ 
++struct nouveau_fence *
++nouveau_fence_ref(struct nouveau_fence *fence)
++{
++	if (fence)
++		dma_fence_get(&fence->base);
++
++	return fence;
++}
++
+ void
+ nouveau_fence_unref(struct nouveau_fence **pfence)
+ {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.h b/drivers/gpu/drm/nouveau/nouveau_fence.h
+index 76cbf0c27a30..b8afd4b06445 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fence.h
++++ b/drivers/gpu/drm/nouveau/nouveau_fence.h
+@@ -19,6 +19,7 @@ struct nouveau_fence {
+ 
+ int  nouveau_fence_new(struct nouveau_channel *, bool sysmem,
+ 		       struct nouveau_fence **);
++struct nouveau_fence *nouveau_fence_ref(struct nouveau_fence *);
+ void nouveau_fence_unref(struct nouveau_fence **);
+ 
+ int  nouveau_fence_emit(struct nouveau_fence *, struct nouveau_channel *);
 -- 
 2.28.0
