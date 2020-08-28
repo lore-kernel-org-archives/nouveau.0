@@ -1,7 +1,7 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] nouveau: fix the start/end range for migration
-Date: Thu, 27 Aug 2020 14:37:44 -0700
-Message-ID: <20200827213744.14074-1-rcampbell@nvidia.com>
+From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 0/6] drm/nouveau: Support sync FDs and sync objects
+Date: Fri, 28 Aug 2020 12:40:10 +0200
+Message-ID: <20200828104016.1672195-1-thierry.reding@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -15,80 +15,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-The user level OpenCL code shouldn't have to align start and end
-addresses to a page boundary. That is better handled in the nouveau
-driver. The npages field is also redundant since it can be computed
-from the start and end addresses.
+From: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 
-Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
----
+Hi,
 
-This is for Ben Skegg's nouveau tree.
+This series implements a new IOCTL to submit push buffers that can
+optionally return a sync FD or sync object to userspace. This is useful
+in cases where userspace wants to synchronize operations between the GPU
+and another driver (such as KMS for display). Among other things this
+allows extensions such as eglDupNativeFenceFDANDROID to be implemented.
 
-I have been working with Karol Herbst on the OpenCL mesa changes for
-nouveau which will be merged upstream soon.
-With or without those changes, the user visible effect of this patch
-only extends the range by one page (round up vs. round down to page
-boundary).
+Note that patch 4 modifies the ABI introduced in patch 3 by allowing DRM
+sync objects to be passed rather than only sync FDs. It also allows any
+number of sync FDs/objects to be passed in or emitted. I think those are
+useful features, but I left them in a separate patch in case everybody
+else thinks that this won't be needed. If we decide to merge the new ABI
+then patch 4 should be squashed into patch 3.
 
- drivers/gpu/drm/nouveau/nouveau_svm.c | 17 ++++++-----------
- 1 file changed, 6 insertions(+), 11 deletions(-)
+The corresponding userspace changes can be found here:
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-index 2df1c0460559..888aa0908c5a 100644
---- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-@@ -105,11 +105,14 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
- 	struct nouveau_cli *cli = nouveau_cli(file_priv);
- 	struct drm_nouveau_svm_bind *args = data;
- 	unsigned target, cmd, priority;
--	unsigned long addr, end, size;
-+	unsigned long addr, end;
- 	struct mm_struct *mm;
- 
- 	args->va_start &= PAGE_MASK;
--	args->va_end &= PAGE_MASK;
-+	args->va_end = ALIGN(args->va_end, PAGE_SIZE);
-+	/* If no end address is given, assume a single page. */
-+	if (args->va_end == 0)
-+		args->va_end = args->va_start + PAGE_SIZE;
- 
- 	/* Sanity check arguments */
- 	if (args->reserved0 || args->reserved1)
-@@ -118,8 +121,6 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
- 		return -EINVAL;
- 	if (args->va_start >= args->va_end)
- 		return -EINVAL;
--	if (!args->npages)
--		return -EINVAL;
- 
- 	cmd = args->header >> NOUVEAU_SVM_BIND_COMMAND_SHIFT;
- 	cmd &= NOUVEAU_SVM_BIND_COMMAND_MASK;
-@@ -151,12 +152,6 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
- 	if (args->stride)
- 		return -EINVAL;
- 
--	size = ((unsigned long)args->npages) << PAGE_SHIFT;
--	if ((args->va_start + size) <= args->va_start)
--		return -EINVAL;
--	if ((args->va_start + size) > args->va_end)
--		return -EINVAL;
--
- 	/*
- 	 * Ok we are ask to do something sane, for now we only support migrate
- 	 * commands but we will add things like memory policy (what to do on
-@@ -171,7 +166,7 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
- 		return -EINVAL;
- 	}
- 
--	for (addr = args->va_start, end = args->va_start + size; addr < end;) {
-+	for (addr = args->va_start, end = args->va_end; addr < end;) {
- 		struct vm_area_struct *vma;
- 		unsigned long next;
- 
+  libdrm: https://gitlab.freedesktop.org/tagr/drm/-/commits/nouveau-sync-fd-v2/
+  mesa: https://gitlab.freedesktop.org/tagr/mesa/-/commits/nouveau-sync-fd/
+
+I've verified that this works with kmscube's --atomic mode and Weston.
+
+Thierry
+
+Thierry Reding (6):
+  drm/nouveau: Split nouveau_fence_sync()
+  drm/nouveau: Add nouveau_fence_ref()
+  drm/nouveau: Support fence FDs at kickoff
+  drm/nouveau: Support sync FDs and syncobjs
+  drm/nouveau: Support DMA fence arrays
+  drm/nouveau: Allow zero pushbuffer submits
+
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c |   4 +-
+ drivers/gpu/drm/nouveau/nouveau_bo.c    |  38 ++-
+ drivers/gpu/drm/nouveau/nouveau_bo.h    |   2 +
+ drivers/gpu/drm/nouveau/nouveau_drm.c   |   1 +
+ drivers/gpu/drm/nouveau/nouveau_fence.c |  90 +++---
+ drivers/gpu/drm/nouveau/nouveau_fence.h |   3 +-
+ drivers/gpu/drm/nouveau/nouveau_gem.c   | 402 ++++++++++++++++++------
+ drivers/gpu/drm/nouveau/nouveau_gem.h   |   2 +
+ include/uapi/drm/nouveau_drm.h          |  23 ++
+ 9 files changed, 410 insertions(+), 155 deletions(-)
+
 -- 
-2.20.1
+2.28.0
