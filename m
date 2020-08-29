@@ -1,148 +1,124 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: bail out of nouveau_channel_new
- if channel init fails
-Date: Fri, 28 Aug 2020 19:36:46 +0200
-Message-ID: <CACO55ttuuEQ9P2+StqyaDMQWEAUaFOoWW+br-mkiYQgEqouo0g@mail.gmail.com>
-References: <20200828092846.GA11454@localhost.localdomain>
+From: Helge Deller <deller@gmx.de>
+Subject: Re: a saner API for allocating DMA addressable pages
+Date: Sat, 29 Aug 2020 11:46:56 +0200
+Message-ID: <73b81ba2-3f1c-cce9-0bcf-e739c2a2f6d8@gmx.de>
+References: <20200819065555.1802761-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200828092846.GA11454-bi+AKbBUZKY6gyzm1THtWbp2dZbC/Bob@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Frantisek Hrbata <frantisek-ktf8V493EB/QT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-doc-owner@vger.kernel.org>
+In-Reply-To: <20200819065555.1802761-1-hch@lst.de>
+Content-Language: en-US
+Sender: linux-doc-owner@vger.kernel.org
+To: Christoph Hellwig <hch@lst.de>, Mauro Carvalho Chehab <mchehab@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Pawel Osciak <pawel@osciak.com>, Marek Szyprowski <m.szyprowski@samsung.com>, Matt Porter <mporter@kernel.crashing.org>, iommu@lists.linux-foundation.org
+Cc: Tom Lendacky <thomas.lendacky@amd.com>, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-ia64@vger.kernel.org, linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org, linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org, netdev@vger.kernel.org, linux-nvme@lists.infradead.org, linux-scsi@vger.kernel.org, linux-mm@kvack.org, alsa-devel@alsa-project.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Aug 28, 2020 at 2:05 PM Frantisek Hrbata <frantisek-ktf8V493EB/QT0dZR+AlfA@public.gmane.org> wrote:
->
-> Unprivileged user can crash kernel by using DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC
-> ioctl. This was reported by trinity[1] fuzzer.
->
-> [   71.073906] nouveau 0000:01:00.0: crashme[1329]: channel failed to initialise, -17
-> [   71.081730] BUG: kernel NULL pointer dereference, address: 00000000000000a0
-> [   71.088928] #PF: supervisor read access in kernel mode
-> [   71.094059] #PF: error_code(0x0000) - not-present page
-> [   71.099189] PGD 119590067 P4D 119590067 PUD 1054f5067 PMD 0
-> [   71.104842] Oops: 0000 [#1] SMP NOPTI
-> [   71.108498] CPU: 2 PID: 1329 Comm: crashme Not tainted 5.8.0-rc6+ #2
-> [   71.114993] Hardware name: AMD Pike/Pike, BIOS RPK1506A 09/03/2014
-> [   71.121213] RIP: 0010:nouveau_abi16_ioctl_channel_alloc+0x108/0x380 [nouveau]
-> [   71.128339] Code: 48 89 9d f0 00 00 00 41 8b 4c 24 04 41 8b 14 24 45 31 c0 4c 8d 4b 10 48 89 ee 4c 89 f7 e8 10 11 00 00 85 c0 75 78 48 8b 43 10 <8b> 90 a0 00 00 00 41 89 54 24 08 80 7d 3d 05 0f 86 bb 01 00 00 41
-> [   71.147074] RSP: 0018:ffffb4a1809cfd38 EFLAGS: 00010246
-> [   71.152526] RAX: 0000000000000000 RBX: ffff98cedbaa1d20 RCX: 00000000000003bf
-> [   71.159651] RDX: 00000000000003be RSI: 0000000000000000 RDI: 0000000000030160
-> [   71.166774] RBP: ffff98cee776de00 R08: ffffdc0144198a08 R09: ffff98ceeefd4000
-> [   71.173901] R10: ffff98cee7e81780 R11: 0000000000000001 R12: ffffb4a1809cfe08
-> [   71.181214] R13: ffff98cee776d000 R14: ffff98cec519e000 R15: ffff98cee776def0
-> [   71.188339] FS:  00007fd926250500(0000) GS:ffff98ceeac80000(0000) knlGS:0000000000000000
-> [   71.196418] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [   71.202155] CR2: 00000000000000a0 CR3: 0000000106622000 CR4: 00000000000406e0
-> [   71.209297] Call Trace:
-> [   71.211777]  ? nouveau_abi16_ioctl_getparam+0x1f0/0x1f0 [nouveau]
-> [   71.218053]  drm_ioctl_kernel+0xac/0xf0 [drm]
-> [   71.222421]  drm_ioctl+0x211/0x3c0 [drm]
-> [   71.226379]  ? nouveau_abi16_ioctl_getparam+0x1f0/0x1f0 [nouveau]
-> [   71.232500]  nouveau_drm_ioctl+0x57/0xb0 [nouveau]
-> [   71.237285]  ksys_ioctl+0x86/0xc0
-> [   71.240595]  __x64_sys_ioctl+0x16/0x20
-> [   71.244340]  do_syscall_64+0x4c/0x90
-> [   71.248110]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-> [   71.253162] RIP: 0033:0x7fd925d4b88b
-> [   71.256731] Code: Bad RIP value.
-> [   71.259955] RSP: 002b:00007ffc743592d8 EFLAGS: 00000206 ORIG_RAX: 0000000000000010
-> [   71.267514] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fd925d4b88b
-> [   71.274637] RDX: 0000000000601080 RSI: 00000000c0586442 RDI: 0000000000000003
-> [   71.281986] RBP: 00007ffc74359340 R08: 00007fd926016ce0 R09: 00007fd926016ce0
-> [   71.289111] R10: 0000000000000003 R11: 0000000000000206 R12: 0000000000400620
-> [   71.296235] R13: 00007ffc74359420 R14: 0000000000000000 R15: 0000000000000000
-> [   71.303361] Modules linked in: rfkill sunrpc snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio snd_hda_intel snd_intel_dspcfg snd_hda_codec snd_hda_core edac_mce_amd snd_hwdep kvm_amd snd_seq ccp snd_seq_device snd_pcm kvm snd_timer snd irqbypass soundcore sp5100_tco pcspkr crct10dif_pclmul crc32_pclmul ghash_clmulni_intel wmi_bmof joydev i2c_piix4 fam15h_power k10temp acpi_cpufreq ip_tables xfs libcrc32c sd_mod t10_pi sg nouveau video mxm_wmi i2c_algo_bit drm_kms_helper syscopyarea sysfillrect sysimgblt fb_sys_fops ttm broadcom bcm_phy_lib ata_generic ahci drm e1000 crc32c_intel libahci serio_raw tg3 libata firewire_ohci firewire_core wmi crc_itu_t dm_mirror dm_region_hash dm_log dm_mod
-> [   71.365269] CR2: 00000000000000a0
->
-> simplified reproducer
-> ---------------------------------8<----------------------------------------
-> /*
->  * gcc -o crashme crashme.c
->  * ./crashme /dev/dri/renderD128
->  */
->
-> struct drm_nouveau_channel_alloc {
->         uint32_t     fb_ctxdma_handle;
->         uint32_t     tt_ctxdma_handle;
->
->         int          channel;
->         uint32_t     pushbuf_domains;
->
->         /* Notifier memory */
->         uint32_t     notifier_handle;
->
->         /* DRM-enforced subchannel assignments */
->         struct {
->                 uint32_t handle;
->                 uint32_t grclass;
->         } subchan[8];
->         uint32_t nr_subchan;
-> };
->
-> static struct drm_nouveau_channel_alloc channel;
->
-> int main(int argc, char *argv[]) {
->         int fd;
->         int rv;
->
->         if (argc != 2)
->                 die("usage: %s <dev>", 0, argv[0]);
->
->         if ((fd = open(argv[1], O_RDONLY)) == -1)
->                 die("open %s", errno, argv[1]);
->
->         if (ioctl(fd, DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC, &channel) == -1 &&
->                         errno == EACCES)
->                 die("ioctl %s", errno, argv[1]);
->
->         close(fd);
->
->         printf("PASS\n");
->
->         return 0;
-> }
-> ---------------------------------8<----------------------------------------
->
-> [1] https://github.com/kernelslacker/trinity
->
-> Fixes: eeaf06ac1a55 ("drm/nouveau/svm: initial support for shared virtual memory")
-> Signed-off-by: Frantisek Hrbata <frantisek-ktf8V493EB/QT0dZR+AlfA@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_chan.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
-> index b80e4ebf1..a7a47b325 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_chan.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
-> @@ -533,6 +533,7 @@ nouveau_channel_new(struct nouveau_drm *drm, struct nvif_device *device,
->         if (ret) {
->                 NV_PRINTK(err, cli, "channel failed to initialise, %d\n", ret);
->                 nouveau_channel_del(pchan);
-> +               goto done;
->         }
->
->         ret = nouveau_svmm_join((*pchan)->vmm->svmm, (*pchan)->inst);
-> --
-> Frantisek Hrbata
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
->
+Hi Christoph,
 
-Reviewed-by: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+On 19.08.20 08:55, Christoph Hellwig wrote:
+> this series replaced the DMA_ATTR_NON_CONSISTENT flag to dma_alloc_attrs
+> with a separate new dma_alloc_pages API, which is available on all
+> platforms.  In addition to cleaning up the convoluted code path, this
+> ensures that other drivers that have asked for better support for
+> non-coherent DMA to pages with incurring bounce buffering over can final=
+ly
+> be properly supported.
+> ....
+> A git tree is available here:
+>
+>     git://git.infradead.org/users/hch/misc.git dma_alloc_pages
+
+I've tested this tree on my parisc machine which uses the 53c700
+and lasi_82596 drivers.
+Everything worked as expected, so you may add:
+
+Tested-by: Helge Deller <deller@gmx.de> # parisc
+
+Thanks!
+Helge
+
+>
+> Gitweb:
+>
+>     http://git.infradead.org/users/hch/misc.git/shortlog/refs/heads/dma_=
+alloc_pages
+>
+>
+> Diffstat:
+>  Documentation/core-api/dma-api.rst                       |   92 ++----
+>  Documentation/core-api/dma-attributes.rst                |    8
+>  Documentation/userspace-api/media/v4l/buffer.rst         |   17 -
+>  Documentation/userspace-api/media/v4l/vidioc-reqbufs.rst |    1
+>  arch/alpha/kernel/pci_iommu.c                            |    2
+>  arch/arm/include/asm/dma-direct.h                        |    4
+>  arch/arm/mm/dma-mapping-nommu.c                          |    2
+>  arch/arm/mm/dma-mapping.c                                |    4
+>  arch/ia64/Kconfig                                        |    3
+>  arch/ia64/hp/common/sba_iommu.c                          |    2
+>  arch/ia64/kernel/dma-mapping.c                           |   14
+>  arch/ia64/mm/init.c                                      |    3
+>  arch/mips/Kconfig                                        |    1
+>  arch/mips/bmips/dma.c                                    |    4
+>  arch/mips/cavium-octeon/dma-octeon.c                     |    4
+>  arch/mips/include/asm/dma-direct.h                       |    4
+>  arch/mips/include/asm/jazzdma.h                          |    2
+>  arch/mips/jazz/jazzdma.c                                 |  102 +------
+>  arch/mips/loongson2ef/fuloong-2e/dma.c                   |    4
+>  arch/mips/loongson2ef/lemote-2f/dma.c                    |    4
+>  arch/mips/loongson64/dma.c                               |    4
+>  arch/mips/mm/dma-noncoherent.c                           |   48 +--
+>  arch/mips/pci/pci-ar2315.c                               |    4
+>  arch/mips/pci/pci-xtalk-bridge.c                         |    4
+>  arch/mips/sgi-ip32/ip32-dma.c                            |    4
+>  arch/parisc/Kconfig                                      |    1
+>  arch/parisc/kernel/pci-dma.c                             |    6
+>  arch/powerpc/include/asm/dma-direct.h                    |    4
+>  arch/powerpc/kernel/dma-iommu.c                          |    2
+>  arch/powerpc/platforms/ps3/system-bus.c                  |    4
+>  arch/powerpc/platforms/pseries/vio.c                     |    2
+>  arch/s390/pci/pci_dma.c                                  |    2
+>  arch/x86/kernel/amd_gart_64.c                            |    8
+>  drivers/gpu/drm/exynos/exynos_drm_gem.c                  |    2
+>  drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c      |    3
+>  drivers/iommu/dma-iommu.c                                |    2
+>  drivers/iommu/intel/iommu.c                              |    6
+>  drivers/media/common/videobuf2/videobuf2-core.c          |   36 --
+>  drivers/media/common/videobuf2/videobuf2-dma-contig.c    |   19 -
+>  drivers/media/common/videobuf2/videobuf2-dma-sg.c        |    3
+>  drivers/media/common/videobuf2/videobuf2-v4l2.c          |   12
+>  drivers/net/ethernet/amd/au1000_eth.c                    |   15 -
+>  drivers/net/ethernet/i825xx/lasi_82596.c                 |   36 +-
+>  drivers/net/ethernet/i825xx/lib82596.c                   |  148 +++++--=
+---
+>  drivers/net/ethernet/i825xx/sni_82596.c                  |   23 -
+>  drivers/net/ethernet/seeq/sgiseeq.c                      |   24 -
+>  drivers/nvme/host/pci.c                                  |   79 ++---
+>  drivers/parisc/ccio-dma.c                                |    2
+>  drivers/parisc/sba_iommu.c                               |    2
+>  drivers/scsi/53c700.c                                    |  120 ++++---=
+-
+>  drivers/scsi/53c700.h                                    |    9
+>  drivers/scsi/sgiwd93.c                                   |   14
+>  drivers/xen/swiotlb-xen.c                                |    2
+>  include/linux/dma-direct.h                               |   55 ++-
+>  include/linux/dma-mapping.h                              |   32 +-
+>  include/linux/dma-noncoherent.h                          |   21 -
+>  include/linux/dmapool.h                                  |   23 +
+>  include/linux/gfp.h                                      |    6
+>  include/media/videobuf2-core.h                           |    3
+>  include/uapi/linux/videodev2.h                           |    2
+>  kernel/dma/Kconfig                                       |    9
+>  kernel/dma/Makefile                                      |    1
+>  kernel/dma/coherent.c                                    |   17 +
+>  kernel/dma/direct.c                                      |  112 +++++--
+>  kernel/dma/mapping.c                                     |  104 ++-----
+>  kernel/dma/ops_helpers.c                                 |   86 ++++++
+>  kernel/dma/pool.c                                        |    2
+>  kernel/dma/swiotlb.c                                     |    4
+>  kernel/dma/virt.c                                        |    2
+>  mm/dmapool.c                                             |  211 +++++++=
+++------
+>  sound/mips/hal2.c                                        |   58 +---
+>  71 files changed, 872 insertions(+), 803 deletions(-)
+>
