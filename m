@@ -1,97 +1,65 @@
-From: Alexander Kapshuk <alexander.kapshuk@gmail.com>
-Subject: Re: nouveau PUSHBUFFER_ERR on 5.9.0-rc2-next-20200824
-Date: Mon, 31 Aug 2020 08:33:20 +0300
-Message-ID: <CAJ1xhMVOZAM=VwtNdYmjWY9NjVOpr0JJXi0Civ5Pgb9f4og49w@mail.gmail.com>
-References: <CAJ1xhMUpqtKMuGUZdComskTqd0oOKCfDuVQT3+c13u=NSJLkBw@mail.gmail.com>
- <CACAvsv6zUi=3mZTg11Y_6CVYkpCSO0RY-5+GiBZz+2EXCDmD-g@mail.gmail.com>
+From: Jason Gunthorpe <jgg-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH] nouveau: fix the start/end range for migration
+Date: Mon, 31 Aug 2020 08:51:17 -0300
+Message-ID: <20200831115117.GU1152540@nvidia.com>
+References: <20200827213744.14074-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CACAvsv6zUi=3mZTg11Y_6CVYkpCSO0RY-5+GiBZz+2EXCDmD-g@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <skeggsb@gmail.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, ML nouveau <nouveau@lists.freedesktop.org>, Linux-Next <linux-next@vger.kernel.org>, linux-kernel <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20200827213744.14074-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Aug 31, 2020 at 7:30 AM Ben Skeggs <skeggsb@gmail.com> wrote:
->
-> On Tue, 25 Aug 2020 at 17:21, Alexander Kapshuk
-> <alexander.kapshuk@gmail.com> wrote:
-> >
-> > Since upgrading to linux-next based on 5.9.0-rc1 and 5.9.0-rc2 I have
-> > had my mouse pointer disappear soon after logging in, and I have
-> > observed the system freezing temporarily when clicking on objects and
-> > when typing text.
-> > I have also found records of push buffer errors in dmesg output:
-> > [ 6625.450394] nouveau 0000:01:00.0: disp: ERROR 1 [PUSHBUFFER_ERR] 02
-> > [] chid 0 mthd 0000 data 00000400
-> Hey,
->
-> Yeah, I'm aware of this.  Lyude and I have both seen it, but it's been
-> very painful to track down to what's actually causing it so far.  It
-> likely is the commit you mentioned that's at fault, and I'm still
-> working to find a proper solution before I revert it.
->
-> Ben.
->
-> >
-> > I tried setting CONFIG_NOUVEAU_DEBUG=5 (tracing) to try and collect
-> > further debug info, but nothing caught the eye.
-> >
-> > The error message in question comes from nv50_disp_intr_error in
-> > drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c:613,645.
-> > And nv50_disp_intr_error is called from nv50_disp_intr in the
-> > following while block:
-> > drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c:647,658
-> > void
-> > nv50_disp_intr(struct nv50_disp *disp)
-> > {
-> >         struct nvkm_device *device = disp->base.engine.subdev.device;
-> >         u32 intr0 = nvkm_rd32(device, 0x610020);
-> >         u32 intr1 = nvkm_rd32(device, 0x610024);
-> >
-> >         while (intr0 & 0x001f0000) {
-> >                 u32 chid = __ffs(intr0 & 0x001f0000) - 16;
-> >                 nv50_disp_intr_error(disp, chid);
-> >                 intr0 &= ~(0x00010000 << chid);
-> >         }
-> > ...
-> > }
-> >
-> > Could this be in any way related to this series of commits?
-> > commit 0a96099691c8cd1ac0744ef30b6846869dc2b566
-> > Author: Ben Skeggs <bskeggs@redhat.com>
-> > Date:   Tue Jul 21 11:34:07 2020 +1000
-> >
-> >     drm/nouveau/kms/nv50-: implement proper push buffer control logic
-> >
-> >     We had a, what was supposed to be temporary, hack in the KMS code where we'd
-> >     completely drain an EVO/NVD channel's push buffer when wrapping to the start
-> >     again, instead of treating it as a ring buffer.
-> >
-> >     Let's fix that, finally.
-> >
-> >     Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
-> >
-> > Here are my GPU details:
-> > 01:00.0 VGA compatible controller: NVIDIA Corporation GT216 [GeForce
-> > 210] (rev a1)
-> >         Subsystem: Micro-Star International Co., Ltd. [MSI] Device 8a93
-> >         Kernel driver in use: nouveau
-> >
-> > The last linux-next kernel I built where the problem reported does not
-> > manifest itself is 5.8.0-rc6-next-20200720.
-> >
-> > I would appreciate being given any pointers on how to further debug this.
-> > Or is git bisect the only way to proceed with this?
-> >
-> > Thanks.
-> > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+On Thu, Aug 27, 2020 at 02:37:44PM -0700, Ralph Campbell wrote:
+> The user level OpenCL code shouldn't have to align start and end
+> addresses to a page boundary. That is better handled in the nouveau
+> driver. The npages field is also redundant since it can be computed
+> from the start and end addresses.
+> 
+> Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> 
+> This is for Ben Skegg's nouveau tree.
+> 
+> I have been working with Karol Herbst on the OpenCL mesa changes for
+> nouveau which will be merged upstream soon.
+> With or without those changes, the user visible effect of this patch
+> only extends the range by one page (round up vs. round down to page
+> boundary).
+> 
+>  drivers/gpu/drm/nouveau/nouveau_svm.c | 17 ++++++-----------
+>  1 file changed, 6 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> index 2df1c0460559..888aa0908c5a 100644
+> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> @@ -105,11 +105,14 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+>  	struct nouveau_cli *cli = nouveau_cli(file_priv);
+>  	struct drm_nouveau_svm_bind *args = data;
+>  	unsigned target, cmd, priority;
+> -	unsigned long addr, end, size;
+> +	unsigned long addr, end;
+>  	struct mm_struct *mm;
+>  
+>  	args->va_start &= PAGE_MASK;
+> -	args->va_end &= PAGE_MASK;
+> +	args->va_end = ALIGN(args->va_end, PAGE_SIZE);
+> +	/* If no end address is given, assume a single page. */
+> +	if (args->va_end == 0)
+> +		args->va_end = args->va_start + PAGE_SIZE;
 
-Thanks a lot for getting back to me about this.
-Please let me know if there's anything else I can do to help track this down.
+That is really weird, how is it useful for the kernel to map a region
+of unknown size and alignment to the GPU?
 
-Alexander.
+Jason
