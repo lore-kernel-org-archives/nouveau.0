@@ -1,15 +1,16 @@
 From: Thomas Bogendoerfer <tsbogend-I1c7kopa9pxLokYuJOExCg@public.gmane.org>
-Subject: Re: [PATCH 09/28] MIPS/jazzdma: remove the unused vdma_remap function
-Date: Tue, 1 Sep 2020 15:49:35 +0200
-Message-ID: <20200901134935.GA11944@alpha.franken.de>
+Subject: Re: [PATCH 08/28] MIPS: make dma_sync_*_for_cpu a little less
+ overzealous
+Date: Tue, 1 Sep 2020 15:53:04 +0200
+Message-ID: <20200901135304.GC11944@alpha.franken.de>
 References: <20200819065555.1802761-1-hch@lst.de>
- <20200819065555.1802761-10-hch@lst.de>
+ <20200819065555.1802761-9-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20200819065555.1802761-10-hch-jcswGhMUV9g@public.gmane.org>
+In-Reply-To: <20200819065555.1802761-9-hch-jcswGhMUV9g@public.gmane.org>
 List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/iommu>,
  <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.linuxfoundation.org/pipermail/iommu/>
@@ -23,12 +24,18 @@ To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 Cc: alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-ia64-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-nvme-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "James E.J. Bottomley" <James.Bottomley-d9PhHud1JfjCXq6kfMZ53/egYHeGw8Jk@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Joonyoung Shim <jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Kyungmin Park <kyungmin.park-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Matt Porter <mporter-XVmvHMARGAS8U2dJNN8I7kB+6BGkLq7r@public.gmane.org>, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Tom Lendacky <thomas.lendacky-5C7GfCeVMHo@public.gmane.org>, Pawel Osciak <pawel-FA/gS7QP4orQT0dZR+AlfA@public.gmane.org>, Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Seung-Woo Kim <sw0312.kim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Aug 19, 2020 at 08:55:36AM +0200, Christoph Hellwig wrote:
+On Wed, Aug 19, 2020 at 08:55:35AM +0200, Christoph Hellwig wrote:
+> When transferring DMA ownership back to the CPU there should never
+> be any writeback from the cache, as the buffer was owned by the
+> device until now.  Instead it should just be invalidated for the
+> mapping directions where the device could have written data.
+> Note that the changes rely on the fact that kmap_atomic is stubbed
+> out for the !HIGHMEM case to simplify the code a bit.
+> 
 > Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 > ---
->  arch/mips/include/asm/jazzdma.h |  2 -
->  arch/mips/jazz/jazzdma.c        | 70 ---------------------------------
->  2 files changed, 72 deletions(-)
+>  arch/mips/mm/dma-noncoherent.c | 44 +++++++++++++++++++++-------------
+>  1 file changed, 28 insertions(+), 16 deletions(-)
 
 Acked-by: Thomas Bogendoerfer <tsbogend-I1c7kopa9pxLokYuJOExCg@public.gmane.org>
 
