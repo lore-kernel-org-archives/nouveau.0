@@ -1,67 +1,45 @@
-From: Thomas Bogendoerfer <tsbogend-I1c7kopa9pxLokYuJOExCg@public.gmane.org>
-Subject: Re: [PATCH 22/28] sgiseeq: convert from dma_cache_sync to
- dma_sync_single_for_device
-Date: Tue, 1 Sep 2020 17:22:09 +0200
-Message-ID: <20200901152209.GA14288@alpha.franken.de>
+From: Helge Deller <deller@gmx.de>
+Subject: Re: [PATCH 07/28] 53c700: improve non-coherent DMA handling
+Date: Tue, 1 Sep 2020 18:21:58 +0200
+Message-ID: <3369218e-eea4-14e9-15f1-870269e4649d@gmx.de>
 References: <20200819065555.1802761-1-hch@lst.de>
- <20200819065555.1802761-23-hch@lst.de>
+ <20200819065555.1802761-8-hch@lst.de>
+ <1598971960.4238.5.camel@HansenPartnership.com>
+ <20200901150554.GN14765@casper.infradead.org>
+ <1598973776.4238.11.camel@HansenPartnership.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20200819065555.1802761-23-hch-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/iommu>,
- <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.linuxfoundation.org/pipermail/iommu/>
-List-Post: <mailto:iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
-List-Help: <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/iommu>,
- <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=subscribe>
-Errors-To: iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
-Sender: "iommu" <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
-To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Cc: alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-ia64-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-nvme-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "James E.J. Bottomley" <James.Bottomley-d9PhHud1JfjCXq6kfMZ53/egYHeGw8Jk@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Joonyoung Shim <jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Kyungmin Park <kyungmin.park-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Matt Porter <mporter-XVmvHMARGAS8U2dJNN8I7kB+6BGkLq7r@public.gmane.org>, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Tom Lendacky <thomas.lendacky-5C7GfCeVMHo@public.gmane.org>, Pawel Osciak <pawel-FA/gS7QP4orQT0dZR+AlfA@public.gmane.org>, Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Seung-Woo Kim <sw0312.kim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Return-path: <netdev-owner@vger.kernel.org>
+In-Reply-To: <1598973776.4238.11.camel@HansenPartnership.com>
+Content-Language: en-US
+Sender: netdev-owner@vger.kernel.org
+To: James Bottomley <James.Bottomley@HansenPartnership.com>, Matthew Wilcox <willy@infradead.org>
+Cc: Christoph Hellwig <hch@lst.de>, Mauro Carvalho Chehab <mchehab@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Joonyoung Shim <jy0922.shim@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Pawel Osciak <pawel@osciak.com>, Marek Szyprowski <m.szyprowski@samsung.com>, Matt Porter <mporter@kernel.crashing.org>, iommu@lists.linux-foundation.org, Tom Lendacky <thomas.lendacky@amd.com>, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-ia64@vger.kernel.org, linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org, linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org, netdev@vger.ke
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Aug 19, 2020 at 08:55:49AM +0200, Christoph Hellwig wrote:
-> Use the proper modern API to transfer cache ownership for incoherent DMA.
-> 
-> Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-> ---
->  drivers/net/ethernet/seeq/sgiseeq.c | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/seeq/sgiseeq.c b/drivers/net/ethernet/seeq/sgiseeq.c
-> index 39599bbb5d45b6..f91dae16d69a19 100644
-> --- a/drivers/net/ethernet/seeq/sgiseeq.c
-> +++ b/drivers/net/ethernet/seeq/sgiseeq.c
-> @@ -112,14 +112,18 @@ struct sgiseeq_private {
->  
->  static inline void dma_sync_desc_cpu(struct net_device *dev, void *addr)
->  {
-> -	dma_cache_sync(dev->dev.parent, addr, sizeof(struct sgiseeq_rx_desc),
-> -		       DMA_FROM_DEVICE);
-> +	struct sgiseeq_private *sp = netdev_priv(dev);
-> +
-> +	dma_sync_single_for_cpu(dev->dev.parent, VIRT_TO_DMA(sp, addr),
-> +			sizeof(struct sgiseeq_rx_desc), DMA_BIDIRECTIONAL);
->  }
->  
->  static inline void dma_sync_desc_dev(struct net_device *dev, void *addr)
->  {
-> -	dma_cache_sync(dev->dev.parent, addr, sizeof(struct sgiseeq_rx_desc),
-> -		       DMA_TO_DEVICE);
-> +	struct sgiseeq_private *sp = netdev_priv(dev);
-> +
-> +	dma_sync_single_for_device(dev->dev.parent, VIRT_TO_DMA(sp, addr),
-> +			sizeof(struct sgiseeq_rx_desc), DMA_BIDIRECTIONAL);
->  }
+On 01.09.20 17:22, James Bottomley wrote:
+> On Tue, 2020-09-01 at 16:05 +0100, Matthew Wilcox wrote:
+>> On Tue, Sep 01, 2020 at 07:52:40AM -0700, James Bottomley wrote:
+>>> I think this looks mostly OK, except for one misnamed parameter
+>>> below. Unfortunately, the last non-coherent parisc was the 700
+>>> series and I no longer own a box, so I can't test that part of it
+>>> (I can fire up the C360 to test it on a coherent arch).
+>>
+>> I have a 715/50 that probably hasn't been powered on in 15 years if
+>> you need something that old to test on (I believe the 725/100 uses
+>> the 7100LC and so is coherent).  I'll need to set up a cross-compiler
+>> ...
+>
+> I'm not going to say no to actual testing, but it's going to be a world
+> of pain getting something so old going.  I do have a box of older
+> systems I keep for architectural testing that I need to rummage around
+> in ... I just have a vague memory that my 715 actually caught fire a
+> decade ago and had to be disposed of.
 
-this breaks ethernet on IP22 completely, but I haven't figured out why, yet.
+I still have a zoo of machines running for such testing, including a
+715/64 and two 730.
+I'm going to test this git tree on the 715/64:
+git://git.infradead.org/users/hch/misc.git dma_alloc_pages
 
-Thomas.
-
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+Helge
