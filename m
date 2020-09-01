@@ -1,15 +1,16 @@
-From: Analabha Roy <hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: VAAPI on GeForce GT 620M
-Date: Tue, 1 Sep 2020 23:18:52 +0530
-Message-ID: <CAKiGokFrYM6Cpw9DkYg_ntcvYi4f=2ezJ0ULS7CK0cGucARxsQ@mail.gmail.com>
+Date: Tue, 1 Sep 2020 10:58:04 -0700
+Message-ID: <CAHWPjbXftMYRUm3QgmoLWKpiyPm88G=F3nbv5Q0vs1Rz_PLVBA@mail.gmail.com>
 References: <CAKiGokHoArQcnVAPs0HWzJSFXhwCSLfQAirOQ-zTq=0C-97neQ@mail.gmail.com>
  <CAKb7Uvh4cdg0=dGJqQVXx_p4O2c5BJbG3JRnjznwjsMQwc505Q@mail.gmail.com>
  <CAKiGokGj8pfm1tmH0aN7de5FVvrszAA93_e9-Zq05oqw46GnRg@mail.gmail.com>
  <CAKb7UvhE8i9E7XxxwrpQX1rSvLHk63tFt7dyv_0XAAxu4O5=iA@mail.gmail.com>
+ <CAKiGokFrYM6Cpw9DkYg_ntcvYi4f=2ezJ0ULS7CK0cGucARxsQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1258197646=="
+Content-Type: multipart/mixed; boundary="===============1887747163=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvhE8i9E7XxxwrpQX1rSvLHk63tFt7dyv_0XAAxu4O5=iA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAKiGokFrYM6Cpw9DkYg_ntcvYi4f=2ezJ0ULS7CK0cGucARxsQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,104 +20,152 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Analabha Roy <hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1258197646==
-Content-Type: multipart/alternative; boundary="0000000000008abc4005ae44225b"
+--===============1887747163==
+Content-Type: multipart/alternative; boundary="0000000000006ceec105ae4443db"
 
---0000000000008abc4005ae44225b
+--0000000000006ceec105ae4443db
 Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 1 Sep 2020 at 18:59, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+Hi,
 
-> On Tue, Sep 1, 2020 at 9:10 AM Analabha Roy <hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> wrote:
-> > Any suggestions on how to trace the config issues? Do I have to debug
-> the va_openDriver() function?
->
-> My guess, without reading any code, is that DRI_PRIME isn't doing what
-> you want it to, and the nouveau driver is being handed an intel
-> device. This does not work well. Fixing this will require tracing
-> through the va winsys code which to figure out how it invokes the
-> loader.
->
->
-> https://cgit.freedesktop.org/mesa/mesa/tree/src/gallium/frontends/va/context.c#n111
->
-> For the DRM/rendernodes "platform", it will just take whatever fd it
-> is given. vainfo appears to give it a fixed device:
+Try:  DRI_PRIME=1 LIBVA_DRIVER_NAME=nouveau vainfo --display drm --device
+/dev/dri/renderD129
+
+Also try with and without the --device option, the important one is
+--display drm
+
+Cheers
+Julien
+
+On Tue, Sep 1, 2020 at 10:49 AM Analabha Roy <hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+
 >
 >
-> https://github.com/intel/libva-utils/blob/master/common/va_display_drm.c#L39
+> On Tue, 1 Sep 2020 at 18:59, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
 >
-> However it looks like you can pass in --device /dev/dri/renderD129 or
-> whatever the right one is, which should pass in the right render node,
-> as seen here:
+>> On Tue, Sep 1, 2020 at 9:10 AM Analabha Roy <hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+>> wrote:
+>> > Any suggestions on how to trace the config issues? Do I have to debug
+>> the va_openDriver() function?
+>>
+>> My guess, without reading any code, is that DRI_PRIME isn't doing what
+>> you want it to, and the nouveau driver is being handed an intel
+>> device. This does not work well. Fixing this will require tracing
+>> through the va winsys code which to figure out how it invokes the
+>> loader.
+>>
+>>
+>> https://cgit.freedesktop.org/mesa/mesa/tree/src/gallium/frontends/va/context.c#n111
+>>
+>> For the DRM/rendernodes "platform", it will just take whatever fd it
+>> is given. vainfo appears to give it a fixed device:
+>>
+>>
+>> https://github.com/intel/libva-utils/blob/master/common/va_display_drm.c#L39
+>>
+>> However it looks like you can pass in --device /dev/dri/renderD129 or
+>> whatever the right one is, which should pass in the right render node,
+>> as seen here:
+>>
+>> https://github.com/intel/libva-utils/blob/master/common/va_display.c#L80
+>>
+>> Note that I've never tried this, just did a few google searches to
+>> find this stuff.
+>>
+>>
+> Brilliant googling. get_drm_device_name() does seem to do a crude argparse
+> of "--device"
 >
-> https://github.com/intel/libva-utils/blob/master/common/va_display.c#L80
+> So I ran
 >
-> Note that I've never tried this, just did a few google searches to
-> find this stuff.
+> $ DRI_PRIME=1 LIBVA_DRIVER_NAME=nouveau vainfo --device /dev/dri/renderD128
+>
+> *vainfo: unrecognized option '--device'*Show information from VA-API
+> driver
+> Usage: vainfo --help
+>         --help print this message
+>
+> Usage: vainfo [options]
+> Display options:
+>         --display display | help         Show information for the
+> specified display, or the available display list
+>
+> *        --device device                  Set device name, only available
+> under drm display*
 >
 >
-Brilliant googling. get_drm_device_name() does seem to do a crude argparse
-of "--device"
-
-So I ran
-
-$ DRI_PRIME=1 LIBVA_DRIVER_NAME=nouveau vainfo --device /dev/dri/renderD128
-
-*vainfo: unrecognized option '--device'*Show information from VA-API driver
-Usage: vainfo --help
-        --help print this message
-
-Usage: vainfo [options]
-Display options:
-        --display display | help         Show information for the specified
-display, or the available display list
-
-*        --device device                  Set device name, only available
-under drm display*
-
-
-What does this mean?
-
- Note that I also ran
-
-
-$ nm -Dn -o /usr/lib/x86_64-linux-gnu/libva*|grep get_drm_device_name
-
-Didn't get anything...
-
-Cheers,
+> What does this mean?
 >
->   -ilia
+>  Note that I also ran
+>
+>
+> $ nm -Dn -o /usr/lib/x86_64-linux-gnu/libva*|grep get_drm_device_name
+>
+> Didn't get anything...
+>
+> Cheers,
+>>
+>>   -ilia
+>>
+>
+>
+> --
+> Analabha Roy
+> Assistant Professor
+> Department of Physics
+> <http://www.buruniv.ac.in/academics/department/physics>
+> The University of Burdwan <http://www.buruniv.ac.in/>
+> Golapbag Campus, Barddhaman 713104
+> West Bengal, India
+> Emails: daneel-0v3tJM2ovI83uPMLIKxrzw@public.gmane.org, aroy-ZqCQOGSO5P5obvhnwckLr5/QNRX+jHPU@public.gmane.org, hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+> Webpage: http://www.ph.utexas.edu/~daneel/
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
 >
 
-
--- 
-Analabha Roy
-Assistant Professor
-Department of Physics
-<http://www.buruniv.ac.in/academics/department/physics>
-The University of Burdwan <http://www.buruniv.ac.in/>
-Golapbag Campus, Barddhaman 713104
-West Bengal, India
-Emails: daneel-0v3tJM2ovI83uPMLIKxrzw@public.gmane.org, aroy-ZqCQOGSO5P5obvhnwckLr5/QNRX+jHPU@public.gmane.org, hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Webpage: http://www.ph.utexas.edu/~daneel/
-
---0000000000008abc4005ae44225b
+--0000000000006ceec105ae4443db
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Tue, 1 Sep 2020 at 18:59, Ilia Mir=
-kin &lt;<a href=3D"mailto:imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org">imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org</a>&gt=
-; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Tue,=
- Sep 1, 2020 at 9:10 AM Analabha Roy &lt;<a href=3D"mailto:hariseldon99@gma=
-il.com" target=3D"_blank">hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt; wrote:<br>
+<div dir=3D"ltr">Hi,<div><br></div><div>Try:=C2=A0 DRI_PRIME=3D1 LIBVA_DRIV=
+ER_NAME=3Dnouveau vainfo=C2=A0<span style=3D"color:rgb(36,41,46);font-famil=
+y:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,san=
+s-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-size:=
+14px">--display drm --device /dev/dri/renderD129</span></div><div><span sty=
+le=3D"color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&quo=
+t;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&=
+quot;Segoe UI Emoji&quot;;font-size:14px"><br></span></div><div><span style=
+=3D"color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&quot;=
+Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&qu=
+ot;Segoe UI Emoji&quot;;font-size:14px">Also try with and without the --dev=
+ice option, the important one is --display drm</span></div><div><span style=
+=3D"color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&quot;=
+Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&qu=
+ot;Segoe UI Emoji&quot;;font-size:14px"><br></span></div><div><span style=
+=3D"color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&quot;=
+Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&qu=
+ot;Segoe UI Emoji&quot;;font-size:14px">Cheers</span></div><div><span style=
+=3D"color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&quot;=
+Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&qu=
+ot;Segoe UI Emoji&quot;;font-size:14px">Julien</span></div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep 1, 2=
+020 at 10:49 AM Analabha Roy &lt;<a href=3D"mailto:hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" =
+target=3D"_blank">hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt; wrote:<br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><=
+br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Tue, 1 Sep 2020 at 18:59, Ilia Mirkin &lt;<a href=3D"mailto:imirkin@a=
+lum.mit.edu" target=3D"_blank">imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex">On Tue, Sep 1, 2020 at 9=
+:10 AM Analabha Roy &lt;<a href=3D"mailto:hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D=
+"_blank">hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt; wrote:<br>
 &gt; Any suggestions on how to trace the config issues? Do I have to debug =
 the va_openDriver() function?<br>
 <br>
@@ -170,22 +219,30 @@ Cheers,<br>
 <br>
 =C2=A0 -ilia<br>
 </blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div>Anal=
-abha Roy<br></div><div>Assistant Professor</div><div><a href=3D"http://www.=
-buruniv.ac.in/academics/department/physics" target=3D"_blank">Department of=
- Physics</a></div><div><a href=3D"http://www.buruniv.ac.in/" target=3D"_bla=
-nk">The University of Burdwan</a></div><div>Golapbag Campus, Barddhaman 713=
-104</div><div>West Bengal, India</div><div>Emails: <a href=3D"mailto:daneel=
-@utexas.edu" target=3D"_blank">daneel-0v3tJM2ovI83uPMLIKxrzw@public.gmane.org</a>, <a href=3D"mailto:aro=
-y@phys.buruniv.ac.in" target=3D"_blank">aroy-ZqCQOGSO5P5obvhnwckLr5/QNRX+jHPU@public.gmane.org</a>, <a hre=
-f=3D"mailto:hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blank">hariseldon99-Re5JQEeQqe8@public.gmane.org=
-m</a><br><div><font face=3D"tahoma, sans-serif">Webpage: <a href=3D"http://=
-www.ph.utexas.edu/~daneel/" target=3D"_blank">http://www.ph.utexas.edu/~dan=
-eel/</a></font></div></div></div></div></div></div></div>
+><div dir=3D"ltr"><div><div dir=3D"ltr"><div>Analabha Roy<br></div><div>Ass=
+istant Professor</div><div><a href=3D"http://www.buruniv.ac.in/academics/de=
+partment/physics" target=3D"_blank">Department of Physics</a></div><div><a =
+href=3D"http://www.buruniv.ac.in/" target=3D"_blank">The University of Burd=
+wan</a></div><div>Golapbag Campus, Barddhaman 713104</div><div>West Bengal,=
+ India</div><div>Emails: <a href=3D"mailto:daneel-0v3tJM2ovI83uPMLIKxrzw@public.gmane.org" target=3D"_bl=
+ank">daneel-0v3tJM2ovI83uPMLIKxrzw@public.gmane.org</a>, <a href=3D"mailto:aroy-ZqCQOGSO5P5obvhnwckLr5/QNRX+jHPU@public.gmane.org" targ=
+et=3D"_blank">aroy-ZqCQOGSO5P5obvhnwckLr5/QNRX+jHPU@public.gmane.org</a>, <a href=3D"mailto:hariseldon99@g=
+mail.com" target=3D"_blank">hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a><br><div><font face=
+=3D"tahoma, sans-serif">Webpage: <a href=3D"http://www.ph.utexas.edu/~danee=
+l/" target=3D"_blank">http://www.ph.utexas.edu/~daneel/</a></font></div></d=
+iv></div></div></div></div></div>
+_______________________________________________<br>
+Nouveau mailing list<br>
+<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" target=3D"_blank">Nouveau@=
+lists.freedesktop.org</a><br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau" rel=3D"n=
+oreferrer" target=3D"_blank">https://lists.freedesktop.org/mailman/listinfo=
+/nouveau</a><br>
+</blockquote></div>
 
---0000000000008abc4005ae44225b--
+--0000000000006ceec105ae4443db--
 
---===============1258197646==
+--===============1887747163==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -196,4 +253,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 https://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1258197646==--
+--===============1887747163==--
