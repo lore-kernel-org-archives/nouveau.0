@@ -1,15 +1,15 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v3] drm/nouveau/kms/nv50-: Program notifier offset before requesting disp caps
-Date: Tue,  1 Sep 2020 19:38:27 -0400
-Message-ID: <20200901233842.196818-1-lyude@redhat.com>
-References: <20200824183253.826343-2-lyude@redhat.com>
+Subject: [PATCH v4] drm/nouveau/kms/nv50-: Program notifier offset before requesting disp caps
+Date: Tue,  1 Sep 2020 19:42:26 -0400
+Message-ID: <20200901234240.197917-1-lyude@redhat.com>
+References: <20200901233842.196818-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20200824183253.826343-2-lyude@redhat.com>
+In-Reply-To: <20200901233842.196818-1-lyude@redhat.com>
 Sender: stable-owner@vger.kernel.org
 To: nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@gmail.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Nirmoy Das <nirmoy.aiemd@gmail.com>, Jani Nikula <jani.nikula@intel.com>, James Jones <jajones@nvidia.com>, "open list:DRM DRIVER FOR NVIDIA
+Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@gmail.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Nirmoy Das <nirmoy.aiemd@gmail.com>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, James Jones <jajones@nvidia.com>, Jani Nikula <jani.nikula@intel.com>, "open list:DRM DRIVER FOR NVIDIA
         GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
@@ -34,19 +34,21 @@ v3:
   CAPABILITIES_DONE field lives in a different location than the main
   NV_DISP_CORE_NOTIFIER_1 field. As well, 907d+ use a different
   CAPABILITIES_DONE field then pre-907d cards.
+v4:
+* Don't forget to check the return value of core507d_read_caps()
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 Fixes: 4a2cb4181b07 ("drm/nouveau/kms/nv50-: Probe SOR and PIOR caps for DP interlacing support")
 Cc: <stable@vger.kernel.org> # v5.8+
 ---
- drivers/gpu/drm/nouveau/dispnv50/core.h       |  2 ++
- drivers/gpu/drm/nouveau/dispnv50/core507d.c   | 34 +++++++++++++++++--
- drivers/gpu/drm/nouveau/dispnv50/core907d.c   | 33 +++++++++++++++++-
+ drivers/gpu/drm/nouveau/dispnv50/core.h       |  2 +
+ drivers/gpu/drm/nouveau/dispnv50/core507d.c   | 37 ++++++++++++++++++-
+ drivers/gpu/drm/nouveau/dispnv50/core907d.c   | 36 +++++++++++++++++-
  drivers/gpu/drm/nouveau/dispnv50/core917d.c   |  2 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.h       |  2 ++
+ drivers/gpu/drm/nouveau/dispnv50/disp.h       |  2 +
  .../drm/nouveau/include/nvhw/class/cl507d.h   |  5 ++-
- .../drm/nouveau/include/nvhw/class/cl907d.h   |  4 +++
- 7 files changed, 77 insertions(+), 5 deletions(-)
+ .../drm/nouveau/include/nvhw/class/cl907d.h   |  4 ++
+ 7 files changed, 83 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/dispnv50/core.h b/drivers/gpu/drm/nouveau/dispnv50/core.h
 index 498622c0c670d..b789139e5fff6 100644
@@ -69,10 +71,10 @@ index 498622c0c670d..b789139e5fff6 100644
  extern const struct nv50_outp_func sor907d;
  
 diff --git a/drivers/gpu/drm/nouveau/dispnv50/core507d.c b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
-index ad1f09a143aa4..3ec4c3a238c41 100644
+index ad1f09a143aa4..d0f2b80a32103 100644
 --- a/drivers/gpu/drm/nouveau/dispnv50/core507d.c
 +++ b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
-@@ -75,18 +75,48 @@ core507d_ntfy_init(struct nouveau_bo *bo, u32 offset)
+@@ -75,18 +75,51 @@ core507d_ntfy_init(struct nouveau_bo *bo, u32 offset)
  }
  
  int
@@ -102,11 +104,14 @@ index ad1f09a143aa4..3ec4c3a238c41 100644
 +	struct nv50_core *core = disp->core;
 +	struct nouveau_bo *bo = disp->sync;
 +	s64 time;
++	int ret;
 +
 +	NVBO_WR32(bo, NV50_DISP_CAPS_NTFY1, NV_DISP_CORE_NOTIFIER_1, CAPABILITIES_1,
 +				      NVDEF(NV_DISP_CORE_NOTIFIER_1, CAPABILITIES_1, DONE, FALSE));
 +
-+	core507d_read_caps(disp, NV50_DISP_CAPS_NTFY1);
++	ret = core507d_read_caps(disp, NV50_DISP_CAPS_NTFY1);
++	if (ret < 0)
++		return ret;
 +
 +	time = nvif_msec(core->chan.base.device, 2000ULL,
 +			 if (NVBO_TD32(bo, NV50_DISP_CAPS_NTFY1,
@@ -124,10 +129,10 @@ index ad1f09a143aa4..3ec4c3a238c41 100644
  core507d_init(struct nv50_core *core)
  {
 diff --git a/drivers/gpu/drm/nouveau/dispnv50/core907d.c b/drivers/gpu/drm/nouveau/dispnv50/core907d.c
-index b17c03529c784..8a2005adb0e2f 100644
+index b17c03529c784..45505a18aca17 100644
 --- a/drivers/gpu/drm/nouveau/dispnv50/core907d.c
 +++ b/drivers/gpu/drm/nouveau/dispnv50/core907d.c
-@@ -22,11 +22,42 @@
+@@ -22,11 +22,45 @@
  #include "core.h"
  #include "head.h"
  
@@ -144,11 +149,14 @@ index b17c03529c784..8a2005adb0e2f 100644
 +	struct nv50_core *core = disp->core;
 +	struct nouveau_bo *bo = disp->sync;
 +	s64 time;
++	int ret;
 +
 +	NVBO_WR32(bo, NV50_DISP_CAPS_NTFY4, NV907D_CORE_NOTIFIER_3, CAPABILITIES_4,
 +				      NVDEF(NV907D_CORE_NOTIFIER_3, CAPABILITIES_4, DONE, FALSE));
 +
-+	core507d_read_caps(disp, NV50_DISP_CAPS_NTFY4);
++	ret = core507d_read_caps(disp, NV50_DISP_CAPS_NTFY4);
++	if (ret < 0)
++		return ret;
 +
 +	time = nvif_msec(core->chan.base.device, 2000ULL,
 +			 if (NVBO_TD32(bo, NV50_DISP_CAPS_NTFY4,
