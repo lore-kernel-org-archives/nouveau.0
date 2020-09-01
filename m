@@ -1,51 +1,50 @@
-From: Tomasz Figa <tfiga@chromium.org>
-Subject: Re: [PATCH 05/28] media/v4l2: remove V4L2-FLAG-MEMORY-NON-CONSISTENT
-Date: Tue, 1 Sep 2020 17:02:20 +0200
-Message-ID: <CAAFQd5CmPVSxmZJVn7HnNUn8srZbAbnfzpNMYw3KcDzn7xD2cg@mail.gmail.com>
-References: <20200819065555.1802761-1-hch@lst.de> <20200819065555.1802761-6-hch@lst.de>
- <CAAFQd5COLxjydDYrfx47ht8tj-aNPiaVnC+WyQA7nvpW4gs=ww@mail.gmail.com>
- <20200819135454.GA17098@lst.de> <CAAFQd5BuXP7t3d-Rwft85j=KTyXq7y4s24mQxLr=VoY9krEGZw@mail.gmail.com>
- <20200820044347.GA4533@lst.de> <20200820052004.GA5305@lst.de>
- <CAAFQd5CFiA2WBaaPQ9ezvMjYZfNw37c42UEy9Pk7kJyCi1mLzQ@mail.gmail.com>
- <20200820165407.GD12693@lst.de> <CAAFQd5D=NzgjosB51-O_cH27a8V6CPgCfaPSfHHz7nKJPbazgg@mail.gmail.com>
- <20200901110617.GA13232@lst.de>
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 1/3] drm/ttm: make sure that we always zero init
+ mem.bus v2
+Date: Tue,  1 Sep 2020 17:05:40 +0200
+Message-ID: <20200901150542.7455-1-christian.koenig@amd.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-parisc-owner@vger.kernel.org>
-In-Reply-To: <20200901110617.GA13232@lst.de>
-Sender: linux-parisc-owner@vger.kernel.org
-To: Christoph Hellwig <hch@lst.de>
-Cc: alsa-devel@alsa-project.org, linux-ia64@vger.kernel.org, Linux Doc Mailing List <linux-doc@vger.kernel.org>, nouveau@lists.freedesktop.org, linux-nvme@lists.infradead.org, linux-mips@vger.kernel.org, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, linux-mm@kvack.org, linux-samsung-soc <linux-samsung-soc@vger.kernel.org>, Joonyoung Shim <jy0922.shim@samsung.com>, linux-scsi@vger.kernel.org, Kyungmin Park <kyungmin.park@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Matt Porter <mporter@kernel.crashing.org>, Linux Media Mailing List <linux-media@vger.kernel.org>, Tom Lendacky <thomas.lendacky@amd.com>, Pawel Osciak <pawel@osciak.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joe
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Sep 1, 2020 at 1:06 PM Christoph Hellwig <hch@lst.de> wrote:
->
-> On Thu, Aug 20, 2020 at 07:33:48PM +0200, Tomasz Figa wrote:
-> > > It wasn't meant to be too insulting, but I found this out when trying
-> > > to figure out how to just disable it.  But it also ends up using
-> > > the actual dma attr flags for it's own consistency checks, so just
-> > > not setting the flag did not turn out to work that easily.
-> > >
-> >
-> > Yes, sadly the videobuf2 ended up becoming quite counterintuitive
-> > after growing for the long years and that is reflected in the design
-> > of this feature as well. I think we need to do something about it.
->
-> So I'm about to respin the series and wonder how we should proceed.
-> I've failed to come up with a clean patch to keep the flag and make
-> it a no-op.  Can you or your team give it a spin?
->
-
-Okay, I'll take a look.
-
-> Also I wonder if the flag should be renamed from NON_CONSISTENT
-> to NON_COHERENT - the consistent thing is a weird wart from the times
-> the old PCI DMA API that is mostly gone now.
-
-It originated from the DMA_ATTR_NON_CONSISTENT flag, but agreed that
-NON_COHERENT would be more consistent (pun not intended) with the rest
-of the DMA API given the removal of that flag. Let me see if we can
-still change it.
-
-Best regards,
-Tomasz
+V2UgYXJlIHRyeWluZyB0byByZW1vdmUgdGhlIGlvX2xydSBoYW5kbGluZyBhbmQgZGVwZW5kCm9u
+IHplcm8gaW5pdCBiYXNlLCBvZmZzZXQgYW5kIGFkZHIgaGVyZS4KCnYyOiBpbml0IGFkZHIgYXMg
+d2VsbAoKU2lnbmVkLW9mZi1ieTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0Bh
+bWQuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvLmMgfCA5ICsrKysrKysrKwog
+MSBmaWxlIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS90dG0vdHRtX2JvLmMgYi9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jCmluZGV4IGUz
+OTMxZTUxNTkwNi4uNzcyYzY0MGE2MDQ2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vdHRt
+L3R0bV9iby5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvLmMKQEAgLTY1MCw2ICs2
+NTAsOSBAQCBzdGF0aWMgaW50IHR0bV9ib19ldmljdChzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3Qg
+KmJvLAogCWV2aWN0X21lbS5tbV9ub2RlID0gTlVMTDsKIAlldmljdF9tZW0uYnVzLmlvX3Jlc2Vy
+dmVkX3ZtID0gZmFsc2U7CiAJZXZpY3RfbWVtLmJ1cy5pb19yZXNlcnZlZF9jb3VudCA9IDA7CisJ
+ZXZpY3RfbWVtLmJ1cy5iYXNlID0gMDsKKwlldmljdF9tZW0uYnVzLm9mZnNldCA9IDA7CisJZXZp
+Y3RfbWVtLmJ1cy5hZGRyID0gTlVMTDsKIAogCXJldCA9IHR0bV9ib19tZW1fc3BhY2UoYm8sICZw
+bGFjZW1lbnQsICZldmljdF9tZW0sIGN0eCk7CiAJaWYgKHJldCkgewpAQCAtMTA4NCw2ICsxMDg3
+LDkgQEAgc3RhdGljIGludCB0dG1fYm9fbW92ZV9idWZmZXIoc3RydWN0IHR0bV9idWZmZXJfb2Jq
+ZWN0ICpibywKIAltZW0ucGFnZV9hbGlnbm1lbnQgPSBiby0+bWVtLnBhZ2VfYWxpZ25tZW50Owog
+CW1lbS5idXMuaW9fcmVzZXJ2ZWRfdm0gPSBmYWxzZTsKIAltZW0uYnVzLmlvX3Jlc2VydmVkX2Nv
+dW50ID0gMDsKKwltZW0uYnVzLmJhc2UgPSAwOworCW1lbS5idXMub2Zmc2V0ID0gMDsKKwltZW0u
+YnVzLmFkZHIgPSBOVUxMOwogCW1lbS5tbV9ub2RlID0gTlVMTDsKIAogCS8qCkBAIC0xMjQzLDYg
+KzEyNDksOSBAQCBpbnQgdHRtX2JvX2luaXRfcmVzZXJ2ZWQoc3RydWN0IHR0bV9ib19kZXZpY2Ug
+KmJkZXYsCiAJYm8tPm1lbS5wYWdlX2FsaWdubWVudCA9IHBhZ2VfYWxpZ25tZW50OwogCWJvLT5t
+ZW0uYnVzLmlvX3Jlc2VydmVkX3ZtID0gZmFsc2U7CiAJYm8tPm1lbS5idXMuaW9fcmVzZXJ2ZWRf
+Y291bnQgPSAwOworCWJvLT5tZW0uYnVzLmJhc2UgPSAwOworCWJvLT5tZW0uYnVzLm9mZnNldCA9
+IDA7CisJYm8tPm1lbS5idXMuYWRkciA9IE5VTEw7CiAJYm8tPm1vdmluZyA9IE5VTEw7CiAJYm8t
+Pm1lbS5wbGFjZW1lbnQgPSAoVFRNX1BMX0ZMQUdfU1lTVEVNIHwgVFRNX1BMX0ZMQUdfQ0FDSEVE
+KTsKIAliby0+YWNjX3NpemUgPSBhY2Nfc2l6ZTsKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
