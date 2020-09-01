@@ -1,256 +1,223 @@
-From: Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: VAAPI on GeForce GT 620M
-Date: Tue, 1 Sep 2020 10:58:04 -0700
-Message-ID: <CAHWPjbXftMYRUm3QgmoLWKpiyPm88G=F3nbv5Q0vs1Rz_PLVBA@mail.gmail.com>
-References: <CAKiGokHoArQcnVAPs0HWzJSFXhwCSLfQAirOQ-zTq=0C-97neQ@mail.gmail.com>
- <CAKb7Uvh4cdg0=dGJqQVXx_p4O2c5BJbG3JRnjznwjsMQwc505Q@mail.gmail.com>
- <CAKiGokGj8pfm1tmH0aN7de5FVvrszAA93_e9-Zq05oqw46GnRg@mail.gmail.com>
- <CAKb7UvhE8i9E7XxxwrpQX1rSvLHk63tFt7dyv_0XAAxu4O5=iA@mail.gmail.com>
- <CAKiGokFrYM6Cpw9DkYg_ntcvYi4f=2ezJ0ULS7CK0cGucARxsQ@mail.gmail.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH 4/5] drm_dp_cec: add plumbing in preparation
+ for MST support
+Date: Tue, 01 Sep 2020 14:12:46 -0400
+Message-ID: <c5caee2875a86e68fc66c7bf2eae03393289aded.camel@redhat.com>
+References: <20200901162133.1.I8693156f555875e5c8342e86ab37ce968dfdd277@changeid>
+ <20200901162133.4.I900b1b80709b7632a47d0ddb4cd375b4a3616c9e@changeid>
+Reply-To: lyude@redhat.com
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1887747163=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKiGokFrYM6Cpw9DkYg_ntcvYi4f=2ezJ0ULS7CK0cGucARxsQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Analabha Roy <hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20200901162133.4.I900b1b80709b7632a47d0ddb4cd375b4a3616c9e@changeid>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Sam McNally <sammc@chromium.org>, LKML <linux-kernel@vger.kernel.org>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, David Francis <David.Francis@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org, Hans Verkuil <hans.verkuil@cisco.com>, Ben Skeggs <bskeggs@redhat.com>, Harry Wentland <harry.wentland@amd.com>, Wambui Karuga <wambui.karugax@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>, Leo Li <sunpeng.li@amd.com>, Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>, Mikita Lipski <mikita.lipski@amd.com>, dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 List-Id: nouveau.vger.kernel.org
 
---===============1887747163==
-Content-Type: multipart/alternative; boundary="0000000000006ceec105ae4443db"
+Super minor nitpicks:
 
---0000000000006ceec105ae4443db
-Content-Type: text/plain; charset="UTF-8"
+On Tue, 2020-09-01 at 16:22 +1000, Sam McNally wrote:
+> From: Hans Verkuil <hans.verkuil@cisco.com>
+> 
+> Signed-off-by: Hans Verkuil <hans.verkuil@cisco.com>
+> [sammc@chromium.org:
+>  - rebased
+>  - removed polling-related changes
+>  - moved the calls to drm_dp_cec_(un)set_edid() into the next patch
+> ]
+> Signed-off-by: Sam McNally <sammc@chromium.org>
+> ---
+> 
+>  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  2 +-
+>  drivers/gpu/drm/drm_dp_cec.c                  | 22 ++++++++++---------
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
+>  drivers/gpu/drm/nouveau/nouveau_connector.c   |  2 +-
+>  include/drm/drm_dp_helper.h                   |  6 +++--
+>  5 files changed, 19 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> index 461fa4da0a34..6e7075893ec9 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> @@ -419,7 +419,7 @@ void amdgpu_dm_initialize_dp_connector(struct
+> amdgpu_display_manager *dm,
+>  
+>  	drm_dp_aux_init(&aconnector->dm_dp_aux.aux);
+>  	drm_dp_cec_register_connector(&aconnector->dm_dp_aux.aux,
+> -				      &aconnector->base);
+> +				      &aconnector->base, false);
+>  
+>  	if (aconnector->base.connector_type == DRM_MODE_CONNECTOR_eDP)
+>  		return;
+> diff --git a/drivers/gpu/drm/drm_dp_cec.c b/drivers/gpu/drm/drm_dp_cec.c
+> index 3ab2609f9ec7..04ab7b88055c 100644
+> --- a/drivers/gpu/drm/drm_dp_cec.c
+> +++ b/drivers/gpu/drm/drm_dp_cec.c
+> @@ -14,6 +14,7 @@
+>  #include <drm/drm_connector.h>
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_dp_helper.h>
+> +#include <drm/drm_dp_mst_helper.h>
+>  
+>  /*
+>   * Unfortunately it turns out that we have a chicken-and-egg situation
+> @@ -338,8 +339,6 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const
+> struct edid *edid)
+>  	if (aux->cec.adap) {
+>  		if (aux->cec.adap->capabilities == cec_caps &&
+>  		    aux->cec.adap->available_log_addrs == num_las) {
+> -			/* Unchanged, so just set the phys addr */
+> -			cec_s_phys_addr_from_edid(aux->cec.adap, edid);
+>  			goto unlock;
+>  		}
 
-Hi,
+May as well drop the braces here
 
-Try:  DRI_PRIME=1 LIBVA_DRIVER_NAME=nouveau vainfo --display drm --device
-/dev/dri/renderD129
+>  		/*
+> @@ -364,15 +363,16 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const
+> struct edid *edid)
+>  	if (cec_register_adapter(aux->cec.adap, connector->dev->dev)) {
+>  		cec_delete_adapter(aux->cec.adap);
+>  		aux->cec.adap = NULL;
+> -	} else {
+> -		/*
+> -		 * Update the phys addr for the new CEC adapter. When called
+> -		 * from drm_dp_cec_register_connector() edid == NULL, so in
+> -		 * that case the phys addr is just invalidated.
+> -		 */
+> -		cec_s_phys_addr_from_edid(aux->cec.adap, edid);
+>  	}
+>  unlock:
+> +	/*
+> +	 * Update the phys addr for the new CEC adapter. When called
+> +	 * from drm_dp_cec_register_connector() edid == NULL, so in
+> +	 * that case the phys addr is just invalidated.
+> +	 */
+> +	if (aux->cec.adap && edid) {
+> +		cec_s_phys_addr_from_edid(aux->cec.adap, edid);
+> +	}
 
-Also try with and without the --device option, the important one is
---display drm
+And here
 
-Cheers
-Julien
+>  	mutex_unlock(&aux->cec.lock);
+>  }
+>  EXPORT_SYMBOL(drm_dp_cec_set_edid);
+> @@ -418,6 +418,7 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);
+>   * drm_dp_cec_register_connector() - register a new connector
+>   * @aux: DisplayPort AUX channel
+>   * @connector: drm connector
+> + * @is_mst: set to true if this is an MST branch
+>   *
+>   * A new connector was registered with associated CEC adapter name and
+>   * CEC adapter parent device. After registering the name and parent
+> @@ -425,12 +426,13 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);
+>   * CEC and to register a CEC adapter if that is the case.
+>   */
+>  void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
+> -				   struct drm_connector *connector)
+> +				   struct drm_connector *connector, bool is_mst)
+>  {
+>  	WARN_ON(aux->cec.adap);
+>  	if (WARN_ON(!aux->transfer))
+>  		return;
+>  	aux->cec.connector = connector;
+> +	aux->cec.is_mst = is_mst;
 
-On Tue, Sep 1, 2020 at 10:49 AM Analabha Roy <hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+Also JFYI, you can also check aux->is_remote, but maybe you've got another
+reason for copying this here
 
->
->
-> On Tue, 1 Sep 2020 at 18:59, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
->
->> On Tue, Sep 1, 2020 at 9:10 AM Analabha Roy <hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
->> wrote:
->> > Any suggestions on how to trace the config issues? Do I have to debug
->> the va_openDriver() function?
->>
->> My guess, without reading any code, is that DRI_PRIME isn't doing what
->> you want it to, and the nouveau driver is being handed an intel
->> device. This does not work well. Fixing this will require tracing
->> through the va winsys code which to figure out how it invokes the
->> loader.
->>
->>
->> https://cgit.freedesktop.org/mesa/mesa/tree/src/gallium/frontends/va/context.c#n111
->>
->> For the DRM/rendernodes "platform", it will just take whatever fd it
->> is given. vainfo appears to give it a fixed device:
->>
->>
->> https://github.com/intel/libva-utils/blob/master/common/va_display_drm.c#L39
->>
->> However it looks like you can pass in --device /dev/dri/renderD129 or
->> whatever the right one is, which should pass in the right render node,
->> as seen here:
->>
->> https://github.com/intel/libva-utils/blob/master/common/va_display.c#L80
->>
->> Note that I've never tried this, just did a few google searches to
->> find this stuff.
->>
->>
-> Brilliant googling. get_drm_device_name() does seem to do a crude argparse
-> of "--device"
->
-> So I ran
->
-> $ DRI_PRIME=1 LIBVA_DRIVER_NAME=nouveau vainfo --device /dev/dri/renderD128
->
-> *vainfo: unrecognized option '--device'*Show information from VA-API
-> driver
-> Usage: vainfo --help
->         --help print this message
->
-> Usage: vainfo [options]
-> Display options:
->         --display display | help         Show information for the
-> specified display, or the available display list
->
-> *        --device device                  Set device name, only available
-> under drm display*
->
->
-> What does this mean?
->
->  Note that I also ran
->
->
-> $ nm -Dn -o /usr/lib/x86_64-linux-gnu/libva*|grep get_drm_device_name
->
-> Didn't get anything...
->
-> Cheers,
->>
->>   -ilia
->>
->
->
-> --
-> Analabha Roy
-> Assistant Professor
-> Department of Physics
-> <http://www.buruniv.ac.in/academics/department/physics>
-> The University of Burdwan <http://www.buruniv.ac.in/>
-> Golapbag Campus, Barddhaman 713104
-> West Bengal, India
-> Emails: daneel-0v3tJM2ovI83uPMLIKxrzw@public.gmane.org, aroy-ZqCQOGSO5P5obvhnwckLr5/QNRX+jHPU@public.gmane.org, hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-> Webpage: http://www.ph.utexas.edu/~daneel/
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
->
+Either way:
 
---0000000000006ceec105ae4443db
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-<div dir=3D"ltr">Hi,<div><br></div><div>Try:=C2=A0 DRI_PRIME=3D1 LIBVA_DRIV=
-ER_NAME=3Dnouveau vainfo=C2=A0<span style=3D"color:rgb(36,41,46);font-famil=
-y:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,san=
-s-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-size:=
-14px">--display drm --device /dev/dri/renderD129</span></div><div><span sty=
-le=3D"color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&quo=
-t;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&=
-quot;Segoe UI Emoji&quot;;font-size:14px"><br></span></div><div><span style=
-=3D"color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&quot;=
-Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&qu=
-ot;Segoe UI Emoji&quot;;font-size:14px">Also try with and without the --dev=
-ice option, the important one is --display drm</span></div><div><span style=
-=3D"color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&quot;=
-Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&qu=
-ot;Segoe UI Emoji&quot;;font-size:14px"><br></span></div><div><span style=
-=3D"color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&quot;=
-Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&qu=
-ot;Segoe UI Emoji&quot;;font-size:14px">Cheers</span></div><div><span style=
-=3D"color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&quot;=
-Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&qu=
-ot;Segoe UI Emoji&quot;;font-size:14px">Julien</span></div></div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep 1, 2=
-020 at 10:49 AM Analabha Roy &lt;<a href=3D"mailto:hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" =
-target=3D"_blank">hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt; wrote:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><=
-br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
-r">On Tue, 1 Sep 2020 at 18:59, Ilia Mirkin &lt;<a href=3D"mailto:imirkin@a=
-lum.mit.edu" target=3D"_blank">imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org</a>&gt; wrote:<br></div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left:1px solid rgb(204,204,204);padding-left:1ex">On Tue, Sep 1, 2020 at 9=
-:10 AM Analabha Roy &lt;<a href=3D"mailto:hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D=
-"_blank">hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt; wrote:<br>
-&gt; Any suggestions on how to trace the config issues? Do I have to debug =
-the va_openDriver() function?<br>
-<br>
-My guess, without reading any code, is that DRI_PRIME isn&#39;t doing what<=
-br>
-you want it to, and the nouveau driver is being handed an intel<br>
-device. This does not work well. Fixing this will require tracing<br>
-through the va winsys code which to figure out how it invokes the<br>
-loader.<br>
-<br>
-<a href=3D"https://cgit.freedesktop.org/mesa/mesa/tree/src/gallium/frontend=
-s/va/context.c#n111" rel=3D"noreferrer" target=3D"_blank">https://cgit.free=
-desktop.org/mesa/mesa/tree/src/gallium/frontends/va/context.c#n111</a><br>
-<br>
-For the DRM/rendernodes &quot;platform&quot;, it will just take whatever fd=
- it<br>
-is given. vainfo appears to give it a fixed device:<br>
-<br>
-<a href=3D"https://github.com/intel/libva-utils/blob/master/common/va_displ=
-ay_drm.c#L39" rel=3D"noreferrer" target=3D"_blank">https://github.com/intel=
-/libva-utils/blob/master/common/va_display_drm.c#L39</a><br>
-<br>
-However it looks like you can pass in --device /dev/dri/renderD129 or<br>
-whatever the right one is, which should pass in the right render node,<br>
-as seen here:<br>
-<br>
-<a href=3D"https://github.com/intel/libva-utils/blob/master/common/va_displ=
-ay.c#L80" rel=3D"noreferrer" target=3D"_blank">https://github.com/intel/lib=
-va-utils/blob/master/common/va_display.c#L80</a><br>
-<br>
-Note that I&#39;ve never tried this, just did a few google searches to<br>
-find this stuff.<br>
-<br></blockquote><div><br></div><div>Brilliant googling.=C2=A0get_drm_devic=
-e_name() does seem to do a crude argparse of &quot;--device&quot;</div><div=
-><br></div><div>So I ran</div><div><br></div><div>$ DRI_PRIME=3D1 LIBVA_DRI=
-VER_NAME=3Dnouveau vainfo --device /dev/dri/renderD128<br><b><u>vainfo: unr=
-ecognized option &#39;--device&#39;<br></u></b>Show information from VA-API=
- driver<br>Usage: vainfo --help<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 --help print=
- this message<br><br>Usage: vainfo [options]<br>Display options:<br>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 --display display | help =C2=A0 =C2=A0 =C2=A0 =C2=A0 S=
-how information for the specified display, or the available display list <b=
-r><b><u>=C2=A0 =C2=A0 =C2=A0 =C2=A0 --device device =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Set device name, only available un=
-der drm display<br></u></b></div><div><br></div><div><br></div><div>What do=
-es this mean?</div><div><br></div><div>=C2=A0Note that I also ran</div><div=
-><br></div><div><br></div><div>$ nm -Dn -o /usr/lib/x86_64-linux-gnu/libva*=
-|grep get_drm_device_name</div><div><br></div><div>Didn&#39;t get anything.=
-..</div><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-Cheers,<br>
-<br>
-=C2=A0 -ilia<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
-><div dir=3D"ltr"><div><div dir=3D"ltr"><div>Analabha Roy<br></div><div>Ass=
-istant Professor</div><div><a href=3D"http://www.buruniv.ac.in/academics/de=
-partment/physics" target=3D"_blank">Department of Physics</a></div><div><a =
-href=3D"http://www.buruniv.ac.in/" target=3D"_blank">The University of Burd=
-wan</a></div><div>Golapbag Campus, Barddhaman 713104</div><div>West Bengal,=
- India</div><div>Emails: <a href=3D"mailto:daneel-0v3tJM2ovI83uPMLIKxrzw@public.gmane.org" target=3D"_bl=
-ank">daneel-0v3tJM2ovI83uPMLIKxrzw@public.gmane.org</a>, <a href=3D"mailto:aroy-ZqCQOGSO5P5obvhnwckLr5/QNRX+jHPU@public.gmane.org" targ=
-et=3D"_blank">aroy-ZqCQOGSO5P5obvhnwckLr5/QNRX+jHPU@public.gmane.org</a>, <a href=3D"mailto:hariseldon99@g=
-mail.com" target=3D"_blank">hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a><br><div><font face=
-=3D"tahoma, sans-serif">Webpage: <a href=3D"http://www.ph.utexas.edu/~danee=
-l/" target=3D"_blank">http://www.ph.utexas.edu/~daneel/</a></font></div></d=
-iv></div></div></div></div></div>
-_______________________________________________<br>
-Nouveau mailing list<br>
-<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" target=3D"_blank">Nouveau@=
-lists.freedesktop.org</a><br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau" rel=3D"n=
-oreferrer" target=3D"_blank">https://lists.freedesktop.org/mailman/listinfo=
-/nouveau</a><br>
-</blockquote></div>
+...Also, maybe this is just a coincidence - but do I know your name from
+somewhere? Perhaps an IRC community from long ago?
 
---0000000000006ceec105ae4443db--
-
---===============1887747163==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1887747163==--
+>  	INIT_DELAYED_WORK(&aux->cec.unregister_work,
+>  			  drm_dp_cec_unregister_work);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 82b9de274f65..744cb55572f9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -6261,7 +6261,7 @@ intel_dp_connector_register(struct drm_connector
+> *connector)
+>  	intel_dp->aux.dev = connector->kdev;
+>  	ret = drm_dp_aux_register(&intel_dp->aux);
+>  	if (!ret)
+> -		drm_dp_cec_register_connector(&intel_dp->aux, connector);
+> +		drm_dp_cec_register_connector(&intel_dp->aux, connector, false);
+>  	return ret;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c
+> b/drivers/gpu/drm/nouveau/nouveau_connector.c
+> index 49dd0cbc332f..671a70e95cd1 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+> @@ -1414,7 +1414,7 @@ nouveau_connector_create(struct drm_device *dev,
+>  	switch (type) {
+>  	case DRM_MODE_CONNECTOR_DisplayPort:
+>  	case DRM_MODE_CONNECTOR_eDP:
+> -		drm_dp_cec_register_connector(&nv_connector->aux, connector);
+> +		drm_dp_cec_register_connector(&nv_connector->aux, connector,
+> false);
+>  		break;
+>  	}
+>  
+> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+> index 85513eeb2196..12bca1b9512b 100644
+> --- a/include/drm/drm_dp_helper.h
+> +++ b/include/drm/drm_dp_helper.h
+> @@ -1495,12 +1495,14 @@ struct drm_connector;
+>   * @lock: mutex protecting this struct
+>   * @adap: the CEC adapter for CEC-Tunneling-over-AUX support.
+>   * @connector: the connector this CEC adapter is associated with
+> + * @is_mst: this is an MST branch
+>   * @unregister_work: unregister the CEC adapter
+>   */
+>  struct drm_dp_aux_cec {
+>  	struct mutex lock;
+>  	struct cec_adapter *adap;
+>  	struct drm_connector *connector;
+> +	bool is_mst;
+>  	struct delayed_work unregister_work;
+>  };
+>  
+> @@ -1746,7 +1748,7 @@ drm_dp_has_quirk(const struct drm_dp_desc *desc, u32
+> edid_quirks,
+>  #ifdef CONFIG_DRM_DP_CEC
+>  void drm_dp_cec_irq(struct drm_dp_aux *aux);
+>  void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
+> -				   struct drm_connector *connector);
+> +				   struct drm_connector *connector, bool
+> is_mst);
+>  void drm_dp_cec_unregister_connector(struct drm_dp_aux *aux);
+>  void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid);
+>  void drm_dp_cec_unset_edid(struct drm_dp_aux *aux);
+> @@ -1757,7 +1759,7 @@ static inline void drm_dp_cec_irq(struct drm_dp_aux
+> *aux)
+>  
+>  static inline void
+>  drm_dp_cec_register_connector(struct drm_dp_aux *aux,
+> -			      struct drm_connector *connector)
+> +			      struct drm_connector *connector, bool is_mst)
+>  {
+>  }
+>  
+-- 
+Sincerely,
+      Lyude Paul (she/her)
+      Software Engineer at Red Hat
