@@ -1,71 +1,50 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: VAAPI on GeForce GT 620M
-Date: Tue, 1 Sep 2020 13:04:55 +0200
-Message-ID: <CACO55tvdTRRN-=4NDquvPdP5g416Vo6GuQ_=DpDAsONJaEFSBA@mail.gmail.com>
-References: <CAKiGokHoArQcnVAPs0HWzJSFXhwCSLfQAirOQ-zTq=0C-97neQ@mail.gmail.com>
+From: Christoph Hellwig <hch@lst.de>
+Subject: Re: [PATCH 05/28] media/v4l2: remove V4L2-FLAG-MEMORY-NON-CONSISTENT
+Date: Tue, 1 Sep 2020 13:06:17 +0200
+Message-ID: <20200901110617.GA13232@lst.de>
+References: <20200819065555.1802761-1-hch@lst.de>
+ <20200819065555.1802761-6-hch@lst.de>
+ <CAAFQd5COLxjydDYrfx47ht8tj-aNPiaVnC+WyQA7nvpW4gs=ww@mail.gmail.com>
+ <20200819135454.GA17098@lst.de>
+ <CAAFQd5BuXP7t3d-Rwft85j=KTyXq7y4s24mQxLr=VoY9krEGZw@mail.gmail.com>
+ <20200820044347.GA4533@lst.de> <20200820052004.GA5305@lst.de>
+ <CAAFQd5CFiA2WBaaPQ9ezvMjYZfNw37c42UEy9Pk7kJyCi1mLzQ@mail.gmail.com>
+ <20200820165407.GD12693@lst.de>
+ <CAAFQd5D=NzgjosB51-O_cH27a8V6CPgCfaPSfHHz7nKJPbazgg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKiGokHoArQcnVAPs0HWzJSFXhwCSLfQAirOQ-zTq=0C-97neQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Analabha Roy <hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <alsa-devel-bounces@alsa-project.org>
+Content-Disposition: inline
+In-Reply-To: <CAAFQd5D=NzgjosB51-O_cH27a8V6CPgCfaPSfHHz7nKJPbazgg@mail.gmail.com>
+List-Unsubscribe: <https://mailman.alsa-project.org/mailman/options/alsa-devel>,
+ <mailto:alsa-devel-request@alsa-project.org?subject=unsubscribe>
+List-Archive: <http://mailman.alsa-project.org/pipermail/alsa-devel/>
+List-Post: <mailto:alsa-devel@alsa-project.org>
+List-Help: <mailto:alsa-devel-request@alsa-project.org?subject=help>
+List-Subscribe: <https://mailman.alsa-project.org/mailman/listinfo/alsa-devel>,
+ <mailto:alsa-devel-request@alsa-project.org?subject=subscribe>
+Errors-To: alsa-devel-bounces@alsa-project.org
+Sender: "Alsa-devel" <alsa-devel-bounces@alsa-project.org>
+To: Tomasz Figa <tfiga@chromium.org>
+Cc: alsa-devel@alsa-project.org, linux-ia64@vger.kernel.org, Linux Doc Mailing List <linux-doc@vger.kernel.org>, nouveau@lists.freedesktop.org, linux-nvme@lists.infradead.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, linux-mm@kvack.org, Christoph Hellwig <hch@lst.de>, linux-samsung-soc <linux-samsung-soc@vger.kernel.org>, Joonyoung Shim <jy0922.shim@samsung.com>, linux-scsi@vger.kernel.org, "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>,
+ Joerg Roedel <joro@8bytes.org>, " <iommu@lists.linux-foundation.org>, Ben Skeggs <bskeggs@redhat.com>, Matt Porter <mporter@kernel.crashing.org>, Linux Media Mailing List <linux-media@vger.kernel.org>, Tom Lendacky <thomas.lendacky@amd.com>, Pawel Osciak <pawel@osciak.com>, Mauro Carvalho Chehab <mchehab@kernel.org>list@263.net:IOMMU DRIVERS
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Sep 1, 2020 at 9:31 AM Analabha Roy <hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->
-> Hi,
->
-> If I am reading the featurematrix right, VAAPI is supported for nouveau on the GeForce650M (my card).
->
-> Here is the output of inxi -F
->
-> System:    Host: MediaServer Kernel: 5.4.0-42-generic x86_64 bits: 64 Console: tty 1 Distro: Ubuntu 18.04.5 LTS
-> Machine:   Device: laptop System: SAMSUNG product: 300E4C/300E5C/300E7C v: 0.1 serial: N/A
->            Mobo: SAMSUNG model: NP300E5X-U01IN v: FAB1 serial: N/A
->            UEFI [Legacy]: Phoenix v: P06RAC date: 10/25/2012
-> Battery    BAT1: charge: 47.5 Wh 100.0% condition: 47.5/47.5 Wh (100%)
-> CPU:       Dual core Intel Core i3-2310M (-MT-MCP-) cache: 3072 KB
->            clock speeds: max: 2100 MHz 1: 835 MHz 2: 1031 MHz 3: 905 MHz 4: 927 MHz
-> Graphics:  Card-1: Intel 2nd Generation Core Processor Family Integrated Graphics Controller
->            Card-2: NVIDIA GF108M [GeForce GT 620M]
->            Display Server: X.org 1.20.8 driver: i915 tty size: 171x45 Advanced Data: N/A out of X
->
->
-> I have installed nouveau, and extracted the firmware from the prop nvidia drivers separately as per instructions on https://nouveau.freedesktop.org/wiki/VideoAcceleration/
-> See installed firmware @ https://pastebin.com/Gaqxb88g
->
-> But running vainfo yields error: https://pastebin.com/NyULBhXt
->
-> Does the error mean that VAAPI is unsupported, or does it indicate a config problem?
->
+On Thu, Aug 20, 2020 at 07:33:48PM +0200, Tomasz Figa wrote:
+> > It wasn't meant to be too insulting, but I found this out when trying
+> > to figure out how to just disable it.  But it also ends up using
+> > the actual dma attr flags for it's own consistency checks, so just
+> > not setting the flag did not turn out to work that easily.
+> >
+> 
+> Yes, sadly the videobuf2 ended up becoming quite counterintuitive
+> after growing for the long years and that is reflected in the design
+> of this feature as well. I think we need to do something about it.
 
-It does indicate a config problem, but why do you want to use the
-nvidia GPU for video accel? I'd rely on intel to provide acceleration
-as this also reduces power consumption of the entire system. Also I
-think vaapi on the secondary GPU is pretty much untested.
+So I'm about to respin the series and wonder how we should proceed.
+I've failed to come up with a clean patch to keep the flag and make
+it a no-op.  Can you or your team give it a spin?
 
-> Thanks,
-> AR
-> --
-> Analabha Roy
-> Assistant Professor
-> Department of Physics
-> The University of Burdwan
-> Golapbag Campus, Barddhaman 713104
-> West Bengal, India
-> Emails: daneel-0v3tJM2ovI83uPMLIKxrzw@public.gmane.org, aroy-ZqCQOGSO5P5obvhnwckLr5/QNRX+jHPU@public.gmane.org, hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-> Webpage: http://www.ph.utexas.edu/~daneel/
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+Also I wonder if the flag should be renamed from NON_CONSISTENT
+to NON_COHERENT - the consistent thing is a weird wart from the times
+the old PCI DMA API that is mostly gone now.
