@@ -1,240 +1,56 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v4] drm/nouveau/kms/nv50-: Program notifier offset before requesting disp caps
-Date: Tue,  1 Sep 2020 19:42:26 -0400
-Message-ID: <20200901234240.197917-1-lyude@redhat.com>
-References: <20200901233842.196818-1-lyude@redhat.com>
+From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: Re: [PATCH v4] drm/nouveau/kms/nv50-: Program notifier
+ offset before requesting disp caps
+Date: Wed, 02 Sep 2020 13:38:45 +0000
+Message-ID: <20200902133846.9C12A20767@mail.kernel.org>
+References: <20200901234240.197917-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20200901233842.196818-1-lyude@redhat.com>
-Sender: stable-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@gmail.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Nirmoy Das <nirmoy.aiemd@gmail.com>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, James Jones <jajones@nvidia.com>, Jani Nikula <jani.nikula@intel.com>, "open list:DRM DRIVER FOR NVIDIA
-        GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200901234240.197917-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Not entirely sure why this never came up when I originally tested this
-(maybe some BIOSes already have this setup?) but the ->caps_init vfunc
-appears to cause the display engine to throw an exception on driver
-init, at least on my ThinkPad P72:
+Hi
 
-nouveau 0000:01:00.0: disp: chid 0 mthd 008c data 00000000 0000508c 0000102b
+[This is an automated email]
 
-This is magic nvidia speak for "You need to have the DMA notifier offset
-programmed before you can call NV507D_GET_CAPABILITIES." So, let's fix
-this by doing that, and also perform an update afterwards to prevent
-racing with the GPU when reading capabilities.
+This commit has been processed because it contains a "Fixes:" tag
+fixing commit: 4a2cb4181b07 ("drm/nouveau/kms/nv50-: Probe SOR and PIOR caps for DP interlacing support").
 
-v2:
-* Don't just program the DMA notifier offset, make sure to actually
-  perform an update
-v3:
-* Don't call UPDATE()
-* Actually read the correct notifier fields, as apparently the
-  CAPABILITIES_DONE field lives in a different location than the main
-  NV_DISP_CORE_NOTIFIER_1 field. As well, 907d+ use a different
-  CAPABILITIES_DONE field then pre-907d cards.
-v4:
-* Don't forget to check the return value of core507d_read_caps()
+The bot has tested the following trees: v5.8.5.
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Fixes: 4a2cb4181b07 ("drm/nouveau/kms/nv50-: Probe SOR and PIOR caps for DP interlacing support")
-Cc: <stable@vger.kernel.org> # v5.8+
----
- drivers/gpu/drm/nouveau/dispnv50/core.h       |  2 +
- drivers/gpu/drm/nouveau/dispnv50/core507d.c   | 37 ++++++++++++++++++-
- drivers/gpu/drm/nouveau/dispnv50/core907d.c   | 36 +++++++++++++++++-
- drivers/gpu/drm/nouveau/dispnv50/core917d.c   |  2 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.h       |  2 +
- .../drm/nouveau/include/nvhw/class/cl507d.h   |  5 ++-
- .../drm/nouveau/include/nvhw/class/cl907d.h   |  4 ++
- 7 files changed, 83 insertions(+), 5 deletions(-)
+v5.8.5: Failed to apply! Possible dependencies:
+    0a96099691c8 ("drm/nouveau/kms/nv50-: implement proper push buffer control logic")
+    0bc8ffe09771 ("drm/nouveau/kms/nv50-: Move hard-coded object handles into header")
+    12885ecbfe62 ("drm/nouveau/kms/nvd9-: Add CRC support")
+    203f6eaf4182 ("drm/nouveau/kms/nv50-: convert core update() to new push macros")
+    2853ccf09255 ("drm/nouveau/kms/nv50-: wrap existing command submission in nvif_push interface")
+    344c2e5a4796 ("drm/nouveau/kms/nv50-: use NVIDIA's headers for core or_ctrl()")
+    3c43c362b3a5 ("drm/nouveau/kms/nv50-: convert core caps_init() to new push macros")
+    5e691222eac6 ("drm/nouveau/kms/nv50-: convert core init() to new push macros")
+    9ec5e8204053 ("drm/nouveau/kms/nv50-: convert core or_ctrl() to new push macros")
+    b11d8ca151d0 ("drm/nouveau/kms/nv50-: use NVIDIA's headers for core init()")
+    b505935e56b2 ("drm/nouveau/kms/nv50-: convert core wndw_owner() to new push macros")
+    d8b24526ef68 ("drm/nouveau/kms/nv50-: use NVIDIA's headers for core caps_init()")
+    e79c9a0ba5e7 ("drm/nouveau/nvif: give every mem object a human-readable identifier")
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/core.h b/drivers/gpu/drm/nouveau/dispnv50/core.h
-index 498622c0c670d..b789139e5fff6 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/core.h
-+++ b/drivers/gpu/drm/nouveau/dispnv50/core.h
-@@ -44,6 +44,7 @@ int core507d_new_(const struct nv50_core_func *, struct nouveau_drm *, s32,
- 		  struct nv50_core **);
- int core507d_init(struct nv50_core *);
- void core507d_ntfy_init(struct nouveau_bo *, u32);
-+int core507d_read_caps(struct nv50_disp *disp, u32 offset);
- int core507d_caps_init(struct nouveau_drm *, struct nv50_disp *);
- int core507d_ntfy_wait_done(struct nouveau_bo *, u32, struct nvif_device *);
- int core507d_update(struct nv50_core *, u32 *, bool);
-@@ -55,6 +56,7 @@ extern const struct nv50_outp_func pior507d;
- int core827d_new(struct nouveau_drm *, s32, struct nv50_core **);
- 
- int core907d_new(struct nouveau_drm *, s32, struct nv50_core **);
-+int core907d_caps_init(struct nouveau_drm *drm, struct nv50_disp *disp);
- extern const struct nv50_outp_func dac907d;
- extern const struct nv50_outp_func sor907d;
- 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/core507d.c b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
-index ad1f09a143aa4..d0f2b80a32103 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/core507d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
-@@ -75,18 +75,51 @@ core507d_ntfy_init(struct nouveau_bo *bo, u32 offset)
- }
- 
- int
--core507d_caps_init(struct nouveau_drm *drm, struct nv50_disp *disp)
-+core507d_read_caps(struct nv50_disp *disp, u32 offset)
- {
- 	struct nvif_push *push = disp->core->chan.push;
- 	int ret;
- 
--	if ((ret = PUSH_WAIT(push, 2)))
-+	ret = PUSH_WAIT(push, 4);
-+	if (ret)
- 		return ret;
- 
-+	PUSH_MTHD(push, NV507D, SET_NOTIFIER_CONTROL,
-+		  NVDEF(NV507D, SET_NOTIFIER_CONTROL, MODE, WRITE) |
-+		  NVVAL(NV507D, SET_NOTIFIER_CONTROL, OFFSET, offset >> 2) |
-+		  NVDEF(NV507D, SET_NOTIFIER_CONTROL, NOTIFY, ENABLE));
- 	PUSH_MTHD(push, NV507D, GET_CAPABILITIES, 0x00000000);
-+
- 	return PUSH_KICK(push);
- }
- 
-+int
-+core507d_caps_init(struct nouveau_drm *drm, struct nv50_disp *disp)
-+{
-+	struct nv50_core *core = disp->core;
-+	struct nouveau_bo *bo = disp->sync;
-+	s64 time;
-+	int ret;
-+
-+	NVBO_WR32(bo, NV50_DISP_CAPS_NTFY1, NV_DISP_CORE_NOTIFIER_1, CAPABILITIES_1,
-+				      NVDEF(NV_DISP_CORE_NOTIFIER_1, CAPABILITIES_1, DONE, FALSE));
-+
-+	ret = core507d_read_caps(disp, NV50_DISP_CAPS_NTFY1);
-+	if (ret < 0)
-+		return ret;
-+
-+	time = nvif_msec(core->chan.base.device, 2000ULL,
-+			 if (NVBO_TD32(bo, NV50_DISP_CAPS_NTFY1,
-+				       NV_DISP_CORE_NOTIFIER_1, CAPABILITIES_1, DONE, ==, TRUE))
-+				 break;
-+			 usleep_range(1, 2);
-+			 );
-+	if (time < 0)
-+		NV_ERROR(drm, "core caps notifier timeout\n");
-+
-+	return 0;
-+}
-+
- int
- core507d_init(struct nv50_core *core)
- {
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/core907d.c b/drivers/gpu/drm/nouveau/dispnv50/core907d.c
-index b17c03529c784..45505a18aca17 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/core907d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/core907d.c
-@@ -22,11 +22,45 @@
- #include "core.h"
- #include "head.h"
- 
-+#include <nvif/push507c.h>
-+#include <nvif/timer.h>
-+
-+#include <nvhw/class/cl907d.h>
-+
-+#include "nouveau_bo.h"
-+
-+int
-+core907d_caps_init(struct nouveau_drm *drm, struct nv50_disp *disp)
-+{
-+	struct nv50_core *core = disp->core;
-+	struct nouveau_bo *bo = disp->sync;
-+	s64 time;
-+	int ret;
-+
-+	NVBO_WR32(bo, NV50_DISP_CAPS_NTFY4, NV907D_CORE_NOTIFIER_3, CAPABILITIES_4,
-+				      NVDEF(NV907D_CORE_NOTIFIER_3, CAPABILITIES_4, DONE, FALSE));
-+
-+	ret = core507d_read_caps(disp, NV50_DISP_CAPS_NTFY4);
-+	if (ret < 0)
-+		return ret;
-+
-+	time = nvif_msec(core->chan.base.device, 2000ULL,
-+			 if (NVBO_TD32(bo, NV50_DISP_CAPS_NTFY4,
-+				       NV907D_CORE_NOTIFIER_3, CAPABILITIES_4, DONE, ==, TRUE))
-+				 break;
-+			 usleep_range(1, 2);
-+			 );
-+	if (time < 0)
-+		NV_ERROR(drm, "core caps notifier timeout\n");
-+
-+	return 0;
-+}
-+
- static const struct nv50_core_func
- core907d = {
- 	.init = core507d_init,
- 	.ntfy_init = core507d_ntfy_init,
--	.caps_init = core507d_caps_init,
-+	.caps_init = core907d_caps_init,
- 	.ntfy_wait_done = core507d_ntfy_wait_done,
- 	.update = core507d_update,
- 	.head = &head907d,
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/core917d.c b/drivers/gpu/drm/nouveau/dispnv50/core917d.c
-index 66846f3720805..1cd3a2a35dfb7 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/core917d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/core917d.c
-@@ -26,7 +26,7 @@ static const struct nv50_core_func
- core917d = {
- 	.init = core507d_init,
- 	.ntfy_init = core507d_ntfy_init,
--	.caps_init = core507d_caps_init,
-+	.caps_init = core907d_caps_init,
- 	.ntfy_wait_done = core507d_ntfy_wait_done,
- 	.update = core507d_update,
- 	.head = &head917d,
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.h b/drivers/gpu/drm/nouveau/dispnv50/disp.h
-index 92bddc0836171..a59051bd070d7 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.h
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.h
-@@ -16,6 +16,8 @@ struct nv50_disp {
- 
- #define NV50_DISP_SYNC(c, o)                                ((c) * 0x040 + (o))
- #define NV50_DISP_CORE_NTFY                       NV50_DISP_SYNC(0      , 0x00)
-+#define NV50_DISP_CAPS_NTFY1                      NV50_DISP_SYNC(0      , 0x01)
-+#define NV50_DISP_CAPS_NTFY4                      NV50_DISP_SYNC(0      , 0x04)
- #define NV50_DISP_WNDW_SEM0(c)                    NV50_DISP_SYNC(1 + (c), 0x00)
- #define NV50_DISP_WNDW_SEM1(c)                    NV50_DISP_SYNC(1 + (c), 0x10)
- #define NV50_DISP_WNDW_NTFY(c)                    NV50_DISP_SYNC(1 + (c), 0x20)
-diff --git a/drivers/gpu/drm/nouveau/include/nvhw/class/cl507d.h b/drivers/gpu/drm/nouveau/include/nvhw/class/cl507d.h
-index 2e444bac701dd..6a463f308b64f 100644
---- a/drivers/gpu/drm/nouveau/include/nvhw/class/cl507d.h
-+++ b/drivers/gpu/drm/nouveau/include/nvhw/class/cl507d.h
-@@ -32,7 +32,10 @@
- #define NV_DISP_CORE_NOTIFIER_1_COMPLETION_0_DONE_TRUE                               0x00000001
- #define NV_DISP_CORE_NOTIFIER_1_COMPLETION_0_R0                                      15:1
- #define NV_DISP_CORE_NOTIFIER_1_COMPLETION_0_TIMESTAMP                               29:16
--
-+#define NV_DISP_CORE_NOTIFIER_1_CAPABILITIES_1                                       0x00000001
-+#define NV_DISP_CORE_NOTIFIER_1_CAPABILITIES_1_DONE                                  0:0
-+#define NV_DISP_CORE_NOTIFIER_1_CAPABILITIES_1_DONE_FALSE                            0x00000000
-+#define NV_DISP_CORE_NOTIFIER_1_CAPABILITIES_1_DONE_TRUE                             0x00000001
- 
- // class methods
- #define NV507D_UPDATE                                                           (0x00000080)
-diff --git a/drivers/gpu/drm/nouveau/include/nvhw/class/cl907d.h b/drivers/gpu/drm/nouveau/include/nvhw/class/cl907d.h
-index 34bc3eafac7d1..79aff6ff31385 100644
---- a/drivers/gpu/drm/nouveau/include/nvhw/class/cl907d.h
-+++ b/drivers/gpu/drm/nouveau/include/nvhw/class/cl907d.h
-@@ -24,6 +24,10 @@
- #ifndef _cl907d_h_
- #define _cl907d_h_
- 
-+#define NV907D_CORE_NOTIFIER_3_CAPABILITIES_4                                       0x00000004
-+#define NV907D_CORE_NOTIFIER_3_CAPABILITIES_4_DONE                                  0:0
-+#define NV907D_CORE_NOTIFIER_3_CAPABILITIES_4_DONE_FALSE                            0x00000000
-+#define NV907D_CORE_NOTIFIER_3_CAPABILITIES_4_DONE_TRUE                             0x00000001
- #define NV907D_CORE_NOTIFIER_3_CAPABILITIES_CAP_SOR0_20                             0x00000014
- #define NV907D_CORE_NOTIFIER_3_CAPABILITIES_CAP_SOR0_20_SINGLE_LVDS18               0:0
- #define NV907D_CORE_NOTIFIER_3_CAPABILITIES_CAP_SOR0_20_SINGLE_LVDS18_FALSE         0x00000000
+
+NOTE: The patch will not be queued to stable trees until it is upstream.
+
+How should we proceed with this patch?
+
 -- 
-2.26.2
+Thanks
+Sasha
