@@ -1,14 +1,17 @@
-From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH v4] drm/nouveau/kms/nv50-: Program notifier
- offset before requesting disp caps
-Date: Wed, 02 Sep 2020 13:38:45 +0000
-Message-ID: <20200902133846.9C12A20767@mail.kernel.org>
-References: <20200901234240.197917-1-lyude@redhat.com>
+From: Analabha Roy <hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: VAAPI on GeForce GT 620M
+Date: Wed, 2 Sep 2020 19:17:41 +0530
+Message-ID: <CAKiGokEp_aCiVC4PHKXqByG2oGarRcOx2RRfvPWD2NEHPmD9vg@mail.gmail.com>
+References: <CAKiGokHoArQcnVAPs0HWzJSFXhwCSLfQAirOQ-zTq=0C-97neQ@mail.gmail.com>
+ <CAKb7Uvh4cdg0=dGJqQVXx_p4O2c5BJbG3JRnjznwjsMQwc505Q@mail.gmail.com>
+ <CAKiGokGj8pfm1tmH0aN7de5FVvrszAA93_e9-Zq05oqw46GnRg@mail.gmail.com>
+ <CAKb7UvhE8i9E7XxxwrpQX1rSvLHk63tFt7dyv_0XAAxu4O5=iA@mail.gmail.com>
+ <CAKiGokFrYM6Cpw9DkYg_ntcvYi4f=2ezJ0ULS7CK0cGucARxsQ@mail.gmail.com>
+ <CAHWPjbXftMYRUm3QgmoLWKpiyPm88G=F3nbv5Q0vs1Rz_PLVBA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2079217350=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200901234240.197917-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <CAHWPjbXftMYRUm3QgmoLWKpiyPm88G=F3nbv5Q0vs1Rz_PLVBA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,39 +21,269 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi
+--===============2079217350==
+Content-Type: multipart/alternative; boundary="000000000000e7c38305ae54e189"
 
-[This is an automated email]
+--000000000000e7c38305ae54e189
+Content-Type: text/plain; charset="UTF-8"
 
-This commit has been processed because it contains a "Fixes:" tag
-fixing commit: 4a2cb4181b07 ("drm/nouveau/kms/nv50-: Probe SOR and PIOR caps for DP interlacing support").
+On Tue, Sep 1, 2020, 23:28 Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
 
-The bot has tested the following trees: v5.8.5.
-
-v5.8.5: Failed to apply! Possible dependencies:
-    0a96099691c8 ("drm/nouveau/kms/nv50-: implement proper push buffer control logic")
-    0bc8ffe09771 ("drm/nouveau/kms/nv50-: Move hard-coded object handles into header")
-    12885ecbfe62 ("drm/nouveau/kms/nvd9-: Add CRC support")
-    203f6eaf4182 ("drm/nouveau/kms/nv50-: convert core update() to new push macros")
-    2853ccf09255 ("drm/nouveau/kms/nv50-: wrap existing command submission in nvif_push interface")
-    344c2e5a4796 ("drm/nouveau/kms/nv50-: use NVIDIA's headers for core or_ctrl()")
-    3c43c362b3a5 ("drm/nouveau/kms/nv50-: convert core caps_init() to new push macros")
-    5e691222eac6 ("drm/nouveau/kms/nv50-: convert core init() to new push macros")
-    9ec5e8204053 ("drm/nouveau/kms/nv50-: convert core or_ctrl() to new push macros")
-    b11d8ca151d0 ("drm/nouveau/kms/nv50-: use NVIDIA's headers for core init()")
-    b505935e56b2 ("drm/nouveau/kms/nv50-: convert core wndw_owner() to new push macros")
-    d8b24526ef68 ("drm/nouveau/kms/nv50-: use NVIDIA's headers for core caps_init()")
-    e79c9a0ba5e7 ("drm/nouveau/nvif: give every mem object a human-readable identifier")
+> Hi,
+>
+> Try:  DRI_PRIME=1 LIBVA_DRIVER_NAME=nouveau vainfo --display drm --device
+> /dev/dri/renderD129
+>
+> Also try with and without the --device option, the important one is
+> --display drm
+>
 
 
-NOTE: The patch will not be queued to stable trees until it is upstream.
 
-How should we proceed with this patch?
 
--- 
-Thanks
-Sasha
+Nada, and nada. Exact same error as before, both cases.
+
+waah!
+
+
+> Cheers
+> Julien
+>
+> On Tue, Sep 1, 2020 at 10:49 AM Analabha Roy <hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> wrote:
+>
+>>
+>>
+>> On Tue, 1 Sep 2020 at 18:59, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+>>
+>>> On Tue, Sep 1, 2020 at 9:10 AM Analabha Roy <hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+>>> wrote:
+>>> > Any suggestions on how to trace the config issues? Do I have to debug
+>>> the va_openDriver() function?
+>>>
+>>> My guess, without reading any code, is that DRI_PRIME isn't doing what
+>>> you want it to, and the nouveau driver is being handed an intel
+>>> device. This does not work well. Fixing this will require tracing
+>>> through the va winsys code which to figure out how it invokes the
+>>> loader.
+>>>
+>>>
+>>> https://cgit.freedesktop.org/mesa/mesa/tree/src/gallium/frontends/va/context.c#n111
+>>>
+>>> For the DRM/rendernodes "platform", it will just take whatever fd it
+>>> is given. vainfo appears to give it a fixed device:
+>>>
+>>>
+>>> https://github.com/intel/libva-utils/blob/master/common/va_display_drm.c#L39
+>>>
+>>> However it looks like you can pass in --device /dev/dri/renderD129 or
+>>> whatever the right one is, which should pass in the right render node,
+>>> as seen here:
+>>>
+>>> https://github.com/intel/libva-utils/blob/master/common/va_display.c#L80
+>>>
+>>> Note that I've never tried this, just did a few google searches to
+>>> find this stuff.
+>>>
+>>>
+>> Brilliant googling. get_drm_device_name() does seem to do a crude
+>> argparse of "--device"
+>>
+>> So I ran
+>>
+>> $ DRI_PRIME=1 LIBVA_DRIVER_NAME=nouveau vainfo --device
+>> /dev/dri/renderD128
+>>
+>> *vainfo: unrecognized option '--device'*Show information from VA-API
+>> driver
+>> Usage: vainfo --help
+>>         --help print this message
+>>
+>> Usage: vainfo [options]
+>> Display options:
+>>         --display display | help         Show information for the
+>> specified display, or the available display list
+>>
+>> *        --device device                  Set device name, only available
+>> under drm display*
+>>
+>>
+>> What does this mean?
+>>
+>>  Note that I also ran
+>>
+>>
+>> $ nm -Dn -o /usr/lib/x86_64-linux-gnu/libva*|grep get_drm_device_name
+>>
+>> Didn't get anything...
+>>
+>> Cheers,
+>>>
+>>>   -ilia
+>>>
+>>
+>>
+>> --
+>> Analabha Roy
+>> Assistant Professor
+>> Department of Physics
+>> <http://www.buruniv.ac.in/academics/department/physics>
+>> The University of Burdwan <http://www.buruniv.ac.in/>
+>> Golapbag Campus, Barddhaman 713104
+>> West Bengal, India
+>> Emails: daneel-0v3tJM2ovI83uPMLIKxrzw@public.gmane.org, aroy-ZqCQOGSO5P5obvhnwckLr5/QNRX+jHPU@public.gmane.org,
+>> hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+>> Webpage: http://www.ph.utexas.edu/~daneel/
+>> _______________________________________________
+>> Nouveau mailing list
+>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>> https://lists.freedesktop.org/mailman/listinfo/nouveau
+>>
+>
+
+--000000000000e7c38305ae54e189
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
+class=3D"gmail_attr">On Tue, Sep 1, 2020, 23:28 Julien Isorce &lt;<a href=
+=3D"mailto:julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt; wrote:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
+r-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hi,<div><br></div>=
+<div>Try:=C2=A0 DRI_PRIME=3D1 LIBVA_DRIVER_NAME=3Dnouveau vainfo=C2=A0<span=
+ style=3D"color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,=
+&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quo=
+t;,&quot;Segoe UI Emoji&quot;;font-size:14px">--display drm --device /dev/d=
+ri/renderD129</span></div><div><span style=3D"color:rgb(36,41,46);font-fami=
+ly:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sa=
+ns-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-size=
+:14px"><br></span></div><div><span style=3D"color:rgb(36,41,46);font-family=
+:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans=
+-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-size:1=
+4px">Also try with and without the --device option, the important one is --=
+display drm</span></div><div><span style=3D"color:rgb(36,41,46);font-family=
+:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans=
+-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-size:1=
+4px"></span></div></div></blockquote></div></div><div dir=3D"auto"><br></di=
+v><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto"=
+><br></div><div dir=3D"auto">Nada, and nada. Exact same error as before, bo=
+th cases.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">waah!=C2=
+=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto"><div class=3D"gmail_=
+quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
+left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><span style=3D"=
+color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&quot;Sego=
+e UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;S=
+egoe UI Emoji&quot;;font-size:14px"><br></span></div><div><span style=3D"co=
+lor:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Seg=
+oe UI Emoji&quot;;font-size:14px">Cheers</span></div><div><span style=3D"co=
+lor:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Seg=
+oe UI Emoji&quot;;font-size:14px">Julien</span></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep 1, 2020 =
+at 10:49 AM Analabha Roy &lt;<a href=3D"mailto:hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" targ=
+et=3D"_blank" rel=3D"noreferrer">hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
+ss=3D"gmail_attr">On Tue, 1 Sep 2020 at 18:59, Ilia Mirkin &lt;<a href=3D"m=
+ailto:imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org" target=3D"_blank" rel=3D"noreferrer">imirkin@al=
+um.mit.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex">On Tue, Sep 1, 2020 at 9:10 AM Analabha Roy &lt;<a href=3D"mailt=
+o:hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blank" rel=3D"noreferrer">hariseldon99=
+@gmail.com</a>&gt; wrote:<br>
+&gt; Any suggestions on how to trace the config issues? Do I have to debug =
+the va_openDriver() function?<br>
+<br>
+My guess, without reading any code, is that DRI_PRIME isn&#39;t doing what<=
+br>
+you want it to, and the nouveau driver is being handed an intel<br>
+device. This does not work well. Fixing this will require tracing<br>
+through the va winsys code which to figure out how it invokes the<br>
+loader.<br>
+<br>
+<a href=3D"https://cgit.freedesktop.org/mesa/mesa/tree/src/gallium/frontend=
+s/va/context.c#n111" rel=3D"noreferrer noreferrer" target=3D"_blank">https:=
+//cgit.freedesktop.org/mesa/mesa/tree/src/gallium/frontends/va/context.c#n1=
+11</a><br>
+<br>
+For the DRM/rendernodes &quot;platform&quot;, it will just take whatever fd=
+ it<br>
+is given. vainfo appears to give it a fixed device:<br>
+<br>
+<a href=3D"https://github.com/intel/libva-utils/blob/master/common/va_displ=
+ay_drm.c#L39" rel=3D"noreferrer noreferrer" target=3D"_blank">https://githu=
+b.com/intel/libva-utils/blob/master/common/va_display_drm.c#L39</a><br>
+<br>
+However it looks like you can pass in --device /dev/dri/renderD129 or<br>
+whatever the right one is, which should pass in the right render node,<br>
+as seen here:<br>
+<br>
+<a href=3D"https://github.com/intel/libva-utils/blob/master/common/va_displ=
+ay.c#L80" rel=3D"noreferrer noreferrer" target=3D"_blank">https://github.co=
+m/intel/libva-utils/blob/master/common/va_display.c#L80</a><br>
+<br>
+Note that I&#39;ve never tried this, just did a few google searches to<br>
+find this stuff.<br>
+<br></blockquote><div><br></div><div>Brilliant googling.=C2=A0get_drm_devic=
+e_name() does seem to do a crude argparse of &quot;--device&quot;</div><div=
+><br></div><div>So I ran</div><div><br></div><div>$ DRI_PRIME=3D1 LIBVA_DRI=
+VER_NAME=3Dnouveau vainfo --device /dev/dri/renderD128<br><b><u>vainfo: unr=
+ecognized option &#39;--device&#39;<br></u></b>Show information from VA-API=
+ driver<br>Usage: vainfo --help<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 --help print=
+ this message<br><br>Usage: vainfo [options]<br>Display options:<br>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 --display display | help =C2=A0 =C2=A0 =C2=A0 =C2=A0 S=
+how information for the specified display, or the available display list <b=
+r><b><u>=C2=A0 =C2=A0 =C2=A0 =C2=A0 --device device =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Set device name, only available un=
+der drm display<br></u></b></div><div><br></div><div><br></div><div>What do=
+es this mean?</div><div><br></div><div>=C2=A0Note that I also ran</div><div=
+><br></div><div><br></div><div>$ nm -Dn -o /usr/lib/x86_64-linux-gnu/libva*=
+|grep get_drm_device_name</div><div><br></div><div>Didn&#39;t get anything.=
+..</div><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+Cheers,<br>
+<br>
+=C2=A0 -ilia<br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+><div dir=3D"ltr"><div><div dir=3D"ltr"><div>Analabha Roy<br></div><div>Ass=
+istant Professor</div><div><a href=3D"http://www.buruniv.ac.in/academics/de=
+partment/physics" target=3D"_blank" rel=3D"noreferrer">Department of Physic=
+s</a></div><div><a href=3D"http://www.buruniv.ac.in/" target=3D"_blank" rel=
+=3D"noreferrer">The University of Burdwan</a></div><div>Golapbag Campus, Ba=
+rddhaman 713104</div><div>West Bengal, India</div><div>Emails: <a href=3D"m=
+ailto:daneel-0v3tJM2ovI83uPMLIKxrzw@public.gmane.org" target=3D"_blank" rel=3D"noreferrer">daneel@utexas=
+.edu</a>, <a href=3D"mailto:aroy-ZqCQOGSO5P5obvhnwckLr5/QNRX+jHPU@public.gmane.org" target=3D"_blank" rel=
+=3D"noreferrer">aroy-ZqCQOGSO5P5obvhnwckLr5/QNRX+jHPU@public.gmane.org</a>, <a href=3D"mailto:hariseldon99=
+@gmail.com" target=3D"_blank" rel=3D"noreferrer">hariseldon99-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>=
+<br><div><font face=3D"tahoma, sans-serif">Webpage: <a href=3D"http://www.p=
+h.utexas.edu/~daneel/" target=3D"_blank" rel=3D"noreferrer">http://www.ph.u=
+texas.edu/~daneel/</a></font></div></div></div></div></div></div></div>
+_______________________________________________<br>
+Nouveau mailing list<br>
+<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" target=3D"_blank" rel=3D"n=
+oreferrer">Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org</a><br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau" rel=3D"n=
+oreferrer noreferrer" target=3D"_blank">https://lists.freedesktop.org/mailm=
+an/listinfo/nouveau</a><br>
+</blockquote></div>
+</blockquote></div></div></div>
+
+--000000000000e7c38305ae54e189--
+
+--===============2079217350==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+https://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2079217350==--
