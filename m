@@ -1,48 +1,61 @@
-From: Ralph Campbell <rcampbell@nvidia.com>
-Subject: Re: [PATCH v2 1/7] mm/thp: fix __split_huge_pmd_locked() for
- migration PMD
-Date: Wed, 2 Sep 2020 15:02:43 -0700
-Message-ID: <171f31cd-91e5-5c74-a68a-ec7cbd9bb450@nvidia.com>
-References: <20200902165830.5367-1-rcampbell@nvidia.com>
- <20200902165830.5367-2-rcampbell@nvidia.com>
- <78B69571-13C6-4BF5-8478-6AAA4AB2C287@nvidia.com>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/3] drm/ttm: make sure that we always zero
+ init mem.bus v2
+Date: Thu, 3 Sep 2020 14:30:24 +1000
+Message-ID: <CACAvsv4TU56GOuzSQoNHf+roqW8f4W8fQe8YzEWWv_7ZeEOsfw@mail.gmail.com>
+References: <20200901150542.7455-1-christian.koenig@amd.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <78B69571-13C6-4BF5-8478-6AAA4AB2C287@nvidia.com>
-Content-Language: en-US
-Sender: stable-owner@vger.kernel.org
-To: Zi Yan <ziy@nvidia.com>
-Cc: linux-mm@kvack.org, nouveau@lists.freedesktop.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>, Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Ben Skeggs <bskeggs@redhat.com>, Shuah Khan <shuah@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, stable@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200901150542.7455-1-christian.koenig-5C7GfCeVMHo@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: ML nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
-On 9/2/20 2:47 PM, Zi Yan wrote:
-> On 2 Sep 2020, at 12:58, Ralph Campbell wrote:
->=20
->> A migrating transparent huge page has to already be unmapped. Otherwise,
->> the page could be modified while it is being copied to a new page and
->> data could be lost. The function __split_huge_pmd() checks for a PMD
->> migration entry before calling __split_huge_pmd_locked() leading one to
->> think that __split_huge_pmd_locked() can handle splitting a migrating PM=
-D.
->> However, the code always increments the page->_mapcount and adjusts the
->> memory control group accounting assuming the page is mapped.
->> Also, if the PMD entry is a migration PMD entry, the call to
->> is_huge_zero_pmd(*pmd) is incorrect because it calls pmd_pfn(pmd) instea=
-d
->> of migration_entry_to_pfn(pmd_to_swp_entry(pmd)).
->> Fix these problems by checking for a PMD migration entry.
->>
->> Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
->=20
-> Thanks for the fix. You can add Reviewed-by: Zi Yan <ziy@nvidia.com>
->=20
-> I think you also want to add the Fixes tag and cc stable.
->=20
-> Fixes 84c3fc4e9c56 (=E2=80=9Cmm: thp: check pmd migration entry in common=
- path=E2=80=9D)
-> cc: stable@vger.kernel.org # 4.14+
-
-Thanks, I'll add these.
+T24gV2VkLCAyIFNlcCAyMDIwIGF0IDAxOjA1LCBDaHJpc3RpYW4gS8O2bmlnCjxja29lbmlnLmxl
+aWNodHp1bWVya2VuQGdtYWlsLmNvbT4gd3JvdGU6Cj4KPiBXZSBhcmUgdHJ5aW5nIHRvIHJlbW92
+ZSB0aGUgaW9fbHJ1IGhhbmRsaW5nIGFuZCBkZXBlbmQKPiBvbiB6ZXJvIGluaXQgYmFzZSwgb2Zm
+c2V0IGFuZCBhZGRyIGhlcmUuCj4KPiB2MjogaW5pdCBhZGRyIGFzIHdlbGwKTG9va3MgbGlrZSB0
+aGUgaXNzdWVzIEkgbm90aWNlZCBpbiB0aGUgcHJldmlvdXMgdmVyc2lvbiBoYXZlIGJlZW4KZGVh
+bHQgd2l0aCwgc28sIGZvciB0aGUgc2VyaWVzOgoKUmV2aWV3ZWQtYnk6IEJlbiBTa2VnZ3MgPGJz
+a2VnZ3NAcmVkaGF0LmNvbT4KCj4KPiBTaWduZWQtb2ZmLWJ5OiBDaHJpc3RpYW4gS8O2bmlnIDxj
+aHJpc3RpYW4ua29lbmlnQGFtZC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS90dG0vdHRt
+X2JvLmMgfCA5ICsrKysrKysrKwo+ICAxIGZpbGUgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCspCj4K
+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm8uYyBiL2RyaXZlcnMvZ3B1
+L2RybS90dG0vdHRtX2JvLmMKPiBpbmRleCBlMzkzMWU1MTU5MDYuLjc3MmM2NDBhNjA0NiAxMDA2
+NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL3R0bS90dG1fYm8uYwo+IEBAIC02NTAsNiArNjUwLDkgQEAgc3RhdGljIGludCB0dG1f
+Ym9fZXZpY3Qoc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpibywKPiAgICAgICAgIGV2aWN0X21l
+bS5tbV9ub2RlID0gTlVMTDsKPiAgICAgICAgIGV2aWN0X21lbS5idXMuaW9fcmVzZXJ2ZWRfdm0g
+PSBmYWxzZTsKPiAgICAgICAgIGV2aWN0X21lbS5idXMuaW9fcmVzZXJ2ZWRfY291bnQgPSAwOwo+
+ICsgICAgICAgZXZpY3RfbWVtLmJ1cy5iYXNlID0gMDsKPiArICAgICAgIGV2aWN0X21lbS5idXMu
+b2Zmc2V0ID0gMDsKPiArICAgICAgIGV2aWN0X21lbS5idXMuYWRkciA9IE5VTEw7Cj4KPiAgICAg
+ICAgIHJldCA9IHR0bV9ib19tZW1fc3BhY2UoYm8sICZwbGFjZW1lbnQsICZldmljdF9tZW0sIGN0
+eCk7Cj4gICAgICAgICBpZiAocmV0KSB7Cj4gQEAgLTEwODQsNiArMTA4Nyw5IEBAIHN0YXRpYyBp
+bnQgdHRtX2JvX21vdmVfYnVmZmVyKHN0cnVjdCB0dG1fYnVmZmVyX29iamVjdCAqYm8sCj4gICAg
+ICAgICBtZW0ucGFnZV9hbGlnbm1lbnQgPSBiby0+bWVtLnBhZ2VfYWxpZ25tZW50Owo+ICAgICAg
+ICAgbWVtLmJ1cy5pb19yZXNlcnZlZF92bSA9IGZhbHNlOwo+ICAgICAgICAgbWVtLmJ1cy5pb19y
+ZXNlcnZlZF9jb3VudCA9IDA7Cj4gKyAgICAgICBtZW0uYnVzLmJhc2UgPSAwOwo+ICsgICAgICAg
+bWVtLmJ1cy5vZmZzZXQgPSAwOwo+ICsgICAgICAgbWVtLmJ1cy5hZGRyID0gTlVMTDsKPiAgICAg
+ICAgIG1lbS5tbV9ub2RlID0gTlVMTDsKPgo+ICAgICAgICAgLyoKPiBAQCAtMTI0Myw2ICsxMjQ5
+LDkgQEAgaW50IHR0bV9ib19pbml0X3Jlc2VydmVkKHN0cnVjdCB0dG1fYm9fZGV2aWNlICpiZGV2
+LAo+ICAgICAgICAgYm8tPm1lbS5wYWdlX2FsaWdubWVudCA9IHBhZ2VfYWxpZ25tZW50Owo+ICAg
+ICAgICAgYm8tPm1lbS5idXMuaW9fcmVzZXJ2ZWRfdm0gPSBmYWxzZTsKPiAgICAgICAgIGJvLT5t
+ZW0uYnVzLmlvX3Jlc2VydmVkX2NvdW50ID0gMDsKPiArICAgICAgIGJvLT5tZW0uYnVzLmJhc2Ug
+PSAwOwo+ICsgICAgICAgYm8tPm1lbS5idXMub2Zmc2V0ID0gMDsKPiArICAgICAgIGJvLT5tZW0u
+YnVzLmFkZHIgPSBOVUxMOwo+ICAgICAgICAgYm8tPm1vdmluZyA9IE5VTEw7Cj4gICAgICAgICBi
+by0+bWVtLnBsYWNlbWVudCA9IChUVE1fUExfRkxBR19TWVNURU0gfCBUVE1fUExfRkxBR19DQUNI
+RUQpOwo+ICAgICAgICAgYm8tPmFjY19zaXplID0gYWNjX3NpemU7Cj4gLS0KPiAyLjE3LjEKPgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
+aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
