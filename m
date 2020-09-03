@@ -1,111 +1,52 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v2] nouveau: fix the start/end range for
- migration
-Date: Thu, 3 Sep 2020 15:18:41 +1000
-Message-ID: <CACAvsv4yP2xR4aayzFDT8nGfM69j5ogZUxjoV4f0P58pEJq3RQ@mail.gmail.com>
-References: <20200831203111.4940-1-rcampbell@nvidia.com>
+From: Christoph Hellwig <hch@lst.de>
+Subject: Re: [PATCH 22/28] sgiseeq: convert from dma_cache_sync to
+ dma_sync_single_for_device
+Date: Thu, 3 Sep 2020 10:42:26 +0200
+Message-ID: <20200903084226.GA24410@lst.de>
+References: <20200819065555.1802761-1-hch@lst.de> <20200819065555.1802761-23-hch@lst.de> <20200901152209.GA14288@alpha.franken.de> <20200901171241.GA20685@alpha.franken.de> <20200901171627.GA8255@lst.de> <20200901173810.GA25282@alpha.franken.de> <20200902213809.GA7998@alpha.franken.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200831203111.4940-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Jason Gunthorpe <jgg-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <netdev-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20200902213809.GA7998@alpha.franken.de>
+Sender: netdev-owner@vger.kernel.org
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Christoph Hellwig <hch@lst.de>, alsa-devel@alsa-project.org, linux-ia64@vger.kernel.org, linux-doc@vger.kernel.org, nouveau@lists.freedesktop.org, linux-nvme@lists.infradead.org, linux-kernel@vger.kernel.org, "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, linux-mm@kvack.org, Marek Szyprowski <m.szyprowski@samsung.com>, linux-samsung-soc@vger.kernel.org, Joonyoung Shim <jy0922.shim@samsung.com>, linux-scsi@vger.kernel.org, Kyungmin Park <kyungmin.park@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Matt Porter <mporter@kernel.crashing.org>, linux-media@vger.kernel.org, Tom Lendacky <thomas.lendacky@amd.com>, Pawel Osciak <pawel@osciak.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, linux-arm-kernel@lists.infradead.org, linux-parisc@vger.kern
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 1 Sep 2020 at 06:31, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
->
-> The user level OpenCL code shouldn't have to align start and end
-> addresses to a page boundary. That is better handled in the nouveau
-> driver. The npages field is also redundant since it can be computed
-> from the start and end addresses.
->
-> Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Thanks Ralph,
+On Wed, Sep 02, 2020 at 11:38:09PM +0200, Thomas Bogendoerfer wrote:
+> the patch below fixes the problem.
 
-Queued in my tree.
+But is very wrong unfortunately.
 
-Ben.
+>  static inline void dma_sync_desc_cpu(struct net_device *dev, void *addr)
+>  {
+> -       dma_cache_sync(dev->dev.parent, addr, sizeof(struct sgiseeq_rx_desc),
+> -                      DMA_FROM_DEVICE);
+> +       struct sgiseeq_private *sp = netdev_priv(dev);
+> +
+> +       dma_sync_single_for_device(dev->dev.parent, VIRT_TO_DMA(sp, addr),
+> +                       sizeof(struct sgiseeq_rx_desc), DMA_FROM_DEVICE);
+>  }
+>  
+>  static inline void dma_sync_desc_dev(struct net_device *dev, void *addr)
+>  {
+> -       dma_cache_sync(dev->dev.parent, addr, sizeof(struct sgiseeq_rx_desc),
+> -                      DMA_TO_DEVICE);
+> +       struct sgiseeq_private *sp = netdev_priv(dev);
+> +
+> +       dma_sync_single_for_device(dev->dev.parent, VIRT_TO_DMA(sp, addr),
+> +                       sizeof(struct sgiseeq_rx_desc), DMA_TO_DEVICE);
 
-> ---
->
-> This is for Ben Skegg's nouveau tree.
->
-> I have been working with Karol Herbst on the OpenCL mesa changes for
-> nouveau which will be merged upstream soon.
-> With or without those changes, the user visible effect of this patch
-> only extends the range by one page (round up vs. round down to page
-> boundary).
->
-> Changes in v2:
-> I changed the start/end check to require a size so start has to be less
-> than end.
->
->  drivers/gpu/drm/nouveau/nouveau_svm.c | 14 +++-----------
->  1 file changed, 3 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-> index 2df1c0460559..4f69e4c3dafd 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-> @@ -105,11 +105,11 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
->         struct nouveau_cli *cli = nouveau_cli(file_priv);
->         struct drm_nouveau_svm_bind *args = data;
->         unsigned target, cmd, priority;
-> -       unsigned long addr, end, size;
-> +       unsigned long addr, end;
->         struct mm_struct *mm;
->
->         args->va_start &= PAGE_MASK;
-> -       args->va_end &= PAGE_MASK;
-> +       args->va_end = ALIGN(args->va_end, PAGE_SIZE);
->
->         /* Sanity check arguments */
->         if (args->reserved0 || args->reserved1)
-> @@ -118,8 +118,6 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
->                 return -EINVAL;
->         if (args->va_start >= args->va_end)
->                 return -EINVAL;
-> -       if (!args->npages)
-> -               return -EINVAL;
->
->         cmd = args->header >> NOUVEAU_SVM_BIND_COMMAND_SHIFT;
->         cmd &= NOUVEAU_SVM_BIND_COMMAND_MASK;
-> @@ -151,12 +149,6 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
->         if (args->stride)
->                 return -EINVAL;
->
-> -       size = ((unsigned long)args->npages) << PAGE_SHIFT;
-> -       if ((args->va_start + size) <= args->va_start)
-> -               return -EINVAL;
-> -       if ((args->va_start + size) > args->va_end)
-> -               return -EINVAL;
-> -
->         /*
->          * Ok we are ask to do something sane, for now we only support migrate
->          * commands but we will add things like memory policy (what to do on
-> @@ -171,7 +163,7 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
->                 return -EINVAL;
->         }
->
-> -       for (addr = args->va_start, end = args->va_start + size; addr < end;) {
-> +       for (addr = args->va_start, end = args->va_end; addr < end;) {
->                 struct vm_area_struct *vma;
->                 unsigned long next;
->
-> --
-> 2.20.1
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+This is not how the DMA API works.  You can only call
+dma_sync_single_for_{device,cpu} with the direction that the memory
+was mapped.  It then transfer ownership to the device or the cpu,
+and the ownership of the memory is a fundamental concept that allows
+for reasoning about the caching interaction.
+
+>  }
+>  
+> -- 
+> Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+> good idea.                                                [ RFC1925, 2.3 ]
+---end quoted text---
