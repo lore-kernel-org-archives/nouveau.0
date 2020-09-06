@@ -1,61 +1,85 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v5 2/2] drm/nouveau/kms/nv50-: Log SOR/PIOR caps
-Date: Fri,  4 Sep 2020 16:27:59 -0400
-Message-ID: <20200904202813.1260202-2-lyude@redhat.com>
-References: <20200904202813.1260202-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200904202813.1260202-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@gmail.com>, Alex Deucher <alexander.deucher@amd.com>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, Takashi Iwai <tiwai@suse.de>, James Jones <jajones@nvidia.com>, "open list:DRM DRIVER FOR NVIDIA
-        GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
+From: Sasha Levin <sashal@kernel.org>
+Subject: Re: [PATCH v3] mm/thp: fix __split_huge_pmd_locked() for migration PMD
+Date: Sun, 06 Sep 2020 03:16:06 +0000
+Message-ID: <20200906031607.06BBD20760@mail.kernel.org>
+References: <20200903183140.19055-1-rcampbell@nvidia.com>
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20200903183140.19055-1-rcampbell@nvidia.com>
+Sender: stable-owner@vger.kernel.org
+To: Sasha Levin <sashal@kernel.org>, Ralph Campbell <rcampbell@nvidia.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org
+Cc: Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, stable@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Since I'm almost certain I didn't get capability checking right for
-pre-volta chipsets, let's start logging any caps we find to make things
-like this obvious in the future.
+Hi
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+[This is an automated email]
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 7799530e07c1f..376add0faacc3 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -303,6 +303,14 @@ nv50_dmac_create(struct nvif_device *device, struct nvif_object *disp,
- /******************************************************************************
-  * Output path helpers
-  *****************************************************************************/
-+static void
-+nv50_outp_dump_caps(struct nouveau_drm *drm,
-+		    struct nouveau_encoder *outp)
-+{
-+	NV_DEBUG(drm, "%s caps: dp_interlace=%d\n",
-+		 outp->base.base.name, outp->caps.dp_interlace);
-+}
-+
- static void
- nv50_outp_release(struct nouveau_encoder *nv_encoder)
- {
-@@ -1819,6 +1827,7 @@ nv50_sor_create(struct drm_connector *connector, struct dcb_output *dcbe)
- 	drm_connector_attach_encoder(connector, encoder);
- 
- 	disp->core->func->sor->get_caps(disp, nv_encoder, ffs(dcbe->or) - 1);
-+	nv50_outp_dump_caps(drm, nv_encoder);
- 
- 	if (dcbe->type == DCB_OUTPUT_DP) {
- 		struct nvkm_i2c_aux *aux =
-@@ -1989,6 +1998,7 @@ nv50_pior_create(struct drm_connector *connector, struct dcb_output *dcbe)
- 	drm_connector_attach_encoder(connector, encoder);
- 
- 	disp->core->func->pior->get_caps(disp, nv_encoder, ffs(dcbe->or) - 1);
-+	nv50_outp_dump_caps(drm, nv_encoder);
- 
- 	return 0;
- }
+This commit has been processed because it contains a "Fixes:" tag
+fixing commit: 84c3fc4e9c56 ("mm: thp: check pmd migration entry in common path").
+
+The bot has tested the following trees: v5.8.6, v5.4.62, v4.19.143, v4.14.196.
+
+v5.8.6: Build OK!
+v5.4.62: Failed to apply! Possible dependencies:
+    0d1c20722ab3 ("mm: memcontrol: switch to native NR_FILE_PAGES and NR_SHMEM counters")
+    3fba69a56e16 ("mm: memcontrol: drop @compound parameter from memcg charging API")
+    468c398233da ("mm: memcontrol: switch to native NR_ANON_THPS counter")
+    72981e0e7b60 ("userfaultfd: wp: add UFFDIO_COPY_MODE_WP")
+    83d116c53058 ("mm: fix double page fault on arm64 if PTE_AF is cleared")
+    85b9f46e8ea4 ("mm, thp: track fallbacks due to failed memcg charges separately")
+    92855270ff08 ("mm/memcontrol.c: cleanup some useless code")
+    be5d0a74c62d ("mm: memcontrol: switch to native NR_ANON_MAPPED counter")
+    c23a0c99793f ("mm/migrate: clean up some minor coding style")
+    dcdf11ee1441 ("mm, shmem: add vmstat for hugepage fallback")
+    f4129ea3591a ("mm: fix NUMA node file count error in replace_page_cache()")
+    ffe945e633b5 ("khugepaged: do not stop collapse if less than half PTEs are referenced")
+
+v4.19.143: Failed to apply! Possible dependencies:
+    0ac261042084 ("x86/irq/64: Init hardirq_stack_ptr during CPU hotplug")
+    0d1c20722ab3 ("mm: memcontrol: switch to native NR_FILE_PAGES and NR_SHMEM counters")
+    117ed4548541 ("x86/irq/64: Remove stack overflow debug code")
+    231c4846b106 ("x86/irq/32: Make irq stack a character array")
+    30842211506e ("x86/exceptions: Remove unused stack defines on 32bit")
+    39656e83dab9 ("mm: lift the x86_32 PAE version of gup_get_pte to common code")
+    468c398233da ("mm: memcontrol: switch to native NR_ANON_THPS counter")
+    4f44b8f0b33b ("x86/irq/64: Remove a hardcoded irq_stack_union access")
+    66c7ceb47f62 ("x86/irq/32: Handle irq stack allocation failure proper")
+    758a2e312228 ("x86/irq/64: Rename irq_stack_ptr to hardirq_stack_ptr")
+    7ac870747988 ("x86/vdso: Switch to generic vDSO implementation")
+    99cb0dbd47a1 ("mm,thp: add read-only THP support for (non-shmem) FS")
+    a754fe2b76d1 ("x86/irq/32: Rename hard/softirq_stack to hard/softirq_stack_ptr")
+    aa641c287b2f ("x86/irq/32: Define IRQ_STACK_SIZE")
+    be5d0a74c62d ("mm: memcontrol: switch to native NR_ANON_MAPPED counter")
+    df835e7083be ("x86/irq/64: Sanitize the top/bottom confusion")
+    e6401c130931 ("x86/irq/64: Split the IRQ stack into its own pages")
+
+v4.14.196: Failed to apply! Possible dependencies:
+    050e9baa9dc9 ("Kbuild: rename CC_STACKPROTECTOR[_STRONG] config variables")
+    0d1c20722ab3 ("mm: memcontrol: switch to native NR_FILE_PAGES and NR_SHMEM counters")
+    117ed4548541 ("x86/irq/64: Remove stack overflow debug code")
+    152e93af3cfe ("mm, thp: Do not make pmd/pud dirty without a reason")
+    2a61f4747eea ("stack-protector: test compiler capability in Kconfig and drop AUTO mode")
+    2b8383927525 ("Makefile: move stack-protector compiler breakage test earlier")
+    2bc2f688fdf8 ("Makefile: move stack-protector availability out of Kconfig")
+    39656e83dab9 ("mm: lift the x86_32 PAE version of gup_get_pte to common code")
+    44c6dc940b19 ("Makefile: introduce CONFIG_CC_STACKPROTECTOR_AUTO")
+    4645b9fe84bf ("mm/mmu_notifier: avoid call to invalidate_range() in range_end()")
+    468c398233da ("mm: memcontrol: switch to native NR_ANON_THPS counter")
+    59c66c5f8c4f ("mm: factor out page cache page freeing into a separate function")
+    5ecc4d852c03 ("mm: factor out checks and accounting from __delete_from_page_cache()")
+    76253fbc8fbf ("mm: move accounting updates before page_cache_tree_delete()")
+    7ac870747988 ("x86/vdso: Switch to generic vDSO implementation")
+    8373b7d9d174 ("Documentation: kconfig: add recommended way to describe compiler support")
+    99cb0dbd47a1 ("mm,thp: add read-only THP support for (non-shmem) FS")
+    be5d0a74c62d ("mm: memcontrol: switch to native NR_ANON_MAPPED counter")
+    e6401c130931 ("x86/irq/64: Split the IRQ stack into its own pages")
+    fadae2953072 ("thp: use mm_file_counter to determine update which rss counter")
+
+
+NOTE: The patch will not be queued to stable trees until it is upstream.
+
+How should we proceed with this patch?
+
 -- 
-2.26.2
+Thanks
+Sasha
