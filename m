@@ -1,52 +1,215 @@
-From: Gerd Hoffmann <kraxel@redhat.com>
-Subject: Re: [PATCH v4 1/1] drm: allow limiting the scatter list size.
-Date: Tue, 8 Sep 2020 07:48:58 +0200
-Message-ID: <20200908054858.um34wojjv6uhi7d3@sirius.home.kraxel.org>
-References: <20200907112425.15610-1-kraxel@redhat.com>
- <20200907112425.15610-2-kraxel@redhat.com>
- <CAKMK7uGjT73rh=9iuCKAXvC_CaOuygm8PgOQgofkTgH7wRysFw@mail.gmail.com>
+From: Hans Verkuil <hverkuil@xs4all.nl>
+Subject: Re: [PATCH 4/5] drm_dp_cec: add plumbing in preparation for MST
+ support
+Date: Tue, 8 Sep 2020 10:41:26 +0200
+Message-ID: <2f1e64e4-bb37-0cfb-6b3b-3f51fd5faca3@xs4all.nl>
+References: <20200901162133.1.I8693156f555875e5c8342e86ab37ce968dfdd277@changeid>
+ <20200901162133.4.I900b1b80709b7632a47d0ddb4cd375b4a3616c9e@changeid>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-arm-msm-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <CAKMK7uGjT73rh=9iuCKAXvC_CaOuygm8PgOQgofkTgH7wRysFw@mail.gmail.com>
-Sender: linux-arm-msm-owner@vger.kernel.org
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@linux.ie>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Lucas Stach <l.stach@pengutronix.de>, Russell King <linux+etnaviv@armlinux.org.uk>, Christian Gmeiner <christian.gmeiner@gmail.com>, Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, Ben Skeggs <bskeggs@redhat.com>, Sandy Huang <hjc@rock-chips.com>, Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20200901162133.4.I900b1b80709b7632a47d0ddb4cd375b4a3616c9e@changeid>
+Content-Language: en-US
+Sender: linux-kernel-owner@vger.kernel.org
+To: Sam McNally <sammc@chromium.org>, LKML <linux-kernel@vger.kernel.org>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>, David Francis <David.Francis@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Wambui Karuga <wambui.karugax@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>, Leo Li <sunpeng.li@amd.com>, Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Mikita Lipski <mikita.lipski@amd.com>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, dri-devel@lists.freedesktop.org, Manasi Navare <manasi.d.navare@intel.com>, Alex Deucher <alexander.deucher@amd.com>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Sep 07, 2020 at 03:53:02PM +0200, Daniel Vetter wrote:
-> On Mon, Sep 7, 2020 at 1:24 PM Gerd Hoffmann <kraxel@redhat.com> wrote:
-> >
-> > Add drm_device argument to drm_prime_pages_to_sg(), so we can
-> > call dma_max_mapping_size() to figure the segment size limit
-> > and call into __sg_alloc_table_from_pages() with the correct
-> > limit.
-> >
-> > This fixes virtio-gpu with sev.  Possibly it'll fix other bugs
-> > too given that drm seems to totaly ignore segment size limits
-> > so far ...
-> >
-> > v2: place max_segment in drm driver not gem object.
-> > v3: move max_segment next to the other gem fields.
-> > v4: just use dma_max_mapping_size().
-> >
-> > Signed-off-by: Gerd Hoffmann <kraxel@redhat.com>
+On 01/09/2020 08:22, Sam McNally wrote:
+> From: Hans Verkuil <hans.verkuil@cisco.com>
 > 
-> Uh, are you sure this works in all cases for virtio?
+> Signed-off-by: Hans Verkuil <hans.verkuil@cisco.com>
+> [sammc@chromium.org:
+>  - rebased
+>  - removed polling-related changes
+>  - moved the calls to drm_dp_cec_(un)set_edid() into the next patch
+> ]
+> Signed-off-by: Sam McNally <sammc@chromium.org>
+> ---
+> 
+>  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  2 +-
+>  drivers/gpu/drm/drm_dp_cec.c                  | 22 ++++++++++---------
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
+>  drivers/gpu/drm/nouveau/nouveau_connector.c   |  2 +-
+>  include/drm/drm_dp_helper.h                   |  6 +++--
+>  5 files changed, 19 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> index 461fa4da0a34..6e7075893ec9 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+> @@ -419,7 +419,7 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
+>  
+>  	drm_dp_aux_init(&aconnector->dm_dp_aux.aux);
+>  	drm_dp_cec_register_connector(&aconnector->dm_dp_aux.aux,
+> -				      &aconnector->base);
+> +				      &aconnector->base, false);
+>  
+>  	if (aconnector->base.connector_type == DRM_MODE_CONNECTOR_eDP)
+>  		return;
+> diff --git a/drivers/gpu/drm/drm_dp_cec.c b/drivers/gpu/drm/drm_dp_cec.c
+> index 3ab2609f9ec7..04ab7b88055c 100644
+> --- a/drivers/gpu/drm/drm_dp_cec.c
+> +++ b/drivers/gpu/drm/drm_dp_cec.c
+> @@ -14,6 +14,7 @@
+>  #include <drm/drm_connector.h>
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_dp_helper.h>
+> +#include <drm/drm_dp_mst_helper.h>
+>  
+>  /*
+>   * Unfortunately it turns out that we have a chicken-and-egg situation
+> @@ -338,8 +339,6 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
+>  	if (aux->cec.adap) {
+>  		if (aux->cec.adap->capabilities == cec_caps &&
+>  		    aux->cec.adap->available_log_addrs == num_las) {
+> -			/* Unchanged, so just set the phys addr */
+> -			cec_s_phys_addr_from_edid(aux->cec.adap, edid);
+>  			goto unlock;
+>  		}
+>  		/*
+> @@ -364,15 +363,16 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
+>  	if (cec_register_adapter(aux->cec.adap, connector->dev->dev)) {
+>  		cec_delete_adapter(aux->cec.adap);
+>  		aux->cec.adap = NULL;
+> -	} else {
+> -		/*
+> -		 * Update the phys addr for the new CEC adapter. When called
+> -		 * from drm_dp_cec_register_connector() edid == NULL, so in
+> -		 * that case the phys addr is just invalidated.
+> -		 */
+> -		cec_s_phys_addr_from_edid(aux->cec.adap, edid);
+>  	}
+>  unlock:
+> +	/*
+> +	 * Update the phys addr for the new CEC adapter. When called
+> +	 * from drm_dp_cec_register_connector() edid == NULL, so in
+> +	 * that case the phys addr is just invalidated.
+> +	 */
 
-Sure, I've tested it ;)
+The comment is no longer in sync with the code: if EDID == NULL, then
+nothing is done due to the edid check in the 'if' below.
 
-> The comments I've found suggest very much not ... Or is that all very
-> old stuff only that no one cares about anymore?
+> +	if (aux->cec.adap && edid) {
 
-I think these days it is possible to override dma_ops per device, which
-in turn allows virtio to deal with the quirks without the rest of the
-kernel knowing about these details.
+I think this should just be: if (aux->cec.adap)
 
-I also think virtio-gpu can drop the virtio_has_dma_quirk() checks, just
-use the dma api path unconditionally and depend on virtio core having
-setup dma_ops in a way that it JustWorks[tm].  I'll look into that next.
+Also, the {} aren't necessary here.
 
-take care,
-  Gerd
+> +		cec_s_phys_addr_from_edid(aux->cec.adap, edid);
+> +	}
+>  	mutex_unlock(&aux->cec.lock);
+>  }
+>  EXPORT_SYMBOL(drm_dp_cec_set_edid);
+
+Frankly, the changes to this function should be dropped completely, from
+what I can see they are not necessary. It was done in my original patch
+because of the way I handled mst, but you did it differently (and I think
+better), so these changes are no longer needed.
+
+I know I am actually commenting on my old patch, but that patch was from a
+work-in-progress git branch and was never meant as a 'proper' patch.
+
+However, what complicates matters is that after digging a bit more I discovered
+that commit 732300154980 ("drm: Do not call drm_dp_cec_set_edid() while registering
+DP connectors") changed drm_dp_cec_register_connector() so that it no longer
+calls drm_dp_cec_set_edid(), but the comments there and in this function were
+not updated. It would be nice if you can add a patch fixing these outdated
+comments.
+
+Regardless of that change in commit 732300154980, the edid pointer can still be
+NULL and the existing behavior should be kept (i.e. create a CEC device, but with
+an invalid physical address since there is no EDID for some reason).
+
+Regards,
+
+	Hans
+
+> @@ -418,6 +418,7 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);
+>   * drm_dp_cec_register_connector() - register a new connector
+>   * @aux: DisplayPort AUX channel
+>   * @connector: drm connector
+> + * @is_mst: set to true if this is an MST branch
+>   *
+>   * A new connector was registered with associated CEC adapter name and
+>   * CEC adapter parent device. After registering the name and parent
+> @@ -425,12 +426,13 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);
+>   * CEC and to register a CEC adapter if that is the case.
+>   */
+>  void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
+> -				   struct drm_connector *connector)
+> +				   struct drm_connector *connector, bool is_mst)
+>  {
+>  	WARN_ON(aux->cec.adap);
+>  	if (WARN_ON(!aux->transfer))
+>  		return;
+>  	aux->cec.connector = connector;
+> +	aux->cec.is_mst = is_mst;
+>  	INIT_DELAYED_WORK(&aux->cec.unregister_work,
+>  			  drm_dp_cec_unregister_work);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 82b9de274f65..744cb55572f9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -6261,7 +6261,7 @@ intel_dp_connector_register(struct drm_connector *connector)
+>  	intel_dp->aux.dev = connector->kdev;
+>  	ret = drm_dp_aux_register(&intel_dp->aux);
+>  	if (!ret)
+> -		drm_dp_cec_register_connector(&intel_dp->aux, connector);
+> +		drm_dp_cec_register_connector(&intel_dp->aux, connector, false);
+>  	return ret;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+> index 49dd0cbc332f..671a70e95cd1 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+> @@ -1414,7 +1414,7 @@ nouveau_connector_create(struct drm_device *dev,
+>  	switch (type) {
+>  	case DRM_MODE_CONNECTOR_DisplayPort:
+>  	case DRM_MODE_CONNECTOR_eDP:
+> -		drm_dp_cec_register_connector(&nv_connector->aux, connector);
+> +		drm_dp_cec_register_connector(&nv_connector->aux, connector, false);
+>  		break;
+>  	}
+>  
+> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+> index 85513eeb2196..12bca1b9512b 100644
+> --- a/include/drm/drm_dp_helper.h
+> +++ b/include/drm/drm_dp_helper.h
+> @@ -1495,12 +1495,14 @@ struct drm_connector;
+>   * @lock: mutex protecting this struct
+>   * @adap: the CEC adapter for CEC-Tunneling-over-AUX support.
+>   * @connector: the connector this CEC adapter is associated with
+> + * @is_mst: this is an MST branch
+>   * @unregister_work: unregister the CEC adapter
+>   */
+>  struct drm_dp_aux_cec {
+>  	struct mutex lock;
+>  	struct cec_adapter *adap;
+>  	struct drm_connector *connector;
+> +	bool is_mst;
+>  	struct delayed_work unregister_work;
+>  };
+>  
+> @@ -1746,7 +1748,7 @@ drm_dp_has_quirk(const struct drm_dp_desc *desc, u32 edid_quirks,
+>  #ifdef CONFIG_DRM_DP_CEC
+>  void drm_dp_cec_irq(struct drm_dp_aux *aux);
+>  void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
+> -				   struct drm_connector *connector);
+> +				   struct drm_connector *connector, bool is_mst);
+>  void drm_dp_cec_unregister_connector(struct drm_dp_aux *aux);
+>  void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid);
+>  void drm_dp_cec_unset_edid(struct drm_dp_aux *aux);
+> @@ -1757,7 +1759,7 @@ static inline void drm_dp_cec_irq(struct drm_dp_aux *aux)
+>  
+>  static inline void
+>  drm_dp_cec_register_connector(struct drm_dp_aux *aux,
+> -			      struct drm_connector *connector)
+> +			      struct drm_connector *connector, bool is_mst)
+>  {
+>  }
+>  
+> 
