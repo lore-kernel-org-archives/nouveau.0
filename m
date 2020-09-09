@@ -1,231 +1,214 @@
-From: Sam McNally <sammc@chromium.org>
-Subject: Re: [PATCH 4/5] drm_dp_cec: add plumbing in preparation
- for MST support
-Date: Wed, 9 Sep 2020 16:59:29 +1000
-Message-ID: <CAJqEsoB6V6LWoY-whLGV74tamxppObPtNqWYMUyqtwAgnjrhPQ@mail.gmail.com>
-References: <20200901162133.1.I8693156f555875e5c8342e86ab37ce968dfdd277@changeid>
- <20200901162133.4.I900b1b80709b7632a47d0ddb4cd375b4a3616c9e@changeid>
- <2f1e64e4-bb37-0cfb-6b3b-3f51fd5faca3@xs4all.nl>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Add fine-grain temperature
+ reporting
+Date: Wed, 9 Sep 2020 10:22:14 +0200
+Message-ID: <CACO55tvv6REmNzZZyyRSJyRT5z-xEf38+tk9cDnft63DX5JQUw@mail.gmail.com>
+References: <20200812204952.1921587-1-jcline@redhat.com>
+ <CACAvsv71oxCYB1+LCAUHD5v_NGAP-DpxPY_dPz53iw2=91KAJg@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <2f1e64e4-bb37-0cfb-6b3b-3f51fd5faca3@xs4all.nl>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Hans Verkuil <hverkuil@xs4all.nl>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Mikita Lipski <mikita.lipski@amd.com>, dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, David Francis <David.Francis@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, LKML <linux-kernel@vger.kernel.org>, Leo Li <sunpeng.li@amd.com>, amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, Wambui Karuga <wambui.karugax@gmail.com>, intel-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CACAvsv71oxCYB1+LCAUHD5v_NGAP-DpxPY_dPz53iw2=91KAJg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 8 Sep 2020 at 18:41, Hans Verkuil <hverkuil@xs4all.nl> wrote:
+On Wed, Sep 9, 2020 at 6:06 AM Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
 >
-> On 01/09/2020 08:22, Sam McNally wrote:
-> > From: Hans Verkuil <hans.verkuil@cisco.com>
+> On Thu, 13 Aug 2020 at 06:50, Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
 > >
-> > Signed-off-by: Hans Verkuil <hans.verkuil@cisco.com>
-> > [sammc@chromium.org:
-> >  - rebased
-> >  - removed polling-related changes
-> >  - moved the calls to drm_dp_cec_(un)set_edid() into the next patch
-> > ]
-> > Signed-off-by: Sam McNally <sammc@chromium.org>
+> > Commit d32656373857 ("drm/nouveau/therm/gp100: initial implementation of
+> > new gp1xx temperature sensor") added support for reading finer-grain
+> > temperatures, but continued to report temperatures in 1 degree Celsius
+> > increments via nvkm_therm_temp_get().
+> >
+> > Rather than altering nvkm_therm_temp_get() to report finer-grain
+> > temperatures, which would be inconvenient for other users of the
+> > function, a second interface has been added to line up with hwmon's
+> > native unit of temperature.
+> Hey Jeremy,
+>
+> Sorry this slipped past me until now.  I'm OK with adding support for
+> millidegree temperature reporting, but don't think we need to keep
+> both interfaces around and would rather see the existing code
+> converted to return millidegrees (even on GPUs that don't support it)
+> instead of degrees.
+>
+> Thanks!
+> Ben.
+>
+
+just a note as I was trying something like that in the past: we have a
+lot of code which fetches the temperature and there are a lot of
+places where we would then do a divide by 1000, so having a wrapper
+function at least makes sense. If we want to keep the func pointers?
+well.. I guess the increased CPU overhead wouldn't be as bad if all
+sub classes do this static * 1000 as well either. I just think we
+should have both interfaces in subdev/therm.h so we can just keep most
+of the current code as is.
+
+> >
+> > Signed-off-by: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 > > ---
+> >  .../drm/nouveau/include/nvkm/subdev/therm.h   | 18 +++++++++++++
+> >  drivers/gpu/drm/nouveau/nouveau_hwmon.c       |  4 +--
+> >  .../gpu/drm/nouveau/nvkm/subdev/therm/base.c  | 16 ++++++++++++
+> >  .../gpu/drm/nouveau/nvkm/subdev/therm/gp100.c | 25 +++++++++++++++++--
+> >  .../gpu/drm/nouveau/nvkm/subdev/therm/priv.h  |  1 +
+> >  5 files changed, 60 insertions(+), 4 deletions(-)
 > >
-> >  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  2 +-
-> >  drivers/gpu/drm/drm_dp_cec.c                  | 22 ++++++++++---------
-> >  drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
-> >  drivers/gpu/drm/nouveau/nouveau_connector.c   |  2 +-
-> >  include/drm/drm_dp_helper.h                   |  6 +++--
-> >  5 files changed, 19 insertions(+), 15 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > index 461fa4da0a34..6e7075893ec9 100644
-> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > @@ -419,7 +419,7 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
-> >
-> >       drm_dp_aux_init(&aconnector->dm_dp_aux.aux);
-> >       drm_dp_cec_register_connector(&aconnector->dm_dp_aux.aux,
-> > -                                   &aconnector->base);
-> > +                                   &aconnector->base, false);
-> >
-> >       if (aconnector->base.connector_type == DRM_MODE_CONNECTOR_eDP)
-> >               return;
-> > diff --git a/drivers/gpu/drm/drm_dp_cec.c b/drivers/gpu/drm/drm_dp_cec.c
-> > index 3ab2609f9ec7..04ab7b88055c 100644
-> > --- a/drivers/gpu/drm/drm_dp_cec.c
-> > +++ b/drivers/gpu/drm/drm_dp_cec.c
-> > @@ -14,6 +14,7 @@
-> >  #include <drm/drm_connector.h>
-> >  #include <drm/drm_device.h>
-> >  #include <drm/drm_dp_helper.h>
-> > +#include <drm/drm_dp_mst_helper.h>
-> >
-> >  /*
-> >   * Unfortunately it turns out that we have a chicken-and-egg situation
-> > @@ -338,8 +339,6 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
-> >       if (aux->cec.adap) {
-> >               if (aux->cec.adap->capabilities == cec_caps &&
-> >                   aux->cec.adap->available_log_addrs == num_las) {
-> > -                     /* Unchanged, so just set the phys addr */
-> > -                     cec_s_phys_addr_from_edid(aux->cec.adap, edid);
-> >                       goto unlock;
-> >               }
-> >               /*
-> > @@ -364,15 +363,16 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
-> >       if (cec_register_adapter(aux->cec.adap, connector->dev->dev)) {
-> >               cec_delete_adapter(aux->cec.adap);
-> >               aux->cec.adap = NULL;
-> > -     } else {
-> > -             /*
-> > -              * Update the phys addr for the new CEC adapter. When called
-> > -              * from drm_dp_cec_register_connector() edid == NULL, so in
-> > -              * that case the phys addr is just invalidated.
-> > -              */
-> > -             cec_s_phys_addr_from_edid(aux->cec.adap, edid);
-> >       }
-> >  unlock:
-> > +     /*
-> > +      * Update the phys addr for the new CEC adapter. When called
-> > +      * from drm_dp_cec_register_connector() edid == NULL, so in
-> > +      * that case the phys addr is just invalidated.
-> > +      */
->
-> The comment is no longer in sync with the code: if EDID == NULL, then
-> nothing is done due to the edid check in the 'if' below.
->
-> > +     if (aux->cec.adap && edid) {
->
-> I think this should just be: if (aux->cec.adap)
->
-> Also, the {} aren't necessary here.
->
-> > +             cec_s_phys_addr_from_edid(aux->cec.adap, edid);
-> > +     }
-> >       mutex_unlock(&aux->cec.lock);
-> >  }
-> >  EXPORT_SYMBOL(drm_dp_cec_set_edid);
->
-> Frankly, the changes to this function should be dropped completely, from
-> what I can see they are not necessary. It was done in my original patch
-> because of the way I handled mst, but you did it differently (and I think
-> better), so these changes are no longer needed.
->
-> I know I am actually commenting on my old patch, but that patch was from a
-> work-in-progress git branch and was never meant as a 'proper' patch.
->
-> However, what complicates matters is that after digging a bit more I discovered
-> that commit 732300154980 ("drm: Do not call drm_dp_cec_set_edid() while registering
-> DP connectors") changed drm_dp_cec_register_connector() so that it no longer
-> calls drm_dp_cec_set_edid(), but the comments there and in this function were
-> not updated. It would be nice if you can add a patch fixing these outdated
-> comments.
->
-> Regardless of that change in commit 732300154980, the edid pointer can still be
-> NULL and the existing behavior should be kept (i.e. create a CEC device, but with
-> an invalid physical address since there is no EDID for some reason).
->
-> Regards,
->
->         Hans
->
-
-Thanks. Leaving drm_dp_cec_set_edid() unchanged combined with Lyude's
-suggestion to use aux->is_remote removes the need for this patch
-entirely.
-
-> > @@ -418,6 +418,7 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);
-> >   * drm_dp_cec_register_connector() - register a new connector
-> >   * @aux: DisplayPort AUX channel
-> >   * @connector: drm connector
-> > + * @is_mst: set to true if this is an MST branch
-> >   *
-> >   * A new connector was registered with associated CEC adapter name and
-> >   * CEC adapter parent device. After registering the name and parent
-> > @@ -425,12 +426,13 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);
-> >   * CEC and to register a CEC adapter if that is the case.
-> >   */
-> >  void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> > -                                struct drm_connector *connector)
-> > +                                struct drm_connector *connector, bool is_mst)
-> >  {
-> >       WARN_ON(aux->cec.adap);
-> >       if (WARN_ON(!aux->transfer))
-> >               return;
-> >       aux->cec.connector = connector;
-> > +     aux->cec.is_mst = is_mst;
-> >       INIT_DELAYED_WORK(&aux->cec.unregister_work,
-> >                         drm_dp_cec_unregister_work);
-> >  }
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 82b9de274f65..744cb55572f9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -6261,7 +6261,7 @@ intel_dp_connector_register(struct drm_connector *connector)
-> >       intel_dp->aux.dev = connector->kdev;
-> >       ret = drm_dp_aux_register(&intel_dp->aux);
-> >       if (!ret)
-> > -             drm_dp_cec_register_connector(&intel_dp->aux, connector);
-> > +             drm_dp_cec_register_connector(&intel_dp->aux, connector, false);
-> >       return ret;
-> >  }
-> >
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> > index 49dd0cbc332f..671a70e95cd1 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> > @@ -1414,7 +1414,7 @@ nouveau_connector_create(struct drm_device *dev,
-> >       switch (type) {
-> >       case DRM_MODE_CONNECTOR_DisplayPort:
-> >       case DRM_MODE_CONNECTOR_eDP:
-> > -             drm_dp_cec_register_connector(&nv_connector->aux, connector);
-> > +             drm_dp_cec_register_connector(&nv_connector->aux, connector, false);
-> >               break;
-> >       }
-> >
-> > diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> > index 85513eeb2196..12bca1b9512b 100644
-> > --- a/include/drm/drm_dp_helper.h
-> > +++ b/include/drm/drm_dp_helper.h
-> > @@ -1495,12 +1495,14 @@ struct drm_connector;
-> >   * @lock: mutex protecting this struct
-> >   * @adap: the CEC adapter for CEC-Tunneling-over-AUX support.
-> >   * @connector: the connector this CEC adapter is associated with
-> > + * @is_mst: this is an MST branch
-> >   * @unregister_work: unregister the CEC adapter
-> >   */
-> >  struct drm_dp_aux_cec {
-> >       struct mutex lock;
-> >       struct cec_adapter *adap;
-> >       struct drm_connector *connector;
-> > +     bool is_mst;
-> >       struct delayed_work unregister_work;
+> > diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/therm.h b/drivers/gpu/drm/nouveau/include/nvkm/subdev/therm.h
+> > index 62c34f98c930..7b9928dd001c 100644
+> > --- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/therm.h
+> > +++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/therm.h
+> > @@ -100,6 +100,24 @@ struct nvkm_therm {
 > >  };
 > >
-> > @@ -1746,7 +1748,7 @@ drm_dp_has_quirk(const struct drm_dp_desc *desc, u32 edid_quirks,
-> >  #ifdef CONFIG_DRM_DP_CEC
-> >  void drm_dp_cec_irq(struct drm_dp_aux *aux);
-> >  void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> > -                                struct drm_connector *connector);
-> > +                                struct drm_connector *connector, bool is_mst);
-> >  void drm_dp_cec_unregister_connector(struct drm_dp_aux *aux);
-> >  void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid);
-> >  void drm_dp_cec_unset_edid(struct drm_dp_aux *aux);
-> > @@ -1757,7 +1759,7 @@ static inline void drm_dp_cec_irq(struct drm_dp_aux *aux)
-> >
-> >  static inline void
-> >  drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> > -                           struct drm_connector *connector)
-> > +                           struct drm_connector *connector, bool is_mst)
-> >  {
+> >  int nvkm_therm_temp_get(struct nvkm_therm *);
+> > +
+> > +/**
+> > + * nvkm_therm_temp_millidegree_get() - get the temperature in millidegrees
+> > + * @therm: The thermal device to read from.
+> > + *
+> > + * This interface reports temperatures in units of millidegree Celsius to
+> > + * align with the hwmon API. Some cards may only be capable of reporting in
+> > + * units of Celsius, and those that report finer grain temperatures may not be
+> > + * capable of millidegree Celsius accuracy,
+> > + *
+> > + * For cases where millidegree temperature is too fine-grain, the
+> > + * nvkm_therm_temp_get() interface reports temperatures in one degree Celsius
+> > + * increments.
+> > + *
+> > + * Return: The temperature in millidegrees Celsius, or -ENODEV if temperature
+> > + *         reporting is not supported.
+> > + */
+> > +int nvkm_therm_temp_millidegree_get(struct nvkm_therm *therm);
+> >  int nvkm_therm_fan_sense(struct nvkm_therm *);
+> >  int nvkm_therm_cstate(struct nvkm_therm *, int, int);
+> >  void nvkm_therm_clkgate_init(struct nvkm_therm *,
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> > index 1c3104d20571..e96355f93ce5 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> > @@ -428,8 +428,8 @@ nouveau_temp_read(struct device *dev, u32 attr, int channel, long *val)
+> >         case hwmon_temp_input:
+> >                 if (drm_dev->switch_power_state != DRM_SWITCH_POWER_ON)
+> >                         return -EINVAL;
+> > -               ret = nvkm_therm_temp_get(therm);
+> > -               *val = ret < 0 ? ret : (ret * 1000);
+> > +               ret = nvkm_therm_temp_millidegree_get(therm);
+> > +               *val = ret;
+> >                 break;
+> >         case hwmon_temp_max:
+> >                 *val = therm->attr_get(therm, NVKM_THERM_ATTR_THRS_DOWN_CLK)
+> > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/base.c
+> > index 4a4d1e224126..e655b32c78b8 100644
+> > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/base.c
+> > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/base.c
+> > @@ -34,6 +34,22 @@ nvkm_therm_temp_get(struct nvkm_therm *therm)
+> >         return -ENODEV;
 > >  }
 > >
+> > +int
+> > +nvkm_therm_temp_millidegree_get(struct nvkm_therm *therm)
+> > +{
+> > +       int ret = -ENODEV;
+> > +
+> > +       if (therm->func->temp_millidegree_get)
+> > +               return therm->func->temp_millidegree_get(therm);
+> > +
+> > +       if (therm->func->temp_get) {
+> > +               ret = therm->func->temp_get(therm);
+> > +               if (ret > 0)
+> > +                       ret *= 1000;
+> > +       }
+> > +       return ret;
+> > +}
+> > +
+> >  static int
+> >  nvkm_therm_update_trip(struct nvkm_therm *therm)
+> >  {
+> > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c
+> > index 9f0dea3f61dc..4c3c2895a3cb 100644
+> > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c
+> > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c
+> > @@ -24,7 +24,7 @@
+> >  #include "priv.h"
 > >
+> >  static int
+> > -gp100_temp_get(struct nvkm_therm *therm)
+> > +gp100_temp_get_raw(struct nvkm_therm *therm)
+> >  {
+> >         struct nvkm_device *device = therm->subdev.device;
+> >         struct nvkm_subdev *subdev = &therm->subdev;
+> > @@ -37,14 +37,35 @@ gp100_temp_get(struct nvkm_therm *therm)
+> >
+> >         /* device valid */
+> >         if (tsensor & 0x20000000)
+> > -               return (inttemp >> 8);
+> > +               return inttemp;
+> >         else
+> >                 return -ENODEV;
+> >  }
+> >
+> > +static int
+> > +gp100_temp_millidegree_get(struct nvkm_therm *therm)
+> > +{
+> > +       int raw_temp = gp100_temp_get_raw(therm);
+> > +
+> > +       if (raw_temp < 0)
+> > +               return raw_temp;
+> > +       return raw_temp * 1000 >> 8;
+> > +}
+> > +
+> > +static int
+> > +gp100_temp_get(struct nvkm_therm *therm)
+> > +{
+> > +       int raw_temp = gp100_temp_get_raw(therm);
+> > +
+> > +       if (raw_temp < 0)
+> > +               return raw_temp;
+> > +       return raw_temp >> 8;
+> > +}
+> > +
+> >  static const struct nvkm_therm_func
+> >  gp100_therm = {
+> >         .temp_get = gp100_temp_get,
+> > +       .temp_millidegree_get = gp100_temp_millidegree_get,
+> >         .program_alarms = nvkm_therm_program_alarms_polling,
+> >  };
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/priv.h b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/priv.h
+> > index 21659daf1864..a53068b4f0b9 100644
+> > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/priv.h
+> > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/priv.h
+> > @@ -92,6 +92,7 @@ struct nvkm_therm_func {
+> >         int (*pwm_clock)(struct nvkm_therm *, int line);
+> >
+> >         int (*temp_get)(struct nvkm_therm *);
+> > +       int (*temp_millidegree_get)(struct nvkm_therm *therm);
+> >
+> >         int (*fan_sense)(struct nvkm_therm *);
+> >
+> > --
+> > 2.26.2
+> >
+> > _______________________________________________
+> > Nouveau mailing list
+> > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> > https://lists.freedesktop.org/mailman/listinfo/nouveau
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
 >
