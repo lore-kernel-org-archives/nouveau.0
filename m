@@ -1,19 +1,14 @@
-From: Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v4 1/1] drm: allow limiting the scatter list
- size.
-Date: Tue, 8 Sep 2020 12:02:53 +0200
-Message-ID: <20200908100253.b22sff23737l77bo__39047.5008914777$1599617152$gmane$org@sirius.home.kraxel.org>
-References: <20200907112425.15610-1-kraxel@redhat.com>
- <20200907112425.15610-2-kraxel@redhat.com>
- <CAKMK7uGjT73rh=9iuCKAXvC_CaOuygm8PgOQgofkTgH7wRysFw@mail.gmail.com>
- <20200908054858.um34wojjv6uhi7d3@sirius.home.kraxel.org>
- <20200908085544.GI2352366@phenom.ffwll.local>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Add fine-grain temperature
+ reporting
+Date: Wed, 9 Sep 2020 14:05:52 +1000
+Message-ID: <CACAvsv71oxCYB1+LCAUHD5v_NGAP-DpxPY_dPz53iw2=91KAJg@mail.gmail.com>
+References: <20200812204952.1921587-1-jcline@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20200908085544.GI2352366-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
+In-Reply-To: <20200812204952.1921587-1-jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -23,32 +18,179 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Maxime Ripard <mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>, Russell King <linux+etnaviv-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>, Christian Gmeiner <christian.gmeiner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Rob Clark <robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Sean Paul <sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Sandy Huang <hjc-TNX95d0MmH7DzftRWevZcw@public.gmane.org>, Heiko =?utf-8?Q?St=C3=BCbner?= <heiko-4mtYJXux2i+zQB+pC5nmwQ@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Jonathan Hunter <jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Oleksandr Andrushchenko <oleksandr_andrushchenko-uRwfk40T5oI@public.gmane.org>, "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+To: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-> > > The comments I've found suggest very much not ... Or is that all very
-> > > old stuff only that no one cares about anymore?
-> > 
-> > I think these days it is possible to override dma_ops per device, which
-> > in turn allows virtio to deal with the quirks without the rest of the
-> > kernel knowing about these details.
-> > 
-> > I also think virtio-gpu can drop the virtio_has_dma_quirk() checks, just
-> > use the dma api path unconditionally and depend on virtio core having
-> > setup dma_ops in a way that it JustWorks[tm].  I'll look into that next.
-> 
-> The comment above vring_use_dma_api() suggests that this has not yet
-> happened, that's why I'm asking.
+On Thu, 13 Aug 2020 at 06:50, Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
+>
+> Commit d32656373857 ("drm/nouveau/therm/gp100: initial implementation of
+> new gp1xx temperature sensor") added support for reading finer-grain
+> temperatures, but continued to report temperatures in 1 degree Celsius
+> increments via nvkm_therm_temp_get().
+>
+> Rather than altering nvkm_therm_temp_get() to report finer-grain
+> temperatures, which would be inconvenient for other users of the
+> function, a second interface has been added to line up with hwmon's
+> native unit of temperature.
+Hey Jeremy,
 
-Hmm, wading through the code, seems it indeed happen yet, even though my
-testing didn't show any issues.  Probably pure luck because devices and
-cpus have the same memory view on x86.  Guess I need to try this on
-ppc64 to see it actually failing ...
+Sorry this slipped past me until now.  I'm OK with adding support for
+millidegree temperature reporting, but don't think we need to keep
+both interfaces around and would rather see the existing code
+converted to return millidegrees (even on GPUs that don't support it)
+instead of degrees.
 
-So dropping the virtio_has_dma_quirk() checks isn't going to fly.
+Thanks!
+Ben.
 
-Using dma_max_mapping_size() should be fine though.  It might use a
-lower limit than needed for virtio, but it should not break things.
-
-take care,
-  Gerd
+>
+> Signed-off-by: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> ---
+>  .../drm/nouveau/include/nvkm/subdev/therm.h   | 18 +++++++++++++
+>  drivers/gpu/drm/nouveau/nouveau_hwmon.c       |  4 +--
+>  .../gpu/drm/nouveau/nvkm/subdev/therm/base.c  | 16 ++++++++++++
+>  .../gpu/drm/nouveau/nvkm/subdev/therm/gp100.c | 25 +++++++++++++++++--
+>  .../gpu/drm/nouveau/nvkm/subdev/therm/priv.h  |  1 +
+>  5 files changed, 60 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/therm.h b/drivers/gpu/drm/nouveau/include/nvkm/subdev/therm.h
+> index 62c34f98c930..7b9928dd001c 100644
+> --- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/therm.h
+> +++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/therm.h
+> @@ -100,6 +100,24 @@ struct nvkm_therm {
+>  };
+>
+>  int nvkm_therm_temp_get(struct nvkm_therm *);
+> +
+> +/**
+> + * nvkm_therm_temp_millidegree_get() - get the temperature in millidegrees
+> + * @therm: The thermal device to read from.
+> + *
+> + * This interface reports temperatures in units of millidegree Celsius to
+> + * align with the hwmon API. Some cards may only be capable of reporting in
+> + * units of Celsius, and those that report finer grain temperatures may not be
+> + * capable of millidegree Celsius accuracy,
+> + *
+> + * For cases where millidegree temperature is too fine-grain, the
+> + * nvkm_therm_temp_get() interface reports temperatures in one degree Celsius
+> + * increments.
+> + *
+> + * Return: The temperature in millidegrees Celsius, or -ENODEV if temperature
+> + *         reporting is not supported.
+> + */
+> +int nvkm_therm_temp_millidegree_get(struct nvkm_therm *therm);
+>  int nvkm_therm_fan_sense(struct nvkm_therm *);
+>  int nvkm_therm_cstate(struct nvkm_therm *, int, int);
+>  void nvkm_therm_clkgate_init(struct nvkm_therm *,
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> index 1c3104d20571..e96355f93ce5 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> @@ -428,8 +428,8 @@ nouveau_temp_read(struct device *dev, u32 attr, int channel, long *val)
+>         case hwmon_temp_input:
+>                 if (drm_dev->switch_power_state != DRM_SWITCH_POWER_ON)
+>                         return -EINVAL;
+> -               ret = nvkm_therm_temp_get(therm);
+> -               *val = ret < 0 ? ret : (ret * 1000);
+> +               ret = nvkm_therm_temp_millidegree_get(therm);
+> +               *val = ret;
+>                 break;
+>         case hwmon_temp_max:
+>                 *val = therm->attr_get(therm, NVKM_THERM_ATTR_THRS_DOWN_CLK)
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/base.c
+> index 4a4d1e224126..e655b32c78b8 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/base.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/base.c
+> @@ -34,6 +34,22 @@ nvkm_therm_temp_get(struct nvkm_therm *therm)
+>         return -ENODEV;
+>  }
+>
+> +int
+> +nvkm_therm_temp_millidegree_get(struct nvkm_therm *therm)
+> +{
+> +       int ret = -ENODEV;
+> +
+> +       if (therm->func->temp_millidegree_get)
+> +               return therm->func->temp_millidegree_get(therm);
+> +
+> +       if (therm->func->temp_get) {
+> +               ret = therm->func->temp_get(therm);
+> +               if (ret > 0)
+> +                       ret *= 1000;
+> +       }
+> +       return ret;
+> +}
+> +
+>  static int
+>  nvkm_therm_update_trip(struct nvkm_therm *therm)
+>  {
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c
+> index 9f0dea3f61dc..4c3c2895a3cb 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c
+> @@ -24,7 +24,7 @@
+>  #include "priv.h"
+>
+>  static int
+> -gp100_temp_get(struct nvkm_therm *therm)
+> +gp100_temp_get_raw(struct nvkm_therm *therm)
+>  {
+>         struct nvkm_device *device = therm->subdev.device;
+>         struct nvkm_subdev *subdev = &therm->subdev;
+> @@ -37,14 +37,35 @@ gp100_temp_get(struct nvkm_therm *therm)
+>
+>         /* device valid */
+>         if (tsensor & 0x20000000)
+> -               return (inttemp >> 8);
+> +               return inttemp;
+>         else
+>                 return -ENODEV;
+>  }
+>
+> +static int
+> +gp100_temp_millidegree_get(struct nvkm_therm *therm)
+> +{
+> +       int raw_temp = gp100_temp_get_raw(therm);
+> +
+> +       if (raw_temp < 0)
+> +               return raw_temp;
+> +       return raw_temp * 1000 >> 8;
+> +}
+> +
+> +static int
+> +gp100_temp_get(struct nvkm_therm *therm)
+> +{
+> +       int raw_temp = gp100_temp_get_raw(therm);
+> +
+> +       if (raw_temp < 0)
+> +               return raw_temp;
+> +       return raw_temp >> 8;
+> +}
+> +
+>  static const struct nvkm_therm_func
+>  gp100_therm = {
+>         .temp_get = gp100_temp_get,
+> +       .temp_millidegree_get = gp100_temp_millidegree_get,
+>         .program_alarms = nvkm_therm_program_alarms_polling,
+>  };
+>
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/priv.h b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/priv.h
+> index 21659daf1864..a53068b4f0b9 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/priv.h
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/priv.h
+> @@ -92,6 +92,7 @@ struct nvkm_therm_func {
+>         int (*pwm_clock)(struct nvkm_therm *, int line);
+>
+>         int (*temp_get)(struct nvkm_therm *);
+> +       int (*temp_millidegree_get)(struct nvkm_therm *therm);
+>
+>         int (*fan_sense)(struct nvkm_therm *);
+>
+> --
+> 2.26.2
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
