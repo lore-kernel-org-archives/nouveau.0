@@ -1,13 +1,15 @@
-From: Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
-Subject: [bug report] drm/nouveau: move io_reserve_lru handling
- into the driver v5
-Date: Wed, 9 Sep 2020 14:49:24 +0300
-Message-ID: <20200909114924.GA17899@mwanda>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
+Subject: Re: [bug report] drm/nouveau: move io_reserve_lru
+ handling into the driver v5
+Date: Wed, 9 Sep 2020 13:59:58 +0200
+Message-ID: <8b912d8a-ea64-862b-61a4-2d19fcf8e69c@amd.com>
+References: <20200909114924.GA17899@mwanda>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <20200909114924.GA17899@mwanda>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,55 +19,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: christian.koenig-5C7GfCeVMHo@public.gmane.org
+To: Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello Christian K=F6nig,
-
-The patch 141b15e59175: "drm/nouveau: move io_reserve_lru handling
-into the driver v5" from Aug 21, 2020, leads to the following static
-checker warning:
-
-	drivers/gpu/drm/nouveau/nouveau_ttm.c:148 nouveau_ttm_fault()
-	warn: inconsistent returns '*bo->base.resv'.
-
-drivers/gpu/drm/nouveau/nouveau_ttm.c
-   126  static vm_fault_t nouveau_ttm_fault(struct vm_fault *vmf)
-   127  {
-   128          struct vm_area_struct *vma =3D vmf->vma;
-   129          struct ttm_buffer_object *bo =3D vma->vm_private_data;
-   130          pgprot_t prot;
-   131          vm_fault_t ret;
-   132  =
-
-   133          ret =3D ttm_bo_vm_reserve(bo, vmf);
-   134          if (ret)
-   135                  return ret;
-   136  =
-
-   137          nouveau_bo_del_io_reserve_lru(bo);
-   138  =
-
-   139          prot =3D vm_get_page_prot(vma->vm_flags);
-   140          ret =3D ttm_bo_vm_fault_reserved(vmf, prot, TTM_BO_VM_NUM_P=
-REFAULT, 1);
-   141          if (ret =3D=3D VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_=
-RETRY_NOWAIT))
-   142                  return ret;
-                        ^^^^^^^^^^
-Call dma_resv_unlock() before returning?
-
-   143  =
-
-   144          nouveau_bo_add_io_reserve_lru(bo);
-   145  =
-
-   146          dma_resv_unlock(bo->base.resv);
-   147  =
-
-   148          return ret;
-   149  }
-
-regards,
-dan carpenter
+SGkgRGFuLAoKQW0gMDkuMDkuMjAgdW0gMTM6NDkgc2NocmllYiBEYW4gQ2FycGVudGVyOgo+IEhl
+bGxvIENocmlzdGlhbiBLw7ZuaWcsCj4KPiBUaGUgcGF0Y2ggMTQxYjE1ZTU5MTc1OiAiZHJtL25v
+dXZlYXU6IG1vdmUgaW9fcmVzZXJ2ZV9scnUgaGFuZGxpbmcKPiBpbnRvIHRoZSBkcml2ZXIgdjUi
+IGZyb20gQXVnIDIxLCAyMDIwLCBsZWFkcyB0byB0aGUgZm9sbG93aW5nIHN0YXRpYwo+IGNoZWNr
+ZXIgd2FybmluZzoKPgo+IAlkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3R0bS5jOjE0
+OCBub3V2ZWF1X3R0bV9mYXVsdCgpCj4gCXdhcm46IGluY29uc2lzdGVudCByZXR1cm5zICcqYm8t
+PmJhc2UucmVzdicuCj4KPiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3R0bS5jCj4g
+ICAgIDEyNiAgc3RhdGljIHZtX2ZhdWx0X3Qgbm91dmVhdV90dG1fZmF1bHQoc3RydWN0IHZtX2Zh
+dWx0ICp2bWYpCj4gICAgIDEyNyAgewo+ICAgICAxMjggICAgICAgICAgc3RydWN0IHZtX2FyZWFf
+c3RydWN0ICp2bWEgPSB2bWYtPnZtYTsKPiAgICAgMTI5ICAgICAgICAgIHN0cnVjdCB0dG1fYnVm
+ZmVyX29iamVjdCAqYm8gPSB2bWEtPnZtX3ByaXZhdGVfZGF0YTsKPiAgICAgMTMwICAgICAgICAg
+IHBncHJvdF90IHByb3Q7Cj4gICAgIDEzMSAgICAgICAgICB2bV9mYXVsdF90IHJldDsKPiAgICAg
+MTMyCj4gICAgIDEzMyAgICAgICAgICByZXQgPSB0dG1fYm9fdm1fcmVzZXJ2ZShibywgdm1mKTsK
+PiAgICAgMTM0ICAgICAgICAgIGlmIChyZXQpCj4gICAgIDEzNSAgICAgICAgICAgICAgICAgIHJl
+dHVybiByZXQ7Cj4gICAgIDEzNgo+ICAgICAxMzcgICAgICAgICAgbm91dmVhdV9ib19kZWxfaW9f
+cmVzZXJ2ZV9scnUoYm8pOwo+ICAgICAxMzgKPiAgICAgMTM5ICAgICAgICAgIHByb3QgPSB2bV9n
+ZXRfcGFnZV9wcm90KHZtYS0+dm1fZmxhZ3MpOwo+ICAgICAxNDAgICAgICAgICAgcmV0ID0gdHRt
+X2JvX3ZtX2ZhdWx0X3Jlc2VydmVkKHZtZiwgcHJvdCwgVFRNX0JPX1ZNX05VTV9QUkVGQVVMVCwg
+MSk7Cj4gICAgIDE0MSAgICAgICAgICBpZiAocmV0ID09IFZNX0ZBVUxUX1JFVFJZICYmICEodm1m
+LT5mbGFncyAmIEZBVUxUX0ZMQUdfUkVUUllfTk9XQUlUKSkKPiAgICAgMTQyICAgICAgICAgICAg
+ICAgICAgcmV0dXJuIHJldDsKPiAgICAgICAgICAgICAgICAgICAgICAgICAgXl5eXl5eXl5eXgo+
+IENhbGwgZG1hX3Jlc3ZfdW5sb2NrKCkgYmVmb3JlIHJldHVybmluZz8KCk5vLCB0aGlzIGlzIGNv
+cnJlY3QuIEluIHRoZSBjYXNlIG9mIHJldHVybmluZyBWTV9GQVVMVF9SRVRSWSB0aGUgCmZ1bmN0
+aW9uIHR0bV9ib192bV9mYXVsdF9yZXNlcnZlZCgpIGhhcyBhbHJlYWR5IGRyb3BwZWQgdGhlIGxv
+Y2sgZm9yIHVzLgoKUmVnYXJkcywKQ2hyaXN0aWFuLgoKPgo+ICAgICAxNDMKPiAgICAgMTQ0ICAg
+ICAgICAgIG5vdXZlYXVfYm9fYWRkX2lvX3Jlc2VydmVfbHJ1KGJvKTsKPiAgICAgMTQ1Cj4gICAg
+IDE0NiAgICAgICAgICBkbWFfcmVzdl91bmxvY2soYm8tPmJhc2UucmVzdik7Cj4gICAgIDE0Nwo+
+ICAgICAxNDggICAgICAgICAgcmV0dXJuIHJldDsKPiAgICAgMTQ5ICB9Cj4KPiByZWdhcmRzLAo+
+IGRhbiBjYXJwZW50ZXIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
