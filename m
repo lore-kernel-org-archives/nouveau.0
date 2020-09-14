@@ -1,7 +1,7 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 04/17] drm/nouveau/gk20a: stop setting DMA_ATTR_NON_CONSISTENT
-Date: Mon, 14 Sep 2020 16:44:20 +0200
-Message-ID: <20200914144433.1622958-5-hch@lst.de>
+Subject: [PATCH 05/17] net/au1000-eth: stop using DMA_ATTR_NON_CONSISTENT
+Date: Mon, 14 Sep 2020 16:44:21 +0200
+Message-ID: <20200914144433.1622958-6-hch@lst.de>
 References: <20200914144433.1622958-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,27 +21,56 @@ To: Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Tho
 Cc: alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Stefan Richter <stefanr-MtYdepGKPcBMYopoZt5u/LNAH6kLmebB@public.gmane.org>, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux1394-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-DMA_ATTR_NON_CONSISTENT is a no-op except on PARISC and some mips
-configs, so don't set it in this ARM specific driver part.
+The au1000-eth driver contains none of the manual cache synchronization
+required for using DMA_ATTR_NON_CONSISTENT.  From what I can tell it
+can be used on both dma coherent and non-coherent DMA platforms, but
+I suspect it has been buggy on the non-coherent platforms all along.
 
 Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/net/ethernet/amd/au1000_eth.c | 15 ++++++---------
+ 1 file changed, 6 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c
-index 985f2990ab0dda..13d4d7ac0697b4 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c
-@@ -594,8 +594,7 @@ gk20a_instmem_new(struct nvkm_device *device, int index,
+diff --git a/drivers/net/ethernet/amd/au1000_eth.c b/drivers/net/ethernet/amd/au1000_eth.c
+index 75dbd221dc594b..19e195420e2434 100644
+--- a/drivers/net/ethernet/amd/au1000_eth.c
++++ b/drivers/net/ethernet/amd/au1000_eth.c
+@@ -1131,10 +1131,9 @@ static int au1000_probe(struct platform_device *pdev)
+ 	/* Allocate the data buffers
+ 	 * Snooping works fine with eth on all au1xxx
+ 	 */
+-	aup->vaddr = (u32)dma_alloc_attrs(&pdev->dev, MAX_BUF_SIZE *
++	aup->vaddr = (u32)dma_alloc_coherent(&pdev->dev, MAX_BUF_SIZE *
+ 					  (NUM_TX_BUFFS + NUM_RX_BUFFS),
+-					  &aup->dma_addr, 0,
+-					  DMA_ATTR_NON_CONSISTENT);
++					  &aup->dma_addr, 0);
+ 	if (!aup->vaddr) {
+ 		dev_err(&pdev->dev, "failed to allocate data buffers\n");
+ 		err = -ENOMEM;
+@@ -1310,9 +1309,8 @@ static int au1000_probe(struct platform_device *pdev)
+ err_remap2:
+ 	iounmap(aup->mac);
+ err_remap1:
+-	dma_free_attrs(&pdev->dev, MAX_BUF_SIZE * (NUM_TX_BUFFS + NUM_RX_BUFFS),
+-			(void *)aup->vaddr, aup->dma_addr,
+-			DMA_ATTR_NON_CONSISTENT);
++	dma_free_coherent(&pdev->dev, MAX_BUF_SIZE * (NUM_TX_BUFFS + NUM_RX_BUFFS),
++			(void *)aup->vaddr, aup->dma_addr);
+ err_vaddr:
+ 	free_netdev(dev);
+ err_alloc:
+@@ -1344,9 +1342,8 @@ static int au1000_remove(struct platform_device *pdev)
+ 		if (aup->tx_db_inuse[i])
+ 			au1000_ReleaseDB(aup, aup->tx_db_inuse[i]);
  
- 		nvkm_info(&imem->base.subdev, "using IOMMU\n");
- 	} else {
--		imem->attrs = DMA_ATTR_NON_CONSISTENT |
--			      DMA_ATTR_WEAK_ORDERING |
-+		imem->attrs = DMA_ATTR_WEAK_ORDERING |
- 			      DMA_ATTR_WRITE_COMBINE;
+-	dma_free_attrs(&pdev->dev, MAX_BUF_SIZE * (NUM_TX_BUFFS + NUM_RX_BUFFS),
+-			(void *)aup->vaddr, aup->dma_addr,
+-			DMA_ATTR_NON_CONSISTENT);
++	dma_free_coherent(&pdev->dev, MAX_BUF_SIZE * (NUM_TX_BUFFS + NUM_RX_BUFFS),
++			(void *)aup->vaddr, aup->dma_addr);
  
- 		nvkm_info(&imem->base.subdev, "using DMA API\n");
+ 	iounmap(aup->macdma);
+ 	iounmap(aup->mac);
 -- 
 2.28.0
