@@ -1,7 +1,7 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 16/21] drm/vgem: Introduce GEM object functions
-Date: Tue, 15 Sep 2020 16:59:53 +0200
-Message-ID: <20200915145958.19993-17-tzimmermann@suse.de>
+Subject: [PATCH v2 18/21] drm/vkms: Introduce GEM object functions
+Date: Tue, 15 Sep 2020 16:59:55 +0200
+Message-ID: <20200915145958.19993-19-tzimmermann@suse.de>
 References: <20200915145958.19993-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -21,72 +21,70 @@ List-Id: nouveau.vger.kernel.org
 
 GEM object functions deprecate several similar callback interfaces in
 struct drm_driver. This patch replaces the per-driver callbacks with
-per-instance callbacks in vgem. The only exception is gem_prime_mmap,
-which is non-trivial to convert.
+per-instance callbacks in vkms.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/vgem/vgem_drv.c | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/vkms/vkms_drv.c |  8 --------
+ drivers/gpu/drm/vkms/vkms_gem.c | 13 +++++++++++++
+ 2 files changed, 13 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/vgem/vgem_drv.c b/drivers/gpu/drm/vgem/vgem_drv.c
-index cb884c890065..fa54a6d1403d 100644
---- a/drivers/gpu/drm/vgem/vgem_drv.c
-+++ b/drivers/gpu/drm/vgem/vgem_drv.c
-@@ -50,6 +50,8 @@
- #define DRIVER_MAJOR	1
- #define DRIVER_MINOR	0
+diff --git a/drivers/gpu/drm/vkms/vkms_drv.c b/drivers/gpu/drm/vkms/vkms_drv.c
+index cb0b6230c22c..726801ab44d4 100644
+--- a/drivers/gpu/drm/vkms/vkms_drv.c
++++ b/drivers/gpu/drm/vkms/vkms_drv.c
+@@ -51,12 +51,6 @@ static const struct file_operations vkms_driver_fops = {
+ 	.release	= drm_release,
+ };
  
-+static const struct drm_gem_object_funcs vgem_gem_object_funcs;
+-static const struct vm_operations_struct vkms_gem_vm_ops = {
+-	.fault = vkms_gem_fault,
+-	.open = drm_gem_vm_open,
+-	.close = drm_gem_vm_close,
+-};
+-
+ static void vkms_release(struct drm_device *dev)
+ {
+ 	struct vkms_device *vkms = container_of(dev, struct vkms_device, drm);
+@@ -98,8 +92,6 @@ static struct drm_driver vkms_driver = {
+ 	.release		= vkms_release,
+ 	.fops			= &vkms_driver_fops,
+ 	.dumb_create		= vkms_dumb_create,
+-	.gem_vm_ops		= &vkms_gem_vm_ops,
+-	.gem_free_object_unlocked = vkms_gem_free_object,
+ 	.prime_fd_to_handle	= drm_gem_prime_fd_to_handle,
+ 	.gem_prime_import_sg_table = vkms_prime_import_sg_table,
+ 
+diff --git a/drivers/gpu/drm/vkms/vkms_gem.c b/drivers/gpu/drm/vkms/vkms_gem.c
+index a017fc59905e..19a0e260a4df 100644
+--- a/drivers/gpu/drm/vkms/vkms_gem.c
++++ b/drivers/gpu/drm/vkms/vkms_gem.c
+@@ -7,6 +7,17 @@
+ 
+ #include "vkms_drv.h"
+ 
++static const struct vm_operations_struct vkms_gem_vm_ops = {
++	.fault = vkms_gem_fault,
++	.open = drm_gem_vm_open,
++	.close = drm_gem_vm_close,
++};
 +
- static struct vgem_device {
- 	struct drm_device drm;
- 	struct platform_device *platform;
-@@ -167,6 +169,8 @@ static struct drm_vgem_gem_object *__vgem_gem_create(struct drm_device *dev,
++static const struct drm_gem_object_funcs vkms_gem_object_funcs = {
++	.free = vkms_gem_free_object,
++	.vm_ops = &vkms_gem_vm_ops,
++};
++
+ static struct vkms_gem_object *__vkms_gem_create(struct drm_device *dev,
+ 						 u64 size)
+ {
+@@ -17,6 +28,8 @@ static struct vkms_gem_object *__vkms_gem_create(struct drm_device *dev,
  	if (!obj)
  		return ERR_PTR(-ENOMEM);
  
-+	obj->base.funcs = &vgem_gem_object_funcs;
++	obj->gem.funcs = &vkms_gem_object_funcs;
 +
- 	ret = drm_gem_object_init(dev, &obj->base, roundup(size, PAGE_SIZE));
+ 	size = roundup(size, PAGE_SIZE);
+ 	ret = drm_gem_object_init(dev, &obj->gem, size);
  	if (ret) {
- 		kfree(obj);
-@@ -401,12 +405,20 @@ static int vgem_prime_mmap(struct drm_gem_object *obj,
- 	return 0;
- }
- 
-+static const struct drm_gem_object_funcs vgem_gem_object_funcs = {
-+	.free = vgem_gem_free_object,
-+	.pin = vgem_prime_pin,
-+	.unpin = vgem_prime_unpin,
-+	.get_sg_table = vgem_prime_get_sg_table,
-+	.vmap = vgem_prime_vmap,
-+	.vunmap = vgem_prime_vunmap,
-+	.vm_ops = &vgem_gem_vm_ops,
-+};
-+
- static struct drm_driver vgem_driver = {
- 	.driver_features		= DRIVER_GEM | DRIVER_RENDER,
- 	.open				= vgem_open,
- 	.postclose			= vgem_postclose,
--	.gem_free_object_unlocked	= vgem_gem_free_object,
--	.gem_vm_ops			= &vgem_gem_vm_ops,
- 	.ioctls				= vgem_ioctls,
- 	.num_ioctls 			= ARRAY_SIZE(vgem_ioctls),
- 	.fops				= &vgem_driver_fops,
-@@ -415,13 +427,8 @@ static struct drm_driver vgem_driver = {
- 
- 	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
- 	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
--	.gem_prime_pin = vgem_prime_pin,
--	.gem_prime_unpin = vgem_prime_unpin,
- 	.gem_prime_import = vgem_prime_import,
- 	.gem_prime_import_sg_table = vgem_prime_import_sg_table,
--	.gem_prime_get_sg_table = vgem_prime_get_sg_table,
--	.gem_prime_vmap = vgem_prime_vmap,
--	.gem_prime_vunmap = vgem_prime_vunmap,
- 	.gem_prime_mmap = vgem_prime_mmap,
- 
- 	.name	= DRIVER_NAME,
 -- 
 2.28.0
