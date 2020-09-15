@@ -1,156 +1,102 @@
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 01/21] drm/amdgpu: Introduce GEM object functions
-Date: Tue, 15 Sep 2020 16:59:38 +0200
-Message-ID: <20200915145958.19993-2-tzimmermann@suse.de>
+From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+Subject: [PATCH v2 04/21] drm/exynos: Introduce GEM object functions
+Date: Tue, 15 Sep 2020 16:59:41 +0200
+Message-ID: <20200915145958.19993-5-tzimmermann@suse.de>
 References: <20200915145958.19993-1-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <xen-devel-bounces@lists.xenproject.org>
-In-Reply-To: <20200915145958.19993-1-tzimmermann@suse.de>
-List-Unsubscribe: <https://lists.xenproject.org/mailman/options/xen-devel>,
- <mailto:xen-devel-request@lists.xenproject.org?subject=unsubscribe>
-List-Post: <mailto:xen-devel@lists.xenproject.org>
-List-Help: <mailto:xen-devel-request@lists.xenproject.org?subject=help>
-List-Subscribe: <https://lists.xenproject.org/mailman/listinfo/xen-devel>,
- <mailto:xen-devel-request@lists.xenproject.org?subject=subscribe>
-Errors-To: xen-devel-bounces@lists.xenproject.org
-Sender: "Xen-devel" <xen-devel-bounces@lists.xenproject.org>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch, linux@armlinux.org.uk, maarten.lankhorst@linux.intel.com, mripard@kernel.org, l.stach@pengutronix.de, christian.gmeiner@gmail.com, inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org, patrik.r.jakobsson@gmail.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, chunkuang.hu@kernel.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com, robdclark@gmail.com, sean@poorly.run, bskeggs@redhat.com, tomi.valkeinen@ti.com, eric@anholt.net, hjc@rock-chips.com, heiko@sntech.de, thierry.reding@gmail.com, jonathanh@nvidia.com, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, oleksandr_andrushchenko@epam.com, hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com, michal.simek
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org, Thomas Zimmermann <tzimmermann@suse.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200915145958.19993-1-tzimmermann-l3A5Bk7waGM@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: alexander.deucher-5C7GfCeVMHo@public.gmane.org, christian.koenig-5C7GfCeVMHo@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org, maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org, christian.gmeiner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, inki.dae-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, sw0312.kim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, kyungmin.park-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, kgene-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, patrik.r.jakobsson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, chunkuang.hu-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org, matthias.bgg-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, tomi.valkeinen-l0cyMroinI0@public.gmane.org, eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org, hjc-TNX95d0MmH7DzftRWevZcw@public.gmane.org, heiko-4mtYJXux2i+zQB+pC5nmwQ@public.gmane.org, thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, rodrigosiqueiramelo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, hamohammed.sa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, oleksandr_andrushchenko-uRwfk40T5oI@public.gmane.org, hyun.kwon-gjFFaj9aHVfQT0dZR+AlfA@public.gmane.org, laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org, michal.simek
+Cc: linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rockchip-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-mediatek-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, xen-devel-GuqFBffKawtpuQazS67q72D2FQJk+8+b@public.gmane.org, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 GEM object functions deprecate several similar callback interfaces in
 struct drm_driver. This patch replaces the per-driver callbacks with
-per-instance callbacks in amdgpu. The only exception is gem_prime_mmap,
+per-instance callbacks in exynos. The only exception is gem_prime_mmap,
 which is non-trivial to convert.
 
-v2:
-	* move object-function instance to amdgpu_gem.c (Christian)
-	* set callbacks in amdgpu_gem_object_create() (Christian)
-
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Signed-off-by: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  6 ------
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c    | 23 +++++++++++++++++-----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h    |  5 -----
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c |  1 +
- 4 files changed, 19 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/exynos/exynos_drm_drv.c | 10 ----------
+ drivers/gpu/drm/exynos/exynos_drm_gem.c | 15 +++++++++++++++
+ 2 files changed, 15 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 6edde2b9e402..840ca8f9c1e1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -1505,19 +1505,13 @@ static struct drm_driver kms_driver = {
- 	.lastclose = amdgpu_driver_lastclose_kms,
- 	.irq_handler = amdgpu_irq_handler,
- 	.ioctls = amdgpu_ioctls_kms,
--	.gem_free_object_unlocked = amdgpu_gem_object_free,
--	.gem_open_object = amdgpu_gem_object_open,
--	.gem_close_object = amdgpu_gem_object_close,
- 	.dumb_create = amdgpu_mode_dumb_create,
- 	.dumb_map_offset = amdgpu_mode_dumb_mmap,
- 	.fops = &amdgpu_driver_kms_fops,
- 
- 	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
- 	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
--	.gem_prime_export = amdgpu_gem_prime_export,
- 	.gem_prime_import = amdgpu_gem_prime_import,
--	.gem_prime_vmap = amdgpu_gem_prime_vmap,
--	.gem_prime_vunmap = amdgpu_gem_prime_vunmap,
- 	.gem_prime_mmap = amdgpu_gem_prime_mmap,
- 
- 	.name = DRIVER_NAME,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-index aa7f230c71bf..aeecd5dc3ce4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-@@ -36,9 +36,12 @@
- 
- #include "amdgpu.h"
- #include "amdgpu_display.h"
-+#include "amdgpu_dma_buf.h"
- #include "amdgpu_xgmi.h"
- 
--void amdgpu_gem_object_free(struct drm_gem_object *gobj)
-+static const struct drm_gem_object_funcs amdgpu_gem_object_funcs;
-+
-+static void amdgpu_gem_object_free(struct drm_gem_object *gobj)
- {
- 	struct amdgpu_bo *robj = gem_to_amdgpu_bo(gobj);
- 
-@@ -87,6 +90,7 @@ int amdgpu_gem_object_create(struct amdgpu_device *adev, unsigned long size,
- 		return r;
- 	}
- 	*obj = &bo->tbo.base;
-+	(*obj)->funcs = &amdgpu_gem_object_funcs;
- 
- 	return 0;
- }
-@@ -119,8 +123,8 @@ void amdgpu_gem_force_release(struct amdgpu_device *adev)
-  * Call from drm_gem_handle_create which appear in both new and open ioctl
-  * case.
-  */
--int amdgpu_gem_object_open(struct drm_gem_object *obj,
--			   struct drm_file *file_priv)
-+static int amdgpu_gem_object_open(struct drm_gem_object *obj,
-+				  struct drm_file *file_priv)
- {
- 	struct amdgpu_bo *abo = gem_to_amdgpu_bo(obj);
- 	struct amdgpu_device *adev = amdgpu_ttm_adev(abo->tbo.bdev);
-@@ -152,8 +156,8 @@ int amdgpu_gem_object_open(struct drm_gem_object *obj,
- 	return 0;
+diff --git a/drivers/gpu/drm/exynos/exynos_drm_drv.c b/drivers/gpu/drm/exynos/exynos_drm_drv.c
+index dbd80f1e4c78..fe46680ca208 100644
+--- a/drivers/gpu/drm/exynos/exynos_drm_drv.c
++++ b/drivers/gpu/drm/exynos/exynos_drm_drv.c
+@@ -75,11 +75,6 @@ static void exynos_drm_postclose(struct drm_device *dev, struct drm_file *file)
+ 	file->driver_priv = NULL;
  }
  
--void amdgpu_gem_object_close(struct drm_gem_object *obj,
--			     struct drm_file *file_priv)
-+static void amdgpu_gem_object_close(struct drm_gem_object *obj,
-+				    struct drm_file *file_priv)
- {
- 	struct amdgpu_bo *bo = gem_to_amdgpu_bo(obj);
- 	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->tbo.bdev);
-@@ -211,6 +215,15 @@ void amdgpu_gem_object_close(struct drm_gem_object *obj,
- 	ttm_eu_backoff_reservation(&ticket, &list);
+-static const struct vm_operations_struct exynos_drm_gem_vm_ops = {
+-	.open = drm_gem_vm_open,
+-	.close = drm_gem_vm_close,
+-};
+-
+ static const struct drm_ioctl_desc exynos_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(EXYNOS_GEM_CREATE, exynos_drm_gem_create_ioctl,
+ 			DRM_RENDER_ALLOW),
+@@ -124,16 +119,11 @@ static struct drm_driver exynos_drm_driver = {
+ 	.open			= exynos_drm_open,
+ 	.lastclose		= drm_fb_helper_lastclose,
+ 	.postclose		= exynos_drm_postclose,
+-	.gem_free_object_unlocked = exynos_drm_gem_free_object,
+-	.gem_vm_ops		= &exynos_drm_gem_vm_ops,
+ 	.dumb_create		= exynos_drm_gem_dumb_create,
+ 	.prime_handle_to_fd	= drm_gem_prime_handle_to_fd,
+ 	.prime_fd_to_handle	= drm_gem_prime_fd_to_handle,
+ 	.gem_prime_import	= exynos_drm_gem_prime_import,
+-	.gem_prime_get_sg_table	= exynos_drm_gem_prime_get_sg_table,
+ 	.gem_prime_import_sg_table	= exynos_drm_gem_prime_import_sg_table,
+-	.gem_prime_vmap		= exynos_drm_gem_prime_vmap,
+-	.gem_prime_vunmap	= exynos_drm_gem_prime_vunmap,
+ 	.gem_prime_mmap		= exynos_drm_gem_prime_mmap,
+ 	.ioctls			= exynos_ioctls,
+ 	.num_ioctls		= ARRAY_SIZE(exynos_ioctls),
+diff --git a/drivers/gpu/drm/exynos/exynos_drm_gem.c b/drivers/gpu/drm/exynos/exynos_drm_gem.c
+index efa476858db5..69a5cf28b4ae 100644
+--- a/drivers/gpu/drm/exynos/exynos_drm_gem.c
++++ b/drivers/gpu/drm/exynos/exynos_drm_gem.c
+@@ -129,6 +129,19 @@ void exynos_drm_gem_destroy(struct exynos_drm_gem *exynos_gem)
+ 	kfree(exynos_gem);
  }
  
-+static const struct drm_gem_object_funcs amdgpu_gem_object_funcs = {
-+	.free = amdgpu_gem_object_free,
-+	.open = amdgpu_gem_object_open,
-+	.close = amdgpu_gem_object_close,
-+	.export = amdgpu_gem_prime_export,
-+	.vmap = amdgpu_gem_prime_vmap,
-+	.vunmap = amdgpu_gem_prime_vunmap,
++static const struct vm_operations_struct exynos_drm_gem_vm_ops = {
++	.open = drm_gem_vm_open,
++	.close = drm_gem_vm_close,
 +};
 +
- /*
-  * GEM ioctls.
-  */
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
-index e0f025dd1b14..637bf51dbf06 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
-@@ -33,11 +33,6 @@
- #define AMDGPU_GEM_DOMAIN_MAX		0x3
- #define gem_to_amdgpu_bo(gobj) container_of((gobj), struct amdgpu_bo, tbo.base)
- 
--void amdgpu_gem_object_free(struct drm_gem_object *obj);
--int amdgpu_gem_object_open(struct drm_gem_object *obj,
--				struct drm_file *file_priv);
--void amdgpu_gem_object_close(struct drm_gem_object *obj,
--				struct drm_file *file_priv);
- unsigned long amdgpu_gem_timeout(uint64_t timeout_ns);
- 
- /*
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index ac043baac05d..c4e82a8fa53f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -561,6 +561,7 @@ static int amdgpu_bo_do_create(struct amdgpu_device *adev,
- 	bo = kzalloc(sizeof(struct amdgpu_bo), GFP_KERNEL);
- 	if (bo == NULL)
- 		return -ENOMEM;
++static const struct drm_gem_object_funcs exynos_drm_gem_object_funcs = {
++	.free = exynos_drm_gem_free_object,
++	.get_sg_table = exynos_drm_gem_prime_get_sg_table,
++	.vmap = exynos_drm_gem_prime_vmap,
++	.vunmap	= exynos_drm_gem_prime_vunmap,
++	.vm_ops = &exynos_drm_gem_vm_ops,
++};
 +
- 	drm_gem_private_object_init(adev_to_drm(adev), &bo->tbo.base, size);
- 	INIT_LIST_HEAD(&bo->shadow_list);
- 	bo->vm_bo = NULL;
+ static struct exynos_drm_gem *exynos_drm_gem_init(struct drm_device *dev,
+ 						  unsigned long size)
+ {
+@@ -143,6 +156,8 @@ static struct exynos_drm_gem *exynos_drm_gem_init(struct drm_device *dev,
+ 	exynos_gem->size = size;
+ 	obj = &exynos_gem->base;
+ 
++	obj->funcs = &exynos_drm_gem_object_funcs;
++
+ 	ret = drm_gem_object_init(dev, obj, size);
+ 	if (ret < 0) {
+ 		DRM_DEV_ERROR(dev->dev, "failed to initialize gem object\n");
 -- 
 2.28.0
