@@ -1,7 +1,7 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 08/21] drm/msm: Introduce GEM object funcs
-Date: Tue, 15 Sep 2020 16:59:45 +0200
-Message-ID: <20200915145958.19993-9-tzimmermann@suse.de>
+Subject: [PATCH v2 13/21] drm/rockchip: Convert to drm_gem_object_funcs
+Date: Tue, 15 Sep 2020 16:59:50 +0200
+Message-ID: <20200915145958.19993-14-tzimmermann@suse.de>
 References: <20200915145958.19993-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -21,107 +21,62 @@ List-Id: nouveau.vger.kernel.org
 
 GEM object functions deprecate several similar callback interfaces in
 struct drm_driver. This patch replaces the per-driver callbacks with
-per-instance callbacks in msm. The only exception is gem_prime_mmap,
+per-instance callbacks in rockchip. The only exception is gem_prime_mmap,
 which is non-trivial to convert.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/msm/msm_drv.c | 13 -------------
- drivers/gpu/drm/msm/msm_drv.h |  1 -
- drivers/gpu/drm/msm/msm_gem.c | 19 ++++++++++++++++++-
- 3 files changed, 18 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c |  5 -----
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.c | 10 ++++++++++
+ 2 files changed, 10 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
-index 79333842f70a..5952767ea478 100644
---- a/drivers/gpu/drm/msm/msm_drv.c
-+++ b/drivers/gpu/drm/msm/msm_drv.c
-@@ -978,12 +978,6 @@ static const struct drm_ioctl_desc msm_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(MSM_SUBMITQUEUE_QUERY, msm_ioctl_submitqueue_query, DRM_RENDER_ALLOW),
- };
- 
--static const struct vm_operations_struct vm_ops = {
--	.fault = msm_gem_fault,
--	.open = drm_gem_vm_open,
--	.close = drm_gem_vm_close,
--};
--
- static const struct file_operations fops = {
- 	.owner              = THIS_MODULE,
- 	.open               = drm_open,
-@@ -1009,18 +1003,11 @@ static struct drm_driver msm_driver = {
- 	.irq_preinstall     = msm_irq_preinstall,
- 	.irq_postinstall    = msm_irq_postinstall,
- 	.irq_uninstall      = msm_irq_uninstall,
--	.gem_free_object_unlocked = msm_gem_free_object,
--	.gem_vm_ops         = &vm_ops,
- 	.dumb_create        = msm_gem_dumb_create,
- 	.dumb_map_offset    = msm_gem_dumb_map_offset,
- 	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
- 	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
--	.gem_prime_pin      = msm_gem_prime_pin,
--	.gem_prime_unpin    = msm_gem_prime_unpin,
--	.gem_prime_get_sg_table = msm_gem_prime_get_sg_table,
- 	.gem_prime_import_sg_table = msm_gem_prime_import_sg_table,
--	.gem_prime_vmap     = msm_gem_prime_vmap,
--	.gem_prime_vunmap   = msm_gem_prime_vunmap,
- 	.gem_prime_mmap     = msm_gem_prime_mmap,
- #ifdef CONFIG_DEBUG_FS
- 	.debugfs_init       = msm_debugfs_init,
-diff --git a/drivers/gpu/drm/msm/msm_drv.h b/drivers/gpu/drm/msm/msm_drv.h
-index af259b0573ea..7bcea10be81f 100644
---- a/drivers/gpu/drm/msm/msm_drv.h
-+++ b/drivers/gpu/drm/msm/msm_drv.h
-@@ -269,7 +269,6 @@ void msm_gem_shrinker_cleanup(struct drm_device *dev);
- int msm_gem_mmap_obj(struct drm_gem_object *obj,
- 			struct vm_area_struct *vma);
- int msm_gem_mmap(struct file *filp, struct vm_area_struct *vma);
--vm_fault_t msm_gem_fault(struct vm_fault *vmf);
- uint64_t msm_gem_mmap_offset(struct drm_gem_object *obj);
- int msm_gem_get_iova(struct drm_gem_object *obj,
- 		struct msm_gem_address_space *aspace, uint64_t *iova);
-diff --git a/drivers/gpu/drm/msm/msm_gem.c b/drivers/gpu/drm/msm/msm_gem.c
-index b4553caaa196..de915ff6f4b4 100644
---- a/drivers/gpu/drm/msm/msm_gem.c
-+++ b/drivers/gpu/drm/msm/msm_gem.c
-@@ -247,7 +247,7 @@ int msm_gem_mmap(struct file *filp, struct vm_area_struct *vma)
- 	return msm_gem_mmap_obj(vma->vm_private_data, vma);
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+index 0f3eb392fe39..b7654f5e4225 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+@@ -212,15 +212,10 @@ static const struct file_operations rockchip_drm_driver_fops = {
+ static struct drm_driver rockchip_drm_driver = {
+ 	.driver_features	= DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+ 	.lastclose		= drm_fb_helper_lastclose,
+-	.gem_vm_ops		= &drm_gem_cma_vm_ops,
+-	.gem_free_object_unlocked = rockchip_gem_free_object,
+ 	.dumb_create		= rockchip_gem_dumb_create,
+ 	.prime_handle_to_fd	= drm_gem_prime_handle_to_fd,
+ 	.prime_fd_to_handle	= drm_gem_prime_fd_to_handle,
+-	.gem_prime_get_sg_table	= rockchip_gem_prime_get_sg_table,
+ 	.gem_prime_import_sg_table	= rockchip_gem_prime_import_sg_table,
+-	.gem_prime_vmap		= rockchip_gem_prime_vmap,
+-	.gem_prime_vunmap	= rockchip_gem_prime_vunmap,
+ 	.gem_prime_mmap		= rockchip_gem_mmap_buf,
+ 	.fops			= &rockchip_drm_driver_fops,
+ 	.name	= DRIVER_NAME,
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
+index 0055d86576f7..bddc7d99efe3 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
+@@ -296,6 +296,14 @@ static void rockchip_gem_release_object(struct rockchip_gem_object *rk_obj)
+ 	kfree(rk_obj);
  }
  
--vm_fault_t msm_gem_fault(struct vm_fault *vmf)
-+static vm_fault_t msm_gem_fault(struct vm_fault *vmf)
++static const struct drm_gem_object_funcs rockchip_gem_object_funcs = {
++	.free = rockchip_gem_free_object,
++	.get_sg_table = rockchip_gem_prime_get_sg_table,
++	.vmap = rockchip_gem_prime_vmap,
++	.vunmap	= rockchip_gem_prime_vunmap,
++	.vm_ops = &drm_gem_cma_vm_ops,
++};
++
+ static struct rockchip_gem_object *
+ 	rockchip_gem_alloc_object(struct drm_device *drm, unsigned int size)
  {
- 	struct vm_area_struct *vma = vmf->vma;
- 	struct drm_gem_object *obj = vma->vm_private_data;
-@@ -994,6 +994,22 @@ int msm_gem_new_handle(struct drm_device *dev, struct drm_file *file,
- 	return ret;
- }
+@@ -310,6 +318,8 @@ static struct rockchip_gem_object *
  
-+static const struct vm_operations_struct vm_ops = {
-+	.fault = msm_gem_fault,
-+	.open = drm_gem_vm_open,
-+	.close = drm_gem_vm_close,
-+};
+ 	obj = &rk_obj->base;
+ 
++	obj->funcs = &rockchip_gem_object_funcs;
 +
-+static const struct drm_gem_object_funcs msm_gem_object_funcs = {
-+	.free = msm_gem_free_object,
-+	.pin = msm_gem_prime_pin,
-+	.unpin = msm_gem_prime_unpin,
-+	.get_sg_table = msm_gem_prime_get_sg_table,
-+	.vmap = msm_gem_prime_vmap,
-+	.vunmap = msm_gem_prime_vunmap,
-+	.vm_ops = &vm_ops,
-+};
-+
- static int msm_gem_new_impl(struct drm_device *dev,
- 		uint32_t size, uint32_t flags,
- 		struct drm_gem_object **obj)
-@@ -1024,6 +1040,7 @@ static int msm_gem_new_impl(struct drm_device *dev,
- 	INIT_LIST_HEAD(&msm_obj->vmas);
+ 	drm_gem_object_init(drm, obj, size);
  
- 	*obj = &msm_obj->base;
-+	(*obj)->funcs = &msm_gem_object_funcs;
- 
- 	return 0;
- }
+ 	return rk_obj;
 -- 
 2.28.0
