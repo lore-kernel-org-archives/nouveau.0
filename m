@@ -1,8 +1,7 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 17/21] drm/virtgpu: Set PRIME export function in struct
- drm_gem_object_funcs
-Date: Tue, 15 Sep 2020 16:59:54 +0200
-Message-ID: <20200915145958.19993-18-tzimmermann@suse.de>
+Subject: [PATCH v2 14/21] drm/tegra: Introduce GEM object functions
+Date: Tue, 15 Sep 2020 16:59:51 +0200
+Message-ID: <20200915145958.19993-15-tzimmermann@suse.de>
 References: <20200915145958.19993-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -21,38 +20,57 @@ Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, etnaviv@list
 List-Id: nouveau.vger.kernel.org
 
 GEM object functions deprecate several similar callback interfaces in
-struct drm_driver. This patch replaces virtgpu's per-driver PRIME export
-function with a per-object function.
+struct drm_driver. This patch replaces the per-driver callbacks with
+per-instance callbacks in tegra.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/virtio/virtgpu_drv.c    | 1 -
- drivers/gpu/drm/virtio/virtgpu_object.c | 1 +
- 2 files changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/tegra/drm.c | 4 ----
+ drivers/gpu/drm/tegra/gem.c | 8 ++++++++
+ 2 files changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/virtio/virtgpu_drv.c b/drivers/gpu/drm/virtio/virtgpu_drv.c
-index b039f493bda9..1f8d6ed11d21 100644
---- a/drivers/gpu/drm/virtio/virtgpu_drv.c
-+++ b/drivers/gpu/drm/virtio/virtgpu_drv.c
-@@ -203,7 +203,6 @@ static struct drm_driver driver = {
+diff --git a/drivers/gpu/drm/tegra/drm.c b/drivers/gpu/drm/tegra/drm.c
+index ba9d1c3e7cac..f0f581cd345e 100644
+--- a/drivers/gpu/drm/tegra/drm.c
++++ b/drivers/gpu/drm/tegra/drm.c
+@@ -858,12 +858,8 @@ static struct drm_driver tegra_drm_driver = {
+ 	.debugfs_init = tegra_debugfs_init,
+ #endif
+ 
+-	.gem_free_object_unlocked = tegra_bo_free_object,
+-	.gem_vm_ops = &tegra_bo_vm_ops,
+-
  	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
  	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
- 	.gem_prime_mmap = drm_gem_prime_mmap,
--	.gem_prime_export = virtgpu_gem_prime_export,
- 	.gem_prime_import = virtgpu_gem_prime_import,
- 	.gem_prime_import_sg_table = virtgpu_gem_prime_import_sg_table,
+-	.gem_prime_export = tegra_gem_prime_export,
+ 	.gem_prime_import = tegra_gem_prime_import,
  
-diff --git a/drivers/gpu/drm/virtio/virtgpu_object.c b/drivers/gpu/drm/virtio/virtgpu_object.c
-index 842f8b61aa89..4f7d7ea8194c 100644
---- a/drivers/gpu/drm/virtio/virtgpu_object.c
-+++ b/drivers/gpu/drm/virtio/virtgpu_object.c
-@@ -108,6 +108,7 @@ static const struct drm_gem_object_funcs virtio_gpu_shmem_funcs = {
- 	.close = virtio_gpu_gem_object_close,
+ 	.dumb_create = tegra_bo_dumb_create,
+diff --git a/drivers/gpu/drm/tegra/gem.c b/drivers/gpu/drm/tegra/gem.c
+index 47e2935b8c68..d481dea4738d 100644
+--- a/drivers/gpu/drm/tegra/gem.c
++++ b/drivers/gpu/drm/tegra/gem.c
+@@ -231,6 +231,12 @@ static int tegra_bo_iommu_unmap(struct tegra_drm *tegra, struct tegra_bo *bo)
+ 	return 0;
+ }
  
- 	.print_info = drm_gem_shmem_print_info,
-+	.export = virtgpu_gem_prime_export,
- 	.pin = drm_gem_shmem_pin,
- 	.unpin = drm_gem_shmem_unpin,
- 	.get_sg_table = drm_gem_shmem_get_sg_table,
++static const struct drm_gem_object_funcs tegra_gem_object_funcs = {
++	.free = tegra_bo_free_object,
++	.export = tegra_gem_prime_export,
++	.vm_ops = &tegra_bo_vm_ops,
++};
++
+ static struct tegra_bo *tegra_bo_alloc_object(struct drm_device *drm,
+ 					      size_t size)
+ {
+@@ -241,6 +247,8 @@ static struct tegra_bo *tegra_bo_alloc_object(struct drm_device *drm,
+ 	if (!bo)
+ 		return ERR_PTR(-ENOMEM);
+ 
++	bo->gem.funcs = &tegra_gem_object_funcs;
++
+ 	host1x_bo_init(&bo->base, &tegra_bo_ops);
+ 	size = round_up(size, PAGE_SIZE);
+ 
 -- 
 2.28.0
