@@ -1,141 +1,153 @@
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
-Subject: Re: [PATCH v2 12/21] drm/radeon: Introduce GEM object functions
-Date: Tue, 15 Sep 2020 17:08:25 +0200
-Message-ID: <4b6a97f2-6787-e727-d723-00fa35d6e67a@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Subject: Re: [PATCH v2 00/21] Convert all remaining drivers to
+ GEM object functions
+Date: Tue, 15 Sep 2020 17:25:28 +0200
+Message-ID: <b527fde4-b456-6683-4a9e-0f7dcf1525be@amd.com>
 References: <20200915145958.19993-1-tzimmermann@suse.de>
- <20200915145958.19993-13-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200915145958.19993-13-tzimmermann-l3A5Bk7waGM@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20200915145958.19993-1-tzimmermann@suse.de>
 Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, alexander.deucher-5C7GfCeVMHo@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org, maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org, christian.gmeiner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, inki.dae-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, sw0312.kim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, kyungmin.park-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, kgene-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, patrik.r.jakobsson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, chunkuang.hu-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org, matthias.bgg-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, tomi.valkeinen-l0cyMroinI0@public.gmane.org, eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org, hjc-TNX95d0MmH7DzftRWevZcw@public.gmane.org, heiko-4mtYJXux2i+zQB+pC5nmwQ@public.gmane.org, thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, rodrigosiqueiramelo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, hamohammed.sa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, oleksandr_andrushchenko-uRwfk40T5oI@public.gmane.org, hyun.kwon-gjFFaj9aHVfQT0dZR+AlfA@public.gmane.org, laurent.pinchart-ryLnwIuWjnhk3lzF8UVTdg@public.gmane.org
-Cc: linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rockchip-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-mediatek-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, xen-devel-GuqFBffKawtpuQazS67q72D2FQJk+8+b@public.gmane.org, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>, alexander.deucher@amd.com, airlied@linux.ie, daniel@ffwll.ch, linux@armlinux.org.uk, maarten.lankhorst@linux.intel.com, mripard@kernel.org, l.stach@pengutronix.de, christian.gmeiner@gmail.com, inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org, patrik.r.jakobsson@gmail.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, chunkuang.hu@kernel.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com, robdclark@gmail.com, sean@poorly.run, bskeggs@redhat.com, tomi.valkeinen@ti.com, eric@anholt.net, hjc@rock-chips.com, heiko@sntech.de, thierry.reding@gmail.com, jonathanh@nvidia.com, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, oleksandr_andrushchenko@epam.com, hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.co
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org, freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
 List-Id: nouveau.vger.kernel.org
 
-QW0gMTUuMDkuMjAgdW0gMTY6NTkgc2NocmllYiBUaG9tYXMgWmltbWVybWFubjoKPiBHRU0gb2Jq
-ZWN0IGZ1bmN0aW9ucyBkZXByZWNhdGUgc2V2ZXJhbCBzaW1pbGFyIGNhbGxiYWNrIGludGVyZmFj
-ZXMgaW4KPiBzdHJ1Y3QgZHJtX2RyaXZlci4gVGhpcyBwYXRjaCByZXBsYWNlcyB0aGUgcGVyLWRy
-aXZlciBjYWxsYmFja3Mgd2l0aAo+IHBlci1pbnN0YW5jZSBjYWxsYmFja3MgaW4gcmFkZW9uLgo+
-Cj4gdjI6Cj4gCSogbW92ZSBvYmplY3QtZnVuY3Rpb24gaW5zdGFuY2UgdG8gcmFkZW9uX2dlbS5j
-IChDaHJpc3RpYW4pCj4gCSogc2V0IGNhbGxiYWNrcyBpbiByYWRlb25fZ2VtX29iamVjdF9jcmVh
-dGUoKSAoQ2hyaXN0aWFuKQo+Cj4gU2lnbmVkLW9mZi1ieTogVGhvbWFzIFppbW1lcm1hbm4gPHR6
-aW1tZXJtYW5uQHN1c2UuZGU+CgpSZXZpZXdlZC1ieTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0
-aWFuLmtvZW5pZ0BhbWQuY29tPgoKPiAtLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFk
-ZW9uX2Rydi5jIHwgMjMgKy0tLS0tLS0tLS0tLS0tLS0tLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0v
-cmFkZW9uL3JhZGVvbl9nZW0uYyB8IDMxICsrKysrKysrKysrKysrKysrKysrKysrKystLS0tCj4g
-ICAyIGZpbGVzIGNoYW5nZWQsIDI4IGluc2VydGlvbnMoKyksIDI2IGRlbGV0aW9ucygtKQo+Cj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2Rydi5jIGIvZHJpdmVy
-cy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZHJ2LmMKPiBpbmRleCA0Y2QzMDYxM2ZhMWQuLjY1MDYx
-Yzk0OWFlZSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9kcnYu
-Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2Rydi5jCj4gQEAgLTEyNCwx
-MyArMTI0LDYgQEAgdm9pZCByYWRlb25fZHJpdmVyX2lycV9wcmVpbnN0YWxsX2ttcyhzdHJ1Y3Qg
-ZHJtX2RldmljZSAqZGV2KTsKPiAgIGludCByYWRlb25fZHJpdmVyX2lycV9wb3N0aW5zdGFsbF9r
-bXMoc3RydWN0IGRybV9kZXZpY2UgKmRldik7Cj4gICB2b2lkIHJhZGVvbl9kcml2ZXJfaXJxX3Vu
-aW5zdGFsbF9rbXMoc3RydWN0IGRybV9kZXZpY2UgKmRldik7Cj4gICBpcnFyZXR1cm5fdCByYWRl
-b25fZHJpdmVyX2lycV9oYW5kbGVyX2ttcyhpbnQgaXJxLCB2b2lkICphcmcpOwo+IC12b2lkIHJh
-ZGVvbl9nZW1fb2JqZWN0X2ZyZWUoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmopOwo+IC1pbnQg
-cmFkZW9uX2dlbV9vYmplY3Rfb3BlbihzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaiwKPiAtCQkJ
-CXN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2KTsKPiAtdm9pZCByYWRlb25fZ2VtX29iamVjdF9j
-bG9zZShzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaiwKPiAtCQkJCXN0cnVjdCBkcm1fZmlsZSAq
-ZmlsZV9wcml2KTsKPiAtc3RydWN0IGRtYV9idWYgKnJhZGVvbl9nZW1fcHJpbWVfZXhwb3J0KHN0
-cnVjdCBkcm1fZ2VtX29iamVjdCAqZ29iaiwKPiAtCQkJCQlpbnQgZmxhZ3MpOwo+ICAgZXh0ZXJu
-IGludCByYWRlb25fZ2V0X2NydGNfc2Nhbm91dHBvcyhzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB1
-bnNpZ25lZCBpbnQgY3J0YywKPiAgIAkJCQkgICAgICB1bnNpZ25lZCBpbnQgZmxhZ3MsIGludCAq
-dnBvcywgaW50ICpocG9zLAo+ICAgCQkJCSAgICAgIGt0aW1lX3QgKnN0aW1lLCBrdGltZV90ICpl
-dGltZSwKPiBAQCAtMTQ1LDE0ICsxMzgsOSBAQCBpbnQgcmFkZW9uX21vZGVfZHVtYl9tbWFwKHN0
-cnVjdCBkcm1fZmlsZSAqZmlscCwKPiAgIGludCByYWRlb25fbW9kZV9kdW1iX2NyZWF0ZShzdHJ1
-Y3QgZHJtX2ZpbGUgKmZpbGVfcHJpdiwKPiAgIAkJCSAgICBzdHJ1Y3QgZHJtX2RldmljZSAqZGV2
-LAo+ICAgCQkJICAgIHN0cnVjdCBkcm1fbW9kZV9jcmVhdGVfZHVtYiAqYXJncyk7Cj4gLXN0cnVj
-dCBzZ190YWJsZSAqcmFkZW9uX2dlbV9wcmltZV9nZXRfc2dfdGFibGUoc3RydWN0IGRybV9nZW1f
-b2JqZWN0ICpvYmopOwo+ICAgc3RydWN0IGRybV9nZW1fb2JqZWN0ICpyYWRlb25fZ2VtX3ByaW1l
-X2ltcG9ydF9zZ190YWJsZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+ICAgCQkJCQkJCXN0cnVj
-dCBkbWFfYnVmX2F0dGFjaG1lbnQgKiwKPiAgIAkJCQkJCQlzdHJ1Y3Qgc2dfdGFibGUgKnNnKTsK
-PiAtaW50IHJhZGVvbl9nZW1fcHJpbWVfcGluKHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqb2JqKTsK
-PiAtdm9pZCByYWRlb25fZ2VtX3ByaW1lX3VucGluKHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqb2Jq
-KTsKPiAtdm9pZCAqcmFkZW9uX2dlbV9wcmltZV92bWFwKHN0cnVjdCBkcm1fZ2VtX29iamVjdCAq
-b2JqKTsKPiAtdm9pZCByYWRlb25fZ2VtX3ByaW1lX3Z1bm1hcChzdHJ1Y3QgZHJtX2dlbV9vYmpl
-Y3QgKm9iaiwgdm9pZCAqdmFkZHIpOwo+ICAgCj4gICAvKiBhdHB4IGhhbmRsZXIgKi8KPiAgICNp
-ZiBkZWZpbmVkKENPTkZJR19WR0FfU1dJVENIRVJPTykKPiBAQCAtNTUwLDcgKzUzOCw3IEBAIGxv
-bmcgcmFkZW9uX2RybV9pb2N0bChzdHJ1Y3QgZmlsZSAqZmlscCwKPiAgIAl9Cj4gICAKPiAgIAly
-ZXQgPSBkcm1faW9jdGwoZmlscCwgY21kLCBhcmcpOwo+IC0JCj4gKwo+ICAgCXBtX3J1bnRpbWVf
-bWFya19sYXN0X2J1c3koZGV2LT5kZXYpOwo+ICAgCXBtX3J1bnRpbWVfcHV0X2F1dG9zdXNwZW5k
-KGRldi0+ZGV2KTsKPiAgIAlyZXR1cm4gcmV0Owo+IEBAIC02MDksMjIgKzU5NywxMyBAQCBzdGF0
-aWMgc3RydWN0IGRybV9kcml2ZXIga21zX2RyaXZlciA9IHsKPiAgIAkuaXJxX3VuaW5zdGFsbCA9
-IHJhZGVvbl9kcml2ZXJfaXJxX3VuaW5zdGFsbF9rbXMsCj4gICAJLmlycV9oYW5kbGVyID0gcmFk
-ZW9uX2RyaXZlcl9pcnFfaGFuZGxlcl9rbXMsCj4gICAJLmlvY3RscyA9IHJhZGVvbl9pb2N0bHNf
-a21zLAo+IC0JLmdlbV9mcmVlX29iamVjdF91bmxvY2tlZCA9IHJhZGVvbl9nZW1fb2JqZWN0X2Zy
-ZWUsCj4gLQkuZ2VtX29wZW5fb2JqZWN0ID0gcmFkZW9uX2dlbV9vYmplY3Rfb3BlbiwKPiAtCS5n
-ZW1fY2xvc2Vfb2JqZWN0ID0gcmFkZW9uX2dlbV9vYmplY3RfY2xvc2UsCj4gICAJLmR1bWJfY3Jl
-YXRlID0gcmFkZW9uX21vZGVfZHVtYl9jcmVhdGUsCj4gICAJLmR1bWJfbWFwX29mZnNldCA9IHJh
-ZGVvbl9tb2RlX2R1bWJfbW1hcCwKPiAgIAkuZm9wcyA9ICZyYWRlb25fZHJpdmVyX2ttc19mb3Bz
-LAo+ICAgCj4gICAJLnByaW1lX2hhbmRsZV90b19mZCA9IGRybV9nZW1fcHJpbWVfaGFuZGxlX3Rv
-X2ZkLAo+ICAgCS5wcmltZV9mZF90b19oYW5kbGUgPSBkcm1fZ2VtX3ByaW1lX2ZkX3RvX2hhbmRs
-ZSwKPiAtCS5nZW1fcHJpbWVfZXhwb3J0ID0gcmFkZW9uX2dlbV9wcmltZV9leHBvcnQsCj4gLQku
-Z2VtX3ByaW1lX3BpbiA9IHJhZGVvbl9nZW1fcHJpbWVfcGluLAo+IC0JLmdlbV9wcmltZV91bnBp
-biA9IHJhZGVvbl9nZW1fcHJpbWVfdW5waW4sCj4gLQkuZ2VtX3ByaW1lX2dldF9zZ190YWJsZSA9
-IHJhZGVvbl9nZW1fcHJpbWVfZ2V0X3NnX3RhYmxlLAo+ICAgCS5nZW1fcHJpbWVfaW1wb3J0X3Nn
-X3RhYmxlID0gcmFkZW9uX2dlbV9wcmltZV9pbXBvcnRfc2dfdGFibGUsCj4gLQkuZ2VtX3ByaW1l
-X3ZtYXAgPSByYWRlb25fZ2VtX3ByaW1lX3ZtYXAsCj4gLQkuZ2VtX3ByaW1lX3Z1bm1hcCA9IHJh
-ZGVvbl9nZW1fcHJpbWVfdnVubWFwLAo+ICAgCj4gICAJLm5hbWUgPSBEUklWRVJfTkFNRSwKPiAg
-IAkuZGVzYyA9IERSSVZFUl9ERVNDLAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmFk
-ZW9uL3JhZGVvbl9nZW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2dlbS5jCj4g
-aW5kZXggZTVjNDI3MWU2NGVkLi4wY2NkNzIxM2U0MWYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL3JhZGVvbi9yYWRlb25fZ2VtLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9u
-L3JhZGVvbl9nZW0uYwo+IEBAIC0zNSw3ICszNSwxNyBAQAo+ICAgCj4gICAjaW5jbHVkZSAicmFk
-ZW9uLmgiCj4gICAKPiAtdm9pZCByYWRlb25fZ2VtX29iamVjdF9mcmVlKHN0cnVjdCBkcm1fZ2Vt
-X29iamVjdCAqZ29iaikKPiArc3RydWN0IGRtYV9idWYgKnJhZGVvbl9nZW1fcHJpbWVfZXhwb3J0
-KHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqZ29iaiwKPiArCQkJCQlpbnQgZmxhZ3MpOwo+ICtzdHJ1
-Y3Qgc2dfdGFibGUgKnJhZGVvbl9nZW1fcHJpbWVfZ2V0X3NnX3RhYmxlKHN0cnVjdCBkcm1fZ2Vt
-X29iamVjdCAqb2JqKTsKPiAraW50IHJhZGVvbl9nZW1fcHJpbWVfcGluKHN0cnVjdCBkcm1fZ2Vt
-X29iamVjdCAqb2JqKTsKPiArdm9pZCByYWRlb25fZ2VtX3ByaW1lX3VucGluKHN0cnVjdCBkcm1f
-Z2VtX29iamVjdCAqb2JqKTsKPiArdm9pZCAqcmFkZW9uX2dlbV9wcmltZV92bWFwKHN0cnVjdCBk
-cm1fZ2VtX29iamVjdCAqb2JqKTsKPiArdm9pZCByYWRlb25fZ2VtX3ByaW1lX3Z1bm1hcChzdHJ1
-Y3QgZHJtX2dlbV9vYmplY3QgKm9iaiwgdm9pZCAqdmFkZHIpOwo+ICsKPiArc3RhdGljIGNvbnN0
-IHN0cnVjdCBkcm1fZ2VtX29iamVjdF9mdW5jcyByYWRlb25fZ2VtX29iamVjdF9mdW5jczsKPiAr
-Cj4gK3N0YXRpYyB2b2lkIHJhZGVvbl9nZW1fb2JqZWN0X2ZyZWUoc3RydWN0IGRybV9nZW1fb2Jq
-ZWN0ICpnb2JqKQo+ICAgewo+ICAgCXN0cnVjdCByYWRlb25fYm8gKnJvYmogPSBnZW1fdG9fcmFk
-ZW9uX2JvKGdvYmopOwo+ICAgCj4gQEAgLTg1LDYgKzk1LDcgQEAgaW50IHJhZGVvbl9nZW1fb2Jq
-ZWN0X2NyZWF0ZShzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRldiwgdW5zaWduZWQgbG9uZyBzaXpl
-LAo+ICAgCQlyZXR1cm4gcjsKPiAgIAl9Cj4gICAJKm9iaiA9ICZyb2JqLT50Ym8uYmFzZTsKPiAr
-CSgqb2JqKS0+ZnVuY3MgPSAmcmFkZW9uX2dlbV9vYmplY3RfZnVuY3M7Cj4gICAJcm9iai0+cGlk
-ID0gdGFza19waWRfbnIoY3VycmVudCk7Cj4gICAKPiAgIAltdXRleF9sb2NrKCZyZGV2LT5nZW0u
-bXV0ZXgpOwo+IEBAIC0xNDYsNyArMTU3LDcgQEAgdm9pZCByYWRlb25fZ2VtX2Zpbmkoc3RydWN0
-IHJhZGVvbl9kZXZpY2UgKnJkZXYpCj4gICAgKiBDYWxsIGZyb20gZHJtX2dlbV9oYW5kbGVfY3Jl
-YXRlIHdoaWNoIGFwcGVhciBpbiBib3RoIG5ldyBhbmQgb3BlbiBpb2N0bAo+ICAgICogY2FzZS4K
-PiAgICAqLwo+IC1pbnQgcmFkZW9uX2dlbV9vYmplY3Rfb3BlbihzdHJ1Y3QgZHJtX2dlbV9vYmpl
-Y3QgKm9iaiwgc3RydWN0IGRybV9maWxlICpmaWxlX3ByaXYpCj4gK3N0YXRpYyBpbnQgcmFkZW9u
-X2dlbV9vYmplY3Rfb3BlbihzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaiwgc3RydWN0IGRybV9m
-aWxlICpmaWxlX3ByaXYpCj4gICB7Cj4gICAJc3RydWN0IHJhZGVvbl9ibyAqcmJvID0gZ2VtX3Rv
-X3JhZGVvbl9ibyhvYmopOwo+ICAgCXN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2ID0gcmJvLT5y
-ZGV2Owo+IEBAIC0xNzYsOCArMTg3LDggQEAgaW50IHJhZGVvbl9nZW1fb2JqZWN0X29wZW4oc3Ry
-dWN0IGRybV9nZW1fb2JqZWN0ICpvYmosIHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcmkKPiAgIAly
-ZXR1cm4gMDsKPiAgIH0KPiAgIAo+IC12b2lkIHJhZGVvbl9nZW1fb2JqZWN0X2Nsb3NlKHN0cnVj
-dCBkcm1fZ2VtX29iamVjdCAqb2JqLAo+IC0JCQkgICAgIHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9w
-cml2KQo+ICtzdGF0aWMgdm9pZCByYWRlb25fZ2VtX29iamVjdF9jbG9zZShzdHJ1Y3QgZHJtX2dl
-bV9vYmplY3QgKm9iaiwKPiArCQkJCSAgICBzdHJ1Y3QgZHJtX2ZpbGUgKmZpbGVfcHJpdikKPiAg
-IHsKPiAgIAlzdHJ1Y3QgcmFkZW9uX2JvICpyYm8gPSBnZW1fdG9fcmFkZW9uX2JvKG9iaik7Cj4g
-ICAJc3RydWN0IHJhZGVvbl9kZXZpY2UgKnJkZXYgPSByYm8tPnJkZXY7Cj4gQEAgLTIxNiw2ICsy
-MjcsMTggQEAgc3RhdGljIGludCByYWRlb25fZ2VtX2hhbmRsZV9sb2NrdXAoc3RydWN0IHJhZGVv
-bl9kZXZpY2UgKnJkZXYsIGludCByKQo+ICAgCXJldHVybiByOwo+ICAgfQo+ICAgCj4gK3N0YXRp
-YyBjb25zdCBzdHJ1Y3QgZHJtX2dlbV9vYmplY3RfZnVuY3MgcmFkZW9uX2dlbV9vYmplY3RfZnVu
-Y3MgPSB7Cj4gKwkuZnJlZSA9IHJhZGVvbl9nZW1fb2JqZWN0X2ZyZWUsCj4gKwkub3BlbiA9IHJh
-ZGVvbl9nZW1fb2JqZWN0X29wZW4sCj4gKwkuY2xvc2UgPSByYWRlb25fZ2VtX29iamVjdF9jbG9z
-ZSwKPiArCS5leHBvcnQgPSByYWRlb25fZ2VtX3ByaW1lX2V4cG9ydCwKPiArCS5waW4gPSByYWRl
-b25fZ2VtX3ByaW1lX3BpbiwKPiArCS51bnBpbiA9IHJhZGVvbl9nZW1fcHJpbWVfdW5waW4sCj4g
-KwkuZ2V0X3NnX3RhYmxlID0gcmFkZW9uX2dlbV9wcmltZV9nZXRfc2dfdGFibGUsCj4gKwkudm1h
-cCA9IHJhZGVvbl9nZW1fcHJpbWVfdm1hcCwKPiArCS52dW5tYXAgPSByYWRlb25fZ2VtX3ByaW1l
-X3Z1bm1hcCwKPiArfTsKPiArCj4gICAvKgo+ICAgICogR0VNIGlvY3Rscy4KPiAgICAqLwoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWls
-aW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+Added my rb to the amdgpu and radeon patches.
+
+Should we pick those up through the amd branches or do you want to push 
+everything to drm-misc-next?
+
+I think the later since this should result in much merge clash.
+
+Christian.
+
+Am 15.09.20 um 16:59 schrieb Thomas Zimmermann:
+> The GEM and PRIME related callbacks in struct drm_driver are deprecated in
+> favor of GEM object functions in struct drm_gem_object_funcs. This patchset
+> converts the remaining drivers to object functions and removes most of the
+> obsolete interfaces.
+>
+> Patches #1 to #16 and #18 to #19 convert DRM drivers to GEM object functions,
+> one by one. Each patch moves existing callbacks from struct drm_driver to an
+> instance of struct drm_gem_object_funcs, and sets these funcs when the GEM
+> object is initialized. The expection is .gem_prime_mmap. There are different
+> ways of how drivers implement the callback, and moving it to GEM object
+> functions requires a closer review for each.
+>
+> Patch #17 fixes virtgpu to use GEM object functions where possible. The
+> driver recently introduced a function for one of the deprecated callbacks.
+>
+> Patch #20 converts xlnx to CMA helper macros. There's no apparent reason
+> why the driver does the GEM setup on it's own. Using CMA helper macros
+> adds GEM object functions implicitly.
+>
+> With most of the GEM and PRIME moved to GEM object functions, related code
+> in struct drm_driver and in the DRM core/helpers is being removed by patch
+> #21.
+>
+> Further testing is welcome. I tested the drivers for which I have HW
+> available. These are gma500, i915, nouveau, radeon and vc4. The console,
+> Weston and Xorg apparently work with the patches applied.
+>
+> v2:
+> 	* moved code in amdgpu and radeon
+> 	* made several functions static in various drivers
+> 	* updated TODO-list item
+> 	* fix virtgpu
+>
+> Thomas Zimmermann (21):
+>    drm/amdgpu: Introduce GEM object functions
+>    drm/armada: Introduce GEM object functions
+>    drm/etnaviv: Introduce GEM object functions
+>    drm/exynos: Introduce GEM object functions
+>    drm/gma500: Introduce GEM object functions
+>    drm/i915: Introduce GEM object functions
+>    drm/mediatek: Introduce GEM object functions
+>    drm/msm: Introduce GEM object funcs
+>    drm/nouveau: Introduce GEM object functions
+>    drm/omapdrm: Introduce GEM object functions
+>    drm/pl111: Introduce GEM object functions
+>    drm/radeon: Introduce GEM object functions
+>    drm/rockchip: Convert to drm_gem_object_funcs
+>    drm/tegra: Introduce GEM object functions
+>    drm/vc4: Introduce GEM object functions
+>    drm/vgem: Introduce GEM object functions
+>    drm/virtgpu: Set PRIME export function in struct drm_gem_object_funcs
+>    drm/vkms: Introduce GEM object functions
+>    drm/xen: Introduce GEM object functions
+>    drm/xlnx: Initialize DRM driver instance with CMA helper macro
+>    drm: Remove obsolete GEM and PRIME callbacks from struct drm_driver
+>
+>   Documentation/gpu/todo.rst                    |  7 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  6 --
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       | 23 +++--
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h       |  5 --
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c    |  1 +
+>   drivers/gpu/drm/armada/armada_drv.c           |  3 -
+>   drivers/gpu/drm/armada/armada_gem.c           | 12 ++-
+>   drivers/gpu/drm/armada/armada_gem.h           |  2 -
+>   drivers/gpu/drm/drm_gem.c                     | 35 ++------
+>   drivers/gpu/drm/drm_gem_cma_helper.c          |  6 +-
+>   drivers/gpu/drm/drm_prime.c                   | 17 ++--
+>   drivers/gpu/drm/etnaviv/etnaviv_drv.c         | 13 ---
+>   drivers/gpu/drm/etnaviv/etnaviv_drv.h         |  1 -
+>   drivers/gpu/drm/etnaviv/etnaviv_gem.c         | 19 ++++-
+>   drivers/gpu/drm/exynos/exynos_drm_drv.c       | 10 ---
+>   drivers/gpu/drm/exynos/exynos_drm_gem.c       | 15 ++++
+>   drivers/gpu/drm/gma500/framebuffer.c          |  2 +
+>   drivers/gpu/drm/gma500/gem.c                  | 18 +++-
+>   drivers/gpu/drm/gma500/gem.h                  |  3 +
+>   drivers/gpu/drm/gma500/psb_drv.c              |  9 --
+>   drivers/gpu/drm/gma500/psb_drv.h              |  2 -
+>   drivers/gpu/drm/i915/gem/i915_gem_object.c    | 21 ++++-
+>   drivers/gpu/drm/i915/gem/i915_gem_object.h    |  3 -
+>   drivers/gpu/drm/i915/i915_drv.c               |  4 -
+>   .../gpu/drm/i915/selftests/mock_gem_device.c  |  3 -
+>   drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  5 --
+>   drivers/gpu/drm/mediatek/mtk_drm_gem.c        | 11 +++
+>   drivers/gpu/drm/msm/msm_drv.c                 | 13 ---
+>   drivers/gpu/drm/msm/msm_drv.h                 |  1 -
+>   drivers/gpu/drm/msm/msm_gem.c                 | 19 ++++-
+>   drivers/gpu/drm/nouveau/nouveau_drm.c         |  9 --
+>   drivers/gpu/drm/nouveau/nouveau_gem.c         | 13 +++
+>   drivers/gpu/drm/nouveau/nouveau_gem.h         |  2 +
+>   drivers/gpu/drm/nouveau/nouveau_prime.c       |  2 +
+>   drivers/gpu/drm/omapdrm/omap_drv.c            |  9 --
+>   drivers/gpu/drm/omapdrm/omap_gem.c            | 18 +++-
+>   drivers/gpu/drm/omapdrm/omap_gem.h            |  2 -
+>   drivers/gpu/drm/pl111/pl111_drv.c             |  5 +-
+>   drivers/gpu/drm/radeon/radeon_drv.c           | 23 +----
+>   drivers/gpu/drm/radeon/radeon_gem.c           | 31 ++++++-
+>   drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |  5 --
+>   drivers/gpu/drm/rockchip/rockchip_drm_gem.c   | 10 +++
+>   drivers/gpu/drm/tegra/drm.c                   |  4 -
+>   drivers/gpu/drm/tegra/gem.c                   |  8 ++
+>   drivers/gpu/drm/vc4/vc4_bo.c                  | 21 ++++-
+>   drivers/gpu/drm/vc4/vc4_drv.c                 | 12 ---
+>   drivers/gpu/drm/vc4/vc4_drv.h                 |  1 -
+>   drivers/gpu/drm/vgem/vgem_drv.c               | 21 +++--
+>   drivers/gpu/drm/virtio/virtgpu_drv.c          |  1 -
+>   drivers/gpu/drm/virtio/virtgpu_object.c       |  1 +
+>   drivers/gpu/drm/vkms/vkms_drv.c               |  8 --
+>   drivers/gpu/drm/vkms/vkms_gem.c               | 13 +++
+>   drivers/gpu/drm/xen/xen_drm_front.c           | 44 ++++------
+>   drivers/gpu/drm/xen/xen_drm_front.h           |  2 +
+>   drivers/gpu/drm/xen/xen_drm_front_gem.c       | 15 ++++
+>   drivers/gpu/drm/xlnx/zynqmp_dpsub.c           | 14 +--
+>   include/drm/drm_drv.h                         | 85 +------------------
+>   57 files changed, 319 insertions(+), 349 deletions(-)
+>
+> --
+> 2.28.0
+>
