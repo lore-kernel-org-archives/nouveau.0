@@ -1,7 +1,7 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 02/18] mm: turn alloc_pages into an inline function
-Date: Tue, 15 Sep 2020 17:51:06 +0200
-Message-ID: <20200915155122.1768241-3-hch@lst.de>
+Subject: [PATCH 03/18] drm/exynos: stop setting DMA_ATTR_NON_CONSISTENT
+Date: Tue, 15 Sep 2020 17:51:07 +0200
+Message-ID: <20200915155122.1768241-4-hch@lst.de>
 References: <20200915155122.1768241-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,30 +21,26 @@ To: Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Tho
 Cc: alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Stefan Richter <stefanr-MtYdepGKPcBMYopoZt5u/LNAH6kLmebB@public.gmane.org>, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux1394-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-To prevent a compiler error when a method call alloc_pages is
-added (which I plan to for the dma_map_ops).
+DMA_ATTR_NON_CONSISTENT is a no-op except on PA-RISC and a few MIPS
+configs, so don't set it in this ARM specific driver.
 
 Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 ---
- include/linux/gfp.h | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/exynos/exynos_drm_gem.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/include/linux/gfp.h b/include/linux/gfp.h
-index 67a0774e080b98..dd2577c5407112 100644
---- a/include/linux/gfp.h
-+++ b/include/linux/gfp.h
-@@ -550,8 +550,10 @@ extern struct page *alloc_pages_vma(gfp_t gfp_mask, int order,
- #define alloc_hugepage_vma(gfp_mask, vma, addr, order) \
- 	alloc_pages_vma(gfp_mask, order, vma, addr, numa_node_id(), true)
- #else
--#define alloc_pages(gfp_mask, order) \
--		alloc_pages_node(numa_node_id(), gfp_mask, order)
-+static inline struct page *alloc_pages(gfp_t gfp_mask, unsigned int order)
-+{
-+	return alloc_pages_node(numa_node_id(), gfp_mask, order);
-+}
- #define alloc_pages_vma(gfp_mask, order, vma, addr, node, false)\
- 	alloc_pages(gfp_mask, order)
- #define alloc_hugepage_vma(gfp_mask, vma, addr, order) \
+diff --git a/drivers/gpu/drm/exynos/exynos_drm_gem.c b/drivers/gpu/drm/exynos/exynos_drm_gem.c
+index efa476858db54b..07073222b8f691 100644
+--- a/drivers/gpu/drm/exynos/exynos_drm_gem.c
++++ b/drivers/gpu/drm/exynos/exynos_drm_gem.c
+@@ -42,8 +42,6 @@ static int exynos_drm_alloc_buf(struct exynos_drm_gem *exynos_gem, bool kvmap)
+ 	if (exynos_gem->flags & EXYNOS_BO_WC ||
+ 			!(exynos_gem->flags & EXYNOS_BO_CACHABLE))
+ 		attr |= DMA_ATTR_WRITE_COMBINE;
+-	else
+-		attr |= DMA_ATTR_NON_CONSISTENT;
+ 
+ 	/* FBDev emulation requires kernel mapping */
+ 	if (!kvmap)
 -- 
 2.28.0
