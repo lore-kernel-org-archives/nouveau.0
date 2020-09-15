@@ -1,7 +1,7 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 17/18] dma-iommu: implement ->alloc_noncoherent
-Date: Tue, 15 Sep 2020 17:51:21 +0200
-Message-ID: <20200915155122.1768241-18-hch@lst.de>
+Subject: [PATCH 18/18] firewire-ohci: use dma_alloc_pages
+Date: Tue, 15 Sep 2020 17:51:22 +0200
+Message-ID: <20200915155122.1768241-19-hch@lst.de>
 References: <20200915155122.1768241-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,99 +21,71 @@ To: Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Tho
 Cc: alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Stefan Richter <stefanr-MtYdepGKPcBMYopoZt5u/LNAH6kLmebB@public.gmane.org>, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux1394-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Implement the alloc_noncoherent method to provide memory that is neither
-coherent not contiguous.
+Use dma_alloc_pages to allocate DMAable pages instead of hoping that
+the architecture either has GFP_DMA32 or not more than 4G of memory.
 
 Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 ---
- drivers/iommu/dma-iommu.c | 41 +++++++++++++++++++++++++++++++++++----
- 1 file changed, 37 insertions(+), 4 deletions(-)
+ drivers/firewire/ohci.c | 26 +++++++++++---------------
+ 1 file changed, 11 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
-index 00a5b49248e334..c12c1dc43d312e 100644
---- a/drivers/iommu/dma-iommu.c
-+++ b/drivers/iommu/dma-iommu.c
-@@ -572,6 +572,7 @@ static struct page **__iommu_dma_alloc_pages(struct device *dev,
-  * @size: Size of buffer in bytes
-  * @dma_handle: Out argument for allocated DMA handle
-  * @gfp: Allocation flags
-+ * @prot: pgprot_t to use for the remapped mapping
-  * @attrs: DMA attributes for this allocation
-  *
-  * If @size is less than PAGE_SIZE, then a full CPU page will be allocated,
-@@ -580,14 +581,14 @@ static struct page **__iommu_dma_alloc_pages(struct device *dev,
-  * Return: Mapped virtual address, or NULL on failure.
-  */
- static void *iommu_dma_alloc_remap(struct device *dev, size_t size,
--		dma_addr_t *dma_handle, gfp_t gfp, unsigned long attrs)
-+		dma_addr_t *dma_handle, gfp_t gfp, pgprot_t prot,
-+		unsigned long attrs)
+diff --git a/drivers/firewire/ohci.c b/drivers/firewire/ohci.c
+index 020cb15a4d8fcc..9811c40956e54d 100644
+--- a/drivers/firewire/ohci.c
++++ b/drivers/firewire/ohci.c
+@@ -674,17 +674,16 @@ static void ar_context_link_page(struct ar_context *ctx, unsigned int index)
+ 
+ static void ar_context_release(struct ar_context *ctx)
  {
- 	struct iommu_domain *domain = iommu_get_dma_domain(dev);
- 	struct iommu_dma_cookie *cookie = domain->iova_cookie;
- 	struct iova_domain *iovad = &cookie->iovad;
- 	bool coherent = dev_is_dma_coherent(dev);
- 	int ioprot = dma_info_to_prot(DMA_BIDIRECTIONAL, coherent, attrs);
--	pgprot_t prot = dma_pgprot(dev, PAGE_KERNEL, attrs);
- 	unsigned int count, min_size, alloc_sizes = domain->pgsize_bitmap;
- 	struct page **pages;
- 	struct sg_table sgt;
-@@ -1030,8 +1031,10 @@ static void *iommu_dma_alloc(struct device *dev, size_t size,
- 	gfp |= __GFP_ZERO;
++	struct device *dev = ctx->ohci->card.device;
+ 	unsigned int i;
  
- 	if (IS_ENABLED(CONFIG_DMA_REMAP) && gfpflags_allow_blocking(gfp) &&
--	    !(attrs & DMA_ATTR_FORCE_CONTIGUOUS))
--		return iommu_dma_alloc_remap(dev, size, handle, gfp, attrs);
-+	    !(attrs & DMA_ATTR_FORCE_CONTIGUOUS)) {
-+		return iommu_dma_alloc_remap(dev, size, handle, gfp,
-+				dma_pgprot(dev, PAGE_KERNEL, attrs), attrs);
+ 	vunmap(ctx->buffer);
+ 
+-	for (i = 0; i < AR_BUFFERS; i++)
+-		if (ctx->pages[i]) {
+-			dma_unmap_page(ctx->ohci->card.device,
+-				       ar_buffer_bus(ctx, i),
+-				       PAGE_SIZE, DMA_FROM_DEVICE);
+-			__free_page(ctx->pages[i]);
+-		}
++	for (i = 0; i < AR_BUFFERS; i++) {
++		if (ctx->pages[i])
++			dma_free_pages(dev, PAGE_SIZE, ctx->pages[i],
++				       ar_buffer_bus(ctx, i), DMA_FROM_DEVICE);
 +	}
- 
- 	if (IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
- 	    !gfpflags_allow_blocking(gfp) && !coherent)
-@@ -1052,6 +1055,34 @@ static void *iommu_dma_alloc(struct device *dev, size_t size,
- 	return cpu_addr;
  }
  
-+#ifdef CONFIG_DMA_REMAP
-+static void *iommu_dma_alloc_noncoherent(struct device *dev, size_t size,
-+		dma_addr_t *handle, enum dma_data_direction dir, gfp_t gfp)
-+{
-+	if (!gfpflags_allow_blocking(gfp)) {
-+		struct page *page;
-+
-+		page = dma_common_alloc_pages(dev, size, handle, dir, gfp);
-+		if (!page)
-+			return NULL;
-+		return page_address(page);
-+	}
-+
-+	return iommu_dma_alloc_remap(dev, size, handle, gfp | __GFP_ZERO,
-+				     PAGE_KERNEL, 0);
-+}
-+
-+static void iommu_dma_free_noncoherent(struct device *dev, size_t size,
-+		void *cpu_addr, dma_addr_t handle, enum dma_data_direction dir)
-+{
-+	__iommu_dma_unmap(dev, handle, size);
-+	__iommu_dma_free(dev, size, cpu_addr);
-+}
-+#else
-+#define iommu_dma_alloc_noncoherent		NULL
-+#define iommu_dma_free_noncoherent		NULL
-+#endif /* CONFIG_DMA_REMAP */
-+
- static int iommu_dma_mmap(struct device *dev, struct vm_area_struct *vma,
- 		void *cpu_addr, dma_addr_t dma_addr, size_t size,
- 		unsigned long attrs)
-@@ -1122,6 +1153,8 @@ static const struct dma_map_ops iommu_dma_ops = {
- 	.free			= iommu_dma_free,
- 	.alloc_pages		= dma_common_alloc_pages,
- 	.free_pages		= dma_common_free_pages,
-+	.alloc_noncoherent	= iommu_dma_alloc_noncoherent,
-+	.free_noncoherent	= iommu_dma_free_noncoherent,
- 	.mmap			= iommu_dma_mmap,
- 	.get_sgtable		= iommu_dma_get_sgtable,
- 	.map_page		= iommu_dma_map_page,
+ static void ar_context_abort(struct ar_context *ctx, const char *error_msg)
+@@ -970,6 +969,7 @@ static void ar_context_tasklet(unsigned long data)
+ static int ar_context_init(struct ar_context *ctx, struct fw_ohci *ohci,
+ 			   unsigned int descriptors_offset, u32 regs)
+ {
++	struct device *dev = ohci->card.device;
+ 	unsigned int i;
+ 	dma_addr_t dma_addr;
+ 	struct page *pages[AR_BUFFERS + AR_WRAPAROUND_PAGES];
+@@ -980,17 +980,13 @@ static int ar_context_init(struct ar_context *ctx, struct fw_ohci *ohci,
+ 	tasklet_init(&ctx->tasklet, ar_context_tasklet, (unsigned long)ctx);
+ 
+ 	for (i = 0; i < AR_BUFFERS; i++) {
+-		ctx->pages[i] = alloc_page(GFP_KERNEL | GFP_DMA32);
++		ctx->pages[i] = dma_alloc_pages(dev, PAGE_SIZE, &dma_addr,
++						DMA_FROM_DEVICE, GFP_KERNEL);
+ 		if (!ctx->pages[i])
+ 			goto out_of_memory;
+-		dma_addr = dma_map_page(ohci->card.device, ctx->pages[i],
+-					0, PAGE_SIZE, DMA_FROM_DEVICE);
+-		if (dma_mapping_error(ohci->card.device, dma_addr)) {
+-			__free_page(ctx->pages[i]);
+-			ctx->pages[i] = NULL;
+-			goto out_of_memory;
+-		}
+ 		set_page_private(ctx->pages[i], dma_addr);
++		dma_sync_single_for_device(dev, dma_addr, PAGE_SIZE,
++					   DMA_FROM_DEVICE);
+ 	}
+ 
+ 	for (i = 0; i < AR_BUFFERS; i++)
 -- 
 2.28.0
