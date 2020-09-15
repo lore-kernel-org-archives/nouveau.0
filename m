@@ -1,7 +1,8 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 18/21] drm/vkms: Introduce GEM object functions
-Date: Tue, 15 Sep 2020 16:59:55 +0200
-Message-ID: <20200915145958.19993-19-tzimmermann@suse.de>
+Subject: [PATCH v2 20/21] drm/xlnx: Initialize DRM driver instance with CMA
+ helper macro
+Date: Tue, 15 Sep 2020 16:59:57 +0200
+Message-ID: <20200915145958.19993-21-tzimmermann@suse.de>
 References: <20200915145958.19993-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -19,72 +20,46 @@ To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie, danie
 Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org, Thomas Zimmermann <tzimmermann@suse.de>
 List-Id: nouveau.vger.kernel.org
 
-GEM object functions deprecate several similar callback interfaces in
-struct drm_driver. This patch replaces the per-driver callbacks with
-per-instance callbacks in vkms.
+The xlnx driver uses CMA helpers with default callback functions.
+Initialize the driver structure with the rsp CMA helper macro. The
+driver is being converted to use GEM object functions as part of
+this change.
+
+Two callbacks, .dumb_destroy and .gem_prime_import, were initialized
+to their default implementations, so they are just kept empty now.
+
+v2:
+	* initialize with DRM_GEM_CMA_DRIVER_OPS_WITH_DUMB_CREATE (Laurent)
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/vkms/vkms_drv.c |  8 --------
- drivers/gpu/drm/vkms/vkms_gem.c | 13 +++++++++++++
- 2 files changed, 13 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xlnx/zynqmp_dpsub.c | 14 +-------------
+ 1 file changed, 1 insertion(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/vkms/vkms_drv.c b/drivers/gpu/drm/vkms/vkms_drv.c
-index cb0b6230c22c..726801ab44d4 100644
---- a/drivers/gpu/drm/vkms/vkms_drv.c
-+++ b/drivers/gpu/drm/vkms/vkms_drv.c
-@@ -51,12 +51,6 @@ static const struct file_operations vkms_driver_fops = {
- 	.release	= drm_release,
- };
+diff --git a/drivers/gpu/drm/xlnx/zynqmp_dpsub.c b/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
+index 8e69303aad3f..f3ffc3703a0e 100644
+--- a/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
++++ b/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
+@@ -80,19 +80,7 @@ static struct drm_driver zynqmp_dpsub_drm_driver = {
+ 	.driver_features		= DRIVER_MODESET | DRIVER_GEM |
+ 					  DRIVER_ATOMIC,
  
--static const struct vm_operations_struct vkms_gem_vm_ops = {
--	.fault = vkms_gem_fault,
--	.open = drm_gem_vm_open,
--	.close = drm_gem_vm_close,
--};
--
- static void vkms_release(struct drm_device *dev)
- {
- 	struct vkms_device *vkms = container_of(dev, struct vkms_device, drm);
-@@ -98,8 +92,6 @@ static struct drm_driver vkms_driver = {
- 	.release		= vkms_release,
- 	.fops			= &vkms_driver_fops,
- 	.dumb_create		= vkms_dumb_create,
--	.gem_vm_ops		= &vkms_gem_vm_ops,
--	.gem_free_object_unlocked = vkms_gem_free_object,
- 	.prime_fd_to_handle	= drm_gem_prime_fd_to_handle,
- 	.gem_prime_import_sg_table = vkms_prime_import_sg_table,
+-	.prime_handle_to_fd		= drm_gem_prime_handle_to_fd,
+-	.prime_fd_to_handle		= drm_gem_prime_fd_to_handle,
+-	.gem_prime_export		= drm_gem_prime_export,
+-	.gem_prime_import		= drm_gem_prime_import,
+-	.gem_prime_get_sg_table		= drm_gem_cma_prime_get_sg_table,
+-	.gem_prime_import_sg_table	= drm_gem_cma_prime_import_sg_table,
+-	.gem_prime_vmap			= drm_gem_cma_prime_vmap,
+-	.gem_prime_vunmap		= drm_gem_cma_prime_vunmap,
+-	.gem_prime_mmap			= drm_gem_cma_prime_mmap,
+-	.gem_free_object_unlocked	= drm_gem_cma_free_object,
+-	.gem_vm_ops			= &drm_gem_cma_vm_ops,
+-	.dumb_create			= zynqmp_dpsub_dumb_create,
+-	.dumb_destroy			= drm_gem_dumb_destroy,
++	DRM_GEM_CMA_DRIVER_OPS_WITH_DUMB_CREATE(zynqmp_dpsub_dumb_create),
  
-diff --git a/drivers/gpu/drm/vkms/vkms_gem.c b/drivers/gpu/drm/vkms/vkms_gem.c
-index a017fc59905e..19a0e260a4df 100644
---- a/drivers/gpu/drm/vkms/vkms_gem.c
-+++ b/drivers/gpu/drm/vkms/vkms_gem.c
-@@ -7,6 +7,17 @@
+ 	.fops				= &zynqmp_dpsub_drm_fops,
  
- #include "vkms_drv.h"
- 
-+static const struct vm_operations_struct vkms_gem_vm_ops = {
-+	.fault = vkms_gem_fault,
-+	.open = drm_gem_vm_open,
-+	.close = drm_gem_vm_close,
-+};
-+
-+static const struct drm_gem_object_funcs vkms_gem_object_funcs = {
-+	.free = vkms_gem_free_object,
-+	.vm_ops = &vkms_gem_vm_ops,
-+};
-+
- static struct vkms_gem_object *__vkms_gem_create(struct drm_device *dev,
- 						 u64 size)
- {
-@@ -17,6 +28,8 @@ static struct vkms_gem_object *__vkms_gem_create(struct drm_device *dev,
- 	if (!obj)
- 		return ERR_PTR(-ENOMEM);
- 
-+	obj->gem.funcs = &vkms_gem_object_funcs;
-+
- 	size = roundup(size, PAGE_SIZE);
- 	ret = drm_gem_object_init(dev, &obj->gem, size);
- 	if (ret) {
 -- 
 2.28.0
