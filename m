@@ -1,87 +1,30 @@
-From: Hyun Kwon <hyun.kwon@xilinx.com>
-Subject: Re: [PATCH v2 20/21] drm/xlnx: Initialize DRM driver instance with
- CMA helper macro
-Date: Tue, 15 Sep 2020 11:39:09 -0700
-Message-ID: <20200915183909.GA2471550@xilinx.com>
-References: <20200915145958.19993-1-tzimmermann@suse.de>
- <20200915145958.19993-21-tzimmermann@suse.de>
- <20200915155346.GA26029@pendragon.ideasonboard.com>
+From: Miquel Raynal <miquel.raynal-LDxbnhwyfcJBDgjK7y7TUQ@public.gmane.org>
+Subject: Re: [trivial PATCH] treewide: Convert switch/case
+ fallthrough; to break;
+Date: Tue, 15 Sep 2020 11:19:25 +0200
+Message-ID: <20200915111925.475dd3f1__13497.8506526508$1600222971$gmane$org@xps13>
+References: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel@perches.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-arm-msm-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20200915155346.GA26029@pendragon.ideasonboard.com>
-Sender: linux-arm-msm-owner@vger.kernel.org
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, "hamohammed.sa@gmail.com" <hamohammed.sa@gmail.com>, "airlied@linux.ie" <airlied@linux.ie>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Michal Simek <michals@xilinx.com>, "thierry.reding@gmail.com" <thierry.reding@gmail.com>, "krzk@kernel.org" <krzk@kernel.org>, "sam@ravnborg.org" <sam@ravnborg.org>, "emil.velikov@collabora.com" <emil.velikov@collabora.com>, "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>, "jy0922.shim@samsung.com" <jy0922.shim@samsung.com>, "oleksandr_andrushchenko@epam.com" <oleksandr_andrushchenko@epam.com>, "tomi.valkeinen@ti.com" <tomi.valkeinen@ti.com>"linux-tegra@vger.kernel.org" <linux->
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <e6387578c75736d61b2fe70d9783d91329a97eb4.camel-6d6DIl74uiNBDgjK7y7TUQ@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Joe Perches <joe-6d6DIl74uiNBDgjK7y7TUQ@public.gmane.org>
+Cc: linux-fbdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, oss-drivers-wFxRvT7yatFl57MIdRCFDg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, alsa-devel <alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-ide-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dm-devel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, linux-mtd-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-i2c-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, sparclinux-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-afs-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-rtc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-s390-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dccp-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-atm-general-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org, iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, kvmarm-FPEHb7Xf0XXUo1n7N8X6UoWGPAHP3yOg@public.gmane.org, coreteam-Cap9r6Oaw4JrovVCs/uTlw@public.gmane.org, intel-wired-lan-qjLDD68F18P21nG7glBr7A@public.gmane.org, linux-serial-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-input-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mmc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Kees Cook <kees.cook-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mediatek@lists.
 List-Id: nouveau.vger.kernel.org
 
-Hi Tomas,
-
-Thanks for the patch.
-
-On Tue, Sep 15, 2020 at 08:53:46AM -0700, Laurent Pinchart wrote:
-> Hi Thomas,
-> 
-> Thank you for the patch.
-> 
-> On Tue, Sep 15, 2020 at 04:59:57PM +0200, Thomas Zimmermann wrote:
-> > The xlnx driver uses CMA helpers with default callback functions.
-> > Initialize the driver structure with the rsp CMA helper macro. The
-> > driver is being converted to use GEM object functions as part of
-> > this change.
-> > 
-> > Two callbacks, .dumb_destroy and .gem_prime_import, were initialized
-> > to their default implementations, so they are just kept empty now.
-> > 
-> > v2:
-> > 	* initialize with DRM_GEM_CMA_DRIVER_OPS_WITH_DUMB_CREATE (Laurent)
-> > 
-> > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> 
-
-Reviewed-by: Hyun Kwon <hyun.kwon@xilinx.com>
-
-Thanks,
--hyun
-
-> > ---
-> >  drivers/gpu/drm/xlnx/zynqmp_dpsub.c | 14 +-------------
-> >  1 file changed, 1 insertion(+), 13 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xlnx/zynqmp_dpsub.c b/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
-> > index 8e69303aad3f..f3ffc3703a0e 100644
-> > --- a/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
-> > +++ b/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
-> > @@ -80,19 +80,7 @@ static struct drm_driver zynqmp_dpsub_drm_driver = {
-> >  	.driver_features		= DRIVER_MODESET | DRIVER_GEM |
-> >  					  DRIVER_ATOMIC,
-> >  
-> > -	.prime_handle_to_fd		= drm_gem_prime_handle_to_fd,
-> > -	.prime_fd_to_handle		= drm_gem_prime_fd_to_handle,
-> > -	.gem_prime_export		= drm_gem_prime_export,
-> > -	.gem_prime_import		= drm_gem_prime_import,
-> > -	.gem_prime_get_sg_table		= drm_gem_cma_prime_get_sg_table,
-> > -	.gem_prime_import_sg_table	= drm_gem_cma_prime_import_sg_table,
-> > -	.gem_prime_vmap			= drm_gem_cma_prime_vmap,
-> > -	.gem_prime_vunmap		= drm_gem_cma_prime_vunmap,
-> > -	.gem_prime_mmap			= drm_gem_cma_prime_mmap,
-> > -	.gem_free_object_unlocked	= drm_gem_cma_free_object,
-> > -	.gem_vm_ops			= &drm_gem_cma_vm_ops,
-> > -	.dumb_create			= zynqmp_dpsub_dumb_create,
-> > -	.dumb_destroy			= drm_gem_dumb_destroy,
-> > +	DRM_GEM_CMA_DRIVER_OPS_WITH_DUMB_CREATE(zynqmp_dpsub_dumb_create),
-> >  
-> >  	.fops				= &zynqmp_dpsub_drm_fops,
-> >  
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+SGkgSm9lLAoKRm9yIE1URDoKCj4gIGRyaXZlcnMvbXRkL25hbmQvcmF3L25hbmRzaW0uYyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICB8ICAyICstCgpSZXZpZXdlZC1ieTogTWlxdWVsIFJheW5h
+bCA8bWlxdWVsLnJheW5hbEBib290bGluLmNvbT4KCgpUaGFua3MsCk1pcXXDqGwKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
