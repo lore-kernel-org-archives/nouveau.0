@@ -1,8 +1,7 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 16/18] dma-mapping: add new {alloc,
- free}_noncoherent dma_map_ops methods
-Date: Tue, 15 Sep 2020 17:51:20 +0200
-Message-ID: <20200915155122.1768241-17-hch@lst.de>
+Subject: [PATCH 17/18] dma-iommu: implement ->alloc_noncoherent
+Date: Tue, 15 Sep 2020 17:51:21 +0200
+Message-ID: <20200915155122.1768241-18-hch@lst.de>
 References: <20200915155122.1768241-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,81 +21,99 @@ To: Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Tho
 Cc: alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Stefan Richter <stefanr-MtYdepGKPcBMYopoZt5u/LNAH6kLmebB@public.gmane.org>, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux1394-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This will allow IOMMU drivers to allocate non-contigous memory and
-return a vmapped virtual address.
+Implement the alloc_noncoherent method to provide memory that is neither
+coherent not contiguous.
 
 Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 ---
- include/linux/dma-mapping.h |  5 +++++
- kernel/dma/mapping.c        | 33 +++++++++++++++++++++++++++------
- 2 files changed, 32 insertions(+), 6 deletions(-)
+ drivers/iommu/dma-iommu.c | 41 +++++++++++++++++++++++++++++++++++----
+ 1 file changed, 37 insertions(+), 4 deletions(-)
 
-diff --git a/include/linux/dma-mapping.h b/include/linux/dma-mapping.h
-index bf592cf0db4acb..b4b5d75260d6dc 100644
---- a/include/linux/dma-mapping.h
-+++ b/include/linux/dma-mapping.h
-@@ -80,6 +80,11 @@ struct dma_map_ops {
- 			gfp_t gfp);
- 	void (*free_pages)(struct device *dev, size_t size, struct page *vaddr,
- 			dma_addr_t dma_handle, enum dma_data_direction dir);
-+	void* (*alloc_noncoherent)(struct device *dev, size_t size,
-+			dma_addr_t *dma_handle, enum dma_data_direction dir,
-+			gfp_t gfp);
-+	void (*free_noncoherent)(struct device *dev, size_t size, void *vaddr,
-+			dma_addr_t dma_handle, enum dma_data_direction dir);
- 	int (*mmap)(struct device *, struct vm_area_struct *,
- 			  void *, dma_addr_t, size_t,
- 			  unsigned long attrs);
-diff --git a/kernel/dma/mapping.c b/kernel/dma/mapping.c
-index 6f86c925b8251d..8614d7d2ee59a9 100644
---- a/kernel/dma/mapping.c
-+++ b/kernel/dma/mapping.c
-@@ -502,19 +502,40 @@ EXPORT_SYMBOL_GPL(dma_free_pages);
- void *dma_alloc_noncoherent(struct device *dev, size_t size,
- 		dma_addr_t *dma_handle, enum dma_data_direction dir, gfp_t gfp)
+diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
+index 00a5b49248e334..c12c1dc43d312e 100644
+--- a/drivers/iommu/dma-iommu.c
++++ b/drivers/iommu/dma-iommu.c
+@@ -572,6 +572,7 @@ static struct page **__iommu_dma_alloc_pages(struct device *dev,
+  * @size: Size of buffer in bytes
+  * @dma_handle: Out argument for allocated DMA handle
+  * @gfp: Allocation flags
++ * @prot: pgprot_t to use for the remapped mapping
+  * @attrs: DMA attributes for this allocation
+  *
+  * If @size is less than PAGE_SIZE, then a full CPU page will be allocated,
+@@ -580,14 +581,14 @@ static struct page **__iommu_dma_alloc_pages(struct device *dev,
+  * Return: Mapped virtual address, or NULL on failure.
+  */
+ static void *iommu_dma_alloc_remap(struct device *dev, size_t size,
+-		dma_addr_t *dma_handle, gfp_t gfp, unsigned long attrs)
++		dma_addr_t *dma_handle, gfp_t gfp, pgprot_t prot,
++		unsigned long attrs)
  {
--	struct page *page;
-+	const struct dma_map_ops *ops = get_dma_ops(dev);
-+	void *vaddr;
+ 	struct iommu_domain *domain = iommu_get_dma_domain(dev);
+ 	struct iommu_dma_cookie *cookie = domain->iova_cookie;
+ 	struct iova_domain *iovad = &cookie->iovad;
+ 	bool coherent = dev_is_dma_coherent(dev);
+ 	int ioprot = dma_info_to_prot(DMA_BIDIRECTIONAL, coherent, attrs);
+-	pgprot_t prot = dma_pgprot(dev, PAGE_KERNEL, attrs);
+ 	unsigned int count, min_size, alloc_sizes = domain->pgsize_bitmap;
+ 	struct page **pages;
+ 	struct sg_table sgt;
+@@ -1030,8 +1031,10 @@ static void *iommu_dma_alloc(struct device *dev, size_t size,
+ 	gfp |= __GFP_ZERO;
  
--	page = dma_alloc_pages(dev, size, dma_handle, dir, gfp);
--	if (!page)
--		return NULL;
--	return page_address(page);
-+	if (!ops || !ops->alloc_noncoherent) {
+ 	if (IS_ENABLED(CONFIG_DMA_REMAP) && gfpflags_allow_blocking(gfp) &&
+-	    !(attrs & DMA_ATTR_FORCE_CONTIGUOUS))
+-		return iommu_dma_alloc_remap(dev, size, handle, gfp, attrs);
++	    !(attrs & DMA_ATTR_FORCE_CONTIGUOUS)) {
++		return iommu_dma_alloc_remap(dev, size, handle, gfp,
++				dma_pgprot(dev, PAGE_KERNEL, attrs), attrs);
++	}
+ 
+ 	if (IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
+ 	    !gfpflags_allow_blocking(gfp) && !coherent)
+@@ -1052,6 +1055,34 @@ static void *iommu_dma_alloc(struct device *dev, size_t size,
+ 	return cpu_addr;
+ }
+ 
++#ifdef CONFIG_DMA_REMAP
++static void *iommu_dma_alloc_noncoherent(struct device *dev, size_t size,
++		dma_addr_t *handle, enum dma_data_direction dir, gfp_t gfp)
++{
++	if (!gfpflags_allow_blocking(gfp)) {
 +		struct page *page;
 +
-+		page = dma_alloc_pages(dev, size, dma_handle, dir, gfp);
++		page = dma_common_alloc_pages(dev, size, handle, dir, gfp);
 +		if (!page)
 +			return NULL;
 +		return page_address(page);
 +	}
 +
-+	size = PAGE_ALIGN(size);
-+	vaddr = ops->alloc_noncoherent(dev, size, dma_handle, dir, gfp);
-+	if (vaddr)
-+		debug_dma_map_page(dev, virt_to_page(vaddr), 0, size, dir,
-+				   *dma_handle);
-+	return vaddr;
- }
- EXPORT_SYMBOL_GPL(dma_alloc_noncoherent);
- 
- void dma_free_noncoherent(struct device *dev, size_t size, void *vaddr,
- 		dma_addr_t dma_handle, enum dma_data_direction dir)
- {
--	dma_free_pages(dev, size, virt_to_page(vaddr), dma_handle, dir);
-+	const struct dma_map_ops *ops = get_dma_ops(dev);
++	return iommu_dma_alloc_remap(dev, size, handle, gfp | __GFP_ZERO,
++				     PAGE_KERNEL, 0);
++}
 +
-+	if (!ops || !ops->free_noncoherent) {
-+		dma_free_pages(dev, size, virt_to_page(vaddr), dma_handle, dir);
-+		return;
-+	}
++static void iommu_dma_free_noncoherent(struct device *dev, size_t size,
++		void *cpu_addr, dma_addr_t handle, enum dma_data_direction dir)
++{
++	__iommu_dma_unmap(dev, handle, size);
++	__iommu_dma_free(dev, size, cpu_addr);
++}
++#else
++#define iommu_dma_alloc_noncoherent		NULL
++#define iommu_dma_free_noncoherent		NULL
++#endif /* CONFIG_DMA_REMAP */
 +
-+	size = PAGE_ALIGN(size);
-+	debug_dma_unmap_page(dev, dma_handle, size, dir);
-+	ops->free_noncoherent(dev, size, vaddr, dma_handle, dir);
- }
- EXPORT_SYMBOL_GPL(dma_free_noncoherent);
- 
+ static int iommu_dma_mmap(struct device *dev, struct vm_area_struct *vma,
+ 		void *cpu_addr, dma_addr_t dma_addr, size_t size,
+ 		unsigned long attrs)
+@@ -1122,6 +1153,8 @@ static const struct dma_map_ops iommu_dma_ops = {
+ 	.free			= iommu_dma_free,
+ 	.alloc_pages		= dma_common_alloc_pages,
+ 	.free_pages		= dma_common_free_pages,
++	.alloc_noncoherent	= iommu_dma_alloc_noncoherent,
++	.free_noncoherent	= iommu_dma_free_noncoherent,
+ 	.mmap			= iommu_dma_mmap,
+ 	.get_sgtable		= iommu_dma_get_sgtable,
+ 	.map_page		= iommu_dma_map_page,
 -- 
 2.28.0
