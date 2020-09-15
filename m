@@ -1,27 +1,24 @@
 From: Christoph Hellwig <hch@lst.de>
-Subject: Re: [PATCH 11/17] sgiseeq: convert to dma_alloc_noncoherent
-Date: Tue, 15 Sep 2020 08:32:24 +0200
-Message-ID: <20200915063224.GB19113@lst.de>
-References: <20200914151358.GQ6583@casper.infradead.org>
+Subject: Re: [PATCH 03/17] drm/exynos: stop setting DMA_ATTR_NON_CONSISTENT
+Date: Tue, 15 Sep 2020 08:33:14 +0200
+Message-ID: <20200915063314.GC19113@lst.de>
+References: <20200914144433.1622958-1-hch@lst.de> <20200914144433.1622958-4-hch@lst.de> <7a1d11c2-0fc5-e110-dabe-960e516bb343@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-doc-owner@vger.kernel.org>
+Return-path: <linux-parisc-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20200914151358.GQ6583@casper.infradead.org>
-Sender: linux-doc-owner@vger.kernel.org
-To: Matthew Wilcox <willy@infradead.org>
-Cc: Christoph Hellwig <hch@lst.de>, Mauro Carvalho Chehab <mchehab@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, Tomasz Figa <tfiga@chromium.org>, Matt Porter <mporter@kernel.crashing.org>, iommu@lists.linux-foundation.org, Stefan Richter <stefanr@s5r6.in-berlin.de>, linux1394-devel@lists.sourceforge.net, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+In-Reply-To: <7a1d11c2-0fc5-e110-dabe-960e516bb343@gmail.com>
+Sender: linux-parisc-owner@vger.kernel.org
+To: Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Cc: Christoph Hellwig <hch@lst.de>, Mauro Carvalho Chehab <mchehab@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, Tomasz Figa <tfiga@chromium.org>, Matt Porter <mporter@kernel.crashing.org>, iommu@lists.linux-foundation.org, Stefan Richter <stefanr@s5r6.in-berlin.de>, linux1394-devel@lists.sourceforge.net, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org, linux-samsung-soc@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Sep 14, 2020 at 04:13:58PM +0100, Matthew Wilcox wrote:
-> On Mon, Sep 14, 2020 at 04:44:27PM +0200, Christoph Hellwig wrote:
-> >  drivers/net/ethernet/i825xx/lasi_82596.c |  25 ++---
-> >  drivers/net/ethernet/i825xx/lib82596.c   | 114 ++++++++++++++---------
-> >  drivers/net/ethernet/i825xx/sni_82596.c  |   4 -
-> >  drivers/net/ethernet/seeq/sgiseeq.c      |  28 ++++--
-> >  drivers/scsi/53c700.c                    |   9 +-
-> >  5 files changed, 103 insertions(+), 77 deletions(-)
+On Mon, Sep 14, 2020 at 06:34:02PM +0300, Sergei Shtylyov wrote:
+> On 9/14/20 5:44 PM, Christoph Hellwig wrote:
 > 
-> I think your patch slicing-and-dicing went wrong here ;-(
+> > DMA_ATTR_NON_CONSISTENT is a no-op except on PARISC and some mips
+> > configs, so don't set it in this ARM specific driver.
+> 
+>    Hm, PARICS and ARM capitalized but mips in lower case? :-)
 
-Pretty much..  Fixed up for the next version.
+I guess it should also be PA-RISC if we start nitpicking..
