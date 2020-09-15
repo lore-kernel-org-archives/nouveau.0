@@ -1,43 +1,25 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: libva-utils test siuite is crashing in nouveau sriver
-Date: Mon, 14 Sep 2020 21:44:47 -0400
-Message-ID: <CAKb7UvhvzRZrVTANKzsJT8d6RDy2vcQGbqujTYZFkReb2TRSEg@mail.gmail.com>
-References: <CABB28CwNaHhCdKZio-GoGWcmTyZ-B33zwnmMmhQ9JLy8EjhC-Q@mail.gmail.com>
- <CAKb7UvgjzfaOaHb+N-h6iRpDR5YBBRx5z88J2m5uPzNARnpiHQ@mail.gmail.com>
- <CABB28CwK0RRz=5SpHM2Ne_dHpZyD5oCvj9rwOBLHU4wueT3kWw@mail.gmail.com>
+From: Christoph Hellwig <hch@lst.de>
+Subject: Re: [PATCH 07/17] 53c700: improve non-coherent DMA handling
+Date: Tue, 15 Sep 2020 08:27:38 +0200
+Message-ID: <20200915062738.GA19113@lst.de>
+References: <20200914144433.1622958-1-hch@lst.de> <20200914144433.1622958-8-hch@lst.de> <1600096818.4061.7.camel@HansenPartnership.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CABB28CwK0RRz=5SpHM2Ne_dHpZyD5oCvj9rwOBLHU4wueT3kWw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?Q?Tomasz_K=C5=82oczko?= <kloczko.tomasz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-parisc-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <1600096818.4061.7.camel@HansenPartnership.com>
+Sender: linux-parisc-owner@vger.kernel.org
+To: James Bottomley <James.Bottomley@HansenPartnership.com>
+Cc: Christoph Hellwig <hch@lst.de>, Mauro Carvalho Chehab <mchehab@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Joonyoung Shim <jy0922.shim@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, Tomasz Figa <tfiga@chromium.org>, Matt Porter <mporter@kernel.crashing.org>, iommu@lists.linux-foundation.org, Stefan Richter <stefanr@s5r6.in-berlin.de>, linux1394-devel@lists.sourceforge.net, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org, linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org, netdev@vger.kernel.org, linux-scsi@vger.k
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBTZXAgMTMsIDIwMjAgYXQgNTowMSBQTSBUb21hc3ogS8WCb2N6a28gPGtsb2N6a28u
-dG9tYXN6QGdtYWlsLmNvbT4gd3JvdGU6Cj4KPgo+IE9uIFN1biwgMTMgU2VwIDIwMjAgYXQgMjA6
-MzUsIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4+Cj4+IFdoYXQg
-aGFyZHdhcmUgYXJlIHlvdSB1c2luZz8KPgo+Cj4gMDAwMDoxODowMC4wIFZHQSBjb21wYXRpYmxl
-IGNvbnRyb2xsZXI6IE5WSURJQSBDb3Jwb3JhdGlvbiBHUDEwNEdMIFtRdWFkcm8gUDQwMDBdIChy
-ZXYgYTEpCgpUaGVyZSdzIG5vIGFjY2VsZXJhdGlvbiBzdXBwb3J0IGZvciB2aWRlbyBkZWNvZGlu
-ZyBwYXN0IEtlcGxlci4gRldJVyBJCmRvbid0IGdldCBhIGNyYXNoIHdpdGggYSBHUDEwOCB3aGVu
-IHJ1bm5pbmcgdmFpbmZvOgoKJCB2YWluZm8KbGlidmEgaW5mbzogVkEtQVBJIHZlcnNpb24gMS44
-LjAKbGlidmEgaW5mbzogVHJ5aW5nIHRvIG9wZW4gL3Vzci9saWI2NC92YS9kcml2ZXJzL25vdXZl
-YXVfZHJ2X3ZpZGVvLnNvCmxpYnZhIGluZm86IHZhX29wZW5Ecml2ZXIoKSByZXR1cm5zIC0xCnZh
-SW5pdGlhbGl6ZSBmYWlsZWQgd2l0aCBlcnJvciBjb2RlIC0xICh1bmtub3duIGxpYnZhIGVycm9y
-KSxleGl0Cgp3aXRoIE1lc2EgMjAuMi4wLXJjMi4gTm90IHN1cmUgaWYgeW91ciBpc3N1ZSBoYXMg
-YmVlbiBmaXhlZCAoYW5kIG5vdwppdCBlcnJvcnMpLCBvciBpZiB5b3UncmUgaGl0dGluZyBzb21l
-dGhpbmcgZWxzZS4gRWl0aGVyIHdheSwgbW9zdApsaWtlbHkgYW4gaXNzdWUgd2l0aCB0aGUgY29t
-bW9uIGNvZGUgaWYgaXQgaW5kZWVkIHBlcnNpc3RzLgoKQ2hlZXJzLAoKICAtaWxpYQpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+On Mon, Sep 14, 2020 at 08:20:18AM -0700, James Bottomley wrote:
+> If you're going to change the macros from taking a device to taking a
+> hostdata structure then the descriptive argument name needs to change
+> ... it can't be dev anymore.  I'm happy with it simply becoming 'h' if
+> hostdata is too long.
+> 
+> I already asked for this on the first go around:
+
+And I did rename them, those hunks just accidentally slipped into patch
+12 instead of this one.  Fixed for the next versions.
