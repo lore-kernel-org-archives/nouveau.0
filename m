@@ -1,71 +1,78 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: a saner API for allocating DMA addressable pages v3
-Date: Tue, 15 Sep 2020 17:51:04 +0200
-Message-ID: <20200915155122.1768241-1-hch@lst.de>
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v2 20/21] drm/xlnx: Initialize DRM driver instance with
+ CMA helper macro
+Date: Tue, 15 Sep 2020 18:53:46 +0300
+Message-ID: <20200915155346.GA26029@pendragon.ideasonboard.com>
+References: <20200915145958.19993-1-tzimmermann@suse.de>
+ <20200915145958.19993-21-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
-List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/iommu>,
- <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.linuxfoundation.org/pipermail/iommu/>
-List-Post: <mailto:iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
-List-Help: <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/iommu>,
- <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=subscribe>
-Errors-To: iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
-Sender: "iommu" <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
-To: Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Thomas Bogendoerfer <tsbogend-I1c7kopa9pxLokYuJOExCg@public.gmane.org>, "James E.J. Bottomley" <James.Bottomley-d9PhHud1JfjCXq6kfMZ53/egYHeGw8Jk@public.gmane.org>, Joonyoung Shim <jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Seung-Woo Kim <sw0312.kim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Marek Szyprowski <m.szyprowski-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Tomasz Figa <tfiga-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Matt Porter <mporter-XVmvHMARGAS8U2dJNN8I7kB+6BGkLq7r@public.gmane.org>, iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
-Cc: alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Stefan Richter <stefanr-MtYdepGKPcBMYopoZt5u/LNAH6kLmebB@public.gmane.org>, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux1394-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Content-Type: text/plain; charset=utf-8
+Return-path: <xen-devel-bounces@lists.xenproject.org>
+Content-Disposition: inline
+In-Reply-To: <20200915145958.19993-21-tzimmermann@suse.de>
+List-Unsubscribe: <https://lists.xenproject.org/mailman/options/xen-devel>,
+ <mailto:xen-devel-request@lists.xenproject.org?subject=unsubscribe>
+List-Post: <mailto:xen-devel@lists.xenproject.org>
+List-Help: <mailto:xen-devel-request@lists.xenproject.org?subject=help>
+List-Subscribe: <https://lists.xenproject.org/mailman/listinfo/xen-devel>,
+ <mailto:xen-devel-request@lists.xenproject.org?subject=subscribe>
+Errors-To: xen-devel-bounces@lists.xenproject.org
+Sender: "Xen-devel" <xen-devel-bounces@lists.xenproject.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch, linux@armlinux.org.uk, maarten.lankhorst@linux.intel.com, mripard@kernel.org, l.stach@pengutronix.de, christian.gmeiner@gmail.com, inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org, patrik.r.jakobsson@gmail.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, chunkuang.hu@kernel.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com, robdclark@gmail.com, sean@poorly.run, bskeggs@redhat.com, tomi.valkeinen@ti.com, eric@anholt.net, hjc@rock-chips.com, heiko@sntech.de, thierry.reding@gmail.com, jonathanh@nvidia.com, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, oleksandr_andrushchenko@epam.com, hyun.kwon@xilinx.com, michal.simek@xilinx.com, sumit.semwal@linaro.
 List-Id: nouveau.vger.kernel.org
 
-Hi all,
+Hi Thomas,
 
-this series replaced the DMA_ATTR_NON_CONSISTENT flag to dma_alloc_attrs
-with a separate new dma_alloc_pages API, which is available on all
-platforms.  In addition to cleaning up the convoluted code path, this
-ensures that other drivers that have asked for better support for
-non-coherent DMA to pages with incurring bounce buffering over can finally
-be properly supported.
+Thank you for the patch.
 
-As a follow up I plan to move the implementation of the
-DMA_ATTR_NO_KERNEL_MAPPING flag over to this framework as well, given
-that is also is a fundamentally non coherent allocation.  The replacement
-for that flag would then return a struct page, as it is allowed to
-actually return pages without a kernel mapping as the name suggested
-(although most of the time they will actually have a kernel mapping..)
+On Tue, Sep 15, 2020 at 04:59:57PM +0200, Thomas Zimmermann wrote:
+> The xlnx driver uses CMA helpers with default callback functions.
+> Initialize the driver structure with the rsp CMA helper macro. The
+> driver is being converted to use GEM object functions as part of
+> this change.
+> 
+> Two callbacks, .dumb_destroy and .gem_prime_import, were initialized
+> to their default implementations, so they are just kept empty now.
+> 
+> v2:
+> 	* initialize with DRM_GEM_CMA_DRIVER_OPS_WITH_DUMB_CREATE (Laurent)
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-In addition to the conversions of the existing non-coherent DMA users,
-I've also added a patch to convert the firewire ohci driver to use
-the new dma_alloc_pages API.
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-The first patch is queued up for 5.9 in the media tree, but included here
-for completeness.
+> ---
+>  drivers/gpu/drm/xlnx/zynqmp_dpsub.c | 14 +-------------
+>  1 file changed, 1 insertion(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xlnx/zynqmp_dpsub.c b/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
+> index 8e69303aad3f..f3ffc3703a0e 100644
+> --- a/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
+> +++ b/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
+> @@ -80,19 +80,7 @@ static struct drm_driver zynqmp_dpsub_drm_driver = {
+>  	.driver_features		= DRIVER_MODESET | DRIVER_GEM |
+>  					  DRIVER_ATOMIC,
+>  
+> -	.prime_handle_to_fd		= drm_gem_prime_handle_to_fd,
+> -	.prime_fd_to_handle		= drm_gem_prime_fd_to_handle,
+> -	.gem_prime_export		= drm_gem_prime_export,
+> -	.gem_prime_import		= drm_gem_prime_import,
+> -	.gem_prime_get_sg_table		= drm_gem_cma_prime_get_sg_table,
+> -	.gem_prime_import_sg_table	= drm_gem_cma_prime_import_sg_table,
+> -	.gem_prime_vmap			= drm_gem_cma_prime_vmap,
+> -	.gem_prime_vunmap		= drm_gem_cma_prime_vunmap,
+> -	.gem_prime_mmap			= drm_gem_cma_prime_mmap,
+> -	.gem_free_object_unlocked	= drm_gem_cma_free_object,
+> -	.gem_vm_ops			= &drm_gem_cma_vm_ops,
+> -	.dumb_create			= zynqmp_dpsub_dumb_create,
+> -	.dumb_destroy			= drm_gem_dumb_destroy,
+> +	DRM_GEM_CMA_DRIVER_OPS_WITH_DUMB_CREATE(zynqmp_dpsub_dumb_create),
+>  
+>  	.fops				= &zynqmp_dpsub_drm_fops,
+>  
 
+-- 
+Regards,
 
-A git tree is available here:
-
-    git://git.infradead.org/users/hch/misc.git dma_alloc_pages
-
-Gitweb:
-
-    http://git.infradead.org/users/hch/misc.git/shortlog/refs/heads/dma_alloc_pages
-
-
-Changes since v2:
- - fix up the patch reshuffle which wasn't quite correct
- - fix up a few commit messages
-
-Changes since v1:
- - rebased on the latests dma-mapping tree, which merged many of the
-   cleanups
- - fix an argument passing typo in 53c700, caught by sparse
- - rename a few macro arguments in 53c700
- - pass the right device to the DMA API in the lib82596 drivers
- - fix memory ownershiptransfers in sgiseeq
- - better document what a page in the direct kernel mapping means
- - split into dma_alloc_pages that returns a struct page and is in the
-   direct mapping vs dma_alloc_noncoherent that can be vmapped
- - conver the firewire ohci driver to dma_alloc_pages
-
-Diffstat:
+Laurent Pinchart
