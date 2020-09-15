@@ -1,7 +1,7 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 03/18] drm/exynos: stop setting DMA_ATTR_NON_CONSISTENT
-Date: Tue, 15 Sep 2020 17:51:07 +0200
-Message-ID: <20200915155122.1768241-4-hch@lst.de>
+Subject: [PATCH 04/18] drm/nouveau/gk20a: stop setting DMA_ATTR_NON_CONSISTENT
+Date: Tue, 15 Sep 2020 17:51:08 +0200
+Message-ID: <20200915155122.1768241-5-hch@lst.de>
 References: <20200915155122.1768241-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,25 +22,26 @@ Cc: alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-samsung-soc-u79uwX
 List-Id: nouveau.vger.kernel.org
 
 DMA_ATTR_NON_CONSISTENT is a no-op except on PA-RISC and a few MIPS
-configs, so don't set it in this ARM specific driver.
+configs, so don't set it in this ARM specific driver part.
 
 Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 ---
- drivers/gpu/drm/exynos/exynos_drm_gem.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/exynos/exynos_drm_gem.c b/drivers/gpu/drm/exynos/exynos_drm_gem.c
-index efa476858db54b..07073222b8f691 100644
---- a/drivers/gpu/drm/exynos/exynos_drm_gem.c
-+++ b/drivers/gpu/drm/exynos/exynos_drm_gem.c
-@@ -42,8 +42,6 @@ static int exynos_drm_alloc_buf(struct exynos_drm_gem *exynos_gem, bool kvmap)
- 	if (exynos_gem->flags & EXYNOS_BO_WC ||
- 			!(exynos_gem->flags & EXYNOS_BO_CACHABLE))
- 		attr |= DMA_ATTR_WRITE_COMBINE;
--	else
--		attr |= DMA_ATTR_NON_CONSISTENT;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c
+index 985f2990ab0dda..13d4d7ac0697b4 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c
+@@ -594,8 +594,7 @@ gk20a_instmem_new(struct nvkm_device *device, int index,
  
- 	/* FBDev emulation requires kernel mapping */
- 	if (!kvmap)
+ 		nvkm_info(&imem->base.subdev, "using IOMMU\n");
+ 	} else {
+-		imem->attrs = DMA_ATTR_NON_CONSISTENT |
+-			      DMA_ATTR_WEAK_ORDERING |
++		imem->attrs = DMA_ATTR_WEAK_ORDERING |
+ 			      DMA_ATTR_WRITE_COMBINE;
+ 
+ 		nvkm_info(&imem->base.subdev, "using DMA API\n");
 -- 
 2.28.0
