@@ -1,7 +1,7 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 12/18] sgiseeq: convert to dma_alloc_noncoherent
-Date: Tue, 15 Sep 2020 17:51:16 +0200
-Message-ID: <20200915155122.1768241-13-hch@lst.de>
+Subject: [PATCH 13/18] 53c700: convert to dma_alloc_noncoherent
+Date: Tue, 15 Sep 2020 17:51:17 +0200
+Message-ID: <20200915155122.1768241-14-hch@lst.de>
 References: <20200915155122.1768241-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,101 +22,66 @@ Cc: alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-samsung-soc-u79uwX
 List-Id: nouveau.vger.kernel.org
 
 Use the new non-coherent DMA API including proper ownership transfers.
-This includes adding additional calls to dma_sync_desc_dev as the
-old syncing was rather ad-hoc.
-
-Thanks to Thomas Bogendoerfer for debugging the ownership transfer
-issues.
 
 Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 ---
- drivers/net/ethernet/seeq/sgiseeq.c | 28 ++++++++++++++++++----------
- 1 file changed, 18 insertions(+), 10 deletions(-)
+ drivers/scsi/53c700.c | 20 ++++++++++++++------
+ 1 file changed, 14 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/net/ethernet/seeq/sgiseeq.c b/drivers/net/ethernet/seeq/sgiseeq.c
-index 8507ff2420143a..37ff25a84030eb 100644
---- a/drivers/net/ethernet/seeq/sgiseeq.c
-+++ b/drivers/net/ethernet/seeq/sgiseeq.c
-@@ -112,14 +112,18 @@ struct sgiseeq_private {
- 
- static inline void dma_sync_desc_cpu(struct net_device *dev, void *addr)
- {
--	dma_cache_sync(dev->dev.parent, addr, sizeof(struct sgiseeq_rx_desc),
--		       DMA_FROM_DEVICE);
-+	struct sgiseeq_private *sp = netdev_priv(dev);
-+
-+	dma_sync_single_for_cpu(dev->dev.parent, VIRT_TO_DMA(sp, addr),
-+			sizeof(struct sgiseeq_rx_desc), DMA_BIDIRECTIONAL);
+diff --git a/drivers/scsi/53c700.c b/drivers/scsi/53c700.c
+index c59226d7e2f6b5..5117d90ccd9edf 100644
+--- a/drivers/scsi/53c700.c
++++ b/drivers/scsi/53c700.c
+@@ -269,18 +269,25 @@ NCR_700_get_SXFER(struct scsi_device *SDp)
+ 					      spi_period(SDp->sdev_target));
  }
  
- static inline void dma_sync_desc_dev(struct net_device *dev, void *addr)
- {
--	dma_cache_sync(dev->dev.parent, addr, sizeof(struct sgiseeq_rx_desc),
--		       DMA_TO_DEVICE);
-+	struct sgiseeq_private *sp = netdev_priv(dev);
++static inline dma_addr_t virt_to_dma(struct NCR_700_Host_Parameters *h, void *p)
++{
++	return h->pScript + ((uintptr_t)p - (uintptr_t)h->script);
++}
 +
-+	dma_sync_single_for_device(dev->dev.parent, VIRT_TO_DMA(sp, addr),
-+			sizeof(struct sgiseeq_rx_desc), DMA_BIDIRECTIONAL);
+ static inline void dma_sync_to_dev(struct NCR_700_Host_Parameters *h,
+ 		void *addr, size_t size)
+ {
+ 	if (h->noncoherent)
+-		dma_cache_sync(h->dev, addr, size, DMA_TO_DEVICE);
++		dma_sync_single_for_device(h->dev, virt_to_dma(h, addr),
++					   size, DMA_BIDIRECTIONAL);
  }
  
- static inline void hpc3_eth_reset(struct hpc3_ethregs *hregs)
-@@ -403,6 +407,8 @@ static inline void sgiseeq_rx(struct net_device *dev, struct sgiseeq_private *sp
- 		rd = &sp->rx_desc[sp->rx_new];
- 		dma_sync_desc_cpu(dev, rd);
+ static inline void dma_sync_from_dev(struct NCR_700_Host_Parameters *h,
+ 		void *addr, size_t size)
+ {
+ 	if (h->noncoherent)
+-		dma_cache_sync(h->dev, addr, size, DMA_FROM_DEVICE);
++		dma_sync_single_for_device(h->dev, virt_to_dma(h, addr), size,
++					   DMA_BIDIRECTIONAL);
+ }
+ 
+ struct Scsi_Host *
+@@ -300,8 +307,8 @@ NCR_700_detect(struct scsi_host_template *tpnt,
+ 	memory = dma_alloc_coherent(dev, TOTAL_MEM_SIZE, &pScript, GFP_KERNEL);
+ 	if (!memory) {
+ 		hostdata->noncoherent = 1;
+-		memory = dma_alloc_attrs(dev, TOTAL_MEM_SIZE, &pScript,
+-					 GFP_KERNEL, DMA_ATTR_NON_CONSISTENT);
++		memory = dma_alloc_noncoherent(dev, TOTAL_MEM_SIZE, &pScript,
++					 DMA_BIDIRECTIONAL, GFP_KERNEL);
  	}
-+	dma_sync_desc_dev(dev, rd);
-+
- 	dma_sync_desc_cpu(dev, &sp->rx_desc[orig_end]);
- 	sp->rx_desc[orig_end].rdma.cntinfo &= ~(HPCDMA_EOR);
- 	dma_sync_desc_dev(dev, &sp->rx_desc[orig_end]);
-@@ -443,6 +449,7 @@ static inline void kick_tx(struct net_device *dev,
- 		dma_sync_desc_cpu(dev, td);
- 	}
- 	if (td->tdma.cntinfo & HPCDMA_XIU) {
-+		dma_sync_desc_dev(dev, td);
- 		hregs->tx_ndptr = VIRT_TO_DMA(sp, td);
- 		hregs->tx_ctrl = HPC3_ETXCTRL_ACTIVE;
- 	}
-@@ -476,6 +483,7 @@ static inline void sgiseeq_tx(struct net_device *dev, struct sgiseeq_private *sp
- 		if (!(td->tdma.cntinfo & (HPCDMA_XIU)))
- 			break;
- 		if (!(td->tdma.cntinfo & (HPCDMA_ETXD))) {
-+			dma_sync_desc_dev(dev, td);
- 			if (!(status & HPC3_ETXCTRL_ACTIVE)) {
- 				hregs->tx_ndptr = VIRT_TO_DMA(sp, td);
- 				hregs->tx_ctrl = HPC3_ETXCTRL_ACTIVE;
-@@ -740,8 +748,8 @@ static int sgiseeq_probe(struct platform_device *pdev)
- 	sp = netdev_priv(dev);
+ 	if (!memory) {
+ 		printk(KERN_ERR "53c700: Failed to allocate memory for driver, detaching\n");
+@@ -414,8 +421,9 @@ NCR_700_release(struct Scsi_Host *host)
+ 		(struct NCR_700_Host_Parameters *)host->hostdata[0];
  
- 	/* Make private data page aligned */
--	sr = dma_alloc_attrs(&pdev->dev, sizeof(*sp->srings), &sp->srings_dma,
--			     GFP_KERNEL, DMA_ATTR_NON_CONSISTENT);
-+	sr = dma_alloc_noncoherent(&pdev->dev, sizeof(*sp->srings),
-+			&sp->srings_dma, DMA_BIDIRECTIONAL, GFP_KERNEL);
- 	if (!sr) {
- 		printk(KERN_ERR "Sgiseeq: Page alloc failed, aborting.\n");
- 		err = -ENOMEM;
-@@ -802,8 +810,8 @@ static int sgiseeq_probe(struct platform_device *pdev)
- 	return 0;
- 
- err_out_free_attrs:
--	dma_free_attrs(&pdev->dev, sizeof(*sp->srings), sp->srings,
--		       sp->srings_dma, DMA_ATTR_NON_CONSISTENT);
-+	dma_free_noncoherent(&pdev->dev, sizeof(*sp->srings), sp->srings,
-+		       sp->srings_dma, DMA_BIDIRECTIONAL);
- err_out_free_dev:
- 	free_netdev(dev);
- 
-@@ -817,8 +825,8 @@ static int sgiseeq_remove(struct platform_device *pdev)
- 	struct sgiseeq_private *sp = netdev_priv(dev);
- 
- 	unregister_netdev(dev);
--	dma_free_attrs(&pdev->dev, sizeof(*sp->srings), sp->srings,
--		       sp->srings_dma, DMA_ATTR_NON_CONSISTENT);
-+	dma_free_noncoherent(&pdev->dev, sizeof(*sp->srings), sp->srings,
-+		       sp->srings_dma, DMA_BIDIRECTIONAL);
- 	free_netdev(dev);
- 
- 	return 0;
+ 	if (hostdata->noncoherent)
+-		dma_free_attrs(hostdata->dev, TOTAL_MEM_SIZE, hostdata->script,
+-			       hostdata->pScript, DMA_ATTR_NON_CONSISTENT);
++		dma_free_noncoherent(hostdata->dev, TOTAL_MEM_SIZE,
++				hostdata->script, hostdata->pScript,
++				DMA_BIDIRECTIONAL);
+ 	else
+ 		dma_free_coherent(hostdata->dev, TOTAL_MEM_SIZE,
+ 				  hostdata->script, hostdata->pScript);
 -- 
 2.28.0
