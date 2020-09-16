@@ -1,176 +1,103 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v2 05/21] drm/gma500: Introduce GEM object
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH v2 07/21] drm/mediatek: Introduce GEM object
  functions
-Date: Wed, 16 Sep 2020 13:31:52 +0200
-Message-ID: <20200916113152.GJ438822@phenom.ffwll.local>
+Date: Wed, 16 Sep 2020 13:35:14 +0200
+Message-ID: <20200916113514.GK438822@phenom.ffwll.local>
 References: <20200915145958.19993-1-tzimmermann@suse.de>
- <20200915145958.19993-6-tzimmermann@suse.de>
+ <20200915145958.19993-8-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+Return-path: <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20200915145958.19993-6-tzimmermann@suse.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: hamohammed.sa@gmail.com, heiko@sntech.de, andrey.grodzovsky@amd.com, airlied@linux.ie, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, michal.simek@xilinx.com, eric@anholt.net, krzk@kernel.org, sam@ravnborg.org, sumit.semwal@linaro.org, emil.velikov@collabora.com, linux-samsung-soc@vger.kernel.org, jy0922.shim@samsung.com, oleksandr_andrushchenko@epam.com, tomi.valkeinen@ti.com, linux-tegra@vger.kernel.org, linux@armlinux.org.uk, jonathanh@nvidia.com, linux-rockchip@lists.infradead.org, kgene@kernel.org, bskeggs@redhat.com, xen-devel@lists.xenproject.org, miaoqinglang@huawei.com, intel-gfx@lists.freedesktop.org, matthew.auld@intel.com, chunkuang.hu@kernel.org, linux-arm-msm@vger.kernel.org, marek.olsak@amd.com, tianci.yin@amd.com, etnaviv@lists.freedesktop.org, inki.dae@samsung.com, christian.gmeiner@gmail.com, linux-mediatek@lists.infradead.org
+In-Reply-To: <20200915145958.19993-8-tzimmermann-l3A5Bk7waGM@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/freedreno>,
+ <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/freedreno>
+List-Post: <mailto:freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/freedreno>,
+ <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Freedreno" <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+Cc: hamohammed.sa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, heiko-4mtYJXux2i+zQB+pC5nmwQ@public.gmane.org, andrey.grodzovsky-5C7GfCeVMHo@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, michal.simek-gjFFaj9aHVfQT0dZR+AlfA@public.gmane.org, eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org, thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org, sumit.semwal-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org, emil.velikov-ZGY8ohtN/8qB+jHODAdFcQ@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, oleksandr_andrushchenko-uRwfk40T5oI@public.gmane.org, tomi.valkeinen-l0cyMroinI0@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org, patrik.r.jakobsson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, linux-rockchip-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, kgene-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, xen-devel-GuqFBffKawtpuQazS67q72D2FQJk+8+b@public.gmane.org, miaoqinglang-hv44wF8Li93QT0dZR+AlfA@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, matthew.auld-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, chunkuang.hu-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, andi.shyti-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, marek.olsak@amd.c
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Sep 15, 2020 at 04:59:42PM +0200, Thomas Zimmermann wrote:
+On Tue, Sep 15, 2020 at 04:59:44PM +0200, Thomas Zimmermann wrote:
 > GEM object functions deprecate several similar callback interfaces in
 > struct drm_driver. This patch replaces the per-driver callbacks with
-> per-instance callbacks in gma500.
+> per-instance callbacks in mediatek. The only exception is gem_prime_mmap,
+> which is non-trivial to convert.
 > 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
+> Signed-off-by: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
 > ---
->  drivers/gpu/drm/gma500/framebuffer.c |  2 ++
->  drivers/gpu/drm/gma500/gem.c         | 18 ++++++++++++++++--
->  drivers/gpu/drm/gma500/gem.h         |  3 +++
->  drivers/gpu/drm/gma500/psb_drv.c     |  9 ---------
->  drivers/gpu/drm/gma500/psb_drv.h     |  2 --
->  5 files changed, 21 insertions(+), 13 deletions(-)
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c |  5 -----
+>  drivers/gpu/drm/mediatek/mtk_drm_gem.c | 11 +++++++++++
+>  2 files changed, 11 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/gma500/framebuffer.c b/drivers/gpu/drm/gma500/framebuffer.c
-> index 54d9876b5305..5ede24fb44ae 100644
-> --- a/drivers/gpu/drm/gma500/framebuffer.c
-> +++ b/drivers/gpu/drm/gma500/framebuffer.c
-> @@ -24,6 +24,7 @@
->  #include <drm/drm_gem_framebuffer_helper.h>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> index 040a8f393fe2..2f8d0043fca7 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> @@ -301,18 +301,13 @@ struct drm_gem_object *mtk_drm_gem_prime_import(struct drm_device *dev,
+>  static struct drm_driver mtk_drm_driver = {
+>  	.driver_features = DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
 >  
->  #include "framebuffer.h"
-> +#include "gem.h"
->  #include "gtt.h"
->  #include "psb_drv.h"
->  #include "psb_intel_drv.h"
-> @@ -285,6 +286,7 @@ static struct gtt_range *psbfb_alloc(struct drm_device *dev, int aligned_size)
->  	/* Begin by trying to use stolen memory backing */
->  	backing = psb_gtt_alloc_range(dev, aligned_size, "fb", 1, PAGE_SIZE);
->  	if (backing) {
-> +		backing->gem.funcs = &psb_gem_object_funcs;
->  		drm_gem_private_object_init(dev, &backing->gem, aligned_size);
->  		return backing;
->  	}
-> diff --git a/drivers/gpu/drm/gma500/gem.c b/drivers/gpu/drm/gma500/gem.c
-> index f9c4b1d76f56..8f07de83b6fb 100644
-> --- a/drivers/gpu/drm/gma500/gem.c
-> +++ b/drivers/gpu/drm/gma500/gem.c
-> @@ -18,7 +18,9 @@
+> -	.gem_free_object_unlocked = mtk_drm_gem_free_object,
+> -	.gem_vm_ops = &drm_gem_cma_vm_ops,
+>  	.dumb_create = mtk_drm_gem_dumb_create,
 >  
->  #include "psb_drv.h"
+>  	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
+>  	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
+>  	.gem_prime_import = mtk_drm_gem_prime_import,
+> -	.gem_prime_get_sg_table = mtk_gem_prime_get_sg_table,
+>  	.gem_prime_import_sg_table = mtk_gem_prime_import_sg_table,
+>  	.gem_prime_mmap = mtk_drm_gem_mmap_buf,
+> -	.gem_prime_vmap = mtk_drm_gem_prime_vmap,
+> -	.gem_prime_vunmap = mtk_drm_gem_prime_vunmap,
+>  	.fops = &mtk_drm_fops,
 >  
-> -void psb_gem_free_object(struct drm_gem_object *obj)
-> +static vm_fault_t psb_gem_fault(struct vm_fault *vmf);
-> +
-> +static void psb_gem_free_object(struct drm_gem_object *obj)
->  {
->  	struct gtt_range *gtt = container_of(obj, struct gtt_range, gem);
+>  	.name = DRIVER_NAME,
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_gem.c b/drivers/gpu/drm/mediatek/mtk_drm_gem.c
+> index 6190cc3b7b0d..591b90410e4a 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_gem.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_gem.c
+> @@ -8,11 +8,20 @@
+>  #include <drm/drm.h>
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_gem.h>
+> +#include <drm/drm_gem_cma_helper.h>
+>  #include <drm/drm_prime.h>
 >  
-> @@ -36,6 +38,17 @@ int psb_gem_get_aperture(struct drm_device *dev, void *data,
->  	return -EINVAL;
->  }
+>  #include "mtk_drm_drv.h"
+>  #include "mtk_drm_gem.h"
 >  
-> +static const struct vm_operations_struct psb_gem_vm_ops = {
-> +	.fault = psb_gem_fault,
-> +	.open = drm_gem_vm_open,
-> +	.close = drm_gem_vm_close,
+> +static const struct drm_gem_object_funcs mtk_drm_gem_object_funcs = {
+> +	.free = mtk_drm_gem_free_object,
+> +	.get_sg_table = mtk_gem_prime_get_sg_table,
+> +	.vmap = mtk_drm_gem_prime_vmap,
+> +	.vunmap = mtk_drm_gem_prime_vunmap,
+> +	.vm_ops = &drm_gem_cma_vm_ops,
 > +};
 > +
-> +const struct drm_gem_object_funcs psb_gem_object_funcs = {
-> +	.free = psb_gem_free_object,
-> +	.vm_ops = &psb_gem_vm_ops,
-> +};
-> +
->  /**
->   *	psb_gem_create		-	create a mappable object
->   *	@file: the DRM file of the client
-> @@ -63,6 +76,7 @@ int psb_gem_create(struct drm_file *file, struct drm_device *dev, u64 size,
->  		dev_err(dev->dev, "no memory for %lld byte GEM object\n", size);
->  		return -ENOSPC;
->  	}
-> +	r->gem.funcs = &psb_gem_object_funcs;
->  	/* Initialize the extra goodies GEM needs to do all the hard work */
->  	if (drm_gem_object_init(dev, &r->gem, size) != 0) {
->  		psb_gtt_free_range(dev, r);
-> @@ -123,7 +137,7 @@ int psb_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
->   *	vma->vm_private_data points to the GEM object that is backing this
->   *	mapping.
->   */
-> -vm_fault_t psb_gem_fault(struct vm_fault *vmf)
-> +static vm_fault_t psb_gem_fault(struct vm_fault *vmf)
+>  static struct mtk_drm_gem_obj *mtk_drm_gem_init(struct drm_device *dev,
+>  						unsigned long size)
 >  {
->  	struct vm_area_struct *vma = vmf->vma;
->  	struct drm_gem_object *obj;
-> diff --git a/drivers/gpu/drm/gma500/gem.h b/drivers/gpu/drm/gma500/gem.h
-> index 4a74dc623b6b..3741a711b9fd 100644
-> --- a/drivers/gpu/drm/gma500/gem.h
-> +++ b/drivers/gpu/drm/gma500/gem.h
-> @@ -8,6 +8,9 @@
->  #ifndef _GEM_H
->  #define _GEM_H
+> @@ -25,6 +34,8 @@ static struct mtk_drm_gem_obj *mtk_drm_gem_init(struct drm_device *dev,
+>  	if (!mtk_gem_obj)
+>  		return ERR_PTR(-ENOMEM);
 >  
-> +extern const struct drm_gem_object_funcs psb_gem_object_funcs;
+> +	mtk_gem_obj->base.funcs = &mtk_drm_gem_object_funcs;
 > +
->  extern int psb_gem_create(struct drm_file *file, struct drm_device *dev,
->  			  u64 size, u32 *handlep, int stolen, u32 align);
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/psb_drv.c
-> index 34b4aae9a15e..b13376a6fb91 100644
-> --- a/drivers/gpu/drm/gma500/psb_drv.c
-> +++ b/drivers/gpu/drm/gma500/psb_drv.c
-> @@ -480,12 +480,6 @@ static const struct dev_pm_ops psb_pm_ops = {
->  	.runtime_idle = psb_runtime_idle,
->  };
->  
-> -static const struct vm_operations_struct psb_gem_vm_ops = {
-> -	.fault = psb_gem_fault,
-> -	.open = drm_gem_vm_open,
-> -	.close = drm_gem_vm_close,
-> -};
-> -
->  static const struct file_operations psb_gem_fops = {
->  	.owner = THIS_MODULE,
->  	.open = drm_open,
-> @@ -507,9 +501,6 @@ static struct drm_driver driver = {
->  	.irq_uninstall = psb_irq_uninstall,
->  	.irq_handler = psb_irq_handler,
->  
-> -	.gem_free_object_unlocked = psb_gem_free_object,
-> -	.gem_vm_ops = &psb_gem_vm_ops,
-> -
->  	.dumb_create = psb_gem_dumb_create,
->  	.ioctls = psb_ioctls,
->  	.fops = &psb_gem_fops,
-> diff --git a/drivers/gpu/drm/gma500/psb_drv.h b/drivers/gpu/drm/gma500/psb_drv.h
-> index 956926341316..c71a5a4e912c 100644
-> --- a/drivers/gpu/drm/gma500/psb_drv.h
-> +++ b/drivers/gpu/drm/gma500/psb_drv.h
-> @@ -735,12 +735,10 @@ extern const struct drm_connector_helper_funcs
->  extern const struct drm_connector_funcs psb_intel_lvds_connector_funcs;
->  
->  /* gem.c */
-> -extern void psb_gem_free_object(struct drm_gem_object *obj);
->  extern int psb_gem_get_aperture(struct drm_device *dev, void *data,
->  			struct drm_file *file);
->  extern int psb_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
->  			struct drm_mode_create_dumb *args);
-> -extern vm_fault_t psb_gem_fault(struct vm_fault *vmf);
->  
->  /* psb_device.c */
->  extern const struct psb_ops psb_chip_ops;
+>  	ret = drm_gem_object_init(dev, &mtk_gem_obj->base, size);
+>  	if (ret < 0) {
+>  		DRM_ERROR("failed to initialize gem object\n");
 > -- 
 > 2.28.0
+
+Reviewed-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+
 > 
 
 -- 
