@@ -1,180 +1,179 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [PATCH v2 04/21] drm/exynos: Introduce GEM object functions
-Date: Wed, 16 Sep 2020 13:24:24 +0200
-Message-ID: <20200916112424.GH438822@phenom.ffwll.local>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v2 05/21] drm/gma500: Introduce GEM object
+ functions
+Date: Wed, 16 Sep 2020 13:31:52 +0200
+Message-ID: <20200916113152.GJ438822@phenom.ffwll.local>
 References: <20200915145958.19993-1-tzimmermann@suse.de>
- <20200915145958.19993-5-tzimmermann@suse.de>
- <20200916100318.GF438822@phenom.ffwll.local>
- <fb1f5992-1642-5751-5672-486b89442e1c@suse.de>
+ <20200915145958.19993-6-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
 Content-Disposition: inline
-In-Reply-To: <fb1f5992-1642-5751-5672-486b89442e1c-l3A5Bk7waGM@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
-Cc: hamohammed.sa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org, matthias.bgg-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org, emil.velikov-ZGY8ohtN/8qB+jHODAdFcQ@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, oleksandr_andrushchenko-uRwfk40T5oI@public.gmane.org, michal.simek-gjFFaj9aHVfQT0dZR+AlfA@public.gmane.org, miaoqinglang-hv44wF8Li93QT0dZR+AlfA@public.gmane.org, jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, linux-rockchip-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, tomi.valkeinen-l0cyMroinI0@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, xen-devel-GuqFBffKawtpuQazS67q72D2FQJk+8+b@public.gmane.org, marek.olsak-5C7GfCeVMHo@public.gmane.org, matthew.auld-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, chunkuang.hu-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, andi.shyti-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, tianci.yin-5C7GfCeVMHo@public.gmane.org, etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, linux-mediatek-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, evan.quan-5C7GfCeVMHo@public.gmane.org, sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.orglinux-arm-
+In-Reply-To: <20200915145958.19993-6-tzimmermann@suse.de>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: hamohammed.sa@gmail.com, heiko@sntech.de, andrey.grodzovsky@amd.com, airlied@linux.ie, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, michal.simek@xilinx.com, eric@anholt.net, krzk@kernel.org, sam@ravnborg.org, sumit.semwal@linaro.org, emil.velikov@collabora.com, linux-samsung-soc@vger.kernel.org, jy0922.shim@samsung.com, oleksandr_andrushchenko@epam.com, tomi.valkeinen@ti.com, linux-tegra@vger.kernel.org, linux@armlinux.org.uk, jonathanh@nvidia.com, linux-rockchip@lists.infradead.org, kgene@kernel.org, bskeggs@redhat.com, xen-devel@lists.xenproject.org, miaoqinglang@huawei.com, intel-gfx@lists.freedesktop.org, matthew.auld@intel.com, chunkuang.hu@kernel.org, linux-arm-msm@vger.kernel.org, marek.olsak@amd.com, tianci.yin@amd.com, etnaviv@lists.freedesktop.org, inki.dae@samsung.com, christian.gmeiner@gmail.com, linux-mediatek@lists.infradead.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Sep 16, 2020 at 12:36:28PM +0200, Thomas Zimmermann wrote:
-> Hi
-> =
+On Tue, Sep 15, 2020 at 04:59:42PM +0200, Thomas Zimmermann wrote:
+> GEM object functions deprecate several similar callback interfaces in
+> struct drm_driver. This patch replaces the per-driver callbacks with
+> per-instance callbacks in gma500.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-> Am 16.09.20 um 12:03 schrieb Daniel Vetter:
-> > On Tue, Sep 15, 2020 at 04:59:41PM +0200, Thomas Zimmermann wrote:
-> >> GEM object functions deprecate several similar callback interfaces in
-> >> struct drm_driver. This patch replaces the per-driver callbacks with
-> >> per-instance callbacks in exynos. The only exception is gem_prime_mmap,
-> >> which is non-trivial to convert.
-> >>
-> >> Signed-off-by: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
-> >> ---
-> >>  drivers/gpu/drm/exynos/exynos_drm_drv.c | 10 ----------
-> >>  drivers/gpu/drm/exynos/exynos_drm_gem.c | 15 +++++++++++++++
-> >>  2 files changed, 15 insertions(+), 10 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/exynos/exynos_drm_drv.c b/drivers/gpu/drm=
-/exynos/exynos_drm_drv.c
-> >> index dbd80f1e4c78..fe46680ca208 100644
-> >> --- a/drivers/gpu/drm/exynos/exynos_drm_drv.c
-> >> +++ b/drivers/gpu/drm/exynos/exynos_drm_drv.c
-> >> @@ -75,11 +75,6 @@ static void exynos_drm_postclose(struct drm_device =
-*dev, struct drm_file *file)
-> >>  	file->driver_priv =3D NULL;
-> >>  }
-> >>  =
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-> >> -static const struct vm_operations_struct exynos_drm_gem_vm_ops =3D {
-> >> -	.open =3D drm_gem_vm_open,
-> >> -	.close =3D drm_gem_vm_close,
-> >> -};
-> >> -
-> >>  static const struct drm_ioctl_desc exynos_ioctls[] =3D {
-> >>  	DRM_IOCTL_DEF_DRV(EXYNOS_GEM_CREATE, exynos_drm_gem_create_ioctl,
-> >>  			DRM_RENDER_ALLOW),
-> >> @@ -124,16 +119,11 @@ static struct drm_driver exynos_drm_driver =3D {
-> >>  	.open			=3D exynos_drm_open,
-> >>  	.lastclose		=3D drm_fb_helper_lastclose,
-> >>  	.postclose		=3D exynos_drm_postclose,
-> >> -	.gem_free_object_unlocked =3D exynos_drm_gem_free_object,
-> >> -	.gem_vm_ops		=3D &exynos_drm_gem_vm_ops,
-> >>  	.dumb_create		=3D exynos_drm_gem_dumb_create,
-> >>  	.prime_handle_to_fd	=3D drm_gem_prime_handle_to_fd,
-> >>  	.prime_fd_to_handle	=3D drm_gem_prime_fd_to_handle,
-> >>  	.gem_prime_import	=3D exynos_drm_gem_prime_import,
-> >> -	.gem_prime_get_sg_table	=3D exynos_drm_gem_prime_get_sg_table,
-> >>  	.gem_prime_import_sg_table	=3D exynos_drm_gem_prime_import_sg_table,
-> >> -	.gem_prime_vmap		=3D exynos_drm_gem_prime_vmap,
-> >> -	.gem_prime_vunmap	=3D exynos_drm_gem_prime_vunmap,
-> >>  	.gem_prime_mmap		=3D exynos_drm_gem_prime_mmap,
-> >>  	.ioctls			=3D exynos_ioctls,
-> >>  	.num_ioctls		=3D ARRAY_SIZE(exynos_ioctls),
-> >> diff --git a/drivers/gpu/drm/exynos/exynos_drm_gem.c b/drivers/gpu/drm=
-/exynos/exynos_drm_gem.c
-> >> index efa476858db5..69a5cf28b4ae 100644
-> >> --- a/drivers/gpu/drm/exynos/exynos_drm_gem.c
-> >> +++ b/drivers/gpu/drm/exynos/exynos_drm_gem.c
-> >> @@ -129,6 +129,19 @@ void exynos_drm_gem_destroy(struct exynos_drm_gem=
- *exynos_gem)
-> >>  	kfree(exynos_gem);
-> >>  }
-> >>  =
+> ---
+>  drivers/gpu/drm/gma500/framebuffer.c |  2 ++
+>  drivers/gpu/drm/gma500/gem.c         | 18 ++++++++++++++++--
+>  drivers/gpu/drm/gma500/gem.h         |  3 +++
+>  drivers/gpu/drm/gma500/psb_drv.c     |  9 ---------
+>  drivers/gpu/drm/gma500/psb_drv.h     |  2 --
+>  5 files changed, 21 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/gma500/framebuffer.c b/drivers/gpu/drm/gma500/framebuffer.c
+> index 54d9876b5305..5ede24fb44ae 100644
+> --- a/drivers/gpu/drm/gma500/framebuffer.c
+> +++ b/drivers/gpu/drm/gma500/framebuffer.c
+> @@ -24,6 +24,7 @@
+>  #include <drm/drm_gem_framebuffer_helper.h>
+>  
+>  #include "framebuffer.h"
+> +#include "gem.h"
+>  #include "gtt.h"
+>  #include "psb_drv.h"
+>  #include "psb_intel_drv.h"
+> @@ -285,6 +286,7 @@ static struct gtt_range *psbfb_alloc(struct drm_device *dev, int aligned_size)
+>  	/* Begin by trying to use stolen memory backing */
+>  	backing = psb_gtt_alloc_range(dev, aligned_size, "fb", 1, PAGE_SIZE);
+>  	if (backing) {
+> +		backing->gem.funcs = &psb_gem_object_funcs;
+>  		drm_gem_private_object_init(dev, &backing->gem, aligned_size);
+>  		return backing;
+>  	}
+> diff --git a/drivers/gpu/drm/gma500/gem.c b/drivers/gpu/drm/gma500/gem.c
+> index f9c4b1d76f56..8f07de83b6fb 100644
+> --- a/drivers/gpu/drm/gma500/gem.c
+> +++ b/drivers/gpu/drm/gma500/gem.c
+> @@ -18,7 +18,9 @@
+>  
+>  #include "psb_drv.h"
+>  
+> -void psb_gem_free_object(struct drm_gem_object *obj)
+> +static vm_fault_t psb_gem_fault(struct vm_fault *vmf);
+> +
+> +static void psb_gem_free_object(struct drm_gem_object *obj)
+>  {
+>  	struct gtt_range *gtt = container_of(obj, struct gtt_range, gem);
+>  
+> @@ -36,6 +38,17 @@ int psb_gem_get_aperture(struct drm_device *dev, void *data,
+>  	return -EINVAL;
+>  }
+>  
+> +static const struct vm_operations_struct psb_gem_vm_ops = {
+> +	.fault = psb_gem_fault,
+> +	.open = drm_gem_vm_open,
+> +	.close = drm_gem_vm_close,
+> +};
+> +
+> +const struct drm_gem_object_funcs psb_gem_object_funcs = {
+> +	.free = psb_gem_free_object,
+> +	.vm_ops = &psb_gem_vm_ops,
+> +};
+> +
+>  /**
+>   *	psb_gem_create		-	create a mappable object
+>   *	@file: the DRM file of the client
+> @@ -63,6 +76,7 @@ int psb_gem_create(struct drm_file *file, struct drm_device *dev, u64 size,
+>  		dev_err(dev->dev, "no memory for %lld byte GEM object\n", size);
+>  		return -ENOSPC;
+>  	}
+> +	r->gem.funcs = &psb_gem_object_funcs;
+>  	/* Initialize the extra goodies GEM needs to do all the hard work */
+>  	if (drm_gem_object_init(dev, &r->gem, size) != 0) {
+>  		psb_gtt_free_range(dev, r);
+> @@ -123,7 +137,7 @@ int psb_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
+>   *	vma->vm_private_data points to the GEM object that is backing this
+>   *	mapping.
+>   */
+> -vm_fault_t psb_gem_fault(struct vm_fault *vmf)
+> +static vm_fault_t psb_gem_fault(struct vm_fault *vmf)
+>  {
+>  	struct vm_area_struct *vma = vmf->vma;
+>  	struct drm_gem_object *obj;
+> diff --git a/drivers/gpu/drm/gma500/gem.h b/drivers/gpu/drm/gma500/gem.h
+> index 4a74dc623b6b..3741a711b9fd 100644
+> --- a/drivers/gpu/drm/gma500/gem.h
+> +++ b/drivers/gpu/drm/gma500/gem.h
+> @@ -8,6 +8,9 @@
+>  #ifndef _GEM_H
+>  #define _GEM_H
+>  
+> +extern const struct drm_gem_object_funcs psb_gem_object_funcs;
+> +
+>  extern int psb_gem_create(struct drm_file *file, struct drm_device *dev,
+>  			  u64 size, u32 *handlep, int stolen, u32 align);
+> +
+>  #endif
+> diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/psb_drv.c
+> index 34b4aae9a15e..b13376a6fb91 100644
+> --- a/drivers/gpu/drm/gma500/psb_drv.c
+> +++ b/drivers/gpu/drm/gma500/psb_drv.c
+> @@ -480,12 +480,6 @@ static const struct dev_pm_ops psb_pm_ops = {
+>  	.runtime_idle = psb_runtime_idle,
+>  };
+>  
+> -static const struct vm_operations_struct psb_gem_vm_ops = {
+> -	.fault = psb_gem_fault,
+> -	.open = drm_gem_vm_open,
+> -	.close = drm_gem_vm_close,
+> -};
+> -
+>  static const struct file_operations psb_gem_fops = {
+>  	.owner = THIS_MODULE,
+>  	.open = drm_open,
+> @@ -507,9 +501,6 @@ static struct drm_driver driver = {
+>  	.irq_uninstall = psb_irq_uninstall,
+>  	.irq_handler = psb_irq_handler,
+>  
+> -	.gem_free_object_unlocked = psb_gem_free_object,
+> -	.gem_vm_ops = &psb_gem_vm_ops,
+> -
+>  	.dumb_create = psb_gem_dumb_create,
+>  	.ioctls = psb_ioctls,
+>  	.fops = &psb_gem_fops,
+> diff --git a/drivers/gpu/drm/gma500/psb_drv.h b/drivers/gpu/drm/gma500/psb_drv.h
+> index 956926341316..c71a5a4e912c 100644
+> --- a/drivers/gpu/drm/gma500/psb_drv.h
+> +++ b/drivers/gpu/drm/gma500/psb_drv.h
+> @@ -735,12 +735,10 @@ extern const struct drm_connector_helper_funcs
+>  extern const struct drm_connector_funcs psb_intel_lvds_connector_funcs;
+>  
+>  /* gem.c */
+> -extern void psb_gem_free_object(struct drm_gem_object *obj);
+>  extern int psb_gem_get_aperture(struct drm_device *dev, void *data,
+>  			struct drm_file *file);
+>  extern int psb_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
+>  			struct drm_mode_create_dumb *args);
+> -extern vm_fault_t psb_gem_fault(struct vm_fault *vmf);
+>  
+>  /* psb_device.c */
+>  extern const struct psb_ops psb_chip_ops;
+> -- 
+> 2.28.0
+> 
 
-> >> +static const struct vm_operations_struct exynos_drm_gem_vm_ops =3D {
-> >> +	.open =3D drm_gem_vm_open,
-> >> +	.close =3D drm_gem_vm_close,
-> >> +};
-> > =
-
-> > Hm moving the drm_gem_cma_vm_ops into drm_gem.h or so and maybe calling
-> > them drm_gem_simple_ops or so would remove a pile of these. But perhaps=
- a
-> > quick follow up series.
-> =
-
-> Good idea. Several interfaces use the term 'default' in their name, so
-> something like drm_gem_default_vm_ops seems appropriate.
-
-Default sounds like a fine naming choice too.
-
-> BTW is there a reason why we have file operations like
-> DEFINE_DRM_GEM_CMA_FOPS() in each module? It seems like this could also
-> be provided by the rsp memory-manager library.
-
-It's for the module reference counting of the underlying file. So
-file_operations need this.
--Daniel
-
-
-> =
-
-> Best regards
-> Thomas
-> =
-
-> > =
-
-> > Reviewed-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-> > =
-
-> >> +
-> >> +static const struct drm_gem_object_funcs exynos_drm_gem_object_funcs =
-=3D {
-> >> +	.free =3D exynos_drm_gem_free_object,
-> >> +	.get_sg_table =3D exynos_drm_gem_prime_get_sg_table,
-> >> +	.vmap =3D exynos_drm_gem_prime_vmap,
-> >> +	.vunmap	=3D exynos_drm_gem_prime_vunmap,
-> >> +	.vm_ops =3D &exynos_drm_gem_vm_ops,
-> >> +};
-> >> +
-> >>  static struct exynos_drm_gem *exynos_drm_gem_init(struct drm_device *=
-dev,
-> >>  						  unsigned long size)
-> >>  {
-> >> @@ -143,6 +156,8 @@ static struct exynos_drm_gem *exynos_drm_gem_init(=
-struct drm_device *dev,
-> >>  	exynos_gem->size =3D size;
-> >>  	obj =3D &exynos_gem->base;
-> >>  =
-
-> >> +	obj->funcs =3D &exynos_drm_gem_object_funcs;
-> >> +
-> >>  	ret =3D drm_gem_object_init(dev, obj, size);
-> >>  	if (ret < 0) {
-> >>  		DRM_DEV_ERROR(dev->dev, "failed to initialize gem object\n");
-> >> -- =
-
-> >> 2.28.0
-> >>
-> > =
-
-> =
-
-> -- =
-
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 N=FCrnberg, Germany
-> (HRB 36809, AG N=FCrnberg)
-> Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
-> =
-
-
-
-
-
--- =
-
+-- 
 Daniel Vetter
 Software Engineer, Intel Corporation
 http://blog.ffwll.ch
