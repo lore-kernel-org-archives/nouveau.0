@@ -1,39 +1,31 @@
-From: Thomas Bogendoerfer <tsbogend-I1c7kopa9pxLokYuJOExCg@public.gmane.org>
-Subject: Re: [PATCH 09/18] sgiwd93: convert to dma_alloc_noncoherent
-Date: Tue, 22 Sep 2020 10:49:57 +0200
-Message-ID: <20200922084957.GC8477@alpha.franken.de>
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Subject: Re: [PATCH 11/18] lib82596: convert to dma_alloc_noncoherent
+Date: Tue, 22 Sep 2020 10:50:49 +0200
+Message-ID: <20200922085049.GE8477@alpha.franken.de>
 References: <20200915155122.1768241-1-hch@lst.de>
- <20200915155122.1768241-10-hch@lst.de>
+ <20200915155122.1768241-12-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-mips-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20200915155122.1768241-10-hch-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/iommu>,
- <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.linuxfoundation.org/pipermail/iommu/>
-List-Post: <mailto:iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
-List-Help: <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/iommu>,
- <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=subscribe>
-Errors-To: iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
-Sender: "iommu" <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
-To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Cc: alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "James E.J. Bottomley" <James.Bottomley-d9PhHud1JfjCXq6kfMZ53/egYHeGw8Jk@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, linux1394-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Joonyoung Shim <jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Matt Porter <mporter-XVmvHMARGAS8U2dJNN8I7kB+6BGkLq7r@public.gmane.org>, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Seung-Woo Kim <sw0312.kim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, Stefan Richter <stefanr-MtYdepGKPcBMYopoZt5u/LNAH6kLmebB@public.gmane.org>
+In-Reply-To: <20200915155122.1768241-12-hch@lst.de>
+To: Christoph Hellwig <hch@lst.de>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, Tomasz Figa <tfiga@chromium.org>, Matt Porter <mporter@kernel.crashing.org>, iommu@lists.linux-foundation.org, Stefan Richter <stefanr@s5r6.in-berlin.de>, linux1394-devel@lists.sourceforge.net, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org, linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org, netdev@vger.kernel.org, linux-scsi@vger.kernel.org, linux-mm@kvack
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Sep 15, 2020 at 05:51:13PM +0200, Christoph Hellwig wrote:
+On Tue, Sep 15, 2020 at 05:51:15PM +0200, Christoph Hellwig wrote:
 > Use the new non-coherent DMA API including proper ownership transfers.
-> This also means we can allocate the memory as DMA_TO_DEVICE instead
-> of bidirectional.
+> This includes moving the DMA helpers to lib82596 based of an ifdef to
+> avoid include order problems.
 > 
-> Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
 > ---
->  drivers/scsi/sgiwd93.c | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
+>  drivers/net/ethernet/i825xx/lasi_82596.c |  25 ++---
+>  drivers/net/ethernet/i825xx/lib82596.c   | 114 ++++++++++++++---------
+>  drivers/net/ethernet/i825xx/sni_82596.c  |   4 -
+>  3 files changed, 80 insertions(+), 63 deletions(-)
 
-Tested-by: Thomas Bogendoerfer <tsbogend-I1c7kopa9pxLokYuJOExCg@public.gmane.org>
+Tested-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de> (SNI part)
 
 -- 
 Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
