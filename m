@@ -1,15 +1,15 @@
 From: Thomas Bogendoerfer <tsbogend-I1c7kopa9pxLokYuJOExCg@public.gmane.org>
-Subject: Re: [PATCH 13/18] 53c700: convert to dma_alloc_noncoherent
-Date: Tue, 22 Sep 2020 10:51:34 +0200
-Message-ID: <20200922085134.GG8477@alpha.franken.de>
+Subject: Re: [PATCH 12/18] sgiseeq: convert to dma_alloc_noncoherent
+Date: Tue, 22 Sep 2020 10:51:16 +0200
+Message-ID: <20200922085116.GF8477@alpha.franken.de>
 References: <20200915155122.1768241-1-hch@lst.de>
- <20200915155122.1768241-14-hch@lst.de>
+ <20200915155122.1768241-13-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20200915155122.1768241-14-hch-jcswGhMUV9g@public.gmane.org>
+In-Reply-To: <20200915155122.1768241-13-hch-jcswGhMUV9g@public.gmane.org>
 List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/iommu>,
  <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.linuxfoundation.org/pipermail/iommu/>
@@ -23,13 +23,18 @@ To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 Cc: alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, linux-doc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "James E.J. Bottomley" <James.Bottomley-d9PhHud1JfjCXq6kfMZ53/egYHeGw8Jk@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, linux1394-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Joonyoung Shim <jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Matt Porter <mporter-XVmvHMARGAS8U2dJNN8I7kB+6BGkLq7r@public.gmane.org>, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Mauro Carvalho Chehab <mchehab-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-parisc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Seung-Woo Kim <sw0312.kim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, linux-mips-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, Stefan Richter <stefanr-MtYdepGKPcBMYopoZt5u/LNAH6kLmebB@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Sep 15, 2020 at 05:51:17PM +0200, Christoph Hellwig wrote:
+On Tue, Sep 15, 2020 at 05:51:16PM +0200, Christoph Hellwig wrote:
 > Use the new non-coherent DMA API including proper ownership transfers.
+> This includes adding additional calls to dma_sync_desc_dev as the
+> old syncing was rather ad-hoc.
+> 
+> Thanks to Thomas Bogendoerfer for debugging the ownership transfer
+> issues.
 > 
 > Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 > ---
->  drivers/scsi/53c700.c | 20 ++++++++++++++------
->  1 file changed, 14 insertions(+), 6 deletions(-)
+>  drivers/net/ethernet/seeq/sgiseeq.c | 28 ++++++++++++++++++----------
+>  1 file changed, 18 insertions(+), 10 deletions(-)
 
 Tested-by: Thomas Bogendoerfer <tsbogend-I1c7kopa9pxLokYuJOExCg@public.gmane.org>
 
