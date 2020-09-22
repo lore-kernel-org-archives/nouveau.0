@@ -1,54 +1,32 @@
-From: DorotaC <xofofu.dcz-Td5ZOp7sT3WkR8b2g5rKI2D2FQJk+8+b@public.gmane.org>
-Subject: Re: XDC 2020 feedback and comments
-Date: Mon, 21 Sep 2020 18:30:21 +0200
-Message-ID: <20200921183016.670ce6a6.dorota.czaplejewicz@puri.sm>
-References: <4eaa69879014a406424b9702dd6574a305f4c98e.camel@igalia.com>
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Subject: Re: [PATCH 06/18] lib82596: move DMA allocation into the callers of
+ i82596_probe
+Date: Tue, 22 Sep 2020 10:48:48 +0200
+Message-ID: <20200922084848.GA8477@alpha.franken.de>
+References: <20200915155122.1768241-1-hch@lst.de>
+ <20200915155122.1768241-7-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4eaa69879014a406424b9702dd6574a305f4c98e.camel-wEGTBA9jqPzQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Samuel Iglesias =?UTF-8?B?R29uc8OhbHZleg==?= <siglesias-wEGTBA9jqPzQT0dZR+AlfA@public.gmane.org>
-Cc: "xorg-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <xorg-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "wayland-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <wayland-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "board-UUNKDCO5ciMA0k6STJqGzw@public.gmane.org" <board-UUNKDCO5ciMA0k6STJqGzw@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "events-go0+a7rfsptAfugRpC6u6w@public.gmane.org" <events-go0+a7rfsptAfugRpC6u6w@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-mips-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20200915155122.1768241-7-hch@lst.de>
+To: Christoph Hellwig <hch@lst.de>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, Tomasz Figa <tfiga@chromium.org>, Matt Porter <mporter@kernel.crashing.org>, iommu@lists.linux-foundation.org, Stefan Richter <stefanr@s5r6.in-berlin.de>, linux1394-devel@lists.sourceforge.net, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org, linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org, netdev@vger.kernel.org, linux-scsi@vger.kernel.org, linux-mm@kvack
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCAyMSBTZXAgMjAyMCAxMDowMzozMiArMDIwMApTYW11ZWwgSWdsZXNpYXMgR29uc8Oh
-bHZleiA8c2lnbGVzaWFzQGlnYWxpYS5jb20+IHdyb3RlOgoKPiBIaSBhbGwsCj4gCj4gSHVnZSB0
-aGFua3MgYWdhaW4gdG8gdGhlIGVudGlyZSB0ZWFtIGZyb20gSW50ZWwsIGZvciB0aGVpciBncmVh
-dCB3b3JrCj4gb3JnYW5pemluZyBYREMgMjAyMCwgb3VyIGZpcnN0IHZpcnR1YWwgY29uZmVyZW5j
-ZSEKPiAKPiBBcyB1c3VhbCB3ZSdyZSBsb29raW5nIGZvciBmZWVkYmFjayBvbiBib3RoIFhEQyBp
-dHNlbGYsIGFuZCB0aGUgQ0ZQCj4gcHJvY2VzcyBhbmQgcHJvZ3JhbSBzZWxlY3Rpb24uIEJvdGgg
-YWJvdXQgd2hhdCB3YXMgZ3JlYXQgYW5kIHNob3VsZCBiZQo+IGtlcHQgZm9yIG5leHQgeWVhcidz
-IGVkaXRpb24sIGFuZCB3aGVyZSB0aGVyZSdzIHJvb20gZm9yIGltcHJvdmVtZW50Lgo+IAo+IFRo
-ZSBib2FyZCBkb2VzIGtlZXAgc29tZSBub3RlcywgZm9yIHRob3NlIGludGVyZXN0ZWQgaW4gd2hh
-dCB3ZSBoYXZlCj4gYWxyZWFkeToKPiAKPiAtIFhEQyBub3RlcyBmb3IgcHJvc3BlY3RpdmUgb3Jn
-YW5pemVyczogCj4gaHR0cHM6Ly93d3cueC5vcmcvd2lraS9FdmVudHMvUkZQLwo+IAo+IC0gQ0ZQ
-IG5vdGVzOiBodHRwczovL3d3dy54Lm9yZy93aWtpL0V2ZW50cy9QYXBlcnNDb21taXR0ZWUvCj4g
-Cj4gSWYgeW91IHdhbnQgdG8gc2VuZCBpbiB5b3VyIGNvbW1lbnRzIGluIHByaXZhdGUsIHBsZWFz
-ZSBzZW5kIHRoZW0gdG8KPiB0aGUgWC5vcmcgRm91bmRhdGlvbiBib2FyZDogYm9hcmRAZm91bmRh
-dGlvbi54Lm9yZwo+IAo+IENoZWVycywKPiAKPiBTYW0KCkhpIFNhbSwKCkknZCBsaWtlIHRvIG1h
-a2UgYSBub3RlIGFib3V0IHVzaW5nIHNvbWUgbW9yZSBwcml2YWN5LWZyaWVuZGx5IHN0cmVhbWlu
-ZyBwbGF0Zm9ybS4KCldoZW4gSSB0cmllZCB0byB3YXRjaCB0aGUgc3RyZWFtcywgaW5zdGVhZCBv
-ZiBzaG93aW5nIHRoZSB2aWRlbywgeW91dHViZSBwcmVzZW50ZWQgbWUgd2l0aCBhIEdEUFIgZGlh
-bG9nLgoKV2hpbGUgaXQgd2FzIGdsaXRjaGVkIGFuZCB1bnNraXBwYWJsZSBmb3IgbWUsIGp1c3Qg
-dGhlIGZhY3QgdGhhdCBHb29nbGUgbWFkZSBpdCBub24tb3B0aW9uYWwgc2hvd3MgdGhlaXIgZGlz
-cmVnYXJkIGZvciBteSBwcml2YWN5IChhbmQsIElNTywgdGhlIGxldHRlciBvZiBsYXcsIHdoaWNo
-IG1hbmRhdGVzIG9wdC1pbikuIFVuZm9ydHVuYXRlbHksIEkgd2Fzbid0IGFibGUgdG8gZXZhbHVh
-dGUgdGhlIGRpYWxvZydzIGNvbnRlbnRzIGR1ZSB0byB0aGUgZ2xpdGNoLCBidXQgb25saW5lIHJl
-cG9ydHMgc3VnZ2VzdCB0aGV5IGFyZSBzaW1pbGFybHkgaWdub3JhbnQuIEFsbCBpbiBhbGwsIEkg
-b25seSBhY2Nlc3MgeW91dHViZSB2aWEgeW91dHViZS1kbCBhbnkgbW9yZSwgYW5kIHRoYXQgZG9l
-c24ndCBzdXBwb3J0IHN0cmVhbWluZy4KCldoZW4gYXR0ZW5kaW5nIEFrYWRlbXkgMiB3ZWVrcyBh
-Z28sIHRoZXkgaGFkIGEgc2V0dXAgYmFzZWQgb24gQmlnQmx1ZUJ1dHRvbiB0aGF0IHdvcmtlZCB3
-ZWxsIHdpdGhvdXQgdGhhdCBzb3J0IG9mIGlzc3Vlcy4KCkNoZWVycywKRG9yb3RhCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBs
-aXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
+On Tue, Sep 15, 2020 at 05:51:10PM +0200, Christoph Hellwig wrote:
+> This allows us to get rid of the LIB82596_DMA_ATTR defined and prepare
+> for untangling the coherent vs non-coherent DMA allocation API.
+> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+>  drivers/net/ethernet/i825xx/lasi_82596.c | 24 ++++++++++------
+>  drivers/net/ethernet/i825xx/lib82596.c   | 36 ++++++++----------------
+>  drivers/net/ethernet/i825xx/sni_82596.c  | 19 +++++++++----
+>  3 files changed, 40 insertions(+), 39 deletions(-)
+
+Tested-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de> (SNI part)
+
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
