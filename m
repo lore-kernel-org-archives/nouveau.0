@@ -1,79 +1,83 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH] drm/nouveau/kms/nv50-: Fix clock checking algorithm in nv50_dp_mode_valid()
-Date: Tue, 22 Sep 2020 17:05:10 -0400
-Message-ID: <20200922210510.156220-1-lyude@redhat.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/kms/nv50-: Fix clock checking
+ algorithm in nv50_dp_mode_valid()
+Date: Tue, 22 Sep 2020 17:10:03 -0400
+Message-ID: <CAKb7UvhAb0wFd9Qi1FGJ=TAYZJ9DYXL6XXMfnG49xEO=a9TuYg@mail.gmail.com>
+References: <20200922210510.156220-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-To: nouveau@lists.freedesktop.org
-Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, "open list:DRM DRIVER FOR NVIDIA
-        GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20200922210510.156220-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-While I thought I had this correct (since it actually did reject modes
-like I expected during testing), Ville Syrjala from Intel pointed out
-that the logic here isn't correct. max_clock refers to the max symbol
-rate supported by the encoder, so limiting clock to ds_clock using max()
-doesn't make sense. Additionally, we want to check against 6bpc for the
-time being since that's the minimum possible bpc here, not the reported
-bpc from the connector. See:
-
-https://lists.freedesktop.org/archives/dri-devel/2020-September/280276.html
-
-For more info.
-
-So, let's rewrite this using Ville's advice.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Fixes: 409d38139b42 ("drm/nouveau/kms/nv50-: Use downstream DP clock limits for mode validation")
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>
----
- drivers/gpu/drm/nouveau/nouveau_dp.c | 23 +++++++++++++----------
- 1 file changed, 13 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
-index 7b640e05bd4cd..24c81e423d349 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dp.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
-@@ -231,23 +231,26 @@ nv50_dp_mode_valid(struct drm_connector *connector,
- 		   const struct drm_display_mode *mode,
- 		   unsigned *out_clock)
- {
--	const unsigned min_clock = 25000;
--	unsigned max_clock, ds_clock, clock;
-+	const unsigned int min_clock = 25000;
-+	unsigned int max_clock, ds_clock, clock;
-+	const u8 bpp = 18; /* 6 bpc */
- 	enum drm_mode_status ret;
- 
- 	if (mode->flags & DRM_MODE_FLAG_INTERLACE && !outp->caps.dp_interlace)
- 		return MODE_NO_INTERLACE;
- 
- 	max_clock = outp->dp.link_nr * outp->dp.link_bw;
--	ds_clock = drm_dp_downstream_max_dotclock(outp->dp.dpcd,
--						  outp->dp.downstream_ports);
--	if (ds_clock)
--		max_clock = min(max_clock, ds_clock);
--
--	clock = mode->clock * (connector->display_info.bpc * 3) / 10;
--	ret = nouveau_conn_mode_clock_valid(mode, min_clock, max_clock,
--					    &clock);
-+	clock = mode->clock * bpp / 8;
-+	if (clock > max_clock)
-+		return MODE_CLOCK_HIGH;
-+
-+	ds_clock = drm_dp_downstream_max_dotclock(outp->dp.dpcd, outp->dp.downstream_ports);
-+	if (ds_clock && mode->clock > ds_clock)
-+		return MODE_CLOCK_HIGH;
-+
-+	ret = nouveau_conn_mode_clock_valid(mode, min_clock, max_clock, &clock);
- 	if (out_clock)
- 		*out_clock = clock;
-+
- 	return ret;
- }
--- 
-2.26.2
+Q2FuIHdlIHVzZSA2YnBjIG9uIGFyYml0cmFyeSBEUCBtb25pdG9ycywgb3IgaXMgdGhlcmUgYSBj
+YXBhYmlsaXR5IGZvcgppdD8gTWF5YmUgb25seSB1c2UgNmJwYyBpZiBkaXNwbGF5X2luZm8uYnBj
+ID09IDYgYW5kIG90aGVyd2lzZSB1c2UgOD8KCk9uIFR1ZSwgU2VwIDIyLCAyMDIwIGF0IDU6MDYg
+UE0gTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4gd3JvdGU6Cj4KPiBXaGlsZSBJIHRob3Vn
+aHQgSSBoYWQgdGhpcyBjb3JyZWN0IChzaW5jZSBpdCBhY3R1YWxseSBkaWQgcmVqZWN0IG1vZGVz
+Cj4gbGlrZSBJIGV4cGVjdGVkIGR1cmluZyB0ZXN0aW5nKSwgVmlsbGUgU3lyamFsYSBmcm9tIElu
+dGVsIHBvaW50ZWQgb3V0Cj4gdGhhdCB0aGUgbG9naWMgaGVyZSBpc24ndCBjb3JyZWN0LiBtYXhf
+Y2xvY2sgcmVmZXJzIHRvIHRoZSBtYXggc3ltYm9sCj4gcmF0ZSBzdXBwb3J0ZWQgYnkgdGhlIGVu
+Y29kZXIsIHNvIGxpbWl0aW5nIGNsb2NrIHRvIGRzX2Nsb2NrIHVzaW5nIG1heCgpCj4gZG9lc24n
+dCBtYWtlIHNlbnNlLiBBZGRpdGlvbmFsbHksIHdlIHdhbnQgdG8gY2hlY2sgYWdhaW5zdCA2YnBj
+IGZvciB0aGUKPiB0aW1lIGJlaW5nIHNpbmNlIHRoYXQncyB0aGUgbWluaW11bSBwb3NzaWJsZSBi
+cGMgaGVyZSwgbm90IHRoZSByZXBvcnRlZAo+IGJwYyBmcm9tIHRoZSBjb25uZWN0b3IuIFNlZToK
+Pgo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL2RyaS1kZXZlbC8yMDIw
+LVNlcHRlbWJlci8yODAyNzYuaHRtbAo+Cj4gRm9yIG1vcmUgaW5mby4KPgo+IFNvLCBsZXQncyBy
+ZXdyaXRlIHRoaXMgdXNpbmcgVmlsbGUncyBhZHZpY2UuCj4KPiBTaWduZWQtb2ZmLWJ5OiBMeXVk
+ZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgo+IEZpeGVzOiA0MDlkMzgxMzliNDIgKCJkcm0vbm91
+dmVhdS9rbXMvbnY1MC06IFVzZSBkb3duc3RyZWFtIERQIGNsb2NrIGxpbWl0cyBmb3IgbW9kZSB2
+YWxpZGF0aW9uIikKPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
+dGVsLmNvbT4KPiBDYzogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KPiBDYzogQmVuIFNr
+ZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9ub3V2ZWF1X2RwLmMgfCAyMyArKysrKysrKysrKysrLS0tLS0tLS0tLQo+ICAxIGZpbGUgY2hh
+bmdlZCwgMTMgaW5zZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcC5jIGIvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9kcC5jCj4gaW5kZXggN2I2NDBlMDViZDRjZC4uMjRjODFlNDIzZDM0OSAx
+MDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RwLmMKPiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RwLmMKPiBAQCAtMjMxLDIzICsyMzEs
+MjYgQEAgbnY1MF9kcF9tb2RlX3ZhbGlkKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3Is
+Cj4gICAgICAgICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlICptb2Rl
+LAo+ICAgICAgICAgICAgICAgICAgICB1bnNpZ25lZCAqb3V0X2Nsb2NrKQo+ICB7Cj4gLSAgICAg
+ICBjb25zdCB1bnNpZ25lZCBtaW5fY2xvY2sgPSAyNTAwMDsKPiAtICAgICAgIHVuc2lnbmVkIG1h
+eF9jbG9jaywgZHNfY2xvY2ssIGNsb2NrOwo+ICsgICAgICAgY29uc3QgdW5zaWduZWQgaW50IG1p
+bl9jbG9jayA9IDI1MDAwOwo+ICsgICAgICAgdW5zaWduZWQgaW50IG1heF9jbG9jaywgZHNfY2xv
+Y2ssIGNsb2NrOwo+ICsgICAgICAgY29uc3QgdTggYnBwID0gMTg7IC8qIDYgYnBjICovCj4gICAg
+ICAgICBlbnVtIGRybV9tb2RlX3N0YXR1cyByZXQ7Cj4KPiAgICAgICAgIGlmIChtb2RlLT5mbGFn
+cyAmIERSTV9NT0RFX0ZMQUdfSU5URVJMQUNFICYmICFvdXRwLT5jYXBzLmRwX2ludGVybGFjZSkK
+PiAgICAgICAgICAgICAgICAgcmV0dXJuIE1PREVfTk9fSU5URVJMQUNFOwo+Cj4gICAgICAgICBt
+YXhfY2xvY2sgPSBvdXRwLT5kcC5saW5rX25yICogb3V0cC0+ZHAubGlua19idzsKPiAtICAgICAg
+IGRzX2Nsb2NrID0gZHJtX2RwX2Rvd25zdHJlYW1fbWF4X2RvdGNsb2NrKG91dHAtPmRwLmRwY2Qs
+Cj4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBvdXRw
+LT5kcC5kb3duc3RyZWFtX3BvcnRzKTsKPiAtICAgICAgIGlmIChkc19jbG9jaykKPiAtICAgICAg
+ICAgICAgICAgbWF4X2Nsb2NrID0gbWluKG1heF9jbG9jaywgZHNfY2xvY2spOwo+IC0KPiAtICAg
+ICAgIGNsb2NrID0gbW9kZS0+Y2xvY2sgKiAoY29ubmVjdG9yLT5kaXNwbGF5X2luZm8uYnBjICog
+MykgLyAxMDsKPiAtICAgICAgIHJldCA9IG5vdXZlYXVfY29ubl9tb2RlX2Nsb2NrX3ZhbGlkKG1v
+ZGUsIG1pbl9jbG9jaywgbWF4X2Nsb2NrLAo+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgJmNsb2NrKTsKPiArICAgICAgIGNsb2NrID0gbW9kZS0+Y2xvY2sgKiBi
+cHAgLyA4Owo+ICsgICAgICAgaWYgKGNsb2NrID4gbWF4X2Nsb2NrKQo+ICsgICAgICAgICAgICAg
+ICByZXR1cm4gTU9ERV9DTE9DS19ISUdIOwo+ICsKPiArICAgICAgIGRzX2Nsb2NrID0gZHJtX2Rw
+X2Rvd25zdHJlYW1fbWF4X2RvdGNsb2NrKG91dHAtPmRwLmRwY2QsIG91dHAtPmRwLmRvd25zdHJl
+YW1fcG9ydHMpOwo+ICsgICAgICAgaWYgKGRzX2Nsb2NrICYmIG1vZGUtPmNsb2NrID4gZHNfY2xv
+Y2spCj4gKyAgICAgICAgICAgICAgIHJldHVybiBNT0RFX0NMT0NLX0hJR0g7Cj4gKwo+ICsgICAg
+ICAgcmV0ID0gbm91dmVhdV9jb25uX21vZGVfY2xvY2tfdmFsaWQobW9kZSwgbWluX2Nsb2NrLCBt
+YXhfY2xvY2ssICZjbG9jayk7Cj4gICAgICAgICBpZiAob3V0X2Nsb2NrKQo+ICAgICAgICAgICAg
+ICAgICAqb3V0X2Nsb2NrID0gY2xvY2s7Cj4gKwo+ICAgICAgICAgcmV0dXJuIHJldDsKPiAgfQo+
+IC0tCj4gMi4yNi4yCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwo+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9kcmktZGV2ZWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
