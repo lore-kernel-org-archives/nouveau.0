@@ -1,33 +1,42 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH] drm/nouveau/kms/nv50-: Fix clock checking algorithm in nv50_dp_mode_valid()
-Date: Tue, 22 Sep 2020 17:22:23 -0400
-Message-ID: <CAKb7Uvj++15aEXiLGgSZb37wwzDSRCetVT+trP6JNwhk8n-whA@mail.gmail.com>
-References: <20200922210510.156220-1-lyude@redhat.com> <CAKb7UvhAb0wFd9Qi1FGJ=TAYZJ9DYXL6XXMfnG49xEO=a9TuYg@mail.gmail.com>
- <7b10668ee337e531b14705ebecb1f6c1004728d6.camel@redhat.com>
+From: Tian Tao <tiantao6-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org>
+Subject: [PATCH] drm/nouveau/kms: Remove set but not used 'ret'
+Date: Tue, 22 Sep 2020 17:25:45 +0800
+Message-ID: <1600766745-56543-1-git-send-email-tiantao6@hisilicon.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <7b10668ee337e531b14705ebecb1f6c1004728d6.camel@redhat.com>
-To: Lyude Paul <lyude@redhat.com>
-Cc: nouveau <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, pankaj.laxminarayan.bharadiya-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org, tiwai-l3A5Bk7waGM@public.gmane.org, jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: linuxarm-hv44wF8Li93QT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Sep 22, 2020 at 5:14 PM Lyude Paul <lyude@redhat.com> wrote:
->
-> On Tue, 2020-09-22 at 17:10 -0400, Ilia Mirkin wrote:
-> > Can we use 6bpc on arbitrary DP monitors, or is there a capability for
-> > it? Maybe only use 6bpc if display_info.bpc == 6 and otherwise use 8?
->
-> I don't think that display_info.bpc actually implies a minimum bpc, only a
-> maximum bpc iirc (Ville would know the answer to this one). The other thing to
-> note here is that we want to assume the lowest possible bpc here since we're
-> only concerned if the mode passed to ->mode_valid can be set under -any-
-> conditions (including those that require lowering the bpc beyond it's maximum
-> value), so we definitely do want to always use 6bpc here even once we get
-> support for optimizing the bpc based on the available display bandwidth.
-
-Yeah, display_info is the max bpc. But would an average monitor
-support 6bpc? And if it does, does the current link training code even
-try that when display_info.bpc != 6?
-
-  -ilia
+VGhpcyBhZGRyZXNzZXMgdGhlIGZvbGxvd2luZyBnY2Mgd2FybmluZyB3aXRoICJtYWtlIFc9MSI6
+CmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYzogSW4gZnVuY3Rpb24g4oCY
+bnY1MF9tc3RtX3ByZXBhcmXigJk6CmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rp
+c3AuYzoxMzc4OjY6IHdhcm5pbmc6CnZhcmlhYmxlIOKAmHJldOKAmSBzZXQgYnV0IG5vdCB1c2Vk
+IFstV3VudXNlZC1idXQtc2V0LXZhcmlhYmxlXQoKU2lnbmVkLW9mZi1ieTogVGlhbiBUYW8gPHRp
+YW50YW82QGhpc2lsaWNvbi5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52
+NTAvZGlzcC5jIHwgMyArKysKIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKykKCmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMgYi9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMKaW5kZXggYjExMWZlMi4uZDA1YzU3YyAx
+MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCisrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYwpAQCAtMTM3OSw2ICsxMzc5
+LDkgQEAgbnY1MF9tc3RtX3ByZXBhcmUoc3RydWN0IG52NTBfbXN0bSAqbXN0bSkKIAogCU5WX0FU
+T01JQyhkcm0sICIlczogbXN0bSBwcmVwYXJlXG4iLCBtc3RtLT5vdXRwLT5iYXNlLmJhc2UubmFt
+ZSk7CiAJcmV0ID0gZHJtX2RwX3VwZGF0ZV9wYXlsb2FkX3BhcnQxKCZtc3RtLT5tZ3IpOworCWlm
+IChyZXQpIHsKKyAgICAgICAgICAgICAgICBOVl9BVE9NSUMoZHJtLCAiZmFpbGVkIHRvIHVwZGF0
+ZSBwYXlsb2FkICVkXG4iLCByZXQpOworICAgICAgICB9CiAKIAlkcm1fZm9yX2VhY2hfZW5jb2Rl
+cihlbmNvZGVyLCBtc3RtLT5vdXRwLT5iYXNlLmJhc2UuZGV2KSB7CiAJCWlmIChlbmNvZGVyLT5l
+bmNvZGVyX3R5cGUgPT0gRFJNX01PREVfRU5DT0RFUl9EUE1TVCkgewotLSAKMi43LjQKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
+ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
