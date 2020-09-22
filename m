@@ -1,48 +1,79 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/kms: Remove set but not used 'ret'
-Date: Tue, 22 Sep 2020 14:16:26 -0400
-Message-ID: <33823a73f3e506349aaf22331cc9cec8c04c72d2.camel@redhat.com>
-References: <1600766745-56543-1-git-send-email-tiantao6@hisilicon.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH] drm/nouveau/kms/nv50-: Fix clock checking algorithm in nv50_dp_mode_valid()
+Date: Tue, 22 Sep 2020 17:05:10 -0400
+Message-ID: <20200922210510.156220-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1600766745-56543-1-git-send-email-tiantao6-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tian Tao <tiantao6-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org>, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, pankaj.laxminarayan.bharadiya-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org, tiwai-l3A5Bk7waGM@public.gmane.org, jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: linuxarm-hv44wF8Li93QT0dZR+AlfA@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+To: nouveau@lists.freedesktop.org
+Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, "open list:DRM DRIVER FOR NVIDIA
+        GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCAyMDIwLTA5LTIyIGF0IDE3OjI1ICswODAwLCBUaWFuIFRhbyB3cm90ZToKPiBUaGlz
-IGFkZHJlc3NlcyB0aGUgZm9sbG93aW5nIGdjYyB3YXJuaW5nIHdpdGggIm1ha2UgVz0xIjoKPiBk
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmM6IEluIGZ1bmN0aW9uIOKAmG52
-NTBfbXN0bV9wcmVwYXJl4oCZOgo+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rp
-c3AuYzoxMzc4OjY6IHdhcm5pbmc6Cj4gdmFyaWFibGUg4oCYcmV04oCZIHNldCBidXQgbm90IHVz
-ZWQgWy1XdW51c2VkLWJ1dC1zZXQtdmFyaWFibGVdCj4gCj4gU2lnbmVkLW9mZi1ieTogVGlhbiBU
-YW8gPHRpYW50YW82QGhpc2lsaWNvbi5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L2Rpc3BudjUwL2Rpc3AuYyB8IDMgKysrCj4gIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlv
-bnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAv
-ZGlzcC5jCj4gYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMKPiBpbmRl
-eCBiMTExZmUyLi5kMDVjNTdjIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L2Rpc3BudjUwL2Rpc3AuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUw
-L2Rpc3AuYwo+IEBAIC0xMzc5LDYgKzEzNzksOSBAQCBudjUwX21zdG1fcHJlcGFyZShzdHJ1Y3Qg
-bnY1MF9tc3RtICptc3RtKQo+ICAKPiAgCU5WX0FUT01JQyhkcm0sICIlczogbXN0bSBwcmVwYXJl
-XG4iLCBtc3RtLT5vdXRwLT5iYXNlLmJhc2UubmFtZSk7Cj4gIAlyZXQgPSBkcm1fZHBfdXBkYXRl
-X3BheWxvYWRfcGFydDEoJm1zdG0tPm1ncik7Cj4gKwlpZiAocmV0KSB7Cj4gKyAgICAgICAgICAg
-ICAgICBOVl9BVE9NSUMoZHJtLCAiZmFpbGVkIHRvIHVwZGF0ZSBwYXlsb2FkICVkXG4iLCByZXQp
-Owo+ICsgICAgICAgIH0KClJlbW92ZSB0aGUgYnJhY2VzIGFyb3VuZCByZXQgYW5kIHRoaXMgaXM6
-CgpSZXZpZXdlZC1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KCj4gIAo+ICAJZHJt
-X2Zvcl9lYWNoX2VuY29kZXIoZW5jb2RlciwgbXN0bS0+b3V0cC0+YmFzZS5iYXNlLmRldikgewo+
-ICAJCWlmIChlbmNvZGVyLT5lbmNvZGVyX3R5cGUgPT0gRFJNX01PREVfRU5DT0RFUl9EUE1TVCkg
-ewotLSAKQ2hlZXJzLAoJTHl1ZGUgUGF1bCAoc2hlL2hlcikKCVNvZnR3YXJlIEVuZ2luZWVyIGF0
-IFJlZCBIYXQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+While I thought I had this correct (since it actually did reject modes
+like I expected during testing), Ville Syrjala from Intel pointed out
+that the logic here isn't correct. max_clock refers to the max symbol
+rate supported by the encoder, so limiting clock to ds_clock using max()
+doesn't make sense. Additionally, we want to check against 6bpc for the
+time being since that's the minimum possible bpc here, not the reported
+bpc from the connector. See:
+
+https://lists.freedesktop.org/archives/dri-devel/2020-September/280276.html
+
+For more info.
+
+So, let's rewrite this using Ville's advice.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Fixes: 409d38139b42 ("drm/nouveau/kms/nv50-: Use downstream DP clock limits for mode validation")
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_dp.c | 23 +++++++++++++----------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+index 7b640e05bd4cd..24c81e423d349 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dp.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+@@ -231,23 +231,26 @@ nv50_dp_mode_valid(struct drm_connector *connector,
+ 		   const struct drm_display_mode *mode,
+ 		   unsigned *out_clock)
+ {
+-	const unsigned min_clock = 25000;
+-	unsigned max_clock, ds_clock, clock;
++	const unsigned int min_clock = 25000;
++	unsigned int max_clock, ds_clock, clock;
++	const u8 bpp = 18; /* 6 bpc */
+ 	enum drm_mode_status ret;
+ 
+ 	if (mode->flags & DRM_MODE_FLAG_INTERLACE && !outp->caps.dp_interlace)
+ 		return MODE_NO_INTERLACE;
+ 
+ 	max_clock = outp->dp.link_nr * outp->dp.link_bw;
+-	ds_clock = drm_dp_downstream_max_dotclock(outp->dp.dpcd,
+-						  outp->dp.downstream_ports);
+-	if (ds_clock)
+-		max_clock = min(max_clock, ds_clock);
+-
+-	clock = mode->clock * (connector->display_info.bpc * 3) / 10;
+-	ret = nouveau_conn_mode_clock_valid(mode, min_clock, max_clock,
+-					    &clock);
++	clock = mode->clock * bpp / 8;
++	if (clock > max_clock)
++		return MODE_CLOCK_HIGH;
++
++	ds_clock = drm_dp_downstream_max_dotclock(outp->dp.dpcd, outp->dp.downstream_ports);
++	if (ds_clock && mode->clock > ds_clock)
++		return MODE_CLOCK_HIGH;
++
++	ret = nouveau_conn_mode_clock_valid(mode, min_clock, max_clock, &clock);
+ 	if (out_clock)
+ 		*out_clock = clock;
++
+ 	return ret;
+ }
+-- 
+2.26.2
