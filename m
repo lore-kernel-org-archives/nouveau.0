@@ -1,166 +1,50 @@
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v3 13/22] drm/radeon: Introduce GEM object functions
-Date: Wed, 23 Sep 2020 12:21:50 +0200
-Message-ID: <20200923102159.24084-14-tzimmermann@suse.de>
+From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+Subject: [PATCH v3 12/22] drm/pl111: Introduce GEM object functions
+Date: Wed, 23 Sep 2020 12:21:49 +0200
+Message-ID: <20200923102159.24084-13-tzimmermann@suse.de>
 References: <20200923102159.24084-1-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Return-path: <linux-samsung-soc-owner@vger.kernel.org>
-In-Reply-To: <20200923102159.24084-1-tzimmermann@suse.de>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch, linux@armlinux.org.uk, maarten.lankhorst@linux.intel.com, mripard@kernel.org, l.stach@pengutronix.de, christian.gmeiner@gmail.com, inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org, patrik.r.jakobsson@gmail.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, chunkuang.hu@kernel.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com, robdclark@gmail.com, sean@poorly.run, bskeggs@redhat.com, tomi.valkeinen@ti.com, eric@anholt.net, hjc@rock-chips.com, heiko@sntech.de, thierry.reding@gmail.com, jonathanh@nvidia.com, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, olek
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org, Thomas Zimmermann <tzimmermann@suse.de>
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <20200923102159.24084-1-tzimmermann-l3A5Bk7waGM@public.gmane.org>
+To: alexander.deucher-5C7GfCeVMHo@public.gmane.org, christian.koenig-5C7GfCeVMHo@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org, maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org, christian.gmeiner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, inki.dae-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, sw0312.kim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, kyungmin.park-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, kgene-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, patrik.r.jakobsson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, chunkuang.hu-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org, matthias.bgg-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, tomi.valkeinen-l0cyMroinI0@public.gmane.org, eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org, hjc-TNX95d0MmH7DzftRWevZcw@public.gmane.org, heiko-4mtYJXux2i+zQB+pC5nmwQ@public.gmane.org, thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, rodrigosiqueiramelo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, hamohammed.sa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, olek
+Cc: amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mediatek-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-rockchip-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, xen-devel-GuqFBffKawtpuQazS67q72D2FQJk+8+b@public.gmane.org, Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 GEM object functions deprecate several similar callback interfaces in
 struct drm_driver. This patch replaces the per-driver callbacks with
-per-instance callbacks in radeon.
+per-instance callbacks in pl111. The only exception is gem_prime_mmap,
+which is non-trivial to convert.
 
 v2:
-	* move object-function instance to radeon_gem.c (Christian)
-	* set callbacks in radeon_gem_object_create() (Christian)
+	* use drm_gem_cma_create_object_default_funcs() (Eric)
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+Reviewed-by: Eric Anholt <eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org>
 ---
- drivers/gpu/drm/radeon/radeon_drv.c | 23 +--------------------
- drivers/gpu/drm/radeon/radeon_gem.c | 31 +++++++++++++++++++++++++----
- 2 files changed, 28 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/pl111/pl111_drv.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
-index 4cd30613fa1d..65061c949aee 100644
---- a/drivers/gpu/drm/radeon/radeon_drv.c
-+++ b/drivers/gpu/drm/radeon/radeon_drv.c
-@@ -124,13 +124,6 @@ void radeon_driver_irq_preinstall_kms(struct drm_device *dev);
- int radeon_driver_irq_postinstall_kms(struct drm_device *dev);
- void radeon_driver_irq_uninstall_kms(struct drm_device *dev);
- irqreturn_t radeon_driver_irq_handler_kms(int irq, void *arg);
--void radeon_gem_object_free(struct drm_gem_object *obj);
--int radeon_gem_object_open(struct drm_gem_object *obj,
--				struct drm_file *file_priv);
--void radeon_gem_object_close(struct drm_gem_object *obj,
--				struct drm_file *file_priv);
--struct dma_buf *radeon_gem_prime_export(struct drm_gem_object *gobj,
--					int flags);
- extern int radeon_get_crtc_scanoutpos(struct drm_device *dev, unsigned int crtc,
- 				      unsigned int flags, int *vpos, int *hpos,
- 				      ktime_t *stime, ktime_t *etime,
-@@ -145,14 +138,9 @@ int radeon_mode_dumb_mmap(struct drm_file *filp,
- int radeon_mode_dumb_create(struct drm_file *file_priv,
- 			    struct drm_device *dev,
- 			    struct drm_mode_create_dumb *args);
--struct sg_table *radeon_gem_prime_get_sg_table(struct drm_gem_object *obj);
- struct drm_gem_object *radeon_gem_prime_import_sg_table(struct drm_device *dev,
- 							struct dma_buf_attachment *,
- 							struct sg_table *sg);
--int radeon_gem_prime_pin(struct drm_gem_object *obj);
--void radeon_gem_prime_unpin(struct drm_gem_object *obj);
--void *radeon_gem_prime_vmap(struct drm_gem_object *obj);
--void radeon_gem_prime_vunmap(struct drm_gem_object *obj, void *vaddr);
- 
- /* atpx handler */
- #if defined(CONFIG_VGA_SWITCHEROO)
-@@ -550,7 +538,7 @@ long radeon_drm_ioctl(struct file *filp,
- 	}
- 
- 	ret = drm_ioctl(filp, cmd, arg);
--	
-+
- 	pm_runtime_mark_last_busy(dev->dev);
- 	pm_runtime_put_autosuspend(dev->dev);
- 	return ret;
-@@ -609,22 +597,13 @@ static struct drm_driver kms_driver = {
- 	.irq_uninstall = radeon_driver_irq_uninstall_kms,
- 	.irq_handler = radeon_driver_irq_handler_kms,
- 	.ioctls = radeon_ioctls_kms,
--	.gem_free_object_unlocked = radeon_gem_object_free,
--	.gem_open_object = radeon_gem_object_open,
--	.gem_close_object = radeon_gem_object_close,
- 	.dumb_create = radeon_mode_dumb_create,
- 	.dumb_map_offset = radeon_mode_dumb_mmap,
- 	.fops = &radeon_driver_kms_fops,
- 
+diff --git a/drivers/gpu/drm/pl111/pl111_drv.c b/drivers/gpu/drm/pl111/pl111_drv.c
+index 46b0d1c4a16c..ecef8a2383d2 100644
+--- a/drivers/gpu/drm/pl111/pl111_drv.c
++++ b/drivers/gpu/drm/pl111/pl111_drv.c
+@@ -224,15 +224,12 @@ static struct drm_driver pl111_drm_driver = {
+ 	.major = 1,
+ 	.minor = 0,
+ 	.patchlevel = 0,
++	.gem_create_object = drm_gem_cma_create_object_default_funcs,
+ 	.dumb_create = drm_gem_cma_dumb_create,
+-	.gem_free_object_unlocked = drm_gem_cma_free_object,
+-	.gem_vm_ops = &drm_gem_cma_vm_ops,
  	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
  	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
--	.gem_prime_export = radeon_gem_prime_export,
--	.gem_prime_pin = radeon_gem_prime_pin,
--	.gem_prime_unpin = radeon_gem_prime_unpin,
--	.gem_prime_get_sg_table = radeon_gem_prime_get_sg_table,
- 	.gem_prime_import_sg_table = radeon_gem_prime_import_sg_table,
--	.gem_prime_vmap = radeon_gem_prime_vmap,
--	.gem_prime_vunmap = radeon_gem_prime_vunmap,
+ 	.gem_prime_import_sg_table = pl111_gem_import_sg_table,
+-	.gem_prime_get_sg_table	= drm_gem_cma_prime_get_sg_table,
+ 	.gem_prime_mmap = drm_gem_cma_prime_mmap,
+-	.gem_prime_vmap = drm_gem_cma_prime_vmap,
  
- 	.name = DRIVER_NAME,
- 	.desc = DRIVER_DESC,
-diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/radeon_gem.c
-index e5c4271e64ed..0ccd7213e41f 100644
---- a/drivers/gpu/drm/radeon/radeon_gem.c
-+++ b/drivers/gpu/drm/radeon/radeon_gem.c
-@@ -35,7 +35,17 @@
- 
- #include "radeon.h"
- 
--void radeon_gem_object_free(struct drm_gem_object *gobj)
-+struct dma_buf *radeon_gem_prime_export(struct drm_gem_object *gobj,
-+					int flags);
-+struct sg_table *radeon_gem_prime_get_sg_table(struct drm_gem_object *obj);
-+int radeon_gem_prime_pin(struct drm_gem_object *obj);
-+void radeon_gem_prime_unpin(struct drm_gem_object *obj);
-+void *radeon_gem_prime_vmap(struct drm_gem_object *obj);
-+void radeon_gem_prime_vunmap(struct drm_gem_object *obj, void *vaddr);
-+
-+static const struct drm_gem_object_funcs radeon_gem_object_funcs;
-+
-+static void radeon_gem_object_free(struct drm_gem_object *gobj)
- {
- 	struct radeon_bo *robj = gem_to_radeon_bo(gobj);
- 
-@@ -85,6 +95,7 @@ int radeon_gem_object_create(struct radeon_device *rdev, unsigned long size,
- 		return r;
- 	}
- 	*obj = &robj->tbo.base;
-+	(*obj)->funcs = &radeon_gem_object_funcs;
- 	robj->pid = task_pid_nr(current);
- 
- 	mutex_lock(&rdev->gem.mutex);
-@@ -146,7 +157,7 @@ void radeon_gem_fini(struct radeon_device *rdev)
-  * Call from drm_gem_handle_create which appear in both new and open ioctl
-  * case.
-  */
--int radeon_gem_object_open(struct drm_gem_object *obj, struct drm_file *file_priv)
-+static int radeon_gem_object_open(struct drm_gem_object *obj, struct drm_file *file_priv)
- {
- 	struct radeon_bo *rbo = gem_to_radeon_bo(obj);
- 	struct radeon_device *rdev = rbo->rdev;
-@@ -176,8 +187,8 @@ int radeon_gem_object_open(struct drm_gem_object *obj, struct drm_file *file_pri
- 	return 0;
- }
- 
--void radeon_gem_object_close(struct drm_gem_object *obj,
--			     struct drm_file *file_priv)
-+static void radeon_gem_object_close(struct drm_gem_object *obj,
-+				    struct drm_file *file_priv)
- {
- 	struct radeon_bo *rbo = gem_to_radeon_bo(obj);
- 	struct radeon_device *rdev = rbo->rdev;
-@@ -216,6 +227,18 @@ static int radeon_gem_handle_lockup(struct radeon_device *rdev, int r)
- 	return r;
- }
- 
-+static const struct drm_gem_object_funcs radeon_gem_object_funcs = {
-+	.free = radeon_gem_object_free,
-+	.open = radeon_gem_object_open,
-+	.close = radeon_gem_object_close,
-+	.export = radeon_gem_prime_export,
-+	.pin = radeon_gem_prime_pin,
-+	.unpin = radeon_gem_prime_unpin,
-+	.get_sg_table = radeon_gem_prime_get_sg_table,
-+	.vmap = radeon_gem_prime_vmap,
-+	.vunmap = radeon_gem_prime_vunmap,
-+};
-+
- /*
-  * GEM ioctls.
-  */
+ #if defined(CONFIG_DEBUG_FS)
+ 	.debugfs_init = pl111_debugfs_init,
 -- 
 2.28.0
