@@ -1,130 +1,156 @@
-From: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
-Subject: Re: [PATCH v3 03/22] drm/etnaviv: Introduce GEM object functions
-Date: Wed, 23 Sep 2020 14:27:37 +0200
-Message-ID: <3411d277f84ec42eca6c467ceafb10d59c0fd482.camel@pengutronix.de>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Subject: Re: [PATCH v3 00/22] Convert all remaining drivers to GEM object
+ functions
+Date: Wed, 23 Sep 2020 16:33:24 +0200
+Message-ID: <f6ee9aab-1568-1896-ef07-a4de6ceec989@amd.com>
 References: <20200923102159.24084-1-tzimmermann@suse.de>
- <20200923102159.24084-4-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200923102159.24084-4-tzimmermann-l3A5Bk7waGM@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, alexander.deucher-5C7GfCeVMHo@public.gmane.org, christian.koenig-5C7GfCeVMHo@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org, maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, christian.gmeiner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, inki.dae-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, sw0312.kim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, kyungmin.park-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, kgene-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, patrik.r.jakobsson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, chunkuang.hu-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org, matthias.bgg-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, tomi.valkeinen-l0cyMroinI0@public.gmane.org, eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org, hjc-TNX95d0MmH7DzftRWevZcw@public.gmane.org, heiko-4mtYJXux2i+zQB+pC5nmwQ@public.gmane.org, thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, rodrigosiqueiramelo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, hamohammed.sa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, oleksandr_andrushchenko-uRwfk40T5oI@public.gmane.org, hyun.kwon-gjFFaj9aHVfQT0dZR+AlfA@public.gmane.org
-Cc: linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>, linux-rockchip-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-mediatek-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, xen-devel-GuqFBffKawtpuQazS67q72D2FQJk+8+b@public.gmane.org, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-samsung-soc-owner@vger.kernel.org>
+In-Reply-To: <20200923102159.24084-1-tzimmermann@suse.de>
+Content-Language: en-US
+To: Thomas Zimmermann <tzimmermann@suse.de>, alexander.deucher@amd.com, airlied@linux.ie, daniel@ffwll.ch, linux@armlinux.org.uk, maarten.lankhorst@linux.intel.com, mripard@kernel.org, l.stach@pengutronix.de, christian.gmeiner@gmail.com, inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org, patrik.r.jakobsson@gmail.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, chunkuang.hu@kernel.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com, robdclark@gmail.com, sean@poorly.run, bskeggs@redhat.com, tomi.valkeinen@ti.com, eric@anholt.net, hjc@rock-chips.com, heiko@sntech.de, thierry.reding@gmail.com, jonathanh@nvidia.com, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.co
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org
 List-Id: nouveau.vger.kernel.org
 
-On Mi, 2020-09-23 at 12:21 +0200, Thomas Zimmermann wrote:
-> GEM object functions deprecate several similar callback interfaces in
-> struct drm_driver. This patch replaces the per-driver callbacks with
-> per-instance callbacks in etnaviv. The only exception is gem_prime_mmap,
-> which is non-trivial to convert.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
-> Reviewed-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Feel free to add an Acked-by: Christian König <christian.koenig@amd.com> 
+to all patches which I haven't explicitly reviewed.
 
-Acked-by: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
-> ---
->  drivers/gpu/drm/etnaviv/etnaviv_drv.c | 13 -------------
->  drivers/gpu/drm/etnaviv/etnaviv_drv.h |  1 -
->  drivers/gpu/drm/etnaviv/etnaviv_gem.c | 19 ++++++++++++++++++-
->  3 files changed, 18 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_drv.c b/drivers/gpu/drm/etnaviv/etnaviv_drv.c
-> index a9a3afaef9a1..aa270b79e585 100644
-> --- a/drivers/gpu/drm/etnaviv/etnaviv_drv.c
-> +++ b/drivers/gpu/drm/etnaviv/etnaviv_drv.c
-> @@ -468,12 +468,6 @@ static const struct drm_ioctl_desc etnaviv_ioctls[] = {
->  	ETNA_IOCTL(PM_QUERY_SIG, pm_query_sig, DRM_RENDER_ALLOW),
->  };
->  
-> -static const struct vm_operations_struct vm_ops = {
-> -	.fault = etnaviv_gem_fault,
-> -	.open = drm_gem_vm_open,
-> -	.close = drm_gem_vm_close,
-> -};
-> -
->  static const struct file_operations fops = {
->  	.owner              = THIS_MODULE,
->  	.open               = drm_open,
-> @@ -490,16 +484,9 @@ static struct drm_driver etnaviv_drm_driver = {
->  	.driver_features    = DRIVER_GEM | DRIVER_RENDER,
->  	.open               = etnaviv_open,
->  	.postclose           = etnaviv_postclose,
-> -	.gem_free_object_unlocked = etnaviv_gem_free_object,
-> -	.gem_vm_ops         = &vm_ops,
->  	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
->  	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
-> -	.gem_prime_pin      = etnaviv_gem_prime_pin,
-> -	.gem_prime_unpin    = etnaviv_gem_prime_unpin,
-> -	.gem_prime_get_sg_table = etnaviv_gem_prime_get_sg_table,
->  	.gem_prime_import_sg_table = etnaviv_gem_prime_import_sg_table,
-> -	.gem_prime_vmap     = etnaviv_gem_prime_vmap,
-> -	.gem_prime_vunmap   = etnaviv_gem_prime_vunmap,
->  	.gem_prime_mmap     = etnaviv_gem_prime_mmap,
->  #ifdef CONFIG_DEBUG_FS
->  	.debugfs_init       = etnaviv_debugfs_init,
-> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_drv.h b/drivers/gpu/drm/etnaviv/etnaviv_drv.h
-> index 4d8dc9236e5f..914f0867ff71 100644
-> --- a/drivers/gpu/drm/etnaviv/etnaviv_drv.h
-> +++ b/drivers/gpu/drm/etnaviv/etnaviv_drv.h
-> @@ -49,7 +49,6 @@ int etnaviv_ioctl_gem_submit(struct drm_device *dev, void *data,
->  		struct drm_file *file);
->  
->  int etnaviv_gem_mmap(struct file *filp, struct vm_area_struct *vma);
-> -vm_fault_t etnaviv_gem_fault(struct vm_fault *vmf);
->  int etnaviv_gem_mmap_offset(struct drm_gem_object *obj, u64 *offset);
->  struct sg_table *etnaviv_gem_prime_get_sg_table(struct drm_gem_object *obj);
->  void *etnaviv_gem_prime_vmap(struct drm_gem_object *obj);
-> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_gem.c b/drivers/gpu/drm/etnaviv/etnaviv_gem.c
-> index d1533bdc1335..67d9a2b9ea6a 100644
-> --- a/drivers/gpu/drm/etnaviv/etnaviv_gem.c
-> +++ b/drivers/gpu/drm/etnaviv/etnaviv_gem.c
-> @@ -171,7 +171,7 @@ int etnaviv_gem_mmap(struct file *filp, struct vm_area_struct *vma)
->  	return obj->ops->mmap(obj, vma);
->  }
->  
-> -vm_fault_t etnaviv_gem_fault(struct vm_fault *vmf)
-> +static vm_fault_t etnaviv_gem_fault(struct vm_fault *vmf)
->  {
->  	struct vm_area_struct *vma = vmf->vma;
->  	struct drm_gem_object *obj = vma->vm_private_data;
-> @@ -559,6 +559,22 @@ void etnaviv_gem_obj_add(struct drm_device *dev, struct drm_gem_object *obj)
->  	mutex_unlock(&priv->gem_lock);
->  }
->  
-> +static const struct vm_operations_struct vm_ops = {
-> +	.fault = etnaviv_gem_fault,
-> +	.open = drm_gem_vm_open,
-> +	.close = drm_gem_vm_close,
-> +};
-> +
-> +static const struct drm_gem_object_funcs etnaviv_gem_object_funcs = {
-> +	.free = etnaviv_gem_free_object,
-> +	.pin = etnaviv_gem_prime_pin,
-> +	.unpin = etnaviv_gem_prime_unpin,
-> +	.get_sg_table = etnaviv_gem_prime_get_sg_table,
-> +	.vmap = etnaviv_gem_prime_vmap,
-> +	.vunmap = etnaviv_gem_prime_vunmap,
-> +	.vm_ops = &vm_ops,
-> +};
-> +
->  static int etnaviv_gem_new_impl(struct drm_device *dev, u32 size, u32 flags,
->  	const struct etnaviv_gem_ops *ops, struct drm_gem_object **obj)
->  {
-> @@ -593,6 +609,7 @@ static int etnaviv_gem_new_impl(struct drm_device *dev, u32 size, u32 flags,
->  	INIT_LIST_HEAD(&etnaviv_obj->vram_list);
->  
->  	*obj = &etnaviv_obj->base;
-> +	(*obj)->funcs = &etnaviv_gem_object_funcs;
->  
->  	return 0;
->  }
+I would say we should just push this to drm-misc-next now.
+
+Thanks for the nice cleanup,
+Christian.
+
+Am 23.09.20 um 12:21 schrieb Thomas Zimmermann:
+> The GEM and PRIME related callbacks in struct drm_driver are deprecated in
+> favor of GEM object functions in struct drm_gem_object_funcs. This patchset
+> converts the remaining drivers to object functions and removes most of the
+> obsolete interfaces.
+>
+> Version 3 of this patchset mostly fixes drm_gem_prime_handle_to_fd and
+> updates i.MX's dcss driver. The driver was missing from earlier versions
+> and still needs review.
+>
+> Patches #1 to #6, #8 to #17 and #19 to #20 convert DRM drivers to GEM object
+> functions, one by one. Each patch moves existing callbacks from struct
+> drm_driver to an instance of struct drm_gem_object_funcs, and sets these
+> funcs when the GEM object is initialized. The expection is .gem_prime_mmap.
+> There are different ways of how drivers implement the callback, and moving
+> it to GEM object functions requires a closer review for each.
+>
+> Patch #18 fixes virtgpu to use GEM object functions where possible. The
+> driver recently introduced a function for one of the deprecated callbacks.
+>
+> Patches #7 and #20 convert i.MX's dcss and xlnx to CMA helper macros. There's
+> no apparent reason why the drivers do the GEM setup on their's own. Using CMA
+> helper macros adds GEM object functions implicitly.
+>
+> With most of the GEM and PRIME moved to GEM object functions, related code
+> in struct drm_driver and in the DRM core/helpers is being removed by patch
+> #22.
+>
+> Further testing is welcome. I tested the drivers for which I have HW
+> available. These are gma500, i915, nouveau, radeon and vc4. The console,
+> Weston and Xorg apparently work with the patches applied.
+>
+> v3:
+> 	* restore default call to drm_gem_prime_export() in
+> 	  drm_gem_prime_handle_to_fd()
+> 	* return -ENOSYS if get_sg_table is not set
+> 	* drop all checks for obj->funcs
+> 	* clean up TODO list and documentation
+> v2:
+> 	* moved code in amdgpu and radeon
+> 	* made several functions static in various drivers
+> 	* updated TODO-list item
+> 	* fix virtgpu
+>
+> Thomas Zimmermann (22):
+>    drm/amdgpu: Introduce GEM object functions
+>    drm/armada: Introduce GEM object functions
+>    drm/etnaviv: Introduce GEM object functions
+>    drm/exynos: Introduce GEM object functions
+>    drm/gma500: Introduce GEM object functions
+>    drm/i915: Introduce GEM object functions
+>    drm/imx/dcss: Initialize DRM driver instance with CMA helper macro
+>    drm/mediatek: Introduce GEM object functions
+>    drm/msm: Introduce GEM object funcs
+>    drm/nouveau: Introduce GEM object functions
+>    drm/omapdrm: Introduce GEM object functions
+>    drm/pl111: Introduce GEM object functions
+>    drm/radeon: Introduce GEM object functions
+>    drm/rockchip: Convert to drm_gem_object_funcs
+>    drm/tegra: Introduce GEM object functions
+>    drm/vc4: Introduce GEM object functions
+>    drm/vgem: Introduce GEM object functions
+>    drm/virtgpu: Set PRIME export function in struct drm_gem_object_funcs
+>    drm/vkms: Introduce GEM object functions
+>    drm/xen: Introduce GEM object functions
+>    drm/xlnx: Initialize DRM driver instance with CMA helper macro
+>    drm: Remove obsolete GEM and PRIME callbacks from struct drm_driver
+>
+>   Documentation/gpu/drm-mm.rst                  |  4 +-
+>   Documentation/gpu/todo.rst                    |  9 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  6 --
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       | 23 +++--
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h       |  5 --
+>   drivers/gpu/drm/armada/armada_drv.c           |  3 -
+>   drivers/gpu/drm/armada/armada_gem.c           | 12 ++-
+>   drivers/gpu/drm/armada/armada_gem.h           |  2 -
+>   drivers/gpu/drm/drm_gem.c                     | 53 ++++--------
+>   drivers/gpu/drm/drm_gem_cma_helper.c          |  8 +-
+>   drivers/gpu/drm/drm_prime.c                   | 14 +--
+>   drivers/gpu/drm/etnaviv/etnaviv_drv.c         | 13 ---
+>   drivers/gpu/drm/etnaviv/etnaviv_drv.h         |  1 -
+>   drivers/gpu/drm/etnaviv/etnaviv_gem.c         | 19 ++++-
+>   drivers/gpu/drm/exynos/exynos_drm_drv.c       | 10 ---
+>   drivers/gpu/drm/exynos/exynos_drm_gem.c       | 15 ++++
+>   drivers/gpu/drm/gma500/framebuffer.c          |  2 +
+>   drivers/gpu/drm/gma500/gem.c                  | 18 +++-
+>   drivers/gpu/drm/gma500/gem.h                  |  3 +
+>   drivers/gpu/drm/gma500/psb_drv.c              |  9 --
+>   drivers/gpu/drm/gma500/psb_drv.h              |  2 -
+>   drivers/gpu/drm/i915/gem/i915_gem_object.c    | 21 ++++-
+>   drivers/gpu/drm/i915/gem/i915_gem_object.h    |  3 -
+>   drivers/gpu/drm/i915/i915_drv.c               |  4 -
+>   .../gpu/drm/i915/selftests/mock_gem_device.c  |  3 -
+>   drivers/gpu/drm/imx/dcss/dcss-kms.c           | 14 +--
+>   drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  5 --
+>   drivers/gpu/drm/mediatek/mtk_drm_gem.c        | 11 +++
+>   drivers/gpu/drm/msm/msm_drv.c                 | 13 ---
+>   drivers/gpu/drm/msm/msm_drv.h                 |  1 -
+>   drivers/gpu/drm/msm/msm_gem.c                 | 19 ++++-
+>   drivers/gpu/drm/nouveau/nouveau_drm.c         |  9 --
+>   drivers/gpu/drm/nouveau/nouveau_gem.c         | 13 +++
+>   drivers/gpu/drm/nouveau/nouveau_gem.h         |  2 +
+>   drivers/gpu/drm/nouveau/nouveau_prime.c       |  2 +
+>   drivers/gpu/drm/omapdrm/omap_drv.c            |  9 --
+>   drivers/gpu/drm/omapdrm/omap_gem.c            | 18 +++-
+>   drivers/gpu/drm/omapdrm/omap_gem.h            |  2 -
+>   drivers/gpu/drm/pl111/pl111_drv.c             |  5 +-
+>   drivers/gpu/drm/radeon/radeon_drv.c           | 23 +----
+>   drivers/gpu/drm/radeon/radeon_gem.c           | 31 ++++++-
+>   drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |  5 --
+>   drivers/gpu/drm/rockchip/rockchip_drm_gem.c   | 12 ++-
+>   drivers/gpu/drm/tegra/drm.c                   |  4 -
+>   drivers/gpu/drm/tegra/gem.c                   |  8 ++
+>   drivers/gpu/drm/vc4/vc4_bo.c                  | 21 ++++-
+>   drivers/gpu/drm/vc4/vc4_drv.c                 | 12 ---
+>   drivers/gpu/drm/vc4/vc4_drv.h                 |  1 -
+>   drivers/gpu/drm/vgem/vgem_drv.c               | 21 +++--
+>   drivers/gpu/drm/virtio/virtgpu_drv.c          |  1 -
+>   drivers/gpu/drm/virtio/virtgpu_object.c       |  1 +
+>   drivers/gpu/drm/vkms/vkms_drv.c               |  8 --
+>   drivers/gpu/drm/vkms/vkms_gem.c               | 13 +++
+>   drivers/gpu/drm/xen/xen_drm_front.c           | 44 ++++------
+>   drivers/gpu/drm/xen/xen_drm_front.h           |  2 +
+>   drivers/gpu/drm/xen/xen_drm_front_gem.c       | 15 ++++
+>   drivers/gpu/drm/xlnx/zynqmp_dpsub.c           | 14 +--
+>   include/drm/drm_drv.h                         | 85 +------------------
+>   include/drm/drm_gem.h                         |  2 +-
+>   59 files changed, 333 insertions(+), 375 deletions(-)
+>
+> --
+> 2.28.0
+>
