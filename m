@@ -1,93 +1,129 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v3 04/22] drm/exynos: Introduce GEM object functions
-Date: Wed, 23 Sep 2020 12:21:41 +0200
-Message-ID: <20200923102159.24084-5-tzimmermann@suse.de>
+Subject: [PATCH v3 11/22] drm/omapdrm: Introduce GEM object functions
+Date: Wed, 23 Sep 2020 12:21:48 +0200
+Message-ID: <20200923102159.24084-12-tzimmermann@suse.de>
 References: <20200923102159.24084-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-arm-msm-owner@vger.kernel.org>
 In-Reply-To: <20200923102159.24084-1-tzimmermann@suse.de>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch, linux@armlinux.org.uk, maarten.lankhorst@linux.intel.com, mripard@kernel.org, l.stach@pengutronix.de, christian.gmeiner@gmail.com, inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org, patrik.r.jakobsson@gmail.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, chunkuang.hu@kernel.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com, robdclark@gmail.com, sean@poorly.run, bskeggs@redhat.com, tomi.valkeinen@ti.com, eric@anholt.net, hjc@rock-chips.com, heiko@sntech.de, thierry.reding@gmail.com, jonathanh@nvidia.com, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, olek
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org, Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org, Thomas Zimmermann <tzimmermann@suse.de>
 List-Id: nouveau.vger.kernel.org
 
 GEM object functions deprecate several similar callback interfaces in
 struct drm_driver. This patch replaces the per-driver callbacks with
-per-instance callbacks in exynos. The only exception is gem_prime_mmap,
-which is non-trivial to convert.
+per-instance callbacks in omapdrm.
+
+v2:
+	* make omap_gem_free_object() static (Tomi)
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
 ---
- drivers/gpu/drm/exynos/exynos_drm_drv.c | 10 ----------
- drivers/gpu/drm/exynos/exynos_drm_gem.c | 15 +++++++++++++++
- 2 files changed, 15 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/omapdrm/omap_drv.c |  9 ---------
+ drivers/gpu/drm/omapdrm/omap_gem.c | 18 ++++++++++++++++--
+ drivers/gpu/drm/omapdrm/omap_gem.h |  2 --
+ 3 files changed, 16 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/exynos/exynos_drm_drv.c b/drivers/gpu/drm/exynos/exynos_drm_drv.c
-index dbd80f1e4c78..fe46680ca208 100644
---- a/drivers/gpu/drm/exynos/exynos_drm_drv.c
-+++ b/drivers/gpu/drm/exynos/exynos_drm_drv.c
-@@ -75,11 +75,6 @@ static void exynos_drm_postclose(struct drm_device *dev, struct drm_file *file)
- 	file->driver_priv = NULL;
+diff --git a/drivers/gpu/drm/omapdrm/omap_drv.c b/drivers/gpu/drm/omapdrm/omap_drv.c
+index 53d5e184ee77..2e598b8b72af 100644
+--- a/drivers/gpu/drm/omapdrm/omap_drv.c
++++ b/drivers/gpu/drm/omapdrm/omap_drv.c
+@@ -521,12 +521,6 @@ static int dev_open(struct drm_device *dev, struct drm_file *file)
+ 	return 0;
  }
  
--static const struct vm_operations_struct exynos_drm_gem_vm_ops = {
+-static const struct vm_operations_struct omap_gem_vm_ops = {
+-	.fault = omap_gem_fault,
 -	.open = drm_gem_vm_open,
 -	.close = drm_gem_vm_close,
 -};
 -
- static const struct drm_ioctl_desc exynos_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(EXYNOS_GEM_CREATE, exynos_drm_gem_create_ioctl,
- 			DRM_RENDER_ALLOW),
-@@ -124,16 +119,11 @@ static struct drm_driver exynos_drm_driver = {
- 	.open			= exynos_drm_open,
- 	.lastclose		= drm_fb_helper_lastclose,
- 	.postclose		= exynos_drm_postclose,
--	.gem_free_object_unlocked = exynos_drm_gem_free_object,
--	.gem_vm_ops		= &exynos_drm_gem_vm_ops,
- 	.dumb_create		= exynos_drm_gem_dumb_create,
- 	.prime_handle_to_fd	= drm_gem_prime_handle_to_fd,
- 	.prime_fd_to_handle	= drm_gem_prime_fd_to_handle,
- 	.gem_prime_import	= exynos_drm_gem_prime_import,
--	.gem_prime_get_sg_table	= exynos_drm_gem_prime_get_sg_table,
- 	.gem_prime_import_sg_table	= exynos_drm_gem_prime_import_sg_table,
--	.gem_prime_vmap		= exynos_drm_gem_prime_vmap,
--	.gem_prime_vunmap	= exynos_drm_gem_prime_vunmap,
- 	.gem_prime_mmap		= exynos_drm_gem_prime_mmap,
- 	.ioctls			= exynos_ioctls,
- 	.num_ioctls		= ARRAY_SIZE(exynos_ioctls),
-diff --git a/drivers/gpu/drm/exynos/exynos_drm_gem.c b/drivers/gpu/drm/exynos/exynos_drm_gem.c
-index 1716a023bca0..e7a6eb96f692 100644
---- a/drivers/gpu/drm/exynos/exynos_drm_gem.c
-+++ b/drivers/gpu/drm/exynos/exynos_drm_gem.c
-@@ -129,6 +129,19 @@ void exynos_drm_gem_destroy(struct exynos_drm_gem *exynos_gem)
- 	kfree(exynos_gem);
+ static const struct file_operations omapdriver_fops = {
+ 	.owner = THIS_MODULE,
+ 	.open = drm_open,
+@@ -549,10 +543,7 @@ static struct drm_driver omap_drm_driver = {
+ #endif
+ 	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
+ 	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
+-	.gem_prime_export = omap_gem_prime_export,
+ 	.gem_prime_import = omap_gem_prime_import,
+-	.gem_free_object_unlocked = omap_gem_free_object,
+-	.gem_vm_ops = &omap_gem_vm_ops,
+ 	.dumb_create = omap_gem_dumb_create,
+ 	.dumb_map_offset = omap_gem_dumb_map_offset,
+ 	.ioctls = ioctls,
+diff --git a/drivers/gpu/drm/omapdrm/omap_gem.c b/drivers/gpu/drm/omapdrm/omap_gem.c
+index f67f223c6479..d8e09792793a 100644
+--- a/drivers/gpu/drm/omapdrm/omap_gem.c
++++ b/drivers/gpu/drm/omapdrm/omap_gem.c
+@@ -487,7 +487,7 @@ static vm_fault_t omap_gem_fault_2d(struct drm_gem_object *obj,
+  * vma->vm_private_data points to the GEM object that is backing this
+  * mapping.
+  */
+-vm_fault_t omap_gem_fault(struct vm_fault *vmf)
++static vm_fault_t omap_gem_fault(struct vm_fault *vmf)
+ {
+ 	struct vm_area_struct *vma = vmf->vma;
+ 	struct drm_gem_object *obj = vma->vm_private_data;
+@@ -1089,7 +1089,7 @@ void omap_gem_describe_objects(struct list_head *list, struct seq_file *m)
+  * Constructor & Destructor
+  */
+ 
+-void omap_gem_free_object(struct drm_gem_object *obj)
++static void omap_gem_free_object(struct drm_gem_object *obj)
+ {
+ 	struct drm_device *dev = obj->dev;
+ 	struct omap_drm_private *priv = dev->dev_private;
+@@ -1169,6 +1169,18 @@ static bool omap_gem_validate_flags(struct drm_device *dev, u32 flags)
+ 	return true;
  }
  
-+static const struct vm_operations_struct exynos_drm_gem_vm_ops = {
++static const struct vm_operations_struct omap_gem_vm_ops = {
++	.fault = omap_gem_fault,
 +	.open = drm_gem_vm_open,
 +	.close = drm_gem_vm_close,
 +};
 +
-+static const struct drm_gem_object_funcs exynos_drm_gem_object_funcs = {
-+	.free = exynos_drm_gem_free_object,
-+	.get_sg_table = exynos_drm_gem_prime_get_sg_table,
-+	.vmap = exynos_drm_gem_prime_vmap,
-+	.vunmap	= exynos_drm_gem_prime_vunmap,
-+	.vm_ops = &exynos_drm_gem_vm_ops,
++static const struct drm_gem_object_funcs omap_gem_object_funcs = {
++	.free = omap_gem_free_object,
++	.export = omap_gem_prime_export,
++	.vm_ops = &omap_gem_vm_ops,
 +};
 +
- static struct exynos_drm_gem *exynos_drm_gem_init(struct drm_device *dev,
- 						  unsigned long size)
- {
-@@ -143,6 +156,8 @@ static struct exynos_drm_gem *exynos_drm_gem_init(struct drm_device *dev,
- 	exynos_gem->size = size;
- 	obj = &exynos_gem->base;
+ /* GEM buffer object constructor */
+ struct drm_gem_object *omap_gem_new(struct drm_device *dev,
+ 		union omap_gem_size gsize, u32 flags)
+@@ -1236,6 +1248,8 @@ struct drm_gem_object *omap_gem_new(struct drm_device *dev,
+ 		size = PAGE_ALIGN(gsize.bytes);
+ 	}
  
-+	obj->funcs = &exynos_drm_gem_object_funcs;
++	obj->funcs = &omap_gem_object_funcs;
 +
- 	ret = drm_gem_object_init(dev, obj, size);
- 	if (ret < 0) {
- 		DRM_DEV_ERROR(dev->dev, "failed to initialize gem object\n");
+ 	/* Initialize the GEM object. */
+ 	if (!(flags & OMAP_BO_MEM_SHMEM)) {
+ 		drm_gem_private_object_init(dev, obj, size);
+diff --git a/drivers/gpu/drm/omapdrm/omap_gem.h b/drivers/gpu/drm/omapdrm/omap_gem.h
+index 729b7812a815..eda9b4839c30 100644
+--- a/drivers/gpu/drm/omapdrm/omap_gem.h
++++ b/drivers/gpu/drm/omapdrm/omap_gem.h
+@@ -48,7 +48,6 @@ struct drm_gem_object *omap_gem_new_dmabuf(struct drm_device *dev, size_t size,
+ 		struct sg_table *sgt);
+ int omap_gem_new_handle(struct drm_device *dev, struct drm_file *file,
+ 		union omap_gem_size gsize, u32 flags, u32 *handle);
+-void omap_gem_free_object(struct drm_gem_object *obj);
+ void *omap_gem_vaddr(struct drm_gem_object *obj);
+ 
+ /* Dumb Buffers Interface */
+@@ -69,7 +68,6 @@ struct dma_buf *omap_gem_prime_export(struct drm_gem_object *obj, int flags);
+ struct drm_gem_object *omap_gem_prime_import(struct drm_device *dev,
+ 		struct dma_buf *buffer);
+ 
+-vm_fault_t omap_gem_fault(struct vm_fault *vmf);
+ int omap_gem_roll(struct drm_gem_object *obj, u32 roll);
+ void omap_gem_cpu_sync_page(struct drm_gem_object *obj, int pgoff);
+ void omap_gem_dma_sync_buffer(struct drm_gem_object *obj,
 -- 
 2.28.0
