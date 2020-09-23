@@ -1,156 +1,70 @@
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Subject: Re: [PATCH v3 00/22] Convert all remaining drivers to GEM object
- functions
-Date: Wed, 23 Sep 2020 16:33:24 +0200
-Message-ID: <f6ee9aab-1568-1896-ef07-a4de6ceec989@amd.com>
-References: <20200923102159.24084-1-tzimmermann@suse.de>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH 0/6] drm/nouveau: Support sync FDs and sync
+ objects
+Date: Wed, 23 Sep 2020 17:21:24 +0200
+Message-ID: <20200923152124.GO438822@phenom.ffwll.local>
+References: <20200828104016.1672195-1-thierry.reding@gmail.com>
+ <20200923091853.GA1229032@ulmo>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-samsung-soc-owner@vger.kernel.org>
-In-Reply-To: <20200923102159.24084-1-tzimmermann@suse.de>
-Content-Language: en-US
-To: Thomas Zimmermann <tzimmermann@suse.de>, alexander.deucher@amd.com, airlied@linux.ie, daniel@ffwll.ch, linux@armlinux.org.uk, maarten.lankhorst@linux.intel.com, mripard@kernel.org, l.stach@pengutronix.de, christian.gmeiner@gmail.com, inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org, patrik.r.jakobsson@gmail.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, chunkuang.hu@kernel.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com, robdclark@gmail.com, sean@poorly.run, bskeggs@redhat.com, tomi.valkeinen@ti.com, eric@anholt.net, hjc@rock-chips.com, heiko@sntech.de, thierry.reding@gmail.com, jonathanh@nvidia.com, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.co
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20200923091853.GA1229032@ulmo>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Feel free to add an Acked-by: Christian König <christian.koenig@amd.com> 
-to all patches which I haven't explicitly reviewed.
+On Wed, Sep 23, 2020 at 11:18:53AM +0200, Thierry Reding wrote:
+> On Fri, Aug 28, 2020 at 12:40:10PM +0200, Thierry Reding wrote:
+> > From: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> > 
+> > Hi,
+> > 
+> > This series implements a new IOCTL to submit push buffers that can
+> > optionally return a sync FD or sync object to userspace. This is useful
+> > in cases where userspace wants to synchronize operations between the GPU
+> > and another driver (such as KMS for display). Among other things this
+> > allows extensions such as eglDupNativeFenceFDANDROID to be implemented.
+> > 
+> > Note that patch 4 modifies the ABI introduced in patch 3 by allowing DRM
+> > sync objects to be passed rather than only sync FDs. It also allows any
+> > number of sync FDs/objects to be passed in or emitted. I think those are
+> > useful features, but I left them in a separate patch in case everybody
+> > else thinks that this won't be needed. If we decide to merge the new ABI
+> > then patch 4 should be squashed into patch 3.
+> > 
+> > The corresponding userspace changes can be found here:
+> > 
+> >   libdrm: https://gitlab.freedesktop.org/tagr/drm/-/commits/nouveau-sync-fd-v2/
+> >   mesa: https://gitlab.freedesktop.org/tagr/mesa/-/commits/nouveau-sync-fd/
+> > 
+> > I've verified that this works with kmscube's --atomic mode and Weston.
+> 
+> Hi Ben,
+> 
+> any thoughts on this series? I realize that this is somewhat suboptimal
+> because we're effectively adding a duplicate of the existing IOCTL with
+> only the "minor" extension of adding sync FDs/objects, but at the same
+> time I don't have any good ideas on what else to add to make this more
+> appealing or if you have any plans of your own to address this in the
+> future.
 
-I would say we should just push this to drm-misc-next now.
-
-Thanks for the nice cleanup,
-Christian.
-
-Am 23.09.20 um 12:21 schrieb Thomas Zimmermann:
-> The GEM and PRIME related callbacks in struct drm_driver are deprecated in
-> favor of GEM object functions in struct drm_gem_object_funcs. This patchset
-> converts the remaining drivers to object functions and removes most of the
-> obsolete interfaces.
->
-> Version 3 of this patchset mostly fixes drm_gem_prime_handle_to_fd and
-> updates i.MX's dcss driver. The driver was missing from earlier versions
-> and still needs review.
->
-> Patches #1 to #6, #8 to #17 and #19 to #20 convert DRM drivers to GEM object
-> functions, one by one. Each patch moves existing callbacks from struct
-> drm_driver to an instance of struct drm_gem_object_funcs, and sets these
-> funcs when the GEM object is initialized. The expection is .gem_prime_mmap.
-> There are different ways of how drivers implement the callback, and moving
-> it to GEM object functions requires a closer review for each.
->
-> Patch #18 fixes virtgpu to use GEM object functions where possible. The
-> driver recently introduced a function for one of the deprecated callbacks.
->
-> Patches #7 and #20 convert i.MX's dcss and xlnx to CMA helper macros. There's
-> no apparent reason why the drivers do the GEM setup on their's own. Using CMA
-> helper macros adds GEM object functions implicitly.
->
-> With most of the GEM and PRIME moved to GEM object functions, related code
-> in struct drm_driver and in the DRM core/helpers is being removed by patch
-> #22.
->
-> Further testing is welcome. I tested the drivers for which I have HW
-> available. These are gma500, i915, nouveau, radeon and vc4. The console,
-> Weston and Xorg apparently work with the patches applied.
->
-> v3:
-> 	* restore default call to drm_gem_prime_export() in
-> 	  drm_gem_prime_handle_to_fd()
-> 	* return -ENOSYS if get_sg_table is not set
-> 	* drop all checks for obj->funcs
-> 	* clean up TODO list and documentation
-> v2:
-> 	* moved code in amdgpu and radeon
-> 	* made several functions static in various drivers
-> 	* updated TODO-list item
-> 	* fix virtgpu
->
-> Thomas Zimmermann (22):
->    drm/amdgpu: Introduce GEM object functions
->    drm/armada: Introduce GEM object functions
->    drm/etnaviv: Introduce GEM object functions
->    drm/exynos: Introduce GEM object functions
->    drm/gma500: Introduce GEM object functions
->    drm/i915: Introduce GEM object functions
->    drm/imx/dcss: Initialize DRM driver instance with CMA helper macro
->    drm/mediatek: Introduce GEM object functions
->    drm/msm: Introduce GEM object funcs
->    drm/nouveau: Introduce GEM object functions
->    drm/omapdrm: Introduce GEM object functions
->    drm/pl111: Introduce GEM object functions
->    drm/radeon: Introduce GEM object functions
->    drm/rockchip: Convert to drm_gem_object_funcs
->    drm/tegra: Introduce GEM object functions
->    drm/vc4: Introduce GEM object functions
->    drm/vgem: Introduce GEM object functions
->    drm/virtgpu: Set PRIME export function in struct drm_gem_object_funcs
->    drm/vkms: Introduce GEM object functions
->    drm/xen: Introduce GEM object functions
->    drm/xlnx: Initialize DRM driver instance with CMA helper macro
->    drm: Remove obsolete GEM and PRIME callbacks from struct drm_driver
->
->   Documentation/gpu/drm-mm.rst                  |  4 +-
->   Documentation/gpu/todo.rst                    |  9 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  6 --
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       | 23 +++--
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h       |  5 --
->   drivers/gpu/drm/armada/armada_drv.c           |  3 -
->   drivers/gpu/drm/armada/armada_gem.c           | 12 ++-
->   drivers/gpu/drm/armada/armada_gem.h           |  2 -
->   drivers/gpu/drm/drm_gem.c                     | 53 ++++--------
->   drivers/gpu/drm/drm_gem_cma_helper.c          |  8 +-
->   drivers/gpu/drm/drm_prime.c                   | 14 +--
->   drivers/gpu/drm/etnaviv/etnaviv_drv.c         | 13 ---
->   drivers/gpu/drm/etnaviv/etnaviv_drv.h         |  1 -
->   drivers/gpu/drm/etnaviv/etnaviv_gem.c         | 19 ++++-
->   drivers/gpu/drm/exynos/exynos_drm_drv.c       | 10 ---
->   drivers/gpu/drm/exynos/exynos_drm_gem.c       | 15 ++++
->   drivers/gpu/drm/gma500/framebuffer.c          |  2 +
->   drivers/gpu/drm/gma500/gem.c                  | 18 +++-
->   drivers/gpu/drm/gma500/gem.h                  |  3 +
->   drivers/gpu/drm/gma500/psb_drv.c              |  9 --
->   drivers/gpu/drm/gma500/psb_drv.h              |  2 -
->   drivers/gpu/drm/i915/gem/i915_gem_object.c    | 21 ++++-
->   drivers/gpu/drm/i915/gem/i915_gem_object.h    |  3 -
->   drivers/gpu/drm/i915/i915_drv.c               |  4 -
->   .../gpu/drm/i915/selftests/mock_gem_device.c  |  3 -
->   drivers/gpu/drm/imx/dcss/dcss-kms.c           | 14 +--
->   drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  5 --
->   drivers/gpu/drm/mediatek/mtk_drm_gem.c        | 11 +++
->   drivers/gpu/drm/msm/msm_drv.c                 | 13 ---
->   drivers/gpu/drm/msm/msm_drv.h                 |  1 -
->   drivers/gpu/drm/msm/msm_gem.c                 | 19 ++++-
->   drivers/gpu/drm/nouveau/nouveau_drm.c         |  9 --
->   drivers/gpu/drm/nouveau/nouveau_gem.c         | 13 +++
->   drivers/gpu/drm/nouveau/nouveau_gem.h         |  2 +
->   drivers/gpu/drm/nouveau/nouveau_prime.c       |  2 +
->   drivers/gpu/drm/omapdrm/omap_drv.c            |  9 --
->   drivers/gpu/drm/omapdrm/omap_gem.c            | 18 +++-
->   drivers/gpu/drm/omapdrm/omap_gem.h            |  2 -
->   drivers/gpu/drm/pl111/pl111_drv.c             |  5 +-
->   drivers/gpu/drm/radeon/radeon_drv.c           | 23 +----
->   drivers/gpu/drm/radeon/radeon_gem.c           | 31 ++++++-
->   drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |  5 --
->   drivers/gpu/drm/rockchip/rockchip_drm_gem.c   | 12 ++-
->   drivers/gpu/drm/tegra/drm.c                   |  4 -
->   drivers/gpu/drm/tegra/gem.c                   |  8 ++
->   drivers/gpu/drm/vc4/vc4_bo.c                  | 21 ++++-
->   drivers/gpu/drm/vc4/vc4_drv.c                 | 12 ---
->   drivers/gpu/drm/vc4/vc4_drv.h                 |  1 -
->   drivers/gpu/drm/vgem/vgem_drv.c               | 21 +++--
->   drivers/gpu/drm/virtio/virtgpu_drv.c          |  1 -
->   drivers/gpu/drm/virtio/virtgpu_object.c       |  1 +
->   drivers/gpu/drm/vkms/vkms_drv.c               |  8 --
->   drivers/gpu/drm/vkms/vkms_gem.c               | 13 +++
->   drivers/gpu/drm/xen/xen_drm_front.c           | 44 ++++------
->   drivers/gpu/drm/xen/xen_drm_front.h           |  2 +
->   drivers/gpu/drm/xen/xen_drm_front_gem.c       | 15 ++++
->   drivers/gpu/drm/xlnx/zynqmp_dpsub.c           | 14 +--
->   include/drm/drm_drv.h                         | 85 +------------------
->   include/drm/drm_gem.h                         |  2 +-
->   59 files changed, 333 insertions(+), 375 deletions(-)
->
-> --
-> 2.28.0
->
+drm core automatically zero-extends ioctl structs both ways, so if all you
+do is add more stuff to the top level ioctl struct at the bottom, there's
+no need to duplicate any code. At least as long as you guarantee that 0 ==
+old behaviour for both in and out parameters.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
