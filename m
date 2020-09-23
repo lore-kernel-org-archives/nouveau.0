@@ -1,157 +1,102 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v3 05/22] drm/gma500: Introduce GEM object functions
-Date: Wed, 23 Sep 2020 12:21:42 +0200
-Message-ID: <20200923102159.24084-6-tzimmermann@suse.de>
+Subject: [PATCH v3 02/22] drm/armada: Introduce GEM object functions
+Date: Wed, 23 Sep 2020 12:21:39 +0200
+Message-ID: <20200923102159.24084-3-tzimmermann@suse.de>
 References: <20200923102159.24084-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-arm-msm-owner@vger.kernel.org>
 In-Reply-To: <20200923102159.24084-1-tzimmermann@suse.de>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch, linux@armlinux.org.uk, maarten.lankhorst@linux.intel.com, mripard@kernel.org, l.stach@pengutronix.de, christian.gmeiner@gmail.com, inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org, patrik.r.jakobsson@gmail.com, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, chunkuang.hu@kernel.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com, robdclark@gmail.com, sean@poorly.run, bskeggs@redhat.com, tomi.valkeinen@ti.com, eric@anholt.net, hjc@rock-chips.com, heiko@sntech.de, thierry.reding@gmail.com, jonathanh@nvidia.com, rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com, olek
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org, Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org, xen-devel@lists.xenproject.org, Thomas Zimmermann <tzimmermann@suse.de>, Russell King <rmk+kernel@armlinux.org.uk>
 List-Id: nouveau.vger.kernel.org
 
 GEM object functions deprecate several similar callback interfaces in
 struct drm_driver. This patch replaces the per-driver callbacks with
-per-instance callbacks in gma500.
+per-instance callbacks in armada.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Acked-by: Russell King <rmk+kernel@armlinux.org.uk>
 ---
- drivers/gpu/drm/gma500/framebuffer.c |  2 ++
- drivers/gpu/drm/gma500/gem.c         | 18 ++++++++++++++++--
- drivers/gpu/drm/gma500/gem.h         |  3 +++
- drivers/gpu/drm/gma500/psb_drv.c     |  9 ---------
- drivers/gpu/drm/gma500/psb_drv.h     |  2 --
- 5 files changed, 21 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/armada/armada_drv.c |  3 ---
+ drivers/gpu/drm/armada/armada_gem.c | 12 +++++++++++-
+ drivers/gpu/drm/armada/armada_gem.h |  2 --
+ 3 files changed, 11 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/gma500/framebuffer.c b/drivers/gpu/drm/gma500/framebuffer.c
-index 54d9876b5305..5ede24fb44ae 100644
---- a/drivers/gpu/drm/gma500/framebuffer.c
-+++ b/drivers/gpu/drm/gma500/framebuffer.c
-@@ -24,6 +24,7 @@
- #include <drm/drm_gem_framebuffer_helper.h>
+diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada/armada_drv.c
+index 980d3f1f8f16..22247cfce80b 100644
+--- a/drivers/gpu/drm/armada/armada_drv.c
++++ b/drivers/gpu/drm/armada/armada_drv.c
+@@ -37,13 +37,10 @@ DEFINE_DRM_GEM_FOPS(armada_drm_fops);
  
- #include "framebuffer.h"
-+#include "gem.h"
- #include "gtt.h"
- #include "psb_drv.h"
- #include "psb_intel_drv.h"
-@@ -285,6 +286,7 @@ static struct gtt_range *psbfb_alloc(struct drm_device *dev, int aligned_size)
- 	/* Begin by trying to use stolen memory backing */
- 	backing = psb_gtt_alloc_range(dev, aligned_size, "fb", 1, PAGE_SIZE);
- 	if (backing) {
-+		backing->gem.funcs = &psb_gem_object_funcs;
- 		drm_gem_private_object_init(dev, &backing->gem, aligned_size);
- 		return backing;
- 	}
-diff --git a/drivers/gpu/drm/gma500/gem.c b/drivers/gpu/drm/gma500/gem.c
-index f9c4b1d76f56..8f07de83b6fb 100644
---- a/drivers/gpu/drm/gma500/gem.c
-+++ b/drivers/gpu/drm/gma500/gem.c
-@@ -18,7 +18,9 @@
- 
- #include "psb_drv.h"
- 
--void psb_gem_free_object(struct drm_gem_object *obj)
-+static vm_fault_t psb_gem_fault(struct vm_fault *vmf);
-+
-+static void psb_gem_free_object(struct drm_gem_object *obj)
- {
- 	struct gtt_range *gtt = container_of(obj, struct gtt_range, gem);
- 
-@@ -36,6 +38,17 @@ int psb_gem_get_aperture(struct drm_device *dev, void *data,
- 	return -EINVAL;
+ static struct drm_driver armada_drm_driver = {
+ 	.lastclose		= drm_fb_helper_lastclose,
+-	.gem_free_object_unlocked = armada_gem_free_object,
+ 	.prime_handle_to_fd	= drm_gem_prime_handle_to_fd,
+ 	.prime_fd_to_handle	= drm_gem_prime_fd_to_handle,
+-	.gem_prime_export	= armada_gem_prime_export,
+ 	.gem_prime_import	= armada_gem_prime_import,
+ 	.dumb_create		= armada_gem_dumb_create,
+-	.gem_vm_ops		= &armada_gem_vm_ops,
+ 	.major			= 1,
+ 	.minor			= 0,
+ 	.name			= "armada-drm",
+diff --git a/drivers/gpu/drm/armada/armada_gem.c b/drivers/gpu/drm/armada/armada_gem.c
+index 6654bccd9466..21909642ee4c 100644
+--- a/drivers/gpu/drm/armada/armada_gem.c
++++ b/drivers/gpu/drm/armada/armada_gem.c
+@@ -25,7 +25,7 @@ static vm_fault_t armada_gem_vm_fault(struct vm_fault *vmf)
+ 	return vmf_insert_pfn(vmf->vma, vmf->address, pfn);
  }
  
-+static const struct vm_operations_struct psb_gem_vm_ops = {
-+	.fault = psb_gem_fault,
-+	.open = drm_gem_vm_open,
-+	.close = drm_gem_vm_close,
-+};
-+
-+const struct drm_gem_object_funcs psb_gem_object_funcs = {
-+	.free = psb_gem_free_object,
-+	.vm_ops = &psb_gem_vm_ops,
-+};
-+
- /**
-  *	psb_gem_create		-	create a mappable object
-  *	@file: the DRM file of the client
-@@ -63,6 +76,7 @@ int psb_gem_create(struct drm_file *file, struct drm_device *dev, u64 size,
- 		dev_err(dev->dev, "no memory for %lld byte GEM object\n", size);
- 		return -ENOSPC;
- 	}
-+	r->gem.funcs = &psb_gem_object_funcs;
- 	/* Initialize the extra goodies GEM needs to do all the hard work */
- 	if (drm_gem_object_init(dev, &r->gem, size) != 0) {
- 		psb_gtt_free_range(dev, r);
-@@ -123,7 +137,7 @@ int psb_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
-  *	vma->vm_private_data points to the GEM object that is backing this
-  *	mapping.
-  */
--vm_fault_t psb_gem_fault(struct vm_fault *vmf)
-+static vm_fault_t psb_gem_fault(struct vm_fault *vmf)
- {
- 	struct vm_area_struct *vma = vmf->vma;
- 	struct drm_gem_object *obj;
-diff --git a/drivers/gpu/drm/gma500/gem.h b/drivers/gpu/drm/gma500/gem.h
-index 4a74dc623b6b..3741a711b9fd 100644
---- a/drivers/gpu/drm/gma500/gem.h
-+++ b/drivers/gpu/drm/gma500/gem.h
-@@ -8,6 +8,9 @@
- #ifndef _GEM_H
- #define _GEM_H
+-const struct vm_operations_struct armada_gem_vm_ops = {
++static const struct vm_operations_struct armada_gem_vm_ops = {
+ 	.fault	= armada_gem_vm_fault,
+ 	.open	= drm_gem_vm_open,
+ 	.close	= drm_gem_vm_close,
+@@ -184,6 +184,12 @@ armada_gem_map_object(struct drm_device *dev, struct armada_gem_object *dobj)
+ 	return dobj->addr;
+ }
  
-+extern const struct drm_gem_object_funcs psb_gem_object_funcs;
++static const struct drm_gem_object_funcs armada_gem_object_funcs = {
++	.free = armada_gem_free_object,
++	.export = armada_gem_prime_export,
++	.vm_ops = &armada_gem_vm_ops,
++};
 +
- extern int psb_gem_create(struct drm_file *file, struct drm_device *dev,
- 			  u64 size, u32 *handlep, int stolen, u32 align);
+ struct armada_gem_object *
+ armada_gem_alloc_private_object(struct drm_device *dev, size_t size)
+ {
+@@ -195,6 +201,8 @@ armada_gem_alloc_private_object(struct drm_device *dev, size_t size)
+ 	if (!obj)
+ 		return NULL;
+ 
++	obj->obj.funcs = &armada_gem_object_funcs;
 +
- #endif
-diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/psb_drv.c
-index 34b4aae9a15e..b13376a6fb91 100644
---- a/drivers/gpu/drm/gma500/psb_drv.c
-+++ b/drivers/gpu/drm/gma500/psb_drv.c
-@@ -480,12 +480,6 @@ static const struct dev_pm_ops psb_pm_ops = {
- 	.runtime_idle = psb_runtime_idle,
+ 	drm_gem_private_object_init(dev, &obj->obj, size);
+ 
+ 	DRM_DEBUG_DRIVER("alloc private obj %p size %zu\n", obj, size);
+@@ -214,6 +222,8 @@ static struct armada_gem_object *armada_gem_alloc_object(struct drm_device *dev,
+ 	if (!obj)
+ 		return NULL;
+ 
++	obj->obj.funcs = &armada_gem_object_funcs;
++
+ 	if (drm_gem_object_init(dev, &obj->obj, size)) {
+ 		kfree(obj);
+ 		return NULL;
+diff --git a/drivers/gpu/drm/armada/armada_gem.h b/drivers/gpu/drm/armada/armada_gem.h
+index de04cc2c8f0e..ffcc7e8dd351 100644
+--- a/drivers/gpu/drm/armada/armada_gem.h
++++ b/drivers/gpu/drm/armada/armada_gem.h
+@@ -21,8 +21,6 @@ struct armada_gem_object {
+ 	void			*update_data;
  };
  
--static const struct vm_operations_struct psb_gem_vm_ops = {
--	.fault = psb_gem_fault,
--	.open = drm_gem_vm_open,
--	.close = drm_gem_vm_close,
--};
+-extern const struct vm_operations_struct armada_gem_vm_ops;
 -
- static const struct file_operations psb_gem_fops = {
- 	.owner = THIS_MODULE,
- 	.open = drm_open,
-@@ -507,9 +501,6 @@ static struct drm_driver driver = {
- 	.irq_uninstall = psb_irq_uninstall,
- 	.irq_handler = psb_irq_handler,
+ #define drm_to_armada_gem(o) container_of(o, struct armada_gem_object, obj)
  
--	.gem_free_object_unlocked = psb_gem_free_object,
--	.gem_vm_ops = &psb_gem_vm_ops,
--
- 	.dumb_create = psb_gem_dumb_create,
- 	.ioctls = psb_ioctls,
- 	.fops = &psb_gem_fops,
-diff --git a/drivers/gpu/drm/gma500/psb_drv.h b/drivers/gpu/drm/gma500/psb_drv.h
-index 956926341316..c71a5a4e912c 100644
---- a/drivers/gpu/drm/gma500/psb_drv.h
-+++ b/drivers/gpu/drm/gma500/psb_drv.h
-@@ -735,12 +735,10 @@ extern const struct drm_connector_helper_funcs
- extern const struct drm_connector_funcs psb_intel_lvds_connector_funcs;
- 
- /* gem.c */
--extern void psb_gem_free_object(struct drm_gem_object *obj);
- extern int psb_gem_get_aperture(struct drm_device *dev, void *data,
- 			struct drm_file *file);
- extern int psb_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
- 			struct drm_mode_create_dumb *args);
--extern vm_fault_t psb_gem_fault(struct vm_fault *vmf);
- 
- /* psb_device.c */
- extern const struct psb_ops psb_chip_ops;
+ void armada_gem_free_object(struct drm_gem_object *);
 -- 
 2.28.0
