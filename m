@@ -1,8 +1,8 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+From: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Subject: Re: [RFC] Documentation: nouveau: Introduce some nouveau
  documentation
-Date: Thu, 24 Sep 2020 19:47:34 +0200
-Message-ID: <CACO55tsF7kNqVmX9b-Bhs9iYHRMJQW2bgJRKdigwnRkbegMJnQ@mail.gmail.com>
+Date: Thu, 24 Sep 2020 14:18:10 -0400
+Message-ID: <20200924181810.GB17438@xps13.jcline.org>
 References: <20200911162128.405604-1-jcline@redhat.com>
  <CACO55tsspNbYBYdNH-zd_TeZo02yY9AtJot4FW8SYEZPuKjkZA@mail.gmail.com>
  <20200923203918.GA37078@xps13>
@@ -14,6 +14,7 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <CACO55tvdOWtqSLCZg+rYL--XY8sHipMTo2vDCCoJ9YD7eYhxHg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -23,12 +24,11 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Sep 24, 2020 at 7:26 PM Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
->
+On Thu, Sep 24, 2020 at 07:26:01PM +0200, Karol Herbst wrote:
 > On Thu, Sep 24, 2020 at 6:03 PM Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
 > >
 > > On Wed, Sep 23, 2020 at 11:36:54PM +0200, Karol Herbst wrote:
@@ -156,21 +156,61 @@ On Thu, Sep 24, 2020 at 7:26 PM Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@pub
 > > don't know if gitlab.freedesktop.org has Pages set up, though.
 > > Regardless, I'm more than happy to do that work as well.
 > >
->
+> 
 > there might be an easier way. In gitlab you can actually mirror
 > repositories. I created https://gitlab.freedesktop.org/nouveau/wiki
 > and asked Daniels to set up a mirror against the wiki git repo of the
 > same project. If we add some CI pipeline on top we could even verify
 > the proposed changes are valid. Maybe that would be good enough...
->
+> 
 > But yeah.. maybe having a simple pages site would also work.. dunno if
 > it actually makes a difference anyway, but that might be more work.
->
+> 
 
-mhh, I saw that the pages stuff is already set up, so maybe I just
-look into it next week and see what works best.
+The work is pretty minimal for what I typically do. You need a CI job to
+build the docs on merge requests and pushes, which at its most verbose
+is something like:
 
-> > [0] https://docs.gitlab.com/ee/user/project/pages/
-> >
-> > - Jeremy
-> >
+docs:
+  stage: test
+  before_script:
+    # Pin Sphinx to a particular major version
+    - python3 -m venv ~/docs-venv
+    - source ~/docs-venv/bin/activate
+    - pip install "sphinx<3"
+    - pushd path/to/docs
+  script: make SPHINXOPTS="-W" html
+  artifacts:
+    paths:
+      - path/to/docs/_build/
+  only:
+    refs:
+      - merge_requests
+      - main
+
+After that, you just deploy documentation changes to a particular branch
+updates:
+
+pages:
+  stage: deploy
+  dependencies:
+    - docs
+  script:
+    - mv path/to/docs/_build/ public/
+  artifacts:
+    paths:
+      - public
+  only:
+    refs:
+      - main
+
+And that's about it. This gives you CI that catches any incorrectly
+formatted/invalid documentation, provide reviewers with easy-to-view
+HTML versions of proposed docs in the merge request, and automatically
+deploys updates when changes are pushed to the main branch.
+
+Of course, my only real reason for preferring this approach is that I've
+done it a couple times and I'm very familiar with Sphinx. I don't have
+any objection to doing it a different way.
+
+- Jeremy
