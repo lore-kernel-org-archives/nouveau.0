@@ -1,8 +1,8 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Subject: Re: [RFC] Documentation: nouveau: Introduce some nouveau
  documentation
-Date: Thu, 24 Sep 2020 10:29:17 -0400
-Message-ID: <CAKb7UvhJ+OR0tj_73qcO=FHj3pvSz+LmQwCSN_sun0T28cCVLA@mail.gmail.com>
+Date: Thu, 24 Sep 2020 17:21:06 +0200
+Message-ID: <CACO55tvM557nS=5u-QVtihZnXY5gnO0=VO9UQymmgitZ-_EDEA@mail.gmail.com>
 References: <20200911162128.405604-1-jcline@redhat.com>
  <CACO55tsspNbYBYdNH-zd_TeZo02yY9AtJot4FW8SYEZPuKjkZA@mail.gmail.com>
  <20200923203918.GA37078@xps13>
@@ -26,7 +26,7 @@ To: Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
 Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Sep 24, 2020 at 9:06 AM Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org> wrote:
+On Thu, Sep 24, 2020 at 3:06 PM Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org> wrote:
 >
 >
 > Op 23-09-2020 om 22:36 schreef Karol Herbst:
@@ -146,15 +146,141 @@ On Thu, Sep 24, 2020 at 9:06 AM Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@publi
 > and nouveau.debug, which may be by design. Perhaps expanding the modinfo
 > explanations can help cover at least all the other options in a way that
 > never gets out of sync with source code.
+>
 
-The general idea of envytools was to document NVIDIA GPUs, and to a
-lesser extent, some blob details which may not be intrinsic to the
-hardware itself. The idea of this patch appears to be documenting how
-nouveau works, which is a different and largely unrelated goal. I
-think it'd be a bit much to document in great detail the inner
-workings of the GPUs in the kernel, I don't think there's precedent
-for it, and it's just not the right place for it.
+technically true, but 99% of the users won't know that modinfo shows
+what parameters there are. I don't like this "config" parameter and I
+think we should split it up and have a nice line telling what they do
+for modinfo, but for user facing documentation we need something more
+detailed and something people find when searching for it on the web.
 
-Cheers,
-
-  -ilia
+> Roy
+>
+> [0] https://envytools.readthedocs.io/en/latest/
+>
+> >
+> >>>> diff --git a/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h b/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h
+> >>>> index 5a96c942d912..76b90d7ddfc6 100644
+> >>>> --- a/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h
+> >>>> +++ b/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h
+> >>>> @@ -1,22 +1,57 @@
+> >>>>   /* SPDX-License-Identifier: MIT */
+> >>>> +
+> >>>> +/**
+> >>>> + * DOC: Overview
+> >>>> + *
+> >>>> + * Interfaces for working with the display engine.
+> >>>> + */
+> >>>> +
+> >>>>   #ifndef __NVKM_DISP_H__
+> >>>>   #define __NVKM_DISP_H__
+> >>>> +
+> >>>> +/**
+> >>>> + * nvkm_disp() - Get a &struct nvkm_disp from a &struct nvkm_engine.
+> >>>> + *
+> >>>> + * @p: A &struct nvkm_engine reference.
+> >>>> + *
+> >>>> + * Return: The &struct nvkm_disp that contains the given engine.
+> >>>> + */
+> >>>>   #define nvkm_disp(p) container_of((p), struct nvkm_disp, engine)
+> >>>>   #include <core/engine.h>
+> >>>>   #include <core/event.h>
+> >>>>
+> >>>> +/**
+> >>>> + * struct nvkm_disp - Represents a display engine.
+> >>>> + *
+> >>>> + * This structure is for <some abstraction here>. It has <some assumptions
+> >>>> + * about its usage here>.
+> >>>> + */
+> >>>>   struct nvkm_disp {
+> >>>> +    /** @func: Chipset-specific vtable for manipulating the display. */
+> >>>>          const struct nvkm_disp_func *func;
+> >>>> +
+> >>>> +    /** @engine: The engine for this display. */
+> >>>>          struct nvkm_engine engine;
+> >>>>
+> >>>> +    /** @head: list of heads attached to this display. */
+> >>>>          struct list_head head;
+> >>>> +
+> >>>> +    /** @ior: List of IO resources for this display. */
+> >>>>          struct list_head ior;
+> >>>> +
+> >>>> +    /** @outp: List of outputs for this display. */
+> >>>>          struct list_head outp;
+> >>>> +
+> >>>> +    /** @conn: List of connectors for this display. */
+> >>>>          struct list_head conn;
+> >>>>
+> >>>> +    /** @hpd: An event that fires when something happens I guess. */
+> >>>>          struct nvkm_event hpd;
+> >>>> +
+> >>>> +    /** @vblank: An event that fires and has some relation to the vblank. */
+> >>>>          struct nvkm_event vblank;
+> >>>>
+> >>>> +    /** @client: The oproxy (?) client for this display. */
+> >>>>          struct nvkm_oproxy *client;
+> >>>>   };
+> >>>
+> >>> generally not a big fan of "int a; // a is an int" kind of
+> >>> documentation. But if it would specify constraints or details on how
+> >>> it's valid to use those fields, then it makes totally sense to add
+> >>> stuff.
+> >>
+> >> Definitely, I think that is not particularly helpful documentation. Of
+> >> course, the what and why of a function parameter or struct member is
+> >> very likely to be more interesting than that, but it's true that every
+> >> once in a while that the variable name can be so clear there's not much
+> >> else to say.
+> >>
+> >> I think it's fair to say the documentation I added for the above struct
+> >> is not good. I think it's also fair to say that a new-comer such as
+> >> myself who stumbles upon this structure has practically no chance of
+> >> guessing what it's all about without reading a bunch of additional code.
+> >> My first guess was that it represented a display I had plugged in, which
+> >> at this point I'm fairly confident is not at all correct. It required me
+> >> to look at many users of this struct along with perusing envytools
+> >> documentation to guess it represented a display engine.
+> >>
+> >
+> > yeah, but given that you run into the confusion you can actually
+> > document this and leave a comment addressing that. So describing a
+> > little bit what the engine does, what are heads, iors and outputs,
+> > etc... I think getting the high level overview should be the focus
+> > atm. We can always deal with the technical details later as those are
+> > usually easier to get once you have a rough idea on what's going on.
+> >
+> >> It may well be I'm an exceptionally slow learner, but even short notes
+> >> can be extremely helpful.
+> >>
+> >>>
+> >>> not sure if you were aware of it, but we have some documentation on
+> >>> the module options here:
+> >>> https://nouveau.freedesktop.org/wiki/KernelModuleParameters/
+> >>>
+> >>> But I think it makes sense to move it into the source code and link to
+> >>> the new thing from the wiki then.
+> >>>
+> >>
+> >> Indeed, and in fact I started this documentation from the wiki, but
+> >> tried my best to fill in the missing parameters and config options (you
+> >> don't happen to know what the NvAcrWpr* config options do, do you?)
+> >>
+> >
+> > I only know that this option specifies the version of the ACR WPR
+> > firmware to load, but I don't know what that actually is :)
+> >
+> >> Thanks!
+> >>
+> >> - Jeremy
+> >>
+> >
+> > _______________________________________________
+> > Nouveau mailing list
+> > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> > https://lists.freedesktop.org/mailman/listinfo/nouveau
+> >
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
+>
