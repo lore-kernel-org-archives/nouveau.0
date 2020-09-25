@@ -1,52 +1,107 @@
-From: Tomasz Figa <tfiga@chromium.org>
-Subject: Re: [PATCH 01/18] media/v4l2: remove V4L2-FLAG-MEMORY-NON-CONSISTENT
- flag
-Date: Fri, 25 Sep 2020 18:47:12 +0000
-Message-ID: <20200925184712.GC3607091@chromium.org>
-References: <20200915155122.1768241-1-hch@lst.de>
- <20200915155122.1768241-2-hch@lst.de>
+From: Ralph Campbell <rcampbell@nvidia.com>
+Subject: [PATCH 1/2] ext4/xfs: add page refcount helper
+Date: Fri, 25 Sep 2020 13:44:41 -0700
+Message-ID: <20200925204442.31348-2-rcampbell@nvidia.com>
+References: <20200925204442.31348-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <netdev-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20200915155122.1768241-2-hch@lst.de>
-To: Christoph Hellwig <hch@lst.de>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, Matt Porter <mporter@kernel.crashing.org>, iommu@lists.linux-foundation.org, Stefan Richter <stefanr@s5r6.in-berlin.de>, linux1394-devel@lists.sourceforge.net, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org, linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org, netdev@vger.kernel.org, linux-scsi@vger.kernel.org
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
+Return-path: <kvm-ppc-owner@vger.kernel.org>
+In-Reply-To: <20200925204442.31348-1-rcampbell@nvidia.com>
+To: linux-mm@kvack.org, kvm-ppc@vger.kernel.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Dan Williams <dan.j.williams@intel.com>, Ira Weiny <ira.weiny@intel.com>, Matthew Wilcox <willy@infradead.org>, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>, Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Zi Yan <ziy@nvidia.com>, "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>, Yang Shi <yang.shi@linux.alibaba.com>, Paul Mackerras <paulus@ozlabs.org>, Ben Skeggs <bskeggs@redhat.com>, Andrew Morton <akpm@linux-foundation.org>, Ralph Campbell <rcampbell@nvidia.com>
 List-Id: nouveau.vger.kernel.org
 
-Hi Christoph,
+There are several places where ZONE_DEVICE struct pages assume a reference
+count =3D=3D 1 means the page is idle and free. Instead of open coding this=
+,
+add a helper function to hide this detail.
 
-On Tue, Sep 15, 2020 at 05:51:05PM +0200, Christoph Hellwig wrote:
-> From: Sergey Senozhatsky <sergey.senozhatsky@gmail.com>
-> 
-> The patch partially reverts some of the UAPI bits of the buffer
-> cache management hints. Namely, the queue consistency (memory
-> coherency) user-space hint because, as it turned out, the kernel
-> implementation of this feature was misusing DMA_ATTR_NON_CONSISTENT.
-> 
-> The patch revers both kernel and user space parts: removes the
-> DMA consistency attr functions, rollbacks changes to v4l2_requestbuffers,
-> v4l2_create_buffers structures and corresponding UAPI functions
-> (plus compat32 layer) and cleanups the documentation.
-> 
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
-> Signed-off-by: Sergey Senozhatsky <sergey.senozhatsky@gmail.com>
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
-> ---
->  .../userspace-api/media/v4l/buffer.rst        | 17 -------
->  .../media/v4l/vidioc-create-bufs.rst          |  6 +--
->  .../media/v4l/vidioc-reqbufs.rst              | 12 +----
->  .../media/common/videobuf2/videobuf2-core.c   | 46 +++----------------
->  .../common/videobuf2/videobuf2-dma-contig.c   | 19 --------
->  .../media/common/videobuf2/videobuf2-dma-sg.c |  3 +-
->  .../media/common/videobuf2/videobuf2-v4l2.c   | 18 +-------
->  drivers/media/v4l2-core/v4l2-compat-ioctl32.c | 10 +---
->  drivers/media/v4l2-core/v4l2-ioctl.c          |  5 +-
->  include/media/videobuf2-core.h                |  7 +--
->  include/uapi/linux/videodev2.h                | 13 +-----
->  11 files changed, 22 insertions(+), 134 deletions(-)
+Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
+---
+ fs/dax.c            | 8 ++++----
+ fs/ext4/inode.c     | 2 +-
+ fs/xfs/xfs_file.c   | 2 +-
+ include/linux/dax.h | 5 +++++
+ 4 files changed, 11 insertions(+), 6 deletions(-)
 
-Acked-by: Tomasz Figa <tfiga@chromium.org>
-
-Best regards,
-Tomasz
+diff --git a/fs/dax.c b/fs/dax.c
+index 994ab66a9907..8eddbcc0e149 100644
+--- a/fs/dax.c
++++ b/fs/dax.c
+@@ -358,7 +358,7 @@ static void dax_disassociate_entry(void *entry, struct =
+address_space *mapping,
+ 	for_each_mapped_pfn(entry, pfn) {
+ 		struct page *page =3D pfn_to_page(pfn);
+=20
+-		WARN_ON_ONCE(trunc && page_ref_count(page) > 1);
++		WARN_ON_ONCE(trunc && !dax_layout_is_idle_page(page));
+ 		WARN_ON_ONCE(page->mapping && page->mapping !=3D mapping);
+ 		page->mapping =3D NULL;
+ 		page->index =3D 0;
+@@ -372,7 +372,7 @@ static struct page *dax_busy_page(void *entry)
+ 	for_each_mapped_pfn(entry, pfn) {
+ 		struct page *page =3D pfn_to_page(pfn);
+=20
+-		if (page_ref_count(page) > 1)
++		if (!dax_layout_is_idle_page(page))
+ 			return page;
+ 	}
+ 	return NULL;
+@@ -560,11 +560,11 @@ static void *grab_mapping_entry(struct xa_state *xas,
+=20
+ /**
+  * dax_layout_busy_page - find first pinned page in @mapping
+- * @mapping: address space to scan for a page with ref count > 1
++ * @mapping: address space to scan for a page with ref count > 0
+  *
+  * DAX requires ZONE_DEVICE mapped pages. These pages are never
+  * 'onlined' to the page allocator so they are considered idle when
+- * page->count =3D=3D 1. A filesystem uses this interface to determine if
++ * page->count =3D=3D 0. A filesystem uses this interface to determine if
+  * any page in the mapping is busy, i.e. for DMA, or other
+  * get_user_pages() usages.
+  *
+diff --git a/fs/ext4/inode.c b/fs/ext4/inode.c
+index bf596467c234..d9f8ad55523a 100644
+--- a/fs/ext4/inode.c
++++ b/fs/ext4/inode.c
+@@ -3927,7 +3927,7 @@ int ext4_break_layouts(struct inode *inode)
+ 			return 0;
+=20
+ 		error =3D ___wait_var_event(&page->_refcount,
+-				atomic_read(&page->_refcount) =3D=3D 1,
++				dax_layout_is_idle_page(page),
+ 				TASK_INTERRUPTIBLE, 0, 0,
+ 				ext4_wait_dax_page(ei));
+ 	} while (error =3D=3D 0);
+diff --git a/fs/xfs/xfs_file.c b/fs/xfs/xfs_file.c
+index a29f78a663ca..29ab96541bc1 100644
+--- a/fs/xfs/xfs_file.c
++++ b/fs/xfs/xfs_file.c
+@@ -750,7 +750,7 @@ xfs_break_dax_layouts(
+=20
+ 	*retry =3D true;
+ 	return ___wait_var_event(&page->_refcount,
+-			atomic_read(&page->_refcount) =3D=3D 1, TASK_INTERRUPTIBLE,
++			dax_layout_is_idle_page(page), TASK_INTERRUPTIBLE,
+ 			0, 0, xfs_wait_dax_page(inode));
+ }
+=20
+diff --git a/include/linux/dax.h b/include/linux/dax.h
+index 43b39ab9de1a..3f78ed78d1d6 100644
+--- a/include/linux/dax.h
++++ b/include/linux/dax.h
+@@ -238,4 +238,9 @@ static inline bool dax_mapping(struct address_space *ma=
+pping)
+ 	return mapping->host && IS_DAX(mapping->host);
+ }
+=20
++static inline bool dax_layout_is_idle_page(struct page *page)
++{
++	return page_ref_count(page) <=3D 1;
++}
++
+ #endif
+--=20
+2.20.1
