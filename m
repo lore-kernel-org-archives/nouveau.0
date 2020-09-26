@@ -1,187 +1,42 @@
 From: Christoph Hellwig <hch@lst.de>
-Subject: Re: [PATCH 2/2] mm: remove extra ZONE_DEVICE struct page refcount
-Date: Sat, 26 Sep 2020 08:41:17 +0200
-Message-ID: <20200926064116.GB3540@lst.de>
-References: <20200925204442.31348-1-rcampbell@nvidia.com> <20200925204442.31348-3-rcampbell@nvidia.com>
+Subject: Re: [PATCH 17/18] dma-iommu: implement ->alloc_noncoherent
+Date: Sat, 26 Sep 2020 16:14:28 +0200
+Message-ID: <20200926141428.GB10379@lst.de>
+References: <20200915155122.1768241-1-hch@lst.de> <20200915155122.1768241-18-hch@lst.de> <20200925184622.GB3607091@chromium.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
-Return-path: <kvm-ppc-owner@vger.kernel.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20200925204442.31348-3-rcampbell@nvidia.com>
-To: Ralph Campbell <rcampbell@nvidia.com>
-Cc: linux-mm@kvack.org, kvm-ppc@vger.kernel.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Dan Williams <dan.j.williams@intel.com>, Ira Weiny <ira.weiny@intel.com>, Matthew Wilcox <willy@infradead.org>, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>, Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Zi Yan <ziy@nvidia.com>, "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>, Yang Shi <yang.shi@linux.alibaba.com>, Paul Mackerras <paulus@ozlabs.org>, Ben Skeggs <bskeggs@redhat.com>, Andrew Morton <akpm@linux-foundation.org>
+In-Reply-To: <20200925184622.GB3607091@chromium.org>
+To: Tomasz Figa <tfiga@chromium.org>
+Cc: Christoph Hellwig <hch@lst.de>, Mauro Carvalho Chehab <mchehab@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, Matt Porter <mporter@kernel.crashing.org>, iommu@lists.linux-foundation.org, Stefan Richter <stefanr@s5r6.in-berlin.de>, linux1394-devel@lists.sourceforge.net, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org, linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org, netdev@vger.kernel.
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Sep 25, 2020 at 01:44:42PM -0700, Ralph Campbell wrote:
-> ZONE_DEVICE struct pages have an extra reference count that complicates the
-> code for put_page() and several places in the kernel that need to check the
-> reference count to see that a page is not being used (gup, compaction,
-> migration, etc.). Clean up the code so the reference count doesn't need to
-> be treated specially for ZONE_DEVICE.
+On Fri, Sep 25, 2020 at 06:46:22PM +0000, Tomasz Figa wrote:
+> > +static void *iommu_dma_alloc_noncoherent(struct device *dev, size_t size,
+> > +		dma_addr_t *handle, enum dma_data_direction dir, gfp_t gfp)
+> > +{
+> > +	if (!gfpflags_allow_blocking(gfp)) {
+> > +		struct page *page;
+> > +
+> > +		page = dma_common_alloc_pages(dev, size, handle, dir, gfp);
+> > +		if (!page)
+> > +			return NULL;
+> > +		return page_address(page);
+> > +	}
+> > +
+> > +	return iommu_dma_alloc_remap(dev, size, handle, gfp | __GFP_ZERO,
+> > +				     PAGE_KERNEL, 0);
 > 
-> Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
-> ---
->  arch/powerpc/kvm/book3s_hv_uvmem.c     |  2 +-
->  drivers/gpu/drm/nouveau/nouveau_dmem.c |  2 +-
->  include/linux/dax.h                    |  2 +-
->  include/linux/memremap.h               |  7 ++-
->  include/linux/mm.h                     | 44 --------------
->  lib/test_hmm.c                         |  2 +-
->  mm/gup.c                               | 44 --------------
->  mm/internal.h                          |  8 +++
->  mm/memremap.c                          | 82 ++++++--------------------
->  mm/migrate.c                           |  5 --
->  mm/page_alloc.c                        |  3 +
->  mm/swap.c                              | 46 +++------------
->  12 files changed, 44 insertions(+), 203 deletions(-)
+> iommu_dma_alloc_remap() makes use of the DMA_ATTR_ALLOC_SINGLE_PAGES attribute
+> to optimize the allocations for devices which don't care about how contiguous
+> the backing memory is. Do you think we could add an attrs argument to this
+> function and pass it there?
 > 
-> diff --git a/arch/powerpc/kvm/book3s_hv_uvmem.c b/arch/powerpc/kvm/book3s_hv_uvmem.c
-> index 7705d5557239..e6ec98325fab 100644
-> --- a/arch/powerpc/kvm/book3s_hv_uvmem.c
-> +++ b/arch/powerpc/kvm/book3s_hv_uvmem.c
-> @@ -711,7 +711,7 @@ static struct page *kvmppc_uvmem_get_page(unsigned long gpa, struct kvm *kvm)
->  
->  	dpage = pfn_to_page(uvmem_pfn);
->  	dpage->zone_device_data = pvt;
-> -	get_page(dpage);
-> +	init_page_count(dpage);
->  	lock_page(dpage);
->  	return dpage;
->  out_clear:
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> index 4e8112fde3e6..ca2e3c3edc36 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> @@ -323,7 +323,7 @@ nouveau_dmem_page_alloc_locked(struct nouveau_drm *drm)
->  			return NULL;
->  	}
->  
-> -	get_page(page);
-> +	init_page_count(page);
->  	lock_page(page);
->  	return page;
->  }
-> diff --git a/include/linux/dax.h b/include/linux/dax.h
-> index 3f78ed78d1d6..8d29f38645aa 100644
-> --- a/include/linux/dax.h
-> +++ b/include/linux/dax.h
-> @@ -240,7 +240,7 @@ static inline bool dax_mapping(struct address_space *mapping)
->  
->  static inline bool dax_layout_is_idle_page(struct page *page)
->  {
-> -	return page_ref_count(page) <= 1;
-> +	return page_ref_count(page) == 0;
->  }
->  
->  #endif
-> diff --git a/include/linux/memremap.h b/include/linux/memremap.h
-> index e5862746751b..f9224f88e4cd 100644
-> --- a/include/linux/memremap.h
-> +++ b/include/linux/memremap.h
-> @@ -65,9 +65,10 @@ enum memory_type {
->  
->  struct dev_pagemap_ops {
->  	/*
-> -	 * Called once the page refcount reaches 1.  (ZONE_DEVICE pages never
-> -	 * reach 0 refcount unless there is a refcount bug. This allows the
-> -	 * device driver to implement its own memory management.)
-> +	 * Called once the page refcount reaches 0. The reference count
-> +	 * should be reset to one with init_page_count(page) before reusing
-> +	 * the page. This allows the device driver to implement its own
-> +	 * memory management.
->  	 */
->  	void (*page_free)(struct page *page);
->  
-> diff --git a/include/linux/mm.h b/include/linux/mm.h
-> index b2f370f0b420..2159c2477aa3 100644
-> --- a/include/linux/mm.h
-> +++ b/include/linux/mm.h
-> @@ -1092,39 +1092,6 @@ static inline bool is_zone_device_page(const struct page *page)
->  }
->  #endif
->  
-> -#ifdef CONFIG_DEV_PAGEMAP_OPS
-> -void free_devmap_managed_page(struct page *page);
-> -DECLARE_STATIC_KEY_FALSE(devmap_managed_key);
-> -
-> -static inline bool page_is_devmap_managed(struct page *page)
-> -{
-> -	if (!static_branch_unlikely(&devmap_managed_key))
-> -		return false;
-> -	if (!is_zone_device_page(page))
-> -		return false;
-> -	switch (page->pgmap->type) {
-> -	case MEMORY_DEVICE_PRIVATE:
-> -	case MEMORY_DEVICE_FS_DAX:
-> -		return true;
-> -	default:
-> -		break;
-> -	}
-> -	return false;
-> -}
-> -
-> -void put_devmap_managed_page(struct page *page);
-> -
-> -#else /* CONFIG_DEV_PAGEMAP_OPS */
-> -static inline bool page_is_devmap_managed(struct page *page)
-> -{
-> -	return false;
-> -}
-> -
-> -static inline void put_devmap_managed_page(struct page *page)
-> -{
-> -}
-> -#endif /* CONFIG_DEV_PAGEMAP_OPS */
-> -
->  static inline bool is_device_private_page(const struct page *page)
->  {
->  	return IS_ENABLED(CONFIG_DEV_PAGEMAP_OPS) &&
-> @@ -1171,17 +1138,6 @@ static inline void put_page(struct page *page)
->  {
->  	page = compound_head(page);
->  
-> -	/*
-> -	 * For devmap managed pages we need to catch refcount transition from
-> -	 * 2 to 1, when refcount reach one it means the page is free and we
-> -	 * need to inform the device driver through callback. See
-> -	 * include/linux/memremap.h and HMM for details.
-> -	 */
-> -	if (page_is_devmap_managed(page)) {
-> -		put_devmap_managed_page(page);
-> -		return;
-> -	}
-> -
->  	if (put_page_testzero(page))
->  		__put_page(page);
->  }
-> diff --git a/lib/test_hmm.c b/lib/test_hmm.c
-> index e7dc3de355b7..1033b19c9c52 100644
-> --- a/lib/test_hmm.c
-> +++ b/lib/test_hmm.c
-> @@ -561,7 +561,7 @@ static struct page *dmirror_devmem_alloc_page(struct dmirror_device *mdevice)
->  	}
->  
->  	dpage->zone_device_data = rpage;
-> -	get_page(dpage);
-> +	init_page_count(dpage);
->  	lock_page(dpage);
->  	return dpage;
->  
+> As ARM is being moved to the common iommu-dma layer as well, we'll probably
+> make use of the argument to support the DMA_ATTR_NO_KERNEL_MAPPING attribute to
+> conserve the vmalloc area.
 
-Doesn't test_hmm also need to reinitialize the refcount before freeing
-the page in hmm_dmirror_exit?
-
->  	int error, is_ram;
-> -	bool need_devmap_managed = true;
->  
->  	switch (pgmap->type) {
->  	case MEMORY_DEVICE_PRIVATE:
-> @@ -217,11 +171,9 @@ void *memremap_pages(struct dev_pagemap *pgmap, int nid)
->  		}
->  		break;
->  	case MEMORY_DEVICE_GENERIC:
-
-The MEMORY_DEVICE_PRIVATE cases loses the sanity check that the
-page_free method is set.
-
-Otherwise this looks good.
+We could probably at it.  However I wonder why this is something the
+drivers should care about.  Isn't this really something that should
+be a kernel-wide policy for a given system?
