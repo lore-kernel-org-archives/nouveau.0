@@ -1,64 +1,101 @@
-From: Tomasz Figa <tfiga@chromium.org>
-Subject: Re: [PATCH 17/18] dma-iommu: implement ->alloc_noncoherent
-Date: Sat, 26 Sep 2020 17:25:27 +0200
-Message-ID: <CAAFQd5CjSKswdc3qOEZy73cyYJ9kfaXsSFyxkOHA+buh-J12UA@mail.gmail.com>
-References: <20200915155122.1768241-1-hch@lst.de> <20200915155122.1768241-18-hch@lst.de>
- <20200925184622.GB3607091@chromium.org> <20200926141428.GB10379@lst.de>
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH] drm/nouveau/kms/nv50-: Fix clock checking algorithm in
+ nv50_dp_mode_valid()
+Date: Mon, 28 Sep 2020 16:01:41 +0300
+Message-ID: <20200928130141.GV6112@intel.com>
+References: <20200922210510.156220-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <netdev-owner@vger.kernel.org>
-In-Reply-To: <20200926141428.GB10379@lst.de>
-To: Christoph Hellwig <hch@lst.de>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, Joonyoung Shim <jy0922.shim@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Ben Skeggs <bskeggs@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, Matt Porter <mporter@kernel.crashing.org>, "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>, Stefan Richter <stefanr@s5r6.in-berlin.de>, linux1394-devel@lists.sourceforge.net, Linux Doc Mailing List <linux-doc@vger.kernel.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Media Mailing List <linux-media@vger.kernel.org>list@263.net:IOMMU DRIVERS <iommu
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20200922210510.156220-1-lyude@redhat.com>
+To: Lyude Paul <lyude@redhat.com>
+Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Sep 26, 2020 at 4:14 PM Christoph Hellwig <hch@lst.de> wrote:
->
-> On Fri, Sep 25, 2020 at 06:46:22PM +0000, Tomasz Figa wrote:
-> > > +static void *iommu_dma_alloc_noncoherent(struct device *dev, size_t size,
-> > > +           dma_addr_t *handle, enum dma_data_direction dir, gfp_t gfp)
-> > > +{
-> > > +   if (!gfpflags_allow_blocking(gfp)) {
-> > > +           struct page *page;
-> > > +
-> > > +           page = dma_common_alloc_pages(dev, size, handle, dir, gfp);
-> > > +           if (!page)
-> > > +                   return NULL;
-> > > +           return page_address(page);
-> > > +   }
-> > > +
-> > > +   return iommu_dma_alloc_remap(dev, size, handle, gfp | __GFP_ZERO,
-> > > +                                PAGE_KERNEL, 0);
-> >
-> > iommu_dma_alloc_remap() makes use of the DMA_ATTR_ALLOC_SINGLE_PAGES attribute
-> > to optimize the allocations for devices which don't care about how contiguous
-> > the backing memory is. Do you think we could add an attrs argument to this
-> > function and pass it there?
-> >
-> > As ARM is being moved to the common iommu-dma layer as well, we'll probably
-> > make use of the argument to support the DMA_ATTR_NO_KERNEL_MAPPING attribute to
-> > conserve the vmalloc area.
->
-> We could probably at it.  However I wonder why this is something the
-> drivers should care about.  Isn't this really something that should
-> be a kernel-wide policy for a given system?
+On Tue, Sep 22, 2020 at 05:05:10PM -0400, Lyude Paul wrote:
+> While I thought I had this correct (since it actually did reject modes
+> like I expected during testing), Ville Syrjala from Intel pointed out
+> that the logic here isn't correct. max_clock refers to the max symbol
+> rate supported by the encoder, so limiting clock to ds_clock using max()
+> doesn't make sense. Additionally, we want to check against 6bpc for the
+> time being since that's the minimum possible bpc here, not the reported
+> bpc from the connector. See:
+> 
+> https://lists.freedesktop.org/archives/dri-devel/2020-September/280276.html
+> 
+> For more info.
+> 
+> So, let's rewrite this using Ville's advice.
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Fixes: 409d38139b42 ("drm/nouveau/kms/nv50-: Use downstream DP clock limits for mode validation")
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Ben Skeggs <bskeggs@redhat.com>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_dp.c | 23 +++++++++++++----------
+>  1 file changed, 13 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+> index 7b640e05bd4cd..24c81e423d349 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_dp.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+> @@ -231,23 +231,26 @@ nv50_dp_mode_valid(struct drm_connector *connector,
+>  		   const struct drm_display_mode *mode,
+>  		   unsigned *out_clock)
+>  {
+> -	const unsigned min_clock = 25000;
+> -	unsigned max_clock, ds_clock, clock;
+> +	const unsigned int min_clock = 25000;
+> +	unsigned int max_clock, ds_clock, clock;
+> +	const u8 bpp = 18; /* 6 bpc */
 
-There are IOMMUs out there which support huge pages and those can
-benefit *some* hardware depending on what kind of accesses they
-perform, possibly on a per-buffer basis. At the same time, order > 0
-allocations can be expensive, significantly affecting allocation
-latency, so for devices which don't care about huge pages anyone would
-prefer simple single-page allocations. Currently the drivers know the
-best on whether the hardware they drive would care. There are some
-decision factors listed in the documentation [1].
+AFAICS nv50_outp_atomic_check() and nv50_msto_atomic_check()
+just blindly use connector->display_info.bpc without any fallback
+logic to lower the bpc. So Ilia's concerns seem well founded.
+Without that logic I guess you should just use
+connector->display_info.bpc here as well.
 
-I can imagine cases where drivers could not be the best to decide
-about this - for example, the workload could vary depending on the
-userspace or a product decision regarding the performance vs
-allocation latency, but we haven't seen such cases in practice yet.
+>  	enum drm_mode_status ret;
+>  
+>  	if (mode->flags & DRM_MODE_FLAG_INTERLACE && !outp->caps.dp_interlace)
+>  		return MODE_NO_INTERLACE;
+>  
+>  	max_clock = outp->dp.link_nr * outp->dp.link_bw;
+> -	ds_clock = drm_dp_downstream_max_dotclock(outp->dp.dpcd,
+> -						  outp->dp.downstream_ports);
+> -	if (ds_clock)
+> -		max_clock = min(max_clock, ds_clock);
+> -
+> -	clock = mode->clock * (connector->display_info.bpc * 3) / 10;
+> -	ret = nouveau_conn_mode_clock_valid(mode, min_clock, max_clock,
+> -					    &clock);
+> +	clock = mode->clock * bpp / 8;
+> +	if (clock > max_clock)
+> +		return MODE_CLOCK_HIGH;
 
-[1] https://www.kernel.org/doc/html/latest/core-api/dma-attributes.html?highlight=dma_attr_alloc_single_pages#dma-attr-alloc-single-pages
+This stuff vs. nouveau_conn_mode_clock_valid() still seems a bit messy.
+The max_clock you pass to nouveau_conn_mode_clock_valid() is the max
+symbol clock, but nouveau_conn_mode_clock_valid() checks it against the
+dotclock. Also only nouveau_conn_mode_clock_valid() has any kind of
+stereo 3D handling, but AFAICS stereo_allowed is also set for DP?
 
-Best regards,
-Tomasz
+> +
+> +	ds_clock = drm_dp_downstream_max_dotclock(outp->dp.dpcd, outp->dp.downstream_ports);
+> +	if (ds_clock && mode->clock > ds_clock)
+> +		return MODE_CLOCK_HIGH;
+> +
+> +	ret = nouveau_conn_mode_clock_valid(mode, min_clock, max_clock, &clock);
+>  	if (out_clock)
+>  		*out_clock = clock;
+> +
+>  	return ret;
+>  }
+> -- 
+> 2.26.2
+
+-- 
+Ville Syrjälä
+Intel
