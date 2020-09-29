@@ -1,136 +1,129 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH] drm/nouveau/kms/nv50-: Fix clock checking algorithm in
- nv50_dp_mode_valid()
-Date: Tue, 29 Sep 2020 14:29:06 -0400
-Message-ID: <cc403d8fa9811e57694507213f95d6461b4b1d34.camel@redhat.com>
-References: <20200922210510.156220-1-lyude@redhat.com>
-         <20200928130141.GV6112@intel.com>
-         <9e12d6c091d18be6253717f33f4c09013361e532.camel@redhat.com>
-         <20200929180912.GG6112@intel.com>
+Subject: [PATCH v2 1/2] drm/nouveau/kms/nv50-: Get rid of bogus nouveau_conn_mode_valid()
+Date: Tue, 29 Sep 2020 18:31:31 -0400
+Message-ID: <20200929223132.333453-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200929180912.GG6112@intel.com>
-To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
+To: nouveau@lists.freedesktop.org
+Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, "open list:DRM DRIVER FOR NVIDIA
+        GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 2020-09-29 at 21:09 +0300, Ville Syrjälä wrote:
-> On Tue, Sep 29, 2020 at 01:54:13PM -0400, Lyude Paul wrote:
-> > On Mon, 2020-09-28 at 16:01 +0300, Ville Syrjälä wrote:
-> > > On Tue, Sep 22, 2020 at 05:05:10PM -0400, Lyude Paul wrote:
-> > > > While I thought I had this correct (since it actually did reject modes
-> > > > like I expected during testing), Ville Syrjala from Intel pointed out
-> > > > that the logic here isn't correct. max_clock refers to the max symbol
-> > > > rate supported by the encoder, so limiting clock to ds_clock using
-> > > > max()
-> > > > doesn't make sense. Additionally, we want to check against 6bpc for
-> > > > the
-> > > > time being since that's the minimum possible bpc here, not the
-> > > > reported
-> > > > bpc from the connector. See:
-> > > > 
-> > > > https://lists.freedesktop.org/archives/dri-devel/2020-September/280276.html
-> > > > 
-> > > > For more info.
-> > > > 
-> > > > So, let's rewrite this using Ville's advice.
-> > > > 
-> > > > Signed-off-by: Lyude Paul <lyude@redhat.com>
-> > > > Fixes: 409d38139b42 ("drm/nouveau/kms/nv50-: Use downstream DP clock
-> > > > limits for mode validation")
-> > > > Cc: Ville SyrjÃƒÂ¤lÃƒÂ¤ <ville.syrjala@linux.intel.com>
-> > > > Cc: Lyude Paul <lyude@redhat.com>
-> > > > Cc: Ben Skeggs <bskeggs@redhat.com>
-> > > > ---
-> > > >  drivers/gpu/drm/nouveau/nouveau_dp.c | 23 +++++++++++++----------
-> > > >  1 file changed, 13 insertions(+), 10 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c
-> > > > b/drivers/gpu/drm/nouveau/nouveau_dp.c
-> > > > index 7b640e05bd4cd..24c81e423d349 100644
-> > > > --- a/drivers/gpu/drm/nouveau/nouveau_dp.c
-> > > > +++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
-> > > > @@ -231,23 +231,26 @@ nv50_dp_mode_valid(struct drm_connector
-> > > > *connector,
-> > > >  		   const struct drm_display_mode *mode,
-> > > >  		   unsigned *out_clock)
-> > > >  {
-> > > > -	const unsigned min_clock = 25000;
-> > > > -	unsigned max_clock, ds_clock, clock;
-> > > > +	const unsigned int min_clock = 25000;
-> > > > +	unsigned int max_clock, ds_clock, clock;
-> > > > +	const u8 bpp = 18; /* 6 bpc */
-> > > 
-> > > AFAICS nv50_outp_atomic_check() and nv50_msto_atomic_check()
-> > > just blindly use connector->display_info.bpc without any fallback
-> > > logic to lower the bpc. So Ilia's concerns seem well founded.
-> > > Without that logic I guess you should just use
-> > > connector->display_info.bpc here as well.
-> > > 
-> > > >  	enum drm_mode_status ret;
-> > > >  
-> > > >  	if (mode->flags & DRM_MODE_FLAG_INTERLACE && !outp-
-> > > > >caps.dp_interlace)
-> > > >  		return MODE_NO_INTERLACE;
-> > > >  
-> > > >  	max_clock = outp->dp.link_nr * outp->dp.link_bw;
-> > > > -	ds_clock = drm_dp_downstream_max_dotclock(outp->dp.dpcd,
-> > > > -						  outp-
-> > > > >dp.downstream_ports);
-> > > > -	if (ds_clock)
-> > > > -		max_clock = min(max_clock, ds_clock);
-> > > > -
-> > > > -	clock = mode->clock * (connector->display_info.bpc * 3) / 10;
-> > > > -	ret = nouveau_conn_mode_clock_valid(mode, min_clock,
-> > > > max_clock,
-> > > > -					    &clock);
-> > > > +	clock = mode->clock * bpp / 8;
-> > > > +	if (clock > max_clock)
-> > > > +		return MODE_CLOCK_HIGH;
-> > > 
-> > > This stuff vs. nouveau_conn_mode_clock_valid() still seems a bit messy.
-> > > The max_clock you pass to nouveau_conn_mode_clock_valid() is the max
-> > > symbol clock, but nouveau_conn_mode_clock_valid() checks it against the
-> > > dotclock. Also only nouveau_conn_mode_clock_valid() has any kind of
-> > > stereo 3D handling, but AFAICS stereo_allowed is also set for DP?
-> > 
-> > ...not sure I'm following you here, it's set to true for DP so don't we
-> > want
-> > to check it and adjust the pixel clock we output accordingly?
-> 
-> Yes, but then you need to also double your your pixel clock
-> derived values in this function. Ie. all the mode->clock
-> needs to become mode->clock*2 when dealing with a 3D frame
-> packing mode.
+Ville also pointed out that I got a lot of the logic here wrong as well, whoops.
+While I don't think anyone's likely using 3D output with nouveau, the next patch
+will make nouveau_conn_mode_valid() make a lot less sense. So, let's just get
+rid of it and open-code it like before, while taking care to move the 3D frame
+packing calculations on the dot clock into the right place.
 
-oh this is a good point, thanks for noticing. I guess I'll get to changing
-this around once I start working on the rest of the bpp stuff, since I'd
-rather get this fixed first (I doubt many folks are using nouveau for 3D right
-now, but if other nouveau folks disagree i'm happy to change my mind)
-> 
-> > > > +
-> > > > +	ds_clock = drm_dp_downstream_max_dotclock(outp->dp.dpcd, outp-
-> > > > > dp.downstream_ports);
-> > > > +	if (ds_clock && mode->clock > ds_clock)
-> > > > +		return MODE_CLOCK_HIGH;
-> > > > +
-> > > > +	ret = nouveau_conn_mode_clock_valid(mode, min_clock,
-> > > > max_clock,
-> > > > &clock);
-> > > >  	if (out_clock)
-> > > >  		*out_clock = clock;
-> > > > +
-> > > >  	return ret;
-> > > >  }
-> > > > -- 
-> > > > 2.26.2
-> > -- 
-> > Cheers,
-> > 	Lyude Paul (she/her)
-> > 	Software Engineer at Red Hat
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Fixes: d6a9efece724 ("drm/nouveau/kms/nv50-: Share DP SST mode_valid() handling with MST")
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: <stable@vger.kernel.org> # v5.8+
+---
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 36 ++++++---------------
+ drivers/gpu/drm/nouveau/nouveau_dp.c        | 16 ++++++---
+ 2 files changed, 21 insertions(+), 31 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 49dd0cbc332f..6f21f36719fc 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -1023,29 +1023,6 @@ get_tmds_link_bandwidth(struct drm_connector *connector)
+ 		return 112000 * duallink_scale;
+ }
+ 
+-enum drm_mode_status
+-nouveau_conn_mode_clock_valid(const struct drm_display_mode *mode,
+-			      const unsigned min_clock,
+-			      const unsigned max_clock,
+-			      unsigned int *clock_out)
+-{
+-	unsigned int clock = mode->clock;
+-
+-	if ((mode->flags & DRM_MODE_FLAG_3D_MASK) ==
+-	    DRM_MODE_FLAG_3D_FRAME_PACKING)
+-		clock *= 2;
+-
+-	if (clock < min_clock)
+-		return MODE_CLOCK_LOW;
+-	if (clock > max_clock)
+-		return MODE_CLOCK_HIGH;
+-
+-	if (clock_out)
+-		*clock_out = clock;
+-
+-	return MODE_OK;
+-}
+-
+ static enum drm_mode_status
+ nouveau_connector_mode_valid(struct drm_connector *connector,
+ 			     struct drm_display_mode *mode)
+@@ -1053,7 +1030,7 @@ nouveau_connector_mode_valid(struct drm_connector *connector,
+ 	struct nouveau_connector *nv_connector = nouveau_connector(connector);
+ 	struct nouveau_encoder *nv_encoder = nv_connector->detected_encoder;
+ 	struct drm_encoder *encoder = to_drm_encoder(nv_encoder);
+-	unsigned min_clock = 25000, max_clock = min_clock;
++	unsigned int min_clock = 25000, max_clock = min_clock, clock = mode->clock;
+ 
+ 	switch (nv_encoder->dcb->type) {
+ 	case DCB_OUTPUT_LVDS:
+@@ -1082,8 +1059,15 @@ nouveau_connector_mode_valid(struct drm_connector *connector,
+ 		return MODE_BAD;
+ 	}
+ 
+-	return nouveau_conn_mode_clock_valid(mode, min_clock, max_clock,
+-					     NULL);
++	if ((mode->flags & DRM_MODE_FLAG_3D_MASK) == DRM_MODE_FLAG_3D_FRAME_PACKING)
++		clock *= 2;
++
++	if (clock < min_clock)
++		return MODE_CLOCK_LOW;
++	if (clock > max_clock)
++		return MODE_CLOCK_HIGH;
++
++	return MODE_OK;
+ }
+ 
+ static struct drm_encoder *
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
+index 7b640e05bd4c..93e3751ad7f1 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dp.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+@@ -232,12 +232,14 @@ nv50_dp_mode_valid(struct drm_connector *connector,
+ 		   unsigned *out_clock)
+ {
+ 	const unsigned min_clock = 25000;
+-	unsigned max_clock, ds_clock, clock;
+-	enum drm_mode_status ret;
++	unsigned max_clock, ds_clock, clock = mode->clock;
+ 
+ 	if (mode->flags & DRM_MODE_FLAG_INTERLACE && !outp->caps.dp_interlace)
+ 		return MODE_NO_INTERLACE;
+ 
++	if ((mode->flags & DRM_MODE_FLAG_3D_MASK) == DRM_MODE_FLAG_3D_FRAME_PACKING)
++		clock *= 2;
++
+ 	max_clock = outp->dp.link_nr * outp->dp.link_bw;
+ 	ds_clock = drm_dp_downstream_max_dotclock(outp->dp.dpcd,
+ 						  outp->dp.downstream_ports);
+@@ -245,9 +247,13 @@ nv50_dp_mode_valid(struct drm_connector *connector,
+ 		max_clock = min(max_clock, ds_clock);
+ 
+ 	clock = mode->clock * (connector->display_info.bpc * 3) / 10;
+-	ret = nouveau_conn_mode_clock_valid(mode, min_clock, max_clock,
+-					    &clock);
++	if (clock < min_clock)
++		return MODE_CLOCK_LOW;
++	if (clock > max_clock)
++		return MODE_CLOCK_HIGH;
++
+ 	if (out_clock)
+ 		*out_clock = clock;
+-	return ret;
++
++	return MODE_OK;
+ }
 -- 
-Cheers,
-	Lyude Paul (she/her)
-	Software Engineer at Red Hat
+2.26.2
