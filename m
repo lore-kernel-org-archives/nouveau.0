@@ -1,105 +1,74 @@
-From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Drop mutex_lock_nested for atomic
-Date: Tue, 29 Sep 2020 16:52:26 +0200
-Message-ID: <CAKMK7uE89ZyvVronwpS=+ovJj_njVo3C5+GjjZp2S-Dk_7p2jg@mail.gmail.com>
-References: <20200802181849.1586281-1-daniel.vetter@ffwll.ch>
- <579702ca-4b4e-0b05-1b93-25b99554d464@linux.intel.com>
- <CAKMK7uHbdcLMJONxR5OZXBLtm0WVxT117mBD72RDW5MRQ=ky4g@mail.gmail.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v3 1/7] drm/vram-helper: Remove invariant parameters from internal kmap function
+Date: Tue, 29 Sep 2020 17:14:31 +0200
+Message-ID: <20200929151437.19717-2-tzimmermann@suse.de>
+References: <20200929151437.19717-1-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKMK7uHbdcLMJONxR5OZXBLtm0WVxT117mBD72RDW5MRQ=ky4g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Cc: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-media-owner@vger.kernel.org>
+In-Reply-To: <20200929151437.19717-1-tzimmermann@suse.de>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@linux.ie, daniel@ffwll.ch, sam@ravnborg.org, alexander.deucher@amd.com, christian.koenig@amd.com, kraxel@redhat.com, l.stach@pengutronix.de, linux+etnaviv@armlinux.org.uk, christian.gmeiner@gmail.com, inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org, yuq825@gmail.com, bskeggs@redhat.com, robh@kernel.org, tomeu.vizoso@collabora.com, steven.price@arm.com, alyssa.rosenzweig@collabora.com, hjc@rock-chips.com, heiko@sntech.de, hdegoede@redhat.com, sean@poorly.run, eric@anholt.net, oleksandr_andrushchenko@epam.com, ray.huang@amd.com, sumit.semwal@linaro.org, emil.velikov@collabora.com, luben.tuikov@amd.com, apaneers@amd.com, linus.walle
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org, etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, lima@lists.freedesktop.org, nouveau@lists.freedesktop.org, spice-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org, xen-devel@lists.xenproject.org, linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org, Thomas Zimmermann <tzimmermann@suse.de>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Sep 17, 2020 at 3:15 PM Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org> wrote:
->
-> Ben, did you have a chance to look at this?
+The parameters map and is_iomem are always of the same value. Removed them
+to prepares the function for conversion to struct dma_buf_map.
 
-Ping
--Daniel
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+---
+ drivers/gpu/drm/drm_gem_vram_helper.c | 17 ++++++-----------
+ 1 file changed, 6 insertions(+), 11 deletions(-)
 
-> On Mon, Aug 3, 2020 at 1:22 PM Maarten Lankhorst
-> <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org> wrote:
-> >
-> > Op 02-08-2020 om 20:18 schreef Daniel Vetter:
-> > > Purely conjecture, but I think the original locking inversion with the
-> > > legacy page flip code between flipping and ttm's bo move function
-> > > shoudn't exist anymore with atomic: With atomic the bo pinning and
-> > > actual modeset commit is completely separated in the code patsh.
-> > >
-> > > This annotation was originally added in
-> > >
-> > > commit 060810d7abaabcab282e062c595871d661561400
-> > > Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> > > Date:   Mon Jul 8 14:15:51 2013 +1000
-> > >
-> > >     drm/nouveau: fix locking issues in page flipping paths
-> > >
-> > > due to
-> > >
-> > > commit b580c9e2b7ba5030a795aa2fb73b796523d65a78
-> > > Author: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > > Date:   Thu Jun 27 13:48:18 2013 +0200
-> > >
-> > >     drm/nouveau: make flipping lockdep safe
-> > >
-> > > Signed-off-by: Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-> > > Cc: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > > Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> > > Cc: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > > Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> > > ---
-> > > I might be totally wrong, so this definitely needs testing :-)
-> > >
-> > > Cheers, Daniel
-> > > ---
-> > >  drivers/gpu/drm/nouveau/nouveau_bo.c | 6 +++++-
-> > >  1 file changed, 5 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> > > index 7806278dce57..a7b2a9bb0ffe 100644
-> > > --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-> > > +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> > > @@ -776,7 +776,11 @@ nouveau_bo_move_m2mf(struct ttm_buffer_object *bo, int evict, bool intr,
-> > >                       return ret;
-> > >       }
-> > >
-> > > -     mutex_lock_nested(&cli->mutex, SINGLE_DEPTH_NESTING);
-> > > +     if (drm_drv_uses_atomic_modeset(drm->dev))
-> > > +             mutex_lock(&cli->mutex);
-> > > +     else
-> > > +             mutex_lock_nested(&cli->mutex, SINGLE_DEPTH_NESTING);
-> > > +
-> > >       ret = nouveau_fence_sync(nouveau_bo(bo), chan, true, intr);
-> > >       if (ret == 0) {
-> > >               ret = drm->ttm.move(chan, bo, &bo->mem, new_reg);
-> >
-> > Well if you're certain it works now. :)
-> >
-> > Reviewed-by: Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-> >
->
->
-> --
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
-
-
-
+diff --git a/drivers/gpu/drm/drm_gem_vram_helper.c b/drivers/gpu/drm/drm_gem_vram_helper.c
+index 3fe4b326e18e..256b346664f2 100644
+--- a/drivers/gpu/drm/drm_gem_vram_helper.c
++++ b/drivers/gpu/drm/drm_gem_vram_helper.c
+@@ -382,16 +382,16 @@ int drm_gem_vram_unpin(struct drm_gem_vram_object *gbo)
+ }
+ EXPORT_SYMBOL(drm_gem_vram_unpin);
+ 
+-static void *drm_gem_vram_kmap_locked(struct drm_gem_vram_object *gbo,
+-				      bool map, bool *is_iomem)
++static void *drm_gem_vram_kmap_locked(struct drm_gem_vram_object *gbo)
+ {
+ 	int ret;
+ 	struct ttm_bo_kmap_obj *kmap = &gbo->kmap;
++	bool is_iomem;
+ 
+ 	if (gbo->kmap_use_count > 0)
+ 		goto out;
+ 
+-	if (kmap->virtual || !map)
++	if (kmap->virtual)
+ 		goto out;
+ 
+ 	ret = ttm_bo_kmap(&gbo->bo, 0, gbo->bo.num_pages, kmap);
+@@ -399,15 +399,10 @@ static void *drm_gem_vram_kmap_locked(struct drm_gem_vram_object *gbo,
+ 		return ERR_PTR(ret);
+ 
+ out:
+-	if (!kmap->virtual) {
+-		if (is_iomem)
+-			*is_iomem = false;
++	if (!kmap->virtual)
+ 		return NULL; /* not mapped; don't increment ref */
+-	}
+ 	++gbo->kmap_use_count;
+-	if (is_iomem)
+-		return ttm_kmap_obj_virtual(kmap, is_iomem);
+-	return kmap->virtual;
++	return ttm_kmap_obj_virtual(kmap, &is_iomem);
+ }
+ 
+ static void drm_gem_vram_kunmap_locked(struct drm_gem_vram_object *gbo)
+@@ -452,7 +447,7 @@ void *drm_gem_vram_vmap(struct drm_gem_vram_object *gbo)
+ 	ret = drm_gem_vram_pin_locked(gbo, 0);
+ 	if (ret)
+ 		goto err_ttm_bo_unreserve;
+-	base = drm_gem_vram_kmap_locked(gbo, true, NULL);
++	base = drm_gem_vram_kmap_locked(gbo);
+ 	if (IS_ERR(base)) {
+ 		ret = PTR_ERR(base);
+ 		goto err_drm_gem_vram_unpin_locked;
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.28.0
