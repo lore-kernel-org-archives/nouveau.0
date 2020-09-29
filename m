@@ -1,17 +1,15 @@
-From: Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>
-Subject: Re: [PATCH 2/2] mm: remove extra ZONE_DEVICE struct page
- refcount
-Date: Tue, 29 Sep 2020 08:29:41 +0530
-Message-ID: <20200929025941.GA257792@in.ibm.com>
-References: <20200925204442.31348-1-rcampbell@nvidia.com>
- <20200925204442.31348-3-rcampbell@nvidia.com>
-Reply-To: bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org
+From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Drop mutex_lock_nested for atomic
+Date: Tue, 29 Sep 2020 16:52:26 +0200
+Message-ID: <CAKMK7uE89ZyvVronwpS=+ovJj_njVo3C5+GjjZp2S-Dk_7p2jg@mail.gmail.com>
+References: <20200802181849.1586281-1-daniel.vetter@ffwll.ch>
+ <579702ca-4b4e-0b05-1b93-25b99554d464@linux.intel.com>
+ <CAKMK7uHbdcLMJONxR5OZXBLtm0WVxT117mBD72RDW5MRQ=ky4g@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20200925204442.31348-3-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <CAKMK7uHbdcLMJONxR5OZXBLtm0WVxT117mBD72RDW5MRQ=ky4g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,48 +19,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Yang Shi <yang.shi-KPsoFbNs7GizrGE5bRqYAgC/G2K4zDHf@public.gmane.org>, Zi Yan <ziy-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Alistair Popple <apopple-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, kvm-ppc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Paul Mackerras <paulus-mnsaURCQ41sdnm+yROfE0A@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Matthew Wilcox <willy-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>, Jason Gunthorpe <jgg-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Ira Weiny <ira.weiny-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, "Kirill A . Shutemov" <kirill.shutemov-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Cc: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Sep 25, 2020 at 01:44:42PM -0700, Ralph Campbell wrote:
-> ZONE_DEVICE struct pages have an extra reference count that complicates the
-> code for put_page() and several places in the kernel that need to check the
-> reference count to see that a page is not being used (gup, compaction,
-> migration, etc.). Clean up the code so the reference count doesn't need to
-> be treated specially for ZONE_DEVICE.
-> 
-> Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> ---
->  arch/powerpc/kvm/book3s_hv_uvmem.c     |  2 +-
->  drivers/gpu/drm/nouveau/nouveau_dmem.c |  2 +-
->  include/linux/dax.h                    |  2 +-
->  include/linux/memremap.h               |  7 ++-
->  include/linux/mm.h                     | 44 --------------
->  lib/test_hmm.c                         |  2 +-
->  mm/gup.c                               | 44 --------------
->  mm/internal.h                          |  8 +++
->  mm/memremap.c                          | 82 ++++++--------------------
->  mm/migrate.c                           |  5 --
->  mm/page_alloc.c                        |  3 +
->  mm/swap.c                              | 46 +++------------
->  12 files changed, 44 insertions(+), 203 deletions(-)
-> 
-> diff --git a/arch/powerpc/kvm/book3s_hv_uvmem.c b/arch/powerpc/kvm/book3s_hv_uvmem.c
-> index 7705d5557239..e6ec98325fab 100644
-> --- a/arch/powerpc/kvm/book3s_hv_uvmem.c
-> +++ b/arch/powerpc/kvm/book3s_hv_uvmem.c
-> @@ -711,7 +711,7 @@ static struct page *kvmppc_uvmem_get_page(unsigned long gpa, struct kvm *kvm)
->  
->  	dpage = pfn_to_page(uvmem_pfn);
->  	dpage->zone_device_data = pvt;
-> -	get_page(dpage);
-> +	init_page_count(dpage);
+On Thu, Sep 17, 2020 at 3:15 PM Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org> wrote:
+>
+> Ben, did you have a chance to look at this?
 
-The powerpc change looks good. Passes a quick sanity test of
-booting/rebooting a secure guest on Power.
+Ping
+-Daniel
 
-Tested-by: Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>
+> On Mon, Aug 3, 2020 at 1:22 PM Maarten Lankhorst
+> <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org> wrote:
+> >
+> > Op 02-08-2020 om 20:18 schreef Daniel Vetter:
+> > > Purely conjecture, but I think the original locking inversion with the
+> > > legacy page flip code between flipping and ttm's bo move function
+> > > shoudn't exist anymore with atomic: With atomic the bo pinning and
+> > > actual modeset commit is completely separated in the code patsh.
+> > >
+> > > This annotation was originally added in
+> > >
+> > > commit 060810d7abaabcab282e062c595871d661561400
+> > > Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> > > Date:   Mon Jul 8 14:15:51 2013 +1000
+> > >
+> > >     drm/nouveau: fix locking issues in page flipping paths
+> > >
+> > > due to
+> > >
+> > > commit b580c9e2b7ba5030a795aa2fb73b796523d65a78
+> > > Author: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > > Date:   Thu Jun 27 13:48:18 2013 +0200
+> > >
+> > >     drm/nouveau: make flipping lockdep safe
+> > >
+> > > Signed-off-by: Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+> > > Cc: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > > Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> > > Cc: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > > Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> > > ---
+> > > I might be totally wrong, so this definitely needs testing :-)
+> > >
+> > > Cheers, Daniel
+> > > ---
+> > >  drivers/gpu/drm/nouveau/nouveau_bo.c | 6 +++++-
+> > >  1 file changed, 5 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> > > index 7806278dce57..a7b2a9bb0ffe 100644
+> > > --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
+> > > +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> > > @@ -776,7 +776,11 @@ nouveau_bo_move_m2mf(struct ttm_buffer_object *bo, int evict, bool intr,
+> > >                       return ret;
+> > >       }
+> > >
+> > > -     mutex_lock_nested(&cli->mutex, SINGLE_DEPTH_NESTING);
+> > > +     if (drm_drv_uses_atomic_modeset(drm->dev))
+> > > +             mutex_lock(&cli->mutex);
+> > > +     else
+> > > +             mutex_lock_nested(&cli->mutex, SINGLE_DEPTH_NESTING);
+> > > +
+> > >       ret = nouveau_fence_sync(nouveau_bo(bo), chan, true, intr);
+> > >       if (ret == 0) {
+> > >               ret = drm->ttm.move(chan, bo, &bo->mem, new_reg);
+> >
+> > Well if you're certain it works now. :)
+> >
+> > Reviewed-by: Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+> >
+>
+>
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
 
-Regards,
-Bharata.
+
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
