@@ -1,91 +1,114 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v2 2/2] drm/nouveau/kms/nv50-: Fix clock checking algorithm in nv50_dp_mode_valid()
-Date: Tue, 29 Sep 2020 18:31:32 -0400
-Message-ID: <20200929223132.333453-2-lyude@redhat.com>
-References: <20200929223132.333453-1-lyude@redhat.com>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Drop mutex_lock_nested for atomic
+Date: Wed, 30 Sep 2020 10:45:05 +1000
+Message-ID: <CACAvsv7nmpJPVnfGkRW=UECvNyjNRO0x=0VMPr0VuFBNtpk+2g@mail.gmail.com>
+References: <20200802181849.1586281-1-daniel.vetter@ffwll.ch>
+ <579702ca-4b4e-0b05-1b93-25b99554d464@linux.intel.com>
+ <CAKMK7uHbdcLMJONxR5OZXBLtm0WVxT117mBD72RDW5MRQ=ky4g@mail.gmail.com>
+ <CAKMK7uE89ZyvVronwpS=+ovJj_njVo3C5+GjjZp2S-Dk_7p2jg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20200929223132.333453-1-lyude@redhat.com>
-To: nouveau@lists.freedesktop.org
-Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, "open list:DRM DRIVER FOR NVIDIA
-        GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKMK7uE89ZyvVronwpS=+ovJj_njVo3C5+GjjZp2S-Dk_7p2jg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Cc: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-While I thought I had this correct (since it actually did reject modes
-like I expected during testing), Ville Syrjala from Intel pointed out
-that the logic here isn't correct. max_clock refers to the max data rate
-supported by the DP encoder. So, limiting it to the output of ds_clock (which
-refers to the maximum dotclock of the downstream DP device) doesn't make any
-sense. Additionally, since we're using the connector's bpc as the canonical BPC
-we should use this in mode_valid until we support dynamically setting the bpp
-based on bandwidth constraints.
+On Wed, 30 Sep 2020 at 00:52, Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org> wrote:
+>
+> On Thu, Sep 17, 2020 at 3:15 PM Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org> wrote:
+> >
+> > Ben, did you have a chance to look at this?
+>
+> Ping
+> -Daniel
+>
+> > On Mon, Aug 3, 2020 at 1:22 PM Maarten Lankhorst
+> > <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org> wrote:
+> > >
+> > > Op 02-08-2020 om 20:18 schreef Daniel Vetter:
+> > > > Purely conjecture, but I think the original locking inversion with the
+> > > > legacy page flip code between flipping and ttm's bo move function
+> > > > shoudn't exist anymore with atomic: With atomic the bo pinning and
+> > > > actual modeset commit is completely separated in the code patsh.
+> > > >
+> > > > This annotation was originally added in
+> > > >
+> > > > commit 060810d7abaabcab282e062c595871d661561400
+> > > > Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> > > > Date:   Mon Jul 8 14:15:51 2013 +1000
+> > > >
+> > > >     drm/nouveau: fix locking issues in page flipping paths
+> > > >
+> > > > due to
+> > > >
+> > > > commit b580c9e2b7ba5030a795aa2fb73b796523d65a78
+> > > > Author: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > > > Date:   Thu Jun 27 13:48:18 2013 +0200
+> > > >
+> > > >     drm/nouveau: make flipping lockdep safe
+> > > >
+> > > > Signed-off-by: Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+> > > > Cc: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > > > Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> > > > Cc: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > > > Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> > > > ---
+> > > > I might be totally wrong, so this definitely needs testing :-)
+> > > >
+> > > > Cheers, Daniel
+> > > > ---
+> > > >  drivers/gpu/drm/nouveau/nouveau_bo.c | 6 +++++-
+> > > >  1 file changed, 5 insertions(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> > > > index 7806278dce57..a7b2a9bb0ffe 100644
+> > > > --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
+> > > > +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> > > > @@ -776,7 +776,11 @@ nouveau_bo_move_m2mf(struct ttm_buffer_object *bo, int evict, bool intr,
+> > > >                       return ret;
+> > > >       }
+> > > >
+> > > > -     mutex_lock_nested(&cli->mutex, SINGLE_DEPTH_NESTING);
+> > > > +     if (drm_drv_uses_atomic_modeset(drm->dev))
+> > > > +             mutex_lock(&cli->mutex);
+> > > > +     else
+> > > > +             mutex_lock_nested(&cli->mutex, SINGLE_DEPTH_NESTING);
+> > > > +
+> > > >       ret = nouveau_fence_sync(nouveau_bo(bo), chan, true, intr);
+> > > >       if (ret == 0) {
+> > > >               ret = drm->ttm.move(chan, bo, &bo->mem, new_reg);
+> > >
+> > > Well if you're certain it works now. :)
+> > >
+> > > Reviewed-by: Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Acked-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
-https://lists.freedesktop.org/archives/dri-devel/2020-September/280276.html
-
-For more info.
-
-So, let's rewrite this using Ville's advice.
-
-v2:
-* Ville pointed out I mixed up the dotclock and the link rate. So fix that...
-* ...and also rename all the variables in this function to be more appropriately
-  labeled so I stop mixing them up.
-* Reuse the bpp from the connector for now until we have dynamic bpp selection.
-* Use use DIV_ROUND_UP for calculating the mode rate like i915 does, which we
-  should also have been doing from the start
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Fixes: 409d38139b42 ("drm/nouveau/kms/nv50-: Use downstream DP clock limits for mode validation")
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>
----
- drivers/gpu/drm/nouveau/nouveau_dp.c | 21 +++++++++++----------
- 1 file changed, 11 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
-index 93e3751ad7f1..040ed88d362d 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dp.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
-@@ -231,8 +231,9 @@ nv50_dp_mode_valid(struct drm_connector *connector,
- 		   const struct drm_display_mode *mode,
- 		   unsigned *out_clock)
- {
--	const unsigned min_clock = 25000;
--	unsigned max_clock, ds_clock, clock = mode->clock;
-+	const unsigned int min_clock = 25000;
-+	unsigned int max_rate, mode_rate, ds_max_dotclock, clock = mode->clock;
-+	const u8 bpp = connector->display_info.bpc * 3;
- 
- 	if (mode->flags & DRM_MODE_FLAG_INTERLACE && !outp->caps.dp_interlace)
- 		return MODE_NO_INTERLACE;
-@@ -240,17 +241,17 @@ nv50_dp_mode_valid(struct drm_connector *connector,
- 	if ((mode->flags & DRM_MODE_FLAG_3D_MASK) == DRM_MODE_FLAG_3D_FRAME_PACKING)
- 		clock *= 2;
- 
--	max_clock = outp->dp.link_nr * outp->dp.link_bw;
--	ds_clock = drm_dp_downstream_max_dotclock(outp->dp.dpcd,
--						  outp->dp.downstream_ports);
--	if (ds_clock)
--		max_clock = min(max_clock, ds_clock);
-+	max_rate = outp->dp.link_nr * outp->dp.link_bw;
-+	mode_rate = DIV_ROUND_UP(clock * bpp, 8);
-+	if (mode_rate > max_rate)
-+		return MODE_CLOCK_HIGH;
-+
-+	ds_max_dotclock = drm_dp_downstream_max_dotclock(outp->dp.dpcd, outp->dp.downstream_ports);
-+	if (ds_max_dotclock && clock > ds_max_dotclock)
-+		return MODE_CLOCK_HIGH;
- 
--	clock = mode->clock * (connector->display_info.bpc * 3) / 10;
- 	if (clock < min_clock)
- 		return MODE_CLOCK_LOW;
--	if (clock > max_clock)
--		return MODE_CLOCK_HIGH;
- 
- 	if (out_clock)
- 		*out_clock = clock;
--- 
-2.26.2
+> > >
+> >
+> >
+> > --
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
+>
+>
+>
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
