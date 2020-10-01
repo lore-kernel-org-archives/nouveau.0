@@ -1,18 +1,16 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Drop mutex_lock_nested for atomic
-Date: Thu, 1 Oct 2020 08:46:59 +1000
-Message-ID: <CACAvsv6ziC2K58-H35hWY5b35pW2YyLJGWi_X=utkh=meybRow@mail.gmail.com>
-References: <20200802181849.1586281-1-daniel.vetter@ffwll.ch>
- <579702ca-4b4e-0b05-1b93-25b99554d464@linux.intel.com>
- <CAKMK7uHbdcLMJONxR5OZXBLtm0WVxT117mBD72RDW5MRQ=ky4g@mail.gmail.com>
- <CAKMK7uE89ZyvVronwpS=+ovJj_njVo3C5+GjjZp2S-Dk_7p2jg@mail.gmail.com>
- <CACAvsv7nmpJPVnfGkRW=UECvNyjNRO0x=0VMPr0VuFBNtpk+2g@mail.gmail.com>
- <20200930093735.GT438822@phenom.ffwll.local>
+From: Petri Latvala <petri.latvala-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Subject: Re: [igt-dev] [PATCH i-g-t v5 1/5] lib/igt_core: Fix
+ igt_assert_fd() documentation
+Date: Thu, 1 Oct 2020 09:49:26 +0300
+Message-ID: <20201001064926.GA7444@platvala-desk.ger.corp.intel.com>
+References: <20200930173150.431995-1-lyude@redhat.com>
+ <20200930173150.431995-2-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20200930093735.GT438822-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20200930173150.431995-2-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,119 +20,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Cc: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+To: Lyude <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: igt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 30 Sep 2020 at 19:37, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org> wrote:
->
-> On Wed, Sep 30, 2020 at 10:45:05AM +1000, Ben Skeggs wrote:
-> > On Wed, 30 Sep 2020 at 00:52, Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org> wrote:
-> > >
-> > > On Thu, Sep 17, 2020 at 3:15 PM Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org> wrote:
-> > > >
-> > > > Ben, did you have a chance to look at this?
-> > >
-> > > Ping
-> > > -Daniel
-> > >
-> > > > On Mon, Aug 3, 2020 at 1:22 PM Maarten Lankhorst
-> > > > <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org> wrote:
-> > > > >
-> > > > > Op 02-08-2020 om 20:18 schreef Daniel Vetter:
-> > > > > > Purely conjecture, but I think the original locking inversion with the
-> > > > > > legacy page flip code between flipping and ttm's bo move function
-> > > > > > shoudn't exist anymore with atomic: With atomic the bo pinning and
-> > > > > > actual modeset commit is completely separated in the code patsh.
-> > > > > >
-> > > > > > This annotation was originally added in
-> > > > > >
-> > > > > > commit 060810d7abaabcab282e062c595871d661561400
-> > > > > > Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> > > > > > Date:   Mon Jul 8 14:15:51 2013 +1000
-> > > > > >
-> > > > > >     drm/nouveau: fix locking issues in page flipping paths
-> > > > > >
-> > > > > > due to
-> > > > > >
-> > > > > > commit b580c9e2b7ba5030a795aa2fb73b796523d65a78
-> > > > > > Author: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > > > > > Date:   Thu Jun 27 13:48:18 2013 +0200
-> > > > > >
-> > > > > >     drm/nouveau: make flipping lockdep safe
-> > > > > >
-> > > > > > Signed-off-by: Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-> > > > > > Cc: Maarten Lankhorst <m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > > > > > Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> > > > > > Cc: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> > > > > > Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> > > > > > ---
-> > > > > > I might be totally wrong, so this definitely needs testing :-)
-> > > > > >
-> > > > > > Cheers, Daniel
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/nouveau/nouveau_bo.c | 6 +++++-
-> > > > > >  1 file changed, 5 insertions(+), 1 deletion(-)
-> > > > > >
-> > > > > > diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> > > > > > index 7806278dce57..a7b2a9bb0ffe 100644
-> > > > > > --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-> > > > > > +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> > > > > > @@ -776,7 +776,11 @@ nouveau_bo_move_m2mf(struct ttm_buffer_object *bo, int evict, bool intr,
-> > > > > >                       return ret;
-> > > > > >       }
-> > > > > >
-> > > > > > -     mutex_lock_nested(&cli->mutex, SINGLE_DEPTH_NESTING);
-> > > > > > +     if (drm_drv_uses_atomic_modeset(drm->dev))
-> > > > > > +             mutex_lock(&cli->mutex);
-> > > > > > +     else
-> > > > > > +             mutex_lock_nested(&cli->mutex, SINGLE_DEPTH_NESTING);
-> > > > > > +
-> > > > > >       ret = nouveau_fence_sync(nouveau_bo(bo), chan, true, intr);
-> > > > > >       if (ret == 0) {
-> > > > > >               ret = drm->ttm.move(chan, bo, &bo->mem, new_reg);
-> > > > >
-> > > > > Well if you're certain it works now. :)
-> > > > >
-> > > > > Reviewed-by: Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-> > Acked-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
->
-> Can you pull this in through your tree and maybe give it a spin just to
-> make sure? I don't really have nouveau hardware here.
-Yeah, I can do that easily enough.
+On Wed, Sep 30, 2020 at 01:31:46PM -0400, Lyude wrote:
+> From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> 
+> As Petri Latvala pointed out, some of the documentation in this macro is
+> mistakenly copied from the other igt_assert*() macros. Let's fix that.
+> 
+> Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
-Ben.
+Reviewed-by: Petri Latvala <petri.latvala-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 
->
-> Also it's entirely stand-alone, I was simply reviewing all the
-> mutex_lock_nested we have in drm, and this one stuck out as probably not
-> necessary anymore, at least with atomic.
->
-> I guess I can also just stuff it into drm-misc-next and if it blows up,
-> figure out what to do then :-)
-> -Daniel
->
-> >
-> > > > >
-> > > >
-> > > >
-> > > > --
-> > > > Daniel Vetter
-> > > > Software Engineer, Intel Corporation
-> > > > http://blog.ffwll.ch
-> > >
-> > >
-> > >
-> > > --
-> > > Daniel Vetter
-> > > Software Engineer, Intel Corporation
-> > > http://blog.ffwll.ch
-> > > _______________________________________________
-> > > Nouveau mailing list
-> > > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> > > https://lists.freedesktop.org/mailman/listinfo/nouveau
->
-> --
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+
+> ---
+>  lib/igt_core.h | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/lib/igt_core.h b/lib/igt_core.h
+> index c5871520..e74ede8b 100644
+> --- a/lib/igt_core.h
+> +++ b/lib/igt_core.h
+> @@ -966,8 +966,8 @@ void igt_describe_f(const char *fmt, ...);
+>   *
+>   * Fails (sub-) test if the given file descriptor is invalid.
+>   *
+> - * Like igt_assert(), but displays the values being compared on failure instead
+> - * of simply printing the stringified expression.
+> + * Like igt_assert(), but displays the stringified identifier that was supposed
+> + * to contain a valid fd on failure.
+>   */
+>  #define igt_assert_fd(fd) \
+>  	igt_assert_f(fd >= 0, "file descriptor " #fd " failed\n");
+> -- 
+> 2.26.2
+> 
+> _______________________________________________
+> igt-dev mailing list
+> igt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/igt-dev
