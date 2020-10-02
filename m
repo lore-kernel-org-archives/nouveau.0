@@ -1,24 +1,27 @@
 From: Christoph Hellwig <hch@lst.de>
-Subject: Re: [RFC PATCH v3 1/2] ext4/xfs: add page refcount helper
-Date: Fri, 2 Oct 2020 07:56:27 +0200
-Message-ID: <20201002055627.GA8891@lst.de>
-References: <20201001181715.17416-1-rcampbell@nvidia.com> <20201001181715.17416-2-rcampbell@nvidia.com>
+Subject: Re: [RFC PATCH v3 2/2] mm: remove extra ZONE_DEVICE struct page
+ refcount
+Date: Fri, 2 Oct 2020 07:59:30 +0200
+Message-ID: <20201002055930.GB8891@lst.de>
+References: <20201001181715.17416-1-rcampbell@nvidia.com> <20201001181715.17416-3-rcampbell@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Return-path: <kvm-ppc-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20201001181715.17416-2-rcampbell@nvidia.com>
+In-Reply-To: <20201001181715.17416-3-rcampbell@nvidia.com>
 To: Ralph Campbell <rcampbell@nvidia.com>
 Cc: linux-mm@kvack.org, kvm-ppc@vger.kernel.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Dan Williams <dan.j.williams@intel.com>, Ira Weiny <ira.weiny@intel.com>, Matthew Wilcox <willy@infradead.org>, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>, Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Zi Yan <ziy@nvidia.com>, "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>, Yang Shi <yang.shi@linux.alibaba.com>, Paul Mackerras <paulus@ozlabs.org>, Ben Skeggs <bskeggs@redhat.com>, Andrew Morton <akpm@linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Oct 01, 2020 at 11:17:14AM -0700, Ralph Campbell wrote:
-> There are several places where ZONE_DEVICE struct pages assume a reference
-> count == 1 means the page is idle and free. Instead of open coding this,
-> add a helper function to hide this detail.
+On Thu, Oct 01, 2020 at 11:17:15AM -0700, Ralph Campbell wrote:
+> ZONE_DEVICE struct pages have an extra reference count that complicates the
+> code for put_page() and several places in the kernel that need to check the
+> reference count to see that a page is not being used (gup, compaction,
+> migration, etc.). Clean up the code so the reference count doesn't need to
+> be treated specially for ZONE_DEVICE.
 > 
 > Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
 
-Looks good:
+Looks good,
 
 Reviewed-by: Christoph Hellwig <hch@lst.de>
