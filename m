@@ -1,47 +1,33 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] device: return error for unknown chipsets
-Date: Mon,  5 Oct 2020 15:52:30 +0200
-Message-ID: <20201005135230.735914-1-kherbst@redhat.com>
+From: Ralph Campbell <rcampbell@nvidia.com>
+Subject: Re: [RFC PATCH v3 1/2] ext4/xfs: add page refcount helper
+Date: Mon, 5 Oct 2020 09:29:04 -0700
+Message-ID: <2789432c-e3b2-e3f4-1904-c96f03ea9c2a@nvidia.com>
+References: <20201001181715.17416-1-rcampbell@nvidia.com>
+ <20201001181715.17416-2-rcampbell@nvidia.com> <20201002055627.GA8891@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: dann frazier <dann.frazier-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Return-path: <kvm-ppc-owner@vger.kernel.org>
+In-Reply-To: <20201002055627.GA8891@lst.de>
+Content-Language: en-US
+To: Christoph Hellwig <hch@lst.de>
+Cc: linux-mm@kvack.org, kvm-ppc@vger.kernel.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Dan Williams <dan.j.williams@intel.com>, Ira Weiny <ira.weiny@intel.com>, Matthew Wilcox <willy@infradead.org>, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>, Jason Gunthorpe <jgg@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Zi Yan <ziy@nvidia.com>, "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>, Yang Shi <yang.shi@linux.alibaba.com>, Paul Mackerras <paulus@ozlabs.org>, Ben Skeggs <bskeggs@redhat.com>, Andrew Morton <akpm@linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
-Previously the code relied on device->pri to be NULL and to fail probing
-later. We really should just return an error inside nvkm_device_ctor for
-unsupported GPUs.
 
-Fixes: 24d5ff40a732 ("drm/nouveau/device: rework mmio mapping code to get rid of second map")
 
-Signed-off-by: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: dann frazier <dann.frazier-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
----
- drm/nouveau/nvkm/engine/device/base.c | 1 +
- 1 file changed, 1 insertion(+)
+On 10/1/20 10:56 PM, Christoph Hellwig wrote:
+> On Thu, Oct 01, 2020 at 11:17:14AM -0700, Ralph Campbell wrote:
+>> There are several places where ZONE_DEVICE struct pages assume a reference
+>> count == 1 means the page is idle and free. Instead of open coding this,
+>> add a helper function to hide this detail.
+>>
+>> Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
+> 
+> Looks good:
+> 
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> 
 
-diff --git a/drm/nouveau/nvkm/engine/device/base.c b/drm/nouveau/nvkm/engine/device/base.c
-index 9f4ac2672..68d665414 100644
---- a/drm/nouveau/nvkm/engine/device/base.c
-+++ b/drm/nouveau/nvkm/engine/device/base.c
-@@ -3149,6 +3149,7 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
- 		case 0x168: device->chip = &nv168_chipset; break;
- 		default:
- 			nvdev_error(device, "unknown chipset (%08x)\n", boot0);
-+			ret = -ENOSYS;
- 			goto done;
- 		}
- 
--- 
-2.26.2
+Thanks for the review.
+I'll resend this as an independent patch.
