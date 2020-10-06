@@ -1,8 +1,8 @@
 From: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [RFC PATCH v2 1/3] drm/nouveau/kms/nvd9-: Introduce some
- kernel-docs for CRC support
-Date: Tue,  6 Oct 2020 17:13:11 -0400
-Message-ID: <20201006211313.49177-2-jcline@redhat.com>
+Subject: [RFC PATCH v2 2/3] nouveau: Add kernel-docs for module
+ parameters
+Date: Tue,  6 Oct 2020 17:13:12 -0400
+Message-ID: <20201006211313.49177-3-jcline@redhat.com>
 References: <20200911162128.405604-1-jcline@redhat.com>
  <20201006211313.49177-1-jcline@redhat.com>
 Mime-Version: 1.0
@@ -23,136 +23,211 @@ To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is not complete documentation, but covers the pieces I read through
-while reviewing the IGT CRC tests for nouveau. It covers the
-nouveau-specific debugfs file, an overview of why the code is more
-complicated than the DRM display CRC support documentation would lead
-one to expect, and the nv50_crc_func vtable. Many of the details were
-gleaned from Lyude's commit message, but I think it's valuable to have
-them with the code rather than in the change log.
+In preparation for the nouveau kernel documentation page, add some
+documentation for the supported module parameters. It would be ideal if
+the value given to MODULE_PARM_DESC could be referenced in Sphinx to
+auto-document these parameters for both readers of the kernel's Sphinx
+project and users of modinfo, but that appears to require a bit of work
+so for now this approach will do.
 
-The rendered documentation of the functions in nv50_crc_func aren't as
-nice as I'd like, but from what I can tell it would require creating a
-typedef for each function with proper argument/return value docs.
-
-Cc: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/dispnv50/crc.c |  8 ++++
- drivers/gpu/drm/nouveau/dispnv50/crc.h | 65 ++++++++++++++++++++++++++
- 2 files changed, 73 insertions(+)
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 162 ++++++++++++++++++++++++++
+ 1 file changed, 162 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/crc.c b/drivers/gpu/drm/nouveau/dispnv50/crc.c
-index b8c31b697797..84df41e8fb05 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/crc.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/crc.c
-@@ -699,6 +699,14 @@ nv50_crc_debugfs_flip_threshold_set(struct file *file,
- 	return ret;
- }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 22d246acc5e5..8d5f17326910 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -68,27 +68,189 @@
+ #include "nouveau_svm.h"
+ #include "nouveau_dmem.h"
  
 +/**
-+ * DOC: nv_crc/flip_threshold
++ * DOC: config (string)
 + *
-+ * The number of CRC entries to place in a :term:`CRC notifier context` before
-+ * attempting to flip to the other notifier context. Writing ``-1`` to this file
-+ * will reset the threshold to the default value, which is hardware-dependent.
-+ * Values cannot be greater than the default or less than ``-1``.
++ * A configuration string used to adjust a variety of module behaviors. The
++ * value of this parameter should be a string of comma-separated key=value
++ * pairs.
++ *
++ * values marked as integers are parsed as hex when they include a leading 0x,
++ * octal when they include a leading 0, otherwise they are parsed as decimals.
++ *
++ * Supported key-value pairs include:
++ *
++ * * GP100MmuLayout (boolean): If false, the old pre-GP100 VMM backend is used;
++ *   defaults to true and is only valid on NV130-NV138 chips.
++ *
++ * * <engine-name> (boolean): disable the given engine; all engines are enabled
++ *   by default.
++ *
++ * * NvAcrWpr (integer): This configuration option is for debugging signed
++ *   firmware blobs and is not for end users; defaults to -1
++ *
++ * * NvAcrWprCompare (boolean): This configuration option is for debugging
++ *   signed firmware blobs and is not for end users; defaults to false.
++ *
++ * * NvAcrWprPrevAddr (integer): This configuration option is for debugging signed
++ *   firmware blobs and is not for end users; defaults to 0.
++ *
++ * * NvBar2Halve (boolean): Halve the BAR2 size; defaults to false.
++ *
++ * * NvFanPWM (boolean): Force PWM for the fan; default is to auto-detect.
++ *
++ * * NvForcePost (boolean): Force the device to perform a POST; defaults to false.
++ *
++ * * NvGrResetWar (boolean): Reset the GR for an extended period to work around
++ *   an issue where GR stops responding; defaults to true on certain Pascal
++ *   boards where it is a known problem.
++ *
++ * * NvGrUseFW (boolean): Load firmware for PGRAPH (valid on the NVC0, NVE0,
++ *   and NV110 families); defaults to false.
++ *
++ * * NvI2C (boolean): Use the nouveau-internal I2C bus driver rather than the
++ *   I2C bit-adapters; defaults to false.
++ *
++ * * NvMemExec (boolean): Perform memory reclocking; defaults to true.
++ *
++ * * NvMSI (boolean): Use MSI interrupts; defaults to true on chipsets that
++ *   support it..
++ *
++ * * NvMXMDCB (boolean): Sanitize DCB outputs from the VBIOS; defaults to true.
++ *
++ * * NvPCIE (boolean): Whether to use the PCI-E GART (valid on NV40 chips only);
++ *   defaults to true.
++ *
++ * * NvPmShowAll (boolean): Report all perfmon signals in queries; defaults to
++ *   false.
++ *
++ * * NvPmUnnamed (boolean): Use the raw signal number rather than the name in
++ *   perfmon queries; defaults to the value of NvPmShowAll.
++ *
++ * * NvPmEnableGating (boolean): Enable clockgating for chipsets that support
++ *   it; defaults to false.
++ *
++ * * War00C800_0 (boolean): Enables the PGOB work-around on all GK10[467]
++ *   boards; defaults to true.
++ *
++ * * MmuDebugBufferSize (integer): Size of the MUU debug buffers; defaults to
++ *   the framebuffer page size.
++ *
++ * * NvAGP (integer): Force a particular AGP mode (0 to disable).
++ *
++ * * NvChipset (integer): Override the detected chipset; useful for development.
++ *
++ * * NvFbBigPage (integer): Size of the framebuffer big page in bits
++ *   (e.g. 16 means 64KiB); default is chip-dependent.
++ *
++ * * NvBios (string): Specify the Video BIOS source; options include:
++ *
++ *   * "OpenFirmware"
++ *   * "PRAMIN"
++ *   * "PROM"
++ *   * "ACPI"
++ *   * "PCIROM"
++ *   * "PLATFORM"
++ *   * A file name passed on to request_firmware.
++ *
++ * * NvBoost (integer): Specify the Boost mode for Fermi and newer. Valid
++ *   options are:
++ *
++ *   * 0: base clocks (default)
++ *   * 1: boost clocks
++ *   * 2: max clocks
++ *
++ * * NvClkMode (string): Force a particular clock level on boot. This is
++ *   equivalent to passing both ``NvClkModeAC`` and ``NvClkModeDC``.
++ *
++ * * NvClkModeAC (string): Force a particular clock level when plugged in to a
++ *   power source.
++ *
++ * * NvClkModeDC (string): Force a particular clock level when running on
++ *   battery.
 + */
- static const struct file_operations nv50_crc_flip_threshold_fops = {
- 	.owner = THIS_MODULE,
- 	.open = nv50_crc_debugfs_flip_threshold_open,
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/crc.h b/drivers/gpu/drm/nouveau/dispnv50/crc.h
-index 4fce871b04c8..04ebb1f936db 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/crc.h
-+++ b/drivers/gpu/drm/nouveau/dispnv50/crc.h
-@@ -10,6 +10,24 @@
- #include <nvkm/subdev/bios.h>
- #include "nouveau_encoder.h"
+ MODULE_PARM_DESC(config, "option string to pass to driver core");
+ static char *nouveau_config;
+ module_param_named(config, nouveau_config, charp, 0400);
  
 +/**
-+ * DOC: Overview
++ * DOC: debug (string)
 + *
-+ * This interface is designed to aid in the implementation of the standard DRM
-+ * CRC interface that is part of :doc:`drm-uapi`. NVIDIA's hardware has a
-+ * peculiar CRC implementation that limits the number of CRCs that can be
-+ * captured, which breaks the DRM API's expectations.
++ * Like the "config" parameter, this is a string of comma-separated key=values.
++ * Valid keys include:
 + *
-+ * CRCs are reported to a :term:`CRC notifier context` of limited size. Once the
-+ * context fills, an overflow bit is set and no further CRCs are reported. To
-+ * work around this, the driver flips between notifier contexts to allow users
-+ * to capture an arbitrary number of CRCs.
++ * * CLIENT
++ * * <subdevice>
 + *
-+ * .. warning:: The flip requires flushing two separate updates on the
-+ *     :term:`EVO/NVD` channel, and this results in the unavoidable loss of a single
-+ *     frame's CRC.
++ * The list of current sub-device and engine names is in the %nvkm_subdev_name
++ * array and is enumerated in &enum nvkm_devidx.
++ *
++ * Valid values are log levels to use for messages from the given key:
++ *
++ * * fatal
++ * * error
++ * * warn
++ * * info
++ * * debug
++ * * trace
++ * * paranoia
++ * * spam
 + */
 +
- struct nv50_atom;
- struct nv50_disp;
- struct nv50_head;
-@@ -49,16 +67,63 @@ struct nv50_crc_atom {
- 	u8 wndw : 4;
- };
+ MODULE_PARM_DESC(debug, "debug string to pass to driver core");
+ static char *nouveau_debug;
+ module_param_named(debug, nouveau_debug, charp, 0400);
  
 +/**
-+ * struct nv50_crc_func - Functions and data for CRC support
++ * DOC: noaccel (boolean)
 + *
-+ * The interface used to abstract CRC support across card families that support
-+ * it.
++ * Set to ``1`` to disable kernel/abi16 acceleration; defaults to ``0``
++ * (false).
 + */
- struct nv50_crc_func {
-+	/**
-+	 * @set_src: Program the hardware to capture CRCs from the given
-+	 * &enum nv50_crc_source_type. Using NULL for the source and ctx will
-+	 * disable CRC for the given &struct nv50_head.
-+	 *
-+	 * Return 0 on success, or a negative error code.
-+	 */
- 	int (*set_src)(struct nv50_head *, int or, enum nv50_crc_source_type,
- 		       struct nv50_crc_notifier_ctx *, u32 wndw);
-+
-+	/**
-+	 * @set_ctx: Change the &struct nv50_crc_notifier_ctx used to capture
-+	 * CRC entries. Providing a NULL context will remove any existing
-+	 * context.
-+	 *
-+	 * Return 0 on success, or a negative error code.
-+	 */
- 	int (*set_ctx)(struct nv50_head *, struct nv50_crc_notifier_ctx *);
-+
-+	/**
-+	 * @get_entry: Read the CRC entry at the given index. idx is guaranteed
-+	 * to be less than @num_entries so implementations do not need to
-+	 * perform a bounds check.
-+	 *
-+	 * Return the CRC or 0 if there is no CRC for the given index.
-+	 */
- 	u32 (*get_entry)(struct nv50_head *, struct nv50_crc_notifier_ctx *,
- 			 enum nv50_crc_source, int idx);
-+
-+	/**
-+	 * @ctx_finished: Return true when all requested CRCs have been written
-+	 * and it is safe to read them.
-+	 */
- 	bool (*ctx_finished)(struct nv50_head *,
- 			     struct nv50_crc_notifier_ctx *);
-+
-+	/**
-+	 * @flip_threshold: The default number of CRC entries at which point the
-+	 * notifier context should be flipped. This should be set somewhat lower
-+	 * than @num_entries. It is configurable from userspace via DebugFS.
-+	 */
- 	short flip_threshold;
-+
-+	/**
-+	 * @num_entries: The maximum number of entries supported in the
-+	 * notifier context.
-+	 */
- 	short num_entries;
-+
-+	/** @notifier_len: The size of the notifier context in bytes. */
- 	size_t notifier_len;
- };
+ MODULE_PARM_DESC(noaccel, "disable kernel/abi16 acceleration");
+ static int nouveau_noaccel = 0;
+ module_param_named(noaccel, nouveau_noaccel, int, 0400);
  
++/**
++ * DOC: modeset (integer)
++ *
++ * Whether to enable the driver; defaults to automatically detecting whether it
++ * should be enabled. Valid values are:
++ *
++ * * ``0`` - The driver is disabled
++ * * ``1`` - The driver is enabled
++ * * ``2`` - The driver runs in headless mode.
++ */
+ MODULE_PARM_DESC(modeset, "enable driver (default: auto, "
+ 		          "0 = disabled, 1 = enabled, 2 = headless)");
+ int nouveau_modeset = -1;
+ module_param_named(modeset, nouveau_modeset, int, 0400);
+ 
++/**
++ * DOC: atomic (boolean)
++ *
++ * Set to ``1`` to enable atomic modesetting support; defaults to ``0``
++ * (false).
++ */
+ MODULE_PARM_DESC(atomic, "Expose atomic ioctl (default: disabled)");
+ static int nouveau_atomic = 0;
+ module_param_named(atomic, nouveau_atomic, int, 0400);
+ 
++/**
++ * DOC: runpm (integer)
++ *
++ * Control whether or not runtime power management is used. Valid values are:
++ *
++ * * ``0`` - Disables runtime power management
++ * * ``1`` - Forces runtime power management to be enabled
++ * * ``-1`` - Enables runtime power management for Optimus-enabled hardware
++ *   (default).
++ *
++ * .. warning:: Power management is a very experimental feature and is not
++ *	expected to work. If you decided to up-clock your GPU, please
++ *	be aware that your card may overheat. Check the temperature of your GPU
++ *	at all times!
++ */
+ MODULE_PARM_DESC(runpm, "disable (0), force enable (1), optimus only default (-1)");
+ static int nouveau_runtime_pm = -1;
+ module_param_named(runpm, nouveau_runtime_pm, int, 0400);
 -- 
 2.28.0
