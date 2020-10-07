@@ -1,14 +1,13 @@
-From: dann frazier <dann.frazier-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Subject: Re: [PATCH] device: return error for unknown chipsets
-Date: Tue, 6 Oct 2020 10:43:32 -0600
-Message-ID: <20201006164332.GA1172704@xps13.dannf>
-References: <20201005135230.735914-1-kherbst@redhat.com>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [RFC] gem: fix "refcount_t: underflow; use-after-free"
+Date: Wed, 7 Oct 2020 15:42:39 +1000
+Message-ID: <CACAvsv56H4MeaE3x1PiSHVxsFJRL1N4geTqwtJvPAs3-4ig3Mw@mail.gmail.com>
+References: <20201006220809.14240-1-kherbst@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20201005135230.735914-1-kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <20201006220809.14240-1-kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,39 +18,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Oct 05, 2020 at 03:52:30PM +0200, Karol Herbst wrote:
-> Previously the code relied on device->pri to be NULL and to fail probing
-> later. We really should just return an error inside nvkm_device_ctor for
-> unsupported GPUs.
-> 
-> Fixes: 24d5ff40a732 ("drm/nouveau/device: rework mmio mapping code to get rid of second map")
+On Wed, 7 Oct 2020 at 08:08, Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
+>
+> we can't use nouveau_bo_ref here as no ttm object was allocated and
+> nouveau_bo_ref mainly deals with that. Simply deallocate the object.
+I suspect this was fallout from when that whole process was split into
+stages, seems reasonable to me, applied.
+
+Ben.
+
+>
 > Signed-off-by: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> Cc: dann frazier <dann.frazier-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-
-Thanks Karol! Got rid of the Oops for me.
-
-Tested-by: dann frazier <dann.frazier-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-
-Would it be appropriate to tag this for stable v5.8+?
-
-  -dann
-
 > ---
->  drm/nouveau/nvkm/engine/device/base.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drm/nouveau/nvkm/engine/device/base.c b/drm/nouveau/nvkm/engine/device/base.c
-> index 9f4ac2672..68d665414 100644
-> --- a/drm/nouveau/nvkm/engine/device/base.c
-> +++ b/drm/nouveau/nvkm/engine/device/base.c
-> @@ -3149,6 +3149,7 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
->  		case 0x168: device->chip = &nv168_chipset; break;
->  		default:
->  			nvdev_error(device, "unknown chipset (%08x)\n", boot0);
-> +			ret = -ENOSYS;
->  			goto done;
->  		}
->  
+>  drm/nouveau/nouveau_gem.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drm/nouveau/nouveau_gem.c b/drm/nouveau/nouveau_gem.c
+> index e11303fbc..45582a8dc 100644
+> --- a/drm/nouveau/nouveau_gem.c
+> +++ b/drm/nouveau/nouveau_gem.c
+> @@ -198,7 +198,8 @@ nouveau_gem_new(struct nouveau_cli *cli, u64 size, int align, uint32_t domain,
+>          * to the caller, instead of a normal nouveau_bo ttm reference. */
+>         ret = drm_gem_object_init(drm->dev, &nvbo->bo.base, size);
+>         if (ret) {
+> -               nouveau_bo_ref(NULL, &nvbo);
+> +               drm_gem_object_release(&nvbo->bo.base);
+> +               kfree(nvbo);
+>                 return ret;
+>         }
+>
+> --
+> 2.26.2
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
