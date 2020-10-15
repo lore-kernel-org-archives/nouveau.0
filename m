@@ -1,83 +1,78 @@
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Subject: Re: [PATCH v4 01/10] drm/vram-helper: Remove invariant parameters
- from internal kmap function
-Date: Thu, 15 Oct 2020 15:57:14 +0200
-Message-ID: <06cab96a-5224-46dc-dbd2-8eb4950946cc@gmail.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
+Subject: Re: [PATCH v4 02/10] drm/cma-helper: Remove empty
+ drm_gem_cma_prime_vunmap()
+Date: Thu, 15 Oct 2020 15:58:49 +0200
+Message-ID: <3ff4a9ce-ff3a-392e-e67e-a7687b0826e9@amd.com>
 References: <20201015123806.32416-1-tzimmermann@suse.de>
- <20201015123806.32416-2-tzimmermann@suse.de>
-Reply-To: christian.koenig@amd.com
+ <20201015123806.32416-3-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-samsung-soc-owner@vger.kernel.org>
-In-Reply-To: <20201015123806.32416-2-tzimmermann@suse.de>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20201015123806.32416-3-tzimmermann-l3A5Bk7waGM@public.gmane.org>
 Content-Language: en-US
-To: Thomas Zimmermann <tzimmermann@suse.de>, maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@linux.ie, daniel@ffwll.ch, sam@ravnborg.org, alexander.deucher@amd.com, christian.koenig@amd.com, kraxel@redhat.com, l.stach@pengutronix.de, linux+etnaviv@armlinux.org.uk, christian.gmeiner@gmail.com, inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org, yuq825@gmail.com, bskeggs@redhat.com, robh@kernel.org, tomeu.vizoso@collabora.com, steven.price@arm.com, alyssa.rosenzweig@collabora.com, hjc@rock-chips.com, heiko@sntech.de, hdegoede@redhat.com, sean@poorly.run, eric@anholt.net, oleksandr_andrushchenko@epam.com, ray.huang@amd.com, sumit.semwal@linaro.org, emil.velikov@collabora.com, luben.tuik
-Cc: linux-samsung-soc@vger.kernel.org, lima@lists.freedesktop.org, nouveau@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>, etnaviv@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org, linaro-mm-sig@lists.linaro.org, linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org, xen-devel@lists.xenproject.org, spice-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org, kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org, linux+etnaviv-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org, christian.gmeiner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, inki.dae-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, sw0312.kim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, kyungmin.park-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org, kgene-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, yuq825-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, robh-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, tomeu.vizoso-ZGY8ohtN/8qB+jHODAdFcQ@public.gmane.org, steven.price-5wv7dgnIgG8@public.gmane.org, alyssa.rosenzweig-ZGY8ohtN/8qB+jHODAdFcQ@public.gmane.org, hjc-TNX95d0MmH7DzftRWevZcw@public.gmane.org, heiko-4mtYJXux2i+zQB+pC5nmwQ@public.gmane.org, hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org, eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org, oleksandr_andrushchenko-uRwfk40T5oI@public.gmane.org, ray.huang-5C7GfCeVMHo@public.gmane.org, sumit.semwal-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org, emil.velikov-ZGY8ohtN/8qB+jHODAdFcQ@public.gmane.org, luben.tuikov-5C7GfCeVMHo@public.gmane.org, apaneers-5C7GfCeVMHo@public.gmane.org, linus.walleij-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org, melissa.srw-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org, miaoqinglang@huawei.
+Cc: linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, lima-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, linaro-mm-sig-cunTk1MwBs8s++Sfvej+rw@public.gmane.org, linux-rockchip-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, xen-devel-GuqFBffKawtpuQazS67q72D2FQJk+8+b@public.gmane.org, spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Am 15.10.20 um 14:37 schrieb Thomas Zimmermann:
-> The parameters map and is_iomem are always of the same value. Removed them
-> to prepares the function for conversion to struct dma_buf_map.
->
-> v4:
-> 	* don't check for !kmap->virtual; will always be false
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-Reviewed-by: Christian König <christian.koenig@amd.com>
-
-> ---
->   drivers/gpu/drm/drm_gem_vram_helper.c | 18 ++++--------------
->   1 file changed, 4 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_gem_vram_helper.c b/drivers/gpu/drm/drm_gem_vram_helper.c
-> index 3213429f8444..2d5ed30518f1 100644
-> --- a/drivers/gpu/drm/drm_gem_vram_helper.c
-> +++ b/drivers/gpu/drm/drm_gem_vram_helper.c
-> @@ -382,32 +382,22 @@ int drm_gem_vram_unpin(struct drm_gem_vram_object *gbo)
->   }
->   EXPORT_SYMBOL(drm_gem_vram_unpin);
->   
-> -static void *drm_gem_vram_kmap_locked(struct drm_gem_vram_object *gbo,
-> -				      bool map, bool *is_iomem)
-> +static void *drm_gem_vram_kmap_locked(struct drm_gem_vram_object *gbo)
->   {
->   	int ret;
->   	struct ttm_bo_kmap_obj *kmap = &gbo->kmap;
-> +	bool is_iomem;
->   
->   	if (gbo->kmap_use_count > 0)
->   		goto out;
->   
-> -	if (kmap->virtual || !map)
-> -		goto out;
-> -
->   	ret = ttm_bo_kmap(&gbo->bo, 0, gbo->bo.num_pages, kmap);
->   	if (ret)
->   		return ERR_PTR(ret);
->   
->   out:
-> -	if (!kmap->virtual) {
-> -		if (is_iomem)
-> -			*is_iomem = false;
-> -		return NULL; /* not mapped; don't increment ref */
-> -	}
->   	++gbo->kmap_use_count;
-> -	if (is_iomem)
-> -		return ttm_kmap_obj_virtual(kmap, is_iomem);
-> -	return kmap->virtual;
-> +	return ttm_kmap_obj_virtual(kmap, &is_iomem);
->   }
->   
->   static void drm_gem_vram_kunmap_locked(struct drm_gem_vram_object *gbo)
-> @@ -452,7 +442,7 @@ void *drm_gem_vram_vmap(struct drm_gem_vram_object *gbo)
->   	ret = drm_gem_vram_pin_locked(gbo, 0);
->   	if (ret)
->   		goto err_ttm_bo_unreserve;
-> -	base = drm_gem_vram_kmap_locked(gbo, true, NULL);
-> +	base = drm_gem_vram_kmap_locked(gbo);
->   	if (IS_ERR(base)) {
->   		ret = PTR_ERR(base);
->   		goto err_drm_gem_vram_unpin_locked;
+QW0gMTUuMTAuMjAgdW0gMTQ6Mzcgc2NocmllYiBUaG9tYXMgWmltbWVybWFubjoKPiBUaGUgZnVu
+Y3Rpb24gZHJtX2dlbV9jbWFfcHJpbWVfdnVubWFwKCkgaXMgZW1wdHkuIFJlbW92ZSBpdCBiZWZv
+cmUKPiBjaGFuZ2luZyB0aGUgaW50ZXJmYWNlIHRvIHVzZSBzdHJ1Y3QgZHJtX2J1Zl9tYXAuCj4K
+PiBTaWduZWQtb2ZmLWJ5OiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4K
+ClJldmlld2VkLWJ5OiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+
+Cgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2RybV9nZW1fY21hX2hlbHBlci5jIHwgMTcgLS0t
+LS0tLS0tLS0tLS0tLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS92YzQvdmM0X2JvLmMgICAgICAgICB8
+ICAxIC0KPiAgIGluY2x1ZGUvZHJtL2RybV9nZW1fY21hX2hlbHBlci5oICAgICB8ICAxIC0KPiAg
+IDMgZmlsZXMgY2hhbmdlZCwgMTkgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2RybV9nZW1fY21hX2hlbHBlci5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9nZW1f
+Y21hX2hlbHBlci5jCj4gaW5kZXggMjE2NTYzM2M5YjllLi5kNTI3NDg1ZWEwYjcgMTAwNjQ0Cj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9nZW1fY21hX2hlbHBlci5jCj4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2RybV9nZW1fY21hX2hlbHBlci5jCj4gQEAgLTUzNywyMyArNTM3LDYgQEAgdm9p
+ZCAqZHJtX2dlbV9jbWFfcHJpbWVfdm1hcChzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaikKPiAg
+IH0KPiAgIEVYUE9SVF9TWU1CT0xfR1BMKGRybV9nZW1fY21hX3ByaW1lX3ZtYXApOwo+ICAgCj4g
+LS8qKgo+IC0gKiBkcm1fZ2VtX2NtYV9wcmltZV92dW5tYXAgLSB1bm1hcCBhIENNQSBHRU0gb2Jq
+ZWN0IGZyb20gdGhlIGtlcm5lbCdzIHZpcnR1YWwKPiAtICogICAgIGFkZHJlc3Mgc3BhY2UKPiAt
+ICogQG9iajogR0VNIG9iamVjdAo+IC0gKiBAdmFkZHI6IGtlcm5lbCB2aXJ0dWFsIGFkZHJlc3Mg
+d2hlcmUgdGhlIENNQSBHRU0gb2JqZWN0IHdhcyBtYXBwZWQKPiAtICoKPiAtICogVGhpcyBmdW5j
+dGlvbiByZW1vdmVzIGEgYnVmZmVyIGV4cG9ydGVkIHZpYSBEUk0gUFJJTUUgZnJvbSB0aGUga2Vy
+bmVsJ3MKPiAtICogdmlydHVhbCBhZGRyZXNzIHNwYWNlLiBUaGlzIGlzIGEgbm8tb3AgYmVjYXVz
+ZSBDTUEgYnVmZmVycyBjYW5ub3QgYmUKPiAtICogdW5tYXBwZWQgZnJvbSBrZXJuZWwgc3BhY2Uu
+IERyaXZlcnMgdXNpbmcgdGhlIENNQSBoZWxwZXJzIHNob3VsZCBzZXQgdGhpcwo+IC0gKiBhcyB0
+aGVpciAmZHJtX2dlbV9vYmplY3RfZnVuY3MudnVubWFwIGNhbGxiYWNrLgo+IC0gKi8KPiAtdm9p
+ZCBkcm1fZ2VtX2NtYV9wcmltZV92dW5tYXAoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmosIHZv
+aWQgKnZhZGRyKQo+IC17Cj4gLQkvKiBOb3RoaW5nIHRvIGRvICovCj4gLX0KPiAtRVhQT1JUX1NZ
+TUJPTF9HUEwoZHJtX2dlbV9jbWFfcHJpbWVfdnVubWFwKTsKPiAtCj4gICBzdGF0aWMgY29uc3Qg
+c3RydWN0IGRybV9nZW1fb2JqZWN0X2Z1bmNzIGRybV9nZW1fY21hX2RlZmF1bHRfZnVuY3MgPSB7
+Cj4gICAJLmZyZWUgPSBkcm1fZ2VtX2NtYV9mcmVlX29iamVjdCwKPiAgIAkucHJpbnRfaW5mbyA9
+IGRybV9nZW1fY21hX3ByaW50X2luZm8sCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS92
+YzQvdmM0X2JvLmMgYi9kcml2ZXJzL2dwdS9kcm0vdmM0L3ZjNF9iby5jCj4gaW5kZXggZjQzMjI3
+ODE3M2NkLi41NTdmMGQxZTY0MzcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3ZjNC92
+YzRfYm8uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS92YzQvdmM0X2JvLmMKPiBAQCAtMzg3LDcg
+KzM4Nyw2IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2dlbV9vYmplY3RfZnVuY3MgdmM0X2dl
+bV9vYmplY3RfZnVuY3MgPSB7Cj4gICAJLmV4cG9ydCA9IHZjNF9wcmltZV9leHBvcnQsCj4gICAJ
+LmdldF9zZ190YWJsZSA9IGRybV9nZW1fY21hX3ByaW1lX2dldF9zZ190YWJsZSwKPiAgIAkudm1h
+cCA9IHZjNF9wcmltZV92bWFwLAo+IC0JLnZ1bm1hcCA9IGRybV9nZW1fY21hX3ByaW1lX3Z1bm1h
+cCwKPiAgIAkudm1fb3BzID0gJnZjNF92bV9vcHMsCj4gICB9Owo+ICAgCj4gZGlmZiAtLWdpdCBh
+L2luY2x1ZGUvZHJtL2RybV9nZW1fY21hX2hlbHBlci5oIGIvaW5jbHVkZS9kcm0vZHJtX2dlbV9j
+bWFfaGVscGVyLmgKPiBpbmRleCAyYmZhMjUwMjYwN2EuLmEwNjRiMGQxYzQ4MCAxMDA2NDQKPiAt
+LS0gYS9pbmNsdWRlL2RybS9kcm1fZ2VtX2NtYV9oZWxwZXIuaAo+ICsrKyBiL2luY2x1ZGUvZHJt
+L2RybV9nZW1fY21hX2hlbHBlci5oCj4gQEAgLTEwNCw3ICsxMDQsNiBAQCBkcm1fZ2VtX2NtYV9w
+cmltZV9pbXBvcnRfc2dfdGFibGUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwKPiAgIGludCBkcm1f
+Z2VtX2NtYV9wcmltZV9tbWFwKHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqb2JqLAo+ICAgCQkJICAg
+c3RydWN0IHZtX2FyZWFfc3RydWN0ICp2bWEpOwo+ICAgdm9pZCAqZHJtX2dlbV9jbWFfcHJpbWVf
+dm1hcChzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaik7Cj4gLXZvaWQgZHJtX2dlbV9jbWFfcHJp
+bWVfdnVubWFwKHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqb2JqLCB2b2lkICp2YWRkcik7Cj4gICAK
+PiAgIHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqCj4gICBkcm1fZ2VtX2NtYV9jcmVhdGVfb2JqZWN0
+X2RlZmF1bHRfZnVuY3Moc3RydWN0IGRybV9kZXZpY2UgKmRldiwgc2l6ZV90IHNpemUpOwoKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWls
+aW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
