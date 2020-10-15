@@ -1,46 +1,27 @@
-From: Keita Suzuki <keitasuzuki.park@sslab.ics.keio.ac.jp>
-Subject: [PATCH RFC] drm/nouveau: fix memory leak in nvkm_iccsense_oneinit
-Date: Wed, 14 Oct 2020 07:54:16 +0000
-Message-ID: <20201014075419.19974-1-keitasuzuki.park@sslab.ics.keio.ac.jp>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Cc: keitasuzuki.park@sslab.ics.keio.ac.jp, takafumi@sslab.ics.keio.ac.jp, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+From: Christoph Hellwig <hch@lst.de>
+Subject: Re: [PATCH v2] mm/hmm: make device private reference counts zero
+ based
+Date: Thu, 15 Oct 2020 09:44:23 +0200
+Message-ID: <20201015074423.GC14082@lst.de>
+References: <20201012174540.17328-1-rcampbell@nvidia.com> <CAPcyv4ijD+=3rje1CfSG4XKuRNfuAWOui93NQV09NmBte_gc0w@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Return-path: <kvm-ppc-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CAPcyv4ijD+=3rje1CfSG4XKuRNfuAWOui93NQV09NmBte_gc0w@mail.gmail.com>
+To: Dan Williams <dan.j.williams@intel.com>
+Cc: Ralph Campbell <rcampbell@nvidia.com>, Linux MM <linux-mm@kvack.org>, kvm-ppc@vger.kernel.org, nouveau@lists.freedesktop.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Ira Weiny <ira.weiny@intel.com>, Matthew Wilcox <willy@infradead.org>, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>, Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@nvidia.com>, Zi Yan <ziy@nvidia.com>, "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>, Yang Shi <yang.shi@linux.alibaba.com>, Paul Mackerras <paulus@ozlabs.org>, Ben Skeggs <bskeggs@redhat.com>, Andrew Morton <akpm@linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
-struct pw_rail_t is allocated as an array in function nvios_iccsense_parse,
-and stored to a struct member of local variable. However, the array is not
-freed when the local variable becomes invalid, and the reference is not
-passed on, leading to a memory leak.
+On Mon, Oct 12, 2020 at 02:14:07PM -0700, Dan Williams wrote:
+> > ZONE_DEVICE struct pages have an extra reference count that complicates the
+> > code for put_page() and several places in the kernel that need to check the
+> > reference count to see that a page is not being used (gup, compaction,
+> > migration, etc.). Clean up the code so the reference count doesn't need to
+> > be treated specially for device private pages, leaving DAX as still being
+> > a special case.
+> 
+> Please no half-step to removing the special casing...
 
-Fix this by freeing struct pw_rail_t when exiting nvkm_iccsense_oneinit.
-
-Signed-off-by: Keita Suzuki <keitasuzuki.park@sslab.ics.keio.ac.jp>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c
-index fecfa6afcf54..8ba8d8e3f52a 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c
-@@ -280,8 +280,10 @@ nvkm_iccsense_oneinit(struct nvkm_subdev *subdev)
- 			}
- 
- 			rail = kmalloc(sizeof(*rail), GFP_KERNEL);
--			if (!rail)
-+			if (!rail) {
-+				kfree(stbl.rail);
- 				return -ENOMEM;
-+			}
- 
- 			rail->read = read;
- 			rail->sensor = sensor;
-@@ -291,6 +293,7 @@ nvkm_iccsense_oneinit(struct nvkm_subdev *subdev)
- 			list_add_tail(&rail->head, &iccsense->rails);
- 		}
- 	}
-+	kfree(stbl.rail);
- 	return 0;
- }
- 
--- 
-2.17.1
+Agreed.  I really like where the refcount changes are heading, but
+I don't think this half-step is helpful.
