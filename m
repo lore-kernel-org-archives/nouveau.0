@@ -1,121 +1,33 @@
-From: trix@redhat.com
-Subject: [PATCH] drm: remove unneeded break
-Date: Mon, 19 Oct 2020 09:31:15 -0700
-Message-ID: <20201019163115.25814-1-trix@redhat.com>
+From: Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [PATCH] drm: remove unneeded break
+Date: Mon, 19 Oct 2020 19:06:41 +0200
+Message-ID: <20201019170641.GA963808@ravnborg.org>
+References: <20201019163115.25814-1-trix@redhat.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
-To: airlied@redhat.com, tzimmermann@suse.de, airlied@linux.ie, daniel@ffwll.ch, bskeggs@redhat.com, kraxel@redhat.com, gustavoars@kernel.org
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, virtualization@lists.linux-foundation.org, spice-devel@lists.freedesktop.org, Tom Rix <trix@redhat.com>
+Content-Disposition: inline
+In-Reply-To: <20201019163115.25814-1-trix@redhat.com>
+To: trix@redhat.com
+Cc: airlied@redhat.com, tzimmermann@suse.de, airlied@linux.ie, daniel@ffwll.ch, bskeggs@redhat.com, kraxel@redhat.com, gustavoars@kernel.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, spice-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-From: Tom Rix <trix@redhat.com>
+Hi Tom
+On Mon, Oct 19, 2020 at 09:31:15AM -0700, trix@redhat.com wrote:
+> From: Tom Rix <trix@redhat.com>
+> 
+> A break is not needed if it is preceded by a return or break
+> 
+> Signed-off-by: Tom Rix <trix@redhat.com>
 
-A break is not needed if it is preceded by a return or break
+Looks good and builds with no warnings.
 
-Signed-off-by: Tom Rix <trix@redhat.com>
----
- drivers/gpu/drm/mgag200/mgag200_mode.c           | 5 -----
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/pll.c   | 1 -
- drivers/gpu/drm/nouveau/nvkm/subdev/clk/mcp77.c  | 3 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv50.c | 1 -
- drivers/gpu/drm/nouveau/nvkm/subdev/top/gk104.c  | 1 -
- drivers/gpu/drm/qxl/qxl_ioctl.c                  | 1 -
- 6 files changed, 12 deletions(-)
+One of the diffs made me - "oh this looks wrong". But after I looked again
+it was right and the resulting code is more readable - so good.
 
-diff --git a/drivers/gpu/drm/mgag200/mgag200_mode.c b/drivers/gpu/drm/mgag200/mgag200_mode.c
-index 38672f9e5c4f..bbe4e60dfd08 100644
---- a/drivers/gpu/drm/mgag200/mgag200_mode.c
-+++ b/drivers/gpu/drm/mgag200/mgag200_mode.c
-@@ -794,21 +794,16 @@ static int mgag200_crtc_set_plls(struct mga_device *mdev, long clock)
- 	case G200_SE_A:
- 	case G200_SE_B:
- 		return mga_g200se_set_plls(mdev, clock);
--		break;
- 	case G200_WB:
- 	case G200_EW3:
- 		return mga_g200wb_set_plls(mdev, clock);
--		break;
- 	case G200_EV:
- 		return mga_g200ev_set_plls(mdev, clock);
--		break;
- 	case G200_EH:
- 	case G200_EH3:
- 		return mga_g200eh_set_plls(mdev, clock);
--		break;
- 	case G200_ER:
- 		return mga_g200er_set_plls(mdev, clock);
--		break;
- 	}
- 
- 	misc = RREG8(MGA_MISC_IN);
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/pll.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/pll.c
-index 350f10a3de37..2ec84b8a3b3a 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/pll.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/pll.c
-@@ -123,7 +123,6 @@ pll_map(struct nvkm_bios *bios)
- 	case NV_20:
- 	case NV_30:
- 		return nv04_pll_mapping;
--		break;
- 	case NV_40:
- 		return nv40_pll_mapping;
- 	case NV_50:
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/mcp77.c b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/mcp77.c
-index efa50274df97..4884eb4a9221 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/mcp77.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/mcp77.c
-@@ -140,17 +140,14 @@ mcp77_clk_read(struct nvkm_clk *base, enum nv_clk_src src)
- 		break;
- 	case nv_clk_src_mem:
- 		return 0;
--		break;
- 	case nv_clk_src_vdec:
- 		P = (read_div(clk) & 0x00000700) >> 8;
- 
- 		switch (mast & 0x00400000) {
- 		case 0x00400000:
- 			return nvkm_clk_read(&clk->base, nv_clk_src_core) >> P;
--			break;
- 		default:
- 			return 500000 >> P;
--			break;
- 		}
- 		break;
- 	default:
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv50.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv50.c
-index 2ccb4b6be153..7b1eb44ff3da 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv50.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv50.c
-@@ -171,7 +171,6 @@ nv50_ram_timing_read(struct nv50_ram *ram, u32 *timing)
- 		break;
- 	default:
- 		return -ENOSYS;
--		break;
- 	}
- 
- 	T(WR) = ((timing[1] >> 24) & 0xff) - 1 - T(CWL);
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/top/gk104.c b/drivers/gpu/drm/nouveau/nvkm/subdev/top/gk104.c
-index e01746ce9fc4..1156634533f9 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/top/gk104.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/top/gk104.c
-@@ -90,7 +90,6 @@ gk104_top_oneinit(struct nvkm_top *top)
- 		case 0x00000010: B_(NVDEC ); break;
- 		case 0x00000013: B_(CE    ); break;
- 		case 0x00000014: C_(GSP   ); break;
--			break;
- 		default:
- 			break;
- 		}
-diff --git a/drivers/gpu/drm/qxl/qxl_ioctl.c b/drivers/gpu/drm/qxl/qxl_ioctl.c
-index 5cea6eea72ab..2072ddc9549c 100644
---- a/drivers/gpu/drm/qxl/qxl_ioctl.c
-+++ b/drivers/gpu/drm/qxl/qxl_ioctl.c
-@@ -160,7 +160,6 @@ static int qxl_process_single_command(struct qxl_device *qdev,
- 	default:
- 		DRM_DEBUG("Only draw commands in execbuffers\n");
- 		return -EINVAL;
--		break;
- 	}
- 
- 	if (cmd->command_size > PAGE_SIZE - sizeof(union qxl_release_info))
--- 
-2.18.1
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
+
+Was tempted to just apply to drm-misc-next but will give others the
+opportunity to chime in.
+
+	Sam
