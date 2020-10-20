@@ -1,296 +1,78 @@
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Subject: Re: [PATCH v5 05/10] drm/ttm: Add vmap/vunmap to TTM and TTM GEM
- helpers
-Date: Tue, 20 Oct 2020 15:39:35 +0200
-Message-ID: <0d936127-ff9b-ace1-97b8-bdbc01921a65@amd.com>
-References: <20201020122046.31167-1-tzimmermann@suse.de>
- <20201020122046.31167-6-tzimmermann@suse.de>
+From: Tom Rix <trix-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [RFC] treewide: cleanup unreachable breaks
+Date: Tue, 20 Oct 2020 06:55:52 -0700
+Message-ID: <ca1f50d6-1005-8e3d-8d5c-98c82a704338@redhat.com>
+References: <20201017160928.12698-1-trix@redhat.com>
+ <20201018054332.GB593954@kroah.com>
+ <CAKwvOdkR_Ttfo7_JKUiZFVqr=Uh=4b05KCPCSuzwk=zaWtA2_Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-samsung-soc-owner@vger.kernel.org>
-In-Reply-To: <20201020122046.31167-6-tzimmermann@suse.de>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-iio-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <CAKwvOdkR_Ttfo7_JKUiZFVqr=Uh=4b05KCPCSuzwk=zaWtA2_Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 Content-Language: en-US
-To: Thomas Zimmermann <tzimmermann@suse.de>, maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@linux.ie, daniel@ffwll.ch, sam@ravnborg.org, alexander.deucher@amd.com, kraxel@redhat.com, l.stach@pengutronix.de, linux+etnaviv@armlinux.org.uk, christian.gmeiner@gmail.com, inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com, kgene@kernel.org, krzk@kernel.org, yuq825@gmail.com, bskeggs@redhat.com, robh@kernel.org, tomeu.vizoso@collabora.com, steven.price@arm.com, alyssa.rosenzweig@collabora.com, hjc@rock-chips.com, heiko@sntech.de, hdegoede@redhat.com, sean@poorly.run, eric@anholt.net, oleksandr_andrushchenko@epam.com, ray.huang@amd.com, sumit.semwal@linaro.org, emil.velikov@collabora.com, luben.tuikov@amd.com, apaneers@amd.c
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org, etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, lima@lists.freedesktop.org, nouveau@lists.freedesktop.org, spice-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org, xen-devel@lists.xenproject.org, linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org, Daniel Vetter <daniel.vetter@ffwll.ch>
+To: Nick Desaulniers <ndesaulniers-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
+Cc: LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, linux-edac-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, xen-devel-GuqFBffKawtpuQazS67q72D2FQJk+8+b@public.gmane.org, linux-block-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, openipmi-developer-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org, "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" <linux-crypto-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Linux ARM <linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>, linux-power-RPVEmwYF7IOGWTQfUlqXWgC/G2K4zDHf@public.gmane.org, linux-gpio-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-iio-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-amlogic-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, industrypack-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, MPT-FusionLinux.pdl@broadcom.
 List-Id: nouveau.vger.kernel.org
 
-Am 20.10.20 um 14:20 schrieb Thomas Zimmermann:
-> The new functions ttm_bo_{vmap,vunmap}() map and unmap a TTM BO in kernel
-> address space. The mapping's address is returned as struct dma_buf_map.
-> Each function is a simplified version of TTM's existing kmap code. Both
-> functions respect the memory's location ani/or writecombine flags.
->
-> On top TTM's functions, GEM TTM helpers got drm_gem_ttm_{vmap,vunmap}(),
-> two helpers that convert a GEM object into the TTM BO and forward the call
-> to TTM's vmap/vunmap. These helpers can be dropped into the rsp GEM object
-> callbacks.
->
-> v5:
-> 	* use size_t for storing mapping size (Christian)
-> 	* ignore premapped memory areas correctly in ttm_bo_vunmap()
-> 	* rebase onto latest TTM interfaces (Christian)
-> 	* remove BUG() from ttm_bo_vmap() (Christian)
-> v4:
-> 	* drop ttm_kmap_obj_to_dma_buf() in favor of vmap helpers (Daniel,
-> 	  Christian)
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Tested-by: Sam Ravnborg <sam@ravnborg.org>
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
+On 10/19/20 12:42 PM, Nick Desaulniers wrote:
+> On Sat, Oct 17, 2020 at 10:43 PM Greg KH <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org> wrote:
+>> On Sat, Oct 17, 2020 at 09:09:28AM -0700, trix-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org wrote:
+>>> From: Tom Rix <trix-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+>>>
+>>> This is a upcoming change to clean up a new warning treewide.
+>>> I am wondering if the change could be one mega patch (see below) or
+>>> normal patch per file about 100 patches or somewhere half way by collecting
+>>> early acks.
+>> Please break it up into one-patch-per-subsystem, like normal, and get it
+>> merged that way.
+>>
+>> Sending us a patch, without even a diffstat to review, isn't going to
+>> get you very far...
+> Tom,
+> If you're able to automate this cleanup, I suggest checking in a
+> script that can be run on a directory.  Then for each subsystem you
+> can say in your commit "I ran scripts/fix_whatever.py on this subdir."
+>  Then others can help you drive the tree wide cleanup.  Then we can
+> enable -Wunreachable-code-break either by default, or W=2 right now
+> might be a good idea.
 
-> ---
->   drivers/gpu/drm/drm_gem_ttm_helper.c | 38 +++++++++++++++
->   drivers/gpu/drm/ttm/ttm_bo_util.c    | 72 ++++++++++++++++++++++++++++
->   include/drm/drm_gem_ttm_helper.h     |  6 +++
->   include/drm/ttm/ttm_bo_api.h         | 28 +++++++++++
->   include/linux/dma-buf-map.h          | 20 ++++++++
->   5 files changed, 164 insertions(+)
+I should have waited for Joe Perches's fixer addition to checkpatch :)
+
+The easy fixes I did only cover about 1/2 of the problems.
+
+Remaining are mostly nested switches, which from a complexity standpoint is bad.
+
 >
-> diff --git a/drivers/gpu/drm/drm_gem_ttm_helper.c b/drivers/gpu/drm/drm_gem_ttm_helper.c
-> index 0e4fb9ba43ad..db4c14d78a30 100644
-> --- a/drivers/gpu/drm/drm_gem_ttm_helper.c
-> +++ b/drivers/gpu/drm/drm_gem_ttm_helper.c
-> @@ -49,6 +49,44 @@ void drm_gem_ttm_print_info(struct drm_printer *p, unsigned int indent,
->   }
->   EXPORT_SYMBOL(drm_gem_ttm_print_info);
->   
-> +/**
-> + * drm_gem_ttm_vmap() - vmap &ttm_buffer_object
-> + * @gem: GEM object.
-> + * @map: [out] returns the dma-buf mapping.
-> + *
-> + * Maps a GEM object with ttm_bo_vmap(). This function can be used as
-> + * &drm_gem_object_funcs.vmap callback.
-> + *
-> + * Returns:
-> + * 0 on success, or a negative errno code otherwise.
-> + */
-> +int drm_gem_ttm_vmap(struct drm_gem_object *gem,
-> +		     struct dma_buf_map *map)
-> +{
-> +	struct ttm_buffer_object *bo = drm_gem_ttm_of_gem(gem);
-> +
-> +	return ttm_bo_vmap(bo, map);
-> +
-> +}
-> +EXPORT_SYMBOL(drm_gem_ttm_vmap);
-> +
-> +/**
-> + * drm_gem_ttm_vunmap() - vunmap &ttm_buffer_object
-> + * @gem: GEM object.
-> + * @map: dma-buf mapping.
-> + *
-> + * Unmaps a GEM object with ttm_bo_vunmap(). This function can be used as
-> + * &drm_gem_object_funcs.vmap callback.
-> + */
-> +void drm_gem_ttm_vunmap(struct drm_gem_object *gem,
-> +			struct dma_buf_map *map)
-> +{
-> +	struct ttm_buffer_object *bo = drm_gem_ttm_of_gem(gem);
-> +
-> +	ttm_bo_vunmap(bo, map);
-> +}
-> +EXPORT_SYMBOL(drm_gem_ttm_vunmap);
-> +
->   /**
->    * drm_gem_ttm_mmap() - mmap &ttm_buffer_object
->    * @gem: GEM object.
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> index ba7ab5ed85d0..5c79418405ea 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> @@ -32,6 +32,7 @@
->   #include <drm/ttm/ttm_bo_driver.h>
->   #include <drm/ttm/ttm_placement.h>
->   #include <drm/drm_vma_manager.h>
-> +#include <linux/dma-buf-map.h>
->   #include <linux/io.h>
->   #include <linux/highmem.h>
->   #include <linux/wait.h>
-> @@ -527,6 +528,77 @@ void ttm_bo_kunmap(struct ttm_bo_kmap_obj *map)
->   }
->   EXPORT_SYMBOL(ttm_bo_kunmap);
->   
-> +int ttm_bo_vmap(struct ttm_buffer_object *bo, struct dma_buf_map *map)
-> +{
-> +	struct ttm_resource *mem = &bo->mem;
-> +	int ret;
-> +
-> +	ret = ttm_mem_io_reserve(bo->bdev, mem);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (mem->bus.is_iomem) {
-> +		void __iomem *vaddr_iomem;
-> +		size_t size = bo->num_pages << PAGE_SHIFT;
-> +
-> +		if (mem->bus.addr)
-> +			vaddr_iomem = (void __iomem *)mem->bus.addr;
-> +		else if (mem->bus.caching == ttm_write_combined)
-> +			vaddr_iomem = ioremap_wc(mem->bus.offset, size);
-> +		else
-> +			vaddr_iomem = ioremap(mem->bus.offset, size);
-> +
-> +		if (!vaddr_iomem)
-> +			return -ENOMEM;
-> +
-> +		dma_buf_map_set_vaddr_iomem(map, vaddr_iomem);
-> +
-> +	} else {
-> +		struct ttm_operation_ctx ctx = {
-> +			.interruptible = false,
-> +			.no_wait_gpu = false
-> +		};
-> +		struct ttm_tt *ttm = bo->ttm;
-> +		pgprot_t prot;
-> +		void *vaddr;
-> +
-> +		ret = ttm_tt_populate(bo->bdev, ttm, &ctx);
-> +		if (ret)
-> +			return ret;
-> +
-> +		/*
-> +		 * We need to use vmap to get the desired page protection
-> +		 * or to make the buffer object look contiguous.
-> +		 */
-> +		prot = ttm_io_prot(bo, mem, PAGE_KERNEL);
-> +		vaddr = vmap(ttm->pages, bo->num_pages, 0, prot);
-> +		if (!vaddr)
-> +			return -ENOMEM;
-> +
-> +		dma_buf_map_set_vaddr(map, vaddr);
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(ttm_bo_vmap);
-> +
-> +void ttm_bo_vunmap(struct ttm_buffer_object *bo, struct dma_buf_map *map)
-> +{
-> +	struct ttm_resource *mem = &bo->mem;
-> +
-> +	if (dma_buf_map_is_null(map))
-> +		return;
-> +
-> +	if (!map->is_iomem)
-> +		vunmap(map->vaddr);
-> +	else if (!mem->bus.addr)
-> +		iounmap(map->vaddr_iomem);
-> +	dma_buf_map_clear(map);
-> +
-> +	ttm_mem_io_free(bo->bdev, &bo->mem);
-> +}
-> +EXPORT_SYMBOL(ttm_bo_vunmap);
-> +
->   static int ttm_bo_wait_free_node(struct ttm_buffer_object *bo,
->   				 bool dst_use_tt)
->   {
-> diff --git a/include/drm/drm_gem_ttm_helper.h b/include/drm/drm_gem_ttm_helper.h
-> index 118cef76f84f..7c6d874910b8 100644
-> --- a/include/drm/drm_gem_ttm_helper.h
-> +++ b/include/drm/drm_gem_ttm_helper.h
-> @@ -10,11 +10,17 @@
->   #include <drm/ttm/ttm_bo_api.h>
->   #include <drm/ttm/ttm_bo_driver.h>
->   
-> +struct dma_buf_map;
-> +
->   #define drm_gem_ttm_of_gem(gem_obj) \
->   	container_of(gem_obj, struct ttm_buffer_object, base)
->   
->   void drm_gem_ttm_print_info(struct drm_printer *p, unsigned int indent,
->   			    const struct drm_gem_object *gem);
-> +int drm_gem_ttm_vmap(struct drm_gem_object *gem,
-> +		     struct dma_buf_map *map);
-> +void drm_gem_ttm_vunmap(struct drm_gem_object *gem,
-> +			struct dma_buf_map *map);
->   int drm_gem_ttm_mmap(struct drm_gem_object *gem,
->   		     struct vm_area_struct *vma);
->   
-> diff --git a/include/drm/ttm/ttm_bo_api.h b/include/drm/ttm/ttm_bo_api.h
-> index 37102e45e496..2c59a785374c 100644
-> --- a/include/drm/ttm/ttm_bo_api.h
-> +++ b/include/drm/ttm/ttm_bo_api.h
-> @@ -48,6 +48,8 @@ struct ttm_bo_global;
->   
->   struct ttm_bo_device;
->   
-> +struct dma_buf_map;
-> +
->   struct drm_mm_node;
->   
->   struct ttm_placement;
-> @@ -494,6 +496,32 @@ int ttm_bo_kmap(struct ttm_buffer_object *bo, unsigned long start_page,
->    */
->   void ttm_bo_kunmap(struct ttm_bo_kmap_obj *map);
->   
-> +/**
-> + * ttm_bo_vmap
-> + *
-> + * @bo: The buffer object.
-> + * @map: pointer to a struct dma_buf_map representing the map.
-> + *
-> + * Sets up a kernel virtual mapping, using ioremap or vmap to the
-> + * data in the buffer object. The parameter @map returns the virtual
-> + * address as struct dma_buf_map. Unmap the buffer with ttm_bo_vunmap().
-> + *
-> + * Returns
-> + * -ENOMEM: Out of memory.
-> + * -EINVAL: Invalid range.
-> + */
-> +int ttm_bo_vmap(struct ttm_buffer_object *bo, struct dma_buf_map *map);
-> +
-> +/**
-> + * ttm_bo_vunmap
-> + *
-> + * @bo: The buffer object.
-> + * @map: Object describing the map to unmap.
-> + *
-> + * Unmaps a kernel map set up by ttm_bo_vmap().
-> + */
-> +void ttm_bo_vunmap(struct ttm_buffer_object *bo, struct dma_buf_map *map);
-> +
->   /**
->    * ttm_bo_mmap_obj - mmap memory backed by a ttm buffer object.
->    *
-> diff --git a/include/linux/dma-buf-map.h b/include/linux/dma-buf-map.h
-> index fd1aba545fdf..2e8bbecb5091 100644
-> --- a/include/linux/dma-buf-map.h
-> +++ b/include/linux/dma-buf-map.h
-> @@ -45,6 +45,12 @@
->    *
->    *	dma_buf_map_set_vaddr(&map. 0xdeadbeaf);
->    *
-> + * To set an address in I/O memory, use dma_buf_map_set_vaddr_iomem().
-> + *
-> + * .. code-block:: c
-> + *
-> + *	dma_buf_map_set_vaddr_iomem(&map. 0xdeadbeaf);
-> + *
->    * Test if a mapping is valid with either dma_buf_map_is_set() or
->    * dma_buf_map_is_null().
->    *
-> @@ -118,6 +124,20 @@ static inline void dma_buf_map_set_vaddr(struct dma_buf_map *map, void *vaddr)
->   	map->is_iomem = false;
->   }
->   
-> +/**
-> + * dma_buf_map_set_vaddr_iomem - Sets a dma-buf mapping structure to an address in I/O memory
-> + * @map:		The dma-buf mapping structure
-> + * @vaddr_iomem:	An I/O-memory address
-> + *
-> + * Sets the address and the I/O-memory flag.
-> + */
-> +static inline void dma_buf_map_set_vaddr_iomem(struct dma_buf_map *map,
-> +					       void __iomem *vaddr_iomem)
-> +{
-> +	map->vaddr_iomem = vaddr_iomem;
-> +	map->is_iomem = true;
-> +}
-> +
->   /**
->    * dma_buf_map_is_equal - Compares two dma-buf mapping structures for equality
->    * @lhs:	The dma-buf mapping structure
+> Ah, George (gbiv@, cc'ed), did an analysis recently of
+> `-Wunreachable-code-loop-increment`, `-Wunreachable-code-break`, and
+> `-Wunreachable-code-return` for Android userspace.  From the review:
+> ```
+> Spoilers: of these, it seems useful to turn on
+> -Wunreachable-code-loop-increment and -Wunreachable-code-return by
+> default for Android
+
+In my simple add-a-cflag bot, i see there are about 250
+
+issues for -Wunreachable-code-return.
+
+I'll see about doing this one next.
+
+> ...
+> While these conventions about always having break arguably became
+> obsolete when we enabled -Wfallthrough, my sample turned up zero
+> potential bugs caught by this warning, and we'd need to put a lot of
+> effort into getting a clean tree. So this warning doesn't seem to be
+> worth it.
+> ```
+> Looks like there's an order of magnitude of `-Wunreachable-code-break`
+> than the other two.
+>
+> We probably should add all 3 to W=2 builds (wrapped in cc-option).
+> I've filed https://github.com/ClangBuiltLinux/linux/issues/1180 to
+> follow up on.
+
+Yes, i think think these should be added.
+
+Tom
