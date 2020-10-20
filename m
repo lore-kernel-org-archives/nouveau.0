@@ -1,56 +1,74 @@
-From: John Haxby <john.haxby@oracle.com>
-Subject: Re: [Ocfs2-devel] [RFC] treewide: cleanup unreachable breaks
-Date: Tue, 20 Oct 2020 09:47:45 +0100
-Message-ID: <27A23102-A7F5-48C5-8972-48CE4C283C6E@oracle.com>
-References: <20201017160928.12698-1-trix@redhat.com>
- <20201018054332.GB593954@kroah.com>
- <CAKwvOdkR_Ttfo7_JKUiZFVqr=Uh=4b05KCPCSuzwk=zaWtA2_Q@mail.gmail.com>
-Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.4\))
-Content-Type: multipart/signed;
-        boundary="Apple-Mail=_9F9749E9-79EA-41AB-B516-003ECE07BEE3";
-        protocol="application/pgp-signature";
-        micalg=pgp-sha256
-Return-path: <linux-acpi-owner@vger.kernel.org>
-In-Reply-To: <CAKwvOdkR_Ttfo7_JKUiZFVqr=Uh=4b05KCPCSuzwk=zaWtA2_Q@mail.gmail.com>
-To: Nick Desaulniers <ndesaulniers@google.com>
-Cc: Tom Rix <trix@redhat.com>, alsa-devel@alsa-project.org, clang-built-linux <clang-built-linux@googlegroups.com>, Greg KH <gregkh@linuxfoundation.org>, linux-iio@vger.kernel.org, nouveau@lists.freedesktop.org, storagedev@microchip.com, dri-devel <dri-devel@lists.freedesktop.org>, virtualization@lists.linux-foundation.org, keyrings@vger.kernel.org, linux-mtd@lists.infradead.org, ath10k@lists.infradead.org, MPT-FusionLinux.pdl@broadcom.com, linux-stm32@st-md-mailman.stormreply.com, usb-storage@lists.one-eyed-alien.net, linux-watchdog@vger.kernel.org, devel@driverdev.osuosl.org, linux-samsung-soc@vger.kernel.org, linux-scsi@vger.kernel.org, linux-nvdimm <linux-nvdimm@lists.01.org>, amd-gfx list <amd-gfx@lists.freedesktop.org>, linux-acpi@vger.kernel.org
+From: Pekka Paalanen <ppaalanen@gmail.com>
+Subject: Re: [PATCH] x86/mm/kmmio: correctly handle kzalloc return
+Date: Tue, 20 Oct 2020 12:34:30 +0300
+Message-ID: <20201020123430.44968cb4@eldfell>
+References: <20201020084345.96823-1-dmugil2000@gmail.com>
+Mime-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/kNxw96BEn+M0PYEUFx6pYAH"; protocol="application/pgp-signature"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20201020084345.96823-1-dmugil2000@gmail.com>
+To: Mugilraj Dhavachelvan <dmugil2000@gmail.com>
+Cc: Steven Rostedt <rostedt@goodmis.org>, Ingo Molnar <mingo@kernel.org>, Karol Herbst <karolherbst@gmail.com>, Dave Hansen <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@linutronix.de>, Borislav Petkov <bp@alien8.de>, x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---Apple-Mail=_9F9749E9-79EA-41AB-B516-003ECE07BEE3
+--Sig_/kNxw96BEn+M0PYEUFx6pYAH
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
 
+On Tue, 20 Oct 2020 14:13:44 +0530
+Mugilraj Dhavachelvan <dmugil2000@gmail.com> wrote:
 
-
-> On 19 Oct 2020, at 20:42, Nick Desaulniers <ndesaulniers@google.com> =
-wrote:
+> Replacing return value -1 to error code
 >=20
-> We probably should add all 3 to W=3D2 builds (wrapped in cc-option).
-> I've filed https://github.com/ClangBuiltLinux/linux/issues/1180 to
-> follow up on.
+> Signed-off-by: Mugilraj Dhavachelvan <dmugil2000@gmail.com>
+> ---
+>  arch/x86/mm/kmmio.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/arch/x86/mm/kmmio.c b/arch/x86/mm/kmmio.c
+> index be020a7bc414..15430520c232 100644
+> --- a/arch/x86/mm/kmmio.c
+> +++ b/arch/x86/mm/kmmio.c
+> @@ -386,7 +386,7 @@ static int add_kmmio_fault_page(unsigned long addr)
+> =20
+>  	f =3D kzalloc(sizeof(*f), GFP_ATOMIC);
+>  	if (!f)
+> -		return -1;
+> +		return -ENOMEN;
+> =20
+>  	f->count =3D 1;
+>  	f->addr =3D addr;
 
-It looks as though the URL mangling has been fixed.   If anyone sees =
-that specific URL mangled, please let me know.
+Hi,
 
-jch
+did you even build-test this?
 
---Apple-Mail=_9F9749E9-79EA-41AB-B516-003ECE07BEE3
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP
+Why did you write this patch? What does it achieve?
+
+
+Thanks,
+pq
+
+--Sig_/kNxw96BEn+M0PYEUFx6pYAH
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
 -----BEGIN PGP SIGNATURE-----
-Comment: GPGTools - http://gpgtools.org
 
-iHUEAREIAB0WIQT+pxvb11CFWUkNSOVFC7t+lC+jyAUCX46kMQAKCRBFC7t+lC+j
-yBKiAP90JVXdPzuAwtRGkROpw1eVCo7wCaZ5nOa8Oo0sN6gC9gD/S0eGTqQhmg+n
-sXPJxPYqQsg09qmS6k/HX+AP5Oz2AMo=
-=xx66
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl+OryYACgkQI1/ltBGq
+qqeYBA//XVRjP/OgzYv+hLE7Dv4qtIQH3SuKcWS9kLcK2mVxoo12wErFrVjY+hfu
+03qjkW2k9JU6WfwlusYHHpkgW4lb1ucUeev5uZPBn8mi5mRGp79GgLDdkqUe9bZi
+dSyNNiZDYfSKDgM9E3F5wYZmEUBj83l0dIh6FTPGdO4KKW0X1tc+/FTqByGBpuH7
+tuawXLtBGIi3HG1l/VmWwVQ/X2TlqPP3EmJntjjBXvKOV/53xAZ8Z+2e2Ce/EAK3
+l+UozLCLKxEH1NmSurV4aeb/6PiZiEsitUzqiitjUQjPdnUvwWk1zUfUbBkl6zwU
+5Vdjub2eKGE2vx79eBq/mIXN9btzH7Bzd8bZPu/BDfyKO3DD1W9dOKH/o3BiXlbD
+K7fkW8o7oDf9jSIEUmm3hQNA3XkVrfWunDQ0oQPHHn2O06YD+8CCz97zlVmBBNK3
+l7JoXB3/kIBAlCSXXWSvL7AkoHJdJp+dMuK1IQycwSs3OAPBt/SiDutSjMq0veKn
+/mT2mxh0pkm7FN9hupj0G9N5+EmafdksuyWXLGSAk1Z5WTMG711xB+rMeb+E7DAd
+uQGZkFcq4j6RW1dQY4Z86mzlKDovCxL4KwMBJS0lR4Df9gBct23eQ9Z6LK34RTw1
+e0qDXwXqkpXJ44SttdB8bOm0bIpzL/CsK/wZmkTMA085/8zhTKc=
+=yGB5
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_9F9749E9-79EA-41AB-B516-003ECE07BEE3--
+--Sig_/kNxw96BEn+M0PYEUFx6pYAH--
