@@ -1,15 +1,15 @@
-From: Hillf Danton <hdanton-k+cT0dCbe1g@public.gmane.org>
-Subject: Re: kvm+nouveau induced lockdep  gripe
-Date: Sat, 24 Oct 2020 10:22:36 +0800
-Message-ID: <20201024022236.19608-1-hdanton@sina.com>
-References: <20201021125324.ualpvrxvzyie6d7d@linutronix.de>
- <a23a826af7c108ea5651e73b8fbae5e653f16e86.camel@gmx.de>
- <20201023090108.5lunh4vqfpkllmap@linutronix.de>
+From: Sam Ravnborg <sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org>
+Subject: Re: [PATCH] drm/<drivers>: Constify struct drm_driver
+Date: Sun, 25 Oct 2020 23:23:03 +0100
+Message-ID: <20201025222303.GC13779@ravnborg.org>
+References: <20201023122811.2374118-5-daniel.vetter@ffwll.ch>
+ <20201023160444.2465340-1-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <e4bf2fe3c5d2fdeded9b3d873a08094dbf145bf9.camel-Mmb7MZpHnFY@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20201023160444.2465340-1-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,230 +19,1322 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>, Sebastian Andrzej Siewior <bigeasy-hfZtesqFncYOwBW4kG4KsQ@public.gmane.org>
-Cc: Hillf Danton <hdanton-k+cT0dCbe1g@public.gmane.org>, linux-rt-users <linux-rt-users-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Steven Rostedt <rostedt-nx8X9YLhiw1AfugRpC6u6w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Thomas Gleixner <tglx-hfZtesqFncYOwBW4kG4KsQ@public.gmane.org>
+To: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Cc: kernel test robot <lkp-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Leo Li <sunpeng.li-5C7GfCeVMHo@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 23 Oct 2020 14:07:13 +0200 Mike Galbraith wrote:
-> On Fri, 2020-10-23 at 11:01 +0200, Sebastian Andrzej Siewior wrote:
-> > On 2020-10-22 07:28:20 [+0200], Mike Galbraith wrote:
-> > > I've only as yet seen nouveau lockdep gripage when firing up one of my
-> > > full distro KVM's.
-> >
-> > Could you please check !RT with the `threadirqs' command line option? I
-> > don't think RT is doing here anything different (except for having
-> > threaded interrupts enabled by default).
-> 
-> Yup, you are correct, RT is innocent.
-> 
-> 
-> [   70.135201] ========================================================
-> [   70.135206] WARNING: possible circular locking dependency detected
-> [   70.135211] 5.9.0.gf989335-master #1 Tainted: G            E
-> [   70.135216] ------------------------------------------------------
-> [   70.135220] libvirtd/1838 is trying to acquire lock:
-> [   70.135225] ffff983590c2d5a8 (&mm->mmap_lock#2){++++}-{3:3}, at: mpol_rebind_mm+0x1e/0x50
-> [   70.135239]
->                but task is already holding lock:
-> [   70.135244] ffffffff8a585410 (&cpuset_rwsem){++++}-{0:0}, at: cpuset_attach+0x38/0x390
-> [   70.135256]
->                which lock already depends on the new lock.
-> 
-> [   70.135261]
->                the existing dependency chain (in reverse order) is:
-> [   70.135266]
->                -> #3 (&cpuset_rwsem){++++}-{0:0}:
-> [   70.135275]        cpuset_read_lock+0x39/0xd0
-> [   70.135282]        __sched_setscheduler+0x456/0xa90
-> [   70.135287]        _sched_setscheduler+0x69/0x70
-> [   70.135292]        __kthread_create_on_node+0x114/0x170
-> [   70.135297]        kthread_create_on_node+0x37/0x40
-> [   70.135306]        setup_irq_thread+0x37/0x90
-> [   70.135312]        __setup_irq+0x4e0/0x7c0
-> [   70.135318]        request_threaded_irq+0xf8/0x160
-> [   70.135371]        nvkm_pci_oneinit+0x4c/0x70 [nouveau]
-> [   70.135399]        nvkm_subdev_init+0x60/0x1e0 [nouveau]
-> [   70.135449]        nvkm_device_init+0x10b/0x240 [nouveau]
-> [   70.135506]        nvkm_udevice_init+0x49/0x70 [nouveau]
-> [   70.135531]        nvkm_object_init+0x3d/0x180 [nouveau]
-> [   70.135555]        nvkm_ioctl_new+0x1a1/0x260 [nouveau]
-> [   70.135578]        nvkm_ioctl+0x10a/0x240 [nouveau]
-> [   70.135600]        nvif_object_ctor+0xeb/0x150 [nouveau]
-> [   70.135622]        nvif_device_ctor+0x1f/0x60 [nouveau]
-> [   70.135668]        nouveau_cli_init+0x1ac/0x590 [nouveau]
-> [   70.135711]        nouveau_drm_device_init+0x68/0x800 [nouveau]
-> [   70.135753]        nouveau_drm_probe+0xfb/0x200 [nouveau]
-> [   70.135761]        local_pci_probe+0x42/0x90
-> [   70.135767]        pci_device_probe+0xe7/0x1a0
-> [   70.135773]        really_probe+0xf7/0x4d0
-> [   70.135779]        driver_probe_device+0x5d/0x140
-> [   70.135785]        device_driver_attach+0x4f/0x60
-> [   70.135790]        __driver_attach+0xa4/0x140
-> [   70.135796]        bus_for_each_dev+0x67/0x90
-> [   70.135801]        bus_add_driver+0x18c/0x230
-> [   70.135807]        driver_register+0x5b/0xf0
-> [   70.135813]        do_one_initcall+0x54/0x2f0
-> [   70.135819]        do_init_module+0x5b/0x21b
-> [   70.135825]        load_module+0x1e40/0x2370
-> [   70.135830]        __do_sys_finit_module+0x98/0xe0
-> [   70.135836]        do_syscall_64+0x33/0x40
-> [   70.135842]        entry_SYSCALL_64_after_hwframe+0x44/0xa9
-> [   70.135847]
->                -> #2 (&device->mutex){+.+.}-{3:3}:
-> [   70.135857]        __mutex_lock+0x90/0x9c0
-> [   70.135902]        nvkm_udevice_fini+0x23/0x70 [nouveau]
-> [   70.135927]        nvkm_object_fini+0xb8/0x210 [nouveau]
-> [   70.135951]        nvkm_object_fini+0x73/0x210 [nouveau]
-> [   70.135974]        nvkm_ioctl_del+0x7e/0xa0 [nouveau]
-> [   70.135997]        nvkm_ioctl+0x10a/0x240 [nouveau]
-> [   70.136019]        nvif_object_dtor+0x4a/0x60 [nouveau]
-> [   70.136040]        nvif_client_dtor+0xe/0x40 [nouveau]
-> [   70.136085]        nouveau_cli_fini+0x7a/0x90 [nouveau]
-> [   70.136128]        nouveau_drm_postclose+0xaa/0xe0 [nouveau]
-> [   70.136150]        drm_file_free.part.7+0x273/0x2c0 [drm]
-> [   70.136165]        drm_release+0x6e/0xf0 [drm]
-> [   70.136171]        __fput+0xb2/0x260
-> [   70.136177]        task_work_run+0x73/0xc0
-> [   70.136183]        exit_to_user_mode_prepare+0x1a5/0x1d0
-> [   70.136189]        syscall_exit_to_user_mode+0x46/0x2a0
-> [   70.136195]        entry_SYSCALL_64_after_hwframe+0x44/0xa9
-> [   70.136200]
->                -> #1 (&cli->lock){+.+.}-{3:3}:
-> [   70.136209]        __mutex_lock+0x90/0x9c0
-> [   70.136252]        nouveau_mem_fini+0x4c/0x70 [nouveau]
-> [   70.136294]        nouveau_sgdma_destroy+0x20/0x50 [nouveau]
-> [   70.136302]        ttm_bo_cleanup_memtype_use+0x3e/0x60 [ttm]
-> [   70.136310]        ttm_bo_release+0x29c/0x600 [ttm]
+Hi Daniel.
 
-Looks like we can break the lock chain by moving ttm bo's release
-method out of mmap_lock, see diff below.
+On Fri, Oct 23, 2020 at 06:04:44PM +0200, Daniel Vetter wrote:
+> Only the following drivers aren't converted:
+> - amdgpu, because of the driver_feature mangling due to virt support
+> - nouveau, because DRIVER_ATOMIC uapi is still not the default on the
+>   platforms where it's supported (i.e. again driver_feature mangling)
+> - vc4, again because of driver_feature mangling
+> - qxl, because the ioctl table is somewhere else and moving that is
+>   maybe a bit too much, hence the num_ioctls assignment prevents a
+>   const driver structure.
+My grepping turned up the following:
+- The example in drm_drv needs to be updated
+- legacy drivers, that are obviously not converted - but worth to
+  mention above
+- arc is not converted and it is not legacy  =
 
-> [   70.136317]        ttm_bo_vm_close+0x15/0x30 [ttm]
-> [   70.136324]        remove_vma+0x3e/0x70
-> [   70.136329]        __do_munmap+0x2b7/0x4f0
-> [   70.136333]        __vm_munmap+0x5b/0xa0
-> [   70.136338]        __x64_sys_munmap+0x27/0x30
-> [   70.136343]        do_syscall_64+0x33/0x40
-> [   70.136349]        entry_SYSCALL_64_after_hwframe+0x44/0xa9
-> [   70.136354]
->                -> #0 (&mm->mmap_lock#2){++++}-{3:3}:
-> [   70.136365]        __lock_acquire+0x149d/0x1a70
-> [   70.136371]        lock_acquire+0x1a7/0x3b0
-> [   70.136376]        down_write+0x38/0x70
-> [   70.136382]        mpol_rebind_mm+0x1e/0x50
-> [   70.136387]        cpuset_attach+0x229/0x390
-> [   70.136393]        cgroup_migrate_execute+0x46d/0x490
-> [   70.136398]        cgroup_attach_task+0x20c/0x3b0
-> [   70.136404]        __cgroup1_procs_write.constprop.21+0xf3/0x150
-> [   70.136411]        cgroup_file_write+0x64/0x210
-> [   70.136416]        kernfs_fop_write+0x117/0x1b0
-> [   70.136422]        vfs_write+0xe8/0x240
-> [   70.136427]        ksys_write+0x87/0xc0
-> [   70.136432]        do_syscall_64+0x33/0x40
-> [   70.136438]        entry_SYSCALL_64_after_hwframe+0x44/0xa9
-> [   70.136443]
->                other info that might help us debug this:
-> 
-> [   70.136450] Chain exists of:
->                  &mm->mmap_lock#2 --> &device->mutex --> &cpuset_rwsem
-> 
-> [   70.136463]  Possible unsafe locking scenario:
-> 
-> [   70.136469]        CPU0                    CPU1
-> [   70.136473]        ----                    ----
-> [   70.136477]   lock(&cpuset_rwsem);
-> [   70.136483]                                lock(&device->mutex);
-> [   70.136489]                                lock(&cpuset_rwsem);
-> [   70.136495]   lock(&mm->mmap_lock#2);
-> [   70.136501]
->                 *** DEADLOCK ***
-> 
-> [   70.136508] 6 locks held by libvirtd/1838:
-> [   70.136512]  #0: ffff98359eb27af0 (&f->f_pos_lock){+.+.}-{3:3}, at: __fdget_pos+0x45/0x50
-> [   70.136524]  #1: ffff983591a58460 (sb_writers#7){.+.+}-{0:0}, at: vfs_write+0x1aa/0x240
-> [   70.136535]  #2: ffff9835bbf50488 (&of->mutex){+.+.}-{3:3}, at: kernfs_fop_write+0xe2/0x1b0
-> [   70.136545]  #3: ffffffff8a581848 (cgroup_mutex){+.+.}-{3:3}, at: cgroup_kn_lock_live+0xea/0x1d0
-> [   70.136556]  #4: ffffffff8a5816b0 (cgroup_threadgroup_rwsem){++++}-{0:0}, at: cgroup_procs_write_start+0x6e/0x200
-> [   70.136567]  #5: ffffffff8a585410 (&cpuset_rwsem){++++}-{0:0}, at: cpuset_attach+0x38/0x390
-> [   70.136579]
->                stack backtrace:
-> [   70.136585] CPU: 2 PID: 1838 Comm: libvirtd Kdump: loaded Tainted: G   E     5.9.0.gf989335-master #1
-> [   70.136592] Hardware name: MEDION MS-7848/MS-7848, BIOS M7848W08.20C 09/23/2013
-> [   70.136598] Call Trace:
-> [   70.136605]  dump_stack+0x77/0x97
-> [   70.136611]  check_noncircular+0xe7/0x100
-> [   70.136618]  ? stack_trace_save+0x3b/0x50
-> [   70.136626]  ? __lock_acquire+0x149d/0x1a70
-> [   70.136631]  __lock_acquire+0x149d/0x1a70
-> [   70.136640]  lock_acquire+0x1a7/0x3b0
-> [   70.136645]  ? mpol_rebind_mm+0x1e/0x50
-> [   70.136652]  down_write+0x38/0x70
-> [   70.136657]  ? mpol_rebind_mm+0x1e/0x50
-> [   70.136663]  mpol_rebind_mm+0x1e/0x50
-> [   70.136669]  cpuset_attach+0x229/0x390
-> [   70.136675]  cgroup_migrate_execute+0x46d/0x490
-> [   70.136681]  ? _raw_spin_unlock_irq+0x2f/0x50
-> [   70.136688]  cgroup_attach_task+0x20c/0x3b0
-> [   70.136702]  ? __cgroup1_procs_write.constprop.21+0xf3/0x150
-> [   70.136712]  __cgroup1_procs_write.constprop.21+0xf3/0x150
-> [   70.136722]  cgroup_file_write+0x64/0x210
-> [   70.136728]  kernfs_fop_write+0x117/0x1b0
-> [   70.136735]  vfs_write+0xe8/0x240
-> [   70.136741]  ksys_write+0x87/0xc0
-> [   70.136746]  ? lockdep_hardirqs_on+0x85/0x110
-> [   70.136752]  do_syscall_64+0x33/0x40
-> [   70.136758]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-> [   70.136764] RIP: 0033:0x7efc17533deb
-> [   70.136770] Code: 53 48 89 d5 48 89 f3 48 83 ec 18 48 89 7c 24 08 e8 5a
->  fd ff ff 48 89 ea 41 89 c0 48 89 de 48 8b 7c 24 08 b8 01 00 00 00 0f 05 <48>
->  3d 00 f0 ff ff 77 31 44 89 c7 48 89 44 24 08 e8 90 fd ff ff 48
-> [   70.136781] RSP: 002b:00007efc0d66b2f0 EFLAGS: 00000293 ORIG_RAX: 0000000000000001
-> [   70.136788] RAX: ffffffffffffffda RBX: 00007efbf80500f0 RCX: 00007efc17533deb
-> [   70.136794] RDX: 0000000000000004 RSI: 00007efbf80500f0 RDI: 000000000000001f
-> [   70.136799] RBP: 0000000000000004 R08: 0000000000000000 R09: 0000000000000000
-> [   70.136805] R10: 0000000000000000 R11: 0000000000000293 R12: 00007efbf80500f0
-> [   70.136811] R13: 0000000000000000 R14: 000000000000001f R15: 0000000000000214
+  Maybe you have it covered in your big arc conversion patch?
 
-Embed a rcu in ttm BO in order to release bo outside mmap_lock, and turn
-the release method into calling rcu.
+With the above fixed:
+Acked-by: Sam Ravnborg <sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org>
+> =
 
---- a/include/drm/ttm/ttm_bo_api.h
-+++ b/include/drm/ttm/ttm_bo_api.h
-@@ -180,6 +180,7 @@ struct ttm_buffer_object {
- 	* Members not needing protection.
- 	*/
- 	struct kref kref;
-+	struct rcu_head rcu;
- 
- 	/**
- 	 * Members protected by the bo::resv::reserved lock.
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -547,10 +547,10 @@ static void ttm_bo_delayed_workqueue(str
- 				      ((HZ / 100) < 1) ? 1 : HZ / 100);
- }
- 
--static void ttm_bo_release(struct kref *kref)
-+static void ttm_bo_call_rcu_fn(struct rcu_head *rcu)
+> Note that for armada I also went ahead and made the ioctl array const.
+> =
+
+> Only cc'ing the driver people who've not been converted (everyone else
+> is way too much).
+> =
+
+> v2: Fix one misplaced const static, should be static const (0day)
+> =
+
+> Cc: kernel test robot <lkp-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+> Acked-by: Maxime Ripard <mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+> Signed-off-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+> Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> Cc: Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> Cc: virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
+> Cc: Harry Wentland <harry.wentland-5C7GfCeVMHo@public.gmane.org>
+> Cc: Leo Li <sunpeng.li-5C7GfCeVMHo@public.gmane.org>
+> Cc: Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
+> Cc: Christian K=F6nig <christian.koenig-5C7GfCeVMHo@public.gmane.org>
+> Cc: Eric Anholt <eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org>
+> Cc: Maxime Ripard <mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+> Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> Signed-off-by: Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+
+Hmm, so we have more than one Daniel in play here.
+Both the Intel guy and the ffwll guy - looks funny.
+
+	Sam
+
+> ---
+>  drivers/gpu/drm/arm/display/komeda/komeda_kms.c  | 2 +-
+>  drivers/gpu/drm/arm/hdlcd_drv.c                  | 2 +-
+>  drivers/gpu/drm/arm/malidp_drv.c                 | 2 +-
+>  drivers/gpu/drm/armada/armada_drv.c              | 7 +++----
+>  drivers/gpu/drm/aspeed/aspeed_gfx_drv.c          | 2 +-
+>  drivers/gpu/drm/ast/ast_drv.c                    | 2 +-
+>  drivers/gpu/drm/ast/ast_drv.h                    | 2 +-
+>  drivers/gpu/drm/ast/ast_main.c                   | 2 +-
+>  drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c     | 2 +-
+>  drivers/gpu/drm/bochs/bochs_drv.c                | 2 +-
+>  drivers/gpu/drm/etnaviv/etnaviv_drv.c            | 2 +-
+>  drivers/gpu/drm/exynos/exynos_drm_drv.c          | 2 +-
+>  drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c        | 5 ++---
+>  drivers/gpu/drm/gma500/psb_drv.c                 | 4 ++--
+>  drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c  | 2 +-
+>  drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c  | 2 +-
+>  drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.h  | 2 +-
+>  drivers/gpu/drm/i915/i915_drv.c                  | 4 ++--
+>  drivers/gpu/drm/i915/selftests/mock_gem_device.c | 2 +-
+>  drivers/gpu/drm/imx/dcss/dcss-kms.c              | 2 +-
+>  drivers/gpu/drm/imx/imx-drm-core.c               | 2 +-
+>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c        | 2 +-
+>  drivers/gpu/drm/lima/lima_drv.c                  | 2 +-
+>  drivers/gpu/drm/mcde/mcde_drv.c                  | 2 +-
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c           | 2 +-
+>  drivers/gpu/drm/meson/meson_drv.c                | 2 +-
+>  drivers/gpu/drm/mgag200/mgag200_drv.c            | 2 +-
+>  drivers/gpu/drm/msm/msm_drv.c                    | 4 ++--
+>  drivers/gpu/drm/mxsfb/mxsfb_drv.c                | 2 +-
+>  drivers/gpu/drm/omapdrm/omap_drv.c               | 2 +-
+>  drivers/gpu/drm/panfrost/panfrost_drv.c          | 2 +-
+>  drivers/gpu/drm/pl111/pl111_drv.c                | 2 +-
+>  drivers/gpu/drm/radeon/radeon_drv.c              | 4 ++--
+>  drivers/gpu/drm/rcar-du/rcar_du_drv.c            | 2 +-
+>  drivers/gpu/drm/rockchip/rockchip_drm_drv.c      | 4 ++--
+>  drivers/gpu/drm/shmobile/shmob_drm_drv.c         | 2 +-
+>  drivers/gpu/drm/sti/sti_drv.c                    | 2 +-
+>  drivers/gpu/drm/stm/drv.c                        | 2 +-
+>  drivers/gpu/drm/sun4i/sun4i_drv.c                | 2 +-
+>  drivers/gpu/drm/tegra/drm.c                      | 5 ++---
+>  drivers/gpu/drm/tidss/tidss_drv.c                | 2 +-
+>  drivers/gpu/drm/tilcdc/tilcdc_drv.c              | 4 ++--
+>  drivers/gpu/drm/tiny/cirrus.c                    | 2 +-
+>  drivers/gpu/drm/tiny/gm12u320.c                  | 2 +-
+>  drivers/gpu/drm/tiny/hx8357d.c                   | 2 +-
+>  drivers/gpu/drm/tiny/ili9225.c                   | 2 +-
+>  drivers/gpu/drm/tiny/ili9341.c                   | 2 +-
+>  drivers/gpu/drm/tiny/ili9486.c                   | 2 +-
+>  drivers/gpu/drm/tiny/mi0283qt.c                  | 2 +-
+>  drivers/gpu/drm/tiny/repaper.c                   | 2 +-
+>  drivers/gpu/drm/tiny/st7586.c                    | 2 +-
+>  drivers/gpu/drm/tiny/st7735r.c                   | 2 +-
+>  drivers/gpu/drm/tve200/tve200_drv.c              | 2 +-
+>  drivers/gpu/drm/udl/udl_drv.c                    | 2 +-
+>  drivers/gpu/drm/v3d/v3d_drv.c                    | 2 +-
+>  drivers/gpu/drm/vboxvideo/vbox_drv.c             | 4 ++--
+>  drivers/gpu/drm/vgem/vgem_drv.c                  | 2 +-
+>  drivers/gpu/drm/virtio/virtgpu_drv.c             | 4 ++--
+>  drivers/gpu/drm/vkms/vkms_drv.c                  | 2 +-
+>  drivers/gpu/drm/vmwgfx/vmwgfx_drv.c              | 2 +-
+>  drivers/gpu/drm/xen/xen_drm_front.c              | 2 +-
+>  drivers/gpu/drm/xlnx/zynqmp_dpsub.c              | 2 +-
+>  drivers/gpu/drm/zte/zx_drm_drv.c                 | 2 +-
+>  63 files changed, 75 insertions(+), 78 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c b/drivers/gp=
+u/drm/arm/display/komeda/komeda_kms.c
+> index cc5b5915bc5e..d04008f3e31a 100644
+> --- a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+> @@ -58,7 +58,7 @@ static irqreturn_t komeda_kms_irq_handler(int irq, void=
+ *data)
+>  	return status;
+>  }
+>  =
+
+> -static struct drm_driver komeda_kms_driver =3D {
+> +static const struct drm_driver komeda_kms_driver =3D {
+>  	.driver_features =3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.lastclose			=3D drm_fb_helper_lastclose,
+>  	DRM_GEM_CMA_DRIVER_OPS_WITH_DUMB_CREATE(komeda_gem_cma_dumb_create),
+> diff --git a/drivers/gpu/drm/arm/hdlcd_drv.c b/drivers/gpu/drm/arm/hdlcd_=
+drv.c
+> index faa8a5a752da..81ae92390736 100644
+> --- a/drivers/gpu/drm/arm/hdlcd_drv.c
+> +++ b/drivers/gpu/drm/arm/hdlcd_drv.c
+> @@ -234,7 +234,7 @@ static void hdlcd_debugfs_init(struct drm_minor *mino=
+r)
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(fops);
+>  =
+
+> -static struct drm_driver hdlcd_driver =3D {
+> +static const struct drm_driver hdlcd_driver =3D {
+>  	.driver_features =3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.irq_handler =3D hdlcd_irq,
+>  	.irq_preinstall =3D hdlcd_irq_preinstall,
+> diff --git a/drivers/gpu/drm/arm/malidp_drv.c b/drivers/gpu/drm/arm/malid=
+p_drv.c
+> index 26e60401a8e1..d83c7366b348 100644
+> --- a/drivers/gpu/drm/arm/malidp_drv.c
+> +++ b/drivers/gpu/drm/arm/malidp_drv.c
+> @@ -564,7 +564,7 @@ static void malidp_debugfs_init(struct drm_minor *min=
+or)
+>  =
+
+>  #endif //CONFIG_DEBUG_FS
+>  =
+
+> -static struct drm_driver malidp_driver =3D {
+> +static const struct drm_driver malidp_driver =3D {
+>  	.driver_features =3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	DRM_GEM_CMA_DRIVER_OPS_WITH_DUMB_CREATE(malidp_dumb_create),
+>  #ifdef CONFIG_DEBUG_FS
+> diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada=
+/armada_drv.c
+> index 22247cfce80b..44fe9f994fc5 100644
+> --- a/drivers/gpu/drm/armada/armada_drv.c
+> +++ b/drivers/gpu/drm/armada/armada_drv.c
+> @@ -27,7 +27,7 @@
+>  #include <drm/armada_drm.h>
+>  #include "armada_ioctlP.h"
+>  =
+
+> -static struct drm_ioctl_desc armada_ioctls[] =3D {
+> +static const struct drm_ioctl_desc armada_ioctls[] =3D {
+>  	DRM_IOCTL_DEF_DRV(ARMADA_GEM_CREATE, armada_gem_create_ioctl,0),
+>  	DRM_IOCTL_DEF_DRV(ARMADA_GEM_MMAP, armada_gem_mmap_ioctl, 0),
+>  	DRM_IOCTL_DEF_DRV(ARMADA_GEM_PWRITE, armada_gem_pwrite_ioctl, 0),
+> @@ -35,7 +35,7 @@ static struct drm_ioctl_desc armada_ioctls[] =3D {
+>  =
+
+>  DEFINE_DRM_GEM_FOPS(armada_drm_fops);
+>  =
+
+> -static struct drm_driver armada_drm_driver =3D {
+> +static const struct drm_driver armada_drm_driver =3D {
+>  	.lastclose		=3D drm_fb_helper_lastclose,
+>  	.prime_handle_to_fd	=3D drm_gem_prime_handle_to_fd,
+>  	.prime_fd_to_handle	=3D drm_gem_prime_fd_to_handle,
+> @@ -48,6 +48,7 @@ static struct drm_driver armada_drm_driver =3D {
+>  	.date			=3D "20120730",
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.ioctls			=3D armada_ioctls,
+> +	.num_ioctls =3D ARRAY_SIZE(armada_ioctls),
+>  	.fops			=3D &armada_drm_fops,
+>  };
+>  =
+
+> @@ -275,8 +276,6 @@ static int __init armada_drm_init(void)
+>  {
+>  	int ret;
+>  =
+
+> -	armada_drm_driver.num_ioctls =3D ARRAY_SIZE(armada_ioctls);
+> -
+>  	ret =3D platform_driver_register(&armada_lcd_platform_driver);
+>  	if (ret)
+>  		return ret;
+> diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c b/drivers/gpu/drm/as=
+peed/aspeed_gfx_drv.c
+> index 771ad71cd340..457ec04950f7 100644
+> --- a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+> +++ b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+> @@ -191,7 +191,7 @@ static void aspeed_gfx_unload(struct drm_device *drm)
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(fops);
+>  =
+
+> -static struct drm_driver aspeed_gfx_driver =3D {
+> +static const struct drm_driver aspeed_gfx_driver =3D {
+>  	.driver_features        =3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	DRM_GEM_CMA_DRIVER_OPS,
+>  	.fops =3D &fops,
+> diff --git a/drivers/gpu/drm/ast/ast_drv.c b/drivers/gpu/drm/ast/ast_drv.c
+> index f0b4af1c390a..667b450606ef 100644
+> --- a/drivers/gpu/drm/ast/ast_drv.c
+> +++ b/drivers/gpu/drm/ast/ast_drv.c
+> @@ -49,7 +49,7 @@ module_param_named(modeset, ast_modeset, int, 0400);
+>  =
+
+>  DEFINE_DRM_GEM_FOPS(ast_fops);
+>  =
+
+> -static struct drm_driver ast_driver =3D {
+> +static const struct drm_driver ast_driver =3D {
+>  	.driver_features =3D DRIVER_ATOMIC |
+>  			   DRIVER_GEM |
+>  			   DRIVER_MODESET,
+> diff --git a/drivers/gpu/drm/ast/ast_drv.h b/drivers/gpu/drm/ast/ast_drv.h
+> index 467049ca8430..33e596a4f042 100644
+> --- a/drivers/gpu/drm/ast/ast_drv.h
+> +++ b/drivers/gpu/drm/ast/ast_drv.h
+> @@ -159,7 +159,7 @@ static inline struct ast_private *to_ast_private(stru=
+ct drm_device *dev)
+>  	return container_of(dev, struct ast_private, base);
+>  }
+>  =
+
+> -struct ast_private *ast_device_create(struct drm_driver *drv,
+> +struct ast_private *ast_device_create(const struct drm_driver *drv,
+>  				      struct pci_dev *pdev,
+>  				      unsigned long flags);
+>  =
+
+> diff --git a/drivers/gpu/drm/ast/ast_main.c b/drivers/gpu/drm/ast/ast_mai=
+n.c
+> index 77066bca8793..45dd8185a488 100644
+> --- a/drivers/gpu/drm/ast/ast_main.c
+> +++ b/drivers/gpu/drm/ast/ast_main.c
+> @@ -392,7 +392,7 @@ static void ast_device_release(void *data)
+>  	ast_set_index_reg(ast, AST_IO_CRTC_PORT, 0xa1, 0x04);
+>  }
+>  =
+
+> -struct ast_private *ast_device_create(struct drm_driver *drv,
+> +struct ast_private *ast_device_create(const struct drm_driver *drv,
+>  				      struct pci_dev *pdev,
+>  				      unsigned long flags)
+>  {
+> diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c b/drivers/gpu/d=
+rm/atmel-hlcdc/atmel_hlcdc_dc.c
+> index 03984932d174..65af56e47129 100644
+> --- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+> +++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+> @@ -712,7 +712,7 @@ static void atmel_hlcdc_dc_irq_uninstall(struct drm_d=
+evice *dev)
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(fops);
+>  =
+
+> -static struct drm_driver atmel_hlcdc_dc_driver =3D {
+> +static const struct drm_driver atmel_hlcdc_dc_driver =3D {
+>  	.driver_features =3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.irq_handler =3D atmel_hlcdc_dc_irq_handler,
+>  	.irq_preinstall =3D atmel_hlcdc_dc_irq_uninstall,
+> diff --git a/drivers/gpu/drm/bochs/bochs_drv.c b/drivers/gpu/drm/bochs/bo=
+chs_drv.c
+> index e18c51de1196..fd454225fd19 100644
+> --- a/drivers/gpu/drm/bochs/bochs_drv.c
+> +++ b/drivers/gpu/drm/bochs/bochs_drv.c
+> @@ -57,7 +57,7 @@ static int bochs_load(struct drm_device *dev)
+>  =
+
+>  DEFINE_DRM_GEM_FOPS(bochs_fops);
+>  =
+
+> -static struct drm_driver bochs_driver =3D {
+> +static const struct drm_driver bochs_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.fops			=3D &bochs_fops,
+>  	.name			=3D "bochs-drm",
+> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_drv.c b/drivers/gpu/drm/etna=
+viv/etnaviv_drv.c
+> index aa270b79e585..7604e3c07973 100644
+> --- a/drivers/gpu/drm/etnaviv/etnaviv_drv.c
+> +++ b/drivers/gpu/drm/etnaviv/etnaviv_drv.c
+> @@ -480,7 +480,7 @@ static const struct file_operations fops =3D {
+>  	.mmap               =3D etnaviv_gem_mmap,
+>  };
+>  =
+
+> -static struct drm_driver etnaviv_drm_driver =3D {
+> +static const struct drm_driver etnaviv_drm_driver =3D {
+>  	.driver_features    =3D DRIVER_GEM | DRIVER_RENDER,
+>  	.open               =3D etnaviv_open,
+>  	.postclose           =3D etnaviv_postclose,
+> diff --git a/drivers/gpu/drm/exynos/exynos_drm_drv.c b/drivers/gpu/drm/ex=
+ynos/exynos_drm_drv.c
+> index fe46680ca208..e60257f1f24b 100644
+> --- a/drivers/gpu/drm/exynos/exynos_drm_drv.c
+> +++ b/drivers/gpu/drm/exynos/exynos_drm_drv.c
+> @@ -113,7 +113,7 @@ static const struct file_operations exynos_drm_driver=
+_fops =3D {
+>  	.release	=3D drm_release,
+>  };
+>  =
+
+> -static struct drm_driver exynos_drm_driver =3D {
+> +static const struct drm_driver exynos_drm_driver =3D {
+>  	.driver_features	=3D DRIVER_MODESET | DRIVER_GEM
+>  				  | DRIVER_ATOMIC | DRIVER_RENDER,
+>  	.open			=3D exynos_drm_open,
+> diff --git a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c b/drivers/gpu/drm/=
+fsl-dcu/fsl_dcu_drm_drv.c
+> index ae584f62aa19..75b58d55a940 100644
+> --- a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c
+> +++ b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c
+> @@ -124,7 +124,7 @@ static irqreturn_t fsl_dcu_drm_irq(int irq, void *arg)
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(fsl_dcu_drm_fops);
+>  =
+
+> -static struct drm_driver fsl_dcu_drm_driver =3D {
+> +static const struct drm_driver fsl_dcu_drm_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.load			=3D fsl_dcu_load,
+>  	.unload			=3D fsl_dcu_unload,
+> @@ -224,7 +224,6 @@ static int fsl_dcu_drm_probe(struct platform_device *=
+pdev)
+>  	struct device *dev =3D &pdev->dev;
+>  	struct resource *res;
+>  	void __iomem *base;
+> -	struct drm_driver *driver =3D &fsl_dcu_drm_driver;
+>  	struct clk *pix_clk_in;
+>  	char pix_clk_name[32];
+>  	const char *pix_clk_in_name;
+> @@ -294,7 +293,7 @@ static int fsl_dcu_drm_probe(struct platform_device *=
+pdev)
+>  =
+
+>  	fsl_dev->tcon =3D fsl_tcon_init(dev);
+>  =
+
+> -	drm =3D drm_dev_alloc(driver, dev);
+> +	drm =3D drm_dev_alloc(&fsl_dcu_drm_driver, dev);
+>  	if (IS_ERR(drm)) {
+>  		ret =3D PTR_ERR(drm);
+>  		goto unregister_pix_clk;
+> diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/ps=
+b_drv.c
+> index b13376a6fb91..6e7197d89463 100644
+> --- a/drivers/gpu/drm/gma500/psb_drv.c
+> +++ b/drivers/gpu/drm/gma500/psb_drv.c
+> @@ -34,7 +34,7 @@
+>  #include "psb_intel_reg.h"
+>  #include "psb_reg.h"
+>  =
+
+> -static struct drm_driver driver;
+> +static const struct drm_driver driver;
+>  static int psb_pci_probe(struct pci_dev *pdev, const struct pci_device_i=
+d *ent);
+>  =
+
+>  /*
+> @@ -491,7 +491,7 @@ static const struct file_operations psb_gem_fops =3D {
+>  	.read =3D drm_read,
+>  };
+>  =
+
+> -static struct drm_driver driver =3D {
+> +static const struct drm_driver driver =3D {
+>  	.driver_features =3D DRIVER_MODESET | DRIVER_GEM,
+>  	.lastclose =3D drm_fb_helper_lastclose,
+>  =
+
+> diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c b/drivers/gp=
+u/drm/hisilicon/hibmc/hibmc_drm_drv.c
+> index a684814927cd..27205aa907f4 100644
+> --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c
+> +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c
+> @@ -43,7 +43,7 @@ static irqreturn_t hibmc_drm_interrupt(int irq, void *a=
+rg)
+>  	return IRQ_HANDLED;
+>  }
+>  =
+
+> -static struct drm_driver hibmc_driver =3D {
+> +static const struct drm_driver hibmc_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.fops			=3D &hibmc_fops,
+>  	.name			=3D "hibmc",
+> diff --git a/drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c b/drivers/gp=
+u/drm/hisilicon/kirin/kirin_drm_ade.c
+> index cfe8ff596d55..aa9641a6a7d8 100644
+> --- a/drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c
+> +++ b/drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c
+> @@ -918,7 +918,7 @@ static const struct drm_mode_config_funcs ade_mode_co=
+nfig_funcs =3D {
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(ade_fops);
+>  =
+
+> -static struct drm_driver ade_driver =3D {
+> +static const struct drm_driver ade_driver =3D {
+>  	.driver_features =3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.fops =3D &ade_fops,
+>  	DRM_GEM_CMA_DRIVER_OPS,
+> diff --git a/drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.h b/drivers/gp=
+u/drm/hisilicon/kirin/kirin_drm_drv.h
+> index dee8ec2f7f2e..386d137f29e5 100644
+> --- a/drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.h
+> +++ b/drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.h
+> @@ -40,7 +40,7 @@ struct kirin_drm_data {
+>  	u32 num_planes;
+>  	u32 prim_plane;
+>  =
+
+> -	struct drm_driver *driver;
+> +	const struct drm_driver *driver;
+>  	const struct drm_crtc_helper_funcs *crtc_helper_funcs;
+>  	const struct drm_crtc_funcs *crtc_funcs;
+>  	const struct drm_plane_helper_funcs *plane_helper_funcs;
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
+drv.c
+> index d3237b0d821d..27249b5e2729 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -87,7 +87,7 @@
+>  #include "intel_sideband.h"
+>  #include "vlv_suspend.h"
+>  =
+
+> -static struct drm_driver driver;
+> +static const struct drm_driver driver;
+>  =
+
+>  static int i915_get_bridge_dev(struct drm_i915_private *dev_priv)
+>  {
+> @@ -1758,7 +1758,7 @@ static const struct drm_ioctl_desc i915_ioctls[] =
+=3D {
+>  	DRM_IOCTL_DEF_DRV(I915_GEM_VM_DESTROY, i915_gem_vm_destroy_ioctl, DRM_R=
+ENDER_ALLOW),
+>  };
+>  =
+
+> -static struct drm_driver driver =3D {
+> +static const struct drm_driver driver =3D {
+>  	/* Don't use MTRRs here; the Xserver or userspace app should
+>  	 * deal with them for Intel hardware.
+>  	 */
+> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/g=
+pu/drm/i915/selftests/mock_gem_device.c
+> index 9220c9d1a4b7..e946bd2087d8 100644
+> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+> @@ -81,7 +81,7 @@ static void mock_device_release(struct drm_device *dev)
+>  	i915_params_free(&i915->params);
+>  }
+>  =
+
+> -static struct drm_driver mock_driver =3D {
+> +static const struct drm_driver mock_driver =3D {
+>  	.name =3D "mock",
+>  	.driver_features =3D DRIVER_GEM,
+>  	.release =3D mock_device_release,
+> diff --git a/drivers/gpu/drm/imx/dcss/dcss-kms.c b/drivers/gpu/drm/imx/dc=
+ss/dcss-kms.c
+> index b72e5cef7e40..b549ce5e7607 100644
+> --- a/drivers/gpu/drm/imx/dcss/dcss-kms.c
+> +++ b/drivers/gpu/drm/imx/dcss/dcss-kms.c
+> @@ -26,7 +26,7 @@ static const struct drm_mode_config_funcs dcss_drm_mode=
+_config_funcs =3D {
+>  	.atomic_commit =3D drm_atomic_helper_commit,
+>  };
+>  =
+
+> -static struct drm_driver dcss_kms_driver =3D {
+> +static const struct drm_driver dcss_kms_driver =3D {
+>  	.driver_features	=3D DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+>  	DRM_GEM_CMA_DRIVER_OPS,
+>  	.fops			=3D &dcss_cma_fops,
+> diff --git a/drivers/gpu/drm/imx/imx-drm-core.c b/drivers/gpu/drm/imx/imx=
+-drm-core.c
+> index 183f2e91881d..7090b82e7ea2 100644
+> --- a/drivers/gpu/drm/imx/imx-drm-core.c
+> +++ b/drivers/gpu/drm/imx/imx-drm-core.c
+> @@ -143,7 +143,7 @@ static const struct drm_ioctl_desc imx_drm_ioctls[] =
+=3D {
+>  	/* none so far */
+>  };
+>  =
+
+> -static struct drm_driver imx_drm_driver =3D {
+> +static const struct drm_driver imx_drm_driver =3D {
+>  	.driver_features	=3D DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+>  	DRM_GEM_CMA_DRIVER_OPS,
+>  	.ioctls			=3D imx_drm_ioctls,
+> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c b/drivers/gpu/drm/=
+ingenic/ingenic-drm-drv.c
+> index 2329754af116..082cb9e45908 100644
+> --- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+> +++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+> @@ -710,7 +710,7 @@ static void ingenic_drm_disable_vblank(struct drm_crt=
+c *crtc)
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(ingenic_drm_fops);
+>  =
+
+> -static struct drm_driver ingenic_drm_driver_data =3D {
+> +static const struct drm_driver ingenic_drm_driver_data =3D {
+>  	.driver_features	=3D DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+>  	.name			=3D "ingenic-drm",
+>  	.desc			=3D "DRM module for Ingenic SoCs",
+> diff --git a/drivers/gpu/drm/lima/lima_drv.c b/drivers/gpu/drm/lima/lima_=
+drv.c
+> index ab460121fd52..d497af91d850 100644
+> --- a/drivers/gpu/drm/lima/lima_drv.c
+> +++ b/drivers/gpu/drm/lima/lima_drv.c
+> @@ -261,7 +261,7 @@ DEFINE_DRM_GEM_FOPS(lima_drm_driver_fops);
+>   * - 1.1.0 - add heap buffer support
+>   */
+>  =
+
+> -static struct drm_driver lima_drm_driver =3D {
+> +static const struct drm_driver lima_drm_driver =3D {
+>  	.driver_features    =3D DRIVER_RENDER | DRIVER_GEM | DRIVER_SYNCOBJ,
+>  	.open               =3D lima_drm_driver_open,
+>  	.postclose          =3D lima_drm_driver_postclose,
+> diff --git a/drivers/gpu/drm/mcde/mcde_drv.c b/drivers/gpu/drm/mcde/mcde_=
+drv.c
+> index f9b5f450a9cb..870626e04ec0 100644
+> --- a/drivers/gpu/drm/mcde/mcde_drv.c
+> +++ b/drivers/gpu/drm/mcde/mcde_drv.c
+> @@ -178,7 +178,7 @@ static int mcde_modeset_init(struct drm_device *drm)
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(drm_fops);
+>  =
+
+> -static struct drm_driver mcde_drm_driver =3D {
+> +static const struct drm_driver mcde_drm_driver =3D {
+>  	.driver_features =3D
+>  		DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+>  	.lastclose =3D drm_fb_helper_lastclose,
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/med=
+iatek/mtk_drm_drv.c
+> index 7f3398a7c2b0..2e8065b1e2bb 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> @@ -321,7 +321,7 @@ struct drm_gem_object *mtk_drm_gem_prime_import(struc=
+t drm_device *dev,
+>  	return drm_gem_prime_import_dev(dev, dma_buf, private->dma_dev);
+>  }
+>  =
+
+> -static struct drm_driver mtk_drm_driver =3D {
+> +static const struct drm_driver mtk_drm_driver =3D {
+>  	.driver_features =3D DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+>  =
+
+>  	.dumb_create =3D mtk_drm_gem_dumb_create,
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/me=
+son_drv.c
+> index 8b9c8dd788c4..dc8509ceb787 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -90,7 +90,7 @@ static int meson_dumb_create(struct drm_file *file, str=
+uct drm_device *dev,
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(fops);
+>  =
+
+> -static struct drm_driver meson_driver =3D {
+> +static const struct drm_driver meson_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  =
+
+>  	/* IRQ */
+> diff --git a/drivers/gpu/drm/mgag200/mgag200_drv.c b/drivers/gpu/drm/mgag=
+200/mgag200_drv.c
+> index 771b26aeee19..0f07f259503d 100644
+> --- a/drivers/gpu/drm/mgag200/mgag200_drv.c
+> +++ b/drivers/gpu/drm/mgag200/mgag200_drv.c
+> @@ -28,7 +28,7 @@ module_param_named(modeset, mgag200_modeset, int, 0400);
+>  =
+
+>  DEFINE_DRM_GEM_FOPS(mgag200_driver_fops);
+>  =
+
+> -static struct drm_driver mgag200_driver =3D {
+> +static const struct drm_driver mgag200_driver =3D {
+>  	.driver_features =3D DRIVER_ATOMIC | DRIVER_GEM | DRIVER_MODESET,
+>  	.fops =3D &mgag200_driver_fops,
+>  	.name =3D DRIVER_NAME,
+> diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
+> index aa4509766d64..f8fd31e709bb 100644
+> --- a/drivers/gpu/drm/msm/msm_drv.c
+> +++ b/drivers/gpu/drm/msm/msm_drv.c
+> @@ -393,7 +393,7 @@ static int msm_init_vram(struct drm_device *dev)
+>  	return ret;
+>  }
+>  =
+
+> -static int msm_drm_init(struct device *dev, struct drm_driver *drv)
+> +static int msm_drm_init(struct device *dev, const struct drm_driver *drv)
+>  {
+>  	struct platform_device *pdev =3D to_platform_device(dev);
+>  	struct drm_device *ddev;
+> @@ -984,7 +984,7 @@ static const struct file_operations fops =3D {
+>  	.mmap               =3D msm_gem_mmap,
+>  };
+>  =
+
+> -static struct drm_driver msm_driver =3D {
+> +static const struct drm_driver msm_driver =3D {
+>  	.driver_features    =3D DRIVER_GEM |
+>  				DRIVER_RENDER |
+>  				DRIVER_ATOMIC |
+> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c b/drivers/gpu/drm/mxsfb/mx=
+sfb_drv.c
+> index 35122aef037b..6faf17b6408d 100644
+> --- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> +++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> @@ -289,7 +289,7 @@ static irqreturn_t mxsfb_irq_handler(int irq, void *d=
+ata)
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(fops);
+>  =
+
+> -static struct drm_driver mxsfb_driver =3D {
+> +static const struct drm_driver mxsfb_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.irq_handler		=3D mxsfb_irq_handler,
+>  	.irq_preinstall		=3D mxsfb_irq_disable,
+> diff --git a/drivers/gpu/drm/omapdrm/omap_drv.c b/drivers/gpu/drm/omapdrm=
+/omap_drv.c
+> index 2b82a708eca6..21a6cd3f5473 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_drv.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_drv.c
+> @@ -534,7 +534,7 @@ static const struct file_operations omapdriver_fops =
+=3D {
+>  	.llseek =3D noop_llseek,
+>  };
+>  =
+
+> -static struct drm_driver omap_drm_driver =3D {
+> +static const struct drm_driver omap_drm_driver =3D {
+>  	.driver_features =3D DRIVER_MODESET | DRIVER_GEM  |
+>  		DRIVER_ATOMIC | DRIVER_RENDER,
+>  	.open =3D dev_open,
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/pa=
+nfrost/panfrost_drv.c
+> index 37d4cb7a5491..ed116bd3d6d6 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_drv.c
+> +++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
+> @@ -548,7 +548,7 @@ DEFINE_DRM_GEM_FOPS(panfrost_drm_driver_fops);
+>   * - 1.0 - initial interface
+>   * - 1.1 - adds HEAP and NOEXEC flags for CREATE_BO
+>   */
+> -static struct drm_driver panfrost_drm_driver =3D {
+> +static const struct drm_driver panfrost_drm_driver =3D {
+>  	.driver_features	=3D DRIVER_RENDER | DRIVER_GEM | DRIVER_SYNCOBJ,
+>  	.open			=3D panfrost_open,
+>  	.postclose		=3D panfrost_postclose,
+> diff --git a/drivers/gpu/drm/pl111/pl111_drv.c b/drivers/gpu/drm/pl111/pl=
+111_drv.c
+> index 3899c28f428d..10d9a12be672 100644
+> --- a/drivers/gpu/drm/pl111/pl111_drv.c
+> +++ b/drivers/gpu/drm/pl111/pl111_drv.c
+> @@ -213,7 +213,7 @@ pl111_gem_import_sg_table(struct drm_device *dev,
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(drm_fops);
+>  =
+
+> -static struct drm_driver pl111_drm_driver =3D {
+> +static const struct drm_driver pl111_drm_driver =3D {
+>  	.driver_features =3D
+>  		DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+>  	.ioctls =3D NULL,
+> diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon=
+/radeon_drv.c
+> index 9c11e36ad33a..bfadb799d6a3 100644
+> --- a/drivers/gpu/drm/radeon/radeon_drv.c
+> +++ b/drivers/gpu/drm/radeon/radeon_drv.c
+> @@ -297,7 +297,7 @@ static struct pci_device_id pciidlist[] =3D {
+>  =
+
+>  MODULE_DEVICE_TABLE(pci, pciidlist);
+>  =
+
+> -static struct drm_driver kms_driver;
+> +static const struct drm_driver kms_driver;
+>  =
+
+>  bool radeon_device_is_virtual(void);
+>  =
+
+> @@ -629,7 +629,7 @@ static const struct drm_ioctl_desc radeon_ioctls_kms[=
+] =3D {
+>  	DRM_IOCTL_DEF_DRV(RADEON_GEM_USERPTR, radeon_gem_userptr_ioctl, DRM_AUT=
+H|DRM_RENDER_ALLOW),
+>  };
+>  =
+
+> -static struct drm_driver kms_driver =3D {
+> +static const struct drm_driver kms_driver =3D {
+>  	.driver_features =3D
+>  	    DRIVER_GEM | DRIVER_RENDER | DRIVER_MODESET,
+>  	.load =3D radeon_driver_load_kms,
+> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_drv.c b/drivers/gpu/drm/rcar=
+-du/rcar_du_drv.c
+> index 447be991fa25..600056dff374 100644
+> --- a/drivers/gpu/drm/rcar-du/rcar_du_drv.c
+> +++ b/drivers/gpu/drm/rcar-du/rcar_du_drv.c
+> @@ -507,7 +507,7 @@ MODULE_DEVICE_TABLE(of, rcar_du_of_table);
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(rcar_du_fops);
+>  =
+
+> -static struct drm_driver rcar_du_driver =3D {
+> +static const struct drm_driver rcar_du_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	DRM_GEM_CMA_DRIVER_OPS_WITH_DUMB_CREATE(rcar_du_dumb_create),
+>  	.fops			=3D &rcar_du_fops,
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/dr=
+m/rockchip/rockchip_drm_drv.c
+> index b7654f5e4225..212bd87c0c4a 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+> @@ -35,7 +35,7 @@
+>  #define DRIVER_MINOR	0
+>  =
+
+>  static bool is_support_iommu =3D true;
+> -static struct drm_driver rockchip_drm_driver;
+> +static const struct drm_driver rockchip_drm_driver;
+>  =
+
+>  /*
+>   * Attach a (component) device to the shared drm dma mapping from master=
+ drm
+> @@ -209,7 +209,7 @@ static const struct file_operations rockchip_drm_driv=
+er_fops =3D {
+>  	.release =3D drm_release,
+>  };
+>  =
+
+> -static struct drm_driver rockchip_drm_driver =3D {
+> +static const struct drm_driver rockchip_drm_driver =3D {
+>  	.driver_features	=3D DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+>  	.lastclose		=3D drm_fb_helper_lastclose,
+>  	.dumb_create		=3D rockchip_gem_dumb_create,
+> diff --git a/drivers/gpu/drm/shmobile/shmob_drm_drv.c b/drivers/gpu/drm/s=
+hmobile/shmob_drm_drv.c
+> index 26a15c214bd3..0a02b7092c04 100644
+> --- a/drivers/gpu/drm/shmobile/shmob_drm_drv.c
+> +++ b/drivers/gpu/drm/shmobile/shmob_drm_drv.c
+> @@ -128,7 +128,7 @@ static irqreturn_t shmob_drm_irq(int irq, void *arg)
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(shmob_drm_fops);
+>  =
+
+> -static struct drm_driver shmob_drm_driver =3D {
+> +static const struct drm_driver shmob_drm_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET,
+>  	.irq_handler		=3D shmob_drm_irq,
+>  	DRM_GEM_CMA_DRIVER_OPS,
+> diff --git a/drivers/gpu/drm/sti/sti_drv.c b/drivers/gpu/drm/sti/sti_drv.c
+> index 3f54efa36098..c7efb43b83ee 100644
+> --- a/drivers/gpu/drm/sti/sti_drv.c
+> +++ b/drivers/gpu/drm/sti/sti_drv.c
+> @@ -130,7 +130,7 @@ static void sti_mode_config_init(struct drm_device *d=
+ev)
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(sti_driver_fops);
+>  =
+
+> -static struct drm_driver sti_driver =3D {
+> +static const struct drm_driver sti_driver =3D {
+>  	.driver_features =3D DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+>  	.fops =3D &sti_driver_fops,
+>  	DRM_GEM_CMA_DRIVER_OPS,
+> diff --git a/drivers/gpu/drm/stm/drv.c b/drivers/gpu/drm/stm/drv.c
+> index 411103f013e2..222869b232ae 100644
+> --- a/drivers/gpu/drm/stm/drv.c
+> +++ b/drivers/gpu/drm/stm/drv.c
+> @@ -53,7 +53,7 @@ static int stm_gem_cma_dumb_create(struct drm_file *fil=
+e,
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(drv_driver_fops);
+>  =
+
+> -static struct drm_driver drv_driver =3D {
+> +static const struct drm_driver drv_driver =3D {
+>  	.driver_features =3D DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+>  	.name =3D "stm",
+>  	.desc =3D "STMicroelectronics SoC DRM",
+> diff --git a/drivers/gpu/drm/sun4i/sun4i_drv.c b/drivers/gpu/drm/sun4i/su=
+n4i_drv.c
+> index 29861fc81b35..91502937f26d 100644
+> --- a/drivers/gpu/drm/sun4i/sun4i_drv.c
+> +++ b/drivers/gpu/drm/sun4i/sun4i_drv.c
+> @@ -40,7 +40,7 @@ static int drm_sun4i_gem_dumb_create(struct drm_file *f=
+ile_priv,
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(sun4i_drv_fops);
+>  =
+
+> -static struct drm_driver sun4i_drv_driver =3D {
+> +static const struct drm_driver sun4i_drv_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  =
+
+>  	/* Generic Operations */
+> diff --git a/drivers/gpu/drm/tegra/drm.c b/drivers/gpu/drm/tegra/drm.c
+> index 24f353c1cee8..ae13a3ff8a87 100644
+> --- a/drivers/gpu/drm/tegra/drm.c
+> +++ b/drivers/gpu/drm/tegra/drm.c
+> @@ -850,7 +850,7 @@ static void tegra_debugfs_init(struct drm_minor *mino=
+r)
+>  }
+>  #endif
+>  =
+
+> -static struct drm_driver tegra_drm_driver =3D {
+> +static const struct drm_driver tegra_drm_driver =3D {
+>  	.driver_features =3D DRIVER_MODESET | DRIVER_GEM |
+>  			   DRIVER_ATOMIC | DRIVER_RENDER,
+>  	.open =3D tegra_drm_open,
+> @@ -1084,12 +1084,11 @@ static bool host1x_drm_wants_iommu(struct host1x_=
+device *dev)
+>  =
+
+>  static int host1x_drm_probe(struct host1x_device *dev)
+>  {
+> -	struct drm_driver *driver =3D &tegra_drm_driver;
+>  	struct tegra_drm *tegra;
+>  	struct drm_device *drm;
+>  	int err;
+>  =
+
+> -	drm =3D drm_dev_alloc(driver, &dev->dev);
+> +	drm =3D drm_dev_alloc(&tegra_drm_driver, &dev->dev);
+>  	if (IS_ERR(drm))
+>  		return PTR_ERR(drm);
+>  =
+
+> diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/ti=
+dss_drv.c
+> index 9179ea18f625..66e3c86eb5c7 100644
+> --- a/drivers/gpu/drm/tidss/tidss_drv.c
+> +++ b/drivers/gpu/drm/tidss/tidss_drv.c
+> @@ -108,7 +108,7 @@ static void tidss_release(struct drm_device *ddev)
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(tidss_fops);
+>  =
+
+> -static struct drm_driver tidss_driver =3D {
+> +static const struct drm_driver tidss_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.fops			=3D &tidss_fops,
+>  	.release		=3D tidss_release,
+> diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.c b/drivers/gpu/drm/tilcdc=
+/tilcdc_drv.c
+> index c5f82e693f1a..137f74f613ab 100644
+> --- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> +++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> @@ -166,7 +166,7 @@ static void tilcdc_fini(struct drm_device *dev)
+>  	drm_dev_put(dev);
+>  }
+>  =
+
+> -static int tilcdc_init(struct drm_driver *ddrv, struct device *dev)
+> +static int tilcdc_init(const struct drm_driver *ddrv, struct device *dev)
+>  {
+>  	struct drm_device *ddev;
+>  	struct platform_device *pdev =3D to_platform_device(dev);
+> @@ -452,7 +452,7 @@ static void tilcdc_debugfs_init(struct drm_minor *min=
+or)
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(fops);
+>  =
+
+> -static struct drm_driver tilcdc_driver =3D {
+> +static const struct drm_driver tilcdc_driver =3D {
+>  	.driver_features    =3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.irq_handler        =3D tilcdc_irq,
+>  	DRM_GEM_CMA_DRIVER_OPS,
+> diff --git a/drivers/gpu/drm/tiny/cirrus.c b/drivers/gpu/drm/tiny/cirrus.c
+> index 759a5a66dd0b..e5641969c181 100644
+> --- a/drivers/gpu/drm/tiny/cirrus.c
+> +++ b/drivers/gpu/drm/tiny/cirrus.c
+> @@ -536,7 +536,7 @@ static int cirrus_mode_config_init(struct cirrus_devi=
+ce *cirrus)
+>  =
+
+>  DEFINE_DRM_GEM_FOPS(cirrus_fops);
+>  =
+
+> -static struct drm_driver cirrus_driver =3D {
+> +static const struct drm_driver cirrus_driver =3D {
+>  	.driver_features =3D DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+>  =
+
+>  	.name		 =3D DRIVER_NAME,
+> diff --git a/drivers/gpu/drm/tiny/gm12u320.c b/drivers/gpu/drm/tiny/gm12u=
+320.c
+> index cc397671f689..5a953c4ce265 100644
+> --- a/drivers/gpu/drm/tiny/gm12u320.c
+> +++ b/drivers/gpu/drm/tiny/gm12u320.c
+> @@ -600,7 +600,7 @@ static const uint64_t gm12u320_pipe_modifiers[] =3D {
+>  =
+
+>  DEFINE_DRM_GEM_FOPS(gm12u320_fops);
+>  =
+
+> -static struct drm_driver gm12u320_drm_driver =3D {
+> +static const struct drm_driver gm12u320_drm_driver =3D {
+>  	.driver_features =3D DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+>  =
+
+>  	.name		 =3D DRIVER_NAME,
+> diff --git a/drivers/gpu/drm/tiny/hx8357d.c b/drivers/gpu/drm/tiny/hx8357=
+d.c
+> index 0998309b0d95..c6525cd02bc2 100644
+> --- a/drivers/gpu/drm/tiny/hx8357d.c
+> +++ b/drivers/gpu/drm/tiny/hx8357d.c
+> @@ -193,7 +193,7 @@ static const struct drm_display_mode yx350hv15_mode =
+=3D {
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(hx8357d_fops);
+>  =
+
+> -static struct drm_driver hx8357d_driver =3D {
+> +static const struct drm_driver hx8357d_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.fops			=3D &hx8357d_fops,
+>  	DRM_GEM_CMA_DRIVER_OPS_VMAP,
+> diff --git a/drivers/gpu/drm/tiny/ili9225.c b/drivers/gpu/drm/tiny/ili922=
+5.c
+> index 97a77262d791..8e98962db5a2 100644
+> --- a/drivers/gpu/drm/tiny/ili9225.c
+> +++ b/drivers/gpu/drm/tiny/ili9225.c
+> @@ -337,7 +337,7 @@ static const struct drm_display_mode ili9225_mode =3D=
  {
--	struct ttm_buffer_object *bo =
--	    container_of(kref, struct ttm_buffer_object, kref);
-+	struct ttm_buffer_object *bo = container_of(rcu,
-+						struct ttm_buffer_object, rcu);
- 	struct ttm_bo_device *bdev = bo->bdev;
- 	struct ttm_mem_type_manager *man = &bdev->man[bo->mem.mem_type];
- 	size_t acc_size = bo->acc_size;
-@@ -619,6 +619,13 @@ static void ttm_bo_release(struct kref *
- 	ttm_mem_global_free(&ttm_mem_glob, acc_size);
- }
- 
-+static void ttm_bo_release(struct kref *kref)
-+{
-+	struct ttm_buffer_object *bo = container_of(kref,
-+					struct ttm_buffer_object, kref);
-+	call_rcu(&bo->rcu, ttm_bo_call_rcu_fn);
-+}
-+
- void ttm_bo_put(struct ttm_buffer_object *bo)
- {
- 	kref_put(&bo->kref, ttm_bo_release);
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(ili9225_fops);
+>  =
+
+> -static struct drm_driver ili9225_driver =3D {
+> +static const struct drm_driver ili9225_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.fops			=3D &ili9225_fops,
+>  	DRM_GEM_CMA_DRIVER_OPS_VMAP,
+> diff --git a/drivers/gpu/drm/tiny/ili9341.c b/drivers/gpu/drm/tiny/ili934=
+1.c
+> index d39c39df56ad..6ce97f0698eb 100644
+> --- a/drivers/gpu/drm/tiny/ili9341.c
+> +++ b/drivers/gpu/drm/tiny/ili9341.c
+> @@ -149,7 +149,7 @@ static const struct drm_display_mode yx240qv29_mode =
+=3D {
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(ili9341_fops);
+>  =
+
+> -static struct drm_driver ili9341_driver =3D {
+> +static const struct drm_driver ili9341_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.fops			=3D &ili9341_fops,
+>  	DRM_GEM_CMA_DRIVER_OPS_VMAP,
+> diff --git a/drivers/gpu/drm/tiny/ili9486.c b/drivers/gpu/drm/tiny/ili948=
+6.c
+> index 403af68fa440..d7ce40eb166a 100644
+> --- a/drivers/gpu/drm/tiny/ili9486.c
+> +++ b/drivers/gpu/drm/tiny/ili9486.c
+> @@ -162,7 +162,7 @@ static const struct drm_display_mode waveshare_mode =
+=3D {
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(ili9486_fops);
+>  =
+
+> -static struct drm_driver ili9486_driver =3D {
+> +static const struct drm_driver ili9486_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.fops			=3D &ili9486_fops,
+>  	DRM_GEM_CMA_DRIVER_OPS_VMAP,
+> diff --git a/drivers/gpu/drm/tiny/mi0283qt.c b/drivers/gpu/drm/tiny/mi028=
+3qt.c
+> index 2131b4268c00..ff77f983f803 100644
+> --- a/drivers/gpu/drm/tiny/mi0283qt.c
+> +++ b/drivers/gpu/drm/tiny/mi0283qt.c
+> @@ -153,7 +153,7 @@ static const struct drm_display_mode mi0283qt_mode =
+=3D {
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(mi0283qt_fops);
+>  =
+
+> -static struct drm_driver mi0283qt_driver =3D {
+> +static const struct drm_driver mi0283qt_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.fops			=3D &mi0283qt_fops,
+>  	DRM_GEM_CMA_DRIVER_OPS_VMAP,
+> diff --git a/drivers/gpu/drm/tiny/repaper.c b/drivers/gpu/drm/tiny/repape=
+r.c
+> index 2e01cf0a9876..11c602fc9897 100644
+> --- a/drivers/gpu/drm/tiny/repaper.c
+> +++ b/drivers/gpu/drm/tiny/repaper.c
+> @@ -936,7 +936,7 @@ static const u8 repaper_e2271cs021_cs[] =3D { 0x00, 0=
+x00, 0x00, 0x7f,
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(repaper_fops);
+>  =
+
+> -static struct drm_driver repaper_driver =3D {
+> +static const struct drm_driver repaper_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.fops			=3D &repaper_fops,
+>  	DRM_GEM_CMA_DRIVER_OPS_VMAP,
+> diff --git a/drivers/gpu/drm/tiny/st7586.c b/drivers/gpu/drm/tiny/st7586.c
+> index d05de03891f8..ff5cf60f4bd7 100644
+> --- a/drivers/gpu/drm/tiny/st7586.c
+> +++ b/drivers/gpu/drm/tiny/st7586.c
+> @@ -277,7 +277,7 @@ static const struct drm_display_mode st7586_mode =3D {
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(st7586_fops);
+>  =
+
+> -static struct drm_driver st7586_driver =3D {
+> +static const struct drm_driver st7586_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.fops			=3D &st7586_fops,
+>  	DRM_GEM_CMA_DRIVER_OPS_VMAP,
+> diff --git a/drivers/gpu/drm/tiny/st7735r.c b/drivers/gpu/drm/tiny/st7735=
+r.c
+> index a0f688f0d050..2c77d9ab7e8d 100644
+> --- a/drivers/gpu/drm/tiny/st7735r.c
+> +++ b/drivers/gpu/drm/tiny/st7735r.c
+> @@ -154,7 +154,7 @@ static const struct st7735r_cfg rh128128t_cfg =3D {
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(st7735r_fops);
+>  =
+
+> -static struct drm_driver st7735r_driver =3D {
+> +static const struct drm_driver st7735r_driver =3D {
+>  	.driver_features	=3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	.fops			=3D &st7735r_fops,
+>  	DRM_GEM_CMA_DRIVER_OPS_VMAP,
+> diff --git a/drivers/gpu/drm/tve200/tve200_drv.c b/drivers/gpu/drm/tve200=
+/tve200_drv.c
+> index b5259cb1383f..07140e0b90a3 100644
+> --- a/drivers/gpu/drm/tve200/tve200_drv.c
+> +++ b/drivers/gpu/drm/tve200/tve200_drv.c
+> @@ -137,7 +137,7 @@ static int tve200_modeset_init(struct drm_device *dev)
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(drm_fops);
+>  =
+
+> -static struct drm_driver tve200_drm_driver =3D {
+> +static const struct drm_driver tve200_drm_driver =3D {
+>  	.driver_features =3D DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+>  	.ioctls =3D NULL,
+>  	.fops =3D &drm_fops,
+> diff --git a/drivers/gpu/drm/udl/udl_drv.c b/drivers/gpu/drm/udl/udl_drv.c
+> index 96d4317a2c1b..46df4d07bd7b 100644
+> --- a/drivers/gpu/drm/udl/udl_drv.c
+> +++ b/drivers/gpu/drm/udl/udl_drv.c
+> @@ -34,7 +34,7 @@ static int udl_usb_resume(struct usb_interface *interfa=
+ce)
+>  =
+
+>  DEFINE_DRM_GEM_FOPS(udl_driver_fops);
+>  =
+
+> -static struct drm_driver driver =3D {
+> +static const struct drm_driver driver =3D {
+>  	.driver_features =3D DRIVER_ATOMIC | DRIVER_GEM | DRIVER_MODESET,
+>  =
+
+>  	/* GEM hooks */
+> diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
+> index 9f7c26193831..2da0c1180bc6 100644
+> --- a/drivers/gpu/drm/v3d/v3d_drv.c
+> +++ b/drivers/gpu/drm/v3d/v3d_drv.c
+> @@ -194,7 +194,7 @@ static const struct drm_ioctl_desc v3d_drm_ioctls[] =
+=3D {
+>  	DRM_IOCTL_DEF_DRV(V3D_SUBMIT_CSD, v3d_submit_csd_ioctl, DRM_RENDER_ALLO=
+W | DRM_AUTH),
+>  };
+>  =
+
+> -static struct drm_driver v3d_drm_driver =3D {
+> +static const struct drm_driver v3d_drm_driver =3D {
+>  	.driver_features =3D (DRIVER_GEM |
+>  			    DRIVER_RENDER |
+>  			    DRIVER_SYNCOBJ),
+> diff --git a/drivers/gpu/drm/vboxvideo/vbox_drv.c b/drivers/gpu/drm/vboxv=
+ideo/vbox_drv.c
+> index cf2e3e6a2388..f3eac72cb46e 100644
+> --- a/drivers/gpu/drm/vboxvideo/vbox_drv.c
+> +++ b/drivers/gpu/drm/vboxvideo/vbox_drv.c
+> @@ -26,7 +26,7 @@ static int vbox_modeset =3D -1;
+>  MODULE_PARM_DESC(modeset, "Disable/Enable modesetting");
+>  module_param_named(modeset, vbox_modeset, int, 0400);
+>  =
+
+> -static struct drm_driver driver;
+> +static const struct drm_driver driver;
+>  =
+
+>  static const struct pci_device_id pciidlist[] =3D {
+>  	{ PCI_DEVICE(0x80ee, 0xbeef) },
+> @@ -175,7 +175,7 @@ static struct pci_driver vbox_pci_driver =3D {
+>  =
+
+>  DEFINE_DRM_GEM_FOPS(vbox_fops);
+>  =
+
+> -static struct drm_driver driver =3D {
+> +static const struct drm_driver driver =3D {
+>  	.driver_features =3D
+>  	    DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+>  =
+
+> diff --git a/drivers/gpu/drm/vgem/vgem_drv.c b/drivers/gpu/drm/vgem/vgem_=
+drv.c
+> index fa54a6d1403d..3e9b7a4c30ce 100644
+> --- a/drivers/gpu/drm/vgem/vgem_drv.c
+> +++ b/drivers/gpu/drm/vgem/vgem_drv.c
+> @@ -415,7 +415,7 @@ static const struct drm_gem_object_funcs vgem_gem_obj=
+ect_funcs =3D {
+>  	.vm_ops =3D &vgem_gem_vm_ops,
+>  };
+>  =
+
+> -static struct drm_driver vgem_driver =3D {
+> +static const struct drm_driver vgem_driver =3D {
+>  	.driver_features		=3D DRIVER_GEM | DRIVER_RENDER,
+>  	.open				=3D vgem_open,
+>  	.postclose			=3D vgem_postclose,
+> diff --git a/drivers/gpu/drm/virtio/virtgpu_drv.c b/drivers/gpu/drm/virti=
+o/virtgpu_drv.c
+> index 86330f1ade72..27f13bd29c13 100644
+> --- a/drivers/gpu/drm/virtio/virtgpu_drv.c
+> +++ b/drivers/gpu/drm/virtio/virtgpu_drv.c
+> @@ -37,7 +37,7 @@
+>  =
+
+>  #include "virtgpu_drv.h"
+>  =
+
+> -static struct drm_driver driver;
+> +static const struct drm_driver driver;
+>  =
+
+>  static int virtio_gpu_modeset =3D -1;
+>  =
+
+> @@ -190,7 +190,7 @@ MODULE_AUTHOR("Alon Levy");
+>  =
+
+>  DEFINE_DRM_GEM_FOPS(virtio_gpu_driver_fops);
+>  =
+
+> -static struct drm_driver driver =3D {
+> +static const struct drm_driver driver =3D {
+>  	.driver_features =3D DRIVER_MODESET | DRIVER_GEM | DRIVER_RENDER | DRIV=
+ER_ATOMIC,
+>  	.open =3D virtio_gpu_driver_open,
+>  	.postclose =3D virtio_gpu_driver_postclose,
+> diff --git a/drivers/gpu/drm/vkms/vkms_drv.c b/drivers/gpu/drm/vkms/vkms_=
+drv.c
+> index 98ba844ae77d..8056b3d1ff6a 100644
+> --- a/drivers/gpu/drm/vkms/vkms_drv.c
+> +++ b/drivers/gpu/drm/vkms/vkms_drv.c
+> @@ -78,7 +78,7 @@ static void vkms_atomic_commit_tail(struct drm_atomic_s=
+tate *old_state)
+>  	drm_atomic_helper_cleanup_planes(dev, old_state);
+>  }
+>  =
+
+> -static struct drm_driver vkms_driver =3D {
+> +static const struct drm_driver vkms_driver =3D {
+>  	.driver_features	=3D DRIVER_MODESET | DRIVER_ATOMIC | DRIVER_GEM,
+>  	.release		=3D vkms_release,
+>  	.fops			=3D &vkms_driver_fops,
+> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c b/drivers/gpu/drm/vmwgfx=
+/vmwgfx_drv.c
+> index 68206d0a1237..e66b252e3923 100644
+> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+> @@ -1465,7 +1465,7 @@ static const struct file_operations vmwgfx_driver_f=
+ops =3D {
+>  	.get_unmapped_area =3D vmw_get_unmapped_area,
+>  };
+>  =
+
+> -static struct drm_driver driver =3D {
+> +static const struct drm_driver driver =3D {
+>  	.driver_features =3D
+>  	DRIVER_MODESET | DRIVER_RENDER | DRIVER_ATOMIC,
+>  	.ioctls =3D vmw_ioctls,
+> diff --git a/drivers/gpu/drm/xen/xen_drm_front.c b/drivers/gpu/drm/xen/xe=
+n_drm_front.c
+> index 98b6d2ba088a..30d9adf31c84 100644
+> --- a/drivers/gpu/drm/xen/xen_drm_front.c
+> +++ b/drivers/gpu/drm/xen/xen_drm_front.c
+> @@ -483,7 +483,7 @@ static const struct file_operations xen_drm_dev_fops =
+=3D {
+>  	.mmap           =3D xen_drm_front_gem_mmap,
+>  };
+>  =
+
+> -static struct drm_driver xen_drm_driver =3D {
+> +static const struct drm_driver xen_drm_driver =3D {
+>  	.driver_features           =3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATO=
+MIC,
+>  	.release                   =3D xen_drm_drv_release,
+>  	.prime_handle_to_fd        =3D drm_gem_prime_handle_to_fd,
+> diff --git a/drivers/gpu/drm/xlnx/zynqmp_dpsub.c b/drivers/gpu/drm/xlnx/z=
+ynqmp_dpsub.c
+> index f3ffc3703a0e..0c1c50271a88 100644
+> --- a/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
+> +++ b/drivers/gpu/drm/xlnx/zynqmp_dpsub.c
+> @@ -76,7 +76,7 @@ static const struct drm_mode_config_funcs zynqmp_dpsub_=
+mode_config_funcs =3D {
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(zynqmp_dpsub_drm_fops);
+>  =
+
+> -static struct drm_driver zynqmp_dpsub_drm_driver =3D {
+> +static const struct drm_driver zynqmp_dpsub_drm_driver =3D {
+>  	.driver_features		=3D DRIVER_MODESET | DRIVER_GEM |
+>  					  DRIVER_ATOMIC,
+>  =
+
+> diff --git a/drivers/gpu/drm/zte/zx_drm_drv.c b/drivers/gpu/drm/zte/zx_dr=
+m_drv.c
+> index 31014a451f8b..5506336594e2 100644
+> --- a/drivers/gpu/drm/zte/zx_drm_drv.c
+> +++ b/drivers/gpu/drm/zte/zx_drm_drv.c
+> @@ -34,7 +34,7 @@ static const struct drm_mode_config_funcs zx_drm_mode_c=
+onfig_funcs =3D {
+>  =
+
+>  DEFINE_DRM_GEM_CMA_FOPS(zx_drm_fops);
+>  =
+
+> -static struct drm_driver zx_drm_driver =3D {
+> +static const struct drm_driver zx_drm_driver =3D {
+>  	.driver_features =3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	DRM_GEM_CMA_DRIVER_OPS,
+>  	.fops =3D &zx_drm_fops,
+> -- =
+
+> 2.28.0
+> =
+
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
