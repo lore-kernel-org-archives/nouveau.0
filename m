@@ -1,12 +1,14 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+From: Dave Stevenson <dave.stevenson-FnsA7b+Nu9Xg+KzdeAJ3hg@public.gmane.org>
 Subject: Re: GT710 and Nouveau on ARM/ARM64
-Date: Wed, 28 Oct 2020 10:10:08 -0400
-Message-ID: <CAKb7Uvi-+0nt8Jfp+kaRC=Eq2s5bSB_VFSHqSyV_9tgdDRvg9A@mail.gmail.com>
+Date: Wed, 28 Oct 2020 14:19:37 +0000
+Message-ID: <CAPY8ntBOnWo78VhhgRew9o67_0VrtLtAAcDY-U07ksCPQA-e0w@mail.gmail.com>
 References: <CAPY8ntDMWeJao5Ld435s0cLSH-a7yYe4=daUso-nZNLdarMupg@mail.gmail.com>
+ <CAKb7Uvi-+0nt8Jfp+kaRC=Eq2s5bSB_VFSHqSyV_9tgdDRvg9A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0586449361=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAPY8ntDMWeJao5Ld435s0cLSH-a7yYe4=daUso-nZNLdarMupg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAKb7Uvi-+0nt8Jfp+kaRC=Eq2s5bSB_VFSHqSyV_9tgdDRvg9A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,183 +18,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dave Stevenson <dave.stevenson-FnsA7b+Nu9Xg+KzdeAJ3hg@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0586449361==
-Content-Type: multipart/alternative; boundary="0000000000004fe47405b2bbb9ad"
+Hi Ilia
 
---0000000000004fe47405b2bbb9ad
-Content-Type: text/plain; charset="UTF-8"
+Thanks for taking the time to reply.
 
-The most common issue on arm is that the pci memory window is too narrow to
-allocate all the BARs. Can you see if there are messages in the kernel to
-that effect?
-
-On Wed, Oct 28, 2020, 9:46 AM Dave Stevenson <dave.stevenson-FnsA7b+Nu9Xg+KzdeAJ3hg@public.gmane.org>
-wrote:
-
-> Hi
+On Wed, 28 Oct 2020 at 14:10, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
 >
-> Seeing as we (Raspberry Pi) have just launched the Compute Module 4
-> with an exposed PCIe x1 lane, people are asking about adding graphics
-> cards.
->
-> Seeing as you are the people who have the knowledge with regard to
-> NVidia and nouveau, what are your immediate thoughts of nouveau
-> working on ARM/ARM64? Is there a chance of this working? I'm no PCIe
-> expert, although I can call on some expertise :-/
->
-> I've tried it so far with a GT710 board [1] and ARM64. It's blowing up
-> in the memset of nvkm_instobj_new whilst initialising the BAR
-> subdevice [2], having gone through the "No such luck" path in
-> nvkm_mmu_ptc_get [3].
->
-> Taking the naive approach of simply removing the memset, I get through
-> initialising all the subdevices, but again die in a location I
-> currently haven't pinpointed. The last logging messages are:
-> [ 1023.407302] nouveau 0000:01:00.0: fifo: one-time init completed in 760us
-> [ 1023.407312] nouveau 0000:01:00.0: fifo: init completed in 775us
-> [ 1023.407325] nouveau: DRM-master:00000000:80009009: init running...
-> [ 1023.407329] nouveau: DRM-master:00000000:80009009: init children...
-> [ 1023.407333] nouveau: DRM-master:00000000:80009009: init completed in 4us
-> [ 1023.407352] nouveau 0000:01:00.0: fifo: fault 01 [WRITE] at
-> 00000000000d1000 engine 05 [BAR2] client 08 [HUB/HOST_CPU_NB] reason
-> 02 [PTE] on channel -1 [007fd38000 unknown]
-> [ 1023.407354] nouveau: DRM-master:00000000:00000000: ioctl: return 0
-> [ 1023.407385] nouveau: DRM-master:00000000:00000000: ioctl: size 32
-> [ 1023.407392] nouveau: DRM-master:00000000:00000000: ioctl: vers 0
-> type 01 object ffffff80ee8c2170 owner ff
-> [ 1023.407415] nouveau: DRM-master:00000000:80009009: ioctl: sclass size 8
-> [ 1023.407419] nouveau: DRM-master:00000000:80009009: ioctl: sclass
-> vers 0 count 0
-> [ 1023.407432] nouveau: DRM-master:00000000:00000000: ioctl: return 0
-> [ 1023.407452] nouveau: DRM-master:00000000:00000000: ioctl: size 48
-> [ 1023.407459] nouveau: DRM-master:00000000:00000000: ioctl: vers 0
-> type 01 object ffffff80ee8c2170 owner ff
-> [ 1023.407482] nouveau: DRM-master:00000000:80009009: ioctl: sclass size 24
-> [ 1023.407485] nouveau: DRM-master:00000000:80009009: ioctl: sclass
-> vers 0 count 2
-> [ 1023.407498] nouveau: DRM-master:00000000:00000000: ioctl: return 0
-> [ 1023.407519] nouveau: DRM-master:00000000:00000000: ioctl: size 48
->
-> Any input very welcome, otherwise I'll continue blundering about
-> slightly in the dark.
->
-> Thanks
->   Dave
->
-> [1]
-> https://www.amazon.co.uk/ASUS-GT710-4H-SL-2GD5-GeForce-Multi-Monitor-Productivity/dp/B0897T6PYM/
-> [2]
-> https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/base.c#L114
-> [3]
-> https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/base.c#L201
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
->
+> The most common issue on arm is that the pci memory window is too narrow to allocate all the BARs. Can you see if there are messages in the kernel to that effect?
 
---0000000000004fe47405b2bbb9ad
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+All the BAR allocations seem to succeed except for the IO one.
+AIUI I/O is deprecated, but is it still used on these cards?
 
-<div dir=3D"auto">The most common issue on arm is that the pci memory windo=
-w is too narrow to allocate all the BARs. Can you see if there are messages=
- in the kernel to that effect?</div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Wed, Oct 28, 2020, 9:46 AM Dave Stevenson =
-&lt;<a href=3D"mailto:dave.stevenson-FnsA7b+Nu9Xg+KzdeAJ3hg@public.gmane.org">dave.stevenson@raspbe=
-rrypi.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi<br>
-<br>
-Seeing as we (Raspberry Pi) have just launched the Compute Module 4<br>
-with an exposed PCIe x1 lane, people are asking about adding graphics<br>
-cards.<br>
-<br>
-Seeing as you are the people who have the knowledge with regard to<br>
-NVidia and nouveau, what are your immediate thoughts of nouveau<br>
-working on ARM/ARM64? Is there a chance of this working? I&#39;m no PCIe<br=
->
-expert, although I can call on some expertise :-/<br>
-<br>
-I&#39;ve tried it so far with a GT710 board [1] and ARM64. It&#39;s blowing=
- up<br>
-in the memset of nvkm_instobj_new whilst initialising the BAR<br>
-subdevice [2], having gone through the &quot;No such luck&quot; path in<br>
-nvkm_mmu_ptc_get [3].<br>
-<br>
-Taking the naive approach of simply removing the memset, I get through<br>
-initialising all the subdevices, but again die in a location I<br>
-currently haven&#39;t pinpointed. The last logging messages are:<br>
-[ 1023.407302] nouveau 0000:01:00.0: fifo: one-time init completed in 760us=
-<br>
-[ 1023.407312] nouveau 0000:01:00.0: fifo: init completed in 775us<br>
-[ 1023.407325] nouveau: DRM-master:00000000:80009009: init running...<br>
-[ 1023.407329] nouveau: DRM-master:00000000:80009009: init children...<br>
-[ 1023.407333] nouveau: DRM-master:00000000:80009009: init completed in 4us=
-<br>
-[ 1023.407352] nouveau 0000:01:00.0: fifo: fault 01 [WRITE] at<br>
-00000000000d1000 engine 05 [BAR2] client 08 [HUB/HOST_CPU_NB] reason<br>
-02 [PTE] on channel -1 [007fd38000 unknown]<br>
-[ 1023.407354] nouveau: DRM-master:00000000:00000000: ioctl: return 0<br>
-[ 1023.407385] nouveau: DRM-master:00000000:00000000: ioctl: size 32<br>
-[ 1023.407392] nouveau: DRM-master:00000000:00000000: ioctl: vers 0<br>
-type 01 object ffffff80ee8c2170 owner ff<br>
-[ 1023.407415] nouveau: DRM-master:00000000:80009009: ioctl: sclass size 8<=
-br>
-[ 1023.407419] nouveau: DRM-master:00000000:80009009: ioctl: sclass<br>
-vers 0 count 0<br>
-[ 1023.407432] nouveau: DRM-master:00000000:00000000: ioctl: return 0<br>
-[ 1023.407452] nouveau: DRM-master:00000000:00000000: ioctl: size 48<br>
-[ 1023.407459] nouveau: DRM-master:00000000:00000000: ioctl: vers 0<br>
-type 01 object ffffff80ee8c2170 owner ff<br>
-[ 1023.407482] nouveau: DRM-master:00000000:80009009: ioctl: sclass size 24=
-<br>
-[ 1023.407485] nouveau: DRM-master:00000000:80009009: ioctl: sclass<br>
-vers 0 count 2<br>
-[ 1023.407498] nouveau: DRM-master:00000000:00000000: ioctl: return 0<br>
-[ 1023.407519] nouveau: DRM-master:00000000:00000000: ioctl: size 48<br>
-<br>
-Any input very welcome, otherwise I&#39;ll continue blundering about<br>
-slightly in the dark.<br>
-<br>
-Thanks<br>
-=C2=A0 Dave<br>
-<br>
-[1] <a href=3D"https://www.amazon.co.uk/ASUS-GT710-4H-SL-2GD5-GeForce-Multi=
--Monitor-Productivity/dp/B0897T6PYM/" rel=3D"noreferrer noreferrer" target=
-=3D"_blank">https://www.amazon.co.uk/ASUS-GT710-4H-SL-2GD5-GeForce-Multi-Mo=
-nitor-Productivity/dp/B0897T6PYM/</a><br>
-[2] <a href=3D"https://elixir.bootlin.com/linux/latest/source/drivers/gpu/d=
-rm/nouveau/nvkm/subdev/instmem/base.c#L114" rel=3D"noreferrer noreferrer" t=
-arget=3D"_blank">https://elixir.bootlin.com/linux/latest/source/drivers/gpu=
-/drm/nouveau/nvkm/subdev/instmem/base.c#L114</a><br>
-[3] <a href=3D"https://elixir.bootlin.com/linux/latest/source/drivers/gpu/d=
-rm/nouveau/nvkm/subdev/mmu/base.c#L201" rel=3D"noreferrer noreferrer" targe=
-t=3D"_blank">https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm=
-/nouveau/nvkm/subdev/mmu/base.c#L201</a><br>
-_______________________________________________<br>
-Nouveau mailing list<br>
-<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" target=3D"_blank" rel=3D"n=
-oreferrer">Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org</a><br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau" rel=3D"n=
-oreferrer noreferrer" target=3D"_blank">https://lists.freedesktop.org/mailm=
-an/listinfo/nouveau</a><br>
-</blockquote></div>
+[    1.060851] brcm-pcie fd500000.pcie: host bridge /scb/pcie@7d500000 ranges:
+[    1.060892] brcm-pcie fd500000.pcie:   No bus range found for
+/scb/pcie@7d500000, using [bus 00-ff]
+[    1.060975] brcm-pcie fd500000.pcie:      MEM
+0x0600000000..0x063fffffff -> 0x00c0000000
+[    1.061061] brcm-pcie fd500000.pcie:   IB MEM
+0x0000000000..0x00ffffffff -> 0x0100000000
+[    1.109943] brcm-pcie fd500000.pcie: link up, 5.0 GT/s PCIe x1 (SSC)
+[    1.110129] brcm-pcie fd500000.pcie: PCI host bridge to bus 0000:00
+[    1.110159] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    1.110187] pci_bus 0000:00: root bus resource [mem
+0x600000000-0x63fffffff] (bus address [0xc0000000-0xffffffff])
+[    1.110286] pci 0000:00:00.0: [14e4:2711] type 01 class 0x060400
+[    1.110505] pci 0000:00:00.0: PME# supported from D0 D3hot
+[    1.114095] pci 0000:00:00.0: bridge configuration invalid ([bus
+00-00]), reconfiguring
+[    1.114343] pci 0000:01:00.0: [10de:128b] type 00 class 0x030000
+[    1.114404] pci 0000:01:00.0: reg 0x10: [mem 0x00000000-0x00ffffff]
+[    1.114456] pci 0000:01:00.0: reg 0x14: [mem 0x00000000-0x07ffffff
+64bit pref]
+[    1.114510] pci 0000:01:00.0: reg 0x1c: [mem 0x00000000-0x01ffffff
+64bit pref]
+[    1.114551] pci 0000:01:00.0: reg 0x24: [io  0x0000-0x007f]
+[    1.114590] pci 0000:01:00.0: reg 0x30: [mem 0x00000000-0x0007ffff pref]
+[    1.114853] pci 0000:01:00.0: 4.000 Gb/s available PCIe bandwidth,
+limited by 5.0 GT/s PCIe x1 link at 0000:00:00.0 (capable of 63.008
+Gb/s with 8.0 GT/s PCIe x8 link)
+[    1.115022] pci 0000:01:00.0: vgaarb: VGA device added:
+decodes=io+mem,owns=none,locks=none
+[    1.115125] pci 0000:01:00.1: [10de:0e0f] type 00 class 0x040300
+[    1.115184] pci 0000:01:00.1: reg 0x10: [mem 0x00000000-0x00003fff]
+[    1.119065] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
+[    1.119120] pci 0000:00:00.0: BAR 9: assigned [mem
+0x600000000-0x60bffffff 64bit pref]
+[    1.119151] pci 0000:00:00.0: BAR 8: assigned [mem 0x60c000000-0x60d7fffff]
+[    1.119183] pci 0000:01:00.0: BAR 1: assigned [mem
+0x600000000-0x607ffffff 64bit pref]
+[    1.119235] pci 0000:01:00.0: BAR 3: assigned [mem
+0x608000000-0x609ffffff 64bit pref]
+[    1.119285] pci 0000:01:00.0: BAR 0: assigned [mem 0x60c000000-0x60cffffff]
+[    1.119317] pci 0000:01:00.0: BAR 6: assigned [mem
+0x60d000000-0x60d07ffff pref]
+[    1.119345] pci 0000:01:00.1: BAR 0: assigned [mem 0x60d080000-0x60d083fff]
+[    1.119376] pci 0000:01:00.0: BAR 5: no space for [io  size 0x0080]
+[    1.119400] pci 0000:01:00.0: BAR 5: failed to assign [io  size 0x0080]
+[    1.119426] pci 0000:00:00.0: PCI bridge to [bus 01]
+[    1.119456] pci 0000:00:00.0:   bridge window [mem 0x60c000000-0x60d7fffff]
+[    1.119484] pci 0000:00:00.0:   bridge window [mem
+0x600000000-0x60bffffff 64bit pref]
+[    1.119662] pci 0000:01:00.1: D0 power state depends on 0000:01:00.0
 
---0000000000004fe47405b2bbb9ad--
+  Dave
 
---===============0586449361==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0586449361==--
+> On Wed, Oct 28, 2020, 9:46 AM Dave Stevenson <dave.stevenson-FnsA7b+Nu9Xg+KzdeAJ3hg@public.gmane.org> wrote:
+>>
+>> Hi
+>>
+>> Seeing as we (Raspberry Pi) have just launched the Compute Module 4
+>> with an exposed PCIe x1 lane, people are asking about adding graphics
+>> cards.
+>>
+>> Seeing as you are the people who have the knowledge with regard to
+>> NVidia and nouveau, what are your immediate thoughts of nouveau
+>> working on ARM/ARM64? Is there a chance of this working? I'm no PCIe
+>> expert, although I can call on some expertise :-/
+>>
+>> I've tried it so far with a GT710 board [1] and ARM64. It's blowing up
+>> in the memset of nvkm_instobj_new whilst initialising the BAR
+>> subdevice [2], having gone through the "No such luck" path in
+>> nvkm_mmu_ptc_get [3].
+>>
+>> Taking the naive approach of simply removing the memset, I get through
+>> initialising all the subdevices, but again die in a location I
+>> currently haven't pinpointed. The last logging messages are:
+>> [ 1023.407302] nouveau 0000:01:00.0: fifo: one-time init completed in 760us
+>> [ 1023.407312] nouveau 0000:01:00.0: fifo: init completed in 775us
+>> [ 1023.407325] nouveau: DRM-master:00000000:80009009: init running...
+>> [ 1023.407329] nouveau: DRM-master:00000000:80009009: init children...
+>> [ 1023.407333] nouveau: DRM-master:00000000:80009009: init completed in 4us
+>> [ 1023.407352] nouveau 0000:01:00.0: fifo: fault 01 [WRITE] at
+>> 00000000000d1000 engine 05 [BAR2] client 08 [HUB/HOST_CPU_NB] reason
+>> 02 [PTE] on channel -1 [007fd38000 unknown]
+>> [ 1023.407354] nouveau: DRM-master:00000000:00000000: ioctl: return 0
+>> [ 1023.407385] nouveau: DRM-master:00000000:00000000: ioctl: size 32
+>> [ 1023.407392] nouveau: DRM-master:00000000:00000000: ioctl: vers 0
+>> type 01 object ffffff80ee8c2170 owner ff
+>> [ 1023.407415] nouveau: DRM-master:00000000:80009009: ioctl: sclass size 8
+>> [ 1023.407419] nouveau: DRM-master:00000000:80009009: ioctl: sclass
+>> vers 0 count 0
+>> [ 1023.407432] nouveau: DRM-master:00000000:00000000: ioctl: return 0
+>> [ 1023.407452] nouveau: DRM-master:00000000:00000000: ioctl: size 48
+>> [ 1023.407459] nouveau: DRM-master:00000000:00000000: ioctl: vers 0
+>> type 01 object ffffff80ee8c2170 owner ff
+>> [ 1023.407482] nouveau: DRM-master:00000000:80009009: ioctl: sclass size 24
+>> [ 1023.407485] nouveau: DRM-master:00000000:80009009: ioctl: sclass
+>> vers 0 count 2
+>> [ 1023.407498] nouveau: DRM-master:00000000:00000000: ioctl: return 0
+>> [ 1023.407519] nouveau: DRM-master:00000000:00000000: ioctl: size 48
+>>
+>> Any input very welcome, otherwise I'll continue blundering about
+>> slightly in the dark.
+>>
+>> Thanks
+>>   Dave
+>>
+>> [1] https://www.amazon.co.uk/ASUS-GT710-4H-SL-2GD5-GeForce-Multi-Monitor-Productivity/dp/B0897T6PYM/
+>> [2] https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/base.c#L114
+>> [3] https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/base.c#L201
+>> _______________________________________________
+>> Nouveau mailing list
+>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>> https://lists.freedesktop.org/mailman/listinfo/nouveau
