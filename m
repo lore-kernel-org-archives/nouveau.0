@@ -1,7 +1,7 @@
-From: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
+From: Sam Ravnborg <sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org>
 Subject: Re: [PATCH] fbcon: Disable accelerated scrolling
-Date: Wed, 28 Oct 2020 17:57:37 +0100
-Message-ID: <20201028165737.GB2792004@kroah.com>
+Date: Wed, 28 Oct 2020 19:50:29 +0100
+Message-ID: <20201028185029.GA683411@ravnborg.org>
 References: <20201028160600.3752105-1-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -19,8 +19,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Cc: Jiri Slaby <jirislaby-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Bartlomiej Zolnierkiewicz <b.zolnierkie-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Tetsuo Handa <penguin-kernel-1yMVhJb1mP/7nzcFbJAaVXf5DAMn2ifp@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "Gustavo A. R. Silva" <gustavoars-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Peter Rosin <peda-koto5C5qi+TLoDKTGw+V6w@public.gmane.org>, George Kennedy <george.kennedy-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>, Tomi Valkeinen <tomi.valkeinen-l0cyMroinI0@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Nathan Chancellor <natechancellor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Peilin Ye <yepeilin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Tetsuo Handa <penguin-kernel-1yMVhJb1mP/7nzcFbJAaVXf5DAMn2ifp@public.gmane.org>, Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, "Gustavo A. R. Silva" <gustavoars-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Peilin Ye <yepeilin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, George Kennedy <george.kennedy-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>, Tomi Valkeinen <tomi.valkeinen-l0cyMroinI0@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Nathan Chancellor <natechancellor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Jiri Slaby <jirislaby-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Peter Rosin <peda-koto5C5qi+TLoDKTGw+V6w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
+
+Hi Daniel.
 
 On Wed, Oct 28, 2020 at 05:06:00PM +0100, Daniel Vetter wrote:
 > So ever since syzbot discovered fbcon, we have solid proof that it's
@@ -54,28 +56,67 @@ On Wed, Oct 28, 2020 at 05:06:00PM +0100, Daniel Vetter wrote:
 > redrawing when scrolling. The plan is that once this has been merged
 > for well over a year in released kernels, we can start to go around
 > and delete a lot of code.
-> 
-> Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>
-> Cc: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
-> Cc: Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
-> Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> Cc: Tomi Valkeinen <tomi.valkeinen-l0cyMroinI0@public.gmane.org>
-> Cc: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-> Cc: Jiri Slaby <jirislaby-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-> Cc: "Gustavo A. R. Silva" <gustavoars-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-> Cc: Tetsuo Handa <penguin-kernel-JPay3/Yim36HaxMnTkn67Xf5DAMn2ifp@public.gmane.org>
-> Cc: Peilin Ye <yepeilin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Cc: George Kennedy <george.kennedy-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
-> Cc: Nathan Chancellor <natechancellor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Cc: Peter Rosin <peda-koto5C5qi+TLoDKTGw+V6w@public.gmane.org>
-> Signed-off-by: Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-> ---
->  drivers/video/fbdev/core/fbcon.c | 38 ++++++--------------------------
->  1 file changed, 7 insertions(+), 31 deletions(-)
 
-Nice!
+See below for a warning fix.
 
-But I'm with Sam, delete early :)
+Some figures from trying to toss accel code out from a few fbdev drivers:
 
-Reviewed-by: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
+ drivers/video/fbdev/cirrusfb.c | 300 +----------------------------------------
+ 1 file changed, 4 insertions(+), 296 deletions(-)
+
+ drivers/video/fbdev/aty/radeon_accel.c | 174 ---------------------------------
+ drivers/video/fbdev/aty/radeon_base.c  |  43 ++------
+ drivers/video/fbdev/aty/radeon_pm.c    |   7 --
+ drivers/video/fbdev/aty/radeonfb.h     |   3 -
+ 4 files changed, 7 insertions(+), 220 deletions(-)
+
+This may open up the discussion if the right course of action would be
+to drop the drivers in favour of drm counterparts - but thats another
+story.
+
+	Sam
+
+> @@ -1961,7 +1963,6 @@ static void updatescrollmode(struct fbcon_display *p,
+>  {
+>  	struct fbcon_ops *ops = info->fbcon_par;
+>  	int fh = vc->vc_font.height;
+> -	int cap = info->flags;
+>  	u16 t = 0;
+>  	int ypan = FBCON_SWAP(ops->rotate, info->fix.ypanstep,
+>  				  info->fix.xpanstep);
+> @@ -1969,37 +1970,12 @@ static void updatescrollmode(struct fbcon_display *p,
+>  	int yres = FBCON_SWAP(ops->rotate, info->var.yres, info->var.xres);
+>  	int vyres = FBCON_SWAP(ops->rotate, info->var.yres_virtual,
+>  				   info->var.xres_virtual);
+> -	int good_pan = (cap & FBINFO_HWACCEL_YPAN) &&
+> -		divides(ypan, vc->vc_font.height) && vyres > yres;
+> -	int good_wrap = (cap & FBINFO_HWACCEL_YWRAP) &&
+> -		divides(ywrap, vc->vc_font.height) &&
+> -		divides(vc->vc_font.height, vyres) &&
+> -		divides(vc->vc_font.height, yres);
+> -	int reading_fast = cap & FBINFO_READS_FAST;
+> -	int fast_copyarea = (cap & FBINFO_HWACCEL_COPYAREA) &&
+> -		!(cap & FBINFO_HWACCEL_DISABLED);
+> -	int fast_imageblit = (cap & FBINFO_HWACCEL_IMAGEBLIT) &&
+> -		!(cap & FBINFO_HWACCEL_DISABLED);
+
+Some bot will likely tell you that this causes warnings.
+At least it did in my sparc64 build.
+
+Fix:
+
+diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
+index 398914e035e9..e8b009c621d8 100644
+--- a/drivers/video/fbdev/core/fbcon.c
++++ b/drivers/video/fbdev/core/fbcon.c
+@@ -2150,10 +2150,6 @@ static void updatescrollmode(struct fbcon_display *p,
+ {
+ 	struct fbcon_ops *ops = info->fbcon_par;
+ 	int fh = vc->vc_font.height;
+-	u16 t = 0;
+-	int ypan = FBCON_SWAP(ops->rotate, info->fix.ypanstep,
+-				  info->fix.xpanstep);
+-	int ywrap = FBCON_SWAP(ops->rotate, info->fix.ywrapstep, t);
+ 	int yres = FBCON_SWAP(ops->rotate, info->var.yres, info->var.xres);
+ 	int vyres = FBCON_SWAP(ops->rotate, info->var.yres_virtual,
+ 				   info->var.xres_virtual);
