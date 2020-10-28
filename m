@@ -1,15 +1,11 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: GT710 and Nouveau on ARM/ARM64
-Date: Wed, 28 Oct 2020 10:59:25 -0400
-Message-ID: <CAKb7UvguZ0VfDLTUJwBpTjR_M1dHaeajrkjDCHmpKQty4Ja9yw@mail.gmail.com>
-References: <CAPY8ntDMWeJao5Ld435s0cLSH-a7yYe4=daUso-nZNLdarMupg@mail.gmail.com>
- <CAKb7Uvi-+0nt8Jfp+kaRC=Eq2s5bSB_VFSHqSyV_9tgdDRvg9A@mail.gmail.com>
- <CAPY8ntBOnWo78VhhgRew9o67_0VrtLtAAcDY-U07ksCPQA-e0w@mail.gmail.com>
+From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Subject: [PATCH] fbcon: Disable accelerated scrolling
+Date: Wed, 28 Oct 2020 17:06:00 +0100
+Message-ID: <20201028160600.3752105-1-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAPY8ntBOnWo78VhhgRew9o67_0VrtLtAAcDY-U07ksCPQA-e0w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,140 +15,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dave Stevenson <dave.stevenson-FnsA7b+Nu9Xg+KzdeAJ3hg@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Jiri Slaby <jirislaby-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, Tetsuo Handa <penguin-kernel-JPay3/Yim36HaxMnTkn67Xf5DAMn2ifp@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bartlomiej Zolnierkiewicz <b.zolnierkie-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, "Gustavo A. R. Silva" <gustavoars-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Peter Rosin <peda-koto5C5qi+TLoDKTGw+V6w@public.gmane.org>, George Kennedy <george.kennedy-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>, Tomi Valkeinen <tomi.valkeinen-l0cyMroinI0@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Nathan Chancellor <natechancellor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Peilin Ye <yepeilin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Oct 28, 2020 at 10:20 AM Dave Stevenson
-<dave.stevenson-FnsA7b+Nu9Xg+KzdeAJ3hg@public.gmane.org> wrote:
->
-> Hi Ilia
->
-> Thanks for taking the time to reply.
->
-> On Wed, 28 Oct 2020 at 14:10, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
-> >
-> > The most common issue on arm is that the pci memory window is too narrow to allocate all the BARs. Can you see if there are messages in the kernel to that effect?
->
-> All the BAR allocations seem to succeed except for the IO one.
-> AIUI I/O is deprecated, but is it still used on these cards?
+So ever since syzbot discovered fbcon, we have solid proof that it's
+full of bugs. And often the solution is to just delete code and remove
+features, e.g.  50145474f6ef ("fbcon: remove soft scrollback code").
 
-I must admit I was ignorant of the fact that the IO ports were treated
-as a BAR, but it makes a lot of sense.
+Now the problem is that most modern-ish drivers really only treat
+fbcon as an dumb kernel console until userspace takes over, and Oops
+printer for some emergencies. Looking at drm drivers and the basic
+vesa/efi fbdev drivers shows that only 3 drivers support any kind of
+acceleration:
 
-One thing does stand out as odd:
+- nouveau, seems to be enabled by default
+- omapdrm, when a DMM remapper exists using remapper rewriting for
+  y/xpanning
+- gma500, but that is getting deleted now for the GTT remapper trick,
+  and the accelerated copyarea never set the FBINFO_HWACCEL_COPYAREA
+  flag, so unused (and could be deleted already I think).
 
->
-> [    1.060851] brcm-pcie fd500000.pcie: host bridge /scb/pcie@7d500000 ranges:
-> [    1.060892] brcm-pcie fd500000.pcie:   No bus range found for
-> /scb/pcie@7d500000, using [bus 00-ff]
-> [    1.060975] brcm-pcie fd500000.pcie:      MEM
-> 0x0600000000..0x063fffffff -> 0x00c0000000
-> [    1.061061] brcm-pcie fd500000.pcie:   IB MEM
-> 0x0000000000..0x00ffffffff -> 0x0100000000
-> [    1.109943] brcm-pcie fd500000.pcie: link up, 5.0 GT/s PCIe x1 (SSC)
-> [    1.110129] brcm-pcie fd500000.pcie: PCI host bridge to bus 0000:00
-> [    1.110159] pci_bus 0000:00: root bus resource [bus 00-ff]
-> [    1.110187] pci_bus 0000:00: root bus resource [mem
-> 0x600000000-0x63fffffff] (bus address [0xc0000000-0xffffffff])
-> [    1.110286] pci 0000:00:00.0: [14e4:2711] type 01 class 0x060400
-> [    1.110505] pci 0000:00:00.0: PME# supported from D0 D3hot
-> [    1.114095] pci 0000:00:00.0: bridge configuration invalid ([bus
-> 00-00]), reconfiguring
-> [    1.114343] pci 0000:01:00.0: [10de:128b] type 00 class 0x030000
-> [    1.114404] pci 0000:01:00.0: reg 0x10: [mem 0x00000000-0x00ffffff]
-> [    1.114456] pci 0000:01:00.0: reg 0x14: [mem 0x00000000-0x07ffffff
-> 64bit pref]
-> [    1.114510] pci 0000:01:00.0: reg 0x1c: [mem 0x00000000-0x01ffffff
-> 64bit pref]
-> [    1.114551] pci 0000:01:00.0: reg 0x24: [io  0x0000-0x007f]
-> [    1.114590] pci 0000:01:00.0: reg 0x30: [mem 0x00000000-0x0007ffff pref]
-> [    1.114853] pci 0000:01:00.0: 4.000 Gb/s available PCIe bandwidth,
-> limited by 5.0 GT/s PCIe x1 link at 0000:00:00.0 (capable of 63.008
-> Gb/s with 8.0 GT/s PCIe x8 link)
-> [    1.115022] pci 0000:01:00.0: vgaarb: VGA device added:
-> decodes=io+mem,owns=none,locks=none
-> [    1.115125] pci 0000:01:00.1: [10de:0e0f] type 00 class 0x040300
-> [    1.115184] pci 0000:01:00.1: reg 0x10: [mem 0x00000000-0x00003fff]
-> [    1.119065] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
-> [    1.119120] pci 0000:00:00.0: BAR 9: assigned [mem
-> 0x600000000-0x60bffffff 64bit pref]
-> [    1.119151] pci 0000:00:00.0: BAR 8: assigned [mem 0x60c000000-0x60d7fffff]
+No other driver supportes accelerated fbcon. And fbcon is the only
+user of this accel code (it's not exposed as uapi through ioctls),
+which means we could garbage collect fairly enormous amounts of code
+if we kill this.
 
-This is your brcm-pcie device.
+Plus because syzbot only runs on virtual hardware, and none of the
+drivers for that have acceleration, we'd remove a huge gap in testing.
+And there's no other even remotely comprehensive testing aside from
+syzbot.
 
-> [    1.119183] pci 0000:01:00.0: BAR 1: assigned [mem
-> 0x600000000-0x607ffffff 64bit pref]
-> [    1.119235] pci 0000:01:00.0: BAR 3: assigned [mem
-> 0x608000000-0x609ffffff 64bit pref]
-> [    1.119285] pci 0000:01:00.0: BAR 0: assigned [mem 0x60c000000-0x60cffffff]
+This patch here just disables the acceleration code by always
+redrawing when scrolling. The plan is that once this has been merged
+for well over a year in released kernels, we can start to go around
+and delete a lot of code.
 
-And this is the NVIDIA device. Note that these memory windows are
-identical (or at least overlapping). I must admit almost complete
-ignorance of PCIe and whether this is OK, but it seems sketchy at
-first glance. A quick eyeballing of my x86 system suggests that all
-PCIe devices get non-overlapping windows. OTOH there are messages
-further up about some sort of remapping going on, so perhaps it's OK?
-But two things on the same bus still shouldn't have the same addresses
-allocated, based on my (limited) understanding.
+Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>
+Cc: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
+Cc: Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Tomi Valkeinen <tomi.valkeinen-l0cyMroinI0@public.gmane.org>
+Cc: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Cc: Jiri Slaby <jirislaby-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Cc: "Gustavo A. R. Silva" <gustavoars-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Cc: Tetsuo Handa <penguin-kernel-JPay3/Yim36HaxMnTkn67Xf5DAMn2ifp@public.gmane.org>
+Cc: Peilin Ye <yepeilin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: George Kennedy <george.kennedy-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
+Cc: Nathan Chancellor <natechancellor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Peter Rosin <peda-koto5C5qi+TLoDKTGw+V6w@public.gmane.org>
+Signed-off-by: Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+---
+ drivers/video/fbdev/core/fbcon.c | 38 ++++++--------------------------
+ 1 file changed, 7 insertions(+), 31 deletions(-)
 
-In case it's an option, could you "unplug" the NIC (not just not load
-its driver, but make it not appear at all on the PCI bus)?
-
-> [    1.119317] pci 0000:01:00.0: BAR 6: assigned [mem
-> 0x60d000000-0x60d07ffff pref]
-
-Never heard of a BAR6 on NVIDIA. Probably just my ignorance though.
-
-> [    1.119345] pci 0000:01:00.1: BAR 0: assigned [mem 0x60d080000-0x60d083fff]
-> [    1.119376] pci 0000:01:00.0: BAR 5: no space for [io  size 0x0080]
-> [    1.119400] pci 0000:01:00.0: BAR 5: failed to assign [io  size 0x0080]
-> [    1.119426] pci 0000:00:00.0: PCI bridge to [bus 01]
-> [    1.119456] pci 0000:00:00.0:   bridge window [mem 0x60c000000-0x60d7fffff]
-> [    1.119484] pci 0000:00:00.0:   bridge window [mem
-> 0x600000000-0x60bffffff 64bit pref]
-> [    1.119662] pci 0000:01:00.1: D0 power state depends on 0000:01:00.0
-
-Back to your original issue:
-
->
->   Dave
->
-> > On Wed, Oct 28, 2020, 9:46 AM Dave Stevenson <dave.stevenson-FnsA7b+Nu9Xg+KzdeAJ3hg@public.gmane.org> wrote:
-> >>
-> >> Hi
-> >>
-> >> Seeing as we (Raspberry Pi) have just launched the Compute Module 4
-> >> with an exposed PCIe x1 lane, people are asking about adding graphics
-> >> cards.
-> >>
-> >> Seeing as you are the people who have the knowledge with regard to
-> >> NVidia and nouveau, what are your immediate thoughts of nouveau
-> >> working on ARM/ARM64? Is there a chance of this working? I'm no PCIe
-> >> expert, although I can call on some expertise :-/
-> >>
-> >> I've tried it so far with a GT710 board [1] and ARM64. It's blowing up
-> >> in the memset of nvkm_instobj_new whilst initialising the BAR
-> >> subdevice [2], having gone through the "No such luck" path in
-> >> nvkm_mmu_ptc_get [3].
-> >>
-> >> Taking the naive approach of simply removing the memset, I get through
-> >> initialising all the subdevices, but again die in a location I
-> >> currently haven't pinpointed. The last logging messages are:
-
-That's not a winning strategy, I'm afraid. You need to figure out why
-the memset is blowing up. The simplest explanation is "it's trying to
-write to an I/O resource but that resource wasn't allocated", hence my
-question about BARs. But something's not mapped, or mapped in the
-wrong way, or whatever. If you can't write to it at that point in
-time, you won't be able to write to it later either. I would focus on
-that.
-
-FWIW this all does "work" on ARM in general -- the Jetson
-TK1/TX1/T(latest)1 are NVIDIA ARM devices with onboard *platform*
-devices (not PCI) which work OK. So the core of nouveau works (or at
-least worked) fine. Just some of the PCIe glue may be off.
-
-Cheers,
-
-  -ilia
+diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
+index cef437817b0d..d74ccbbb29bb 100644
+--- a/drivers/video/fbdev/core/fbcon.c
++++ b/drivers/video/fbdev/core/fbcon.c
+@@ -1147,11 +1147,13 @@ static void fbcon_init(struct vc_data *vc, int init)
+ 
+ 	ops->graphics = 0;
+ 
+-	if ((cap & FBINFO_HWACCEL_COPYAREA) &&
+-	    !(cap & FBINFO_HWACCEL_DISABLED))
+-		p->scrollmode = SCROLL_MOVE;
+-	else /* default to something safe */
+-		p->scrollmode = SCROLL_REDRAW;
++	/*
++	 * No more hw acceleration for fbcon.
++	 *
++	 * FIXME: Garabge collect all the now dead code after sufficient time
++	 * has passed.
++	 */
++	p->scrollmode = SCROLL_REDRAW;
+ 
+ 	/*
+ 	 *  ++guenther: console.c:vc_allocate() relies on initializing
+@@ -1961,7 +1963,6 @@ static void updatescrollmode(struct fbcon_display *p,
+ {
+ 	struct fbcon_ops *ops = info->fbcon_par;
+ 	int fh = vc->vc_font.height;
+-	int cap = info->flags;
+ 	u16 t = 0;
+ 	int ypan = FBCON_SWAP(ops->rotate, info->fix.ypanstep,
+ 				  info->fix.xpanstep);
+@@ -1969,37 +1970,12 @@ static void updatescrollmode(struct fbcon_display *p,
+ 	int yres = FBCON_SWAP(ops->rotate, info->var.yres, info->var.xres);
+ 	int vyres = FBCON_SWAP(ops->rotate, info->var.yres_virtual,
+ 				   info->var.xres_virtual);
+-	int good_pan = (cap & FBINFO_HWACCEL_YPAN) &&
+-		divides(ypan, vc->vc_font.height) && vyres > yres;
+-	int good_wrap = (cap & FBINFO_HWACCEL_YWRAP) &&
+-		divides(ywrap, vc->vc_font.height) &&
+-		divides(vc->vc_font.height, vyres) &&
+-		divides(vc->vc_font.height, yres);
+-	int reading_fast = cap & FBINFO_READS_FAST;
+-	int fast_copyarea = (cap & FBINFO_HWACCEL_COPYAREA) &&
+-		!(cap & FBINFO_HWACCEL_DISABLED);
+-	int fast_imageblit = (cap & FBINFO_HWACCEL_IMAGEBLIT) &&
+-		!(cap & FBINFO_HWACCEL_DISABLED);
+ 
+ 	p->vrows = vyres/fh;
+ 	if (yres > (fh * (vc->vc_rows + 1)))
+ 		p->vrows -= (yres - (fh * vc->vc_rows)) / fh;
+ 	if ((yres % fh) && (vyres % fh < yres % fh))
+ 		p->vrows--;
+-
+-	if (good_wrap || good_pan) {
+-		if (reading_fast || fast_copyarea)
+-			p->scrollmode = good_wrap ?
+-				SCROLL_WRAP_MOVE : SCROLL_PAN_MOVE;
+-		else
+-			p->scrollmode = good_wrap ? SCROLL_REDRAW :
+-				SCROLL_PAN_REDRAW;
+-	} else {
+-		if (reading_fast || (fast_copyarea && !fast_imageblit))
+-			p->scrollmode = SCROLL_MOVE;
+-		else
+-			p->scrollmode = SCROLL_REDRAW;
+-	}
+ }
+ 
+ #define PITCH(w) (((w) + 7) >> 3)
+-- 
+2.28.0
