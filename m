@@ -1,64 +1,91 @@
-From: Zou Wei <zou_wei@huawei.com>
-Subject: [PATCH -next] drm/nouveu: remove unused variable
-Date: Mon, 2 Nov 2020 20:20:39 +0800
-Message-ID: <1604319639-12227-1-git-send-email-zou_wei@huawei.com>
+From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: [PATCH AUTOSEL 5.9 33/35] drm/nouveau/nouveau: fix the
+ start/end range for migration
+Date: Mon,  2 Nov 2020 20:18:38 -0500
+Message-ID: <20201103011840.182814-33-sashal@kernel.org>
+References: <20201103011840.182814-1-sashal@kernel.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Zou Wei <zou_wei@huawei.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20201103011840.182814-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Fix variables set but not used compilation warnings:
+From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 
-./nouveau_bo.c:1313:17: warning: variable ‘dev’ set but not used [-Wunused-but-set-variable]
-  struct device *dev;
-                 ^~~
-./nouveau_bo.c:1337:17: warning: variable ‘dev’ set but not used [-Wunused-but-set-variable]
-  struct device *dev;
-                 ^~~
+[ Upstream commit cfa736f5a6f31ca8a05459b5720aac030247ad1b ]
 
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: Zou Wei <zou_wei@huawei.com>
+The user level OpenCL code shouldn't have to align start and end
+addresses to a page boundary. That is better handled in the nouveau
+driver. The npages field is also redundant since it can be computed
+from the start and end addresses.
+
+Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_bo.c | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_svm.c | 14 +++-----------
+ 1 file changed, 3 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 8133377..96f00b5 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -1310,7 +1310,6 @@ nouveau_ttm_tt_populate(struct ttm_bo_device *bdev,
- {
- 	struct ttm_tt *ttm_dma = (void *)ttm;
- 	struct nouveau_drm *drm;
--	struct device *dev;
- 	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+index 2df1c04605594..4f69e4c3dafde 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_svm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+@@ -105,11 +105,11 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ 	struct nouveau_cli *cli = nouveau_cli(file_priv);
+ 	struct drm_nouveau_svm_bind *args = data;
+ 	unsigned target, cmd, priority;
+-	unsigned long addr, end, size;
++	unsigned long addr, end;
+ 	struct mm_struct *mm;
  
- 	if (ttm_tt_is_populated(ttm))
-@@ -1324,7 +1323,6 @@ nouveau_ttm_tt_populate(struct ttm_bo_device *bdev,
+ 	args->va_start &= PAGE_MASK;
+-	args->va_end &= PAGE_MASK;
++	args->va_end = ALIGN(args->va_end, PAGE_SIZE);
+ 
+ 	/* Sanity check arguments */
+ 	if (args->reserved0 || args->reserved1)
+@@ -118,8 +118,6 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ 		return -EINVAL;
+ 	if (args->va_start >= args->va_end)
+ 		return -EINVAL;
+-	if (!args->npages)
+-		return -EINVAL;
+ 
+ 	cmd = args->header >> NOUVEAU_SVM_BIND_COMMAND_SHIFT;
+ 	cmd &= NOUVEAU_SVM_BIND_COMMAND_MASK;
+@@ -151,12 +149,6 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ 	if (args->stride)
+ 		return -EINVAL;
+ 
+-	size = ((unsigned long)args->npages) << PAGE_SHIFT;
+-	if ((args->va_start + size) <= args->va_start)
+-		return -EINVAL;
+-	if ((args->va_start + size) > args->va_end)
+-		return -EINVAL;
+-
+ 	/*
+ 	 * Ok we are ask to do something sane, for now we only support migrate
+ 	 * commands but we will add things like memory policy (what to do on
+@@ -171,7 +163,7 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ 		return -EINVAL;
  	}
  
- 	drm = nouveau_bdev(bdev);
--	dev = drm->dev->dev;
+-	for (addr = args->va_start, end = args->va_start + size; addr < end;) {
++	for (addr = args->va_start, end = args->va_end; addr < end;) {
+ 		struct vm_area_struct *vma;
+ 		unsigned long next;
  
- 	return ttm_pool_alloc(&drm->ttm.bdev.pool, ttm, ctx);
- }
-@@ -1334,14 +1332,12 @@ nouveau_ttm_tt_unpopulate(struct ttm_bo_device *bdev,
- 			  struct ttm_tt *ttm)
- {
- 	struct nouveau_drm *drm;
--	struct device *dev;
- 	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
- 
- 	if (slave)
- 		return;
- 
- 	drm = nouveau_bdev(bdev);
--	dev = drm->dev->dev;
- 
- 	return ttm_pool_free(&drm->ttm.bdev.pool, ttm);
- }
 -- 
-2.6.2
+2.27.0
