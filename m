@@ -1,7 +1,8 @@
 From: Thomas Gleixner <tglx@linutronix.de>
-Subject: [patch V3 05/37] asm-generic: Provide kmap_size.h
-Date: Tue, 03 Nov 2020 10:27:17 +0100
-Message-ID: <20201103095857.078043987@linutronix.de>
+Subject: [patch V3 11/37] csky/mm/highmem: Switch to generic
+ kmap atomic
+Date: Tue, 03 Nov 2020 10:27:23 +0100
+Message-ID: <20201103095857.681196473@linutronix.de>
 References: <20201103092712.714480842@linutronix.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -20,59 +21,166 @@ To: LKML <linux-kernel@vger.kernel.org>
 Cc: Juri Lelli <juri.lelli@redhat.com>, linux-aio@kvack.org, Peter Zijlstra <peterz@infradead.org>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, Sebastian Andrzej Siewior <bigeasy@linutronix.de>, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, Ben Segall <bsegall@google.com>, Chris Mason <clm@fb.com>, Huang Rui <ray.huang@amd.com>, Paul Mackerras <paulus@samba.org>, Gerd Hoffmann <kraxel@redhat.com>, Daniel Bristot de Oliveira <bristot@redhat.com>, sparclinux@vger.kernel.org, Vincent Chen <deanbo422@gmail.com>, Christoph Hellwig <hch@lst.de>, Paul McKenney <paulmck@kernel.org>, Max Filippov <jcmvbkbc@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>, x86@kernel.org, Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org, Ingo Molnar <mingo@kernel.org>, David Airlie <airlied@linux.ie>, VMware Graphics <linux-graphics-maintainer@vmw>
 List-Id: nouveau.vger.kernel.org
 
-kmap_types.h is a misnomer because the old atomic MAP based array does not
-exist anymore and the whole indirection of architectures including
-kmap_types.h is inconinstent and does not allow to provide guard page
-debugging for this misfeature.
-
-Add a common header file which defines the mapping stack size for all
-architectures. Will be used when converting architectures over to a
-generic kmap_local/atomic implementation.
-
-The array size is chosen with the following constraints in mind:
-
-    - The deepest nest level in one context is 3 according to code
-      inspection.
-
-    - The worst case nesting for the upcoming reemptible version would be:
-
-      2 maps in task context and a fault inside
-      2 maps in the fault handler
-      3 maps in softirq
-      2 maps in interrupt
-
-So a total of 16 is sufficient and probably overestimated.
+No reason having the same code in every architecture.
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+Cc: linux-csky@vger.kernel.org
 ---
-V3: New patch
+V3: Does not compile with gcc 10
 ---
- include/asm-generic/Kbuild      |    1 +
- include/asm-generic/kmap_size.h |   12 ++++++++++++
- 2 files changed, 13 insertions(+)
+ arch/csky/Kconfig               |    1 
+ arch/csky/include/asm/fixmap.h  |    4 +-
+ arch/csky/include/asm/highmem.h |    6 ++-
+ arch/csky/mm/highmem.c          |   75 ----------------------------------------
+ 4 files changed, 8 insertions(+), 78 deletions(-)
 
---- a/include/asm-generic/Kbuild
-+++ b/include/asm-generic/Kbuild
-@@ -31,6 +31,7 @@ mandatory-y += irq_regs.h
- mandatory-y += irq_work.h
- mandatory-y += kdebug.h
- mandatory-y += kmap_types.h
-+mandatory-y += kmap_size.h
- mandatory-y += kprobes.h
- mandatory-y += linkage.h
- mandatory-y += local.h
---- /dev/null
-+++ b/include/asm-generic/kmap_size.h
-@@ -0,0 +1,12 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+#ifndef _ASM_GENERIC_KMAP_SIZE_H
-+#define _ASM_GENERIC_KMAP_SIZE_H
+--- a/arch/csky/Kconfig
++++ b/arch/csky/Kconfig
+@@ -286,6 +286,7 @@ config NR_CPUS
+ config HIGHMEM
+ 	bool "High Memory Support"
+ 	depends on !CPU_CK610
++	select KMAP_LOCAL
+ 	default y
+ 
+ config FORCE_MAX_ZONEORDER
+--- a/arch/csky/include/asm/fixmap.h
++++ b/arch/csky/include/asm/fixmap.h
+@@ -8,7 +8,7 @@
+ #include <asm/memory.h>
+ #ifdef CONFIG_HIGHMEM
+ #include <linux/threads.h>
+-#include <asm/kmap_types.h>
++#include <asm/kmap_size.h>
+ #endif
+ 
+ enum fixed_addresses {
+@@ -17,7 +17,7 @@ enum fixed_addresses {
+ #endif
+ #ifdef CONFIG_HIGHMEM
+ 	FIX_KMAP_BEGIN,
+-	FIX_KMAP_END = FIX_KMAP_BEGIN + (KM_TYPE_NR * NR_CPUS) - 1,
++	FIX_KMAP_END = FIX_KMAP_BEGIN + (KM_MAX_IDX * NR_CPUS) - 1,
+ #endif
+ 	__end_of_fixed_addresses
+ };
+--- a/arch/csky/include/asm/highmem.h
++++ b/arch/csky/include/asm/highmem.h
+@@ -9,7 +9,7 @@
+ #include <linux/init.h>
+ #include <linux/interrupt.h>
+ #include <linux/uaccess.h>
+-#include <asm/kmap_types.h>
++#include <asm/kmap_size.h>
+ #include <asm/cache.h>
+ 
+ /* undef for production */
+@@ -32,10 +32,12 @@ extern pte_t *pkmap_page_table;
+ 
+ #define ARCH_HAS_KMAP_FLUSH_TLB
+ extern void kmap_flush_tlb(unsigned long addr);
+-extern void *kmap_atomic_pfn(unsigned long pfn);
+ 
+ #define flush_cache_kmaps() do {} while (0)
+ 
++#define arch_kmap_local_post_map(vaddr, pteval)	kmap_flush_tlb(vaddr)
++#define arch_kmap_local_post_unmap(vaddr)	kmap_flush_tlb(vaddr)
 +
-+/* For debug this provides guard pages between the maps */
-+#ifdef CONFIG_DEBUG_HIGHMEM
-+# define KM_MAX_IDX	33
-+#else
-+# define KM_MAX_IDX	16
-+#endif
-+
-+#endif
+ extern void kmap_init(void);
+ 
+ #endif /* __KERNEL__ */
+--- a/arch/csky/mm/highmem.c
++++ b/arch/csky/mm/highmem.c
+@@ -9,8 +9,6 @@
+ #include <asm/tlbflush.h>
+ #include <asm/cacheflush.h>
+ 
+-static pte_t *kmap_pte;
+-
+ unsigned long highstart_pfn, highend_pfn;
+ 
+ void kmap_flush_tlb(unsigned long addr)
+@@ -19,67 +17,7 @@ void kmap_flush_tlb(unsigned long addr)
+ }
+ EXPORT_SYMBOL(kmap_flush_tlb);
+ 
+-void *kmap_atomic_high_prot(struct page *page, pgprot_t prot)
+-{
+-	unsigned long vaddr;
+-	int idx, type;
+-
+-	type = kmap_atomic_idx_push();
+-	idx = type + KM_TYPE_NR*smp_processor_id();
+-	vaddr = __fix_to_virt(FIX_KMAP_BEGIN + idx);
+-#ifdef CONFIG_DEBUG_HIGHMEM
+-	BUG_ON(!pte_none(*(kmap_pte - idx)));
+-#endif
+-	set_pte(kmap_pte-idx, mk_pte(page, prot));
+-	flush_tlb_one((unsigned long)vaddr);
+-
+-	return (void *)vaddr;
+-}
+-EXPORT_SYMBOL(kmap_atomic_high_prot);
+-
+-void kunmap_atomic_high(void *kvaddr)
+-{
+-	unsigned long vaddr = (unsigned long) kvaddr & PAGE_MASK;
+-	int idx;
+-
+-	if (vaddr < FIXADDR_START)
+-		return;
+-
+-#ifdef CONFIG_DEBUG_HIGHMEM
+-	idx = KM_TYPE_NR*smp_processor_id() + kmap_atomic_idx();
+-
+-	BUG_ON(vaddr != __fix_to_virt(FIX_KMAP_BEGIN + idx));
+-
+-	pte_clear(&init_mm, vaddr, kmap_pte - idx);
+-	flush_tlb_one(vaddr);
+-#else
+-	(void) idx; /* to kill a warning */
+-#endif
+-	kmap_atomic_idx_pop();
+-}
+-EXPORT_SYMBOL(kunmap_atomic_high);
+-
+-/*
+- * This is the same as kmap_atomic() but can map memory that doesn't
+- * have a struct page associated with it.
+- */
+-void *kmap_atomic_pfn(unsigned long pfn)
+-{
+-	unsigned long vaddr;
+-	int idx, type;
+-
+-	pagefault_disable();
+-
+-	type = kmap_atomic_idx_push();
+-	idx = type + KM_TYPE_NR*smp_processor_id();
+-	vaddr = __fix_to_virt(FIX_KMAP_BEGIN + idx);
+-	set_pte(kmap_pte-idx, pfn_pte(pfn, PAGE_KERNEL));
+-	flush_tlb_one(vaddr);
+-
+-	return (void *) vaddr;
+-}
+-
+-static void __init kmap_pages_init(void)
++void __init kmap_init(void)
+ {
+ 	unsigned long vaddr;
+ 	pgd_t *pgd;
+@@ -96,14 +34,3 @@ static void __init kmap_pages_init(void)
+ 	pte = pte_offset_kernel(pmd, vaddr);
+ 	pkmap_page_table = pte;
+ }
+-
+-void __init kmap_init(void)
+-{
+-	unsigned long vaddr;
+-
+-	kmap_pages_init();
+-
+-	vaddr = __fix_to_virt(FIX_KMAP_BEGIN);
+-
+-	kmap_pte = pte_offset_kernel((pmd_t *)pgd_offset_k(vaddr), vaddr);
+-}
