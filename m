@@ -1,216 +1,354 @@
 From: Thomas Gleixner <tglx@linutronix.de>
-Subject: [patch V3 09/37] arc/mm/highmem: Use generic kmap
- atomic implementation
-Date: Tue, 03 Nov 2020 10:27:21 +0100
-Message-ID: <20201103095857.472289952@linutronix.de>
+Subject: [patch V3 06/37] highmem: Provide generic variant of kmap_atomic*
+Date: Tue, 03 Nov 2020 10:27:18 +0100
+Message-ID: <20201103095857.175939340@linutronix.de>
 References: <20201103092712.714480842@linutronix.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+Return-path: <virtualization-bounces@lists.linux-foundation.org>
+List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/virtualization>,
+ <mailto:virtualization-request@lists.linux-foundation.org?subject=unsubscribe>
+List-Archive: <http://lists.linuxfoundation.org/pipermail/virtualization/>
+List-Post: <mailto:virtualization@lists.linux-foundation.org>
+List-Help: <mailto:virtualization-request@lists.linux-foundation.org?subject=help>
+List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/virtualization>,
+ <mailto:virtualization-request@lists.linux-foundation.org?subject=subscribe>
+Errors-To: virtualization-bounces@lists.linux-foundation.org
+Sender: "Virtualization" <virtualization-bounces@lists.linux-foundation.org>
 To: LKML <linux-kernel@vger.kernel.org>
-Cc: Juri Lelli <juri.lelli@redhat.com>, linux-aio@kvack.org, Peter Zijlstra <peterz@infradead.org>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, Sebastian Andrzej Siewior <bigeasy@linutronix.de>, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, Ben Segall <bsegall@google.com>, Chris Mason <clm@fb.com>, Huang Rui <ray.huang@amd.com>, Paul Mackerras <paulus@samba.org>, Gerd Hoffmann <kraxel@redhat.com>, Daniel Bristot de Oliveira <bristot@redhat.com>, sparclinux@vger.kernel.org, Vincent Chen <deanbo422@gmail.com>, Christoph Hellwig <hch@lst.de>, Paul McKenney <paulmck@kernel.org>, Max Filippov <jcmvbkbc@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>, x86@kernel.org, Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org, Ingo Molnar <mingo@kernel.org>, David Airlie <airlied@linux.ie>, VMware Graphics <linux-graphics-maintainer@vmw>
+Cc: Juri Lelli <juri.lelli@redhat.com>, linux-aio@kvack.org, Peter Zijlstra <peterz@infradead.org>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, Sebastian Andrzej Siewior <bigeasy@linutronix.de>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, Ben Segall <bsegall@google.com>, Chris Mason <clm@fb.com>, Huang Rui <ray.huang@amd.com>, Paul Mackerras <paulus@samba.org>, Daniel Bristot de Oliveira <bristot@redhat.com>, sparclinux@vger.kernel.org, Vincent Chen <deanbo422@gmail.com>, Christoph Hellwig <hch@lst.de>, Vincent Guittot <vincent.guittot@linaro.org>, Paul McKenney <paulmck@kernel.org>, Max Filippov <jcmvbkbc@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>, x86@kernel.org, Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org, Ingo Molnar <mingo@kernel.org>, David Airlie <air>
 List-Id: nouveau.vger.kernel.org
 
-Adopt the map ordering to match the other architectures and the generic
-code. Also make the maximum entries limited and not dependend on the number
-of CPUs. With the original implementation did the following calculation:
+The kmap_atomic* interfaces in all architectures are pretty much the same
+except for post map operations (flush) and pre- and post unmap operations.
 
-   nr_slots = mapsize >> PAGE_SHIFT;
-
-The results in either 512 or 1024 total slots depending on
-configuration. The total slots have to be divided by the number of CPUs to
-get the number of slots per CPU (former KM_TYPE_NR). ARC supports up to 4k
-CPUs, so this just falls apart in random ways depending on the number of
-CPUs and the actual kmap (atomic) nesting. The comment in highmem.c:
-
- * - fixmap anyhow needs a limited number of mappings. So 2M kvaddr == 256 PTE
- *   slots across NR_CPUS would be more than sufficient (generic code defines
- *   KM_TYPE_NR as 20).
-
-is just wrong. KM_TYPE_NR (now KM_MAX_IDX) is the number of slots per CPU
-because kmap_local/atomic() needs to support nested mappings (thread,
-softirq, interrupt). While KM_MAX_IDX might be overestimated, the above
-reasoning is just wrong and clearly the highmem code was never tested with
-any system with more than a few CPUs.
-
-Use the default number of slots and fail the build when it does not
-fit. Randomly failing at runtime is not a really good option.
+Provide a generic variant for that.
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-Cc: Vineet Gupta <vgupta@synopsys.com>
-Cc: linux-snps-arc@lists.infradead.org
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: linux-mm@kvack.org
 ---
-V3: Make it actually more correct.
+V3: Do not reuse the kmap_atomic_idx pile and use kmap_size.h right away
+V2: Address review comments from Christoph (style and EXPORT variant)
 ---
- arch/arc/Kconfig                  |    1 
- arch/arc/include/asm/highmem.h    |   26 ++++++++++++++----
- arch/arc/include/asm/kmap_types.h |   14 ---------
- arch/arc/mm/highmem.c             |   54 +++-----------------------------------
- 4 files changed, 26 insertions(+), 69 deletions(-)
+ include/linux/highmem.h |   82 ++++++++++++++++++++++-----
+ mm/Kconfig              |    3 +
+ mm/highmem.c            |  144 +++++++++++++++++++++++++++++++++++++++++++++++-
+ 3 files changed, 211 insertions(+), 18 deletions(-)
 
---- a/arch/arc/Kconfig
-+++ b/arch/arc/Kconfig
-@@ -507,6 +507,7 @@ config LINUX_RAM_BASE
- config HIGHMEM
- 	bool "High Memory Support"
- 	select ARCH_DISCONTIGMEM_ENABLE
-+	select KMAP_LOCAL
- 	help
- 	  With ARC 2G:2G address split, only upper 2G is directly addressable by
- 	  kernel. Enable this to potentially allow access to rest of 2G and PAE
---- a/arch/arc/include/asm/highmem.h
-+++ b/arch/arc/include/asm/highmem.h
-@@ -9,17 +9,29 @@
- #ifdef CONFIG_HIGHMEM
+--- a/include/linux/highmem.h
++++ b/include/linux/highmem.h
+@@ -31,9 +31,16 @@ static inline void invalidate_kernel_vma
  
- #include <uapi/asm/page.h>
--#include <asm/kmap_types.h>
+ #include <asm/kmap_types.h>
+ 
++/*
++ * Outside of CONFIG_HIGHMEM to support X86 32bit iomap_atomic() cruft.
++ */
++#ifdef CONFIG_KMAP_LOCAL
++void *__kmap_local_pfn_prot(unsigned long pfn, pgprot_t prot);
++void *__kmap_local_page_prot(struct page *page, pgprot_t prot);
++void kunmap_local_indexed(void *vaddr);
++#endif
++
+ #ifdef CONFIG_HIGHMEM
+-extern void *kmap_atomic_high_prot(struct page *page, pgprot_t prot);
+-extern void kunmap_atomic_high(void *kvaddr);
+ #include <asm/highmem.h>
+ 
+ #ifndef ARCH_HAS_KMAP_FLUSH_TLB
+@@ -81,6 +88,11 @@ static inline void kunmap(struct page *p
+  * be used in IRQ contexts, so in some (very limited) cases we need
+  * it.
+  */
++
++#ifndef CONFIG_KMAP_LOCAL
++void *kmap_atomic_high_prot(struct page *page, pgprot_t prot);
++void kunmap_atomic_high(void *kvaddr);
++
+ static inline void *kmap_atomic_prot(struct page *page, pgprot_t prot)
+ {
+ 	preempt_disable();
+@@ -89,7 +101,38 @@ static inline void *kmap_atomic_prot(str
+ 		return page_address(page);
+ 	return kmap_atomic_high_prot(page, prot);
+ }
+-#define kmap_atomic(page)	kmap_atomic_prot(page, kmap_prot)
++
++static inline void __kunmap_atomic(void *vaddr)
++{
++	kunmap_atomic_high(vaddr);
++}
++#else /* !CONFIG_KMAP_LOCAL */
++
++static inline void *kmap_atomic_prot(struct page *page, pgprot_t prot)
++{
++	preempt_disable();
++	pagefault_disable();
++	return __kmap_local_page_prot(page, prot);
++}
++
++static inline void *kmap_atomic_pfn(unsigned long pfn)
++{
++	preempt_disable();
++	pagefault_disable();
++	return __kmap_local_pfn_prot(pfn, kmap_prot);
++}
++
++static inline void __kunmap_atomic(void *addr)
++{
++	kunmap_local_indexed(addr);
++}
++
++#endif /* CONFIG_KMAP_LOCAL */
++
++static inline void *kmap_atomic(struct page *page)
++{
++	return kmap_atomic_prot(page, kmap_prot);
++}
+ 
+ /* declarations for linux/mm/highmem.c */
+ unsigned int nr_free_highpages(void);
+@@ -147,25 +190,33 @@ static inline void *kmap_atomic(struct p
+ 	pagefault_disable();
+ 	return page_address(page);
+ }
+-#define kmap_atomic_prot(page, prot)	kmap_atomic(page)
+ 
+-static inline void kunmap_atomic_high(void *addr)
++static inline void *kmap_atomic_prot(struct page *page, pgprot_t prot)
++{
++	return kmap_atomic(page);
++}
++
++static inline void *kmap_atomic_pfn(unsigned long pfn)
++{
++	return kmap_atomic(pfn_to_page(pfn));
++}
++
++static inline void __kunmap_atomic(void *addr)
+ {
+ 	/*
+ 	 * Mostly nothing to do in the CONFIG_HIGHMEM=n case as kunmap_atomic()
+-	 * handles re-enabling faults + preemption
++	 * handles re-enabling faults and preemption
+ 	 */
+ #ifdef ARCH_HAS_FLUSH_ON_KUNMAP
+ 	kunmap_flush_on_unmap(addr);
+ #endif
+ }
+ 
+-#define kmap_atomic_pfn(pfn)	kmap_atomic(pfn_to_page(pfn))
+-
+ #define kmap_flush_unused()	do {} while(0)
+ 
+ #endif /* CONFIG_HIGHMEM */
+ 
++#if !defined(CONFIG_KMAP_LOCAL)
+ #if defined(CONFIG_HIGHMEM) || defined(CONFIG_X86_32)
+ 
+ DECLARE_PER_CPU(int, __kmap_atomic_idx);
+@@ -196,22 +247,21 @@ static inline void kmap_atomic_idx_pop(v
+ 	__this_cpu_dec(__kmap_atomic_idx);
+ #endif
+ }
+-
++#endif
+ #endif
+ 
+ /*
+  * Prevent people trying to call kunmap_atomic() as if it were kunmap()
+  * kunmap_atomic() should get the return value of kmap_atomic, not the page.
+  */
+-#define kunmap_atomic(addr)                                     \
+-do {                                                            \
+-	BUILD_BUG_ON(__same_type((addr), struct page *));       \
+-	kunmap_atomic_high(addr);                                  \
+-	pagefault_enable();                                     \
+-	preempt_enable();                                       \
++#define kunmap_atomic(__addr)					\
++do {								\
++	BUILD_BUG_ON(__same_type((__addr), struct page *));	\
++	__kunmap_atomic(__addr);				\
++	pagefault_enable();					\
++	preempt_enable();					\
+ } while (0)
+ 
+-
+ /* when CONFIG_HIGHMEM is not set these will be plain clear/copy_page */
+ #ifndef clear_user_highpage
+ static inline void clear_user_highpage(struct page *page, unsigned long vaddr)
+--- a/mm/Kconfig
++++ b/mm/Kconfig
+@@ -872,4 +872,7 @@ config ARCH_HAS_HUGEPD
+ config MAPPING_DIRTY_HELPERS
+         bool
+ 
++config KMAP_LOCAL
++	bool
++
+ endmenu
+--- a/mm/highmem.c
++++ b/mm/highmem.c
+@@ -31,9 +31,11 @@
+ #include <asm/tlbflush.h>
+ #include <linux/vmalloc.h>
+ 
++#ifndef CONFIG_KMAP_LOCAL
+ #if defined(CONFIG_HIGHMEM) || defined(CONFIG_X86_32)
+ DEFINE_PER_CPU(int, __kmap_atomic_idx);
+ #endif
++#endif
+ 
+ /*
+  * Virtual_count is not a pure "count".
+@@ -365,9 +367,147 @@ void kunmap_high(struct page *page)
+ 	if (need_wakeup)
+ 		wake_up(pkmap_map_wait);
+ }
+-
+ EXPORT_SYMBOL(kunmap_high);
+-#endif	/* CONFIG_HIGHMEM */
++#endif /* CONFIG_HIGHMEM */
++
++#ifdef CONFIG_KMAP_LOCAL
++
 +#include <asm/kmap_size.h>
 +
-+#define FIXMAP_SIZE		PGDIR_SIZE
-+#define PKMAP_SIZE		PGDIR_SIZE
- 
- /* start after vmalloc area */
- #define FIXMAP_BASE		(PAGE_OFFSET - FIXMAP_SIZE - PKMAP_SIZE)
--#define FIXMAP_SIZE		PGDIR_SIZE	/* only 1 PGD worth */
--#define KM_TYPE_NR		((FIXMAP_SIZE >> PAGE_SHIFT)/NR_CPUS)
--#define FIXMAP_ADDR(nr)		(FIXMAP_BASE + ((nr) << PAGE_SHIFT))
++static DEFINE_PER_CPU(int, __kmap_local_idx);
 +
-+#define FIX_KMAP_SLOTS		(KM_MAX_IDX * NR_CPUS)
-+#define FIX_KMAP_BEGIN		(0UL)
-+#define FIX_KMAP_END		((FIX_KMAP_BEGIN + FIX_KMAP_SLOTS) - 1)
++static inline int kmap_local_idx_push(void)
++{
++	int idx = __this_cpu_inc_return(__kmap_local_idx) - 1;
 +
-+#define FIXADDR_TOP		(FIXMAP_BASE + (FIX_KMAP_END << PAGE_SHIFT))
++	WARN_ON_ONCE(in_irq() && !irqs_disabled());
++	BUG_ON(idx >= KM_MAX_IDX);
++	return idx;
++}
 +
-+/*
-+ * This should be converted to the asm-generic version, but of course this
-+ * is needlessly different from all other architectures. Sigh - tglx
-+ */
-+#define __fix_to_virt(x)	(FIXADDR_TOP - ((x) << PAGE_SHIFT))
-+#define __virt_to_fix(x)	(((FIXADDR_TOP - ((x) & PAGE_MASK))) >> PAGE_SHIFT)
- 
- /* start after fixmap area */
- #define PKMAP_BASE		(FIXMAP_BASE + FIXMAP_SIZE)
--#define PKMAP_SIZE		PGDIR_SIZE
- #define LAST_PKMAP		(PKMAP_SIZE >> PAGE_SHIFT)
- #define LAST_PKMAP_MASK		(LAST_PKMAP - 1)
- #define PKMAP_ADDR(nr)		(PKMAP_BASE + ((nr) << PAGE_SHIFT))
-@@ -29,11 +41,13 @@
- 
- extern void kmap_init(void);
- 
-+#define arch_kmap_local_post_unmap(vaddr)			\
-+	local_flush_tlb_kernel_range(vaddr, vaddr + PAGE_SIZE)
++static inline int kmap_local_idx(void)
++{
++	return __this_cpu_read(__kmap_local_idx) - 1;
++}
 +
- static inline void flush_cache_kmaps(void)
- {
- 	flush_cache_all();
- }
--
- #endif
++static inline void kmap_local_idx_pop(void)
++{
++	int idx = __this_cpu_dec_return(__kmap_local_idx);
++
++	BUG_ON(idx < 0);
++}
++
++#ifndef arch_kmap_local_post_map
++# define arch_kmap_local_post_map(vaddr, pteval)	do { } while (0)
++#endif
++#ifndef arch_kmap_local_pre_unmap
++# define arch_kmap_local_pre_unmap(vaddr)		do { } while (0)
++#endif
++
++#ifndef arch_kmap_local_post_unmap
++# define arch_kmap_local_post_unmap(vaddr)		do { } while (0)
++#endif
++
++#ifndef arch_kmap_local_map_idx
++#define arch_kmap_local_map_idx(idx, pfn)	kmap_local_calc_idx(idx)
++#endif
++
++#ifndef arch_kmap_local_unmap_idx
++#define arch_kmap_local_unmap_idx(idx, vaddr)	kmap_local_calc_idx(idx)
++#endif
++
++#ifndef arch_kmap_local_high_get
++static inline void *arch_kmap_local_high_get(struct page *page)
++{
++	return NULL;
++}
++#endif
++
++/* Unmap a local mapping which was obtained by kmap_high_get() */
++static inline void kmap_high_unmap_local(unsigned long vaddr)
++{
++#ifdef ARCH_NEEDS_KMAP_HIGH_GET
++	if (vaddr >= PKMAP_ADDR(0) && vaddr < PKMAP_ADDR(LAST_PKMAP))
++		kunmap_high(pte_page(pkmap_page_table[PKMAP_NR(vaddr)]));
++#endif
++}
++
++static inline int kmap_local_calc_idx(int idx)
++{
++	return idx + KM_MAX_IDX * smp_processor_id();
++}
++
++static pte_t *__kmap_pte;
++
++static pte_t *kmap_get_pte(void)
++{
++	if (!__kmap_pte)
++		__kmap_pte = virt_to_kpte(__fix_to_virt(FIX_KMAP_BEGIN));
++	return __kmap_pte;
++}
++
++void *__kmap_local_pfn_prot(unsigned long pfn, pgprot_t prot)
++{
++	pte_t pteval, *kmap_pte = kmap_get_pte();
++	unsigned long vaddr;
++	int idx;
++
++	preempt_disable();
++	idx = arch_kmap_local_map_idx(kmap_local_idx_push(), pfn);
++	vaddr = __fix_to_virt(FIX_KMAP_BEGIN + idx);
++	BUG_ON(!pte_none(*(kmap_pte - idx)));
++	pteval = pfn_pte(pfn, prot);
++	set_pte_at(&init_mm, vaddr, kmap_pte - idx, pteval);
++	arch_kmap_local_post_map(vaddr, pteval);
++	preempt_enable();
++
++	return (void *)vaddr;
++}
++EXPORT_SYMBOL_GPL(__kmap_local_pfn_prot);
++
++void *__kmap_local_page_prot(struct page *page, pgprot_t prot)
++{
++	void *kmap;
++
++	if (!PageHighMem(page))
++		return page_address(page);
++
++	/* Try kmap_high_get() if architecture has it enabled */
++	kmap = arch_kmap_local_high_get(page);
++	if (kmap)
++		return kmap;
++
++	return __kmap_local_pfn_prot(page_to_pfn(page), prot);
++}
++EXPORT_SYMBOL(__kmap_local_page_prot);
++
++void kunmap_local_indexed(void *vaddr)
++{
++	unsigned long addr = (unsigned long) vaddr & PAGE_MASK;
++	pte_t *kmap_pte = kmap_get_pte();
++	int idx;
++
++	if (addr < __fix_to_virt(FIX_KMAP_END) ||
++	    addr > __fix_to_virt(FIX_KMAP_BEGIN)) {
++		WARN_ON_ONCE(addr < PAGE_OFFSET);
++
++		/* Handle mappings which were obtained by kmap_high_get() */
++		kmap_high_unmap_local(addr);
++		return;
++	}
++
++	preempt_disable();
++	idx = arch_kmap_local_unmap_idx(kmap_local_idx(), addr);
++	WARN_ON_ONCE(addr != __fix_to_virt(FIX_KMAP_BEGIN + idx));
++
++	arch_kmap_local_pre_unmap(addr);
++	pte_clear(&init_mm, addr, kmap_pte - idx);
++	arch_kmap_local_post_unmap(addr);
++	kmap_local_idx_pop();
++	preempt_enable();
++}
++EXPORT_SYMBOL(kunmap_local_indexed);
++#endif
  
- #endif
---- a/arch/arc/include/asm/kmap_types.h
-+++ /dev/null
-@@ -1,14 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0-only */
--/*
-- * Copyright (C) 2015 Synopsys, Inc. (www.synopsys.com)
-- */
--
--#ifndef _ASM_KMAP_TYPES_H
--#define _ASM_KMAP_TYPES_H
--
--/*
-- * We primarily need to define KM_TYPE_NR here but that in turn
-- * is a function of PGDIR_SIZE etc.
-- * To avoid circular deps issue, put everything in asm/highmem.h
-- */
--#endif
---- a/arch/arc/mm/highmem.c
-+++ b/arch/arc/mm/highmem.c
-@@ -36,9 +36,8 @@
-  *   This means each only has 1 PGDIR_SIZE worth of kvaddr mappings, which means
-  *   2M of kvaddr space for typical config (8K page and 11:8:13 traversal split)
-  *
-- * - fixmap anyhow needs a limited number of mappings. So 2M kvaddr == 256 PTE
-- *   slots across NR_CPUS would be more than sufficient (generic code defines
-- *   KM_TYPE_NR as 20).
-+ * - The fixed KMAP slots for kmap_local/atomic() require KM_MAX_IDX slots per
-+ *   CPU. So the number of CPUs sharing a single PTE page is limited.
-  *
-  * - pkmap being preemptible, in theory could do with more than 256 concurrent
-  *   mappings. However, generic pkmap code: map_new_virtual(), doesn't traverse
-@@ -47,48 +46,6 @@
-  */
- 
- extern pte_t * pkmap_page_table;
--static pte_t * fixmap_page_table;
--
--void *kmap_atomic_high_prot(struct page *page, pgprot_t prot)
--{
--	int idx, cpu_idx;
--	unsigned long vaddr;
--
--	cpu_idx = kmap_atomic_idx_push();
--	idx = cpu_idx + KM_TYPE_NR * smp_processor_id();
--	vaddr = FIXMAP_ADDR(idx);
--
--	set_pte_at(&init_mm, vaddr, fixmap_page_table + idx,
--		   mk_pte(page, prot));
--
--	return (void *)vaddr;
--}
--EXPORT_SYMBOL(kmap_atomic_high_prot);
--
--void kunmap_atomic_high(void *kv)
--{
--	unsigned long kvaddr = (unsigned long)kv;
--
--	if (kvaddr >= FIXMAP_BASE && kvaddr < (FIXMAP_BASE + FIXMAP_SIZE)) {
--
--		/*
--		 * Because preemption is disabled, this vaddr can be associated
--		 * with the current allocated index.
--		 * But in case of multiple live kmap_atomic(), it still relies on
--		 * callers to unmap in right order.
--		 */
--		int cpu_idx = kmap_atomic_idx();
--		int idx = cpu_idx + KM_TYPE_NR * smp_processor_id();
--
--		WARN_ON(kvaddr != FIXMAP_ADDR(idx));
--
--		pte_clear(&init_mm, kvaddr, fixmap_page_table + idx);
--		local_flush_tlb_kernel_range(kvaddr, kvaddr + PAGE_SIZE);
--
--		kmap_atomic_idx_pop();
--	}
--}
--EXPORT_SYMBOL(kunmap_atomic_high);
- 
- static noinline pte_t * __init alloc_kmap_pgtable(unsigned long kvaddr)
- {
-@@ -108,10 +65,9 @@ void __init kmap_init(void)
- {
- 	/* Due to recursive include hell, we can't do this in processor.h */
- 	BUILD_BUG_ON(PAGE_OFFSET < (VMALLOC_END + FIXMAP_SIZE + PKMAP_SIZE));
-+	BUILD_BUG_ON(LAST_PKMAP > PTRS_PER_PTE);
-+	BUILD_BUG_ON(FIX_KMAP_SLOTS > PTRS_PER_PTE);
- 
--	BUILD_BUG_ON(KM_TYPE_NR > PTRS_PER_PTE);
- 	pkmap_page_table = alloc_kmap_pgtable(PKMAP_BASE);
--
--	BUILD_BUG_ON(LAST_PKMAP > PTRS_PER_PTE);
--	fixmap_page_table = alloc_kmap_pgtable(FIXMAP_BASE);
-+	alloc_kmap_pgtable(FIXMAP_BASE);
- }
+ #if defined(HASHED_PAGE_VIRTUAL)
