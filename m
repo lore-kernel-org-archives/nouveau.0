@@ -1,48 +1,45 @@
-From: Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [patch V3 22/37] highmem: High implementation details and document API
-Date: Tue, 03 Nov 2020 20:00:20 +0100
-Message-ID: <87y2ji1d17.fsf@nanos.tec.linutronix.de>
-References: <20201103092712.714480842@linutronix.de> <20201103095858.827582066@linutronix.de> <CAHk-=wg2D_yjgKYkXCybD3uf0dtwYh6HxZ9BQJfV5t+EBqLGQQ@mail.gmail.com>
+From: Jeremy Cline <jcline@redhat.com>
+Subject: [PATCH 0/3] drm/nouveau: fix a use-after-free in postclose()
+Date: Tue,  3 Nov 2020 14:49:09 -0500
+Message-ID: <20201103194912.184413-1-jcline@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAHk-=wg2D_yjgKYkXCybD3uf0dtwYh6HxZ9BQJfV5t+EBqLGQQ@mail.gmail.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: LKML <linux-kernel@vger.kernel.org>, Peter Zijlstra <peterz@infradead.org>, Paul McKenney <paulmck@kernel.org>, Christoph Hellwig <hch@lst.de>, Sebastian Andrzej Siewior <bigeasy@linutronix.de>, Andrew Morton <akpm@linux-foundation.org>, Linux-MM <linux-mm@kvack.org>, Alexander Viro <viro@zeniv.linux.org.uk>, Benjamin LaHaise <bcrl@kvack.org>, linux-fsdevel <linux-fsdevel@vger.kernel.org>, linux-aio@kvack.org, Chris Mason <clm@fb.com>, Josef Bacik <josef@toxicpanda.com>, David Sterba <dsterba@suse.com>, linux-btrfs <linux-btrfs@vger.kernel.org>, the arch/x86 maintainers <x86@kernel.org>, Vineet Gupta <vgupta@synopsys.com>, "open list:SYNOPSYS ARC ARCHITECTURE" <linux-snps-arc@lists.infradead.org>, Russell King <linux@armlinux.org.uk>
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: Lyude Paul <lyude@redhat.com>, Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Jeremy Cline <jcline@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Nov 03 2020 at 09:48, Linus Torvalds wrote:
-> I have no complaints about the patch, but it strikes me that if people
-> want to actually have much better debug coverage, this is where it
-> should be (I like the "every other address" thing too, don't get me
-> wrong).
->
-> In particular, instead of these PageHighMem(page) tests, I think
-> something like this would be better:
->
->    #ifdef CONFIG_DEBUG_HIGHMEM
->      #define page_use_kmap(page) ((page),1)
->    #else
->      #define page_use_kmap(page) PageHighMem(page)
->    #endif
->
-> adn then replace those "if (!PageHighMem(page))" tests with "if
-> (!page_use_kmap())" instead.
->
-> IOW, in debug mode, it would _always_ remap the page, whether it's
-> highmem or not. That would really stress the highmem code and find any
-> fragilities.
+This series fixes a number of use-after-frees in nouveau's postclose()
+handler. It was discovered by pointing IGT's core_hotunplug tests at a
+nouveau device, but the steps to reproduce it are simple:
 
-Yes, that makes a lot of sense. We just have to avoid that for the
-architectures with aliasing issues.
+1. Open the device file
+2. Unbind the driver or remove the device
+3. Close the file opened in step 1.
 
-> Anyway, this is all sepatrate from the series, which still looks fine
-> to me. Just a reaction to seeing the patch, and Thomas' earlier
-> mention that the highmem debugging doesn't actually do much.
+During the device removal, the nouveau_drm structure is de-allocated,
+but is dereferenced in the postclose() handler.
 
-Right, forcing it for both kmap and kmap_local is straight forward. I'll
-cook a patch on top for that.
+One obvious solution is to ensure all the operations in the postclose()
+handler are valid by extending the lifetime of the nouveau_drm
+structure. This is possible with the new devm_drm_dev_alloc() interface,
+but the change is somewhat invasive so I thought it best to submit that
+work separately.
 
-Thanks,
+Instead, we make use of the drm_dev_unplug() API, clean up all clients
+in the device removal call, and check to make sure the device has not
+been unplugged in the postclose() handler. While this does not enable
+hot-unplug support for nouveau, it's enough to avoid crashing the kernel
+and leads to all the core_hotunplug tests to pass.
 
-        tglx
+Jeremy Cline (3):
+  drm/nouveau: use drm_dev_unplug() during device removal
+  drm/nouveau: Add a dedicated mutex for the clients list
+  drm/nouveau: clean up all clients on device removal
+
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 39 +++++++++++++++++++++++----
+ drivers/gpu/drm/nouveau/nouveau_drv.h |  5 ++++
+ 2 files changed, 39 insertions(+), 5 deletions(-)
+
+-- 
+2.28.0
