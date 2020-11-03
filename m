@@ -1,86 +1,141 @@
 From: Thomas Gleixner <tglx@linutronix.de>
-Subject: [patch V3 31/37] drm/ttm: Replace kmap_atomic() usage
-Date: Tue, 03 Nov 2020 10:27:43 +0100
-Message-ID: <20201103095859.726187546@linutronix.de>
+Subject: [patch V3 37/37] io-mapping: Remove io_mapping_map_atomic_wc()
+Date: Tue, 03 Nov 2020 10:27:49 +0100
+Message-ID: <20201103095900.367260321@linutronix.de>
 References: <20201103092712.714480842@linutronix.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8-bit
+Return-path: <linux-fsdevel-owner@vger.kernel.org>
 To: LKML <linux-kernel@vger.kernel.org>
-Cc: Juri Lelli <juri.lelli@redhat.com>, linux-aio@kvack.org, Peter Zijlstra <peterz@infradead.org>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, Sebastian Andrzej Siewior <bigeasy@linutronix.de>, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, Ben Segall <bsegall@google.com>, linux-mm@kvack.org, Huang Rui <ray.huang@amd.com>, Paul Mackerras <paulus@samba.org>, Gerd Hoffmann <kraxel@redhat.com>, Daniel Bristot de Oliveira <bristot@redhat.com>, sparclinux@vger.kernel.org, Vincent Chen <deanbo422@gmail.com>, Christoph Hellwig <hch@lst.de>, Arnd Bergmann <arnd@arndb.de>, Max Filippov <jcmvbkbc@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>, x86@kernel.org, Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org, Ingo Molnar <mingo@kernel.org>, David Airlie <airlied@linux.ie>, VMware Graphics <linux-graphics-maintainer@vmware.com>
+Cc: Linus Torvalds <torvalds@linuxfoundation.org>, Peter Zijlstra <peterz@infradead.org>, Paul McKenney <paulmck@kernel.org>, Christoph Hellwig <hch@lst.de>, Sebastian Andrzej Siewior <bigeasy@linutronix.de>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, Alexander Viro <viro@zeniv.linux.org.uk>, Benjamin LaHaise <bcrl@kvack.org>, linux-fsdevel@vger.kernel.org, linux-aio@kvack.org, Chris Mason <clm@fb.com>, Josef Bacik <josef@toxicpanda.com>, David Sterba <dsterba@suse.com>, linux-btrfs@vger.kernel.org, x86@kernel.org, Vineet Gupta <vgupta@synopsys.com>, linux-snps-arc@lists.infradead.org, Russell King <linux@armlinux.org.uk>, Arnd Bergmann <arnd@arndb.de>, linux-arm-kernel@lists.infradead.org, linux-csky@vger.kernel.org, Michal Simek <monstr@mon>
 List-Id: nouveau.vger.kernel.org
 
-There is no reason to disable pagefaults and preemption as a side effect of
-kmap_atomic_prot().
-
-Use kmap_local_page_prot() instead and document the reasoning for the
-mapping usage with the given pgprot.
-
-Remove the NULL pointer check for the map. These functions return a valid
-address for valid pages and the return was bogus anyway as it would have
-left preemption and pagefaults disabled.
+No more users. Get rid of it and remove the traces in documentation.
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-Cc: Christian Koenig <christian.koenig@amd.com>
-Cc: Huang Rui <ray.huang@amd.com>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
 ---
 V3: New patch
 ---
- drivers/gpu/drm/ttm/ttm_bo_util.c |   20 ++++++++++++--------
- 1 file changed, 12 insertions(+), 8 deletions(-)
+ Documentation/driver-api/io-mapping.rst |   22 +++++-----------
+ include/linux/io-mapping.h              |   42 +-------------------------------
+ 2 files changed, 9 insertions(+), 55 deletions(-)
 
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -181,13 +181,15 @@ static int ttm_copy_io_ttm_page(struct t
- 		return -ENOMEM;
+--- a/Documentation/driver-api/io-mapping.rst
++++ b/Documentation/driver-api/io-mapping.rst
+@@ -21,19 +21,15 @@ mappable, while 'size' indicates how lar
+ enable. Both are in bytes.
  
- 	src = (void *)((unsigned long)src + (page << PAGE_SHIFT));
--	dst = kmap_atomic_prot(d, prot);
--	if (!dst)
--		return -ENOMEM;
-+	/*
-+	 * Ensure that a highmem page is mapped with the correct
-+	 * pgprot. For non highmem the mapping is already there.
-+	 */
-+	dst = kmap_local_page_prot(d, prot);
+ This _wc variant provides a mapping which may only be used with
+-io_mapping_map_atomic_wc(), io_mapping_map_local_wc() or
+-io_mapping_map_wc().
++io_mapping_map_local_wc() or io_mapping_map_wc().
  
- 	memcpy_fromio(dst, src, PAGE_SIZE);
+ With this mapping object, individual pages can be mapped either temporarily
+ or long term, depending on the requirements. Of course, temporary maps are
+-more efficient. They come in two flavours::
++more efficient.
  
--	kunmap_atomic(dst);
-+	kunmap_local(dst);
+ 	void *io_mapping_map_local_wc(struct io_mapping *mapping,
+ 				      unsigned long offset)
  
- 	return 0;
+-	void *io_mapping_map_atomic_wc(struct io_mapping *mapping,
+-				       unsigned long offset)
+-
+ 'offset' is the offset within the defined mapping region.  Accessing
+ addresses beyond the region specified in the creation function yields
+ undefined results. Using an offset which is not page aligned yields an
+@@ -50,9 +46,6 @@ io_mapping_map_local_wc() has a side eff
+ migration to make the mapping code work. No caller can rely on this side
+ effect.
+ 
+-io_mapping_map_atomic_wc() has the side effect of disabling preemption and
+-pagefaults. Don't use in new code. Use io_mapping_map_local_wc() instead.
+-
+ Nested mappings need to be undone in reverse order because the mapping
+ code uses a stack for keeping track of them::
+ 
+@@ -65,11 +58,10 @@ Nested mappings need to be undone in rev
+ The mappings are released with::
+ 
+ 	void io_mapping_unmap_local(void *vaddr)
+-	void io_mapping_unmap_atomic(void *vaddr)
+ 
+-'vaddr' must be the value returned by the last io_mapping_map_local_wc() or
+-io_mapping_map_atomic_wc() call. This unmaps the specified mapping and
+-undoes the side effects of the mapping functions.
++'vaddr' must be the value returned by the last io_mapping_map_local_wc()
++call. This unmaps the specified mapping and undoes eventual side effects of
++the mapping function.
+ 
+ If you need to sleep while holding a mapping, you can use the regular
+ variant, although this may be significantly slower::
+@@ -77,8 +69,8 @@ If you need to sleep while holding a map
+ 	void *io_mapping_map_wc(struct io_mapping *mapping,
+ 				unsigned long offset)
+ 
+-This works like io_mapping_map_atomic/local_wc() except it has no side
+-effects and the pointer is globaly visible.
++This works like io_mapping_map_local_wc() except it has no side effects and
++the pointer is globaly visible.
+ 
+ The mappings are released with::
+ 
+--- a/include/linux/io-mapping.h
++++ b/include/linux/io-mapping.h
+@@ -60,28 +60,7 @@ io_mapping_fini(struct io_mapping *mappi
+ 	iomap_free(mapping->base, mapping->size);
  }
-@@ -203,13 +205,15 @@ static int ttm_copy_ttm_io_page(struct t
- 		return -ENOMEM;
  
- 	dst = (void *)((unsigned long)dst + (page << PAGE_SHIFT));
--	src = kmap_atomic_prot(s, prot);
--	if (!src)
--		return -ENOMEM;
-+	/*
-+	 * Ensure that a highmem page is mapped with the correct
-+	 * pgprot. For non highmem the mapping is already there.
-+	 */
-+	src = kmap_local_page_prot(s, prot);
- 
- 	memcpy_toio(dst, src, PAGE_SIZE);
- 
--	kunmap_atomic(src);
-+	kunmap_local(src);
- 
- 	return 0;
+-/* Atomic map/unmap */
+-static inline void __iomem *
+-io_mapping_map_atomic_wc(struct io_mapping *mapping,
+-			 unsigned long offset)
+-{
+-	resource_size_t phys_addr;
+-
+-	BUG_ON(offset >= mapping->size);
+-	phys_addr = mapping->base + offset;
+-	preempt_disable();
+-	pagefault_disable();
+-	return __iomap_local_pfn_prot(PHYS_PFN(phys_addr), mapping->prot);
+-}
+-
+-static inline void
+-io_mapping_unmap_atomic(void __iomem *vaddr)
+-{
+-	kunmap_local_indexed((void __force *)vaddr);
+-	pagefault_enable();
+-	preempt_enable();
+-}
+-
++/* Temporary mappings which are only valid in the current context */
+ static inline void __iomem *
+ io_mapping_map_local_wc(struct io_mapping *mapping, unsigned long offset)
+ {
+@@ -163,24 +142,7 @@ io_mapping_unmap(void __iomem *vaddr)
+ {
  }
+ 
+-/* Atomic map/unmap */
+-static inline void __iomem *
+-io_mapping_map_atomic_wc(struct io_mapping *mapping,
+-			 unsigned long offset)
+-{
+-	preempt_disable();
+-	pagefault_disable();
+-	return io_mapping_map_wc(mapping, offset, PAGE_SIZE);
+-}
+-
+-static inline void
+-io_mapping_unmap_atomic(void __iomem *vaddr)
+-{
+-	io_mapping_unmap(vaddr);
+-	pagefault_enable();
+-	preempt_enable();
+-}
+-
++/* Temporary mappings which are only valid in the current context */
+ static inline void __iomem *
+ io_mapping_map_local_wc(struct io_mapping *mapping, unsigned long offset)
+ {
