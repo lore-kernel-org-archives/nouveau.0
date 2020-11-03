@@ -1,8 +1,8 @@
 From: Thomas Gleixner <tglx@linutronix.de>
-Subject: [patch V3 17/37] xtensa/mm/highmem: Switch to generic
+Subject: [patch V3 13/37] mips/mm/highmem: Switch to generic
  kmap atomic
-Date: Tue, 03 Nov 2020 10:27:29 +0100
-Message-ID: <20201103095858.311016780@linutronix.de>
+Date: Tue, 03 Nov 2020 10:27:25 +0100
+Message-ID: <20201103095857.885321106@linutronix.de>
 References: <20201103092712.714480842@linutronix.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -18,156 +18,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 To: LKML <linux-kernel@vger.kernel.org>
-Cc: Juri Lelli <juri.lelli@redhat.com>, linux-aio@kvack.org, Peter Zijlstra <peterz@infradead.org>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, Sebastian Andrzej Siewior <bigeasy@linutronix.de>, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, Ben Segall <bsegall@google.com>, Chris Mason <clm@fb.com>, Huang Rui <ray.huang@amd.com>, Paul Mackerras <paulus@samba.org>, Gerd Hoffmann <kraxel@redhat.com>, Daniel Bristot de Oliveira <bristot@redhat.com>, sparclinux@vger.kernel.org, Vincent Chen <deanbo422@gmail.com>, Christoph Hellwig <hch@lst.de>, Arnd Bergmann <arnd@arndb.de>, Max Filippov <jcmvbkbc@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>, x86@kernel.org, Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org, Ingo Molnar <mingo@kernel.org>, David Airlie <airlied@linux.ie>, VMware Graphics <linux-graphics-maintainer@vmware.c>
+Cc: Juri Lelli <juri.lelli@redhat.com>, linux-aio@kvack.org, Peter Zijlstra <peterz@infradead.org>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, Sebastian Andrzej Siewior <bigeasy@linutronix.de>, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, Ben Segall <bsegall@google.com>, Chris Mason <clm@fb.com>, Huang Rui <ray.huang@amd.com>, Paul Mackerras <paulus@samba.org>, Gerd Hoffmann <kraxel@redhat.com>, Daniel Bristot de Oliveira <bristot@redhat.com>, sparclinux@vger.kernel.org, Vincent Chen <deanbo422@gmail.com>, Christoph Hellwig <hch@lst.de>, Paul McKenney <paulmck@kernel.org>, Max Filippov <jcmvbkbc@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>, x86@kernel.org, Russell King <linux@armlinux.org.uk>, linux-csky@vger.kernel.org, Ingo Molnar <mingo@kernel.org>, David Airlie <airlied@linux.ie>, VMware Graphics <linux-graphics-maintainer@vmw>
 List-Id: nouveau.vger.kernel.org
 
 No reason having the same code in every architecture
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-Cc: Chris Zankel <chris@zankel.net>
-Cc: Max Filippov <jcmvbkbc@gmail.com>
-Cc: linux-xtensa@linux-xtensa.org
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: linux-mips@vger.kernel.org
 ---
 V3: Remove the kmap types cruft
 ---
- arch/xtensa/Kconfig               |    1 
- arch/xtensa/include/asm/fixmap.h  |    4 +--
- arch/xtensa/include/asm/highmem.h |   12 ++++++++-
- arch/xtensa/mm/highmem.c          |   46 ++++----------------------------------
- 4 files changed, 18 insertions(+), 45 deletions(-)
+ arch/mips/Kconfig                  |    1 
+ arch/mips/include/asm/fixmap.h     |    4 -
+ arch/mips/include/asm/highmem.h    |    6 +-
+ arch/mips/include/asm/kmap_types.h |   13 ------
+ arch/mips/mm/highmem.c             |   77 -------------------------------------
+ arch/mips/mm/init.c                |    4 -
+ 6 files changed, 6 insertions(+), 99 deletions(-)
 
---- a/arch/xtensa/Kconfig
-+++ b/arch/xtensa/Kconfig
-@@ -666,6 +666,7 @@ endchoice
+--- a/arch/mips/Kconfig
++++ b/arch/mips/Kconfig
+@@ -2719,6 +2719,7 @@ config WAR_MIPS34K_MISSED_ITLB
  config HIGHMEM
  	bool "High Memory Support"
- 	depends on MMU
+ 	depends on 32BIT && CPU_SUPPORTS_HIGHMEM && SYS_SUPPORTS_HIGHMEM && !CPU_MIPS32_3_5_EVA
 +	select KMAP_LOCAL
- 	help
- 	  Linux can use the full amount of RAM in the system by
- 	  default. However, the default MMUv2 setup only maps the
---- a/arch/xtensa/include/asm/fixmap.h
-+++ b/arch/xtensa/include/asm/fixmap.h
-@@ -16,7 +16,7 @@
+ 
+ config CPU_SUPPORTS_HIGHMEM
+ 	bool
+--- a/arch/mips/include/asm/fixmap.h
++++ b/arch/mips/include/asm/fixmap.h
+@@ -17,7 +17,7 @@
+ #include <spaces.h>
  #ifdef CONFIG_HIGHMEM
  #include <linux/threads.h>
- #include <linux/pgtable.h>
 -#include <asm/kmap_types.h>
 +#include <asm/kmap_size.h>
  #endif
  
  /*
-@@ -39,7 +39,7 @@ enum fixed_addresses {
+@@ -52,7 +52,7 @@ enum fixed_addresses {
+ #ifdef CONFIG_HIGHMEM
  	/* reserved pte's for temporary kernel mappings */
- 	FIX_KMAP_BEGIN,
- 	FIX_KMAP_END = FIX_KMAP_BEGIN +
--		(KM_TYPE_NR * NR_CPUS * DCACHE_N_COLORS) - 1,
-+		(KM_MAX_IDX * NR_CPUS * DCACHE_N_COLORS) - 1,
+ 	FIX_KMAP_BEGIN = FIX_CMAP_END + 1,
+-	FIX_KMAP_END = FIX_KMAP_BEGIN+(KM_TYPE_NR*NR_CPUS)-1,
++	FIX_KMAP_END = FIX_KMAP_BEGIN + (KM_MAX_IDX * NR_CPUS) - 1,
  #endif
  	__end_of_fixed_addresses
  };
---- a/arch/xtensa/include/asm/highmem.h
-+++ b/arch/xtensa/include/asm/highmem.h
-@@ -16,9 +16,8 @@
- #include <linux/pgtable.h>
- #include <asm/cacheflush.h>
- #include <asm/fixmap.h>
+--- a/arch/mips/include/asm/highmem.h
++++ b/arch/mips/include/asm/highmem.h
+@@ -24,7 +24,7 @@
+ #include <linux/interrupt.h>
+ #include <linux/uaccess.h>
+ #include <asm/cpu-features.h>
 -#include <asm/kmap_types.h>
++#include <asm/kmap_size.h>
  
--#define PKMAP_BASE		((FIXADDR_START - \
-+#define PKMAP_BASE		((FIXADDR_START -			\
- 				  (LAST_PKMAP + 1) * PAGE_SIZE) & PMD_MASK)
- #define LAST_PKMAP		(PTRS_PER_PTE * DCACHE_N_COLORS)
- #define LAST_PKMAP_MASK		(LAST_PKMAP - 1)
-@@ -68,6 +67,15 @@ static inline void flush_cache_kmaps(voi
- 	flush_cache_all();
- }
+ /* declarations for highmem.c */
+ extern unsigned long highstart_pfn, highend_pfn;
+@@ -48,11 +48,11 @@ extern pte_t *pkmap_page_table;
  
-+enum fixed_addresses kmap_local_map_idx(int type, unsigned long pfn);
-+#define arch_kmap_local_map_idx		kmap_local_map_idx
-+
-+enum fixed_addresses kmap_local_unmap_idx(int type, unsigned long addr);
-+#define arch_kmap_local_unmap_idx	kmap_local_unmap_idx
-+
-+#define arch_kmap_local_post_unmap(vaddr)	\
-+	local_flush_tlb_kernel_range(vaddr, vaddr + PAGE_SIZE)
-+
- void kmap_init(void);
+ #define ARCH_HAS_KMAP_FLUSH_TLB
+ extern void kmap_flush_tlb(unsigned long addr);
+-extern void *kmap_atomic_pfn(unsigned long pfn);
  
- #endif
---- a/arch/xtensa/mm/highmem.c
-+++ b/arch/xtensa/mm/highmem.c
-@@ -12,8 +12,6 @@
- #include <linux/highmem.h>
+ #define flush_cache_kmaps()	BUG_ON(cpu_has_dc_aliases)
+ 
+-extern void kmap_init(void);
++#define arch_kmap_local_post_map(vaddr, pteval)	local_flush_tlb_one(vaddr)
++#define arch_kmap_local_post_unmap(vaddr)	local_flush_tlb_one(vaddr)
+ 
+ #endif /* __KERNEL__ */
+ 
+--- a/arch/mips/include/asm/kmap_types.h
++++ /dev/null
+@@ -1,13 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
+-#ifndef _ASM_KMAP_TYPES_H
+-#define _ASM_KMAP_TYPES_H
+-
+-#ifdef CONFIG_DEBUG_HIGHMEM
+-#define	 __WITH_KM_FENCE
+-#endif
+-
+-#include <asm-generic/kmap_types.h>
+-
+-#undef __WITH_KM_FENCE
+-
+-#endif
+--- a/arch/mips/mm/highmem.c
++++ b/arch/mips/mm/highmem.c
+@@ -8,8 +8,6 @@
+ #include <asm/fixmap.h>
  #include <asm/tlbflush.h>
  
 -static pte_t *kmap_pte;
 -
- #if DCACHE_WAY_SIZE > PAGE_SIZE
- unsigned int last_pkmap_nr_arr[DCACHE_N_COLORS];
- wait_queue_head_t pkmap_map_wait_arr[DCACHE_N_COLORS];
-@@ -33,59 +31,25 @@ static inline void kmap_waitqueues_init(
+ unsigned long highstart_pfn, highend_pfn;
  
- static inline enum fixed_addresses kmap_idx(int type, unsigned long color)
- {
--	return (type + KM_TYPE_NR * smp_processor_id()) * DCACHE_N_COLORS +
-+	return (type + KM_MAX_IDX * smp_processor_id()) * DCACHE_N_COLORS +
- 		color;
+ void kmap_flush_tlb(unsigned long addr)
+@@ -17,78 +15,3 @@ void kmap_flush_tlb(unsigned long addr)
+ 	flush_tlb_one(addr);
  }
- 
--void *kmap_atomic_high_prot(struct page *page, pgprot_t prot)
-+enum fixed_addresses kmap_local_map_idx(int type, unsigned long pfn)
- {
--	enum fixed_addresses idx;
--	unsigned long vaddr;
+ EXPORT_SYMBOL(kmap_flush_tlb);
 -
--	idx = kmap_idx(kmap_atomic_idx_push(),
--		       DCACHE_ALIAS(page_to_phys(page)));
+-void *kmap_atomic_high_prot(struct page *page, pgprot_t prot)
+-{
+-	unsigned long vaddr;
+-	int idx, type;
+-
+-	type = kmap_atomic_idx_push();
+-	idx = type + KM_TYPE_NR*smp_processor_id();
 -	vaddr = __fix_to_virt(FIX_KMAP_BEGIN + idx);
 -#ifdef CONFIG_DEBUG_HIGHMEM
--	BUG_ON(!pte_none(*(kmap_pte + idx)));
+-	BUG_ON(!pte_none(*(kmap_pte - idx)));
 -#endif
--	set_pte(kmap_pte + idx, mk_pte(page, prot));
+-	set_pte(kmap_pte-idx, mk_pte(page, prot));
+-	local_flush_tlb_one((unsigned long)vaddr);
 -
--	return (void *)vaddr;
-+	return kmap_idx(type, DCACHE_ALIAS(pfn << PAGE_SHIFT));
- }
+-	return (void*) vaddr;
+-}
 -EXPORT_SYMBOL(kmap_atomic_high_prot);
- 
+-
 -void kunmap_atomic_high(void *kvaddr)
-+enum fixed_addresses kmap_local_unmap_idx(int type, unsigned long addr)
- {
--	if (kvaddr >= (void *)FIXADDR_START &&
--	    kvaddr < (void *)FIXADDR_TOP) {
--		int idx = kmap_idx(kmap_atomic_idx(),
--				   DCACHE_ALIAS((unsigned long)kvaddr));
+-{
+-	unsigned long vaddr = (unsigned long) kvaddr & PAGE_MASK;
+-	int type __maybe_unused;
+-
+-	if (vaddr < FIXADDR_START)
+-		return;
+-
+-	type = kmap_atomic_idx();
+-#ifdef CONFIG_DEBUG_HIGHMEM
+-	{
+-		int idx = type + KM_TYPE_NR * smp_processor_id();
+-
+-		BUG_ON(vaddr != __fix_to_virt(FIX_KMAP_BEGIN + idx));
 -
 -		/*
--		 * Force other mappings to Oops if they'll try to access this
--		 * pte without first remap it.  Keeping stale mappings around
--		 * is a bad idea also, in case the page changes cacheability
--		 * attributes or becomes a protected page in a hypervisor.
+-		 * force other mappings to Oops if they'll try to access
+-		 * this pte without first remap it
 -		 */
--		pte_clear(&init_mm, kvaddr, kmap_pte + idx);
--		local_flush_tlb_kernel_range((unsigned long)kvaddr,
--					     (unsigned long)kvaddr + PAGE_SIZE);
--
--		kmap_atomic_idx_pop();
+-		pte_clear(&init_mm, vaddr, kmap_pte-idx);
+-		local_flush_tlb_one(vaddr);
 -	}
-+	return kmap_idx(type, DCACHE_ALIAS(addr));
- }
+-#endif
+-	kmap_atomic_idx_pop();
+-}
 -EXPORT_SYMBOL(kunmap_atomic_high);
- 
- void __init kmap_init(void)
- {
+-
+-/*
+- * This is the same as kmap_atomic() but can map memory that doesn't
+- * have a struct page associated with it.
+- */
+-void *kmap_atomic_pfn(unsigned long pfn)
+-{
+-	unsigned long vaddr;
+-	int idx, type;
+-
+-	preempt_disable();
+-	pagefault_disable();
+-
+-	type = kmap_atomic_idx_push();
+-	idx = type + KM_TYPE_NR*smp_processor_id();
+-	vaddr = __fix_to_virt(FIX_KMAP_BEGIN + idx);
+-	set_pte(kmap_pte-idx, pfn_pte(pfn, PAGE_KERNEL));
+-	flush_tlb_one(vaddr);
+-
+-	return (void*) vaddr;
+-}
+-
+-void __init kmap_init(void)
+-{
 -	unsigned long kmap_vstart;
 -
- 	/* Check if this memory layout is broken because PKMAP overlaps
- 	 * page table.
- 	 */
- 	BUILD_BUG_ON(PKMAP_BASE < TLBTEMP_BASE_1 + TLBTEMP_SIZE);
 -	/* cache the first kmap pte */
 -	kmap_vstart = __fix_to_virt(FIX_KMAP_BEGIN);
 -	kmap_pte = virt_to_kpte(kmap_vstart);
- 	kmap_waitqueues_init();
- }
+-}
+--- a/arch/mips/mm/init.c
++++ b/arch/mips/mm/init.c
+@@ -36,7 +36,6 @@
+ #include <asm/cachectl.h>
+ #include <asm/cpu.h>
+ #include <asm/dma.h>
+-#include <asm/kmap_types.h>
+ #include <asm/maar.h>
+ #include <asm/mmu_context.h>
+ #include <asm/sections.h>
+@@ -402,9 +401,6 @@ void __init paging_init(void)
+ 
+ 	pagetable_init();
+ 
+-#ifdef CONFIG_HIGHMEM
+-	kmap_init();
+-#endif
+ #ifdef CONFIG_ZONE_DMA
+ 	max_zone_pfns[ZONE_DMA] = MAX_DMA_PFN;
+ #endif
