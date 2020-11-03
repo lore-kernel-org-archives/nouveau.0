@@ -1,45 +1,46 @@
 From: Jeremy Cline <jcline@redhat.com>
-Subject: [PATCH 0/3] drm/nouveau: fix a use-after-free in postclose()
-Date: Tue,  3 Nov 2020 14:49:09 -0500
-Message-ID: <20201103194912.184413-1-jcline@redhat.com>
+Subject: [PATCH 1/3] drm/nouveau: use drm_dev_unplug() during device removal
+Date: Tue,  3 Nov 2020 14:49:10 -0500
+Message-ID: <20201103194912.184413-2-jcline@redhat.com>
+References: <20201103194912.184413-1-jcline@redhat.com>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20201103194912.184413-1-jcline@redhat.com>
 To: Ben Skeggs <bskeggs@redhat.com>
 Cc: Lyude Paul <lyude@redhat.com>, Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Jeremy Cline <jcline@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-This series fixes a number of use-after-frees in nouveau's postclose()
-handler. It was discovered by pointing IGT's core_hotunplug tests at a
-nouveau device, but the steps to reproduce it are simple:
+Nouveau does not currently support hot-unplugging, but it still makes
+sense to switch from drm_dev_unregister() to drm_dev_unplug().
+drm_dev_unplug() calls drm_dev_unregister() after marking the device as
+unplugged, but only after any device critical sections are finished.
 
-1. Open the device file
-2. Unbind the driver or remove the device
-3. Close the file opened in step 1.
+Since nouveau isn't using drm_dev_enter() and drm_dev_exit(), there are
+no critical sections so this is nearly functionally equivalent. However,
+the DRM layer does check to see if the device is unplugged, and if it is
+returns appropriate error codes.
 
-During the device removal, the nouveau_drm structure is de-allocated,
-but is dereferenced in the postclose() handler.
+In the future nouveau can add critical sections in order to truly
+support hot-unplugging.
 
-One obvious solution is to ensure all the operations in the postclose()
-handler are valid by extending the lifetime of the nouveau_drm
-structure. This is possible with the new devm_drm_dev_alloc() interface,
-but the change is somewhat invasive so I thought it best to submit that
-work separately.
+Signed-off-by: Jeremy Cline <jcline@redhat.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Instead, we make use of the drm_dev_unplug() API, clean up all clients
-in the device removal call, and check to make sure the device has not
-been unplugged in the postclose() handler. While this does not enable
-hot-unplug support for nouveau, it's enough to avoid crashing the kernel
-and leads to all the core_hotunplug tests to pass.
-
-Jeremy Cline (3):
-  drm/nouveau: use drm_dev_unplug() during device removal
-  drm/nouveau: Add a dedicated mutex for the clients list
-  drm/nouveau: clean up all clients on device removal
-
- drivers/gpu/drm/nouveau/nouveau_drm.c | 39 +++++++++++++++++++++++----
- drivers/gpu/drm/nouveau/nouveau_drv.h |  5 ++++
- 2 files changed, 39 insertions(+), 5 deletions(-)
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index d141a5f004af..4fe4d664c5f2 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -792,7 +792,7 @@ nouveau_drm_device_remove(struct drm_device *dev)
+ 	struct nvkm_client *client;
+ 	struct nvkm_device *device;
+ 
+-	drm_dev_unregister(dev);
++	drm_dev_unplug(dev);
+ 
+ 	dev->irq_enabled = false;
+ 	client = nvxx_client(&drm->client.base);
 -- 
 2.28.0
