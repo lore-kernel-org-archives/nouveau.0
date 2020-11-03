@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 5.9 34/35] drm/nouveau/gem: fix
- "refcount_t: underflow; use-after-free"
-Date: Mon,  2 Nov 2020 20:18:39 -0500
-Message-ID: <20201103011840.182814-34-sashal@kernel.org>
-References: <20201103011840.182814-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.8 27/29] drm/nouveau/nouveau: fix the
+ start/end range for migration
+Date: Mon,  2 Nov 2020 20:19:26 -0500
+Message-ID: <20201103011928.183145-27-sashal@kernel.org>
+References: <20201103011928.183145-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20201103011840.182814-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <20201103011928.183145-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,36 +19,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 
-[ Upstream commit 925681454d7b557d404b5d28ef4469fac1b2e105 ]
+[ Upstream commit cfa736f5a6f31ca8a05459b5720aac030247ad1b ]
 
-we can't use nouveau_bo_ref here as no ttm object was allocated and
-nouveau_bo_ref mainly deals with that. Simply deallocate the object.
+The user level OpenCL code shouldn't have to align start and end
+addresses to a page boundary. That is better handled in the nouveau
+driver. The npages field is also redundant since it can be computed
+from the start and end addresses.
 
-Signed-off-by: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_gem.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nouveau_svm.c | 14 +++-----------
+ 1 file changed, 3 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index 81f111ad3f4fd..124d3dcc5c590 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -198,7 +198,8 @@ nouveau_gem_new(struct nouveau_cli *cli, u64 size, int align, uint32_t domain,
- 	 * to the caller, instead of a normal nouveau_bo ttm reference. */
- 	ret = drm_gem_object_init(drm->dev, &nvbo->bo.base, size);
- 	if (ret) {
--		nouveau_bo_ref(NULL, &nvbo);
-+		drm_gem_object_release(&nvbo->bo.base);
-+		kfree(nvbo);
- 		return ret;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+index 6586d9d398740..11b7cc3625cf8 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_svm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+@@ -116,11 +116,11 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ 	struct nouveau_cli *cli = nouveau_cli(file_priv);
+ 	struct drm_nouveau_svm_bind *args = data;
+ 	unsigned target, cmd, priority;
+-	unsigned long addr, end, size;
++	unsigned long addr, end;
+ 	struct mm_struct *mm;
+ 
+ 	args->va_start &= PAGE_MASK;
+-	args->va_end &= PAGE_MASK;
++	args->va_end = ALIGN(args->va_end, PAGE_SIZE);
+ 
+ 	/* Sanity check arguments */
+ 	if (args->reserved0 || args->reserved1)
+@@ -129,8 +129,6 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ 		return -EINVAL;
+ 	if (args->va_start >= args->va_end)
+ 		return -EINVAL;
+-	if (!args->npages)
+-		return -EINVAL;
+ 
+ 	cmd = args->header >> NOUVEAU_SVM_BIND_COMMAND_SHIFT;
+ 	cmd &= NOUVEAU_SVM_BIND_COMMAND_MASK;
+@@ -162,12 +160,6 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ 	if (args->stride)
+ 		return -EINVAL;
+ 
+-	size = ((unsigned long)args->npages) << PAGE_SHIFT;
+-	if ((args->va_start + size) <= args->va_start)
+-		return -EINVAL;
+-	if ((args->va_start + size) > args->va_end)
+-		return -EINVAL;
+-
+ 	/*
+ 	 * Ok we are ask to do something sane, for now we only support migrate
+ 	 * commands but we will add things like memory policy (what to do on
+@@ -182,7 +174,7 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ 		return -EINVAL;
  	}
+ 
+-	for (addr = args->va_start, end = args->va_start + size; addr < end;) {
++	for (addr = args->va_start, end = args->va_end; addr < end;) {
+ 		struct vm_area_struct *vma;
+ 		unsigned long next;
  
 -- 
 2.27.0
