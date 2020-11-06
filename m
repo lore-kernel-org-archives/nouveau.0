@@ -1,7 +1,7 @@
 From: Jeremy Cline <jcline@redhat.com>
-Subject: [PATCH 2/3] drm/nouveau: manage nouveau_drm lifetime with devres
-Date: Thu,  5 Nov 2020 21:16:55 -0500
-Message-ID: <20201106021656.40743-3-jcline@redhat.com>
+Subject: [PATCH 3/3] drm/nouveau: begin documenting core nouveau structures
+Date: Thu,  5 Nov 2020 21:16:56 -0500
+Message-ID: <20201106021656.40743-4-jcline@redhat.com>
 References: <20201106021656.40743-1-jcline@redhat.com>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -11,186 +11,133 @@ To: Ben Skeggs <bskeggs@redhat.com>
 Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Jeremy Cline <jcline@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-Make use of the devm_drm_dev_alloc() API to bind the lifetime of
-nouveau_drm structure to the drm_device. This is important because a
-reference to nouveau_drm is accessible from drm_device, which is
-provided to a number of DRM layer callbacks that can run after the
-deallocation of nouveau_drm currently occurs.
+Start on documentation for the Nouveau device structure and the NVIF
+client structure it uses. This documentation is not complete as the
+structures are non-trivial and I am not familiar with large portions of
+them.
 
 Signed-off-by: Jeremy Cline <jcline@redhat.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_drm.c | 44 ++++++++++++---------------
- drivers/gpu/drm/nouveau/nouveau_drv.h | 10 ++++--
- 2 files changed, 26 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_drv.h | 67 +++++++++++++++++++++++++++
+ 1 file changed, 67 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index bc6f51bf23b7..f750c25e92f9 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -30,9 +30,11 @@
- #include <linux/vga_switcheroo.h>
- #include <linux/mmu_notifier.h>
- 
-+#include <drm/drm_drv.h>
- #include <drm/drm_crtc_helper.h>
- #include <drm/drm_ioctl.h>
- #include <drm/drm_vblank.h>
-+#include <drm/drm_managed.h>
- 
- #include <core/gpuobj.h>
- #include <core/option.h>
-@@ -532,13 +534,8 @@ nouveau_parent = {
- static int
- nouveau_drm_device_init(struct drm_device *dev)
- {
--	struct nouveau_drm *drm;
- 	int ret;
--
--	if (!(drm = kzalloc(sizeof(*drm), GFP_KERNEL)))
--		return -ENOMEM;
--	dev->dev_private = drm;
--	drm->dev = dev;
-+	struct nouveau_drm *drm = nouveau_drm(dev);
- 
- 	nvif_parent_ctor(&nouveau_parent, &drm->parent);
- 	drm->master.base.object.parent = &drm->parent;
-@@ -620,7 +617,6 @@ nouveau_drm_device_init(struct drm_device *dev)
- 	nouveau_cli_fini(&drm->master);
- fail_alloc:
- 	nvif_parent_dtor(&drm->parent);
--	kfree(drm);
- 	return ret;
- }
- 
-@@ -654,7 +650,6 @@ nouveau_drm_device_fini(struct drm_device *dev)
- 	nouveau_cli_fini(&drm->client);
- 	nouveau_cli_fini(&drm->master);
- 	nvif_parent_dtor(&drm->parent);
--	kfree(drm);
- }
- 
- /*
-@@ -720,6 +715,7 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
- {
- 	struct nvkm_device *device;
- 	struct drm_device *drm_dev;
-+	struct nouveau_drm *nv_dev;
- 	int ret;
- 
- 	if (vga_switcheroo_client_probe_defer(pdev))
-@@ -750,15 +746,16 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
- 	if (nouveau_atomic)
- 		driver_pci.driver_features |= DRIVER_ATOMIC;
- 
--	drm_dev = drm_dev_alloc(&driver_pci, &pdev->dev);
--	if (IS_ERR(drm_dev)) {
--		ret = PTR_ERR(drm_dev);
-+	nv_dev = devm_drm_dev_alloc(&pdev->dev, &driver_stub, typeof(*nv_dev), drm_dev);
-+	if (IS_ERR(nv_dev)) {
-+		ret = PTR_ERR(nv_dev);
- 		goto fail_nvkm;
- 	}
-+	drm_dev = nouveau_to_drm_dev(nv_dev);
- 
- 	ret = pci_enable_device(pdev);
- 	if (ret)
--		goto fail_drm;
-+		goto fail_nvkm;
- 
- 	drm_dev->pdev = pdev;
- 	pci_set_drvdata(pdev, drm_dev);
-@@ -778,8 +775,6 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
- 	nouveau_drm_device_fini(drm_dev);
- fail_pci:
- 	pci_disable_device(pdev);
--fail_drm:
--	drm_dev_put(drm_dev);
- fail_nvkm:
- 	nvkm_device_del(&device);
- 	return ret;
-@@ -799,7 +794,6 @@ nouveau_drm_device_remove(struct drm_device *dev)
- 	device = nvkm_device_find(client->device);
- 
- 	nouveau_drm_device_fini(dev);
--	drm_dev_put(dev);
- 	nvkm_device_del(&device);
- }
- 
-@@ -1285,7 +1279,8 @@ nouveau_platform_device_create(const struct nvkm_device_tegra_func *func,
- 			       struct platform_device *pdev,
- 			       struct nvkm_device **pdevice)
- {
--	struct drm_device *drm;
-+	struct nouveau_drm *nv_dev;
-+	struct drm_device *drm_dev;
- 	int err;
- 
- 	err = nvkm_device_tegra_new(func, pdev, nouveau_config, nouveau_debug,
-@@ -1293,22 +1288,21 @@ nouveau_platform_device_create(const struct nvkm_device_tegra_func *func,
- 	if (err)
- 		goto err_free;
- 
--	drm = drm_dev_alloc(&driver_platform, &pdev->dev);
--	if (IS_ERR(drm)) {
--		err = PTR_ERR(drm);
-+	nv_dev = devm_drm_dev_alloc(&pdev->dev, &driver_platform, typeof(*nv_dev), drm_dev);
-+	if (IS_ERR(nv_dev)) {
-+		err = PTR_ERR(nv_dev);
- 		goto err_free;
- 	}
-+	drm_dev = nouveau_to_drm_dev(nv_dev);
- 
--	err = nouveau_drm_device_init(drm);
-+	err = nouveau_drm_device_init(drm_dev);
- 	if (err)
--		goto err_put;
-+		goto err_free;
- 
--	platform_set_drvdata(pdev, drm);
-+	platform_set_drvdata(pdev, drm_dev);
- 
--	return drm;
-+	return drm_dev;
- 
--err_put:
--	drm_dev_put(drm);
- err_free:
- 	nvkm_device_del(pdevice);
- 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index 3e2920a10099..cf6c33e52a5c 100644
+index cf6c33e52a5c..cf83d4bf3c6c 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_drv.h
 +++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -137,7 +137,11 @@ struct nouveau_drm {
- 	struct nvif_parent parent;
- 	struct nouveau_cli master;
- 	struct nouveau_cli client;
--	struct drm_device *dev;
+@@ -90,8 +90,20 @@ enum nouveau_drm_handle {
+ 	NVDRM_NVSW    = 0x55550000,
+ };
+ 
++/**
++ * struct nouveau_cli - A DRM-specific NVIF client.
++ *
++ * This encapsulates a NVIF client and is intended to be the sole interface
++ * between the DRM APIs and NVKM. An instance of this structure is allocated
++ * for each userspace client when they open the device file. Additionally,
++ * there are several allocated strictly for the kernel's use.
++ */
+ struct nouveau_cli {
+ 	struct nvif_client base;
 +
 +	/**
-+	 * @drm_dev: The parent DRM device object.
++	 * @drm: A reference to the device that the client is associated with.
 +	 */
-+	struct drm_device drm_dev;
+ 	struct nouveau_drm *drm;
+ 	struct mutex mutex;
  
+@@ -101,6 +113,9 @@ struct nouveau_cli {
+ 	struct nouveau_vmm svm;
+ 	const struct nvif_mclass *mem;
+ 
++	/**
++	 * @head: The list entry for this client in the @drm device's list of clients.
++	 */
+ 	struct list_head head;
+ 	void *abi16;
+ 	struct list_head objects;
+@@ -108,13 +123,36 @@ struct nouveau_cli {
+ 	char name[32];
+ 
+ 	struct work_struct work;
++
++	/**
++	 * @worker: List of pending &struct nouveau_cli_work associated with this client.
++	 */
+ 	struct list_head worker;
++
++	/**
++	 * @lock: Protects the @worker list. Additionally, this lock on the
++	 * @drm.master instance is used to serialize destruction of the @base
++	 * member in this structure, as well as the destruction of the &struct
++	 * nvif_mem embedded in &struct nouveau_mem instances.
++	 */
+ 	struct mutex lock;
+ };
+ 
++/**
++ * struct nouveau_cli_work - A pending work item for an NVIF client.
++ */
+ struct nouveau_cli_work {
+ 	void (*func)(struct nouveau_cli_work *);
++
++	/**
++	 * @cli: Reference to the NVIF client this work belongs to.
++	 */
+ 	struct nouveau_cli *cli;
++
++	/**
++	 * @head: The list entry for this work item in the &struct nouveau_cli
++	 * worker list.
++	 */
+ 	struct list_head head;
+ 
+ 	struct dma_fence *fence;
+@@ -133,9 +171,32 @@ nouveau_cli(struct drm_file *fpriv)
+ #include <nvif/object.h>
+ #include <nvif/parent.h>
+ 
++/**
++ * struct nouveau_drm - The nouveau-specific device structure.
++ *
++ * This structure is allocated for a device when it is probed and keeps track
++ * of all the nouveau-specific device details. The lifetime of this structure
++ * is the same as the lifetime of a &struct drm_device and is managed by the
++ * DRM layer.
++ */
+ struct nouveau_drm {
++	/**
++	 * @parent: Implementation of the interface required to use the NVIF_DEBUG
++	 * and NVIF_ERROR macros
++	 */
+ 	struct nvif_parent parent;
++
++	/**
++	 * @master: This NVIF client is used to initialize the NVIF driver and used
++	 * for TTM memory allocations. It is the root of the NVIF object tree.
++	 */
+ 	struct nouveau_cli master;
++
++	/**
++	 * @client: This NVIF client is used by the DRM layer to interact with
++	 * the NVKM layer for everything except TTM memory allocations. It, and
++	 * all other clients, are children of the primary (@master) client.
++	 */
+ 	struct nouveau_cli client;
+ 
+ 	/**
+@@ -143,6 +204,12 @@ struct nouveau_drm {
+ 	 */
+ 	struct drm_device drm_dev;
+ 
++	/**
++	 * @clients: List of all &struct nouveau_cli allocated for userspace
++	 * associated with this DRM device. Clients are allocated when the DRM
++	 * file is opened and deallocated when the file is closed. This list is
++	 * protected by the mutex in @client.
++	 */
  	struct list_head clients;
  
-@@ -237,7 +241,7 @@ struct nouveau_drm {
- static inline struct nouveau_drm *
- nouveau_drm(struct drm_device *dev)
- {
--	return dev->dev_private;
-+	return container_of(dev, struct nouveau_drm, drm_dev);
- }
- 
- /**
-@@ -251,7 +255,7 @@ nouveau_drm(struct drm_device *dev)
-  */
- static inline struct drm_device *
- nouveau_to_drm_dev(struct nouveau_drm *nv_dev) {
--	return nv_dev->dev;
-+	return &nv_dev->drm_dev;
- }
- 
- /**
+ 	u8 old_pm_cap;
 -- 
 2.28.0
