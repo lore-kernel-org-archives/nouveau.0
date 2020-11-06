@@ -1,143 +1,31 @@
-From: Jeremy Cline <jcline@redhat.com>
-Subject: [PATCH 3/3] drm/nouveau: begin documenting core nouveau structures
-Date: Thu,  5 Nov 2020 21:16:56 -0500
-Message-ID: <20201106021656.40743-4-jcline@redhat.com>
-References: <20201106021656.40743-1-jcline@redhat.com>
+From: Christoph Hellwig <hch@lst.de>
+Subject: Re: [PATCH v3 1/6] mm/thp: add prep_transhuge_device_private_page()
+Date: Fri, 6 Nov 2020 08:55:54 +0100
+Message-ID: <20201106075554.GA31341@lst.de>
+References: <20201106005147.20113-1-rcampbell@nvidia.com> <20201106005147.20113-2-rcampbell@nvidia.com>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20201106021656.40743-1-jcline@redhat.com>
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Jeremy Cline <jcline@redhat.com>
+Content-Disposition: inline
+In-Reply-To: <20201106005147.20113-2-rcampbell@nvidia.com>
+To: Ralph Campbell <rcampbell@nvidia.com>
+Cc: linux-mm@kvack.org, nouveau@lists.freedesktop.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>, Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Zi Yan <ziy@nvidia.com>, "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>, Yang Shi <yang.shi@linux.alibaba.com>, Ben Skeggs <bskeggs@redhat.com>, Shuah Khan <shuah@kernel.org>, Andrew Morton <akpm@linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
-Start on documentation for the Nouveau device structure and the NVIF
-client structure it uses. This documentation is not complete as the
-structures are non-trivial and I am not familiar with large portions of
-them.
+On Thu, Nov 05, 2020 at 04:51:42PM -0800, Ralph Campbell wrote:
+> +extern void prep_transhuge_device_private_page(struct page *page);
 
-Signed-off-by: Jeremy Cline <jcline@redhat.com>
----
- drivers/gpu/drm/nouveau/nouveau_drv.h | 67 +++++++++++++++++++++++++++
- 1 file changed, 67 insertions(+)
+No need for the extern.
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index cf6c33e52a5c..cf83d4bf3c6c 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -90,8 +90,20 @@ enum nouveau_drm_handle {
- 	NVDRM_NVSW    = 0x55550000,
- };
- 
-+/**
-+ * struct nouveau_cli - A DRM-specific NVIF client.
-+ *
-+ * This encapsulates a NVIF client and is intended to be the sole interface
-+ * between the DRM APIs and NVKM. An instance of this structure is allocated
-+ * for each userspace client when they open the device file. Additionally,
-+ * there are several allocated strictly for the kernel's use.
-+ */
- struct nouveau_cli {
- 	struct nvif_client base;
-+
-+	/**
-+	 * @drm: A reference to the device that the client is associated with.
-+	 */
- 	struct nouveau_drm *drm;
- 	struct mutex mutex;
- 
-@@ -101,6 +113,9 @@ struct nouveau_cli {
- 	struct nouveau_vmm svm;
- 	const struct nvif_mclass *mem;
- 
-+	/**
-+	 * @head: The list entry for this client in the @drm device's list of clients.
-+	 */
- 	struct list_head head;
- 	void *abi16;
- 	struct list_head objects;
-@@ -108,13 +123,36 @@ struct nouveau_cli {
- 	char name[32];
- 
- 	struct work_struct work;
-+
-+	/**
-+	 * @worker: List of pending &struct nouveau_cli_work associated with this client.
-+	 */
- 	struct list_head worker;
-+
-+	/**
-+	 * @lock: Protects the @worker list. Additionally, this lock on the
-+	 * @drm.master instance is used to serialize destruction of the @base
-+	 * member in this structure, as well as the destruction of the &struct
-+	 * nvif_mem embedded in &struct nouveau_mem instances.
-+	 */
- 	struct mutex lock;
- };
- 
-+/**
-+ * struct nouveau_cli_work - A pending work item for an NVIF client.
-+ */
- struct nouveau_cli_work {
- 	void (*func)(struct nouveau_cli_work *);
-+
-+	/**
-+	 * @cli: Reference to the NVIF client this work belongs to.
-+	 */
- 	struct nouveau_cli *cli;
-+
-+	/**
-+	 * @head: The list entry for this work item in the &struct nouveau_cli
-+	 * worker list.
-+	 */
- 	struct list_head head;
- 
- 	struct dma_fence *fence;
-@@ -133,9 +171,32 @@ nouveau_cli(struct drm_file *fpriv)
- #include <nvif/object.h>
- #include <nvif/parent.h>
- 
-+/**
-+ * struct nouveau_drm - The nouveau-specific device structure.
-+ *
-+ * This structure is allocated for a device when it is probed and keeps track
-+ * of all the nouveau-specific device details. The lifetime of this structure
-+ * is the same as the lifetime of a &struct drm_device and is managed by the
-+ * DRM layer.
-+ */
- struct nouveau_drm {
-+	/**
-+	 * @parent: Implementation of the interface required to use the NVIF_DEBUG
-+	 * and NVIF_ERROR macros
-+	 */
- 	struct nvif_parent parent;
-+
-+	/**
-+	 * @master: This NVIF client is used to initialize the NVIF driver and used
-+	 * for TTM memory allocations. It is the root of the NVIF object tree.
-+	 */
- 	struct nouveau_cli master;
-+
-+	/**
-+	 * @client: This NVIF client is used by the DRM layer to interact with
-+	 * the NVKM layer for everything except TTM memory allocations. It, and
-+	 * all other clients, are children of the primary (@master) client.
-+	 */
- 	struct nouveau_cli client;
- 
- 	/**
-@@ -143,6 +204,12 @@ struct nouveau_drm {
- 	 */
- 	struct drm_device drm_dev;
- 
-+	/**
-+	 * @clients: List of all &struct nouveau_cli allocated for userspace
-+	 * associated with this DRM device. Clients are allocated when the DRM
-+	 * file is opened and deallocated when the file is closed. This list is
-+	 * protected by the mutex in @client.
-+	 */
- 	struct list_head clients;
- 
- 	u8 old_pm_cap;
--- 
-2.28.0
+> +static inline void prep_transhuge_device_private_page(struct page *page)
+> +{
+> +}
+
+Is the code to call this even reachable if THP support is configured
+out?  If not just declaring it unconditionally and letting dead code
+elimination do its job might be a tad cleaner.
+
+> +void prep_transhuge_device_private_page(struct page *page)
+
+I think a kerneldoc comment explaining what this function is useful for
+would be helpful.
