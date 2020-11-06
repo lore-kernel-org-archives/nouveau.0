@@ -1,30 +1,38 @@
-From: Ralph Campbell <rcampbell@nvidia.com>
-Subject: Re: [PATCH v3 3/6] mm: support THP migration to device private memory
-Date: Fri, 6 Nov 2020 13:26:50 -0800
-Message-ID: <a7b8b90c-09b7-2009-0784-908b61f61ef2@nvidia.com>
-References: <20201106005147.20113-1-rcampbell@nvidia.com>
- <20201106005147.20113-4-rcampbell@nvidia.com> <20201106080322.GE31341@lst.de>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 0/2] drm/nouveau: Stable backport of DP clock
+ fixes for v5.9
+Date: Fri,  6 Nov 2020 18:30:13 -0500
+Message-ID: <20201106233016.2481179-1-lyude@redhat.com>
+References: <160459060724988@kroah.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20201106080322.GE31341@lst.de>
-Content-Language: en-US
-To: Christoph Hellwig <hch@lst.de>
-Cc: linux-mm@kvack.org, nouveau@lists.freedesktop.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>, Jason Gunthorpe <jgg@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Zi Yan <ziy@nvidia.com>, "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>, Yang Shi <yang.shi@linux.alibaba.com>, Ben Skeggs <bskeggs@redhat.com>, Shuah Khan <shuah@kernel.org>, Andrew Morton <akpm@linux-foundation.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <160459060724988-U8xfFu+wG4EAvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Just a backport of the two patches for v5.9 that you'll want to apply.
+The first one was Cc'd to stable, but I forgot to Cc the second one as
+well.
 
-On 11/6/20 12:03 AM, Christoph Hellwig wrote:
-> I hate the extra pin count magic here.  IMHO we really need to finish
-> off the series to get rid of the extra references on the ZONE_DEVICE
-> pages first.
+Lyude Paul (2):
+  drm/nouveau/kms/nv50-: Get rid of bogus nouveau_conn_mode_valid()
+  drm/nouveau/kms/nv50-: Fix clock checking algorithm in
+    nv50_dp_mode_valid()
 
-First, thanks for the review comments.
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 36 ++++++---------------
+ drivers/gpu/drm/nouveau/nouveau_dp.c        | 21 ++++++++----
+ 2 files changed, 24 insertions(+), 33 deletions(-)
 
-I don't like the extra refcount either, that is why I tried to fix that up
-before resending this series. However, you didn't like me just fixing the
-refcount only for device private pages and I don't know the dax/pmem code
-and peer-to-peer PCIe uses of ZONE_DEVICE pages well enough to say how
-long it will take me to fix all the use cases.
-So I wanted to make progress on the THP migration code in the mean time.
+-- 
+2.28.0
