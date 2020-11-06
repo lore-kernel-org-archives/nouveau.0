@@ -1,66 +1,211 @@
-From: Matthew Wilcox <willy-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>
-Subject: Re: [PATCH v3 1/6] mm/thp: add
- prep_transhuge_device_private_page()
-Date: Fri, 6 Nov 2020 12:14:07 +0000
-Message-ID: <20201106121407.GQ17076@casper.infradead.org>
-References: <20201106005147.20113-1-rcampbell@nvidia.com>
- <20201106005147.20113-2-rcampbell@nvidia.com>
+From: Karol Herbst <kherbst@redhat.com>
+Subject: Re: [Nouveau] [PATCH 2/3] drm/nouveau: manage nouveau_drm lifetime
+ with devres
+Date: Fri, 6 Nov 2020 14:31:44 +0100
+Message-ID: <CACO55tsRGOH5rwy-40_6FY_9mGZKfkiFBoAT2jowbQYmaLGK8g@mail.gmail.com>
+References: <20201106021656.40743-1-jcline@redhat.com> <20201106021656.40743-3-jcline@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20201106005147.20113-2-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Yang Shi <yang.shi-KPsoFbNs7GizrGE5bRqYAgC/G2K4zDHf@public.gmane.org>, Jason Gunthorpe <jgg-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Alistair Popple <apopple-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Zi Yan <ziy-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, "Kirill A . Shutemov" <kirill.shutemov-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20201106021656.40743-3-jcline@redhat.com>
+To: Jeremy Cline <jcline@redhat.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Nov 05, 2020 at 04:51:42PM -0800, Ralph Campbell wrote:
-> Add a helper function to allow device drivers to create device private
-> transparent huge pages. This is intended to help support device private
-> THP migrations.
+On Fri, Nov 6, 2020 at 3:17 AM Jeremy Cline <jcline@redhat.com> wrote:
+>
+> Make use of the devm_drm_dev_alloc() API to bind the lifetime of
+> nouveau_drm structure to the drm_device. This is important because a
+> reference to nouveau_drm is accessible from drm_device, which is
+> provided to a number of DRM layer callbacks that can run after the
+> deallocation of nouveau_drm currently occurs.
+>
+> Signed-off-by: Jeremy Cline <jcline@redhat.com>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_drm.c | 44 ++++++++++++---------------
+>  drivers/gpu/drm/nouveau/nouveau_drv.h | 10 ++++--
+>  2 files changed, 26 insertions(+), 28 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> index bc6f51bf23b7..f750c25e92f9 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> @@ -30,9 +30,11 @@
+>  #include <linux/vga_switcheroo.h>
+>  #include <linux/mmu_notifier.h>
+>
+> +#include <drm/drm_drv.h>
+>  #include <drm/drm_crtc_helper.h>
+>  #include <drm/drm_ioctl.h>
+>  #include <drm/drm_vblank.h>
+> +#include <drm/drm_managed.h>
+>
+>  #include <core/gpuobj.h>
+>  #include <core/option.h>
+> @@ -532,13 +534,8 @@ nouveau_parent = {
+>  static int
+>  nouveau_drm_device_init(struct drm_device *dev)
+>  {
+> -       struct nouveau_drm *drm;
+>         int ret;
+> -
+> -       if (!(drm = kzalloc(sizeof(*drm), GFP_KERNEL)))
+> -               return -ENOMEM;
+> -       dev->dev_private = drm;
+> -       drm->dev = dev;
+> +       struct nouveau_drm *drm = nouveau_drm(dev);
+>
+>         nvif_parent_ctor(&nouveau_parent, &drm->parent);
+>         drm->master.base.object.parent = &drm->parent;
+> @@ -620,7 +617,6 @@ nouveau_drm_device_init(struct drm_device *dev)
+>         nouveau_cli_fini(&drm->master);
+>  fail_alloc:
+>         nvif_parent_dtor(&drm->parent);
+> -       kfree(drm);
+>         return ret;
+>  }
+>
+> @@ -654,7 +650,6 @@ nouveau_drm_device_fini(struct drm_device *dev)
+>         nouveau_cli_fini(&drm->client);
+>         nouveau_cli_fini(&drm->master);
+>         nvif_parent_dtor(&drm->parent);
+> -       kfree(drm);
+>  }
+>
+>  /*
+> @@ -720,6 +715,7 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+>  {
+>         struct nvkm_device *device;
+>         struct drm_device *drm_dev;
+> +       struct nouveau_drm *nv_dev;
+>         int ret;
+>
+>         if (vga_switcheroo_client_probe_defer(pdev))
+> @@ -750,15 +746,16 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+>         if (nouveau_atomic)
+>                 driver_pci.driver_features |= DRIVER_ATOMIC;
+>
+> -       drm_dev = drm_dev_alloc(&driver_pci, &pdev->dev);
+> -       if (IS_ERR(drm_dev)) {
+> -               ret = PTR_ERR(drm_dev);
+> +       nv_dev = devm_drm_dev_alloc(&pdev->dev, &driver_stub, typeof(*nv_dev), drm_dev);
+> +       if (IS_ERR(nv_dev)) {
+> +               ret = PTR_ERR(nv_dev);
+>                 goto fail_nvkm;
+>         }
+> +       drm_dev = nouveau_to_drm_dev(nv_dev);
+>
+>         ret = pci_enable_device(pdev);
+>         if (ret)
+> -               goto fail_drm;
+> +               goto fail_nvkm;
+>
+>         drm_dev->pdev = pdev;
+>         pci_set_drvdata(pdev, drm_dev);
+> @@ -778,8 +775,6 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+>         nouveau_drm_device_fini(drm_dev);
+>  fail_pci:
+>         pci_disable_device(pdev);
+> -fail_drm:
+> -       drm_dev_put(drm_dev);
 
-I think you'd be better off with these calling conventions:
+it sounded like that when using devm_drm_dev_alloc we still have an
+initial refcount of 1, so at least in this regard nothing changed so I
+am wondering why this change is necessary and if the reason is
+unrelated it might make sense to move it into its own patch.
 
--void prep_transhuge_page(struct page *page)
-+struct page *thp_prep(struct page *page)
- {
-+       if (!page || compound_order(page) == 0)
-+               return page;
-        /*
--        * we use page->mapping and page->indexlru in second tail page
-+        * we use page->mapping and page->index in second tail page
-         * as list_head: assuming THP order >= 2
-         */
-+       BUG_ON(compound_order(page) == 1);
- 
-        INIT_LIST_HEAD(page_deferred_list(page));
-        set_compound_page_dtor(page, TRANSHUGE_PAGE_DTOR);
-+
-+       return page;
- }
-
-It simplifies the users.
-
-> +void prep_transhuge_device_private_page(struct page *page)
-> +{
-> +	prep_compound_page(page, HPAGE_PMD_ORDER);
-> +	prep_transhuge_page(page);
-> +	/* Only the head page has a reference to the pgmap. */
-> +	percpu_ref_put_many(page->pgmap->ref, HPAGE_PMD_NR - 1);
-> +}
-> +EXPORT_SYMBOL_GPL(prep_transhuge_device_private_page);
-
-Something else that may interest you from my patch series is support
-for page sizes other than PMD_SIZE.  I don't know what page sizes your
-hardware supports.  There's no support for page sizes other than PMD
-for anonymous memory, so this might not be too useful for you yet.
+>  fail_nvkm:
+>         nvkm_device_del(&device);
+>         return ret;
+> @@ -799,7 +794,6 @@ nouveau_drm_device_remove(struct drm_device *dev)
+>         device = nvkm_device_find(client->device);
+>
+>         nouveau_drm_device_fini(dev);
+> -       drm_dev_put(dev);
+>         nvkm_device_del(&device);
+>  }
+>
+> @@ -1285,7 +1279,8 @@ nouveau_platform_device_create(const struct nvkm_device_tegra_func *func,
+>                                struct platform_device *pdev,
+>                                struct nvkm_device **pdevice)
+>  {
+> -       struct drm_device *drm;
+> +       struct nouveau_drm *nv_dev;
+> +       struct drm_device *drm_dev;
+>         int err;
+>
+>         err = nvkm_device_tegra_new(func, pdev, nouveau_config, nouveau_debug,
+> @@ -1293,22 +1288,21 @@ nouveau_platform_device_create(const struct nvkm_device_tegra_func *func,
+>         if (err)
+>                 goto err_free;
+>
+> -       drm = drm_dev_alloc(&driver_platform, &pdev->dev);
+> -       if (IS_ERR(drm)) {
+> -               err = PTR_ERR(drm);
+> +       nv_dev = devm_drm_dev_alloc(&pdev->dev, &driver_platform, typeof(*nv_dev), drm_dev);
+> +       if (IS_ERR(nv_dev)) {
+> +               err = PTR_ERR(nv_dev);
+>                 goto err_free;
+>         }
+> +       drm_dev = nouveau_to_drm_dev(nv_dev);
+>
+> -       err = nouveau_drm_device_init(drm);
+> +       err = nouveau_drm_device_init(drm_dev);
+>         if (err)
+> -               goto err_put;
+> +               goto err_free;
+>
+> -       platform_set_drvdata(pdev, drm);
+> +       platform_set_drvdata(pdev, drm_dev);
+>
+> -       return drm;
+> +       return drm_dev;
+>
+> -err_put:
+> -       drm_dev_put(drm);
+>  err_free:
+>         nvkm_device_del(pdevice);
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
+> index 3e2920a10099..cf6c33e52a5c 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_drv.h
+> +++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
+> @@ -137,7 +137,11 @@ struct nouveau_drm {
+>         struct nvif_parent parent;
+>         struct nouveau_cli master;
+>         struct nouveau_cli client;
+> -       struct drm_device *dev;
+> +
+> +       /**
+> +        * @drm_dev: The parent DRM device object.
+> +        */
+> +       struct drm_device drm_dev;
+>
+>         struct list_head clients;
+>
+> @@ -237,7 +241,7 @@ struct nouveau_drm {
+>  static inline struct nouveau_drm *
+>  nouveau_drm(struct drm_device *dev)
+>  {
+> -       return dev->dev_private;
+> +       return container_of(dev, struct nouveau_drm, drm_dev);
+>  }
+>
+>  /**
+> @@ -251,7 +255,7 @@ nouveau_drm(struct drm_device *dev)
+>   */
+>  static inline struct drm_device *
+>  nouveau_to_drm_dev(struct nouveau_drm *nv_dev) {
+> -       return nv_dev->dev;
+> +       return &nv_dev->drm_dev;
+>  }
+>
+>  /**
+> --
+> 2.28.0
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
+>
