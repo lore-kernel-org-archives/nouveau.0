@@ -1,82 +1,74 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v3 2/6] mm/migrate: move migrate_vma_collect_skip()
-Date: Thu, 5 Nov 2020 16:51:43 -0800
-Message-ID: <20201106005147.20113-3-rcampbell@nvidia.com>
+From: Ralph Campbell <rcampbell@nvidia.com>
+Subject: [PATCH v3 4/6] mm/thp: add THP allocation helper
+Date: Thu, 5 Nov 2020 16:51:45 -0800
+Message-ID: <20201106005147.20113-5-rcampbell@nvidia.com>
 References: <20201106005147.20113-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20201106005147.20113-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Yang Shi <yang.shi-KPsoFbNs7GizrGE5bRqYAgC/G2K4zDHf@public.gmane.org>, Zi Yan <ziy-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Alistair Popple <apopple-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, "Kirill A . Shutemov" <kirill.shutemov-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20201106005147.20113-1-rcampbell@nvidia.com>
+To: linux-mm@kvack.org, nouveau@lists.freedesktop.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>, Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Zi Yan <ziy@nvidia.com>, "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>, Yang Shi <yang.shi@linux.alibaba.com>, Ben Skeggs <bskeggs@redhat.com>, Shuah Khan <shuah@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, Ralph Campbell <rcampbell@nvidia.com>
 List-Id: nouveau.vger.kernel.org
 
-Move the definition of migrate_vma_collect_skip() to make it callable
-by migrate_vma_collect_hole(). This helps make the next patch easier
-to read.
+Transparent huge page allocation policy is controlled by several sysfs
+variables. Rather than expose these to each device driver that needs to
+allocate THPs, provide a helper function.
 
-Signed-off-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
 ---
- mm/migrate.c | 30 +++++++++++++++---------------
- 1 file changed, 15 insertions(+), 15 deletions(-)
+ include/linux/gfp.h | 10 ++++++++++
+ mm/huge_memory.c    | 14 ++++++++++++++
+ 2 files changed, 24 insertions(+)
 
-diff --git a/mm/migrate.c b/mm/migrate.c
-index c1585ec29827..665516319b66 100644
---- a/mm/migrate.c
-+++ b/mm/migrate.c
-@@ -2253,6 +2253,21 @@ int migrate_misplaced_transhuge_page(struct mm_struct *mm,
- #endif /* CONFIG_NUMA */
- 
- #ifdef CONFIG_DEVICE_PRIVATE
-+static int migrate_vma_collect_skip(unsigned long start,
-+				    unsigned long end,
-+				    struct mm_walk *walk)
+diff --git a/include/linux/gfp.h b/include/linux/gfp.h
+index c603237e006c..242398c4b556 100644
+--- a/include/linux/gfp.h
++++ b/include/linux/gfp.h
+@@ -564,6 +564,16 @@ static inline struct page *alloc_pages(gfp_t gfp_mask,=
+ unsigned int order)
+ #define alloc_page(gfp_mask) alloc_pages(gfp_mask, 0)
+ #define alloc_page_vma(gfp_mask, vma, addr)			\
+ 	alloc_pages_vma(gfp_mask, 0, vma, addr, numa_node_id(), false)
++#ifdef CONFIG_TRANSPARENT_HUGEPAGE
++extern struct page *alloc_transhugepage(struct vm_area_struct *vma,
++					unsigned long addr);
++#else
++static inline struct page *alloc_transhugepage(struct vm_area_struct *vma,
++						unsigned long addr)
 +{
-+	struct migrate_vma *migrate = walk->private;
-+	unsigned long addr;
-+
-+	for (addr = start; addr < end; addr += PAGE_SIZE) {
-+		migrate->dst[migrate->npages] = 0;
-+		migrate->src[migrate->npages++] = 0;
-+	}
-+
-+	return 0;
++	return NULL;
 +}
-+
- static int migrate_vma_collect_hole(unsigned long start,
- 				    unsigned long end,
- 				    __always_unused int depth,
-@@ -2281,21 +2296,6 @@ static int migrate_vma_collect_hole(unsigned long start,
- 	return 0;
++#endif
+=20
+ extern unsigned long __get_free_pages(gfp_t gfp_mask, unsigned int order);
+ extern unsigned long get_zeroed_page(gfp_t gfp_mask);
+diff --git a/mm/huge_memory.c b/mm/huge_memory.c
+index a073e66d0ee2..c2c1d3e7c35f 100644
+--- a/mm/huge_memory.c
++++ b/mm/huge_memory.c
+@@ -765,6 +765,20 @@ vm_fault_t do_huge_pmd_anonymous_page(struct vm_fault =
+*vmf)
+ 	return __do_huge_pmd_anonymous_page(vmf, page, gfp);
  }
- 
--static int migrate_vma_collect_skip(unsigned long start,
--				    unsigned long end,
--				    struct mm_walk *walk)
--{
--	struct migrate_vma *migrate = walk->private;
--	unsigned long addr;
--
--	for (addr = start; addr < end; addr += PAGE_SIZE) {
--		migrate->dst[migrate->npages] = 0;
--		migrate->src[migrate->npages++] = 0;
--	}
--
--	return 0;
--}
--
- static int migrate_vma_collect_pmd(pmd_t *pmdp,
- 				   unsigned long start,
- 				   unsigned long end,
--- 
+=20
++struct page *alloc_transhugepage(struct vm_area_struct *vma,
++				 unsigned long haddr)
++{
++	gfp_t gfp;
++	struct page *page;
++
++	gfp =3D alloc_hugepage_direct_gfpmask(vma);
++	page =3D alloc_hugepage_vma(gfp, vma, haddr, HPAGE_PMD_ORDER);
++	if (page)
++		prep_transhuge_page(page);
++	return page;
++}
++EXPORT_SYMBOL_GPL(alloc_transhugepage);
++
+ static void insert_pfn_pmd(struct vm_area_struct *vma, unsigned long addr,
+ 		pmd_t *pmd, pfn_t pfn, pgprot_t prot, bool write,
+ 		pgtable_t pgtable)
+--=20
 2.20.1
