@@ -1,49 +1,34 @@
-From: Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH] drm: remove unneeded break
-Date: Sun, 8 Nov 2020 18:59:45 +0100
-Message-ID: <20201108175945.GA1508644@ravnborg.org>
-References: <20201019163115.25814-1-trix@redhat.com>
- <20201019170641.GA963808@ravnborg.org>
+From: Christoph Hellwig <hch@lst.de>
+Subject: Re: [PATCH v3 3/6] mm: support THP migration to device private
+ memory
+Date: Mon, 9 Nov 2020 10:14:15 +0100
+Message-ID: <20201109091415.GC28918@lst.de>
+References: <20201106005147.20113-1-rcampbell@nvidia.com> <20201106005147.20113-4-rcampbell@nvidia.com> <20201106080322.GE31341@lst.de> <a7b8b90c-09b7-2009-0784-908b61f61ef2@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <virtualization-bounces@lists.linux-foundation.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20201019170641.GA963808@ravnborg.org>
-List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/virtualization>,
- <mailto:virtualization-request@lists.linux-foundation.org?subject=unsubscribe>
-List-Archive: <http://lists.linuxfoundation.org/pipermail/virtualization/>
-List-Post: <mailto:virtualization@lists.linux-foundation.org>
-List-Help: <mailto:virtualization-request@lists.linux-foundation.org?subject=help>
-List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/virtualization>,
- <mailto:virtualization-request@lists.linux-foundation.org?subject=subscribe>
-Errors-To: virtualization-bounces@lists.linux-foundation.org
-Sender: "Virtualization" <virtualization-bounces@lists.linux-foundation.org>
-To: trix@redhat.com
-Cc: airlied@linux.ie, nouveau@lists.freedesktop.org, gustavoars@kernel.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, tzimmermann@suse.de, airlied@redhat.com, spice-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, bskeggs@redhat.com
+In-Reply-To: <a7b8b90c-09b7-2009-0784-908b61f61ef2@nvidia.com>
+To: Ralph Campbell <rcampbell@nvidia.com>
+Cc: Christoph Hellwig <hch@lst.de>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>, Jason Gunthorpe <jgg@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Zi Yan <ziy@nvidia.com>, "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>, Yang Shi <yang.shi@linux.alibaba.com>, Ben Skeggs <bskeggs@redhat.com>, Shuah Khan <shuah@kernel.org>, Andrew Morton <akpm@linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi Tom
-On Mon, Oct 19, 2020 at 07:06:41PM +0200, Sam Ravnborg wrote:
-> Hi Tom
-> On Mon, Oct 19, 2020 at 09:31:15AM -0700, trix@redhat.com wrote:
-> > From: Tom Rix <trix@redhat.com>
-> > 
-> > A break is not needed if it is preceded by a return or break
-> > 
-> > Signed-off-by: Tom Rix <trix@redhat.com>
-> 
-> Looks good and builds with no warnings.
-> 
-> One of the diffs made me - "oh this looks wrong". But after I looked again
-> it was right and the resulting code is more readable - so good.
-> 
-> Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> 
-> Was tempted to just apply to drm-misc-next but will give others the
-> opportunity to chime in.
+On Fri, Nov 06, 2020 at 01:26:50PM -0800, Ralph Campbell wrote:
+>
+> On 11/6/20 12:03 AM, Christoph Hellwig wrote:
+>> I hate the extra pin count magic here.  IMHO we really need to finish
+>> off the series to get rid of the extra references on the ZONE_DEVICE
+>> pages first.
+>
+> First, thanks for the review comments.
+>
+> I don't like the extra refcount either, that is why I tried to fix that up
+> before resending this series. However, you didn't like me just fixing the
+> refcount only for device private pages and I don't know the dax/pmem code
+> and peer-to-peer PCIe uses of ZONE_DEVICE pages well enough to say how
+> long it will take me to fix all the use cases.
+> So I wanted to make progress on the THP migration code in the mean time.
 
-Thanks.
-Now applied to drm-misc-next - will show up in -next in a week or so.
-
-	Sam
+I think P2P is pretty trivial, given that ZONE_DEVICE pages are used like
+a normal memory allocator.  DAX is the interesting case, any specific
+help that you need with that?
