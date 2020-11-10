@@ -1,120 +1,239 @@
-From: "Ruhl, Michael J" <michael.j.ruhl-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Subject: RE: [PATCH] drm/nouveau: Fix out-of-bounds access when deferencing
- MMU type
-Date: Tue, 10 Nov 2020 15:27:01 +0000
-Message-ID: <85758a6215f74917aee81b18d037fb82@intel.com>
-References: <20201110133655.13174-1-tzimmermann@suse.de>
+From: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH 2/3] drm/nouveau: manage nouveau_drm lifetime
+ with devres
+Date: Tue, 10 Nov 2020 16:34:56 -0500
+Message-ID: <20201110213456.GB32222@xps13>
+References: <20201106021656.40743-1-jcline@redhat.com>
+ <20201106021656.40743-3-jcline@redhat.com>
+ <CACO55tsRGOH5rwy-40_6FY_9mGZKfkiFBoAT2jowbQYmaLGK8g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20201110133655.13174-1-tzimmermann-l3A5Bk7waGM@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, "bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org" <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "airlied-cv59FeDIM0c@public.gmane.org" <airlied-cv59FeDIM0c@public.gmane.org>, "daniel-/w4YWyX8dFk@public.gmane.org" <daniel-/w4YWyX8dFk@public.gmane.org>, "christian.koenig-5C7GfCeVMHo@public.gmane.org" <christian.koenig-5C7GfCeVMHo@public.gmane.org>
-Cc: "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Maxime Ripard <mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, "virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org" <virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>, Roland Scheidegger <sroland-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>, Huang Rui <ray.huang-5C7GfCeVMHo@public.gmane.org>, VMware Graphics <linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Likun Gao <Likun.Gao-5C7GfCeVMHo@public.gmane.org>, Felix Kuehling <Felix.Kuehling-5C7GfCeVMHo@public.gmane.org>, Hawking Zhang <Hawking.Zhang-5C7GfCeVMHo@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CACO55tsRGOH5rwy-40_6FY_9mGZKfkiFBoAT2jowbQYmaLGK8g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Disposition: inline
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IFRob21hcyBaaW1tZXJtYW5u
-IDx0emltbWVybWFubkBzdXNlLmRlPg0KPlNlbnQ6IFR1ZXNkYXksIE5vdmVtYmVyIDEwLCAyMDIw
-IDg6MzcgQU0NCj5UbzogYnNrZWdnc0ByZWRoYXQuY29tOyBhaXJsaWVkQGxpbnV4LmllOyBkYW5p
-ZWxAZmZ3bGwuY2g7IFJ1aGwsIE1pY2hhZWwgSg0KPjxtaWNoYWVsLmoucnVobEBpbnRlbC5jb20+
-OyBjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20NCj5DYzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmc7IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IFRob21hcw0KPlppbW1lcm1h
-bm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+OyBNYWFydGVuIExhbmtob3JzdA0KPjxtYWFydGVuLmxh
-bmtob3JzdEBsaW51eC5pbnRlbC5jb20+OyBNYXhpbWUgUmlwYXJkDQo+PG1yaXBhcmRAa2VybmVs
-Lm9yZz47IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+OyBHZXJkIEhvZmZtYW5uDQo+
-PGtyYXhlbEByZWRoYXQuY29tPjsgQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQu
-Y29tPjsNCj5WTXdhcmUgR3JhcGhpY3MgPGxpbnV4LWdyYXBoaWNzLW1haW50YWluZXJAdm13YXJl
-LmNvbT47IFJvbGFuZA0KPlNjaGVpZGVnZ2VyIDxzcm9sYW5kQHZtd2FyZS5jb20+OyBIdWFuZyBS
-dWkgPHJheS5odWFuZ0BhbWQuY29tPjsNCj5GZWxpeCBLdWVobGluZyA8RmVsaXguS3VlaGxpbmdA
-YW1kLmNvbT47IEhhd2tpbmcgWmhhbmcNCj48SGF3a2luZy5aaGFuZ0BhbWQuY29tPjsgSmFzb24g
-R3VudGhvcnBlIDxqZ2dAemllcGUuY2E+OyBMaWt1biBHYW8NCj48TGlrdW4uR2FvQGFtZC5jb20+
-OyB2aXJ0dWFsaXphdGlvbkBsaXN0cy5saW51eC1mb3VuZGF0aW9uLm9yZzsgc3BpY2UtDQo+ZGV2
-ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0K
-PlN1YmplY3Q6IFtQQVRDSF0gZHJtL25vdXZlYXU6IEZpeCBvdXQtb2YtYm91bmRzIGFjY2VzcyB3
-aGVuIGRlZmVyZW5jaW5nDQo+TU1VIHR5cGUNCj4NCj5UaGUgdmFsdWUgb2Ygc3RydWN0IGRybV9k
-ZXZpY2UudHRtLnR5cGVfdnJhbSBjYW4gYmVjb21lIC0xIGZvciB1bmtub3duDQo+dHlwZXMgb2Yg
-bWVtb3J5IChzZWUgbm91dmVhdV90dG1faW5pdCgpKS4gVGhpcyBsZWFkcyB0byBhbiBvdXQtb2Yt
-Ym91bmRzDQo+ZXJyb3Igd2hlbiBhY2Nlc3Npbmcgc3RydWN0IG52aWZfbW11LnR5cGVbXToNCg0K
-V291bGQgdGhpcyBtYWtlIG1vcmUgc2Vuc2UgdG8ganVzdCBzZXQgdGhlIHR5cGVfdnJhbSA9IDAg
-aW5zdGVhZCBvZiAtMT8NCg0KTWlrZQ0KDQo+DQo+ICBbICAgMTguMzA0MTE2XQ0KPj09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09DQo+PT09
-PT09PQ0KPiAgWyAgIDE4LjMxMTY0OV0gQlVHOiBLQVNBTjogc2xhYi1vdXQtb2YtYm91bmRzIGlu
-DQo+bm91dmVhdV90dG1faW9fbWVtX3Jlc2VydmUrMHgxN2EvMHg3ZTAgW25vdXZlYXVdDQo+ICBb
-ICAgMTguMzIwNDE1XSBSZWFkIG9mIHNpemUgMSBhdCBhZGRyIGZmZmY4ODgxMGZmYWMxZmUgYnkg
-dGFzayBzeXN0ZW1kLQ0KPnVkZXZkLzM0Mg0KPiAgWyAgIDE4LjMyNzY4MV0NCj4gIFsgICAxOC4z
-MjkyMDhdIENQVTogMSBQSUQ6IDM0MiBDb21tOiBzeXN0ZW1kLXVkZXZkIFRhaW50ZWQ6IEcgICAg
-ICAgICAgICBFDQo+NS4xMC4wLXJjMi0xLWRlZmF1bHQrICM1ODENCj4gIFsgICAxOC4zMzg2ODFd
-IEhhcmR3YXJlIG5hbWU6IERlbGwgSW5jLiBPcHRpUGxleCA5MDIwLzBONFlDOCwgQklPUyBBMjQN
-Cj4xMC8yNC8yMDE4DQo+ICBbICAgMTguMzQ2MDMyXSBDYWxsIFRyYWNlOg0KPiAgWyAgIDE4LjM0
-ODUzNl0gIGR1bXBfc3RhY2srMHhhZS8weGU1DQo+ICBbICAgMTguMzUxOTE5XSAgcHJpbnRfYWRk
-cmVzc19kZXNjcmlwdGlvbi5jb25zdHByb3AuMCsweDE3LzB4ZjANCj4gIFsgICAxOC4zNTc3ODdd
-ICA/IG5vdXZlYXVfdHRtX2lvX21lbV9yZXNlcnZlKzB4MTdhLzB4N2UwIFtub3V2ZWF1XQ0KPiAg
-WyAgIDE4LjM2MzgxOF0gIF9fa2FzYW5fcmVwb3J0LmNvbGQrMHgyMC8weDM4DQo+ICBbICAgMTgu
-MzY4MDk5XSAgPyBub3V2ZWF1X3R0bV9pb19tZW1fcmVzZXJ2ZSsweDE3YS8weDdlMCBbbm91dmVh
-dV0NCj4gIFsgICAxOC4zNzQxMzNdICBrYXNhbl9yZXBvcnQrMHgzYS8weDUwDQo+ICBbICAgMTgu
-Mzc3Nzg5XSAgbm91dmVhdV90dG1faW9fbWVtX3Jlc2VydmUrMHgxN2EvMHg3ZTAgW25vdXZlYXVd
-DQo+ICA8Li4uPg0KPiAgWyAgIDE4Ljc2NzY5MF0gQWxsb2NhdGVkIGJ5IHRhc2sgMzQyOg0KPiAg
-WyAgIDE4Ljc3MzA4N10gIGthc2FuX3NhdmVfc3RhY2srMHgxYi8weDQwDQo+ICBbICAgMTguNzc4
-ODkwXSAgX19rYXNhbl9rbWFsbG9jLmNvbnN0cHJvcC4wKzB4YmYvMHhkMA0KPiAgWyAgIDE4Ljc4
-NTY0Nl0gIF9fa21hbGxvY190cmFja19jYWxsZXIrMHgxYmUvMHgzOTANCj4gIFsgICAxOC43OTIx
-NjVdICBrc3RyZHVwX2NvbnN0KzB4NDYvMHg3MA0KPiAgWyAgIDE4Ljc5NzY4Nl0gIGtvYmplY3Rf
-c2V0X25hbWVfdmFyZ3MrMHgyZi8weGIwDQo+ICBbICAgMTguODAzOTkyXSAga29iamVjdF9pbml0
-X2FuZF9hZGQrMHg5ZC8weGYwDQo+ICBbICAgMTguODEwMTE3XSAgdHRtX21lbV9nbG9iYWxfaW5p
-dCsweDEyYy8weDIxMCBbdHRtXQ0KPiAgWyAgIDE4LjgxNjg1M10gIHR0bV9ib19nbG9iYWxfaW5p
-dCsweDRhLzB4MTYwIFt0dG1dDQo+ICBbICAgMTguODIzNDIwXSAgdHRtX2JvX2RldmljZV9pbml0
-KzB4MzkvMHgyMjAgW3R0bV0NCj4gIFsgICAxOC44MzAwNDZdICBub3V2ZWF1X3R0bV9pbml0KzB4
-MmMzLzB4ODMwIFtub3V2ZWF1XQ0KPiAgWyAgIDE4LjgzNjkyOV0gIG5vdXZlYXVfZHJtX2Rldmlj
-ZV9pbml0KzB4MWI0LzB4M2YwIFtub3V2ZWF1XQ0KPiAgPC4uLj4NCj4gIFsgICAxOS4xMDUzMzZd
-DQo+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT0NCj49PT09PT09DQo+DQo+Rml4IHRoaXMgZXJyb3IsIGJ5IG5vdCB1c2luZyB0eXBlX3Zy
-YW0gYXMgYW4gaW5kZXggaWYgaXQncyBuZWdhdGl2ZS4NCj5Bc3N1bWUgZGVmYXVsdCB2YWx1ZXMg
-aW5zdGVhZC4NCj4NCj5UaGUgZXJyb3Igd2FzIHNlZW4gb24gTnZpZGlhIEc3MiBoYXJkd2FyZS4N
-Cj4NCj5TaWduZWQtb2ZmLWJ5OiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5k
-ZT4NCj5GaXhlczogMWNmNjVjNDUxODNhICgiZHJtL3R0bTogYWRkIGNhY2hpbmcgc3RhdGUgdG8g
-dHRtX2J1c19wbGFjZW1lbnQiKQ0KPkNjOiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29l
-bmlnQGFtZC5jb20+DQo+Q2M6IE1pY2hhZWwgSi4gUnVobCA8bWljaGFlbC5qLnJ1aGxAaW50ZWwu
-Y29tPg0KPkNjOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50
-ZWwuY29tPg0KPkNjOiBNYXhpbWUgUmlwYXJkIDxtcmlwYXJkQGtlcm5lbC5vcmc+DQo+Q2M6IFRo
-b21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPg0KPkNjOiBEYXZpZCBBaXJsaWUg
-PGFpcmxpZWRAbGludXguaWU+DQo+Q2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4N
-Cj5DYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPg0KPkNjOiBEYXZlIEFpcmxpZSA8
-YWlybGllZEByZWRoYXQuY29tPg0KPkNjOiBHZXJkIEhvZmZtYW5uIDxrcmF4ZWxAcmVkaGF0LmNv
-bT4NCj5DYzogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPg0KPkNjOiAi
-Q2hyaXN0aWFuIEvDtm5pZyIgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4NCj5DYzogVk13YXJl
-IEdyYXBoaWNzIDxsaW51eC1ncmFwaGljcy1tYWludGFpbmVyQHZtd2FyZS5jb20+DQo+Q2M6IFJv
-bGFuZCBTY2hlaWRlZ2dlciA8c3JvbGFuZEB2bXdhcmUuY29tPg0KPkNjOiBIdWFuZyBSdWkgPHJh
-eS5odWFuZ0BhbWQuY29tPg0KPkNjOiBGZWxpeCBLdWVobGluZyA8RmVsaXguS3VlaGxpbmdAYW1k
-LmNvbT4NCj5DYzogSGF3a2luZyBaaGFuZyA8SGF3a2luZy5aaGFuZ0BhbWQuY29tPg0KPkNjOiBK
-YXNvbiBHdW50aG9ycGUgPGpnZ0B6aWVwZS5jYT4NCj5DYzogTGlrdW4gR2FvIDxMaWt1bi5HYW9A
-YW1kLmNvbT4NCj5DYzogZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPkNjOiBub3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPkNjOiB2aXJ0dWFsaXphdGlvbkBsaXN0cy5saW51
-eC1mb3VuZGF0aW9uLm9yZw0KPkNjOiBzcGljZS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcN
-Cj5DYzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4tLS0NCj4gZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbm91dmVhdV9iby5jIHwgNSArKysrLQ0KPiAxIGZpbGUgY2hhbmdlZCwgNCBp
-bnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQo+DQo+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYw0KPmIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9iby5jDQo+aW5kZXggODEzMzM3N2Q4NjVkLi5mZTE1Mjk5ZDQxN2UgMTAwNjQ0DQo+LS0t
-IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jDQo+KysrIGIvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jDQo+QEAgLTExNDIsOSArMTE0MiwxMiBAQCBub3V2
-ZWF1X3R0bV9pb19tZW1fcmVzZXJ2ZShzdHJ1Y3QNCj50dG1fYm9fZGV2aWNlICpiZGV2LCBzdHJ1
-Y3QgdHRtX3Jlc291cmNlICpyZWcpDQo+IAlzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSA9IG52
-eHhfZGV2aWNlKCZkcm0tPmNsaWVudC5kZXZpY2UpOw0KPiAJc3RydWN0IG5vdXZlYXVfbWVtICpt
-ZW0gPSBub3V2ZWF1X21lbShyZWcpOw0KPiAJc3RydWN0IG52aWZfbW11ICptbXUgPSAmZHJtLT5j
-bGllbnQubW11Ow0KPi0JY29uc3QgdTggdHlwZSA9IG1tdS0+dHlwZVtkcm0tPnR0bS50eXBlX3Zy
-YW1dLnR5cGU7DQo+Kwl1OCB0eXBlID0gMDsNCj4gCWludCByZXQ7DQo+DQo+KwlpZiAoZHJtLT50
-dG0udHlwZV92cmFtID49IDApDQo+KwkJdHlwZSA9IG1tdS0+dHlwZVtkcm0tPnR0bS50eXBlX3Zy
-YW1dLnR5cGU7DQo+Kw0KPiAJbXV0ZXhfbG9jaygmZHJtLT50dG0uaW9fcmVzZXJ2ZV9tdXRleCk7
-DQo+IHJldHJ5Og0KPiAJc3dpdGNoIChyZWctPm1lbV90eXBlKSB7DQo+LS0NCj4yLjI5LjINCg0K
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+On Fri, Nov 06, 2020 at 02:31:44PM +0100, Karol Herbst wrote:
+> On Fri, Nov 6, 2020 at 3:17 AM Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
+> >
+> > Make use of the devm_drm_dev_alloc() API to bind the lifetime of
+> > nouveau_drm structure to the drm_device. This is important because a
+> > reference to nouveau_drm is accessible from drm_device, which is
+> > provided to a number of DRM layer callbacks that can run after the
+> > deallocation of nouveau_drm currently occurs.
+> >
+> > Signed-off-by: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> > ---
+> >  drivers/gpu/drm/nouveau/nouveau_drm.c | 44 ++++++++++++---------------
+> >  drivers/gpu/drm/nouveau/nouveau_drv.h | 10 ++++--
+> >  2 files changed, 26 insertions(+), 28 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> > index bc6f51bf23b7..f750c25e92f9 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> > @@ -30,9 +30,11 @@
+> >  #include <linux/vga_switcheroo.h>
+> >  #include <linux/mmu_notifier.h>
+> >
+> > +#include <drm/drm_drv.h>
+> >  #include <drm/drm_crtc_helper.h>
+> >  #include <drm/drm_ioctl.h>
+> >  #include <drm/drm_vblank.h>
+> > +#include <drm/drm_managed.h>
+> >
+> >  #include <core/gpuobj.h>
+> >  #include <core/option.h>
+> > @@ -532,13 +534,8 @@ nouveau_parent = {
+> >  static int
+> >  nouveau_drm_device_init(struct drm_device *dev)
+> >  {
+> > -       struct nouveau_drm *drm;
+> >         int ret;
+> > -
+> > -       if (!(drm = kzalloc(sizeof(*drm), GFP_KERNEL)))
+> > -               return -ENOMEM;
+> > -       dev->dev_private = drm;
+> > -       drm->dev = dev;
+> > +       struct nouveau_drm *drm = nouveau_drm(dev);
+> >
+> >         nvif_parent_ctor(&nouveau_parent, &drm->parent);
+> >         drm->master.base.object.parent = &drm->parent;
+> > @@ -620,7 +617,6 @@ nouveau_drm_device_init(struct drm_device *dev)
+> >         nouveau_cli_fini(&drm->master);
+> >  fail_alloc:
+> >         nvif_parent_dtor(&drm->parent);
+> > -       kfree(drm);
+> >         return ret;
+> >  }
+> >
+> > @@ -654,7 +650,6 @@ nouveau_drm_device_fini(struct drm_device *dev)
+> >         nouveau_cli_fini(&drm->client);
+> >         nouveau_cli_fini(&drm->master);
+> >         nvif_parent_dtor(&drm->parent);
+> > -       kfree(drm);
+> >  }
+> >
+> >  /*
+> > @@ -720,6 +715,7 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+> >  {
+> >         struct nvkm_device *device;
+> >         struct drm_device *drm_dev;
+> > +       struct nouveau_drm *nv_dev;
+> >         int ret;
+> >
+> >         if (vga_switcheroo_client_probe_defer(pdev))
+> > @@ -750,15 +746,16 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+> >         if (nouveau_atomic)
+> >                 driver_pci.driver_features |= DRIVER_ATOMIC;
+> >
+> > -       drm_dev = drm_dev_alloc(&driver_pci, &pdev->dev);
+> > -       if (IS_ERR(drm_dev)) {
+> > -               ret = PTR_ERR(drm_dev);
+> > +       nv_dev = devm_drm_dev_alloc(&pdev->dev, &driver_stub, typeof(*nv_dev), drm_dev);
+> > +       if (IS_ERR(nv_dev)) {
+> > +               ret = PTR_ERR(nv_dev);
+> >                 goto fail_nvkm;
+> >         }
+> > +       drm_dev = nouveau_to_drm_dev(nv_dev);
+> >
+> >         ret = pci_enable_device(pdev);
+> >         if (ret)
+> > -               goto fail_drm;
+> > +               goto fail_nvkm;
+> >
+> >         drm_dev->pdev = pdev;
+> >         pci_set_drvdata(pdev, drm_dev);
+> > @@ -778,8 +775,6 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+> >         nouveau_drm_device_fini(drm_dev);
+> >  fail_pci:
+> >         pci_disable_device(pdev);
+> > -fail_drm:
+> > -       drm_dev_put(drm_dev);
+> 
+> it sounded like that when using devm_drm_dev_alloc we still have an
+> initial refcount of 1, so at least in this regard nothing changed so I
+> am wondering why this change is necessary and if the reason is
+> unrelated it might make sense to move it into its own patch.
+> 
+
+Okay, after a more thorough investigation and testing with
+drm.debug=0x201 to trace through the allocations and de-allocations,
+everything is indeed cleaned up, both here when a fake failure is
+injected, and through the normal removal path.
+
+I believe it would be problematic if nouveau was presented the device,
+called devm_drm_dev_alloc(), failed later on in the probe, and then a
+different driver claimed the device. It looks like that's not a problem
+in practice, but I'm not familiar enough with all the layers to be 100%
+confident I'm reading everything right. As far as I can tell, amdgpu
+isn't explicitly dropping the reference either.
+
+> >  fail_nvkm:
+> >         nvkm_device_del(&device);
+> >         return ret;
+> > @@ -799,7 +794,6 @@ nouveau_drm_device_remove(struct drm_device *dev)
+> >         device = nvkm_device_find(client->device);
+> >
+> >         nouveau_drm_device_fini(dev);
+> > -       drm_dev_put(dev);
+> >         nvkm_device_del(&device);
+> >  }
+> >
+> > @@ -1285,7 +1279,8 @@ nouveau_platform_device_create(const struct nvkm_device_tegra_func *func,
+> >                                struct platform_device *pdev,
+> >                                struct nvkm_device **pdevice)
+> >  {
+> > -       struct drm_device *drm;
+> > +       struct nouveau_drm *nv_dev;
+> > +       struct drm_device *drm_dev;
+> >         int err;
+> >
+> >         err = nvkm_device_tegra_new(func, pdev, nouveau_config, nouveau_debug,
+> > @@ -1293,22 +1288,21 @@ nouveau_platform_device_create(const struct nvkm_device_tegra_func *func,
+> >         if (err)
+> >                 goto err_free;
+> >
+> > -       drm = drm_dev_alloc(&driver_platform, &pdev->dev);
+> > -       if (IS_ERR(drm)) {
+> > -               err = PTR_ERR(drm);
+> > +       nv_dev = devm_drm_dev_alloc(&pdev->dev, &driver_platform, typeof(*nv_dev), drm_dev);
+> > +       if (IS_ERR(nv_dev)) {
+> > +               err = PTR_ERR(nv_dev);
+> >                 goto err_free;
+> >         }
+> > +       drm_dev = nouveau_to_drm_dev(nv_dev);
+> >
+> > -       err = nouveau_drm_device_init(drm);
+> > +       err = nouveau_drm_device_init(drm_dev);
+> >         if (err)
+> > -               goto err_put;
+> > +               goto err_free;
+> >
+> > -       platform_set_drvdata(pdev, drm);
+> > +       platform_set_drvdata(pdev, drm_dev);
+> >
+> > -       return drm;
+> > +       return drm_dev;
+> >
+> > -err_put:
+> > -       drm_dev_put(drm);
+> >  err_free:
+> >         nvkm_device_del(pdevice);
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
+> > index 3e2920a10099..cf6c33e52a5c 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_drv.h
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
+> > @@ -137,7 +137,11 @@ struct nouveau_drm {
+> >         struct nvif_parent parent;
+> >         struct nouveau_cli master;
+> >         struct nouveau_cli client;
+> > -       struct drm_device *dev;
+> > +
+> > +       /**
+> > +        * @drm_dev: The parent DRM device object.
+> > +        */
+> > +       struct drm_device drm_dev;
+> >
+> >         struct list_head clients;
+> >
+> > @@ -237,7 +241,7 @@ struct nouveau_drm {
+> >  static inline struct nouveau_drm *
+> >  nouveau_drm(struct drm_device *dev)
+> >  {
+> > -       return dev->dev_private;
+> > +       return container_of(dev, struct nouveau_drm, drm_dev);
+> >  }
+> >
+> >  /**
+> > @@ -251,7 +255,7 @@ nouveau_drm(struct drm_device *dev)
+> >   */
+> >  static inline struct drm_device *
+> >  nouveau_to_drm_dev(struct nouveau_drm *nv_dev) {
+> > -       return nv_dev->dev;
+> > +       return &nv_dev->drm_dev;
+> >  }
+> >
+> >  /**
+> > --
+> > 2.28.0
+> >
+> > _______________________________________________
+> > Nouveau mailing list
+> > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> > https://lists.freedesktop.org/mailman/listinfo/nouveau
+> >
+> 
