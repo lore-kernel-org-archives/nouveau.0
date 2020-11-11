@@ -1,169 +1,165 @@
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Subject: Re: [PATCH 2/2] drm/mediatek: Use struct dma_buf_map in GEM vmap ops
-Date: Wed, 11 Nov 2020 22:23:15 +0800
-Message-ID: <CAAOTY__QuyEA7c4H+eSvrSdFTZttB4DXbjr6HLWoH8WovOD1eQ@mail.gmail.com>
-References: <20201109103242.19544-1-tzimmermann@suse.de> <20201109103242.19544-3-tzimmermann@suse.de>
+From: "Ruhl, Michael J" <michael.j.ruhl-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Subject: RE: [PATCH] drm/nouveau: Fix out-of-bounds access when deferencing
+ MMU type
+Date: Wed, 11 Nov 2020 16:27:02 +0000
+Message-ID: <b87d5a2cce4941fe86e89d97bd6b2be4@intel.com>
+References: <20201110133655.13174-1-tzimmermann@suse.de>
+ <85758a6215f74917aee81b18d037fb82@intel.com>
+ <f4cedda2-48f6-565c-4154-0975a2d119a0@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-arm-msm-owner@vger.kernel.org>
-In-Reply-To: <20201109103242.19544-3-tzimmermann@suse.de>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, robdclark@gmail.com, sean@poorly.run, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, DRI Development <dri-devel@lists.freedesktop.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Dave Airlie <airlied@redhat.com>, Lucas Stach <l.stach@pengutronix.de>, Russell King <linux+etnaviv@armlinux.org.uk>, Christian Gmeiner <christian.gmeiner@gmail.com>, Qiang Yu <yuq825@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, Rob Herring <robh@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>, Steven
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <f4cedda2-48f6-565c-4154-0975a2d119a0-l3A5Bk7waGM@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, "bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org" <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "airlied-cv59FeDIM0c@public.gmane.org" <airlied-cv59FeDIM0c@public.gmane.org>, "daniel-/w4YWyX8dFk@public.gmane.org" <daniel-/w4YWyX8dFk@public.gmane.org>, "christian.koenig-5C7GfCeVMHo@public.gmane.org" <christian.koenig-5C7GfCeVMHo@public.gmane.org>
+Cc: "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Maxime Ripard <mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, "virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org" <virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>, Roland Scheidegger <sroland-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>, Huang Rui <ray.huang-5C7GfCeVMHo@public.gmane.org>, VMware Graphics <linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Likun Gao <Likun.Gao-5C7GfCeVMHo@public.gmane.org>, Felix Kuehling <Felix.Kuehling-5C7GfCeVMHo@public.gmane.org>, Hawking Zhang <Hawking.Zhang-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi, Thomas:
-
-Thomas Zimmermann <tzimmermann@suse.de> =E6=96=BC 2020=E5=B9=B411=E6=9C=889=
-=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=886:32=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> Fixes a build failure with mediatek.
->
-> This change was supposed to be part of commit 49a3f51dfeee ("drm/gem:
-> Use struct dma_buf_map in GEM vmap ops and convert GEM backends"), but
-> mediatek was forgotten.
-
-Acked-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Fixes: 49a3f51dfeee ("drm/gem: Use struct dma_buf_map in GEM vmap ops and=
- convert GEM backends")
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Russell King <linux+etnaviv@armlinux.org.uk>
-> Cc: Christian Gmeiner <christian.gmeiner@gmail.com>
-> Cc: Qiang Yu <yuq825@gmail.com>
-> Cc: Ben Skeggs <bskeggs@redhat.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-> Cc: Steven Price <steven.price@arm.com>
-> Cc: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
-> Cc: Gerd Hoffmann <kraxel@redhat.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
-> Cc: Sandy Huang <hjc@rock-chips.com>
-> Cc: "Heiko St=C3=BCbner" <heiko@sntech.de>
-> Cc: Hans de Goede <hdegoede@redhat.com>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Eric Anholt <eric@anholt.net>
-> Cc: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
-> Cc: Melissa Wen <melissa.srw@gmail.com>
-> Cc: Haneen Mohammed <hamohammed.sa@gmail.com>
-> Cc: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
-> Cc: Sumit Semwal <sumit.semwal@linaro.org>
-> Cc: Emil Velikov <emil.velikov@collabora.com>
-> Cc: Marek Szyprowski <m.szyprowski@samsung.com>
-> Cc: Arunpravin <apaneers@amd.com>
-> Cc: Huang Rui <ray.huang@amd.com>
-> Cc: Luben Tuikov <luben.tuikov@amd.com>
-> Cc: Madhav Chauhan <madhav.chauhan@amd.com>
-> Cc: Nirmoy Das <Nirmoy.Das@amd.com>
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: etnaviv@lists.freedesktop.org
-> Cc: lima@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.org
-> Cc: virtualization@lists.linux-foundation.org
-> Cc: spice-devel@lists.freedesktop.org
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-rockchip@lists.infradead.org
-> Cc: xen-devel@lists.xenproject.org
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_gem.c | 20 ++++++++++++--------
->  drivers/gpu/drm/mediatek/mtk_drm_gem.h |  4 ++--
->  2 files changed, 14 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_gem.c b/drivers/gpu/drm/med=
-iatek/mtk_drm_gem.c
-> index cdd1a6e61564..28a2ee1336ef 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_gem.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_gem.c
-> @@ -240,23 +240,25 @@ struct drm_gem_object *mtk_gem_prime_import_sg_tabl=
-e(struct drm_device *dev,
->         return &mtk_gem->base;
->  }
->
-> -void *mtk_drm_gem_prime_vmap(struct drm_gem_object *obj)
-> +int mtk_drm_gem_prime_vmap(struct drm_gem_object *obj, struct dma_buf_ma=
-p *map)
->  {
->         struct mtk_drm_gem_obj *mtk_gem =3D to_mtk_gem_obj(obj);
-> -       struct sg_table *sgt;
-> +       struct sg_table *sgt =3D NULL;
->         unsigned int npages;
->
->         if (mtk_gem->kvaddr)
-> -               return mtk_gem->kvaddr;
-> +               goto out;
->
->         sgt =3D mtk_gem_prime_get_sg_table(obj);
->         if (IS_ERR(sgt))
-> -               return NULL;
-> +               return PTR_ERR(sgt);
->
->         npages =3D obj->size >> PAGE_SHIFT;
->         mtk_gem->pages =3D kcalloc(npages, sizeof(*mtk_gem->pages), GFP_K=
-ERNEL);
-> -       if (!mtk_gem->pages)
-> -               goto out;
-> +       if (!mtk_gem->pages) {
-> +               kfree(sgt);
-> +               return -ENOMEM;
-> +       }
->
->         drm_prime_sg_to_page_addr_arrays(sgt, mtk_gem->pages, NULL, npage=
-s);
->
-> @@ -265,13 +267,15 @@ void *mtk_drm_gem_prime_vmap(struct drm_gem_object =
-*obj)
->
->  out:
->         kfree(sgt);
-> +       dma_buf_map_set_vaddr(map, mtk_gem->kvaddr);
->
-> -       return mtk_gem->kvaddr;
-> +       return 0;
->  }
->
-> -void mtk_drm_gem_prime_vunmap(struct drm_gem_object *obj, void *vaddr)
-> +void mtk_drm_gem_prime_vunmap(struct drm_gem_object *obj, struct dma_buf=
-_map *map)
->  {
->         struct mtk_drm_gem_obj *mtk_gem =3D to_mtk_gem_obj(obj);
-> +       void *vaddr =3D map->vaddr;
->
->         if (!mtk_gem->pages)
->                 return;
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_gem.h b/drivers/gpu/drm/med=
-iatek/mtk_drm_gem.h
-> index ff9f976d9807..6da5ccb4b933 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_gem.h
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_gem.h
-> @@ -45,7 +45,7 @@ int mtk_drm_gem_mmap_buf(struct drm_gem_object *obj,
->  struct sg_table *mtk_gem_prime_get_sg_table(struct drm_gem_object *obj);
->  struct drm_gem_object *mtk_gem_prime_import_sg_table(struct drm_device *=
-dev,
->                         struct dma_buf_attachment *attach, struct sg_tabl=
-e *sg);
-> -void *mtk_drm_gem_prime_vmap(struct drm_gem_object *obj);
-> -void mtk_drm_gem_prime_vunmap(struct drm_gem_object *obj, void *vaddr);
-> +int mtk_drm_gem_prime_vmap(struct drm_gem_object *obj, struct dma_buf_ma=
-p *map);
-> +void mtk_drm_gem_prime_vunmap(struct drm_gem_object *obj, struct dma_buf=
-_map *map);
->
->  #endif
-> --
-> 2.29.2
->
+Pi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+RnJvbTogVGhvbWFzIFppbW1lcm1hbm4gPHR6
+aW1tZXJtYW5uQHN1c2UuZGU+DQo+U2VudDogV2VkbmVzZGF5LCBOb3ZlbWJlciAxMSwgMjAyMCA3
+OjA4IEFNDQo+VG86IFJ1aGwsIE1pY2hhZWwgSiA8bWljaGFlbC5qLnJ1aGxAaW50ZWwuY29tPjsg
+YnNrZWdnc0ByZWRoYXQuY29tOw0KPmFpcmxpZWRAbGludXguaWU7IGRhbmllbEBmZndsbC5jaDsg
+Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tDQo+Q2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnOyBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOw0KPk1hYXJ0ZW4gTGFua2hvcnN0
+IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+OyBNYXhpbWUgUmlwYXJkDQo+PG1y
+aXBhcmRAa2VybmVsLm9yZz47IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+OyBHZXJk
+IEhvZmZtYW5uDQo+PGtyYXhlbEByZWRoYXQuY29tPjsgQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIu
+ZGV1Y2hlckBhbWQuY29tPjsNCj5WTXdhcmUgR3JhcGhpY3MgPGxpbnV4LWdyYXBoaWNzLW1haW50
+YWluZXJAdm13YXJlLmNvbT47IFJvbGFuZA0KPlNjaGVpZGVnZ2VyIDxzcm9sYW5kQHZtd2FyZS5j
+b20+OyBIdWFuZyBSdWkgPHJheS5odWFuZ0BhbWQuY29tPjsNCj5GZWxpeCBLdWVobGluZyA8RmVs
+aXguS3VlaGxpbmdAYW1kLmNvbT47IEhhd2tpbmcgWmhhbmcNCj48SGF3a2luZy5aaGFuZ0BhbWQu
+Y29tPjsgSmFzb24gR3VudGhvcnBlIDxqZ2dAemllcGUuY2E+OyBMaWt1biBHYW8NCj48TGlrdW4u
+R2FvQGFtZC5jb20+OyB2aXJ0dWFsaXphdGlvbkBsaXN0cy5saW51eC1mb3VuZGF0aW9uLm9yZzsg
+c3BpY2UtDQo+ZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBhbWQtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZw0KPlN1YmplY3Q6IFJlOiBbUEFUQ0hdIGRybS9ub3V2ZWF1OiBGaXggb3V0LW9m
+LWJvdW5kcyBhY2Nlc3Mgd2hlbg0KPmRlZmVyZW5jaW5nIE1NVSB0eXBlDQo+DQo+SGkNCj4NCj5B
+bSAxMC4xMS4yMCB1bSAxNjoyNyBzY2hyaWViIFJ1aGwsIE1pY2hhZWwgSjoNCj4+DQo+Pg0KPj4+
+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+Pj4gRnJvbTogVGhvbWFzIFppbW1lcm1hbm4g
+PHR6aW1tZXJtYW5uQHN1c2UuZGU+DQo+Pj4gU2VudDogVHVlc2RheSwgTm92ZW1iZXIgMTAsIDIw
+MjAgODozNyBBTQ0KPj4+IFRvOiBic2tlZ2dzQHJlZGhhdC5jb207IGFpcmxpZWRAbGludXguaWU7
+IGRhbmllbEBmZndsbC5jaDsgUnVobCwgTWljaGFlbCBKDQo+Pj4gPG1pY2hhZWwuai5ydWhsQGlu
+dGVsLmNvbT47IGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbQ0KPj4+IENjOiBub3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZzsgZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsNCj5UaG9t
+YXMNCj4+PiBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPjsgTWFhcnRlbiBMYW5raG9y
+c3QNCj4+PiA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPjsgTWF4aW1lIFJpcGFy
+ZA0KPj4+IDxtcmlwYXJkQGtlcm5lbC5vcmc+OyBEYXZlIEFpcmxpZSA8YWlybGllZEByZWRoYXQu
+Y29tPjsgR2VyZCBIb2ZmbWFubg0KPj4+IDxrcmF4ZWxAcmVkaGF0LmNvbT47IEFsZXggRGV1Y2hl
+ciA8YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT47DQo+Pj4gVk13YXJlIEdyYXBoaWNzIDxsaW51
+eC1ncmFwaGljcy1tYWludGFpbmVyQHZtd2FyZS5jb20+OyBSb2xhbmQNCj4+PiBTY2hlaWRlZ2dl
+ciA8c3JvbGFuZEB2bXdhcmUuY29tPjsgSHVhbmcgUnVpIDxyYXkuaHVhbmdAYW1kLmNvbT47DQo+
+Pj4gRmVsaXggS3VlaGxpbmcgPEZlbGl4Lkt1ZWhsaW5nQGFtZC5jb20+OyBIYXdraW5nIFpoYW5n
+DQo+Pj4gPEhhd2tpbmcuWmhhbmdAYW1kLmNvbT47IEphc29uIEd1bnRob3JwZSA8amdnQHppZXBl
+LmNhPjsgTGlrdW4NCj5HYW8NCj4+PiA8TGlrdW4uR2FvQGFtZC5jb20+OyB2aXJ0dWFsaXphdGlv
+bkBsaXN0cy5saW51eC1mb3VuZGF0aW9uLm9yZzsgc3BpY2UtDQo+Pj4gZGV2ZWxAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnOyBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPj4+IFN1YmplY3Q6
+IFtQQVRDSF0gZHJtL25vdXZlYXU6IEZpeCBvdXQtb2YtYm91bmRzIGFjY2VzcyB3aGVuDQo+ZGVm
+ZXJlbmNpbmcNCj4+PiBNTVUgdHlwZQ0KPj4+DQo+Pj4gVGhlIHZhbHVlIG9mIHN0cnVjdCBkcm1f
+ZGV2aWNlLnR0bS50eXBlX3ZyYW0gY2FuIGJlY29tZSAtMSBmb3INCj51bmtub3duDQo+Pj4gdHlw
+ZXMgb2YgbWVtb3J5IChzZWUgbm91dmVhdV90dG1faW5pdCgpKS4gVGhpcyBsZWFkcyB0byBhbiBv
+dXQtb2YtYm91bmRzDQo+Pj4gZXJyb3Igd2hlbiBhY2Nlc3Npbmcgc3RydWN0IG52aWZfbW11LnR5
+cGVbXToNCj4+DQo+PiBXb3VsZCB0aGlzIG1ha2UgbW9yZSBzZW5zZSB0byBqdXN0IHNldCB0aGUg
+dHlwZV92cmFtID0gMCBpbnN0ZWFkIG9mIC0xPw0KPg0KPkZyb20gd2hhdCBJIHVuZGVyc3RhbmQs
+IHRoZXNlIGluZGljZXMgcmVmZXIgdG8gYW4gaW50ZXJuYWwgdHlwZSBvZiBNTVUsDQo+cnNwIHRo
+ZSBNTVUncyBjYXBhYmlsaXRpZXMuIEhvd2V2ZXIsIG15IGhhcmR3YXJlIChwcmUtTlY1MCkgZG9l
+cyBub3QNCj5oYXZlIGFuIE1NVSBhdCBhbGwuDQoNClllYWgsIGFuZCB1cG9uIGZ1cnRoZXIgcmV2
+aWV3IEkgc2VlIHRoYXQgbXkgY29tbWVudCB3YXMgY29tcGxldGVseSB3cm9uZw0KKHZhbHVlIHZz
+LiBpbmRleCkuDQoNCkEgYmV0dGVyIHN1Z2dlc3Rpb24gd291bGQgaGF2ZSBiZWVuLCBjcmVhdGUg
+YW4gZW50cnkgaW4gdGhlIGFycmF5IHRoYXQgbWVhbnMsDQoidW5zdXBwb3J0ZWQgdHlwZSIgd2l0
+aCBhIHZhbHVlIG9mIDAsIGJ1dC4uLg0KDQo+SSBhZ3JlZSB0aGF0IGl0IHdvdWxkIGJlIG5pY2Ug
+dG8gaGF2ZSBhIGNsZWFuZXIgZGVzaWduIHRoYXQgaW5jb3Jwb3JhdGVzDQo+dGhpcyBjYXNlLCBi
+dXQgcmVzb2x2aW5nIHRoYXQgd291bGQgYXBwYXJlbnRseSByZXF1aXJlIG1vcmUgdGhhbiBhIGJ1
+Z2ZpeC4NCg0KSSBhZ3JlZS4gIFRoZSAtMSBpbmRleCBpcyBhIHNwZWNpYWwgY2FzZSBmb3IgdGhl
+IHBsYXRmb3JtIHBhdGgNCihwbGF0Zm9ybSAhPSBOVl9ERVZJQ0VfSU5GT19WMF9TT0MpLiAgVGhp
+cyBpcyBhIGZpeCBmb3IgdGhlIGlzc3VlLCBidXQgbm90DQphIGNvbXBsZXRlIHNvbHV0aW9uLg0K
+DQpJZiB5b3UgbmVlZCBpdDoNClJldmlld2VkLWJ5OiBNaWNoYWVsIEouIFJ1aGwgPG1pY2hhZWwu
+ai5ydWhsQGludGVsLmNvbT4NCg0KVGhhbmtzLA0KTWlrZQ0KDQo+QmVzdCByZWdhcmRzDQo+VGhv
+bWFzDQo+DQo+Pg0KPj4gTWlrZQ0KPj4NCj4+Pg0KPj4+ICBbICAgMTguMzA0MTE2XQ0KPj4+DQo+
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT0NCj4+PiA9PT09PT09DQo+Pj4gIFsgICAxOC4zMTE2NDldIEJVRzogS0FTQU46IHNsYWItb3V0
+LW9mLWJvdW5kcyBpbg0KPj4+IG5vdXZlYXVfdHRtX2lvX21lbV9yZXNlcnZlKzB4MTdhLzB4N2Uw
+IFtub3V2ZWF1XQ0KPj4+ICBbICAgMTguMzIwNDE1XSBSZWFkIG9mIHNpemUgMSBhdCBhZGRyIGZm
+ZmY4ODgxMGZmYWMxZmUgYnkgdGFzayBzeXN0ZW1kLQ0KPj4+IHVkZXZkLzM0Mg0KPj4+ICBbICAg
+MTguMzI3NjgxXQ0KPj4+ICBbICAgMTguMzI5MjA4XSBDUFU6IDEgUElEOiAzNDIgQ29tbTogc3lz
+dGVtZC11ZGV2ZCBUYWludGVkOiBHICAgICAgICAgICAgRQ0KPj4+IDUuMTAuMC1yYzItMS1kZWZh
+dWx0KyAjNTgxDQo+Pj4gIFsgICAxOC4zMzg2ODFdIEhhcmR3YXJlIG5hbWU6IERlbGwgSW5jLiBP
+cHRpUGxleCA5MDIwLzBONFlDOCwgQklPUyBBMjQNCj4+PiAxMC8yNC8yMDE4DQo+Pj4gIFsgICAx
+OC4zNDYwMzJdIENhbGwgVHJhY2U6DQo+Pj4gIFsgICAxOC4zNDg1MzZdICBkdW1wX3N0YWNrKzB4
+YWUvMHhlNQ0KPj4+ICBbICAgMTguMzUxOTE5XSAgcHJpbnRfYWRkcmVzc19kZXNjcmlwdGlvbi5j
+b25zdHByb3AuMCsweDE3LzB4ZjANCj4+PiAgWyAgIDE4LjM1Nzc4N10gID8gbm91dmVhdV90dG1f
+aW9fbWVtX3Jlc2VydmUrMHgxN2EvMHg3ZTAgW25vdXZlYXVdDQo+Pj4gIFsgICAxOC4zNjM4MThd
+ICBfX2thc2FuX3JlcG9ydC5jb2xkKzB4MjAvMHgzOA0KPj4+ICBbICAgMTguMzY4MDk5XSAgPyBu
+b3V2ZWF1X3R0bV9pb19tZW1fcmVzZXJ2ZSsweDE3YS8weDdlMCBbbm91dmVhdV0NCj4+PiAgWyAg
+IDE4LjM3NDEzM10gIGthc2FuX3JlcG9ydCsweDNhLzB4NTANCj4+PiAgWyAgIDE4LjM3Nzc4OV0g
+IG5vdXZlYXVfdHRtX2lvX21lbV9yZXNlcnZlKzB4MTdhLzB4N2UwIFtub3V2ZWF1XQ0KPj4+ICA8
+Li4uPg0KPj4+ICBbICAgMTguNzY3NjkwXSBBbGxvY2F0ZWQgYnkgdGFzayAzNDI6DQo+Pj4gIFsg
+ICAxOC43NzMwODddICBrYXNhbl9zYXZlX3N0YWNrKzB4MWIvMHg0MA0KPj4+ICBbICAgMTguNzc4
+ODkwXSAgX19rYXNhbl9rbWFsbG9jLmNvbnN0cHJvcC4wKzB4YmYvMHhkMA0KPj4+ICBbICAgMTgu
+Nzg1NjQ2XSAgX19rbWFsbG9jX3RyYWNrX2NhbGxlcisweDFiZS8weDM5MA0KPj4+ICBbICAgMTgu
+NzkyMTY1XSAga3N0cmR1cF9jb25zdCsweDQ2LzB4NzANCj4+PiAgWyAgIDE4Ljc5NzY4Nl0gIGtv
+YmplY3Rfc2V0X25hbWVfdmFyZ3MrMHgyZi8weGIwDQo+Pj4gIFsgICAxOC44MDM5OTJdICBrb2Jq
+ZWN0X2luaXRfYW5kX2FkZCsweDlkLzB4ZjANCj4+PiAgWyAgIDE4LjgxMDExN10gIHR0bV9tZW1f
+Z2xvYmFsX2luaXQrMHgxMmMvMHgyMTAgW3R0bV0NCj4+PiAgWyAgIDE4LjgxNjg1M10gIHR0bV9i
+b19nbG9iYWxfaW5pdCsweDRhLzB4MTYwIFt0dG1dDQo+Pj4gIFsgICAxOC44MjM0MjBdICB0dG1f
+Ym9fZGV2aWNlX2luaXQrMHgzOS8weDIyMCBbdHRtXQ0KPj4+ICBbICAgMTguODMwMDQ2XSAgbm91
+dmVhdV90dG1faW5pdCsweDJjMy8weDgzMCBbbm91dmVhdV0NCj4+PiAgWyAgIDE4LjgzNjkyOV0g
+IG5vdXZlYXVfZHJtX2RldmljZV9pbml0KzB4MWI0LzB4M2YwIFtub3V2ZWF1XQ0KPj4+ICA8Li4u
+Pg0KPj4+ICBbICAgMTkuMTA1MzM2XQ0KPj4+DQo+PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCj4+PiA9PT09PT09DQo+Pj4NCj4+PiBG
+aXggdGhpcyBlcnJvciwgYnkgbm90IHVzaW5nIHR5cGVfdnJhbSBhcyBhbiBpbmRleCBpZiBpdCdz
+IG5lZ2F0aXZlLg0KPj4+IEFzc3VtZSBkZWZhdWx0IHZhbHVlcyBpbnN0ZWFkLg0KPj4+DQo+Pj4g
+VGhlIGVycm9yIHdhcyBzZWVuIG9uIE52aWRpYSBHNzIgaGFyZHdhcmUuDQo+Pj4NCj4+PiBTaWdu
+ZWQtb2ZmLWJ5OiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4NCj4+PiBG
+aXhlczogMWNmNjVjNDUxODNhICgiZHJtL3R0bTogYWRkIGNhY2hpbmcgc3RhdGUgdG8gdHRtX2J1
+c19wbGFjZW1lbnQiKQ0KPj4+IENjOiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmln
+QGFtZC5jb20+DQo+Pj4gQ2M6IE1pY2hhZWwgSi4gUnVobCA8bWljaGFlbC5qLnJ1aGxAaW50ZWwu
+Y29tPg0KPj4+IENjOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXgu
+aW50ZWwuY29tPg0KPj4+IENjOiBNYXhpbWUgUmlwYXJkIDxtcmlwYXJkQGtlcm5lbC5vcmc+DQo+
+Pj4gQ2M6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPg0KPj4+IENjOiBE
+YXZpZCBBaXJsaWUgPGFpcmxpZWRAbGludXguaWU+DQo+Pj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRh
+bmllbEBmZndsbC5jaD4NCj4+PiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPg0K
+Pj4+IENjOiBEYXZlIEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29tPg0KPj4+IENjOiBHZXJkIEhv
+ZmZtYW5uIDxrcmF4ZWxAcmVkaGF0LmNvbT4NCj4+PiBDYzogQWxleCBEZXVjaGVyIDxhbGV4YW5k
+ZXIuZGV1Y2hlckBhbWQuY29tPg0KPj4+IENjOiAiQ2hyaXN0aWFuIEvDtm5pZyIgPGNocmlzdGlh
+bi5rb2VuaWdAYW1kLmNvbT4NCj4+PiBDYzogVk13YXJlIEdyYXBoaWNzIDxsaW51eC1ncmFwaGlj
+cy1tYWludGFpbmVyQHZtd2FyZS5jb20+DQo+Pj4gQ2M6IFJvbGFuZCBTY2hlaWRlZ2dlciA8c3Jv
+bGFuZEB2bXdhcmUuY29tPg0KPj4+IENjOiBIdWFuZyBSdWkgPHJheS5odWFuZ0BhbWQuY29tPg0K
+Pj4+IENjOiBGZWxpeCBLdWVobGluZyA8RmVsaXguS3VlaGxpbmdAYW1kLmNvbT4NCj4+PiBDYzog
+SGF3a2luZyBaaGFuZyA8SGF3a2luZy5aaGFuZ0BhbWQuY29tPg0KPj4+IENjOiBKYXNvbiBHdW50
+aG9ycGUgPGpnZ0B6aWVwZS5jYT4NCj4+PiBDYzogTGlrdW4gR2FvIDxMaWt1bi5HYW9AYW1kLmNv
+bT4NCj4+PiBDYzogZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPj4+IENjOiBub3V2
+ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPj4+IENjOiB2aXJ0dWFsaXphdGlvbkBsaXN0cy5s
+aW51eC1mb3VuZGF0aW9uLm9yZw0KPj4+IENjOiBzcGljZS1kZXZlbEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcNCj4+PiBDYzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4+PiAtLS0NCj4+
+PiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMgfCA1ICsrKystDQo+Pj4gMSBm
+aWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPj4+DQo+Pj4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYw0KPj4+IGIvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jDQo+Pj4gaW5kZXggODEzMzM3N2Q4NjVk
+Li5mZTE1Mjk5ZDQxN2UgMTAwNjQ0DQo+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9iby5jDQo+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9i
+by5jDQo+Pj4gQEAgLTExNDIsOSArMTE0MiwxMiBAQCBub3V2ZWF1X3R0bV9pb19tZW1fcmVzZXJ2
+ZShzdHJ1Y3QNCj4+PiB0dG1fYm9fZGV2aWNlICpiZGV2LCBzdHJ1Y3QgdHRtX3Jlc291cmNlICpy
+ZWcpDQo+Pj4gCXN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlID0gbnZ4eF9kZXZpY2UoJmRybS0+
+Y2xpZW50LmRldmljZSk7DQo+Pj4gCXN0cnVjdCBub3V2ZWF1X21lbSAqbWVtID0gbm91dmVhdV9t
+ZW0ocmVnKTsNCj4+PiAJc3RydWN0IG52aWZfbW11ICptbXUgPSAmZHJtLT5jbGllbnQubW11Ow0K
+Pj4+IC0JY29uc3QgdTggdHlwZSA9IG1tdS0+dHlwZVtkcm0tPnR0bS50eXBlX3ZyYW1dLnR5cGU7
+DQo+Pj4gKwl1OCB0eXBlID0gMDsNCj4+PiAJaW50IHJldDsNCj4+Pg0KPj4+ICsJaWYgKGRybS0+
+dHRtLnR5cGVfdnJhbSA+PSAwKQ0KPj4+ICsJCXR5cGUgPSBtbXUtPnR5cGVbZHJtLT50dG0udHlw
+ZV92cmFtXS50eXBlOw0KPj4+ICsNCj4+PiAJbXV0ZXhfbG9jaygmZHJtLT50dG0uaW9fcmVzZXJ2
+ZV9tdXRleCk7DQo+Pj4gcmV0cnk6DQo+Pj4gCXN3aXRjaCAocmVnLT5tZW1fdHlwZSkgew0KPj4+
+IC0tDQo+Pj4gMi4yOS4yDQo+Pg0KPg0KPi0tDQo+VGhvbWFzIFppbW1lcm1hbm4NCj5HcmFwaGlj
+cyBEcml2ZXIgRGV2ZWxvcGVyDQo+U1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJI
+DQo+TWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55DQo+KEhSQiAzNjgwOSwg
+QUcgTsO8cm5iZXJnKQ0KPkdlc2Now6RmdHNmw7xocmVyOiBGZWxpeCBJbWVuZMO2cmZmZXINCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFp
+bGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
