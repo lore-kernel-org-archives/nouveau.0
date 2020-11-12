@@ -1,150 +1,62 @@
 From: Lee Jones <lee.jones@linaro.org>
-Subject: [PATCH 00/30] [Set 6] Rid W=1 warnings from GPU
-Date: Thu, 12 Nov 2020 19:00:09 +0000
-Message-ID: <20201112190039.2785914-1-lee.jones@linaro.org>
+Subject: [PATCH 24/30] drm/nouveau/nvkm/core/firmware: Fix formatting, provide missing param description
+Date: Thu, 12 Nov 2020 19:00:33 +0000
+Message-ID: <20201112190039.2785914-25-lee.jones@linaro.org>
+References: <20201112190039.2785914-1-lee.jones@linaro.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20201112190039.2785914-1-lee.jones@linaro.org>
 To: lee.jones@linaro.org
-Cc: linux-kernel@vger.kernel.org, Ajay Kumar <ajaykumar.rs@samsung.com>, Akshu Agarwal <akshua@gmail.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, Benjamin Gaignard <benjamin.gaignard@linaro.org>, Ben Skeggs <bskeggs@redhat.com>, Boris Brezillon <bbrezillon@kernel.org>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Chris Zhong <zyw@rock-chips.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, Eric Anholt <eric@anholt.net>, Eunchul Kim <chulspro.kim@samsung.com>, =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>, Inki Dae <inki.dae@samsung.com>, Jean-Jac
+Cc: linux-kernel@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-This set is part of a larger effort attempting to clean-up W=1
-kernel builds, which are currently overwhelmingly riddled with
-niggly little warnings.
+... and demote non-conformant kernel-doc header.
 
-NB: Hopefully the other sets turn up in -next soon, so they can
-be rebased and any stragglers re-submitted.
+Fixes the following W=1 kernel build warning(s):
 
-Lee Jones (30):
-  drm/savage/savage_bci: Remove set but never used 'aper_rsrc' and
-    'fb_rsrc'
-  include: drm: drm_atomic: Artificially use 'crtc' to avoid 'not used'
-    warning
-  drm/v3d/v3d_gem: Provide descriptions for 'v3d_lookup_bos's params
-  drm/via/via_dma: Remove set but unused variable 'agp_base'
-  drm/v3d/v3d_sched: Demote non-conformant kernel-doc header
-  drm/amd/amdgpu/amdgpu_kms: Fix misnaming of parameter 'dev'
-  drm/amd/amdgpu/amdgpu_fence: Fix some issues pertaining to function
-    documentation
-  drm/exynos/exynos7_drm_decon: Supply missing description for  param
-    'ctx'
-  drm/exynos/exynos_drm_fimd: Add missing description for param 'ctx'
-  drm/vc4/vc4_hdmi_regs: Mark some data sets as __maybe_unused
-  drm/vc4/vc4_hdmi: Remove set but unused variable 'ret'
-  drm/amd/amdgpu/amdgpu_ttm: Demote non-conformant kernel-doc headers,
-    fix slightly lacking ones
-  drm/atmel-hlcdc/atmel_hlcdc_crtc: Apply correct formatting to struct
-    docs
-  drm/amd/amdgpu/amdgpu_ring: Fix a bunch of function misdocumentation
-  drm/amd/amdgpu/amdgpu_display: Remove pointless header
-  drm/atmel-hlcdc/atmel_hlcdc_plane: Staticise local function
-    'atmel_hlcdc_plane_setup_scaler()'
-  drm/atmel-hlcdc/atmel_hlcdc_plane: Fix documentation formatting and
-    add missing description
-  drm/vc4/vc4_v3d: Demote non-conformant kernel-doc headers
-  drm/amd/amdgpu/amdgpu_cs: Add a couple of missing function param
-    descriptions
-  drm/armada/armada_overlay: Staticify local function
-    'armada_overlay_duplicate_state'
-  drm/vc4/vc4_debugfs: Demote non-conformant kernel-doc headers
-  drm/rockchip/dw-mipi-dsi-rockchip: Demote non-conformant kernel-doc
-    headers
-  drm/rockchip/rockchip_rgb: Consume our own header
-  drm/nouveau/nvkm/core/firmware: Fix formatting, provide missing param
-    description
-  drm/rockchip/rockchip_lvds: Fix struct document formatting
-  drm/exynos/exynos_drm_gsc: Supply missing description for 'num_limits'
-  drm/sti/sti_hdmi: Move 'colorspace_mode_names' array to where its used
-  drm/mediatek/mtk_disp_color: Fix formatting and provide missing member
-    description
-  drm/amd/amdgpu/atombios_encoders: Remove set but unused variable
-    'backlight_level'
-  drm/mediatek/mtk_disp_ovl: Fix formatting and provide missing member
-    description
+ drivers/gpu/drm/nouveau/nvkm/core/firmware.c:71: warning: Function parameter or member 'subdev' not described in 'nvkm_firmware_get'
+ drivers/gpu/drm/nouveau/nvkm/core/firmware.c:71: warning: Function parameter or member 'fwname' not described in 'nvkm_firmware_get'
+ drivers/gpu/drm/nouveau/nvkm/core/firmware.c:71: warning: Function parameter or member 'ver' not described in 'nvkm_firmware_get'
+ drivers/gpu/drm/nouveau/nvkm/core/firmware.c:71: warning: Function parameter or member 'fw' not described in 'nvkm_firmware_get'
+ drivers/gpu/drm/nouveau/nvkm/core/firmware.c:106: warning: Function parameter or member 'fw' not described in 'nvkm_firmware_put'
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c        |  2 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  4 --
- drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c     | 11 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c      | 12 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       | 60 ++++++++++---------
- .../gpu/drm/amd/amdgpu/atombios_encoders.c    |  3 +-
- drivers/gpu/drm/armada/armada_overlay.c       |  2 +-
- .../gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c    |  6 +-
- .../gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c   |  7 ++-
- drivers/gpu/drm/exynos/exynos7_drm_decon.c    |  1 +
- drivers/gpu/drm/exynos/exynos_drm_fimd.c      |  1 +
- drivers/gpu/drm/exynos/exynos_drm_gsc.c       |  1 +
- drivers/gpu/drm/mediatek/mtk_disp_color.c     |  5 +-
- drivers/gpu/drm/mediatek/mtk_disp_ovl.c       |  5 +-
- drivers/gpu/drm/nouveau/nvkm/core/firmware.c  |  9 +--
- .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   |  4 +-
- drivers/gpu/drm/rockchip/rockchip_lvds.c      |  2 +-
- drivers/gpu/drm/rockchip/rockchip_rgb.c       |  1 +
- drivers/gpu/drm/savage/savage_bci.c           | 11 ----
- drivers/gpu/drm/sti/sti_hdmi.c                |  6 ++
- drivers/gpu/drm/sti/sti_hdmi.h                |  6 --
- drivers/gpu/drm/v3d/v3d_gem.c                 |  2 +
- drivers/gpu/drm/v3d/v3d_sched.c               |  2 +-
- drivers/gpu/drm/vc4/vc4_debugfs.c             |  4 +-
- drivers/gpu/drm/vc4/vc4_hdmi.c                |  3 +-
- drivers/gpu/drm/vc4/vc4_hdmi_regs.h           |  6 +-
- drivers/gpu/drm/vc4/vc4_v3d.c                 |  4 +-
- drivers/gpu/drm/via/via_dma.c                 |  2 -
- include/drm/drm_atomic.h                      |  1 +
- 30 files changed, 91 insertions(+), 94 deletions(-)
-
-Cc: Ajay Kumar <ajaykumar.rs@samsung.com>
-Cc: Akshu Agarwal <akshua@gmail.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: Benjamin Gaignard <benjamin.gaignard@linaro.org>
 Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Boris Brezillon <bbrezillon@kernel.org>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: Chris Zhong <zyw@rock-chips.com>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: dri-devel@lists.freedesktop.org
-Cc: Eric Anholt <eric@anholt.net>
-Cc: Eunchul Kim <chulspro.kim@samsung.com>
-Cc: "Heiko Stübner" <heiko@sntech.de>
-Cc: Inki Dae <inki.dae@samsung.com>
-Cc: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Cc: Jerome Glisse <glisse@freedesktop.org>
-Cc: Jinyoung Jeon <jy0.jeon@samsung.com>
-Cc: Joonyoung Shim <jy0922.shim@samsung.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Kyungmin Park <kyungmin.park@samsung.com>
-Cc: linaro-mm-sig@lists.linaro.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-mediatek@lists.infradead.org
-Cc: linux-media@vger.kernel.org
-Cc: linux-rockchip@lists.infradead.org
-Cc: linux-samsung-soc@vger.kernel.org
-Cc: Luben Tuikov <luben.tuikov@amd.com>
-Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Mark Yao <mark.yao@rock-chips.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Nickey Yang <nickey.yang@rock-chips.com>
-Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
 Cc: nouveau@lists.freedesktop.org
-Cc: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: report to <xorg-driver-ati@lists.x.org>
-Cc: Rob Clark <robdclark@gmail.com>
-Cc: Russell King <linux@armlinux.org.uk>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Sandy Huang <hjc@rock-chips.com>
-Cc: Sangmin Lee <lsmin.lee@samsung.com>
-Cc: Seung-Woo Kim <sw0312.kim@samsung.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Vincent Abriou <vincent.abriou@st.com>
+Signed-off-by: Lee Jones <lee.jones@linaro.org>
+---
+ drivers/gpu/drm/nouveau/nvkm/core/firmware.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
+index 8b25367917ca0..ca1f8463cff51 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
++++ b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
+@@ -58,9 +58,10 @@ nvkm_firmware_load_blob(const struct nvkm_subdev *subdev, const char *base,
+ 
+ /**
+  * nvkm_firmware_get - load firmware from the official nvidia/chip/ directory
+- * @subdev	subdevice that will use that firmware
+- * @fwname	name of firmware file to load
+- * @fw		firmware structure to load to
++ * @subdev:	subdevice that will use that firmware
++ * @fwname:	name of firmware file to load
++ * @ver:	firmware version to load
++ * @fw:		firmware structure to load to
+  *
+  * Use this function to load firmware files in the form nvidia/chip/fwname.bin.
+  * Firmware files released by NVIDIA will always follow this format.
+@@ -98,7 +99,7 @@ nvkm_firmware_get(const struct nvkm_subdev *subdev, const char *fwname, int ver,
+ 	return -ENOENT;
+ }
+ 
+-/**
++/*
+  * nvkm_firmware_put - release firmware loaded with nvkm_firmware_get
+  */
+ void
 -- 
 2.25.1
