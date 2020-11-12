@@ -1,209 +1,150 @@
-From: "Ruhl, Michael J" <michael.j.ruhl-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Subject: RE: [PATCH] drm/nouveau: Fix out-of-bounds access when deferencing
- MMU type
-Date: Thu, 12 Nov 2020 14:20:53 +0000
-Message-ID: <0dfc8b9904e94f61a8501fae432b4753@intel.com>
-References: <20201110133655.13174-1-tzimmermann@suse.de>
- <85758a6215f74917aee81b18d037fb82@intel.com>
- <f4cedda2-48f6-565c-4154-0975a2d119a0@suse.de>
- <b87d5a2cce4941fe86e89d97bd6b2be4@intel.com>
- <CACAvsv7vZFnFtvcaA8PcRn=V-uH9P7HU6BcZsSUGZSYejZCwQw@mail.gmail.com>
+From: Lee Jones <lee.jones@linaro.org>
+Subject: [PATCH 00/30] [Set 6] Rid W=1 warnings from GPU
+Date: Thu, 12 Nov 2020 19:00:09 +0000
+Message-ID: <20201112190039.2785914-1-lee.jones@linaro.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACAvsv7vZFnFtvcaA8PcRn=V-uH9P7HU6BcZsSUGZSYejZCwQw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Felix Kuehling <Felix.Kuehling-5C7GfCeVMHo@public.gmane.org>, Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, "airlied-cv59FeDIM0c@public.gmane.org" <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Roland Scheidegger <sroland-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org" <virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>, Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>, Huang Rui <ray.huang-5C7GfCeVMHo@public.gmane.org>, VMware Graphics <linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, "bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org" <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "daniel-/w4YWyX8dFk@public.gmane.org" <daniel-/w4YWyX8dFk@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, "spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Likun Gao <Likun.Gao-5C7GfCeVMHo@public.gmane.org>, Hawking Zhang <Hawking.Zhang-5C7GfCeVMHo@public.gmane.org>, christian.koe
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+To: lee.jones@linaro.org
+Cc: linux-kernel@vger.kernel.org, Ajay Kumar <ajaykumar.rs@samsung.com>, Akshu Agarwal <akshua@gmail.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, Benjamin Gaignard <benjamin.gaignard@linaro.org>, Ben Skeggs <bskeggs@redhat.com>, Boris Brezillon <bbrezillon@kernel.org>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Chris Zhong <zyw@rock-chips.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, Eric Anholt <eric@anholt.net>, Eunchul Kim <chulspro.kim@samsung.com>, =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>, Inki Dae <inki.dae@samsung.com>, Jean-Jac
 List-Id: nouveau.vger.kernel.org
 
-Pi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+RnJvbTogQmVuIFNrZWdncyA8c2tlZ2dzYkBn
-bWFpbC5jb20+DQo+U2VudDogV2VkbmVzZGF5LCBOb3ZlbWJlciAxMSwgMjAyMCA5OjM5IFBNDQo+
-VG86IFJ1aGwsIE1pY2hhZWwgSiA8bWljaGFlbC5qLnJ1aGxAaW50ZWwuY29tPg0KPkNjOiBUaG9t
-YXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT47IGJza2VnZ3NAcmVkaGF0LmNvbTsN
-Cj5haXJsaWVkQGxpbnV4LmllOyBkYW5pZWxAZmZ3bGwuY2g7IGNocmlzdGlhbi5rb2VuaWdAYW1k
-LmNvbTsgYW1kLQ0KPmdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IG5vdXZlYXVAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnOyBkcmktDQo+ZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyB2aXJ0dWFs
-aXphdGlvbkBsaXN0cy5saW51eC1mb3VuZGF0aW9uLm9yZzsgUm9sYW5kDQo+U2NoZWlkZWdnZXIg
-PHNyb2xhbmRAdm13YXJlLmNvbT47IEphc29uIEd1bnRob3JwZSA8amdnQHppZXBlLmNhPjsNCj5I
-dWFuZyBSdWkgPHJheS5odWFuZ0BhbWQuY29tPjsgVk13YXJlIEdyYXBoaWNzIDxsaW51eC1ncmFw
-aGljcy0NCj5tYWludGFpbmVyQHZtd2FyZS5jb20+OyBHZXJkIEhvZmZtYW5uIDxrcmF4ZWxAcmVk
-aGF0LmNvbT47IHNwaWNlLQ0KPmRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgQWxleCBEZXVj
-aGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPjsNCj5EYXZlIEFpcmxpZSA8YWlybGllZEBy
-ZWRoYXQuY29tPjsgTGlrdW4gR2FvIDxMaWt1bi5HYW9AYW1kLmNvbT47IEZlbGl4DQo+S3VlaGxp
-bmcgPEZlbGl4Lkt1ZWhsaW5nQGFtZC5jb20+OyBIYXdraW5nIFpoYW5nDQo+PEhhd2tpbmcuWmhh
-bmdAYW1kLmNvbT4NCj5TdWJqZWN0OiBSZTogW1BBVENIXSBkcm0vbm91dmVhdTogRml4IG91dC1v
-Zi1ib3VuZHMgYWNjZXNzIHdoZW4NCj5kZWZlcmVuY2luZyBNTVUgdHlwZQ0KPg0KPk9uIFRodSwg
-MTIgTm92IDIwMjAgYXQgMDI6MjcsIFJ1aGwsIE1pY2hhZWwgSiA8bWljaGFlbC5qLnJ1aGxAaW50
-ZWwuY29tPg0KPndyb3RlOg0KPj4NCj4+ID4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPj4g
-PkZyb206IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPg0KPj4gPlNlbnQ6
-IFdlZG5lc2RheSwgTm92ZW1iZXIgMTEsIDIwMjAgNzowOCBBTQ0KPj4gPlRvOiBSdWhsLCBNaWNo
-YWVsIEogPG1pY2hhZWwuai5ydWhsQGludGVsLmNvbT47IGJza2VnZ3NAcmVkaGF0LmNvbTsNCj4+
-ID5haXJsaWVkQGxpbnV4LmllOyBkYW5pZWxAZmZ3bGwuY2g7IGNocmlzdGlhbi5rb2VuaWdAYW1k
-LmNvbQ0KPj4gPkNjOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgZHJpLWRldmVsQGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZzsNCj4+ID5NYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5r
-aG9yc3RAbGludXguaW50ZWwuY29tPjsgTWF4aW1lIFJpcGFyZA0KPj4gPjxtcmlwYXJkQGtlcm5l
-bC5vcmc+OyBEYXZlIEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29tPjsgR2VyZCBIb2ZmbWFubg0K
-Pj4gPjxrcmF4ZWxAcmVkaGF0LmNvbT47IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRldWNoZXJA
-YW1kLmNvbT47DQo+PiA+Vk13YXJlIEdyYXBoaWNzIDxsaW51eC1ncmFwaGljcy1tYWludGFpbmVy
-QHZtd2FyZS5jb20+OyBSb2xhbmQNCj4+ID5TY2hlaWRlZ2dlciA8c3JvbGFuZEB2bXdhcmUuY29t
-PjsgSHVhbmcgUnVpIDxyYXkuaHVhbmdAYW1kLmNvbT47DQo+PiA+RmVsaXggS3VlaGxpbmcgPEZl
-bGl4Lkt1ZWhsaW5nQGFtZC5jb20+OyBIYXdraW5nIFpoYW5nDQo+PiA+PEhhd2tpbmcuWmhhbmdA
-YW1kLmNvbT47IEphc29uIEd1bnRob3JwZSA8amdnQHppZXBlLmNhPjsgTGlrdW4NCj5HYW8NCj4+
-ID48TGlrdW4uR2FvQGFtZC5jb20+OyB2aXJ0dWFsaXphdGlvbkBsaXN0cy5saW51eC1mb3VuZGF0
-aW9uLm9yZzsgc3BpY2UtDQo+PiA+ZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBhbWQtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPj4gPlN1YmplY3Q6IFJlOiBbUEFUQ0hdIGRybS9ub3V2
-ZWF1OiBGaXggb3V0LW9mLWJvdW5kcyBhY2Nlc3Mgd2hlbg0KPj4gPmRlZmVyZW5jaW5nIE1NVSB0
-eXBlDQo+PiA+DQo+PiA+SGkNCj4+ID4NCj4+ID5BbSAxMC4xMS4yMCB1bSAxNjoyNyBzY2hyaWVi
-IFJ1aGwsIE1pY2hhZWwgSjoNCj4+ID4+DQo+PiA+Pg0KPj4gPj4+IC0tLS0tT3JpZ2luYWwgTWVz
-c2FnZS0tLS0tDQo+PiA+Pj4gRnJvbTogVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1
-c2UuZGU+DQo+PiA+Pj4gU2VudDogVHVlc2RheSwgTm92ZW1iZXIgMTAsIDIwMjAgODozNyBBTQ0K
-Pj4gPj4+IFRvOiBic2tlZ2dzQHJlZGhhdC5jb207IGFpcmxpZWRAbGludXguaWU7IGRhbmllbEBm
-ZndsbC5jaDsgUnVobCwNCj5NaWNoYWVsIEoNCj4+ID4+PiA8bWljaGFlbC5qLnJ1aGxAaW50ZWwu
-Y29tPjsgY2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tDQo+PiA+Pj4gQ2M6IG5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnOyBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOw0KPj4gPlRo
-b21hcw0KPj4gPj4+IFppbW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+OyBNYWFydGVuIExh
-bmtob3JzdA0KPj4gPj4+IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+OyBNYXhp
-bWUgUmlwYXJkDQo+PiA+Pj4gPG1yaXBhcmRAa2VybmVsLm9yZz47IERhdmUgQWlybGllIDxhaXJs
-aWVkQHJlZGhhdC5jb20+OyBHZXJkDQo+SG9mZm1hbm4NCj4+ID4+PiA8a3JheGVsQHJlZGhhdC5j
-b20+OyBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+Ow0KPj4gPj4+IFZN
-d2FyZSBHcmFwaGljcyA8bGludXgtZ3JhcGhpY3MtbWFpbnRhaW5lckB2bXdhcmUuY29tPjsgUm9s
-YW5kDQo+PiA+Pj4gU2NoZWlkZWdnZXIgPHNyb2xhbmRAdm13YXJlLmNvbT47IEh1YW5nIFJ1aQ0K
-PjxyYXkuaHVhbmdAYW1kLmNvbT47DQo+PiA+Pj4gRmVsaXggS3VlaGxpbmcgPEZlbGl4Lkt1ZWhs
-aW5nQGFtZC5jb20+OyBIYXdraW5nIFpoYW5nDQo+PiA+Pj4gPEhhd2tpbmcuWmhhbmdAYW1kLmNv
-bT47IEphc29uIEd1bnRob3JwZSA8amdnQHppZXBlLmNhPjsgTGlrdW4NCj4+ID5HYW8NCj4+ID4+
-PiA8TGlrdW4uR2FvQGFtZC5jb20+OyB2aXJ0dWFsaXphdGlvbkBsaXN0cy5saW51eC1mb3VuZGF0
-aW9uLm9yZzsNCj5zcGljZS0NCj4+ID4+PiBkZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IGFt
-ZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+PiA+Pj4gU3ViamVjdDogW1BBVENIXSBkcm0v
-bm91dmVhdTogRml4IG91dC1vZi1ib3VuZHMgYWNjZXNzIHdoZW4NCj4+ID5kZWZlcmVuY2luZw0K
-Pj4gPj4+IE1NVSB0eXBlDQo+PiA+Pj4NCj4+ID4+PiBUaGUgdmFsdWUgb2Ygc3RydWN0IGRybV9k
-ZXZpY2UudHRtLnR5cGVfdnJhbSBjYW4gYmVjb21lIC0xIGZvcg0KPj4gPnVua25vd24NCj4+ID4+
-PiB0eXBlcyBvZiBtZW1vcnkgKHNlZSBub3V2ZWF1X3R0bV9pbml0KCkpLiBUaGlzIGxlYWRzIHRv
-IGFuIG91dC1vZi0NCj5ib3VuZHMNCj4+ID4+PiBlcnJvciB3aGVuIGFjY2Vzc2luZyBzdHJ1Y3Qg
-bnZpZl9tbXUudHlwZVtdOg0KPj4gPj4NCj4+ID4+IFdvdWxkIHRoaXMgbWFrZSBtb3JlIHNlbnNl
-IHRvIGp1c3Qgc2V0IHRoZSB0eXBlX3ZyYW0gPSAwIGluc3RlYWQgb2YgLTE/DQo+PiA+DQo+PiA+
-RnJvbSB3aGF0IEkgdW5kZXJzdGFuZCwgdGhlc2UgaW5kaWNlcyByZWZlciB0byBhbiBpbnRlcm5h
-bCB0eXBlIG9mIE1NVSwNCj4+ID5yc3AgdGhlIE1NVSdzIGNhcGFiaWxpdGllcy4gSG93ZXZlciwg
-bXkgaGFyZHdhcmUgKHByZS1OVjUwKSBkb2VzIG5vdA0KPj4gPmhhdmUgYW4gTU1VIGF0IGFsbC4N
-Cj4+DQo+PiBZZWFoLCBhbmQgdXBvbiBmdXJ0aGVyIHJldmlldyBJIHNlZSB0aGF0IG15IGNvbW1l
-bnQgd2FzIGNvbXBsZXRlbHkNCj53cm9uZw0KPj4gKHZhbHVlIHZzLiBpbmRleCkuDQo+Pg0KPj4g
-QSBiZXR0ZXIgc3VnZ2VzdGlvbiB3b3VsZCBoYXZlIGJlZW4sIGNyZWF0ZSBhbiBlbnRyeSBpbiB0
-aGUgYXJyYXkgdGhhdA0KPm1lYW5zLA0KPj4gInVuc3VwcG9ydGVkIHR5cGUiIHdpdGggYSB2YWx1
-ZSBvZiAwLCBidXQuLi4NCj4+DQo+PiA+SSBhZ3JlZSB0aGF0IGl0IHdvdWxkIGJlIG5pY2UgdG8g
-aGF2ZSBhIGNsZWFuZXIgZGVzaWduIHRoYXQgaW5jb3Jwb3JhdGVzDQo+PiA+dGhpcyBjYXNlLCBi
-dXQgcmVzb2x2aW5nIHRoYXQgd291bGQgYXBwYXJlbnRseSByZXF1aXJlIG1vcmUgdGhhbiBhIGJ1
-Z2ZpeC4NCj4+DQo+PiBJIGFncmVlLiAgVGhlIC0xIGluZGV4IGlzIGEgc3BlY2lhbCBjYXNlIGZv
-ciB0aGUgcGxhdGZvcm0gcGF0aA0KPj4gKHBsYXRmb3JtICE9IE5WX0RFVklDRV9JTkZPX1YwX1NP
-QykuICBUaGlzIGlzIGEgZml4IGZvciB0aGUgaXNzdWUsIGJ1dCBub3QNCj4+IGEgY29tcGxldGUg
-c29sdXRpb24uDQo+Pg0KPj4gSWYgeW91IG5lZWQgaXQ6DQo+PiBSZXZpZXdlZC1ieTogTWljaGFl
-bCBKLiBSdWhsIDxtaWNoYWVsLmoucnVobEBpbnRlbC5jb20+DQo+SSd2ZSBwdXQgYW4gYWx0ZXJu
-YXRlIGZpeCBmb3IgdGhpcyBoZXJlWzFdLCBhbmQgd2lsbCBnZXQgaXQgaW50bw0KPmRybS1maXhl
-cyBsYXRlciB0b2RheS4NCj4NCj5CZW4uDQo+DQo+WzFdDQo+aHR0cHM6Ly9naXRodWIuY29tL3Nr
-ZWdnc2Ivbm91dmVhdS9jb21taXQvNDU5MGY3MTIwYzJmMWY0YWVhOWQ4YjkzYTJkDQo+YWU0M2Iz
-MTJkMzVhZA0KDQpUaGlzIG1ha2VzIGEgbG90IG9mIHNlbnNlLiAgSSBzcGVudCBzb21lIHRpbWUg
-dHJ5aW5nIHRvIHJlY29uY2lsZSB0aGUgcGxhdGZvcm0gaW5mbw0KdGhhdCB3YXMgbm90IGJlaW5n
-IHVzZWQgaW4gdGhpcyBjYXNlLCBidXQgZGlkbid0IHNlZSB0aGUgc29sdXRpb24gbGlrZSB0aGlz
-LiAgIFRoaXMgaXMNCnByZXR0eSBjbGVhbi4NCg0KSWYgeW91IHdvdWxkIGxpa2U6DQoNClJldmll
-d2VkLWJ5OiBNaWNoYWVsIEouIFJ1aGwgPG1pY2hhZWwuai5ydWhsQGludGVsLmNvbT4NCg0KRm9y
-IHRoaXMgc29sdXRpb24gYXMgd2VsbC4NCg0KTWlrZQ0KDQo+Pg0KPj4gVGhhbmtzLA0KPj4gTWlr
-ZQ0KPj4NCj4+ID5CZXN0IHJlZ2FyZHMNCj4+ID5UaG9tYXMNCj4+ID4NCj4+ID4+DQo+PiA+PiBN
-aWtlDQo+PiA+Pg0KPj4gPj4+DQo+PiA+Pj4gIFsgICAxOC4zMDQxMTZdDQo+PiA+Pj4NCj4+DQo+
-Pj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT0NCj49DQo+PiA+Pj4gPT09PT09PQ0KPj4gPj4+ICBbICAgMTguMzExNjQ5XSBCVUc6IEtBU0FO
-OiBzbGFiLW91dC1vZi1ib3VuZHMgaW4NCj4+ID4+PiBub3V2ZWF1X3R0bV9pb19tZW1fcmVzZXJ2
-ZSsweDE3YS8weDdlMCBbbm91dmVhdV0NCj4+ID4+PiAgWyAgIDE4LjMyMDQxNV0gUmVhZCBvZiBz
-aXplIDEgYXQgYWRkciBmZmZmODg4MTBmZmFjMWZlIGJ5IHRhc2sgc3lzdGVtZC0NCj4+ID4+PiB1
-ZGV2ZC8zNDINCj4+ID4+PiAgWyAgIDE4LjMyNzY4MV0NCj4+ID4+PiAgWyAgIDE4LjMyOTIwOF0g
-Q1BVOiAxIFBJRDogMzQyIENvbW06IHN5c3RlbWQtdWRldmQgVGFpbnRlZDogRyAgICAgICAgICAg
-IEUNCj4+ID4+PiA1LjEwLjAtcmMyLTEtZGVmYXVsdCsgIzU4MQ0KPj4gPj4+ICBbICAgMTguMzM4
-NjgxXSBIYXJkd2FyZSBuYW1lOiBEZWxsIEluYy4gT3B0aVBsZXggOTAyMC8wTjRZQzgsIEJJT1Mg
-QTI0DQo+PiA+Pj4gMTAvMjQvMjAxOA0KPj4gPj4+ICBbICAgMTguMzQ2MDMyXSBDYWxsIFRyYWNl
-Og0KPj4gPj4+ICBbICAgMTguMzQ4NTM2XSAgZHVtcF9zdGFjaysweGFlLzB4ZTUNCj4+ID4+PiAg
-WyAgIDE4LjM1MTkxOV0gIHByaW50X2FkZHJlc3NfZGVzY3JpcHRpb24uY29uc3Rwcm9wLjArMHgx
-Ny8weGYwDQo+PiA+Pj4gIFsgICAxOC4zNTc3ODddICA/IG5vdXZlYXVfdHRtX2lvX21lbV9yZXNl
-cnZlKzB4MTdhLzB4N2UwDQo+W25vdXZlYXVdDQo+PiA+Pj4gIFsgICAxOC4zNjM4MThdICBfX2th
-c2FuX3JlcG9ydC5jb2xkKzB4MjAvMHgzOA0KPj4gPj4+ICBbICAgMTguMzY4MDk5XSAgPyBub3V2
-ZWF1X3R0bV9pb19tZW1fcmVzZXJ2ZSsweDE3YS8weDdlMA0KPltub3V2ZWF1XQ0KPj4gPj4+ICBb
-ICAgMTguMzc0MTMzXSAga2FzYW5fcmVwb3J0KzB4M2EvMHg1MA0KPj4gPj4+ICBbICAgMTguMzc3
-Nzg5XSAgbm91dmVhdV90dG1faW9fbWVtX3Jlc2VydmUrMHgxN2EvMHg3ZTAgW25vdXZlYXVdDQo+
-PiA+Pj4gIDwuLi4+DQo+PiA+Pj4gIFsgICAxOC43Njc2OTBdIEFsbG9jYXRlZCBieSB0YXNrIDM0
-MjoNCj4+ID4+PiAgWyAgIDE4Ljc3MzA4N10gIGthc2FuX3NhdmVfc3RhY2srMHgxYi8weDQwDQo+
-PiA+Pj4gIFsgICAxOC43Nzg4OTBdICBfX2thc2FuX2ttYWxsb2MuY29uc3Rwcm9wLjArMHhiZi8w
-eGQwDQo+PiA+Pj4gIFsgICAxOC43ODU2NDZdICBfX2ttYWxsb2NfdHJhY2tfY2FsbGVyKzB4MWJl
-LzB4MzkwDQo+PiA+Pj4gIFsgICAxOC43OTIxNjVdICBrc3RyZHVwX2NvbnN0KzB4NDYvMHg3MA0K
-Pj4gPj4+ICBbICAgMTguNzk3Njg2XSAga29iamVjdF9zZXRfbmFtZV92YXJncysweDJmLzB4YjAN
-Cj4+ID4+PiAgWyAgIDE4LjgwMzk5Ml0gIGtvYmplY3RfaW5pdF9hbmRfYWRkKzB4OWQvMHhmMA0K
-Pj4gPj4+ICBbICAgMTguODEwMTE3XSAgdHRtX21lbV9nbG9iYWxfaW5pdCsweDEyYy8weDIxMCBb
-dHRtXQ0KPj4gPj4+ICBbICAgMTguODE2ODUzXSAgdHRtX2JvX2dsb2JhbF9pbml0KzB4NGEvMHgx
-NjAgW3R0bV0NCj4+ID4+PiAgWyAgIDE4LjgyMzQyMF0gIHR0bV9ib19kZXZpY2VfaW5pdCsweDM5
-LzB4MjIwIFt0dG1dDQo+PiA+Pj4gIFsgICAxOC44MzAwNDZdICBub3V2ZWF1X3R0bV9pbml0KzB4
-MmMzLzB4ODMwIFtub3V2ZWF1XQ0KPj4gPj4+ICBbICAgMTguODM2OTI5XSAgbm91dmVhdV9kcm1f
-ZGV2aWNlX2luaXQrMHgxYjQvMHgzZjAgW25vdXZlYXVdDQo+PiA+Pj4gIDwuLi4+DQo+PiA+Pj4g
-IFsgICAxOS4xMDUzMzZdDQo+PiA+Pj4NCj4+DQo+Pj09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCj49DQo+PiA+Pj4gPT09PT09PQ0KPj4g
-Pj4+DQo+PiA+Pj4gRml4IHRoaXMgZXJyb3IsIGJ5IG5vdCB1c2luZyB0eXBlX3ZyYW0gYXMgYW4g
-aW5kZXggaWYgaXQncyBuZWdhdGl2ZS4NCj4+ID4+PiBBc3N1bWUgZGVmYXVsdCB2YWx1ZXMgaW5z
-dGVhZC4NCj4+ID4+Pg0KPj4gPj4+IFRoZSBlcnJvciB3YXMgc2VlbiBvbiBOdmlkaWEgRzcyIGhh
-cmR3YXJlLg0KPj4gPj4+DQo+PiA+Pj4gU2lnbmVkLW9mZi1ieTogVGhvbWFzIFppbW1lcm1hbm4g
-PHR6aW1tZXJtYW5uQHN1c2UuZGU+DQo+PiA+Pj4gRml4ZXM6IDFjZjY1YzQ1MTgzYSAoImRybS90
-dG06IGFkZCBjYWNoaW5nIHN0YXRlIHRvDQo+dHRtX2J1c19wbGFjZW1lbnQiKQ0KPj4gPj4+IENj
-OiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+DQo+PiA+Pj4gQ2M6
-IE1pY2hhZWwgSi4gUnVobCA8bWljaGFlbC5qLnJ1aGxAaW50ZWwuY29tPg0KPj4gPj4+IENjOiBN
-YWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPg0KPj4g
-Pj4+IENjOiBNYXhpbWUgUmlwYXJkIDxtcmlwYXJkQGtlcm5lbC5vcmc+DQo+PiA+Pj4gQ2M6IFRo
-b21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPg0KPj4gPj4+IENjOiBEYXZpZCBB
-aXJsaWUgPGFpcmxpZWRAbGludXguaWU+DQo+PiA+Pj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmll
-bEBmZndsbC5jaD4NCj4+ID4+PiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPg0K
-Pj4gPj4+IENjOiBEYXZlIEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29tPg0KPj4gPj4+IENjOiBH
-ZXJkIEhvZmZtYW5uIDxrcmF4ZWxAcmVkaGF0LmNvbT4NCj4+ID4+PiBDYzogQWxleCBEZXVjaGVy
-IDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPg0KPj4gPj4+IENjOiAiQ2hyaXN0aWFuIEvDtm5p
-ZyIgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4NCj4+ID4+PiBDYzogVk13YXJlIEdyYXBoaWNz
-IDxsaW51eC1ncmFwaGljcy1tYWludGFpbmVyQHZtd2FyZS5jb20+DQo+PiA+Pj4gQ2M6IFJvbGFu
-ZCBTY2hlaWRlZ2dlciA8c3JvbGFuZEB2bXdhcmUuY29tPg0KPj4gPj4+IENjOiBIdWFuZyBSdWkg
-PHJheS5odWFuZ0BhbWQuY29tPg0KPj4gPj4+IENjOiBGZWxpeCBLdWVobGluZyA8RmVsaXguS3Vl
-aGxpbmdAYW1kLmNvbT4NCj4+ID4+PiBDYzogSGF3a2luZyBaaGFuZyA8SGF3a2luZy5aaGFuZ0Bh
-bWQuY29tPg0KPj4gPj4+IENjOiBKYXNvbiBHdW50aG9ycGUgPGpnZ0B6aWVwZS5jYT4NCj4+ID4+
-PiBDYzogTGlrdW4gR2FvIDxMaWt1bi5HYW9AYW1kLmNvbT4NCj4+ID4+PiBDYzogZHJpLWRldmVs
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPj4gPj4+IENjOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZw0KPj4gPj4+IENjOiB2aXJ0dWFsaXphdGlvbkBsaXN0cy5saW51eC1mb3VuZGF0aW9u
-Lm9yZw0KPj4gPj4+IENjOiBzcGljZS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4+ID4+
-PiBDYzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4+ID4+PiAtLS0NCj4+ID4+PiBk
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMgfCA1ICsrKystDQo+PiA+Pj4gMSBm
-aWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPj4gPj4+DQo+PiA+
-Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYw0KPj4g
-Pj4+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jDQo+PiA+Pj4gaW5kZXgg
-ODEzMzM3N2Q4NjVkLi5mZTE1Mjk5ZDQxN2UgMTAwNjQ0DQo+PiA+Pj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jDQo+PiA+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9iby5jDQo+PiA+Pj4gQEAgLTExNDIsOSArMTE0MiwxMiBAQCBub3V2
-ZWF1X3R0bV9pb19tZW1fcmVzZXJ2ZShzdHJ1Y3QNCj4+ID4+PiB0dG1fYm9fZGV2aWNlICpiZGV2
-LCBzdHJ1Y3QgdHRtX3Jlc291cmNlICpyZWcpDQo+PiA+Pj4gICAgIHN0cnVjdCBudmttX2Rldmlj
-ZSAqZGV2aWNlID0gbnZ4eF9kZXZpY2UoJmRybS0+Y2xpZW50LmRldmljZSk7DQo+PiA+Pj4gICAg
-IHN0cnVjdCBub3V2ZWF1X21lbSAqbWVtID0gbm91dmVhdV9tZW0ocmVnKTsNCj4+ID4+PiAgICAg
-c3RydWN0IG52aWZfbW11ICptbXUgPSAmZHJtLT5jbGllbnQubW11Ow0KPj4gPj4+IC0gICBjb25z
-dCB1OCB0eXBlID0gbW11LT50eXBlW2RybS0+dHRtLnR5cGVfdnJhbV0udHlwZTsNCj4+ID4+PiAr
-ICAgdTggdHlwZSA9IDA7DQo+PiA+Pj4gICAgIGludCByZXQ7DQo+PiA+Pj4NCj4+ID4+PiArICAg
-aWYgKGRybS0+dHRtLnR5cGVfdnJhbSA+PSAwKQ0KPj4gPj4+ICsgICAgICAgICAgIHR5cGUgPSBt
-bXUtPnR5cGVbZHJtLT50dG0udHlwZV92cmFtXS50eXBlOw0KPj4gPj4+ICsNCj4+ID4+PiAgICAg
-bXV0ZXhfbG9jaygmZHJtLT50dG0uaW9fcmVzZXJ2ZV9tdXRleCk7DQo+PiA+Pj4gcmV0cnk6DQo+
-PiA+Pj4gICAgIHN3aXRjaCAocmVnLT5tZW1fdHlwZSkgew0KPj4gPj4+IC0tDQo+PiA+Pj4gMi4y
-OS4yDQo+PiA+Pg0KPj4gPg0KPj4gPi0tDQo+PiA+VGhvbWFzIFppbW1lcm1hbm4NCj4+ID5HcmFw
-aGljcyBEcml2ZXIgRGV2ZWxvcGVyDQo+PiA+U1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFu
-eSBHbWJIDQo+PiA+TWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55DQo+PiA+
-KEhSQiAzNjgwOSwgQUcgTsO8cm5iZXJnKQ0KPj4gPkdlc2Now6RmdHNmw7xocmVyOiBGZWxpeCBJ
-bWVuZMO2cmZmZXINCj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fDQo+PiBkcmktZGV2ZWwgbWFpbGluZyBsaXN0DQo+PiBkcmktZGV2ZWxAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnDQo+PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2RyaS1kZXZlbA0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
-Cg==
+This set is part of a larger effort attempting to clean-up W=1
+kernel builds, which are currently overwhelmingly riddled with
+niggly little warnings.
+
+NB: Hopefully the other sets turn up in -next soon, so they can
+be rebased and any stragglers re-submitted.
+
+Lee Jones (30):
+  drm/savage/savage_bci: Remove set but never used 'aper_rsrc' and
+    'fb_rsrc'
+  include: drm: drm_atomic: Artificially use 'crtc' to avoid 'not used'
+    warning
+  drm/v3d/v3d_gem: Provide descriptions for 'v3d_lookup_bos's params
+  drm/via/via_dma: Remove set but unused variable 'agp_base'
+  drm/v3d/v3d_sched: Demote non-conformant kernel-doc header
+  drm/amd/amdgpu/amdgpu_kms: Fix misnaming of parameter 'dev'
+  drm/amd/amdgpu/amdgpu_fence: Fix some issues pertaining to function
+    documentation
+  drm/exynos/exynos7_drm_decon: Supply missing description for  param
+    'ctx'
+  drm/exynos/exynos_drm_fimd: Add missing description for param 'ctx'
+  drm/vc4/vc4_hdmi_regs: Mark some data sets as __maybe_unused
+  drm/vc4/vc4_hdmi: Remove set but unused variable 'ret'
+  drm/amd/amdgpu/amdgpu_ttm: Demote non-conformant kernel-doc headers,
+    fix slightly lacking ones
+  drm/atmel-hlcdc/atmel_hlcdc_crtc: Apply correct formatting to struct
+    docs
+  drm/amd/amdgpu/amdgpu_ring: Fix a bunch of function misdocumentation
+  drm/amd/amdgpu/amdgpu_display: Remove pointless header
+  drm/atmel-hlcdc/atmel_hlcdc_plane: Staticise local function
+    'atmel_hlcdc_plane_setup_scaler()'
+  drm/atmel-hlcdc/atmel_hlcdc_plane: Fix documentation formatting and
+    add missing description
+  drm/vc4/vc4_v3d: Demote non-conformant kernel-doc headers
+  drm/amd/amdgpu/amdgpu_cs: Add a couple of missing function param
+    descriptions
+  drm/armada/armada_overlay: Staticify local function
+    'armada_overlay_duplicate_state'
+  drm/vc4/vc4_debugfs: Demote non-conformant kernel-doc headers
+  drm/rockchip/dw-mipi-dsi-rockchip: Demote non-conformant kernel-doc
+    headers
+  drm/rockchip/rockchip_rgb: Consume our own header
+  drm/nouveau/nvkm/core/firmware: Fix formatting, provide missing param
+    description
+  drm/rockchip/rockchip_lvds: Fix struct document formatting
+  drm/exynos/exynos_drm_gsc: Supply missing description for 'num_limits'
+  drm/sti/sti_hdmi: Move 'colorspace_mode_names' array to where its used
+  drm/mediatek/mtk_disp_color: Fix formatting and provide missing member
+    description
+  drm/amd/amdgpu/atombios_encoders: Remove set but unused variable
+    'backlight_level'
+  drm/mediatek/mtk_disp_ovl: Fix formatting and provide missing member
+    description
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c        |  2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  4 --
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c     | 11 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c      | 12 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       | 60 ++++++++++---------
+ .../gpu/drm/amd/amdgpu/atombios_encoders.c    |  3 +-
+ drivers/gpu/drm/armada/armada_overlay.c       |  2 +-
+ .../gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c    |  6 +-
+ .../gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c   |  7 ++-
+ drivers/gpu/drm/exynos/exynos7_drm_decon.c    |  1 +
+ drivers/gpu/drm/exynos/exynos_drm_fimd.c      |  1 +
+ drivers/gpu/drm/exynos/exynos_drm_gsc.c       |  1 +
+ drivers/gpu/drm/mediatek/mtk_disp_color.c     |  5 +-
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c       |  5 +-
+ drivers/gpu/drm/nouveau/nvkm/core/firmware.c  |  9 +--
+ .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   |  4 +-
+ drivers/gpu/drm/rockchip/rockchip_lvds.c      |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_rgb.c       |  1 +
+ drivers/gpu/drm/savage/savage_bci.c           | 11 ----
+ drivers/gpu/drm/sti/sti_hdmi.c                |  6 ++
+ drivers/gpu/drm/sti/sti_hdmi.h                |  6 --
+ drivers/gpu/drm/v3d/v3d_gem.c                 |  2 +
+ drivers/gpu/drm/v3d/v3d_sched.c               |  2 +-
+ drivers/gpu/drm/vc4/vc4_debugfs.c             |  4 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                |  3 +-
+ drivers/gpu/drm/vc4/vc4_hdmi_regs.h           |  6 +-
+ drivers/gpu/drm/vc4/vc4_v3d.c                 |  4 +-
+ drivers/gpu/drm/via/via_dma.c                 |  2 -
+ include/drm/drm_atomic.h                      |  1 +
+ 30 files changed, 91 insertions(+), 94 deletions(-)
+
+Cc: Ajay Kumar <ajaykumar.rs@samsung.com>
+Cc: Akshu Agarwal <akshua@gmail.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Cc: Benjamin Gaignard <benjamin.gaignard@linaro.org>
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: Boris Brezillon <bbrezillon@kernel.org>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: Chris Zhong <zyw@rock-chips.com>
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: David Airlie <airlied@linux.ie>
+Cc: dri-devel@lists.freedesktop.org
+Cc: Eric Anholt <eric@anholt.net>
+Cc: Eunchul Kim <chulspro.kim@samsung.com>
+Cc: "Heiko Stübner" <heiko@sntech.de>
+Cc: Inki Dae <inki.dae@samsung.com>
+Cc: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Cc: Jerome Glisse <glisse@freedesktop.org>
+Cc: Jinyoung Jeon <jy0.jeon@samsung.com>
+Cc: Joonyoung Shim <jy0922.shim@samsung.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Kyungmin Park <kyungmin.park@samsung.com>
+Cc: linaro-mm-sig@lists.linaro.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-mediatek@lists.infradead.org
+Cc: linux-media@vger.kernel.org
+Cc: linux-rockchip@lists.infradead.org
+Cc: linux-samsung-soc@vger.kernel.org
+Cc: Luben Tuikov <luben.tuikov@amd.com>
+Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Mark Yao <mark.yao@rock-chips.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Nickey Yang <nickey.yang@rock-chips.com>
+Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc: nouveau@lists.freedesktop.org
+Cc: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: report to <xorg-driver-ati@lists.x.org>
+Cc: Rob Clark <robdclark@gmail.com>
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Sandy Huang <hjc@rock-chips.com>
+Cc: Sangmin Lee <lsmin.lee@samsung.com>
+Cc: Seung-Woo Kim <sw0312.kim@samsung.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Vincent Abriou <vincent.abriou@st.com>
+-- 
+2.25.1
