@@ -1,135 +1,177 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v3 3/6] mm: support THP migration to device
- private memory
-Date: Wed, 11 Nov 2020 15:38:42 -0800
-Message-ID: <bbf1f0df-85f3-5887-050e-beb2aad750f2@nvidia.com>
-References: <20201106005147.20113-1-rcampbell@nvidia.com>
- <20201106005147.20113-4-rcampbell@nvidia.com> <20201106080322.GE31341@lst.de>
- <a7b8b90c-09b7-2009-0784-908b61f61ef2@nvidia.com>
- <20201109091415.GC28918@lst.de>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Fix out-of-bounds access when deferencing
+ MMU type
+Date: Thu, 12 Nov 2020 12:38:52 +1000
+Message-ID: <CACAvsv7vZFnFtvcaA8PcRn=V-uH9P7HU6BcZsSUGZSYejZCwQw@mail.gmail.com>
+References: <20201110133655.13174-1-tzimmermann@suse.de>
+ <85758a6215f74917aee81b18d037fb82@intel.com>
+ <f4cedda2-48f6-565c-4154-0975a2d119a0@suse.de>
+ <b87d5a2cce4941fe86e89d97bd6b2be4@intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20201109091415.GC28918-jcswGhMUV9g@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Cc: Yang Shi <yang.shi-KPsoFbNs7GizrGE5bRqYAgC/G2K4zDHf@public.gmane.org>, Jason Gunthorpe <jgg-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Alistair Popple <apopple-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-kselftest-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Zi Yan <ziy-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Shuah Khan <shuah-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, "Kirill A . Shutemov" <kirill.shutemov-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <b87d5a2cce4941fe86e89d97bd6b2be4-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: "Ruhl, Michael J" <michael.j.ruhl-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Cc: Felix Kuehling <Felix.Kuehling-5C7GfCeVMHo@public.gmane.org>, Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, "airlied-cv59FeDIM0c@public.gmane.org" <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Roland Scheidegger <sroland-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org" <virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>, Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>, Huang Rui <ray.huang-5C7GfCeVMHo@public.gmane.org>, VMware Graphics <linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, "bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org" <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "daniel-/w4YWyX8dFk@public.gmane.org" <daniel-/w4YWyX8dFk@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, "spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Likun Gao <Likun.Gao-5C7GfCeVMHo@public.gmane.org>, Hawking Zhang <Hawking.Zhang-5C7GfCeVMHo@public.gmane.org>, christian.koe
 List-Id: nouveau.vger.kernel.org
 
-
-On 11/9/20 1:14 AM, Christoph Hellwig wrote:
-> On Fri, Nov 06, 2020 at 01:26:50PM -0800, Ralph Campbell wrote:
->>
->> On 11/6/20 12:03 AM, Christoph Hellwig wrote:
->>> I hate the extra pin count magic here.  IMHO we really need to finish
->>> off the series to get rid of the extra references on the ZONE_DEVICE
->>> pages first.
->>
->> First, thanks for the review comments.
->>
->> I don't like the extra refcount either, that is why I tried to fix that up
->> before resending this series. However, you didn't like me just fixing the
->> refcount only for device private pages and I don't know the dax/pmem code
->> and peer-to-peer PCIe uses of ZONE_DEVICE pages well enough to say how
->> long it will take me to fix all the use cases.
->> So I wanted to make progress on the THP migration code in the mean time.
-> 
-> I think P2P is pretty trivial, given that ZONE_DEVICE pages are used like
-> a normal memory allocator.  DAX is the interesting case, any specific
-> help that you need with that?
-
-There are 4 types of ZONE_DEVICE struct pages:
-MEMORY_DEVICE_PRIVATE, MEMORY_DEVICE_FS_DAX, MEMORY_DEVICE_GENERIC, and
-MEMORY_DEVICE_PCI_P2PDMA.
-
-Currently, memremap_pages() allocates struct pages for a physical address range
-with a page_ref_count(page) of one and increments the pgmap->ref per CPU
-reference count by the number of pages created since each ZONE_DEVICE struct
-page has a pointer to the pgmap.
-
-The struct pages are not freed until memunmap_pages() is called which
-calls put_page() which calls put_dev_pagemap() which releases a reference to
-pgmap->ref. memunmap_pages() blocks waiting for pgmap->ref reference count
-to be zero. As far as I can tell, the put_page() in memunmap_pages() has to
-be the *last* put_page() (see MEMORY_DEVICE_PCI_P2PDMA).
-My RFC [1] breaks this put_page() -> put_dev_pagemap() connection so that
-the struct page reference count can go to zero and back to non-zero without
-changing the pgmap->ref reference count.
-
-Q1: Is that safe? Is there some code that depends on put_page() dropping
-the pgmap->ref reference count as part of memunmap_pages()?
-My testing of [1] seems OK but I'm sure there are lots of cases I didn't test.
-
-MEMORY_DEVICE_PCI_P2PDMA:
-Struct pages are created in pci_p2pdma_add_resource() and represent device
-memory accessible by PCIe bar address space. Memory is allocated with
-pci_alloc_p2pmem() based on a byte length but the gen_pool_alloc_owner()
-call will allocate memory in a minimum of PAGE_SIZE units.
-Reference counting is +1 per *allocation* on the pgmap->ref reference count.
-Note that this is not +1 per page which is what put_page() expects. So
-currently, a get_page()/put_page() works OK because the page reference count
-only goes 1->2 and 2->1. If it went to zero, the pgmap->ref reference count
-would be incorrect if the allocation size was greater than one page.
-
-I see pci_alloc_p2pmem() is called by nvme_alloc_sq_cmds() and
-pci_p2pmem_alloc_sgl() to create a command queue and a struct scatterlist *.
-Looks like sg_page(sg) returns the ZONE_DEVICE struct page of the scatterlist.
-There are a huge number of places sg_page() is called so it is hard to tell
-whether or not get_page()/put_page() is ever called on MEMORY_DEVICE_PCI_P2PDMA
-pages. pci_p2pmem_virt_to_bus() will return the physical address and I guess
-pfn_to_page(physaddr >> PAGE_SHIFT) could return the struct page.
-
-Since there is a clear allocation/free, pci_alloc_p2pmem() can probably be
-modified to increment/decrement the MEMORY_DEVICE_PCI_P2PDMA struct page
-reference count. Or maybe just leave it at one like it is now.
-
-MEMORY_DEVICE_GENERIC:
-Struct pages are created in dev_dax_probe() and represent non-volatile memory.
-The device can be mmap()'ed which calls dax_mmap() which sets
-vma->vm_flags | VM_HUGEPAGE.
-A CPU page fault will result in a PTE, PMD, or PUD sized page
-(but not compound) to be inserted by vmf_insert_mixed() which will call either
-insert_pfn() or insert_page().
-Neither insert_pfn() nor insert_page() increments the page reference count.
-Invalidations don't callback into the device driver so I don't see how page
-reference counts can be tracked without adding a mmu_interval_notifier.
-
-I think just leaving the page reference count at one is better than trying
-to use the mmu_interval_notifier or changing vmf_insert_mixed() and
-invalidations of pfn_t_devmap(pfn) to adjust the page reference count.
-
-MEMORY_DEVICE_PRIVATE:
-This case has the most core mm code having to specially check for
-is_device_private_page() and adjusting the expected reference count when the
-page isn't mapped by any process. There is a clear allocation and free so it
-can be changed to use a reference count of zero while free (see [2]).
-
-MEMORY_DEVICE_FS_DAX:
-Struct pages are created in pmem_attach_disk() and virtio_fs_setup_dax() with
-an initial reference count of one.
-The problem I see is that there are 3 states that are important:
-a) memory is free and not allocated to any file (page_ref_count() == 0).
-b) memory is allocated to a file and in the page cache (page_ref_count() == 1).
-c) some gup() or I/O has a reference even after calling unmap_mapping_pages()
-    (page_ref_count() > 1). ext4_break_layouts() basically waits until the
-    page_ref_count() == 1 with put_page() calling wake_up_var(&page->_refcount)
-    to wake up ext4_break_layouts().
-The current code doesn't seem to distinguish (a) and (b). If we want to use
-the 0->1 reference count to signal (c), then the page cache would have hold
-entries with a page_ref_count() == 0 which doesn't match the general page cache
-assumptions.
-
-Q2: So how should I resolve that?
-
-[1] https://lore.kernel.org/linux-mm/20201001181715.17416-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
-[2] https://lore.kernel.org/linux-mm/20201012174540.17328-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
+T24gVGh1LCAxMiBOb3YgMjAyMCBhdCAwMjoyNywgUnVobCwgTWljaGFlbCBKIDxtaWNoYWVsLmou
+cnVobEBpbnRlbC5jb20+IHdyb3RlOgo+Cj4gPi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tCj4g
+PkZyb206IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPgo+ID5TZW50OiBX
+ZWRuZXNkYXksIE5vdmVtYmVyIDExLCAyMDIwIDc6MDggQU0KPiA+VG86IFJ1aGwsIE1pY2hhZWwg
+SiA8bWljaGFlbC5qLnJ1aGxAaW50ZWwuY29tPjsgYnNrZWdnc0ByZWRoYXQuY29tOwo+ID5haXJs
+aWVkQGxpbnV4LmllOyBkYW5pZWxAZmZ3bGwuY2g7IGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbQo+
+ID5DYzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IGRyaS1kZXZlbEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmc7Cj4gPk1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51
+eC5pbnRlbC5jb20+OyBNYXhpbWUgUmlwYXJkCj4gPjxtcmlwYXJkQGtlcm5lbC5vcmc+OyBEYXZl
+IEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29tPjsgR2VyZCBIb2ZmbWFubgo+ID48a3JheGVsQHJl
+ZGhhdC5jb20+OyBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+Owo+ID5W
+TXdhcmUgR3JhcGhpY3MgPGxpbnV4LWdyYXBoaWNzLW1haW50YWluZXJAdm13YXJlLmNvbT47IFJv
+bGFuZAo+ID5TY2hlaWRlZ2dlciA8c3JvbGFuZEB2bXdhcmUuY29tPjsgSHVhbmcgUnVpIDxyYXku
+aHVhbmdAYW1kLmNvbT47Cj4gPkZlbGl4IEt1ZWhsaW5nIDxGZWxpeC5LdWVobGluZ0BhbWQuY29t
+PjsgSGF3a2luZyBaaGFuZwo+ID48SGF3a2luZy5aaGFuZ0BhbWQuY29tPjsgSmFzb24gR3VudGhv
+cnBlIDxqZ2dAemllcGUuY2E+OyBMaWt1biBHYW8KPiA+PExpa3VuLkdhb0BhbWQuY29tPjsgdmly
+dHVhbGl6YXRpb25AbGlzdHMubGludXgtZm91bmRhdGlvbi5vcmc7IHNwaWNlLQo+ID5kZXZlbEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmc7IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPlN1
+YmplY3Q6IFJlOiBbUEFUQ0hdIGRybS9ub3V2ZWF1OiBGaXggb3V0LW9mLWJvdW5kcyBhY2Nlc3Mg
+d2hlbgo+ID5kZWZlcmVuY2luZyBNTVUgdHlwZQo+ID4KPiA+SGkKPiA+Cj4gPkFtIDEwLjExLjIw
+IHVtIDE2OjI3IHNjaHJpZWIgUnVobCwgTWljaGFlbCBKOgo+ID4+Cj4gPj4KPiA+Pj4gLS0tLS1P
+cmlnaW5hbCBNZXNzYWdlLS0tLS0KPiA+Pj4gRnJvbTogVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1t
+ZXJtYW5uQHN1c2UuZGU+Cj4gPj4+IFNlbnQ6IFR1ZXNkYXksIE5vdmVtYmVyIDEwLCAyMDIwIDg6
+MzcgQU0KPiA+Pj4gVG86IGJza2VnZ3NAcmVkaGF0LmNvbTsgYWlybGllZEBsaW51eC5pZTsgZGFu
+aWVsQGZmd2xsLmNoOyBSdWhsLCBNaWNoYWVsIEoKPiA+Pj4gPG1pY2hhZWwuai5ydWhsQGludGVs
+LmNvbT47IGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbQo+ID4+PiBDYzogbm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmc7IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7Cj4gPlRob21h
+cwo+ID4+PiBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPjsgTWFhcnRlbiBMYW5raG9y
+c3QKPiA+Pj4gPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT47IE1heGltZSBSaXBh
+cmQKPiA+Pj4gPG1yaXBhcmRAa2VybmVsLm9yZz47IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhh
+dC5jb20+OyBHZXJkIEhvZmZtYW5uCj4gPj4+IDxrcmF4ZWxAcmVkaGF0LmNvbT47IEFsZXggRGV1
+Y2hlciA8YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT47Cj4gPj4+IFZNd2FyZSBHcmFwaGljcyA8
+bGludXgtZ3JhcGhpY3MtbWFpbnRhaW5lckB2bXdhcmUuY29tPjsgUm9sYW5kCj4gPj4+IFNjaGVp
+ZGVnZ2VyIDxzcm9sYW5kQHZtd2FyZS5jb20+OyBIdWFuZyBSdWkgPHJheS5odWFuZ0BhbWQuY29t
+PjsKPiA+Pj4gRmVsaXggS3VlaGxpbmcgPEZlbGl4Lkt1ZWhsaW5nQGFtZC5jb20+OyBIYXdraW5n
+IFpoYW5nCj4gPj4+IDxIYXdraW5nLlpoYW5nQGFtZC5jb20+OyBKYXNvbiBHdW50aG9ycGUgPGpn
+Z0B6aWVwZS5jYT47IExpa3VuCj4gPkdhbwo+ID4+PiA8TGlrdW4uR2FvQGFtZC5jb20+OyB2aXJ0
+dWFsaXphdGlvbkBsaXN0cy5saW51eC1mb3VuZGF0aW9uLm9yZzsgc3BpY2UtCj4gPj4+IGRldmVs
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+
+Pj4gU3ViamVjdDogW1BBVENIXSBkcm0vbm91dmVhdTogRml4IG91dC1vZi1ib3VuZHMgYWNjZXNz
+IHdoZW4KPiA+ZGVmZXJlbmNpbmcKPiA+Pj4gTU1VIHR5cGUKPiA+Pj4KPiA+Pj4gVGhlIHZhbHVl
+IG9mIHN0cnVjdCBkcm1fZGV2aWNlLnR0bS50eXBlX3ZyYW0gY2FuIGJlY29tZSAtMSBmb3IKPiA+
+dW5rbm93bgo+ID4+PiB0eXBlcyBvZiBtZW1vcnkgKHNlZSBub3V2ZWF1X3R0bV9pbml0KCkpLiBU
+aGlzIGxlYWRzIHRvIGFuIG91dC1vZi1ib3VuZHMKPiA+Pj4gZXJyb3Igd2hlbiBhY2Nlc3Npbmcg
+c3RydWN0IG52aWZfbW11LnR5cGVbXToKPiA+Pgo+ID4+IFdvdWxkIHRoaXMgbWFrZSBtb3JlIHNl
+bnNlIHRvIGp1c3Qgc2V0IHRoZSB0eXBlX3ZyYW0gPSAwIGluc3RlYWQgb2YgLTE/Cj4gPgo+ID5G
+cm9tIHdoYXQgSSB1bmRlcnN0YW5kLCB0aGVzZSBpbmRpY2VzIHJlZmVyIHRvIGFuIGludGVybmFs
+IHR5cGUgb2YgTU1VLAo+ID5yc3AgdGhlIE1NVSdzIGNhcGFiaWxpdGllcy4gSG93ZXZlciwgbXkg
+aGFyZHdhcmUgKHByZS1OVjUwKSBkb2VzIG5vdAo+ID5oYXZlIGFuIE1NVSBhdCBhbGwuCj4KPiBZ
+ZWFoLCBhbmQgdXBvbiBmdXJ0aGVyIHJldmlldyBJIHNlZSB0aGF0IG15IGNvbW1lbnQgd2FzIGNv
+bXBsZXRlbHkgd3JvbmcKPiAodmFsdWUgdnMuIGluZGV4KS4KPgo+IEEgYmV0dGVyIHN1Z2dlc3Rp
+b24gd291bGQgaGF2ZSBiZWVuLCBjcmVhdGUgYW4gZW50cnkgaW4gdGhlIGFycmF5IHRoYXQgbWVh
+bnMsCj4gInVuc3VwcG9ydGVkIHR5cGUiIHdpdGggYSB2YWx1ZSBvZiAwLCBidXQuLi4KPgo+ID5J
+IGFncmVlIHRoYXQgaXQgd291bGQgYmUgbmljZSB0byBoYXZlIGEgY2xlYW5lciBkZXNpZ24gdGhh
+dCBpbmNvcnBvcmF0ZXMKPiA+dGhpcyBjYXNlLCBidXQgcmVzb2x2aW5nIHRoYXQgd291bGQgYXBw
+YXJlbnRseSByZXF1aXJlIG1vcmUgdGhhbiBhIGJ1Z2ZpeC4KPgo+IEkgYWdyZWUuICBUaGUgLTEg
+aW5kZXggaXMgYSBzcGVjaWFsIGNhc2UgZm9yIHRoZSBwbGF0Zm9ybSBwYXRoCj4gKHBsYXRmb3Jt
+ICE9IE5WX0RFVklDRV9JTkZPX1YwX1NPQykuICBUaGlzIGlzIGEgZml4IGZvciB0aGUgaXNzdWUs
+IGJ1dCBub3QKPiBhIGNvbXBsZXRlIHNvbHV0aW9uLgo+Cj4gSWYgeW91IG5lZWQgaXQ6Cj4gUmV2
+aWV3ZWQtYnk6IE1pY2hhZWwgSi4gUnVobCA8bWljaGFlbC5qLnJ1aGxAaW50ZWwuY29tPgpJJ3Zl
+IHB1dCBhbiBhbHRlcm5hdGUgZml4IGZvciB0aGlzIGhlcmVbMV0sIGFuZCB3aWxsIGdldCBpdCBp
+bnRvCmRybS1maXhlcyBsYXRlciB0b2RheS4KCkJlbi4KClsxXSBodHRwczovL2dpdGh1Yi5jb20v
+c2tlZ2dzYi9ub3V2ZWF1L2NvbW1pdC80NTkwZjcxMjBjMmYxZjRhZWE5ZDhiOTNhMmRhZTQzYjMx
+MmQzNWFkCgo+Cj4gVGhhbmtzLAo+IE1pa2UKPgo+ID5CZXN0IHJlZ2FyZHMKPiA+VGhvbWFzCj4g
+Pgo+ID4+Cj4gPj4gTWlrZQo+ID4+Cj4gPj4+Cj4gPj4+ICBbICAgMTguMzA0MTE2XQo+ID4+Pgo+
+ID49PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PQo+ID4+PiA9PT09PT09Cj4gPj4+ICBbICAgMTguMzExNjQ5XSBCVUc6IEtBU0FOOiBzbGFi
+LW91dC1vZi1ib3VuZHMgaW4KPiA+Pj4gbm91dmVhdV90dG1faW9fbWVtX3Jlc2VydmUrMHgxN2Ev
+MHg3ZTAgW25vdXZlYXVdCj4gPj4+ICBbICAgMTguMzIwNDE1XSBSZWFkIG9mIHNpemUgMSBhdCBh
+ZGRyIGZmZmY4ODgxMGZmYWMxZmUgYnkgdGFzayBzeXN0ZW1kLQo+ID4+PiB1ZGV2ZC8zNDIKPiA+
+Pj4gIFsgICAxOC4zMjc2ODFdCj4gPj4+ICBbICAgMTguMzI5MjA4XSBDUFU6IDEgUElEOiAzNDIg
+Q29tbTogc3lzdGVtZC11ZGV2ZCBUYWludGVkOiBHICAgICAgICAgICAgRQo+ID4+PiA1LjEwLjAt
+cmMyLTEtZGVmYXVsdCsgIzU4MQo+ID4+PiAgWyAgIDE4LjMzODY4MV0gSGFyZHdhcmUgbmFtZTog
+RGVsbCBJbmMuIE9wdGlQbGV4IDkwMjAvME40WUM4LCBCSU9TIEEyNAo+ID4+PiAxMC8yNC8yMDE4
+Cj4gPj4+ICBbICAgMTguMzQ2MDMyXSBDYWxsIFRyYWNlOgo+ID4+PiAgWyAgIDE4LjM0ODUzNl0g
+IGR1bXBfc3RhY2srMHhhZS8weGU1Cj4gPj4+ICBbICAgMTguMzUxOTE5XSAgcHJpbnRfYWRkcmVz
+c19kZXNjcmlwdGlvbi5jb25zdHByb3AuMCsweDE3LzB4ZjAKPiA+Pj4gIFsgICAxOC4zNTc3ODdd
+ICA/IG5vdXZlYXVfdHRtX2lvX21lbV9yZXNlcnZlKzB4MTdhLzB4N2UwIFtub3V2ZWF1XQo+ID4+
+PiAgWyAgIDE4LjM2MzgxOF0gIF9fa2FzYW5fcmVwb3J0LmNvbGQrMHgyMC8weDM4Cj4gPj4+ICBb
+ICAgMTguMzY4MDk5XSAgPyBub3V2ZWF1X3R0bV9pb19tZW1fcmVzZXJ2ZSsweDE3YS8weDdlMCBb
+bm91dmVhdV0KPiA+Pj4gIFsgICAxOC4zNzQxMzNdICBrYXNhbl9yZXBvcnQrMHgzYS8weDUwCj4g
+Pj4+ICBbICAgMTguMzc3Nzg5XSAgbm91dmVhdV90dG1faW9fbWVtX3Jlc2VydmUrMHgxN2EvMHg3
+ZTAgW25vdXZlYXVdCj4gPj4+ICA8Li4uPgo+ID4+PiAgWyAgIDE4Ljc2NzY5MF0gQWxsb2NhdGVk
+IGJ5IHRhc2sgMzQyOgo+ID4+PiAgWyAgIDE4Ljc3MzA4N10gIGthc2FuX3NhdmVfc3RhY2srMHgx
+Yi8weDQwCj4gPj4+ICBbICAgMTguNzc4ODkwXSAgX19rYXNhbl9rbWFsbG9jLmNvbnN0cHJvcC4w
+KzB4YmYvMHhkMAo+ID4+PiAgWyAgIDE4Ljc4NTY0Nl0gIF9fa21hbGxvY190cmFja19jYWxsZXIr
+MHgxYmUvMHgzOTAKPiA+Pj4gIFsgICAxOC43OTIxNjVdICBrc3RyZHVwX2NvbnN0KzB4NDYvMHg3
+MAo+ID4+PiAgWyAgIDE4Ljc5NzY4Nl0gIGtvYmplY3Rfc2V0X25hbWVfdmFyZ3MrMHgyZi8weGIw
+Cj4gPj4+ICBbICAgMTguODAzOTkyXSAga29iamVjdF9pbml0X2FuZF9hZGQrMHg5ZC8weGYwCj4g
+Pj4+ICBbICAgMTguODEwMTE3XSAgdHRtX21lbV9nbG9iYWxfaW5pdCsweDEyYy8weDIxMCBbdHRt
+XQo+ID4+PiAgWyAgIDE4LjgxNjg1M10gIHR0bV9ib19nbG9iYWxfaW5pdCsweDRhLzB4MTYwIFt0
+dG1dCj4gPj4+ICBbICAgMTguODIzNDIwXSAgdHRtX2JvX2RldmljZV9pbml0KzB4MzkvMHgyMjAg
+W3R0bV0KPiA+Pj4gIFsgICAxOC44MzAwNDZdICBub3V2ZWF1X3R0bV9pbml0KzB4MmMzLzB4ODMw
+IFtub3V2ZWF1XQo+ID4+PiAgWyAgIDE4LjgzNjkyOV0gIG5vdXZlYXVfZHJtX2RldmljZV9pbml0
+KzB4MWI0LzB4M2YwIFtub3V2ZWF1XQo+ID4+PiAgPC4uLj4KPiA+Pj4gIFsgICAxOS4xMDUzMzZd
+Cj4gPj4+Cj4gPj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09Cj4gPj4+ID09PT09PT0KPiA+Pj4KPiA+Pj4gRml4IHRoaXMgZXJyb3IsIGJ5
+IG5vdCB1c2luZyB0eXBlX3ZyYW0gYXMgYW4gaW5kZXggaWYgaXQncyBuZWdhdGl2ZS4KPiA+Pj4g
+QXNzdW1lIGRlZmF1bHQgdmFsdWVzIGluc3RlYWQuCj4gPj4+Cj4gPj4+IFRoZSBlcnJvciB3YXMg
+c2VlbiBvbiBOdmlkaWEgRzcyIGhhcmR3YXJlLgo+ID4+Pgo+ID4+PiBTaWduZWQtb2ZmLWJ5OiBU
+aG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4KPiA+Pj4gRml4ZXM6IDFjZjY1
+YzQ1MTgzYSAoImRybS90dG06IGFkZCBjYWNoaW5nIHN0YXRlIHRvIHR0bV9idXNfcGxhY2VtZW50
+IikKPiA+Pj4gQ2M6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4K
+PiA+Pj4gQ2M6IE1pY2hhZWwgSi4gUnVobCA8bWljaGFlbC5qLnJ1aGxAaW50ZWwuY29tPgo+ID4+
+PiBDYzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNv
+bT4KPiA+Pj4gQ2M6IE1heGltZSBSaXBhcmQgPG1yaXBhcmRAa2VybmVsLm9yZz4KPiA+Pj4gQ2M6
+IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPgo+ID4+PiBDYzogRGF2aWQg
+QWlybGllIDxhaXJsaWVkQGxpbnV4LmllPgo+ID4+PiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVs
+QGZmd2xsLmNoPgo+ID4+PiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgo+ID4+
+PiBDYzogRGF2ZSBBaXJsaWUgPGFpcmxpZWRAcmVkaGF0LmNvbT4KPiA+Pj4gQ2M6IEdlcmQgSG9m
+Zm1hbm4gPGtyYXhlbEByZWRoYXQuY29tPgo+ID4+PiBDYzogQWxleCBEZXVjaGVyIDxhbGV4YW5k
+ZXIuZGV1Y2hlckBhbWQuY29tPgo+ID4+PiBDYzogIkNocmlzdGlhbiBLw7ZuaWciIDxjaHJpc3Rp
+YW4ua29lbmlnQGFtZC5jb20+Cj4gPj4+IENjOiBWTXdhcmUgR3JhcGhpY3MgPGxpbnV4LWdyYXBo
+aWNzLW1haW50YWluZXJAdm13YXJlLmNvbT4KPiA+Pj4gQ2M6IFJvbGFuZCBTY2hlaWRlZ2dlciA8
+c3JvbGFuZEB2bXdhcmUuY29tPgo+ID4+PiBDYzogSHVhbmcgUnVpIDxyYXkuaHVhbmdAYW1kLmNv
+bT4KPiA+Pj4gQ2M6IEZlbGl4IEt1ZWhsaW5nIDxGZWxpeC5LdWVobGluZ0BhbWQuY29tPgo+ID4+
+PiBDYzogSGF3a2luZyBaaGFuZyA8SGF3a2luZy5aaGFuZ0BhbWQuY29tPgo+ID4+PiBDYzogSmFz
+b24gR3VudGhvcnBlIDxqZ2dAemllcGUuY2E+Cj4gPj4+IENjOiBMaWt1biBHYW8gPExpa3VuLkdh
+b0BhbWQuY29tPgo+ID4+PiBDYzogZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4+
+PiBDYzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+Pj4gQ2M6IHZpcnR1YWxpemF0
+aW9uQGxpc3RzLmxpbnV4LWZvdW5kYXRpb24ub3JnCj4gPj4+IENjOiBzcGljZS1kZXZlbEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKPiA+Pj4gQ2M6IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cj4gPj4+IC0tLQo+ID4+PiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMgfCA1
+ICsrKystCj4gPj4+IDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24o
+LSkKPiA+Pj4KPiA+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
+YXVfYm8uYwo+ID4+PiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYwo+ID4+
+PiBpbmRleCA4MTMzMzc3ZDg2NWQuLmZlMTUyOTlkNDE3ZSAxMDA2NDQKPiA+Pj4gLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jCj4gPj4+ICsrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYwo+ID4+PiBAQCAtMTE0Miw5ICsxMTQyLDEyIEBAIG5v
+dXZlYXVfdHRtX2lvX21lbV9yZXNlcnZlKHN0cnVjdAo+ID4+PiB0dG1fYm9fZGV2aWNlICpiZGV2
+LCBzdHJ1Y3QgdHRtX3Jlc291cmNlICpyZWcpCj4gPj4+ICAgICBzdHJ1Y3QgbnZrbV9kZXZpY2Ug
+KmRldmljZSA9IG52eHhfZGV2aWNlKCZkcm0tPmNsaWVudC5kZXZpY2UpOwo+ID4+PiAgICAgc3Ry
+dWN0IG5vdXZlYXVfbWVtICptZW0gPSBub3V2ZWF1X21lbShyZWcpOwo+ID4+PiAgICAgc3RydWN0
+IG52aWZfbW11ICptbXUgPSAmZHJtLT5jbGllbnQubW11Owo+ID4+PiAtICAgY29uc3QgdTggdHlw
+ZSA9IG1tdS0+dHlwZVtkcm0tPnR0bS50eXBlX3ZyYW1dLnR5cGU7Cj4gPj4+ICsgICB1OCB0eXBl
+ID0gMDsKPiA+Pj4gICAgIGludCByZXQ7Cj4gPj4+Cj4gPj4+ICsgICBpZiAoZHJtLT50dG0udHlw
+ZV92cmFtID49IDApCj4gPj4+ICsgICAgICAgICAgIHR5cGUgPSBtbXUtPnR5cGVbZHJtLT50dG0u
+dHlwZV92cmFtXS50eXBlOwo+ID4+PiArCj4gPj4+ICAgICBtdXRleF9sb2NrKCZkcm0tPnR0bS5p
+b19yZXNlcnZlX211dGV4KTsKPiA+Pj4gcmV0cnk6Cj4gPj4+ICAgICBzd2l0Y2ggKHJlZy0+bWVt
+X3R5cGUpIHsKPiA+Pj4gLS0KPiA+Pj4gMi4yOS4yCj4gPj4KPiA+Cj4gPi0tCj4gPlRob21hcyBa
+aW1tZXJtYW5uCj4gPkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXIKPiA+U1VTRSBTb2Z0d2FyZSBT
+b2x1dGlvbnMgR2VybWFueSBHbWJICj4gPk1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywg
+R2VybWFueQo+ID4oSFJCIDM2ODA5LCBBRyBOw7xybmJlcmcpCj4gPkdlc2Now6RmdHNmw7xocmVy
+OiBGZWxpeCBJbWVuZMO2cmZmZXIKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwo+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKPiBkcmktZGV2ZWxAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9kcmktZGV2ZWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+Cg==
