@@ -1,62 +1,127 @@
-From: Lee Jones <lee.jones@linaro.org>
-Subject: [PATCH 24/30] drm/nouveau/nvkm/core/firmware: Fix formatting, provide missing param description
-Date: Thu, 12 Nov 2020 19:00:33 +0000
-Message-ID: <20201112190039.2785914-25-lee.jones@linaro.org>
-References: <20201112190039.2785914-1-lee.jones@linaro.org>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Fix out-of-bounds access when deferencing
+ MMU type
+Date: Fri, 13 Nov 2020 09:01:18 +0100
+Message-ID: <838edcd6-cc9a-d2f4-db43-2d8ed43d6be5@gmail.com>
+References: <20201110133655.13174-1-tzimmermann@suse.de>
+ <85758a6215f74917aee81b18d037fb82@intel.com>
+ <f4cedda2-48f6-565c-4154-0975a2d119a0@suse.de>
+ <b87d5a2cce4941fe86e89d97bd6b2be4@intel.com>
+ <CACAvsv7vZFnFtvcaA8PcRn=V-uH9P7HU6BcZsSUGZSYejZCwQw@mail.gmail.com>
+ <0dfc8b9904e94f61a8501fae432b4753@intel.com>
+Reply-To: christian.koenig-5C7GfCeVMHo@public.gmane.org
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20201112190039.2785914-1-lee.jones@linaro.org>
-To: lee.jones@linaro.org
-Cc: linux-kernel@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <0dfc8b9904e94f61a8501fae432b4753-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: "Ruhl, Michael J" <michael.j.ruhl-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "daniel-/w4YWyX8dFk@public.gmane.org" <daniel-/w4YWyX8dFk@public.gmane.org>, "airlied-cv59FeDIM0c@public.gmane.org" <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Felix Kuehling <Felix.Kuehling-5C7GfCeVMHo@public.gmane.org>, Roland Scheidegger <sroland-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org" <virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>, Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>, Huang Rui <ray.huang-5C7GfCeVMHo@public.gmane.org>, VMware Graphics <linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, "spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Likun Gao <Likun.Gao-5C7GfCeVMHo@public.gmane.org>, Hawking Zhang <Hawking.Zhang-5C7GfCeVMHo@public.gmane.org>, christian.koenig@amd
 List-Id: nouveau.vger.kernel.org
 
-... and demote non-conformant kernel-doc header.
-
-Fixes the following W=1 kernel build warning(s):
-
- drivers/gpu/drm/nouveau/nvkm/core/firmware.c:71: warning: Function parameter or member 'subdev' not described in 'nvkm_firmware_get'
- drivers/gpu/drm/nouveau/nvkm/core/firmware.c:71: warning: Function parameter or member 'fwname' not described in 'nvkm_firmware_get'
- drivers/gpu/drm/nouveau/nvkm/core/firmware.c:71: warning: Function parameter or member 'ver' not described in 'nvkm_firmware_get'
- drivers/gpu/drm/nouveau/nvkm/core/firmware.c:71: warning: Function parameter or member 'fw' not described in 'nvkm_firmware_get'
- drivers/gpu/drm/nouveau/nvkm/core/firmware.c:106: warning: Function parameter or member 'fw' not described in 'nvkm_firmware_put'
-
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Signed-off-by: Lee Jones <lee.jones@linaro.org>
----
- drivers/gpu/drm/nouveau/nvkm/core/firmware.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
-index 8b25367917ca0..ca1f8463cff51 100644
---- a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
-@@ -58,9 +58,10 @@ nvkm_firmware_load_blob(const struct nvkm_subdev *subdev, const char *base,
- 
- /**
-  * nvkm_firmware_get - load firmware from the official nvidia/chip/ directory
-- * @subdev	subdevice that will use that firmware
-- * @fwname	name of firmware file to load
-- * @fw		firmware structure to load to
-+ * @subdev:	subdevice that will use that firmware
-+ * @fwname:	name of firmware file to load
-+ * @ver:	firmware version to load
-+ * @fw:		firmware structure to load to
-  *
-  * Use this function to load firmware files in the form nvidia/chip/fwname.bin.
-  * Firmware files released by NVIDIA will always follow this format.
-@@ -98,7 +99,7 @@ nvkm_firmware_get(const struct nvkm_subdev *subdev, const char *fwname, int ver,
- 	return -ENOENT;
- }
- 
--/**
-+/*
-  * nvkm_firmware_put - release firmware loaded with nvkm_firmware_get
-  */
- void
--- 
-2.25.1
+QW0gMTIuMTEuMjAgdW0gMTU6MjAgc2NocmllYiBSdWhsLCBNaWNoYWVsIEo6Cj4+IC0tLS0tT3Jp
+Z2luYWwgTWVzc2FnZS0tLS0tCj4+IEZyb206IEJlbiBTa2VnZ3MgPHNrZWdnc2JAZ21haWwuY29t
+Pgo+PiBTZW50OiBXZWRuZXNkYXksIE5vdmVtYmVyIDExLCAyMDIwIDk6MzkgUE0KPj4gVG86IFJ1
+aGwsIE1pY2hhZWwgSiA8bWljaGFlbC5qLnJ1aGxAaW50ZWwuY29tPgo+PiBDYzogVGhvbWFzIFpp
+bW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+OyBic2tlZ2dzQHJlZGhhdC5jb207Cj4+IGFp
+cmxpZWRAbGludXguaWU7IGRhbmllbEBmZndsbC5jaDsgY2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29t
+OyBhbWQtCj4+IGdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IG5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnOyBkcmktCj4+IGRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgdmlydHVhbGl6
+YXRpb25AbGlzdHMubGludXgtZm91bmRhdGlvbi5vcmc7IFJvbGFuZAo+PiBTY2hlaWRlZ2dlciA8
+c3JvbGFuZEB2bXdhcmUuY29tPjsgSmFzb24gR3VudGhvcnBlIDxqZ2dAemllcGUuY2E+Owo+PiBI
+dWFuZyBSdWkgPHJheS5odWFuZ0BhbWQuY29tPjsgVk13YXJlIEdyYXBoaWNzIDxsaW51eC1ncmFw
+aGljcy0KPj4gbWFpbnRhaW5lckB2bXdhcmUuY29tPjsgR2VyZCBIb2ZmbWFubiA8a3JheGVsQHJl
+ZGhhdC5jb20+OyBzcGljZS0KPj4gZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBBbGV4IERl
+dWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+Owo+PiBEYXZlIEFpcmxpZSA8YWlybGll
+ZEByZWRoYXQuY29tPjsgTGlrdW4gR2FvIDxMaWt1bi5HYW9AYW1kLmNvbT47IEZlbGl4Cj4+IEt1
+ZWhsaW5nIDxGZWxpeC5LdWVobGluZ0BhbWQuY29tPjsgSGF3a2luZyBaaGFuZwo+PiA8SGF3a2lu
+Zy5aaGFuZ0BhbWQuY29tPgo+PiBTdWJqZWN0OiBSZTogW1BBVENIXSBkcm0vbm91dmVhdTogRml4
+IG91dC1vZi1ib3VuZHMgYWNjZXNzIHdoZW4KPj4gZGVmZXJlbmNpbmcgTU1VIHR5cGUKPj4KPj4g
+T24gVGh1LCAxMiBOb3YgMjAyMCBhdCAwMjoyNywgUnVobCwgTWljaGFlbCBKIDxtaWNoYWVsLmou
+cnVobEBpbnRlbC5jb20+Cj4+IHdyb3RlOgo+Pj4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0t
+Cj4+Pj4gRnJvbTogVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+Cj4+Pj4g
+U2VudDogV2VkbmVzZGF5LCBOb3ZlbWJlciAxMSwgMjAyMCA3OjA4IEFNCj4+Pj4gVG86IFJ1aGws
+IE1pY2hhZWwgSiA8bWljaGFlbC5qLnJ1aGxAaW50ZWwuY29tPjsgYnNrZWdnc0ByZWRoYXQuY29t
+Owo+Pj4+IGFpcmxpZWRAbGludXguaWU7IGRhbmllbEBmZndsbC5jaDsgY2hyaXN0aWFuLmtvZW5p
+Z0BhbWQuY29tCj4+Pj4gQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBkcmktZGV2
+ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOwo+Pj4+IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVu
+Lmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+OyBNYXhpbWUgUmlwYXJkCj4+Pj4gPG1yaXBhcmRA
+a2VybmVsLm9yZz47IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+OyBHZXJkIEhvZmZt
+YW5uCj4+Pj4gPGtyYXhlbEByZWRoYXQuY29tPjsgQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1
+Y2hlckBhbWQuY29tPjsKPj4+PiBWTXdhcmUgR3JhcGhpY3MgPGxpbnV4LWdyYXBoaWNzLW1haW50
+YWluZXJAdm13YXJlLmNvbT47IFJvbGFuZAo+Pj4+IFNjaGVpZGVnZ2VyIDxzcm9sYW5kQHZtd2Fy
+ZS5jb20+OyBIdWFuZyBSdWkgPHJheS5odWFuZ0BhbWQuY29tPjsKPj4+PiBGZWxpeCBLdWVobGlu
+ZyA8RmVsaXguS3VlaGxpbmdAYW1kLmNvbT47IEhhd2tpbmcgWmhhbmcKPj4+PiA8SGF3a2luZy5a
+aGFuZ0BhbWQuY29tPjsgSmFzb24gR3VudGhvcnBlIDxqZ2dAemllcGUuY2E+OyBMaWt1bgo+PiBH
+YW8KPj4+PiA8TGlrdW4uR2FvQGFtZC5jb20+OyB2aXJ0dWFsaXphdGlvbkBsaXN0cy5saW51eC1m
+b3VuZGF0aW9uLm9yZzsgc3BpY2UtCj4+Pj4gZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBh
+bWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+Pj4+IFN1YmplY3Q6IFJlOiBbUEFUQ0hdIGRy
+bS9ub3V2ZWF1OiBGaXggb3V0LW9mLWJvdW5kcyBhY2Nlc3Mgd2hlbgo+Pj4+IGRlZmVyZW5jaW5n
+IE1NVSB0eXBlCj4+Pj4KPj4+PiBIaQo+Pj4+Cj4+Pj4gQW0gMTAuMTEuMjAgdW0gMTY6Mjcgc2No
+cmllYiBSdWhsLCBNaWNoYWVsIEo6Cj4+Pj4+Cj4+Pj4+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2Ut
+LS0tLQo+Pj4+Pj4gRnJvbTogVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+
+Cj4+Pj4+PiBTZW50OiBUdWVzZGF5LCBOb3ZlbWJlciAxMCwgMjAyMCA4OjM3IEFNCj4+Pj4+PiBU
+bzogYnNrZWdnc0ByZWRoYXQuY29tOyBhaXJsaWVkQGxpbnV4LmllOyBkYW5pZWxAZmZ3bGwuY2g7
+IFJ1aGwsCj4+IE1pY2hhZWwgSgo+Pj4+Pj4gPG1pY2hhZWwuai5ydWhsQGludGVsLmNvbT47IGNo
+cmlzdGlhbi5rb2VuaWdAYW1kLmNvbQo+Pj4+Pj4gQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnOyBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOwo+Pj4+IFRob21hcwo+Pj4+
+Pj4gWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT47IE1hYXJ0ZW4gTGFua2hvcnN0Cj4+
+Pj4+PiA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPjsgTWF4aW1lIFJpcGFyZAo+
+Pj4+Pj4gPG1yaXBhcmRAa2VybmVsLm9yZz47IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5j
+b20+OyBHZXJkCj4+IEhvZmZtYW5uCj4+Pj4+PiA8a3JheGVsQHJlZGhhdC5jb20+OyBBbGV4IERl
+dWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+Owo+Pj4+Pj4gVk13YXJlIEdyYXBoaWNz
+IDxsaW51eC1ncmFwaGljcy1tYWludGFpbmVyQHZtd2FyZS5jb20+OyBSb2xhbmQKPj4+Pj4+IFNj
+aGVpZGVnZ2VyIDxzcm9sYW5kQHZtd2FyZS5jb20+OyBIdWFuZyBSdWkKPj4gPHJheS5odWFuZ0Bh
+bWQuY29tPjsKPj4+Pj4+IEZlbGl4IEt1ZWhsaW5nIDxGZWxpeC5LdWVobGluZ0BhbWQuY29tPjsg
+SGF3a2luZyBaaGFuZwo+Pj4+Pj4gPEhhd2tpbmcuWmhhbmdAYW1kLmNvbT47IEphc29uIEd1bnRo
+b3JwZSA8amdnQHppZXBlLmNhPjsgTGlrdW4KPj4+PiBHYW8KPj4+Pj4+IDxMaWt1bi5HYW9AYW1k
+LmNvbT47IHZpcnR1YWxpemF0aW9uQGxpc3RzLmxpbnV4LWZvdW5kYXRpb24ub3JnOwo+PiBzcGlj
+ZS0KPj4+Pj4+IGRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgYW1kLWdmeEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKPj4+Pj4+IFN1YmplY3Q6IFtQQVRDSF0gZHJtL25vdXZlYXU6IEZpeCBvdXQt
+b2YtYm91bmRzIGFjY2VzcyB3aGVuCj4+Pj4gZGVmZXJlbmNpbmcKPj4+Pj4+IE1NVSB0eXBlCj4+
+Pj4+Pgo+Pj4+Pj4gVGhlIHZhbHVlIG9mIHN0cnVjdCBkcm1fZGV2aWNlLnR0bS50eXBlX3ZyYW0g
+Y2FuIGJlY29tZSAtMSBmb3IKPj4+PiB1bmtub3duCj4+Pj4+PiB0eXBlcyBvZiBtZW1vcnkgKHNl
+ZSBub3V2ZWF1X3R0bV9pbml0KCkpLiBUaGlzIGxlYWRzIHRvIGFuIG91dC1vZi0KPj4gYm91bmRz
+Cj4+Pj4+PiBlcnJvciB3aGVuIGFjY2Vzc2luZyBzdHJ1Y3QgbnZpZl9tbXUudHlwZVtdOgo+Pj4+
+PiBXb3VsZCB0aGlzIG1ha2UgbW9yZSBzZW5zZSB0byBqdXN0IHNldCB0aGUgdHlwZV92cmFtID0g
+MCBpbnN0ZWFkIG9mIC0xPwo+Pj4gPkZyb20gd2hhdCBJIHVuZGVyc3RhbmQsIHRoZXNlIGluZGlj
+ZXMgcmVmZXIgdG8gYW4gaW50ZXJuYWwgdHlwZSBvZiBNTVUsCj4+Pj4gcnNwIHRoZSBNTVUncyBj
+YXBhYmlsaXRpZXMuIEhvd2V2ZXIsIG15IGhhcmR3YXJlIChwcmUtTlY1MCkgZG9lcyBub3QKPj4+
+PiBoYXZlIGFuIE1NVSBhdCBhbGwuCj4+PiBZZWFoLCBhbmQgdXBvbiBmdXJ0aGVyIHJldmlldyBJ
+IHNlZSB0aGF0IG15IGNvbW1lbnQgd2FzIGNvbXBsZXRlbHkKPj4gd3JvbmcKPj4+ICh2YWx1ZSB2
+cy4gaW5kZXgpLgo+Pj4KPj4+IEEgYmV0dGVyIHN1Z2dlc3Rpb24gd291bGQgaGF2ZSBiZWVuLCBj
+cmVhdGUgYW4gZW50cnkgaW4gdGhlIGFycmF5IHRoYXQKPj4gbWVhbnMsCj4+PiAidW5zdXBwb3J0
+ZWQgdHlwZSIgd2l0aCBhIHZhbHVlIG9mIDAsIGJ1dC4uLgo+Pj4KPj4+PiBJIGFncmVlIHRoYXQg
+aXQgd291bGQgYmUgbmljZSB0byBoYXZlIGEgY2xlYW5lciBkZXNpZ24gdGhhdCBpbmNvcnBvcmF0
+ZXMKPj4+PiB0aGlzIGNhc2UsIGJ1dCByZXNvbHZpbmcgdGhhdCB3b3VsZCBhcHBhcmVudGx5IHJl
+cXVpcmUgbW9yZSB0aGFuIGEgYnVnZml4Lgo+Pj4gSSBhZ3JlZS4gIFRoZSAtMSBpbmRleCBpcyBh
+IHNwZWNpYWwgY2FzZSBmb3IgdGhlIHBsYXRmb3JtIHBhdGgKPj4+IChwbGF0Zm9ybSAhPSBOVl9E
+RVZJQ0VfSU5GT19WMF9TT0MpLiAgVGhpcyBpcyBhIGZpeCBmb3IgdGhlIGlzc3VlLCBidXQgbm90
+Cj4+PiBhIGNvbXBsZXRlIHNvbHV0aW9uLgo+Pj4KPj4+IElmIHlvdSBuZWVkIGl0Ogo+Pj4gUmV2
+aWV3ZWQtYnk6IE1pY2hhZWwgSi4gUnVobCA8bWljaGFlbC5qLnJ1aGxAaW50ZWwuY29tPgo+PiBJ
+J3ZlIHB1dCBhbiBhbHRlcm5hdGUgZml4IGZvciB0aGlzIGhlcmVbMV0sIGFuZCB3aWxsIGdldCBp
+dCBpbnRvCj4+IGRybS1maXhlcyBsYXRlciB0b2RheS4KPj4KPj4gQmVuLgo+Pgo+PiBbMV0KPj4g
+aHR0cHM6Ly9naXRodWIuY29tL3NrZWdnc2Ivbm91dmVhdS9jb21taXQvNDU5MGY3MTIwYzJmMWY0
+YWVhOWQ4YjkzYTJkCj4+IGFlNDNiMzEyZDM1YWQKPiBUaGlzIG1ha2VzIGEgbG90IG9mIHNlbnNl
+LiAgSSBzcGVudCBzb21lIHRpbWUgdHJ5aW5nIHRvIHJlY29uY2lsZSB0aGUgcGxhdGZvcm0gaW5m
+bwo+IHRoYXQgd2FzIG5vdCBiZWluZyB1c2VkIGluIHRoaXMgY2FzZSwgYnV0IGRpZG4ndCBzZWUg
+dGhlIHNvbHV0aW9uIGxpa2UgdGhpcy4gICBUaGlzIGlzCj4gcHJldHR5IGNsZWFuLgoKSSB3YXMg
+YWxyZWFkeSB3b25kZXJpbmcgd2h5IHRoZSBvbGQgY29kZSBuZXZlciBoaXQgdGhhdCBwcm9ibGVt
+LCBidXQgCnRoaXMgZXhwbGFpbnMgaXQgcHJvcGVybHkgYW5kIGFsc28gZml4ZXMgaXQgdXAgY2xl
+YW5seS4KCj4KPiBJZiB5b3Ugd291bGQgbGlrZToKPgo+IFJldmlld2VkLWJ5OiBNaWNoYWVsIEou
+IFJ1aGwgPG1pY2hhZWwuai5ydWhsQGludGVsLmNvbT4KCkZlZWwgZnJlZSB0byBhZGQgYW4gUmV2
+aWV3ZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgCjxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+IGFz
+IHdlbGwuCgpSZWdhcmRzLApDaHJpc3RpYW4uCgo+Cj4gRm9yIHRoaXMgc29sdXRpb24gYXMgd2Vs
+bC4KPgo+IE1pa2UKPgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
