@@ -1,8 +1,8 @@
 From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 3/8] drm/nouveau/kms/nv50-: Rename
- encoder->atomic_(enable|disable) callbacks
-Date: Fri, 13 Nov 2020 19:14:12 -0500
-Message-ID: <20201114001417.155093-4-lyude@redhat.com>
+Subject: [PATCH 2/8] drm/nouveau/kms/nv50-: Remove
+ (nv_encoder->crtc) checks in ->disable callbacks
+Date: Fri, 13 Nov 2020 19:14:11 -0500
+Message-ID: <20201114001417.155093-3-lyude@redhat.com>
 References: <20201114001417.155093-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,134 +22,84 @@ To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-No functional changes, just change the function names to match the
-callbacks they provide.
+Noticed these in both the disable (which we'll be getting rid of in a
+moment) and the atomic disable callbacks: both callback types check whether
+or not there's actually a CRTC assigned to the given encoder. However, as
+->atomic_disable and ->disable will never be called without a CRTC assigned
+to the given encoder there's no point in this check. So just remove it.
 
 Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 33 ++++++++++++-------------
- 1 file changed, 16 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 37 ++++++++++++-------------
+ 1 file changed, 17 insertions(+), 20 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 073ac66b2922..a47be145827e 100644
+index 36d6b6093d16..073ac66b2922 100644
 --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
 +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -455,7 +455,7 @@ nv50_outp_get_old_connector(struct nouveau_encoder *outp,
-  * DAC
-  *****************************************************************************/
- static void
--nv50_dac_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
-+nv50_dac_atomic_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
- {
+@@ -460,8 +460,8 @@ nv50_dac_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
  	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
  	struct nv50_core *core = nv50_disp(encoder->dev)->core;
-@@ -467,7 +467,7 @@ nv50_dac_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
+ 	const u32 ctrl = NVDEF(NV507D, DAC_SET_CONTROL, OWNER, NONE);
+-	if (nv_encoder->crtc)
+-		core->func->dac->ctrl(core, nv_encoder->or, ctrl, NULL);
++
++	core->func->dac->ctrl(core, nv_encoder->or, ctrl, NULL);
+ 	nv_encoder->crtc = NULL;
+ 	nv50_outp_release(nv_encoder);
  }
- 
- static void
--nv50_dac_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
-+nv50_dac_atomic_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
- {
- 	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
- 	struct nouveau_crtc *nv_crtc = nouveau_crtc(encoder->crtc);
-@@ -525,8 +525,8 @@ nv50_dac_detect(struct drm_encoder *encoder, struct drm_connector *connector)
- static const struct drm_encoder_helper_funcs
- nv50_dac_help = {
- 	.atomic_check = nv50_outp_atomic_check,
--	.atomic_enable = nv50_dac_enable,
--	.atomic_disable = nv50_dac_disable,
-+	.atomic_enable = nv50_dac_atomic_enable,
-+	.atomic_disable = nv50_dac_atomic_disable,
- 	.detect = nv50_dac_detect
- };
- 
-@@ -1055,7 +1055,7 @@ nv50_dp_bpc_to_depth(unsigned int bpc)
- }
- 
- static void
--nv50_msto_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
-+nv50_msto_atomic_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
- {
- 	struct nv50_head *head = nv50_head(encoder->crtc);
- 	struct nv50_head_atom *armh = nv50_head_atom(head->base.base.state);
-@@ -1101,7 +1101,7 @@ nv50_msto_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
- }
- 
- static void
--nv50_msto_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
-+nv50_msto_atomic_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
- {
- 	struct nv50_msto *msto = nv50_msto(encoder);
- 	struct nv50_mstc *mstc = msto->mstc;
-@@ -1118,8 +1118,8 @@ nv50_msto_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
- 
- static const struct drm_encoder_helper_funcs
- nv50_msto_help = {
--	.atomic_disable = nv50_msto_disable,
--	.atomic_enable = nv50_msto_enable,
-+	.atomic_disable = nv50_msto_atomic_disable,
-+	.atomic_enable = nv50_msto_atomic_enable,
- 	.atomic_check = nv50_msto_atomic_check,
- };
- 
-@@ -1613,8 +1613,7 @@ nv50_sor_update(struct nouveau_encoder *nv_encoder, u8 head,
- }
- 
- static void
--nv50_sor_disable(struct drm_encoder *encoder,
--		 struct drm_atomic_state *state)
-+nv50_sor_atomic_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
- {
- 	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
+@@ -1620,28 +1620,25 @@ nv50_sor_disable(struct drm_encoder *encoder,
  	struct nouveau_crtc *nv_crtc = nouveau_crtc(nv_encoder->crtc);
-@@ -1642,7 +1641,7 @@ nv50_sor_disable(struct drm_encoder *encoder,
+ 	struct nouveau_connector *nv_connector =
+ 		nv50_outp_get_old_connector(nv_encoder, state);
++	struct drm_dp_aux *aux = &nv_connector->aux;
++	u8 pwr;
+ 
+ 	nv_encoder->crtc = NULL;
+ 
+-	if (nv_crtc) {
+-		struct drm_dp_aux *aux = &nv_connector->aux;
+-		u8 pwr;
++	if (nv_encoder->dcb->type == DCB_OUTPUT_DP) {
++		int ret = drm_dp_dpcd_readb(aux, DP_SET_POWER, &pwr);
+ 
+-		if (nv_encoder->dcb->type == DCB_OUTPUT_DP) {
+-			int ret = drm_dp_dpcd_readb(aux, DP_SET_POWER, &pwr);
+-
+-			if (ret == 0) {
+-				pwr &= ~DP_SET_POWER_MASK;
+-				pwr |=  DP_SET_POWER_D3;
+-				drm_dp_dpcd_writeb(aux, DP_SET_POWER, pwr);
+-			}
++		if (ret == 0) {
++			pwr &= ~DP_SET_POWER_MASK;
++			pwr |=  DP_SET_POWER_D3;
++			drm_dp_dpcd_writeb(aux, DP_SET_POWER, pwr);
+ 		}
+-
+-		nv_encoder->update(nv_encoder, nv_crtc->index, NULL, 0, 0);
+-		nv50_audio_disable(encoder, nv_crtc);
+-		nv50_hdmi_disable(&nv_encoder->base.base, nv_crtc);
+-		nv50_outp_release(nv_encoder);
+ 	}
++
++	nv_encoder->update(nv_encoder, nv_crtc->index, NULL, 0, 0);
++	nv50_audio_disable(encoder, nv_crtc);
++	nv50_hdmi_disable(&nv_encoder->base.base, nv_crtc);
++	nv50_outp_release(nv_encoder);
  }
  
  static void
--nv50_sor_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
-+nv50_sor_atomic_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
- {
- 	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
- 	struct nouveau_crtc *nv_crtc = nouveau_crtc(encoder->crtc);
-@@ -1747,8 +1746,8 @@ nv50_sor_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
- static const struct drm_encoder_helper_funcs
- nv50_sor_help = {
- 	.atomic_check = nv50_outp_atomic_check,
--	.atomic_enable = nv50_sor_enable,
--	.atomic_disable = nv50_sor_disable,
-+	.atomic_enable = nv50_sor_atomic_enable,
-+	.atomic_disable = nv50_sor_atomic_disable,
- };
- 
- static void
-@@ -1869,7 +1868,7 @@ nv50_pior_atomic_check(struct drm_encoder *encoder,
- }
- 
- static void
--nv50_pior_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
-+nv50_pior_atomic_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
- {
+@@ -1877,8 +1874,8 @@ nv50_pior_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
  	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
  	struct nv50_core *core = nv50_disp(encoder->dev)->core;
-@@ -1881,7 +1880,7 @@ nv50_pior_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
+ 	const u32 ctrl = NVDEF(NV507D, PIOR_SET_CONTROL, OWNER, NONE);
+-	if (nv_encoder->crtc)
+-		core->func->pior->ctrl(core, nv_encoder->or, ctrl, NULL);
++
++	core->func->pior->ctrl(core, nv_encoder->or, ctrl, NULL);
+ 	nv_encoder->crtc = NULL;
+ 	nv50_outp_release(nv_encoder);
  }
- 
- static void
--nv50_pior_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
-+nv50_pior_atomic_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
- {
- 	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
- 	struct nouveau_crtc *nv_crtc = nouveau_crtc(encoder->crtc);
-@@ -1923,8 +1922,8 @@ nv50_pior_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
- static const struct drm_encoder_helper_funcs
- nv50_pior_help = {
- 	.atomic_check = nv50_pior_atomic_check,
--	.atomic_enable = nv50_pior_enable,
--	.atomic_disable = nv50_pior_disable,
-+	.atomic_enable = nv50_pior_atomic_enable,
-+	.atomic_disable = nv50_pior_atomic_disable,
- };
- 
- static void
 -- 
 2.28.0
