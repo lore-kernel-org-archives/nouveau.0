@@ -1,8 +1,8 @@
 From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 2/8] drm/nouveau/kms/nv50-: Remove
- (nv_encoder->crtc) checks in ->disable callbacks
-Date: Fri, 13 Nov 2020 19:14:11 -0500
-Message-ID: <20201114001417.155093-3-lyude@redhat.com>
+Subject: [PATCH 4/8] drm/nouveau/kms/nv50-: s/armh/asyh/ in
+ nv50_msto_atomic_enable()
+Date: Fri, 13 Nov 2020 19:14:13 -0500
+Message-ID: <20201114001417.155093-5-lyude@redhat.com>
 References: <20201114001417.155093-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,84 +22,59 @@ To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Noticed these in both the disable (which we'll be getting rid of in a
-moment) and the atomic disable callbacks: both callback types check whether
-or not there's actually a CRTC assigned to the given encoder. However, as
-->atomic_disable and ->disable will never be called without a CRTC assigned
-to the given encoder there's no point in this check. So just remove it.
+I have a strange dejavu feeling that I tried to submit a patch for this in
+the past, but that it was rejected. I can't remember though, but I'm
+further convinced this patch is the right thing to do anyway.
+
+We label the to-be-committed head state in nv50_msto_atomic_enable() as
+armh. Normally armh implies a state which is currently armed in hardware.
+nv50_msto_atomic_enable() is called _after_ drm_atomic_swap_state()
+however, but before the commit tail ends, which means that said state is
+not actually armed on hardware.
+
+As well - take note that this is the same convention followed in all of the
+other atomic_enable() callbacks.
+
+So, let's correct this to asyh.
 
 Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 37 ++++++++++++-------------
- 1 file changed, 17 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 36d6b6093d16..073ac66b2922 100644
+index a47be145827e..cbcf3ef517dc 100644
 --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
 +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -460,8 +460,8 @@ nv50_dac_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
- 	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
- 	struct nv50_core *core = nv50_disp(encoder->dev)->core;
- 	const u32 ctrl = NVDEF(NV507D, DAC_SET_CONTROL, OWNER, NONE);
--	if (nv_encoder->crtc)
--		core->func->dac->ctrl(core, nv_encoder->or, ctrl, NULL);
-+
-+	core->func->dac->ctrl(core, nv_encoder->or, ctrl, NULL);
- 	nv_encoder->crtc = NULL;
- 	nv50_outp_release(nv_encoder);
- }
-@@ -1620,28 +1620,25 @@ nv50_sor_disable(struct drm_encoder *encoder,
- 	struct nouveau_crtc *nv_crtc = nouveau_crtc(nv_encoder->crtc);
- 	struct nouveau_connector *nv_connector =
- 		nv50_outp_get_old_connector(nv_encoder, state);
-+	struct drm_dp_aux *aux = &nv_connector->aux;
-+	u8 pwr;
+@@ -1058,7 +1058,7 @@ static void
+ nv50_msto_atomic_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
+ {
+ 	struct nv50_head *head = nv50_head(encoder->crtc);
+-	struct nv50_head_atom *armh = nv50_head_atom(head->base.base.state);
++	struct nv50_head_atom *asyh = nv50_head_atom(head->base.base.state);
+ 	struct nv50_msto *msto = nv50_msto(encoder);
+ 	struct nv50_mstc *mstc = NULL;
+ 	struct nv50_mstm *mstm = NULL;
+@@ -1080,8 +1080,7 @@ nv50_msto_atomic_enable(struct drm_encoder *encoder, struct drm_atomic_state *st
+ 	if (WARN_ON(!mstc))
+ 		return;
  
- 	nv_encoder->crtc = NULL;
+-	r = drm_dp_mst_allocate_vcpi(&mstm->mgr, mstc->port, armh->dp.pbn,
+-				     armh->dp.tu);
++	r = drm_dp_mst_allocate_vcpi(&mstm->mgr, mstc->port, asyh->dp.pbn, asyh->dp.tu);
+ 	if (!r)
+ 		DRM_DEBUG_KMS("Failed to allocate VCPI\n");
  
--	if (nv_crtc) {
--		struct drm_dp_aux *aux = &nv_connector->aux;
--		u8 pwr;
-+	if (nv_encoder->dcb->type == DCB_OUTPUT_DP) {
-+		int ret = drm_dp_dpcd_readb(aux, DP_SET_POWER, &pwr);
+@@ -1093,8 +1092,8 @@ nv50_msto_atomic_enable(struct drm_encoder *encoder, struct drm_atomic_state *st
+ 	else
+ 		proto = NV917D_SOR_SET_CONTROL_PROTOCOL_DP_B;
  
--		if (nv_encoder->dcb->type == DCB_OUTPUT_DP) {
--			int ret = drm_dp_dpcd_readb(aux, DP_SET_POWER, &pwr);
--
--			if (ret == 0) {
--				pwr &= ~DP_SET_POWER_MASK;
--				pwr |=  DP_SET_POWER_D3;
--				drm_dp_dpcd_writeb(aux, DP_SET_POWER, pwr);
--			}
-+		if (ret == 0) {
-+			pwr &= ~DP_SET_POWER_MASK;
-+			pwr |=  DP_SET_POWER_D3;
-+			drm_dp_dpcd_writeb(aux, DP_SET_POWER, pwr);
- 		}
--
--		nv_encoder->update(nv_encoder, nv_crtc->index, NULL, 0, 0);
--		nv50_audio_disable(encoder, nv_crtc);
--		nv50_hdmi_disable(&nv_encoder->base.base, nv_crtc);
--		nv50_outp_release(nv_encoder);
- 	}
-+
-+	nv_encoder->update(nv_encoder, nv_crtc->index, NULL, 0, 0);
-+	nv50_audio_disable(encoder, nv_crtc);
-+	nv50_hdmi_disable(&nv_encoder->base.base, nv_crtc);
-+	nv50_outp_release(nv_encoder);
- }
+-	mstm->outp->update(mstm->outp, head->base.index, armh, proto,
+-			   nv50_dp_bpc_to_depth(armh->or.bpc));
++	mstm->outp->update(mstm->outp, head->base.index, asyh, proto,
++			   nv50_dp_bpc_to_depth(asyh->or.bpc));
  
- static void
-@@ -1877,8 +1874,8 @@ nv50_pior_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
- 	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
- 	struct nv50_core *core = nv50_disp(encoder->dev)->core;
- 	const u32 ctrl = NVDEF(NV507D, PIOR_SET_CONTROL, OWNER, NONE);
--	if (nv_encoder->crtc)
--		core->func->pior->ctrl(core, nv_encoder->or, ctrl, NULL);
-+
-+	core->func->pior->ctrl(core, nv_encoder->or, ctrl, NULL);
- 	nv_encoder->crtc = NULL;
- 	nv50_outp_release(nv_encoder);
- }
+ 	msto->mstc = mstc;
+ 	mstm->modified = true;
 -- 
 2.28.0
