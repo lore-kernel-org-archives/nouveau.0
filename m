@@ -1,15 +1,15 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/8] drm/nouveau/kms/nv50-: Use atomic encoder
- callbacks everywhere
-Date: Sat, 14 Nov 2020 14:42:02 +1000
-Message-ID: <CACAvsv6NismE+G8DgZX6YZPcM1+onnYgxOdkOkX6gKu=obM9Fw@mail.gmail.com>
-References: <20201114001417.155093-1-lyude@redhat.com>
- <20201114001417.155093-2-lyude@redhat.com>
+From: Salvatore Bonaccorso <carnil-8fiUuRrzOP0dnm+yROfE0A@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: bail out of nouveau_channel_new
+ if channel init fails
+Date: Sun, 15 Nov 2020 10:10:10 +0100
+Message-ID: <20201115091010.GA132466@eldamar.lan>
+References: <20200828092846.GA11454@localhost.localdomain>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20201114001417.155093-2-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20200828092846.GA11454-bi+AKbBUZKY6gyzm1THtWbp2dZbC/Bob@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,141 +19,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "Kirill A . Shutemov" <kirill-oKw7cIdHH8eLwutG50LtGA@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Frantisek Hrbata <frantisek-ktf8V493EB/QT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-I've merged all of these.  Sent the first to 5.10-fixes for the
-regression there, the rest will go in with a later -next pull request.
+Hi,
 
-Thanks,
-Ben.
-
-On Sat, 14 Nov 2020 at 10:14, Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
->
-> It turns out that I forgot to go through and make sure that I converted all
-> encoder callbacks to use atomic_enable/atomic_disable(), so let's go and
-> actually do that.
->
-> Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> Cc: Kirill A. Shutemov <kirill-oKw7cIdHH8eLwutG50LtGA@public.gmane.org>
-> Fixes: 09838c4efe9a ("drm/nouveau/kms: Search for encoders' connectors properly")
+On Fri, Aug 28, 2020 at 11:28:46AM +0200, Frantisek Hrbata wrote:
+> Unprivileged user can crash kernel by using DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC
+> ioctl. This was reported by trinity[1] fuzzer.
+> 
+> [   71.073906] nouveau 0000:01:00.0: crashme[1329]: channel failed to initialise, -17
+> [   71.081730] BUG: kernel NULL pointer dereference, address: 00000000000000a0
+> [   71.088928] #PF: supervisor read access in kernel mode
+> [   71.094059] #PF: error_code(0x0000) - not-present page
+> [   71.099189] PGD 119590067 P4D 119590067 PUD 1054f5067 PMD 0
+> [   71.104842] Oops: 0000 [#1] SMP NOPTI
+> [   71.108498] CPU: 2 PID: 1329 Comm: crashme Not tainted 5.8.0-rc6+ #2
+> [   71.114993] Hardware name: AMD Pike/Pike, BIOS RPK1506A 09/03/2014
+> [   71.121213] RIP: 0010:nouveau_abi16_ioctl_channel_alloc+0x108/0x380 [nouveau]
+> [   71.128339] Code: 48 89 9d f0 00 00 00 41 8b 4c 24 04 41 8b 14 24 45 31 c0 4c 8d 4b 10 48 89 ee 4c 89 f7 e8 10 11 00 00 85 c0 75 78 48 8b 43 10 <8b> 90 a0 00 00 00 41 89 54 24 08 80 7d 3d 05 0f 86 bb 01 00 00 41
+> [   71.147074] RSP: 0018:ffffb4a1809cfd38 EFLAGS: 00010246
+> [   71.152526] RAX: 0000000000000000 RBX: ffff98cedbaa1d20 RCX: 00000000000003bf
+> [   71.159651] RDX: 00000000000003be RSI: 0000000000000000 RDI: 0000000000030160
+> [   71.166774] RBP: ffff98cee776de00 R08: ffffdc0144198a08 R09: ffff98ceeefd4000
+> [   71.173901] R10: ffff98cee7e81780 R11: 0000000000000001 R12: ffffb4a1809cfe08
+> [   71.181214] R13: ffff98cee776d000 R14: ffff98cec519e000 R15: ffff98cee776def0
+> [   71.188339] FS:  00007fd926250500(0000) GS:ffff98ceeac80000(0000) knlGS:0000000000000000
+> [   71.196418] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [   71.202155] CR2: 00000000000000a0 CR3: 0000000106622000 CR4: 00000000000406e0
+> [   71.209297] Call Trace:
+> [   71.211777]  ? nouveau_abi16_ioctl_getparam+0x1f0/0x1f0 [nouveau]
+> [   71.218053]  drm_ioctl_kernel+0xac/0xf0 [drm]
+> [   71.222421]  drm_ioctl+0x211/0x3c0 [drm]
+> [   71.226379]  ? nouveau_abi16_ioctl_getparam+0x1f0/0x1f0 [nouveau]
+> [   71.232500]  nouveau_drm_ioctl+0x57/0xb0 [nouveau]
+> [   71.237285]  ksys_ioctl+0x86/0xc0
+> [   71.240595]  __x64_sys_ioctl+0x16/0x20
+> [   71.244340]  do_syscall_64+0x4c/0x90
+> [   71.248110]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+> [   71.253162] RIP: 0033:0x7fd925d4b88b
+> [   71.256731] Code: Bad RIP value.
+> [   71.259955] RSP: 002b:00007ffc743592d8 EFLAGS: 00000206 ORIG_RAX: 0000000000000010
+> [   71.267514] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fd925d4b88b
+> [   71.274637] RDX: 0000000000601080 RSI: 00000000c0586442 RDI: 0000000000000003
+> [   71.281986] RBP: 00007ffc74359340 R08: 00007fd926016ce0 R09: 00007fd926016ce0
+> [   71.289111] R10: 0000000000000003 R11: 0000000000000206 R12: 0000000000400620
+> [   71.296235] R13: 00007ffc74359420 R14: 0000000000000000 R15: 0000000000000000
+> [   71.303361] Modules linked in: rfkill sunrpc snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio snd_hda_intel snd_intel_dspcfg snd_hda_codec snd_hda_core edac_mce_amd snd_hwdep kvm_amd snd_seq ccp snd_seq_device snd_pcm kvm snd_timer snd irqbypass soundcore sp5100_tco pcspkr crct10dif_pclmul crc32_pclmul ghash_clmulni_intel wmi_bmof joydev i2c_piix4 fam15h_power k10temp acpi_cpufreq ip_tables xfs libcrc32c sd_mod t10_pi sg nouveau video mxm_wmi i2c_algo_bit drm_kms_helper syscopyarea sysfillrect sysimgblt fb_sys_fops ttm broadcom bcm_phy_lib ata_generic ahci drm e1000 crc32c_intel libahci serio_raw tg3 libata firewire_ohci firewire_core wmi crc_itu_t dm_mirror dm_region_hash dm_log dm_mod
+> [   71.365269] CR2: 00000000000000a0
+> 
+> simplified reproducer
+> ---------------------------------8<----------------------------------------
+> /*
+>  * gcc -o crashme crashme.c
+>  * ./crashme /dev/dri/renderD128
+>  */
+> 
+> struct drm_nouveau_channel_alloc {
+> 	uint32_t     fb_ctxdma_handle;
+> 	uint32_t     tt_ctxdma_handle;
+> 
+> 	int          channel;
+> 	uint32_t     pushbuf_domains;
+> 
+> 	/* Notifier memory */
+> 	uint32_t     notifier_handle;
+> 
+> 	/* DRM-enforced subchannel assignments */
+> 	struct {
+> 		uint32_t handle;
+> 		uint32_t grclass;
+> 	} subchan[8];
+> 	uint32_t nr_subchan;
+> };
+> 
+> static struct drm_nouveau_channel_alloc channel;
+> 
+> int main(int argc, char *argv[]) {
+> 	int fd;
+> 	int rv;
+> 
+> 	if (argc != 2)
+> 		die("usage: %s <dev>", 0, argv[0]);
+> 
+> 	if ((fd = open(argv[1], O_RDONLY)) == -1)
+> 		die("open %s", errno, argv[1]);
+> 
+> 	if (ioctl(fd, DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC, &channel) == -1 &&
+> 			errno == EACCES)
+> 		die("ioctl %s", errno, argv[1]);
+> 
+> 	close(fd);
+> 
+> 	printf("PASS\n");
+> 
+> 	return 0;
+> }
+> ---------------------------------8<----------------------------------------
+> 
+> [1] https://github.com/kernelslacker/trinity
+> 
+> Fixes: eeaf06ac1a55 ("drm/nouveau/svm: initial support for shared virtual memory")
+> Signed-off-by: Frantisek Hrbata <frantisek at hrbata.com>
 > ---
->  drivers/gpu/drm/nouveau/dispnv50/disp.c | 29 ++++++++++++-------------
->  1 file changed, 14 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> index b111fe24a06b..36d6b6093d16 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> @@ -455,7 +455,7 @@ nv50_outp_get_old_connector(struct nouveau_encoder *outp,
->   * DAC
->   *****************************************************************************/
->  static void
-> -nv50_dac_disable(struct drm_encoder *encoder)
-> +nv50_dac_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
->  {
->         struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
->         struct nv50_core *core = nv50_disp(encoder->dev)->core;
-> @@ -467,7 +467,7 @@ nv50_dac_disable(struct drm_encoder *encoder)
->  }
->
->  static void
-> -nv50_dac_enable(struct drm_encoder *encoder)
-> +nv50_dac_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
->  {
->         struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
->         struct nouveau_crtc *nv_crtc = nouveau_crtc(encoder->crtc);
-> @@ -525,8 +525,8 @@ nv50_dac_detect(struct drm_encoder *encoder, struct drm_connector *connector)
->  static const struct drm_encoder_helper_funcs
->  nv50_dac_help = {
->         .atomic_check = nv50_outp_atomic_check,
-> -       .enable = nv50_dac_enable,
-> -       .disable = nv50_dac_disable,
-> +       .atomic_enable = nv50_dac_enable,
-> +       .atomic_disable = nv50_dac_disable,
->         .detect = nv50_dac_detect
->  };
->
-> @@ -1055,7 +1055,7 @@ nv50_dp_bpc_to_depth(unsigned int bpc)
->  }
->
->  static void
-> -nv50_msto_enable(struct drm_encoder *encoder)
-> +nv50_msto_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
->  {
->         struct nv50_head *head = nv50_head(encoder->crtc);
->         struct nv50_head_atom *armh = nv50_head_atom(head->base.base.state);
-> @@ -1101,7 +1101,7 @@ nv50_msto_enable(struct drm_encoder *encoder)
->  }
->
->  static void
-> -nv50_msto_disable(struct drm_encoder *encoder)
-> +nv50_msto_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
->  {
->         struct nv50_msto *msto = nv50_msto(encoder);
->         struct nv50_mstc *mstc = msto->mstc;
-> @@ -1118,8 +1118,8 @@ nv50_msto_disable(struct drm_encoder *encoder)
->
->  static const struct drm_encoder_helper_funcs
->  nv50_msto_help = {
-> -       .disable = nv50_msto_disable,
-> -       .enable = nv50_msto_enable,
-> +       .atomic_disable = nv50_msto_disable,
-> +       .atomic_enable = nv50_msto_enable,
->         .atomic_check = nv50_msto_atomic_check,
->  };
->
-> @@ -1645,8 +1645,7 @@ nv50_sor_disable(struct drm_encoder *encoder,
->  }
->
->  static void
-> -nv50_sor_enable(struct drm_encoder *encoder,
-> -               struct drm_atomic_state *state)
-> +nv50_sor_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
->  {
->         struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
->         struct nouveau_crtc *nv_crtc = nouveau_crtc(encoder->crtc);
-> @@ -1873,7 +1872,7 @@ nv50_pior_atomic_check(struct drm_encoder *encoder,
->  }
->
->  static void
-> -nv50_pior_disable(struct drm_encoder *encoder)
-> +nv50_pior_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
->  {
->         struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
->         struct nv50_core *core = nv50_disp(encoder->dev)->core;
-> @@ -1885,7 +1884,7 @@ nv50_pior_disable(struct drm_encoder *encoder)
->  }
->
->  static void
-> -nv50_pior_enable(struct drm_encoder *encoder)
-> +nv50_pior_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
->  {
->         struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
->         struct nouveau_crtc *nv_crtc = nouveau_crtc(encoder->crtc);
-> @@ -1921,14 +1920,14 @@ nv50_pior_enable(struct drm_encoder *encoder)
->         }
->
->         core->func->pior->ctrl(core, nv_encoder->or, ctrl, asyh);
-> -       nv_encoder->crtc = encoder->crtc;
-> +       nv_encoder->crtc = &nv_crtc->base;
->  }
->
->  static const struct drm_encoder_helper_funcs
->  nv50_pior_help = {
->         .atomic_check = nv50_pior_atomic_check,
-> -       .enable = nv50_pior_enable,
-> -       .disable = nv50_pior_disable,
-> +       .atomic_enable = nv50_pior_enable,
-> +       .atomic_disable = nv50_pior_disable,
->  };
->
->  static void
-> --
-> 2.28.0
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+>  drivers/gpu/drm/nouveau/nouveau_chan.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
+> index b80e4ebf1..a7a47b325 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_chan.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
+> @@ -533,6 +533,7 @@ nouveau_channel_new(struct nouveau_drm *drm, struct nvif_device *device,
+>  	if (ret) {
+>  		NV_PRINTK(err, cli, "channel failed to initialise, %d\n", ret);
+>  		nouveau_channel_del(pchan);
+> +		goto done;
+>  	}
+>  
+>  	ret = nouveau_svmm_join((*pchan)->vmm->svmm, (*pchan)->inst);
+> -- 
+> Frantisek Hrbata
+
+Is this still planned to be applied? AFAICS this is the fix for
+CVE-2020-25639.
+
+Regards,
+Salvatore
