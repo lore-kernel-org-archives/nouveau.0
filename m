@@ -1,652 +1,154 @@
-From: Lee Jones <lee.jones@linaro.org>
-Subject: [PATCH 15/40] drm/nouveau/nvkm/subdev/bios/init: Demote obvious abuse of kernel-doc
-Date: Mon, 23 Nov 2020 11:18:54 +0000
-Message-ID: <20201123111919.233376-16-lee.jones@linaro.org>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
+Subject: Re: [PATCH 00/40] [Set 8] Rid W=1 warnings from GPU
+Date: Mon, 23 Nov 2020 12:52:42 +0100
+Message-ID: <feda98c5-a677-7bf5-c1e7-2bf311ba8097@amd.com>
 References: <20201123111919.233376-1-lee.jones@linaro.org>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20201123111919.233376-1-lee.jones@linaro.org>
-To: lee.jones@linaro.org
-Cc: linux-kernel@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20201123111919.233376-1-lee.jones-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/freedreno>,
+ <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/freedreno>
+List-Post: <mailto:freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/freedreno>,
+ <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Freedreno" <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lee Jones <lee.jones-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Tao Zhou <tao.zhou1-5C7GfCeVMHo@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Sonny Jiang <sonny.jiang-5C7GfCeVMHo@public.gmane.org>, Huang Rui <ray.huang-5C7GfCeVMHo@public.gmane.org>, Qinglang Miao <miaoqinglang-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>, Likun Gao <Likun.Gao-5C7GfCeVMHo@public.gmane.org>, Sumit Semwal <sumit.semwal-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>, Jonathan Marek <jonathan-eSc4qw6YbEQ@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Luben Tuikov <luben.tuikov-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jiansong Chen <Jiansong.Chen-5C7GfCeVMHo@public.gmane.org>, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Fritz Koenig <frkoenig-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linaro-mm-sig-cunTk1MwBs8s++Sfvej+rw@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Kalyan Thota <kalyan_t-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>, Sean Paul <sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Jerome Glisse <glisse-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>, Rob Clark <robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Fixes the following W=1 kernel build warning(s):
-
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c:584: warning: Function parameter or member 'init' not described in 'init_reserved'
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c:611: warning: Function parameter or member 'init' not described in 'init_done'
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c:622: warning: Function parameter or member 'init' not described in 'init_io_restrict_prog'
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c:659: warning: Function parameter or member 'init' not described in 'init_repeat'
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c:685: warning: Function parameter or member 'init' not described in 'init_io_restrict_pll'
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c:725: warning: Function parameter or member 'init' not described in 'init_end_repeat'
-
-NB: Trimmed for brevity (lots of these!)
-
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Signed-off-by: Lee Jones <lee.jones@linaro.org>
----
- .../gpu/drm/nouveau/nvkm/subdev/bios/init.c   | 136 +++++++++---------
- 1 file changed, 68 insertions(+), 68 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
-index 9de74f41dcd2a..68e35219cf757 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
-@@ -575,7 +575,7 @@ init_tmds_reg(struct nvbios_init *init, u8 tmds)
-  * init opcode handlers
-  *****************************************************************************/
- 
--/**
-+/*
-  * init_reserved - stub for various unknown/unused single-byte opcodes
-  *
-  */
-@@ -602,7 +602,7 @@ init_reserved(struct nvbios_init *init)
- 	init->offset += length;
- }
- 
--/**
-+/*
-  * INIT_DONE - opcode 0x71
-  *
-  */
-@@ -613,7 +613,7 @@ init_done(struct nvbios_init *init)
- 	init->offset = 0x0000;
- }
- 
--/**
-+/*
-  * INIT_IO_RESTRICT_PROG - opcode 0x32
-  *
-  */
-@@ -650,7 +650,7 @@ init_io_restrict_prog(struct nvbios_init *init)
- 	trace("}]\n");
- }
- 
--/**
-+/*
-  * INIT_REPEAT - opcode 0x33
-  *
-  */
-@@ -676,7 +676,7 @@ init_repeat(struct nvbios_init *init)
- 	init->repeat = repeat;
- }
- 
--/**
-+/*
-  * INIT_IO_RESTRICT_PLL - opcode 0x34
-  *
-  */
-@@ -716,7 +716,7 @@ init_io_restrict_pll(struct nvbios_init *init)
- 	trace("}]\n");
- }
- 
--/**
-+/*
-  * INIT_END_REPEAT - opcode 0x36
-  *
-  */
-@@ -732,7 +732,7 @@ init_end_repeat(struct nvbios_init *init)
- 	}
- }
- 
--/**
-+/*
-  * INIT_COPY - opcode 0x37
-  *
-  */
-@@ -759,7 +759,7 @@ init_copy(struct nvbios_init *init)
- 	init_wrvgai(init, port, index, data);
- }
- 
--/**
-+/*
-  * INIT_NOT - opcode 0x38
-  *
-  */
-@@ -771,7 +771,7 @@ init_not(struct nvbios_init *init)
- 	init_exec_inv(init);
- }
- 
--/**
-+/*
-  * INIT_IO_FLAG_CONDITION - opcode 0x39
-  *
-  */
-@@ -788,7 +788,7 @@ init_io_flag_condition(struct nvbios_init *init)
- 		init_exec_set(init, false);
- }
- 
--/**
-+/*
-  * INIT_GENERIC_CONDITION - opcode 0x3a
-  *
-  */
-@@ -840,7 +840,7 @@ init_generic_condition(struct nvbios_init *init)
- 	}
- }
- 
--/**
-+/*
-  * INIT_IO_MASK_OR - opcode 0x3b
-  *
-  */
-@@ -859,7 +859,7 @@ init_io_mask_or(struct nvbios_init *init)
- 	init_wrvgai(init, 0x03d4, index, data &= ~(1 << or));
- }
- 
--/**
-+/*
-  * INIT_IO_OR - opcode 0x3c
-  *
-  */
-@@ -878,7 +878,7 @@ init_io_or(struct nvbios_init *init)
- 	init_wrvgai(init, 0x03d4, index, data | (1 << or));
- }
- 
--/**
-+/*
-  * INIT_ANDN_REG - opcode 0x47
-  *
-  */
-@@ -895,7 +895,7 @@ init_andn_reg(struct nvbios_init *init)
- 	init_mask(init, reg, mask, 0);
- }
- 
--/**
-+/*
-  * INIT_OR_REG - opcode 0x48
-  *
-  */
-@@ -912,7 +912,7 @@ init_or_reg(struct nvbios_init *init)
- 	init_mask(init, reg, 0, mask);
- }
- 
--/**
-+/*
-  * INIT_INDEX_ADDRESS_LATCHED - opcode 0x49
-  *
-  */
-@@ -942,7 +942,7 @@ init_idx_addr_latched(struct nvbios_init *init)
- 	}
- }
- 
--/**
-+/*
-  * INIT_IO_RESTRICT_PLL2 - opcode 0x4a
-  *
-  */
-@@ -977,7 +977,7 @@ init_io_restrict_pll2(struct nvbios_init *init)
- 	trace("}]\n");
- }
- 
--/**
-+/*
-  * INIT_PLL2 - opcode 0x4b
-  *
-  */
-@@ -994,7 +994,7 @@ init_pll2(struct nvbios_init *init)
- 	init_prog_pll(init, reg, freq);
- }
- 
--/**
-+/*
-  * INIT_I2C_BYTE - opcode 0x4c
-  *
-  */
-@@ -1025,7 +1025,7 @@ init_i2c_byte(struct nvbios_init *init)
- 	}
- }
- 
--/**
-+/*
-  * INIT_ZM_I2C_BYTE - opcode 0x4d
-  *
-  */
-@@ -1051,7 +1051,7 @@ init_zm_i2c_byte(struct nvbios_init *init)
- 	}
- }
- 
--/**
-+/*
-  * INIT_ZM_I2C - opcode 0x4e
-  *
-  */
-@@ -1085,7 +1085,7 @@ init_zm_i2c(struct nvbios_init *init)
- 	}
- }
- 
--/**
-+/*
-  * INIT_TMDS - opcode 0x4f
-  *
-  */
-@@ -1111,7 +1111,7 @@ init_tmds(struct nvbios_init *init)
- 	init_wr32(init, reg + 0, addr);
- }
- 
--/**
-+/*
-  * INIT_ZM_TMDS_GROUP - opcode 0x50
-  *
-  */
-@@ -1138,7 +1138,7 @@ init_zm_tmds_group(struct nvbios_init *init)
- 	}
- }
- 
--/**
-+/*
-  * INIT_CR_INDEX_ADDRESS_LATCHED - opcode 0x51
-  *
-  */
-@@ -1168,7 +1168,7 @@ init_cr_idx_adr_latch(struct nvbios_init *init)
- 	init_wrvgai(init, 0x03d4, addr0, save0);
- }
- 
--/**
-+/*
-  * INIT_CR - opcode 0x52
-  *
-  */
-@@ -1188,7 +1188,7 @@ init_cr(struct nvbios_init *init)
- 	init_wrvgai(init, 0x03d4, addr, val | data);
- }
- 
--/**
-+/*
-  * INIT_ZM_CR - opcode 0x53
-  *
-  */
-@@ -1205,7 +1205,7 @@ init_zm_cr(struct nvbios_init *init)
- 	init_wrvgai(init, 0x03d4, addr, data);
- }
- 
--/**
-+/*
-  * INIT_ZM_CR_GROUP - opcode 0x54
-  *
-  */
-@@ -1229,7 +1229,7 @@ init_zm_cr_group(struct nvbios_init *init)
- 	}
- }
- 
--/**
-+/*
-  * INIT_CONDITION_TIME - opcode 0x56
-  *
-  */
-@@ -1256,7 +1256,7 @@ init_condition_time(struct nvbios_init *init)
- 	init_exec_set(init, false);
- }
- 
--/**
-+/*
-  * INIT_LTIME - opcode 0x57
-  *
-  */
-@@ -1273,7 +1273,7 @@ init_ltime(struct nvbios_init *init)
- 		mdelay(msec);
- }
- 
--/**
-+/*
-  * INIT_ZM_REG_SEQUENCE - opcode 0x58
-  *
-  */
-@@ -1298,7 +1298,7 @@ init_zm_reg_sequence(struct nvbios_init *init)
- 	}
- }
- 
--/**
-+/*
-  * INIT_PLL_INDIRECT - opcode 0x59
-  *
-  */
-@@ -1317,7 +1317,7 @@ init_pll_indirect(struct nvbios_init *init)
- 	init_prog_pll(init, reg, freq);
- }
- 
--/**
-+/*
-  * INIT_ZM_REG_INDIRECT - opcode 0x5a
-  *
-  */
-@@ -1336,7 +1336,7 @@ init_zm_reg_indirect(struct nvbios_init *init)
- 	init_wr32(init, addr, data);
- }
- 
--/**
-+/*
-  * INIT_SUB_DIRECT - opcode 0x5b
-  *
-  */
-@@ -1362,7 +1362,7 @@ init_sub_direct(struct nvbios_init *init)
- 	init->offset += 3;
- }
- 
--/**
-+/*
-  * INIT_JUMP - opcode 0x5c
-  *
-  */
-@@ -1380,7 +1380,7 @@ init_jump(struct nvbios_init *init)
- 		init->offset += 3;
- }
- 
--/**
-+/*
-  * INIT_I2C_IF - opcode 0x5e
-  *
-  */
-@@ -1407,7 +1407,7 @@ init_i2c_if(struct nvbios_init *init)
- 	init_exec_force(init, false);
- }
- 
--/**
-+/*
-  * INIT_COPY_NV_REG - opcode 0x5f
-  *
-  */
-@@ -1433,7 +1433,7 @@ init_copy_nv_reg(struct nvbios_init *init)
- 	init_mask(init, dreg, ~dmask, (data & smask) ^ sxor);
- }
- 
--/**
-+/*
-  * INIT_ZM_INDEX_IO - opcode 0x62
-  *
-  */
-@@ -1451,7 +1451,7 @@ init_zm_index_io(struct nvbios_init *init)
- 	init_wrvgai(init, port, index, data);
- }
- 
--/**
-+/*
-  * INIT_COMPUTE_MEM - opcode 0x63
-  *
-  */
-@@ -1469,7 +1469,7 @@ init_compute_mem(struct nvbios_init *init)
- 	init_exec_force(init, false);
- }
- 
--/**
-+/*
-  * INIT_RESET - opcode 0x65
-  *
-  */
-@@ -1496,7 +1496,7 @@ init_reset(struct nvbios_init *init)
- 	init_exec_force(init, false);
- }
- 
--/**
-+/*
-  * INIT_CONFIGURE_MEM - opcode 0x66
-  *
-  */
-@@ -1555,7 +1555,7 @@ init_configure_mem(struct nvbios_init *init)
- 	init_exec_force(init, false);
- }
- 
--/**
-+/*
-  * INIT_CONFIGURE_CLK - opcode 0x67
-  *
-  */
-@@ -1589,7 +1589,7 @@ init_configure_clk(struct nvbios_init *init)
- 	init_exec_force(init, false);
- }
- 
--/**
-+/*
-  * INIT_CONFIGURE_PREINIT - opcode 0x68
-  *
-  */
-@@ -1615,7 +1615,7 @@ init_configure_preinit(struct nvbios_init *init)
- 	init_exec_force(init, false);
- }
- 
--/**
-+/*
-  * INIT_IO - opcode 0x69
-  *
-  */
-@@ -1655,7 +1655,7 @@ init_io(struct nvbios_init *init)
- 	init_wrport(init, port, data | value);
- }
- 
--/**
-+/*
-  * INIT_SUB - opcode 0x6b
-  *
-  */
-@@ -1682,7 +1682,7 @@ init_sub(struct nvbios_init *init)
- 	init->offset += 2;
- }
- 
--/**
-+/*
-  * INIT_RAM_CONDITION - opcode 0x6d
-  *
-  */
-@@ -1701,7 +1701,7 @@ init_ram_condition(struct nvbios_init *init)
- 		init_exec_set(init, false);
- }
- 
--/**
-+/*
-  * INIT_NV_REG - opcode 0x6e
-  *
-  */
-@@ -1719,7 +1719,7 @@ init_nv_reg(struct nvbios_init *init)
- 	init_mask(init, reg, ~mask, data);
- }
- 
--/**
-+/*
-  * INIT_MACRO - opcode 0x6f
-  *
-  */
-@@ -1743,7 +1743,7 @@ init_macro(struct nvbios_init *init)
- 	init->offset += 2;
- }
- 
--/**
-+/*
-  * INIT_RESUME - opcode 0x72
-  *
-  */
-@@ -1755,7 +1755,7 @@ init_resume(struct nvbios_init *init)
- 	init_exec_set(init, true);
- }
- 
--/**
-+/*
-  * INIT_STRAP_CONDITION - opcode 0x73
-  *
-  */
-@@ -1773,7 +1773,7 @@ init_strap_condition(struct nvbios_init *init)
- 		init_exec_set(init, false);
- }
- 
--/**
-+/*
-  * INIT_TIME - opcode 0x74
-  *
-  */
-@@ -1794,7 +1794,7 @@ init_time(struct nvbios_init *init)
- 	}
- }
- 
--/**
-+/*
-  * INIT_CONDITION - opcode 0x75
-  *
-  */
-@@ -1811,7 +1811,7 @@ init_condition(struct nvbios_init *init)
- 		init_exec_set(init, false);
- }
- 
--/**
-+/*
-  * INIT_IO_CONDITION - opcode 0x76
-  *
-  */
-@@ -1828,7 +1828,7 @@ init_io_condition(struct nvbios_init *init)
- 		init_exec_set(init, false);
- }
- 
--/**
-+/*
-  * INIT_ZM_REG16 - opcode 0x77
-  *
-  */
-@@ -1845,7 +1845,7 @@ init_zm_reg16(struct nvbios_init *init)
- 	init_wr32(init, addr, data);
- }
- 
--/**
-+/*
-  * INIT_INDEX_IO - opcode 0x78
-  *
-  */
-@@ -1867,7 +1867,7 @@ init_index_io(struct nvbios_init *init)
- 	init_wrvgai(init, port, index, data | value);
- }
- 
--/**
-+/*
-  * INIT_PLL - opcode 0x79
-  *
-  */
-@@ -1884,7 +1884,7 @@ init_pll(struct nvbios_init *init)
- 	init_prog_pll(init, reg, freq);
- }
- 
--/**
-+/*
-  * INIT_ZM_REG - opcode 0x7a
-  *
-  */
-@@ -1904,7 +1904,7 @@ init_zm_reg(struct nvbios_init *init)
- 	init_wr32(init, addr, data);
- }
- 
--/**
-+/*
-  * INIT_RAM_RESTRICT_PLL - opcde 0x87
-  *
-  */
-@@ -1934,7 +1934,7 @@ init_ram_restrict_pll(struct nvbios_init *init)
- 	}
- }
- 
--/**
-+/*
-  * INIT_RESET_BEGUN - opcode 0x8c
-  *
-  */
-@@ -1945,7 +1945,7 @@ init_reset_begun(struct nvbios_init *init)
- 	init->offset += 1;
- }
- 
--/**
-+/*
-  * INIT_RESET_END - opcode 0x8d
-  *
-  */
-@@ -1956,7 +1956,7 @@ init_reset_end(struct nvbios_init *init)
- 	init->offset += 1;
- }
- 
--/**
-+/*
-  * INIT_GPIO - opcode 0x8e
-  *
-  */
-@@ -1972,7 +1972,7 @@ init_gpio(struct nvbios_init *init)
- 		nvkm_gpio_reset(gpio, DCB_GPIO_UNUSED);
- }
- 
--/**
-+/*
-  * INIT_RAM_RESTRICT_ZM_GROUP - opcode 0x8f
-  *
-  */
-@@ -2010,7 +2010,7 @@ init_ram_restrict_zm_reg_group(struct nvbios_init *init)
- 	}
- }
- 
--/**
-+/*
-  * INIT_COPY_ZM_REG - opcode 0x90
-  *
-  */
-@@ -2027,7 +2027,7 @@ init_copy_zm_reg(struct nvbios_init *init)
- 	init_wr32(init, dreg, init_rd32(init, sreg));
- }
- 
--/**
-+/*
-  * INIT_ZM_REG_GROUP - opcode 0x91
-  *
-  */
-@@ -2049,7 +2049,7 @@ init_zm_reg_group(struct nvbios_init *init)
- 	}
- }
- 
--/**
-+/*
-  * INIT_XLAT - opcode 0x96
-  *
-  */
-@@ -2077,7 +2077,7 @@ init_xlat(struct nvbios_init *init)
- 	init_mask(init, daddr, ~dmask, data);
- }
- 
--/**
-+/*
-  * INIT_ZM_MASK_ADD - opcode 0x97
-  *
-  */
-@@ -2098,7 +2098,7 @@ init_zm_mask_add(struct nvbios_init *init)
- 	init_wr32(init, addr, data);
- }
- 
--/**
-+/*
-  * INIT_AUXCH - opcode 0x98
-  *
-  */
-@@ -2122,7 +2122,7 @@ init_auxch(struct nvbios_init *init)
- 	}
- }
- 
--/**
-+/*
-  * INIT_AUXCH - opcode 0x99
-  *
-  */
-@@ -2144,7 +2144,7 @@ init_zm_auxch(struct nvbios_init *init)
- 	}
- }
- 
--/**
-+/*
-  * INIT_I2C_LONG_IF - opcode 0x9a
-  *
-  */
-@@ -2183,7 +2183,7 @@ init_i2c_long_if(struct nvbios_init *init)
- 	init_exec_set(init, false);
- }
- 
--/**
-+/*
-  * INIT_GPIO_NE - opcode 0xa9
-  *
-  */
--- 
-2.25.1
+T25seSBza2ltbWVkIG92ZXIgdGhlbSwgYnV0IG92ZXIgYWxsIGxvb2tzIHNhbmUgdG8gbWUuCgpT
+ZXJpZXMgaXMgQWNrZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1k
+LmNvbT4KClRoYW5rcywKQ2hyaXN0aWFuLgoKQW0gMjMuMTEuMjAgdW0gMTI6MTggc2NocmllYiBM
+ZWUgSm9uZXM6Cj4gVGhpcyBzZXQgaXMgcGFydCBvZiBhIGxhcmdlciBlZmZvcnQgYXR0ZW1wdGlu
+ZyB0byBjbGVhbi11cCBXPTEKPiBrZXJuZWwgYnVpbGRzLCB3aGljaCBhcmUgY3VycmVudGx5IG92
+ZXJ3aGVsbWluZ2x5IHJpZGRsZWQgd2l0aAo+IG5pZ2dseSBsaXR0bGUgd2FybmluZ3MuCj4KPiBP
+bmx5IDkwMCAoZnJvbSA1MDAwKSB0byBnbyEKPgo+IExlZSBKb25lcyAoNDApOgo+ICAgIGRybS9y
+YWRlb24vcmFkZW9uX2RldmljZTogQ29uc3VtZSBvdXIgb3duIGhlYWRlciB3aGVyZSB0aGUgcHJv
+dG90eXBlcwo+ICAgICAgYXJlIGxvY2F0ZWQKPiAgICBkcm0vYW1kL2FtZGdwdS9hbWRncHVfdHRt
+OiBBZGQgZGVzY3JpcHRpb24gZm9yICdwYWdlX2ZsYWdzJwo+ICAgIGRybS9hbWQvYW1kZ3B1L2Ft
+ZGdwdV9pYjogUHJvdmlkZSBkb2NzIGZvciAnYW1kZ3B1X2liX3NjaGVkdWxlKCkncwo+ICAgICAg
+J2pvYicgcGFyYW0KPiAgICBkcm0vYW1kL2FtZGdwdS9hbWRncHVfdmlydDogQ29ycmVjdCBwb3Nz
+aWJsZSBjb3B5L3Bhc3RlIG9yIGRvYy1yb3QKPiAgICAgIG1pc25hbWluZyBpc3N1ZQo+ICAgIGRy
+bS9hbWQvYW1kZ3B1L2Npa19paDogU3VwcGx5IGRlc2NyaXB0aW9uIGZvciAnaWgnIGluCj4gICAg
+ICAnY2lrX2loX3tnZXQsc2V0fV93cHRyKCknCj4gICAgZHJtL2FtZC9hbWRncHUvdXZkX3Y0XzI6
+IEZpeCBzb21lIGtlcm5lbC1kb2MgbWlzZGVtZWFub3Vycwo+ICAgIGRybS9hbWQvYW1kZ3B1L2Rj
+ZV92OF8wOiBTdXBwbHkgZGVzY3JpcHRpb24gZm9yICdhc3luYycKPiAgICBkcm0vYW1kL2FtZGdw
+dS9jaWtfc2RtYTogU3VwcGx5IHNvbWUgbWlzc2luZyBmdW5jdGlvbiBwYXJhbQo+ICAgICAgZGVz
+Y3JpcHRpb25zCj4gICAgZHJtL2FtZC9hbWRncHUvZ2Z4X3Y3XzA6IENsZWFuLXVwIGEgYnVuY2gg
+b2Yga2VybmVsLWRvYyByZWxhdGVkIGlzc3Vlcwo+ICAgIGRybS9tc20vZGlzcC9kcHUxL2RwdV9j
+b3JlX3BlcmY6IEZpeCBrZXJuZWwtZG9jIGZvcm1hdHRpbmcgaXNzdWVzCj4gICAgZHJtL21zbS9k
+aXNwL2RwdTEvZHB1X2h3X2JsazogQWRkIG9uZSBtaXNzaW5nIGFuZCByZW1vdmUgYW4gZXh0cmEK
+PiAgICAgIHBhcmFtIGRlc2NyaXB0aW9uCj4gICAgZHJtL21zbS9kaXNwL2RwdTEvZHB1X2Zvcm1h
+dHM6IERlbW90ZSBub24tY29uZm9ybWFudCBrZXJuZWwtZG9jIGhlYWRlcgo+ICAgIGRybS9tc20v
+ZGlzcC9kcHUxL2RwdV9od19jYXRhbG9nOiBSZW1vdmUgZHVwbGljYXRlZCBpbml0aWFsaXNhdGlv
+biBvZgo+ICAgICAgJ21heF9saW5ld2lkdGgnCj4gICAgZHJtL21zbS9kaXNwL2RwdTEvZHB1X2h3
+X2NhdGFsb2c6IE1vdmUgZGVmaW5pdGlvbnMgdG8gdGhlIG9ubHkgcGxhY2UKPiAgICAgIHRoZXkg
+YXJlIHVzZWQKPiAgICBkcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL2luaXQ6IERlbW90ZSBv
+YnZpb3VzIGFidXNlIG9mIGtlcm5lbC1kb2MKPiAgICBkcm0vYW1kL2FtZGdwdS9zaV9kbWE6IEZp
+eCBhIGJ1bmNoIG9mIGZ1bmN0aW9uIGRvY3VtZW50YXRpb24gaXNzdWVzCj4gICAgZHJtL2FtZC9h
+bWRncHUvZ2Z4X3Y2XzA6IFN1cHBseSBkZXNjcmlwdGlvbiBmb3IKPiAgICAgICdnZnhfdjZfMF9y
+aW5nX3Rlc3RfaWIoKSdzICd0aW1lb3V0JyBwYXJhbQo+ICAgIGRybS9tc20vZGlzcC9kcHUxL2Rw
+dV9lbmNvZGVyOiBGaXggYSBmZXcgcGFyYW1ldGVyL21lbWJlciBmb3JtYXR0aW5nCj4gICAgICBp
+c3N1ZXMKPiAgICBkcm0vbXNtL2Rpc3AvZHB1MS9kcHVfaHdfbG06IEZpeCBtaXNuYW1pbmcgb2Yg
+cGFyYW1ldGVyICdjdHgnCj4gICAgZHJtL21zbS9kaXNwL2RwdTEvZHB1X2h3X3NzcHA6IEZpeCBr
+ZXJuZWwtZG9jIGZvcm1hdHRpbmcgYWJ1c2UKPiAgICBkcm0vYW1kL2FtZGdwdS91dmRfdjNfMTog
+Rml4LXVwIHNvbWUgZG9jdW1lbnRhdGlvbiBpc3N1ZXMKPiAgICBkcm0vYW1kL2FtZGdwdS9kY2Vf
+djZfMDogRml4IGZvcm1hdHRpbmcgYW5kIG1pc3NpbmcgcGFyYW1ldGVyCj4gICAgICBkZXNjcmlw
+dGlvbiBpc3N1ZXMKPiAgICBkcm0vYW1kL2luY2x1ZGUvdmVnYTIwX2lwX29mZnNldDogTWFyayB0
+b3AtbGV2ZWwgSVBfQkFTRSBkZWZpbml0aW9uIGFzCj4gICAgICBfX21heWJlX3VudXNlZAo+ICAg
+IGRybS9hbWQvaW5jbHVkZS9uYXZpMTBfaXBfb2Zmc2V0OiBNYXJrIHRvcC1sZXZlbCBJUF9CQVNF
+IGFzCj4gICAgICBfX21heWJlX3VudXNlZAo+ICAgIGRybS9hbWQvaW5jbHVkZS9hcmN0X2lwX29m
+ZnNldDogTWFyayB0b3AtbGV2ZWwgSVBfQkFTRSBkZWZpbml0aW9uIGFzCj4gICAgICBfX21heWJl
+X3VudXNlZAo+ICAgIGRybS9hbWQvaW5jbHVkZS9uYXZpMTRfaXBfb2Zmc2V0OiBNYXJrIHRvcC1s
+ZXZlbCBJUF9CQVNFIGFzCj4gICAgICBfX21heWJlX3VudXNlZAo+ICAgIGRybS9hbWQvaW5jbHVk
+ZS9uYXZpMTJfaXBfb2Zmc2V0OiBNYXJrIHRvcC1sZXZlbCBJUF9CQVNFIGFzCj4gICAgICBfX21h
+eWJlX3VudXNlZAo+ICAgIGRybS9hbWQvaW5jbHVkZS9zaWVubmFfY2ljaGxpZF9pcF9vZmZzZXQ6
+IE1hcmsgdG9wLWxldmVsIElQX0JBU0UgYXMKPiAgICAgIF9fbWF5YmVfdW51c2VkCj4gICAgZHJt
+L2FtZC9pbmNsdWRlL3ZhbmdvZ2hfaXBfb2Zmc2V0OiBNYXJrIHRvcC1sZXZlbCBJUF9CQVNFIGFz
+Cj4gICAgICBfX21heWJlX3VudXNlZAo+ICAgIGRybS9hbWQvaW5jbHVkZS9kaW1ncmV5X2NhdmVm
+aXNoX2lwX29mZnNldDogTWFyayB0b3AtbGV2ZWwgSVBfQkFTRSBhcwo+ICAgICAgX19tYXliZV91
+bnVzZWQKPiAgICBkcm0vbXNtL2Rpc3AvZHB1MS9kcHVfcm06IEZpeCBmb3JtYXR0aW5nIGlzc3Vl
+cyBhbmQgc3VwcGx5Cj4gICAgICAnZ2xvYmFsX3N0YXRlJyBkZXNjcmlwdGlvbgo+ICAgIGRybS9t
+c20vZGlzcC9kcHUxL2RwdV92YmlmOiBGaXggYSBjb3VwbGUgb2YgZnVuY3Rpb24gcGFyYW0KPiAg
+ICAgIGRlc2NyaXB0aW9ucwo+ICAgIGRybS9hbWQvYW1kZ3B1L2Npa19zZG1hOiBBZGQgb25lIGFu
+ZCByZW1vdmUgYW5vdGhlciBmdW5jdGlvbiBwYXJhbQo+ICAgICAgZGVzY3JpcHRpb24KPiAgICBk
+cm0vYW1kL2FtZGdwdS91dmRfdjRfMjogQWRkIG9uZSBhbmQgcmVtb3ZlIGFub3RoZXIgZnVuY3Rp
+b24gcGFyYW0KPiAgICAgIGRlc2NyaXB0aW9uCj4gICAgZHJtL21zbS9kaXNwL2RwdTEvZHB1X3Bs
+YW5lOiBGaXggc29tZSBzcGVsbGluZyBhbmQgbWlzc2luZyBmdW5jdGlvbgo+ICAgICAgcGFyYW0g
+ZGVzY3JpcHRpb25zCj4gICAgZHJtL2FtZC9hbWRncHUvZ21jX3Y3XzA6IEFkZCBzb21lIG1pc3Np
+bmcga2VybmVsLWRvYyBkZXNjcmlwdGlvbnMKPiAgICBkcm0vYW1kL2FtZGdwdS9nbWNfdjhfMDog
+Rml4IG1vcmUgaXNzdWVzIGF0dHJpYnV0ZWQgdG8gY29weS9wYXN0ZQo+ICAgIGRybS9tc20vbXNt
+X2RydjogTWFrZSAnX21zbV9pb3JlbWFwKCknIHN0YXRpYwo+ICAgIGRybS9hbWQvYW1kZ3B1L2dt
+Y192OV8wOiBSZW1vdmUgdW51c2VkIHRhYmxlCj4gICAgICAnZWNjX3VtY19tY3VtY19zdGF0dXNf
+YWRkcnMnCj4gICAgZHJtL2FtZC9hbWRncHUvZ21jX3Y5XzA6IFN1cHB5IHNvbWUgbWlzc2luZyBm
+dW5jdGlvbiBkb2MgZGVzY3JpcHRpb25zCj4KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
+L2FtZGdwdV9pYi5jICAgICAgICB8ICAgMSArCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
+dS9hbWRncHVfdHRtLmMgICAgICAgfCAgIDEgKwo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X3ZpcnQuYyAgICAgIHwgIDEyICstCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
+ZGdwdS9jaWtfaWguYyAgICAgICAgICAgfCAgIDIgKwo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvY2lrX3NkbWEuYyAgICAgICAgIHwgIDE4ICsrLQo+ICAgZHJpdmVycy9ncHUvZHJtL2Ft
+ZC9hbWRncHUvZGNlX3Y2XzAuYyAgICAgICAgIHwgICAyICstCj4gICBkcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9kY2VfdjhfMC5jICAgICAgICAgfCAgIDEgKwo+ICAgZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvZ2Z4X3Y2XzAuYyAgICAgICAgIHwgICAxICsKPiAgIGRyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L2dmeF92N18wLmMgICAgICAgICB8ICAzMyArKystLQo+ICAgZHJpdmVycy9n
+cHUvZHJtL2FtZC9hbWRncHUvZ21jX3Y3XzAuYyAgICAgICAgIHwgICA3ICstCj4gICBkcml2ZXJz
+L2dwdS9kcm0vYW1kL2FtZGdwdS9nbWNfdjhfMC5jICAgICAgICAgfCAgIDUgKwo+ICAgZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRncHUvZ21jX3Y5XzAuYyAgICAgICAgIHwgIDM4ICstLS0tCj4gICBk
+cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9zaV9kbWEuYyAgICAgICAgICAgfCAgMTQgKy0KPiAg
+IGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3V2ZF92M18xLmMgICAgICAgICB8ICAxMCArLQo+
+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvdXZkX3Y0XzIuYyAgICAgICAgIHwgIDEwICst
+Cj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2luY2x1ZGUvYXJjdF9pcF9vZmZzZXQuaCAgfCAgIDQg
+Ky0KPiAgIC4uLi9hbWQvaW5jbHVkZS9kaW1ncmV5X2NhdmVmaXNoX2lwX29mZnNldC5oICB8ICAg
+MiArLQo+ICAgLi4uL2dwdS9kcm0vYW1kL2luY2x1ZGUvbmF2aTEwX2lwX29mZnNldC5oICAgIHwg
+ICAyICstCj4gICAuLi4vZ3B1L2RybS9hbWQvaW5jbHVkZS9uYXZpMTJfaXBfb2Zmc2V0LmggICAg
+fCAgIDIgKy0KPiAgIC4uLi9ncHUvZHJtL2FtZC9pbmNsdWRlL25hdmkxNF9pcF9vZmZzZXQuaCAg
+ICB8ICAgMiArLQo+ICAgLi4uL2FtZC9pbmNsdWRlL3NpZW5uYV9jaWNobGlkX2lwX29mZnNldC5o
+ICAgIHwgICAyICstCj4gICAuLi4vZ3B1L2RybS9hbWQvaW5jbHVkZS92YW5nb2doX2lwX29mZnNl
+dC5oICAgfCAgIDIgKy0KPiAgIC4uLi9ncHUvZHJtL2FtZC9pbmNsdWRlL3ZlZ2EyMF9pcF9vZmZz
+ZXQuaCAgICB8ICAgMiArLQo+ICAgZHJpdmVycy9ncHUvZHJtL21zbS9kaXNwL2RwdTEvZHB1X2Nv
+cmVfcGVyZi5jIHwgIDE3ICstLQo+ICAgZHJpdmVycy9ncHUvZHJtL21zbS9kaXNwL2RwdTEvZHB1
+X2VuY29kZXIuYyAgIHwgIDE1ICstCj4gICBkcml2ZXJzL2dwdS9kcm0vbXNtL2Rpc3AvZHB1MS9k
+cHVfZm9ybWF0cy5jICAgfCAgIDIgKy0KPiAgIGRyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9kcHUx
+L2RwdV9od19ibGsuYyAgICB8ICAgMiArLQo+ICAgLi4uL2dwdS9kcm0vbXNtL2Rpc3AvZHB1MS9k
+cHVfaHdfY2F0YWxvZy5jICAgIHwgIDc1ICsrKysrKysrKy0KPiAgIC4uLi9kcm0vbXNtL2Rpc3Av
+ZHB1MS9kcHVfaHdfY2F0YWxvZ19mb3JtYXQuaCB8ICA4OCAtLS0tLS0tLS0tLS0KPiAgIGRyaXZl
+cnMvZ3B1L2RybS9tc20vZGlzcC9kcHUxL2RwdV9od19sbS5jICAgICB8ICAgMiArLQo+ICAgZHJp
+dmVycy9ncHUvZHJtL21zbS9kaXNwL2RwdTEvZHB1X2h3X3NzcHAuYyAgIHwgICA0ICstCj4gICBk
+cml2ZXJzL2dwdS9kcm0vbXNtL2Rpc3AvZHB1MS9kcHVfcGxhbmUuYyAgICAgfCAgMTkgKystCj4g
+ICBkcml2ZXJzL2dwdS9kcm0vbXNtL2Rpc3AvZHB1MS9kcHVfcm0uYyAgICAgICAgfCAgIDUgKy0K
+PiAgIGRyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9kcHUxL2RwdV92YmlmLmMgICAgICB8ICAgMiAr
+LQo+ICAgZHJpdmVycy9ncHUvZHJtL21zbS9tc21fZHJ2LmMgICAgICAgICAgICAgICAgIHwgICA0
+ICstCj4gICAuLi4vZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvaW5pdC5jICAgfCAx
+MzYgKysrKysrKysrLS0tLS0tLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9k
+ZXZpY2UuYyAgICAgICAgfCAgIDEgKwo+ICAgMzcgZmlsZXMgY2hhbmdlZCwgMjc3IGluc2VydGlv
+bnMoKyksIDI2OCBkZWxldGlvbnMoLSkKPiAgIGRlbGV0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dw
+dS9kcm0vbXNtL2Rpc3AvZHB1MS9kcHVfaHdfY2F0YWxvZ19mb3JtYXQuaAo+Cj4gQ2M6IEFsZXgg
+RGV1Y2hlciA8YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT4KPiBDYzogYW1kLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKPiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgo+IENj
+OiAiQ2hyaXN0aWFuIEvDtm5pZyIgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPiBDYzogRGFu
+aWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNoPgo+IENjOiBEYXZpZCBBaXJsaWUgPGFpcmxpZWRA
+bGludXguaWU+Cj4gQ2M6IERyZXcgRGF2ZW5wb3J0IDxkZGF2ZW5wb3J0QGNocm9taXVtLm9yZz4K
+PiBDYzogZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IENjOiBmcmVlZHJlbm9AbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCj4gQ2M6IEZyaXR6IEtvZW5pZyA8ZnJrb2VuaWdAZ29vZ2xlLmNv
+bT4KPiBDYzogSGF3a2luZyBaaGFuZyA8SGF3a2luZy5aaGFuZ0BhbWQuY29tPgo+IENjOiBIdWFu
+ZyBSdWkgPHJheS5odWFuZ0BhbWQuY29tPgo+IENjOiBKZXJvbWUgR2xpc3NlIDxnbGlzc2VAZnJl
+ZWRlc2t0b3Aub3JnPgo+IENjOiBKaWFuc29uZyBDaGVuIDxKaWFuc29uZy5DaGVuQGFtZC5jb20+
+Cj4gQ2M6IEpvbmF0aGFuIE1hcmVrIDxqb25hdGhhbkBtYXJlay5jYT4KPiBDYzogS2FseWFuIFRo
+b3RhIDxrYWx5YW5fdEBjb2RlYXVyb3JhLm9yZz4KPiBDYzogTGlrdW4gR2FvIDxMaWt1bi5HYW9A
+YW1kLmNvbT4KPiBDYzogbGluYXJvLW1tLXNpZ0BsaXN0cy5saW5hcm8ub3JnCj4gQ2M6IGxpbnV4
+LWFybS1tc21Admdlci5rZXJuZWwub3JnCj4gQ2M6IGxpbnV4LW1lZGlhQHZnZXIua2VybmVsLm9y
+Zwo+IENjOiBMdWJlbiBUdWlrb3YgPGx1YmVuLnR1aWtvdkBhbWQuY29tPgo+IENjOiBub3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IENjOiBRaW5nbGFuZyBNaWFvIDxtaWFvcWluZ2xhbmdA
+aHVhd2VpLmNvbT4KPiBDYzogUm9iIENsYXJrIDxyb2JkY2xhcmtAZ21haWwuY29tPgo+IENjOiBT
+ZWFuIFBhdWwgPHNlYW5AcG9vcmx5LnJ1bj4KPiBDYzogU29ubnkgSmlhbmcgPHNvbm55LmppYW5n
+QGFtZC5jb20+Cj4gQ2M6IFN1bWl0IFNlbXdhbCA8c3VtaXQuc2Vtd2FsQGxpbmFyby5vcmc+Cj4g
+Q2M6IFRhbyBaaG91IDx0YW8uemhvdTFAYW1kLmNvbT4KCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCkZyZWVkcmVubyBtYWlsaW5nIGxpc3QKRnJlZWRyZW5v
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2ZyZWVkcmVubwo=
