@@ -1,7 +1,7 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 10/15] drm/qxl: Remove references to struct drm_device.pdev
-Date: Tue, 24 Nov 2020 12:38:19 +0100
-Message-ID: <20201124113824.19994-11-tzimmermann@suse.de>
+Subject: [PATCH 06/15] drm/hibmc: Remove references to struct drm_device.pdev
+Date: Tue, 24 Nov 2020 12:38:15 +0100
+Message-ID: <20201124113824.19994-7-tzimmermann@suse.de>
 References: <20201124113824.19994-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -18,86 +18,104 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/virtualizati
 Errors-To: virtualization-bounces@lists.linux-foundation.org
 Sender: "Virtualization" <virtualization-bounces@lists.linux-foundation.org>
 To: airlied@linux.ie, daniel@ffwll.ch
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, spice-devel@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
+Cc: Xinliang Liu <xinliang.liu@linaro.org>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, Xinwei Kong <kong.kongxinwei@hisilicon.com>, John Stultz <john.stultz@linaro.org>, amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, Tian Tao <tiantao6@hisilicon.com>, spice-devel@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, Chen Feng <puck.chen@hisilicon.com>
 List-Id: nouveau.vger.kernel.org
 
-Using struct drm_device.pdev is deprecated. Convert qxl to struct
+Using struct drm_device.pdev is deprecated. Convert hibmc to struct
 drm_device.dev. No functional changes.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Gerd Hoffmann <kraxel@redhat.com>
+Cc: Xinliang Liu <xinliang.liu@linaro.org>
+Cc: Tian Tao  <tiantao6@hisilicon.com>
+Cc: John Stultz <john.stultz@linaro.org>
+Cc: Xinwei Kong <kong.kongxinwei@hisilicon.com>
+Cc: Chen Feng <puck.chen@hisilicon.com>
 ---
- drivers/gpu/drm/qxl/qxl_drv.c   | 2 +-
- drivers/gpu/drm/qxl/qxl_ioctl.c | 3 ++-
- drivers/gpu/drm/qxl/qxl_irq.c   | 3 ++-
- drivers/gpu/drm/qxl/qxl_kms.c   | 1 -
- 4 files changed, 5 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c | 10 +++++-----
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_i2c.c |  2 +-
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c     |  4 ++--
+ 3 files changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/qxl/qxl_drv.c b/drivers/gpu/drm/qxl/qxl_drv.c
-index 6e7f16f4cec7..fb5f6a5e81d7 100644
---- a/drivers/gpu/drm/qxl/qxl_drv.c
-+++ b/drivers/gpu/drm/qxl/qxl_drv.c
-@@ -163,7 +163,7 @@ DEFINE_DRM_GEM_FOPS(qxl_fops);
- 
- static int qxl_drm_freeze(struct drm_device *dev)
+diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c
+index d845657fd99c..ac5868343d0c 100644
+--- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c
++++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c
+@@ -203,7 +203,7 @@ static void hibmc_hw_config(struct hibmc_drm_private *priv)
+ static int hibmc_hw_map(struct hibmc_drm_private *priv)
  {
+ 	struct drm_device *dev = priv->dev;
 -	struct pci_dev *pdev = dev->pdev;
 +	struct pci_dev *pdev = to_pci_dev(dev->dev);
- 	struct qxl_device *qdev = to_qxl(dev);
- 	int ret;
+ 	resource_size_t addr, size, ioaddr, iosize;
  
-diff --git a/drivers/gpu/drm/qxl/qxl_ioctl.c b/drivers/gpu/drm/qxl/qxl_ioctl.c
-index 16e1e589508e..b6075f452b9e 100644
---- a/drivers/gpu/drm/qxl/qxl_ioctl.c
-+++ b/drivers/gpu/drm/qxl/qxl_ioctl.c
-@@ -370,13 +370,14 @@ static int qxl_clientcap_ioctl(struct drm_device *dev, void *data,
- 				  struct drm_file *file_priv)
+ 	ioaddr = pci_resource_start(pdev, 1);
+@@ -249,7 +249,7 @@ static int hibmc_unload(struct drm_device *dev)
+ 	if (dev->irq_enabled)
+ 		drm_irq_uninstall(dev);
+ 
+-	pci_disable_msi(dev->pdev);
++	pci_disable_msi(to_pci_dev(dev->dev));
+ 	hibmc_kms_fini(priv);
+ 	hibmc_mm_fini(priv);
+ 	dev->dev_private = NULL;
+@@ -258,6 +258,7 @@ static int hibmc_unload(struct drm_device *dev)
+ 
+ static int hibmc_load(struct drm_device *dev)
  {
- 	struct qxl_device *qdev = to_qxl(dev);
 +	struct pci_dev *pdev = to_pci_dev(dev->dev);
- 	struct drm_qxl_clientcap *param = data;
- 	int byte, idx;
- 
- 	byte = param->index / 8;
- 	idx = param->index % 8;
- 
--	if (dev->pdev->revision < 4)
-+	if (pdev->revision < 4)
- 		return -ENOSYS;
- 
- 	if (byte >= 58)
-diff --git a/drivers/gpu/drm/qxl/qxl_irq.c b/drivers/gpu/drm/qxl/qxl_irq.c
-index 1ba5a702d763..ddf6588a2a38 100644
---- a/drivers/gpu/drm/qxl/qxl_irq.c
-+++ b/drivers/gpu/drm/qxl/qxl_irq.c
-@@ -81,6 +81,7 @@ static void qxl_client_monitors_config_work_func(struct work_struct *work)
- 
- int qxl_irq_init(struct qxl_device *qdev)
- {
-+	struct pci_dev *pdev = to_pci_dev(qdev->ddev.dev);
+ 	struct hibmc_drm_private *priv;
  	int ret;
  
- 	init_waitqueue_head(&qdev->display_event);
-@@ -93,7 +94,7 @@ int qxl_irq_init(struct qxl_device *qdev)
- 	atomic_set(&qdev->irq_received_cursor, 0);
- 	atomic_set(&qdev->irq_received_io_cmd, 0);
- 	qdev->irq_received_error = 0;
--	ret = drm_irq_install(&qdev->ddev, qdev->ddev.pdev->irq);
-+	ret = drm_irq_install(&qdev->ddev, pdev->irq);
- 	qdev->ram_header->int_mask = QXL_INTERRUPT_MASK;
- 	if (unlikely(ret != 0)) {
- 		DRM_ERROR("Failed installing irq: %d\n", ret);
-diff --git a/drivers/gpu/drm/qxl/qxl_kms.c b/drivers/gpu/drm/qxl/qxl_kms.c
-index 228e2b9198f1..4a60a52ab62e 100644
---- a/drivers/gpu/drm/qxl/qxl_kms.c
-+++ b/drivers/gpu/drm/qxl/qxl_kms.c
-@@ -111,7 +111,6 @@ int qxl_device_init(struct qxl_device *qdev,
- {
- 	int r, sb;
+@@ -287,11 +288,11 @@ static int hibmc_load(struct drm_device *dev)
+ 		goto err;
+ 	}
  
--	qdev->ddev.pdev = pdev;
- 	pci_set_drvdata(pdev, &qdev->ddev);
+-	ret = pci_enable_msi(dev->pdev);
++	ret = pci_enable_msi(pdev);
+ 	if (ret) {
+ 		drm_warn(dev, "enabling MSI failed: %d\n", ret);
+ 	} else {
+-		ret = drm_irq_install(dev, dev->pdev->irq);
++		ret = drm_irq_install(dev, pdev->irq);
+ 		if (ret)
+ 			drm_warn(dev, "install irq failed: %d\n", ret);
+ 	}
+@@ -324,7 +325,6 @@ static int hibmc_pci_probe(struct pci_dev *pdev,
+ 		return PTR_ERR(dev);
+ 	}
  
- 	mutex_init(&qdev->gem.mutex);
+-	dev->pdev = pdev;
+ 	pci_set_drvdata(pdev, dev);
+ 
+ 	ret = pci_enable_device(pdev);
+diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_i2c.c b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_i2c.c
+index 86d712090d87..410bd019bb35 100644
+--- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_i2c.c
++++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_i2c.c
+@@ -83,7 +83,7 @@ int hibmc_ddc_create(struct drm_device *drm_dev,
+ 	connector->adapter.owner = THIS_MODULE;
+ 	connector->adapter.class = I2C_CLASS_DDC;
+ 	snprintf(connector->adapter.name, I2C_NAME_SIZE, "HIS i2c bit bus");
+-	connector->adapter.dev.parent = &drm_dev->pdev->dev;
++	connector->adapter.dev.parent = drm_dev->dev;
+ 	i2c_set_adapdata(&connector->adapter, connector);
+ 	connector->adapter.algo_data = &connector->bit_data;
+ 
+diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c b/drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c
+index 602ece11bb4a..77f075075db2 100644
+--- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c
++++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c
+@@ -26,9 +26,9 @@ int hibmc_mm_init(struct hibmc_drm_private *hibmc)
+ 	struct drm_vram_mm *vmm;
+ 	int ret;
+ 	struct drm_device *dev = hibmc->dev;
++	struct pci_dev *pdev = to_pci_dev(dev->dev);
+ 
+-	vmm = drm_vram_helper_alloc_mm(dev,
+-				       pci_resource_start(dev->pdev, 0),
++	vmm = drm_vram_helper_alloc_mm(dev, pci_resource_start(pdev, 0),
+ 				       hibmc->fb_size);
+ 	if (IS_ERR(vmm)) {
+ 		ret = PTR_ERR(vmm);
 -- 
 2.29.2
