@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Could Fedora-5.9.9/X-server problem be a
- Nouveau-problem?
-Date: Sun, 29 Nov 2020 18:00:01 -0500
-Message-ID: <CAKb7UvjiRApxVzxT=9Y26uXWB3zDMf8Nvi+eHfE0yJUMAfGLog@mail.gmail.com>
-References: <f827ab7dd91e4b1684dd818bd541272d@di.ku.dk>
+From: Mark Hounschell <markh-n2QNKt385d+sTnJN9+BGXg@public.gmane.org>
+Subject: Problem with kernel 5.10-rc5
+Date: Tue, 24 Nov 2020 14:05:51 -0500
+Message-ID: <e2fffedf-c6d6-4597-8ee2-860933b4fb6e@compro.net>
+Reply-To: markh-n2QNKt385d+sTnJN9+BGXg@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <f827ab7dd91e4b1684dd818bd541272d-okVzrDOvQGk@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,70 +17,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Klaus Ebbe Grue <grue-okVzrDOvQGk@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-When in doubt, blame nouveau.
+I am not subscribed to this mailing list so please CC me directly for 
+any response.
 
-I believe there has been some recent work around adjusting the logic
-which checks that modes have enough bandwidth. Adding Lyude, who
-worked on these changes. Not sure when they landed.
+I'm running an older "NVIDIA Corporation G70 [GeForce 7800 GT] (rev a1)" 
+card in a newer BIOSTAR B550GTA MB. Kernel 5.10-rc5 does not work. I get 
+no virtual consoles or X screen.
 
-Klaus -- please supply a full Xorg log.
+I have not tried any other RC versions. Only rc5. Kernel 5.9.10 works 
+fine. I am running a SuSE Leap-15.2 system.
 
-Cheers,
+I have another machine with an NVIDIA Corporation GT218 [GeForce 210] 
+(rev a2) that works just fine with 5.10-rc5.
 
-  -ilia
 
-On Sun, Nov 29, 2020 at 4:28 PM Klaus Ebbe Grue <grue-okVzrDOvQGk@public.gmane.org> wrote:
->
-> Hi nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->
-> My X-server gives a blank screen on Fedora kernel 5.9.9.
->
-> I am in doubt whether or not I should blame Nouveau for that.
->
-> I know the nvidea drivers have problems with Fedora kernel 5.9.9.
->
-> I can file a bug against Nouveau and provide logs if you think there is a remote chance that Nouveau could be the cause.
->
-> Here are some details:
->
-> Fedora 5.8.18 / X-server works fine.
->
-> I can boot into Fedora 5.9.9 runlevel 3 (no X-server).
->
-> If I boot into Fedora 5.9.9 runlevel 5 (with X-server), the screen powers off instead of giving a login prompt, but apart from that, Fedora 5.9.9 works fine and produces log files.
->
-> If I then power off and boot into Fedora 5.8.18 and read Xorg.0.log.old I can see that the X-server under Fedora 5.9.9 did not get the screen resolutions right.
->
-> Here is what monitor-edid says under both Fedora 5.9.9 and 5.8.18:
->
-> > monitor-edid
-> Name: PHL BDM4350
-> EISA ID: PHL08fa
-> EDID version: 1.4
-> EDID extension blocks: 1
-> Screen size: 95.3 cm x 54.3 cm (43.18 inches, aspect ratio 16/9 = 1.76)
-> Gamma: 2.2
-> Digital signal
-> Max video bandwidth: 600 MHz
->         HorizSync 30-160
->         VertRefresh 23-80
->         # Monitor preferred modeline (60.0 Hz vsync, 133.3 kHz hsync, ratio 16/9, 102 dpi) (bad ratio)
->         ModeLine "3840x2160" 533.25 3840 3888 3920 4000 2160 2163 2168 2222 -hsync +vsync
-> ...
->
-> But under Fedora 5.9.9, the X-server is unaware of the 3840x2160 resolution according to Xorg.0.log.old. It also gets the screen physical size wrong.
->
-> My first cry of help is here:
-> https://ask.fedoraproject.org/t/no-login-screen-after-upgrade/10618
-> That is where I leaned that the nvidea drivers have problems with Fedora 5.9.9
->
-> Cheers,
-> Klaus
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+On the broken machine the screen goes blank, the leds on the front turn 
+orange as if the PC was turned off.
+
+My dmesg seems to show the cause:
+
+[    5.825702] fb0: switching to nouveaufb from VESA VGA
+[    6.242991] nouveau 0000:14:00.0: vgaarb: deactivate vga console
+[    6.243066] nouveau 0000:14:00.0: NVIDIA G70 (047200a1)
+[    6.443671] nouveau 0000:14:00.0: bios: version 05.70.02.13.7b
+[    6.443948] nouveau 0000:14:00.0: fb: 256 MiB GDDR3
+[    6.498039] nouveau 0000:14:00.0: DRM: VRAM: 250 MiB
+[    6.498041] nouveau 0000:14:00.0: DRM: GART: 512 MiB
+[    6.498044] nouveau 0000:14:00.0: DRM: TMDS table version 1.1
+[    6.498046] nouveau 0000:14:00.0: DRM: DCB version 3.0
+[    6.498049] nouveau 0000:14:00.0: DRM: DCB outp 00: 01000300 00000028
+[    6.498051] nouveau 0000:14:00.0: DRM: DCB outp 01: 03000302 00000000
+[    6.498053] nouveau 0000:14:00.0: DRM: DCB outp 02: 04011310 00000028
+[    6.498055] nouveau 0000:14:00.0: DRM: DCB outp 03: 04011312 00000000
+[    6.498057] nouveau 0000:14:00.0: DRM: DCB outp 04: 020223f1 0040c080
+[    6.498060] nouveau 0000:14:00.0: DRM: DCB conn 00: 1030
+[    6.498062] nouveau 0000:14:00.0: DRM: DCB conn 01: 2130
+[    6.498064] nouveau 0000:14:00.0: DRM: DCB conn 02: 0210
+[    6.498065] nouveau 0000:14:00.0: DRM: DCB conn 03: 0211
+[    6.498067] nouveau 0000:14:00.0: DRM: DCB conn 04: 0213
+[    6.502949] nouveau 0000:14:00.0: DRM: Setting dpms mode 3 on TV 
+encoder (output 4)
+[    6.585845] nouveau 0000:14:00.0: DRM: failed to map fb: -28
+[    6.585949] [drm] Initialized nouveau 1.3.1 20120801 for 0000:14:00.0 
+on minor 0
+
+If I can do anything else please let me know.
+
+Regards
+Mark
