@@ -1,8 +1,8 @@
 From: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v2 2/3] drm/nouveau: Add a dedicated mutex for the
- clients list
-Date: Wed, 25 Nov 2020 15:26:47 -0500
-Message-ID: <20201125202648.5220-3-jcline@redhat.com>
+Subject: [PATCH v2 1/3] drm/nouveau: use drm_dev_unplug() during
+ device removal
+Date: Wed, 25 Nov 2020 15:26:46 -0500
+Message-ID: <20201125202648.5220-2-jcline@redhat.com>
 References: <20201103194912.184413-1-jcline@redhat.com>
  <20201125202648.5220-1-jcline@redhat.com>
 Mime-Version: 1.0
@@ -23,82 +23,37 @@ To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Rather than protecting the nouveau_drm clients list with the lock within
-the "client" nouveau_cli, add a dedicated lock to serialize access to
-the list. This is both clearer and necessary to avoid lockdep being
-upset with us when we need to iterate through all the clients in the
-list and potentially lock their mutex, which is the same class as the
-lock protecting the entire list.
+Nouveau does not currently support hot-unplugging, but it still makes
+sense to switch from drm_dev_unregister() to drm_dev_unplug().
+drm_dev_unplug() calls drm_dev_unregister() after marking the device as
+unplugged, but only after any device critical sections are finished.
+
+Since nouveau isn't using drm_dev_enter() and drm_dev_exit(), there are
+no critical sections so this is nearly functionally equivalent. However,
+the DRM layer does check to see if the device is unplugged, and if it is
+returns appropriate error codes.
+
+In the future nouveau can add critical sections in order to truly
+support hot-unplugging.
 
 Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 Signed-off-by: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 ---
-Changes since v1:
-  - Add a mutex_destroy() call when destroying the device struct
-
- drivers/gpu/drm/nouveau/nouveau_drm.c | 10 ++++++----
- drivers/gpu/drm/nouveau/nouveau_drv.h |  5 +++++
- 2 files changed, 11 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 4fe4d664c5f2..6ee1adc9bd40 100644
+index d141a5f004af..4fe4d664c5f2 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -557,6 +557,7 @@ nouveau_drm_device_init(struct drm_device *dev)
- 		nvkm_dbgopt(nouveau_debug, "DRM");
+@@ -792,7 +792,7 @@ nouveau_drm_device_remove(struct drm_device *dev)
+ 	struct nvkm_client *client;
+ 	struct nvkm_device *device;
  
- 	INIT_LIST_HEAD(&drm->clients);
-+	mutex_init(&drm->clients_lock);
- 	spin_lock_init(&drm->tile.lock);
+-	drm_dev_unregister(dev);
++	drm_dev_unplug(dev);
  
- 	/* workaround an odd issue on nvc1 by disabling the device's
-@@ -654,6 +655,7 @@ nouveau_drm_device_fini(struct drm_device *dev)
- 	nouveau_cli_fini(&drm->client);
- 	nouveau_cli_fini(&drm->master);
- 	nvif_parent_dtor(&drm->parent);
-+	mutex_destroy(&drm->clients_lock);
- 	kfree(drm);
- }
- 
-@@ -1089,9 +1091,9 @@ nouveau_drm_open(struct drm_device *dev, struct drm_file *fpriv)
- 
- 	fpriv->driver_priv = cli;
- 
--	mutex_lock(&drm->client.mutex);
-+	mutex_lock(&drm->clients_lock);
- 	list_add(&cli->head, &drm->clients);
--	mutex_unlock(&drm->client.mutex);
-+	mutex_unlock(&drm->clients_lock);
- 
- done:
- 	if (ret && cli) {
-@@ -1117,9 +1119,9 @@ nouveau_drm_postclose(struct drm_device *dev, struct drm_file *fpriv)
- 		nouveau_abi16_fini(cli->abi16);
- 	mutex_unlock(&cli->mutex);
- 
--	mutex_lock(&drm->client.mutex);
-+	mutex_lock(&drm->clients_lock);
- 	list_del(&cli->head);
--	mutex_unlock(&drm->client.mutex);
-+	mutex_unlock(&drm->clients_lock);
- 
- 	nouveau_cli_fini(cli);
- 	kfree(cli);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index 9d04d1b36434..550e5f335146 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -141,6 +141,11 @@ struct nouveau_drm {
- 
- 	struct list_head clients;
- 
-+	/**
-+	 * @clients_lock: Protects access to the @clients list of &struct nouveau_cli.
-+	 */
-+	struct mutex clients_lock;
-+
- 	u8 old_pm_cap;
- 
- 	struct {
+ 	dev->irq_enabled = false;
+ 	client = nvxx_client(&drm->client.base);
 -- 
 2.28.0
