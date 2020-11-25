@@ -1,17 +1,14 @@
 From: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 2/3] drm/nouveau: Add a dedicated mutex for
- the clients list
-Date: Wed, 25 Nov 2020 14:45:57 -0500
-Message-ID: <20201125194557.GC20747@xps13>
+Subject: [PATCH v2 0/3] drm/nouveau: fix a use-after-free in
+ postclose()
+Date: Wed, 25 Nov 2020 15:26:45 -0500
+Message-ID: <20201125202648.5220-1-jcline@redhat.com>
 References: <20201103194912.184413-1-jcline@redhat.com>
- <20201103194912.184413-3-jcline@redhat.com>
- <505be3af57c36222564d0790aa8a992b1ea4d287.camel@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <505be3af57c36222564d0790aa8a992b1ea4d287.camel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <20201103194912.184413-1-jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,78 +18,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBOb3YgMjUsIDIwMjAgYXQgMDE6Mzc6MDZQTSAtMDUwMCwgTHl1ZGUgUGF1bCB3cm90
-ZToKPiBPbiBUdWUsIDIwMjAtMTEtMDMgYXQgMTQ6NDkgLTA1MDAsIEplcmVteSBDbGluZSB3cm90
-ZToKPiA+IFJhdGhlciB0aGFuIHByb3RlY3RpbmcgdGhlIG5vdXZlYXVfZHJtIGNsaWVudHMgbGlz
-dCB3aXRoIHRoZSBsb2NrIHdpdGhpbgo+ID4gdGhlICJjbGllbnQiIG5vdXZlYXVfY2xpLCBhZGQg
-YSBkZWRpY2F0ZWQgbG9jayB0byBzZXJpYWxpemUgYWNjZXNzIHRvCj4gPiB0aGUgbGlzdC4gVGhp
-cyBpcyBib3RoIGNsZWFyZXIgYW5kIG5lY2Vzc2FyeSB0byBhdm9pZCBsb2NrZGVwIGJlaW5nCj4g
-PiB1cHNldCB3aXRoIHVzIHdoZW4gd2UgbmVlZCB0byBpdGVyYXRlIHRocm91Z2ggYWxsIHRoZSBj
-bGllbnRzIGluIHRoZQo+ID4gbGlzdCBhbmQgcG90ZW50aWFsbHkgbG9jayB0aGVpciBtdXRleCwg
-d2hpY2ggaXMgdGhlIHNhbWUgY2xhc3MgYXMgdGhlCj4gPiBsb2NrIHByb3RlY3RpbmcgdGhlIGVu
-dGlyZSBsaXN0Lgo+ID4gCj4gPiBTaWduZWQtb2ZmLWJ5OiBKZXJlbXkgQ2xpbmUgPGpjbGluZUBy
-ZWRoYXQuY29tPgo+ID4gLS0tCj4gPiDCoGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-ZHJtLmMgfCA5ICsrKysrLS0tLQo+ID4gwqBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
-X2Rydi5oIHwgNSArKysrKwo+ID4gwqAyIGZpbGVzIGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKyks
-IDQgZGVsZXRpb25zKC0pCj4gPiAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9ub3V2ZWF1X2RybS5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-ZHJtLmMKPiA+IGluZGV4IDRmZTRkNjY0YzVmMi4uZDE4MmI4NzcyNThhIDEwMDY0NAo+ID4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+ID4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+ID4gQEAgLTU1Nyw2ICs1NTcsNyBAQCBu
-b3V2ZWF1X2RybV9kZXZpY2VfaW5pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+ID4gwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBudmttX2RiZ29wdChub3V2ZWF1X2RlYnVnLCAiRFJN
-Iik7Cj4gPiDCoAo+ID4gwqDCoMKgwqDCoMKgwqDCoElOSVRfTElTVF9IRUFEKCZkcm0tPmNsaWVu
-dHMpOwo+ID4gK8KgwqDCoMKgwqDCoMKgbXV0ZXhfaW5pdCgmZHJtLT5jbGllbnRzX2xvY2spOwo+
-IAo+IExvb2tzIGxpa2UgeW91IGZvcmdvdCB0byBob29rIHVwIG11dGV4X2Rlc3Ryb3koKSBzb21l
-d2hlcmUuIE5vdGUgdGhlcmUncwo+IGFjdHVhbGx5IHBsZW50eSBvZiBjb2RlIGluIG5vdXZlYXUg
-cmlnaHQgbm93IHRoYXQgZm9yZ2V0cyB0byBkbyB0aGlzLCBidXQgYXQKPiBzb21lIHBvaW50IHdl
-IHNob3VsZCBwcm9iYWJseSBmaXggdGhhdCBhbmQgYXZvaWQgYWRkaW5nIG1vcmUgc3BvdHMgd2hl
-cmUgdGhlcmUncwo+IG5vIG11dGV4X2Rlc3Ryb3koKS4KPiAKCkknbSBndWlsdHkgb2YgaGF2aW5n
-IGxvb2tlZCBhdCB0aGUgZXhpc3RpbmcgbG9ja2luZyBpbml0IGNvZGUgaW4gbm91dmVhdQphbmQg
-bW9kZWxpbmcgdGhpcyB3b3JrIGFjY29yZGluZ2x5LiBJJ2xsIHNlbmQgb3V0IGEgZml4IGZvciB0
-aGlzIHNob3J0bHkKYW5kIGxvb2sgYXQgdGlkeWluZyB1cCB0aGUgcmVzdCBvZiB0aGUgbG9ja3Mg
-aW4gYSBzZXBhcmF0ZSBzZXJpZXMuClRoYW5rcyEKCj4gPiDCoMKgwqDCoMKgwqDCoMKgc3Bpbl9s
-b2NrX2luaXQoJmRybS0+dGlsZS5sb2NrKTsKPiA+IMKgCj4gPiDCoMKgwqDCoMKgwqDCoMKgLyog
-d29ya2Fyb3VuZCBhbiBvZGQgaXNzdWUgb24gbnZjMSBieSBkaXNhYmxpbmcgdGhlIGRldmljZSdz
-Cj4gPiBAQCAtMTA4OSw5ICsxMDkwLDkgQEAgbm91dmVhdV9kcm1fb3BlbihzdHJ1Y3QgZHJtX2Rl
-dmljZSAqZGV2LCBzdHJ1Y3QgZHJtX2ZpbGUKPiA+ICpmcHJpdikKPiA+IMKgCj4gPiDCoMKgwqDC
-oMKgwqDCoMKgZnByaXYtPmRyaXZlcl9wcml2ID0gY2xpOwo+ID4gwqAKPiA+IC3CoMKgwqDCoMKg
-wqDCoG11dGV4X2xvY2soJmRybS0+Y2xpZW50Lm11dGV4KTsKPiA+ICvCoMKgwqDCoMKgwqDCoG11
-dGV4X2xvY2soJmRybS0+Y2xpZW50c19sb2NrKTsKPiA+IMKgwqDCoMKgwqDCoMKgwqBsaXN0X2Fk
-ZCgmY2xpLT5oZWFkLCAmZHJtLT5jbGllbnRzKTsKPiA+IC3CoMKgwqDCoMKgwqDCoG11dGV4X3Vu
-bG9jaygmZHJtLT5jbGllbnQubXV0ZXgpOwo+ID4gK8KgwqDCoMKgwqDCoMKgbXV0ZXhfdW5sb2Nr
-KCZkcm0tPmNsaWVudHNfbG9jayk7Cj4gPiDCoAo+ID4gwqBkb25lOgo+ID4gwqDCoMKgwqDCoMKg
-wqDCoGlmIChyZXQgJiYgY2xpKSB7Cj4gPiBAQCAtMTExNyw5ICsxMTE4LDkgQEAgbm91dmVhdV9k
-cm1fcG9zdGNsb3NlKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdAo+ID4gZHJtX2ZpbGUg
-KmZwcml2KQo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBub3V2ZWF1X2FiaTE2
-X2ZpbmkoY2xpLT5hYmkxNik7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgbXV0ZXhfdW5sb2NrKCZjbGkt
-Pm11dGV4KTsKPiA+IMKgCj4gPiAtwqDCoMKgwqDCoMKgwqBtdXRleF9sb2NrKCZkcm0tPmNsaWVu
-dC5tdXRleCk7Cj4gPiArwqDCoMKgwqDCoMKgwqBtdXRleF9sb2NrKCZkcm0tPmNsaWVudHNfbG9j
-ayk7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgbGlzdF9kZWwoJmNsaS0+aGVhZCk7Cj4gPiAtwqDCoMKg
-wqDCoMKgwqBtdXRleF91bmxvY2soJmRybS0+Y2xpZW50Lm11dGV4KTsKPiA+ICvCoMKgwqDCoMKg
-wqDCoG11dGV4X3VubG9jaygmZHJtLT5jbGllbnRzX2xvY2spOwo+ID4gwqAKPiA+IMKgwqDCoMKg
-wqDCoMKgwqBub3V2ZWF1X2NsaV9maW5pKGNsaSk7Cj4gPiDCoMKgwqDCoMKgwqDCoMKga2ZyZWUo
-Y2xpKTsKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Ry
-di5oCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmgKPiA+IGluZGV4
-IDlkMDRkMWIzNjQzNC4uNTUwZTVmMzM1MTQ2IDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuaAo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9kcnYuaAo+ID4gQEAgLTE0MSw2ICsxNDEsMTEgQEAgc3RydWN0IG5vdXZlYXVf
-ZHJtIHsKPiA+IMKgCj4gPiDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IGxpc3RfaGVhZCBjbGllbnRz
-Owo+ID4gwqAKPiA+ICvCoMKgwqDCoMKgwqDCoC8qKgo+ID4gK8KgwqDCoMKgwqDCoMKgICogQGNs
-aWVudHNfbG9jazogUHJvdGVjdHMgYWNjZXNzIHRvIHRoZSBAY2xpZW50cyBsaXN0IG9mICZzdHJ1
-Y3QKPiA+IG5vdXZlYXVfY2xpLgo+ID4gK8KgwqDCoMKgwqDCoMKgICovCj4gPiArwqDCoMKgwqDC
-oMKgwqBzdHJ1Y3QgbXV0ZXggY2xpZW50c19sb2NrOwo+ID4gKwo+ID4gwqDCoMKgwqDCoMKgwqDC
-oHU4IG9sZF9wbV9jYXA7Cj4gPiDCoAo+ID4gwqDCoMKgwqDCoMKgwqDCoHN0cnVjdCB7Cj4gCj4g
-LS0gCj4gU2luY2VyZWx5LAo+ICAgIEx5dWRlIFBhdWwgKHNoZS9oZXIpCj4gICAgU29mdHdhcmUg
-RW5naW5lZXIgYXQgUmVkIEhhdAo+ICAgIAo+IE5vdGU6IEkgZGVhbCB3aXRoIGEgbG90IG9mIGVt
-YWlscyBhbmQgaGF2ZSBhIGxvdCBvZiBidWdzIG9uIG15IHBsYXRlLiBJZiB5b3UndmUKPiBhc2tl
-ZCBtZSBhIHF1ZXN0aW9uLCBhcmUgd2FpdGluZyBmb3IgYSByZXZpZXcvbWVyZ2Ugb24gYSBwYXRj
-aCwgZXRjLiBhbmQgSQo+IGhhdmVuJ3QgcmVzcG9uZGVkIGluIGEgd2hpbGUsIHBsZWFzZSBmZWVs
-IGZyZWUgdG8gc2VuZCBtZSBhbm90aGVyIGVtYWlsIHRvIGNoZWNrCj4gb24gbXkgc3RhdHVzLiBJ
-IGRvbid0IGJpdGUhCj4gCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+This series fixes a number of use-after-frees in nouveau's postclose()
+handler. It was discovered by pointing IGT's core_hotunplug tests at a
+nouveau device, but the steps to reproduce it are simple:
+
+1. Open the device file
+2. Unbind the driver or remove the device
+3. Close the file opened in step 1.
+
+During the device removal, the nouveau_drm structure is de-allocated,
+but is dereferenced in the postclose() handler.
+
+One obvious solution is to ensure all the operations in the postclose()
+handler are valid by extending the lifetime of the nouveau_drm
+structure. This is possible with the new devm_drm_dev_alloc() interface,
+but the change is somewhat invasive so I thought it best to submit that
+work separately.
+
+Instead, we make use of the drm_dev_unplug() API, clean up all clients
+in the device removal call, and check to make sure the device has not
+been unplugged in the postclose() handler. While this does not enable
+hot-unplug support for nouveau, it's enough to avoid crashing the kernel
+and leads to all the core_hotunplug tests to pass.
+
+This series reroll addresses a missing mutex_destroy() call and a typo
+in a commit message.
+
+Jeremy Cline (3):
+  drm/nouveau: use drm_dev_unplug() during device removal
+  drm/nouveau: Add a dedicated mutex for the clients list
+  drm/nouveau: clean up all clients on device removal
+
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 42 +++++++++++++++++++++++----
+ drivers/gpu/drm/nouveau/nouveau_drv.h |  5 ++++
+ 2 files changed, 42 insertions(+), 5 deletions(-)
+
+-- 
+2.28.0
