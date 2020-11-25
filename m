@@ -1,13 +1,26 @@
-From: Mark Hounschell <markh-n2QNKt385d+sTnJN9+BGXg@public.gmane.org>
-Subject: Problem with kernel 5.10-rc5
-Date: Tue, 24 Nov 2020 14:05:51 -0500
-Message-ID: <e2fffedf-c6d6-4597-8ee2-860933b4fb6e@compro.net>
-Reply-To: markh-n2QNKt385d+sTnJN9+BGXg@public.gmane.org
+From: Jakub Kicinski <kuba-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: Re: [Intel-wired-lan] [PATCH 000/141] Fix fall-through
+ warnings for Clang
+Date: Wed, 25 Nov 2020 08:24:05 -0800
+Message-ID: <20201125082405.1d8c23dc__30225.0479160406$1606690956$gmane$org@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+References: <202011201129.B13FDB3C@keescook>
+ <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011220816.8B6591A@keescook>
+ <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
+ <ca071decb87cc7e905411423c05a48f9fd2f58d7.camel@perches.com>
+ <0147972a72bc13f3629de8a32dee6f1f308994b5.camel@HansenPartnership.com>
+ <d8d1e9add08cdd4158405e77762d4946037208f8.camel@perches.com>
+ <dbd2cb703ed9eefa7dde9281ea26ab0f7acc8afe.camel@HansenPartnership.com>
+ <20201123130348.GA3119@embeddedor>
+ <8f5611bb015e044fa1c0a48147293923c2d904e4.camel@HansenPartnership.com>
+ <202011241327.BB28F12F6@keescook>
+ <a841536fe65bb33f1c72ce2455a6eb47a0107565.camel@HansenPartnership.com>
+ <CAKwvOdkGBn7nuWTAqrORMeN1G+w3YwBfCqqaRD2nwvoAXKi=Aw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <CAKwvOdkGBn7nuWTAqrORMeN1G+w3YwBfCqqaRD2nwvoAXKi=Aw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,55 +30,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Nick Desaulniers <ndesaulniers-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
+Cc: alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org, bridge-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, open-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org, "list:HARDWARE"@freedesktop.org, RANDOM-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org, NUMBER-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org, GENERATOR-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org, CORE-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org, "          <linux-crypto-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, patches-yzvPICuk2AA4QjBA90+/kJqQE7yCjDx5@public.gmane.org,  linux-integrity-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, target-devel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org,  linux-hardening-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Jonathan Cameron  <Jonathan.Cameron-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>, Greg KH <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>,  linux-iio-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-wireless <linux-wireless-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>,  linux-mmc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-fbdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org,  dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>,  "@freedesktop.org, Gustavo-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org, A.R.Silva-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org,  <gustavoars-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>,  James Bottomley <James.Bottomley-JuX6DAaQMKPCXq6kfMZ53/egYHeGw8Jk@public.gmane.org>,  linux-ide-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dm-devel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, keyrings-u79uwXL29TY76Z2rM5mHXA@public.gmane.org,  li
 List-Id: nouveau.vger.kernel.org
 
-I am not subscribed to this mailing list so please CC me directly for 
-any response.
+On Wed, 25 Nov 2020 04:24:27 -0800 Nick Desaulniers wrote:
+> I even agree that most of the churn comes from
+> 
+> case 0:
+>   ++x;
+> default:
+>   break;
 
-I'm running an older "NVIDIA Corporation G70 [GeForce 7800 GT] (rev a1)" 
-card in a newer BIOSTAR B550GTA MB. Kernel 5.10-rc5 does not work. I get 
-no virtual consoles or X screen.
+And just to spell it out,
 
-I have not tried any other RC versions. Only rc5. Kernel 5.9.10 works 
-fine. I am running a SuSE Leap-15.2 system.
+case ENUM_VALUE1:
+	bla();
+	break;
+case ENUM_VALUE2:
+	bla();
+default:
+	break;
 
-I have another machine with an NVIDIA Corporation GT218 [GeForce 210] 
-(rev a2) that works just fine with 5.10-rc5.
+is a fairly idiomatic way of indicating that not all values of the enum
+are expected to be handled by the switch statement. 
 
+I really hope the Clang folks are reasonable and merge your patch.
 
-On the broken machine the screen goes blank, the leds on the front turn 
-orange as if the PC was turned off.
+> If trivial patches are adding too much to your workload, consider
+> training a co-maintainer or asking for help from one of your reviewers
+> whom you trust.  I don't doubt it's hard to find maintainers, but
+> existing maintainers should go out of their way to entrust
+> co-maintainers especially when they find their workload becomes too
+> high.  And reviewing/picking up trivial patches is probably a great
+> way to get started.  If we allow too much knowledge of any one
+> subsystem to collect with one maintainer, what happens when that
+> maintainer leaves the community (which, given a finite lifespan, is an
+> inevitability)?
 
-My dmesg seems to show the cause:
+The burn out point is about enjoying your work and feeling that it
+matters. It really doesn't make much difference if you're doing
+something you don't like for 12 hours every day or only in shifts with
+another maintainer. You'll dislike it either way.
 
-[    5.825702] fb0: switching to nouveaufb from VESA VGA
-[    6.242991] nouveau 0000:14:00.0: vgaarb: deactivate vga console
-[    6.243066] nouveau 0000:14:00.0: NVIDIA G70 (047200a1)
-[    6.443671] nouveau 0000:14:00.0: bios: version 05.70.02.13.7b
-[    6.443948] nouveau 0000:14:00.0: fb: 256 MiB GDDR3
-[    6.498039] nouveau 0000:14:00.0: DRM: VRAM: 250 MiB
-[    6.498041] nouveau 0000:14:00.0: DRM: GART: 512 MiB
-[    6.498044] nouveau 0000:14:00.0: DRM: TMDS table version 1.1
-[    6.498046] nouveau 0000:14:00.0: DRM: DCB version 3.0
-[    6.498049] nouveau 0000:14:00.0: DRM: DCB outp 00: 01000300 00000028
-[    6.498051] nouveau 0000:14:00.0: DRM: DCB outp 01: 03000302 00000000
-[    6.498053] nouveau 0000:14:00.0: DRM: DCB outp 02: 04011310 00000028
-[    6.498055] nouveau 0000:14:00.0: DRM: DCB outp 03: 04011312 00000000
-[    6.498057] nouveau 0000:14:00.0: DRM: DCB outp 04: 020223f1 0040c080
-[    6.498060] nouveau 0000:14:00.0: DRM: DCB conn 00: 1030
-[    6.498062] nouveau 0000:14:00.0: DRM: DCB conn 01: 2130
-[    6.498064] nouveau 0000:14:00.0: DRM: DCB conn 02: 0210
-[    6.498065] nouveau 0000:14:00.0: DRM: DCB conn 03: 0211
-[    6.498067] nouveau 0000:14:00.0: DRM: DCB conn 04: 0213
-[    6.502949] nouveau 0000:14:00.0: DRM: Setting dpms mode 3 on TV 
-encoder (output 4)
-[    6.585845] nouveau 0000:14:00.0: DRM: failed to map fb: -28
-[    6.585949] [drm] Initialized nouveau 1.3.1 20120801 for 0000:14:00.0 
-on minor 0
-
-If I can do anything else please let me know.
-
-Regards
-Mark
+Applying a real patch set and then getting a few follow ups the next day
+for trivial coding things like fallthrough missing or static missing,
+just because I didn't have the full range of compilers to check with
+before applying makes me feel pretty shitty, like I'm not doing a good
+job. YMMV.
