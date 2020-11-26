@@ -1,16 +1,19 @@
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
+From: Mark Hounschell <dmarkh-3tLf1voIkJTQT0dZR+AlfA@public.gmane.org>
 Subject: Re: [BUG][NOUVEAU] G70 broken since 5.10-rc1
-Date: Thu, 26 Nov 2020 13:41:03 +0100
-Message-ID: <47ab20f6-dc56-8ade-29b6-f8fc684628d3@amd.com>
+Date: Thu, 26 Nov 2020 07:57:15 -0500
+Message-ID: <1d85e515-4d9c-30ec-c69b-217dacc1fa51@cfl.rr.com>
 References: <db0e5f78-8271-24b5-62f6-5473f69ac8d6@compro.net>
  <c2ee46af-79a8-9a07-b12d-b755017ee500@amd.com>
  <aa4e3741-b1b2-4ae2-6b35-880b40c985c8@compro.net>
  <e84a7564-921c-d852-b62d-80563bea99b1@amd.com>
  <3f22c4f6-83fd-ef11-ba1d-bc85d6a0d557@cfl.rr.com>
+ <47ab20f6-dc56-8ade-29b6-f8fc684628d3@amd.com>
+Reply-To: dmarkh-3tLf1voIkJTQT0dZR+AlfA@public.gmane.org
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="------------093077957EB13B9EC07936BD"
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <3f22c4f6-83fd-ef11-ba1d-bc85d6a0d557-3tLf1voIkJTQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <47ab20f6-dc56-8ade-29b6-f8fc684628d3-5C7GfCeVMHo@public.gmane.org>
 Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -21,116 +24,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dmarkh-3tLf1voIkJTQT0dZR+AlfA@public.gmane.org, markh-n2QNKt385d+sTnJN9+BGXg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, markh-n2QNKt385d+sTnJN9+BGXg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---------------093077957EB13B9EC07936BD
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Hi Mark,
-
-Am 26.11.20 um 13:26 schrieb Mark Hounschell:
-> On 11/26/20 7:05 AM, Christian König wrote:
->> Hi Mark,
->>
->> Am 26.11.20 um 10:59 schrieb Mark Hounschell:
->>> On 11/26/20 3:35 AM, Christian König wrote:
->>>>> I'm running an older "NVIDIA Corporation G70 [GeForce 7800 GT] 
->>>>> (rev a1)" card in a newer BIOSTAR B550GTA MB. Kernel 5.10-rcx does 
->>>>> not work. I get no virtual consoles or X screen.
->>
->> thanks for the dmesg.
->>
->> Problem is I don't have the slightest idea what's going wrong here :)
->>
->> The code should be functional identical, it was just moved from TTM 
->> to nouveau, so we are missing some detail in the handling.
->>
->> Can you run the following test for me: First you need to disable 
->> loading of the nouveau kernel module by adding 
->> modprobe.blacklist=nouveau to the kernel command line.
->>
->> Then log into the system over the network and run the following 
->> commands:
->>
->> sudo modprobe ttm
->> sudo bash -c "echo 'ttm_bo_kmap' > 
->> /sys/kernel/debug/tracing/set_graph_function"
->> sudo bash -c "echo function_graph > 
->> /sys/kernel/debug/tracing/current_tracer"
->> sudo modprobe nouveau
->> sudo bash -c "cat /sys/kernel/debug/tracing/trace" > trace.log
->>
->> Please then send me the resulting trace.log file so that I can 
->> investigate why mapping the framebuffer fails during driver load.
->>
->> Thanks in advance,
->> Christian.
->
-> I hope this is what you need. I do normally turn off a lot of debug 
-> features. Let me know if I need to change the kernel config.
-
-It was not what I had expected but it pointed me in the right direction. 
-I think I've found the problem, it's just an uninitialized return value 
-for your hardware generation.
-
-Please try the attached patch and let me know if it fixes the problem.
-
-Thanks in advance,
-Christian.
-
---------------093077957EB13B9EC07936BD
-Content-Type: text/x-patch; charset=UTF-8;
- name="0001-drm-nouveau-make-sure-ret-is-initialized-in-nouveau_.patch"
-Content-Transfer-Encoding: 8bit
-Content-Disposition: attachment;
- filename*0="0001-drm-nouveau-make-sure-ret-is-initialized-in-nouveau_.pa";
- filename*1="tch"
-
-From 293d608f04f7be857739a7403adaf044dd6ef80a Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
-Date: Thu, 26 Nov 2020 13:35:08 +0100
-Subject: [PATCH] drm/nouveau: make sure ret is initialized in
- nouveau_ttm_io_mem_reserve
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-This wasn't initialized for pre NV50 hardware.
-
-Signed-off-by: Christian König <christian.koenig-5C7GfCeVMHo@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_bo.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 7aa4286784ae..42292b3a6eb9 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -1135,8 +1135,8 @@ nouveau_ttm_io_mem_reserve(struct ttm_bo_device *bdev, struct ttm_resource *reg)
- 			}
- 
- 			reg->bus.offset = handle;
--			ret = 0;
- 		}
-+		ret = 0;
- 		break;
- 	default:
- 		ret = -EINVAL;
--- 
-2.25.1
-
-
---------------093077957EB13B9EC07936BD
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---------------093077957EB13B9EC07936BD--
+T24gMTEvMjYvMjAgNzo0MSBBTSwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPiBIaSBNYXJrLAo+
+IAo+IEFtIDI2LjExLjIwIHVtIDEzOjI2IHNjaHJpZWIgTWFyayBIb3Vuc2NoZWxsOgo+PiBPbiAx
+MS8yNi8yMCA3OjA1IEFNLCBDaHJpc3RpYW4gS8O2bmlnIHdyb3RlOgo+Pj4gSGkgTWFyaywKPj4+
+Cj4+PiBBbSAyNi4xMS4yMCB1bSAxMDo1OSBzY2hyaWViIE1hcmsgSG91bnNjaGVsbDoKPj4+PiBP
+biAxMS8yNi8yMCAzOjM1IEFNLCBDaHJpc3RpYW4gS8O2bmlnIHdyb3RlOgo+Pj4+Pj4gSSdtIHJ1
+bm5pbmcgYW4gb2xkZXIgIk5WSURJQSBDb3Jwb3JhdGlvbiBHNzAgW0dlRm9yY2UgNzgwMCBHVF0g
+KHJldiAKPj4+Pj4+IGExKSIgY2FyZCBpbiBhIG5ld2VyIEJJT1NUQVIgQjU1MEdUQSBNQi4gS2Vy
+bmVsIDUuMTAtcmN4IGRvZXMgbm90IAo+Pj4+Pj4gd29yay4gSSBnZXQgbm8gdmlydHVhbCBjb25z
+b2xlcyBvciBYIHNjcmVlbi4KPj4+Cj4+PiB0aGFua3MgZm9yIHRoZSBkbWVzZy4KPj4+Cj4+PiBQ
+cm9ibGVtIGlzIEkgZG9uJ3QgaGF2ZSB0aGUgc2xpZ2h0ZXN0IGlkZWEgd2hhdCdzIGdvaW5nIHdy
+b25nIGhlcmUgOikKPj4+Cj4+PiBUaGUgY29kZSBzaG91bGQgYmUgZnVuY3Rpb25hbCBpZGVudGlj
+YWwsIGl0IHdhcyBqdXN0IG1vdmVkIGZyb20gVFRNIHRvIAo+Pj4gbm91dmVhdSwgc28gd2UgYXJl
+IG1pc3Npbmcgc29tZSBkZXRhaWwgaW4gdGhlIGhhbmRsaW5nLgo+Pj4KPj4+IENhbiB5b3UgcnVu
+IHRoZSBmb2xsb3dpbmcgdGVzdCBmb3IgbWU6IEZpcnN0IHlvdSBuZWVkIHRvIGRpc2FibGUgbG9h
+ZGluZyAKPj4+IG9mIHRoZSBub3V2ZWF1IGtlcm5lbCBtb2R1bGUgYnkgYWRkaW5nIG1vZHByb2Jl
+LmJsYWNrbGlzdD1ub3V2ZWF1IHRvIHRoZSAKPj4+IGtlcm5lbCBjb21tYW5kIGxpbmUuCj4+Pgo+
+Pj4gVGhlbiBsb2cgaW50byB0aGUgc3lzdGVtIG92ZXIgdGhlIG5ldHdvcmsgYW5kIHJ1biB0aGUg
+Zm9sbG93aW5nIGNvbW1hbmRzOgo+Pj4KPj4+IHN1ZG8gbW9kcHJvYmUgdHRtCj4+PiBzdWRvIGJh
+c2ggLWMgImVjaG8gJ3R0bV9ib19rbWFwJyA+IAo+Pj4gL3N5cy9rZXJuZWwvZGVidWcvdHJhY2lu
+Zy9zZXRfZ3JhcGhfZnVuY3Rpb24iCj4+PiBzdWRvIGJhc2ggLWMgImVjaG8gZnVuY3Rpb25fZ3Jh
+cGggPiAKPj4+IC9zeXMva2VybmVsL2RlYnVnL3RyYWNpbmcvY3VycmVudF90cmFjZXIiCj4+PiBz
+dWRvIG1vZHByb2JlIG5vdXZlYXUKPj4+IHN1ZG8gYmFzaCAtYyAiY2F0IC9zeXMva2VybmVsL2Rl
+YnVnL3RyYWNpbmcvdHJhY2UiID4gdHJhY2UubG9nCj4+Pgo+Pj4gUGxlYXNlIHRoZW4gc2VuZCBt
+ZSB0aGUgcmVzdWx0aW5nIHRyYWNlLmxvZyBmaWxlIHNvIHRoYXQgSSBjYW4gCj4+PiBpbnZlc3Rp
+Z2F0ZSB3aHkgbWFwcGluZyB0aGUgZnJhbWVidWZmZXIgZmFpbHMgZHVyaW5nIGRyaXZlciBsb2Fk
+Lgo+Pj4KPj4+IFRoYW5rcyBpbiBhZHZhbmNlLAo+Pj4gQ2hyaXN0aWFuLgo+Pgo+PiBJIGhvcGUg
+dGhpcyBpcyB3aGF0IHlvdSBuZWVkLiBJIGRvIG5vcm1hbGx5IHR1cm4gb2ZmIGEgbG90IG9mIGRl
+YnVnIAo+PiBmZWF0dXJlcy4gTGV0IG1lIGtub3cgaWYgSSBuZWVkIHRvIGNoYW5nZSB0aGUga2Vy
+bmVsIGNvbmZpZy4KPiAKPiBJdCB3YXMgbm90IHdoYXQgSSBoYWQgZXhwZWN0ZWQgYnV0IGl0IHBv
+aW50ZWQgbWUgaW4gdGhlIHJpZ2h0IGRpcmVjdGlvbi4gSSAKPiB0aGluayBJJ3ZlIGZvdW5kIHRo
+ZSBwcm9ibGVtLCBpdCdzIGp1c3QgYW4gdW5pbml0aWFsaXplZCByZXR1cm4gdmFsdWUgZm9yIAo+
+IHlvdXIgaGFyZHdhcmUgZ2VuZXJhdGlvbi4KPiAKPiBQbGVhc2UgdHJ5IHRoZSBhdHRhY2hlZCBw
+YXRjaCBhbmQgbGV0IG1lIGtub3cgaWYgaXQgZml4ZXMgdGhlIHByb2JsZW0uCj4gCj4gVGhhbmtz
+IGluIGFkdmFuY2UsCj4gQ2hyaXN0aWFuLgoKWWVwLCB0aGF0IGZpeGVkIGl0LiAgLXJjNj8KClRo
+YW5rcwpNYXJrCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
