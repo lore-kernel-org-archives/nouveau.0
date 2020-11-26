@@ -1,13 +1,16 @@
-From: Mark Hounschell <markh-n2QNKt385d+sTnJN9+BGXg@public.gmane.org>
-Subject: [BUG][NOUVEAU] G70 broken since 5.10-rc1
-Date: Wed, 25 Nov 2020 17:16:04 -0500
-Message-ID: <db0e5f78-8271-24b5-62f6-5473f69ac8d6@compro.net>
-Reply-To: markh-n2QNKt385d+sTnJN9+BGXg@public.gmane.org
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: fix relocations applying logic
+ and a double-free
+Date: Thu, 26 Nov 2020 08:05:10 +0100
+Message-ID: <20201126070510.GA401619@phenom.ffwll.local>
+References: <20201120152338.1203257-1-ccr@tnsp.org>
+ <CAKMK7uGDY+aLP-yYwyW5t-usUK3XM-oU9ZLHm1_jU0BTjJUN+g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uGDY+aLP-yYwyW5t-usUK3XM-oU9ZLHm1_jU0BTjJUN+g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,63 +20,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Mark Hounschell <dmarkh-3tLf1voIkJTQT0dZR+AlfA@public.gmane.org>
+To: Matti Hamalainen <ccr-lYQ0WmeKI4w@public.gmane.org>
+Cc: Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-CkknbSBydW5uaW5nIGFuIG9sZGVyICJOVklESUEgQ29ycG9yYXRpb24gRzcwIFtHZUZvcmNlIDc4
-MDAgR1RdIChyZXYgYTEpIiAKY2FyZCBpbiBhIG5ld2VyIEJJT1NUQVIgQjU1MEdUQSBNQi4gS2Vy
-bmVsIDUuMTAtcmN4IGRvZXMgbm90IHdvcmsuIEkgZ2V0IApubyB2aXJ0dWFsIGNvbnNvbGVzIG9y
-IFggc2NyZWVuLgoKCk15IGRtZXNnIHNlZW1zIHRvIHNob3cgdGhlIGNhdXNlOgoKWyAgICA1Ljgy
-NTcwMl0gZmIwOiBzd2l0Y2hpbmcgdG8gbm91dmVhdWZiIGZyb20gVkVTQSBWR0EKWyAgICA2LjI0
-Mjk5MV0gbm91dmVhdSAwMDAwOjE0OjAwLjA6IHZnYWFyYjogZGVhY3RpdmF0ZSB2Z2EgY29uc29s
-ZQpbICAgIDYuMjQzMDY2XSBub3V2ZWF1IDAwMDA6MTQ6MDAuMDogTlZJRElBIEc3MCAoMDQ3MjAw
-YTEpClsgICAgNi40NDM2NzFdIG5vdXZlYXUgMDAwMDoxNDowMC4wOiBiaW9zOiB2ZXJzaW9uIDA1
-LjcwLjAyLjEzLjdiClsgICAgNi40NDM5NDhdIG5vdXZlYXUgMDAwMDoxNDowMC4wOiBmYjogMjU2
-IE1pQiBHRERSMwpbICAgIDYuNDk4MDM5XSBub3V2ZWF1IDAwMDA6MTQ6MDAuMDogRFJNOiBWUkFN
-OiAyNTAgTWlCClsgICAgNi40OTgwNDFdIG5vdXZlYXUgMDAwMDoxNDowMC4wOiBEUk06IEdBUlQ6
-IDUxMiBNaUIKWyAgICA2LjQ5ODA0NF0gbm91dmVhdSAwMDAwOjE0OjAwLjA6IERSTTogVE1EUyB0
-YWJsZSB2ZXJzaW9uIDEuMQpbICAgIDYuNDk4MDQ2XSBub3V2ZWF1IDAwMDA6MTQ6MDAuMDogRFJN
-OiBEQ0IgdmVyc2lvbiAzLjAKWyAgICA2LjQ5ODA0OV0gbm91dmVhdSAwMDAwOjE0OjAwLjA6IERS
-TTogRENCIG91dHAgMDA6IDAxMDAwMzAwIDAwMDAwMDI4ClsgICAgNi40OTgwNTFdIG5vdXZlYXUg
-MDAwMDoxNDowMC4wOiBEUk06IERDQiBvdXRwIDAxOiAwMzAwMDMwMiAwMDAwMDAwMApbICAgIDYu
-NDk4MDUzXSBub3V2ZWF1IDAwMDA6MTQ6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMjogMDQwMTEzMTAg
-MDAwMDAwMjgKWyAgICA2LjQ5ODA1NV0gbm91dmVhdSAwMDAwOjE0OjAwLjA6IERSTTogRENCIG91
-dHAgMDM6IDA0MDExMzEyIDAwMDAwMDAwClsgICAgNi40OTgwNTddIG5vdXZlYXUgMDAwMDoxNDow
-MC4wOiBEUk06IERDQiBvdXRwIDA0OiAwMjAyMjNmMSAwMDQwYzA4MApbICAgIDYuNDk4MDYwXSBu
-b3V2ZWF1IDAwMDA6MTQ6MDAuMDogRFJNOiBEQ0IgY29ubiAwMDogMTAzMApbICAgIDYuNDk4MDYy
-XSBub3V2ZWF1IDAwMDA6MTQ6MDAuMDogRFJNOiBEQ0IgY29ubiAwMTogMjEzMApbICAgIDYuNDk4
-MDY0XSBub3V2ZWF1IDAwMDA6MTQ6MDAuMDogRFJNOiBEQ0IgY29ubiAwMjogMDIxMApbICAgIDYu
-NDk4MDY1XSBub3V2ZWF1IDAwMDA6MTQ6MDAuMDogRFJNOiBEQ0IgY29ubiAwMzogMDIxMQpbICAg
-IDYuNDk4MDY3XSBub3V2ZWF1IDAwMDA6MTQ6MDAuMDogRFJNOiBEQ0IgY29ubiAwNDogMDIxMwpb
-ICAgIDYuNTAyOTQ5XSBub3V2ZWF1IDAwMDA6MTQ6MDAuMDogRFJNOiBTZXR0aW5nIGRwbXMgbW9k
-ZSAzIG9uIFRWIAplbmNvZGVyIChvdXRwdXQgNCkKWyAgICA2LjU4NTg0NV0gbm91dmVhdSAwMDAw
-OjE0OjAwLjA6IERSTTogZmFpbGVkIHRvIG1hcCBmYjogLTI4ClsgICAgNi41ODU5NDldIFtkcm1d
-IEluaXRpYWxpemVkIG5vdXZlYXUgMS4zLjEgMjAxMjA4MDEgZm9yIDAwMDA6MTQ6MDAuMCAKb24g
-bWlub3IgMAoKVGhpcyBjb21taXQgY2F1c2VkIHRoZSBCVUcKCjE0MWIxNWU1OTE3NWFhMTc0Y2Ex
-Zjc1OTYxODhiZDE1YTdjYTE3YmEgaXMgdGhlIGZpcnN0IGJhZCBjb21taXQKY29tbWl0IDE0MWIx
-NWU1OTE3NWFhMTc0Y2ExZjc1OTYxODhiZDE1YTdjYTE3YmEKQXV0aG9yOiBDaHJpc3RpYW4gS8O2
-bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+CkRhdGU6ICAgRnJpIEF1ZyAyMSAxNjowNjo1
-MCAyMDIwICswMjAwCgogICAgIGRybS9ub3V2ZWF1OiBtb3ZlIGlvX3Jlc2VydmVfbHJ1IGhhbmRs
-aW5nIGludG8gdGhlIGRyaXZlciB2NQoKICAgICBXaGlsZSB3b3JraW5nIG9uIFRUTSBjbGVhbnVw
-cyBJJ3ZlIGZvdW5kIHRoYXQgdGhlIGlvX3Jlc2VydmVfbHJ1IAp1c2VkIGJ5CiAgICAgTm91dmVh
-dSBpcyBhY3R1YWxseSBub3Qgd29ya2luZyBhdCBhbGwuCgogICAgIEluIGdlbmVyYWwgd2Ugc2hv
-dWxkIHJlbW92ZSBkcml2ZXIgc3BlY2lmaWMgaGFuZGxpbmcgZnJvbSB0aGUgbWVtb3J5CiAgICAg
-bWFuYWdlbWVudCwgc28gdGhpcyBwYXRjaCBtb3ZlcyB0aGUgaW9fcmVzZXJ2ZV9scnUgaGFuZGxp
-bmcgaW50byAKTm91dmVhdQogICAgIGluc3RlYWQuCgogICAgIHYyOiBkb24ndCBjYWxsIHR0bV9i
-b191bm1hcF92aXJ0dWFsIGluIG5vdXZlYXVfdHRtX2lvX21lbV9yZXNlcnZlCiAgICAgdjM6IHJl
-YmFzZWQgYW5kIHVzZSBib3RoIGJhc2UgYW5kIG9mZnNldCBpbiB0aGUgY2hlY2sKICAgICB2NDog
-Zml4IHNtYWxsIHR5cG9zIGFuZCB0ZXN0IHRoZSBwYXRjaAogICAgIHY1OiByZWJhc2VkIGFuZCBr
-ZWVwIHRoZSBtZW0uYnVzIGluaXQgaW4gVFRNLgoKICAgICBTaWduZWQtb2ZmLWJ5OiBDaHJpc3Rp
-YW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+CiAgICAgQWNrZWQtYnk6IERhbmll
-bCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+CiAgICAgUmV2aWV3ZWQtYnk6IEJlbiBT
-a2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KICAgICBMaW5rOiBodHRwczovL3BhdGNod29yay5m
-cmVlZGVza3RvcC5vcmcvcGF0Y2gvMzg4NjQzLwoKICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2JvLmMgIHwgMTAxIAorKysrKysrKysrKysrKysrKysrKysrKysrKystLS0tLS0tCiAg
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5oICB8ICAgMyArCiAgZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuaCB8ICAgMiArCiAgZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV90dG0uYyB8ICA0NCArKysrKysrKysrKysrKy0KICA0IGZpbGVzIGNoYW5n
-ZWQsIDEyNyBpbnNlcnRpb25zKCspLCAyMyBkZWxldGlvbnMoLSkKCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+On Mon, Nov 23, 2020 at 10:51:25AM +0100, Daniel Vetter wrote:
+> On Fri, Nov 20, 2020 at 4:23 PM Matti Hamalainen <ccr-lYQ0WmeKI4w@public.gmane.org> wrote:
+> >
+> > Commit 03e0d26fcf79 ("drm/nouveau: slowpath for pushbuf ioctl") included
+> > a logic-bug which results in the relocations not actually getting
+> > applied at all as the call to nouveau_gem_pushbuf_reloc_apply() is
+> > never reached. This causes a regression with graphical corruption,
+> > triggered when relocations need to be done (for example after a
+> > suspend/resume cycle.)
+> >
+> > Fix by setting *apply_relocs value only if there were more than 0
+> > relocations.
+> >
+> > Additionally, the never reached code had a leftover u_free() call,
+> > which, after fixing the logic, now got called and resulted in a
+> > double-free. Fix by removing one u_free(), moving the other
+> > and adding check for errors.
+> >
+> > Cc: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+> > Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> > Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> > Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> > Signed-off-by: Matti Hamalainen <ccr-lYQ0WmeKI4w@public.gmane.org>
+> > Fixes: 03e0d26fcf79 ("drm/nouveau: slowpath for pushbuf ioctl")
+> > Link: https://gitlab.freedesktop.org/drm/nouveau/-/issues/11
+> 
+> Link: is for the mailing list submission of the patch itself (to link
+> the git log to the mailing list discussions), this should be
+> References: or similar. Aside from this:
+> 
+> Reviewed-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+> 
+> Ben, I'm assuming you'll push this through your tree.
+
+Ok Dave asked me to just push it into drm-misc-fixes.
+
+Thanks for your patch!
+-Daniel
+
+> -Daniel
+> 
+> 
+> > ---
+> >  drivers/gpu/drm/nouveau/nouveau_gem.c | 8 +++++---
+> >  1 file changed, 5 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+> > index 549bc67feabb..c2051380d18c 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_gem.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+> > @@ -558,8 +558,10 @@ nouveau_gem_pushbuf_validate(struct nouveau_channel *chan,
+> >                         NV_PRINTK(err, cli, "validating bo list\n");
+> >                 validate_fini(op, chan, NULL, NULL);
+> >                 return ret;
+> > +       } else if (ret > 0) {
+> > +               *apply_relocs = true;
+> >         }
+> > -       *apply_relocs = ret;
+> > +
+> >         return 0;
+> >  }
+> >
+> > @@ -662,7 +664,6 @@ nouveau_gem_pushbuf_reloc_apply(struct nouveau_cli *cli,
+> >                 nouveau_bo_wr32(nvbo, r->reloc_bo_offset >> 2, data);
+> >         }
+> >
+> > -       u_free(reloc);
+> >         return ret;
+> >  }
+> >
+> > @@ -872,9 +873,10 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
+> >                                 break;
+> >                         }
+> >                 }
+> > -               u_free(reloc);
+> >         }
+> >  out_prevalid:
+> > +       if (!IS_ERR(reloc))
+> > +               u_free(reloc);
+> >         u_free(bo);
+> >         u_free(push);
+> >
+> >
+> > base-commit: 3494d58865ad4a47611dbb427b214cc5227fa5eb
+> > --
+> > 2.29.2
+> >
+> 
+> 
+> -- 
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
