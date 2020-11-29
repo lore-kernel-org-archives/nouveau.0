@@ -1,56 +1,66 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: [PATCH] drm/nouveau/kms: handle mDP connectors
-Date: Fri, 27 Nov 2020 19:39:09 +0100
-Message-ID: <20201127183909.2089734-1-kherbst@redhat.com>
+From: Klaus Ebbe Grue <grue-okVzrDOvQGk@public.gmane.org>
+Subject: Could Fedora-5.9.9/X-server problem be a Nouveau-problem?
+Date: Sun, 29 Nov 2020 21:28:17 +0000
+Message-ID: <f827ab7dd91e4b1684dd818bd541272d@di.ku.dk>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <stable-owner@vger.kernel.org>
-To: nouveau@lists.freedesktop.org
-Cc: Karol Herbst <kherbst@redhat.com>, stable@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Mark Pearson <markpearson@lenovo.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Language: da-DK
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-In some cases we have the handle those explicitly as the fallback
-connector type detection fails and marks those as eDP connectors.
+Hi nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-Attempting to use such a connector with mutter leads to a crash of mutter
-as it ends up with two eDP displays.
+My X-server gives a blank screen on Fedora kernel 5.9.9.
 
-Information is taken from the official DCB documentation.
+I am in doubt whether or not I should blame Nouveau for that.
 
-Cc: stable@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Reported-by: Mark Pearson <markpearson@lenovo.com>
-Tested-by: Mark Pearson <markpearson@lenovo.com>
-Signed-off-by: Karol Herbst <kherbst@redhat.com>
----
- drivers/gpu/drm/nouveau/include/nvkm/subdev/bios/conn.h | 1 +
- drivers/gpu/drm/nouveau/nouveau_connector.c             | 1 +
- 2 files changed, 2 insertions(+)
+I know the nvidea drivers have problems with Fedora kernel 5.9.9.
 
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/bios/conn.h b/drivers/gpu/drm/nouveau/include/nvkm/subdev/bios/conn.h
-index f5f59261ea81..d1beaad0c82b 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/bios/conn.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/bios/conn.h
-@@ -14,6 +14,7 @@ enum dcb_connector_type {
- 	DCB_CONNECTOR_LVDS_SPWG = 0x41,
- 	DCB_CONNECTOR_DP = 0x46,
- 	DCB_CONNECTOR_eDP = 0x47,
-+	DCB_CONNECTOR_mDP = 0x48,
- 	DCB_CONNECTOR_HDMI_0 = 0x60,
- 	DCB_CONNECTOR_HDMI_1 = 0x61,
- 	DCB_CONNECTOR_HDMI_C = 0x63,
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 8b4b3688c7ae..4c992fd5bd68 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -1210,6 +1210,7 @@ drm_conntype_from_dcb(enum dcb_connector_type dcb)
- 	case DCB_CONNECTOR_DMS59_DP0:
- 	case DCB_CONNECTOR_DMS59_DP1:
- 	case DCB_CONNECTOR_DP       :
-+	case DCB_CONNECTOR_mDP      :
- 	case DCB_CONNECTOR_USB_C    : return DRM_MODE_CONNECTOR_DisplayPort;
- 	case DCB_CONNECTOR_eDP      : return DRM_MODE_CONNECTOR_eDP;
- 	case DCB_CONNECTOR_HDMI_0   :
--- 
-2.28.0
+I can file a bug against Nouveau and provide logs if you think there is a remote chance that Nouveau could be the cause.
+
+Here are some details:
+
+Fedora 5.8.18 / X-server works fine.
+
+I can boot into Fedora 5.9.9 runlevel 3 (no X-server).
+
+If I boot into Fedora 5.9.9 runlevel 5 (with X-server), the screen powers off instead of giving a login prompt, but apart from that, Fedora 5.9.9 works fine and produces log files.
+
+If I then power off and boot into Fedora 5.8.18 and read Xorg.0.log.old I can see that the X-server under Fedora 5.9.9 did not get the screen resolutions right.
+
+Here is what monitor-edid says under both Fedora 5.9.9 and 5.8.18:
+
+> monitor-edid
+Name: PHL BDM4350
+EISA ID: PHL08fa
+EDID version: 1.4
+EDID extension blocks: 1
+Screen size: 95.3 cm x 54.3 cm (43.18 inches, aspect ratio 16/9 = 1.76)
+Gamma: 2.2
+Digital signal
+Max video bandwidth: 600 MHz
+	HorizSync 30-160
+	VertRefresh 23-80
+	# Monitor preferred modeline (60.0 Hz vsync, 133.3 kHz hsync, ratio 16/9, 102 dpi) (bad ratio)
+	ModeLine "3840x2160" 533.25 3840 3888 3920 4000 2160 2163 2168 2222 -hsync +vsync
+...
+
+But under Fedora 5.9.9, the X-server is unaware of the 3840x2160 resolution according to Xorg.0.log.old. It also gets the screen physical size wrong.
+
+My first cry of help is here:
+https://ask.fedoraproject.org/t/no-login-screen-after-upgrade/10618
+That is where I leaned that the nvidea drivers have problems with Fedora 5.9.9
+
+Cheers,
+Klaus
