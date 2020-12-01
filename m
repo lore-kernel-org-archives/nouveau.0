@@ -1,168 +1,205 @@
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 10/20] drm/i915/gt: Remove references to struct
- drm_device.pdev
-Date: Tue,  1 Dec 2020 11:35:32 +0100
-Message-ID: <20201201103542.2182-11-tzimmermann@suse.de>
-References: <20201201103542.2182-1-tzimmermann@suse.de>
+From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+Subject: [PATCH v2 00/20] drm: Move struct drm_device.pdev to
+ legacy
+Date: Tue,  1 Dec 2020 11:35:22 +0100
+Message-ID: <20201201103542.2182-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <virtualization-bounces@lists.linux-foundation.org>
-In-Reply-To: <20201201103542.2182-1-tzimmermann@suse.de>
-List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/virtualization>,
- <mailto:virtualization-request@lists.linux-foundation.org?subject=unsubscribe>
-List-Archive: <http://lists.linuxfoundation.org/pipermail/virtualization/>
-List-Post: <mailto:virtualization@lists.linux-foundation.org>
-List-Help: <mailto:virtualization-request@lists.linux-foundation.org?subject=help>
-List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/virtualization>,
- <mailto:virtualization-request@lists.linux-foundation.org?subject=subscribe>
-Errors-To: virtualization-bounces@lists.linux-foundation.org
-Sender: "Virtualization" <virtualization-bounces@lists.linux-foundation.org>
-To: airlied@linux.ie, daniel@ffwll.ch
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>, spice-devel@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gvt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Using struct drm_device.pdev is deprecated. Convert i915 to struct
-drm_device.dev. No functional changes.
+The pdev field in struct drm_device points to a PCI device structure and
+goes back to UMS-only days when all DRM drivers were for PCI devices.
+Meanwhile we also support USB, SPI and platform devices. Each of those
+uses the generic device stored in struct drm_device.dev.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c |  2 +-
- drivers/gpu/drm/i915/gt/intel_ggtt.c      | 10 +++++-----
- drivers/gpu/drm/i915/gt/intel_ppgtt.c     |  2 +-
- drivers/gpu/drm/i915/gt/intel_rc6.c       |  4 ++--
- drivers/gpu/drm/i915/gt/intel_reset.c     |  6 +++---
- 5 files changed, 12 insertions(+), 12 deletions(-)
+To reduce duplication and remove the special case of PCI, this patchset
+converts all modesetting drivers from pdev to dev and makes pdev a field
+for legacy UMS drivers.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index d4e988b2816a..71bd2e22e7c6 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1228,7 +1228,7 @@ bool intel_engine_is_idle(struct intel_engine_cs *engine)
- 
- 	/* Waiting to drain ELSP? */
- 	if (execlists_active(&engine->execlists)) {
--		synchronize_hardirq(engine->i915->drm.pdev->irq);
-+		synchronize_hardirq(to_pci_dev(engine->i915->drm.dev)->irq);
- 
- 		intel_engine_flush_submission(engine);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index cf94525be2c1..591c6a2a0a8f 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -760,7 +760,7 @@ static unsigned int chv_get_total_gtt_size(u16 gmch_ctrl)
- static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
- {
- 	struct drm_i915_private *i915 = ggtt->vm.i915;
--	struct pci_dev *pdev = i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	phys_addr_t phys_addr;
- 	int ret;
- 
-@@ -830,7 +830,7 @@ static struct resource pci_resource(struct pci_dev *pdev, int bar)
- static int gen8_gmch_probe(struct i915_ggtt *ggtt)
- {
- 	struct drm_i915_private *i915 = ggtt->vm.i915;
--	struct pci_dev *pdev = i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	unsigned int size;
- 	u16 snb_gmch_ctl;
- 
-@@ -974,7 +974,7 @@ static u64 iris_pte_encode(dma_addr_t addr,
- static int gen6_gmch_probe(struct i915_ggtt *ggtt)
- {
- 	struct drm_i915_private *i915 = ggtt->vm.i915;
--	struct pci_dev *pdev = i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	unsigned int size;
- 	u16 snb_gmch_ctl;
- 
-@@ -1037,7 +1037,7 @@ static int i915_gmch_probe(struct i915_ggtt *ggtt)
- 	phys_addr_t gmadr_base;
- 	int ret;
- 
--	ret = intel_gmch_probe(i915->bridge_dev, i915->drm.pdev, NULL);
-+	ret = intel_gmch_probe(i915->bridge_dev, to_pci_dev(i915->drm.dev), NULL);
- 	if (!ret) {
- 		drm_err(&i915->drm, "failed to set up gmch\n");
- 		return -EIO;
-@@ -1077,7 +1077,7 @@ static int ggtt_probe_hw(struct i915_ggtt *ggtt, struct intel_gt *gt)
- 
- 	ggtt->vm.gt = gt;
- 	ggtt->vm.i915 = i915;
--	ggtt->vm.dma = &i915->drm.pdev->dev;
-+	ggtt->vm.dma = i915->drm.dev;
- 
- 	if (INTEL_GEN(i915) <= 5)
- 		ret = i915_gmch_probe(ggtt);
-diff --git a/drivers/gpu/drm/i915/gt/intel_ppgtt.c b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-index 46d9aceda64c..01b7d08532f2 100644
---- a/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-@@ -301,7 +301,7 @@ void ppgtt_init(struct i915_ppgtt *ppgtt, struct intel_gt *gt)
- 
- 	ppgtt->vm.gt = gt;
- 	ppgtt->vm.i915 = i915;
--	ppgtt->vm.dma = &i915->drm.pdev->dev;
-+	ppgtt->vm.dma = i915->drm.dev;
- 	ppgtt->vm.total = BIT_ULL(INTEL_INFO(i915)->ppgtt_size);
- 
- 	i915_address_space_init(&ppgtt->vm, VM_CLASS_PPGTT);
-diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-index d7b8e4457fc2..cce53fb9589c 100644
---- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-@@ -485,14 +485,14 @@ static bool rc6_supported(struct intel_rc6 *rc6)
- static void rpm_get(struct intel_rc6 *rc6)
- {
- 	GEM_BUG_ON(rc6->wakeref);
--	pm_runtime_get_sync(&rc6_to_i915(rc6)->drm.pdev->dev);
-+	pm_runtime_get_sync(rc6_to_i915(rc6)->drm.dev);
- 	rc6->wakeref = true;
- }
- 
- static void rpm_put(struct intel_rc6 *rc6)
- {
- 	GEM_BUG_ON(!rc6->wakeref);
--	pm_runtime_put(&rc6_to_i915(rc6)->drm.pdev->dev);
-+	pm_runtime_put(rc6_to_i915(rc6)->drm.dev);
- 	rc6->wakeref = false;
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 3654c955e6be..a49faf4ec139 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -180,7 +180,7 @@ static int i915_do_reset(struct intel_gt *gt,
- 			 intel_engine_mask_t engine_mask,
- 			 unsigned int retry)
- {
--	struct pci_dev *pdev = gt->i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(gt->i915->drm.dev);
- 	int err;
- 
- 	/* Assert reset for at least 20 usec, and wait for acknowledgement. */
-@@ -209,7 +209,7 @@ static int g33_do_reset(struct intel_gt *gt,
- 			intel_engine_mask_t engine_mask,
- 			unsigned int retry)
- {
--	struct pci_dev *pdev = gt->i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(gt->i915->drm.dev);
- 
- 	pci_write_config_byte(pdev, I915_GDRST, GRDOM_RESET_ENABLE);
- 	return wait_for_atomic(g4x_reset_complete(pdev), 50);
-@@ -219,7 +219,7 @@ static int g4x_do_reset(struct intel_gt *gt,
- 			intel_engine_mask_t engine_mask,
- 			unsigned int retry)
- {
--	struct pci_dev *pdev = gt->i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(gt->i915->drm.dev);
- 	struct intel_uncore *uncore = gt->uncore;
- 	int ret;
- 
--- 
+For PCI devices, the pointer in struct drm_device.dev can be upcasted to
+struct pci_device; or tested for PCI with dev_is_pci(). In several places
+the code can use the dev field directly.
+
+After converting all drivers and the DRM core, the pdev fields becomes
+only relevant for legacy drivers. In a later patchset, we may want to
+convert these as well and remove pdev entirely.
+
+The patchset touches many files, but the individual changes are mostly
+trivial. I suggest to merge each driver's patch through the respective
+tree and later the rest through drm-misc-next.
+
+v2:
+	* move whitespace fixes into separate patches (Alex, Sam)
+	* move i915 gt/ and gvt/ changes into separate patches (Joonas)
+
+Thomas Zimmermann (20):
+  drm/amdgpu: Fix trailing whitespaces
+  drm/amdgpu: Remove references to struct drm_device.pdev
+  drm/ast: Remove references to struct drm_device.pdev
+  drm/bochs: Remove references to struct drm_device.pdev
+  drm/cirrus: Remove references to struct drm_device.pdev
+  drm/gma500: Fix trailing whitespaces
+  drm/gma500: Remove references to struct drm_device.pdev
+  drm/hibmc: Remove references to struct drm_device.pdev
+  drm/i915: Remove references to struct drm_device.pdev
+  drm/i915/gt: Remove references to struct drm_device.pdev
+  drm/i915/gvt: Remove references to struct drm_device.pdev
+  drm/mgag200: Remove references to struct drm_device.pdev
+  drm/nouveau: Remove references to struct drm_device.pdev
+  drm/qxl: Remove references to struct drm_device.pdev
+  drm/radeon: Fix trailing whitespaces
+  drm/radeon: Remove references to struct drm_device.pdev
+  drm/vboxvideo: Remove references to struct drm_device.pdev
+  drm/virtgpu: Remove references to struct drm_device.pdev
+  drm/vmwgfx: Remove references to struct drm_device.pdev
+  drm: Upcast struct drm_device.dev to struct pci_device; replace pdev
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 23 +++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c        |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       | 10 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c       |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       | 10 +--
+ drivers/gpu/drm/ast/ast_drv.c                 |  4 +-
+ drivers/gpu/drm/ast/ast_main.c                | 25 +++---
+ drivers/gpu/drm/ast/ast_mm.c                  | 17 ++--
+ drivers/gpu/drm/ast/ast_mode.c                |  5 +-
+ drivers/gpu/drm/ast/ast_post.c                |  8 +-
+ drivers/gpu/drm/bochs/bochs_drv.c             |  1 -
+ drivers/gpu/drm/bochs/bochs_hw.c              |  4 +-
+ drivers/gpu/drm/drm_agpsupport.c              |  9 +-
+ drivers/gpu/drm/drm_bufs.c                    |  4 +-
+ drivers/gpu/drm/drm_edid.c                    |  7 +-
+ drivers/gpu/drm/drm_irq.c                     | 12 +--
+ drivers/gpu/drm/drm_pci.c                     | 26 +++---
+ drivers/gpu/drm/drm_vm.c                      |  2 +-
+ drivers/gpu/drm/gma500/cdv_device.c           | 30 ++++---
+ drivers/gpu/drm/gma500/cdv_intel_crt.c        |  3 +-
+ drivers/gpu/drm/gma500/cdv_intel_lvds.c       |  4 +-
+ drivers/gpu/drm/gma500/framebuffer.c          |  9 +-
+ drivers/gpu/drm/gma500/gma_device.c           |  3 +-
+ drivers/gpu/drm/gma500/gma_display.c          |  4 +-
+ drivers/gpu/drm/gma500/gtt.c                  | 20 +++--
+ drivers/gpu/drm/gma500/intel_bios.c           |  6 +-
+ drivers/gpu/drm/gma500/intel_gmbus.c          |  4 +-
+ drivers/gpu/drm/gma500/intel_i2c.c            |  2 +-
+ drivers/gpu/drm/gma500/mdfld_device.c         |  4 +-
+ drivers/gpu/drm/gma500/mdfld_dsi_dpi.c        |  8 +-
+ drivers/gpu/drm/gma500/mid_bios.c             |  9 +-
+ drivers/gpu/drm/gma500/oaktrail_device.c      |  5 +-
+ drivers/gpu/drm/gma500/oaktrail_lvds.c        |  2 +-
+ drivers/gpu/drm/gma500/oaktrail_lvds_i2c.c    |  2 +-
+ drivers/gpu/drm/gma500/opregion.c             |  3 +-
+ drivers/gpu/drm/gma500/power.c                | 13 +--
+ drivers/gpu/drm/gma500/psb_drv.c              | 16 ++--
+ drivers/gpu/drm/gma500/psb_drv.h              |  8 +-
+ drivers/gpu/drm/gma500/psb_intel_lvds.c       |  6 +-
+ drivers/gpu/drm/gma500/psb_intel_sdvo.c       |  2 +-
+ drivers/gpu/drm/gma500/tc35876x-dsi-lvds.c    | 36 ++++----
+ .../gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c   | 10 +--
+ .../gpu/drm/hisilicon/hibmc/hibmc_drm_i2c.c   |  2 +-
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c   |  4 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 14 +--
+ drivers/gpu/drm/i915/display/intel_csr.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |  2 +-
+ .../gpu/drm/i915/display/intel_lpe_audio.c    |  5 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c |  6 +-
+ drivers/gpu/drm/i915/display/intel_overlay.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_panel.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_quirks.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_vga.c      |  8 +-
+ drivers/gpu/drm/i915/gem/i915_gem_phys.c      |  6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  2 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          | 10 +--
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  2 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c           |  4 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c         |  6 +-
+ drivers/gpu/drm/i915/gvt/cfg_space.c          |  5 +-
+ drivers/gpu/drm/i915/gvt/firmware.c           | 10 +--
+ drivers/gpu/drm/i915/gvt/gtt.c                | 12 +--
+ drivers/gpu/drm/i915/gvt/gvt.c                |  6 +-
+ drivers/gpu/drm/i915/gvt/kvmgt.c              |  4 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |  2 +-
+ drivers/gpu/drm/i915/i915_drv.c               | 20 ++---
+ drivers/gpu/drm/i915/i915_drv.h               |  2 +-
+ drivers/gpu/drm/i915/i915_gem_gtt.c           |  4 +-
+ drivers/gpu/drm/i915/i915_getparam.c          |  5 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  2 +-
+ drivers/gpu/drm/i915/i915_irq.c               |  6 +-
+ drivers/gpu/drm/i915/i915_pmu.c               |  5 +-
+ drivers/gpu/drm/i915/i915_suspend.c           |  4 +-
+ drivers/gpu/drm/i915/i915_switcheroo.c        |  4 +-
+ drivers/gpu/drm/i915/i915_vgpu.c              |  2 +-
+ drivers/gpu/drm/i915/intel_device_info.c      |  2 +-
+ drivers/gpu/drm/i915/intel_region_lmem.c      |  8 +-
+ drivers/gpu/drm/i915/intel_runtime_pm.c       |  2 +-
+ drivers/gpu/drm/i915/intel_uncore.c           |  4 +-
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |  1 -
+ drivers/gpu/drm/i915/selftests/mock_gtt.c     |  2 +-
+ drivers/gpu/drm/mgag200/mgag200_drv.c         | 20 +++--
+ drivers/gpu/drm/mgag200/mgag200_i2c.c         |  2 +-
+ drivers/gpu/drm/mgag200/mgag200_mm.c          | 10 ++-
+ drivers/gpu/drm/nouveau/dispnv04/arb.c        | 12 +--
+ drivers/gpu/drm/nouveau/dispnv04/disp.h       | 14 +--
+ drivers/gpu/drm/nouveau/dispnv04/hw.c         | 10 ++-
+ drivers/gpu/drm/nouveau/nouveau_abi16.c       |  7 +-
+ drivers/gpu/drm/nouveau/nouveau_acpi.c        |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_bios.c        | 11 ++-
+ drivers/gpu/drm/nouveau/nouveau_connector.c   | 10 ++-
+ drivers/gpu/drm/nouveau/nouveau_drm.c         |  5 +-
+ drivers/gpu/drm/nouveau/nouveau_fbcon.c       |  6 +-
+ drivers/gpu/drm/nouveau/nouveau_vga.c         | 20 +++--
+ drivers/gpu/drm/qxl/qxl_drv.c                 |  2 +-
+ drivers/gpu/drm/qxl/qxl_ioctl.c               |  3 +-
+ drivers/gpu/drm/qxl/qxl_irq.c                 |  3 +-
+ drivers/gpu/drm/qxl/qxl_kms.c                 |  1 -
+ drivers/gpu/drm/radeon/atombios_encoders.c    |  6 +-
+ drivers/gpu/drm/radeon/r100.c                 | 27 +++---
+ drivers/gpu/drm/radeon/radeon.h               | 32 +++----
+ drivers/gpu/drm/radeon/radeon_atombios.c      | 89 ++++++++++---------
+ drivers/gpu/drm/radeon/radeon_bios.c          |  6 +-
+ drivers/gpu/drm/radeon/radeon_combios.c       | 55 ++++++------
+ drivers/gpu/drm/radeon/radeon_cs.c            |  3 +-
+ drivers/gpu/drm/radeon/radeon_device.c        | 17 ++--
+ drivers/gpu/drm/radeon/radeon_display.c       |  2 +-
+ drivers/gpu/drm/radeon/radeon_drv.c           |  3 +-
+ drivers/gpu/drm/radeon/radeon_fb.c            |  2 +-
+ drivers/gpu/drm/radeon/radeon_gem.c           |  6 +-
+ drivers/gpu/drm/radeon/radeon_i2c.c           |  2 +-
+ drivers/gpu/drm/radeon/radeon_irq_kms.c       |  2 +-
+ drivers/gpu/drm/radeon/radeon_kms.c           | 20 ++---
+ .../gpu/drm/radeon/radeon_legacy_encoders.c   |  6 +-
+ drivers/gpu/drm/radeon/rs780_dpm.c            |  7 +-
+ drivers/gpu/drm/tiny/cirrus.c                 |  1 -
+ drivers/gpu/drm/vboxvideo/vbox_drv.c          | 11 +--
+ drivers/gpu/drm/vboxvideo/vbox_irq.c          |  4 +-
+ drivers/gpu/drm/vboxvideo/vbox_main.c         |  8 +-
+ drivers/gpu/drm/vboxvideo/vbox_ttm.c          |  7 +-
+ drivers/gpu/drm/virtio/virtgpu_drv.c          |  1 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf.c        |  8 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           | 27 +++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_fb.c            |  2 +-
+ include/drm/drm_device.h                      | 12 ++-
+ 132 files changed, 584 insertions(+), 507 deletions(-)
+
+--
 2.29.2
