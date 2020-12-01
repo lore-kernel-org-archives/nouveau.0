@@ -1,44 +1,68 @@
-From: Zack Rusin <zackr@vmware.com>
-Subject: Re: [PATCH 14/15] drm/vmwgfx: Remove references to
- struct drm_device.pdev
-Date: Mon, 30 Nov 2020 20:59:52 +0000
-Message-ID: <31E75B1A-AAC0-49E3-985E-2DF5B59CD883@vmware.com>
-References: <20201124113824.19994-1-tzimmermann@suse.de>
- <20201124113824.19994-15-tzimmermann@suse.de>
+From: Alistair Popple <apopple-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] drm/nouveau/svm: Only map migrating pages
+Date: Tue, 1 Dec 2020 12:29:36 +1100
+Message-ID: <20201201012936.9046-1-apopple@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <20201124113824.19994-15-tzimmermann@suse.de>
-Content-Language: en-US
-Content-ID: <DA00B6650FD7A948A321344693A5973A@namprd05.prod.outlook.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: "airlied@linux.ie" <airlied@linux.ie>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, Roland Scheidegger <sroland@vmware.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "virtualization@lists.linux-foundation.org" <virtualization@lists.linux-foundation.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "spice-devel@lists.freedesktop.org" <spice-devel@lists.freedesktop.org>, "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, Alistair Popple <apopple-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Only pages which were actually migrated should be mapped on the GPU.
+migrate_vma_pages() clears MIGRATE_PFN_MIGRATE in the src_pfn array, so
+test this prior to mapping the pages on the GPU. If any pages failed to
+migrate don't install any mappings - the GPU will demand fault any as
+required.
 
+Fixes: e3d8b0890469 ("drm/nouveau/svm: map pages after migration")
+Signed-off-by: Alistair Popple <apopple-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_dmem.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
-> On Nov 24, 2020, at 06:38, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> 
-> Using struct drm_device.pdev is deprecated. Convert vmwgfx to struct
-> drm_device.dev. No functional changes.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Roland Scheidegger <sroland@vmware.com>
-> ---
-> drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf.c |  8 ++++----
-> drivers/gpu/drm/vmwgfx/vmwgfx_drv.c    | 27 +++++++++++++-------------
-> drivers/gpu/drm/vmwgfx/vmwgfx_fb.c     |  2 +-
-
-Reviewed-by: Zack Rusin <zackr@vmware.com>
-
-z
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+index 92987daa5e17..a2169644f114 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+@@ -618,8 +618,9 @@ static void nouveau_dmem_migrate_chunk(struct nouveau_drm *drm,
+ 		dma_addr_t *dma_addrs, u64 *pfns)
+ {
+ 	struct nouveau_fence *fence;
+-	unsigned long addr = args->start, nr_dma = 0, i;
++	unsigned long addr = args->start, nr_dma = 0, i, npages;
+ 
++	npages = (args->end - args->start) >> PAGE_SHIFT;
+ 	for (i = 0; addr < args->end; i++) {
+ 		args->dst[i] = nouveau_dmem_migrate_copy_one(drm, svmm,
+ 				args->src[i], dma_addrs + nr_dma, pfns + i);
+@@ -631,7 +632,16 @@ static void nouveau_dmem_migrate_chunk(struct nouveau_drm *drm,
+ 	nouveau_fence_new(drm->dmem->migrate.chan, false, &fence);
+ 	migrate_vma_pages(args);
+ 	nouveau_dmem_fence_done(&fence);
+-	nouveau_pfns_map(svmm, args->vma->vm_mm, args->start, pfns, i);
++
++	for (i = 0; i < npages; i++)
++		if (!(args->src[i] & MIGRATE_PFN_MIGRATE))
++			break;
++
++	/* If all pages were migrated successfully map them on the GPU. If any
++	 * failed just let the GPU fault to create the mapping.
++	 */
++	if (i == npages)
++		nouveau_pfns_map(svmm, args->vma->vm_mm, args->start, pfns, npages);
+ 
+ 	while (nr_dma--) {
+ 		dma_unmap_page(drm->dev->dev, dma_addrs[nr_dma], PAGE_SIZE,
+-- 
+2.20.1
