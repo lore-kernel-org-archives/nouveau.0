@@ -1,8 +1,8 @@
 From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 05/20] drm/cirrus: Remove references to struct
+Subject: [PATCH v2 04/20] drm/bochs: Remove references to struct
  drm_device.pdev
-Date: Tue,  1 Dec 2020 11:35:27 +0100
-Message-ID: <20201201103542.2182-6-tzimmermann@suse.de>
+Date: Tue,  1 Dec 2020 11:35:26 +0100
+Message-ID: <20201201103542.2182-5-tzimmermann@suse.de>
 References: <20201201103542.2182-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,27 +22,50 @@ To: airlied@linux.ie, daniel@ffwll.ch
 Cc: Sam Ravnborg <sam@ravnborg.org>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, spice-devel@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Using struct drm_device.pdev is deprecated. Convert cirrus to struct
+Using struct drm_device.pdev is deprecated. Convert bochs to struct
 drm_device.dev. No functional changes.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 Acked-by: Sam Ravnborg <sam@ravnborg.org>
 Cc: Gerd Hoffmann <kraxel@redhat.com>
 ---
- drivers/gpu/drm/tiny/cirrus.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/bochs/bochs_drv.c | 1 -
+ drivers/gpu/drm/bochs/bochs_hw.c  | 4 ++--
+ 2 files changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/tiny/cirrus.c b/drivers/gpu/drm/tiny/cirrus.c
-index 561c49d8657a..a043e602199e 100644
---- a/drivers/gpu/drm/tiny/cirrus.c
-+++ b/drivers/gpu/drm/tiny/cirrus.c
-@@ -602,7 +602,6 @@ static int cirrus_pci_probe(struct pci_dev *pdev,
- 
- 	drm_mode_config_reset(dev);
+diff --git a/drivers/gpu/drm/bochs/bochs_drv.c b/drivers/gpu/drm/bochs/bochs_drv.c
+index fd454225fd19..b469624fe40d 100644
+--- a/drivers/gpu/drm/bochs/bochs_drv.c
++++ b/drivers/gpu/drm/bochs/bochs_drv.c
+@@ -121,7 +121,6 @@ static int bochs_pci_probe(struct pci_dev *pdev,
+ 	if (ret)
+ 		goto err_free_dev;
  
 -	dev->pdev = pdev;
  	pci_set_drvdata(pdev, dev);
- 	ret = drm_dev_register(dev, 0);
- 	if (ret)
+ 
+ 	ret = bochs_load(dev);
+diff --git a/drivers/gpu/drm/bochs/bochs_hw.c b/drivers/gpu/drm/bochs/bochs_hw.c
+index dce4672e3fc8..2d7380a9890e 100644
+--- a/drivers/gpu/drm/bochs/bochs_hw.c
++++ b/drivers/gpu/drm/bochs/bochs_hw.c
+@@ -110,7 +110,7 @@ int bochs_hw_load_edid(struct bochs_device *bochs)
+ int bochs_hw_init(struct drm_device *dev)
+ {
+ 	struct bochs_device *bochs = dev->dev_private;
+-	struct pci_dev *pdev = dev->pdev;
++	struct pci_dev *pdev = to_pci_dev(dev->dev);
+ 	unsigned long addr, size, mem, ioaddr, iosize;
+ 	u16 id;
+ 
+@@ -201,7 +201,7 @@ void bochs_hw_fini(struct drm_device *dev)
+ 		release_region(VBE_DISPI_IOPORT_INDEX, 2);
+ 	if (bochs->fb_map)
+ 		iounmap(bochs->fb_map);
+-	pci_release_regions(dev->pdev);
++	pci_release_regions(to_pci_dev(dev->dev));
+ 	kfree(bochs->edid);
+ }
+ 
 -- 
 2.29.2
