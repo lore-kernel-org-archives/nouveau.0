@@ -1,174 +1,57 @@
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 17/20] drm/vboxvideo: Remove references to struct
- drm_device.pdev
-Date: Tue,  1 Dec 2020 11:35:39 +0100
-Message-ID: <20201201103542.2182-18-tzimmermann@suse.de>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
+Subject: Re: [PATCH v2 01/20] drm/amdgpu: Fix trailing whitespaces
+Date: Tue, 1 Dec 2020 11:40:49 +0100
+Message-ID: <d79aa7c0-9b0b-4f1b-c4e5-54f53a8d2931@amd.com>
 References: <20201201103542.2182-1-tzimmermann@suse.de>
+ <20201201103542.2182-2-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <virtualization-bounces@lists.linux-foundation.org>
-In-Reply-To: <20201201103542.2182-1-tzimmermann@suse.de>
-List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/virtualization>,
- <mailto:virtualization-request@lists.linux-foundation.org?subject=unsubscribe>
-List-Archive: <http://lists.linuxfoundation.org/pipermail/virtualization/>
-List-Post: <mailto:virtualization@lists.linux-foundation.org>
-List-Help: <mailto:virtualization-request@lists.linux-foundation.org?subject=help>
-List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/virtualization>,
- <mailto:virtualization-request@lists.linux-foundation.org?subject=subscribe>
-Errors-To: virtualization-bounces@lists.linux-foundation.org
-Sender: "Virtualization" <virtualization-bounces@lists.linux-foundation.org>
-To: airlied@linux.ie, daniel@ffwll.ch
-Cc: Sam Ravnborg <sam@ravnborg.org>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, Hans de Goede <hdegoede@redhat.com>, amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, spice-devel@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20201201103542.2182-2-tzimmermann-l3A5Bk7waGM@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org
+Cc: Sam Ravnborg <sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gvt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Using struct drm_device.pdev is deprecated. Convert vboxvideo to struct
-drm_device.dev. No functional changes.
-
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
-Cc: Hans de Goede <hdegoede@redhat.com>
----
- drivers/gpu/drm/vboxvideo/vbox_drv.c  | 11 ++++++-----
- drivers/gpu/drm/vboxvideo/vbox_irq.c  |  4 +++-
- drivers/gpu/drm/vboxvideo/vbox_main.c |  8 ++++++--
- drivers/gpu/drm/vboxvideo/vbox_ttm.c  |  7 ++++---
- 4 files changed, 19 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/vboxvideo/vbox_drv.c b/drivers/gpu/drm/vboxvideo/vbox_drv.c
-index f3eac72cb46e..e534896b6cfd 100644
---- a/drivers/gpu/drm/vboxvideo/vbox_drv.c
-+++ b/drivers/gpu/drm/vboxvideo/vbox_drv.c
-@@ -51,7 +51,6 @@ static int vbox_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	if (IS_ERR(vbox))
- 		return PTR_ERR(vbox);
- 
--	vbox->ddev.pdev = pdev;
- 	pci_set_drvdata(pdev, vbox);
- 	mutex_init(&vbox->hw_mutex);
- 
-@@ -109,15 +108,16 @@ static void vbox_pci_remove(struct pci_dev *pdev)
- static int vbox_pm_suspend(struct device *dev)
- {
- 	struct vbox_private *vbox = dev_get_drvdata(dev);
-+	struct pci_dev *pdev = to_pci_dev(dev);
- 	int error;
- 
- 	error = drm_mode_config_helper_suspend(&vbox->ddev);
- 	if (error)
- 		return error;
- 
--	pci_save_state(vbox->ddev.pdev);
--	pci_disable_device(vbox->ddev.pdev);
--	pci_set_power_state(vbox->ddev.pdev, PCI_D3hot);
-+	pci_save_state(pdev);
-+	pci_disable_device(pdev);
-+	pci_set_power_state(pdev, PCI_D3hot);
- 
- 	return 0;
- }
-@@ -125,8 +125,9 @@ static int vbox_pm_suspend(struct device *dev)
- static int vbox_pm_resume(struct device *dev)
- {
- 	struct vbox_private *vbox = dev_get_drvdata(dev);
-+	struct pci_dev *pdev = to_pci_dev(dev);
- 
--	if (pci_enable_device(vbox->ddev.pdev))
-+	if (pci_enable_device(pdev))
- 		return -EIO;
- 
- 	return drm_mode_config_helper_resume(&vbox->ddev);
-diff --git a/drivers/gpu/drm/vboxvideo/vbox_irq.c b/drivers/gpu/drm/vboxvideo/vbox_irq.c
-index 631657fa554f..b3ded68603ba 100644
---- a/drivers/gpu/drm/vboxvideo/vbox_irq.c
-+++ b/drivers/gpu/drm/vboxvideo/vbox_irq.c
-@@ -170,10 +170,12 @@ static void vbox_hotplug_worker(struct work_struct *work)
- 
- int vbox_irq_init(struct vbox_private *vbox)
- {
-+	struct pci_dev *pdev = to_pci_dev(vbox->ddev.dev);
-+
- 	INIT_WORK(&vbox->hotplug_work, vbox_hotplug_worker);
- 	vbox_update_mode_hints(vbox);
- 
--	return drm_irq_install(&vbox->ddev, vbox->ddev.pdev->irq);
-+	return drm_irq_install(&vbox->ddev, pdev->irq);
- }
- 
- void vbox_irq_fini(struct vbox_private *vbox)
-diff --git a/drivers/gpu/drm/vboxvideo/vbox_main.c b/drivers/gpu/drm/vboxvideo/vbox_main.c
-index d68d9bad7674..f28779715ccd 100644
---- a/drivers/gpu/drm/vboxvideo/vbox_main.c
-+++ b/drivers/gpu/drm/vboxvideo/vbox_main.c
-@@ -8,7 +8,9 @@
-  *          Hans de Goede <hdegoede@redhat.com>
-  */
- 
-+#include <linux/pci.h>
- #include <linux/vbox_err.h>
-+
- #include <drm/drm_fb_helper.h>
- #include <drm/drm_crtc_helper.h>
- #include <drm/drm_damage_helper.h>
-@@ -30,6 +32,7 @@ void vbox_report_caps(struct vbox_private *vbox)
- 
- static int vbox_accel_init(struct vbox_private *vbox)
- {
-+	struct pci_dev *pdev = to_pci_dev(vbox->ddev.dev);
- 	struct vbva_buffer *vbva;
- 	unsigned int i;
- 
-@@ -41,7 +44,7 @@ static int vbox_accel_init(struct vbox_private *vbox)
- 	/* Take a command buffer for each screen from the end of usable VRAM. */
- 	vbox->available_vram_size -= vbox->num_crtcs * VBVA_MIN_BUFFER_SIZE;
- 
--	vbox->vbva_buffers = pci_iomap_range(vbox->ddev.pdev, 0,
-+	vbox->vbva_buffers = pci_iomap_range(pdev, 0,
- 					     vbox->available_vram_size,
- 					     vbox->num_crtcs *
- 					     VBVA_MIN_BUFFER_SIZE);
-@@ -106,6 +109,7 @@ bool vbox_check_supported(u16 id)
- 
- int vbox_hw_init(struct vbox_private *vbox)
- {
-+	struct pci_dev *pdev = to_pci_dev(vbox->ddev.dev);
- 	int ret = -ENOMEM;
- 
- 	vbox->full_vram_size = inl(VBE_DISPI_IOPORT_DATA);
-@@ -115,7 +119,7 @@ int vbox_hw_init(struct vbox_private *vbox)
- 
- 	/* Map guest-heap at end of vram */
- 	vbox->guest_heap =
--	    pci_iomap_range(vbox->ddev.pdev, 0, GUEST_HEAP_OFFSET(vbox),
-+	    pci_iomap_range(pdev, 0, GUEST_HEAP_OFFSET(vbox),
- 			    GUEST_HEAP_SIZE);
- 	if (!vbox->guest_heap)
- 		return -ENOMEM;
-diff --git a/drivers/gpu/drm/vboxvideo/vbox_ttm.c b/drivers/gpu/drm/vboxvideo/vbox_ttm.c
-index f5a06675da43..0066a3c1dfc9 100644
---- a/drivers/gpu/drm/vboxvideo/vbox_ttm.c
-+++ b/drivers/gpu/drm/vboxvideo/vbox_ttm.c
-@@ -15,8 +15,9 @@ int vbox_mm_init(struct vbox_private *vbox)
- 	struct drm_vram_mm *vmm;
- 	int ret;
- 	struct drm_device *dev = &vbox->ddev;
-+	struct pci_dev *pdev = to_pci_dev(dev->dev);
- 
--	vmm = drm_vram_helper_alloc_mm(dev, pci_resource_start(dev->pdev, 0),
-+	vmm = drm_vram_helper_alloc_mm(dev, pci_resource_start(pdev, 0),
- 				       vbox->available_vram_size);
- 	if (IS_ERR(vmm)) {
- 		ret = PTR_ERR(vmm);
-@@ -24,8 +25,8 @@ int vbox_mm_init(struct vbox_private *vbox)
- 		return ret;
- 	}
- 
--	vbox->fb_mtrr = arch_phys_wc_add(pci_resource_start(dev->pdev, 0),
--					 pci_resource_len(dev->pdev, 0));
-+	vbox->fb_mtrr = arch_phys_wc_add(pci_resource_start(pdev, 0),
-+					 pci_resource_len(pdev, 0));
- 	return 0;
- }
- 
--- 
-2.29.2
+UmV2aWV3ZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4g
+b24gcGF0Y2ggIzEgYW5kICMxNS4KCkFja2VkLWJ5OiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3Rp
+YW4ua29lbmlnQGFtZC5jb20+IG9uIHBhdGNoICMyIGFuZCAjMTYuCgpSZWdhcmRzLApDaHJpc3Rp
+YW4uCgpBbSAwMS4xMi4yMCB1bSAxMTozNSBzY2hyaWViIFRob21hcyBaaW1tZXJtYW5uOgo+IEFk
+aGVyZSB0byBrZXJuZWwgY29kaW5nIHN0eWxlLgo+Cj4gU2lnbmVkLW9mZi1ieTogVGhvbWFzIFpp
+bW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+Cj4gQWNrZWQtYnk6IEFsZXggRGV1Y2hlciA8
+YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT4KPiBBY2tlZC1ieTogU2FtIFJhdm5ib3JnIDxzYW1A
+cmF2bmJvcmcub3JnPgo+IENjOiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5j
+b20+Cj4gQ2M6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPiAt
+LS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYyB8IDYgKysr
+LS0tCj4gICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQo+
+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2Uu
+YyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYwo+IGluZGV4IDVm
+MzA0NDI1Yzk0OC4uZGEyM2MwZjIxMzExIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9h
+bWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
+Z3B1L2FtZGdwdV9kZXZpY2UuYwo+IEBAIC00OTIyLDggKzQ5MjIsOCBAQCBwY2lfZXJzX3Jlc3Vs
+dF90IGFtZGdwdV9wY2lfZXJyb3JfZGV0ZWN0ZWQoc3RydWN0IHBjaV9kZXYgKnBkZXYsIHBjaV9j
+aGFubmVsX3N0YQo+ICAgCWNhc2UgcGNpX2NoYW5uZWxfaW9fbm9ybWFsOgo+ICAgCQlyZXR1cm4g
+UENJX0VSU19SRVNVTFRfQ0FOX1JFQ09WRVI7Cj4gICAJLyogRmF0YWwgZXJyb3IsIHByZXBhcmUg
+Zm9yIHNsb3QgcmVzZXQgKi8KPiAtCWNhc2UgcGNpX2NoYW5uZWxfaW9fZnJvemVuOgkJCj4gLQkJ
+LyoJCQo+ICsJY2FzZSBwY2lfY2hhbm5lbF9pb19mcm96ZW46Cj4gKwkJLyoKPiAgIAkJICogQ2Fu
+Y2VsIGFuZCB3YWl0IGZvciBhbGwgVERScyBpbiBwcm9ncmVzcyBpZiBmYWlsaW5nIHRvCj4gICAJ
+CSAqIHNldCAgYWRldi0+aW5fZ3B1X3Jlc2V0IGluIGFtZGdwdV9kZXZpY2VfbG9ja19hZGV2Cj4g
+ICAJCSAqCj4gQEAgLTUwMTQsNyArNTAxNCw3IEBAIHBjaV9lcnNfcmVzdWx0X3QgYW1kZ3B1X3Bj
+aV9zbG90X3Jlc2V0KHN0cnVjdCBwY2lfZGV2ICpwZGV2KQo+ICAgCQlnb3RvIG91dDsKPiAgIAl9
+Cj4gICAKPiAtCWFkZXYtPmluX3BjaV9lcnJfcmVjb3ZlcnkgPSB0cnVlOwkKPiArCWFkZXYtPmlu
+X3BjaV9lcnJfcmVjb3ZlcnkgPSB0cnVlOwo+ICAgCXIgPSBhbWRncHVfZGV2aWNlX3ByZV9hc2lj
+X3Jlc2V0KGFkZXYsIE5VTEwsICZuZWVkX2Z1bGxfcmVzZXQpOwo+ICAgCWFkZXYtPmluX3BjaV9l
+cnJfcmVjb3ZlcnkgPSBmYWxzZTsKPiAgIAlpZiAocikKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
