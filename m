@@ -1,235 +1,53 @@
-From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
-Subject: Re: [PATCH v2 01/20] drm/amdgpu: Fix trailing whitespaces
-Date: Wed, 2 Dec 2020 15:28:28 +0100
-Message-ID: <6d286f72-6669-9027-97d9-7981beb0240b@suse.de>
-References: <20201201103542.2182-1-tzimmermann@suse.de>
- <20201201103542.2182-2-tzimmermann@suse.de>
- <d79aa7c0-9b0b-4f1b-c4e5-54f53a8d2931@amd.com>
- <63150504-fda0-48fd-9ecd-fb19ea0ae9d7@suse.de>
- <997ad04d-2acb-1dfb-0733-78f79a45b453@amd.com>
- <99ce8db3-a53f-7432-6e05-428c414174a2@suse.de>
- <CADnq5_O6X_kbdT8ZTzL1P35wgauVNc77voWf97LogDJXia5VTg@mail.gmail.com>
+From: Zack Rusin <zackr-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH 14/15] drm/vmwgfx: Remove references to struct
+ drm_device.pdev
+Date: Wed, 2 Dec 2020 15:37:00 +0000
+Message-ID: <FBC4840D-C1A8-4492-9E2E-D31E00B8D61A@vmware.com>
+References: <20201124113824.19994-1-tzimmermann@suse.de>
+ <20201124113824.19994-15-tzimmermann@suse.de>
+ <31E75B1A-AAC0-49E3-985E-2DF5B59CD883@vmware.com>
+ <e8102216-edd0-bec3-79af-3925e9668e95@suse.de>
+ <d43d06e6-d13c-ef9b-b372-8d30d9494417@suse.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1429131215=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CADnq5_O6X_kbdT8ZTzL1P35wgauVNc77voWf97LogDJXia5VTg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Sam Ravnborg <sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org>, Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "open list:VIRTIO CORE, NET..." <virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gvt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <d43d06e6-d13c-ef9b-b372-8d30d9494417-l3A5Bk7waGM@public.gmane.org>
+Content-Language: en-US
+Content-ID: <AA28D6F9E38CC942957B0E99C0C72BC1-HX+pjaQZbrqcE4WynfumptQqCkab/8FMAL8bYrjMMd8@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+Cc: "airlied-cv59FeDIM0c@public.gmane.org" <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Roland Scheidegger <sroland-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org" <virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>, "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "daniel-/w4YWyX8dFk@public.gmane.org" <daniel-/w4YWyX8dFk@public.gmane.org>, "spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "intel-gvt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <intel-gvt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1429131215==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="Aq5Kez8sVYZULyX1T5cE6UtGwvFf9vfV4"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---Aq5Kez8sVYZULyX1T5cE6UtGwvFf9vfV4
-Content-Type: multipart/mixed; boundary="N5NuQEt6cq0WEmbiR0tq2SB6BzRSX2VB2";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
-To: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: intel-gvt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>,
- nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>,
- Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>,
- Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>,
- "open list:VIRTIO CORE, NET..." <virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>,
- amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>,
- Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org,
- Sam Ravnborg <sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org>, =?UTF-8?Q?Christian_K=c3=b6nig?=
- <christian.koenig-5C7GfCeVMHo@public.gmane.org>
-Message-ID: <6d286f72-6669-9027-97d9-7981beb0240b-l3A5Bk7waGM@public.gmane.org>
-Subject: Re: [PATCH v2 01/20] drm/amdgpu: Fix trailing whitespaces
-References: <20201201103542.2182-1-tzimmermann-l3A5Bk7waGM@public.gmane.org>
- <20201201103542.2182-2-tzimmermann-l3A5Bk7waGM@public.gmane.org>
- <d79aa7c0-9b0b-4f1b-c4e5-54f53a8d2931-5C7GfCeVMHo@public.gmane.org>
- <63150504-fda0-48fd-9ecd-fb19ea0ae9d7-l3A5Bk7waGM@public.gmane.org>
- <997ad04d-2acb-1dfb-0733-78f79a45b453-5C7GfCeVMHo@public.gmane.org>
- <99ce8db3-a53f-7432-6e05-428c414174a2-l3A5Bk7waGM@public.gmane.org>
- <CADnq5_O6X_kbdT8ZTzL1P35wgauVNc77voWf97LogDJXia5VTg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-In-Reply-To: <CADnq5_O6X_kbdT8ZTzL1P35wgauVNc77voWf97LogDJXia5VTg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-
---N5NuQEt6cq0WEmbiR0tq2SB6BzRSX2VB2
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-Am 02.12.20 um 15:02 schrieb Alex Deucher:
-> On Wed, Dec 2, 2020 at 3:53 AM Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org> =
-wrote:
->>
->> Hi
->>
->> Am 02.12.20 um 09:43 schrieb Christian K=C3=B6nig:
->>> Am 02.12.20 um 08:59 schrieb Thomas Zimmermann:
->>>> Hi
->>>>
->>>> Am 01.12.20 um 11:40 schrieb Christian K=C3=B6nig:
->>>>> Reviewed-by: Christian K=C3=B6nig <christian.koenig-5C7GfCeVMHo@public.gmane.org> on pat=
-ch #1
->>>>> and #15.
->>>>>
->>>>> Acked-by: Christian K=C3=B6nig <christian.koenig-5C7GfCeVMHo@public.gmane.org> on patch =
-#2 and
->>>>> #16.
->>>>
->>>> Could you add these patches to the AMD tree?
->>>
->>> Alex is usually the one who picks such stuff up.
->>>
->>> But when people send out patch sets which mix changes from different
->>> drivers it is more common to push them through drm-misc-next.
->>
->> I'm OK with drm-misc-next. I just don't want to add too many merge
->> conflicts in your side.
->=20
-> Yeah, it doesn't matter to me.  I assumed you wanted to land this
-> whole series so you could move forward with further cleanups.  If we
-> merge via different trees, you'll have to wait for all of this to come
-> together again in drm-next.
-
-OK, sure. I'll merge it through drm-misc-next.
-
-Best regards
-Thomas
-
->=20
-> Alex
->=20
->=20
->>
->> Best regards
->> Thomas
->>
->>>
->>> Regards,
->>> Christian.
->>>
->>>>
->>>> Best regards
->>>> Thomas
->>>>
->>>>>
->>>>> Regards,
->>>>> Christian.
->>>>>
->>>>> Am 01.12.20 um 11:35 schrieb Thomas Zimmermann:
->>>>>> Adhere to kernel coding style.
->>>>>>
->>>>>> Signed-off-by: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
->>>>>> Acked-by: Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
->>>>>> Acked-by: Sam Ravnborg <sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org>
->>>>>> Cc: Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
->>>>>> Cc: Christian K=C3=B6nig <christian.koenig-5C7GfCeVMHo@public.gmane.org>
->>>>>> ---
->>>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 6 +++---
->>>>>>    1 file changed, 3 insertions(+), 3 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>>> index 5f304425c948..da23c0f21311 100644
->>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>>> @@ -4922,8 +4922,8 @@ pci_ers_result_t
->>>>>> amdgpu_pci_error_detected(struct pci_dev *pdev, pci_channel_sta
->>>>>>        case pci_channel_io_normal:
->>>>>>            return PCI_ERS_RESULT_CAN_RECOVER;
->>>>>>        /* Fatal error, prepare for slot reset */
->>>>>> -    case pci_channel_io_frozen:
->>>>>> -        /*
->>>>>> +    case pci_channel_io_frozen:
->>>>>> +        /*
->>>>>>             * Cancel and wait for all TDRs in progress if failing =
-to
->>>>>>             * set  adev->in_gpu_reset in amdgpu_device_lock_adev
->>>>>>             *
->>>>>> @@ -5014,7 +5014,7 @@ pci_ers_result_t amdgpu_pci_slot_reset(struc=
-t
->>>>>> pci_dev *pdev)
->>>>>>            goto out;
->>>>>>        }
->>>>>> -    adev->in_pci_err_recovery =3D true;
->>>>>> +    adev->in_pci_err_recovery =3D true;
->>>>>>        r =3D amdgpu_device_pre_asic_reset(adev, NULL, &need_full_r=
-eset);
->>>>>>        adev->in_pci_err_recovery =3D false;
->>>>>>        if (r)
->>>>>
->>>>
->>>
->>
->> --
->> Thomas Zimmermann
->> Graphics Driver Developer
->> SUSE Software Solutions Germany GmbH
->> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
->> (HRB 36809, AG N=C3=BCrnberg)
->> Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
->>
->> _______________________________________________
->> amd-gfx mailing list
->> amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---N5NuQEt6cq0WEmbiR0tq2SB6BzRSX2VB2--
-
---Aq5Kez8sVYZULyX1T5cE6UtGwvFf9vfV4
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAl/HpIwFAwAAAAAACgkQlh/E3EQov+BX
-KRAAzqi3AuVErjo8TUvkFebgXZwduknMi4OZYhXPOGMf3G5ZaGkceS+n/hKTP0JWrogg/H4AYJE1
-J7sDOoy2QwN0wM/jQ8r5FdMUzPTin0IYduvnUQpNNqH0BP8yZB5l0zR0Ay3pCBWpAFWQp4cupgkI
-Qf8xetRC9DDKcpP+jcfCsOtlU9CA2ZomJZHwn23RU+ynlKqN71lEKfuyCUB3kvIsmy1e9aJU0s2B
-rRWOcdUk8OjmZha5+FhUDUptuV3+220mX84CbYxrBmZH8PMfSsgmhtJjEjoPb+QiLbyTkOjc5C71
-EDDUiuRbDrK9QiVu/y1Kz9Vb2/TciJC31W9SE06z307Ok2nqxPbf4QckYFVyeVmDV9o/JbtkX3Dh
-6PuwxA4/1FnvAqnOQZc54EmGUleNhBOSnmVzQ38IFpOZBatVJcgQKKY+Lc3h2dXOflhBP3oydzke
-+zKWrcSfMfiChoH+51Rtyk7Zxb+nA0Y9mK9mEaYzXhyJyGvewC8NykTRruafNpPum/1eZF26CB4u
-wB6+G3k91DYzXMyuBBLONMgZwdzAFRb8MO1i80A79JhLWfl2Nke48Fuw58pQc/HLj0et4fn8MqBX
-qdu1ud8GM9uNMPSY1VNoRdhCKWy17OQRYbrg9SBzzBEZSRdhDjVz1EKc1Jxp9E9QMdflLId4HY5o
-HHQ=
-=6LTS
------END PGP SIGNATURE-----
-
---Aq5Kez8sVYZULyX1T5cE6UtGwvFf9vfV4--
-
---===============1429131215==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1429131215==--
+DQoNCj4gT24gRGVjIDIsIDIwMjAsIGF0IDA5OjI3LCBUaG9tYXMgWmltbWVybWFubiA8dHppbW1l
+cm1hbm5Ac3VzZS5kZT4gd3JvdGU6DQo+IA0KPiBIaQ0KPiANCj4gQW0gMDIuMTIuMjAgdW0gMDk6
+MDEgc2NocmllYiBUaG9tYXMgWmltbWVybWFubjoNCj4+IEhpDQo+PiBBbSAzMC4xMS4yMCB1bSAy
+MTo1OSBzY2hyaWViIFphY2sgUnVzaW46DQo+Pj4gDQo+Pj4gDQo+Pj4+IE9uIE5vdiAyNCwgMjAy
+MCwgYXQgMDY6MzgsIFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPiB3cm90
+ZToNCj4+Pj4gDQo+Pj4+IFVzaW5nIHN0cnVjdCBkcm1fZGV2aWNlLnBkZXYgaXMgZGVwcmVjYXRl
+ZC4gQ29udmVydCB2bXdnZnggdG8gc3RydWN0DQo+Pj4+IGRybV9kZXZpY2UuZGV2LiBObyBmdW5j
+dGlvbmFsIGNoYW5nZXMuDQo+Pj4+IA0KPj4+PiBTaWduZWQtb2ZmLWJ5OiBUaG9tYXMgWmltbWVy
+bWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4NCj4+Pj4gQ2M6IFJvbGFuZCBTY2hlaWRlZ2dlciA8
+c3JvbGFuZEB2bXdhcmUuY29tPg0KPj4+PiAtLS0NCj4+Pj4gZHJpdmVycy9ncHUvZHJtL3Ztd2dm
+eC92bXdnZnhfY21kYnVmLmMgfCAgOCArKysrLS0tLQ0KPj4+PiBkcml2ZXJzL2dwdS9kcm0vdm13
+Z2Z4L3Ztd2dmeF9kcnYuYyAgICB8IDI3ICsrKysrKysrKysrKystLS0tLS0tLS0tLS0tDQo+Pj4+
+IGRyaXZlcnMvZ3B1L2RybS92bXdnZngvdm13Z2Z4X2ZiLmMgICAgIHwgIDIgKy0NCj4+PiANCj4+
+PiBSZXZpZXdlZC1ieTogWmFjayBSdXNpbiA8emFja3JAdm13YXJlLmNvbT4NCj4+IENvdWxkIHlv
+dSBhZGQgdGhpcyBwYXRjaCB0byB0aGUgdm13Z2Z4IHRyZWU/DQo+IA0KPiBBTUQgZGV2cyBpbmRp
+Y2F0ZWQgdGhhdCB0aGV5J2QgcHJlZmVyIHRvIG1lcmdlIHRoZSBwYXRjaHNldCB0cm91Z2ggZHJt
+LW1pc2MtbmV4dC4gSWYgeW91J3JlIE9LIHdpdGggdGhhdCwgSSdkIG1lcmdlIHRoZSB2bXdnZngg
+cGF0Y2ggdGhyb3VnaCBkcm0tbWlzYy1uZXh0IGFzIHdlbGwuDQoNClNvdW5kcyBnb29kLiBJ4oCZ
+bGwgbWFrZSBzdXJlIHRvIHJlYmFzZSBvdXIgbGF0ZXN0IHBhdGNoIHNldCBvbiB0b3Agb2YgaXQg
+d2hlbiBpdOKAmXMgaW4uIFRoYW5rcyENCg0KegpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2FtZC1nZngK
