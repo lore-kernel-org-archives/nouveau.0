@@ -1,54 +1,54 @@
-From: Logan Gunthorpe <logang@deltatee.com>
-Subject: Re: [PATCH v3 3/6] mm: support THP migration to device private memory
-Date: Wed, 2 Dec 2020 11:01:06 -0700
-Message-ID: <7229bb21-7bf7-4989-e7cf-210834190693@deltatee.com>
-References: <20201106005147.20113-1-rcampbell@nvidia.com>
- <20201106005147.20113-4-rcampbell@nvidia.com> <20201106080322.GE31341@lst.de>
- <a7b8b90c-09b7-2009-0784-908b61f61ef2@nvidia.com>
- <20201109091415.GC28918@lst.de>
- <bbf1f0df-85f3-5887-050e-beb2aad750f2@nvidia.com>
- <20201202101426.GC7597@lst.de>
+From: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] drm/nouveau: avoid a use-after-free when BO init
+ fails
+Date: Wed,  2 Dec 2020 19:02:20 -0500
+Message-ID: <20201203000220.18238-1-jcline@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20201202101426.GC7597@lst.de>
-Content-Language: en-US
-To: Christoph Hellwig <hch@lst.de>, Ralph Campbell <rcampbell@nvidia.com>
-Cc: linux-mm@kvack.org, nouveau@lists.freedesktop.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>, Jason Gunthorpe <jgg@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Zi Yan <ziy@nvidia.com>, "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>, Yang Shi <yang.shi@linux.alibaba.com>, Ben Skeggs <bskeggs@redhat.com>, Shuah Khan <shuah@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, Dan Williams <dan.j.williams@intel.com>, linux-nvdimm@lists.01.org, linux-fsdevel@vger.kernel.org
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+nouveau_bo_init() is backed by ttm_bo_init() and ferries its return code
+back to the caller. On failures, ttm_bo_init() invokes the provided
+destructor which should de-initialize and free the memory.
 
+Thus, when nouveau_bo_init() returns an error the gem object has already
+been released and the memory freed by nouveau_bo_del_ttm().
 
-On 2020-12-02 3:14 a.m., Christoph Hellwig wrote:>>
-MEMORY_DEVICE_PCI_P2PDMA:
->> Struct pages are created in pci_p2pdma_add_resource() and represent device
->> memory accessible by PCIe bar address space. Memory is allocated with
->> pci_alloc_p2pmem() based on a byte length but the gen_pool_alloc_owner()
->> call will allocate memory in a minimum of PAGE_SIZE units.
->> Reference counting is +1 per *allocation* on the pgmap->ref reference count.
->> Note that this is not +1 per page which is what put_page() expects. So
->> currently, a get_page()/put_page() works OK because the page reference count
->> only goes 1->2 and 2->1. If it went to zero, the pgmap->ref reference count
->> would be incorrect if the allocation size was greater than one page.
->>
->> I see pci_alloc_p2pmem() is called by nvme_alloc_sq_cmds() and
->> pci_p2pmem_alloc_sgl() to create a command queue and a struct scatterlist *.
->> Looks like sg_page(sg) returns the ZONE_DEVICE struct page of the scatterlist.
->> There are a huge number of places sg_page() is called so it is hard to tell
->> whether or not get_page()/put_page() is ever called on MEMORY_DEVICE_PCI_P2PDMA
->> pages.
-> 
-> Nothing should call get_page/put_page on them, as they are not treated
-> as refcountable memory.  More importantly nothing is allowed to keep
-> a reference longer than the time of the I/O.
+Fixes: 019cbd4a4feb ("drm/nouveau: Initialize GEM object before TTM object")
+Cc: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Signed-off-by: Jeremy Cline <jcline-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_gem.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-Yes, right now this is safe, as Christoph notes there are no places
-where these should be got/put.
-
-But eventually we'll need to change how pci_alloc_p2pmem() works to take
-references on the actual pages and allow freeing individual pages,
-similar to what you suggest. This is one of the issues Jason pointed out
-in my last RFC to try to pass these pages through GUP.
-
-Logan
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index 787d05eefd9c..d30157cc7169 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -211,10 +211,8 @@ nouveau_gem_new(struct nouveau_cli *cli, u64 size, int align, uint32_t domain,
+ 	}
+ 
+ 	ret = nouveau_bo_init(nvbo, size, align, domain, NULL, NULL);
+-	if (ret) {
+-		nouveau_bo_ref(NULL, &nvbo);
++	if (ret)
+ 		return ret;
+-	}
+ 
+ 	/* we restrict allowed domains on nv50+ to only the types
+ 	 * that were requested at creation time.  not possibly on
+-- 
+2.28.0
