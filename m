@@ -1,73 +1,108 @@
-From: Zack Rusin <zackr-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 14/15] drm/vmwgfx: Remove references to struct
- drm_device.pdev
-Date: Thu, 3 Dec 2020 03:06:20 +0000
-Message-ID: <96A4A47D-4B6B-4038-B094-DD490B99C698@vmware.com>
-References: <20201124113824.19994-1-tzimmermann@suse.de>
- <20201124113824.19994-15-tzimmermann@suse.de>
- <31E75B1A-AAC0-49E3-985E-2DF5B59CD883@vmware.com>
- <e8102216-edd0-bec3-79af-3925e9668e95@suse.de>
- <d43d06e6-d13c-ef9b-b372-8d30d9494417@suse.de>
- <FBC4840D-C1A8-4492-9E2E-D31E00B8D61A@vmware.com>
- <CAKMK7uFaCVLu9GWR0Jkvf8iXP4RdcG3TmMsLmFVDoERBOk1ZOQ@mail.gmail.com>
+From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Nouveau video --- [ cut here ] ----- crash dump
+ 5.10.0-rc6
+Date: Thu, 3 Dec 2020 15:13:40 +1000
+Message-ID: <CAPM=9tw8jSy-uapN-VY5v_+rm6awGdmMzyy_ArBUoXEPhqk9ZQ@mail.gmail.com>
+References: <5d3e93cb-1a95-589c-71ed-2413932884d5@telusplanet.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKMK7uFaCVLu9GWR0Jkvf8iXP4RdcG3TmMsLmFVDoERBOk1ZOQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Content-Language: en-US
-Content-ID: <BF2D78E3B1C3A44291981436524356FC-HX+pjaQZbrqcE4WynfumptQqCkab/8FMAL8bYrjMMd8@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Cc: "airlied-cv59FeDIM0c@public.gmane.org" <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Roland Scheidegger <sroland-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org" <virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>, "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, "spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "intel-gvt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <intel-gvt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <5d3e93cb-1a95-589c-71ed-2413932884d5-sK6dKysfGH7D0D/r9Z6QQA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: bob <gillb4-sK6dKysfGH7D0D/r9Z6QQA@public.gmane.org>, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-DQoNCj4gT24gRGVjIDIsIDIwMjAsIGF0IDExOjAzLCBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3
-bGwuY2g+IHdyb3RlOg0KPiANCj4gT24gV2VkLCBEZWMgMiwgMjAyMCBhdCA0OjM3IFBNIFphY2sg
-UnVzaW4gPHphY2tyQHZtd2FyZS5jb20+IHdyb3RlOg0KPj4gDQo+PiANCj4+IA0KPj4+IE9uIERl
-YyAyLCAyMDIwLCBhdCAwOToyNywgVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1c2Uu
-ZGU+IHdyb3RlOg0KPj4+IA0KPj4+IEhpDQo+Pj4gDQo+Pj4gQW0gMDIuMTIuMjAgdW0gMDk6MDEg
-c2NocmllYiBUaG9tYXMgWmltbWVybWFubjoNCj4+Pj4gSGkNCj4+Pj4gQW0gMzAuMTEuMjAgdW0g
-MjE6NTkgc2NocmllYiBaYWNrIFJ1c2luOg0KPj4+Pj4gDQo+Pj4+PiANCj4+Pj4+PiBPbiBOb3Yg
-MjQsIDIwMjAsIGF0IDA2OjM4LCBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5k
-ZT4gd3JvdGU6DQo+Pj4+Pj4gDQo+Pj4+Pj4gVXNpbmcgc3RydWN0IGRybV9kZXZpY2UucGRldiBp
-cyBkZXByZWNhdGVkLiBDb252ZXJ0IHZtd2dmeCB0byBzdHJ1Y3QNCj4+Pj4+PiBkcm1fZGV2aWNl
-LmRldi4gTm8gZnVuY3Rpb25hbCBjaGFuZ2VzLg0KPj4+Pj4+IA0KPj4+Pj4+IFNpZ25lZC1vZmYt
-Ynk6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPg0KPj4+Pj4+IENjOiBS
-b2xhbmQgU2NoZWlkZWdnZXIgPHNyb2xhbmRAdm13YXJlLmNvbT4NCj4+Pj4+PiAtLS0NCj4+Pj4+
-PiBkcml2ZXJzL2dwdS9kcm0vdm13Z2Z4L3Ztd2dmeF9jbWRidWYuYyB8ICA4ICsrKystLS0tDQo+
-Pj4+Pj4gZHJpdmVycy9ncHUvZHJtL3Ztd2dmeC92bXdnZnhfZHJ2LmMgICAgfCAyNyArKysrKysr
-KysrKysrLS0tLS0tLS0tLS0tLQ0KPj4+Pj4+IGRyaXZlcnMvZ3B1L2RybS92bXdnZngvdm13Z2Z4
-X2ZiLmMgICAgIHwgIDIgKy0NCj4+Pj4+IA0KPj4+Pj4gUmV2aWV3ZWQtYnk6IFphY2sgUnVzaW4g
-PHphY2tyQHZtd2FyZS5jb20+DQo+Pj4+IENvdWxkIHlvdSBhZGQgdGhpcyBwYXRjaCB0byB0aGUg
-dm13Z2Z4IHRyZWU/DQo+Pj4gDQo+Pj4gQU1EIGRldnMgaW5kaWNhdGVkIHRoYXQgdGhleSdkIHBy
-ZWZlciB0byBtZXJnZSB0aGUgcGF0Y2hzZXQgdHJvdWdoIGRybS1taXNjLW5leHQuIElmIHlvdSdy
-ZSBPSyB3aXRoIHRoYXQsIEknZCBtZXJnZSB0aGUgdm13Z2Z4IHBhdGNoIHRocm91Z2ggZHJtLW1p
-c2MtbmV4dCBhcyB3ZWxsLg0KPj4gDQo+PiBTb3VuZHMgZ29vZC4gSeKAmWxsIG1ha2Ugc3VyZSB0
-byByZWJhc2Ugb3VyIGxhdGVzdCBwYXRjaCBzZXQgb24gdG9wIG9mIGl0IHdoZW4gaXTigJlzIGlu
-LiBUaGFua3MhDQo+IA0KPiBidHcgaWYgeW91IHdhbnQgdG8gYXZvaWQgbXVsdGktdHJlZSBjb29y
-ZGluYXRpb24gaGVhZGFjaGVzLCB3ZSBjYW4NCj4gYWxzbyBtYW5hZ2Ugdm13Z2Z4IGluIGRybS1t
-aXNjIGFuZCBnaXZlIHlvdSAmIFJvbGFuZCBjb21taXQgcmlnaHRzDQo+IHRoZXJlLiBVcCB0byB5
-b3UuIFRoZXJlIGlzIHNvbWUgc2NyaXB0aW5nIGludm9sdmVkIGZvciBub3cgKGJ1dCBJIGhvcGUN
-Cj4gd2hlbmV2ZXIgd2UgbW92ZSB0byBnaXRsYWIgd2UgY291bGQgZG8gdGhlIGNoZWNrcyBzZXJ2
-ZXItc2lkZSk6DQoNCknigJlkIGJlIGhhcHB5IHRvIHRha2UgeW91IHVwIG9uIHRoYXQuIEkgd291
-bGQgbGlrZSB0byBtb3ZlIGEgbG90IG1vcmUgb2Ygb3VyIGRldmVsb3BtZW50IGludG8gcHVibGlj
-IHJlcG9zIGFuZCByZWR1Y2luZyB0aGUgYnVyZGVuIG9mIG1haW50YWluaW5nIG11bHRpcGxlIHRy
-ZWVzIHdvdWxkIGhlbHAuIElzIHRoZXJlIGEgbG90IG9mIGNoYW5nZXMgdG8gZHJtIGNvcmUgdGhh
-dCBkb2VzbuKAmXQgZ28gdGhyb3VnaCBkcm0tbWlzYz8gT3IgYWx0ZXJuYXRpdmVseSBpcyBkcm0t
-bWlzYyBvZnRlbiBwdWxsaW5nIGZyb20gTGludXPigJkgbWFzdGVyPyBJ4oCZbSB0cnlpbmcgdG8g
-ZmlndXJlIG91dCBob3cgbXVjaCB3b3VsZCBvdXIgbmVlZCB0byByZWJhc2UvbWVyZ2UgYmUgcmVk
-dWNlZCBpZiB3ZSBqdXN0IHVzZWQgZHJtLW1pc2MtbmV4dC9kcm0tbWlzYy1maXhlcyBiZWNhdXNl
-IHRoYXQgd291bGQgYWxzbyBhbGxvdyBtZSB0byBwb2ludCBzb21lIGludGVybmFsIHRlc3Rpbmcg
-aW5mcmFzdHJ1Y3R1cmUgYXQgaXQgYXMgd2VsbC4NCg0KegpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2FtZC1nZngK
+cc'ing Ben + nouveau
+
+On Thu, 3 Dec 2020 at 14:59, bob <gillb4-sK6dKysfGH7D0D/r9Z6QQA@public.gmane.org> wrote:
+>
+> Hello.  I have a crash dump for:
+>
+> $ uname -a
+> Linux freedom 5.10.0-rc6 #1 SMP Sun Nov 29 17:26:13 MST 2020 x86_64
+> x86_64 x86_64 GNU/Linux
+>
+> Occasionally when this dumps it likes to lock up the computer, but I
+> caught it this time.
+>
+> Also video likes to flicker a lot.   Nouveau has been iffy since kernel
+> 5.8.0.
+>
+> This isn't the only dump, it dumped probably 50 times.  If you are
+> really desperate for all of it,
+>
+> reply to me directly as I'm not on the mailing list.  Here is one of them.
+>
+> [39019.426580] ------------[ cut here ]------------
+> [39019.426589] WARNING: CPU: 6 PID: 14136 at
+> drivers/gpu/drm/nouveau/dispnv50/disp.c:211 nv50_dmac_wait+0x1e1/0x230
+> [39019.426590] Modules linked in: mt2131 s5h1409 fuse tda8290 tuner
+> cx25840 rt2800usb rt2x00usb rt2800lib snd_hda_codec_analog
+> snd_hda_codec_generic ledtrig_audio rt2x00lib binfmt_misc
+> intel_powerclamp coretemp cx23885 mac80211 tda18271 altera_stapl
+> videobuf2_dvb m88ds3103 tveeprom cx2341x dvb_core rc_core i2c_mux
+> snd_hda_codec_hdmi videobuf2_dma_sg videobuf2_memops videobuf2_v4l2
+> snd_hda_intel videobuf2_common snd_intel_dspcfg kvm_intel snd_hda_codec
+> videodev snd_hda_core kvm mc snd_hwdep snd_pcm_oss snd_mixer_oss
+> irqbypass snd_pcm cfg80211 snd_seq_dummy snd_seq_midi snd_seq_oss
+> snd_seq_midi_event snd_rawmidi snd_seq intel_cstate snd_seq_device
+> serio_raw snd_timer input_leds nfsd libarc4 snd asus_atk0110 i7core_edac
+> soundcore i5500_temp auth_rpcgss nfs_acl lockd grace sch_fq_codel sunrpc
+> parport_pc ppdev lp parport ip_tables x_tables btrfs blake2b_generic
+> libcrc32c xor zstd_compress raid6_pq dm_mirror dm_region_hash dm_log
+> pata_acpi pata_marvell hid_generic usbhid hid psmouse firewire_ohci
+> [39019.426650]  firewire_core crc_itu_t i2c_i801 ahci sky2 libahci
+> i2c_smbus lpc_ich
+> [39019.426658] CPU: 6 PID: 14136 Comm: kworker/u16:0 Tainted: G        W
+> I       5.10.0-rc6 #1
+> [39019.426659] Hardware name: System manufacturer System Product
+> Name/P6T DELUXE, BIOS 2209    09/21/2010
+> [39019.426662] Workqueue: events_unbound nv50_disp_atomic_commit_work
+> [39019.426665] RIP: 0010:nv50_dmac_wait+0x1e1/0x230
+> [39019.426667] Code: 8d 48 04 48 89 4a 68 c7 00 00 00 00 20 49 8b 46 38
+> 41 c7 86 20 01 00 00 00 00 00 00 49 89 46 68 e8 e4 fc ff ff e9 76 fe ff
+> ff <0f> 0b b8 92 ff ff ff e9 ed fe ff ff 49 8b be 80 00 00 00 e8 c7 fc
+> [39019.426668] RSP: 0018:ffffb79d028ebd48 EFLAGS: 00010282
+> [39019.426670] RAX: ffffffffffffff92 RBX: 000000000000000d RCX:
+> 0000000000000000
+> [39019.426671] RDX: ffffffffffffff92 RSI: ffffb79d028ebc88 RDI:
+> ffffb79d028ebd28
+> [39019.426671] RBP: ffffb79d028ebd48 R08: 0000000000000000 R09:
+> ffffb79d028ebc58
+> [39019.426672] R10: 0000000000000030 R11: 00000000000011c4 R12:
+> 00000000fffffffb
+> [39019.426673] R13: ffffa05fc1ebd368 R14: ffffa05fc1ebd3a8 R15:
+> ffffa05fc2425000
+> [39019.426675] FS:  0000000000000000(0000) GS:ffffa061f3d80000(0000)
+> knlGS:0000000000000000
+> [39019.426676] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [39019.426677] CR2: 00007fb2d58e0000 CR3: 000000026280a000 CR4:
+> 00000000000006e0
+> [39019.426678] Call Trace:
+> [39019.426685]  base827c_image_set+0x2f/0x1d0
+> [39019.426687]  nv50_wndw_flush_set+0x89/0x1c0
+> [39019.426688]  nv50_disp_atomic_commit_tail+0x4e7/0x7e0
+> [39019.426693]  process_one_work+0x1d4/0x370
+> [39019.426695]  worker_thread+0x4a/0x3b0
+> [39019.426697]  ? process_one_work+0x370/0x370
+> [39019.426699]  kthread+0xfe/0x140
+> [39019.426701]  ? kthread_park+0x90/0x90
+> [39019.426704]  ret_from_fork+0x22/0x30
+> [39019.426706] ---[ end trace d512d675211c738c ]---
+> [39021.426751] ------------[ cut here ]------------
+>
+>
+> Thanks in advance,
+>
+> Bob
+>
