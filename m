@@ -1,44 +1,98 @@
-From: Klaus Ebbe Grue <grue-okVzrDOvQGk@public.gmane.org>
-Subject: Re: Could Fedora-5.9.9/X-server problem be a
- Nouveau-problem?
-Date: Thu, 3 Dec 2020 16:03:08 +0000
-Message-ID: <20e4ed0a13c34dd0b3dfa41924a40fc0@di.ku.dk>
-References: <f827ab7dd91e4b1684dd818bd541272d@di.ku.dk>,
- <CAKb7UvjiRApxVzxT=9Y26uXWB3zDMf8Nvi+eHfE0yJUMAfGLog@mail.gmail.com>,
- <45fcac9dfcd54c20873427cc5042aeb4@di.ku.dk>
+From: Zack Rusin <zackr@vmware.com>
+Subject: Re: [PATCH 14/15] drm/vmwgfx: Remove references to
+ struct drm_device.pdev
+Date: Fri, 4 Dec 2020 05:06:06 +0000
+Message-ID: <C6EE783E-18E4-477F-ABF7-3243DED61A85@vmware.com>
+References: <20201124113824.19994-1-tzimmermann@suse.de>
+ <20201124113824.19994-15-tzimmermann@suse.de>
+ <31E75B1A-AAC0-49E3-985E-2DF5B59CD883@vmware.com>
+ <e8102216-edd0-bec3-79af-3925e9668e95@suse.de>
+ <d43d06e6-d13c-ef9b-b372-8d30d9494417@suse.de>
+ <FBC4840D-C1A8-4492-9E2E-D31E00B8D61A@vmware.com>
+ <CAKMK7uFaCVLu9GWR0Jkvf8iXP4RdcG3TmMsLmFVDoERBOk1ZOQ@mail.gmail.com>
+ <96A4A47D-4B6B-4038-B094-DD490B99C698@vmware.com>
+ <20201203151221.GA401619@phenom.ffwll.local>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <45fcac9dfcd54c20873427cc5042aeb4-okVzrDOvQGk@public.gmane.org>
-Content-Language: da-DK
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20201203151221.GA401619@phenom.ffwll.local>
+Content-Language: en-US
+Content-ID: <637CB26065A3354A8B6C250191B94762@namprd05.prod.outlook.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: "airlied@linux.ie" <airlied@linux.ie>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, Roland Scheidegger <sroland@vmware.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "virtualization@lists.linux-foundation.org" <virtualization@lists.linux-foundation.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, Thomas Zimmermann <tzimmermann@suse.de>, "spice-devel@lists.freedesktop.org" <spice-devel@lists.freedesktop.org>, "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi Ilia,
-
-Just to follow up:
-
-I can work around the problem using this file:
-
-> cat /etc/X11/xorg.conf.d/90-monitor.conf
-Section "Monitor"
-        Identifier "DP-1"
-        Modeline "3840x2160" 533.25 3840 3888 3920 4000 2160 2163 2168 2222 +hsync -vsync
-        Option "PreferredMode" "3840x2160"
-EndSection
-
-So it seems that everything works except detection of the monitor.
-
-Cheers,
-Klaus
+DQoNCj4gT24gRGVjIDMsIDIwMjAsIGF0IDEwOjEyLCBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3
+bGwuY2g+IHdyb3RlOg0KPiANCj4gT24gVGh1LCBEZWMgMDMsIDIwMjAgYXQgMDM6MDY6MjBBTSAr
+MDAwMCwgWmFjayBSdXNpbiB3cm90ZToNCj4+IA0KPj4gDQo+Pj4gT24gRGVjIDIsIDIwMjAsIGF0
+IDExOjAzLCBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3bGwuY2g+IHdyb3RlOg0KPj4+IA0KPj4+
+IE9uIFdlZCwgRGVjIDIsIDIwMjAgYXQgNDozNyBQTSBaYWNrIFJ1c2luIDx6YWNrckB2bXdhcmUu
+Y29tPiB3cm90ZToNCj4+Pj4gDQo+Pj4+IA0KPj4+PiANCj4+Pj4+IE9uIERlYyAyLCAyMDIwLCBh
+dCAwOToyNywgVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+IHdyb3RlOg0K
+Pj4+Pj4gDQo+Pj4+PiBIaQ0KPj4+Pj4gDQo+Pj4+PiBBbSAwMi4xMi4yMCB1bSAwOTowMSBzY2hy
+aWViIFRob21hcyBaaW1tZXJtYW5uOg0KPj4+Pj4+IEhpDQo+Pj4+Pj4gQW0gMzAuMTEuMjAgdW0g
+MjE6NTkgc2NocmllYiBaYWNrIFJ1c2luOg0KPj4+Pj4+PiANCj4+Pj4+Pj4gDQo+Pj4+Pj4+PiBP
+biBOb3YgMjQsIDIwMjAsIGF0IDA2OjM4LCBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5A
+c3VzZS5kZT4gd3JvdGU6DQo+Pj4+Pj4+PiANCj4+Pj4+Pj4+IFVzaW5nIHN0cnVjdCBkcm1fZGV2
+aWNlLnBkZXYgaXMgZGVwcmVjYXRlZC4gQ29udmVydCB2bXdnZnggdG8gc3RydWN0DQo+Pj4+Pj4+
+PiBkcm1fZGV2aWNlLmRldi4gTm8gZnVuY3Rpb25hbCBjaGFuZ2VzLg0KPj4+Pj4+Pj4gDQo+Pj4+
+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5k
+ZT4NCj4+Pj4+Pj4+IENjOiBSb2xhbmQgU2NoZWlkZWdnZXIgPHNyb2xhbmRAdm13YXJlLmNvbT4N
+Cj4+Pj4+Pj4+IC0tLQ0KPj4+Pj4+Pj4gZHJpdmVycy9ncHUvZHJtL3Ztd2dmeC92bXdnZnhfY21k
+YnVmLmMgfCAgOCArKysrLS0tLQ0KPj4+Pj4+Pj4gZHJpdmVycy9ncHUvZHJtL3Ztd2dmeC92bXdn
+ZnhfZHJ2LmMgICAgfCAyNyArKysrKysrKysrKysrLS0tLS0tLS0tLS0tLQ0KPj4+Pj4+Pj4gZHJp
+dmVycy9ncHUvZHJtL3Ztd2dmeC92bXdnZnhfZmIuYyAgICAgfCAgMiArLQ0KPj4+Pj4+PiANCj4+
+Pj4+Pj4gUmV2aWV3ZWQtYnk6IFphY2sgUnVzaW4gPHphY2tyQHZtd2FyZS5jb20+DQo+Pj4+Pj4g
+Q291bGQgeW91IGFkZCB0aGlzIHBhdGNoIHRvIHRoZSB2bXdnZnggdHJlZT8NCj4+Pj4+IA0KPj4+
+Pj4gQU1EIGRldnMgaW5kaWNhdGVkIHRoYXQgdGhleSdkIHByZWZlciB0byBtZXJnZSB0aGUgcGF0
+Y2hzZXQgdHJvdWdoIGRybS1taXNjLW5leHQuIElmIHlvdSdyZSBPSyB3aXRoIHRoYXQsIEknZCBt
+ZXJnZSB0aGUgdm13Z2Z4IHBhdGNoIHRocm91Z2ggZHJtLW1pc2MtbmV4dCBhcyB3ZWxsLg0KPj4+
+PiANCj4+Pj4gU291bmRzIGdvb2QuIEnigJlsbCBtYWtlIHN1cmUgdG8gcmViYXNlIG91ciBsYXRl
+c3QgcGF0Y2ggc2V0IG9uIHRvcCBvZiBpdCB3aGVuIGl04oCZcyBpbi4gVGhhbmtzIQ0KPj4+IA0K
+Pj4+IGJ0dyBpZiB5b3Ugd2FudCB0byBhdm9pZCBtdWx0aS10cmVlIGNvb3JkaW5hdGlvbiBoZWFk
+YWNoZXMsIHdlIGNhbg0KPj4+IGFsc28gbWFuYWdlIHZtd2dmeCBpbiBkcm0tbWlzYyBhbmQgZ2l2
+ZSB5b3UgJiBSb2xhbmQgY29tbWl0IHJpZ2h0cw0KPj4+IHRoZXJlLiBVcCB0byB5b3UuIFRoZXJl
+IGlzIHNvbWUgc2NyaXB0aW5nIGludm9sdmVkIGZvciBub3cgKGJ1dCBJIGhvcGUNCj4+PiB3aGVu
+ZXZlciB3ZSBtb3ZlIHRvIGdpdGxhYiB3ZSBjb3VsZCBkbyB0aGUgY2hlY2tzIHNlcnZlci1zaWRl
+KToNCj4+IA0KPj4gSeKAmWQgYmUgaGFwcHkgdG8gdGFrZSB5b3UgdXAgb24gdGhhdC4gSSB3b3Vs
+ZCBsaWtlIHRvIG1vdmUgYSBsb3QgbW9yZSBvZg0KPj4gb3VyIGRldmVsb3BtZW50IGludG8gcHVi
+bGljIHJlcG9zIGFuZCByZWR1Y2luZyB0aGUgYnVyZGVuIG9mIG1haW50YWluaW5nDQo+PiBtdWx0
+aXBsZSB0cmVlcyB3b3VsZCBoZWxwLiBJcyB0aGVyZSBhIGxvdCBvZiBjaGFuZ2VzIHRvIGRybSBj
+b3JlIHRoYXQNCj4+IGRvZXNu4oCZdCBnbyB0aHJvdWdoIGRybS1taXNjPyBPciBhbHRlcm5hdGl2
+ZWx5IGlzIGRybS1taXNjIG9mdGVuIHB1bGxpbmcNCj4+IGZyb20gTGludXPigJkgbWFzdGVyPyBJ
+4oCZbSB0cnlpbmcgdG8gZmlndXJlIG91dCBob3cgbXVjaCB3b3VsZCBvdXIgbmVlZCB0bw0KPj4g
+cmViYXNlL21lcmdlIGJlIHJlZHVjZWQgaWYgd2UganVzdCB1c2VkIGRybS1taXNjLW5leHQvZHJt
+LW1pc2MtZml4ZXMNCj4+IGJlY2F1c2UgdGhhdCB3b3VsZCBhbHNvIGFsbG93IG1lIHRvIHBvaW50
+IHNvbWUgaW50ZXJuYWwgdGVzdGluZw0KPj4gaW5mcmFzdHJ1Y3R1cmUgYXQgaXQgYXMgd2VsbC4N
+Cj4gDQo+IEkgdGhpbmsgbm93YWRheXMgcHJldHR5IG11Y2ggYWxsIHRoZSBjcm9zcy1kcml2ZXIg
+d29yayBsYW5kcyB0aHJvdWdoDQo+IGRybS1taXNjLiBFeGNlcHRpb24gaXMganVzdCBuZXcgc3R1
+ZmYgdGhhdCdzIG9ubHkgdXNlZCBieSBhIHNpbmdsZSBkcml2ZXIuDQo+IA0KPiBGb3IgdGVzdGlu
+ZyB0aGVyZSdzIGFsc28gZHJtLXRpcCwgd2hpY2ggdHJpZXMgdG8gcHVsbCBpdCBhbGwgdG9nZXRo
+ZXIgKGJ1dA0KPiB5b3UgbWlnaHQgc3RpbGwgd2FudCB0byBwb2ludCB5b3VyIENJIGF0IGJyYW5j
+aGVzKS4NCj4gDQo+IEFsc28gbm90ZSB0aGF0IGRybS1taXNjLW5leHQgZG9lc24ndCBoYXZlIGEg
+bWVyZ2Ugd2luZG93IGZyZWV6ZSBwZXJpb2QNCj4gKHdpdGggaGF2ZSB0aGUgZHJtLW1pc2MtbmV4
+dC1maXhlcyBicmFuY2ggZHVyaW5nIHRoYXQgdGltZSBmb3IgbWVyZ2UNCj4gd2luZG93IGZpeGVz
+KSwgc28geW91IGNhbiB0cmVhdCBpdCBsaWtlIGEgbWFpbiBkZXZlbG9wbWVudCBicmFuY2ggbGlr
+ZQ0KPiBlLmcuIGluIG1lc2EsIHdpdGggdGhlIC1maXhlcyBicmFuY2hlcyBhcyB0aGUgcmVsZWFz
+ZSBicmFuY2hlcy4gT25seQ0KPiBkaWZmZXJlbmNlIGlzIHRoYXQgd2UgZG9uJ3QgY2hlcnJ5IHBp
+Y2sgcGF0Y2hlcyBmcm9tIHRoZSBtYWluIGJyYW5jaCB0bw0KPiB0aGUgcmVsZWFzZSBicmFuY2hl
+cyAoYXQgbGVhc3Qgbm90IGFzIHRoZSBub3JtYWwgZmxvdykuDQo+IA0KPiBJZiB5b3UgZG8gbmVl
+ZCBhIGJhY2ttZXJnZSBmb3IgcGF0Y2hlcyBmcm9tIExpbnVzIHRvIGRybS1taXNjLW5leHQgYmVj
+YXVzZQ0KPiBvZiBzb21lIGZlYXR1cmUgd29yayAob3IgY29uZmxpY3RzIHdpdGggb3RoZXIgc3R1
+ZmYgaW4gZ2VuZXJhbCkgZHJtLW1pc2MNCj4gbWFpbnRhaW5lcnMgZG8gdGhhdC4gVXN1YWxseSBo
+YXBwZW5zIGV2ZXJ5IGZldyB3ZWVrcy4NCg0KUGVyZmVjdCwgdGhhbmtzIGEgbG90ISBUaGlzIGhh
+cyBiZWVuIHNvbWV0aGluZyBJIHdhbnRlZCBvdXIgZHJpdmVyIHRvIGRvIGZvciBhIHdoaWxlLCBJ
+4oCZbGwgZ28gYWhlYWQgYW5kIHN3aXRjaCBvdXIgaW50ZXJuYWwgZGV2IHRvIGRybS1taXNjLg0K
+DQp6DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
+dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
