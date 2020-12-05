@@ -1,98 +1,56 @@
-From: Zack Rusin <zackr@vmware.com>
-Subject: Re: [PATCH 14/15] drm/vmwgfx: Remove references to
- struct drm_device.pdev
-Date: Fri, 4 Dec 2020 05:06:06 +0000
-Message-ID: <C6EE783E-18E4-477F-ABF7-3243DED61A85@vmware.com>
-References: <20201124113824.19994-1-tzimmermann@suse.de>
- <20201124113824.19994-15-tzimmermann@suse.de>
- <31E75B1A-AAC0-49E3-985E-2DF5B59CD883@vmware.com>
- <e8102216-edd0-bec3-79af-3925e9668e95@suse.de>
- <d43d06e6-d13c-ef9b-b372-8d30d9494417@suse.de>
- <FBC4840D-C1A8-4492-9E2E-D31E00B8D61A@vmware.com>
- <CAKMK7uFaCVLu9GWR0Jkvf8iXP4RdcG3TmMsLmFVDoERBOk1ZOQ@mail.gmail.com>
- <96A4A47D-4B6B-4038-B094-DD490B99C698@vmware.com>
- <20201203151221.GA401619@phenom.ffwll.local>
+From: Roger Pau =?utf-8?B?TW9ubsOp?= <roger.pau@citrix.com>
+Subject: Re: [PATCH v3 3/6] mm: support THP migration to device private memory
+Date: Sat, 5 Dec 2020 09:22:59 +0100
+Message-ID: <20201205082259.l7fdwfxdvi5xn3kz@Air-de-Roger>
+References: <20201106005147.20113-1-rcampbell@nvidia.com>
+ <20201106005147.20113-4-rcampbell@nvidia.com> <20201106080322.GE31341@lst.de>
+ <a7b8b90c-09b7-2009-0784-908b61f61ef2@nvidia.com>
+ <20201109091415.GC28918@lst.de>
+ <bbf1f0df-85f3-5887-050e-beb2aad750f2@nvidia.com>
+ <20201120200133.GH917484@nvidia.com> <20201202100854.GB7597@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <20201203151221.GA401619@phenom.ffwll.local>
-Content-Language: en-US
-Content-ID: <637CB26065A3354A8B6C250191B94762@namprd05.prod.outlook.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: "airlied@linux.ie" <airlied@linux.ie>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, Roland Scheidegger <sroland@vmware.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "virtualization@lists.linux-foundation.org" <virtualization@lists.linux-foundation.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, Thomas Zimmermann <tzimmermann@suse.de>, "spice-devel@lists.freedesktop.org" <spice-devel@lists.freedesktop.org>, "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
+Content-Type: text/plain; charset=utf-8
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20201202100854.GB7597@lst.de>
+To: Christoph Hellwig <hch@lst.de>
+Cc: Jason Gunthorpe <jgg@nvidia.com>, Ralph Campbell <rcampbell@nvidia.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, Jerome Glisse <jglisse@redhat.com>, John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Zi Yan <ziy@nvidia.com>, "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>, Yang Shi <yang.shi@linux.alibaba.com>, Ben Skeggs <bskeggs@redhat.com>, Shuah Khan <shuah@kernel.org>, Andrew Morton <akpm@linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
-DQoNCj4gT24gRGVjIDMsIDIwMjAsIGF0IDEwOjEyLCBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3
-bGwuY2g+IHdyb3RlOg0KPiANCj4gT24gVGh1LCBEZWMgMDMsIDIwMjAgYXQgMDM6MDY6MjBBTSAr
-MDAwMCwgWmFjayBSdXNpbiB3cm90ZToNCj4+IA0KPj4gDQo+Pj4gT24gRGVjIDIsIDIwMjAsIGF0
-IDExOjAzLCBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3bGwuY2g+IHdyb3RlOg0KPj4+IA0KPj4+
-IE9uIFdlZCwgRGVjIDIsIDIwMjAgYXQgNDozNyBQTSBaYWNrIFJ1c2luIDx6YWNrckB2bXdhcmUu
-Y29tPiB3cm90ZToNCj4+Pj4gDQo+Pj4+IA0KPj4+PiANCj4+Pj4+IE9uIERlYyAyLCAyMDIwLCBh
-dCAwOToyNywgVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+IHdyb3RlOg0K
-Pj4+Pj4gDQo+Pj4+PiBIaQ0KPj4+Pj4gDQo+Pj4+PiBBbSAwMi4xMi4yMCB1bSAwOTowMSBzY2hy
-aWViIFRob21hcyBaaW1tZXJtYW5uOg0KPj4+Pj4+IEhpDQo+Pj4+Pj4gQW0gMzAuMTEuMjAgdW0g
-MjE6NTkgc2NocmllYiBaYWNrIFJ1c2luOg0KPj4+Pj4+PiANCj4+Pj4+Pj4gDQo+Pj4+Pj4+PiBP
-biBOb3YgMjQsIDIwMjAsIGF0IDA2OjM4LCBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5A
-c3VzZS5kZT4gd3JvdGU6DQo+Pj4+Pj4+PiANCj4+Pj4+Pj4+IFVzaW5nIHN0cnVjdCBkcm1fZGV2
-aWNlLnBkZXYgaXMgZGVwcmVjYXRlZC4gQ29udmVydCB2bXdnZnggdG8gc3RydWN0DQo+Pj4+Pj4+
-PiBkcm1fZGV2aWNlLmRldi4gTm8gZnVuY3Rpb25hbCBjaGFuZ2VzLg0KPj4+Pj4+Pj4gDQo+Pj4+
-Pj4+PiBTaWduZWQtb2ZmLWJ5OiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5k
-ZT4NCj4+Pj4+Pj4+IENjOiBSb2xhbmQgU2NoZWlkZWdnZXIgPHNyb2xhbmRAdm13YXJlLmNvbT4N
-Cj4+Pj4+Pj4+IC0tLQ0KPj4+Pj4+Pj4gZHJpdmVycy9ncHUvZHJtL3Ztd2dmeC92bXdnZnhfY21k
-YnVmLmMgfCAgOCArKysrLS0tLQ0KPj4+Pj4+Pj4gZHJpdmVycy9ncHUvZHJtL3Ztd2dmeC92bXdn
-ZnhfZHJ2LmMgICAgfCAyNyArKysrKysrKysrKysrLS0tLS0tLS0tLS0tLQ0KPj4+Pj4+Pj4gZHJp
-dmVycy9ncHUvZHJtL3Ztd2dmeC92bXdnZnhfZmIuYyAgICAgfCAgMiArLQ0KPj4+Pj4+PiANCj4+
-Pj4+Pj4gUmV2aWV3ZWQtYnk6IFphY2sgUnVzaW4gPHphY2tyQHZtd2FyZS5jb20+DQo+Pj4+Pj4g
-Q291bGQgeW91IGFkZCB0aGlzIHBhdGNoIHRvIHRoZSB2bXdnZnggdHJlZT8NCj4+Pj4+IA0KPj4+
-Pj4gQU1EIGRldnMgaW5kaWNhdGVkIHRoYXQgdGhleSdkIHByZWZlciB0byBtZXJnZSB0aGUgcGF0
-Y2hzZXQgdHJvdWdoIGRybS1taXNjLW5leHQuIElmIHlvdSdyZSBPSyB3aXRoIHRoYXQsIEknZCBt
-ZXJnZSB0aGUgdm13Z2Z4IHBhdGNoIHRocm91Z2ggZHJtLW1pc2MtbmV4dCBhcyB3ZWxsLg0KPj4+
-PiANCj4+Pj4gU291bmRzIGdvb2QuIEnigJlsbCBtYWtlIHN1cmUgdG8gcmViYXNlIG91ciBsYXRl
-c3QgcGF0Y2ggc2V0IG9uIHRvcCBvZiBpdCB3aGVuIGl04oCZcyBpbi4gVGhhbmtzIQ0KPj4+IA0K
-Pj4+IGJ0dyBpZiB5b3Ugd2FudCB0byBhdm9pZCBtdWx0aS10cmVlIGNvb3JkaW5hdGlvbiBoZWFk
-YWNoZXMsIHdlIGNhbg0KPj4+IGFsc28gbWFuYWdlIHZtd2dmeCBpbiBkcm0tbWlzYyBhbmQgZ2l2
-ZSB5b3UgJiBSb2xhbmQgY29tbWl0IHJpZ2h0cw0KPj4+IHRoZXJlLiBVcCB0byB5b3UuIFRoZXJl
-IGlzIHNvbWUgc2NyaXB0aW5nIGludm9sdmVkIGZvciBub3cgKGJ1dCBJIGhvcGUNCj4+PiB3aGVu
-ZXZlciB3ZSBtb3ZlIHRvIGdpdGxhYiB3ZSBjb3VsZCBkbyB0aGUgY2hlY2tzIHNlcnZlci1zaWRl
-KToNCj4+IA0KPj4gSeKAmWQgYmUgaGFwcHkgdG8gdGFrZSB5b3UgdXAgb24gdGhhdC4gSSB3b3Vs
-ZCBsaWtlIHRvIG1vdmUgYSBsb3QgbW9yZSBvZg0KPj4gb3VyIGRldmVsb3BtZW50IGludG8gcHVi
-bGljIHJlcG9zIGFuZCByZWR1Y2luZyB0aGUgYnVyZGVuIG9mIG1haW50YWluaW5nDQo+PiBtdWx0
-aXBsZSB0cmVlcyB3b3VsZCBoZWxwLiBJcyB0aGVyZSBhIGxvdCBvZiBjaGFuZ2VzIHRvIGRybSBj
-b3JlIHRoYXQNCj4+IGRvZXNu4oCZdCBnbyB0aHJvdWdoIGRybS1taXNjPyBPciBhbHRlcm5hdGl2
-ZWx5IGlzIGRybS1taXNjIG9mdGVuIHB1bGxpbmcNCj4+IGZyb20gTGludXPigJkgbWFzdGVyPyBJ
-4oCZbSB0cnlpbmcgdG8gZmlndXJlIG91dCBob3cgbXVjaCB3b3VsZCBvdXIgbmVlZCB0bw0KPj4g
-cmViYXNlL21lcmdlIGJlIHJlZHVjZWQgaWYgd2UganVzdCB1c2VkIGRybS1taXNjLW5leHQvZHJt
-LW1pc2MtZml4ZXMNCj4+IGJlY2F1c2UgdGhhdCB3b3VsZCBhbHNvIGFsbG93IG1lIHRvIHBvaW50
-IHNvbWUgaW50ZXJuYWwgdGVzdGluZw0KPj4gaW5mcmFzdHJ1Y3R1cmUgYXQgaXQgYXMgd2VsbC4N
-Cj4gDQo+IEkgdGhpbmsgbm93YWRheXMgcHJldHR5IG11Y2ggYWxsIHRoZSBjcm9zcy1kcml2ZXIg
-d29yayBsYW5kcyB0aHJvdWdoDQo+IGRybS1taXNjLiBFeGNlcHRpb24gaXMganVzdCBuZXcgc3R1
-ZmYgdGhhdCdzIG9ubHkgdXNlZCBieSBhIHNpbmdsZSBkcml2ZXIuDQo+IA0KPiBGb3IgdGVzdGlu
-ZyB0aGVyZSdzIGFsc28gZHJtLXRpcCwgd2hpY2ggdHJpZXMgdG8gcHVsbCBpdCBhbGwgdG9nZXRo
-ZXIgKGJ1dA0KPiB5b3UgbWlnaHQgc3RpbGwgd2FudCB0byBwb2ludCB5b3VyIENJIGF0IGJyYW5j
-aGVzKS4NCj4gDQo+IEFsc28gbm90ZSB0aGF0IGRybS1taXNjLW5leHQgZG9lc24ndCBoYXZlIGEg
-bWVyZ2Ugd2luZG93IGZyZWV6ZSBwZXJpb2QNCj4gKHdpdGggaGF2ZSB0aGUgZHJtLW1pc2MtbmV4
-dC1maXhlcyBicmFuY2ggZHVyaW5nIHRoYXQgdGltZSBmb3IgbWVyZ2UNCj4gd2luZG93IGZpeGVz
-KSwgc28geW91IGNhbiB0cmVhdCBpdCBsaWtlIGEgbWFpbiBkZXZlbG9wbWVudCBicmFuY2ggbGlr
-ZQ0KPiBlLmcuIGluIG1lc2EsIHdpdGggdGhlIC1maXhlcyBicmFuY2hlcyBhcyB0aGUgcmVsZWFz
-ZSBicmFuY2hlcy4gT25seQ0KPiBkaWZmZXJlbmNlIGlzIHRoYXQgd2UgZG9uJ3QgY2hlcnJ5IHBp
-Y2sgcGF0Y2hlcyBmcm9tIHRoZSBtYWluIGJyYW5jaCB0bw0KPiB0aGUgcmVsZWFzZSBicmFuY2hl
-cyAoYXQgbGVhc3Qgbm90IGFzIHRoZSBub3JtYWwgZmxvdykuDQo+IA0KPiBJZiB5b3UgZG8gbmVl
-ZCBhIGJhY2ttZXJnZSBmb3IgcGF0Y2hlcyBmcm9tIExpbnVzIHRvIGRybS1taXNjLW5leHQgYmVj
-YXVzZQ0KPiBvZiBzb21lIGZlYXR1cmUgd29yayAob3IgY29uZmxpY3RzIHdpdGggb3RoZXIgc3R1
-ZmYgaW4gZ2VuZXJhbCkgZHJtLW1pc2MNCj4gbWFpbnRhaW5lcnMgZG8gdGhhdC4gVXN1YWxseSBo
-YXBwZW5zIGV2ZXJ5IGZldyB3ZWVrcy4NCg0KUGVyZmVjdCwgdGhhbmtzIGEgbG90ISBUaGlzIGhh
-cyBiZWVuIHNvbWV0aGluZyBJIHdhbnRlZCBvdXIgZHJpdmVyIHRvIGRvIGZvciBhIHdoaWxlLCBJ
-4oCZbGwgZ28gYWhlYWQgYW5kIHN3aXRjaCBvdXIgaW50ZXJuYWwgZGV2IHRvIGRybS1taXNjLg0K
-DQp6DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Wed, Dec 02, 2020 at 11:08:54AM +0100, Christoph Hellwig wrote:
+> On Fri, Nov 20, 2020 at 04:01:33PM -0400, Jason Gunthorpe wrote:
+> > On Wed, Nov 11, 2020 at 03:38:42PM -0800, Ralph Campbell wrote:
+> > 
+> > > MEMORY_DEVICE_GENERIC:
+> > > Struct pages are created in dev_dax_probe() and represent non-volatile memory.
+> > > The device can be mmap()'ed which calls dax_mmap() which sets
+> > > vma->vm_flags | VM_HUGEPAGE.
+> > > A CPU page fault will result in a PTE, PMD, or PUD sized page
+> > > (but not compound) to be inserted by vmf_insert_mixed() which will call either
+> > > insert_pfn() or insert_page().
+> > > Neither insert_pfn() nor insert_page() increments the page reference
+> > > count.
+> > 
+> > But why was this done? It seems very strange to put a pfn with a
+> > struct page into a VMA and then deliberately not take the refcount for
+> > the duration of that pfn being in the VMA?
+> > 
+> > What prevents memunmap_pages() from progressing while VMAs still point
+> > at the memory?
+> 
+> Agreed.  Adding Roger who added MEMORY_DEVICE_GENERIC and the only
+> user.
+
+MEMORY_DEVICE_GENERIC is just a rename of the previous
+MEMORY_DEVICE_DEVDAX, and seems to be used by the DAX device apart
+from Xen?
+
+It's main purpose is to be able to allocate unused physical memory
+ranges and have a baking struct page for them, so they can be used to
+map foreign memory when running on Xen.
+
+I'm currently on leave and won't be back until the end of the month,
+could you please Cc the Xen maintainers if you modify the logic here
+in order to make sure it will work for Xen?
+
+Thanks, Roger.
