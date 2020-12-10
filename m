@@ -1,54 +1,160 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [RFC 2/5] drm/nouveau/kms: Don't probe eDP connectors
- more then once
-Date: Wed,  9 Dec 2020 20:21:40 -0500
-Message-ID: <20201210012143.729402-3-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [RFC 3/5] drm/i915/dp: Remove redundant AUX backlight
+ frequency calculations
+Date: Wed,  9 Dec 2020 20:21:41 -0500
+Message-ID: <20201210012143.729402-4-lyude@redhat.com>
 References: <20201210012143.729402-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20201210012143.729402-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Jani Nikula <jani.nikula-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, greg.depoire-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20201210012143.729402-1-lyude@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>, open list <linux-kernel@vger.kernel.org>, greg.depoire@gmail.com, Sean Paul <seanpaul@chromium.org>, Dave Airlie <airlied@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-eDP doesn't do hotplugging, so there's no reason for us to reprobe it (unless a
-connection status change is being forced, of course).
+Noticed this while moving all of the VESA backlight code in i915 over to
+DRM helpers: it would appear that we calculate the frequency value we want
+to write to DP_EDP_BACKLIGHT_FREQ_SET twice even though this value never
+actually changes during runtime. So, let's simplify things by just caching
+this value in intel_panel.backlight, and re-writing it as-needed.
 
-Signed-off-by: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: Jani Nikula <jani.nikula-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: greg.depoire-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Dave Airlie <airlied@gmail.com>
+Cc: greg.depoire@gmail.com
 ---
- drivers/gpu/drm/nouveau/nouveau_connector.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ .../drm/i915/display/intel_dp_aux_backlight.c | 64 ++++++-------------
+ 2 files changed, 19 insertions(+), 46 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 8b4b3688c7ae..398fee9b7ae9 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -554,6 +554,12 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
- 	int ret;
- 	enum drm_connector_status conn_status = connector_status_disconnected;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 5bc5bfbc4551..133c9cb742a7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -259,6 +259,7 @@ struct intel_panel {
  
-+	/* eDP doesn't do hotplugging, never probe more then once */
-+	if (nv_connector->type == DCB_CONNECTOR_eDP &&
-+	    connector->force == DRM_FORCE_UNSPECIFIED &&
-+	    connector->status != connector_status_unknown)
-+		return connector->status;
+ 		/* DPCD backlight */
+ 		u8 pwmgen_bit_count;
++		u8 pwm_freq_pre_divider;
+ 
+ 		struct backlight_device *device;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+index 4fd536801b14..94ce5ca1affa 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+@@ -129,50 +129,6 @@ intel_dp_aux_set_backlight(const struct drm_connector_state *conn_state, u32 lev
+ 	}
+ }
+ 
+-/*
+- * Set PWM Frequency divider to match desired frequency in vbt.
+- * The PWM Frequency is calculated as 27Mhz / (F x P).
+- * - Where F = PWM Frequency Pre-Divider value programmed by field 7:0 of the
+- *             EDP_BACKLIGHT_FREQ_SET register (DPCD Address 00728h)
+- * - Where P = 2^Pn, where Pn is the value programmed by field 4:0 of the
+- *             EDP_PWMGEN_BIT_COUNT register (DPCD Address 00724h)
+- */
+-static bool intel_dp_aux_set_pwm_freq(struct intel_connector *connector)
+-{
+-	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+-	struct intel_dp *intel_dp = intel_attached_dp(connector);
+-	const u8 pn = connector->panel.backlight.pwmgen_bit_count;
+-	int freq, fxp, f, fxp_actual, fxp_min, fxp_max;
+-
+-	freq = dev_priv->vbt.backlight.pwm_freq_hz;
+-	if (!freq) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "Use panel default backlight frequency\n");
+-		return false;
+-	}
+-
+-	fxp = DIV_ROUND_CLOSEST(KHz(DP_EDP_BACKLIGHT_FREQ_BASE_KHZ), freq);
+-	f = clamp(DIV_ROUND_CLOSEST(fxp, 1 << pn), 1, 255);
+-	fxp_actual = f << pn;
+-
+-	/* Ensure frequency is within 25% of desired value */
+-	fxp_min = DIV_ROUND_CLOSEST(fxp * 3, 4);
+-	fxp_max = DIV_ROUND_CLOSEST(fxp * 5, 4);
+-
+-	if (fxp_min > fxp_actual || fxp_actual > fxp_max) {
+-		drm_dbg_kms(&dev_priv->drm, "Actual frequency out of range\n");
+-		return false;
+-	}
+-
+-	if (drm_dp_dpcd_writeb(&intel_dp->aux,
+-			       DP_EDP_BACKLIGHT_FREQ_SET, (u8) f) < 0) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "Failed to write aux backlight freq\n");
+-		return false;
+-	}
+-	return true;
+-}
+-
+ static void intel_dp_aux_enable_backlight(const struct intel_crtc_state *crtc_state,
+ 					  const struct drm_connector_state *conn_state)
+ {
+@@ -213,9 +169,13 @@ static void intel_dp_aux_enable_backlight(const struct intel_crtc_state *crtc_st
+ 		break;
+ 	}
+ 
+-	if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP)
+-		if (intel_dp_aux_set_pwm_freq(connector))
++	if (panel->backlight.pwm_freq_pre_divider) {
++		if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_EDP_BACKLIGHT_FREQ_SET,
++				       panel->backlight.pwm_freq_pre_divider) == 1)
+ 			new_dpcd_buf |= DP_EDP_BACKLIGHT_FREQ_AUX_SET_ENABLE;
++		else
++			drm_dbg_kms(&i915->drm, "Failed to write aux backlight frequency\n");
++	}
+ 
+ 	if (new_dpcd_buf != dpcd_buf) {
+ 		if (drm_dp_dpcd_writeb(&intel_dp->aux,
+@@ -236,6 +196,14 @@ static void intel_dp_aux_disable_backlight(const struct drm_connector_state *old
+ 				 false);
+ }
+ 
++/*
++ * Compute PWM frequency divider value based off the frequency provided to us by the vbt.
++ * The PWM Frequency is calculated as 27Mhz / (F x P).
++ * - Where F = PWM Frequency Pre-Divider value programmed by field 7:0 of the
++ *             EDP_BACKLIGHT_FREQ_SET register (DPCD Address 00728h)
++ * - Where P = 2^Pn, where Pn is the value programmed by field 4:0 of the
++ *             EDP_PWMGEN_BIT_COUNT register (DPCD Address 00724h)
++ */
+ static u32 intel_dp_aux_calc_max_backlight(struct intel_connector *connector)
+ {
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+@@ -287,8 +255,10 @@ static u32 intel_dp_aux_calc_max_backlight(struct intel_connector *connector)
+ 	pn_min &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
+ 	pn_max &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
+ 
++	/* Ensure frequency is within 25% of desired value */
+ 	fxp_min = DIV_ROUND_CLOSEST(fxp * 3, 4);
+ 	fxp_max = DIV_ROUND_CLOSEST(fxp * 5, 4);
 +
- 	/* Outputs are only polled while runtime active, so resuming the
- 	 * device here is unnecessary (and would deadlock upon runtime suspend
- 	 * because it waits for polling to finish). We do however, want to
+ 	if (fxp_min < (1 << pn_min) || (255 << pn_max) < fxp_max) {
+ 		drm_dbg_kms(&i915->drm,
+ 			    "VBT defined backlight frequency out of range\n");
+@@ -309,7 +279,9 @@ static u32 intel_dp_aux_calc_max_backlight(struct intel_connector *connector)
+ 			    "Failed to write aux pwmgen bit count\n");
+ 		return max_backlight;
+ 	}
++
+ 	panel->backlight.pwmgen_bit_count = pn;
++	panel->backlight.pwm_freq_pre_divider = f;
+ 
+ 	max_backlight = (1 << pn) - 1;
+ 
 -- 
 2.28.0
