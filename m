@@ -1,76 +1,178 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 2/7] Revert "ACPI / OSI: Add OEM _OSI string
- to enable NVidia HDMI audio"
-Date: Thu, 10 Dec 2020 12:59:42 -0500
-Message-ID: <c4726b0adb72bbc9f740f05c22af1c6b9401a8e1.camel@redhat.com>
-References: <20190814213118.28473-1-kherbst@redhat.com>
- <20190814213118.28473-3-kherbst@redhat.com>
-Reply-To: lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+From: Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [RFC 3/5] drm/i915/dp: Remove redundant AUX
+ backlight frequency calculations
+Date: Fri, 11 Dec 2020 16:45:41 +0200
+Message-ID: <87eejw765m.fsf@intel.com>
+References: <20201210012143.729402-1-lyude@redhat.com>
+ <20201210012143.729402-4-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190814213118.28473-3-kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Alex Hung <alex.hung-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, "Rafael J . Wysocki" <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20201210012143.729402-4-lyude@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Lyude Paul <lyude@redhat.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: greg.depoire@gmail.com, Lucas De Marchi <lucas.demarchi@intel.com>, open list <linux-kernel@vger.kernel.org>, David Airlie <airlied@linux.ie>, Sean Paul <seanpaul@chromium.org>, Dave Airlie <airlied@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-SGksIGJ1bXBpbmcgdGhlIGRpc2N1c3Npb24gYWdhaW4gaGVyZSBiZWNhdXNlIHdlIGp1c3QgcmFu
-IGludG8gdGhpcyBhZ2FpbiwgYXMgd2UKanVzdCBoYWQgYSBsYXB0b3AgT0VNIHRyeSB0byBmaXgg
-YW5vdGhlciBpc3N1ZSBieSBhZGRpbmcgYW4gT1NJIGNoZWNrIGZvciB0aGVzZQpzdHJpbmdzIGlu
-c3RlYWQgb2YgaGVscGluZyB1cyBmaXggdGhlIGlzc3VlIGluIG5vdXZlYXUuIE5vdGUgYXMgIHdl
-bGwgdGhlIGlzc3VlCkknbSByZWZlcnJpbmcgdG8gaXMgZW50aXJlbHkgaW5kZXBlbmRlbnQgb2Yg
-cnVudGltZSBEMywgc28gd2UganVzdCBnb3QgcnVudGltZQpEMyBicm9rZW4gYWdhaW4gYmVjYXVz
-ZSBvZiB0aGVzZSBoYWNrcy4KCldoeSBoYXNuJ3QgdGhpcyBwYXRjaCBiZWVuIGFjY2VwdGVkIGlu
-dG8gdGhlIGtlcm5lbD8gVGhlc2Ugd2VyZSBhZGRlZCB3aXRob3V0CmFueSBzb3J0IG9mIGRpc2N1
-c3Npb24gd2l0aCBub3V2ZWF1IGRldmVsb3BlcnMsIGFuZCBub3V2ZWF1IGlzIHRoZSBjYW5vbmlj
-YWwKbnZpZGlhIGRyaXZlciBpbiB0aGUgTGludXgga2VybmVsLiBUaGVzZSBzdHJpbmdzIHNob3Vs
-ZG4ndCBiZSBoZXJlIHdpdGhvdXQKZGlzY3Vzc2lvbiB3aXRoIHRoZSByZWxldmFudCBkcml2ZXIg
-bWFpbnRhaW5lcnMsIGFuZCBuZWVkIHRvIGJlIHJlbW92ZWQuCgpPbiBXZWQsIDIwMTktMDgtMTQg
-YXQgMjM6MzEgKzAyMDAsIEthcm9sIEhlcmJzdCB3cm90ZToKPiBUaGlzIHJldmVydHMgY29tbWl0
-IDg4NzUzMmNhN2NhNTlmY2YwNTQ3YTc5MjExNzU2NzkxMTI4MDMwYTMuCj4gCj4gV2UgaGF2ZSBh
-IGJldHRlciBzb2x1dGlvbiBmb3IgdGhpczogYjUxNmVhNTg2ZDcxNwo+IAo+IEFuZCBzYW1lIGFz
-IHdpdGggdGhlIGxhc3QgY29tbWl0OiAiTlZpZGlhIExpbnV4IGRyaXZlciIgdGhhdCdzIE5vdXZl
-YXUsIGFueQo+IG91dCBvZiB0cmVlIGRyaXZlciBkb2VzIF9ub3RfIG1hdHRlci4gQW5kIHdpdGgg
-Tm91dmVhdSBhbGwgb2YgdGhpcyB3b3JrcyBldmVuCj4gdGhvdWdoIGl0IHJlcXVpcmVkIGEgcHJv
-cGVyIGZpeCBmaXJzdCwgYnV0IHdlIGhhdmUgdGhhdCBub3cuCj4gCj4gU2lnbmVkLW9mZi1ieTog
-S2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+Cj4gQ0M6IEFsZXggSHVuZyA8YWxleC5o
-dW5nQGNhbm9uaWNhbC5jb20+Cj4gQ0M6IFJhZmFlbCBKLiBXeXNvY2tpIDxyYWZhZWwuai53eXNv
-Y2tpQGludGVsLmNvbT4KPiBDQzogRGF2ZSBBaXJsaWUgPGFpcmxpZWRAcmVkaGF0LmNvbT4KPiBD
-QzogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KPiBDQzogQmVuIFNrZWdncyA8YnNrZWdn
-c0ByZWRoYXQuY29tPgo+IC0tLQo+IMKgZHJpdmVycy9hY3BpL29zaS5jIHwgOCAtLS0tLS0tLQo+
-IMKgMSBmaWxlIGNoYW5nZWQsIDggZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvYWNwaS9vc2kuYyBiL2RyaXZlcnMvYWNwaS9vc2kuYwo+IGluZGV4IDliMjBhYzRkNzlhMC4u
-NTZjYzk1YjZiNzI0IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvYWNwaS9vc2kuYwo+ICsrKyBiL2Ry
-aXZlcnMvYWNwaS9vc2kuYwo+IEBAIC01MywxNCArNTMsNiBAQCBvc2lfc2V0dXBfZW50cmllc1tP
-U0lfU1RSSU5HX0VOVFJJRVNfTUFYXSBfX2luaXRkYXRhID0gewo+IMKgwqDCoMKgwqDCoMKgwqAg
-KiBiZSByZW1vdmVkIGlmIGJvdGggbmV3IGFuZCBvbGQgZ3JhcGhpY3MgY2FyZHMgYXJlIHN1cHBv
-cnRlZC4KPiDCoMKgwqDCoMKgwqDCoMKgICovCj4gwqDCoMKgwqDCoMKgwqDCoHsiTGludXgtRGVs
-bC1WaWRlbyIsIHRydWV9LAo+IC3CoMKgwqDCoMKgwqDCoC8qCj4gLcKgwqDCoMKgwqDCoMKgICog
-TGludXgtTGVub3ZvLU5WLUhETUktQXVkaW8gaXMgdXNlZCBieSBCSU9TIHRvIHBvd2VyIG9uIE5W
-aWRpYSdzCj4gSERNSQo+IC3CoMKgwqDCoMKgwqDCoCAqIGF1ZGlvIGRldmljZSB3aGljaCBpcyB0
-dXJuZWQgb2ZmIGZvciBwb3dlci1zYXZpbmcgaW4gV2luZG93cyBPUy4KPiAtwqDCoMKgwqDCoMKg
-wqAgKiBUaGlzIHBvd2VyIG1hbmFnZW1lbnQgZmVhdHVyZSBvYnNlcnZlZCBvbiBzb21lIExlbm92
-byBUaGlua3BhZAo+IC3CoMKgwqDCoMKgwqDCoCAqIHN5c3RlbXMgd2hpY2ggd2lsbCBub3QgYmUg
-YWJsZSB0byBvdXRwdXQgYXVkaW8gdmlhIEhETUkgd2l0aG91dAo+IC3CoMKgwqDCoMKgwqDCoCAq
-IGEgQklPUyB3b3JrYXJvdW5kLgo+IC3CoMKgwqDCoMKgwqDCoCAqLwo+IC3CoMKgwqDCoMKgwqDC
-oHsiTGludXgtTGVub3ZvLU5WLUhETUktQXVkaW8iLCB0cnVlfSwKPiDCoH07Cj4gwqAKPiDCoHN0
-YXRpYyB1MzIgYWNwaV9vc2lfaGFuZGxlcihhY3BpX3N0cmluZyBpbnRlcmZhY2UsIHUzMiBzdXBw
-b3J0ZWQpCgotLSAKU2luY2VyZWx5LAogICBMeXVkZSBQYXVsIChzaGUvaGVyKQogICBTb2Z0d2Fy
-ZSBFbmdpbmVlciBhdCBSZWQgSGF0CiAgIApOb3RlOiBJIGRlYWwgd2l0aCBhIGxvdCBvZiBlbWFp
-bHMgYW5kIGhhdmUgYSBsb3Qgb2YgYnVncyBvbiBteSBwbGF0ZS4gSWYgeW91J3ZlCmFza2VkIG1l
-IGEgcXVlc3Rpb24sIGFyZSB3YWl0aW5nIGZvciBhIHJldmlldy9tZXJnZSBvbiBhIHBhdGNoLCBl
-dGMuIGFuZCBJCmhhdmVuJ3QgcmVzcG9uZGVkIGluIGEgd2hpbGUsIHBsZWFzZSBmZWVsIGZyZWUg
-dG8gc2VuZCBtZSBhbm90aGVyIGVtYWlsIHRvIGNoZWNrCm9uIG15IHN0YXR1cy4gSSBkb24ndCBi
-aXRlIQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+On Wed, 09 Dec 2020, Lyude Paul <lyude@redhat.com> wrote:
+> Noticed this while moving all of the VESA backlight code in i915 over to
+> DRM helpers: it would appear that we calculate the frequency value we want
+> to write to DP_EDP_BACKLIGHT_FREQ_SET twice even though this value never
+> actually changes during runtime. So, let's simplify things by just caching
+> this value in intel_panel.backlight, and re-writing it as-needed.
+
+This isn't a full review, just something I spotted so far. Please see
+inline.
+
+BR,
+Jani.
+
+
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Dave Airlie <airlied@gmail.com>
+> Cc: greg.depoire@gmail.com
+> ---
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  .../drm/i915/display/intel_dp_aux_backlight.c | 64 ++++++-------------
+>  2 files changed, 19 insertions(+), 46 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 5bc5bfbc4551..133c9cb742a7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -259,6 +259,7 @@ struct intel_panel {
+>  
+>  		/* DPCD backlight */
+>  		u8 pwmgen_bit_count;
+> +		u8 pwm_freq_pre_divider;
+>  
+>  		struct backlight_device *device;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index 4fd536801b14..94ce5ca1affa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -129,50 +129,6 @@ intel_dp_aux_set_backlight(const struct drm_connector_state *conn_state, u32 lev
+>  	}
+>  }
+>  
+> -/*
+> - * Set PWM Frequency divider to match desired frequency in vbt.
+> - * The PWM Frequency is calculated as 27Mhz / (F x P).
+> - * - Where F = PWM Frequency Pre-Divider value programmed by field 7:0 of the
+> - *             EDP_BACKLIGHT_FREQ_SET register (DPCD Address 00728h)
+> - * - Where P = 2^Pn, where Pn is the value programmed by field 4:0 of the
+> - *             EDP_PWMGEN_BIT_COUNT register (DPCD Address 00724h)
+> - */
+> -static bool intel_dp_aux_set_pwm_freq(struct intel_connector *connector)
+> -{
+> -	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> -	struct intel_dp *intel_dp = intel_attached_dp(connector);
+> -	const u8 pn = connector->panel.backlight.pwmgen_bit_count;
+> -	int freq, fxp, f, fxp_actual, fxp_min, fxp_max;
+> -
+> -	freq = dev_priv->vbt.backlight.pwm_freq_hz;
+> -	if (!freq) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> -			    "Use panel default backlight frequency\n");
+> -		return false;
+> -	}
+> -
+> -	fxp = DIV_ROUND_CLOSEST(KHz(DP_EDP_BACKLIGHT_FREQ_BASE_KHZ), freq);
+> -	f = clamp(DIV_ROUND_CLOSEST(fxp, 1 << pn), 1, 255);
+> -	fxp_actual = f << pn;
+> -
+> -	/* Ensure frequency is within 25% of desired value */
+> -	fxp_min = DIV_ROUND_CLOSEST(fxp * 3, 4);
+> -	fxp_max = DIV_ROUND_CLOSEST(fxp * 5, 4);
+> -
+> -	if (fxp_min > fxp_actual || fxp_actual > fxp_max) {
+> -		drm_dbg_kms(&dev_priv->drm, "Actual frequency out of range\n");
+> -		return false;
+> -	}
+> -
+> -	if (drm_dp_dpcd_writeb(&intel_dp->aux,
+> -			       DP_EDP_BACKLIGHT_FREQ_SET, (u8) f) < 0) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> -			    "Failed to write aux backlight freq\n");
+> -		return false;
+> -	}
+> -	return true;
+> -}
+> -
+>  static void intel_dp_aux_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  					  const struct drm_connector_state *conn_state)
+>  {
+> @@ -213,9 +169,13 @@ static void intel_dp_aux_enable_backlight(const struct intel_crtc_state *crtc_st
+>  		break;
+>  	}
+>  
+> -	if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP)
+> -		if (intel_dp_aux_set_pwm_freq(connector))
+> +	if (panel->backlight.pwm_freq_pre_divider) {
+> +		if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_EDP_BACKLIGHT_FREQ_SET,
+> +				       panel->backlight.pwm_freq_pre_divider) == 1)
+>  			new_dpcd_buf |= DP_EDP_BACKLIGHT_FREQ_AUX_SET_ENABLE;
+> +		else
+> +			drm_dbg_kms(&i915->drm, "Failed to write aux backlight frequency\n");
+> +	}
+>  
+>  	if (new_dpcd_buf != dpcd_buf) {
+>  		if (drm_dp_dpcd_writeb(&intel_dp->aux,
+> @@ -236,6 +196,14 @@ static void intel_dp_aux_disable_backlight(const struct drm_connector_state *old
+>  				 false);
+>  }
+>  
+> +/*
+> + * Compute PWM frequency divider value based off the frequency provided to us by the vbt.
+> + * The PWM Frequency is calculated as 27Mhz / (F x P).
+> + * - Where F = PWM Frequency Pre-Divider value programmed by field 7:0 of the
+> + *             EDP_BACKLIGHT_FREQ_SET register (DPCD Address 00728h)
+> + * - Where P = 2^Pn, where Pn is the value programmed by field 4:0 of the
+> + *             EDP_PWMGEN_BIT_COUNT register (DPCD Address 00724h)
+> + */
+>  static u32 intel_dp_aux_calc_max_backlight(struct intel_connector *connector)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> @@ -287,8 +255,10 @@ static u32 intel_dp_aux_calc_max_backlight(struct intel_connector *connector)
+>  	pn_min &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
+>  	pn_max &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
+>  
+> +	/* Ensure frequency is within 25% of desired value */
+>  	fxp_min = DIV_ROUND_CLOSEST(fxp * 3, 4);
+>  	fxp_max = DIV_ROUND_CLOSEST(fxp * 5, 4);
+> +
+>  	if (fxp_min < (1 << pn_min) || (255 << pn_max) < fxp_max) {
+>  		drm_dbg_kms(&i915->drm,
+>  			    "VBT defined backlight frequency out of range\n");
+> @@ -309,7 +279,9 @@ static u32 intel_dp_aux_calc_max_backlight(struct intel_connector *connector)
+>  			    "Failed to write aux pwmgen bit count\n");
+>  		return max_backlight;
+>  	}
+> +
+>  	panel->backlight.pwmgen_bit_count = pn;
+> +	panel->backlight.pwm_freq_pre_divider = f;
+
+This should be wrapped in
+
+	if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP)
+
+but you do it in the next patch, so this patch is a bit broken.
+
+
+>  
+>  	max_backlight = (1 << pn) - 1;
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
