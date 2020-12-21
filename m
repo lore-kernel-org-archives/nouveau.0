@@ -1,16 +1,10 @@
-From: Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>
-Subject: Re: [bisected] Re: regression: nouveau fifo: fault 01 ==>
- channel 1: killed ==> dead desktop
-Date: Thu, 17 Dec 2020 21:04:28 +0100
-Message-ID: <4b18e97788fdfcc59c69b0836b693e737a48c5d9.camel@gmx.de>
-References: <fe612bbbeedd0ee0d03d04c7341ea62406b957c7.camel@gmx.de>
- <136aa09d13fab723e0460b73608ed3950699f2b6.camel@gmx.de>
- <CAMwc25rTv0=LuAUoHqC9+Eh6rdaywwrigMza6yKbwbRiEwLZGg@mail.gmail.com>
+From: Nikunj goyal <nikunjgoyal31-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Xorg evoc
+Date: Mon, 21 Dec 2020 11:45:09 +0530
+Message-ID: <CAL_w6bPog2DavwTb08AVazC9X=VD5povvP8Xbfej9PAK5gFG0A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1828227496=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAMwc25rTv0=LuAUoHqC9+Eh6rdaywwrigMza6yKbwbRiEwLZGg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,15 +14,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: David Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, lkml <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 2020-12-18 at 05:45 +1000, David Airlie wrote:
+--===============1828227496==
+Content-Type: multipart/alternative; boundary="000000000000fd5e5b05b6f36199"
 
-> Does the attached patch help?
+--000000000000fd5e5b05b6f36199
+Content-Type: text/plain; charset="UTF-8"
 
-Yup, that seems to have done the trick.  Fast bug squashing by the drm
-guys today, two slowly bisected, two quickly squashed.
+Hi everyone,
+I was surfing the web and i came across this program endless summer of code
+by Xorg and wanted to ask if it is still active?
+Thanks
 
-	-Mike
+Regards
+Nikunj goyal
+
+--000000000000fd5e5b05b6f36199
+Content-Type: text/html; charset="UTF-8"
+
+<div dir="ltr">Hi everyone,<div>I was surfing the web and i came across this program endless summer of code by Xorg and wanted to ask if it is still active?</div><div>Thanks</div><div><br></div><div>Regards</div><div>Nikunj goyal</div></div>
+
+--000000000000fd5e5b05b6f36199--
+
+--===============1828227496==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+https://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1828227496==--
