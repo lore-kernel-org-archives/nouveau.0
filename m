@@ -1,17 +1,19 @@
-From: Alexander Kapshuk <alexander.kapshuk-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [mesa-20.3.2] NULL pointer dereference in
- vl_compositor_yuv_deint_full
-Date: Sun, 3 Jan 2021 21:44:02 +0200
-Message-ID: <CAJ1xhMXyU=7X78bjj078yf4S-NfuCxjCb7MURjwnmWosDG+vAQ@mail.gmail.com>
-References: <CAJ1xhMWd88uPECyNk4EO5g0w9E3RJci-3-FcGOvdrZwN8Vzh5w@mail.gmail.com>
- <CAKb7Uvh3u-6UwP4RNCOqB6vk9R5XHJnQw_CJgn2V0EhEDp_GvQ@mail.gmail.com>
- <CAJ1xhMUMVXYLZv1Zc_th1tBi4w5TmrTTx4UWG-sKJ365cp7Z1w@mail.gmail.com>
- <CAKb7UvjeM-nerb_MtvzjHtk1OHjOT0VifqUQ9TkZTGAUHZR6HA@mail.gmail.com>
+From: Marc MERLIN <marc_nouveau-xnduUnryOU1AfugRpC6u6w@public.gmane.org>
+Subject: Re: 5.9.11 still hanging 2mn at each boot and looping on
+ nvidia-gpu 0000:01:00.3: PME# enabled (Quadro RTX 4000 Mobile)
+Date: Mon, 4 Jan 2021 03:49:55 -0800
+Message-ID: <20210104114955.GM32533@merlins.org>
+References: <20200908002935.GD20064@merlins.org>
+ <20200529180315.GA18804@merlins.org>
+ <20201229155159.GG23389@merlins.org>
+ <CAKb7UviFP_YVxC4PO7MDNnw6NDrD=3BCGF37umwAfaimjbX9Pw@mail.gmail.com>
+ <20201229174750.GI23389@merlins.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvjeM-nerb_MtvzjHtk1OHjOT0VifqUQ9TkZTGAUHZR6HA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20201229174750.GI23389-xnduUnryOU1AfugRpC6u6w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,166 +24,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Jan 3, 2021 at 9:08 PM Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
->
-> On Sun, Jan 3, 2021 at 1:25 PM Alexander Kapshuk
-> <alexander.kapshuk-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> >
-> > On Sun, Jan 3, 2021 at 7:20 PM Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
-> > >
-> > > On Sun, Jan 3, 2021 at 3:18 AM Alexander Kapshuk
-> > > <alexander.kapshuk-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> > > >
-> > > > NVIDIA chip affected:
-> > > > 01:00.0 VGA compatible controller: NVIDIA Corporation GT216 [GeForce
-> > > > 210] (rev a1)
-> > > >
-> > > > The null pointer dereference occurs here:
-> > > > Thread 27 "vlc" received signal SIGSEGV, Segmentation fault.
-> > > > [Switching to Thread 0x7fff8f7c1640 (LWP 79292)]
-> > > > 0x00007fff8d59d1da in vl_compositor_yuv_deint_full (s=0x7fff980e8518,
-> > > > c=0x7fff980e83d8, src=0x7fff98670030, dst=0x0,
-> > > > src_rect=0x7fff8f7c0470,
-> > > >     dst_rect=0x7fff8f7c0460, deinterlace=VL_COMPOSITOR_WEAVE) at
-> > > > ../mesa-20.3.2/src/gallium/auxiliary/vl/vl_compositor.c:689
-> > > > 689     dst_surfaces = dst->get_surfaces(dst); //dst==NULL
-> > > >
-> > > > => 0x00007fff8d5981da <+42>:    call   *0x38(%rcx) //rcx is dst
-> > > > (gdb) i r rcx
-> > > > rcx            0x0                 0
-> > > >
-> > > > (gdb) bt
-> > > > #0  0x00007fff8d59d1da in vl_compositor_yuv_deint_full
-> > > >     (s=0x7fff980e8518, c=0x7fff980e83d8, src=0x7fff98670030, dst=0x0,
-> > > > src_rect=0x7fff8f7c0470, dst_rect=0x7fff8f7c0460,
-> > > > deinterlace=VL_COMPOSITOR_WEAVE) at
-> > > > ../mesa-20.3.2/src/gallium/auxiliary/vl/vl_compositor.c:689
-> > > > #1  0x00007fff8d58a29b in vlVaDeriveImage (ctx=0x7fff980c1590,
-> > > > surface=<optimized out>, image=0x7fff8f7c05e0)
-> > > >     at ../mesa-20.3.2/src/gallium/frontends/va/image.c:321
-> > > > #2  0x00007fff91485799 in vaDeriveImage () at /usr/lib/libva.so.2
-> > > > #3  0x00007fff8e2256d2 in  () at
-> > > > /usr/lib/vlc/plugins/video_output/libglconv_vaapi_x11_plugin.so
-> > > > #4  0x00007fff8e224189 in  () at
-> > > > /usr/lib/vlc/plugins/video_output/libglconv_vaapi_x11_plugin.so
-> > > > #5  0x00007fff8f6b1896 in  () at
-> > > > /usr/lib/vlc/plugins/video_output/libgl_plugin.so
-> > > > #6  0x00007fff8f6b86db in  () at
-> > > > /usr/lib/vlc/plugins/video_output/libgl_plugin.so
-> > > > #7  0x00007ffff7d07cee in  () at /usr/lib/libvlccore.so.9
-> > > > #8  0x00007ffff7cfa019 in  () at /usr/lib/libvlccore.so.9
-> > > > #9  0x00007ffff7cfbf9e in  () at /usr/lib/libvlccore.so.9
-> > > > #10 0x00007ffff7f623e9 in start_thread () at /usr/lib/libpthread.so.0
-> > > > #11 0x00007ffff7e8a293 in clone () at /usr/lib/libc.so.6
-> > > >
-> > > > mesa-20.3.2/src/gallium/frontends/va/image.c:312,313
-> > > > VAStatus
-> > > > vlVaDeriveImage(VADriverContextP ctx, VASurfaceID surface, VAImage *image)
-> > > > {
-> > > > ...
-> > > >          new_template.interlaced = false; //create_video_buffer
-> > > > returns NULL if new_template.interlaced is set to false See below.
-> > > >          new_buffer = drv->pipe->create_video_buffer(drv->pipe, &new_template);
-> > > > ...
-> > > >          vl_compositor_yuv_deint_full(&drv->cstate, &drv->compositor,
-> > > >                            surf->buffer, new_buffer,
-> > > >                            &src_rect, &dst_rect,
-> > > >                            VL_COMPOSITOR_WEAVE);
-> > > > ...
-> > > > }
-> > > >
-> > > > [Note]
-> > > > mesa-20.3.2/src/gallium/drivers/nouveau/nv50/nv84_video.c:618,621
-> > > > struct pipe_video_buffer *
-> > > > nv84_video_buffer_create(struct pipe_context *pipe,
-> > > >                          const struct pipe_video_buffer *template)
-> > > > {
-> > > > ...
-> > > >    if (!template->interlaced) { //setting this to true in
-> > > > vlVaDeriveImage returns valid buffer
-> > > >       debug_printf("Require interlaced video buffers\n");
-> > > >       return NULL;
-> > > >    }
-> > > > ...
-> > > > }
-> > > >
-> > > > Please advise on the further course of action.
-> > >
-> > > Figure out what change in mesa broke it, send a revert (or fix, if
-> > > you're able). There has been a bunch of activity in st/vl lately, and
-> > > the developers never take NVIDIA into account, only AMD (well, they're
-> > > AMD developers, so not entirely surprising).
-> > >
-> > > Cheers,
-> > >
-> > >   -ilia
-> >
-> > The following commit,
-> > https://gitlab.freedesktop.org/mesa/mesa/-/commit/338745c6f4b7133d7b36f78562d46bc4e8d368f5,
-> > introduced derive_interlaced_allowlist, which currently comprises the
-> > 'vlc' media player. Which, as far as I could tell, was to make an
-> > exception for vlc, so a video buffer would be created when
-> > surf->buffer->interlaced was set to true.
-> > VA_STATUS_ERROR_OPERATION_FAILED is returned otherwise.
-> >
-> > Whereas, this commit,
-> > https://gitlab.freedesktop.org/mesa/mesa/-/commit/fcb558321e65b62244a11e0066bb8713b1854721,
-> > is the one responsible for new_buffer being set to NULL, because it
-> > explicitly sets new_template.interlaced to false. New_buffer ends up
-> > being passed as a dst parameter and dereferenced.
-> >
-> > As far as the patch goes, I've set new_template.interlaced to true in
-> > my local build, which fixes the null pointer dereference for me:
-> > mesa-20.3.2/src/gallium/frontends/va/image.c:311,313
-> >          new_template = surf->templat;
-> > -         new_template.interlaced = false;
-> > +         new_template.interlaced = true;
-> >          new_buffer = drv->pipe->create_video_buffer(drv->pipe, &new_template);
-> >
-> > What is the convention for submitting patches on this mailing list?
-> > Is it done via email, like LKML, which I'm more familiar with?
-> > Or is gitlab, or github the preferred way of submitting patches?
->
-> I believe gitlab, with the project over at
-> https://gitlab.freedesktop.org/mesa/mesa. This will require you to
-> create an account, create a clone, push a branch, open a merge
-> request. IMO it's too much to ask of one-time contributors (I find it
-> to be enough of a pain to have stopped contributing to mesa for the
-> most part since the gitlab migration), so you can also send mail in
-> the usual way to mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org (although I'd add a
-> comment below the --- to pre-empt the "submit on gitlab" discussion).
->
-> That said, your patch is unlikely to be accepted -- the whole point of
-> the original commit was to auto-deinterlace (which seems like a horrid
-> idea, but perhaps vaDeriveImage is meant to do that?). The problem is
-> that nouveau only supports interlaced video buffers, hence the various
-> issues. From the vaDeriveImage docs,
->
-> """
-> When the operation is not possible this interface will return
-> VA_STATUS_ERROR_OPERATION_FAILED. Clients should then fall back to
-> using vaCreateImage + vaPutImage to accomplish the same task in an
-> indirect manner.
-> """
->
-> So I'd guess the proper solution is to detect whether the underlying
-> implementation supports non-interlaced video buffers, and bail with
-> the failed operation if it can't. Or to add support for non-interlaced
-> buffers to nouveau. While the hardware has no support for outputting
-> video to such buffers, one could imagine adding support for creating
-> these with the proper amounts of memory/etc backing the surfaces.
->
-> However I think the whole thing should just be reverted and
-> libva-using software fixed -- returning the operation failed is
-> totally acceptable behavior that they need to be able to deal with.
->
-> Cheers,
->
->   -ilia
+On Tue, Dec 29, 2020 at 09:47:50AM -0800, Marc MERLIN wrote:
+> > Of course now that I read your email a bit more carefully, it seems
+> > your issue is with the "saving config space" messages. I'm not sure
+> > I've seen those before. Perhaps you have some sort of debug enabled.
+> > I'd find where in the kernel they are being produced, and what the
+> > conditions for it are. But the failure to load firmware isn't great --
+> > not 100% sure if it impacts runpm or not.
+>  
+> Yes, I have 'nouveau.debug=disp=trace'
+> Someone on this list asked me to add this a few months back.
+> 
+> > I just double-checked, TU10x accel came in via
+> > afa3b96b058d87c2c44d1c83dadb2ba6998d03ce, which was first in v5.6.
+> > Initial TU10x support came in v5.0. So that doesn't line up with your
+> > timeline.
+> 
+> You know, I said 5.5, maybe it was 5.6 now, it's been a little while
+> since those issues started.
+> 
+> Now we know I was missing the required firmware, it's a good place to
+> start, so I'll start there, thank you very much for the pointers.
 
-Thanks, Ilia, for your feedback and for taking your time to respond.
-I'll report the segfault I got on the mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-mailing list and take it from there.
+Sorry for the delay. I rebooted and everything worked great.
+No hang at boot.
+As for the PME loop I've been seeing, it hasn't happened so far.
+
+I can't comment on whether firmware should be required for the kernel to
+boot properly, but if it's at all possible, please try to make the
+driver fall back or shut down if the firmware is absent as opposed to
+hanging the boot 2mn.
+
+Also some drivers give a better clue that their firmware is missing
+and where to get it from. Adding a printk to help users could be a good
+idea.
+
+Below is the boot with firmware present.
+
+Thanks for your help
+Marc
+
+sauron:~$ grep nouveau /var/log/dmesg 
+[   11.016605] nouveau: detected PR support, will not use DSM
+[   11.025191] nouveau 0000:01:00.0: runtime IRQ mapping not provided by arch
+[   11.071823] nouveau 0000:01:00.0: enabling device (0000 -> 0003)
+[   11.111588] nouveau 0000:01:00.0: NVIDIA TU104 (164000a1)
+[   11.203598] nouveau 0000:01:00.0: bios: version 90.04.4d.00.2c
+[   11.203921] nouveau 0000:01:00.0: pmu: firmware unavailable
+[   11.204229] nouveau 0000:01:00.0: enabling bus mastering
+[   11.204543] nouveau 0000:01:00.0: fb: 8192 MiB GDDR6
+[   11.215524] nouveau 0000:01:00.0: DRM: VRAM: 8192 MiB
+[   11.215525] nouveau 0000:01:00.0: DRM: GART: 536870912 MiB
+[   11.215527] nouveau 0000:01:00.0: DRM: BIT table 'A' not found
+[   11.215527] nouveau 0000:01:00.0: DRM: BIT table 'L' not found
+[   11.215528] nouveau 0000:01:00.0: DRM: TMDS table version 2.0
+[   11.215529] nouveau 0000:01:00.0: DRM: DCB version 4.1
+[   11.215530] nouveau 0000:01:00.0: DRM: DCB outp 00: 02800f66 04600020
+[   11.215531] nouveau 0000:01:00.0: DRM: DCB outp 01: 02011f52 00020010
+[   11.215532] nouveau 0000:01:00.0: DRM: DCB outp 02: 01022f36 04600010
+[   11.215532] nouveau 0000:01:00.0: DRM: DCB outp 03: 04033f76 04600010
+[   11.215533] nouveau 0000:01:00.0: DRM: DCB outp 04: 04044f86 04600020
+[   11.215533] nouveau 0000:01:00.0: DRM: DCB conn 00: 00020047
+[   11.215534] nouveau 0000:01:00.0: DRM: DCB conn 01: 00010161
+[   11.215534] nouveau 0000:01:00.0: DRM: DCB conn 02: 00001248
+[   11.215535] nouveau 0000:01:00.0: DRM: DCB conn 03: 01000348
+[   11.215535] nouveau 0000:01:00.0: DRM: DCB conn 04: 02000471
+[   11.216166] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
+[   11.526753] nouveau 0000:01:00.0: DRM: unknown connector type 48
+[   11.527077] nouveau 0000:01:00.0: DRM: unknown connector type 48
+[   11.552051] nouveau 0000:01:00.0: [drm] Cannot find any crtc or sizes
+[   11.554239] nouveau 0000:01:00.0: [drm] Cannot find any crtc or sizes
+[   11.555822] nouveau 0000:01:00.0: [drm] Cannot find any crtc or sizes
+[   11.556054] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on minor 1
+[   11.556060] nouveau 0000:01:00.0: DRM: Disabling PCI power management to avoid bug
+[   18.887229] nouveau 0000:01:00.0: saving config space at offset 0x0 (reading 0x1eb610de)
+[   18.887231] nouveau 0000:01:00.0: saving config space at offset 0x4 (reading 0x100407)
+[   18.887233] nouveau 0000:01:00.0: saving config space at offset 0x8 (reading 0x30000a1)
+[   18.887235] nouveau 0000:01:00.0: saving config space at offset 0xc (reading 0x800000)
+[   18.887237] nouveau 0000:01:00.0: saving config space at offset 0x10 (reading 0xcd000000)
+[   18.887239] nouveau 0000:01:00.0: saving config space at offset 0x14 (reading 0xa000000c)
+[   18.887241] nouveau 0000:01:00.0: saving config space at offset 0x18 (reading 0x0)
+[   18.887243] nouveau 0000:01:00.0: saving config space at offset 0x1c (reading 0xb000000c)
+[   18.887245] nouveau 0000:01:00.0: saving config space at offset 0x20 (reading 0x0)
+[   18.887247] nouveau 0000:01:00.0: saving config space at offset 0x24 (reading 0x2001)
+[   18.887249] nouveau 0000:01:00.0: saving config space at offset 0x28 (reading 0x0)
+[   18.887251] nouveau 0000:01:00.0: saving config space at offset 0x2c (reading 0x229b17aa)
+[   18.887253] nouveau 0000:01:00.0: saving config space at offset 0x30 (reading 0xfff80000)
+[   18.887255] nouveau 0000:01:00.0: saving config space at offset 0x34 (reading 0x60)
+[   18.887257] nouveau 0000:01:00.0: saving config space at offset 0x38 (reading 0x0)
+[   18.887259] nouveau 0000:01:00.0: saving config space at offset 0x3c (reading 0x1ff)
+[   18.887311] nouveau 0000:01:00.0: power state changed by ACPI to D3cold
+[   42.094494] nouveau 0000:01:00.0: power state changed by ACPI to D0
+[   42.094663] nouveau 0000:01:00.0: restoring config space at offset 0x3c (was 0x100, writing 0x1ff)
+[   42.094679] nouveau 0000:01:00.0: restoring config space at offset 0x30 (was 0x0, writing 0xfff80000)
+[   42.094699] nouveau 0000:01:00.0: restoring config space at offset 0x24 (was 0x1, writing 0x2001)
+[   42.094721] nouveau 0000:01:00.0: restoring config space at offset 0x1c (was 0xc, writing 0xb000000c)
+[   42.094738] nouveau 0000:01:00.0: restoring config space at offset 0x14 (was 0xc, writing 0xa000000c)
+[   42.094769] nouveau 0000:01:00.0: restoring config space at offset 0x10 (was 0x0, writing 0xcd000000)
+[   42.094792] nouveau 0000:01:00.0: restoring config space at offset 0x4 (was 0x100000, writing 0x100407)
+[   42.538785] snd_hda_intel 0000:01:00.1: bound 0000:01:00.0 (ops nv50_audio_component_bind_ops [nouveau])
+
+-- 
+"A mouse is a device used to point at the xterm you want to type in" - A.S.R.
+ 
+Home page: http://marc.merlins.org/                       | PGP 7F55D5F27AAF9D08
