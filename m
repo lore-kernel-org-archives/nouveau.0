@@ -1,13 +1,18 @@
 From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: nouveau regression post v5.8, still present in v5.10
-Date: Mon, 4 Jan 2021 14:21:48 +0100
-Message-ID: <CACO55tt9GbwBU6igAJ_8RjwzSZcDbu+_1wGWKiye3TosgoiHyw@mail.gmail.com>
-References: <X+WV8OiQzTIfLdgW@audible.transient.net>
+Subject: Re: 5.9.11 still hanging 2mn at each boot and looping on
+ nvidia-gpu 0000:01:00.3: PME# enabled (Quadro RTX 4000 Mobile)
+Date: Mon, 4 Jan 2021 14:28:37 +0100
+Message-ID: <CACO55tsdG37YKv7FV2er4hRnXk9vmwMbPuPptA+=ZtziWXC2+g@mail.gmail.com>
+References: <20200908002935.GD20064@merlins.org>
+ <20200529180315.GA18804@merlins.org>
+ <20201229155159.GG23389@merlins.org>
+ <CAKb7UviFP_YVxC4PO7MDNnw6NDrD=3BCGF37umwAfaimjbX9Pw@mail.gmail.com>
+ <20201229174750.GI23389@merlins.org> <20210104114955.GM32533@merlins.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <X+WV8OiQzTIfLdgW-3MLwneIWSru5Joj7rniG6R4hnT+Y9+D1@public.gmane.org>
+In-Reply-To: <20210104114955.GM32533-xnduUnryOU1AfugRpC6u6w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,154 +22,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+To: Marc MERLIN <marc_nouveau-xnduUnryOU1AfugRpC6u6w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-do you think you'd be able to do a kernel bisect in order to pinpoint
-the actual commit causing it? Thanks
+mhh, that PCI config stuff should really not happen all the time, but
+it also doesn't appear to. The other thing I really don't know is, how
+well the runpm works with tools like TLP if there isn't only an audio
+device, but also the USB stuff and all the subdevices have to be
+turned off all the time in order for the GPU to stay powered down.
 
-On Sun, Dec 27, 2020 at 8:16 PM Jamie Heilman
-<jamie-3MLwneIWSru5Joj7rniG6R4hnT+Y9+D1@public.gmane.org> wrote:
+The firmware stuff is also just a functional problem, so you won't get
+display offloading, but it shouldn't drain your battery as long as
+nothing is connected. I'd check with "grep .
+/sys/bus/pci/devices/*/power/runtime_status" if all subdevices of the
+GPU are powered down, and check which one gets enabled regularly or
+something.
+
+On Mon, Jan 4, 2021 at 12:50 PM Marc MERLIN <marc_nouveau-xnduUnryOU1AfugRpC6u6w@public.gmane.org> wrote:
 >
-> Something between v5.8 and v5.9 has resulted in periodically losing video.
-> Unfortunately, I can't reliably reproduce it, it seems to happen every
-> once in a long while---I can go weeks without an occurance, but it
-> always seems to happen after my workstation has been idle long enough
-> to screen blank and put the monitor to sleep.  I'm using a single
-> display (Dell 2405FPW) connected via DVI, running X (Xorg 1.20.x from
-> Debian sid).  I don't really do anything fancy, xterms, a browser or
-> two, play the occasional video, but like I said, I can't reliably
-> reproduce this.  I've had it happen about 11 times since August.
+> On Tue, Dec 29, 2020 at 09:47:50AM -0800, Marc MERLIN wrote:
+> > > Of course now that I read your email a bit more carefully, it seems
+> > > your issue is with the "saving config space" messages. I'm not sure
+> > > I've seen those before. Perhaps you have some sort of debug enabled.
+> > > I'd find where in the kernel they are being produced, and what the
+> > > conditions for it are. But the failure to load firmware isn't great --
+> > > not 100% sure if it impacts runpm or not.
+> >
+> > Yes, I have 'nouveau.debug=disp=trace'
+> > Someone on this list asked me to add this a few months back.
+> >
+> > > I just double-checked, TU10x accel came in via
+> > > afa3b96b058d87c2c44d1c83dadb2ba6998d03ce, which was first in v5.6.
+> > > Initial TU10x support came in v5.0. So that doesn't line up with your
+> > > timeline.
+> >
+> > You know, I said 5.5, maybe it was 5.6 now, it's been a little while
+> > since those issues started.
+> >
+> > Now we know I was missing the required firmware, it's a good place to
+> > start, so I'll start there, thank you very much for the pointers.
 >
-> lspci -vv output is:
+> Sorry for the delay. I rebooted and everything worked great.
+> No hang at boot.
+> As for the PME loop I've been seeing, it hasn't happened so far.
 >
-> 01:00.0 VGA compatible controller: NVIDIA Corporation G86 [Quadro NVS 290] (rev a1) (prog-if 00 [VGA controller])
->         Subsystem: NVIDIA Corporation G86 [Quadro NVS 290]
->         Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx+
->         Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
->         Latency: 0, Cache Line Size: 64 bytes
->         Interrupt: pin A routed to IRQ 28
->         Region 0: Memory at fc000000 (32-bit, non-prefetchable) [size=16M]
->         Region 1: Memory at d0000000 (64-bit, prefetchable) [size=256M]
->         Region 3: Memory at fa000000 (64-bit, non-prefetchable) [size=32M]
->         Region 5: I/O ports at dc80 [size=128]
->         Expansion ROM at 000c0000 [disabled] [size=128K]
->         Capabilities: [60] Power Management version 2
->                 Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA PME(D0-,D1-,D2-,D3hot-,D3cold-)
->                 Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
->         Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
->                 Address: 00000000fee01004  Data: 4023
->         Capabilities: [78] Express (v1) Endpoint, MSI 00
->                 DevCap: MaxPayload 128 bytes, PhantFunc 0, Latency L0s <512ns, L1 <4us
->                         ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset- SlotPowerLimit 25.000W
->                 DevCtl: CorrErr- NonFatalErr+ FatalErr+ UnsupReq-
->                         RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop+
->                         MaxPayload 128 bytes, MaxReadReq 512 bytes
->                 DevSta: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
->                 LnkCap: Port #0, Speed 2.5GT/s, Width x16, ASPM L0s L1, Exit Latency L0s <512ns, L1 <4us
->                         ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp-
->                 LnkCtl: ASPM Disabled; RCB 64 bytes, Disabled- CommClk+
->                         ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
->                 LnkSta: Speed 2.5GT/s (ok), Width x16 (ok)
->                         TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgmt-
->         Capabilities: [100 v1] Virtual Channel
->                 Caps:   LPEVC=0 RefClk=100ns PATEntryBits=1
->                 Arb:    Fixed- WRR32- WRR64- WRR128-
->                 Ctrl:   ArbSelect=Fixed
->                 Status: InProgress-
->                 VC0:    Caps:   PATOffset=00 MaxTimeSlots=1 RejSnoopTrans-
->                         Arb:    Fixed- WRR32- WRR64- WRR128- TWRR128- WRR256-
->                         Ctrl:   Enable+ ID=0 ArbSelect=Fixed TC/VC=01
->                         Status: NegoPending- InProgress-
->         Capabilities: [128 v1] Power Budgeting <?>
->         Capabilities: [600 v1] Vendor Specific Information: ID=0001 Rev=1 Len=024 <?>
->         Kernel driver in use: nouveau
+> I can't comment on whether firmware should be required for the kernel to
+> boot properly, but if it's at all possible, please try to make the
+> driver fall back or shut down if the firmware is absent as opposed to
+> hanging the boot 2mn.
 >
-> The last time this happened, this is what got logged:
+> Also some drivers give a better clue that their firmware is missing
+> and where to get it from. Adding a printk to help users could be a good
+> idea.
 >
-> nouveau 0000:01:00.0: disp: ERROR 5 [INVALID_STATE] 06 [] chid 1 mthd 0080 data 00000001
-> nouveau 0000:01:00.0: disp: Base 1:
-> nouveau 0000:01:00.0: disp:        0084: 00000000
-> nouveau 0000:01:00.0: disp:        0088: 00000000
-> nouveau 0000:01:00.0: disp:        008c: 00000000
-> nouveau 0000:01:00.0: disp:        0090: 00000000
-> nouveau 0000:01:00.0: disp:        0094: 00000000
-> nouveau 0000:01:00.0: disp:        00a0: 00000060 -> 00000070
-> nouveau 0000:01:00.0: disp:        00a4: 00000000 -> f0000000
-> nouveau 0000:01:00.0: disp:        00c0: 00000000
-> nouveau 0000:01:00.0: disp:        00c4: 00000000
-> nouveau 0000:01:00.0: disp:        00c8: 00000000
-> nouveau 0000:01:00.0: disp:        00cc: 00000000
-> nouveau 0000:01:00.0: disp:        00e0: 40000000
-> nouveau 0000:01:00.0: disp:        00e4: 00000000
-> nouveau 0000:01:00.0: disp:        00e8: 00000000
-> nouveau 0000:01:00.0: disp:        00ec: 00000000
-> nouveau 0000:01:00.0: disp:        00fc: 00000000
-> nouveau 0000:01:00.0: disp:        0100: fffe0000
-> nouveau 0000:01:00.0: disp:        0104: 00000000
-> nouveau 0000:01:00.0: disp:        0110: 00000000
-> nouveau 0000:01:00.0: disp:        0114: 00000000
-> nouveau 0000:01:00.0: disp: Base 1 - Image 0:
-> nouveau 0000:01:00.0: disp:        0800: 00009500
-> nouveau 0000:01:00.0: disp:        0804: 00000000
-> nouveau 0000:01:00.0: disp:        0808: 04b00780
-> nouveau 0000:01:00.0: disp:        080c: 00007804
-> nouveau 0000:01:00.0: disp:        0810: 0000cf00
-> nouveau 0000:01:00.0: disp: Base 1 - Image 1:
-> nouveau 0000:01:00.0: disp:        0c00: 00009500
-> nouveau 0000:01:00.0: disp:        0c04: 00000000
-> nouveau 0000:01:00.0: disp:        0c08: 04b00780
-> nouveau 0000:01:00.0: disp:        0c0c: 00007804
-> nouveau 0000:01:00.0: disp:        0c10: 0000cf00
-> nouveau 0000:01:00.0: disp: ERROR 5 [INVALID_STATE] 06 [] chid 1 mthd 0080 data 00000001
-> nouveau 0000:01:00.0: disp: Base 1:
-> nouveau 0000:01:00.0: disp:        0084: 00000000
-> nouveau 0000:01:00.0: disp:        0088: 00000000
-> nouveau 0000:01:00.0: disp:        008c: 00000000
-> nouveau 0000:01:00.0: disp:        0090: 00000000
-> nouveau 0000:01:00.0: disp:        0094: 00000000
-> nouveau 0000:01:00.0: disp:        00a0: 00000060 -> 00000070
-> nouveau 0000:01:00.0: disp:        00a4: 00000000 -> f0000000
-> nouveau 0000:01:00.0: disp:        00c0: 00000000
-> nouveau 0000:01:00.0: disp:        00c4: 00000000
-> nouveau 0000:01:00.0: disp:        00c8: 00000000
-> nouveau 0000:01:00.0: disp:        00cc: 00000000
-> nouveau 0000:01:00.0: disp:        00e0: 40000000
-> nouveau 0000:01:00.0: disp:        00e4: 00000000
-> nouveau 0000:01:00.0: disp:        00e8: 00000000
-> nouveau 0000:01:00.0: disp:        00ec: 00000000
-> nouveau 0000:01:00.0: disp:        00fc: 00000000
-> nouveau 0000:01:00.0: disp:        0100: fffe0000
-> nouveau 0000:01:00.0: disp:        0104: 00000000
-> nouveau 0000:01:00.0: disp:        0110: 00000000
-> nouveau 0000:01:00.0: disp:        0114: 00000000
-> nouveau 0000:01:00.0: disp: Base 1 - Image 0:
-> nouveau 0000:01:00.0: disp:        0800: 00009500
-> nouveau 0000:01:00.0: disp:        0804: 00000000
-> nouveau 0000:01:00.0: disp:        0808: 04b00780
-> nouveau 0000:01:00.0: disp:        080c: 00007804
-> nouveau 0000:01:00.0: disp:        0810: 0000cf00
-> nouveau 0000:01:00.0: disp: Base 1 - Image 1:
-> nouveau 0000:01:00.0: disp:        0c00: 00009500
-> nouveau 0000:01:00.0: disp:        0c04: 00000000
-> nouveau 0000:01:00.0: disp:        0c08: 04b00780
-> nouveau 0000:01:00.0: disp:        0c0c: 00007804
-> nouveau 0000:01:00.0: disp:        0c10: 0000cf00
-> nouveau 0000:01:00.0: DRM: core notifier timeout
-> nouveau 0000:01:00.0: DRM: base-0: timeout
+> Below is the boot with firmware present.
 >
-> I've got logs of all of this, if they help I can collect them.  The
-> timeout message are consistent the error messages a little less so.
+> Thanks for your help
+> Marc
 >
-> If there's more debugging I can do when this happens, I'd love to know
-> what it is.
->
-> kernel config: http://audible.transient.net/~jamie/k/nouveau.config-5.10.0
-> dmesg at boot: http://audible.transient.net/~jamie/k/nouveau.dmesg
+> sauron:~$ grep nouveau /var/log/dmesg
+> [   11.016605] nouveau: detected PR support, will not use DSM
+> [   11.025191] nouveau 0000:01:00.0: runtime IRQ mapping not provided by arch
+> [   11.071823] nouveau 0000:01:00.0: enabling device (0000 -> 0003)
+> [   11.111588] nouveau 0000:01:00.0: NVIDIA TU104 (164000a1)
+> [   11.203598] nouveau 0000:01:00.0: bios: version 90.04.4d.00.2c
+> [   11.203921] nouveau 0000:01:00.0: pmu: firmware unavailable
+> [   11.204229] nouveau 0000:01:00.0: enabling bus mastering
+> [   11.204543] nouveau 0000:01:00.0: fb: 8192 MiB GDDR6
+> [   11.215524] nouveau 0000:01:00.0: DRM: VRAM: 8192 MiB
+> [   11.215525] nouveau 0000:01:00.0: DRM: GART: 536870912 MiB
+> [   11.215527] nouveau 0000:01:00.0: DRM: BIT table 'A' not found
+> [   11.215527] nouveau 0000:01:00.0: DRM: BIT table 'L' not found
+> [   11.215528] nouveau 0000:01:00.0: DRM: TMDS table version 2.0
+> [   11.215529] nouveau 0000:01:00.0: DRM: DCB version 4.1
+> [   11.215530] nouveau 0000:01:00.0: DRM: DCB outp 00: 02800f66 04600020
+> [   11.215531] nouveau 0000:01:00.0: DRM: DCB outp 01: 02011f52 00020010
+> [   11.215532] nouveau 0000:01:00.0: DRM: DCB outp 02: 01022f36 04600010
+> [   11.215532] nouveau 0000:01:00.0: DRM: DCB outp 03: 04033f76 04600010
+> [   11.215533] nouveau 0000:01:00.0: DRM: DCB outp 04: 04044f86 04600020
+> [   11.215533] nouveau 0000:01:00.0: DRM: DCB conn 00: 00020047
+> [   11.215534] nouveau 0000:01:00.0: DRM: DCB conn 01: 00010161
+> [   11.215534] nouveau 0000:01:00.0: DRM: DCB conn 02: 00001248
+> [   11.215535] nouveau 0000:01:00.0: DRM: DCB conn 03: 01000348
+> [   11.215535] nouveau 0000:01:00.0: DRM: DCB conn 04: 02000471
+> [   11.216166] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
+> [   11.526753] nouveau 0000:01:00.0: DRM: unknown connector type 48
+> [   11.527077] nouveau 0000:01:00.0: DRM: unknown connector type 48
+> [   11.552051] nouveau 0000:01:00.0: [drm] Cannot find any crtc or sizes
+> [   11.554239] nouveau 0000:01:00.0: [drm] Cannot find any crtc or sizes
+> [   11.555822] nouveau 0000:01:00.0: [drm] Cannot find any crtc or sizes
+> [   11.556054] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on minor 1
+> [   11.556060] nouveau 0000:01:00.0: DRM: Disabling PCI power management to avoid bug
+> [   18.887229] nouveau 0000:01:00.0: saving config space at offset 0x0 (reading 0x1eb610de)
+> [   18.887231] nouveau 0000:01:00.0: saving config space at offset 0x4 (reading 0x100407)
+> [   18.887233] nouveau 0000:01:00.0: saving config space at offset 0x8 (reading 0x30000a1)
+> [   18.887235] nouveau 0000:01:00.0: saving config space at offset 0xc (reading 0x800000)
+> [   18.887237] nouveau 0000:01:00.0: saving config space at offset 0x10 (reading 0xcd000000)
+> [   18.887239] nouveau 0000:01:00.0: saving config space at offset 0x14 (reading 0xa000000c)
+> [   18.887241] nouveau 0000:01:00.0: saving config space at offset 0x18 (reading 0x0)
+> [   18.887243] nouveau 0000:01:00.0: saving config space at offset 0x1c (reading 0xb000000c)
+> [   18.887245] nouveau 0000:01:00.0: saving config space at offset 0x20 (reading 0x0)
+> [   18.887247] nouveau 0000:01:00.0: saving config space at offset 0x24 (reading 0x2001)
+> [   18.887249] nouveau 0000:01:00.0: saving config space at offset 0x28 (reading 0x0)
+> [   18.887251] nouveau 0000:01:00.0: saving config space at offset 0x2c (reading 0x229b17aa)
+> [   18.887253] nouveau 0000:01:00.0: saving config space at offset 0x30 (reading 0xfff80000)
+> [   18.887255] nouveau 0000:01:00.0: saving config space at offset 0x34 (reading 0x60)
+> [   18.887257] nouveau 0000:01:00.0: saving config space at offset 0x38 (reading 0x0)
+> [   18.887259] nouveau 0000:01:00.0: saving config space at offset 0x3c (reading 0x1ff)
+> [   18.887311] nouveau 0000:01:00.0: power state changed by ACPI to D3cold
+> [   42.094494] nouveau 0000:01:00.0: power state changed by ACPI to D0
+> [   42.094663] nouveau 0000:01:00.0: restoring config space at offset 0x3c (was 0x100, writing 0x1ff)
+> [   42.094679] nouveau 0000:01:00.0: restoring config space at offset 0x30 (was 0x0, writing 0xfff80000)
+> [   42.094699] nouveau 0000:01:00.0: restoring config space at offset 0x24 (was 0x1, writing 0x2001)
+> [   42.094721] nouveau 0000:01:00.0: restoring config space at offset 0x1c (was 0xc, writing 0xb000000c)
+> [   42.094738] nouveau 0000:01:00.0: restoring config space at offset 0x14 (was 0xc, writing 0xa000000c)
+> [   42.094769] nouveau 0000:01:00.0: restoring config space at offset 0x10 (was 0x0, writing 0xcd000000)
+> [   42.094792] nouveau 0000:01:00.0: restoring config space at offset 0x4 (was 0x100000, writing 0x100407)
+> [   42.538785] snd_hda_intel 0000:01:00.1: bound 0000:01:00.0 (ops nv50_audio_component_bind_ops [nouveau])
 >
 > --
-> Jamie Heilman                     http://audible.transient.net/~jamie/
+> "A mouse is a device used to point at the xterm you want to type in" - A.S.R.
+>
+> Home page: http://marc.merlins.org/                       | PGP 7F55D5F27AAF9D08
 > _______________________________________________
 > Nouveau mailing list
 > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
