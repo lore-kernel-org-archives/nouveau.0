@@ -1,206 +1,175 @@
-From: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
-Subject: [PATCH 5.10 28/63] fbcon: Disable accelerated scrolling
-Date: Mon,  4 Jan 2021 16:57:21 +0100
-Message-ID: <20210104155710.187945647@linuxfoundation.org>
-References: <20210104155708.800470590@linuxfoundation.org>
+From: Jamie Heilman <jamie@audible.transient.net>
+Subject: Re: [Nouveau] nouveau regression post v5.8, still present in v5.10
+Date: Mon, 4 Jan 2021 17:23:02 +0000
+Message-ID: <X/NO9kAlCd/k8Di2@audible.transient.net>
+References: <X+WV8OiQzTIfLdgW@audible.transient.net>
+ <CACO55tt9GbwBU6igAJ_8RjwzSZcDbu+_1wGWKiye3TosgoiHyw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20210104155708.800470590-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: George Kennedy <george.kennedy-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>, Sam Ravnborg <sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org>, Bartlomiej Zolnierkiewicz <b.zolnierkie-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Tetsuo Handa <penguin-kernel-JPay3/Yim36HaxMnTkn67Xf5DAMn2ifp@public.gmane.org>, Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, "Gustavo A. R. Silva" <gustavoars-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Peter Rosin <peda-koto5C5qi+TLoDKTGw+V6w@public.gmane.org>, Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Tomi Valkeinen <tomi.valkeinen-l0cyMroinI0@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Nathan Chancellor <natechancellor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Jiri Slaby <jirislaby-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Peilin Ye <yepeilin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CACO55tt9GbwBU6igAJ_8RjwzSZcDbu+_1wGWKiye3TosgoiHyw@mail.gmail.com>
+To: Karol Herbst <kherbst@redhat.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, LKML <linux-kernel@vger.kernel.org>, nouveau <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Karol Herbst wrote:
+> do you think you'd be able to do a kernel bisect in order to pinpoint
+> the actual commit causing it? Thanks
 
-commit 39aead8373b3c20bb5965c024dfb51a94e526151 upstream.
+No.  I can't reproduce it reliably.  I if I could, bisection wouldn't
+be a problem but as I can't and as it can take weeks for the problem
+to occur there's essentially no chance.  I know it regressed roughly
+in 5.8-rc1 only because that's what I was running when the first event
+occured.
 
-So ever since syzbot discovered fbcon, we have solid proof that it's
-full of bugs. And often the solution is to just delete code and remove
-features, e.g.  50145474f6ef ("fbcon: remove soft scrollback code").
+> On Sun, Dec 27, 2020 at 8:16 PM Jamie Heilman
+> <jamie@audible.transient.net> wrote:
+> >
+> > Something between v5.8 and v5.9 has resulted in periodically losing video.
+> > Unfortunately, I can't reliably reproduce it, it seems to happen every
+> > once in a long while---I can go weeks without an occurance, but it
+> > always seems to happen after my workstation has been idle long enough
+> > to screen blank and put the monitor to sleep.  I'm using a single
+> > display (Dell 2405FPW) connected via DVI, running X (Xorg 1.20.x from
+> > Debian sid).  I don't really do anything fancy, xterms, a browser or
+> > two, play the occasional video, but like I said, I can't reliably
+> > reproduce this.  I've had it happen about 11 times since August.
+> >
+> > lspci -vv output is:
+> >
+> > 01:00.0 VGA compatible controller: NVIDIA Corporation G86 [Quadro NVS 290] (rev a1) (prog-if 00 [VGA controller])
+> >         Subsystem: NVIDIA Corporation G86 [Quadro NVS 290]
+> >         Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx+
+> >         Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
+> >         Latency: 0, Cache Line Size: 64 bytes
+> >         Interrupt: pin A routed to IRQ 28
+> >         Region 0: Memory at fc000000 (32-bit, non-prefetchable) [size=16M]
+> >         Region 1: Memory at d0000000 (64-bit, prefetchable) [size=256M]
+> >         Region 3: Memory at fa000000 (64-bit, non-prefetchable) [size=32M]
+> >         Region 5: I/O ports at dc80 [size=128]
+> >         Expansion ROM at 000c0000 [disabled] [size=128K]
+> >         Capabilities: [60] Power Management version 2
+> >                 Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA PME(D0-,D1-,D2-,D3hot-,D3cold-)
+> >                 Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
+> >         Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
+> >                 Address: 00000000fee01004  Data: 4023
+> >         Capabilities: [78] Express (v1) Endpoint, MSI 00
+> >                 DevCap: MaxPayload 128 bytes, PhantFunc 0, Latency L0s <512ns, L1 <4us
+> >                         ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset- SlotPowerLimit 25.000W
+> >                 DevCtl: CorrErr- NonFatalErr+ FatalErr+ UnsupReq-
+> >                         RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop+
+> >                         MaxPayload 128 bytes, MaxReadReq 512 bytes
+> >                 DevSta: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
+> >                 LnkCap: Port #0, Speed 2.5GT/s, Width x16, ASPM L0s L1, Exit Latency L0s <512ns, L1 <4us
+> >                         ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp-
+> >                 LnkCtl: ASPM Disabled; RCB 64 bytes, Disabled- CommClk+
+> >                         ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
+> >                 LnkSta: Speed 2.5GT/s (ok), Width x16 (ok)
+> >                         TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgmt-
+> >         Capabilities: [100 v1] Virtual Channel
+> >                 Caps:   LPEVC=0 RefClk=100ns PATEntryBits=1
+> >                 Arb:    Fixed- WRR32- WRR64- WRR128-
+> >                 Ctrl:   ArbSelect=Fixed
+> >                 Status: InProgress-
+> >                 VC0:    Caps:   PATOffset=00 MaxTimeSlots=1 RejSnoopTrans-
+> >                         Arb:    Fixed- WRR32- WRR64- WRR128- TWRR128- WRR256-
+> >                         Ctrl:   Enable+ ID=0 ArbSelect=Fixed TC/VC=01
+> >                         Status: NegoPending- InProgress-
+> >         Capabilities: [128 v1] Power Budgeting <?>
+> >         Capabilities: [600 v1] Vendor Specific Information: ID=0001 Rev=1 Len=024 <?>
+> >         Kernel driver in use: nouveau
+> >
+> > The last time this happened, this is what got logged:
+> >
+> > nouveau 0000:01:00.0: disp: ERROR 5 [INVALID_STATE] 06 [] chid 1 mthd 0080 data 00000001
+> > nouveau 0000:01:00.0: disp: Base 1:
+> > nouveau 0000:01:00.0: disp:        0084: 00000000
+> > nouveau 0000:01:00.0: disp:        0088: 00000000
+> > nouveau 0000:01:00.0: disp:        008c: 00000000
+> > nouveau 0000:01:00.0: disp:        0090: 00000000
+> > nouveau 0000:01:00.0: disp:        0094: 00000000
+> > nouveau 0000:01:00.0: disp:        00a0: 00000060 -> 00000070
+> > nouveau 0000:01:00.0: disp:        00a4: 00000000 -> f0000000
+> > nouveau 0000:01:00.0: disp:        00c0: 00000000
+> > nouveau 0000:01:00.0: disp:        00c4: 00000000
+> > nouveau 0000:01:00.0: disp:        00c8: 00000000
+> > nouveau 0000:01:00.0: disp:        00cc: 00000000
+> > nouveau 0000:01:00.0: disp:        00e0: 40000000
+> > nouveau 0000:01:00.0: disp:        00e4: 00000000
+> > nouveau 0000:01:00.0: disp:        00e8: 00000000
+> > nouveau 0000:01:00.0: disp:        00ec: 00000000
+> > nouveau 0000:01:00.0: disp:        00fc: 00000000
+> > nouveau 0000:01:00.0: disp:        0100: fffe0000
+> > nouveau 0000:01:00.0: disp:        0104: 00000000
+> > nouveau 0000:01:00.0: disp:        0110: 00000000
+> > nouveau 0000:01:00.0: disp:        0114: 00000000
+> > nouveau 0000:01:00.0: disp: Base 1 - Image 0:
+> > nouveau 0000:01:00.0: disp:        0800: 00009500
+> > nouveau 0000:01:00.0: disp:        0804: 00000000
+> > nouveau 0000:01:00.0: disp:        0808: 04b00780
+> > nouveau 0000:01:00.0: disp:        080c: 00007804
+> > nouveau 0000:01:00.0: disp:        0810: 0000cf00
+> > nouveau 0000:01:00.0: disp: Base 1 - Image 1:
+> > nouveau 0000:01:00.0: disp:        0c00: 00009500
+> > nouveau 0000:01:00.0: disp:        0c04: 00000000
+> > nouveau 0000:01:00.0: disp:        0c08: 04b00780
+> > nouveau 0000:01:00.0: disp:        0c0c: 00007804
+> > nouveau 0000:01:00.0: disp:        0c10: 0000cf00
+> > nouveau 0000:01:00.0: disp: ERROR 5 [INVALID_STATE] 06 [] chid 1 mthd 0080 data 00000001
+> > nouveau 0000:01:00.0: disp: Base 1:
+> > nouveau 0000:01:00.0: disp:        0084: 00000000
+> > nouveau 0000:01:00.0: disp:        0088: 00000000
+> > nouveau 0000:01:00.0: disp:        008c: 00000000
+> > nouveau 0000:01:00.0: disp:        0090: 00000000
+> > nouveau 0000:01:00.0: disp:        0094: 00000000
+> > nouveau 0000:01:00.0: disp:        00a0: 00000060 -> 00000070
+> > nouveau 0000:01:00.0: disp:        00a4: 00000000 -> f0000000
+> > nouveau 0000:01:00.0: disp:        00c0: 00000000
+> > nouveau 0000:01:00.0: disp:        00c4: 00000000
+> > nouveau 0000:01:00.0: disp:        00c8: 00000000
+> > nouveau 0000:01:00.0: disp:        00cc: 00000000
+> > nouveau 0000:01:00.0: disp:        00e0: 40000000
+> > nouveau 0000:01:00.0: disp:        00e4: 00000000
+> > nouveau 0000:01:00.0: disp:        00e8: 00000000
+> > nouveau 0000:01:00.0: disp:        00ec: 00000000
+> > nouveau 0000:01:00.0: disp:        00fc: 00000000
+> > nouveau 0000:01:00.0: disp:        0100: fffe0000
+> > nouveau 0000:01:00.0: disp:        0104: 00000000
+> > nouveau 0000:01:00.0: disp:        0110: 00000000
+> > nouveau 0000:01:00.0: disp:        0114: 00000000
+> > nouveau 0000:01:00.0: disp: Base 1 - Image 0:
+> > nouveau 0000:01:00.0: disp:        0800: 00009500
+> > nouveau 0000:01:00.0: disp:        0804: 00000000
+> > nouveau 0000:01:00.0: disp:        0808: 04b00780
+> > nouveau 0000:01:00.0: disp:        080c: 00007804
+> > nouveau 0000:01:00.0: disp:        0810: 0000cf00
+> > nouveau 0000:01:00.0: disp: Base 1 - Image 1:
+> > nouveau 0000:01:00.0: disp:        0c00: 00009500
+> > nouveau 0000:01:00.0: disp:        0c04: 00000000
+> > nouveau 0000:01:00.0: disp:        0c08: 04b00780
+> > nouveau 0000:01:00.0: disp:        0c0c: 00007804
+> > nouveau 0000:01:00.0: disp:        0c10: 0000cf00
+> > nouveau 0000:01:00.0: DRM: core notifier timeout
+> > nouveau 0000:01:00.0: DRM: base-0: timeout
+> >
+> > I've got logs of all of this, if they help I can collect them.  The
+> > timeout message are consistent the error messages a little less so.
+> >
+> > If there's more debugging I can do when this happens, I'd love to know
+> > what it is.
+> >
+> > kernel config: http://audible.transient.net/~jamie/k/nouveau.config-5.10.0
+> > dmesg at boot: http://audible.transient.net/~jamie/k/nouveau.dmesg
+> >
+> > --
+> > Jamie Heilman                     http://audible.transient.net/~jamie/
+> > _______________________________________________
+> > Nouveau mailing list
+> > Nouveau@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/nouveau
+> >
+> 
 
-Now the problem is that most modern-ish drivers really only treat
-fbcon as an dumb kernel console until userspace takes over, and Oops
-printer for some emergencies. Looking at drm drivers and the basic
-vesa/efi fbdev drivers shows that only 3 drivers support any kind of
-acceleration:
-
-- nouveau, seems to be enabled by default
-- omapdrm, when a DMM remapper exists using remapper rewriting for
-  y/xpanning
-- gma500, but that is getting deleted now for the GTT remapper trick,
-  and the accelerated copyarea never set the FBINFO_HWACCEL_COPYAREA
-  flag, so unused (and could be deleted already I think).
-
-No other driver supportes accelerated fbcon. And fbcon is the only
-user of this accel code (it's not exposed as uapi through ioctls),
-which means we could garbage collect fairly enormous amounts of code
-if we kill this.
-
-Plus because syzbot only runs on virtual hardware, and none of the
-drivers for that have acceleration, we'd remove a huge gap in testing.
-And there's no other even remotely comprehensive testing aside from
-syzbot.
-
-This patch here just disables the acceleration code by always
-redrawing when scrolling. The plan is that once this has been merged
-for well over a year in released kernels, we can start to go around
-and delete a lot of code.
-
-v2:
-- Drop a few more unused local variables, somehow I missed the
-compiler warnings (Sam)
-- Fix typo in comment (Jiri)
-- add a todo entry for the cleanup (Thomas)
-
-v3: Remove more unused variables (0day)
-
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen-l0cyMroinI0@public.gmane.org>
-Reviewed-by: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
-Reviewed-by: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
-Acked-by: Sam Ravnborg <sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org>
-Cc: Jiri Slaby <jirislaby-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>
-Cc: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
-Cc: Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Tomi Valkeinen <tomi.valkeinen-l0cyMroinI0@public.gmane.org>
-Cc: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Cc: Jiri Slaby <jirislaby-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Cc: "Gustavo A. R. Silva" <gustavoars-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Cc: Tetsuo Handa <penguin-kernel-JPay3/Yim36HaxMnTkn67Xf5DAMn2ifp@public.gmane.org>
-Cc: Peilin Ye <yepeilin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: George Kennedy <george.kennedy-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
-Cc: Nathan Chancellor <natechancellor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Peter Rosin <peda-koto5C5qi+TLoDKTGw+V6w@public.gmane.org>
-Signed-off-by: Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Link: https://patchwork.freedesktop.org/patch/msgid/20201029132229.4068359-1-daniel.vetter-/w4YWyX8dFk@public.gmane.org
-Signed-off-by: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
-
----
- Documentation/gpu/todo.rst       |   18 +++++++++++++++
- drivers/video/fbdev/core/fbcon.c |   45 ++++++---------------------------------
- 2 files changed, 26 insertions(+), 37 deletions(-)
-
---- a/Documentation/gpu/todo.rst
-+++ b/Documentation/gpu/todo.rst
-@@ -273,6 +273,24 @@ Contact: Daniel Vetter, Noralf Tronnes
- 
- Level: Advanced
- 
-+Garbage collect fbdev scrolling acceleration
-+--------------------------------------------
-+
-+Scroll acceleration is disabled in fbcon by hard-wiring p->scrollmode =
-+SCROLL_REDRAW. There's a ton of code this will allow us to remove:
-+- lots of code in fbcon.c
-+- a bunch of the hooks in fbcon_ops, maybe the remaining hooks could be called
-+  directly instead of the function table (with a switch on p->rotate)
-+- fb_copyarea is unused after this, and can be deleted from all drivers
-+
-+Note that not all acceleration code can be deleted, since clearing and cursor
-+support is still accelerated, which might be good candidates for further
-+deletion projects.
-+
-+Contact: Daniel Vetter
-+
-+Level: Intermediate
-+
- idr_init_base()
- ---------------
- 
---- a/drivers/video/fbdev/core/fbcon.c
-+++ b/drivers/video/fbdev/core/fbcon.c
-@@ -1033,7 +1033,7 @@ static void fbcon_init(struct vc_data *v
- 	struct vc_data *svc = *default_mode;
- 	struct fbcon_display *t, *p = &fb_display[vc->vc_num];
- 	int logo = 1, new_rows, new_cols, rows, cols, charcnt = 256;
--	int cap, ret;
-+	int ret;
- 
- 	if (WARN_ON(info_idx == -1))
- 	    return;
-@@ -1042,7 +1042,6 @@ static void fbcon_init(struct vc_data *v
- 		con2fb_map[vc->vc_num] = info_idx;
- 
- 	info = registered_fb[con2fb_map[vc->vc_num]];
--	cap = info->flags;
- 
- 	if (logo_shown < 0 && console_loglevel <= CONSOLE_LOGLEVEL_QUIET)
- 		logo_shown = FBCON_LOGO_DONTSHOW;
-@@ -1147,11 +1146,13 @@ static void fbcon_init(struct vc_data *v
- 
- 	ops->graphics = 0;
- 
--	if ((cap & FBINFO_HWACCEL_COPYAREA) &&
--	    !(cap & FBINFO_HWACCEL_DISABLED))
--		p->scrollmode = SCROLL_MOVE;
--	else /* default to something safe */
--		p->scrollmode = SCROLL_REDRAW;
-+	/*
-+	 * No more hw acceleration for fbcon.
-+	 *
-+	 * FIXME: Garbage collect all the now dead code after sufficient time
-+	 * has passed.
-+	 */
-+	p->scrollmode = SCROLL_REDRAW;
- 
- 	/*
- 	 *  ++guenther: console.c:vc_allocate() relies on initializing
-@@ -1961,45 +1962,15 @@ static void updatescrollmode(struct fbco
- {
- 	struct fbcon_ops *ops = info->fbcon_par;
- 	int fh = vc->vc_font.height;
--	int cap = info->flags;
--	u16 t = 0;
--	int ypan = FBCON_SWAP(ops->rotate, info->fix.ypanstep,
--				  info->fix.xpanstep);
--	int ywrap = FBCON_SWAP(ops->rotate, info->fix.ywrapstep, t);
- 	int yres = FBCON_SWAP(ops->rotate, info->var.yres, info->var.xres);
- 	int vyres = FBCON_SWAP(ops->rotate, info->var.yres_virtual,
- 				   info->var.xres_virtual);
--	int good_pan = (cap & FBINFO_HWACCEL_YPAN) &&
--		divides(ypan, vc->vc_font.height) && vyres > yres;
--	int good_wrap = (cap & FBINFO_HWACCEL_YWRAP) &&
--		divides(ywrap, vc->vc_font.height) &&
--		divides(vc->vc_font.height, vyres) &&
--		divides(vc->vc_font.height, yres);
--	int reading_fast = cap & FBINFO_READS_FAST;
--	int fast_copyarea = (cap & FBINFO_HWACCEL_COPYAREA) &&
--		!(cap & FBINFO_HWACCEL_DISABLED);
--	int fast_imageblit = (cap & FBINFO_HWACCEL_IMAGEBLIT) &&
--		!(cap & FBINFO_HWACCEL_DISABLED);
- 
- 	p->vrows = vyres/fh;
- 	if (yres > (fh * (vc->vc_rows + 1)))
- 		p->vrows -= (yres - (fh * vc->vc_rows)) / fh;
- 	if ((yres % fh) && (vyres % fh < yres % fh))
- 		p->vrows--;
--
--	if (good_wrap || good_pan) {
--		if (reading_fast || fast_copyarea)
--			p->scrollmode = good_wrap ?
--				SCROLL_WRAP_MOVE : SCROLL_PAN_MOVE;
--		else
--			p->scrollmode = good_wrap ? SCROLL_REDRAW :
--				SCROLL_PAN_REDRAW;
--	} else {
--		if (reading_fast || (fast_copyarea && !fast_imageblit))
--			p->scrollmode = SCROLL_MOVE;
--		else
--			p->scrollmode = SCROLL_REDRAW;
--	}
- }
- 
- #define PITCH(w) (((w) + 7) >> 3)
+-- 
+Jamie Heilman                     http://audible.transient.net/~jamie/
