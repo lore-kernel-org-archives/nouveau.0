@@ -1,794 +1,437 @@
-From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
-Subject: [PATCH v3 4/8] drm/i915: Remove references to struct drm_device.pdev
-Date: Thu,  7 Jan 2021 09:07:44 +0100
-Message-ID: <20210107080748.4768-5-tzimmermann@suse.de>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v3 7/8] drm/nouveau: Remove references to struct
+ drm_device.pdev
+Date: Thu,  7 Jan 2021 09:07:47 +0100
+Message-ID: <20210107080748.4768-8-tzimmermann@suse.de>
 References: <20210107080748.4768-1-tzimmermann@suse.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20210107080748.4768-1-tzimmermann-l3A5Bk7waGM@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>, intel-gvt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20210107080748.4768-1-tzimmermann@suse.de>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: airlied@linux.ie, daniel@ffwll.ch, jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Jeremy Cline <jcline@redhat.com>, amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, intel-gvt-dev@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-Using struct drm_device.pdev is deprecated. Convert i915 to struct
+Using struct drm_device.pdev is deprecated. Convert nouveau to struct
 drm_device.dev. No functional changes.
 
 v3:
-	* rebased
-v2:
-	* move gt/ and gvt/ changes into separate patches
+	* fix nv04_dfp_update_backlight() as well (Jeremy)
 
-Signed-off-by: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
-Cc: Jani Nikula <jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Cc: Joonas Lahtinen <joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Cc: Rodrigo Vivi <rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Jeremy Cline <jcline@redhat.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c     |  2 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 14 ++++++-------
- drivers/gpu/drm/i915/display/intel_csr.c      |  2 +-
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |  2 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_gmbus.c    |  2 +-
- .../gpu/drm/i915/display/intel_lpe_audio.c    |  5 +++--
- drivers/gpu/drm/i915/display/intel_opregion.c |  6 +++---
- drivers/gpu/drm/i915/display/intel_overlay.c  |  2 +-
- drivers/gpu/drm/i915/display/intel_panel.c    |  4 ++--
- drivers/gpu/drm/i915/display/intel_quirks.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
- drivers/gpu/drm/i915/display/intel_vga.c      |  8 ++++----
- drivers/gpu/drm/i915/gem/i915_gem_phys.c      |  6 +++---
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  2 +-
- drivers/gpu/drm/i915/i915_debugfs.c           |  2 +-
- drivers/gpu/drm/i915/i915_drv.c               | 20 +++++++++----------
- drivers/gpu/drm/i915/i915_drv.h               |  2 +-
- drivers/gpu/drm/i915/i915_gem_gtt.c           |  5 ++---
- drivers/gpu/drm/i915/i915_getparam.c          |  5 +++--
- drivers/gpu/drm/i915/i915_gpu_error.c         |  2 +-
- drivers/gpu/drm/i915/i915_irq.c               |  6 +++---
- drivers/gpu/drm/i915/i915_pmu.c               |  2 +-
- drivers/gpu/drm/i915/i915_suspend.c           |  4 ++--
- drivers/gpu/drm/i915/i915_switcheroo.c        |  4 ++--
- drivers/gpu/drm/i915/i915_vgpu.c              |  2 +-
- drivers/gpu/drm/i915/intel_device_info.c      |  2 +-
- drivers/gpu/drm/i915/intel_region_lmem.c      |  8 ++++----
- drivers/gpu/drm/i915/intel_runtime_pm.c       |  2 +-
- drivers/gpu/drm/i915/intel_uncore.c           |  4 ++--
- .../gpu/drm/i915/selftests/mock_gem_device.c  |  1 -
- drivers/gpu/drm/i915/selftests/mock_gtt.c     |  2 +-
- 32 files changed, 66 insertions(+), 68 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv04/arb.c      | 12 +++++++-----
+ drivers/gpu/drm/nouveau/dispnv04/dfp.c      |  5 +++--
+ drivers/gpu/drm/nouveau/dispnv04/disp.h     | 14 ++++++++------
+ drivers/gpu/drm/nouveau/dispnv04/hw.c       | 10 ++++++----
+ drivers/gpu/drm/nouveau/nouveau_abi16.c     |  7 ++++---
+ drivers/gpu/drm/nouveau/nouveau_acpi.c      |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_bios.c      | 11 ++++++++---
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 10 ++++++----
+ drivers/gpu/drm/nouveau/nouveau_drm.c       |  5 ++---
+ drivers/gpu/drm/nouveau/nouveau_fbcon.c     |  6 ++++--
+ drivers/gpu/drm/nouveau/nouveau_vga.c       | 20 ++++++++++++--------
+ 11 files changed, 61 insertions(+), 41 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 06c3310446a2..6144872cf3aa 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2088,7 +2088,7 @@ bool intel_bios_is_valid_vbt(const void *buf, size_t size)
- 
- static struct vbt_header *oprom_get_vbt(struct drm_i915_private *dev_priv)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	void __iomem *p = NULL, *oprom;
- 	struct vbt_header *vbt;
- 	u16 vbt_size;
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 2e878cc274b7..bf83e9e75227 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -96,7 +96,7 @@ static void fixed_450mhz_get_cdclk(struct drm_i915_private *dev_priv,
- static void i85x_get_cdclk(struct drm_i915_private *dev_priv,
- 			   struct intel_cdclk_config *cdclk_config)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	u16 hpllcc = 0;
- 
- 	/*
-@@ -138,7 +138,7 @@ static void i85x_get_cdclk(struct drm_i915_private *dev_priv,
- static void i915gm_get_cdclk(struct drm_i915_private *dev_priv,
- 			     struct intel_cdclk_config *cdclk_config)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	u16 gcfgc = 0;
- 
- 	pci_read_config_word(pdev, GCFGC, &gcfgc);
-@@ -162,7 +162,7 @@ static void i915gm_get_cdclk(struct drm_i915_private *dev_priv,
- static void i945gm_get_cdclk(struct drm_i915_private *dev_priv,
- 			     struct intel_cdclk_config *cdclk_config)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	u16 gcfgc = 0;
- 
- 	pci_read_config_word(pdev, GCFGC, &gcfgc);
-@@ -256,7 +256,7 @@ static unsigned int intel_hpll_vco(struct drm_i915_private *dev_priv)
- static void g33_get_cdclk(struct drm_i915_private *dev_priv,
- 			  struct intel_cdclk_config *cdclk_config)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	static const u8 div_3200[] = { 12, 10,  8,  7, 5, 16 };
- 	static const u8 div_4000[] = { 14, 12, 10,  8, 6, 20 };
- 	static const u8 div_4800[] = { 20, 14, 12, 10, 8, 24 };
-@@ -305,7 +305,7 @@ static void g33_get_cdclk(struct drm_i915_private *dev_priv,
- static void pnv_get_cdclk(struct drm_i915_private *dev_priv,
- 			  struct intel_cdclk_config *cdclk_config)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	u16 gcfgc = 0;
- 
- 	pci_read_config_word(pdev, GCFGC, &gcfgc);
-@@ -339,7 +339,7 @@ static void pnv_get_cdclk(struct drm_i915_private *dev_priv,
- static void i965gm_get_cdclk(struct drm_i915_private *dev_priv,
- 			     struct intel_cdclk_config *cdclk_config)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	static const u8 div_3200[] = { 16, 10,  8 };
- 	static const u8 div_4000[] = { 20, 12, 10 };
- 	static const u8 div_5333[] = { 24, 16, 14 };
-@@ -384,7 +384,7 @@ static void i965gm_get_cdclk(struct drm_i915_private *dev_priv,
- static void gm45_get_cdclk(struct drm_i915_private *dev_priv,
- 			   struct intel_cdclk_config *cdclk_config)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	unsigned int cdclk_sel;
- 	u16 tmp = 0;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_csr.c b/drivers/gpu/drm/i915/display/intel_csr.c
-index 67dc64df78a5..19cbcab69689 100644
---- a/drivers/gpu/drm/i915/display/intel_csr.c
-+++ b/drivers/gpu/drm/i915/display/intel_csr.c
-@@ -640,7 +640,7 @@ static void csr_load_work_fn(struct work_struct *work)
- 	dev_priv = container_of(work, typeof(*dev_priv), csr.work);
- 	csr = &dev_priv->csr;
- 
--	request_firmware(&fw, dev_priv->csr.fw_path, &dev_priv->drm.pdev->dev);
-+	request_firmware(&fw, dev_priv->csr.fw_path, dev_priv->drm.dev);
- 	parse_csr_fw(dev_priv, fw);
- 
- 	if (dev_priv->csr.dmc_payload) {
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index eed037ec0b29..e349caef1926 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -425,7 +425,7 @@ static void i2c_acpi_find_adapter(struct intel_dsi *intel_dsi,
- 				  const u16 slave_addr)
- {
- 	struct drm_device *drm_dev = intel_dsi->base.base.dev;
--	struct device *dev = &drm_dev->pdev->dev;
-+	struct device *dev = drm_dev->dev;
- 	struct acpi_device *acpi_dev;
- 	struct list_head resource_list;
- 	struct i2c_adapter_lookup lookup;
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 842c04e63214..4ccb462bd497 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -167,7 +167,7 @@ static int intelfb_create(struct drm_fb_helper *helper,
- 	struct intel_framebuffer *intel_fb = ifbdev->fb;
- 	struct drm_device *dev = helper->dev;
- 	struct drm_i915_private *dev_priv = to_i915(dev);
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	struct i915_ggtt *ggtt = &dev_priv->ggtt;
- 	const struct i915_ggtt_view view = {
- 		.type = I915_GGTT_VIEW_NORMAL,
-diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index b0d71bbbf2ad..0c952e1d720e 100644
---- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -840,7 +840,7 @@ static const struct i2c_lock_operations gmbus_lock_ops = {
-  */
- int intel_gmbus_setup(struct drm_i915_private *dev_priv)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	struct intel_gmbus *bus;
- 	unsigned int pin;
- 	int ret;
-diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-index 1c939f9c9bc9..7f3c638c8950 100644
---- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-@@ -80,6 +80,7 @@ static struct platform_device *
- lpe_audio_platdev_create(struct drm_i915_private *dev_priv)
- {
- 	struct drm_device *dev = &dev_priv->drm;
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/arb.c b/drivers/gpu/drm/nouveau/dispnv04/arb.c
+index 9d4a2d97507e..1d3542d6006b 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/arb.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/arb.c
+@@ -200,16 +200,17 @@ nv04_update_arb(struct drm_device *dev, int VClk, int bpp,
+ 	int MClk = nouveau_hw_get_clock(dev, PLL_MEMORY);
+ 	int NVClk = nouveau_hw_get_clock(dev, PLL_CORE);
+ 	uint32_t cfg1 = nvif_rd32(device, NV04_PFB_CFG1);
 +	struct pci_dev *pdev = to_pci_dev(dev->dev);
- 	struct platform_device_info pinfo = {};
- 	struct resource *rsc;
- 	struct platform_device *platdev;
-@@ -99,9 +100,9 @@ lpe_audio_platdev_create(struct drm_i915_private *dev_priv)
- 	rsc[0].flags    = IORESOURCE_IRQ;
- 	rsc[0].name     = "hdmi-lpe-audio-irq";
  
--	rsc[1].start    = pci_resource_start(dev->pdev, 0) +
-+	rsc[1].start    = pci_resource_start(pdev, 0) +
- 		I915_HDMI_LPE_AUDIO_BASE;
--	rsc[1].end      = pci_resource_start(dev->pdev, 0) +
-+	rsc[1].end      = pci_resource_start(pdev, 0) +
- 		I915_HDMI_LPE_AUDIO_BASE + I915_HDMI_LPE_AUDIO_SIZE - 1;
- 	rsc[1].flags    = IORESOURCE_MEM;
- 	rsc[1].name     = "hdmi-lpe-audio-mmio";
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index 4f77cf849171..dfd724e506b5 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.c
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -247,7 +247,7 @@ static int swsci(struct drm_i915_private *dev_priv,
- 		 u32 function, u32 parm, u32 *parm_out)
+ 	sim_data.pclk_khz = VClk;
+ 	sim_data.mclk_khz = MClk;
+ 	sim_data.nvclk_khz = NVClk;
+ 	sim_data.bpp = bpp;
+ 	sim_data.two_heads = nv_two_heads(dev);
+-	if ((dev->pdev->device & 0xffff) == 0x01a0 /*CHIPSET_NFORCE*/ ||
+-	    (dev->pdev->device & 0xffff) == 0x01f0 /*CHIPSET_NFORCE2*/) {
++	if ((pdev->device & 0xffff) == 0x01a0 /*CHIPSET_NFORCE*/ ||
++	    (pdev->device & 0xffff) == 0x01f0 /*CHIPSET_NFORCE2*/) {
+ 		uint32_t type;
+-		int domain = pci_domain_nr(dev->pdev->bus);
++		int domain = pci_domain_nr(pdev->bus);
+ 
+ 		pci_read_config_dword(pci_get_domain_bus_and_slot(domain, 0, 1),
+ 				      0x7c, &type);
+@@ -251,11 +252,12 @@ void
+ nouveau_calc_arb(struct drm_device *dev, int vclk, int bpp, int *burst, int *lwm)
  {
- 	struct opregion_swsci *swsci = dev_priv->opregion.swsci;
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	u32 main_function, sub_function, scic;
- 	u16 swsci_val;
- 	u32 dslp;
-@@ -807,7 +807,7 @@ static int intel_load_vbt_firmware(struct drm_i915_private *dev_priv)
- 	if (!name || !*name)
- 		return -ENOENT;
- 
--	ret = request_firmware(&fw, name, &dev_priv->drm.pdev->dev);
-+	ret = request_firmware(&fw, name, dev_priv->drm.dev);
- 	if (ret) {
- 		drm_err(&dev_priv->drm,
- 			"Requesting VBT firmware \"%s\" failed (%d)\n",
-@@ -840,7 +840,7 @@ static int intel_load_vbt_firmware(struct drm_i915_private *dev_priv)
- int intel_opregion_setup(struct drm_i915_private *dev_priv)
- {
- 	struct intel_opregion *opregion = &dev_priv->opregion;
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	u32 asls, mboxes;
- 	char buf[sizeof(OPREGION_SIGNATURE)];
- 	int err = 0;
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index 6be5d8946c69..cd1eb71d6e35 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -202,7 +202,7 @@ struct intel_overlay {
- static void i830_overlay_clock_gating(struct drm_i915_private *dev_priv,
- 				      bool enable)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	u8 val;
- 
- 	/* WA_OVERLAY_CLKGATE:alm */
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index 67f81ae995c4..d1151c657a23 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -557,7 +557,7 @@ static u32 i9xx_get_backlight(struct intel_connector *connector)
- 	if (panel->backlight.combination_mode) {
- 		u8 lbpc;
- 
--		pci_read_config_byte(dev_priv->drm.pdev, LBPC, &lbpc);
-+		pci_read_config_byte(to_pci_dev(dev_priv->drm.dev), LBPC, &lbpc);
- 		val *= lbpc;
- 	}
- 
-@@ -631,7 +631,7 @@ static void i9xx_set_backlight(const struct drm_connector_state *conn_state, u32
- 
- 		lbpc = level * 0xfe / panel->backlight.max + 1;
- 		level /= lbpc;
--		pci_write_config_byte(dev_priv->drm.pdev, LBPC, lbpc);
-+		pci_write_config_byte(to_pci_dev(dev_priv->drm.dev), LBPC, lbpc);
- 	}
- 
- 	if (IS_GEN(dev_priv, 4)) {
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index 46beb155d835..98dd787b00e3 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -160,7 +160,7 @@ static struct intel_quirk intel_quirks[] = {
- 
- void intel_init_quirks(struct drm_i915_private *i915)
- {
--	struct pci_dev *d = i915->drm.pdev;
-+	struct pci_dev *d = to_pci_dev(i915->drm.dev);
- 	int i;
- 
- 	for (i = 0; i < ARRAY_SIZE(intel_quirks); i++) {
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index 4eaa4aa86ecd..3fac60899d8e 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -3281,7 +3281,7 @@ static bool
- intel_sdvo_init_ddc_proxy(struct intel_sdvo *sdvo,
- 			  struct drm_i915_private *dev_priv)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 
- 	sdvo->ddc.owner = THIS_MODULE;
- 	sdvo->ddc.class = I2C_CLASS_DDC;
-diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
-index be333699c515..5f8e4f53649d 100644
---- a/drivers/gpu/drm/i915/display/intel_vga.c
-+++ b/drivers/gpu/drm/i915/display/intel_vga.c
-@@ -25,7 +25,7 @@ static i915_reg_t intel_vga_cntrl_reg(struct drm_i915_private *i915)
- /* Disable the VGA plane that we never use */
- void intel_vga_disable(struct drm_i915_private *dev_priv)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	i915_reg_t vga_reg = intel_vga_cntrl_reg(dev_priv);
- 	u8 sr1;
- 
-@@ -76,7 +76,7 @@ void intel_vga_redisable(struct drm_i915_private *i915)
- 
- void intel_vga_reset_io_mem(struct drm_i915_private *i915)
- {
--	struct pci_dev *pdev = i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 
- 	/*
- 	 * After we re-enable the power well, if we touch VGA register 0x3d5
-@@ -136,7 +136,7 @@ intel_vga_set_decode(void *cookie, bool enable_decode)
- 
- int intel_vga_register(struct drm_i915_private *i915)
- {
--	struct pci_dev *pdev = i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	int ret;
- 
- 	/*
-@@ -156,7 +156,7 @@ int intel_vga_register(struct drm_i915_private *i915)
- 
- void intel_vga_unregister(struct drm_i915_private *i915)
- {
--	struct pci_dev *pdev = i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 
- 	vga_client_register(pdev, NULL, NULL, NULL);
- }
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-index 3a4dfe2ef1da..f47dafdda539 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-@@ -35,7 +35,7 @@ static int i915_gem_object_get_pages_phys(struct drm_i915_gem_object *obj)
- 	 * to handle all possible callers, and given typical object sizes,
- 	 * the alignment of the buddy allocation will naturally match.
- 	 */
--	vaddr = dma_alloc_coherent(&obj->base.dev->pdev->dev,
-+	vaddr = dma_alloc_coherent(obj->base.dev->dev,
- 				   roundup_pow_of_two(obj->base.size),
- 				   &dma, GFP_KERNEL);
- 	if (!vaddr)
-@@ -83,7 +83,7 @@ static int i915_gem_object_get_pages_phys(struct drm_i915_gem_object *obj)
- err_st:
- 	kfree(st);
- err_pci:
--	dma_free_coherent(&obj->base.dev->pdev->dev,
-+	dma_free_coherent(obj->base.dev->dev,
- 			  roundup_pow_of_two(obj->base.size),
- 			  vaddr, dma);
- 	return -ENOMEM;
-@@ -129,7 +129,7 @@ i915_gem_object_put_pages_phys(struct drm_i915_gem_object *obj,
- 	sg_free_table(pages);
- 	kfree(pages);
- 
--	dma_free_coherent(&obj->base.dev->pdev->dev,
-+	dma_free_coherent(obj->base.dev->dev,
- 			  roundup_pow_of_two(obj->base.size),
- 			  vaddr, dma);
- }
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-index 75e8b71c18b9..08c9c25f1109 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-@@ -172,7 +172,7 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
- 			max_segment = PAGE_SIZE;
- 			goto rebuild_st;
- 		} else {
--			dev_warn(&i915->drm.pdev->dev,
-+			dev_warn(i915->drm.dev,
- 				 "Failed to DMA remap %lu pages\n",
- 				 page_count);
- 			goto err_pages;
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index de8e0e44cfb6..1bfb740a3d1e 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -819,7 +819,7 @@ static int i915_rps_boost_info(struct seq_file *m, void *data)
- static int i915_runtime_pm_status(struct seq_file *m, void *unused)
- {
- 	struct drm_i915_private *dev_priv = node_to_i915(m->private);
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 
- 	if (!HAS_RUNTIME_PM(dev_priv))
- 		seq_puts(m, "Runtime power management not supported\n");
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 249f765993f7..7cf2b8481d2a 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -91,7 +91,7 @@ static const struct drm_driver driver;
- 
- static int i915_get_bridge_dev(struct drm_i915_private *dev_priv)
- {
--	int domain = pci_domain_nr(dev_priv->drm.pdev->bus);
-+	int domain = pci_domain_nr(to_pci_dev(dev_priv->drm.dev)->bus);
- 
- 	dev_priv->bridge_dev =
- 		pci_get_domain_bus_and_slot(domain, 0, PCI_DEVFN(0, 0));
-@@ -458,7 +458,6 @@ static void intel_sanitize_options(struct drm_i915_private *dev_priv)
-  */
- static int i915_set_dma_info(struct drm_i915_private *i915)
- {
--	struct pci_dev *pdev = i915->drm.pdev;
- 	unsigned int mask_size = INTEL_INFO(i915)->dma_mask_size;
- 	int ret;
- 
-@@ -468,9 +467,9 @@ static int i915_set_dma_info(struct drm_i915_private *i915)
- 	 * We don't have a max segment size, so set it to the max so sg's
- 	 * debugging layer doesn't complain
- 	 */
--	dma_set_max_seg_size(&pdev->dev, UINT_MAX);
-+	dma_set_max_seg_size(i915->drm.dev, UINT_MAX);
- 
--	ret = dma_set_mask(&pdev->dev, DMA_BIT_MASK(mask_size));
-+	ret = dma_set_mask(i915->drm.dev, DMA_BIT_MASK(mask_size));
- 	if (ret)
- 		goto mask_err;
- 
-@@ -490,7 +489,7 @@ static int i915_set_dma_info(struct drm_i915_private *i915)
- 	if (IS_I965G(i915) || IS_I965GM(i915))
- 		mask_size = 32;
- 
--	ret = dma_set_coherent_mask(&pdev->dev, DMA_BIT_MASK(mask_size));
-+	ret = dma_set_coherent_mask(i915->drm.dev, DMA_BIT_MASK(mask_size));
- 	if (ret)
- 		goto mask_err;
- 
-@@ -510,7 +509,7 @@ static int i915_set_dma_info(struct drm_i915_private *i915)
-  */
- static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	int ret;
- 
- 	if (i915_inject_probe_failure(dev_priv))
-@@ -639,7 +638,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
-  */
- static void i915_driver_hw_remove(struct drm_i915_private *dev_priv)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 
- 	i915_perf_fini(dev_priv);
- 
-@@ -788,7 +787,6 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	if (IS_ERR(i915))
- 		return i915;
- 
--	i915->drm.pdev = pdev;
- 	pci_set_drvdata(pdev, i915);
- 
- 	/* Device parameters start as a copy of module parameters. */
-@@ -1088,7 +1086,7 @@ static int i915_drm_prepare(struct drm_device *dev)
- static int i915_drm_suspend(struct drm_device *dev)
- {
- 	struct drm_i915_private *dev_priv = to_i915(dev);
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	pci_power_t opregion_target_state;
- 
- 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
-@@ -1145,7 +1143,7 @@ get_suspend_mode(struct drm_i915_private *dev_priv, bool hibernate)
- static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
- {
- 	struct drm_i915_private *dev_priv = to_i915(dev);
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	struct intel_runtime_pm *rpm = &dev_priv->runtime_pm;
- 	int ret;
- 
-@@ -1275,7 +1273,7 @@ static int i915_drm_resume(struct drm_device *dev)
- static int i915_drm_resume_early(struct drm_device *dev)
- {
- 	struct drm_i915_private *dev_priv = to_i915(dev);
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	int ret;
- 
- 	/*
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 5e5bcef20e33..b0e57ffb7527 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1289,7 +1289,7 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
- #define INTEL_DEVID(dev_priv)	(RUNTIME_INFO(dev_priv)->device_id)
- 
- #define REVID_FOREVER		0xff
--#define INTEL_REVID(dev_priv)	((dev_priv)->drm.pdev->revision)
-+#define INTEL_REVID(dev_priv)	(to_pci_dev((dev_priv)->drm.dev)->revision)
- 
- #define INTEL_GEN_MASK(s, e) ( \
- 	BUILD_BUG_ON_ZERO(!__builtin_constant_p(s)) + \
-diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
-index 3ee2f682eff6..486c9953e5b6 100644
---- a/drivers/gpu/drm/i915/i915_gem_gtt.c
-+++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
-@@ -28,7 +28,7 @@ int i915_gem_gtt_prepare_pages(struct drm_i915_gem_object *obj,
- 			       struct sg_table *pages)
- {
- 	do {
--		if (dma_map_sg_attrs(&obj->base.dev->pdev->dev,
-+		if (dma_map_sg_attrs(obj->base.dev->dev,
- 				     pages->sgl, pages->nents,
- 				     PCI_DMA_BIDIRECTIONAL,
- 				     DMA_ATTR_SKIP_CPU_SYNC |
-@@ -63,8 +63,7 @@ void i915_gem_gtt_finish_pages(struct drm_i915_gem_object *obj,
- 		/* Wait a bit, in the hope it avoids the hang */
- 		usleep_range(100, 250);
- 
--	dma_unmap_sg(&i915->drm.pdev->dev,
--		     pages->sgl, pages->nents,
-+	dma_unmap_sg(i915->drm.dev, pages->sgl, pages->nents,
- 		     PCI_DMA_BIDIRECTIONAL);
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
-index 75c3bfc2486e..24e18219eb50 100644
---- a/drivers/gpu/drm/i915/i915_getparam.c
-+++ b/drivers/gpu/drm/i915/i915_getparam.c
-@@ -12,6 +12,7 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
- 			struct drm_file *file_priv)
- {
- 	struct drm_i915_private *i915 = to_i915(dev);
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
 +	struct pci_dev *pdev = to_pci_dev(dev->dev);
- 	const struct sseu_dev_info *sseu = &i915->gt.info.sseu;
- 	drm_i915_getparam_t *param = data;
- 	int value;
-@@ -24,10 +25,10 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
- 		/* Reject all old ums/dri params. */
- 		return -ENODEV;
- 	case I915_PARAM_CHIPSET_ID:
--		value = i915->drm.pdev->device;
-+		value = pdev->device;
- 		break;
- 	case I915_PARAM_REVISION:
--		value = i915->drm.pdev->revision;
-+		value = pdev->revision;
- 		break;
- 	case I915_PARAM_NUM_FENCES_AVAIL:
- 		value = i915->ggtt.num_fences;
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 8b163ee1b86d..e3068ce50b42 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -644,7 +644,7 @@ static void err_print_params(struct drm_i915_error_state_buf *m,
- static void err_print_pciid(struct drm_i915_error_state_buf *m,
- 			    struct drm_i915_private *i915)
- {
--	struct pci_dev *pdev = i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
  
- 	err_printf(m, "PCI ID: 0x%04x\n", pdev->device);
- 	err_printf(m, "PCI Revision: 0x%02x\n", pdev->revision);
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index dd1971040bbc..5f062657280f 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -4378,7 +4378,7 @@ static void intel_irq_postinstall(struct drm_i915_private *dev_priv)
-  */
- int intel_irq_install(struct drm_i915_private *dev_priv)
+ 	if (drm->client.device.info.family < NV_DEVICE_INFO_V0_KELVIN)
+ 		nv04_update_arb(dev, vclk, bpp, burst, lwm);
+-	else if ((dev->pdev->device & 0xfff0) == 0x0240 /*CHIPSET_C51*/ ||
+-		 (dev->pdev->device & 0xfff0) == 0x03d0 /*CHIPSET_C512*/) {
++	else if ((pdev->device & 0xfff0) == 0x0240 /*CHIPSET_C51*/ ||
++		 (pdev->device & 0xfff0) == 0x03d0 /*CHIPSET_C512*/) {
+ 		*burst = 128;
+ 		*lwm = 0x0480;
+ 	} else
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/dfp.c b/drivers/gpu/drm/nouveau/dispnv04/dfp.c
+index 42687ea2a4ca..ce3d8c6ef000 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/dfp.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/dfp.c
+@@ -488,12 +488,13 @@ static void nv04_dfp_update_backlight(struct drm_encoder *encoder, int mode)
+ #ifdef __powerpc__
+ 	struct drm_device *dev = encoder->dev;
+ 	struct nvif_object *device = &nouveau_drm(dev)->client.device.object;
++	struct pci_dev *pdev = to_pci_dev(dev->dev);
+ 
+ 	/* BIOS scripts usually take care of the backlight, thanks
+ 	 * Apple for your consistency.
+ 	 */
+-	if (dev->pdev->device == 0x0174 || dev->pdev->device == 0x0179 ||
+-	    dev->pdev->device == 0x0189 || dev->pdev->device == 0x0329) {
++	if (pdev->device == 0x0174 || pdev->device == 0x0179 ||
++	    pdev->device == 0x0189 || pdev->device == 0x0329) {
+ 		if (mode == DRM_MODE_DPMS_ON) {
+ 			nvif_mask(device, NV_PBUS_DEBUG_DUALHEAD_CTL, 1 << 31, 1 << 31);
+ 			nvif_mask(device, NV_PCRTC_GPIO_EXT, 3, 1);
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/disp.h b/drivers/gpu/drm/nouveau/dispnv04/disp.h
+index 5ace5e906949..f0a24126641a 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/disp.h
++++ b/drivers/gpu/drm/nouveau/dispnv04/disp.h
+@@ -130,7 +130,7 @@ static inline bool
+ nv_two_heads(struct drm_device *dev)
  {
--	int irq = dev_priv->drm.pdev->irq;
-+	int irq = to_pci_dev(dev_priv->drm.dev)->irq;
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+-	const int impl = dev->pdev->device & 0x0ff0;
++	const int impl = to_pci_dev(dev->dev)->device & 0x0ff0;
+ 
+ 	if (drm->client.device.info.family >= NV_DEVICE_INFO_V0_CELSIUS && impl != 0x0100 &&
+ 	    impl != 0x0150 && impl != 0x01a0 && impl != 0x0200)
+@@ -142,14 +142,14 @@ nv_two_heads(struct drm_device *dev)
+ static inline bool
+ nv_gf4_disp_arch(struct drm_device *dev)
+ {
+-	return nv_two_heads(dev) && (dev->pdev->device & 0x0ff0) != 0x0110;
++	return nv_two_heads(dev) && (to_pci_dev(dev->dev)->device & 0x0ff0) != 0x0110;
+ }
+ 
+ static inline bool
+ nv_two_reg_pll(struct drm_device *dev)
+ {
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+-	const int impl = dev->pdev->device & 0x0ff0;
++	const int impl = to_pci_dev(dev->dev)->device & 0x0ff0;
+ 
+ 	if (impl == 0x0310 || impl == 0x0340 || drm->client.device.info.family >= NV_DEVICE_INFO_V0_CURIE)
+ 		return true;
+@@ -160,9 +160,11 @@ static inline bool
+ nv_match_device(struct drm_device *dev, unsigned device,
+ 		unsigned sub_vendor, unsigned sub_device)
+ {
+-	return dev->pdev->device == device &&
+-		dev->pdev->subsystem_vendor == sub_vendor &&
+-		dev->pdev->subsystem_device == sub_device;
++	struct pci_dev *pdev = to_pci_dev(dev->dev);
++
++	return pdev->device == device &&
++		pdev->subsystem_vendor == sub_vendor &&
++		pdev->subsystem_device == sub_device;
+ }
+ 
+ #include <subdev/bios/init.h>
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/hw.c b/drivers/gpu/drm/nouveau/dispnv04/hw.c
+index b674d68ef28a..f7d35657aa64 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/hw.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/hw.c
+@@ -214,14 +214,15 @@ nouveau_hw_pllvals_to_clk(struct nvkm_pll_vals *pv)
+ int
+ nouveau_hw_get_clock(struct drm_device *dev, enum nvbios_pll_type plltype)
+ {
++	struct pci_dev *pdev = to_pci_dev(dev->dev);
+ 	struct nvkm_pll_vals pllvals;
  	int ret;
+ 	int domain;
  
- 	/*
-@@ -4413,7 +4413,7 @@ int intel_irq_install(struct drm_i915_private *dev_priv)
-  */
- void intel_irq_uninstall(struct drm_i915_private *dev_priv)
+-	domain = pci_domain_nr(dev->pdev->bus);
++	domain = pci_domain_nr(pdev->bus);
+ 
+ 	if (plltype == PLL_MEMORY &&
+-	    (dev->pdev->device & 0x0ff0) == CHIPSET_NFORCE) {
++	    (pdev->device & 0x0ff0) == CHIPSET_NFORCE) {
+ 		uint32_t mpllP;
+ 		pci_read_config_dword(pci_get_domain_bus_and_slot(domain, 0, 3),
+ 				      0x6c, &mpllP);
+@@ -232,7 +233,7 @@ nouveau_hw_get_clock(struct drm_device *dev, enum nvbios_pll_type plltype)
+ 		return 400000 / mpllP;
+ 	} else
+ 	if (plltype == PLL_MEMORY &&
+-	    (dev->pdev->device & 0xff0) == CHIPSET_NFORCE2) {
++	    (pdev->device & 0xff0) == CHIPSET_NFORCE2) {
+ 		uint32_t clock;
+ 
+ 		pci_read_config_dword(pci_get_domain_bus_and_slot(domain, 0, 5),
+@@ -309,6 +310,7 @@ void
+ nouveau_hw_save_vga_fonts(struct drm_device *dev, bool save)
  {
--	int irq = dev_priv->drm.pdev->irq;
-+	int irq = to_pci_dev(dev_priv->drm.dev)->irq;
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
++	struct pci_dev *pdev = to_pci_dev(dev->dev);
+ 	uint8_t misc, gr4, gr5, gr6, seq2, seq4;
+ 	bool graphicsmode;
+ 	unsigned plane;
+@@ -327,7 +329,7 @@ nouveau_hw_save_vga_fonts(struct drm_device *dev, bool save)
+ 	NV_INFO(drm, "%sing VGA fonts\n", save ? "Sav" : "Restor");
  
- 	/*
- 	 * FIXME we can get called twice during driver probe
-@@ -4473,5 +4473,5 @@ bool intel_irqs_enabled(struct drm_i915_private *dev_priv)
+ 	/* map first 64KiB of VRAM, holds VGA fonts etc */
+-	iovram = ioremap(pci_resource_start(dev->pdev, 1), 65536);
++	iovram = ioremap(pci_resource_start(pdev, 1), 65536);
+ 	if (!iovram) {
+ 		NV_ERROR(drm, "Failed to map VRAM, "
+ 					"cannot save/restore VGA fonts.\n");
+diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+index 9a5be6f32424..f08b31d84d4d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
++++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+@@ -181,6 +181,7 @@ nouveau_abi16_ioctl_getparam(ABI16_IOCTL_ARGS)
+ 	struct nvif_device *device = &drm->client.device;
+ 	struct nvkm_gr *gr = nvxx_gr(device);
+ 	struct drm_nouveau_getparam *getparam = data;
++	struct pci_dev *pdev = to_pci_dev(dev->dev);
  
- void intel_synchronize_irq(struct drm_i915_private *i915)
- {
--	synchronize_irq(i915->drm.pdev->irq);
-+	synchronize_irq(to_pci_dev(i915->drm.dev)->irq);
- }
-diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-index 2b88c0baa1bf..41651ac255fa 100644
---- a/drivers/gpu/drm/i915/i915_pmu.c
-+++ b/drivers/gpu/drm/i915/i915_pmu.c
-@@ -1124,7 +1124,7 @@ static void i915_pmu_unregister_cpuhp_state(struct i915_pmu *pmu)
- 
- static bool is_igp(struct drm_i915_private *i915)
- {
--	struct pci_dev *pdev = i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 
- 	/* IGP is 0000:00:02.0 */
- 	return pci_domain_nr(pdev->bus) == 0 &&
-diff --git a/drivers/gpu/drm/i915/i915_suspend.c b/drivers/gpu/drm/i915/i915_suspend.c
-index 63212df33c9e..0bc7b49f843c 100644
---- a/drivers/gpu/drm/i915/i915_suspend.c
-+++ b/drivers/gpu/drm/i915/i915_suspend.c
-@@ -85,7 +85,7 @@ static void intel_restore_swf(struct drm_i915_private *dev_priv)
- 
- void i915_save_display(struct drm_i915_private *dev_priv)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 
- 	/* Display arbitration control */
- 	if (INTEL_GEN(dev_priv) <= 4)
-@@ -100,7 +100,7 @@ void i915_save_display(struct drm_i915_private *dev_priv)
- 
- void i915_restore_display(struct drm_i915_private *dev_priv)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 
- 	intel_restore_swf(dev_priv);
- 
-diff --git a/drivers/gpu/drm/i915/i915_switcheroo.c b/drivers/gpu/drm/i915/i915_switcheroo.c
-index b3a24eac21f1..de0e224b56ce 100644
---- a/drivers/gpu/drm/i915/i915_switcheroo.c
-+++ b/drivers/gpu/drm/i915/i915_switcheroo.c
-@@ -54,14 +54,14 @@ static const struct vga_switcheroo_client_ops i915_switcheroo_ops = {
- 
- int i915_switcheroo_register(struct drm_i915_private *i915)
- {
--	struct pci_dev *pdev = i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 
- 	return vga_switcheroo_register_client(pdev, &i915_switcheroo_ops, false);
- }
- 
- void i915_switcheroo_unregister(struct drm_i915_private *i915)
- {
--	struct pci_dev *pdev = i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 
- 	vga_switcheroo_unregister_client(pdev);
- }
-diff --git a/drivers/gpu/drm/i915/i915_vgpu.c b/drivers/gpu/drm/i915/i915_vgpu.c
-index 70fca72f5162..172799277dd5 100644
---- a/drivers/gpu/drm/i915/i915_vgpu.c
-+++ b/drivers/gpu/drm/i915/i915_vgpu.c
-@@ -61,7 +61,7 @@
-  */
- void intel_vgpu_detect(struct drm_i915_private *dev_priv)
- {
--	struct pci_dev *pdev = dev_priv->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	u64 magic;
- 	u16 version_major;
- 	void __iomem *shared_area;
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index f2d5ae59081e..fda350f51dd0 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -204,7 +204,7 @@ void intel_device_info_subplatform_init(struct drm_i915_private *i915)
+ 	switch (getparam->param) {
+ 	case NOUVEAU_GETPARAM_CHIPSET_ID:
+@@ -188,13 +189,13 @@ nouveau_abi16_ioctl_getparam(ABI16_IOCTL_ARGS)
+ 		break;
+ 	case NOUVEAU_GETPARAM_PCI_VENDOR:
+ 		if (device->info.platform != NV_DEVICE_INFO_V0_SOC)
+-			getparam->value = dev->pdev->vendor;
++			getparam->value = pdev->vendor;
+ 		else
+ 			getparam->value = 0;
+ 		break;
+ 	case NOUVEAU_GETPARAM_PCI_DEVICE:
+ 		if (device->info.platform != NV_DEVICE_INFO_V0_SOC)
+-			getparam->value = dev->pdev->device;
++			getparam->value = pdev->device;
+ 		else
+ 			getparam->value = 0;
+ 		break;
+@@ -205,7 +206,7 @@ nouveau_abi16_ioctl_getparam(ABI16_IOCTL_ARGS)
+ 		case NV_DEVICE_INFO_V0_PCIE: getparam->value = 2; break;
+ 		case NV_DEVICE_INFO_V0_SOC : getparam->value = 3; break;
+ 		case NV_DEVICE_INFO_V0_IGP :
+-			if (!pci_is_pcie(dev->pdev))
++			if (!pci_is_pcie(pdev))
+ 				getparam->value = 1;
+ 			else
+ 				getparam->value = 2;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+index 69a84d0197d0..7c15f6448428 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
++++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+@@ -377,7 +377,7 @@ nouveau_acpi_edid(struct drm_device *dev, struct drm_connector *connector)
+ 		return NULL;
  	}
  
- 	if (IS_TIGERLAKE(i915)) {
--		struct pci_dev *root, *pdev = i915->drm.pdev;
-+		struct pci_dev *root, *pdev = to_pci_dev(i915->drm.dev);
+-	handle = ACPI_HANDLE(&dev->pdev->dev);
++	handle = ACPI_HANDLE(dev->dev);
+ 	if (!handle)
+ 		return NULL;
  
- 		root = list_first_entry(&pdev->bus->devices, typeof(*root), bus_list);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
+index d204ea8a5618..7cc683b8dc7a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bios.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
+@@ -110,6 +110,9 @@ static int call_lvds_manufacturer_script(struct drm_device *dev, struct dcb_outp
+ 	struct nvbios *bios = &drm->vbios;
+ 	uint8_t sub = bios->data[bios->fp.xlated_entry + script] + (bios->fp.link_c_increment && dcbent->or & DCB_OUTPUT_C ? 1 : 0);
+ 	uint16_t scriptofs = ROM16(bios->data[bios->init_script_tbls_ptr + sub * 2]);
++#ifdef __powerpc__
++	struct pci_dev *pdev = to_pci_dev(dev->dev);
++#endif
  
-diff --git a/drivers/gpu/drm/i915/intel_region_lmem.c b/drivers/gpu/drm/i915/intel_region_lmem.c
-index 40d8f1a95df6..0fe49b3adade 100644
---- a/drivers/gpu/drm/i915/intel_region_lmem.c
-+++ b/drivers/gpu/drm/i915/intel_region_lmem.c
-@@ -26,12 +26,12 @@ static int init_fake_lmem_bar(struct intel_memory_region *mem)
- 	if (ret)
- 		return ret;
- 
--	mem->remap_addr = dma_map_resource(&i915->drm.pdev->dev,
-+	mem->remap_addr = dma_map_resource(i915->drm.dev,
- 					   mem->region.start,
- 					   mem->fake_mappable.size,
- 					   PCI_DMA_BIDIRECTIONAL,
- 					   DMA_ATTR_FORCE_CONTIGUOUS);
--	if (dma_mapping_error(&i915->drm.pdev->dev, mem->remap_addr)) {
-+	if (dma_mapping_error(i915->drm.dev, mem->remap_addr)) {
- 		drm_mm_remove_node(&mem->fake_mappable);
+ 	if (!bios->fp.xlated_entry || !sub || !scriptofs)
  		return -EINVAL;
- 	}
-@@ -56,7 +56,7 @@ static void release_fake_lmem_bar(struct intel_memory_region *mem)
+@@ -123,8 +126,8 @@ static int call_lvds_manufacturer_script(struct drm_device *dev, struct dcb_outp
+ #ifdef __powerpc__
+ 	/* Powerbook specific quirks */
+ 	if (script == LVDS_RESET &&
+-	    (dev->pdev->device == 0x0179 || dev->pdev->device == 0x0189 ||
+-	     dev->pdev->device == 0x0329))
++	    (pdev->device == 0x0179 || pdev->device == 0x0189 ||
++	     pdev->device == 0x0329))
+ 		nv_write_tmds(dev, dcbent->or, 0, 0x02, 0x72);
+ #endif
  
- 	drm_mm_remove_node(&mem->fake_mappable);
- 
--	dma_unmap_resource(&mem->i915->drm.pdev->dev,
-+	dma_unmap_resource(mem->i915->drm.dev,
- 			   mem->remap_addr,
- 			   mem->fake_mappable.size,
- 			   PCI_DMA_BIDIRECTIONAL,
-@@ -104,7 +104,7 @@ const struct intel_memory_region_ops intel_region_lmem_ops = {
- struct intel_memory_region *
- intel_setup_fake_lmem(struct drm_i915_private *i915)
+@@ -2080,11 +2083,13 @@ nouveau_bios_init(struct drm_device *dev)
  {
--	struct pci_dev *pdev = i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	struct intel_memory_region *mem;
- 	resource_size_t mappable_end;
- 	resource_size_t io_start;
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-index 153ca9e65382..4970ef0843dc 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-@@ -625,7 +625,7 @@ void intel_runtime_pm_init_early(struct intel_runtime_pm *rpm)
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nvbios *bios = &drm->vbios;
++	struct pci_dev *pdev;
+ 	int ret;
+ 
+ 	/* only relevant for PCI devices */
+-	if (!dev->pdev)
++	if (!dev_is_pci(dev->dev))
+ 		return 0;
++	pdev = to_pci_dev(dev->dev);
+ 
+ 	if (!NVInitVBIOS(dev))
+ 		return -ENODEV;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 8b4b3688c7ae..14c29e68db8f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -411,6 +411,7 @@ static struct nouveau_encoder *
+ nouveau_connector_ddc_detect(struct drm_connector *connector)
  {
- 	struct drm_i915_private *i915 =
- 			container_of(rpm, struct drm_i915_private, runtime_pm);
--	struct pci_dev *pdev = i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	struct device *kdev = &pdev->dev;
+ 	struct drm_device *dev = connector->dev;
++	struct pci_dev *pdev = to_pci_dev(dev->dev);
+ 	struct nouveau_encoder *nv_encoder = NULL, *found = NULL;
+ 	struct drm_encoder *encoder;
+ 	int ret;
+@@ -438,11 +439,11 @@ nouveau_connector_ddc_detect(struct drm_connector *connector)
+ 				break;
  
- 	rpm->kdev = kdev;
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index 9ac501bcfdad..5098f95d71b0 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -1780,7 +1780,7 @@ static int i915_pmic_bus_access_notifier(struct notifier_block *nb,
- static int uncore_mmio_setup(struct intel_uncore *uncore)
+ 			if (switcheroo_ddc)
+-				vga_switcheroo_lock_ddc(dev->pdev);
++				vga_switcheroo_lock_ddc(pdev);
+ 			if (nvkm_probe_i2c(nv_encoder->i2c, 0x50))
+ 				found = nv_encoder;
+ 			if (switcheroo_ddc)
+-				vga_switcheroo_unlock_ddc(dev->pdev);
++				vga_switcheroo_unlock_ddc(pdev);
+ 
+ 			break;
+ 		}
+@@ -490,6 +491,7 @@ nouveau_connector_set_encoder(struct drm_connector *connector,
+ 	struct nouveau_connector *nv_connector = nouveau_connector(connector);
+ 	struct nouveau_drm *drm = nouveau_drm(connector->dev);
+ 	struct drm_device *dev = connector->dev;
++	struct pci_dev *pdev = to_pci_dev(dev->dev);
+ 
+ 	if (nv_connector->detected_encoder == nv_encoder)
+ 		return;
+@@ -511,8 +513,8 @@ nouveau_connector_set_encoder(struct drm_connector *connector,
+ 		connector->doublescan_allowed = true;
+ 		if (drm->client.device.info.family == NV_DEVICE_INFO_V0_KELVIN ||
+ 		    (drm->client.device.info.family == NV_DEVICE_INFO_V0_CELSIUS &&
+-		     (dev->pdev->device & 0x0ff0) != 0x0100 &&
+-		     (dev->pdev->device & 0x0ff0) != 0x0150))
++		     (pdev->device & 0x0ff0) != 0x0100 &&
++		     (pdev->device & 0x0ff0) != 0x0150))
+ 			/* HW is broken */
+ 			connector->interlace_allowed = false;
+ 		else
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index d141a5f004af..1b2169e9c295 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -115,8 +115,8 @@ nouveau_platform_name(struct platform_device *platformdev)
+ static u64
+ nouveau_name(struct drm_device *dev)
  {
- 	struct drm_i915_private *i915 = uncore->i915;
--	struct pci_dev *pdev = i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	int mmio_bar;
- 	int mmio_size;
- 
-@@ -1812,7 +1812,7 @@ static int uncore_mmio_setup(struct intel_uncore *uncore)
- 
- static void uncore_mmio_cleanup(struct intel_uncore *uncore)
- {
--	struct pci_dev *pdev = uncore->i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(uncore->i915->drm.dev);
- 
- 	pci_iounmap(pdev, uncore->regs);
+-	if (dev->pdev)
+-		return nouveau_pci_name(dev->pdev);
++	if (dev_is_pci(dev->dev))
++		return nouveau_pci_name(to_pci_dev(dev->dev));
+ 	else
+ 		return nouveau_platform_name(to_platform_device(dev->dev));
  }
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index 0188f877cab2..2a07a008de2e 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -146,7 +146,6 @@ struct drm_i915_private *mock_gem_device(void)
- 	}
+@@ -760,7 +760,6 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+ 	if (ret)
+ 		goto fail_drm;
  
- 	pci_set_drvdata(pdev, i915);
--	i915->drm.pdev = pdev;
+-	drm_dev->pdev = pdev;
+ 	pci_set_drvdata(pdev, drm_dev);
  
- 	dev_pm_domain_set(&pdev->dev, &pm_domain);
- 	pm_runtime_enable(&pdev->dev);
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gtt.c b/drivers/gpu/drm/i915/selftests/mock_gtt.c
-index 7270fc8ca801..5c7ae40bba63 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gtt.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gtt.c
-@@ -74,7 +74,7 @@ struct i915_ppgtt *mock_ppgtt(struct drm_i915_private *i915, const char *name)
- 	ppgtt->vm.i915 = i915;
- 	ppgtt->vm.total = round_down(U64_MAX, PAGE_SIZE);
- 	ppgtt->vm.file = ERR_PTR(-ENODEV);
--	ppgtt->vm.dma = &i915->drm.pdev->dev;
-+	ppgtt->vm.dma = i915->drm.dev;
+ 	ret = nouveau_drm_device_init(drm_dev);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+index 24ec5339efb4..4fc0fa696461 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+@@ -396,7 +396,9 @@ nouveau_fbcon_create(struct drm_fb_helper *helper,
+ 	NV_INFO(drm, "allocated %dx%d fb: 0x%llx, bo %p\n",
+ 		fb->width, fb->height, nvbo->offset, nvbo);
  
- 	i915_address_space_init(&ppgtt->vm, VM_CLASS_PPGTT);
+-	vga_switcheroo_client_fb_set(dev->pdev, info);
++	if (dev_is_pci(dev->dev))
++		vga_switcheroo_client_fb_set(to_pci_dev(dev->dev), info);
++
+ 	return 0;
  
+ out_unlock:
+@@ -548,7 +550,7 @@ nouveau_fbcon_init(struct drm_device *dev)
+ 	int ret;
+ 
+ 	if (!dev->mode_config.num_crtc ||
+-	    (dev->pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
++	    (to_pci_dev(dev->dev)->class >> 8) != PCI_CLASS_DISPLAY_VGA)
+ 		return 0;
+ 
+ 	fbcon = kzalloc(sizeof(struct nouveau_fbdev), GFP_KERNEL);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouveau/nouveau_vga.c
+index c85dd8afa3c3..7c4b374b3eca 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_vga.c
++++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
+@@ -87,18 +87,20 @@ nouveau_vga_init(struct nouveau_drm *drm)
+ {
+ 	struct drm_device *dev = drm->dev;
+ 	bool runtime = nouveau_pmops_runtime();
++	struct pci_dev *pdev;
+ 
+ 	/* only relevant for PCI devices */
+-	if (!dev->pdev)
++	if (!dev_is_pci(dev->dev))
+ 		return;
++	pdev = to_pci_dev(dev->dev);
+ 
+-	vga_client_register(dev->pdev, dev, NULL, nouveau_vga_set_decode);
++	vga_client_register(pdev, dev, NULL, nouveau_vga_set_decode);
+ 
+ 	/* don't register Thunderbolt eGPU with vga_switcheroo */
+-	if (pci_is_thunderbolt_attached(dev->pdev))
++	if (pci_is_thunderbolt_attached(pdev))
+ 		return;
+ 
+-	vga_switcheroo_register_client(dev->pdev, &nouveau_switcheroo_ops, runtime);
++	vga_switcheroo_register_client(pdev, &nouveau_switcheroo_ops, runtime);
+ 
+ 	if (runtime && nouveau_is_v1_dsm() && !nouveau_is_optimus())
+ 		vga_switcheroo_init_domain_pm_ops(drm->dev->dev, &drm->vga_pm_domain);
+@@ -109,17 +111,19 @@ nouveau_vga_fini(struct nouveau_drm *drm)
+ {
+ 	struct drm_device *dev = drm->dev;
+ 	bool runtime = nouveau_pmops_runtime();
++	struct pci_dev *pdev;
+ 
+ 	/* only relevant for PCI devices */
+-	if (!dev->pdev)
++	if (!dev_is_pci(dev->dev))
+ 		return;
++	pdev = to_pci_dev(dev->dev);
+ 
+-	vga_client_register(dev->pdev, NULL, NULL, NULL);
++	vga_client_register(pdev, NULL, NULL, NULL);
+ 
+-	if (pci_is_thunderbolt_attached(dev->pdev))
++	if (pci_is_thunderbolt_attached(pdev))
+ 		return;
+ 
+-	vga_switcheroo_unregister_client(dev->pdev);
++	vga_switcheroo_unregister_client(pdev);
+ 	if (runtime && nouveau_is_v1_dsm() && !nouveau_is_optimus())
+ 		vga_switcheroo_fini_domain_pm_ops(drm->dev->dev);
+ }
 -- 
 2.29.2
