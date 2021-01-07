@@ -1,14 +1,15 @@
-From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
-Subject: [PATCH v3 6/8] drm/i915/gvt: Remove references to struct
- drm_device.pdev
-Date: Thu,  7 Jan 2021 09:07:46 +0100
-Message-ID: <20210107080748.4768-7-tzimmermann@suse.de>
-References: <20210107080748.4768-1-tzimmermann@suse.de>
+From: Geert Uytterhoeven <geert-Td1EMuHUCqxL1ZNQvxDV9g@public.gmane.org>
+Subject: Re: [PATCH 5.10 28/63] fbcon: Disable accelerated
+ scrolling
+Date: Thu, 7 Jan 2021 09:13:10 +0100
+Message-ID: <CAMuHMdXRgam2zahPEGcw8+76Xm-0AO-Ci9-YmVa5JpTKVHphRw@mail.gmail.com>
+References: <20210104155708.800470590@linuxfoundation.org>
+ <20210104155710.187945647@linuxfoundation.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20210107080748.4768-1-tzimmermann-l3A5Bk7waGM@public.gmane.org>
+In-Reply-To: <20210104155710.187945647-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,208 +19,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: airlied-cv59FeDIM0c@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gvt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
+Cc: George Kennedy <george.kennedy-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>, Bartlomiej Zolnierkiewicz <b.zolnierkie-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Tetsuo Handa <penguin-kernel-1yMVhJb1mP/7nzcFbJAaVXf5DAMn2ifp@public.gmane.org>, Sam Ravnborg <sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org>, Peter Rosin <peda-koto5C5qi+TLoDKTGw+V6w@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, stable <stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "Gustavo A. R. Silva" <gustavoars-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Tomi Valkeinen <tomi.valkeinen-l0cyMroinI0@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Nathan Chancellor <natechancellor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Jiri Slaby <jirislaby-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Peilin Ye <yepeilin.cs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Using struct drm_device.pdev is deprecated. Convert i915 to struct
-drm_device.dev. No functional changes.
+On Mon, Jan 4, 2021 at 5:58 PM Greg Kroah-Hartman
+<gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org> wrote:
+> From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+>
+> commit 39aead8373b3c20bb5965c024dfb51a94e526151 upstream.
+>
+> So ever since syzbot discovered fbcon, we have solid proof that it's
+> full of bugs. And often the solution is to just delete code and remove
+> features, e.g.  50145474f6ef ("fbcon: remove soft scrollback code").
+>
+> Now the problem is that most modern-ish drivers really only treat
+> fbcon as an dumb kernel console until userspace takes over, and Oops
+> printer for some emergencies. Looking at drm drivers and the basic
+> vesa/efi fbdev drivers shows that only 3 drivers support any kind of
+> acceleration:
+>
+> - nouveau, seems to be enabled by default
+> - omapdrm, when a DMM remapper exists using remapper rewriting for
+>   y/xpanning
+> - gma500, but that is getting deleted now for the GTT remapper trick,
+>   and the accelerated copyarea never set the FBINFO_HWACCEL_COPYAREA
+>   flag, so unused (and could be deleted already I think).
+>
+> No other driver supportes accelerated fbcon. And fbcon is the only
 
-Signed-off-by: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
-Cc: Jani Nikula <jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Cc: Joonas Lahtinen <joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Cc: Rodrigo Vivi <rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
----
- drivers/gpu/drm/i915/gvt/cfg_space.c |  5 +++--
- drivers/gpu/drm/i915/gvt/firmware.c  | 10 +++++-----
- drivers/gpu/drm/i915/gvt/gtt.c       | 12 ++++++------
- drivers/gpu/drm/i915/gvt/gvt.c       |  6 +++---
- drivers/gpu/drm/i915/gvt/kvmgt.c     |  4 ++--
- 5 files changed, 19 insertions(+), 18 deletions(-)
+Note that there are 32 more drivers using acceleration under
+drivers/video/fbdev/.
 
-diff --git a/drivers/gpu/drm/i915/gvt/cfg_space.c b/drivers/gpu/drm/i915/gvt/cfg_space.c
-index ad86c5eb5bba..b490e3db2e38 100644
---- a/drivers/gpu/drm/i915/gvt/cfg_space.c
-+++ b/drivers/gpu/drm/i915/gvt/cfg_space.c
-@@ -374,6 +374,7 @@ void intel_vgpu_init_cfg_space(struct intel_vgpu *vgpu,
- 			       bool primary)
- {
- 	struct intel_gvt *gvt = vgpu->gvt;
-+	struct pci_dev *pdev = to_pci_dev(gvt->gt->i915->drm.dev);
- 	const struct intel_gvt_device_info *info = &gvt->device_info;
- 	u16 *gmch_ctl;
- 	u8 next;
-@@ -407,9 +408,9 @@ void intel_vgpu_init_cfg_space(struct intel_vgpu *vgpu,
- 	memset(vgpu_cfg_space(vgpu) + INTEL_GVT_PCI_OPREGION, 0, 4);
- 
- 	vgpu->cfg_space.bar[INTEL_GVT_PCI_BAR_GTTMMIO].size =
--		pci_resource_len(gvt->gt->i915->drm.pdev, 0);
-+		pci_resource_len(pdev, 0);
- 	vgpu->cfg_space.bar[INTEL_GVT_PCI_BAR_APERTURE].size =
--		pci_resource_len(gvt->gt->i915->drm.pdev, 2);
-+		pci_resource_len(pdev, 2);
- 
- 	memset(vgpu_cfg_space(vgpu) + PCI_ROM_ADDRESS, 0, 4);
- 
-diff --git a/drivers/gpu/drm/i915/gvt/firmware.c b/drivers/gpu/drm/i915/gvt/firmware.c
-index 990a181094e3..1a8274a3f4b1 100644
---- a/drivers/gpu/drm/i915/gvt/firmware.c
-+++ b/drivers/gpu/drm/i915/gvt/firmware.c
-@@ -76,7 +76,7 @@ static int mmio_snapshot_handler(struct intel_gvt *gvt, u32 offset, void *data)
- static int expose_firmware_sysfs(struct intel_gvt *gvt)
- {
- 	struct intel_gvt_device_info *info = &gvt->device_info;
--	struct pci_dev *pdev = gvt->gt->i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(gvt->gt->i915->drm.dev);
- 	struct gvt_firmware_header *h;
- 	void *firmware;
- 	void *p;
-@@ -127,7 +127,7 @@ static int expose_firmware_sysfs(struct intel_gvt *gvt)
- 
- static void clean_firmware_sysfs(struct intel_gvt *gvt)
- {
--	struct pci_dev *pdev = gvt->gt->i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(gvt->gt->i915->drm.dev);
- 
- 	device_remove_bin_file(&pdev->dev, &firmware_attr);
- 	vfree(firmware_attr.private);
-@@ -151,7 +151,7 @@ static int verify_firmware(struct intel_gvt *gvt,
- 			   const struct firmware *fw)
- {
- 	struct intel_gvt_device_info *info = &gvt->device_info;
--	struct pci_dev *pdev = gvt->gt->i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(gvt->gt->i915->drm.dev);
- 	struct gvt_firmware_header *h;
- 	unsigned long id, crc32_start;
- 	const void *mem;
-@@ -205,7 +205,7 @@ static int verify_firmware(struct intel_gvt *gvt,
- int intel_gvt_load_firmware(struct intel_gvt *gvt)
- {
- 	struct intel_gvt_device_info *info = &gvt->device_info;
--	struct pci_dev *pdev = gvt->gt->i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(gvt->gt->i915->drm.dev);
- 	struct intel_gvt_firmware *firmware = &gvt->firmware;
- 	struct gvt_firmware_header *h;
- 	const struct firmware *fw;
-@@ -240,7 +240,7 @@ int intel_gvt_load_firmware(struct intel_gvt *gvt)
- 
- 	gvt_dbg_core("request hw state firmware %s...\n", path);
- 
--	ret = request_firmware(&fw, path, &gvt->gt->i915->drm.pdev->dev);
-+	ret = request_firmware(&fw, path, gvt->gt->i915->drm.dev);
- 	kfree(path);
- 
- 	if (ret)
-diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
-index 897c007ea96a..6d12a5a401f6 100644
---- a/drivers/gpu/drm/i915/gvt/gtt.c
-+++ b/drivers/gpu/drm/i915/gvt/gtt.c
-@@ -746,7 +746,7 @@ static int detach_oos_page(struct intel_vgpu *vgpu,
- 
- static void ppgtt_free_spt(struct intel_vgpu_ppgtt_spt *spt)
- {
--	struct device *kdev = &spt->vgpu->gvt->gt->i915->drm.pdev->dev;
-+	struct device *kdev = spt->vgpu->gvt->gt->i915->drm.dev;
- 
- 	trace_spt_free(spt->vgpu->id, spt, spt->guest_page.type);
- 
-@@ -831,7 +831,7 @@ static int reclaim_one_ppgtt_mm(struct intel_gvt *gvt);
- static struct intel_vgpu_ppgtt_spt *ppgtt_alloc_spt(
- 		struct intel_vgpu *vgpu, enum intel_gvt_gtt_type type)
- {
--	struct device *kdev = &vgpu->gvt->gt->i915->drm.pdev->dev;
-+	struct device *kdev = vgpu->gvt->gt->i915->drm.dev;
- 	struct intel_vgpu_ppgtt_spt *spt = NULL;
- 	dma_addr_t daddr;
- 	int ret;
-@@ -2402,7 +2402,7 @@ static int alloc_scratch_pages(struct intel_vgpu *vgpu,
- 				vgpu->gvt->device_info.gtt_entry_size_shift;
- 	void *scratch_pt;
- 	int i;
--	struct device *dev = &vgpu->gvt->gt->i915->drm.pdev->dev;
-+	struct device *dev = vgpu->gvt->gt->i915->drm.dev;
- 	dma_addr_t daddr;
- 
- 	if (drm_WARN_ON(&i915->drm,
-@@ -2460,7 +2460,7 @@ static int alloc_scratch_pages(struct intel_vgpu *vgpu,
- static int release_scratch_page_tree(struct intel_vgpu *vgpu)
- {
- 	int i;
--	struct device *dev = &vgpu->gvt->gt->i915->drm.pdev->dev;
-+	struct device *dev = vgpu->gvt->gt->i915->drm.dev;
- 	dma_addr_t daddr;
- 
- 	for (i = GTT_TYPE_PPGTT_PTE_PT; i < GTT_TYPE_MAX; i++) {
-@@ -2732,7 +2732,7 @@ int intel_gvt_init_gtt(struct intel_gvt *gvt)
- {
- 	int ret;
- 	void *page;
--	struct device *dev = &gvt->gt->i915->drm.pdev->dev;
-+	struct device *dev = gvt->gt->i915->drm.dev;
- 	dma_addr_t daddr;
- 
- 	gvt_dbg_core("init gtt\n");
-@@ -2781,7 +2781,7 @@ int intel_gvt_init_gtt(struct intel_gvt *gvt)
-  */
- void intel_gvt_clean_gtt(struct intel_gvt *gvt)
- {
--	struct device *dev = &gvt->gt->i915->drm.pdev->dev;
-+	struct device *dev = gvt->gt->i915->drm.dev;
- 	dma_addr_t daddr = (dma_addr_t)(gvt->gtt.scratch_mfn <<
- 					I915_GTT_PAGE_SHIFT);
- 
-diff --git a/drivers/gpu/drm/i915/gvt/gvt.c b/drivers/gpu/drm/i915/gvt/gvt.c
-index d1d8ee4a5f16..aa7fc0dd1db5 100644
---- a/drivers/gpu/drm/i915/gvt/gvt.c
-+++ b/drivers/gpu/drm/i915/gvt/gvt.c
-@@ -50,7 +50,7 @@ static struct intel_vgpu_type *intel_gvt_find_vgpu_type(struct intel_gvt *gvt,
- 		const char *name)
- {
- 	const char *driver_name =
--		dev_driver_string(&gvt->gt->i915->drm.pdev->dev);
-+		dev_driver_string(gvt->gt->i915->drm.dev);
- 	int i;
- 
- 	name += strlen(driver_name) + 1;
-@@ -189,7 +189,7 @@ static const struct intel_gvt_ops intel_gvt_ops = {
- static void init_device_info(struct intel_gvt *gvt)
- {
- 	struct intel_gvt_device_info *info = &gvt->device_info;
--	struct pci_dev *pdev = gvt->gt->i915->drm.pdev;
-+	struct pci_dev *pdev = to_pci_dev(gvt->gt->i915->drm.dev);
- 
- 	info->max_support_vgpus = 8;
- 	info->cfg_space_size = PCI_CFG_SPACE_EXP_SIZE;
-@@ -376,7 +376,7 @@ int intel_gvt_init_device(struct drm_i915_private *i915)
- 	intel_gvt_debugfs_init(gvt);
- 
- 	gvt_dbg_core("gvt device initialization is done\n");
--	intel_gvt_host.dev = &i915->drm.pdev->dev;
-+	intel_gvt_host.dev = i915->drm.dev;
- 	intel_gvt_host.initialized = true;
- 	return 0;
- 
-diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-index 60f1a386dd06..551f00024e99 100644
---- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-+++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-@@ -221,7 +221,7 @@ static int gvt_pin_guest_page(struct intel_vgpu *vgpu, unsigned long gfn,
- static int gvt_dma_map_page(struct intel_vgpu *vgpu, unsigned long gfn,
- 		dma_addr_t *dma_addr, unsigned long size)
- {
--	struct device *dev = &vgpu->gvt->gt->i915->drm.pdev->dev;
-+	struct device *dev = vgpu->gvt->gt->i915->drm.dev;
- 	struct page *page = NULL;
- 	int ret;
- 
-@@ -244,7 +244,7 @@ static int gvt_dma_map_page(struct intel_vgpu *vgpu, unsigned long gfn,
- static void gvt_dma_unmap_page(struct intel_vgpu *vgpu, unsigned long gfn,
- 		dma_addr_t dma_addr, unsigned long size)
- {
--	struct device *dev = &vgpu->gvt->gt->i915->drm.pdev->dev;
-+	struct device *dev = vgpu->gvt->gt->i915->drm.dev;
- 
- 	dma_unmap_page(dev, dma_addr, size, PCI_DMA_BIDIRECTIONAL);
- 	gvt_unpin_guest_page(vgpu, gfn, size);
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.29.2
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert-Td1EMuHUCqxL1ZNQvxDV9g@public.gmane.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
