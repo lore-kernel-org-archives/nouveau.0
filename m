@@ -1,58 +1,29 @@
-From: Lee Jones <lee.jones@linaro.org>
-Subject: [PATCH 33/40] drm/nouveau/nvkm/subdev/volt/gk20a: Demote non-conformant kernel-doc headers
-Date: Fri,  8 Jan 2021 20:14:50 +0000
-Message-ID: <20210108201457.3078600-34-lee.jones@linaro.org>
-References: <20210108201457.3078600-1-lee.jones@linaro.org>
+From: Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [patch V3 13/37] mips/mm/highmem: Switch to generic kmap atomic
+Date: Fri, 08 Jan 2021 20:20:43 +0000
+Message-ID: <JUTMMQ.NNFWKIUV7UUJ1@crapouillou.net>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20210108201457.3078600-1-lee.jones@linaro.org>
-To: lee.jones@linaro.org
-Cc: linux-kernel@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Return-path: <owner-linux-aio@kvack.org>
+Sender: owner-linux-aio@kvack.org
+To: tglx@linutronix.de
+Cc: airlied@linux.ie, airlied@redhat.com, akpm@linux-foundation.org, arnd@arndb.de, bcrl@kvack.org, bigeasy@linutronix.de, bristot@redhat.com, bsegall@google.com, bskeggs@redhat.com, chris@zankel.net, christian.koenig@amd.com, clm@fb.com, davem@davemloft.net, deanbo422@gmail.com, dietmar.eggemann@arm.com, dri-devel@lists.freedesktop.org, dsterba@suse.com, green.hu@gmail.com, hch@lst.de, intel-gfx@lists.freedesktop.org, jcmvbkbc@gmail.com, josef@toxicpanda.com, juri.lelli@redhat.com, kraxel@redhat.com, linux-aio@kvack.org, linux-arm-kernel@lists.infradead.org, linux-btrfs@vger.kernel.org, linux-csky@vger.kernel.org, linux-fsdevel@vger.kernel.org, linux-graphics-maintainer@vmware.com, linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, linux-mm@kvack.org, linux-snps-arc@lists.infradead.org, linux-xtensa@linux-xtensa.org, linux@armlinux.org.uk, linuxppc-dev@lists.ozlabs.o
 List-Id: nouveau.vger.kernel.org
 
-Fixes the following W=1 kernel build warning(s):
+Hi Thomas,
 
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:53: warning: Function parameter or member 'speedo' not described in 'gk20a_volt_get_cvb_voltage'
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:53: warning: Function parameter or member 's_scale' not described in 'gk20a_volt_get_cvb_voltage'
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:53: warning: Function parameter or member 'coef' not described in 'gk20a_volt_get_cvb_voltage'
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:69: warning: Function parameter or member 'speedo' not described in 'gk20a_volt_get_cvb_t_voltage'
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:69: warning: Function parameter or member 'temp' not described in 'gk20a_volt_get_cvb_t_voltage'
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:69: warning: Function parameter or member 's_scale' not described in 'gk20a_volt_get_cvb_t_voltage'
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:69: warning: Function parameter or member 't_scale' not described in 'gk20a_volt_get_cvb_t_voltage'
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:69: warning: Function parameter or member 'coef' not described in 'gk20a_volt_get_cvb_t_voltage'
+5.11 does not boot anymore on Ingenic SoCs, I bisected it to this 
+commit.
 
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Signed-off-by: Lee Jones <lee.jones@linaro.org>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Any idea what could be happening?
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c b/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c
-index ce5d83cdc7cf7..207e5278b37ed 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c
-@@ -45,7 +45,7 @@ static const struct cvb_coef gk20a_cvb_coef[] = {
- 	/* 852 */ { 1608418, -21643, -269,     0,    763,  -48},
- };
- 
--/**
-+/*
-  * cvb_mv = ((c2 * speedo / s_scale + c1) * speedo / s_scale + c0)
-  */
- static inline int
-@@ -58,7 +58,7 @@ gk20a_volt_get_cvb_voltage(int speedo, int s_scale, const struct cvb_coef *coef)
- 	return mv;
- }
- 
--/**
-+/*
-  * cvb_t_mv =
-  * ((c2 * speedo / s_scale + c1) * speedo / s_scale + c0) +
-  * ((c3 * speedo / s_scale + c4 + c5 * T / t_scale) * T / t_scale)
--- 
-2.25.1
+Cheers,
+-Paul
+
+
+
+--
+To unsubscribe, send a message with 'unsubscribe linux-aio' in
+the body to majordomo@kvack.org.  For more info on Linux AIO,
+see: http://www.kvack.org/aio/
+Don't email: <a href=mailto:"aart@kvack.org">aart@kvack.org</a>
