@@ -1,73 +1,117 @@
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Subject: Re: [patch V3 13/37] mips/mm/highmem: Switch to generic kmap atomic
-Date: Mon, 11 Jan 2021 10:16:46 +0100
-Message-ID: <20210111091646.hkugbtlcced3vmno@linutronix.de>
-References: <JUTMMQ.NNFWKIUV7UUJ1@crapouillou.net>
- <20210108235805.GA17543@alpha.franken.de>
- <20210109003352.GA18102@alpha.franken.de>
+From: Lee Jones <lee.jones@linaro.org>
+Subject: [PATCH 00/30] [Set 13] Finally rid W=1 warnings from GPU
+Date: Wed, 13 Jan 2021 08:07:22 +0000
+Message-ID: <20210113080752.1003793-1-lee.jones@linaro.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Return-path: <owner-linux-aio@kvack.org>
-Content-Disposition: inline
-In-Reply-To: <20210109003352.GA18102@alpha.franken.de>
-Sender: owner-linux-aio@kvack.org
-To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: Paul Cercueil <paul@crapouillou.net>, tglx@linutronix.de, airlied@linux.ie, airlied@redhat.com, akpm@linux-foundation.org, arnd@arndb.de, bcrl@kvack.org, bristot@redhat.com, bsegall@google.com, bskeggs@redhat.com, chris@zankel.net, christian.koenig@amd.com, clm@fb.com, davem@davemloft.net, deanbo422@gmail.com, dietmar.eggemann@arm.com, dri-devel@lists.freedesktop.org, dsterba@suse.com, green.hu@gmail.com, hch@lst.de, intel-gfx@lists.freedesktop.org, jcmvbkbc@gmail.com, josef@toxicpanda.com, juri.lelli@redhat.com, kraxel@redhat.com, linux-aio@kvack.org, linux-arm-kernel@lists.infradead.org, linux-btrfs@vger.kernel.org, linux-csky@vger.kernel.org, linux-fsdevel@vger.kernel.org, linux-graphics-maintainer@vmware.com, linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, linux-mm@kvack.org, linux-snps-arc@lists.infradead.org, linux-xtensa@linux-xtensa.org, linux@armlinu
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-media-owner@vger.kernel.org>
+To: lee.jones@linaro.org
+Cc: linux-kernel@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, Anthony Koo <Anthony.Koo@amd.com>, Ben Skeggs <bskeggs@redhat.com>, Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>, Jeremy Kolb <jkolb@brandeis.edu>, Leo Li <sunpeng.li@amd.com>, linaro-mm-sig@lists.linaro.org, linux-media@vger.kernel.org, Lyude Paul <lyude@redhat.com>, Mauro Rossi <issor.oruam@gmail.com>, Noah Abradjian <noah.abradjian@amd.com>, nouveau@lists.freedesktop.org, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Sumit Semwal <sumit.semwal@lin>
 List-Id: nouveau.vger.kernel.org
 
-On 2021-01-09 01:33:52 [+0100], Thomas Bogendoerfer wrote:
-> On Sat, Jan 09, 2021 at 12:58:05AM +0100, Thomas Bogendoerfer wrote:
-> > On Fri, Jan 08, 2021 at 08:20:43PM +0000, Paul Cercueil wrote:
-> > > Hi Thomas,
-> > > 
-> > > 5.11 does not boot anymore on Ingenic SoCs, I bisected it to this commit.
-> > > 
-> > > Any idea what could be happening?
-> > 
-> > not yet, kernel crash log of a Malta QEMU is below.
-> 
-> update:
-> 
-> This dirty hack lets the Malta QEMU boot again:
-> 
-> diff --git a/mm/highmem.c b/mm/highmem.c
-> index c3a9ea7875ef..190cdda1149d 100644
-> --- a/mm/highmem.c
-> +++ b/mm/highmem.c
-> @@ -515,7 +515,7 @@ void *__kmap_local_pfn_prot(unsigned long pfn, pgprot_t prot)
->  	vaddr = __fix_to_virt(FIX_KMAP_BEGIN + idx);
->  	BUG_ON(!pte_none(*(kmap_pte - idx)));
->  	pteval = pfn_pte(pfn, prot);
-> -	set_pte_at(&init_mm, vaddr, kmap_pte - idx, pteval);
-> +	set_pte(kmap_pte - idx, pteval);
->  	arch_kmap_local_post_map(vaddr, pteval);
->  	current->kmap_ctrl.pteval[kmap_local_idx()] = pteval;
->  	preempt_enable();
-> 
-> set_pte_at() tries to update cache and could do an kmap_atomic() there.
-So the old implementation used set_pte() while the new one uses
-set_pte_at().
+This set is part of a larger effort attempting to clean-up W=1
+kernel builds, which are currently overwhelmingly riddled with
+niggly little warnings.
 
-> Not sure, if this is allowed at this point.
-The problem is the recursion
-  kmap_atomic() -> __update_cache() -> kmap_atomic()
+0 out of 5000 left!
 
-and kmap_local_idx_push() runs out if index space before stack space.
+LAST SET!  You're all clean.  Can you believe it!?
 
-I'm not sure if the __update_cache() worked for highmem. It has been
-added for that in commit
-   f4281bba81810 ("MIPS: Handle highmem pages in __update_cache")
+Lee Jones (30):
+  drm/amd/display/dc/dc_helper: Include our own header, containing
+    prototypes
+  drm/amd/include/renoir_ip_offset: Mark top-level IP_BASE as
+    __maybe_unused
+  drm/amd/display/dmub/src/dmub_dcn30: Include our own header containing
+    prototypes
+  drm/amd/display/modules/power/power_helpers: Staticify local functions
+  drm/amd/display/modules/info_packet/info_packet: Correct kernel-doc
+    formatting
+  drm/amd/display/dc/core/dc_resource: Staticify local functions
+  drm/amd/display/dc/core/dc_link: Remove unused variable 'status'
+  drm/amd/display/dc/core/dc_link_dp: Staticify local function
+    'linkRateInKHzToLinkRateMultiplier'
+  drm/amd/display/dc/dce112/dce112_resource: Include our own header file
+    containing prototypes
+  drm/amd/display/dc/core/dc: Staticise local function
+    'apply_ctx_interdependent_lock'
+  drm/amd/display/dc/dce100/Makefile: Ignore -Woverride-init warning
+  drm/amd/display/dc/dce100/dce100_resource: Include our own header
+    containing prototypes
+  drm/amd/display/dc/dce60/Makefile: Ignore -Woverride-init warning
+  drm/amd/display/dc/dce80/Makefile: Ignore -Woverride-init warning
+  drm/amd/display/dc/dce80/dce80_resource: Include our own header
+    containing prototypes
+  fixup! drm/amd/display/dc/dce60/Makefile: Ignore -Woverride-init
+    warning
+  drm/amd/display/dc/dce60/dce60_resource: Include our own header
+    containing prototypes
+  drm/amd/display/dc/core/dc_link: Move some local data from the stack
+    to the heap
+  drm/amd/display/dc/core/dc_link_dp: Mark 'result_write_min_hblank' as
+    __maybe_unused
+  drm/amd/display/dc/core/dc: Fix a bunch of documentation misdemeanours
+  drm/amd/display/dc/core/dc_resource: Demote some kernel-doc abuses
+  drm/amd/display/dc/core/dc_link: Fix a couple of function
+    documentation issues
+  drm/nouveau/nvkm/engine/gr/gf100: Demote non-conformant kernel-doc
+    header
+  drm/nouveau/nouveau_bo: Remove unused variables 'dev'
+  drm/nouveau/nouveau_display: Remove set but unused variable 'width'
+  drm/nouveau/dispnv04/crtc: Demote non-conforming kernel-doc headers
+  drm/nouveau/dispnv50/disp: Remove unused variable 'ret' from function
+    returning void
+  drm/nouveau/dispnv50/headc57d: Make local function 'headc57d_olut'
+    static
+  drm/nouveau/nv50_display: Remove superfluous prototype for local
+    static functions
+  drm/nouveau/dispnv50/disp: Include header containing our prototypes
 
-but it assumes that the address returned by kmap_atomic() is the same or
-related enough for flush_data_cache_page() to work.
+ drivers/gpu/drm/amd/display/dc/core/dc.c      | 36 +++++++++----------
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 31 ++++++++--------
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  |  4 +--
+ .../gpu/drm/amd/display/dc/core/dc_resource.c | 14 ++++----
+ drivers/gpu/drm/amd/display/dc/dc_helper.c    |  1 +
+ .../gpu/drm/amd/display/dc/dce100/Makefile    |  2 ++
+ .../amd/display/dc/dce100/dce100_resource.c   |  2 ++
+ .../amd/display/dc/dce112/dce112_resource.c   |  4 ++-
+ drivers/gpu/drm/amd/display/dc/dce60/Makefile |  2 ++
+ .../drm/amd/display/dc/dce60/dce60_resource.c |  2 ++
+ drivers/gpu/drm/amd/display/dc/dce80/Makefile |  2 ++
+ .../drm/amd/display/dc/dce80/dce80_resource.c |  2 ++
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn30.c |  1 +
+ .../display/modules/info_packet/info_packet.c | 13 +++----
+ .../amd/display/modules/power/power_helpers.c |  6 ++--
+ .../gpu/drm/amd/include/renoir_ip_offset.h    |  2 +-
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c       |  4 +--
+ drivers/gpu/drm/nouveau/dispnv50/disp.c       |  7 ++--
+ drivers/gpu/drm/nouveau/dispnv50/headc57d.c   |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_bo.c          |  4 ---
+ drivers/gpu/drm/nouveau/nouveau_display.c     |  8 ++---
+ drivers/gpu/drm/nouveau/nv50_display.h        |  3 --
+ .../gpu/drm/nouveau/nvkm/engine/gr/gf100.c    |  2 +-
+ 23 files changed, 80 insertions(+), 74 deletions(-)
 
-> Thomas.
-> 
-
-Sebastian
-
---
-To unsubscribe, send a message with 'unsubscribe linux-aio' in
-the body to majordomo@kvack.org.  For more info on Linux AIO,
-see: http://www.kvack.org/aio/
-Don't email: <a href=mailto:"aart@kvack.org">aart@kvack.org</a>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Cc: Anthony Koo <Anthony.Koo@amd.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: David Airlie <airlied@linux.ie>
+Cc: dri-devel@lists.freedesktop.org
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Jeremy Kolb <jkolb@brandeis.edu>
+Cc: Leo Li <sunpeng.li@amd.com>
+Cc: linaro-mm-sig@lists.linaro.org
+Cc: linux-media@vger.kernel.org
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Mauro Rossi <issor.oruam@gmail.com>
+Cc: Noah Abradjian <noah.abradjian@amd.com>
+Cc: nouveau@lists.freedesktop.org
+Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>
+-- 
+2.25.1
