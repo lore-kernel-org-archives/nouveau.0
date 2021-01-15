@@ -1,7 +1,7 @@
 From: Lee Jones <lee.jones@linaro.org>
-Subject: [PATCH 28/29] drm/nouveau/nouveau_ioc32: Demote kernel-doc abuse to standard comment block
-Date: Fri, 15 Jan 2021 18:16:00 +0000
-Message-ID: <20210115181601.3432599-29-lee.jones@linaro.org>
+Subject: [PATCH 25/29] drm/nouveau/nouveau_ioc32: File headers are not good candidates for kernel-doc
+Date: Fri, 15 Jan 2021 18:15:57 +0000
+Message-ID: <20210115181601.3432599-26-lee.jones@linaro.org>
 References: <20210115181601.3432599-1-lee.jones@linaro.org>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -13,9 +13,7 @@ List-Id: nouveau.vger.kernel.org
 
 Fixes the following W=1 kernel build warning(s):
 
- drivers/gpu/drm/nouveau/nouveau_ioc32.c:52: warning: Function parameter or member 'filp' not described in 'nouveau_compat_ioctl'
- drivers/gpu/drm/nouveau/nouveau_ioc32.c:52: warning: Function parameter or member 'cmd' not described in 'nouveau_compat_ioctl'
- drivers/gpu/drm/nouveau/nouveau_ioc32.c:52: warning: Function parameter or member 'arg' not described in 'nouveau_compat_ioctl'
+ drivers/gpu/drm/nouveau/nouveau_ioc32.c:2: warning: Cannot understand  * file mga_ioc32.c
 
 Cc: Ben Skeggs <bskeggs@redhat.com>
 Cc: David Airlie <airlied@linux.ie>
@@ -28,17 +26,14 @@ Signed-off-by: Lee Jones <lee.jones@linaro.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_ioc32.c b/drivers/gpu/drm/nouveau/nouveau_ioc32.c
-index 8ddf9b2325a42..2af3615c5205c 100644
+index adf01ca9e035d..8ddf9b2325a42 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_ioc32.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_ioc32.c
-@@ -38,7 +38,7 @@
- 
- #include "nouveau_ioctl.h"
- 
+@@ -1,4 +1,4 @@
 -/**
 +/*
-  * Called whenever a 32-bit process running under a 64-bit kernel
-  * performs an ioctl on /dev/dri/card<n>.
+  * \file mga_ioc32.c
   *
+  * 32-bit ioctl compatibility routines for the MGA DRM.
 -- 
 2.25.1
