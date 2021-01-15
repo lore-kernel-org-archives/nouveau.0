@@ -1,54 +1,39 @@
-From: Lee Jones <lee.jones@linaro.org>
-Subject: [PATCH 26/29] drm/nouveau/nouveau_svm: Remove unused variable 'ret' from void function
-Date: Fri, 15 Jan 2021 18:15:58 +0000
-Message-ID: <20210115181601.3432599-27-lee.jones@linaro.org>
+From: Zack Rusin <zackr@vmware.com>
+Subject: Re: [PATCH 00/29] [Set 15] Finally rid W=1 warnings
+ from GPU!
+Date: Fri, 15 Jan 2021 18:27:15 +0000
+Message-ID: <F914D9B9-6DD4-4383-9F7C-8D09FBFE96CE@vmware.com>
 References: <20210115181601.3432599-1-lee.jones@linaro.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
 In-Reply-To: <20210115181601.3432599-1-lee.jones@linaro.org>
-To: lee.jones@linaro.org
-Cc: linux-kernel@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Language: en-US
+Content-ID: <F862015D1103DE4C962AE3C7312A0F78@namprd05.prod.outlook.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Lee Jones <lee.jones@linaro.org>
+Cc: David Airlie <airlied@linux.ie>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, DRI Development <dri-devel@lists.freedesktop.org>, Eric Anholt <eric@anholt.net>, Jesse Barnes <jesse.barnes@intel.com>, Jan Safrata <jan.nikitenko@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>, Gareth Hughes <gareth@valinux.com>, Pei Zhang <pei.zhang@intel.com>, Rob Clark <rob.clark@linaro.org>, Min He <min.he@intel.com>, Linux-graphics-maintainer <Linux-graphics-maintainer@vmware.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>, Niu Bing <bing.niu@intel.com>, "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, jim liu <jim.liu@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, Roland Scheidegger <sroland@vmware.com>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@l>
 List-Id: nouveau.vger.kernel.org
 
-Fixes the following W=1 kernel build warning(s):
 
- drivers/gpu/drm/nouveau/nouveau_svm.c: In function ‘nouveau_pfns_map’:
- drivers/gpu/drm/nouveau/nouveau_svm.c:810:6: warning: variable ‘ret’ set but not used [-Wunused-but-set-variable]
+> On Jan 15, 2021, at 13:15, Lee Jones <lee.jones@linaro.org> wrote:
+> 
+> This set is part of a larger effort attempting to clean-up W=1
+> kernel builds, which are currently overwhelmingly riddled with
+> niggly little warnings.
+> 
+> Last set!  All clean after this for; Arm, Arm64, PPC, MIPS and x86.
 
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Signed-off-by: Lee Jones <lee.jones@linaro.org>
----
- drivers/gpu/drm/nouveau/nouveau_svm.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+Thanks! For all the vmwgfx bits:
+Reviewed-by: Zack Rusin <zackr@vmware.com>
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-index 4f69e4c3dafde..84c5bf53fe967 100644
---- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-@@ -807,7 +807,6 @@ nouveau_pfns_map(struct nouveau_svmm *svmm, struct mm_struct *mm,
- 		 unsigned long addr, u64 *pfns, unsigned long npages)
- {
- 	struct nouveau_pfnmap_args *args = nouveau_pfns_to_args(pfns);
--	int ret;
- 
- 	args->p.addr = addr;
- 	args->p.size = npages << PAGE_SHIFT;
-@@ -815,8 +814,8 @@ nouveau_pfns_map(struct nouveau_svmm *svmm, struct mm_struct *mm,
- 	mutex_lock(&svmm->mutex);
- 
- 	svmm->vmm->vmm.object.client->super = true;
--	ret = nvif_object_ioctl(&svmm->vmm->vmm.object, args, sizeof(*args) +
--				npages * sizeof(args->p.phys[0]), NULL);
-+	nvif_object_ioctl(&svmm->vmm->vmm.object, args, sizeof(*args) +
-+			  npages * sizeof(args->p.phys[0]), NULL);
- 	svmm->vmm->vmm.object.client->super = false;
- 
- 	mutex_unlock(&svmm->mutex);
--- 
-2.25.1
+z
