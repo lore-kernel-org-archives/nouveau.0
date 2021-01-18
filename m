@@ -1,48 +1,58 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH 00/29] [Set 15] Finally rid W=1 warnings
- from GPU!
-Date: Mon, 18 Jan 2021 10:49:07 +0100
-Message-ID: <YAVZk3XKNf9W7guC@phenom.ffwll.local>
-References: <20210115181601.3432599-1-lee.jones@linaro.org>
- <F914D9B9-6DD4-4383-9F7C-8D09FBFE96CE@vmware.com>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH] tracing: remove definition of DEBUG
+Date: Mon, 18 Jan 2021 11:33:57 +0100
+Message-ID: <CACO55tskaWz07cNdvpUE6wQw-7K2qwS8U1sokAeCtAF5naKuSA@mail.gmail.com>
+References: <20210115153348.131791-1-trix@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <F914D9B9-6DD4-4383-9F7C-8D09FBFE96CE@vmware.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Zack Rusin <zackr@vmware.com>
-Cc: David Airlie <airlied@linux.ie>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, DRI Development <dri-devel@lists.freedesktop.org>, Eric Anholt <eric@anholt.net>, Jesse Barnes <jesse.barnes@intel.com>, Jan Safrata <jan.nikitenko@gmail.com>, Lee Jones <lee.jones@linaro.org>, Sumit Semwal <sumit.semwal@linaro.org>, Gareth Hughes <gareth@valinux.com>, Pei Zhang <pei.zhang@intel.com>, Rob Clark <rob.clark@linaro.org>, Min He <min.he@intel.com>, Linux-graphics-maintainer <Linux-graphics-maintainer@vmware.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>, Niu Bing <bing.niu@intel.com>, "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, jim liu <jim.liu@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, Roland Scheidegger <sroland@vmware.com>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, linaro-mm-sig
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20210115153348.131791-1-trix-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Tom Rix <trix-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Steven Rostedt <rostedt-nx8X9YLhiw1AfugRpC6u6w@public.gmane.org>, Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ingo Molnar <mingo-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Jan 15, 2021 at 06:27:15PM +0000, Zack Rusin wrote:
-> 
-> > On Jan 15, 2021, at 13:15, Lee Jones <lee.jones@linaro.org> wrote:
-> > 
-> > This set is part of a larger effort attempting to clean-up W=1
-> > kernel builds, which are currently overwhelmingly riddled with
-> > niggly little warnings.
-> > 
-> > Last set!  All clean after this for; Arm, Arm64, PPC, MIPS and x86.
-> 
-> Thanks! For all the vmwgfx bits:
-> Reviewed-by: Zack Rusin <zackr@vmware.com>
+Reviewed-by: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
-Can you pls push them to drm-misc-next? I'm planning to go pull in all the
-other patches later today that belong into drm-misc-next, but some patch
-monkey help would be really great :-)
-
-Thanks, Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+On Fri, Jan 15, 2021 at 11:51 PM <trix-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
+>
+> From: Tom Rix <trix-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+>
+> Defining DEBUG should only be done in development.
+> So remove DEBUG.
+>
+> Signed-off-by: Tom Rix <trix-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> ---
+>  kernel/trace/trace_mmiotrace.c | 2 --
+>  1 file changed, 2 deletions(-)
+>
+> diff --git a/kernel/trace/trace_mmiotrace.c b/kernel/trace/trace_mmiotrace.c
+> index 84582bf1ed5f..2c3c31791497 100644
+> --- a/kernel/trace/trace_mmiotrace.c
+> +++ b/kernel/trace/trace_mmiotrace.c
+> @@ -5,8 +5,6 @@
+>   * Copyright (C) 2008 Pekka Paalanen <pq-X3B1VOXEql0@public.gmane.org>
+>   */
+>
+> -#define DEBUG 1
+> -
+>  #include <linux/kernel.h>
+>  #include <linux/mmiotrace.h>
+>  #include <linux/pci.h>
+> --
+> 2.27.0
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
+>
