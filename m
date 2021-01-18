@@ -1,61 +1,48 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/dispnv50: cleanup on
- nv50_head_atom_get failure
-Date: Fri, 15 Jan 2021 16:00:59 -0500
-Message-ID: <c859de5bf2d279c697c8fb1606b66eca93a87c86.camel@redhat.com>
-References: <20210114214406.77976-1-contact@emersion.fr>
-Reply-To: lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH 00/29] [Set 15] Finally rid W=1 warnings
+ from GPU!
+Date: Mon, 18 Jan 2021 10:49:07 +0100
+Message-ID: <YAVZk3XKNf9W7guC@phenom.ffwll.local>
+References: <20210115181601.3432599-1-lee.jones@linaro.org>
+ <F914D9B9-6DD4-4383-9F7C-8D09FBFE96CE@vmware.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20210114214406.77976-1-contact-sV0wSBM+kKVWj0EZb7rXcA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Simon Ser <contact-sV0wSBM+kKVWj0EZb7rXcA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <F914D9B9-6DD4-4383-9F7C-8D09FBFE96CE@vmware.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Zack Rusin <zackr@vmware.com>
+Cc: David Airlie <airlied@linux.ie>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, DRI Development <dri-devel@lists.freedesktop.org>, Eric Anholt <eric@anholt.net>, Jesse Barnes <jesse.barnes@intel.com>, Jan Safrata <jan.nikitenko@gmail.com>, Lee Jones <lee.jones@linaro.org>, Sumit Semwal <sumit.semwal@linaro.org>, Gareth Hughes <gareth@valinux.com>, Pei Zhang <pei.zhang@intel.com>, Rob Clark <rob.clark@linaro.org>, Min He <min.he@intel.com>, Linux-graphics-maintainer <Linux-graphics-maintainer@vmware.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>, Niu Bing <bing.niu@intel.com>, "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, jim liu <jim.liu@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, Roland Scheidegger <sroland@vmware.com>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, linaro-mm-sig
 List-Id: nouveau.vger.kernel.org
 
-UmV2aWV3ZWQtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CgpPbiBUaHUsIDIwMjEt
-MDEtMTQgYXQgMjI6NDQgKzAxMDAsIFNpbW9uIFNlciB3cm90ZToKPiBXaGVuIG52NTBfaGVhZF9h
-dG9tX2dldCBmYWlscywgd2UgbmVlZCB0byB1bi1kbyBldmVyeXRoaW5nIHdlJ3ZlCj4gZG9uZSBz
-byBmYXI6IHJlbGVhc2UgdGhlIGZlbmNlIGFuZCB1bnBpbiB0aGUgQk8uCj4gCj4gU2lnbmVkLW9m
-Zi1ieTogU2ltb24gU2VyIDxjb250YWN0QGVtZXJzaW9uLmZyPgo+IENjOiBCZW4gU2tlZ2dzIDxi
-c2tlZ2dzQHJlZGhhdC5jb20+Cj4gQ2M6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+Cj4g
-Q2M6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KPiAtLS0KPiDCoGRyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL3duZHcuYyB8IDYgKysrKystCj4gwqAxIGZpbGUgY2hh
-bmdlZCwgNSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL3duZHcuYwo+IGIvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvZGlzcG52NTAvd25kdy5jCj4gaW5kZXggMDM1NjQ3NGFkNmY2Li42MGFhYmIxYmMw
-OTUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvd25kdy5j
-Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvd25kdy5jCj4gQEAgLTU2
-Miw4ICs1NjIsMTIgQEAgbnY1MF93bmR3X3ByZXBhcmVfZmIoc3RydWN0IGRybV9wbGFuZSAqcGxh
-bmUsIHN0cnVjdAo+IGRybV9wbGFuZV9zdGF0ZSAqc3RhdGUpCj4gwqAKPiDCoMKgwqDCoMKgwqDC
-oMKgaWYgKHduZHctPmZ1bmMtPnByZXBhcmUpIHsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoGFzeWggPSBudjUwX2hlYWRfYXRvbV9nZXQoYXN5dy0+c3RhdGUuc3RhdGUsIGFzeXct
-Cj4gPnN0YXRlLmNydGMpOwo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAoSVNf
-RVJSKGFzeWgpKQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAoSVNfRVJSKGFz
-eWgpKSB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBk
-bWFfZmVuY2VfcHV0KGFzeXctPnN0YXRlLmZlbmNlKTsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGFzeXctPnN0YXRlLmZlbmNlID0gTlVMTDsKPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG5vdXZlYXVfYm9fdW5w
-aW4obnZibyk7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgcmV0dXJuIFBUUl9FUlIoYXN5aCk7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oH0KPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgd25kdy0+ZnVuYy0+cHJl
-cGFyZSh3bmR3LCBhc3loLCBhc3l3KTsKPiDCoMKgwqDCoMKgwqDCoMKgfQoKLS0gClNpbmNlcmVs
-eSwKICAgTHl1ZGUgUGF1bCAoc2hlL2hlcikKICAgU29mdHdhcmUgRW5naW5lZXIgYXQgUmVkIEhh
-dAogICAKTm90ZTogSSBkZWFsIHdpdGggYSBsb3Qgb2YgZW1haWxzIGFuZCBoYXZlIGEgbG90IG9m
-IGJ1Z3Mgb24gbXkgcGxhdGUuIElmIHlvdSd2ZQphc2tlZCBtZSBhIHF1ZXN0aW9uLCBhcmUgd2Fp
-dGluZyBmb3IgYSByZXZpZXcvbWVyZ2Ugb24gYSBwYXRjaCwgZXRjLiBhbmQgSQpoYXZlbid0IHJl
-c3BvbmRlZCBpbiBhIHdoaWxlLCBwbGVhc2UgZmVlbCBmcmVlIHRvIHNlbmQgbWUgYW5vdGhlciBl
-bWFpbCB0byBjaGVjawpvbiBteSBzdGF0dXMuIEkgZG9uJ3QgYml0ZSEKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+On Fri, Jan 15, 2021 at 06:27:15PM +0000, Zack Rusin wrote:
+> 
+> > On Jan 15, 2021, at 13:15, Lee Jones <lee.jones@linaro.org> wrote:
+> > 
+> > This set is part of a larger effort attempting to clean-up W=1
+> > kernel builds, which are currently overwhelmingly riddled with
+> > niggly little warnings.
+> > 
+> > Last set!  All clean after this for; Arm, Arm64, PPC, MIPS and x86.
+> 
+> Thanks! For all the vmwgfx bits:
+> Reviewed-by: Zack Rusin <zackr@vmware.com>
+
+Can you pls push them to drm-misc-next? I'm planning to go pull in all the
+other patches later today that belong into drm-misc-next, but some patch
+monkey help would be really great :-)
+
+Thanks, Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
