@@ -1,8 +1,7 @@
-From: Bastian Beranek <bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>
-Subject: [PATCH] drm/gpu/nouveau/dispnv50: Restore pushing of all
- data.
-Date: Mon, 18 Jan 2021 13:40:48 +0100
-Message-ID: <20210118124048.8772-1-bastian.beischer@rwth-aachen.de>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 0/5] drm/nouveau: CRC fixes
+Date: Mon, 18 Jan 2021 20:48:44 -0500
+Message-ID: <20210119014849.2509965-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -17,47 +16,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Bastian Beranek <bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Commit f844eb485eb056ad3b67e49f95cbc6c685a73db4 introduced a regression for
-NV50, which lead to visual artifacts, tearing and eventual crashes.
+Over vacation I did a bunch of work on getting igt working for evo GPUs.
+Note though some of these fixes are for nvdisplay GPUs, as I noticed a
+couple of things along the way (like the fact that you CAN use the core
+channel for tag updating on turing+, hooray!).
 
-In the changes of f844eb485eb056ad3b67e49f95cbc6c685a73db4 only the first line
-was correctly translated to the new NVIDIA header macros:
+Lyude Paul (5):
+  drm/nouveau/kms/nv50-: Use drm_dbg_kms() in crc.c
+  drm/nouveau/kms/nv50-: Check vbl count after CRC context flip
+  drm/nouveau/kms/nv140-: Use hard-coded wndws or core channel for CRC
+    channel
+  drm/nouveau/kms/nvd9-nv138: Fix CRC calculation for the cursor channel
+  drm/nouveau/kms/nv140-: Add CRC methods to gv100_disp_core_mthd_head
 
--		PUSH_NVSQ(push, NV827C, 0x0110, 0,
--					0x0114, 0);
-+		PUSH_MTHD(push, NV827C, SET_PROCESSING,
-+			  NVDEF(NV827C, SET_PROCESSING, USE_GAIN_OFS, DISABLE));
+ drivers/gpu/drm/nouveau/dispnv50/Kbuild       |  1 +
+ drivers/gpu/drm/nouveau/dispnv50/corec57d.c   |  2 +-
+ drivers/gpu/drm/nouveau/dispnv50/crc.c        | 64 ++++++-----------
+ drivers/gpu/drm/nouveau/dispnv50/crc.h        |  7 +-
+ drivers/gpu/drm/nouveau/dispnv50/crc907d.c    |  8 +--
+ drivers/gpu/drm/nouveau/dispnv50/crcc37d.c    | 45 +++---------
+ drivers/gpu/drm/nouveau/dispnv50/crcc37d.h    | 40 +++++++++++
+ drivers/gpu/drm/nouveau/dispnv50/crcc57d.c    | 58 ++++++++++++++++
+ .../drm/nouveau/include/nvhw/class/clc57d.h   | 69 +++++++++++++++++++
+ .../drm/nouveau/nvkm/engine/disp/coregv100.c  |  2 +
+ 10 files changed, 208 insertions(+), 88 deletions(-)
+ create mode 100644 drivers/gpu/drm/nouveau/dispnv50/crcc37d.h
+ create mode 100644 drivers/gpu/drm/nouveau/dispnv50/crcc57d.c
 
-The lower part ("0x0114, 0") was probably omitted by accident.
-
-This patch restores the push of the missing data and fixes the regression.
-
-Signed-off-by: Bastian Beranek <bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>
-Fixes: f844eb485eb056ad3b67e49f95cbc6c685a73db4
-Link: https://gitlab.freedesktop.org/drm/nouveau/-/issues/14
----
- drivers/gpu/drm/nouveau/dispnv50/base827c.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/base827c.c b/drivers/gpu/drm/nouveau/dispnv50/base827c.c
-index 18d34096f125..093d4ba6910e 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/base827c.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/base827c.c
-@@ -49,7 +49,11 @@ base827c_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- 			  NVVAL(NV827C, SET_CONVERSION, OFS, 0x64));
- 	} else {
- 		PUSH_MTHD(push, NV827C, SET_PROCESSING,
--			  NVDEF(NV827C, SET_PROCESSING, USE_GAIN_OFS, DISABLE));
-+			  NVDEF(NV827C, SET_PROCESSING, USE_GAIN_OFS, DISABLE),
-+
-+					SET_CONVERSION,
-+			  NVVAL(NV827C, SET_CONVERSION, GAIN, 0) |
-+			  NVVAL(NV827C, SET_CONVERSION, OFS, 0));
- 	}
- 
- 	PUSH_MTHD(push, NV827C, SURFACE_SET_OFFSET(0, 0), asyw->image.offset[0] >> 8,
 -- 
-2.30.0
+2.29.2
