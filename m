@@ -1,8 +1,8 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 4.14 8/9] drm/nouveau/privring: ack
- interrupts the same way as RM
-Date: Tue, 19 Jan 2021 20:28:01 -0500
-Message-ID: <20210120012802.770525-8-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 9/9] drm/nouveau/i2c/gm200: increase
+ width of aux semaphore owner fields
+Date: Tue, 19 Jan 2021 20:28:02 -0500
+Message-ID: <20210120012802.770525-9-sashal@kernel.org>
 References: <20210120012802.770525-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,114 +24,50 @@ List-Id: nouveau.vger.kernel.org
 
 From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
-[ Upstream commit e05e06cd34f5311f677294a08b609acfbc315236 ]
+[ Upstream commit ba6e9ab0fcf3d76e3952deb12b5f993991621d9c ]
 
-Whatever it is that we were doing before doesn't work on Ampere.
+Noticed while debugging GA102.
 
 Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/ibus/gf100.c | 10 +++++++---
- drivers/gpu/drm/nouveau/nvkm/subdev/ibus/gk104.c | 10 +++++++---
- 2 files changed, 14 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/ibus/gf100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/ibus/gf100.c
-index d80dbc8f09b20..55a4ea4393c62 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/ibus/gf100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/ibus/gf100.c
-@@ -22,6 +22,7 @@
-  * Authors: Ben Skeggs
-  */
- #include "priv.h"
-+#include <subdev/timer.h>
- 
- static void
- gf100_ibus_intr_hub(struct nvkm_subdev *ibus, int i)
-@@ -31,7 +32,6 @@ gf100_ibus_intr_hub(struct nvkm_subdev *ibus, int i)
- 	u32 data = nvkm_rd32(device, 0x122124 + (i * 0x0400));
- 	u32 stat = nvkm_rd32(device, 0x122128 + (i * 0x0400));
- 	nvkm_debug(ibus, "HUB%d: %06x %08x (%08x)\n", i, addr, data, stat);
--	nvkm_mask(device, 0x122128 + (i * 0x0400), 0x00000200, 0x00000000);
- }
- 
- static void
-@@ -42,7 +42,6 @@ gf100_ibus_intr_rop(struct nvkm_subdev *ibus, int i)
- 	u32 data = nvkm_rd32(device, 0x124124 + (i * 0x0400));
- 	u32 stat = nvkm_rd32(device, 0x124128 + (i * 0x0400));
- 	nvkm_debug(ibus, "ROP%d: %06x %08x (%08x)\n", i, addr, data, stat);
--	nvkm_mask(device, 0x124128 + (i * 0x0400), 0x00000200, 0x00000000);
- }
- 
- static void
-@@ -53,7 +52,6 @@ gf100_ibus_intr_gpc(struct nvkm_subdev *ibus, int i)
- 	u32 data = nvkm_rd32(device, 0x128124 + (i * 0x0400));
- 	u32 stat = nvkm_rd32(device, 0x128128 + (i * 0x0400));
- 	nvkm_debug(ibus, "GPC%d: %06x %08x (%08x)\n", i, addr, data, stat);
--	nvkm_mask(device, 0x128128 + (i * 0x0400), 0x00000200, 0x00000000);
- }
- 
- void
-@@ -90,6 +88,12 @@ gf100_ibus_intr(struct nvkm_subdev *ibus)
- 			intr1 &= ~stat;
- 		}
- 	}
-+
-+	nvkm_mask(device, 0x121c4c, 0x0000003f, 0x00000002);
-+	nvkm_msec(device, 2000,
-+		if (!(nvkm_rd32(device, 0x121c4c) & 0x0000003f))
-+			break;
-+	);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
+index edb6148cbca04..d0e80ad526845 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
+@@ -33,7 +33,7 @@ static void
+ gm200_i2c_aux_fini(struct gm200_i2c_aux *aux)
+ {
+ 	struct nvkm_device *device = aux->base.pad->i2c->subdev.device;
+-	nvkm_mask(device, 0x00d954 + (aux->ch * 0x50), 0x00310000, 0x00000000);
++	nvkm_mask(device, 0x00d954 + (aux->ch * 0x50), 0x00710000, 0x00000000);
  }
  
  static int
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/ibus/gk104.c b/drivers/gpu/drm/nouveau/nvkm/subdev/ibus/gk104.c
-index 9025ed1bd2a99..4caf3ef087e1d 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/ibus/gk104.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/ibus/gk104.c
-@@ -22,6 +22,7 @@
-  * Authors: Ben Skeggs
-  */
- #include "priv.h"
-+#include <subdev/timer.h>
- 
- static void
- gk104_ibus_intr_hub(struct nvkm_subdev *ibus, int i)
-@@ -31,7 +32,6 @@ gk104_ibus_intr_hub(struct nvkm_subdev *ibus, int i)
- 	u32 data = nvkm_rd32(device, 0x122124 + (i * 0x0800));
- 	u32 stat = nvkm_rd32(device, 0x122128 + (i * 0x0800));
- 	nvkm_debug(ibus, "HUB%d: %06x %08x (%08x)\n", i, addr, data, stat);
--	nvkm_mask(device, 0x122128 + (i * 0x0800), 0x00000200, 0x00000000);
- }
- 
- static void
-@@ -42,7 +42,6 @@ gk104_ibus_intr_rop(struct nvkm_subdev *ibus, int i)
- 	u32 data = nvkm_rd32(device, 0x124124 + (i * 0x0800));
- 	u32 stat = nvkm_rd32(device, 0x124128 + (i * 0x0800));
- 	nvkm_debug(ibus, "ROP%d: %06x %08x (%08x)\n", i, addr, data, stat);
--	nvkm_mask(device, 0x124128 + (i * 0x0800), 0x00000200, 0x00000000);
- }
- 
- static void
-@@ -53,7 +52,6 @@ gk104_ibus_intr_gpc(struct nvkm_subdev *ibus, int i)
- 	u32 data = nvkm_rd32(device, 0x128124 + (i * 0x0800));
- 	u32 stat = nvkm_rd32(device, 0x128128 + (i * 0x0800));
- 	nvkm_debug(ibus, "GPC%d: %06x %08x (%08x)\n", i, addr, data, stat);
--	nvkm_mask(device, 0x128128 + (i * 0x0800), 0x00000200, 0x00000000);
- }
- 
- void
-@@ -90,6 +88,12 @@ gk104_ibus_intr(struct nvkm_subdev *ibus)
- 			intr1 &= ~stat;
+@@ -54,10 +54,10 @@ gm200_i2c_aux_init(struct gm200_i2c_aux *aux)
+ 			AUX_ERR(&aux->base, "begin idle timeout %08x", ctrl);
+ 			return -EBUSY;
  		}
- 	}
-+
-+	nvkm_mask(device, 0x12004c, 0x0000003f, 0x00000002);
-+	nvkm_msec(device, 2000,
-+		if (!(nvkm_rd32(device, 0x12004c) & 0x0000003f))
-+			break;
-+	);
- }
+-	} while (ctrl & 0x03010000);
++	} while (ctrl & 0x07010000);
  
- static int
+ 	/* set some magic, and wait up to 1ms for it to appear */
+-	nvkm_mask(device, 0x00d954 + (aux->ch * 0x50), 0x00300000, ureq);
++	nvkm_mask(device, 0x00d954 + (aux->ch * 0x50), 0x00700000, ureq);
+ 	timeout = 1000;
+ 	do {
+ 		ctrl = nvkm_rd32(device, 0x00d954 + (aux->ch * 0x50));
+@@ -67,7 +67,7 @@ gm200_i2c_aux_init(struct gm200_i2c_aux *aux)
+ 			gm200_i2c_aux_fini(aux);
+ 			return -EBUSY;
+ 		}
+-	} while ((ctrl & 0x03000000) != urep);
++	} while ((ctrl & 0x07000000) != urep);
+ 
+ 	return 0;
+ }
 -- 
 2.27.0
