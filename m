@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 4.9 4/4] drm/nouveau/i2c/gm200: increase
+Subject: [PATCH AUTOSEL 4.4 4/4] drm/nouveau/i2c/gm200: increase
  width of aux semaphore owner fields
-Date: Tue, 19 Jan 2021 20:28:16 -0500
-Message-ID: <20210120012816.770648-4-sashal@kernel.org>
-References: <20210120012816.770648-1-sashal@kernel.org>
+Date: Tue, 19 Jan 2021 20:28:23 -0500
+Message-ID: <20210120012823.770731-4-sashal@kernel.org>
+References: <20210120012823.770731-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20210120012816.770648-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <20210120012823.770731-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -31,15 +31,15 @@ Noticed while debugging GA102.
 Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c | 8 ++++----
+ drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm204.c | 8 ++++----
  1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
-index a5783f4d972e3..c49795e779be4 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm204.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm204.c
+index 7cac8fe372b6b..a3cede8df4fd9 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm204.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm204.c
 @@ -33,7 +33,7 @@ static void
- gm200_i2c_aux_fini(struct gm200_i2c_aux *aux)
+ gm204_i2c_aux_fini(struct gm204_i2c_aux *aux)
  {
  	struct nvkm_device *device = aux->base.pad->i2c->subdev.device;
 -	nvkm_mask(device, 0x00d954 + (aux->ch * 0x50), 0x00310000, 0x00000000);
@@ -47,7 +47,7 @@ index a5783f4d972e3..c49795e779be4 100644
  }
  
  static int
-@@ -54,10 +54,10 @@ gm200_i2c_aux_init(struct gm200_i2c_aux *aux)
+@@ -54,10 +54,10 @@ gm204_i2c_aux_init(struct gm204_i2c_aux *aux)
  			AUX_ERR(&aux->base, "begin idle timeout %08x", ctrl);
  			return -EBUSY;
  		}
@@ -60,8 +60,8 @@ index a5783f4d972e3..c49795e779be4 100644
  	timeout = 1000;
  	do {
  		ctrl = nvkm_rd32(device, 0x00d954 + (aux->ch * 0x50));
-@@ -67,7 +67,7 @@ gm200_i2c_aux_init(struct gm200_i2c_aux *aux)
- 			gm200_i2c_aux_fini(aux);
+@@ -67,7 +67,7 @@ gm204_i2c_aux_init(struct gm204_i2c_aux *aux)
+ 			gm204_i2c_aux_fini(aux);
  			return -EBUSY;
  		}
 -	} while ((ctrl & 0x03000000) != urep);
