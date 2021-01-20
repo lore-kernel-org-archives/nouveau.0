@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 4.19 15/15] drm/nouveau/kms/nv50-: fix
- case where notifier buffer is at offset 0
-Date: Tue, 19 Jan 2021 20:27:40 -0500
-Message-ID: <20210120012740.770354-15-sashal@kernel.org>
-References: <20210120012740.770354-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 7/9] drm/nouveau/bios: fix issue
+ shadowing expansion ROMs
+Date: Tue, 19 Jan 2021 20:28:00 -0500
+Message-ID: <20210120012802.770525-7-sashal@kernel.org>
+References: <20210120012802.770525-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20210120012740.770354-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <20210120012802.770525-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -24,65 +24,45 @@ List-Id: nouveau.vger.kernel.org
 
 From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
-[ Upstream commit caeb6ab899c3d36a74cda6e299c6e1c9c4e2a22e ]
+[ Upstream commit 402a89660e9dc880710b12773076a336c9dab3d7 ]
 
-VRAM offset 0 is a valid address, triggered on GA102.
+This issue has generally been covered up by the presence of additional
+expansion ROMs after the ones we're interested in, with header fetches
+of subsequent images loading enough of the ROM to hide the issue.
+
+Noticed on GA102, which lacks a type 0x70 image compared to TU102,.
+
+[  906.364197] nouveau 0000:09:00.0: bios: 00000000: type 00, 65024 bytes
+[  906.381205] nouveau 0000:09:00.0: bios: 0000fe00: type 03, 91648 bytes
+[  906.405213] nouveau 0000:09:00.0: bios: 00026400: type e0, 22016 bytes
+[  906.410984] nouveau 0000:09:00.0: bios: 0002ba00: type e0, 366080 bytes
+
+vs
+
+[   22.961901] nouveau 0000:09:00.0: bios: 00000000: type 00, 60416 bytes
+[   22.984174] nouveau 0000:09:00.0: bios: 0000ec00: type 03, 71168 bytes
+[   23.010446] nouveau 0000:09:00.0: bios: 00020200: type e0, 48128 bytes
+[   23.028220] nouveau 0000:09:00.0: bios: 0002be00: type e0, 140800 bytes
+[   23.080196] nouveau 0000:09:00.0: bios: 0004e400: type 70, 7168 bytes
 
 Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/dispnv50/disp.c     | 4 ++--
- drivers/gpu/drm/nouveau/dispnv50/disp.h     | 2 +-
- drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 1bb0a9f6fa730..fbe156302ee86 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -131,7 +131,7 @@ nv50_dmac_destroy(struct nv50_dmac *dmac)
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c
+index 7deb81b6dbac6..4b571cc6bc70f 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c
+@@ -75,7 +75,7 @@ shadow_image(struct nvkm_bios *bios, int idx, u32 offset, struct shadow *mthd)
+ 	nvkm_debug(subdev, "%08x: type %02x, %d bytes\n",
+ 		   image.base, image.type, image.size);
  
- int
- nv50_dmac_create(struct nvif_device *device, struct nvif_object *disp,
--		 const s32 *oclass, u8 head, void *data, u32 size, u64 syncbuf,
-+		 const s32 *oclass, u8 head, void *data, u32 size, s64 syncbuf,
- 		 struct nv50_dmac *dmac)
- {
- 	struct nouveau_cli *cli = (void *)device->object.client;
-@@ -166,7 +166,7 @@ nv50_dmac_create(struct nvif_device *device, struct nvif_object *disp,
- 	if (ret)
- 		return ret;
- 
--	if (!syncbuf)
-+	if (syncbuf < 0)
+-	if (!shadow_fetch(bios, mthd, image.size)) {
++	if (!shadow_fetch(bios, mthd, image.base + image.size)) {
+ 		nvkm_debug(subdev, "%08x: fetch failed\n", image.base);
  		return 0;
- 
- 	ret = nvif_object_init(&dmac->base.user, 0xf0000000, NV_DMA_IN_MEMORY,
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.h b/drivers/gpu/drm/nouveau/dispnv50/disp.h
-index 66c125a6b0b3c..55205d23360c8 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.h
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.h
-@@ -68,7 +68,7 @@ struct nv50_dmac {
- 
- int nv50_dmac_create(struct nvif_device *device, struct nvif_object *disp,
- 		     const s32 *oclass, u8 head, void *data, u32 size,
--		     u64 syncbuf, struct nv50_dmac *dmac);
-+		     s64 syncbuf, struct nv50_dmac *dmac);
- void nv50_dmac_destroy(struct nv50_dmac *);
- 
- u32 *evo_wait(struct nv50_dmac *, int nr);
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c b/drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c
-index f7dbd965e4e72..b49a212af4d8d 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c
-@@ -68,7 +68,7 @@ wimmc37b_init_(const struct nv50_wimm_func *func, struct nouveau_drm *drm,
- 	int ret;
- 
- 	ret = nv50_dmac_create(&drm->client.device, &disp->disp->object,
--			       &oclass, 0, &args, sizeof(args), 0,
-+			       &oclass, 0, &args, sizeof(args), -1,
- 			       &wndw->wimm);
- 	if (ret) {
- 		NV_ERROR(drm, "wimm%04x allocation failed: %d\n", oclass, ret);
+ 	}
 -- 
 2.27.0
