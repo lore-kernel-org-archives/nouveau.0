@@ -1,8 +1,8 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 5.4 24/26] drm/nouveau/i2c/gm200: increase
- width of aux semaphore owner fields
-Date: Tue, 19 Jan 2021 20:27:01 -0500
-Message-ID: <20210120012704.770095-24-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 26/26] drm/nouveau/kms/nv50-: fix case
+ where notifier buffer is at offset 0
+Date: Tue, 19 Jan 2021 20:27:03 -0500
+Message-ID: <20210120012704.770095-26-sashal@kernel.org>
 References: <20210120012704.770095-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -24,50 +24,65 @@ List-Id: nouveau.vger.kernel.org
 
 From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 
-[ Upstream commit ba6e9ab0fcf3d76e3952deb12b5f993991621d9c ]
+[ Upstream commit caeb6ab899c3d36a74cda6e299c6e1c9c4e2a22e ]
 
-Noticed while debugging GA102.
+VRAM offset 0 is a valid address, triggered on GA102.
 
 Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Signed-off-by: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/disp.c     | 4 ++--
+ drivers/gpu/drm/nouveau/dispnv50/disp.h     | 2 +-
+ drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
-index edb6148cbca04..d0e80ad526845 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
-@@ -33,7 +33,7 @@ static void
- gm200_i2c_aux_fini(struct gm200_i2c_aux *aux)
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index ee2b1e1199e09..daa79d39201f9 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -132,7 +132,7 @@ nv50_dmac_destroy(struct nv50_dmac *dmac)
+ 
+ int
+ nv50_dmac_create(struct nvif_device *device, struct nvif_object *disp,
+-		 const s32 *oclass, u8 head, void *data, u32 size, u64 syncbuf,
++		 const s32 *oclass, u8 head, void *data, u32 size, s64 syncbuf,
+ 		 struct nv50_dmac *dmac)
  {
- 	struct nvkm_device *device = aux->base.pad->i2c->subdev.device;
--	nvkm_mask(device, 0x00d954 + (aux->ch * 0x50), 0x00310000, 0x00000000);
-+	nvkm_mask(device, 0x00d954 + (aux->ch * 0x50), 0x00710000, 0x00000000);
- }
+ 	struct nouveau_cli *cli = (void *)device->object.client;
+@@ -167,7 +167,7 @@ nv50_dmac_create(struct nvif_device *device, struct nvif_object *disp,
+ 	if (ret)
+ 		return ret;
  
- static int
-@@ -54,10 +54,10 @@ gm200_i2c_aux_init(struct gm200_i2c_aux *aux)
- 			AUX_ERR(&aux->base, "begin idle timeout %08x", ctrl);
- 			return -EBUSY;
- 		}
--	} while (ctrl & 0x03010000);
-+	} while (ctrl & 0x07010000);
+-	if (!syncbuf)
++	if (syncbuf < 0)
+ 		return 0;
  
- 	/* set some magic, and wait up to 1ms for it to appear */
--	nvkm_mask(device, 0x00d954 + (aux->ch * 0x50), 0x00300000, ureq);
-+	nvkm_mask(device, 0x00d954 + (aux->ch * 0x50), 0x00700000, ureq);
- 	timeout = 1000;
- 	do {
- 		ctrl = nvkm_rd32(device, 0x00d954 + (aux->ch * 0x50));
-@@ -67,7 +67,7 @@ gm200_i2c_aux_init(struct gm200_i2c_aux *aux)
- 			gm200_i2c_aux_fini(aux);
- 			return -EBUSY;
- 		}
--	} while ((ctrl & 0x03000000) != urep);
-+	} while ((ctrl & 0x07000000) != urep);
+ 	ret = nvif_object_init(&dmac->base.user, 0xf0000000, NV_DMA_IN_MEMORY,
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.h b/drivers/gpu/drm/nouveau/dispnv50/disp.h
+index 7c41b0599d1ac..284068fa6d007 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.h
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.h
+@@ -70,7 +70,7 @@ struct nv50_dmac {
  
- 	return 0;
- }
+ int nv50_dmac_create(struct nvif_device *device, struct nvif_object *disp,
+ 		     const s32 *oclass, u8 head, void *data, u32 size,
+-		     u64 syncbuf, struct nv50_dmac *dmac);
++		     s64 syncbuf, struct nv50_dmac *dmac);
+ void nv50_dmac_destroy(struct nv50_dmac *);
+ 
+ u32 *evo_wait(struct nv50_dmac *, int nr);
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c b/drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c
+index f7dbd965e4e72..b49a212af4d8d 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c
+@@ -68,7 +68,7 @@ wimmc37b_init_(const struct nv50_wimm_func *func, struct nouveau_drm *drm,
+ 	int ret;
+ 
+ 	ret = nv50_dmac_create(&drm->client.device, &disp->disp->object,
+-			       &oclass, 0, &args, sizeof(args), 0,
++			       &oclass, 0, &args, sizeof(args), -1,
+ 			       &wndw->wimm);
+ 	if (ret) {
+ 		NV_ERROR(drm, "wimm%04x allocation failed: %d\n", oclass, ret);
 -- 
 2.27.0
