@@ -1,14 +1,14 @@
 From: Bastian Beranek <bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>
-Subject: [PATCH v2] drm/gpu/nouveau/dispnv50: Restore pushing of
+Subject: [PATCH v3] drm/gpu/nouveau/dispnv50: Restore pushing of
  all data.
-Date: Thu, 21 Jan 2021 12:11:18 +0100
-Message-ID: <20210121111118.34587-1-bastian.beischer@rwth-aachen.de>
-References: <20210118124048.8772-1-bastian.beischer@rwth-aachen.de>
+Date: Thu, 21 Jan 2021 15:27:36 +0100
+Message-ID: <20210121142736.9525-1-bastian.beischer@rwth-aachen.de>
+References: <20210121111118.34587-1-bastian.beischer@rwth-aachen.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20210118124048.8772-1-bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>
+In-Reply-To: <20210121111118.34587-1-bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -46,7 +46,7 @@ Link: https://gitlab.freedesktop.org/drm/nouveau/-/issues/14
  2 files changed, 10 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/dispnv50/base507c.c b/drivers/gpu/drm/nouveau/dispnv50/base507c.c
-index 302d4e6fc52f..2d1825a5d751 100644
+index 302d4e6fc52f..788db043a342 100644
 --- a/drivers/gpu/drm/nouveau/dispnv50/base507c.c
 +++ b/drivers/gpu/drm/nouveau/dispnv50/base507c.c
 @@ -88,7 +88,11 @@ base507c_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
@@ -54,7 +54,7 @@ index 302d4e6fc52f..2d1825a5d751 100644
  	} else {
  		PUSH_MTHD(push, NV507C, SET_PROCESSING,
 -			  NVDEF(NV507C, SET_PROCESSING, USE_GAIN_OFS, DISABLE));
-+			  NVDEF(NV507C, SET_PROCESSING, USE_GAIN_OFS, DISABLE)),
++			  NVDEF(NV507C, SET_PROCESSING, USE_GAIN_OFS, DISABLE),
 +
 +					SET_CONVERSION,
 +			  NVVAL(NV507C, SET_CONVERSION, GAIN, 0) |
