@@ -1,15 +1,14 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v2] drm/gpu/nouveau/dispnv50: Restore pushing
- of all data.
-Date: Thu, 21 Jan 2021 12:14:55 +0100
-Message-ID: <CACO55tvPqCGu4TLnGfiGDs5tKdq3DwUZ5O_7EMM4A5KTJsRwCQ@mail.gmail.com>
+From: Bastian Beranek <bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>
+Subject: [PATCH v2] drm/gpu/nouveau/dispnv50: Restore pushing of
+ all data.
+Date: Thu, 21 Jan 2021 12:11:18 +0100
+Message-ID: <20210121111118.34587-1-bastian.beischer@rwth-aachen.de>
 References: <20210118124048.8772-1-bastian.beischer@rwth-aachen.de>
- <20210121111118.34587-1-bastian.beischer@rwth-aachen.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20210121111118.34587-1-bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>
+In-Reply-To: <20210118124048.8772-1-bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,72 +18,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Bastian Beranek <bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Bastian Beranek <bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-ohh, at first I thought this was a resend, but it's in a different file :)
+Commit f844eb485eb056ad3b67e49f95cbc6c685a73db4 introduced a regression for
+NV50, which lead to visual artifacts, tearing and eventual crashes.
 
-On Thu, Jan 21, 2021 at 12:11 PM Bastian Beranek
-<bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org> wrote:
->
-> Commit f844eb485eb056ad3b67e49f95cbc6c685a73db4 introduced a regression for
-> NV50, which lead to visual artifacts, tearing and eventual crashes.
->
-> In the changes of f844eb485eb056ad3b67e49f95cbc6c685a73db4 only the first line
-> was correctly translated to the new NVIDIA header macros:
->
-> -               PUSH_NVSQ(push, NV827C, 0x0110, 0,
-> -                                       0x0114, 0);
-> +               PUSH_MTHD(push, NV827C, SET_PROCESSING,
-> +                         NVDEF(NV827C, SET_PROCESSING, USE_GAIN_OFS, DISABLE));
->
-> The lower part ("0x0114, 0") was probably omitted by accident.
->
-> This patch restores the push of the missing data and fixes the regression.
->
-> Signed-off-by: Bastian Beranek <bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>
-> Fixes: f844eb485eb056ad3b67e49f95cbc6c685a73db4
-> Link: https://gitlab.freedesktop.org/drm/nouveau/-/issues/14
-> ---
->  drivers/gpu/drm/nouveau/dispnv50/base507c.c | 6 +++++-
->  drivers/gpu/drm/nouveau/dispnv50/base827c.c | 6 +++++-
->  2 files changed, 10 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/base507c.c b/drivers/gpu/drm/nouveau/dispnv50/base507c.c
-> index 302d4e6fc52f..2d1825a5d751 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/base507c.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/base507c.c
-> @@ -88,7 +88,11 @@ base507c_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
->                           NVVAL(NV507C, SET_CONVERSION, OFS, 0x64));
->         } else {
->                 PUSH_MTHD(push, NV507C, SET_PROCESSING,
-> -                         NVDEF(NV507C, SET_PROCESSING, USE_GAIN_OFS, DISABLE));
-> +                         NVDEF(NV507C, SET_PROCESSING, USE_GAIN_OFS, DISABLE)),
-> +
-> +                                       SET_CONVERSION,
-> +                         NVVAL(NV507C, SET_CONVERSION, GAIN, 0) |
-> +                         NVVAL(NV507C, SET_CONVERSION, OFS, 0));
->         }
->
->         PUSH_MTHD(push, NV507C, SURFACE_SET_OFFSET(0, 0), asyw->image.offset[0] >> 8);
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/base827c.c b/drivers/gpu/drm/nouveau/dispnv50/base827c.c
-> index 18d34096f125..093d4ba6910e 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/base827c.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/base827c.c
-> @@ -49,7 +49,11 @@ base827c_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
->                           NVVAL(NV827C, SET_CONVERSION, OFS, 0x64));
->         } else {
->                 PUSH_MTHD(push, NV827C, SET_PROCESSING,
-> -                         NVDEF(NV827C, SET_PROCESSING, USE_GAIN_OFS, DISABLE));
-> +                         NVDEF(NV827C, SET_PROCESSING, USE_GAIN_OFS, DISABLE),
-> +
-> +                                       SET_CONVERSION,
-> +                         NVVAL(NV827C, SET_CONVERSION, GAIN, 0) |
-> +                         NVVAL(NV827C, SET_CONVERSION, OFS, 0));
->         }
->
->         PUSH_MTHD(push, NV827C, SURFACE_SET_OFFSET(0, 0), asyw->image.offset[0] >> 8,
-> --
-> 2.30.0
->
+In the changes of f844eb485eb056ad3b67e49f95cbc6c685a73db4 only the first line
+was correctly translated to the new NVIDIA header macros:
+
+-		PUSH_NVSQ(push, NV827C, 0x0110, 0,
+-					0x0114, 0);
++		PUSH_MTHD(push, NV827C, SET_PROCESSING,
++			  NVDEF(NV827C, SET_PROCESSING, USE_GAIN_OFS, DISABLE));
+
+The lower part ("0x0114, 0") was probably omitted by accident.
+
+This patch restores the push of the missing data and fixes the regression.
+
+Signed-off-by: Bastian Beranek <bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>
+Fixes: f844eb485eb056ad3b67e49f95cbc6c685a73db4
+Link: https://gitlab.freedesktop.org/drm/nouveau/-/issues/14
+---
+ drivers/gpu/drm/nouveau/dispnv50/base507c.c | 6 +++++-
+ drivers/gpu/drm/nouveau/dispnv50/base827c.c | 6 +++++-
+ 2 files changed, 10 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/base507c.c b/drivers/gpu/drm/nouveau/dispnv50/base507c.c
+index 302d4e6fc52f..2d1825a5d751 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/base507c.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/base507c.c
+@@ -88,7 +88,11 @@ base507c_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
+ 			  NVVAL(NV507C, SET_CONVERSION, OFS, 0x64));
+ 	} else {
+ 		PUSH_MTHD(push, NV507C, SET_PROCESSING,
+-			  NVDEF(NV507C, SET_PROCESSING, USE_GAIN_OFS, DISABLE));
++			  NVDEF(NV507C, SET_PROCESSING, USE_GAIN_OFS, DISABLE)),
++
++					SET_CONVERSION,
++			  NVVAL(NV507C, SET_CONVERSION, GAIN, 0) |
++			  NVVAL(NV507C, SET_CONVERSION, OFS, 0));
+ 	}
+ 
+ 	PUSH_MTHD(push, NV507C, SURFACE_SET_OFFSET(0, 0), asyw->image.offset[0] >> 8);
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/base827c.c b/drivers/gpu/drm/nouveau/dispnv50/base827c.c
+index 18d34096f125..093d4ba6910e 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/base827c.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/base827c.c
+@@ -49,7 +49,11 @@ base827c_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
+ 			  NVVAL(NV827C, SET_CONVERSION, OFS, 0x64));
+ 	} else {
+ 		PUSH_MTHD(push, NV827C, SET_PROCESSING,
+-			  NVDEF(NV827C, SET_PROCESSING, USE_GAIN_OFS, DISABLE));
++			  NVDEF(NV827C, SET_PROCESSING, USE_GAIN_OFS, DISABLE),
++
++					SET_CONVERSION,
++			  NVVAL(NV827C, SET_CONVERSION, GAIN, 0) |
++			  NVVAL(NV827C, SET_CONVERSION, OFS, 0));
+ 	}
+ 
+ 	PUSH_MTHD(push, NV827C, SURFACE_SET_OFFSET(0, 0), asyw->image.offset[0] >> 8,
+-- 
+2.30.0
