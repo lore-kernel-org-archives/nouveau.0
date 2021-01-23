@@ -1,43 +1,413 @@
-From: Ye Bin <yebin10@huawei.com>
-Subject: [PATCH] =?UTF-8?q?drm/nouveau:=20remove=20set=20but=20not=20used?= =?UTF-8?q?=20variable=20=E2=80=98pdev=E2=80=99=20in=20nouveau=5Fbios=5Fin?= =?UTF-8?q?it?=
-Date: Sat, 23 Jan 2021 09:30:14 +0800
-Message-ID: <20210123013014.3815870-1-yebin10@huawei.com>
+From: o1bigtenor <o1bigtenor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Request for help in adding a HDMI output
+Date: Fri, 22 Jan 2021 20:08:50 -0600
+Message-ID: <CAPpdf5-hvhq9dyrAt8iv5dAT=J_=vDedoA2BgD4wRn_PRkOabA@mail.gmail.com>
+References: <CAPpdf5-SoO4qPKg7WuvRsCMT4RGV34gNp+M0ir27a1E8Qu+s4g@mail.gmail.com>
+ <CAKb7UvjfPptmKDm_jma90Q0T+JoTmETL-Y0-KzTbv9z7f=ccoA@mail.gmail.com>
+ <CAPpdf59jfbS4dhRJ5kvhri7LwJL4UNEyL8rssG+qOcu7G1ZkQg@mail.gmail.com>
+ <CAKb7Uvh3UOKQ14MQwoDti0Lvsey5oLM4qk_GLze3s9qBFq+19Q@mail.gmail.com>
+ <CAPpdf58rtMsE_vHK-i-nKkX5=3K6W4HieJ0+7mH5HhkuEZG+tg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: Ye Bin <yebin10@huawei.com>, Hulk Robot <hulkci@huawei.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAPpdf58rtMsE_vHK-i-nKkX5=3K6W4HieJ0+7mH5HhkuEZG+tg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Fix follow warning:
-drivers/gpu/drm/nouveau/nouveau_bios.c:2086:18: warning: variable ‘pdev’ set but not used [-Wunused-but-set-variable]
-  struct pci_dev *pdev;
-                  ^~~~
+On Fri, Jan 22, 2021 at 1:12 PM o1bigtenor <o1bigtenor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>
+> On Fri, Jan 22, 2021 at 12:26 PM Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+> snip
+> > > > Unfortunately my initial attempt at supporting >340mhz modelines over
+> > > > HDMI was incomplete -- worked in my own testing, but not for everyone.
+> > > > (You need 597mhz to get 4k@60.)
+> > >
+> > > $ cvt 3840 2160
+> > > # 3840x2160 59.98 Hz (CVT 8.29M9) hsync: 134.18 kHz; pclk: 712.75 MHz
+> > > Modeline "3840x2160_60.00"  712.75  3840 4160 4576 5312  2160 2163
+> > > 2168 2237 -hsync +vsync
+> >
+> > That just plain won't work. HDMI 2.0 maxes out at 600mhz, whereas
+> > you're giving it a 712mhz modeline. You're trying to be too clever.
+>
+> Wasn't trying to be 'clever' - - - - entered the command listed and that was
+> the output.
+>
+> > This stuff should just work out of the box.
+>
+> Sure doesn't seem to.
+>
+> >
+> > What happens if you use a 5.8 or later kernel and don't do any of
+> > this? You should just be able to do like xrandr --output HDMI-1-2
+> > --auto. But having a 4k display on a secondary GPU is not a great idea
+> > -- I'd flip it around, make the GTX 1050 the primary.
+>
+> The GTX 1050 Ti is the primary.
+> I will try rebooting to get to the 5.10 kernel. This was the kernel where my
+> system kept refusing to awake after being in sleep mode. Will likely revert
+> to the older kernel if I run into the same problem again though.
+> >
+> > Can you provide the output of "xrandr --verbose" before you've messed
+> > around with anything like modelines/etc?
+> >
+>
+> Its huge - - -
+>
+> $ xrandr --verbose
+> Screen 0: minimum 320 x 200, current 7680 x 3000, maximum 16384 x 16384
+> DVI-D-1 connected primary 1920x1080+0+1920 (0x47) normal (normal left
+> inverted right x axis y axis) 477mm x 268mm
+> Identifier: 0x43
+> Timestamp:  483290
+> Subpixel:   unknown
+> Gamma:      1.0:1.0:1.0
+> Brightness: 1.0
+> Clones:
+> CRTC:       0
+> CRTCs:      0 1 2 3
+> Transform:  1.000000 0.000000 0.000000
+>             0.000000 1.000000 0.000000
+>             0.000000 0.000000 1.000000
+>            filter:
+> EDID:
+> 00ffffffffffff0009d15f7845540000
+> 0c15010380351d782e6085a6564a9c25
+> 125054a56b80710081c081408180a9c0
+> b300d1c00101023a801871382d40582c
+> 4500dd0c1100001e000000ff00373342
+> 3039303738534c303030000000fd0032
+> 4c185311000a202020202020000000fc
+> 0047323432304844424c0a20202000cd
+> dithering depth: auto
+> supported: auto, 6 bpc, 8 bpc
+> dithering mode: auto
+> supported: auto, off, static 2x2, dynamic 2x2, temporal
+> scaling mode: None
+> supported: None, Full, Center, Full aspect
+> color vibrance: 150
+> range: (0, 200)
+> vibrant hue: 90
+> range: (0, 180)
+> underscan vborder: 0
+> range: (0, 128)
+> underscan hborder: 0
+> range: (0, 128)
+> underscan: off
+> supported: auto, off, on
+> link-status: Good
+> supported: Good, Bad
+> CONNECTOR_ID: 69
+> supported: 69
+> non-desktop: 0
+> range: (0, 1)
+>   1920x1080 (0x47) 148.500MHz +HSync +VSync *current +preferred
+>         h: width  1920 start 2008 end 2052 total 2200 skew    0 clock  67.50KHz
+>         v: height 1080 start 1084 end 1089 total 1125           clock  60.00Hz
+snip
+> HDMI-1 disconnected (normal left inverted right x axis y axis)
+> Identifier: 0x44
+> Timestamp:  483290
+> Subpixel:   unknown
+> Clones:
+> CRTCs:      0 1 2 3
+> Transform:  1.000000 0.000000 0.000000
+>             0.000000 1.000000 0.000000
+>             0.000000 0.000000 1.000000
+>            filter:
+> dithering depth: auto
+> supported: auto, 6 bpc, 8 bpc
+> dithering mode: auto
+> supported: auto, off, static 2x2, dynamic 2x2, temporal
+> scaling mode: None
+> supported: None, Full, Center, Full aspect
+> color vibrance: 150
+> range: (0, 200)
+> vibrant hue: 90
+> range: (0, 180)
+> underscan vborder: 0
+> range: (0, 128)
+> underscan hborder: 0
+> range: (0, 128)
+> underscan: off
+> supported: auto, off, on
+> link-status: Good
+> supported: Good, Bad
+> CONNECTOR_ID: 71
+> supported: 71
+> non-desktop: 0
+> range: (0, 1)
+>   3840x2160 (0x70a) 712.750MHz -HSync +VSync
+>         h: width  3840 start 4160 end 4576 total 5312 skew    0 clock 134.18KHz
+>         v: height 2160 start 2163 end 2168 total 2237           clock  59.98Hz
+> DP-1 connected 1920x1080+1920+1920 (0x47) normal (normal left inverted
+> right x axis y axis) 477mm x 268mm
+> Identifier: 0x45
+> Timestamp:  483290
+> Subpixel:   unknown
+> Gamma:      1.0:1.0:1.0
+> Brightness: 1.0
+> Clones:
+> CRTC:       1
+> CRTCs:      0 1 2 3
+> Transform:  1.000000 0.000000 0.000000
+>             0.000000 1.000000 0.000000
+>             0.000000 0.000000 1.000000
+>            filter:
+> EDID:
+> 00ffffffffffff0009d15f7845540000
+> 0c15010380351d782e6085a6564a9c25
+> 125054a56b80710081c081408180a9c0
+> b300d1c00101023a801871382d40582c
+> 4500dd0c1100001e000000ff00373342
+> 3039313937534c303030000000fd0032
+> 4c185311000a202020202020000000fc
+> 0047323432304844424c0a20202000cb
+> dithering depth: auto
+> supported: auto, 6 bpc, 8 bpc
+> dithering mode: auto
+> supported: auto, off, static 2x2, dynamic 2x2, temporal
+> scaling mode: None
+> supported: None, Full, Center, Full aspect
+> color vibrance: 150
+> range: (0, 200)
+> vibrant hue: 90
+> range: (0, 180)
+> underscan vborder: 0
+> range: (0, 128)
+> underscan hborder: 0
+> range: (0, 128)
+> underscan: off
+> supported: auto, off, on
+> link-status: Good
+> supported: Good, Bad
+> CONNECTOR_ID: 73
+> supported: 73
+> non-desktop: 0
+> range: (0, 1)
+>   1920x1080 (0x47) 148.500MHz +HSync +VSync *current +preferred
+>         h: width  1920 start 2008 end 2052 total 2200 skew    0 clock  67.50KHz
+>         v: height 1080 start 1084 end 1089 total 1125           clock  60.00Hz
+snip
+> DVI-I-1-1 connected 1920x1080+1080+0 (0x47) inverted (normal left
+> inverted right x axis y axis) 477mm x 268mm
+> Identifier: 0xf7
+> Timestamp:  483290
+> Subpixel:   unknown
+> Gamma:      1.0:1.0:1.0
+> Brightness: 1.0
+> Clones:
+> CRTC:       5
+> CRTCs:      4 5
+> Transform:  1.000000 0.000000 0.000000
+>             0.000000 1.000000 0.000000
+>             0.000000 0.000000 1.000000
+>            filter:
+> EDID:
+> 00ffffffffffff0009d15f7845540000
+> 0c15010380351d782e6085a6564a9c25
+> 125054a56b80710081c081408180a9c0
+> b300d1c00101023a801871382d40582c
+> 4500dd0c1100001e000000ff00373342
+> 3039323830534c303030000000fd0032
+> 4c185311000a202020202020000000fc
+> 0047323432304844424c0a20202000d2
+> PRIME Synchronization: 0
+> supported: 0, 1
+> dithering depth: auto
+> supported: auto, 6 bpc, 8 bpc
+> dithering mode: auto
+> supported: auto, off, static 2x2, dynamic 2x2
+> scaling mode: None
+> supported: None, Full, Center, Full aspect
+> color vibrance: 150
+> range: (0, 200)
+> vibrant hue: 90
+> range: (0, 180)
+> underscan vborder: 0
+> range: (0, 128)
+> underscan hborder: 0
+> range: (0, 128)
+> underscan: off
+> supported: auto, off, on
+> subconnector: DVI-D
+> supported: Unknown, DVI-D, DVI-A
+> link-status: Good
+> supported: Good, Bad
+> CONNECTOR_ID: 55
+> supported: 55
+> non-desktop: 0
+> range: (0, 1)
+>   1920x1080 (0x47) 148.500MHz +HSync +VSync *current +preferred
+>         h: width  1920 start 2008 end 2052 total 2200 skew    0 clock  67.50KHz
+>         v: height 1080 start 1084 end 1089 total 1125           clock  60.00Hz
+snip
+> DVI-I-1-2 connected 1080x1920+0+0 (0x47) left (normal left inverted
+> right x axis y axis) 477mm x 268mm
+> Identifier: 0xf8
+> Timestamp:  483290
+> Subpixel:   unknown
+> Gamma:      1.0:1.0:1.0
+> Brightness: 1.0
+> Clones:
+> CRTC:       4
+> CRTCs:      4 5
+> Transform:  1.000000 0.000000 0.000000
+>             0.000000 1.000000 0.000000
+>             0.000000 0.000000 1.000000
+>            filter:
+> EDID:
+> 00ffffffffffff0009d15f7845540000
+> 0c15010380351d782e6085a6564a9c25
+> 125054a56b80710081c081408180a9c0
+> b300d1c00101023a801871382d40582c
+> 4500dd0c1100001e000000ff00373342
+> 3039323133534c303030000000fd0032
+> 4c185311000a202020202020000000fc
+> 0047323432304844424c0a20202000d6
+> PRIME Synchronization: 0
+> supported: 0, 1
+> dithering depth: auto
+> supported: auto, 6 bpc, 8 bpc
+> dithering mode: auto
+> supported: auto, off, static 2x2, dynamic 2x2
+> scaling mode: None
+> supported: None, Full, Center, Full aspect
+> color vibrance: 150
+> range: (0, 200)
+> vibrant hue: 90
+> range: (0, 180)
+> underscan vborder: 0
+> range: (0, 128)
+> underscan hborder: 0
+> range: (0, 128)
+> underscan: off
+> supported: auto, off, on
+> subconnector: DVI-D
+> supported: Unknown, DVI-D, DVI-A
+> link-status: Good
+> supported: Good, Bad
+> CONNECTOR_ID: 58
+> supported: 58
+> non-desktop: 0
+> range: (0, 1)
+>   1920x1080 (0x47) 148.500MHz +HSync +VSync *current +preferred
+>         h: width  1920 start 2008 end 2052 total 2200 skew    0 clock  67.50KHz
+>         v: height 1080 start 1084 end 1089 total 1125           clock  60.00Hz
+snip
+> HDMI-1-2 connected (normal left inverted right x axis y axis)
+> Identifier: 0xf9
+> Timestamp:  483290
+> Subpixel:   unknown
+> Clones:
+> CRTCs:      4 5
+> Transform:  1.000000 0.000000 0.000000
+>             0.000000 1.000000 0.000000
+>             0.000000 0.000000 1.000000
+>            filter:
+> EDID:
+> 00ffffffffffff0020a32f0001000000
+> 0c1a0103807341780acf74a3574cb023
+> 09484c21080081c08140818001010101
+> 01010101010104740030f2705a80b058
+> 8a00501d7400001e023a801871382d40
+> 582c4500501d7400001e000000fc0048
+> 4953454e53450a2020202020000000fd
+> 00184b0f511e000a202020202020017f
+> 02034571525f5e5d0102040510111314
+> 1f202122626364290907071507505506
+> 0083010000e200f9e305ff016e030c00
+> 1000383c20008001020304e50e60616a
+> 6be3060d01011d8018711c1620582c25
+> 00c48e2100009e011d80d0721c162010
+> 2c2580c48e2100009e023a80d072382d
+> 40102c4580c48e2100001e00000000d5
+> PRIME Synchronization: 1
+> supported: 0, 1
+> dithering depth: auto
+> supported: auto, 6 bpc, 8 bpc
+> dithering mode: auto
+> supported: auto, off, static 2x2, dynamic 2x2
+> scaling mode: None
+> supported: None, Full, Center, Full aspect
+> color vibrance: 150
+> range: (0, 200)
+> vibrant hue: 90
+> range: (0, 180)
+> underscan vborder: 0
+> range: (0, 128)
+> underscan hborder: 0
+> range: (0, 128)
+> underscan: off
+> supported: auto, off, on
+> link-status: Good
+> supported: Good, Bad
+> CONNECTOR_ID: 61
+> supported: 61
+> non-desktop: 0
+> range: (0, 1)
+>   1920x1080 (0xfc) 266.500MHz +HSync -VSync DoubleScan
+>         h: width  1920 start 1944 end 1960 total 2000 skew    0 clock 133.25KHz
+>         v: height 1080 start 1081 end 1084 total 1111           clock  59.97Hz
+snip
+>   3840x2160_60.00 (0x6ce) 712.750MHz -HSync +VSync
+>         h: width  3840 start 4160 end 4576 total 5312 skew    0 clock 134.18KHz
+>         v: height 2160 start 2163 end 2168 total 2237           clock  59.98Hz
+>   3840x2160R (0x70c) 533.000MHz +HSync -VSync
+>         h: width  3840 start 3888 end 3920 total 4000 skew    0 clock 133.25KHz
+>         v: height 2160 start 2163 end 2168 total 2222           clock  59.97Hz
+> DP-1-2 disconnected (normal left inverted right x axis y axis)
+> Identifier: 0xfa
+> Timestamp:  483290
+> Subpixel:   unknown
+> Clones:
+> CRTCs:      4 5
+> Transform:  1.000000 0.000000 0.000000
+>             0.000000 1.000000 0.000000
+>             0.000000 0.000000 1.000000
+>            filter:
+> PRIME Synchronization: 1
+> supported: 0, 1
+> dithering depth: auto
+> supported: auto, 6 bpc, 8 bpc
+> dithering mode: auto
+> supported: auto, off, static 2x2, dynamic 2x2
+> scaling mode: None
+> supported: None, Full, Center, Full aspect
+> color vibrance: 150
+> range: (0, 200)
+> vibrant hue: 90
+> range: (0, 180)
+> underscan vborder: 0
+> range: (0, 128)
+> underscan hborder: 0
+> range: (0, 128)
+> underscan: off
+> supported: auto, off, on
+> link-status: Good
+> supported: Good, Bad
+> CONNECTOR_ID: 63
+> supported: 63
+> non-desktop: 0
+> range: (0, 1)
+>   1920x1080 (0x47) 148.500MHz +HSync +VSync
+>         h: width  1920 start 2008 end 2052 total 2200 skew    0 clock  67.50KHz
+>         v: height 1080 start 1084 end 1089 total 1125           clock  60.00Hz
+snip
+> $
 
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: Ye Bin <yebin10@huawei.com>
----
- drivers/gpu/drm/nouveau/nouveau_bios.c | 2 --
- 1 file changed, 2 deletions(-)
+(second try at sending - - removed the bulk of the mode lines - the complete
+message causes size issues with the list serve)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
-index 7cc683b8dc7a..e8c445eb1100 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bios.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
-@@ -2083,13 +2083,11 @@ nouveau_bios_init(struct drm_device *dev)
- {
- 	struct nouveau_drm *drm = nouveau_drm(dev);
- 	struct nvbios *bios = &drm->vbios;
--	struct pci_dev *pdev;
- 	int ret;
- 
- 	/* only relevant for PCI devices */
- 	if (!dev_is_pci(dev->dev))
- 		return 0;
--	pdev = to_pci_dev(dev->dev);
- 
- 	if (!NVInitVBIOS(dev))
- 		return -ENODEV;
--- 
-2.25.4
+TIA for the assistance
