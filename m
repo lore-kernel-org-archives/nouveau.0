@@ -1,19 +1,11 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Request for help in adding a HDMI output
-Date: Sat, 23 Jan 2021 13:52:33 -0500
-Message-ID: <CAKb7UviywJgO_=8iOOf3akyJN7OtpuOFqMCmjpT704Kek7BhzA@mail.gmail.com>
-References: <CAPpdf5-SoO4qPKg7WuvRsCMT4RGV34gNp+M0ir27a1E8Qu+s4g@mail.gmail.com>
- <CAKb7UvjfPptmKDm_jma90Q0T+JoTmETL-Y0-KzTbv9z7f=ccoA@mail.gmail.com>
- <CAPpdf59jfbS4dhRJ5kvhri7LwJL4UNEyL8rssG+qOcu7G1ZkQg@mail.gmail.com>
- <CAKb7Uvh3UOKQ14MQwoDti0Lvsey5oLM4qk_GLze3s9qBFq+19Q@mail.gmail.com>
- <CAPpdf58rtMsE_vHK-i-nKkX5=3K6W4HieJ0+7mH5HhkuEZG+tg@mail.gmail.com>
- <CAKb7UvgUHnYt7Uhobu5Lxu1bfFV_Lc+R9fn-UGCMMcjKbcswHw@mail.gmail.com>
- <CAPpdf58uFaMzWYQTGj=XV9naHnO5LNL==S3v+N_yUv=MQwEmWA@mail.gmail.com>
+Subject: [ANNOUNCE] xf86-video-nouveau 1.0.17
+Date: Sat, 23 Jan 2021 14:19:57 -0500
+Message-ID: <20210123191957.24443-1-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAPpdf58uFaMzWYQTGj=XV9naHnO5LNL==S3v+N_yUv=MQwEmWA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -23,138 +15,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: o1bigtenor <o1bigtenor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: xorg-announce-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, xorg-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Jan 23, 2021 at 1:40 PM o1bigtenor <o1bigtenor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->
-> On Sat, Jan 23, 2021 at 10:55 AM Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
-> >
-> > On Fri, Jan 22, 2021 at 2:13 PM o1bigtenor <o1bigtenor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> > >
-> > > On Fri, Jan 22, 2021 at 12:26 PM Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
-> > > snip
->
-> I've been doing a bunch of research and have a whole lot more input but still
-> can't find any answers - - - - except holes where there 'should be' answers.
->
-> I also understand you're trying to help but some of the stuff you've
-> been stating
-> - - - well - - - it just ain't so! - - - - so if you'd rather not
-> continue - - - - fair enough
-> - - - -
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
 
-No one's perfect. I have to make do with guesses which are the
-simplest explanations. Sometimes there's something else.
 
-> >
-> > Unfortunately it looks like you did this *after* messing with modelines.
-> >
-> Getting that information would have meant being able to go back in time some
-> 24 hours or so. I can't find any way of removing mode lines from xrandr - - -
-> or do you know of some?
+Carlo Caione (1):
+      Don't advertise any PRIME offloading capabilities without acceleration
 
-A reboot is a great way to reset these things.
+Ilia Mirkin (8):
+      nv4/exa: tiling is unsupported pre-nv10, reduce alignment requirements
+      dri2,present: move in pixmap before getting addresses
+      make error when failing to allocate surface more descriptive
+      drmmode: fix screen resize without acceleration
+      present: don't enable if there's no acceleration
+      drmmode: make event handler leave a note that there are stuck events
+      present: fix handling of drmWaitVBlank failures
+      Bump version to 1.0.17
 
-> > >
-> > > $ xrandr --verbose
-> >
-> > [ ... snip ...]
-> >
-> > > HDMI-1-2 connected (normal left inverted right x axis y axis)
-> > > Identifier: 0xf9
-> > > Timestamp:  483290
-> > > Subpixel:   unknown
-> > > Clones:
-> > > CRTCs:      4 5
-> > > Transform:  1.000000 0.000000 0.000000
-> > >             0.000000 1.000000 0.000000
-> > >             0.000000 0.000000 1.000000
-> > >            filter:
-> > > EDID:
-> > > 00ffffffffffff0020a32f0001000000
-> > > 0c1a0103807341780acf74a3574cb023
-> > > 09484c21080081c08140818001010101
-> > > 01010101010104740030f2705a80b058
-> > > 8a00501d7400001e023a801871382d40
-> > > 582c4500501d7400001e000000fc0048
-> > > 4953454e53450a2020202020000000fd
-> > > 00184b0f511e000a202020202020017f
-> > > 02034571525f5e5d0102040510111314
-> > > 1f202122626364290907071507505506
-> > > 0083010000e200f9e305ff016e030c00
-> > > 1000383c20008001020304e50e60616a
-> > > 6be3060d01011d8018711c1620582c25
-> > > 00c48e2100009e011d80d0721c162010
-> > > 2c2580c48e2100009e023a80d072382d
-> > > 40102c4580c48e2100001e00000000d5
-> >
-> > OK, so this is your 4k monitor. It is plugged into the *secondary*
-> > GPU, and does not report any 4k@60 modes in the EDID (well, it does
-> > report 4k@60 YUV 4:2:0 modes, but we don't support those in nouveau at
-> > this time). Whether that's because the monitor itself doesn't support
-> > HDMI 2.0, or you plugged it into your old GPU which does not support
-> > HDMI 2.0, I couldn't say from just this output. What I can say is that
-> > no amount of modelines will get you 4k@60 in this setup with nouveau.
->
-> Here comes the part where you're getting some very funky information
-> and I wish I knew from where!
-> Actually the code, in hex, is NOT EDID - - - - that was superseded in
-> some 2017. Now that may be what nouveau is using but EDID2.0 was
-> released some time in 2007 yet its EDID1.4 that is used. That's the first
-> problem and it introduces the next problems. Using EDID means that
-> nouveau 'thinks' it see  a : (taken from /var/log/Xorg.0.log)
+git tag: xf86-video-nouveau-1.0.17
 
-EDID is very much a thing, and is basically the only thing. Things
-like DisplayID are extension blocks to the EDID.
+https://xorg.freedesktop.org/archive/individual/driver/xf86-video-nouveau-1.0.17.tar.bz2
+SHA256: 499322e27a55c8183166bf2dd1e47d085eb834143e0d7036baba8427b90c156b  xf86-video-nouveau-1.0.17.tar.bz2
+SHA512: adba58ba5298d1a5b3f9f8540f9ef2cb2e10e47bba8e374103ec2e1f92e915f5f4393ed0021168cd649646e12315135a1efcdf77e8fb1648e1295914d87279b2  xf86-video-nouveau-1.0.17.tar.bz2
+PGP:  https://xorg.freedesktop.org/archive/individual/driver/xf86-video-nouveau-1.0.17.tar.bz2.sig
 
-> So where are we at now - - - - -
-> well there is NO HDMI port on the EVGA Nvidia 570 card
+https://xorg.freedesktop.org/archive/individual/driver/xf86-video-nouveau-1.0.17.tar.gz
+SHA256: 21e9233b2c6304b976c526729ba48660c16976a757a319fa95cc8a8605316105  xf86-video-nouveau-1.0.17.tar.gz
+SHA512: 10336f521d39289b214ce640b8b7195f4709ab780a4057ba83d02c2f3b4f7c7b17e37cf5f3224c43bf39aa8939a8836be1ee9eb26901d713cb98d161db2375e9  xf86-video-nouveau-1.0.17.tar.gz
+PGP:  https://xorg.freedesktop.org/archive/individual/driver/xf86-video-nouveau-1.0.17.tar.gz.sig
 
-OK, that was a bad guess on my part to explain what I was seeing.
+-----BEGIN PGP SIGNATURE-----
 
-> HDMI cable IS plugged in and there is only only place for it to be plugged
->   in - - - - so the HDMI cable is plugged into the Nvidia 1050 Ti card
-
-Cool. So then what you said was incorrect -- the GTX 570 is the
-primary, and the 1050 is secondary. Please flip that around.
-
-> EDID really is way beyond EOL
-> Information provided by the EDID reading is most likely erroneous
-> Nouveau at lest doesn't seem to have gotten to DisplayID where the current,
->    at least as of 2017, version is 2.0
-> if DisplayID were used perhaps the information  listed as taken from my system
->    might be accurate
-
-EDID is the only way for a monitor to provide information. DisplayID
-is a block within the EDID. You can access a relatively full-featured
-parser at https://people.freedesktop.org/~imirkin/edid-decode/ -- just
-paste the hex there.
-
->
-> >
-> > >   3840x2160_60.00 (0x6ce) 712.750MHz -HSync +VSync
-> > >         h: width  3840 start 4160 end 4576 total 5312 skew    0 clock 134.18KHz
-> > >         v: height 2160 start 2163 end 2168 total 2237           clock  59.98Hz
-> > >   3840x2160R (0x70c) 533.000MHz +HSync -VSync
-> > >         h: width  3840 start 3888 end 3920 total 4000 skew    0 clock 133.25KHz
-> > >         v: height 2160 start 2163 end 2168 total 2222           clock  59.97Hz
-> >
-> Curious as to where in the foregoing you see that this modeline is for
-> card 1 (nvidia GTX570)?
-
-Well, I knew it was for secondary GPU. Based on your comments, that
-was the 570. I shouldn't have assumed that to be accurate, that's my
-bad. I know it's the secondary because the output is named HDMI-1-2.
-That means it's on a secondary device. If it were primary, it would
-have been like HDMI-1 or HDMI-2.
-
-Perhaps not all the HDMI ports on the device are HDMI 2.0-capable? Or
-perhaps not all of them are on the GPU? What I'm seeing is the monitor
-reporting a max TMDS of 300mhz, which is not enough for 4k@60. However
-4k@30 should work just fine out of the box.
-
-Cheers,
-
-  -ilia
+iQEzBAEBCAAdFiEEv7mwwnbVdnxxAIbvsXi+TqB13gcFAmAMdncACgkQsXi+TqB1
+3gdS/Qf+NuLPs8PKUjwyEZNl5pDchnRkqsNVie22oguVUqhI0VgLYjBxPBwvoiZz
+iyDJwRSIRgIR5YwIjz/YZ4SBx2TI7pESjxfYAAowOmxMNe3jiQIOC8OChmQFPEtl
+a9NdiKJifpex34y+YnXwZjGqUo1aG489DPCjeOKH4WoNB19LlV6sD1bHj2QxLAUc
+lqzZ2Hq8Nb6RVb0LRyywEccMA1jRlW0re1W8/3igBznPUunk8hznGpbFDtmUvVqc
+sOvkW1iwP8BWt0/pVG2iikIhaQvtrWF5+9XgqjC72RCo4iaGycJCS/GvQV6xWVVk
+L3AvL1HjlKLc9xIMQcp/44vkhPKJTw==
+=6/s4
+-----END PGP SIGNATURE-----
