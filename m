@@ -1,15 +1,12 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v3] drm/gpu/nouveau/dispnv50: Restore pushing
- of all data.
-Date: Wed, 27 Jan 2021 09:56:29 +0100
-Message-ID: <CACO55ts7nNHpsyVuTvSULPvNd4ttYZV1=t-xWo4Qnk2zgKMcsQ@mail.gmail.com>
-References: <20210121111118.34587-1-bastian.beischer@rwth-aachen.de>
- <20210121142736.9525-1-bastian.beischer@rwth-aachen.de>
+From: Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: add nouveau to lore?
+Date: Wed, 27 Jan 2021 13:59:37 -0600
+Message-ID: <20210127195937.GA3045310@bjorn-Precision-5520>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20210121142736.9525-1-bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,72 +16,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Bastian Beranek <bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: helpdesk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Reviewed-by: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Is there any chance the nouveau mailing list
+(https://lists.freedesktop.org/archives/nouveau/) could be added to
+lore?
 
-On Thu, Jan 21, 2021 at 3:28 PM Bastian Beranek
-<bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org> wrote:
->
-> Commit f844eb485eb056ad3b67e49f95cbc6c685a73db4 introduced a regression for
-> NV50, which lead to visual artifacts, tearing and eventual crashes.
->
-> In the changes of f844eb485eb056ad3b67e49f95cbc6c685a73db4 only the first line
-> was correctly translated to the new NVIDIA header macros:
->
-> -               PUSH_NVSQ(push, NV827C, 0x0110, 0,
-> -                                       0x0114, 0);
-> +               PUSH_MTHD(push, NV827C, SET_PROCESSING,
-> +                         NVDEF(NV827C, SET_PROCESSING, USE_GAIN_OFS, DISABLE));
->
-> The lower part ("0x0114, 0") was probably omitted by accident.
->
-> This patch restores the push of the missing data and fixes the regression.
->
-> Signed-off-by: Bastian Beranek <bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org>
-> Fixes: f844eb485eb056ad3b67e49f95cbc6c685a73db4
-> Link: https://gitlab.freedesktop.org/drm/nouveau/-/issues/14
-> ---
->  drivers/gpu/drm/nouveau/dispnv50/base507c.c | 6 +++++-
->  drivers/gpu/drm/nouveau/dispnv50/base827c.c | 6 +++++-
->  2 files changed, 10 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/base507c.c b/drivers/gpu/drm/nouveau/dispnv50/base507c.c
-> index 302d4e6fc52f..788db043a342 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/base507c.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/base507c.c
-> @@ -88,7 +88,11 @@ base507c_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
->                           NVVAL(NV507C, SET_CONVERSION, OFS, 0x64));
->         } else {
->                 PUSH_MTHD(push, NV507C, SET_PROCESSING,
-> -                         NVDEF(NV507C, SET_PROCESSING, USE_GAIN_OFS, DISABLE));
-> +                         NVDEF(NV507C, SET_PROCESSING, USE_GAIN_OFS, DISABLE),
-> +
-> +                                       SET_CONVERSION,
-> +                         NVVAL(NV507C, SET_CONVERSION, GAIN, 0) |
-> +                         NVVAL(NV507C, SET_CONVERSION, OFS, 0));
->         }
->
->         PUSH_MTHD(push, NV507C, SURFACE_SET_OFFSET(0, 0), asyw->image.offset[0] >> 8);
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/base827c.c b/drivers/gpu/drm/nouveau/dispnv50/base827c.c
-> index 18d34096f125..093d4ba6910e 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/base827c.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/base827c.c
-> @@ -49,7 +49,11 @@ base827c_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
->                           NVVAL(NV827C, SET_CONVERSION, OFS, 0x64));
->         } else {
->                 PUSH_MTHD(push, NV827C, SET_PROCESSING,
-> -                         NVDEF(NV827C, SET_PROCESSING, USE_GAIN_OFS, DISABLE));
-> +                         NVDEF(NV827C, SET_PROCESSING, USE_GAIN_OFS, DISABLE),
-> +
-> +                                       SET_CONVERSION,
-> +                         NVVAL(NV827C, SET_CONVERSION, GAIN, 0) |
-> +                         NVVAL(NV827C, SET_CONVERSION, OFS, 0));
->         }
->
->         PUSH_MTHD(push, NV827C, SURFACE_SET_OFFSET(0, 0), asyw->image.offset[0] >> 8,
-> --
-> 2.30.0
->
+Threads like this conversation:
+https://lore.kernel.org/r/20200908002935.GD20064-xnduUnryOU1AfugRpC6u6w@public.gmane.org get
+harder to browse when mailing lists that *are* on lore get removed
+from cc.
+
+Thanks,
+  Bjorn
