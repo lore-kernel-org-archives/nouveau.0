@@ -2,72 +2,53 @@ Return-Path: <SRS0=NGGM=HH=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CB76DC433DB
-	for <nouveau@archiver.kernel.org>; Fri,  5 Feb 2021 13:18:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 00163C433DB
+	for <nouveau@archiver.kernel.org>; Fri,  5 Feb 2021 13:28:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6C9DD64E39
-	for <nouveau@archiver.kernel.org>; Fri,  5 Feb 2021 13:18:22 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6C9DD64E39
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 3914964FC0
+	for <nouveau@archiver.kernel.org>; Fri,  5 Feb 2021 13:28:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3914964FC0
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=spliet.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4159D6E364;
-	Fri,  5 Feb 2021 13:18:21 +0000 (UTC)
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com
- [IPv6:2607:f8b0:4864:20::72e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B4586E081;
- Fri,  5 Feb 2021 13:00:34 +0000 (UTC)
-Received: by mail-qk1-x72e.google.com with SMTP id k193so6697236qke.6;
- Fri, 05 Feb 2021 05:00:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=DBV1D6Ulmmeg0XD410dqPaIFfUR1ad9jwk0fJwumF/4=;
- b=UYtLnPaRPURQD2DV0MRGsjizexD0di8ASLpoteP2KvUtIa3WtJkzw+uDkUpdlNI+kq
- +X7UpeuknA84xI9v6BUp87wROVah7IGgRlHubZk+wnFfTpzeuxiOHyKIcKsriAt1uGFH
- X4nkvLhYNqllZGeFXQReMtjWS6/L7gQMXhiQv1hKdgnLmZQLK3gjfv8V6QYbmkssXMfW
- 4MPf+vSDbkkhsG2lFij1yoIc0/7G7xHu1Qpvv/aesnC1S6l2lrcDL2gjqW4PADahL2tg
- WoBmA0kZARzwHjKyEgMMqlgLkPlihCRv9RKlQjswMZMIrXRz/qMWTXIRBrCT47kSlqjb
- 71dw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=DBV1D6Ulmmeg0XD410dqPaIFfUR1ad9jwk0fJwumF/4=;
- b=Qy3f52E85inltVsCXgvAW97NLVnvB6zobSq76KtmX7Npil9mJHKTXUxyP0suz5LQjo
- +ZjffHLZ0omLhsWRRDi3p5gEvb+LQjN0fFm9Ke6F+r0+ZT2r5jR0zE5Ynj61xey+PjB8
- 7DQBKiUhFEPszItEOZckjAF7CtRq8IlsGTUFCiOa7Sdojz+8+jZgtIi9U2fbxbuiTkbO
- /rEOGhk5fA7ZFsjUFu7rtD5aMUlkZdh+hM8eBbzePht7JziI3Hh2BHJm/T1DDcLOVoIL
- 9aojzwNk5kAboxhfiMTxatFSV46gdwqh4VGvUzxIg+z/yXPADsIrnWz0jNQkgOFCx+K0
- kIqA==
-X-Gm-Message-State: AOAM5319A9YCKxIRjJcc14LHDW22UOEmUOJyKcNUEsyijxGBcbM83XRs
- b+2Zwv52WUtulUspUT0nq+4=
-X-Google-Smtp-Source: ABdhPJxrie2UTeqqCE3Vg2D6+dzvEjZzeCzQ3MZFPzh0FksJ4UhzYpjj+t7cqcWPQCb8/suSjM8GHQ==
-X-Received: by 2002:a37:8cd:: with SMTP id 196mr3940194qki.434.1612530032227; 
- Fri, 05 Feb 2021 05:00:32 -0800 (PST)
-Received: from localhost.localdomain ([138.199.10.106])
- by smtp.gmail.com with ESMTPSA id 17sm9481367qtu.23.2021.02.05.05.00.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 05 Feb 2021 05:00:31 -0800 (PST)
-From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
-To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Date: Fri,  5 Feb 2021 18:30:17 +0530
-Message-Id: <20210205130017.1429442-1-unixbhaskar@gmail.com>
-X-Mailer: git-send-email 2.30.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 979626E3CE;
+	Fri,  5 Feb 2021 13:28:49 +0000 (UTC)
+Received: from mupuf.org (mupuf.org [167.71.42.210])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 757246E3CE
+ for <nouveau@lists.freedesktop.org>; Fri,  5 Feb 2021 13:28:48 +0000 (UTC)
+Received: from [IPv6:2a01:4b00:86b9:100:9ede:1593:85ef:7eda] (unknown
+ [IPv6:2a01:4b00:86b9:100:9ede:1593:85ef:7eda])
+ by Neelix.spliet.org (Postfix) with ESMTPSA id 791A16003C
+ for <nouveau@lists.freedesktop.org>; Fri,  5 Feb 2021 13:28:43 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 Neelix.spliet.org 791A16003C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=spliet.org;
+ s=default; t=1612531723;
+ bh=traCTwy/JAhlfkq/LXGOmmZBI+gmUifdVl2UrFgO2sU=;
+ h=Subject:To:References:From:Date:In-Reply-To:From;
+ b=XrJUkQwMty/ZRUK9l465ReyBeX0gYmw6oGfPHNhZ05vFNvUmPGwaCVQm/TXapepJJ
+ eK7O1Z2GtjUvvrUNHQhRL1qzbIY8GLX+XtauaWV/bgKJ9Z7vJD5Kfd+F5Tmb4wfreZ
+ q9ZNa4NObSUJknQrW2ZRvNMZqzbmq/PstnreSrxE=
+To: nouveau@lists.freedesktop.org
+References: <20210205130502.1440514-1-unixbhaskar@gmail.com>
+From: Roy Spliet <nouveau@spliet.org>
+Message-ID: <51687b2a-db0a-09dd-944e-5fb575a22522@spliet.org>
+Date: Fri, 5 Feb 2021 13:28:42 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 05 Feb 2021 13:18:20 +0000
-Subject: [Nouveau] [PATCH] drivers: gpu: drm: nouveau: Change not good word
- with a good one in the file init.c
+In-Reply-To: <20210205130502.1440514-1-unixbhaskar@gmail.com>
+Content-Language: en-GB
+X-Virus-Scanned: clamav-milter 0.103.0 at Neelix
+X-Virus-Status: Clean
+Subject: Re: [Nouveau] [PATCH] drivers: drm: nouveau: nvkm: Replace a word
+ with a better phonetic word in the file macros.fuc
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,37 +60,44 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: rdunlap@infradead.org, Bhaskar Chowdhury <unixbhaskar@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+Op 05-02-2021 om 13:05 schreef Bhaskar Chowdhury:
+> 
+> 
+> s/fuck/heck/
+> 
+> 
+> Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+> ---
+>   drivers/gpu/drm/nouveau/nvkm/subdev/pmu/fuc/macros.fuc | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/fuc/macros.fuc b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/fuc/macros.fuc
+> index 3737bd27f74e..1407a1b16d95 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/fuc/macros.fuc
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/fuc/macros.fuc
+> @@ -46,7 +46,7 @@
+>   #define NV_PPWR_INTR_EN_SET_SUBINTR                                  0x00000800
+>   #define NV_PPWR_INTR_EN_SET_WATCHDOG                                 0x00000002
+>   #define NV_PPWR_INTR_EN_CLR                                              0x0014
+> -#define NV_PPWR_INTR_EN_CLR_MASK                    /* fuck i hate envyas */ -1
+> +#define NV_PPWR_INTR_EN_CLR_MASK                    /* heck, i hate envyas */ -1
 
+Please make sure that the values remain properly right-justified when 
+proposing such changes.
+Best,
 
-s/fucking/messing/
+Roy
 
-Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
-index 9de74f41dcd2..bc2a55a82171 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
-@@ -446,7 +446,7 @@ init_ram_restrict(struct nvbios_init *init)
- {
- 	/* This appears to be the behaviour of the VBIOS parser, and *is*
- 	 * important to cache the NV_PEXTDEV_BOOT0 on later chipsets to
--	 * avoid fucking up the memory controller (somehow) by reading it
-+	 * avoid messing up the memory controller (somehow) by reading it
- 	 * on every INIT_RAM_RESTRICT_ZM_GROUP opcode.
- 	 *
- 	 * Preserving the non-caching behaviour on earlier chipsets just
---
-2.30.0
-
+>   #define NV_PPWR_INTR_ROUTE                                               0x001c
+>   #define NV_PPWR_TIMER_LOW                                                0x002c
+>   #define NV_PPWR_WATCHDOG_TIME                                            0x0034
+> --
+> 2.30.0
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
