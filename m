@@ -2,46 +2,40 @@ Return-Path: <SRS0=NGGM=HH=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.7 required=3.0 tests=BAYES_00,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 94F8DC433E0
-	for <nouveau@archiver.kernel.org>; Fri,  5 Feb 2021 22:16:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 124B8C433DB
+	for <nouveau@archiver.kernel.org>; Fri,  5 Feb 2021 22:24:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 365F164FDD
-	for <nouveau@archiver.kernel.org>; Fri,  5 Feb 2021 22:16:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 365F164FDD
+	by mail.kernel.org (Postfix) with ESMTPS id 9EABD64E2C
+	for <nouveau@archiver.kernel.org>; Fri,  5 Feb 2021 22:24:49 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9EABD64E2C
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=emersion.fr
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 941476E0B6;
-	Fri,  5 Feb 2021 22:16:03 +0000 (UTC)
-Received: from mail-40131.protonmail.ch (mail-40131.protonmail.ch
- [185.70.40.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71B3C6E0B6
- for <nouveau@lists.freedesktop.org>; Fri,  5 Feb 2021 22:16:02 +0000 (UTC)
-Date: Fri, 05 Feb 2021 22:15:44 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail3; t=1612563360;
- bh=SS4/ql4GvgG8vctstgI6CjCqx5zDsqIojvlE8p6HkVE=;
- h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
- b=lCdOsVBnsZasdiEBjSmYgwlQefZwYrF9HTeEdXcVuuQ6YtXERK1Bb0V9gG9DfDSkh
- y3WSdf7pfyfekhUBXAA2bNJNKCO47RbeP6HhvdPLrzx2BZUN4cLeVTkA26OtQS1xO5
- ROooACvBuwe98OtkRDior8yGK/8nN1TcRU+sbKTk4IZtN/Ui4LylgHhePZC56QQoGY
- za/B4PbfhQlc7nduGfyORezr7ubU/hb9fzLZl921Qfk0nN1mdb76vqswZrUwlee6iV
- JaFAtxCfVPays4/d6lVt+igDlLDTNq62AAZscQK7dStz7HG6e9aJSGr0dyc3t+rSsD
- n/P4hdxdrNenw==
-To: Ilia Mirkin <imirkin@alum.mit.edu>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 487926F511;
+	Fri,  5 Feb 2021 22:24:49 +0000 (UTC)
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net
+ [217.70.183.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B3AF6F511
+ for <nouveau@lists.freedesktop.org>; Fri,  5 Feb 2021 22:24:47 +0000 (UTC)
+X-Originating-IP: 86.247.11.12
+Received: from haruko.lan (lfbn-idf2-1-654-12.w86-247.abo.wanadoo.fr
+ [86.247.11.12]) (Authenticated sender: schroder@emersion.fr)
+ by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id A3D524000B;
+ Fri,  5 Feb 2021 22:24:44 +0000 (UTC)
 From: Simon Ser <contact@emersion.fr>
-Message-ID: <OwU6EvrH4NXy5d3uyiItz2FdTvtka7lhHUtqCVeKDgJ43bGec9ELDkDMGnHPJw3bemv9am9efVyQpjssB_NLMSParby2Z5kbc1QENlSL0tI=@emersion.fr>
-In-Reply-To: <CAKb7Uvj3HLGMiO4uxvjmR7JCdEN_4b3K46tQeqxtCOYw2AZ1uw@mail.gmail.com>
-References: <20210205210044.2665-1-contact@emersion.fr>
- <CAKb7Uvj3HLGMiO4uxvjmR7JCdEN_4b3K46tQeqxtCOYw2AZ1uw@mail.gmail.com>
+To: nouveau@lists.freedesktop.org
+Date: Fri,  5 Feb 2021 23:24:42 +0100
+Message-Id: <20210205222442.19555-1-contact@emersion.fr>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Subject: Re: [Nouveau] [PATCH v2] nouveau/dispnv50: add cursor pitch check
+Subject: [Nouveau] [PATCH v3] nouveau/dispnv50: add cursor pitch check
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,21 +47,100 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Simon Ser <contact@emersion.fr>
-Cc: nouveau <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Friday, February 5th, 2021 at 10:50 PM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
+The hardware needs a FB which is packed. Add checks to make sure
+this is the case.
 
-> > return head->func->curs_format(head, asyw, asyh);
->
-> While you're at it, maybe give this one some love too?
+While at it, add debug logs for the existing checks. This allows
+user-space to more easily figure out why a configuration is
+rejected.
 
-Sure, although this would be a driver bug because DRM core already
-checks the format. curs_format has WARN_ON when it fails.
+v2:
+- Use drm_format_info instead of hardcoding bytes-per-pixel (Ilia)
+- Remove unnecessary size check (Ilia)
+
+v3:
+- Add missing newlines in debug messages (Lyude)
+- Use NV_ATOMIC (Lyude)
+- Add missing debug log for invalid format (Ilia)
+
+Signed-off-by: Simon Ser <contact@emersion.fr>
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: Ilia Mirkin <imirkin@alum.mit.edu>
+---
+ drivers/gpu/drm/nouveau/dispnv50/curs507a.c | 31 +++++++++++++++++++--
+ 1 file changed, 28 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/curs507a.c b/drivers/gpu/drm/nouveau/dispnv50/curs507a.c
+index 54fbd6fe751d..56459cfd037e 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/curs507a.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/curs507a.c
+@@ -30,6 +30,7 @@
+ 
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_plane_helper.h>
++#include <drm/drm_fourcc.h>
+ 
+ bool
+ curs507a_space(struct nv50_wndw *wndw)
+@@ -99,6 +100,8 @@ curs507a_acquire(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw,
+ 		 struct nv50_head_atom *asyh)
+ {
+ 	struct nv50_head *head = nv50_head(asyw->state.crtc);
++	struct nouveau_drm *drm = nouveau_drm(head->base.base.dev);
++	struct drm_framebuffer *fb = asyw->state.fb;
+ 	int ret;
+ 
+ 	ret = drm_atomic_helper_check_plane_state(&asyw->state, &asyh->state,
+@@ -109,14 +112,36 @@ curs507a_acquire(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw,
+ 	if (ret || !asyh->curs.visible)
+ 		return ret;
+ 
+-	if (asyw->image.w != asyw->image.h)
++	if (asyw->image.w != asyw->image.h) {
++		NV_ATOMIC(drm,
++			  "Invalid cursor image size: width (%d) must match height (%d)\n",
++			  asyw->image.w, asyw->image.h);
+ 		return -EINVAL;
++	}
++	if (asyw->image.pitch[0] != asyw->image.w * fb->format->cpp[0]) {
++		NV_ATOMIC(drm,
++			  "Invalid cursor image pitch: image must be packed (pitch = %d, width = %d)\n",
++			  asyw->image.pitch[0], asyw->image.w);
++		return -EINVAL;
++	}
+ 
+ 	ret = head->func->curs_layout(head, asyw, asyh);
+-	if (ret)
++	if (ret) {
++		NV_ATOMIC(drm,
++			  "Invalid cursor image size: unsupported size %dx%d\n",
++			  asyw->image.w, asyw->image.h);
++		return ret;
++	}
++
++	ret = head->func->curs_format(head, asyw, asyh);
++	if (ret) {
++		NV_ATOMIC(drm,
++			  "Invalid cursor image format 0x%X\n",
++			  fb->format->format);
+ 		return ret;
++	}
+ 
+-	return head->func->curs_format(head, asyw, asyh);
++	return 0;
+ }
+ 
+ static const u32
+-- 
+2.30.0
+
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
