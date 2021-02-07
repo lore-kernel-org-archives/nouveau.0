@@ -1,65 +1,75 @@
-Return-Path: <SRS0=+Qb1=HI=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=QJeZ=HJ=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+X-Spam-Status: No, score=-18.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4B3ADC433DB
-	for <nouveau@archiver.kernel.org>; Sat,  6 Feb 2021 00:09:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D2D61C433DB
+	for <nouveau@archiver.kernel.org>; Sun,  7 Feb 2021 16:12:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E3B8165011
-	for <nouveau@archiver.kernel.org>; Sat,  6 Feb 2021 00:09:36 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E3B8165011
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id 7CA5C64DF6
+	for <nouveau@archiver.kernel.org>; Sun,  7 Feb 2021 16:12:14 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7CA5C64DF6
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB8696F53F;
-	Sat,  6 Feb 2021 00:09:34 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53B716F528
- for <nouveau@lists.freedesktop.org>; Fri,  5 Feb 2021 23:45:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1612568738;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=9qg0OOS5m94MqUzMPuQVuiHcWMuHoVtQIrp4RF85meQ=;
- b=OtpxIh1P2fqRa917B/OW3/0FxBnzlfKtzVOyua5CLfxVapNJckmhSZWuhzwGhsG1bRpHPt
- 4E9cSpv6+xHPRVYeLFg1J2sFupv1bdXNs0gpc+SFInjSmrtlbMJKi7sqcNK9IyI6OsoUK8
- 9LBZdcpY3mpCucmjvMrUid3GyAjzl4E=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-325-BuvRR7lVPGaqq8G6DA9SHg-1; Fri, 05 Feb 2021 18:45:33 -0500
-X-MC-Unique: BuvRR7lVPGaqq8G6DA9SHg-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
- [10.5.11.23])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id C42C01005D49;
- Fri,  5 Feb 2021 23:45:30 +0000 (UTC)
-Received: from Whitewolf.redhat.com (ovpn-116-79.rdu2.redhat.com
- [10.10.116.79])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 6D80319727;
- Fri,  5 Feb 2021 23:45:28 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Date: Fri,  5 Feb 2021 18:45:07 -0500
-Message-Id: <20210205234515.1216538-4-lyude@redhat.com>
-In-Reply-To: <20210205234515.1216538-1-lyude@redhat.com>
-References: <20210205234515.1216538-1-lyude@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27AD66E1B5;
+	Sun,  7 Feb 2021 16:12:14 +0000 (UTC)
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com
+ [IPv6:2a00:1450:4864:20::536])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F10D16E115;
+ Sun,  7 Feb 2021 13:35:59 +0000 (UTC)
+Received: by mail-ed1-x536.google.com with SMTP id g10so15075585eds.2;
+ Sun, 07 Feb 2021 05:35:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=sender:date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=L83BYNuYIJOnhINCRxAjLa/kTFEEvoMbmebEeS4RQFg=;
+ b=IScl/H3gTK1KLtuQK7+c+8iEdhKGGd0yRvw7AXptdg4XEDnuaex50cQrJ7462/ofnG
+ XSlMhidM6j9XYlynC1LBasiqlLbWLHXQYoAz4xS4Qc2vxvkcwfGCq2S6yjxpG3lXbtnZ
+ BOm3bbQRBzqg4t2bPua1PKWHdPRuhPbJYqFZz+VaQ7IaERMqVVsf7+Bs0bnBWcIlDTyv
+ 1U6ZefxdSOpZUHfxCvKLzGWyZBW5JISSB+zh5DAEknnr/GgriQCGsWk3ZAMiS7MNdd1K
+ 7cLwyRxCHz8zYVf88S0TEOMfUlFwSa+5QqEenxaPmnq0EeDLQz51+2ozSUph+CDFOOgi
+ zXow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+ :references:mime-version:content-disposition:in-reply-to;
+ bh=L83BYNuYIJOnhINCRxAjLa/kTFEEvoMbmebEeS4RQFg=;
+ b=Xvn/HCuSBwVT5YD49rJ8LND830bihZQczCkqU3sdDIXgQlUD+l4tvsFLduszvUjhfN
+ 2E3ZpsB5t22IdFOvYpNJcuD46f/fgllM3JWeWIITbwyFjhe4uAurbYU91WOfapvGvFQT
+ bCK0xR4dIRUb74OY9zvzhjxEUckoRO94xNaq9JVs5gFoAIE1B1oC1D6YBzr9MmRljxC9
+ vzBH/wkGSp2bYDL4IIrarTzkJncjesx81lVxcDww8a2oha33yhefqJPg/vvwXJNNQeXR
+ Te7xwEycxZTMcIgNqhsRNqjBeI2/gdaDAU2g95cvJ1GwPGhgdjlLwcP1SxAv9WAOsaRh
+ Mn/g==
+X-Gm-Message-State: AOAM531JeWRUA7h36FFlPAndGyndnTXmuvat4m6YxRUWN6TPkaFuVJEO
+ Y+hXFv++GIpPKGAk5A7gy80=
+X-Google-Smtp-Source: ABdhPJzteb1mEOb28CSVTe/sY7ZbuwCeFkU/DwAAMqFvMdkh2Q58664RoLvL17sLiHeN38JMZILrzA==
+X-Received: by 2002:a50:f987:: with SMTP id q7mr12852680edn.353.1612704958527; 
+ Sun, 07 Feb 2021 05:35:58 -0800 (PST)
+Received: from eldamar (80-218-24-251.dclient.hispeed.ch. [80.218.24.251])
+ by smtp.gmail.com with ESMTPSA id n16sm6770224ejd.116.2021.02.07.05.35.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 07 Feb 2021 05:35:57 -0800 (PST)
+Date: Sun, 7 Feb 2021 14:35:56 +0100
+From: Salvatore Bonaccorso <carnil@debian.org>
+To: Ben Skeggs <skeggsb@gmail.com>
+Message-ID: <YB/svI/i86T87eUR@eldamar.lan>
+References: <20200828092846.GA11454@localhost.localdomain>
+ <20201115091010.GA132466@eldamar.lan>
+ <CACO55tvwtYj0QGFy3Bk5-13bm7cjHGko3WegY1fFbtf0WckQyQ@mail.gmail.com>
+ <CACAvsv701GiR6QetL6FGUCQLVn45+1EVGTuA-6Pmw5RtwrvyRQ@mail.gmail.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
-X-Mailman-Approved-At: Sat, 06 Feb 2021 00:09:32 +0000
-Subject: [Nouveau] [RFC v3 03/10] drm/i915/dpcd_bl: Remove redundant AUX
- backlight frequency calculations
+Content-Disposition: inline
+In-Reply-To: <CACAvsv701GiR6QetL6FGUCQLVn45+1EVGTuA-6Pmw5RtwrvyRQ@mail.gmail.com>
+X-Mailman-Approved-At: Sun, 07 Feb 2021 16:12:13 +0000
+Subject: Re: [Nouveau] [PATCH] drm/nouveau: bail out of nouveau_channel_new
+ if channel init fails
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,165 +81,152 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Anshuman Gupta <anshuman.gupta@intel.com>, David Airlie <airlied@linux.ie>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- open list <linux-kernel@vger.kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
- Manasi Navare <manasi.d.navare@intel.com>, greg.depoire@gmail.com,
- Uma Shankar <uma.shankar@intel.com>, Sean Paul <seanpaul@chromium.org>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Dave Airlie <airlied@redhat.com>, Imre Deak <imre.deak@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Cc: nouveau <nouveau@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Frantisek Hrbata <frantisek@hrbata.com>, Daniel Vetter <daniel@ffwll.ch>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Noticed this while moving all of the VESA backlight code in i915 over to
-DRM helpers: it would appear that we calculate the frequency value we want
-to write to DP_EDP_BACKLIGHT_FREQ_SET twice even though this value never
-actually changes during runtime. So, let's simplify things by just caching
-this value in intel_panel.backlight, and re-writing it as-needed.
+Hi Ben,
 
-Changes since v1:
-* Wrap panel->backlight.edp.vesa.pwm_freq_pre_divider in
-  DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP check - Jani
+On Mon, Nov 16, 2020 at 09:04:32AM +1000, Ben Skeggs wrote:
+> On Mon, 16 Nov 2020 at 05:19, Karol Herbst <kherbst@redhat.com> wrote:
+> >
+> > On Sun, Nov 15, 2020 at 6:43 PM Salvatore Bonaccorso <carnil@debian.org> wrote:
+> > >
+> > > Hi,
+> > >
+> > > On Fri, Aug 28, 2020 at 11:28:46AM +0200, Frantisek Hrbata wrote:
+> > > > Unprivileged user can crash kernel by using DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC
+> > > > ioctl. This was reported by trinity[1] fuzzer.
+> > > >
+> > > > [   71.073906] nouveau 0000:01:00.0: crashme[1329]: channel failed to initialise, -17
+> > > > [   71.081730] BUG: kernel NULL pointer dereference, address: 00000000000000a0
+> > > > [   71.088928] #PF: supervisor read access in kernel mode
+> > > > [   71.094059] #PF: error_code(0x0000) - not-present page
+> > > > [   71.099189] PGD 119590067 P4D 119590067 PUD 1054f5067 PMD 0
+> > > > [   71.104842] Oops: 0000 [#1] SMP NOPTI
+> > > > [   71.108498] CPU: 2 PID: 1329 Comm: crashme Not tainted 5.8.0-rc6+ #2
+> > > > [   71.114993] Hardware name: AMD Pike/Pike, BIOS RPK1506A 09/03/2014
+> > > > [   71.121213] RIP: 0010:nouveau_abi16_ioctl_channel_alloc+0x108/0x380 [nouveau]
+> > > > [   71.128339] Code: 48 89 9d f0 00 00 00 41 8b 4c 24 04 41 8b 14 24 45 31 c0 4c 8d 4b 10 48 89 ee 4c 89 f7 e8 10 11 00 00 85 c0 75 78 48 8b 43 10 <8b> 90 a0 00 00 00 41 89 54 24 08 80 7d 3d 05 0f 86 bb 01 00 00 41
+> > > > [   71.147074] RSP: 0018:ffffb4a1809cfd38 EFLAGS: 00010246
+> > > > [   71.152526] RAX: 0000000000000000 RBX: ffff98cedbaa1d20 RCX: 00000000000003bf
+> > > > [   71.159651] RDX: 00000000000003be RSI: 0000000000000000 RDI: 0000000000030160
+> > > > [   71.166774] RBP: ffff98cee776de00 R08: ffffdc0144198a08 R09: ffff98ceeefd4000
+> > > > [   71.173901] R10: ffff98cee7e81780 R11: 0000000000000001 R12: ffffb4a1809cfe08
+> > > > [   71.181214] R13: ffff98cee776d000 R14: ffff98cec519e000 R15: ffff98cee776def0
+> > > > [   71.188339] FS:  00007fd926250500(0000) GS:ffff98ceeac80000(0000) knlGS:0000000000000000
+> > > > [   71.196418] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> > > > [   71.202155] CR2: 00000000000000a0 CR3: 0000000106622000 CR4: 00000000000406e0
+> > > > [   71.209297] Call Trace:
+> > > > [   71.211777]  ? nouveau_abi16_ioctl_getparam+0x1f0/0x1f0 [nouveau]
+> > > > [   71.218053]  drm_ioctl_kernel+0xac/0xf0 [drm]
+> > > > [   71.222421]  drm_ioctl+0x211/0x3c0 [drm]
+> > > > [   71.226379]  ? nouveau_abi16_ioctl_getparam+0x1f0/0x1f0 [nouveau]
+> > > > [   71.232500]  nouveau_drm_ioctl+0x57/0xb0 [nouveau]
+> > > > [   71.237285]  ksys_ioctl+0x86/0xc0
+> > > > [   71.240595]  __x64_sys_ioctl+0x16/0x20
+> > > > [   71.244340]  do_syscall_64+0x4c/0x90
+> > > > [   71.248110]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+> > > > [   71.253162] RIP: 0033:0x7fd925d4b88b
+> > > > [   71.256731] Code: Bad RIP value.
+> > > > [   71.259955] RSP: 002b:00007ffc743592d8 EFLAGS: 00000206 ORIG_RAX: 0000000000000010
+> > > > [   71.267514] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fd925d4b88b
+> > > > [   71.274637] RDX: 0000000000601080 RSI: 00000000c0586442 RDI: 0000000000000003
+> > > > [   71.281986] RBP: 00007ffc74359340 R08: 00007fd926016ce0 R09: 00007fd926016ce0
+> > > > [   71.289111] R10: 0000000000000003 R11: 0000000000000206 R12: 0000000000400620
+> > > > [   71.296235] R13: 00007ffc74359420 R14: 0000000000000000 R15: 0000000000000000
+> > > > [   71.303361] Modules linked in: rfkill sunrpc snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio snd_hda_intel snd_intel_dspcfg snd_hda_codec snd_hda_core edac_mce_amd snd_hwdep kvm_amd snd_seq ccp snd_seq_device snd_pcm kvm snd_timer snd irqbypass soundcore sp5100_tco pcspkr crct10dif_pclmul crc32_pclmul ghash_clmulni_intel wmi_bmof joydev i2c_piix4 fam15h_power k10temp acpi_cpufreq ip_tables xfs libcrc32c sd_mod t10_pi sg nouveau video mxm_wmi i2c_algo_bit drm_kms_helper syscopyarea sysfillrect sysimgblt fb_sys_fops ttm broadcom bcm_phy_lib ata_generic ahci drm e1000 crc32c_intel libahci serio_raw tg3 libata firewire_ohci firewire_core wmi crc_itu_t dm_mirror dm_region_hash dm_log dm_mod
+> > > > [   71.365269] CR2: 00000000000000a0
+> > > >
+> > > > simplified reproducer
+> > > > ---------------------------------8<----------------------------------------
+> > > > /*
+> > > >  * gcc -o crashme crashme.c
+> > > >  * ./crashme /dev/dri/renderD128
+> > > >  */
+> > > >
+> > > > struct drm_nouveau_channel_alloc {
+> > > >       uint32_t     fb_ctxdma_handle;
+> > > >       uint32_t     tt_ctxdma_handle;
+> > > >
+> > > >       int          channel;
+> > > >       uint32_t     pushbuf_domains;
+> > > >
+> > > >       /* Notifier memory */
+> > > >       uint32_t     notifier_handle;
+> > > >
+> > > >       /* DRM-enforced subchannel assignments */
+> > > >       struct {
+> > > >               uint32_t handle;
+> > > >               uint32_t grclass;
+> > > >       } subchan[8];
+> > > >       uint32_t nr_subchan;
+> > > > };
+> > > >
+> > > > static struct drm_nouveau_channel_alloc channel;
+> > > >
+> > > > int main(int argc, char *argv[]) {
+> > > >       int fd;
+> > > >       int rv;
+> > > >
+> > > >       if (argc != 2)
+> > > >               die("usage: %s <dev>", 0, argv[0]);
+> > > >
+> > > >       if ((fd = open(argv[1], O_RDONLY)) == -1)
+> > > >               die("open %s", errno, argv[1]);
+> > > >
+> > > >       if (ioctl(fd, DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC, &channel) == -1 &&
+> > > >                       errno == EACCES)
+> > > >               die("ioctl %s", errno, argv[1]);
+> > > >
+> > > >       close(fd);
+> > > >
+> > > >       printf("PASS\n");
+> > > >
+> > > >       return 0;
+> > > > }
+> > > > ---------------------------------8<----------------------------------------
+> > > >
+> > > > [1] https://github.com/kernelslacker/trinity
+> > > >
+> > > > Fixes: eeaf06ac1a55 ("drm/nouveau/svm: initial support for shared virtual memory")
+> > > > Signed-off-by: Frantisek Hrbata <frantisek at hrbata.com>
+> > > > ---
+> > > >  drivers/gpu/drm/nouveau/nouveau_chan.c | 1 +
+> > > >  1 file changed, 1 insertion(+)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
+> > > > index b80e4ebf1..a7a47b325 100644
+> > > > --- a/drivers/gpu/drm/nouveau/nouveau_chan.c
+> > > > +++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
+> > > > @@ -533,6 +533,7 @@ nouveau_channel_new(struct nouveau_drm *drm, struct nvif_device *device,
+> > > >       if (ret) {
+> > > >               NV_PRINTK(err, cli, "channel failed to initialise, %d\n", ret);
+> > > >               nouveau_channel_del(pchan);
+> > > > +             goto done;
+> > > >       }
+> > > >
+> > > >       ret = nouveau_svmm_join((*pchan)->vmm->svmm, (*pchan)->inst);
+> > > > --
+> > > > Frantisek Hrbata
+> > >
+> > > Is this still planned to be applied? AFAICS this is the fix for
+> > > CVE-2020-25639.
+> > >
+> >
+> > If it's urgent to get it fixed, I suggest going through the Linux
+> > kernel or drm stable path. CCing dri-devel, Dave, Daniel and Ben.
+> Missed this.  I'll grab it today and send it with the next -fixes.
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Dave Airlie <airlied@gmail.com>
-Cc: greg.depoire@gmail.com
----
- .../drm/i915/display/intel_display_types.h    |  1 +
- .../drm/i915/display/intel_dp_aux_backlight.c | 65 ++++++-------------
- 2 files changed, 20 insertions(+), 46 deletions(-)
+Do you know, were there some problems with the patch? TTBOMK it did
+not yet appear on Linus tree.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 307ff4b771f4..f4b26e1dbaaf 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -264,6 +264,7 @@ struct intel_panel {
- 		union {
- 			struct {
- 				u8 pwmgen_bit_count;
-+				u8 pwm_freq_pre_divider;
- 			} vesa;
- 			struct {
- 				bool sdr_uses_aux;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 651884390137..62294967f430 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -373,50 +373,6 @@ intel_dp_aux_vesa_set_backlight(const struct drm_connector_state *conn_state,
- 	}
- }
- 
--/*
-- * Set PWM Frequency divider to match desired frequency in vbt.
-- * The PWM Frequency is calculated as 27Mhz / (F x P).
-- * - Where F = PWM Frequency Pre-Divider value programmed by field 7:0 of the
-- *             EDP_BACKLIGHT_FREQ_SET register (DPCD Address 00728h)
-- * - Where P = 2^Pn, where Pn is the value programmed by field 4:0 of the
-- *             EDP_PWMGEN_BIT_COUNT register (DPCD Address 00724h)
-- */
--static bool intel_dp_aux_vesa_set_pwm_freq(struct intel_connector *connector)
--{
--	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct intel_dp *intel_dp = intel_attached_dp(connector);
--	const u8 pn = connector->panel.backlight.edp.vesa.pwmgen_bit_count;
--	int freq, fxp, f, fxp_actual, fxp_min, fxp_max;
--
--	freq = dev_priv->vbt.backlight.pwm_freq_hz;
--	if (!freq) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "Use panel default backlight frequency\n");
--		return false;
--	}
--
--	fxp = DIV_ROUND_CLOSEST(KHz(DP_EDP_BACKLIGHT_FREQ_BASE_KHZ), freq);
--	f = clamp(DIV_ROUND_CLOSEST(fxp, 1 << pn), 1, 255);
--	fxp_actual = f << pn;
--
--	/* Ensure frequency is within 25% of desired value */
--	fxp_min = DIV_ROUND_CLOSEST(fxp * 3, 4);
--	fxp_max = DIV_ROUND_CLOSEST(fxp * 5, 4);
--
--	if (fxp_min > fxp_actual || fxp_actual > fxp_max) {
--		drm_dbg_kms(&dev_priv->drm, "Actual frequency out of range\n");
--		return false;
--	}
--
--	if (drm_dp_dpcd_writeb(&intel_dp->aux,
--			       DP_EDP_BACKLIGHT_FREQ_SET, (u8) f) < 0) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "Failed to write aux backlight freq\n");
--		return false;
--	}
--	return true;
--}
--
- static void
- intel_dp_aux_vesa_enable_backlight(const struct intel_crtc_state *crtc_state,
- 				   const struct drm_connector_state *conn_state, u32 level)
-@@ -459,9 +415,13 @@ intel_dp_aux_vesa_enable_backlight(const struct intel_crtc_state *crtc_state,
- 		break;
- 	}
- 
--	if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP)
--		if (intel_dp_aux_vesa_set_pwm_freq(connector))
-+	if (panel->backlight.edp.vesa.pwm_freq_pre_divider) {
-+		if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_EDP_BACKLIGHT_FREQ_SET,
-+				       panel->backlight.edp.vesa.pwm_freq_pre_divider) == 1)
- 			new_dpcd_buf |= DP_EDP_BACKLIGHT_FREQ_AUX_SET_ENABLE;
-+		else
-+			drm_dbg_kms(&i915->drm, "Failed to write aux backlight frequency\n");
-+	}
- 
- 	if (new_dpcd_buf != dpcd_buf) {
- 		if (drm_dp_dpcd_writeb(&intel_dp->aux,
-@@ -482,6 +442,14 @@ static void intel_dp_aux_vesa_disable_backlight(const struct drm_connector_state
- 				  false);
- }
- 
-+/*
-+ * Compute PWM frequency divider value based off the frequency provided to us by the vbt.
-+ * The PWM Frequency is calculated as 27Mhz / (F x P).
-+ * - Where F = PWM Frequency Pre-Divider value programmed by field 7:0 of the
-+ *             EDP_BACKLIGHT_FREQ_SET register (DPCD Address 00728h)
-+ * - Where P = 2^Pn, where Pn is the value programmed by field 4:0 of the
-+ *             EDP_PWMGEN_BIT_COUNT register (DPCD Address 00724h)
-+ */
- static u32 intel_dp_aux_vesa_calc_max_backlight(struct intel_connector *connector)
- {
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-@@ -533,8 +501,10 @@ static u32 intel_dp_aux_vesa_calc_max_backlight(struct intel_connector *connecto
- 	pn_min &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
- 	pn_max &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
- 
-+	/* Ensure frequency is within 25% of desired value */
- 	fxp_min = DIV_ROUND_CLOSEST(fxp * 3, 4);
- 	fxp_max = DIV_ROUND_CLOSEST(fxp * 5, 4);
-+
- 	if (fxp_min < (1 << pn_min) || (255 << pn_max) < fxp_max) {
- 		drm_dbg_kms(&i915->drm,
- 			    "VBT defined backlight frequency out of range\n");
-@@ -555,7 +525,10 @@ static u32 intel_dp_aux_vesa_calc_max_backlight(struct intel_connector *connecto
- 			    "Failed to write aux pwmgen bit count\n");
- 		return max_backlight;
- 	}
-+
- 	panel->backlight.edp.vesa.pwmgen_bit_count = pn;
-+	if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP)
-+		panel->backlight.edp.vesa.pwm_freq_pre_divider = f;
- 
- 	max_backlight = (1 << pn) - 1;
- 
--- 
-2.29.2
-
+Regards,
+Salvatore
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
