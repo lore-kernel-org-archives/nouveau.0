@@ -1,65 +1,62 @@
-Return-Path: <SRS0=+aUB=HK=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=JpRB=HL=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+X-Spam-Status: No, score=-11.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 277BCC433E6
-	for <nouveau@archiver.kernel.org>; Mon,  8 Feb 2021 23:47:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E2A90C433E0
+	for <nouveau@archiver.kernel.org>; Tue,  9 Feb 2021 01:14:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D2EB164E76
-	for <nouveau@archiver.kernel.org>; Mon,  8 Feb 2021 23:47:32 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D2EB164E76
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id 8B34E64EB1
+	for <nouveau@archiver.kernel.org>; Tue,  9 Feb 2021 01:14:25 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8B34E64EB1
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=nvidia.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D32616EA35;
-	Mon,  8 Feb 2021 23:47:31 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCEB56EA36
- for <nouveau@lists.freedesktop.org>; Mon,  8 Feb 2021 23:39:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1612827561;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=M13ZLF+kH3Mo1zLdyj3BtBfIUNrzdoYpiUDNke4BVfs=;
- b=bEpO4Ot7OlG5Xy0UFyU+rOAl9WGikxMpRy9bSSCfHlfffHUVuXvCFLqVPw99HSb8YWYfd4
- fZtSukmrAZ0F1W3UQxjO9JI2S56roRg/MahiSMaEY1+aJMiGjzZtH1D0xymf/+OOI/qoHb
- I3Hx+h81vFwbm7yh69TRG/dw1Y25Mvs=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-193-oAq5Nw4fPmyLA0FE1nge-w-1; Mon, 08 Feb 2021 18:39:18 -0500
-X-MC-Unique: oAq5Nw4fPmyLA0FE1nge-w-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
- [10.5.11.13])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id C21F2107ACC7;
- Mon,  8 Feb 2021 23:39:15 +0000 (UTC)
-Received: from Whitewolf.redhat.com (ovpn-114-219.rdu2.redhat.com
- [10.10.114.219])
- by smtp.corp.redhat.com (Postfix) with ESMTP id C7DB2608DB;
- Mon,  8 Feb 2021 23:39:13 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Date: Mon,  8 Feb 2021 18:38:53 -0500
-Message-Id: <20210208233902.1289693-4-lyude@redhat.com>
-In-Reply-To: <20210208233902.1289693-1-lyude@redhat.com>
-References: <20210208233902.1289693-1-lyude@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B548C6E1B3;
+	Tue,  9 Feb 2021 01:14:24 +0000 (UTC)
+X-Greylist: delayed 300 seconds by postgrey-1.36 at gabe;
+ Tue, 09 Feb 2021 01:14:23 UTC
+Received: from hqnvemgate25.nvidia.com (hqnvemgate25.nvidia.com
+ [216.228.121.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 504BD6E1B3;
+ Tue,  9 Feb 2021 01:14:23 +0000 (UTC)
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+ id <B6021e0c10002>; Mon, 08 Feb 2021 17:09:21 -0800
+Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 9 Feb
+ 2021 01:09:21 +0000
+Received: from localhost (172.20.145.6) by DRHQMAIL107.nvidia.com (10.27.9.16)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3;
+ Tue, 9 Feb 2021 01:09:20 +0000
+From: Alistair Popple <apopple@nvidia.com>
+To: <linux-mm@kvack.org>, <nouveau@lists.freedesktop.org>,
+ <bskeggs@redhat.com>, <akpm@linux-foundation.org>
+Date: Tue, 9 Feb 2021 12:07:13 +1100
+Message-ID: <20210209010722.13839-1-apopple@nvidia.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-X-Mailman-Approved-At: Mon, 08 Feb 2021 23:47:30 +0000
-Subject: [Nouveau] [RFC v4 03/11] drm/i915/dpcd_bl: Remove redundant AUX
- backlight frequency calculations
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ DRHQMAIL107.nvidia.com (10.27.9.16)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1612832961; bh=fHzIrA6EUkcvyYZOzc2r5U/q2OlDx68NlFICQTs7dQ8=;
+ h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+ Content-Transfer-Encoding:Content-Type:X-Originating-IP:
+ X-ClientProxiedBy;
+ b=JLn42Im7IWDEnuTDb+HAfmg21WCbnWEbIR0KYAxMkB56Xg+hXwpVMRWJJRpoQRHJa
+ huf1OdR0WZ/xbBkkJUUvfEpMrTL1a5eUkJvtZpjNYotNPcpHubOEIwYsPQWQwTlOxO
+ jybuOYXvAGRV+8LewjvSBZSReyU0Uwa0ZRMllU/kW0/RgIx1LjmT0zt3MKIYYamXOK
+ pB30alYCHMQ0EXloW6/GydUcrRRaxaCIdqaauza/x+VFBXw1WCAhGJL+cD9g6rHI7u
+ K2FsmBZ+Lca4vpaXoQR0qV/i4FwObqrVWHlQXKPTDH/AljdLXGbV8p9MZ6wUzY0KkI
+ TsL/93w80i8dw==
+Subject: [Nouveau] [PATCH 0/9] Add support for SVM atomics in Nouveau
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,164 +68,82 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Anshuman Gupta <anshuman.gupta@intel.com>, David Airlie <airlied@linux.ie>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- open list <linux-kernel@vger.kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
- Manasi Navare <manasi.d.navare@intel.com>, greg.depoire@gmail.com,
- Uma Shankar <uma.shankar@intel.com>, Sean Paul <seanpaul@chromium.org>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Dave Airlie <airlied@redhat.com>, Imre Deak <imre.deak@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Cc: rcampbell@nvidia.com, linux-doc@vger.kernel.org,
+ Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, kvm-ppc@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Noticed this while moving all of the VESA backlight code in i915 over to
-DRM helpers: it would appear that we calculate the frequency value we want
-to write to DP_EDP_BACKLIGHT_FREQ_SET twice even though this value never
-actually changes during runtime. So, let's simplify things by just caching
-this value in intel_panel.backlight, and re-writing it as-needed.
+This series adds support to Nouveau for atomic memory operations on OpenCL
+shared virtual memory (SVM). This is achieved using the atomic PTE bits on
+the GPU to only permit atomic operations to system memory when a page is
+not mapped in userspace on the CPU.
 
-Changes since v1:
-* Wrap panel->backlight.edp.vesa.pwm_freq_pre_divider in
-  DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP check - Jani
+This is implemented by adding a mode to migrate_vma_pages() which unmaps
+and isolates existing pages from the CPU and pins them. The original
+userspace page table entries are migrated to point to device private pages
+allocated by the driver. This allows the driver to enable GPU atomic access
+to the page as it will receive a callback when CPU userspace needs to
+access it.
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Dave Airlie <airlied@gmail.com>
-Cc: greg.depoire@gmail.com
----
- .../drm/i915/display/intel_display_types.h    |  1 +
- .../drm/i915/display/intel_dp_aux_backlight.c | 65 ++++++-------------
- 2 files changed, 20 insertions(+), 46 deletions(-)
+In response to this callback the driver revokes the atomic access
+permission from the GPU and migrates entries to point back to the original
+page. The original page is unpinned as part of the migration operation
+which also returns it to the LRU.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index ebaa9d0ed376..1217cde04f0b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -265,6 +265,7 @@ struct intel_panel {
- 		union {
- 			struct {
- 				u8 pwmgen_bit_count;
-+				u8 pwm_freq_pre_divider;
- 			} vesa;
- 			struct {
- 				bool sdr_uses_aux;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 651884390137..62294967f430 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -373,50 +373,6 @@ intel_dp_aux_vesa_set_backlight(const struct drm_connector_state *conn_state,
- 	}
- }
- 
--/*
-- * Set PWM Frequency divider to match desired frequency in vbt.
-- * The PWM Frequency is calculated as 27Mhz / (F x P).
-- * - Where F = PWM Frequency Pre-Divider value programmed by field 7:0 of the
-- *             EDP_BACKLIGHT_FREQ_SET register (DPCD Address 00728h)
-- * - Where P = 2^Pn, where Pn is the value programmed by field 4:0 of the
-- *             EDP_PWMGEN_BIT_COUNT register (DPCD Address 00724h)
-- */
--static bool intel_dp_aux_vesa_set_pwm_freq(struct intel_connector *connector)
--{
--	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
--	struct intel_dp *intel_dp = intel_attached_dp(connector);
--	const u8 pn = connector->panel.backlight.edp.vesa.pwmgen_bit_count;
--	int freq, fxp, f, fxp_actual, fxp_min, fxp_max;
--
--	freq = dev_priv->vbt.backlight.pwm_freq_hz;
--	if (!freq) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "Use panel default backlight frequency\n");
--		return false;
--	}
--
--	fxp = DIV_ROUND_CLOSEST(KHz(DP_EDP_BACKLIGHT_FREQ_BASE_KHZ), freq);
--	f = clamp(DIV_ROUND_CLOSEST(fxp, 1 << pn), 1, 255);
--	fxp_actual = f << pn;
--
--	/* Ensure frequency is within 25% of desired value */
--	fxp_min = DIV_ROUND_CLOSEST(fxp * 3, 4);
--	fxp_max = DIV_ROUND_CLOSEST(fxp * 5, 4);
--
--	if (fxp_min > fxp_actual || fxp_actual > fxp_max) {
--		drm_dbg_kms(&dev_priv->drm, "Actual frequency out of range\n");
--		return false;
--	}
--
--	if (drm_dp_dpcd_writeb(&intel_dp->aux,
--			       DP_EDP_BACKLIGHT_FREQ_SET, (u8) f) < 0) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "Failed to write aux backlight freq\n");
--		return false;
--	}
--	return true;
--}
--
- static void
- intel_dp_aux_vesa_enable_backlight(const struct intel_crtc_state *crtc_state,
- 				   const struct drm_connector_state *conn_state, u32 level)
-@@ -459,9 +415,13 @@ intel_dp_aux_vesa_enable_backlight(const struct intel_crtc_state *crtc_state,
- 		break;
- 	}
- 
--	if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP)
--		if (intel_dp_aux_vesa_set_pwm_freq(connector))
-+	if (panel->backlight.edp.vesa.pwm_freq_pre_divider) {
-+		if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_EDP_BACKLIGHT_FREQ_SET,
-+				       panel->backlight.edp.vesa.pwm_freq_pre_divider) == 1)
- 			new_dpcd_buf |= DP_EDP_BACKLIGHT_FREQ_AUX_SET_ENABLE;
-+		else
-+			drm_dbg_kms(&i915->drm, "Failed to write aux backlight frequency\n");
-+	}
- 
- 	if (new_dpcd_buf != dpcd_buf) {
- 		if (drm_dp_dpcd_writeb(&intel_dp->aux,
-@@ -482,6 +442,14 @@ static void intel_dp_aux_vesa_disable_backlight(const struct drm_connector_state
- 				  false);
- }
- 
-+/*
-+ * Compute PWM frequency divider value based off the frequency provided to us by the vbt.
-+ * The PWM Frequency is calculated as 27Mhz / (F x P).
-+ * - Where F = PWM Frequency Pre-Divider value programmed by field 7:0 of the
-+ *             EDP_BACKLIGHT_FREQ_SET register (DPCD Address 00728h)
-+ * - Where P = 2^Pn, where Pn is the value programmed by field 4:0 of the
-+ *             EDP_PWMGEN_BIT_COUNT register (DPCD Address 00724h)
-+ */
- static u32 intel_dp_aux_vesa_calc_max_backlight(struct intel_connector *connector)
- {
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-@@ -533,8 +501,10 @@ static u32 intel_dp_aux_vesa_calc_max_backlight(struct intel_connector *connecto
- 	pn_min &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
- 	pn_max &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
- 
-+	/* Ensure frequency is within 25% of desired value */
- 	fxp_min = DIV_ROUND_CLOSEST(fxp * 3, 4);
- 	fxp_max = DIV_ROUND_CLOSEST(fxp * 5, 4);
-+
- 	if (fxp_min < (1 << pn_min) || (255 << pn_max) < fxp_max) {
- 		drm_dbg_kms(&i915->drm,
- 			    "VBT defined backlight frequency out of range\n");
-@@ -555,7 +525,10 @@ static u32 intel_dp_aux_vesa_calc_max_backlight(struct intel_connector *connecto
- 			    "Failed to write aux pwmgen bit count\n");
- 		return max_backlight;
- 	}
-+
- 	panel->backlight.edp.vesa.pwmgen_bit_count = pn;
-+	if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP)
-+		panel->backlight.edp.vesa.pwm_freq_pre_divider = f;
- 
- 	max_backlight = (1 << pn) - 1;
- 
+Patch 3 contains the bulk of the memory management changes to implement
+unmap and pin.
+
+Patches 6-9 extend Nouveau to use the new mode to allow system wide atomics
+for OpenCL SVM to be implemented on Nouveau.
+
+This has been tested using the latest upstream Mesa userspace with a simple
+OpenCL test program which checks the results of atomic GPU operations on a
+buffer whilst also writing to the same buffer from the CPU.
+
+Problems yet to be addressed:
+
+Recent changes to pin_user_pages() prevent the creation of pinned pages in
+ZONE_MOVABLE. This series allows pinned pages to be created in ZONE_MOVABLE
+as attempts to migrate may fail which would be fatal to userspace.
+
+In this case migration of the pinned page is unnecessary as the page can be
+unpinned at anytime by having the driver revoke atomic permission as it
+does for the migrate_to_ram() callback. However a method of calling this
+when memory needs to be moved has yet to be resolved so any discussion is
+welcome.
+
+Alistair Popple (9):
+  mm/migrate.c: Always allow device private pages to migrate
+  mm/migrate.c: Allow pfn flags to be passed to migrate_vma_setup()
+  mm/migrate: Add a unmap and pin migration mode
+  Documentation: Add unmap and pin to HMM
+  hmm-tests: Add test for unmap and pin
+  nouveau/dmem: Only map migrating pages
+  nouveau/svm: Refactor nouveau_range_fault
+  nouveau/dmem: Add support for multiple page types
+  nouveau/svm: Implement atomic SVM access
+
+ Documentation/vm/hmm.rst                      |  22 +-
+ arch/powerpc/kvm/book3s_hv_uvmem.c            |   4 +-
+ drivers/gpu/drm/nouveau/include/nvif/if000c.h |   1 +
+ drivers/gpu/drm/nouveau/nouveau_dmem.c        | 190 +++++++++++++++---
+ drivers/gpu/drm/nouveau/nouveau_dmem.h        |   9 +
+ drivers/gpu/drm/nouveau/nouveau_svm.c         | 148 +++++++++++---
+ drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h |   1 +
+ .../drm/nouveau/nvkm/subdev/mmu/vmmgp100.c    |   6 +
+ include/linux/migrate.h                       |   2 +
+ include/linux/migrate_mode.h                  |   1 +
+ lib/test_hmm.c                                | 109 ++++++++--
+ lib/test_hmm_uapi.h                           |   1 +
+ mm/migrate.c                                  |  82 +++++---
+ tools/testing/selftests/vm/hmm-tests.c        |  49 +++++
+ 14 files changed, 524 insertions(+), 101 deletions(-)
+
 -- 
-2.29.2
+2.20.1
 
 _______________________________________________
 Nouveau mailing list
