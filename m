@@ -2,71 +2,72 @@ Return-Path: <SRS0=598a=HM=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 75C8CC433DB
-	for <nouveau@archiver.kernel.org>; Wed, 10 Feb 2021 11:46:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 98EC0C433DB
+	for <nouveau@archiver.kernel.org>; Wed, 10 Feb 2021 12:22:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 36D7864E3B
-	for <nouveau@archiver.kernel.org>; Wed, 10 Feb 2021 11:46:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 36D7864E3B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 0359764E31
+	for <nouveau@archiver.kernel.org>; Wed, 10 Feb 2021 12:22:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0359764E31
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmx.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A51B6EC6A;
-	Wed, 10 Feb 2021 11:46:17 +0000 (UTC)
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com
- [IPv6:2a00:1450:4864:20::134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E796A6E120;
- Tue,  9 Feb 2021 23:48:24 +0000 (UTC)
-Received: by mail-lf1-x134.google.com with SMTP id v24so147198lfr.7;
- Tue, 09 Feb 2021 15:48:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=JxrYmkpfatu4jodGQPHh0hSLDnzosVKpfQHIfMv8e0E=;
- b=a4+ooLUJ9FAgYmcQzjbHCIpUbILnxr0074Y7TTtS1niQ+OXcKKkFAsRlv+n9w0AUkQ
- xe96JuBYSxsjSoG5BEljDZyWPe1gwovgctMxvYmdE28Hwp0sPHLsdXyJAcU0QXtaq3Ym
- uomHIr1XdDf5At6EGGhv4uoX0JQzFyecpIm3b3bL8wtD6MJWLHMk+1zDoPzD0movYJI9
- 0GR6a1OloL8GztF3h+lPLankIHYuKJ5VHAXf7Zgxvts4XKr12RjOSufxZFB1okHKMjvZ
- YF849P6oN+vcI0XgnW7eDgoU+xBS7BKdxksYrCMY6hMD9ceCGu4QEbA3zxL5iShcqypd
- hkoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=JxrYmkpfatu4jodGQPHh0hSLDnzosVKpfQHIfMv8e0E=;
- b=BKGcHJc/HbfqznNqSR+JUC5sKFs80OHHX5ZlAgqv9CpEvRDgH4Wkbv0m/3w5MkjcOe
- t1Fk1XFQUVPHyox5gK6kOaN4D0i1FRGrK+wxypMPv4o+myk8J3YjsN5tJDmo1hPrZR67
- n1H5R2yctfh7UIdoSwfv+GTZYf6R034v/7GTxTNVH4VPtWlEJ7imnUy/NFbkqMxeeFsa
- QgxEd0TcQttYaLv7kMzcMkyYW/ZdMi40ruJEsBB8UuWsyd9UQAkJVOFcatcD0X4XNq19
- Aw6GAHh5Kn1hOERAFsjJsJiLD0r0erOnZMccpqwakAG6RaVLEzUm97E50N+TjJ2tNXgo
- 6d1w==
-X-Gm-Message-State: AOAM530bfdgZ564Y4uMO4Xu3+T2wrolUAkugnYXlOn40iWLL0Wd7fzvV
- t2dgArMZnVcXX7pZaV/CSiI=
-X-Google-Smtp-Source: ABdhPJwqKSKzlI6Nl6bidLwNbX9MfrP2AS8P6ODueDZoOP887CZ/ogaO4H8idiomt1SKtPzz3UjJIA==
-X-Received: by 2002:ac2:44c3:: with SMTP id d3mr189106lfm.375.1612914503392;
- Tue, 09 Feb 2021 15:48:23 -0800 (PST)
-Received: from localhost.localdomain (h-158-174-22-164.NA.cust.bahnhof.se.
- [158.174.22.164])
- by smtp.gmail.com with ESMTPSA id c25sm23779lja.131.2021.02.09.15.48.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 09 Feb 2021 15:48:22 -0800 (PST)
-From: Rikard Falkeborn <rikard.falkeborn@gmail.com>
-To: David Airlie <airlied@linux.ie>,
-	Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 10 Feb 2021 00:48:14 +0100
-Message-Id: <20210209234817.55112-1-rikard.falkeborn@gmail.com>
-X-Mailer: git-send-email 2.30.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CE3D6E057;
+	Wed, 10 Feb 2021 12:22:53 +0000 (UTC)
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA3256E057
+ for <nouveau@lists.freedesktop.org>; Wed, 10 Feb 2021 12:22:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1612959765;
+ bh=+h8MD8271n/iybg6BuCV23jv8ZgoQb3mvg9bq6LK1Lk=;
+ h=X-UI-Sender-Class:Subject:From:To:Cc:Date:In-Reply-To:References;
+ b=i1Zic/gPsjIfBU5mzX4tjqqirDsdoAkJM+T93doBu+fXvTKHHxFMXdymBXVJ/qqDj
+ HvnedSDGjbAeUk3gR+DoMaQ++SMb9bIBPJgQy2LozitAfnuHqKyB0gFrUtftnDi8Px
+ 45Pb/JM3E9a5yTH7KUsao1uatX+C/67vSlGb5jvI=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from homer.fritz.box ([185.191.218.231]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MTiPv-1lLcNd3kBZ-00U0Ug; Wed, 10
+ Feb 2021 13:22:44 +0100
+Message-ID: <eeea2d002142ec7f8737b9d0fb5128b0cdb2ae58.camel@gmx.de>
+From: Mike Galbraith <efault@gmx.de>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, lkml
+ <linux-kernel@vger.kernel.org>
+Date: Wed, 10 Feb 2021 13:22:44 +0100
+In-Reply-To: <5df26bda-9ff8-168f-e5a3-0bb503ffcca9@amd.com>
+References: <1d663cd74af91e23f4f24ebbdd65ef3ba72c15fc.camel@gmx.de>
+ <43924195-c4e1-fce4-5766-aaefe2d6f766@amd.com>
+ <2793c200beb530ed4a8ac32c5eea0f5aaa53c7e8.camel@gmx.de>
+ <bfd62492-e6a9-3899-dd7d-87b7800f45c7@amd.com>
+ <41cc52bd57a466f29ea81676d42f57a7b9da7dd8.camel@gmx.de>
+ <5df26bda-9ff8-168f-e5a3-0bb503ffcca9@amd.com>
+User-Agent: Evolution 3.34.4 
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 10 Feb 2021 11:46:14 +0000
-Subject: [Nouveau] [PATCH 0/3] drm/ttm: constify static vm_operations_structs
+X-Provags-ID: V03:K1:W4GPS80D+clxDsGdF2ikhyzexg0GvS2xkMk+USdFXQMRvvYcPII
+ 95dxzYyTD0cdg8+JCGbyuX+8S2IhEm6hIHqrJB7H1WhQMjPlVYYgLdGjm1ftAPEKxwBZSsf
+ XhsmN2pfACcRuqQB6ZmY3QDsDJfOdI1qu1iX99mNPtFBEl2pgxGLIzfz6AklLITr8Q9g6iL
+ 9ZlUHvuBdh7ONQderi9jQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:QaLTXDBf5aY=:d0+yTuFehnvZQRqe8bH9B4
+ 2f0ISzh4QRpFe53GFjmqHz5gW3xtHS9FcXEubTX6ZtfBRgi65+fjJXLzXbeLEDEwH3OT+fv+s
+ kWUs3aureTrlmwLpEsB5hIEoaJtDEkO+sBvr4dWwbqG81xik0RM0Tz+Snar7uvf+/SRo/Ickd
+ ASIlzt9SlnIML0B5U7zC67Kg1qGsvs5RnTbQS8ufHh6k3AjYksvxbggo8iCX1bhN/6DMPMtdI
+ 5LizOtEcq5URCLr2mvtFI+dFo/tdEju6RxmgW4qkv2zhBF/b5NF0ju+mHBPtBcn6DlaZoxJO0
+ HXgnSSIthPfAmqFttIR/yVhJRL8hzClStxBfxYOr7hyYizPaOXjT6CRo5Vkh9bwHS8TMMkMrZ
+ vasJmOy9V+WKv5IIR2ssZZRyo4IgI/j4GLSx71qxHHDGddjKf8ZO/ykPO+HILIiQ8vSKq/Fto
+ bSpgNCRTs7eRvD49K3I2DwU7IqFvhorszj+c6TRwhpI/w26adGKjUG/S972wJQJ+ioKQxEcaV
+ G9c2cONSyUYuYVXFCfudTceBVPPey+EiY5FEUi329M9Mzv17/1JQa60hPwkmyJOxsOEPnuvFl
+ 0tei7SNSBWAfvhp8/y9r1VR/E6BqjfmI1hhdS9TsZ0OX0h8VT/z4MA7mIKCPLhZM5lgh2VPg5
+ JLGe77sfB29iJOswOPYcUuZUfCZVAQUSnvfovH1juX5WAqxjKVeQofz8MXxbK2xlek04476Fy
+ VwXsU2UB800pTvWE5AbRDK2DdH0AIVhyA8teApKNVp7sa9ouUPMNtFG7106/FywAnasuoIOOG
+ T7TrAH8EjsbVSytMLGYY3h1RG0fEfhzLPLw/gF7ZiE4W9JLOb8m/Uwles1gFzRoc0A4fwgdqD
+ KykHIrAlK9ZN/WwsZutA==
+Subject: Re: [Nouveau] drm/nouneau: 5.11 cycle regression bisected to
+ 461619f5c324 "drm/nouveau: switch to new allocator"
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,37 +79,27 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- Felix Kuehling <Felix.Kuehling@amd.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Rikard Falkeborn <rikard.falkeborn@gmail.com>,
- Ben Skeggs <bskeggs@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
- Likun Gao <Likun.Gao@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>,
+ Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="iso-8859-15"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Constify a few static vm_operations_struct that are never modified. Their
-only usage is to assign their address to the vm_ops field in the
-vm_area_struct, which is a pointer to const vm_operations_struct. Make them
-const to allow the compiler to put them in read-only memory.
+On Wed, 2021-02-10 at 12:44 +0100, Christian K=F6nig wrote:
+> Please try to add a "return NULL" at the beginning of ttm_pool_type_take(=
+).
+>
+> That should effectively disable using the pool.
 
-With this series applied, all static struct vm_operations_struct in the
-kernel tree are const.
+That did away with the yield looping, but it doesn't take long for the
+display to freeze.  I ssh'd in from lappy, but there was nada in dmesg.
 
-Rikard Falkeborn (3):
-  drm/amdgpu/ttm: constify static vm_operations_struct
-  drm/radeon/ttm: constify static vm_operations_struct
-  drm/nouveau/ttm: constify static vm_operations_struct
+> Thanks for testing,
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 2 +-
- drivers/gpu/drm/nouveau/nouveau_ttm.c   | 2 +-
- drivers/gpu/drm/radeon/radeon_ttm.c     | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+Happy to.
 
--- 
-2.30.0
+	-Mike
 
 _______________________________________________
 Nouveau mailing list
