@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A6B34C433E9
-	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:54:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B4DF0C433E0
+	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:54:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 706EE64EAF
-	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:54:32 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 706EE64EAF
+	by mail.kernel.org (Postfix) with ESMTPS id 725DC64E04
+	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:54:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 725DC64E04
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDE876EC34;
-	Fri, 19 Feb 2021 21:54:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 819DA6EC39;
+	Fri, 19 Feb 2021 21:54:24 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E8966EC29
- for <nouveau@lists.freedesktop.org>; Fri, 19 Feb 2021 21:54:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43E626EC3A
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Feb 2021 21:54:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1613771656;
+ s=mimecast20190719; t=1613771662;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=jRa+2SicnIMtHCYA35fA+LYyV9MLyYbdd/Rz9pKuKs8=;
- b=HQEGRMiDu33uzBfIBk/BQwvYF/yRhYcqrelsOzIagFw4Hl3M/mFp1JaxV0wsJTUsE7OUUx
- fBMs1MsU0FOlm9oqSwwYcLr0coZazmykZGC2IMbYvLj9AXRKfy0/5M2m5fI5YfjHIs7FtI
- 3DZ+skne+RaoyOUFLsmjREEsSJcnCkk=
+ bh=ZeO6dGDcVVQslU15WHLCN2NmXYQX/e4e0CmvCEgQ3cM=;
+ b=RlZUOAVT8gWH/9VYS6K5WxG4wJIEylriU1dyETvL+iHC4sOiOCnJS7WvkPEZDpZyZCngtc
+ TYf2f7Ahoo/yzcjYMIaA1gwzpAhRqZEbT8R7O3ZpZg6ocadFBziLsX/w6LEzTFZ/ahFp5B
+ y82vCuvUskp8c063jmJDt2akYoqhq/Q=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-74-n8lJFZ3aPnaxU-irezSeuQ-1; Fri, 19 Feb 2021 16:54:12 -0500
-X-MC-Unique: n8lJFZ3aPnaxU-irezSeuQ-1
+ us-mta-344-mn2AwyrSNJiQs8B3u0fSkg-1; Fri, 19 Feb 2021 16:54:20 -0500
+X-MC-Unique: mn2AwyrSNJiQs8B3u0fSkg-1
 Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
  [10.5.11.13])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 70A64107ACC7;
- Fri, 19 Feb 2021 21:54:10 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id A57DDEC1A0;
+ Fri, 19 Feb 2021 21:54:17 +0000 (UTC)
 Received: from Whitewolf.redhat.com (ovpn-118-5.rdu2.redhat.com [10.10.118.5])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 5F3996A03C;
- Fri, 19 Feb 2021 21:54:08 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 2A82D6A03C;
+ Fri, 19 Feb 2021 21:54:15 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
@@ -54,14 +54,14 @@ To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Thomas Zimmermann <tzimmermann@suse.de>
-Date: Fri, 19 Feb 2021 16:53:04 -0500
-Message-Id: <20210219215326.2227596-9-lyude@redhat.com>
+Date: Fri, 19 Feb 2021 16:53:06 -0500
+Message-Id: <20210219215326.2227596-11-lyude@redhat.com>
 In-Reply-To: <20210219215326.2227596-1-lyude@redhat.com>
 References: <20210219215326.2227596-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-Subject: [Nouveau] [PATCH 08/30] drm/bridge/analogix/anx78xx: Setup encoder
- before registering connector
+Subject: [Nouveau] [PATCH 10/30] drm/bridge/analogix/anx6345: Add missing
+ drm_dp_aux_unregister() call
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,57 +75,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: Jernej Skrabec <jernej.skrabec@siol.net>, Jonas Karlman <jonas@kwiboo.se>,
  David Airlie <airlied@linux.ie>, Neil Armstrong <narmstrong@baylibre.com>,
- open list <linux-kernel@vger.kernel.org>, Andrzej Hajda <a.hajda@samsung.com>,
+ open list <linux-kernel@vger.kernel.org>,
+ Vasily Khoruzhick <anarsoul@gmail.com>, Andrzej Hajda <a.hajda@samsung.com>,
  Tomi Valkeinen <tomi.valkeinen@ti.com>, Torsten Duwe <duwe@lst.de>,
  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Sam Ravnborg <sam@ravnborg.org>
+ Daniel Vetter <daniel@ffwll.ch>, Joe Perches <joe@perches.com>,
+ Sam Ravnborg <sam@ravnborg.org>, Icenowy Zheng <icenowy@aosc.io>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Since encoder mappings for connectors are exposed to userspace, we should
-be attaching the encoder before exposing the connector to userspace. Just a
-drive-by fix for an issue I noticed while fixing up usages of
-drm_dp_aux_init()/drm_dp_aux_register() across the tree.
+Another driver I found that seems to forget to unregister it's DP AUX
+device. Let's fix this by adding anx6345_bridge_detach().
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 ---
- drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/bridge/analogix/analogix-anx6345.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c b/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
-index ec4607dc01eb..338dd8531d4b 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
-+++ b/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
-@@ -924,12 +924,6 @@ static int anx78xx_bridge_attach(struct drm_bridge *bridge,
- 	drm_connector_helper_add(&anx78xx->connector,
- 				 &anx78xx_connector_helper_funcs);
- 
--	err = drm_connector_register(&anx78xx->connector);
--	if (err) {
--		DRM_ERROR("Failed to register connector: %d\n", err);
--		return err;
--	}
--
- 	anx78xx->connector.polled = DRM_CONNECTOR_POLL_HPD;
- 
- 	err = drm_connector_attach_encoder(&anx78xx->connector,
-@@ -939,6 +933,12 @@ static int anx78xx_bridge_attach(struct drm_bridge *bridge,
- 		return err;
- 	}
- 
-+	err = drm_connector_register(&anx78xx->connector);
-+	if (err) {
-+		DRM_ERROR("Failed to register connector: %d\n", err);
-+		return err;
-+	}
-+
+diff --git a/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c b/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c
+index d9164fab044d..8e016ba7c54a 100644
+--- a/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c
++++ b/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c
+@@ -574,6 +574,11 @@ static int anx6345_bridge_attach(struct drm_bridge *bridge,
  	return 0;
  }
  
++static void anx6345_bridge_detach(struct drm_bridge *bridge)
++{
++	drm_dp_aux_unregister(&bridge_to_anx6345(bridge)->aux);
++}
++
+ static enum drm_mode_status
+ anx6345_bridge_mode_valid(struct drm_bridge *bridge,
+ 			  const struct drm_display_info *info,
+@@ -624,6 +629,7 @@ static void anx6345_bridge_enable(struct drm_bridge *bridge)
+ 
+ static const struct drm_bridge_funcs anx6345_bridge_funcs = {
+ 	.attach = anx6345_bridge_attach,
++	.detach = anx6345_bridge_detach,
+ 	.mode_valid = anx6345_bridge_mode_valid,
+ 	.disable = anx6345_bridge_disable,
+ 	.enable = anx6345_bridge_enable,
 -- 
 2.29.2
 
