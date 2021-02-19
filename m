@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 40922C433DB
-	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:54:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F38CDC433E9
+	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:54:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F3DFD64E92
-	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:54:13 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F3DFD64E92
+	by mail.kernel.org (Postfix) with ESMTPS id B5A4464E04
+	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:54:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B5A4464E04
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D2306EC20;
-	Fri, 19 Feb 2021 21:54:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0B8A6EC24;
+	Fri, 19 Feb 2021 21:54:09 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA6B56EC20
- for <nouveau@lists.freedesktop.org>; Fri, 19 Feb 2021 21:54:06 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E29B96EC20
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Feb 2021 21:54:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1613771645;
+ s=mimecast20190719; t=1613771646;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=wY9mEXFe2P3a0UdkWqTDHpIbQAWcFhFpSw+CZuX2ZC4=;
- b=eG1dCADCCoFhC7s1Bh3r0GlfC0zlqFemQ9d+TW+m2s5lF+In8Zgy6RMOKYRLVhVNpj6FIm
- m7uvUb5YB78zNyFpW/BN4O/SozCWZK+g/Ek/TdTUK6NvkqqpnjlTLWhqTR/WkTC7OSWBgs
- kIxEs9X2qFTmIljOn/zD4MvinDL9BIM=
+ bh=xF0OfrnlVmd/DfJPvqmHtCe3vZ4VRsC929jG9IY3Pkw=;
+ b=NBXLJC7gYRb7+Pim1zsi3OLxgq5Q1nilaFXNIYR8tnNtJiOl9MUrzSFpkFtUnkqRC+UsDh
+ UE1QNm95L/ZGehdpcsgkmLrxv4E/GwtYXBKW5+usQORmhxFbP1QB42nm6AOCeTSm4a9V2c
+ K8Zz1JJTTtDV5cH1v/vGTc8rMhnmKdI=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-282-8bqZ_ET2Ouy6p7BA7OKfog-1; Fri, 19 Feb 2021 16:53:57 -0500
-X-MC-Unique: 8bqZ_ET2Ouy6p7BA7OKfog-1
+ us-mta-459-mA2a1WUFNcaPO_UpkM-fRA-1; Fri, 19 Feb 2021 16:54:04 -0500
+X-MC-Unique: mA2a1WUFNcaPO_UpkM-fRA-1
 Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
  [10.5.11.13])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 73A13192FDB0;
- Fri, 19 Feb 2021 21:53:47 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 58DF9107ACE3;
+ Fri, 19 Feb 2021 21:54:01 +0000 (UTC)
 Received: from Whitewolf.redhat.com (ovpn-118-5.rdu2.redhat.com [10.10.118.5])
- by smtp.corp.redhat.com (Postfix) with ESMTP id D9C0C6A03C;
- Fri, 19 Feb 2021 21:53:45 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id A18266A03C;
+ Fri, 19 Feb 2021 21:53:58 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
@@ -54,14 +54,14 @@ To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Thomas Zimmermann <tzimmermann@suse.de>
-Date: Fri, 19 Feb 2021 16:52:58 -0500
-Message-Id: <20210219215326.2227596-3-lyude@redhat.com>
+Date: Fri, 19 Feb 2021 16:53:01 -0500
+Message-Id: <20210219215326.2227596-6-lyude@redhat.com>
 In-Reply-To: <20210219215326.2227596-1-lyude@redhat.com>
 References: <20210219215326.2227596-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-Subject: [Nouveau] [PATCH 02/30] drm/dp: Fixup kernel docs for struct
- drm_dp_aux
+Subject: [Nouveau] [PATCH 05/30] drm/bridge/cdns-mhdp8546: Register DP aux
+ channel with userspace
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,69 +73,66 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Maxime Ripard <mripard@kernel.org>,
- open list <linux-kernel@vger.kernel.org>
+Cc: Jernej Skrabec <jernej.skrabec@siol.net>, Jonas Karlman <jonas@kwiboo.se>,
+ David Airlie <airlied@linux.ie>, Neil Armstrong <narmstrong@baylibre.com>,
+ open list <linux-kernel@vger.kernel.org>, Jyri Sarha <jsarha@ti.com>,
+ Julia Lawall <Julia.Lawall@inria.fr>, Andrzej Hajda <a.hajda@samsung.com>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Swapnil Jakhade <sjakhade@cadence.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-* Make sure that struct members are referred to using @, otherwise they
-  won't be formatted as such
-* Make sure to refer to other struct types using & so they link back to
-  each struct's definition
-* Make sure to precede constant values with % so they're formatted
-  correctly
+Just adds some missing calls to
+drm_dp_aux_register()/drm_dp_aux_unregister() for when we attach/detach the
+bridge.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 ---
- include/drm/drm_dp_helper.h | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-index 2891a98eebc8..b35a1c1339e8 100644
---- a/include/drm/drm_dp_helper.h
-+++ b/include/drm/drm_dp_helper.h
-@@ -1839,28 +1839,28 @@ struct drm_dp_aux_cec {
-  * @crc_count: counter of captured frame CRCs
-  * @transfer: transfers a message representing a single AUX transaction
-  *
-- * The .dev field should be set to a pointer to the device that implements the AUX channel.
-+ * The @dev field should be set to a pointer to the device that implements the AUX channel.
-  *
-- * The .name field may be used to specify the name of the I2C adapter. If set to NULL, dev_name() of
-- * .dev will be used.
-+ * The @name field may be used to specify the name of the I2C adapter. If set to %NULL, dev_name()
-+ * of @dev will be used.
-  *
-  * Drivers provide a hardware-specific implementation of how transactions are executed via the
-- * .transfer() function. A pointer to a drm_dp_aux_msg structure describing the transaction is
-+ * @transfer() function. A pointer to a &drm_dp_aux_msg structure describing the transaction is
-  * passed into this function. Upon success, the implementation should return the number of payload
-  * bytes that were transferred, or a negative error-code on failure. Helpers propagate errors from
-- * the .transfer() function, with the exception of the -EBUSY error, which causes a transaction to
-- * be retried. On a short, helpers will return -EPROTO to make it simpler to check for failure.
-+ * the @transfer() function, with the exception of the %-EBUSY error, which causes a transaction to
-+ * be retried. On a short, helpers will return %-EPROTO to make it simpler to check for failure.
-  *
-  * An AUX channel can also be used to transport I2C messages to a sink. A typical application of
-- * that is to access an EDID that's present in the sink device. The .transfer() function can also be
-+ * that is to access an EDID that's present in the sink device. The @transfer() function can also be
-  * used to execute such transactions. The drm_dp_aux_register() function registers an I2C adapter
-  * that can be passed to drm_probe_ddc(). Upon removal, drivers should call drm_dp_aux_unregister()
-  * to remove the I2C adapter. The I2C adapter uses long transfers by default; if a partial response
-  * is received, the adapter will drop down to the size given by the partial response for this
-  * transaction only.
-  *
-- * Note that the aux helper code assumes that the .transfer() function only modifies the reply field
-- * of the drm_dp_aux_msg structure. The retry logic and i2c helpers assume this is the case.
-+ * Note that the aux helper code assumes that the @transfer() function only modifies the reply field
-+ * of the &drm_dp_aux_msg structure. The retry logic and i2c helpers assume this is the case.
-  */
- struct drm_dp_aux {
- 	const char *name;
+diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
+index 989a05bc8197..d966a33743b5 100644
+--- a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
++++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
+@@ -1674,10 +1674,14 @@ static int cdns_mhdp_attach(struct drm_bridge *bridge,
+ 
+ 	dev_dbg(mhdp->dev, "%s\n", __func__);
+ 
++	ret = drm_dp_aux_register(&mhdp->aux);
++	if (ret < 0)
++		return ret;
++
+ 	if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)) {
+ 		ret = cdns_mhdp_connector_init(mhdp);
+ 		if (ret)
+-			return ret;
++			goto aux_unregister;
+ 	}
+ 
+ 	spin_lock(&mhdp->start_lock);
+@@ -1693,6 +1697,9 @@ static int cdns_mhdp_attach(struct drm_bridge *bridge,
+ 		       mhdp->regs + CDNS_APB_INT_MASK);
+ 
+ 	return 0;
++aux_unregister:
++	drm_dp_aux_unregister(&mhdp->aux);
++	return ret;
+ }
+ 
+ static void cdns_mhdp_configure_video(struct cdns_mhdp_device *mhdp,
+@@ -2025,6 +2032,8 @@ static void cdns_mhdp_detach(struct drm_bridge *bridge)
+ 
+ 	dev_dbg(mhdp->dev, "%s\n", __func__);
+ 
++	drm_dp_aux_unregister(&mhdp->aux);
++
+ 	spin_lock(&mhdp->start_lock);
+ 
+ 	mhdp->bridge_attached = false;
 -- 
 2.29.2
 
