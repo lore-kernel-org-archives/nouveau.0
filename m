@@ -7,71 +7,79 @@ X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A542C433E0
-	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 14:01:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0BEFEC433E0
+	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 16:24:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A7CEA64EC0
-	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 14:01:11 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A7CEA64EC0
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
+	by mail.kernel.org (Postfix) with ESMTPS id 6E8F46148E
+	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 16:24:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6E8F46148E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=cerno.tech
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E74BF6EB3D;
-	Fri, 19 Feb 2021 14:01:10 +0000 (UTC)
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com
- [IPv6:2607:f8b0:4864:20::836])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C426F6EB3B
- for <nouveau@lists.freedesktop.org>; Fri, 19 Feb 2021 14:01:09 +0000 (UTC)
-Received: by mail-qt1-x836.google.com with SMTP id v3so3937739qtw.4
- for <nouveau@lists.freedesktop.org>; Fri, 19 Feb 2021 06:01:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=Uy9+p8EYLZ+2upxXdnXYCqgGljKcN5wTbKwGZwnqinY=;
- b=I5flSyH/gLTP7kfpLHlSgh5tXtA+Jh1EsK+6uIgyy09vUXp0IZUoyofNXle2UG8+9x
- 6bQcZMjTHGSnCjsIADBeVZNPoafr3TSU4gbVUKm8tx7gxct5TAh1oqibAjgx2ny24Qlv
- nA8b7dO5wJoNvKGJUaq5YdpKB1knNz20AuCjHXqPKjX/HXDnk9GUA8KprUxsiW5TqfOU
- 9o+5AHrQgpJl5wOCAeVJMcNlnBgpfbhD2hv2/vQ80bpHkUbm4gdpFUasgTAZI9JejzbF
- hWMAig8ep9wZI5JeASo7p/0n5GOB7qV6LVTspTVmRmVoA3TvIzBilhfwzcUDD73XF8lP
- SRsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=Uy9+p8EYLZ+2upxXdnXYCqgGljKcN5wTbKwGZwnqinY=;
- b=RJzEno2C1Vx14iFqPJhvnmVnYPt/5WJi6C6ikxxC9fLnuuAvAvvM3VXhcZdlJbdogH
- Pmg+i9y+azt7E9BZUTEADTDZBAKoaxPuTcextcqEKkIT/EASoS44gZ+9sk0UL6l5A7Q2
- Pl+coOdFZRqJ4bhxCQ0k9Yf3BEcYNOqkpLzMYaxfCSqy6wt7JYcO4ihcEA2nP3adsU15
- UuuESBr/aHXIe6xbyVROpEb23Z+Y6M1sHddwzN4eyg9kx//ChaeZMMV+eamjJA3I6xir
- G085VFPEJyICgkF+BHmGpD1qVNdbED4VM3kCfs21gm+aMZiFc3RFMMgXIoJ0qqWqW+6E
- jVbQ==
-X-Gm-Message-State: AOAM532+wE7KM7SiX0k6LCjMnZ3nTSuTLr4MIkx4wxGxzZB5D5GmkpuM
- 2xigheXuVYDLoH02mIffBRjOWg==
-X-Google-Smtp-Source: ABdhPJwvDnWgEME/UBp5mpDqS0tmSE99XXBjYe+mDgcmjGaB5orYQxdcs7Ze95f3nVqD5XVW9Zc5qg==
-X-Received: by 2002:a05:622a:306:: with SMTP id
- q6mr8969998qtw.15.1613743266418; 
- Fri, 19 Feb 2021 06:01:06 -0800 (PST)
-Received: from ziepe.ca
- (hlfxns017vw-142-162-115-133.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.162.115.133])
- by smtp.gmail.com with ESMTPSA id 14sm5338161qtx.84.2021.02.19.06.01.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 19 Feb 2021 06:01:05 -0800 (PST)
-Received: from jgg by mlx with local (Exim 4.94) (envelope-from <jgg@ziepe.ca>)
- id 1lD6LB-00CPnQ-2t; Fri, 19 Feb 2021 10:01:05 -0400
-Date: Fri, 19 Feb 2021 10:01:05 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Christoph Hellwig <hch@infradead.org>
-Message-ID: <20210219140105.GE2643399@ziepe.ca>
-References: <20210219020750.16444-1-apopple@nvidia.com>
- <20210219020750.16444-2-apopple@nvidia.com>
- <20210219094741.GA641389@infradead.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB5F56E029;
+	Fri, 19 Feb 2021 16:24:45 +0000 (UTC)
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6695B6EB52;
+ Fri, 19 Feb 2021 15:12:45 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id AD8085801DB;
+ Fri, 19 Feb 2021 10:12:42 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute6.internal (MEProxy); Fri, 19 Feb 2021 10:12:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm2; bh=Emd+iGXCpjhCIuGJ6kINzMtdOjP
+ Vb1dtj8cLvd3w9uQ=; b=NGfSf1xCTv59Q/62lzFrQUe3OfzHicY7PdlXFseZ+fo
+ CXaps5k96MCo/y6dXa/ePCUiVr/+yd+bY0z6zZBYrTTK2YzzxM1J8iqD3y6W62cZ
+ rXBdZ7f2+aX04uHfX4St/hRD2mvVDoQ+/wu5mb+Q5x907WZ9caEJ8KHfdT1nr2yD
+ JLP64gaaabo7m5fSkBVWV9SDIr/uh0mJgEZZlhBIJuPlE67fksWmT4qsGXSXnPqG
+ CKVo2kTnbLrkMB9P1EmlLJdgH0orL2bJxv6jphPeJpe+zESq+2OJKnDQBxs0UL06
+ x/1RFeKzSAsBixLgniCd+pZnvp+IstVDQldHmokucVA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=Emd+iG
+ XCpjhCIuGJ6kINzMtdOjPVb1dtj8cLvd3w9uQ=; b=XHY4s+8UfwXqR/mdORv9Po
+ /1XBss0CQ+zb9weVPOMHgXllan4j3WpFbVV45/9KrKa8MoIeEvYETWxoJEslqrHX
+ dgZiBw3LQr6qqQlGIBwp1fvzIM7wmsmSMRJPN7pcx26eaJLu1vWzJASxkht3qzL3
+ 37VmmRlkN0y8eQqZLlN/zwcOCVJd/dAR7AO7Ow7IidsN98Kpbi2SAccAvvgtzrBA
+ EiUnoHogcZxTVCcrP0XuoyWqE6afFOSiKBq5jnT866hfWHZ0ogtOVppzLv3xFa4D
+ ZcfX/iJsRv2yUob032ohIQetrwvo9hbKn/V9+26kTFBw827c/q1tZPTIXDWIjtdw
+ ==
+X-ME-Sender: <xms:ZtUvYBx0bbDfFxXAdIHbkwjyvuzqdT-sP0wW9H9sCZbunWFhSVeH5A>
+ <xme:ZtUvYBS0sQ6QEVz6WG3a70zRD-4BgpSmOJyrrc2EtwoHD16lfAP7faThFVF-v5MpL
+ QCvAHvC0jqlMXPKtqg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrjeeigdejfecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+ ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+ gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+ udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+ grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:ZtUvYLX8QzsLvkGEKzfhD1XAcBYkntU7dfwxve0WGgWt7bV-3lf-DA>
+ <xmx:ZtUvYDijvIJAeW3OBrs-WZlrOHqA6KeHcimnKMIktl8ihFDtqDEDKg>
+ <xmx:ZtUvYDCT2WhDglx11hvthCAHwH62SLuW3JZFEW_w4IwkPoV0cR1NIA>
+ <xmx:atUvYNrOPVJ5tO9BLZs9QptUd2msh0xMIaKSYRV9WMfTEsqgsuaOXQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ by mail.messagingengine.com (Postfix) with ESMTPA id C72DF1080057;
+ Fri, 19 Feb 2021 10:12:37 -0500 (EST)
+Date: Fri, 19 Feb 2021 16:12:35 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20210219151235.dsv4mujqyrzndhsn@gilmour>
+References: <20210219120032.260676-1-maxime@cerno.tech>
+ <20210219120032.260676-2-maxime@cerno.tech>
+ <51bb5aaf-f771-020b-9a48-77d8679de6a2@suse.de>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210219094741.GA641389@infradead.org>
-Subject: Re: [Nouveau] [PATCH v2 1/4] hmm: Device exclusive memory access
+In-Reply-To: <51bb5aaf-f771-020b-9a48-77d8679de6a2@suse.de>
+X-Mailman-Approved-At: Fri, 19 Feb 2021 16:24:45 +0000
+Subject: Re: [Nouveau] [PATCH v3 02/11] drm: Rename plane atomic_check state
+ names
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,39 +91,134 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcampbell@nvidia.com, linux-doc@vger.kernel.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org,
- kvm-ppc@vger.kernel.org, linux-mm@kvack.org, bskeggs@redhat.com,
- daniel@ffwll.ch, akpm@linux-foundation.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Xinliang Liu <xinliang.liu@linaro.org>, dri-devel@lists.freedesktop.org,
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+ linux-stm32@st-md-mailman.stormreply.com, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-samsung-soc@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
+ Michal Simek <michal.simek@xilinx.com>, NXP Linux Team <linux-imx@nxp.com>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Leo Li <sunpeng.li@amd.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Roland Scheidegger <sroland@vmware.com>, Inki Dae <inki.dae@samsung.com>,
+ Sean Paul <sean@poorly.run>, Hyun Kwon <hyun.kwon@xilinx.com>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, linux-kernel@vger.kernel.org,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
+ Zack Rusin <zackr@vmware.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ Edmund Dea <edmund.j.dea@intel.com>, virtualization@lists.linux-foundation.org,
+ Eric Anholt <eric@anholt.net>, Thierry Reding <thierry.reding@gmail.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Mihail Atanassov <mihail.atanassov@arm.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, linux-rockchip@lists.infradead.org,
+ "James \(Qian\) Wang" <james.qian.wang@arm.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>,
+ Alexandre Torgue <alexandre.torgue@st.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-arm-msm@vger.kernel.org, John Stultz <john.stultz@linaro.org>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>, Yannick Fertre <yannick.fertre@st.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Brian Starkey <brian.starkey@arm.com>,
+ Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Stefan Agner <stefan@agner.ch>,
+ Melissa Wen <melissa.srw@gmail.com>, linux-tegra@vger.kernel.org,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Fabio Estevam <festevam@gmail.com>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>, amd-gfx@lists.freedesktop.org,
+ Chen-Yu Tsai <wens@csie.org>, Harry Wentland <harry.wentland@amd.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, Chen Feng <puck.chen@hisilicon.com>,
+ Alison Wang <alison.wang@nxp.com>, spice-devel@lists.freedesktop.org,
+ Tomi Valkeinen <tomba@kernel.org>, Philippe Cornu <philippe.cornu@st.com>,
+ Vincent Abriou <vincent.abriou@st.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Tian Tao <tiantao6@hisilicon.com>, Shawn Guo <shawnguo@kernel.org>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Paul Cercueil <paul@crapouillou.net>,
+ linux-renesas-soc@vger.kernel.org, Joonyoung Shim <jy0922.shim@samsung.com>,
+ Russell King <linux@armlinux.org.uk>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ linux-mediatek@lists.infradead.org,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Jernej Skrabec <jernej.skrabec@siol.net>, linux-mips@vger.kernel.org,
+ Rob Clark <robdclark@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Jyri Sarha <jyri.sarha@iki.fi>, Lucas Stach <l.stach@pengutronix.de>
+Content-Type: multipart/mixed; boundary="===============0525456083=="
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Feb 19, 2021 at 09:47:41AM +0000, Christoph Hellwig wrote:
 
-> > diff --git a/include/linux/hmm.h b/include/linux/hmm.h
-> > index 866a0fa104c4..5d28ff6d4d80 100644
-> > +++ b/include/linux/hmm.h
-> > @@ -109,6 +109,10 @@ struct hmm_range {
-> >   */
-> >  int hmm_range_fault(struct hmm_range *range);
-> >  
-> > +int hmm_exclusive_range(struct mm_struct *mm, unsigned long start,
-> > +			unsigned long end, struct page **pages);
-> > +vm_fault_t hmm_remove_exclusive_entry(struct vm_fault *vmf);
-> 
-> Can we avoid the hmm naming for new code (we should probably also kill
-> it off for the existing code)?
+--===============0525456083==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="x6inkztb7pnxs2gu"
+Content-Disposition: inline
 
-Yes please, I'd prefer it if hmm.c was just the special page walker
-and not a grab bag of unrelated things
 
-Is there is a more natural place to put this in the mm for this idea?
+--x6inkztb7pnxs2gu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Jason
+Hi Thomas,
+
+Thanks for your review!
+
+On Fri, Feb 19, 2021 at 03:49:22PM +0100, Thomas Zimmermann wrote:
+> > diff --git a/drivers/gpu/drm/imx/ipuv3-plane.c b/drivers/gpu/drm/imx/ip=
+uv3-plane.c
+> > index 075508051b5f..1873a155bb26 100644
+> > --- a/drivers/gpu/drm/imx/ipuv3-plane.c
+> > +++ b/drivers/gpu/drm/imx/ipuv3-plane.c
+> > @@ -337,12 +337,12 @@ static const struct drm_plane_funcs ipu_plane_fun=
+cs =3D {
+> >   };
+> >   static int ipu_plane_atomic_check(struct drm_plane *plane,
+> > -				  struct drm_plane_state *state)
+> > +				  struct drm_plane_state *new_state)
+>=20
+> This function uses a different naming convention then the others?
+>=20
+> >   {
+> >   	struct drm_plane_state *old_state =3D plane->state;
+
+So, the function already had a variable named old_state, so I was
+actually trying to make the drivers consistent here: having one variable
+with old_state and new_plane_state felt weird.
+
+The heuristic is thus to use the convention of the driver if one exists
+already, and if there's none pick new_plane_state.
+
+It makes it indeed inconsistent across drivers, but it felt more natural
+to be consistent within a single driver.
+
+Maxime
+
+--x6inkztb7pnxs2gu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYC/VYwAKCRDj7w1vZxhR
+xXb7AP9dLYZ0ol4FnTyS9ndvGPPXpijdNPtrfZDs40BKL//eEgEA8HMiYKjgufNK
+Zn4QIsaErGpt9UM9/IC6ZwJ7lvoIrQ0=
+=ygPX
+-----END PGP SIGNATURE-----
+
+--x6inkztb7pnxs2gu--
+
+--===============0525456083==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0525456083==--
