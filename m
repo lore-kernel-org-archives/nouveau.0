@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9DA95C433E0
-	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:55:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E7A47C433E6
+	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:55:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 640F364EAF
-	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:55:41 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 640F364EAF
+	by mail.kernel.org (Postfix) with ESMTPS id AC7AC64E24
+	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:55:44 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AC7AC64E24
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C0FB6EC78;
-	Fri, 19 Feb 2021 21:55:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86CD16EC76;
+	Fri, 19 Feb 2021 21:55:43 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 389B56EC76
- for <nouveau@lists.freedesktop.org>; Fri, 19 Feb 2021 21:55:36 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [63.128.21.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B8936EC79
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Feb 2021 21:55:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1613771735;
+ s=mimecast20190719; t=1613771738;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=yqrvg6oBBIK95MSB53UzOrhjDOM9evvbR5uL/I7AFzg=;
- b=Ko2SBM/v1oVKgrhhmJLJVO9Yla4agKUBFhMLh6h9O/ojxLcQd18ZU1Lg3EmZ/KTRj3AC0K
- bldixDE1lhWocQ7W+oAxih6iJbBnlWPuwXn9UpNfi/xtl1GGAXF/bYp2tBin5eCKlKyxt3
- HUWAC8vj2X/v+gbL9VKoijxtOoXGJr8=
+ bh=VanAr9IikXvo1QXn0bS7FQeNcKJkC1BpFFxJRb4FiJk=;
+ b=RvyPW7/GYg/P+9Z54G/Lp00RapBRqNQ7sI+Sg1JtB9hmWvLyjGKr03/PXgUw5jVA9eHW3R
+ ukZX7RyhYKod9RAeWsjyt9Kj5hVZTjhv9qpzQee/NM9KhBCBo3wzc06xqOhQrtN/zgADVV
+ K5qdbwt7M25woIrwDmnU6aCwCFzcBa4=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-22-kCi7ec4_OfiPnys6rI3Mtg-1; Fri, 19 Feb 2021 16:54:16 -0500
-X-MC-Unique: kCi7ec4_OfiPnys6rI3Mtg-1
+ us-mta-204-b3D0yHiyN_Co8irQXP8qhw-1; Fri, 19 Feb 2021 16:55:34 -0500
+X-MC-Unique: b3D0yHiyN_Co8irQXP8qhw-1
 Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
  [10.5.11.13])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id D3B1DDF8DD;
- Fri, 19 Feb 2021 21:54:13 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id F314BEC1A0;
+ Fri, 19 Feb 2021 21:55:30 +0000 (UTC)
 Received: from Whitewolf.redhat.com (ovpn-118-5.rdu2.redhat.com [10.10.118.5])
- by smtp.corp.redhat.com (Postfix) with ESMTP id C030D6A03C;
- Fri, 19 Feb 2021 21:54:11 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 01A2E6A03C;
+ Fri, 19 Feb 2021 21:55:27 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
@@ -54,14 +54,14 @@ To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Thomas Zimmermann <tzimmermann@suse.de>
-Date: Fri, 19 Feb 2021 16:53:05 -0500
-Message-Id: <20210219215326.2227596-10-lyude@redhat.com>
+Date: Fri, 19 Feb 2021 16:53:18 -0500
+Message-Id: <20210219215326.2227596-23-lyude@redhat.com>
 In-Reply-To: <20210219215326.2227596-1-lyude@redhat.com>
 References: <20210219215326.2227596-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-Subject: [Nouveau] [PATCH 09/30] drm/bridge/analogix/anx78xx: Cleanup on
- error in anx78xx_bridge_attach()
+Subject: [Nouveau] [PATCH 22/30] drm/dp_dual_mode: Pass drm_device to
+ drm_dp_dual_mode_detect()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,66 +73,116 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jernej Skrabec <jernej.skrabec@siol.net>, Jonas Karlman <jonas@kwiboo.se>,
- David Airlie <airlied@linux.ie>, Tomi Valkeinen <tomi.valkeinen@ti.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- open list <linux-kernel@vger.kernel.org>, Andrzej Hajda <a.hajda@samsung.com>,
- Boris Brezillon <boris.brezillon@collabora.com>, Torsten Duwe <duwe@lst.de>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Daniel Vetter <daniel@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, David Airlie <airlied@linux.ie>,
+ Ramalingam C <ramalingam.c@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ open list <linux-kernel@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Uma Shankar <uma.shankar@intel.com>,
+ Sean Paul <seanpaul@chromium.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Anshuman Gupta <anshuman.gupta@intel.com>,
+ Kai-Heng Feng <kai.heng.feng@canonical.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Just another issue I noticed while correcting usages of
-drm_dp_aux_init()/drm_dp_aux_register() around the tree. If any of the
-steps in anx78xx_bridge_attach() fail, we end up leaking resources. So,
-let's fix that (and fix leaking a DP AUX adapter in the process) by
-unrolling on errors.
+Since we're about to be using drm_dbg_*() throughout the DP helpers, we'll
+need to be able to access the DRM device in the dual mode DP helpers as
+well. Note however that since drm_dp_dual_mode_detect() can be called with
+DDC adapters that aren't part of a drm_dp_aux struct, we need to pass down
+the drm_device to these functions instead of using drm_dp_aux.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 ---
- drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/drm_dp_dual_mode_helper.c   | 4 +++-
+ drivers/gpu/drm/i915/display/intel_hdmi.c   | 2 +-
+ drivers/gpu/drm/i915/display/intel_lspcon.c | 5 +++--
+ include/drm/drm_dp_dual_mode_helper.h       | 4 +++-
+ 4 files changed, 10 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c b/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
-index 338dd8531d4b..f20558618220 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
-+++ b/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
-@@ -918,7 +918,7 @@ static int anx78xx_bridge_attach(struct drm_bridge *bridge,
- 				 DRM_MODE_CONNECTOR_DisplayPort);
- 	if (err) {
- 		DRM_ERROR("Failed to initialize connector: %d\n", err);
--		return err;
-+		goto aux_unregister;
+diff --git a/drivers/gpu/drm/drm_dp_dual_mode_helper.c b/drivers/gpu/drm/drm_dp_dual_mode_helper.c
+index 1c9ea9f7fdaf..9ee75c568c37 100644
+--- a/drivers/gpu/drm/drm_dp_dual_mode_helper.c
++++ b/drivers/gpu/drm/drm_dp_dual_mode_helper.c
+@@ -165,6 +165,7 @@ static bool is_lspcon_adaptor(const char hdmi_id[DP_DUAL_MODE_HDMI_ID_LEN],
+ 
+ /**
+  * drm_dp_dual_mode_detect - Identify the DP dual mode adaptor
++ * @dev: &drm_device to use
+  * @adapter: I2C adapter for the DDC bus
+  *
+  * Attempt to identify the type of the DP dual mode adaptor used.
+@@ -178,7 +179,8 @@ static bool is_lspcon_adaptor(const char hdmi_id[DP_DUAL_MODE_HDMI_ID_LEN],
+  * Returns:
+  * The type of the DP dual mode adaptor used
+  */
+-enum drm_dp_dual_mode_type drm_dp_dual_mode_detect(struct i2c_adapter *adapter)
++enum drm_dp_dual_mode_type drm_dp_dual_mode_detect(const struct drm_device *dev,
++						   struct i2c_adapter *adapter)
+ {
+ 	char hdmi_id[DP_DUAL_MODE_HDMI_ID_LEN] = {};
+ 	uint8_t adaptor_id = 0x00;
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 7f384f259fc8..52d99fec2435 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2606,7 +2606,7 @@ intel_hdmi_dp_dual_mode_detect(struct drm_connector *connector, bool has_edid)
+ 	enum port port = hdmi_to_dig_port(hdmi)->base.port;
+ 	struct i2c_adapter *adapter =
+ 		intel_gmbus_get_adapter(dev_priv, hdmi->ddc_bus);
+-	enum drm_dp_dual_mode_type type = drm_dp_dual_mode_detect(adapter);
++	enum drm_dp_dual_mode_type type = drm_dp_dual_mode_detect(&dev_priv->drm, adapter);
+ 
+ 	/*
+ 	 * Type 1 DVI adaptors are not required to implement any
+diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
+index e4ff533e3a69..ca25044e7d1b 100644
+--- a/drivers/gpu/drm/i915/display/intel_lspcon.c
++++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+@@ -221,7 +221,8 @@ static bool lspcon_probe(struct intel_lspcon *lspcon)
+ {
+ 	int retry;
+ 	enum drm_dp_dual_mode_type adaptor_type;
+-	struct i2c_adapter *adapter = &lspcon_to_intel_dp(lspcon)->aux.ddc;
++	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
++	struct i2c_adapter *adapter = &intel_dp->aux.ddc;
+ 	enum drm_lspcon_mode expected_mode;
+ 
+ 	expected_mode = lspcon_wake_native_aux_ch(lspcon) ?
+@@ -232,7 +233,7 @@ static bool lspcon_probe(struct intel_lspcon *lspcon)
+ 		if (retry)
+ 			usleep_range(500, 1000);
+ 
+-		adaptor_type = drm_dp_dual_mode_detect(adapter);
++		adaptor_type = drm_dp_dual_mode_detect(intel_dp->aux.drm_dev, adapter);
+ 		if (adaptor_type == DRM_DP_DUAL_MODE_LSPCON)
+ 			break;
  	}
+diff --git a/include/drm/drm_dp_dual_mode_helper.h b/include/drm/drm_dp_dual_mode_helper.h
+index 4c42db81fcb4..23ce849152f3 100644
+--- a/include/drm/drm_dp_dual_mode_helper.h
++++ b/include/drm/drm_dp_dual_mode_helper.h
+@@ -62,6 +62,7 @@
+ #define DP_DUAL_MODE_LSPCON_CURRENT_MODE		0x41
+ #define  DP_DUAL_MODE_LSPCON_MODE_PCON			0x1
  
- 	drm_connector_helper_add(&anx78xx->connector,
-@@ -930,16 +930,21 @@ static int anx78xx_bridge_attach(struct drm_bridge *bridge,
- 					   bridge->encoder);
- 	if (err) {
- 		DRM_ERROR("Failed to link up connector to encoder: %d\n", err);
--		return err;
-+		goto connector_cleanup;
- 	}
++struct drm_device;
+ struct i2c_adapter;
  
- 	err = drm_connector_register(&anx78xx->connector);
- 	if (err) {
- 		DRM_ERROR("Failed to register connector: %d\n", err);
--		return err;
-+		goto connector_cleanup;
- 	}
+ ssize_t drm_dp_dual_mode_read(struct i2c_adapter *adapter,
+@@ -103,7 +104,8 @@ enum drm_dp_dual_mode_type {
+ 	DRM_DP_DUAL_MODE_LSPCON,
+ };
  
- 	return 0;
-+connector_cleanup:
-+	drm_connector_cleanup(&anx78xx->connector);
-+aux_unregister:
-+	drm_dp_aux_unregister(&anx78xx->aux);
-+	return err;
- }
- 
- static void anx78xx_bridge_detach(struct drm_bridge *bridge)
+-enum drm_dp_dual_mode_type drm_dp_dual_mode_detect(struct i2c_adapter *adapter);
++enum drm_dp_dual_mode_type
++drm_dp_dual_mode_detect(const struct drm_device *dev, struct i2c_adapter *adapter);
+ int drm_dp_dual_mode_max_tmds_clock(enum drm_dp_dual_mode_type type,
+ 				    struct i2c_adapter *adapter);
+ int drm_dp_dual_mode_get_tmds_output(enum drm_dp_dual_mode_type type,
 -- 
 2.29.2
 
