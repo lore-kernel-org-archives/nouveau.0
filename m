@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 03A6CC433E6
-	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:54:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E7B1DC433DB
+	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:55:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BF9BC64E04
-	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:54:56 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BF9BC64E04
+	by mail.kernel.org (Postfix) with ESMTPS id AF05A64E04
+	for <nouveau@archiver.kernel.org>; Fri, 19 Feb 2021 21:55:10 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AF05A64E04
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D8B56EC50;
-	Fri, 19 Feb 2021 21:54:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C1206EC65;
+	Fri, 19 Feb 2021 21:55:07 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 635F36EC55
- for <nouveau@lists.freedesktop.org>; Fri, 19 Feb 2021 21:54:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6076A6EC55
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Feb 2021 21:55:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1613771676;
+ s=mimecast20190719; t=1613771702;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=Lp97bbpuHF0OtKFvsnPQsh62C194AqCF9Iuj4no3Kbo=;
- b=AdnMWDhSZ7oy9zQNHPG2brltYdqEHMWxzxTklSqLZXJRssXhPdy8cA4wMFjf8T+NogWTDl
- 8r/Ag6YkSLwV8zjsQRm8geQNjjcENQo6Rkt5zO/qwnfSh/s3fsddYgQG+pi5H8YiS/ATvG
- uJkSf4z0x4DIezjrrGF+NwUJTaBvemo=
+ bh=DW+iB7cPyvTS+W1v3rgVH6HcGBRdmo2WikAbUw64DdY=;
+ b=cfzUYFkX/XVeq1+35IH5ZDn0p7dqMFO7XrSawyZScM/aunPOatsHZM1x5PaA8zf240iUea
+ Zchnn8vSgxAB+RF7kLpu3tZ2aeNvLbyg9R+1y6RFh18krvPsWw4C5GP7vDefTCa3QICYM6
+ 3vtcdp+PBh2DZzPHEEh8pzG6dvaLP7Y=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-366-uc_FIwlOMbWbTOVfj4gBBQ-1; Fri, 19 Feb 2021 16:54:32 -0500
-X-MC-Unique: uc_FIwlOMbWbTOVfj4gBBQ-1
+ us-mta-298-UAMbAVtgONG0oVJoALt_oQ-1; Fri, 19 Feb 2021 16:55:01 -0500
+X-MC-Unique: UAMbAVtgONG0oVJoALt_oQ-1
 Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
  [10.5.11.13])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 8DA69EC1A4;
- Fri, 19 Feb 2021 21:54:28 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 30AFE18A08C0;
+ Fri, 19 Feb 2021 21:54:59 +0000 (UTC)
 Received: from Whitewolf.redhat.com (ovpn-118-5.rdu2.redhat.com [10.10.118.5])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 2C64E6A03C;
- Fri, 19 Feb 2021 21:54:26 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id B6BE46A03C;
+ Fri, 19 Feb 2021 21:54:57 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
@@ -54,14 +54,13 @@ To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Thomas Zimmermann <tzimmermann@suse.de>
-Date: Fri, 19 Feb 2021 16:53:09 -0500
-Message-Id: <20210219215326.2227596-14-lyude@redhat.com>
+Date: Fri, 19 Feb 2021 16:53:14 -0500
+Message-Id: <20210219215326.2227596-19-lyude@redhat.com>
 In-Reply-To: <20210219215326.2227596-1-lyude@redhat.com>
 References: <20210219215326.2227596-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-Subject: [Nouveau] [PATCH 13/30] drm/bridge/analogix/dp_core: Unregister DP
- AUX channel on error in analogix_dp_probe()
+Subject: [Nouveau] [PATCH 18/30] drm/print: Fixup DRM_DEBUG_KMS_RATELIMITED()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,40 +72,70 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jernej Skrabec <jernej.skrabec@siol.net>, Jonas Karlman <jonas@kwiboo.se>,
- David Airlie <airlied@linux.ie>, Neil Armstrong <narmstrong@baylibre.com>,
- open list <linux-kernel@vger.kernel.org>, Andrzej Hajda <a.hajda@samsung.com>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Daniel Vetter <daniel@ffwll.ch>, Joe Perches <joe@perches.com>,
- Andy Yan <andy.yan@rock-chips.com>, Sam Ravnborg <sam@ravnborg.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Maxime Ripard <mripard@kernel.org>,
+ open list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Just another drive-by fix I noticed while going through the tree to cleanup
-DP aux adapter registration - make sure we unregister the DP AUX dev if
-analogix_dp_probe() fails.
+Since we're about to move drm_dp_helper.c over to drm_dbg_*(), we'll want
+to make sure that we can also add ratelimited versions of these macros in
+order to retain some of the previous debugging output behavior we had.
+
+However, as I was preparing to do this I noticed that the current
+rate limited macros we have are kind of bogus. It looks like when I wrote
+these, I didn't notice that we'd always be calling __ratelimit() even if
+the debugging message we'd be printing would normally be filtered out due
+to the relevant DRM debugging category being disabled.
+
+So, let's fix this by making sure to check drm_debug_enabled() in our
+ratelimited macros before calling __ratelimit(), and start using
+drm_dev_printk() in order to print debugging messages since that will save
+us from doing a redundant drm_debug_enabled() check. And while we're at it,
+let's move the code for this into another macro that we can reuse for
+defining new ratelimited DRM debug macros more easily.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 ---
- drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 1 +
- 1 file changed, 1 insertion(+)
+ include/drm/drm_print.h | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-index aa1bb86293fd..f115233b1cb9 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-+++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-@@ -1782,6 +1782,7 @@ int analogix_dp_bind(struct analogix_dp_device *dp, struct drm_device *drm_dev)
+diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+index f32d179e139d..3a0c3fe4d292 100644
+--- a/include/drm/drm_print.h
++++ b/include/drm/drm_print.h
+@@ -524,16 +524,20 @@ void __drm_err(const char *format, ...);
+ #define DRM_DEBUG_DP(fmt, ...)						\
+ 	__drm_dbg(DRM_UT_DP, fmt, ## __VA_ARGS__)
  
- err_disable_pm_runtime:
- 	pm_runtime_disable(dp->dev);
-+	drm_dp_aux_unregister(&dp->aux);
+-
+-#define DRM_DEBUG_KMS_RATELIMITED(fmt, ...)				\
+-({									\
+-	static DEFINE_RATELIMIT_STATE(_rs,				\
+-				      DEFAULT_RATELIMIT_INTERVAL,       \
+-				      DEFAULT_RATELIMIT_BURST);         \
+-	if (__ratelimit(&_rs))						\
+-		drm_dev_dbg(NULL, DRM_UT_KMS, fmt, ##__VA_ARGS__);	\
++#define __DRM_DEFINE_DBG_RATELIMITED(category, drm, fmt, ...)                                    \
++({                                                                                               \
++	static DEFINE_RATELIMIT_STATE(rs_, DEFAULT_RATELIMIT_INTERVAL, DEFAULT_RATELIMIT_BURST); \
++	const struct drm_device *drm_ = (drm);                                                   \
++                                                                                                 \
++	if (drm_debug_enabled(DRM_UT_ ## category) && __ratelimit(&rs_))                         \
++		drm_dev_printk(drm_ ? drm_->dev : NULL, KERN_DEBUG, fmt, ## __VA_ARGS__);        \
+ })
  
- 	return ret;
- }
++#define drm_dbg_kms_ratelimited(drm, fmt, ...) \
++	__DRM_DEFINE_DBG_RATELIMITED(KMS, drm, fmt, ## __VA_ARGS__)
++
++#define DRM_DEBUG_KMS_RATELIMITED(fmt, ...) drm_dbg_kms_ratelimited(NULL, fmt, ## __VA_ARGS__)
++
+ /*
+  * struct drm_device based WARNs
+  *
 -- 
 2.29.2
 
