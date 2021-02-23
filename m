@@ -2,68 +2,68 @@ Return-Path: <SRS0=SzRu=HZ=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.7 required=3.0 tests=BAYES_00,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 00D3AC433E0
-	for <nouveau@archiver.kernel.org>; Tue, 23 Feb 2021 17:01:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DEE1CC433E6
+	for <nouveau@archiver.kernel.org>; Tue, 23 Feb 2021 17:01:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B839564E83
-	for <nouveau@archiver.kernel.org>; Tue, 23 Feb 2021 17:01:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B839564E83
+	by mail.kernel.org (Postfix) with ESMTPS id A3C0264E7C
+	for <nouveau@archiver.kernel.org>; Tue, 23 Feb 2021 17:01:49 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A3C0264E7C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=cetitec.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1664B6E98D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A73946EA0C;
 	Tue, 23 Feb 2021 17:01:45 +0000 (UTC)
-X-Greylist: delayed 548 seconds by postgrey-1.36 at gabe;
- Tue, 23 Feb 2021 15:45:55 UTC
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 895AF6E9C4;
- Tue, 23 Feb 2021 15:45:55 +0000 (UTC)
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05A6B6E83A;
+ Tue, 23 Feb 2021 16:23:05 +0000 (UTC)
 Received: from mail.cetitecgmbh.com ([87.190.42.90]) by
  mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1M5gAG-1lCxBL1zPW-007Dru; Tue, 23 Feb 2021 16:36:33 +0100
+ id 1N4h7p-1lvvos45KR-011img; Tue, 23 Feb 2021 17:22:50 +0100
 Received: from pflvmailgateway.corp.cetitec.com (unknown [127.0.0.1])
- by mail.cetitecgmbh.com (Postfix) with ESMTP id 92CFB1E01E7;
- Tue, 23 Feb 2021 15:36:32 +0000 (UTC)
+ by mail.cetitecgmbh.com (Postfix) with ESMTP id BE0EC1E01E7;
+ Tue, 23 Feb 2021 16:22:48 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at cetitec.com
 Received: from mail.cetitecgmbh.com ([127.0.0.1])
  by pflvmailgateway.corp.cetitec.com (pflvmailgateway.corp.cetitec.com
  [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id blSB3nUsz-cE; Tue, 23 Feb 2021 16:36:32 +0100 (CET)
+ with ESMTP id AmtucNZYzPf5; Tue, 23 Feb 2021 17:22:48 +0100 (CET)
 Received: from pflmari.corp.cetitec.com (2-usr-pf-main.vpn.it.cetitec.com
  [10.8.5.2])
- by mail.cetitecgmbh.com (Postfix) with ESMTPSA id 3F9B51E01E6;
- Tue, 23 Feb 2021 16:36:32 +0100 (CET)
+ by mail.cetitecgmbh.com (Postfix) with ESMTPSA id 7C2AB1E01E6;
+ Tue, 23 Feb 2021 17:22:48 +0100 (CET)
 Received: by pflmari.corp.cetitec.com (Postfix, from local account)
-Date: Tue, 23 Feb 2021 16:36:31 +0100
+Date: Tue, 23 Feb 2021 17:22:48 +0100
 From: Alex Riesen <alexander.riesen@cetitec.com>
 To: Ilia Mirkin <imirkin@alum.mit.edu>
-Message-ID: <YDUg/9fjsvTkRUqr@pflmari>
+Message-ID: <YDUr2OGDsxDyC0l2@pflmari>
 References: <20210119015415.2511028-1-lyude@redhat.com>
  <20210119015415.2511028-2-lyude@redhat.com>
  <YDUN+Re/alMVL0Zn@pflmari>
  <CAKb7UvhFkw23so-a4JKLzpQLhphzjzarOy-9h+FiKP-aAC=4xw@mail.gmail.com>
+ <YDUg/9fjsvTkRUqr@pflmari>
+ <CAKb7Uvji_+N+b8HghZckU-uSBWn-=BZwNAiUff2oitbVuNUE2Q@mail.gmail.com>
+ <YDUkfjDA4xLJlxE5@pflmari>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <CAKb7UvhFkw23so-a4JKLzpQLhphzjzarOy-9h+FiKP-aAC=4xw@mail.gmail.com>
-X-Provags-ID: V03:K1:lLfiHh+wAU5dx6w2wtMoChBxn+RUn1NPTqMejn0E5YxvkGIR5C7
- T/ocA7y4+SV4umv5AYaWXbtoiI04JxTxRQyXnS5A5TN+Ey+EqY1H5nL19RGjrJyFGdRBynt
- bKPDnBpiqfV282AW5wOnWm26A0+NwhDq/puB793Ygpd0zuN+qZgQxfnFLwTF5ddKAFMP8w1
- apOtnKnNM1j+zfAPQW+Bw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:Bv5rWH9T7NQ=:R4YKxD1vUCvKsLHSpatmlM
- 5RYVodJf6RNTarfWPc/mI0t6joh6TYTng9UhC4DvB8brSsXW+NR06UM3Ni+HedW/gm21Ew/jF
- lCZ9xF1QfkX2Hb4e0BNLImD3mJ5brLM4LEhXSZEkzA5dnlzGLS8kqJC/Fnv34cTJAatnB9Eed
- vwQo3VlYefm+ff556yHV0H8cUnVsY1ovENYG3DSdlPFsiUG7+ZufKJjcioEKTxIZKj5L6wYLl
- kiU1v2jQUvJg9iAUl790zcDLZfP35GtCOGWSDssMM1Uu7UtyZkqLBapm42B8HUZd8JePUy4aN
- w9Iu9sNcBcljpduvtQzA04aZBxC7Bx77FM+7xPT3fJ0ieT+SMsRxVCjswEvv4KzCJGFfU6Y5N
- 2SQKJfcsDeDEDrACB5pOfn9S2ivX4T2DB0GZzMOMUsJOqfc7+WyehoUBLOyugbPqodcZ3OIaK
- pvXV5zxPlg==
+In-Reply-To: <YDUkfjDA4xLJlxE5@pflmari>
+X-Provags-ID: V03:K1:uxJfi3ydTk8ysbucSUV4XAHzr1MDK4K2Qpb1RjV23QE0dhbIwRa
+ CoMudbULWew6HpAnY88BtTMf9aYScxJ/i21uWliY42ZIh9MQge9AJtKi4L3bixZruomkmGV
+ o8DfWXw6AmzXny984pg2X3QVHXQu5WwVLAfmdj5jba2ozgNTg4vw5D3TzcWy6++m56G63C+
+ VLD/cG3Jj+DrqseRsOuIQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:NJUyY+qoh3U=:Oe5YbRyAdC5zUDEi1EEocZ
+ /efMtL2j7n63uwuzI8AgdB3e7aNtq3OEBHsJOlW3q4/5sY49G8GgwNuoGIwNaAYa/4ggbk9Uy
+ SSLcd0DMTQUiwZ8JuYwzToffnePVdVE2kSmndbnVgBl/1+uXIJP7/HxFEIstJbWmJCouIgITp
+ 80iBRQSHT49Nn24mOgaF+D80cKmws+nsmJgZYHCQnCwlHEWgzDMRpnVJaC+wjvGhii87JB0cQ
+ DmTR+Lpmsx0XlsG5F2Zm+m5GqpwLmMuMD68pge+JVYgiti9HlE3Az0sOrlvjWkbPhGW+60dhw
+ I36WLq9OkgUbByQUoDdMdhuedBX+7ntK7jnojiVmDVyMOIkYD/uxu8isYPJ7RDWwHt4pfLBw+
+ 3h4XO9uRKrwgf9WO5niAZ3QaASXQfbDhs1KSftPdU3UrGm6NDJJmOGLdUwug9VzV1wl7vt23c
+ qzhb83zmGw==
 X-Mailman-Approved-At: Tue, 23 Feb 2021 17:01:43 +0000
 Subject: Re: [Nouveau] [PATCH 2/3] drm/nouveau/kms/nv50-: Report max cursor
  size to userspace
@@ -88,48 +88,20 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Ilia Mirkin, Tue, Feb 23, 2021 15:56:21 +0100:
-> On Tue, Feb 23, 2021 at 9:26 AM Alex Riesen <alexander.riesen@cetitec.com> wrote:
-> > Lyude Paul, Tue, Jan 19, 2021 02:54:13 +0100:
-> > > diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> > > index c6367035970e..5f4f09a601d4 100644
-> > > --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> > > +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> > > @@ -2663,6 +2663,14 @@ nv50_display_create(struct drm_device *dev)
-> > >       else
-> > >               nouveau_display(dev)->format_modifiers = disp50xx_modifiers;
-> > >
-> > > +     if (disp->disp->object.oclass >= GK104_DISP) {
-> > > +             dev->mode_config.cursor_width = 256;
-> > > +             dev->mode_config.cursor_height = 256;
-> > > +     } else {
-> > > +             dev->mode_config.cursor_width = 64;
-> > > +             dev->mode_config.cursor_height = 64;
-> > > +     }
-> > > +
-> > >       /* create crtc objects to represent the hw heads */
-> > >       if (disp->disp->object.oclass >= GV100_DISP)
-> > >               crtcs = nvif_rd32(&device->object, 0x610060) & 0xff;
-> >
-> > This change broke X cursor in my setup, and reverting the commit restores it.
-> >
-> > Dell Precision M4800, issue ~2014 with GK106GLM [Quadro K2100M] (rev a1).
-> > libdrm 2.4.91-1 (Debian 10.8 stable).
-> > There are no errors or warnings in Xorg logs nor in the kernel log.
+Alex Riesen, Tue, Feb 23, 2021 16:51:26 +0100:
+> Ilia Mirkin, Tue, Feb 23, 2021 16:46:52 +0100:
+> > I'd recommend using xf86-video-nouveau in any case, but some distros
 > 
-> Could you confirm which ddx is driving the nvidia hw? You can find
-> this out by running "xrandr --listproviders", or also in the xorg log.
+> I would like try this out. Do you know how to force the xorg server to
+> choose this driver instead of modesetting?
 
-xrandr(1) does not seem to list much:
+Found that myself (a Device section with Driver set to "nouveau"):
 
-$ xrandr --listproviders
-Providers: number : 1
-Provider 0: id: 0x48 cap: 0xf, Source Output, Sink Output, Source Offload, Sink Offload crtcs: 4 outputs: 5 associated providers: 0 name:modesetting
+    $ xrandr  --listproviders
+    Providers: number : 1
+    Provider 0: id: 0x68 cap: 0x7, Source Output, Sink Output, Source Offload crtcs: 4 outputs: 5 associated providers: 0 name:nouveau
 
-I failed to find a DDX in Xorg.0.log. Both Xorg.0.log and dmesg can be seen here:
-
-    https://gist.github.com/ar-cetitec/68c27551d9a59b89dc73bffe0456bbef
-
+And yes, the cursor looks good in v5.11 even without reverting the commit.
 
 _______________________________________________
 Nouveau mailing list
