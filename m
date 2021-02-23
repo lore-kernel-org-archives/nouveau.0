@@ -6,62 +6,51 @@ X-Spam-Status: No, score=-8.7 required=3.0 tests=BAYES_00,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 06C9FC433DB
-	for <nouveau@archiver.kernel.org>; Tue, 23 Feb 2021 14:52:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 992D6C433DB
+	for <nouveau@archiver.kernel.org>; Tue, 23 Feb 2021 14:56:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9273460233
-	for <nouveau@archiver.kernel.org>; Tue, 23 Feb 2021 14:52:38 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9273460233
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=cetitec.com
+	by mail.kernel.org (Postfix) with ESMTPS id 3DDBB64E21
+	for <nouveau@archiver.kernel.org>; Tue, 23 Feb 2021 14:56:34 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3DDBB64E21
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=alum.mit.edu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 337D06E839;
-	Tue, 23 Feb 2021 14:52:38 +0000 (UTC)
-X-Greylist: delayed 548 seconds by postgrey-1.36 at gabe;
- Tue, 23 Feb 2021 14:24:52 UTC
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8CC56E1F9;
- Tue, 23 Feb 2021 14:24:52 +0000 (UTC)
-Received: from mail.cetitecgmbh.com ([87.190.42.90]) by
- mrelayeu.kundenserver.de (mreue109 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1Mdvyi-1lnKzS3eCM-00b0aU; Tue, 23 Feb 2021 15:15:24 +0100
-Received: from pflvmailgateway.corp.cetitec.com (unknown [127.0.0.1])
- by mail.cetitecgmbh.com (Postfix) with ESMTP id 73AB41E01EB;
- Tue, 23 Feb 2021 14:15:22 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at cetitec.com
-Received: from mail.cetitecgmbh.com ([127.0.0.1])
- by pflvmailgateway.corp.cetitec.com (pflvmailgateway.corp.cetitec.com
- [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id VmzJgTaF5xPP; Tue, 23 Feb 2021 15:15:22 +0100 (CET)
-Received: from pflmari.corp.cetitec.com (21-usr-pf-main.vpn.it.cetitec.com
- [10.8.5.21])
- by mail.cetitecgmbh.com (Postfix) with ESMTPSA id 2CA121E01EA;
- Tue, 23 Feb 2021 15:15:22 +0100 (CET)
-Received: by pflmari.corp.cetitec.com (Postfix, from local account)
-Date: Tue, 23 Feb 2021 15:15:21 +0100
-From: Alex Riesen <alexander.riesen@cetitec.com>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <YDUN+Re/alMVL0Zn@pflmari>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D22A66E9CC;
+	Tue, 23 Feb 2021 14:56:33 +0000 (UTC)
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com
+ [209.85.166.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E77A06E9CC;
+ Tue, 23 Feb 2021 14:56:32 +0000 (UTC)
+Received: by mail-io1-f46.google.com with SMTP id q77so17382690iod.2;
+ Tue, 23 Feb 2021 06:56:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=jlV7um2EY+vl+2ZBJzHoUyA7guYZm1/i3OsQfILG6rY=;
+ b=dlF+REj3ZIBmQtvGGVnjbBX/snu0ukfp8KzTc+F0tG5a1vsA0uVCPT0cy0P4KwzTre
+ RVeG398Mcc3Er5KQS3FCG+OpctlSSbFN3tW22U1s/bSpsiyxnexLqnEeK3qg0RCiXFDy
+ K3px8GAz6hrCPDUk4Vk64EkVlc14FQQiy2Fe6CxKIRI2f+FasRZK4cuUejnR9uI8HKFN
+ lh4+quZ3Im/NDO7sHZlhGR0mIKZg0YzSstR7XSbKNfgzQHRMYTbVX7bxpw05TNOdOsoN
+ afClhUgKnlaltcCvgaSNGqXY/KDHt4Y5/8sqlS5ZQ8/2hmL3gLqXvL6/2EC+6iaE7BHF
+ j4Eg==
+X-Gm-Message-State: AOAM53146ueckQWx4xY268FvadGecH8FFbxrv244+sO85MZyeGEw2vYw
+ t3IaZjXIXtPp3bbFMSF8o5UFVxWCeh5ybmzezZ4=
+X-Google-Smtp-Source: ABdhPJzRZwXRb1la0GMwx+ZhoDIz+aEfwGxnH+TD2zlplxcjV1p+0QmI6jsxIrIxkFQXPlk3s9buU4XAusngiI4vY4k=
+X-Received: by 2002:a05:6602:24cb:: with SMTP id
+ h11mr20201100ioe.79.1614092192347; 
+ Tue, 23 Feb 2021 06:56:32 -0800 (PST)
+MIME-Version: 1.0
 References: <20210119015415.2511028-1-lyude@redhat.com>
  <20210119015415.2511028-2-lyude@redhat.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210119015415.2511028-2-lyude@redhat.com>
-X-Provags-ID: V03:K1:OyqQZwzOO6IF8d6ExZM9WpBmYey37Dqo2pTpIaNdzhHny21aso9
- h9QRW0YUsgsKhN2jbE1zQlEowesa1sbZjl74BpdeCiwCjsHcDZCfjho0irbPPx1/QDzq+K0
- tyMd+mno2hxFag40eKo36u+8W6EfsthzItJotElpVDj3/DHoL1e8MLwPNtqkEISL8uW4s/U
- xQTFFT0qoIwQAZcfUUirA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:bnEOmraRsnw=:cTjHY+Sy9eHB6CM5tAfgFb
- 2W3nQV6I1HGjGrov4lXLgQIS4PlXTA1rhh8iEPRRpl/S6sN8Iwmzh3pAhQ8BJfeo8pHn1wFWQ
- EqaamcLnwGZl10UMwnE/kHDONfiAzp9b/fgYO1AJxUbzn/OStVeDwXOm8UPKq6Kk4taEaWpdT
- mmsGy6gsIjTo1aCCSdt65vQyS7ikl1A31OT2jj6Z7Hs09LnDTK/47PUQicOfCRsdxZiMVlV6S
- RCutc3d/m0oxpUB0OdBPtSV3nl675z5hgq4rRiL3370hs2MiAAIipa8A94ERrTmpc+1nDsuO+
- s/QqB5JWYPqVcavtlhbGJB9HMOl6LcFYF0ucBb93Ii0dlTPVaRk4QCZMI+8eepOifObk9oLiH
- rOSVx802UWztsEO8C1z8q8Te1lLPhmNu0+jFpw6hlxtKQa36U2y1uKFeuqvtnKASrUWQ+mAq6
- Dee1waM0iA==
-X-Mailman-Approved-At: Tue, 23 Feb 2021 14:52:37 +0000
+ <YDUN+Re/alMVL0Zn@pflmari>
+In-Reply-To: <YDUN+Re/alMVL0Zn@pflmari>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Date: Tue, 23 Feb 2021 09:56:21 -0500
+Message-ID: <CAKb7UvhFkw23so-a4JKLzpQLhphzjzarOy-9h+FiKP-aAC=4xw@mail.gmail.com>
+To: Alex Riesen <alexander.riesen@cetitec.com>
 Subject: Re: [Nouveau] [PATCH 2/3] drm/nouveau/kms/nv50-: Report max cursor
  size to userspace
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -75,46 +64,54 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>,
- David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- Takashi Iwai <tiwai@suse.de>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>, Simon Ser <contact@emersion.fr>,
- Dave Airlie <airlied@redhat.com>
+Cc: David Airlie <airlied@linux.ie>,
+ Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>,
+ nouveau <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Lyude Paul, Tue, Jan 19, 2021 02:54:13 +0100:
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> index c6367035970e..5f4f09a601d4 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> @@ -2663,6 +2663,14 @@ nv50_display_create(struct drm_device *dev)
->  	else
->  		nouveau_display(dev)->format_modifiers = disp50xx_modifiers;
->  
-> +	if (disp->disp->object.oclass >= GK104_DISP) {
-> +		dev->mode_config.cursor_width = 256;
-> +		dev->mode_config.cursor_height = 256;
-> +	} else {
-> +		dev->mode_config.cursor_width = 64;
-> +		dev->mode_config.cursor_height = 64;
-> +	}
-> +
->  	/* create crtc objects to represent the hw heads */
->  	if (disp->disp->object.oclass >= GV100_DISP)
->  		crtcs = nvif_rd32(&device->object, 0x610060) & 0xff;
+On Tue, Feb 23, 2021 at 9:26 AM Alex Riesen
+<alexander.riesen@cetitec.com> wrote:
+>
+> Lyude Paul, Tue, Jan 19, 2021 02:54:13 +0100:
+> > diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> > index c6367035970e..5f4f09a601d4 100644
+> > --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> > +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> > @@ -2663,6 +2663,14 @@ nv50_display_create(struct drm_device *dev)
+> >       else
+> >               nouveau_display(dev)->format_modifiers = disp50xx_modifiers;
+> >
+> > +     if (disp->disp->object.oclass >= GK104_DISP) {
+> > +             dev->mode_config.cursor_width = 256;
+> > +             dev->mode_config.cursor_height = 256;
+> > +     } else {
+> > +             dev->mode_config.cursor_width = 64;
+> > +             dev->mode_config.cursor_height = 64;
+> > +     }
+> > +
+> >       /* create crtc objects to represent the hw heads */
+> >       if (disp->disp->object.oclass >= GV100_DISP)
+> >               crtcs = nvif_rd32(&device->object, 0x610060) & 0xff;
+>
+> This change broke X cursor in my setup, and reverting the commit restores it.
+>
+> Dell Precision M4800, issue ~2014 with GK106GLM [Quadro K2100M] (rev a1).
+> libdrm 2.4.91-1 (Debian 10.8 stable).
+> There are no errors or warnings in Xorg logs nor in the kernel log.
 
-This change broke X cursor in my setup, and reverting the commit restores it.
+Hi Alex,
 
-Dell Precision M4800, issue ~2014 with GK106GLM [Quadro K2100M] (rev a1).
-libdrm 2.4.91-1 (Debian 10.8 stable).
-There are no errors or warnings in Xorg logs nor in the kernel log.
+Could you confirm which ddx is driving the nvidia hw? You can find
+this out by running "xrandr --listproviders", or also in the xorg log.
 
-Regards,
-Alex
+Thanks,
+
+  -ilia
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
