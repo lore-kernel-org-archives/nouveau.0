@@ -7,48 +7,51 @@ X-Spam-Status: No, score=-12.2 required=3.0 tests=BAYES_00,DATE_IN_PAST_24_48,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 893EDC433DB
-	for <nouveau@archiver.kernel.org>; Thu,  4 Mar 2021 15:20:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49C30C433E0
+	for <nouveau@archiver.kernel.org>; Thu,  4 Mar 2021 15:20:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 50FCC64F6C
-	for <nouveau@archiver.kernel.org>; Thu,  4 Mar 2021 15:20:20 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 50FCC64F6C
+	by mail.kernel.org (Postfix) with ESMTPS id 1011864F70
+	for <nouveau@archiver.kernel.org>; Thu,  4 Mar 2021 15:20:22 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1011864F70
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A06356EA2F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E32B76EA22;
 	Thu,  4 Mar 2021 15:20:13 +0000 (UTC)
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A6156EA22;
+X-Greylist: delayed 364 seconds by postgrey-1.36 at gabe;
+ Thu, 04 Mar 2021 15:20:12 UTC
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 107146E4BB;
  Thu,  4 Mar 2021 15:20:12 +0000 (UTC)
-Message-Id: <20210303132711.982307498@linutronix.de>
+Message-Id: <20210303132711.754979779@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1614870852;
+ s=2020; t=1614870849;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:  references:references;
- bh=yu34YjnIEyOyfqoftcpNPw8TU3KSWyY89xmWxIGGep0=;
- b=chmwnZQKb5D/CyT40zo//PeCWkbQq4sZX3P81oGa1TA5y/Y1/eQW/WdMO/VE7YAmZLxR+E
- 4ISiuYVdI/Bm+151Nj7bgVB4khgxKotITwm3qoqDjJto2+LBO/ZX4fVKpk9LUaYSPNQzvp
- ZDNEtN+VDeojHH2oQYxnuVFIOJlkL59fPMSp0lJIDsKueuR9JsYavEmG1sA8Qh+3s2Wkiv
- A0UtARr7st+Fw8HI3Jl5TgyD9SmkAp0Oo6q9s2H54g+t89F7+2t/C7ixKOFKik8ceLy/od
- GXkWACpSk9qaFk6SWfHqmw7B66SlrwA3PMz02/HZ3Q3xFSGsSM/XR81tkkWUwQ==
+ bh=9faHMiVNywi4bTvkQWsVt6JBdbgbuuop7i9PAkb1cms=;
+ b=SVWS5Bolf5CbdytCwu1g8bpTWgjuGONk/1VvoNwioM0r2jP2mzpDCzTlalsnz/mJOYDNoU
+ xsnVCuWb4XBOyyhedwfgM9RWywj9Qax2o4rQIMUDt7LVMcTIP3DxHFTwB1p3GEy6oSxI0T
+ V9KMagRFL9ukycpqQxG6d8PG1LKrYj5FW3Ev5X62zBdF/X5ssjfOYcqasHBYGAXOqfM5YT
+ Q9Ojyqx4JFIJC0D6MvFxaZMFkLnEiuINYcJqf19B38N6zPs1TW96JJOPlgn7JTmx7/8BwV
+ qTkwfWwuNLCCX6aZ+R/X6D1CZVdX1+TrzufT4hq34parLO/hrcR+iAvR+21XKw==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1614870852;
+ s=2020e; t=1614870849;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:  references:references;
- bh=yu34YjnIEyOyfqoftcpNPw8TU3KSWyY89xmWxIGGep0=;
- b=oQztf/0RVI2avMzXgiQF+z+XX3Cp+a3u3ZVfKmq2tsgbIrWCc7WtT2UobyCvmD2tVI+fiZ
- 6ArXbSvj9hPd2DBw==
-Date: Wed, 03 Mar 2021 14:20:29 +0100
+ bh=9faHMiVNywi4bTvkQWsVt6JBdbgbuuop7i9PAkb1cms=;
+ b=cLdq3aFswHqDjXNn0aTKV7h/d8u13KzZkkxyaFKX8IT3A45rlMfbQ+7AzSIcaXaIQEwr/m
+ FoS0nqDw2VyG2qCw==
+Date: Wed, 03 Mar 2021 14:20:27 +0100
 From: Thomas Gleixner <tglx@linutronix.de>
 To: LKML <linux-kernel@vger.kernel.org>
 References: <20210303132023.077167457@linutronix.de>
 MIME-Version: 1.0
-Subject: [Nouveau] [patch 6/7] drm/i915: Replace io_mapping_map_atomic_wc()
+Subject: [Nouveau] [patch 4/7] drm/qxl: Replace io_mapping_map_atomic_wc()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,20 +63,19 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>,
- intel-gfx@lists.freedesktop.org,
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Roland Scheidegger <sroland@vmware.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
+ Roland Scheidegger <sroland@vmware.com>, dri-devel@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org, linux-mm@kvack.org,
  Huang Rui <ray.huang@amd.com>,
  VMware Graphics <linux-graphics-maintainer@vmware.com>,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, nouveau@lists.freedesktop.org,
- spice-devel@lists.freedesktop.org, Andrew Morton <akpm@linux-foundation.org>,
- virtualization@lists.linux-foundation.org,
+ Gerd Hoffmann <kraxel@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, spice-devel@lists.freedesktop.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
  Christian Koenig <christian.koenig@amd.com>, Zack Rusin <zackr@vmware.com>,
- Gerd Hoffmann <kraxel@redhat.com>
+ Ben Skeggs <bskeggs@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
@@ -84,159 +86,240 @@ From: Thomas Gleixner <tglx@linutronix.de>
 None of these mapping requires the side effect of disabling pagefaults and
 preemption.
 
-Use io_mapping_map_local_wc() instead, and clean up gtt_user_read() and
-gtt_user_write() to use a plain copy_from_user() as the local maps are not
-disabling pagefaults.
+Use io_mapping_map_local_wc() instead, rename the related functions
+accordingly and clean up qxl_process_single_command() to use a plain
+copy_from_user() as the local maps are not disabling pagefaults.
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: David Airlie <airlied@linux.ie>
+Cc: Gerd Hoffmann <kraxel@redhat.com>
 Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: virtualization@lists.linux-foundation.org
+Cc: spice-devel@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org
 ---
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c |    7 +---
- drivers/gpu/drm/i915/i915_gem.c                |   40 ++++++++-----------------
- drivers/gpu/drm/i915/selftests/i915_gem.c      |    4 +-
- drivers/gpu/drm/i915/selftests/i915_gem_gtt.c  |    8 ++---
- 4 files changed, 22 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/qxl/qxl_image.c   |   18 +++++++++---------
+ drivers/gpu/drm/qxl/qxl_ioctl.c   |   27 +++++++++++++--------------
+ drivers/gpu/drm/qxl/qxl_object.c  |   12 ++++++------
+ drivers/gpu/drm/qxl/qxl_object.h  |    4 ++--
+ drivers/gpu/drm/qxl/qxl_release.c |    4 ++--
+ 5 files changed, 32 insertions(+), 33 deletions(-)
 
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1080,7 +1080,7 @@ static void reloc_cache_reset(struct rel
- 		struct i915_ggtt *ggtt = cache_to_ggtt(cache);
+--- a/drivers/gpu/drm/qxl/qxl_image.c
++++ b/drivers/gpu/drm/qxl/qxl_image.c
+@@ -124,12 +124,12 @@ qxl_image_init_helper(struct qxl_device
+ 				  wrong (check the bitmaps are sent correctly
+ 				  first) */
  
- 		intel_gt_flush_ggtt_writes(ggtt->vm.gt);
--		io_mapping_unmap_atomic((void __iomem *)vaddr);
-+		io_mapping_unmap_local((void __iomem *)vaddr);
+-	ptr = qxl_bo_kmap_atomic_page(qdev, chunk_bo, 0);
++	ptr = qxl_bo_kmap_local_page(qdev, chunk_bo, 0);
+ 	chunk = ptr;
+ 	chunk->data_size = height * chunk_stride;
+ 	chunk->prev_chunk = 0;
+ 	chunk->next_chunk = 0;
+-	qxl_bo_kunmap_atomic_page(qdev, chunk_bo, ptr);
++	qxl_bo_kunmap_local_page(qdev, chunk_bo, ptr);
  
- 		if (drm_mm_node_allocated(&cache->node)) {
- 			ggtt->vm.clear_range(&ggtt->vm,
-@@ -1146,7 +1146,7 @@ static void *reloc_iomap(struct drm_i915
+ 	{
+ 		void *k_data, *i_data;
+@@ -143,7 +143,7 @@ qxl_image_init_helper(struct qxl_device
+ 			i_data = (void *)data;
  
- 	if (cache->vaddr) {
- 		intel_gt_flush_ggtt_writes(ggtt->vm.gt);
--		io_mapping_unmap_atomic((void __force __iomem *) unmask_page(cache->vaddr));
-+		io_mapping_unmap_local((void __force __iomem *) unmask_page(cache->vaddr));
- 	} else {
- 		struct i915_vma *vma;
- 		int err;
-@@ -1194,8 +1194,7 @@ static void *reloc_iomap(struct drm_i915
- 		offset += page << PAGE_SHIFT;
+ 			while (remain > 0) {
+-				ptr = qxl_bo_kmap_atomic_page(qdev, chunk_bo, page << PAGE_SHIFT);
++				ptr = qxl_bo_kmap_local_page(qdev, chunk_bo, page << PAGE_SHIFT);
+ 
+ 				if (page == 0) {
+ 					chunk = ptr;
+@@ -157,7 +157,7 @@ qxl_image_init_helper(struct qxl_device
+ 
+ 				memcpy(k_data, i_data, size);
+ 
+-				qxl_bo_kunmap_atomic_page(qdev, chunk_bo, ptr);
++				qxl_bo_kunmap_local_page(qdev, chunk_bo, ptr);
+ 				i_data += size;
+ 				remain -= size;
+ 				page++;
+@@ -175,10 +175,10 @@ qxl_image_init_helper(struct qxl_device
+ 					page_offset = offset_in_page(out_offset);
+ 					size = min((int)(PAGE_SIZE - page_offset), remain);
+ 
+-					ptr = qxl_bo_kmap_atomic_page(qdev, chunk_bo, page_base);
++					ptr = qxl_bo_kmap_local_page(qdev, chunk_bo, page_base);
+ 					k_data = ptr + page_offset;
+ 					memcpy(k_data, i_data, size);
+-					qxl_bo_kunmap_atomic_page(qdev, chunk_bo, ptr);
++					qxl_bo_kunmap_local_page(qdev, chunk_bo, ptr);
+ 					remain -= size;
+ 					i_data += size;
+ 					out_offset += size;
+@@ -189,7 +189,7 @@ qxl_image_init_helper(struct qxl_device
+ 	qxl_bo_kunmap(chunk_bo);
+ 
+ 	image_bo = dimage->bo;
+-	ptr = qxl_bo_kmap_atomic_page(qdev, image_bo, 0);
++	ptr = qxl_bo_kmap_local_page(qdev, image_bo, 0);
+ 	image = ptr;
+ 
+ 	image->descriptor.id = 0;
+@@ -212,7 +212,7 @@ qxl_image_init_helper(struct qxl_device
+ 		break;
+ 	default:
+ 		DRM_ERROR("unsupported image bit depth\n");
+-		qxl_bo_kunmap_atomic_page(qdev, image_bo, ptr);
++		qxl_bo_kunmap_local_page(qdev, image_bo, ptr);
+ 		return -EINVAL;
  	}
+ 	image->u.bitmap.flags = QXL_BITMAP_TOP_DOWN;
+@@ -222,7 +222,7 @@ qxl_image_init_helper(struct qxl_device
+ 	image->u.bitmap.palette = 0;
+ 	image->u.bitmap.data = qxl_bo_physical_address(qdev, chunk_bo, 0);
  
--	vaddr = (void __force *)io_mapping_map_atomic_wc(&ggtt->iomap,
--							 offset);
-+	vaddr = (void __force *)io_mapping_map_local_wc(&ggtt->iomap, offset);
- 	cache->page = page;
- 	cache->vaddr = (unsigned long)vaddr;
+-	qxl_bo_kunmap_atomic_page(qdev, image_bo, ptr);
++	qxl_bo_kunmap_local_page(qdev, image_bo, ptr);
  
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -253,22 +253,15 @@ gtt_user_read(struct io_mapping *mapping
- 	      char __user *user_data, int length)
+ 	return 0;
+ }
+--- a/drivers/gpu/drm/qxl/qxl_ioctl.c
++++ b/drivers/gpu/drm/qxl/qxl_ioctl.c
+@@ -89,11 +89,11 @@ apply_reloc(struct qxl_device *qdev, str
  {
- 	void __iomem *vaddr;
--	unsigned long unwritten;
-+	bool fail = false;
+ 	void *reloc_page;
  
- 	/* We can use the cpu mem copy function because this is X86. */
--	vaddr = io_mapping_map_atomic_wc(mapping, base);
--	unwritten = __copy_to_user_inatomic(user_data,
--					    (void __force *)vaddr + offset,
--					    length);
--	io_mapping_unmap_atomic(vaddr);
--	if (unwritten) {
--		vaddr = io_mapping_map_wc(mapping, base, PAGE_SIZE);
--		unwritten = copy_to_user(user_data,
--					 (void __force *)vaddr + offset,
--					 length);
--		io_mapping_unmap(vaddr);
--	}
--	return unwritten;
-+	vaddr = io_mapping_map_local_wc(mapping, base);
-+	if (copy_to_user(user_data, (void __force *)vaddr + offset, length))
-+		fail = true;
-+	io_mapping_unmap_local(vaddr);
-+
-+	return fail;
+-	reloc_page = qxl_bo_kmap_atomic_page(qdev, info->dst_bo, info->dst_offset & PAGE_MASK);
++	reloc_page = qxl_bo_kmap_local_page(qdev, info->dst_bo, info->dst_offset & PAGE_MASK);
+ 	*(uint64_t *)(reloc_page + (info->dst_offset & ~PAGE_MASK)) = qxl_bo_physical_address(qdev,
+ 											      info->src_bo,
+ 											      info->src_offset);
+-	qxl_bo_kunmap_atomic_page(qdev, info->dst_bo, reloc_page);
++	qxl_bo_kunmap_local_page(qdev, info->dst_bo, reloc_page);
  }
  
- static int
-@@ -437,21 +430,14 @@ ggtt_write(struct io_mapping *mapping,
- 	   char __user *user_data, int length)
- {
- 	void __iomem *vaddr;
--	unsigned long unwritten;
-+	bool fail = false;
+ static void
+@@ -105,9 +105,9 @@ apply_surf_reloc(struct qxl_device *qdev
+ 	if (info->src_bo && !info->src_bo->is_primary)
+ 		id = info->src_bo->surface_id;
  
- 	/* We can use the cpu mem copy function because this is X86. */
--	vaddr = io_mapping_map_atomic_wc(mapping, base);
--	unwritten = __copy_from_user_inatomic_nocache((void __force *)vaddr + offset,
--						      user_data, length);
--	io_mapping_unmap_atomic(vaddr);
--	if (unwritten) {
--		vaddr = io_mapping_map_wc(mapping, base, PAGE_SIZE);
--		unwritten = copy_from_user((void __force *)vaddr + offset,
--					   user_data, length);
--		io_mapping_unmap(vaddr);
--	}
--
--	return unwritten;
-+	vaddr = io_mapping_map_local_wc(mapping, base);
-+	if (copy_from_user((void __force *)vaddr + offset, user_data, length))
-+		fail = true;
-+	io_mapping_unmap_local(vaddr);
-+	return fail;
+-	reloc_page = qxl_bo_kmap_atomic_page(qdev, info->dst_bo, info->dst_offset & PAGE_MASK);
++	reloc_page = qxl_bo_kmap_local_page(qdev, info->dst_bo, info->dst_offset & PAGE_MASK);
+ 	*(uint32_t *)(reloc_page + (info->dst_offset & ~PAGE_MASK)) = id;
+-	qxl_bo_kunmap_atomic_page(qdev, info->dst_bo, reloc_page);
++	qxl_bo_kunmap_local_page(qdev, info->dst_bo, reloc_page);
  }
  
- /**
---- a/drivers/gpu/drm/i915/selftests/i915_gem.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_gem.c
-@@ -58,12 +58,12 @@ static void trash_stolen(struct drm_i915
+ /* return holding the reference to this object */
+@@ -149,7 +149,6 @@ static int qxl_process_single_command(st
+ 	struct qxl_bo *cmd_bo;
+ 	void *fb_cmd;
+ 	int i, ret, num_relocs;
+-	int unwritten;
  
- 		ggtt->vm.insert_page(&ggtt->vm, dma, slot, I915_CACHE_NONE, 0);
+ 	switch (cmd->type) {
+ 	case QXL_CMD_DRAW:
+@@ -184,21 +183,21 @@ static int qxl_process_single_command(st
+ 		goto out_free_reloc;
  
--		s = io_mapping_map_atomic_wc(&ggtt->iomap, slot);
-+		s = io_mapping_map_local_wc(&ggtt->iomap, slot);
- 		for (x = 0; x < PAGE_SIZE / sizeof(u32); x++) {
- 			prng = next_pseudo_random32(prng);
- 			iowrite32(prng, &s[x]);
- 		}
--		io_mapping_unmap_atomic(s);
-+		io_mapping_unmap_local(s);
+ 	/* TODO copy slow path code from i915 */
+-	fb_cmd = qxl_bo_kmap_atomic_page(qdev, cmd_bo, (release->release_offset & PAGE_MASK));
+-	unwritten = __copy_from_user_inatomic_nocache
+-		(fb_cmd + sizeof(union qxl_release_info) + (release->release_offset & ~PAGE_MASK),
+-		 u64_to_user_ptr(cmd->command), cmd->command_size);
++	fb_cmd = qxl_bo_kmap_local_page(qdev, cmd_bo, (release->release_offset & PAGE_MASK));
+ 
+-	{
++	if (copy_from_user(fb_cmd + sizeof(union qxl_release_info) +
++			   (release->release_offset & ~PAGE_MASK),
++			   u64_to_user_ptr(cmd->command), cmd->command_size)) {
++		ret = -EFAULT;
++	} else {
+ 		struct qxl_drawable *draw = fb_cmd;
+ 
+ 		draw->mm_time = qdev->rom->mm_clock;
  	}
  
- 	ggtt->vm.clear_range(&ggtt->vm, slot, PAGE_SIZE);
---- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-@@ -1201,9 +1201,9 @@ static int igt_ggtt_page(void *arg)
- 		u64 offset = tmp.start + order[n] * PAGE_SIZE;
- 		u32 __iomem *vaddr;
- 
--		vaddr = io_mapping_map_atomic_wc(&ggtt->iomap, offset);
-+		vaddr = io_mapping_map_local_wc(&ggtt->iomap, offset);
- 		iowrite32(n, vaddr + n);
--		io_mapping_unmap_atomic(vaddr);
-+		io_mapping_unmap_local(vaddr);
+-	qxl_bo_kunmap_atomic_page(qdev, cmd_bo, fb_cmd);
+-	if (unwritten) {
+-		DRM_ERROR("got unwritten %d\n", unwritten);
+-		ret = -EFAULT;
++	qxl_bo_kunmap_local_page(qdev, cmd_bo, fb_cmd);
++	if (ret) {
++		DRM_ERROR("copy from user failed %d\n", ret);
+ 		goto out_free_release;
  	}
- 	intel_gt_flush_ggtt_writes(ggtt->vm.gt);
  
-@@ -1213,9 +1213,9 @@ static int igt_ggtt_page(void *arg)
- 		u32 __iomem *vaddr;
- 		u32 val;
+--- a/drivers/gpu/drm/qxl/qxl_object.c
++++ b/drivers/gpu/drm/qxl/qxl_object.c
+@@ -178,8 +178,8 @@ int qxl_bo_kmap(struct qxl_bo *bo, struc
+ 	return 0;
+ }
  
--		vaddr = io_mapping_map_atomic_wc(&ggtt->iomap, offset);
-+		vaddr = io_mapping_map_local_wc(&ggtt->iomap, offset);
- 		val = ioread32(vaddr + n);
--		io_mapping_unmap_atomic(vaddr);
-+		io_mapping_unmap_local(vaddr);
+-void *qxl_bo_kmap_atomic_page(struct qxl_device *qdev,
+-			      struct qxl_bo *bo, int page_offset)
++void *qxl_bo_kmap_local_page(struct qxl_device *qdev,
++			     struct qxl_bo *bo, int page_offset)
+ {
+ 	unsigned long offset;
+ 	void *rptr;
+@@ -195,7 +195,7 @@ void *qxl_bo_kmap_atomic_page(struct qxl
+ 		goto fallback;
  
- 		if (val != n) {
- 			pr_err("insert page failed: found %d, expected %d\n",
+ 	offset = bo->tbo.mem.start << PAGE_SHIFT;
+-	return io_mapping_map_atomic_wc(map, offset + page_offset);
++	return io_mapping_map_local_wc(map, offset + page_offset);
+ fallback:
+ 	if (bo->kptr) {
+ 		rptr = bo->kptr + (page_offset * PAGE_SIZE);
+@@ -222,14 +222,14 @@ void qxl_bo_kunmap(struct qxl_bo *bo)
+ 	ttm_bo_vunmap(&bo->tbo, &bo->map);
+ }
+ 
+-void qxl_bo_kunmap_atomic_page(struct qxl_device *qdev,
+-			       struct qxl_bo *bo, void *pmap)
++void qxl_bo_kunmap_local_page(struct qxl_device *qdev,
++			      struct qxl_bo *bo, void *pmap)
+ {
+ 	if ((bo->tbo.mem.mem_type != TTM_PL_VRAM) &&
+ 	    (bo->tbo.mem.mem_type != TTM_PL_PRIV))
+ 		goto fallback;
+ 
+-	io_mapping_unmap_atomic(pmap);
++	io_mapping_unmap_local(pmap);
+ 	return;
+  fallback:
+ 	qxl_bo_kunmap(bo);
+--- a/drivers/gpu/drm/qxl/qxl_object.h
++++ b/drivers/gpu/drm/qxl/qxl_object.h
+@@ -65,8 +65,8 @@ extern int qxl_bo_create(struct qxl_devi
+ 			 struct qxl_bo **bo_ptr);
+ extern int qxl_bo_kmap(struct qxl_bo *bo, struct dma_buf_map *map);
+ extern void qxl_bo_kunmap(struct qxl_bo *bo);
+-void *qxl_bo_kmap_atomic_page(struct qxl_device *qdev, struct qxl_bo *bo, int page_offset);
+-void qxl_bo_kunmap_atomic_page(struct qxl_device *qdev, struct qxl_bo *bo, void *map);
++void *qxl_bo_kmap_local_page(struct qxl_device *qdev, struct qxl_bo *bo, int page_offset);
++void qxl_bo_kunmap_local_page(struct qxl_device *qdev, struct qxl_bo *bo, void *map);
+ extern struct qxl_bo *qxl_bo_ref(struct qxl_bo *bo);
+ extern void qxl_bo_unref(struct qxl_bo **bo);
+ extern int qxl_bo_pin(struct qxl_bo *bo);
+--- a/drivers/gpu/drm/qxl/qxl_release.c
++++ b/drivers/gpu/drm/qxl/qxl_release.c
+@@ -408,7 +408,7 @@ union qxl_release_info *qxl_release_map(
+ 	union qxl_release_info *info;
+ 	struct qxl_bo *bo = release->release_bo;
+ 
+-	ptr = qxl_bo_kmap_atomic_page(qdev, bo, release->release_offset & PAGE_MASK);
++	ptr = qxl_bo_kmap_local_page(qdev, bo, release->release_offset & PAGE_MASK);
+ 	if (!ptr)
+ 		return NULL;
+ 	info = ptr + (release->release_offset & ~PAGE_MASK);
+@@ -423,7 +423,7 @@ void qxl_release_unmap(struct qxl_device
+ 	void *ptr;
+ 
+ 	ptr = ((void *)info) - (release->release_offset & ~PAGE_MASK);
+-	qxl_bo_kunmap_atomic_page(qdev, bo, ptr);
++	qxl_bo_kunmap_local_page(qdev, bo, ptr);
+ }
+ 
+ void qxl_release_fence_buffer_objects(struct qxl_release *release)
 
 _______________________________________________
 Nouveau mailing list
