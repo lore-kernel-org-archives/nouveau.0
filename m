@@ -2,55 +2,53 @@ Return-Path: <SRS0=JxqS=IC=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.4 required=3.0 tests=BAYES_00,DATE_IN_PAST_24_48,
-	DKIM_INVALID,DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-7.2 required=3.0 tests=BAYES_00,DATE_IN_PAST_24_48,
+	DKIM_INVALID,DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 89068C433E0
-	for <nouveau@archiver.kernel.org>; Thu,  4 Mar 2021 15:20:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E5089C43381
+	for <nouveau@archiver.kernel.org>; Thu,  4 Mar 2021 15:20:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 50FCA64F76
-	for <nouveau@archiver.kernel.org>; Thu,  4 Mar 2021 15:20:28 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 50FCA64F76
+	by mail.kernel.org (Postfix) with ESMTPS id A9EBE64F8E
+	for <nouveau@archiver.kernel.org>; Thu,  4 Mar 2021 15:20:30 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A9EBE64F8E
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E97F6EA5D;
-	Thu,  4 Mar 2021 15:20:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 098996EA63;
+	Thu,  4 Mar 2021 15:20:17 +0000 (UTC)
 Received: from galois.linutronix.de (Galois.linutronix.de
  [IPv6:2a0a:51c0:0:12e:550::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 701656EA25;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 832C36EA2C;
  Thu,  4 Mar 2021 15:20:13 +0000 (UTC)
-Message-Id: <20210303132711.645314577@linutronix.de>
+Message-Id: <20210303132023.077167457@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1614870848;
+ s=2020; t=1614870844;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:  references:references;
- bh=P7h+Ao9vOsNudD955CeMK9tU9n4YH9q4LoCgy/oWh2E=;
- b=2uXV0ePRVVVN5aKy2Fo0e96bYkFzUnbSPbDA9mnjFGs+bbvURtfkKgZsQJOXfsFhfOqAx3
- OKSUQ7A2lNXYMCPR5mt7GR8WB0thYvCiB4N4KF25U224lG1bd10Wr84gbQIvOPtxPz3S61
- OTBC7TJIKKNT+7owvCTNX96McxO5XIkAJM607UjWjAXvuDuzKj/vkGN/mMIFPVgKtW7FiY
- sMDkWETXLSLQCzV0BfhUq6uLpZrsKcZbHLAlqzznBehEpom/zQ1YITugOutFHAyMs86+RS
- kQNSvVUTjxm2uWu56Y8iErhFOW+/7R5MUYLuWMVdNNi/wd0eYJsJQIPIhJonBw==
+ content-transfer-encoding:content-transfer-encoding;
+ bh=CdClLt4+fuyCD6ZyqthkXbcv3Ic59BWpZ3AO1GEhCVA=;
+ b=xMnck+A//N+JJ/RpCJYdExXhoUvZ2fcDik9DVsp1+5j7nuopQjCucFhmvkqVup9fM19Grj
+ BXnfokOAQ6iuFq44L7pJ4+c4eVzu+k+76u9fdHc+X7OnXi0aAftiBRG89BlNAzJpRFBBJD
+ 0M4yCujiJH2tIhkhYO+VhD3K8VhrGHcp+ALOlmOexUgS1vIovXUubnt2oT6Nx6A6SmS/l3
+ vzPAPkoceU7qZmr7PyHWloesBXaP6TBOlyFg+fytBEZRG2FbHaO8xuMcvI/nmYapv0qIO8
+ m8+eGV23YjiKIi9mf8XHp90jzjRch6yjA6YXHjJhKuuZt3XMjXT6+iEyiqVurw==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1614870848;
+ s=2020e; t=1614870844;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:  references:references;
- bh=P7h+Ao9vOsNudD955CeMK9tU9n4YH9q4LoCgy/oWh2E=;
- b=yQ29yECbLb01f6/UnQLUET487mIC0cSmmm0evPuZXcme37cSI8DlyGVW46Rppt1VI46dBD
- FPkb1BDl/xOp+sAQ==
-Date: Wed, 03 Mar 2021 14:20:26 +0100
+ content-transfer-encoding:content-transfer-encoding;
+ bh=CdClLt4+fuyCD6ZyqthkXbcv3Ic59BWpZ3AO1GEhCVA=;
+ b=puGQh+pRRhN/TY3HF9OfSaRiQL69Lg4hw447EvqmiySd+QW3AXl1HHcjurw7yenjNobZem
+ +chTQ0TX3LANkTDQ==
+Date: Wed, 03 Mar 2021 14:20:23 +0100
 From: Thomas Gleixner <tglx@linutronix.de>
 To: LKML <linux-kernel@vger.kernel.org>
-References: <20210303132023.077167457@linutronix.de>
 MIME-Version: 1.0
-Subject: [Nouveau] [patch 3/7] highmem: Remove kmap_atomic_prot()
+Subject: [Nouveau] [patch 0/7] drm, highmem: Cleanup io/kmap_atomic*() usage
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,51 +78,32 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Thomas Gleixner <tglx@linutronix.de>
+None of the DRM usage sites of temporary mappings requires the side
+effects of io/kmap_atomic(), i.e. preemption and pagefault disable.
 
-No more users.
+Replace them with the io/kmap_local() variants, simplify the
+copy_to/from_user() error handling and remove the atomic variants.
 
-Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Cc: linux-mm@kvack.org
+Thanks,
+
+	tglx
 ---
- include/linux/highmem-internal.h |   14 ++------------
- 1 file changed, 2 insertions(+), 12 deletions(-)
-
---- a/include/linux/highmem-internal.h
-+++ b/include/linux/highmem-internal.h
-@@ -88,16 +88,11 @@ static inline void __kunmap_local(void *
- 	kunmap_local_indexed(vaddr);
- }
- 
--static inline void *kmap_atomic_prot(struct page *page, pgprot_t prot)
-+static inline void *kmap_atomic(struct page *page)
- {
- 	preempt_disable();
- 	pagefault_disable();
--	return __kmap_local_page_prot(page, prot);
--}
--
--static inline void *kmap_atomic(struct page *page)
--{
--	return kmap_atomic_prot(page, kmap_prot);
-+	return __kmap_local_page_prot(page, kmap_prot);
- }
- 
- static inline void *kmap_atomic_pfn(unsigned long pfn)
-@@ -184,11 +179,6 @@ static inline void *kmap_atomic(struct p
- 	return page_address(page);
- }
- 
--static inline void *kmap_atomic_prot(struct page *page, pgprot_t prot)
--{
--	return kmap_atomic(page);
--}
--
- static inline void *kmap_atomic_pfn(unsigned long pfn)
- {
- 	return kmap_atomic(pfn_to_page(pfn));
-
+ Documentation/driver-api/io-mapping.rst             |   22 +++-------
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c      |    7 +--
+ drivers/gpu/drm/i915/i915_gem.c                     |   40 ++++++-------------
+ drivers/gpu/drm/i915/selftests/i915_gem.c           |    4 -
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c       |    8 +--
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/fbmem.h |    8 +--
+ drivers/gpu/drm/qxl/qxl_image.c                     |   18 ++++----
+ drivers/gpu/drm/qxl/qxl_ioctl.c                     |   27 ++++++------
+ drivers/gpu/drm/qxl/qxl_object.c                    |   12 ++---
+ drivers/gpu/drm/qxl/qxl_object.h                    |    4 -
+ drivers/gpu/drm/qxl/qxl_release.c                   |    4 -
+ drivers/gpu/drm/ttm/ttm_bo_util.c                   |   20 +++++----
+ drivers/gpu/drm/vmwgfx/vmwgfx_blit.c                |   30 +++++---------
+ include/linux/highmem-internal.h                    |   14 ------
+ include/linux/io-mapping.h                          |   42 --------------------
+ 15 files changed, 93 insertions(+), 167 deletions(-)
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
