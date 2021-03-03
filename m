@@ -2,71 +2,95 @@ Return-Path: <SRS0=bLGa=IB=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A6A24C433E6
-	for <nouveau@archiver.kernel.org>; Wed,  3 Mar 2021 14:10:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EFA48C433E0
+	for <nouveau@archiver.kernel.org>; Wed,  3 Mar 2021 14:44:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 643B664E68
-	for <nouveau@archiver.kernel.org>; Wed,  3 Mar 2021 14:10:01 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 643B664E68
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	by mail.kernel.org (Postfix) with ESMTPS id 7F58864E4E
+	for <nouveau@archiver.kernel.org>; Wed,  3 Mar 2021 14:44:19 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7F58864E4E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=hotmail.fr
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D0AC6E9B0;
-	Wed,  3 Mar 2021 14:09:48 +0000 (UTC)
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
- [IPv6:2a00:1450:4864:20::32b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F1306E8F7
- for <nouveau@lists.freedesktop.org>; Wed,  3 Mar 2021 13:43:50 +0000 (UTC)
-Received: by mail-wm1-x32b.google.com with SMTP id m1so6399024wml.2
- for <nouveau@lists.freedesktop.org>; Wed, 03 Mar 2021 05:43:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=lgIHEbwNozF8CQjai0jy8D0j5kT9wSfHdAr6OHIEyt8=;
- b=DDM5R4xsGiTVpRIEPuVyLljyb6ERGlg1KlQqC4FxmUKm7EgZzmf3FUqCqwRnWSzS1M
- W1Jt8E+Xi1w8AAO3crFj2UNIosYF9a5C5S2xPLVYbdKOz4DNyidBnrZNgND5NXGIo82m
- MwolqE2yBrUUnTQZgwYF00WIuelEBzNqvX5BX16/ko2vetUGo9U2CNIOEW1iva5w9dQL
- DzKQexO8SiTvO2U2ipzDN5VfW8AFExyg6NFrMlYQ0qSEmUutSy3cpsMN39c5j9UJa9xm
- IMN58C0+q+YtF2ntzuUIWAwHfQ8+AGB8BtnY9hrIBv3Y9aGYwpn2ACZZVULICZMS4JQw
- 3qrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=lgIHEbwNozF8CQjai0jy8D0j5kT9wSfHdAr6OHIEyt8=;
- b=TghpLRknDtxPAE6OPBOVSvRplZrk8Hdg+GqDMAKitMDRBeacdTTGl6IXFujSynrtuC
- p6t/HQZtcUv7eoP+wRtiZVRwGVquPTUXKny4Y/0Z7DY/CTtI5XHH1aLnue7xKPHHuE0I
- 9eodMsyM8a1Gtg6HxAq39pFVHo/WQaRdrU+/0CUUN/7OlROA8z5+Sx+Vsxfv2Bm7K/6S
- 7ijinbrevR+mIvfBjt2UkhKCTfvf9cuJ/UKkH5aDUGbLo+oOFziPQgyyrrgWskHECN2Q
- xhYEK5geInJttZmECMG80Jt8bvFGvfi/xaaLHrOzswOSCwExGkHkbAzBG3uOFv068w4I
- O4mw==
-X-Gm-Message-State: AOAM531I1SiqI39dT/bDZckKwFcl0osVGBDnDHslaZtnxy8WoP+aFzt3
- Caj/BTo6iXTGsBFsp18Bh6O4mX5k5uqiGQ==
-X-Google-Smtp-Source: ABdhPJxHOaQh1gbCrDX6+3WvqrrtI5i+ZBikz6KzeCDd+omBFFvRiWkXx0KwkxwsaJwM1pEbK8z6vw==
-X-Received: by 2002:a1c:f212:: with SMTP id s18mr9320896wmc.133.1614779029145; 
- Wed, 03 Mar 2021 05:43:49 -0800 (PST)
-Received: from dell.default ([91.110.221.155])
- by smtp.gmail.com with ESMTPSA id w18sm6109524wrr.7.2021.03.03.05.43.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 03 Mar 2021 05:43:48 -0800 (PST)
-From: Lee Jones <lee.jones@linaro.org>
-To: lee.jones@linaro.org
-Date: Wed,  3 Mar 2021 13:42:44 +0000
-Message-Id: <20210303134319.3160762-19-lee.jones@linaro.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210303134319.3160762-1-lee.jones@linaro.org>
-References: <20210303134319.3160762-1-lee.jones@linaro.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03BE889C1A;
+	Wed,  3 Mar 2021 14:44:19 +0000 (UTC)
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com
+ (mail-oln040092073036.outbound.protection.outlook.com [40.92.73.36])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CA3489C1A
+ for <nouveau@lists.freedesktop.org>; Wed,  3 Mar 2021 14:44:17 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fw5nWfAPBj5jbYBFk3D5p/1eM8gcdxfrQGi7X+EgSiV6dneoJjVuqhhKABwL9Uk/4BiOQHh3g8zVr42tjwBHtsW5BClAeCHJxFIXKwUzL45sla6rf6hpLCBTXyDLBANHaKLABEfZocNJWcHS574WAAIaxgedx3UNXB3t0bl6sDUK4VHHRoRu0XN5cjxoi1P1bLOaTwCDY1luLWtjGg6CNF1aq8Xw9PvH+/NfGhn9+UdAFo82tdujLcPWLznFmwbLAPyh01TnY5GoQ7TpxOA3PIekHeRKfLbTmHPBoCuKjOma3a0DebbW6H7xfS7GNWknEFhBERU+CZBk7pIdAVajrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WvrgjMG9C67o94TUQkkuUpJTJtGOSLo+t/JBTVH5wz4=;
+ b=H8FhbvJEnHGeD/OytwLT5kCIbcyL7RV8TFjtjtwCZjFrXqhuQi3GqKxh9uOrY08aMD/z1Aq9E7ZSGNYTBIJLH1w6S1fGmWMxdZd541ZrJL5AA6ewPlDjRlcfxeMzm9+TDKNI12F+dVYh/uZCLHDzI2N8T2Ou9kbLWFBF2tqIckEWDnZ9GIzN68U+25sDWMqKUyk+8tN2Ba7HbRBN8DbMLEyYccUds0xXljc4JJGGL+S2h4gdz+aOKP+Gnc5deUKey9NBUogRQ3f/JAfLeo3zdHqD+ovhv6BMxxVwfxHfDbBpZ71OrtVpPGH31nQlVxk8Z7P6l2V31v4OwY+7OAv3TQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from VI1EUR04FT046.eop-eur04.prod.protection.outlook.com
+ (2a01:111:e400:7e0e::41) by
+ VI1EUR04HT108.eop-eur04.prod.protection.outlook.com (2a01:111:e400:7e0e::82)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19; Wed, 3 Mar
+ 2021 14:44:06 +0000
+Received: from PAXP193MB1232.EURP193.PROD.OUTLOOK.COM (2a01:111:e400:7e0e::43)
+ by VI1EUR04FT046.mail.protection.outlook.com
+ (2a01:111:e400:7e0e::83) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17 via Frontend
+ Transport; Wed, 3 Mar 2021 14:44:06 +0000
+Received: from PAXP193MB1232.EURP193.PROD.OUTLOOK.COM
+ ([fe80::58dc:e8dd:a7b4:2ada]) by PAXP193MB1232.EURP193.PROD.OUTLOOK.COM
+ ([fe80::58dc:e8dd:a7b4:2ada%7]) with mapi id 15.20.3890.029; Wed, 3 Mar 2021
+ 14:44:06 +0000
+From: Tomek LECOCQ <tomek.lecocq@hotmail.fr>
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Thread-Topic: [Nouveau] How to reverse engineer a PCI-Express driver under
+ Linux ?
+Thread-Index: AQHXEBUMPP6iHU5h0kGy15v+B0gAjqpyEEgAgAAsawCAABp0gA==
+Date: Wed, 3 Mar 2021 14:44:06 +0000
+Message-ID: <B2949E39-3A54-4605-9A56-AF67CCD2813D@hotmail.fr>
+References: <69E2E06B-90B1-45A6-AC51-144F0DBE7D7E@hotmail.fr>
+ <CACO55tta_jVwHAr3zgE38yJbTUHjcMEmx4kY6cSiRqK8GLe9pQ@mail.gmail.com>
+ <CAKb7UvgDGDJdVW_P_-rZCXqPo9b6yhcTAjCSF2FOOrhJ4ek5xA@mail.gmail.com>
+In-Reply-To: <CAKb7UvgDGDJdVW_P_-rZCXqPo9b6yhcTAjCSF2FOOrhJ4ek5xA@mail.gmail.com>
+Accept-Language: fr-FR, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:DF1A9A3FFC24DFB12CDBD3EFE25DDAB0944A14424F6AB5C77A3E0B1862EC6235;
+ UpperCasedChecksum:8B96F07B0320E835F8012D340E29B6E679FDE11537AD0774D6736D1EAD6F2489;
+ SizeAsReceived:7245; Count:45
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [FRMkjtXdTRJNEzRCyl4dfF/LRZml/iDVr9D65GDv9G0FxkzM/yKUt3hEVC2XP8r1]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 45
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: f933e127-e43a-4338-8b76-08d8de52cc06
+x-ms-traffictypediagnostic: VI1EUR04HT108:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: uGdNnjXCLN8KeDiSOjBr0e0kq8mTJXvyzgC60rDR1oj+TX7yNXoqGCUOVYaubsCttnXoe9rGmvytDstDcT0iTx4rawmqwQ1r5Lbf14URt5TOqTObCepLwfmomd9OeHE9dlFzI4tAKWoNJh7KMa4rlpxbLSkLb6mHrPNYcv+t44iO5lK740rWyDIXZmkkxR43r4TWpuxHU24Sw3Z7hiwVhcVKO9Rf6Ji61B6YgWDisqSc5XFHYOZb26H+RPUJY3nuPGeXUZP/FkUJ31fWsu3PCTklFwkO1d6w35VQrEy+0LgbUndutcd8tO49sYuAV7g3NFq4MMH2kQP9Hxi6Emag0TPRm5eIBP8nL+CvYneH2mwQvPWG5hma+qCNsX3TtfROKpICR5rQ/VOh23t90+ygNkrjcelBzxMVdUZTRrJ9/FmKG7uXrIcyel19TkpESy6c
+x-ms-exchange-antispam-messagedata: 4j5YAz0S9CXvFG9ZurKDNPTGkt7sxd86xRBl2MVhNPwv6D0nsOMxec3u0/fiI7W+Z6eVJadYHl4fMCITHtkIya5HW+pgsyXHYwQEalKOPqPMTpadmR3qjc60Sof/FS9/k4pI35BE4qj1W4nHbBn1OyBbWUfE+EZTRLCpctN4YmhcbJ03XCjwEVnUhLDbZ+fzjxEP+ltklXuaGRvuAqR45A==
+x-ms-exchange-transport-forked: True
+Content-ID: <336DF075947A6A478251E846752483D1@EURP193.PROD.OUTLOOK.COM>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 03 Mar 2021 14:09:43 +0000
-Subject: [Nouveau] [PATCH 18/53] drm/nouveau/nv50_display: Remove
- superfluous prototype for local static functions
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-AuthSource: VI1EUR04FT046.eop-eur04.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: f933e127-e43a-4338-8b76-08d8de52cc06
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Mar 2021 14:44:06.4142 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1EUR04HT108
+Subject: Re: [Nouveau] How to reverse engineer a PCI-Express driver under
+ Linux ?
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,43 +102,51 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Rml4ZXMgdGhlIGZvbGxvd2luZyBidWlsZCBlcnJvcjoKCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9kaXNwbnY1MC9kaXNwLmM6MjUzMDoxOiBlcnJvcjogY29uZmxpY3RpbmcgdHlwZXMgZm9yIOKA
-mG52NTBfZGlzcGxheV9maW5p4oCZCiBJbiBmaWxlIGluY2x1ZGVkIGZyb20gZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jOjcxOgogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bnY1MF9kaXNwbGF5Lmg6MzY6Njogbm90ZTogcHJldmlvdXMgZGVjbGFyYXRpb24gb2Yg4oCYbnY1
-MF9kaXNwbGF5X2ZpbmnigJkgd2FzIGhlcgogSW4gZmlsZSBpbmNsdWRlZCBmcm9tIGRyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYzo3MToKIGRyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L252NTBfZGlzcGxheS5oOjM1OjY6IG5vdGU6IHByZXZpb3VzIGRlY2xhcmF0aW9uIG9mIOKA
-mG52NTBfZGlzcGxheV9pbml04oCZIHdhcyBoZXJlCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9k
-aXNwbnY1MC9kaXNwLmM6MjU4MToxOiBlcnJvcjogc3RhdGljIGRlY2xhcmF0aW9uIG9mIOKAmG52
-NTBfZGlzcGxheV9kZXN0cm954oCZIGZvbGxvd3Mgbm9uLXN0YXRpYyBkZWNsYXJhdGlvbgogSW4g
-ZmlsZSBpbmNsdWRlZCBmcm9tIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3Au
-Yzo3MToKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5oOjM0OjY6IG5vdGU6
-IHByZXZpb3VzIGRlY2xhcmF0aW9uIG9mIOKAmG52NTBfZGlzcGxheV9kZXN0cm954oCZIHdhcyBo
-ZXJlCgpDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgpDYzogRGF2aWQgQWlybGll
-IDxhaXJsaWVkQGxpbnV4LmllPgpDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNoPgpD
-YzogZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpDYzogbm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKU2lnbmVkLW9mZi1ieTogTGVlIEpvbmVzIDxsZWUuam9uZXNAbGluYXJvLm9y
-Zz4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuaCB8IDMgLS0tCiAx
-IGZpbGUgY2hhbmdlZCwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBf
-ZGlzcGxheS5oCmluZGV4IGZiZDNiMTU1ODNiYzguLjI0MjE0MDFkMTI2MzYgMTAwNjQ0Ci0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5oCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5oCkBAIC0zMSw3ICszMSw0IEBACiAjaW5jbHVkZSAi
-bm91dmVhdV9yZWcuaCIKIAogaW50ICBudjUwX2Rpc3BsYXlfY3JlYXRlKHN0cnVjdCBkcm1fZGV2
-aWNlICopOwotdm9pZCBudjUwX2Rpc3BsYXlfZGVzdHJveShzdHJ1Y3QgZHJtX2RldmljZSAqKTsK
-LWludCAgbnY1MF9kaXNwbGF5X2luaXQoc3RydWN0IGRybV9kZXZpY2UgKik7Ci12b2lkIG52NTBf
-ZGlzcGxheV9maW5pKHN0cnVjdCBkcm1fZGV2aWNlICopOwogI2VuZGlmIC8qIF9fTlY1MF9ESVNQ
-TEFZX0hfXyAqLwotLSAKMi4yNy4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+DQoNCk9uIDMgTWFyIDIwMjEsIGF0IDE0OjA5LCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1p
+dC5lZHU+IHdyb3RlOg0KDQo+IE9uIFdlZCwgTWFyIDMsIDIwMjEgYXQgNTozMCBBTSBLYXJvbCBI
+ZXJic3QgPGtoZXJic3RAcmVkaGF0LmNvbT4gd3JvdGU6DQo+PiANCj4+IA0KPj4gVXN1YWxseSBk
+cml2ZXJzIG1hcCBQQ0llIGJhcnMgaW50byB0aGUgVk0gYW5kIHJlYWQvd3JpdGUgYXQgY2VydGFp
+biBvZmZzZXRzIHRvIGRvLi4gc3R1ZmYuIEluIHRoZSBsaW51eCBrZXJuZWwgd2UgaGF2ZSB0aGUg
+bW1pb3RyYWNlIHRyYWNlciBpbiBvcmRlciB0byBjYXB0dXJlIHdoYXQgYSBkcml2ZXIgZG9lcyB3
+aXRoIHRoZSBoYXJkd2FyZS4gWW91IHN0aWxsIG5lZWQgdG8gaW50ZXJwcmV0IHRoZSB0cmFjZSBm
+aWxlLCBidXQgYXQgbGVhc3QgdGhpcyBzaG91bGQgZ2l2ZSB5b3UgdGhlIHJhdyBkYXRhIG9uIHdo
+YXQncyBnb2luZyBvbi4gSG9wZSB0aGF0IGhlbHBzLg0KPiANCj4gSGVyZSdzIGEgZ29vZCBndWlk
+ZSBvbiBob3cgdG8gdXNlIG1taW90cmFjZS4gSXQncyBudmlkaWEtZm9jdXNlZCwgYnV0DQo+IHRo
+ZSBzYW1lIHN0ZXBzIHdvdWxkIGFwcGx5IHRvIGFueSBkcml2ZXI6DQo+IGh0dHBzOi8vd2lraS51
+YnVudHUuY29tL1gvTU1JT1RyYWNpbmcNCj4gDQo+IEJhc2ljYWxseSwgc3RhcnQgbW1pb3RyYWNl
+LCBsb2FkIHRhcmdldCBkcml2ZXIsIGRvIHNvbWUgc3R1ZmYsIHN0b3ANCj4gbW1pb3RyYWNlLCBh
+bmFseXplIHRoZSByZXN1bHRpbmcgdHJhY2UuDQo+IA0KPiBXZSBoYXZlIHNvbWUgdG9vbGluZyB0
+byBoZWxwIHdpdGggdGhhdCAtLSBlbnZ5dG9vbHMvcm5uL2RlbW1pbyB3aWxsDQo+IHBhcnNlIHRo
+ZSBtbWlvdHJhY2UgYWdhaW5zdCBhIGdpdmVuIHJubmRiIChhbHNvIGluIGVudnl0b29scykuIFlv
+dQ0KPiB3b24ndCBiZSBhYmxlIHRvIHJldXNlIG91ciBybm5kYiwgYnV0IHlvdSdkIGJlIGFibGUg
+dG8gYnVpbGQgdXAgeW91cg0KPiBvd24uIFlvdSBhbHNvIHdvdWxkbid0IGJlIGFibGUgdG8gdXNl
+IGRlbW1pbyBkaXJlY3RseSwgYnV0IHlvdSBjb3VsZA0KPiBzZWUgaG93IGl0IHdvcmtzIGFuZCBt
+b2RpZnkgaXQgdG8geW91ciBodydzIG5lZWRzLiAoZS5nLiBpdCB3YWl0cyBmb3INCj4gYSByZWFk
+IG9mIHRoZSAiMCIgbW1pbyByZWcgdG8gZGV0ZXJtaW5lIHdoaWNoIGNoaXAgaXMgYmVpbmcgdHJh
+Y2VkLA0KPiBhbmQgbG9hZHMgdXAgdGhlIGFwcHJvcHJpYXRlIHJubmRiIHNldHRpbmdzIC0gdGhh
+dCB3b24ndCB3b3JrIHdpdGgNCj4geW91ciBodyBvdXQgb2YgdGhlIGJveC4pDQo+IA0KDQpUaGFu
+ayB5b3UgdG8gYm90aCBvZiB5b3UgZm9yIHRoZSB2ZXJ5IHVzZWZ1bCB0aXBzIGFuZCB0aGUgbGlu
+ayB0byB0aGlzIHR1dG9yaWFsLiBUaGlzIHdhcyBleGFjdGx5IHdoYXQgSSB3YXMgbG9va2luZyBm
+b3IuDQoNCj4+PiBBbHNvLCB0aGUgbG9uZyB0ZXJtIGdvYWwgb2YgdGhpcyBwcm9qZWN0IHdvdWxk
+IGJlIHRvIGhhdmUgdGhpcyBkcml2ZXIgbWVyZ2VkIGludG8gbWFpbmxpbmUsIHNvIHdoYXQgaXMg
+YWxsb3dlZCBvciBub3Qgd2hpbGUgZG9pbmcgdGhpcyB0byBhdm9pZCBwcm9ibGVtYXRpYyBsZWdh
+bCByYW1pZmljYXRpb25zID8NCj4gDQo+IFRoaXMgaXNuJ3QgbGVnYWwgYWR2aWNlIChmb3IgdGhh
+dCwgY29uc3VsdCBhIGxhd3llciksIGhvd2V2ZXIgYSBmZXcNCj4gdGhpbmdzIHRoYXQgYXJlIGRl
+ZmluaXRlbHkgZ29pbmcgdG8gZ2V0IHlvdSBpbnRvIHRyb3VibGU6DQo+IA0KPiAtIHN0ZWFsaW5n
+IChvciB1c2luZyBzdG9sZW4pIGRvY3VtZW50YXRpb24NCj4gLSBkZS1jb21waWxpbmcgdGFyZ2V0
+IGRyaXZlciBhbmQgY29weWluZyBpdHMgaW1wbGVtZW50YXRpb24gKGFzIHRoYXQNCj4gd291bGQg
+YmUgc3ViamVjdCB0byBjb3B5cmlnaHQpDQoNClllcywgSeKAmW0gbm90IHVzaW5nIGFueXRoaW5n
+IHN0b2xlbiAoYWxsIHRoZSByZXNvdXJjZXMgSSBoYXZlIGFyZSBwdWJsaWNseSBhdmFpbGFibGUg
+b24gdGhlIGNhcmQgcHJvZHVjZXLigJlzIHdlYnNpdGUpLg0KSeKAmXZlIGFsc28gY29udGFjdGVk
+IGxvY2FsIG9wZW4tc291cmNlIE5HT3MgYWJvdXQgdGhlIGxlZ2FsIHF1ZXN0aW9ucywgSSBsaXZl
+IGluIEZyYW5jZSBhbmQgdGhlIGxhdyBoZXJlIGlzIHF1aXRlIGRpZmZlcmVudCB0byB0aGUgVVMg
+Zm9yIHRob3NlIGtpbmQgb2YgdGhpbmdzLg0KDQpSZWdhcmRzLg0KVG9tZWsNCg0KDQpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
+bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
