@@ -5,68 +5,69 @@ X-Spam-Level:
 X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 11023C433E0
-	for <nouveau@archiver.kernel.org>; Wed,  3 Mar 2021 14:09:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 02427C433E6
+	for <nouveau@archiver.kernel.org>; Wed,  3 Mar 2021 14:09:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A9A9864E68
-	for <nouveau@archiver.kernel.org>; Wed,  3 Mar 2021 14:09:54 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A9A9864E68
+	by mail.kernel.org (Postfix) with ESMTPS id 9675A64E89
+	for <nouveau@archiver.kernel.org>; Wed,  3 Mar 2021 14:09:55 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9675A64E89
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4014D6E99B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CC786E9A4;
 	Wed,  3 Mar 2021 14:09:44 +0000 (UTC)
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
- [IPv6:2a00:1450:4864:20::32c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08CD66E8F3
- for <nouveau@lists.freedesktop.org>; Wed,  3 Mar 2021 13:43:52 +0000 (UTC)
-Received: by mail-wm1-x32c.google.com with SMTP id n22so5227695wmc.2
- for <nouveau@lists.freedesktop.org>; Wed, 03 Mar 2021 05:43:51 -0800 (PST)
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
+ [IPv6:2a00:1450:4864:20::332])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41C1E6E8FA
+ for <nouveau@lists.freedesktop.org>; Wed,  3 Mar 2021 13:43:54 +0000 (UTC)
+Received: by mail-wm1-x332.google.com with SMTP id w7so5211307wmb.5
+ for <nouveau@lists.freedesktop.org>; Wed, 03 Mar 2021 05:43:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=WQfVByDMubjxteIKJEZ6P0NR+Mqv9ZNp4le53NfYrp8=;
- b=iMTh4dk09sGxqAE/qzSGNAZyvWAptULs+nQCYT2OtIn3+7m0+6HrnZE1aUNidOxkd1
- HmBXyCE2zeEgjrHTRb3VZSeT3uOaMbsogo1LT36zL6TJcnQSaeedSmHxTVD7t846xMCV
- eDdK6AYjTARDjg8E/gMjAKx0AYRKmz5xxP6aPwaFs9bQtLq/cDZ+1G8tJCD8Sw6/+Si1
- oWKD8iQuNbtQnxKs9XREiEA3GzeA3/ge0ObQRTj0uRHSotea1Ndx9pvJUsW1OI6UJwh1
- m8FyDR4OSbUUM46rq97np9+8LfZYnGxDKtK3Vl0ooMSjZ2eHgo1Le9Z/NLIU8vnm9XBF
- UUCg==
+ bh=eTcc77PaUiGKf9phoAd/vzPQm0tz3YbgYP/6lveIZh4=;
+ b=Hv3a0tcAo2K75m0PVXruwEWL4rfLpWzsc4Q8ptX+wlRQui8I+T9dLgLHzoAzZ504j/
+ XcEzu5iref2iOCnTh/o7cuHw+viXjLLMy8clfd4ZxtHnXl0RQYy2eGfS2ggWC1qnxc5p
+ xC4l5DEddko48sXzz7/SS7YKf1p0wal7oJ5cXs9QtL18zSF/4lmjSmI2HgSN3tyE6B1S
+ /FTU0+aJKxH890PwQM1AEg3ZlrQQ+JU2ilGVGkvuv97eQX2CwvOuTVNBVkTMCDWRoCS6
+ t3to01UjR2QuViV0QUnqOsUPl5w4dzGd0Yi/iMWuHy/RtGZ8ifOVWd3phAkfkQ8RvNOA
+ kRGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=WQfVByDMubjxteIKJEZ6P0NR+Mqv9ZNp4le53NfYrp8=;
- b=S4jkfuXT3RzMMupccfvYKgAVLk4LaY+OIBd+NCwhBoQPDMnTf6IjBniWPYYRmcBHKl
- cq5YDUmzgTEgvk8Y0r/q66ZDUg5+P78oip8HWh6GQpvlHFETZfg0jiY3R7cBOQ+SPMeZ
- PDtt6R9nKdb4tm0Zhfb1v2scarGCkMo69OVJPNwVEVcAoqtWHs7xYYUqRr7TzK0JoiXL
- tJzI3HX4y9JoaG7g4T2hJF+0JYH/B8qq7HAB9i7neLUPm0xu7OlcFIvpa1JmIEEg8zZm
- yNQTvFId39adPm41joVgsDqTDxjcoP+eUPP7lg4oNbuZ4PslBlhj951s0G/iNFwu9d7P
- Njyg==
-X-Gm-Message-State: AOAM532JCW49NteBPGte5u1jwnvNkLHKx+coTnDVDbVgQHHFl8x0wnqn
- EJz1pc0R8Ec7Mtk/6J376PuTyA==
-X-Google-Smtp-Source: ABdhPJzyUy+S8ulahsuVr/azQFNR9h4YD/I4Ad0ABeYj4bYvn2eB4B03dDyZjVZiwtN1lHjN0zcxjA==
-X-Received: by 2002:a1c:400b:: with SMTP id n11mr9079631wma.167.1614779030643; 
- Wed, 03 Mar 2021 05:43:50 -0800 (PST)
+ bh=eTcc77PaUiGKf9phoAd/vzPQm0tz3YbgYP/6lveIZh4=;
+ b=A2gblJFY3G5EM2CcFmReadDjj4LUOVHSTLKanFYHj1InGk5oQNvNtkh/65rpN2fwgk
+ 5TL8FT18SU1Xat+xN1sUN4u6WC+1YsVRSsl4Kxt3BgSM2MSl4IQsUB27s7Dx2VrAdkp/
+ 92sXfZBkkFG0P/nLidE5v7tVFPaGYkmYXTIVmuSTx3fqT/zuWgdY1tJ01BZFODWIzO5D
+ S7QGT44Eyea3E2ydgbIIyC4Q+ohcl6dghNjrufYpHGbBVYmvP/p1ZIKEtuW8RUcr3Hih
+ ahZ3fxH2mt1RStgDGdkEZ9/z0IeOrC/iVvQDzXSgjD1YZg7i6Ii3xGwQGjsjZwG3rHfy
+ 4mAQ==
+X-Gm-Message-State: AOAM532mqUX3rdgvcyBjxyKI9w0dBIO1zrdOvbAWDSU+k9PI50xW7gqP
+ zPdwcRfOqgqmsstGY9FJEj2iyQ==
+X-Google-Smtp-Source: ABdhPJzCUtL2oe5CKkrYfLuRcO0VMQwAKyVrObWALyWobvl6AF/6diNzxih8O3BeA+r07qK/DufcjQ==
+X-Received: by 2002:a05:600c:190a:: with SMTP id
+ j10mr9157109wmq.140.1614779032867; 
+ Wed, 03 Mar 2021 05:43:52 -0800 (PST)
 Received: from dell.default ([91.110.221.155])
- by smtp.gmail.com with ESMTPSA id w18sm6109524wrr.7.2021.03.03.05.43.49
+ by smtp.gmail.com with ESMTPSA id w18sm6109524wrr.7.2021.03.03.05.43.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 03 Mar 2021 05:43:50 -0800 (PST)
+ Wed, 03 Mar 2021 05:43:52 -0800 (PST)
 From: Lee Jones <lee.jones@linaro.org>
 To: lee.jones@linaro.org
-Date: Wed,  3 Mar 2021 13:42:45 +0000
-Message-Id: <20210303134319.3160762-20-lee.jones@linaro.org>
+Date: Wed,  3 Mar 2021 13:42:47 +0000
+Message-Id: <20210303134319.3160762-22-lee.jones@linaro.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210303134319.3160762-1-lee.jones@linaro.org>
 References: <20210303134319.3160762-1-lee.jones@linaro.org>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Wed, 03 Mar 2021 14:09:43 +0000
-Subject: [Nouveau] [PATCH 19/53] drm/nouveau/dispnv50/disp: Include header
- containing our prototypes
+Subject: [Nouveau] [PATCH 21/53] drm/nouveau/nouveau_svm: Remove unused
+ variable 'ret' from void function
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,23 +88,33 @@ Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 Rml4ZXMgdGhlIGZvbGxvd2luZyBXPTEga2VybmVsIGJ1aWxkIHdhcm5pbmcocyk6CgogZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jOjI1OTk6MTogd2FybmluZzogbm8gcHJl
-dmlvdXMgcHJvdG90eXBlIGZvciDigJhudjUwX2Rpc3BsYXlfY3JlYXRl4oCZIFstV21pc3Npbmct
-cHJvdG90eXBlc10KCkNjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+CkNjOiBEYXZp
-ZCBBaXJsaWUgPGFpcmxpZWRAbGludXguaWU+CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3
-bGwuY2g+CkNjOiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCkNjOiBub3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpTaWduZWQtb2ZmLWJ5OiBMZWUgSm9uZXMgPGxlZS5qb25lc0Bs
-aW5hcm8ub3JnPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyB8
-IDIgKysKIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9kaXNwbnY1MC9kaXNwLmMKaW5kZXggODI4ZjQ4ZDViZGQ0ZS4uY2QxNjQzMTQyMjE5OCAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCisrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYwpAQCAtNjgsNiArNjgsOCBA
-QAogCiAjaW5jbHVkZSA8c3ViZGV2L2Jpb3MvZHAuaD4KIAorI2luY2x1ZGUgIm52NTBfZGlzcGxh
-eS5oIgorCiAvKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqCiAgKiBFVk8gY2hhbm5lbAogICoqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqLwotLSAKMi4yNy4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9zdm0uYzogSW4gZnVuY3Rpb24g4oCYbm91dmVhdV9w
+Zm5zX21hcOKAmToKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfc3ZtLmM6ODEwOjY6
+IHdhcm5pbmc6IHZhcmlhYmxlIOKAmHJldOKAmSBzZXQgYnV0IG5vdCB1c2VkIFstV3VudXNlZC1i
+dXQtc2V0LXZhcmlhYmxlXQoKQ2M6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KQ2M6
+IERhdmlkIEFpcmxpZSA8YWlybGllZEBsaW51eC5pZT4KQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmll
+bEBmZndsbC5jaD4KQ2M6IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKQ2M6IG5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnClNpZ25lZC1vZmYtYnk6IExlZSBKb25lcyA8bGVlLmpv
+bmVzQGxpbmFyby5vcmc+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9zdm0u
+YyB8IDUgKystLS0KIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25z
+KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9zdm0uYyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfc3ZtLmMKaW5kZXggMWMzZjg5MDM3N2Qy
+Yy4uMjZhZjZlZTkxNTM2OCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9zdm0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N2bS5jCkBA
+IC04MTEsNyArODExLDYgQEAgbm91dmVhdV9wZm5zX21hcChzdHJ1Y3Qgbm91dmVhdV9zdm1tICpz
+dm1tLCBzdHJ1Y3QgbW1fc3RydWN0ICptbSwKIAkJIHVuc2lnbmVkIGxvbmcgYWRkciwgdTY0ICpw
+Zm5zLCB1bnNpZ25lZCBsb25nIG5wYWdlcykKIHsKIAlzdHJ1Y3Qgbm91dmVhdV9wZm5tYXBfYXJn
+cyAqYXJncyA9IG5vdXZlYXVfcGZuc190b19hcmdzKHBmbnMpOwotCWludCByZXQ7CiAKIAlhcmdz
+LT5wLmFkZHIgPSBhZGRyOwogCWFyZ3MtPnAuc2l6ZSA9IG5wYWdlcyA8PCBQQUdFX1NISUZUOwpA
+QCAtODE5LDggKzgxOCw4IEBAIG5vdXZlYXVfcGZuc19tYXAoc3RydWN0IG5vdXZlYXVfc3ZtbSAq
+c3ZtbSwgc3RydWN0IG1tX3N0cnVjdCAqbW0sCiAJbXV0ZXhfbG9jaygmc3ZtbS0+bXV0ZXgpOwog
+CiAJc3ZtbS0+dm1tLT52bW0ub2JqZWN0LmNsaWVudC0+c3VwZXIgPSB0cnVlOwotCXJldCA9IG52
+aWZfb2JqZWN0X2lvY3RsKCZzdm1tLT52bW0tPnZtbS5vYmplY3QsIGFyZ3MsIHNpemVvZigqYXJn
+cykgKwotCQkJCW5wYWdlcyAqIHNpemVvZihhcmdzLT5wLnBoeXNbMF0pLCBOVUxMKTsKKwludmlm
+X29iamVjdF9pb2N0bCgmc3ZtbS0+dm1tLT52bW0ub2JqZWN0LCBhcmdzLCBzaXplb2YoKmFyZ3Mp
+ICsKKwkJCSAgbnBhZ2VzICogc2l6ZW9mKGFyZ3MtPnAucGh5c1swXSksIE5VTEwpOwogCXN2bW0t
+PnZtbS0+dm1tLm9iamVjdC5jbGllbnQtPnN1cGVyID0gZmFsc2U7CiAKIAltdXRleF91bmxvY2so
+JnN2bW0tPm11dGV4KTsKLS0gCjIuMjcuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1Cg==
