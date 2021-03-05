@@ -7,42 +7,42 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 04B7AC433E0
-	for <nouveau@archiver.kernel.org>; Fri,  5 Mar 2021 09:57:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 38C79C433E0
+	for <nouveau@archiver.kernel.org>; Fri,  5 Mar 2021 09:58:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 940F664FE8
-	for <nouveau@archiver.kernel.org>; Fri,  5 Mar 2021 09:57:01 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 940F664FE8
+	by mail.kernel.org (Postfix) with ESMTPS id E3D1864FE9
+	for <nouveau@archiver.kernel.org>; Fri,  5 Mar 2021 09:58:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E3D1864FE9
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2396C6EB3E;
-	Fri,  5 Mar 2021 09:57:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F0F16E165;
+	Fri,  5 Mar 2021 09:58:11 +0000 (UTC)
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ABAE6EB3E;
- Fri,  5 Mar 2021 09:57:00 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 24F6364DF4;
- Fri,  5 Mar 2021 09:56:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30B696E165;
+ Fri,  5 Mar 2021 09:58:10 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 26D6A64F1D;
+ Fri,  5 Mar 2021 09:58:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1614938219;
- bh=9BmS0kveghpNaMuDKytgyUYioo9f1ZWWPnYnjLIlXiM=;
+ s=k20201202; t=1614938289;
+ bh=/lb8uN3ccDMS8ANXkjYL2gkpQf8TDnHZRLuIhsU6K5Q=;
  h=Date:From:To:Cc:Subject:From;
- b=uD9p7kmeDCz9RzL6h67uN8QlU7c0YXR8MUbXic3xNHI+SKMeU/WGrWgwbDb0RNX/6
- FQ8S9XvNcqGTxy1GXmnC51vZs+cHcKG7iQInyX510KfHTrtTWR3oSM5Qu13ngY0KMm
- zaMUC7NrbGW9GoZ+kL6NLF3ysoZERtEkYS0sviPHEvUDzrpMDOn/96AIC+iX9UGwcg
- YKaT7J8WdnRlbBMtcjsI8ZH7AVb2PfaY0SLTsr2CM1aXIVCPx235Wu2UJVKJIrlQtr
- TnSl/OHqQdpnIEkiXKvvP6JqpNitXoEqTbAiAxaneNPASKUBhLlXlV4zjJh0Dt5i21
- EaQ8R14GC7gvw==
-Date: Fri, 5 Mar 2021 03:56:57 -0600
+ b=NhlDLvtZ32Qy5Ze42To9z1nyExlHaEKoiU+ZYMkPdNC5Sll/sHGOjwLHz6SgGYhrH
+ dTqSCaFpgnqSFJ/rGR0E4vShyZJ3rMxgezeJf4i57wbKnDIxi6eg2PZEb8/mOP/qbH
+ T2XRiWTtPvzXH6Ro7Fx/+wwxNGTL2PpDfujAmisEqHxJxCoWsMJueaiY4d4LT7xyTR
+ dAaKSlTNDS3KaCeKcpCA4dLS4RtUI7f9VZr/Xe60j82ELTRPu0BgSUAwy/sCjE+DM+
+ G26yj1UlNxVR0AMJwowOEmUwU9R6lcaTFyMNiTSy30XoowkKS4yZgyzt60qhJ5OT5/
+ E/iq9/zrJIoHQ==
+Date: Fri, 5 Mar 2021 03:58:07 -0600
 From: "Gustavo A. R. Silva" <gustavoars@kernel.org>
 To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
  Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20210305095657.GA142006@embeddedor>
+Message-ID: <20210305095807.GA142125@embeddedor>
 MIME-Version: 1.0
 Content-Disposition: inline
-Subject: [Nouveau] [PATCH RESEND][next] drm/nouveau: Fix fall-through
+Subject: [Nouveau] [PATCH RESEND][next] drm/nouveau/therm: Fix fall-through
  warnings for Clang
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,41 +63,28 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-In preparation to enable -Wimplicit-fallthrough for Clang, fix a couple
-of warnings by explicitly adding a couple of break statements instead
-of letting the code fall through to the next case.
+In preparation to enable -Wimplicit-fallthrough for Clang, fix a warning
+by explicitly adding a break statement instead of letting the code fall
+through to the next case.
 
 Link: https://github.com/KSPP/linux/issues/115
 Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_bo.c        | 1 +
- drivers/gpu/drm/nouveau/nouveau_connector.c | 1 +
- 2 files changed, 2 insertions(+)
+ drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 2375711877cf..62903c3b368d 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -443,6 +443,7 @@ nouveau_bo_pin(struct nouveau_bo *nvbo, uint32_t domain, bool contig)
- 			break;
- 		case TTM_PL_TT:
- 			error |= !(domain & NOUVEAU_GEM_DOMAIN_GART);
-+			break;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c
+index 2b031d4eaeb6..684aff7437ee 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c
+@@ -41,6 +41,7 @@ pwm_info(struct nvkm_therm *therm, int line)
  		default:
  			break;
  		}
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 61e6d7412505..eb844cdcaec2 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -157,6 +157,7 @@ nouveau_conn_atomic_set_property(struct drm_connector *connector,
- 			default:
- 				break;
- 			}
-+			break;
- 		case DRM_MODE_SCALE_FULLSCREEN:
- 		case DRM_MODE_SCALE_CENTER:
- 		case DRM_MODE_SCALE_ASPECT:
++		break;
+ 	default:
+ 		break;
+ 	}
 -- 
 2.27.0
 
