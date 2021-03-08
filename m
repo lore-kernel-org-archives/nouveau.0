@@ -2,64 +2,73 @@ Return-Path: <SRS0=I8UF=IG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9652DC433E0
-	for <nouveau@archiver.kernel.org>; Mon,  8 Mar 2021 13:13:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A277C433DB
+	for <nouveau@archiver.kernel.org>; Mon,  8 Mar 2021 15:34:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4EC65651C3
-	for <nouveau@archiver.kernel.org>; Mon,  8 Mar 2021 13:13:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4EC65651C3
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 4A4E765218
+	for <nouveau@archiver.kernel.org>; Mon,  8 Mar 2021 15:34:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4A4E765218
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00F5C6E0CD;
-	Mon,  8 Mar 2021 13:13:53 +0000 (UTC)
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com
- [IPv6:2a00:1450:4864:20::22f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D9456E0CD
- for <nouveau@lists.freedesktop.org>; Mon,  8 Mar 2021 13:13:51 +0000 (UTC)
-Received: by mail-lj1-x22f.google.com with SMTP id 2so16015229ljr.5
- for <nouveau@lists.freedesktop.org>; Mon, 08 Mar 2021 05:13:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=u3KxBlq0zPK8QIlO8+MuF0pPec8mDS4KY0jLiSi9nSI=;
- b=FllWGJOZuyDz/G3ut+BvyCRg7VUvoTemVJ0NfOSIhoI0bdAx1tJkTkZh1cU/0mxxRP
- 42JaGhf0nZAkwYpnK5g9zpKjptbYjI6BKzoAA7hx0Y/B26nWsRlPHBtu846jtd2LhjaJ
- h4eHiWZBrotTUTgtA2rY2S4uxqgSrfEBGh4uH+USWJsfX8JlyrHpEigsz/dNLnosrSrn
- SNZvfRA/ZTwOjbEFMPawBsonFnyjKl0uFX2bfBGnOB70bVe+5raFK83EQkWrboYDKuFW
- Sdioci7UAc8oarozlPxJfWzpLS47fpSB986JLyA+6e7oMraEOMxiDXXlchDl9R38F/Kh
- 3fXw==
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA7716E12B;
+	Mon,  8 Mar 2021 15:34:45 +0000 (UTC)
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
+ [IPv6:2a00:1450:4864:20::332])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCABC6E841
+ for <nouveau@lists.freedesktop.org>; Mon,  8 Mar 2021 09:19:37 +0000 (UTC)
+Received: by mail-wm1-x332.google.com with SMTP id
+ r15-20020a05600c35cfb029010e639ca09eso3337360wmq.1
+ for <nouveau@lists.freedesktop.org>; Mon, 08 Mar 2021 01:19:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=hEOGgoBFFfBcRYu8R+ZFzD5oTYtm/qga63LL53Ov/bU=;
+ b=evLEsiqayrflm8/aMCMFF1KGm9tCqy5TgmLozN1pf5OV8v3XOrrOZ7dusez6ueByqx
+ QbfNJbn3Tb6TelmwrFWDd4WHxalQui+FvvMLcnchyO2FEC0WH66rXpO7Bg5MqXxBzX+Z
+ cc9Pr7PgNkEy1bM1xcbTqIIGCmKoaS4GNgx3Ck/1lpofYRw8U2M/EjDO4iJe0z6SkwP7
+ NEfv8QFCktFfq07V+8oK+WYbUu5K7JfqkfwOCUZH8ZfaC1XQzqb4v836tecMta/an5NF
+ q1zYSc8uWIE/dnLOv0rAgqCp8RZ+/3Pe/2mlOOfPdm/KIfJDoR0E3DqxqFiDR11IYcOx
+ uh1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=u3KxBlq0zPK8QIlO8+MuF0pPec8mDS4KY0jLiSi9nSI=;
- b=CUgWOVI8dGCD+YUFjUrTmiL4KqBGFFwOm8DGULPpsk/hVEVzNtbU29AC9sTz2uMtlB
- BfKLs65rdXEfotPsdRwbJtMZkjbqxkT62pWsqAMcebHM6PmBKOGmC4N2ALLvM3IfdMHG
- /z1YCpBMTXmnRfrvKiYfBFcHhDDAc1QwcO3A6DbqYls5wIBhMGLC6bRD+Ie+hSJgZNQj
- tLKRYhcyLpLWQo6u0xAvVbSiyCM6i8wnE4yuWshMAYOgjBV8PTVGGuR4rlEXTviM6VbA
- Lu8WK13nyXB30CW8Ox5mXP3pWnkyhwYsocf7vBJu+KIu4sDc56kDARH0v04JZoBzniX/
- B/Qw==
-X-Gm-Message-State: AOAM530ZLjUhMsPdt2qY6+lBkRsFf+eBsOQQSEGValvhJr0FrDFfgE4W
- H+bT88x3lBoE0/klTpHl6csjexXV6AG2smKz2nY=
-X-Google-Smtp-Source: ABdhPJxqXbpJu7xhP92c7F0V15HL7BDOVi27xRhCvFFfsJmEyW+nvefLiFeTewaXymmi5pJPZCgEpYfaCDXhuxfXBt8=
-X-Received: by 2002:a2e:730b:: with SMTP id o11mr13792256ljc.221.1615209230026; 
- Mon, 08 Mar 2021 05:13:50 -0800 (PST)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=hEOGgoBFFfBcRYu8R+ZFzD5oTYtm/qga63LL53Ov/bU=;
+ b=pBxf10eDJ76sd6dyoe7IDBU8sIEMaVjgX6FMZVUik3ZGVn3H0A14xvDIffinI0Nmm0
+ ITEnLBYqB1B1ugYVdATrYUo8mn6BOxL3j9y+g25g4WPDa/5HuDtqjEjPgCb6QxFRiFrW
+ 3pbZ0+Aa0clhxqh+r08itp91r6v7oWAdhCx3YG7tEvlg6U6Knn9GWI6DuIvEkLIX0uou
+ 5zxAcqYkG8l/dil8wggAL0oGuJSc62jxXiIeUmFQRmDdiAJFR6p3hBqcRB4N7KAXdANT
+ jGyf5k5BW2RjhspDfNl6b/Gbx3a5BjuIR456s0My2R24l57JoFoP/MJ0CsldIZ3ltVfe
+ NVKQ==
+X-Gm-Message-State: AOAM530+yLLE/ubDqxMwxC1Kd4q5PRZ3qLalYtbWrxRlVnCbYmmr3/51
+ Jtkhm6pErWCqW1vRI4TytdpkBQ==
+X-Google-Smtp-Source: ABdhPJySpXzmJ3MCPU31zc4PaUGqi7NmkyvQv0pK/pj0WvYnEHQRAY6VwjmHVQ6JfBzbPkybjDafLg==
+X-Received: by 2002:a1c:400b:: with SMTP id n11mr20979920wma.167.1615195176468; 
+ Mon, 08 Mar 2021 01:19:36 -0800 (PST)
+Received: from dell ([91.110.221.130])
+ by smtp.gmail.com with ESMTPSA id i11sm17599389wro.53.2021.03.08.01.19.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 08 Mar 2021 01:19:35 -0800 (PST)
+Date: Mon, 8 Mar 2021 09:19:32 +0000
+From: Lee Jones <lee.jones@linaro.org>
+To: Roland Scheidegger <sroland@vmware.com>
+Message-ID: <20210308091932.GB4931@dell>
+References: <20210303134319.3160762-1-lee.jones@linaro.org>
+ <16d4300e-bf29-1e85-317b-53d257890cb9@vmware.com>
 MIME-Version: 1.0
-References: <CAPpdf59bkxEQ9+iozLOc0o51w2h1e1jJhSROH-91YAEry3k8cw@mail.gmail.com>
- <CACO55tu4PtcVCdUta2MXr9UQQA2nCrmL4-O6btD2F4d_=zUMKA@mail.gmail.com>
-In-Reply-To: <CACO55tu4PtcVCdUta2MXr9UQQA2nCrmL4-O6btD2F4d_=zUMKA@mail.gmail.com>
-From: o1bigtenor <o1bigtenor@gmail.com>
-Date: Mon, 8 Mar 2021 07:13:13 -0600
-Message-ID: <CAPpdf5887gqSzw=yGjO3ZWzkJWAvjwK-Uh=wkrAdAgN=K6ZWxA@mail.gmail.com>
-To: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [Nouveau] Request for information and/or assistance
+Content-Disposition: inline
+In-Reply-To: <16d4300e-bf29-1e85-317b-53d257890cb9@vmware.com>
+X-Mailman-Approved-At: Mon, 08 Mar 2021 15:34:44 +0000
+Subject: Re: [Nouveau] [RESEND 00/53] Rid GPU from W=1 warnings
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,93 +80,38 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau <nouveau@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Qinglang Miao <miaoqinglang@huawei.com>,
+ Anthony Koo <Anthony.Koo@amd.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Jeremy Kolb <jkolb@brandeis.edu>, amd-gfx@lists.freedesktop.org,
+ Rob Clark <rob.clark@linaro.org>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>,
+ Harry Wentland <harry.wentland@amd.com>, linux-media@vger.kernel.org,
+ Leo Li <sunpeng.li@amd.com>, linux-arm-msm@vger.kernel.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, linaro-mm-sig@lists.linaro.org,
+ Sean Paul <sean@poorly.run>, Kuogee Hsieh <khsieh@codeaurora.org>,
+ linux-kernel@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Colin Ian King <colin.king@canonical.com>, freedreno@lists.freedesktop.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Zack Rusin <zackr@vmware.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Mar 8, 2021 at 3:05 AM Karol Herbst <kherbst@redhat.com> wrote:
->
-> On Thu, Mar 4, 2021 at 3:21 AM o1bigtenor <o1bigtenor@gmail.com> wrote:
-> >
-> > Greetings
-> >
-> > Running debian testing, 2 nvidia gpus (GP107 and GF110) and 5 monitors
-> > (1 - 3840x2160 and 2 1920x1080 on the GP107 and 2 - 1920x1080 on the
-> > GF110) using one screen (7680x3000).
-> >Direct firmware load for nouveau/nvc8_fuc084 failed with error -2
-> > I would still like to modify some things but can't find any docs on
-> > how to do that and my attempts have only made things worse and I can
-> > function, even though some things are right awkward, on the system.
-> > What I've run into is that my graphics system either refuses to come
-> > out of hibernation or decides to come back on but in a locked state. I
-> > then log into this machine from another on the network and do a reboot
-> > for a 'graceful' restart (rather than use the kill button - - - the
-> > hard shut off).
-> >
-> > This event, graphics shutdown, is happening in direct relationship to
-> > how much I have happening on the desktops of which I have lots.
-> >
-> > In searching it seems that nouveau support for the GP107 is not yet
-> > complete - - - - or that's what it seems like.
-> >
-> > Is there someone out there who has some idea what the problem is?
-> > (There are quite a number of different individuals mentioning this
-> > issue in one of the bug reports.)
-> >
-> > I would be happy to revise the nouveau pages on xrandr updating the
-> > information from 1.3 to 1.5 and possibly some of the other pages as
-> > well. I have no programming skills but I do have reasonable writing
-> > skills - - - - would rather trade than to continue taking that 1/2
-> > hour it takes to set my system up after each reboot - - - - taking an
-> > hour or even 1.5 hours a day doing this is a huge drain on my
-> > resources and would rather change this.
-> >
-> > Please advise!
-> >
->
-> I think at this point we can only guess what's going on there and
-> having system logs would help us figure out what's wrong. Mind sharing
-> system logs from the time the crash or whatever that is happens?
-> Output of dmesg via ssh could be enough.
->
-
-As requested:
-
-debianbase kernel: [  436.180582] nouveau 0000:02:00.0: Direct
-firmware load for nouveau/nvc8_fuc084 failed with error -2
-Mar  5 20:24:40 debianbase kernel: [  436.180597] nouveau
-0000:02:00.0: Direct firmware load for nouveau/nvc8_fuc084d failed
-with error -2
-Mar  6 00:00:02 debianbase kernel: [13358.378698] audit: type=1400
-audit(1615010402.464:22): apparmor="DENIED" operation="capable"
-profile="/usr/sbin/cupsd" pid=13168 comm="cupsd" capability=12
-capname="net_admin"
-Mar  6 00:00:02 debianbase kernel: [13358.415978] audit: type=1400
-audit(1615010402.500:23): apparmor="DENIED" operation="capable"
-profile="/usr/sbin/cups-browsed" pid=13170 comm="cups-browsed"
-capability=23  capname="sys_nice"
-Mar  6 07:40:56 debianbase kernel: [41012.952323] perf: interrupt took
-too long (2511 > 2500), lowering kernel.perf_event_max_sample_rate to
-79500
-Mar  6 12:04:47 debianbase kernel: [56843.957285] perf: interrupt took
-too long (3152 > 3138), lowering kernel.perf_event_max_sample_rate to
-63250
-Mar  6 15:56:25 debianbase kernel: [70741.868103] perf: interrupt took
-too long (3952 > 3940), lowering kernel.perf_event_max_sample_rate to
-50500
-Mar  7 00:00:01 debianbase kernel: [99758.601985] audit: type=1400
-audit(1615096801.491:24): apparmor="DENIED" operation="capable"
-profile="/usr/sbin/cupsd" pid=56136 comm="cupsd" capability=12
-capname="net_admin"
-Mar  7 00:00:01 debianbase kernel: [99758.625644] audit: type=1400
-audit(1615096801.515:25): apparmor="DENIED" operation="capable"
-profile="/usr/sbin/cups-browsed" pid=56139 comm="cups-browsed"
-capability=23  capname="sys_nice"
-
-Is this sufficient?
-_______________________________________________
-Nouveau mailing list
-Nouveau@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
+T24gRnJpLCAwNSBNYXIgMjAyMSwgUm9sYW5kIFNjaGVpZGVnZ2VyIHdyb3RlOgoKPiBUaGUgdm13
+Z2Z4IG9uZXMgbG9vayBhbGwgZ29vZCB0byBtZSwgc28gZm9yCj4gMjMtNTM6IFJldmlld2VkLWJ5
+OiBSb2xhbmQgU2NoZWlkZWdnZXIgPHNyb2xhbmRAdm13YXJlLmNvbT4KPiBUaGF0IHNhaWQsIHRo
+ZXkgd2VyZSBhbHJlYWR5IHNpZ25lZCBvZmYgYnkgWmFjaywgc28gbm90IHN1cmUgd2hhdAo+IGhh
+cHBlbmVkIGhlcmUuCgpZZXMsIHRoZXkgd2VyZSBhY2NlcHRlZCBhdCBvbmUgcG9pbnQsIHRoZW4g
+ZHJvcHBlZCB3aXRob3V0IGEgcmVhc29uLgoKU2luY2UgSSByZWJhc2VkIG9udG8gdGhlIGxhdGVz
+dCAtbmV4dCwgSSBoYWQgdG8gcGx1Y2sgdGhlbSBiYWNrIG91dCBvZgphIHByZXZpb3VzIG9uZS4K
+Ci0tIApMZWUgSm9uZXMgW+adjueQvOaWr10KU2VuaW9yIFRlY2huaWNhbCBMZWFkIC0gRGV2ZWxv
+cGVyIFNlcnZpY2VzCkxpbmFyby5vcmcg4pSCIE9wZW4gc291cmNlIHNvZnR3YXJlIGZvciBBcm0g
+U29DcwpGb2xsb3cgTGluYXJvOiBGYWNlYm9vayB8IFR3aXR0ZXIgfCBCbG9nCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
