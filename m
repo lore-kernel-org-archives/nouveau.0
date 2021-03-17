@@ -7,50 +7,50 @@ X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C637C433E0
-	for <nouveau@archiver.kernel.org>; Wed, 17 Mar 2021 22:42:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D11ECC433E6
+	for <nouveau@archiver.kernel.org>; Wed, 17 Mar 2021 22:42:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CA22E64EF9
-	for <nouveau@archiver.kernel.org>; Wed, 17 Mar 2021 22:42:37 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CA22E64EF9
+	by mail.kernel.org (Postfix) with ESMTPS id 780DA64EF9
+	for <nouveau@archiver.kernel.org>; Wed, 17 Mar 2021 22:42:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 780DA64EF9
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 756356E853;
-	Wed, 17 Mar 2021 22:42:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11E4F6E855;
+	Wed, 17 Mar 2021 22:42:37 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70A226E854
- for <nouveau@lists.freedesktop.org>; Wed, 17 Mar 2021 22:42:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE3A76E850
+ for <nouveau@lists.freedesktop.org>; Wed, 17 Mar 2021 22:42:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1616020953;
+ s=mimecast20190719; t=1616020954;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=P7jQvqpzKxZc3/em+C5JBun90tKAacfvOMrjP/KcY+o=;
- b=WeEHglTS1rAsUmqwKr4/Hu1QJvIZrj/lQ93Mcnm00IIiTpdep/cJtyjmLVHQy61vAuvsyM
- 0mtKTcLrL0hLtelu9ucbWeaxuiTKbwRiDecorNyQNylwetNOneqwIXGUCvgvHItOyaIgiz
- F2y57UZ1C/Ifzoneo23Iq6HDNoPX/9I=
+ bh=Bp9tRlTGqYHOldMsz1KPVazXiKNMgTACgEbJV4rTGxA=;
+ b=IjY+Q+xkTkt0KcpPKi84NaaH7TNv1O3QxPf2FnXbEgU05VO23cjdJ5EioE2Vg3ges0gN+t
+ f5LkK7HpDPFbtfoEVe7hgQuGOxfvt5/IuA6+6aXNuYtin0L5/KPagFMSr297mfGDzFcENy
+ y14LqwQuJ+r4VnCxCMZD9lLcqxfvDjA=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-177-gqtHYTxGNoKHSZSB6cfKew-1; Wed, 17 Mar 2021 18:42:31 -0400
-X-MC-Unique: gqtHYTxGNoKHSZSB6cfKew-1
+ us-mta-303-3hTXodWrMFS9Z2b5BDtWVg-1; Wed, 17 Mar 2021 18:42:32 -0400
+X-MC-Unique: 3hTXodWrMFS9Z2b5BDtWVg-1
 Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
  [10.5.11.22])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id E3A27107ACCA;
- Wed, 17 Mar 2021 22:42:29 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 99054190B2A1;
+ Wed, 17 Mar 2021 22:42:31 +0000 (UTC)
 Received: from Whitewolf.lyude.net (ovpn-119-60.rdu2.redhat.com [10.10.119.60])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 337971001281;
- Wed, 17 Mar 2021 22:42:29 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id E1A861001281;
+ Wed, 17 Mar 2021 22:42:30 +0000 (UTC)
 From: Lyude <lyude@redhat.com>
 To: igt-dev@lists.freedesktop.org
-Date: Wed, 17 Mar 2021 18:42:20 -0400
-Message-Id: <20210317224222.447100-2-lyude@redhat.com>
+Date: Wed, 17 Mar 2021 18:42:22 -0400
+Message-Id: <20210317224222.447100-4-lyude@redhat.com>
 In-Reply-To: <20210317224222.447100-1-lyude@redhat.com>
 References: <20210317224222.447100-1-lyude@redhat.com>
 MIME-Version: 1.0
@@ -59,8 +59,7 @@ Authentication-Results: relay.mimecast.com;
  auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Subject: [Nouveau] [PATCH i-g-t 1/3] tests/kms_color: Don't opencode
- igt_check_crc_equal()
+Subject: [Nouveau] [PATCH i-g-t 3/3] tests/kms_color: Stop leaking fbs
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,45 +79,68 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 From: Lyude Paul <lyude@redhat.com>
 
+While I was testing this out with nouveau, I noticed that this test leaks
+quite a lot of framebuffers. Didn't cause any issues, but we should fix
+this while we're at it.
+
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 Cc: Martin Peres <martin.peres@free.fr>
 Cc: Ben Skeggs <bskeggs@redhat.com>
 Cc: Jeremy Cline <jcline@redhat.com>
 ---
- tests/kms_color.c        | 2 +-
- tests/kms_color_helper.c | 6 ------
- 2 files changed, 1 insertion(+), 7 deletions(-)
+ tests/kms_color.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
 diff --git a/tests/kms_color.c b/tests/kms_color.c
-index f2686f57..705c9160 100644
+index 02a1a2de..b1b91c74 100644
 --- a/tests/kms_color.c
 +++ b/tests/kms_color.c
-@@ -506,7 +506,7 @@ static bool test_pipe_ctm(data_t *data,
- 		/* Verify that the CRC of the software computed output is
- 		 * equal to the CRC of the CTM matrix transformation output.
- 		 */
--		ret &= crc_equal(&crc_software, &crc_hardware);
-+		ret &= !igt_skip_crc_compare || igt_check_crc_equal(&crc_software, &crc_hardware);
+@@ -105,6 +105,8 @@ static void test_pipe_degamma(data_t *data,
  
  		igt_plane_set_fb(primary, NULL);
  		igt_output_set_pipe(output, PIPE_NONE);
-diff --git a/tests/kms_color_helper.c b/tests/kms_color_helper.c
-index ac8e8454..5f223a88 100644
---- a/tests/kms_color_helper.c
-+++ b/tests/kms_color_helper.c
-@@ -245,12 +245,6 @@ get_blob(data_t *data, igt_pipe_t *pipe, enum igt_atomic_crtc_properties prop)
- 	return drmModeGetPropertyBlob(data->drm_fd, prop_value);
- }
++		igt_remove_fb(data->drm_fd, &fb);
++		igt_remove_fb(data->drm_fd, &fb_modeset);
+ 	}
  
--bool crc_equal(igt_crc_t *a, igt_crc_t *b)
--{
--	return igt_skip_crc_compare ||
--		memcmp(a->crc, b->crc, sizeof(a->crc[0]) * a->n_words) == 0;
--}
--
- int
- pipe_set_property_blob_id(igt_pipe_t *pipe,
- 			  enum igt_atomic_crtc_properties prop,
+ 	free_lut(degamma_linear);
+@@ -189,6 +191,8 @@ static void test_pipe_gamma(data_t *data,
+ 
+ 		igt_plane_set_fb(primary, NULL);
+ 		igt_output_set_pipe(output, PIPE_NONE);
++		igt_remove_fb(data->drm_fd, &fb);
++		igt_remove_fb(data->drm_fd, &fb_modeset);
+ 	}
+ 
+ 	free_lut(gamma_full);
+@@ -292,6 +296,8 @@ static void test_pipe_legacy_gamma(data_t *data,
+ 
+ 		igt_plane_set_fb(primary, NULL);
+ 		igt_output_set_pipe(output, PIPE_NONE);
++		igt_remove_fb(data->drm_fd, &fb);
++		igt_remove_fb(data->drm_fd, &fb_modeset);
+ 	}
+ 
+ 	free(red_lut);
+@@ -510,6 +516,8 @@ static bool test_pipe_ctm(data_t *data,
+ 
+ 		igt_plane_set_fb(primary, NULL);
+ 		igt_output_set_pipe(output, PIPE_NONE);
++		igt_remove_fb(data->drm_fd, &fb);
++		igt_remove_fb(data->drm_fd, &fb_modeset);
+ 	}
+ 
+ 	free_lut(degamma_linear);
+@@ -618,6 +626,9 @@ static void test_pipe_limited_range_ctm(data_t *data,
+ 		 * equal to the CRC of the CTM matrix transformation output.
+ 		 */
+ 		igt_assert_crc_equal(&crc_full, &crc_limited);
++
++		igt_remove_fb(data->drm_fd, &fb);
++		igt_remove_fb(data->drm_fd, &fb_modeset);
+ 	}
+ 
+ 	free_lut(gamma_linear);
 -- 
 2.29.2
 
