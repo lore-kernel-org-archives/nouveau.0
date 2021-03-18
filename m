@@ -7,45 +7,43 @@ X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,
 	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6AA3BC433E0
-	for <nouveau@archiver.kernel.org>; Thu, 18 Mar 2021 07:08:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BDADCC433E9
+	for <nouveau@archiver.kernel.org>; Thu, 18 Mar 2021 07:08:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 037C36157E
-	for <nouveau@archiver.kernel.org>; Thu, 18 Mar 2021 07:08:50 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 037C36157E
+	by mail.kernel.org (Postfix) with ESMTPS id 706856146B
+	for <nouveau@archiver.kernel.org>; Thu, 18 Mar 2021 07:08:52 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 706856146B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=mupuf.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90E846E88F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1BDA6E892;
 	Thu, 18 Mar 2021 07:08:46 +0000 (UTC)
-X-Greylist: delayed 546 seconds by postgrey-1.36 at gabe;
- Thu, 18 Mar 2021 06:48:33 UTC
 Received: from aibo.runbox.com (aibo.runbox.com [91.220.196.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15C5D6E558;
- Thu, 18 Mar 2021 06:48:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2617A6E558
+ for <nouveau@lists.freedesktop.org>; Thu, 18 Mar 2021 06:49:28 +0000 (UTC)
 Received: from [10.9.9.73] (helo=submission02.runbox)
  by mailtransmit03.runbox with esmtp (Exim 4.86_2)
  (envelope-from <martin.peres@mupuf.org>)
- id 1lMmSL-0001kL-Di; Thu, 18 Mar 2021 07:48:29 +0100
+ id 1lMmLs-0001HO-A2; Thu, 18 Mar 2021 07:41:48 +0100
 Received: by submission02.runbox with esmtpsa [Authenticated alias (981869)]
  (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.90_1)
- id 1lMmSD-0007s6-Bf; Thu, 18 Mar 2021 07:48:21 +0100
-To: Lyude <lyude@redhat.com>, nouveau@lists.freedesktop.org,
- igt-dev@lists.freedesktop.org
-References: <20210317224949.448284-1-lyude@redhat.com>
+ id 1lMmLk-0007Hl-VU; Thu, 18 Mar 2021 07:41:41 +0100
+To: Lyude <lyude@redhat.com>, igt-dev@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+References: <20210317224407.447572-1-lyude@redhat.com>
 From: Martin Peres <martin.peres@mupuf.org>
-Message-ID: <7995a772-c57d-afeb-aa7b-df6f729a3777@mupuf.org>
-Date: Thu, 18 Mar 2021 08:48:20 +0200
+Message-ID: <f5554f76-fc26-e307-0fe0-e59d3bca15ba@mupuf.org>
+Date: Thu, 18 Mar 2021 08:41:40 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210317224949.448284-1-lyude@redhat.com>
+In-Reply-To: <20210317224407.447572-1-lyude@redhat.com>
 Content-Language: en-US
 X-Mailman-Approved-At: Thu, 18 Mar 2021 07:08:45 +0000
-Subject: Re: [Nouveau] [igt-dev] [PATCH i-g-t 0/7] lib: Miscellaneous
- cleanups from nouveau work
+Subject: Re: [Nouveau] [igt-dev] [PATCH i-g-t] tests/kms_plane: Don't unset
+ primary_fb when testing other planes
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,46 +55,76 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Cc: Ben Skeggs <bskeggs@redhat.com>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 18/03/2021 00:49, Lyude wrote:
+On 18/03/2021 00:44, Lyude wrote:
 > From: Lyude Paul <lyude@redhat.com>
 > 
-> These are just a couple of small fixes that didn't seem important
-> enough to stick in their own patch series, but were various issues with
-> igt that I found along the way during my recent nouveau igt work.
+> Currently, nouveau doesn't support having a CRTC without a primary FB set. We
+> won't reject such configurations, but the behavior is undefined which will cause
+> CRCs to become undefined. So, avoid clearing the primary FB while we're testing
+> non-primary planes.
+
+Looks good to me:
+
+Reviewed-by: Martin Peres <martin.peres@mupuf.org>
+
 > 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
 > Cc: Martin Peres <martin.peres@free.fr>
+> Cc: Ben Skeggs <bskeggs@redhat.com>
 > Cc: Jeremy Cline <jcline@redhat.com>
-
-This series looks sensible to me, and do not seem to have affected 
-Intel's results.
-
-I'll refrain from giving a full R-b because I lack the historical 
-context for some of these changes, but it seems safe to me:
-
-Acked-by: Martin Peres <martin.peres@mupuf.org>
-
+> ---
+>   tests/kms_plane.c | 9 +++++----
+>   1 file changed, 5 insertions(+), 4 deletions(-)
 > 
-> Lyude Paul (7):
->    lib/drmtest: Use igt_assert_eq() for do_or_die()
->    lib/drmtest: And use do_or_die() in do_ioctl()
->    lib/drmtest: Remove i915 refs in do_ioctl*() docs
->    lib/igt_fb: Remove domain from igt_fb
->    lib/debugfs: Fix igt_crc_t docs to mention has_valid_frame
->    lib/igt_aux: Print name of debug var in igt_debug_wait_for_keypress()
->    lib/debugfs: Fix function name in igt_pipe_crc_get_for_frame() docs
-> 
->   lib/drmtest.h     | 8 ++++----
->   lib/igt_aux.c     | 2 +-
->   lib/igt_debugfs.c | 2 +-
->   lib/igt_debugfs.h | 3 ++-
->   lib/igt_fb.c      | 3 ---
->   lib/igt_fb.h      | 2 --
->   6 files changed, 8 insertions(+), 12 deletions(-)
+> diff --git a/tests/kms_plane.c b/tests/kms_plane.c
+> index 298a9375..c87983a4 100644
+> --- a/tests/kms_plane.c
+> +++ b/tests/kms_plane.c
+> @@ -817,9 +817,10 @@ enum crc_set { PACKED_CRC_SET,
+>   	       MAX_CRC_SET };
+>   
+>   static bool test_format_plane(data_t *data, enum pipe pipe,
+> -			      igt_output_t *output, igt_plane_t *plane)
+> +			      igt_output_t *output, igt_plane_t *plane, igt_fb_t *primary_fb)
+>   {
+>   	struct igt_fb fb = {};
+> +	struct igt_fb *clear_fb = plane->type == DRM_PLANE_TYPE_PRIMARY ? primary_fb : NULL;
+>   	drmModeModeInfo *mode;
+>   	uint32_t format, ref_format;
+>   	uint64_t modifier, ref_modifier;
+> @@ -879,7 +880,7 @@ static bool test_format_plane(data_t *data, enum pipe pipe,
+>   			height = test_fb.height;
+>   		}
+>   
+> -		igt_plane_set_fb(plane, NULL);
+> +		igt_plane_set_fb(plane, clear_fb);
+>   
+>   		igt_remove_fb(data->drm_fd, &test_fb);
+>   	}
+> @@ -937,7 +938,7 @@ static bool test_format_plane(data_t *data, enum pipe pipe,
+>   
+>   	igt_pipe_crc_stop(data->pipe_crc);
+>   
+> -	igt_plane_set_fb(plane, NULL);
+> +	igt_plane_set_fb(plane, clear_fb);
+>   	igt_remove_fb(data->drm_fd, &fb);
+>   
+>   	return result;
+> @@ -1010,7 +1011,7 @@ test_pixel_formats(data_t *data, enum pipe pipe)
+>   	for_each_plane_on_pipe(&data->display, pipe, plane) {
+>   		if (skip_plane(data, plane))
+>   			continue;
+> -		result &= test_format_plane(data, pipe, output, plane);
+> +		result &= test_format_plane(data, pipe, output, plane, &primary_fb);
+>   	}
+>   
+>   	test_fini(data);
 > 
 _______________________________________________
 Nouveau mailing list
