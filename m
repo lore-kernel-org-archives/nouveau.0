@@ -2,47 +2,54 @@ Return-Path: <SRS0=o6m/=IQ=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 65519C433E0
-	for <nouveau@archiver.kernel.org>; Thu, 18 Mar 2021 07:08:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 50906C433E0
+	for <nouveau@archiver.kernel.org>; Thu, 18 Mar 2021 09:14:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BBCEC6146B
-	for <nouveau@archiver.kernel.org>; Thu, 18 Mar 2021 07:08:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BBCEC6146B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=mupuf.org
+	by mail.kernel.org (Postfix) with ESMTPS id 0637B64E45
+	for <nouveau@archiver.kernel.org>; Thu, 18 Mar 2021 09:14:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0637B64E45
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=intel.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF6226E893;
-	Thu, 18 Mar 2021 07:08:46 +0000 (UTC)
-Received: from aibo.runbox.com (aibo.runbox.com [91.220.196.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 566716E093
- for <nouveau@lists.freedesktop.org>; Thu, 18 Mar 2021 07:02:51 +0000 (UTC)
-Received: from [10.9.9.74] (helo=submission03.runbox)
- by mailtransmit02.runbox with esmtp (Exim 4.86_2)
- (envelope-from <martin.peres@mupuf.org>)
- id 1lMmMd-0007Vy-Am; Thu, 18 Mar 2021 07:42:35 +0100
-Received: by submission03.runbox with esmtpsa [Authenticated alias (981869)]
- (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.90_1)
- id 1lMmMW-0001W2-59; Thu, 18 Mar 2021 07:42:28 +0100
-To: Lyude <lyude@redhat.com>, igt-dev@lists.freedesktop.org
-References: <20210317224222.447100-1-lyude@redhat.com>
-From: Martin Peres <martin.peres@mupuf.org>
-Message-ID: <2bcaa3ba-7bf4-3f39-df09-ea6f8c0e12cd@mupuf.org>
-Date: Thu, 18 Mar 2021 08:42:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA9D96E8A7;
+	Thu, 18 Mar 2021 09:14:33 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C3BE6E8A7;
+ Thu, 18 Mar 2021 09:14:32 +0000 (UTC)
+IronPort-SDR: 8/LCV4ICIJygJWhApMcz1cMgpcgrjna8uiw1Rc5utwmH8K7AMIJ6Mu9RztvI8kQckZFutUEH5M
+ ZtDSanDl3d6Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9926"; a="189009697"
+X-IronPort-AV: E=Sophos;i="5.81,258,1610438400"; d="scan'208";a="189009697"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2021 02:14:31 -0700
+IronPort-SDR: 9L4aoaOZCeUfTV1/u1TEzfj/L6fGDofscLCa/A6sZA1KFtyo0lh2bRnMLhd9BOfTqn5SuKmADs
+ GzmvVndEv1eg==
+X-IronPort-AV: E=Sophos;i="5.81,258,1610438400"; d="scan'208";a="440826688"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2021 02:14:30 -0700
+Received: from platvala by thrakatuluk with local (Exim 4.94)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1lMokF-0001lC-I2; Thu, 18 Mar 2021 11:15:07 +0200
+Date: Thu, 18 Mar 2021 11:15:07 +0200
+From: Petri Latvala <petri.latvala@intel.com>
+To: Martin Peres <martin.peres@mupuf.org>
+Message-ID: <YFMaG3tRgsiizy+J@platvala-desk.ger.corp.intel.com>
+References: <20210317223827.446803-1-lyude@redhat.com>
+ <f42f3af7-658e-b06f-fb79-c36273ac4810@mupuf.org>
 MIME-Version: 1.0
-In-Reply-To: <20210317224222.447100-1-lyude@redhat.com>
-Content-Language: en-US
-X-Mailman-Approved-At: Thu, 18 Mar 2021 07:08:45 +0000
-Subject: Re: [Nouveau] [igt-dev] [PATCH i-g-t 0/3] tests/kms_color: Fixup
- for nouveau
+Content-Disposition: inline
+In-Reply-To: <f42f3af7-658e-b06f-fb79-c36273ac4810@mupuf.org>
+X-Patchwork-Hint: comment
+Subject: Re: [Nouveau] [igt-dev] [PATCH i-g-t] lib: Introduce the
+ igt_nouveau library
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,39 +61,34 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
+Cc: igt-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 18/03/2021 00:42, Lyude wrote:
-> From: Lyude Paul <lyude@redhat.com>
+On Thu, Mar 18, 2021 at 09:06:29AM +0200, Martin Peres wrote:
+> On 18/03/2021 00:38, Lyude wrote:
+> > diff --git a/include/drm-uapi/drm_fourcc.h b/include/drm-uapi/drm_fourcc.h
+> > index a7bc058c..87c87485 100644
+> > --- a/include/drm-uapi/drm_fourcc.h
+> > +++ b/include/drm-uapi/drm_fourcc.h
+> > @@ -681,7 +681,7 @@ drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
+> >   }
+> >   /*
+> > - * 16Bx2 Block Linear layout, used by Tegra K1 and later
+> > + * 16Bx2 Block Linear layout, used by desktop GPUs, and Tegra K1 and later
 > 
-> This patch series just introduces a small drive-by cleanup for
-> kms_color, and fixes the kms_color test so that it works correctly on
-> nouveau. Note that the invalid LUT/gamma tests will likely currently
-> fail, but I'm going to be submitting some kernel patches to fix these in
-> nouveau very shortly.
+> Maybe remove one of the "and"s?
+> 
+> 16Bx2 Block Linear layout, used by desktop GPUs, and Tegra K1+
 
-The series is:
+drm_fourcc.h is copied from the kernel, no hand-editing in IGT.
 
-Reviewed-by: Martin Peres <martin.peres@mupuf.org>
 
-> 
-> Cc: Martin Peres <martin.peres@free.fr>
-> Cc: Ben Skeggs <bskeggs@redhat.com>
-> Cc: Jeremy Cline <jcline@redhat.com>
-> 
-> Lyude Paul (3):
->    tests/kms_color: Don't opencode igt_check_crc_equal()
->    tests/kms_color: Allow tests to run on any driver
->    tests/kms_color: Stop leaking fbs
-> 
->   tests/kms_color.c        | 15 +++++++++++++--
->   tests/kms_color_helper.c |  6 ------
->   2 files changed, 13 insertions(+), 8 deletions(-)
-> 
+-- 
+Petri Latvala
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
