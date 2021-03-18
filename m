@@ -2,62 +2,65 @@ Return-Path: <SRS0=o6m/=IQ=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A559C433DB
-	for <nouveau@archiver.kernel.org>; Thu, 18 Mar 2021 22:21:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 19064C433E6
+	for <nouveau@archiver.kernel.org>; Thu, 18 Mar 2021 22:21:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E098161574
-	for <nouveau@archiver.kernel.org>; Thu, 18 Mar 2021 22:21:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E098161574
+	by mail.kernel.org (Postfix) with ESMTPS id D0DD864E83
+	for <nouveau@archiver.kernel.org>; Thu, 18 Mar 2021 22:21:44 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D0DD864E83
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 780516E1A5;
-	Thu, 18 Mar 2021 22:21:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F6C76E1B7;
+	Thu, 18 Mar 2021 22:21:41 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E63A86E1A8
- for <nouveau@lists.freedesktop.org>; Thu, 18 Mar 2021 22:21:38 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [63.128.21.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B50796E1A8
+ for <nouveau@lists.freedesktop.org>; Thu, 18 Mar 2021 22:21:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1616106098;
+ s=mimecast20190719; t=1616106099;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=XJcAkiabQJxLBhJ0WEIux0Ss1FM5GZz1+5E0CgrPcxw=;
- b=H6Ejmcrwo+7YS4k45ndRgrXUuoLA/6T6c3IaBrfOd3ez+oDr3fcqus2VbcxfnPKoOL3PDe
- jeUggyikT6rxfWD5t5UZ0jt7VJ6ru2HfmDarTvWZ2XZWXCJVe3znVb+UY9FFb1NirI5d+j
- y0aMnLCRZEmmXJchlQJN243FvQLKuas=
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3eGq0CaIyzsJWT3l78v2M/Vr0RPTI5s5NnBbSpXjFYs=;
+ b=h53IHKLe7idDjBXafaKPq5olY+H3xKbjopD4C3h4N1S9e1+MTcicLp3NF6r0pJJlY3vHjT
+ CEioao4GWMGyVhJ5JwUwwtkYLhLt/F32Lvi7WuN9KHHKnj7mHm5h9HWR/jKDEj/2Qwwr5J
+ zO0CvPiE6ashCYx2ZGetKfHtd+YzPsM=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-259-2NZYmzXbPqKeKoKF2qBNoQ-1; Thu, 18 Mar 2021 18:21:34 -0400
-X-MC-Unique: 2NZYmzXbPqKeKoKF2qBNoQ-1
+ us-mta-458-mx_7jnxqMyCn8fIr0SyOvQ-1; Thu, 18 Mar 2021 18:21:36 -0400
+X-MC-Unique: mx_7jnxqMyCn8fIr0SyOvQ-1
 Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
  [10.5.11.13])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id C060F8018A9;
- Thu, 18 Mar 2021 22:21:33 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id C2DB51007474;
+ Thu, 18 Mar 2021 22:21:35 +0000 (UTC)
 Received: from Whitewolf.lyude.net (ovpn-113-18.rdu2.redhat.com [10.10.113.18])
- by smtp.corp.redhat.com (Postfix) with ESMTP id EEA4E60CD7;
- Thu, 18 Mar 2021 22:21:32 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 02E0060CD7;
+ Thu, 18 Mar 2021 22:21:34 +0000 (UTC)
 From: Lyude <lyude@redhat.com>
 To: igt-dev@lists.freedesktop.org,
 	nouveau@lists.freedesktop.org
-Date: Thu, 18 Mar 2021 18:21:22 -0400
-Message-Id: <20210318222124.970997-1-lyude@redhat.com>
+Date: Thu, 18 Mar 2021 18:21:24 -0400
+Message-Id: <20210318222124.970997-3-lyude@redhat.com>
+In-Reply-To: <20210318222124.970997-1-lyude@redhat.com>
+References: <20210318222124.970997-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
 Authentication-Results: relay.mimecast.com;
  auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Subject: [Nouveau] [PATCH i-g-t v2 0/2] tests/kms_cursor_crc: Test 32x32
+Subject: [Nouveau] [PATCH i-g-t v2 2/2] tests/kms_cursor_crc: Test 32x32
  cursors
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,20 +81,30 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 From: Lyude Paul <lyude@redhat.com>
 
-Older nvidia hardware only has 32x32 and 64x64 cursors, so we want to
-make sure to test 32x32 cursors.
+Since pre-nve4 only has two cursor sizes (32x32 and 64x64), we should at
+least test both of them.
 
+Signed-off-by: Lyude Paul <lyude@redhat.com>
 Cc: Martin Peres <martin.peres@free.fr>
 Cc: Ben Skeggs <bskeggs@redhat.com>
 Cc: Jeremy Cline <jcline@redhat.com>
+---
+ tests/kms_cursor_crc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Lyude Paul (2):
-  tests/kms_cursor_crc: Probe kernel for cursor size support
-  tests/kms_cursor_crc: Test 32x32 cursors
-
- tests/kms_cursor_crc.c | 133 ++++++++++++++++++++++++-----------------
- 1 file changed, 77 insertions(+), 56 deletions(-)
-
+diff --git a/tests/kms_cursor_crc.c b/tests/kms_cursor_crc.c
+index b9c05472..754e1073 100644
+--- a/tests/kms_cursor_crc.c
++++ b/tests/kms_cursor_crc.c
+@@ -703,7 +703,7 @@ static void run_tests_on_pipe(data_t *data, enum pipe pipe)
+ 	igt_fixture
+ 		igt_remove_fb(data->drm_fd, &data->fb);
+ 
+-	for (cursor_size = 64; cursor_size <= 512; cursor_size *= 2) {
++	for (cursor_size = 32; cursor_size <= 512; cursor_size *= 2) {
+ 		int w = cursor_size;
+ 		int h = cursor_size;
+ 
 -- 
 2.29.2
 
