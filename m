@@ -7,62 +7,63 @@ X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AE3E6C433DB
-	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 15:18:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E3141C433DB
+	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 15:18:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 745616191F
-	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 15:18:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 745616191F
+	by mail.kernel.org (Postfix) with ESMTPS id A0A2A61923
+	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 15:18:23 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A0A2A61923
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0537B6EA44;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F0006EA47;
 	Fri, 19 Mar 2021 15:18:21 +0000 (UTC)
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com
- [IPv6:2607:f8b0:4864:20::62b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20E866EA35
- for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 14:45:57 +0000 (UTC)
-Received: by mail-pl1-x62b.google.com with SMTP id l1so3062350plg.12
- for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 07:45:57 -0700 (PDT)
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
+ [IPv6:2607:f8b0:4864:20::102f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 063376EA47
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 14:38:03 +0000 (UTC)
+Received: by mail-pj1-x102f.google.com with SMTP id
+ cl21-20020a17090af695b02900c61ac0f0e9so8550189pjb.1
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 07:38:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=TDOGGWm21psnrXGlHEe6HvlgMdBE2hycDbnwOwrR0qU=;
- b=UlA8BUn9E5sUqHuUQiDVI3TjSNEzIgglN6StA4KCyVdX76E7TgzijdMXlwYNtcOU0U
- oK0YUt9NaUKh9OYWeJPjOkj4C5gutCsoHgMAvOd4Co8G5QdGHna9dHm7ddeuPGYGq/UU
- Si3mf/vcqt4SyjTxw+ErupnhAHbv7gJlYCmf1cF8qg82nbjZAt3Z/IIoFUghJvvgtcHU
- +FleiDUKLNV1+6e/kdi2/1LZ5WlwKchV5dNwMhB4LJ5WQEEREoixVpYSoLkG/fUbcn/z
- iqEMWMaGTVyjVI457AtXUukS3iu0mLK0n5p3e4aIfbfoRaFuJj8XAwJkM4jRv0vRhq69
- yzqg==
+ :cc; bh=r8t+Haw8hnnyPI1A8ckYO+AnKAwkWRp0vTVGtS6IUlo=;
+ b=VHOSnptigraQrnHtiYP3M5TJPLgguQqQNkJ+HKd6uE/tEHIW1D2lCZYt4kluq/2Uyo
+ +XIW78QJtL/XDkFFfwtHiv31BNMpBs+3fONQIb0wj4848a0o8Nvc/e4aIs0pkwMAblku
+ GAA/cn8GOMk3KVKy/PN5Y9R5fA0FccSOupDMtLD/c+JgPqJU+pGEvGd/d/0DTs1kvd7J
+ qgE7tuYaHWJfSY2oUN6QbFQCwn8sw2WEPS2upkrhFubBrn4vhwpswSpZuAJ3eAIGGZuV
+ 9H9YKEuPCTliyuPzVKa5nnr7CvtuIstrFaSr+ovqhzSSSqV17hqiKOimHpNyb8R1EJ3b
+ IPWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=TDOGGWm21psnrXGlHEe6HvlgMdBE2hycDbnwOwrR0qU=;
- b=OGBoMHcqm7V5fEFmGUofS3rRj809aKFU+8Meyf3cNVyJaEyODfj8km/Y/ZIFDVH6FR
- PoH5DN8RLtx5wbzL2IAGxnsR5v/4RPzWfUA6qiXpCxFYRvFxjZcEdVtfGkQcfxIGgJ2r
- 8YTGeatBXythaT70t6cy9tlIKf7uJBZSExtWUUkdn99CITTpkq4Xf3mZi/kcfdOOWpn4
- fcziT6jPljx6ZAi0Ur0sLu6eUlG/PSVn1E8ShKsLMkg5tArCZv1HZrKtd0Cwvf58Ylye
- 0yFLlgXMdQP/2sCp2irlZul0pQDGaXCDSPwf1ELjoEITIjC2rsSex12Ys6yYfCy+9gzj
- jZZw==
-X-Gm-Message-State: AOAM531MbDz+OtHdvkI8oFcCo+Hxo8TwWLO3U4mv8Eh/KE1ZjFQmfOK4
- pUPhuAXCY6+dYPRXjrHP0d1arkCDIHL+P3fuf9IcjQ==
-X-Google-Smtp-Source: ABdhPJxweZfNiCPg9C7NrDu3mAB+yl61lfkYpCt6KNMgXUL5b8ziQQV9oK2kr7DsR12MgPe9uLa2ifDL7vrvhQ8WUh4=
-X-Received: by 2002:a17:902:e752:b029:e6:822c:355c with SMTP id
- p18-20020a170902e752b02900e6822c355cmr14735796plf.69.1616165156604; Fri, 19
- Mar 2021 07:45:56 -0700 (PDT)
+ bh=r8t+Haw8hnnyPI1A8ckYO+AnKAwkWRp0vTVGtS6IUlo=;
+ b=YEHwu/319BGwdZrIGOYnWnitEMA8C3HzrFdjIKzoLImUw5BG7GkAflAVf63nSWtIdi
+ q9tGoX8vI2psUXJBY1sxBYePAmcGBggrIW4Yu+Gfr2EsNQvj73Xe5+wz0FK0vVjZz9Ue
+ vudIoGlxcTh1dbhUke9HKdluHGYBzAC6iKCki7/tkt/vCleP8THbmdIZURB0AytuvcGi
+ XOFjU5pi/KTLnbPIGsiLAncAQ04vj11NneNYFiESGlUXcBLfzOoUJMfvxeVV4AkOB2ba
+ xituM8dSfSMBEDLT3pBGvHrCySf073rmrahI4yAxJazi28iHAg+3pb8UPPClRZ+/3gGb
+ MyZA==
+X-Gm-Message-State: AOAM532Hgfn0Iay3Cf2sJIDwR09nwT8NNU0GBLYRWWUH0SCm/4I4EOhE
+ mPOoJku1bo96aSZzE22kSgqzeOHEDFYH8oVdQLFw/A==
+X-Google-Smtp-Source: ABdhPJw8c9CchTDySBs3NZLqT/TkgcU8jgQYXzTtozt8IS+78Ccw8naSaLYw4NWbogbCmYjnH85XuIvZ55HTa3abjoE=
+X-Received: by 2002:a17:902:7d8d:b029:e6:4061:b767 with SMTP id
+ a13-20020a1709027d8db02900e64061b767mr14682850plm.32.1616164682659; Fri, 19
+ Mar 2021 07:38:02 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210219215326.2227596-1-lyude@redhat.com>
- <20210219215326.2227596-14-lyude@redhat.com>
-In-Reply-To: <20210219215326.2227596-14-lyude@redhat.com>
+ <20210219215326.2227596-10-lyude@redhat.com>
+In-Reply-To: <20210219215326.2227596-10-lyude@redhat.com>
 From: Robert Foss <robert.foss@linaro.org>
-Date: Fri, 19 Mar 2021 15:45:45 +0100
-Message-ID: <CAG3jFyuJ=_Ab_LXNANs7VQAkgB16KC47zmibK1fXUKGvrGNUEw@mail.gmail.com>
+Date: Fri, 19 Mar 2021 15:37:51 +0100
+Message-ID: <CAG3jFyvW3YxG8jNq9krRJmWUbTFc3sXNXTjnsY0Pmgky6GJgQQ@mail.gmail.com>
 To: Lyude Paul <lyude@redhat.com>
 X-Mailman-Approved-At: Fri, 19 Mar 2021 15:18:19 +0000
-Subject: Re: [Nouveau] [PATCH 13/30] drm/bridge/analogix/dp_core: Unregister
- DP AUX channel on error in analogix_dp_probe()
+Subject: Re: [Nouveau] [PATCH 09/30] drm/bridge/analogix/anx78xx: Cleanup on
+ error in anx78xx_bridge_attach()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,16 +75,16 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jernej Skrabec <jernej.skrabec@siol.net>, Joe Perches <joe@perches.com>,
+Cc: Jernej Skrabec <jernej.skrabec@siol.net>,
  dri-devel <dri-devel@lists.freedesktop.org>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>,
  Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
  nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  Jonas Karlman <jonas@kwiboo.se>, open list <linux-kernel@vger.kernel.org>,
  Jani Nikula <jani.nikula@linux.intel.com>, Andrzej Hajda <a.hajda@samsung.com>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>, amd-gfx@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Daniel Vetter <daniel@ffwll.ch>,
- Andy Yan <andy.yan@rock-chips.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Boris Brezillon <boris.brezillon@collabora.com>, Torsten Duwe <duwe@lst.de>,
+ amd-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>,
  =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
 Content-Type: text/plain; charset="us-ascii"
@@ -97,29 +98,56 @@ Thanks for the patch, it looks good to me.
 
 Reviewed-by: Robert Foss <robert.foss@linaro.org>
 
-On Fri, 19 Feb 2021 at 22:58, Lyude Paul <lyude@redhat.com> wrote:
+On Fri, 19 Feb 2021 at 22:56, Lyude Paul <lyude@redhat.com> wrote:
 >
-> Just another drive-by fix I noticed while going through the tree to cleanup
-> DP aux adapter registration - make sure we unregister the DP AUX dev if
-> analogix_dp_probe() fails.
+> Just another issue I noticed while correcting usages of
+> drm_dp_aux_init()/drm_dp_aux_register() around the tree. If any of the
+> steps in anx78xx_bridge_attach() fail, we end up leaking resources. So,
+> let's fix that (and fix leaking a DP AUX adapter in the process) by
+> unrolling on errors.
 >
 > Signed-off-by: Lyude Paul <lyude@redhat.com>
 > ---
->  drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c | 11 ++++++++---
+>  1 file changed, 8 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-> index aa1bb86293fd..f115233b1cb9 100644
-> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-> @@ -1782,6 +1782,7 @@ int analogix_dp_bind(struct analogix_dp_device *dp, struct drm_device *drm_dev)
+> diff --git a/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c b/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
+> index 338dd8531d4b..f20558618220 100644
+> --- a/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
+> +++ b/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
+> @@ -918,7 +918,7 @@ static int anx78xx_bridge_attach(struct drm_bridge *bridge,
+>                                  DRM_MODE_CONNECTOR_DisplayPort);
+>         if (err) {
+>                 DRM_ERROR("Failed to initialize connector: %d\n", err);
+> -               return err;
+> +               goto aux_unregister;
+>         }
 >
->  err_disable_pm_runtime:
->         pm_runtime_disable(dp->dev);
-> +       drm_dp_aux_unregister(&dp->aux);
+>         drm_connector_helper_add(&anx78xx->connector,
+> @@ -930,16 +930,21 @@ static int anx78xx_bridge_attach(struct drm_bridge *bridge,
+>                                            bridge->encoder);
+>         if (err) {
+>                 DRM_ERROR("Failed to link up connector to encoder: %d\n", err);
+> -               return err;
+> +               goto connector_cleanup;
+>         }
 >
->         return ret;
+>         err = drm_connector_register(&anx78xx->connector);
+>         if (err) {
+>                 DRM_ERROR("Failed to register connector: %d\n", err);
+> -               return err;
+> +               goto connector_cleanup;
+>         }
+>
+>         return 0;
+> +connector_cleanup:
+> +       drm_connector_cleanup(&anx78xx->connector);
+> +aux_unregister:
+> +       drm_dp_aux_unregister(&anx78xx->aux);
+> +       return err;
 >  }
+>
+>  static void anx78xx_bridge_detach(struct drm_bridge *bridge)
 > --
 > 2.29.2
 >
