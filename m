@@ -2,43 +2,72 @@ Return-Path: <SRS0=6/tN=IR=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F1C1AC433E6
-	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:37:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 78C36C2BA83
+	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:37:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AAC4364F4D
-	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:37:02 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AAC4364F4D
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.alibaba.com
+	by mail.kernel.org (Postfix) with ESMTPS id 2D41964F74
+	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:37:00 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2D41964F74
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 763BA6EA43;
-	Fri, 19 Mar 2021 14:36:51 +0000 (UTC)
-Received: from out30-45.freemail.mail.aliyun.com
- (out30-45.freemail.mail.aliyun.com [115.124.30.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53F8D6E99E;
- Fri, 19 Mar 2021 08:40:52 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R211e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04400;
- MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=7; SR=0;
- TI=SMTPD_---0USYrtC0_1616143241; 
-Received: from
- j63c13417.sqa.eu95.tbsite.net(mailfrom:jiapeng.chong@linux.alibaba.com
- fp:SMTPD_---0USYrtC0_1616143241) by smtp.aliyun-inc.com(127.0.0.1);
- Fri, 19 Mar 2021 16:40:48 +0800
-From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-To: bskeggs@redhat.com
-Date: Fri, 19 Mar 2021 16:40:40 +0800
-Message-Id: <1616143240-16356-1-git-send-email-jiapeng.chong@linux.alibaba.com>
-X-Mailer: git-send-email 1.8.3.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id B848D6EA3A;
+	Fri, 19 Mar 2021 14:36:50 +0000 (UTC)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
+ [IPv6:2a00:1450:4864:20::634])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A4A36E99F
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 08:24:44 +0000 (UTC)
+Received: by mail-ej1-x634.google.com with SMTP id r12so8275024ejr.5
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 01:24:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=MDb62l+8C+YekUvtP2oUdE/QSSZdTHGqGLcmgtoRZ6A=;
+ b=fH44IuNWOT0gzD6ZDTpIA6Ik59/TezQetQjXfZCUitBkzSKS+ixlThvf4S2c4z24cR
+ v9A2hvCloFo6enmQJULhrlvhLslpAa3OylYUAhVahQ0DFcq9p3SApUfigyhYrfPYbOrx
+ 5oHB+zplzVnHfUyn0TnAgQR2ekgdd7RiP0JcI2yo1lyFoyfqotZU/s2LrJfGx6xGGArD
+ SZJe92Das2D14/RPj+IkMR57XFYlLxJtpRUzoL9Ns/q/ExyaowNLvTTl8LYKvqwvwf2F
+ eY6l+uTTJSI0CA5NWvGVQmu7tiFOEDgKAR0vSc8twz3TBFsV2/1yNzjo09TQ9pVbQseb
+ PURA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=MDb62l+8C+YekUvtP2oUdE/QSSZdTHGqGLcmgtoRZ6A=;
+ b=Y8G9Kk0HtA7Wjtnp12z4TOBGGfDh9s3uKMe/prcV4O8uEeQwuf2AzLg6PLbqMZHIpA
+ lQfKpQS31k8Ylc+hR2DHusMQ5nbNhghPtaWKH+9/vM2X+GsJAAvZgpFckyA7Hh2Rro0c
+ QwFjR4fMZHk0Jf30POGLyWh7L6w4pt0XJxNkB14EmsCldUiNiYDxpm4/6Bux5Jb6QeAc
+ fEkw2KWTWI+HpOZuvqD+pRhIUpF1/kAPQiC0ggZG+0P/w+9oxuaLXanbqkV9lJLXR4y5
+ PsK784bqBI9PuMwsyEn2Cbo8YUeeNa52p2PnXFBPrmZFAy8lO17iOZWPLQ/Ep4Tm0miE
+ yKqQ==
+X-Gm-Message-State: AOAM530FBUCK+SaEeTtbgS3J4aWSOOwkCYMKP8EUyVxqwqgDVd+0zS0H
+ YQhZupHwz/Kl6SXu2f4TAr2XpA==
+X-Google-Smtp-Source: ABdhPJyNb/fOjzcFnA+jISAx3+fw5LpZGcDKcbMm/A9AcKdX1Vod6gM5IT6T6hUSVhBEzP8gkYxL9Q==
+X-Received: by 2002:a17:906:340d:: with SMTP id
+ c13mr3036223ejb.29.1616142283208; 
+ Fri, 19 Mar 2021 01:24:43 -0700 (PDT)
+Received: from dell.default ([91.110.221.194])
+ by smtp.gmail.com with ESMTPSA id b18sm3273727ejb.77.2021.03.19.01.24.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 19 Mar 2021 01:24:42 -0700 (PDT)
+From: Lee Jones <lee.jones@linaro.org>
+To: lee.jones@linaro.org
+Date: Fri, 19 Mar 2021 08:24:20 +0000
+Message-Id: <20210319082428.3294591-12-lee.jones@linaro.org>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210319082428.3294591-1-lee.jones@linaro.org>
+References: <20210319082428.3294591-1-lee.jones@linaro.org>
+MIME-Version: 1.0
 X-Mailman-Approved-At: Fri, 19 Mar 2021 14:36:46 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau:  Remove unused variable ret
+Subject: [Nouveau] [PATCH 11/19] drm/nouveau/nouveau_display: Remove set but
+ unused variable 'width'
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,51 +79,42 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, airlied@linux.ie,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, daniel@ffwll.ch
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Fix the following coccicheck warnings:
-
-./drivers/gpu/drm/nouveau/nouveau_bios.c:2048:5-8: Unneeded variable:
-"ret". Return "0" on line 2061.
-
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
----
- drivers/gpu/drm/nouveau/nouveau_bios.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
-index e8c445e..41b78e9 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bios.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
-@@ -2045,7 +2045,6 @@ static bool NVInitVBIOS(struct drm_device *dev)
- {
- 	struct nouveau_drm *drm = nouveau_drm(dev);
- 	struct nvbios *bios = &drm->vbios;
--	int ret = 0;
- 
- 	/* Reset the BIOS head to 0. */
- 	bios->state.crtchead = 0;
-@@ -2058,7 +2057,7 @@ static bool NVInitVBIOS(struct drm_device *dev)
- 		bios->fp.lvds_init_run = false;
- 	}
- 
--	return ret;
-+	return 0;
- }
- 
- static bool
--- 
-1.8.3.1
-
-_______________________________________________
-Nouveau mailing list
-Nouveau@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
+Rml4ZXMgdGhlIGZvbGxvd2luZyBXPTEga2VybmVsIGJ1aWxkIHdhcm5pbmcocyk6CgogZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmM6IEluIGZ1bmN0aW9uIOKAmG5vdXZl
+YXVfZnJhbWVidWZmZXJfbmV34oCZOgogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9k
+aXNwbGF5LmM6MzA5OjE1OiB3YXJuaW5nOiB2YXJpYWJsZSDigJh3aWR0aOKAmSBzZXQgYnV0IG5v
+dCB1c2VkIFstV3VudXNlZC1idXQtc2V0LXZhcmlhYmxlXQoKQ2M6IEJlbiBTa2VnZ3MgPGJza2Vn
+Z3NAcmVkaGF0LmNvbT4KQ2M6IERhdmlkIEFpcmxpZSA8YWlybGllZEBsaW51eC5pZT4KQ2M6IERh
+bmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KQ2M6IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnClNpZ25lZC1vZmYtYnk6
+IExlZSBKb25lcyA8bGVlLmpvbmVzQGxpbmFyby5vcmc+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9kaXNwbGF5LmMgfCA4ICsrKystLS0tCiAxIGZpbGUgY2hhbmdlZCwgNCBp
+bnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9kaXNwbGF5LmMKaW5kZXggZGFjMDJjN2JlNTRkYy4uYmUyMzI3Y2U3Mzk0YyAxMDA2NDQK
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMKKysrIGIvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMKQEAgLTMwNiw3ICszMDYsNyBA
+QCBub3V2ZWF1X2ZyYW1lYnVmZmVyX25ldyhzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAogCXN0cnVj
+dCBub3V2ZWF1X2JvICpudmJvID0gbm91dmVhdV9nZW1fb2JqZWN0KGdlbSk7CiAJc3RydWN0IGRy
+bV9mcmFtZWJ1ZmZlciAqZmI7CiAJY29uc3Qgc3RydWN0IGRybV9mb3JtYXRfaW5mbyAqaW5mbzsK
+LQl1bnNpZ25lZCBpbnQgd2lkdGgsIGhlaWdodCwgaTsKKwl1bnNpZ25lZCBpbnQgaGVpZ2h0LCBp
+OwogCXVpbnQzMl90IHRpbGVfbW9kZTsKIAl1aW50OF90IGtpbmQ7CiAJaW50IHJldDsKQEAgLTM0
+Myw5ICszNDMsOSBAQCBub3V2ZWF1X2ZyYW1lYnVmZmVyX25ldyhzdHJ1Y3QgZHJtX2RldmljZSAq
+ZGV2LAogCWluZm8gPSBkcm1fZ2V0X2Zvcm1hdF9pbmZvKGRldiwgbW9kZV9jbWQpOwogCiAJZm9y
+IChpID0gMDsgaSA8IGluZm8tPm51bV9wbGFuZXM7IGkrKykgewotCQl3aWR0aCA9IGRybV9mb3Jt
+YXRfaW5mb19wbGFuZV93aWR0aChpbmZvLAotCQkJCQkJICAgIG1vZGVfY21kLT53aWR0aCwKLQkJ
+CQkJCSAgICBpKTsKKwkJZHJtX2Zvcm1hdF9pbmZvX3BsYW5lX3dpZHRoKGluZm8sCisJCQkJCSAg
+ICBtb2RlX2NtZC0+d2lkdGgsCisJCQkJCSAgICBpKTsKIAkJaGVpZ2h0ID0gZHJtX2Zvcm1hdF9p
+bmZvX3BsYW5lX2hlaWdodChpbmZvLAogCQkJCQkJICAgICAgbW9kZV9jbWQtPmhlaWdodCwKIAkJ
+CQkJCSAgICAgIGkpOwotLSAKMi4yNy4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
