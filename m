@@ -2,72 +2,66 @@ Return-Path: <SRS0=6/tN=IR=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 66C63C433DB
-	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:36:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 43017C433E9
+	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:36:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2E82664EE2
-	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:36:56 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2E82664EE2
+	by mail.kernel.org (Postfix) with ESMTPS id 0F3DC64EE2
+	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:36:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0F3DC64EE2
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 377486EA36;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F0C66EA35;
 	Fri, 19 Mar 2021 14:36:50 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
- [IPv6:2a00:1450:4864:20::62f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A72E46E9A2
- for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 08:24:42 +0000 (UTC)
-Received: by mail-ej1-x62f.google.com with SMTP id b9so8285209ejc.11
- for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 01:24:42 -0700 (PDT)
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com
+ [IPv6:2607:f8b0:4864:20::52e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9918B6EA25
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 14:28:26 +0000 (UTC)
+Received: by mail-pg1-x52e.google.com with SMTP id n11so3790030pgm.12
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 07:28:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=U3+jQ9deg+F+hwlthzV/g98whTMSIMZPgh43ftXDf7Y=;
- b=OnTiL+kaW2zPMVdE6HXbsGxQ56nJJiDEZgsDJm5nTCAM4F/hYTuXOK2NTbkdhYGdNn
- UZMIHFqal4fYkP7086YR1KXfPAi/0CN+sG8/46L+IAM8dNP1vslB5d59gCck8HYzsxBX
- 8OThjxGNbudGNQnMUlKQnrHaV4SeVJNDrOTuMKO2LAtp6PnZ9U75IsnFx32iuV4wLwfR
- XWhNw0uh22NIzQJ2aYGDTtCC5F6jAkh2TdHE5uwhbYDJrmsIshJDfYDky345zQdyg1hr
- 76QZn0QUO3HPNj3coc1puorPSUkz0ygttAur5sEkxr6gt0JwQXwqn3E7UHaUJ0x2BUI0
- zBkg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=wB7XW1expiEEiA0z4q1J+zFtd6n/h701jYh9DH52x/g=;
+ b=rfMY38MqhnK5WXT7hN0NFVNWJw09ySqEl6rahFHBok2eKiGSQ2SNtxC0jMRggFiFlp
+ YNwZt7MGTpigDLIAQKlPZmqoBKtAhhEZfliE5yoKKwNqonCgvMFh7k/B/fMmSMvqGIKr
+ 5o8ELS87A24SQYN48yn1Kk4x38DeIrzUpQ1vxEuFDiJufMUpYAWSvdq2f2AhwA7AksfV
+ bzKZSInC5qkZPpyyM0fxBaDgRizOcLYb/NaHoS9F2+0iegoTshz2yU6lxf5+VEoO5kuz
+ hLBfKtTo5O9LWVFySPV8SYcnOJrIxqA1hBYp3/kGnJNXZaR/mMgvqz0ywTpGOA39Y6hJ
+ Z+Hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=U3+jQ9deg+F+hwlthzV/g98whTMSIMZPgh43ftXDf7Y=;
- b=K2Vwsl959U4cHITBSj0EepkppJf1yriPbIyNyTDAxkXbDuKAo3Wewac5Uh81zfGUd4
- w48dls2f7dN33/p4EMyvTst3M/PBmfIcFTkpzIQfRUTD/5cc6wpEdiclGxwI/DuDCZWh
- iqMpQfEqQFiFvs18fuRUCI1hPpU08cRXm7cGGyfSkiwvQqzOhOWaqjkq3kfn21zqVsTk
- v9yonCNIwA+NsLZNyvtm5afWN/GLSIrm6RjzSAbhbNV6MJAW9E/tW1UVMsZeq9K9PKKT
- aQF1Me/8GxiTFzt8vKA2VQQXE3ao03Ed73xdRLF9YUnFGb0x9TMJbW1NrxOjAAenruMJ
- prvw==
-X-Gm-Message-State: AOAM531NU3UI66KM77vhYysaC1F2FLZXy6grI69Ym1QeQcMM/PYr8NNx
- vG5J6o4etbu5aZyb0wbJIhoE9w==
-X-Google-Smtp-Source: ABdhPJzRvstPWZ77izvKn3KAab+DmdytKTVll16/lNiRi658rs93jLltp05EkycgqyLl7Df3JOnGwA==
-X-Received: by 2002:a17:907:2112:: with SMTP id
- qn18mr2967233ejb.220.1616142281401; 
- Fri, 19 Mar 2021 01:24:41 -0700 (PDT)
-Received: from dell.default ([91.110.221.194])
- by smtp.gmail.com with ESMTPSA id b18sm3273727ejb.77.2021.03.19.01.24.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 19 Mar 2021 01:24:40 -0700 (PDT)
-From: Lee Jones <lee.jones@linaro.org>
-To: lee.jones@linaro.org
-Date: Fri, 19 Mar 2021 08:24:18 +0000
-Message-Id: <20210319082428.3294591-10-lee.jones@linaro.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210319082428.3294591-1-lee.jones@linaro.org>
-References: <20210319082428.3294591-1-lee.jones@linaro.org>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=wB7XW1expiEEiA0z4q1J+zFtd6n/h701jYh9DH52x/g=;
+ b=m0+3+EFBromBTt49aSmW53y0Bxa5S0iN0kboBU7+7meABJPct77bNIRUGLCGGHkBm5
+ sEfZCQ0X3TIqpJHkVsEEC4F9GghMRmKGYTFkw+rNU9OHenYgMjmN5q+uUMj+hyMWUEeL
+ xl1n43+zuf77qFpdflXCjEk1bE3Z14t/YHeptr5lzR4JP6GMb1SHj/Myk+X8Kby/17Vs
+ QtYk6eT+Hkl3k9j4C33CVvK0BPPnIj97sQpRAOaYp7ncisS3HnbI44+atxSpZ92DGyHh
+ l0aS/RgDbvtCH6gTFy/hTwWzWHu22lnqQQ6N7Rn/dnh+gum0N0gDnpXg2H1Y6WCDI/8S
+ +ogw==
+X-Gm-Message-State: AOAM530veO8j0pkbUjzEuIMWRE2xBUab6l9aJXLIILV01lFZU993eE99
+ HzzwlKzd7JqVoirsQnVzIgFfJ8dE2YoKAgSKMMCTqw==
+X-Google-Smtp-Source: ABdhPJyE0Wk9tAliN/2sKNin+z7nx+NeyBf7s/4rymph1mvk13Artsko/VpzzorcMg+3DPqfuz4cf4SD2HeAcfTrsYc=
+X-Received: by 2002:a63:2321:: with SMTP id j33mr11536620pgj.120.1616164106191; 
+ Fri, 19 Mar 2021 07:28:26 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210219215326.2227596-1-lyude@redhat.com>
+ <20210219215326.2227596-8-lyude@redhat.com>
+In-Reply-To: <20210219215326.2227596-8-lyude@redhat.com>
+From: Robert Foss <robert.foss@linaro.org>
+Date: Fri, 19 Mar 2021 15:28:15 +0100
+Message-ID: <CAG3jFyt10Z_MVvvXyBfYFrN7_FQCOUywfLNXZbei2c=1DxvqhA@mail.gmail.com>
+To: Lyude Paul <lyude@redhat.com>
 X-Mailman-Approved-At: Fri, 19 Mar 2021 14:36:46 +0000
-Subject: [Nouveau] [PATCH 09/19] drm/nouveau/nvkm/engine/gr/gf100: Demote
- non-conformant kernel-doc header
+Subject: Re: [Nouveau] [PATCH 07/30] drm/bridge/analogix/anx78xx: Add
+ missing drm_dp_aux_unregister() call
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,44 +73,67 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
+Cc: Torsten Duwe <duwe@lst.de>, Jernej Skrabec <jernej.skrabec@siol.net>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Jonas Karlman <jonas@kwiboo.se>, open list <linux-kernel@vger.kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Andrzej Hajda <a.hajda@samsung.com>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>, amd-gfx@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Sam Ravnborg <sam@ravnborg.org>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Fixes the following W=1 kernel build warning(s):
+Hey Lyude,
 
- drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c:992: warning: Function parameter or member 'gr' not described in 'gf100_gr_wait_idle'
+Thanks for the patch, it looks good to me.
 
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Signed-off-by: Lee Jones <lee.jones@linaro.org>
----
- drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Robert Foss <robert.foss@linaro.org>
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-index 397ff4fe9df89..69e6008f99196 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-@@ -982,7 +982,7 @@ gf100_gr_zbc_init(struct gf100_gr *gr)
- 	}
- }
- 
--/**
-+/*
-  * Wait until GR goes idle. GR is considered idle if it is disabled by the
-  * MC (0x200) register, or GR is not busy and a context switch is not in
-  * progress.
--- 
-2.27.0
-
+On Fri, 19 Feb 2021 at 22:56, Lyude Paul <lyude@redhat.com> wrote:
+>
+> Surprisingly, this bridge actually registers it's AUX adapter at the
+> correct time already. Nice job! However, it does forget to actually
+> unregister the AUX adapter, so let's add a bridge function to handle that.
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> ---
+>  drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c b/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
+> index 81debd02c169..ec4607dc01eb 100644
+> --- a/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
+> +++ b/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
+> @@ -942,6 +942,11 @@ static int anx78xx_bridge_attach(struct drm_bridge *bridge,
+>         return 0;
+>  }
+>
+> +static void anx78xx_bridge_detach(struct drm_bridge *bridge)
+> +{
+> +       drm_dp_aux_unregister(&bridge_to_anx78xx(bridge)->aux);
+> +}
+> +
+>  static enum drm_mode_status
+>  anx78xx_bridge_mode_valid(struct drm_bridge *bridge,
+>                           const struct drm_display_info *info,
+> @@ -1013,6 +1018,7 @@ static void anx78xx_bridge_enable(struct drm_bridge *bridge)
+>
+>  static const struct drm_bridge_funcs anx78xx_bridge_funcs = {
+>         .attach = anx78xx_bridge_attach,
+> +       .detach = anx78xx_bridge_detach,
+>         .mode_valid = anx78xx_bridge_mode_valid,
+>         .disable = anx78xx_bridge_disable,
+>         .mode_set = anx78xx_bridge_mode_set,
+> --
+> 2.29.2
+>
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
