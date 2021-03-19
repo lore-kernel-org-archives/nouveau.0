@@ -7,62 +7,62 @@ X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 43872C433E6
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C54F6C43381
 	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:36:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EE12C64EE2
-	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:36:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EE12C64EE2
+	by mail.kernel.org (Postfix) with ESMTPS id 8E27D64F18
+	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:36:58 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8E27D64F18
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4031B6EA31;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A08746EA38;
 	Fri, 19 Mar 2021 14:36:50 +0000 (UTC)
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com
- [IPv6:2607:f8b0:4864:20::632])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82BF76EA1A
- for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 14:27:26 +0000 (UTC)
-Received: by mail-pl1-x632.google.com with SMTP id q11so3035974pld.11
- for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 07:27:26 -0700 (PDT)
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com
+ [IPv6:2607:f8b0:4864:20::42a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F91C6E9EE
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 11:39:50 +0000 (UTC)
+Received: by mail-pf1-x42a.google.com with SMTP id b184so5695600pfa.11
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 04:39:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=c7mV4Rbx11jSwGIO7RFWexEM9wuc954Tc7xoZGSC8RY=;
- b=GLXyAn0MdFT42J6cb6YnfW63npT81/n7lhBa96/JtS7CxrjrH72B6rJtFaiqBzHLrA
- mTY3t6/8/oM5MxseEQRivmzslOGqSbjil+9paVlcpPb/o1mPG5c4EbQAun0rLLKbshdE
- HkXG7+PmRkqhA2NmGafsaYCjf5SYcu10XCFH8aDuYUbs7vv/CZv9ePX1VyOwWLjuba24
- sSyJ3g/wXIECiOK+bH4Ih8BIxlgkkhYn9ivIbEd2929m/OFYb/Z0XHf7gAMtdOPlU+lx
- VHucChxDfHeZCh5Wt0c5DLVlHmNJIwEg3VCmmYzXscKFmj5eJ71iM/WbtM1xz4oQApfz
- Orgw==
+ :cc; bh=6touTvWtKFiW8FAA9I+lUxn/libxVWo4D2ycjd25CNU=;
+ b=JysePC4oS+r9hVAnL5SOOkUpYnTLbOFQQ89XBI4a3okMNXDpjjRNgKnhI8n1mFVCuY
+ CYHmq0/MmYe7MH5etoA4lUm1pNAWWBtsSd/Jo+y85dzqOp37tRYZtng7n3cXDkovId2l
+ s4S7yzUEuR2VMrcRvMJJNp1r1vjvfcSmAY7lpSVvoN2q2U13aGtE2z2jMjRV3FUQKH8C
+ oItkVR7wpMOYsTSyMqtYOcYgug9B674bCr+97emKzvLeYYPIKKMhmRIPi+JndlIjIBPe
+ 1SLFuybx6CVuNrHGMw5iE39jH3jq24GE5Ivy2rZh6GpmGtLx9cUzEdJmhfFtwZG2S7zn
+ DUPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=c7mV4Rbx11jSwGIO7RFWexEM9wuc954Tc7xoZGSC8RY=;
- b=aLuj8gOUeF6A6p9/3DByX5u34yj7Wp2Cm4T13DoTI9x5j0X5LUerpJU2AAqTx9KLIx
- jumW6f2ZAxhgQrdQ3XQJ8zrrAznEG7DgOj1VanLC3Q5SuejiPuOLAuGen9nji46QUXJ4
- 19Hwn/Mn6rVJGDys33APxHWUkv17NSXK6O0/xkkK9pN3BviQq8dYDndaIhSTQmj+oGSv
- LjISZwYHL6oLWIAqG4k9zHQR6ezxMMF87UM4ZDzCkZf2+bGZNGW7xk2RIw87L13Lw5MN
- ZAwgtaf2Ud0RszRFdrxxby8kylwK8Zu2ULk7UNdyHG0iUNxTYHXD8549Evd7T3007CMA
- sy4A==
-X-Gm-Message-State: AOAM530MuVnZzxk7hSVEkfS+i3wQoo3hkQ0AMmhohGVwUkMmCPe1RYU9
- X2oX6QAGoyE+Gaq5m4sks1XI6X/6wwva+OqevRN9qQ==
-X-Google-Smtp-Source: ABdhPJwnvR9UG2Yo3M+kYPqi3jAuQjulo9vJWylVtTTAmghGEpuzrJcoACdzlFVSdwttecpo72YGBTDHorwXzt+5IKQ=
-X-Received: by 2002:a17:902:f68a:b029:e5:b17f:9154 with SMTP id
- l10-20020a170902f68ab02900e5b17f9154mr14411080plg.28.1616164046035; Fri, 19
- Mar 2021 07:27:26 -0700 (PDT)
+ bh=6touTvWtKFiW8FAA9I+lUxn/libxVWo4D2ycjd25CNU=;
+ b=L5/tkHYi4L6tXsSnpABReru4M6wuy3t+XIjjtH6iCZzIusDwn0iFTG+lObSXAKaZQ6
+ YRI2juCdGFWE9vgVFa5z4XTotvYAIQ4q/1JCiE7O1n1zIY+4LaVFL3TVRh/Lo3+kmYW6
+ gopgNGnAZVZliL3OZbINZEtufmSFzBl99duVz2yx+I9QzKvgy0RliGxoQoIeQzOBqXS7
+ HNVPPAxL/Wr4ZOC7BWM0c1twrZkpnNLuY5iTYsTIMvHAGjNu9c3tUiXHcE1Eu7dwKbkk
+ Mfks2J5Dakjt5mLsCRbBtRtHzUJnajcgPuoEQ5xTEYpTfRGy1so89JuYzX5zW0aSjMck
+ /pMw==
+X-Gm-Message-State: AOAM533ggDF/LCG0FL707UHpKdWrGQqhhPeou9fDpoISHTt39ReoGWIQ
+ U40m6HEDpr6IQKavR5/cmJQxNmEuKVc5qVSLh1r/1A==
+X-Google-Smtp-Source: ABdhPJyeCqjCUphOyfVJedr3z+m21c12HGU9r+h+y+1wFK9EpIFLFL0pv6Yl7m8YnEM3dvGLTDyQu9pkjTUfd9ZHA8k=
+X-Received: by 2002:aa7:980a:0:b029:20c:5402:5de9 with SMTP id
+ e10-20020aa7980a0000b029020c54025de9mr8791358pfl.18.1616153990103; Fri, 19
+ Mar 2021 04:39:50 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210219215326.2227596-1-lyude@redhat.com>
- <20210219215326.2227596-5-lyude@redhat.com>
-In-Reply-To: <20210219215326.2227596-5-lyude@redhat.com>
+ <20210219215326.2227596-29-lyude@redhat.com>
+In-Reply-To: <20210219215326.2227596-29-lyude@redhat.com>
 From: Robert Foss <robert.foss@linaro.org>
-Date: Fri, 19 Mar 2021 15:27:15 +0100
-Message-ID: <CAG3jFyuR6yH9bWzbmcZVRoyRUvu0qvEirVtxtcUmVEyVpeW_JQ@mail.gmail.com>
+Date: Fri, 19 Mar 2021 12:39:38 +0100
+Message-ID: <CAG3jFyveBSyS7k9D44m5e=8+HSvVsVhkXOokxyFOcRYDvHmWSw@mail.gmail.com>
 To: Lyude Paul <lyude@redhat.com>
 X-Mailman-Approved-At: Fri, 19 Mar 2021 14:36:46 +0000
-Subject: Re: [Nouveau] [PATCH 04/30] drm/bridge/tc358767: Don't register DP
- AUX channel until bridge is attached
+Subject: Re: [Nouveau] [PATCH 28/30] drm/dp: Convert drm_dp_helper.c to
+ using drm_err/drm_dbg_*()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,16 +74,14 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jernej Skrabec <jernej.skrabec@siol.net>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
+Cc: Maxime Ripard <mripard@kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, David Airlie <airlied@linux.ie>,
  nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Jonas Karlman <jonas@kwiboo.se>, open list <linux-kernel@vger.kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>, Andrzej Hajda <a.hajda@samsung.com>,
- amd-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ open list <linux-kernel@vger.kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>, amd-gfx@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
@@ -91,85 +89,364 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 Hey Lyude,
 
-This patch looks good to me.
+Thanks for the patch.
 
-Reviewed-by: Robert Foss <robert.foss@linaro.org>
-
-On Fri, 19 Feb 2021 at 22:56, Lyude Paul <lyude@redhat.com> wrote:
+On Fri, 19 Feb 2021 at 23:03, Lyude Paul <lyude@redhat.com> wrote:
 >
-> Since this is a bridge, we don't start out with a respective DRM device.
-> Likewise this means we don't have a connector, which also means that we
-> should be following drm_dp_aux_register()'s documentation advice and not
-> call drm_dp_aux_register() until we have a matching connector. Instead,
-> call drm_dp_aux_init() in tc_probe() and wait until tc_bridge_attach() to
-> register our AUX channel. We also add tc_bridge_detach() to handle
-> unregistering the AUX adapter once the bridge has been disconnected.
+> Now that we've added a back-pointer to drm_device to drm_dp_aux, made
+> drm_dp_aux available to any functions in drm_dp_helper.c which need to
+> print to the kernel log, and ensured all of our logging uses a consistent
+> format, let's do the final step of the conversion and actually move
+> everything over to using drm_err() and drm_dbg_*().
+>
+> This was done by using the following cocci script:
+>
+>   @@
+>   expression list expr;
+>   @@
+>
+>   (
+>   - DRM_DEBUG_KMS(expr);
+>   + drm_dbg_kms(aux->drm_dev, expr);
+>   |
+>   - DRM_DEBUG_DP(expr);
+>   + drm_dbg_dp(aux->drm_dev, expr);
+>   |
+>   - DRM_DEBUG_ATOMIC(expr);
+>   + drm_dbg_atomic(aux->drm_dev, expr);
+>   |
+>   - DRM_DEBUG_KMS_RATELIMITED(expr);
+>   + drm_dbg_kms_ratelimited(aux->drm_dev, expr);
+>   |
+>   - DRM_ERROR(expr);
+>   + drm_err(aux->drm_dev, expr);
+>   )
+>
+> Followed by correcting the resulting line-wrapping in the results by hand.
 >
 > Signed-off-by: Lyude Paul <lyude@redhat.com>
 > ---
->  drivers/gpu/drm/bridge/tc358767.c | 20 +++++++++++++++-----
->  1 file changed, 15 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/drm_dp_helper.c | 122 ++++++++++++++++----------------
+>  1 file changed, 60 insertions(+), 62 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/bridge/tc358767.c b/drivers/gpu/drm/bridge/tc358767.c
-> index 34a3e4e9f717..da89922721ed 100644
-> --- a/drivers/gpu/drm/bridge/tc358767.c
-> +++ b/drivers/gpu/drm/bridge/tc358767.c
-> @@ -1414,11 +1414,15 @@ static int tc_bridge_attach(struct drm_bridge *bridge,
->         if (flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)
+> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
+> index b5e2671baf22..0a787ddf39fd 100644
+> --- a/drivers/gpu/drm/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/drm_dp_helper.c
+> @@ -139,8 +139,8 @@ void drm_dp_link_train_clock_recovery_delay(const struct drm_dp_aux *aux,
+>                                          DP_TRAINING_AUX_RD_MASK;
+>
+>         if (rd_interval > 4)
+> -               DRM_DEBUG_KMS("%s: AUX interval %lu, out of range (max 4)\n",
+> -                             aux->name, rd_interval);
+> +               drm_dbg_kms(aux->drm_dev, "%s: AUX interval %lu, out of range (max 4)\n",
+> +                           aux->name, rd_interval);
+>
+>         if (rd_interval == 0 || dpcd[DP_DPCD_REV] >= DP_DPCD_REV_14)
+>                 rd_interval = 100;
+> @@ -155,8 +155,8 @@ static void __drm_dp_link_train_channel_eq_delay(const struct drm_dp_aux *aux,
+>                                                  unsigned long rd_interval)
+>  {
+>         if (rd_interval > 4)
+> -               DRM_DEBUG_KMS("%s: AUX interval %lu, out of range (max 4)\n",
+> -                             aux->name, rd_interval);
+> +               drm_dbg_kms(aux->drm_dev, "%s: AUX interval %lu, out of range (max 4)\n",
+> +                           aux->name, rd_interval);
+>
+>         if (rd_interval == 0)
+>                 rd_interval = 400;
+> @@ -220,11 +220,12 @@ drm_dp_dump_access(const struct drm_dp_aux *aux,
+>         const char *arrow = request == DP_AUX_NATIVE_READ ? "->" : "<-";
+>
+>         if (ret > 0)
+> -               DRM_DEBUG_DP("%s: 0x%05x AUX %s (ret=%3d) %*ph\n",
+> -                            aux->name, offset, arrow, ret, min(ret, 20), buffer);
+> +               drm_dbg_dp(aux->drm_dev, "%s: 0x%05x AUX %s (ret=%3d) %*ph\n",
+> +                          aux->name, offset, arrow, ret, min(ret, 20),
+> +                          buffer);
+
+checkpatch --strict is unhappy with this chunk
+
+ERROR: code indent should use tabs where possible
+#75: FILE: drivers/gpu/drm/drm_dp_helper.c:224:
++^I^I           aux->name, offset, arrow, ret, min(ret, 20),$
+
+ERROR: code indent should use tabs where possible
+#76: FILE: drivers/gpu/drm/drm_dp_helper.c:225:
+
+
+>         else
+> -               DRM_DEBUG_DP("%s: 0x%05x AUX %s (ret=%3d)\n",
+> -                            aux->name, offset, arrow, ret);
+> +               drm_dbg_dp(aux->drm_dev, "%s: 0x%05x AUX %s (ret=%3d)\n",
+> +                          aux->name, offset, arrow, ret);
+
+checkpatch --strict is unhappy with this chunk
+
+ERROR: code indent should use tabs where possible
+#81: FILE: drivers/gpu/drm/drm_dp_helper.c:228:
++^I^I           aux->name, offset, arrow, ret);$
+
+
+>  }
+>
+>  /**
+> @@ -287,8 +288,8 @@ static int drm_dp_dpcd_access(struct drm_dp_aux *aux, u8 request,
+>                         err = ret;
+>         }
+>
+> -       DRM_DEBUG_KMS("%s: Too many retries, giving up. First error: %d\n",
+> -                     aux->name, err);
+> +       drm_dbg_kms(aux->drm_dev, "%s: Too many retries, giving up. First error: %d\n",
+> +                   aux->name, err);
+>         ret = err;
+>
+>  unlock:
+> @@ -524,44 +525,44 @@ bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
+>
+>         if (drm_dp_dpcd_read(aux, DP_DEVICE_SERVICE_IRQ_VECTOR,
+>                              &auto_test_req, 1) < 1) {
+> -               DRM_ERROR("%s: DPCD failed read at register 0x%x\n",
+> -                         aux->name, DP_DEVICE_SERVICE_IRQ_VECTOR);
+> +               drm_err(aux->drm_dev, "%s: DPCD failed read at register 0x%x\n",
+> +                       aux->name, DP_DEVICE_SERVICE_IRQ_VECTOR);
+>                 return false;
+>         }
+>         auto_test_req &= DP_AUTOMATED_TEST_REQUEST;
+>
+>         if (drm_dp_dpcd_read(aux, DP_TEST_REQUEST, &link_edid_read, 1) < 1) {
+> -               DRM_ERROR("%s: DPCD failed read at register 0x%x\n",
+> -                         aux->name, DP_TEST_REQUEST);
+> +               drm_err(aux->drm_dev, "%s: DPCD failed read at register 0x%x\n",
+> +                       aux->name, DP_TEST_REQUEST);
+>                 return false;
+>         }
+>         link_edid_read &= DP_TEST_LINK_EDID_READ;
+>
+>         if (!auto_test_req || !link_edid_read) {
+> -               DRM_DEBUG_KMS("%s: Source DUT does not support TEST_EDID_READ\n",
+> -                             aux->name);
+> +               drm_dbg_kms(aux->drm_dev, "%s: Source DUT does not support TEST_EDID_READ\n",
+> +                           aux->name);
+>                 return false;
+>         }
+>
+>         if (drm_dp_dpcd_write(aux, DP_DEVICE_SERVICE_IRQ_VECTOR,
+>                               &auto_test_req, 1) < 1) {
+> -               DRM_ERROR("%s: DPCD failed write at register 0x%x\n",
+> -                         aux->name, DP_DEVICE_SERVICE_IRQ_VECTOR);
+> +               drm_err(aux->drm_dev, "%s: DPCD failed write at register 0x%x\n",
+> +                       aux->name, DP_DEVICE_SERVICE_IRQ_VECTOR);
+>                 return false;
+>         }
+>
+>         /* send back checksum for the last edid extension block data */
+>         if (drm_dp_dpcd_write(aux, DP_TEST_EDID_CHECKSUM,
+>                               &real_edid_checksum, 1) < 1) {
+> -               DRM_ERROR("%s: DPCD failed write at register 0x%x\n",
+> -                         aux->name, DP_TEST_EDID_CHECKSUM);
+> +               drm_err(aux->drm_dev, "%s: DPCD failed write at register 0x%x\n",
+> +                       aux->name, DP_TEST_EDID_CHECKSUM);
+>                 return false;
+>         }
+>
+>         test_resp |= DP_TEST_EDID_CHECKSUM_WRITE;
+>         if (drm_dp_dpcd_write(aux, DP_TEST_RESPONSE, &test_resp, 1) < 1) {
+> -               DRM_ERROR("%s: DPCD failed write at register 0x%x\n",
+> -                         aux->name, DP_TEST_RESPONSE);
+> +               drm_err(aux->drm_dev, "%s: DPCD failed write at register 0x%x\n",
+> +                       aux->name, DP_TEST_RESPONSE);
+>                 return false;
+>         }
+>
+> @@ -604,17 +605,16 @@ static int drm_dp_read_extended_dpcd_caps(struct drm_dp_aux *aux,
+>                 return -EIO;
+>
+>         if (dpcd[DP_DPCD_REV] > dpcd_ext[DP_DPCD_REV]) {
+> -               DRM_DEBUG_KMS("%s: Extended DPCD rev less than base DPCD rev (%d > %d)\n",
+> -                             aux->name, dpcd[DP_DPCD_REV],
+> -                             dpcd_ext[DP_DPCD_REV]);
+> +               drm_dbg_kms(aux->drm_dev,
+> +                           "%s: Extended DPCD rev less than base DPCD rev (%d > %d)\n",
+> +                           aux->name, dpcd[DP_DPCD_REV], dpcd_ext[DP_DPCD_REV]);
+>                 return 0;
+>         }
+>
+>         if (!memcmp(dpcd, dpcd_ext, sizeof(dpcd_ext)))
 >                 return 0;
 >
-> +       ret = drm_dp_aux_register(&tc->aux);
-> +       if (ret < 0)
-> +               return ret;
-> +
->         /* Create DP/eDP connector */
->         drm_connector_helper_add(&tc->connector, &tc_connector_helper_funcs);
->         ret = drm_connector_init(drm, &tc->connector, &tc_connector_funcs, tc->bridge.type);
->         if (ret)
-> -               return ret;
-> +               goto aux_unregister;
+> -       DRM_DEBUG_KMS("%s: Base DPCD: %*ph\n",
+> -                     aux->name, DP_RECEIVER_CAP_SIZE, dpcd);
+> +       drm_dbg_kms(aux->drm_dev, "%s: Base DPCD: %*ph\n", aux->name, DP_RECEIVER_CAP_SIZE, dpcd);
 >
->         /* Don't poll if don't have HPD connected */
->         if (tc->hpd_pin >= 0) {
-> @@ -1438,10 +1442,19 @@ static int tc_bridge_attach(struct drm_bridge *bridge,
->         drm_connector_attach_encoder(&tc->connector, tc->bridge.encoder);
+>         memcpy(dpcd, dpcd_ext, sizeof(dpcd_ext));
 >
->         return 0;
-> +aux_unregister:
-> +       drm_dp_aux_unregister(&tc->aux);
-> +       return ret;
-> +}
-> +
-> +static void tc_bridge_detach(struct drm_bridge *bridge)
-> +{
-> +       drm_dp_aux_unregister(&bridge_to_tc(bridge)->aux);
+> @@ -649,8 +649,7 @@ int drm_dp_read_dpcd_caps(struct drm_dp_aux *aux,
+>         if (ret < 0)
+>                 return ret;
+>
+> -       DRM_DEBUG_KMS("%s: DPCD: %*ph\n",
+> -                     aux->name, DP_RECEIVER_CAP_SIZE, dpcd);
+> +       drm_dbg_kms(aux->drm_dev, "%s: DPCD: %*ph\n", aux->name, DP_RECEIVER_CAP_SIZE, dpcd);
+>
+>         return ret;
 >  }
+> @@ -694,8 +693,7 @@ int drm_dp_read_downstream_info(struct drm_dp_aux *aux,
+>         if (ret != len)
+>                 return -EIO;
 >
->  static const struct drm_bridge_funcs tc_bridge_funcs = {
->         .attach = tc_bridge_attach,
-> +       .detach = tc_bridge_detach,
->         .mode_valid = tc_mode_valid,
->         .mode_set = tc_bridge_mode_set,
->         .enable = tc_bridge_enable,
-> @@ -1680,9 +1693,7 @@ static int tc_probe(struct i2c_client *client, const struct i2c_device_id *id)
->         tc->aux.name = "TC358767 AUX i2c adapter";
->         tc->aux.dev = tc->dev;
->         tc->aux.transfer = tc_aux_transfer;
-> -       ret = drm_dp_aux_register(&tc->aux);
-> -       if (ret)
-> -               return ret;
-> +       drm_dp_aux_init(&tc->aux);
->
->         tc->bridge.funcs = &tc_bridge_funcs;
->         if (tc->hpd_pin >= 0)
-> @@ -1702,7 +1713,6 @@ static int tc_remove(struct i2c_client *client)
->         struct tc_data *tc = i2c_get_clientdata(client);
->
->         drm_bridge_remove(&tc->bridge);
-> -       drm_dp_aux_unregister(&tc->aux);
+> -       DRM_DEBUG_KMS("%s: DPCD DFP: %*ph\n",
+> -                     aux->name, len, downstream_ports);
+> +       drm_dbg_kms(aux->drm_dev, "%s: DPCD DFP: %*ph\n", aux->name, len, downstream_ports);
 >
 >         return 0;
 >  }
+> @@ -1412,11 +1410,11 @@ static int drm_dp_i2c_do_msg(struct drm_dp_aux *aux, struct drm_dp_aux_msg *msg)
+>                          * Avoid spamming the kernel log with timeout errors.
+>                          */
+>                         if (ret == -ETIMEDOUT)
+> -                               DRM_DEBUG_KMS_RATELIMITED("%s: transaction timed out\n",
+> -                                                         aux->name);
+> +                               drm_dbg_kms_ratelimited(aux->drm_dev, "%s: transaction timed out\n",
+> +                                                       aux->name);
+>                         else
+> -                               DRM_DEBUG_KMS("%s: transaction failed: %d\n",
+> -                                             aux->name, ret);
+> +                               drm_dbg_kms(aux->drm_dev, "%s: transaction failed: %d\n",
+> +                                           aux->name, ret);
+>                         return ret;
+>                 }
+>
+> @@ -1430,12 +1428,12 @@ static int drm_dp_i2c_do_msg(struct drm_dp_aux *aux, struct drm_dp_aux_msg *msg)
+>                         break;
+>
+>                 case DP_AUX_NATIVE_REPLY_NACK:
+> -                       DRM_DEBUG_KMS("%s: native nack (result=%d, size=%zu)\n",
+> -                                     aux->name, ret, msg->size);
+> +                       drm_dbg_kms(aux->drm_dev, "%s: native nack (result=%d, size=%zu)\n",
+> +                                   aux->name, ret, msg->size);
+>                         return -EREMOTEIO;
+>
+>                 case DP_AUX_NATIVE_REPLY_DEFER:
+> -                       DRM_DEBUG_KMS("%s: native defer\n", aux->name);
+> +                       drm_dbg_kms(aux->drm_dev, "%s: native defer\n", aux->name);
+>                         /*
+>                          * We could check for I2C bit rate capabilities and if
+>                          * available adjust this interval. We could also be
+> @@ -1449,8 +1447,8 @@ static int drm_dp_i2c_do_msg(struct drm_dp_aux *aux, struct drm_dp_aux_msg *msg)
+>                         continue;
+>
+>                 default:
+> -                       DRM_ERROR("%s: invalid native reply %#04x\n",
+> -                                 aux->name, msg->reply);
+> +                       drm_err(aux->drm_dev, "%s: invalid native reply %#04x\n",
+> +                               aux->name, msg->reply);
+>                         return -EREMOTEIO;
+>                 }
+>
+> @@ -1465,13 +1463,13 @@ static int drm_dp_i2c_do_msg(struct drm_dp_aux *aux, struct drm_dp_aux_msg *msg)
+>                         return ret;
+>
+>                 case DP_AUX_I2C_REPLY_NACK:
+> -                       DRM_DEBUG_KMS("%s: I2C nack (result=%d, size=%zu)\n",
+> -                                     aux->name, ret, msg->size);
+> +                       drm_dbg_kms(aux->drm_dev, "%s: I2C nack (result=%d, size=%zu)\n",
+> +                                   aux->name, ret, msg->size);
+>                         aux->i2c_nack_count++;
+>                         return -EREMOTEIO;
+>
+>                 case DP_AUX_I2C_REPLY_DEFER:
+> -                       DRM_DEBUG_KMS("%s: I2C defer\n", aux->name);
+> +                       drm_dbg_kms(aux->drm_dev, "%s: I2C defer\n", aux->name);
+>                         /* DP Compliance Test 4.2.2.5 Requirement:
+>                          * Must have at least 7 retries for I2C defers on the
+>                          * transaction to pass this test
+> @@ -1485,13 +1483,13 @@ static int drm_dp_i2c_do_msg(struct drm_dp_aux *aux, struct drm_dp_aux_msg *msg)
+>                         continue;
+>
+>                 default:
+> -                       DRM_ERROR("%s: invalid I2C reply %#04x\n",
+> -                                 aux->name, msg->reply);
+> +                       drm_err(aux->drm_dev, "%s: invalid I2C reply %#04x\n",
+> +                               aux->name, msg->reply);
+>                         return -EREMOTEIO;
+>                 }
+>         }
+>
+> -       DRM_DEBUG_KMS("%s: Too many retries, giving up\n", aux->name);
+> +       drm_dbg_kms(aux->drm_dev, "%s: Too many retries, giving up\n", aux->name);
+>         return -EREMOTEIO;
+>  }
+>
+> @@ -1520,8 +1518,9 @@ static int drm_dp_i2c_drain_msg(struct drm_dp_aux *aux, struct drm_dp_aux_msg *o
+>                         return err == 0 ? -EPROTO : err;
+>
+>                 if (err < msg.size && err < ret) {
+> -                       DRM_DEBUG_KMS("%s: Partial I2C reply: requested %zu bytes got %d bytes\n",
+> -                                     aux->name, msg.size, err);
+> +                       drm_dbg_kms(aux->drm_dev,
+> +                                   "%s: Partial I2C reply: requested %zu bytes got %d bytes\n",
+> +                                   aux->name, msg.size, err);
+>                         ret = err;
+>                 }
+>
+> @@ -1700,12 +1699,11 @@ static void drm_dp_aux_crc_work(struct work_struct *work)
+>                 }
+>
+>                 if (ret == -EAGAIN) {
+> -                       DRM_DEBUG_KMS("%s: Get CRC failed after retrying: %d\n",
+> -                                     aux->name, ret);
+> +                       drm_dbg_kms(aux->drm_dev, "%s: Get CRC failed after retrying: %d\n",
+> +                                   aux->name, ret);
+>                         continue;
+>                 } else if (ret) {
+> -                       DRM_DEBUG_KMS("%s: Failed to get a CRC: %d\n",
+> -                                     aux->name, ret);
+> +                       drm_dbg_kms(aux->drm_dev, "%s: Failed to get a CRC: %d\n", aux->name, ret);
+>                         continue;
+>                 }
+>
+> @@ -2001,13 +1999,12 @@ int drm_dp_read_desc(struct drm_dp_aux *aux, struct drm_dp_desc *desc,
+>
+>         dev_id_len = strnlen(ident->device_id, sizeof(ident->device_id));
+>
+> -       DRM_DEBUG_KMS("%s: DP %s: OUI %*phD dev-ID %*pE HW-rev %d.%d SW-rev %d.%d quirks 0x%04x\n",
+> -                     aux->name, is_branch ? "branch" : "sink",
+> -                     (int)sizeof(ident->oui), ident->oui,
+> -                     dev_id_len, ident->device_id,
+> -                     ident->hw_rev >> 4, ident->hw_rev & 0xf,
+> -                     ident->sw_major_rev, ident->sw_minor_rev,
+> -                     desc->quirks);
+> +       drm_dbg_kms(aux->drm_dev,
+> +                   "%s: DP %s: OUI %*phD dev-ID %*pE HW-rev %d.%d SW-rev %d.%d quirks 0x%04x\n",
+> +                   aux->name, is_branch ? "branch" : "sink",
+> +                   (int)sizeof(ident->oui), ident->oui, dev_id_len,
+> +                   ident->device_id, ident->hw_rev >> 4, ident->hw_rev & 0xf,
+> +                   ident->sw_major_rev, ident->sw_minor_rev, desc->quirks);
+>
+>         return 0;
+>  }
+> @@ -2769,7 +2766,8 @@ int drm_dp_pcon_frl_enable(struct drm_dp_aux *aux)
+>         if (ret < 0)
+>                 return ret;
+>         if (!(buf & DP_PCON_ENABLE_SOURCE_CTL_MODE)) {
+> -               DRM_DEBUG_KMS("%s: PCON in Autonomous mode, can't enable FRL\n", aux->name);
+> +               drm_dbg_kms(aux->drm_dev, "%s: PCON in Autonomous mode, can't enable FRL\n",
+> +                           aux->name);
+>                 return -EINVAL;
+>         }
+>         buf |= DP_PCON_ENABLE_HDMI_LINK;
+> @@ -2864,8 +2862,8 @@ void drm_dp_pcon_hdmi_frl_link_error_count(struct drm_dp_aux *aux,
+>                         num_error = 0;
+>                 }
+>
+> -               DRM_ERROR("%s: More than %d errors since the last read for lane %d",
+> -                         aux->name, num_error, i);
+> +               drm_err(aux->drm_dev, "%s: More than %d errors since the last read for lane %d",
+> +                       aux->name, num_error, i);
+>         }
+>  }
+>  EXPORT_SYMBOL(drm_dp_pcon_hdmi_frl_link_error_count);
 > --
 > 2.29.2
 >
