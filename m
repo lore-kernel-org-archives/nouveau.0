@@ -2,68 +2,72 @@ Return-Path: <SRS0=6/tN=IR=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 76138C2BA82
-	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:37:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 86BC8C43381
+	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:37:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1B0E364EE2
-	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:37:01 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1B0E364EE2
+	by mail.kernel.org (Postfix) with ESMTPS id 428E564F4D
+	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:37:04 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 428E564F4D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DA026EA37;
-	Fri, 19 Mar 2021 14:36:50 +0000 (UTC)
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com
- [IPv6:2607:f8b0:4864:20::102d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F32D6E9EB
- for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 11:35:35 +0000 (UTC)
-Received: by mail-pj1-x102d.google.com with SMTP id
- f2-20020a17090a4a82b02900c67bf8dc69so6586495pjh.1
- for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 04:35:35 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2560F6EA3D;
+	Fri, 19 Mar 2021 14:36:56 +0000 (UTC)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
+ [IPv6:2a00:1450:4864:20::62d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D35F66E99F
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 08:24:48 +0000 (UTC)
+Received: by mail-ej1-x62d.google.com with SMTP id k10so8283711ejg.0
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 01:24:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=oKHyKM5HpgM64/v1vzFdLp1d/ZtBozUZ21Nb1Kh1LfE=;
- b=oA4VSa+nu/9W7HEreKS2m+YjOanl3TPCruPFBgMTvzGK1JsQbrp7ZQne4hciU+1JpL
- tC2hWULRXHHPm4YwQNXxvUbUHsNu+x7lQ8tKHvDxk7FyQH65oZsd+VfiJrYfgCeNw0x0
- 2EN2PSSWRcAdVl/GZMvNDl5QVcWps3mc2u+aTI6dsRha6h0AuWq8HTAlXVRbHO39y8q4
- WZkfB+U/TXLwbSlwImsWvK008U6xWpuA1uj8mdfmuDOUeq0ILBuWvf9PQZDnWX1pHpET
- Cgam/1cfnlVfvmOO9ujm+CmSjw2dgkAUvDDxyLpJFCwN1ntNUPTBIZ28vTqcL+GsxyRT
- dvOQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=WQfVByDMubjxteIKJEZ6P0NR+Mqv9ZNp4le53NfYrp8=;
+ b=J7cBZga0HMi5iG0MBUZwq+qeZQWVYjaTEHrLyI9EUXYAQUPVTL0uLJnF3hBzdX6FIZ
+ zVDwtYg3IT40ZqvObqkEA8SNak/MrlukLTeG32vP1M96twbR8MtsqufK1UIcwXfHjPnf
+ 2K2NJB8UHPugVxfg2oMC8GzczIRdANNmDdg2XqMK818eM2//X328KiyDO7xyh9o5sT97
+ AVlqyCAsqbSQExSIbVOBgEbA2EI0WzjnzOjiCajnhzQV+qLA9KIaQ4PwZMgJ2JIrY1fl
+ E9nJBb0VkUxHN0WG8ArEkjbhDPTOX5KTCOPJKYwk5PgIhndI2lYcOv2kun1XLWJgjxjS
+ bn5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=oKHyKM5HpgM64/v1vzFdLp1d/ZtBozUZ21Nb1Kh1LfE=;
- b=fNHfnWSCXAogWGIaaq6p6Egj5kZB3Cn/sUc/7eHYzlBp/RCbQ+je7fC4U6mPtYnbMF
- QabUWikXU981+kfavaLKDl1EClXK1JysemN84zxSmt2v3GpgUEMTouojlJIZFVykrOcc
- w7eu+K5Omv6foGOHykbdx5m2ijkfPgLHTx3BF7pIK/OJjDVwGx+8z0K8C48F6SY0aSyL
- h+bA1KuE3aMamQKBBG6JVife2O6/xlgLe5wUFh4Q68TLhFkb7mh5Rk9mX99NUzm5iQV0
- fl6tDn4qUQ7KPFhiCq4x+kpohBD5iJ6wZ5xEiQg2BYfQlKoB1GFYzZVREoRHuBL4+RjX
- Abyg==
-X-Gm-Message-State: AOAM5300p0oy9J+X7pltnH6+GKCubiMLHeVs72Fjx/cf9A96XNX4VgsN
- RDX+0VsgeTaRD2OBo5yv5UTojJKKbix0DNRf1rUqh0dVvJo2gbkE
-X-Google-Smtp-Source: ABdhPJyYOsIuX8edCxIL4tkKbNSgbtWLcodZmdaiaQmxoRZST0LiH2O2E/Mhxco68rpGovr0mKxDhbougBexQ4y0Q9k=
-X-Received: by 2002:a17:902:e752:b029:e6:822c:355c with SMTP id
- p18-20020a170902e752b02900e6822c355cmr14084469plf.69.1616153735064; Fri, 19
- Mar 2021 04:35:35 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=WQfVByDMubjxteIKJEZ6P0NR+Mqv9ZNp4le53NfYrp8=;
+ b=XoCoqtwliF8sagz8FE64a+MBmURWQSEsQ7YcXJIpjIGRO4Pu1+4xj5b8b0qt907Bln
+ 2PF7TlYPUvQF39ZrEpeuVObwJqA/nqGTZegkcpfqDlF4zXEct32aZesvxAsdjEhpvPX4
+ iLciDVUye3BbIEcgkOoKyLyXHYiJYT7Y+eGdDOEapfDYOE+wqDj9MnVNcl5dDarEBNyv
+ JyppkneN6zXISxiHBiGI1qwkddtPW7IwNgBEdn2VZAzOp/Pcrd+FleAYjp21kcvWloDY
+ 4K7i4IkqLMbqLHP+oT7kH1Jjexjjn1+qBnMjh8C2wWAYrjzyOs7XZSwwcQhtOwY7EY9c
+ KUQg==
+X-Gm-Message-State: AOAM532atFFkQV+Nd4w842RIZJ7G/XbRDaw517gvtBvDNOxICj+016E3
+ 17pjEBIzB7CvGXdlz2bsQc3tJA==
+X-Google-Smtp-Source: ABdhPJx6jKnRq5nqPpVdA7aCaWOhgT0WB+9GfElNE7osCoFYtIg0/X6xNmLS5P73xbTCg6pNXGlfOA==
+X-Received: by 2002:a17:906:f88a:: with SMTP id
+ lg10mr3078558ejb.39.1616142287621; 
+ Fri, 19 Mar 2021 01:24:47 -0700 (PDT)
+Received: from dell.default ([91.110.221.194])
+ by smtp.gmail.com with ESMTPSA id b18sm3273727ejb.77.2021.03.19.01.24.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 19 Mar 2021 01:24:47 -0700 (PDT)
+From: Lee Jones <lee.jones@linaro.org>
+To: lee.jones@linaro.org
+Date: Fri, 19 Mar 2021 08:24:25 +0000
+Message-Id: <20210319082428.3294591-17-lee.jones@linaro.org>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210319082428.3294591-1-lee.jones@linaro.org>
+References: <20210319082428.3294591-1-lee.jones@linaro.org>
 MIME-Version: 1.0
-References: <20210219215326.2227596-1-lyude@redhat.com>
- <20210219215326.2227596-28-lyude@redhat.com>
-In-Reply-To: <20210219215326.2227596-28-lyude@redhat.com>
-From: Robert Foss <robert.foss@linaro.org>
-Date: Fri, 19 Mar 2021 12:35:24 +0100
-Message-ID: <CAG3jFyuvnDQXXJKaY7zqi01_BG7pvFj0_9DJ2eAr2C=FvUtL1A@mail.gmail.com>
-To: Lyude Paul <lyude@redhat.com>
 X-Mailman-Approved-At: Fri, 19 Mar 2021 14:36:46 +0000
-Subject: Re: [Nouveau] [PATCH 27/30] drm/dp_mst: Pass
- drm_dp_mst_topology_mgr to drm_dp_get_vc_payload_bw()
+Subject: [Nouveau] [PATCH 16/19] drm/nouveau/dispnv50/disp: Include header
+ containing our prototypes
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,118 +79,32 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Anshuman Gupta <anshuman.gupta@intel.com>,
- Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>,
- David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- open list <linux-kernel@vger.kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Ramalingam C <ramalingam.c@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, amd-gfx@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- Lee Shawn C <shawn.c.lee@intel.com>, Imre Deak <imre.deak@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hey Lyude,
-
-Thanks for the patch.
-
-On Fri, 19 Feb 2021 at 23:03, Lyude Paul <lyude@redhat.com> wrote:
->
-> Since this is one of the few functions in drm_dp_mst_topology.c that
-> doesn't have any way of getting access to a drm_device, let's pass the
-> drm_dp_mst_topology_mgr down to this function so that it can use
-> drm_dbg_kms().
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> ---
->  drivers/gpu/drm/drm_dp_mst_topology.c       | 7 +++++--
->  drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 ++-
->  include/drm/drm_dp_mst_helper.h             | 3 ++-
->  3 files changed, 9 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-> index cf4f2f85711e..fb66df39e0bb 100644
-> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> @@ -3631,6 +3631,7 @@ static int drm_dp_send_up_ack_reply(struct drm_dp_mst_topology_mgr *mgr,
->
->  /**
->   * drm_dp_get_vc_payload_bw - get the VC payload BW for an MST link
-> + * @mgr: The &drm_dp_mst_topology_mgr to use
->   * @link_rate: link rate in 10kbits/s units
->   * @link_lane_count: lane count
->   *
-> @@ -3639,7 +3640,8 @@ static int drm_dp_send_up_ack_reply(struct drm_dp_mst_topology_mgr *mgr,
->   * convert the number of PBNs required for a given stream to the number of
->   * timeslots this stream requires in each MTP.
->   */
-> -int drm_dp_get_vc_payload_bw(int link_rate, int link_lane_count)
-> +int drm_dp_get_vc_payload_bw(const struct drm_dp_mst_topology_mgr *mgr,
-> +                            int link_rate, int link_lane_count)
->  {
->         if (link_rate == 0 || link_lane_count == 0)
->                 DRM_DEBUG_KMS("invalid link rate/lane count: (%d / %d)\n",
-> @@ -3704,7 +3706,8 @@ int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool ms
->                         goto out_unlock;
->                 }
->
-> -               mgr->pbn_div = drm_dp_get_vc_payload_bw(drm_dp_bw_code_to_link_rate(mgr->dpcd[1]),
-> +               mgr->pbn_div = drm_dp_get_vc_payload_bw(mgr,
-> +                                                       drm_dp_bw_code_to_link_rate(mgr->dpcd[1]),
->                                                         mgr->dpcd[2] & DP_MAX_LANE_COUNT_MASK);
->                 if (mgr->pbn_div == 0) {
->                         ret = -EINVAL;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index 8e316146b6d1..60ca0fa32d15 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -70,7 +70,8 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
->                 slots = drm_dp_atomic_find_vcpi_slots(state, &intel_dp->mst_mgr,
->                                                       connector->port,
->                                                       crtc_state->pbn,
-> -                                                     drm_dp_get_vc_payload_bw(crtc_state->port_clock,
-> +                                                     drm_dp_get_vc_payload_bw(&intel_dp->mst_mgr,
-> +                                                                              crtc_state->port_clock,
->                                                                                crtc_state->lane_count));
-
-checkpatch --strict is unhappy about this chunk
-
-WARNING: line length of 102 exceeds 100 columns
-#61: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:73:
-+                                           crtc_state->port_clock,
-
-Maybe the results of drm_dp_get_vc_payload_bw() can be but in a
-temporary variable.
-
->                 if (slots == -EDEADLK)
->                         return slots;
-> diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
-> index bd1c39907b92..20dc705642bd 100644
-> --- a/include/drm/drm_dp_mst_helper.h
-> +++ b/include/drm/drm_dp_mst_helper.h
-> @@ -783,7 +783,8 @@ drm_dp_mst_detect_port(struct drm_connector *connector,
->
->  struct edid *drm_dp_mst_get_edid(struct drm_connector *connector, struct drm_dp_mst_topology_mgr *mgr, struct drm_dp_mst_port *port);
->
-> -int drm_dp_get_vc_payload_bw(int link_rate, int link_lane_count);
-> +int drm_dp_get_vc_payload_bw(const struct drm_dp_mst_topology_mgr *mgr,
-> +                            int link_rate, int link_lane_count);
->
->  int drm_dp_calc_pbn_mode(int clock, int bpp, bool dsc);
->
-> --
-> 2.29.2
->
-_______________________________________________
-Nouveau mailing list
-Nouveau@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
+Rml4ZXMgdGhlIGZvbGxvd2luZyBXPTEga2VybmVsIGJ1aWxkIHdhcm5pbmcocyk6CgogZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jOjI1OTk6MTogd2FybmluZzogbm8gcHJl
+dmlvdXMgcHJvdG90eXBlIGZvciDigJhudjUwX2Rpc3BsYXlfY3JlYXRl4oCZIFstV21pc3Npbmct
+cHJvdG90eXBlc10KCkNjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+CkNjOiBEYXZp
+ZCBBaXJsaWUgPGFpcmxpZWRAbGludXguaWU+CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3
+bGwuY2g+CkNjOiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCkNjOiBub3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpTaWduZWQtb2ZmLWJ5OiBMZWUgSm9uZXMgPGxlZS5qb25lc0Bs
+aW5hcm8ub3JnPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyB8
+IDIgKysKIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9kaXNwbnY1MC9kaXNwLmMKaW5kZXggODI4ZjQ4ZDViZGQ0ZS4uY2QxNjQzMTQyMjE5OCAx
+MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCisrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYwpAQCAtNjgsNiArNjgsOCBA
+QAogCiAjaW5jbHVkZSA8c3ViZGV2L2Jpb3MvZHAuaD4KIAorI2luY2x1ZGUgIm52NTBfZGlzcGxh
+eS5oIgorCiAvKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqCiAgKiBFVk8gY2hhbm5lbAogICoqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqLwotLSAKMi4yNy4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
