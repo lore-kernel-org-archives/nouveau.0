@@ -2,68 +2,72 @@ Return-Path: <SRS0=6/tN=IR=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D5687C4332B
-	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:37:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 24E12C2BB4D
+	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:37:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 90D3764F4D
-	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:37:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 90D3764F4D
+	by mail.kernel.org (Postfix) with ESMTPS id D1BEF64EE2
+	for <nouveau@archiver.kernel.org>; Fri, 19 Mar 2021 14:37:03 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D1BEF64EE2
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A68D96EA45;
-	Fri, 19 Mar 2021 14:36:58 +0000 (UTC)
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
- [IPv6:2607:f8b0:4864:20::1036])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B85B6EA2A
- for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 14:35:53 +0000 (UTC)
-Received: by mail-pj1-x1036.google.com with SMTP id
- mz6-20020a17090b3786b02900c16cb41d63so4969347pjb.2
- for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 07:35:53 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85F1D6EA44;
+	Fri, 19 Mar 2021 14:36:51 +0000 (UTC)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
+ [IPv6:2a00:1450:4864:20::634])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65D576E9A9
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 08:24:45 +0000 (UTC)
+Received: by mail-ej1-x634.google.com with SMTP id va9so8266693ejb.12
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Mar 2021 01:24:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=0R7vCUqOiWqusGQdLDA2yAGdzDAYsdMM6CojvsuIllk=;
- b=dYE81wS7DSKdB7GyR7+XAISp1t5pL/zSDfGVzIkbDNtoK9UFhOBsBQloCz5aWC1JAw
- lb3M2Iovl8eVPmG9iOIr/YUjCSJAhPTN/g+p6UMu6/Y1VjFTY32AXsOmDiENYV+o4uYU
- 2E6IrTuBArSyTrhCPYpg4mJiuwrSs7OAHvKo0A4CJV1bCBDO7aWZsxn8OtdcMNW1ZA7u
- S+elXIqViLr/nD7rTq4htiUkJ5lo2uGNeF21pedQKl0u5C8M9VsU/JvlO1Bjey6pA7C4
- ANLJaApZfubVYKU033BWxll74mz1LZeSHXGAp7PYpcEbxUnJW9WBOVD/HMYy5a3wMAlo
- KCQg==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=l3BFodeOPTMMoMJFhYQYaXV3COFge4hJ56ydgoQMcn0=;
+ b=yDpwOUtr8Y8qaTzYWOy1tt72khTzKSstlpxPsggpndpTO0YpW29THZpXQ9yaQtYC79
+ 68SiANuDXV2bSx2a9n5Y3wAC/eP0plAl1TGb6e+VnH1n4+0m5M9iXQI0YAoCJfyjI92r
+ bJO4s7N++8FfpUyaw9clV/1j0pVHhkhv+aBOSJlq/c34rzYh33L12XhsLGnY+GSnpOSP
+ clPV01gl/MoIDV/HszIHC/Uqp5oKYVVQgSfQ1CUHacjvw22R5vfaWmvOYp9Jg7ANcaMD
+ SkYlMwCKcvaSKswcxaHWWBfBb47Q4a3HBm2iAsPljuDZ33X3VcDmgTCdML23L3pKNPM2
+ Ed7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=0R7vCUqOiWqusGQdLDA2yAGdzDAYsdMM6CojvsuIllk=;
- b=FRtMIJoOIkpNv95N4PBi6sjYt7DgPFogxFsNWw7rnLpBZq8Y4t1+4VQyDEZK3z84nL
- LcIrbdR3izbJiEn+ijoW/kiqylpaqNqfK5t34zwbeVBeTocI/7ru2Mv4T8JYd3ztlSOG
- Ob9HWYfePnDbgQFvv+1X7BP+jUFDeXPlkMQLKUs84iVG2m7aiXTBLC530WEMCxUMzd2j
- p54p/z1ugZI64oB4gI+T/y5a82AVvMAfxEiQtYgq7L5y5ARRzTIlBom4J3xIRqD2dR5F
- bB5fFFdjhyClqFBUPdmT4MmPXzVOG7d+V7wFyqhTl3rvV9HCKGqn0cdjzYOOnSBrmWeX
- 4Phg==
-X-Gm-Message-State: AOAM530/4L1XjsrA22aGAxgE6KkVO6bTl513B5cmUV3nfRp8eDbWLFRr
- olxb0CxxCBhYQEbyIqV8Ft6YAHHjA8mB6XapnTrMgw==
-X-Google-Smtp-Source: ABdhPJx6mz7QtxY42zHzQ4OwZrXSYkhmbs+ESa/8sPIZwAXqhmt9XhBi9MDQuYZrkn0CZzsEUeDWOtF7VrY+uzB9bCI=
-X-Received: by 2002:a17:90a:4a8f:: with SMTP id
- f15mr10307132pjh.19.1616164552793; 
- Fri, 19 Mar 2021 07:35:52 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=l3BFodeOPTMMoMJFhYQYaXV3COFge4hJ56ydgoQMcn0=;
+ b=KQ/hp3z9GYY0asDfEM46gSVtWOvmq3GERcYFy/IXyWVMBqrDA9bbwkJAfe/Tvby6ku
+ Jly/LghL4unxVq5f/KrvKqK5qkAP3LO5+ZtS5us6/xKo1ur93DzvzjPv7pHxAyUwimW4
+ MinrzoKihZC3oNhRaIVw+WtLmGQo55m3+Yz3rfBW1NVp5YIuSWKrS6mODwOtwbUV1Rvo
+ a+f8bAT3cfWw+hceV79Ocm1eZ5TA/4FlVKZFz2BbKIHtPVvo6jZtN3ibJA38+UaTL2oY
+ nNXYozqjZP/XM/wEPmUJjbBDWMzM8JNlOlAMjhPdr7sqREBZTfjJAkJQ5vF/tgFTnLCv
+ PF2Q==
+X-Gm-Message-State: AOAM530l5BKNn4VLCpBeSJlMSOnRHoUsKvONPj4K54Md4DB0nIvxaUWJ
+ 4d6x/SkbKfjHgMuvNidz36vLyQ==
+X-Google-Smtp-Source: ABdhPJxoo5i8vW6NNowcMoz9sB++W3ReJn5ajzefnBphKE7+Df6szDDubQQH7q/pELeFudxCf4ap9g==
+X-Received: by 2002:a17:906:b4c:: with SMTP id
+ v12mr3007707ejg.330.1616142284127; 
+ Fri, 19 Mar 2021 01:24:44 -0700 (PDT)
+Received: from dell.default ([91.110.221.194])
+ by smtp.gmail.com with ESMTPSA id b18sm3273727ejb.77.2021.03.19.01.24.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 19 Mar 2021 01:24:43 -0700 (PDT)
+From: Lee Jones <lee.jones@linaro.org>
+To: lee.jones@linaro.org
+Date: Fri, 19 Mar 2021 08:24:21 +0000
+Message-Id: <20210319082428.3294591-13-lee.jones@linaro.org>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210319082428.3294591-1-lee.jones@linaro.org>
+References: <20210319082428.3294591-1-lee.jones@linaro.org>
 MIME-Version: 1.0
-References: <20210219215326.2227596-1-lyude@redhat.com>
- <20210219215326.2227596-9-lyude@redhat.com>
-In-Reply-To: <20210219215326.2227596-9-lyude@redhat.com>
-From: Robert Foss <robert.foss@linaro.org>
-Date: Fri, 19 Mar 2021 15:35:41 +0100
-Message-ID: <CAG3jFyto=4U7wqtw92Escsu9cXGV=xD8SUKm_UUm7bRmYPUYxA@mail.gmail.com>
-To: Lyude Paul <lyude@redhat.com>
 X-Mailman-Approved-At: Fri, 19 Mar 2021 14:36:46 +0000
-Subject: Re: [Nouveau] [PATCH 08/30] drm/bridge/analogix/anx78xx: Setup
- encoder before registering connector
+Subject: [Nouveau] [PATCH 12/19] drm/nouveau/dispnv04/crtc: Demote
+ non-conforming kernel-doc headers
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,74 +79,60 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Torsten Duwe <duwe@lst.de>, Jernej Skrabec <jernej.skrabec@siol.net>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Jonas Karlman <jonas@kwiboo.se>, open list <linux-kernel@vger.kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>, Andrzej Hajda <a.hajda@samsung.com>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>,
- Boris Brezillon <boris.brezillon@collabora.com>, amd-gfx@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sam Ravnborg <sam@ravnborg.org>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hey Lyude,
+Fixes the following W=1 kernel build warning(s):
 
-Thanks for the patch, it looks good to me.
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c:462: warning: Function parameter or member 'crtc' not described in 'nv_crtc_mode_set_regs'
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c:462: warning: Function parameter or member 'mode' not described in 'nv_crtc_mode_set_regs'
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c:640: warning: Function parameter or member 'crtc' not described in 'nv_crtc_mode_set'
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c:640: warning: Function parameter or member 'mode' not described in 'nv_crtc_mode_set'
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c:640: warning: Function parameter or member 'adjusted_mode' not described in 'nv_crtc_mode_set'
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c:640: warning: Function parameter or member 'x' not described in 'nv_crtc_mode_set'
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c:640: warning: Function parameter or member 'y' not described in 'nv_crtc_mode_set'
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c:640: warning: Function parameter or member 'old_fb' not described in 'nv_crtc_mode_set'
 
-Reviewed-by: Robert Foss <robert.foss@linaro.org>
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Signed-off-by: Lee Jones <lee.jones@linaro.org>
+---
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-On Fri, 19 Feb 2021 at 22:56, Lyude Paul <lyude@redhat.com> wrote:
->
-> Since encoder mappings for connectors are exposed to userspace, we should
-> be attaching the encoder before exposing the connector to userspace. Just a
-> drive-by fix for an issue I noticed while fixing up usages of
-> drm_dp_aux_init()/drm_dp_aux_register() across the tree.
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> ---
->  drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c b/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
-> index ec4607dc01eb..338dd8531d4b 100644
-> --- a/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
-> +++ b/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
-> @@ -924,12 +924,6 @@ static int anx78xx_bridge_attach(struct drm_bridge *bridge,
->         drm_connector_helper_add(&anx78xx->connector,
->                                  &anx78xx_connector_helper_funcs);
->
-> -       err = drm_connector_register(&anx78xx->connector);
-> -       if (err) {
-> -               DRM_ERROR("Failed to register connector: %d\n", err);
-> -               return err;
-> -       }
-> -
->         anx78xx->connector.polled = DRM_CONNECTOR_POLL_HPD;
->
->         err = drm_connector_attach_encoder(&anx78xx->connector,
-> @@ -939,6 +933,12 @@ static int anx78xx_bridge_attach(struct drm_bridge *bridge,
->                 return err;
->         }
->
-> +       err = drm_connector_register(&anx78xx->connector);
-> +       if (err) {
-> +               DRM_ERROR("Failed to register connector: %d\n", err);
-> +               return err;
-> +       }
-> +
->         return 0;
->  }
->
-> --
-> 2.29.2
->
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+index f9e962fd94d0d..f9a276ea5a9e0 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+@@ -449,7 +449,7 @@ nv_crtc_mode_set_vga(struct drm_crtc *crtc, struct drm_display_mode *mode)
+ 	regp->Attribute[NV_CIO_AR_CSEL_INDEX] = 0x00;
+ }
+ 
+-/**
++/*
+  * Sets up registers for the given mode/adjusted_mode pair.
+  *
+  * The clocks, CRTCs and outputs attached to this CRTC must be off.
+@@ -625,7 +625,7 @@ nv_crtc_swap_fbs(struct drm_crtc *crtc, struct drm_framebuffer *old_fb)
+ 	return ret;
+ }
+ 
+-/**
++/*
+  * Sets up registers for the given mode/adjusted_mode pair.
+  *
+  * The clocks, CRTCs and outputs attached to this CRTC must be off.
+-- 
+2.27.0
+
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
