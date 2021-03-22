@@ -2,34 +2,35 @@ Return-Path: <SRS0=r0++=IU=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C5F0C433DB
-	for <nouveau@archiver.kernel.org>; Mon, 22 Mar 2021 09:27:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E4A39C433C1
+	for <nouveau@archiver.kernel.org>; Mon, 22 Mar 2021 10:27:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AAE1F61982
-	for <nouveau@archiver.kernel.org>; Mon, 22 Mar 2021 09:27:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AAE1F61982
+	by mail.kernel.org (Postfix) with ESMTPS id 9F6026198F
+	for <nouveau@archiver.kernel.org>; Mon, 22 Mar 2021 10:27:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9F6026198F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=nvidia.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F699898ED;
-	Mon, 22 Mar 2021 09:27:42 +0000 (UTC)
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com
- (mail-eopbgr690060.outbound.protection.outlook.com [40.107.69.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9322889906;
- Mon, 22 Mar 2021 09:27:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45C0089930;
+	Mon, 22 Mar 2021 10:27:57 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2077.outbound.protection.outlook.com [40.107.243.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CC9489930;
+ Mon, 22 Mar 2021 10:27:56 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JSxLdpusDg4c+eQ8ShMx8ygkenaDl0jfVzx6S2uVIuBR2uxLrLGsW1DSXOK6JYB1lhH+nQe4zvhrNhl9GC9GEYF5d0lLyKR1mwl4RRck7x3VeC6NiieR4w5yCLXQ1Bmj9dR8WGUxCfeg9bPZ6eDz2Ggq2VYmGYaCcsbdrlF80GyMtMV9k0ORqaDUlbWX5CP2aINBbm0Eh/xEG4ZeHyY6cAIBswNUVtwcZpOa6HHZVOGWXXZoMA4FToYm6GnnG1Eqw+x6eOwad6Qm6KopLxLz+57/5ZHi7KcKzF2QpqhxJ7ADxUved96zcE9AFbZtGGh70xWOqTuvrYsUxXF/2NwxYA==
+ b=P6RbVX2dRoM+V4SvUxDP68g+oMrypkx+UsLPTEaVlUcuRxx3a/AiD0YMfMRjArvJT1znqmXoXpfDvi+L6DqyUHs4S0Nez/257huEoxtBiQKLArmHAQpgxw3yjcHH9++uikkaUDo9nRqaixW70bxWu+dPp4P3kELOP3sSW5LRw0mjqJR30YPzReSfcb/htvtiiIaKYXIbzRCg/uoQUD2VufVaMevyagd4TDXcitrG4q8b3+0D2HQuzy0PfeTzSjhhIjpiX9xw2vCvBSHpvgfKh5UITIA30p1ZEV0/CeCVn0ekYB0GBzzJ/ABmJOwL9ODddVvDi+hOqP0W+c4i0oYTtQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RQstACXxhRbgfGic/9H1wBzJo+J7NBQEs2uehIvi1pg=;
- b=ZQQpxSkApnIrlsWxLnvNdCEmo3ZaAJqlNiJxSOLvspGcNNOR5ZxHxXKy5qCEafPr3XobXhnsYXcAeVqtQ0pfoYr0VJiI4jW8V3lcgHb60kRR7fUgLLtQBnsdRq2zwix41w7bqnSx24WsC60l9864vu1gganLCshRRvguBGxYmO5Voar/Hdol2DaFR1AQP0nKXb/kknBaG5a/GcpC81bJZ5SX8hEKbp2Ky5tWcCFFqyPhJJ6+ZUdehMx72AP+dMttdNJpcL8dndHyWZ7+zzCmzzSYjcqVl824y22DISFeR/kkEnhDn93Tc9LVcHgT9iW5/6KMBOoYMEM69YnGxIeomw==
+ bh=Tu85S1tb13VE2v351z6HKk4HzDVjZgv9QJA4MLE3F3g=;
+ b=FCdnHuNNnhunVQG2WRs5fNwidyTkjgkmypG/PJqKfZkFqDfneK6oXwjTCVT1CddUsTF5+HQRiojaRPSvHocp3+VlsPxWF8SBRYLOQzIOpTTbDhwSbP/PrMfLpuLeu5/HJR9EnqZUgfkrY3Rqdi92Y4r22wq0ipcoZu0YH8YGQYtpKChw0RtGbLMjXxvuGhqyFO2D72mKi/8b7UJ86fs+pLm9D1lQld/bimFqBiOE+wgLTMlitxI+TDGK4eUFZ8cS0du/wF7vR4rVz7FIcxB763TCFXS5be5pxSkQvkw02hea8syPT3UwDSAcROLJZ2foIiWTngFOFA2PPOO+Y8e/9A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  216.228.112.34) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=none sp=none pct=100) action=none
@@ -37,18 +38,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RQstACXxhRbgfGic/9H1wBzJo+J7NBQEs2uehIvi1pg=;
- b=bINofUd9HjDpToHTpe34LlTWicLpbpI+MsNlI+wczeiIRXb1gwWmTh5bE/FDQWzXEBQAW0fNMIiSw4egcGmINMrYZLXLcmlgy4VB94Nx8Cd6wuNBNijTaoJum1e3f8XlqTa5G032U/CVr4MVizArimVobzUse6rWJ8J0XETfp8xdHCQSIxYMZM7COWkp+Q82E2xlzd4Vt3KinSHBhJ2PzMBYE5mJFJbBQDamfcXiA5/736bqXVY8Ylu9LKqnYNRR8UYy3m1+wZmcjwilje8rREiLw3OhITYylcgprCvVeM6Nr38HQU0wzG92Sjq2gN1Y7jTlquGJZ481aEsbt0GmbQ==
-Received: from BN0PR03CA0013.namprd03.prod.outlook.com (2603:10b6:408:e6::18)
- by DM4PR12MB5200.namprd12.prod.outlook.com (2603:10b6:5:397::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Mon, 22 Mar
- 2021 09:27:39 +0000
-Received: from BN8NAM11FT061.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e6:cafe::9f) by BN0PR03CA0013.outlook.office365.com
- (2603:10b6:408:e6::18) with Microsoft SMTP Server (version=TLS1_2,
+ bh=Tu85S1tb13VE2v351z6HKk4HzDVjZgv9QJA4MLE3F3g=;
+ b=adh8xcAxeXufTzcfBqDpsOiZDq5dPvP3/vDJfxhS4zd0aD7nQ90B1rIwHPv6YDXcUV0V4dFAnCC41cAzFmzhJKQndifOWrT7+cQdUwkZAkMSEl9aq3XUBzc+zW1HXz7oug9XMZAhziudacdGdi/1dQponvIU9+RbmuEvyEvN0eyXAnt1r0e6fIVVungy76ZyEBW/gn1tYrJwu2iNGyborWOE8wgO6+z2pJ27oje2CU6N0/N8N1m5Xlk6BTOq0b8ByS3QfthnDfEZznJI4IeQHDj02qWd7jiWxwOUi1cBY6ntqF92/aLcFiFQrJbsK2ekeQA8qmP1gnaLQtc2mx1sVg==
+Received: from DM5PR15CA0028.namprd15.prod.outlook.com (2603:10b6:4:4b::14) by
+ BL0PR12MB4929.namprd12.prod.outlook.com (2603:10b6:208:1c4::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3955.18; Mon, 22 Mar 2021 10:27:54 +0000
+Received: from DM6NAM11FT009.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:4:4b:cafe::39) by DM5PR15CA0028.outlook.office365.com
+ (2603:10b6:4:4b::14) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18 via Frontend
- Transport; Mon, 22 Mar 2021 09:27:39 +0000
+ Transport; Mon, 22 Mar 2021 10:27:54 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
  smtp.mailfrom=nvidia.com; lists.freedesktop.org; dkim=none (message not
  signed) header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -57,49 +58,48 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
  216.228.112.34 as permitted sender) receiver=protection.outlook.com;
  client-ip=216.228.112.34; helo=mail.nvidia.com;
 Received: from mail.nvidia.com (216.228.112.34) by
- BN8NAM11FT061.mail.protection.outlook.com (10.13.177.144) with Microsoft SMTP
+ DM6NAM11FT009.mail.protection.outlook.com (10.13.173.20) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.3955.18 via Frontend Transport; Mon, 22 Mar 2021 09:27:38 +0000
+ 15.20.3955.18 via Frontend Transport; Mon, 22 Mar 2021 10:27:54 +0000
 Received: from nvdebian.localnet (172.20.145.6) by HQMAIL107.nvidia.com
  (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 22 Mar
- 2021 09:27:35 +0000
+ 2021 10:27:48 +0000
 From: Alistair Popple <apopple@nvidia.com>
 To: Christoph Hellwig <hch@infradead.org>
-Date: Mon, 22 Mar 2021 20:27:33 +1100
-Message-ID: <6407817.nLXe9rGL3b@nvdebian>
-In-Reply-To: <20210315075113.GD4136862@infradead.org>
+Date: Mon, 22 Mar 2021 21:27:46 +1100
+Message-ID: <6616451.iqfUG9VtI1@nvdebian>
+In-Reply-To: <20210315074245.GC4136862@infradead.org>
 References: <20210312083851.15981-1-apopple@nvidia.com>
- <20210312083851.15981-9-apopple@nvidia.com>
- <20210315075113.GD4136862@infradead.org>
+ <20210312083851.15981-6-apopple@nvidia.com>
+ <20210315074245.GC4136862@infradead.org>
 MIME-Version: 1.0
 X-Originating-IP: [172.20.145.6]
 X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
  HQMAIL107.nvidia.com (172.20.187.13)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f89110f9-433d-47b9-ec2e-08d8ed14bc77
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5200:
-X-Microsoft-Antispam-PRVS: <DM4PR12MB5200B43C5D71E47629643337DF659@DM4PR12MB5200.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Office365-Filtering-Correlation-Id: 3dbf1a86-3994-4f7a-2eb0-08d8ed1d2792
+X-MS-TrafficTypeDiagnostic: BL0PR12MB4929:
+X-Microsoft-Antispam-PRVS: <BL0PR12MB4929A0F578E537132E588809DF659@BL0PR12MB4929.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: EYPmVZ8NVK1ujJIBvTl2wbBciwt6o3DmYWe5L3KyicneaumPZl4L1G2My+o+V+YDu/L+2wM2MDiMeXI8EKEUjDookQmr1g/656hqJd6c+xmtO7alvUQXhUVjAWf1lESpq63ncp16mgVeM2GKA5z/QaorVaaeYamoZ2TqpGaon7NJ8klCWuTpjKtRmSEPEZvZ2muPvag/bkoZ4Az9tn02yH2As9CChxRLSBWV5hHPSkH5Xr/eMGbRrhQQHg23KIhKTPHV9QwwHODMXvsSroc44vK0UbhA7MZLjXEI6N3oSrO2UmDhf40cCtlqwswbH9Tzwu2qtJF96bKdlblozePIGoimXSz57Vb9uOs6NcoQDRcZeVOy4lluEkJA4bSn67OMimudrv9LlXB+t/JDwDfxk8k7gImu7O0ua9pjg9CYNAxHeLWpAp1RdaT2eQ9ckwEXS1H/pwMzL5sjEYrW7bzjUTHxlZjphVTRXwqj2/wTamEk7K30vB9lpb8rUCT1aoaebr7N5B+uoqIT1dpYDd/yKz/aTiOVBmmKDFhJxmZX/CfcOWVh6el+OPugBh7gWsmPjIOZfl5kXIV8EWdUXoW4WA0hPO1nw33d9ZfzI1p6XoqJ5zBJe+g5NxC5qIjhjCRfIrH+eWPBx4A2Wn4LwJ555BRDyF3mTg9vUyFWinFKH9mceJXAhCLgTn21YkVHAKnr+qPJQ2j/JJ49F4ClzeAesA==
+X-Microsoft-Antispam-Message-Info: LO1tcYpP9kaKzCjpWUVxbUT1WQJg5+ARKGz260bLyqaabALLlnEUa/lFoawKA8acwWfOX4LBTo5s7kTNtkolJUVdMLo2uH+LGPPjlAdw1WAGjShO0Dof6mZdVvfwHiQEJAzWNim9UGrpbB//aeIJU0K1bIJfHPpla/+08fvavMX+IldlKRlUU7TxvAez9T4774PzxIXR3l+n3ft0IiNYMlsech65HuLU8+pCPKy8mMho73fZgBUmbwxZg8p1Jy2znkQnDK1/Pmm2ooCAOLRtxN0cVLWULnwrz83ktIKPSBoj9ya1WuFtYb6BkdJRhCY4p+WQStggi9E3CIbmKxv3EtdnXuczCZaNz4+WYMD0FcK2G/S6EhHvs3nlKs1uZ8yGwc7bBbnq8HtP86hCrm5s/NXbkbi2xEC0vWZdWJXbSTWven9AqU17rSwODO+TxvmiIt5JG5u9+lXehK1dEjM6qilI7oUy3IMkXQJF/nInRjP8agz1ECuf4jhGc1+yuHS4QwT9sNAfFxkvH6hw1QqqCdkV03+PQR6YbxLRu/GAVUP6zIDZGvratqASKZE+9KvAX9B5UM8Mqo0EBCMg7kosD1CC0g+KqBdr8BP/1/Hz0CyY70l6lZ7DzNM/UTY9HLb+3XjIy6OXnqVYRmEQdtVmwEyYN96lEqkCwPuzbo17yJMMszdmVAw05Jdz9vxvs0bA
 X-Forefront-Antispam-Report: CIP:216.228.112.34; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:schybrid03.nvidia.com; CAT:NONE;
- SFS:(4636009)(39860400002)(396003)(346002)(136003)(376002)(46966006)(36840700001)(4326008)(9576002)(16526019)(36906005)(2906002)(186003)(336012)(316002)(8676002)(86362001)(8936002)(47076005)(70206006)(26005)(426003)(7416002)(5660300002)(82310400003)(70586007)(54906003)(82740400003)(36860700001)(478600001)(33716001)(356005)(7636003)(83380400001)(6916009)(9686003)(39026012)(21314003);
+ SFS:(4636009)(396003)(376002)(39860400002)(136003)(346002)(36840700001)(46966006)(316002)(54906003)(8676002)(356005)(4326008)(9576002)(8936002)(7636003)(47076005)(336012)(6916009)(426003)(83380400001)(86362001)(2906002)(36906005)(36860700001)(186003)(478600001)(33716001)(82740400003)(70586007)(9686003)(70206006)(16526019)(5660300002)(82310400003)(26005)(7416002)(39026012);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2021 09:27:38.8350 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f89110f9-433d-47b9-ec2e-08d8ed14bc77
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2021 10:27:54.5462 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3dbf1a86-3994-4f7a-2eb0-08d8ed1d2792
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.112.34];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT061.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT009.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5200
-Subject: Re: [Nouveau] [PATCH v6 8/8] nouveau/svm: Implement atomic SVM
- access
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4929
+Subject: Re: [Nouveau] [PATCH v6 5/8] mm: Device exclusive memory access
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,41 +121,137 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Monday, 15 March 2021 6:51:13 PM AEDT Christoph Hellwig wrote:
-> > -	/*XXX: atomic? */
-> > -	return (fa->access == 0 || fa->access == 3) -
-> > -	       (fb->access == 0 || fb->access == 3);
-> > +	/* Atomic access (2) has highest priority */
-> > +	return (-1*(fa->access == 2) + (fa->access == 0 || fa->access == 3)) -
-> > +	       (-1*(fb->access == 2) + (fb->access == 0 || fb->access == 3));
+On Monday, 15 March 2021 6:42:45 PM AEDT Christoph Hellwig wrote:
+> > +Not all devices support atomic access to system memory. To support atomic
+> > +operations to a shared virtual memory page such a device needs access to 
+that
+> > +page which is exclusive of any userspace access from the CPU. The
+> > +``make_device_exclusive_range()`` function can be used to make a memory 
+range
+> > +inaccessible from userspace.
 > 
-> This looks really unreabable.  If the magic values 0, 2 and 3 had names
-> it might become a little more understadable, then factor the duplicated
-> calculation of the priority value into a helper and we'll have code that
-> mere humans can understand..
+> s/Not all devices/Some devices/ ?
 
-Fair enough, will add some definitions for the magic values.
+I will reword this. What I was trying to convey is that devices may have 
+features which allow for atomics to be implemented with SW assistance.
 
-> > +		mutex_lock(&svmm->mutex);
-> > +		if (mmu_interval_read_retry(&notifier->notifier,
-> > +					    notifier_seq)) {
-> > +			mutex_unlock(&svmm->mutex);
+> >  static inline int mm_has_notifiers(struct mm_struct *mm)
+> > @@ -528,7 +534,17 @@ static inline void mmu_notifier_range_init_migrate(
+> >  {
+> >  	mmu_notifier_range_init(range, MMU_NOTIFY_MIGRATE, flags, vma, mm,
+> >  				start, end);
+> > -	range->migrate_pgmap_owner = pgmap;
+> > +	range->owner = pgmap;
+> > +}
+> > +
+> > +static inline void mmu_notifier_range_init_exclusive(
+> > +			struct mmu_notifier_range *range, unsigned int flags,
+> > +			struct vm_area_struct *vma, struct mm_struct *mm,
+> > +			unsigned long start, unsigned long end, void *owner)
+> > +{
+> > +	mmu_notifier_range_init(range, MMU_NOTIFY_EXCLUSIVE, flags, vma, mm,
+> > +				start, end);
+> > +	range->owner = owner;
+> 
+> Maybe just replace mmu_notifier_range_init_migrate with a
+> mmu_notifier_range_init_owner helper that takes the owner but does
+> not hard code a type?
+
+Ok. That does result in a function which takes a fair number of arguments, but 
+I guess that's no worse than multiple functions hard coding the different 
+types and it does result in less code overall.
+
+> >  		}
+> > +	} else if (is_device_exclusive_entry(entry)) {
+> > +		page = pfn_swap_entry_to_page(entry);
+> > +
+> > +		get_page(page);
+> > +		rss[mm_counter(page)]++;
+> > +
+> > +		if (is_writable_device_exclusive_entry(entry) &&
+> > +		    is_cow_mapping(vm_flags)) {
+> > +			/*
+> > +			 * COW mappings require pages in both
+> > +			 * parent and child to be set to read.
+> > +			 */
+> > +			entry = make_readable_device_exclusive_entry(
+> > +							swp_offset(entry));
+> > +			pte = swp_entry_to_pte(entry);
+> > +			if (pte_swp_soft_dirty(*src_pte))
+> > +				pte = pte_swp_mksoft_dirty(pte);
+> > +			if (pte_swp_uffd_wp(*src_pte))
+> > +				pte = pte_swp_mkuffd_wp(pte);
+> > +			set_pte_at(src_mm, addr, src_pte, pte);
+> > +		}
+> 
+> Just cosmetic, but I wonder if should factor this code block into
+> a little helper.
+
+In that case there are arguably are other bits of this function which should 
+be refactored into helpers as well. Unless you feel strongly about it I would 
+like to leave this as is and put together a future series to fix this and a 
+couple of other areas I've noticed that could do with some refactoring/clean 
+ups.
+
+> > +
+> > +static bool try_to_protect_one(struct page *page, struct vm_area_struct 
+*vma,
+> > +			unsigned long address, void *arg)
+> > +{
+> > +	struct mm_struct *mm = vma->vm_mm;
+> > +	struct page_vma_mapped_walk pvmw = {
+> > +		.page = page,
+> > +		.vma = vma,
+> > +		.address = address,
+> > +	};
+> > +	struct ttp_args *ttp = (struct ttp_args *) arg;
+> 
+> This cast should not be needed.
+> 
+> > +	return ttp.valid && (!page_mapcount(page) ? true : false);
+> 
+> This can be simplified to:
+> 
+> 	return ttp.valid && !page_mapcount(page);
+> 
+> > +	npages = get_user_pages_remote(mm, start, npages,
+> > +				       FOLL_GET | FOLL_WRITE | FOLL_SPLIT_PMD,
+> > +				       pages, NULL, NULL);
+> > +	for (i = 0; i < npages; i++, start += PAGE_SIZE) {
+> > +		if (!trylock_page(pages[i])) {
+> > +			put_page(pages[i]);
+> > +			pages[i] = NULL;
 > > +			continue;
 > > +		}
-> > +		break;
-> > +	}
+> > +
+> > +		if (!try_to_protect(pages[i], mm, start, arg)) {
+> > +			unlock_page(pages[i]);
+> > +			put_page(pages[i]);
+> > +			pages[i] = NULL;
+> > +		}
 > 
-> This looks good, why not:
-> 
-> 		mutex_lock(&svmm->mutex);
-> 		if (!mmu_interval_read_retry(&notifier->notifier,
-> 					     notifier_seq))
-> 			break;
-> 		mutex_unlock(&svmm->mutex);
-> 	}
+> Should the trylock_page go into try_to_protect to simplify the loop
+> a little?  Also I wonder if we need make_device_exclusive_range or
+> should just open code the get_user_pages_remote + try_to_protect
+> loop in the callers, as that might allow them to also deduct other
+> information about the found pages.
 
-I had copied that from nouveau_range_fault() but this suggestion is better. 
-Will update, thanks for looking.
+This function has evolved over time and putting the trylock_page into 
+try_to_protect does simplify things nicely. I'm not sure what other 
+information a caller could deduct through open coding though, but I guess in 
+some circumstances it might be possible for callers to skip 
+get_user_pages_remote() which might be a future improvement.
+
+The main reason it looks like this was simply to keep it looking fairly 
+similar to how hmm_range_fault() and migrate_vma() are used with an array of 
+pages (or pfns) which are filled out from the given address range.
+ 
+> Otherwise looks good:
+> 
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> 
+
+Thanks.
 
 
 
