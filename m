@@ -7,38 +7,39 @@ X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A178C433C1
-	for <nouveau@archiver.kernel.org>; Tue, 23 Mar 2021 18:49:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BEBA4C433E0
+	for <nouveau@archiver.kernel.org>; Tue, 23 Mar 2021 18:49:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E303D61993
-	for <nouveau@archiver.kernel.org>; Tue, 23 Mar 2021 18:49:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E303D61993
+	by mail.kernel.org (Postfix) with ESMTPS id 71930619B8
+	for <nouveau@archiver.kernel.org>; Tue, 23 Mar 2021 18:49:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 71930619B8
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.alibaba.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75A7E6E92B;
-	Tue, 23 Mar 2021 18:49:06 +0000 (UTC)
-Received: from out30-42.freemail.mail.aliyun.com
- (out30-42.freemail.mail.aliyun.com [115.124.30.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BDDE6E094;
- Tue, 23 Mar 2021 08:01:31 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R141e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04395;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 133016E94F;
+	Tue, 23 Mar 2021 18:49:07 +0000 (UTC)
+Received: from out30-132.freemail.mail.aliyun.com
+ (out30-132.freemail.mail.aliyun.com [115.124.30.132])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41FBE6E095;
+ Tue, 23 Mar 2021 08:11:49 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R121e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04420;
  MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=7; SR=0;
- TI=SMTPD_---0UT2X8eb_1616486482; 
+ TI=SMTPD_---0UT2qUJD_1616487100; 
 Received: from
  j63c13417.sqa.eu95.tbsite.net(mailfrom:jiapeng.chong@linux.alibaba.com
- fp:SMTPD_---0UT2X8eb_1616486482) by smtp.aliyun-inc.com(127.0.0.1);
- Tue, 23 Mar 2021 16:01:28 +0800
+ fp:SMTPD_---0UT2qUJD_1616487100) by smtp.aliyun-inc.com(127.0.0.1);
+ Tue, 23 Mar 2021 16:11:46 +0800
 From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 To: bskeggs@redhat.com
-Date: Tue, 23 Mar 2021 16:01:21 +0800
-Message-Id: <1616486481-94130-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+Date: Tue, 23 Mar 2021 16:11:24 +0800
+Message-Id: <1616487084-104391-1-git-send-email-jiapeng.chong@linux.alibaba.com>
 X-Mailer: git-send-email 1.8.3.1
 X-Mailman-Approved-At: Tue, 23 Mar 2021 18:49:05 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/mc: make tu102_mc_intr_unarm static
+Subject: [Nouveau] [PATCH v2] drm/nouveau/mc: make tu102_mc_intr_mask and
+ tu102_mc_intr_rearm static
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,6 +71,9 @@ drivers/gpu/drm/nouveau/nvkm/subdev/mc/tu102.c:62:1: warning: symbol
 Reported-by: Abaci Robot <abaci@linux.alibaba.com>
 Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 ---
+Changes in v2:
+  -Modified the commit message.
+
  drivers/gpu/drm/nouveau/nvkm/subdev/mc/tu102.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
