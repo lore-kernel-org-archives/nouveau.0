@@ -1,66 +1,73 @@
-Return-Path: <SRS0=POmj=IW=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=t0oX=IX=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.5 required=3.0 tests=BAYES_00,
+X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,
 	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D0D33C433C1
-	for <nouveau@archiver.kernel.org>; Wed, 24 Mar 2021 23:33:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C2CF8C433DB
+	for <nouveau@archiver.kernel.org>; Thu, 25 Mar 2021 06:00:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 85DBE619A4
-	for <nouveau@archiver.kernel.org>; Wed, 24 Mar 2021 23:33:51 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 85DBE619A4
+	by mail.kernel.org (Postfix) with ESMTPS id 7C8D361A1F
+	for <nouveau@archiver.kernel.org>; Thu, 25 Mar 2021 06:00:16 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7C8D361A1F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 384DD6EAC8;
-	Wed, 24 Mar 2021 23:33:51 +0000 (UTC)
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com
- [IPv6:2607:f8b0:4864:20::b29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09B7A6EAC8;
- Wed, 24 Mar 2021 23:33:50 +0000 (UTC)
-Received: by mail-yb1-xb29.google.com with SMTP id o66so349582ybg.10;
- Wed, 24 Mar 2021 16:33:49 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E50456EB1A;
+	Thu, 25 Mar 2021 06:00:15 +0000 (UTC)
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com
+ [IPv6:2607:f8b0:4864:20::735])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B91246E982;
+ Wed, 24 Mar 2021 06:33:05 +0000 (UTC)
+Received: by mail-qk1-x735.google.com with SMTP id q26so11778501qkm.6;
+ Tue, 23 Mar 2021 23:33:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=mS6K4y5Gdwm273OjX7Mj3NnKkqV9h0GOYxPLfw0a8kE=;
- b=TbBBCMKGGrU1SLAS0jXw2dUt2IsKi4yR/C/6kDgvmt3Zrd/Iy3pI9RU8qXxdO9gUne
- 9KFbKOHNGpE4ITCowW1oyy+m+lpITlKOlZdjbnWqBwieqWuExsFJuvsueD1b7ESR05MJ
- 9Y1u1rPJVUfGFvdLZirXVQTxpO9TSbMapoFxyysFh9SOW11pe1X+NTUC6Yazhwqi52j1
- s7K7qZeIF3uiE4De/8ZydW5pOinjvRKlmJCgU6grEWlPW7X82bOjp8oRmUp/ApdRu1Jj
- 7dOeYZzNgoM2pnsIsYaDF0hTqeNrGMRXnvA4fvygFZxOV0K3KX+0x2ze1TKeySBky6M/
- 3T5A==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=dr9jAGq3XCBEKD5miWJ7SRdpms+r36rKblFylD5bbSw=;
+ b=ClS1JKychuCuV/wp29mYuMdQFoLOQLOg0eNzug/TKd2GoX03p4+ECOjY9ZY7nfGcOx
+ VySjJZTRNRQ9cGbkbbpcTeoux0t/bZsXFCwh+e+i1ALIX6sdjCcl1huIG9Nlug3swKvf
+ 9FjkUtvrYmjNur04CPZEv/GSE/UlxaID8d4SkGvbWWQWwiYMtYPaoonOrZd7yVighdKT
+ DyZhOEJoe0KV4Z1MuVCbdq+xC0swo7HaJLC5Roh2qPqqZ4GWzs13RCFbW6Ugno2mD+8l
+ xMltepqDnpU8BXgOJiEaSeJOCjz+cvSIky6uTHI0iHm7YRXv1l8Xsaqlzs/NiI/X4Xze
+ Q8Lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=mS6K4y5Gdwm273OjX7Mj3NnKkqV9h0GOYxPLfw0a8kE=;
- b=jSN339P2FTBj2z9FckqwUN9q3rTuRwr9dqMoINqUVRyrjI3T8wACW6+5zSiPhMevms
- XNI3+/vuipZf8OHMxb19/yNvC89bO34SPlLAeqQ45E405WBzfxS3nRp4LbwrDeHcqVdA
- SAO5V+C6mbnu5OOLeccSxK9V3A7bqmDlS7ri1dpzoLPi98rKvyjgLQRifl4/B1SQGy3S
- JNM5i81NAqRmHRpnb+8mPr5+JaHJ448xf3wVMbsnVDS3ld5kg1vqJ1Q5pPjXgmyj35YZ
- BIZ+49p/XGEQOxeO/xd9wzUMqylQayf2pp2cM8NIZEfLEwts0kUNi19qYhIYIxb/Po47
- Kd1A==
-X-Gm-Message-State: AOAM531YcQlK9p04AgfpY8RMpQc8kdAZGa15z/5ydGMVvvaK3pA8D842
- cdukKkdWL5vqbrFMYxvys2xuiPQ/Jki+1jESmlM=
-X-Google-Smtp-Source: ABdhPJyPreiShhfrSTu/mc2aeIAHsRz/4bu0nXdtJz4x0g8v6RWB8S6GmasK38ftTfLNqR/9w0YsOjOWd4ey1SbNiqo=
-X-Received: by 2002:a25:6003:: with SMTP id u3mr8647385ybb.96.1616628829328;
- Wed, 24 Mar 2021 16:33:49 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=dr9jAGq3XCBEKD5miWJ7SRdpms+r36rKblFylD5bbSw=;
+ b=REl3yVcMC0MLcb7qg0nFPCkCibvmD4eqtglLyL9WTQGeIjtcytgbqyhkIPUKzCcW5D
+ PHZqo88RQlwmSpzFmMlnZBwD1ejU4emXDOYyHkcXldapXGTQHxrzjDuQKMQYPJiSnnqW
+ lev05+t++z43f9RRQBawdRXPEvl854/y8bjXND3gtZ2/pj8DX/uMD4PENDDLiqXCFJZa
+ f43mMVBXn8JdmIa8DfT1o8gfonQg4XdgYuIwrxntorYAq7EkGfrDfxRoU5c7lHo9aEZJ
+ jXOrxZCfRT0IUHrp6Eaiu0BY1OLXwDuMyb8ftjxWqxdDIoZAwK3mRuKAGsd9uJ6eKyOJ
+ eV6g==
+X-Gm-Message-State: AOAM53129BSir5wTfwFiWW7KDznlzfvp6VHPdodseL5+zB4uIbc9Z17Z
+ s3UEdDQU84MrLDFuYKBUmCU=
+X-Google-Smtp-Source: ABdhPJx08Wqua/7QV4jRNH4tZmpPSNaQ9479WSYnC6bWd0xFFtPFlVDf0DpJTfL7sX3Rh/ECQz9uWw==
+X-Received: by 2002:a05:620a:118f:: with SMTP id
+ b15mr1628415qkk.5.1616567584114; 
+ Tue, 23 Mar 2021 23:33:04 -0700 (PDT)
+Received: from Slackware.localdomain ([156.146.37.194])
+ by smtp.gmail.com with ESMTPSA id k4sm1080755qke.13.2021.03.23.23.32.59
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 23 Mar 2021 23:33:03 -0700 (PDT)
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch,
+ unixbhaskar@gmail.com, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Date: Wed, 24 Mar 2021 12:04:40 +0530
+Message-Id: <20210324063440.14969-1-unixbhaskar@gmail.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-References: <20210307174853.28273-1-imirkin@alum.mit.edu>
-In-Reply-To: <20210307174853.28273-1-imirkin@alum.mit.edu>
-From: Ben Skeggs <skeggsb@gmail.com>
-Date: Thu, 25 Mar 2021 09:33:38 +1000
-Message-ID: <CACAvsv5MEeCwc2Cvx8uwMLRu9o-EvNP9ERc44BGB9cPOB5caLQ@mail.gmail.com>
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau/kms/nv04: use vzalloc for
- nv04_display
+X-Mailman-Approved-At: Thu, 25 Mar 2021 06:00:15 +0000
+Subject: [Nouveau] [PATCH] drm/nouveau/bios/init: A typo fix
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,58 +79,36 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: ML nouveau <nouveau@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Ben Skeggs <bskeggs@redhat.com>, "Nathan E . Egge" <unlord@xiph.org>
+Cc: rdunlap@infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, 8 Mar 2021 at 03:49, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
->
-> The struct is giant, and triggers an order-7 allocation (512K). There is
-> no reason for this to be kmalloc-type memory, so switch to vmalloc. This
-> should help loading nouveau on low-memory and/or long-running systems.
->
-> Reported-by: Nathan E. Egge <unlord@xiph.org>
-> Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
-> Cc: stable@vger.kernel.org
-Thanks!
 
-> ---
->  drivers/gpu/drm/nouveau/dispnv04/disp.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/dispnv04/disp.c b/drivers/gpu/drm/nouveau/dispnv04/disp.c
-> index 7739f46470d3..99fee4d8cd31 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv04/disp.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv04/disp.c
-> @@ -205,7 +205,7 @@ nv04_display_destroy(struct drm_device *dev)
->         nvif_notify_dtor(&disp->flip);
->
->         nouveau_display(dev)->priv = NULL;
-> -       kfree(disp);
-> +       vfree(disp);
->
->         nvif_object_unmap(&drm->client.device.object);
->  }
-> @@ -223,7 +223,7 @@ nv04_display_create(struct drm_device *dev)
->         struct nv04_display *disp;
->         int i, ret;
->
-> -       disp = kzalloc(sizeof(*disp), GFP_KERNEL);
-> +       disp = vzalloc(sizeof(*disp));
->         if (!disp)
->                 return -ENOMEM;
->
-> --
-> 2.26.2
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+s/conditon/condition/
+
+Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+index 9de74f41dcd2..142079403864 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+@@ -401,7 +401,7 @@ init_table_(struct nvbios_init *init, u16 offset, const char *name)
+ #define init_macro_table(b) init_table_((b), 0x04, "macro table")
+ #define init_condition_table(b) init_table_((b), 0x06, "condition table")
+ #define init_io_condition_table(b) init_table_((b), 0x08, "io condition table")
+-#define init_io_flag_condition_table(b) init_table_((b), 0x0a, "io flag conditon table")
++#define init_io_flag_condition_table(b) init_table_((b), 0x0a, "io flag condition table")
+ #define init_function_table(b) init_table_((b), 0x0c, "function table")
+ #define init_xlat_table(b) init_table_((b), 0x10, "xlat table");
+
+--
+2.30.1
+
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
