@@ -2,85 +2,56 @@ Return-Path: <SRS0=t0oX=IX=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 10DA5C433C1
-	for <nouveau@archiver.kernel.org>; Thu, 25 Mar 2021 06:00:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CC5C8C433C1
+	for <nouveau@archiver.kernel.org>; Thu, 25 Mar 2021 08:34:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BD86661A1B
-	for <nouveau@archiver.kernel.org>; Thu, 25 Mar 2021 06:00:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BD86661A1B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	by mail.kernel.org (Postfix) with ESMTPS id 7A4A361A16
+	for <nouveau@archiver.kernel.org>; Thu, 25 Mar 2021 08:34:52 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7A4A361A16
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=intel.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D05B6EB1C;
-	Thu, 25 Mar 2021 06:00:16 +0000 (UTC)
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
- [IPv6:2a00:1450:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B971B6E9B5
- for <nouveau@lists.freedesktop.org>; Wed, 24 Mar 2021 10:36:15 +0000 (UTC)
-Received: by mail-wr1-x435.google.com with SMTP id x16so23886094wrn.4
- for <nouveau@lists.freedesktop.org>; Wed, 24 Mar 2021 03:36:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=date:from:to:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=dEFFBRSXu0odutvmmG/Rwg2Sz2HimxEx+pN3ka/bnVc=;
- b=DOZKukNzPwBLODbuM7S0fhx3nEbU8wUrLkI+akr9xvK/Gn2cEkrVU5mSaLlohKzWUM
- IQkfJ4YQkOKMBazPQvbAWzdDFP3Pw6sQVJz5npSdYbHyY5D+97tiYkJ7sHJNebnH5qsm
- 0tl9dSCS/MCcNsWpo95djxWqsO64QF8ensbtsRQ+wiq5hwJ8ZBDySd8GUAFJFBxdGmvR
- jEKykXmw1j4WN055zMGSRxaoUH0Mk1lSbDSTB67aaiipXHd9Df435ucMGT4YF0wFargI
- i/kPWeaegH1BvjP03zxQGdMBRdPYrgta44l0928G9W3U65Nais46ChTzh4NwrxzMpihp
- EVmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=dEFFBRSXu0odutvmmG/Rwg2Sz2HimxEx+pN3ka/bnVc=;
- b=T5TOa4GHiT8d4pP0CkfjYLw5KxJbD9z58hxlGNxLh35BMJj3lG6b5labctyXy+JO3W
- 02dFI5AZBiiLTkPc7qPWBxFQcaRIstrvKr9q7LPy4eNUvmtsMNE7Rx51OyuWohbZ1tyB
- WXUxvrxgDPABGZpDFHjPT8Btj6e7enduhIuqfVqYLO6oAAeLiy2HMPweDQ312IDy12il
- WRaOuHRYS6Bq4NiFIjrSsEqQN5Ld2sfU2Mkd55arxJBsYbsfJ7DGMWkPVjaM4UxNLzok
- TbBw8w9JfhdaS+iZIpYImf9LKMZeqgmMUs2GXDa5DadU2gwws6L9E7pQpTm0lE45s8EX
- wnCg==
-X-Gm-Message-State: AOAM533rSyeY1kkDHqbQyBnWqu4Gfjj7osoyp8hZyi3D7YcWvylfCrSD
- t2oI7ycE+FcLsqp6GbDZwwYKOA==
-X-Google-Smtp-Source: ABdhPJxI3r3iiWfvHOD+ErGz9Iu/oghrzTasZEnAeZqBD2lmagfmv90aTaU0jHjCwgR5t2MyzwXykw==
-X-Received: by 2002:a5d:6a81:: with SMTP id s1mr2725687wru.401.1616582174392; 
- Wed, 24 Mar 2021 03:36:14 -0700 (PDT)
-Received: from dell ([91.110.221.180])
- by smtp.gmail.com with ESMTPSA id l6sm2070476wrn.3.2021.03.24.03.36.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 Mar 2021 03:36:14 -0700 (PDT)
-Date: Wed, 24 Mar 2021 10:36:11 +0000
-From: Lee Jones <lee.jones@linaro.org>
-To: linux-kernel@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
- amd-gfx@lists.freedesktop.org, Anthony Koo <Anthony.Koo@amd.com>,
- Ben Skeggs <bskeggs@redhat.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Colin Ian King <colin.king@canonical.com>,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>, Jeremy Kolb <jkolb@brandeis.edu>,
- Kuogee Hsieh <khsieh@codeaurora.org>, Leo Li <sunpeng.li@amd.com>,
- linaro-mm-sig@lists.linaro.org, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, Lyude Paul <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, nouveau@lists.freedesktop.org,
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20210324103611.GJ2916463@dell>
-References: <20210319082428.3294591-1-lee.jones@linaro.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1313C6EB73;
+	Thu, 25 Mar 2021 08:34:52 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5822E6EB73;
+ Thu, 25 Mar 2021 08:34:51 +0000 (UTC)
+IronPort-SDR: mmen07RI6kw+P4oDid0duASLwkjQwJQPB6RDZ/JkUstC0Z27hEbsWxvR8wUvldetJJvBb0Vrok
+ zwau0YHXUwjQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9933"; a="188584649"
+X-IronPort-AV: E=Sophos;i="5.81,277,1610438400"; d="scan'208";a="188584649"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2021 01:34:50 -0700
+IronPort-SDR: NsY0foNpAg9aR1Ku5oqYILuOlQVLmG705V5C51vFUxTdQrX37rtUtuPL/oFv2DF+Z1OVXFVgsO
+ I0/95Mrv0LzQ==
+X-IronPort-AV: E=Sophos;i="5.81,277,1610438400"; d="scan'208";a="443309858"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2021 01:34:49 -0700
+Received: from platvala by thrakatuluk with local (Exim 4.94)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1lPLSn-0000z0-AO; Thu, 25 Mar 2021 10:35:33 +0200
+Date: Thu, 25 Mar 2021 10:35:33 +0200
+From: Petri Latvala <petri.latvala@intel.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <YFxLVbF2lgu5t0LH@platvala-desk.ger.corp.intel.com>
+References: <20210317223827.446803-1-lyude@redhat.com>
+ <YFMasrshhYVa7daJ@platvala-desk.ger.corp.intel.com>
+ <053d072282736247a1f52d907f89cdb430d473b5.camel@redhat.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210319082428.3294591-1-lee.jones@linaro.org>
-X-Mailman-Approved-At: Thu, 25 Mar 2021 06:00:15 +0000
-Subject: Re: [Nouveau] [RESEND 00/19] Rid GPU from W=1 warnings
+In-Reply-To: <053d072282736247a1f52d907f89cdb430d473b5.camel@redhat.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Nouveau] [igt-dev] [PATCH i-g-t] lib: Introduce the
+ igt_nouveau library
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,81 +63,159 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: igt-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-RGFuaWVsLAoKPiBNSU1FLVZlcnNpb246IDEuMAo+IENvbnRlbnQtVHlwZTogdGV4dC9wbGFpbjsg
-Y2hhcnNldD1VVEYtOAo+IENvbnRlbnQtVHJhbnNmZXItRW5jb2Rpbmc6IDhiaXQKPiAKPiBUaGlz
-IGlzIGEgcmVzZW5kIG9mIHRoZSByZW1haW5pbmcgcGF0Y2hlcy4KPiAKPiBBbGwgb2YgdGhlc2Ug
-cGF0Y2hlcyBoYXZlIGJlZW4gc2VudCBiZWZvcmUuCgpBcmUgeW91IHN0aWxsIGtlZW4gdG8gJ2hv
-b3ZlciB0aGVzZSB1cCc/CgpKdXN0IGxlYXZlIHRoZSBvbmUgdGhhdCByZXF1aXJlcyB3b3JrIGFu
-ZCB0YWtlIHRoZSByZXN0IHBlcmhhcHM/Cgo+IExlZSBKb25lcyAoMTkpOgo+ICAgZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvYmlvcy9pbml0OiBEZW1vdGUgb2J2aW91cyBhYnVzZSBvZiBrZXJuZWwt
-ZG9jCj4gICBkcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwOiBSZW1vdmUgdW51c2VkIHZhcmlhYmxl
-ICdyZXQnCj4gICBkcm0vbXNtL2RwL2RwX2Rpc3BsYXk6IFJlbW92ZSB1bnVzZWQgdmFyaWFibGUg
-J2hwZCcKPiAgIGluY2x1ZGU6IGRybTogZHJtX2F0b21pYzogTWFrZSB1c2Ugb2YgJ25ld19wbGFu
-ZV9zdGF0ZScKPiAgIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvZ2syMGE6IERlbW90ZSBu
-b24tY29uZm9ybWFudCBrZXJuZWwtZG9jCj4gICAgIGhlYWRlcnMKPiAgIGRybS9hbWQvZGlzcGxh
-eS9kYy9jYWxjcy9kY2VfY2FsY3M6IE1vdmUgc29tZSBsYXJnZSB2YXJpYWJsZXMgZnJvbSB0aGUK
-PiAgICAgc3RhY2sgdG8gdGhlIGhlYXAKPiAgIGRybS9hbWQvZGlzcGxheS9kYy9jYWxjcy9kY2Vf
-Y2FsY3M6IFJlbW92ZSBzb21lIGxhcmdlIHZhcmlhYmxlcyBmcm9tCj4gICAgIHRoZSBzdGFjawo+
-ICAgZHJtL2FtZC9kaXNwbGF5L2RjL2RjZTgwL2RjZTgwX3Jlc291cmNlOiBNYWtlIGxvY2FsIGZ1
-bmN0aW9ucyBzdGF0aWMKPiAgIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwOiBEZW1v
-dGUgbm9uLWNvbmZvcm1hbnQga2VybmVsLWRvYwo+ICAgICBoZWFkZXIKPiAgIGRybS9ub3V2ZWF1
-L25vdXZlYXVfYm86IFJlbW92ZSB1bnVzZWQgdmFyaWFibGVzICdkZXYnCj4gICBkcm0vbm91dmVh
-dS9ub3V2ZWF1X2Rpc3BsYXk6IFJlbW92ZSBzZXQgYnV0IHVudXNlZCB2YXJpYWJsZSAnd2lkdGgn
-Cj4gICBkcm0vbm91dmVhdS9kaXNwbnYwNC9jcnRjOiBEZW1vdGUgbm9uLWNvbmZvcm1pbmcga2Vy
-bmVsLWRvYyBoZWFkZXJzCj4gICBkcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwOiBSZW1vdmUgdW51
-c2VkIHZhcmlhYmxlICdyZXQnIGZyb20gZnVuY3Rpb24KPiAgICAgcmV0dXJuaW5nIHZvaWQKPiAg
-IGRybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWRjNTdkOiBNYWtlIGxvY2FsIGZ1bmN0aW9uICdoZWFk
-YzU3ZF9vbHV0Jwo+ICAgICBzdGF0aWMKPiAgIGRybS9ub3V2ZWF1L252NTBfZGlzcGxheTogUmVt
-b3ZlIHN1cGVyZmx1b3VzIHByb3RvdHlwZSBmb3IgbG9jYWwKPiAgICAgc3RhdGljIGZ1bmN0aW9u
-cwo+ICAgZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcDogSW5jbHVkZSBoZWFkZXIgY29udGFpbmlu
-ZyBvdXIgcHJvdG90eXBlcwo+ICAgZHJtL25vdXZlYXUvbm91dmVhdV9pb2MzMjogRmlsZSBoZWFk
-ZXJzIGFyZSBub3QgZ29vZCBjYW5kaWRhdGVzIGZvcgo+ICAgICBrZXJuZWwtZG9jCj4gICBkcm0v
-bm91dmVhdS9ub3V2ZWF1X3N2bTogUmVtb3ZlIHVudXNlZCB2YXJpYWJsZSAncmV0JyBmcm9tIHZv
-aWQKPiAgICAgZnVuY3Rpb24KPiAgIGRybS9ub3V2ZWF1L25vdXZlYXVfaW9jMzI6IERlbW90ZSBr
-ZXJuZWwtZG9jIGFidXNlIHRvIHN0YW5kYXJkIGNvbW1lbnQKPiAgICAgYmxvY2sKPiAKPiAgLi4u
-L2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvY2FsY3MvZGNlX2NhbGNzLmMgIHwgMTE1NCArKysrKysr
-KystLS0tLS0tLQo+ICAuLi4vZHJtL2FtZC9kaXNwbGF5L2RjL2RjZTgwL2RjZTgwX3Jlc291cmNl
-LmMgfCAgIDE2ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9tc20vZHAvZHBfZGlzcGxheS5jICAgICAg
-ICAgICB8ICAgIDMgLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9jcnRjLmMg
-ICAgICAgfCAgICA0ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3Au
-YyAgICAgICB8ICAgMTAgKy0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvaGVh
-ZGM1N2QuYyAgIHwgICAgMiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Jv
-LmMgICAgICAgICAgfCAgICA0IC0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9k
-aXNwbGF5LmMgICAgIHwgICAgOCArLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
-X2lvYzMyLmMgICAgICAgfCAgICA0ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfc3ZtLmMgICAgICAgICB8ICAgIDUgKy0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1
-MF9kaXNwbGF5LmggICAgICAgIHwgICAgMyAtCj4gIC4uLi9ncHUvZHJtL25vdXZlYXUvbnZrbS9l
-bmdpbmUvZ3IvZ2YxMDAuYyAgICB8ICAgIDIgKy0KPiAgLi4uL2dwdS9kcm0vbm91dmVhdS9udmtt
-L3N1YmRldi9iaW9zL2luaXQuYyAgIHwgIDIwNCArLS0KPiAgLi4uL2dwdS9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi92b2x0L2drMjBhLmMgIHwgICAgNCArLQo+ICBpbmNsdWRlL2RybS9kcm1fYXRv
-bWljLmggICAgICAgICAgICAgICAgICAgICAgfCAgICAzICstCj4gIDE1IGZpbGVzIGNoYW5nZWQs
-IDY5MiBpbnNlcnRpb25zKCspLCA3MzQgZGVsZXRpb25zKC0pCj4gCj4gQ2M6IEFsZXggRGV1Y2hl
-ciA8YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT4KPiBDYzogYW1kLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKPiBDYzogQW50aG9ueSBLb28gPEFudGhvbnkuS29vQGFtZC5jb20+Cj4gQ2M6IEJl
-biBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KPiBDYzogIkNocmlzdGlhbiBLw7ZuaWciIDxj
-aHJpc3RpYW4ua29lbmlnQGFtZC5jb20+Cj4gQ2M6IENvbGluIElhbiBLaW5nIDxjb2xpbi5raW5n
-QGNhbm9uaWNhbC5jb20+Cj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KPiBD
-YzogRGF2aWQgQWlybGllIDxhaXJsaWVkQGxpbnV4LmllPgo+IENjOiBkcmktZGV2ZWxAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCj4gQ2M6IGZyZWVkcmVub0BsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBD
-YzogSGFycnkgV2VudGxhbmQgPGhhcnJ5LndlbnRsYW5kQGFtZC5jb20+Cj4gQ2M6IEplcmVteSBL
-b2xiIDxqa29sYkBicmFuZGVpcy5lZHU+Cj4gQ2M6IEt1b2dlZSBIc2llaCA8a2hzaWVoQGNvZGVh
-dXJvcmEub3JnPgo+IENjOiBMZW8gTGkgPHN1bnBlbmcubGlAYW1kLmNvbT4KPiBDYzogbGluYXJv
-LW1tLXNpZ0BsaXN0cy5saW5hcm8ub3JnCj4gQ2M6IGxpbnV4LWFybS1tc21Admdlci5rZXJuZWwu
-b3JnCj4gQ2M6IGxpbnV4LW1lZGlhQHZnZXIua2VybmVsLm9yZwo+IENjOiBMeXVkZSBQYXVsIDxs
-eXVkZUByZWRoYXQuY29tPgo+IENjOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9y
-c3RAbGludXguaW50ZWwuY29tPgo+IENjOiBNYXhpbWUgUmlwYXJkIDxtcmlwYXJkQGtlcm5lbC5v
-cmc+Cj4gQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gQ2M6IFJvYiBDbGFyayA8
-cm9iZGNsYXJrQGdtYWlsLmNvbT4KPiBDYzogU2VhbiBQYXVsIDxzZWFuQHBvb3JseS5ydW4+Cj4g
-Q2M6IFN1bWl0IFNlbXdhbCA8c3VtaXQuc2Vtd2FsQGxpbmFyby5vcmc+Cj4gQ2M6IFRob21hcyBa
-aW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPgoKLS0gCkxlZSBKb25lcyBb5p2O55C85pav
-XQpTZW5pb3IgVGVjaG5pY2FsIExlYWQgLSBEZXZlbG9wZXIgU2VydmljZXMKTGluYXJvLm9yZyDi
-lIIgT3BlbiBzb3VyY2Ugc29mdHdhcmUgZm9yIEFybSBTb0NzCkZvbGxvdyBMaW5hcm86IEZhY2Vi
-b29rIHwgVHdpdHRlciB8IEJsb2cKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cg==
+On Wed, Mar 24, 2021 at 06:24:54PM -0400, Lyude Paul wrote:
+> On Thu, 2021-03-18 at 11:17 +0200, Petri Latvala wrote:
+> > On Wed, Mar 17, 2021 at 06:38:27PM -0400, Lyude wrote:
+> > > From: Lyude Paul <lyude@redhat.com>
+> > > =
+
+> > > This introduces the igt_nouveau library, which enables support for ti=
+ling
+> > > formats on nouveau, along with accelerated clears for allocated bos i=
+n VRAM
+> > > using the dma-copy engine present on Nvidia hardware since Tesla. Typ=
+ically
+> > > the latter would be handled by the kernel automatically, which is the
+> > > long-term plan for nouveau, but since the kernel doesn't yet support =
+that
+> > > we implement this in igt in order to fulfill the expectation that mos=
+t of
+> > > igt has in which newly allocated fbs are expected to be zero-filled by
+> > > default.
+> > > =
+
+> > > The dma-copy engine is capable of fast blitting, and is also able to
+> > > perform tiling/untiling at the same time. This is worth mentioning be=
+cause
+> > > unlike many of the other drivers supported in igt, we go out of our w=
+ay to
+> > > avoid using mmap() in order to perform CPU rendering wherever possibl=
+e.
+> > > Instead of mmap()ing an fb that we want to draw to on the CPU (whethe=
+r it
+> > > be for converting formats, or just normal rendering), we instead use
+> > > dma-copy to blit linear/tiled fbs over to linear system memory which =
+we
+> > > mmap() instead. This is primarily because while mmap() is typically
+> > > painfully slow for vram, it's even slower on nouveau due to the curre=
+nt
+> > > lack of dynamic reclocking in our driver. Furthermore, using the dma-=
+copy
+> > > engine for copying things over to system ram is also dramatically fas=
+ter
+> > > than using igt's memcpy wc helpers even when no tiling is involved. S=
+uch
+> > > speed improvements are both quite nice, but also very necessary for c=
+ertain
+> > > tests like kms_plane that are rather sensitive when it comes to slow
+> > > rendering with drivers.
+> > > =
+
+> > > This doesn't mean we won't want to provide a way of using mmap() for
+> > > rendering in the future however, as at least basic testing of mmap() =
+is
+> > > certainly something we eventually want for nouveau. However, I think =
+the
+> > > best way for us to do this in the future will be to adapt the igt_dra=
+w API
+> > > to work with nouveau so we can explicitly request using mmap() in tes=
+ts
+> > > which need it.
+> > > =
+
+> > > Finally, this code also adds a hard dependency on libdrm support for
+> > > nouveau tests. The main reason for this is currently there are no real
+> > > applications that use nouveau's ioctls directly (mesa for instance, u=
+ses
+> > > libdrm as well) and also that nouveau's ioctls are currently a bit
+> > > complicated to use by hand. This will likely be temporary however, as=
+ Ben
+> > > Skeggs is planning on revamping a lot of nouveau's APIs to simplify t=
+hem
+> > > and make libdrm support for nouveau obsolete in the future. Note that=
+ we
+> > > take care to make sure that users can still disable libdrm support for
+> > > nouveau if needed, with the only caveat being that any tests using
+> > > igt_nouveau will be disabled, along with any tiling support for
+> > > nvidia-specific tiling formats.
+> > > =
+
+> > > This should enable igt tests which test tiling formats to run on nouv=
+eau,
+> > > and fix some seemingly random test failures as a result of not having
+> > > zero-filled buffers in a few other tests like kms_cursor_crc.
+> > > =
+
+> > > Signed-off-by: Lyude Paul <lyude@redhat.com>
+> > > Cc: Martin Peres <martin.peres@free.fr>
+> > > Cc: Ben Skeggs <bskeggs@redhat.com>
+> > > Cc: Jeremy Cline <jcline@redhat.com>
+> > > ---
+> > > =A0.gitlab-ci.yml=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =
+|=A0=A0 7 +
+> > > =A0include/drm-uapi/drm_fourcc.h=A0=A0 |=A0=A0 2 +-
+> > > =A0lib/drmtest.c=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0 |=A0=A0 5 +
+> > > =A0lib/igt_fb.c=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0 |=A0 98 +++++++--
+> > > =A0lib/igt_fb.h=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0 |=A0=A0 2 +
+> > > =A0lib/igt_nouveau.c=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 | 281 =
+++++++++++++++++++++++++++
+> > > =A0lib/igt_nouveau.h=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=A0 6=
+5 ++++++
+> > > =A0lib/meson.build=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=
+=A0=A0 8 +
+> > > =A0lib/nouveau/cea0b5.c=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 | 252 ++++++=
++++++++++++++++++
+> > > =A0lib/nouveau/nvhw/class/cl906f.h | 103 ++++++++++
+> > > =A0lib/nouveau/nvhw/class/cla0b5.h | 250 +++++++++++++++++++++++
+> > > =A0lib/nouveau/nvhw/drf.h=A0=A0=A0=A0=A0=A0=A0=A0=A0 | 209 ++++++++++=
++++++++++
+> > > =A0lib/nouveau/nvif/push.h=A0=A0=A0=A0=A0=A0=A0=A0 | 345 ++++++++++++=
+++++++++++++++++++++
+> > > =A0lib/nouveau/nvif/push906f.h=A0=A0=A0=A0 |=A0 70 +++++++
+> > > =A0lib/nouveau/priv.h=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=A0 57 =
+++++++
+> > > =A0meson.build=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0 |=A0=A0 3 +
+> > > =A0tests/meson.build=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=A0=
+=A0 2 +-
+> > > =A017 files changed, 1745 insertions(+), 14 deletions(-)
+> > > =A0create mode 100644 lib/igt_nouveau.c
+> > > =A0create mode 100644 lib/igt_nouveau.h
+> > > =A0create mode 100644 lib/nouveau/cea0b5.c
+> > > =A0create mode 100644 lib/nouveau/nvhw/class/cl906f.h
+> > > =A0create mode 100644 lib/nouveau/nvhw/class/cla0b5.h
+> > > =A0create mode 100644 lib/nouveau/nvhw/drf.h
+> > > =A0create mode 100644 lib/nouveau/nvif/push.h
+> > > =A0create mode 100644 lib/nouveau/nvif/push906f.h
+> > > =A0create mode 100644 lib/nouveau/priv.h
+> > =
+
+> > Do you want to support autotools?
+> =
+
+> nope :P. I can if it's needed, but otherwise I'm totally fine with this b=
+eing a
+> meson-only feature
+
+
+Ah yes! Our "does this also build with autotools" check already
+ignores tests that match the string "nouveau"...
+
+
+-- =
+
+Petri Latvala
+_______________________________________________
+Nouveau mailing list
+Nouveau@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/nouveau
