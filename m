@@ -5,32 +5,32 @@ X-Spam-Level:
 X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BF5C7C433DB
-	for <nouveau@archiver.kernel.org>; Fri, 26 Mar 2021 00:08:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A3F4EC433E0
+	for <nouveau@archiver.kernel.org>; Fri, 26 Mar 2021 00:08:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8D963619C2
-	for <nouveau@archiver.kernel.org>; Fri, 26 Mar 2021 00:08:46 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8D963619C2
+	by mail.kernel.org (Postfix) with ESMTPS id 6E027619EE
+	for <nouveau@archiver.kernel.org>; Fri, 26 Mar 2021 00:08:51 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6E027619EE
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=nvidia.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C17276EE7B;
-	Fri, 26 Mar 2021 00:08:45 +0000 (UTC)
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2077.outbound.protection.outlook.com [40.107.243.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51B4D6EE77;
- Fri, 26 Mar 2021 00:08:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1401A6EE81;
+	Fri, 26 Mar 2021 00:08:51 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam08on2082.outbound.protection.outlook.com [40.107.100.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A95BA6EE80;
+ Fri, 26 Mar 2021 00:08:49 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HVo/kWQbRD5SOCOXXuLiGLdsj/6iIh7lHo9MZDsjsd5Qrt8Khmd5Ujy6o7vsr/CfFx+plnNtIeuS3iFRfTWbH5j0wG9X4l3Y45R8cNPpO3qmweMQxzlEvztpjEqRkYGw+OIrhuqGxdDI5WPwdKQwh7g1f4Us2uJo8M0g5+S/UiNkgnI/CagvPlvXK0dNA8rFbXufy5DIliwRES60849V8bTl/z3mD1ZJRiRScgAmJ+WE+FN1ce7eDwTVj7Vaiob9mKUmpEj3WreWH+zNPTNN+l4YQh+iHblkQz0rnpqze+hhMcdEXfasKi71XEE0J1izErsDB2yHvc/AtHk8YQPODQ==
+ b=krpJmxcqdpgfgcUltlZw+1uDXeOm86HMyGfqVuiy4DHPcHUVZbVSDHqOZZJunvZTLiJ5JxOD4UQuXe9u/EyR6YOhAl7m0dmKdMShRvIrgL/rBzWx7oS+fvvMdqFJuSkNtpU5Khpcnl/7qsIWnmeb/8pZjFIBSUF5bYeJMKxHMYk6efRzeDL7rb6Nzm77SK45vdRx/WU1CJq43UI5N3YX+8uOnvqSa9ePKlFTvhW9IRUUDf8dvrIwze8KLOW5FOnd42v1vatvV4Ez1jTVjdCaEdIiTJMZFlAueaDaB1wMOzHt+egcyFRYZzZYoeB+hSH3l6DHYghBYvMR89WPzrhuNw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f1PlBuDFv+fkoDCHxutPb13euniKAWFWXRYTXtMR9iI=;
- b=CRlGB2I+GbqvqT3kVDiofmG0GXAVT9UtWT9jNkgU9kvPkSXUoU1KoWLSbHoBNPLDCL1A5tsrg/ObmdHAiostKgUXi3k4J+TMixjBqGqfZOQS5M/cUaoe3/xJIy7+VPc+MP1EGRkANlWXedS/YiEtaiuCeoGUBvJBqp8tHmrnR/35ZojnuDjto/yZFjSnJlQ9YqUdR9qn0s95tNSPNfS8zUUHO9Oyde2g1q+JOf+rr6oH+rMqBLXV9gbI1xx0Gu2WudzBwJ5iuNWdeihE10e/hwdDY1qZH8Hcm3MfKfoUDRIoky//NYwUMpuoqqbcQtzKzuflopwu2t9anrzdSi9MYg==
+ bh=U+FhVapwSn77mzCPj1dMMC/+xy+lBIzGdijBZNMgWL0=;
+ b=UkOW/816n7hRK3NrLf1THJhzQFnRenDxW0Wr2hCJjFJCwzLRmSCA8v1la2oZiK0w7URFA6jhGS+Ux94MCutHl8wmaY1bGc7zJwVTp2kMvwZomDByQ73bktoe/2k60cYURA9w1LTVRrV5bTi9vSOUC+K58w9NTi5d+k5hy7Z8d/o/Lws0b5dUyPdGLqeqAV/zY3R/Wow0DEfnmSJMa2SJCMECBmY6xA3xQZTXlILKzsG7cCc5HX3+4SQq0DQ/kZjQmiGhDJqIXor0Te3OvRuZEQHhXuYiuxh54GxSequiRg+Sa+SD9Ixux8ZECMNzczn3/rSpV/XiC2iUm6OBVobv7A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  216.228.112.34) smtp.rcpttodomain=redhat.com smtp.mailfrom=nvidia.com;
  dmarc=pass (p=none sp=none pct=100) action=none header.from=nvidia.com;
@@ -38,18 +38,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f1PlBuDFv+fkoDCHxutPb13euniKAWFWXRYTXtMR9iI=;
- b=cLxKaKwZFgc+HIgxT9FoWXrHd8HZqI7i3vSP0o7pk4kDRITmW+gBqsshkW2xAzQaIIA/yY6DoPn1wDkf7TqsVC9zToIzDfTwvYVp6jINVhlzHZvi4iTDLh+jbstKIz9t2F0AQwxsNn3RqMNdtbK/+OoFD16PLqZ9w+jCif2O0wQUEDnW5VhW3l4OVahBN4lvd5eaeJAZqrvHD1vQHU0N6mQXpRE8wJRWUpT4MlkpO3ZeUikp70ZVjXXO2uR7s7rISfAfK+nSpMvTTJxK55c+4N0LJ7+oDQvNif6pZT7a8/YNMTOTNLrOjZIp7r+seOfgXvDRWj//frT7Bwuysa0v0g==
-Received: from CO1PR15CA0050.namprd15.prod.outlook.com (2603:10b6:101:1f::18)
- by BN7PR12MB2803.namprd12.prod.outlook.com (2603:10b6:408:32::22)
+ bh=U+FhVapwSn77mzCPj1dMMC/+xy+lBIzGdijBZNMgWL0=;
+ b=iYBMvylc43tmUWsp1xHqp9V7PpjZw4H/rmpuLFw/qaDfy8UJyOucW9DokqSPDZNRcA38KnnOy3o8KZq5jjdor8dN86CH9Cif7taPQ6ft+JlbbspK+POaRp4R+XB7OcHlkZRQYZmmAbJDif6ypn5D8gjFKq3gglHajwkc+mT9yD3LE9vGCKzqKMUjkKHXRYRjzyPkhimZOaF1cIztc/8YCJfCEUYdCPOGFWIiYkkDPb61pjWIn1R7ELpDQ34yac92G4158xdsJrhHyd4SrEwvZHlyWAiiukUd1LSvxT8YUaJWMyYf40kSkOD9HXD+cEz3xbBeXWmbY/mZY5WUEL0SzA==
+Received: from MWHPR02CA0018.namprd02.prod.outlook.com (2603:10b6:300:4b::28)
+ by BN8PR12MB2883.namprd12.prod.outlook.com (2603:10b6:408:98::22)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.26; Fri, 26 Mar
- 2021 00:08:39 +0000
-Received: from CO1NAM11FT050.eop-nam11.prod.protection.outlook.com
- (2603:10b6:101:1f:cafe::f0) by CO1PR15CA0050.outlook.office365.com
- (2603:10b6:101:1f::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.24 via Frontend
- Transport; Fri, 26 Mar 2021 00:08:39 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.24; Fri, 26 Mar
+ 2021 00:08:46 +0000
+Received: from CO1NAM11FT067.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:4b:cafe::ce) by MWHPR02CA0018.outlook.office365.com
+ (2603:10b6:300:4b::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.25 via Frontend
+ Transport; Fri, 26 Mar 2021 00:08:45 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
  smtp.mailfrom=nvidia.com; redhat.com; dkim=none (message not signed)
  header.d=none;redhat.com; dmarc=pass action=none header.from=nvidia.com;
@@ -57,17 +57,17 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
  216.228.112.34 as permitted sender) receiver=protection.outlook.com;
  client-ip=216.228.112.34; helo=mail.nvidia.com;
 Received: from mail.nvidia.com (216.228.112.34) by
- CO1NAM11FT050.mail.protection.outlook.com (10.13.174.79) with Microsoft SMTP
+ CO1NAM11FT067.mail.protection.outlook.com (10.13.174.212) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.3955.18 via Frontend Transport; Fri, 26 Mar 2021 00:08:39 +0000
+ 15.20.3955.18 via Frontend Transport; Fri, 26 Mar 2021 00:08:45 +0000
 Received: from localhost (172.20.145.6) by HQMAIL107.nvidia.com
  (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 26 Mar
- 2021 00:08:38 +0000
+ 2021 00:08:44 +0000
 From: Alistair Popple <apopple@nvidia.com>
 To: <linux-mm@kvack.org>, <nouveau@lists.freedesktop.org>,
  <bskeggs@redhat.com>, <akpm@linux-foundation.org>
-Date: Fri, 26 Mar 2021 11:08:03 +1100
-Message-ID: <20210326000805.2518-7-apopple@nvidia.com>
+Date: Fri, 26 Mar 2021 11:08:05 +1100
+Message-ID: <20210326000805.2518-9-apopple@nvidia.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210326000805.2518-1-apopple@nvidia.com>
 References: <20210326000805.2518-1-apopple@nvidia.com>
@@ -77,28 +77,28 @@ X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
  HQMAIL107.nvidia.com (172.20.187.13)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 62fb039b-49e3-4068-f8f3-08d8efeb4ef7
-X-MS-TrafficTypeDiagnostic: BN7PR12MB2803:
-X-Microsoft-Antispam-PRVS: <BN7PR12MB2803A762989D24AF8B86A0FBDF619@BN7PR12MB2803.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
+X-MS-Office365-Filtering-Correlation-Id: 8564efc0-3360-4079-e53b-08d8efeb527a
+X-MS-TrafficTypeDiagnostic: BN8PR12MB2883:
+X-Microsoft-Antispam-PRVS: <BN8PR12MB288374309BC85AD1A21AB6F1DF619@BN8PR12MB2883.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:541;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: feLfgiQtv6Inb9zf2//7+n8J/AYv+MsfMrRo/Q18WUSs0CPTQE4Apppj6Ee+EtMkPDvR6Go5NSSvoSeeOn1Ws5Ahkv26g8i8GC/Krf3HS7pzhQLJU9L9tTz9JVlHf7AzWCJpy7mooX9Q9+CBci//kKJ9BkcY6IpkBsD98u242U8dVYQPQa0XCf84LCefjNKLjyQZ0m1Bq/LJRtGyS3wHsmXoQU1eztiGbbGXqtHS03eb7X+pNGHzRa8TmKLzbOGh7lzY/uoxsUAQC4H6SXVu7eZ/IytyvLBkaFMc4d2VPo5hw26Ucc0jtQ1CizNy+BitTLh4NN9hNGi8ScJoiLIgs0b37lUPrV+YRhGxj4Jad0Lk2sS+B2nCCXP8go+qh9R9+z1F6ShMjA9BOq/ioUqAWtIfQp9ZWrk7Kzzds/l0jkbvTTm3nkRWOGGPMaf3JpkbiyZzQo3Gw9sEU209ouPs9/eqroKzxEyXsfqV7sEPGH81NNHbEZnIUHyYUV8x9NNv7NJx+YNhj+v8P5PEmt1uAykU7SjCed+IthCRRmMFN8xB4e7cysWNmfJIltEDhZRHX2KzL8UDr0n2ubNk4U0AsM8zaa6JCgaaRJrRNfMrOWKYAfzqwlMpaUmmydwf5j7axja6edkS6XzGTD/dlgOZJA==
+X-Microsoft-Antispam-Message-Info: kN1EKoTtTdy1rxPljRfzSIOe8aQFF0VvZFL3SMfMCXJEMes92rfYGs/dWB13RuwnCe88WiOi2X25SvTHO66hmG/QKjym5ugwIyW9MfAnyQYsUqyG3QjkkBWxVEIJxAOtddtyjxUI65shpwkjrkW+NaQnSKJUsJDZeecbmiIMwHs6vGRVbDUJjXS/9EfGCSado8AGt1rynrbB940z6Hndlwr5CfYXn3kSCtPgh8QsY2Zjj7BmJR99fezZ1qunrmoNoT1YueCWLJvE2j4atZWRw8oPBNK29mvbn8ObOaM3btGehTFU6voxf6MJX9+CgqCbfOK66seYS1yn0VT6SBYmmoSTJQzDjOIwKTtiOE419QZdkmqr/g7pYkT3ZZ6v0IvN/UGHrWt0yLbEnEUX4PQJLrHciM1HKGyHR/lWeAVC4OW+2EAFQio4TK8b1uZ12+pVUdDE+71g/0LxPK350tXhQtx+WUJtlfkHlZX3rb75YcGMBmJ0sOcnntTPw6VwF3aQmEMu6aFETb+Fzl4nxcX0LkrBoxr0RTrPEoeI5tcNqVzw69usF9ujdKatBYyHBDcXvDOB98jI1ibn86wnJyXAlQ3HsW99ocfaEGzjF0dlHiYLHc7T1wR2/T+J/JvhFnE3YAGkbEYjp1nMHrJNIgDV8V/VS4CLgR1R6On+9AiaW0n550k85UHvZdBspgXsK6Zu
 X-Forefront-Antispam-Report: CIP:216.228.112.34; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:schybrid03.nvidia.com; CAT:NONE;
- SFS:(4636009)(39860400002)(346002)(396003)(376002)(136003)(36840700001)(46966006)(70586007)(2616005)(86362001)(47076005)(7416002)(6666004)(4326008)(70206006)(2906002)(36860700001)(83380400001)(478600001)(110136005)(5660300002)(54906003)(7636003)(82740400003)(186003)(26005)(8936002)(107886003)(316002)(36756003)(82310400003)(8676002)(356005)(426003)(336012)(36906005)(1076003)(16526019);
+ SFS:(4636009)(396003)(136003)(39860400002)(346002)(376002)(46966006)(36840700001)(2906002)(5660300002)(70586007)(336012)(82310400003)(26005)(70206006)(186003)(82740400003)(8676002)(36860700001)(16526019)(47076005)(7636003)(478600001)(4326008)(8936002)(356005)(83380400001)(2616005)(6666004)(7416002)(316002)(426003)(36756003)(54906003)(107886003)(36906005)(1076003)(86362001)(110136005)(21314003);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2021 00:08:39.2822 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62fb039b-49e3-4068-f8f3-08d8efeb4ef7
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2021 00:08:45.1634 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8564efc0-3360-4079-e53b-08d8efeb527a
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.112.34];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT050.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT067.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR12MB2803
-Subject: [Nouveau] [PATCH v7 6/8] mm: Selftests for exclusive device memory
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2883
+Subject: [Nouveau] [PATCH v7 8/8] nouveau/svm: Implement atomic SVM access
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,361 +119,289 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Adds some selftests for exclusive device memory.
+Some NVIDIA GPUs do not support direct atomic access to system memory
+via PCIe. Instead this must be emulated by granting the GPU exclusive
+access to the memory. This is achieved by replacing CPU page table
+entries with special swap entries that fault on userspace access.
+
+The driver then grants the GPU permission to update the page undergoing
+atomic access via the GPU page tables. When CPU access to the page is
+required a CPU fault is raised which calls into the device driver via
+MMU notifiers to revoke the atomic access. The original page table
+entries are then restored allowing CPU access to proceed.
 
 Signed-off-by: Alistair Popple <apopple@nvidia.com>
-Acked-by: Jason Gunthorpe <jgg@nvidia.com>
-Tested-by: Ralph Campbell <rcampbell@nvidia.com>
-Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
----
- lib/test_hmm.c                         | 124 +++++++++++++++++++
- lib/test_hmm_uapi.h                    |   2 +
- tools/testing/selftests/vm/hmm-tests.c | 158 +++++++++++++++++++++++++
- 3 files changed, 284 insertions(+)
 
-diff --git a/lib/test_hmm.c b/lib/test_hmm.c
-index 5c9f5a020c1d..305a9d9e2b4c 100644
---- a/lib/test_hmm.c
-+++ b/lib/test_hmm.c
-@@ -25,6 +25,7 @@
- #include <linux/swapops.h>
+---
+
+v7:
+* Removed magic values for fault access levels
+* Improved readability of fault comparison code
+
+v4:
+* Check that page table entries haven't changed before mapping on the
+  device
+---
+ drivers/gpu/drm/nouveau/include/nvif/if000c.h |   1 +
+ drivers/gpu/drm/nouveau/nouveau_svm.c         | 126 ++++++++++++++++--
+ drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h |   1 +
+ .../drm/nouveau/nvkm/subdev/mmu/vmmgp100.c    |   6 +
+ 4 files changed, 123 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/include/nvif/if000c.h b/drivers/gpu/drm/nouveau/include/nvif/if000c.h
+index d6dd40f21eed..9c7ff56831c5 100644
+--- a/drivers/gpu/drm/nouveau/include/nvif/if000c.h
++++ b/drivers/gpu/drm/nouveau/include/nvif/if000c.h
+@@ -77,6 +77,7 @@ struct nvif_vmm_pfnmap_v0 {
+ #define NVIF_VMM_PFNMAP_V0_APER                           0x00000000000000f0ULL
+ #define NVIF_VMM_PFNMAP_V0_HOST                           0x0000000000000000ULL
+ #define NVIF_VMM_PFNMAP_V0_VRAM                           0x0000000000000010ULL
++#define NVIF_VMM_PFNMAP_V0_A				  0x0000000000000004ULL
+ #define NVIF_VMM_PFNMAP_V0_W                              0x0000000000000002ULL
+ #define NVIF_VMM_PFNMAP_V0_V                              0x0000000000000001ULL
+ #define NVIF_VMM_PFNMAP_V0_NONE                           0x0000000000000000ULL
+diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+index a195e48c9aee..81526d65b4e2 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_svm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+@@ -35,6 +35,7 @@
  #include <linux/sched/mm.h>
- #include <linux/platform_device.h>
+ #include <linux/sort.h>
+ #include <linux/hmm.h>
 +#include <linux/rmap.h>
  
- #include "test_hmm_uapi.h"
- 
-@@ -46,6 +47,7 @@ struct dmirror_bounce {
- 	unsigned long		cpages;
+ struct nouveau_svm {
+ 	struct nouveau_drm *drm;
+@@ -67,6 +68,11 @@ struct nouveau_svm {
+ 	} buffer[1];
  };
  
-+#define DPT_XA_TAG_ATOMIC 1UL
- #define DPT_XA_TAG_WRITE 3UL
++#define FAULT_ACCESS_READ 0
++#define FAULT_ACCESS_WRITE 1
++#define FAULT_ACCESS_ATOMIC 2
++#define FAULT_ACCESS_PREFETCH 3
++
+ #define SVM_DBG(s,f,a...) NV_DEBUG((s)->drm, "svm: "f"\n", ##a)
+ #define SVM_ERR(s,f,a...) NV_WARN((s)->drm, "svm: "f"\n", ##a)
  
- /*
-@@ -619,6 +621,54 @@ static void dmirror_migrate_alloc_and_copy(struct migrate_vma *args,
- 	}
+@@ -411,6 +417,24 @@ nouveau_svm_fault_cancel_fault(struct nouveau_svm *svm,
+ 				      fault->client);
  }
  
-+static int dmirror_check_atomic(struct dmirror *dmirror, unsigned long start,
-+			     unsigned long end)
++static int
++nouveau_svm_fault_priority(u8 fault)
 +{
-+	unsigned long pfn;
-+
-+	for (pfn = start >> PAGE_SHIFT; pfn < (end >> PAGE_SHIFT); pfn++) {
-+		void *entry;
-+		struct page *page;
-+
-+		entry = xa_load(&dmirror->pt, pfn);
-+		page = xa_untag_pointer(entry);
-+		if (xa_pointer_tag(entry) == DPT_XA_TAG_ATOMIC)
-+			return -EPERM;
++	switch (fault) {
++	case FAULT_ACCESS_PREFETCH:
++		return 0;
++	case FAULT_ACCESS_READ:
++		return 1;
++	case FAULT_ACCESS_WRITE:
++		return 2;
++	case FAULT_ACCESS_ATOMIC:
++		return 3;
++	default:
++		WARN_ON_ONCE(1);
++		return -1;
 +	}
-+
-+	return 0;
 +}
 +
-+static int dmirror_atomic_map(unsigned long start, unsigned long end,
-+			      struct page **pages, struct dmirror *dmirror)
-+{
-+	unsigned long pfn, mapped = 0;
-+	int i;
-+
-+	/* Map the migrated pages into the device's page tables. */
-+	mutex_lock(&dmirror->mutex);
-+
-+	for (i = 0, pfn = start >> PAGE_SHIFT; pfn < (end >> PAGE_SHIFT); pfn++, i++) {
-+		void *entry;
-+
-+		if (!pages[i])
-+			continue;
-+
-+		entry = pages[i];
-+		entry = xa_tag_pointer(entry, DPT_XA_TAG_ATOMIC);
-+		entry = xa_store(&dmirror->pt, pfn, entry, GFP_ATOMIC);
-+		if (xa_is_err(entry)) {
-+			mutex_unlock(&dmirror->mutex);
-+			return xa_err(entry);
-+		}
-+
-+		mapped++;
-+	}
-+
-+	mutex_unlock(&dmirror->mutex);
-+	return mapped;
-+}
-+
- static int dmirror_migrate_finalize_and_map(struct migrate_vma *args,
- 					    struct dmirror *dmirror)
+ static int
+ nouveau_svm_fault_cmp(const void *a, const void *b)
  {
-@@ -661,6 +711,71 @@ static int dmirror_migrate_finalize_and_map(struct migrate_vma *args,
- 	return 0;
+@@ -421,9 +445,8 @@ nouveau_svm_fault_cmp(const void *a, const void *b)
+ 		return ret;
+ 	if ((ret = (s64)fa->addr - fb->addr))
+ 		return ret;
+-	/*XXX: atomic? */
+-	return (fa->access == 0 || fa->access == 3) -
+-	       (fb->access == 0 || fb->access == 3);
++	return nouveau_svm_fault_priority(fa->access) -
++		nouveau_svm_fault_priority(fb->access);
  }
  
-+static int dmirror_exclusive(struct dmirror *dmirror,
-+			     struct hmm_dmirror_cmd *cmd)
+ static void
+@@ -487,6 +510,10 @@ static bool nouveau_svm_range_invalidate(struct mmu_interval_notifier *mni,
+ 	struct svm_notifier *sn =
+ 		container_of(mni, struct svm_notifier, notifier);
+ 
++	if (range->event == MMU_NOTIFY_EXCLUSIVE &&
++	    range->owner == sn->svmm->vmm->cli->drm->dev)
++		return true;
++
+ 	/*
+ 	 * serializes the update to mni->invalidate_seq done by caller and
+ 	 * prevents invalidation of the PTE from progressing while HW is being
+@@ -555,6 +582,71 @@ static void nouveau_hmm_convert_pfn(struct nouveau_drm *drm,
+ 		args->p.phys[0] |= NVIF_VMM_PFNMAP_V0_W;
+ }
+ 
++static int nouveau_atomic_range_fault(struct nouveau_svmm *svmm,
++			       struct nouveau_drm *drm,
++			       struct nouveau_pfnmap_args *args, u32 size,
++			       struct svm_notifier *notifier)
 +{
-+	unsigned long start, end, addr;
-+	unsigned long size = cmd->npages << PAGE_SHIFT;
-+	struct mm_struct *mm = dmirror->notifier.mm;
-+	struct page *pages[64];
-+	struct dmirror_bounce bounce;
-+	unsigned long next;
-+	int ret;
++	unsigned long timeout =
++		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
++	struct mm_struct *mm = svmm->notifier.mm;
++	struct page *page;
++	unsigned long start = args->p.addr;
++	unsigned long notifier_seq;
++	int ret = 0;
 +
-+	start = cmd->addr;
-+	end = start + size;
-+	if (end < start)
-+		return -EINVAL;
-+
-+	/* Since the mm is for the mirrored process, get a reference first. */
-+	if (!mmget_not_zero(mm))
-+		return -EINVAL;
-+
-+	mmap_read_lock(mm);
-+	for (addr = start; addr < end; addr = next) {
-+		int i, mapped;
-+
-+		if (end < addr + (ARRAY_SIZE(pages) << PAGE_SHIFT))
-+			next = end;
-+		else
-+			next = addr + (ARRAY_SIZE(pages) << PAGE_SHIFT);
-+
-+		ret = make_device_exclusive_range(mm, addr, next, pages, NULL);
-+		mapped = dmirror_atomic_map(addr, next, pages, dmirror);
-+		for (i = 0; i < ret; i++) {
-+			if (pages[i]) {
-+				unlock_page(pages[i]);
-+				put_page(pages[i]);
-+			}
-+		}
-+
-+		if (addr + (mapped << PAGE_SHIFT) < next) {
-+			mmap_read_unlock(mm);
-+			mmput(mm);
-+			return -EBUSY;
-+		}
-+	}
-+	mmap_read_unlock(mm);
-+	mmput(mm);
-+
-+	/* Return the migrated data for verification. */
-+	ret = dmirror_bounce_init(&bounce, start, size);
++	ret = mmu_interval_notifier_insert(&notifier->notifier, mm,
++					args->p.addr, args->p.size,
++					&nouveau_svm_mni_ops);
 +	if (ret)
 +		return ret;
-+	mutex_lock(&dmirror->mutex);
-+	ret = dmirror_do_read(dmirror, start, end, &bounce);
-+	mutex_unlock(&dmirror->mutex);
-+	if (ret == 0) {
-+		if (copy_to_user(u64_to_user_ptr(cmd->ptr), bounce.ptr,
-+				 bounce.size))
-+			ret = -EFAULT;
++
++	while (true) {
++		if (time_after(jiffies, timeout)) {
++			ret = -EBUSY;
++			goto out;
++		}
++
++		notifier_seq = mmu_interval_read_begin(&notifier->notifier);
++		mmap_read_lock(mm);
++		make_device_exclusive_range(mm, start, start + PAGE_SIZE,
++					    &page, drm->dev);
++		mmap_read_unlock(mm);
++		if (!page) {
++			ret = -EINVAL;
++			goto out;
++		}
++
++		mutex_lock(&svmm->mutex);
++		if (!mmu_interval_read_retry(&notifier->notifier,
++					     notifier_seq))
++			break;
++		mutex_unlock(&svmm->mutex);
 +	}
 +
-+	cmd->cpages = bounce.cpages;
-+	dmirror_bounce_fini(&bounce);
++	/* Map the page on the GPU. */
++	args->p.page = 12;
++	args->p.size = PAGE_SIZE;
++	args->p.addr = start;
++	args->p.phys[0] = page_to_phys(page) |
++		NVIF_VMM_PFNMAP_V0_V |
++		NVIF_VMM_PFNMAP_V0_W |
++		NVIF_VMM_PFNMAP_V0_A |
++		NVIF_VMM_PFNMAP_V0_HOST;
++
++	svmm->vmm->vmm.object.client->super = true;
++	ret = nvif_object_ioctl(&svmm->vmm->vmm.object, args, size, NULL);
++	svmm->vmm->vmm.object.client->super = false;
++	mutex_unlock(&svmm->mutex);
++
++	unlock_page(page);
++	put_page(page);
++
++out:
++	mmu_interval_notifier_remove(&notifier->notifier);
 +	return ret;
 +}
 +
- static int dmirror_migrate(struct dmirror *dmirror,
- 			   struct hmm_dmirror_cmd *cmd)
- {
-@@ -949,6 +1064,15 @@ static long dmirror_fops_unlocked_ioctl(struct file *filp,
- 		ret = dmirror_migrate(dmirror, &cmd);
- 		break;
+ static int nouveau_range_fault(struct nouveau_svmm *svmm,
+ 			       struct nouveau_drm *drm,
+ 			       struct nouveau_pfnmap_args *args, u32 size,
+@@ -637,7 +729,7 @@ nouveau_svm_fault(struct nvif_notify *notify)
+ 	unsigned long hmm_flags;
+ 	u64 inst, start, limit;
+ 	int fi, fn;
+-	int replay = 0, ret;
++	int replay = 0, atomic = 0, ret;
  
-+	case HMM_DMIRROR_EXCLUSIVE:
-+		ret = dmirror_exclusive(dmirror, &cmd);
-+		break;
-+
-+	case HMM_DMIRROR_CHECK_EXCLUSIVE:
-+		ret = dmirror_check_atomic(dmirror, cmd.addr,
-+					cmd.addr + (cmd.npages << PAGE_SHIFT));
-+		break;
-+
- 	case HMM_DMIRROR_SNAPSHOT:
- 		ret = dmirror_snapshot(dmirror, &cmd);
- 		break;
-diff --git a/lib/test_hmm_uapi.h b/lib/test_hmm_uapi.h
-index 670b4ef2a5b6..f14dea5dcd06 100644
---- a/lib/test_hmm_uapi.h
-+++ b/lib/test_hmm_uapi.h
-@@ -33,6 +33,8 @@ struct hmm_dmirror_cmd {
- #define HMM_DMIRROR_WRITE		_IOWR('H', 0x01, struct hmm_dmirror_cmd)
- #define HMM_DMIRROR_MIGRATE		_IOWR('H', 0x02, struct hmm_dmirror_cmd)
- #define HMM_DMIRROR_SNAPSHOT		_IOWR('H', 0x03, struct hmm_dmirror_cmd)
-+#define HMM_DMIRROR_EXCLUSIVE		_IOWR('H', 0x04, struct hmm_dmirror_cmd)
-+#define HMM_DMIRROR_CHECK_EXCLUSIVE	_IOWR('H', 0x05, struct hmm_dmirror_cmd)
+ 	/* Parse available fault buffer entries into a cache, and update
+ 	 * the GET pointer so HW can reuse the entries.
+@@ -718,12 +810,14 @@ nouveau_svm_fault(struct nvif_notify *notify)
+ 		/*
+ 		 * Determine required permissions based on GPU fault
+ 		 * access flags.
+-		 * XXX: atomic?
+ 		 */
+ 		switch (buffer->fault[fi]->access) {
+ 		case 0: /* READ. */
+ 			hmm_flags = HMM_PFN_REQ_FAULT;
+ 			break;
++		case 2: /* ATOMIC. */
++			atomic = true;
++			break;
+ 		case 3: /* PREFETCH. */
+ 			hmm_flags = 0;
+ 			break;
+@@ -739,8 +833,14 @@ nouveau_svm_fault(struct nvif_notify *notify)
+ 		}
  
- /*
-  * Values returned in hmm_dmirror_cmd.ptr for HMM_DMIRROR_SNAPSHOT.
-diff --git a/tools/testing/selftests/vm/hmm-tests.c b/tools/testing/selftests/vm/hmm-tests.c
-index 5d1ac691b9f4..864f126ffd78 100644
---- a/tools/testing/selftests/vm/hmm-tests.c
-+++ b/tools/testing/selftests/vm/hmm-tests.c
-@@ -1485,4 +1485,162 @@ TEST_F(hmm2, double_map)
- 	hmm_buffer_free(buffer);
- }
+ 		notifier.svmm = svmm;
+-		ret = nouveau_range_fault(svmm, svm->drm, &args.i,
+-					sizeof(args), hmm_flags, &notifier);
++		if (atomic)
++			ret = nouveau_atomic_range_fault(svmm, svm->drm,
++							 &args.i, sizeof(args),
++							 &notifier);
++		else
++			ret = nouveau_range_fault(svmm, svm->drm, &args.i,
++						  sizeof(args), hmm_flags,
++						  &notifier);
+ 		mmput(mm);
  
-+/*
-+ * Basic check of exclusive faulting.
-+ */
-+TEST_F(hmm, exclusive)
-+{
-+	struct hmm_buffer *buffer;
-+	unsigned long npages;
-+	unsigned long size;
-+	unsigned long i;
-+	int *ptr;
-+	int ret;
+ 		limit = args.i.p.addr + args.i.p.size;
+@@ -756,11 +856,15 @@ nouveau_svm_fault(struct nvif_notify *notify)
+ 			 */
+ 			if (buffer->fault[fn]->svmm != svmm ||
+ 			    buffer->fault[fn]->addr >= limit ||
+-			    (buffer->fault[fi]->access == 0 /* READ. */ &&
++			    (buffer->fault[fi]->access == FAULT_ACCESS_READ &&
+ 			     !(args.phys[0] & NVIF_VMM_PFNMAP_V0_V)) ||
+-			    (buffer->fault[fi]->access != 0 /* READ. */ &&
+-			     buffer->fault[fi]->access != 3 /* PREFETCH. */ &&
+-			     !(args.phys[0] & NVIF_VMM_PFNMAP_V0_W)))
++			    (buffer->fault[fi]->access != FAULT_ACCESS_READ &&
++			     buffer->fault[fi]->access != FAULT_ACCESS_PREFETCH &&
++			     !(args.phys[0] & NVIF_VMM_PFNMAP_V0_W)) ||
++			    (buffer->fault[fi]->access != FAULT_ACCESS_READ &&
++			     buffer->fault[fi]->access != FAULT_ACCESS_WRITE &&
++			     buffer->fault[fi]->access != FAULT_ACCESS_PREFETCH &&
++			     !(args.phys[0] & NVIF_VMM_PFNMAP_V0_A)))
+ 				break;
+ 		}
+ 
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+index a2b179568970..f6188aa9171c 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+@@ -178,6 +178,7 @@ void nvkm_vmm_unmap_region(struct nvkm_vmm *, struct nvkm_vma *);
+ #define NVKM_VMM_PFN_APER                                 0x00000000000000f0ULL
+ #define NVKM_VMM_PFN_HOST                                 0x0000000000000000ULL
+ #define NVKM_VMM_PFN_VRAM                                 0x0000000000000010ULL
++#define NVKM_VMM_PFN_A					  0x0000000000000004ULL
+ #define NVKM_VMM_PFN_W                                    0x0000000000000002ULL
+ #define NVKM_VMM_PFN_V                                    0x0000000000000001ULL
+ #define NVKM_VMM_PFN_NONE                                 0x0000000000000000ULL
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c
+index 236db5570771..f02abd9cb4dd 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c
+@@ -88,6 +88,9 @@ gp100_vmm_pgt_pfn(struct nvkm_vmm *vmm, struct nvkm_mmu_pt *pt,
+ 		if (!(*map->pfn & NVKM_VMM_PFN_W))
+ 			data |= BIT_ULL(6); /* RO. */
+ 
++		if (!(*map->pfn & NVKM_VMM_PFN_A))
++			data |= BIT_ULL(7); /* Atomic disable. */
 +
-+	npages = ALIGN(HMM_BUFFER_SIZE, self->page_size) >> self->page_shift;
-+	ASSERT_NE(npages, 0);
-+	size = npages << self->page_shift;
+ 		if (!(*map->pfn & NVKM_VMM_PFN_VRAM)) {
+ 			addr = *map->pfn >> NVKM_VMM_PFN_ADDR_SHIFT;
+ 			addr = dma_map_page(dev, pfn_to_page(addr), 0,
+@@ -322,6 +325,9 @@ gp100_vmm_pd0_pfn(struct nvkm_vmm *vmm, struct nvkm_mmu_pt *pt,
+ 		if (!(*map->pfn & NVKM_VMM_PFN_W))
+ 			data |= BIT_ULL(6); /* RO. */
+ 
++		if (!(*map->pfn & NVKM_VMM_PFN_A))
++			data |= BIT_ULL(7); /* Atomic disable. */
 +
-+	buffer = malloc(sizeof(*buffer));
-+	ASSERT_NE(buffer, NULL);
-+
-+	buffer->fd = -1;
-+	buffer->size = size;
-+	buffer->mirror = malloc(size);
-+	ASSERT_NE(buffer->mirror, NULL);
-+
-+	buffer->ptr = mmap(NULL, size,
-+			   PROT_READ | PROT_WRITE,
-+			   MAP_PRIVATE | MAP_ANONYMOUS,
-+			   buffer->fd, 0);
-+	ASSERT_NE(buffer->ptr, MAP_FAILED);
-+
-+	/* Initialize buffer in system memory. */
-+	for (i = 0, ptr = buffer->ptr; i < size / sizeof(*ptr); ++i)
-+		ptr[i] = i;
-+
-+	/* Map memory exclusively for device access. */
-+	ret = hmm_dmirror_cmd(self->fd, HMM_DMIRROR_EXCLUSIVE, buffer, npages);
-+	ASSERT_EQ(ret, 0);
-+	ASSERT_EQ(buffer->cpages, npages);
-+
-+	/* Check what the device read. */
-+	for (i = 0, ptr = buffer->mirror; i < size / sizeof(*ptr); ++i)
-+		ASSERT_EQ(ptr[i], i);
-+
-+	/* Fault pages back to system memory and check them. */
-+	for (i = 0, ptr = buffer->ptr; i < size / sizeof(*ptr); ++i)
-+		ASSERT_EQ(ptr[i]++, i);
-+
-+	for (i = 0, ptr = buffer->ptr; i < size / sizeof(*ptr); ++i)
-+		ASSERT_EQ(ptr[i], i+1);
-+
-+	/* Check atomic access revoked */
-+	ret = hmm_dmirror_cmd(self->fd, HMM_DMIRROR_CHECK_EXCLUSIVE, buffer, npages);
-+	ASSERT_EQ(ret, 0);
-+
-+	hmm_buffer_free(buffer);
-+}
-+
-+TEST_F(hmm, exclusive_mprotect)
-+{
-+	struct hmm_buffer *buffer;
-+	unsigned long npages;
-+	unsigned long size;
-+	unsigned long i;
-+	int *ptr;
-+	int ret;
-+
-+	npages = ALIGN(HMM_BUFFER_SIZE, self->page_size) >> self->page_shift;
-+	ASSERT_NE(npages, 0);
-+	size = npages << self->page_shift;
-+
-+	buffer = malloc(sizeof(*buffer));
-+	ASSERT_NE(buffer, NULL);
-+
-+	buffer->fd = -1;
-+	buffer->size = size;
-+	buffer->mirror = malloc(size);
-+	ASSERT_NE(buffer->mirror, NULL);
-+
-+	buffer->ptr = mmap(NULL, size,
-+			   PROT_READ | PROT_WRITE,
-+			   MAP_PRIVATE | MAP_ANONYMOUS,
-+			   buffer->fd, 0);
-+	ASSERT_NE(buffer->ptr, MAP_FAILED);
-+
-+	/* Initialize buffer in system memory. */
-+	for (i = 0, ptr = buffer->ptr; i < size / sizeof(*ptr); ++i)
-+		ptr[i] = i;
-+
-+	/* Map memory exclusively for device access. */
-+	ret = hmm_dmirror_cmd(self->fd, HMM_DMIRROR_EXCLUSIVE, buffer, npages);
-+	ASSERT_EQ(ret, 0);
-+	ASSERT_EQ(buffer->cpages, npages);
-+
-+	/* Check what the device read. */
-+	for (i = 0, ptr = buffer->mirror; i < size / sizeof(*ptr); ++i)
-+		ASSERT_EQ(ptr[i], i);
-+
-+	ret = mprotect(buffer->ptr, size, PROT_READ);
-+	ASSERT_EQ(ret, 0);
-+
-+	/* Simulate a device writing system memory. */
-+	ret = hmm_dmirror_cmd(self->fd, HMM_DMIRROR_WRITE, buffer, npages);
-+	ASSERT_EQ(ret, -EPERM);
-+
-+	hmm_buffer_free(buffer);
-+}
-+
-+/*
-+ * Check copy-on-write works.
-+ */
-+TEST_F(hmm, exclusive_cow)
-+{
-+	struct hmm_buffer *buffer;
-+	unsigned long npages;
-+	unsigned long size;
-+	unsigned long i;
-+	int *ptr;
-+	int ret;
-+
-+	npages = ALIGN(HMM_BUFFER_SIZE, self->page_size) >> self->page_shift;
-+	ASSERT_NE(npages, 0);
-+	size = npages << self->page_shift;
-+
-+	buffer = malloc(sizeof(*buffer));
-+	ASSERT_NE(buffer, NULL);
-+
-+	buffer->fd = -1;
-+	buffer->size = size;
-+	buffer->mirror = malloc(size);
-+	ASSERT_NE(buffer->mirror, NULL);
-+
-+	buffer->ptr = mmap(NULL, size,
-+			   PROT_READ | PROT_WRITE,
-+			   MAP_PRIVATE | MAP_ANONYMOUS,
-+			   buffer->fd, 0);
-+	ASSERT_NE(buffer->ptr, MAP_FAILED);
-+
-+	/* Initialize buffer in system memory. */
-+	for (i = 0, ptr = buffer->ptr; i < size / sizeof(*ptr); ++i)
-+		ptr[i] = i;
-+
-+	/* Map memory exclusively for device access. */
-+	ret = hmm_dmirror_cmd(self->fd, HMM_DMIRROR_EXCLUSIVE, buffer, npages);
-+	ASSERT_EQ(ret, 0);
-+	ASSERT_EQ(buffer->cpages, npages);
-+
-+	fork();
-+
-+	/* Fault pages back to system memory and check them. */
-+	for (i = 0, ptr = buffer->ptr; i < size / sizeof(*ptr); ++i)
-+		ASSERT_EQ(ptr[i]++, i);
-+
-+	for (i = 0, ptr = buffer->ptr; i < size / sizeof(*ptr); ++i)
-+		ASSERT_EQ(ptr[i], i+1);
-+
-+	hmm_buffer_free(buffer);
-+}
-+
- TEST_HARNESS_MAIN
+ 		if (!(*map->pfn & NVKM_VMM_PFN_VRAM)) {
+ 			addr = *map->pfn >> NVKM_VMM_PFN_ADDR_SHIFT;
+ 			addr = dma_map_page(dev, pfn_to_page(addr), 0,
 -- 
 2.20.1
 
