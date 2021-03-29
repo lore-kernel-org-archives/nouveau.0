@@ -1,63 +1,74 @@
-Return-Path: <SRS0=kcs3=IZ=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=WMkk=I3=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DCE01C433DB
-	for <nouveau@archiver.kernel.org>; Sat, 27 Mar 2021 00:10:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 913F0C433C1
+	for <nouveau@archiver.kernel.org>; Mon, 29 Mar 2021 06:50:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C4F3F61A27
-	for <nouveau@archiver.kernel.org>; Sat, 27 Mar 2021 00:10:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C4F3F61A27
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id 2F9E161481
+	for <nouveau@archiver.kernel.org>; Mon, 29 Mar 2021 06:50:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2F9E161481
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D58A56F508;
-	Sat, 27 Mar 2021 00:10:42 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7B9A6F507
- for <nouveau@lists.freedesktop.org>; Sat, 27 Mar 2021 00:10:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1616803839;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=0rjA29zoNSz0bxCMfRwAfFBZikJAocJNz2pOBHbe3Ig=;
- b=ClMZdP9TeT7Awd5ff2KnD8PMLS6G3aMrETF7Al5A5eRRhEoR3+gqIMjnTSAcm1JfX0OzLi
- j3st1ro0E2LMrMPnaY61Ih9iO1wdi3/PMieLjkK6Jr2P+RaCl4MfuEC76Zka7S84NR1dGV
- NFUSoF1sdgSVpuMwpVNv+mcGyYfW2hA=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-4-SsyU6mQZOJiWRRS3m8mXhA-1; Fri, 26 Mar 2021 20:10:34 -0400
-X-MC-Unique: SsyU6mQZOJiWRRS3m8mXhA-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
- [10.5.11.23])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 4AAFE180FCA9;
- Sat, 27 Mar 2021 00:10:33 +0000 (UTC)
-Received: from Whitewolf.lyude.net (ovpn-114-133.rdu2.redhat.com
- [10.10.114.133])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 1EAA71972B;
- Sat, 27 Mar 2021 00:10:32 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: nouveau@lists.freedesktop.org
-Date: Fri, 26 Mar 2021 20:10:00 -0400
-Message-Id: <20210327001001.229093-3-lyude@redhat.com>
-In-Reply-To: <20210327001001.229093-1-lyude@redhat.com>
-References: <20210327001001.229093-1-lyude@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80A806E0F2;
+	Mon, 29 Mar 2021 06:50:47 +0000 (UTC)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
+ [IPv6:2a00:1450:4864:20::630])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 880DF6E0F2;
+ Mon, 29 Mar 2021 06:50:46 +0000 (UTC)
+Received: by mail-ej1-x630.google.com with SMTP id u9so17688867ejj.7;
+ Sun, 28 Mar 2021 23:50:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=MRKoM7dLBS9DMoYGv5mFilj8qS/0VViXMQGlcQLXpXA=;
+ b=nLSWHKf5KAmj1oGujUv1uA9+7+PNBOeKPQb5KRjdmPRLgc2Vy3m8JTlf+wSsNuwwLD
+ 1CLQ3o2yXPwTBBqemFJn7JxtFsE0fQSr7TOIdnKHXwzYhE4K6Vz7//alWLAJ339ziNoM
+ +Dl/upjMwMrtkv6Nwb3fSQJhb4cqc3vhJ9V0r6eD92btN57tboCb2UUXPyrFjOAPsMkh
+ FlKGNnvmmUGs6+3s+52a7yyww57Is1RvCbzWg7k/cK4g4fZZoTFp/BCKBpY1mrrXT2gS
+ 07B8GAqHJKhd7Mo0idhmeQ4P3WV/MugJ5YHungvXhLB2D1UATEIgRLTdXH690rQaSPZ2
+ 3WDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=MRKoM7dLBS9DMoYGv5mFilj8qS/0VViXMQGlcQLXpXA=;
+ b=VX44F9a/VFJJOyRpa3hCS++GNC6bnswve257KZYJF5VWbq8QARXbCvNpJogdR6//tT
+ kcsVbrWq7cTKRPwurZtmAiljV2c4ZASLVQSrCEB1Z7cE1m33D/rhT159qxpcYsMmjXjg
+ Rf7OUNUhwxz6NnLW5BU2al/x25ESFrwifigWWZRbihQsEVXj541PtlidW+fBWgR5/Qbf
+ e+zAY4ofqgz7DDTyh6+bYUk+ITIVoq8dj3MX7xor5B303LO8eZaItSGcQHt5ijcIlUnF
+ NIDx6qFugmspXZDS/Ov9E1SIjBuk7INxVdl7S4tScbsBVYzSlVz1ZJnGGiHyn0kV+0ZR
+ HriA==
+X-Gm-Message-State: AOAM530438dbe8SJpae86X6bBGfbWjl6ppOu2UxBFcdTCsqYGQPMwZt7
+ 0wu/qQGMrP6Txw5HGjDcErM=
+X-Google-Smtp-Source: ABdhPJzkQD/gxtEB7aJEpelFjec40cUy+ftj4/iW4yoqa2XdZRoReftjFH3rK8clufBajPxwC4spGA==
+X-Received: by 2002:a17:906:ecf3:: with SMTP id
+ qt19mr26693818ejb.467.1617000645203; 
+ Sun, 28 Mar 2021 23:50:45 -0700 (PDT)
+Received: from localhost ([62.96.65.119])
+ by smtp.gmail.com with ESMTPSA id c19sm8403325edu.20.2021.03.28.23.50.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 28 Mar 2021 23:50:44 -0700 (PDT)
+Date: Mon, 29 Mar 2021 08:51:09 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <YGF43W1kppXmOTwh@orome.fritz.box>
+References: <20210326203807.105754-1-lyude@redhat.com>
+ <20210326203807.105754-3-lyude@redhat.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
-Subject: [Nouveau] [PATCH v2 2/3] drm/nouveau: manage nouveau_drm lifetime
- with devres
+In-Reply-To: <20210326203807.105754-3-lyude@redhat.com>
+User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
+Subject: Re: [Nouveau] [PATCH v2 02/20] drm/tegra: Don't register DP AUX
+ channels before connectors
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,204 +80,77 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, open list <linux-kernel@vger.kernel.org>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>,
+ "open list:DRM DRIVERS FOR NVIDIA TEGRA" <linux-tegra@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0965460843=="
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Jeremy Cline <jcline@redhat.com>
 
-Make use of the devm_drm_dev_alloc() API to bind the lifetime of
-nouveau_drm structure to the drm_device. This is important because a
-reference to nouveau_drm is accessible from drm_device, which is
-provided to a number of DRM layer callbacks that can run after the
-deallocation of nouveau_drm currently occurs.
+--===============0965460843==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="3/3ODl/4QwGFlK0b"
+Content-Disposition: inline
 
-Signed-off-by: Jeremy Cline <jcline@redhat.com>
-Reviewed-by: Lyude Paul <lyude@redhat.com>
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/nouveau_drm.c | 44 ++++++++++++---------------
- drivers/gpu/drm/nouveau/nouveau_drv.h | 10 ++++--
- 2 files changed, 26 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index bce1abea0d58..1285631c6797 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -30,9 +30,11 @@
- #include <linux/vga_switcheroo.h>
- #include <linux/mmu_notifier.h>
- 
-+#include <drm/drm_drv.h>
- #include <drm/drm_crtc_helper.h>
- #include <drm/drm_ioctl.h>
- #include <drm/drm_vblank.h>
-+#include <drm/drm_managed.h>
- 
- #include <core/gpuobj.h>
- #include <core/option.h>
-@@ -532,13 +534,8 @@ nouveau_parent = {
- static int
- nouveau_drm_device_init(struct drm_device *dev)
- {
--	struct nouveau_drm *drm;
- 	int ret;
--
--	if (!(drm = kzalloc(sizeof(*drm), GFP_KERNEL)))
--		return -ENOMEM;
--	dev->dev_private = drm;
--	drm->dev = dev;
-+	struct nouveau_drm *drm = nouveau_drm(dev);
- 
- 	nvif_parent_ctor(&nouveau_parent, &drm->parent);
- 	drm->master.base.object.parent = &drm->parent;
-@@ -620,7 +617,6 @@ nouveau_drm_device_init(struct drm_device *dev)
- 	nouveau_cli_fini(&drm->master);
- fail_alloc:
- 	nvif_parent_dtor(&drm->parent);
--	kfree(drm);
- 	return ret;
- }
- 
-@@ -654,7 +650,6 @@ nouveau_drm_device_fini(struct drm_device *dev)
- 	nouveau_cli_fini(&drm->client);
- 	nouveau_cli_fini(&drm->master);
- 	nvif_parent_dtor(&drm->parent);
--	kfree(drm);
- }
- 
- /*
-@@ -720,6 +715,7 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
- {
- 	struct nvkm_device *device;
- 	struct drm_device *drm_dev;
-+	struct nouveau_drm *nv_dev;
- 	int ret;
- 
- 	if (vga_switcheroo_client_probe_defer(pdev))
-@@ -750,15 +746,16 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
- 	if (nouveau_atomic)
- 		driver_pci.driver_features |= DRIVER_ATOMIC;
- 
--	drm_dev = drm_dev_alloc(&driver_pci, &pdev->dev);
--	if (IS_ERR(drm_dev)) {
--		ret = PTR_ERR(drm_dev);
-+	nv_dev = devm_drm_dev_alloc(&pdev->dev, &driver_stub, typeof(*nv_dev), drm_dev);
-+	if (IS_ERR(nv_dev)) {
-+		ret = PTR_ERR(nv_dev);
- 		goto fail_nvkm;
- 	}
-+	drm_dev = nouveau_to_drm_dev(nv_dev);
- 
- 	ret = pci_enable_device(pdev);
- 	if (ret)
--		goto fail_drm;
-+		goto fail_nvkm;
- 
- 	pci_set_drvdata(pdev, drm_dev);
- 
-@@ -777,8 +774,6 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
- 	nouveau_drm_device_fini(drm_dev);
- fail_pci:
- 	pci_disable_device(pdev);
--fail_drm:
--	drm_dev_put(drm_dev);
- fail_nvkm:
- 	nvkm_device_del(&device);
- 	return ret;
-@@ -798,7 +793,6 @@ nouveau_drm_device_remove(struct drm_device *dev)
- 	device = nvkm_device_find(client->device);
- 
- 	nouveau_drm_device_fini(dev);
--	drm_dev_put(dev);
- 	nvkm_device_del(&device);
- }
- 
-@@ -1284,7 +1278,8 @@ nouveau_platform_device_create(const struct nvkm_device_tegra_func *func,
- 			       struct platform_device *pdev,
- 			       struct nvkm_device **pdevice)
- {
--	struct drm_device *drm;
-+	struct nouveau_drm *nv_dev;
-+	struct drm_device *drm_dev;
- 	int err;
- 
- 	err = nvkm_device_tegra_new(func, pdev, nouveau_config, nouveau_debug,
-@@ -1292,22 +1287,21 @@ nouveau_platform_device_create(const struct nvkm_device_tegra_func *func,
- 	if (err)
- 		goto err_free;
- 
--	drm = drm_dev_alloc(&driver_platform, &pdev->dev);
--	if (IS_ERR(drm)) {
--		err = PTR_ERR(drm);
-+	nv_dev = devm_drm_dev_alloc(&pdev->dev, &driver_platform, typeof(*nv_dev), drm_dev);
-+	if (IS_ERR(nv_dev)) {
-+		err = PTR_ERR(nv_dev);
- 		goto err_free;
- 	}
-+	drm_dev = nouveau_to_drm_dev(nv_dev);
- 
--	err = nouveau_drm_device_init(drm);
-+	err = nouveau_drm_device_init(drm_dev);
- 	if (err)
--		goto err_put;
-+		goto err_free;
- 
--	platform_set_drvdata(pdev, drm);
-+	platform_set_drvdata(pdev, drm_dev);
- 
--	return drm;
-+	return drm_dev;
- 
--err_put:
--	drm_dev_put(drm);
- err_free:
- 	nvkm_device_del(pdevice);
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index 526e110b52ac..8eb133fd6df0 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -135,7 +135,11 @@ struct nouveau_drm {
- 	struct nvif_parent parent;
- 	struct nouveau_cli master;
- 	struct nouveau_cli client;
--	struct drm_device *dev;
-+
-+	/**
-+	 * @drm_dev: The parent DRM device object.
-+	 */
-+	struct drm_device drm_dev;
- 
- 	struct list_head clients;
- 
-@@ -236,7 +240,7 @@ struct nouveau_drm {
- static inline struct nouveau_drm *
- nouveau_drm(struct drm_device *dev)
- {
--	return dev->dev_private;
-+	return container_of(dev, struct nouveau_drm, drm_dev);
- }
- 
- /**
-@@ -250,7 +254,7 @@ nouveau_drm(struct drm_device *dev)
-  */
- static inline struct drm_device *
- nouveau_to_drm_dev(struct nouveau_drm *nv_dev) {
--	return nv_dev->dev;
-+	return &nv_dev->drm_dev;
- }
- 
- /**
--- 
-2.30.2
+--3/3ODl/4QwGFlK0b
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Mar 26, 2021 at 04:37:49PM -0400, Lyude Paul wrote:
+> As pointed out by the documentation for drm_dp_aux_register(),
+> drm_dp_aux_init() should be used in situations where the AUX channel for a
+> display driver can potentially be registered before it's respective DRM
+> driver. This is the case with Tegra, since the DP aux channel exists as a
+> platform device instead of being a grandchild of the DRM device.
+>=20
+> Since we're about to add a backpointer to a DP AUX channel's respective D=
+RM
+> device, let's fix this so that we don't potentially allow userspace to use
+> the AUX channel before we've associated it with it's DRM connector.
+>=20
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> ---
+>  drivers/gpu/drm/tegra/dpaux.c | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
+
+Acked-by: Thierry Reding <treding@nvidia.com>
+
+--3/3ODl/4QwGFlK0b
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmBheN0ACgkQ3SOs138+
+s6E2+g/+IIUa7Z93weSOTP7EoyYiNnDgVw5B2vMst7Px4Nck336qqsZbv0J9ZQ0L
+h5P0mlUejyzOxAshnHtiYejeAXTN1GbyFUw6GlN+EEaZFoPcOSkSszhaO+UWNERE
+sIVhvhYtePlzA9dASwQtxjXYOHjWmBO1EcQaLCUjeI0bRAPKhlFjnpMM3xLRlegU
+k4yJCJIwUzRTaz7AHESzqZney+D89lF2yl8PO7xn176KWR/bJwW7cozPvzLoJCdh
+Qx8j3tXwGe11Ssc6EqUmuYOqNqIZQDLn+n+8PnEpRKebSr1UKj1907EtiUwsVPEJ
+BdeDhJKMqNKX9Rna/4Qj+ggLrhAPmlZOeMqHe6oretW9JBQGBd54GcijZVU65SbR
+LEaye5H1okuCEDPRCAswRBpkpOss8ri0BZtWecDzQvorSKq6pIcOL9pgBccasjHQ
+k4/d0bDTj4qR8S5iqYs7IChTSTKIpd5UUVYCyVuiVoVkr4j4QxW3/zvffr/RtxmN
+GEm3qwnJ6S6Ug3GH6Fsp7rNSWOxlhvEhet54IqJpAWUsKtGL3nCOEQ21xM87qUsh
+Bl+xjmYrHzwOokbIT6Ee1aB+4M7GsvVU1tO3sW/djawCF/LjdBJDa7ZBQTy6lhRV
+tRaDjz8d3XII/RohT4aLokZOpGop8lMWohyjqv8tWgiCpq5jWtU=
+=BnXA
+-----END PGP SIGNATURE-----
+
+--3/3ODl/4QwGFlK0b--
+
+--===============0965460843==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0965460843==--
