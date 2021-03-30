@@ -2,67 +2,87 @@ Return-Path: <SRS0=hTOA=I4=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 61B50C433E0
-	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 17:25:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E086DC433DB
+	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 17:25:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 280686196C
-	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 17:25:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 280686196C
+	by mail.kernel.org (Postfix) with ESMTPS id 97DBA6196C
+	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 17:25:22 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 97DBA6196C
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 057BA6E951;
-	Tue, 30 Mar 2021 17:25:16 +0000 (UTC)
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com
- [IPv6:2607:f8b0:4864:20::436])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A9236E8AE
- for <nouveau@lists.freedesktop.org>; Tue, 30 Mar 2021 11:19:43 +0000 (UTC)
-Received: by mail-pf1-x436.google.com with SMTP id g15so11950652pfq.3
- for <nouveau@lists.freedesktop.org>; Tue, 30 Mar 2021 04:19:43 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADD106E94B;
+	Tue, 30 Mar 2021 17:25:15 +0000 (UTC)
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
+ [IPv6:2a00:1450:4864:20::332])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46F7E6E91C
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Mar 2021 15:19:15 +0000 (UTC)
+Received: by mail-wm1-x332.google.com with SMTP id
+ n11-20020a05600c4f8bb029010e5cf86347so1172011wmq.1
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Mar 2021 08:19:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=nEiq5VYqidlia0rfaVKXey2aQI1J0UOeUfwbZ7SzFqw=;
- b=qIay2yJaGw8H+hG15KImlYeu0r6L9MLLcQDEnZF2qFdTW2zSpQ40IXg+/vxlnJQz4o
- TKzi5YqlKrIHttRWaLvFbdM20gKQ/igZVcwm8SFzdsf0/GzVTOyvvDeB6kqpBolWhn33
- iI+TCXiaVJhMe/oW7DCLEON36LzdAAwFwyEShryYOFQyky1isZ0YY5RVfN5W3oiAYvwy
- 8+KnWX/nQwEbJaqACWTSuM18VOAT1ks9X9zr7SchWYDgwTLwBD/knap1CJ7Ca9tlGG8b
- sFpNlx44sNZxtyb4faahEv9qJLV1qWz1e1po03itPLigsO5ao0DVK7AqSPfVLMue7R6H
- nwTg==
+ h=date:from:to:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=hCfGCExGZ032atZREFMuWQJ4hKJ6Pjl2rDpU87CxNjI=;
+ b=d0tnXFEBbBdt3KAHMvZjgIVuPuUhTN5DpIRb16zr9Wk5NxGjXgpPfg14g44/A2DAeX
+ 0xH1xn8QdIWzGlu8Ghy6X5ovM6ayJD5ysiyMKXYOPHyLblqh1+i75rYM6w9+edrv+0ei
+ jWP8gNuHMEB6Atp2OLtz6mkl0vofFczh8/mP/H5WPiMNg728lZoiDJKH8usabY4Sth8u
+ 7kgCg0JF0ybA0kgZvQ7ww95DwgsEXt+/XMHHgB2ANxE1zNrC8sssFlvNJvmCt6BS5+ed
+ 70/r6Eyxo7jcpJglZI/KMfaaLFBQyepOVVmKurGUAFmC82jpSGDcy9EbVcRinorFzDET
+ 0Apw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=nEiq5VYqidlia0rfaVKXey2aQI1J0UOeUfwbZ7SzFqw=;
- b=am1PR2grKv47OFyUVOI9ZDyxe12HhaF+LgukKdvsW1IFst8OsvVhj36dKsmv1lAFxb
- jDZWvGPX316oqTf4gDJ6cYFP5g8jHBDDPvpD2Gy9x3Hhid5NBXoXINM7SkdcsS4H3fuX
- 7U/t/NdYs3Etj88v8WzYej3iXesugyaf82h45hhgv8DWWXKRJRjZpscFmQyWq9ohly1x
- wOwYuk0CX4FkAlDsyzGW/wt+/NN+J0/StqdRdvrpLe80UKIMd6Ty0hllnLglwgp0pG4W
- IlJsLbI7JwtroZApO0KwEpYXojJgo5QCdYFYSwvEUbcNzUr66NDMv6fhdiOSrnQJLNOR
- Cpww==
-X-Gm-Message-State: AOAM530H690ZDisHBjcadu389UwoVqL++Y5DcZngq9REj9VALhr9g8nt
- u69VlJPZZbkTMfLsuyV5YsLoLgL6/fP4iGPJ8Qh3Fg==
-X-Google-Smtp-Source: ABdhPJxq5q/aaT+6jdvgQQdbDwMNlvYfZjAmKD/2J/yR3c6DqBDMvry2T/Awy6EWGZ+THIsQHdyfhPbS801PyKVA3nE=
-X-Received: by 2002:a05:6a00:b54:b029:207:2a04:7b05 with SMTP id
- p20-20020a056a000b54b02902072a047b05mr29651828pfo.12.1617103182535; Tue, 30
- Mar 2021 04:19:42 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=hCfGCExGZ032atZREFMuWQJ4hKJ6Pjl2rDpU87CxNjI=;
+ b=YR4NaLXgs/JAdSjpIfC4lN1UQOIN9+aneaOxqIV4FGniTygMWX2dsnqDy1E06tHx59
+ ESOS6xuAScGIUZRJBtZli6zkel1mMIMzmat8mnDs0fbcm+owXhNYz2jzV1qZ61FYJTTG
+ ZOKuRq1XCKIoDN5M+cy9KF7umbO9NqFJ4SnHR8Y0XKR/ELyu3dCaJY3sU/eLglCGo7tX
+ hVVGpCZKAM6xOMtWx1Xeg7B/ob8JJti66yq7WpWLJyt3oT6/txJkirK8ubQ/hyPxjI7T
+ XKh5f/nNL9buI2nAHXMtPLzoW1IHPkTWzQEzBQ8LNIp6RgewqBdm9Rpdhgm8TwLMtxtf
+ gQoQ==
+X-Gm-Message-State: AOAM5313fiqWU21N26B5Ft7EbUuOAkmt9y2qW04GE/jEYUnbFuWdtadt
+ M1oPUtGyDl/vSbNaBbs2aL3PGw==
+X-Google-Smtp-Source: ABdhPJyYgKkqcDOow6JJ62djXw3iIsO/j+KvsfseIB+9/rwYszatw8KxsjLaOFanM+fL7Q88Q/+L0w==
+X-Received: by 2002:a1c:5f54:: with SMTP id t81mr4641496wmb.84.1617117553836; 
+ Tue, 30 Mar 2021 08:19:13 -0700 (PDT)
+Received: from dell ([91.110.221.217])
+ by smtp.gmail.com with ESMTPSA id n1sm41945988wro.36.2021.03.30.08.19.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 30 Mar 2021 08:19:13 -0700 (PDT)
+Date: Tue, 30 Mar 2021 16:19:11 +0100
+From: Lee Jones <lee.jones@linaro.org>
+To: linux-kernel@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx@lists.freedesktop.org, Anthony Koo <Anthony.Koo@amd.com>,
+ Ben Skeggs <bskeggs@redhat.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Colin Ian King <colin.king@canonical.com>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>, Jeremy Kolb <jkolb@brandeis.edu>,
+ Kuogee Hsieh <khsieh@codeaurora.org>, Leo Li <sunpeng.li@amd.com>,
+ linaro-mm-sig@lists.linaro.org, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, Lyude Paul <lyude@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, nouveau@lists.freedesktop.org,
+ Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20210330151911.GL2916463@dell>
+References: <20210319082428.3294591-1-lee.jones@linaro.org>
+ <20210324103611.GJ2916463@dell>
 MIME-Version: 1.0
-References: <20210326203807.105754-1-lyude@redhat.com>
- <20210326203807.105754-21-lyude@redhat.com>
-In-Reply-To: <20210326203807.105754-21-lyude@redhat.com>
-From: Robert Foss <robert.foss@linaro.org>
-Date: Tue, 30 Mar 2021 13:19:31 +0200
-Message-ID: <CAG3jFyvEvb=YWopYUmi1bf=fe3ZX7VmtvnnmT5dHcNjLhHvsQg@mail.gmail.com>
-To: Lyude Paul <lyude@redhat.com>
+Content-Disposition: inline
+In-Reply-To: <20210324103611.GJ2916463@dell>
 X-Mailman-Approved-At: Tue, 30 Mar 2021 17:25:14 +0000
-Subject: Re: [Nouveau] [PATCH v2 20/20] drm/dp_mst: Convert
- drm_dp_mst_topology.c to drm_err()/drm_dbg*()
+Subject: Re: [Nouveau] [RESEND 00/19] Rid GPU from W=1 warnings
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,77 +94,21 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- open list <linux-kernel@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>,
- amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hey Lyude,
-
-This patch looks good, but I have one question below. With it
-addressed, feel free to add my r-b.
-
-Reviewed-by: Robert Foss <robert.foss@linaro.org>
-
->
-> -static bool drm_dp_sideband_parse_req(struct drm_dp_sideband_msg_rx *raw,
-> +static bool drm_dp_sideband_parse_req(const struct drm_dp_mst_topology_mgr *mgr,
-> +                                     struct drm_dp_sideband_msg_rx *raw,
->                                       struct drm_dp_sideband_msg_req_body *msg)
->  {
->         memset(msg, 0, sizeof(*msg));
-> @@ -1117,12 +1125,12 @@ static bool drm_dp_sideband_parse_req(struct drm_dp_sideband_msg_rx *raw,
->
->         switch (msg->req_type) {
->         case DP_CONNECTION_STATUS_NOTIFY:
-> -               return drm_dp_sideband_parse_connection_status_notify(raw, msg);
-> +               return drm_dp_sideband_parse_connection_status_notify(mgr, raw, msg);
->         case DP_RESOURCE_STATUS_NOTIFY:
-> -               return drm_dp_sideband_parse_resource_status_notify(raw, msg);
-> +               return drm_dp_sideband_parse_resource_status_notify(mgr, raw, msg);
->         default:
-> -               DRM_ERROR("Got unknown request 0x%02x (%s)\n", msg->req_type,
-> -                         drm_dp_mst_req_type_str(msg->req_type));
-> +               drm_err(mgr->dev, "Got unknown request 0x%02x (%s)\n",
-> +                       msg->req_type, drm_dp_mst_req_type_str(msg->req_type));
->                 return false;
->         }
->  }
->
-
-.. snip ..
-
-> @@ -4118,12 +4121,12 @@ static int drm_dp_mst_handle_up_req(struct drm_dp_mst_topology_mgr *mgr)
->
->         INIT_LIST_HEAD(&up_req->next);
->
-> -       drm_dp_sideband_parse_req(&mgr->up_req_recv, &up_req->msg);
-> +       drm_dp_sideband_parse_req(mgr, &mgr->up_req_recv, &up_req->msg);
-
-drm_dp_sideband_parse_req() is only called here, and the function
-arguments could probably stand to have `&mgr->up_req_recv` removed
-(here and in the func. declaration) since the same data structure is
-accessible through the `mgr` pointer inside of
-drm_dp_sideband_parse_req(). I guess this is a matter of taste, so
-feel free to do what you want with this.
-
->
->         if (up_req->msg.req_type != DP_CONNECTION_STATUS_NOTIFY &&
->             up_req->msg.req_type != DP_RESOURCE_STATUS_NOTIFY) {
-> -               DRM_DEBUG_KMS("Received unknown up req type, ignoring: %x\n",
-> -                             up_req->msg.req_type);
-> +               drm_dbg_kms(mgr->dev, "Received unknown up req type, ignoring: %x\n",
-> +                           up_req->msg.req_type);
->                 kfree(up_req);
->                 goto out;
->         }
-_______________________________________________
-Nouveau mailing list
-Nouveau@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
+T24gV2VkLCAyNCBNYXIgMjAyMSwgTGVlIEpvbmVzIHdyb3RlOgoKPiBEYW5pZWwsCj4gCj4gPiBN
+SU1FLVZlcnNpb246IDEuMAo+ID4gQ29udGVudC1UeXBlOiB0ZXh0L3BsYWluOyBjaGFyc2V0PVVU
+Ri04Cj4gPiBDb250ZW50LVRyYW5zZmVyLUVuY29kaW5nOiA4Yml0Cj4gPiAKPiA+IFRoaXMgaXMg
+YSByZXNlbmQgb2YgdGhlIHJlbWFpbmluZyBwYXRjaGVzLgo+ID4gCj4gPiBBbGwgb2YgdGhlc2Ug
+cGF0Y2hlcyBoYXZlIGJlZW4gc2VudCBiZWZvcmUuCj4gCj4gQXJlIHlvdSBzdGlsbCBrZWVuIHRv
+ICdob292ZXIgdGhlc2UgdXAnPwo+IAo+IEp1c3QgbGVhdmUgdGhlIG9uZSB0aGF0IHJlcXVpcmVz
+IHdvcmsgYW5kIHRha2UgdGhlIHJlc3QgcGVyaGFwcz8KCkhvdyB3b3VsZCB5b3UgbGlrZSBtZSB0
+byBwcm9jZWVkIHdpdGggdGhpcz8KCi0tIApMZWUgSm9uZXMgW+adjueQvOaWr10KU2VuaW9yIFRl
+Y2huaWNhbCBMZWFkIC0gRGV2ZWxvcGVyIFNlcnZpY2VzCkxpbmFyby5vcmcg4pSCIE9wZW4gc291
+cmNlIHNvZnR3YXJlIGZvciBBcm0gU29DcwpGb2xsb3cgTGluYXJvOiBGYWNlYm9vayB8IFR3aXR0
+ZXIgfCBCbG9nCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
