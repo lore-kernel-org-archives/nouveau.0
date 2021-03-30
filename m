@@ -7,62 +7,63 @@ X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E624EC433E0
-	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 17:25:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D2B1EC433E1
+	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 17:25:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AF9B16196C
-	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 17:25:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AF9B16196C
+	by mail.kernel.org (Postfix) with ESMTPS id 9BCBF619C0
+	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 17:25:24 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9BCBF619C0
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFEF16E950;
-	Tue, 30 Mar 2021 17:25:15 +0000 (UTC)
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com
- [IPv6:2607:f8b0:4864:20::1034])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6B686E8AA
- for <nouveau@lists.freedesktop.org>; Tue, 30 Mar 2021 11:06:12 +0000 (UTC)
-Received: by mail-pj1-x1034.google.com with SMTP id bt4so7551314pjb.5
- for <nouveau@lists.freedesktop.org>; Tue, 30 Mar 2021 04:06:12 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2652F6E952;
+	Tue, 30 Mar 2021 17:25:16 +0000 (UTC)
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com
+ [IPv6:2607:f8b0:4864:20::102d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7CCD6E8AD
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Mar 2021 10:43:26 +0000 (UTC)
+Received: by mail-pj1-x102d.google.com with SMTP id
+ lr1-20020a17090b4b81b02900ea0a3f38c1so1117892pjb.0
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Mar 2021 03:43:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=DskNrmJoVlSyLul5rgVfAIyNWef+AlzHHvEOelMyti0=;
- b=slVa6+xoi3BdoEmDA0VoVWkO8tuL/lXxZmvTYGJg7wGz1ScYaIRXrCfzU8ZDfT3ZM0
- ggp/ygaQGKJGhFRA5QW7f9U3EfpbXSMsXTYWx7p1nwBA8Ekc49nwzUS6jMME7z7gTQer
- pMAXay4GGKQ56ztl5Jx1BBEy9AL93xGYlIGeODixUv/aqu+Qb+EPVu6yig6as9K82Ctm
- Pc3Lb0tpzXuQ5QcHBiBeRUxF6g9QB2ZdsgL/8/oYQe2iFwggUqNONxGYgSPBasb/yQF+
- y9q6PFdQulOmXT/wl+s9SdMhbJRohu5/5mZE85W2ZPZCmG6ZrLW1OBmlPFp3zsxQu37T
- whJg==
+ :cc; bh=inEEvxoI2d27PWTByb00t7709zab101mRTK+HEEURs0=;
+ b=C9+RPFkWx1dnLku0VJzXhT4WCqoHsMPAfkkwl/4KohDQakhhONCUx+woSyEwYjrpXR
+ t1d16MDlzS32+twkwF9bbNrzqgVVnTIfoI0AZogYL4G1S7OgpeJg0emu3T5/HWp5kcJG
+ ++epmYQmqILHMzY2hL2QmPVz7uTVYnSW6ybUpM4NE/4ka6AX9/8CrsJwa6V5+njYVIo+
+ XgbVwDjQ2vtltDtglB4fNijvaQUZc0s53NH8e1EYls6/XbWYbhbOWqh0zjfmI0VBaOGj
+ vhK9ArLDxUL+ZjLu/rXXyDanwAeMXX50oJ08dRer+OEiWgpVZHK0JFYQd9TBlKlb28DY
+ jk6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=DskNrmJoVlSyLul5rgVfAIyNWef+AlzHHvEOelMyti0=;
- b=qAI2xg7K3OaB/HIBLC7VUuRI7LRgf2np9D1DAoctzw3+8a5GhwFP5SeQi8q7yWRh0N
- NUip1wicl5uiBuedEQ8+SkLlcJWJ0AZBzYOKSCyJX2LtTmzXry44r/r1zZ+o8xp7Hc3j
- thhYH9Alqiv46lN/vjID6jPrNPjx8GqviQYiFWIt+QlQXR7ZxDOHWj2xyW7qaaNikJmp
- 1H/+Jr7aU43j22dbiM1UoFce9Dqp92xHatDZNie3lbmcxam04YLFq+1H6oY0eV2jo5P7
- B3pxdlRJGU10atg/7084hndEgBEcW97VGomdWJb6X9WdCgSf5Ois2xJUUOTHaF4M+xkv
- j9aw==
-X-Gm-Message-State: AOAM532Ehrhtp1l40EaUIklCUH3iCuJ2IMnoAp8bWbnQr1q4peUGDC9x
- i76mNwpwbtIlWRRJmIzLrOWSkmM6q1I9ZRKQudCQvg==
-X-Google-Smtp-Source: ABdhPJxfOmfQB9fzlhBcQ+PyXZQEzxSloSUbr4UVE6rrRVfcHfZyWFno3tNgnDlI6rBdjWZE6AMTaSFq8fb0+pHpeFc=
-X-Received: by 2002:a17:902:f68a:b029:e5:b17f:9154 with SMTP id
- l10-20020a170902f68ab02900e5b17f9154mr32285479plg.28.1617102372210; Tue, 30
- Mar 2021 04:06:12 -0700 (PDT)
+ bh=inEEvxoI2d27PWTByb00t7709zab101mRTK+HEEURs0=;
+ b=BafOUcvTzuve/PdM3QLLThWJ51BrIzSeOIod7AgC9mD2J+ZuidAUt2xlLreY0uladi
+ h+9dRBYuPrDv8ngLl0A6BKrgC4UfQw3+Z2rbPCR/SIa+69DlOXgfBZ28zBpEylMPtvGd
+ JGAGbNPnc2eX8CkBPZR1AkP1kwdjSjf2c7vJ1WgDPGI6W5HM73UCrNY1hvXJn0n7wmJ1
+ tJWG+M8SxltFpe6SnK/Zis9brs0ctayvukMN77Vnbl4yz9zaEwAZCsb8fARMr7DkjZiN
+ 0s5jzu+VA+3zM31XJ5po2ZXAX79X97ENQZHhC2LvnIaU1/aBkT751/oIyrABzd2jrMFd
+ 7rgQ==
+X-Gm-Message-State: AOAM53292vCFK07I2nWKcWRviIH6pLI3mcIC0sV2KLgNnFETmdV6qapc
+ JlaHsJ+v3KSoVNwFnhIDRDcfzDgO7YEb6AyCI4Lheg==
+X-Google-Smtp-Source: ABdhPJxPMfsifg57CMk+e08YOVt3TzMww6aMvw5ulnMzAx23GI1ES2FVCsm8qjLz2RBA6UgJxREJNfH8cDlZ1xM4T2Y=
+X-Received: by 2002:a17:902:e752:b029:e6:822c:355c with SMTP id
+ p18-20020a170902e752b02900e6822c355cmr32807495plf.69.1617101006157; Tue, 30
+ Mar 2021 03:43:26 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210326203807.105754-1-lyude@redhat.com>
- <20210326203807.105754-20-lyude@redhat.com>
-In-Reply-To: <20210326203807.105754-20-lyude@redhat.com>
+ <20210326203807.105754-8-lyude@redhat.com>
+In-Reply-To: <20210326203807.105754-8-lyude@redhat.com>
 From: Robert Foss <robert.foss@linaro.org>
-Date: Tue, 30 Mar 2021 13:06:01 +0200
-Message-ID: <CAG3jFytEUCqh6U6oG8hKqk-2bmr+qtcwg1gbWRQp_KxXTxfVsw@mail.gmail.com>
+Date: Tue, 30 Mar 2021 12:43:15 +0200
+Message-ID: <CAG3jFyvK6bk5mF_Jp6w9HpN2rDAPKkdHKbQMRKiW6gGKdR9-Yw@mail.gmail.com>
 To: Lyude Paul <lyude@redhat.com>
 X-Mailman-Approved-At: Tue, 30 Mar 2021 17:25:14 +0000
-Subject: Re: [Nouveau] [PATCH v2 19/20] drm/dp_mst: Drop DRM_ERROR() on
- kzalloc() fail in drm_dp_mst_handle_up_req()
+Subject: Re: [Nouveau] [PATCH v2 07/20] drm/print: Fixup
+ DRM_DEBUG_KMS_RATELIMITED()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,39 +88,72 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 Hey Lyude,
 
-This patch looks good to me.
+I'm seeing no issues with this patch and the reasoning behind the
+patch is sound to me.
 
 Reviewed-by: Robert Foss <robert.foss@linaro.org>
 
-On Fri, 26 Mar 2021 at 21:40, Lyude Paul <lyude@redhat.com> wrote:
+On Fri, 26 Mar 2021 at 21:39, Lyude Paul <lyude@redhat.com> wrote:
 >
-> Checkpatch was complaining about this - there's no need for us to print
-> errors when kzalloc() fails, as kzalloc() will already WARN for us. So,
-> let's fix that before converting things to make checkpatch happy.
+> Since we're about to move drm_dp_helper.c over to drm_dbg_*(), we'll want
+> to make sure that we can also add ratelimited versions of these macros in
+> order to retain some of the previous debugging output behavior we had.
+>
+> However, as I was preparing to do this I noticed that the current
+> rate limited macros we have are kind of bogus. It looks like when I wrote
+> these, I didn't notice that we'd always be calling __ratelimit() even if
+> the debugging message we'd be printing would normally be filtered out due
+> to the relevant DRM debugging category being disabled.
+>
+> So, let's fix this by making sure to check drm_debug_enabled() in our
+> ratelimited macros before calling __ratelimit(), and start using
+> drm_dev_printk() in order to print debugging messages since that will save
+> us from doing a redundant drm_debug_enabled() check. And while we're at it,
+> let's move the code for this into another macro that we can reuse for
+> defining new ratelimited DRM debug macros more easily.
+>
+> v2:
+> * Make sure to use tabs where possible in __DRM_DEFINE_DBG_RATELIMITED()
 >
 > Signed-off-by: Lyude Paul <lyude@redhat.com>
 > Cc: Robert Foss <robert.foss@linaro.org>
 > ---
->  drivers/gpu/drm/drm_dp_mst_topology.c | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
+>  include/drm/drm_print.h | 20 ++++++++++++--------
+>  1 file changed, 12 insertions(+), 8 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-> index ec2285595c33..74c420f5f204 100644
-> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> @@ -4113,10 +4113,9 @@ static int drm_dp_mst_handle_up_req(struct drm_dp_mst_topology_mgr *mgr)
->                 return 0;
+> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+> index f32d179e139d..a3c58c941bdc 100644
+> --- a/include/drm/drm_print.h
+> +++ b/include/drm/drm_print.h
+> @@ -524,16 +524,20 @@ void __drm_err(const char *format, ...);
+>  #define DRM_DEBUG_DP(fmt, ...)                                         \
+>         __drm_dbg(DRM_UT_DP, fmt, ## __VA_ARGS__)
 >
->         up_req = kzalloc(sizeof(*up_req), GFP_KERNEL);
-> -       if (!up_req) {
-> -               DRM_ERROR("Not enough memory to process MST up req\n");
-> +       if (!up_req)
->                 return -ENOMEM;
-> -       }
+> -
+> -#define DRM_DEBUG_KMS_RATELIMITED(fmt, ...)                            \
+> -({                                                                     \
+> -       static DEFINE_RATELIMIT_STATE(_rs,                              \
+> -                                     DEFAULT_RATELIMIT_INTERVAL,       \
+> -                                     DEFAULT_RATELIMIT_BURST);         \
+> -       if (__ratelimit(&_rs))                                          \
+> -               drm_dev_dbg(NULL, DRM_UT_KMS, fmt, ##__VA_ARGS__);      \
+> +#define __DRM_DEFINE_DBG_RATELIMITED(category, drm, fmt, ...)                                  \
+> +({                                                                                             \
+> +       static DEFINE_RATELIMIT_STATE(rs_, DEFAULT_RATELIMIT_INTERVAL, DEFAULT_RATELIMIT_BURST);\
+> +       const struct drm_device *drm_ = (drm);                                                  \
+> +                                                                                               \
+> +       if (drm_debug_enabled(DRM_UT_ ## category) && __ratelimit(&rs_))                        \
+> +               drm_dev_printk(drm_ ? drm_->dev : NULL, KERN_DEBUG, fmt, ## __VA_ARGS__);       \
+>  })
+>
+> +#define drm_dbg_kms_ratelimited(drm, fmt, ...) \
+> +       __DRM_DEFINE_DBG_RATELIMITED(KMS, drm, fmt, ## __VA_ARGS__)
 > +
->         INIT_LIST_HEAD(&up_req->next);
->
->         drm_dp_sideband_parse_req(&mgr->up_req_recv, &up_req->msg);
+> +#define DRM_DEBUG_KMS_RATELIMITED(fmt, ...) drm_dbg_kms_ratelimited(NULL, fmt, ## __VA_ARGS__)
+> +
+>  /*
+>   * struct drm_device based WARNs
+>   *
 > --
 > 2.30.2
 >
