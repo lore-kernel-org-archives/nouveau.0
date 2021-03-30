@@ -2,73 +2,53 @@ Return-Path: <SRS0=hTOA=I4=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D78FC433DB
-	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 08:25:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 01745C433C1
+	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 14:05:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BD4076157F
-	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 08:25:02 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BD4076157F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id 9BABE619A7
+	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 14:05:07 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9BABE619A7
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=alum.mit.edu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 451466E879;
-	Tue, 30 Mar 2021 08:25:02 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FEEE6E879
- for <nouveau@lists.freedesktop.org>; Tue, 30 Mar 2021 08:25:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1617092699;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=b5Rr58Hbc63Cgp3a6e/yK918318YTg4gYMgJF0Ngs9w=;
- b=TjyepuBWJbG7dKedFJ35Ot7y8Dw8KMkTHP6iygJf17inF1BVn+zJPYoCY+LqEpO0V7fNEZ
- nHJOz8ZBtS9bMotGQwUgW4F5Zkv/pEYVL8STq1aD7w2t4ZxspMKn3h+MRUAHlbFRXZ28oN
- 0YyFW0ytUx9i2JK5TvpvGR1o5DHtirY=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-552-CV9dBgiDO2SVp9xS_EqIyQ-1; Tue, 30 Mar 2021 04:24:54 -0400
-X-MC-Unique: CV9dBgiDO2SVp9xS_EqIyQ-1
-Received: by mail-wm1-f70.google.com with SMTP id a63so243019wmd.8
- for <Nouveau@lists.freedesktop.org>; Tue, 30 Mar 2021 01:24:53 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2150E6E903;
+	Tue, 30 Mar 2021 14:05:07 +0000 (UTC)
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com
+ [209.85.166.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 911516E903
+ for <Nouveau@lists.freedesktop.org>; Tue, 30 Mar 2021 14:05:05 +0000 (UTC)
+Received: by mail-il1-f179.google.com with SMTP id y17so14249384ila.6
+ for <Nouveau@lists.freedesktop.org>; Tue, 30 Mar 2021 07:05:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc:content-transfer-encoding;
- bh=b5Rr58Hbc63Cgp3a6e/yK918318YTg4gYMgJF0Ngs9w=;
- b=V833Vq/5A42JBQiW8wJ04ZtWtUyAAdm8BBjDgmblFRkDYTLhDw8usuX7WeQtvlCddZ
- htJ5+CwiDoJoiez/dPW7b6Z9kkgbxPzudrJ/HbxP5SuGV0Pvp7a7fiFnLAtp4tOVEV7G
- t8b+ko0nufrQbB8YPtlLg7qlhX29TDstMiuYvLCeA779hptethpBCjsGAUTuaIq4tdez
- YSblQpBLyfOqAg8O5P3Ep/OxjdNGWxMDCku+sn1Ho0XQ5uHaAIr8I64LrHoQGcHJZqkV
- eFnz6aPaztWRJHhbSTvVthS41p2bDGGLdIEwg0YVPi9LsRoSidNjxtH/+XB36/IpUilh
- XgVA==
-X-Gm-Message-State: AOAM532SOPxiPlMerPCkbC4Zf/ZD/oOcIcrQZKoWKYW2TpQrlQDXHgBx
- pBXp2CS8bpMiwrF1QvB/K5ZLN769YPPACHVGb4jKQ2fhqQAePg3VTXFadruHHPEPsDsUc86KNoh
- C5RBLMZNLmM4Dw1VcipL3pHZH1AMW/QRuH6dQgB4vjA==
-X-Received: by 2002:a1c:e184:: with SMTP id y126mr2785669wmg.163.1617092692840; 
- Tue, 30 Mar 2021 01:24:52 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJw09dZAHnan2rZojxHuI26bfN6xik5M0Oec6prQi3TzKIztSEtiG1hTiDLJPuV4jsLgoiLf9/Bi6Ld87Wn3EwA=
-X-Received: by 2002:a1c:e184:: with SMTP id y126mr2785648wmg.163.1617092692644; 
- Tue, 30 Mar 2021 01:24:52 -0700 (PDT)
+ bh=ZJTERZpInHvfX1WgVDfK/+91Wtfi/tX2sp94j2mcXS0=;
+ b=qyouzxt2or6wak0ocOygma+nbg7NINT5eg21phwTaqpaFgGhHtygf1Z47Zep6PdMwW
+ 9tOtBKGmstqfFOUf2OyuK3JOhqmywtq6NtSu6OIwXjxcq3UPGJd3gU0y8doXbVumy/nl
+ hACqrrNUr8jVxBNzQLbdrEXjJSSNmwYbeWm3Hi4Gdd8o7NCIRxZnHVHloUZUfzDC5nEa
+ Lc+EH5stUib1Vgolv65q4upAdgAqW7fygK4Zqx9tJGQQsIbrVQUReQX+9IVEzbCUe9Dj
+ 5QYW9Kl3GtfKNGTG4ljY7XETa6XSOc224MBHUaSuY9Gm+EeUz5PC5eumGo7jVF/lkN85
+ xWFA==
+X-Gm-Message-State: AOAM532kuiDl1UCNOasVvj46o0/orEovZqjC7ScR7MpJYSG8d7qx0YG8
+ dUUDXYlnGWG1yutdeQOpzuwYFQeR+gUHNcZMoz0=
+X-Google-Smtp-Source: ABdhPJzEg7ZDkx7GRgEMJSAjvQMymRI2j/hvoygjOL/Yh5U7Rt6WpwURhCGN0oXR/womUMMe0SzTsAAyT0BW32Bbrb4=
+X-Received: by 2002:a92:6a0c:: with SMTP id f12mr25691677ilc.117.1617113104852; 
+ Tue, 30 Mar 2021 07:05:04 -0700 (PDT)
 MIME-Version: 1.0
 References: <AM5PR0201MB23868ACFBFA07B794174E1DCB57D9@AM5PR0201MB2386.eurprd02.prod.outlook.com>
-In-Reply-To: <AM5PR0201MB23868ACFBFA07B794174E1DCB57D9@AM5PR0201MB2386.eurprd02.prod.outlook.com>
-From: Karol Herbst <kherbst@redhat.com>
-Date: Tue, 30 Mar 2021 10:24:42 +0200
-Message-ID: <CACO55ttjWMnSgF9gEtCFH9NU+X=-62gbmmYbawtJeUjGDunBCw@mail.gmail.com>
-To: georges1897@outlook.com
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=kherbst@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
+ <CACO55ttjWMnSgF9gEtCFH9NU+X=-62gbmmYbawtJeUjGDunBCw@mail.gmail.com>
+In-Reply-To: <CACO55ttjWMnSgF9gEtCFH9NU+X=-62gbmmYbawtJeUjGDunBCw@mail.gmail.com>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Date: Tue, 30 Mar 2021 10:04:53 -0400
+Message-ID: <CAKb7Uvh8UDP3VbayNxx4Zygm31Gq66KHS+rnz5+C6v1U2PqvjA@mail.gmail.com>
+To: Karol Herbst <kherbst@redhat.com>
 Subject: Re: [Nouveau] SLI support for nv44
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,35 +61,55 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau <Nouveau@lists.freedesktop.org>
+Cc: nouveau <Nouveau@lists.freedesktop.org>, georges1897@outlook.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Mar 30, 2021 at 8:28 AM <georges1897@outlook.com> wrote:
+On Tue, Mar 30, 2021 at 4:25 AM Karol Herbst <kherbst@redhat.com> wrote:
 >
-> Hi,
-> I am currently the happy owner of a nforce 4 - SLI with two 7100gs graphics cards setup.
-> Since I've read on your features matrix that such a setup is rather uncommon among developers, I would like to help you implementing SLI for old GeForce cards as much as I can. The lack of support for newer kernels from Nvidia has indeed made my system obsolete (I do encounter graphical glitches with many DEs).
-> I can run tests with my hardware, try new drivers, and know the basics of C programming if necessary.
+> On Tue, Mar 30, 2021 at 8:28 AM <georges1897@outlook.com> wrote:
+> >
+> > Hi,
+> > I am currently the happy owner of a nforce 4 - SLI with two 7100gs graphics cards setup.
+> > Since I've read on your features matrix that such a setup is rather uncommon among developers, I would like to help you implementing SLI for old GeForce cards as much as I can. The lack of support for newer kernels from Nvidia has indeed made my system obsolete (I do encounter graphical glitches with many DEs).
+> > I can run tests with my hardware, try new drivers, and know the basics of C programming if necessary.
+> >
+> > If you think that I could be helpful in any way, don't hesitate to contact me back.
+> >
 >
-> If you think that I could be helpful in any way, don't hesitate to contact me back.
->
+> well, SLI is really low priority, so unless somebody is willing to
+> reverse engineer the nvidia driver and implement the code in nouveau,
+> I highly doubt there will be any progress on SLI in the near or far
+> future. So if you want to help out, you'd do the full thing as there
+> is nobody working on SLI. Some bits might already be reverse
+> engineered though.
 
-well, SLI is really low priority, so unless somebody is willing to
-reverse engineer the nvidia driver and implement the code in nouveau,
-I highly doubt there will be any progress on SLI in the near or far
-future. So if you want to help out, you'd do the full thing as there
-is nobody working on SLI. Some bits might already be reverse
-engineered though.
+The tricky bit with SLI is how to split up the work. The original
+Voodoo2 SLI was great -- the renderer would build up the scene, and
+both boards would do the render, but alternate scanlines of what they
+actually computed, effectively doing half the work. The specific
+method of splitting doesn't matter, but the important part is that the
+splitting is done. However with more modern software, you might have
+an intermediate render, e.g. first you render a texture, then you use
+that texture for the final render, then you have to recombine the two
+render "halves" on both GPUs in order for them to have access to it
+for the final render. This reduces SLI's effectiveness, and makes it
+much trickier to manage.
 
-> Best regards
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+If you wanted to improve the situation with that generation of
+hardware, I'd definitely focus more on making it conform to GL 2.1.
+This is a problem on which you can make measurable progress on. There
+are a number of shortcomings there, and I think fixing them will help
+resolve some of the issues you see with DEs. This is not an extremely
+easy task -- if it were, it'd be done already. If you're interested in
+diving in, join #nouveau on irc.freenode.net and we can talk further
+about your abilities, goals, and next steps.
 
+Cheers,
+
+  -ilia
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
