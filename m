@@ -1,74 +1,97 @@
-Return-Path: <SRS0=WMkk=I3=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=hTOA=I4=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Level: **
+X-Spam-Status: No, score=2.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,HTML_MESSAGE,MAILING_LIST_MULTI,
+	MSGID_FROM_MTA_HEADER,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 913F0C433C1
-	for <nouveau@archiver.kernel.org>; Mon, 29 Mar 2021 06:50:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7DEE0C433DB
+	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 06:28:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2F9E161481
-	for <nouveau@archiver.kernel.org>; Mon, 29 Mar 2021 06:50:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2F9E161481
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 1B70D61883
+	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 06:28:02 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1B70D61883
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=outlook.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80A806E0F2;
-	Mon, 29 Mar 2021 06:50:47 +0000 (UTC)
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
- [IPv6:2a00:1450:4864:20::630])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 880DF6E0F2;
- Mon, 29 Mar 2021 06:50:46 +0000 (UTC)
-Received: by mail-ej1-x630.google.com with SMTP id u9so17688867ejj.7;
- Sun, 28 Mar 2021 23:50:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=MRKoM7dLBS9DMoYGv5mFilj8qS/0VViXMQGlcQLXpXA=;
- b=nLSWHKf5KAmj1oGujUv1uA9+7+PNBOeKPQb5KRjdmPRLgc2Vy3m8JTlf+wSsNuwwLD
- 1CLQ3o2yXPwTBBqemFJn7JxtFsE0fQSr7TOIdnKHXwzYhE4K6Vz7//alWLAJ339ziNoM
- +Dl/upjMwMrtkv6Nwb3fSQJhb4cqc3vhJ9V0r6eD92btN57tboCb2UUXPyrFjOAPsMkh
- FlKGNnvmmUGs6+3s+52a7yyww57Is1RvCbzWg7k/cK4g4fZZoTFp/BCKBpY1mrrXT2gS
- 07B8GAqHJKhd7Mo0idhmeQ4P3WV/MugJ5YHungvXhLB2D1UATEIgRLTdXH690rQaSPZ2
- 3WDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=MRKoM7dLBS9DMoYGv5mFilj8qS/0VViXMQGlcQLXpXA=;
- b=VX44F9a/VFJJOyRpa3hCS++GNC6bnswve257KZYJF5VWbq8QARXbCvNpJogdR6//tT
- kcsVbrWq7cTKRPwurZtmAiljV2c4ZASLVQSrCEB1Z7cE1m33D/rhT159qxpcYsMmjXjg
- Rf7OUNUhwxz6NnLW5BU2al/x25ESFrwifigWWZRbihQsEVXj541PtlidW+fBWgR5/Qbf
- e+zAY4ofqgz7DDTyh6+bYUk+ITIVoq8dj3MX7xor5B303LO8eZaItSGcQHt5ijcIlUnF
- NIDx6qFugmspXZDS/Ov9E1SIjBuk7INxVdl7S4tScbsBVYzSlVz1ZJnGGiHyn0kV+0ZR
- HriA==
-X-Gm-Message-State: AOAM530438dbe8SJpae86X6bBGfbWjl6ppOu2UxBFcdTCsqYGQPMwZt7
- 0wu/qQGMrP6Txw5HGjDcErM=
-X-Google-Smtp-Source: ABdhPJzkQD/gxtEB7aJEpelFjec40cUy+ftj4/iW4yoqa2XdZRoReftjFH3rK8clufBajPxwC4spGA==
-X-Received: by 2002:a17:906:ecf3:: with SMTP id
- qt19mr26693818ejb.467.1617000645203; 
- Sun, 28 Mar 2021 23:50:45 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
- by smtp.gmail.com with ESMTPSA id c19sm8403325edu.20.2021.03.28.23.50.43
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 28 Mar 2021 23:50:44 -0700 (PDT)
-Date: Mon, 29 Mar 2021 08:51:09 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <YGF43W1kppXmOTwh@orome.fritz.box>
-References: <20210326203807.105754-1-lyude@redhat.com>
- <20210326203807.105754-3-lyude@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0B0989F3C;
+	Tue, 30 Mar 2021 06:28:01 +0000 (UTC)
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com
+ (mail-oln040092074010.outbound.protection.outlook.com [40.92.74.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 379EF89F3C
+ for <Nouveau@lists.freedesktop.org>; Tue, 30 Mar 2021 06:28:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GZ1WX16wS2bcdOFD02STSdwV/9AUCdFISBXcTGa4piJLxCuV4ErsjJpS6mZWfo6rO5YClmiOiRWZTMOU7crtYeA+mDNVtRbDz4VKitya1PylxZthE1oJ836M2hbk4l2VWLg2odgnPsVNyoC1pU4X9sb8gtUzizyDXClIEnaVeDZJ7CviG/AzOEJ5+8xY25/ZXV1WwMPFBxHOU8Y5HFh99XzBRE/8nfdSeBAr/LRDuyuFfnvhYXs5wcqciPGbqxsU/Y1ApDIujgg+6cnfWhG1KF5xe1GdkzPsknie1r0/DCofoNRrbRDQofLMpTGE5TZFU8Vm9WJS4BYTTyOgnPEdPA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VqygzBf8/v+Lh2tnNfj63PgYcQl3uckl5g5wx9acNg0=;
+ b=h44fOwaBX0PUU67Wvu53YEYjTZGchttKbEtIJn2574IWeUGGOtp9pxXNzIaZN1fF7lVWuFmq3hIOWtTPpEne2hGEUGTlvH7ca1GDriKQFlnGA50bvFG7G/H6eGNVl7pimZOLvCebYsz6D3DiZHhaFu9RdePuNmWEOFpiokuxug6f9Hekvilf2Op4SIGaPkNZCefGgi/+9ab3TE+rKcD/L1ahTAWlj4PYA3hgRH8z/9jh2leyMM5sCS13fJhbwkr5wRDw4WjH7qMjHpLkNDSkKyyurLlYp0cHDNLX8EZAr/EE5Pp2vNr1fyf1n7kFHQcE6neCB2Y2z55MzN1yZWbpfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VqygzBf8/v+Lh2tnNfj63PgYcQl3uckl5g5wx9acNg0=;
+ b=EHNQbKVyjGvBQfqEF/sSiFxRoqfezGctNyLSiBH+VcBdj/L5HfP34M81zULog1UMbs1BDQW5mSoUAcp3Zq1LiAzar/W4DkaPBHiauXEm61YMOmQah30ZVzZONLsH1uUWRH6Yk90I/6gQ2uPBV/D2DpoYqVKMZjmVxNX36Iguka4IvxSEJpIyO0oqds/dxDiHVwiqDmRiM4hPd6uK9+w7sKAiE/pJ3aCmG31Fnnji99c2XYzLOGORzr/F5Uz7wIdaRbMB1Jle7qMOpoySP7QSmR9uTd8fRVY0/JX+qzLPKYtcV3stEG3Pw14h2FpjYA/4sL3X8Y3WwhiGQ/sovlmDUw==
+Received: from VI1EUR04FT003.eop-eur04.prod.protection.outlook.com
+ (2a01:111:e400:7e0e::4f) by
+ VI1EUR04HT238.eop-eur04.prod.protection.outlook.com (2a01:111:e400:7e0e::377)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.29; Tue, 30 Mar
+ 2021 06:27:57 +0000
+Received: from AM5PR0201MB2386.eurprd02.prod.outlook.com
+ (2a01:111:e400:7e0e::4f) by VI1EUR04FT003.mail.protection.outlook.com
+ (2a01:111:e400:7e0e::110) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.25 via Frontend
+ Transport; Tue, 30 Mar 2021 06:27:57 +0000
+X-IncomingTopHeaderMarker: OriginalChecksum:872B75C759B52DC8C16BB8471CB32A37062E85CD3EF0E8F7EE002673A10B1575;
+ UpperCasedChecksum:415A7F47DDA2761A6D75E67A0A7EBC403612735B83AF2AB67E9F19638E27B2C3;
+ SizeAsReceived:8410; Count:44
+Received: from AM5PR0201MB2386.eurprd02.prod.outlook.com
+ ([fe80::8ce:a38f:6ef9:3dd7]) by AM5PR0201MB2386.eurprd02.prod.outlook.com
+ ([fe80::8ce:a38f:6ef9:3dd7%6]) with mapi id 15.20.3977.033; Tue, 30 Mar 2021
+ 06:27:57 +0000
+Date: Tue, 30 Mar 2021 08:27:50 +0200
+Message-ID: <AM5PR0201MB23868ACFBFA07B794174E1DCB57D9@AM5PR0201MB2386.eurprd02.prod.outlook.com>
+X-Android-Message-ID: <5b77309a-13e8-48c5-a1c3-309b68cba164@email.android.com>
+From: georges1897@outlook.com
+To: Nouveau@lists.freedesktop.org
+X-TMN: [0WBR3BQldVFvQlT0++vkhYuBl/77dDYZ]
+X-ClientProxiedBy: PR0P264CA0206.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:100:1f::26) To AM5PR0201MB2386.eurprd02.prod.outlook.com
+ (2603:10a6:203:33::8)
+X-Microsoft-Original-Message-ID: <5b77309a-13e8-48c5-a1c3-309b68cba164@email.android.com>
 MIME-Version: 1.0
-In-Reply-To: <20210326203807.105754-3-lyude@redhat.com>
-User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
-Subject: Re: [Nouveau] [PATCH v2 02/20] drm/tegra: Don't register DP AUX
- channels before connectors
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [100.69.102.89] (193.57.125.106) by
+ PR0P264CA0206.FRAP264.PROD.OUTLOOK.COM (2603:10a6:100:1f::26) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3977.26 via Frontend Transport; Tue, 30 Mar 2021 06:27:56 +0000
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 44
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-Correlation-Id: 98c0c4f9-45ff-4d24-44c6-08d8f344f514
+X-MS-TrafficTypeDiagnostic: VI1EUR04HT238:
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KDh8S+CQZd2zTX7OpEqiFU2TQujNpqW/VMMgbvCoA+5xHj+a8YPkNPV8/4SM4o3aZ67AzdCi/b3y6fQKVUl2r8ngVjpuNupZ4ZB7Rml5HJ4g9drub80ws71P+uxE8VsCBKMkWSNycMzPx6e7JkpJsv2rRaSRswy6mYLW5YUrQ6jUBkfjVjTlmltu6rEGQ3yxwqIIDV6t4D0Fzx6vOTrV+l1LOKdNivO+DSzpxR2twNKsxXfLOND2Q6eAfTdSxRkEhz5H3OFfUzSVflnkzwrvn88GipDgmyJUh4nXHDL67DQl3IpaBkxoLWvfYch6mxiTXKVAKzz02lz5qZepvcKNX5ElagdNh+xG7SCUP6Rcgj7jMEA622dSmScf6zoc8htwDJ+yum8YTsDGOCWtKbr4qw==
+X-MS-Exchange-AntiSpam-MessageData: Yb4QzPNT2BiSg6/oCqi5WM+faONHNLCYwa49Zi3iCaVga7AzI1YlsWDzeNkOhZbodUMtpHj/oqJuc/6UrG3sxOSBhPzxlHOLE2UPvNBdEPzo+QUwZ5gymTakboNC4k+u8VTlIL43b5sn0XjaP03n5g==
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98c0c4f9-45ff-4d24-44c6-08d8f344f514
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2021 06:27:57.3454 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-AuthSource: VI1EUR04FT003.eop-eur04.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1EUR04HT238
+Subject: [Nouveau] SLI support for nv44
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,69 +103,32 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, open list <linux-kernel@vger.kernel.org>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>,
- "open list:DRM DRIVERS FOR NVIDIA TEGRA" <linux-tegra@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============0965460843=="
+Content-Type: multipart/mixed; boundary="===============0698121336=="
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+--===============0698121336==
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
---===============0965460843==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="3/3ODl/4QwGFlK0b"
-Content-Disposition: inline
+PG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJz
+ZXQ9dXRmLTgiPjxkaXYgZGlyPSJhdXRvIj48ZGl2IGRpcj0iYXV0byI+SGksJm5ic3A7PC9kaXY+
+PGRpdiBkaXI9ImF1dG8iPkkgYW0gY3VycmVudGx5IHRoZSBoYXBweSBvd25lciBvZiBhIG5mb3Jj
+ZSA0IC0gU0xJIHdpdGggdHdvIDcxMDBncyBncmFwaGljcyBjYXJkcyBzZXR1cC4mbmJzcDs8L2Rp
+dj48ZGl2IGRpcj0iYXV0byI+U2luY2UgSSd2ZSByZWFkIG9uIHlvdXIgZmVhdHVyZXMgbWF0cml4
+IHRoYXQgc3VjaCBhIHNldHVwIGlzIHJhdGhlciB1bmNvbW1vbiBhbW9uZyBkZXZlbG9wZXJzLCBJ
+IHdvdWxkIGxpa2UgdG8gaGVscCB5b3UgaW1wbGVtZW50aW5nIFNMSSBmb3Igb2xkIEdlRm9yY2Ug
+Y2FyZHMgYXMgbXVjaCBhcyBJIGNhbi4gVGhlIGxhY2sgb2Ygc3VwcG9ydCBmb3IgbmV3ZXIga2Vy
+bmVscyBmcm9tIE52aWRpYSBoYXMgaW5kZWVkIG1hZGUgbXkgc3lzdGVtIG9ic29sZXRlIChJIGRv
+IGVuY291bnRlciBncmFwaGljYWwgZ2xpdGNoZXMgd2l0aCBtYW55IERFcykuPC9kaXY+PGRpdiBk
+aXI9ImF1dG8iPkkgY2FuIHJ1biB0ZXN0cyB3aXRoIG15IGhhcmR3YXJlLCB0cnkgbmV3IGRyaXZl
+cnMsIGFuZCBrbm93IHRoZSBiYXNpY3Mgb2YgQyBwcm9ncmFtbWluZyBpZiBuZWNlc3NhcnkuPC9k
+aXY+PGRpdiBkaXI9ImF1dG8iPjxicj48L2Rpdj48ZGl2IGRpcj0iYXV0byI+SWYgeW91IHRoaW5r
+IHRoYXQgSSBjb3VsZCBiZSBoZWxwZnVsIGluIGFueSB3YXksIGRvbid0IGhlc2l0YXRlIHRvIGNv
+bnRhY3QgbWUgYmFjay48L2Rpdj48ZGl2IGRpcj0iYXV0byI+PGJyPjwvZGl2PjxkaXYgZGlyPSJh
+dXRvIj5CZXN0IHJlZ2FyZHM8L2Rpdj48L2Rpdj4=
 
-
---3/3ODl/4QwGFlK0b
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Mar 26, 2021 at 04:37:49PM -0400, Lyude Paul wrote:
-> As pointed out by the documentation for drm_dp_aux_register(),
-> drm_dp_aux_init() should be used in situations where the AUX channel for a
-> display driver can potentially be registered before it's respective DRM
-> driver. This is the case with Tegra, since the DP aux channel exists as a
-> platform device instead of being a grandchild of the DRM device.
->=20
-> Since we're about to add a backpointer to a DP AUX channel's respective D=
-RM
-> device, let's fix this so that we don't potentially allow userspace to use
-> the AUX channel before we've associated it with it's DRM connector.
->=20
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> ---
->  drivers/gpu/drm/tegra/dpaux.c | 11 ++++++-----
->  1 file changed, 6 insertions(+), 5 deletions(-)
-
-Acked-by: Thierry Reding <treding@nvidia.com>
-
---3/3ODl/4QwGFlK0b
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmBheN0ACgkQ3SOs138+
-s6E2+g/+IIUa7Z93weSOTP7EoyYiNnDgVw5B2vMst7Px4Nck336qqsZbv0J9ZQ0L
-h5P0mlUejyzOxAshnHtiYejeAXTN1GbyFUw6GlN+EEaZFoPcOSkSszhaO+UWNERE
-sIVhvhYtePlzA9dASwQtxjXYOHjWmBO1EcQaLCUjeI0bRAPKhlFjnpMM3xLRlegU
-k4yJCJIwUzRTaz7AHESzqZney+D89lF2yl8PO7xn176KWR/bJwW7cozPvzLoJCdh
-Qx8j3tXwGe11Ssc6EqUmuYOqNqIZQDLn+n+8PnEpRKebSr1UKj1907EtiUwsVPEJ
-BdeDhJKMqNKX9Rna/4Qj+ggLrhAPmlZOeMqHe6oretW9JBQGBd54GcijZVU65SbR
-LEaye5H1okuCEDPRCAswRBpkpOss8ri0BZtWecDzQvorSKq6pIcOL9pgBccasjHQ
-k4/d0bDTj4qR8S5iqYs7IChTSTKIpd5UUVYCyVuiVoVkr4j4QxW3/zvffr/RtxmN
-GEm3qwnJ6S6Ug3GH6Fsp7rNSWOxlhvEhet54IqJpAWUsKtGL3nCOEQ21xM87qUsh
-Bl+xjmYrHzwOokbIT6Ee1aB+4M7GsvVU1tO3sW/djawCF/LjdBJDa7ZBQTy6lhRV
-tRaDjz8d3XII/RohT4aLokZOpGop8lMWohyjqv8tWgiCpq5jWtU=
-=BnXA
------END PGP SIGNATURE-----
-
---3/3ODl/4QwGFlK0b--
-
---===============0965460843==
+--===============0698121336==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -153,4 +139,4 @@ Nouveau mailing list
 Nouveau@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0965460843==--
+--===============0698121336==--
