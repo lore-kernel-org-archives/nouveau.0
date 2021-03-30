@@ -2,74 +2,67 @@ Return-Path: <SRS0=hTOA=I4=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C81CCC433C1
-	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 17:25:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 61B50C433E0
+	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 17:25:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8529D619C0
-	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 17:25:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8529D619C0
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 280686196C
+	for <nouveau@archiver.kernel.org>; Tue, 30 Mar 2021 17:25:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 280686196C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 954866E948;
-	Tue, 30 Mar 2021 17:25:15 +0000 (UTC)
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
- [IPv6:2a00:1450:4864:20::531])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 659696E28B;
- Mon, 29 Mar 2021 07:08:36 +0000 (UTC)
-Received: by mail-ed1-x531.google.com with SMTP id h13so13016064eds.5;
- Mon, 29 Mar 2021 00:08:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=nsgDV40GpgMjdMBehMLStcFSCLaYlMp03YLRRXFE+RA=;
- b=VxMZ7dSGQEdi8XOeWO1BicR5PJXdG9cKLNO6DN3n22tMui9UBI2ot+5PlRjW6qjCKv
- kkBbSAt5V7Y3j3LRRAHs9H5M1AASRp+Z0Hk5xJi1S4YuPya4yGJbKEyVjLVJwaF7yUSG
- 0dSr68sCJPigikcaTg4rQNISm5kZwfHkO1AA63bJmhSuCZoeaHbDHPH+bG98njKUO51r
- DWrZ9E5rabkL5rid66HlEq5PRQ6BbxQFNZiGztlvB/wDoo+FZaaKJ62YGqEi6DgrVzKY
- XHDB4llTrEMZTZoCXYzTSsygURQ0muMvLDFU3XRquFpzxTG+7rsX+wseLGmMjJiteyf9
- vZhg==
+	by gabe.freedesktop.org (Postfix) with ESMTP id 057BA6E951;
+	Tue, 30 Mar 2021 17:25:16 +0000 (UTC)
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com
+ [IPv6:2607:f8b0:4864:20::436])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A9236E8AE
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Mar 2021 11:19:43 +0000 (UTC)
+Received: by mail-pf1-x436.google.com with SMTP id g15so11950652pfq.3
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Mar 2021 04:19:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=nEiq5VYqidlia0rfaVKXey2aQI1J0UOeUfwbZ7SzFqw=;
+ b=qIay2yJaGw8H+hG15KImlYeu0r6L9MLLcQDEnZF2qFdTW2zSpQ40IXg+/vxlnJQz4o
+ TKzi5YqlKrIHttRWaLvFbdM20gKQ/igZVcwm8SFzdsf0/GzVTOyvvDeB6kqpBolWhn33
+ iI+TCXiaVJhMe/oW7DCLEON36LzdAAwFwyEShryYOFQyky1isZ0YY5RVfN5W3oiAYvwy
+ 8+KnWX/nQwEbJaqACWTSuM18VOAT1ks9X9zr7SchWYDgwTLwBD/knap1CJ7Ca9tlGG8b
+ sFpNlx44sNZxtyb4faahEv9qJLV1qWz1e1po03itPLigsO5ao0DVK7AqSPfVLMue7R6H
+ nwTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=nsgDV40GpgMjdMBehMLStcFSCLaYlMp03YLRRXFE+RA=;
- b=ZHJhLHJAH5p5ORFWsw4heTjKWRJ/ZeN+b7b4XoLCHpV2bUfGhqby//OrRJ7n7iJZwI
- G2IGjR8guE8GFuMzdDuz3gyMEh0LwLj6b1ES3w83frw1HRfJeFHjy9/qlw2hOTJKi4t1
- XTLSucVWdLGBe698XUz6yk434nCKwTo0Jo2rzDKTKR++95RvNX+k8WULYHjLUrPZe9mZ
- T1jZPIboVseSnV5D4y+2OqYtdTfLiGgqlg2rBdeupCg+msW0n3paOWUO3c0k8p0nrN+W
- 81Lh1Q8BIHN17NqEgqZ9+h4eeLQ/lrCkaLe1/lELbMH7oiVOQCJaZYlZ4MrKthX2LJN8
- rxTA==
-X-Gm-Message-State: AOAM533RbQ6QICig4fXluK11w9HdQQhcKGizx1me2JgJcSfliy6wdD1Y
- 1wwR8r9TBtLZNhOjuvek+K10VtI+7vI=
-X-Google-Smtp-Source: ABdhPJwEJT/07GJdbFQtJ2P6vX8qiUN2z0P2wCX/J/CoVqW4cmKzRx2ZrUQ7oHNCPgeOgptcmNi0Rw==
-X-Received: by 2002:a05:6402:31a7:: with SMTP id
- dj7mr27411505edb.33.1617001715049; 
- Mon, 29 Mar 2021 00:08:35 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
- by smtp.gmail.com with ESMTPSA id n16sm8443196edr.42.2021.03.29.00.08.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 Mar 2021 00:08:34 -0700 (PDT)
-Date: Mon, 29 Mar 2021 09:08:59 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <YGF9C284EOaf/WZP@orome.fritz.box>
-References: <20210326203807.105754-1-lyude@redhat.com>
- <20210326203807.105754-6-lyude@redhat.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=nEiq5VYqidlia0rfaVKXey2aQI1J0UOeUfwbZ7SzFqw=;
+ b=am1PR2grKv47OFyUVOI9ZDyxe12HhaF+LgukKdvsW1IFst8OsvVhj36dKsmv1lAFxb
+ jDZWvGPX316oqTf4gDJ6cYFP5g8jHBDDPvpD2Gy9x3Hhid5NBXoXINM7SkdcsS4H3fuX
+ 7U/t/NdYs3Etj88v8WzYej3iXesugyaf82h45hhgv8DWWXKRJRjZpscFmQyWq9ohly1x
+ wOwYuk0CX4FkAlDsyzGW/wt+/NN+J0/StqdRdvrpLe80UKIMd6Ty0hllnLglwgp0pG4W
+ IlJsLbI7JwtroZApO0KwEpYXojJgo5QCdYFYSwvEUbcNzUr66NDMv6fhdiOSrnQJLNOR
+ Cpww==
+X-Gm-Message-State: AOAM530H690ZDisHBjcadu389UwoVqL++Y5DcZngq9REj9VALhr9g8nt
+ u69VlJPZZbkTMfLsuyV5YsLoLgL6/fP4iGPJ8Qh3Fg==
+X-Google-Smtp-Source: ABdhPJxq5q/aaT+6jdvgQQdbDwMNlvYfZjAmKD/2J/yR3c6DqBDMvry2T/Awy6EWGZ+THIsQHdyfhPbS801PyKVA3nE=
+X-Received: by 2002:a05:6a00:b54:b029:207:2a04:7b05 with SMTP id
+ p20-20020a056a000b54b02902072a047b05mr29651828pfo.12.1617103182535; Tue, 30
+ Mar 2021 04:19:42 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210326203807.105754-6-lyude@redhat.com>
-User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
+References: <20210326203807.105754-1-lyude@redhat.com>
+ <20210326203807.105754-21-lyude@redhat.com>
+In-Reply-To: <20210326203807.105754-21-lyude@redhat.com>
+From: Robert Foss <robert.foss@linaro.org>
+Date: Tue, 30 Mar 2021 13:19:31 +0200
+Message-ID: <CAG3jFyvEvb=YWopYUmi1bf=fe3ZX7VmtvnnmT5dHcNjLhHvsQg@mail.gmail.com>
+To: Lyude Paul <lyude@redhat.com>
 X-Mailman-Approved-At: Tue, 30 Mar 2021 17:25:14 +0000
-Subject: Re: [Nouveau] [PATCH v2 05/20] drm/dp: Add backpointer to
- drm_device in drm_dp_aux
+Subject: Re: [Nouveau] [PATCH v2 20/20] drm/dp_mst: Convert
+ drm_dp_mst_topology.c to drm_err()/drm_dbg*()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,117 +74,77 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org,
- Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Oleg Vasilev <oleg.vasilev@intel.com>, dri-devel@lists.freedesktop.org,
- Andrzej Hajda <a.hajda@samsung.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Sam Ravnborg <sam@ravnborg.org>,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Michal Simek <michal.simek@xilinx.com>, amd-gfx@lists.freedesktop.org,
- Vasily Khoruzhick <anarsoul@gmail.com>,
- "Jerry \(Fangzhi\) Zuo" <Jerry.Zuo@amd.com>,
- Luben Tuikov <luben.tuikov@amd.com>, Ben Skeggs <bskeggs@redhat.com>,
- Swapnil Jakhade <sjakhade@cadence.com>,
- Harry Wentland <harry.wentland@amd.com>, Imre Deak <imre.deak@intel.com>,
- "moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
- Daniel Vetter <daniel@ffwll.ch>, Jonas Karlman <jonas@kwiboo.se>,
- Leo Li <sunpeng.li@amd.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
+Cc: dri-devel <dri-devel@lists.freedesktop.org>,
+ David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Joe Perches <joe@perches.com>,
- Yuti Amonkar <yamonkar@cadence.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- "open list:DRM DRIVERS FOR NVIDIA TEGRA" <linux-tegra@vger.kernel.org>,
- Mikita Lipski <mikita.lipski@amd.com>, Sean Paul <sean@poorly.run>,
- "open list:DRM DRIVER FOR MSM ADRENO GPU" <linux-arm-msm@vger.kernel.org>,
- Matt Roper <matthew.d.roper@intel.com>,
- Jernej Skrabec <jernej.skrabec@siol.net>, Chris Park <Chris.Park@amd.com>,
- Eryk Brol <eryk.brol@amd.com>, Hyun Kwon <hyun.kwon@xilinx.com>,
- Jyri Sarha <jsarha@ti.com>, open list <linux-kernel@vger.kernel.org>,
- Robert Foss <robert.foss@linaro.org>, Julia Lawall <Julia.Lawall@inria.fr>,
- Rob Clark <robdclark@gmail.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Alex Deucher <alexander.deucher@amd.com>, Andy Yan <andy.yan@rock-chips.com>,
- "open list:DRM DRIVER FOR MSM ADRENO GPU" <freedreno@lists.freedesktop.org>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Content-Type: multipart/mixed; boundary="===============1825941259=="
+ open list <linux-kernel@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+Hey Lyude,
 
---===============1825941259==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="S4O2kq+aHqU/5PJ1"
-Content-Disposition: inline
+This patch looks good, but I have one question below. With it
+addressed, feel free to add my r-b.
 
+Reviewed-by: Robert Foss <robert.foss@linaro.org>
 
---S4O2kq+aHqU/5PJ1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+>
+> -static bool drm_dp_sideband_parse_req(struct drm_dp_sideband_msg_rx *raw,
+> +static bool drm_dp_sideband_parse_req(const struct drm_dp_mst_topology_mgr *mgr,
+> +                                     struct drm_dp_sideband_msg_rx *raw,
+>                                       struct drm_dp_sideband_msg_req_body *msg)
+>  {
+>         memset(msg, 0, sizeof(*msg));
+> @@ -1117,12 +1125,12 @@ static bool drm_dp_sideband_parse_req(struct drm_dp_sideband_msg_rx *raw,
+>
+>         switch (msg->req_type) {
+>         case DP_CONNECTION_STATUS_NOTIFY:
+> -               return drm_dp_sideband_parse_connection_status_notify(raw, msg);
+> +               return drm_dp_sideband_parse_connection_status_notify(mgr, raw, msg);
+>         case DP_RESOURCE_STATUS_NOTIFY:
+> -               return drm_dp_sideband_parse_resource_status_notify(raw, msg);
+> +               return drm_dp_sideband_parse_resource_status_notify(mgr, raw, msg);
+>         default:
+> -               DRM_ERROR("Got unknown request 0x%02x (%s)\n", msg->req_type,
+> -                         drm_dp_mst_req_type_str(msg->req_type));
+> +               drm_err(mgr->dev, "Got unknown request 0x%02x (%s)\n",
+> +                       msg->req_type, drm_dp_mst_req_type_str(msg->req_type));
+>                 return false;
+>         }
+>  }
+>
 
-On Fri, Mar 26, 2021 at 04:37:52PM -0400, Lyude Paul wrote:
-> This is something that we've wanted for a while now: the ability to
-> actually look up the respective drm_device for a given drm_dp_aux struct.
-> This will also allow us to transition over to using the drm_dbg_*() helpe=
-rs
-> for debug message printing, as we'll finally have a drm_device to referen=
-ce
-> for doing so.
->=20
-> Note that there is one limitation with this - because some DP AUX adapters
-> exist as platform devices which are initialized independently of their
-> respective DRM devices, one cannot rely on drm_dp_aux->drm_dev to always =
-be
-> non-NULL until drm_dp_aux_register() has been called. We make sure to poi=
-nt
-> this out in the documentation for struct drm_dp_aux.
->=20
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> ---
-[...]
->  drivers/gpu/drm/tegra/dpaux.c                            | 1 +
-[...]
+.. snip ..
 
-Acked-by: Thierry Reding <treding@nvidia.com>
+> @@ -4118,12 +4121,12 @@ static int drm_dp_mst_handle_up_req(struct drm_dp_mst_topology_mgr *mgr)
+>
+>         INIT_LIST_HEAD(&up_req->next);
+>
+> -       drm_dp_sideband_parse_req(&mgr->up_req_recv, &up_req->msg);
+> +       drm_dp_sideband_parse_req(mgr, &mgr->up_req_recv, &up_req->msg);
 
---S4O2kq+aHqU/5PJ1
-Content-Type: application/pgp-signature; name="signature.asc"
+drm_dp_sideband_parse_req() is only called here, and the function
+arguments could probably stand to have `&mgr->up_req_recv` removed
+(here and in the func. declaration) since the same data structure is
+accessible through the `mgr` pointer inside of
+drm_dp_sideband_parse_req(). I guess this is a matter of taste, so
+feel free to do what you want with this.
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmBhfQgACgkQ3SOs138+
-s6HzSQ/9Eo9S9xJvfEMo3ZsjRgZiCwhHpK8p3ntNKOfVV0ipfpeo8vw4YguhWC10
-loGRu6CMa+hJqNW3xt/Bhjsj3Wu15gLGcW2igvKlQIr8aNWpssLD3lNELgd2ousG
-82a+SF/3ljYs/060sFVCTK782CM+kNBw0ODjoohQjNoO++D1Rr2T0oq85DR8SKcu
-K+dCQR1V/D7bwL9d2/M9UHM4i9hlOkGUKkFOre0x9FyFeOAAXu4q7dfOg9FCkcU/
-4nIFE8mzWkW4o/fNLiF757dB2llZXxOl+pXNOBye31oslqZxGI6tkJQsvof4sODq
-s9Eo0qjPjR0rIXZDkVJCScM7yOH2PrzCiVQFTLutTBVuJ6vDd3dmnyzOzRMeqU8h
-CRcPTECPt3lP77XvqptSH/qdGiylAy0nnIwbw+9/Q7ZZ4KQM6e9pcj/fiSqOocdv
-bz044P8GPgO18yExiKM4xun4K9t6vJ6MckuHTZEG+16DrRsj6ybdxjBosdBiDN2T
-OyusX77/sl2KXr9fHW+tWwrDavb7GJ8jpJzZqyxUJa5Tb/ZeVzoScwiSfsLV62Nb
-JXM8KHUhdfKqOa9Yefaf2O4yGFwcF6PLpKlTPw73PlNqEyhxEBLDqFgb5q2pEXLF
-uo9LCn/Bju7B/15eqK58g9OAN7no8PxXCmaiO7y6w4fjqsFPTjI=
-=4qxj
------END PGP SIGNATURE-----
-
---S4O2kq+aHqU/5PJ1--
-
---===============1825941259==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>
+>         if (up_req->msg.req_type != DP_CONNECTION_STATUS_NOTIFY &&
+>             up_req->msg.req_type != DP_RESOURCE_STATUS_NOTIFY) {
+> -               DRM_DEBUG_KMS("Received unknown up req type, ignoring: %x\n",
+> -                             up_req->msg.req_type);
+> +               drm_dbg_kms(mgr->dev, "Received unknown up req type, ignoring: %x\n",
+> +                           up_req->msg.req_type);
+>                 kfree(up_req);
+>                 goto out;
+>         }
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1825941259==--
