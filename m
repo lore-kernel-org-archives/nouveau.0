@@ -7,37 +7,36 @@ X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CF7FEC43460
-	for <nouveau@archiver.kernel.org>; Tue,  6 Apr 2021 08:29:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2151CC433ED
+	for <nouveau@archiver.kernel.org>; Tue,  6 Apr 2021 08:29:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8E1C5613C0
-	for <nouveau@archiver.kernel.org>; Tue,  6 Apr 2021 08:29:50 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8E1C5613C0
+	by mail.kernel.org (Postfix) with ESMTPS id D9E73613C2
+	for <nouveau@archiver.kernel.org>; Tue,  6 Apr 2021 08:29:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D9E73613C2
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8D106E7D0;
-	Tue,  6 Apr 2021 08:29:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 380B689F2D;
+	Tue,  6 Apr 2021 08:29:48 +0000 (UTC)
 Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E9F56E0A0;
- Tue,  6 Apr 2021 08:29:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 170CD89F2D;
+ Tue,  6 Apr 2021 08:29:47 +0000 (UTC)
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 962D7B120;
- Tue,  6 Apr 2021 08:29:44 +0000 (UTC)
+ by mx2.suse.de (Postfix) with ESMTP id A7C12B134;
+ Tue,  6 Apr 2021 08:29:45 +0000 (UTC)
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@linux.ie, mripard@kernel.org,
  maarten.lankhorst@linux.intel.com, bskeggs@redhat.com, kraxel@redhat.com
-Date: Tue,  6 Apr 2021 10:29:39 +0200
-Message-Id: <20210406082942.24049-2-tzimmermann@suse.de>
+Date: Tue,  6 Apr 2021 10:29:42 +0200
+Message-Id: <20210406082942.24049-5-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210406082942.24049-1-tzimmermann@suse.de>
 References: <20210406082942.24049-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-Subject: [Nouveau] [PATCH 1/4] drm/gem-ttm-helper: Provide helper for struct
- drm_driver.dumb_map_offset
+Subject: [Nouveau] [PATCH 4/4] drm/qxl: Use drm_gem_ttm_dumb_map_offset()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,80 +55,109 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Provides an implementation of struct drm_driver.dumb_map_offset that
-can be used by TTM-based GEM drivers.
+Qxl now uses drm_gem_ttm_dumb_map_offset() to implement struct
+drm_driver.dumb_map_offset.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/drm_gem_ttm_helper.c | 33 ++++++++++++++++++++++++++++
- include/drm/drm_gem_ttm_helper.h     |  5 ++++-
- 2 files changed, 37 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/qxl/qxl_drv.c    |  3 ++-
+ drivers/gpu/drm/qxl/qxl_drv.h    |  3 ---
+ drivers/gpu/drm/qxl/qxl_dumb.c   | 17 -----------------
+ drivers/gpu/drm/qxl/qxl_ioctl.c  |  4 ++--
+ drivers/gpu/drm/qxl/qxl_object.h |  5 -----
+ 5 files changed, 4 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_gem_ttm_helper.c b/drivers/gpu/drm/drm_gem_ttm_helper.c
-index de28720757af..b14bed8be771 100644
---- a/drivers/gpu/drm/drm_gem_ttm_helper.c
-+++ b/drivers/gpu/drm/drm_gem_ttm_helper.c
-@@ -114,5 +114,38 @@ int drm_gem_ttm_mmap(struct drm_gem_object *gem,
- }
- EXPORT_SYMBOL(drm_gem_ttm_mmap);
+diff --git a/drivers/gpu/drm/qxl/qxl_drv.c b/drivers/gpu/drm/qxl/qxl_drv.c
+index 1864467f1063..db92eec07d96 100644
+--- a/drivers/gpu/drm/qxl/qxl_drv.c
++++ b/drivers/gpu/drm/qxl/qxl_drv.c
+@@ -37,6 +37,7 @@
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_file.h>
++#include <drm/drm_gem_ttm_helper.h>
+ #include <drm/drm_modeset_helper.h>
+ #include <drm/drm_prime.h>
+ #include <drm/drm_probe_helper.h>
+@@ -271,7 +272,7 @@ static struct drm_driver qxl_driver = {
+ 	.driver_features = DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
  
-+/**
-+ * drm_gem_ttm_dumb_map_offset() - Implements struct &drm_driver.dumb_map_offset
-+ * @file:	DRM file pointer.
-+ * @dev:	DRM device.
-+ * @handle:	GEM handle
-+ * @offset:	Returns the mapping's memory offset on success
-+ *
-+ * Provides an implementation of struct &drm_driver.dumb_map_offset for
-+ * TTM-based GEM drivers. TTM allocates the offset internally and
-+ * drm_gem_ttm_dumb_map_offset() returns it for dumb-buffer implementations.
-+ *
-+ * See struct &drm_driver.dumb_map_offset.
-+ *
-+ * Returns:
-+ * 0 on success, or a negative errno code otherwise.
-+ */
-+int drm_gem_ttm_dumb_map_offset(struct drm_file *file, struct drm_device *dev,
-+				uint32_t handle, uint64_t *offset)
-+{
-+	struct drm_gem_object *gem;
-+
-+	gem = drm_gem_object_lookup(file, handle);
-+	if (!gem)
-+		return -ENOENT;
-+
-+	*offset = drm_vma_node_offset_addr(&gem->vma_node);
-+
-+	drm_gem_object_put(gem);
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(drm_gem_ttm_dumb_map_offset);
-+
- MODULE_DESCRIPTION("DRM gem ttm helpers");
- MODULE_LICENSE("GPL");
-diff --git a/include/drm/drm_gem_ttm_helper.h b/include/drm/drm_gem_ttm_helper.h
-index 7c6d874910b8..c1aa02bd4c89 100644
---- a/include/drm/drm_gem_ttm_helper.h
-+++ b/include/drm/drm_gem_ttm_helper.h
-@@ -5,8 +5,8 @@
- 
- #include <linux/kernel.h>
- 
--#include <drm/drm_gem.h>
- #include <drm/drm_device.h>
-+#include <drm/drm_gem.h>
- #include <drm/ttm/ttm_bo_api.h>
- #include <drm/ttm/ttm_bo_driver.h>
- 
-@@ -24,4 +24,7 @@ void drm_gem_ttm_vunmap(struct drm_gem_object *gem,
- int drm_gem_ttm_mmap(struct drm_gem_object *gem,
- 		     struct vm_area_struct *vma);
- 
-+int drm_gem_ttm_dumb_map_offset(struct drm_file *file, struct drm_device *dev,
-+				uint32_t handle, uint64_t *offset);
-+
+ 	.dumb_create = qxl_mode_dumb_create,
+-	.dumb_map_offset = qxl_mode_dumb_mmap,
++	.dumb_map_offset = drm_gem_ttm_dumb_map_offset,
+ #if defined(CONFIG_DEBUG_FS)
+ 	.debugfs_init = qxl_debugfs_init,
  #endif
+diff --git a/drivers/gpu/drm/qxl/qxl_drv.h b/drivers/gpu/drm/qxl/qxl_drv.h
+index 6dd57cfb2e7c..20a0f3ab84ad 100644
+--- a/drivers/gpu/drm/qxl/qxl_drv.h
++++ b/drivers/gpu/drm/qxl/qxl_drv.h
+@@ -330,9 +330,6 @@ void qxl_bo_force_delete(struct qxl_device *qdev);
+ int qxl_mode_dumb_create(struct drm_file *file_priv,
+ 			 struct drm_device *dev,
+ 			 struct drm_mode_create_dumb *args);
+-int qxl_mode_dumb_mmap(struct drm_file *filp,
+-		       struct drm_device *dev,
+-		       uint32_t handle, uint64_t *offset_p);
+ 
+ /* qxl ttm */
+ int qxl_ttm_init(struct qxl_device *qdev);
+diff --git a/drivers/gpu/drm/qxl/qxl_dumb.c b/drivers/gpu/drm/qxl/qxl_dumb.c
+index 48a58ba1db96..a635d9fdf8ac 100644
+--- a/drivers/gpu/drm/qxl/qxl_dumb.c
++++ b/drivers/gpu/drm/qxl/qxl_dumb.c
+@@ -69,20 +69,3 @@ int qxl_mode_dumb_create(struct drm_file *file_priv,
+ 	args->handle = handle;
+ 	return 0;
+ }
+-
+-int qxl_mode_dumb_mmap(struct drm_file *file_priv,
+-		       struct drm_device *dev,
+-		       uint32_t handle, uint64_t *offset_p)
+-{
+-	struct drm_gem_object *gobj;
+-	struct qxl_bo *qobj;
+-
+-	BUG_ON(!offset_p);
+-	gobj = drm_gem_object_lookup(file_priv, handle);
+-	if (gobj == NULL)
+-		return -ENOENT;
+-	qobj = gem_to_qxl_bo(gobj);
+-	*offset_p = qxl_bo_mmap_offset(qobj);
+-	drm_gem_object_put(gobj);
+-	return 0;
+-}
+diff --git a/drivers/gpu/drm/qxl/qxl_ioctl.c b/drivers/gpu/drm/qxl/qxl_ioctl.c
+index b6075f452b9e..38aabcbe2238 100644
+--- a/drivers/gpu/drm/qxl/qxl_ioctl.c
++++ b/drivers/gpu/drm/qxl/qxl_ioctl.c
+@@ -67,8 +67,8 @@ static int qxl_map_ioctl(struct drm_device *dev, void *data,
+ 	struct qxl_device *qdev = to_qxl(dev);
+ 	struct drm_qxl_map *qxl_map = data;
+ 
+-	return qxl_mode_dumb_mmap(file_priv, &qdev->ddev, qxl_map->handle,
+-				  &qxl_map->offset);
++	return drm_gem_ttm_dumb_map_offset(file_priv, &qdev->ddev, qxl_map->handle,
++					   &qxl_map->offset);
+ }
+ 
+ struct qxl_reloc_info {
+diff --git a/drivers/gpu/drm/qxl/qxl_object.h b/drivers/gpu/drm/qxl/qxl_object.h
+index ee9c29de4d3d..cee4b52b75dd 100644
+--- a/drivers/gpu/drm/qxl/qxl_object.h
++++ b/drivers/gpu/drm/qxl/qxl_object.h
+@@ -53,11 +53,6 @@ static inline unsigned long qxl_bo_size(struct qxl_bo *bo)
+ 	return bo->tbo.base.size;
+ }
+ 
+-static inline u64 qxl_bo_mmap_offset(struct qxl_bo *bo)
+-{
+-	return drm_vma_node_offset_addr(&bo->tbo.base.vma_node);
+-}
+-
+ extern int qxl_bo_create(struct qxl_device *qdev,
+ 			 unsigned long size,
+ 			 bool kernel, bool pinned, u32 domain,
 -- 
 2.30.2
 
