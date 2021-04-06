@@ -2,41 +2,41 @@ Return-Path: <SRS0=Cz6h=JD=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DFA17C43460
-	for <nouveau@archiver.kernel.org>; Tue,  6 Apr 2021 08:29:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AAFACC433B4
+	for <nouveau@archiver.kernel.org>; Tue,  6 Apr 2021 09:09:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AD6C5613BE
-	for <nouveau@archiver.kernel.org>; Tue,  6 Apr 2021 08:29:59 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AD6C5613BE
+	by mail.kernel.org (Postfix) with ESMTPS id 538596139C
+	for <nouveau@archiver.kernel.org>; Tue,  6 Apr 2021 09:09:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 538596139C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4AB46E7DC;
-	Tue,  6 Apr 2021 08:29:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0B9F6E0AB;
+	Tue,  6 Apr 2021 09:09:08 +0000 (UTC)
 Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD98A6E5CD;
- Tue,  6 Apr 2021 08:29:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 871EE6E0AB;
+ Tue,  6 Apr 2021 09:09:07 +0000 (UTC)
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 504EAB0BF;
- Tue,  6 Apr 2021 08:29:45 +0000 (UTC)
+ by mx2.suse.de (Postfix) with ESMTP id 11B72B2FA;
+ Tue,  6 Apr 2021 09:09:06 +0000 (UTC)
 From: Thomas Zimmermann <tzimmermann@suse.de>
-To: daniel@ffwll.ch, airlied@linux.ie, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com, bskeggs@redhat.com, kraxel@redhat.com
-Date: Tue,  6 Apr 2021 10:29:41 +0200
-Message-Id: <20210406082942.24049-4-tzimmermann@suse.de>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie,
+ daniel@ffwll.ch, bskeggs@redhat.com, ray.huang@amd.com,
+ linux-graphics-maintainer@vmware.com, sroland@vmware.com, zackr@vmware.com,
+ shashank.sharma@amd.com, sam@ravnborg.org, emil.velikov@collabora.com,
+ Felix.Kuehling@amd.com, nirmoy.das@amd.com
+Date: Tue,  6 Apr 2021 11:08:55 +0200
+Message-Id: <20210406090903.7019-1-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210406082942.24049-1-tzimmermann@suse.de>
-References: <20210406082942.24049-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-Subject: [Nouveau] [PATCH 3/4] drm/nouveau: Use drm_gem_ttm_dumb_map_offset()
+Subject: [Nouveau] [PATCH 0/8] drm: Clean up mmap for TTM-based GEM drivers
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,84 +48,62 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, spice-devel@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Nouveau now uses drm_gem_ttm_dumb_map_offset() to implement
-struct drm_driver.dumb_map_offset.
+Implement mmap via struct drm_gem_object_functions.mmap for amdgpu,
+radeon and nouveau. This allows for using common DRM helpers for
+the mmap-related callbacks in struct file_operations and struct
+drm_driver. The drivers have their own vm_ops, which are now set
+automatically by the DRM core functions. The code in each driver's
+verify_access becomes part of the driver's new mmap implementation.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/nouveau/nouveau_display.c | 18 ------------------
- drivers/gpu/drm/nouveau/nouveau_display.h |  2 --
- drivers/gpu/drm/nouveau/nouveau_drm.c     |  3 ++-
- 3 files changed, 2 insertions(+), 21 deletions(-)
+With the GEM drivers converted, vmwgfx is the only user of
+ttm_bo_mmap() and related infrastructure. So move everything into
+vmwgfx and delete the rsp code from TTM.
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index dac02c7be54d..14101bd2a0ff 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -838,21 +838,3 @@ nouveau_display_dumb_create(struct drm_file *file_priv, struct drm_device *dev,
- 	drm_gem_object_put(&bo->bo.base);
- 	return ret;
- }
--
--int
--nouveau_display_dumb_map_offset(struct drm_file *file_priv,
--				struct drm_device *dev,
--				uint32_t handle, uint64_t *poffset)
--{
--	struct drm_gem_object *gem;
--
--	gem = drm_gem_object_lookup(file_priv, handle);
--	if (gem) {
--		struct nouveau_bo *bo = nouveau_gem_object(gem);
--		*poffset = drm_vma_node_offset_addr(&bo->bo.base.vma_node);
--		drm_gem_object_put(gem);
--		return 0;
--	}
--
--	return -ENOENT;
--}
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.h b/drivers/gpu/drm/nouveau/nouveau_display.h
-index 616c43427059..2ab2ddb1eadf 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.h
-@@ -58,8 +58,6 @@ bool nouveau_display_scanoutpos(struct drm_crtc *crtc,
- 
- int  nouveau_display_dumb_create(struct drm_file *, struct drm_device *,
- 				 struct drm_mode_create_dumb *args);
--int  nouveau_display_dumb_map_offset(struct drm_file *, struct drm_device *,
--				     u32 handle, u64 *offset);
- 
- void nouveau_hdmi_mode_set(struct drm_encoder *, struct drm_display_mode *);
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 885815ea917f..9766218a99ca 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -31,6 +31,7 @@
- #include <linux/mmu_notifier.h>
- 
- #include <drm/drm_crtc_helper.h>
-+#include <drm/drm_gem_ttm_helper.h>
- #include <drm/drm_ioctl.h>
- #include <drm/drm_vblank.h>
- 
-@@ -1212,7 +1213,7 @@ driver_stub = {
- 	.gem_prime_import_sg_table = nouveau_gem_prime_import_sg_table,
- 
- 	.dumb_create = nouveau_display_dumb_create,
--	.dumb_map_offset = nouveau_display_dumb_map_offset,
-+	.dumb_map_offset = drm_gem_ttm_dumb_map_offset,
- 
- 	.name = DRIVER_NAME,
- 	.desc = DRIVER_DESC,
--- 
+This touches several drivers. Preferably everything would be merged
+at once via drm-misc-next.
+
+Thomas Zimmermann (8):
+  drm/ttm: Don't override vm_ops callbacks, if set
+  drm/amdgpu: Remove unused function amdgpu_bo_fbdev_mmap()
+  drm/amdgpu: Implement mmap as GEM object function
+  drm/radeon: Implement mmap as GEM object function
+  drm/nouveau: Implement mmap as GEM object function
+  drm/vmwgfx: Inline ttm_bo_mmap() into vmwgfx driver
+  drm/vmwgfx: Inline vmw_verify_access()
+  drm/ttm: Remove ttm_bo_mmap() and friends
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 46 -------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.h |  2 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c     |  4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c     | 64 +++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c  | 19 ------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.h  |  2 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c     | 71 ---------------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h     |  1 -
+ drivers/gpu/drm/nouveau/nouveau_bo.c        | 10 ---
+ drivers/gpu/drm/nouveau/nouveau_drm.c       |  3 +-
+ drivers/gpu/drm/nouveau/nouveau_gem.c       | 36 +++++++++++
+ drivers/gpu/drm/nouveau/nouveau_ttm.c       | 49 --------------
+ drivers/gpu/drm/nouveau/nouveau_ttm.h       |  1 -
+ drivers/gpu/drm/radeon/radeon_drv.c         |  3 +-
+ drivers/gpu/drm/radeon/radeon_gem.c         | 52 +++++++++++++++
+ drivers/gpu/drm/radeon/radeon_ttm.c         | 65 -------------------
+ drivers/gpu/drm/radeon/radeon_ttm.h         |  1 -
+ drivers/gpu/drm/ttm/ttm_bo_vm.c             | 60 ++---------------
+ drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c  |  9 ---
+ drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c    | 51 ++++++++++++++-
+ include/drm/ttm/ttm_bo_api.h                | 13 ----
+ include/drm/ttm/ttm_device.h                | 15 -----
+ 22 files changed, 212 insertions(+), 365 deletions(-)
+
+--
 2.30.2
 
 _______________________________________________
