@@ -2,57 +2,45 @@ Return-Path: <SRS0=cxaH=JG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4BBF2C433B4
-	for <nouveau@archiver.kernel.org>; Fri,  9 Apr 2021 12:51:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 80D99C433ED
+	for <nouveau@archiver.kernel.org>; Fri,  9 Apr 2021 12:51:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0290E610F7
-	for <nouveau@archiver.kernel.org>; Fri,  9 Apr 2021 12:51:31 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0290E610F7
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=163.com
+	by mail.kernel.org (Postfix) with ESMTPS id 09A06610E7
+	for <nouveau@archiver.kernel.org>; Fri,  9 Apr 2021 12:51:35 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 09A06610E7
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC2EC6E49D;
-	Fri,  9 Apr 2021 12:51:31 +0000 (UTC)
-X-Greylist: delayed 936 seconds by postgrey-1.36 at gabe;
- Thu, 08 Apr 2021 11:29:11 UTC
-Received: from m12-11.163.com (m12-11.163.com [220.181.12.11])
- by gabe.freedesktop.org (Postfix) with SMTP id 30EAB6EA9A
- for <nouveau@lists.freedesktop.org>; Thu,  8 Apr 2021 11:29:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=nH5Ox
- NX9QI3+WOQ+MgGkJpJsPf6+I533Yqbkktrymh8=; b=aAwlmqBHAh88elaBJTWlG
- 8R9pmJsqO/wYuLb4aaysIBVsrS/Pk2TALBUKg1qAA46qLLBHvFlQf8mkTJbEYuCo
- qAgyCvz5f2VlhdR5bz31Rrg3jlkESRN+VUwcpH7WNCJFChiq3bQU2GteL+9KH7yk
- vKptBj8KQFaxuUj8ds+04o=
-Received: from localhost.localdomain (unknown [119.137.53.45])
- by smtp7 (Coremail) with SMTP id C8CowADHtY3q5G5ggMrUWA--.3666S2;
- Thu, 08 Apr 2021 19:11:39 +0800 (CST)
-From: Carlis <llyz108@163.com>
-To: bskeggs@redhat.com,
-	airlied@linux.ie,
-	daniel@ffwll.ch
-Date: Thu,  8 Apr 2021 11:11:36 +0000
-Message-Id: <20210408111136.27691-1-llyz108@163.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 128DA6EC18;
+	Fri,  9 Apr 2021 12:51:32 +0000 (UTC)
+Received: from szxga05-in.huawei.com (szxga05-in.huawei.com [45.249.212.191])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 909C36EA10;
+ Thu,  8 Apr 2021 06:54:45 +0000 (UTC)
+Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.60])
+ by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4FGBlg3NC6zyNlN;
+ Thu,  8 Apr 2021 14:52:31 +0800 (CST)
+Received: from huawei.com (10.67.174.96) by DGGEMS410-HUB.china.huawei.com
+ (10.3.19.210) with Microsoft SMTP Server id 14.3.498.0; Thu, 8 Apr 2021
+ 14:54:32 +0800
+From: Zhang Jianhua <zhangjianhua18@huawei.com>
+To: <bskeggs@redhat.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+ <lyude@redhat.com>
+Date: Thu, 8 Apr 2021 14:54:37 +0800
+Message-ID: <20210408065437.175608-1-zhangjianhua18@huawei.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-CM-TRANSID: C8CowADHtY3q5G5ggMrUWA--.3666S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7WF13JFy8Kw1kWF1Dtr4UXFb_yoW8CFWkpF
- 4xCFW7Zr4jkw47XF1xtF1jva4avanrGFy7GF92k3s09Fs7trWDXF15ArW5tryrJr43C3yY
- yr1Dta4Y9a1av3DanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jsTmfUUUUU=
-X-Originating-IP: [119.137.53.45]
-X-CM-SenderInfo: xoo16iiqy6il2tof0z/xtbBQgtuhV++LTpN3AAAsF
+X-Originating-IP: [10.67.174.96]
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Fri, 09 Apr 2021 12:51:30 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/hwmon: convert sysfs snprintf to
- sysfs_emit
+Subject: [Nouveau] [PATCH -next] drm/nouveau/nvenc: delete redundant header
+ file priv.h
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,61 +52,35 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, Xuezhi Zhang <zhangxuezhi1@yulong.com>,
+Cc: zhangjianhua18@huawei.com, nouveau@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Xuezhi Zhang <zhangxuezhi1@yulong.com>
+The header file priv.h has been included two times in base.c,
+delete the redundant one.
 
-Fix the following coccicheck warning:
-drivers/gpu/drm//nouveau/nouveau_hwmon.c:44:8-16: 
-WARNING: use scnprintf or sprintf
-drivers/gpu/drm//nouveau/nouveau_hwmon.c:57:8-16: 
-WARNING: use scnprintf or sprintf
-drivers/gpu/drm//nouveau/nouveau_hwmon.c:90:8-16: 
-WARNING: use scnprintf or sprintf
-
-Signed-off-by: Xuezhi Zhang <zhangxuezhi1@yulong.com>
+Signed-off-by: Zhang Jianhua <zhangjianhua18@huawei.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_hwmon.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-index 1c3104d20571..c6e5ee9ece6d 100644
---- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-@@ -41,7 +41,7 @@ static ssize_t
- nouveau_hwmon_show_temp1_auto_point1_pwm(struct device *d,
- 					 struct device_attribute *a, char *buf)
- {
--	return snprintf(buf, PAGE_SIZE, "%d\n", 100);
-+	return sysfs_emit(buf, "%d\n", 100);
- }
- static SENSOR_DEVICE_ATTR(temp1_auto_point1_pwm, 0444,
- 			  nouveau_hwmon_show_temp1_auto_point1_pwm, NULL, 0);
-@@ -54,7 +54,7 @@ nouveau_hwmon_temp1_auto_point1_temp(struct device *d,
- 	struct nouveau_drm *drm = nouveau_drm(dev);
- 	struct nvkm_therm *therm = nvxx_therm(&drm->client.device);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c b/drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c
+index c39e797dc7c9..cf5dcfda7b25 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c
+@@ -21,7 +21,6 @@
+  */
+ #include "priv.h"
  
--	return snprintf(buf, PAGE_SIZE, "%d\n",
-+	return sysfs_emit(buf, "%d\n",
- 	      therm->attr_get(therm, NVKM_THERM_ATTR_THRS_FAN_BOOST) * 1000);
- }
- static ssize_t
-@@ -87,7 +87,7 @@ nouveau_hwmon_temp1_auto_point1_temp_hyst(struct device *d,
- 	struct nouveau_drm *drm = nouveau_drm(dev);
- 	struct nvkm_therm *therm = nvxx_therm(&drm->client.device);
+-#include "priv.h"
+ #include <core/firmware.h>
  
--	return snprintf(buf, PAGE_SIZE, "%d\n",
-+	return sysfs_emit(buf, "%d\n",
- 	 therm->attr_get(therm, NVKM_THERM_ATTR_THRS_FAN_BOOST_HYST) * 1000);
- }
- static ssize_t
+ static void *
 -- 
-2.25.1
+2.17.1
 
 _______________________________________________
 Nouveau mailing list
