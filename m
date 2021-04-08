@@ -1,89 +1,58 @@
-Return-Path: <SRS0=c1h+=JF=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=cxaH=JG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E43AC43460
-	for <nouveau@archiver.kernel.org>; Thu,  8 Apr 2021 18:51:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4BBF2C433B4
+	for <nouveau@archiver.kernel.org>; Fri,  9 Apr 2021 12:51:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F16B461131
-	for <nouveau@archiver.kernel.org>; Thu,  8 Apr 2021 18:51:50 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F16B461131
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id 0290E610F7
+	for <nouveau@archiver.kernel.org>; Fri,  9 Apr 2021 12:51:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0290E610F7
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=163.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F37A6E323;
-	Thu,  8 Apr 2021 18:51:49 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEB356E321
- for <nouveau@lists.freedesktop.org>; Thu,  8 Apr 2021 18:51:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1617907906;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=BD/3IJ//4IbIiQsBvvArASrfK6cu+iAAJOBJpUvbC/A=;
- b=DWxm99yvMg88z4vNMmAGSjpJTcxX4/vqK2NBFBIiwz0bPtjvLKdskHKDfAcST8qUNLvcM0
- mQM/NZG0e7BUtB9c0c27OLn6GTlaKNztKhxp8faNtibH9lEjnidHiOJ+N6o5X6/NUxRtd8
- 1Qv6nynZedB61kgDdwj7t5Ti0kf+wLI=
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-473-qabeCeS6NAqRxGYOoerOWg-1; Thu, 08 Apr 2021 14:51:44 -0400
-X-MC-Unique: qabeCeS6NAqRxGYOoerOWg-1
-Received: by mail-qv1-f72.google.com with SMTP id bx8so1715622qvb.13
- for <nouveau@lists.freedesktop.org>; Thu, 08 Apr 2021 11:51:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
- :in-reply-to:references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=BD/3IJ//4IbIiQsBvvArASrfK6cu+iAAJOBJpUvbC/A=;
- b=pgmXtEpaKhyq4CaeCA5NQN7i6OeV/3QYkdoiY3vF6ojHfoSBAW2Uj+KyBMIsvOOG9z
- j5V4ZqNqmW38IyLAbVZwkyTNiQ2iYLtT22gR6IPpqxAV+Tn5t0aZvNa0kge3On8lM1Zd
- Fert1vWFl4vaxFx7dJAmZNangTc3oPXqqgC7A6BhIYuzPLxBNypYiZFK5uQFBuR8Py+Q
- hO3o3cnby/Qz95eiOviEGfyzRs0qBZ1D5iUl7cXMmC9fgjmff/e99n3rYObvRV7XnsXc
- z4MZXUxEnuST2lBgAEMxWZQlpRfIXpwsBj5IsU+RDcyaUPReJVX3FqWQZfCL5wAAQesN
- IFqA==
-X-Gm-Message-State: AOAM533ri1daMEgwTXXQPrdUp78ieCGT4PZVvU2uPy/NLRm9AOvZZdMQ
- 9tK1+mmHMpR4D/AuxuaSzS8ggr6tCgbSYw55Np2RiuJqNfYa3QyVSSRfYc2G8e6yaCgSfBjS3St
- JX/TvFv4M8W0GsMTN7VQ8CTrpbw==
-X-Received: by 2002:a05:6214:204:: with SMTP id
- i4mr10502063qvt.47.1617907904507; 
- Thu, 08 Apr 2021 11:51:44 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzrMnVVlxnhuJ6a9rN/xNvll03hc+4P139kmw6bFat7NGytQIf28KfBPqtGSmUXky694Mxo+A==
-X-Received: by 2002:a05:6214:204:: with SMTP id
- i4mr10502051qvt.47.1617907904388; 
- Thu, 08 Apr 2021 11:51:44 -0700 (PDT)
-Received: from Whitewolf.lyude.net
- (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id y9sm235018qtf.58.2021.04.08.11.51.43
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 08 Apr 2021 11:51:43 -0700 (PDT)
-Message-ID: <893131fcec2cd4d85d840439ddc2f2899f412f1c.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>
-Date: Thu, 08 Apr 2021 14:51:43 -0400
-In-Reply-To: <87zgy9hvvv.fsf@intel.com>
-References: <20210326203807.105754-1-lyude@redhat.com>
- <87blaym8by.fsf@intel.com> <YG7fz5UmK/SaoY/U@phenom.ffwll.local>
- <87zgy9hvvv.fsf@intel.com>
-Organization: Red Hat
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC2EC6E49D;
+	Fri,  9 Apr 2021 12:51:31 +0000 (UTC)
+X-Greylist: delayed 936 seconds by postgrey-1.36 at gabe;
+ Thu, 08 Apr 2021 11:29:11 UTC
+Received: from m12-11.163.com (m12-11.163.com [220.181.12.11])
+ by gabe.freedesktop.org (Postfix) with SMTP id 30EAB6EA9A
+ for <nouveau@lists.freedesktop.org>; Thu,  8 Apr 2021 11:29:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=nH5Ox
+ NX9QI3+WOQ+MgGkJpJsPf6+I533Yqbkktrymh8=; b=aAwlmqBHAh88elaBJTWlG
+ 8R9pmJsqO/wYuLb4aaysIBVsrS/Pk2TALBUKg1qAA46qLLBHvFlQf8mkTJbEYuCo
+ qAgyCvz5f2VlhdR5bz31Rrg3jlkESRN+VUwcpH7WNCJFChiq3bQU2GteL+9KH7yk
+ vKptBj8KQFaxuUj8ds+04o=
+Received: from localhost.localdomain (unknown [119.137.53.45])
+ by smtp7 (Coremail) with SMTP id C8CowADHtY3q5G5ggMrUWA--.3666S2;
+ Thu, 08 Apr 2021 19:11:39 +0800 (CST)
+From: Carlis <llyz108@163.com>
+To: bskeggs@redhat.com,
+	airlied@linux.ie,
+	daniel@ffwll.ch
+Date: Thu,  8 Apr 2021 11:11:36 +0000
+Message-Id: <20210408111136.27691-1-llyz108@163.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Nouveau] [Intel-gfx] [PATCH v2 00/20] drm: Use new DRM printk
- funcs (like drm_dbg_*()) in DP helpers
+X-CM-TRANSID: C8CowADHtY3q5G5ggMrUWA--.3666S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7WF13JFy8Kw1kWF1Dtr4UXFb_yoW8CFWkpF
+ 4xCFW7Zr4jkw47XF1xtF1jva4avanrGFy7GF92k3s09Fs7trWDXF15ArW5tryrJr43C3yY
+ yr1Dta4Y9a1av3DanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jsTmfUUUUU=
+X-Originating-IP: [119.137.53.45]
+X-CM-SenderInfo: xoo16iiqy6il2tof0z/xtbBQgtuhV++LTpN3AAAsF
+X-Mailman-Approved-At: Fri, 09 Apr 2021 12:51:30 +0000
+Subject: [Nouveau] [PATCH] drm/nouveau/hwmon: convert sysfs snprintf to
+ sysfs_emit
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,42 +64,61 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: lyude@redhat.com
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, Xuezhi Zhang <zhangxuezhi1@yulong.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-JFYI too - there was a legitimate looking CI failure on intel with this series,
-so don't be surprised if I have to respin a patch or two (I should be able to
-get it asap as I finally just cleared most of the stuff on my plate off for a
-while)
+From: Xuezhi Zhang <zhangxuezhi1@yulong.com>
 
-On Thu, 2021-04-08 at 14:13 +0300, Jani Nikula wrote:
-> On Thu, 08 Apr 2021, Daniel Vetter <daniel@ffwll.ch> wrote:
-> > I think Dave caught up on pulls to drm-next, so after a backmerge of that
-> > to drm-misc-next I think should be all fine to apply directly, no need for
-> > topic branch.
-> 
-> Yup. We've done the backmerges to drm-intel-next and drm-intel-gt-next,
-> and are all in sync, it's only the drm-next -> drm-misc-next backmerge
-> that's still needed.
-> 
-> BR,
-> Jani.
-> 
+Fix the following coccicheck warning:
+drivers/gpu/drm//nouveau/nouveau_hwmon.c:44:8-16: 
+WARNING: use scnprintf or sprintf
+drivers/gpu/drm//nouveau/nouveau_hwmon.c:57:8-16: 
+WARNING: use scnprintf or sprintf
+drivers/gpu/drm//nouveau/nouveau_hwmon.c:90:8-16: 
+WARNING: use scnprintf or sprintf
 
+Signed-off-by: Xuezhi Zhang <zhangxuezhi1@yulong.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_hwmon.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+index 1c3104d20571..c6e5ee9ece6d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+@@ -41,7 +41,7 @@ static ssize_t
+ nouveau_hwmon_show_temp1_auto_point1_pwm(struct device *d,
+ 					 struct device_attribute *a, char *buf)
+ {
+-	return snprintf(buf, PAGE_SIZE, "%d\n", 100);
++	return sysfs_emit(buf, "%d\n", 100);
+ }
+ static SENSOR_DEVICE_ATTR(temp1_auto_point1_pwm, 0444,
+ 			  nouveau_hwmon_show_temp1_auto_point1_pwm, NULL, 0);
+@@ -54,7 +54,7 @@ nouveau_hwmon_temp1_auto_point1_temp(struct device *d,
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nvkm_therm *therm = nvxx_therm(&drm->client.device);
+ 
+-	return snprintf(buf, PAGE_SIZE, "%d\n",
++	return sysfs_emit(buf, "%d\n",
+ 	      therm->attr_get(therm, NVKM_THERM_ATTR_THRS_FAN_BOOST) * 1000);
+ }
+ static ssize_t
+@@ -87,7 +87,7 @@ nouveau_hwmon_temp1_auto_point1_temp_hyst(struct device *d,
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nvkm_therm *therm = nvxx_therm(&drm->client.device);
+ 
+-	return snprintf(buf, PAGE_SIZE, "%d\n",
++	return sysfs_emit(buf, "%d\n",
+ 	 therm->attr_get(therm, NVKM_THERM_ATTR_THRS_FAN_BOOST_HYST) * 1000);
+ }
+ static ssize_t
 -- 
-Sincerely,
-   Lyude Paul (she/her)
-   Software Engineer at Red Hat
-   
-Note: I deal with a lot of emails and have a lot of bugs on my plate. If you've
-asked me a question, are waiting for a review/merge on a patch, etc. and I
-haven't responded in a while, please feel free to send me another email to check
-on my status. I don't bite!
+2.25.1
 
 _______________________________________________
 Nouveau mailing list
