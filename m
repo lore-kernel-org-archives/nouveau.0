@@ -2,45 +2,44 @@ Return-Path: <SRS0=1s4d=JN=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.7 required=3.0 tests=BAYES_00,
+X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3979FC43460
-	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 13:32:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C0FB9C43470
+	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 13:32:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E1AC461103
-	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 13:32:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E1AC461103
+	by mail.kernel.org (Postfix) with ESMTPS id 6C256610EA
+	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 13:32:14 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6C256610EA
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75B226EA4F;
-	Fri, 16 Apr 2021 13:31:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F0956EA9A;
+	Fri, 16 Apr 2021 13:31:55 +0000 (UTC)
 Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2AC56E50C;
- Fri, 16 Apr 2021 13:31:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 878936EA86;
+ Fri, 16 Apr 2021 13:31:53 +0000 (UTC)
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 78D09AF4F;
- Fri, 16 Apr 2021 13:31:49 +0000 (UTC)
+ by mx2.suse.de (Postfix) with ESMTP id 1FEBCAF37;
+ Fri, 16 Apr 2021 13:31:52 +0000 (UTC)
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie,
  daniel@ffwll.ch, bskeggs@redhat.com, ray.huang@amd.com,
  linux-graphics-maintainer@vmware.com, sroland@vmware.com, zackr@vmware.com,
  shashank.sharma@amd.com, sam@ravnborg.org, emil.velikov@collabora.com,
  Felix.Kuehling@amd.com, nirmoy.das@amd.com
-Date: Fri, 16 Apr 2021 15:31:41 +0200
-Message-Id: <20210416133146.24825-3-tzimmermann@suse.de>
+Date: Fri, 16 Apr 2021 15:31:46 +0200
+Message-Id: <20210416133146.24825-8-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210416133146.24825-1-tzimmermann@suse.de>
 References: <20210416133146.24825-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-Subject: [Nouveau] [PATCH v3 2/7] drm/amdgpu: Implement mmap as GEM object
- function
+Subject: [Nouveau] [PATCH v3 7/7] drm/ttm: Remove ttm_bo_mmap() and friends
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,309 +53,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Moving the driver-specific mmap code into a GEM object function allows
-for using DRM helpers for various mmap callbacks.
-
-This change resolves several inconsistencies between regular mmap and
-prime-based mmap. The vm_ops field in vma is now set for all mmap'ed
-areas. Previously it way only set for regular mmap calls, prime-based
-mmap used TTM's default vm_ops. The function amdgpu_verify_access() is
-no longer being called and therefore removed by this patch.
-
-As a side effect, amdgpu_ttm_vm_ops and amdgpu_ttm_fault() are now
-implemented in amdgpu's GEM code.
-
-v3:
-	* rename mmap function to amdgpu_gem_object_mmap() (Christian)
-	* remove unnecessary checks from mmap (Christian)
-v2:
-	* rename amdgpu_ttm_vm_ops and amdgpu_ttm_fault() to
-	  amdgpu_gem_vm_ops and amdgpu_gem_fault() (Christian)
-	* the check for kfd_bo has meanwhile been removed
-
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-cleanup mmap rename gem_object_mmap
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 46 ---------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.h |  2 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c     |  4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c     | 44 ++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c     | 64 ---------------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h     |  1 -
- 6 files changed, 46 insertions(+), 115 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-index e0c4f7c7f1b9..19c5ab08d9ec 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-@@ -42,52 +42,6 @@
- #include <linux/pci-p2pdma.h>
- #include <linux/pm_runtime.h>
- 
--/**
-- * amdgpu_gem_prime_mmap - &drm_driver.gem_prime_mmap implementation
-- * @obj: GEM BO
-- * @vma: Virtual memory area
-- *
-- * Sets up a userspace mapping of the BO's memory in the given
-- * virtual memory area.
-- *
-- * Returns:
-- * 0 on success or a negative error code on failure.
-- */
--int amdgpu_gem_prime_mmap(struct drm_gem_object *obj,
--			  struct vm_area_struct *vma)
--{
--	struct amdgpu_bo *bo = gem_to_amdgpu_bo(obj);
--	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->tbo.bdev);
--	unsigned asize = amdgpu_bo_size(bo);
--	int ret;
--
--	if (!vma->vm_file)
--		return -ENODEV;
--
--	if (adev == NULL)
--		return -ENODEV;
--
--	/* Check for valid size. */
--	if (asize < vma->vm_end - vma->vm_start)
--		return -EINVAL;
--
--	if (amdgpu_ttm_tt_get_usermm(bo->tbo.ttm) ||
--	    (bo->flags & AMDGPU_GEM_CREATE_NO_CPU_ACCESS)) {
--		return -EPERM;
--	}
--	vma->vm_pgoff += amdgpu_bo_mmap_offset(bo) >> PAGE_SHIFT;
--
--	/* prime mmap does not need to check access, so allow here */
--	ret = drm_vma_node_allow(&obj->vma_node, vma->vm_file->private_data);
--	if (ret)
--		return ret;
--
--	ret = ttm_bo_mmap(vma->vm_file, vma, &adev->mman.bdev);
--	drm_vma_node_revoke(&obj->vma_node, vma->vm_file->private_data);
--
--	return ret;
--}
--
- static int
- __dma_resv_make_exclusive(struct dma_resv *obj)
- {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.h
-index 39b5b9616fd8..3e93b9b407a9 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.h
-@@ -31,8 +31,6 @@ struct drm_gem_object *amdgpu_gem_prime_import(struct drm_device *dev,
- 					    struct dma_buf *dma_buf);
- bool amdgpu_dmabuf_is_xgmi_accessible(struct amdgpu_device *adev,
- 				      struct amdgpu_bo *bo);
--int amdgpu_gem_prime_mmap(struct drm_gem_object *obj,
--			  struct vm_area_struct *vma);
- 
- extern const struct dma_buf_ops amdgpu_dmabuf_ops;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 80130c1c0c68..69d2485ec665 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -1686,7 +1686,7 @@ static const struct file_operations amdgpu_driver_kms_fops = {
- 	.flush = amdgpu_flush,
- 	.release = drm_release,
- 	.unlocked_ioctl = amdgpu_drm_ioctl,
--	.mmap = amdgpu_mmap,
-+	.mmap = drm_gem_mmap,
- 	.poll = drm_poll,
- 	.read = drm_read,
- #ifdef CONFIG_COMPAT
-@@ -1749,7 +1749,7 @@ static const struct drm_driver amdgpu_kms_driver = {
- 	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
- 	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
- 	.gem_prime_import = amdgpu_gem_prime_import,
--	.gem_prime_mmap = amdgpu_gem_prime_mmap,
-+	.gem_prime_mmap = drm_gem_prime_mmap,
- 
- 	.name = DRIVER_NAME,
- 	.desc = DRIVER_DESC,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-index 311bcdc59eda..df78a06ef0c8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-@@ -41,6 +41,36 @@
- 
- static const struct drm_gem_object_funcs amdgpu_gem_object_funcs;
- 
-+static vm_fault_t amdgpu_gem_fault(struct vm_fault *vmf)
-+{
-+	struct ttm_buffer_object *bo = vmf->vma->vm_private_data;
-+	vm_fault_t ret;
-+
-+	ret = ttm_bo_vm_reserve(bo, vmf);
-+	if (ret)
-+		return ret;
-+
-+	ret = amdgpu_bo_fault_reserve_notify(bo);
-+	if (ret)
-+		goto unlock;
-+
-+	ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
-+				       TTM_BO_VM_NUM_PREFAULT, 1);
-+	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
-+		return ret;
-+
-+unlock:
-+	dma_resv_unlock(bo->base.resv);
-+	return ret;
-+}
-+
-+static const struct vm_operations_struct amdgpu_gem_vm_ops = {
-+	.fault = amdgpu_gem_fault,
-+	.open = ttm_bo_vm_open,
-+	.close = ttm_bo_vm_close,
-+	.access = ttm_bo_vm_access
-+};
-+
- static void amdgpu_gem_object_free(struct drm_gem_object *gobj)
- {
- 	struct amdgpu_bo *robj = gem_to_amdgpu_bo(gobj);
-@@ -205,6 +235,18 @@ static void amdgpu_gem_object_close(struct drm_gem_object *obj,
- 	ttm_eu_backoff_reservation(&ticket, &list);
- }
- 
-+static int amdgpu_gem_object_mmap(struct drm_gem_object *obj, struct vm_area_struct *vma)
-+{
-+	struct amdgpu_bo *bo = gem_to_amdgpu_bo(obj);
-+
-+	if (amdgpu_ttm_tt_get_usermm(bo->tbo.ttm))
-+		return -EPERM;
-+	if (bo->flags & AMDGPU_GEM_CREATE_NO_CPU_ACCESS)
-+		return -EPERM;
-+
-+	return drm_gem_ttm_mmap(obj, vma);
-+}
-+
- static const struct drm_gem_object_funcs amdgpu_gem_object_funcs = {
- 	.free = amdgpu_gem_object_free,
- 	.open = amdgpu_gem_object_open,
-@@ -212,6 +254,8 @@ static const struct drm_gem_object_funcs amdgpu_gem_object_funcs = {
- 	.export = amdgpu_gem_prime_export,
- 	.vmap = drm_gem_ttm_vmap,
- 	.vunmap = drm_gem_ttm_vunmap,
-+	.mmap = amdgpu_gem_object_mmap,
-+	.vm_ops = &amdgpu_gem_vm_ops,
- };
- 
- /*
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index 1485f33c3cc7..d4083c19402b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -152,25 +152,6 @@ static void amdgpu_evict_flags(struct ttm_buffer_object *bo,
- 	*placement = abo->placement;
- }
- 
--/**
-- * amdgpu_verify_access - Verify access for a mmap call
-- *
-- * @bo:	The buffer object to map
-- * @filp: The file pointer from the process performing the mmap
-- *
-- * This is called by ttm_bo_mmap() to verify whether a process
-- * has the right to mmap a BO to their process space.
-- */
--static int amdgpu_verify_access(struct ttm_buffer_object *bo, struct file *filp)
--{
--	struct amdgpu_bo *abo = ttm_to_amdgpu_bo(bo);
--
--	if (amdgpu_ttm_tt_get_usermm(bo->ttm))
--		return -EPERM;
--	return drm_vma_node_verify_access(&abo->tbo.base.vma_node,
--					  filp->private_data);
--}
--
- /**
-  * amdgpu_ttm_map_buffer - Map memory into the GART windows
-  * @bo: buffer object to map
-@@ -1522,7 +1503,6 @@ static struct ttm_device_funcs amdgpu_bo_driver = {
- 	.eviction_valuable = amdgpu_ttm_bo_eviction_valuable,
- 	.evict_flags = &amdgpu_evict_flags,
- 	.move = &amdgpu_bo_move,
--	.verify_access = &amdgpu_verify_access,
- 	.delete_mem_notify = &amdgpu_bo_delete_mem_notify,
- 	.release_notify = &amdgpu_bo_release_notify,
- 	.io_mem_reserve = &amdgpu_ttm_io_mem_reserve,
-@@ -1897,50 +1877,6 @@ void amdgpu_ttm_set_buffer_funcs_status(struct amdgpu_device *adev, bool enable)
- 	adev->mman.buffer_funcs_enabled = enable;
- }
- 
--static vm_fault_t amdgpu_ttm_fault(struct vm_fault *vmf)
--{
--	struct ttm_buffer_object *bo = vmf->vma->vm_private_data;
--	vm_fault_t ret;
--
--	ret = ttm_bo_vm_reserve(bo, vmf);
--	if (ret)
--		return ret;
--
--	ret = amdgpu_bo_fault_reserve_notify(bo);
--	if (ret)
--		goto unlock;
--
--	ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
--				       TTM_BO_VM_NUM_PREFAULT, 1);
--	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
--		return ret;
--
--unlock:
--	dma_resv_unlock(bo->base.resv);
--	return ret;
--}
--
--static const struct vm_operations_struct amdgpu_ttm_vm_ops = {
--	.fault = amdgpu_ttm_fault,
--	.open = ttm_bo_vm_open,
--	.close = ttm_bo_vm_close,
--	.access = ttm_bo_vm_access
--};
--
--int amdgpu_mmap(struct file *filp, struct vm_area_struct *vma)
--{
--	struct drm_file *file_priv = filp->private_data;
--	struct amdgpu_device *adev = drm_to_adev(file_priv->minor->dev);
--	int r;
--
--	r = ttm_bo_mmap(filp, vma, &adev->mman.bdev);
--	if (unlikely(r != 0))
--		return r;
--
--	vma->vm_ops = &amdgpu_ttm_vm_ops;
--	return 0;
--}
--
- int amdgpu_copy_buffer(struct amdgpu_ring *ring, uint64_t src_offset,
- 		       uint64_t dst_offset, uint32_t byte_count,
- 		       struct dma_resv *resv,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-index dec0db8b0b13..6e51faad7371 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-@@ -146,7 +146,6 @@ int amdgpu_fill_buffer(struct amdgpu_bo *bo,
- 			struct dma_resv *resv,
- 			struct dma_fence **fence);
- 
--int amdgpu_mmap(struct file *filp, struct vm_area_struct *vma);
- int amdgpu_ttm_alloc_gart(struct ttm_buffer_object *bo);
- int amdgpu_ttm_recover_gart(struct ttm_buffer_object *tbo);
- uint64_t amdgpu_ttm_domain_start(struct amdgpu_device *adev, uint32_t type);
--- 
-2.31.1
-
-_______________________________________________
-Nouveau mailing list
-Nouveau@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
+VGhlIGZ1bmN0aW9uIHR0bV9ib19tbWFwIGlzIHVudXNlZC4gUmVtb3ZlIGl0IGFuZCBpdCdzIGhl
+bHBlcnM7IGluY2x1ZGluZwp0aGUgdmVyaWZ5X2FjY2VzcyBjYWxsYmFjayBpbiBzdHJ1Y3QgdHRt
+X2RldmljZV9mdW5jcy4KClNpZ25lZC1vZmYtYnk6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVy
+bWFubkBzdXNlLmRlPgpSZXZpZXdlZC1ieTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtv
+ZW5pZ0BhbWQuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvX3ZtLmMgfCA1MyAt
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KIGluY2x1ZGUvZHJtL3R0bS90dG1fYm9f
+YXBpLmggICAgfCAxMyAtLS0tLS0tLQogaW5jbHVkZS9kcm0vdHRtL3R0bV9kZXZpY2UuaCAgICB8
+IDE1IC0tLS0tLS0tLS0KIDMgZmlsZXMgY2hhbmdlZCwgODEgZGVsZXRpb25zKC0pCgpkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm9fdm0uYyBiL2RyaXZlcnMvZ3B1L2RybS90
+dG0vdHRtX2JvX3ZtLmMKaW5kZXggYmY0YTIxM2JjNjZjLi42Y2QzNTIzOTk5NDEgMTAwNjQ0Ci0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvX3ZtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
+L3R0bS90dG1fYm9fdm0uYwpAQCAtNTA4LDMwICs1MDgsNiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0
+IHZtX29wZXJhdGlvbnNfc3RydWN0IHR0bV9ib192bV9vcHMgPSB7CiAJLmFjY2VzcyA9IHR0bV9i
+b192bV9hY2Nlc3MsCiB9OwogCi1zdGF0aWMgc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICp0dG1f
+Ym9fdm1fbG9va3VwKHN0cnVjdCB0dG1fZGV2aWNlICpiZGV2LAotCQkJCQkJICB1bnNpZ25lZCBs
+b25nIG9mZnNldCwKLQkJCQkJCSAgdW5zaWduZWQgbG9uZyBwYWdlcykKLXsKLQlzdHJ1Y3QgZHJt
+X3ZtYV9vZmZzZXRfbm9kZSAqbm9kZTsKLQlzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QgKmJvID0g
+TlVMTDsKLQotCWRybV92bWFfb2Zmc2V0X2xvY2tfbG9va3VwKGJkZXYtPnZtYV9tYW5hZ2VyKTsK
+LQotCW5vZGUgPSBkcm1fdm1hX29mZnNldF9sb29rdXBfbG9ja2VkKGJkZXYtPnZtYV9tYW5hZ2Vy
+LCBvZmZzZXQsIHBhZ2VzKTsKLQlpZiAobGlrZWx5KG5vZGUpKSB7Ci0JCWJvID0gY29udGFpbmVy
+X29mKG5vZGUsIHN0cnVjdCB0dG1fYnVmZmVyX29iamVjdCwKLQkJCQkgIGJhc2Uudm1hX25vZGUp
+OwotCQlibyA9IHR0bV9ib19nZXRfdW5sZXNzX3plcm8oYm8pOwotCX0KLQotCWRybV92bWFfb2Zm
+c2V0X3VubG9ja19sb29rdXAoYmRldi0+dm1hX21hbmFnZXIpOwotCi0JaWYgKCFibykKLQkJcHJf
+ZXJyKCJDb3VsZCBub3QgZmluZCBidWZmZXIgb2JqZWN0IHRvIG1hcFxuIik7Ci0KLQlyZXR1cm4g
+Ym87Ci19Ci0KIHN0YXRpYyB2b2lkIHR0bV9ib19tbWFwX3ZtYV9zZXR1cChzdHJ1Y3QgdHRtX2J1
+ZmZlcl9vYmplY3QgKmJvLCBzdHJ1Y3Qgdm1fYXJlYV9zdHJ1Y3QgKnZtYSkKIHsKIAkvKgpAQCAt
+NTU5LDM1ICs1MzUsNiBAQCBzdGF0aWMgdm9pZCB0dG1fYm9fbW1hcF92bWFfc2V0dXAoc3RydWN0
+IHR0bV9idWZmZXJfb2JqZWN0ICpibywgc3RydWN0IHZtX2FyZWFfcwogCXZtYS0+dm1fZmxhZ3Mg
+fD0gVk1fSU8gfCBWTV9ET05URVhQQU5EIHwgVk1fRE9OVERVTVA7CiB9CiAKLWludCB0dG1fYm9f
+bW1hcChzdHJ1Y3QgZmlsZSAqZmlscCwgc3RydWN0IHZtX2FyZWFfc3RydWN0ICp2bWEsCi0JCXN0
+cnVjdCB0dG1fZGV2aWNlICpiZGV2KQotewotCXN0cnVjdCB0dG1fYnVmZmVyX29iamVjdCAqYm87
+Ci0JaW50IHJldDsKLQotCWlmICh1bmxpa2VseSh2bWEtPnZtX3Bnb2ZmIDwgRFJNX0ZJTEVfUEFH
+RV9PRkZTRVRfU1RBUlQpKQotCQlyZXR1cm4gLUVJTlZBTDsKLQotCWJvID0gdHRtX2JvX3ZtX2xv
+b2t1cChiZGV2LCB2bWEtPnZtX3Bnb2ZmLCB2bWFfcGFnZXModm1hKSk7Ci0JaWYgKHVubGlrZWx5
+KCFibykpCi0JCXJldHVybiAtRUlOVkFMOwotCi0JaWYgKHVubGlrZWx5KCFiby0+YmRldi0+ZnVu
+Y3MtPnZlcmlmeV9hY2Nlc3MpKSB7Ci0JCXJldCA9IC1FUEVSTTsKLQkJZ290byBvdXRfdW5yZWY7
+Ci0JfQotCXJldCA9IGJvLT5iZGV2LT5mdW5jcy0+dmVyaWZ5X2FjY2VzcyhibywgZmlscCk7Ci0J
+aWYgKHVubGlrZWx5KHJldCAhPSAwKSkKLQkJZ290byBvdXRfdW5yZWY7Ci0KLQl0dG1fYm9fbW1h
+cF92bWFfc2V0dXAoYm8sIHZtYSk7Ci0JcmV0dXJuIDA7Ci1vdXRfdW5yZWY6Ci0JdHRtX2JvX3B1
+dChibyk7Ci0JcmV0dXJuIHJldDsKLX0KLUVYUE9SVF9TWU1CT0wodHRtX2JvX21tYXApOwotCiBp
+bnQgdHRtX2JvX21tYXBfb2JqKHN0cnVjdCB2bV9hcmVhX3N0cnVjdCAqdm1hLCBzdHJ1Y3QgdHRt
+X2J1ZmZlcl9vYmplY3QgKmJvKQogewogCXR0bV9ib19nZXQoYm8pOwpkaWZmIC0tZ2l0IGEvaW5j
+bHVkZS9kcm0vdHRtL3R0bV9ib19hcGkuaCBiL2luY2x1ZGUvZHJtL3R0bS90dG1fYm9fYXBpLmgK
+aW5kZXggMjE1NWUyZTM4YWVjLi42ZTM1NjgwYWMwMWIgMTAwNjQ0Ci0tLSBhL2luY2x1ZGUvZHJt
+L3R0bS90dG1fYm9fYXBpLmgKKysrIGIvaW5jbHVkZS9kcm0vdHRtL3R0bV9ib19hcGkuaApAQCAt
+NTIyLDE5ICs1MjIsNiBAQCB2b2lkIHR0bV9ib192dW5tYXAoc3RydWN0IHR0bV9idWZmZXJfb2Jq
+ZWN0ICpibywgc3RydWN0IGRtYV9idWZfbWFwICptYXApOwogICovCiBpbnQgdHRtX2JvX21tYXBf
+b2JqKHN0cnVjdCB2bV9hcmVhX3N0cnVjdCAqdm1hLCBzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3Qg
+KmJvKTsKIAotLyoqCi0gKiB0dG1fYm9fbW1hcCAtIG1tYXAgb3V0IG9mIHRoZSB0dG0gZGV2aWNl
+IGFkZHJlc3Mgc3BhY2UuCi0gKgotICogQGZpbHA6ICAgICAgZmlscCBhcyBpbnB1dCBmcm9tIHRo
+ZSBtbWFwIG1ldGhvZC4KLSAqIEB2bWE6ICAgICAgIHZtYSBhcyBpbnB1dCBmcm9tIHRoZSBtbWFw
+IG1ldGhvZC4KLSAqIEBiZGV2OiAgICAgIFBvaW50ZXIgdG8gdGhlIHR0bV9kZXZpY2Ugd2l0aCB0
+aGUgYWRkcmVzcyBzcGFjZSBtYW5hZ2VyLgotICoKLSAqIFRoaXMgZnVuY3Rpb24gaXMgaW50ZW5k
+ZWQgdG8gYmUgY2FsbGVkIGJ5IHRoZSBkZXZpY2UgbW1hcCBtZXRob2QuCi0gKiBpZiB0aGUgZGV2
+aWNlIGFkZHJlc3Mgc3BhY2UgaXMgdG8gYmUgYmFja2VkIGJ5IHRoZSBibyBtYW5hZ2VyLgotICov
+Ci1pbnQgdHRtX2JvX21tYXAoc3RydWN0IGZpbGUgKmZpbHAsIHN0cnVjdCB2bV9hcmVhX3N0cnVj
+dCAqdm1hLAotCQlzdHJ1Y3QgdHRtX2RldmljZSAqYmRldik7Ci0KIC8qKgogICogdHRtX2JvX2lv
+CiAgKgpkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vdHRtL3R0bV9kZXZpY2UuaCBiL2luY2x1ZGUv
+ZHJtL3R0bS90dG1fZGV2aWNlLmgKaW5kZXggN2M4Zjg3YmQ1MmQzLi5jZDU5MmY4ZTk0MWIgMTAw
+NjQ0Ci0tLSBhL2luY2x1ZGUvZHJtL3R0bS90dG1fZGV2aWNlLmgKKysrIGIvaW5jbHVkZS9kcm0v
+dHRtL3R0bV9kZXZpY2UuaApAQCAtMTYxLDIxICsxNjEsNiBAQCBzdHJ1Y3QgdHRtX2RldmljZV9m
+dW5jcyB7CiAJCSAgICBzdHJ1Y3QgdHRtX3Jlc291cmNlICpuZXdfbWVtLAogCQkgICAgc3RydWN0
+IHR0bV9wbGFjZSAqaG9wKTsKIAotCS8qKgotCSAqIHN0cnVjdCB0dG1fYm9fZHJpdmVyX21lbWJl
+ciB2ZXJpZnlfYWNjZXNzCi0JICoKLQkgKiBAYm86IFBvaW50ZXIgdG8gYSBidWZmZXIgb2JqZWN0
+LgotCSAqIEBmaWxwOiBQb2ludGVyIHRvIGEgc3RydWN0IGZpbGUgdHJ5aW5nIHRvIGFjY2VzcyB0
+aGUgb2JqZWN0LgotCSAqCi0JICogQ2FsbGVkIGZyb20gdGhlIG1hcCAvIHdyaXRlIC8gcmVhZCBt
+ZXRob2RzIHRvIHZlcmlmeSB0aGF0IHRoZQotCSAqIGNhbGxlciBpcyBwZXJtaXR0ZWQgdG8gYWNj
+ZXNzIHRoZSBidWZmZXIgb2JqZWN0LgotCSAqIFRoaXMgbWVtYmVyIG1heSBiZSBzZXQgdG8gTlVM
+TCwgd2hpY2ggd2lsbCByZWZ1c2UgdGhpcyBraW5kIG9mCi0JICogYWNjZXNzIGZvciBhbGwgYnVm
+ZmVyIG9iamVjdHMuCi0JICogVGhpcyBmdW5jdGlvbiBzaG91bGQgcmV0dXJuIDAgaWYgYWNjZXNz
+IGlzIGdyYW50ZWQsIC1FUEVSTSBvdGhlcndpc2UuCi0JICovCi0JaW50ICgqdmVyaWZ5X2FjY2Vz
+cykoc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpibywKLQkJCSAgICAgc3RydWN0IGZpbGUgKmZp
+bHApOwotCiAJLyoqCiAJICogSG9vayB0byBub3RpZnkgZHJpdmVyIGFib3V0IGEgcmVzb3VyY2Ug
+ZGVsZXRlLgogCSAqLwotLSAKMi4zMS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
