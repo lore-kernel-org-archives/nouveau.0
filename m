@@ -2,71 +2,71 @@ Return-Path: <SRS0=1s4d=JN=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F941C433ED
-	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 14:37:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49CCEC433B4
+	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 14:37:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1CE68613BB
-	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 14:37:41 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1CE68613BB
+	by mail.kernel.org (Postfix) with ESMTPS id 0F1776113D
+	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 14:37:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0F1776113D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 183266EBED;
-	Fri, 16 Apr 2021 14:37:38 +0000 (UTC)
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
- [IPv6:2a00:1450:4864:20::636])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4B8C6EBD0
- for <nouveau@lists.freedesktop.org>; Fri, 16 Apr 2021 14:37:36 +0000 (UTC)
-Received: by mail-ej1-x636.google.com with SMTP id u21so42484895ejo.13
- for <nouveau@lists.freedesktop.org>; Fri, 16 Apr 2021 07:37:36 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BEF46EBFD;
+	Fri, 16 Apr 2021 14:37:39 +0000 (UTC)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
+ [IPv6:2a00:1450:4864:20::634])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 683046EBF6
+ for <nouveau@lists.freedesktop.org>; Fri, 16 Apr 2021 14:37:38 +0000 (UTC)
+Received: by mail-ej1-x634.google.com with SMTP id u17so42504688ejk.2
+ for <nouveau@lists.freedesktop.org>; Fri, 16 Apr 2021 07:37:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=K5sJeJ74F8ymxQq/7xf9FhHZmcrAt5y0yMPNHooyiic=;
- b=GNUjqZlY8Kl2oKWTYfDjRC6Bi0UwDOz5BY+3/90ITbTGw1I5bVp5jcRfIVnye3m01c
- kKgj+r7sRHsEVxsKvDb1rkMcG6VBXc7OO77OIzsm5gp6Tm5o2Ybm95bSPsNPZHfVhXm9
- cMNMakfEsGZetcMqpCCdCzyDW91IA/O39zSCluuZUY5k498jh2pjpHV1w6P/+/E05xDJ
- vEFCCgkpnKlrVRJZn78PRl0WH8z/MbKrGlQ8td805dEL6CrmR7l82UEHNh/D+wF1JAp6
- B6MQRW5C+hwPkYHtufL76OL6mw+Y0HEzW36Zhww+tOhU6Gdrdkg7YAzWeTMT9Sa6fCvO
- McHw==
+ bh=U3+jQ9deg+F+hwlthzV/g98whTMSIMZPgh43ftXDf7Y=;
+ b=EZGprGprx9G7TEQ68Auk+daq8vbCTAQMFTsyZFPKo4Phxj0vwWWnhuFEnSZXapOAKT
+ THtuKKPY7eTB5HZr+G07ksaPqGhpWv/I38h3wy3YUFsXTZHGtn5UAvCCW+rDaGQ+sPg0
+ qnsycTSyDtvv+/k5jd++8THPcSq8XE0ZqvkXHNmNQMtIyG4h0GVRs8H71GVrN92xksLj
+ WUHkYR+i66WWHaxgq4KbXH8cmw0G4Fe4k0jSH77EaRzk2Q6+Nhh/QIXUi7DHa28bkcEq
+ pmWJOdZEjvZovPLobeHwdyD1d75fBLv6QiyVolMRxqhWV7jviOV+Q90cSenbtYDqqeke
+ +iNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=K5sJeJ74F8ymxQq/7xf9FhHZmcrAt5y0yMPNHooyiic=;
- b=iDoXYBY0ApU1OWjVkXSeJVu5K9XHm7BUZkMIaNg3ntm3SlRu2bTFTwULBx+ZhGx4TB
- IzXT8FxJ2mgJEhHYxuvOEunhpUlPyf6yfti+yoPc3l5cCT4Th8KxqwnnAIu62IlG6XWP
- eu9ghM4DybWP7PwhAIuoxsC7S6zp3kd5U+FVEWRMDLtCUJiuyKSIFiDesPpuqAh24x6X
- 5YeCDBH9INbl0PyKSG88O2hQyfyiEBA7itqUtlkovIKkazkzWVhXa3tN1vlTJ2KLrHQO
- 1V5TCHr3X+DDldhdOKLAecRssu6dHQuY4bIuxcvr1BPM0q0RTcwz29HmjTBj/VBsHPw7
- E/kw==
-X-Gm-Message-State: AOAM532l6D2wBo+MpFBqQV4yy6vHbB6L84wqqLUI2yjqDDRyeQsD+vJ9
- Rh3/pGTJwbJWQEN57xUrlbjTIA==
-X-Google-Smtp-Source: ABdhPJzeAdNjaV86qp+Bo4JoUnmQHDmeRr10sFXjgLzJyl2WD/wK74u47FQmEv5jItHf1QrjTc45SA==
-X-Received: by 2002:a17:906:cb1:: with SMTP id
- k17mr8539035ejh.307.1618583855594; 
- Fri, 16 Apr 2021 07:37:35 -0700 (PDT)
+ bh=U3+jQ9deg+F+hwlthzV/g98whTMSIMZPgh43ftXDf7Y=;
+ b=OHHYonK9oZu+4HxB77ROInnqzmx4If9QkB7ozvp54ScroRPZ8Kg3MOvWFz9CA/xE6y
+ dwMVndHJB7Z/43wiwgjC2zmfsKop7uiBZ7UIsmbnpHzTiBokQ6sgOCld4ZK0gJMHsjGa
+ j7FC3maxWgRz/zBnBfiQYQuzZ+Sa1ZlouQgGLFllvn+km1IExMMF8SoP8B/d6Ey7yuMI
+ 95hJG7bBvzAl0PrF7YSzA5GziyT6vi2Jq87EoGkbikMPMy2VXMIuiJ2hrMt8bgob7tBc
+ 7qERhGUKfNz7Qx0I/N+UnZwtXXFzSrN5ZxQ2idLK8wgQLnKhN3++oxvLuJGu5A8w4XR8
+ XcvA==
+X-Gm-Message-State: AOAM531Ep8nIztiazh4krNNZMeBqtKHCgKy8IM6SCa7HGYfI220T7OIv
+ FDFkAXnvRuiCLqMs4dSxgcaNbg==
+X-Google-Smtp-Source: ABdhPJzks9fZldZx/wSb0VN/VG2NSj3lApLtnjqtRex+X74agUe6ql5EYvMhZPXct8zUnQC4X96DPw==
+X-Received: by 2002:a17:907:760a:: with SMTP id
+ jx10mr8921163ejc.126.1618583857134; 
+ Fri, 16 Apr 2021 07:37:37 -0700 (PDT)
 Received: from dell.default ([91.110.221.215])
- by smtp.gmail.com with ESMTPSA id j10sm1326523ejk.93.2021.04.16.07.37.34
+ by smtp.gmail.com with ESMTPSA id j10sm1326523ejk.93.2021.04.16.07.37.35
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 16 Apr 2021 07:37:35 -0700 (PDT)
+ Fri, 16 Apr 2021 07:37:36 -0700 (PDT)
 From: Lee Jones <lee.jones@linaro.org>
 To: lee.jones@linaro.org
-Date: Fri, 16 Apr 2021 15:36:50 +0100
-Message-Id: <20210416143725.2769053-6-lee.jones@linaro.org>
+Date: Fri, 16 Apr 2021 15:36:51 +0100
+Message-Id: <20210416143725.2769053-7-lee.jones@linaro.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210416143725.2769053-1-lee.jones@linaro.org>
 References: <20210416143725.2769053-1-lee.jones@linaro.org>
 MIME-Version: 1.0
-Subject: [Nouveau] [PATCH 05/40] drm/nouveau/nvkm/subdev/volt/gk20a: Demote
- non-conformant kernel-doc headers
+Subject: [Nouveau] [PATCH 06/40] drm/nouveau/nvkm/engine/gr/gf100: Demote
+ non-conformant kernel-doc header
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,14 +88,7 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 Fixes the following W=1 kernel build warning(s):
 
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:53: warning: Function parameter or member 'speedo' not described in 'gk20a_volt_get_cvb_voltage'
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:53: warning: Function parameter or member 's_scale' not described in 'gk20a_volt_get_cvb_voltage'
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:53: warning: Function parameter or member 'coef' not described in 'gk20a_volt_get_cvb_voltage'
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:69: warning: Function parameter or member 'speedo' not described in 'gk20a_volt_get_cvb_t_voltage'
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:69: warning: Function parameter or member 'temp' not described in 'gk20a_volt_get_cvb_t_voltage'
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:69: warning: Function parameter or member 's_scale' not described in 'gk20a_volt_get_cvb_t_voltage'
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:69: warning: Function parameter or member 't_scale' not described in 'gk20a_volt_get_cvb_t_voltage'
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:69: warning: Function parameter or member 'coef' not described in 'gk20a_volt_get_cvb_t_voltage'
+ drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c:992: warning: Function parameter or member 'gr' not described in 'gf100_gr_wait_idle'
 
 Cc: Ben Skeggs <bskeggs@redhat.com>
 Cc: David Airlie <airlied@linux.ie>
@@ -104,31 +97,22 @@ Cc: dri-devel@lists.freedesktop.org
 Cc: nouveau@lists.freedesktop.org
 Signed-off-by: Lee Jones <lee.jones@linaro.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c b/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c
-index 8c2faa9645111..ccac88da88648 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c
-@@ -45,7 +45,7 @@ static const struct cvb_coef gk20a_cvb_coef[] = {
- 	/* 852 */ { 1608418, -21643, -269,     0,    763,  -48},
- };
- 
--/**
-+/*
-  * cvb_mv = ((c2 * speedo / s_scale + c1) * speedo / s_scale + c0)
-  */
- static inline int
-@@ -58,7 +58,7 @@ gk20a_volt_get_cvb_voltage(int speedo, int s_scale, const struct cvb_coef *coef)
- 	return mv;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
+index 397ff4fe9df89..69e6008f99196 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
+@@ -982,7 +982,7 @@ gf100_gr_zbc_init(struct gf100_gr *gr)
+ 	}
  }
  
 -/**
 +/*
-  * cvb_t_mv =
-  * ((c2 * speedo / s_scale + c1) * speedo / s_scale + c0) +
-  * ((c3 * speedo / s_scale + c4 + c5 * T / t_scale) * T / t_scale)
+  * Wait until GR goes idle. GR is considered idle if it is disabled by the
+  * MC (0x200) register, or GR is not busy and a context switch is not in
+  * progress.
 -- 
 2.27.0
 
