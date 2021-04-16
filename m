@@ -7,66 +7,66 @@ X-Spam-Status: No, score=-16.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D7DB7C433ED
-	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 14:38:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5DA9CC433B4
+	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 14:38:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 985EB61166
-	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 14:38:09 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 985EB61166
+	by mail.kernel.org (Postfix) with ESMTPS id EAA9B6115B
+	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 14:38:20 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EAA9B6115B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40C116EC0E;
-	Fri, 16 Apr 2021 14:37:51 +0000 (UTC)
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
- [IPv6:2a00:1450:4864:20::52b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EC526EC0E
- for <nouveau@lists.freedesktop.org>; Fri, 16 Apr 2021 14:37:48 +0000 (UTC)
-Received: by mail-ed1-x52b.google.com with SMTP id h10so32525578edt.13
- for <nouveau@lists.freedesktop.org>; Fri, 16 Apr 2021 07:37:48 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60B326EC18;
+	Fri, 16 Apr 2021 14:37:53 +0000 (UTC)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com
+ [IPv6:2a00:1450:4864:20::535])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F5926EC04
+ for <nouveau@lists.freedesktop.org>; Fri, 16 Apr 2021 14:37:46 +0000 (UTC)
+Received: by mail-ed1-x535.google.com with SMTP id h10so32525414edt.13
+ for <nouveau@lists.freedesktop.org>; Fri, 16 Apr 2021 07:37:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=BenSWVQP2zN1koiPW0t4kws5hTFRiEoau/BE1y9GfNM=;
- b=HIAesytEg5S3sduMFPZ6ZtYIe1kNf+o5CbxfxLRVidE4pbMb2kNGB64UxIGQU2qRyM
- enc++rAblmvxbBCHBLncASVRGti1rSEsilx9FwhuOehh6gVuXXsI6Re/bG3gJuv+y+in
- CSCstZfPkCUC7FIEyTX+0I7CB1NSsmmH1fDey0abB0EpwuZKW6ueLNv/XdiZ2V2UEJn4
- NQlDG1UkwPm+gpcJ6bieuV8UmL8z8ZF5GAWLN11J0ywRM/zGDAJQ0Cf9a8fI/BrQfWR+
- FtPDM926uNLX5X90uAItZowa8ttUBbcgMOz/r7cf9oZZHYVBD/Bl8g0a8NvPX7M/jDkE
- Lu8g==
+ bh=QN4aBNwxKOCABxwfpyuG0Xk/7oUm3WT2PgkGnXFzadY=;
+ b=RwSZt871KIA+ZvsKOJpIutalCd3bcubnhe5yJ8ZZvr1njX2RG+VN1gGQd8B37zPJu/
+ 9xA9SobU/iCgxon/a79k928X3sbW/Xlu5UGL+KSDQSMWyyoR1EUGtMzfiGBEtSkoD/1w
+ Yo0mDcvabfy77pd1QqB2qJ5Rzl8bv7Zums/J7av8dbzQpx+EpvLFCcpOa/wletkE0Kie
+ oBgD09ElxbYvm/sK6ZwyTKhnXlWhwQZ+NuMTqJH6HpdEuGbMbz3uW47dPpvKl6eRimEL
+ +PSoJBKs8IEUisnQOl+YPDBubofRWi0JVa2FAJ5reYSbOIBuEvIhhtHgC4D5T696N9FW
+ O0Dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=BenSWVQP2zN1koiPW0t4kws5hTFRiEoau/BE1y9GfNM=;
- b=txIlNdK5pUggM8UCoK+/qBRC4MFjqJ1p1G0EcKaw7T0WfkPwLMhmwqaofe3yeP5wkP
- oY+tPZHTiQFnbF5VIWqdAQBnoy+zsJpaBc8LTvm15mE6LAvvPI13mxQFizPzPcnSB7F9
- gVOhLmboAU0eNqxcdA8LaBeyUw50GFeSJ8lHRIZgHE79ufRvbDCv5bjZe8q7yqI+QSNV
- 3bOBTd6mk/HxktxhjlAHOXa1RbFuCcLCM8uUj4M3EbE1OOQ/y9H9Ae/KDyNrCUh/jdGp
- m3d5fUeTE4EN13P+HbLxi8yjTQ6jLtpeqFeNS22K3ZsQ8l2L5HWcuN7JMBDgUIDRNJ6Z
- 2ADw==
-X-Gm-Message-State: AOAM531+lR4MjJTK/td4zy8sGHQxdTXqGNq/cZV/KW31nl6clGZ0p7qp
- FESeTiWOGk3HnEkEQhdk92JORg==
-X-Google-Smtp-Source: ABdhPJy03x/bQOosuLTJJIEEGcLYhuxCxgQFnP3tHnQy4iOpxU3Fu9WUEZt8yiBzKt28dhZZF24//Q==
-X-Received: by 2002:a05:6402:518b:: with SMTP id
- q11mr10396198edd.151.1618583867088; 
- Fri, 16 Apr 2021 07:37:47 -0700 (PDT)
+ bh=QN4aBNwxKOCABxwfpyuG0Xk/7oUm3WT2PgkGnXFzadY=;
+ b=AMj7v/ySVwSalyOlahTF+a6krqy1v0nM23pN0G/bqsDv3g3jQQlNAUFwl9UqDHWKUK
+ kSzB4K3fU/i0Beq3n3sdG3+rMzriOwUMfzFpp0sW3IzP/LVwO3ZJ0gz3wwUw6B9eGgIL
+ N8fCZdndfuty5QtOM2TpYOmioFCiYLvYQTgkk74Qwoe/x0r1/5+EtSu2Z6mRUJSIogjW
+ WiGdjTmQafVvW+CcswJCFUeVsZSK/VveOkB4l0MgMwOQLKoBmND9SNgttL6SiGVmkPP1
+ Tb2yNIkm+wpkmQrMewxXWNwUtBXZyctb+j6UqpxkIxdJJwj7xjWHg2D5EOTrRsXgTwZF
+ WsPQ==
+X-Gm-Message-State: AOAM532WOD1NuSPMgBPbB3IJ24CF3jJ+fYJJvK4GkfX6Kqcq7VjYGyW5
+ ThDoKB7Y/niPUJErDWQtmfMifA==
+X-Google-Smtp-Source: ABdhPJw0G9wVgPhyke4No6DirCQEXf+UVha822Lo3qpRPrJK540wDzZh2MuxAjhp/0+TJ35klHf7Tg==
+X-Received: by 2002:a05:6402:31a9:: with SMTP id
+ dj9mr10380014edb.343.1618583865142; 
+ Fri, 16 Apr 2021 07:37:45 -0700 (PDT)
 Received: from dell.default ([91.110.221.215])
- by smtp.gmail.com with ESMTPSA id j10sm1326523ejk.93.2021.04.16.07.37.46
+ by smtp.gmail.com with ESMTPSA id j10sm1326523ejk.93.2021.04.16.07.37.44
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 16 Apr 2021 07:37:46 -0700 (PDT)
+ Fri, 16 Apr 2021 07:37:44 -0700 (PDT)
 From: Lee Jones <lee.jones@linaro.org>
 To: lee.jones@linaro.org
-Date: Fri, 16 Apr 2021 15:37:01 +0100
-Message-Id: <20210416143725.2769053-17-lee.jones@linaro.org>
+Date: Fri, 16 Apr 2021 15:36:59 +0100
+Message-Id: <20210416143725.2769053-15-lee.jones@linaro.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210416143725.2769053-1-lee.jones@linaro.org>
 References: <20210416143725.2769053-1-lee.jones@linaro.org>
 MIME-Version: 1.0
-Subject: [Nouveau] [PATCH 16/40] drm/nouveau/nouveau_ioc32: Demote
- kernel-doc abuse to standard comment block
+Subject: [Nouveau] [PATCH 14/40] drm/nouveau/nouveau_ioc32: File headers are
+ not good candidates for kernel-doc
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,9 +88,7 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 Fixes the following W=1 kernel build warning(s):
 
- drivers/gpu/drm/nouveau/nouveau_ioc32.c:52: warning: Function parameter or member 'filp' not described in 'nouveau_compat_ioctl'
- drivers/gpu/drm/nouveau/nouveau_ioc32.c:52: warning: Function parameter or member 'cmd' not described in 'nouveau_compat_ioctl'
- drivers/gpu/drm/nouveau/nouveau_ioc32.c:52: warning: Function parameter or member 'arg' not described in 'nouveau_compat_ioctl'
+ drivers/gpu/drm/nouveau/nouveau_ioc32.c:2: warning: Cannot understand  * file mga_ioc32.c
 
 Cc: Ben Skeggs <bskeggs@redhat.com>
 Cc: David Airlie <airlied@linux.ie>
@@ -103,18 +101,15 @@ Signed-off-by: Lee Jones <lee.jones@linaro.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_ioc32.c b/drivers/gpu/drm/nouveau/nouveau_ioc32.c
-index 8ddf9b2325a42..2af3615c5205c 100644
+index adf01ca9e035d..8ddf9b2325a42 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_ioc32.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_ioc32.c
-@@ -38,7 +38,7 @@
- 
- #include "nouveau_ioctl.h"
- 
+@@ -1,4 +1,4 @@
 -/**
 +/*
-  * Called whenever a 32-bit process running under a 64-bit kernel
-  * performs an ioctl on /dev/dri/card<n>.
+  * \file mga_ioc32.c
   *
+  * 32-bit ioctl compatibility routines for the MGA DRM.
 -- 
 2.27.0
 
