@@ -2,44 +2,82 @@ Return-Path: <SRS0=1s4d=JN=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.7 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B29FC43611
-	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 13:32:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E679CC43461
+	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 13:44:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3AC94610EA
-	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 13:32:18 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3AC94610EA
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
+	by mail.kernel.org (Postfix) with ESMTPS id 8DBCE611C2
+	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 13:44:29 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8DBCE611C2
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A24E96EB0A;
-	Fri, 16 Apr 2021 13:31:56 +0000 (UTC)
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BE966EA75;
- Fri, 16 Apr 2021 13:31:53 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 91C97B12E;
- Fri, 16 Apr 2021 13:31:51 +0000 (UTC)
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie,
- daniel@ffwll.ch, bskeggs@redhat.com, ray.huang@amd.com,
- linux-graphics-maintainer@vmware.com, sroland@vmware.com, zackr@vmware.com,
- shashank.sharma@amd.com, sam@ravnborg.org, emil.velikov@collabora.com,
- Felix.Kuehling@amd.com, nirmoy.das@amd.com
-Date: Fri, 16 Apr 2021 15:31:45 +0200
-Message-Id: <20210416133146.24825-7-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210416133146.24825-1-tzimmermann@suse.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24DB16EA56;
+	Fri, 16 Apr 2021 13:44:26 +0000 (UTC)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
+ [IPv6:2a00:1450:4864:20::634])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1AA46E0C9;
+ Fri, 16 Apr 2021 13:44:24 +0000 (UTC)
+Received: by mail-ej1-x634.google.com with SMTP id v6so40926555ejo.6;
+ Fri, 16 Apr 2021 06:44:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=cxwopNbqWhcLqoI9TeymrbLhHEY5Eid242g6tP2tLfw=;
+ b=cUKaTYkmekRkYZVbVpxgBb7wR+jYs5nwq+2F+uSgNx20TGYuCbsp5OWa+DH90dcnJZ
+ kDtPxYn0QxdnJxwHdZzxKE7902A7uD9eWSStyezQrzldb6Fz7CPeUxoGOMQi92QlnF67
+ CfK1koGOg3NZGR5kulmzRsKq+ICsH+ZIcgl7TBRCI9NZv226jaFHIgjGhgbaGd7vm1R0
+ nZuE3QQRp5jR59dKJMkh9Zk67QK/aIly6u++DOEDM4LD2ypAuy4IONeBbE/tubj4hTb3
+ 5vfVgsY7fp6gahmLET9bfvHfaZxTnhw8bCmH8eSA15G2v2rINE9jmqCNB3mpRL6FbUOv
+ Ld9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=cxwopNbqWhcLqoI9TeymrbLhHEY5Eid242g6tP2tLfw=;
+ b=Jy6AkVAeM9SoGycxplRV451g3a2F97dUr5oQqnESE0Dwkev6KidCmJdLi8/y4aQPzM
+ BNg8N3D/e6Fi7PoFMrKLA75usSSxzxhNFF1vqQrScLn/XhbAItX49IOzdufJ0PJzv6O1
+ +sWkVVZlbQxzrdMGaCIE/h0OF9prZmPWRrnC8csK0GAeHnsacrTRJSC6z+HAR9MpLQJN
+ rSfcsSpInFfvSjiXNd8ElVLTqFm4+hZAiFXeZwP6pzFyVwyNH98uAYSkcvLiWSxFxGlI
+ 4c1hdFFfDKn9S0QPYJo9neyLRnUNtqAkylIhfuAM0sZgYVFbd/dfDpBtdRfrfQ1WCX/W
+ cdKw==
+X-Gm-Message-State: AOAM531PnYumJrOX7KqT7Usp3vYunYNvqUvWqoDA9DpMapiQwyJsmash
+ dGNp2LxCtMJWmpFVjRaJ9lYv6JxElhk=
+X-Google-Smtp-Source: ABdhPJx3cJ+HW/sGkuANOsPpGkwMMVlzjAsUdjmMI0D5Gg3af+qeoe8m+GcBqsOSzOF6Meoo8YHzZQ==
+X-Received: by 2002:a17:907:264f:: with SMTP id
+ ar15mr8581989ejc.484.1618580663452; 
+ Fri, 16 Apr 2021 06:44:23 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:6a8a:26d6:7403:5ada?
+ ([2a02:908:1252:fb60:6a8a:26d6:7403:5ada])
+ by smtp.gmail.com with ESMTPSA id y26sm4298744ejj.98.2021.04.16.06.44.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 16 Apr 2021 06:44:23 -0700 (PDT)
+To: Thomas Zimmermann <tzimmermann@suse.de>, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch,
+ bskeggs@redhat.com, ray.huang@amd.com, linux-graphics-maintainer@vmware.com,
+ sroland@vmware.com, zackr@vmware.com, shashank.sharma@amd.com,
+ sam@ravnborg.org, emil.velikov@collabora.com, Felix.Kuehling@amd.com,
+ nirmoy.das@amd.com
 References: <20210416133146.24825-1-tzimmermann@suse.de>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <34aea3a4-9c34-f514-139c-f6d458a4fa3b@gmail.com>
+Date: Fri, 16 Apr 2021 15:44:21 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Subject: [Nouveau] [PATCH v3 6/7] drm/vmwgfx: Inline vmw_verify_access()
+In-Reply-To: <20210416133146.24825-1-tzimmermann@suse.de>
+Content-Language: en-US
+Subject: Re: [Nouveau] [PATCH v3 0/7] drm: Clean up mmap for TTM-based GEM
+ drivers
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,79 +89,67 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Vmwgfx is the only user of the TTM's verify_access callback. Inline
-the call and avoid the indirection through the function pointer.
-
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Zack Rusin <zackr@vmware.com>
----
- drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c | 9 ---------
- drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c   | 7 ++-----
- 2 files changed, 2 insertions(+), 14 deletions(-)
-
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
-index 2dc031fe4a90..a079734f9d68 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
-@@ -658,14 +658,6 @@ static void vmw_evict_flags(struct ttm_buffer_object *bo,
- 	*placement = vmw_sys_placement;
- }
- 
--static int vmw_verify_access(struct ttm_buffer_object *bo, struct file *filp)
--{
--	struct ttm_object_file *tfile =
--		vmw_fpriv((struct drm_file *)filp->private_data)->tfile;
--
--	return vmw_user_bo_verify_access(bo, tfile);
--}
--
- static int vmw_ttm_io_mem_reserve(struct ttm_device *bdev, struct ttm_resource *mem)
- {
- 	struct vmw_private *dev_priv = container_of(bdev, struct vmw_private, bdev);
-@@ -768,7 +760,6 @@ struct ttm_device_funcs vmw_bo_driver = {
- 	.eviction_valuable = ttm_bo_eviction_valuable,
- 	.evict_flags = vmw_evict_flags,
- 	.move = vmw_move,
--	.verify_access = vmw_verify_access,
- 	.swap_notify = vmw_swap_notify,
- 	.io_mem_reserve = &vmw_ttm_io_mem_reserve,
- };
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c
-index c8b6543b4e39..e6b1f98ec99f 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c
-@@ -67,6 +67,7 @@ int vmw_mmap(struct file *filp, struct vm_area_struct *vma)
- 	};
- 	struct drm_file *file_priv = filp->private_data;
- 	struct vmw_private *dev_priv = vmw_priv(file_priv->minor->dev);
-+	struct ttm_object_file *tfile = vmw_fpriv(file_priv)->tfile;
- 	struct ttm_device *bdev = &dev_priv->bdev;
- 	struct ttm_buffer_object *bo;
- 	int ret;
-@@ -78,11 +79,7 @@ int vmw_mmap(struct file *filp, struct vm_area_struct *vma)
- 	if (unlikely(!bo))
- 		return -EINVAL;
- 
--	if (unlikely(!bo->bdev->funcs->verify_access)) {
--		ret = -EPERM;
--		goto out_unref;
--	}
--	ret = bo->bdev->funcs->verify_access(bo, filp);
-+	ret = vmw_user_bo_verify_access(bo, tfile);
- 	if (unlikely(ret != 0))
- 		goto out_unref;
- 
--- 
-2.31.1
-
-_______________________________________________
-Nouveau mailing list
-Nouveau@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
+UGF0Y2hlcyAjMS0jNCBhcmUgUmV2aWV3ZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlh
+bi5rb2VuaWdAYW1kLmNvbT4KCk9uZSBtb3JlIGNvbW1lbnQgb24gdGhlIHZtdyBwYXRjaGVzLgoK
+UmVnYXJkcywKQ2hyaXN0aWFuLgoKQW0gMTYuMDQuMjEgdW0gMTU6MzEgc2NocmllYiBUaG9tYXMg
+WmltbWVybWFubjoKPiBJbXBsZW1lbnQgbW1hcCB2aWEgc3RydWN0IGRybV9nZW1fb2JqZWN0X2Z1
+bmN0aW9ucy5tbWFwIGluIGFtZGdwdSwKPiByYWRlb24gYW5kIG5vdXZlYXUuIFRoaXMgYWxsb3dz
+IGZvciB1c2luZyBjb21tb24gRFJNIGhlbHBlcnMgZm9yCj4gdGhlIG1tYXAtcmVsYXRlZCBjYWxs
+YmFja3MgaW4gc3RydWN0IGZpbGVfb3BlcmF0aW9ucyBhbmQgc3RydWN0Cj4gZHJtX2RyaXZlci4g
+VGhlIGRyaXZlcnMgaGF2ZSB0aGVpciBvd24gdm1fb3BzLCB3aGljaCBhcmUgbm93IHNldAo+IGF1
+dG9tYXRpY2FsbHkgYnkgdGhlIERSTSBjb3JlIGZ1bmN0aW9ucy4gVGhlIGNvZGUgaW4gZWFjaCBk
+cml2ZXIncwo+IHZlcmlmeV9hY2Nlc3MgYmVjb21lcyBwYXJ0IG9mIHRoZSBkcml2ZXIncyBuZXcg
+bW1hcCBpbXBsZW1lbnRhdGlvbi4KPgo+IFdpdGggdGhlIEdFTSBkcml2ZXJzIGNvbnZlcnRlZCwg
+dm13Z2Z4IGlzIHRoZSBvbmx5IHVzZXIgb2YKPiB0dG1fYm9fbW1hcCgpIGFuZCByZWxhdGVkIGlu
+ZnJhc3RydWN0dXJlLiBTbyBtb3ZlIGV2ZXJ5dGhpbmcgaW50bwo+IHZtd2dmeCBhbmQgZGVsZXRl
+IHRoZSByc3AgY29kZSBmcm9tIFRUTS4KPgo+IFRoaXMgdG91Y2hlcyBzZXZlcmFsIGRyaXZlcnMu
+IFByZWZlcmFibHkgZXZlcnl0aGluZyB3b3VsZCBiZSBtZXJnZWQKPiBhdCBvbmNlIHZpYSBkcm0t
+bWlzYy1uZXh0Lgo+Cj4gdjM6Cj4gCSogdGlkeSB1cCB0aGUgbmV3IG1tYXAgZnVuY3Rpb25zIGlu
+IGFtZGdwdSBhbmQgcmFkZW9uIChDaHJpc3RpYW4pCj4gdjI6Cj4gCSogcmVtb3ZhbCBvZiBhbWRn
+cHUgZmJkZXYgbW1hcCBhbHJlYWR5IG1lcmdlZCAoQ2hyaXN0aWFuKQo+IAkqIHJlYmFzZSBvbiB0
+b3Agb2YgYW1kZ3B1IGZpeGVzIFsxXSAoRmVsaXgpCj4gCSogcmVwbGFjZSBwcl9lcnIoKSB3aXRo
+IGRybV9lcnIoKSBpbiB2bXdnZnggcGF0Y2ggKFphY2spCj4gCSogc2V2ZXJhbCB0eXBvcwo+Cj4g
+WzFdIGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvODg4MjIvCj4KPiBU
+aG9tYXMgWmltbWVybWFubiAoNyk6Cj4gICAgZHJtL3R0bTogRG9uJ3Qgb3ZlcnJpZGUgdm1fb3Bz
+IGNhbGxiYWNrcywgaWYgc2V0Cj4gICAgZHJtL2FtZGdwdTogSW1wbGVtZW50IG1tYXAgYXMgR0VN
+IG9iamVjdCBmdW5jdGlvbgo+ICAgIGRybS9yYWRlb246IEltcGxlbWVudCBtbWFwIGFzIEdFTSBv
+YmplY3QgZnVuY3Rpb24KPiAgICBkcm0vbm91dmVhdTogSW1wbGVtZW50IG1tYXAgYXMgR0VNIG9i
+amVjdCBmdW5jdGlvbgo+ICAgIGRybS92bXdnZng6IElubGluZSB0dG1fYm9fbW1hcCgpIGludG8g
+dm13Z2Z4IGRyaXZlcgo+ICAgIGRybS92bXdnZng6IElubGluZSB2bXdfdmVyaWZ5X2FjY2Vzcygp
+Cj4gICAgZHJtL3R0bTogUmVtb3ZlIHR0bV9ib19tbWFwKCkgYW5kIGZyaWVuZHMKPgo+ICAgZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RtYV9idWYuYyB8IDQ2IC0tLS0tLS0tLS0t
+LS0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RtYV9idWYuaCB8ICAy
+IC0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kcnYuYyAgICAgfCAgNCAr
+LQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2dlbS5jICAgICB8IDQ0ICsr
+KysrKysrKysrKysrCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdHRtLmMg
+ICAgIHwgNjQgLS0tLS0tLS0tLS0tLS0tLS0tLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
+Z3B1L2FtZGdwdV90dG0uaCAgICAgfCAgMSAtCj4gICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2JvLmMgICAgICAgIHwgMTAgLS0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9kcm0uYyAgICAgICB8ICAzICstCj4gICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2dlbS5jICAgICAgIHwgMzYgKysrKysrKysrKysrCj4gICBkcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X3R0bS5jICAgICAgIHwgNDkgLS0tLS0tLS0tLS0tLS0tLQo+ICAgZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV90dG0uaCAgICAgICB8ICAxIC0KPiAgIGRyaXZl
+cnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2Rydi5jICAgICAgICAgfCAgMyArLQo+ICAgZHJpdmVy
+cy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZ2VtLmMgICAgICAgICB8IDQ5ICsrKysrKysrKysrKysr
+KysKPiAgIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX3R0bS5jICAgICAgICAgfCA2NSAt
+LS0tLS0tLS0tLS0tLS0tLS0tLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX3R0
+bS5oICAgICAgICAgfCAgMSAtCj4gICBkcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9ib192bS5jICAg
+ICAgICAgICAgIHwgNjAgKystLS0tLS0tLS0tLS0tLS0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL3Zt
+d2dmeC92bXdnZnhfdHRtX2J1ZmZlci5jICB8ICA5IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL3Zt
+d2dmeC92bXdnZnhfdHRtX2dsdWUuYyAgICB8IDUzICsrKysrKysrKysrKysrKystCj4gICBpbmNs
+dWRlL2RybS90dG0vdHRtX2JvX2FwaS5oICAgICAgICAgICAgICAgIHwgMTMgLS0tLS0KPiAgIGlu
+Y2x1ZGUvZHJtL3R0bS90dG1fZGV2aWNlLmggICAgICAgICAgICAgICAgfCAxNSAtLS0tLQo+ICAg
+MjAgZmlsZXMgY2hhbmdlZCwgMTkxIGluc2VydGlvbnMoKyksIDMzNyBkZWxldGlvbnMoLSkKPgo+
+IC0tCj4gMi4zMS4xCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwo+IGFtZC1nZnggbWFpbGluZyBsaXN0Cj4gYW1kLWdmeEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2Ft
+ZC1nZngKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
+dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
