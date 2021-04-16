@@ -2,49 +2,71 @@ Return-Path: <SRS0=1s4d=JN=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.2 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D736BC433B4
-	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 14:00:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B13ACC43461
+	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 14:37:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 95B246117A
-	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 14:00:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 95B246117A
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
+	by mail.kernel.org (Postfix) with ESMTPS id 5E71F610FC
+	for <nouveau@archiver.kernel.org>; Fri, 16 Apr 2021 14:37:35 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5E71F610FC
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD14C6EABA;
-	Fri, 16 Apr 2021 14:00:42 +0000 (UTC)
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3E616EA4F;
- Fri, 16 Apr 2021 14:00:40 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 34B41B12D;
- Fri, 16 Apr 2021 14:00:39 +0000 (UTC)
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie,
- daniel@ffwll.ch, bskeggs@redhat.com, ray.huang@amd.com,
- linux-graphics-maintainer@vmware.com, sroland@vmware.com, zackr@vmware.com,
- shashank.sharma@amd.com, sam@ravnborg.org, emil.velikov@collabora.com,
- Felix.Kuehling@amd.com, nirmoy.das@amd.com
-References: <20210416133146.24825-1-tzimmermann@suse.de>
- <20210416133146.24825-6-tzimmermann@suse.de>
- <b7008944-fbe5-bd59-d2a9-ff62bea38237@gmail.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <3f0d0a8b-fa40-a4c6-fb0a-991fc6729806@suse.de>
-Date: Fri, 16 Apr 2021 16:00:37 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8C246EBC4;
+	Fri, 16 Apr 2021 14:37:34 +0000 (UTC)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
+ [IPv6:2a00:1450:4864:20::634])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B41F56EBA8
+ for <nouveau@lists.freedesktop.org>; Fri, 16 Apr 2021 14:37:33 +0000 (UTC)
+Received: by mail-ej1-x634.google.com with SMTP id u17so42504306ejk.2
+ for <nouveau@lists.freedesktop.org>; Fri, 16 Apr 2021 07:37:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=1EV1/WI0XFtiI+21vP83s/uEYxGv7mm0ay0nKpA5C64=;
+ b=rAeQAepkPGd8RRBrjx7A0S/HNVWkMJN3LZ/HO3Uq44xiLqTZo99xBiIHSI8h8smrSk
+ D3mN1W8ok0u9i/hZqpr9qPfK+TWzr+JKdNXL11/7hckcjzWm2CD0pF2PkHCIuMuVwHZl
+ ry3u1F55TjgPmXuMC9/hAuIhzbRcI8iIBBP8OXP2o69Jd8OLahC9JXoKetjacP4mVMz1
+ qKKosfQYMv2DmgONKYJuqQcIyQbG8jg5gsLFkyG6nF9W68YlSe1cSyyZKQBYGf/ecePU
+ RO/CIZBwdMAwcBcO1pvVKhUKVHGHAwO4ilcjB0Cz56Sp2Plru6Xux8BWWlwHvlI/y3/s
+ WuJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=1EV1/WI0XFtiI+21vP83s/uEYxGv7mm0ay0nKpA5C64=;
+ b=at34K/le1iqU04fHbb51rWTD4N0OriNl+OPDC7dlcYhqkWTXGeIPydT2OhM8z6R8eP
+ VvDu+Zit5QSoQYuauFL1IrW0LdqFInyToNOL8QmvErkL0HWGC+Oxofm6mHTdk/dmrOvI
+ 3fk8p96xMjPCeGVPJx/QC/AMPhi8ndpvWxpcvmgCPxw/MrAg70wVL5UPyeVY4Tmt4Uqn
+ uxOi5CakxJY/SsXuHzRcAj0cnY2tcFKB3X549Hu8ZMy7O93DNdl9FGR4Q8h0cMsA2Bk1
+ MOcwlrJb6GnsOw+TTiorLY+G4WgI1GI8WFiIAqH3kP9MIc2vpR1yAObjJR12nGJLLXg1
+ Sefg==
+X-Gm-Message-State: AOAM531AiFxIs/ETGoMX02leHsb6aJeg92yF9V41r7lJRPvnKNRYJ4Ae
+ FYOOCPWpZEtPzbpyMXVkaxkDog==
+X-Google-Smtp-Source: ABdhPJwB92Bysnaf6kcMoQ5pu+E9BrfDp1ehXDbDO0zVh0cfFbH0Cvf/Q1ZdxIV9Fo1L3lY/2BG9bg==
+X-Received: by 2002:a17:906:704a:: with SMTP id
+ r10mr8736436ejj.312.1618583852460; 
+ Fri, 16 Apr 2021 07:37:32 -0700 (PDT)
+Received: from dell.default ([91.110.221.215])
+ by smtp.gmail.com with ESMTPSA id j10sm1326523ejk.93.2021.04.16.07.37.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 16 Apr 2021 07:37:31 -0700 (PDT)
+From: Lee Jones <lee.jones@linaro.org>
+To: lee.jones@linaro.org
+Date: Fri, 16 Apr 2021 15:36:47 +0100
+Message-Id: <20210416143725.2769053-3-lee.jones@linaro.org>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210416143725.2769053-1-lee.jones@linaro.org>
+References: <20210416143725.2769053-1-lee.jones@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <b7008944-fbe5-bd59-d2a9-ff62bea38237@gmail.com>
-Subject: Re: [Nouveau] [PATCH v3 5/7] drm/vmwgfx: Inline ttm_bo_mmap() into
- vmwgfx driver
+Subject: [Nouveau] [PATCH 02/40] drm/nouveau/dispnv50/disp: Remove unused
+ variable 'ret'
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,228 +78,35 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1180158726=="
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1180158726==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="x2rSL5UwlVquz7IVn5gXAmWjRXaDyqWI6"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---x2rSL5UwlVquz7IVn5gXAmWjRXaDyqWI6
-Content-Type: multipart/mixed; boundary="KAxHHaUTOdLuCF1VreK1RtsudTRHa32UF";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie,
- daniel@ffwll.ch, bskeggs@redhat.com, ray.huang@amd.com,
- linux-graphics-maintainer@vmware.com, sroland@vmware.com, zackr@vmware.com,
- shashank.sharma@amd.com, sam@ravnborg.org, emil.velikov@collabora.com,
- Felix.Kuehling@amd.com, nirmoy.das@amd.com
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Message-ID: <3f0d0a8b-fa40-a4c6-fb0a-991fc6729806@suse.de>
-Subject: Re: [PATCH v3 5/7] drm/vmwgfx: Inline ttm_bo_mmap() into vmwgfx
- driver
-References: <20210416133146.24825-1-tzimmermann@suse.de>
- <20210416133146.24825-6-tzimmermann@suse.de>
- <b7008944-fbe5-bd59-d2a9-ff62bea38237@gmail.com>
-In-Reply-To: <b7008944-fbe5-bd59-d2a9-ff62bea38237@gmail.com>
-
---KAxHHaUTOdLuCF1VreK1RtsudTRHa32UF
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-Am 16.04.21 um 15:46 schrieb Christian K=C3=B6nig:
-> Am 16.04.21 um 15:31 schrieb Thomas Zimmermann:
->> The vmwgfx driver is the only remaining user of ttm_bo_mmap(). Inline
->> the code. The internal helper ttm_bo_vm_lookup() is now also part of
->> vmwgfx as vmw_bo_vm_lookup().
->>
->> v2:
->> =C2=A0=C2=A0=C2=A0=C2=A0* replace pr_err() with drm_err() (Zack)
->>
->> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->> Reviewed-by: Zack Rusin <zackr@vmware.com>
->> ---
->> =C2=A0 drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c | 56 +++++++++++++++++=
-+++++--
->> =C2=A0 1 file changed, 53 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c=20
->> b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c
->> index cb9975889e2f..c8b6543b4e39 100644
->> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c
->> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c
->> @@ -27,6 +27,32 @@
->> =C2=A0 #include "vmwgfx_drv.h"
->> +static struct ttm_buffer_object *vmw_bo_vm_lookup(struct ttm_device=20
->> *bdev,
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 unsigned long offset,
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 unsigned long pages)
->> +{
->> +=C2=A0=C2=A0=C2=A0 struct vmw_private *dev_priv =3D container_of(bdev=
-, struct=20
->> vmw_private, bdev);
->> +=C2=A0=C2=A0=C2=A0 struct drm_device *drm =3D &dev_priv->drm;
->> +=C2=A0=C2=A0=C2=A0 struct drm_vma_offset_node *node;
->> +=C2=A0=C2=A0=C2=A0 struct ttm_buffer_object *bo =3D NULL;
->> +
->> +=C2=A0=C2=A0=C2=A0 drm_vma_offset_lock_lookup(bdev->vma_manager);
->> +
->> +=C2=A0=C2=A0=C2=A0 node =3D drm_vma_offset_lookup_locked(bdev->vma_ma=
-nager, offset,=20
->> pages);
->> +=C2=A0=C2=A0=C2=A0 if (likely(node)) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bo =3D container_of(node, =
-struct ttm_buffer_object,
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 base.vma_node);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bo =3D ttm_bo_get_unless_z=
-ero(bo);
->> +=C2=A0=C2=A0=C2=A0 }
->> +
->> +=C2=A0=C2=A0=C2=A0 drm_vma_offset_unlock_lookup(bdev->vma_manager);
->> +
->> +=C2=A0=C2=A0=C2=A0 if (!bo)
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_err(drm, "Could not fi=
-nd buffer object to map\n");
->> +
->> +=C2=A0=C2=A0=C2=A0 return bo;
->> +}
->> +
->> =C2=A0 int vmw_mmap(struct file *filp, struct vm_area_struct *vma)
->> =C2=A0 {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 static const struct vm_operations_struc=
-t vmw_vm_ops =3D {
->> @@ -41,10 +67,28 @@ int vmw_mmap(struct file *filp, struct=20
->> vm_area_struct *vma)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_file *file_priv =3D filp->pr=
-ivate_data;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct vmw_private *dev_priv =3D vmw_pr=
-iv(file_priv->minor->dev);
->> -=C2=A0=C2=A0=C2=A0 int ret =3D ttm_bo_mmap(filp, vma, &dev_priv->bdev=
-);
->> +=C2=A0=C2=A0=C2=A0 struct ttm_device *bdev =3D &dev_priv->bdev;
->> +=C2=A0=C2=A0=C2=A0 struct ttm_buffer_object *bo;
->> +=C2=A0=C2=A0=C2=A0 int ret;
->> +
->> +=C2=A0=C2=A0=C2=A0 if (unlikely(vma->vm_pgoff < DRM_FILE_PAGE_OFFSET_=
-START))
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -EINVAL;
->> +
->> +=C2=A0=C2=A0=C2=A0 bo =3D vmw_bo_vm_lookup(bdev, vma->vm_pgoff, vma_p=
-ages(vma));
->> +=C2=A0=C2=A0=C2=A0 if (unlikely(!bo))
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -EINVAL;
->> -=C2=A0=C2=A0=C2=A0 if (ret)
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return ret;
->> +=C2=A0=C2=A0=C2=A0 if (unlikely(!bo->bdev->funcs->verify_access)) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D -EPERM;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto out_unref;
->> +=C2=A0=C2=A0=C2=A0 }
->> +=C2=A0=C2=A0=C2=A0 ret =3D bo->bdev->funcs->verify_access(bo, filp);
->=20
-> Is there any reason we can't call vmw_verify_access() directly here?
->=20
-> Would allow us to completely nuke the verify_access callback as well as=20
-
-> far as I can see.
-
-We have to spare something for patches 6 and 7. Otherwise they'd be=20
-empty. ;)
-
-Best regards
-Thomas
-
->=20
-> Regards,
-> Christian.
->=20
->> +=C2=A0=C2=A0=C2=A0 if (unlikely(ret !=3D 0))
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto out_unref;
->> +
->> +=C2=A0=C2=A0=C2=A0 ret =3D ttm_bo_mmap_obj(vma, bo);
->> +=C2=A0=C2=A0=C2=A0 if (unlikely(ret !=3D 0))
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto out_unref;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vma->vm_ops =3D &vmw_vm_ops;
->> @@ -52,7 +96,13 @@ int vmw_mmap(struct file *filp, struct=20
->> vm_area_struct *vma)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!is_cow_mapping(vma->vm_flags))
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vma->vm_flags =3D=20
-(vma->vm_flags & ~VM_MIXEDMAP) | VM_PFNMAP;
->> +=C2=A0=C2=A0=C2=A0 ttm_bo_put(bo); /* release extra ref taken by ttm_=
-bo_mmap_obj() */
->> +
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return 0;
->> +
->> +out_unref:
->> +=C2=A0=C2=A0=C2=A0 ttm_bo_put(bo);
->> +=C2=A0=C2=A0=C2=A0 return ret;
->> =C2=A0 }
->> =C2=A0 /* struct vmw_validation_mem callback */
->=20
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---KAxHHaUTOdLuCF1VreK1RtsudTRHa32UF--
-
---x2rSL5UwlVquz7IVn5gXAmWjRXaDyqWI6
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmB5mIYFAwAAAAAACgkQlh/E3EQov+Dk
-cQ/+InrAMAvEwtRpmhrDg4Kb637mWixYAgcbmbwgoAacHBnleb1h6XIPgpsyrorjnWvPTut5yssO
-oZoOtz0dQZ7ZON4g0AqIMii3TVgfv9fyUpSAYz3EgyTdvwgVVLiK+n8TV1qtQLEKOd/nruYd9DKa
-21KPTqWiUc5/InrMDmRlE5IDNlEEM6IVF9e7MZlsHKVNVXppKX4bxNQ7AYNPrCYswa+Bj3OCoE2E
-Sa5ZduJV4dzVji5BR4aBSdYHZBU5fvvHu2UHF3HU+ElyL4iC0+90jS1sSoMQ9bwmHq4EXg3jjCNG
-KwX/YU4kKWNQomolVbW7mZpzTnHQmCy11bbfoHcUwqPGkc5MUwCjCpaOf1xcitW96zNNCa6p0Ohm
-NY2CS+vq0TLdorJvYp8q59E1mViz9ThaKe+OCfGhtf/Zqd1xZrdRCmaFDhG+AwvmDL2f3T+oAJKL
-haYLrgHbaMaim6LXij4+7ZTNmU0jbCYBtIsydcCvn3hK4J0ikaT7sKwXaBCmJJ7vxE2Y3KzfuKWC
-DZfPSVD/DOGY+0ZbdwE1wrUvXhq44mQiy/U3cpfT7zaK6cZhC5O6vkzCLPz6vq8KV/ixsmT2cqWa
-Zoybc2vykiFL79cS0d8iTE5vr+as7ixANhKUr9WwKOOEGcb0ipVj1NS3mPWGo6YMMbfBvt/FWwhz
-HIk=
-=V+VK
------END PGP SIGNATURE-----
-
---x2rSL5UwlVquz7IVn5gXAmWjRXaDyqWI6--
-
---===============1180158726==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1180158726==--
+Rml4ZXMgdGhlIGZvbGxvd2luZyBXPTEga2VybmVsIGJ1aWxkIHdhcm5pbmcocyk6CgogZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jOjEzODE6Njogd2FybmluZzogdmFyaWFi
+bGUg4oCYcmV04oCZIHNldCBidXQgbm90IHVzZWQgWy1XdW51c2VkLWJ1dC1zZXQtdmFyaWFibGVd
+CgpDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgpDYzogRGF2aWQgQWlybGllIDxh
+aXJsaWVkQGxpbnV4LmllPgpDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNoPgpDYzog
+ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpDYzogbm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKU2lnbmVkLW9mZi1ieTogTGVlIEpvbmVzIDxsZWUuam9uZXNAbGluYXJvLm9yZz4K
+LS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMgfCAzICstLQogMSBm
+aWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYwppbmRleCAxYzljMGNkZjg1ZGJjLi40ODAxYWFmZDk1
+NTJiIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMK
+KysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCkBAIC0xNDEwLDEw
+ICsxNDEwLDkgQEAgbnY1MF9tc3RtX3ByZXBhcmUoc3RydWN0IG52NTBfbXN0bSAqbXN0bSkKIHsK
+IAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKG1zdG0tPm91dHAtPmJhc2Uu
+YmFzZS5kZXYpOwogCXN0cnVjdCBkcm1fZW5jb2RlciAqZW5jb2RlcjsKLQlpbnQgcmV0OwogCiAJ
+TlZfQVRPTUlDKGRybSwgIiVzOiBtc3RtIHByZXBhcmVcbiIsIG1zdG0tPm91dHAtPmJhc2UuYmFz
+ZS5uYW1lKTsKLQlyZXQgPSBkcm1fZHBfdXBkYXRlX3BheWxvYWRfcGFydDEoJm1zdG0tPm1ncik7
+CisJZHJtX2RwX3VwZGF0ZV9wYXlsb2FkX3BhcnQxKCZtc3RtLT5tZ3IpOwogCiAJZHJtX2Zvcl9l
+YWNoX2VuY29kZXIoZW5jb2RlciwgbXN0bS0+b3V0cC0+YmFzZS5iYXNlLmRldikgewogCQlpZiAo
+ZW5jb2Rlci0+ZW5jb2Rlcl90eXBlID09IERSTV9NT0RFX0VOQ09ERVJfRFBNU1QpIHsKLS0gCjIu
+MjcuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
+dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
