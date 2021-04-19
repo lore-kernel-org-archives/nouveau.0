@@ -7,46 +7,46 @@ X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9BEB5C43616
-	for <nouveau@archiver.kernel.org>; Mon, 19 Apr 2021 22:55:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 287A8C43460
+	for <nouveau@archiver.kernel.org>; Mon, 19 Apr 2021 22:56:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5EB8861354
-	for <nouveau@archiver.kernel.org>; Mon, 19 Apr 2021 22:55:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5EB8861354
+	by mail.kernel.org (Postfix) with ESMTPS id DF60661177
+	for <nouveau@archiver.kernel.org>; Mon, 19 Apr 2021 22:56:29 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DF60661177
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BCFA6E44D;
-	Mon, 19 Apr 2021 22:55:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56DEC6E461;
+	Mon, 19 Apr 2021 22:56:29 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14A7A6E44F
- for <nouveau@lists.freedesktop.org>; Mon, 19 Apr 2021 22:55:46 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA4F86E444
+ for <nouveau@lists.freedesktop.org>; Mon, 19 Apr 2021 22:56:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1618872946;
+ s=mimecast20190719; t=1618872987;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=g21KQMO+x+0HfA9S5cU+LPpk/DDwp+NmKrjA0l+Lckg=;
- b=BsOCS455s/h/jtarwd80r32PmqIPJt8FfHLNZNAmrmmr7MucP/VB20F3X3PbwfsMHDwa23
- sIduQH7cHlvWQUuH0RmylZFFLwGcypwufSpv/uYO0Cp9ZP5Cf5fr/8ZElQq8DNBgHLBUVa
- rCFZoVur64kDfzq43rStE32xHIwNiGM=
+ bh=YT1fh9K2NL+l15ttMbG26Q+AYdw8647SY7qUirtEs3k=;
+ b=II8Pgcmt6muLQBzUa5n1SSE5lmgGLe8WF670ankpPqBdMN8fZ3i9QRXdXisBkcNB5KIPA5
+ jtO0y8ARXaCZSsrIjbG91oMrvj/4igIoL93+Gfuzf4xUq3yRg+yQH+HWVv5cl35Cj2P1U+
+ P3R3IwOGZvUUi2u0lVBmmTu2N7BFIQY=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-489-KZMwLGAWO2uQyxwrI7ZOGw-1; Mon, 19 Apr 2021 18:55:42 -0400
-X-MC-Unique: KZMwLGAWO2uQyxwrI7ZOGw-1
+ us-mta-326-evR6FvvnPgu75Bgib6db6g-1; Mon, 19 Apr 2021 18:56:23 -0400
+X-MC-Unique: evR6FvvnPgu75Bgib6db6g-1
 Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
  [10.5.11.16])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 8F11E501F0;
- Mon, 19 Apr 2021 22:55:38 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 05F4F1006C80;
+ Mon, 19 Apr 2021 22:56:21 +0000 (UTC)
 Received: from Ruby.lyude.net (ovpn-119-153.rdu2.redhat.com [10.10.119.153])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 01BD25C1C4;
- Mon, 19 Apr 2021 22:55:34 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 8CC105C1C4;
+ Mon, 19 Apr 2021 22:56:18 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
@@ -55,14 +55,14 @@ To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Thomas Zimmermann <tzimmermann@suse.de>,
  Thierry Reding <thierry.reding@gmail.com>
-Date: Mon, 19 Apr 2021 18:55:03 -0400
-Message-Id: <20210419225523.184856-2-lyude@redhat.com>
+Date: Mon, 19 Apr 2021 18:55:06 -0400
+Message-Id: <20210419225523.184856-5-lyude@redhat.com>
 In-Reply-To: <20210419225523.184856-1-lyude@redhat.com>
 References: <20210419225523.184856-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
-Subject: [Nouveau] [PATCH v3 01/20] drm/amdgpu: Add error handling to
- amdgpu_dm_initialize_dp_connector()
+Subject: [Nouveau] [PATCH v3 04/20] drm/bridge/cdns-mhdp8546: Register DP
+ aux channel with userspace
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,177 +74,67 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stylon Wang <stylon.wang@amd.com>, Mikita Lipski <mikita.lipski@amd.com>,
- Chris Park <Chris.Park@amd.com>, Eryk Brol <eryk.brol@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
- Wayne Lin <Wayne.Lin@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- open list <linux-kernel@vger.kernel.org>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
- David Airlie <airlied@linux.ie>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- Alex Deucher <alexander.deucher@amd.com>,
- Nikola Cornij <nikola.cornij@amd.com>, Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Jernej Skrabec <jernej.skrabec@siol.net>, Jonas Karlman <jonas@kwiboo.se>,
+ David Airlie <airlied@linux.ie>, Neil Armstrong <narmstrong@baylibre.com>,
+ open list <linux-kernel@vger.kernel.org>, Robert Foss <robert.foss@linaro.org>,
+ Julia Lawall <Julia.Lawall@inria.fr>, Andrzej Hajda <a.hajda@samsung.com>,
+ Parshuram Thombare <pthombar@cadence.com>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Swapnil Jakhade <sjakhade@cadence.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-While working on moving i2c device registration into drm_dp_aux_init() - I
-realized that in order to do so we need to make sure that drivers calling
-drm_dp_aux_init() handle any errors it could possibly return. In the
-process of doing that, I noticed that the majority of AMD's code for DP
-connector creation doesn't attempt to do any real error handling.
-
-So, let's fix this and also cleanup amdgpu_dm_initialize_dp_connector()
-while we're at it. This way we can handle the error codes from
-drm_dp_aux_init().
+Just adds some missing calls to
+drm_dp_aux_register()/drm_dp_aux_unregister() for when we attach/detach the
+bridge.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 29 +++++++-----
- .../display/amdgpu_dm/amdgpu_dm_mst_types.c   | 44 +++++++++++--------
- .../display/amdgpu_dm/amdgpu_dm_mst_types.h   |  6 +--
- 3 files changed, 45 insertions(+), 34 deletions(-)
+ drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index a0c8c41e4e57..fc5d315bbb05 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -7608,10 +7608,9 @@ static int amdgpu_dm_connector_init(struct amdgpu_display_manager *dm,
+diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
+index c5e2bc75b226..518e9a441c21 100644
+--- a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
++++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
+@@ -1719,10 +1719,14 @@ static int cdns_mhdp_attach(struct drm_bridge *bridge,
  
- 	aconnector->i2c = i2c;
- 	res = i2c_add_adapter(&i2c->base);
--
- 	if (res) {
- 		DRM_ERROR("Failed to register hw i2c %d\n", link->link_index);
--		goto out_free;
-+		goto fail_free;
+ 	dev_dbg(mhdp->dev, "%s\n", __func__);
+ 
++	ret = drm_dp_aux_register(&mhdp->aux);
++	if (ret < 0)
++		return ret;
++
+ 	if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)) {
+ 		ret = cdns_mhdp_connector_init(mhdp);
+ 		if (ret)
+-			return ret;
++			goto aux_unregister;
  	}
  
- 	connector_type = to_drm_connector_type(link->connector_signal);
-@@ -7625,8 +7624,7 @@ static int amdgpu_dm_connector_init(struct amdgpu_display_manager *dm,
+ 	spin_lock(&mhdp->start_lock);
+@@ -1738,6 +1742,9 @@ static int cdns_mhdp_attach(struct drm_bridge *bridge,
+ 		       mhdp->regs + CDNS_APB_INT_MASK);
  
- 	if (res) {
- 		DRM_ERROR("connector_init failed\n");
--		aconnector->connector_id = -1;
--		goto out_free;
-+		goto fail_id;
- 	}
- 
- 	drm_connector_helper_add(
-@@ -7643,15 +7641,22 @@ static int amdgpu_dm_connector_init(struct amdgpu_display_manager *dm,
- 	drm_connector_attach_encoder(
- 		&aconnector->base, &aencoder->base);
- 
--	if (connector_type == DRM_MODE_CONNECTOR_DisplayPort
--		|| connector_type == DRM_MODE_CONNECTOR_eDP)
--		amdgpu_dm_initialize_dp_connector(dm, aconnector, link->link_index);
--
--out_free:
--	if (res) {
--		kfree(i2c);
--		aconnector->i2c = NULL;
-+	if (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
-+	    connector_type == DRM_MODE_CONNECTOR_eDP) {
-+		res = amdgpu_dm_initialize_dp_connector(dm, aconnector, link->link_index);
-+		if (res)
-+			goto fail_cleanup;
- 	}
-+
-+	return 0;
-+fail_cleanup:
-+	drm_connector_cleanup(&aconnector->base);
-+fail_id:
-+	aconnector->connector_id = -1;
-+fail_free:
-+	kfree(i2c);
-+	aconnector->i2c = NULL;
-+
- 	return res;
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index 73cdb9fe981a..3dee9cce9c9e 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -425,33 +425,39 @@ static const struct drm_dp_mst_topology_cbs dm_mst_cbs = {
- 	.add_connector = dm_dp_add_mst_connector,
- };
- 
--void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
--				       struct amdgpu_dm_connector *aconnector,
--				       int link_index)
-+int amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
-+				      struct amdgpu_dm_connector *aconnector,
-+				      int link_index)
- {
--	aconnector->dm_dp_aux.aux.name =
--		kasprintf(GFP_KERNEL, "AMDGPU DM aux hw bus %d",
--			  link_index);
--	aconnector->dm_dp_aux.aux.transfer = dm_dp_aux_transfer;
--	aconnector->dm_dp_aux.ddc_service = aconnector->dc_link->ddc;
-+	struct amdgpu_dm_dp_aux *dm_aux = &aconnector->dm_dp_aux;
-+	int ret;
- 
--	drm_dp_aux_init(&aconnector->dm_dp_aux.aux);
--	drm_dp_cec_register_connector(&aconnector->dm_dp_aux.aux,
--				      &aconnector->base);
-+	dm_aux->aux.name = kasprintf(GFP_KERNEL, "AMDGPU DM aux hw bus %d", link_index);
-+	if (!dm_aux->aux.name)
-+		return -ENOMEM;
-+
-+	dm_aux->aux.transfer = dm_dp_aux_transfer;
-+	dm_aux->ddc_service = aconnector->dc_link->ddc;
-+
-+	drm_dp_aux_init(&dm_aux->aux);
-+	drm_dp_cec_register_connector(&dm_aux->aux, &aconnector->base);
- 
- 	if (aconnector->base.connector_type == DRM_MODE_CONNECTOR_eDP)
--		return;
-+		return 0;
- 
- 	aconnector->mst_mgr.cbs = &dm_mst_cbs;
--	drm_dp_mst_topology_mgr_init(
--		&aconnector->mst_mgr,
--		adev_to_drm(dm->adev),
--		&aconnector->dm_dp_aux.aux,
--		16,
--		4,
--		aconnector->connector_id);
-+	ret = drm_dp_mst_topology_mgr_init(&aconnector->mst_mgr, adev_to_drm(dm->adev),
-+					   &dm_aux->aux, 16, 4, aconnector->connector_id);
-+	if (ret)
-+		goto unreg_cec;
- 
- 	drm_connector_attach_dp_subconnector_property(&aconnector->base);
-+
-+	return 0;
-+unreg_cec:
-+	drm_dp_cec_unregister_connector(&dm_aux->aux);
-+	kfree(dm_aux->aux.name);
+ 	return 0;
++aux_unregister:
++	drm_dp_aux_unregister(&mhdp->aux);
 +	return ret;
  }
  
- int dm_mst_get_pbn_divider(struct dc_link *link)
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.h
-index b38bd68121ce..cf771ff58bb3 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.h
-@@ -31,9 +31,9 @@ struct amdgpu_dm_connector;
+ static void cdns_mhdp_configure_video(struct cdns_mhdp_device *mhdp,
+@@ -2082,6 +2089,8 @@ static void cdns_mhdp_detach(struct drm_bridge *bridge)
  
- int dm_mst_get_pbn_divider(struct dc_link *link);
+ 	dev_dbg(mhdp->dev, "%s\n", __func__);
  
--void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
--				       struct amdgpu_dm_connector *aconnector,
--				       int link_index);
-+int amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
-+				      struct amdgpu_dm_connector *aconnector,
-+				      int link_index);
++	drm_dp_aux_unregister(&mhdp->aux);
++
+ 	spin_lock(&mhdp->start_lock);
  
- void
- dm_dp_create_fake_mst_encoders(struct amdgpu_device *adev);
+ 	mhdp->bridge_attached = false;
 -- 
 2.30.2
 
