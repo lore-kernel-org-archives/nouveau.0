@@ -2,64 +2,87 @@ Return-Path: <SRS0=f2/Z=JT=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 60B50C433B4
-	for <nouveau@archiver.kernel.org>; Thu, 22 Apr 2021 16:00:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B987AC433B4
+	for <nouveau@archiver.kernel.org>; Thu, 22 Apr 2021 17:20:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E971D613DE
-	for <nouveau@archiver.kernel.org>; Thu, 22 Apr 2021 16:00:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E971D613DE
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 5C5BE613E0
+	for <nouveau@archiver.kernel.org>; Thu, 22 Apr 2021 17:20:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5C5BE613E0
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C9386E3C6;
-	Thu, 22 Apr 2021 16:00:04 +0000 (UTC)
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com
- [IPv6:2a00:1450:4864:20::235])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C81EE6E3C6
- for <nouveau@lists.freedesktop.org>; Thu, 22 Apr 2021 16:00:02 +0000 (UTC)
-Received: by mail-lj1-x235.google.com with SMTP id o16so52434595ljp.3
- for <nouveau@lists.freedesktop.org>; Thu, 22 Apr 2021 09:00:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=sPqtDg1MZKEB+gxfdYzkKUY5G3irXGW+JCmp2Xo0atU=;
- b=H82XkYFUeDTasimM77WdCIe4a8YFV3S6Zo1V0E5Cp0PUh9Lsytvdgrx3TXlvH/AuDO
- arMSqqF/1ZLswSCC+kwsr78W++fFiMWkN1WMOWzLKeZSsSnhLKyn4/6dkRT35C2yWrlU
- kfsLP1LuEZmb1f9frtBothfrDSTCLPgez/lCN00jxoYXZX89zZRuLbIJbstXeqy3UktA
- 2JCAuJkb6vg96NBL+0TttOctexMehDbIGwdFlGeLaAR6yCO0kwc89o2HcKQBAJN9Flrw
- 8urc6i/Il2s4VnolTjv9DBahPGNnZr5+ZfAi1cA4n4GCJrLnwxlf33b39UTqjo5ZCNSO
- +I3A==
+	by gabe.freedesktop.org (Postfix) with ESMTP id 793266E550;
+	Thu, 22 Apr 2021 17:20:12 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09C746E532
+ for <nouveau@lists.freedesktop.org>; Thu, 22 Apr 2021 17:18:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1619111913;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=LfDSNIXXrzz4FbE4CwlcLSSxDEOGT/2JNoxma+lfpdU=;
+ b=UYo+Yfoj9jHQP8AgrRYGZHEE9NBhnnSVZpddlQmFlj0h9B3aqz0BrgczEvG+8Vzi9LkGlf
+ 8A4XFNomh3FbBpypnsfu/Y/yEE0tqSOAIosqm9/4XjAgFqkWgHZNu7W146BWsj+9C/J7Lp
+ dSAy/brUm1x/B0XU5GI5e/7odojw4UE=
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-582-iVfTEuUEP42Et08i9qxd-A-1; Thu, 22 Apr 2021 13:18:13 -0400
+X-MC-Unique: iVfTEuUEP42Et08i9qxd-A-1
+Received: by mail-qv1-f72.google.com with SMTP id
+ el4-20020ad459c40000b029019a47ec7a9dso12612191qvb.21
+ for <nouveau@lists.freedesktop.org>; Thu, 22 Apr 2021 10:18:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=sPqtDg1MZKEB+gxfdYzkKUY5G3irXGW+JCmp2Xo0atU=;
- b=Y6RMDbP8atDa8VEwVEtLpdtXlfJxIWcVqK5ETVtlgz+9QIJIVlu1yp1UaqDuleH5tS
- DJe6t2m0s7va/CPxlRP1HlrUiQM1ipIq54vQAs1ElJJxRZBTuR0Uq/r80MmlLV+vRPo3
- jXgGNp5YkMl4a/kU4owdgZRb0F8Qg37OrEt3z9Onkod5nQ9hyXQ8RLh9ruNRyXjEo8yx
- 59oZVCeDaCBifmrsYYiFG+EE63F4MUXxXq3tWbx4LpH5r8rB7iSC+1Tqx4hS7WeZE8xE
- oeY7hg1VMsbqist7KrigDfGqwiNJe2HvEcaASjiI01vXGakVc1Suq4NexcNJ6DhfbYVC
- K72Q==
-X-Gm-Message-State: AOAM533PvBYmDr+GqojUWFnI9i/ssi8HS4hLyvQutky9XZonSFAw+Eew
- vXTEMNWjH7gkBTkdLPBdBSc103pTfNXnyDW5V1ieEtVaqNsdVw==
-X-Google-Smtp-Source: ABdhPJzwpD0nbCnW1tscMILhUtP6e/g1oGvotbcsZt0WJpvX9DWaimeNHta7iCzdRwG+CJPvnC1YsjH5qyCVJ6ZIfFw=
-X-Received: by 2002:a2e:2246:: with SMTP id i67mr2847042lji.396.1619107201252; 
- Thu, 22 Apr 2021 09:00:01 -0700 (PDT)
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=LfDSNIXXrzz4FbE4CwlcLSSxDEOGT/2JNoxma+lfpdU=;
+ b=lHo4a3T3yd8zTv7RZFy6LHl9TPVDstXy+tfJyTmV1YbdCZtGrbQ9OjP5Yamzyz4r7G
+ KLKdo+X7Eaz9F2WCILQcOpx425Qtl3tt9D08e1VUm7/4PnEbaAsr0DnPEvBYi1GcDI5q
+ ponMYKjfY7y9brziXESFzZXMzTFikDpmUQXJCbQiSf0zqO8wKM+QmaBB2yaoivsc5ZCw
+ yaGCHVw17et8/nMqftIpqL827pX+SUHP80Xl/lnLjHymdf+sKwwDW7nv7iwo/h087aOh
+ ONxY10irpA7ihIbNxbOQ3yJ7ka222kBUzwnfnHVT73719w80U2ExJQSp8AUlOYORj96C
+ 5FhA==
+X-Gm-Message-State: AOAM532JoJTQQMVBcDpUWQw1KjYYjpa1qkv7eSrZ6e/2BPSPUkQzTpZR
+ w4becEOKoK4ntZnjcDOmqkl+6Yf2nsoHjGrTN+/CkZugbKR4D7YVnMJIj3JE8WxOSTydykRO9EF
+ bgQ5U8aBLePc9iIpPMrVEDFi/gQ==
+X-Received: by 2002:a37:9547:: with SMTP id x68mr4649688qkd.474.1619111892936; 
+ Thu, 22 Apr 2021 10:18:12 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxL+wipZ8wslP+tJgr/etmf17aGBKnIbho/C7QbmqdQYxpKccy8EwWdn+YgrbEvV+9kokVRew==
+X-Received: by 2002:a37:9547:: with SMTP id x68mr4649649qkd.474.1619111892722; 
+ Thu, 22 Apr 2021 10:18:12 -0700 (PDT)
+Received: from Ruby.lyude.net (pool-108-49-102-102.bstnma.fios.verizon.net.
+ [108.49.102.102])
+ by smtp.gmail.com with ESMTPSA id v4sm2561004qto.50.2021.04.22.10.18.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 22 Apr 2021 10:18:12 -0700 (PDT)
+Message-ID: <56a931c9f284ee6a23583eb3dc59de4afaa60e93.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, 
+ Thierry Reding <thierry.reding@gmail.com>
+Date: Thu, 22 Apr 2021 13:18:09 -0400
+In-Reply-To: <YH4PPbY1qqF2NtrN@intel.com>
+References: <20210419225523.184856-1-lyude@redhat.com>
+ <20210419225523.184856-4-lyude@redhat.com> <YH4PPbY1qqF2NtrN@intel.com>
+Organization: Red Hat
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33)
 MIME-Version: 1.0
-References: <CAPpdf58cSDz-22biF3Zyn7brchnt6Nrju0cXq=ksMBhOSqihhw@mail.gmail.com>
- <CACO55tuRxKQh_OsjPCrzTY1To_gmAiCLqtmk_YXWAXMW8zyHDA@mail.gmail.com>
-In-Reply-To: <CACO55tuRxKQh_OsjPCrzTY1To_gmAiCLqtmk_YXWAXMW8zyHDA@mail.gmail.com>
-From: o1bigtenor <o1bigtenor@gmail.com>
-Date: Thu, 22 Apr 2021 10:59:25 -0500
-Message-ID: <CAPpdf5_h4ZGvLaJnVxPx30REuDicnSxaZuEC=YD1Oq1T426X6w@mail.gmail.com>
-To: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [Nouveau] Bug system problems
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+X-Mailman-Approved-At: Thu, 22 Apr 2021 17:20:12 +0000
+Subject: Re: [Nouveau] [PATCH v3 03/20] drm/dp: Move i2c init to
+ drm_dp_aux_init, add __must_check and fini
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,34 +94,54 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau <nouveau@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org,
+ Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Oleg Vasilev <oleg.vasilev@intel.com>, dri-devel@lists.freedesktop.org,
+ Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
+ Andrzej Hajda <a.hajda@samsung.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Sam Ravnborg <sam@ravnborg.org>, Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ Parshuram Thombare <pthombar@cadence.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Michal Simek <michal.simek@xilinx.com>, amd-gfx@lists.freedesktop.org,
+ Luben Tuikov <luben.tuikov@amd.com>, Ben Skeggs <bskeggs@redhat.com>,
+ Swapnil Jakhade <sjakhade@cadence.com>, Thierry Reding <treding@nvidia.com>,
+ Harry Wentland <harry.wentland@amd.com>, Imre Deak <imre.deak@intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jonas Karlman <jonas@kwiboo.se>,
+ Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Joe Perches <joe@perches.com>,
+ Yuti Amonkar <yamonkar@cadence.com>, Maxime Ripard <mripard@kernel.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Mikita Lipski <mikita.lipski@amd.com>,
+ Sean Paul <sean@poorly.run>, Navid Emamdoost <navid.emamdoost@gmail.com>,
+ Jernej Skrabec <jernej.skrabec@siol.net>, Chris Park <Chris.Park@amd.com>,
+ Eryk Brol <eryk.brol@amd.com>, Hyun Kwon <hyun.kwon@xilinx.com>,
+ Robert Foss <robert.foss@linaro.org>, Julia Lawall <Julia.Lawall@inria.fr>,
+ Rob Clark <robdclark@gmail.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Apr 22, 2021 at 9:30 AM Karol Herbst <kherbst@redhat.com> wrote:
->
-> I've notified the gitlab admins, but maybe you can use the social
-> login (google, github, twitter, etc..) for the moment or would that
-> require the confirmation email as well?
->
-Apologies to Mr Korol - - - - I hadn't used reply all!
-
-
-It appears not to.
-
-Successfully logged in.
-
-Not terribly useful though - - - - I wanted to edit what I had written trying
-to make things easier to read and I needed to complete (one of those
-incredibly useless) recaptcha gizmos which was not visible nor could
-I find it.
-
-So apologies for the poor formatting in the bug report.
-
-Regards
-_______________________________________________
-Nouveau mailing list
-Nouveau@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
+T24gVHVlLCAyMDIxLTA0LTIwIGF0IDAyOjE2ICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+Cj4gCj4gVGhlIGluaXQgdnMuIHJlZ2lzdGVyIHNwbGl0IGlzIGludGVudGlvbmFsLiBSZWdpc3Rl
+cmluZyB0aGUgdGhpbmcKPiBhbmQgYWxsb3dpbmcgdXNlcnNwYWNlIGFjY2VzcyB0byBpdCBiZWZv
+cmUgdGhlIHJlc3Qgb2YgdGhlIGRyaXZlcgo+IGlzIHJlYWR5IGlzbid0IHBhcnRpY3VsYXJseSBn
+cmVhdC4gRm9yIGEgd2hpbGUgbm93IHdlJ3ZlIHRyaWVkIHRvCj4gbW92ZSB0b3dhcmRzIGFuIGFy
+Y2hpdGVjdHVyZSB3aGVyZSB0aGUgZHJpdmVyIGlzIGZ1bGx5IGluaXRpYWx6aWVkCj4gYmVmb3Jl
+IGFueXRoaW5nIGdldHMgZXhwb3NlZCB0byB1c2Vyc3BhY2UuCgpZZWFoLXRoYW5rIHlvdSBmb3Ig
+cG9pbnRpbmcgdGhpcyBvdXQuIFRoaWVycnkgLSBkbyB5b3UgdGhpbmsgdGhlcmUncyBhbgphbHRl
+cm5hdGUgc29sdXRpb24gd2UgY291bGQgZ28gd2l0aCBpbiBUZWdyYSB0byBmaXggdGhlIGdldF9k
+ZXZpY2UoKSBpc3N1ZQp0aGF0IHdvdWxkbid0IHJlcXVpcmUgdXMgdHJ5aW5nIHRvIGV4cG9zZSB0
+aGUgaTJjIGFkYXB0ZXIgZWFybHk/Cgo+IAoKLS0gCkNoZWVycywKIEx5dWRlIFBhdWwgKHNoZS9o
+ZXIpCiBTb2Z0d2FyZSBFbmdpbmVlciBhdCBSZWQgSGF0CgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
