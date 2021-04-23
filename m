@@ -2,67 +2,90 @@ Return-Path: <SRS0=9Pkw=JU=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CB3CEC43460
-	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 18:44:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1901CC433B4
+	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 18:44:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 98D4461139
-	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 18:44:25 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 98D4461139
+	by mail.kernel.org (Postfix) with ESMTPS id DA349613F2
+	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 18:44:49 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DA349613F2
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 298D56EC3B;
-	Fri, 23 Apr 2021 18:44:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F1DB6EC3F;
+	Fri, 23 Apr 2021 18:44:49 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0DB56EC42
- for <nouveau@lists.freedesktop.org>; Fri, 23 Apr 2021 18:44:23 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADBD26E141
+ for <nouveau@lists.freedesktop.org>; Fri, 23 Apr 2021 17:53:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1619203463;
+ s=mimecast20190719; t=1619200418;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=IYgERnop2IFcF+HE/NxgjyrSirE9KWlOhhzim6ohAto=;
- b=cIW6D4e462pJ1A/DEPRaeWp7zV28hTFU3mSEV8S1+fdFwVc4/aPQAHN7NpGnkp8O0Q82Xr
- YdcIhS+0Pds4gXX0z3X6i+7lTZX7IRzrLztX1a3KH0u3DhI6iaipkxGTqSUbKU97C6Bh/I
- owq0xYX4CRVYKESyDAd2/Lw9F4nOnJk=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-300-RyT-kXgbMVm6SYVxUSAOCw-1; Fri, 23 Apr 2021 14:44:19 -0400
-X-MC-Unique: RyT-kXgbMVm6SYVxUSAOCw-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
- [10.5.11.13])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 42EE6801971;
- Fri, 23 Apr 2021 18:44:16 +0000 (UTC)
-Received: from Ruby.lyude.net (ovpn-114-74.rdu2.redhat.com [10.10.114.74])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 6AFEF687D3;
- Fri, 23 Apr 2021 18:44:10 +0000 (UTC)
+ bh=iMN2vr30yb/ELiIJb3jXFJDgM9IBXB6WS94R3EgBst0=;
+ b=QTgKjEO9QviHC202r72SLho/D8bidgBP99vm4U8ejzjwDsIPB1pdOng81Zy8JSkIGhnUPV
+ KvPe2XzDCxS8k/CagOOVUO1xPI0+BlqrbMTKrNuozFxD8XwC1QGgtAv6CiHDJfZjVwYem1
+ Uz/IvW396a/sb7B6AlYMvEbx78RqvQo=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-581-U716uKJmOaSIJ2EyDDlqSA-1; Fri, 23 Apr 2021 13:53:36 -0400
+X-MC-Unique: U716uKJmOaSIJ2EyDDlqSA-1
+Received: by mail-qt1-f198.google.com with SMTP id
+ v1-20020a05622a1301b02901b8238285bbso12825616qtk.0
+ for <nouveau@lists.freedesktop.org>; Fri, 23 Apr 2021 10:53:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=iMN2vr30yb/ELiIJb3jXFJDgM9IBXB6WS94R3EgBst0=;
+ b=czcjHtwOcSIvJx3GZPXQRkZHqlXD0kGB4ElUgMWRGQyQ658rNi+L6VAX1w2ZO0YA2n
+ UNg4zeA4xfAw84nITVTRn5SamrUqh7THaLxYzBJx2v6WGCQdogk13MBdbgYScpVH3KKB
+ pSs6W/6KfGguxnEjdPPA/XP8L7z1Qm1ovExxGZwh2mZFI0WgBT2i6kCbypgZIxm2CIW+
+ 0n/QRKNyqOu9spxLQO9CDu8+8MTJviS9V1bfzzW1cjnSAFG1ArFXzzS6MnoKLSS5fHr7
+ EuOA8VoyOEfVWkkXsyl7iCe8vKYrCjKT6TixvCOUNeJzoS2yvj6UY+QePCsNrZgqgiA9
+ P/wQ==
+X-Gm-Message-State: AOAM533K8u8QPxXJuIrlrwOdXA1UquCUwCA5++gOIgKDZcBlPjEGS7da
+ UPTrv+nAqMWZg1oL3SaRhcgIlBUDQ2woDf28KzmIePPnJMiV7Qc22Rzrnjl3OPaOUtmHbIxyCTg
+ uIo+byxrjyBoWSqRbVC+DAjqQ/Q==
+X-Received: by 2002:a0c:dc11:: with SMTP id s17mr5457277qvk.18.1619200415935; 
+ Fri, 23 Apr 2021 10:53:35 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxTUVUlVfoiWl//W0HjPD0d13jw9avPkrwnpeZvBDIw6oqnKzSgsucO2i02vJ5q3mqdmlhTGw==
+X-Received: by 2002:a0c:dc11:: with SMTP id s17mr5457242qvk.18.1619200415744; 
+ Fri, 23 Apr 2021 10:53:35 -0700 (PDT)
+Received: from Ruby.lyude.net (pool-108-49-102-102.bstnma.fios.verizon.net.
+ [108.49.102.102])
+ by smtp.gmail.com with ESMTPSA id c5sm4715913qkl.7.2021.04.23.10.53.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 23 Apr 2021 10:53:35 -0700 (PDT)
+Message-ID: <cb7339fe172f31c615d824b56a709d2df6b79bb7.camel@redhat.com>
 From: Lyude Paul <lyude@redhat.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Thierry Reding <thierry.reding@gmail.com>
-Date: Fri, 23 Apr 2021 14:42:57 -0400
-Message-Id: <20210423184309.207645-6-lyude@redhat.com>
-In-Reply-To: <20210423184309.207645-1-lyude@redhat.com>
-References: <20210423184309.207645-1-lyude@redhat.com>
+To: Thierry Reding <treding@nvidia.com>
+Date: Fri, 23 Apr 2021 13:53:33 -0400
+In-Reply-To: <YILABCrcMb5MksxD@orome.fritz.box>
+References: <20210419225523.184856-1-lyude@redhat.com>
+ <20210419225523.184856-4-lyude@redhat.com> <YH4PPbY1qqF2NtrN@intel.com>
+ <56a931c9f284ee6a23583eb3dc59de4afaa60e93.camel@redhat.com>
+ <2e211a6623664714af1d180eadcd74aa7ef417db.camel@redhat.com>
+ <17aa145e4cfa3d8852f7411067c5c37bff771b16.camel@redhat.com>
+ <YILABCrcMb5MksxD@orome.fritz.box>
+Organization: Red Hat
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-Subject: [Nouveau] [PATCH v4 05/17] drm/dp: Pass drm_dp_aux to
- drm_dp_link_train_clock_recovery_delay()
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+X-Mailman-Approved-At: Fri, 23 Apr 2021 18:44:47 +0000
+Subject: Re: [Nouveau] [PATCH v3 03/20] drm/dp: Move i2c init to
+ drm_dp_aux_init, add __must_check and fini
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,161 +97,72 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Imre Deak <imre.deak@intel.com>,
+Cc: Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org,
+ Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Oleg Vasilev <oleg.vasilev@intel.com>, Tanmay Shah <tanmay@codeaurora.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Lee Jones <lee.jones@linaro.org>, Chandan Uddaraju <chandanu@codeaurora.org>,
- Michal Simek <michal.simek@xilinx.com>, Luben Tuikov <luben.tuikov@amd.com>,
- Thierry Reding <treding@nvidia.com>,
- "open list:DRM DRIVER FOR MSM ADRENO GPU" <linux-arm-msm@vger.kernel.org>,
+ Oleg Vasilev <oleg.vasilev@intel.com>, dri-devel@lists.freedesktop.org,
+ Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
+ Andrzej Hajda <a.hajda@samsung.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Sam Ravnborg <sam@ravnborg.org>,
+ Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ Parshuram Thombare <pthombar@cadence.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Michal Simek <michal.simek@xilinx.com>, amd-gfx@lists.freedesktop.org,
+ Luben Tuikov <luben.tuikov@amd.com>, Ben Skeggs <bskeggs@redhat.com>,
+ Swapnil Jakhade <sjakhade@cadence.com>,
+ Harry Wentland <harry.wentland@amd.com>, Imre Deak <imre.deak@intel.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Leo Li <sunpeng.li@amd.com>,
+ intel-gfx@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Stephen Boyd <swboyd@chromium.org>,
- Kuogee Hsieh <khsieh@codeaurora.org>, Sean Paul <sean@poorly.run>,
- "moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
- Hyun Kwon <hyun.kwon@xilinx.com>, open list <linux-kernel@vger.kernel.org>,
- Manasi Navare <manasi.d.navare@intel.com>, Rob Clark <robdclark@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Joe Perches <joe@perches.com>,
+ Yuti Amonkar <yamonkar@cadence.com>, Maxime Ripard <mripard@kernel.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Mikita Lipski <mikita.lipski@amd.com>,
+ Sean Paul <sean@poorly.run>, Navid Emamdoost <navid.emamdoost@gmail.com>,
+ Jernej Skrabec <jernej.skrabec@siol.net>, Chris Park <Chris.Park@amd.com>,
+ Eryk Brol <eryk.brol@amd.com>, Hyun Kwon <hyun.kwon@xilinx.com>,
+ Robert Foss <robert.foss@linaro.org>, Julia Lawall <Julia.Lawall@inria.fr>,
+ Rob Clark <robdclark@gmail.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
  Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- "open list:DRM DRIVER FOR MSM ADRENO GPU" <freedreno@lists.freedesktop.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+ Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-So that we can start using drm_dbg_*() in
-drm_dp_link_train_clock_recovery_delay().
+On Fri, 2021-04-23 at 14:39 +0200, Thierry Reding wrote:
+> 
+> I'm curious: how is a DP AUX adapter reference count going to solve the
+> issue of potentially registering devices too early (i.e. before the DRM
+> is registered)?
+> 
+> Is it because registering too early could cause a reference count
+> problem if somebody get a hold of the DP AUX adapter before the parent
+> DRM device is around?
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/amd/amdgpu/atombios_dp.c              | 2 +-
- drivers/gpu/drm/drm_dp_helper.c                       | 3 ++-
- drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 +-
- drivers/gpu/drm/msm/dp/dp_ctrl.c                      | 2 +-
- drivers/gpu/drm/msm/edp/edp_ctrl.c                    | 2 +-
- drivers/gpu/drm/radeon/atombios_dp.c                  | 2 +-
- drivers/gpu/drm/xlnx/zynqmp_dp.c                      | 2 +-
- include/drm/drm_dp_helper.h                           | 4 +++-
- 8 files changed, 11 insertions(+), 8 deletions(-)
+Well currently the problem is that we kind of want to avoid setting up the i2c
+adapter before the DRM driver is registered with userspace, but it's not
+really possible to do that if we need the core device struct for the ddc
+adapter initialized so that tegra can call get_device() on it in
+drivers/gpu/drm/tegra/sor.c. So my thought is instead of calling get_device()
+on the ddc adapter that the AUX channel provides, why not just call it on the
+actual platform device that implements the AUX channel instead? I think this
+should work pretty nicely while still preventing the platform device for the
+AUX channel from disappearing before the SOR has disappeared.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/atombios_dp.c b/drivers/gpu/drm/amd/amdgpu/atombios_dp.c
-index 062625a8a4ec..92d76f4cfdfc 100644
---- a/drivers/gpu/drm/amd/amdgpu/atombios_dp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/atombios_dp.c
-@@ -612,7 +612,7 @@ amdgpu_atombios_dp_link_train_cr(struct amdgpu_atombios_dp_link_train_info *dp_i
- 	dp_info->tries = 0;
- 	voltage = 0xff;
- 	while (1) {
--		drm_dp_link_train_clock_recovery_delay(dp_info->dpcd);
-+		drm_dp_link_train_clock_recovery_delay(dp_info->aux, dp_info->dpcd);
- 
- 		if (drm_dp_dpcd_read_link_status(dp_info->aux,
- 						 dp_info->link_status) <= 0) {
-diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-index 9f66153a3c55..f71b035a48b4 100644
---- a/drivers/gpu/drm/drm_dp_helper.c
-+++ b/drivers/gpu/drm/drm_dp_helper.c
-@@ -132,7 +132,8 @@ u8 drm_dp_get_adjust_request_post_cursor(const u8 link_status[DP_LINK_STATUS_SIZ
- }
- EXPORT_SYMBOL(drm_dp_get_adjust_request_post_cursor);
- 
--void drm_dp_link_train_clock_recovery_delay(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
-+void drm_dp_link_train_clock_recovery_delay(const struct drm_dp_aux *aux,
-+					    const u8 dpcd[DP_RECEIVER_CAP_SIZE])
- {
- 	unsigned long rd_interval = dpcd[DP_TRAINING_AUX_RD_INTERVAL] &
- 					 DP_TRAINING_AUX_RD_MASK;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 591ddc4b876c..198ddb3c173a 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -513,7 +513,7 @@ static void intel_dp_link_training_clock_recovery_delay(struct intel_dp *intel_d
- 							enum drm_dp_phy dp_phy)
- {
- 	if (dp_phy == DP_PHY_DPRX)
--		drm_dp_link_train_clock_recovery_delay(intel_dp->dpcd);
-+		drm_dp_link_train_clock_recovery_delay(&intel_dp->aux, intel_dp->dpcd);
- 	else
- 		drm_dp_lttpr_link_train_clock_recovery_delay();
- }
-diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.c b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-index 1390f3547fde..264a9eae87d3 100644
---- a/drivers/gpu/drm/msm/dp/dp_ctrl.c
-+++ b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-@@ -1103,7 +1103,7 @@ static int dp_ctrl_link_train_1(struct dp_ctrl_private *ctrl,
- 	tries = 0;
- 	old_v_level = ctrl->link->phy_params.v_level;
- 	for (tries = 0; tries < maximum_retries; tries++) {
--		drm_dp_link_train_clock_recovery_delay(ctrl->panel->dpcd);
-+		drm_dp_link_train_clock_recovery_delay(ctrl->aux, ctrl->panel->dpcd);
- 
- 		ret = dp_ctrl_read_link_status(ctrl, link_status);
- 		if (ret)
-diff --git a/drivers/gpu/drm/msm/edp/edp_ctrl.c b/drivers/gpu/drm/msm/edp/edp_ctrl.c
-index 57af3d8b6699..6501598448b4 100644
---- a/drivers/gpu/drm/msm/edp/edp_ctrl.c
-+++ b/drivers/gpu/drm/msm/edp/edp_ctrl.c
-@@ -608,7 +608,7 @@ static int edp_start_link_train_1(struct edp_ctrl *ctrl)
- 	tries = 0;
- 	old_v_level = ctrl->v_level;
- 	while (1) {
--		drm_dp_link_train_clock_recovery_delay(ctrl->dpcd);
-+		drm_dp_link_train_clock_recovery_delay(ctrl->drm_aux, ctrl->dpcd);
- 
- 		rlen = drm_dp_dpcd_read_link_status(ctrl->drm_aux, link_status);
- 		if (rlen < DP_LINK_STATUS_SIZE) {
-diff --git a/drivers/gpu/drm/radeon/atombios_dp.c b/drivers/gpu/drm/radeon/atombios_dp.c
-index c50c504bad50..299b9d8da376 100644
---- a/drivers/gpu/drm/radeon/atombios_dp.c
-+++ b/drivers/gpu/drm/radeon/atombios_dp.c
-@@ -680,7 +680,7 @@ static int radeon_dp_link_train_cr(struct radeon_dp_link_train_info *dp_info)
- 	dp_info->tries = 0;
- 	voltage = 0xff;
- 	while (1) {
--		drm_dp_link_train_clock_recovery_delay(dp_info->dpcd);
-+		drm_dp_link_train_clock_recovery_delay(dp_info->aux, dp_info->dpcd);
- 
- 		if (drm_dp_dpcd_read_link_status(dp_info->aux,
- 						 dp_info->link_status) <= 0) {
-diff --git a/drivers/gpu/drm/xlnx/zynqmp_dp.c b/drivers/gpu/drm/xlnx/zynqmp_dp.c
-index 7e5e89305028..e75f67cbae69 100644
---- a/drivers/gpu/drm/xlnx/zynqmp_dp.c
-+++ b/drivers/gpu/drm/xlnx/zynqmp_dp.c
-@@ -713,7 +713,7 @@ static int zynqmp_dp_link_train_cr(struct zynqmp_dp *dp)
- 		if (ret)
- 			return ret;
- 
--		drm_dp_link_train_clock_recovery_delay(dp->dpcd);
-+		drm_dp_link_train_clock_recovery_delay(&dp->aux, dp->dpcd);
- 		ret = drm_dp_dpcd_read_link_status(&dp->aux, link_status);
- 		if (ret < 0)
- 			return ret;
-diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-index 95efe37ea9ca..675ad0029699 100644
---- a/include/drm/drm_dp_helper.h
-+++ b/include/drm/drm_dp_helper.h
-@@ -29,6 +29,7 @@
- #include <drm/drm_connector.h>
- 
- struct drm_device;
-+struct drm_dp_aux;
- 
- /*
-  * Unless otherwise noted, all values are from the DP 1.1a spec.  Note that
-@@ -1482,7 +1483,8 @@ u8 drm_dp_get_adjust_request_post_cursor(const u8 link_status[DP_LINK_STATUS_SIZ
- #define DP_LTTPR_COMMON_CAP_SIZE	8
- #define DP_LTTPR_PHY_CAP_SIZE		3
- 
--void drm_dp_link_train_clock_recovery_delay(const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
-+void drm_dp_link_train_clock_recovery_delay(const struct drm_dp_aux *aux,
-+					    const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
- void drm_dp_lttpr_link_train_clock_recovery_delay(void);
- void drm_dp_link_train_channel_eq_delay(const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
- void drm_dp_lttpr_link_train_channel_eq_delay(const u8 caps[DP_LTTPR_PHY_CAP_SIZE]);
+
+> 
+> Thierry
+
 -- 
-2.30.2
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
 _______________________________________________
 Nouveau mailing list
