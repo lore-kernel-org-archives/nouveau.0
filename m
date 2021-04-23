@@ -7,46 +7,46 @@ X-Spam-Status: No, score=-15.2 required=3.0 tests=BAYES_00,
 	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B4FB2C433ED
-	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 15:20:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ECA00C43461
+	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 15:20:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 58C1061152
-	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 15:20:31 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 58C1061152
+	by mail.kernel.org (Postfix) with ESMTPS id AD0BD613B0
+	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 15:20:32 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AD0BD613B0
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16C9A6EC08;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BEB96EC09;
 	Fri, 23 Apr 2021 15:20:28 +0000 (UTC)
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 70EAF6EB93;
- Fri, 23 Apr 2021 13:46:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 35AA26EB82;
+ Fri, 23 Apr 2021 11:34:40 +0000 (UTC)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9E1CE1063;
- Fri, 23 Apr 2021 06:46:34 -0700 (PDT)
-Received: from [10.57.62.63] (unknown [10.57.62.63])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 903A33F73B;
- Fri, 23 Apr 2021 06:46:27 -0700 (PDT)
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 204A413A1;
+ Fri, 23 Apr 2021 04:34:39 -0700 (PDT)
+Received: from [192.168.1.179] (unknown [172.31.20.19])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D48233F694;
+ Fri, 23 Apr 2021 04:34:32 -0700 (PDT)
 To: Claire Chang <tientzu@chromium.org>, Joerg Roedel <joro@8bytes.org>,
  Will Deacon <will@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
  Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
  jgross@suse.com, Christoph Hellwig <hch@lst.de>,
  Marek Szyprowski <m.szyprowski@samsung.com>
 References: <20210422081508.3942748-1-tientzu@chromium.org>
- <20210422081508.3942748-15-tientzu@chromium.org>
-From: Robin Murphy <robin.murphy@arm.com>
-Message-ID: <70b895c2-4a39-bbbd-a719-5c8b6b922026@arm.com>
-Date: Fri, 23 Apr 2021 14:46:25 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+ <20210422081508.3942748-6-tientzu@chromium.org>
+From: Steven Price <steven.price@arm.com>
+Message-ID: <c9abca62-328d-d0d6-a8a6-a67475171f92@arm.com>
+Date: Fri, 23 Apr 2021 12:34:31 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <20210422081508.3942748-15-tientzu@chromium.org>
+In-Reply-To: <20210422081508.3942748-6-tientzu@chromium.org>
 Content-Language: en-GB
-X-Mailman-Approved-At: Fri, 23 Apr 2021 15:20:27 +0000
-Subject: Re: [Nouveau] [PATCH v5 14/16] dma-direct: Allocate memory from
- restricted DMA pool if available
+X-Mailman-Approved-At: Fri, 23 Apr 2021 15:20:26 +0000
+Subject: Re: [Nouveau] [PATCH v5 05/16] swiotlb: Add restricted DMA pool
+ initialization
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,9 +70,9 @@ Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
  Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
  matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
  daniel@ffwll.ch, airlied@linux.ie, maarten.lankhorst@linux.intel.com,
- jani.nikula@linux.intel.com, Nicolas Boichat <drinkcat@chromium.org>,
- rodrigo.vivi@intel.com, bhelgaas@google.com,
- Dan Williams <dan.j.williams@intel.com>,
+ Robin Murphy <robin.murphy@arm.com>, jani.nikula@linux.intel.com,
+ Nicolas Boichat <drinkcat@chromium.org>, rodrigo.vivi@intel.com,
+ bhelgaas@google.com, Dan Williams <dan.j.williams@intel.com>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  nouveau@lists.freedesktop.org, Greg KH <gregkh@linuxfoundation.org>,
  Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
@@ -85,125 +85,134 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 2021-04-22 09:15, Claire Chang wrote:
-> The restricted DMA pool is preferred if available.
-> 
-> The restricted DMA pools provide a basic level of protection against the
-> DMA overwriting buffer contents at unexpected times. However, to protect
-> against general data leakage and system memory corruption, the system
-> needs to provide a way to lock down the memory access, e.g., MPU.
+On 22/04/2021 09:14, Claire Chang wrote:
+> Add the initialization function to create restricted DMA pools from
+> matching reserved-memory nodes.
 > 
 > Signed-off-by: Claire Chang <tientzu@chromium.org>
 > ---
->   kernel/dma/direct.c | 35 ++++++++++++++++++++++++++---------
->   1 file changed, 26 insertions(+), 9 deletions(-)
+>   include/linux/device.h  |  4 +++
+>   include/linux/swiotlb.h |  3 +-
+>   kernel/dma/swiotlb.c    | 80 +++++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 86 insertions(+), 1 deletion(-)
 > 
-> diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
-> index 7a27f0510fcc..29523d2a9845 100644
-> --- a/kernel/dma/direct.c
-> +++ b/kernel/dma/direct.c
-> @@ -78,6 +78,10 @@ static bool dma_coherent_ok(struct device *dev, phys_addr_t phys, size_t size)
->   static void __dma_direct_free_pages(struct device *dev, struct page *page,
->   				    size_t size)
->   {
-> +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> +	if (swiotlb_free(dev, page, size))
-> +		return;
+> diff --git a/include/linux/device.h b/include/linux/device.h
+> index 38a2071cf776..4987608ea4ff 100644
+> --- a/include/linux/device.h
+> +++ b/include/linux/device.h
+> @@ -416,6 +416,7 @@ struct dev_links_info {
+>    * @dma_pools:	Dma pools (if dma'ble device).
+>    * @dma_mem:	Internal for coherent mem override.
+>    * @cma_area:	Contiguous memory area for dma allocations
+> + * @dma_io_tlb_mem: Internal for swiotlb io_tlb_mem override.
+>    * @archdata:	For arch-specific additions.
+>    * @of_node:	Associated device tree node.
+>    * @fwnode:	Associated device node supplied by platform firmware.
+> @@ -521,6 +522,9 @@ struct device {
+>   #ifdef CONFIG_DMA_CMA
+>   	struct cma *cma_area;		/* contiguous memory area for dma
+>   					   allocations */
 > +#endif
->   	dma_free_contiguous(dev, page, size);
->   }
+> +#ifdef CONFIG_DMA_RESTRICTED_POOL
+> +	struct io_tlb_mem *dma_io_tlb_mem;
+>   #endif
+>   	/* arch specific additions */
+>   	struct dev_archdata	archdata;
+> diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
+> index 216854a5e513..03ad6e3b4056 100644
+> --- a/include/linux/swiotlb.h
+> +++ b/include/linux/swiotlb.h
+> @@ -72,7 +72,8 @@ extern enum swiotlb_force swiotlb_force;
+>    *		range check to see if the memory was in fact allocated by this
+>    *		API.
+>    * @nslabs:	The number of IO TLB blocks (in groups of 64) between @start and
+> - *		@end. This is command line adjustable via setup_io_tlb_npages.
+> + *		@end. For default swiotlb, this is command line adjustable via
+> + *		setup_io_tlb_npages.
+>    * @used:	The number of used IO TLB block.
+>    * @list:	The free list describing the number of free entries available
+>    *		from each index.
+> diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
+> index 57a9adb920bf..ffbb8724e06c 100644
+> --- a/kernel/dma/swiotlb.c
+> +++ b/kernel/dma/swiotlb.c
+> @@ -39,6 +39,13 @@
+>   #ifdef CONFIG_DEBUG_FS
+>   #include <linux/debugfs.h>
+>   #endif
+> +#ifdef CONFIG_DMA_RESTRICTED_POOL
+> +#include <linux/io.h>
+> +#include <linux/of.h>
+> +#include <linux/of_fdt.h>
+> +#include <linux/of_reserved_mem.h>
+> +#include <linux/slab.h>
+> +#endif
 >   
-> @@ -92,7 +96,17 @@ static struct page *__dma_direct_alloc_pages(struct device *dev, size_t size,
+>   #include <asm/io.h>
+>   #include <asm/dma.h>
+> @@ -681,3 +688,76 @@ static int __init swiotlb_create_default_debugfs(void)
+>   late_initcall(swiotlb_create_default_debugfs);
 >   
->   	gfp |= dma_direct_optimal_gfp_mask(dev, dev->coherent_dma_mask,
->   					   &phys_limit);
-> -	page = dma_alloc_contiguous(dev, size, gfp);
+>   #endif
 > +
 > +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> +	page = swiotlb_alloc(dev, size);
-> +	if (page && !dma_coherent_ok(dev, page_to_phys(page), size)) {
-> +		__dma_direct_free_pages(dev, page, size);
-> +		page = NULL;
+> +static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
+> +				    struct device *dev)
+> +{
+> +	struct io_tlb_mem *mem = rmem->priv;
+> +	unsigned long nslabs = rmem->size >> IO_TLB_SHIFT;
+> +
+> +	if (dev->dma_io_tlb_mem)
+> +		return 0;
+> +
+> +	/* Since multiple devices can share the same pool, the private data,
+> +	 * io_tlb_mem struct, will be initialized by the first device attached
+> +	 * to it.
+> +	 */
+> +	if (!mem) {
+> +		mem = kzalloc(struct_size(mem, slots, nslabs), GFP_KERNEL);
+> +		if (!mem)
+> +			return -ENOMEM;
+> +#ifdef CONFIG_ARM
+> +		if (!PageHighMem(pfn_to_page(PHYS_PFN(rmem->base)))) {
+> +			kfree(mem);
+> +			return -EINVAL;
+> +		}
+> +#endif /* CONFIG_ARM */
+> +		swiotlb_init_io_tlb_mem(mem, rmem->base, nslabs, false);
+> +
+> +		rmem->priv = mem;
 > +	}
-> +#endif
 > +
-> +	if (!page)
-> +		page = dma_alloc_contiguous(dev, size, gfp);
->   	if (page && !dma_coherent_ok(dev, page_to_phys(page), size)) {
->   		dma_free_contiguous(dev, page, size);
->   		page = NULL;
-> @@ -148,7 +162,7 @@ void *dma_direct_alloc(struct device *dev, size_t size,
->   		gfp |= __GFP_NOWARN;
->   
->   	if ((attrs & DMA_ATTR_NO_KERNEL_MAPPING) &&
-> -	    !force_dma_unencrypted(dev)) {
-> +	    !force_dma_unencrypted(dev) && !is_dev_swiotlb_force(dev)) {
->   		page = __dma_direct_alloc_pages(dev, size, gfp & ~__GFP_ZERO);
->   		if (!page)
->   			return NULL;
-> @@ -161,8 +175,8 @@ void *dma_direct_alloc(struct device *dev, size_t size,
->   	}
->   
->   	if (!IS_ENABLED(CONFIG_ARCH_HAS_DMA_SET_UNCACHED) &&
-> -	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
-> -	    !dev_is_dma_coherent(dev))
-> +	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) && !dev_is_dma_coherent(dev) &&
-> +	    !is_dev_swiotlb_force(dev))
->   		return arch_dma_alloc(dev, size, dma_handle, gfp, attrs);
->   
->   	/*
-> @@ -172,7 +186,9 @@ void *dma_direct_alloc(struct device *dev, size_t size,
->   	if (IS_ENABLED(CONFIG_DMA_COHERENT_POOL) &&
->   	    !gfpflags_allow_blocking(gfp) &&
->   	    (force_dma_unencrypted(dev) ||
-> -	     (IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) && !dev_is_dma_coherent(dev))))
-> +	     (IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
-> +	      !dev_is_dma_coherent(dev))) &&
-> +	    !is_dev_swiotlb_force(dev))
->   		return dma_direct_alloc_from_pool(dev, size, dma_handle, gfp);
->   
->   	/* we always manually zero the memory once we are done */
-> @@ -253,15 +269,15 @@ void dma_direct_free(struct device *dev, size_t size,
->   	unsigned int page_order = get_order(size);
->   
->   	if ((attrs & DMA_ATTR_NO_KERNEL_MAPPING) &&
-> -	    !force_dma_unencrypted(dev)) {
-> +	    !force_dma_unencrypted(dev) && !is_dev_swiotlb_force(dev)) {
->   		/* cpu_addr is a struct page cookie, not a kernel address */
->   		dma_free_contiguous(dev, cpu_addr, size);
->   		return;
->   	}
->   
->   	if (!IS_ENABLED(CONFIG_ARCH_HAS_DMA_SET_UNCACHED) &&
-> -	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
-> -	    !dev_is_dma_coherent(dev)) {
-> +	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) && !dev_is_dma_coherent(dev) &&
-> +	    !is_dev_swiotlb_force(dev)) {
->   		arch_dma_free(dev, size, cpu_addr, dma_addr, attrs);
->   		return;
->   	}
-> @@ -289,7 +305,8 @@ struct page *dma_direct_alloc_pages(struct device *dev, size_t size,
->   	void *ret;
->   
->   	if (IS_ENABLED(CONFIG_DMA_COHERENT_POOL) &&
-> -	    force_dma_unencrypted(dev) && !gfpflags_allow_blocking(gfp))
-> +	    force_dma_unencrypted(dev) && !gfpflags_allow_blocking(gfp) &&
-> +	    !is_dev_swiotlb_force(dev))
->   		return dma_direct_alloc_from_pool(dev, size, dma_handle, gfp);
+> +#ifdef CONFIG_DEBUG_FS
+> +	if (!io_tlb_default_mem->debugfs)
+> +		io_tlb_default_mem->debugfs =
+> +			debugfs_create_dir("swiotlb", NULL);
 
-Wait, this seems broken for non-coherent devices - in that case we need 
-to return a non-cacheable address, but we can't simply fall through into 
-the remapping path below in GFP_ATOMIC context. That's why we need the 
-atomic pool concept in the first place :/
+At this point it's possible for io_tlb_default_mem to be NULL, leading 
+to a splat.
 
-Unless I've overlooked something, we're still using the regular 
-cacheable linear map address of the dma_io_tlb_mem buffer, no?
+But even then if it's not and we have the situation where debugfs==NULL 
+then the debugfs_create_dir() here will cause a subsequent attempt in 
+swiotlb_create_debugfs() to fail (directory already exists) leading to 
+mem->debugfs being assigned an error value. I suspect the creation of 
+the debugfs directory needs to be separated from io_tlb_default_mem 
+being set.
 
-Robin.
+Other than that I gave this series a go with our prototype of Arm's 
+Confidential Computer Architecture[1] - since the majority of the 
+guest's memory is protected from the host the restricted DMA pool allows 
+(only) a small area to be shared with the host.
 
->   
->   	page = __dma_direct_alloc_pages(dev, size, gfp);
-> 
+After fixing (well hacking round) the above it all seems to be working 
+fine with virtio drivers.
+
+Thanks,
+
+Steve
+
+[1] 
+https://www.arm.com/why-arm/architecture/security-features/arm-confidential-compute-architecture
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
