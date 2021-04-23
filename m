@@ -2,67 +2,56 @@ Return-Path: <SRS0=9Pkw=JU=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 12BABC43462
-	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 18:46:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 92CF6C433B4
+	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 21:07:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D336C61462
-	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 18:46:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D336C61462
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id 416D261249
+	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 21:07:18 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 416D261249
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=alum.mit.edu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 761726EC6D;
-	Fri, 23 Apr 2021 18:46:07 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC46D6EC54
- for <nouveau@lists.freedesktop.org>; Fri, 23 Apr 2021 18:46:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1619203559;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=aORR5BDLVuChgsGPTpiSbr2OxX85lHm3aaLawSJYbVM=;
- b=BM0ykOcwMaQoXsi2Y7Hv2OPEbsptqSywuPC2Nmy988I71CzMLjl2wSC60f+/tqmB0fsFQ9
- I3rGn+eDTakGGe3TwMUPezKd50gPvQO0zZnXvqEop05Eh7i/fBya+Jc2uphpQDXEAAD0xb
- e7RBlTPr5yJuJMEB/xYD0A/52JYYlwk=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-481-hNSzkSUCP0ykhaW1YxeijA-1; Fri, 23 Apr 2021 14:45:55 -0400
-X-MC-Unique: hNSzkSUCP0ykhaW1YxeijA-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
- [10.5.11.13])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 63CF210B728A;
- Fri, 23 Apr 2021 18:45:07 +0000 (UTC)
-Received: from Ruby.lyude.net (ovpn-114-74.rdu2.redhat.com [10.10.114.74])
- by smtp.corp.redhat.com (Postfix) with ESMTP id ACA706090F;
- Fri, 23 Apr 2021 18:45:04 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Thierry Reding <thierry.reding@gmail.com>
-Date: Fri, 23 Apr 2021 14:43:05 -0400
-Message-Id: <20210423184309.207645-14-lyude@redhat.com>
-In-Reply-To: <20210423184309.207645-1-lyude@redhat.com>
-References: <20210423184309.207645-1-lyude@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F2696EC50;
+	Fri, 23 Apr 2021 21:07:17 +0000 (UTC)
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com
+ [209.85.166.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 095996EC50;
+ Fri, 23 Apr 2021 21:07:15 +0000 (UTC)
+Received: by mail-io1-f51.google.com with SMTP id p8so1728449iol.11;
+ Fri, 23 Apr 2021 14:07:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=vGf4Bqg3eO6JS3gvF6LxMt8XkWMGCm3Fd5yjKYFBgF8=;
+ b=E203/yiOlCKbcP6eZiGFqffMqZDLPbUDVm5ztZ2yZMyDkAcLnf6RLnV4cJqB6r++zF
+ l5OB6zgsR5RYJdy431rqYeKNpN24j+lRL29u6tZTkFO7V9E7OlybUOKGC0nRGaRGczcR
+ UTNRQ4tFlKBfTKy+1mecrRZN1ROaGg+PShbz34OHN3+Eut4XhMbgu2/RXVBVlHT2XCfg
+ ewduK7/Kx3nUnJHP083CS/vMbJlvREtcuaKPJFBsqoc5bCNMFuJBlkALI9aFhGJ0J3lU
+ F1LAhHPRD7hZPkeX733dE9nE2tqohmtOm0cll0R+LqBg6M6YXKPSqmBiC+aY1LIIj7mf
+ J7hA==
+X-Gm-Message-State: AOAM532nosdB2QoLRKesuURSyMPgSfFVrogGPL85buUQq4fFgxUFIFOf
+ Pi5knQzN/vIUa+EehIChquEoeyszm3ksU3jrhdA=
+X-Google-Smtp-Source: ABdhPJx/mGXYebrjo1LW38fgTdwSQnNr3RmcE4CILvZv37TRPOr8OlvisBQvXkXDoBESh8c9agnzKhcwdoToZrcFn2Y=
+X-Received: by 2002:a5e:d515:: with SMTP id e21mr4718257iom.30.1619212035381; 
+ Fri, 23 Apr 2021 14:07:15 -0700 (PDT)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-Subject: [Nouveau] [PATCH v4 13/17] drm/dp_mst: Pass drm_dp_mst_topology_mgr
- to drm_dp_get_vc_payload_bw()
+References: <20210423184309.207645-1-lyude@redhat.com>
+ <20210423184309.207645-3-lyude@redhat.com>
+In-Reply-To: <20210423184309.207645-3-lyude@redhat.com>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Date: Fri, 23 Apr 2021 17:07:04 -0400
+Message-ID: <CAKb7UvgpMO60gRzmJY0V5nOsT8u9y2hFLazmVJ+pEiedEKOOhQ@mail.gmail.com>
+To: Lyude Paul <lyude@redhat.com>
+Subject: Re: [Nouveau] [PATCH v4 02/17] drm/nouveau/kms/nv50-: Move AUX
+ adapter reg to connector late register/early unregister
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,94 +63,107 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, David Airlie <airlied@linux.ie>,
- Ramalingam C <ramalingam.c@intel.com>, Imre Deak <imre.deak@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- open list <linux-kernel@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>,
- Sean Paul <seanpaul@chromium.org>, Daniel Vetter <daniel@ffwll.ch>,
- Anshuman Gupta <anshuman.gupta@intel.com>, Lee Shawn C <shawn.c.lee@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
+Cc: dri-devel <dri-devel@lists.freedesktop.org>,
+ David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Ben Skeggs <bskeggs@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Since this is one of the few functions in drm_dp_mst_topology.c that
-doesn't have any way of getting access to a drm_device, let's pass the
-drm_dp_mst_topology_mgr down to this function so that it can use
-drm_dbg_kms().
+Some trivia, no comment on the real logic of the changes:
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/drm_dp_mst_topology.c       | 7 +++++--
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 ++-
- include/drm/drm_dp_mst_helper.h             | 3 ++-
- 3 files changed, 9 insertions(+), 4 deletions(-)
+On Fri, Apr 23, 2021 at 2:43 PM Lyude Paul <lyude@redhat.com> wrote:
+>
+> Since AUX adapters on nouveau have their respective DRM connectors as
+> parents, we need to make sure that we register then after their connectors.
 
-diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-index 276f7f054d62..9bac5bd050ab 100644
---- a/drivers/gpu/drm/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-@@ -3638,6 +3638,7 @@ static int drm_dp_send_up_ack_reply(struct drm_dp_mst_topology_mgr *mgr,
- 
- /**
-  * drm_dp_get_vc_payload_bw - get the VC payload BW for an MST link
-+ * @mgr: The &drm_dp_mst_topology_mgr to use
-  * @link_rate: link rate in 10kbits/s units
-  * @link_lane_count: lane count
-  *
-@@ -3646,7 +3647,8 @@ static int drm_dp_send_up_ack_reply(struct drm_dp_mst_topology_mgr *mgr,
-  * convert the number of PBNs required for a given stream to the number of
-  * timeslots this stream requires in each MTP.
-  */
--int drm_dp_get_vc_payload_bw(int link_rate, int link_lane_count)
-+int drm_dp_get_vc_payload_bw(const struct drm_dp_mst_topology_mgr *mgr,
-+			     int link_rate, int link_lane_count)
- {
- 	if (link_rate == 0 || link_lane_count == 0)
- 		DRM_DEBUG_KMS("invalid link rate/lane count: (%d / %d)\n",
-@@ -3711,7 +3713,8 @@ int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool ms
- 			goto out_unlock;
- 		}
- 
--		mgr->pbn_div = drm_dp_get_vc_payload_bw(drm_dp_bw_code_to_link_rate(mgr->dpcd[1]),
-+		mgr->pbn_div = drm_dp_get_vc_payload_bw(mgr,
-+							drm_dp_bw_code_to_link_rate(mgr->dpcd[1]),
- 							mgr->dpcd[2] & DP_MAX_LANE_COUNT_MASK);
- 		if (mgr->pbn_div == 0) {
- 			ret = -EINVAL;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 180f97cd74cb..eb04b3cefda2 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -70,7 +70,8 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
- 		slots = drm_dp_atomic_find_vcpi_slots(state, &intel_dp->mst_mgr,
- 						      connector->port,
- 						      crtc_state->pbn,
--						      drm_dp_get_vc_payload_bw(crtc_state->port_clock,
-+						      drm_dp_get_vc_payload_bw(&intel_dp->mst_mgr,
-+									       crtc_state->port_clock,
- 									       crtc_state->lane_count));
- 		if (slots == -EDEADLK)
- 			return slots;
-diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
-index bd1c39907b92..20dc705642bd 100644
---- a/include/drm/drm_dp_mst_helper.h
-+++ b/include/drm/drm_dp_mst_helper.h
-@@ -783,7 +783,8 @@ drm_dp_mst_detect_port(struct drm_connector *connector,
- 
- struct edid *drm_dp_mst_get_edid(struct drm_connector *connector, struct drm_dp_mst_topology_mgr *mgr, struct drm_dp_mst_port *port);
- 
--int drm_dp_get_vc_payload_bw(int link_rate, int link_lane_count);
-+int drm_dp_get_vc_payload_bw(const struct drm_dp_mst_topology_mgr *mgr,
-+			     int link_rate, int link_lane_count);
- 
- int drm_dp_calc_pbn_mode(int clock, int bpp, bool dsc);
- 
--- 
-2.30.2
+then -> them
 
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_connector.c | 25 ++++++++++++++++-----
+>  1 file changed, 20 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+> index 61e6d7412505..c04044be3d32 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+> @@ -401,7 +401,6 @@ nouveau_connector_destroy(struct drm_connector *connector)
+>         drm_connector_cleanup(connector);
+>         if (nv_connector->aux.transfer) {
+>                 drm_dp_cec_unregister_connector(&nv_connector->aux);
+> -               drm_dp_aux_unregister(&nv_connector->aux);
+>                 kfree(nv_connector->aux.name);
+>         }
+>         kfree(connector);
+> @@ -905,13 +904,29 @@ nouveau_connector_late_register(struct drm_connector *connector)
+>         int ret;
+>
+>         ret = nouveau_backlight_init(connector);
+> +       if (ret)
+> +               return ret;
+>
+> +       if (connector->connector_type == DRM_MODE_CONNECTOR_eDP ||
+> +           connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort) {
+> +               ret = drm_dp_aux_register(&nouveau_connector(connector)->aux);
+> +               if (ret)
+> +                       goto backlight_fini;
+> +       }
+> +
+> +       return 0;
+> +backlight_fini:
+> +       nouveau_backlight_fini(connector);
+>         return ret;
+>  }
+>
+>  static void
+>  nouveau_connector_early_unregister(struct drm_connector *connector)
+>  {
+> +       if (connector->connector_type == DRM_MODE_CONNECTOR_eDP ||
+> +           connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort)
+> +               drm_dp_aux_unregister(&nouveau_connector(connector)->aux);
+> +
+>         nouveau_backlight_fini(connector);
+>  }
+>
+> @@ -1343,14 +1358,14 @@ nouveau_connector_create(struct drm_device *dev,
+>                 snprintf(aux_name, sizeof(aux_name), "sor-%04x-%04x",
+>                          dcbe->hasht, dcbe->hashm);
+>                 nv_connector->aux.name = kstrdup(aux_name, GFP_KERNEL);
+> -               ret = drm_dp_aux_register(&nv_connector->aux);
+> +               drm_dp_aux_init(&nv_connector->aux);
+>                 if (ret) {
+> -                       NV_ERROR(drm, "failed to register aux channel\n");
+> +                       NV_ERROR(drm, "Failed to init AUX adapter for sor-%04x-%04x: %d\n",
+
+Maybe just use aux_name instead of rebuilding the string again?
+
+> +                                dcbe->hasht, dcbe->hashm, ret);
+>                         kfree(nv_connector);
+>                         return ERR_PTR(ret);
+>                 }
+> -               funcs = &nouveau_connector_funcs;
+> -               break;
+> +               fallthrough;
+>         default:
+>                 funcs = &nouveau_connector_funcs;
+>                 break;
+> --
+> 2.30.2
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
