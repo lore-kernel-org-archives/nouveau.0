@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E6902C43460
-	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 18:43:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 54963C43462
+	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 18:44:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B67B9613CD
-	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 18:43:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B67B9613CD
+	by mail.kernel.org (Postfix) with ESMTPS id 1315161476
+	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 18:44:10 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1315161476
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D24C26EC2E;
-	Fri, 23 Apr 2021 18:43:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A1B36EC30;
+	Fri, 23 Apr 2021 18:44:09 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63AF16EC2F
- for <nouveau@lists.freedesktop.org>; Fri, 23 Apr 2021 18:43:45 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2ABCD6EC39
+ for <nouveau@lists.freedesktop.org>; Fri, 23 Apr 2021 18:44:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1619203424;
+ s=mimecast20190719; t=1619203447;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=xCk+7HBEDSqMgOjZMBk+r1aGT3OYcq/6hTQ7p1Jbu/c=;
- b=NMm2espnar29XwtjaRsB38XyACa0ocACHDIb1Aso7KIH2caxKbRPfBUT+oaihcyhpPYKAr
- A9N7kMMK2LtIiLTzbqVyM44u2ROHv23RturagXi2VpgjgguFm1gtNX38Tp4mgtgblpqa07
- liXlEZFoB8V08uS7ob2S2aS7AIz1qJU=
+ bh=aa/xpaugDkXS10SSva9ajht1412w7bsX84a2n7VZ2vU=;
+ b=EOKBbTzAAyFynZR2BomXWa0lx5xKFVS95jYVpBHv6ZgP6IO/tkgYQ+tCiDgGOS/oV5uL67
+ 13tZLisbVBA64m5K/RNzhVvWz3rFvud/b2Z5G+4cKRs1CD7p48tY7fGVYavwFTSWRamM+s
+ /6EDu5bRwVq7oqeIuqQOdPCPaJB2Md4=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-137-qwKfC8WPM_q7IqnQ0uIp8g-1; Fri, 23 Apr 2021 14:43:40 -0400
-X-MC-Unique: qwKfC8WPM_q7IqnQ0uIp8g-1
+ us-mta-460-wTjm5n51Nhu4_gUao07yHg-1; Fri, 23 Apr 2021 14:44:05 -0400
+X-MC-Unique: wTjm5n51Nhu4_gUao07yHg-1
 Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
  [10.5.11.13])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 01E2C80D6A8;
- Fri, 23 Apr 2021 18:43:36 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 3887179EC0;
+ Fri, 23 Apr 2021 18:44:03 +0000 (UTC)
 Received: from Ruby.lyude.net (ovpn-114-74.rdu2.redhat.com [10.10.114.74])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 96776608BA;
- Fri, 23 Apr 2021 18:43:30 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 2097F60CCD;
+ Fri, 23 Apr 2021 18:44:01 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
@@ -55,14 +55,13 @@ To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Thomas Zimmermann <tzimmermann@suse.de>,
  Thierry Reding <thierry.reding@gmail.com>
-Date: Fri, 23 Apr 2021 14:42:53 -0400
-Message-Id: <20210423184309.207645-2-lyude@redhat.com>
+Date: Fri, 23 Apr 2021 14:42:56 -0400
+Message-Id: <20210423184309.207645-5-lyude@redhat.com>
 In-Reply-To: <20210423184309.207645-1-lyude@redhat.com>
 References: <20210423184309.207645-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-Subject: [Nouveau] [PATCH v4 01/17] drm/bridge/cdns-mhdp8546: Register DP
- aux channel with userspace
+Subject: [Nouveau] [PATCH v4 04/17] drm/dp: Clarify DP AUX registration time
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,67 +73,90 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jernej Skrabec <jernej.skrabec@siol.net>, Jonas Karlman <jonas@kwiboo.se>,
- David Airlie <airlied@linux.ie>, Neil Armstrong <narmstrong@baylibre.com>,
- open list <linux-kernel@vger.kernel.org>, Robert Foss <robert.foss@linaro.org>,
- Julia Lawall <Julia.Lawall@inria.fr>, Andrzej Hajda <a.hajda@samsung.com>,
- Parshuram Thombare <pthombar@cadence.com>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Daniel Vetter <daniel@ffwll.ch>, Swapnil Jakhade <sjakhade@cadence.com>
+Cc: David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Maxime Ripard <mripard@kernel.org>,
+ open list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Just adds some missing calls to
-drm_dp_aux_register()/drm_dp_aux_unregister() for when we attach/detach the
-bridge.
+The docs we had for drm_dp_aux_init() and drm_dp_aux_register() were mostly
+correct, except for the fact that they made the assumption that all AUX
+devices were grandchildren of their respective DRM devices. This is the
+case for most normal GPUs, but is almost never the case with SoCs and
+display bridges. So, let's fix this documentation to clarify when the right
+time to use drm_dp_aux_init() or drm_dp_aux_register() is.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 ---
- drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/drm_dp_helper.c | 45 +++++++++++++++++++++++----------
+ 1 file changed, 32 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
-index 01e95466502a..49e4c340f1de 100644
---- a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
-+++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
-@@ -1719,10 +1719,14 @@ static int cdns_mhdp_attach(struct drm_bridge *bridge,
- 
- 	dev_dbg(mhdp->dev, "%s\n", __func__);
- 
-+	ret = drm_dp_aux_register(&mhdp->aux);
-+	if (ret < 0)
-+		return ret;
-+
- 	if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)) {
- 		ret = cdns_mhdp_connector_init(mhdp);
- 		if (ret)
--			return ret;
-+			goto aux_unregister;
- 	}
- 
- 	spin_lock(&mhdp->start_lock);
-@@ -1738,6 +1742,9 @@ static int cdns_mhdp_attach(struct drm_bridge *bridge,
- 		       mhdp->regs + CDNS_APB_INT_MASK);
- 
- 	return 0;
-+aux_unregister:
-+	drm_dp_aux_unregister(&mhdp->aux);
-+	return ret;
- }
- 
- static void cdns_mhdp_configure_video(struct cdns_mhdp_device *mhdp,
-@@ -2082,6 +2089,8 @@ static void cdns_mhdp_detach(struct drm_bridge *bridge)
- 
- 	dev_dbg(mhdp->dev, "%s\n", __func__);
- 
-+	drm_dp_aux_unregister(&mhdp->aux);
-+
- 	spin_lock(&mhdp->start_lock);
- 
- 	mhdp->bridge_attached = false;
+diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
+index ad73d7264743..9f66153a3c55 100644
+--- a/drivers/gpu/drm/drm_dp_helper.c
++++ b/drivers/gpu/drm/drm_dp_helper.c
+@@ -1728,10 +1728,18 @@ EXPORT_SYMBOL(drm_dp_remote_aux_init);
+  * drm_dp_aux_init() - minimally initialise an aux channel
+  * @aux: DisplayPort AUX channel
+  *
+- * If you need to use the drm_dp_aux's i2c adapter prior to registering it
+- * with the outside world, call drm_dp_aux_init() first. You must still
+- * call drm_dp_aux_register() once the connector has been registered to
+- * allow userspace access to the auxiliary DP channel.
++ * If you need to use the drm_dp_aux's i2c adapter prior to registering it with
++ * the outside world, call drm_dp_aux_init() first. For drivers which are
++ * grandparents to their AUX adapters (e.g. the AUX adapter is parented by a
++ * &drm_connector), you must still call drm_dp_aux_register() once the connector
++ * has been registered to allow userspace access to the auxiliary DP channel.
++ * Likewise, for such drivers you should also assign &drm_dp_aux.drm_dev as
++ * early as possible so that the &drm_device that corresponds to the AUX adapter
++ * may be mentioned in debugging output from the DRM DP helpers.
++ *
++ * For devices which use a separate platform device for their AUX adapters, this
++ * may be called as early as required by the driver.
++ *
+  */
+ void drm_dp_aux_init(struct drm_dp_aux *aux)
+ {
+@@ -1751,15 +1759,26 @@ EXPORT_SYMBOL(drm_dp_aux_init);
+  * drm_dp_aux_register() - initialise and register aux channel
+  * @aux: DisplayPort AUX channel
+  *
+- * Automatically calls drm_dp_aux_init() if this hasn't been done yet.
+- * This should only be called when the underlying &struct drm_connector is
+- * initialiazed already. Therefore the best place to call this is from
+- * &drm_connector_funcs.late_register. Not that drivers which don't follow this
+- * will Oops when CONFIG_DRM_DP_AUX_CHARDEV is enabled.
+- *
+- * Drivers which need to use the aux channel before that point (e.g. at driver
+- * load time, before drm_dev_register() has been called) need to call
+- * drm_dp_aux_init().
++ * Automatically calls drm_dp_aux_init() if this hasn't been done yet. This
++ * should only be called once the parent of @aux, &drm_dp_aux.dev, is
++ * initialized. For devices which are grandparents of their AUX channels,
++ * &drm_dp_aux.dev will typically be the &drm_connector &device which
++ * corresponds to @aux. For these devices, it's advised to call
++ * drm_dp_aux_register() in &drm_connector_funcs.late_register, and likewise to
++ * call drm_dp_aux_unregister() in &drm_connector_funcs.early_unregister.
++ * Functions which don't follow this will likely Oops when
++ * %CONFIG_DRM_DP_AUX_CHARDEV is enabled.
++ *
++ * For devices where the AUX channel is a device that exists independently of
++ * the &drm_device that uses it, such as SoCs and bridge devices, it is
++ * recommended to call drm_dp_aux_register() after a &drm_device has been
++ * assigned to &drm_dp_aux.drm_dev, and likewise to call
++ * drm_dp_aux_unregister() once the &drm_device should no longer be associated
++ * with the AUX channel (e.g. on bridge detach).
++ *
++ * Drivers which need to use the aux channel before either of the two points
++ * mentioned above need to call drm_dp_aux_init() in order to use the AUX
++ * channel before registration.
+  *
+  * Returns 0 on success or a negative error code on failure.
+  */
 -- 
 2.30.2
 
