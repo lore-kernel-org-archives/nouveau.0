@@ -2,108 +2,68 @@ Return-Path: <SRS0=9Pkw=JU=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+X-Spam-Status: No, score=-8.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DD8CBC43462
-	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 15:20:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E27E4C433B4
+	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 18:43:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 80B1E613B0
-	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 15:20:38 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 80B1E613B0
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=nvidia.com
+	by mail.kernel.org (Postfix) with ESMTPS id 9D3D261139
+	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 18:43:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9D3D261139
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8E4E6EC12;
-	Fri, 23 Apr 2021 15:20:31 +0000 (UTC)
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2052.outbound.protection.outlook.com [40.107.236.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5D726EB88;
- Fri, 23 Apr 2021 12:33:39 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EFkTKoVCM4XmiFFPctpwH3FAUWmmCIp0DVtobWGn7TElhl/KS/JMd97/olKxza7AWTHgVGsvlBB2xkLbZzOlnalAOK9XKpK/RhKxqr+KLpJTwA+el+xaGk9Gl1N8Bo71criZgE7isZ0MJt061oB4IQ8na2rNDw0ia4OXCKwb+4ASrrQTB64LyFDNONfBFnVvWGmIMroXF6DEUyoIA5HfPQ1TDF23qulh/Y231X2WhIaPkAbU3umLDvt/CFSC+i9aEU3i8/ork2ogBOFYntHIsE5NXloJUdXDcB3RxmbcfRpxxWyC0eZWUOpv4jhv8r+s3SWvakwyDOcMVyjiHGTGQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HwygpCJ6u3uuxLaHhof0ZJJabLlpAFJDCIFy7/A6CiA=;
- b=gwXwHiZXMjYI0SW3fNqmGw0QnRPH+mdabiySjfMIr7JQ4cMvO8oh3SKY+VysFt46AuUG/ZoogWwyduh7WlX12jbYMDLmlGT5N9YstOJHvgtjkwVMwJ8VxP+oSWQnL3QSYAosnyQmeo18rAH1YPd0uDyGrlYhSZ+YESSii1Cjb/4p0y1hLgBeqocfElnzs5Yj6oow5OXBrCeKuzGfIxW7+4Peao6KMKkZfKtNcjh1Gn+E87u98wVwnXvUzyudJCn13NIprYWkgJ/ad3/NJvoXMLNPnntyc8d3KHmpRSEZ1LYtlGoxyp2F/wz1BKyHXYVH+KDQ4o3AvrqSpNZXd2yrbA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.34) smtp.rcpttodomain=amd.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HwygpCJ6u3uuxLaHhof0ZJJabLlpAFJDCIFy7/A6CiA=;
- b=dJBtE8mpmJ4X2S8CdDfYjQj91XCXLymlMLBuPP/zN+6uXQNrVKG4ITBt3AjxCP5/U/lmLsiLfQlH0DFCXDxSJ4VNFYOiSAmxPu/OOZrpuFQ/sLvu3t93zArdD027M38kv/b1N1eIS09i/WEbBZirwXUimOgCorr4529q4DQ7SqPtWJJBUlpx05xBdkEIWFVXuY97K0uxs7WipVrkvQE70gSraTqE2VDoCsTEBbNKZdiwncWiCX6vewsX68NcBV42slm0pb1aelT9LyXZiDMT0G1Cw6EE6kihPVeA0UM90MZ3WwnH2yka1fi/8Q9IEHoZONA+xUMMB2Hv84pVzx4jgA==
-Received: from DM5PR21CA0009.namprd21.prod.outlook.com (2603:10b6:3:ac::19) by
- MN2PR12MB4783.namprd12.prod.outlook.com (2603:10b6:208:3e::10) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4065.22; Fri, 23 Apr 2021 12:33:36 +0000
-Received: from DM6NAM11FT055.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:ac:cafe::6c) by DM5PR21CA0009.outlook.office365.com
- (2603:10b6:3:ac::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.5 via Frontend
- Transport; Fri, 23 Apr 2021 12:33:35 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
- smtp.mailfrom=nvidia.com; amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.34; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.34) by
- DM6NAM11FT055.mail.protection.outlook.com (10.13.173.103) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4065.21 via Frontend Transport; Fri, 23 Apr 2021 12:33:35 +0000
-Received: from localhost (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 23 Apr
- 2021 12:33:34 +0000
-Date: Fri, 23 Apr 2021 14:34:22 +0200
-From: Thierry Reding <treding@nvidia.com>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <YIK+zqd31+dNQ7NR@orome.fritz.box>
-References: <20210419225523.184856-1-lyude@redhat.com>
- <20210419225523.184856-4-lyude@redhat.com>
- <YH4PPbY1qqF2NtrN@intel.com>
- <56a931c9f284ee6a23583eb3dc59de4afaa60e93.camel@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 452056E16F;
+	Fri, 23 Apr 2021 18:43:33 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 577CB6E17D
+ for <nouveau@lists.freedesktop.org>; Fri, 23 Apr 2021 18:43:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1619203411;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=+swtazcwNbLfgM04sybYAGJfVx7ZPYjQP+dUg9WubdU=;
+ b=ccXNappB1NHCHq/1z4xtKiOP2KPvm9nArgADGvWqCeXigjmGwjaxC7BcwdvGJMIXYzvt9/
+ P/rrXzCQuzv/LhCgB8/yrAF+dnOC33163Jf5Dtbcb0kYh8MMOba8PQqsUHoCJluuVWJyNx
+ L2wNpKkaSSxQBCJSyz2/Wn3h/weWpJA=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-376-25v7JVbOPMCXCpj692otlw-1; Fri, 23 Apr 2021 14:43:27 -0400
+X-MC-Unique: 25v7JVbOPMCXCpj692otlw-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id D6D191B18BC0;
+ Fri, 23 Apr 2021 18:43:25 +0000 (UTC)
+Received: from Ruby.lyude.net (ovpn-114-74.rdu2.redhat.com [10.10.114.74])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 6C6856090F;
+ Fri, 23 Apr 2021 18:43:23 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Thierry Reding <thierry.reding@gmail.com>
+Date: Fri, 23 Apr 2021 14:42:52 -0400
+Message-Id: <20210423184309.207645-1-lyude@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <56a931c9f284ee6a23583eb3dc59de4afaa60e93.camel@redhat.com>
-X-NVConfidentiality: public
-User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: acef4835-0d55-4c48-60e9-08d9065403b5
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4783:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB478390FF082D8FACBBBE8ACFCF459@MN2PR12MB4783.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: oSukci0wgcnBP2WFhUljxKMbZT07X7HTLoTFUlqJdlpPDOrC1q7bKN0PZr0J5Lq6cxf9j3vsAcjXdto4IlxiRUh3/2ll8TokRwztROyARqaCO1IMb9vMXLgvlEs8Tm/yPgD36G3FGd0+8Yoaeyhx6FItcAkw7jLSQr1Q0pVw5Q6KlzM0Rp9kDR+sqFDp0eC2Q+D0RuNDpPpl3rkWnKmwc66G10hpGwf4jxfRVrpaYXzXzlZvOjEDcjHh16dK3+mvets6spBUI+fkFPB4k3Ig+nFEQEuybv6sJXdfoaFuFpz0ak0LtVZSQOiF4qma5oSTPNipYNJR7m0vdaKloaK1tVd0mKml4xGg6e9hnUH3mTdtrFQHq95PseWXznkkEOfvRe0CxwA7DrcCXAKom+DFq3qKo0YEHMVRhelJndVLCUkTuurhES+zf5cfH8gSNu1K42jTS+D9Z4oMVm2R7gDzgevpykb94F/4pwkNMM3YeW/mCKNvvz3yOHnjAUYeZBRYzqEutbbQV35ZcCoMteYsalSZWMrNGLBXM5BSrQayWIX5kP3efYZv0WK9NKUqnPNQsh6LnM10KKRT0m2yrcAUWtyQfTPgC8TinHmIJNQ8NijeWMGgrMAEGG7/gNkvIQ+3Bg3Nin91B5+iW7qq3e0BL8Ruv6SPGtMTCXPjqF/4fEjRGv4g2t3hUDim1YFnY4/u
-X-Forefront-Antispam-Report: CIP:216.228.112.34; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:schybrid03.nvidia.com; CAT:NONE;
- SFS:(4636009)(376002)(346002)(136003)(39850400004)(396003)(36840700001)(46966006)(8936002)(44144004)(7416002)(336012)(33964004)(83380400001)(2906002)(47076005)(9686003)(54906003)(7406005)(8676002)(86362001)(21480400003)(66574015)(36906005)(70206006)(186003)(426003)(316002)(36860700001)(26005)(82740400003)(356005)(16526019)(478600001)(70586007)(4326008)(7636003)(5660300002)(6666004)(6916009)(82310400003)(2700100001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2021 12:33:35.7764 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: acef4835-0d55-4c48-60e9-08d9065403b5
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.112.34];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT055.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4783
-X-Mailman-Approved-At: Fri, 23 Apr 2021 15:20:27 +0000
-Subject: Re: [Nouveau] [PATCH v3 03/20] drm/dp: Move i2c init to
- drm_dp_aux_init, add __must_check and fini
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: [Nouveau] [PATCH v4 00/17] drm: Use new DRM printk funcs (like
+ drm_dbg_*()) in DP helpers
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,107 +75,98 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org,
- Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Oleg Vasilev <oleg.vasilev@intel.com>, dri-devel@lists.freedesktop.org,
- Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
- Andrzej Hajda <a.hajda@samsung.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, Thierry
- Reding <thierry.reding@gmail.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Sam Ravnborg <sam@ravnborg.org>,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>,
- Parshuram Thombare <pthombar@cadence.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Michal Simek <michal.simek@xilinx.com>, amd-gfx@lists.freedesktop.org,
- Luben Tuikov <luben.tuikov@amd.com>, Ben Skeggs <bskeggs@redhat.com>,
- Swapnil Jakhade <sjakhade@cadence.com>,
- Harry Wentland <harry.wentland@amd.com>, Imre Deak <imre.deak@intel.com>,
- Jonas Karlman <jonas@kwiboo.se>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Joe Perches <joe@perches.com>,
- Yuti Amonkar <yamonkar@cadence.com>, Maxime Ripard <mripard@kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Mikita Lipski <mikita.lipski@amd.com>,
- Sean Paul <sean@poorly.run>, Navid
- Emamdoost <navid.emamdoost@gmail.com>, Jernej
- Skrabec <jernej.skrabec@siol.net>, Chris Park <Chris.Park@amd.com>,
- Eryk Brol <eryk.brol@amd.com>, Hyun Kwon <hyun.kwon@xilinx.com>,
- Robert Foss <robert.foss@linaro.org>, Julia Lawall <Julia.Lawall@inria.fr>,
- Rob Clark <robdclark@gmail.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Content-Type: multipart/mixed; boundary="===============1685984618=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
---===============1685984618==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="q/zesarLA5snuRkf"
-Content-Disposition: inline
+Since it's been asked quite a few times on some of the various DP
+related patch series I've submitted to use the new DRM printk helpers,
+and it technically wasn't really trivial to do this before due to the
+lack of a consistent way to find a drm_device for an AUX channel, this
+patch series aims to address this. In this series we:
 
---q/zesarLA5snuRkf
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+* (NEW! starting from V3) Make sure drm_dbg_*() and friends can handle
+  NULL drm device pointers
+* Clean-up potentially erroneous usages of drm_dp_aux_init() and
+  drm_dp_aux_register() so that actual AUX registration doesn't happen
+  until we have an associated DRM device
+* Clean-up any obvious errors in drivers we find along the way
+* Add a backpointer to the respective drm_device for an AUX channel in
+  drm_dp_aux.drm_dev, and hook it up in every driver with an AUX channel
+  across the tree
+* Add a new ratelimited print helper we'll need for converting the DP
+  helpers over to using the new DRM printk helpers
+* Fix any inconsistencies with logging in drm_dp_helper.c so we always
+  have the aux channel name printed
+* Prepare the various DP helpers so they can find the correct drm_device
+  to use for logging
+* And finally, convert all of the DP helpers over to using drm_dbg_*()
+  and drm_err().
 
-On Thu, Apr 22, 2021 at 01:18:09PM -0400, Lyude Paul wrote:
-> On Tue, 2021-04-20 at 02:16 +0300, Ville Syrj=C3=A4l=C3=A4 wrote:
-> >=20
-> > The init vs. register split is intentional. Registering the thing
-> > and allowing userspace access to it before the rest of the driver
-> > is ready isn't particularly great. For a while now we've tried to
-> > move towards an architecture where the driver is fully initialzied
-> > before anything gets exposed to userspace.
->=20
-> Yeah-thank you for pointing this out. Thierry - do you think there's an
-> alternate solution we could go with in Tegra to fix the get_device() issue
-> that wouldn't require us trying to expose the i2c adapter early?
+Major changes in v4:
+* Don't move i2c aux init into drm_dp_aux_init(), since I think I've
+  found a much better solution to tegra's issues:
+  https://patchwork.freedesktop.org/series/89420/
 
-I suppose we could do it in a hackish way that grabs a reference to the
-I2C adapter only upon registration. We can't do that for the regular I2C
-DDC case where the I2C controller is an external one because by the time
-we get to registration it could've gone again. This would make both code
-paths asymmetric, so I'd prefer not to do it. Perhaps it could serve as
-an stop-gap solution until something better is in place, though.
+Lyude Paul (17):
+  drm/bridge/cdns-mhdp8546: Register DP aux channel with userspace
+  drm/nouveau/kms/nv50-: Move AUX adapter reg to connector late
+    register/early unregister
+  drm/dp: Add backpointer to drm_device in drm_dp_aux
+  drm/dp: Clarify DP AUX registration time
+  drm/dp: Pass drm_dp_aux to drm_dp_link_train_clock_recovery_delay()
+  drm/dp: Pass drm_dp_aux to drm_dp*_link_train_channel_eq_delay()
+  drm/dp: Always print aux channel name in logs
+  drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_detect()
+  drm/dp_dual_mode: Pass drm_device to
+    drm_dp_dual_mode_set_tmds_output()
+  drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_max_tmds_clock()
+  drm/dp_dual_mode: Pass drm_device to
+    drm_dp_dual_mode_get_tmds_output()
+  drm/dp_dual_mode: Pass drm_device to drm_lspcon_(get|set)_mode()
+  drm/dp_mst: Pass drm_dp_mst_topology_mgr to drm_dp_get_vc_payload_bw()
+  drm/print: Handle potentially NULL drm_devices in drm_dbg_*
+  drm/dp: Convert drm_dp_helper.c to using drm_err/drm_dbg_*()
+  drm/dp_dual_mode: Convert drm_dp_dual_mode_helper.c to using
+    drm_err/drm_dbg_kms()
+  drm/dp_mst: Convert drm_dp_mst_topology.c to drm_err()/drm_dbg*()
 
-Thierry
+ drivers/gpu/drm/amd/amdgpu/atombios_dp.c      |   6 +-
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |   1 +
+ .../drm/bridge/analogix/analogix-anx6345.c    |   1 +
+ .../drm/bridge/analogix/analogix-anx78xx.c    |   1 +
+ .../drm/bridge/analogix/analogix_dp_core.c    |   1 +
+ .../drm/bridge/cadence/cdns-mhdp8546-core.c   |  12 +-
+ drivers/gpu/drm/bridge/tc358767.c             |   1 +
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c         |   1 +
+ drivers/gpu/drm/drm_dp_aux_dev.c              |   6 +
+ drivers/gpu/drm/drm_dp_dual_mode_helper.c     |  68 ++--
+ drivers/gpu/drm/drm_dp_helper.c               | 184 +++++----
+ drivers/gpu/drm/drm_dp_mst_topology.c         | 376 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |   1 +
+ .../drm/i915/display/intel_dp_link_training.c |   6 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   7 +-
+ drivers/gpu/drm/i915/display/intel_lspcon.c   |  17 +-
+ drivers/gpu/drm/msm/dp/dp_ctrl.c              |   6 +-
+ drivers/gpu/drm/msm/edp/edp.h                 |   3 +-
+ drivers/gpu/drm/msm/edp/edp_aux.c             |   5 +-
+ drivers/gpu/drm/msm/edp/edp_ctrl.c            |   8 +-
+ drivers/gpu/drm/nouveau/nouveau_connector.c   |  26 +-
+ drivers/gpu/drm/radeon/atombios_dp.c          |   5 +-
+ drivers/gpu/drm/tegra/dpaux.c                 |   1 +
+ drivers/gpu/drm/xlnx/zynqmp_dp.c              |   5 +-
+ include/drm/drm_dp_dual_mode_helper.h         |  14 +-
+ include/drm/drm_dp_helper.h                   |  19 +-
+ include/drm/drm_dp_mst_helper.h               |   3 +-
+ include/drm/drm_print.h                       |  20 +-
+ 29 files changed, 453 insertions(+), 354 deletions(-)
 
---q/zesarLA5snuRkf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmCCvswACgkQ3SOs138+
-s6HfrQ//ep/a4Nwbe0s5RRznEHU4uqq7eSD0F3tfSfkOTi8oBMMclzsbDNFr/Yyk
-1GvAyPyAhTbSg0Tv55O4yAngfu55vRKCXnUNw/YBTGqtvmD0CAjBXAuasmsNABsX
-ANHVl65Mw8G4NzbupOk45PKRddQGoRe9Y8kHC50iG5cU6smk6yd66fCFyELsUdJ+
-25+1/aPfLeOId94mxMWsV54EBDoAqneaev268rhwQLNB/BmNAIOzpwJmkE+Qup6Z
-wObWLYE+POa3U6QG2nqT6mP1BlvNC3iJAUYwE0+ErXufe+u21264iV17/x/WS3WA
-ZfTpwgppE2gD4Ah5ejmGaqrmYbvhy60H4xaCy+re0Q+TFvQ539k/gdLCmTlsXAAg
-kWW1M4e34y1dM8MCrG3Q58EENMyj7abzEv0j+apxvxjmOAEPqV8LNPpIusSBVhdO
-7KYME9BxDC89c10z4GMqfBR/hPn5vU1ZNT3WAtHHefWjGeCXfh764eryBjYtgJFW
-YjkNCt/IHmIYSt/f4z5Ou0kE+QxwkzWQzSNvYob9wxx/4vKRA8XLaNfW4pJtDwqz
-gW6f7fPM74iG7oHidpKaekx1DC6NqlpvPIBsrLp4gv8S97zDmbe+RJrrr5L6s1M8
-Svqruln5bpkb47Aow8fHD+wWrhgQWiW7d6gRpUEI4i04traAp30=
-=0kz3
------END PGP SIGNATURE-----
-
---q/zesarLA5snuRkf--
-
---===============1685984618==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+2.30.2
 
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1685984618==--
