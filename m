@@ -7,46 +7,46 @@ X-Spam-Status: No, score=-15.2 required=3.0 tests=BAYES_00,
 	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 77A61C433B4
-	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 15:20:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B4FB2C433ED
+	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 15:20:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0C3DE61445
-	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 15:20:30 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0C3DE61445
+	by mail.kernel.org (Postfix) with ESMTPS id 58C1061152
+	for <nouveau@archiver.kernel.org>; Fri, 23 Apr 2021 15:20:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 58C1061152
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3E226EC06;
-	Fri, 23 Apr 2021 15:20:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16C9A6EC08;
+	Fri, 23 Apr 2021 15:20:28 +0000 (UTC)
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1540B6E2C0;
- Fri, 23 Apr 2021 13:31:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 70EAF6EB93;
+ Fri, 23 Apr 2021 13:46:35 +0000 (UTC)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4DBFB1396;
- Fri, 23 Apr 2021 06:31:31 -0700 (PDT)
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9E1CE1063;
+ Fri, 23 Apr 2021 06:46:34 -0700 (PDT)
 Received: from [10.57.62.63] (unknown [10.57.62.63])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3B58A3F73B;
- Fri, 23 Apr 2021 06:31:22 -0700 (PDT)
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 903A33F73B;
+ Fri, 23 Apr 2021 06:46:27 -0700 (PDT)
 To: Claire Chang <tientzu@chromium.org>, Joerg Roedel <joro@8bytes.org>,
  Will Deacon <will@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
  Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
  jgross@suse.com, Christoph Hellwig <hch@lst.de>,
  Marek Szyprowski <m.szyprowski@samsung.com>
 References: <20210422081508.3942748-1-tientzu@chromium.org>
- <20210422081508.3942748-9-tientzu@chromium.org>
+ <20210422081508.3942748-15-tientzu@chromium.org>
 From: Robin Murphy <robin.murphy@arm.com>
-Message-ID: <1f84aa4c-f966-0986-b5a4-eecbf3b454ec@arm.com>
-Date: Fri, 23 Apr 2021 14:31:16 +0100
+Message-ID: <70b895c2-4a39-bbbd-a719-5c8b6b922026@arm.com>
+Date: Fri, 23 Apr 2021 14:46:25 +0100
 User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
  Thunderbird/78.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210422081508.3942748-9-tientzu@chromium.org>
+In-Reply-To: <20210422081508.3942748-15-tientzu@chromium.org>
 Content-Language: en-GB
 X-Mailman-Approved-At: Fri, 23 Apr 2021 15:20:27 +0000
-Subject: Re: [Nouveau] [PATCH v5 08/16] swiotlb: Update is_swiotlb_active to
- add a struct device argument
+Subject: Re: [Nouveau] [PATCH v5 14/16] dma-direct: Allocate memory from
+ restricted DMA pool if available
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,123 +86,123 @@ Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 On 2021-04-22 09:15, Claire Chang wrote:
-> Update is_swiotlb_active to add a struct device argument. This will be
-> useful later to allow for restricted DMA pool.
+> The restricted DMA pool is preferred if available.
+> 
+> The restricted DMA pools provide a basic level of protection against the
+> DMA overwriting buffer contents at unexpected times. However, to protect
+> against general data leakage and system memory corruption, the system
+> needs to provide a way to lock down the memory access, e.g., MPU.
 > 
 > Signed-off-by: Claire Chang <tientzu@chromium.org>
 > ---
->   drivers/gpu/drm/i915/gem/i915_gem_internal.c | 2 +-
->   drivers/gpu/drm/nouveau/nouveau_ttm.c        | 2 +-
->   drivers/pci/xen-pcifront.c                   | 2 +-
->   include/linux/swiotlb.h                      | 4 ++--
->   kernel/dma/direct.c                          | 2 +-
->   kernel/dma/swiotlb.c                         | 4 ++--
->   6 files changed, 8 insertions(+), 8 deletions(-)
+>   kernel/dma/direct.c | 35 ++++++++++++++++++++++++++---------
+>   1 file changed, 26 insertions(+), 9 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_internal.c b/drivers/gpu/drm/i915/gem/i915_gem_internal.c
-> index ce6b664b10aa..7d48c433446b 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_internal.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_internal.c
-> @@ -42,7 +42,7 @@ static int i915_gem_object_get_pages_internal(struct drm_i915_gem_object *obj)
->   
->   	max_order = MAX_ORDER;
->   #ifdef CONFIG_SWIOTLB
-> -	if (is_swiotlb_active()) {
-> +	if (is_swiotlb_active(NULL)) {
->   		unsigned int max_segment;
->   
->   		max_segment = swiotlb_max_segment();
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-> index e8b506a6685b..2a2ae6d6cf6d 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-> @@ -321,7 +321,7 @@ nouveau_ttm_init(struct nouveau_drm *drm)
->   	}
->   
->   #if IS_ENABLED(CONFIG_SWIOTLB) && IS_ENABLED(CONFIG_X86)
-> -	need_swiotlb = is_swiotlb_active();
-> +	need_swiotlb = is_swiotlb_active(NULL);
->   #endif
->   
->   	ret = ttm_device_init(&drm->ttm.bdev, &nouveau_bo_driver, drm->dev->dev,
-> diff --git a/drivers/pci/xen-pcifront.c b/drivers/pci/xen-pcifront.c
-> index b7a8f3a1921f..6d548ce53ce7 100644
-> --- a/drivers/pci/xen-pcifront.c
-> +++ b/drivers/pci/xen-pcifront.c
-> @@ -693,7 +693,7 @@ static int pcifront_connect_and_init_dma(struct pcifront_device *pdev)
->   
->   	spin_unlock(&pcifront_dev_lock);
->   
-> -	if (!err && !is_swiotlb_active()) {
-> +	if (!err && !is_swiotlb_active(NULL)) {
->   		err = pci_xen_swiotlb_init_late();
->   		if (err)
->   			dev_err(&pdev->xdev->dev, "Could not setup SWIOTLB!\n");
-> diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
-> index 2a6cca07540b..c530c976d18b 100644
-> --- a/include/linux/swiotlb.h
-> +++ b/include/linux/swiotlb.h
-> @@ -123,7 +123,7 @@ static inline bool is_swiotlb_buffer(struct device *dev, phys_addr_t paddr)
->   void __init swiotlb_exit(void);
->   unsigned int swiotlb_max_segment(void);
->   size_t swiotlb_max_mapping_size(struct device *dev);
-> -bool is_swiotlb_active(void);
-> +bool is_swiotlb_active(struct device *dev);
->   void __init swiotlb_adjust_size(unsigned long size);
->   #else
->   #define swiotlb_force SWIOTLB_NO_FORCE
-> @@ -143,7 +143,7 @@ static inline size_t swiotlb_max_mapping_size(struct device *dev)
->   	return SIZE_MAX;
->   }
->   
-> -static inline bool is_swiotlb_active(void)
-> +static inline bool is_swiotlb_active(struct device *dev)
->   {
->   	return false;
->   }
 > diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
-> index 84c9feb5474a..7a88c34d0867 100644
+> index 7a27f0510fcc..29523d2a9845 100644
 > --- a/kernel/dma/direct.c
 > +++ b/kernel/dma/direct.c
-> @@ -495,7 +495,7 @@ int dma_direct_supported(struct device *dev, u64 mask)
->   size_t dma_direct_max_mapping_size(struct device *dev)
+> @@ -78,6 +78,10 @@ static bool dma_coherent_ok(struct device *dev, phys_addr_t phys, size_t size)
+>   static void __dma_direct_free_pages(struct device *dev, struct page *page,
+>   				    size_t size)
 >   {
->   	/* If SWIOTLB is active, use its maximum mapping size */
-> -	if (is_swiotlb_active() &&
-> +	if (is_swiotlb_active(dev) &&
->   	    (dma_addressing_limited(dev) || swiotlb_force == SWIOTLB_FORCE))
+> +#ifdef CONFIG_DMA_RESTRICTED_POOL
+> +	if (swiotlb_free(dev, page, size))
+> +		return;
+> +#endif
+>   	dma_free_contiguous(dev, page, size);
+>   }
+>   
+> @@ -92,7 +96,17 @@ static struct page *__dma_direct_alloc_pages(struct device *dev, size_t size,
+>   
+>   	gfp |= dma_direct_optimal_gfp_mask(dev, dev->coherent_dma_mask,
+>   					   &phys_limit);
+> -	page = dma_alloc_contiguous(dev, size, gfp);
+> +
+> +#ifdef CONFIG_DMA_RESTRICTED_POOL
+> +	page = swiotlb_alloc(dev, size);
+> +	if (page && !dma_coherent_ok(dev, page_to_phys(page), size)) {
+> +		__dma_direct_free_pages(dev, page, size);
+> +		page = NULL;
+> +	}
+> +#endif
+> +
+> +	if (!page)
+> +		page = dma_alloc_contiguous(dev, size, gfp);
+>   	if (page && !dma_coherent_ok(dev, page_to_phys(page), size)) {
+>   		dma_free_contiguous(dev, page, size);
+>   		page = NULL;
+> @@ -148,7 +162,7 @@ void *dma_direct_alloc(struct device *dev, size_t size,
+>   		gfp |= __GFP_NOWARN;
+>   
+>   	if ((attrs & DMA_ATTR_NO_KERNEL_MAPPING) &&
+> -	    !force_dma_unencrypted(dev)) {
+> +	    !force_dma_unencrypted(dev) && !is_dev_swiotlb_force(dev)) {
+>   		page = __dma_direct_alloc_pages(dev, size, gfp & ~__GFP_ZERO);
+>   		if (!page)
+>   			return NULL;
+> @@ -161,8 +175,8 @@ void *dma_direct_alloc(struct device *dev, size_t size,
+>   	}
+>   
+>   	if (!IS_ENABLED(CONFIG_ARCH_HAS_DMA_SET_UNCACHED) &&
+> -	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
+> -	    !dev_is_dma_coherent(dev))
+> +	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) && !dev_is_dma_coherent(dev) &&
+> +	    !is_dev_swiotlb_force(dev))
+>   		return arch_dma_alloc(dev, size, dma_handle, gfp, attrs);
+>   
+>   	/*
+> @@ -172,7 +186,9 @@ void *dma_direct_alloc(struct device *dev, size_t size,
+>   	if (IS_ENABLED(CONFIG_DMA_COHERENT_POOL) &&
+>   	    !gfpflags_allow_blocking(gfp) &&
+>   	    (force_dma_unencrypted(dev) ||
+> -	     (IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) && !dev_is_dma_coherent(dev))))
+> +	     (IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
+> +	      !dev_is_dma_coherent(dev))) &&
+> +	    !is_dev_swiotlb_force(dev))
+>   		return dma_direct_alloc_from_pool(dev, size, dma_handle, gfp);
+>   
+>   	/* we always manually zero the memory once we are done */
+> @@ -253,15 +269,15 @@ void dma_direct_free(struct device *dev, size_t size,
+>   	unsigned int page_order = get_order(size);
+>   
+>   	if ((attrs & DMA_ATTR_NO_KERNEL_MAPPING) &&
+> -	    !force_dma_unencrypted(dev)) {
+> +	    !force_dma_unencrypted(dev) && !is_dev_swiotlb_force(dev)) {
+>   		/* cpu_addr is a struct page cookie, not a kernel address */
+>   		dma_free_contiguous(dev, cpu_addr, size);
+>   		return;
+>   	}
+>   
+>   	if (!IS_ENABLED(CONFIG_ARCH_HAS_DMA_SET_UNCACHED) &&
+> -	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
+> -	    !dev_is_dma_coherent(dev)) {
+> +	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) && !dev_is_dma_coherent(dev) &&
+> +	    !is_dev_swiotlb_force(dev)) {
+>   		arch_dma_free(dev, size, cpu_addr, dma_addr, attrs);
+>   		return;
+>   	}
+> @@ -289,7 +305,8 @@ struct page *dma_direct_alloc_pages(struct device *dev, size_t size,
+>   	void *ret;
+>   
+>   	if (IS_ENABLED(CONFIG_DMA_COHERENT_POOL) &&
+> -	    force_dma_unencrypted(dev) && !gfpflags_allow_blocking(gfp))
+> +	    force_dma_unencrypted(dev) && !gfpflags_allow_blocking(gfp) &&
+> +	    !is_dev_swiotlb_force(dev))
+>   		return dma_direct_alloc_from_pool(dev, size, dma_handle, gfp);
 
-I wonder if it's worth trying to fold these other conditions into 
-is_swiotlb_active() itself? I'm not entirely sure what matters for Xen, 
-but for the other cases it seems like they probably only care about 
-whether bouncing may occur for their particular device or not (possibly 
-they want to be using dma_max_mapping_size() now anyway - TBH I'm 
-struggling to make sense of what the swiotlb_max_segment business is 
-supposed to mean).
+Wait, this seems broken for non-coherent devices - in that case we need 
+to return a non-cacheable address, but we can't simply fall through into 
+the remapping path below in GFP_ATOMIC context. That's why we need the 
+atomic pool concept in the first place :/
 
-Otherwise, patch #9 will need to touch here as well to make sure that 
-per-device forced bouncing is reflected correctly.
+Unless I've overlooked something, we're still using the regular 
+cacheable linear map address of the dma_io_tlb_mem buffer, no?
 
 Robin.
 
->   		return swiotlb_max_mapping_size(dev);
->   	return SIZE_MAX;
-> diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
-> index ffbb8724e06c..1d221343f1c8 100644
-> --- a/kernel/dma/swiotlb.c
-> +++ b/kernel/dma/swiotlb.c
-> @@ -659,9 +659,9 @@ size_t swiotlb_max_mapping_size(struct device *dev)
->   	return ((size_t)IO_TLB_SIZE) * IO_TLB_SEGSIZE;
->   }
 >   
-> -bool is_swiotlb_active(void)
-> +bool is_swiotlb_active(struct device *dev)
->   {
-> -	return io_tlb_default_mem != NULL;
-> +	return get_io_tlb_mem(dev) != NULL;
->   }
->   EXPORT_SYMBOL_GPL(is_swiotlb_active);
->   
+>   	page = __dma_direct_alloc_pages(dev, size, gfp);
 > 
 _______________________________________________
 Nouveau mailing list
