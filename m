@@ -1,58 +1,51 @@
-Return-Path: <SRS0=d63i=KD=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=BSQZ=KE=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
-	version=3.4.0
+	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 04CDBC433B4
-	for <nouveau@archiver.kernel.org>; Sat,  8 May 2021 07:34:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97A9FC433B4
+	for <nouveau@archiver.kernel.org>; Sun,  9 May 2021 01:11:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8FE0061132
-	for <nouveau@archiver.kernel.org>; Sat,  8 May 2021 07:34:28 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8FE0061132
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=free.fr
+	by mail.kernel.org (Postfix) with ESMTPS id 25DED613CE
+	for <nouveau@archiver.kernel.org>; Sun,  9 May 2021 01:11:59 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 25DED613CE
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 327776E85B;
-	Sat,  8 May 2021 07:34:28 +0000 (UTC)
-Received: from smtp1-g21.free.fr (smtp1-g21.free.fr [IPv6:2a01:e0c:1:1599::10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FF206E85B;
- Sat,  8 May 2021 07:34:27 +0000 (UTC)
-Received: from pmoreau.org (unknown [88.129.173.226])
- (Authenticated sender: pierre.morrow@free.fr)
- by smtp1-g21.free.fr (Postfix) with ESMTPSA id 605A1B0053E;
- Sat,  8 May 2021 09:34:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
- s=smtp-20201208; t=1620459265;
- bh=CoRmAemj/IAoMOFqzKxhniIqN+11bAiqsffykCtDA5Q=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=F8AoDu73pLmKkDzdHapqCOTc9l2GpsNhhWg7LvSeQwEiaEfCKTiLc2DS2OvA/dUCs
- KHvWNs8pUEEB/fz1cz9YU8M96mF8JBvMe4mK4ZGcNZOCD7DfqUl1+LfRseYfPagMPB
- 7IdmCnLyWLcJG6rbIhe+YSkU2onMgCudJhxn53BMgWTdXwm/JSN1lILpGM4Qlw4rAe
- iwxHaF6cSca/IwOUfyPxH+P27I4BD19siDm9zhrh/BEw0ifQcYIh/6BjggPWy7HLbx
- 7TL4cvMESw4zd61rVDqO087ybwoFjoFLMjf5XD+95VS4Cn9pMlkWxRn7TZbA7rxLYf
- sWi+JvOGdN2JA==
-Date: Sat, 8 May 2021 09:34:00 +0200
-From: Pierre Moreau <pierre.morrow@free.fr>
-To: Zhen Lei <thunder.leizhen@huawei.com>
-Message-ID: <20210508073400.nnmwwyoxqqiwv36w@pmoreau.org>
-Mail-Followup-To: Zhen Lei <thunder.leizhen@huawei.com>,
- Dan Carpenter <dan.carpenter@oracle.com>,
- Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- nouveau <nouveau@lists.freedesktop.org>,
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7AD76E15C;
+	Sun,  9 May 2021 01:11:58 +0000 (UTC)
+Received: from szxga05-in.huawei.com (szxga05-in.huawei.com [45.249.212.191])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 983FB6E86F;
+ Sat,  8 May 2021 09:18:24 +0000 (UTC)
+Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.58])
+ by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4FchVB5wbPzQkJl;
+ Sat,  8 May 2021 17:14:58 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.72) by DGGEMS412-HUB.china.huawei.com
+ (10.3.19.212) with Microsoft SMTP Server id 14.3.498.0; Sat, 8 May 2021
+ 17:18:14 +0800
+To: Dan Carpenter <dan.carpenter@oracle.com>, Ben Skeggs <bskeggs@redhat.com>, 
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel
+ <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>,
  linux-kernel <linux-kernel@vger.kernel.org>
 References: <20210508034810.2374-1-thunder.leizhen@huawei.com>
+ <20210508073400.nnmwwyoxqqiwv36w@pmoreau.org>
+From: "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <0b94bd89-c8a0-f1e8-057f-2f639464fadd@huawei.com>
+Date: Sat, 8 May 2021 17:18:13 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210508034810.2374-1-thunder.leizhen@huawei.com>
+In-Reply-To: <20210508073400.nnmwwyoxqqiwv36w@pmoreau.org>
+Content-Language: en-US
+X-Originating-IP: [10.174.177.72]
+X-CFilter-Loop: Reflected
+X-Mailman-Approved-At: Sun, 09 May 2021 01:11:57 +0000
 Subject: Re: [Nouveau] [PATCH 1/1] drm/nouveau: fix error return code in
  nouveau_backlight_init()
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -66,42 +59,41 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>, Dan Carpenter <dan.carpenter@oracle.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-SGVsbG8gWmhlbiwKClRoZXJlIHdhcyBhIHNpbWlsYXIgcGF0Y2ggc2VudCBpbiBsYXN0IG1vbnRo
-LCB0aG91Z2ggd2hpY2ggZG9lcyBub3Qgc2VlbSB0bwpoYXZlIGJlZW4gbWVyZ2VkIHlldDsgc2Vl
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL25vdXZlYXUvMjAyMS1BcHJp
-bC8wMzg0NTEuaHRtbC4KCldoZXRoZXIgYHJldGAgc2hvdWxkIGJlIGAtRU5PU1BDYCBvciBgLUVO
-T01FTWAgaXMgaGFyZCB0byBzYXkgYXMKYG5vdXZlYXVfZ2V0X2JhY2tsaWdodF9uYW1lKClgIGNv
-dWxkIGZhaWwgZHVlIHRvIGVpdGhlci4KCkkgd2lsbCBwcm9wb3NlIGFuIGFsdGVybmF0aXZlIGZp
-eCB3aGljaCBtb2RpZmllcyBgbm91dmVhdV9nZXRfYmFja2xpZ2h0X25hbWUoKWAKdG8gcmV0dXJu
-IGFuIGludCBzbyB0aGUgYWN0dWFsIGVycm9yIGNvZGUgY2FuIGJlIHByb3BhZ2F0ZWQgYmFjayBp
-bnN0ZWFkIG9mCmd1ZXNzZWQsIGFzIHdlbGwgYXMgZml4IGFuIGlkYSBJRCBsZWFrIHdoaWNoIEkg
-anVzdCBzcG90dGVkLgoKQmVzdCwKUGllcnJlCgpPbiAyMDIxLTA1LTA4IOKAlCAxMTo0OCwgWmhl
-biBMZWkgd3JvdGU6Cj4gRml4IHRvIHJldHVybiBhIG5lZ2F0aXZlIGVycm9yIGNvZGUgZnJvbSB0
-aGUgZXJyb3IgaGFuZGxpbmcgY2FzZSBpbnN0ZWFkCj4gb2YgMCwgYXMgZG9uZSBlbHNld2hlcmUg
-aW4gdGhpcyBmdW5jdGlvbi4KPiAKPiBGaXhlczogZGIxYTBhZTIxNDYxICgiZHJtL25vdXZlYXUv
-Ymw6IEFzc2lnbiBkaWZmZXJlbnQgbmFtZXMgdG8gaW50ZXJmYWNlcyIpCj4gUmVwb3J0ZWQtYnk6
-IEh1bGsgUm9ib3QgPGh1bGtjaUBodWF3ZWkuY29tPgo+IFNpZ25lZC1vZmYtYnk6IFpoZW4gTGVp
-IDx0aHVuZGVyLmxlaXpoZW5AaHVhd2VpLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9iYWNrbGlnaHQuYyB8IDEgKwo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNl
-cnRpb24oKykKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9iYWNrbGlnaHQuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0
-LmMKPiBpbmRleCA3MmYzNWEyYmFiY2IuLjA5N2NhMzQ0YTA4NiAxMDA2NDQKPiAtLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGlnaHQuYwo+IEBAIC0yNzMsNiArMjczLDcgQEAg
-bm91dmVhdV9iYWNrbGlnaHRfaW5pdChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yKQo+
-ICAJCXJldHVybiAtRU5PTUVNOwo+ICAKPiAgCWlmICghbm91dmVhdV9nZXRfYmFja2xpZ2h0X25h
-bWUoYmFja2xpZ2h0X25hbWUsIGJsKSkgewo+ICsJCXJldCA9IC1FTk9TUEM7Cj4gIAkJTlZfRVJS
+CgpPbiAyMDIxLzUvOCAxNTozNCwgUGllcnJlIE1vcmVhdSB3cm90ZToKPiBIZWxsbyBaaGVuLAo+
+IAo+IFRoZXJlIHdhcyBhIHNpbWlsYXIgcGF0Y2ggc2VudCBpbiBsYXN0IG1vbnRoLCB0aG91Z2gg
+d2hpY2ggZG9lcyBub3Qgc2VlbSB0bwo+IGhhdmUgYmVlbiBtZXJnZWQgeWV0OyBzZWUKPiBodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9ub3V2ZWF1LzIwMjEtQXByaWwvMDM4
+NDUxLmh0bWwuCj4gCj4gV2hldGhlciBgcmV0YCBzaG91bGQgYmUgYC1FTk9TUENgIG9yIGAtRU5P
+TUVNYCBpcyBoYXJkIHRvIHNheSBhcwo+IGBub3V2ZWF1X2dldF9iYWNrbGlnaHRfbmFtZSgpYCBj
+b3VsZCBmYWlsIGR1ZSB0byBlaXRoZXIuCj4gCj4gSSB3aWxsIHByb3Bvc2UgYW4gYWx0ZXJuYXRp
+dmUgZml4IHdoaWNoIG1vZGlmaWVzIGBub3V2ZWF1X2dldF9iYWNrbGlnaHRfbmFtZSgpYAo+IHRv
+IHJldHVybiBhbiBpbnQgc28gdGhlIGFjdHVhbCBlcnJvciBjb2RlIGNhbiBiZSBwcm9wYWdhdGVk
+IGJhY2sgaW5zdGVhZCBvZgo+IGd1ZXNzZWQsIGFzIHdlbGwgYXMgZml4IGFuIGlkYSBJRCBsZWFr
+IHdoaWNoIEkganVzdCBzcG90dGVkLgoKSXQncyBhIGdvb2QgaWRlYS4KCj4gCj4gQmVzdCwKPiBQ
+aWVycmUKPiAKPiBPbiAyMDIxLTA1LTA4IOKAlCAxMTo0OCwgWmhlbiBMZWkgd3JvdGU6Cj4+IEZp
+eCB0byByZXR1cm4gYSBuZWdhdGl2ZSBlcnJvciBjb2RlIGZyb20gdGhlIGVycm9yIGhhbmRsaW5n
+IGNhc2UgaW5zdGVhZAo+PiBvZiAwLCBhcyBkb25lIGVsc2V3aGVyZSBpbiB0aGlzIGZ1bmN0aW9u
+Lgo+Pgo+PiBGaXhlczogZGIxYTBhZTIxNDYxICgiZHJtL25vdXZlYXUvYmw6IEFzc2lnbiBkaWZm
+ZXJlbnQgbmFtZXMgdG8gaW50ZXJmYWNlcyIpCj4+IFJlcG9ydGVkLWJ5OiBIdWxrIFJvYm90IDxo
+dWxrY2lAaHVhd2VpLmNvbT4KPj4gU2lnbmVkLW9mZi1ieTogWmhlbiBMZWkgPHRodW5kZXIubGVp
+emhlbkBodWF3ZWkuY29tPgo+PiAtLS0KPj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
+YXVfYmFja2xpZ2h0LmMgfCAxICsKPj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQo+
+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGln
+aHQuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMKPj4gaW5k
+ZXggNzJmMzVhMmJhYmNiLi4wOTdjYTM0NGEwODYgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9iYWNrbGlnaHQuYwo+PiBAQCAtMjczLDYgKzI3Myw3IEBAIG5vdXZl
+YXVfYmFja2xpZ2h0X2luaXQoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikKPj4gIAkJ
+cmV0dXJuIC1FTk9NRU07Cj4+ICAKPj4gIAlpZiAoIW5vdXZlYXVfZ2V0X2JhY2tsaWdodF9uYW1l
+KGJhY2tsaWdodF9uYW1lLCBibCkpIHsKPj4gKwkJcmV0ID0gLUVOT1NQQzsKPj4gIAkJTlZfRVJS
 T1IoZHJtLCAiRmFpbGVkIHRvIHJldHJpZXZlIGEgdW5pcXVlIG5hbWUgZm9yIHRoZSBiYWNrbGln
-aHQgaW50ZXJmYWNlXG4iKTsKPiAgCQlnb3RvIGZhaWxfYWxsb2M7Cj4gIAl9Cj4gLS0gCj4gMi4y
-NS4xCj4gCj4gCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+aHQgaW50ZXJmYWNlXG4iKTsKPj4gIAkJZ290byBmYWlsX2FsbG9jOwo+PiAgCX0KPj4gLS0gCj4+
+IDIuMjUuMQo+Pgo+Pgo+IAo+IC4KPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
