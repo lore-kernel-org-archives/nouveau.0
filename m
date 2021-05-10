@@ -6,37 +6,37 @@ X-Spam-Status: No, score=-5.3 required=3.0 tests=BAYES_00,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B46E7C43470
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 58A3DC433B4
 	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5BC97613C1
-	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:44 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5BC97613C1
+	by mail.kernel.org (Postfix) with ESMTPS id 18CEC613AE
+	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:43 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 18CEC613AE
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lst.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 276606EA6A;
-	Tue, 11 May 2021 14:38:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A973E6EA62;
+	Tue, 11 May 2021 14:38:28 +0000 (UTC)
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE26D6E4A1;
- Mon, 10 May 2021 15:03:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD07789D5B;
+ Mon, 10 May 2021 15:05:19 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 2B33867373; Mon, 10 May 2021 17:02:57 +0200 (CEST)
-Date: Mon, 10 May 2021 17:02:56 +0200
+ id 2DAB567373; Mon, 10 May 2021 17:05:17 +0200 (CEST)
+Date: Mon, 10 May 2021 17:05:16 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Claire Chang <tientzu@chromium.org>
-Message-ID: <20210510150256.GC28066@lst.de>
+Message-ID: <20210510150516.GE28066@lst.de>
 References: <20210510095026.3477496-1-tientzu@chromium.org>
- <20210510095026.3477496-5-tientzu@chromium.org>
+ <20210510095026.3477496-9-tientzu@chromium.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210510095026.3477496-5-tientzu@chromium.org>
+In-Reply-To: <20210510095026.3477496-9-tientzu@chromium.org>
 User-Agent: Mutt/1.5.17 (2007-11-01)
 X-Mailman-Approved-At: Tue, 11 May 2021 14:38:26 +0000
-Subject: Re: [Nouveau] [PATCH v6 04/15] swiotlb: Add restricted DMA pool
- initialization
+Subject: Re: [Nouveau] [PATCH v6 08/15] swiotlb: Bounce data from/to
+ restricted DMA pool if available
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,57 +80,27 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-> +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> +#include <linux/io.h>
-> +#include <linux/of.h>
-> +#include <linux/of_fdt.h>
-> +#include <linux/of_reserved_mem.h>
-> +#include <linux/slab.h>
-> +#endif
-
-I don't think any of this belongs into swiotlb.c.  Marking
-swiotlb_init_io_tlb_mem non-static and having all this code in a separate
-file is probably a better idea.
-
-> +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> +static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
-> +				    struct device *dev)
+> +static inline bool is_dev_swiotlb_force(struct device *dev)
 > +{
-> +	struct io_tlb_mem *mem = rmem->priv;
-> +	unsigned long nslabs = rmem->size >> IO_TLB_SHIFT;
-> +
+> +#ifdef CONFIG_DMA_RESTRICTED_POOL
 > +	if (dev->dma_io_tlb_mem)
-> +		return 0;
+> +		return true;
+> +#endif /* CONFIG_DMA_RESTRICTED_POOL */
+> +	return false;
+> +}
 > +
-> +	/* Since multiple devices can share the same pool, the private data,
-> +	 * io_tlb_mem struct, will be initialized by the first device attached
-> +	 * to it.
-> +	 */
 
-This is not the normal kernel comment style.
+>  	/* If SWIOTLB is active, use its maximum mapping size */
+>  	if (is_swiotlb_active(dev) &&
+> -	    (dma_addressing_limited(dev) || swiotlb_force == SWIOTLB_FORCE))
+> +	    (dma_addressing_limited(dev) || swiotlb_force == SWIOTLB_FORCE ||
+> +	     is_dev_swiotlb_force(dev)))
 
-> +#ifdef CONFIG_ARM
-> +		if (!PageHighMem(pfn_to_page(PHYS_PFN(rmem->base)))) {
-> +			kfree(mem);
-> +			return -EINVAL;
-> +		}
-> +#endif /* CONFIG_ARM */
-
-And this is weird.  Why would ARM have such a restriction?  And if we have
-such rstrictions it absolutely belongs into an arch helper.
-
-> +		swiotlb_init_io_tlb_mem(mem, rmem->base, nslabs, false);
-> +
-> +		rmem->priv = mem;
-> +
-> +#ifdef CONFIG_DEBUG_FS
-> +		if (!debugfs_dir)
-> +			debugfs_dir = debugfs_create_dir("swiotlb", NULL);
-> +
-> +		swiotlb_create_debugfs(mem, rmem->name, debugfs_dir);
-
-Doesn't the debugfs_create_dir belong into swiotlb_create_debugfs?  Also
-please use IS_ENABLEd or a stub to avoid ifdefs like this.
+This is a mess.  I think the right way is to have an always_bounce flag
+in the io_tlb_mem structure instead.  Then the global swiotlb_force can
+go away and be replace with this and the fact that having no
+io_tlb_mem structure at all means forced no buffering (after a little
+refactoring).
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
