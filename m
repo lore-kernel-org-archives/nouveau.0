@@ -2,41 +2,74 @@ Return-Path: <SRS0=1QWf=KG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 58A3DC433B4
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C1B4C43461
 	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 18CEC613AE
-	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:43 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 18CEC613AE
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lst.de
+	by mail.kernel.org (Postfix) with ESMTPS id 6BFF161285
+	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:42 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6BFF161285
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A973E6EA62;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2CB06EA66;
 	Tue, 11 May 2021 14:38:28 +0000 (UTC)
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD07789D5B;
- Mon, 10 May 2021 15:05:19 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id 2DAB567373; Mon, 10 May 2021 17:05:17 +0200 (CEST)
-Date: Mon, 10 May 2021 17:05:16 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Claire Chang <tientzu@chromium.org>
-Message-ID: <20210510150516.GE28066@lst.de>
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
+ [IPv6:2607:f8b0:4864:20::1036])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 363F86E44C
+ for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 09:50:57 +0000 (UTC)
+Received: by mail-pj1-x1036.google.com with SMTP id
+ gx21-20020a17090b1255b02901589d39576eso3433327pjb.0
+ for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 02:50:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=xzceaTJbUUoQMRiby9lwQqwtKo4y5qZbVn1w31ybRrg=;
+ b=bOYHl1lk+9c5fpkjvJLlW2V+ZW1HWQZ8+GqQWpRXOyRwXl5gJ0b79YDClCoBfBBm4i
+ Lg3ZY42RA3b3XCB5qgKa30diM6DGWie5c/Bp8lBvVatzuKYQ+cRSVyrR3Vn43XQ38Fby
+ 6vdAkHilxAu/KAE1HFPNhr6sG764ExUW8d2uc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=xzceaTJbUUoQMRiby9lwQqwtKo4y5qZbVn1w31ybRrg=;
+ b=JHfXx9aVOzezvQB9oJQIelThYE1OGUb6psxF+FiAmWjpJuY8ltzVVUNrLnamEi073n
+ n8UYTkkIsEgTYXncNWDrcdJMN68l4tArbGdjjsvWnZ44SvgxILLo7xBxXeBCyY/FQUdF
+ r574WycRyLC1h2JH1bumcITl6NgZVeJfjl3aKjdA4UOQlNB2sr3q04ISpU9fYS0zoBRr
+ OhJ/wreUGXxMaEQnJMoDdu91yt8CEH48t7PHmmWU55gpLO4tcTeP/JJMtcG1BnkPGbBT
+ 24Z9ArWEbDm+vKzlW0dgxGMoCKQz4weyeghGMxeXXwJ23cF9R6d/q3AvPlSN5neZxvdI
+ Z2gA==
+X-Gm-Message-State: AOAM533afeL1QFx0OlxHbQfmb0kVVwX1wRTL/md1FoWMu5RHTY/n17Yw
+ AaCH1BFs58CTG+fE9IFqAaXF+w==
+X-Google-Smtp-Source: ABdhPJxwy0teVP8y0d4KrEbfmPne0jX/g2pgdK0Y1sxb/62SuqcTyQ5c51wqp1akhS8ac/pL7Mr0nw==
+X-Received: by 2002:a17:90a:bf0c:: with SMTP id
+ c12mr25754828pjs.206.1620640256876; 
+ Mon, 10 May 2021 02:50:56 -0700 (PDT)
+Received: from localhost ([2401:fa00:95:205:a524:abe8:94e3:5601])
+ by smtp.gmail.com with UTF8SMTPSA id 14sm10615255pfv.33.2021.05.10.02.50.49
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 10 May 2021 02:50:56 -0700 (PDT)
+From: Claire Chang <tientzu@chromium.org>
+To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
+ jgross@suse.com, Christoph Hellwig <hch@lst.de>,
+ Marek Szyprowski <m.szyprowski@samsung.com>
+Date: Mon, 10 May 2021 17:50:13 +0800
+Message-Id: <20210510095026.3477496-3-tientzu@chromium.org>
+X-Mailer: git-send-email 2.31.1.607.g51e8a6a459-goog
+In-Reply-To: <20210510095026.3477496-1-tientzu@chromium.org>
 References: <20210510095026.3477496-1-tientzu@chromium.org>
- <20210510095026.3477496-9-tientzu@chromium.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210510095026.3477496-9-tientzu@chromium.org>
-User-Agent: Mutt/1.5.17 (2007-11-01)
 X-Mailman-Approved-At: Tue, 11 May 2021 14:38:26 +0000
-Subject: Re: [Nouveau] [PATCH v6 08/15] swiotlb: Bounce data from/to
- restricted DMA pool if available
+Subject: [Nouveau] [PATCH v6 02/15] swiotlb: Refactor swiotlb_create_debugfs
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,55 +85,87 @@ Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
  peterz@infradead.org, benh@kernel.crashing.org,
  joonas.lahtinen@linux.intel.com, dri-devel@lists.freedesktop.org,
  chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
- Frank Rowand <frowand.list@gmail.com>, mingo@kernel.org,
- Marek Szyprowski <m.szyprowski@samsung.com>, sstabellini@kernel.org,
- Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
- Joerg Roedel <joro@8bytes.org>,
+ mingo@kernel.org, jxgao@google.com, sstabellini@kernel.org,
+ Saravana Kannan <saravanak@google.com>, xypron.glpk@gmx.de,
  "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
- Christoph Hellwig <hch@lst.de>,
  Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
  linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
  Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
  matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
- jxgao@google.com, daniel@ffwll.ch, Will Deacon <will@kernel.org>,
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
- maarten.lankhorst@linux.intel.com, airlied@linux.ie,
- Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
- jani.nikula@linux.intel.com, Rob Herring <robh+dt@kernel.org>,
- rodrigo.vivi@intel.com, bhelgaas@google.com, boris.ostrovsky@oracle.com,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
- Nicolas Boichat <drinkcat@chromium.org>, nouveau@lists.freedesktop.org,
- Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
- lkml <linux-kernel@vger.kernel.org>, tfiga@chromium.org,
+ daniel@ffwll.ch, airlied@linux.ie, maarten.lankhorst@linux.intel.com,
+ Robin Murphy <robin.murphy@arm.com>, jani.nikula@linux.intel.com,
+ Nicolas Boichat <drinkcat@chromium.org>, rodrigo.vivi@intel.com,
+ bhelgaas@google.com, tientzu@chromium.org,
+ Dan Williams <dan.j.williams@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ nouveau@lists.freedesktop.org, Greg KH <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
+ tfiga@chromium.org,
  "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
- Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
+ Jim Quinlan <james.quinlan@broadcom.com>, linuxppc-dev@lists.ozlabs.org,
+ bauerman@linux.ibm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-> +static inline bool is_dev_swiotlb_force(struct device *dev)
-> +{
-> +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> +	if (dev->dma_io_tlb_mem)
-> +		return true;
-> +#endif /* CONFIG_DMA_RESTRICTED_POOL */
-> +	return false;
-> +}
-> +
+Split the debugfs creation to make the code reusable for supporting
+different bounce buffer pools, e.g. restricted DMA pool.
 
->  	/* If SWIOTLB is active, use its maximum mapping size */
->  	if (is_swiotlb_active(dev) &&
-> -	    (dma_addressing_limited(dev) || swiotlb_force == SWIOTLB_FORCE))
-> +	    (dma_addressing_limited(dev) || swiotlb_force == SWIOTLB_FORCE ||
-> +	     is_dev_swiotlb_force(dev)))
+Signed-off-by: Claire Chang <tientzu@chromium.org>
+---
+ kernel/dma/swiotlb.c | 22 ++++++++++++++++------
+ 1 file changed, 16 insertions(+), 6 deletions(-)
 
-This is a mess.  I think the right way is to have an always_bounce flag
-in the io_tlb_mem structure instead.  Then the global swiotlb_force can
-go away and be replace with this and the fact that having no
-io_tlb_mem structure at all means forced no buffering (after a little
-refactoring).
+diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
+index d3232fc19385..858475bd6923 100644
+--- a/kernel/dma/swiotlb.c
++++ b/kernel/dma/swiotlb.c
+@@ -64,6 +64,7 @@
+ enum swiotlb_force swiotlb_force;
+ 
+ struct io_tlb_mem *io_tlb_default_mem;
++static struct dentry *debugfs_dir;
+ 
+ /*
+  * Max segment that we can provide which (if pages are contingous) will
+@@ -662,18 +663,27 @@ EXPORT_SYMBOL_GPL(is_swiotlb_active);
+ 
+ #ifdef CONFIG_DEBUG_FS
+ 
+-static int __init swiotlb_create_debugfs(void)
++static void swiotlb_create_debugfs(struct io_tlb_mem *mem, const char *name,
++				   struct dentry *node)
+ {
+-	struct io_tlb_mem *mem = io_tlb_default_mem;
+-
+ 	if (!mem)
+-		return 0;
+-	mem->debugfs = debugfs_create_dir("swiotlb", NULL);
++		return;
++
++	mem->debugfs = debugfs_create_dir(name, node);
+ 	debugfs_create_ulong("io_tlb_nslabs", 0400, mem->debugfs, &mem->nslabs);
+ 	debugfs_create_ulong("io_tlb_used", 0400, mem->debugfs, &mem->used);
++}
++
++static int __init swiotlb_create_default_debugfs(void)
++{
++	struct io_tlb_mem *mem = io_tlb_default_mem;
++
++	swiotlb_create_debugfs(mem, "swiotlb", NULL);
++	debugfs_dir = mem->debugfs;
++
+ 	return 0;
+ }
+ 
+-late_initcall(swiotlb_create_debugfs);
++late_initcall(swiotlb_create_default_debugfs);
+ 
+ #endif
+-- 
+2.31.1.607.g51e8a6a459-goog
+
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
