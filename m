@@ -3,57 +3,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 390F7C43462
-	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 58A6FC43460
+	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D49E761376
-	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:40 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D49E761376
+	by mail.kernel.org (Postfix) with ESMTPS id B9F5961396
+	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:43 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B9F5961396
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C7B56EA59;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 560556EA5D;
 	Tue, 11 May 2021 14:38:28 +0000 (UTC)
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
- [IPv6:2607:f8b0:4864:20::1036])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63FDA6E49D
- for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 09:51:23 +0000 (UTC)
-Received: by mail-pj1-x1036.google.com with SMTP id md17so9438703pjb.0
- for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 02:51:23 -0700 (PDT)
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com
+ [IPv6:2607:f8b0:4864:20::530])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 272756E09F
+ for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 09:50:40 +0000 (UTC)
+Received: by mail-pg1-x530.google.com with SMTP id q15so8661166pgg.12
+ for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 02:50:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=H8s2Ssxedi+m7Lc7mdaT6IyIVFNL7UMFVGCjjIXUKBs=;
- b=aEzUGv6HyICG91lVRchMBsfGFoiKw5t3UKv5r9/XWkq1l03uTxk5gK7BReGArG4wM7
- eL8k61LHaWwrgnh+WJYeL7I+S/QoUwEkwv6x0tDx3HcpYoUp9liwFvhqHJX8OnvlaqU3
- oxtyLQT57sgPbzesRlkZ21sVrQ/LPb2+Dv9rE=
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=suql6mxhF7VWacBQX+vVI90y4jo7pK7o7lRK42P1ziE=;
+ b=lOHb/wGLPI35HYDpC1OybPS0wSHtEceWE9NWy4yGK8ilXXldfGkKtOa8K66bNr4LEO
+ Pr9azSla0OuJEaDOigJpQisql/QT6Rzgq/OL94Z5dEW4Jo9qDvVnUfwuUeDl/NGvpzhn
+ KxdIcdeNTo8YF1ZknPwF9akS+XlqzfXmq6cBU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=H8s2Ssxedi+m7Lc7mdaT6IyIVFNL7UMFVGCjjIXUKBs=;
- b=Z90R178m9uTmchhzP3s+bUast1aBGfQVnAN1A6czaVbijUYmgWg55m+sX+fd55iMml
- K8SBbKTUwXc2GTzaQtQ6oA9s4pX3G0QwajXBgDpE+rCqm8YLqrBL/wG6u533BXlTbVan
- GQT+P2t+YAt6XauyGg2lAzTzyxEpXrFJtVTK1+LYfo8jsMkqLU32n2jNXz9vSXapc0of
- ohNoGaorLzxI47wgqUYGKWgqL9POtZIgxAkg+Qd2FoMSb0sW6c+Xamt6okCzk3XD1Ybv
- /0N58xPOSUbqaoYBsbXzOcu5831qJjURX3iZYtel8I7mftVvvpjewSjfxMOxhYQseAi2
- MeFA==
-X-Gm-Message-State: AOAM532x95dajXo4+Uw+1oZd29x2ZUJVjMlCm1jtWjagn2uNj2bfbS94
- Gm4NGM8MMWvHG/ZlL0szljd+ew==
-X-Google-Smtp-Source: ABdhPJzROW5FUCBZB2fXFHkP0ALBea1sVjbZahlfu04HnoSywATlCq/z9y3jgockvO/xDk1J1RoGzg==
-X-Received: by 2002:a17:90b:1bcd:: with SMTP id
- oa13mr40100520pjb.22.1620640283118; 
- Mon, 10 May 2021 02:51:23 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=suql6mxhF7VWacBQX+vVI90y4jo7pK7o7lRK42P1ziE=;
+ b=KG16gRxyMaps8P0TJHJ1wgQwRfk433/KVL/Ofofouw1BPHE58LCNv9KistvBOwqoN3
+ kHfKf9twfn1QikVQ5pdnHZUk8BsEGHjy/pT7OLGG4S3kp+3xIgOgae3oB8daBHeOKopy
+ IXxDPEGjH+e2qiIX1/egSVhikAvHNjDBDJUCyfBtdqL2T5pI5LP8MlaqfzLb1sKtAHGV
+ I5jSwirSp/L3f3PiMSu5q02nNAdi5rSkPci5UG+7N5UNFucoun/H0oTM9m9PtL+blnmL
+ +6UedrI6bEQo7EKzaWEqH9OkpAYm/6eNd+Y/VT3QJIQYVNrGmG2tbQ6sso6nY0dE5zle
+ v0XQ==
+X-Gm-Message-State: AOAM531lL3H+Jx6hhoFUzXujXrcQAoHve1OoK+gHnB/BCUo6C//jKrJe
+ sl328WAT7e0cFX4U7ct+sgQhUA==
+X-Google-Smtp-Source: ABdhPJxaRNqwofbH1Q1gT6hjDo7UCjX7KCvjB0rJLaDOY22mJQZwGH/owOzO7oGoIZrGlaECEV1xwQ==
+X-Received: by 2002:a62:2a14:0:b029:263:20c5:6d8c with SMTP id
+ q20-20020a622a140000b029026320c56d8cmr24491637pfq.23.1620640239613; 
+ Mon, 10 May 2021 02:50:39 -0700 (PDT)
 Received: from localhost ([2401:fa00:95:205:a524:abe8:94e3:5601])
- by smtp.gmail.com with UTF8SMTPSA id ml19sm46030318pjb.2.2021.05.10.02.51.15
+ by smtp.gmail.com with UTF8SMTPSA id 3sm10134744pff.132.2021.05.10.02.50.32
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 10 May 2021 02:51:22 -0700 (PDT)
+ Mon, 10 May 2021 02:50:39 -0700 (PDT)
 From: Claire Chang <tientzu@chromium.org>
 To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
  Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
@@ -61,14 +61,12 @@ To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
  Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
  jgross@suse.com, Christoph Hellwig <hch@lst.de>,
  Marek Szyprowski <m.szyprowski@samsung.com>
-Date: Mon, 10 May 2021 17:50:16 +0800
-Message-Id: <20210510095026.3477496-6-tientzu@chromium.org>
+Date: Mon, 10 May 2021 17:50:11 +0800
+Message-Id: <20210510095026.3477496-1-tientzu@chromium.org>
 X-Mailer: git-send-email 2.31.1.607.g51e8a6a459-goog
-In-Reply-To: <20210510095026.3477496-1-tientzu@chromium.org>
-References: <20210510095026.3477496-1-tientzu@chromium.org>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Tue, 11 May 2021 14:38:26 +0000
-Subject: [Nouveau] [PATCH v6 05/15] swiotlb: Add a new get_io_tlb_mem getter
+Subject: [Nouveau] [PATCH v6 00/15] Restricted DMA
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,9 +95,9 @@ Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
  bhelgaas@google.com, tientzu@chromium.org,
  Dan Williams <dan.j.williams@intel.com>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- nouveau@lists.freedesktop.org, Greg KH <gregkh@linuxfoundation.org>,
- Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
- tfiga@chromium.org,
+ Claire Chang <tientzu@google.com>, nouveau@lists.freedesktop.org,
+ Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
+ lkml <linux-kernel@vger.kernel.org>, tfiga@chromium.org,
  "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
  Jim Quinlan <james.quinlan@broadcom.com>, linuxppc-dev@lists.ozlabs.org,
  bauerman@linux.ibm.com
@@ -108,43 +106,95 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Add a new getter, get_io_tlb_mem, to help select the io_tlb_mem struct.
-The restricted DMA pool is preferred if available.
+From: Claire Chang <tientzu@google.com>
 
-Signed-off-by: Claire Chang <tientzu@chromium.org>
----
- include/linux/swiotlb.h | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+This series implements mitigations for lack of DMA access control on
+systems without an IOMMU, which could result in the DMA accessing the
+system memory at unexpected times and/or unexpected addresses, possibly
+leading to data leakage or corruption.
 
-diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
-index 03ad6e3b4056..b469f04cca26 100644
---- a/include/linux/swiotlb.h
-+++ b/include/linux/swiotlb.h
-@@ -2,6 +2,7 @@
- #ifndef __LINUX_SWIOTLB_H
- #define __LINUX_SWIOTLB_H
- 
-+#include <linux/device.h>
- #include <linux/dma-direction.h>
- #include <linux/init.h>
- #include <linux/types.h>
-@@ -102,6 +103,16 @@ struct io_tlb_mem {
- };
- extern struct io_tlb_mem *io_tlb_default_mem;
- 
-+static inline struct io_tlb_mem *get_io_tlb_mem(struct device *dev)
-+{
-+#ifdef CONFIG_DMA_RESTRICTED_POOL
-+	if (dev && dev->dma_io_tlb_mem)
-+		return dev->dma_io_tlb_mem;
-+#endif /* CONFIG_DMA_RESTRICTED_POOL */
-+
-+	return io_tlb_default_mem;
-+}
-+
- static inline bool is_swiotlb_buffer(phys_addr_t paddr)
- {
- 	struct io_tlb_mem *mem = io_tlb_default_mem;
+For example, we plan to use the PCI-e bus for Wi-Fi and that PCI-e bus is
+not behind an IOMMU. As PCI-e, by design, gives the device full access to
+system memory, a vulnerability in the Wi-Fi firmware could easily escalate
+to a full system exploit (remote wifi exploits: [1a], [1b] that shows a
+full chain of exploits; [2], [3]).
+
+To mitigate the security concerns, we introduce restricted DMA. Restricted
+DMA utilizes the existing swiotlb to bounce streaming DMA in and out of a
+specially allocated region and does memory allocation from the same region.
+The feature on its own provides a basic level of protection against the DMA
+overwriting buffer contents at unexpected times. However, to protect
+against general data leakage and system memory corruption, the system needs
+to provide a way to restrict the DMA to a predefined memory region (this is
+usually done at firmware level, e.g. MPU in ATF on some ARM platforms [4]).
+
+[1a] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_4.html
+[1b] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_11.html
+[2] https://blade.tencent.com/en/advisories/qualpwn/
+[3] https://www.bleepingcomputer.com/news/security/vulnerabilities-found-in-highly-popular-firmware-for-wifi-chips/
+[4] https://github.com/ARM-software/arm-trusted-firmware/blob/master/plat/mediatek/mt8183/drivers/emi_mpu/emi_mpu.c#L132
+
+v6:
+Address the comments in v5
+
+v5:
+Rebase on latest linux-next
+https://lore.kernel.org/patchwork/cover/1416899/
+
+v4:
+- Fix spinlock bad magic
+- Use rmem->name for debugfs entry
+- Address the comments in v3
+https://lore.kernel.org/patchwork/cover/1378113/
+
+v3:
+Using only one reserved memory region for both streaming DMA and memory
+allocation.
+https://lore.kernel.org/patchwork/cover/1360992/
+
+v2:
+Building on top of swiotlb.
+https://lore.kernel.org/patchwork/cover/1280705/
+
+v1:
+Using dma_map_ops.
+https://lore.kernel.org/patchwork/cover/1271660/
+*** BLURB HERE ***
+
+Claire Chang (15):
+  swiotlb: Refactor swiotlb init functions
+  swiotlb: Refactor swiotlb_create_debugfs
+  swiotlb: Add DMA_RESTRICTED_POOL
+  swiotlb: Add restricted DMA pool initialization
+  swiotlb: Add a new get_io_tlb_mem getter
+  swiotlb: Update is_swiotlb_buffer to add a struct device argument
+  swiotlb: Update is_swiotlb_active to add a struct device argument
+  swiotlb: Bounce data from/to restricted DMA pool if available
+  swiotlb: Move alloc_size to find_slots
+  swiotlb: Refactor swiotlb_tbl_unmap_single
+  dma-direct: Add a new wrapper __dma_direct_free_pages()
+  swiotlb: Add restricted DMA alloc/free support.
+  dma-direct: Allocate memory from restricted DMA pool if available
+  dt-bindings: of: Add restricted DMA pool
+  of: Add plumbing for restricted DMA pool
+
+ .../reserved-memory/reserved-memory.txt       |  27 ++
+ drivers/gpu/drm/i915/gem/i915_gem_internal.c  |   2 +-
+ drivers/gpu/drm/nouveau/nouveau_ttm.c         |   2 +-
+ drivers/iommu/dma-iommu.c                     |  12 +-
+ drivers/of/address.c                          |  25 ++
+ drivers/of/device.c                           |   3 +
+ drivers/of/of_private.h                       |   5 +
+ drivers/pci/xen-pcifront.c                    |   2 +-
+ drivers/xen/swiotlb-xen.c                     |   2 +-
+ include/linux/device.h                        |   4 +
+ include/linux/swiotlb.h                       |  41 ++-
+ kernel/dma/Kconfig                            |  14 +
+ kernel/dma/direct.c                           |  63 +++--
+ kernel/dma/direct.h                           |   9 +-
+ kernel/dma/swiotlb.c                          | 242 +++++++++++++-----
+ 15 files changed, 356 insertions(+), 97 deletions(-)
+
 -- 
 2.31.1.607.g51e8a6a459-goog
 
