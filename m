@@ -7,53 +7,53 @@ X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 43951C43460
-	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 927FFC4360C
+	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E306261285
+	by mail.kernel.org (Postfix) with ESMTPS id 3FBC961285
 	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:46 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E306261285
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3FBC961285
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8009C6EA64;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 869A36EA67;
 	Tue, 11 May 2021 14:38:29 +0000 (UTC)
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com
- [IPv6:2607:f8b0:4864:20::42d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0CDC6E841
- for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 09:51:40 +0000 (UTC)
-Received: by mail-pf1-x42d.google.com with SMTP id q2so13184416pfh.13
- for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 02:51:40 -0700 (PDT)
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com
+ [IPv6:2607:f8b0:4864:20::533])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE7976E887
+ for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 09:52:49 +0000 (UTC)
+Received: by mail-pg1-x533.google.com with SMTP id i14so12914748pgk.5
+ for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 02:52:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=+JmVmhSFGiDk3/OglOY5X9UAspXEPeRZrOOQ1jue7o0=;
- b=chdPcJe7gomL+7ILnJK41quCdTSfmmzVjcLxZvr96abVbyS2hxQz55JkSmjVpMuD2l
- 7hrZDyiec0Eptx6DlOgctch3MP18AQl2Z0UBjvJYxcIDfchdSPR9HSnruN0+XHwsK91U
- nLMYdSbyGfntFvFyhHjVYHf29JB1JZpxW2+jI=
+ bh=N9YtEc1AKRWzrvXmeOPdeOSLAm21S21YZtTJBnrwUb8=;
+ b=K1N6EXk85Wvc+hEOva4wXm/pG0LlShcwRNR1nzYaMJRORgqDZTx8d0OHgKA7EZWdW9
+ DKVvH5XQc7hrxaIcoiPBWcXqLtVTb0ShzjIeG4+8nxjarb1dd1TCqieDYri51cXF3WJ3
+ rTKZnoW2Yosw5eCi0THzxANV5pwO1EvAdcAaY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=+JmVmhSFGiDk3/OglOY5X9UAspXEPeRZrOOQ1jue7o0=;
- b=lAEC9GjCEijvwEIQfr7pi70kOpnljOTK/0TZWwK2pQ3MYcALUKqXJzUE7TkBpmP0lo
- KSuXY6MigUK3n11mgkfLL+8G3IHl2mAePX1czXYg117/qoYF86hrK4CAHgLj/J1ViZjW
- y+dO6iC78dw6kCChsvJr60HLi2d42OyQUK0A4YmU+K0TJthhMoRRk4fZW0xwYkUQWIZz
- uewAVwZ5lLrcFW32oSsm55dqOvAc9Zk0yrqWUs9BAZG9/Wn0snO4zcpz67UwiDMzQD+m
- Uyjc+N2b9v5vwige+DSgcMThpP9MyubpGaFlto6aeNL6JB/KlhG03yrrd5bfG0cJ8k0g
- JBtQ==
-X-Gm-Message-State: AOAM530sk/Eu9SN1ovYJ+aqPbNjNe0az63p+PH6bs90sA4hVUmBmdHSe
- F1Cc3kSKDmVAA/QLeZpcdNHasA==
-X-Google-Smtp-Source: ABdhPJwEuklfL8gjazzjb7wDgipUUvm7epPmX8yFSlIdzWj0uWm4MepZyYy8A9RBNCckvPkGtYRV9Q==
-X-Received: by 2002:aa7:828f:0:b029:200:6e27:8c8f with SMTP id
- s15-20020aa7828f0000b02902006e278c8fmr24143255pfm.44.1620640300375; 
- Mon, 10 May 2021 02:51:40 -0700 (PDT)
+ bh=N9YtEc1AKRWzrvXmeOPdeOSLAm21S21YZtTJBnrwUb8=;
+ b=oaxDMj0zNC4W2Otk6ergA3xxa9Rz6WE5+7WcLeufWtruBjPEAJR622wGQqz4A+yjLC
+ Rg6ZhWYD9qFNctvdJx4g0vzlYYj232kHUFrpR9XMa+zGaCK2wrfw/Juq059I0podVS9d
+ m8rPjm31MXfWat9KUdDmBw9wEv3r7jlWV8dMJk4p2bhQMz//Gh4Lx+IC8SgA9rf9aw3r
+ eDx/tflvCU09gjLIJzHPYPVjyfavgUkJ5aYgQnA0eXYPse79SSku9WTLKnDzAJd5Bzs8
+ OKbQ/B63eoNV2SE9T7jItXGhesLsLaplRp9f26Flh3zPqt6/gXj9KjQprRQN+WSo1bip
+ /rbg==
+X-Gm-Message-State: AOAM530dGyPztVSOmouDSpZ+TBZ5ytZEHy2CZ3eV1eurwFoIsVc1149M
+ 44HX8P87aN3TIgxf8wjc/d4n7g==
+X-Google-Smtp-Source: ABdhPJx4HfAA4wpH8/Kt4ymLNpegRYw4Z9ZhxTLF9qKqtTWcfssB+nzDFXYh+57Un66kEi/PTJPfag==
+X-Received: by 2002:a62:28b:0:b029:28e:e592:fe65 with SMTP id
+ 133-20020a62028b0000b029028ee592fe65mr23864386pfc.75.1620640369611; 
+ Mon, 10 May 2021 02:52:49 -0700 (PDT)
 Received: from localhost ([2401:fa00:95:205:a524:abe8:94e3:5601])
- by smtp.gmail.com with UTF8SMTPSA id z16sm18516572pjq.42.2021.05.10.02.51.33
+ by smtp.gmail.com with UTF8SMTPSA id k9sm4190684pgq.27.2021.05.10.02.52.42
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 10 May 2021 02:51:40 -0700 (PDT)
+ Mon, 10 May 2021 02:52:49 -0700 (PDT)
 From: Claire Chang <tientzu@chromium.org>
 To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
  Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
@@ -61,15 +61,14 @@ To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
  Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
  jgross@suse.com, Christoph Hellwig <hch@lst.de>,
  Marek Szyprowski <m.szyprowski@samsung.com>
-Date: Mon, 10 May 2021 17:50:18 +0800
-Message-Id: <20210510095026.3477496-8-tientzu@chromium.org>
+Date: Mon, 10 May 2021 17:50:26 +0800
+Message-Id: <20210510095026.3477496-16-tientzu@chromium.org>
 X-Mailer: git-send-email 2.31.1.607.g51e8a6a459-goog
 In-Reply-To: <20210510095026.3477496-1-tientzu@chromium.org>
 References: <20210510095026.3477496-1-tientzu@chromium.org>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Tue, 11 May 2021 14:38:26 +0000
-Subject: [Nouveau] [PATCH v6 07/15] swiotlb: Update is_swiotlb_active to add
- a struct device argument
+Subject: [Nouveau] [PATCH v6 15/15] of: Add plumbing for restricted DMA pool
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,109 +108,95 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Update is_swiotlb_active to add a struct device argument. This will be
-useful later to allow for restricted DMA pool.
+If a device is not behind an IOMMU, we look up the device node and set
+up the restricted DMA when the restricted-dma-pool is presented.
 
 Signed-off-by: Claire Chang <tientzu@chromium.org>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_internal.c | 2 +-
- drivers/gpu/drm/nouveau/nouveau_ttm.c        | 2 +-
- drivers/pci/xen-pcifront.c                   | 2 +-
- include/linux/swiotlb.h                      | 4 ++--
- kernel/dma/direct.c                          | 2 +-
- kernel/dma/swiotlb.c                         | 4 ++--
- 6 files changed, 8 insertions(+), 8 deletions(-)
+ drivers/of/address.c    | 25 +++++++++++++++++++++++++
+ drivers/of/device.c     |  3 +++
+ drivers/of/of_private.h |  5 +++++
+ 3 files changed, 33 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_internal.c b/drivers/gpu/drm/i915/gem/i915_gem_internal.c
-index ce6b664b10aa..7d48c433446b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_internal.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_internal.c
-@@ -42,7 +42,7 @@ static int i915_gem_object_get_pages_internal(struct drm_i915_gem_object *obj)
+diff --git a/drivers/of/address.c b/drivers/of/address.c
+index aca94c348bd4..c562a9ff5f0b 100644
+--- a/drivers/of/address.c
++++ b/drivers/of/address.c
+@@ -8,6 +8,7 @@
+ #include <linux/logic_pio.h>
+ #include <linux/module.h>
+ #include <linux/of_address.h>
++#include <linux/of_reserved_mem.h>
+ #include <linux/pci.h>
+ #include <linux/pci_regs.h>
+ #include <linux/sizes.h>
+@@ -1112,6 +1113,30 @@ bool of_dma_is_coherent(struct device_node *np)
+ }
+ EXPORT_SYMBOL_GPL(of_dma_is_coherent);
  
- 	max_order = MAX_ORDER;
- #ifdef CONFIG_SWIOTLB
--	if (is_swiotlb_active()) {
-+	if (is_swiotlb_active(NULL)) {
- 		unsigned int max_segment;
++int of_dma_set_restricted_buffer(struct device *dev)
++{
++	struct device_node *node;
++	int count, i;
++
++	if (!dev->of_node)
++		return 0;
++
++	count = of_property_count_elems_of_size(dev->of_node, "memory-region",
++						sizeof(phandle));
++	for (i = 0; i < count; i++) {
++		node = of_parse_phandle(dev->of_node, "memory-region", i);
++		/* There might be multiple memory regions, but only one
++		 * restriced-dma-pool region is allowed.
++		 */
++		if (of_device_is_compatible(node, "restricted-dma-pool") &&
++		    of_device_is_available(node))
++			return of_reserved_mem_device_init_by_idx(
++				dev, dev->of_node, i);
++	}
++
++	return 0;
++}
++
+ /**
+  * of_mmio_is_nonposted - Check if device uses non-posted MMIO
+  * @np:	device node
+diff --git a/drivers/of/device.c b/drivers/of/device.c
+index c5a9473a5fb1..d8d865223e51 100644
+--- a/drivers/of/device.c
++++ b/drivers/of/device.c
+@@ -165,6 +165,9 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
  
- 		max_segment = swiotlb_max_segment();
-diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-index e8b506a6685b..2a2ae6d6cf6d 100644
---- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-@@ -321,7 +321,7 @@ nouveau_ttm_init(struct nouveau_drm *drm)
- 	}
+ 	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
  
- #if IS_ENABLED(CONFIG_SWIOTLB) && IS_ENABLED(CONFIG_X86)
--	need_swiotlb = is_swiotlb_active();
-+	need_swiotlb = is_swiotlb_active(NULL);
++	if (!iommu)
++		return of_dma_set_restricted_buffer(dev);
++
+ 	return 0;
+ }
+ EXPORT_SYMBOL_GPL(of_dma_configure_id);
+diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
+index d717efbd637d..e9237f5eff48 100644
+--- a/drivers/of/of_private.h
++++ b/drivers/of/of_private.h
+@@ -163,12 +163,17 @@ struct bus_dma_region;
+ #if defined(CONFIG_OF_ADDRESS) && defined(CONFIG_HAS_DMA)
+ int of_dma_get_range(struct device_node *np,
+ 		const struct bus_dma_region **map);
++int of_dma_set_restricted_buffer(struct device *dev);
+ #else
+ static inline int of_dma_get_range(struct device_node *np,
+ 		const struct bus_dma_region **map)
+ {
+ 	return -ENODEV;
+ }
++static inline int of_dma_get_restricted_buffer(struct device *dev)
++{
++	return -ENODEV;
++}
  #endif
  
- 	ret = ttm_device_init(&drm->ttm.bdev, &nouveau_bo_driver, drm->dev->dev,
-diff --git a/drivers/pci/xen-pcifront.c b/drivers/pci/xen-pcifront.c
-index b7a8f3a1921f..6d548ce53ce7 100644
---- a/drivers/pci/xen-pcifront.c
-+++ b/drivers/pci/xen-pcifront.c
-@@ -693,7 +693,7 @@ static int pcifront_connect_and_init_dma(struct pcifront_device *pdev)
- 
- 	spin_unlock(&pcifront_dev_lock);
- 
--	if (!err && !is_swiotlb_active()) {
-+	if (!err && !is_swiotlb_active(NULL)) {
- 		err = pci_xen_swiotlb_init_late();
- 		if (err)
- 			dev_err(&pdev->xdev->dev, "Could not setup SWIOTLB!\n");
-diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
-index 2a6cca07540b..c530c976d18b 100644
---- a/include/linux/swiotlb.h
-+++ b/include/linux/swiotlb.h
-@@ -123,7 +123,7 @@ static inline bool is_swiotlb_buffer(struct device *dev, phys_addr_t paddr)
- void __init swiotlb_exit(void);
- unsigned int swiotlb_max_segment(void);
- size_t swiotlb_max_mapping_size(struct device *dev);
--bool is_swiotlb_active(void);
-+bool is_swiotlb_active(struct device *dev);
- void __init swiotlb_adjust_size(unsigned long size);
- #else
- #define swiotlb_force SWIOTLB_NO_FORCE
-@@ -143,7 +143,7 @@ static inline size_t swiotlb_max_mapping_size(struct device *dev)
- 	return SIZE_MAX;
- }
- 
--static inline bool is_swiotlb_active(void)
-+static inline bool is_swiotlb_active(struct device *dev)
- {
- 	return false;
- }
-diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
-index 84c9feb5474a..7a88c34d0867 100644
---- a/kernel/dma/direct.c
-+++ b/kernel/dma/direct.c
-@@ -495,7 +495,7 @@ int dma_direct_supported(struct device *dev, u64 mask)
- size_t dma_direct_max_mapping_size(struct device *dev)
- {
- 	/* If SWIOTLB is active, use its maximum mapping size */
--	if (is_swiotlb_active() &&
-+	if (is_swiotlb_active(dev) &&
- 	    (dma_addressing_limited(dev) || swiotlb_force == SWIOTLB_FORCE))
- 		return swiotlb_max_mapping_size(dev);
- 	return SIZE_MAX;
-diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
-index 4ea027b75013..81bed3d2c771 100644
---- a/kernel/dma/swiotlb.c
-+++ b/kernel/dma/swiotlb.c
-@@ -662,9 +662,9 @@ size_t swiotlb_max_mapping_size(struct device *dev)
- 	return ((size_t)IO_TLB_SIZE) * IO_TLB_SEGSIZE;
- }
- 
--bool is_swiotlb_active(void)
-+bool is_swiotlb_active(struct device *dev)
- {
--	return io_tlb_default_mem != NULL;
-+	return get_io_tlb_mem(dev) != NULL;
- }
- EXPORT_SYMBOL_GPL(is_swiotlb_active);
- 
+ #endif /* _LINUX_OF_PRIVATE_H */
 -- 
 2.31.1.607.g51e8a6a459-goog
 
