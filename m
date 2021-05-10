@@ -5,55 +5,55 @@ X-Spam-Level:
 X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C139C43460
-	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 390F7C43462
+	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 129BC61285
+	by mail.kernel.org (Postfix) with ESMTPS id D49E761376
 	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:40 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 129BC61285
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D49E761376
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93B6A6EA60;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C7B56EA59;
 	Tue, 11 May 2021 14:38:28 +0000 (UTC)
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com
- [IPv6:2607:f8b0:4864:20::633])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B27976E44B
- for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 09:50:48 +0000 (UTC)
-Received: by mail-pl1-x633.google.com with SMTP id v13so8854208ple.9
- for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 02:50:48 -0700 (PDT)
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
+ [IPv6:2607:f8b0:4864:20::1036])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63FDA6E49D
+ for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 09:51:23 +0000 (UTC)
+Received: by mail-pj1-x1036.google.com with SMTP id md17so9438703pjb.0
+ for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 02:51:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=l57NLzuwUUMRZhssJX0lL8JJDXGk+1/UfIIsGGfy3jA=;
- b=huOTaemx/vQNaoB1cvrnA57ypE0vmqhe7ShZkgp3NAItXrk4k8kvOfBQCV83z3IngU
- LjO0os4LWJvRIc/zT8XVvQ/udpySO4cVFayr8AZ/h253vg4E9s3gUhllP1veAksDKlv1
- u/GQbBSuwBtUiADmsFqc0gMGCn19+8viSk9bQ=
+ bh=H8s2Ssxedi+m7Lc7mdaT6IyIVFNL7UMFVGCjjIXUKBs=;
+ b=aEzUGv6HyICG91lVRchMBsfGFoiKw5t3UKv5r9/XWkq1l03uTxk5gK7BReGArG4wM7
+ eL8k61LHaWwrgnh+WJYeL7I+S/QoUwEkwv6x0tDx3HcpYoUp9liwFvhqHJX8OnvlaqU3
+ oxtyLQT57sgPbzesRlkZ21sVrQ/LPb2+Dv9rE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=l57NLzuwUUMRZhssJX0lL8JJDXGk+1/UfIIsGGfy3jA=;
- b=lZBy/BcCv+kYeCnc397KX8UbY3m+dzP9m8NW8IkjrV3fLRD/e1aPEUFeACZo0W9dgB
- 6T2Bz4KR5+OrBbNcYn1tc+D9jAnvbL7GS+sTxjvIQLWA0uB8vk7CiAbG5wsxiRBCJiST
- 1J+jQX8b9FaO6MQXVcjKWldpXADuNxJP7vUfFVkYqR9o69FCKj6SVjF/kK6Fo4wVtPOp
- IX9liLSxH1y2Ar63b02I5B+8WnvROfNi/hQ9GVnNIhyjwHnMTiHdKTD7ABKKfTl4boAH
- 4Fh9l8m9Cy6u8iObC9jNL2rcFT1BFR+Wjry1prhqyX2dFZi38qx+IYKwp5QsPWybx6uv
- IIfA==
-X-Gm-Message-State: AOAM5310CvUgp/WI3vf4XQ9iIKewIWG2Wz+SzphncTCjtngkc9Iuq2si
- giYzgnx0F5P0g/5VJ7+TT/P9AA==
-X-Google-Smtp-Source: ABdhPJxWVuCYZwrOa/E4SzReuXkZoXpg2ApXBYG9GCU58CD3SXKffBuVhoPZLaoYkILB2nJk2guWbw==
-X-Received: by 2002:a17:902:db09:b029:ee:ad5e:cd58 with SMTP id
- m9-20020a170902db09b02900eead5ecd58mr23870524plx.78.1620640248239; 
- Mon, 10 May 2021 02:50:48 -0700 (PDT)
+ bh=H8s2Ssxedi+m7Lc7mdaT6IyIVFNL7UMFVGCjjIXUKBs=;
+ b=Z90R178m9uTmchhzP3s+bUast1aBGfQVnAN1A6czaVbijUYmgWg55m+sX+fd55iMml
+ K8SBbKTUwXc2GTzaQtQ6oA9s4pX3G0QwajXBgDpE+rCqm8YLqrBL/wG6u533BXlTbVan
+ GQT+P2t+YAt6XauyGg2lAzTzyxEpXrFJtVTK1+LYfo8jsMkqLU32n2jNXz9vSXapc0of
+ ohNoGaorLzxI47wgqUYGKWgqL9POtZIgxAkg+Qd2FoMSb0sW6c+Xamt6okCzk3XD1Ybv
+ /0N58xPOSUbqaoYBsbXzOcu5831qJjURX3iZYtel8I7mftVvvpjewSjfxMOxhYQseAi2
+ MeFA==
+X-Gm-Message-State: AOAM532x95dajXo4+Uw+1oZd29x2ZUJVjMlCm1jtWjagn2uNj2bfbS94
+ Gm4NGM8MMWvHG/ZlL0szljd+ew==
+X-Google-Smtp-Source: ABdhPJzROW5FUCBZB2fXFHkP0ALBea1sVjbZahlfu04HnoSywATlCq/z9y3jgockvO/xDk1J1RoGzg==
+X-Received: by 2002:a17:90b:1bcd:: with SMTP id
+ oa13mr40100520pjb.22.1620640283118; 
+ Mon, 10 May 2021 02:51:23 -0700 (PDT)
 Received: from localhost ([2401:fa00:95:205:a524:abe8:94e3:5601])
- by smtp.gmail.com with UTF8SMTPSA id i62sm10957565pfc.162.2021.05.10.02.50.40
+ by smtp.gmail.com with UTF8SMTPSA id ml19sm46030318pjb.2.2021.05.10.02.51.15
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 10 May 2021 02:50:47 -0700 (PDT)
+ Mon, 10 May 2021 02:51:22 -0700 (PDT)
 From: Claire Chang <tientzu@chromium.org>
 To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
  Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
@@ -61,14 +61,14 @@ To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
  Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
  jgross@suse.com, Christoph Hellwig <hch@lst.de>,
  Marek Szyprowski <m.szyprowski@samsung.com>
-Date: Mon, 10 May 2021 17:50:12 +0800
-Message-Id: <20210510095026.3477496-2-tientzu@chromium.org>
+Date: Mon, 10 May 2021 17:50:16 +0800
+Message-Id: <20210510095026.3477496-6-tientzu@chromium.org>
 X-Mailer: git-send-email 2.31.1.607.g51e8a6a459-goog
 In-Reply-To: <20210510095026.3477496-1-tientzu@chromium.org>
 References: <20210510095026.3477496-1-tientzu@chromium.org>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Tue, 11 May 2021 14:38:26 +0000
-Subject: [Nouveau] [PATCH v6 01/15] swiotlb: Refactor swiotlb init functions
+Subject: [Nouveau] [PATCH v6 05/15] swiotlb: Add a new get_io_tlb_mem getter
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,101 +108,43 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Add a new function, swiotlb_init_io_tlb_mem, for the io_tlb_mem struct
-initialization to make the code reusable.
-
-Note that we now also call set_memory_decrypted in swiotlb_init_with_tbl.
+Add a new getter, get_io_tlb_mem, to help select the io_tlb_mem struct.
+The restricted DMA pool is preferred if available.
 
 Signed-off-by: Claire Chang <tientzu@chromium.org>
 ---
- kernel/dma/swiotlb.c | 51 ++++++++++++++++++++++----------------------
- 1 file changed, 25 insertions(+), 26 deletions(-)
+ include/linux/swiotlb.h | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
-index 8ca7d505d61c..d3232fc19385 100644
---- a/kernel/dma/swiotlb.c
-+++ b/kernel/dma/swiotlb.c
-@@ -168,9 +168,30 @@ void __init swiotlb_update_mem_attributes(void)
- 	memset(vaddr, 0, bytes);
- }
+diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
+index 03ad6e3b4056..b469f04cca26 100644
+--- a/include/linux/swiotlb.h
++++ b/include/linux/swiotlb.h
+@@ -2,6 +2,7 @@
+ #ifndef __LINUX_SWIOTLB_H
+ #define __LINUX_SWIOTLB_H
  
--int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
-+static void swiotlb_init_io_tlb_mem(struct io_tlb_mem *mem, phys_addr_t start,
-+				    unsigned long nslabs, bool late_alloc)
- {
-+	void *vaddr = phys_to_virt(start);
- 	unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
++#include <linux/device.h>
+ #include <linux/dma-direction.h>
+ #include <linux/init.h>
+ #include <linux/types.h>
+@@ -102,6 +103,16 @@ struct io_tlb_mem {
+ };
+ extern struct io_tlb_mem *io_tlb_default_mem;
+ 
++static inline struct io_tlb_mem *get_io_tlb_mem(struct device *dev)
++{
++#ifdef CONFIG_DMA_RESTRICTED_POOL
++	if (dev && dev->dma_io_tlb_mem)
++		return dev->dma_io_tlb_mem;
++#endif /* CONFIG_DMA_RESTRICTED_POOL */
 +
-+	mem->nslabs = nslabs;
-+	mem->start = start;
-+	mem->end = mem->start + bytes;
-+	mem->index = 0;
-+	mem->late_alloc = late_alloc;
-+	spin_lock_init(&mem->lock);
-+	for (i = 0; i < mem->nslabs; i++) {
-+		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
-+		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
-+		mem->slots[i].alloc_size = 0;
-+	}
-+
-+	set_memory_decrypted((unsigned long)vaddr, bytes >> PAGE_SHIFT);
-+	memset(vaddr, 0, bytes);
++	return io_tlb_default_mem;
 +}
 +
-+int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
-+{
- 	struct io_tlb_mem *mem;
- 	size_t alloc_size;
- 
-@@ -186,16 +207,8 @@ int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
- 	if (!mem)
- 		panic("%s: Failed to allocate %zu bytes align=0x%lx\n",
- 		      __func__, alloc_size, PAGE_SIZE);
--	mem->nslabs = nslabs;
--	mem->start = __pa(tlb);
--	mem->end = mem->start + bytes;
--	mem->index = 0;
--	spin_lock_init(&mem->lock);
--	for (i = 0; i < mem->nslabs; i++) {
--		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
--		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
--		mem->slots[i].alloc_size = 0;
--	}
-+
-+	swiotlb_init_io_tlb_mem(mem, __pa(tlb), nslabs, false);
- 
- 	io_tlb_default_mem = mem;
- 	if (verbose)
-@@ -282,7 +295,6 @@ swiotlb_late_init_with_default_size(size_t default_size)
- int
- swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
+ static inline bool is_swiotlb_buffer(phys_addr_t paddr)
  {
--	unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
- 	struct io_tlb_mem *mem;
- 
- 	if (swiotlb_force == SWIOTLB_NO_FORCE)
-@@ -297,20 +309,7 @@ swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
- 	if (!mem)
- 		return -ENOMEM;
- 
--	mem->nslabs = nslabs;
--	mem->start = virt_to_phys(tlb);
--	mem->end = mem->start + bytes;
--	mem->index = 0;
--	mem->late_alloc = 1;
--	spin_lock_init(&mem->lock);
--	for (i = 0; i < mem->nslabs; i++) {
--		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
--		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
--		mem->slots[i].alloc_size = 0;
--	}
--
--	set_memory_decrypted((unsigned long)tlb, bytes >> PAGE_SHIFT);
--	memset(tlb, 0, bytes);
-+	swiotlb_init_io_tlb_mem(mem, virt_to_phys(tlb), nslabs, true);
- 
- 	io_tlb_default_mem = mem;
- 	swiotlb_print_info();
+ 	struct io_tlb_mem *mem = io_tlb_default_mem;
 -- 
 2.31.1.607.g51e8a6a459-goog
 
