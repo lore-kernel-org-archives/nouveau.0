@@ -7,53 +7,52 @@ X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 927FFC4360C
-	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C2292C43603
+	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3FBC961285
-	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:46 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3FBC961285
+	by mail.kernel.org (Postfix) with ESMTPS id 7C64861376
+	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:47 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7C64861376
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 869A36EA67;
-	Tue, 11 May 2021 14:38:29 +0000 (UTC)
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com
- [IPv6:2607:f8b0:4864:20::533])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE7976E887
- for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 09:52:49 +0000 (UTC)
-Received: by mail-pg1-x533.google.com with SMTP id i14so12914748pgk.5
- for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 02:52:49 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48BF46EA70;
+	Tue, 11 May 2021 14:38:30 +0000 (UTC)
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com
+ [IPv6:2607:f8b0:4864:20::52d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 683E06E84B
+ for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 09:52:15 +0000 (UTC)
+Received: by mail-pg1-x52d.google.com with SMTP id m190so12955974pga.2
+ for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 02:52:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=N9YtEc1AKRWzrvXmeOPdeOSLAm21S21YZtTJBnrwUb8=;
- b=K1N6EXk85Wvc+hEOva4wXm/pG0LlShcwRNR1nzYaMJRORgqDZTx8d0OHgKA7EZWdW9
- DKVvH5XQc7hrxaIcoiPBWcXqLtVTb0ShzjIeG4+8nxjarb1dd1TCqieDYri51cXF3WJ3
- rTKZnoW2Yosw5eCi0THzxANV5pwO1EvAdcAaY=
+ bh=t6SScDqP0X0FEaGwYViR1WRhEa6WWe5PW8l4/cNEd6s=;
+ b=Np+mNLfnE5UH9v+sj7M7sXVpWmpJwNO1DnmfTEXXKWEeG5PclaliBfYf0J+kN7jfVA
+ EwzmyQstbxUWNj9zGZGjDfvTwocid9N4ile+tbERZqEa6UZsUV+1sXylz+EEx90dcYpA
+ QDp+I0oGFi86MOxid3sXnhVs4C0s/bcSV7YyE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=N9YtEc1AKRWzrvXmeOPdeOSLAm21S21YZtTJBnrwUb8=;
- b=oaxDMj0zNC4W2Otk6ergA3xxa9Rz6WE5+7WcLeufWtruBjPEAJR622wGQqz4A+yjLC
- Rg6ZhWYD9qFNctvdJx4g0vzlYYj232kHUFrpR9XMa+zGaCK2wrfw/Juq059I0podVS9d
- m8rPjm31MXfWat9KUdDmBw9wEv3r7jlWV8dMJk4p2bhQMz//Gh4Lx+IC8SgA9rf9aw3r
- eDx/tflvCU09gjLIJzHPYPVjyfavgUkJ5aYgQnA0eXYPse79SSku9WTLKnDzAJd5Bzs8
- OKbQ/B63eoNV2SE9T7jItXGhesLsLaplRp9f26Flh3zPqt6/gXj9KjQprRQN+WSo1bip
- /rbg==
-X-Gm-Message-State: AOAM530dGyPztVSOmouDSpZ+TBZ5ytZEHy2CZ3eV1eurwFoIsVc1149M
- 44HX8P87aN3TIgxf8wjc/d4n7g==
-X-Google-Smtp-Source: ABdhPJx4HfAA4wpH8/Kt4ymLNpegRYw4Z9ZhxTLF9qKqtTWcfssB+nzDFXYh+57Un66kEi/PTJPfag==
-X-Received: by 2002:a62:28b:0:b029:28e:e592:fe65 with SMTP id
- 133-20020a62028b0000b029028ee592fe65mr23864386pfc.75.1620640369611; 
- Mon, 10 May 2021 02:52:49 -0700 (PDT)
+ bh=t6SScDqP0X0FEaGwYViR1WRhEa6WWe5PW8l4/cNEd6s=;
+ b=lmzvxSJrRWM4KO57LCXjRqd1xcUWIIdUBtxtZ9JI4rAysl52RaZIpIiY2UfpyhpUv7
+ M3CCLvE98H6OjrMDOo7rns6fR9zT54YtNeH2hTtNA9bQVLteSNCBKcYQt3oWNCK1ySd5
+ lYm8Uz5Ke/5tB0DoiG9hQ7nJEMwCd8lnej7HS4IilYndgQ19OOci1TWxtqPFMgKXRseK
+ xVPuzoddYxPGcyyxhI8OHbhPBRUaUhQ68rWdHMbjq/dme9AWWPVvRK/oJhWwfBXIrUUs
+ anPWLx21SUBCFnNNrwMPRlK22sxiQDb2sFIkKqw3GIlNFYXZqDVyRJYPdNclkxm3kxoA
+ Tz/A==
+X-Gm-Message-State: AOAM532aUli3+NpvcMsmGM+UxUPsGETJ4MhveY4TMdeo0ollx73CuILm
+ qcjFT8o1m61qkGW7eqWa6RMtxQ==
+X-Google-Smtp-Source: ABdhPJzTQch1UU+UQmd61gbcCZP+myc5F721Mj+utWhy5ilRUzzapDijoDqtK3NL+wBlztaE9YFArQ==
+X-Received: by 2002:a63:fc11:: with SMTP id j17mr20874729pgi.355.1620640335011; 
+ Mon, 10 May 2021 02:52:15 -0700 (PDT)
 Received: from localhost ([2401:fa00:95:205:a524:abe8:94e3:5601])
- by smtp.gmail.com with UTF8SMTPSA id k9sm4190684pgq.27.2021.05.10.02.52.42
+ by smtp.gmail.com with UTF8SMTPSA id g2sm4121532pfj.218.2021.05.10.02.52.07
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 10 May 2021 02:52:49 -0700 (PDT)
+ Mon, 10 May 2021 02:52:14 -0700 (PDT)
 From: Claire Chang <tientzu@chromium.org>
 To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
  Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
@@ -61,14 +60,15 @@ To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
  Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
  jgross@suse.com, Christoph Hellwig <hch@lst.de>,
  Marek Szyprowski <m.szyprowski@samsung.com>
-Date: Mon, 10 May 2021 17:50:26 +0800
-Message-Id: <20210510095026.3477496-16-tientzu@chromium.org>
+Date: Mon, 10 May 2021 17:50:22 +0800
+Message-Id: <20210510095026.3477496-12-tientzu@chromium.org>
 X-Mailer: git-send-email 2.31.1.607.g51e8a6a459-goog
 In-Reply-To: <20210510095026.3477496-1-tientzu@chromium.org>
 References: <20210510095026.3477496-1-tientzu@chromium.org>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Tue, 11 May 2021 14:38:26 +0000
-Subject: [Nouveau] [PATCH v6 15/15] of: Add plumbing for restricted DMA pool
+Subject: [Nouveau] [PATCH v6 11/15] dma-direct: Add a new wrapper
+ __dma_direct_free_pages()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,95 +108,67 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-If a device is not behind an IOMMU, we look up the device node and set
-up the restricted DMA when the restricted-dma-pool is presented.
+Add a new wrapper __dma_direct_free_pages() that will be useful later
+for swiotlb_free().
 
 Signed-off-by: Claire Chang <tientzu@chromium.org>
 ---
- drivers/of/address.c    | 25 +++++++++++++++++++++++++
- drivers/of/device.c     |  3 +++
- drivers/of/of_private.h |  5 +++++
- 3 files changed, 33 insertions(+)
+ kernel/dma/direct.c | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index aca94c348bd4..c562a9ff5f0b 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -8,6 +8,7 @@
- #include <linux/logic_pio.h>
- #include <linux/module.h>
- #include <linux/of_address.h>
-+#include <linux/of_reserved_mem.h>
- #include <linux/pci.h>
- #include <linux/pci_regs.h>
- #include <linux/sizes.h>
-@@ -1112,6 +1113,30 @@ bool of_dma_is_coherent(struct device_node *np)
+diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
+index 078f7087e466..eb4098323bbc 100644
+--- a/kernel/dma/direct.c
++++ b/kernel/dma/direct.c
+@@ -75,6 +75,12 @@ static bool dma_coherent_ok(struct device *dev, phys_addr_t phys, size_t size)
+ 		min_not_zero(dev->coherent_dma_mask, dev->bus_dma_limit);
  }
- EXPORT_SYMBOL_GPL(of_dma_is_coherent);
  
-+int of_dma_set_restricted_buffer(struct device *dev)
++static void __dma_direct_free_pages(struct device *dev, struct page *page,
++				    size_t size)
 +{
-+	struct device_node *node;
-+	int count, i;
-+
-+	if (!dev->of_node)
-+		return 0;
-+
-+	count = of_property_count_elems_of_size(dev->of_node, "memory-region",
-+						sizeof(phandle));
-+	for (i = 0; i < count; i++) {
-+		node = of_parse_phandle(dev->of_node, "memory-region", i);
-+		/* There might be multiple memory regions, but only one
-+		 * restriced-dma-pool region is allowed.
-+		 */
-+		if (of_device_is_compatible(node, "restricted-dma-pool") &&
-+		    of_device_is_available(node))
-+			return of_reserved_mem_device_init_by_idx(
-+				dev, dev->of_node, i);
-+	}
-+
-+	return 0;
++	dma_free_contiguous(dev, page, size);
 +}
 +
- /**
-  * of_mmio_is_nonposted - Check if device uses non-posted MMIO
-  * @np:	device node
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index c5a9473a5fb1..d8d865223e51 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -165,6 +165,9 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- 
- 	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
- 
-+	if (!iommu)
-+		return of_dma_set_restricted_buffer(dev);
-+
- 	return 0;
- }
- EXPORT_SYMBOL_GPL(of_dma_configure_id);
-diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-index d717efbd637d..e9237f5eff48 100644
---- a/drivers/of/of_private.h
-+++ b/drivers/of/of_private.h
-@@ -163,12 +163,17 @@ struct bus_dma_region;
- #if defined(CONFIG_OF_ADDRESS) && defined(CONFIG_HAS_DMA)
- int of_dma_get_range(struct device_node *np,
- 		const struct bus_dma_region **map);
-+int of_dma_set_restricted_buffer(struct device *dev);
- #else
- static inline int of_dma_get_range(struct device_node *np,
- 		const struct bus_dma_region **map)
+ static struct page *__dma_direct_alloc_pages(struct device *dev, size_t size,
+ 		gfp_t gfp)
  {
- 	return -ENODEV;
+@@ -237,7 +243,7 @@ void *dma_direct_alloc(struct device *dev, size_t size,
+ 			return NULL;
+ 	}
+ out_free_pages:
+-	dma_free_contiguous(dev, page, size);
++	__dma_direct_free_pages(dev, page, size);
+ 	return NULL;
  }
-+static inline int of_dma_get_restricted_buffer(struct device *dev)
-+{
-+	return -ENODEV;
-+}
- #endif
  
- #endif /* _LINUX_OF_PRIVATE_H */
+@@ -273,7 +279,7 @@ void dma_direct_free(struct device *dev, size_t size,
+ 	else if (IS_ENABLED(CONFIG_ARCH_HAS_DMA_CLEAR_UNCACHED))
+ 		arch_dma_clear_uncached(cpu_addr, size);
+ 
+-	dma_free_contiguous(dev, dma_direct_to_page(dev, dma_addr), size);
++	__dma_direct_free_pages(dev, dma_direct_to_page(dev, dma_addr), size);
+ }
+ 
+ struct page *dma_direct_alloc_pages(struct device *dev, size_t size,
+@@ -310,7 +316,7 @@ struct page *dma_direct_alloc_pages(struct device *dev, size_t size,
+ 	*dma_handle = phys_to_dma_direct(dev, page_to_phys(page));
+ 	return page;
+ out_free_pages:
+-	dma_free_contiguous(dev, page, size);
++	__dma_direct_free_pages(dev, page, size);
+ 	return NULL;
+ }
+ 
+@@ -329,7 +335,7 @@ void dma_direct_free_pages(struct device *dev, size_t size,
+ 	if (force_dma_unencrypted(dev))
+ 		set_memory_encrypted((unsigned long)vaddr, 1 << page_order);
+ 
+-	dma_free_contiguous(dev, page, size);
++	__dma_direct_free_pages(dev, page, size);
+ }
+ 
+ #if defined(CONFIG_ARCH_HAS_SYNC_DMA_FOR_DEVICE) || \
 -- 
 2.31.1.607.g51e8a6a459-goog
 
