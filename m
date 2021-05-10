@@ -2,47 +2,74 @@ Return-Path: <SRS0=1QWf=KG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7CDA6C433B4
-	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 852D6C43460
+	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 037C461285
-	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:35 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 037C461285
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=huawei.com
+	by mail.kernel.org (Postfix) with ESMTPS id 31DF861285
+	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:37 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 31DF861285
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0957E6EA5A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B4AA6EA5B;
 	Tue, 11 May 2021 14:38:28 +0000 (UTC)
-Received: from szxga06-in.huawei.com (szxga06-in.huawei.com [45.249.212.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A4756E51B;
- Tue, 11 May 2021 08:29:06 +0000 (UTC)
-Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.60])
- by szxga06-in.huawei.com (SkyGuard) with ESMTP id 4FfWHK1DLbzlZFK;
- Tue, 11 May 2021 16:26:53 +0800 (CST)
-Received: from thunder-town.china.huawei.com (10.174.177.72) by
- DGGEMS407-HUB.china.huawei.com (10.3.19.207) with Microsoft SMTP Server id
- 14.3.498.0; Tue, 11 May 2021 16:28:56 +0800
-From: Zhen Lei <thunder.leizhen@huawei.com>
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, "Daniel
- Vetter" <daniel@ffwll.ch>, Pierre Moreau <pierre.morrow@free.fr>, dri-devel
- <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>
-Date: Tue, 11 May 2021 16:28:40 +0800
-Message-ID: <20210511082841.4181-2-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20210511082841.4181-1-thunder.leizhen@huawei.com>
-References: <20210511082841.4181-1-thunder.leizhen@huawei.com>
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com
+ [IPv6:2607:f8b0:4864:20::633])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09F9A6E85A
+ for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 09:52:24 +0000 (UTC)
+Received: by mail-pl1-x633.google.com with SMTP id b21so8899910plz.0
+ for <nouveau@lists.freedesktop.org>; Mon, 10 May 2021 02:52:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=3YaoLVJ/BlS2jGrFuaf+HAqZru6rV2ab/VHFDnxpz5s=;
+ b=I10YUhrVFYEnBb151sjznBCAywSiwwuXX1ra65r+6Dp7kLXlkJTjZj64MC39DrflfN
+ L6B6coAmKhXT3uzYOIMy3hHP2AqrBakoEoGo6H/hyImCZ+Vs9dEj0AdH5ph0QtkKY+Bg
+ SjBGhbtFT0tOcMKvv+2FyMSaO8PoMl7ClMI8s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=3YaoLVJ/BlS2jGrFuaf+HAqZru6rV2ab/VHFDnxpz5s=;
+ b=fZgAvL9mHMhZhb3POoY6lNYSk3SUN3u5H6VY+u/VaNGqrLR1DjNjpOCh0ikNNuBZHz
+ HrEPs5W+Qi953Qdd0DXQjJUpcrSFjBpkrEy2OslYgzdpql0OR4wjg25ihxJecSL93rmw
+ SWC4AlPKqOuG6s5I8ZaHZHL9KFEITqxhTGMZcmrY9sc1iLaG8oGC+eWQBheHe+Vr8f79
+ fdhdGwDRlkSAwTXaNngzZo5gTloDxj6k5Oxve5CSvLpDQOUMw9eC5PeK2FLbOyvjHWU0
+ NxgDzbW89MHg5vhhDGZZWxB2oxVPrDsUyJXxs/lm5xO4hGWwKD7NkcOuPF0FL8EfJEID
+ 6y0g==
+X-Gm-Message-State: AOAM530sP6nuioxHDYZ/8K8OtCl5dMiWc8C0NzWRtx+QYpliRQEXVcQi
+ KedDkoNrGQ0Zz6cvlREAPOcuFw==
+X-Google-Smtp-Source: ABdhPJyvBg/0ILrSmUeqEzW7Fk7bklgK3teEOUZ3TKSkxe3vq+G4eTcWybVNarpL8KZA9dCjKF/+aQ==
+X-Received: by 2002:a17:90a:246:: with SMTP id
+ t6mr27381833pje.228.1620640343682; 
+ Mon, 10 May 2021 02:52:23 -0700 (PDT)
+Received: from localhost ([2401:fa00:95:205:a524:abe8:94e3:5601])
+ by smtp.gmail.com with UTF8SMTPSA id f6sm10227287pfe.74.2021.05.10.02.52.16
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 10 May 2021 02:52:23 -0700 (PDT)
+From: Claire Chang <tientzu@chromium.org>
+To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
+ jgross@suse.com, Christoph Hellwig <hch@lst.de>,
+ Marek Szyprowski <m.szyprowski@samsung.com>
+Date: Mon, 10 May 2021 17:50:23 +0800
+Message-Id: <20210510095026.3477496-13-tientzu@chromium.org>
+X-Mailer: git-send-email 2.31.1.607.g51e8a6a459-goog
+In-Reply-To: <20210510095026.3477496-1-tientzu@chromium.org>
+References: <20210510095026.3477496-1-tientzu@chromium.org>
 MIME-Version: 1.0
-X-Originating-IP: [10.174.177.72]
-X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Tue, 11 May 2021 14:38:26 +0000
-Subject: [Nouveau] [PATCH v2 1/2] drm/nouveau: Fix ida leak
+Subject: [Nouveau] [PATCH v6 12/15] swiotlb: Add restricted DMA alloc/free
+ support.
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,43 +81,113 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zhen Lei <thunder.leizhen@huawei.com>
+Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ peterz@infradead.org, benh@kernel.crashing.org,
+ joonas.lahtinen@linux.intel.com, dri-devel@lists.freedesktop.org,
+ chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
+ mingo@kernel.org, jxgao@google.com, sstabellini@kernel.org,
+ Saravana Kannan <saravanak@google.com>, xypron.glpk@gmx.de,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
+ daniel@ffwll.ch, airlied@linux.ie, maarten.lankhorst@linux.intel.com,
+ Robin Murphy <robin.murphy@arm.com>, jani.nikula@linux.intel.com,
+ Nicolas Boichat <drinkcat@chromium.org>, rodrigo.vivi@intel.com,
+ bhelgaas@google.com, tientzu@chromium.org,
+ Dan Williams <dan.j.williams@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ nouveau@lists.freedesktop.org, Greg KH <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
+ tfiga@chromium.org,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ Jim Quinlan <james.quinlan@broadcom.com>, linuxppc-dev@lists.ozlabs.org,
+ bauerman@linux.ibm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-When the 'nb' value allocated from 'bl_ida' is greater than or equal to
-100, it will not be released. In fact, we can simplify operations by
-limiting the range of idas that can be applied for.
+Add the functions, swiotlb_{alloc,free} to support the memory allocation
+from restricted DMA pool.
 
-By the way, delete the const modifier of the local variable 'nb'.
-
-Fixes: db1a0ae21461 ("drm/nouveau/bl: Assign different names to interfaces")
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+Signed-off-by: Claire Chang <tientzu@chromium.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_backlight.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ include/linux/swiotlb.h |  4 ++++
+ kernel/dma/swiotlb.c    | 35 +++++++++++++++++++++++++++++++++--
+ 2 files changed, 37 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-index 72f35a2babcb20e..d1c998e645fb4b6 100644
---- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-@@ -51,8 +51,9 @@ static bool
- nouveau_get_backlight_name(char backlight_name[BL_NAME_SIZE],
- 			   struct nouveau_backlight *bl)
- {
--	const int nb = ida_simple_get(&bl_ida, 0, 0, GFP_KERNEL);
--	if (nb < 0 || nb >= 100)
-+	int nb = ida_simple_get(&bl_ida, 0, 100, GFP_KERNEL);
+diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
+index 0c5a18d9cf89..e8cf49bd90c5 100644
+--- a/include/linux/swiotlb.h
++++ b/include/linux/swiotlb.h
+@@ -134,6 +134,10 @@ unsigned int swiotlb_max_segment(void);
+ size_t swiotlb_max_mapping_size(struct device *dev);
+ bool is_swiotlb_active(struct device *dev);
+ void __init swiotlb_adjust_size(unsigned long size);
++#ifdef CONFIG_DMA_RESTRICTED_POOL
++struct page *swiotlb_alloc(struct device *dev, size_t size);
++bool swiotlb_free(struct device *dev, struct page *page, size_t size);
++#endif /* CONFIG_DMA_RESTRICTED_POOL */
+ #else
+ #define swiotlb_force SWIOTLB_NO_FORCE
+ static inline bool is_swiotlb_buffer(struct device *dev, phys_addr_t paddr)
+diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
+index fa11787e4b95..d99d5f902259 100644
+--- a/kernel/dma/swiotlb.c
++++ b/kernel/dma/swiotlb.c
+@@ -457,8 +457,9 @@ static int find_slots(struct device *dev, phys_addr_t orig_addr,
+ 
+ 	index = wrap = wrap_index(mem, ALIGN(mem->index, stride));
+ 	do {
+-		if ((slot_addr(tbl_dma_addr, index) & iotlb_align_mask) !=
+-		    (orig_addr & iotlb_align_mask)) {
++		if (orig_addr &&
++		    (slot_addr(tbl_dma_addr, index) & iotlb_align_mask) !=
++			    (orig_addr & iotlb_align_mask)) {
+ 			index = wrap_index(mem, index + 1);
+ 			continue;
+ 		}
+@@ -701,6 +702,36 @@ late_initcall(swiotlb_create_default_debugfs);
+ #endif
+ 
+ #ifdef CONFIG_DMA_RESTRICTED_POOL
++struct page *swiotlb_alloc(struct device *dev, size_t size)
++{
++	struct io_tlb_mem *mem = dev->dma_io_tlb_mem;
++	phys_addr_t tlb_addr;
++	int index;
 +
-+	if (nb < 0)
- 		return false;
- 	if (nb > 0)
- 		snprintf(backlight_name, BL_NAME_SIZE, "nv_backlight%d", nb);
++	if (!mem)
++		return NULL;
++
++	index = find_slots(dev, 0, size);
++	if (index == -1)
++		return NULL;
++
++	tlb_addr = slot_addr(mem->start, index);
++
++	return pfn_to_page(PFN_DOWN(tlb_addr));
++}
++
++bool swiotlb_free(struct device *dev, struct page *page, size_t size)
++{
++	phys_addr_t tlb_addr = page_to_phys(page);
++
++	if (!is_swiotlb_buffer(dev, tlb_addr))
++		return false;
++
++	release_slots(dev, tlb_addr);
++
++	return true;
++}
++
+ static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
+ 				    struct device *dev)
+ {
 -- 
-2.26.0.106.g9fadedd
-
+2.31.1.607.g51e8a6a459-goog
 
 _______________________________________________
 Nouveau mailing list
