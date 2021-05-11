@@ -1,82 +1,76 @@
-Return-Path: <SRS0=1QWf=KG=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=z4d8=KH=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A63B5C433B4
-	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 16:36:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D9F22C433B4
+	for <nouveau@archiver.kernel.org>; Wed, 12 May 2021 05:46:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4D24B6187E
-	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 16:36:01 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4D24B6187E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id 8C08661289
+	for <nouveau@archiver.kernel.org>; Wed, 12 May 2021 05:46:38 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8C08661289
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D724C6E5B2;
-	Tue, 11 May 2021 16:36:00 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F0556E5B2
- for <nouveau@lists.freedesktop.org>; Tue, 11 May 2021 16:35:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1620750959;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=97DZTbnMB7JhbF5GRtnL6nwi+qxo43t3jJzfVOcjguQ=;
- b=NkEXn5imhEJ4QAOsPXn43sdNT6ofCZk4EXgv5KAi57IrHP7qKdtnYkjBVPRsFEmA3L0T8e
- IFlbmZOIH+u8ncfyvH5ivcl2C6Sop+GmLLUR5b30+lww0rK+hjxUZxeso1U3bUTscmGoFr
- jo84iMvtPoTOCHiHaZ2hSNh5oSpd9g4=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-2-V8bMZ_IkNpucKS1AKL7Uhg-1; Tue, 11 May 2021 12:35:57 -0400
-X-MC-Unique: V8bMZ_IkNpucKS1AKL7Uhg-1
-Received: by mail-wm1-f69.google.com with SMTP id
- o126-20020a1c28840000b0290149b8f27c99so2532081wmo.2
- for <nouveau@lists.freedesktop.org>; Tue, 11 May 2021 09:35:56 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 200916E040;
+	Wed, 12 May 2021 05:46:38 +0000 (UTC)
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com
+ [IPv6:2607:f8b0:4864:20::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A04B86E7D1
+ for <nouveau@lists.freedesktop.org>; Tue, 11 May 2021 16:49:14 +0000 (UTC)
+Received: by mail-il1-x133.google.com with SMTP id e2so17755529ilr.1
+ for <nouveau@lists.freedesktop.org>; Tue, 11 May 2021 09:49:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Ll12iwWOH+g7rF+Qcvmc/ZPVWK50RY5A+TnwOnViek8=;
+ b=jF9yywweDau5byF0sr7SVkFA9hoYDaWzF8iy+wyA9wHf9oOaCvA+67rLL4jVjSY9gn
+ QoY25mdgO7IV1eEXpAEk5s63+vTygeFS39HRXfLrmhNXD74fIDm9qeLodCWWHbiJG3ic
+ G2KrYNbeLupAhGANRLweLDvdOuGV9VrSQUJi8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=97DZTbnMB7JhbF5GRtnL6nwi+qxo43t3jJzfVOcjguQ=;
- b=dQNd20HU07nsRCbOr5Wga5s4KrBhvzY0CyXAeRHVJeR7VmJN7GHAIGUjuqdDeKOh7I
- OIm2W9wCyvUeXJfq30p6YtACbNAch5LER7qQBuBSU+h70iba9IsMxtIYdGP+fkoJf7lq
- MYVYrXlXBddluRBPwkZUPEyRWs8hFgeUxepMJORVrZ2Tjr7G17XqgYsdfck5i4E1LCin
- AH4izQzAsQ5hM4W2EzrgpB9EhWtojT5ylNJEd/bqPzixBiFBsh+qiLmVFjS/lWtTEfMH
- q47sGkarR9m0HHTQNVDNYbQK4tQgbZRra4Xw9u1JkvgjW1c5Zg68uf6VMyxCKwDauX8I
- gCsg==
-X-Gm-Message-State: AOAM533SA0MkiR7NeYtrx70qkJq18VixiloUVNQV0cH4M6cYSfs6mhqe
- HdE0O8N3XuAn/B9kM7C86ijR4gNj6G1L8Unv5rZj3oaV6lgRvkJp4rFb6ylHXhdqWHtQBKg1tGs
- YqRFuIE1tFJZEk2YX5R2ifAvejxtavizDOUiqE1Emhjmgu27P5+d3guaYls0RGHD05NkaPGhw6A
- uV
-X-Received: by 2002:adf:ffc4:: with SMTP id x4mr37983671wrs.415.1620750955123; 
- Tue, 11 May 2021 09:35:55 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyED4ci0LdgS2Gz8mzWDdnpWKB4P+VVDIjYTU2Cbwzy7tr6hTdIs8U0qRCI1CHoN3ouApGTvQ==
-X-Received: by 2002:adf:ffc4:: with SMTP id x4mr37983650wrs.415.1620750954917; 
- Tue, 11 May 2021 09:35:54 -0700 (PDT)
-Received: from kherbst.pingu.com (ip1f10bb48.dynamic.kabel-deutschland.de.
- [31.16.187.72])
- by smtp.gmail.com with ESMTPSA id c14sm28377803wrt.77.2021.05.11.09.35.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 11 May 2021 09:35:54 -0700 (PDT)
-From: Karol Herbst <kherbst@redhat.com>
-To: nouveau@lists.freedesktop.org
-Date: Tue, 11 May 2021 18:35:53 +0200
-Message-Id: <20210511163553.2344244-1-kherbst@redhat.com>
-X-Mailer: git-send-email 2.31.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Ll12iwWOH+g7rF+Qcvmc/ZPVWK50RY5A+TnwOnViek8=;
+ b=EQo3JMtLLFUOheBc2HvTnZryAwRFiWVRHT8EIWJ6r10GYtyTqcGAKRn/nShL3WBOTW
+ 0nYhNjS3oHWFe/puX6D5xYY2faRINtrdVaCMn2LnhDjiL7iT3Whgt5oFE9aj9fyeRlIL
+ 21r0xq0sbCxv4v1k/PaGk+kyoEKasLXw9Xf/xzRhTXlyej54E+b44FLEfWCzrcxoONix
+ ciE0KC9Wp7jEHnefmxbKIrGAe30Kobk0ukIctTyIDOR0lx4hVgovF5OGjRLEo9AcCNdx
+ JYjV43FA/NB1MTApmLly8PsFmevDCiYb97uZ0e2rHo9lJEZpu8H73LYN6DBhl95Em2X7
+ /usQ==
+X-Gm-Message-State: AOAM531Fxge6W4ZhEetiwuAyZG3ICgB/YNAcL8k8eBFejX25NwQq1unU
+ viXUOncIchmlkCkEC1xUSYQcjdbZ6tBJhA==
+X-Google-Smtp-Source: ABdhPJzMaj6cBNcG8bGSGwq2qTdULqOKoTlZyR7XH9AAoTH99a65xpm3iEZa8TS6arLlB7biiVvCQw==
+X-Received: by 2002:a92:611:: with SMTP id x17mr26539434ilg.239.1620751753719; 
+ Tue, 11 May 2021 09:49:13 -0700 (PDT)
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com.
+ [209.85.166.181])
+ by smtp.gmail.com with ESMTPSA id h14sm9750778ils.13.2021.05.11.09.49.13
+ for <nouveau@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 11 May 2021 09:49:13 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id e2so17755482ilr.1
+ for <nouveau@lists.freedesktop.org>; Tue, 11 May 2021 09:49:13 -0700 (PDT)
+X-Received: by 2002:a05:6e02:e82:: with SMTP id
+ t2mr17831684ilj.18.1620751359226; 
+ Tue, 11 May 2021 09:42:39 -0700 (PDT)
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=kherbst@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: [Nouveau] [PATCH] nouveau/gem: fix user-after-free in
- nouveau_gem_new
+References: <20210510095026.3477496-1-tientzu@chromium.org>
+ <20210510095026.3477496-5-tientzu@chromium.org>
+ <20210510150256.GC28066@lst.de>
+In-Reply-To: <20210510150256.GC28066@lst.de>
+From: Claire Chang <tientzu@chromium.org>
+Date: Wed, 12 May 2021 00:42:28 +0800
+X-Gmail-Original-Message-ID: <CALiNf28jgAU7zN4pwgPKgaecM-KXRHHqwHj4sPXVf_3M0-goMQ@mail.gmail.com>
+Message-ID: <CALiNf28jgAU7zN4pwgPKgaecM-KXRHHqwHj4sPXVf_3M0-goMQ@mail.gmail.com>
+To: Christoph Hellwig <hch@lst.de>
+X-Mailman-Approved-At: Wed, 12 May 2021 05:46:37 +0000
+Subject: Re: [Nouveau] [PATCH v6 04/15] swiotlb: Add restricted DMA pool
+ initialization
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,76 +82,104 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thierry Reding <treding@nvidia.com>
+Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ peterz@infradead.org, benh@kernel.crashing.org,
+ joonas.lahtinen@linux.intel.com, dri-devel@lists.freedesktop.org,
+ chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
+ Frank Rowand <frowand.list@gmail.com>, mingo@kernel.org,
+ Marek Szyprowski <m.szyprowski@samsung.com>, sstabellini@kernel.org,
+ Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
+ Joerg Roedel <joro@8bytes.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
+ Jianxiong Gao <jxgao@google.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Will Deacon <will@kernel.org>, Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+ maarten.lankhorst@linux.intel.com, airlied@linux.ie,
+ Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
+ jani.nikula@linux.intel.com, Rob Herring <robh+dt@kernel.org>,
+ rodrigo.vivi@intel.com, Bjorn Helgaas <bhelgaas@google.com>,
+ boris.ostrovsky@oracle.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
+ Nicolas Boichat <drinkcat@chromium.org>, nouveau@lists.freedesktop.org,
+ Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
+ lkml <linux-kernel@vger.kernel.org>, Tomasz Figa <tfiga@chromium.org>,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
+ Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-If ttm_bo_init fails it will already call ttm_bo_put, so we don't have to
-do it through nouveau_bo_ref.
+On Mon, May 10, 2021 at 11:03 PM Christoph Hellwig <hch@lst.de> wrote:
+>
+> > +#ifdef CONFIG_DMA_RESTRICTED_POOL
+> > +#include <linux/io.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_fdt.h>
+> > +#include <linux/of_reserved_mem.h>
+> > +#include <linux/slab.h>
+> > +#endif
+>
+> I don't think any of this belongs into swiotlb.c.  Marking
+> swiotlb_init_io_tlb_mem non-static and having all this code in a separate
+> file is probably a better idea.
 
-==================================================================
-BUG: KFENCE: use-after-free write in ttm_bo_put+0x11/0x40 [ttm]
+Will do in the next version.
 
-Use-after-free write at 0x000000004dc4663c (in kfence-#44):
- ttm_bo_put+0x11/0x40 [ttm]
- nouveau_gem_new+0xc1/0xf0 [nouveau]
- nouveau_gem_ioctl_new+0x53/0xf0 [nouveau]
- drm_ioctl_kernel+0xb2/0x100 [drm]
- drm_ioctl+0x215/0x390 [drm]
- nouveau_drm_ioctl+0x55/0xa0 [nouveau]
- __x64_sys_ioctl+0x83/0xb0
- do_syscall_64+0x33/0x40
- entry_SYSCALL_64_after_hwframe+0x44/0xae
+>
+> > +#ifdef CONFIG_DMA_RESTRICTED_POOL
+> > +static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
+> > +                                 struct device *dev)
+> > +{
+> > +     struct io_tlb_mem *mem = rmem->priv;
+> > +     unsigned long nslabs = rmem->size >> IO_TLB_SHIFT;
+> > +
+> > +     if (dev->dma_io_tlb_mem)
+> > +             return 0;
+> > +
+> > +     /* Since multiple devices can share the same pool, the private data,
+> > +      * io_tlb_mem struct, will be initialized by the first device attached
+> > +      * to it.
+> > +      */
+>
+> This is not the normal kernel comment style.
 
-kfence-#44 [0x00000000c0593b31-0x000000002e74122b, size=792, cache=kmalloc-1k] allocated by task 2657:
- nouveau_bo_alloc+0x63/0x4c0 [nouveau]
- nouveau_gem_new+0x38/0xf0 [nouveau]
- nouveau_gem_ioctl_new+0x53/0xf0 [nouveau]
- drm_ioctl_kernel+0xb2/0x100 [drm]
- drm_ioctl+0x215/0x390 [drm]
- nouveau_drm_ioctl+0x55/0xa0 [nouveau]
- __x64_sys_ioctl+0x83/0xb0
- do_syscall_64+0x33/0x40
- entry_SYSCALL_64_after_hwframe+0x44/0xae
+Will fix this in the next version.
 
-freed by task 2657:
- ttm_bo_release+0x1cc/0x300 [ttm]
- ttm_bo_init_reserved+0x2ec/0x300 [ttm]
- ttm_bo_init+0x5e/0xd0 [ttm]
- nouveau_bo_init+0xaf/0xc0 [nouveau]
- nouveau_gem_new+0x7f/0xf0 [nouveau]
- nouveau_gem_ioctl_new+0x53/0xf0 [nouveau]
- drm_ioctl_kernel+0xb2/0x100 [drm]
- drm_ioctl+0x215/0x390 [drm]
- nouveau_drm_ioctl+0x55/0xa0 [nouveau]
- __x64_sys_ioctl+0x83/0xb0
- do_syscall_64+0x33/0x40
- entry_SYSCALL_64_after_hwframe+0x44/0xae
+>
+> > +#ifdef CONFIG_ARM
+> > +             if (!PageHighMem(pfn_to_page(PHYS_PFN(rmem->base)))) {
+> > +                     kfree(mem);
+> > +                     return -EINVAL;
+> > +             }
+> > +#endif /* CONFIG_ARM */
+>
+> And this is weird.  Why would ARM have such a restriction?  And if we have
+> such rstrictions it absolutely belongs into an arch helper.
 
-Fixes: 019cbd4a4feb3 "drm/nouveau: Initialize GEM object before TTM object"
-Cc: Thierry Reding <treding@nvidia.com>
-Signed-off-by: Karol Herbst <kherbst@redhat.com>
----
- drivers/gpu/drm/nouveau/nouveau_gem.c | 1 -
- 1 file changed, 1 deletion(-)
+Now I think the CONFIG_ARM can just be removed?
+The goal here is to make sure we're using linear map and can safely
+use phys_to_dma/dma_to_phys.
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index c88cbb85f101..1165ff990fb5 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -212,7 +212,6 @@ nouveau_gem_new(struct nouveau_cli *cli, u64 size, int align, uint32_t domain,
- 
- 	ret = nouveau_bo_init(nvbo, size, align, domain, NULL, NULL);
- 	if (ret) {
--		nouveau_bo_ref(NULL, &nvbo);
- 		return ret;
- 	}
- 
--- 
-2.31.1
+>
+> > +             swiotlb_init_io_tlb_mem(mem, rmem->base, nslabs, false);
+> > +
+> > +             rmem->priv = mem;
+> > +
+> > +#ifdef CONFIG_DEBUG_FS
+> > +             if (!debugfs_dir)
+> > +                     debugfs_dir = debugfs_create_dir("swiotlb", NULL);
+> > +
+> > +             swiotlb_create_debugfs(mem, rmem->name, debugfs_dir);
+>
+> Doesn't the debugfs_create_dir belong into swiotlb_create_debugfs?  Also
+> please use IS_ENABLEd or a stub to avoid ifdefs like this.
 
+Will move it into swiotlb_create_debugfs and use IS_ENABLED in the next version.
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
