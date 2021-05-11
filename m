@@ -2,42 +2,81 @@ Return-Path: <SRS0=1QWf=KG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.3 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6AE3EC43462
-	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A63B5C433B4
+	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 16:36:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CB0D5613C1
-	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 14:38:49 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CB0D5613C1
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lst.de
+	by mail.kernel.org (Postfix) with ESMTPS id 4D24B6187E
+	for <nouveau@archiver.kernel.org>; Tue, 11 May 2021 16:36:01 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4D24B6187E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C28E36EA6B;
-	Tue, 11 May 2021 14:38:34 +0000 (UTC)
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A9A488284;
- Mon, 10 May 2021 14:58:28 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id 7F6AC67373; Mon, 10 May 2021 16:58:23 +0200 (CEST)
-Date: Mon, 10 May 2021 16:58:23 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Claire Chang <tientzu@chromium.org>
-Message-ID: <20210510145823.GA28066@lst.de>
-References: <20210510095026.3477496-1-tientzu@chromium.org>
- <20210510095026.3477496-2-tientzu@chromium.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D724C6E5B2;
+	Tue, 11 May 2021 16:36:00 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F0556E5B2
+ for <nouveau@lists.freedesktop.org>; Tue, 11 May 2021 16:35:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1620750959;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=97DZTbnMB7JhbF5GRtnL6nwi+qxo43t3jJzfVOcjguQ=;
+ b=NkEXn5imhEJ4QAOsPXn43sdNT6ofCZk4EXgv5KAi57IrHP7qKdtnYkjBVPRsFEmA3L0T8e
+ IFlbmZOIH+u8ncfyvH5ivcl2C6Sop+GmLLUR5b30+lww0rK+hjxUZxeso1U3bUTscmGoFr
+ jo84iMvtPoTOCHiHaZ2hSNh5oSpd9g4=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-2-V8bMZ_IkNpucKS1AKL7Uhg-1; Tue, 11 May 2021 12:35:57 -0400
+X-MC-Unique: V8bMZ_IkNpucKS1AKL7Uhg-1
+Received: by mail-wm1-f69.google.com with SMTP id
+ o126-20020a1c28840000b0290149b8f27c99so2532081wmo.2
+ for <nouveau@lists.freedesktop.org>; Tue, 11 May 2021 09:35:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=97DZTbnMB7JhbF5GRtnL6nwi+qxo43t3jJzfVOcjguQ=;
+ b=dQNd20HU07nsRCbOr5Wga5s4KrBhvzY0CyXAeRHVJeR7VmJN7GHAIGUjuqdDeKOh7I
+ OIm2W9wCyvUeXJfq30p6YtACbNAch5LER7qQBuBSU+h70iba9IsMxtIYdGP+fkoJf7lq
+ MYVYrXlXBddluRBPwkZUPEyRWs8hFgeUxepMJORVrZ2Tjr7G17XqgYsdfck5i4E1LCin
+ AH4izQzAsQ5hM4W2EzrgpB9EhWtojT5ylNJEd/bqPzixBiFBsh+qiLmVFjS/lWtTEfMH
+ q47sGkarR9m0HHTQNVDNYbQK4tQgbZRra4Xw9u1JkvgjW1c5Zg68uf6VMyxCKwDauX8I
+ gCsg==
+X-Gm-Message-State: AOAM533SA0MkiR7NeYtrx70qkJq18VixiloUVNQV0cH4M6cYSfs6mhqe
+ HdE0O8N3XuAn/B9kM7C86ijR4gNj6G1L8Unv5rZj3oaV6lgRvkJp4rFb6ylHXhdqWHtQBKg1tGs
+ YqRFuIE1tFJZEk2YX5R2ifAvejxtavizDOUiqE1Emhjmgu27P5+d3guaYls0RGHD05NkaPGhw6A
+ uV
+X-Received: by 2002:adf:ffc4:: with SMTP id x4mr37983671wrs.415.1620750955123; 
+ Tue, 11 May 2021 09:35:55 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyED4ci0LdgS2Gz8mzWDdnpWKB4P+VVDIjYTU2Cbwzy7tr6hTdIs8U0qRCI1CHoN3ouApGTvQ==
+X-Received: by 2002:adf:ffc4:: with SMTP id x4mr37983650wrs.415.1620750954917; 
+ Tue, 11 May 2021 09:35:54 -0700 (PDT)
+Received: from kherbst.pingu.com (ip1f10bb48.dynamic.kabel-deutschland.de.
+ [31.16.187.72])
+ by smtp.gmail.com with ESMTPSA id c14sm28377803wrt.77.2021.05.11.09.35.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 11 May 2021 09:35:54 -0700 (PDT)
+From: Karol Herbst <kherbst@redhat.com>
+To: nouveau@lists.freedesktop.org
+Date: Tue, 11 May 2021 18:35:53 +0200
+Message-Id: <20210511163553.2344244-1-kherbst@redhat.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210510095026.3477496-2-tientzu@chromium.org>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-X-Mailman-Approved-At: Tue, 11 May 2021 14:38:26 +0000
-Subject: Re: [Nouveau] [PATCH v6 01/15] swiotlb: Refactor swiotlb init
- functions
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=kherbst@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: [Nouveau] [PATCH] nouveau/gem: fix user-after-free in
+ nouveau_gem_new
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,41 +88,76 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
- peterz@infradead.org, benh@kernel.crashing.org,
- joonas.lahtinen@linux.intel.com, dri-devel@lists.freedesktop.org,
- chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
- Frank Rowand <frowand.list@gmail.com>, mingo@kernel.org,
- Marek Szyprowski <m.szyprowski@samsung.com>, sstabellini@kernel.org,
- Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
- Joerg Roedel <joro@8bytes.org>,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
- Christoph Hellwig <hch@lst.de>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
- linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
- Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
- matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
- jxgao@google.com, daniel@ffwll.ch, Will Deacon <will@kernel.org>,
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
- maarten.lankhorst@linux.intel.com, airlied@linux.ie,
- Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
- jani.nikula@linux.intel.com, Rob Herring <robh+dt@kernel.org>,
- rodrigo.vivi@intel.com, bhelgaas@google.com, boris.ostrovsky@oracle.com,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
- Nicolas Boichat <drinkcat@chromium.org>, nouveau@lists.freedesktop.org,
- Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
- lkml <linux-kernel@vger.kernel.org>, tfiga@chromium.org,
- "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
- Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
+Cc: Thierry Reding <treding@nvidia.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Looks good,
+If ttm_bo_init fails it will already call ttm_bo_put, so we don't have to
+do it through nouveau_bo_ref.
 
-Reviewed-by: Christoph Hellwig <hch@lst.de>
+==================================================================
+BUG: KFENCE: use-after-free write in ttm_bo_put+0x11/0x40 [ttm]
+
+Use-after-free write at 0x000000004dc4663c (in kfence-#44):
+ ttm_bo_put+0x11/0x40 [ttm]
+ nouveau_gem_new+0xc1/0xf0 [nouveau]
+ nouveau_gem_ioctl_new+0x53/0xf0 [nouveau]
+ drm_ioctl_kernel+0xb2/0x100 [drm]
+ drm_ioctl+0x215/0x390 [drm]
+ nouveau_drm_ioctl+0x55/0xa0 [nouveau]
+ __x64_sys_ioctl+0x83/0xb0
+ do_syscall_64+0x33/0x40
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+
+kfence-#44 [0x00000000c0593b31-0x000000002e74122b, size=792, cache=kmalloc-1k] allocated by task 2657:
+ nouveau_bo_alloc+0x63/0x4c0 [nouveau]
+ nouveau_gem_new+0x38/0xf0 [nouveau]
+ nouveau_gem_ioctl_new+0x53/0xf0 [nouveau]
+ drm_ioctl_kernel+0xb2/0x100 [drm]
+ drm_ioctl+0x215/0x390 [drm]
+ nouveau_drm_ioctl+0x55/0xa0 [nouveau]
+ __x64_sys_ioctl+0x83/0xb0
+ do_syscall_64+0x33/0x40
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+
+freed by task 2657:
+ ttm_bo_release+0x1cc/0x300 [ttm]
+ ttm_bo_init_reserved+0x2ec/0x300 [ttm]
+ ttm_bo_init+0x5e/0xd0 [ttm]
+ nouveau_bo_init+0xaf/0xc0 [nouveau]
+ nouveau_gem_new+0x7f/0xf0 [nouveau]
+ nouveau_gem_ioctl_new+0x53/0xf0 [nouveau]
+ drm_ioctl_kernel+0xb2/0x100 [drm]
+ drm_ioctl+0x215/0x390 [drm]
+ nouveau_drm_ioctl+0x55/0xa0 [nouveau]
+ __x64_sys_ioctl+0x83/0xb0
+ do_syscall_64+0x33/0x40
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+
+Fixes: 019cbd4a4feb3 "drm/nouveau: Initialize GEM object before TTM object"
+Cc: Thierry Reding <treding@nvidia.com>
+Signed-off-by: Karol Herbst <kherbst@redhat.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_gem.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index c88cbb85f101..1165ff990fb5 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -212,7 +212,6 @@ nouveau_gem_new(struct nouveau_cli *cli, u64 size, int align, uint32_t domain,
+ 
+ 	ret = nouveau_bo_init(nvbo, size, align, domain, NULL, NULL);
+ 	if (ret) {
+-		nouveau_bo_ref(NULL, &nvbo);
+ 		return ret;
+ 	}
+ 
+-- 
+2.31.1
+
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
