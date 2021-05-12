@@ -2,85 +2,118 @@ Return-Path: <SRS0=wQmX=KI=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MSGID_FROM_MTA_HEADER,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F4A3C433B4
-	for <nouveau@archiver.kernel.org>; Thu, 13 May 2021 18:22:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C4F8C43460
+	for <nouveau@archiver.kernel.org>; Thu, 13 May 2021 20:26:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1269A6143D
-	for <nouveau@archiver.kernel.org>; Thu, 13 May 2021 18:22:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1269A6143D
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id 3BA12610E6
+	for <nouveau@archiver.kernel.org>; Thu, 13 May 2021 20:26:44 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3BA12610E6
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=amd.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB6B06ED9D;
-	Thu, 13 May 2021 18:22:52 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95F5A6ED9D
- for <nouveau@lists.freedesktop.org>; Thu, 13 May 2021 18:22:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1620930170;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=VvOcZV0DfqkTu/rJHQV1Nq/YahfJjzXI4+MW1lElfaw=;
- b=eAC9qlLB7zk2Yf9xsVAMgTxkILk2Mthx9RYpChiTs9BDHIf9hcOH6uMMaET+0a4Hn1VSR/
- QaRpBGH+9tU3jyhzK+rdOXDfl0G9bHAko4kZ5/BJu7a0tcFEIILq5+0g+O6WuJyzKexMwF
- kf3+su6k4QKvhJBmdBNEJZsYXTaoUKY=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-46-JkzuAyAtNAW6wommET3hOA-1; Thu, 13 May 2021 14:22:48 -0400
-X-MC-Unique: JkzuAyAtNAW6wommET3hOA-1
-Received: by mail-qt1-f199.google.com with SMTP id
- e28-20020ac84b5c0000b02901cd9b2b2170so18504254qts.13
- for <nouveau@lists.freedesktop.org>; Thu, 13 May 2021 11:22:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=VvOcZV0DfqkTu/rJHQV1Nq/YahfJjzXI4+MW1lElfaw=;
- b=OeMy+3wy08PvqmV4g1rsJK0Y+650Jx7SSy1MZ5Dp50OvSMYW4f18BzL94odxZrInts
- Z37ougYAnMqNRZC1Hb1mn+oETls1AGdOf4mIzvlo/GPWan2cK950RUaAh/EXK2u5X4eP
- sW7GJCX84MkmABd11XWCl7/U1hcKgKzRXaR64tBrycrU2aRC6779jVNAXXB3KZRBViIJ
- PiM7CHM5Yg2QJVOOrYZ/mzCl5/kKWGNrXO3QrkS7/NeEcZ1oS8mL1WSAwPmWeaC7hcnz
- YbwysJ7zNsiB9LZ26/rLgERvg5dGwOYHomyAuLOAhCxdEVD9Af7I/jthuhv6Brlj577v
- MsMw==
-X-Gm-Message-State: AOAM530uTUoaoaQ+NXjqGAaQ/shihtCRhGLulMawGHYAkh7yMJkAPhk7
- i3XTHqR6MTqVKCG6tnrdnJO94TJRQQB5WH7iF9pZz/hBM7A5DgJX3oB3bnHLnASIBLDFZ0MPTC8
- 0c/5hmSfxisD0hKenv896i5hDPQ==
-X-Received: by 2002:a05:620a:13a6:: with SMTP id
- m6mr1468297qki.370.1620930167034; 
- Thu, 13 May 2021 11:22:47 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzjZT9sHhR8v1oIasLisxYJc0TDJvLLaaXyrXmbrJzYqQxztjRBSfsjKiLcM02cmkObnyZvSQ==
-X-Received: by 2002:a05:620a:13a6:: with SMTP id
- m6mr1468285qki.370.1620930166833; 
- Thu, 13 May 2021 11:22:46 -0700 (PDT)
-Received: from dev ([2605:a601:a63d:7f01:3e3e:f81:8e8d:ad8a])
- by smtp.gmail.com with ESMTPSA id j29sm2846873qtv.6.2021.05.13.11.22.45
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 13 May 2021 11:22:46 -0700 (PDT)
-Date: Thu, 13 May 2021 14:22:44 -0400
-From: Jeremy Cline <jcline@redhat.com>
-To: Karol Herbst <kherbst@redhat.com>
-Message-ID: <YJ1udEIGH+KK4tI1@dev>
-References: <20210511163553.2344244-1-kherbst@redhat.com>
- <YJ1E+opCkn9STuAr@dev>
- <CACO55tveh2931qY8wCxm7ofH-iy0sj5V=08amDKyu8SAQUsxdA@mail.gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5F7A6EDD3;
+	Thu, 13 May 2021 20:26:40 +0000 (UTC)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam07on2086.outbound.protection.outlook.com [40.107.212.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BF066E53C;
+ Wed, 12 May 2021 21:00:31 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RNNaL6GJ9ApJDlTqAWw+GuAONGi4s7v7Xm/doZXo1va46P7GTjRinC+v4r5ih0Q97zeCAxQObfKOwFzoKPAV9tRP9ybj/NGePDScOpf6ugEmuMcSQC1D2erqgcaOauC5JaJUdWPashAvXB2PXMSiAekWe/Mq07XMoT3tgBipaUA5cc9AhfBwKI0LqU3ySmTPaCADQuH7ioL2WngExlzON1hwyg+Yc6asvLCWzvIEY7dTq1ju4Vdg/N+MESTJtga/KTZgQ8OHkUdacEwMGhi2WWylh4FFA3tm6llmZki+PWWe2PfMW2OIaKtqVATkFI3HAq8SfyO1QdXHJh3mNg6G+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=I8t4h6jVJDoOreWD+oRhj5uS2hECWUqv9fQ6Bj1frkI=;
+ b=ew9g4alf8WXOgeBcO11FvAVeU4qM+kEI/Cs81M0RHnKfYzqqWLk/1+vARfOEls+uOb4GJ0Lx7H/QSgz4H8Yc3WcLwLKKdVkavNNdoAxGlaaMp1o9LjfrfkrMlV4lLVbFtR6pEf73C/X2JNc8I67tQE/2x4qJdWHUEAsMB80fz8TEgewKVnBiBEEKmD2NuUE4bTqVDzU4gHuk+32EVx3pyAI26J2MjutvDxlPw3iK+UG0BqM+cATF2H2WAUeDjBFRzRR+9wnbLoIY0GZTBT8WuGN2FcWOpy+ISuDArAKBwHwai84QYz6sqSZ9iPEgYIAWrbtBVg0ge4hpld1eZm3qDA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=I8t4h6jVJDoOreWD+oRhj5uS2hECWUqv9fQ6Bj1frkI=;
+ b=CZSR6HAbfMO/Mk/T54UemPUIDrQnPWXlOdgpB3n2MVugshIFwDqr7lKz4T0ABjmtLwj1xA1oURidtzECwOVqc1hvnVCupV67I90rigkQB/wr4K8MmE5EZE+Mg2buosydjUTZFUNvQBivjGhXo7+mLBFRurIO9Dms3HrU+YZgEtc=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from DM5PR12MB4679.namprd12.prod.outlook.com (2603:10b6:4:a2::37) by
+ DM5PR12MB1834.namprd12.prod.outlook.com (2603:10b6:3:10a::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4108.29; Wed, 12 May 2021 21:00:28 +0000
+Received: from DM5PR12MB4679.namprd12.prod.outlook.com
+ ([fe80::b5bc:c121:c4e9:d4ea]) by DM5PR12MB4679.namprd12.prod.outlook.com
+ ([fe80::b5bc:c121:c4e9:d4ea%6]) with mapi id 15.20.4129.026; Wed, 12 May 2021
+ 21:00:28 +0000
+From: Nikola Cornij <nikola.cornij@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Date: Wed, 12 May 2021 17:00:10 -0400
+Message-Id: <20210512210011.8425-1-nikola.cornij@amd.com>
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [165.204.55.250]
+X-ClientProxiedBy: YT1PR01CA0110.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2c::19) To DM5PR12MB4679.namprd12.prod.outlook.com
+ (2603:10b6:4:a2::37)
 MIME-Version: 1.0
-In-Reply-To: <CACO55tveh2931qY8wCxm7ofH-iy0sj5V=08amDKyu8SAQUsxdA@mail.gmail.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=jcline@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Disposition: inline
-Subject: Re: [Nouveau] [PATCH] nouveau/gem: fix user-after-free in
- nouveau_gem_new
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from ubuntu.localdomain (165.204.55.250) by
+ YT1PR01CA0110.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2c::19) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4108.31 via Frontend Transport; Wed, 12 May 2021 21:00:26 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a205e5dd-0e41-42ea-3529-08d91588f8ca
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1834:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR12MB18347C8B8D6BC1B5194F5069EE529@DM5PR12MB1834.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: VjOjb18RJbZTEkiBrXM3q4wHq7F4yLRIEKCb782TW0KEgRx4RxjJ4LVlAWBFyce9B6vKPgXImcbfed99LEEkXvC3ELk8wqIvu8Xiu+qetcWLWW23nsxkoB4EHsY62scBgsBlToT6u3Xott4H2FIvNr7eAgv2iq4pm1qXbB1JpDp45cgwlKcce6nv2yNlnhhNaC1FaUkc7Ki7H06B9RMarvk0lYBR5Z3aEL4CF/89S/XHMeKHtRS0DUSKq9J2Rzg8DWMV63jm1p0Yy6UeyP/xfk8EPB3k6c93GHMVOenVnbdeetufXNhAT0+xlsNEWvw3S1LJqiaJYx5bjgVpZ0Bm6YJ5Eu0UssZM44dpMcHIpCIrnTJuQeXb0+NWnRjq1b9FGxW4VeU1nYESmoDCrIGibvCdo+JQJW+Z+vr1/ipYDICDv+FmDuN6ADC6CZOId+RUJhf/IWzCsrN2SmFNe5g+sgR7xDtLI9zLtTfn9B7DYTDSKJ4UMj0sQ3zwB9kX2MhAOHKT+GPNzifewGAEY4bTlz6bYQy5NLFKAH0nH7KmdnXm6dFehr67NbcGeOGxHJQs6xE/9ZfF0myPHtjmGXtvkzQuI675+HjwxJvBoLPUuWSct5dBKxAQxs6DNL9VFXHO43EK8m3GOLz/WoW4+fGbQlG/WCP9ERLZA3NBHOa2r5A=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR12MB4679.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(396003)(39860400002)(346002)(366004)(136003)(66946007)(6512007)(4744005)(66556008)(54906003)(2906002)(83380400001)(66476007)(7416002)(44832011)(316002)(1076003)(86362001)(478600001)(36756003)(16526019)(4326008)(52116002)(186003)(38350700002)(6506007)(6916009)(38100700002)(8936002)(6666004)(956004)(8676002)(5660300002)(26005)(2616005)(6486002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?TVxVCnseYrGtiOCM0IslRUqg5F1+/e2GtjJ7raqsg2ZQkLqIMrDRy6OZzKq8?=
+ =?us-ascii?Q?wVH4qVbTJD62OSaagf/vzvBUW+VKLxCdi/f854pXwDeAfrkTXpUlm6yw0dwZ?=
+ =?us-ascii?Q?YC7ZIuzzzPSJhuYPPfUu+Sf8DAm4uIfuNGXUhnWKsradhxQ1a3HyF2lbSS06?=
+ =?us-ascii?Q?yohSFpZuoSRm2/EcpO2K2FIb80qYx8qAIETSN3X/K8zkmCI8pXXsLVJTFfv+?=
+ =?us-ascii?Q?Z9Cjv8Qj94vlzcbdb2gw4kyoX4ecs6l14KaL45SmVT/dAHZPqU1NTUo70FXk?=
+ =?us-ascii?Q?7Hn7stQ0sxt+tPymmIQiUxb54s0nuJ+OpGNKh09J0SuzTN/zpP61FK4MdmEK?=
+ =?us-ascii?Q?4QVTrDeOYH8lxeTRmyleWp/72N/SVDWwLImCFfeTZUW/haKRUqfsFq+czdry?=
+ =?us-ascii?Q?0EB1O/AAvfPcQK4NcPYd5kX4L7NVr1Hf3tef+EmgdV+TK3sY+LATqjTIp4qy?=
+ =?us-ascii?Q?QdeH2B3CLG91FAuuX04Qpg2Fes8ZsMX5Fj4w7O1Yy8U99YK1HEHPryc7ogBw?=
+ =?us-ascii?Q?thgU1mBkY1Ahpglc02zsT7FsJJlqpHU3I407HVIst3MpblRCjI/Do5nickso?=
+ =?us-ascii?Q?DLYwybZFlpnESoVbZJ2uQ5RZY8WnSKAQDK1h4LZf0/ROeEeUp2bB8X8iDkU6?=
+ =?us-ascii?Q?doVlHmTeHi7SUUI3jOIKjaeZ1crtQMNx2BEV4QjQrJD0Ud6DF/j9R24Yos3U?=
+ =?us-ascii?Q?EkxGjad23tHmT2NQdlDzFHGAblUXIyCXHd1uL4F0M6vFdK1q3i4nsWSJo6i4?=
+ =?us-ascii?Q?DYiHS7H44p1gEe3QIeXDEZdg0QUtiq4gEklPq61WI+Ta6OazYf7UGKhJf5+q?=
+ =?us-ascii?Q?9zZVCvu7/yzX6WEaxvIR7pu8w8JtHa5h5/HMDs08B4JQTNspid/MpCF2pz8b?=
+ =?us-ascii?Q?8Ix2UyN65L10k10cEwE/zbcAND4RmCjvjErZC/rf3FQkHMfmwKCYupalPznn?=
+ =?us-ascii?Q?zFCZCrWiRlEWTmvpZcqbgMoMNCizcqKP2hK92ztGbyaxOZzYnyjb4KMM9LEi?=
+ =?us-ascii?Q?iKFzoil0x7vQ5qm5fF4S69wC6GaqV8xDcY2YQCNhYhFKSMTanRUWVkil7B1j?=
+ =?us-ascii?Q?GR7U8kBWa96vJM4MOUTn6ircof6o4+zaFGdFKVTRMKx182SZ4ESjyN7DoiZF?=
+ =?us-ascii?Q?SH1EYFLegRgm7eMAtfiC0Zs0TNREgcP2jiM6K4CXlDbTgnQZTQyAZlQODCzc?=
+ =?us-ascii?Q?PX0I/T1FrwY6DKxhPyCtZQlyCzY+d1HxjXxzHzgp44eqItfNZKfnf/268Fb9?=
+ =?us-ascii?Q?1tRZ4gOB8B0HBn/Eo5fYRoXjfuE41fOQjRLwTLCrEahX5frhC8eNveqXhu/d?=
+ =?us-ascii?Q?PoCwxA+dWO0Pbs28J8QdG+Lw?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a205e5dd-0e41-42ea-3529-08d91588f8ca
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB4679.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2021 21:00:28.5011 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: k8n+hg1jrrXq1zK84DciTWKwrOHrGsd55TYF15lwOBos9xU0bI5w/3ONx47KRp49sEiZP1THOs/WfUlSx/zZyQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1834
+X-Mailman-Approved-At: Thu, 13 May 2021 20:26:39 +0000
+Subject: [Nouveau] [PATCH v2 0/1] drm/dp_mst: Use kHz as link rate units
+ when settig source max link caps at init
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,105 +125,53 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau <nouveau@lists.freedesktop.org>,
- Thierry Reding <treding@nvidia.com>
+Cc: David Airlie <airlied@linux.ie>, Ramalingam C <ramalingam.c@intel.com>,
+ Imre Deak <imre.deak@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org,
+ Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Ben Skeggs <bskeggs@redhat.com>,
+ nouveau@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>,
+ Harry Wentland <harry.wentland@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Leo Li <sunpeng.li@amd.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Nikola Cornij <nikola.cornij@amd.com>,
+ Sean Paul <seanpaul@chromium.org>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Mikita Lipski <mikita.lipski@amd.com>,
+ Matt Roper <matthew.d.roper@intel.com>, Chris Park <Chris.Park@amd.com>,
+ Eryk Brol <eryk.brol@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, Wayne Lin <Wayne.Lin@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Lee Shawn C <shawn.c.lee@intel.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, May 13, 2021 at 07:37:40PM +0200, Karol Herbst wrote:
-> On Thu, May 13, 2021 at 5:25 PM Jeremy Cline <jcline@redhat.com> wrote:
-> >
-> > On Tue, May 11, 2021 at 06:35:53PM +0200, Karol Herbst wrote:
-> > > If ttm_bo_init fails it will already call ttm_bo_put, so we don't have to
-> > > do it through nouveau_bo_ref.
-> > >
-> > > ==================================================================
-> > > BUG: KFENCE: use-after-free write in ttm_bo_put+0x11/0x40 [ttm]
-> > >
-> > > Use-after-free write at 0x000000004dc4663c (in kfence-#44):
-> > >  ttm_bo_put+0x11/0x40 [ttm]
-> > >  nouveau_gem_new+0xc1/0xf0 [nouveau]
-> > >  nouveau_gem_ioctl_new+0x53/0xf0 [nouveau]
-> > >  drm_ioctl_kernel+0xb2/0x100 [drm]
-> > >  drm_ioctl+0x215/0x390 [drm]
-> > >  nouveau_drm_ioctl+0x55/0xa0 [nouveau]
-> > >  __x64_sys_ioctl+0x83/0xb0
-> > >  do_syscall_64+0x33/0x40
-> > >  entry_SYSCALL_64_after_hwframe+0x44/0xae
-> > >
-> > > kfence-#44 [0x00000000c0593b31-0x000000002e74122b, size=792, cache=kmalloc-1k] allocated by task 2657:
-> > >  nouveau_bo_alloc+0x63/0x4c0 [nouveau]
-> > >  nouveau_gem_new+0x38/0xf0 [nouveau]
-> > >  nouveau_gem_ioctl_new+0x53/0xf0 [nouveau]
-> > >  drm_ioctl_kernel+0xb2/0x100 [drm]
-> > >  drm_ioctl+0x215/0x390 [drm]
-> > >  nouveau_drm_ioctl+0x55/0xa0 [nouveau]
-> > >  __x64_sys_ioctl+0x83/0xb0
-> > >  do_syscall_64+0x33/0x40
-> > >  entry_SYSCALL_64_after_hwframe+0x44/0xae
-> > >
-> > > freed by task 2657:
-> > >  ttm_bo_release+0x1cc/0x300 [ttm]
-> > >  ttm_bo_init_reserved+0x2ec/0x300 [ttm]
-> > >  ttm_bo_init+0x5e/0xd0 [ttm]
-> > >  nouveau_bo_init+0xaf/0xc0 [nouveau]
-> > >  nouveau_gem_new+0x7f/0xf0 [nouveau]
-> > >  nouveau_gem_ioctl_new+0x53/0xf0 [nouveau]
-> > >  drm_ioctl_kernel+0xb2/0x100 [drm]
-> > >  drm_ioctl+0x215/0x390 [drm]
-> > >  nouveau_drm_ioctl+0x55/0xa0 [nouveau]
-> > >  __x64_sys_ioctl+0x83/0xb0
-> > >  do_syscall_64+0x33/0x40
-> > >  entry_SYSCALL_64_after_hwframe+0x44/0xae
-> > >
-> > > Fixes: 019cbd4a4feb3 "drm/nouveau: Initialize GEM object before TTM object"
-> > > Cc: Thierry Reding <treding@nvidia.com>
-> > > Signed-off-by: Karol Herbst <kherbst@redhat.com>
-> > > ---
-> > >  drivers/gpu/drm/nouveau/nouveau_gem.c | 1 -
-> > >  1 file changed, 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-> > > index c88cbb85f101..1165ff990fb5 100644
-> > > --- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-> > > +++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-> > > @@ -212,7 +212,6 @@ nouveau_gem_new(struct nouveau_cli *cli, u64 size, int align, uint32_t domain,
-> > >
-> > >       ret = nouveau_bo_init(nvbo, size, align, domain, NULL, NULL);
-> > >       if (ret) {
-> > > -             nouveau_bo_ref(NULL, &nvbo);
-> > >               return ret;
-> > >       }
-> > >
-> >
-> > I submitted a patch for this in the beginning of December, it got
-> > reviewed and it's languished ever since[0]. It's frustrating that these
-> > issues have to get fixed multiple times by multiple developers because
-> > bug fixes (with reviews!) aren't being accepted.
-> >
-> > [0] https://lists.freedesktop.org/archives/nouveau/2020-December/037571.html
-> >
-> > Anyway, for whatever it's worth:
-> >
-> > Reviewed-by: Jeremy Cline <jcline@redhat.com>
-> >
-> 
-> oh indeed... as the patches are equivalent I'd say we should merge
-> yours and add my
-> 
-> Reviewed-by: Karol Herbst <kherbst@redhat.com>
-> 
-> let's see if we can get it in this time *sigh*
-> 
+Change log:
+  v2:
+  - Added 'Acked-by' to comment
+  
+  v1:
+  - Initial
 
-To be clear I don't care about the credit, accepting this patch is fine,
-but I wanted to highlight how multiple developers are doing the same
-work over and over because it seems nigh on impossible to get nouveau
-kernel patches accepted.
+Nikola Cornij (1):
+  drm/dp_mst: Use kHz as link rate units when settig source max link
+    caps at init
 
-- Jeremy
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c   | 4 ++--
+ drivers/gpu/drm/drm_dp_mst_topology.c                     | 8 ++++----
+ drivers/gpu/drm/i915/display/intel_dp_mst.c               | 4 ++--
+ drivers/gpu/drm/nouveau/dispnv50/disp.c                   | 5 +++--
+ drivers/gpu/drm/radeon/radeon_dp_mst.c                    | 2 +-
+ include/drm/drm_dp_mst_helper.h                           | 8 ++++----
+ 6 files changed, 16 insertions(+), 15 deletions(-)
+
+-- 
+2.25.1
 
 _______________________________________________
 Nouveau mailing list
