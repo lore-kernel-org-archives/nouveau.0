@@ -2,74 +2,58 @@ Return-Path: <SRS0=z4d8=KH=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CED25C433B4
-	for <nouveau@archiver.kernel.org>; Wed, 12 May 2021 05:46:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8F31AC433B4
+	for <nouveau@archiver.kernel.org>; Wed, 12 May 2021 06:34:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 813C661289
-	for <nouveau@archiver.kernel.org>; Wed, 12 May 2021 05:46:43 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 813C661289
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
+	by mail.kernel.org (Postfix) with ESMTPS id 2CEB161490
+	for <nouveau@archiver.kernel.org>; Wed, 12 May 2021 06:34:40 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2CEB161490
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=free.fr
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 573A66E049;
-	Wed, 12 May 2021 05:46:38 +0000 (UTC)
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com
- [IPv6:2607:f8b0:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2C4889E86
- for <nouveau@lists.freedesktop.org>; Tue, 11 May 2021 16:48:17 +0000 (UTC)
-Received: by mail-pf1-x42a.google.com with SMTP id q2so16445223pfh.13
- for <nouveau@lists.freedesktop.org>; Tue, 11 May 2021 09:48:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=k6jrKLJf+SUK032/zz9tWYcN5Rhay3mFZvhqIWgxNBs=;
- b=L/Y31OZjVAvXas4gAOFGDpY1O+WckxTleHtLR2a6rScOLannRZ4axVg75JGljNN3EA
- 40xB287W01zuvyDHYZFS2WLSs1CG9A82KNV8OVT7o92X2FrRRw8J292qbL27/DexCkE7
- qg4XvM9gaQyzYYNGyObKTqbnr0WqygwnwiYxc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=k6jrKLJf+SUK032/zz9tWYcN5Rhay3mFZvhqIWgxNBs=;
- b=CHQ2xhWPHQPVyBMbNNZnOlDSn0dVcjXIvwLQSqj98iPhRxzz1wqgk77gFWzHzIc55c
- p1alCZ8sEvLi3yqKFLiT4uWkyarT2pPTCSKeR8MCDHPlk2/4eNO988GvLNoKeaVDtR6o
- HsXd0zq/VU6l97Pt2N0r7nNmpyfMOaKjfHT8YFZEhtpqmJ8cZDFlmb5iyQpelyvJ1e4/
- YTEAhuepvCYz2nGXCTsKNSlhwWLZwTOXt7uabnvq8pcZaZ0bIr4JfL6rVRWQCpcPBl5b
- S57LCX6otpmpff1JR57BmU743r+7qvTdDOZPvLOvgweJFPIGj8E/VM0avvc3lMrPZZJ2
- X7Bw==
-X-Gm-Message-State: AOAM533ZqAxSh/Yo64JjPp3pTt89wCEP6COJrP6Kr2mM4vRuZUE5d8q6
- kz3c1Fgs1HabIxrMpfAgmWah2WrLdupRiw==
-X-Google-Smtp-Source: ABdhPJyFKPUC/k9LALUfhHMTlLs9u1iBkl9Q+jE570OEh0pmgYgvXeaphMv7TPEioEyMo+ENoppuvg==
-X-Received: by 2002:a63:4c66:: with SMTP id m38mr31679805pgl.157.1620751697164; 
- Tue, 11 May 2021 09:48:17 -0700 (PDT)
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com.
- [209.85.210.177])
- by smtp.gmail.com with ESMTPSA id 130sm13326475pfy.75.2021.05.11.09.48.16
- for <nouveau@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 11 May 2021 09:48:16 -0700 (PDT)
-Received: by mail-pf1-f177.google.com with SMTP id v191so16470708pfc.8
- for <nouveau@lists.freedesktop.org>; Tue, 11 May 2021 09:48:16 -0700 (PDT)
-X-Received: by 2002:a6b:7b08:: with SMTP id l8mr22174004iop.50.1620751352978; 
- Tue, 11 May 2021 09:42:32 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAA6F6E0DE;
+	Wed, 12 May 2021 06:34:39 +0000 (UTC)
+Received: from smtp1-g21.free.fr (smtp1-g21.free.fr [IPv6:2a01:e0c:1:1599::10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9E2D6E0DE;
+ Wed, 12 May 2021 06:34:38 +0000 (UTC)
+Received: from Normandy.localdomain (unknown [88.129.173.226])
+ (Authenticated sender: pierre.morrow@free.fr)
+ by smtp1-g21.free.fr (Postfix) with ESMTPSA id 46A19B00592;
+ Wed, 12 May 2021 08:34:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+ s=smtp-20201208; t=1620801276;
+ bh=Qh+Kw2XY7YRpt085r9aB8KMAvN5of6Ggxs62130FJgw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=I9ybmQbeZM9xf5k940y/d2LGUSVyIOO/dlHj260THvJM90r3FOKT3Rbz7FzabOsqA
+ 2sVnNGIyLsn6LRFB2A4Ta27pF6LgJ0d8EPQTSjbjQr1gm6o89G1AWLnCJJrxsKH6WM
+ w+rtj11qHNpkO8ca5g9o2ZSO2qq7ZPxnR0/s2Z5Q9kXuZmonNE8x0HW8PlXXJcC+u2
+ n7NuG5zodut+SBm+ZRuuJ18jthZzgIR76gmVQs4TNno0pCkSs4obNu3lWGozVEGpVq
+ zTDgklteO/9qzR4WNGqPUqM23LmOirPrpI0+JnWgbAThNLzAIBXyMpqMBOVtHUxQHU
+ Jc+5DFO/vLjDw==
+Date: Wed, 12 May 2021 08:34:18 +0200
+From: Pierre Moreau <pierre.morrow@free.fr>
+To: Zhen Lei <thunder.leizhen@huawei.com>
+Message-ID: <20210512063418.mgec2b5x73n6iwr6@Normandy.localdomain>
+Mail-Followup-To: Zhen Lei <thunder.leizhen@huawei.com>,
+ Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ nouveau <nouveau@lists.freedesktop.org>
+References: <20210511082841.4181-1-thunder.leizhen@huawei.com>
+ <20210511082841.4181-3-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
-References: <20210510095026.3477496-1-tientzu@chromium.org>
- <20210510095026.3477496-6-tientzu@chromium.org>
- <20210510150342.GD28066@lst.de>
-In-Reply-To: <20210510150342.GD28066@lst.de>
-From: Claire Chang <tientzu@chromium.org>
-Date: Wed, 12 May 2021 00:42:22 +0800
-X-Gmail-Original-Message-ID: <CALiNf2_7mHuMG5DTQD0GsriN=vuX0ytyUn4rxEmsK2iP3PKV+w@mail.gmail.com>
-Message-ID: <CALiNf2_7mHuMG5DTQD0GsriN=vuX0ytyUn4rxEmsK2iP3PKV+w@mail.gmail.com>
-To: Christoph Hellwig <hch@lst.de>
-X-Mailman-Approved-At: Wed, 12 May 2021 05:46:37 +0000
-Subject: Re: [Nouveau] [PATCH v6 05/15] swiotlb: Add a new get_io_tlb_mem
- getter
+Content-Disposition: inline
+In-Reply-To: <20210511082841.4181-3-thunder.leizhen@huawei.com>
+Subject: Re: [Nouveau] [PATCH v2 2/2] drm/nouveau: Fix error return code in
+ nouveau_backlight_init()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,56 +65,47 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
- peterz@infradead.org, benh@kernel.crashing.org,
- joonas.lahtinen@linux.intel.com, dri-devel@lists.freedesktop.org,
- chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
- Frank Rowand <frowand.list@gmail.com>, mingo@kernel.org,
- Marek Szyprowski <m.szyprowski@samsung.com>, sstabellini@kernel.org,
- Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
- Joerg Roedel <joro@8bytes.org>,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
- linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
- Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
- matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
- Jianxiong Gao <jxgao@google.com>, Daniel Vetter <daniel@ffwll.ch>,
- Will Deacon <will@kernel.org>, Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
- maarten.lankhorst@linux.intel.com, airlied@linux.ie,
- Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
- jani.nikula@linux.intel.com, Rob Herring <robh+dt@kernel.org>,
- rodrigo.vivi@intel.com, Bjorn Helgaas <bhelgaas@google.com>,
- boris.ostrovsky@oracle.com,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
- Nicolas Boichat <drinkcat@chromium.org>, nouveau@lists.freedesktop.org,
- Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
- lkml <linux-kernel@vger.kernel.org>, Tomasz Figa <tfiga@chromium.org>,
- "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
- Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, May 10, 2021 at 11:03 PM Christoph Hellwig <hch@lst.de> wrote:
->
-> > +static inline struct io_tlb_mem *get_io_tlb_mem(struct device *dev)
-> > +{
-> > +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> > +     if (dev && dev->dma_io_tlb_mem)
-> > +             return dev->dma_io_tlb_mem;
-> > +#endif /* CONFIG_DMA_RESTRICTED_POOL */
-> > +
-> > +     return io_tlb_default_mem;
->
-> Given that we're also looking into a not addressing restricted pool
-> I'd rather always assign the active pool to dev->dma_io_tlb_mem and
-> do away with this helper.
-
-Where do you think is the proper place to do the assignment? First
-time calling swiotlb_map? or in of_dma_configure_id?
-_______________________________________________
-Nouveau mailing list
-Nouveau@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
+UmV2aWV3ZWQtYnk6IFBpZXJyZSBNb3JlYXUgPHBpZXJyZS5tb3Jyb3dAZnJlZS5mcj4KCk9uIDIw
+MjEtMDUtMTEg4oCUIDE2OjI4LCBaaGVuIExlaSB3cm90ZToKPiBGaXggdG8gcmV0dXJuIGEgbmVn
+YXRpdmUgZXJyb3IgY29kZSBmcm9tIHRoZSBlcnJvciBoYW5kbGluZyBjYXNlIGluc3RlYWQKPiBv
+ZiAwLCBhcyBkb25lIGVsc2V3aGVyZSBpbiB0aGlzIGZ1bmN0aW9uLgo+IAo+IEZpeGVzOiBkYjFh
+MGFlMjE0NjEgKCJkcm0vbm91dmVhdS9ibDogQXNzaWduIGRpZmZlcmVudCBuYW1lcyB0byBpbnRl
+cmZhY2VzIikKPiBTdWdnZXN0ZWQtYnk6IFBpZXJyZSBNb3JlYXUgPHBpZXJyZS5tb3Jyb3dAZnJl
+ZS5mcj4KPiBTaWduZWQtb2ZmLWJ5OiBaaGVuIExlaSA8dGh1bmRlci5sZWl6aGVuQGh1YXdlaS5j
+b20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMg
+fCA5ICsrKysrLS0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCA0IGRlbGV0
+aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2JhY2tsaWdodC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGlnaHQu
+Ywo+IGluZGV4IGQxYzk5OGU2NDVmYjRiNi4uZjA4NTZhZGJlNzc1NjI0IDEwMDY0NAo+IC0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMKPiArKysgYi9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jCj4gQEAgLTQ3LDIwICs0Nywy
+MCBAQCBzdHJ1Y3Qgbm91dmVhdV9iYWNrbGlnaHQgewo+ICAJaW50IGlkOwo+ICB9Owo+ICAKPiAt
+c3RhdGljIGJvb2wKPiArc3RhdGljIGludAo+ICBub3V2ZWF1X2dldF9iYWNrbGlnaHRfbmFtZShj
+aGFyIGJhY2tsaWdodF9uYW1lW0JMX05BTUVfU0laRV0sCj4gIAkJCSAgIHN0cnVjdCBub3V2ZWF1
+X2JhY2tsaWdodCAqYmwpCj4gIHsKPiAgCWludCBuYiA9IGlkYV9zaW1wbGVfZ2V0KCZibF9pZGEs
+IDAsIDEwMCwgR0ZQX0tFUk5FTCk7Cj4gIAo+ICAJaWYgKG5iIDwgMCkKPiAtCQlyZXR1cm4gZmFs
+c2U7Cj4gKwkJcmV0dXJuIG5iOwo+ICAJaWYgKG5iID4gMCkKPiAgCQlzbnByaW50ZihiYWNrbGln
+aHRfbmFtZSwgQkxfTkFNRV9TSVpFLCAibnZfYmFja2xpZ2h0JWQiLCBuYik7Cj4gIAllbHNlCj4g
+IAkJc25wcmludGYoYmFja2xpZ2h0X25hbWUsIEJMX05BTUVfU0laRSwgIm52X2JhY2tsaWdodCIp
+Owo+ICAJYmwtPmlkID0gbmI7Cj4gLQlyZXR1cm4gdHJ1ZTsKPiArCXJldHVybiAwOwo+ICB9Cj4g
+IAo+ICBzdGF0aWMgaW50Cj4gQEAgLTI3Myw3ICsyNzMsOCBAQCBub3V2ZWF1X2JhY2tsaWdodF9p
+bml0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpCj4gIAlpZiAoIWJsKQo+ICAJCXJl
+dHVybiAtRU5PTUVNOwo+ICAKPiAtCWlmICghbm91dmVhdV9nZXRfYmFja2xpZ2h0X25hbWUoYmFj
+a2xpZ2h0X25hbWUsIGJsKSkgewo+ICsJcmV0ID0gbm91dmVhdV9nZXRfYmFja2xpZ2h0X25hbWUo
+YmFja2xpZ2h0X25hbWUsIGJsKTsKPiArCWlmIChyZXQpIHsKPiAgCQlOVl9FUlJPUihkcm0sICJG
+YWlsZWQgdG8gcmV0cmlldmUgYSB1bmlxdWUgbmFtZSBmb3IgdGhlIGJhY2tsaWdodCBpbnRlcmZh
+Y2VcbiIpOwo+ICAJCWdvdG8gZmFpbF9hbGxvYzsKPiAgCX0KPiAtLSAKPiAyLjI2LjAuMTA2Lmc5
+ZmFkZWRkCj4gCj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
+ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
+YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
