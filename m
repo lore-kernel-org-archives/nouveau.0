@@ -1,52 +1,64 @@
-Return-Path: <SRS0=wQmX=KI=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=MwJu=KJ=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4CD29C43461
-	for <nouveau@archiver.kernel.org>; Thu, 13 May 2021 20:26:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 700DFC43460
+	for <nouveau@archiver.kernel.org>; Fri, 14 May 2021 18:15:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 08EF0610E6
-	for <nouveau@archiver.kernel.org>; Thu, 13 May 2021 20:26:45 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 08EF0610E6
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=huawei.com
+	by mail.kernel.org (Postfix) with ESMTPS id 37CFD6141F
+	for <nouveau@archiver.kernel.org>; Fri, 14 May 2021 18:15:28 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 37CFD6141F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82E286EDD6;
-	Thu, 13 May 2021 20:26:41 +0000 (UTC)
-Received: from szxga04-in.huawei.com (szxga04-in.huawei.com [45.249.212.190])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 313F66EB52;
- Wed, 12 May 2021 06:57:33 +0000 (UTC)
-Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.59])
- by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4Fg5BZ1t2Lz16Q7L;
- Wed, 12 May 2021 14:54:46 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.72) by DGGEMS403-HUB.china.huawei.com
- (10.3.19.203) with Microsoft SMTP Server id 14.3.498.0; Wed, 12 May 2021
- 14:57:24 +0800
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, "Daniel
- Vetter" <daniel@ffwll.ch>, dri-devel <dri-devel@lists.freedesktop.org>,
- nouveau <nouveau@lists.freedesktop.org>
-References: <20210511082841.4181-1-thunder.leizhen@huawei.com>
- <20210511082841.4181-2-thunder.leizhen@huawei.com>
- <20210512063952.5kwdrq2yzbmgmn4x@Normandy.localdomain>
-From: "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <0800f5b6-ff18-94eb-a4a0-113800a9b14d@huawei.com>
-Date: Wed, 12 May 2021 14:57:23 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12B2B6F3E8;
+	Fri, 14 May 2021 18:15:26 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AA2C6F3E8
+ for <nouveau@lists.freedesktop.org>; Fri, 14 May 2021 18:15:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1621016124;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=5a1cXno9AmJmeupyyYeGCpA6N/IE8XlQOXT9Q/aR1SI=;
+ b=FIljvBLjrh4MYXWUqzyqhC85i2XZW64XiVUEsAZ073UU/hQoI0nRVUsllTjz7d4C+UzJa4
+ 4M6FQs5wXiCoda8TZZbdNF07yvdjFQ1FPGyhJ/hF4XWdE+xxRkO8g4iODj6xOkQ4yBEgRw
+ fcLRFiuB1Z/XfCS2Qy7vPFb20c/10uw=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-204-qit-ZiUlMvO4yhEI7easpg-1; Fri, 14 May 2021 14:15:20 -0400
+X-MC-Unique: qit-ZiUlMvO4yhEI7easpg-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
+ [10.5.11.23])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id C4F171020C41;
+ Fri, 14 May 2021 18:15:19 +0000 (UTC)
+Received: from Whitewolf.redhat.com (ovpn-118-140.rdu2.redhat.com
+ [10.10.118.140])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id E958D1971B;
+ Fri, 14 May 2021 18:15:18 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+Date: Fri, 14 May 2021 14:14:54 -0400
+Message-Id: <20210514181504.565252-1-lyude@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <20210512063952.5kwdrq2yzbmgmn4x@Normandy.localdomain>
-Content-Language: en-US
-X-Originating-IP: [10.174.177.72]
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Thu, 13 May 2021 20:26:39 +0000
-Subject: Re: [Nouveau] [PATCH v2 1/2] drm/nouveau: Fix ida leak
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: [Nouveau] [PATCH v6 0/9] drm: Extract DPCD backlight helpers from
+ i915, add support in nouveau
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,41 +70,59 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: greg.depoire@gmail.com, Rajeev Nandan <rajeevny@codeaurora.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-CgpPbiAyMDIxLzUvMTIgMTQ6MzksIFBpZXJyZSBNb3JlYXUgd3JvdGU6Cj4gV2h5IHJlbW92ZSB0
-aGUgY29uc3QgbW9kaWZpZXIgb24gYG5iYD8KCkEgbm9uLXBvaW50ZXIgbG9jYWwgdmFyaWFibGUs
-IEkgZG9uJ3QgdGhpbmsgaXQncyBuZWNlc3NhcnkgdG8KYWRkIGNvbnN0IG1vZGlmaWVyIHRvIG1h
-a2UgdGhlIHN5bnRheCB0b28gY29tcGxpY2F0ZWQuCgo+IAo+IE9uIDIwMjEtMDUtMTEg4oCUIDE2
-OjI4LCBaaGVuIExlaSB3cm90ZToKPj4gV2hlbiB0aGUgJ25iJyB2YWx1ZSBhbGxvY2F0ZWQgZnJv
-bSAnYmxfaWRhJyBpcyBncmVhdGVyIHRoYW4gb3IgZXF1YWwgdG8KPj4gMTAwLCBpdCB3aWxsIG5v
-dCBiZSByZWxlYXNlZC4gSW4gZmFjdCwgd2UgY2FuIHNpbXBsaWZ5IG9wZXJhdGlvbnMgYnkKPj4g
-bGltaXRpbmcgdGhlIHJhbmdlIG9mIGlkYXMgdGhhdCBjYW4gYmUgYXBwbGllZCBmb3IuCj4+Cj4+
-IEJ5IHRoZSB3YXksIGRlbGV0ZSB0aGUgY29uc3QgbW9kaWZpZXIgb2YgdGhlIGxvY2FsIHZhcmlh
-YmxlICduYicuCj4+Cj4+IEZpeGVzOiBkYjFhMGFlMjE0NjEgKCJkcm0vbm91dmVhdS9ibDogQXNz
-aWduIGRpZmZlcmVudCBuYW1lcyB0byBpbnRlcmZhY2VzIikKPj4gU2lnbmVkLW9mZi1ieTogWmhl
-biBMZWkgPHRodW5kZXIubGVpemhlbkBodWF3ZWkuY29tPgo+PiAtLS0KPj4gIGRyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMgfCA1ICsrKy0tCj4+ICAxIGZpbGUgY2hh
-bmdlZCwgMyBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGlnaHQuYyBiL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMKPj4gaW5kZXggNzJmMzVhMmJhYmNiMjBl
-Li5kMWM5OThlNjQ1ZmI0YjYgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L25vdXZlYXVfYmFja2xpZ2h0LmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9iYWNrbGlnaHQuYwo+PiBAQCAtNTEsOCArNTEsOSBAQCBzdGF0aWMgYm9vbAo+PiAgbm91
-dmVhdV9nZXRfYmFja2xpZ2h0X25hbWUoY2hhciBiYWNrbGlnaHRfbmFtZVtCTF9OQU1FX1NJWkVd
-LAo+PiAgCQkJICAgc3RydWN0IG5vdXZlYXVfYmFja2xpZ2h0ICpibCkKPj4gIHsKPj4gLQljb25z
-dCBpbnQgbmIgPSBpZGFfc2ltcGxlX2dldCgmYmxfaWRhLCAwLCAwLCBHRlBfS0VSTkVMKTsKPj4g
-LQlpZiAobmIgPCAwIHx8IG5iID49IDEwMCkKPj4gKwlpbnQgbmIgPSBpZGFfc2ltcGxlX2dldCgm
-YmxfaWRhLCAwLCAxMDAsIEdGUF9LRVJORUwpOwo+PiArCj4+ICsJaWYgKG5iIDwgMCkKPj4gIAkJ
-cmV0dXJuIGZhbHNlOwo+PiAgCWlmIChuYiA+IDApCj4+ICAJCXNucHJpbnRmKGJhY2tsaWdodF9u
-YW1lLCBCTF9OQU1FX1NJWkUsICJudl9iYWNrbGlnaHQlZCIsIG5iKTsKPj4gLS0gCj4+IDIuMjYu
-MC4xMDYuZzlmYWRlZGQKPj4KPj4KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KPj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPj4gTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKPj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9ub3V2ZWF1Cj4gCj4gLgo+IAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9ub3V2ZWF1Cg==
+This series:
+* Cleans up i915's DPCD backlight code a little bit
+* Extracts i915's DPCD backlight code into a set of shared DRM helpers
+* Starts using those helpers in nouveau to add support to nouveau for
+  DPCD backlight control
+
+v2 series-wide changes:
+* Rebase
+v3 series-wide changes:
+* Split up the changes to intel's backlight code into separate patches
+v4 series-wide changes:
+* Don't forget to actually include the patch that starts using these
+  helpers in nouveau
+v5 series-wide changes:
+* Rebase
+* Use new drm_dbg_*() logging helpers
+v6 series-wide changes:
+* Add a bunch of R-bs that got dropped by accident
+
+Lyude Paul (9):
+  drm/i915/dpcd_bl: Remove redundant AUX backlight frequency
+    calculations
+  drm/i915/dpcd_bl: Handle drm_dpcd_read/write() return values correctly
+  drm/i915/dpcd_bl: Cleanup intel_dp_aux_vesa_enable_backlight() a bit
+  drm/i915/dpcd_bl: Cache some backlight capabilities in
+    intel_panel.backlight
+  drm/i915/dpcd_bl: Move VESA backlight enabling code closer together
+  drm/i915/dpcd_bl: Return early in vesa_calc_max_backlight if we can't
+    read PWMGEN_BIT_COUNT
+  drm/i915/dpcd_bl: Print return codes for VESA backlight failures
+  drm/dp: Extract i915's eDP backlight code into DRM helpers
+  drm/nouveau/kms/nv50-: Add basic DPCD backlight support for nouveau
+
+ drivers/gpu/drm/drm_dp_helper.c               | 347 ++++++++++++++++++
+ .../drm/i915/display/intel_display_types.h    |   2 +-
+ .../drm/i915/display/intel_dp_aux_backlight.c | 329 ++---------------
+ drivers/gpu/drm/nouveau/dispnv50/disp.c       |  28 ++
+ drivers/gpu/drm/nouveau/nouveau_backlight.c   | 166 ++++++++-
+ drivers/gpu/drm/nouveau/nouveau_connector.h   |   9 +-
+ drivers/gpu/drm/nouveau/nouveau_encoder.h     |   1 +
+ include/drm/drm_dp_helper.h                   |  48 +++
+ 8 files changed, 622 insertions(+), 308 deletions(-)
+
+-- 
+2.31.1
+
+_______________________________________________
+Nouveau mailing list
+Nouveau@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/nouveau
