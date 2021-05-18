@@ -6,74 +6,73 @@ X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D84FFC433B4
-	for <nouveau@archiver.kernel.org>; Tue, 18 May 2021 20:51:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A4B64C433ED
+	for <nouveau@archiver.kernel.org>; Tue, 18 May 2021 20:51:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9106861028
-	for <nouveau@archiver.kernel.org>; Tue, 18 May 2021 20:51:37 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9106861028
+	by mail.kernel.org (Postfix) with ESMTPS id 66F9F61028
+	for <nouveau@archiver.kernel.org>; Tue, 18 May 2021 20:51:40 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 66F9F61028
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FC2A6EC9F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C6D96ECA2;
 	Tue, 18 May 2021 20:51:36 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C4676EC9A
- for <nouveau@lists.freedesktop.org>; Tue, 18 May 2021 20:29:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9ADD36EC5B
+ for <nouveau@lists.freedesktop.org>; Tue, 18 May 2021 18:01:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1621369759;
+ s=mimecast20190719; t=1621360902;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=Byh3RXtf3e9z9fGxHtn9E4dig0desEcXbiOegyYPxxI=;
- b=XSTCi2I3UfhEM05tdE6q1ero94PPqCpQM3PnOk6bQB1p/FMHIZBpm33acX8DJB/3lD02Fs
- Dhjbg8Nd1mO1i1dIksWJ/2peb3OgP07hciVKBlyoe1GKo1JvZN+oGdQMNUf2tZ7+C019sU
- ulsVXCL937J41lQuFR3KytlDA74mnnY=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-480-YmAu9d2fPQShA9n2JWAj8Q-1; Tue, 18 May 2021 16:29:17 -0400
-X-MC-Unique: YmAu9d2fPQShA9n2JWAj8Q-1
-Received: by mail-qt1-f200.google.com with SMTP id
- h12-20020ac8776c0000b02901f1228fdb1bso4736872qtu.6
- for <nouveau@lists.freedesktop.org>; Tue, 18 May 2021 13:29:17 -0700 (PDT)
+ bh=Oue7U1wjftn7xVwPmUZCJccBeCJY9jE5A9d8yc2+hO4=;
+ b=hdmPNN+69WNODzQFE+Gsjohg3krgpFRqEYWLUhhFFaIAV+RO7G2Zzr2SCfQnG7fKzOiV+R
+ bBojKJ+7ghicw9Gc0vZ7cWJB4NjcSNhdDhyhPtuRGP9SPRkJMpVgzyd7WNY9uG5vl97xP1
+ +aYr86n2WmBCpsx84JESVDSvQCtnC08=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-330-RHbK_Z5cM0Cq9YffTP4I-Q-1; Tue, 18 May 2021 14:01:39 -0400
+X-MC-Unique: RHbK_Z5cM0Cq9YffTP4I-Q-1
+Received: by mail-qk1-f200.google.com with SMTP id
+ s68-20020a372c470000b0290305f75a7cecso7764941qkh.8
+ for <nouveau@lists.freedesktop.org>; Tue, 18 May 2021 11:01:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=Byh3RXtf3e9z9fGxHtn9E4dig0desEcXbiOegyYPxxI=;
- b=Gf011UMvtxpBFmyX70ZpTsVg8mKtsNt7of3PRIiRfdCn6R1IxngKzu6ks+PKpCW57/
- 9bo9XM37gFvZTs8o+5LpALJX1xB4DcaW3nnLEFWAMuiNyJGiP5MYJgRO71MZwfnjEwEQ
- srV97QfB4fORgY/ofYDeqoxKN7cmoJPClS8L7ngj21oQPBNztpLRYjdSmTVZE5CRpBha
- tOrfsFBTURcjjyaHqEDyF6lOENmu524uGmucFzQFYEwtD7O3Inyi0Q7yxIm1U9zjK828
- w/ymm3+aW4WyeiVPKK//ettGvrGPeBFD4jdY4LmhlK3pqKNplvRhX+PTDGdqYZySl+FT
- 0B0Q==
-X-Gm-Message-State: AOAM530ZiUHO0q8nhRQWfC1CvZ7s64dMhHZU+9Lfnq8FVK8FOcBRDD/L
- 6O4gXRKpVOzxjhtmi5N+NWD8uFgSKjGPveKs3rt9VhhHkfgiPuRucLPqQ1cd5SVCNdGFBmSYSbL
- uYimMIh0uXKEBe+qSWQIjudJMvA==
-X-Received: by 2002:a37:9a44:: with SMTP id c65mr7481945qke.368.1621369757340; 
- Tue, 18 May 2021 13:29:17 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJx+5f5TscVPJ0ONHm5jVyCffJB6cEfYzjhEVjEsWtXZ+lJNcysTexL/nbuPh+rIA0ZMrBojSg==
-X-Received: by 2002:a37:9a44:: with SMTP id c65mr7481922qke.368.1621369757048; 
- Tue, 18 May 2021 13:29:17 -0700 (PDT)
+ bh=Oue7U1wjftn7xVwPmUZCJccBeCJY9jE5A9d8yc2+hO4=;
+ b=DB8wj2LTyDE8VsIT2C6Cotssuew8G7cxN0FmO8urk9JOu9Td6N6I95hTEAMm8Lkt7p
+ JuwEFOqdFdsS5qjdnqVNMHF9/j3vPmmvauNnQSaYhKbhmqOCFIL5wYeUxOfKd1lMJKJR
+ aZxJxGM8rp3u/dVxLKwJvV4wW1tHhA9U8JKnhF9ieK+5dKzSKjytNhQmiVRdPKgSCT3/
+ BuL6GB/alLv40/5Nba+OXiYzqN4jZElVMTDHGNbytG760p9m4Khz/Pl+xGZiB3eaTexv
+ 5NADWaj7tkIF730rs+II/FIeMkJfDdFwg81UPT236uVNAjCi3XegotULOncGNVdGPt9x
+ b0GQ==
+X-Gm-Message-State: AOAM5338kwxQYFjnp+f/Vv4Z/aefvX28ijMjP3aZ/ngPVJpf0W4IEEvq
+ yF+VFFWoHCHSCDatMU+8v0quAuMA+67O2Ca++7khgllsrkOp+mtj0hWw0Vs4w168QpznJ4k4zxu
+ 7HE554o1lVVa1L62matwJypMbyA==
+X-Received: by 2002:ac8:a49:: with SMTP id f9mr6060390qti.157.1621360898457;
+ Tue, 18 May 2021 11:01:38 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxTICgj8/egwsE0Ivgqvw8kGv1T8HxyWhbScHPLgGtw0FYHBEe8vymzLu/hxY0OnGRaALaW5w==
+X-Received: by 2002:ac8:a49:: with SMTP id f9mr6060354qti.157.1621360898147;
+ Tue, 18 May 2021 11:01:38 -0700 (PDT)
 Received: from t490s (bras-base-toroon474qw-grc-72-184-145-4-219.dsl.bell.ca.
  [184.145.4.219])
- by smtp.gmail.com with ESMTPSA id g13sm13522617qtp.31.2021.05.18.13.29.15
+ by smtp.gmail.com with ESMTPSA id b23sm1488671qtp.7.2021.05.18.11.01.36
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 18 May 2021 13:29:16 -0700 (PDT)
-Date: Tue, 18 May 2021 16:29:14 -0400
+ Tue, 18 May 2021 11:01:37 -0700 (PDT)
+Date: Tue, 18 May 2021 14:01:36 -0400
 From: Peter Xu <peterx@redhat.com>
 To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <YKQjmtMo+YQGx/wZ@t490s>
+Message-ID: <YKQBACJCjsxeM3ro@t490s>
 References: <20210407084238.20443-1-apopple@nvidia.com>
  <20210407084238.20443-6-apopple@nvidia.com>
  <YKMhorngO2DVrxac@t490s> <47694715.suB6H4Uo8R@nvdebian>
  <YKP5Dj4Q/riGGc43@t490s> <20210518173334.GE1002214@nvidia.com>
- <YKQBACJCjsxeM3ro@t490s> <20210518194509.GF1002214@nvidia.com>
 MIME-Version: 1.0
-In-Reply-To: <20210518194509.GF1002214@nvidia.com>
+In-Reply-To: <20210518173334.GE1002214@nvidia.com>
 Authentication-Results: relay.mimecast.com;
  auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=peterx@redhat.com
 X-Mimecast-Spam-Score: 0
@@ -103,53 +102,44 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, May 18, 2021 at 04:45:09PM -0300, Jason Gunthorpe wrote:
-> On Tue, May 18, 2021 at 02:01:36PM -0400, Peter Xu wrote:
-> > > > Indeed it'll be odd for a COW page since for COW page then it means after
-> > > > parent/child writting to the page it'll clone into two, then it's a mistery on
-> > > > which one will be the one that "exclusived owned" by the device..
-> > > 
-> > > For COW pages it is like every other fork case.. We can't reliably
-> > > write-protect the device_exclusive page during fork so we must copy it
-> > > at fork time.
-> > > 
-> > > Thus three reasonable choices:
-> > >  - Copy to a new CPU page
-> > >  - Migrate back to a CPU page and write protect it
-> > >  - Copy to a new device exclusive page
-> > 
-> > IMHO the ownership question would really help us to answer this one..
+On Tue, May 18, 2021 at 02:33:34PM -0300, Jason Gunthorpe wrote:
+> On Tue, May 18, 2021 at 01:27:42PM -0400, Peter Xu wrote:
 > 
-> I'm confused about what device ownership you are talking about
+> > I also have a pure and high level question regarding a process fork() when
+> > there're device exclusive ptes: would the two processes then own the device
+> > together?  Is this a real usecase?
+> 
+> If the pages are MAP_SHARED then yes. All VMAs should point at the
+> same device_exclusive page and all VMA should migrate back to CPU
+> pages together.
 
-My question was more about the user scenario rather than anything related to
-the kernel code, nor does it related to page struct at all.
+Makes sense.  If we keep the anonymous-only in this series (I think it's good
+to separate these), maybe we can drop the !COW case, plus some proper installed
+WARN_ON_ONCE()s.
 
-Let me try to be a little bit more verbose...
+> 
+> > Indeed it'll be odd for a COW page since for COW page then it means after
+> > parent/child writting to the page it'll clone into two, then it's a mistery on
+> > which one will be the one that "exclusived owned" by the device..
+> 
+> For COW pages it is like every other fork case.. We can't reliably
+> write-protect the device_exclusive page during fork so we must copy it
+> at fork time.
+> 
+> Thus three reasonable choices:
+>  - Copy to a new CPU page
+>  - Migrate back to a CPU page and write protect it
+>  - Copy to a new device exclusive page
 
-Firstly, I think one simple solution to handle fork() of device exclusive ptes
-is to do just like device private ptes: if COW we convert writable ptes into
-readable ptes.  Then when CPU access happens (in either parent/child) page
-restore triggers which will convert those readable ptes into read-only present
-ptes (with the original page backing it).  Then do_wp_page() will take care of
-page copy.
+IMHO the ownership question would really help us to answer this one..
 
-However... if you see that also means parent/child have the equal opportunity
-to reuse that original page: who access first will do COW because refcount>1
-for that page (note! it's possible that mapcount==1 here, as we drop mapcount
-when converting to device exclusive ptes; however with the most recent
-do_wp_page change from Linus where we'll also check page_count(), we'll still
-do COW just like when this page was GUPed by someone else).  While that matters
-because the device is writting to that original page only, not the COWed one.
+If the device ownership should be kept in parent IMHO option (1) is the best
+approach. To be explicit on page copy: we can do best-effort, even if the copy
+is during a device atomic operation, perhaps?
 
-Then here comes the ownership question: If we still want to have the parent
-process behave like before it fork()ed, IMHO we must make sure that original
-page (that exclusively owned by the device once) still belongs to the parent
-process not the child.  That's why I think if that's the case we'd do early cow
-in fork(), because it guarantees that.
-
-I can't say I fully understand the whole picture, so sorry if I missed
-something important there.
+If the ownership will be shared, seems option (3) will be easier as I don't see
+a strong reason to do immediate restorinng of ptes; as long as we're careful on
+the refcounting.
 
 Thanks,
 
