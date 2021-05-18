@@ -2,56 +2,42 @@ Return-Path: <SRS0=e1qa=KN=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.3 required=3.0 tests=BAYES_00,
+	HEADER_FROM_DIFFERENT_DOMAINS,HK_RANDOM_FROM,MAILING_LIST_MULTI,NICE_REPLY_A,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C935EC433ED
-	for <nouveau@archiver.kernel.org>; Tue, 18 May 2021 09:17:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 13AEEC433B4
+	for <nouveau@archiver.kernel.org>; Tue, 18 May 2021 09:40:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8E1F86135D
-	for <nouveau@archiver.kernel.org>; Tue, 18 May 2021 09:17:11 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8E1F86135D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=fooishbar.org
+	by mail.kernel.org (Postfix) with ESMTPS id CAD2E610A8
+	for <nouveau@archiver.kernel.org>; Tue, 18 May 2021 09:40:36 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CAD2E610A8
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.intel.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F6F26EB19;
-	Tue, 18 May 2021 09:17:07 +0000 (UTC)
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
- [IPv6:2a00:1450:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4343E6E84A
- for <nouveau@lists.freedesktop.org>; Tue, 18 May 2021 09:17:05 +0000 (UTC)
-Received: by mail-wr1-x432.google.com with SMTP id i17so9337178wrq.11
- for <nouveau@lists.freedesktop.org>; Tue, 18 May 2021 02:17:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fooishbar-org.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=9eTPO/t6NCx/uQxkUlEH7zQPG+VNu47KdFOPfaH3erE=;
- b=K0J9+LUeBjKpfAq1eso85FwLWG/fzU/3gAs1+laTEAsGsadH4ShCeT1i/mRXGIb4A0
- dbEfer8uNPkFJB0IPEwS1v7fS29yW8JEUV27ePNg6MLa2FCThJan6FNhiKrf3QmcZ+tp
- GUa7D3d+Ay3IJBcuJGszjLzj/7q6ItNFNQHLyfomlcAUaz9jDOlMNUayZ7395NVTr1Ff
- 6aZ/pFA1ZqEHWDOS9M+GWDwYXIZVQ39mbDG6FdBIG4+SdQpHZfcOBdpFRUH4Vj9TFwe1
- nlcGU3H9udX6PY8LB4AxngCmzlfyJVnMZpOZEs/2ISFuAD+i4jn4lVXYiWCZ1HntLN/I
- earA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=9eTPO/t6NCx/uQxkUlEH7zQPG+VNu47KdFOPfaH3erE=;
- b=FIzmQL+W5CcdX0NiEa2ErQCo7+etEE/nD9wunWbn5kUoFBrGSwTDUcU4z9Zgl9QBp9
- 0cG5sdsBm2T97yL8eV2AV2/RUV8BPXYlR8LF9fFhEipINMo+4ogNJiGLLB5OgTzas/mo
- M9SP6je1pPzUwpT15TemeH/nWx6Mt91v6oA6N4WsOmkoR/I7QL1GCBQWWBw8xjnjXPeR
- Vw5i5rzYKVt5HvjoR0DSfGMIg6/IJ0WHT6ZLJBfX+yo3yr5LBqHiHH/HTAnYjdZ9hgd7
- figOmv1w/RTeMq9MY20dVReSTDK+zcHAHg2aOayXiHnW2yS2R2RgdVtpA+8Zsbqo/NXv
- 3kxg==
-X-Gm-Message-State: AOAM530B9qD1cUXnkvis+6sJCwE2GrU/ty1fu/WI5g2NqV11u5TXmm2R
- /hKGpJcbzC+RWsxI22Ep8a9eBaJ9abVILlx0lCZGug==
-X-Google-Smtp-Source: ABdhPJxN4k+wHiN+IopkT08sjmzmaYf2pZO0ZVnrzgFQ2RRcF6ozwlW5KmeBRhHPEiXC5UP8hW2E/0py4TRuOBk/3S0=
-X-Received: by 2002:a5d:6e04:: with SMTP id h4mr5496119wrz.256.1621329423850; 
- Tue, 18 May 2021 02:17:03 -0700 (PDT)
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id A07AA6EB16;
+	Tue, 18 May 2021 09:40:32 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 304D06E866;
+ Tue, 18 May 2021 09:40:30 +0000 (UTC)
+IronPort-SDR: NllE0dEqvIjM3P7KNzA8Z7w72nxO15wXUYqh6U3FDmohLmsmYlaju0NI/PJKCAuUi5Z+/B3IXO
+ 1eKaAm0YSEwg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9987"; a="221718810"
+X-IronPort-AV: E=Sophos;i="5.82,309,1613462400"; d="scan'208";a="221718810"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2021 02:40:26 -0700
+IronPort-SDR: K6iOpmkmPeNLeglPfgd+qPmb7kTQvkRXF5D7CXEh5yQ8CQ7XS/t5I9S73iegWET8EJ+6ogweQp
+ YS6+JXgo+y3g==
+X-IronPort-AV: E=Sophos;i="5.82,309,1613462400"; d="scan'208";a="438584204"
+Received: from alirazas-mobl.ger.corp.intel.com (HELO [10.213.211.104])
+ ([10.213.211.104])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2021 02:40:24 -0700
+To: Daniel Stone <daniel@fooishbar.org>
 References: <c6c61179-5b4b-4e0b-6e57-ec4839ca3268@linux.intel.com>
  <b2203d34-2de3-7c58-de2f-bf6fafc3f67c@amd.com>
  <6cf2f14a-6a16-5ea3-d307-004faad4cc79@linux.intel.com>
@@ -63,11 +49,16 @@ References: <c6c61179-5b4b-4e0b-6e57-ec4839ca3268@linux.intel.com>
  <BYAPR12MB284090FAC1C6E149F0A1A0ECF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
  <mysJHURIfWxBRBabIlnunj7LZNkkRQ-Knu_o6v7GZI4xCwGMZXn0rvjscl-aTT_d-ttlAQgJOG3gP95DBd_dxCPQNfguTSdrltxPrKt2FGs=@emersion.fr>
  <7f8fc38a-cd25-aa1f-fa2d-5d3334edb3d2@linux.intel.com>
-In-Reply-To: <7f8fc38a-cd25-aa1f-fa2d-5d3334edb3d2@linux.intel.com>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Tue, 18 May 2021 10:16:52 +0100
-Message-ID: <CAPj87rOL7SEVXoH1rWH9ypj7idRmVPLXzmEsdVqFdVjsMh5PbA@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+ <CAPj87rOL7SEVXoH1rWH9ypj7idRmVPLXzmEsdVqFdVjsMh5PbA@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <71428a10-4b2f-dbbf-7678-7487f9eda6a5@linux.intel.com>
+Date: Tue, 18 May 2021 10:40:22 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+MIME-Version: 1.0
+In-Reply-To: <CAPj87rOL7SEVXoH1rWH9ypj7idRmVPLXzmEsdVqFdVjsMh5PbA@mail.gmail.com>
+Content-Language: en-US
 Subject: Re: [Nouveau] [PATCH 0/7] Per client engine busyness
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -85,24 +76,36 @@ Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
  Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
  Simon Ser <contact@emersion.fr>, "Koenig,
  Christian" <Christian.Koenig@amd.com>, "Nieto, David M" <David.Nieto@amd.com>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
 
-On Tue, 18 May 2021 at 10:09, Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
-> I was just wondering if stat(2) and a chrdev major check would be a
-> solid criteria to more efficiently (compared to parsing the text
-> content) detect drm files while walking procfs.
+On 18/05/2021 10:16, Daniel Stone wrote:
+> Hi,
+> 
+> On Tue, 18 May 2021 at 10:09, Tvrtko Ursulin
+> <tvrtko.ursulin@linux.intel.com> wrote:
+>> I was just wondering if stat(2) and a chrdev major check would be a
+>> solid criteria to more efficiently (compared to parsing the text
+>> content) detect drm files while walking procfs.
+> 
+> Maybe I'm missing something, but is the per-PID walk actually a
+> measurable performance issue rather than just a bit unpleasant?
 
-Maybe I'm missing something, but is the per-PID walk actually a
-measurable performance issue rather than just a bit unpleasant?
+Per pid and per each open fd.
 
-Cheers,
-Daniel
+As said in the other thread what bothers me a bit in this scheme is that 
+the cost of obtaining GPU usage scales based on non-GPU criteria.
+
+For use case of a top-like tool which shows all processes this is a 
+smaller additional cost, but then for a gpu-top like tool it is somewhat 
+higher.
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
