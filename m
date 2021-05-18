@@ -2,124 +2,78 @@ Return-Path: <SRS0=e1qa=KN=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MSGID_FROM_MTA_HEADER,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C73F7C433B4
-	for <nouveau@archiver.kernel.org>; Tue, 18 May 2021 17:33:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B7E7DC433ED
+	for <nouveau@archiver.kernel.org>; Tue, 18 May 2021 17:44:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 86C1B60E0C
-	for <nouveau@archiver.kernel.org>; Tue, 18 May 2021 17:33:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 86C1B60E0C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=nvidia.com
+	by mail.kernel.org (Postfix) with ESMTPS id 84CF261074
+	for <nouveau@archiver.kernel.org>; Tue, 18 May 2021 17:44:55 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 84CF261074
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F10436EC4D;
-	Tue, 18 May 2021 17:33:39 +0000 (UTC)
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2061.outbound.protection.outlook.com [40.107.244.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68E1A6E094;
- Tue, 18 May 2021 17:33:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aPH9KU8TKy7rg0zMDRjYDbY+ZD3WM5NztcVJdukQ959kA7fz+v82kO2mmjtQ2K7ig8eWTtJ0nrmQ5Mj2qRfiHojSpdGxsgRWK8hWiAlXrytU524epPdqonIYso8yQdOGHXOHO3K00MnGoRPGz1y84yca3ZmIhvtQfQZi/WO8UBVBDNayqb9JlsxvRgEIVUluMnMn9YdhuLP1Q/DUybVWianLzeOqDzec0I2HG0Ps+DjhJwy0xoTS1GhY8XU2+5Y/mqgWaaHAGGlaW3eU02khIyvHivXeJLeQy7JKbUR7Xc3ntjEq9UYRN44W/Uw7jCK8MAi6lZyYaIpdoZHVV2D8cg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2lyYEzHwc411tKQHTt35diA9+chEZv1IGr/BKo8ngPk=;
- b=D6uBJCBaY2xhfW4L8UeBUMCSDwYBeQ33TBrOVeDG0SAe5JeGfYS8hS63HePyqLjI+75Us4e4ZDvpqS36mfkZLYlY7uOa547xRkjepOITY49ngoqMcJ2Kt+Q9BN6YtNA447JjNPSBYLyHoMtaTAh2ztTe85yiQ1C3MLPnzpT3gRw6QNx+/9acQZPP3oQzCtSI8QRy1uJ+j/EQeHWVbHE3bZnZaFur3gTsAhO3CTQo7Wo/C/7S2LJQ8DAm3B1ITpmbPW2J4T9LBFeoy9mbg/dc2lWS079PcGoQ7Qevb6qMIe35ZREVD6XSCDwJJVmapApTZmymLNFeydFXBy+qqrXzRQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2lyYEzHwc411tKQHTt35diA9+chEZv1IGr/BKo8ngPk=;
- b=O0kjQvRUtei/gs+5eoWwHMdX0upYEF7xUneoeFjwRFHr1NZeHDzVg3zyYnxz/yzVCMb+tyxOgQ4wBeWox0exe/P4YjDBbndt2oBdpUtL7G5mmNl0zwUNIRTC5vsymuKO0GwG3mlRo4Enk55Qd+Kwzt8EBqetCbch7BDY2S2kzk39b5Q+GXnPxhdTcidEdioXZjXkrmtRCg632Xv1Ze0wckSDXonVjIOONcRCW2WjO7iWS9uUNTcjX/tO14bE2/xi9PY5nsa34GqR+4n6KRH1wqsOG+KfKHUFpfZR/cePJFIPHjS0cstZVjajHYbflrn4fiz330ZaIITZ+kQJskKe6Q==
-Authentication-Results: redhat.com; dkim=none (message not signed)
- header.d=none;redhat.com; dmarc=none action=none header.from=nvidia.com;
-Received: from DM6PR12MB3834.namprd12.prod.outlook.com (2603:10b6:5:14a::12)
- by DM6PR12MB2602.namprd12.prod.outlook.com (2603:10b6:5:4a::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.28; Tue, 18 May
- 2021 17:33:36 +0000
-Received: from DM6PR12MB3834.namprd12.prod.outlook.com
- ([fe80::ddb4:2cbb:4589:f039]) by DM6PR12MB3834.namprd12.prod.outlook.com
- ([fe80::ddb4:2cbb:4589:f039%4]) with mapi id 15.20.4129.031; Tue, 18 May 2021
- 17:33:36 +0000
-Date: Tue, 18 May 2021 14:33:34 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Peter Xu <peterx@redhat.com>
-Message-ID: <20210518173334.GE1002214@nvidia.com>
-References: <20210407084238.20443-1-apopple@nvidia.com>
- <20210407084238.20443-6-apopple@nvidia.com>
- <YKMhorngO2DVrxac@t490s> <47694715.suB6H4Uo8R@nvdebian>
- <YKP5Dj4Q/riGGc43@t490s>
-Content-Disposition: inline
-In-Reply-To: <YKP5Dj4Q/riGGc43@t490s>
-X-Originating-IP: [47.55.113.94]
-X-ClientProxiedBy: BL0PR1501CA0015.namprd15.prod.outlook.com
- (2603:10b6:207:17::28) To DM6PR12MB3834.namprd12.prod.outlook.com
- (2603:10b6:5:14a::12)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CF616EC52;
+	Tue, 18 May 2021 17:44:55 +0000 (UTC)
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com
+ [IPv6:2607:f8b0:4864:20::72c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B87456EAA7
+ for <nouveau@lists.freedesktop.org>; Tue, 18 May 2021 06:54:50 +0000 (UTC)
+Received: by mail-qk1-x72c.google.com with SMTP id f29so8398330qka.0
+ for <nouveau@lists.freedesktop.org>; Mon, 17 May 2021 23:54:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=XgyF0OvHzw8KTyadFBcEzsCamkUD+/ukWzei3hnGvkc=;
+ b=VO0BvOlWIIiGkUdtOb1VSOWiBrk2KLMr0fiDCPwaBrvrf/j2/7hCX1JlEDcxzMqFmv
+ 42I6m34flwgfsu+jKFLERtm6bjzporQ7M0BTCF240tpdoJChz4PcESq3XpYvN81Vfxez
+ ZW4CMor3EwZRISv4nvwP/XJ/8ZZ+MrGyZniYE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=XgyF0OvHzw8KTyadFBcEzsCamkUD+/ukWzei3hnGvkc=;
+ b=CquVVLVu5GUWAJQXP1zbdWLsUEasQr0rmZIkxj7lGjcUKafYA/JgIwmJmAYj0drPNi
+ 4Vdya1yAOtoj5ND1Cc62Wk6I7+n6JxsOoWYYnVaEDLmA4OUaYlYf+jy3Qzasuvf28ot0
+ qJutyMtKqa+d/hWHYI7/rsvOR0FZrWPoeXMrfNEK6caM5tmFd8tcTDV2qXIqEdpkfGqw
+ FGbSb6X+7us7hNRLCnN0LMrFjUleQjJQvOBhQLC4Nx3ZlNw0aw6aMh741sf9bnkzZhM9
+ ZbN2oFu7Q8u9KG/fEPBenMP8L4NP+Hiokzc9phCa5Daq6euQaIB3GFqOHqpsa/B+wY2S
+ OUZw==
+X-Gm-Message-State: AOAM530DOmqAU4Hvg/aW/zg800BKQ4IAFj956rFOCJvb3aZAbmlRftCg
+ 9YXHMrfq/4QdjUV0Y8PiogaPm/dpi3PuNA==
+X-Google-Smtp-Source: ABdhPJwB1I82ay50z5/XMbMKUEWc2fY+INBbR2mLn6KQ/vv4JADUfLwQj6cRHU4/TQaWYbwpJ9CEJQ==
+X-Received: by 2002:a37:7046:: with SMTP id l67mr3947428qkc.69.1621320889465; 
+ Mon, 17 May 2021 23:54:49 -0700 (PDT)
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com.
+ [209.85.160.182])
+ by smtp.gmail.com with ESMTPSA id h5sm12396879qkg.122.2021.05.17.23.54.48
+ for <nouveau@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 17 May 2021 23:54:48 -0700 (PDT)
+Received: by mail-qt1-f182.google.com with SMTP id t20so6734331qtx.8
+ for <nouveau@lists.freedesktop.org>; Mon, 17 May 2021 23:54:48 -0700 (PDT)
+X-Received: by 2002:a05:6638:10e4:: with SMTP id
+ g4mr3960623jae.90.1621320877050; 
+ Mon, 17 May 2021 23:54:37 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from mlx.ziepe.ca (47.55.113.94) by
- BL0PR1501CA0015.namprd15.prod.outlook.com (2603:10b6:207:17::28) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25 via Frontend
- Transport; Tue, 18 May 2021 17:33:36 +0000
-Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
- <jgg@nvidia.com>)	id 1lj3b4-00ANHN-Cl; Tue, 18 May 2021 14:33:34 -0300
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7f2109e3-9d2f-4e3e-b04d-08d91a2310f9
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2602:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB26026BBB84EC134ABB74C321C22C9@DM6PR12MB2602.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 577pwN5sX6Y5yo21fDZYvSk07C0iM0YWU4WRe785YT+sgV6jMlYWm7fi65xvCqddr+iAgct2cUzAW5ZqInLcmYgW1WEhjFKzayrILwJ83HgLdza/+FbuVoxzfXUJ9uTJUTFwmHiH4OMV97I/joZN5ku2hFmdEFy5ToYGDAXy7IfDRYpV+Ovm4DLz7Jcp29VWpmT+KQxv7GoMfT/Ju1cS39wK4KQQJ4HnVaid7EIy9NoUuWKMrOE5CMBzktorW3sRmLuB3zn62vfTXtHc63fNZC4ZaYdX/8b6wpqJg1/tHXCWYcsKElhrDBUSc6NemhtSZoLa8aQDPS94x/eD5HvAmMgfM85HUXfwHbeR1w+yLxUePS090ERkV2DYaAtOFDKuY2wnH6d4Ip59aGmdTu6QsvvU429Y3JApHveAHiCuStOiWjSC30wnWn2eH1pPY0ZjRtInexHUtERL9quBaflu3+bhIKHSK+l0qDnM4RQ0kcuJcRSlpp+n4PQgpMrNP8HIDT4n0rLPddR9a6AtH3fmpm55mF2PS8n7E5tW5aWvhGJkEAHFlahIK2AnJK41Ywj9Lqu5KoRN/daZSxBJWjnKXp+gbrdzTmMkGsjP2d4ochY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3834.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(39860400002)(366004)(136003)(376002)(396003)(426003)(1076003)(8676002)(478600001)(5660300002)(26005)(6916009)(2616005)(4326008)(8936002)(186003)(9746002)(36756003)(9786002)(316002)(33656002)(66556008)(66476007)(86362001)(38100700002)(2906002)(54906003)(4744005)(7416002)(66946007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?vYE9OxCuiiubnGwuETM0GemkGeapxjJoFooGuqPJwkmOI40X82uR90Tm52HW?=
- =?us-ascii?Q?tp4RN7cuRirsirzuj2hx4Fll4DB9OyMv9xhCJNnYQHiknf/Jtb2oyucdEwlE?=
- =?us-ascii?Q?hPJhZH/wPrFIzWIBPCxe+oo48lDOd4cU9JPCq3dZlNYvimLbWajGnursGIS2?=
- =?us-ascii?Q?S1lfC/no314219A6+mp0kmsCItXWP7maHnYNip1DLtI4PvXes7VaUNM/4y2H?=
- =?us-ascii?Q?WEB9mdUITqJZK1XYtf5Msx953YxOiB7XO8tdxLrN48RjJuMsXMeDKpoHwhRn?=
- =?us-ascii?Q?dCizZowGjhGeH7LzyNVJUlDiAspyjd7PMoGSHgXqDoakyaP8z7XDzzTBl/z1?=
- =?us-ascii?Q?BTac5loIN8NQsMdMpAfAH9vGndw3tWdwfIaNM73TeUMABbDa++Kf1FxmqsAn?=
- =?us-ascii?Q?3psZBTM9Ein39PQxNXbtizhrM588qqHieNAfAkGzeox4ucejm6hDpAnUJcyl?=
- =?us-ascii?Q?7b4D6uLnh3aZrPkRU93f8C4NC86GDwlgbphLDa4SjONaYDWhFRVuO1iOahT4?=
- =?us-ascii?Q?IvEjV92MFdTWnK0WRZsmuttdirJZYObZrB2Bab9SiGNDjeCwQ94uiBOW/qMg?=
- =?us-ascii?Q?Tq3crmOnnO+H6E7GFl4d0gsM7zuU4OjiTh5SmcPVAGRzCYX+XGeoMJNdWwf6?=
- =?us-ascii?Q?SW0YA7FwQ4amja1HclnbfMKOg37XnI9S8TorYfjCBzHHLGGKgnfmBtb55KHF?=
- =?us-ascii?Q?8b75eV+0+wQN/0y+HICzlIbVkhnfQBbus+hEmN0tM9D4wUqD2PZJk7Xx41z8?=
- =?us-ascii?Q?Nt8+4AaIXIUeoKH7GP81c4xtYNXJffSyqwLoQOZy6GmQGQLAh5WVWF1XgHub?=
- =?us-ascii?Q?mjz0tfNl7I44l4jKs4iX5ZGxVOXEP96SuW400uAHkUsxluAPNAmx5VqIdfa0?=
- =?us-ascii?Q?NtZ4pCtU1cIan+LD93+A5H0o0/bSV2Hm2L6MPmvAPwpkZpPLj9Xh64S6zf1z?=
- =?us-ascii?Q?mL4tXahQ/9+P89n1fR0l0rWB+8vK9SSa7/77gKOUNdc6idfxiEXUPdhJaWL0?=
- =?us-ascii?Q?5MGADXL4tji4ErhcCmvinY8jJABHQdkyvC3wBuH2oUpBZp2GkRYbnuqz7NKb?=
- =?us-ascii?Q?3pBpp7SwY6JL6+1KYWwAPbVaErv6G+xQSnsmt+bLLV28p8R7+4sp7b56KcVj?=
- =?us-ascii?Q?cgxcTpT4GG5GsZXyIBi8D10QLXVAYGafuf9r8vCm4DbWzi+zgpVn2eRN0GK5?=
- =?us-ascii?Q?YTqMEidUpUuP7fi8p6heLMfFkJchZwnKyBDup/I33bcHjhZuFvFhg5CJrQ9L?=
- =?us-ascii?Q?OBdY+X6aWQMlQD80md8/ma0f104YJIu2gIadLe4Nlvc9M+RwWkx/QUuzH1Jk?=
- =?us-ascii?Q?4UIZpglyQ32SYTEJWxsvxAqv?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f2109e3-9d2f-4e3e-b04d-08d91a2310f9
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3834.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2021 17:33:36.2231 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: P7F6hQC3doMWZZzJu9hcL75L5tm+ZGtsOYML4KZ1/2Zz96FzxrNvjUQS1PmEUEwM
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2602
-Subject: Re: [Nouveau] [PATCH v8 5/8] mm: Device exclusive memory access
+References: <20210510095026.3477496-1-tientzu@chromium.org>
+In-Reply-To: <20210510095026.3477496-1-tientzu@chromium.org>
+From: Claire Chang <tientzu@chromium.org>
+Date: Tue, 18 May 2021 14:54:26 +0800
+X-Gmail-Original-Message-ID: <CALiNf2-LhQqAX3kJSETOxG4ipu9Nhs97yYiGm0XZKG7vBQ_hNQ@mail.gmail.com>
+Message-ID: <CALiNf2-LhQqAX3kJSETOxG4ipu9Nhs97yYiGm0XZKG7vBQ_hNQ@mail.gmail.com>
+To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+ Joerg Roedel <joro@8bytes.org>, 
+ Will Deacon <will@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
+ jgross@suse.com, 
+ Christoph Hellwig <hch@lst.de>, Marek Szyprowski <m.szyprowski@samsung.com>
+X-Mailman-Approved-At: Tue, 18 May 2021 17:44:54 +0000
+Subject: Re: [Nouveau] [PATCH v6 00/15] Restricted DMA
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,41 +85,130 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcampbell@nvidia.com, willy@infradead.org, linux-doc@vger.kernel.org,
- nouveau@lists.freedesktop.org, bsingharora@gmail.com,
- Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, hch@infradead.org, linux-mm@kvack.org,
- bskeggs@redhat.com, daniel@ffwll.ch, akpm@linux-foundation.org,
- Christoph Hellwig <hch@lst.de>
+Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ peterz@infradead.org, benh@kernel.crashing.org,
+ joonas.lahtinen@linux.intel.com, dri-devel@lists.freedesktop.org,
+ chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
+ mingo@kernel.org, Jianxiong Gao <jxgao@google.com>, sstabellini@kernel.org,
+ Saravana Kannan <saravanak@google.com>, xypron.glpk@gmx.de,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
+ maarten.lankhorst@linux.intel.com, Robin Murphy <robin.murphy@arm.com>,
+ jani.nikula@linux.intel.com, Nicolas Boichat <drinkcat@chromium.org>,
+ rodrigo.vivi@intel.com, Bjorn Helgaas <bhelgaas@google.com>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ nouveau@lists.freedesktop.org, Greg KH <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
+ Tomasz Figa <tfiga@chromium.org>,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ Jim Quinlan <james.quinlan@broadcom.com>, linuxppc-dev@lists.ozlabs.org,
+ bauerman@linux.ibm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, May 18, 2021 at 01:27:42PM -0400, Peter Xu wrote:
+v7: https://lore.kernel.org/patchwork/cover/1431031/
 
-> I also have a pure and high level question regarding a process fork() when
-> there're device exclusive ptes: would the two processes then own the device
-> together?  Is this a real usecase?
-
-If the pages are MAP_SHARED then yes. All VMAs should point at the
-same device_exclusive page and all VMA should migrate back to CPU
-pages together.
-
-> Indeed it'll be odd for a COW page since for COW page then it means after
-> parent/child writting to the page it'll clone into two, then it's a mistery on
-> which one will be the one that "exclusived owned" by the device..
-
-For COW pages it is like every other fork case.. We can't reliably
-write-protect the device_exclusive page during fork so we must copy it
-at fork time.
-
-Thus three reasonable choices:
- - Copy to a new CPU page
- - Migrate back to a CPU page and write protect it
- - Copy to a new device exclusive page
-
-Jason
+On Mon, May 10, 2021 at 5:50 PM Claire Chang <tientzu@chromium.org> wrote:
+>
+> From: Claire Chang <tientzu@google.com>
+>
+> This series implements mitigations for lack of DMA access control on
+> systems without an IOMMU, which could result in the DMA accessing the
+> system memory at unexpected times and/or unexpected addresses, possibly
+> leading to data leakage or corruption.
+>
+> For example, we plan to use the PCI-e bus for Wi-Fi and that PCI-e bus is
+> not behind an IOMMU. As PCI-e, by design, gives the device full access to
+> system memory, a vulnerability in the Wi-Fi firmware could easily escalate
+> to a full system exploit (remote wifi exploits: [1a], [1b] that shows a
+> full chain of exploits; [2], [3]).
+>
+> To mitigate the security concerns, we introduce restricted DMA. Restricted
+> DMA utilizes the existing swiotlb to bounce streaming DMA in and out of a
+> specially allocated region and does memory allocation from the same region.
+> The feature on its own provides a basic level of protection against the DMA
+> overwriting buffer contents at unexpected times. However, to protect
+> against general data leakage and system memory corruption, the system needs
+> to provide a way to restrict the DMA to a predefined memory region (this is
+> usually done at firmware level, e.g. MPU in ATF on some ARM platforms [4]).
+>
+> [1a] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_4.html
+> [1b] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_11.html
+> [2] https://blade.tencent.com/en/advisories/qualpwn/
+> [3] https://www.bleepingcomputer.com/news/security/vulnerabilities-found-in-highly-popular-firmware-for-wifi-chips/
+> [4] https://github.com/ARM-software/arm-trusted-firmware/blob/master/plat/mediatek/mt8183/drivers/emi_mpu/emi_mpu.c#L132
+>
+> v6:
+> Address the comments in v5
+>
+> v5:
+> Rebase on latest linux-next
+> https://lore.kernel.org/patchwork/cover/1416899/
+>
+> v4:
+> - Fix spinlock bad magic
+> - Use rmem->name for debugfs entry
+> - Address the comments in v3
+> https://lore.kernel.org/patchwork/cover/1378113/
+>
+> v3:
+> Using only one reserved memory region for both streaming DMA and memory
+> allocation.
+> https://lore.kernel.org/patchwork/cover/1360992/
+>
+> v2:
+> Building on top of swiotlb.
+> https://lore.kernel.org/patchwork/cover/1280705/
+>
+> v1:
+> Using dma_map_ops.
+> https://lore.kernel.org/patchwork/cover/1271660/
+> *** BLURB HERE ***
+>
+> Claire Chang (15):
+>   swiotlb: Refactor swiotlb init functions
+>   swiotlb: Refactor swiotlb_create_debugfs
+>   swiotlb: Add DMA_RESTRICTED_POOL
+>   swiotlb: Add restricted DMA pool initialization
+>   swiotlb: Add a new get_io_tlb_mem getter
+>   swiotlb: Update is_swiotlb_buffer to add a struct device argument
+>   swiotlb: Update is_swiotlb_active to add a struct device argument
+>   swiotlb: Bounce data from/to restricted DMA pool if available
+>   swiotlb: Move alloc_size to find_slots
+>   swiotlb: Refactor swiotlb_tbl_unmap_single
+>   dma-direct: Add a new wrapper __dma_direct_free_pages()
+>   swiotlb: Add restricted DMA alloc/free support.
+>   dma-direct: Allocate memory from restricted DMA pool if available
+>   dt-bindings: of: Add restricted DMA pool
+>   of: Add plumbing for restricted DMA pool
+>
+>  .../reserved-memory/reserved-memory.txt       |  27 ++
+>  drivers/gpu/drm/i915/gem/i915_gem_internal.c  |   2 +-
+>  drivers/gpu/drm/nouveau/nouveau_ttm.c         |   2 +-
+>  drivers/iommu/dma-iommu.c                     |  12 +-
+>  drivers/of/address.c                          |  25 ++
+>  drivers/of/device.c                           |   3 +
+>  drivers/of/of_private.h                       |   5 +
+>  drivers/pci/xen-pcifront.c                    |   2 +-
+>  drivers/xen/swiotlb-xen.c                     |   2 +-
+>  include/linux/device.h                        |   4 +
+>  include/linux/swiotlb.h                       |  41 ++-
+>  kernel/dma/Kconfig                            |  14 +
+>  kernel/dma/direct.c                           |  63 +++--
+>  kernel/dma/direct.h                           |   9 +-
+>  kernel/dma/swiotlb.c                          | 242 +++++++++++++-----
+>  15 files changed, 356 insertions(+), 97 deletions(-)
+>
+> --
+> 2.31.1.607.g51e8a6a459-goog
+>
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
