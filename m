@@ -2,78 +2,85 @@ Return-Path: <SRS0=e1qa=KN=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B7E7DC433ED
-	for <nouveau@archiver.kernel.org>; Tue, 18 May 2021 17:44:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3DBE4C433B4
+	for <nouveau@archiver.kernel.org>; Tue, 18 May 2021 17:44:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 84CF261074
+	by mail.kernel.org (Postfix) with ESMTPS id 023A3611AC
 	for <nouveau@archiver.kernel.org>; Tue, 18 May 2021 17:44:55 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 84CF261074
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 023A3611AC
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CF616EC52;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A0556EC56;
 	Tue, 18 May 2021 17:44:55 +0000 (UTC)
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com
- [IPv6:2607:f8b0:4864:20::72c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B87456EAA7
- for <nouveau@lists.freedesktop.org>; Tue, 18 May 2021 06:54:50 +0000 (UTC)
-Received: by mail-qk1-x72c.google.com with SMTP id f29so8398330qka.0
- for <nouveau@lists.freedesktop.org>; Mon, 17 May 2021 23:54:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=XgyF0OvHzw8KTyadFBcEzsCamkUD+/ukWzei3hnGvkc=;
- b=VO0BvOlWIIiGkUdtOb1VSOWiBrk2KLMr0fiDCPwaBrvrf/j2/7hCX1JlEDcxzMqFmv
- 42I6m34flwgfsu+jKFLERtm6bjzporQ7M0BTCF240tpdoJChz4PcESq3XpYvN81Vfxez
- ZW4CMor3EwZRISv4nvwP/XJ/8ZZ+MrGyZniYE=
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3C136EC4C
+ for <nouveau@lists.freedesktop.org>; Tue, 18 May 2021 17:27:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1621358867;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=q/hLyvLFOp4tg4lt1Rp8WVHoY+JWyb8vMSiqZhIebpg=;
+ b=XzO2Pg2MKKe9mxGVHIAFiBarKoMB4hJuJmGhmGoMYibKNmcqIveGMM55hmOSXD+ae8yG9J
+ eOjjRmXl1rowLICSmCJrG7djxmbPDyyU8fx3rD37U8xcuEbXMvjrInGz2PAsMbTq2VdOwy
+ qG0uEzCLe4loUh8BDnZcqOEudCRtHwY=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-324-qnqZbkYuODWsYUETFv79kQ-1; Tue, 18 May 2021 13:27:46 -0400
+X-MC-Unique: qnqZbkYuODWsYUETFv79kQ-1
+Received: by mail-qv1-f71.google.com with SMTP id
+ d9-20020a0ce4490000b02901f0bee07112so1650131qvm.7
+ for <nouveau@lists.freedesktop.org>; Tue, 18 May 2021 10:27:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=XgyF0OvHzw8KTyadFBcEzsCamkUD+/ukWzei3hnGvkc=;
- b=CquVVLVu5GUWAJQXP1zbdWLsUEasQr0rmZIkxj7lGjcUKafYA/JgIwmJmAYj0drPNi
- 4Vdya1yAOtoj5ND1Cc62Wk6I7+n6JxsOoWYYnVaEDLmA4OUaYlYf+jy3Qzasuvf28ot0
- qJutyMtKqa+d/hWHYI7/rsvOR0FZrWPoeXMrfNEK6caM5tmFd8tcTDV2qXIqEdpkfGqw
- FGbSb6X+7us7hNRLCnN0LMrFjUleQjJQvOBhQLC4Nx3ZlNw0aw6aMh741sf9bnkzZhM9
- ZbN2oFu7Q8u9KG/fEPBenMP8L4NP+Hiokzc9phCa5Daq6euQaIB3GFqOHqpsa/B+wY2S
- OUZw==
-X-Gm-Message-State: AOAM530DOmqAU4Hvg/aW/zg800BKQ4IAFj956rFOCJvb3aZAbmlRftCg
- 9YXHMrfq/4QdjUV0Y8PiogaPm/dpi3PuNA==
-X-Google-Smtp-Source: ABdhPJwB1I82ay50z5/XMbMKUEWc2fY+INBbR2mLn6KQ/vv4JADUfLwQj6cRHU4/TQaWYbwpJ9CEJQ==
-X-Received: by 2002:a37:7046:: with SMTP id l67mr3947428qkc.69.1621320889465; 
- Mon, 17 May 2021 23:54:49 -0700 (PDT)
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com.
- [209.85.160.182])
- by smtp.gmail.com with ESMTPSA id h5sm12396879qkg.122.2021.05.17.23.54.48
- for <nouveau@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 17 May 2021 23:54:48 -0700 (PDT)
-Received: by mail-qt1-f182.google.com with SMTP id t20so6734331qtx.8
- for <nouveau@lists.freedesktop.org>; Mon, 17 May 2021 23:54:48 -0700 (PDT)
-X-Received: by 2002:a05:6638:10e4:: with SMTP id
- g4mr3960623jae.90.1621320877050; 
- Mon, 17 May 2021 23:54:37 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=q/hLyvLFOp4tg4lt1Rp8WVHoY+JWyb8vMSiqZhIebpg=;
+ b=Q3SJsQS4y6tb8EZhw1LjgxcYpGvEFCrHhV3E3S7kuA4iNK5gmIO791fW7LmkEDireT
+ czjWHjCNRABUrZnTRLp2WGApd87M+Mx5QEuQDaBkbLJKmsgqMkrH5miogjMcghRogw9e
+ lsn+yM/ce+JmQVmhd46km4t9A6zpkN5c6oKAarITlHvyUo4ShCooePPdguEdLm3z7Dkl
+ 2HbFX7g63bf3arFELase+0Jb6YJ4PqNsU/ZQY2+PTc0n80k9yf1yfCC/ykg0FOUEaKRN
+ eL0hAkJJS8GxJwC3JifcN1pjksUTjKrNe3CDnPPlJ7iBMlQefiVpPFi4kgf7zHEzMKG1
+ +4iw==
+X-Gm-Message-State: AOAM531gVDrqNwWtXI/E665opWU7vh0j/maWqhB7PejzV/6Q1LkYOsat
+ Khxz0Kt9BXMHNYW5w040WWfdjyKXj8tdbrURF8acRn3Lrx2SpiJPFJXQcOGe1bJBZP+t2C7eXKc
+ J90vICRva952biYOOanuo6qWgjg==
+X-Received: by 2002:a05:6214:c2d:: with SMTP id
+ a13mr6691397qvd.37.1621358865288; 
+ Tue, 18 May 2021 10:27:45 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy1yaYzXnDKYPG68C6GPD30pklE9Wu2acl8wqmHdsosv44s5ztpPrKuqRJgtxOITZemGZLnfw==
+X-Received: by 2002:a05:6214:c2d:: with SMTP id
+ a13mr6691334qvd.37.1621358864834; 
+ Tue, 18 May 2021 10:27:44 -0700 (PDT)
+Received: from t490s (bras-base-toroon474qw-grc-72-184-145-4-219.dsl.bell.ca.
+ [184.145.4.219])
+ by smtp.gmail.com with ESMTPSA id h7sm13038913qtj.35.2021.05.18.10.27.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 18 May 2021 10:27:44 -0700 (PDT)
+Date: Tue, 18 May 2021 13:27:42 -0400
+From: Peter Xu <peterx@redhat.com>
+To: Alistair Popple <apopple@nvidia.com>
+Message-ID: <YKP5Dj4Q/riGGc43@t490s>
+References: <20210407084238.20443-1-apopple@nvidia.com>
+ <20210407084238.20443-6-apopple@nvidia.com>
+ <YKMhorngO2DVrxac@t490s> <47694715.suB6H4Uo8R@nvdebian>
 MIME-Version: 1.0
-References: <20210510095026.3477496-1-tientzu@chromium.org>
-In-Reply-To: <20210510095026.3477496-1-tientzu@chromium.org>
-From: Claire Chang <tientzu@chromium.org>
-Date: Tue, 18 May 2021 14:54:26 +0800
-X-Gmail-Original-Message-ID: <CALiNf2-LhQqAX3kJSETOxG4ipu9Nhs97yYiGm0XZKG7vBQ_hNQ@mail.gmail.com>
-Message-ID: <CALiNf2-LhQqAX3kJSETOxG4ipu9Nhs97yYiGm0XZKG7vBQ_hNQ@mail.gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
- Joerg Roedel <joro@8bytes.org>, 
- Will Deacon <will@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
- jgross@suse.com, 
- Christoph Hellwig <hch@lst.de>, Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <47694715.suB6H4Uo8R@nvdebian>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=peterx@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Disposition: inline
 X-Mailman-Approved-At: Tue, 18 May 2021 17:44:54 +0000
-Subject: Re: [Nouveau] [PATCH v6 00/15] Restricted DMA
+Subject: Re: [Nouveau] [PATCH v8 5/8] mm: Device exclusive memory access
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,130 +92,306 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
- peterz@infradead.org, benh@kernel.crashing.org,
- joonas.lahtinen@linux.intel.com, dri-devel@lists.freedesktop.org,
- chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
- mingo@kernel.org, Jianxiong Gao <jxgao@google.com>, sstabellini@kernel.org,
- Saravana Kannan <saravanak@google.com>, xypron.glpk@gmx.de,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
- linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
- Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
- matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
- Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
- maarten.lankhorst@linux.intel.com, Robin Murphy <robin.murphy@arm.com>,
- jani.nikula@linux.intel.com, Nicolas Boichat <drinkcat@chromium.org>,
- rodrigo.vivi@intel.com, Bjorn Helgaas <bhelgaas@google.com>,
- Dan Williams <dan.j.williams@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- nouveau@lists.freedesktop.org, Greg KH <gregkh@linuxfoundation.org>,
- Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
- Tomasz Figa <tfiga@chromium.org>,
- "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- Jim Quinlan <james.quinlan@broadcom.com>, linuxppc-dev@lists.ozlabs.org,
- bauerman@linux.ibm.com
+Cc: rcampbell@nvidia.com, willy@infradead.org, daniel@ffwll.ch,
+ linux-doc@vger.kernel.org, nouveau@lists.freedesktop.org,
+ bsingharora@gmail.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, hch@infradead.org, linux-mm@kvack.org,
+ bskeggs@redhat.com, jgg@nvidia.com, akpm@linux-foundation.org,
+ Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-v7: https://lore.kernel.org/patchwork/cover/1431031/
+Alistair,
 
-On Mon, May 10, 2021 at 5:50 PM Claire Chang <tientzu@chromium.org> wrote:
->
-> From: Claire Chang <tientzu@google.com>
->
-> This series implements mitigations for lack of DMA access control on
-> systems without an IOMMU, which could result in the DMA accessing the
-> system memory at unexpected times and/or unexpected addresses, possibly
-> leading to data leakage or corruption.
->
-> For example, we plan to use the PCI-e bus for Wi-Fi and that PCI-e bus is
-> not behind an IOMMU. As PCI-e, by design, gives the device full access to
-> system memory, a vulnerability in the Wi-Fi firmware could easily escalate
-> to a full system exploit (remote wifi exploits: [1a], [1b] that shows a
-> full chain of exploits; [2], [3]).
->
-> To mitigate the security concerns, we introduce restricted DMA. Restricted
-> DMA utilizes the existing swiotlb to bounce streaming DMA in and out of a
-> specially allocated region and does memory allocation from the same region.
-> The feature on its own provides a basic level of protection against the DMA
-> overwriting buffer contents at unexpected times. However, to protect
-> against general data leakage and system memory corruption, the system needs
-> to provide a way to restrict the DMA to a predefined memory region (this is
-> usually done at firmware level, e.g. MPU in ATF on some ARM platforms [4]).
->
-> [1a] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_4.html
-> [1b] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_11.html
-> [2] https://blade.tencent.com/en/advisories/qualpwn/
-> [3] https://www.bleepingcomputer.com/news/security/vulnerabilities-found-in-highly-popular-firmware-for-wifi-chips/
-> [4] https://github.com/ARM-software/arm-trusted-firmware/blob/master/plat/mediatek/mt8183/drivers/emi_mpu/emi_mpu.c#L132
->
-> v6:
-> Address the comments in v5
->
-> v5:
-> Rebase on latest linux-next
-> https://lore.kernel.org/patchwork/cover/1416899/
->
-> v4:
-> - Fix spinlock bad magic
-> - Use rmem->name for debugfs entry
-> - Address the comments in v3
-> https://lore.kernel.org/patchwork/cover/1378113/
->
-> v3:
-> Using only one reserved memory region for both streaming DMA and memory
-> allocation.
-> https://lore.kernel.org/patchwork/cover/1360992/
->
-> v2:
-> Building on top of swiotlb.
-> https://lore.kernel.org/patchwork/cover/1280705/
->
-> v1:
-> Using dma_map_ops.
-> https://lore.kernel.org/patchwork/cover/1271660/
-> *** BLURB HERE ***
->
-> Claire Chang (15):
->   swiotlb: Refactor swiotlb init functions
->   swiotlb: Refactor swiotlb_create_debugfs
->   swiotlb: Add DMA_RESTRICTED_POOL
->   swiotlb: Add restricted DMA pool initialization
->   swiotlb: Add a new get_io_tlb_mem getter
->   swiotlb: Update is_swiotlb_buffer to add a struct device argument
->   swiotlb: Update is_swiotlb_active to add a struct device argument
->   swiotlb: Bounce data from/to restricted DMA pool if available
->   swiotlb: Move alloc_size to find_slots
->   swiotlb: Refactor swiotlb_tbl_unmap_single
->   dma-direct: Add a new wrapper __dma_direct_free_pages()
->   swiotlb: Add restricted DMA alloc/free support.
->   dma-direct: Allocate memory from restricted DMA pool if available
->   dt-bindings: of: Add restricted DMA pool
->   of: Add plumbing for restricted DMA pool
->
->  .../reserved-memory/reserved-memory.txt       |  27 ++
->  drivers/gpu/drm/i915/gem/i915_gem_internal.c  |   2 +-
->  drivers/gpu/drm/nouveau/nouveau_ttm.c         |   2 +-
->  drivers/iommu/dma-iommu.c                     |  12 +-
->  drivers/of/address.c                          |  25 ++
->  drivers/of/device.c                           |   3 +
->  drivers/of/of_private.h                       |   5 +
->  drivers/pci/xen-pcifront.c                    |   2 +-
->  drivers/xen/swiotlb-xen.c                     |   2 +-
->  include/linux/device.h                        |   4 +
->  include/linux/swiotlb.h                       |  41 ++-
->  kernel/dma/Kconfig                            |  14 +
->  kernel/dma/direct.c                           |  63 +++--
->  kernel/dma/direct.h                           |   9 +-
->  kernel/dma/swiotlb.c                          | 242 +++++++++++++-----
->  15 files changed, 356 insertions(+), 97 deletions(-)
->
-> --
-> 2.31.1.607.g51e8a6a459-goog
->
+While I got one reply below to your previous email, I also looked at the rest
+code (majorly restore and fork sides) today and added a few more comments.
+
+On Tue, May 18, 2021 at 11:19:05PM +1000, Alistair Popple wrote:
+
+[...]
+
+> > > diff --git a/mm/memory.c b/mm/memory.c
+> > > index 3a5705cfc891..556ff396f2e9 100644
+> > > --- a/mm/memory.c
+> > > +++ b/mm/memory.c
+> > > @@ -700,6 +700,84 @@ struct page *vm_normal_page_pmd(struct vm_area_struct
+> > > *vma, unsigned long addr,> 
+> > >  }
+> > >  #endif
+> > > 
+> > > +static void restore_exclusive_pte(struct vm_area_struct *vma,
+> > > +                               struct page *page, unsigned long address,
+> > > +                               pte_t *ptep)
+> > > +{
+> > > +     pte_t pte;
+> > > +     swp_entry_t entry;
+> > > +
+> > > +     pte = pte_mkold(mk_pte(page, READ_ONCE(vma->vm_page_prot)));
+> > > +     if (pte_swp_soft_dirty(*ptep))
+> > > +             pte = pte_mksoft_dirty(pte);
+> > > +
+> > > +     entry = pte_to_swp_entry(*ptep);
+> > > +     if (pte_swp_uffd_wp(*ptep))
+> > > +             pte = pte_mkuffd_wp(pte);
+> > > +     else if (is_writable_device_exclusive_entry(entry))
+> > > +             pte = maybe_mkwrite(pte_mkdirty(pte), vma);
+> > > +
+> > > +     set_pte_at(vma->vm_mm, address, ptep, pte);
+> > > +
+> > > +     /*
+> > > +      * No need to take a page reference as one was already
+> > > +      * created when the swap entry was made.
+> > > +      */
+> > > +     if (PageAnon(page))
+> > > +             page_add_anon_rmap(page, vma, address, false);
+> > > +     else
+> > > +             page_add_file_rmap(page, false);
+
+This seems to be another leftover; maybe WARN_ON_ONCE(!PageAnon(page))?
+
+> > > +
+> > > +     if (vma->vm_flags & VM_LOCKED)
+> > > +             mlock_vma_page(page);
+> > > +
+> > > +     /*
+> > > +      * No need to invalidate - it was non-present before. However
+> > > +      * secondary CPUs may have mappings that need invalidating.
+> > > +      */
+> > > +     update_mmu_cache(vma, address, ptep);
+> > > +}
+
+[...]
+
+> > >  /*
+> > >  
+> > >   * copy one vm_area from one task to the other. Assumes the page tables
+> > >   * already present in the new task to be cleared in the whole range
+> > > 
+> > > @@ -781,6 +859,12 @@ copy_nonpresent_pte(struct mm_struct *dst_mm, struct
+> > > mm_struct *src_mm,> 
+> > >                               pte = pte_swp_mkuffd_wp(pte);
+> > >                       
+> > >                       set_pte_at(src_mm, addr, src_pte, pte);
+> > >               
+> > >               }
+> > > 
+> > > +     } else if (is_device_exclusive_entry(entry)) {
+> > > +             /* COW mappings should be dealt with by removing the entry
+> > > */
+
+Here the comment says "removing the entry" however I think it didn't remove the
+pte, instead it keeps it (as there's no "return", so set_pte_at() will be
+called below), so I got a bit confused.
+
+> > > +             VM_BUG_ON(is_cow_mapping(vm_flags));
+
+Also here, if PageAnon() is the only case to support so far, doesn't that
+easily satisfy is_cow_mapping()? Maybe I missed something..
+
+I also have a pure and high level question regarding a process fork() when
+there're device exclusive ptes: would the two processes then own the device
+together?  Is this a real usecase?
+
+Indeed it'll be odd for a COW page since for COW page then it means after
+parent/child writting to the page it'll clone into two, then it's a mistery on
+which one will be the one that "exclusived owned" by the device..
+
+> > > +             page = pfn_swap_entry_to_page(entry);
+> > > +             get_page(page);
+> > > +             rss[mm_counter(page)]++;
+> > > 
+> > >       }
+> > >       set_pte_at(dst_mm, addr, dst_pte, pte);
+> > >       return 0;
+> > > 
+> > > @@ -947,6 +1031,7 @@ copy_pte_range(struct vm_area_struct *dst_vma, struct
+> > > vm_area_struct *src_vma,> 
+> > >       int rss[NR_MM_COUNTERS];
+> > >       swp_entry_t entry = (swp_entry_t){0};
+> > >       struct page *prealloc = NULL;
+> > > 
+> > > +     struct page *locked_page = NULL;
+> > > 
+> > >  again:
+> > >       progress = 0;
+> > > 
+> > > @@ -980,13 +1065,36 @@ copy_pte_range(struct vm_area_struct *dst_vma,
+> > > struct vm_area_struct *src_vma,> 
+> > >                       continue;
+> > >               
+> > >               }
+> > >               if (unlikely(!pte_present(*src_pte))) {
+> > > 
+> > > -                     entry.val = copy_nonpresent_pte(dst_mm, src_mm,
+> > > -                                                     dst_pte, src_pte,
+> > > -                                                     src_vma, addr, rss);
+> > > -                     if (entry.val)
+> > > -                             break;
+> > > -                     progress += 8;
+> > > -                     continue;
+> > > +                     swp_entry_t swp_entry = pte_to_swp_entry(*src_pte);
+
+(Just a side note to all of us: this will be one more place that I'll need to
+ look after in my uffd-wp series if this series lands first, as after that
+ series we can only call pte_to_swp_entry after a pte_has_swap_entry check, as
+ sometimes non-present pte won't contain a swap entry at all)
+
+> > > +
+> > > +                     if (unlikely(is_cow_mapping(src_vma->vm_flags) &&
+> > > +                         is_device_exclusive_entry(swp_entry))) {
+> > > +                             /*
+> > > +                              * Normally this would require sending mmu
+> > > +                              * notifiers, but copy_page_range() has
+> > > already +                              * done that for COW mappings.
+> > > +                              */
+> > > +                             ret = try_restore_exclusive_pte(src_mm,
+> > > src_pte, +                                                            
+> > > src_vma, addr, +                                                         
+> > >    &locked_page); +                             if (ret == -EBUSY)
+> > > +                                     break;
+
+Would it be possible that we put all the handling of device exclusive ptes into
+copy_nonpresent_pte()?  As IMHO all device exclusive ptes should still be one
+kind of non-present pte.  Splitting the cases really make it (at least to
+me...) even harder to read.
+
+Maybe you wanted to avoid the rework of copy_nonpresent_pte() as it currently
+returns a entry.val which is indeed not straightforward already.. I wanted to
+clean that up but not yet.
+
+An easier option is perhaps failing the fork() directly when trylock_page()
+failed when restoring the pte? So the userspace could try again the whole
+fork(). However that'll also depend on my previous question on whether this is
+a valid scenario after all.  If "maintaining fork correctness" is the only
+thing we persue for, maybe still worth to consider?
+
+> > > +                     } else {
+> > > +                             entry.val = copy_nonpresent_pte(dst_mm,
+> > > src_mm, +                                                            
+> > > dst_pte, src_pte, +                                                      
+> > >       src_vma, addr, +                                                   
+> > >          rss); +                             if (entry.val)
+> > > +                                     break;
+> > > +                             progress += 8;
+> > > +                             continue;
+> > > +                     }
+> > > +             }
+> > > +             /* a non-present pte became present after dropping the ptl
+> > > */
+> > > +             if (unlikely(locked_page)) {
+> > > +                     unlock_page(locked_page);
+> > > +                     put_page(locked_page);
+> > > +                     locked_page = NULL;
+> > > 
+> > >               }
+> > >               /* copy_present_pte() will clear `*prealloc' if consumed */
+> > >               ret = copy_present_pte(dst_vma, src_vma, dst_pte, src_pte,
+> > > 
+
+[...]
+
+> > > +static vm_fault_t remove_device_exclusive_entry(struct vm_fault *vmf)
+> > > +{
+> > > +     struct page *page = vmf->page;
+> > > +     struct vm_area_struct *vma = vmf->vma;
+> > > +     struct page_vma_mapped_walk pvmw = {
+> > > +             .page = page,
+> > > +             .vma = vma,
+> > > +             .address = vmf->address,
+> > > +             .flags = PVMW_SYNC,
+> > > +     };
+> > > +     vm_fault_t ret = 0;
+> > > +     struct mmu_notifier_range range;
+> > > +
+> > > +     if (!lock_page_or_retry(page, vma->vm_mm, vmf->flags))
+> > > +             return VM_FAULT_RETRY;
+> > > +     mmu_notifier_range_init(&range, MMU_NOTIFY_CLEAR, 0, vma,
+> > > vma->vm_mm,
+> > > +                             vmf->address & PAGE_MASK,
+> > > +                             (vmf->address & PAGE_MASK) + PAGE_SIZE);
+> > > +     mmu_notifier_invalidate_range_start(&range);
+> > 
+> > I looked at MMU_NOTIFIER_CLEAR document and it tells me:
+> > 
+> >  * @MMU_NOTIFY_CLEAR: clear page table entry (many reasons for this like
+> >  * madvise() or replacing a page by another one, ...).
+> > 
+> > Does MMU_NOTIFIER_CLEAR suite for this case?  Normally I think for such a
+> > case (existing pte is invalid) we don't need to notify at all.  However
+> > from what I read from the whole series, this seems to be a critical point
+> > where we'd like to kick the owner/driver to synchronously stop doing atomic
+> > operations from the device.  Not sure whether we'd like a new notifier
+> > type, or maybe at least comment on why to use CLEAR?
+> 
+> Right, notifying the owner/driver when it no longer has exclusive access to 
+> the page and allowing it to stop atomic operations is the critical point and 
+> why it notifies when we ordinarily wouldn't (ie. invalid -> valid).
+> 
+> I did consider adding a new type, but in the driver implementation it ends up 
+> being treated the same as a CLEAR notification anyway so didn't think it was 
+> necessary. But I suppose adding a different type would allow other listening 
+> notifiers to filter these which might be worthwhile.
+
+Sounds good to me.
+
+[...]
+
+> > > +             /*
+> > > +              * Check that our target page is still mapped at the
+> > > expected
+> > > +              * address.
+> > > +              */
+> > > +             if (ttp->mm == mm && ttp->address == address &&
+> > > +                 pte_write(pteval))
+> > > +                     ttp->valid = true;
+> > 
+> > I think I get the point of doing this (as after GUP the pte could have been
+> > changed to point to another page), however it smells a bit odd to me (or
+> > it's also possible that I'm not familiar enough with the code base..). 
+> > IIUC this is the _only_ reason that we passed in "address" into
+> > try_to_protect() too, and further into the ttp_args.
+> 
+> Yes, this is why "address" is passed up to ttp_args.
+> 
+> > The odd part is the remote GUP should have walked the page table already, so
+> > since the target here is the vaddr to replace, the 1st page table walk
+> > should be able to both trylock/lock the page, then modify the pte with
+> > pgtable lock held, return the locked page, then walk the rmap again to
+> > remove all the rest of the ptes that are mapping to this page.  In that
+> > case before we call the rmap_walk() we know this must be the page we want
+> > to take care of, and no one will be able to restore the original mm pte
+> > either (as we're with the page lock).  Then we don't need this check,
+> > neither do we need ttp->address.
+> 
+> If I am understanding you correctly I think this would be similar to the 
+> approach that was taken in v2. However it pretty much ended up being just an 
+> open-coded version of gup which is useful anyway to fault the page in.
+
+I see.  For easier reference this is v2 patch 1:
+
+https://lore.kernel.org/lkml/20210219020750.16444-2-apopple@nvidia.com/
+
+Indeed that looks like it, it's just that instead of grabbing the page only in
+hmm_exclusive_pmd() we can do the pte modification along the way to seal the
+whole thing (address/pte & page).  I saw Christoph and Jason commented in that
+patch, but not regarding to this approach.  So is there a reason that you
+switched?  Do you think it'll work?
+
+I have no strong opinion either, it's just not crystal clear why we'd need that
+ttp->address at all for a rmap walk along with that "valid" field. Meanwhile it
+should be slightly less efficient too to go with current approach, especially
+when the page array gets huge, I think: since there'll be longer time we do GUP
+before doing the rmap walk, so higher possibility that the GUPed pages got
+replaced for whatever reason.  Then the call to make_device_exclusive_range()
+will fail as a whole just for a single page replacement within the range.
+
+Thanks,
+
+-- 
+Peter Xu
+
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
