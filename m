@@ -6,80 +6,72 @@ X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E405EC433ED
-	for <nouveau@archiver.kernel.org>; Wed, 19 May 2021 16:43:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6AA5BC43461
+	for <nouveau@archiver.kernel.org>; Wed, 19 May 2021 18:11:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AAC4E610E9
-	for <nouveau@archiver.kernel.org>; Wed, 19 May 2021 16:43:14 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AAC4E610E9
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id 30D5060E08
+	for <nouveau@archiver.kernel.org>; Wed, 19 May 2021 18:11:43 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 30D5060E08
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D047E6EE27;
-	Wed, 19 May 2021 16:29:11 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E30556ED91
- for <nouveau@lists.freedesktop.org>; Wed, 19 May 2021 12:15:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1621426546;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=tpsW6GoLBuPX3m2t6ZDWDsXVHyOzAne0XpIqOVeHL30=;
- b=iWJyJ2JzQRelZ805GCtdPoB9VQ1XEdIFM564RmmA7mx2ZGzJqSwzReDjGZYbV/b2mEll1M
- EWEOflN3vFnYnv+LNtdPgqnUgeQAmdbryad4yfCU6fCUY9bC7BpELXBFv9n0mkZJyVjMMT
- fKznwmsLn0Y2agTqb3v5v8170IhBbME=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-246-gcop4rCfNFy-wF9Kw3Iv3w-1; Wed, 19 May 2021 08:15:44 -0400
-X-MC-Unique: gcop4rCfNFy-wF9Kw3Iv3w-1
-Received: by mail-qv1-f69.google.com with SMTP id
- r11-20020a0cb28b0000b02901c87a178503so10112425qve.22
- for <nouveau@lists.freedesktop.org>; Wed, 19 May 2021 05:15:44 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 948F06EDA0;
+	Wed, 19 May 2021 18:11:42 +0000 (UTC)
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com
+ [IPv6:2607:f8b0:4864:20::731])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E5416EE4D
+ for <nouveau@lists.freedesktop.org>; Wed, 19 May 2021 18:11:40 +0000 (UTC)
+Received: by mail-qk1-x731.google.com with SMTP id 124so1334173qkh.10
+ for <nouveau@lists.freedesktop.org>; Wed, 19 May 2021 11:11:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=or1ZgkIQlqYFYsbWx3HhSVHrt7I2XsoIRsMCoyF7atA=;
+ b=I/E/dqxF8ccpwh/ck606guAAMWoUat0ewjyFBZ9qGkhCu+vdKW45Md3waidHfBOcnl
+ Eqf1Yqt6PeBfuumUioxkOduMozTmgdMFtcGyfioxsOPJPRJNLQ4jnjVT2qXlY+aMTE6E
+ n7D/gwnI3FA/CndzpSeeQcEVAbeVLZcdSje0mF9X8XYry5kvfJA08rwWvgD4wPSJXSxT
+ OsS/Aayfy63b6fpecJGRSsY77jP3vVkN8R6CGJWR1dZB/hRSXxQjJgultC8aiJBdp/z3
+ sgzp5mgSXuEbYvHkj9t8yxM9KWR7IESTnh3nA7XZ90l/rulprpDCqqE41qNPvP+D22Cv
+ UXhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=tpsW6GoLBuPX3m2t6ZDWDsXVHyOzAne0XpIqOVeHL30=;
- b=FnEPvL1Iue9busYOotRsN9hWJbWhgkUcQvW/RP79YFe7Y5pmOJCxeg5tXgE+v2Kpzz
- MOFPlJXXfYYRLraqFZojYz1DBDXJOaBBR/B8oZwLKjzVbbTZ+eHOYaG+VaDzJl8oJl+/
- ua6kyHOaM6wndQWdonyjD1VndwOWOcoC+uZ3shsGvzDSqFVRnw1om9IKY32m7p7oJZ2N
- qpWce++4z2VPWSsrhjLef9dtRWFqvm1ufSfCULKpeiEyQsSUXXgDjJ9/mkOQLog649y+
- LY12XtUfT7Xod1+zAl9S7h3hXqkFGf5F6hmMg7mqlvuih87XHFjwMwZJ3wVnjWp2cW8r
- 0lKw==
-X-Gm-Message-State: AOAM531nK5uT9dU+Ty6uJDnKqhC1/C4hJrY0hC+g0i5WLEVeeOBL6kpf
- MNztiXTPd9UizpvCsc1XyU/Ca5LaUKsQDhwo2oxYrdr3DIDYco+1x1lNpO08kDbAfXyq2mNOGkt
- fTGpwYnDJApixxxEJ8um73lykLA==
-X-Received: by 2002:a05:6214:20c4:: with SMTP id
- 4mr13195003qve.38.1621426543765; 
- Wed, 19 May 2021 05:15:43 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxJeMvnD48yKledjvAvmUkVuVahWxfS9KHq8l5vFptQfcG6pDYRH4satuz1xLVBYj0ZmxaSVA==
-X-Received: by 2002:a05:6214:20c4:: with SMTP id
- 4mr13194979qve.38.1621426543531; 
- Wed, 19 May 2021 05:15:43 -0700 (PDT)
-Received: from t490s (bras-base-toroon474qw-grc-72-184-145-4-219.dsl.bell.ca.
- [184.145.4.219])
- by smtp.gmail.com with ESMTPSA id y9sm14576208qkm.19.2021.05.19.05.15.41
+ bh=or1ZgkIQlqYFYsbWx3HhSVHrt7I2XsoIRsMCoyF7atA=;
+ b=qiF6aYKagw7HusoDPmCA9FCosw/GVxK2Nc+v0UYtUtANONlMsW2C281dF06sUsyufF
+ XhfT6t7vdg/zXV/Vao8toPII5v7lCjN725wqwFVIpsiP8htjaBwA8NRkBkVgOAxETjc4
+ eAafHChJSUzkK3bSQMuUjN5jhwAu1MF5dgBf9IkFcgVpqu7vDduzQxqcWEOejWTVXTzO
+ eNhundsJwTNQ5EKDi7SWI2Z94GjmHjV4BQCcA9kL5tEIzocvA/7WT46p81s+V2ipFhYp
+ 6RDGsO/cfgcAOHjVcvGTxdl/fTDi7p2MxseGKhYZVV8lYQke3rbTQNomLub2m2jWa9OH
+ TO6A==
+X-Gm-Message-State: AOAM533S+LBWumHa1uwtcHXQxaAy8iNUoukAF/58q8SEGzlzxe+xZN+R
+ 9qXnCsVge9j9F8RYQACkvGLfRw==
+X-Google-Smtp-Source: ABdhPJx6qAlzcCgcAFZQhi8apeXZnalyGtzPK6kX7YL/irC69Yj1Id6m3qzKmV8x697R45dsX2JLtw==
+X-Received: by 2002:a05:620a:2456:: with SMTP id
+ h22mr691145qkn.292.1621447900188; 
+ Wed, 19 May 2021 11:11:40 -0700 (PDT)
+Received: from ziepe.ca
+ (hlfxns017vw-47-55-113-94.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [47.55.113.94])
+ by smtp.gmail.com with ESMTPSA id g1sm136589qtr.32.2021.05.19.11.11.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 May 2021 05:15:42 -0700 (PDT)
-Date: Wed, 19 May 2021 08:15:41 -0400
-From: Peter Xu <peterx@redhat.com>
-To: Alistair Popple <apopple@nvidia.com>
-Message-ID: <YKUBbVuvm5FUJRMl@t490s>
-References: <20210407084238.20443-1-apopple@nvidia.com>
+ Wed, 19 May 2021 11:11:39 -0700 (PDT)
+Received: from jgg by mlx with local (Exim 4.94) (envelope-from <jgg@ziepe.ca>)
+ id 1ljQfS-00AnPK-Mv; Wed, 19 May 2021 15:11:38 -0300
+Date: Wed, 19 May 2021 15:11:38 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Peter Xu <peterx@redhat.com>
+Message-ID: <20210519181138.GU1096940@ziepe.ca>
+References: <47694715.suB6H4Uo8R@nvdebian> <YKP5Dj4Q/riGGc43@t490s>
+ <20210518173334.GE1002214@nvidia.com> <YKQBACJCjsxeM3ro@t490s>
+ <20210518194509.GF1002214@nvidia.com> <YKQjmtMo+YQGx/wZ@t490s>
  <20210518230327.GG1002214@nvidia.com> <YKRRgZmRMdk1vH7A@t490s>
- <2235357.HsqDk0zIjc@nvdebian>
+ <20210519132842.GJ1002214@nvidia.com> <YKUcHfhQMbDnjXC7@t490s>
 MIME-Version: 1.0
-In-Reply-To: <2235357.HsqDk0zIjc@nvdebian>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=peterx@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
 Content-Disposition: inline
-X-Mailman-Approved-At: Wed, 19 May 2021 16:29:11 +0000
+In-Reply-To: <YKUcHfhQMbDnjXC7@t490s>
 Subject: Re: [Nouveau] [PATCH v8 5/8] mm: Device exclusive memory access
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -92,42 +84,22 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcampbell@nvidia.com, willy@infradead.org, daniel@ffwll.ch,
- linux-doc@vger.kernel.org, nouveau@lists.freedesktop.org,
- bsingharora@gmail.com, linux-kernel@vger.kernel.org,
+Cc: rcampbell@nvidia.com, willy@infradead.org, linux-doc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, bsingharora@gmail.com,
+ Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org,
  dri-devel@lists.freedesktop.org, hch@infradead.org, linux-mm@kvack.org,
- bskeggs@redhat.com, Jason Gunthorpe <jgg@nvidia.com>,
- akpm@linux-foundation.org, Christoph Hellwig <hch@lst.de>
+ bskeggs@redhat.com, daniel@ffwll.ch, akpm@linux-foundation.org,
+ Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, May 19, 2021 at 09:04:53PM +1000, Alistair Popple wrote:
-> Failing fork() because we couldn't take a lock doesn't seem like the right 
-> approach though, especially as there is already existing code that retries. I 
-> get this adds complexity though, so would be happy to take a look at cleaning 
-> copy_pte_range() up in future.
+> Sorry for the noise.
 
-Yes, I proposed that as this one won't affect any existing applications (unlike
-the existing ones) but only new userspace driver apps that will use this new
-atomic feature.
+Not at all, it is good that more people understand things!
 
-IMHO it'll be a pity to add extra complexity and maintainance burden into
-fork() if only for keeping the "logical correctness of fork()" however the code
-never triggers. If we start with trylock we'll know whether people will use it,
-since people will complain with a reason when needed; however I still doubt
-whether a sane userspace device driver should fork() within busy interaction
-with the device underneath..
-
-In all cases, please still consider to keep them in copy_nonpresent_pte() (and
-if to rework, separating patches would be great).
-
-Thanks,
-
--- 
-Peter Xu
-
+Jason
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
