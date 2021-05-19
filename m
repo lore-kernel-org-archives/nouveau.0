@@ -6,71 +6,76 @@ X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B033FC433ED
-	for <nouveau@archiver.kernel.org>; Wed, 19 May 2021 16:29:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EFC22C433B4
+	for <nouveau@archiver.kernel.org>; Wed, 19 May 2021 16:29:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 787E161007
-	for <nouveau@archiver.kernel.org>; Wed, 19 May 2021 16:29:18 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 787E161007
+	by mail.kernel.org (Postfix) with ESMTPS id 0D1D461007
+	for <nouveau@archiver.kernel.org>; Wed, 19 May 2021 16:29:20 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0D1D461007
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A441C6EE1E;
-	Wed, 19 May 2021 16:29:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A6DC6EE2D;
+	Wed, 19 May 2021 16:29:12 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 969226ECA9
- for <nouveau@lists.freedesktop.org>; Tue, 18 May 2021 21:16:44 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 862936EDC3
+ for <nouveau@lists.freedesktop.org>; Wed, 19 May 2021 14:09:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1621372603;
+ s=mimecast20190719; t=1621433377;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=6yuOc2aL9R33jaIl7mlMHhqH6hbm5A0t+kn6e6OKsWE=;
- b=S7oIJY1pBUY+y3xOY9sHqrU9CfblvFEvJZJ3pV8M0MfBEz4sV2n52FW0dsscQbRePEPone
- f/FXagl3vNCkFUasOmL3/j4Tg2cil5PFtD537sMB+9DKgfl46Sl1g7QTwY5gFnUr6rPC2c
- q9QEtwR6Y8kz+cFxqUOsynomcOSJi6k=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-456-JldQ032nP9i0CPDVA2_Dzg-1; Tue, 18 May 2021 17:16:42 -0400
-X-MC-Unique: JldQ032nP9i0CPDVA2_Dzg-1
-Received: by mail-qt1-f197.google.com with SMTP id
- 1-20020aed31010000b029019d1c685840so8365109qtg.3
- for <nouveau@lists.freedesktop.org>; Tue, 18 May 2021 14:16:42 -0700 (PDT)
+ bh=uA5LBQUpQQcpe5I2oDgwRimXB7jI4me/eAnHY5LMMkc=;
+ b=KFmiMj3s2us43/++cpPNGprz9FWDrJ3XOUFDYYYXGhqmakgiZ/af8CvyAPfS2kBeoNwt9l
+ uPLmAoOb9RYF4gt6p5J4+UBUHQn+V6bSki4q/yB2cDS9v9MsxkV+4jW+9hH0GnZZ7GHvHC
+ 28jjjOWVpS4imP0Qszj0PUjZK5b7Kw4=
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
+ [209.85.219.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-221-bCZDavjrPluxySxUG3PZBw-1; Wed, 19 May 2021 10:09:35 -0400
+X-MC-Unique: bCZDavjrPluxySxUG3PZBw-1
+Received: by mail-qv1-f69.google.com with SMTP id
+ w4-20020a0c8e440000b02901f0640ffdafso5553297qvb.13
+ for <nouveau@lists.freedesktop.org>; Wed, 19 May 2021 07:09:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=6yuOc2aL9R33jaIl7mlMHhqH6hbm5A0t+kn6e6OKsWE=;
- b=UjwdeVPCb20CrdAdK7lFgPRGDNpDPgWGJvJUXWs4WMTjqo2GF8pcXtcRVvAcSF4nme
- 3l8Nm0WAmDiZdhRPE2j5gsK+J4xcZCfYIyA9hKX0aDIQQrPM2TA76UU0Lyvv1Csi1009
- gNHWOpA1ZveD8HZkg625JWZeTD1s1H/Y+JMSeXBYSaAs8byBrikdAgef6NzbDrKkfRqx
- bt6DSZnaEii2zuo6M6G5A/QoKwAua+WYdpVopAFuoblZVdvNgsrexpqsZDMgxkI6dUny
- aN7/UOmy4ANltv2DVqfIHNetoG+1zcr2ln1llrRaXSDQv6VLxV2+uiEQRjbQvpggjgyV
- R1RA==
-X-Gm-Message-State: AOAM530Cb4tgooAWTnKFp7tjVJpGCjNKrt8I5+eGapjERT3VSy0XSFeR
- FJAH66yUzVEPdQ6vuKmGJaNSEf5x+yvWQ2fD3sXc8njENYiB1sPvLIQpyVHwSNyX5quRfsY4mbu
- hdrRDyOznnQw2ix6flNQ7BU5x5A==
-X-Received: by 2002:ac8:5b81:: with SMTP id a1mr7111157qta.172.1621372601481; 
- Tue, 18 May 2021 14:16:41 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJz7CflObEdpN93nC2c9rCnQMv5qBohaNF3R0O5eiJLrnt/E6MHpUTkD6EfDzN6tiXMS/VwRag==
-X-Received: by 2002:ac8:5b81:: with SMTP id a1mr7111124qta.172.1621372601142; 
- Tue, 18 May 2021 14:16:41 -0700 (PDT)
+ bh=uA5LBQUpQQcpe5I2oDgwRimXB7jI4me/eAnHY5LMMkc=;
+ b=TMRL0/AB0jkdG5G3dD6gqgnfSNT3B3O4QAamkcnj+aDtkZLKM4cPMj0EzItiW7LVHM
+ AtyXSgbrCWq0iCjvN/1+OacJ5Si7fDS8DE/I5j5DVqwL/E85xmfmeJjV5D3JIGdEyvuq
+ vD+/dgBoNsooVM0MldhK4kaRbzGdUegRcmIG9rtSBjMUXAKAgbg/MG75mBammraHU5bA
+ N4GwnSJshRDZXBc/ZGJJa2s5N7fEJGdIvUEc/v7WGfQmM5jDa4LkCKOlDi1B/QNGQ6nR
+ HezjydCCSqlwl3Wwe4p26YlMQPJNJYrnXYOHavfUDiIKSkMwsAQaMkoC5cgWdR1PDZ8T
+ gqQA==
+X-Gm-Message-State: AOAM53210kQOrFz0WbkAltL47+MZvCaMr4MEHUSLqY5pKdD5hqFVW8Wj
+ BucTKlad17AGfW1FUMJZ/o5EEKpoaXIKoJ74qVKvZerUWslne6u4W9VBG+xtuoMcHKt6kbZDobk
+ NVDX6OHlymZvmnG2/tBeVpswCaQ==
+X-Received: by 2002:a05:622a:413:: with SMTP id
+ n19mr11309608qtx.238.1621433375268; 
+ Wed, 19 May 2021 07:09:35 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwfgXghdceBt0pzuJuLcMWZrj1qSDnzHPuTLDIdA4muPS9QaO8qeOo+lEtQMgzjzxGPQ17Ppg==
+X-Received: by 2002:a05:622a:413:: with SMTP id
+ n19mr11309576qtx.238.1621433375015; 
+ Wed, 19 May 2021 07:09:35 -0700 (PDT)
 Received: from t490s (bras-base-toroon474qw-grc-72-184-145-4-219.dsl.bell.ca.
  [184.145.4.219])
- by smtp.gmail.com with ESMTPSA id v66sm13507150qkd.113.2021.05.18.14.16.39
+ by smtp.gmail.com with ESMTPSA id c20sm15634299qtm.52.2021.05.19.07.09.33
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 18 May 2021 14:16:40 -0700 (PDT)
-Date: Tue, 18 May 2021 17:16:38 -0400
+ Wed, 19 May 2021 07:09:34 -0700 (PDT)
+Date: Wed, 19 May 2021 10:09:33 -0400
 From: Peter Xu <peterx@redhat.com>
-To: Alistair Popple <apopple@nvidia.com>
-Message-ID: <YKQutvAa3NlgGaMm@t490s>
-References: <20210407084238.20443-1-apopple@nvidia.com>
- <20210407084238.20443-6-apopple@nvidia.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Message-ID: <YKUcHfhQMbDnjXC7@t490s>
+References: <YKMhorngO2DVrxac@t490s> <47694715.suB6H4Uo8R@nvdebian>
+ <YKP5Dj4Q/riGGc43@t490s> <20210518173334.GE1002214@nvidia.com>
+ <YKQBACJCjsxeM3ro@t490s> <20210518194509.GF1002214@nvidia.com>
+ <YKQjmtMo+YQGx/wZ@t490s> <20210518230327.GG1002214@nvidia.com>
+ <YKRRgZmRMdk1vH7A@t490s> <20210519132842.GJ1002214@nvidia.com>
 MIME-Version: 1.0
-In-Reply-To: <20210407084238.20443-6-apopple@nvidia.com>
+In-Reply-To: <20210519132842.GJ1002214@nvidia.com>
 Authentication-Results: relay.mimecast.com;
  auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=peterx@redhat.com
 X-Mimecast-Spam-Score: 0
@@ -89,82 +94,49 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcampbell@nvidia.com, willy@infradead.org, daniel@ffwll.ch,
- linux-doc@vger.kernel.org, nouveau@lists.freedesktop.org,
- bsingharora@gmail.com, linux-kernel@vger.kernel.org,
+Cc: rcampbell@nvidia.com, willy@infradead.org, linux-doc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, bsingharora@gmail.com,
+ Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org,
  dri-devel@lists.freedesktop.org, hch@infradead.org, linux-mm@kvack.org,
- bskeggs@redhat.com, jgg@nvidia.com, akpm@linux-foundation.org,
+ bskeggs@redhat.com, daniel@ffwll.ch, akpm@linux-foundation.org,
  Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Apr 07, 2021 at 06:42:35PM +1000, Alistair Popple wrote:
+On Wed, May 19, 2021 at 10:28:42AM -0300, Jason Gunthorpe wrote:
+> On Tue, May 18, 2021 at 07:45:05PM -0400, Peter Xu wrote:
+> > On Tue, May 18, 2021 at 08:03:27PM -0300, Jason Gunthorpe wrote:
+> > > Logically during fork all these device exclusive pages should be
+> > > reverted back to their CPU pages, write protected and the CPU page PTE
+> > > copied to the fork.
+> > > 
+> > > We should not copy the device exclusive page PTE to the fork. I think
+> > > I pointed to this on an earlier rev..
+> > 
+> > Agreed.  Though please see the question I posted in the other thread: now I am
+> > not very sure whether we'll be able to mark a page as device exclusive if that
+> > page has mapcount>1.
+> 
+> IMHO it is similar to write protect done by filesystems on shared
+> mappings - all VMAs with a copy of the CPU page have to get switched
+> to the device exclusive PTE. This is why the rmap stuff is involved in
+> the migration helpers
 
-[...]
+Right, I think Alistair corrected me there that I missed the early COW
+happening in GUP.
 
-> +static bool try_to_protect(struct page *page, struct mm_struct *mm,
-> +			   unsigned long address, void *arg)
-> +{
-> +	struct ttp_args ttp = {
-> +		.mm = mm,
-> +		.address = address,
-> +		.arg = arg,
-> +		.valid = false,
-> +	};
-> +	struct rmap_walk_control rwc = {
-> +		.rmap_one = try_to_protect_one,
-> +		.done = page_not_mapped,
-> +		.anon_lock = page_lock_anon_vma_read,
-> +		.arg = &ttp,
-> +	};
-> +
-> +	/*
-> +	 * Restrict to anonymous pages for now to avoid potential writeback
-> +	 * issues.
-> +	 */
-> +	if (!PageAnon(page))
-> +		return false;
-> +
-> +	/*
-> +	 * During exec, a temporary VMA is setup and later moved.
-> +	 * The VMA is moved under the anon_vma lock but not the
-> +	 * page tables leading to a race where migration cannot
-> +	 * find the migration ptes. Rather than increasing the
-> +	 * locking requirements of exec(), migration skips
-> +	 * temporary VMAs until after exec() completes.
-> +	 */
-> +	if (!PageKsm(page) && PageAnon(page))
-> +		rwc.invalid_vma = invalid_migration_vma;
-> +
-> +	rmap_walk(page, &rwc);
-> +
-> +	return ttp.valid && !page_mapcount(page);
-> +}
+Actually even without that GUP triggering early COW it won't be a problem,
+because as long as one child mm restored the pte from exclusive to normal
+(before any further COW happens) device exclusiveness is broken in the mmu
+notifiers, and after that point all previous-exclusive ptes actually becomes
+the same as a very normal PageAnon.  Then it's very sane to even not have the
+original page in parent process, because we know each COWed page will contain
+all the device atomic modifications (so we don't really have the requirement to
+return the original page to parent).
 
-I raised a question in the other thread regarding fork():
-
-https://lore.kernel.org/lkml/YKQjmtMo+YQGx%2FwZ@t490s/
-
-While I suddenly noticed that we may have similar issues even if we fork()
-before creating the ptes.
-
-In that case, we may see multiple read-only ptes pointing to the same page.  We
-will convert all of them into device exclusive read ptes in rmap_walk() above,
-however how do we guarantee after all COW done in the parent and all the childs
-processes, the device owned page will be returned to the parent?
-
-E.g., if parent accesses the page earlier than the children processes
-(actually, as long as not the last one), do_wp_page() will do COW for parent on
-this page because refcount(page)>1, then the page seems to get lost to a random
-child too..
-
-To resolve all these complexity, not sure whether try_to_protect() could
-enforce VM_DONTCOPY (needs madvise MADV_DONTFORK in the user app), meanwhile
-make sure mapcount(page)==1 before granting the page to the device, so that
-this will guarantee this mm owns this page forever, I think?  It'll simplify
-fork() too as a side effect, since VM_DONTCOPY vma go away when fork.
+Sorry for the noise.
 
 -- 
 Peter Xu
