@@ -2,74 +2,55 @@ Return-Path: <SRS0=A/Vf=KU=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 64CF6C2B9F8
-	for <nouveau@archiver.kernel.org>; Tue, 25 May 2021 16:59:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AAA3AC4707F
+	for <nouveau@archiver.kernel.org>; Tue, 25 May 2021 16:59:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 25564613FA
-	for <nouveau@archiver.kernel.org>; Tue, 25 May 2021 16:59:51 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 25564613FA
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 6F865613FA
+	for <nouveau@archiver.kernel.org>; Tue, 25 May 2021 16:59:52 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6F865613FA
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A9516E413;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6C126E415;
 	Tue, 25 May 2021 16:59:50 +0000 (UTC)
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com
- [IPv6:2607:f8b0:4864:20::634])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA2E76E9FD;
- Tue, 25 May 2021 11:51:50 +0000 (UTC)
-Received: by mail-pl1-x634.google.com with SMTP id a7so7529962plh.3;
- Tue, 25 May 2021 04:51:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=b+pvn2nXkSIJnrU7EGg7e76c9ZIrOlzh6tmn2/UaWAc=;
- b=ux/BjJOENvYmKF+ItVg8NVlJLXaqpULPGGtnzWVllw854nwWBHJtg7js6S0+4puWIT
- HNFk7FvLe6A5F4iSNA18uI+QwuYBI6cstX2kp6/jFPpHIWZdNLOyKm0v0zdbWVp0nKI6
- HqR4ofzG4AqYFMUnPPUM8HXxA7uzIl1hif+FJ/NNcv0XZMXnIM8V5AqQHqWwGZzomiRw
- 3nryiUCt0I7ipoDmFjFB+XowZ+AeazKQGBOvY+51jezOPJxSVT++LWMbjlc9kwKkoOnB
- UN6CQFWOghl8Cb/qWvrTgU76fuRlCqvt25hSfMfxZm3nmOBOHI66kRc6nyQLiYuKA9g8
- Svkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=b+pvn2nXkSIJnrU7EGg7e76c9ZIrOlzh6tmn2/UaWAc=;
- b=oqV6Ipte2VxW5XRj44LeiT9A7in6tt5Dk8zvB95xpMbQW5px8m38TPISsBc0IXCY7l
- itHYM2Yq9PvsRhdV12HmuN1n2/evxbqmoz3lImzz0dyc4DzvzjjfnR2+nh03D8i08gAE
- gaAcF9xJFNYt0UsN39X8edlysYELPaXnlvVgWXM3N3cWzD3mBDISLnMDC8Z926vOremO
- 5T30TwiHW3Kq2druXTJaqEhPY1JCrkLK+geR9gXzYu3xRblxA0H+rhhWW+G2IjuXg9nB
- PpmdvKAAILhBlTcBBTIykunFjwKtsLgi5szto9YwQOht42PCOFS51OJMYrO3lRfy4beP
- qkxw==
-X-Gm-Message-State: AOAM532pTJqBaCn+X0zIiFxw5bMZeFq5rGFW6VWy7ofD+SXjPdDHQ5f8
- 1Z8tB/5jrrV4uRvw6Wm/twM=
-X-Google-Smtp-Source: ABdhPJz6/UGyoOENAI29h279nKb1UeFwzFTVYdRAISes6uazmeV+8/t7UzyopHxY49DpGs0pQGb9UQ==
-X-Received: by 2002:a17:902:6b84:b029:ee:f966:1911 with SMTP id
- p4-20020a1709026b84b02900eef9661911mr29965113plk.69.1621943509655; 
- Tue, 25 May 2021 04:51:49 -0700 (PDT)
-Received: from localhost (14-200-114-182.static.tpgi.com.au. [14.200.114.182])
- by smtp.gmail.com with ESMTPSA id
- lj13sm1908099pjb.3.2021.05.25.04.51.46
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 25 May 2021 04:51:47 -0700 (PDT)
-Date: Tue, 25 May 2021 21:51:44 +1000
-From: Balbir Singh <bsingharora@gmail.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Message-ID: <YKzk0ILRsyazMs2W@balbir-desktop>
-References: <20210524132725.12697-1-apopple@nvidia.com>
- <20210524132725.12697-8-apopple@nvidia.com>
- <20210524151157.2dc5d2bb510ff86dc449bf0c@linux-foundation.org>
+Received: from szxga07-in.huawei.com (szxga07-in.huawei.com [45.249.212.35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2680689A44;
+ Tue, 25 May 2021 08:15:44 +0000 (UTC)
+Received: from dggems705-chm.china.huawei.com (unknown [172.30.72.58])
+ by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4Fq6Jd56pgzBwRf;
+ Tue, 25 May 2021 16:12:49 +0800 (CST)
+Received: from dggpeml500020.china.huawei.com (7.185.36.88) by
+ dggems705-chm.china.huawei.com (10.3.19.182) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 25 May 2021 16:15:41 +0800
+Received: from huawei.com (10.175.127.227) by dggpeml500020.china.huawei.com
+ (7.185.36.88) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 25 May
+ 2021 16:15:40 +0800
+From: Baokun Li <libaokun1@huawei.com>
+To: <bskeggs@redhat.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+ <sumit.semwal@linaro.org>, <christian.koenig@amd.com>,
+ <dri-devel@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+ <linaro-mm-sig@lists.linaro.org>
+Date: Tue, 25 May 2021 16:25:11 +0800
+Message-ID: <20210525082511.580068-1-libaokun1@huawei.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210524151157.2dc5d2bb510ff86dc449bf0c@linux-foundation.org>
+X-Originating-IP: [10.175.127.227]
+X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
+ dggpeml500020.china.huawei.com (7.185.36.88)
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Tue, 25 May 2021 16:59:50 +0000
-Subject: Re: [Nouveau] [PATCH v9 07/10] mm: Device exclusive memory access
+Subject: [Nouveau] [PATCH -next] drm/nouveau: Remove set but not used
+ variable 'dev'
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,89 +62,42 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcampbell@nvidia.com, willy@infradead.org, linux-doc@vger.kernel.org,
- nouveau@lists.freedesktop.org, Alistair Popple <apopple@nvidia.com>,
- hughd@google.com, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, hch@infradead.org, linux-mm@kvack.org,
- bskeggs@redhat.com, jgg@nvidia.com, peterx@redhat.com,
- Christoph Hellwig <hch@lst.de>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: yuehaibing@huawei.com, libaokun1@huawei.com, weiyongjun1@huawei.com,
+ yukuai3@huawei.com, yangjihong1@huawei.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, May 24, 2021 at 03:11:57PM -0700, Andrew Morton wrote:
-> On Mon, 24 May 2021 23:27:22 +1000 Alistair Popple <apopple@nvidia.com> wrote:
-> 
-> > Some devices require exclusive write access to shared virtual
-> > memory (SVM) ranges to perform atomic operations on that memory. This
-> > requires CPU page tables to be updated to deny access whilst atomic
-> > operations are occurring.
-> > 
-> > In order to do this introduce a new swap entry
-> > type (SWP_DEVICE_EXCLUSIVE). When a SVM range needs to be marked for
-> > exclusive access by a device all page table mappings for the particular
-> > range are replaced with device exclusive swap entries. This causes any
-> > CPU access to the page to result in a fault.
-> > 
-> > Faults are resovled by replacing the faulting entry with the original
-> > mapping. This results in MMU notifiers being called which a driver uses
-> > to update access permissions such as revoking atomic access. After
-> > notifiers have been called the device will no longer have exclusive
-> > access to the region.
-> > 
-> > Walking of the page tables to find the target pages is handled by
-> > get_user_pages() rather than a direct page table walk. A direct page
-> > table walk similar to what migrate_vma_collect()/unmap() does could also
-> > have been utilised. However this resulted in more code similar in
-> > functionality to what get_user_pages() provides as page faulting is
-> > required to make the PTEs present and to break COW.
-> > 
-> > ...
-> >
-> >  Documentation/vm/hmm.rst     |  17 ++++
-> >  include/linux/mmu_notifier.h |   6 ++
-> >  include/linux/rmap.h         |   4 +
-> >  include/linux/swap.h         |   7 +-
-> >  include/linux/swapops.h      |  44 ++++++++-
-> >  mm/hmm.c                     |   5 +
-> >  mm/memory.c                  | 128 +++++++++++++++++++++++-
-> >  mm/mprotect.c                |   8 ++
-> >  mm/page_vma_mapped.c         |   9 +-
-> >  mm/rmap.c                    | 186 +++++++++++++++++++++++++++++++++++
-> >  10 files changed, 405 insertions(+), 9 deletions(-)
-> > 
-> 
-> This is quite a lot of code added to core MM for a single driver.
-> 
-> Is there any expectation that other drivers will use this code?
-> 
-> Is there a way of reducing the impact (code size, at least) for systems
-> which don't need this code?
->
-> How beneficial is this code to nouveau users?  I see that it permits a
-> part of OpenCL to be implemented, but how useful/important is this in
-> the real world?
-
-That is a very good question! I've not reviewed the code, but a sample
-program with the described use case would make things easy to parse.
-I suspect that is not easy to build at the moment?
-
-I wonder how we co-ordinate all the work the mm is doing, page migration,
-reclaim with device exclusive access? Do we have any numbers for the worst
-case page fault latency when something is marked away for exclusive access?
-I presume for now this is anonymous memory only? SWP_DEVICE_EXCLUSIVE would
-only impact the address space of programs using the GPU. Should the exclusively
-marked range live in the unreclaimable list and recycled back to active/in-active
-to account for the fact that
-
-1. It is not reclaimable and reclaim will only hurt via page faults?
-2. It ages the page correctly or at-least allows for that possibility when the
-   page is used by the GPU.
-
-Balbir Singh.
- 
-_______________________________________________
-Nouveau mailing list
-Nouveau@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
+Rml4ZXMgZ2NjICctV3VudXNlZC1idXQtc2V0LXZhcmlhYmxlJyB3YXJuaW5nOgoKZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jOiBJbiBmdW5jdGlvbiAnbm91dmVhdV90dG1fdHRf
+cG9wdWxhdGUnOgpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmM6MTI1ODoxNzog
+d2FybmluZzoKIHZhcmlhYmxlIOKAmGRlduKAmSBzZXQgYnV0IG5vdCB1c2VkIFstV3VudXNlZC1i
+dXQtc2V0LXZhcmlhYmxlXQoKZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jOiBJ
+biBmdW5jdGlvbiAnbm91dmVhdV90dG1fdHRfdW5wb3B1bGF0ZSc6CmRyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L25vdXZlYXVfYm8uYzoxMjgxOjE3OiB3YXJuaW5nOgogdmFyaWFibGUg4oCYZGV24oCZ
+IHNldCBidXQgbm90IHVzZWQgWy1XdW51c2VkLWJ1dC1zZXQtdmFyaWFibGVdCgpJdCBuZXZlciB1
+c2VkIHNpbmNlIGludHJvZHVjdGlvbi4KClNpZ25lZC1vZmYtYnk6IEJhb2t1biBMaSA8bGliYW9r
+dW4xQGh1YXdlaS5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5j
+IHwgNCAtLS0tCiAxIGZpbGUgY2hhbmdlZCwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9ub3V2ZWF1X2JvLmMKaW5kZXggN2EyNjI0YzBiYTRjLi41MWY5YTJlNjUzMmUgMTAwNjQ0
+Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYworKysgYi9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMKQEAgLTEyNTQsNyArMTI1NCw2IEBAIG5vdXZl
+YXVfdHRtX3R0X3BvcHVsYXRlKHN0cnVjdCB0dG1fZGV2aWNlICpiZGV2LAogewogCXN0cnVjdCB0
+dG1fdHQgKnR0bV9kbWEgPSAodm9pZCAqKXR0bTsKIAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybTsK
+LQlzdHJ1Y3QgZGV2aWNlICpkZXY7CiAJYm9vbCBzbGF2ZSA9ICEhKHR0bS0+cGFnZV9mbGFncyAm
+IFRUTV9QQUdFX0ZMQUdfU0cpOwogCiAJaWYgKHR0bV90dF9pc19wb3B1bGF0ZWQodHRtKSkKQEAg
+LTEyNjcsNyArMTI2Niw2IEBAIG5vdXZlYXVfdHRtX3R0X3BvcHVsYXRlKHN0cnVjdCB0dG1fZGV2
+aWNlICpiZGV2LAogCX0KIAogCWRybSA9IG5vdXZlYXVfYmRldihiZGV2KTsKLQlkZXYgPSBkcm0t
+PmRldi0+ZGV2OwogCiAJcmV0dXJuIHR0bV9wb29sX2FsbG9jKCZkcm0tPnR0bS5iZGV2LnBvb2ws
+IHR0bSwgY3R4KTsKIH0KQEAgLTEyNzcsMTQgKzEyNzUsMTIgQEAgbm91dmVhdV90dG1fdHRfdW5w
+b3B1bGF0ZShzdHJ1Y3QgdHRtX2RldmljZSAqYmRldiwKIAkJCSAgc3RydWN0IHR0bV90dCAqdHRt
+KQogewogCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtOwotCXN0cnVjdCBkZXZpY2UgKmRldjsKIAli
+b29sIHNsYXZlID0gISEodHRtLT5wYWdlX2ZsYWdzICYgVFRNX1BBR0VfRkxBR19TRyk7CiAKIAlp
+ZiAoc2xhdmUpCiAJCXJldHVybjsKIAogCWRybSA9IG5vdXZlYXVfYmRldihiZGV2KTsKLQlkZXYg
+PSBkcm0tPmRldi0+ZGV2OwogCiAJcmV0dXJuIHR0bV9wb29sX2ZyZWUoJmRybS0+dHRtLmJkZXYu
+cG9vbCwgdHRtKTsKIH0KLS0gCjIuMjUuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1Cg==
