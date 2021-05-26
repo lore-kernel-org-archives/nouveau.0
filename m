@@ -2,108 +2,70 @@ Return-Path: <SRS0=2GqL=KV=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,NICE_REPLY_A,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B50AC2B9F7
-	for <nouveau@archiver.kernel.org>; Wed, 26 May 2021 07:17:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 95A45C47088
+	for <nouveau@archiver.kernel.org>; Wed, 26 May 2021 08:47:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B942161402
-	for <nouveau@archiver.kernel.org>; Wed, 26 May 2021 07:17:29 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B942161402
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=nvidia.com
+	by mail.kernel.org (Postfix) with ESMTPS id 6074B613BC
+	for <nouveau@archiver.kernel.org>; Wed, 26 May 2021 08:47:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6074B613BC
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A8056EC23;
-	Wed, 26 May 2021 07:17:23 +0000 (UTC)
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam08on2063.outbound.protection.outlook.com [40.107.100.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C1706EC16;
- Wed, 26 May 2021 07:17:21 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jToHS8iJJDZCJFjUUPDRYvnNTZOAAPajj0zXvheeyWwvRrxNW3yXrlKL0Ah03yZwnO+u9noJJwQ4rDuq3G09TRBugJzsWzNt/K8e+XNKzwzELjAJN6n+1s9n4G5JUGXLGfU/JK6axTEXJxlDBNcodNDxc7+GGXxQs523He9PIFFOdISqWpW/kAISGNwrSvu0+khxyifAMEyfa04R/3p8xC4W0IyGz0zaYDdfmpwqFZMwrRNX1FYxvHwyhAj9ECasmisqXX7QnGh6RyhVLKOKdg6J6/Hrk8n002SQk1TPg759ZsHBnjYPMxZ43xU4/oNyOe/zKIP1CS9qIE3Y7popDQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Qh8rmQEzaA+mHnWGWWAn9Tu+1Nzmr2FR4YAnqwaF59s=;
- b=eBpKAnxDSAInNYt1IUkuFD5AUifxaDtbtOQr0aNOCn8N0TciuULjYDD3U0KSBfoQqQAxr6PY/TaPepjQDbcoGN9LGbVufbuhM7eTdNYGu2rY8YH9cpieTAphqdnIOXhOA4ROh1ZxQ/SMqoTvEqeOsRgH3AeqwVRmJEY7hZRBIeUZTH6Fn8dUWkjdWsDh52KkVsfAaW4wuv0kb6vlOpMiVIe33WPLANkIxMdMPxGs+MZ/qzkI9+AtkgUFkVoyMPj/+kWpAfxU02AHM1Y3eNDIBXBe5kDushlR6ji+CU0vjKxyExz9xDhBnzea+WwVsuJoGPT9P4NRwndsmevYXco53w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.34) smtp.rcpttodomain=redhat.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Qh8rmQEzaA+mHnWGWWAn9Tu+1Nzmr2FR4YAnqwaF59s=;
- b=SQdzpc7GYiDjUOx4nPHeOFBE7swjunXHRT5SeYH/5hyxKX8i7ahJy+o++7gtZprX1jV+9Qctuqh3djlctoeDgLCV52uzQHOar9wTFy8uMq8HWEdNby3dlkkB1fApbdYZeHjPmoxIu9mP+C/xrtKRLGC1x1raFBrY34Kxqi7cS9Li6uqROXhiUvOm8dERONOiHTW5x0f4dSjSMuJ4L5vTDsQ+KWb6i4m37Pq0HEPww0/u14PTQP/4wH/vur9P8gI/SrIchLhqSk84eC0WsW3+Y7Iq3u2Hocfxjv42gq7Hb0tlqyETvHXERLZS8I9yMtPkGkE7RJj5S1Iy/RiC+tvS9g==
-Received: from MW2PR2101CA0016.namprd21.prod.outlook.com (2603:10b6:302:1::29)
- by DM6PR12MB5006.namprd12.prod.outlook.com (2603:10b6:5:1b8::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.23; Wed, 26 May
- 2021 07:17:19 +0000
-Received: from CO1NAM11FT035.eop-nam11.prod.protection.outlook.com
- (2603:10b6:302:1:cafe::a3) by MW2PR2101CA0016.outlook.office365.com
- (2603:10b6:302:1::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.2 via Frontend
- Transport; Wed, 26 May 2021 07:17:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
- smtp.mailfrom=nvidia.com; redhat.com; dkim=none (message not signed)
- header.d=none;redhat.com; dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.34; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.34) by
- CO1NAM11FT035.mail.protection.outlook.com (10.13.175.36) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4129.25 via Frontend Transport; Wed, 26 May 2021 07:17:19 +0000
-Received: from [10.2.60.51] (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 26 May
- 2021 07:17:18 +0000
-To: Balbir Singh <bsingharora@gmail.com>, Andrew Morton
- <akpm@linux-foundation.org>
-References: <20210524132725.12697-1-apopple@nvidia.com>
- <20210524132725.12697-8-apopple@nvidia.com>
- <20210524151157.2dc5d2bb510ff86dc449bf0c@linux-foundation.org>
- <YKzk0ILRsyazMs2W@balbir-desktop>
-From: John Hubbard <jhubbard@nvidia.com>
-Message-ID: <8844f8c1-d78c-e0f9-c046-592bd75d4c07@nvidia.com>
-Date: Wed, 26 May 2021 00:17:18 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EA8A6EC40;
+	Wed, 26 May 2021 08:47:44 +0000 (UTC)
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
+ [IPv6:2a00:1450:4864:20::436])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3FE36EC2F
+ for <nouveau@lists.freedesktop.org>; Wed, 26 May 2021 08:47:42 +0000 (UTC)
+Received: by mail-wr1-x436.google.com with SMTP id d11so189067wrw.8
+ for <nouveau@lists.freedesktop.org>; Wed, 26 May 2021 01:47:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=SjYtCEx4Gm+TGSpGlmvvhCGW5wnbP6a4KsRuIEipo4s=;
+ b=k1w7aNlLT1e33HjFRfzfE/UNKNo0S/GpjOvyoBjBf/hSBqbU+mHpuVOC4MwqDZJDv0
+ snC2Kzgy1Bmynda/6vGqWZAcIoOhIL201vTq6tYQVFZD/1G23DST+cA1Bn0EErZVOVWh
+ J+81I50IbJqyFwwd+QKxO+UmcFzA0CQpPxsEmbzJrBnenMZs+9twXLjtaCkJvWf4LXLL
+ HjC+MCrFrmUZNx2KrSyaJHPpyqc+jQiJZ0HlkjWoceJSs5UR2J4Lk4BMmvZSPhCMLLJB
+ eeMSoO4uXccH9L0S4w9Rk9YQ5zJkC5Z/f2nJmK6Kl/ob+2DCmdVDD51nnJdAiYtHcGFO
+ 5z3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=SjYtCEx4Gm+TGSpGlmvvhCGW5wnbP6a4KsRuIEipo4s=;
+ b=G0E9ctVTw6yyfU36anuBljIfquF2YqO8Rv75JARGo2UH+wo/2xgE+hm7vKUrCte3ti
+ sn5+8IufUuhJRy5M/FEDOS6y63uL8p3NzgktlPKfgMuUuwt0CGx62RNyLxvdLJDjwiuk
+ sjmLZIJ1qoNVX+jGFRmVy6He0gAgQl0yOZL/sXwCx5YN+fC1weJ/KRiFLBTMLn+ehIvd
+ 5ISCpQF44oskTazbwzXUWItejxyYiwwRGoYJkdFXtphSpTVwof6OHTiQH52p/p29Ub3U
+ v/foLjNz7Cooxh/ggQZN661nhlWjuvhMqF5/3SAVa5Q9x7zu/o+Qef6T/6gQS5Kuk3Gc
+ kmYw==
+X-Gm-Message-State: AOAM530eYhqeLN0pDPZFhWcAxdbFB+s2Y6fwJWxM/qFs8mUUzBK9381b
+ 2It6UhophDUUYMYDAivjyaT8qg==
+X-Google-Smtp-Source: ABdhPJxkBloP9sj4QDUuVgg6Pp0GCfuC1kUavbMKW3GJ7C1DQ9Z+b1WzJFjhv91nuhvw1t+89Vvu6g==
+X-Received: by 2002:adf:f9d0:: with SMTP id w16mr32450663wrr.336.1622018861604; 
+ Wed, 26 May 2021 01:47:41 -0700 (PDT)
+Received: from dell.default ([91.110.221.223])
+ by smtp.gmail.com with ESMTPSA id l18sm18911918wrt.97.2021.05.26.01.47.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 26 May 2021 01:47:41 -0700 (PDT)
+From: Lee Jones <lee.jones@linaro.org>
+To: lee.jones@linaro.org
+Date: Wed, 26 May 2021 09:47:03 +0100
+Message-Id: <20210526084726.552052-12-lee.jones@linaro.org>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210526084726.552052-1-lee.jones@linaro.org>
+References: <20210526084726.552052-1-lee.jones@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <YKzk0ILRsyazMs2W@balbir-desktop>
-Content-Language: en-US
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4d5531b0-d882-4dc7-4f54-08d920164c72
-X-MS-TrafficTypeDiagnostic: DM6PR12MB5006:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB50067B8CF1D6FC9ACAE0E043A8249@DM6PR12MB5006.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Mhq3zHxQlei2c8oC2ecPMzHFoEYn5qvjm6Nw5+iMoDD/yBY2OoZtubSD5mVcQE4l3XYdfkxfgaOeGwHkEsUXv3+Xl4lxRZXRL04D+yzXHsll9eBJ2Ixv5dHy/OxQwby/c2Z/PPFCKBjbauNpzc9h91843e4SlQpRjY1abIDBVF+zwVi99swwAasXakDrkPOAvfk93EZn35LvUhv1YU1FB6139NzjDRV0ET5rC8p+Gr1syMX2kCDtN+B5C/Ukw+s0fDaTpdecHt8p2bpc1RUAWs6h1jtx5WPcLql1hjp+5SnbX3dqvMPKwPsuHwIZ0e9+rrxuTQG0YPSzO6YOeJMmHId1iDB/yF3ZH/+7jLcdamKeNUciq8XE5v7xpdJ3Dcbf5j3Xx8KADaiKoRTDbxmsgCKN3bI0oX4cTDuO85Icf+nmyF5p/kOHnF7eci+VZPOgOe621M2w6t80A3KfORdhWd+n5ju1tCWZuqWw1++4WDE7aHa7kYF4aeTjQ5noy357BIoO0Px2iPsvKDSiaWPItnBFTmu4BeS82kkF3RTjUeeM/GikfVeQF8boVTqd63lbqMSF9aXatF9P8mnSU08IrHGWTNo888SU2IbSsIKZPVI3wgspyHfnDzMgnrWDl+dQk0ZPyNFrZg+lMERp5T3W6CS3UH/WR+AqE4dwwXCzBYElMfBTqRCpV69sAew++2Jd2N72B0MUXZe22JV299NAdNmVLkngNtulpAQ+D4fK5O0ClSU6LPOWtJwbfqYPzxATXqqeTTp5HeDdqpXbCAuCi8agcVxYNwwhvb92tTsYeaUzrqP6Dl2/zKLYPR+5z5u0
-X-Forefront-Antispam-Report: CIP:216.228.112.34; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:schybrid03.nvidia.com; CAT:NONE;
- SFS:(4636009)(39860400002)(396003)(376002)(136003)(346002)(36840700001)(46966006)(316002)(26005)(336012)(31686004)(8936002)(8676002)(16526019)(426003)(82740400003)(478600001)(70586007)(36756003)(70206006)(2616005)(110136005)(53546011)(16576012)(186003)(5660300002)(7636003)(966005)(31696002)(356005)(4326008)(47076005)(86362001)(36860700001)(82310400003)(83380400001)(36906005)(7416002)(2906002)(54906003)(43740500002);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2021 07:17:19.2575 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d5531b0-d882-4dc7-4f54-08d920164c72
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.112.34];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT035.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB5006
-Subject: Re: [Nouveau] [PATCH v9 07/10] mm: Device exclusive memory access
+Subject: [Nouveau] [PATCH 11/34] drm/nouveau/nvkm/subdev/mc/tu102: Make
+ functions called by reference static
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,72 +77,46 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcampbell@nvidia.com, willy@infradead.org, linux-doc@vger.kernel.org,
- nouveau@lists.freedesktop.org, Alistair Popple <apopple@nvidia.com>,
- hughd@google.com, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, hch@infradead.org, linux-mm@kvack.org,
- bskeggs@redhat.com, jgg@nvidia.com, peterx@redhat.com,
- Christoph Hellwig <hch@lst.de>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 5/25/21 4:51 AM, Balbir Singh wrote:
-...
->> How beneficial is this code to nouveau users?  I see that it permits a
->> part of OpenCL to be implemented, but how useful/important is this in
->> the real world?
-> 
-> That is a very good question! I've not reviewed the code, but a sample
-> program with the described use case would make things easy to parse.
-> I suspect that is not easy to build at the moment?
-> 
-
-The cover letter says this:
-
-This has been tested with upstream Mesa 21.1.0 and a simple OpenCL program
-which checks that GPU atomic accesses to system memory are atomic. Without
-this series the test fails as there is no way of write-protecting the page
-mapping which results in the device clobbering CPU writes. For reference
-the test is available at https://ozlabs.org/~apopple/opencl_svm_atomics/
-
-Further testing has been performed by adding support for testing exclusive
-access to the hmm-tests kselftests.
-
-...so that seems to cover the "sample program" request, at least.
-
-> I wonder how we co-ordinate all the work the mm is doing, page migration,
-> reclaim with device exclusive access? Do we have any numbers for the worst
-> case page fault latency when something is marked away for exclusive access?
-
-CPU page fault latency is approximately "terrible", if a page is resident on
-the GPU. We have to spin up a DMA engine on the GPU and have it copy the page
-over the PCIe bus, after all.
-
-> I presume for now this is anonymous memory only? SWP_DEVICE_EXCLUSIVE would
-
-Yes, for now.
-
-> only impact the address space of programs using the GPU. Should the exclusively
-> marked range live in the unreclaimable list and recycled back to active/in-active
-> to account for the fact that
-> 
-> 1. It is not reclaimable and reclaim will only hurt via page faults?
-> 2. It ages the page correctly or at-least allows for that possibility when the
->     page is used by the GPU.
-
-I'm not sure that that is *necessarily* something we can conclude. It depends upon
-access patterns of each program. For example, a "reduction" parallel program sends
-over lots of data to the GPU, and only a tiny bit of (reduced!) data comes back
-to the CPU. In that case, freeing the physical page on the CPU is actually the
-best decision for the OS to make (if the OS is sufficiently prescient).
-
-thanks,
--- 
-John Hubbard
-NVIDIA
-_______________________________________________
-Nouveau mailing list
-Nouveau@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
+Rml4ZXMgdGhlIGZvbGxvd2luZyBXPTEga2VybmVsIGJ1aWxkIHdhcm5pbmcocyk6CgogZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbWMvdHUxMDIuYzo1MDoxOiB3YXJuaW5nOiBu
+byBwcmV2aW91cyBwcm90b3R5cGUgZm9yIOKAmHR1MTAyX21jX2ludHJfdW5hcm3igJkgWy1XbWlz
+c2luZy1wcm90b3R5cGVzXQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbWMv
+dHUxMDIuYzo2MjoxOiB3YXJuaW5nOiBubyBwcmV2aW91cyBwcm90b3R5cGUgZm9yIOKAmHR1MTAy
+X21jX2ludHJfcmVhcm3igJkgWy1XbWlzc2luZy1wcm90b3R5cGVzXQogZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvbWMvdHUxMDIuYzo3NDoxOiB3YXJuaW5nOiBubyBwcmV2aW91
+cyBwcm90b3R5cGUgZm9yIOKAmHR1MTAyX21jX2ludHJfbWFza+KAmSBbLVdtaXNzaW5nLXByb3Rv
+dHlwZXNdCgpDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgpDYzogRGF2aWQgQWly
+bGllIDxhaXJsaWVkQGxpbnV4LmllPgpDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNo
+PgpDYzogQWxpc3RhaXIgUG9wcGxlIDxhcG9wcGxlQG52aWRpYS5jb20+CkNjOiBkcmktZGV2ZWxA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCkNjOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpT
+aWduZWQtb2ZmLWJ5OiBMZWUgSm9uZXMgPGxlZS5qb25lc0BsaW5hcm8ub3JnPgotLS0KIGRyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L21jL3R1MTAyLmMgfCA2ICsrKy0tLQogMSBm
+aWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9tYy90dTEwMi5jIGIvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbWMvdHUxMDIuYwppbmRleCA1OGRiODNlYmFk
+YzVmLi5hOTYwODRiMzRhNzg4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+dmttL3N1YmRldi9tYy90dTEwMi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20v
+c3ViZGV2L21jL3R1MTAyLmMKQEAgLTQ2LDcgKzQ2LDcgQEAgdHUxMDJfbWNfaW50cl91cGRhdGUo
+c3RydWN0IHR1MTAyX21jICptYykKIAkJbnZrbV93cjMyKGRldmljZSwgMHhiODE2MTAsIDB4Nik7
+CiB9CiAKLXZvaWQKK3N0YXRpYyB2b2lkCiB0dTEwMl9tY19pbnRyX3VuYXJtKHN0cnVjdCBudmtt
+X21jICpiYXNlKQogewogCXN0cnVjdCB0dTEwMl9tYyAqbWMgPSB0dTEwMl9tYyhiYXNlKTsKQEAg
+LTU4LDcgKzU4LDcgQEAgdHUxMDJfbWNfaW50cl91bmFybShzdHJ1Y3QgbnZrbV9tYyAqYmFzZSkK
+IAlzcGluX3VubG9ja19pcnFyZXN0b3JlKCZtYy0+bG9jaywgZmxhZ3MpOwogfQogCi12b2lkCitz
+dGF0aWMgdm9pZAogdHUxMDJfbWNfaW50cl9yZWFybShzdHJ1Y3QgbnZrbV9tYyAqYmFzZSkKIHsK
+IAlzdHJ1Y3QgdHUxMDJfbWMgKm1jID0gdHUxMDJfbWMoYmFzZSk7CkBAIC03MCw3ICs3MCw3IEBA
+IHR1MTAyX21jX2ludHJfcmVhcm0oc3RydWN0IG52a21fbWMgKmJhc2UpCiAJc3Bpbl91bmxvY2tf
+aXJxcmVzdG9yZSgmbWMtPmxvY2ssIGZsYWdzKTsKIH0KIAotdm9pZAorc3RhdGljIHZvaWQKIHR1
+MTAyX21jX2ludHJfbWFzayhzdHJ1Y3QgbnZrbV9tYyAqYmFzZSwgdTMyIG1hc2ssIHUzMiBpbnRy
+KQogewogCXN0cnVjdCB0dTEwMl9tYyAqbWMgPSB0dTEwMl9tYyhiYXNlKTsKLS0gCjIuMzEuMQoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
