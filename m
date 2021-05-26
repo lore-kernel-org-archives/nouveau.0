@@ -2,68 +2,83 @@ Return-Path: <SRS0=2GqL=KV=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5ABEEC47088
-	for <nouveau@archiver.kernel.org>; Wed, 26 May 2021 14:37:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 44541C4708A
+	for <nouveau@archiver.kernel.org>; Wed, 26 May 2021 22:00:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2564060241
-	for <nouveau@archiver.kernel.org>; Wed, 26 May 2021 14:37:27 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2564060241
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	by mail.kernel.org (Postfix) with ESMTPS id DFBBD613D7
+	for <nouveau@archiver.kernel.org>; Wed, 26 May 2021 22:00:02 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DFBBD613D7
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1B356ED9C;
-	Wed, 26 May 2021 14:37:26 +0000 (UTC)
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9F346EC2F
- for <nouveau@lists.freedesktop.org>; Wed, 26 May 2021 08:47:31 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id x8so183444wrq.9
- for <nouveau@lists.freedesktop.org>; Wed, 26 May 2021 01:47:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=WgO8pJnbycGAPr/jI7WVY+xNAObrZKGPkpv1D9egn8s=;
- b=P07J35BETyrv+OPvGbVbCm5g4FQF/A/FA18Y0aGwAdU2nwjaPb0M/olKJPqJtiOrhX
- 8Z8R6LILF+Ut0yOpDub0YmflLxejoVIa3+BDrBaHyaLq4j773XxmCSsJs2jA9VyGfyf1
- mp2PalUrXqEUbLW+AzzNGRy8VGNmQ+uM8dd/yO2STKe+yZBlmba4Xr/Pgr2vq9/TvfMR
- hmpRWbM61jEczGjETUM7EdN2Qf+jibbSBzLcte+AI0H2OrklYvs+pJ7wklAjOHdCBZXL
- miV4N+UuwnWDOZEC6vEbIbC4E0ztLPOBpZravpjuyP+TO3fP8gLn452oCtyQHAK+ZrJq
- XF8w==
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A7146EB92;
+	Wed, 26 May 2021 22:00:02 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 313CF6E461
+ for <nouveau@lists.freedesktop.org>; Wed, 26 May 2021 19:28:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1622057318;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=g5S36BEuUVhJ/qioLp+atetb4I/jeE2ddx8zfg62aXA=;
+ b=hFYFZ3GOWvEWUaCbacgantQxB14oYk4IzO8KcLSIGWA6RGBvrOg8JxbFoZOKG2ixuMt83f
+ 05sjem9n6kSh5kdAgCQ1w5O5nCtT9A1g1dtVMLj6xkjYgv0AWL3IJa+nHCBl6TzBddmKTh
+ he0b5txsyMlOt9IcGArY2wWq0gAbGCU=
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-552-zCSbRPn4OlWSh4LBbdWoHw-1; Wed, 26 May 2021 15:28:36 -0400
+X-MC-Unique: zCSbRPn4OlWSh4LBbdWoHw-1
+Received: by mail-qk1-f197.google.com with SMTP id
+ n2-20020a37a4020000b02902e9aef597f7so1598933qke.21
+ for <nouveau@lists.freedesktop.org>; Wed, 26 May 2021 12:28:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=WgO8pJnbycGAPr/jI7WVY+xNAObrZKGPkpv1D9egn8s=;
- b=ZDLBws/xbZhUHN8Om5cQ1iRFIN0uMOHMIT/Und3QZb0jvkyYRk4j2IPtrbA5AipimA
- TMIfpa/josIkZyt2K2wag2pWDzcU/9olrlb6sG1gWK3J50pqc2U6K3w9bF0y/ZwDUGOl
- 8Z1nGWe3NA7NSbaF5kNAecoCGY9cPKzqIGq3cdt5ezE2DlvpIThbjgNQAKH2GfJ5b+r/
- /8kiMlTWRVA+Lt//1XMg6cnkACrAcatbr6o5FnOuxaP7EHvXOhfXO28rW17r6vrZ8b4O
- xmKP4YpqF1J7mqobCYn5BUHjVytxY+PCG8NZ9oSEGF2p89TL2HsrX23n2mmcz8a3pkjF
- SaWw==
-X-Gm-Message-State: AOAM531CN9JUVz2FfbqL2zadYVPL2exE7haWhFuyYRhbUIfG6EBWUUsA
- OuDzujMbmsxFRrZbMe50DD9S5Q==
-X-Google-Smtp-Source: ABdhPJz7Yt7N0U9dO4++M/DXckMsobASl2c3GuDArRZKHB1os8WtSXIpk/vFAHDOzBqexSS+KqxpSQ==
-X-Received: by 2002:adf:f9d0:: with SMTP id w16mr32449829wrr.336.1622018850280; 
- Wed, 26 May 2021 01:47:30 -0700 (PDT)
-Received: from dell.default ([91.110.221.223])
- by smtp.gmail.com with ESMTPSA id l18sm18911918wrt.97.2021.05.26.01.47.28
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=g5S36BEuUVhJ/qioLp+atetb4I/jeE2ddx8zfg62aXA=;
+ b=N65QB73vH8KvpfDLgXsW59wcV+4OUEFs5icDysUB83x2gDeQmAFu/Xm8Szc5T/jeBW
+ FdnXu24eg2Iqul646ubzRDWsiIGsUulHKK+LdCR/IKwEzEt57jByNYRverJ3IBmNfe3O
+ i4AMqFYYNlCID+8a2k+S5qNRMsSi1zKYskETb+9p452z5QRWxDhRu4ROu63OftORnY2I
+ xhlPOADg3Nh5mDeNuNM1NOlqGiTh964snJyvBCQ4KjTuEH2tLhZjPz57f8+WV5iaHNTx
+ 6FguxELkMcr14+MKYtcLtV7kPtSSPO9Ql8CXPjmHa0G96CvdSqiSXzkzVeMXK+8DCr6g
+ 1GWQ==
+X-Gm-Message-State: AOAM5332jruK8P8CAGQnUBV7w2dO5W6Iw6bV+lC7lEMDoAYnfYCnLFYp
+ XBZ8VogkLAJrwkxNP3X+DGb0t+vTR6vbNIeByqY5zqf+YEISDaNt87GZbG08R+gzPnO5mqOZaY6
+ Ys4zc2JAfvhLz1KmAhoe/gXEqOA==
+X-Received: by 2002:ac8:7f42:: with SMTP id g2mr27014861qtk.73.1622057315436; 
+ Wed, 26 May 2021 12:28:35 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy2CBA+fOyoz5L7L3D+pyu0PrqFcqS8IppaePh1xEmD4J3p6guqJOyaWFvzVkkvMB1IWFZhxg==
+X-Received: by 2002:ac8:7f42:: with SMTP id g2mr27014794qtk.73.1622057314563; 
+ Wed, 26 May 2021 12:28:34 -0700 (PDT)
+Received: from t490s (bras-base-toroon474qw-grc-72-184-145-4-219.dsl.bell.ca.
+ [184.145.4.219])
+ by smtp.gmail.com with ESMTPSA id r3sm2122167qtu.50.2021.05.26.12.28.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 May 2021 01:47:29 -0700 (PDT)
-From: Lee Jones <lee.jones@linaro.org>
-To: lee.jones@linaro.org
-Date: Wed, 26 May 2021 09:46:52 +0100
-Message-Id: <20210526084726.552052-1-lee.jones@linaro.org>
-X-Mailer: git-send-email 2.31.1
+ Wed, 26 May 2021 12:28:33 -0700 (PDT)
+Date: Wed, 26 May 2021 15:28:32 -0400
+From: Peter Xu <peterx@redhat.com>
+To: Alistair Popple <apopple@nvidia.com>
+Message-ID: <YK6hYGEx+XzeZELV@t490s>
+References: <20210524132725.12697-1-apopple@nvidia.com>
+ <20210524132725.12697-8-apopple@nvidia.com>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 26 May 2021 14:37:26 +0000
-Subject: [Nouveau] [PATCH 00/34] Rid W=1 warnings from GPU
+In-Reply-To: <20210524132725.12697-8-apopple@nvidia.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=peterx@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Disposition: inline
+X-Mailman-Approved-At: Wed, 26 May 2021 22:00:01 +0000
+Subject: Re: [Nouveau] [PATCH v9 07/10] mm: Device exclusive memory access
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,156 +90,808 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- Mauro Rossi <issor.oruam@gmail.com>, dri-devel@lists.freedesktop.org,
- Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
- Eric Anholt <eric@anholt.net>, Huang Rui <ray.huang@amd.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Jun Lei <Jun.Lei@amd.com>, Sam Ravnborg <sam@ravnborg.org>,
- Ajay Kumar <ajaykumar.rs@samsung.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Ben Widawsky <ben@bwidawsk.net>,
- linux-samsung-soc@vger.kernel.org, Joonyoung Shim <jy0922.shim@samsung.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
- Alistair Popple <apopple@nvidia.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Michal Simek <michal.simek@xilinx.com>, amd-gfx@lists.freedesktop.org,
- Sumit Semwal <sumit.semwal@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Jagan Teki <jagan@amarulasolutions.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Leo Li <sunpeng.li@amd.com>,
- Kevin Wang <kevin1.wang@amd.com>, Inki Dae <inki.dae@samsung.com>,
- Hans de Goede <hdegoede@redhat.com>, Akshu Agarwal <akshua@gmail.com>,
- Evan Quan <evan.quan@amd.com>, linux-arm-kernel@lists.infradead.org,
- linaro-mm-sig@lists.linaro.org, Hyun Kwon <hyun.kwon@xilinx.com>,
- Seung-Woo Kim <sw0312.kim@samsung.com>, linux-kernel@vger.kernel.org,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Thierry Reding <thierry.reding@gmail.com>, Adam Jackson <ajax@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- linux-media@vger.kernel.org, Christian Koenig <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: rcampbell@nvidia.com, willy@infradead.org, linux-doc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, bsingharora@gmail.com, hughd@google.com,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ hch@infradead.org, linux-mm@kvack.org, bskeggs@redhat.com, jgg@nvidia.com,
+ akpm@linux-foundation.org, Christoph Hellwig <hch@lst.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-VGhpcyBzZXQgaXMgcGFydCBvZiBhIGxhcmdlciBlZmZvcnQgYXR0ZW1wdGluZyB0byBjbGVhbi11
-cCBXPTEKa2VybmVsIGJ1aWxkcywgd2hpY2ggYXJlIGN1cnJlbnRseSBvdmVyd2hlbG1pbmdseSBy
-aWRkbGVkIHdpdGgKbmlnZ2x5IGxpdHRsZSB3YXJuaW5ncy4KCkxlZSBKb25lcyAoMzQpOgogIGRy
-bS9hbWQvcG0vaW5jL3NtdV92MTNfMDogTW92ZSB0YWJsZSBpbnRvIHRoZSBvbmx5IHNvdXJjZSBm
-aWxlIHRoYXQKICAgIHVzZXMgaXQKICBkcm0vYW1kL3BtL3N3c211L3NtdTEzL2FsZGViYXJhbl9w
-cHQ6IFJlbW92ZSB1bnVzZWQgdmFyaWFibGUgJ3JldCcKICBkcm0vYW1kL3BtL3Bvd2VycGxheS9o
-d21nci9zbXU3X3RoZXJtYWw6IFByb3ZpZGUgZnVuY3Rpb24gbmFtZSBmb3IKICAgICdzbXU3X2Zh
-bl9jdHJsX3NldF9kZWZhdWx0X21vZGUoKScKICBkcm0vYW1kL3BtL3Bvd2VycGxheS9od21nci92
-ZWdhMTJfdGhlcm1hbDogUHJvdmlkZSBmdW5jdGlvbiBuYW1lCiAgZHJtL2FtZC9wbS9wb3dlcnBs
-YXkvaHdtZ3IvdmVnYTEyX2h3bWdyOiBQcm92aWRlCiAgICAndmVnYTEyX2luaXRfc21jX3RhYmxl
-KCknIGZ1bmN0aW9uIG5hbWUKICBkcm0vYW1kL3BtL3Bvd2VycGxheS9od21nci92ZWdhMTBfaHdt
-Z3I6IEtlcm5lbC1kb2MgaGVhZGVycyBtdXN0CiAgICBjb250YWluIGZ1bmN0aW9uIG5hbWVzCiAg
-ZHJtL2FtZC9wbS9wb3dlcnBsYXkvaHdtZ3IvdmVnYTIwX2h3bWdyOiBQcm92aWRlIGZ1bmN0aW9u
-IG5hbWUKICAgICd2ZWdhMjBfaW5pdF9zbWNfdGFibGUoKScKICBkcm0vYW1kL2Rpc3BsYXkvZGMv
-Ymlvcy9jb21tYW5kX3RhYmxlX2hlbHBlcjogRml4IGZ1bmN0aW9uIG5hbWUgZm9yCiAgICAnZGFs
-X2NtZF90YWJsZV9oZWxwZXJfdHJhbnNtaXR0ZXJfYnBfdG9fYXRvbSgpJwogIGRybS9hbWQvZGlz
-cGxheS9kYy9iaW9zL2NvbW1hbmRfdGFibGVfaGVscGVyMjogRml4IGZ1bmN0aW9uIG5hbWUKICAg
-ICdkYWxfY21kX3RhYmxlX2hlbHBlcl90cmFuc21pdHRlcl9icF90b19hdG9tMigpJwogIGRybS9h
-bWQvZGlzcGxheS9kYy9iaW9zL2Jpb3NfcGFyc2VyOiBGaXggZm9ybWF0dGluZyBhbmQgbWlzbmFt
-aW5nCiAgICBpc3N1ZXMKICBkcm0vbm91dmVhdS9udmttL3N1YmRldi9tYy90dTEwMjogTWFrZSBm
-dW5jdGlvbnMgY2FsbGVkIGJ5IHJlZmVyZW5jZQogICAgc3RhdGljCiAgZHJtL2FtZC9kaXNwbGF5
-L2FtZGdwdV9kbS9hbWRncHVfZG06IEZ1bmN0aW9ucyBtdXN0IGRpcmVjdGx5IGZvbGxvdwogICAg
-dGhlaXIgaGVhZGVycwogIGRybS9hbWQvZGlzcGxheS9kYy9kY2UvZG11Yl9vdXRib3g6IENvbnZl
-cnQgb3ZlciB0byBrZXJuZWwtZG9jCiAgZHJtL2FtZC9kaXNwbGF5L2RjL2dwaW8vZ3Bpb19zZXJ2
-aWNlOiBQYXNzIGFyb3VuZCBjb3JyZWN0CiAgICBkY2Vfe3ZlcnNpb24sZW52aXJvbm1lbnR9IHR5
-cGVzCiAgZHJtL2FtZC9kaXNwbGF5L2RjL2RjZTExMC9kY2UxMTBfaHdfc2VxdWVuY2VyOiBJbmNs
-dWRlIG91ciBvd24gaGVhZGVyCiAgZHJtL2FtZC9kaXNwbGF5L2RjL2RjZS9kY2VfdHJhbnNmb3Jt
-OiBSZW1vdmUgc3VwZXJmbHVvdXMKICAgIHJlLWluaXRpYWxpc2F0aW9uIG9mIERDRkVfTUVNX0xJ
-R0hUX1NMRUVQX0NOVEwsCiAgZHJtL2FtZC9kaXNwbGF5L2RjL2RjZS9kY2VfbWVtX2lucHV0OiBS
-ZW1vdmUgZHVwbGljYXRlIGluaXRpYWxpc2F0aW9uCiAgICBvZiBHUlBIX0NPTlRST0xfX0dSUEhf
-TlVNX0JBTktTX3tTSElGVCxNQVNLfQogIGRybS9hbWQvZGlzcGxheS9kYy9kY2UvZGNlX21lbV9p
-bnB1dDogUmVtb3ZlIGR1cGxpY2F0ZSBpbml0aWFsaXNhdGlvbgogICAgb2YgR1JQSF9DT05UUk9M
-X19HUlBIX05VTV9CQU5LU197U0hJRlQsTUFTSwogIGRybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZp
-Y2U6IE1ha2UgbG9jYWwgZnVuY3Rpb24gc3RhdGljCiAgZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9k
-bS9hbWRncHVfZG06IEZpeCBrZXJuZWwtZG9jIGZvcm1hdHRpbmcgaXNzdWUKICBkcm0vYW1kL2Rp
-c3BsYXkvZGMvZGNlMTEwL2RjZTExMF9od19zZXF1ZW5jZXI6IEluY2x1ZGUgaGVhZGVyCiAgICBj
-b250YWluaW5nIG91ciBwcm90b3R5cGVzCiAgZHJtL2FtZC9kaXNwbGF5L2RjL2NvcmUvZGM6IENv
-bnZlcnQgZnVuY3Rpb24gaGVhZGVycyB0byBrZXJuZWwtZG9jCiAgZHJtL2FtZC9kaXNwbGF5L2Rt
-dWIvc3JjL2RtdWJfc3J2X3N0YXQ6IENvbnZlcnQgZnVuY3Rpb24gaGVhZGVyIHRvCiAgICBrZXJu
-ZWwtZG9jCiAgZHJtL2FtZC9kaXNwbGF5L21vZHVsZXMvaGRjcC9oZGNwX3BzcDogUmVtb3ZlIHVu
-dXNlZCBmdW5jdGlvbgogICAgJ21vZF9oZGNwX2hkY3AxX2dldF9saW5rX2VuY3J5cHRpb25fc3Rh
-dHVzKCknCiAgZHJtL3hsbngvenlucW1wX2Rpc3A6IEZpeCBpbmNvcnJlY3RseSBuYW1lZCBlbnVt
-CiAgICAnenlucW1wX2Rpc3BfbGF5ZXJfaWQnCiAgZHJtL3hsbngvenlucW1wX2RwOiBGaXggaW5j
-b3JyZWN0bHkgbmFtZSBmdW5jdGlvbiAnenlucW1wX2RwX3RyYWluKCknCiAgZHJtL3R0bS90dG1f
-dHQ6IERlbW90ZSBub24tY29uZm9ybWFudCBrZXJuZWwtZG9jIGhlYWRlcgogIGRybS9wYW5lbC9w
-YW5lbC1yYXNwYmVycnlwaS10b3VjaHNjcmVlbjogRGVtb3RlIGtlcm5lbC1kb2MgYWJ1c2UKICBk
-cm0vcGFuZWwvcGFuZWwtc2l0cm9uaXgtc3Q3NzAxOiBEZW1vdGUga2VybmVsLWRvYyBhYnVzZQog
-IGRybS92Z2VtL3ZnZW1fZHJ2OiBTdGFuZGFyZCBjb21tZW50IGJsb2NrcyBzaG91bGQgbm90IHVz
-ZSBrZXJuZWwtZG9jCiAgICBmb3JtYXQKICBkcm0vZXh5bm9zL2V4eW5vczdfZHJtX2RlY29uOiBG
-aXggaW5jb3JyZWN0IG5hbWluZyBvZgogICAgJ2RlY29uX3NoYWRvd19wcm90ZWN0X3dpbigpJwog
-IGRybS9leHlub3MvZXh5bm9zX2RybV9pcHA6IEZpeCBkb2N1bWVudGF0aW9uIGZvcgogICAgJ2V4
-eW5vc19kcm1faXBwX2dldF97Y2FwcyxyZXN9X2lvY3RsKCknCiAgZHJtL3Zib3h2aWRlby9oZ3Nt
-aV9iYXNlOiBQbGFjZSBmdW5jdGlvbiBuYW1lcyBpbnRvIGhlYWRlcnMKICBkcm0vdmJveHZpZGVv
-L21vZGVzZXR0aW5nOiBQcm92aWRlIGZ1bmN0aW9uIG5hbWVzIGZvciBwcm90b3R5cGUKICAgIGhl
-YWRlcnMKCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlLmMgICAgfCAg
-MiArLQogLi4uL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jIHwgIDQg
-Ky0KIC4uLi9ncHUvZHJtL2FtZC9kaXNwbGF5L2RjL2Jpb3MvYmlvc19wYXJzZXIuYyB8ICA2ICst
-LQogLi4uL2Rpc3BsYXkvZGMvYmlvcy9jb21tYW5kX3RhYmxlX2hlbHBlci5jICAgIHwgIDIgKy0K
-IC4uLi9kaXNwbGF5L2RjL2Jpb3MvY29tbWFuZF90YWJsZV9oZWxwZXIyLmMgICB8ICAyICstCiBk
-cml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvY29yZS9kYy5jICAgICAgfCA0NiArKysrKy0t
-LS0tLS0tLS0tLS0tCiAuLi4vZHJtL2FtZC9kaXNwbGF5L2RjL2RjZS9kY2VfbWVtX2lucHV0Lmgg
-ICAgfCAgMiAtCiAuLi4vZHJtL2FtZC9kaXNwbGF5L2RjL2RjZS9kY2VfdHJhbnNmb3JtLmggICAg
-fCAgMyArLQogLi4uL2dwdS9kcm0vYW1kL2Rpc3BsYXkvZGMvZGNlL2RtdWJfb3V0Ym94LmMgIHwg
-MTcgKystLS0tLQogLi4uL2Rpc3BsYXkvZGMvZGNlMTEwL2RjZTExMF9od19zZXF1ZW5jZXIuYyAg
-IHwgIDMgKysKIC4uLi9kcm0vYW1kL2Rpc3BsYXkvZGMvZ3Bpby9ncGlvX3NlcnZpY2UuYyAgICB8
-IDEyICsrLS0tCiAuLi4vZHJtL2FtZC9kaXNwbGF5L2RtdWIvc3JjL2RtdWJfc3J2X3N0YXQuYyAg
-fCAxOSArKystLS0tLQogLi4uL2Rpc3BsYXkvaW5jbHVkZS9ncGlvX3NlcnZpY2VfaW50ZXJmYWNl
-LmggIHwgIDQgKy0KIC4uLi9kcm0vYW1kL2Rpc3BsYXkvbW9kdWxlcy9oZGNwL2hkY3BfcHNwLmMg
-ICB8IDEzIC0tLS0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9wbS9pbmMvc211X3YxM18wLmggICAg
-ICAgIHwgIDYgLS0tCiAuLi4vZHJtL2FtZC9wbS9wb3dlcnBsYXkvaHdtZ3Ivc211N190aGVybWFs
-LmMgfCAgOCArKy0tCiAuLi4vZHJtL2FtZC9wbS9wb3dlcnBsYXkvaHdtZ3IvdmVnYTEwX2h3bWdy
-LmMgfCAyNiArKysrKystLS0tLQogLi4uL2RybS9hbWQvcG0vcG93ZXJwbGF5L2h3bWdyL3ZlZ2Ex
-Ml9od21nci5jIHwgIDIgKy0KIC4uLi9hbWQvcG0vcG93ZXJwbGF5L2h3bWdyL3ZlZ2ExMl90aGVy
-bWFsLmMgICB8ICAzICstCiAuLi4vZHJtL2FtZC9wbS9wb3dlcnBsYXkvaHdtZ3IvdmVnYTIwX2h3
-bWdyLmMgfCAgMiArLQogLi4uL2RybS9hbWQvcG0vc3dzbXUvc211MTMvYWxkZWJhcmFuX3BwdC5j
-ICAgIHwgIDkgKysrLQogZHJpdmVycy9ncHUvZHJtL2V4eW5vcy9leHlub3M3X2RybV9kZWNvbi5j
-ICAgIHwgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9leHlub3MvZXh5bm9zX2RybV9pcHAuYyAgICAg
-ICB8ICA0ICstCiAuLi4vZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L21jL3R1MTAyLmMgICAg
-fCAgNiArLS0KIC4uLi9kcm0vcGFuZWwvcGFuZWwtcmFzcGJlcnJ5cGktdG91Y2hzY3JlZW4uYyB8
-ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vcGFuZWwvcGFuZWwtc2l0cm9uaXgtc3Q3NzAxLmMgfCAg
-MiArLQogZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fdHQuYyAgICAgICAgICAgICAgICAgIHwgIDIg
-Ky0KIGRyaXZlcnMvZ3B1L2RybS92Ym94dmlkZW8vaGdzbWlfYmFzZS5jICAgICAgICB8IDE5ICsr
-KysrLS0tCiBkcml2ZXJzL2dwdS9kcm0vdmJveHZpZGVvL21vZGVzZXR0aW5nLmMgICAgICAgfCAy
-MCArKysrLS0tLQogZHJpdmVycy9ncHUvZHJtL3ZnZW0vdmdlbV9kcnYuYyAgICAgICAgICAgICAg
-IHwgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS94bG54L3p5bnFtcF9kaXNwLmMgICAgICAgICAgICB8
-ICAyICstCiBkcml2ZXJzL2dwdS9kcm0veGxueC96eW5xbXBfZHAuYyAgICAgICAgICAgICAgfCAg
-MiArLQogMzIgZmlsZXMgY2hhbmdlZCwgMTA3IGluc2VydGlvbnMoKyksIDE0NyBkZWxldGlvbnMo
-LSkKCkNjOiBBZGFtIEphY2tzb24gPGFqYXhAcmVkaGF0LmNvbT4KQ2M6IEFqYXkgS3VtYXIgPGFq
-YXlrdW1hci5yc0BzYW1zdW5nLmNvbT4KQ2M6IEFrc2h1IEFnYXJ3YWwgPGFrc2h1YUBnbWFpbC5j
-b20+CkNjOiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+CkNjOiBBbGlz
-dGFpciBQb3BwbGUgPGFwb3BwbGVAbnZpZGlhLmNvbT4KQ2M6IGFtZC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCkNjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+CkNjOiBCZW4gV2lk
-YXdza3kgPGJlbkBid2lkYXdzay5uZXQ+CkNjOiBDaHJpc3RpYW4gS29lbmlnIDxjaHJpc3RpYW4u
-a29lbmlnQGFtZC5jb20+CkNjOiAiQ2hyaXN0aWFuIEvDtm5pZyIgPGNocmlzdGlhbi5rb2VuaWdA
-YW1kLmNvbT4KQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KQ2M6IERhdmlkIEFp
-cmxpZSA8YWlybGllZEBsaW51eC5pZT4KQ2M6IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKQ2M6IEVyaWMgQW5ob2x0IDxlcmljQGFuaG9sdC5uZXQ+CkNjOiBFdmFuIFF1YW4gPGV2YW4u
-cXVhbkBhbWQuY29tPgpDYzogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KQ2M6
-IEhhcnJ5IFdlbnRsYW5kIDxoYXJyeS53ZW50bGFuZEBhbWQuY29tPgpDYzogSHVhbmcgUnVpIDxy
-YXkuaHVhbmdAYW1kLmNvbT4KQ2M6IEh5dW4gS3dvbiA8aHl1bi5rd29uQHhpbGlueC5jb20+CkNj
-OiBJbmtpIERhZSA8aW5raS5kYWVAc2Ftc3VuZy5jb20+CkNjOiBKYWdhbiBUZWtpIDxqYWdhbkBh
-bWFydWxhc29sdXRpb25zLmNvbT4KQ2M6IEpvb255b3VuZyBTaGltIDxqeTA5MjIuc2hpbUBzYW1z
-dW5nLmNvbT4KQ2M6IEp1biBMZWkgPEp1bi5MZWlAYW1kLmNvbT4KQ2M6IEtldmluIFdhbmcgPGtl
-dmluMS53YW5nQGFtZC5jb20+CkNjOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296
-bG93c2tpQGNhbm9uaWNhbC5jb20+CkNjOiBLeXVuZ21pbiBQYXJrIDxreXVuZ21pbi5wYXJrQHNh
-bXN1bmcuY29tPgpDYzogTGF1cmVudCBQaW5jaGFydCA8bGF1cmVudC5waW5jaGFydEBpZGVhc29u
-Ym9hcmQuY29tPgpDYzogTGVlIEpvbmVzIDxsZWUuam9uZXNAbGluYXJvLm9yZz4KQ2M6IExlbyBM
-aSA8c3VucGVuZy5saUBhbWQuY29tPgpDYzogbGluYXJvLW1tLXNpZ0BsaXN0cy5saW5hcm8ub3Jn
-CkNjOiBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmcKQ2M6IGxpbnV4LW1lZGlh
-QHZnZXIua2VybmVsLm9yZwpDYzogbGludXgtc2Ftc3VuZy1zb2NAdmdlci5rZXJuZWwub3JnCkNj
-OiBNYXJlayBTenlwcm93c2tpIDxtLnN6eXByb3dza2lAc2Ftc3VuZy5jb20+CkNjOiBNYXVybyBS
-b3NzaSA8aXNzb3Iub3J1YW1AZ21haWwuY29tPgpDYzogTWVlbmFrc2hpa3VtYXIgU29tYXN1bmRh
-cmFtIDxtZWVuYWtzaGlrdW1hci5zb21hc3VuZGFyYW1AYW1kLmNvbT4KQ2M6IE1pY2hhbCBTaW1l
-ayA8bWljaGFsLnNpbWVrQHhpbGlueC5jb20+CkNjOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpDYzogUGhpbGlwcCBaYWJlbCA8cC56YWJlbEBwZW5ndXRyb25peC5kZT4KQ2M6IFJvZHJp
-Z28gU2lxdWVpcmEgPFJvZHJpZ28uU2lxdWVpcmFAYW1kLmNvbT4KQ2M6IFNhbSBSYXZuYm9yZyA8
-c2FtQHJhdm5ib3JnLm9yZz4KQ2M6IFNldW5nLVdvbyBLaW0gPHN3MDMxMi5raW1Ac2Ftc3VuZy5j
-b20+CkNjOiBTdW1pdCBTZW13YWwgPHN1bWl0LnNlbXdhbEBsaW5hcm8ub3JnPgpDYzogVGhpZXJy
-eSBSZWRpbmcgPHRoaWVycnkucmVkaW5nQGdtYWlsLmNvbT4KLS0gCjIuMzEuMQoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
-c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+On Mon, May 24, 2021 at 11:27:22PM +1000, Alistair Popple wrote:
+> Some devices require exclusive write access to shared virtual
+> memory (SVM) ranges to perform atomic operations on that memory. This
+> requires CPU page tables to be updated to deny access whilst atomic
+> operations are occurring.
+> 
+> In order to do this introduce a new swap entry
+> type (SWP_DEVICE_EXCLUSIVE). When a SVM range needs to be marked for
+> exclusive access by a device all page table mappings for the particular
+> range are replaced with device exclusive swap entries. This causes any
+> CPU access to the page to result in a fault.
+> 
+> Faults are resovled by replacing the faulting entry with the original
+> mapping. This results in MMU notifiers being called which a driver uses
+> to update access permissions such as revoking atomic access. After
+> notifiers have been called the device will no longer have exclusive
+> access to the region.
+> 
+> Walking of the page tables to find the target pages is handled by
+> get_user_pages() rather than a direct page table walk. A direct page
+> table walk similar to what migrate_vma_collect()/unmap() does could also
+> have been utilised. However this resulted in more code similar in
+> functionality to what get_user_pages() provides as page faulting is
+> required to make the PTEs present and to break COW.
+> 
+> Signed-off-by: Alistair Popple <apopple@nvidia.com>
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> 
+> ---
+> 
+> v9:
+> * Split rename of migrate_pgmap_owner into a separate patch.
+> * Added comments explaining SWP_DEVICE_EXCLUSIVE_* entries.
+> * Renamed try_to_protect{_one} to page_make_device_exclusive{_one} based
+>   somewhat on a suggestion from Peter Xu. I was never particularly happy
+>   with try_to_protect() as a name so think this is better.
+> * Removed unneccesary code and reworded some comments based on feedback
+>   from Peter Xu.
+> * Removed the VMA walk when restoring PTEs for device-exclusive entries.
+> * Simplified implementation of copy_pte_range() to fail if the page
+>   cannot be locked. This might lead to occasional fork() failures but at
+>   this stage we don't think that will be an issue.
+> 
+> v8:
+> * Remove device exclusive entries on fork rather than copy them.
+> 
+> v7:
+> * Added Christoph's Reviewed-by.
+> * Minor cosmetic cleanups suggested by Christoph.
+> * Replace mmu_notifier_range_init_migrate/exclusive with
+>   mmu_notifier_range_init_owner as suggested by Christoph.
+> * Replaced lock_page() with lock_page_retry() when handling faults.
+> * Restrict to anonymous pages for now.
+> 
+> v6:
+> * Fixed a bisectablity issue due to incorrectly applying the rename of
+>   migrate_pgmap_owner to the wrong patches for Nouveau and hmm_test.
+> 
+> v5:
+> * Renamed range->migrate_pgmap_owner to range->owner.
+> * Added MMU_NOTIFY_EXCLUSIVE to allow passing of a driver cookie which
+>   allows notifiers called as a result of make_device_exclusive_range() to
+>   be ignored.
+> * Added a check to try_to_protect_one() to detect if the pages originally
+>   returned from get_user_pages() have been unmapped or not.
+> * Removed check_device_exclusive_range() as it is no longer required with
+>   the other changes.
+> * Documentation update.
+> 
+> v4:
+> * Add function to check that mappings are still valid and exclusive.
+> * s/long/unsigned long/ in make_device_exclusive_entry().
+> ---
+>  Documentation/vm/hmm.rst     |  17 ++++
+>  include/linux/mmu_notifier.h |   6 ++
+>  include/linux/rmap.h         |   4 +
+>  include/linux/swap.h         |   7 +-
+>  include/linux/swapops.h      |  44 ++++++++-
+>  mm/hmm.c                     |   5 +
+>  mm/memory.c                  | 128 +++++++++++++++++++++++-
+>  mm/mprotect.c                |   8 ++
+>  mm/page_vma_mapped.c         |   9 +-
+>  mm/rmap.c                    | 186 +++++++++++++++++++++++++++++++++++
+>  10 files changed, 405 insertions(+), 9 deletions(-)
+> 
+> diff --git a/Documentation/vm/hmm.rst b/Documentation/vm/hmm.rst
+> index 3df79307a797..a14c2938e7af 100644
+> --- a/Documentation/vm/hmm.rst
+> +++ b/Documentation/vm/hmm.rst
+> @@ -405,6 +405,23 @@ between device driver specific code and shared common code:
+>  
+>     The lock can now be released.
+>  
+> +Exclusive access memory
+> +=======================
+> +
+> +Some devices have features such as atomic PTE bits that can be used to implement
+> +atomic access to system memory. To support atomic operations to a shared virtual
+> +memory page such a device needs access to that page which is exclusive of any
+> +userspace access from the CPU. The ``make_device_exclusive_range()`` function
+> +can be used to make a memory range inaccessible from userspace.
+> +
+> +This replaces all mappings for pages in the given range with special swap
+> +entries. Any attempt to access the swap entry results in a fault which is
+> +resovled by replacing the entry with the original mapping. A driver gets
+> +notified that the mapping has been changed by MMU notifiers, after which point
+> +it will no longer have exclusive access to the page. Exclusive access is
+> +guranteed to last until the driver drops the page lock and page reference, at
+> +which point any CPU faults on the page may proceed as described.
+> +
+>  Memory cgroup (memcg) and rss accounting
+>  ========================================
+>  
+> diff --git a/include/linux/mmu_notifier.h b/include/linux/mmu_notifier.h
+> index 8e428eb813b8..d049e0f6f756 100644
+> --- a/include/linux/mmu_notifier.h
+> +++ b/include/linux/mmu_notifier.h
+> @@ -42,6 +42,11 @@ struct mmu_interval_notifier;
+>   * @MMU_NOTIFY_MIGRATE: used during migrate_vma_collect() invalidate to signal
+>   * a device driver to possibly ignore the invalidation if the
+>   * owner field matches the driver's device private pgmap owner.
+> + *
+> + * @MMU_NOTIFY_EXCLUSIVE: to signal a device driver that the device will no
+> + * longer have exclusive access to the page. May ignore the invalidation that's
+> + * part of make_device_exclusive_range() if the owner field
+> + * matches the value passed to make_device_exclusive_range().
+
+Perhaps s/matches/does not match/?
+
+>   */
+>  enum mmu_notifier_event {
+>  	MMU_NOTIFY_UNMAP = 0,
+> @@ -51,6 +56,7 @@ enum mmu_notifier_event {
+>  	MMU_NOTIFY_SOFT_DIRTY,
+>  	MMU_NOTIFY_RELEASE,
+>  	MMU_NOTIFY_MIGRATE,
+> +	MMU_NOTIFY_EXCLUSIVE,
+>  };
+>  
+>  #define MMU_NOTIFIER_RANGE_BLOCKABLE (1 << 0)
+> diff --git a/include/linux/rmap.h b/include/linux/rmap.h
+> index 0e25d829f742..3a1ce4ef9276 100644
+> --- a/include/linux/rmap.h
+> +++ b/include/linux/rmap.h
+> @@ -193,6 +193,10 @@ int page_referenced(struct page *, int is_locked,
+>  bool try_to_migrate(struct page *page, enum ttu_flags flags);
+>  bool try_to_unmap(struct page *, enum ttu_flags flags);
+>  
+> +int make_device_exclusive_range(struct mm_struct *mm, unsigned long start,
+> +				unsigned long end, struct page **pages,
+> +				void *arg);
+> +
+>  /* Avoid racy checks */
+>  #define PVMW_SYNC		(1 << 0)
+>  /* Look for migarion entries rather than present PTEs */
+> diff --git a/include/linux/swap.h b/include/linux/swap.h
+> index a6d4505ecf73..306df39d7c67 100644
+> --- a/include/linux/swap.h
+> +++ b/include/linux/swap.h
+> @@ -63,11 +63,16 @@ static inline int current_is_kswapd(void)
+>   *
+>   * When a page is migrated from CPU to device, we set the CPU page table entry
+>   * to a special SWP_DEVICE_* entry.
+
+s/SWP_DEVICE_*/SWP_DEVICE_{READ|WRITE}/?  Since SWP_DEVICE_* covers all four
+too.
+
+> + *
+> + * When a page is mapped by the device for exclusive access we set the CPU page
+> + * table entries to special SWP_DEVICE_EXCLUSIVE_* entries.
+>   */
+>  #ifdef CONFIG_DEVICE_PRIVATE
+> -#define SWP_DEVICE_NUM 2
+> +#define SWP_DEVICE_NUM 4
+>  #define SWP_DEVICE_WRITE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM)
+>  #define SWP_DEVICE_READ (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+1)
+> +#define SWP_DEVICE_EXCLUSIVE_WRITE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+2)
+> +#define SWP_DEVICE_EXCLUSIVE_READ (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+3)
+>  #else
+>  #define SWP_DEVICE_NUM 0
+>  #endif
+> diff --git a/include/linux/swapops.h b/include/linux/swapops.h
+> index 4dfd807ae52a..4129bd2ff9d6 100644
+> --- a/include/linux/swapops.h
+> +++ b/include/linux/swapops.h
+> @@ -120,6 +120,27 @@ static inline bool is_writable_device_private_entry(swp_entry_t entry)
+>  {
+>  	return unlikely(swp_type(entry) == SWP_DEVICE_WRITE);
+>  }
+> +
+> +static inline swp_entry_t make_readable_device_exclusive_entry(pgoff_t offset)
+> +{
+> +	return swp_entry(SWP_DEVICE_EXCLUSIVE_READ, offset);
+> +}
+> +
+> +static inline swp_entry_t make_writable_device_exclusive_entry(pgoff_t offset)
+> +{
+> +	return swp_entry(SWP_DEVICE_EXCLUSIVE_WRITE, offset);
+> +}
+> +
+> +static inline bool is_device_exclusive_entry(swp_entry_t entry)
+> +{
+> +	return swp_type(entry) == SWP_DEVICE_EXCLUSIVE_READ ||
+> +		swp_type(entry) == SWP_DEVICE_EXCLUSIVE_WRITE;
+> +}
+> +
+> +static inline bool is_writable_device_exclusive_entry(swp_entry_t entry)
+> +{
+> +	return unlikely(swp_type(entry) == SWP_DEVICE_EXCLUSIVE_WRITE);
+> +}
+>  #else /* CONFIG_DEVICE_PRIVATE */
+>  static inline swp_entry_t make_readable_device_private_entry(pgoff_t offset)
+>  {
+> @@ -140,6 +161,26 @@ static inline bool is_writable_device_private_entry(swp_entry_t entry)
+>  {
+>  	return false;
+>  }
+> +
+> +static inline swp_entry_t make_readable_device_exclusive_entry(pgoff_t offset)
+> +{
+> +	return swp_entry(0, 0);
+> +}
+> +
+> +static inline swp_entry_t make_writable_device_exclusive_entry(pgoff_t offset)
+> +{
+> +	return swp_entry(0, 0);
+> +}
+> +
+> +static inline bool is_device_exclusive_entry(swp_entry_t entry)
+> +{
+> +	return false;
+> +}
+> +
+> +static inline bool is_writable_device_exclusive_entry(swp_entry_t entry)
+> +{
+> +	return false;
+> +}
+>  #endif /* CONFIG_DEVICE_PRIVATE */
+>  
+>  #ifdef CONFIG_MIGRATION
+> @@ -219,7 +260,8 @@ static inline struct page *pfn_swap_entry_to_page(swp_entry_t entry)
+>   */
+>  static inline bool is_pfn_swap_entry(swp_entry_t entry)
+>  {
+> -	return is_migration_entry(entry) || is_device_private_entry(entry);
+> +	return is_migration_entry(entry) || is_device_private_entry(entry) ||
+> +	       is_device_exclusive_entry(entry);
+>  }
+>  
+>  struct page_vma_mapped_walk;
+> diff --git a/mm/hmm.c b/mm/hmm.c
+> index 11df3ca30b82..fad6be2bf072 100644
+> --- a/mm/hmm.c
+> +++ b/mm/hmm.c
+> @@ -26,6 +26,8 @@
+>  #include <linux/mmu_notifier.h>
+>  #include <linux/memory_hotplug.h>
+>  
+> +#include "internal.h"
+> +
+>  struct hmm_vma_walk {
+>  	struct hmm_range	*range;
+>  	unsigned long		last;
+> @@ -271,6 +273,9 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
+>  		if (!non_swap_entry(entry))
+>  			goto fault;
+>  
+> +		if (is_device_exclusive_entry(entry))
+> +			goto fault;
+> +
+>  		if (is_migration_entry(entry)) {
+>  			pte_unmap(ptep);
+>  			hmm_vma_walk->last = addr;
+> diff --git a/mm/memory.c b/mm/memory.c
+> index e061cfa18c11..c1d2d732f189 100644
+> --- a/mm/memory.c
+> +++ b/mm/memory.c
+> @@ -700,6 +700,68 @@ struct page *vm_normal_page_pmd(struct vm_area_struct *vma, unsigned long addr,
+>  }
+>  #endif
+>  
+> +static void restore_exclusive_pte(struct vm_area_struct *vma,
+> +				  struct page *page, unsigned long address,
+> +				  pte_t *ptep)
+> +{
+> +	pte_t pte;
+> +	swp_entry_t entry;
+> +
+> +	pte = pte_mkold(mk_pte(page, READ_ONCE(vma->vm_page_prot)));
+> +	if (pte_swp_soft_dirty(*ptep))
+> +		pte = pte_mksoft_dirty(pte);
+> +
+> +	entry = pte_to_swp_entry(*ptep);
+> +	if (pte_swp_uffd_wp(*ptep))
+> +		pte = pte_mkuffd_wp(pte);
+> +	else if (is_writable_device_exclusive_entry(entry))
+> +		pte = maybe_mkwrite(pte_mkdirty(pte), vma);
+> +
+> +	set_pte_at(vma->vm_mm, address, ptep, pte);
+> +
+> +	/*
+> +	 * No need to take a page reference as one was already
+> +	 * created when the swap entry was made.
+> +	 */
+> +	if (PageAnon(page))
+> +		page_add_anon_rmap(page, vma, address, false);
+> +	else
+> +		/*
+> +		 * Currently device exclusive access only supports anonymous
+> +		 * memory so the entry shouldn't point to a filebacked page.
+> +		 */
+> +		WARN_ON_ONCE(!PageAnon(page));
+> +
+> +	if (vma->vm_flags & VM_LOCKED)
+> +		mlock_vma_page(page);
+> +
+> +	/*
+> +	 * No need to invalidate - it was non-present before. However
+> +	 * secondary CPUs may have mappings that need invalidating.
+> +	 */
+> +	update_mmu_cache(vma, address, ptep);
+> +}
+> +
+> +/*
+> + * Tries to restore an exclusive pte if the page lock can be acquired without
+> + * sleeping.
+> + */
+> +static unsigned long
+
+Better return a int?
+
+> +try_restore_exclusive_pte(struct mm_struct *src_mm, pte_t *src_pte,
+> +			  struct vm_area_struct *vma, unsigned long addr)
+
+Raised in the other thread too: src_mm can be dropped.
+
+> +{
+> +	swp_entry_t entry = pte_to_swp_entry(*src_pte);
+> +	struct page *page = pfn_swap_entry_to_page(entry);
+> +
+> +	if (trylock_page(page)) {
+> +		restore_exclusive_pte(vma, page, addr, src_pte);
+> +		unlock_page(page);
+> +		return 0;
+> +	}
+> +
+> +	return -EBUSY;
+> +}
+> +
+>  /*
+>   * copy one vm_area from one task to the other. Assumes the page tables
+>   * already present in the new task to be cleared in the whole range
+> @@ -781,6 +843,17 @@ copy_nonpresent_pte(struct mm_struct *dst_mm, struct mm_struct *src_mm,
+>  				pte = pte_swp_mkuffd_wp(pte);
+>  			set_pte_at(src_mm, addr, src_pte, pte);
+>  		}
+> +	} else if (is_device_exclusive_entry(entry)) {
+> +		/*
+> +		 * Make device exclusive entries present by restoring the
+> +		 * original entry then copying as for a present pte. Device
+> +		 * exclusive entries currently only support private writable
+> +		 * (ie. COW) mappings.
+> +		 */
+> +		VM_BUG_ON(!is_cow_mapping(vma->vm_flags));
+> +		if (try_restore_exclusive_pte(src_mm, src_pte, vma, addr))
+> +			return -EBUSY;
+> +		return -ENOENT;
+>  	}
+>  	set_pte_at(dst_mm, addr, dst_pte, pte);
+>  	return 0;
+> @@ -980,9 +1053,18 @@ copy_pte_range(struct vm_area_struct *dst_vma, struct vm_area_struct *src_vma,
+>  			if (ret == -EAGAIN) {
+>  				entry = pte_to_swp_entry(*src_pte);
+>  				break;
+> +			} else if (ret == -EBUSY) {
+> +				break;
+> +			} else if (!ret) {
+> +				progress += 8;
+> +				continue;
+>  			}
+> -			progress += 8;
+> -			continue;
+> +
+> +			/*
+> +			 * Device exclusive entry restored, continue by copying
+> +			 * the now present pte.
+> +			 */
+> +			WARN_ON_ONCE(ret != -ENOENT);
+
+The change looks right, thanks.  It's just that we should start to consider
+document all these err code now in copy_pte_range() some day (perhaps on top of
+this patch)..
+
+>  		}
+>  		/* copy_present_pte() will clear `*prealloc' if consumed */
+>  		ret = copy_present_pte(dst_vma, src_vma, dst_pte, src_pte,
+> @@ -1019,6 +1101,8 @@ copy_pte_range(struct vm_area_struct *dst_vma, struct vm_area_struct *src_vma,
+>  			goto out;
+>  		}
+>  		entry.val = 0;
+> +	} else if (ret == -EBUSY) {
+> +		return -EBUSY;
+>  	} else if (ret) {
+>  		WARN_ON_ONCE(ret != -EAGAIN);
+>  		prealloc = page_copy_prealloc(src_mm, src_vma, addr);
+> @@ -1283,7 +1367,8 @@ static unsigned long zap_pte_range(struct mmu_gather *tlb,
+>  		}
+>  
+>  		entry = pte_to_swp_entry(ptent);
+> -		if (is_device_private_entry(entry)) {
+> +		if (is_device_private_entry(entry) ||
+> +		    is_device_exclusive_entry(entry)) {
+>  			struct page *page = pfn_swap_entry_to_page(entry);
+>  
+>  			if (unlikely(details && details->check_mapping)) {
+> @@ -1299,7 +1384,10 @@ static unsigned long zap_pte_range(struct mmu_gather *tlb,
+>  
+>  			pte_clear_not_present_full(mm, addr, pte, tlb->fullmm);
+>  			rss[mm_counter(page)]--;
+> -			page_remove_rmap(page, false);
+> +
+> +			if (is_device_private_entry(entry))
+> +				page_remove_rmap(page, false);
+> +
+>  			put_page(page);
+>  			continue;
+>  		}
+> @@ -3303,6 +3391,35 @@ void unmap_mapping_range(struct address_space *mapping,
+>  }
+>  EXPORT_SYMBOL(unmap_mapping_range);
+>  
+> +/*
+> + * Restore a potential device exclusive pte to a working pte entry
+> + */
+> +static vm_fault_t remove_device_exclusive_entry(struct vm_fault *vmf)
+> +{
+> +	struct page *page = vmf->page;
+> +	struct vm_area_struct *vma = vmf->vma;
+> +	vm_fault_t ret = 0;
+> +	struct mmu_notifier_range range;
+> +
+> +	if (!lock_page_or_retry(page, vma->vm_mm, vmf->flags))
+> +		return VM_FAULT_RETRY;
+> +	mmu_notifier_range_init(&range, MMU_NOTIFY_CLEAR, 0, vma, vma->vm_mm,
+> +				vmf->address & PAGE_MASK,
+> +				(vmf->address & PAGE_MASK) + PAGE_SIZE);
+
+  @MMU_NOTIFY_EXCLUSIVE: to signal a device driver that the device will no
+  longer have exclusive access to the page.
+
+Shouldn't this be the place to use new MMU_NOTIFY_EXCLUSIVE?
+
+> +	mmu_notifier_invalidate_range_start(&range);
+> +
+> +	vmf->pte = pte_offset_map_lock(vma->vm_mm, vmf->pmd, vmf->address,
+> +				&vmf->ptl);
+> +	if (likely(pte_same(*vmf->pte, vmf->orig_pte)))
+> +		restore_exclusive_pte(vma, page, vmf->address, vmf->pte);
+> +
+> +	pte_unmap_unlock(vmf->pte, vmf->ptl);
+> +	unlock_page(page);
+> +
+> +	mmu_notifier_invalidate_range_end(&range);
+> +	return ret;
+
+We can drop "ret" and return 0 here directly.
+
+> +}
+> +
+>  /*
+>   * We enter with non-exclusive mmap_lock (to exclude vma changes,
+>   * but allow concurrent faults), and pte mapped but not yet locked.
+> @@ -3330,6 +3447,9 @@ vm_fault_t do_swap_page(struct vm_fault *vmf)
+>  		if (is_migration_entry(entry)) {
+>  			migration_entry_wait(vma->vm_mm, vmf->pmd,
+>  					     vmf->address);
+> +		} else if (is_device_exclusive_entry(entry)) {
+> +			vmf->page = pfn_swap_entry_to_page(entry);
+> +			ret = remove_device_exclusive_entry(vmf);
+>  		} else if (is_device_private_entry(entry)) {
+>  			vmf->page = pfn_swap_entry_to_page(entry);
+>  			ret = vmf->page->pgmap->ops->migrate_to_ram(vmf);
+> diff --git a/mm/mprotect.c b/mm/mprotect.c
+> index ee5961888e70..883e2cc85cad 100644
+> --- a/mm/mprotect.c
+> +++ b/mm/mprotect.c
+> @@ -165,6 +165,14 @@ static unsigned long change_pte_range(struct vm_area_struct *vma, pmd_t *pmd,
+>  				newpte = swp_entry_to_pte(entry);
+>  				if (pte_swp_uffd_wp(oldpte))
+>  					newpte = pte_swp_mkuffd_wp(newpte);
+> +			} else if (is_writable_device_exclusive_entry(entry)) {
+> +				entry = make_readable_device_exclusive_entry(
+> +							swp_offset(entry));
+> +				newpte = swp_entry_to_pte(entry);
+> +				if (pte_swp_soft_dirty(oldpte))
+> +					newpte = pte_swp_mksoft_dirty(newpte);
+> +				if (pte_swp_uffd_wp(oldpte))
+> +					newpte = pte_swp_mkuffd_wp(newpte);
+>  			} else {
+>  				newpte = oldpte;
+>  			}
+> diff --git a/mm/page_vma_mapped.c b/mm/page_vma_mapped.c
+> index a6a7febb4d93..f535bcb4950c 100644
+> --- a/mm/page_vma_mapped.c
+> +++ b/mm/page_vma_mapped.c
+> @@ -41,7 +41,8 @@ static bool map_pte(struct page_vma_mapped_walk *pvmw)
+>  
+>  				/* Handle un-addressable ZONE_DEVICE memory */
+>  				entry = pte_to_swp_entry(*pvmw->pte);
+> -				if (!is_device_private_entry(entry))
+> +				if (!is_device_private_entry(entry) &&
+> +				    !is_device_exclusive_entry(entry))
+>  					return false;
+>  			} else if (!pte_present(*pvmw->pte))
+>  				return false;
+> @@ -93,7 +94,8 @@ static bool check_pte(struct page_vma_mapped_walk *pvmw)
+>  			return false;
+>  		entry = pte_to_swp_entry(*pvmw->pte);
+>  
+> -		if (!is_migration_entry(entry))
+> +		if (!is_migration_entry(entry) &&
+> +		    !is_device_exclusive_entry(entry))
+>  			return false;
+>  
+>  		pfn = swp_offset(entry);
+> @@ -102,7 +104,8 @@ static bool check_pte(struct page_vma_mapped_walk *pvmw)
+>  
+>  		/* Handle un-addressable ZONE_DEVICE memory */
+>  		entry = pte_to_swp_entry(*pvmw->pte);
+> -		if (!is_device_private_entry(entry))
+> +		if (!is_device_private_entry(entry) &&
+> +		    !is_device_exclusive_entry(entry))
+>  			return false;
+>  
+>  		pfn = swp_offset(entry);
+> diff --git a/mm/rmap.c b/mm/rmap.c
+> index 8ed1853060cf..fe062f63ef4d 100644
+> --- a/mm/rmap.c
+> +++ b/mm/rmap.c
+> @@ -2008,6 +2008,192 @@ void page_mlock(struct page *page)
+>  	rmap_walk(page, &rwc);
+>  }
+>  
+> +struct make_exclusive_args {
+> +	struct mm_struct *mm;
+> +	unsigned long address;
+> +	void *owner;
+> +	bool valid;
+> +};
+> +
+> +static bool page_make_device_exclusive_one(struct page *page,
+> +		struct vm_area_struct *vma, unsigned long address, void *priv)
+> +{
+> +	struct mm_struct *mm = vma->vm_mm;
+> +	struct page_vma_mapped_walk pvmw = {
+> +		.page = page,
+> +		.vma = vma,
+> +		.address = address,
+> +	};
+> +	struct make_exclusive_args *args = priv;
+> +	pte_t pteval;
+> +	struct page *subpage;
+> +	bool ret = true;
+> +	struct mmu_notifier_range range;
+> +	swp_entry_t entry;
+> +	pte_t swp_pte;
+> +
+> +	mmu_notifier_range_init_owner(&range, MMU_NOTIFY_EXCLUSIVE, 0, vma,
+
+Similar question here, EXCLUSIVE comment says it gets notified when the device
+does not have exclusive access.
+
+If you prefer to keep using EXCLUSIVE for both mark/restore, then we need to
+change the comment above MMU_NOTIFY_EXCLUSIVE?
+
+> +				      vma->vm_mm, address, min(vma->vm_end,
+> +				      address + page_size(page)), args->owner);
+> +	mmu_notifier_invalidate_range_start(&range);
+> +
+> +	while (page_vma_mapped_walk(&pvmw)) {
+> +		/* Unexpected PMD-mapped THP? */
+> +		VM_BUG_ON_PAGE(!pvmw.pte, page);
+> +
+> +		if (!pte_present(*pvmw.pte)) {
+> +			ret = false;
+> +			page_vma_mapped_walk_done(&pvmw);
+> +			break;
+> +		}
+> +
+> +		subpage = page - page_to_pfn(page) + pte_pfn(*pvmw.pte);
+
+I see that all pages passed in should be done after FOLL_SPLIT_PMD, so is this
+needed?  Or say, should subpage==page always be true?
+
+> +		address = pvmw.address;
+> +
+> +		/* Nuke the page table entry. */
+> +		flush_cache_page(vma, address, pte_pfn(*pvmw.pte));
+> +		pteval = ptep_clear_flush(vma, address, pvmw.pte);
+> +
+> +		/* Move the dirty bit to the page. Now the pte is gone. */
+> +		if (pte_dirty(pteval))
+> +			set_page_dirty(page);
+> +
+> +		if (arch_unmap_one(mm, vma, address, pteval) < 0) {
+> +			set_pte_at(mm, address, pvmw.pte, pteval);
+> +			ret = false;
+> +			page_vma_mapped_walk_done(&pvmw);
+> +			break;
+> +		}
+
+Didn't notice this previously, but also suggest to drop this.
+
+Two reasons:
+
+1. It's introduced in ca827d55ebaa ("mm, swap: Add infrastructure for saving
+   page metadata on swap", 2018-03-18) for sparc-only use so far.  If we really
+   want this, we'll also want to call arch_do_swap_page() when restoring the
+   pte just like what we do in do_swap_page(); NOTE: current code path of
+   SWP_DEVICE_EXCLUSIVE will skip the arch_do_swap_page() in do_swap_page() so
+   it's not even paired with the above arch_unmap_one(), so I believe this
+   won't even work for sparc at all.
+
+2. I highly doubt whether sparc is also on the list of platforms to support for
+   device atomic ops even in the future.  IMHO we'd better not copy-paste code
+   clips if never used at all, because once merged, removing it would need more
+   justifications.
+
+> +
+> +		/*
+> +		 * Check that our target page is still mapped at the expected
+> +		 * address.
+> +		 */
+> +		if (args->mm == mm && args->address == address &&
+> +		    pte_write(pteval))
+> +			args->valid = true;
+> +
+> +		/*
+> +		 * Store the pfn of the page in a special migration
+> +		 * pte. do_swap_page() will wait until the migration
+> +		 * pte is removed and then restart fault handling.
+> +		 */
+> +		if (pte_write(pteval))
+> +			entry = make_writable_device_exclusive_entry(
+> +							page_to_pfn(subpage));
+> +		else
+> +			entry = make_readable_device_exclusive_entry(
+> +							page_to_pfn(subpage));
+> +		swp_pte = swp_entry_to_pte(entry);
+> +		if (pte_soft_dirty(pteval))
+> +			swp_pte = pte_swp_mksoft_dirty(swp_pte);
+> +		if (pte_uffd_wp(pteval))
+> +			swp_pte = pte_swp_mkuffd_wp(swp_pte);
+> +
+> +		/* Take a reference for the swap entry */
+> +		get_page(page);
+> +		set_pte_at(mm, address, pvmw.pte, swp_pte);
+> +
+> +		page_remove_rmap(subpage, PageHuge(page));
+
+Why PageHuge()?  Should it be a constant "false"?
+
+> +		put_page(page);
+
+Should we drop this put_page() along with get_page() above?
+
+page_count() should be >0 anyway as we've got a mapcount before at least when
+dropping the pte.  Then IMHO we can simply keep the old page reference.
+
+> +	}
+> +
+> +	mmu_notifier_invalidate_range_end(&range);
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * page_make_device_exclusive - replace page table mappings with swap entries
+
+"with swap entries" looks a bit blurred to me (although below longer comment
+explains much better).  How about below (or something similar):
+
+  page_make_device_exclusive - Mark the page exclusively owned by the device
+
+?
+
+It'll also match with comment above make_device_exclusive_range().
+
+No strong opinion.
+
+The rest looks good.  Thanks,
+
+> + * @page: the page to replace page table entries for
+> + * @mm: the mm_struct where the page is expected to be mapped
+> + * @address: address where the page is expected to be mapped
+> + * @owner: passed to MMU_NOTIFY_EXCLUSIVE range notifier callbacks
+> + *
+> + * Tries to remove all the page table entries which are mapping this page and
+> + * replace them with special device exclusive swap entries to grant a device
+> + * exclusive access to the page. Caller must hold the page lock.
+> + *
+> + * Returns false if the page is still mapped, or if it could not be unmapped
+> + * from the expected address. Otherwise returns true (success).
+> + */
+> +static bool page_make_device_exclusive(struct page *page, struct mm_struct *mm,
+> +				unsigned long address, void *owner)
+> +{
+> +	struct make_exclusive_args args = {
+> +		.mm = mm,
+> +		.address = address,
+> +		.owner = owner,
+> +		.valid = false,
+> +	};
+> +	struct rmap_walk_control rwc = {
+> +		.rmap_one = page_make_device_exclusive_one,
+> +		.done = page_not_mapped,
+> +		.anon_lock = page_lock_anon_vma_read,
+> +		.arg = &args,
+> +	};
+> +
+> +	/*
+> +	 * Restrict to anonymous pages for now to avoid potential writeback
+> +	 * issues.
+> +	 */
+> +	if (!PageAnon(page))
+> +		return false;
+> +
+> +	rmap_walk(page, &rwc);
+> +
+> +	return args.valid && !page_mapcount(page);
+> +}
+> +
+> +/**
+> + * make_device_exclusive_range() - Mark a range for exclusive use by a device
+> + * @mm: mm_struct of assoicated target process
+> + * @start: start of the region to mark for exclusive device access
+> + * @end: end address of region
+> + * @pages: returns the pages which were successfully marked for exclusive access
+> + * @owner: passed to MMU_NOTIFY_EXCLUSIVE range notifier to allow filtering
+> + *
+> + * Returns: number of pages found in the range by GUP. A page is marked for
+> + * exclusive access only if the page pointer is non-NULL.
+> + *
+> + * This function finds ptes mapping page(s) to the given address range, locks
+> + * them and replaces mappings with special swap entries preventing userspace CPU
+> + * access. On fault these entries are replaced with the original mapping after
+> + * calling MMU notifiers.
+> + *
+> + * A driver using this to program access from a device must use a mmu notifier
+> + * critical section to hold a device specific lock during programming. Once
+> + * programming is complete it should drop the page lock and reference after
+> + * which point CPU access to the page will revoke the exclusive access.
+> + */
+> +int make_device_exclusive_range(struct mm_struct *mm, unsigned long start,
+> +				unsigned long end, struct page **pages,
+> +				void *owner)
+> +{
+> +	unsigned long npages = (end - start) >> PAGE_SHIFT;
+> +	unsigned long i;
+> +
+> +	npages = get_user_pages_remote(mm, start, npages,
+> +				       FOLL_GET | FOLL_WRITE | FOLL_SPLIT_PMD,
+> +				       pages, NULL, NULL);
+> +	for (i = 0; i < npages; i++, start += PAGE_SIZE) {
+> +		if (!trylock_page(pages[i])) {
+> +			put_page(pages[i]);
+> +			pages[i] = NULL;
+> +			continue;
+> +		}
+> +
+> +		if (!page_make_device_exclusive(pages[i], mm, start, owner)) {
+> +			unlock_page(pages[i]);
+> +			put_page(pages[i]);
+> +			pages[i] = NULL;
+> +		}
+> +	}
+> +
+> +	return npages;
+> +}
+> +EXPORT_SYMBOL_GPL(make_device_exclusive_range);
+> +
+>  void __put_anon_vma(struct anon_vma *anon_vma)
+>  {
+>  	struct anon_vma *root = anon_vma->root;
+> -- 
+> 2.20.1
+> 
+
+-- 
+Peter Xu
+
+_______________________________________________
+Nouveau mailing list
+Nouveau@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/nouveau
