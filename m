@@ -2,83 +2,85 @@ Return-Path: <SRS0=8I/f=KW=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7818CC4707F
-	for <nouveau@archiver.kernel.org>; Thu, 27 May 2021 16:15:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 253EDC47089
+	for <nouveau@archiver.kernel.org>; Thu, 27 May 2021 16:16:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 34C6661248
-	for <nouveau@archiver.kernel.org>; Thu, 27 May 2021 16:15:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 34C6661248
+	by mail.kernel.org (Postfix) with ESMTPS id E3D3061248
+	for <nouveau@archiver.kernel.org>; Thu, 27 May 2021 16:15:59 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E3D3061248
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAF246F422;
-	Thu, 27 May 2021 16:15:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDDD76F423;
+	Thu, 27 May 2021 16:15:58 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9976A6F38C
- for <nouveau@lists.freedesktop.org>; Thu, 27 May 2021 13:05:05 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6D156E12D
+ for <nouveau@lists.freedesktop.org>; Thu, 27 May 2021 01:44:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1622120704;
+ s=mimecast20190719; t=1622079867;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=4rzzOa6q+9jkHUrjBMT6aDA8TmT+khUNIgkx743Uidw=;
- b=PakWUmYMPbZK2LBR7W48JIMLknTuy4Sz3tzlJyWeCZsrup4/hnug2fTWlnOAfw9Xg+eYvK
- TEWkF7M5D0OJ2xqBYYwrOX8JsPsYXqvPfwInJFJJ1YNVR1neZJl1kNiLrddkbMOS5m8hUd
- ROBaYOWj7N0KfxtnjrjIghGRJJhbhn4=
+ bh=VpnQjRLTYtvem4bmBp1ngvgaZaWU0A6eMfZva3aBJoc=;
+ b=B5RO3BafCwdd5e/C/Vpai1TiK9oVxl7N85p58LNFZmyiYpB3wOBKScfaOlXzQY38yzO6zk
+ QQUNjNueMVvgheq0bK6uocsAotVbB7ykN0boX5dJWSLyyExGZv2pn8EAdOriNdfKkgF01f
+ rqXzYKmr0rie/Q4mjZTUWTWYd5bgl4s=
 Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
  [209.85.219.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-131-rN-js5BOOzidmzYNi4lokg-1; Thu, 27 May 2021 09:05:00 -0400
-X-MC-Unique: rN-js5BOOzidmzYNi4lokg-1
+ us-mta-462-M7nm0GI4Nayze5QYFnzE9A-1; Wed, 26 May 2021 21:44:25 -0400
+X-MC-Unique: M7nm0GI4Nayze5QYFnzE9A-1
 Received: by mail-qv1-f70.google.com with SMTP id
- r11-20020a0cb28b0000b02901c87a178503so3842820qve.22
- for <nouveau@lists.freedesktop.org>; Thu, 27 May 2021 06:05:00 -0700 (PDT)
+ k12-20020a0cfd6c0000b029020df9543019so2739788qvs.14
+ for <nouveau@lists.freedesktop.org>; Wed, 26 May 2021 18:44:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=4rzzOa6q+9jkHUrjBMT6aDA8TmT+khUNIgkx743Uidw=;
- b=OdsREOvugA+vl23WJko9sonezDU8CJZQekrTVe3t+ReaAVJ7bhMgqL8CtjUkjIqETU
- btYGWZW2b02MaokFjPcqRXjlJ1ipMORQpwNgb4hAEUSVc+SySZw3K5YAdJG/xPH9KyDx
- t1CupaQdLOiUzLd0Aqky1tx7qXLmnyobBONedU++6zYRiyreFQ6qwFeI0PopzEJNTrhr
- a0cosBM/s8EoNpdkvt9e2ic+CRmoIuDqfaVOUs0xEByVWiO7fMxiF9BkzSEgd/ZJ0x3U
- zqCA9KfhksOViKmXW4MlQGaQO4ihDGW2yErzsAHU9WDMBO8cay2c4SBkcoQ2Zw4gN+ZH
- K38Q==
-X-Gm-Message-State: AOAM530iOPd38/EVuQht5QjhkTM7DhdH6eHxGay9KcrtAKZc7RmTtWjm
- zuF0RXkWGeNUCP2nk24axnESRQ/B/sWbpUAGpmIzCkiWhWoP2rZfKklgPppQUYK9PRIhOiyy5K6
- ONNuDohcMJZlXCI0D608iFO0nrg==
-X-Received: by 2002:ac8:5f84:: with SMTP id j4mr2991620qta.240.1622120700035; 
- Thu, 27 May 2021 06:05:00 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzF9/f/oCcd+BBWrvSHgnJ7MXTSn158rInAQdiALMQLZF3k9Vcpr9xEm1OHlKUAk1TCJw9rGQ==
-X-Received: by 2002:ac8:5f84:: with SMTP id j4mr2991568qta.240.1622120699489; 
- Thu, 27 May 2021 06:04:59 -0700 (PDT)
+ bh=VpnQjRLTYtvem4bmBp1ngvgaZaWU0A6eMfZva3aBJoc=;
+ b=CReL0SWkbAi5FmSO/s/g8E4siZnOfeWMRaZqnu4Kw50zi5m+eRQHkV+cSVw40gzjEK
+ JkOt1DoCHAiaVdPBXf9vfPHNllWcNvOrw6+J/XD80m9sdccjssya3RPz/C3bc7xwMkCC
+ s/TwN+hYAnRA+QnsHqMkAo+yTchqGtmAHKhY1gv6SHtINwn9YNw618ot0EJJPF5yy5A8
+ PX+O+kVvcTG/lyC//q2eKrVA8QdTGKIlUH07cxEOw8tpADyqSi7mfxryGmGZ65hvVeOE
+ 2rxkKZQ3tkZRZppw6kAxU7pzS+fyQQaD/yzOdPmlppmWEt5egltlBppWto0joUSnBxL2
+ lgVg==
+X-Gm-Message-State: AOAM532s5XFCPCobeugktIdF7QHDaLjEGchFjsuEd636K/zOecPwIhW2
+ taLCJmpDwkx+n72FAhoSIGfewgsBjkJEol7IOGBeHxoHqTCpmO8r98o297cgjBYtbmkgXYZDCg6
+ NN33uJk2gojx6EKelJEjem4Oi1Q==
+X-Received: by 2002:ac8:58c9:: with SMTP id u9mr1105864qta.58.1622079865059;
+ Wed, 26 May 2021 18:44:25 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzfR+dYiNTc8bzg8Cbe+4NPqyuhJDn00JrMrexnADTDq6kNzSW0QT/5/OWP1wZQyy97uuc2Sg==
+X-Received: by 2002:ac8:58c9:: with SMTP id u9mr1105834qta.58.1622079864805;
+ Wed, 26 May 2021 18:44:24 -0700 (PDT)
 Received: from t490s (bras-base-toroon474qw-grc-72-184-145-4-219.dsl.bell.ca.
  [184.145.4.219])
- by smtp.gmail.com with ESMTPSA id p63sm1325517qkf.31.2021.05.27.06.04.58
+ by smtp.gmail.com with ESMTPSA id y1sm498232qkp.21.2021.05.26.18.44.22
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 27 May 2021 06:04:58 -0700 (PDT)
-Date: Thu, 27 May 2021 09:04:57 -0400
+ Wed, 26 May 2021 18:44:23 -0700 (PDT)
+Date: Wed, 26 May 2021 21:44:22 -0400
 From: Peter Xu <peterx@redhat.com>
 To: Alistair Popple <apopple@nvidia.com>
-Message-ID: <YK+Y+aAZHDv8+w+Q@t490s>
+Message-ID: <YK75dpdwU9AIKJ6i@t490s>
 References: <20210524132725.12697-1-apopple@nvidia.com>
- <20210524132725.12697-8-apopple@nvidia.com>
- <YK6hYGEx+XzeZELV@t490s> <37725705.JvxlXkkoz5@nvdebian>
+ <20210524132725.12697-7-apopple@nvidia.com>
+ <YK6mbf967dV0ljHn@t490s> <2005328.bFqPmhE5MS@nvdebian>
 MIME-Version: 1.0
-In-Reply-To: <37725705.JvxlXkkoz5@nvdebian>
+In-Reply-To: <2005328.bFqPmhE5MS@nvdebian>
 Authentication-Results: relay.mimecast.com;
  auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=peterx@redhat.com
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Disposition: inline
 X-Mailman-Approved-At: Thu, 27 May 2021 16:15:56 +0000
-Subject: Re: [Nouveau] [PATCH v9 07/10] mm: Device exclusive memory access
+Subject: Re: [Nouveau] [PATCH v9 06/10] mm/memory.c: Allow different return
+ codes for copy_nonpresent_pte()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,102 +96,129 @@ Cc: rcampbell@nvidia.com, willy@infradead.org, linux-doc@vger.kernel.org,
  nouveau@lists.freedesktop.org, bsingharora@gmail.com, hughd@google.com,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
  hch@infradead.org, linux-mm@kvack.org, bskeggs@redhat.com, jgg@nvidia.com,
- akpm@linux-foundation.org, Christoph Hellwig <hch@lst.de>
+ akpm@linux-foundation.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, May 27, 2021 at 01:35:39PM +1000, Alistair Popple wrote:
-> > > + *
-> > > + * @MMU_NOTIFY_EXCLUSIVE: to signal a device driver that the device will
-> > > no + * longer have exclusive access to the page. May ignore the
-> > > invalidation that's + * part of make_device_exclusive_range() if the
-> > > owner field
-> > > + * matches the value passed to make_device_exclusive_range().
+On Thu, May 27, 2021 at 11:20:36AM +1000, Alistair Popple wrote:
+> On Thursday, 27 May 2021 5:50:05 AM AEST Peter Xu wrote:
+> > On Mon, May 24, 2021 at 11:27:21PM +1000, Alistair Popple wrote:
+> > > Currently if copy_nonpresent_pte() returns a non-zero value it is
+> > > assumed to be a swap entry which requires further processing outside the
+> > > loop in copy_pte_range() after dropping locks. This prevents other
+> > > values being returned to signal conditions such as failure which a
+> > > subsequent change requires.
+> > > 
+> > > Instead make copy_nonpresent_pte() return an error code if further
+> > > processing is required and read the value for the swap entry in the main
+> > > loop under the ptl.
+> > > 
+> > > Signed-off-by: Alistair Popple <apopple@nvidia.com>
+> > > 
+> > > ---
+> > > 
+> > > v9:
+> > > 
+> > > New for v9 to allow device exclusive handling to occur in
+> > > copy_nonpresent_pte().
+> > > ---
+> > > 
+> > >  mm/memory.c | 12 +++++++-----
+> > >  1 file changed, 7 insertions(+), 5 deletions(-)
+> > > 
+> > > diff --git a/mm/memory.c b/mm/memory.c
+> > > index 2fb455c365c2..e061cfa18c11 100644
+> > > --- a/mm/memory.c
+> > > +++ b/mm/memory.c
+> > > @@ -718,7 +718,7 @@ copy_nonpresent_pte(struct mm_struct *dst_mm, struct
+> > > mm_struct *src_mm,> 
+> > >       if (likely(!non_swap_entry(entry))) {
+> > >       
+> > >               if (swap_duplicate(entry) < 0)
+> > > 
+> > > -                     return entry.val;
+> > > +                     return -EAGAIN;
+> > > 
+> > >               /* make sure dst_mm is on swapoff's mmlist. */
+> > >               if (unlikely(list_empty(&dst_mm->mmlist))) {
+> > > 
+> > > @@ -974,11 +974,13 @@ copy_pte_range(struct vm_area_struct *dst_vma,
+> > > struct vm_area_struct *src_vma,> 
+> > >                       continue;
+> > >               
+> > >               }
+> > >               if (unlikely(!pte_present(*src_pte))) {
+> > > 
+> > > -                     entry.val = copy_nonpresent_pte(dst_mm, src_mm,
+> > > -                                                     dst_pte, src_pte,
+> > > -                                                     src_vma, addr, rss);
+> > > -                     if (entry.val)
+> > > +                     ret = copy_nonpresent_pte(dst_mm, src_mm,
+> > > +                                             dst_pte, src_pte,
+> > > +                                             src_vma, addr, rss);
+> > > +                     if (ret == -EAGAIN) {
+> > > +                             entry = pte_to_swp_entry(*src_pte);
+> > > 
+> > >                               break;
+> > > 
+> > > +                     }
+> > > 
+> > >                       progress += 8;
+> > >                       continue;
+> > >               
+> > >               }
 > > 
-> > Perhaps s/matches/does not match/?
-> 
-> No, "matches" is correct. The MMU_NOTIFY_EXCLUSIVE notifier is to notify a 
-> listener that a range is being invalidated for the purpose of making the range 
-> available for some device to have exclusive access to. Which does also mean a 
-> device getting the notification no longer has exclusive access if it already 
-> did.
-> 
-> A unique type is needed because when creating the range a driver needs to form 
-> a mmu critical section (with mmu_interval_read_begin()/
-> mmu_interval_read_end()) to ensure the entry remains valid long enough to 
-> program the device pte and hasn't been invalidated.
-> 
-> However without a way of filtering any invalidations will result in a retry, 
-> but make_device_exclusive_range() needs to do an invalidation during 
-> installation of the entry. To avoid this causing infinite retries the driver 
-> ignores specific invalidation events that it knows don't apply, ie. the 
-> invalidations that are a result of that driver asking for device exclusive 
-> entries.
-
-OK I think I get it now.. so the driver checks both EXCLUSIVE and owner, if all
-match it skips the notify, otherwise it's treated like all the rest.  Thanks.
-
-However then it's still confusing (as I raised it too in previous comment) that
-we use CLEAR when re-installing the valid pte.  It's merely against what CLEAR
-means.
-
-How about sending EXCLUSIVE for both mark/restore?  Just that when restore we
-notify with owner==NULL telling that no one is owning it anymore so driver
-needs to drop the ownership.  I assume your driver patch does not need change
-too.  Would that be much cleaner than CLEAR?  I bet it also makes commenting
-the new notify easier.
-
-What do you think?
-
-[...]
-
-> > > +                                   vma->vm_mm, address, min(vma->vm_end,
-> > > +                                   address + page_size(page)),
-> > > args->owner); +     mmu_notifier_invalidate_range_start(&range);
-> > > +
-> > > +     while (page_vma_mapped_walk(&pvmw)) {
-> > > +             /* Unexpected PMD-mapped THP? */
-> > > +             VM_BUG_ON_PAGE(!pvmw.pte, page);
-> > > +
-> > > +             if (!pte_present(*pvmw.pte)) {
-> > > +                     ret = false;
-> > > +                     page_vma_mapped_walk_done(&pvmw);
-> > > +                     break;
-> > > +             }
-> > > +
-> > > +             subpage = page - page_to_pfn(page) + pte_pfn(*pvmw.pte);
+> > Note that -EAGAIN was previously used by copy_present_page() for early cow
+> > use.  Here later although we check entry.val first:
 > > 
-> > I see that all pages passed in should be done after FOLL_SPLIT_PMD, so is
-> > this needed?  Or say, should subpage==page always be true?
+> >         if (entry.val) {
+> >                 if (add_swap_count_continuation(entry, GFP_KERNEL) < 0) {
+> >                         ret = -ENOMEM;
+> >                         goto out;
+> >                 }
+> >                 entry.val = 0;
+> >         } else if (ret) {
+> >                 WARN_ON_ONCE(ret != -EAGAIN);
+> >                 prealloc = page_copy_prealloc(src_mm, src_vma, addr);
+> >                 if (!prealloc)
+> >                         return -ENOMEM;
+> >                 /* We've captured and resolved the error. Reset, try again.
+> > */ ret = 0;
+> >         }
+> > 
+> > We didn't reset "ret" in entry.val case (maybe we should?). Then in the next
+> > round of "goto again" if "ret" is unluckily untouched, it could reach the
+> > 2nd if check, and I think it could cause an unexpected
+> > page_copy_prealloc().
 > 
-> Not always, in the case of a thp there are small ptes which will get device 
-> exclusive entries.
+> Thanks, I had considered that but saw "ret" was always set either by 
+> copy_nonpresent_pte() or copy_present_pte(). However missed the "unlucky" case 
+> at the start of the loop:
+> 
+> 	if (progress >= 32) {
+> 		progress = 0;
+> 		if (need_resched() ||
+> 				spin_needbreak(src_ptl) || pin_needbreak(dst_ptl))
+> 			break;
+> 
+> Looking at this again though checking different variables to figure out what 
+> to do outside the locks and reusing error codes seems error prone. I reused -
+> EAGAIN for copy_nonpresent_pte() simply because that seemed the most sensible 
+> error code, but I don't think that aids readability and it might be better to 
+> use a unique error code for each case needing extra handling.
+> 
+> So it might be better if I update this patch to:
+> 1) Use unique error codes for each case requiring special handling outside the 
+> lock.
+> 2) Only check "ret" to determine what to do outside locks (ie. not entry.val)
+> 3) Document these.
+> 4) Always reset ret after handling.
+> 
+> Thoughts?
 
-FOLL_SPLIT_PMD will first split the huge thp into smaller pages, then do
-follow_page_pte() on them (in follow_pmd_mask):
-
-	if (flags & FOLL_SPLIT_PMD) {
-		int ret;
-		page = pmd_page(*pmd);
-		if (is_huge_zero_page(page)) {
-			spin_unlock(ptl);
-			ret = 0;
-			split_huge_pmd(vma, pmd, address);
-			if (pmd_trans_unstable(pmd))
-				ret = -EBUSY;
-		} else {
-			spin_unlock(ptl);
-			split_huge_pmd(vma, pmd, address);
-			ret = pte_alloc(mm, pmd) ? -ENOMEM : 0;
-		}
-
-		return ret ? ERR_PTR(ret) :
-			follow_page_pte(vma, address, pmd, flags, &ctx->pgmap);
-	}
-
-So I thought all pages are small pages?
+Looks good to me.  Thanks,
 
 -- 
 Peter Xu
