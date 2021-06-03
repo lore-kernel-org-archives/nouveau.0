@@ -2,89 +2,85 @@ Return-Path: <SRS0=yvoZ=K6=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-20.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B2AAEC4708F
-	for <nouveau@archiver.kernel.org>; Fri,  4 Jun 2021 04:50:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C1D9C07E94
+	for <nouveau@archiver.kernel.org>; Fri,  4 Jun 2021 15:34:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 76A95610E5
-	for <nouveau@archiver.kernel.org>; Fri,  4 Jun 2021 04:50:30 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 76A95610E5
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=embeddedor.com
+	by mail.kernel.org (Postfix) with ESMTPS id 01B8061400
+	for <nouveau@archiver.kernel.org>; Fri,  4 Jun 2021 15:34:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 01B8061400
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 309336E89A;
-	Fri,  4 Jun 2021 04:50:30 +0000 (UTC)
-X-Greylist: delayed 1347 seconds by postgrey-1.36 at gabe;
- Fri, 04 Jun 2021 04:50:28 UTC
-Received: from gateway21.websitewelcome.com (gateway21.websitewelcome.com
- [192.185.45.155])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADCB06E89A
- for <nouveau@lists.freedesktop.org>; Fri,  4 Jun 2021 04:50:28 +0000 (UTC)
-Received: from cm13.websitewelcome.com (cm13.websitewelcome.com [100.42.49.6])
- by gateway21.websitewelcome.com (Postfix) with ESMTP id 3FEA2400C5F9D
- for <nouveau@lists.freedesktop.org>; Thu,  3 Jun 2021 23:27:59 -0500 (CDT)
-Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with SMTP
- id p1R9l0mmFVBxyp1R9lTSzQ; Thu, 03 Jun 2021 23:27:59 -0500
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:MIME-Version:Date:Message-ID:References:Cc:To:From:Subject:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=tmKbVxD5QRNxYgvET2f9iyU8zdJK3B5xkoywFvU0nbk=; b=hZL3R8CSFrFaOxPOz5slqALI+k
- roRKk+v9sPJQ9gnFQc9uOepXmRAWoulACY5m+961nuL24ylRa+zDiI3aV6Hpvz7W2qTmAWuoZ6c6w
- XwVgMuhufVFdLPr/FCjiMVUUDl79AYrZLli1NuXUM0HJstNLNGNh9zhaMUutfKij2R3ooRKgwSAYE
- yYpqaoTzBL2/lOTqJQScSplI927IYPVYpJr1cZYGINYW7l4GfK5t7hoPVQxv9itrNbnQF/NSIfjCO
- qIXDhBOP/yWNUlnbHLIc/QwnqJ6XY9zv0PzEI60ulZ8ymInArz/9XP9457v2SXq2sWFYCEeuy44Wq
- 2/JgdJIg==;
-Received: from 187-162-31-110.static.axtel.net ([187.162.31.110]:34478
- helo=[192.168.15.8])
- by gator4166.hostgator.com with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.94.2)
- (envelope-from <gustavo@embeddedor.com>)
- id 1lp1R5-00182o-6d; Thu, 03 Jun 2021 23:27:55 -0500
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-To: "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>
-References: <20210305095609.GA141907@embeddedor>
- <b42a6c20-e70d-c56a-795a-072ecc772bf2@embeddedor.com>
- <2aaf5382-3907-ac2a-ebff-a33b308aaf7d@embeddedor.com>
-Message-ID: <f6834e09-c329-8546-19c1-d58adbf0f36a@embeddedor.com>
-Date: Thu, 3 Jun 2021 23:28:57 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id A98726E108;
+	Fri,  4 Jun 2021 15:34:13 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66B9E6F48B
+ for <nouveau@lists.freedesktop.org>; Thu,  3 Jun 2021 14:47:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1622731666;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ggwAzDwYsJe761/h5KeyH0+JH3HJIdjU1YmA0yiaMkI=;
+ b=c6KbUWHozjlgPRGeKkkVLjeAZIWBPqMyh56ebADi0rfZcqAJGEBYATvwEoUYnfBI9VRW8f
+ Gjk4IeEfuXNd/w7x4TXUjO2lOEmf8jgt5gI0IaRTryfSZKkzbgRUPYZn0vYcMtNngguA7V
+ mIztC+qrLSMk4ynNtaj0G+X5RfORWt0=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-19-L-h_qU6qNRiRywRkN3Qbog-1; Thu, 03 Jun 2021 10:47:43 -0400
+X-MC-Unique: L-h_qU6qNRiRywRkN3Qbog-1
+Received: by mail-qt1-f198.google.com with SMTP id
+ t25-20020ac865d90000b029024320bc6dc9so3202148qto.9
+ for <nouveau@lists.freedesktop.org>; Thu, 03 Jun 2021 07:47:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=ggwAzDwYsJe761/h5KeyH0+JH3HJIdjU1YmA0yiaMkI=;
+ b=dT1Mapfh5RumVwt8M/WCSbgF2x4hSM6ZrlEjf1yNEMDfBs9Oi7esLWoyLjvnXGgq0r
+ TguoGypx0JKZFoDt1yoUqWOt2a+dY5uzUXH95o2aDh2Q2+L2hALlueKCwt2fDR6YMntv
+ qJfN2S8aicxNpJOe0gjCNWZhdZ7M8jNDtlPFz4TIVxc+HLxm41fWaYdt6G73yFLWH8sC
+ XO111oTwFbzs8NqafGT/BipRas68afTLB0ipr9JoHmHZJS7iMngmrQ4d//6VNncc/guS
+ F8qVfJLq0cJEUbZVTtyv9ibEOX6TYBkLkgxOAL10Zo1PvymsGdYOdLa3M9qNOg22046F
+ jVUA==
+X-Gm-Message-State: AOAM5331IVAv9fnALxIqbC7YW2mu3wLAjh53xsO6dAmtgDJ0dpoxUBFW
+ WGoRM9I3Y61dIenDQE23o5LwDCbEDZR8AIWETNVm1s2NGWvTOhwQ89kYqB4Ittz43BpcKjPR+fA
+ fU5bM7iheUyTkZ6/ub22LSdcsfA==
+X-Received: by 2002:a37:ae81:: with SMTP id
+ x123mr31891341qke.251.1622731662880; 
+ Thu, 03 Jun 2021 07:47:42 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJw8G2sTC80gzexHAH3BN9zjekxO4BROz6GuR6h2LK/qUHy5QdzjC03iGstjtnqP8uH7ytX0pw==
+X-Received: by 2002:a37:ae81:: with SMTP id
+ x123mr31891297qke.251.1622731662359; 
+ Thu, 03 Jun 2021 07:47:42 -0700 (PDT)
+Received: from t490s
+ (bras-base-toroon474qw-grc-61-184-147-118-108.dsl.bell.ca. [184.147.118.108])
+ by smtp.gmail.com with ESMTPSA id j28sm2041208qkl.35.2021.06.03.07.47.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 03 Jun 2021 07:47:41 -0700 (PDT)
+Date: Thu, 3 Jun 2021 10:47:40 -0400
+From: Peter Xu <peterx@redhat.com>
+To: Alistair Popple <apopple@nvidia.com>
+Message-ID: <YLjrjJXMP9Y3bvej@t490s>
+References: <20210524132725.12697-1-apopple@nvidia.com>
+ <YLdGXSw0zdiovn4i@balbir-desktop> <YLeXqp/U0DgylI/u@t490s>
+ <3853054.AI2YdRgKcH@nvdebian>
 MIME-Version: 1.0
-In-Reply-To: <2aaf5382-3907-ac2a-ebff-a33b308aaf7d@embeddedor.com>
-Content-Language: en-US
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 187.162.31.110
-X-Source-L: No
-X-Exim-ID: 1lp1R5-00182o-6d
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 187-162-31-110.static.axtel.net ([192.168.15.8])
- [187.162.31.110]:34478
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 25
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-Subject: Re: [Nouveau] [PATCH RESEND][next] drm/nouveau/clk: Fix
- fall-through warnings for Clang
+In-Reply-To: <3853054.AI2YdRgKcH@nvdebian>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=peterx@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Disposition: inline
+X-Mailman-Approved-At: Fri, 04 Jun 2021 15:34:13 +0000
+Subject: Re: [Nouveau] [PATCH v9 07/10] mm: Device exclusive memory access
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,71 +92,27 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kees Cook <keescook@chromium.org>, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-hardening@vger.kernel.org
+Cc: rcampbell@nvidia.com, willy@infradead.org, linux-doc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Balbir Singh <bsingharora@gmail.com>,
+ hughd@google.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, hch@infradead.org, linux-mm@kvack.org,
+ bskeggs@redhat.com, jgg@nvidia.com, Andrew Morton <akpm@linux-foundation.org>,
+ Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi all,
+On Thu, Jun 03, 2021 at 09:39:32PM +1000, Alistair Popple wrote:
+> Reclaim won't run on the page due to the extra references from the special 
+> swap entries.
 
-If you don't mind, I'm taking this in my -next[1] branch for v5.14.
+That sounds reasonable, but I didn't find the point that stops it, probably due
+to my limited knowledge on the reclaim code.  Could you elaborate?
 
-Thanks
---
-Gustavo
+-- 
+Peter Xu
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/gustavoars/linux.git/log/?h=for-next/kspp
-
-On 6/1/21 17:57, Gustavo A. R. Silva wrote:
-> Hi,
-> 
-> Friendly second ping: who can take this?
-> 
-> I can add this to my -next branch for 5.14 if you don't mind.
-> 
-> JFYI: We had thousands of these sorts of warnings and now we are down
-> to just 23 in linux-next. This is one of those last remaining warnings.
-> 
-> Thanks
-> --
-> Gustavo
-> 
-> On 4/20/21 15:13, Gustavo A. R. Silva wrote:
->> Hi all,
->>
->> Friendly ping: who can take this, please?
->>
->> Thanks
->> --
->> Gustavo
->>
->> On 3/5/21 03:56, Gustavo A. R. Silva wrote:
->>> In preparation to enable -Wimplicit-fallthrough for Clang, fix a warning
->>> by explicitly adding a break statement instead of letting the code fall
->>> through to the next case.
->>>
->>> Link: https://github.com/KSPP/linux/issues/115
->>> Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
->>> ---
->>>  drivers/gpu/drm/nouveau/nvkm/subdev/clk/nv50.c | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/nv50.c b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/nv50.c
->>> index 83067763c0ec..e1d31c62f9ec 100644
->>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/nv50.c
->>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/nv50.c
->>> @@ -313,6 +313,7 @@ nv50_clk_read(struct nvkm_clk *base, enum nv_clk_src src)
->>>  		default:
->>>  			break;
->>>  		}
->>> +		break;
->>>  	default:
->>>  		break;
->>>  	}
->>>
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
