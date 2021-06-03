@@ -2,83 +2,113 @@ Return-Path: <SRS0=yvoZ=K6=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 79B8FC4708F
-	for <nouveau@archiver.kernel.org>; Fri,  4 Jun 2021 15:34:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5287FC07E94
+	for <nouveau@archiver.kernel.org>; Fri,  4 Jun 2021 15:34:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3A22261402
-	for <nouveau@archiver.kernel.org>; Fri,  4 Jun 2021 15:34:18 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3A22261402
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id 3036461402
+	for <nouveau@archiver.kernel.org>; Fri,  4 Jun 2021 15:34:16 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3036461402
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 596F96E9F8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DE156F610;
 	Fri,  4 Jun 2021 15:34:14 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBC536F617
- for <nouveau@lists.freedesktop.org>; Fri,  4 Jun 2021 15:20:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1622820055;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=4AbIlLedm5Mu+ovdpvNjPfOsXH7m99kQNtIejaRsUUU=;
- b=aeqKdawg7sPeFs5OAk/SZXNhGlTx0+oUowDFRIqBJlbei1qvU7oefc7LKk7MjK621tZebS
- iTKdhb46fY2pfj6P/zWd/cqLVJgaSXXMMuqrvDLycyJVSFcUdEtnYUNpPbr4g06Qgk/tdu
- uFLbyEB8tl/hcZHUEcF5An6yyjXiZyk=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-343-J4Ihykw8M9SmR0zV_mWeIA-1; Fri, 04 Jun 2021 11:20:51 -0400
-X-MC-Unique: J4Ihykw8M9SmR0zV_mWeIA-1
-Received: by mail-qk1-f198.google.com with SMTP id
- o6-20020a05620a1106b02903a9f97c808bso4000061qkk.1
- for <nouveau@lists.freedesktop.org>; Fri, 04 Jun 2021 08:20:51 -0700 (PDT)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com
+ [IPv6:2a00:1450:4864:20::62e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2282B6EA03
+ for <nouveau@lists.freedesktop.org>; Thu,  3 Jun 2021 11:34:05 +0000 (UTC)
+Received: by mail-ej1-x62e.google.com with SMTP id g8so8766868ejx.1
+ for <nouveau@lists.freedesktop.org>; Thu, 03 Jun 2021 04:34:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to; bh=6HvIM789SubGuMYbkNpXgOUOzv2hDzoCVUlTW74s4fU=;
+ b=Icz+hjCozpAbugnKTylUiZbczne6xNvCGiJZU4Ly+Y0sTLpTodbh9k4gjcGfRsjGg/
+ no7FFQmnsdBfKr9sK4hrwdOb1O14S9safSd/B9yMITPwQlvWCp+FhIUkoUgp/bmsqz9c
+ 88sMh5y11ExAwXNyPJkPGgqwn4tfntMA/Y84s=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=4AbIlLedm5Mu+ovdpvNjPfOsXH7m99kQNtIejaRsUUU=;
- b=UFakhNpU3OMuB1woS9Yx0T5GYtNYwBPMMP3tbC86VvcIV3xtRZE1LiKo30XaeN0RAB
- JfHuOhhdrzQBIN7jINizS9/8VD4WpSxr7Dfc7Kd+BAbyA2MS93lTK/ZUtmobwoOqQW2x
- mQun2ivRIbpEpRhN9SJMKtE1ILI5e6ChDYWheS8NXpSJ1vbMf0Jy9ruT4QELFcYmqdNf
- C+este3Gj7VRpVVUKuzoSMqI5Drlq4gvk7e7xv9gwHsSoSk39VdAxmx2IkqEPLwhPG42
- DXxGlvfCIxaKuoCCrRZpbIMuz9VYvqWIKVc4+B3tDaydFpYYvGaxyVvze9BQoarPTtEn
- EYkA==
-X-Gm-Message-State: AOAM531XPXyhOtTCZj9l9of4Ak5G+0oFWSw7f0JXFOSWCMsQQjG3D+jB
- m+JSkWeSfiKqpqg2Cm7xPtl+PLJoRLuXb0y9Tmnc0vGwMYO0DtrocbLXt98vdcWIOilTNsuC2JB
- F5/f7IRrkgVVFRHFEPlVUcYRqbg==
-X-Received: by 2002:a37:911:: with SMTP id 17mr2506635qkj.436.1622820051431;
- Fri, 04 Jun 2021 08:20:51 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwSkb15icJCjCC2a0yzUkFB8Tk/1b3Gxyat2dgZri3GuoK2EOI4ZaPq1ePBkTLwQGSCPYLtvg==
-X-Received: by 2002:a37:911:: with SMTP id 17mr2506604qkj.436.1622820051225;
- Fri, 04 Jun 2021 08:20:51 -0700 (PDT)
-Received: from t490s
- (bras-base-toroon474qw-grc-61-184-147-118-108.dsl.bell.ca. [184.147.118.108])
- by smtp.gmail.com with ESMTPSA id x9sm3701082qtf.76.2021.06.04.08.20.49
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :content-transfer-encoding:in-reply-to;
+ bh=6HvIM789SubGuMYbkNpXgOUOzv2hDzoCVUlTW74s4fU=;
+ b=a9S8eLMBuRzr/rG4sfF5syaQsEZbjDxGCZgQ34yvBi7+ltx1OSddWPxfXFZWCfX1SA
+ iOX1PEsBNn92Z/nsew0+EH3eppglyw+Zh5C87qhmVoRvt6sOfjISpNZOE5p642Svw97K
+ ihgG2bje4WQMNMyAMRISLfVBv1C7ObTjLF1jbQx0LN7YtuXV7HQilVRFlDFKdaJpsv94
+ AJVzNRCceDtzl6ZGEDnsrlNdwNM7AdnIS+ij0pN6k26cSU/P3AYncpGTmglKP50y+VLI
+ uFcng70pWz0UDIREnP2UJZBT47d7Yn5JsnDAQPsKdrakut7/O3AYfPtHD18qqzzD8Jft
+ EVHw==
+X-Gm-Message-State: AOAM5311B2kIm2yaBG4uqVwvUVzCQRZwoRj/f7FovLLuE8g5CH7Y9LUb
+ t5VyiDIPe6qF8ojTxDCaiFVPvg==
+X-Google-Smtp-Source: ABdhPJyCwjLRS9cmLZJ0uTIlfsEVYF9kSAF6LM5y2zAtZNY0+nXGguY0rzWF/YLHqYcWC2qrUHt3Fw==
+X-Received: by 2002:a17:906:51d8:: with SMTP id
+ v24mr23819138ejk.264.1622720043762; 
+ Thu, 03 Jun 2021 04:34:03 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id p7sm1638842edw.43.2021.06.03.04.34.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Jun 2021 08:20:50 -0700 (PDT)
-Date: Fri, 4 Jun 2021 11:20:49 -0400
-From: Peter Xu <peterx@redhat.com>
-To: Alistair Popple <apopple@nvidia.com>
-Message-ID: <YLpE0U789jvD2zxN@t490s>
-References: <20210524132725.12697-1-apopple@nvidia.com>
- <3853054.AI2YdRgKcH@nvdebian> <YLjrjJXMP9Y3bvej@t490s>
- <10231977.pWpf7cJbZl@nvdebian>
+ Thu, 03 Jun 2021 04:34:03 -0700 (PDT)
+Date: Thu, 3 Jun 2021 13:34:00 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Lee Jones <lee.jones@linaro.org>
+Message-ID: <YLi+KJrLjKbdXLxH@phenom.ffwll.local>
+Mail-Followup-To: Lee Jones <lee.jones@linaro.org>,
+ linux-kernel@vger.kernel.org, Adam Jackson <ajax@redhat.com>,
+ Ajay Kumar <ajaykumar.rs@samsung.com>,
+ Akshu Agarwal <akshua@gmail.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Alistair Popple <apopple@nvidia.com>, amd-gfx@lists.freedesktop.org,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Ben Skeggs <bskeggs@redhat.com>, Ben Widawsky <ben@bwidawsk.net>,
+ Chandan Uddaraju <chandanu@codeaurora.org>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Eric Anholt <eric@anholt.net>,
+ Fabien Dessenne <fabien.dessenne@st.com>,
+ freedreno@lists.freedesktop.org,
+ Hans de Goede <hdegoede@redhat.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Huang Rui <ray.huang@amd.com>, Hyun Kwon <hyun.kwon@xilinx.com>,
+ Inki Dae <inki.dae@samsung.com>,
+ Jagan Teki <jagan@amarulasolutions.com>,
+ Joonyoung Shim <jy0922.shim@samsung.com>,
+ Krishna Manikandan <mkrishn@codeaurora.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+ Kuogee Hsieh <khsieh@codeaurora.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Leo Li <sunpeng.li@amd.com>, linaro-mm-sig@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Mauro Rossi <issor.oruam@gmail.com>,
+ Michal Simek <michal.simek@xilinx.com>,
+ nouveau@lists.freedesktop.org,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Rob Clark <robdclark@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Sean Paul <sean@poorly.run>, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Stephen Boyd <swboyd@chromium.org>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Vincent Abriou <vincent.abriou@st.com>
+References: <20210602143300.2330146-1-lee.jones@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <10231977.pWpf7cJbZl@nvdebian>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=peterx@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
 Content-Disposition: inline
+In-Reply-To: <20210602143300.2330146-1-lee.jones@linaro.org>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
 X-Mailman-Approved-At: Fri, 04 Jun 2021 15:34:13 +0000
-Subject: Re: [Nouveau] [PATCH v9 07/10] mm: Device exclusive memory access
+Subject: Re: [Nouveau] [RESEND 00/26] Rid W=1 warnings from GPU
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,46 +120,196 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcampbell@nvidia.com, willy@infradead.org, linux-doc@vger.kernel.org,
- nouveau@lists.freedesktop.org, Balbir Singh <bsingharora@gmail.com>,
- hughd@google.com, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, hch@infradead.org, linux-mm@kvack.org,
- bskeggs@redhat.com, jgg@nvidia.com, Andrew Morton <akpm@linux-foundation.org>,
- Christoph Hellwig <hch@lst.de>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ Mauro Rossi <issor.oruam@gmail.com>, dri-devel@lists.freedesktop.org,
+ Eric Anholt <eric@anholt.net>, Huang Rui <ray.huang@amd.com>,
+ Rob Clark <robdclark@gmail.com>, Fabien Dessenne <fabien.dessenne@st.com>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+ Kuogee Hsieh <khsieh@codeaurora.org>, Sam Ravnborg <sam@ravnborg.org>,
+ Ajay Kumar <ajaykumar.rs@samsung.com>,
+ Chandan Uddaraju <chandanu@codeaurora.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Ben Widawsky <ben@bwidawsk.net>,
+ linux-samsung-soc@vger.kernel.org, Joonyoung Shim <jy0922.shim@samsung.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+ Vincent Abriou <vincent.abriou@st.com>, Alistair Popple <apopple@nvidia.com>,
+ Michal Simek <michal.simek@xilinx.com>, amd-gfx@lists.freedesktop.org,
+ Sumit Semwal <sumit.semwal@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Jagan Teki <jagan@amarulasolutions.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Leo Li <sunpeng.li@amd.com>,
+ linux-arm-msm@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+ Inki Dae <inki.dae@samsung.com>, Hans de Goede <hdegoede@redhat.com>,
+ Akshu Agarwal <akshua@gmail.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Sean Paul <sean@poorly.run>, linux-arm-kernel@lists.infradead.org,
+ Krishna Manikandan <mkrishn@codeaurora.org>, Hyun Kwon <hyun.kwon@xilinx.com>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, linux-kernel@vger.kernel.org,
+ Kyungmin Park <kyungmin.park@samsung.com>, linaro-mm-sig@lists.linaro.org,
+ Adam Jackson <ajax@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>, linux-mediatek@lists.infradead.org,
+ linux-media@vger.kernel.org, freedreno@lists.freedesktop.org,
+ Christian Koenig <christian.koenig@amd.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jun 04, 2021 at 11:07:42AM +1000, Alistair Popple wrote:
-> On Friday, 4 June 2021 12:47:40 AM AEST Peter Xu wrote:
-> > External email: Use caution opening links or attachments
-> > 
-> > On Thu, Jun 03, 2021 at 09:39:32PM +1000, Alistair Popple wrote:
-> > > Reclaim won't run on the page due to the extra references from the special
-> > > swap entries.
-> > 
-> > That sounds reasonable, but I didn't find the point that stops it, probably
-> > due to my limited knowledge on the reclaim code.  Could you elaborate?
-> 
-> Sure, it isn't immediately obvious but it ends up being detected at the start 
-> of is_page_cache_freeable() in the pageout code:
-> 
-> 
-> static pageout_t pageout(struct page *page, struct address_space *mapping)
-> {
-> 
-> [...]
-> 
-> 	if (!is_page_cache_freeable(page))
-> 		return PAGE_KEEP;
+On Wed, Jun 02, 2021 at 03:32:34PM +0100, Lee Jones wrote:
+> Some off these patches have been knocking around for a while.
+> =
 
-I did look at pageout() but still missed this small helper indeed (while it's
-so important to know..), thanks!
+> Who will hoover them up please?
+> =
 
--- 
-Peter Xu
+> This set is part of a larger effort attempting to clean-up W=3D1
+> kernel builds, which are currently overwhelmingly riddled with
+> niggly little warnings.
+> =
 
+> Lee Jones (26):
+>   drm/mediatek/mtk_disp_color: Strip incorrect doc and demote header
+>   drm/mediatek/mtk_disp_gamma: Strip and demote non-conformant
+>     kernel-doc header
+>   drm/mediatek/mtk_disp_ovl: Strip and demote non-conformant header
+>   drm/mediatek/mtk_disp_rdma: Strip and demote non-conformant kernel-doc
+>     header
+>   drm/sti/sti_hdmi_tx3g4c28phy: Provide function names for kernel-doc
+>     headers
+>   drm/sti/sti_hda: Provide missing function names
+>   drm/sti/sti_tvout: Provide a bunch of missing function names
+>   drm/sti/sti_hqvdp: Fix incorrectly named function 'sti_hqvdp_vtg_cb()'
+>   drm/msm/disp/dpu1/dpu_encoder_phys_cmd: Remove unused variable
+>     'cmd_enc'
+>   drm/msm/disp/dpu1/dpu_hw_interrupts: Demote a bunch of kernel-doc
+>     abuses
+>   drm/msm/disp/dpu1/dpu_plane: Fix a couple of naming issues
+>   drm/msm/msm_gem: Demote kernel-doc abuses
+>   drm/msm/dp/dp_catalog: Correctly document param 'dp_catalog'
+>   drm/msm/dp/dp_link: Fix some potential doc-rot
+>   drm/nouveau/nvkm/subdev/mc/tu102: Make functions called by reference
+>     static
+>   drm/amd/display/dc/dce/dce_transform: Remove superfluous
+>     re-initialisation of DCFE_MEM_LIGHT_SLEEP_CNTL,
+>   drm/xlnx/zynqmp_disp: Fix incorrectly named enum
+>     'zynqmp_disp_layer_id'
+>   drm/xlnx/zynqmp_dp: Fix incorrectly name function 'zynqmp_dp_train()'
+>   drm/ttm/ttm_tt: Demote non-conformant kernel-doc header
+>   drm/panel/panel-raspberrypi-touchscreen: Demote kernel-doc abuse
+>   drm/panel/panel-sitronix-st7701: Demote kernel-doc abuse
+>   drm/vgem/vgem_drv: Standard comment blocks should not use kernel-doc
+>     format
+>   drm/exynos/exynos7_drm_decon: Fix incorrect naming of
+>     'decon_shadow_protect_win()'
+>   drm/exynos/exynos_drm_ipp: Fix documentation for
+>     'exynos_drm_ipp_get_{caps,res}_ioctl()'
+>   drm/vboxvideo/hgsmi_base: Place function names into headers
+>   drm/vboxvideo/modesetting: Provide function names for prototype
+>     headers
+
+Except for msm (Rob Clark promised on irc he'll pick them up for 5.14
+soon) and amd (Alex is on top of things I think) I picked them all up and
+merged into drm-misc-next.
+
+Thanks, Daniel
+
+> =
+
+>  .../drm/amd/display/dc/dce/dce_transform.h    |  3 +-
+>  drivers/gpu/drm/exynos/exynos7_drm_decon.c    |  2 +-
+>  drivers/gpu/drm/exynos/exynos_drm_ipp.c       |  4 +--
+>  drivers/gpu/drm/mediatek/mtk_disp_color.c     |  3 +-
+>  drivers/gpu/drm/mediatek/mtk_disp_gamma.c     |  4 +--
+>  drivers/gpu/drm/mediatek/mtk_disp_ovl.c       |  3 +-
+>  drivers/gpu/drm/mediatek/mtk_disp_rdma.c      |  4 +--
+>  .../drm/msm/disp/dpu1/dpu_encoder_phys_cmd.c  |  4 ---
+>  .../gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c | 32 +++++++++----------
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c     |  4 +--
+>  drivers/gpu/drm/msm/dp/dp_catalog.c           |  2 +-
+>  drivers/gpu/drm/msm/dp/dp_link.c              |  6 ++--
+>  drivers/gpu/drm/msm/msm_gem.c                 |  4 +--
+>  .../gpu/drm/nouveau/nvkm/subdev/mc/tu102.c    |  6 ++--
+>  .../drm/panel/panel-raspberrypi-touchscreen.c |  2 +-
+>  drivers/gpu/drm/panel/panel-sitronix-st7701.c |  2 +-
+>  drivers/gpu/drm/sti/sti_hda.c                 |  6 ++--
+>  drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c    |  4 +--
+>  drivers/gpu/drm/sti/sti_hqvdp.c               |  2 +-
+>  drivers/gpu/drm/sti/sti_tvout.c               | 18 +++++------
+>  drivers/gpu/drm/ttm/ttm_tt.c                  |  2 +-
+>  drivers/gpu/drm/vboxvideo/hgsmi_base.c        | 19 +++++++----
+>  drivers/gpu/drm/vboxvideo/modesetting.c       | 20 +++++++-----
+>  drivers/gpu/drm/vgem/vgem_drv.c               |  2 +-
+>  drivers/gpu/drm/xlnx/zynqmp_disp.c            |  2 +-
+>  drivers/gpu/drm/xlnx/zynqmp_dp.c              |  2 +-
+>  26 files changed, 80 insertions(+), 82 deletions(-)
+> =
+
+> Cc: Adam Jackson <ajax@redhat.com>
+> Cc: Ajay Kumar <ajaykumar.rs@samsung.com>
+> Cc: Akshu Agarwal <akshua@gmail.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Alistair Popple <apopple@nvidia.com>
+> Cc: amd-gfx@lists.freedesktop.org
+> Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> Cc: Benjamin Gaignard <benjamin.gaignard@linaro.org>
+> Cc: Ben Skeggs <bskeggs@redhat.com>
+> Cc: Ben Widawsky <ben@bwidawsk.net>
+> Cc: Chandan Uddaraju <chandanu@codeaurora.org>
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Cc: "Christian K=F6nig" <christian.koenig@amd.com>
+> Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: Eric Anholt <eric@anholt.net>
+> Cc: Fabien Dessenne <fabien.dessenne@st.com>
+> Cc: freedreno@lists.freedesktop.org
+> Cc: Hans de Goede <hdegoede@redhat.com>
+> Cc: Harry Wentland <harry.wentland@amd.com>
+> Cc: Huang Rui <ray.huang@amd.com>
+> Cc: Hyun Kwon <hyun.kwon@xilinx.com>
+> Cc: Inki Dae <inki.dae@samsung.com>
+> Cc: Jagan Teki <jagan@amarulasolutions.com>
+> Cc: Joonyoung Shim <jy0922.shim@samsung.com>
+> Cc: Krishna Manikandan <mkrishn@codeaurora.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Cc: Kuogee Hsieh <khsieh@codeaurora.org>
+> Cc: Kyungmin Park <kyungmin.park@samsung.com>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Leo Li <sunpeng.li@amd.com>
+> Cc: linaro-mm-sig@lists.linaro.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: linux-mediatek@lists.infradead.org
+> Cc: linux-media@vger.kernel.org
+> Cc: linux-samsung-soc@vger.kernel.org
+> Cc: Marek Szyprowski <m.szyprowski@samsung.com>
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Cc: Mauro Rossi <issor.oruam@gmail.com>
+> Cc: Michal Simek <michal.simek@xilinx.com>
+> Cc: nouveau@lists.freedesktop.org
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Rob Clark <robdclark@gmail.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: Seung-Woo Kim <sw0312.kim@samsung.com>
+> Cc: Stephen Boyd <swboyd@chromium.org>
+> Cc: Sumit Semwal <sumit.semwal@linaro.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Vincent Abriou <vincent.abriou@st.com>
+> -- =
+
+> 2.31.1
+> =
+
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
