@@ -1,46 +1,83 @@
-Return-Path: <SRS0=/VvG=LC=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=/Ye6=LD=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E2236C47082
-	for <nouveau@archiver.kernel.org>; Tue,  8 Jun 2021 21:59:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49F5FC4743D
+	for <nouveau@archiver.kernel.org>; Wed,  9 Jun 2021 01:24:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 82FE861027
-	for <nouveau@archiver.kernel.org>; Tue,  8 Jun 2021 21:59:20 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 82FE861027
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=zary.sk
+	by mail.kernel.org (Postfix) with ESMTPS id 103A16108D
+	for <nouveau@archiver.kernel.org>; Wed,  9 Jun 2021 01:24:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 103A16108D
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA3B96E830;
-	Tue,  8 Jun 2021 21:59:16 +0000 (UTC)
-Received: from hosting.gsystem.sk (hosting.gsystem.sk [212.5.213.30])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2F8646E5A5;
- Tue,  8 Jun 2021 21:59:15 +0000 (UTC)
-Received: from [192.168.0.2] (188-167-68-178.dynamic.chello.sk
- [188.167.68.178])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by hosting.gsystem.sk (Postfix) with ESMTPSA id 55BAE7A0181;
- Tue,  8 Jun 2021 23:59:14 +0200 (CEST)
-From: Ondrej Zary <linux@zary.sk>
-To: Ben Skeggs <bskeggs@redhat.com>
-Date: Tue, 8 Jun 2021 23:59:11 +0200
-User-Agent: KMail/1.9.10
-References: <202106052143.52488.linux@zary.sk>
- <202106082047.42658.linux@zary.sk> <202106082201.56781.linux@zary.sk>
-In-Reply-To: <202106082201.56781.linux@zary.sk>
-X-KMail-QuotePrefix: > 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E92D6EC71;
+	Wed,  9 Jun 2021 01:24:47 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54A296E204
+ for <nouveau@lists.freedesktop.org>; Tue,  8 Jun 2021 18:33:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1623177236;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=delY2SS1lhupvaRgnNu9Xn4xsk68fX/j14ghIq7gu1s=;
+ b=Typv4xLA1Wiiv3Nv97Od6KsrE+qL4WS5hkGMNPIIZfUiYFGOgVjQm2SJ1FHeJ7U4h75q3p
+ vTPSn1Y1ioCiNefV0T6ky/peSjRrC7NVis4PU5txe9ZgGwHiusXBIJ2ZEZG/dSjVi907Mh
+ yGf5vvbg5a0RuRNVm1K1HmzdJpUZOAo=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-54-a4zZLEmROt-XGq5z-VsBlw-1; Tue, 08 Jun 2021 14:33:55 -0400
+X-MC-Unique: a4zZLEmROt-XGq5z-VsBlw-1
+Received: by mail-qk1-f199.google.com with SMTP id
+ c15-20020ae9e20f0000b02903aafa8c83e7so1333804qkc.21
+ for <nouveau@lists.freedesktop.org>; Tue, 08 Jun 2021 11:33:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=delY2SS1lhupvaRgnNu9Xn4xsk68fX/j14ghIq7gu1s=;
+ b=sERyJcWWWqmaLu9SakGpC5/OHM7yho0WMRTAnt/aC7499/Pe9l7y5nbGaoFr0WekAt
+ Nmu5Q4/Ld6i4cGi2iqqwOwVbaOk5eOGCLlOmORZrX55veKaPHaDtSwkSA8FZAkCCw6dv
+ UQR1rTsKMII0oCE7SI7JNmBgHI6G4D1x9taCJZLRzFl05ZG4mFN+OJUsoghgjCLsAdS3
+ /TG/gaqBmcgzw8sI8Z0G2JZvTETg/infpYwSbttyQu3K4WJ+xeHDsmOZg+xcf5rkNCWe
+ z2ermjbMCHzMvAMsLb8kUVN3+YfbwA2OelNQo+dVtMrihVOslQKDBAk0KwJulRIf30KE
+ z1qQ==
+X-Gm-Message-State: AOAM530ZNCsqUlJhdtQuWI+fihmYjUIJNuZgwq9z5mZOeKO/6gOTDe+m
+ 9ykZsflSZNh80ws+2J0a75KxtKwMPHriiKoOvr+L7xzpTto0Bk39GW3m7/519lFvn5QzYjmEITn
+ 33QpOMn8lNhSSSZtMiQRAxl9ibw==
+X-Received: by 2002:ac8:74d3:: with SMTP id j19mr17841561qtr.208.1623177234623; 
+ Tue, 08 Jun 2021 11:33:54 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxCzpIjpybZgCqNOGL7UtIAt5dTDg/VWSRnVpPRNFhhv0BAITQtxCHxRMSpNs30HAG02DhEqA==
+X-Received: by 2002:ac8:74d3:: with SMTP id j19mr17841531qtr.208.1623177234325; 
+ Tue, 08 Jun 2021 11:33:54 -0700 (PDT)
+Received: from t490s (bras-base-toroon474qw-grc-88-174-93-75-200.dsl.bell.ca.
+ [174.93.75.200])
+ by smtp.gmail.com with ESMTPSA id i21sm12311627qkl.20.2021.06.08.11.33.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 08 Jun 2021 11:33:53 -0700 (PDT)
+Date: Tue, 8 Jun 2021 14:33:52 -0400
+From: Peter Xu <peterx@redhat.com>
+To: Alistair Popple <apopple@nvidia.com>
+Message-ID: <YL+4ENiwbn9QAa2V@t490s>
+References: <20210607075855.5084-1-apopple@nvidia.com>
+ <20210607075855.5084-8-apopple@nvidia.com>
 MIME-Version: 1.0
+In-Reply-To: <20210607075855.5084-8-apopple@nvidia.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=peterx@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Disposition: inline
-Message-Id: <202106082359.12109.linux@zary.sk>
-Subject: Re: [Nouveau] nouveau broken on Riva TNT2 in 5.13.0-rc4: NULL
- pointer dereference in nouveau_bo_sync_for_device
+X-Mailman-Approved-At: Wed, 09 Jun 2021 01:24:46 +0000
+Subject: Re: [Nouveau] [PATCH v10 07/10] mm: Device exclusive memory access
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,147 +89,252 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Christian =?iso-8859-1?q?K=F6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: rcampbell@nvidia.com, willy@infradead.org, linux-doc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, hughd@google.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, hch@infradead.org, linux-mm@kvack.org,
+ shakeelb@google.com, bskeggs@redhat.com, jgg@nvidia.com,
+ akpm@linux-foundation.org, Christoph Hellwig <hch@lst.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tuesday 08 June 2021 22:01:56 Ondrej Zary wrote:
-> On Tuesday 08 June 2021 20:47:42 Ondrej Zary wrote:
-> > On Monday 07 June 2021 22:58:43 Ondrej Zary wrote:
-> > > On Sunday 06 June 2021 23:16:03 Ondrej Zary wrote:
-> > > > On Saturday 05 June 2021 23:34:23 Ondrej Zary wrote:
-> > > > > On Saturday 05 June 2021 21:43:52 Ondrej Zary wrote:
-> > > > > > Hello,
-> > > > > > I'm testing 5.13.0-rc4 and nouveau crashes with NULL pointer de=
-reference in nouveau_bo_sync_for_device.
-> > > > > > Found various reports like this but that was back in februaryso=
- that should be fixed now.
-> > > > > =
+On Mon, Jun 07, 2021 at 05:58:52PM +1000, Alistair Popple wrote:
 
-> > > > > So it is the same bug. Broken since 5.11. This revert fixes it in=
- 5.11:
-> > > > > https://lists.freedesktop.org/archives/dri-devel/2021-February/29=
-8531.html
-> > > > > =
+[...]
 
-> > > > > Added some debug printks to nouveau_bo_sync_for_device:
-> > > > > [   22.225048] ttm_dma=3Dfc33b500
-> > > > > [   22.225066] ttm_dma->num_pages=3D18
-> > > > > [   22.225071] i=3D0 num_pages=3D16
-> > > > > [   22.225077] ttm_dma->dma_address=3D00000000
-> > > > > [   22.225094] BUG: kernel NULL pointer dereference, address: 000=
-00000
-> > > > > =
+> +static bool page_make_device_exclusive_one(struct page *page,
+> +		struct vm_area_struct *vma, unsigned long address, void *priv)
+> +{
+> +	struct mm_struct *mm = vma->vm_mm;
+> +	struct page_vma_mapped_walk pvmw = {
+> +		.page = page,
+> +		.vma = vma,
+> +		.address = address,
+> +	};
+> +	struct make_exclusive_args *args = priv;
+> +	pte_t pteval;
+> +	struct page *subpage;
+> +	bool ret = true;
+> +	struct mmu_notifier_range range;
+> +	swp_entry_t entry;
+> +	pte_t swp_pte;
+> +
+> +	mmu_notifier_range_init_owner(&range, MMU_NOTIFY_EXCLUSIVE, 0, vma,
+> +				      vma->vm_mm, address, min(vma->vm_end,
+> +				      address + page_size(page)), args->owner);
+> +	mmu_notifier_invalidate_range_start(&range);
+> +
+> +	while (page_vma_mapped_walk(&pvmw)) {
+> +		/* Unexpected PMD-mapped THP? */
+> +		VM_BUG_ON_PAGE(!pvmw.pte, page);
 
-> > > > > So ttm->dma_address is NULL.
-> > > > > =
+[1]
 
-> > > > =
+> +
+> +		if (!pte_present(*pvmw.pte)) {
+> +			ret = false;
+> +			page_vma_mapped_walk_done(&pvmw);
+> +			break;
+> +		}
+> +
+> +		subpage = page - page_to_pfn(page) + pte_pfn(*pvmw.pte);
+> +		address = pvmw.address;
 
-> > > > Tested reverting f295c8cfec833c2707ff1512da10d65386dde7af again and=
- it does not work...
-> > > > Not sure what I did before.
-> > > > =
+I raised a question here previously and didn't get an answer...
 
-> > > > Bisecting between 5.10 and 5.11 is impossible - I keep hitting neve=
-rending stream of bugs.
-> > > > As always with nouveau...
-> > > =
+https://lore.kernel.org/linux-mm/YLDr%2FRyAdUR4q0kk@t490s/
 
-> > > e34b8feeaa4b65725b25f49c9b08a0f8707e8e86 seems to be the first bad co=
-mmit
-> > > Going back one commit makes it crash in a different way:
-> > > =
+I think I get your point now and it does look possible that the split page can
+still be mapped somewhere else as thp, then having some subpage maintainance
+looks necessary.  The confusing part is above [1] you've also got that
+VM_BUG_ON_PAGE() assuming it must not be a mapped pmd at all..
 
-> > > [   55.444208] BUG: kernel NULL pointer dereference, address: 000001b0
-> > > [   55.444219] #PF: supervisor read access in kernel mode
-> > > [   55.444222] #PF: error_code(0x0000) - not-present page
-> > > [   55.444225] *pde =3D 00000000
-> > > [   55.444231] Oops: 0000 [#1] SMP
-> > > [   55.444237] CPU: 0 PID: 1740 Comm: Xorg Not tainted 5.9.0-rc5+ #361
-> > > [   55.444240] Hardware name:  /848P-ICH5, BIOS 6.00 PG 02/03/2005
-> > > [   55.444321] EIP: nouveau_bo_wr16+0x8/0x27 [nouveau]
-> > > [   55.444326] Code: 85 ff 74 0d 80 7d f3 00 74 07 80 a6 f4 01 00 00 =
-fe 89 f0 e8 0c ef ff ff 8d 65 f4 89 f8 5b 5e 5f 5d c3 55 01 d2 89 e5 53 89 =
-c3 <03> 93 b0 01 00 00 0f b7 c1 f6 83 b8 01 00 00 80 74 07 e8 40 49 69
-> > > [   55.444330] EAX: 00000000 EBX: 00000000 ECX: 00000000 EDX: 00000000
-> > > [   55.444334] ESI: 00000020 EDI: e7a14400 EBP: e786fd98 ESP: e786fd94
-> > > [   55.444338] DS: 007b ES: 007b FS: 00d8 GS: 0033 SS: 0068 EFLAGS: 0=
-0210246
-> > > [   55.444341] CR0: 80050033 CR2: 000001b0 CR3: 27896000 CR4: 00000690
-> > > [   55.444344] Call Trace:
-> > > [   55.444395]  nv04_crtc_cursor_set+0x148/0x1d8 [nouveau]
-> > > [   55.444442]  ? ttm_bo_reserve.constprop.15+0x1c/0x1c [nouveau]
-> > > [   55.444451]  drm_mode_cursor_common+0x13b/0x1ad
-> > > [   55.444497]  ? ttm_bo_reserve.constprop.15+0x1c/0x1c [nouveau]
-> > > [   55.444504]  drm_mode_cursor_ioctl+0x2e/0x36
-> > > [   55.444509]  ? drm_mode_setplane+0x203/0x203
-> > > [   55.444514]  drm_ioctl_kernel+0x66/0x99
-> > > [   55.444518]  drm_ioctl+0x211/0x2d8
-> > > [   55.444522]  ? drm_mode_setplane+0x203/0x203
-> > > [   55.444529]  ? _cond_resched+0x1e/0x22
-> > > [   55.444533]  ? mutex_lock+0xb/0x24
-> > > [   55.444582]  ? nouveau_bo_add_io_reserve_lru+0x53/0x58 [nouveau]
-> > > [   55.444589]  ? rpm_resume.part.13+0x72/0x365
-> > > [   55.444594]  ? ktime_get_mono_fast_ns+0x5e/0xf2
-> > > [   55.444598]  ? __pm_runtime_resume+0x5b/0x63
-> > > [   55.444647]  nouveau_drm_ioctl+0x65/0x81 [nouveau]
-> > > [   55.444696]  ? nouveau_cli_work+0xc3/0xc3 [nouveau]
-> > > [   55.444702]  vfs_ioctl+0x1a/0x24
-> > > [   55.444706]  __ia32_sys_ioctl+0x583/0x59d
-> > > [   55.444711]  ? doublefault_shim+0x120/0x120
-> > > [   55.444717]  ? exit_to_user_mode_prepare+0x71/0xba
-> > > [   55.444721]  do_int80_syscall_32+0x2c/0x39
-> > > [   55.444725]  entry_INT80_32+0xf0/0xf0
-> > > [   55.444729] EIP: 0xb7fb2092
-> > > [   55.444733] Code: 00 00 00 e9 90 ff ff ff ff a3 24 00 00 00 68 30 =
-00 00 00 e9 80 ff ff ff ff a3 e8 ff ff ff 66 90 00 00 00 00 00 00 00 00 cd =
-80 <c3> 8d b4 26 00 00 00 00 8d b6 00 00 00 00 8b 1c 24 c3 8d b4 26 00
-> > > [   55.444737] EAX: ffffffda EBX: 0000000e ECX: c01c64a3 EDX: bfe89750
-> > > [   55.444741] ESI: 02580b40 EDI: c01c64a3 EBP: 0000000e ESP: bfe89704
-> > > [   55.444744] DS: 007b ES: 007b FS: 0000 GS: 0033 SS: 007b EFLAGS: 0=
-0200292
-> > > [   55.444748] Modules linked in: i2c_dev nouveau serial_cs snd_intel=
-8x0 snd_ac97_codec wmi hwmon ttm ac97_bus 8139cp snd_pcm pcmcia snd_timer s=
-nd sg soundcore psmouse yenta_socket serio_raw pcmcia_rsrc pcmcia_core inte=
-l_agp parport_pc parport
-> > > [   55.444769] CR2: 00000000000001b0
-> > > [   55.444774] ---[ end trace e2b0d4c3c2e4e488 ]---
-> > > [   55.444827] EIP: nouveau_bo_wr16+0x8/0x27 [nouveau]
-> > > [   55.444831] Code: 85 ff 74 0d 80 7d f3 00 74 07 80 a6 f4 01 00 00 =
-fe 89 f0 e8 0c ef ff ff 8d 65 f4 89 f8 5b 5e 5f 5d c3 55 01 d2 89 e5 53 89 =
-c3 <03> 93 b0 01 00 00 0f b7 c1 f6 83 b8 01 00 00 80 74 07 e8 40 49 69
-> > > [   55.444835] EAX: 00000000 EBX: 00000000 ECX: 00000000 EDX: 00000000
-> > > [   55.444838] ESI: 00000020 EDI: e7a14400 EBP: e786fd98 ESP: e786fd94
-> > > [   55.444842] DS: 007b ES: 007b FS: 00d8 GS: 0033 SS: 0068 EFLAGS: 0=
-0210246
-> > > [   55.444845] CR0: 80050033 CR2: 000001b0 CR3: 27896000 CR4: 00000690
-> > =
+Then I remembered these code majorly come from the try_to_unmap() so I looked
+there.  I _think_ what's missing here is something like:
 
-> > Bisected this crash:
-> > # first bad commit: [141b15e59175aa174ca1f7596188bd15a7ca17ba] drm/nouv=
-eau: move io_reserve_lru handling into the driver v5
-> > =
+	if (flags & TTU_SPLIT_HUGE_PMD)
+		split_huge_pmd_address(vma, address, false, page);
 
-> > Adding Christian K=F6nig to CC.
-> =
+at the entry of page_make_device_exclusive_one()?
 
-> Tracked it down to an uninitialized variable bug.
-> I see now that this was fixed by aea656b0d05ec5b8ed5beb2f94c4dd42ea834e9d.
+That !pte assertion in try_to_unmap() makes sense to me as long as it has split
+the thp page first always.  However seems not the case for FOLL_SPLIT_PMD as
+you previously mentioned.
 
-So the first bad commit for the original bug is e34b8feeaa4b65725b25f49c9b0=
-8a0f8707e8e86
-(as bisected before).
-Going one commit back and fixing the uninitialized variable and endian bugs=
- manually makes nouveau work.
+Meanwhile, I also started to wonder whether it's even right to call rmap_walk()
+with tail pages...  Please see below.
 
--- =
+> +
+> +		/* Nuke the page table entry. */
+> +		flush_cache_page(vma, address, pte_pfn(*pvmw.pte));
+> +		pteval = ptep_clear_flush(vma, address, pvmw.pte);
+> +
+> +		/* Move the dirty bit to the page. Now the pte is gone. */
+> +		if (pte_dirty(pteval))
+> +			set_page_dirty(page);
+> +
+> +		/*
+> +		 * Check that our target page is still mapped at the expected
+> +		 * address.
+> +		 */
+> +		if (args->mm == mm && args->address == address &&
+> +		    pte_write(pteval))
+> +			args->valid = true;
+> +
+> +		/*
+> +		 * Store the pfn of the page in a special migration
+> +		 * pte. do_swap_page() will wait until the migration
+> +		 * pte is removed and then restart fault handling.
+> +		 */
+> +		if (pte_write(pteval))
+> +			entry = make_writable_device_exclusive_entry(
+> +							page_to_pfn(subpage));
+> +		else
+> +			entry = make_readable_device_exclusive_entry(
+> +							page_to_pfn(subpage));
+> +		swp_pte = swp_entry_to_pte(entry);
+> +		if (pte_soft_dirty(pteval))
+> +			swp_pte = pte_swp_mksoft_dirty(swp_pte);
+> +		if (pte_uffd_wp(pteval))
+> +			swp_pte = pte_swp_mkuffd_wp(swp_pte);
+> +
+> +		set_pte_at(mm, address, pvmw.pte, swp_pte);
+> +
+> +		/*
+> +		 * There is a reference on the page for the swap entry which has
+> +		 * been removed, so shouldn't take another.
+> +		 */
+> +		page_remove_rmap(subpage, false);
+> +	}
+> +
+> +	mmu_notifier_invalidate_range_end(&range);
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * page_make_device_exclusive - mark the page exclusively owned by a device
+> + * @page: the page to replace page table entries for
+> + * @mm: the mm_struct where the page is expected to be mapped
+> + * @address: address where the page is expected to be mapped
+> + * @owner: passed to MMU_NOTIFY_EXCLUSIVE range notifier callbacks
+> + *
+> + * Tries to remove all the page table entries which are mapping this page and
+> + * replace them with special device exclusive swap entries to grant a device
+> + * exclusive access to the page. Caller must hold the page lock.
+> + *
+> + * Returns false if the page is still mapped, or if it could not be unmapped
+> + * from the expected address. Otherwise returns true (success).
+> + */
+> +static bool page_make_device_exclusive(struct page *page, struct mm_struct *mm,
+> +				unsigned long address, void *owner)
+> +{
+> +	struct make_exclusive_args args = {
+> +		.mm = mm,
+> +		.address = address,
+> +		.owner = owner,
+> +		.valid = false,
+> +	};
+> +	struct rmap_walk_control rwc = {
+> +		.rmap_one = page_make_device_exclusive_one,
+> +		.done = page_not_mapped,
+> +		.anon_lock = page_lock_anon_vma_read,
+> +		.arg = &args,
+> +	};
+> +
+> +	/*
+> +	 * Restrict to anonymous pages for now to avoid potential writeback
+> +	 * issues.
+> +	 */
+> +	if (!PageAnon(page))
+> +		return false;
+> +
+> +	rmap_walk(page, &rwc);
 
-Ondrej Zary
+Here we call rmap_walk() on each page we've got.  If it was thp then IIUC it'll
+become the tail pages to walk as the outcome of FOLL_SPLIT_PMD gup (please
+refer to the last reply of mine).  However now I'm uncertain whether we can do
+rmap_walk on tail page at all...  As rmap_walk_anon() has thp_nr_pages() which
+has:
+
+	VM_BUG_ON_PGFLAGS(PageTail(page), page);
+
+So... for thp mappings, wondering whether we should do normal GUP (without
+SPLIT), pass in always normal or head pages into rmap_walk(), but then
+unconditionally split_huge_pmd_address() in page_make_device_exclusive_one()?
+
+Please correct me if I made silly mistakes on above, as I am looking at the
+code when/during trying to review the patch, so it's possible I missed
+something again.  Neither does this code a huge matter since it's not in
+general mm path, but still raise this question up.
+
+Thanks,
+
+> +
+> +	return args.valid && !page_mapcount(page);
+> +}
+> +
+> +/**
+> + * make_device_exclusive_range() - Mark a range for exclusive use by a device
+> + * @mm: mm_struct of assoicated target process
+> + * @start: start of the region to mark for exclusive device access
+> + * @end: end address of region
+> + * @pages: returns the pages which were successfully marked for exclusive access
+> + * @owner: passed to MMU_NOTIFY_EXCLUSIVE range notifier to allow filtering
+> + *
+> + * Returns: number of pages found in the range by GUP. A page is marked for
+> + * exclusive access only if the page pointer is non-NULL.
+> + *
+> + * This function finds ptes mapping page(s) to the given address range, locks
+> + * them and replaces mappings with special swap entries preventing userspace CPU
+> + * access. On fault these entries are replaced with the original mapping after
+> + * calling MMU notifiers.
+> + *
+> + * A driver using this to program access from a device must use a mmu notifier
+> + * critical section to hold a device specific lock during programming. Once
+> + * programming is complete it should drop the page lock and reference after
+> + * which point CPU access to the page will revoke the exclusive access.
+> + */
+> +int make_device_exclusive_range(struct mm_struct *mm, unsigned long start,
+> +				unsigned long end, struct page **pages,
+> +				void *owner)
+> +{
+> +	long npages = (end - start) >> PAGE_SHIFT;
+> +	unsigned long i;
+> +
+> +	npages = get_user_pages_remote(mm, start, npages,
+> +				       FOLL_GET | FOLL_WRITE | FOLL_SPLIT_PMD,
+> +				       pages, NULL, NULL);
+> +	for (i = 0; i < npages; i++, start += PAGE_SIZE) {
+> +		if (!trylock_page(pages[i])) {
+> +			put_page(pages[i]);
+> +			pages[i] = NULL;
+> +			continue;
+> +		}
+> +
+> +		if (!page_make_device_exclusive(pages[i], mm, start, owner)) {
+> +			unlock_page(pages[i]);
+> +			put_page(pages[i]);
+> +			pages[i] = NULL;
+> +		}
+> +	}
+> +
+> +	return npages;
+> +}
+> +EXPORT_SYMBOL_GPL(make_device_exclusive_range);
+> +#endif
+> +
+>  void __put_anon_vma(struct anon_vma *anon_vma)
+>  {
+>  	struct anon_vma *root = anon_vma->root;
+> -- 
+> 2.20.1
+> 
+
+-- 
+Peter Xu
+
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
