@@ -2,104 +2,68 @@ Return-Path: <SRS0=GiJt=LV=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.5 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E48E0C49EA6
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:34:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0CBB8C49EA6
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:34:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9798C619B6
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:34:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9798C619B6
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
+	by mail.kernel.org (Postfix) with ESMTPS id AD509619B6
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:34:55 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AD509619B6
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FE206E054;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4653B6E082;
 	Sun, 27 Jun 2021 03:34:46 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BC506E5A3
- for <nouveau@lists.freedesktop.org>; Tue, 22 Jun 2021 14:17:46 +0000 (UTC)
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
- (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 463F81FD36;
- Tue, 22 Jun 2021 14:10:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624371017; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=w4nG8ilbOi6FRyBuH/cMBHjv1Lw8HPtoTWpveyvfhLY=;
- b=w8mJNxdzJDqoNc4phBniwAx8Fogos1RhIJlZNZ0RkzvoZf58yZXeWYUiyf87NRUgc5PDDY
- 0frTmG5DZgsaealdLs620LnGMTJKakvUc/k6XO23Y3fRXahEUTPhbbYdvis3fUg0k8oBio
- oxoSHelZxWsK++/8hDT9SatIuMR2LtQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624371017;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=w4nG8ilbOi6FRyBuH/cMBHjv1Lw8HPtoTWpveyvfhLY=;
- b=deMHjuRhwqmyca/jUI6Li44rG2SadKi6bacYi0AlQvkLz3/nffBoHRLLh/VseLOVMCkYqc
- ijZo6UYFw0flKnCQ==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id 38ACA118DD;
- Tue, 22 Jun 2021 14:10:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624371017; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=w4nG8ilbOi6FRyBuH/cMBHjv1Lw8HPtoTWpveyvfhLY=;
- b=w8mJNxdzJDqoNc4phBniwAx8Fogos1RhIJlZNZ0RkzvoZf58yZXeWYUiyf87NRUgc5PDDY
- 0frTmG5DZgsaealdLs620LnGMTJKakvUc/k6XO23Y3fRXahEUTPhbbYdvis3fUg0k8oBio
- oxoSHelZxWsK++/8hDT9SatIuMR2LtQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624371017;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=w4nG8ilbOi6FRyBuH/cMBHjv1Lw8HPtoTWpveyvfhLY=;
- b=deMHjuRhwqmyca/jUI6Li44rG2SadKi6bacYi0AlQvkLz3/nffBoHRLLh/VseLOVMCkYqc
- ijZo6UYFw0flKnCQ==
-Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id 6BcCDUjv0WD3UAAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Tue, 22 Jun 2021 14:10:16 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, james.qian.wang@arm.com,
- liviu.dudau@arm.com, mihail.atanassov@arm.com, brian.starkey@arm.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com,
- kyungmin.park@samsung.com, krzysztof.kozlowski@canonical.com,
- xinliang.liu@linaro.org, tiantao6@hisilicon.com, john.stultz@linaro.org,
- kong.kongxinwei@hisilicon.com, puck.chen@hisilicon.com,
- laurentiu.palcu@oss.nxp.com, l.stach@pengutronix.de,
- p.zabel@pengutronix.de, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
- chunkuang.hu@kernel.org, matthias.bgg@gmail.com, bskeggs@redhat.com,
- tomba@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
- benjamin.gaignard@linaro.org, yannick.fertre@foss.st.com,
- philippe.cornu@foss.st.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, wens@csie.org, jernej.skrabec@gmail.com,
- thierry.reding@gmail.com, jonathanh@nvidia.com, jyri.sarha@iki.fi,
- emma@anholt.net, linux-graphics-maintainer@vmware.com, zackr@vmware.com,
- hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
- michal.simek@xilinx.com
-Date: Tue, 22 Jun 2021 16:09:52 +0200
-Message-Id: <20210622141002.11590-13-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210622141002.11590-1-tzimmermann@suse.de>
-References: <20210622141002.11590-1-tzimmermann@suse.de>
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com
+ [IPv6:2607:f8b0:4864:20::f2b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96C616ECA7;
+ Thu, 10 Jun 2021 09:21:04 +0000 (UTC)
+Received: by mail-qv1-xf2b.google.com with SMTP id 5so4054266qvf.1;
+ Thu, 10 Jun 2021 02:21:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=P4iEhDem4kZK+SyUyBPttrlpuO+aLuZVSlxOmTIA50w=;
+ b=qVkWH4RnV6lnk+N0kipQ0LUeMbBIPfTBjgz7Bn++bEj02Yak31f7aFlKdIuJTtz5TQ
+ tnw5Up1LQtz7kKB/aDUPkOdCQtsikVSBSVRwqsJdOhK9WAb0B9izPnvPEQGJpFBMPeLr
+ JT+PRh53KIuMz+rY40ic9eJAoSVtmJ68V3msPDFdym7WhN/hNV3ocWBm4//ZfGPs2WLD
+ Uy2/w9qGa0gq40MO42xAvKdFTnbHODQn4O7SuzaKkYR8tORAm/rsQbXl/AKVJBjitxDg
+ fw3NQzxSOaz8/eN83N7HefbAURto4NHhp0LQVD3KyPftkcOnEptPAcs8faMJnPhhynXE
+ KYnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=P4iEhDem4kZK+SyUyBPttrlpuO+aLuZVSlxOmTIA50w=;
+ b=IatFocKqnoZNG0fAhO9ByfjPz3ABuvLALQhKinnFzxx03WISLlopt9EeDL2hBMynB9
+ CyWKFRQ1rViSSzjiub2Bsdcx4YEe/YdNHyiq9jv5IdwEGTR8tUE1kngnqDACW2Itd+io
+ jdUrQS/Uv7Eh4nIldZ1GiDsv5YkXlsiLg/pD4+KJmYbjt0RJUVkLTmb4nBcgUXLz3i3l
+ a1Cq3qvpQ0n7Db/6LqSmpga3CUMNHVnN/F+CyGRhGeIlM2j0SSqqDQNgueTqVEAWQddd
+ KIAHyRcJGtuRKpRPjSopWUq8EaulzQ0J3V4izMN7ncaPu1a1NTdvPBX5Eh4OPVu3AOOt
+ CwNA==
+X-Gm-Message-State: AOAM531LQinZ8o698GZpOShY8/LgtHFJf9rvaW65wJQ25VKljNZ6iyh3
+ LZnl3/5x0xWlBfFf58flrwEdMD+Re8D7/4woffM=
+X-Google-Smtp-Source: ABdhPJwhXLh64zHDWG2mptUnFVGdHO2Sbc8j3h5R1chhHutwY1ett/fLW3sF8OgRKC+x7iYZapFSyWZQNtgMeqcUi6E=
+X-Received: by 2002:a05:6214:764:: with SMTP id
+ f4mr4032377qvz.60.1623316863810; 
+ Thu, 10 Jun 2021 02:21:03 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210609172902.1937-1-christian.koenig@amd.com>
+In-Reply-To: <20210609172902.1937-1-christian.koenig@amd.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Thu, 10 Jun 2021 10:20:37 +0100
+Message-ID: <CAM0jSHPXTtqQ+E7+yOXnzyOPj4GX_wfiky92RYMMQWxTEM9BEQ@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
 X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:44 +0000
-Subject: [Nouveau] [PATCH v2 12/22] drm/omapdrm: Track IRQ state in local
- device state
+Subject: Re: [Nouveau] [PATCH] drm/nouveau: init the base GEM fields for
+ internal BOs
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,70 +75,40 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
- linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: nouveau@lists.freedesktop.org,
+ ML dri-devel <dri-devel@lists.freedesktop.org>, ray.huang@amd.com,
+ Matthew Auld <matthew.auld@intel.com>, linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Replace usage of struct drm_device.irq_enabled with the driver's
-own state field struct omap_drm_device.irq_enabled. The field in
-the DRM device structure is considered legacy and should not be
-used by KMS drivers.
-
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/omapdrm/omap_drv.h | 2 ++
- drivers/gpu/drm/omapdrm/omap_irq.c | 6 +++---
- 2 files changed, 5 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/omapdrm/omap_drv.h b/drivers/gpu/drm/omapdrm/omap_drv.h
-index d6f136984da9..591d4c273f02 100644
---- a/drivers/gpu/drm/omapdrm/omap_drv.h
-+++ b/drivers/gpu/drm/omapdrm/omap_drv.h
-@@ -48,6 +48,8 @@ struct omap_drm_private {
- 	struct dss_device *dss;
- 	struct dispc_device *dispc;
- 
-+	bool irq_enabled;
-+
- 	unsigned int num_pipes;
- 	struct omap_drm_pipeline pipes[8];
- 	struct omap_drm_pipeline *channels[8];
-diff --git a/drivers/gpu/drm/omapdrm/omap_irq.c b/drivers/gpu/drm/omapdrm/omap_irq.c
-index 15148d4b35b5..bb6e3fc18204 100644
---- a/drivers/gpu/drm/omapdrm/omap_irq.c
-+++ b/drivers/gpu/drm/omapdrm/omap_irq.c
-@@ -291,7 +291,7 @@ int omap_drm_irq_install(struct drm_device *dev)
- 	if (ret < 0)
- 		return ret;
- 
--	dev->irq_enabled = true;
-+	priv->irq_enabled = true;
- 
- 	return 0;
- }
-@@ -300,10 +300,10 @@ void omap_drm_irq_uninstall(struct drm_device *dev)
- {
- 	struct omap_drm_private *priv = dev->dev_private;
- 
--	if (!dev->irq_enabled)
-+	if (!priv->irq_enabled)
- 		return;
- 
--	dev->irq_enabled = false;
-+	priv->irq_enabled = false;
- 
- 	dispc_free_irq(priv->dispc, dev);
- }
--- 
-2.32.0
-
-_______________________________________________
-Nouveau mailing list
-Nouveau@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
+T24gV2VkLCA5IEp1biAyMDIxIGF0IDE4OjI5LCBDaHJpc3RpYW4gS8O2bmlnCjxja29lbmlnLmxl
+aWNodHp1bWVya2VuQGdtYWlsLmNvbT4gd3JvdGU6Cj4KPiBUVE1zIGJ1ZmZlciBvYmplY3RzIGFy
+ZSBiYXNlZCBvbiBHRU0gb2JqZWN0cyBmb3IgcXVpdGUgYSB3aGlsZQo+IGFuZCByZWx5IG9uIGlu
+aXRpYWxpemluZyB0aG9zZSBmaWVsZHMgYmVmb3JlIGluaXRpYWxpemluZyB0aGUgVFRNIEJPLgo+
+Cj4gTm92ZWF1IG5vdyBkb2Vzbid0IGluaXQgdGhlIEdFTSBvYmplY3QgZm9yIGludGVybmFsbHkg
+YWxsb2NhdGVkIEJPcywKPiBzbyBtYWtlIHN1cmUgdGhhdCB3ZSBhdCBsZWFzdCBpbml0aWFsaXpl
+IHNvbWUgbmVjZXNzYXJ5IGZpZWxkcy4KPgo+IFNpZ25lZC1vZmYtYnk6IENocmlzdGlhbiBLw7Zu
+aWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KCmZ3aXcsClJldmlld2VkLWJ5OiBNYXR0aGV3
+IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Cgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2JvLmMgfCA2ICsrKysrKwo+ICAxIGZpbGUgY2hhbmdlZCwgNiBpbnNl
+cnRpb25zKCspCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9iby5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jCj4gaW5kZXggNTIw
+YjFlYTlkMTZjLi4wODUwMjM2MjRmYjAgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9iby5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9iby5jCj4gQEAgLTE0OSw2ICsxNDksOCBAQCBub3V2ZWF1X2JvX2RlbF90dG0oc3RydWN0IHR0
+bV9idWZmZXJfb2JqZWN0ICpibykKPiAgICAgICAgICAqLwo+ICAgICAgICAgaWYgKGJvLT5iYXNl
+LmRldikKPiAgICAgICAgICAgICAgICAgZHJtX2dlbV9vYmplY3RfcmVsZWFzZSgmYm8tPmJhc2Up
+Owo+ICsgICAgICAgZWxzZQo+ICsgICAgICAgICAgICAgICBkbWFfcmVzdl9maW5pKCZiby0+YmFz
+ZS5fcmVzdik7Cj4KPiAgICAgICAgIGtmcmVlKG52Ym8pOwo+ICB9Cj4gQEAgLTMzMCw2ICszMzIs
+MTAgQEAgbm91dmVhdV9ib19uZXcoc3RydWN0IG5vdXZlYXVfY2xpICpjbGksIHU2NCBzaXplLCBp
+bnQgYWxpZ24sCj4gICAgICAgICBpZiAoSVNfRVJSKG52Ym8pKQo+ICAgICAgICAgICAgICAgICBy
+ZXR1cm4gUFRSX0VSUihudmJvKTsKPgo+ICsgICAgICAgbnZiby0+Ym8uYmFzZS5zaXplID0gc2l6
+ZTsKPiArICAgICAgIGRtYV9yZXN2X2luaXQoJm52Ym8tPmJvLmJhc2UuX3Jlc3YpOwo+ICsgICAg
+ICAgZHJtX3ZtYV9ub2RlX3Jlc2V0KCZudmJvLT5iby5iYXNlLnZtYV9ub2RlKTsKPiArCj4gICAg
+ICAgICByZXQgPSBub3V2ZWF1X2JvX2luaXQobnZibywgc2l6ZSwgYWxpZ24sIGRvbWFpbiwgc2cs
+IHJvYmopOwo+ICAgICAgICAgaWYgKHJldCkKPiAgICAgICAgICAgICAgICAgcmV0dXJuIHJldDsK
+PiAtLQo+IDIuMjUuMQo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
