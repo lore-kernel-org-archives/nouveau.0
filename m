@@ -2,84 +2,83 @@ Return-Path: <SRS0=GiJt=LV=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7CD48C49EAB
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:34:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F45AC49EA6
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 44D1E619CB
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:34:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 44D1E619CB
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
+	by mail.kernel.org (Postfix) with ESMTPS id C6A8E619CB
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:34:59 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C6A8E619CB
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56C6D6E0AF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 262646E079;
 	Sun, 27 Jun 2021 03:34:46 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DFB96E0BC;
- Wed, 23 Jun 2021 06:43:11 +0000 (UTC)
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
- (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 7CD3D1FD66;
- Wed, 23 Jun 2021 06:43:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624430589; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFA0C6E4DD
+ for <nouveau@lists.freedesktop.org>; Thu, 10 Jun 2021 18:04:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1623348279;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=TlGZRZ99uCIt4JDAjOFXnswm4yaCa3ZMTl87RK83waE=;
- b=UL41/fdqkxp8KiBTP5sNgkK3QzSU6SjtYTCEKYkWMnVzCi0BsNO6N7H6Z/xHRP1nMXJTSK
- uAOvfeYpPY7ReQoGYz0BeGd1DtemAc5QyqOXIZOtYXgrkn7Ds1VLptp+gjp1TLwppTBvXC
- xy1xTFf1031DvsP89g+ewUEcPYWmU8w=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624430589;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=TlGZRZ99uCIt4JDAjOFXnswm4yaCa3ZMTl87RK83waE=;
- b=hrob67bWMmViAg5CAyhvDg8xtRHrAUBAM0VSFniEqSI0myWGdc/UaBO6QCSVllrliNsDjF
- D7AeOlonnA0UfzBQ==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id 7CE9211A97;
- Wed, 23 Jun 2021 06:43:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624430589; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=TlGZRZ99uCIt4JDAjOFXnswm4yaCa3ZMTl87RK83waE=;
- b=UL41/fdqkxp8KiBTP5sNgkK3QzSU6SjtYTCEKYkWMnVzCi0BsNO6N7H6Z/xHRP1nMXJTSK
- uAOvfeYpPY7ReQoGYz0BeGd1DtemAc5QyqOXIZOtYXgrkn7Ds1VLptp+gjp1TLwppTBvXC
- xy1xTFf1031DvsP89g+ewUEcPYWmU8w=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624430589;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=TlGZRZ99uCIt4JDAjOFXnswm4yaCa3ZMTl87RK83waE=;
- b=hrob67bWMmViAg5CAyhvDg8xtRHrAUBAM0VSFniEqSI0myWGdc/UaBO6QCSVllrliNsDjF
- D7AeOlonnA0UfzBQ==
-Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id RGKAHfzX0mBnawAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Wed, 23 Jun 2021 06:43:08 +0000
-To: Liviu Dudau <liviu.dudau@arm.com>
-References: <20210622141002.11590-1-tzimmermann@suse.de>
- <20210622141002.11590-5-tzimmermann@suse.de>
- <20210622152504.2sw6khajwydsoaqa@e110455-lin.cambridge.arm.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <f7e72a3c-df86-2d4b-2caa-bf91442290a9@suse.de>
-Date: Wed, 23 Jun 2021 08:43:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ bh=CEoL5V4Mmey/+otE2j2URoJUKULpKPt4rB1iuEzrSWg=;
+ b=G6norW3i4bK27LW6BCb6fBgCQx1yBFMpw9I0bWinL1NMtiLwv6uNCH3gwJNc8YdXUraUU0
+ 708WvDvpOGVtvn3Ht61kyV0PkpLgiGCGSdF26qFkcchEqXSm+MhgZAhrfyhOt5+xy6CePH
+ dVIZy3NdrrfEaUVnKIV1BzOVlvZNksE=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-355-YDGohSZ3P9Gz1oK2oKsJBA-1; Thu, 10 Jun 2021 14:04:38 -0400
+X-MC-Unique: YDGohSZ3P9Gz1oK2oKsJBA-1
+Received: by mail-qt1-f199.google.com with SMTP id
+ d7-20020ac811870000b02901e65f85117bso345708qtj.18
+ for <nouveau@lists.freedesktop.org>; Thu, 10 Jun 2021 11:04:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=CEoL5V4Mmey/+otE2j2URoJUKULpKPt4rB1iuEzrSWg=;
+ b=VTx3DAABTRb+ZBp9b9Tx8u0zhDffSs+Qlug4GtZP99AU0t9Qf3ecx9eUrLr9Ww7t9a
+ 4YAWUDfn/2y3iBf/CPstAondVJEbW44hGXHSusTU1KOuKz0vscFJg19CmWWa3mQwrJwE
+ n0rHjl92ccoc8XA0tJI6mvxJBzsYeURtH1ct1j865pHtsdcKYgqx7Q5TwWwQ8ZsY+MOP
+ oI3IpQiBWB720CEKI0fdpLkHymEZOH54Lr2okcgFA/NqAEw5PY4cLOZi+rBmF9cnYw7V
+ v/yijEfz/srplwuFvlR0eFcW95uM/bMqxGcWKKhg7uPfeJLhu4awG+y4fWu4DweXI4bu
+ xinQ==
+X-Gm-Message-State: AOAM531Eu5gf1BwPBJzhAJEcmmuUMcgoDp4bB1A6IegegcLNk/reLs5M
+ vVYWq8HexrrtSoK28nktXe5gcGfNctbovk5TC/0MpBMB3kdGiGT0X8Z2iSuP5+21sGwXdUNKqnl
+ 9pU2NCm3W2Ca747pYGh4OYhjWaA==
+X-Received: by 2002:aed:306f:: with SMTP id 102mr3458qte.197.1623348277896;
+ Thu, 10 Jun 2021 11:04:37 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxTTO+KkTdxTZkkMrHOmkbo6ejQaZkDXpeywK0BwU0l5R3cowlkisPdpRInl2BsP3WxC79JBQ==
+X-Received: by 2002:aed:306f:: with SMTP id 102mr3418qte.197.1623348277505;
+ Thu, 10 Jun 2021 11:04:37 -0700 (PDT)
+Received: from t490s (bras-base-toroon474qw-grc-88-174-93-75-200.dsl.bell.ca.
+ [174.93.75.200])
+ by smtp.gmail.com with ESMTPSA id o3sm2731692qkc.93.2021.06.10.11.04.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 10 Jun 2021 11:04:36 -0700 (PDT)
+Date: Thu, 10 Jun 2021 14:04:35 -0400
+From: Peter Xu <peterx@redhat.com>
+To: Alistair Popple <apopple@nvidia.com>
+Message-ID: <YMJUM4sx1VclR7oz@t490s>
+References: <20210607075855.5084-1-apopple@nvidia.com>
+ <270551728.uXnuCZxQlr@nvdebian> <YMDmsha6GDtUf3Vs@t490s>
+ <2773835.D95cIkl9rl@nvdebian>
 MIME-Version: 1.0
-In-Reply-To: <20210622152504.2sw6khajwydsoaqa@e110455-lin.cambridge.arm.com>
+In-Reply-To: <2773835.D95cIkl9rl@nvdebian>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=peterx@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Disposition: inline
 X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:44 +0000
-Subject: Re: [Nouveau] [PATCH v2 04/22] drm: Don't test for IRQ support in
- VBLANK ioctls
+Subject: Re: [Nouveau] [PATCH v10 07/10] mm: Device exclusive memory access
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,242 +90,49 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: heiko@sntech.de, emma@anholt.net, airlied@linux.ie,
- nouveau@lists.freedesktop.org, alexandre.torgue@foss.st.com,
- dri-devel@lists.freedesktop.org, michal.simek@xilinx.com,
- linux-tegra@vger.kernel.org, thierry.reding@gmail.com,
- laurent.pinchart@ideasonboard.com, benjamin.gaignard@linaro.org,
- mihail.atanassov@arm.com, festevam@gmail.com,
- linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
- jy0922.shim@samsung.com, krzysztof.kozlowski@canonical.com,
- linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org,
- wens@csie.org, jernej.skrabec@gmail.com, xinliang.liu@linaro.org,
- kong.kongxinwei@hisilicon.com, james.qian.wang@arm.com, linux-imx@nxp.com,
- linux-graphics-maintainer@vmware.com, linux-sunxi@lists.linux.dev,
- bskeggs@redhat.com, chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
- puck.chen@hisilicon.com, s.hauer@pengutronix.de,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, inki.dae@samsung.com,
- john.stultz@linaro.org, laurentiu.palcu@oss.nxp.com, matthias.bgg@gmail.com,
- kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
- mcoquelin.stm32@gmail.com, amd-gfx@lists.freedesktop.org, hyun.kwon@xilinx.com,
- tomba@kernel.org, jyri.sarha@iki.fi, yannick.fertre@foss.st.com,
- Xinhui.Pan@amd.com, sw0312.kim@samsung.com, hjc@rock-chips.com,
- christian.koenig@amd.com, kyungmin.park@samsung.com,
- philippe.cornu@foss.st.com, daniel@ffwll.ch, alexander.deucher@amd.com,
- tiantao6@hisilicon.com, shawnguo@kernel.org, brian.starkey@arm.com,
- zackr@vmware.com, l.stach@pengutronix.de
-Content-Type: multipart/mixed; boundary="===============0015737560=="
+Cc: rcampbell@nvidia.com, willy@infradead.org, linux-doc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, hughd@google.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, hch@infradead.org, linux-mm@kvack.org,
+ shakeelb@google.com, bskeggs@redhat.com, jgg@nvidia.com,
+ akpm@linux-foundation.org, Christoph Hellwig <hch@lst.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0015737560==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="7jLGShJWLlf8CSqVlOcnyBWWcy9Lp6Rkb"
+On Thu, Jun 10, 2021 at 10:18:25AM +1000, Alistair Popple wrote:
+> > > The main problem is split_huge_pmd_address() unconditionally calls a mmu
+> > > notifier so I would need to plumb in passing an owner everywhere which could
+> > > get messy.
+> > 
+> > Could I ask why?  split_huge_pmd_address() will notify with CLEAR, so I'm a bit
+> > confused why we need to pass over the owner.
+> 
+> Sure, it is the same reason we need to pass it for the exclusive notifier.
+> Any invalidation during the make exclusive operation will break the mmu read
+> side critical section forcing a retry of the operation. The owner field is what
+> is used to filter out invalidations (such as the exclusive invalidation) that
+> don't need to be retried.
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---7jLGShJWLlf8CSqVlOcnyBWWcy9Lp6Rkb
-Content-Type: multipart/mixed; boundary="3ihYu1sFcNnMMAMmUEcEMG76YaQ22m49E";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Liviu Dudau <liviu.dudau@arm.com>
-Cc: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, james.qian.wang@arm.com,
- mihail.atanassov@arm.com, brian.starkey@arm.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, inki.dae@samsung.com,
- jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com,
- krzysztof.kozlowski@canonical.com, xinliang.liu@linaro.org,
- tiantao6@hisilicon.com, john.stultz@linaro.org,
- kong.kongxinwei@hisilicon.com, puck.chen@hisilicon.com,
- laurentiu.palcu@oss.nxp.com, l.stach@pengutronix.de, p.zabel@pengutronix.de,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, linux-imx@nxp.com, chunkuang.hu@kernel.org,
- matthias.bgg@gmail.com, bskeggs@redhat.com, tomba@kernel.org,
- hjc@rock-chips.com, heiko@sntech.de, benjamin.gaignard@linaro.org,
- yannick.fertre@foss.st.com, philippe.cornu@foss.st.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, wens@csie.org,
- jernej.skrabec@gmail.com, thierry.reding@gmail.com, jonathanh@nvidia.com,
- jyri.sarha@iki.fi, emma@anholt.net, linux-graphics-maintainer@vmware.com,
- zackr@vmware.com, hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
- michal.simek@xilinx.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-mediatek@lists.infradead.org,
- nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
- linux-tegra@vger.kernel.org
-Message-ID: <f7e72a3c-df86-2d4b-2caa-bf91442290a9@suse.de>
-Subject: Re: [PATCH v2 04/22] drm: Don't test for IRQ support in VBLANK ioctls
-References: <20210622141002.11590-1-tzimmermann@suse.de>
- <20210622141002.11590-5-tzimmermann@suse.de>
- <20210622152504.2sw6khajwydsoaqa@e110455-lin.cambridge.arm.com>
-In-Reply-To: <20210622152504.2sw6khajwydsoaqa@e110455-lin.cambridge.arm.com>
+Do you mean the mmu_interval_read_begin|retry() calls?
 
---3ihYu1sFcNnMMAMmUEcEMG76YaQ22m49E
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+Hmm, the thing is.. to me FOLL_SPLIT_PMD should have similar effect to explicit
+call split_huge_pmd_address(), afaict.  Since both of them use __split_huge_pmd()
+internally which will generate that unwanted CLEAR notify.
 
-Hi Liviu
+If that's the case, I think it fails because split_huge_pmd_address() will
+trigger that CLEAR notify unconditionally (even if it's not a thp; not sure
+whether it should be optimized to not notify at all... definitely another
+story), while FOLL_SPLIT_PMD will skip the notify as it calls split_huge_pmd()
+instead, who checks the pmd before calling __split_huge_pmd().
 
-Am 22.06.21 um 17:25 schrieb Liviu Dudau:
-> Hello,
->=20
-> On Tue, Jun 22, 2021 at 04:09:44PM +0200, Thomas Zimmermann wrote:
->> For KMS drivers, replace the IRQ check in VBLANK ioctls with a check f=
-or
->> vblank support. IRQs might be enabled wthout vblanking being supported=
-=2E
->>
->> This change also removes the DRM framework's only dependency on IRQ st=
-ate
->> for non-legacy drivers. For legacy drivers with userspace modesetting,=
+Does it also mean that if there's a real THP it won't really work?  As then
+FOLL_SPLIT_PMD will start to trigger that CLEAR notify too, I think..
 
->> the original test remains in drm_wait_vblank_ioctl().
->>
->> v2:
->> 	* keep the old test for legacy drivers in
->> 	  drm_wait_vblank_ioctl() (Daniel)
->>
->> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->> ---
->>   drivers/gpu/drm/drm_irq.c    | 10 +++-------
->>   drivers/gpu/drm/drm_vblank.c | 13 +++++++++----
->>   2 files changed, 12 insertions(+), 11 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_irq.c b/drivers/gpu/drm/drm_irq.c
->> index c3bd664ea733..1d7785721323 100644
->> --- a/drivers/gpu/drm/drm_irq.c
->> +++ b/drivers/gpu/drm/drm_irq.c
->> @@ -74,10 +74,8 @@
->>    * only supports devices with a single interrupt on the main device =
-stored in
->>    * &drm_device.dev and set as the device paramter in drm_dev_alloc()=
-=2E
->>    *
->> - * These IRQ helpers are strictly optional. Drivers which roll their =
-own only
->> - * need to set &drm_device.irq_enabled to signal the DRM core that vb=
-lank
->> - * interrupts are working. Since these helpers don't automatically cl=
-ean up the
->> - * requested interrupt like e.g. devm_request_irq() they're not reall=
-y
->> + * These IRQ helpers are strictly optional. Since these helpers don't=
- automatically
->> + * clean up the requested interrupt like e.g. devm_request_irq() they=
-'re not really
->>    * recommended.
->>    */
->>  =20
->> @@ -91,9 +89,7 @@
->>    * and after the installation.
->>    *
->>    * This is the simplified helper interface provided for drivers with=
- no special
->> - * needs. Drivers which need to install interrupt handlers for multip=
-le
->> - * interrupts must instead set &drm_device.irq_enabled to signal the =
-DRM core
->> - * that vblank interrupts are available.
->> + * needs.
->>    *
->>    * @irq must match the interrupt number that would be passed to requ=
-est_irq(),
->>    * if called directly instead of using this helper function.
->> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank=
-=2Ec
->> index 3417e1ac7918..a98a4aad5037 100644
->> --- a/drivers/gpu/drm/drm_vblank.c
->> +++ b/drivers/gpu/drm/drm_vblank.c
->> @@ -1748,8 +1748,13 @@ int drm_wait_vblank_ioctl(struct drm_device *de=
-v, void *data,
->>   	unsigned int pipe_index;
->>   	unsigned int flags, pipe, high_pipe;
->>  =20
->> -	if (!dev->irq_enabled)
->> -		return -EOPNOTSUPP;
->> +	if  (drm_core_check_feature(dev, DRIVER_MODESET)) {
->> +		if (!drm_dev_has_vblank(dev))
->> +			return -EOPNOTSUPP;
->> +	} else {
->> +		if (!dev->irq_enabled)
->> +			return -EOPNOTSUPP;
->> +	}
->=20
-> For a system call that is used quite a lot by userspace we have increas=
-ed the code size
-> in a noticeable way. Can we not cache it privately?
-
-I'm not quite sure that I understand your concern. The additionally=20
-called functions are trivial one-liners; probably inlined anyway.
-
-However, irq_enabled is only relevant for legacy drivers and will=20
-eventually disappear behind CONFIG_DRM_LEGACY. We can rewrite the test=20
-like this:
-
-ifdef CONFIG_DRM_LEGACY
-   if (unlikely(check_feature(dev, DRIVER_LEGACY))) {
-     if (!irq_enabled)
-       return;
-   } else
-#endif
-   {
-     if (!has_vblank_support(dev))
-       return;
-   }
-
-As CONFIG_DRM_LEGACY is most likely disabled on concurrent systems, we'd =
-
-get a single test for the modern drivers. If DRM_LEGACYis on, the=20
-compiler at least knows that the else branch is preferred.
-
-Best regards
-Thomas
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---3ihYu1sFcNnMMAMmUEcEMG76YaQ22m49E--
-
---7jLGShJWLlf8CSqVlOcnyBWWcy9Lp6Rkb
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmDS1/sFAwAAAAAACgkQlh/E3EQov+DQ
-GBAAgLEWLgvBzCF5hV0mjIUdLsPzDOR+sZaMmkihftgMzVIfDXBMfZp4PON/h5XP/oa3S7zWw9+W
-RaNndoHIiRezAR4dnNcXern7ByoYb3kFLVlzcdpjZYvhitX8fUEanpR8nSXzouFAPuevtw8dNzr3
-pyvXZCqqdXCmGz09Qrfc48j7bCYMgZ/b21GUHjKRGIC7JFkcSnGm2JopJOCsc9EiUD7tr0l7VfwS
-/H0ho3e9vLqI/p+1MdU/KMUjItmN71b2VEm8yp0KPceIEiCgsggBrW4np4kg8qoBrSVFNT+NDy1O
-weBoJYVfyPVT4UJXatHhqff7l9GUVWHtk2h2JfMrPIGj4qc15wiXUAiY9Goi5+z/9MgpJLl0TkXt
-GkxkK4Vdx1AdFMhNfE0PqmHjp1pOlLU/apueEhoeVslIwyatSi2cuTLKmRylHOzBYQhK9VsnS0Ip
-bLKBFuKu1QNELEqow7/6jmoneBg7LQwCtrFUZZ1juJfaHqCGttl8f4SleboXZe0fb8nPAgrQPItN
-TNb/u1tvc0hQhQ2DooSdMzvuCsM5qPlCi2ZLUwNNsj9uJo6rYJ49Xv7ay4pKE0TWQQN9MC+oyaa1
-InbjRqUF5ubLt361DDxI0YuEq7FBhvcQ1dC0J4I/uKgXvATLllGtOvUzyK0ZAkiXQZ+UKkd0HRDx
-v9w=
-=aQqG
------END PGP SIGNATURE-----
-
---7jLGShJWLlf8CSqVlOcnyBWWcy9Lp6Rkb--
-
---===============0015737560==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+Peter Xu
 
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0015737560==--
