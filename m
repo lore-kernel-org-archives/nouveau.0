@@ -2,106 +2,85 @@ Return-Path: <SRS0=GiJt=LV=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2FB6AC49EA7
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 20FB0C49EAF
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ED475619CB
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:28 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ED475619CB
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
+	by mail.kernel.org (Postfix) with ESMTPS id E514A619B6
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:29 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E514A619B6
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3A786E185;
-	Sun, 27 Jun 2021 03:34:49 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EB6F6ED15;
- Fri, 25 Jun 2021 08:22:36 +0000 (UTC)
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
- (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 475EF21C23;
- Fri, 25 Jun 2021 08:22:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624609355; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
+	by gabe.freedesktop.org (Postfix) with ESMTP id 586296E141;
+	Sun, 27 Jun 2021 03:34:47 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36D3C6EE12
+ for <nouveau@lists.freedesktop.org>; Thu, 10 Jun 2021 23:04:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1623366268;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=EPEFd6nNTa+ut/F5qfWR2QbCKbdYMNjmX85bhvDFy1E=;
- b=Mo1P3rTJBz3vkYd4chwevAZ8ZIvjcCcxzOT9twaHziyh1dLmJXxP911A/B4DJHByk4kUaf
- LAsihKd/l//T6EHs9ZYrHBMY4XBq+seFpstf9x3mQgXmxRL3dyHFPBGaJtRSWuHewuElxG
- +2J0qHQNRrDlj0wGi4ILFqHfjMHTTLs=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624609355;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=EPEFd6nNTa+ut/F5qfWR2QbCKbdYMNjmX85bhvDFy1E=;
- b=m5gTKvTM7e2HNNcd90IFpDOYZxRdQD5X0Dg+byBv69bXCzl0vlEAjYj2llnmsvVd3fJ08U
- 01otDlTyzUQtM7Bw==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id 17F5A11C9B;
- Fri, 25 Jun 2021 08:22:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624609355; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=EPEFd6nNTa+ut/F5qfWR2QbCKbdYMNjmX85bhvDFy1E=;
- b=Mo1P3rTJBz3vkYd4chwevAZ8ZIvjcCcxzOT9twaHziyh1dLmJXxP911A/B4DJHByk4kUaf
- LAsihKd/l//T6EHs9ZYrHBMY4XBq+seFpstf9x3mQgXmxRL3dyHFPBGaJtRSWuHewuElxG
- +2J0qHQNRrDlj0wGi4ILFqHfjMHTTLs=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624609355;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=EPEFd6nNTa+ut/F5qfWR2QbCKbdYMNjmX85bhvDFy1E=;
- b=m5gTKvTM7e2HNNcd90IFpDOYZxRdQD5X0Dg+byBv69bXCzl0vlEAjYj2llnmsvVd3fJ08U
- 01otDlTyzUQtM7Bw==
-Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id QE7vBEqS1WAISwAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Fri, 25 Jun 2021 08:22:34 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, james.qian.wang@arm.com,
- liviu.dudau@arm.com, mihail.atanassov@arm.com, brian.starkey@arm.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com,
- kyungmin.park@samsung.com, krzysztof.kozlowski@canonical.com,
- xinliang.liu@linaro.org, tiantao6@hisilicon.com, john.stultz@linaro.org,
- kong.kongxinwei@hisilicon.com, puck.chen@hisilicon.com,
- laurentiu.palcu@oss.nxp.com, l.stach@pengutronix.de,
- p.zabel@pengutronix.de, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
- chunkuang.hu@kernel.org, matthias.bgg@gmail.com, bskeggs@redhat.com,
- tomba@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
- yannick.fertre@foss.st.com, philippe.cornu@foss.st.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, wens@csie.org,
- jernej.skrabec@gmail.com, thierry.reding@gmail.com, jonathanh@nvidia.com,
- jyri.sarha@iki.fi, emma@anholt.net, linux-graphics-maintainer@vmware.com,
- zackr@vmware.com, hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
- michal.simek@xilinx.com, jani.nikula@linux.intel.com,
- rodrigo.vivi@intel.com, linux@armlinux.org.uk,
- kieran.bingham+renesas@ideasonboard.com, rodrigosiqueiramelo@gmail.com,
- melissa.srw@gmail.com, hamohammed.sa@gmail.com
-Date: Fri, 25 Jun 2021 10:22:04 +0200
-Message-Id: <20210625082222.3845-10-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210625082222.3845-1-tzimmermann@suse.de>
-References: <20210625082222.3845-1-tzimmermann@suse.de>
+ bh=Kn4921Fy2QxClPboKoVBlarBT42fXZONHXvZsMc4G14=;
+ b=OspLjVdBrTS0a31bZ/j7D4WtHZ3kkzTZ3ogiNMWyOcex8w00P94RpQ7B0fNDNT5WxWmuGa
+ 8nGtngbAfzXDG/K1Ky5BZ5r2xGS0PfbfZ+oDeJpbbo/Dp8+jKkW7jygmJOIlrsH/JT7cx3
+ bUQnmUFp4PV4dvDMDqCY4WhHRSvUFNY=
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-233-KqYHAhRwPxCSGlAuvHBzpw-1; Thu, 10 Jun 2021 19:04:22 -0400
+X-MC-Unique: KqYHAhRwPxCSGlAuvHBzpw-1
+Received: by mail-qt1-f200.google.com with SMTP id
+ b20-20020ac87fd40000b02901e1370c5e12so808460qtk.17
+ for <nouveau@lists.freedesktop.org>; Thu, 10 Jun 2021 16:04:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=Kn4921Fy2QxClPboKoVBlarBT42fXZONHXvZsMc4G14=;
+ b=sLPYxvACo6AyNKxy8DOReJjcS21usZ0dPnjPv0bqzvp8KP2X5EXf1gwVoOy3NAZPwl
+ xtrAun9FEz8gPgV3np/iFUdadO0ou2UxDw8EqJ4tH4awiIm9Co88andssU1auYRwNipV
+ f3svSqO/1cbvpUcrkleTu5EzeTL84//T+bJySoUWK7lkiTdALCbtmd+sWoUx9I/sBUc4
+ HrL7a7dh6N7vOHcos0MuLQKlgptb2shvyggW4xxN057hNhtnyBYXvZw0PAevSG4GQxb5
+ PAX5IGnPdwJYcvEZWU4HIw2wDlkM69l7KW5bdxcmVy86cs2TdqtAjPxYBJ/Us19XuS5D
+ uONQ==
+X-Gm-Message-State: AOAM531LAx9KijQ99nZG+QR0nJc3VhkhCk3o06vcoKUjlzZtzgz/oyp7
+ 28u4hbCoP+HU+7zQfgp05CksWxsT8zmwvDe6wO3fCZbfwk+1BdLY2StnEJm+HxJMyxkV8pyydcK
+ tUEYue2/FMLYbQH+tgptLvM3Oog==
+X-Received: by 2002:a05:620a:1116:: with SMTP id
+ o22mr1055482qkk.263.1623366261643; 
+ Thu, 10 Jun 2021 16:04:21 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwrG/yfGVS5sWgTKcNo1dgRgBZLWinZ0GsXIy0VHGuGgZrohA7iNbV+b0qys3C0GTOZDsvbFg==
+X-Received: by 2002:a05:620a:1116:: with SMTP id
+ o22mr1055448qkk.263.1623366261403; 
+ Thu, 10 Jun 2021 16:04:21 -0700 (PDT)
+Received: from t490s (bras-base-toroon474qw-grc-88-174-93-75-200.dsl.bell.ca.
+ [174.93.75.200])
+ by smtp.gmail.com with ESMTPSA id j14sm3076434qtj.96.2021.06.10.16.04.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 10 Jun 2021 16:04:20 -0700 (PDT)
+Date: Thu, 10 Jun 2021 19:04:19 -0400
+From: Peter Xu <peterx@redhat.com>
+To: Alistair Popple <apopple@nvidia.com>
+Message-ID: <YMKacyNstEM9brUD@t490s>
+References: <20210607075855.5084-1-apopple@nvidia.com>
+ <2773835.D95cIkl9rl@nvdebian> <YMJUM4sx1VclR7oz@t490s>
+ <6429491.QiJgnDeYu7@nvdebian>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:45 +0000
-Subject: [Nouveau] [PATCH v4 09/27] drm/exynos: Don't set struct
- drm_device.irq_enabled
+In-Reply-To: <6429491.QiJgnDeYu7@nvdebian>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=peterx@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Disposition: inline
+X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:44 +0000
+Subject: Re: [Nouveau] [PATCH v10 07/10] mm: Device exclusive memory access
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,50 +92,37 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
- linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
+Cc: rcampbell@nvidia.com, willy@infradead.org, linux-doc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, hughd@google.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, hch@infradead.org, linux-mm@kvack.org,
+ shakeelb@google.com, bskeggs@redhat.com, jgg@nvidia.com,
+ akpm@linux-foundation.org, Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The field drm_device.irq_enabled is only used by legacy drivers
-with userspace modesetting. Don't set it in exynos.
+On Fri, Jun 11, 2021 at 12:21:26AM +1000, Alistair Popple wrote:
+> > Hmm, the thing is.. to me FOLL_SPLIT_PMD should have similar effect to explicit
+> > call split_huge_pmd_address(), afaict.  Since both of them use __split_huge_pmd()
+> > internally which will generate that unwanted CLEAR notify.
+> 
+> Agree that gup calls __split_huge_pmd() via split_huge_pmd_address()
+> which will always CLEAR. However gup only calls split_huge_pmd_address() if it
+> finds a thp pmd. In follow_pmd_mask() we have:
+> 
+> 	if (likely(!pmd_trans_huge(pmdval)))
+> 		return follow_page_pte(vma, address, pmd, flags, &ctx->pgmap);
+> 
+> So I don't think we have a problem here.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
----
- drivers/gpu/drm/exynos/exynos_drm_drv.c | 10 ----------
- 1 file changed, 10 deletions(-)
+Sorry I didn't follow here..  We do FOLL_SPLIT_PMD after this check, right?  I
+mean, if it's a thp for the current mm, afaict pmd_trans_huge() should return
+true above, so we'll skip follow_page_pte(); then we'll check FOLL_SPLIT_PMD
+and do the split, then the CLEAR notify.  Hmm.. Did I miss something?
 
-diff --git a/drivers/gpu/drm/exynos/exynos_drm_drv.c b/drivers/gpu/drm/exynos/exynos_drm_drv.c
-index e60257f1f24b..d8f1cf4d6b69 100644
---- a/drivers/gpu/drm/exynos/exynos_drm_drv.c
-+++ b/drivers/gpu/drm/exynos/exynos_drm_drv.c
-@@ -300,16 +300,6 @@ static int exynos_drm_bind(struct device *dev)
- 
- 	drm_mode_config_reset(drm);
- 
--	/*
--	 * enable drm irq mode.
--	 * - with irq_enabled = true, we can use the vblank feature.
--	 *
--	 * P.S. note that we wouldn't use drm irq handler but
--	 *	just specific driver own one instead because
--	 *	drm framework supports only one irq handler.
--	 */
--	drm->irq_enabled = true;
--
- 	/* init kms poll for handling hpd */
- 	drm_kms_helper_poll_init(drm);
- 
 -- 
-2.32.0
+Peter Xu
 
 _______________________________________________
 Nouveau mailing list
