@@ -2,83 +2,58 @@ Return-Path: <SRS0=GiJt=LV=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F45AC49EA6
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F36FC49EA7
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C6A8E619CB
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:34:59 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C6A8E619CB
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id 17E30619CB
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:01 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 17E30619CB
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 262646E079;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A6D16E063;
 	Sun, 27 Jun 2021 03:34:46 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFA0C6E4DD
- for <nouveau@lists.freedesktop.org>; Thu, 10 Jun 2021 18:04:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1623348279;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=CEoL5V4Mmey/+otE2j2URoJUKULpKPt4rB1iuEzrSWg=;
- b=G6norW3i4bK27LW6BCb6fBgCQx1yBFMpw9I0bWinL1NMtiLwv6uNCH3gwJNc8YdXUraUU0
- 708WvDvpOGVtvn3Ht61kyV0PkpLgiGCGSdF26qFkcchEqXSm+MhgZAhrfyhOt5+xy6CePH
- dVIZy3NdrrfEaUVnKIV1BzOVlvZNksE=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-355-YDGohSZ3P9Gz1oK2oKsJBA-1; Thu, 10 Jun 2021 14:04:38 -0400
-X-MC-Unique: YDGohSZ3P9Gz1oK2oKsJBA-1
-Received: by mail-qt1-f199.google.com with SMTP id
- d7-20020ac811870000b02901e65f85117bso345708qtj.18
- for <nouveau@lists.freedesktop.org>; Thu, 10 Jun 2021 11:04:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=CEoL5V4Mmey/+otE2j2URoJUKULpKPt4rB1iuEzrSWg=;
- b=VTx3DAABTRb+ZBp9b9Tx8u0zhDffSs+Qlug4GtZP99AU0t9Qf3ecx9eUrLr9Ww7t9a
- 4YAWUDfn/2y3iBf/CPstAondVJEbW44hGXHSusTU1KOuKz0vscFJg19CmWWa3mQwrJwE
- n0rHjl92ccoc8XA0tJI6mvxJBzsYeURtH1ct1j865pHtsdcKYgqx7Q5TwWwQ8ZsY+MOP
- oI3IpQiBWB720CEKI0fdpLkHymEZOH54Lr2okcgFA/NqAEw5PY4cLOZi+rBmF9cnYw7V
- v/yijEfz/srplwuFvlR0eFcW95uM/bMqxGcWKKhg7uPfeJLhu4awG+y4fWu4DweXI4bu
- xinQ==
-X-Gm-Message-State: AOAM531Eu5gf1BwPBJzhAJEcmmuUMcgoDp4bB1A6IegegcLNk/reLs5M
- vVYWq8HexrrtSoK28nktXe5gcGfNctbovk5TC/0MpBMB3kdGiGT0X8Z2iSuP5+21sGwXdUNKqnl
- 9pU2NCm3W2Ca747pYGh4OYhjWaA==
-X-Received: by 2002:aed:306f:: with SMTP id 102mr3458qte.197.1623348277896;
- Thu, 10 Jun 2021 11:04:37 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxTTO+KkTdxTZkkMrHOmkbo6ejQaZkDXpeywK0BwU0l5R3cowlkisPdpRInl2BsP3WxC79JBQ==
-X-Received: by 2002:aed:306f:: with SMTP id 102mr3418qte.197.1623348277505;
- Thu, 10 Jun 2021 11:04:37 -0700 (PDT)
-Received: from t490s (bras-base-toroon474qw-grc-88-174-93-75-200.dsl.bell.ca.
- [174.93.75.200])
- by smtp.gmail.com with ESMTPSA id o3sm2731692qkc.93.2021.06.10.11.04.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 10 Jun 2021 11:04:36 -0700 (PDT)
-Date: Thu, 10 Jun 2021 14:04:35 -0400
-From: Peter Xu <peterx@redhat.com>
-To: Alistair Popple <apopple@nvidia.com>
-Message-ID: <YMJUM4sx1VclR7oz@t490s>
-References: <20210607075855.5084-1-apopple@nvidia.com>
- <270551728.uXnuCZxQlr@nvdebian> <YMDmsha6GDtUf3Vs@t490s>
- <2773835.D95cIkl9rl@nvdebian>
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B6FA89C68;
+ Tue, 15 Jun 2021 01:58:26 +0000 (UTC)
+Received: from dggemv704-chm.china.huawei.com (unknown [172.30.72.54])
+ by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4G3rxH3x8kz6yrs;
+ Tue, 15 Jun 2021 09:55:15 +0800 (CST)
+Received: from dggpeml500020.china.huawei.com (7.185.36.88) by
+ dggemv704-chm.china.huawei.com (10.3.19.47) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 15 Jun 2021 09:58:24 +0800
+Received: from [10.174.177.174] (10.174.177.174) by
+ dggpeml500020.china.huawei.com (7.185.36.88) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 15 Jun 2021 09:58:23 +0800
+To: <bskeggs@redhat.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+ <sumit.semwal@linaro.org>, <christian.koenig@amd.com>,
+ <dri-devel@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+ <linaro-mm-sig@lists.linaro.org>
+References: <20210525082511.580068-1-libaokun1@huawei.com>
+From: "libaokun (A)" <libaokun1@huawei.com>
+Message-ID: <cee44d34-81c1-4972-e68b-e6b193598763@huawei.com>
+Date: Tue, 15 Jun 2021 09:58:23 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-In-Reply-To: <2773835.D95cIkl9rl@nvdebian>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=peterx@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Disposition: inline
+In-Reply-To: <20210525082511.580068-1-libaokun1@huawei.com>
+X-Originating-IP: [10.174.177.174]
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ dggpeml500020.china.huawei.com (7.185.36.88)
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:44 +0000
-Subject: Re: [Nouveau] [PATCH v10 07/10] mm: Device exclusive memory access
+Subject: Re: [Nouveau] [PATCH -next] drm/nouveau: Remove set but not used
+ variable 'dev'
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,49 +65,44 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcampbell@nvidia.com, willy@infradead.org, linux-doc@vger.kernel.org,
- nouveau@lists.freedesktop.org, hughd@google.com, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, hch@infradead.org, linux-mm@kvack.org,
- shakeelb@google.com, bskeggs@redhat.com, jgg@nvidia.com,
- akpm@linux-foundation.org, Christoph Hellwig <hch@lst.de>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: yuehaibing@huawei.com, weiyongjun1@huawei.com, yukuai3@huawei.com,
+ yangjihong1@huawei.com
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Jun 10, 2021 at 10:18:25AM +1000, Alistair Popple wrote:
-> > > The main problem is split_huge_pmd_address() unconditionally calls a mmu
-> > > notifier so I would need to plumb in passing an owner everywhere which could
-> > > get messy.
-> > 
-> > Could I ask why?  split_huge_pmd_address() will notify with CLEAR, so I'm a bit
-> > confused why we need to pass over the owner.
-> 
-> Sure, it is the same reason we need to pass it for the exclusive notifier.
-> Any invalidation during the make exclusive operation will break the mmu read
-> side critical section forcing a retry of the operation. The owner field is what
-> is used to filter out invalidations (such as the exclusive invalidation) that
-> don't need to be retried.
-
-Do you mean the mmu_interval_read_begin|retry() calls?
-
-Hmm, the thing is.. to me FOLL_SPLIT_PMD should have similar effect to explicit
-call split_huge_pmd_address(), afaict.  Since both of them use __split_huge_pmd()
-internally which will generate that unwanted CLEAR notify.
-
-If that's the case, I think it fails because split_huge_pmd_address() will
-trigger that CLEAR notify unconditionally (even if it's not a thp; not sure
-whether it should be optimized to not notify at all... definitely another
-story), while FOLL_SPLIT_PMD will skip the notify as it calls split_huge_pmd()
-instead, who checks the pmd before calling __split_huge_pmd().
-
-Does it also mean that if there's a real THP it won't really work?  As then
-FOLL_SPLIT_PMD will start to trigger that CLEAR notify too, I think..
-
--- 
-Peter Xu
-
-_______________________________________________
-Nouveau mailing list
-Nouveau@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
+cGluZwoK5ZyoIDIwMjEvNS8yNSAxNjoyNSwgQmFva3VuIExpIOWGmemBkzoKPiBGaXhlcyBnY2Mg
+Jy1XdW51c2VkLWJ1dC1zZXQtdmFyaWFibGUnIHdhcm5pbmc6Cj4KPiBkcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2JvLmM6IEluIGZ1bmN0aW9uICdub3V2ZWF1X3R0bV90dF9wb3B1bGF0
+ZSc6Cj4gZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jOjEyNTg6MTc6IHdhcm5p
+bmc6Cj4gICB2YXJpYWJsZSDigJhkZXbigJkgc2V0IGJ1dCBub3QgdXNlZCBbLVd1bnVzZWQtYnV0
+LXNldC12YXJpYWJsZV0KPgo+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYzog
+SW4gZnVuY3Rpb24gJ25vdXZlYXVfdHRtX3R0X3VucG9wdWxhdGUnOgo+IGRyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L25vdXZlYXVfYm8uYzoxMjgxOjE3OiB3YXJuaW5nOgo+ICAgdmFyaWFibGUg4oCY
+ZGV24oCZIHNldCBidXQgbm90IHVzZWQgWy1XdW51c2VkLWJ1dC1zZXQtdmFyaWFibGVdCj4KPiBJ
+dCBuZXZlciB1c2VkIHNpbmNlIGludHJvZHVjdGlvbi4KPgo+IFNpZ25lZC1vZmYtYnk6IEJhb2t1
+biBMaSA8bGliYW9rdW4xQGh1YXdlaS5jb20+Cj4gLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9ub3V2ZWF1X2JvLmMgfCA0IC0tLS0KPiAgIDEgZmlsZSBjaGFuZ2VkLCA0IGRlbGV0aW9u
+cygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8u
+YyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYwo+IGluZGV4IDdhMjYyNGMw
+YmE0Yy4uNTFmOWEyZTY1MzJlIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L25vdXZlYXVfYm8uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8u
+Ywo+IEBAIC0xMjU0LDcgKzEyNTQsNiBAQCBub3V2ZWF1X3R0bV90dF9wb3B1bGF0ZShzdHJ1Y3Qg
+dHRtX2RldmljZSAqYmRldiwKPiAgIHsKPiAgIAlzdHJ1Y3QgdHRtX3R0ICp0dG1fZG1hID0gKHZv
+aWQgKil0dG07Cj4gICAJc3RydWN0IG5vdXZlYXVfZHJtICpkcm07Cj4gLQlzdHJ1Y3QgZGV2aWNl
+ICpkZXY7Cj4gICAJYm9vbCBzbGF2ZSA9ICEhKHR0bS0+cGFnZV9mbGFncyAmIFRUTV9QQUdFX0ZM
+QUdfU0cpOwo+ICAgCj4gICAJaWYgKHR0bV90dF9pc19wb3B1bGF0ZWQodHRtKSkKPiBAQCAtMTI2
+Nyw3ICsxMjY2LDYgQEAgbm91dmVhdV90dG1fdHRfcG9wdWxhdGUoc3RydWN0IHR0bV9kZXZpY2Ug
+KmJkZXYsCj4gICAJfQo+ICAgCj4gICAJZHJtID0gbm91dmVhdV9iZGV2KGJkZXYpOwo+IC0JZGV2
+ID0gZHJtLT5kZXYtPmRldjsKPiAgIAo+ICAgCXJldHVybiB0dG1fcG9vbF9hbGxvYygmZHJtLT50
+dG0uYmRldi5wb29sLCB0dG0sIGN0eCk7Cj4gICB9Cj4gQEAgLTEyNzcsMTQgKzEyNzUsMTIgQEAg
+bm91dmVhdV90dG1fdHRfdW5wb3B1bGF0ZShzdHJ1Y3QgdHRtX2RldmljZSAqYmRldiwKPiAgIAkJ
+CSAgc3RydWN0IHR0bV90dCAqdHRtKQo+ICAgewo+ICAgCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJt
+Owo+IC0Jc3RydWN0IGRldmljZSAqZGV2Owo+ICAgCWJvb2wgc2xhdmUgPSAhISh0dG0tPnBhZ2Vf
+ZmxhZ3MgJiBUVE1fUEFHRV9GTEFHX1NHKTsKPiAgIAo+ICAgCWlmIChzbGF2ZSkKPiAgIAkJcmV0
+dXJuOwo+ICAgCj4gICAJZHJtID0gbm91dmVhdV9iZGV2KGJkZXYpOwo+IC0JZGV2ID0gZHJtLT5k
+ZXYtPmRldjsKPiAgIAo+ICAgCXJldHVybiB0dG1fcG9vbF9mcmVlKCZkcm0tPnR0bS5iZGV2LnBv
+b2wsIHR0bSk7Cj4gICB9Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
