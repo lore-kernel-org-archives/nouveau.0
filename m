@@ -7,98 +7,97 @@ X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A22DFC49EA4
-	for <nouveau@archiver.kernel.org>; Wed, 16 Jun 2021 11:00:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B005C49361
+	for <nouveau@archiver.kernel.org>; Wed, 16 Jun 2021 11:01:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 68C0E611CA
-	for <nouveau@archiver.kernel.org>; Wed, 16 Jun 2021 11:00:55 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 68C0E611CA
+	by mail.kernel.org (Postfix) with ESMTPS id 5C972611CA
+	for <nouveau@archiver.kernel.org>; Wed, 16 Jun 2021 11:01:02 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5C972611CA
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=nvidia.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB8C06E580;
-	Wed, 16 Jun 2021 11:00:52 +0000 (UTC)
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2041.outbound.protection.outlook.com [40.107.237.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 643FE6E57E;
- Wed, 16 Jun 2021 11:00:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40AEA6E59B;
+	Wed, 16 Jun 2021 11:01:00 +0000 (UTC)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam07on2065.outbound.protection.outlook.com [40.107.212.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C8D06E588;
+ Wed, 16 Jun 2021 11:00:58 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TmM/8ierUtFCJ1dTnwB850CXbHhZY4LO828DONUVSPdPbD9Zdc5ReAdYmcO3ua4+RefXgGcbJgXZjjmBFu/rVccJczB6DgTwHr5IOo+0reAWqNSK07ip02CddOK7W9Hf08WjkwUyeuEQjmbMb97tKfuMjy22hycV9cNN26dRAORqGOfJs8dtVMrEEfwPz1VpVUaP07mT7xL5mfIdPuWv5NtiJkEBYrzAonObbXc2j1Ecx0eYJU82R60yoyXwnCL0WAGsoDz9fmNte+6zYpb0IaDosBPcFTQft0IIAvLSjkxJPcTZaw5FtYgW7/uYm3Nd6dZd83RFtKtIZbkq+pTvGQ==
+ b=O+0o6xUpPR+qopVMNIdwKzn/zcC56Qto4cK4b1PiLeB08W+wF+Y6R2q6tI6AMZqaWff2ks8TqIufnlKQDuoiHWA1PoCU9OybXElvl7H33Xq4j6MG6y8WDNyHlGyX9dYxsDU4yEI/dJrLN/6VWx4lgxo5GfMTOPKeEip85xgLvGw/WXcmZOLBdYJWVKahl4ITZPcOd4dCYD5+mbWKPQr3eU48CoRuvyYh5mtOVtTUx5jHTCHHuRUUdqludpLbXiVERUi5Km1JEwAvnHw+cG4jQzjQ7yuN9NX6CZXA9v2PzrP4sxopSfp2+CqFMkasfbgnsRX0N5V+Q9W5nVkY07PVDw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=neaWBJ+Tc9JkIqo7kSAPBlmsmNPY65opDVhb25wScLE=;
- b=mrHaT4xZfD/Ve1bmh2BaDzWwUC1iqs8hjLPDN4nd1VEsBHy8mYYP8Y9m8ynmu/hPXKNZ7fwvSzu5+yesxrGvncl0YXrgG/gliRvDx971u5MV5n8zzcYJIKZI1n2gSctJMjs52XN5zRmQC7eNvN2yaFoWOxKnw1KcBkCUSWKeAKUgMG1pcBr9LARnyEa0Ii6k84OK2Y/ZjjWLEjg3wEbQeNKpiFKG6H8AJ5JXMuwaNkDIzxNUQjW3dwP1G5F8Udv033wIZ/BCOsF8HEfqR2BID0vPGmFQW2huMtMQeGfzxZUzNq0BLwNPyo8SmBrurSCDnuP2E+6z81s39kwDJGKd1g==
+ bh=5qppNt2LRBbbO1TB7Q/BvNEslA/TF7EXh9dmRRhcCoo=;
+ b=MK2VLcAu/Bx6JYVmw1VhJjwOragCFfDCx8blNiZwZX1Ya4leAAjvD+KJJWLVYwg0AUdYcnv0h9kooMPwi/nqxQNlvT4TX/nM4K6cWsx0Yl7xQBssgUPvSlvRKQjEWYvfTTx0GfdviiQT5z/WhZG2tm4L65mY9CEXQn4ucU6pLrl7Yibkm3u4Xu9cAAwTURtLVswY8wmG3u8C5qambBUcU+Enw++8TCmUY3uzgtuSuxr1dyKXxw/nbQOT+PqY/yv40W2+IsR4znxUZT22f1Oyv6HJq499LMBOaSSF3YsJKbEK03jDGBmHaGfmfEo/ptS64vNfdZ1oZxMADWoDV4MCBA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.34) smtp.rcpttodomain=redhat.com smtp.mailfrom=nvidia.com;
+ 216.228.112.34) smtp.rcpttodomain=infradead.org smtp.mailfrom=nvidia.com;
  dmarc=pass (p=none sp=none pct=100) action=none header.from=nvidia.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=neaWBJ+Tc9JkIqo7kSAPBlmsmNPY65opDVhb25wScLE=;
- b=t1QOxuBIMWgjUVqhBCUD8Vs155M0R5PoJERVU9g1VUD6SabqWqhUJg7+B6X5pV/J86eyqy8aTmT3kWpSM8eWUEbjh4wogxecWDz0Sdemq8qwOH1unGByfuxLnz1i1vonGX9uGeA9E+wuMKyQ8tNtVYQNMkwGs0C7Erhg3LF4pQYsrsH1LqSB2xyIVOOCr4BcuKBzleA0b12NtJesjZhfSn5Qb02a0+3rJaQSvQlgZp6vjPc9RXdPAzQMapWSAKJOtpmWTjoz7Hpg2oNwJ5XGasuEgHrP/9kq9oKK5Kunk88X1SMV46uTLEB+IgWs9nNN+iaRZTId0ihiAR8LdpSdww==
-Received: from BN6PR13CA0004.namprd13.prod.outlook.com (2603:10b6:404:10a::14)
- by MWHPR12MB1261.namprd12.prod.outlook.com (2603:10b6:300:10::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.19; Wed, 16 Jun
- 2021 11:00:47 +0000
+ bh=5qppNt2LRBbbO1TB7Q/BvNEslA/TF7EXh9dmRRhcCoo=;
+ b=WQT8760fyJUpLEg8MLxjH2XdoYMf7nHOPQwzsaGUpQxTE45RbqxhlBnkW5Pus+FaZdBYSe7A4T93z1i8KIvbbN5P2fk+uAPW4J/nF7nTPFxf39t83mT1u44IbLraaZP4pqfhpYkFTomMllD2QbG+Zdj7M9bDONgnxOUQH7UKJjXvCoVXe5gB/I1DtVs8UC4cUMv+1KSarHnJKskhaOfiyO7RcontdrdF0e4yAlzFTfoULlwQt+PBaupfCOd9KiaZJ/rbbeW73X28LZecM/bxn9kSMmMnsQdUnuhG5gAd1YSO8Th78VHGfbtE2f1Rmr+i+V62v4yL5+KQDf+72UxK/Q==
+Received: from BN6PR13CA0024.namprd13.prod.outlook.com (2603:10b6:404:10a::34)
+ by MN2PR12MB3967.namprd12.prod.outlook.com (2603:10b6:208:16c::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.24; Wed, 16 Jun
+ 2021 11:00:56 +0000
 Received: from BN8NAM11FT031.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:10a:cafe::7d) by BN6PR13CA0004.outlook.office365.com
- (2603:10b6:404:10a::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.7 via Frontend
- Transport; Wed, 16 Jun 2021 11:00:47 +0000
+ (2603:10b6:404:10a:cafe::28) by BN6PR13CA0024.outlook.office365.com
+ (2603:10b6:404:10a::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.9 via Frontend
+ Transport; Wed, 16 Jun 2021 11:00:56 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
- smtp.mailfrom=nvidia.com; redhat.com; dkim=none (message not signed)
- header.d=none;redhat.com; dmarc=pass action=none header.from=nvidia.com;
+ smtp.mailfrom=nvidia.com; infradead.org; dkim=none (message not signed)
+ header.d=none;infradead.org; dmarc=pass action=none header.from=nvidia.com;
 Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
  216.228.112.34 as permitted sender) receiver=protection.outlook.com;
  client-ip=216.228.112.34; helo=mail.nvidia.com;
 Received: from mail.nvidia.com (216.228.112.34) by
  BN8NAM11FT031.mail.protection.outlook.com (10.13.177.25) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4242.16 via Frontend Transport; Wed, 16 Jun 2021 11:00:47 +0000
-Received: from localhost (172.20.187.6) by HQMAIL107.nvidia.com
+ 15.20.4242.16 via Frontend Transport; Wed, 16 Jun 2021 11:00:56 +0000
+Received: from localhost (172.20.187.5) by HQMAIL107.nvidia.com
  (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 16 Jun
- 2021 11:00:45 +0000
+ 2021 11:00:54 +0000
 From: Alistair Popple <apopple@nvidia.com>
 To: <akpm@linux-foundation.org>
-Date: Wed, 16 Jun 2021 20:59:29 +1000
-Message-ID: <20210616105937.23201-3-apopple@nvidia.com>
+Date: Wed, 16 Jun 2021 20:59:32 +1000
+Message-ID: <20210616105937.23201-6-apopple@nvidia.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210616105937.23201-1-apopple@nvidia.com>
 References: <20210616105937.23201-1-apopple@nvidia.com>
 MIME-Version: 1.0
-X-Originating-IP: [172.20.187.6]
+X-Originating-IP: [172.20.187.5]
 X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
  HQMAIL107.nvidia.com (172.20.187.13)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 10cedde1-3cb0-4a65-d764-08d930b5fee3
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1261:
-X-Microsoft-Antispam-PRVS: <MWHPR12MB1261DB64858124E9B556CCD5DF0F9@MWHPR12MB1261.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1265;
+X-MS-Office365-Filtering-Correlation-Id: 09ab3835-8a8f-4109-9d4e-08d930b60456
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3967:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB396768245370FB4216ED5448DF0F9@MN2PR12MB3967.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9eCRXJtenxs6WwYBr5j3z5ej+LzJN6t2rGlZD2mPJS//CQeaSp9R/C2ChTiDBcv4ttpQz9y3VxXJAJc699v+KZjDuyKmOSuFX+YMdp+svQHIVNqOesSwXi3pMJxETRPz1zwvuuvDQYsESrUSsQBt0mGHtaV77ZzEQbO43wl6tCu7t35B98C/sbyDYrYl1B3Yf4JfclKeIv4WUHg3NOkNPV9XDeL1euD83KLr89Mi6tBXwAGB2wuaq3jfVNvOp0qQI1Zat0AKqYj9r9h9DH3xbE3h/9vAqIQMoXL90TrBSFufATPZrYxw/SoQzl8quEGLotT873HLsHr91AUIbQcEwbayT4DiAma8yoU/6cpSqSRsY1+91JJFHE3X+sP/QDZHopeA/Y2JxB1M71fngsuhfHNB0jECDeTFNg2Zgq/5OwW8pj+vX1YPbk9PoDxTlrTI8BPH3E/aaXxVBWjyjVUrOC3UGY8VDDxToTsIPzeScEr8wNtScl4U7uhoIIipWHVbxwAXrDyGXKScth3WJ5VyZikBNjNWYGTYOgROi/s5ijIGd7W1BkY/zx7IJYFRFlPwz77clxLHcDKAJCxUJpVOJnUmRk++vshvzOk+1GET5ikSu58kF1HO3fYoKWbZ108YblGtYolTWIhxAH0W5Abo60wEvQJ5wB8ksnxABBx5Vt4=
+X-Microsoft-Antispam-Message-Info: rVjSWc0zJSpUUDDRlZ3ttg9H1JndDGj1FTWs/0tiKhweb98CIeDKbNyDzWCNR9Uf3hMGew5hIMge4Iu8akCnG1A3L4g05HnWlP6fReOtChtX/0/6TZhLqkcsk5Z2cJWH3VAGMCw+y8f6RFJLYdIAwSnwjwT3LkzFnztREKgT7hJVx8NZw3dCcB4y1wC4sIK0TCWl1Uc7NNk7cJGgHgpu8I4gebRnQBLU9/Cs5hZr24s60VPSxvP3YKKogltYq4oNSYawFV2nux3ISbcABTOODCdEvc/OKi4cQPKghQFZ3g+JThIJ4uWcBmjxKWOfjymBsnduq45pcSYCe/X5fq/aWqSCl+nsUg1wf9ncRHF0VLmcNfPI/GDTij2iHmv0BUMGDFxSZN+WGDlXE9yaGmQmuhV1T5ErEIJEgaakwmS4Rhmm6dbsJpvnf2qds3bI2uDCss7xWfTragWIUZPRUx+t5ecJ0LUbMZO957tlGMVTclQkGcEn7clTNQLIa9y+Fsy/KpnqOVDYqbGDk55c9dXsY7TeimbQXzVuuNm5CguNdvDiaF3MZz+VUaA3RqtoEqmgFlKgpLU9h+rSeWxTIFUAJZoV8pVfWPDQJujeO/6IWbqv3eKL6KXAZw1QzmmlolyJDzu1TAPGQJBAcKU7tP9D/2+wH53YSeynU4JaxTlaHoM=
 X-Forefront-Antispam-Report: CIP:216.228.112.34; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:schybrid03.nvidia.com; CAT:NONE;
- SFS:(4636009)(136003)(396003)(346002)(376002)(39860400002)(46966006)(36840700001)(83380400001)(36756003)(54906003)(82310400003)(6666004)(86362001)(2906002)(70206006)(2616005)(186003)(16526019)(70586007)(47076005)(426003)(316002)(36860700001)(26005)(36906005)(336012)(478600001)(8676002)(82740400003)(1076003)(30864003)(6916009)(356005)(8936002)(7636003)(4326008)(5660300002)(7416002);
+ SFS:(4636009)(376002)(396003)(39860400002)(136003)(346002)(46966006)(36840700001)(83380400001)(16526019)(336012)(5660300002)(186003)(1076003)(82310400003)(4326008)(2616005)(2906002)(36860700001)(426003)(70206006)(47076005)(7636003)(356005)(107886003)(316002)(7416002)(36906005)(8676002)(26005)(8936002)(6666004)(70586007)(478600001)(36756003)(54906003)(86362001)(6916009)(82740400003);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2021 11:00:47.1335 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10cedde1-3cb0-4a65-d764-08d930b5fee3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2021 11:00:56.2863 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09ab3835-8a8f-4109-9d4e-08d930b60456
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.112.34];
  Helo=[mail.nvidia.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT031.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1261
-Subject: [Nouveau] [PATCH v11 02/10] mm/swapops: Rework swap entry
- manipulation code
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3967
+Subject: [Nouveau] [PATCH v11 05/10] mm: Rename migrate_pgmap_owner
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,474 +113,159 @@ Cc: rcampbell@nvidia.com, linux-doc@vger.kernel.org,
  nouveau@lists.freedesktop.org, Alistair Popple <apopple@nvidia.com>,
  hughd@google.com, linux-kernel@vger.kernel.org, willy@infradead.org,
  hch@infradead.org, linux-mm@kvack.org, peterx@redhat.com, shakeelb@google.com,
- dri-devel@lists.freedesktop.org, jgg@nvidia.com, Christoph
- Hellwig <hch@lst.de>, bskeggs@redhat.com
+ dri-devel@lists.freedesktop.org, jgg@nvidia.com, bskeggs@redhat.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Both migration and device private pages use special swap entries that
-are manipluated by a range of inline functions. The arguments to these
-are somewhat inconsitent so rework them to remove flag type arguments
-and to make the arguments similar for both read and write entry
-creation.
+MMU notifier ranges have a migrate_pgmap_owner field which is used by
+drivers to store a pointer. This is subsequently used by the driver
+callback to filter MMU_NOTIFY_MIGRATE events. Other notifier event types
+can also benefit from this filtering, so rename the
+'migrate_pgmap_owner' field to 'owner' and create a new notifier
+initialisation function to initialise this field.
 
 Signed-off-by: Alistair Popple <apopple@nvidia.com>
-Reviewed-by: Christoph Hellwig <hch@lst.de>
-Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
----
- include/linux/swapops.h | 56 ++++++++++++++++++++++-------------------
- mm/debug_vm_pgtable.c   | 12 ++++-----
- mm/hmm.c                |  2 +-
- mm/huge_memory.c        | 26 +++++++++++++------
- mm/hugetlb.c            | 10 +++++---
- mm/memory.c             | 10 +++++---
- mm/migrate.c            | 26 ++++++++++++++-----
- mm/mprotect.c           | 10 +++++---
- mm/rmap.c               | 10 +++++---
- 9 files changed, 100 insertions(+), 62 deletions(-)
+Suggested-by: Peter Xu <peterx@redhat.com>
+Reviewed-by: Peter Xu <peterx@redhat.com>
 
-diff --git a/include/linux/swapops.h b/include/linux/swapops.h
-index c24c79812bc1..04d76357aa0c 100644
---- a/include/linux/swapops.h
-+++ b/include/linux/swapops.h
-@@ -107,35 +107,35 @@ static inline void *swp_to_radix_entry(swp_entry_t entry)
- }
- 
- #if IS_ENABLED(CONFIG_DEVICE_PRIVATE)
--static inline swp_entry_t make_device_private_entry(struct page *page, bool write)
-+static inline swp_entry_t make_readable_device_private_entry(pgoff_t offset)
- {
--	return swp_entry(write ? SWP_DEVICE_WRITE : SWP_DEVICE_READ,
--			 page_to_pfn(page));
-+	return swp_entry(SWP_DEVICE_READ, offset);
- }
- 
--static inline bool is_device_private_entry(swp_entry_t entry)
-+static inline swp_entry_t make_writable_device_private_entry(pgoff_t offset)
- {
--	int type = swp_type(entry);
--	return type == SWP_DEVICE_READ || type == SWP_DEVICE_WRITE;
-+	return swp_entry(SWP_DEVICE_WRITE, offset);
- }
- 
--static inline void make_device_private_entry_read(swp_entry_t *entry)
-+static inline bool is_device_private_entry(swp_entry_t entry)
- {
--	*entry = swp_entry(SWP_DEVICE_READ, swp_offset(*entry));
-+	int type = swp_type(entry);
-+	return type == SWP_DEVICE_READ || type == SWP_DEVICE_WRITE;
- }
- 
--static inline bool is_write_device_private_entry(swp_entry_t entry)
-+static inline bool is_writable_device_private_entry(swp_entry_t entry)
- {
- 	return unlikely(swp_type(entry) == SWP_DEVICE_WRITE);
- }
- #else /* CONFIG_DEVICE_PRIVATE */
--static inline swp_entry_t make_device_private_entry(struct page *page, bool write)
-+static inline swp_entry_t make_readable_device_private_entry(pgoff_t offset)
- {
- 	return swp_entry(0, 0);
- }
- 
--static inline void make_device_private_entry_read(swp_entry_t *entry)
-+static inline swp_entry_t make_writable_device_private_entry(pgoff_t offset)
- {
-+	return swp_entry(0, 0);
- }
- 
- static inline bool is_device_private_entry(swp_entry_t entry)
-@@ -143,35 +143,32 @@ static inline bool is_device_private_entry(swp_entry_t entry)
- 	return false;
- }
- 
--static inline bool is_write_device_private_entry(swp_entry_t entry)
-+static inline bool is_writable_device_private_entry(swp_entry_t entry)
- {
- 	return false;
- }
- #endif /* CONFIG_DEVICE_PRIVATE */
- 
- #ifdef CONFIG_MIGRATION
--static inline swp_entry_t make_migration_entry(struct page *page, int write)
--{
--	BUG_ON(!PageLocked(compound_head(page)));
--
--	return swp_entry(write ? SWP_MIGRATION_WRITE : SWP_MIGRATION_READ,
--			page_to_pfn(page));
--}
--
- static inline int is_migration_entry(swp_entry_t entry)
- {
- 	return unlikely(swp_type(entry) == SWP_MIGRATION_READ ||
- 			swp_type(entry) == SWP_MIGRATION_WRITE);
- }
- 
--static inline int is_write_migration_entry(swp_entry_t entry)
-+static inline int is_writable_migration_entry(swp_entry_t entry)
- {
- 	return unlikely(swp_type(entry) == SWP_MIGRATION_WRITE);
- }
- 
--static inline void make_migration_entry_read(swp_entry_t *entry)
-+static inline swp_entry_t make_readable_migration_entry(pgoff_t offset)
- {
--	*entry = swp_entry(SWP_MIGRATION_READ, swp_offset(*entry));
-+	return swp_entry(SWP_MIGRATION_READ, offset);
-+}
-+
-+static inline swp_entry_t make_writable_migration_entry(pgoff_t offset)
-+{
-+	return swp_entry(SWP_MIGRATION_WRITE, offset);
- }
- 
- extern void __migration_entry_wait(struct mm_struct *mm, pte_t *ptep,
-@@ -181,21 +178,28 @@ extern void migration_entry_wait(struct mm_struct *mm, pmd_t *pmd,
- extern void migration_entry_wait_huge(struct vm_area_struct *vma,
- 		struct mm_struct *mm, pte_t *pte);
- #else
-+static inline swp_entry_t make_readable_migration_entry(pgoff_t offset)
-+{
-+	return swp_entry(0, 0);
-+}
-+
-+static inline swp_entry_t make_writable_migration_entry(pgoff_t offset)
-+{
-+	return swp_entry(0, 0);
-+}
- 
--#define make_migration_entry(page, write) swp_entry(0, 0)
- static inline int is_migration_entry(swp_entry_t swp)
- {
- 	return 0;
- }
- 
--static inline void make_migration_entry_read(swp_entry_t *entryp) { }
- static inline void __migration_entry_wait(struct mm_struct *mm, pte_t *ptep,
- 					spinlock_t *ptl) { }
- static inline void migration_entry_wait(struct mm_struct *mm, pmd_t *pmd,
- 					 unsigned long address) { }
- static inline void migration_entry_wait_huge(struct vm_area_struct *vma,
- 		struct mm_struct *mm, pte_t *pte) { }
--static inline int is_write_migration_entry(swp_entry_t entry)
-+static inline int is_writable_migration_entry(swp_entry_t entry)
- {
- 	return 0;
- }
-diff --git a/mm/debug_vm_pgtable.c b/mm/debug_vm_pgtable.c
-index f7b23565a04f..1c922691aa61 100644
---- a/mm/debug_vm_pgtable.c
-+++ b/mm/debug_vm_pgtable.c
-@@ -843,17 +843,17 @@ static void __init swap_migration_tests(void)
- 	 * locked, otherwise it stumbles upon a BUG_ON().
+---
+
+v9:
+
+Previously part of the next patch in the series ('mm: Device exclusive
+memory access') but now split out as a separate change as suggested by
+Peter Xu.
+---
+ Documentation/vm/hmm.rst              |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_svm.c |  2 +-
+ include/linux/mmu_notifier.h          | 20 ++++++++++----------
+ lib/test_hmm.c                        |  2 +-
+ mm/migrate.c                          | 10 +++++-----
+ 5 files changed, 18 insertions(+), 18 deletions(-)
+
+diff --git a/Documentation/vm/hmm.rst b/Documentation/vm/hmm.rst
+index 09e28507f5b2..3df79307a797 100644
+--- a/Documentation/vm/hmm.rst
++++ b/Documentation/vm/hmm.rst
+@@ -332,7 +332,7 @@ between device driver specific code and shared common code:
+    walks to fill in the ``args->src`` array with PFNs to be migrated.
+    The ``invalidate_range_start()`` callback is passed a
+    ``struct mmu_notifier_range`` with the ``event`` field set to
+-   ``MMU_NOTIFY_MIGRATE`` and the ``migrate_pgmap_owner`` field set to
++   ``MMU_NOTIFY_MIGRATE`` and the ``owner`` field set to
+    the ``args->pgmap_owner`` field passed to migrate_vma_setup(). This is
+    allows the device driver to skip the invalidation callback and only
+    invalidate device private MMU mappings that are actually migrating.
+diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+index f18bd53da052..94f841026c3b 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_svm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+@@ -265,7 +265,7 @@ nouveau_svmm_invalidate_range_start(struct mmu_notifier *mn,
+ 	 * the invalidation is handled as part of the migration process.
  	 */
- 	__SetPageLocked(page);
--	swp = make_migration_entry(page, 1);
-+	swp = make_writable_migration_entry(page_to_pfn(page));
- 	WARN_ON(!is_migration_entry(swp));
--	WARN_ON(!is_write_migration_entry(swp));
-+	WARN_ON(!is_writable_migration_entry(swp));
+ 	if (update->event == MMU_NOTIFY_MIGRATE &&
+-	    update->migrate_pgmap_owner == svmm->vmm->cli->drm->dev)
++	    update->owner == svmm->vmm->cli->drm->dev)
+ 		goto out;
  
--	make_migration_entry_read(&swp);
-+	swp = make_readable_migration_entry(swp_offset(swp));
- 	WARN_ON(!is_migration_entry(swp));
--	WARN_ON(is_write_migration_entry(swp));
-+	WARN_ON(is_writable_migration_entry(swp));
+ 	if (limit > svmm->unmanaged.start && start < svmm->unmanaged.limit) {
+diff --git a/include/linux/mmu_notifier.h b/include/linux/mmu_notifier.h
+index d514e5d06ebf..8eb965ef0028 100644
+--- a/include/linux/mmu_notifier.h
++++ b/include/linux/mmu_notifier.h
+@@ -41,7 +41,7 @@ struct mmu_interval_notifier;
+  *
+  * @MMU_NOTIFY_MIGRATE: used during migrate_vma_collect() invalidate to signal
+  * a device driver to possibly ignore the invalidation if the
+- * migrate_pgmap_owner field matches the driver's device private pgmap owner.
++ * owner field matches the driver's device private pgmap owner.
+  */
+ enum mmu_notifier_event {
+ 	MMU_NOTIFY_UNMAP = 0,
+@@ -269,7 +269,7 @@ struct mmu_notifier_range {
+ 	unsigned long end;
+ 	unsigned flags;
+ 	enum mmu_notifier_event event;
+-	void *migrate_pgmap_owner;
++	void *owner;
+ };
  
--	swp = make_migration_entry(page, 0);
-+	swp = make_readable_migration_entry(page_to_pfn(page));
- 	WARN_ON(!is_migration_entry(swp));
--	WARN_ON(is_write_migration_entry(swp));
-+	WARN_ON(is_writable_migration_entry(swp));
- 	__ClearPageLocked(page);
- 	__free_page(page);
+ static inline int mm_has_notifiers(struct mm_struct *mm)
+@@ -521,14 +521,14 @@ static inline void mmu_notifier_range_init(struct mmu_notifier_range *range,
+ 	range->flags = flags;
  }
-diff --git a/mm/hmm.c b/mm/hmm.c
-index 3b2dda71d0ed..11df3ca30b82 100644
---- a/mm/hmm.c
-+++ b/mm/hmm.c
-@@ -255,7 +255,7 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
- 		 */
- 		if (hmm_is_device_private_entry(range, entry)) {
- 			cpu_flags = HMM_PFN_VALID;
--			if (is_write_device_private_entry(entry))
-+			if (is_writable_device_private_entry(entry))
- 				cpu_flags |= HMM_PFN_WRITE;
- 			*hmm_pfn = swp_offset(entry) | cpu_flags;
- 			return 0;
-diff --git a/mm/huge_memory.c b/mm/huge_memory.c
-index 327b8d9d8d2f..1c81aa11d618 100644
---- a/mm/huge_memory.c
-+++ b/mm/huge_memory.c
-@@ -1054,8 +1054,9 @@ int copy_huge_pmd(struct mm_struct *dst_mm, struct mm_struct *src_mm,
- 		swp_entry_t entry = pmd_to_swp_entry(pmd);
  
- 		VM_BUG_ON(!is_pmd_migration_entry(pmd));
--		if (is_write_migration_entry(entry)) {
--			make_migration_entry_read(&entry);
-+		if (is_writable_migration_entry(entry)) {
-+			entry = make_readable_migration_entry(
-+							swp_offset(entry));
- 			pmd = swp_entry_to_pmd(entry);
- 			if (pmd_swp_soft_dirty(*src_pmd))
- 				pmd = pmd_swp_mksoft_dirty(pmd);
-@@ -1772,13 +1773,14 @@ int change_huge_pmd(struct vm_area_struct *vma, pmd_t *pmd,
- 		swp_entry_t entry = pmd_to_swp_entry(*pmd);
+-static inline void mmu_notifier_range_init_migrate(
+-			struct mmu_notifier_range *range, unsigned int flags,
++static inline void mmu_notifier_range_init_owner(
++			struct mmu_notifier_range *range,
++			enum mmu_notifier_event event, unsigned int flags,
+ 			struct vm_area_struct *vma, struct mm_struct *mm,
+-			unsigned long start, unsigned long end, void *pgmap)
++			unsigned long start, unsigned long end, void *owner)
+ {
+-	mmu_notifier_range_init(range, MMU_NOTIFY_MIGRATE, flags, vma, mm,
+-				start, end);
+-	range->migrate_pgmap_owner = pgmap;
++	mmu_notifier_range_init(range, event, flags, vma, mm, start, end);
++	range->owner = owner;
+ }
  
- 		VM_BUG_ON(!is_pmd_migration_entry(*pmd));
--		if (is_write_migration_entry(entry)) {
-+		if (is_writable_migration_entry(entry)) {
- 			pmd_t newpmd;
- 			/*
- 			 * A protection check is difficult so
- 			 * just be safe and disable write
- 			 */
--			make_migration_entry_read(&entry);
-+			entry = make_readable_migration_entry(
-+							swp_offset(entry));
- 			newpmd = swp_entry_to_pmd(entry);
- 			if (pmd_swp_soft_dirty(*pmd))
- 				newpmd = pmd_swp_mksoft_dirty(newpmd);
-@@ -2067,7 +2069,7 @@ static void __split_huge_pmd_locked(struct vm_area_struct *vma, pmd_t *pmd,
+ #define ptep_clear_flush_young_notify(__vma, __address, __ptep)		\
+@@ -655,8 +655,8 @@ static inline void _mmu_notifier_range_init(struct mmu_notifier_range *range,
  
- 		entry = pmd_to_swp_entry(old_pmd);
- 		page = pfn_swap_entry_to_page(entry);
--		write = is_write_migration_entry(entry);
-+		write = is_writable_migration_entry(entry);
- 		young = false;
- 		soft_dirty = pmd_swp_soft_dirty(old_pmd);
- 		uffd_wp = pmd_swp_uffd_wp(old_pmd);
-@@ -2099,7 +2101,12 @@ static void __split_huge_pmd_locked(struct vm_area_struct *vma, pmd_t *pmd,
- 		 */
- 		if (freeze || pmd_migration) {
- 			swp_entry_t swp_entry;
--			swp_entry = make_migration_entry(page + i, write);
-+			if (write)
-+				swp_entry = make_writable_migration_entry(
-+							page_to_pfn(page + i));
-+			else
-+				swp_entry = make_readable_migration_entry(
-+							page_to_pfn(page + i));
- 			entry = swp_entry_to_pte(swp_entry);
- 			if (soft_dirty)
- 				entry = pte_swp_mksoft_dirty(entry);
-@@ -3171,7 +3178,10 @@ void set_pmd_migration_entry(struct page_vma_mapped_walk *pvmw,
- 	pmdval = pmdp_invalidate(vma, address, pvmw->pmd);
- 	if (pmd_dirty(pmdval))
- 		set_page_dirty(page);
--	entry = make_migration_entry(page, pmd_write(pmdval));
-+	if (pmd_write(pmdval))
-+		entry = make_writable_migration_entry(page_to_pfn(page));
-+	else
-+		entry = make_readable_migration_entry(page_to_pfn(page));
- 	pmdswp = swp_entry_to_pmd(entry);
- 	if (pmd_soft_dirty(pmdval))
- 		pmdswp = pmd_swp_mksoft_dirty(pmdswp);
-@@ -3197,7 +3207,7 @@ void remove_migration_pmd(struct page_vma_mapped_walk *pvmw, struct page *new)
- 	pmde = pmd_mkold(mk_huge_pmd(new, vma->vm_page_prot));
- 	if (pmd_swp_soft_dirty(*pvmw->pmd))
- 		pmde = pmd_mksoft_dirty(pmde);
--	if (is_write_migration_entry(entry))
-+	if (is_writable_migration_entry(entry))
- 		pmde = maybe_pmd_mkwrite(pmde, vma);
- 	if (pmd_swp_uffd_wp(*pvmw->pmd))
- 		pmde = pmd_wrprotect(pmd_mkuffd_wp(pmde));
-diff --git a/mm/hugetlb.c b/mm/hugetlb.c
-index b14f4d1749b2..760b5fb836b8 100644
---- a/mm/hugetlb.c
-+++ b/mm/hugetlb.c
-@@ -4195,12 +4195,13 @@ int copy_hugetlb_page_range(struct mm_struct *dst, struct mm_struct *src,
- 				    is_hugetlb_entry_hwpoisoned(entry))) {
- 			swp_entry_t swp_entry = pte_to_swp_entry(entry);
+ #define mmu_notifier_range_init(range,event,flags,vma,mm,start,end)  \
+ 	_mmu_notifier_range_init(range, start, end)
+-#define mmu_notifier_range_init_migrate(range, flags, vma, mm, start, end, \
+-					pgmap) \
++#define mmu_notifier_range_init_owner(range, event, flags, vma, mm, start, \
++					end, owner) \
+ 	_mmu_notifier_range_init(range, start, end)
  
--			if (is_write_migration_entry(swp_entry) && cow) {
-+			if (is_writable_migration_entry(swp_entry) && cow) {
- 				/*
- 				 * COW mappings require pages in both
- 				 * parent and child to be set to read.
- 				 */
--				make_migration_entry_read(&swp_entry);
-+				swp_entry = make_readable_migration_entry(
-+							swp_offset(swp_entry));
- 				entry = swp_entry_to_pte(swp_entry);
- 				set_huge_swap_pte_at(src, addr, src_pte,
- 						     entry, sz);
-@@ -5485,10 +5486,11 @@ unsigned long hugetlb_change_protection(struct vm_area_struct *vma,
- 		if (unlikely(is_hugetlb_entry_migration(pte))) {
- 			swp_entry_t entry = pte_to_swp_entry(pte);
+ static inline bool
+diff --git a/lib/test_hmm.c b/lib/test_hmm.c
+index 15f2e2db77bc..fc7a20bc9b42 100644
+--- a/lib/test_hmm.c
++++ b/lib/test_hmm.c
+@@ -218,7 +218,7 @@ static bool dmirror_interval_invalidate(struct mmu_interval_notifier *mni,
+ 	 * the invalidation is handled as part of the migration process.
+ 	 */
+ 	if (range->event == MMU_NOTIFY_MIGRATE &&
+-	    range->migrate_pgmap_owner == dmirror->mdevice)
++	    range->owner == dmirror->mdevice)
+ 		return true;
  
--			if (is_write_migration_entry(entry)) {
-+			if (is_writable_migration_entry(entry)) {
- 				pte_t newpte;
- 
--				make_migration_entry_read(&entry);
-+				entry = make_readable_migration_entry(
-+							swp_offset(entry));
- 				newpte = swp_entry_to_pte(entry);
- 				set_huge_swap_pte_at(mm, address, ptep,
- 						     newpte, huge_page_size(h));
-diff --git a/mm/memory.c b/mm/memory.c
-index a6c5132354a2..b4588402b777 100644
---- a/mm/memory.c
-+++ b/mm/memory.c
-@@ -733,13 +733,14 @@ copy_nonpresent_pte(struct mm_struct *dst_mm, struct mm_struct *src_mm,
- 
- 		rss[mm_counter(page)]++;
- 
--		if (is_write_migration_entry(entry) &&
-+		if (is_writable_migration_entry(entry) &&
- 				is_cow_mapping(vm_flags)) {
- 			/*
- 			 * COW mappings require pages in both
- 			 * parent and child to be set to read.
- 			 */
--			make_migration_entry_read(&entry);
-+			entry = make_readable_migration_entry(
-+							swp_offset(entry));
- 			pte = swp_entry_to_pte(entry);
- 			if (pte_swp_soft_dirty(*src_pte))
- 				pte = pte_swp_mksoft_dirty(pte);
-@@ -770,9 +771,10 @@ copy_nonpresent_pte(struct mm_struct *dst_mm, struct mm_struct *src_mm,
- 		 * when a device driver is involved (you cannot easily
- 		 * save and restore device driver state).
- 		 */
--		if (is_write_device_private_entry(entry) &&
-+		if (is_writable_device_private_entry(entry) &&
- 		    is_cow_mapping(vm_flags)) {
--			make_device_private_entry_read(&entry);
-+			entry = make_readable_device_private_entry(
-+							swp_offset(entry));
- 			pte = swp_entry_to_pte(entry);
- 			if (pte_swp_uffd_wp(*src_pte))
- 				pte = pte_swp_mkuffd_wp(pte);
+ 	if (mmu_notifier_range_blockable(range))
 diff --git a/mm/migrate.c b/mm/migrate.c
-index b4abb87249e1..de47bdfbd2f8 100644
+index a69f54bd92b9..23cbd9de030b 100644
 --- a/mm/migrate.c
 +++ b/mm/migrate.c
-@@ -210,13 +210,18 @@ static bool remove_migration_pte(struct page *page, struct vm_area_struct *vma,
- 		 * Recheck VMA as permissions can change since migration started
- 		 */
- 		entry = pte_to_swp_entry(*pvmw.pte);
--		if (is_write_migration_entry(entry))
-+		if (is_writable_migration_entry(entry))
- 			pte = maybe_mkwrite(pte, vma);
- 		else if (pte_swp_uffd_wp(*pvmw.pte))
- 			pte = pte_mkuffd_wp(pte);
+@@ -2416,8 +2416,8 @@ static void migrate_vma_collect(struct migrate_vma *migrate)
+ 	 * that the registered device driver can skip invalidating device
+ 	 * private page mappings that won't be migrated.
+ 	 */
+-	mmu_notifier_range_init_migrate(&range, 0, migrate->vma,
+-		migrate->vma->vm_mm, migrate->start, migrate->end,
++	mmu_notifier_range_init_owner(&range, MMU_NOTIFY_MIGRATE, 0,
++		migrate->vma, migrate->vma->vm_mm, migrate->start, migrate->end,
+ 		migrate->pgmap_owner);
+ 	mmu_notifier_invalidate_range_start(&range);
  
- 		if (unlikely(is_device_private_page(new))) {
--			entry = make_device_private_entry(new, pte_write(pte));
-+			if (pte_write(pte))
-+				entry = make_writable_device_private_entry(
-+							page_to_pfn(new));
-+			else
-+				entry = make_readable_device_private_entry(
-+							page_to_pfn(new));
- 			pte = swp_entry_to_pte(entry);
- 			if (pte_swp_soft_dirty(*pvmw.pte))
- 				pte = pte_swp_mksoft_dirty(pte);
-@@ -2297,7 +2302,7 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+@@ -2927,9 +2927,9 @@ void migrate_vma_pages(struct migrate_vma *migrate)
+ 			if (!notified) {
+ 				notified = true;
  
- 			mpfn = migrate_pfn(page_to_pfn(page)) |
- 					MIGRATE_PFN_MIGRATE;
--			if (is_write_device_private_entry(entry))
-+			if (is_writable_device_private_entry(entry))
- 				mpfn |= MIGRATE_PFN_WRITE;
- 		} else {
- 			if (!(migrate->flags & MIGRATE_VMA_SELECT_SYSTEM))
-@@ -2343,8 +2348,12 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
- 			ptep_get_and_clear(mm, addr, ptep);
- 
- 			/* Setup special migration page table entry */
--			entry = make_migration_entry(page, mpfn &
--						     MIGRATE_PFN_WRITE);
-+			if (mpfn & MIGRATE_PFN_WRITE)
-+				entry = make_writable_migration_entry(
-+							page_to_pfn(page));
-+			else
-+				entry = make_readable_migration_entry(
-+							page_to_pfn(page));
- 			swp_pte = swp_entry_to_pte(entry);
- 			if (pte_present(pte)) {
- 				if (pte_soft_dirty(pte))
-@@ -2817,7 +2826,12 @@ static void migrate_vma_insert_page(struct migrate_vma *migrate,
- 		if (is_device_private_page(page)) {
- 			swp_entry_t swp_entry;
- 
--			swp_entry = make_device_private_entry(page, vma->vm_flags & VM_WRITE);
-+			if (vma->vm_flags & VM_WRITE)
-+				swp_entry = make_writable_device_private_entry(
-+							page_to_pfn(page));
-+			else
-+				swp_entry = make_readable_device_private_entry(
-+							page_to_pfn(page));
- 			entry = swp_entry_to_pte(swp_entry);
- 		} else {
- 			/*
-diff --git a/mm/mprotect.c b/mm/mprotect.c
-index 127d348c9df3..d7f49f33d240 100644
---- a/mm/mprotect.c
-+++ b/mm/mprotect.c
-@@ -183,23 +183,25 @@ static unsigned long change_pte_range(struct vm_area_struct *vma, pmd_t *pmd,
- 			swp_entry_t entry = pte_to_swp_entry(oldpte);
- 			pte_t newpte;
- 
--			if (is_write_migration_entry(entry)) {
-+			if (is_writable_migration_entry(entry)) {
- 				/*
- 				 * A protection check is difficult so
- 				 * just be safe and disable write
- 				 */
--				make_migration_entry_read(&entry);
-+				entry = make_readable_migration_entry(
-+							swp_offset(entry));
- 				newpte = swp_entry_to_pte(entry);
- 				if (pte_swp_soft_dirty(oldpte))
- 					newpte = pte_swp_mksoft_dirty(newpte);
- 				if (pte_swp_uffd_wp(oldpte))
- 					newpte = pte_swp_mkuffd_wp(newpte);
--			} else if (is_write_device_private_entry(entry)) {
-+			} else if (is_writable_device_private_entry(entry)) {
- 				/*
- 				 * We do not preserve soft-dirtiness. See
- 				 * copy_one_pte() for explanation.
- 				 */
--				make_device_private_entry_read(&entry);
-+				entry = make_readable_device_private_entry(
-+							swp_offset(entry));
- 				newpte = swp_entry_to_pte(entry);
- 				if (pte_swp_uffd_wp(oldpte))
- 					newpte = pte_swp_mkuffd_wp(newpte);
-diff --git a/mm/rmap.c b/mm/rmap.c
-index c4a9a8b23fae..cf9f96940a1f 100644
---- a/mm/rmap.c
-+++ b/mm/rmap.c
-@@ -1533,7 +1533,7 @@ static bool try_to_unmap_one(struct page *page, struct vm_area_struct *vma,
- 			 * pte. do_swap_page() will wait until the migration
- 			 * pte is removed and then restart fault handling.
- 			 */
--			entry = make_migration_entry(page, 0);
-+			entry = make_readable_migration_entry(page_to_pfn(page));
- 			swp_pte = swp_entry_to_pte(entry);
- 
- 			/*
-@@ -1629,8 +1629,12 @@ static bool try_to_unmap_one(struct page *page, struct vm_area_struct *vma,
- 			 * pte. do_swap_page() will wait until the migration
- 			 * pte is removed and then restart fault handling.
- 			 */
--			entry = make_migration_entry(subpage,
--					pte_write(pteval));
-+			if (pte_write(pteval))
-+				entry = make_writable_migration_entry(
-+							page_to_pfn(subpage));
-+			else
-+				entry = make_readable_migration_entry(
-+							page_to_pfn(subpage));
- 			swp_pte = swp_entry_to_pte(entry);
- 			if (pte_soft_dirty(pteval))
- 				swp_pte = pte_swp_mksoft_dirty(swp_pte);
+-				mmu_notifier_range_init_migrate(&range, 0,
+-					migrate->vma, migrate->vma->vm_mm,
+-					addr, migrate->end,
++				mmu_notifier_range_init_owner(&range,
++					MMU_NOTIFY_MIGRATE, 0, migrate->vma,
++					migrate->vma->vm_mm, addr, migrate->end,
+ 					migrate->pgmap_owner);
+ 				mmu_notifier_invalidate_range_start(&range);
+ 			}
 -- 
 2.20.1
 
