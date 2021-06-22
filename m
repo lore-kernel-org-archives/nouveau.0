@@ -2,83 +2,104 @@ Return-Path: <SRS0=GiJt=LV=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 96E37C49EAB
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F460C49EA7
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6C5AD619CB
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6C5AD619CB
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id 08BB4619CB
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:17 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 08BB4619CB
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47E9C6E15D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EAF46E160;
 	Sun, 27 Jun 2021 03:34:48 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34E116EE22
- for <nouveau@lists.freedesktop.org>; Fri, 11 Jun 2021 01:00:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1623373239;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE8C76E581
+ for <nouveau@lists.freedesktop.org>; Tue, 22 Jun 2021 14:17:45 +0000 (UTC)
+Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id E91B51FD65;
+ Tue, 22 Jun 2021 14:10:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624371009; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=TIpFBpUgsa+CEYbS6beP9TgLZgicFH9y1D+Hi0H76zs=;
- b=XBoIPVwGPv8LQykIzfR6iBv2wfLahv4dyZIPpPMnhr2ISgg91Y2nJ+zuLluF6yphnL3nBw
- /x792pMXyV/M9/wMm+VrRJrQ477krIAFz7nF5T9LWPBVjdF2Hjn8llKLid4aWzcx6zKuWw
- jG+CszxG0PfkD32Cxpjvboa59EArR10=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-439-_DyEXgJJNyiB6yP1WCNvrA-1; Thu, 10 Jun 2021 21:00:37 -0400
-X-MC-Unique: _DyEXgJJNyiB6yP1WCNvrA-1
-Received: by mail-qt1-f200.google.com with SMTP id
- z4-20020ac87f840000b02902488809b6d6so983474qtj.9
- for <nouveau@lists.freedesktop.org>; Thu, 10 Jun 2021 18:00:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=TIpFBpUgsa+CEYbS6beP9TgLZgicFH9y1D+Hi0H76zs=;
- b=ryqXyOTUKt5iaaIirfDeypuTI739cte9ycAzegqLs//GSajXlJkM8ql55i6hHZq00M
- PI0p3+bWVTSYAjhZZNS1D1+lFLtJ+8iCBjtLuE2vLPWBO3OJsJwF42HxbpfsLR3Rq3bZ
- ZJpADnc3fnB2+qmaFB0omDcSjlpLHKwk0C9zxgnxOpZURVpL3JxUpMriEOosgWbOVs/X
- g7hV3Bfd0PNiHTM6uTqlKKpPfa/BZj7/iw4CUcXHPS2P/0FNkEcIIARW+o5RQVZuOyi3
- 3DQa6mMvGj6jwIf9VLnKwm+VtBlduxuMa6XehPgiimgaILrmtAgRX6Qtoim+jzTsd5fM
- uB+Q==
-X-Gm-Message-State: AOAM532zLSpocdVWwS8UE5a5GmTkRCUktkFg5kHOaC/b3mgKaRAs5kCx
- mU8PVp1dXvDngEQgMi0lxC1VCm1YqaAQ/DvRdjd2DNNQNQljvtoc4uvEAVEdsu/DbDh2QQkR/p8
- 5AtUmDQItJ1nYMW6iIwRtsZuzuw==
-X-Received: by 2002:ac8:478d:: with SMTP id k13mr1622114qtq.368.1623373237353; 
- Thu, 10 Jun 2021 18:00:37 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJz117hBHeZrmV+gnZTyf8CAZNSgcamMomZRLvbKE8N/5JXdDVGO68KnPLhpJxwzn8D7ZmVhUQ==
-X-Received: by 2002:ac8:478d:: with SMTP id k13mr1622098qtq.368.1623373237054; 
- Thu, 10 Jun 2021 18:00:37 -0700 (PDT)
-Received: from t490s (bras-base-toroon474qw-grc-88-174-93-75-200.dsl.bell.ca.
- [174.93.75.200])
- by smtp.gmail.com with ESMTPSA id g15sm3527121qkl.53.2021.06.10.18.00.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 10 Jun 2021 18:00:36 -0700 (PDT)
-Date: Thu, 10 Jun 2021 21:00:34 -0400
-From: Peter Xu <peterx@redhat.com>
-To: Alistair Popple <apopple@nvidia.com>
-Message-ID: <YMK1snSH9q4Wkyq+@t490s>
-References: <20210607075855.5084-1-apopple@nvidia.com>
- <6429491.QiJgnDeYu7@nvdebian> <YMKacyNstEM9brUD@t490s>
- <4307769.9k6FjFFxS5@nvdebian>
+ bh=LmPfb64X8tj/DNKvWm1kt/9W5qYrZUqV8P+ClQ9hd/8=;
+ b=lTUZ8V1oJTHYzc4Ml3xPNwPeZSdgkT8hodxTjoNqOwsNrcoomQSvnNKRCRzl5WA0KAWRe/
+ UTAmw0rVxScvyNG1eW/aWYlJXWOSFzJTXT9SQK5cqpl75TEFbRvpl7jVsaflu2rxa6S6B6
+ Z6905oROH2SSoRHNFsjFCUvQaJUrfQg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624371009;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=LmPfb64X8tj/DNKvWm1kt/9W5qYrZUqV8P+ClQ9hd/8=;
+ b=apUm2Sl4mqRTl56/rFzfx09nnvcB8Y78+XRwpJqACmw1MAtl399SzzZyczQT/8o+wcHPKA
+ 485ffWRdIaWi3ZAw==
+Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ by imap.suse.de (Postfix) with ESMTP id E033B11A98;
+ Tue, 22 Jun 2021 14:10:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624371009; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=LmPfb64X8tj/DNKvWm1kt/9W5qYrZUqV8P+ClQ9hd/8=;
+ b=lTUZ8V1oJTHYzc4Ml3xPNwPeZSdgkT8hodxTjoNqOwsNrcoomQSvnNKRCRzl5WA0KAWRe/
+ UTAmw0rVxScvyNG1eW/aWYlJXWOSFzJTXT9SQK5cqpl75TEFbRvpl7jVsaflu2rxa6S6B6
+ Z6905oROH2SSoRHNFsjFCUvQaJUrfQg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624371009;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=LmPfb64X8tj/DNKvWm1kt/9W5qYrZUqV8P+ClQ9hd/8=;
+ b=apUm2Sl4mqRTl56/rFzfx09nnvcB8Y78+XRwpJqACmw1MAtl399SzzZyczQT/8o+wcHPKA
+ 485ffWRdIaWi3ZAw==
+Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
+ id qOjeNUDv0WD3UAAALh3uQQ
+ (envelope-from <tzimmermann@suse.de>); Tue, 22 Jun 2021 14:10:08 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, james.qian.wang@arm.com,
+ liviu.dudau@arm.com, mihail.atanassov@arm.com, brian.starkey@arm.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com,
+ kyungmin.park@samsung.com, krzysztof.kozlowski@canonical.com,
+ xinliang.liu@linaro.org, tiantao6@hisilicon.com, john.stultz@linaro.org,
+ kong.kongxinwei@hisilicon.com, puck.chen@hisilicon.com,
+ laurentiu.palcu@oss.nxp.com, l.stach@pengutronix.de,
+ p.zabel@pengutronix.de, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+ chunkuang.hu@kernel.org, matthias.bgg@gmail.com, bskeggs@redhat.com,
+ tomba@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
+ benjamin.gaignard@linaro.org, yannick.fertre@foss.st.com,
+ philippe.cornu@foss.st.com, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, wens@csie.org, jernej.skrabec@gmail.com,
+ thierry.reding@gmail.com, jonathanh@nvidia.com, jyri.sarha@iki.fi,
+ emma@anholt.net, linux-graphics-maintainer@vmware.com, zackr@vmware.com,
+ hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
+ michal.simek@xilinx.com
+Date: Tue, 22 Jun 2021 16:09:45 +0200
+Message-Id: <20210622141002.11590-6-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20210622141002.11590-1-tzimmermann@suse.de>
+References: <20210622141002.11590-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-In-Reply-To: <4307769.9k6FjFFxS5@nvdebian>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=peterx@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Disposition: inline
 X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:44 +0000
-Subject: Re: [Nouveau] [PATCH v10 07/10] mm: Device exclusive memory access
+Subject: [Nouveau] [PATCH v2 05/22] drm/komeda: Don't set struct
+ drm_device.irq_enabled
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,89 +111,55 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcampbell@nvidia.com, willy@infradead.org, linux-doc@vger.kernel.org,
- nouveau@lists.freedesktop.org, hughd@google.com, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, hch@infradead.org, linux-mm@kvack.org,
- shakeelb@google.com, bskeggs@redhat.com, jgg@nvidia.com,
- akpm@linux-foundation.org, Christoph Hellwig <hch@lst.de>
+Cc: linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
+ linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ amd-gfx@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jun 11, 2021 at 09:17:14AM +1000, Alistair Popple wrote:
-> On Friday, 11 June 2021 9:04:19 AM AEST Peter Xu wrote:
-> > External email: Use caution opening links or attachments
-> > 
-> > 
-> > On Fri, Jun 11, 2021 at 12:21:26AM +1000, Alistair Popple wrote:
-> > > > Hmm, the thing is.. to me FOLL_SPLIT_PMD should have similar effect to explicit
-> > > > call split_huge_pmd_address(), afaict.  Since both of them use __split_huge_pmd()
-> > > > internally which will generate that unwanted CLEAR notify.
-> > >
-> > > Agree that gup calls __split_huge_pmd() via split_huge_pmd_address()
-> > > which will always CLEAR. However gup only calls split_huge_pmd_address() if it
-> > > finds a thp pmd. In follow_pmd_mask() we have:
-> > >
-> > >       if (likely(!pmd_trans_huge(pmdval)))
-> > >               return follow_page_pte(vma, address, pmd, flags, &ctx->pgmap);
-> > >
-> > > So I don't think we have a problem here.
-> > 
-> > Sorry I didn't follow here..  We do FOLL_SPLIT_PMD after this check, right?  I
-> > mean, if it's a thp for the current mm, afaict pmd_trans_huge() should return
-> > true above, so we'll skip follow_page_pte(); then we'll check FOLL_SPLIT_PMD
-> > and do the split, then the CLEAR notify.  Hmm.. Did I miss something?
-> 
-> That seems correct - if the thp is not mapped with a pmd we won't split and we
-> won't CLEAR. If there is a thp pmd we will split and CLEAR, but in that case it
-> is fine - we will retry, but the retry will won't CLEAR because the pmd has
-> already been split.
+The field drm_device.irq_enabled is only used by legacy drivers
+with userspace modesetting. Don't set it in komeda.
 
-Aha!
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+---
+ drivers/gpu/drm/arm/display/komeda/komeda_kms.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-> 
-> The issue arises with doing it unconditionally in make device exclusive is that
-> you *always* CLEAR even if there is no thp pmd to split. Or at least that's my
-> understanding, please let me know if it doesn't make sense.
-
-Exactly.  But if you see what I meant here, even if it can work like this, it
-sounds still fragile, isn't it?  I just feel something is slightly off there..
-
-IMHO split_huge_pmd() checked pmd before calling __split_huge_pmd() for
-performance, afaict, because if it's not a thp even without locking, then it
-won't be, so further __split_huge_pmd() is not necessary.
-
-IOW, it's very legal if someday we'd like to let split_huge_pmd() call
-__split_huge_pmd() directly, then AFAIU device exclusive API will be the 1st
-one to be broken with that seems-to-be-irrelevant change I'm afraid..
-
-This lets me goes back a step to think about why do we need this notifier at
-all to cover this whole range of make_device_exclusive() procedure..
-
-What I am thinking is, we're afraid some CPU accesses this page so the pte got
-quickly restored when device atomic operation is carrying on.  Then with this
-notifier we'll be able to cancel it.  Makes perfect sense.
-
-However do we really need to register this notifier so early?  The thing is the
-GPU driver still has all the page locks, so even if there's a race to restore
-the ptes, they'll block at taking the page lock until the driver releases it.
-
-IOW, I'm wondering whether the "non-fragile" way to do this is not do
-mmu_interval_notifier_insert() that early: what if we register that notifier
-after make_device_exclusive_range() returns but before page_unlock() somehow?
-So before page_unlock(), race is protected fully by the lock itself; after
-that, it's done by mmu notifier.  Then maybe we don't need to worry about all
-these notifications during marking exclusive (while we shouldn't)?
-
-Sorry in advance if I overlooked anything as I know little on device side (even
-less than mm itself).  Also sorry to know that this series got marked
-to-be-update in -mm; hopefully it'll still land soon even if it still needs
-some rebase to other more important bugfixes - I definitely jumped in too late
-even if to mess this all up. :-)
-
+diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+index ff45f23f3d56..52a6db5707a3 100644
+--- a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
++++ b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+@@ -301,8 +301,6 @@ struct komeda_kms_dev *komeda_kms_attach(struct komeda_dev *mdev)
+ 	if (err)
+ 		goto free_component_binding;
+ 
+-	drm->irq_enabled = true;
+-
+ 	drm_kms_helper_poll_init(drm);
+ 
+ 	err = drm_dev_register(drm, 0);
+@@ -313,7 +311,6 @@ struct komeda_kms_dev *komeda_kms_attach(struct komeda_dev *mdev)
+ 
+ free_interrupts:
+ 	drm_kms_helper_poll_fini(drm);
+-	drm->irq_enabled = false;
+ free_component_binding:
+ 	component_unbind_all(mdev->dev, drm);
+ cleanup_mode_config:
+@@ -331,7 +328,6 @@ void komeda_kms_detach(struct komeda_kms_dev *kms)
+ 	drm_dev_unregister(drm);
+ 	drm_kms_helper_poll_fini(drm);
+ 	drm_atomic_helper_shutdown(drm);
+-	drm->irq_enabled = false;
+ 	component_unbind_all(mdev->dev, drm);
+ 	drm_mode_config_cleanup(drm);
+ 	komeda_kms_cleanup_private_objs(kms);
 -- 
-Peter Xu
+2.32.0
 
 _______________________________________________
 Nouveau mailing list
