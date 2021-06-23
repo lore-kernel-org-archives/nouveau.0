@@ -2,104 +2,50 @@ Return-Path: <SRS0=GiJt=LV=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A34FC49EA7
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 88C7DC49EAB
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 43C30619CB
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 43C30619CB
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
+	by mail.kernel.org (Postfix) with ESMTPS id 4A9D7619B6
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:05 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4A9D7619B6
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 748296E102;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6925A6E0EF;
 	Sun, 27 Jun 2021 03:34:46 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17EC96E5A5
- for <nouveau@lists.freedesktop.org>; Tue, 22 Jun 2021 14:17:46 +0000 (UTC)
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
- (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 6F0481FD6B;
- Tue, 22 Jun 2021 14:10:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624371019; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=1fOzM+RU5ieoe2OlMrqTe/BRzi9bwk/4nwnRt9XEFTY=;
- b=hRGOajRHP/WifT2DpOtHWuWVPlmWYU6QTuHj8TfAs+fIEuiK1Ai/Tj1rjibsuirlGj6X1g
- ixIRoD/P633a11mjoVRonpWR/SDBTCzYZv9OXP8jpSU7Yp/Wn2DdNHUNbch8Ty6jNh8t0H
- s0yzYhIQkTVa9+e1zyDpJB5WAeTW0+Y=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624371019;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=1fOzM+RU5ieoe2OlMrqTe/BRzi9bwk/4nwnRt9XEFTY=;
- b=WsvIGPK3pkoEVmtzYRwowhMwEysKBAuMbIRUaR3DllADBbKA2zVg183C0fQF8HkE1BJVTF
- A3sHs1SJBC1ZvLBg==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id 52C69118DD;
- Tue, 22 Jun 2021 14:10:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624371019; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=1fOzM+RU5ieoe2OlMrqTe/BRzi9bwk/4nwnRt9XEFTY=;
- b=hRGOajRHP/WifT2DpOtHWuWVPlmWYU6QTuHj8TfAs+fIEuiK1Ai/Tj1rjibsuirlGj6X1g
- ixIRoD/P633a11mjoVRonpWR/SDBTCzYZv9OXP8jpSU7Yp/Wn2DdNHUNbch8Ty6jNh8t0H
- s0yzYhIQkTVa9+e1zyDpJB5WAeTW0+Y=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624371019;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=1fOzM+RU5ieoe2OlMrqTe/BRzi9bwk/4nwnRt9XEFTY=;
- b=WsvIGPK3pkoEVmtzYRwowhMwEysKBAuMbIRUaR3DllADBbKA2zVg183C0fQF8HkE1BJVTF
- A3sHs1SJBC1ZvLBg==
-Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id kPxaE0rv0WD3UAAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Tue, 22 Jun 2021 14:10:18 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, james.qian.wang@arm.com,
- liviu.dudau@arm.com, mihail.atanassov@arm.com, brian.starkey@arm.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com,
- kyungmin.park@samsung.com, krzysztof.kozlowski@canonical.com,
- xinliang.liu@linaro.org, tiantao6@hisilicon.com, john.stultz@linaro.org,
- kong.kongxinwei@hisilicon.com, puck.chen@hisilicon.com,
- laurentiu.palcu@oss.nxp.com, l.stach@pengutronix.de,
- p.zabel@pengutronix.de, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
- chunkuang.hu@kernel.org, matthias.bgg@gmail.com, bskeggs@redhat.com,
- tomba@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
- benjamin.gaignard@linaro.org, yannick.fertre@foss.st.com,
- philippe.cornu@foss.st.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, wens@csie.org, jernej.skrabec@gmail.com,
- thierry.reding@gmail.com, jonathanh@nvidia.com, jyri.sarha@iki.fi,
- emma@anholt.net, linux-graphics-maintainer@vmware.com, zackr@vmware.com,
- hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
- michal.simek@xilinx.com
-Date: Tue, 22 Jun 2021 16:09:54 +0200
-Message-Id: <20210622141002.11590-15-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210622141002.11590-1-tzimmermann@suse.de>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 551936E8C5;
+ Wed, 23 Jun 2021 12:15:58 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 69258ED1;
+ Wed, 23 Jun 2021 05:15:57 -0700 (PDT)
+Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com
+ [10.121.207.14])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2AC093F718;
+ Wed, 23 Jun 2021 05:15:57 -0700 (PDT)
+Received: by e110455-lin.cambridge.arm.com (Postfix, from userid 1000)
+ id DA9E16837C9; Wed, 23 Jun 2021 13:15:55 +0100 (BST)
+Date: Wed, 23 Jun 2021 13:15:55 +0100
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20210623121555.ttos325zjt55dynw@e110455-lin.cambridge.arm.com>
 References: <20210622141002.11590-1-tzimmermann@suse.de>
+ <20210622141002.11590-5-tzimmermann@suse.de>
+ <20210622152504.2sw6khajwydsoaqa@e110455-lin.cambridge.arm.com>
+ <f7e72a3c-df86-2d4b-2caa-bf91442290a9@suse.de>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <f7e72a3c-df86-2d4b-2caa-bf91442290a9@suse.de>
 X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:44 +0000
-Subject: [Nouveau] [PATCH v2 14/22] drm/sti: Don't set struct
- drm_device.irq_enabled
+Subject: Re: [Nouveau] [PATCH v2 04/22] drm: Don't test for IRQ support in
+ VBLANK ioctls
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,41 +57,119 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
- linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: emma@anholt.net, airlied@linux.ie, nouveau@lists.freedesktop.org,
+ alexandre.torgue@foss.st.com, dri-devel@lists.freedesktop.org,
+ matthias.bgg@gmail.com, thierry.reding@gmail.com,
+ laurent.pinchart@ideasonboard.com, benjamin.gaignard@linaro.org,
+ mihail.atanassov@arm.com, linux-stm32@st-md-mailman.stormreply.com,
+ linux-samsung-soc@vger.kernel.org, jy0922.shim@samsung.com,
+ krzysztof.kozlowski@canonical.com, michal.simek@xilinx.com,
+ jernej.skrabec@gmail.com, linux-rockchip@lists.infradead.org,
+ kong.kongxinwei@hisilicon.com, james.qian.wang@arm.com, linux-imx@nxp.com,
+ xinliang.liu@linaro.org, linux-graphics-maintainer@vmware.com,
+ linux-sunxi@lists.linux.dev, bskeggs@redhat.com, chunkuang.hu@kernel.org,
+ mcoquelin.stm32@gmail.com, puck.chen@hisilicon.com, s.hauer@pengutronix.de,
+ linux-mediatek@lists.infradead.org, laurentiu.palcu@oss.nxp.com,
+ linux-tegra@vger.kernel.org, wens@csie.org,
+ linux-arm-kernel@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ tomba@kernel.org, hyun.kwon@xilinx.com, shawnguo@kernel.org,
+ yannick.fertre@foss.st.com, Xinhui.Pan@amd.com, sw0312.kim@samsung.com,
+ hjc@rock-chips.com, kyungmin.park@samsung.com, philippe.cornu@foss.st.com,
+ kernel@pengutronix.de, alexander.deucher@amd.com, tiantao6@hisilicon.com,
+ jyri.sarha@iki.fi, christian.koenig@amd.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The field drm_device.irq_enabled is only used by legacy drivers
-with userspace modesetting. Don't set it in sti.
-
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/sti/sti_compositor.c | 2 --
- 1 file changed, 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/sti/sti_compositor.c b/drivers/gpu/drm/sti/sti_compositor.c
-index 319962a2c17b..9caaf3ccfabe 100644
---- a/drivers/gpu/drm/sti/sti_compositor.c
-+++ b/drivers/gpu/drm/sti/sti_compositor.c
-@@ -145,8 +145,6 @@ static int sti_compositor_bind(struct device *dev,
- 	}
- 
- 	drm_vblank_init(drm_dev, crtc_id);
--	/* Allow usage of vblank without having to call drm_irq_install */
--	drm_dev->irq_enabled = 1;
- 
- 	return 0;
- }
--- 
-2.32.0
-
-_______________________________________________
-Nouveau mailing list
-Nouveau@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
+SGkgVGhvbWFzLAoKT24gV2VkLCBKdW4gMjMsIDIwMjEgYXQgMDg6NDM6MDdBTSArMDIwMCwgVGhv
+bWFzIFppbW1lcm1hbm4gd3JvdGU6Cj4gSGkgTGl2aXUKPiAKPiBBbSAyMi4wNi4yMSB1bSAxNzoy
+NSBzY2hyaWViIExpdml1IER1ZGF1Ogo+ID4gSGVsbG8sCj4gPiAKPiA+IE9uIFR1ZSwgSnVuIDIy
+LCAyMDIxIGF0IDA0OjA5OjQ0UE0gKzAyMDAsIFRob21hcyBaaW1tZXJtYW5uIHdyb3RlOgo+ID4g
+PiBGb3IgS01TIGRyaXZlcnMsIHJlcGxhY2UgdGhlIElSUSBjaGVjayBpbiBWQkxBTksgaW9jdGxz
+IHdpdGggYSBjaGVjayBmb3IKPiA+ID4gdmJsYW5rIHN1cHBvcnQuIElSUXMgbWlnaHQgYmUgZW5h
+YmxlZCB3dGhvdXQgdmJsYW5raW5nIGJlaW5nIHN1cHBvcnRlZC4KPiA+ID4gCj4gPiA+IFRoaXMg
+Y2hhbmdlIGFsc28gcmVtb3ZlcyB0aGUgRFJNIGZyYW1ld29yaydzIG9ubHkgZGVwZW5kZW5jeSBv
+biBJUlEgc3RhdGUKPiA+ID4gZm9yIG5vbi1sZWdhY3kgZHJpdmVycy4gRm9yIGxlZ2FjeSBkcml2
+ZXJzIHdpdGggdXNlcnNwYWNlIG1vZGVzZXR0aW5nLAo+ID4gPiB0aGUgb3JpZ2luYWwgdGVzdCBy
+ZW1haW5zIGluIGRybV93YWl0X3ZibGFua19pb2N0bCgpLgo+ID4gPiAKPiA+ID4gdjI6Cj4gPiA+
+IAkqIGtlZXAgdGhlIG9sZCB0ZXN0IGZvciBsZWdhY3kgZHJpdmVycyBpbgo+ID4gPiAJICBkcm1f
+d2FpdF92YmxhbmtfaW9jdGwoKSAoRGFuaWVsKQo+ID4gPiAKPiA+ID4gU2lnbmVkLW9mZi1ieTog
+VGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+Cj4gPiA+IC0tLQo+ID4gPiAg
+IGRyaXZlcnMvZ3B1L2RybS9kcm1faXJxLmMgICAgfCAxMCArKystLS0tLS0tCj4gPiA+ICAgZHJp
+dmVycy9ncHUvZHJtL2RybV92YmxhbmsuYyB8IDEzICsrKysrKysrKy0tLS0KPiA+ID4gICAyIGZp
+bGVzIGNoYW5nZWQsIDEyIGluc2VydGlvbnMoKyksIDExIGRlbGV0aW9ucygtKQo+ID4gPiAKPiA+
+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1faXJxLmMgYi9kcml2ZXJzL2dwdS9k
+cm0vZHJtX2lycS5jCj4gPiA+IGluZGV4IGMzYmQ2NjRlYTczMy4uMWQ3Nzg1NzIxMzIzIDEwMDY0
+NAo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2lycS5jCj4gPiA+ICsrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9kcm1faXJxLmMKPiA+ID4gQEAgLTc0LDEwICs3NCw4IEBACj4gPiA+ICAgICog
+b25seSBzdXBwb3J0cyBkZXZpY2VzIHdpdGggYSBzaW5nbGUgaW50ZXJydXB0IG9uIHRoZSBtYWlu
+IGRldmljZSBzdG9yZWQgaW4KPiA+ID4gICAgKiAmZHJtX2RldmljZS5kZXYgYW5kIHNldCBhcyB0
+aGUgZGV2aWNlIHBhcmFtdGVyIGluIGRybV9kZXZfYWxsb2MoKS4KPiA+ID4gICAgKgo+ID4gPiAt
+ICogVGhlc2UgSVJRIGhlbHBlcnMgYXJlIHN0cmljdGx5IG9wdGlvbmFsLiBEcml2ZXJzIHdoaWNo
+IHJvbGwgdGhlaXIgb3duIG9ubHkKPiA+ID4gLSAqIG5lZWQgdG8gc2V0ICZkcm1fZGV2aWNlLmly
+cV9lbmFibGVkIHRvIHNpZ25hbCB0aGUgRFJNIGNvcmUgdGhhdCB2YmxhbmsKPiA+ID4gLSAqIGlu
+dGVycnVwdHMgYXJlIHdvcmtpbmcuIFNpbmNlIHRoZXNlIGhlbHBlcnMgZG9uJ3QgYXV0b21hdGlj
+YWxseSBjbGVhbiB1cCB0aGUKPiA+ID4gLSAqIHJlcXVlc3RlZCBpbnRlcnJ1cHQgbGlrZSBlLmcu
+IGRldm1fcmVxdWVzdF9pcnEoKSB0aGV5J3JlIG5vdCByZWFsbHkKPiA+ID4gKyAqIFRoZXNlIElS
+USBoZWxwZXJzIGFyZSBzdHJpY3RseSBvcHRpb25hbC4gU2luY2UgdGhlc2UgaGVscGVycyBkb24n
+dCBhdXRvbWF0aWNhbGx5Cj4gPiA+ICsgKiBjbGVhbiB1cCB0aGUgcmVxdWVzdGVkIGludGVycnVw
+dCBsaWtlIGUuZy4gZGV2bV9yZXF1ZXN0X2lycSgpIHRoZXkncmUgbm90IHJlYWxseQo+ID4gPiAg
+ICAqIHJlY29tbWVuZGVkLgo+ID4gPiAgICAqLwo+ID4gPiBAQCAtOTEsOSArODksNyBAQAo+ID4g
+PiAgICAqIGFuZCBhZnRlciB0aGUgaW5zdGFsbGF0aW9uLgo+ID4gPiAgICAqCj4gPiA+ICAgICog
+VGhpcyBpcyB0aGUgc2ltcGxpZmllZCBoZWxwZXIgaW50ZXJmYWNlIHByb3ZpZGVkIGZvciBkcml2
+ZXJzIHdpdGggbm8gc3BlY2lhbAo+ID4gPiAtICogbmVlZHMuIERyaXZlcnMgd2hpY2ggbmVlZCB0
+byBpbnN0YWxsIGludGVycnVwdCBoYW5kbGVycyBmb3IgbXVsdGlwbGUKPiA+ID4gLSAqIGludGVy
+cnVwdHMgbXVzdCBpbnN0ZWFkIHNldCAmZHJtX2RldmljZS5pcnFfZW5hYmxlZCB0byBzaWduYWwg
+dGhlIERSTSBjb3JlCj4gPiA+IC0gKiB0aGF0IHZibGFuayBpbnRlcnJ1cHRzIGFyZSBhdmFpbGFi
+bGUuCj4gPiA+ICsgKiBuZWVkcy4KPiA+ID4gICAgKgo+ID4gPiAgICAqIEBpcnEgbXVzdCBtYXRj
+aCB0aGUgaW50ZXJydXB0IG51bWJlciB0aGF0IHdvdWxkIGJlIHBhc3NlZCB0byByZXF1ZXN0X2ly
+cSgpLAo+ID4gPiAgICAqIGlmIGNhbGxlZCBkaXJlY3RseSBpbnN0ZWFkIG9mIHVzaW5nIHRoaXMg
+aGVscGVyIGZ1bmN0aW9uLgo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV92
+YmxhbmsuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fdmJsYW5rLmMKPiA+ID4gaW5kZXggMzQxN2Ux
+YWM3OTE4Li5hOThhNGFhZDUwMzcgMTAwNjQ0Cj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9k
+cm1fdmJsYW5rLmMKPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV92YmxhbmsuYwo+ID4g
+PiBAQCAtMTc0OCw4ICsxNzQ4LDEzIEBAIGludCBkcm1fd2FpdF92YmxhbmtfaW9jdGwoc3RydWN0
+IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwKPiA+ID4gICAJdW5zaWduZWQgaW50IHBpcGVf
+aW5kZXg7Cj4gPiA+ICAgCXVuc2lnbmVkIGludCBmbGFncywgcGlwZSwgaGlnaF9waXBlOwo+ID4g
+PiAtCWlmICghZGV2LT5pcnFfZW5hYmxlZCkKPiA+ID4gLQkJcmV0dXJuIC1FT1BOT1RTVVBQOwo+
+ID4gPiArCWlmICAoZHJtX2NvcmVfY2hlY2tfZmVhdHVyZShkZXYsIERSSVZFUl9NT0RFU0VUKSkg
+ewo+ID4gPiArCQlpZiAoIWRybV9kZXZfaGFzX3ZibGFuayhkZXYpKQo+ID4gPiArCQkJcmV0dXJu
+IC1FT1BOT1RTVVBQOwo+ID4gPiArCX0gZWxzZSB7Cj4gPiA+ICsJCWlmICghZGV2LT5pcnFfZW5h
+YmxlZCkKPiA+ID4gKwkJCXJldHVybiAtRU9QTk9UU1VQUDsKPiA+ID4gKwl9Cj4gPiAKPiA+IEZv
+ciBhIHN5c3RlbSBjYWxsIHRoYXQgaXMgdXNlZCBxdWl0ZSBhIGxvdCBieSB1c2Vyc3BhY2Ugd2Ug
+aGF2ZSBpbmNyZWFzZWQgdGhlIGNvZGUgc2l6ZQo+ID4gaW4gYSBub3RpY2VhYmxlIHdheS4gQ2Fu
+IHdlIG5vdCBjYWNoZSBpdCBwcml2YXRlbHk/Cj4gCj4gSSdtIG5vdCBxdWl0ZSBzdXJlIHRoYXQg
+SSB1bmRlcnN0YW5kIHlvdXIgY29uY2Vybi4gVGhlIGFkZGl0aW9uYWxseSBjYWxsZWQKPiBmdW5j
+dGlvbnMgYXJlIHRyaXZpYWwgb25lLWxpbmVyczsgcHJvYmFibHkgaW5saW5lZCBhbnl3YXkuCgpU
+aGV5IGFyZSBpbmxpbmVkLiBIb3dldmVyIHdlIHJlcGxhY2UgdGhlIHBvaW50ZXIgZGVyZWZlcmVu
+Y2UgKHdoaWNoIGNhbiBiZSBjYWxjdWxhdGVkCmF0IGNvbXBpbGUgdGltZSBhcyBvZmZzZXQgZnJv
+bSBhIGJhc2UgcG9pbnRlcikgd2l0aCB0aGUgY29kZSBpbgpkcm1fY29yZV9jaGVja19hbGxfZmVh
+dHVyZXMoKSB0aGF0IGRvZXMgMyBwb2ludGVyIGRlcmVmZXJlbmNlcywgbWFza2luZyBhbmQgbG9n
+aWNhbApBTkQgYmVmb3JlIGNoZWNraW5nIGZvciBtYXRjaGluZyB2YWx1ZS4KCj4gCj4gSG93ZXZl
+ciwgaXJxX2VuYWJsZWQgaXMgb25seSByZWxldmFudCBmb3IgbGVnYWN5IGRyaXZlcnMgYW5kIHdp
+bGwgZXZlbnR1YWxseQo+IGRpc2FwcGVhciBiZWhpbmQgQ09ORklHX0RSTV9MRUdBQ1kuIFdlIGNh
+biByZXdyaXRlIHRoZSB0ZXN0IGxpa2UgdGhpczoKCkkgZ2V0IHRoZSBwb2ludCB0aGF0IGlycV9l
+bmFibGVkIGlzIGxlZ2FjeS4gSG93ZXZlciB0aGUgSU9DVEwgY2FsbCBpcyBub3QgYW5kIHVzdWFs
+bHkKaXMgdXNlZCBpbiB0aW1lIGNyaXRpY2FsIGNvZGUgdG8gd2FpdCBmb3IgdmJsYW5rIGJlZm9y
+ZSBzdGFydGluZyB0aGUgb2xkIGJ1ZmZlcnMgZm9yCmEgbmV3IGZyYW1lLiBBdCA2MEh6IHRoYXQn
+cyBwcm9iYWJseSBsZXNzIG9mIGEgY29uY2VybiwgYnV0IGF0IDEyMEh6IHJlZnJlc2ggcmF0ZSBh
+bmQKcmVkdWNlZCB2YmxhbmsgdGltZSB5b3VyIHRpbWUgc2xpY2UgYWxsb2NhdGlvbiBmb3IgbmV3
+IHdvcmsgbWF0dGVycy4KCkJlc3QgcmVnYXJkcywKTGl2aXUKCj4gCj4gaWZkZWYgQ09ORklHX0RS
+TV9MRUdBQ1kKPiAgIGlmICh1bmxpa2VseShjaGVja19mZWF0dXJlKGRldiwgRFJJVkVSX0xFR0FD
+WSkpKSB7Cj4gICAgIGlmICghaXJxX2VuYWJsZWQpCj4gICAgICAgcmV0dXJuOwo+ICAgfSBlbHNl
+Cj4gI2VuZGlmCj4gICB7Cj4gICAgIGlmICghaGFzX3ZibGFua19zdXBwb3J0KGRldikpCj4gICAg
+ICAgcmV0dXJuOwo+ICAgfQo+IAo+IEFzIENPTkZJR19EUk1fTEVHQUNZIGlzIG1vc3QgbGlrZWx5
+IGRpc2FibGVkIG9uIGNvbmN1cnJlbnQgc3lzdGVtcywgd2UnZCBnZXQKPiBhIHNpbmdsZSB0ZXN0
+IGZvciB0aGUgbW9kZXJuIGRyaXZlcnMuIElmIERSTV9MRUdBQ1lpcyBvbiwgdGhlIGNvbXBpbGVy
+IGF0Cj4gbGVhc3Qga25vd3MgdGhhdCB0aGUgZWxzZSBicmFuY2ggaXMgcHJlZmVycmVkLgo+IAo+
+IEJlc3QgcmVnYXJkcwo+IFRob21hcwo+IAo+IC0tIAo+IFRob21hcyBaaW1tZXJtYW5uCj4gR3Jh
+cGhpY3MgRHJpdmVyIERldmVsb3Blcgo+IFNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkg
+R21iSAo+IE1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2VybWFueQo+IChIUkIgMzY4
+MDksIEFHIE7DvHJuYmVyZykKPiBHZXNjaMOkZnRzZsO8aHJlcjogRmVsaXggSW1lbmTDtnJmZmVy
+Cj4gCgoKCgotLSAKPT09PT09PT09PT09PT09PT09PT0KfCBJIHdvdWxkIGxpa2UgdG8gfAp8IGZp
+eCB0aGUgd29ybGQsICB8CnwgYnV0IHRoZXkncmUgbm90IHwKfCBnaXZpbmcgbWUgdGhlICAgfAog
+XCBzb3VyY2UgY29kZSEgIC8KICAtLS0tLS0tLS0tLS0tLS0KICAgIMKvXF8o44OEKV8vwq8KX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
+aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
