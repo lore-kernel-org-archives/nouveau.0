@@ -7,69 +7,69 @@ X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0FC57C49EAF
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:36:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A89DC49EBA
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:36:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D9483619B6
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:36:08 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D9483619B6
+	by mail.kernel.org (Postfix) with ESMTPS id CCC06619CB
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:36:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CCC06619CB
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A18576E20F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9678C6E20C;
 	Sun, 27 Jun 2021 03:35:29 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BE9E6EA6A;
- Thu, 24 Jun 2021 07:29:30 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D418E6EA95;
+ Thu, 24 Jun 2021 07:29:42 +0000 (UTC)
 Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
  (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 811D31FD74;
- Thu, 24 Jun 2021 07:29:28 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 6C1542198C;
+ Thu, 24 Jun 2021 07:29:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624519768; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1624519781; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=GIoR8k25GF7VaR2tG0nmFFOmiPd5XeM0gzGOMsyvAdg=;
- b=wkqJGQ4ouP8v0tuRgcbxTbzeoeskSRfJEPURkF0rlm7FPKA0ctkgZfvbzds3Rz6H04c6ht
- Ce+rTqkr6OdDY1cXziwY7bVE/dbDKJjKIVdW/t0xY3ogySf+3FEikR7gfnMt/sZX0aaiWa
- CobBmkxOlonaTqJS9dePwBt2AqkoIHU=
+ bh=nGXqgezA3DH40NKC8JsOWRUv5iKSH3hlmAbcoV/jF1o=;
+ b=ctSjdB1RzKX7IP4VdaEOyFmU4bWt6J20qO32P8lwiTU7W4zxMtNCgNxPrLI06nTorWxdPw
+ 94Sp3W9fTsZtwHtk2Ne9Dwh4wuKkJHLM/1u6iGwM30P7VE4oYk3fVVVK+Iuh2K6gUxRo9h
+ OCe+7JFvXdqydPlzW5kW7aYIA8yeK6g=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624519768;
+ s=susede2_ed25519; t=1624519781;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=GIoR8k25GF7VaR2tG0nmFFOmiPd5XeM0gzGOMsyvAdg=;
- b=RbbncXPN7wUzXo89wKbGFJtJlc/jnUrDhyM3iRQsGzmw9A6S8xuMnw6QNOeyl5ganrqK+G
- m/4g6UCUhyEZ/YAg==
+ bh=nGXqgezA3DH40NKC8JsOWRUv5iKSH3hlmAbcoV/jF1o=;
+ b=6e6IRcXlp/Es5f4d81mI6xkL96LuWclhCnqfQJZBfXrwfbWRzLxOTPVLEfTY82PRuP8ABx
+ spfRpO+AoQHPVUDg==
 Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id 5E17511C9B;
- Thu, 24 Jun 2021 07:29:27 +0000 (UTC)
+ by imap.suse.de (Postfix) with ESMTP id 4901C11A97;
+ Thu, 24 Jun 2021 07:29:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624519768; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1624519781; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=GIoR8k25GF7VaR2tG0nmFFOmiPd5XeM0gzGOMsyvAdg=;
- b=wkqJGQ4ouP8v0tuRgcbxTbzeoeskSRfJEPURkF0rlm7FPKA0ctkgZfvbzds3Rz6H04c6ht
- Ce+rTqkr6OdDY1cXziwY7bVE/dbDKJjKIVdW/t0xY3ogySf+3FEikR7gfnMt/sZX0aaiWa
- CobBmkxOlonaTqJS9dePwBt2AqkoIHU=
+ bh=nGXqgezA3DH40NKC8JsOWRUv5iKSH3hlmAbcoV/jF1o=;
+ b=ctSjdB1RzKX7IP4VdaEOyFmU4bWt6J20qO32P8lwiTU7W4zxMtNCgNxPrLI06nTorWxdPw
+ 94Sp3W9fTsZtwHtk2Ne9Dwh4wuKkJHLM/1u6iGwM30P7VE4oYk3fVVVK+Iuh2K6gUxRo9h
+ OCe+7JFvXdqydPlzW5kW7aYIA8yeK6g=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624519768;
+ s=susede2_ed25519; t=1624519781;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=GIoR8k25GF7VaR2tG0nmFFOmiPd5XeM0gzGOMsyvAdg=;
- b=RbbncXPN7wUzXo89wKbGFJtJlc/jnUrDhyM3iRQsGzmw9A6S8xuMnw6QNOeyl5ganrqK+G
- m/4g6UCUhyEZ/YAg==
+ bh=nGXqgezA3DH40NKC8JsOWRUv5iKSH3hlmAbcoV/jF1o=;
+ b=6e6IRcXlp/Es5f4d81mI6xkL96LuWclhCnqfQJZBfXrwfbWRzLxOTPVLEfTY82PRuP8ABx
+ spfRpO+AoQHPVUDg==
 Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id 4EQfFlc01GAJfwAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Thu, 24 Jun 2021 07:29:27 +0000
+ id sKraEGQ01GAJfwAALh3uQQ
+ (envelope-from <tzimmermann@suse.de>); Thu, 24 Jun 2021 07:29:40 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
  christian.koenig@amd.com, Xinhui.Pan@amd.com, james.qian.wang@arm.com,
@@ -94,14 +94,14 @@ To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
  rodrigo.vivi@intel.com, linux@armlinux.org.uk,
  kieran.bingham+renesas@ideasonboard.com, rodrigosiqueiramelo@gmail.com,
  melissa.srw@gmail.com, hamohammed.sa@gmail.com
-Date: Thu, 24 Jun 2021 09:28:56 +0200
-Message-Id: <20210624072916.27703-8-tzimmermann@suse.de>
+Date: Thu, 24 Jun 2021 09:29:07 +0200
+Message-Id: <20210624072916.27703-19-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210624072916.27703-1-tzimmermann@suse.de>
 References: <20210624072916.27703-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:44 +0000
-Subject: [Nouveau] [PATCH v3 07/27] drm/komeda: Don't set struct
+Subject: [Nouveau] [PATCH v3 18/27] drm/sti: Don't set struct
  drm_device.irq_enabled
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -126,45 +126,28 @@ Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 The field drm_device.irq_enabled is only used by legacy drivers
-with userspace modesetting. Don't set it in komeda.
+with userspace modesetting. Don't set it in sti.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Acked-by: Liviu Dudau <liviu.dudau@arm.com>
 Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- drivers/gpu/drm/arm/display/komeda/komeda_kms.c | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/sti/sti_compositor.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-index ff45f23f3d56..52a6db5707a3 100644
---- a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-+++ b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-@@ -301,8 +301,6 @@ struct komeda_kms_dev *komeda_kms_attach(struct komeda_dev *mdev)
- 	if (err)
- 		goto free_component_binding;
+diff --git a/drivers/gpu/drm/sti/sti_compositor.c b/drivers/gpu/drm/sti/sti_compositor.c
+index 319962a2c17b..9caaf3ccfabe 100644
+--- a/drivers/gpu/drm/sti/sti_compositor.c
++++ b/drivers/gpu/drm/sti/sti_compositor.c
+@@ -145,8 +145,6 @@ static int sti_compositor_bind(struct device *dev,
+ 	}
  
--	drm->irq_enabled = true;
--
- 	drm_kms_helper_poll_init(drm);
+ 	drm_vblank_init(drm_dev, crtc_id);
+-	/* Allow usage of vblank without having to call drm_irq_install */
+-	drm_dev->irq_enabled = 1;
  
- 	err = drm_dev_register(drm, 0);
-@@ -313,7 +311,6 @@ struct komeda_kms_dev *komeda_kms_attach(struct komeda_dev *mdev)
- 
- free_interrupts:
- 	drm_kms_helper_poll_fini(drm);
--	drm->irq_enabled = false;
- free_component_binding:
- 	component_unbind_all(mdev->dev, drm);
- cleanup_mode_config:
-@@ -331,7 +328,6 @@ void komeda_kms_detach(struct komeda_kms_dev *kms)
- 	drm_dev_unregister(drm);
- 	drm_kms_helper_poll_fini(drm);
- 	drm_atomic_helper_shutdown(drm);
--	drm->irq_enabled = false;
- 	component_unbind_all(mdev->dev, drm);
- 	drm_mode_config_cleanup(drm);
- 	komeda_kms_cleanup_private_objs(kms);
+ 	return 0;
+ }
 -- 
 2.32.0
 
