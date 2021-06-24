@@ -2,78 +2,46 @@ Return-Path: <SRS0=GiJt=LV=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C92A4C49EB7
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B1B1C49EB9
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9CC8D619B6
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9CC8D619B6
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
+	by mail.kernel.org (Postfix) with ESMTPS id 2E036619CB
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:58 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2E036619CB
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.intel.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 985D96E1F8;
-	Sun, 27 Jun 2021 03:35:18 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AABC16EA54;
- Thu, 24 Jun 2021 07:29:28 +0000 (UTC)
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
- (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 5A1F61FD71;
- Thu, 24 Jun 2021 07:29:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624519767; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=8ogLEOlbRqAQd2RJqrB9gv196PzgeGQ2osFk6goTStA=;
- b=CY1YzbPa8ReAs8p4kHDM+yaxEBVk5CXqCsu0IySC1RfbwEkY4dKSlInc3L5atuuzWjWG9y
- 2rhcnUVZIRIdl7e1RKAsaXKBS8o6DEFnwHaBXtMDKV8EsggH0D5I2PSYe+h7DvXTIIqiqp
- e6GKt42IMCGtpyKD6OugfqxZnkj93iY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624519767;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=8ogLEOlbRqAQd2RJqrB9gv196PzgeGQ2osFk6goTStA=;
- b=ErFol0Ee/4pC9+kbn4Eui4amW/RaGhBNhVK19emWptQ/sOx9Cnz/28FsK6156STDeGl9Bm
- YSUlrHtk2rMVlRAA==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id 421E411A97;
- Thu, 24 Jun 2021 07:29:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624519767; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=8ogLEOlbRqAQd2RJqrB9gv196PzgeGQ2osFk6goTStA=;
- b=CY1YzbPa8ReAs8p4kHDM+yaxEBVk5CXqCsu0IySC1RfbwEkY4dKSlInc3L5atuuzWjWG9y
- 2rhcnUVZIRIdl7e1RKAsaXKBS8o6DEFnwHaBXtMDKV8EsggH0D5I2PSYe+h7DvXTIIqiqp
- e6GKt42IMCGtpyKD6OugfqxZnkj93iY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624519767;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=8ogLEOlbRqAQd2RJqrB9gv196PzgeGQ2osFk6goTStA=;
- b=ErFol0Ee/4pC9+kbn4Eui4amW/RaGhBNhVK19emWptQ/sOx9Cnz/28FsK6156STDeGl9Bm
- YSUlrHtk2rMVlRAA==
-Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id aNVJD1Y01GAJfwAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Thu, 24 Jun 2021 07:29:26 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, james.qian.wang@arm.com,
- liviu.dudau@arm.com, mihail.atanassov@arm.com, brian.starkey@arm.com,
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7C616E1B3;
+	Sun, 27 Jun 2021 03:35:17 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C88A6EA55;
+ Thu, 24 Jun 2021 08:07:04 +0000 (UTC)
+IronPort-SDR: 1WddGDXz9Ni8A4pCJcaYRLEYwC3dixz8y2XoMSQILsoLS88/l+RBYTZJ2GgZwb9ZrsVLZTvZM+
+ creLIhaMdx+g==
+X-IronPort-AV: E=McAfee;i="6200,9189,10024"; a="194722794"
+X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="194722794"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2021 01:06:48 -0700
+IronPort-SDR: 8/eo5APk4zdMXu0FN+wLrM/zTggRpAhTnkAmYTRZ+IPR7FPPJCkD/zsI3oSWpDppu7y95aJRLY
+ 6S2bQnOSmTDA==
+X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="453335479"
+Received: from schulke-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.59.242])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2021 01:06:23 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@linux.ie, alexander.deucher@amd.com, christian.koenig@amd.com,
+ Xinhui.Pan@amd.com, james.qian.wang@arm.com, liviu.dudau@arm.com,
+ mihail.atanassov@arm.com, brian.starkey@arm.com,
  maarten.lankhorst@linux.intel.com, mripard@kernel.org,
  inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com,
  kyungmin.park@samsung.com, krzysztof.kozlowski@canonical.com,
@@ -90,19 +58,19 @@ To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
  thierry.reding@gmail.com, jonathanh@nvidia.com, jyri.sarha@iki.fi,
  emma@anholt.net, linux-graphics-maintainer@vmware.com, zackr@vmware.com,
  hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
- michal.simek@xilinx.com, jani.nikula@linux.intel.com,
- rodrigo.vivi@intel.com, linux@armlinux.org.uk,
+ michal.simek@xilinx.com, rodrigo.vivi@intel.com, linux@armlinux.org.uk,
  kieran.bingham+renesas@ideasonboard.com, rodrigosiqueiramelo@gmail.com,
  melissa.srw@gmail.com, hamohammed.sa@gmail.com
-Date: Thu, 24 Jun 2021 09:28:55 +0200
-Message-Id: <20210624072916.27703-7-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210624072916.27703-1-tzimmermann@suse.de>
+In-Reply-To: <20210624072916.27703-5-tzimmermann@suse.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20210624072916.27703-1-tzimmermann@suse.de>
+ <20210624072916.27703-5-tzimmermann@suse.de>
+Date: Thu, 24 Jun 2021 11:06:19 +0300
+Message-ID: <87im23u1ok.fsf@intel.com>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:44 +0000
-Subject: [Nouveau] [PATCH v3 06/27] drm/i915: Track IRQ state in local
- device state
+Subject: Re: [Nouveau] [PATCH v3 04/27] drm: Don't test for IRQ support in
+ VBLANK ioctls
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,67 +93,154 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Replace usage of struct drm_device.irq_enabled with the driver's
-own state field struct drm_i915_private.irq_enabled. The field in
-the DRM device structure is considered legacy and should not be
-used by KMS drivers.
+On Thu, 24 Jun 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> For KMS drivers, replace the IRQ check in VBLANK ioctls with a check for
+> vblank support. IRQs might be enabled wthout vblanking being supported.
+>
+> This change also removes the DRM framework's only dependency on IRQ state
+> for non-legacy drivers. For legacy drivers with userspace modesetting,
+> the original test remains in drm_wait_vblank_ioctl().
+>
+> v3:
+> 	* optimize test in drm_wait_vblank_ioctl() for KMS case (Liviu)
+> 	* update docs for drm_irq_uninstall()
+> v2:
+> 	* keep the old test for legacy drivers in
+> 	  drm_wait_vblank_ioctl() (Daniel)
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> ---
+>  drivers/gpu/drm/drm_irq.c    | 13 ++++---------
+>  drivers/gpu/drm/drm_vblank.c | 16 ++++++++++++----
+>  2 files changed, 16 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_irq.c b/drivers/gpu/drm/drm_irq.c
+> index c3bd664ea733..945dd82e2ea3 100644
+> --- a/drivers/gpu/drm/drm_irq.c
+> +++ b/drivers/gpu/drm/drm_irq.c
+> @@ -74,10 +74,8 @@
+>   * only supports devices with a single interrupt on the main device stored in
+>   * &drm_device.dev and set as the device paramter in drm_dev_alloc().
+>   *
+> - * These IRQ helpers are strictly optional. Drivers which roll their own only
+> - * need to set &drm_device.irq_enabled to signal the DRM core that vblank
+> - * interrupts are working. Since these helpers don't automatically clean up the
+> - * requested interrupt like e.g. devm_request_irq() they're not really
+> + * These IRQ helpers are strictly optional. Since these helpers don't automatically
+> + * clean up the requested interrupt like e.g. devm_request_irq() they're not really
+>   * recommended.
+>   */
+>  
+> @@ -91,9 +89,7 @@
+>   * and after the installation.
+>   *
+>   * This is the simplified helper interface provided for drivers with no special
+> - * needs. Drivers which need to install interrupt handlers for multiple
+> - * interrupts must instead set &drm_device.irq_enabled to signal the DRM core
+> - * that vblank interrupts are available.
+> + * needs.
+>   *
+>   * @irq must match the interrupt number that would be passed to request_irq(),
+>   * if called directly instead of using this helper function.
+> @@ -156,8 +152,7 @@ EXPORT_SYMBOL(drm_irq_install);
+>   *
+>   * Calls the driver's &drm_driver.irq_uninstall function and unregisters the IRQ
+>   * handler.  This should only be called by drivers which used drm_irq_install()
+> - * to set up their interrupt handler. Other drivers must only reset
+> - * &drm_device.irq_enabled to false.
+> + * to set up their interrupt handler.
+>   *
+>   * Note that for kernel modesetting drivers it is a bug if this function fails.
+>   * The sanity checks are only to catch buggy user modesetting drivers which call
+> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+> index 3417e1ac7918..10fe16bafcb6 100644
+> --- a/drivers/gpu/drm/drm_vblank.c
+> +++ b/drivers/gpu/drm/drm_vblank.c
+> @@ -1748,8 +1748,16 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
+>  	unsigned int pipe_index;
+>  	unsigned int flags, pipe, high_pipe;
+>  
+> -	if (!dev->irq_enabled)
+> -		return -EOPNOTSUPP;
+> +#if defined(CONFIG_DRM_LEGACY)
+> +	if  (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY))) {
+> +		if (!dev->irq_enabled)
+> +			return -EOPNOTSUPP;
+> +	} else /* if DRIVER_MODESET */
+> +#endif
+> +	{
+> +		if (!drm_dev_has_vblank(dev))
+> +			return -EOPNOTSUPP;
+> +	}
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/i915/i915_drv.h | 2 ++
- drivers/gpu/drm/i915/i915_irq.c | 8 ++++----
- 2 files changed, 6 insertions(+), 4 deletions(-)
+Sheesh I hate this kind of inline #ifdefs.
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 01e11fe38642..48c1835bd54b 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1134,6 +1134,8 @@ struct drm_i915_private {
- 	/* For i915gm/i945gm vblank irq workaround */
- 	u8 vblank_enabled;
- 
-+	bool irq_enabled;
-+
- 	/* perform PHY state sanity checks? */
- 	bool chv_phy_assert[2];
- 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index a11bdb667241..987211f21761 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -4488,14 +4488,14 @@ int intel_irq_install(struct drm_i915_private *dev_priv)
- 	 */
- 	dev_priv->runtime_pm.irqs_enabled = true;
- 
--	dev_priv->drm.irq_enabled = true;
-+	dev_priv->irq_enabled = true;
- 
- 	intel_irq_reset(dev_priv);
- 
- 	ret = request_irq(irq, intel_irq_handler(dev_priv),
- 			  IRQF_SHARED, DRIVER_NAME, dev_priv);
- 	if (ret < 0) {
--		dev_priv->drm.irq_enabled = false;
-+		dev_priv->irq_enabled = false;
- 		return ret;
- 	}
- 
-@@ -4521,10 +4521,10 @@ void intel_irq_uninstall(struct drm_i915_private *dev_priv)
- 	 * intel_modeset_driver_remove() calling us out of sequence.
- 	 * Would be nice if it didn't do that...
- 	 */
--	if (!dev_priv->drm.irq_enabled)
-+	if (!dev_priv->irq_enabled)
- 		return;
- 
--	dev_priv->drm.irq_enabled = false;
-+	dev_priv->irq_enabled = false;
- 
- 	intel_irq_reset(dev_priv);
- 
+Two alternate suggestions that I believe should be as just efficient:
+
+1) The more verbose:
+
+#if defined(CONFIG_DRM_LEGACY)
+static bool drm_wait_vblank_supported(struct drm_device *dev)
+{
+	if  (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY)))
+		return dev->irq_enabled;
+	else
+		return drm_dev_has_vblank(dev);
+}
+#else
+static bool drm_wait_vblank_supported(struct drm_device *dev)
+{
+	return drm_dev_has_vblank(dev);
+}
+#endif
+
+2) The more compact:
+
+static bool drm_wait_vblank_supported(struct drm_device *dev)
+{
+	if  (IS_ENABLED(CONFIG_DRM_LEGACY) && unlikely(drm_core_check_feature(dev, DRIVER_LEGACY)))
+		return dev->irq_enabled;
+	else
+		return drm_dev_has_vblank(dev);
+}
+
+Then, in drm_wait_vblank_ioctl().
+
+	if (!drm_wait_vblank_supported(dev))
+		return -EOPNOTSUPP;
+
+The compiler should do the right thing without any explicit inline
+keywords etc.
+
+BR,
+Jani.
+
+>  
+>  	if (vblwait->request.type & _DRM_VBLANK_SIGNAL)
+>  		return -EINVAL;
+> @@ -2023,7 +2031,7 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *dev, void *data,
+>  	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+>  		return -EOPNOTSUPP;
+>  
+> -	if (!dev->irq_enabled)
+> +	if (!drm_dev_has_vblank(dev))
+>  		return -EOPNOTSUPP;
+>  
+>  	crtc = drm_crtc_find(dev, file_priv, get_seq->crtc_id);
+> @@ -2082,7 +2090,7 @@ int drm_crtc_queue_sequence_ioctl(struct drm_device *dev, void *data,
+>  	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+>  		return -EOPNOTSUPP;
+>  
+> -	if (!dev->irq_enabled)
+> +	if (!drm_dev_has_vblank(dev))
+>  		return -EOPNOTSUPP;
+>  
+>  	crtc = drm_crtc_find(dev, file_priv, queue_seq->crtc_id);
+
 -- 
-2.32.0
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
