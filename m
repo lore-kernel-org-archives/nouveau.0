@@ -2,75 +2,96 @@ Return-Path: <SRS0=GiJt=LV=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A6773C49EA7
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 572A2C49EAB
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7AF3E619CB
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:25 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7AF3E619CB
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 25363619B6
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:26 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 25363619B6
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D5516E145;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6CCA6E11C;
 	Sun, 27 Jun 2021 03:34:47 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
- [IPv6:2a00:1450:4864:20::334])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 256EA6EB62;
- Thu, 24 Jun 2021 12:02:30 +0000 (UTC)
-Received: by mail-wm1-x334.google.com with SMTP id
- u8-20020a7bcb080000b02901e44e9caa2aso3354776wmj.4; 
- Thu, 24 Jun 2021 05:02:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=+SpIYl8f+mm4xc/wATx8xxQwIh7YjYdlE5uQ7ip0aaU=;
- b=A4ZJSYnWcvNDaAGkscckQ1T0JedTdFDVSuL2YBNdwwF7acWK0AZcsU5zvsVBjaEnE0
- vsxLXeiOkPXV0sDkt5mf5/o226lI7HBeiLI3sEq1aMRGbypsf6Bch2Kg62wRL1La4pDI
- oGZydtxItkAsfL83TfuEmUWoDMxV7rufPNivK3ryBzWPLuL+5usBc6MglcCUM6IzelM8
- Nz6qtrU0C9W4JeYrs7rwBFAjukEAoFywD8y16Q8wkRFeIXm2GbxrFHrfjHBLNTda9rqV
- SY0IiWXgH48K8ZPh9MWtQ5Dh1jLdaybwti7HCY0TZjkN9TbYA/yL3MNnHzS9FYivGbwv
- lUKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=+SpIYl8f+mm4xc/wATx8xxQwIh7YjYdlE5uQ7ip0aaU=;
- b=JwWySRSrae4yzNjJApTF+dyBb/ry5QMyc5FX9Gs7VMLVeq2opPzH4XBMDl1zDWjjHz
- g37f5TqkI6MvaBltty5I6jbf0yntrWB1LL6m9k8hwYv8WfzY6yN4v4Y7Xyx/wpWNrYrS
- v6YzNQaP9MnpeGePd69weFmQ6neEjyMffX49wU63ITn2TZ/hy5xvij2wGXBszdVIi7+R
- Fx1g0hogWCGW2WfhxhWb5wxmrDgCIng5d61bww+y/tA8qVh65+PpChymZWI/Z1XiilnI
- ror5YAfJ4wXlKtImnq8WyWptlZsum8nz/ouB5RHf7Yf5ie5EvQ1q1oXs1MpLDrpazPar
- ojAw==
-X-Gm-Message-State: AOAM533p+aQZdEogF92aEXcnwOBQ7fuyOJRmxR+k91oLFOL+fGQFL8pz
- ZoLGYNXcaUgJraFWfdfexyg=
-X-Google-Smtp-Source: ABdhPJwnAQpQT/2sEz7viSMJ7t/+2zmdWLWtmPK9rh67Szq5oWv4lL/lZy1xAEGpP06+iHH3w5wUNg==
-X-Received: by 2002:a05:600c:4a19:: with SMTP id
- c25mr3844668wmp.125.1624536148907; 
- Thu, 24 Jun 2021 05:02:28 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
- by smtp.gmail.com with ESMTPSA id c12sm2972417wrw.46.2021.06.24.05.02.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 24 Jun 2021 05:02:27 -0700 (PDT)
-Date: Thu, 24 Jun 2021 14:04:30 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <YNR0zpVzMxQauzet@orome.fritz.box>
-References: <20210624072916.27703-1-tzimmermann@suse.de>
- <20210624072916.27703-22-tzimmermann@suse.de>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 515306E986;
+ Thu, 24 Jun 2021 07:29:23 +0000 (UTC)
+Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 78F6C21966;
+ Thu, 24 Jun 2021 07:29:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624519760; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=EUVgQWZjNSlPOwlQJU4bzYuB/YGQiDl3S47gswQlIkM=;
+ b=wglcSBsLTBQ3ei6BxYK5d9SydJ3e5F+a66G6BOyOTZLEwKvHbcKirhkaVkn4HGdih7Jkuv
+ lm1BMokphzYz7V1K+KM1ymEyHRMfFtGQeVAZ09yEBlWAn/dJ/UjhXzGC3T2SZ+Bfi8Tzu6
+ MfrG1ShNojJgurv+fjncCU2DgW3B+uc=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624519760;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=EUVgQWZjNSlPOwlQJU4bzYuB/YGQiDl3S47gswQlIkM=;
+ b=D758gxqI1uHlShUSzY4ZWAkhFsDHW/tqXNK29CYpEb5M/mK2EKbmmiPOUOndQe3D2qVknN
+ LMsG8ZKa3NvPvnDA==
+Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ by imap.suse.de (Postfix) with ESMTP id 4F58611A97;
+ Thu, 24 Jun 2021 07:29:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624519760; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=EUVgQWZjNSlPOwlQJU4bzYuB/YGQiDl3S47gswQlIkM=;
+ b=wglcSBsLTBQ3ei6BxYK5d9SydJ3e5F+a66G6BOyOTZLEwKvHbcKirhkaVkn4HGdih7Jkuv
+ lm1BMokphzYz7V1K+KM1ymEyHRMfFtGQeVAZ09yEBlWAn/dJ/UjhXzGC3T2SZ+Bfi8Tzu6
+ MfrG1ShNojJgurv+fjncCU2DgW3B+uc=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624519760;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=EUVgQWZjNSlPOwlQJU4bzYuB/YGQiDl3S47gswQlIkM=;
+ b=D758gxqI1uHlShUSzY4ZWAkhFsDHW/tqXNK29CYpEb5M/mK2EKbmmiPOUOndQe3D2qVknN
+ LMsG8ZKa3NvPvnDA==
+Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
+ id dLt+Ek801GAJfwAALh3uQQ
+ (envelope-from <tzimmermann@suse.de>); Thu, 24 Jun 2021 07:29:19 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, james.qian.wang@arm.com,
+ liviu.dudau@arm.com, mihail.atanassov@arm.com, brian.starkey@arm.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com,
+ kyungmin.park@samsung.com, krzysztof.kozlowski@canonical.com,
+ xinliang.liu@linaro.org, tiantao6@hisilicon.com, john.stultz@linaro.org,
+ kong.kongxinwei@hisilicon.com, puck.chen@hisilicon.com,
+ laurentiu.palcu@oss.nxp.com, l.stach@pengutronix.de,
+ p.zabel@pengutronix.de, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+ chunkuang.hu@kernel.org, matthias.bgg@gmail.com, bskeggs@redhat.com,
+ tomba@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
+ benjamin.gaignard@linaro.org, yannick.fertre@foss.st.com,
+ philippe.cornu@foss.st.com, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, wens@csie.org, jernej.skrabec@gmail.com,
+ thierry.reding@gmail.com, jonathanh@nvidia.com, jyri.sarha@iki.fi,
+ emma@anholt.net, linux-graphics-maintainer@vmware.com, zackr@vmware.com,
+ hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
+ michal.simek@xilinx.com, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, linux@armlinux.org.uk,
+ kieran.bingham+renesas@ideasonboard.com, rodrigosiqueiramelo@gmail.com,
+ melissa.srw@gmail.com, hamohammed.sa@gmail.com
+Date: Thu, 24 Jun 2021 09:28:49 +0200
+Message-Id: <20210624072916.27703-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <20210624072916.27703-22-tzimmermann@suse.de>
-User-Agent: Mutt/2.0.7 (481f3800) (2021-05-04)
-X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:45 +0000
-Subject: Re: [Nouveau] [PATCH v3 21/27] drm/tegra: Don't set struct
- drm_device.irq_enabled
+X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:44 +0000
+Subject: [Nouveau] [PATCH v3 00/27] Deprecate struct drm_device.irq_enabled
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,92 +103,118 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: hamohammed.sa@gmail.com, heiko@sntech.de, emma@anholt.net, airlied@linux.ie,
- nouveau@lists.freedesktop.org, rodrigo.vivi@intel.com, liviu.dudau@arm.com,
- alexandre.torgue@foss.st.com, dri-devel@lists.freedesktop.org,
- michal.simek@xilinx.com, melissa.srw@gmail.com, linux-tegra@vger.kernel.org,
- laurent.pinchart@ideasonboard.com, benjamin.gaignard@linaro.org,
- linux@armlinux.org.uk, mihail.atanassov@arm.com, festevam@gmail.com,
- linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
- jy0922.shim@samsung.com, krzysztof.kozlowski@canonical.com,
- linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org,
- wens@csie.org, jernej.skrabec@gmail.com, xinliang.liu@linaro.org,
- kong.kongxinwei@hisilicon.com, james.qian.wang@arm.com, linux-imx@nxp.com,
- intel-gfx@lists.freedesktop.org, linux-graphics-maintainer@vmware.com,
- linux-sunxi@lists.linux.dev, bskeggs@redhat.com, chunkuang.hu@kernel.org,
- p.zabel@pengutronix.de, puck.chen@hisilicon.com, s.hauer@pengutronix.de,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, inki.dae@samsung.com,
- rodrigosiqueiramelo@gmail.com, john.stultz@linaro.org,
- jani.nikula@linux.intel.com, laurentiu.palcu@oss.nxp.com,
- matthias.bgg@gmail.com, kernel@pengutronix.de,
- linux-arm-kernel@lists.infradead.org, mcoquelin.stm32@gmail.com,
- amd-gfx@lists.freedesktop.org, hyun.kwon@xilinx.com, tomba@kernel.org,
- jyri.sarha@iki.fi, yannick.fertre@foss.st.com, Xinhui.Pan@amd.com,
- sw0312.kim@samsung.com, hjc@rock-chips.com, christian.koenig@amd.com,
- kyungmin.park@samsung.com, kieran.bingham+renesas@ideasonboard.com,
- philippe.cornu@foss.st.com, daniel@ffwll.ch, alexander.deucher@amd.com,
- tiantao6@hisilicon.com, shawnguo@kernel.org, brian.starkey@arm.com,
- zackr@vmware.com, l.stach@pengutronix.de
-Content-Type: multipart/mixed; boundary="===============1747242857=="
+Cc: linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+Remove references to struct drm_device.irq_enabled from modern
+DRM drivers and core.
 
---===============1747242857==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ENqalYeZVO/RAx3+"
-Content-Disposition: inline
+KMS drivers enable IRQs for their devices internally. They don't
+have to keep track of the IRQ state via irq_enabled. For vblanking,
+it's cleaner to test for vblanking support directly than to test
+for enabled IRQs.
+
+The first 3 patches replace uses of irq_enabled that are not
+required.
+
+Patch 4 fixes vblank ioctls to actually test for vblank support
+instead of IRQs (for KMS drivers).
+
+The rest of the patchset removes irq_enabled from all non-legacy
+drivers. The only exceptions are i915 and omapdrm, which have an
+internal dpendency on the field's value. For these drivers, the
+state gets duplicated internally.
+
+With the patchset applied, drivers can later switch over to plain
+Linux IRQ interfaces and DRM's IRQ midlayer can be declared legacy.
+
+v3:
+	* update armada, i915, rcar-du and vkms as well (Laurent)
+	* optimize drm_wait_vblank_ioctl() for KMS (Liviu)
+	* move imx/dcss changes into their own patch (Laurentiu)
+	* doc cleanups
+v2:
+	* keep the original test for legacy drivers in
+	  drm_wait_vblank_ioctl() (Daniel)
+
+Thomas Zimmermann (27):
+  drm/amdgpu: Track IRQ state in local device state
+  drm/hibmc: Call drm_irq_uninstall() unconditionally
+  drm/radeon: Track IRQ state in local device state
+  drm: Don't test for IRQ support in VBLANK ioctls
+  drm/armada: Don't set struct drm_device.irq_enabled
+  drm/i915: Track IRQ state in local device state
+  drm/komeda: Don't set struct drm_device.irq_enabled
+  drm/malidp: Don't set struct drm_device.irq_enabled
+  drm/exynos: Don't set struct drm_device.irq_enabled
+  drm/kirin: Don't set struct drm_device.irq_enabled
+  drm/imx: Don't set struct drm_device.irq_enabled
+  drm/imx/dcss: Don't set struct drm_device.irq_enabled
+  drm/mediatek: Don't set struct drm_device.irq_enabled
+  drm/nouveau: Don't set struct drm_device.irq_enabled
+  drm/omapdrm: Track IRQ state in local device state
+  drm/rcar-du: Don't set struct drm_device.irq_enabled
+  drm/rockchip: Don't set struct drm_device.irq_enabled
+  drm/sti: Don't set struct drm_device.irq_enabled
+  drm/stm: Don't set struct drm_device.irq_enabled
+  drm/sun4i: Don't set struct drm_device.irq_enabled
+  drm/tegra: Don't set struct drm_device.irq_enabled
+  drm/tidss: Don't use struct drm_device.irq_enabled
+  drm/vc4: Don't set struct drm_device.irq_enabled
+  drm/vkms: Don't set struct drm_device.irq_enabled
+  drm/vmwgfx: Don't set struct drm_device.irq_enabled
+  drm/xlnx: Don't set struct drm_device.irq_enabled
+  drm/zte: Don't set struct drm_device.irq_enabled
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c         |  6 +++---
+ drivers/gpu/drm/arm/display/komeda/komeda_kms.c |  4 ----
+ drivers/gpu/drm/arm/malidp_drv.c                |  4 ----
+ drivers/gpu/drm/armada/armada_drv.c             |  2 --
+ drivers/gpu/drm/drm_irq.c                       | 13 ++++---------
+ drivers/gpu/drm/drm_vblank.c                    | 16 ++++++++++++----
+ drivers/gpu/drm/exynos/exynos_drm_drv.c         | 10 ----------
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c |  3 +--
+ drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c |  2 --
+ drivers/gpu/drm/i915/i915_drv.h                 |  2 ++
+ drivers/gpu/drm/i915/i915_irq.c                 |  8 ++++----
+ drivers/gpu/drm/imx/dcss/dcss-kms.c             |  3 ---
+ drivers/gpu/drm/imx/imx-drm-core.c              | 11 -----------
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c          |  6 ------
+ drivers/gpu/drm/nouveau/nouveau_drm.c           |  3 ---
+ drivers/gpu/drm/omapdrm/omap_drv.h              |  2 ++
+ drivers/gpu/drm/omapdrm/omap_irq.c              |  6 +++---
+ drivers/gpu/drm/radeon/radeon_fence.c           |  2 +-
+ drivers/gpu/drm/radeon/radeon_irq_kms.c         | 16 ++++++++--------
+ drivers/gpu/drm/rcar-du/rcar_du_drv.c           |  2 --
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c     |  6 ------
+ drivers/gpu/drm/sti/sti_compositor.c            |  2 --
+ drivers/gpu/drm/stm/ltdc.c                      |  3 ---
+ drivers/gpu/drm/sun4i/sun4i_drv.c               |  2 --
+ drivers/gpu/drm/tegra/drm.c                     |  7 -------
+ drivers/gpu/drm/tidss/tidss_irq.c               |  3 ---
+ drivers/gpu/drm/vc4/vc4_kms.c                   |  1 -
+ drivers/gpu/drm/vkms/vkms_drv.c                 |  2 --
+ drivers/gpu/drm/vmwgfx/vmwgfx_irq.c             |  8 --------
+ drivers/gpu/drm/xlnx/zynqmp_dpsub.c             |  2 --
+ drivers/gpu/drm/zte/zx_drm_drv.c                |  6 ------
+ 31 files changed, 40 insertions(+), 123 deletions(-)
 
 
---ENqalYeZVO/RAx3+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Jun 24, 2021 at 09:29:10AM +0200, Thomas Zimmermann wrote:
-> The field drm_device.irq_enabled is only used by legacy drivers
-> with userspace modesetting. Don't set it in tegra.
->=20
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> ---
->  drivers/gpu/drm/tegra/drm.c | 7 -------
->  1 file changed, 7 deletions(-)
-
-Acked-by: Thierry Reding <treding@nvidia.com>
-
---ENqalYeZVO/RAx3+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmDUdM4ACgkQ3SOs138+
-s6Ed0A/5ASxTJhpMIfL1u/g0kk5pjZX8ukNK72+ftE+sJWJhxDmTGuM+EzcPNaNg
-sKT+65FK2YsGeoA5fnN9QKWuUyS+bpExys5n39Aty+YN4tI4CV7CbU9OJeYm9Iru
-i+Ziu6gkJl2SYom/+cxuU42UkUDkQkWofYRel+HJZeDMogSRAIhiiQy5/fadGiJc
-36fJrXjueiB3EZjkg7CubNsLgy08qblR+sZGpuq4RIc3aVe6j6U8QxHiZ1eA7tMD
-ki2Nmub5WThcAUGn/ky+FD9m/yfieoI9sPkVWRpAF0oa6SDp6YO/oPFf2hJzl4jk
-HPXABfAWIYFTEzjFkGdRHjOfGgahPAXvwd1ku5zjBuFSH3vM9kNaNRuIQe2Rg9ti
-p3+b5RfPlO/1fiVRkuzXwROpjWNW44Y+eVVyee84h813aqYh9OOLJVrmxmrzZ1Xx
-mzDTvyZXuxtVb79T4XSkb0LnRw3wrraylMLP1X4/QTqttUBoWgYeKM5MwDgy+6zH
-Bx1VWtnjn9NmwEPfRmPpwIQNByNJ2DG/E8wZmEfeqJAEHo1SLOYaBixh9W7DUlWC
-e9mZFcD+tYSTurqcg0mS5T1mSPJGyCjcZFP27RkFRSc9JbRAQt2uuKcr1R54mjTh
-gAJ6mf8hPIWA8Q6ro+2TgW8p0X/wbPsnZdXjZrTGBsV1QA84k+M=
-=pLLR
------END PGP SIGNATURE-----
-
---ENqalYeZVO/RAx3+--
-
---===============1747242857==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+base-commit: 8c1323b422f8473421682ba783b5949ddd89a3f4
+prerequisite-patch-id: c2b2f08f0eccc9f5df0c0da49fa1d36267deb11d
+prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
+--
+2.32.0
 
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1747242857==--
