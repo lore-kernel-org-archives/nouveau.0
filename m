@@ -2,78 +2,46 @@ Return-Path: <SRS0=GiJt=LV=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BDD90C49EAB
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D79FC49EBE
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 94656619B6
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 94656619B6
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
+	by mail.kernel.org (Postfix) with ESMTPS id 1FCD5619CB
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1FCD5619CB
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.intel.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2C3A6E175;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2D346E187;
 	Sun, 27 Jun 2021 03:34:56 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 621FF6EAD1;
- Thu, 24 Jun 2021 07:29:47 +0000 (UTC)
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
- (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 115812198E;
- Thu, 24 Jun 2021 07:29:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624519786; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=eLPJ+iQRyNQpemyO/3EFX4hYvC3Np2R2owH6AQGLfJs=;
- b=gOrp9p0qzqptMDrvbJmiit38m6110ssRYZaZriUIpvBJ9vDFNCO9IvANRKjj02PyG41W8I
- GNeMVDtO6V/ABcpR8LuCZl3yANUM4Ef/pbiThzk6InXTyet/40M+a2L0fWy/jt0wAeTGUI
- WjPFmRFyWhCuGAWVzeIBEKIDxcE5eFI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624519786;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=eLPJ+iQRyNQpemyO/3EFX4hYvC3Np2R2owH6AQGLfJs=;
- b=tnLuCDwyl6VxLeNVotDBWtmfciLqVI15mcQddYXMAbffhLi94LlnzfHQZ6BD2/KpDuhE47
- 6AALPEBNYn4jQMBA==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id E34B611A97;
- Thu, 24 Jun 2021 07:29:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624519786; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=eLPJ+iQRyNQpemyO/3EFX4hYvC3Np2R2owH6AQGLfJs=;
- b=gOrp9p0qzqptMDrvbJmiit38m6110ssRYZaZriUIpvBJ9vDFNCO9IvANRKjj02PyG41W8I
- GNeMVDtO6V/ABcpR8LuCZl3yANUM4Ef/pbiThzk6InXTyet/40M+a2L0fWy/jt0wAeTGUI
- WjPFmRFyWhCuGAWVzeIBEKIDxcE5eFI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624519786;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=eLPJ+iQRyNQpemyO/3EFX4hYvC3Np2R2owH6AQGLfJs=;
- b=tnLuCDwyl6VxLeNVotDBWtmfciLqVI15mcQddYXMAbffhLi94LlnzfHQZ6BD2/KpDuhE47
- 6AALPEBNYn4jQMBA==
-Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id qKqPNmg01GAJfwAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Thu, 24 Jun 2021 07:29:44 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, james.qian.wang@arm.com,
- liviu.dudau@arm.com, mihail.atanassov@arm.com, brian.starkey@arm.com,
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2595A6EA8A;
+ Thu, 24 Jun 2021 08:08:43 +0000 (UTC)
+IronPort-SDR: LaozbgsojEP3ttzs9e22oIhsNRruDipeedoHPQ8le40JQmv3vlSAu3oAb766pUusI9hdpWorpn
+ G2iQBoU1gONQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10024"; a="204416590"
+X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="204416590"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2021 01:08:42 -0700
+IronPort-SDR: v1mHNk7YTLq4tjD5PLpygsJp7Fqze5GXwAn13Kp5Vz0yOGXKTgtBHR0yr5kpfQ465GdrghRoVP
+ Wpn21FG3jdhg==
+X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="453335994"
+Received: from schulke-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.59.242])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2021 01:08:19 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@linux.ie, alexander.deucher@amd.com, christian.koenig@amd.com,
+ Xinhui.Pan@amd.com, james.qian.wang@arm.com, liviu.dudau@arm.com,
+ mihail.atanassov@arm.com, brian.starkey@arm.com,
  maarten.lankhorst@linux.intel.com, mripard@kernel.org,
  inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com,
  kyungmin.park@samsung.com, krzysztof.kozlowski@canonical.com,
@@ -90,19 +58,19 @@ To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
  thierry.reding@gmail.com, jonathanh@nvidia.com, jyri.sarha@iki.fi,
  emma@anholt.net, linux-graphics-maintainer@vmware.com, zackr@vmware.com,
  hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
- michal.simek@xilinx.com, jani.nikula@linux.intel.com,
- rodrigo.vivi@intel.com, linux@armlinux.org.uk,
+ michal.simek@xilinx.com, rodrigo.vivi@intel.com, linux@armlinux.org.uk,
  kieran.bingham+renesas@ideasonboard.com, rodrigosiqueiramelo@gmail.com,
  melissa.srw@gmail.com, hamohammed.sa@gmail.com
-Date: Thu, 24 Jun 2021 09:29:11 +0200
-Message-Id: <20210624072916.27703-23-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210624072916.27703-1-tzimmermann@suse.de>
+In-Reply-To: <20210624072916.27703-7-tzimmermann@suse.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20210624072916.27703-1-tzimmermann@suse.de>
+ <20210624072916.27703-7-tzimmermann@suse.de>
+Date: Thu, 24 Jun 2021 11:08:16 +0300
+Message-ID: <87fsx7u1lb.fsf@intel.com>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:44 +0000
-Subject: [Nouveau] [PATCH v3 22/27] drm/tidss: Don't use struct
- drm_device.irq_enabled
+Subject: Re: [Nouveau] [PATCH v3 06/27] drm/i915: Track IRQ state in local
+ device state
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,33 +93,72 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The field drm_device.irq_enabled is only used by legacy drivers
-with userspace modesetting. Don't use it in tidss.
+On Thu, 24 Jun 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> Replace usage of struct drm_device.irq_enabled with the driver's
+> own state field struct drm_i915_private.irq_enabled. The field in
+> the DRM device structure is considered legacy and should not be
+> used by KMS drivers.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
----
- drivers/gpu/drm/tidss/tidss_irq.c | 3 ---
- 1 file changed, 3 deletions(-)
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-diff --git a/drivers/gpu/drm/tidss/tidss_irq.c b/drivers/gpu/drm/tidss/tidss_irq.c
-index a5ec7931ef6b..2ed3e3296776 100644
---- a/drivers/gpu/drm/tidss/tidss_irq.c
-+++ b/drivers/gpu/drm/tidss/tidss_irq.c
-@@ -57,9 +57,6 @@ irqreturn_t tidss_irq_handler(int irq, void *arg)
- 	unsigned int id;
- 	dispc_irq_t irqstatus;
- 
--	if (WARN_ON(!ddev->irq_enabled))
--		return IRQ_NONE;
--
- 	irqstatus = dispc_read_and_clear_irqstatus(tidss->dispc);
- 
- 	for (id = 0; id < tidss->num_crtcs; id++) {
+and ack for merging through drm-misc-next or whatever you think is best.
+
+> ---
+>  drivers/gpu/drm/i915/i915_drv.h | 2 ++
+>  drivers/gpu/drm/i915/i915_irq.c | 8 ++++----
+>  2 files changed, 6 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 01e11fe38642..48c1835bd54b 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1134,6 +1134,8 @@ struct drm_i915_private {
+>  	/* For i915gm/i945gm vblank irq workaround */
+>  	u8 vblank_enabled;
+>  
+> +	bool irq_enabled;
+> +
+>  	/* perform PHY state sanity checks? */
+>  	bool chv_phy_assert[2];
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index a11bdb667241..987211f21761 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -4488,14 +4488,14 @@ int intel_irq_install(struct drm_i915_private *dev_priv)
+>  	 */
+>  	dev_priv->runtime_pm.irqs_enabled = true;
+>  
+> -	dev_priv->drm.irq_enabled = true;
+> +	dev_priv->irq_enabled = true;
+>  
+>  	intel_irq_reset(dev_priv);
+>  
+>  	ret = request_irq(irq, intel_irq_handler(dev_priv),
+>  			  IRQF_SHARED, DRIVER_NAME, dev_priv);
+>  	if (ret < 0) {
+> -		dev_priv->drm.irq_enabled = false;
+> +		dev_priv->irq_enabled = false;
+>  		return ret;
+>  	}
+>  
+> @@ -4521,10 +4521,10 @@ void intel_irq_uninstall(struct drm_i915_private *dev_priv)
+>  	 * intel_modeset_driver_remove() calling us out of sequence.
+>  	 * Would be nice if it didn't do that...
+>  	 */
+> -	if (!dev_priv->drm.irq_enabled)
+> +	if (!dev_priv->irq_enabled)
+>  		return;
+>  
+> -	dev_priv->drm.irq_enabled = false;
+> +	dev_priv->irq_enabled = false;
+>  
+>  	intel_irq_reset(dev_priv);
+
 -- 
-2.32.0
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
