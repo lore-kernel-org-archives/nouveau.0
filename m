@@ -2,57 +2,106 @@ Return-Path: <SRS0=GiJt=LV=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CC406C49EA7
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 560EEC49EAB
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 79186619B6
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:11 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 79186619B6
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=huawei.com
+	by mail.kernel.org (Postfix) with ESMTPS id 22F10619CB
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:12 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 22F10619CB
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BE836E135;
-	Sun, 27 Jun 2021 03:34:47 +0000 (UTC)
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E14E36E1B7;
- Tue, 15 Jun 2021 02:01:30 +0000 (UTC)
-Received: from dggemv711-chm.china.huawei.com (unknown [172.30.72.55])
- by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4G3s0r4QBGz6yrZ;
- Tue, 15 Jun 2021 09:58:20 +0800 (CST)
-Received: from dggpeml500020.china.huawei.com (7.185.36.88) by
- dggemv711-chm.china.huawei.com (10.1.198.66) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 15 Jun 2021 10:01:23 +0800
-Received: from [10.174.177.174] (10.174.177.174) by
- dggpeml500020.china.huawei.com (7.185.36.88) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 15 Jun 2021 10:01:22 +0800
-To: <bskeggs@redhat.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
- <lyude@redhat.com>, <airlied@redhat.com>, <jajones@nvidia.com>,
- <dri-devel@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>
-References: <20210515090155.186083-1-libaokun1@huawei.com>
-From: "libaokun (A)" <libaokun1@huawei.com>
-Message-ID: <caf4d2ad-f8ff-d014-360b-0945ee374304@huawei.com>
-Date: Tue, 15 Jun 2021 10:01:22 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48CD76E15E;
+	Sun, 27 Jun 2021 03:34:48 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 149CB6ECFE;
+ Fri, 25 Jun 2021 08:22:32 +0000 (UTC)
+Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 8145A1FE5D;
+ Fri, 25 Jun 2021 08:22:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624609350; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=iJDmR8rDlltHR/97r6V3tkbjm89CSUAMbzOVnRIQGOo=;
+ b=UEsMYyV9x1f8die9B9P6av2F4DB+LUMYsi6wqo2e8n/lYLoWxQZsDMJtuwp9lHwcdg8zVS
+ hQUUGliZLwXpoYD37NyQIz55Z9K7E7IauFvjhH5dA6Yzl1iahKynAhaQWOv97mvpLV84vV
+ TB5Y5dOovTE0bh2eGCR1JhlkUQPgkCA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624609350;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=iJDmR8rDlltHR/97r6V3tkbjm89CSUAMbzOVnRIQGOo=;
+ b=GqNaVraFbZT5nFeCEgLgQEIYia1Q7Uujhzexl+4Fxq4jQBKau/T/uRUnYu8mnF+YciU80D
+ c4qz9ufWmlHhT2Cw==
+Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ by imap.suse.de (Postfix) with ESMTP id 6707311C9B;
+ Fri, 25 Jun 2021 08:22:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624609350; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=iJDmR8rDlltHR/97r6V3tkbjm89CSUAMbzOVnRIQGOo=;
+ b=UEsMYyV9x1f8die9B9P6av2F4DB+LUMYsi6wqo2e8n/lYLoWxQZsDMJtuwp9lHwcdg8zVS
+ hQUUGliZLwXpoYD37NyQIz55Z9K7E7IauFvjhH5dA6Yzl1iahKynAhaQWOv97mvpLV84vV
+ TB5Y5dOovTE0bh2eGCR1JhlkUQPgkCA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624609350;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=iJDmR8rDlltHR/97r6V3tkbjm89CSUAMbzOVnRIQGOo=;
+ b=GqNaVraFbZT5nFeCEgLgQEIYia1Q7Uujhzexl+4Fxq4jQBKau/T/uRUnYu8mnF+YciU80D
+ c4qz9ufWmlHhT2Cw==
+Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
+ id AJxQGEWS1WAISwAALh3uQQ
+ (envelope-from <tzimmermann@suse.de>); Fri, 25 Jun 2021 08:22:29 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, james.qian.wang@arm.com,
+ liviu.dudau@arm.com, mihail.atanassov@arm.com, brian.starkey@arm.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com,
+ kyungmin.park@samsung.com, krzysztof.kozlowski@canonical.com,
+ xinliang.liu@linaro.org, tiantao6@hisilicon.com, john.stultz@linaro.org,
+ kong.kongxinwei@hisilicon.com, puck.chen@hisilicon.com,
+ laurentiu.palcu@oss.nxp.com, l.stach@pengutronix.de,
+ p.zabel@pengutronix.de, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+ chunkuang.hu@kernel.org, matthias.bgg@gmail.com, bskeggs@redhat.com,
+ tomba@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
+ yannick.fertre@foss.st.com, philippe.cornu@foss.st.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, wens@csie.org,
+ jernej.skrabec@gmail.com, thierry.reding@gmail.com, jonathanh@nvidia.com,
+ jyri.sarha@iki.fi, emma@anholt.net, linux-graphics-maintainer@vmware.com,
+ zackr@vmware.com, hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
+ michal.simek@xilinx.com, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, linux@armlinux.org.uk,
+ kieran.bingham+renesas@ideasonboard.com, rodrigosiqueiramelo@gmail.com,
+ melissa.srw@gmail.com, hamohammed.sa@gmail.com
+Date: Fri, 25 Jun 2021 10:22:00 +0200
+Message-Id: <20210625082222.3845-6-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20210625082222.3845-1-tzimmermann@suse.de>
+References: <20210625082222.3845-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-In-Reply-To: <20210515090155.186083-1-libaokun1@huawei.com>
-X-Originating-IP: [10.174.177.174]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- dggpeml500020.china.huawei.com (7.185.36.88)
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:44 +0000
-Subject: Re: [Nouveau] [PATCH -next] drm/nouveau:disp: Remove set but not
- used variable 'ret'
+X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:45 +0000
+Subject: [Nouveau] [PATCH v4 05/27] drm/armada: Don't set struct
+ drm_device.irq_enabled
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,50 +113,42 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: yuehaibing@huawei.com, weiyongjun1@huawei.com, yukuai3@huawei.com,
- yangjihong1@huawei.com
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-cGluZwoK5ZyoIDIwMjEvNS8xNSAxNzowMSwgQmFva3VuIExpIOWGmemBkzoKPiBGcm9tOiAibGli
-YW9rdW4xQGh1YXdlaS5jb20iIDxsaWJhb2t1bjFAaHVhd2VpLmNvbT4KPgo+IEZpeGVzIGdjYyAn
-LVd1bnVzZWQtYnV0LXNldC12YXJpYWJsZScgd2FybmluZzoKPgo+IGRyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYzogSW4gZnVuY3Rpb24gJ252NTBfbXN0bV9jbGVhbnVwJzoK
-PiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmM6MTM4OTo2OiB3YXJuaW5n
-Ogo+ICAgdmFyaWFibGUg4oCYcmV04oCZIHNldCBidXQgbm90IHVzZWQgWy1XdW51c2VkLWJ1dC1z
-ZXQtdmFyaWFibGVdCj4KPiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmM6
-IEluIGZ1bmN0aW9uICdudjUwX21zdG1fcHJlcGFyZSc6Cj4gZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvZGlzcG52NTAvZGlzcC5jOjE0MTM6Njogd2FybmluZzoKPiAgIHZhcmlhYmxlIOKAmHJldOKA
-mSBzZXQgYnV0IG5vdCB1c2VkIFstV3VudXNlZC1idXQtc2V0LXZhcmlhYmxlXQo+Cj4gSXQgbmV2
-ZXIgdXNlZCBzaW5jZSBpbnRyb2R1Y3Rpb24uCj4KPiBTaWduZWQtb2ZmLWJ5OiBCYW9rdW4gTGkg
-PGxpYmFva3VuMUBodWF3ZWkuY29tPgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-ZGlzcG52NTAvZGlzcC5jIHwgOSArKystLS0tLS0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2Vy
-dGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvZGlzcG52NTAvZGlzcC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52
-NTAvZGlzcC5jCj4gaW5kZXggMWM5YzBjZGY4NWRiLi41ZWUzZjFmYzc2ZDcgMTAwNjQ0Cj4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCj4gQEAgLTEzODYsMTIgKzEzODYsMTAg
-QEAgbnY1MF9tc3RtX2NsZWFudXAoc3RydWN0IG52NTBfbXN0bSAqbXN0bSkKPiAgIHsKPiAgIAlz
-dHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKG1zdG0tPm91dHAtPmJhc2UuYmFz
-ZS5kZXYpOwo+ICAgCXN0cnVjdCBkcm1fZW5jb2RlciAqZW5jb2RlcjsKPiAtCWludCByZXQ7Cj4g
-ICAKPiAgIAlOVl9BVE9NSUMoZHJtLCAiJXM6IG1zdG0gY2xlYW51cFxuIiwgbXN0bS0+b3V0cC0+
-YmFzZS5iYXNlLm5hbWUpOwo+IC0JcmV0ID0gZHJtX2RwX2NoZWNrX2FjdF9zdGF0dXMoJm1zdG0t
-Pm1ncik7Cj4gLQo+IC0JcmV0ID0gZHJtX2RwX3VwZGF0ZV9wYXlsb2FkX3BhcnQyKCZtc3RtLT5t
-Z3IpOwo+ICsJZHJtX2RwX2NoZWNrX2FjdF9zdGF0dXMoJm1zdG0tPm1ncik7Cj4gKwlkcm1fZHBf
-dXBkYXRlX3BheWxvYWRfcGFydDIoJm1zdG0tPm1ncik7Cj4gICAKPiAgIAlkcm1fZm9yX2VhY2hf
-ZW5jb2RlcihlbmNvZGVyLCBtc3RtLT5vdXRwLT5iYXNlLmJhc2UuZGV2KSB7Cj4gICAJCWlmIChl
-bmNvZGVyLT5lbmNvZGVyX3R5cGUgPT0gRFJNX01PREVfRU5DT0RFUl9EUE1TVCkgewo+IEBAIC0x
-NDEwLDEwICsxNDA4LDkgQEAgbnY1MF9tc3RtX3ByZXBhcmUoc3RydWN0IG52NTBfbXN0bSAqbXN0
-bSkKPiAgIHsKPiAgIAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKG1zdG0t
-Pm91dHAtPmJhc2UuYmFzZS5kZXYpOwo+ICAgCXN0cnVjdCBkcm1fZW5jb2RlciAqZW5jb2RlcjsK
-PiAtCWludCByZXQ7Cj4gICAKPiAgIAlOVl9BVE9NSUMoZHJtLCAiJXM6IG1zdG0gcHJlcGFyZVxu
-IiwgbXN0bS0+b3V0cC0+YmFzZS5iYXNlLm5hbWUpOwo+IC0JcmV0ID0gZHJtX2RwX3VwZGF0ZV9w
-YXlsb2FkX3BhcnQxKCZtc3RtLT5tZ3IpOwo+ICsJZHJtX2RwX3VwZGF0ZV9wYXlsb2FkX3BhcnQx
-KCZtc3RtLT5tZ3IpOwo+ICAgCj4gICAJZHJtX2Zvcl9lYWNoX2VuY29kZXIoZW5jb2RlciwgbXN0
-bS0+b3V0cC0+YmFzZS5iYXNlLmRldikgewo+ICAgCQlpZiAoZW5jb2Rlci0+ZW5jb2Rlcl90eXBl
-ID09IERSTV9NT0RFX0VOQ09ERVJfRFBNU1QpIHsKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9ub3V2ZWF1Cg==
+The field drm_device.irq_enabled is only used by legacy drivers
+with userspace modesetting. Don't set it in armada.
+
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+---
+ drivers/gpu/drm/armada/armada_drv.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada/armada_drv.c
+index dab0a1f0983b..4a64f1b9ec4d 100644
+--- a/drivers/gpu/drm/armada/armada_drv.c
++++ b/drivers/gpu/drm/armada/armada_drv.c
+@@ -130,8 +130,6 @@ static int armada_drm_bind(struct device *dev)
+ 	if (ret)
+ 		goto err_comp;
+ 
+-	priv->drm.irq_enabled = true;
+-
+ 	drm_mode_config_reset(&priv->drm);
+ 
+ 	ret = armada_fbdev_init(&priv->drm);
+-- 
+2.32.0
+
+_______________________________________________
+Nouveau mailing list
+Nouveau@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/nouveau
