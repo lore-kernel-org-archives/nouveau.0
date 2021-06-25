@@ -2,56 +2,106 @@ Return-Path: <SRS0=GiJt=LV=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 110FCC49EA6
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2FB6AC49EA7
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D6C41619B6
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:27 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D6C41619B6
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=huawei.com
+	by mail.kernel.org (Postfix) with ESMTPS id ED475619CB
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:28 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ED475619CB
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F8916E153;
-	Sun, 27 Jun 2021 03:34:48 +0000 (UTC)
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B2AD6E1B6;
- Tue, 15 Jun 2021 01:58:12 +0000 (UTC)
-Received: from dggemv711-chm.china.huawei.com (unknown [172.30.72.56])
- by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4G3rts0gXPzXg0C;
- Tue, 15 Jun 2021 09:53:09 +0800 (CST)
-Received: from dggpeml500020.china.huawei.com (7.185.36.88) by
- dggemv711-chm.china.huawei.com (10.1.198.66) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 15 Jun 2021 09:58:07 +0800
-Received: from [10.174.177.174] (10.174.177.174) by
- dggpeml500020.china.huawei.com (7.185.36.88) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 15 Jun 2021 09:58:07 +0800
-To: <bskeggs@redhat.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
- <dri-devel@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>
-References: <20210525081733.571257-1-libaokun1@huawei.com>
-From: "libaokun (A)" <libaokun1@huawei.com>
-Message-ID: <1142566d-2e15-e73d-1fa1-b3713cebff4a@huawei.com>
-Date: Tue, 15 Jun 2021 09:58:06 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3A786E185;
+	Sun, 27 Jun 2021 03:34:49 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EB6F6ED15;
+ Fri, 25 Jun 2021 08:22:36 +0000 (UTC)
+Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 475EF21C23;
+ Fri, 25 Jun 2021 08:22:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624609355; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=EPEFd6nNTa+ut/F5qfWR2QbCKbdYMNjmX85bhvDFy1E=;
+ b=Mo1P3rTJBz3vkYd4chwevAZ8ZIvjcCcxzOT9twaHziyh1dLmJXxP911A/B4DJHByk4kUaf
+ LAsihKd/l//T6EHs9ZYrHBMY4XBq+seFpstf9x3mQgXmxRL3dyHFPBGaJtRSWuHewuElxG
+ +2J0qHQNRrDlj0wGi4ILFqHfjMHTTLs=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624609355;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=EPEFd6nNTa+ut/F5qfWR2QbCKbdYMNjmX85bhvDFy1E=;
+ b=m5gTKvTM7e2HNNcd90IFpDOYZxRdQD5X0Dg+byBv69bXCzl0vlEAjYj2llnmsvVd3fJ08U
+ 01otDlTyzUQtM7Bw==
+Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ by imap.suse.de (Postfix) with ESMTP id 17F5A11C9B;
+ Fri, 25 Jun 2021 08:22:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624609355; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=EPEFd6nNTa+ut/F5qfWR2QbCKbdYMNjmX85bhvDFy1E=;
+ b=Mo1P3rTJBz3vkYd4chwevAZ8ZIvjcCcxzOT9twaHziyh1dLmJXxP911A/B4DJHByk4kUaf
+ LAsihKd/l//T6EHs9ZYrHBMY4XBq+seFpstf9x3mQgXmxRL3dyHFPBGaJtRSWuHewuElxG
+ +2J0qHQNRrDlj0wGi4ILFqHfjMHTTLs=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624609355;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=EPEFd6nNTa+ut/F5qfWR2QbCKbdYMNjmX85bhvDFy1E=;
+ b=m5gTKvTM7e2HNNcd90IFpDOYZxRdQD5X0Dg+byBv69bXCzl0vlEAjYj2llnmsvVd3fJ08U
+ 01otDlTyzUQtM7Bw==
+Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
+ id QE7vBEqS1WAISwAALh3uQQ
+ (envelope-from <tzimmermann@suse.de>); Fri, 25 Jun 2021 08:22:34 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, james.qian.wang@arm.com,
+ liviu.dudau@arm.com, mihail.atanassov@arm.com, brian.starkey@arm.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com,
+ kyungmin.park@samsung.com, krzysztof.kozlowski@canonical.com,
+ xinliang.liu@linaro.org, tiantao6@hisilicon.com, john.stultz@linaro.org,
+ kong.kongxinwei@hisilicon.com, puck.chen@hisilicon.com,
+ laurentiu.palcu@oss.nxp.com, l.stach@pengutronix.de,
+ p.zabel@pengutronix.de, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+ chunkuang.hu@kernel.org, matthias.bgg@gmail.com, bskeggs@redhat.com,
+ tomba@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
+ yannick.fertre@foss.st.com, philippe.cornu@foss.st.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, wens@csie.org,
+ jernej.skrabec@gmail.com, thierry.reding@gmail.com, jonathanh@nvidia.com,
+ jyri.sarha@iki.fi, emma@anholt.net, linux-graphics-maintainer@vmware.com,
+ zackr@vmware.com, hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
+ michal.simek@xilinx.com, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, linux@armlinux.org.uk,
+ kieran.bingham+renesas@ideasonboard.com, rodrigosiqueiramelo@gmail.com,
+ melissa.srw@gmail.com, hamohammed.sa@gmail.com
+Date: Fri, 25 Jun 2021 10:22:04 +0200
+Message-Id: <20210625082222.3845-10-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20210625082222.3845-1-tzimmermann@suse.de>
+References: <20210625082222.3845-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-In-Reply-To: <20210525081733.571257-1-libaokun1@huawei.com>
-X-Originating-IP: [10.174.177.174]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- dggpeml500020.china.huawei.com (7.185.36.88)
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:44 +0000
-Subject: Re: [Nouveau] [PATCH -next] drm/nouveau: Remove set but not used
- variable 'width'
+X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:45 +0000
+Subject: [Nouveau] [PATCH v4 09/27] drm/exynos: Don't set struct
+ drm_device.irq_enabled
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,39 +113,52 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: yuehaibing@huawei.com, weiyongjun1@huawei.com, yukuai3@huawei.com,
- yangjihong1@huawei.com
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-cGluZwoK5ZyoIDIwMjEvNS8yNSAxNjoxNywgQmFva3VuIExpIOWGmemBkzoKPiBGaXhlcyBnY2Mg
-Jy1XdW51c2VkLWJ1dC1zZXQtdmFyaWFibGUnIHdhcm5pbmc6Cj4KPiBkcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYzogSW4gZnVuY3Rpb24gJ25vdXZlYXVfZnJhbWVidWZm
-ZXJfbmV3JzoKPiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYzozMDk6
-MTU6IHdhcm5pbmc6Cj4gICB2YXJpYWJsZSDigJh3aWR0aOKAmSBzZXQgYnV0IG5vdCB1c2VkIFst
-V3VudXNlZC1idXQtc2V0LXZhcmlhYmxlXQo+Cj4gSXQgbmV2ZXIgdXNlZCBzaW5jZSBpbnRyb2R1
-Y3Rpb24uCj4KPiBTaWduZWQtb2ZmLWJ5OiBCYW9rdW4gTGkgPGxpYmFva3VuMUBodWF3ZWkuY29t
-Pgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMgfCA1
-ICstLS0tCj4gICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDQgZGVsZXRpb25zKC0p
-Cj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5
-LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYwo+IGluZGV4IDky
-OWRlNDFjMjgxZi4uMmI0NjA4MzVhNDM4IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bm91dmVhdV9kaXNwbGF5LmMKPiBAQCAtMzA2LDcgKzMwNiw3IEBAIG5vdXZlYXVfZnJhbWVidWZm
-ZXJfbmV3KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4gICAJc3RydWN0IG5vdXZlYXVfYm8gKm52
-Ym8gPSBub3V2ZWF1X2dlbV9vYmplY3QoZ2VtKTsKPiAgIAlzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVy
-ICpmYjsKPiAgIAljb25zdCBzdHJ1Y3QgZHJtX2Zvcm1hdF9pbmZvICppbmZvOwo+IC0JdW5zaWdu
-ZWQgaW50IHdpZHRoLCBoZWlnaHQsIGk7Cj4gKwl1bnNpZ25lZCBpbnQgaGVpZ2h0LCBpOwo+ICAg
-CXVpbnQzMl90IHRpbGVfbW9kZTsKPiAgIAl1aW50OF90IGtpbmQ7Cj4gICAJaW50IHJldDsKPiBA
-QCAtMzQzLDkgKzM0Myw2IEBAIG5vdXZlYXVfZnJhbWVidWZmZXJfbmV3KHN0cnVjdCBkcm1fZGV2
-aWNlICpkZXYsCj4gICAJaW5mbyA9IGRybV9nZXRfZm9ybWF0X2luZm8oZGV2LCBtb2RlX2NtZCk7
-Cj4gICAKPiAgIAlmb3IgKGkgPSAwOyBpIDwgaW5mby0+bnVtX3BsYW5lczsgaSsrKSB7Cj4gLQkJ
-d2lkdGggPSBkcm1fZm9ybWF0X2luZm9fcGxhbmVfd2lkdGgoaW5mbywKPiAtCQkJCQkJICAgIG1v
-ZGVfY21kLT53aWR0aCwKPiAtCQkJCQkJICAgIGkpOwo+ICAgCQloZWlnaHQgPSBkcm1fZm9ybWF0
-X2luZm9fcGxhbmVfaGVpZ2h0KGluZm8sCj4gICAJCQkJCQkgICAgICBtb2RlX2NtZC0+aGVpZ2h0
-LAo+ICAgCQkJCQkJICAgICAgaSk7Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
-dmVhdQo=
+The field drm_device.irq_enabled is only used by legacy drivers
+with userspace modesetting. Don't set it in exynos.
+
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+---
+ drivers/gpu/drm/exynos/exynos_drm_drv.c | 10 ----------
+ 1 file changed, 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/exynos/exynos_drm_drv.c b/drivers/gpu/drm/exynos/exynos_drm_drv.c
+index e60257f1f24b..d8f1cf4d6b69 100644
+--- a/drivers/gpu/drm/exynos/exynos_drm_drv.c
++++ b/drivers/gpu/drm/exynos/exynos_drm_drv.c
+@@ -300,16 +300,6 @@ static int exynos_drm_bind(struct device *dev)
+ 
+ 	drm_mode_config_reset(drm);
+ 
+-	/*
+-	 * enable drm irq mode.
+-	 * - with irq_enabled = true, we can use the vblank feature.
+-	 *
+-	 * P.S. note that we wouldn't use drm irq handler but
+-	 *	just specific driver own one instead because
+-	 *	drm framework supports only one irq handler.
+-	 */
+-	drm->irq_enabled = true;
+-
+ 	/* init kms poll for handling hpd */
+ 	drm_kms_helper_poll_init(drm);
+ 
+-- 
+2.32.0
+
+_______________________________________________
+Nouveau mailing list
+Nouveau@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/nouveau
