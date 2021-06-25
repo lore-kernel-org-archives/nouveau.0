@@ -2,45 +2,78 @@ Return-Path: <SRS0=GiJt=LV=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 46AADC49EA7
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4D1AAC49EAF
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EBF84619B6
-	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EBF84619B6
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.intel.com
+	by mail.kernel.org (Postfix) with ESMTPS id 234EA619B6
+	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:24 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 234EA619B6
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB9226E193;
-	Sun, 27 Jun 2021 03:34:49 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 661416EA85;
- Thu, 24 Jun 2021 08:52:07 +0000 (UTC)
-IronPort-SDR: cRSlR4dk/nKSo6kFHgTixc1cZNRX1xVShzeUlCP6PBhXoFWF0fNxVRbjxCVjHG7Ec4aABp890y
- ksE2NqXHVhRg==
-X-IronPort-AV: E=McAfee;i="6200,9189,10024"; a="204422363"
-X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="204422363"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2021 01:52:06 -0700
-IronPort-SDR: b2WPW20xI/GJO29ic6WIfxIMz72rLAtb0USOd7lNI7J+Sgm2+3/EG1ErQrLUO2vnU20Qh+TbCW
- rzKM1urai8Fg==
-X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="487681787"
-Received: from schulke-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.59.242])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2021 01:51:41 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@linux.ie, alexander.deucher@amd.com, christian.koenig@amd.com,
- Xinhui.Pan@amd.com, james.qian.wang@arm.com, liviu.dudau@arm.com,
- mihail.atanassov@arm.com, brian.starkey@arm.com,
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C07C6E167;
+	Sun, 27 Jun 2021 03:34:48 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 275E96ED72;
+ Fri, 25 Jun 2021 08:22:46 +0000 (UTC)
+Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id C188B1FE56;
+ Fri, 25 Jun 2021 08:22:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624609364; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Nqa6630ruRYYlI8ZNLoNGF3Kw3KIKsV19KV/b5stot8=;
+ b=VKnswZyTdPYIlYTVYNXP3mPIf181nFPqs1dQKHYYalIYVtyYZ0JM8YI9h5dy3/u9P301UB
+ g7rJ6wMMTutOM7NojRMujg+sxGDmbGEpTz5Iy+wvcNpoQSJ7dGibFrFBJMeT6oek4NUVXj
+ ZBbLMreOLXZcUdHz5MwcnavglwgRNpw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624609364;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Nqa6630ruRYYlI8ZNLoNGF3Kw3KIKsV19KV/b5stot8=;
+ b=COgs7QL/cz74wBLBNVYeewHOzc8Try+PBOsT0vMl2EZ918odGLJqq8Aj/4j7umfsT9gPjf
+ 5owmJWsIG9wVoQBQ==
+Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ by imap.suse.de (Postfix) with ESMTP id 8E68C11C9B;
+ Fri, 25 Jun 2021 08:22:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624609364; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Nqa6630ruRYYlI8ZNLoNGF3Kw3KIKsV19KV/b5stot8=;
+ b=VKnswZyTdPYIlYTVYNXP3mPIf181nFPqs1dQKHYYalIYVtyYZ0JM8YI9h5dy3/u9P301UB
+ g7rJ6wMMTutOM7NojRMujg+sxGDmbGEpTz5Iy+wvcNpoQSJ7dGibFrFBJMeT6oek4NUVXj
+ ZBbLMreOLXZcUdHz5MwcnavglwgRNpw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624609364;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Nqa6630ruRYYlI8ZNLoNGF3Kw3KIKsV19KV/b5stot8=;
+ b=COgs7QL/cz74wBLBNVYeewHOzc8Try+PBOsT0vMl2EZ918odGLJqq8Aj/4j7umfsT9gPjf
+ 5owmJWsIG9wVoQBQ==
+Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
+ id cMHoIVOS1WAISwAALh3uQQ
+ (envelope-from <tzimmermann@suse.de>); Fri, 25 Jun 2021 08:22:43 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, james.qian.wang@arm.com,
+ liviu.dudau@arm.com, mihail.atanassov@arm.com, brian.starkey@arm.com,
  maarten.lankhorst@linux.intel.com, mripard@kernel.org,
  inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com,
  kyungmin.park@samsung.com, krzysztof.kozlowski@canonical.com,
@@ -51,26 +84,24 @@ To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
  kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
  chunkuang.hu@kernel.org, matthias.bgg@gmail.com, bskeggs@redhat.com,
  tomba@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
- benjamin.gaignard@linaro.org, yannick.fertre@foss.st.com,
- philippe.cornu@foss.st.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, wens@csie.org, jernej.skrabec@gmail.com,
- thierry.reding@gmail.com, jonathanh@nvidia.com, jyri.sarha@iki.fi,
- emma@anholt.net, linux-graphics-maintainer@vmware.com, zackr@vmware.com,
- hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
- michal.simek@xilinx.com, rodrigo.vivi@intel.com, linux@armlinux.org.uk,
+ yannick.fertre@foss.st.com, philippe.cornu@foss.st.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, wens@csie.org,
+ jernej.skrabec@gmail.com, thierry.reding@gmail.com, jonathanh@nvidia.com,
+ jyri.sarha@iki.fi, emma@anholt.net, linux-graphics-maintainer@vmware.com,
+ zackr@vmware.com, hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
+ michal.simek@xilinx.com, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, linux@armlinux.org.uk,
  kieran.bingham+renesas@ideasonboard.com, rodrigosiqueiramelo@gmail.com,
  melissa.srw@gmail.com, hamohammed.sa@gmail.com
-In-Reply-To: <b5e7729f-ed11-e9ca-386e-562feb2bd2b7@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210624072916.27703-1-tzimmermann@suse.de>
- <20210624072916.27703-5-tzimmermann@suse.de> <87im23u1ok.fsf@intel.com>
- <b5e7729f-ed11-e9ca-386e-562feb2bd2b7@suse.de>
-Date: Thu, 24 Jun 2021 11:51:37 +0300
-Message-ID: <877dijtzl2.fsf@intel.com>
+Date: Fri, 25 Jun 2021 10:22:12 +0200
+Message-Id: <20210625082222.3845-18-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20210625082222.3845-1-tzimmermann@suse.de>
+References: <20210625082222.3845-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:44 +0000
-Subject: Re: [Nouveau] [PATCH v3 04/27] drm: Don't test for IRQ support in
- VBLANK ioctls
+X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:45 +0000
+Subject: [Nouveau] [PATCH v4 17/27] drm/rockchip: Don't set struct
+ drm_device.irq_enabled
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,144 +115,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-rockchip@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
  linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ linux-tegra@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
  linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, 24 Jun 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> Hi
->
-> Am 24.06.21 um 10:06 schrieb Jani Nikula:
->> On Thu, 24 Jun 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->>> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
->>> index 3417e1ac7918..10fe16bafcb6 100644
->>> --- a/drivers/gpu/drm/drm_vblank.c
->>> +++ b/drivers/gpu/drm/drm_vblank.c
->>> @@ -1748,8 +1748,16 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
->>>   	unsigned int pipe_index;
->>>   	unsigned int flags, pipe, high_pipe;
->>>   
->>> -	if (!dev->irq_enabled)
->>> -		return -EOPNOTSUPP;
->>> +#if defined(CONFIG_DRM_LEGACY)
->>> +	if  (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY))) {
->>> +		if (!dev->irq_enabled)
->>> +			return -EOPNOTSUPP;
->>> +	} else /* if DRIVER_MODESET */
->>> +#endif
->>> +	{
->>> +		if (!drm_dev_has_vblank(dev))
->>> +			return -EOPNOTSUPP;
->>> +	}
->> 
->> Sheesh I hate this kind of inline #ifdefs.
->> 
->> Two alternate suggestions that I believe should be as just efficient:
->
-> Or how about:
->
-> static bool drm_wait_vblank_supported(struct drm_device *dev)
->
-> {
->
-> if defined(CONFIG_DRM_LEGACY)
-> 	if  (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY)))
->
-> 		return dev->irq_enabled;
->
-> #endif
-> 	return drm_dev_has_vblank(dev);
->
-> }
->
->
-> ?
->
-> It's inline, but still readable.
+The field drm_device.irq_enabled is only used by legacy drivers
+with userspace modesetting. Don't set it in rockchip.
 
-It's definitely better than the original, but it's unclear to me why
-you'd prefer this over option 2) below. I guess the only reason I can
-think of is emphasizing the conditional compilation. However,
-IS_ENABLED() is widely used in this manner specifically to avoid inline
-#if, and the compiler optimizes it away.
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+---
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-BR,
-Jani.
-
-
->
-> Best regards
-> Thomas
->
->> 
->> 1) The more verbose:
->> 
->> #if defined(CONFIG_DRM_LEGACY)
->> static bool drm_wait_vblank_supported(struct drm_device *dev)
->> {
->> 	if  (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY)))
->> 		return dev->irq_enabled;
->> 	else
->> 		return drm_dev_has_vblank(dev);
->> }
->> #else
->> static bool drm_wait_vblank_supported(struct drm_device *dev)
->> {
->> 	return drm_dev_has_vblank(dev);
->> }
->> #endif
->> 
->> 2) The more compact:
->> 
->> static bool drm_wait_vblank_supported(struct drm_device *dev)
->> {
->> 	if  (IS_ENABLED(CONFIG_DRM_LEGACY) && unlikely(drm_core_check_feature(dev, DRIVER_LEGACY)))
->> 		return dev->irq_enabled;
->> 	else
->> 		return drm_dev_has_vblank(dev);
->> }
->> 
->> Then, in drm_wait_vblank_ioctl().
->> 
->> 	if (!drm_wait_vblank_supported(dev))
->> 		return -EOPNOTSUPP;
->> 
->> The compiler should do the right thing without any explicit inline
->> keywords etc.
->> 
->> BR,
->> Jani.
->> 
->>>   
->>>   	if (vblwait->request.type & _DRM_VBLANK_SIGNAL)
->>>   		return -EINVAL;
->>> @@ -2023,7 +2031,7 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *dev, void *data,
->>>   	if (!drm_core_check_feature(dev, DRIVER_MODESET))
->>>   		return -EOPNOTSUPP;
->>>   
->>> -	if (!dev->irq_enabled)
->>> +	if (!drm_dev_has_vblank(dev))
->>>   		return -EOPNOTSUPP;
->>>   
->>>   	crtc = drm_crtc_find(dev, file_priv, get_seq->crtc_id);
->>> @@ -2082,7 +2090,7 @@ int drm_crtc_queue_sequence_ioctl(struct drm_device *dev, void *data,
->>>   	if (!drm_core_check_feature(dev, DRIVER_MODESET))
->>>   		return -EOPNOTSUPP;
->>>   
->>> -	if (!dev->irq_enabled)
->>> +	if (!drm_dev_has_vblank(dev))
->>>   		return -EOPNOTSUPP;
->>>   
->>>   	crtc = drm_crtc_find(dev, file_priv, queue_seq->crtc_id);
->> 
-
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+index b730b8d5d949..c8e60fd9ff24 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+@@ -162,12 +162,6 @@ static int rockchip_drm_bind(struct device *dev)
+ 
+ 	drm_mode_config_reset(drm_dev);
+ 
+-	/*
+-	 * enable drm irq mode.
+-	 * - with irq_enabled = true, we can use the vblank feature.
+-	 */
+-	drm_dev->irq_enabled = true;
+-
+ 	ret = rockchip_drm_fbdev_init(drm_dev);
+ 	if (ret)
+ 		goto err_unbind_all;
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.32.0
+
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
