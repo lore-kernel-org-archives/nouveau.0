@@ -7,69 +7,69 @@ X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 411F9C49EBA
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DFBADC49EA7
 	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 17A98619CB
+	by mail.kernel.org (Postfix) with ESMTPS id B2FB9619B6
 	for <nouveau@archiver.kernel.org>; Sun, 27 Jun 2021 03:35:54 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 17A98619CB
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B2FB9619B6
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC3866E1F5;
-	Sun, 27 Jun 2021 03:34:58 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CDCE6E16F;
- Fri, 25 Jun 2021 08:22:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 736396E1CD;
+	Sun, 27 Jun 2021 03:34:59 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 343E16ED06;
+ Fri, 25 Jun 2021 08:22:34 +0000 (UTC)
 Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
  (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 45DD121C1F;
- Fri, 25 Jun 2021 08:22:28 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id D4E351FE59;
+ Fri, 25 Jun 2021 08:22:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624609348; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1624609352; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=vCvMaakhW43FBHwwwgIT0NH9WFXQUbPBWotzOXDN7eU=;
- b=W888Bid/cwe7OvhgPpbpeW6HO4y/LtFvzNXdGjC0L7eX7jTOWHez5DVo8YTC4wbrowJt2l
- 78STX3etyjzYBkEY3/ZNztGJBAqwjn7QgagSt1mYU2Z4DporOqUmw63fT/u3Kx2mpRkSrn
- QfmysRfn9YoaalY2gy+I5GYcAyxEeYA=
+ bh=GIoR8k25GF7VaR2tG0nmFFOmiPd5XeM0gzGOMsyvAdg=;
+ b=pVZgnimgLTw7mtDt31EUk+XCVm1PdYbNxvlSPeIH+7jDmxUpy/Q7x5sxLRBYNjSfSCSMqu
+ xJVuVfVVpu4nvEo4uLzFm50XX9+sPkoJV6jpVzEIAUmEfF71+80YbPyINuRTsUdNYJHZzf
+ eug5F0ypDVwxdPB5CwtuEHiKkIGiS7Y=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624609348;
+ s=susede2_ed25519; t=1624609352;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=vCvMaakhW43FBHwwwgIT0NH9WFXQUbPBWotzOXDN7eU=;
- b=IyMpBO36rSzIgYWvkMVS5YmIDTj2HEJ8P+Wob/ikUGG55daM31/MsGfHUc691qwnQxl8ud
- LVJMZByeVTf9pmCw==
+ bh=GIoR8k25GF7VaR2tG0nmFFOmiPd5XeM0gzGOMsyvAdg=;
+ b=B+MuK9NwrevQHmneOwv6kMVSGGoQmX+t2FWjYcbF8LQbnjxWqt2ebyRnsuq1jbmkeIfcHI
+ i1pQzgLoode9U1CQ==
 Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id 2BC8611C9B;
- Fri, 25 Jun 2021 08:22:27 +0000 (UTC)
+ by imap.suse.de (Postfix) with ESMTP id B181F11C9B;
+ Fri, 25 Jun 2021 08:22:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624609348; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1624609352; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=vCvMaakhW43FBHwwwgIT0NH9WFXQUbPBWotzOXDN7eU=;
- b=W888Bid/cwe7OvhgPpbpeW6HO4y/LtFvzNXdGjC0L7eX7jTOWHez5DVo8YTC4wbrowJt2l
- 78STX3etyjzYBkEY3/ZNztGJBAqwjn7QgagSt1mYU2Z4DporOqUmw63fT/u3Kx2mpRkSrn
- QfmysRfn9YoaalY2gy+I5GYcAyxEeYA=
+ bh=GIoR8k25GF7VaR2tG0nmFFOmiPd5XeM0gzGOMsyvAdg=;
+ b=pVZgnimgLTw7mtDt31EUk+XCVm1PdYbNxvlSPeIH+7jDmxUpy/Q7x5sxLRBYNjSfSCSMqu
+ xJVuVfVVpu4nvEo4uLzFm50XX9+sPkoJV6jpVzEIAUmEfF71+80YbPyINuRTsUdNYJHZzf
+ eug5F0ypDVwxdPB5CwtuEHiKkIGiS7Y=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624609348;
+ s=susede2_ed25519; t=1624609352;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=vCvMaakhW43FBHwwwgIT0NH9WFXQUbPBWotzOXDN7eU=;
- b=IyMpBO36rSzIgYWvkMVS5YmIDTj2HEJ8P+Wob/ikUGG55daM31/MsGfHUc691qwnQxl8ud
- LVJMZByeVTf9pmCw==
+ bh=GIoR8k25GF7VaR2tG0nmFFOmiPd5XeM0gzGOMsyvAdg=;
+ b=B+MuK9NwrevQHmneOwv6kMVSGGoQmX+t2FWjYcbF8LQbnjxWqt2ebyRnsuq1jbmkeIfcHI
+ i1pQzgLoode9U1CQ==
 Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id kL3fCUOS1WAISwAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Fri, 25 Jun 2021 08:22:27 +0000
+ id sEs5KkeS1WAISwAALh3uQQ
+ (envelope-from <tzimmermann@suse.de>); Fri, 25 Jun 2021 08:22:31 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
  christian.koenig@amd.com, Xinhui.Pan@amd.com, james.qian.wang@arm.com,
@@ -93,15 +93,15 @@ To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
  rodrigo.vivi@intel.com, linux@armlinux.org.uk,
  kieran.bingham+renesas@ideasonboard.com, rodrigosiqueiramelo@gmail.com,
  melissa.srw@gmail.com, hamohammed.sa@gmail.com
-Date: Fri, 25 Jun 2021 10:21:58 +0200
-Message-Id: <20210625082222.3845-4-tzimmermann@suse.de>
+Date: Fri, 25 Jun 2021 10:22:02 +0200
+Message-Id: <20210625082222.3845-8-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210625082222.3845-1-tzimmermann@suse.de>
 References: <20210625082222.3845-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Sun, 27 Jun 2021 03:34:45 +0000
-Subject: [Nouveau] [PATCH v4 03/27] drm/radeon: Track IRQ state in local
- device state
+Subject: [Nouveau] [PATCH v4 07/27] drm/komeda: Don't set struct
+ drm_device.irq_enabled
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,108 +124,46 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Replace usage of struct drm_device.irq_enabled with the driver's
-own state field struct radeon_device.irq.installed. The field in
-the DRM device structure is considered legacy and should not be
-used by KMS drivers.
+The field drm_device.irq_enabled is only used by legacy drivers
+with userspace modesetting. Don't set it in komeda.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Liviu Dudau <liviu.dudau@arm.com>
 Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- drivers/gpu/drm/radeon/radeon_fence.c   |  2 +-
- drivers/gpu/drm/radeon/radeon_irq_kms.c | 16 ++++++++--------
- 2 files changed, 9 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/arm/display/komeda/komeda_kms.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/radeon_fence.c b/drivers/gpu/drm/radeon/radeon_fence.c
-index 0d8ef2368adf..7ec581363e23 100644
---- a/drivers/gpu/drm/radeon/radeon_fence.c
-+++ b/drivers/gpu/drm/radeon/radeon_fence.c
-@@ -288,7 +288,7 @@ static void radeon_fence_check_lockup(struct work_struct *work)
- 		return;
- 	}
+diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+index ff45f23f3d56..52a6db5707a3 100644
+--- a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
++++ b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+@@ -301,8 +301,6 @@ struct komeda_kms_dev *komeda_kms_attach(struct komeda_dev *mdev)
+ 	if (err)
+ 		goto free_component_binding;
  
--	if (fence_drv->delayed_irq && rdev->ddev->irq_enabled) {
-+	if (fence_drv->delayed_irq && rdev->irq.installed) {
- 		unsigned long irqflags;
+-	drm->irq_enabled = true;
+-
+ 	drm_kms_helper_poll_init(drm);
  
- 		fence_drv->delayed_irq = false;
-diff --git a/drivers/gpu/drm/radeon/radeon_irq_kms.c b/drivers/gpu/drm/radeon/radeon_irq_kms.c
-index 84d0b1a3355f..a36ce826d0c0 100644
---- a/drivers/gpu/drm/radeon/radeon_irq_kms.c
-+++ b/drivers/gpu/drm/radeon/radeon_irq_kms.c
-@@ -357,7 +357,7 @@ void radeon_irq_kms_sw_irq_get(struct radeon_device *rdev, int ring)
- {
- 	unsigned long irqflags;
+ 	err = drm_dev_register(drm, 0);
+@@ -313,7 +311,6 @@ struct komeda_kms_dev *komeda_kms_attach(struct komeda_dev *mdev)
  
--	if (!rdev->ddev->irq_enabled)
-+	if (!rdev->irq.installed)
- 		return;
- 
- 	if (atomic_inc_return(&rdev->irq.ring_int[ring]) == 1) {
-@@ -396,7 +396,7 @@ void radeon_irq_kms_sw_irq_put(struct radeon_device *rdev, int ring)
- {
- 	unsigned long irqflags;
- 
--	if (!rdev->ddev->irq_enabled)
-+	if (!rdev->irq.installed)
- 		return;
- 
- 	if (atomic_dec_and_test(&rdev->irq.ring_int[ring])) {
-@@ -422,7 +422,7 @@ void radeon_irq_kms_pflip_irq_get(struct radeon_device *rdev, int crtc)
- 	if (crtc < 0 || crtc >= rdev->num_crtc)
- 		return;
- 
--	if (!rdev->ddev->irq_enabled)
-+	if (!rdev->irq.installed)
- 		return;
- 
- 	if (atomic_inc_return(&rdev->irq.pflip[crtc]) == 1) {
-@@ -448,7 +448,7 @@ void radeon_irq_kms_pflip_irq_put(struct radeon_device *rdev, int crtc)
- 	if (crtc < 0 || crtc >= rdev->num_crtc)
- 		return;
- 
--	if (!rdev->ddev->irq_enabled)
-+	if (!rdev->irq.installed)
- 		return;
- 
- 	if (atomic_dec_and_test(&rdev->irq.pflip[crtc])) {
-@@ -470,7 +470,7 @@ void radeon_irq_kms_enable_afmt(struct radeon_device *rdev, int block)
- {
- 	unsigned long irqflags;
- 
--	if (!rdev->ddev->irq_enabled)
-+	if (!rdev->irq.installed)
- 		return;
- 
- 	spin_lock_irqsave(&rdev->irq.lock, irqflags);
-@@ -492,7 +492,7 @@ void radeon_irq_kms_disable_afmt(struct radeon_device *rdev, int block)
- {
- 	unsigned long irqflags;
- 
--	if (!rdev->ddev->irq_enabled)
-+	if (!rdev->irq.installed)
- 		return;
- 
- 	spin_lock_irqsave(&rdev->irq.lock, irqflags);
-@@ -514,7 +514,7 @@ void radeon_irq_kms_enable_hpd(struct radeon_device *rdev, unsigned hpd_mask)
- 	unsigned long irqflags;
- 	int i;
- 
--	if (!rdev->ddev->irq_enabled)
-+	if (!rdev->irq.installed)
- 		return;
- 
- 	spin_lock_irqsave(&rdev->irq.lock, irqflags);
-@@ -537,7 +537,7 @@ void radeon_irq_kms_disable_hpd(struct radeon_device *rdev, unsigned hpd_mask)
- 	unsigned long irqflags;
- 	int i;
- 
--	if (!rdev->ddev->irq_enabled)
-+	if (!rdev->irq.installed)
- 		return;
- 
- 	spin_lock_irqsave(&rdev->irq.lock, irqflags);
+ free_interrupts:
+ 	drm_kms_helper_poll_fini(drm);
+-	drm->irq_enabled = false;
+ free_component_binding:
+ 	component_unbind_all(mdev->dev, drm);
+ cleanup_mode_config:
+@@ -331,7 +328,6 @@ void komeda_kms_detach(struct komeda_kms_dev *kms)
+ 	drm_dev_unregister(drm);
+ 	drm_kms_helper_poll_fini(drm);
+ 	drm_atomic_helper_shutdown(drm);
+-	drm->irq_enabled = false;
+ 	component_unbind_all(mdev->dev, drm);
+ 	drm_mode_config_cleanup(drm);
+ 	komeda_kms_cleanup_private_objs(kms);
 -- 
 2.32.0
 
