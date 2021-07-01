@@ -1,55 +1,52 @@
-Return-Path: <SRS0=3Q/B=LY=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=ahK8=LZ=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D69BBC11F6A
-	for <nouveau@archiver.kernel.org>; Wed, 30 Jun 2021 02:31:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 58308C11F64
+	for <nouveau@archiver.kernel.org>; Thu,  1 Jul 2021 16:14:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8C45E61D70
-	for <nouveau@archiver.kernel.org>; Wed, 30 Jun 2021 02:31:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8C45E61D70
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=163.com
+	by mail.kernel.org (Postfix) with ESMTPS id 14D5360FF2
+	for <nouveau@archiver.kernel.org>; Thu,  1 Jul 2021 16:14:42 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 14D5360FF2
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=igalia.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22CE76E920;
-	Wed, 30 Jun 2021 02:31:28 +0000 (UTC)
-X-Greylist: delayed 929 seconds by postgrey-1.36 at gabe;
- Sun, 27 Jun 2021 08:16:22 UTC
-Received: from m12-15.163.com (m12-15.163.com [220.181.12.15])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7B12E89FDE;
- Sun, 27 Jun 2021 08:16:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id; bh=dn2OHWnaKzUjkxfP+B
- r0ExjTZGAQz9D9C9SLtoPnw2c=; b=Oi2znL7XpqCdHeQt9vqzwmrv3SU8ouRVaj
- DveHEikK1nTJNbiJ5Lp9Eg/sEJAg6458eA9fVJRj+zOMfYH53b/FwOo/+NT8IRXH
- EzgutytcRdtqZhSBPpLnIny0ksHEr1p3c94cixtt0JwSG/ucE2VueDv30ZIO+BGd
- f0N+NNZqQ=
-Received: from LAPTOP-UKSR4ENP.internal.baidu.com (unknown [39.183.0.171])
- by smtp11 (Coremail) with SMTP id D8CowADHz_fpL9hgJ7k8Ag--.1973S4;
- Sun, 27 Jun 2021 15:59:57 +0800 (CST)
-From: Cai Huoqing <caihuoqing1990@163.com>
-To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch, kherbst@redhat.com
-Date: Sun, 27 Jun 2021 15:59:35 +0800
-Message-Id: <20210627075935.373-1-caihuoqing1990@163.com>
-X-Mailer: git-send-email 2.17.1
-X-CM-TRANSID: D8CowADHz_fpL9hgJ7k8Ag--.1973S4
-X-Coremail-Antispam: 1Uf129KBjvJXoW7ZF4kWFykJw13Kw4rKr1kuFg_yoW8Jw43pF
- 48Ca47ZF4DKws2gr40yF18ZF9IyanrJFyxGFyjy3sYgw4Fyr98Xr4rJry5ArW5JFyxuay3
- tF9rKasIv3WjkaDanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jYGQDUUUUU=
-X-Originating-IP: [39.183.0.171]
-X-CM-SenderInfo: xfdlx3xrtl0warzziqqrwthudrp/1tbiMB2+plWByBTxdAAAs4
-X-Mailman-Approved-At: Wed, 30 Jun 2021 02:31:24 +0000
-Subject: [Nouveau] [PATCH v2] drm/nouveau: remove unused varialble "struct
- device *dev"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 584556EB56;
+	Thu,  1 Jul 2021 16:14:37 +0000 (UTC)
+Received: from fanzine.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89E0E6E0CB;
+ Thu,  1 Jul 2021 16:14:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+ s=20170329; 
+ h=MIME-Version:Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID;
+ bh=wK9wrmd+6oYN7FKRJ1PwqG4FPKNWD7UZGqxDhFVY3YA=; 
+ b=Y4rlul+uhkYkZ4p6PoktJ1He64NFdmYZWcPpM13vr6JwyByUFcMFxf7tyOvHSUYGAsQGuCwcUoD7h5DI4G0VjAPU8O8+bLIPf62+t7OUSN+R/QYhU0JnC0VuJKQTtRvbWX3fbx6b5WzNX1bZImGRveVbDTtd/0HPNao87E/LJkrpM6iDlUx/srHN6OI5snwK8PxazjWK5xG7t3iJJ9WU+csZyt0hFOSwx3R6pP4/3oRO0mRpynHUbJfXQ4UfRyQqzglMs6SBk6RjTXKmiyJ0CAnUvAeJ2bnyP0rx715hkwTsNSF1wpGP3s6PM34qHol9in6d5fNW/mzzdtcje0K6/g==;
+Received: from 152.red-88-9-105.dynamicip.rima-tde.net ([88.9.105.152]
+ helo=[192.168.2.252]) by fanzine.igalia.com with esmtpsa 
+ (Cipher TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim)
+ id 1lyzKj-0005WT-LU; Thu, 01 Jul 2021 18:14:33 +0200
+Message-ID: <f5ee80e067e79dff0b2d65c67dbb83b9be70014f.camel@igalia.com>
+From: Samuel Iglesias =?ISO-8859-1?Q?Gons=E1lvez?= <siglesias@igalia.com>
+To: "events@lists.x.org" <events@lists.x.org>, 
+ "xorg-devel@lists.freedesktop.org"
+ <xorg-devel@lists.freedesktop.org>, wayland-devel@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, mesa-dev@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org
+Date: Thu, 01 Jul 2021 18:14:23 +0200
+In-Reply-To: <95ec2c414f7dd1ea5685184435b95430e1709047.camel@igalia.com>
+References: <95ec2c414f7dd1ea5685184435b95430e1709047.camel@igalia.com>
+User-Agent: Evolution 3.38.3-1 
+MIME-Version: 1.0
+Subject: Re: [Nouveau] [Mesa-dev] Requests For Proposals for hosting XDC
+ 2022 are now open
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,63 +58,116 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, nouveau-bounces@lists.freedesktop.org
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "board@foundation.x.org" <board@foundation.x.org>
+Content-Type: multipart/mixed; boundary="===============1004827845=="
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Cai Huoqing <caihuoqing@baidu.com>
 
-fix the warning- variable 'dev' set but not used
+--===============1004827845==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-QH/ByUmgrN7MqV73jY6n"
 
-Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
-Reviewed-by: Karol Herbst <kherbst@redhat.com>
----
- drivers/gpu/drm/nouveau/nouveau_bo.c | 4 ----
- 1 file changed, 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 984721bf3ab4..cb3ff4ae203e 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -1242,7 +1242,6 @@ nouveau_ttm_tt_populate(struct ttm_device *bdev,
- {
-        struct ttm_tt *ttm_dma = (void *)ttm;
-        struct nouveau_drm *drm;
--       struct device *dev;
-        bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
+--=-QH/ByUmgrN7MqV73jY6n
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-        if (ttm_tt_is_populated(ttm))
-@@ -1255,7 +1254,6 @@ nouveau_ttm_tt_populate(struct ttm_device *bdev,
-        }
+This is a reminder that the call for proposals for hosting XDC 2022
+period finishes in two months.
 
-        drm = nouveau_bdev(bdev);
--       dev = drm->dev->dev;
+Be sure to prepare your submission before you leave on holiday!
 
-        return ttm_pool_alloc(&drm->ttm.bdev.pool, ttm, ctx);
- }
-@@ -1265,14 +1263,12 @@ nouveau_ttm_tt_unpopulate(struct ttm_device *bdev,
-                          struct ttm_tt *ttm)
- {
-        struct nouveau_drm *drm;
--       struct device *dev;
-        bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
+Sam
 
-        if (slave)
-                return;
+On Thu, 2021-05-20 at 12:15 +0200, Samuel Iglesias Gons=C3=A1lvez wrote:
+> Hello everyone!
+>=20
+> The X.org board is soliciting proposals to host XDC in 2022. Since
+> XDC 2021 is being held in Europe this year (although virtually),
+> we've
+> decided to host in North America. However, the board is open to other
+> locations, especially if there's an interesting co-location with
+> another conference.
+>=20
+> Of course though, due to the ongoing COVID-19 pandemic it's not yet
+> clear whether or not it will be possible to host XDC 2022 in person,
+> although is seems very likely. Because of this, we would like to
+> make it clear that sponsors should prepare for both the possibility
+> of an in person conference, and the possibility of a virtual
+> conference. We will work with organizers on coming up with a
+> deadline for deciding whether or not we'll be going virtual, likely
+> sometime around July 2022.
+>=20
+> If you're considering hosting XDC, we've assembled a wiki page with
+> what's generally expected and needed:
+>=20
+> https://www.x.org/wiki/Events/RFP/
+>=20
+> When submitting your proposal, please make sure to include at least
+> the
+> key information about the potential location in question, possible
+> dates along with estimated costs. Proposals can be submitted to board
+> at foundation.x.org until the deadline of *September 1st, 2021*.=C2=A0
+>=20
+> Additionally, an quirk early heads-up to the board if you're
+> considering hosting would be appreciated, in case we need to adjust
+> the
+> schedule a bit. Also, earlier is better since there generally will be
+> a
+> bit of Q&A with organizers.
+>=20
+> And if you just have some questions about what organizing XDC
+> entails,
+> please feel free to chat with previous organizers, or someone from
+> the
+> board.
+>=20
+> Thanks,
+>=20
+> Sam
+>=20
+> _______________________________________________
+> mesa-dev mailing list
+> mesa-dev@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/mesa-dev
 
-        drm = nouveau_bdev(bdev);
--       dev = drm->dev->dev;
 
-        return ttm_pool_free(&drm->ttm.bdev.pool, ttm);
- }
---
-2.17.1
+--=-QH/ByUmgrN7MqV73jY6n
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEQP+ZAvaXWkfuKXiEf/S6MvF9w0MFAmDd6d8ACgkQf/S6MvF9
+w0MKsRAA13BGnKOl2o6oyp+Ws0lBHITyQt5yGc5pIHoT3xjPVY924AFiGtJTsGq/
+oqYp9tMAGduh5VbFDmg9/FanKRpFSbFI8xXTWMuwC6OgaXgu+c9NDO8ilN8wl9vP
+3sAv88KlFP2bJtwwruGjw+jro7tnXE4WvKLaBILW8cqt3nL2xNZbI2JknPIFQDgp
+sddQ0GKSvFCtYuiEaMfxVTasJcaIyf1F4+bew031wDkS4yiuLdXUrBEoEXWNuGWG
+tcMg3HzGBAIkMFXrk3J8aSpSFlj/1r/AXlmT+UMHzp19xCk9YHcgEN5rUlnHA2BI
+AFrJKl5UBXiEl4q8h3V8sUoDM+MBItgpZxxW1P80dJvJe/OT0K9gh4VkYQoQx9Xh
+mg9IzmKENsavip/0Osh91MC9hUIBjEAvGWt2evEjlaIRCd2/xb1KO+gXcCMlz884
+nfZOoi3vAxtG/+XAohOq1pmdE6iSyuLdq8SPxtLSFXGCScHQ0R1Mh1I3xxou4dp6
+8jF2Wl4unF2ovuzCsR6VjQDyyGkXKCJHlueFLYyRrmlqjHd9n6ZDeQvHgCnYW93X
+eYYplicS4TVcZ9GHTsTgmxgGLXSM+aR7xzOZ0NQ4Dcy06uSYdbMet1iLz3XA3MoO
+ADwUOZ7evzwvmkdZ0AN4TjPI0iVtf9aVeZ5hpGPkP/eBEF033gA=
+=6VGv
+-----END PGP SIGNATURE-----
+
+--=-QH/ByUmgrN7MqV73jY6n--
+
+
+--===============1004827845==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1004827845==--
+
