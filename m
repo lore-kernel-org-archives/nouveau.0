@@ -7,42 +7,42 @@ X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1630FC07E96
-	for <nouveau@archiver.kernel.org>; Thu, 15 Jul 2021 12:41:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5FF44C07E96
+	for <nouveau@archiver.kernel.org>; Thu, 15 Jul 2021 12:43:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C846161380
-	for <nouveau@archiver.kernel.org>; Thu, 15 Jul 2021 12:41:31 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C846161380
+	by mail.kernel.org (Postfix) with ESMTPS id 20D1961380
+	for <nouveau@archiver.kernel.org>; Thu, 15 Jul 2021 12:43:07 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 20D1961380
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linuxfoundation.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F2446E7EF;
-	Thu, 15 Jul 2021 12:41:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFF816E83A;
+	Thu, 15 Jul 2021 12:43:06 +0000 (UTC)
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C10F6E7EF
- for <nouveau@lists.freedesktop.org>; Thu, 15 Jul 2021 12:41:30 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6D930613C7;
- Thu, 15 Jul 2021 12:41:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C23F96E83A
+ for <nouveau@lists.freedesktop.org>; Thu, 15 Jul 2021 12:43:05 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4A5B4613C9;
+ Thu, 15 Jul 2021 12:43:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1626352889;
- bh=ADvucH4/M2/4rdBi3FepxCas4YHRMlVydxn2sPsh7xg=;
+ s=korg; t=1626352985;
+ bh=rXW02wB9BWaN+JXpclCoj26l9brnaUgCkEEY+OrVYYc=;
  h=Subject:To:Cc:From:Date:From;
- b=L7t4c/YRcbloTOOFqhoZmgQeeMJXKogetp74sj/K0BBP5MrZOYQplMIxjYKlyZNja
- T7jruHhaQWgJjfJ49ExlYJcxe2lpQXC64rGT+hsQmSbjOEZ/mncWHs6dJSkQbKVMVq
- l/wjKhCvYUvzZi6seKnrF+jvUaxdllum5i3+5JMo=
+ b=KFPIyQt6qJ1op/MZAqe51yi5J6YrkP+SGCeZFg5BRz0P3u4HxwqyICdfxCTLYQMph
+ 1dok//lqal4FG8VErNcOrL4bowj3Zkjjxe3qZP0A14fvwzrro3L1FBDiamvA6qYws8
+ +71kjZUX4KXOJz8qlPBstXrsCBpxV0TVXAELqol4=
 To: bskeggs@redhat.com, daniel.vetter@ffwll.ch, daniel.vetter@intel.com,
  gregkh@linuxfoundation.org, lyude@redhat.com, nouveau@lists.freedesktop.org,
  paul.kocialkowski@bootlin.com, pekka.paalanen@collabora.com
 From: <gregkh@linuxfoundation.org>
-Date: Thu, 15 Jul 2021 14:40:10 +0200
-Message-ID: <162635281014224@kroah.com>
+Date: Thu, 15 Jul 2021 14:40:34 +0200
+Message-ID: <1626352834184100@kroah.com>
 MIME-Version: 1.0
 X-stable: commit
 X-Patchwork-Hint: ignore 
 Subject: [Nouveau] Patch "drm/nouveau: Don't set allow_fb_modifiers
- explicitly" has been added to the 5.10-stable tree
+ explicitly" has been added to the 5.12-stable tree
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,12 +65,12 @@ This is a note to let you know that I've just added the patch titled
 
     drm/nouveau: Don't set allow_fb_modifiers explicitly
 
-to the 5.10-stable tree which can be found at:
+to the 5.12-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
      drm-nouveau-don-t-set-allow_fb_modifiers-explicitly.patch
-and it can be found in the queue-5.10 subdirectory.
+and it can be found in the queue-5.12 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
@@ -127,12 +127,13 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Patches currently in stable-queue which might be from daniel.vetter@ffwll.ch are
 
-queue-5.10/drm-tegra-don-t-set-allow_fb_modifiers-explicitly.patch
-queue-5.10/drm-msm-mdp4-fix-modifier-support-enabling.patch
-queue-5.10/drm-mxsfb-don-t-select-drm_kms_fb_helper.patch
-queue-5.10/drm-arm-malidp-always-list-modifiers.patch
-queue-5.10/drm-zte-don-t-select-drm_kms_fb_helper.patch
-queue-5.10/drm-nouveau-don-t-set-allow_fb_modifiers-explicitly.patch
+queue-5.12/drm-tegra-don-t-set-allow_fb_modifiers-explicitly.patch
+queue-5.12/drm-msm-mdp4-fix-modifier-support-enabling.patch
+queue-5.12/drm-mxsfb-don-t-select-drm_kms_fb_helper.patch
+queue-5.12/drm-arm-malidp-always-list-modifiers.patch
+queue-5.12/drm-amdgpu-change-the-default-timeout-for-kernel-com.patch
+queue-5.12/drm-zte-don-t-select-drm_kms_fb_helper.patch
+queue-5.12/drm-nouveau-don-t-set-allow_fb_modifiers-explicitly.patch
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
