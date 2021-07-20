@@ -1,73 +1,69 @@
-Return-Path: <SRS0=TxJc=MN=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=LAsz=MO=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A5C2EC636C9
-	for <nouveau@archiver.kernel.org>; Wed, 21 Jul 2021 17:56:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 651F0C07E9D
+	for <nouveau@archiver.kernel.org>; Thu, 22 Jul 2021 03:10:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 67E5160E0C
-	for <nouveau@archiver.kernel.org>; Wed, 21 Jul 2021 17:56:09 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 67E5160E0C
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=poorly.run
+	by mail.kernel.org (Postfix) with ESMTPS id CD99B61208
+	for <nouveau@archiver.kernel.org>; Thu, 22 Jul 2021 03:10:05 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CD99B61208
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=uniontech.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1D116EB74;
-	Wed, 21 Jul 2021 17:56:08 +0000 (UTC)
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com
- [IPv6:2607:f8b0:4864:20::82a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B34B6EBED
- for <nouveau@lists.freedesktop.org>; Wed, 21 Jul 2021 17:56:07 +0000 (UTC)
-Received: by mail-qt1-x82a.google.com with SMTP id k3so2462311qtq.7
- for <nouveau@lists.freedesktop.org>; Wed, 21 Jul 2021 10:56:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=GUwvh6F0pQ4ZVFR78iCJytl/tOQMbNgvBCeSAoGO32w=;
- b=SA4Zrn25cfpJIaL1oes57Z7JCR3eBnrUW+LbmmYg2NoYKgy89T9xfgbzU26RKLeq85
- /56pmzOU/P8oZ7k66zL0/6gKhIeI0QYTfOOoLVgK/9JGhAdVi3VvLnNCgKxbNbnNqXcC
- FRPqIWTf1PlLHiTcakkqVqYqmdHe+kwYxVFAgBdESqvkiu0A9GWBR7u3l53u43iGwGbo
- NQFEW8EOKuza0N5jXmKEjzmLyr42gzcq8dDjIEn+1U58Ea93QgSI6eYldtPtgMY5zdId
- FK46NymLFaDajXeqq/p+XcQGzj++BXlSCDOr1KV38bOinIyLVLtYl6r5rtna+1PRMcGH
- QNgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=GUwvh6F0pQ4ZVFR78iCJytl/tOQMbNgvBCeSAoGO32w=;
- b=GExT1zhiEgR+WZe6ec2YHZUaWOLI7wn4q37YPz67J6gGEVHdFU4dxNJWAGn10TukQf
- MJvYYo4HvMzv0k5JsV0wwGcK4MIer3UusyNlS0eK+WC+sN1PoqIoOKL7h1UkFg19eXVy
- HGnGXHETBMti/AV5i36BI4GF3EF2jCFQWGeUU6eSIvPcaBTqDkHYbB0mKRPl05owI7TU
- 8nkLxmXjcwZWmaDamhoChgZbXJJ6vWvqRTTBu3Ym5Cr1u1hjTPHjQBG7tQKBYke9eFDG
- ts0K6cBxNBUj4dGlZuPB6nNi6ttqUeVVenDO2bYlcFrsOUIPYjD0vtNGxVMMHZiNSfsX
- Hs7A==
-X-Gm-Message-State: AOAM530akHwOlXD4Jl7rGL78af1HP8ZHxpgefGqfx/bECeOqNFlGVfqF
- 7nFNf/uDm1+eAohjO7oGO5Cfvg==
-X-Google-Smtp-Source: ABdhPJxqL3Z3uzLnVy2E2LxuR435PtjjUG1Jd5JQfh+eyTJXtq/EnC0WqJtxzZimSwr0+IVbfvjjjQ==
-X-Received: by 2002:ac8:531a:: with SMTP id t26mr32998247qtn.207.1626890166796; 
- Wed, 21 Jul 2021 10:56:06 -0700 (PDT)
-Received: from localhost ([167.100.64.199])
- by smtp.gmail.com with ESMTPSA id ay31sm1780760qkb.41.2021.07.21.10.56.06
- (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 21 Jul 2021 10:56:06 -0700 (PDT)
-From: Sean Paul <sean@poorly.run>
-To: dri-devel@lists.freedesktop.org, ppaalanen@gmail.com,
- maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, airlied@linux.ie,
- daniel.vetter@ffwll.ch
-Date: Wed, 21 Jul 2021 13:55:15 -0400
-Message-Id: <20210721175526.22020-9-sean@poorly.run>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210721175526.22020-1-sean@poorly.run>
-References: <20210721175526.22020-1-sean@poorly.run>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 249E46E9F9;
+	Thu, 22 Jul 2021 03:10:05 +0000 (UTC)
+X-Greylist: delayed 453 seconds by postgrey-1.36 at gabe;
+ Tue, 20 Jul 2021 05:22:54 UTC
+Received: from smtphy.263.net (syd-smtp02.263.net [13.237.61.158])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59B8D89F85;
+ Tue, 20 Jul 2021 05:22:54 +0000 (UTC)
+Received: from smtp.263.net (unknown [211.157.147.163])
+ by smtphy.263.net (Postfix) with ESMTPS id 3FB581200B7;
+ Tue, 20 Jul 2021 13:15:19 +0800 (CST)
+Received: from regular1.263xmail.com (unknown [192.168.165.233])
+ by smtp.263.net (Postfix) with ESMTP id 3386A24D;
+ Tue, 20 Jul 2021 13:15:13 +0800 (CST)
+Received: from localhost (unknown [192.168.167.16])
+ by regular1.263xmail.com (Postfix) with ESMTP id A54EEF12;
+ Tue, 20 Jul 2021 13:15:10 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED: 0
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from localhost.localdomain (unknown [111.207.172.18])
+ by smtp.263.net (postfix) whith ESMTP id
+ P12365T139710519256832S1626758110822022_; 
+ Tue, 20 Jul 2021 13:15:11 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <cb6bf40f8de7bb7e8a6f4f4a9a8d4a86>
+X-RL-SENDER: zhaoxiao@uniontech.com
+X-SENDER: zhaoxiao@uniontech.com
+X-LOGIN-NAME: zhaoxiao@uniontech.com
+X-FST-TO: airlied@linux.ie
+X-RCPT-COUNT: 7
+X-SENDER-IP: 111.207.172.18
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From: zhaoxiao <zhaoxiao@uniontech.com>
+To: airlied@linux.ie,
+	daniel@ffwll.ch
+Date: Tue, 20 Jul 2021 13:15:08 +0800
+Message-Id: <20210720051509.30044-1-zhaoxiao@uniontech.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Nouveau] [RESEND PATCH v6 08/14] drm/nouveau: Change debug checks
- to specifically target syslog
+X-Mailman-Approved-At: Thu, 22 Jul 2021 03:10:04 +0000
+Subject: [Nouveau] [PATCH] drivers/gpu/drm/nouveau/dispnv50/headc57d.c: mark
+ headc57d_olut() as static
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,52 +75,32 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, Sean Paul <seanpaul@chromium.org>,
- Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: nouveau@lists.freedesktop.org, zhaoxiao <zhaoxiao@uniontech.com>,
+ bskeggs@redhat.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Sean Paul <seanpaul@chromium.org>
-
-Since the logs protected by these checks specifically target syslog,
-use the new drm_debug_syslog_enabled() call to avoid triggering
-these prints when only trace is enabled.
-
-Signed-off-by: Sean Paul <seanpaul@chromium.org>
-Link: https://patchwork.freedesktop.org/patch/msgid/20200608210505.48519-9-sean@poorly.run #v5
-
-Changes in v5:
--Added to the set
-Changes in v6:
--Rebased on drm-tip, changes in dispnv50/disp.h were rebased out
----
- drivers/gpu/drm/nouveau/nouveau_drv.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index ba65f136cf48..2caa5720f451 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -260,11 +260,11 @@ void nouveau_drm_device_remove(struct drm_device *dev);
- #define NV_INFO(drm,f,a...) NV_PRINTK(info, &(drm)->client, f, ##a)
- 
- #define NV_DEBUG(drm,f,a...) do {                                              \
--	if (drm_debug_enabled(DRM_UT_DRIVER))                                  \
-+	if (drm_debug_syslog_enabled(DRM_UT_DRIVER))                                  \
- 		NV_PRINTK(info, &(drm)->client, f, ##a);                       \
- } while(0)
- #define NV_ATOMIC(drm,f,a...) do {                                             \
--	if (drm_debug_enabled(DRM_UT_ATOMIC))                                  \
-+	if (drm_debug_syslog_enabled(DRM_UT_ATOMIC))                                  \
- 		NV_PRINTK(info, &(drm)->client, f, ##a);                       \
- } while(0)
- 
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
-
-_______________________________________________
-Nouveau mailing list
-Nouveau@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
+Rml4ZXMgdGhlIGZvbGxvd2luZyBXPTEga2VybmVsIGJ1aWxkIHdhcm5pbmcocyk6Cgpkcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9oZWFkYzU3ZC5jOjE3MzoxOiB3YXJuaW5nOiBubyBw
+cmV2aW91cyBwcm90b3R5cGUgZm9yIOKAmGhlYWRjNTdkX29sdXTigJkgWy1XbWlzc2luZy1wcm90
+b3R5cGVzXQpoZWFkYzU3ZF9vbHV0KHN0cnVjdCBudjUwX2hlYWQgKmhlYWQsIHN0cnVjdCBudjUw
+X2hlYWRfYXRvbSAqYXN5aCwgaW50IHNpemUpCgpBbmQgbm8gaGVhZGVyIGZpbGUgZGVmaW5lIGEg
+cHJvdG90eXBlIGZvciB0aGlzIGZ1bmN0aW9uLCBzbyB3ZSBzaG91bGQKbWFyayBpdCBhcyBzdGF0
+aWMuCgpTaWduZWQtb2ZmLWJ5OiB6aGFveGlhbyA8emhhb3hpYW9AdW5pb250ZWNoLmNvbT4KLS0t
+CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9oZWFkYzU3ZC5jIHwgMiArLQogMSBm
+aWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvaGVhZGM1N2QuYyBiL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWRjNTdkLmMKaW5kZXggZmQ1MTUyN2I1NmI4Li5iZGNm
+ZDI0MGQ2MWMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hl
+YWRjNTdkLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvaGVhZGM1N2Qu
+YwpAQCAtMTY5LDcgKzE2OSw3IEBAIGhlYWRjNTdkX29sdXRfbG9hZChzdHJ1Y3QgZHJtX2NvbG9y
+X2x1dCAqaW4sIGludCBzaXplLCB2b2lkIF9faW9tZW0gKm1lbSkKIAl3cml0ZXcocmVhZHcobWVt
+IC0gNCksIG1lbSArIDQpOwogfQogCi1ib29sCitzdGF0aWMgYm9vbAogaGVhZGM1N2Rfb2x1dChz
+dHJ1Y3QgbnY1MF9oZWFkICpoZWFkLCBzdHJ1Y3QgbnY1MF9oZWFkX2F0b20gKmFzeWgsIGludCBz
+aXplKQogewogCWlmIChzaXplICE9IDAgJiYgc2l6ZSAhPSAyNTYgJiYgc2l6ZSAhPSAxMDI0KQot
+LSAKMi4yMC4xCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
