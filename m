@@ -7,46 +7,54 @@ X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5979FC636C8
-	for <nouveau@archiver.kernel.org>; Thu, 22 Jul 2021 03:10:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 37F54C6377D
+	for <nouveau@archiver.kernel.org>; Thu, 22 Jul 2021 03:10:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D184A61208
-	for <nouveau@archiver.kernel.org>; Thu, 22 Jul 2021 03:10:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D184A61208
+	by mail.kernel.org (Postfix) with ESMTPS id EF91161208
+	for <nouveau@archiver.kernel.org>; Thu, 22 Jul 2021 03:10:10 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EF91161208
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=uniontech.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=nouveau-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44D096EB9D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FD2E6EEAA;
 	Thu, 22 Jul 2021 03:10:05 +0000 (UTC)
-X-Greylist: delayed 429 seconds by postgrey-1.36 at gabe;
- Wed, 21 Jul 2021 01:23:58 UTC
-Received: from qq.com (unknown [183.3.255.213])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCB9789C60;
- Wed, 21 Jul 2021 01:23:58 +0000 (UTC)
-X-QQ-mid: bizesmtp43t1626830166tcfq04q1
+X-Greylist: delayed 2726 seconds by postgrey-1.36 at gabe;
+ Tue, 20 Jul 2021 06:00:39 UTC
+Received: from regular1.263xmail.com (regular1.263xmail.com [211.150.70.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 849B589DF9;
+ Tue, 20 Jul 2021 06:00:39 +0000 (UTC)
+Received: from localhost (unknown [192.168.167.13])
+ by regular1.263xmail.com (Postfix) with ESMTP id 6F0061BFD;
+ Tue, 20 Jul 2021 14:00:36 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED: 0
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
 Received: from localhost.localdomain (unknown [111.207.172.18])
- by esmtp6.qq.com (ESMTP) with 
- id ; Wed, 21 Jul 2021 09:16:05 +0800 (CST)
-X-QQ-SSF: 00400000008000209000B00A0000000
-X-QQ-FEAT: Bz4iJZMGBshKP32tryI7ouacP2lfin6x1ddkHk6YXAxVdMbxioWR/Ovj7cTQ6
- GUdhlecI3ZtlXk+koIbEV2HKSfpVAAWgC3IpjqM7aZqe+VCSgr0HO/quJF+xFTMz/euA1nD
- +XWShZBNQDdEn8EQCZdGKcHFVnWPzINE/FdZ88op27OLr6y7nnQiPxxBx+A5E+WqJxDuf7Q
- CH9HgVDA6G+vkSdlUImUhKwxwdjNqJ/kCTU1JD8/j3XxLTDmd2STkNFf8H+EHZqDnYLCQde
- 4SlckoJT0oEmyGsp4m+PPo4DGN8YM1TzN/NQS6n5FjoOSOy6mtI3JtfY4CIMgn4gIsLWMjv
- 5qKVsgk
-X-QQ-GoodBg: 2
+ by smtp.263.net (postfix) whith ESMTP id
+ P30160T139874264110848S1626760826533946_; 
+ Tue, 20 Jul 2021 14:00:36 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <b85de854ca89f4566868732de4f340b9>
+X-RL-SENDER: zhaoxiao@uniontech.com
+X-SENDER: zhaoxiao@uniontech.com
+X-LOGIN-NAME: zhaoxiao@uniontech.com
+X-FST-TO: airlied@linux.ie
+X-RCPT-COUNT: 7
+X-SENDER-IP: 111.207.172.18
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
 From: zhaoxiao <zhaoxiao@uniontech.com>
 To: airlied@linux.ie,
 	daniel@ffwll.ch
-Date: Wed, 21 Jul 2021 09:15:54 +0800
-Message-Id: <20210721011554.24658-1-zhaoxiao@uniontech.com>
+Date: Tue, 20 Jul 2021 14:00:25 +0800
+Message-Id: <20210720060025.25492-1-zhaoxiao@uniontech.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:uniontech.com:qybgforeign:qybgforeign1
-X-QQ-Bgrelay: 1
 X-Mailman-Approved-At: Thu, 22 Jul 2021 03:10:04 +0000
 Subject: [Nouveau] [PATCH] drivers/gpu/drm/nouveau/nouveau_bo: Remove a
  bunch of unused variables
