@@ -2,57 +2,54 @@ Return-Path: <SRS0=kkl2=MQ=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8F4FBC4338F
-	for <nouveau@archiver.kernel.org>; Sat, 24 Jul 2021 04:31:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E1919C432BE
+	for <nouveau@archiver.kernel.org>; Sat, 24 Jul 2021 04:31:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 36A056052B
-	for <nouveau@archiver.kernel.org>; Sat, 24 Jul 2021 04:31:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 36A056052B
+	by mail.kernel.org (Postfix) with ESMTPS id 9D46F60E73
+	for <nouveau@archiver.kernel.org>; Sat, 24 Jul 2021 04:31:26 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 9D46F60E73
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E0CA6FC89;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE3BD6FE65;
 	Sat, 24 Jul 2021 04:31:22 +0000 (UTC)
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC2E16FC27;
- Fri, 23 Jul 2021 18:40:38 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D70C460F21;
- Fri, 23 Jul 2021 18:40:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DD266EABD;
+ Fri, 23 Jul 2021 10:16:49 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2EE4A60E73;
+ Fri, 23 Jul 2021 10:16:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1627065637;
- bh=luXtGcA9XPkn2pKeuXVILcPOHo+qWZTOu992ZyXafQg=;
+ s=k20201202; t=1627035409;
+ bh=eBzt2n0xOqHlBvF7aRsjRRJPQRR0GZoHKCArOqHMbnA=;
  h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=N83j4dx3rfgzlrRme4TcsorPA3CwCjlYZTPM33Jyuu5g1ZFvrbAHK2bAaJG+hdmG0
- hw4wiFRurvy5qLdIXD/jJMuUTRK55/Zyq1SHsITZ1PxD/nANq7uea7MJeEe4jJGklt
- RScFbpJrFaNHDHSC0ibEy3+SX+3454CDR5eai2/u+EzZIZKAUyRrt/FWB+HWCSjBWR
- 3fNyj1im4apMuZSUXjAjCj0uGL3hPloYHnxqhVBBxc7UR21uRr9wy1tDCgeJAltvT0
- oVvrJo3YOpzgXI2lpBpYGicBY+ir8bpx/qrVBXlHs3/VacQ/0dOuS+AFXQX5oBVVco
- GdQN4tYxbg/0g==
-Received: by mail-wr1-f48.google.com with SMTP id q3so3415553wrx.0;
- Fri, 23 Jul 2021 11:40:37 -0700 (PDT)
-X-Gm-Message-State: AOAM532J2oUyXdvy6eL50E/6bvODxVKgN7fb3LNv40F1Fp+anVrisuRC
- 2h6LDMmsusX3RoSu0Mf97ynw0a5Pnxl/1rhll0A=
-X-Google-Smtp-Source: ABdhPJwMCndPGt5XAO6Dm7un4OXszpJWIOXjaITxEdSd5iU9hBRvRdKTCo042U0vc2Fd3fqthaHa2RFxAK6soz4ZCx0=
-X-Received: by 2002:a5d:65cb:: with SMTP id e11mr6959840wrw.105.1627065636499; 
- Fri, 23 Jul 2021 11:40:36 -0700 (PDT)
+ b=gUd3YBzYI3+ChqWwG8xG/YcyCyhLt4pdo/xN/vW5wpAXrWUFVx3R7ty+D33jEix6w
+ sJ9VTEbzDcrVJAG6DGe7ZDpU2BszjzR8pBEuGxcPkmfTyonYCjm189FWGXg3KXhoES
+ /4Qq8g7chg6tVPo11uw3Mt+zAFRW7B+aUSC8olGh/Q0UmiYClcAFcEdMF/xxPaSLkm
+ 8bCZY4Kt+1XCdpbt7DXpg8vOFaUUV+Zs5QQBW9/Z/g60o5+zF2+lSvqsD4qRHmhWUI
+ yrllJ0uG6byClZ+uRF0kLsh2uFnkLmkF1ITL0iX1vJ8jYjcCy2rIGP9/91blbZH985
+ RnVtr6I0mQy5g==
+Received: by mail-wm1-f46.google.com with SMTP id k4so488815wms.3;
+ Fri, 23 Jul 2021 03:16:49 -0700 (PDT)
+X-Gm-Message-State: AOAM530qGei2gvPnywdz0Cp9dKDvsOPrWvhYbSIvFza5w56bAR76ih2G
+ PBgHnyHxIcg+6DMzJdjStUwmDy1Sinmg+ZeL9pw=
+X-Google-Smtp-Source: ABdhPJwBriPt4dTcNwE3BGv5cf7FScUwWKH8mN6ZDjljoRtKp64H/dz4+H7KChwVJTdiPt+6EDqL+lbLXkOOxsq0TXs=
+X-Received: by 2002:a7b:c385:: with SMTP id s5mr3670132wmj.43.1627035407814;
+ Fri, 23 Jul 2021 03:16:47 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210723091534.1730564-1-arnd@kernel.org>
- <a618e29a-e4b7-bda4-a3e0-7dfd67d64e92@infradead.org>
- <CACO55tvQoCnjQWRJhrJ+8TzY5MuDDSUSnwd5AU8G1qsQYCSCBg@mail.gmail.com>
- <7ddd0c7c-9bdc-9ea3-c635-f1d141d1e870@infradead.org>
- <CACO55ttjQO5kUeEA7opvGLAwT+a1t0vAguncKDhB4bdy96K7LA@mail.gmail.com>
-In-Reply-To: <CACO55ttjQO5kUeEA7opvGLAwT+a1t0vAguncKDhB4bdy96K7LA@mail.gmail.com>
+ <CAKMK7uHG0T7kgHzrkxoGj+Cv1-5f=GaH1CviunoZd_wEL5G4YQ@mail.gmail.com>
+In-Reply-To: <CAKMK7uHG0T7kgHzrkxoGj+Cv1-5f=GaH1CviunoZd_wEL5G4YQ@mail.gmail.com>
 From: Arnd Bergmann <arnd@kernel.org>
-Date: Fri, 23 Jul 2021 20:40:19 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a0YiAgTLptmPbK6vczkMi7F=tzE-Ae8GPFnBtbvQnoF0Q@mail.gmail.com>
-Message-ID: <CAK8P3a0YiAgTLptmPbK6vczkMi7F=tzE-Ae8GPFnBtbvQnoF0Q@mail.gmail.com>
-To: Karol Herbst <kherbst@redhat.com>
+Date: Fri, 23 Jul 2021 12:16:31 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3xjS-zJFiQgjYDz2Gja4KBeHWyrQX4PrbkkZfEV2OJgg@mail.gmail.com>
+Message-ID: <CAK8P3a3xjS-zJFiQgjYDz2Gja4KBeHWyrQX4PrbkkZfEV2OJgg@mail.gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
 X-Mailman-Approved-At: Sat, 24 Jul 2021 04:31:21 +0000
 Subject: Re: [Nouveau] [PATCH] drm/nouveau/kms/nv50-: fix build failure with
  CONFIG_BACKLIGHT=n
@@ -68,38 +65,61 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: Arnd Bergmann <arnd@arndb.de>, David Airlie <airlied@linux.ie>,
- nouveau <nouveau@lists.freedesktop.org>, Randy Dunlap <rdunlap@infradead.org>,
- LKML <linux-kernel@vger.kernel.org>,
+ Nouveau Dev <nouveau@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  dri-devel <dri-devel@lists.freedesktop.org>,
  Nikola Cornij <nikola.cornij@amd.com>, Ben Skeggs <bskeggs@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jul 23, 2021 at 6:34 PM Karol Herbst <kherbst@redhat.com> wrote:
-> On Fri, Jul 23, 2021 at 6:31 PM Randy Dunlap <rdunlap@infradead.org> wrote:
-> > On 7/23/21 8:15 AM, Karol Herbst wrote:
-> > > On Fri, Jul 23, 2021 at 5:10 PM Randy Dunlap <rdunlap@infradead.org> wrote:
-> > >
-> > > what's actually the use case of compiling with
-> > > CONFIG_DRM_NOUVEAU_BACKLIGHT=n anyway?
-> >
-> > Dunno. In this case it was just a randconfig. Still, it needs to be
-> > handled in some way - such as the other suggestion in this thread.
-> >
+On Fri, Jul 23, 2021 at 11:25 AM Daniel Vetter <daniel@ffwll.ch> wrote:
 >
-> sure, I was just curious if there was a specific use case or just
-> something random as you mentioned.
+> On Fri, Jul 23, 2021 at 11:15 AM Arnd Bergmann <arnd@kernel.org> wrote:
+> >
+> > From: Arnd Bergmann <arnd@arndb.de>
+> >
+> > When the backlight support is disabled, the driver fails to build:
+> >
+> > drivers/gpu/drm/nouveau/dispnv50/disp.c: In function 'nv50_sor_atomic_disable':
+> > drivers/gpu/drm/nouveau/dispnv50/disp.c:1665:59: error: 'struct nouveau_connector' has no member named 'backlight'
+> >  1665 |         struct nouveau_backlight *backlight = nv_connector->backlight;
+> >       |                                                           ^~
+> > drivers/gpu/drm/nouveau/dispnv50/disp.c:1670:35: error: invalid use of undefined type 'struct nouveau_backlight'
+> >  1670 |         if (backlight && backlight->uses_dpcd) {
+> >       |                                   ^~
+> > drivers/gpu/drm/nouveau/dispnv50/disp.c:1671:64: error: invalid use of undefined type 'struct nouveau_backlight'
+> >  1671 |                 ret = drm_edp_backlight_disable(aux, &backlight->edp_info);
+> >       |                                                                ^~
+> >
+> > The patch that introduced the problem already contains some #ifdef
+> > checks, so just add another one that makes it build again.
+> >
+> > Fixes: 6eca310e8924 ("drm/nouveau/kms/nv50-: Add basic DPCD backlight support for nouveau")
+> > Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+>
+> Can we just toss the idea that BACKTLIGHT=n is a reasonable config for
+> drm drivers using backlights, and add depends BACKLIGHT to all of
+> them?
+>
+> I mean this is a perfect source of continued patch streams to keep us
+> all busy, but beyond that I really don't see the point ... I frankly
+> have better things to do, and especially with the big drivers we have
+> making backlight optional saves comparitively nothing.
+> -Daniel
 
-I think this is purely done because of tradition. A long time ago, we had
-tiny framebuffer drivers and most PCs did not have backlights, so it
-made sense to leave this optional.
+Yes! I'd definitely be in favor of that, I've wasted way too much time trying
+to sort through dependency loops and other problems with backlight support.
 
-This was probably just always carried over.
+Maybe we should leave the drivers/video/fbdev/ drivers untouched in this
+regard, at least for the moment, but for the drivers/gpu/drm users of
+backlight that would be a nice simplification, and even the smallest ones
+are unlikely to be used on systems that are too memory constrained to
+deal with 4KB extra .text.
 
-         Arnd
+       Arnd
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
