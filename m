@@ -2,53 +2,60 @@ Return-Path: <SRS0=dyAU=MR=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DAC86C4338F
-	for <nouveau@archiver.kernel.org>; Sun, 25 Jul 2021 01:58:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E9BBEC432BE
+	for <nouveau@archiver.kernel.org>; Sun, 25 Jul 2021 01:58:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A267760EAF
-	for <nouveau@archiver.kernel.org>; Sun, 25 Jul 2021 01:58:17 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org A267760EAF
+	by mail.kernel.org (Postfix) with ESMTPS id B46B260E9C
+	for <nouveau@archiver.kernel.org>; Sun, 25 Jul 2021 01:58:18 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org B46B260E9C
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 076646EB3B;
-	Sun, 25 Jul 2021 01:58:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 322856FA58;
+	Sun, 25 Jul 2021 01:58:11 +0000 (UTC)
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 216296F8B1;
- Sat, 24 Jul 2021 06:55:49 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B4CAA60E9C;
- Sat, 24 Jul 2021 06:55:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E363B6E15C;
+ Sat, 24 Jul 2021 14:58:24 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8D13C60EB0;
+ Sat, 24 Jul 2021 14:58:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1627109748;
- bh=B80hoZZe2OO2rx4q7PEXznNCfVJkARWnoc3HG9wphzQ=;
+ s=k20201202; t=1627138704;
+ bh=NbqjL70DokqVvV19hzj4hiRcYchamdVrDx6kJEYgsgM=;
  h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=TPKBM4kCRjp6Dl8ERLme76Rqlot6iiRhwW3z4TPWOVwJ2+9Fs7xi3Zn1wR65TDQzs
- +ShXgwh64Rr4gLPIR4VuUZkIz0OY9RiIfMRMXzp7UfbQ4TYAxMB/6h+FkH5YixH7Mt
- lrpas+gEwhRV+I2mWemvQGFGlFEwDMXGatnDxi6EAfXWE4PiZJCSn0skFbJHbX35Xl
- /gaXVW99pnGOl9cTVxwf+iOWbIy6bs8vzvD3ASuwS+WbTB4SaclRIJXThFKv8svHYe
- 6WcRzdgCguxxYdkGK98bznKXi0tNj6T25JyB7YFOlFtiVg89XECJFR7br5nvLe+etP
- MBb+1mV8DeOnQ==
-Received: by mail-wm1-f51.google.com with SMTP id
- a80-20020a1c98530000b0290245467f26a4so2943898wme.0; 
- Fri, 23 Jul 2021 23:55:48 -0700 (PDT)
-X-Gm-Message-State: AOAM530uWyeAA9JzLAyAAi7C0idhgv+inbOPkn8+5cIq9UZ8nxDrdoFq
- 3gNDRBcB41QQAAcTUMeLOPNKapgAvZnh5ugvVdg=
-X-Google-Smtp-Source: ABdhPJyR72GsEjxAav2mThfrkDdq7Q7rsOokZHAxvRhxua1hNtotzPz//554fpJOxQYtC+mHVkp1i/zd0EA29NRxVbU=
-X-Received: by 2002:a7b:c385:: with SMTP id s5mr7491845wmj.43.1627109747390;
- Fri, 23 Jul 2021 23:55:47 -0700 (PDT)
+ b=IqSXjpLTIn6PxzBXLoGz2wvI8STZMkUsHdjULHm/QAiDJCK+FFPSya+ZsEpV67SUs
+ kgR1JNugBg+D2Qks7kJFatUrRasJVjUvGcik3Ul3RShflNDK0dr7wg8/jEltdYTZ9R
+ ha3JphNjP26TV/QlbYJu9yCxHPcg6mrWnQlVQeJfq5rvpDave68y1YC8Z/nZbOBwe2
+ sGCkJxS/4ayx4GTKbEXZIqu5+6/IFD6WYPTW0gPzq/++Gp73sGAXgc2HFa2MWc10rR
+ O1BcDMmAHJQxOAhIKWEFDFMV27tSa/mrPNvB8yJbIvHNelvgaNBeFr3BVXMZnIaKUx
+ /GqLkL2h2B3sA==
+Received: by mail-wm1-f52.google.com with SMTP id
+ j34-20020a05600c1c22b029024e75084404so2419267wms.1; 
+ Sat, 24 Jul 2021 07:58:24 -0700 (PDT)
+X-Gm-Message-State: AOAM530caWDz+p9EhoQPx+C5sETviO8TtC7q+2ol1VXLR4Altw2zgAlq
+ 8QMjKRDpb8MA89VvNlcYfljr9MptXEHdU91zLfE=
+X-Google-Smtp-Source: ABdhPJwltPl/wWX13/CxEFCAvNsrOMzwCqFUDp745ygruk3669M6BQP+fmfDf7Z3x+vjqYFjPYCieuVIF4EIc3uZU8w=
+X-Received: by 2002:a1c:4e0c:: with SMTP id g12mr18758940wmh.120.1627138703148; 
+ Sat, 24 Jul 2021 07:58:23 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210723224617.3088886-1-kherbst@redhat.com>
-In-Reply-To: <20210723224617.3088886-1-kherbst@redhat.com>
+ <CAK8P3a3u_jsxQW4dPXtsdKkw1mjKXL-h=qN1SGHytvUMPf3fPw@mail.gmail.com>
+ <CACO55tuNWk6emjnnukgv9h-9jbpVP564Ogmi7TGbybc9n5v+ZQ@mail.gmail.com>
+ <CAK8P3a1BceSaiqkTf+9Pr4Br-G3kgqD4ztwiaS7fxNiUg9t7Dg@mail.gmail.com>
+ <CACO55tsoi2akTKvFdz3p48UHRjFXDW7dUnOM8qVePBFWet-3UQ@mail.gmail.com>
+ <CACO55tuceMUz2pgOM23wvcmtaTqbo6S6rCB+mfLptqJRt=fMWA@mail.gmail.com>
+ <CAK8P3a3+AD02-8nbULMdae2Hc=hJ+-Zb_CL+bHF-9oGieYiZWQ@mail.gmail.com>
+ <CACO55tswMuDE9u3asU2Ls7BhA0uKGGarLk+E-WTD6MVnLwc3tw@mail.gmail.com>
+In-Reply-To: <CACO55tswMuDE9u3asU2Ls7BhA0uKGGarLk+E-WTD6MVnLwc3tw@mail.gmail.com>
 From: Arnd Bergmann <arnd@kernel.org>
-Date: Sat, 24 Jul 2021 08:55:31 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a3u_jsxQW4dPXtsdKkw1mjKXL-h=qN1SGHytvUMPf3fPw@mail.gmail.com>
-Message-ID: <CAK8P3a3u_jsxQW4dPXtsdKkw1mjKXL-h=qN1SGHytvUMPf3fPw@mail.gmail.com>
+Date: Sat, 24 Jul 2021 16:58:06 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a0i0WP24Z0TScmPqKxmM2ovtKnmm+qZq6+Tc1ju+hma0w@mail.gmail.com>
+Message-ID: <CAK8P3a0i0WP24Z0TScmPqKxmM2ovtKnmm+qZq6+Tc1ju+hma0w@mail.gmail.com>
 To: Karol Herbst <kherbst@redhat.com>
 X-Mailman-Approved-At: Sun, 25 Jul 2021 01:58:10 +0000
 Subject: Re: [Nouveau] [PATCH] nouveau: make backlight support non optional
@@ -73,31 +80,66 @@ Content-Transfer-Encoding: 7bit
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Sat, Jul 24, 2021 at 12:47 AM Karol Herbst <kherbst@redhat.com> wrote:
+On Sat, Jul 24, 2021 at 4:14 PM Karol Herbst <kherbst@redhat.com> wrote:
 >
-> In the past this only led to compilation issues. Also the small amount of
-> extra .text shouldn't really matter compared to the entire nouveau driver
-> anyway.
->
+> we use the MXM_WMI in code. We also have to keep arm in mind and not
+> break stuff there. So I will try to play around with your changes and
+> see how that goes.
 
->         select DRM_TTM_HELPER
-> -       select BACKLIGHT_CLASS_DEVICE if DRM_NOUVEAU_BACKLIGHT
-> -       select ACPI_VIDEO if ACPI && X86 && BACKLIGHT_CLASS_DEVICE && INPUT
-> +       select BACKLIGHT_CLASS_DEVICE
-> +       select ACPI_VIDEO if ACPI && X86 && INPUT
->         select X86_PLATFORM_DEVICES if ACPI && X86
->         select ACPI_WMI if ACPI && X86
+Ok, should find any randconfig build failures for arm, arm64 or x86 over the
+weekend. I also this on linux-next today
 
-I think the logic needs to be the reverse: instead of 'select
-BACKLIGHT_CLASS_DEVICE',
-this should be 'depends on BACKLIGHT_CLASS_DEVICE', and the same for ACPI_VIDEO.
+ld: drivers/gpu/drm/i915/display/intel_panel.o: in function
+`intel_backlight_device_register':
+intel_panel.c:(.text+0x2804): undefined reference to `backlight_device_register'
+ld: intel_panel.c:(.text+0x284e): undefined reference to
+`backlight_device_register'
+ld: drivers/gpu/drm/i915/display/intel_panel.o: in function
+`intel_backlight_device_unregister':
+intel_panel.c:(.text+0x28b1): undefined reference to
+`backlight_device_unregister'
 
-We may want to add 'default DRM || FB' to BACKLIGHT_CLASS_DEVICE in the
-process so we don't lose it for users doing 'make oldconfig' or 'make defconfig'
+and I added this same thing there to see how it goes:
 
-The rest of the patch looks good to me.
+diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+index 87825d36335b..69c6b7aec49e 100644
+--- a/drivers/gpu/drm/i915/Kconfig
++++ b/drivers/gpu/drm/i915/Kconfig
+@@ -3,6 +3,8 @@ config DRM_I915
+        tristate "Intel 8xx/9xx/G3x/G4x/HD Graphics"
+        depends on DRM
+        depends on X86 && PCI
++       depends on ACPI_VIDEO || !ACPI
++       depends on BACKLIGHT_CLASS_DEVICE
+        select INTEL_GTT
+        select INTERVAL_TREE
+        # we need shmfs for the swappable backing store, and in particular
+@@ -16,10 +18,6 @@ config DRM_I915
+        select IRQ_WORK
+        # i915 depends on ACPI_VIDEO when ACPI is enabled
+        # but for select to work, need to select ACPI_VIDEO's dependencies, ick
+-       select DRM_I915_BACKLIGHT if ACPI
+-       select INPUT if ACPI
+-       select ACPI_VIDEO if ACPI
+-       select ACPI_BUTTON if ACPI
+        select SYNC_FILE
+        select IOSF_MBI
+        select CRC32
+@@ -64,13 +62,7 @@ config DRM_I915_FORCE_PROBE
+          Use "*" to force probe the driver for all known devices.
 
-       Arnd
+ config DRM_I915_BACKLIGHT
+-       tristate "Control backlight support"
+-       depends on DRM_I915
+-       default DRM_I915
+-       select BACKLIGHT_CLASS_DEVICE
+-       help
+-          Say Y here if you want to control the backlight of your display
+-          (e.g. a laptop panel).
++       def_tristate DRM_I915
+
+ config DRM_I915_CAPTURE_ERROR
+        bool "Enable capturing GPU state following a hang"
 _______________________________________________
 Nouveau mailing list
 Nouveau@lists.freedesktop.org
