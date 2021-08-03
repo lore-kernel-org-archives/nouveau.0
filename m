@@ -2,68 +2,112 @@ Return-Path: <SRS0=Gwq6=M7=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 86979C4338F
-	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 86EE0C432BE
+	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4B83B6069E
-	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:12 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 4B83B6069E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id 234206069E
+	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:14 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 234206069E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD4F0899A5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBA1F899C4;
 	Sun,  8 Aug 2021 22:14:05 +0000 (UTC)
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C3B789DB5;
- Thu,  5 Aug 2021 06:50:59 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D182560EE8;
- Thu,  5 Aug 2021 06:50:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1628146258;
- bh=qMsPpqQgFUPSSPnZfZavNoLnNsZYb+hVgAtPZNQBy5w=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=ObhBf+NN4GqwQxNx/Lx+8AMAwuGlEvoXaj2dr50XEIYqzYy/HZE2xI7CL2r/XBdRm
- h7Jl0yGq7YppbC5Qi+io0LfpKg8+sqkjPa7VgkgDzQj7MZ8Za/g84FRPLsS/geIrib
- XeHHxL9J9xr5FwusDdEI8d630JA5vK4xwDEB/ag73EcJ8nyoA5iocv71E6axsMyg03
- MQJsYEqpOGmzbPpV4barhyJ1DNTVMGbVfR76rJJ/glh7MLH4aQwApNRc3MqRkjAboQ
- UO7cggith/pKaisdmkMHzNieFdV7GQLpIG3V5j64ROArAcaNQjL0LWYWAPOA436KVE
- lr78sf0ffppPw==
-Received: by mail-wr1-f54.google.com with SMTP id l18so5065705wrv.5;
- Wed, 04 Aug 2021 23:50:58 -0700 (PDT)
-X-Gm-Message-State: AOAM5332cUY1qq1cpgRM5svl93MYyCJ8j5W7K+QSo6MC5hEm4K4wBTp0
- PkHNgvbKa/IPX3m1fhge05g7guTBTfO7K7rkUNU=
-X-Google-Smtp-Source: ABdhPJznMWhOISmuIYDXrWpGkt4y1m+fqzTgxmRqDkmkTEHJHsPKR7IHYLL2Gk1DFScHpZ5gzgXyDTyRE3rrOBfVhqs=
-X-Received: by 2002:adf:f7c5:: with SMTP id a5mr3290312wrq.99.1628146257464;
- Wed, 04 Aug 2021 23:50:57 -0700 (PDT)
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A82289DFA
+ for <nouveau@lists.freedesktop.org>; Tue,  3 Aug 2021 16:10:39 +0000 (UTC)
+Date: Tue, 3 Aug 2021 18:10:33 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1628007036;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ZhCR89X1oG7iNKpxBHqwK160maOrSQVKgeomxdN0wRc=;
+ b=LwdXqV6TEL+jelWYIVu/L1AwkukJUhfDeR6fxf6HaCffMyf5pGalG64DdzD6SrFbnK74/x
+ PVNjb7a8JiALCQD3CJBVmxfKVnGPRCXtU70BUFy11admR5LtOLT9dQeI/ENtXdJ/CkhTdc
+ pZNvsYTpT+QPzjRhgzvNT0CjgoFJhxwmycapteSubpDkPSBjZ+FP8bxnvUSWW30Gz0Y7dW
+ 1ffy1Rr5tDaLDwQ1cWTtCeME4yw92tE3YUaDago5Lw9pEtw1H1L8au8do+a32W2/sN3gs0
+ btcFKclunpFVufnMA6+fMpSDPoeRfMtyi+RFwzALyjj/jtaWzgKiRMXG8gO4tg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1628007036;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ZhCR89X1oG7iNKpxBHqwK160maOrSQVKgeomxdN0wRc=;
+ b=CjGblo5JavDHAEsakSWenCqJ60bnDYFeC+TGn7n/YdarB5rRq+iJbcWjrVSzA5F0n0kDM4
+ Vc1wmHGVCRR8DGCA==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Hans de Goede <hdegoede@redhat.com>
+Cc: linux-kernel@vger.kernel.org, tglx@linutronix.de,
+ Peter Zijlstra <peterz@infradead.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Amit Kucheria <amitk@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Andy Lutomirski <luto@kernel.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Ben Segall <bsegall@google.com>, Borislav Petkov <bp@alien8.de>,
+ cgroups@vger.kernel.org, Christian Borntraeger <borntraeger@de.ibm.com>,
+ coresight@lists.linaro.org,
+ Daniel Bristot de Oliveira <bristot@redhat.com>,
+ Daniel Jordan <daniel.m.jordan@oracle.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Davidlohr Bueso <dave@stgolabs.net>,
+ "David S. Miller" <davem@davemloft.net>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Gonglei <arei.gonglei@huawei.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Guenter Roeck <linux@roeck-us.net>, Heiko Carstens <hca@linux.ibm.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "H. Peter Anvin" <hpa@zytor.com>, Ingo Molnar <mingo@kernel.org>,
+ Ingo Molnar <mingo@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
+ Jason Wang <jasowang@redhat.com>, Jean Delvare <jdelvare@suse.com>,
+ Jiri Kosina <jikos@kernel.org>, Jiri Olsa <jolsa@redhat.com>,
+ Joe Lawrence <joe.lawrence@redhat.com>,
+ Joel Fernandes <joel@joelfernandes.org>,
+ Johannes Weiner <hannes@cmpxchg.org>, John Stultz <john.stultz@linaro.org>,
+ Jonathan Corbet <corbet@lwn.net>, Josh Poimboeuf <jpoimboe@redhat.com>,
+ Josh Triplett <josh@joshtriplett.org>, Julian Wiedmann <jwi@linux.ibm.com>,
+ Juri Lelli <juri.lelli@redhat.com>, Karol Herbst <karolherbst@gmail.com>,
+ Karsten Graul <kgraul@linux.ibm.com>, kvm-ppc@vger.kernel.org,
+ Lai Jiangshan <jiangshanlai@gmail.com>, Len Brown <lenb@kernel.org>,
+ Len Brown <len.brown@intel.com>, Leo Yan <leo.yan@linaro.org>,
+ linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-crypto@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-edac@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-mm@kvack.org,
+ linux-pm@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-raid@vger.kernel.org, linux-s390@vger.kernel.org,
+ live-patching@vger.kernel.org, Mark Gross <mgross@linux.intel.com>,
+ Mark Rutland <mark.rutland@arm.com>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Mel Gorman <mgorman@suse.de>, Michael Ellerman <mpe@ellerman.id.au>,
+ "Michael S. Tsirkin" <mst@redhat.com>, Mike Leach <mike.leach@linaro.org>,
+ Mike Travis <mike.travis@hpe.com>, Miroslav Benes <mbenes@suse.cz>,
+ Namhyung Kim <namhyung@kernel.org>, netdev@vger.kernel.org,
+ nouveau@lists.freedesktop.org, "Paul E. McKenney" <paulmck@kernel.org>,
+ Paul Mackerras <paulus@samba.org>, Pavel Machek <pavel@ucw.cz>,
+ Pekka Paalanen <ppaalanen@gmail.com>,
+ Petr Mladek <pmladek@suse.com>, platform-driver-x86@vger.kernel.org,
+ "Rafael J. Wysocki" <rjw@rjwysocki.net>, rcu@vger.kernel.org,
+ virtualization@lists.linux-foundation.org, x86@kernel.org
+Message-ID: <20210803161033.vp3o34meyw3ek43z@linutronix.de>
+References: <20210803141621.780504-1-bigeasy@linutronix.de>
+ <83dc5dfd-1ed0-f428-826f-fb819911fc89@redhat.com>
 MIME-Version: 1.0
-References: <CAK8P3a0i0WP24Z0TScmPqKxmM2ovtKnmm+qZq6+Tc1ju+hma0w@mail.gmail.com>
- <20210804141049.499767-1-kherbst@redhat.com>
- <CAK8P3a136c_L3yVn-841Sbfib9UMOf1M-pk+2SqWt0wD2zfRKQ@mail.gmail.com>
- <CACO55tsLpURTm=Jf=4gRVtYQbit5h2OBYw_MFb6Vf1PFvTV7dw@mail.gmail.com>
- <CACO55tuy5Am9zbcR490KWYYAg7MguBN5m82vbjzifGN5KpGbxw@mail.gmail.com>
- <CAK8P3a3hZ7X5+kM5E+_Y+COUp49Kt6iDjiqMFtimiSbPk4byzQ@mail.gmail.com>
- <CACO55tsj_dgo8NENArCQ_=qcuJoMPg9k-gfkWxZ_8FCQUOTY1A@mail.gmail.com>
-In-Reply-To: <CACO55tsj_dgo8NENArCQ_=qcuJoMPg9k-gfkWxZ_8FCQUOTY1A@mail.gmail.com>
-From: Arnd Bergmann <arnd@kernel.org>
-Date: Thu, 5 Aug 2021 08:50:41 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a1rAr0BH6cNLkhES+81x2hWW31RTLZkHLDJYK-r8+x6Gg@mail.gmail.com>
-Message-ID: <CAK8P3a1rAr0BH6cNLkhES+81x2hWW31RTLZkHLDJYK-r8+x6Gg@mail.gmail.com>
-To: Karol Herbst <kherbst@redhat.com>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Lyude Paul <lyude@redhat.com>, 
- Ben Skeggs <bskeggs@redhat.com>, Randy Dunlap <rdunlap@infradead.org>, 
- Daniel Vetter <daniel@ffwll.ch>, ML nouveau <nouveau@lists.freedesktop.org>, 
- dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <83dc5dfd-1ed0-f428-826f-fb819911fc89@redhat.com>
 X-Mailman-Approved-At: Sun, 08 Aug 2021 22:14:04 +0000
-Subject: Re: [Nouveau] [PATCH] depend on BACKLIGHT_CLASS_DEVICE for more
- devices
+Subject: Re: [Nouveau] [PATCH 00/38] Replace deprecated CPU-hotplug
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,48 +122,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Aug 5, 2021 at 12:01 AM Karol Herbst <kherbst@redhat.com> wrote:
->
-> On Wed, Aug 4, 2021 at 11:10 PM Arnd Bergmann <arnd@kernel.org> wrote:
-> >
-> > On Wed, Aug 4, 2021 at 8:59 PM Karol Herbst <kherbst@redhat.com> wrote:
-> > > On Wed, Aug 4, 2021 at 4:43 PM Karol Herbst <kherbst@redhat.com> wrote:
-> > > > On Wed, Aug 4, 2021 at 4:19 PM Arnd Bergmann <arnd@kernel.org> wrote:
-> > > > > On Wed, Aug 4, 2021 at 4:10 PM Karol Herbst <kherbst@redhat.com> wrote:
-> > > > > >
-> > > > > > playing around a little bit with this, I think the original "select
-> > > > > > BACKLIGHT_CLASS_DEVICE" is fine. Atm we kind of have this weird mix of
-> > > > > > drivers selecting and others depending on it. We could of course convert
-> > > > > > everything over to depend, and break those cycling dependency issues with
-> > > > > > this.
-> > > > > >
-> > > > > > Anyway this change on top of my initial patch is enough to make Kconfig
-> > > > > > happy and has the advantage of not having to mess with the deps of nouveau
-> > > > > > too much.
-> > > > >
-> > > > > Looks good to me. We'd probably want to make the BACKLIGHT_CLASS_DEVICE
-> > > > > option itself 'default FB || DRM' though, to ensure that defconfigs
-> > > > > keep working.
-> > > > >
-> > > >
-> > > > okay cool. Will send out a proper updated patch series soonish.
-> > > >
-> > >
-> > > mhh, actually that breaks drivers selecting FB_BACKLIGHT as now
-> > > BACKLIGHT_CLASS_DEVICE might be disabled :(
-> >
-> > Are you sure? It should already be the case that any driver that selects
-> > FB_BACKLIGHT either 'depends on BACKLIGHT_CLASS_DEVICE'
-> > or 'select BACKLIGHT_CLASS_DEVICE'.
-> >
-> none of the fb drivers seem to do that.
+On 2021-08-03 17:30:40 [+0200], Hans de Goede wrote:
+> Hi Sebastien,
+Hi Hans,
 
-Ah, right, I see now that my randconfig series has a couple of patches
-applied that deal with other random failures, including this one:
+> On 8/3/21 4:15 PM, Sebastian Andrzej Siewior wrote:
+> > This is a tree wide replacement of the deprecated CPU hotplug functions
+> > which are only wrappers around the actual functions.
+> > 
+> > Each patch is independent and can be picked up by the relevant maintainer.
+> 
+> Ok; and I take it that then also is the plan for merging these ?
+> 
+> FWIW I'm fine with the drivers/platform/x86 patch going upstream
+> through some other tree if its easier to keep the set together ...
 
-https://patchwork.kernel.org/project/linux-fbdev/patch/20200417155553.675905-8-arnd@arndb.de/
+There is no need to keep that set together since each patch is
+independent. Please merge it through your tree.
 
-Part of the series went in (through different ways) now, but this one
-never did.
+> Regards,
+> 
+> Hans
 
-      Arnd
+Sebastian
