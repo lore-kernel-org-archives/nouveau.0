@@ -2,121 +2,119 @@ Return-Path: <SRS0=Gwq6=M7=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.7 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,FORGED_HOTMAIL_RCVD2,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C395C4338F
-	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 19:24:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 22D4BC4338F
+	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CD64F60E96
-	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 19:24:00 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CD64F60E96
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=hotmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 95C2E60F35
+	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:06 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 95C2E60F35
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54C4389B11;
-	Sun,  8 Aug 2021 19:24:00 +0000 (UTC)
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12olkn2056.outbound.protection.outlook.com [40.92.23.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6B8789B11
- for <nouveau@lists.freedesktop.org>; Sun,  8 Aug 2021 19:23:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iGSF8U/rsA0M005DWdh9PUYd4zsmrRc2uF+uY9Zepz/nZAfqvE8mwsGy7CSkq8Sgx0ygHaO9VEUzfsFgZtgWqLeeJ4QkBuIcDuELFwG1+3in2nhRFNYbiewMZTWuTXtJoIDO2Ry5xNwEFuU72oVau0xcIixSY5TQiCxhk0z82SfCl0ebonNJyB+CrjeSSMyPFPkfTQ8jwCxZ2rfpFp0h0O0QjK3rZ7ZyxgAbnFa9xE5udNLW4oFLp1LuKJYC/COyCzRSx1GhdqiAGaUCTh39nL74GmgEMKDy9FuUE7VQmYgYETNhVqDRvuf7Zo6fkmFgf4/SZjWEdnJF8gDcvVstlQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8MDQA2+J1gXyx2VhwlSbmpFlmvWl55/J0/Wq0MLcO+8=;
- b=WMYMs8lyav657tJEjqHxUa1fYFEjjvAXzgtnytaGnqvah+IS/g8buaClv9o8KEi4Tulf2KRgjEG1+2DSBtIt1hYvOC0dnEB7SDqGdV+GOzYCEA1zP0UbwRd/qWvC5eFLA3fDZcAbaVkKBoDJMZCcS3hao1CjUXvBdxSrNDmdXnXPnUK7apNrIzim48RUL2OqpdCraOTYicz/hRC5/ukn7/Y6QcNfThBCECq+GC/6d2IBaUw6MZ/9TO5I26ZoodPICCy5xMkWOzNlAaGQWjwU0ZBQmIoDIl4GXs8rkNoNrmt7MECpZxvFH7+bJX0AKyVZ6w9hEGuse6JCI+2OPt/1eg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8MDQA2+J1gXyx2VhwlSbmpFlmvWl55/J0/Wq0MLcO+8=;
- b=dq+W9BjLWrK1jexJMZTUXqANbnxoO9v7LnkPRHIx+Tfk4e47XCuid4GZLUtQB4jADhQdar6TbhDn2oo9HQx3ayT8xwlrMo/07vqQA11iasKBz2txhFm7vSOkImUf9ZwaLX5tGhPl6ECgjY5zjNNHySBRHPkuSuLFr8gJKCH7PLLD24wzHBK/AHJAkcxlyDJPn5khGCsxlc1iiCKDQbuNiqrbfWaQxr+8bDV+a4SQ0EJ8+qS9kTzGDdLhfWqP7DoJQcQgR/qT1QHZA3MrE/CM1CFB4JchxqJMT4KkrU6YPWeijiQ4oxsVy8IhNxKg81u3Cc6TtIXzPF9IRKza+aQXmA==
-Received: from BN8NAM12FT027.eop-nam12.prod.protection.outlook.com
- (2a01:111:e400:fc66::49) by
- BN8NAM12HT013.eop-nam12.prod.protection.outlook.com (2a01:111:e400:fc66::476)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.5; Sun, 8 Aug
- 2021 19:23:57 +0000
-Received: from DM6PR19MB2780.namprd19.prod.outlook.com
- (2a01:111:e400:fc66::46) by BN8NAM12FT027.mail.protection.outlook.com
- (2a01:111:e400:fc66::138) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.5 via Frontend
- Transport; Sun, 8 Aug 2021 19:23:57 +0000
-X-IncomingTopHeaderMarker: OriginalChecksum:99982A4A7CDEA89761CDE3E69D0CB6698C17BE51BC5A38DF7D488B71D3AD0CA5;
- UpperCasedChecksum:E806E2E0E5758C8A377EA951F05635B2938EA81877C4ED58C8FAEDDBC17C30B3;
- SizeAsReceived:7301; Count:45
-Received: from DM6PR19MB2780.namprd19.prod.outlook.com
- ([fe80::d3:370:7280:e46e]) by DM6PR19MB2780.namprd19.prod.outlook.com
- ([fe80::d3:370:7280:e46e%5]) with mapi id 15.20.4394.022; Sun, 8 Aug 2021
- 19:23:57 +0000
-From: Ratchanan Srirattanamet <peathot@hotmail.com>
-To: bskeggs@redhat.com
-Cc: kherbst@redhat.com, nouveau@lists.freedesktop.org,
- Ratchanan Srirattanamet <peathot@hotmail.com>
-Date: Mon,  9 Aug 2021 02:23:04 +0700
-Message-ID: <DM6PR19MB278000DDEC936A67E85752E5BCF59@DM6PR19MB2780.namprd19.prod.outlook.com>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [e5Rc5eRFmO/eWrsyoJ+bsBJyJtG294wB]
-X-ClientProxiedBy: SG2P153CA0035.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::22)
- To DM6PR19MB2780.namprd19.prod.outlook.com
- (2603:10b6:5:13d::26)
-X-Microsoft-Original-Message-ID: <20210808192304.18858-1-peathot@hotmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62BE689831;
+	Sun,  8 Aug 2021 22:14:05 +0000 (UTC)
+X-Greylist: delayed 543 seconds by postgrey-1.36 at gabe;
+ Tue, 03 Aug 2021 14:25:40 UTC
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A07E66E886
+ for <nouveau@lists.freedesktop.org>; Tue,  3 Aug 2021 14:25:40 +0000 (UTC)
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1628000193;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=Qkfc7lxCqn4p3B20wjfjiLsyLpuZIa2kIlbDitBY8sw=;
+ b=fStBYY9cDOofnMkMc6JUcZVYcNWx/eg2N05Pb/o7ef6JJTcTG48t+GioJgBl+eXKMJGEgi
+ TVCeDR+EwHJjgdulnpLwVy12sseYnaixefw5o14vk+2PAOm/LUlJHLssIOZ+nJyuRxaM3r
+ fCCG5ZeBAdz/Q3kIzOJQstWW7ST+mFehWQwEJk+hKZizcoepZD/zOgz+f7GO7oZ2MtK2DY
+ wm7slubFVtLqvtY6o7cEl9ZIw3mvJ35go7HuaiPxyi+ESejsT+e0qaP6D0Fis4EUqsKcRu
+ JGNGT0BYA9PAUGHVfsb3cVOtZwFCr59O6V6ObVy+T4OF395mknhLgwpLJFiGUg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1628000193;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=Qkfc7lxCqn4p3B20wjfjiLsyLpuZIa2kIlbDitBY8sw=;
+ b=pGmFmcj1u+vX59p9gWCClfCslb9a1WxY2Pwa8q+HwkfzdAY6X/r9JgYaxIXaCJOpPNDW2W
+ rceMZSe2cSwuwVDA==
+To: linux-kernel@vger.kernel.org
+Cc: tglx@linutronix.de, Peter Zijlstra <peterz@infradead.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Amit Kucheria <amitk@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Andy Lutomirski <luto@kernel.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Ben Segall <bsegall@google.com>, Borislav Petkov <bp@alien8.de>,
+ cgroups@vger.kernel.org, Christian Borntraeger <borntraeger@de.ibm.com>,
+ coresight@lists.linaro.org,
+ Daniel Bristot de Oliveira <bristot@redhat.com>,
+ Daniel Jordan <daniel.m.jordan@oracle.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Davidlohr Bueso <dave@stgolabs.net>,
+ "David S. Miller" <davem@davemloft.net>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Gonglei <arei.gonglei@huawei.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Guenter Roeck <linux@roeck-us.net>, Hans de Goede <hdegoede@redhat.com>,
+ Heiko Carstens <hca@linux.ibm.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>, "H. Peter Anvin" <hpa@zytor.com>,
+ Ingo Molnar <mingo@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Jakub Kicinski <kuba@kernel.org>, Jason Wang <jasowang@redhat.com>,
+ Jean Delvare <jdelvare@suse.com>, Jiri Kosina <jikos@kernel.org>,
+ Jiri Olsa <jolsa@redhat.com>, Joe Lawrence <joe.lawrence@redhat.com>,
+ Joel Fernandes <joel@joelfernandes.org>,
+ Johannes Weiner <hannes@cmpxchg.org>, John Stultz <john.stultz@linaro.org>,
+ Jonathan Corbet <corbet@lwn.net>, Josh Poimboeuf <jpoimboe@redhat.com>,
+ Josh Triplett <josh@joshtriplett.org>, Julian Wiedmann <jwi@linux.ibm.com>,
+ Juri Lelli <juri.lelli@redhat.com>, Karol Herbst <karolherbst@gmail.com>,
+ Karsten Graul <kgraul@linux.ibm.com>, kvm-ppc@vger.kernel.org,
+ Lai Jiangshan <jiangshanlai@gmail.com>, Len Brown <lenb@kernel.org>,
+ Len Brown <len.brown@intel.com>, Leo Yan <leo.yan@linaro.org>,
+ linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-crypto@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-edac@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-mm@kvack.org, linux-pm@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-raid@vger.kernel.org,
+ linux-s390@vger.kernel.org, live-patching@vger.kernel.org,
+ Mark Gross <mgross@linux.intel.com>, Mark Rutland <mark.rutland@arm.com>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Mel Gorman <mgorman@suse.de>,
+ Michael Ellerman <mpe@ellerman.id.au>,
+ "Michael S. Tsirkin" <mst@redhat.com>, Mike Leach <mike.leach@linaro.org>,
+ Mike Travis <mike.travis@hpe.com>, Miroslav Benes <mbenes@suse.cz>,
+ Namhyung Kim <namhyung@kernel.org>, netdev@vger.kernel.org,
+ nouveau@lists.freedesktop.org, "Paul E. McKenney" <paulmck@kernel.org>,
+ Paul Mackerras <paulus@samba.org>, Pavel Machek <pavel@ucw.cz>,
+ Pekka Paalanen <ppaalanen@gmail.com>, Petr Mladek <pmladek@suse.com>,
+ platform-driver-x86@vger.kernel.org,
+ "Rafael J. Wysocki" <rjw@rjwysocki.net>, rcu@vger.kernel.org,
+ Robin Holt <robinmholt@gmail.com>, Song Liu <song@kernel.org>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ Steffen Klassert <steffen.klassert@secunet.com>,
+ Stephen Boyd <sboyd@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
+ Steve Wahl <steve.wahl@hpe.com>, Stuart Hayes <stuart.w.hayes@gmail.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>, Tejun Heo <tj@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Tony Luck <tony.luck@intel.com>, Vasily Gorbik <gor@linux.ibm.com>,
+ Vincent Guittot <vincent.guittot@linaro.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ virtualization@lists.linux-foundation.org, x86@kernel.org,
+ Zefan Li <lizefan.x@bytedance.com>, Zhang Rui <rui.zhang@intel.com>
+Date: Tue,  3 Aug 2021 16:15:43 +0200
+Message-Id: <20210803141621.780504-1-bigeasy@linutronix.de>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (113.53.37.21) by
- SG2P153CA0035.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::22) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4436.4 via Frontend Transport; Sun, 8 Aug 2021 19:23:55 +0000
-X-MS-PublicTrafficType: Email
-X-IncomingHeaderCount: 45
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-Correlation-Id: a6bb8ffa-5dc6-4fc6-5953-08d95aa2110a
-X-MS-Exchange-SLBlob-MailProps: =?us-ascii?Q?7FNIAzWC7Tok6NFdOUOvq4eRcCUoJWmEREAmRscorAjakZTNfBaVFtQi5JXV?=
- =?us-ascii?Q?DLL6PWEq2a1M3Y6TpdARk5zx5x5fzpAr1aesAzJ8jAHwMDJS0dY6ZD7dei4m?=
- =?us-ascii?Q?sLZ+c+ZAhDXm0Lru9NKMyq62IoOnCgpN+80nRZ4F5/yZRhfxItOGWk3EqBfD?=
- =?us-ascii?Q?BYYtAFPeXQ9IeJBTtiRIOTP8raCWF/MT2aEv3bUMZxDoXWWo/n8H+UXtGytl?=
- =?us-ascii?Q?AXvSqvs9bMEPS8z4K6bpi9xhSh0rCfl1Lkdp1zfRjFFr48Stz9+c3KkrAXik?=
- =?us-ascii?Q?PFcyeCgVLs8QVp+EQ/7ecM2QKetvBZ4BH5ER6vm4oq5uUjbhb0b3nwZTbvYr?=
- =?us-ascii?Q?wDSjHVwCfOK2RbyKaPVsqTi4Bptyr59x919TiET1jSU7/wY5KelSGVbyCntA?=
- =?us-ascii?Q?aq829DCor0ToRGjBY4VDlizHouwWqcC0MpLPLGUH4+LfOzkspCKXcOLLPHU8?=
- =?us-ascii?Q?B63t7IiS2ErxXNNgIagM8moyPjN6Zh/5XnrSnyD7Kupabn/8OWevoRXNci2b?=
- =?us-ascii?Q?9PPrZ5tutFEPy6tjhrsXWH4l7XfEpg6gP62dH6uqx55Cq8jXVxgVlCbrMXSu?=
- =?us-ascii?Q?XfVK5o+BsaX+OwzXZL8nPLeNqg7P4iO5oLY/86nydkKoOWlul2HzX6VbEnG5?=
- =?us-ascii?Q?PGL+BcMOz/uVWUmq9GUTIgEJJbWtQcaN9zUpiJEhMFpW/KkpYtcaIOe1d/9u?=
- =?us-ascii?Q?/IyikaDQeVAIPctn/7Zd71aCyGlL0Q3OW5Gu/25IMrEUoR4dE1ut8B2VoB84?=
- =?us-ascii?Q?JTqbWMyLoa4sx/QrjP9U1PpSakqLgEaKPT6ogJLzD6PLQDhJaHcZ1RoERr4D?=
- =?us-ascii?Q?Qi7vkMcz+4Ton9qrYXzS+wF/BB/E98hPlp9c5opdVxQW11LFZv9gTd1bdM/1?=
- =?us-ascii?Q?QVPPo1Jmnb3lxEUA7LutnAOOfRYlyR8xWUcPOebBLo1jOPVBSOMXIzmfO1HN?=
- =?us-ascii?Q?HAgdXVZHRwOyJNJAaIwaEoksJcJt+ZDUjq3h64vdexg0oshkHi32ufHbpnnF?=
- =?us-ascii?Q?mpGw+nGfQJmJkkXShW8VBbsCFV9wXtqbeAOLrEk2pMII0NL9LTJQ4zplmrCf?=
- =?us-ascii?Q?NsObpcKifuM2VIH8opc=3D?=
-X-MS-TrafficTypeDiagnostic: BN8NAM12HT013:
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: a9BZtBzBQVQNp6EqyliaZXxXLDz92gDyy8wrCQYoC6TajyEg5Y4CyJaImX3y/1Mcl6mc3BeaZX8k6nbEc5VMXrt6/8aNAR7wgeDhMINunGrnCPX+YrLXtT2RIYdknPcs1NhIAr4PUsFHKSRgz/Dm24GJMfQbHxL9oVh94UFKKy85c0muTzka4dnOYLF4LOiqDeuvMlUbdvnGILQ5WMl9KF2Vi/H+5lgXQ9j9voU9eg9vXVLdeV/glvHse5rx3L5eB6ZQ+4/wl3NL7S9WS6GcbewAmKh1xGkOSiyFcFilFTXsJ4PzNXib6lhXSP/v4tRG0waq9tkLR/5KrsJLDqTqkvaTsnYJuogtS+U8GWQwgd/dPpDgiC1X+l1lOppNackdOLbgfvX0TKLwfQ2xx7mj/aBNS0NEXrNAhe+DOVu9x+x3MoerzO3JRNv099GZreRMQDP3ABSmyZH6+yc5ZM9uBzhyAF2Q3jl6r+j/YrB+XRI=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: d4vHTvra1qDXq8TwV/DAXd+o5PX6E2jIqw2IAeZfcq285xQe3X81ten6PrxpmI3fms+GehZXgPwR6AVaj24KPewSyZiNV5I06U3lqut56CRIVI8VWbzmw1oYqJ6JHZVYbVIbFb9BqxRXf6xNcs085Q==
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6bb8ffa-5dc6-4fc6-5953-08d95aa2110a
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2021 19:23:57.1735 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM12FT027.eop-nam12.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8NAM12HT013
-Subject: [Nouveau] [PATCH] drm/nouveau: don't detect DSM for non-NVIDIA
- device
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sun, 08 Aug 2021 22:14:04 +0000
+Subject: [Nouveau] [PATCH 00/38] Replace deprecated CPU-hotplug
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,65 +129,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The call site of nouveau_dsm_pci_probe() uses single set of output
-variables for all invocations. So, we must not write anything to them
-unless it's an NVIDIA device. Otherwise, if we are called with another
-device after the NVIDIA device, we'll clober the result of the NVIDIA
-device.
+This is a tree wide replacement of the deprecated CPU hotplug functions
+which are only wrappers around the actual functions.
 
-For example, if the other device doesn't have _PR3 resources, the
-detection later would miss the presence of power resource support, and
-the rest of the code will keep using Optimus DSM, breaking power
-management for that machine. In particular, this fixes power management
-of the NVIDIA card in Lenovo Legion 5-15ARH05... well, at least
-partially. New error shows up, but this patch is correct in itself
-anyway.
+Each patch is independent and can be picked up by the relevant maintainer.
 
-Also, because we're detecting NVIDIA's DSM, it doesn't make sense to run
-this detection on a non-NVIDIA device anyway. Thus, check at the
-beginning of the detection code if this is an NVIDIA card, and just
-return if it isn't.
+Cc: Alexander Shishkin <alexander.shishkin@linux.intel.com>
+Cc: Amit Kucheria <amitk@kernel.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Andy Lutomirski <luto@kernel.org>
+Cc: Arnaldo Carvalho de Melo <acme@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Cc: Ben Segall <bsegall@google.com>
+Cc: Borislav Petkov <bp@alien8.de>
+Cc: cgroups@vger.kernel.org
+Cc: Christian Borntraeger <borntraeger@de.ibm.com>
+Cc: coresight@lists.linaro.org
+Cc: Daniel Bristot de Oliveira <bristot@redhat.com>
+Cc: Daniel Jordan <daniel.m.jordan@oracle.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Dave Hansen <dave.hansen@linux.intel.com>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Dietmar Eggemann <dietmar.eggemann@arm.com>
+Cc: Gonglei <arei.gonglei@huawei.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Hans de Goede <hdegoede@redhat.com>
+Cc: Heiko Carstens <hca@linux.ibm.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>
+Cc: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Ingo Molnar <mingo@kernel.org>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Jason Wang <jasowang@redhat.com>
+Cc: Jean Delvare <jdelvare@suse.com>
+Cc: Jiri Kosina <jikos@kernel.org>
+Cc: Jiri Olsa <jolsa@redhat.com>
+Cc: Joe Lawrence <joe.lawrence@redhat.com>
+Cc: Joel Fernandes <joel@joelfernandes.org>
+Cc: Johannes Weiner <hannes@cmpxchg.org>
+Cc: John Stultz <john.stultz@linaro.org>
+Cc: Jonathan Corbet <corbet@lwn.net>
+Cc: Josh Poimboeuf <jpoimboe@redhat.com>
+Cc: Josh Triplett <josh@joshtriplett.org>
+Cc: Julian Wiedmann <jwi@linux.ibm.com>
+Cc: Juri Lelli <juri.lelli@redhat.com>
+Cc: Karol Herbst <karolherbst@gmail.com>
+Cc: Karsten Graul <kgraul@linux.ibm.com>
+Cc: kvm-ppc@vger.kernel.org
+Cc: Lai Jiangshan <jiangshanlai@gmail.com>
+Cc: Len Brown <lenb@kernel.org>
+Cc: Len Brown <len.brown@intel.com>
+Cc: Leo Yan <leo.yan@linaro.org>
+Cc: linux-acpi@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-crypto@vger.kernel.org
+Cc: linux-doc@vger.kernel.org
+Cc: linux-edac@vger.kernel.org
+Cc: linux-hwmon@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-mips@vger.kernel.org
+Cc: linux-mm@kvack.org
+Cc: linux-pm@vger.kernel.org
+Cc: linuxppc-dev@lists.ozlabs.org
+Cc: linux-raid@vger.kernel.org
+Cc: linux-s390@vger.kernel.org
+Cc: live-patching@vger.kernel.org
+Cc: Mark Gross <mgross@linux.intel.com>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Mel Gorman <mgorman@suse.de>
+Cc: Michael Ellerman <mpe@ellerman.id.au>
+Cc: "Michael S. Tsirkin" <mst@redhat.com>
+Cc: Mike Leach <mike.leach@linaro.org>
+Cc: Mike Travis <mike.travis@hpe.com>
+Cc: Miroslav Benes <mbenes@suse.cz>
+Cc: Namhyung Kim <namhyung@kernel.org>
+Cc: netdev@vger.kernel.org
+Cc: nouveau@lists.freedesktop.org
+Cc: "Paul E. McKenney" <paulmck@kernel.org>
+Cc: Paul Mackerras <paulus@samba.org>
+Cc: Pavel Machek <pavel@ucw.cz>
+Cc: Pekka Paalanen <ppaalanen@gmail.com>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Petr Mladek <pmladek@suse.com>
+Cc: platform-driver-x86@vger.kernel.org
+Cc: "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Cc: rcu@vger.kernel.org
+Cc: Robin Holt <robinmholt@gmail.com>
+Cc: Song Liu <song@kernel.org>
+Cc: Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>
+Cc: Steffen Klassert <steffen.klassert@secunet.com>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: Steven Rostedt <rostedt@goodmis.org>
+Cc: Steve Wahl <steve.wahl@hpe.com>
+Cc: Stuart Hayes <stuart.w.hayes@gmail.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: Tejun Heo <tj@kernel.org>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Tony Luck <tony.luck@intel.com>
+Cc: Vasily Gorbik <gor@linux.ibm.com>
+Cc: Vincent Guittot <vincent.guittot@linaro.org>
+Cc: Viresh Kumar <viresh.kumar@linaro.org>
+Cc: virtualization@lists.linux-foundation.org
+Cc: x86@kernel.org
+Cc: Zefan Li <lizefan.x@bytedance.com>
+Cc: Zhang Rui <rui.zhang@intel.com>
 
-As a bonus, we'll also stop preventing _PR3 usage from the bridge for
-unrelated devices, which is always nice, I guess.
-
-https://gitlab.freedesktop.org/drm/nouveau/-/issues/79
-
-Signed-off-by: Ratchanan Srirattanamet <peathot@hotmail.com>
----
-
-It's been discussed in the "previous" patch series ("[PATCH] drm/
-nouveau: don't touch has_pr3 for likely-non-NVIDIA device" [1]) that,
-instead of changing how the detection works, it's better to check if
-the device's vendor is NVIDIA, or if it's a secondary device. I don't
-find a feasible way to detect the secondary-ness of a device, so I
-opted for checking the vendor code [2].
-
-Thus, this makes the patch different enough to warant a different
-summary phrase and description.
-
-[1] https://lore.kernel.org/nouveau/CACO55tsYWW_dfAFWBFLrH51SVivUeN72Omc6DRTCtzVWSLE68w@mail.gmail.com/T/#mb710275dc1dd7e9d83028c218b886400d3a43bfc
-[2] It's been suggested to use `nouveau_dsm_get_client_id()`, however,
-    on my machine it would return _DIS on both cards, so it can't be
-    used.
-
- drivers/gpu/drm/nouveau/nouveau_acpi.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
-index 7c15f6448428..9c55f205ab66 100644
---- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
-@@ -220,6 +220,9 @@ static void nouveau_dsm_pci_probe(struct pci_dev *pdev, acpi_handle *dhandle_out
- 	int optimus_funcs;
- 	struct pci_dev *parent_pdev;
- 
-+	if (pdev->vendor != PCI_VENDOR_ID_NVIDIA)
-+		return;
-+
- 	*has_pr3 = false;
- 	parent_pdev = pci_upstream_bridge(pdev);
- 	if (parent_pdev) {
--- 
-2.25.1
+Sebastian
 
