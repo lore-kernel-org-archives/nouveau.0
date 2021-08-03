@@ -2,68 +2,69 @@ Return-Path: <SRS0=wcvV=M2=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CD06FC432BE
-	for <nouveau@archiver.kernel.org>; Tue,  3 Aug 2021 08:23:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 55587C4338F
+	for <nouveau@archiver.kernel.org>; Tue,  3 Aug 2021 14:25:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9941E60F8F
-	for <nouveau@archiver.kernel.org>; Tue,  3 Aug 2021 08:23:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 9941E60F8F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmx.net
+	by mail.kernel.org (Postfix) with ESMTPS id 1703B6103C
+	for <nouveau@archiver.kernel.org>; Tue,  3 Aug 2021 14:25:42 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1703B6103C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D1BA6E406;
-	Tue,  3 Aug 2021 08:23:33 +0000 (UTC)
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE54B6E406
- for <nouveau@lists.freedesktop.org>; Tue,  3 Aug 2021 08:23:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1627979008;
- bh=VGrqiqPLxK1ao+MaE9xJ2BrGfoKdHhReKUOOSiouZ9w=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
- b=RbqhUugBsu30ACFlBNsYjRt3CMHKIdS9hn0RnOf7mPCjYQlXhypVjjWHjN8B7H65u
- Nr8Vdq/MuIV14tPbdgWhQp+GwDWXqrzr5zFTw5JwxyhbfJSyGVe+ttvUGSJHTpvhu3
- OYPxVtsXiKeOv9zuasvJQIWdyZ+PzV6LtPyFZhc0=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from apollon.localnet ([88.130.48.219]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MC30Z-1mIlaV0sYP-00CNWm; Tue, 03
- Aug 2021 10:18:22 +0200
-From: Reinhard Karcher <reinhard.karcher@gmx.net>
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: nouveau@lists.freedesktop.org
-Date: Tue, 03 Aug 2021 10:18:19 +0200
-Message-ID: <2027407.lYD7Z9Tp6P@apollon>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3C6C6E883;
+	Tue,  3 Aug 2021 14:25:41 +0000 (UTC)
+X-Greylist: delayed 541 seconds by postgrey-1.36 at gabe;
+ Tue, 03 Aug 2021 14:25:40 UTC
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 931416E87A
+ for <nouveau@lists.freedesktop.org>; Tue,  3 Aug 2021 14:25:40 +0000 (UTC)
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1628000226;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=rvjqH4AUxl/i+ONAf8ZUv/JOSwfBnJ5sSi+EEb4J4nw=;
+ b=QwmPXsmbNFThdZqdTN9xO6lKINbiE0XQlpzRwR+//JQS6qh9eh2uYi/ZHDxwTeq+WUIbKy
+ b174zkDaOyiMWOfejmp5waqQyeoJ3KDaju52LRaZM6KPoz8/z/OJ+JHQKMVzBduTbGNc00
+ 4n6OmifC0cI+MwczsXT7h0q5f1nz3jXlgFbBB1BK2E39NoIjMLmcz9kLcGdja0O2XiNFAA
+ HylRmFLZ0scMEM28ohL9v5xcVe4BSzAtzGcpeYrMD9HcF2IiMitKUwsdUafkC1eaj0oC+p
+ NZTjMlcBqCrYhf/PUUMnNYXg+BzJuIsxQgZK4Wt6DAJttHIfxZEhGWX1eK7oyA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1628000226;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=rvjqH4AUxl/i+ONAf8ZUv/JOSwfBnJ5sSi+EEb4J4nw=;
+ b=PJITQpgyLrGrJlQYV/KPTowFZjH6/7yNspKoS4cNi17vR6qfWnWxMULJ/miN1zqMgdls16
+ zd4+AIlhgzdcq9Bg==
+To: linux-kernel@vger.kernel.org
+Cc: tglx@linutronix.de, Peter Zijlstra <peterz@infradead.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Steven Rostedt <rostedt@goodmis.org>, Ingo Molnar <mingo@kernel.org>,
+ Karol Herbst <karolherbst@gmail.com>, Pekka Paalanen <ppaalanen@gmail.com>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Andy Lutomirski <luto@kernel.org>, Borislav Petkov <bp@alien8.de>,
+ x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>,
+ nouveau@lists.freedesktop.org
+Date: Tue,  3 Aug 2021 16:15:49 +0200
+Message-Id: <20210803141621.780504-7-bigeasy@linutronix.de>
+In-Reply-To: <20210803141621.780504-1-bigeasy@linutronix.de>
+References: <20210803141621.780504-1-bigeasy@linutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:ofE2YgAU3IidQH9WHqXXlQ+TFjDuOnwWlvRSRTv9ePDfq+28Q4Q
- juqCxNVFjGBuGlvI3sQFQ9PXvJ2IgQTrwUgb+qKJVp2lRpQqKMc21VbicvQebhpj/Zs3XGN
- cHUHtfbO/HlYX1xxzI5AQ4/71ZEIet/PQpG8j0XIQbmlIvF7g5fRUCSNOEf3r9p+wJp7VnT
- L0PfleAwG8OhChDXTKySw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:Ua4AIW6kfhc=:aOu/uXT2in8HAqJOLU6AfG
- i1lPEPF25yOBA/EBxnidK56EcHCIqdLlSmlHdxjjw6uzeB5D0GB+8NBn99AXV/pPw5Vt0EjMq
- 7trFISrP4Sec7nZ2xlb7raBgX3uBg2c9+CCKhusKPhrmkGy7VEL/RowQK/lYWkdu3r+QlzVBl
- QGBCN1TwNssDS1X3h7WmwIHnZNWFaQSLzcG1XyzVxdMhtOR8VzA0HJtoWxKENmqMIcg+UMaxx
- XeBuq4E91sUN5TSL2a+nPHykivpWPKKQ5Den6yr4DxYXgEwx3c7lkHubglyr2ljwAfiJhrXkj
- cDYWKpQRhC0Fs8TgUdPIzhoowPtpSFwrtjxjUvhkpps7hMWO/ymi1cQTb0wonDNlsxH200C4N
- l4ASywDDzGn9KAphc9DXt+dHLvx90v4GoR2zHfDVWAps4b0PmsTieODxOIIYx0gGV30Ua9aDh
- 7qE5sCrrfbN9orUUONd6HYntiFiuBYpj4p9XAdzfMLCXVle8uxE1NJPiWlrDd9UwhXSZxKSlH
- 2yZix1jXkZvNh6d4a+CKhHC/zagE3EzxRGyNRCNBxfZlLgrIk+TdaPu2g7X8IYKE8h4WghEVD
- WSYkEHXDX5Rdy3dLJn/MxAqx3rfHA5X7TQQHKnRQM5DjCBqpCuVOAqQb4otpZD3p4SZ2EwO7+
- nXCgq0Y6Gir8Au2VN72IIhKwBaF4CWMeVinZFryXjQqK0PAu0v5Iy/VHb7NaRJ9t8w/ndHFtt
- qKYL28iKPtDQ52SzPpRtv+LJstwBz6BvnNVYvFhD9iQ8nuwuDbC1/NS8jS57edE4h2KlLzMlR
- FSjMsdm/cuJkQPCRTDmdl1ju7rASGrUM4QZgngrpFCbPdR8EJwE/S/x8UBL4DZj703EZzAmuA
- ToPl7BcQIVjxsSwRWzeRlE2N2mUX2xAaVqDJM3BjaoMU43admuFlkiZJkVmHL+XHyo0nU3mvU
- o4a2RgT/CfjzwpzJjuUUQYVorybNp5X4wHXjqRkiH9gQ5C/8b1Sm0D6k56VsjfY3V5sj5S+QH
- VXteaZ4Pu1hXRzESybFxWpsKIHJpPrZ5+0iT02R/EFijWeD2Ag/jmaMKVZIok2nTknmF+D0X/
- YlvkEmUfK//souwqOlDZurG2U/xEW+7Ez0aJgSjLsM6lGCRyKZoa9gCtg==
-Subject: [Nouveau] falcon limit(s) exceeded on GF108M [GeForce GT 620M]
+Content-Transfer-Encoding: quoted-printable
+Subject: [Nouveau] [PATCH 06/38] x86/mmiotrace: Replace deprecated
+ CPU-hotplug functions.
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,53 +79,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Dear maintainer,
+The functions get_online_cpus() and put_online_cpus() have been
+deprecated during the CPU hotplug rework. They map directly to
+cpus_read_lock() and cpus_read_unlock().
 
-I own an old Fujitsu-Siemens Lifebook N532 with Intel and NVIDIA graphic.
-lspci:
-00:00.0 Host bridge: Intel Corporation 3rd Gen Core processor DRAM Controller (rev 09)
-00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v2/3rd Gen Core processor PCI Express Root Port (rev 09)
-00:02.0 VGA compatible controller: Intel Corporation 3rd Gen Core processor Graphics Controller (rev 09)
-00:14.0 USB controller: Intel Corporation 7 Series/C210 Series Chipset Family USB xHCI Host Controller (rev 04)
-00:16.0 Communication controller: Intel Corporation 7 Series/C216 Chipset Family MEI Controller #1 (rev 04)
-00:1a.0 USB controller: Intel Corporation 7 Series/C216 Chipset Family USB Enhanced Host Controller #2 (rev 04)
-00:1b.0 Audio device: Intel Corporation 7 Series/C216 Chipset Family High Definition Audio Controller (rev 04)
-00:1c.0 PCI bridge: Intel Corporation 7 Series/C216 Chipset Family PCI Express Root Port 1 (rev c4)
-00:1c.1 PCI bridge: Intel Corporation 7 Series/C210 Series Chipset Family PCI Express Root Port 2 (rev c4)
-00:1c.2 PCI bridge: Intel Corporation 7 Series/C210 Series Chipset Family PCI Express Root Port 3 (rev c4)
-00:1c.5 PCI bridge: Intel Corporation 7 Series/C210 Series Chipset Family PCI Express Root Port 6 (rev c4)
-00:1d.0 USB controller: Intel Corporation 7 Series/C216 Chipset Family USB Enhanced Host Controller #1 (rev 04)
-00:1f.0 ISA bridge: Intel Corporation HM77 Express Chipset LPC Controller (rev 04)
-00:1f.2 SATA controller: Intel Corporation 7 Series Chipset Family 6-port SATA Controller [AHCI mode] (rev 04)
-00:1f.3 SMBus: Intel Corporation 7 Series/C216 Chipset Family SMBus Controller (rev 04)
-01:00.0 VGA compatible controller: NVIDIA Corporation GF108M [GeForce GT 620M] (rev a1)
-01:00.1 Audio device: NVIDIA Corporation GF108 High Definition Audio Controller (rev ff)
-03:00.0 Network controller: Intel Corporation Centrino Advanced-N 6205 [Taylor Peak] (rev 34)
-05:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 07)
+Replace deprecated CPU-hotplug functions with the official version.
+The behavior remains unchanged.
 
-and get when booting the error message:
-Aug 02 09:18:10 apollon kernel: nouveau 0000:01:00.0: ce: init running...
-Aug 02 09:18:10 apollon kernel: nouveau 0000:01:00.0: ce: one-time init running...
-Aug 02 09:18:10 apollon kernel: nouveau 0000:01:00.0: ce: falcon version: 0
-Aug 02 09:18:10 apollon kernel: nouveau 0000:01:00.0: ce: secret level: 0
-Aug 02 09:18:10 apollon kernel: nouveau 0000:01:00.0: ce: code limit: 0
-Aug 02 09:18:10 apollon kernel: nouveau 0000:01:00.0: ce: data limit: 0
-Aug 02 09:18:10 apollon kernel: nouveau 0000:01:00.0: ce: one-time init completed in 5us
-Aug 02 09:18:10 apollon kernel: nouveau 0000:01:00.0: ce: firmware: internal (static code/data segments)
-Aug 02 09:18:10 apollon kernel: nouveau 0000:01:00.0: ce: ucode exceeds falcon limit(s)
-Aug 02 09:18:10 apollon kernel: nouveau 0000:01:00.0: ce: init failed, -22
-Aug 02 09:18:10 apollon kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10312c [ PRIVRING ]
+Cc: Steven Rostedt <rostedt@goodmis.org>
+Cc: Ingo Molnar <mingo@kernel.org>
+Cc: Karol Herbst <karolherbst@gmail.com>
+Cc: Pekka Paalanen <ppaalanen@gmail.com>
+Cc: Dave Hansen <dave.hansen@linux.intel.com>
+Cc: Andy Lutomirski <luto@kernel.org>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Borislav Petkov <bp@alien8.de>
+Cc: x86@kernel.org
+Cc: "H. Peter Anvin" <hpa@zytor.com>
+Cc: nouveau@lists.freedesktop.org
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+---
+ arch/x86/mm/mmio-mod.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-As the laptop uses Optimus and I don't need the enanced graphic,
-the NVIDIA hardware is always switched off.
-So I don't have any problems using the laptop.
-
-The kernel is a selfcompiled vanilla kernel using the git repository.
-If I remeber correctly, the message started with the 5.11 kernel.
-
-If you need more information, feel free to tell me what you want to see.
-
-Reinhard
-
-
+diff --git a/arch/x86/mm/mmio-mod.c b/arch/x86/mm/mmio-mod.c
+index cd768dafca9e9..933a2ebad471b 100644
+--- a/arch/x86/mm/mmio-mod.c
++++ b/arch/x86/mm/mmio-mod.c
+@@ -376,12 +376,12 @@ static void enter_uniprocessor(void)
+ 		goto out;
+ 	}
+=20
+-	get_online_cpus();
++	cpus_read_lock();
+ 	cpumask_copy(downed_cpus, cpu_online_mask);
+ 	cpumask_clear_cpu(cpumask_first(cpu_online_mask), downed_cpus);
+ 	if (num_online_cpus() > 1)
+ 		pr_notice("Disabling non-boot CPUs...\n");
+-	put_online_cpus();
++	cpus_read_unlock();
+=20
+ 	for_each_cpu(cpu, downed_cpus) {
+ 		err =3D remove_cpu(cpu);
+--=20
+2.32.0
 
