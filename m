@@ -2,75 +2,63 @@ Return-Path: <SRS0=Gwq6=M7=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BB79DC4338F
-	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CAEC0C4338F
+	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8092E60F38
-	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:15 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8092E60F38
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 8E4116069E
+	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:17 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8E4116069E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA895899F2;
-	Sun,  8 Aug 2021 22:14:05 +0000 (UTC)
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com
- [IPv6:2607:f8b0:4864:20::1035])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C88A66E08C
- for <nouveau@lists.freedesktop.org>; Sat,  7 Aug 2021 03:22:19 +0000 (UTC)
-Received: by mail-pj1-x1035.google.com with SMTP id
- u13-20020a17090abb0db0290177e1d9b3f7so25469280pjr.1
- for <nouveau@lists.freedesktop.org>; Fri, 06 Aug 2021 20:22:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Uh+LyNoJn+/C2qxN/x3CP3dUbi+uecXz/MsGDySkhoA=;
- b=ezLH8i5/yWdbUs21lSN0rKfxHZB7O7tAd5eQJQRyAobRiL66KcFjnL2ZBGXl8YWgv7
- PXBk6Ycu0WMVWrKYmXQ3nbaI5JuPCWaRNxpw69i4fCdhMW0oBaL0R3WJDDSbCesgT0MJ
- KoDluNQr2axDHrchi654p8etEwXWUkUQgWoGq4cV51KW9zz+3V3GgEtHVWVtCACj3R3N
- L0JsaoafAt2PKsHwkDfRSzOUbB068bK6Y692e7e/o/PFLfVoRMyHnyf/kqM/F7VuSkIj
- Hk+Q7p4qV+a2zyYHwUoIENDULn7l1DL8z10Pw2E7FbM8RtGv4+7VFlejmUa6ZqGVmW08
- vHlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Uh+LyNoJn+/C2qxN/x3CP3dUbi+uecXz/MsGDySkhoA=;
- b=KSyz3FK3bmaj0U6pTGN0mPbTVhVomIfdOB2kF2nQtH8SGZrzOvNqUai8jx/TIeAt/p
- ZQdX69fEBU96+eE/WWSz61FCymhJATeZ8/zAGvJCOja6MhpoF8oMAjGFTpxY5onQ+Mne
- Lv5O2uGy4lROlv+HbbWbYSogprLxafEmob/0S71bcAHXOgQQ2+N6Ls/sc5jYkBCdy/Vq
- 2WzVCRagUKc9C/qVUFA2Orh3pZxa9KeVPo7UEIzkiQDpBfJqbkIKy7LqkNoGMIRSBPLt
- 1jqb7rdRgi2iI+2gN9rX4rC8rjhPraVVMZgW7+GRAMOvz3nxicA4cneWTQNW0SgWQu6d
- PoNw==
-X-Gm-Message-State: AOAM533gJu5r0ztPzGgoJFzLoLurz620Xk7Vf0yZwxkiJxRI0m8Dya68
- RvteF1GT4+jvzsK+3bARkvQ=
-X-Google-Smtp-Source: ABdhPJxYlV/B6KQ8XIFc8KckV2s869t7rvEHWhyHYWJ9BNBFNeTGgIQEAzTbbrEFuEuK4aEgh7D6Zg==
-X-Received: by 2002:a63:62c7:: with SMTP id w190mr626970pgb.55.1628306539357; 
- Fri, 06 Aug 2021 20:22:19 -0700 (PDT)
-Received: from localhost.localdomain ([193.203.214.57])
- by smtp.gmail.com with ESMTPSA id t8sm13950866pgh.18.2021.08.06.20.22.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 06 Aug 2021 20:22:19 -0700 (PDT)
-From: cgel.zte@gmail.com
-X-Google-Original-From: yong.yiran@zte.com.cn
-To: bskeggs@redhat.com
-Cc: yong.yiran@zte.com.cn, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Zeal Robot <zealci@zte.com.cn>
-Date: Fri,  6 Aug 2021 20:20:54 -0700
-Message-Id: <20210807032054.642867-1-yong.yiran@zte.com.cn>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1477899E6;
+	Sun,  8 Aug 2021 22:14:09 +0000 (UTC)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2CE26EA7D;
+ Wed,  4 Aug 2021 14:19:49 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A52D160F22;
+ Wed,  4 Aug 2021 14:19:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1628086789;
+ bh=UhV/SQfdLBYTc9D9nBIqPDxNpUescq5pja8sCC7bUhg=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=GqW+Ix8bE9Xpa1PchSe10rwy9phm1XMd4MtWpBN7X3eojLy8JN6KQp9n/43TFtwni
+ 80y7yvlPbt9DWFp/kScILAMs5dZoVWsxp5peA10/x5cfZa5vObdwIDWpX0jkQFvYaT
+ 2MgpL23FyoaDUNhgSS2nyNLYahv0fdWor9n5QSwmUSsJLUvt7JoCZyDZ33EVspregL
+ jDwdyiYhAt5flGpgHfIHdpgTM1ACwW61TYHC6twk5Khz9kuXn/Gp2H4ZEQb28P8yN1
+ FPN6Bs7CKtVW8/Ig8CE1Yf1LpEy2t7/uIkXgk1gg65UZJGajHvq52xvBjKFLdOLOay
+ vieUvKuAW7pSw==
+Received: by mail-wr1-f52.google.com with SMTP id m12so2425912wru.12;
+ Wed, 04 Aug 2021 07:19:49 -0700 (PDT)
+X-Gm-Message-State: AOAM532RJzvXLFVUPEin+dbxhNfM6nUr1g/OjHFLgARD5LnkXCHSCACW
+ SrtoCDFn105dsRIs5uhm7Sz3+BU7PPTraNXtolU=
+X-Google-Smtp-Source: ABdhPJz4webvoPA0EIBz9Nqvki0G4OjA8pvIy/LkSY3nQYdB4tbtdSxD94XNSCYZc0/wF2Fsa+T9PiEhNiWOJgXVQLE=
+X-Received: by 2002:adf:e107:: with SMTP id t7mr29131713wrz.165.1628086788270; 
+ Wed, 04 Aug 2021 07:19:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CAK8P3a0i0WP24Z0TScmPqKxmM2ovtKnmm+qZq6+Tc1ju+hma0w@mail.gmail.com>
+ <20210804141049.499767-1-kherbst@redhat.com>
+In-Reply-To: <20210804141049.499767-1-kherbst@redhat.com>
+From: Arnd Bergmann <arnd@kernel.org>
+Date: Wed, 4 Aug 2021 16:19:32 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a136c_L3yVn-841Sbfib9UMOf1M-pk+2SqWt0wD2zfRKQ@mail.gmail.com>
+Message-ID: <CAK8P3a136c_L3yVn-841Sbfib9UMOf1M-pk+2SqWt0wD2zfRKQ@mail.gmail.com>
+To: Karol Herbst <kherbst@redhat.com>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Lyude Paul <lyude@redhat.com>, 
+ Ben Skeggs <bskeggs@redhat.com>, Randy Dunlap <rdunlap@infradead.org>, 
+ Daniel Vetter <daniel@ffwll.ch>, ML nouveau <nouveau@lists.freedesktop.org>, 
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Sun, 08 Aug 2021 22:14:04 +0000
-Subject: [Nouveau] [PATCH linux-next] drm/nouveau/nvenc: remove duplicate
- include in base.c
+Subject: Re: [Nouveau] [PATCH] depend on BACKLIGHT_CLASS_DEVICE for more
+ devices
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,29 +73,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: yong yiran <yong.yiran@zte.com.cn>
+On Wed, Aug 4, 2021 at 4:10 PM Karol Herbst <kherbst@redhat.com> wrote:
+>
+> playing around a little bit with this, I think the original "select
+> BACKLIGHT_CLASS_DEVICE" is fine. Atm we kind of have this weird mix of
+> drivers selecting and others depending on it. We could of course convert
+> everything over to depend, and break those cycling dependency issues with
+> this.
+>
+> Anyway this change on top of my initial patch is enough to make Kconfig
+> happy and has the advantage of not having to mess with the deps of nouveau
+> too much.
 
-'priv.h' included in 'base.c' is duplicated.
-Remove all but the first include of priv.h from base.c.
+Looks good to me. We'd probably want to make the BACKLIGHT_CLASS_DEVICE
+option itself 'default FB || DRM' though, to ensure that defconfigs
+keep working.
 
-Reported-by: Zeal Robot <zealci@zte.com.cn>
-Signed-off-by: yong yiran <yong.yiran@zte.com.cn>
----
- drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c b/drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c
-index c39e797dc7c9..cf5dcfda7b25 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c
-@@ -21,7 +21,6 @@
-  */
- #include "priv.h"
- 
--#include "priv.h"
- #include <core/firmware.h>
- 
- static void *
--- 
-2.25.1
-
+      Arnd
