@@ -1,4 +1,4 @@
-Return-Path: <SRS0=Y9GB=M3=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=tbtY=M4=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
@@ -6,84 +6,91 @@ X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BDE47C4338F
-	for <nouveau@archiver.kernel.org>; Wed,  4 Aug 2021 22:02:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 53C17C4338F
+	for <nouveau@archiver.kernel.org>; Thu,  5 Aug 2021 20:22:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7F78D6105A
-	for <nouveau@archiver.kernel.org>; Wed,  4 Aug 2021 22:02:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7F78D6105A
+	by mail.kernel.org (Postfix) with ESMTPS id 0BD446104F
+	for <nouveau@archiver.kernel.org>; Thu,  5 Aug 2021 20:22:58 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 0BD446104F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57DA16E1A2;
-	Wed,  4 Aug 2021 22:02:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5046EB46;
+	Thu,  5 Aug 2021 20:22:50 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB8CB6E1BA
- for <nouveau@lists.freedesktop.org>; Wed,  4 Aug 2021 22:02:03 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69F9C6EB3E
+ for <nouveau@lists.freedesktop.org>; Thu,  5 Aug 2021 20:22:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1628114522;
+ s=mimecast20190719; t=1628194967;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=d2KqUld+afo/DqE9+AEtQTsC0qFJZ5g464VDzN5fDCk=;
- b=PEWptoFKrUobOBdl0FKLvhywAbaTnDi0Y5K/22flmid4nP9d5qEwg+E3y/SDgKG6VZXbZy
- 2exaXo+HWw2CA8y0PuVLk4GTAHwaBQaZQTHFAcyYfU4LPMs12lwQ2zNRyArrT1N3p3vk0K
- sJfOnN8om8QoX+uWOCUrNaMDdumWfJM=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-397-cA76E8RlMiK_ThauRPv0_g-1; Wed, 04 Aug 2021 18:01:59 -0400
-X-MC-Unique: cA76E8RlMiK_ThauRPv0_g-1
-Received: by mail-wm1-f70.google.com with SMTP id
- y186-20020a1c32c30000b02902b5ac887cfcso796158wmy.2
- for <nouveau@lists.freedesktop.org>; Wed, 04 Aug 2021 15:01:59 -0700 (PDT)
+ bh=AZJURn/vNXaVb4LNRbDHkBLbFiriQRpQnJaTb0vPt3A=;
+ b=JoJQaurbPfeQ1H8/QRaTc6Vs8ngl3p1fbA1AM9x6/h/FeX5q1QdBmLXMrEKAMdovcq69Cs
+ ajcMSVCWnMvNQA2793dViM+0cPB+S/o6rsvGarPgKVUmdInLvMlVVOGcVCNPNxM27oEvrR
+ QHJXC8n184isnguy7ft8GcbdhsCH9oQ=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-224-omkHLrU1OaaJ-SK4QOC5ng-1; Thu, 05 Aug 2021 16:22:44 -0400
+X-MC-Unique: omkHLrU1OaaJ-SK4QOC5ng-1
+Received: by mail-qv1-f70.google.com with SMTP id
+ t9-20020a0562140c69b029033e8884d712so4713568qvj.18
+ for <nouveau@lists.freedesktop.org>; Thu, 05 Aug 2021 13:22:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=d2KqUld+afo/DqE9+AEtQTsC0qFJZ5g464VDzN5fDCk=;
- b=G4cgC3nRbA0Dw7hLRGYEYhHcQjjnRX+wgcxPsHDi/GO8FOL4GztjtzEMzQ/vl8ZK4k
- vR8Xp6pWFvKfY9IZxH6laGbLKumBuYjcc1Ao4qMoNR14j1Zpd19AEYijZgqX+3a7qUfl
- PMP95BFJ9ZmN1GOfokTpAmakzBC1iD5vMzDwzlvPa7JBoEV8iSs1TdB/EVIP/bZCt9dK
- 3eDsnV4ob9CNO968YOpQ/Dmgad7NGbrypKLxDz8Ai9Y3uYHqbnnJ+VwRMbPMm8W8QsE3
- daRG4Osokh4mpMbb0isbRWDtDnmwwbgZPKw8rLNZL940Ps3u03n5rFc1LPmwYyyrWUPZ
- 3hGQ==
-X-Gm-Message-State: AOAM531Bu60n+FXe6P8/lTiE/TJYTIm+/CDSik950Ly6uMfvI0p/cLTF
- EbbxxwBYr8aR7m7y84eERcMEy6WL055ZSlf8BbYZaoznkngegFjN2AsTQnn6r4w7BvOhvZorKyt
- KzDzKWICoUqj+10Eh3d3FZtXJNWoZyxh3VhP57++4gA==
-X-Received: by 2002:a05:600c:2241:: with SMTP id
- a1mr11802094wmm.171.1628114518451; 
- Wed, 04 Aug 2021 15:01:58 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyY5/nXWklNR1mjmCS911U1388HsPu+p770sIXPA+rC70wi12iHVm9penxHkIrsLojhFxJ+H/cT1xS0GAj+5BQ=
-X-Received: by 2002:a05:600c:2241:: with SMTP id
- a1mr11802083wmm.171.1628114518302; 
- Wed, 04 Aug 2021 15:01:58 -0700 (PDT)
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=AZJURn/vNXaVb4LNRbDHkBLbFiriQRpQnJaTb0vPt3A=;
+ b=t7anYesUvHn6Ptk7/t/W4pBOT6IaaUBNtO56i+fg1xBlI3GqoTC6MpfpUfhBdTzD5Q
+ Kp3ZGVEpFpherzq4slg8XC38RKGjPZNfO0nRMnKAyIIOz/b0lnuyGiV4W0ClwAyLC968
+ LLVH3fBE0gQe3Nn3AHi+OvhJvMV0OoYq+/vniW9nHRedkCuZQWJYDN4I5aridxlRaopl
+ V8IxpUCSb34R+Tliip3v+jYtgyFIB5t42IRh0gr5Gd3dYZNyEb3eOPfutWxoA6pnQJeI
+ 0cPix8Az0uIhkD5HOgpfSudxWcvY4+iHODGgzUkLjpqM2FP4z6K4iPAMGgkVyT5ae5/k
+ BnRA==
+X-Gm-Message-State: AOAM532Bpu/+dlwxoESp4H+yOANaBalzpejpEdrCOr9xW60yBzy0H10o
+ CEDZY3VU1tMDrvbNPYfJKHznUPUo2sx3J/n5TOWq0Kre9/5Jn7Va5REIAxBtKskxPzucikCDTzZ
+ Ysh4DL+G61jUwM1aDRAv61t1liQ==
+X-Received: by 2002:a05:620a:164b:: with SMTP id
+ c11mr6677743qko.156.1628194964028; 
+ Thu, 05 Aug 2021 13:22:44 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxukpaB1/jScBajs9BDPyMayzkVS+3yZ5iWr3qxQvw1wPnBwP/Q7oZK2V/qFOf18EEZ8lGwAA==
+X-Received: by 2002:a05:620a:164b:: with SMTP id
+ c11mr6677734qko.156.1628194963765; 
+ Thu, 05 Aug 2021 13:22:43 -0700 (PDT)
+Received: from Ruby.lyude.net (pool-108-49-102-102.bstnma.fios.verizon.net.
+ [108.49.102.102])
+ by smtp.gmail.com with ESMTPSA id v11sm2830972qtc.0.2021.08.05.13.22.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 05 Aug 2021 13:22:43 -0700 (PDT)
+Message-ID: <fbe03a5f99edfe119ffcdc47de5b7baf8e84549e.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Xorg Members List <members@x.org>, "mesa-dev@lists.freedesktop.org"
+ <mesa-dev@lists.freedesktop.org>, xorg-devel <xorg-devel@lists.x.org>, 
+ "wayland-devel@lists.freedesktop.org"
+ <wayland-devel@lists.freedesktop.org>, nouveau
+ <nouveau@lists.freedesktop.org>,  dri-devel
+ <dri-devel@lists.freedesktop.org>, IGT development
+ <igt-dev@lists.freedesktop.org>,  amd-gfx list
+ <amd-gfx@lists.freedesktop.org>
+Cc: board@x.org
+Date: Thu, 05 Aug 2021 16:22:40 -0400
+In-Reply-To: <5a2b5d77c100a21b3d9e4eb0048c36a94cd1e4ea.camel@redhat.com>
+References: <5a2b5d77c100a21b3d9e4eb0048c36a94cd1e4ea.camel@redhat.com>
+Organization: Red Hat
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33)
 MIME-Version: 1.0
-References: <CAK8P3a0i0WP24Z0TScmPqKxmM2ovtKnmm+qZq6+Tc1ju+hma0w@mail.gmail.com>
- <20210804141049.499767-1-kherbst@redhat.com>
- <CAK8P3a136c_L3yVn-841Sbfib9UMOf1M-pk+2SqWt0wD2zfRKQ@mail.gmail.com>
- <CACO55tsLpURTm=Jf=4gRVtYQbit5h2OBYw_MFb6Vf1PFvTV7dw@mail.gmail.com>
- <CACO55tuy5Am9zbcR490KWYYAg7MguBN5m82vbjzifGN5KpGbxw@mail.gmail.com>
- <CAK8P3a3hZ7X5+kM5E+_Y+COUp49Kt6iDjiqMFtimiSbPk4byzQ@mail.gmail.com>
-In-Reply-To: <CAK8P3a3hZ7X5+kM5E+_Y+COUp49Kt6iDjiqMFtimiSbPk4byzQ@mail.gmail.com>
-From: Karol Herbst <kherbst@redhat.com>
-Date: Thu, 5 Aug 2021 00:01:47 +0200
-Message-ID: <CACO55tsj_dgo8NENArCQ_=qcuJoMPg9k-gfkWxZ_8FCQUOTY1A@mail.gmail.com>
-To: Arnd Bergmann <arnd@kernel.org>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Lyude Paul <lyude@redhat.com>, 
- Ben Skeggs <bskeggs@redhat.com>, Randy Dunlap <rdunlap@infradead.org>, 
- Daniel Vetter <daniel@ffwll.ch>, ML nouveau <nouveau@lists.freedesktop.org>, 
- dri-devel <dri-devel@lists.freedesktop.org>
 Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=kherbst@redhat.com
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Nouveau] [PATCH] depend on BACKLIGHT_CLASS_DEVICE for more
- devices
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Nouveau] Help needed for EVoC/GSoC/Outreachy
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,48 +105,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Aug 4, 2021 at 11:10 PM Arnd Bergmann <arnd@kernel.org> wrote:
->
-> On Wed, Aug 4, 2021 at 8:59 PM Karol Herbst <kherbst@redhat.com> wrote:
-> > On Wed, Aug 4, 2021 at 4:43 PM Karol Herbst <kherbst@redhat.com> wrote:
-> > > On Wed, Aug 4, 2021 at 4:19 PM Arnd Bergmann <arnd@kernel.org> wrote:
-> > > > On Wed, Aug 4, 2021 at 4:10 PM Karol Herbst <kherbst@redhat.com> wrote:
-> > > > >
-> > > > > playing around a little bit with this, I think the original "select
-> > > > > BACKLIGHT_CLASS_DEVICE" is fine. Atm we kind of have this weird mix of
-> > > > > drivers selecting and others depending on it. We could of course convert
-> > > > > everything over to depend, and break those cycling dependency issues with
-> > > > > this.
-> > > > >
-> > > > > Anyway this change on top of my initial patch is enough to make Kconfig
-> > > > > happy and has the advantage of not having to mess with the deps of nouveau
-> > > > > too much.
-> > > >
-> > > > Looks good to me. We'd probably want to make the BACKLIGHT_CLASS_DEVICE
-> > > > option itself 'default FB || DRM' though, to ensure that defconfigs
-> > > > keep working.
-> > > >
-> > >
-> > > okay cool. Will send out a proper updated patch series soonish.
-> > >
-> >
-> > mhh, actually that breaks drivers selecting FB_BACKLIGHT as now
-> > BACKLIGHT_CLASS_DEVICE might be disabled :(
->
-> Are you sure? It should already be the case that any driver that selects
-> FB_BACKLIGHT either 'depends on BACKLIGHT_CLASS_DEVICE'
-> or 'select BACKLIGHT_CLASS_DEVICE'.
->
+Hi everyone! I got some questions from someone that made me realize that
+there's a couple of things that I forgot to mention here that might be
+useful for folks to know regarding being a mentor:
 
-none of the fb drivers seem to do that.
+* "Who decides what project and what student?"
+  It's up to the student to come up with ideas for what they want to work on,
+  although we will occasionally have a list of potential project ideas that
+  students are welcome to use or draw inspiration from. Since X.org participates
+  as a foundation, pretty much any of the projects under the X.org umbrella are
+  allowed to do this if they're willing to come up with mentors. As for who the
+  mentors are, that's really all just up to who's volunteering for it on a given
+  project.
+  As for how we decide what students we accept, that decision is usually made
+  based off the quality of their project proposal along with whether a student
+  seems self-sufficient enough to accomplish said project. Most students who
+  come to us with a project idea already typically fall into this category. The
+  final decision for this is typically made by the student's proposed mentor
+  and/or our volunteer GSoC/Outreachy/EVoC admin.
+* "I assume this is international?"
+  X.org tries to make our student outreach programs as international as
+  possible. GSoC covers most of the world, but there are definitely some areas
+  it doesn't cover - which is why we've ran EVoC in the past, so that students
+  in areas that wouldn't be eligible for GSoC would still have a chance at
+  participating in a project. Outreachy also helps fill this gap, as I don't
+  believe they have the same kind of international restrictions that GSoC does.
+* What is the expected result, a grading?
+  Yes.
 
-> If you change all the 'select BACKLIGHT_CLASS_DEVICE' to 'depends
-> on', I don't see a problem with doing 'select FB_BACKLIGHT' from
-> those.
->
-> I have applied your patch to my randconfig tree and built a few dozen
-> kernels, don't see any regressions so far, but will let it run over night.
->
->       Arnd
->
+On Wed, 2021-07-14 at 16:32 -0400, Lyude Paul wrote:
+> Hi! As some of you might already be aware, after helping out X.org
+> project the previous years with regards to student outreach, Trevor
+> decided to retire from this position in hopes that someone else will be
+> able to step up and take on these responsibilities. As such, we're
+> trying to find people who would be willing to volunteer their time to
+> help out with getting us involved once again in student outreach
+> programs.
+> 
+> In the past, X.org has been active in the GSoC program, occasionally
+> Outreachy, and our own EVoC program. As of 2021 though, GSoC decided to
+> shorten the amount of time allocated for a student to work on their
+> project. This unfortunately posed some problems for
+> X.org/freedesktop.org as a lot of the potential work that would have
+> been good for us to have students working on wouldn't really fit within
+> the new GSoC timeframe. While it's certainly possible that there will be
+> projects that come up in the future which do fit into this new timeline,
+> we think it'd be a good idea to step up our involvement again with
+> Outreachy where the program is a good bit more flexible then GSoC. We've
+> also had pretty good experience working with the Outreachy candidates
+> we've had in the past.
+> 
+> The other main topic of discussion is around the fact that our own
+> program, EVoC, hasn't really had anyone available to volunteer to help
+> run it for a while now. For those who aren't aware, EVoC is a program
+> similar to Google Summer of Code that X.org started running with much
+> more relaxed requirements then GSoC/Outreachy in order to help fill the
+> gaps for any exceptional cases with students who would otherwise be left
+> out by the requirements for GSoC/Outreachy. Typically though, EVoC is
+> usually considered the last resort after a student has tried getting
+> into GSoC/Outreachy.
+> 
+> So, the two biggest things that we need are:
+> * Admin volunteer(s)
+> * Mentors, mentors, mentors! We really need these the most.
+> 
+> So, what responsibilities would being an admin for this entail?
+> 
+> * Fielding questions from potential GSoC/EVoC/Outreachy participants.
+>   Most of these students are just looking for simple details of how
+>   these programs work and are looking for project ideas. Responding to
+>   these inquiries is mostly just a matter of pointing students to
+>   various pages on our wiki or replying with form/stock replies. Most of
+>   the students at this phase expect to be handed a project and a mentor,
+>   and therefore end up learning that they will need to come up with
+>   their own project and mentor.
+> * For the small handful of students that make it to the next phase and
+>   figure out a project idea, they then need to find a mentor. Usually
+>   the admin will help out by taking a look at who proposed the project
+>   idea, and/or looking through commit messages and mailing list history
+>   to try to find someone who would be a good fit and willing to mentor
+>   the student. Sometimes this happens quickly, and sometimes it requires
+>   poking a lot of people - and occasionally, there might not always be a
+>   mentor to be found.
+> * If we have a student, project, and mentor then the next step is having
+>   the student write up a proposal. Many students start out with
+>   over-simplified proposals, so a lot of this work is just gently
+>   nudging students and getting them to refine their work items into a
+>   week-by-week synopsis. There's usually a good bit of back and forth
+>   with the student's proposal, and occasionally the mentor may be
+>   involved with this step.
+> * The admin then works with the student to come up with a timeline for
+>   their work, taking into account any vacation time the student may
+>   have, along with coordinating the frequency/type of meetings that
+>   will happen between the student and the mentor. If the mentor is
+>   unable to attend all of these meetings, it's usually up to the admin
+>   to check in with the student to see how they are progressing and
+>   potentially provide them tips if they get stuck.
+> 
+> As for being a mentor, it's pretty much as simple as it sounds: you work
+> with students who have projects to help familiarize them with the
+> project at hand, help them out wherever needed, check in on their
+> progress, and guide them along the way towards reaching their project
+> goal along with grading their work.
+> 
+> Please help spread the word on this, and contact anyone you know who
+> might be involved with this! We'll be happy to provide more information
+> on how you can get started. Remember, folks like myself wouldn't be in
+> this community without projects like GSoC :).
+> 
+
+-- 
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
