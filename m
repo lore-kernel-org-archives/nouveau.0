@@ -2,141 +2,68 @@ Return-Path: <SRS0=Gwq6=M7=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,NICE_REPLY_A,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4CDDCC432BE
-	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 86979C4338F
+	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1157260F35
-	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:09 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1157260F35
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id 4B83B6069E
+	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:12 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 4B83B6069E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78A8089938;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD4F0899A5;
 	Sun,  8 Aug 2021 22:14:05 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CAF56E88C
- for <nouveau@lists.freedesktop.org>; Tue,  3 Aug 2021 15:30:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1628004645;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Ef5H/YzWjPRhpmEEex0YbOyxkXYC0ZJIajn0GIxKBlE=;
- b=Ge5aL2LJYyL7SFUN4/8+uzVsGUyeqEYdDDb48hSvxnjfaSV82T+lIm94FU1RWi9k4TmkFi
- Cs8tbhGOKi50b6b+XPumM34mHUbCBvRQ2i7U9Zg/fQuoHjG5K2Bb7Wurot1WjYUL9jGlRW
- 00bOvdsFE1cOQxZqw/DPYEXJd+bACuA=
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-285-DdoP3nCQMvuJAkrXEqaw-Q-1; Tue, 03 Aug 2021 11:30:44 -0400
-X-MC-Unique: DdoP3nCQMvuJAkrXEqaw-Q-1
-Received: by mail-ed1-f69.google.com with SMTP id
- p2-20020a50c9420000b02903a12bbba1ebso10588737edh.6
- for <nouveau@lists.freedesktop.org>; Tue, 03 Aug 2021 08:30:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=Ef5H/YzWjPRhpmEEex0YbOyxkXYC0ZJIajn0GIxKBlE=;
- b=IDjH7FKI1RK4JzAfFA6cpW5lMZmq/LHniU7RfucmNZTMpRFx2PL0rk4xISSPQEfih6
- TeGCsRrRO0vAlY2Utr70tnSvVBKa8KRwC6iA3wOEEeesh+Ldp8VdS0xCt3mjms7bdVxQ
- AFDmpUJuTXFbcR3aqm2vxhm5vwtHr6eqFgYdEigbEQ7K6mAvhwNuvUmY4wtOFL+75HiD
- wzLtNu33qih1yjPue+y0fioYl8PmhB4M75LGGFiNafuf62LED6qCt8YD16EngoAjuQyj
- lCBHVdvKPH00NtxdDY78PHk9g0TVnVv80jjTxQfasW/HE8HVBZS6+zqwh4uT+GgE07fV
- Vx+A==
-X-Gm-Message-State: AOAM5301mmOVt5mr48AyHyopvW/Pb7zaIpMuEC2I5nSHJGNSXVanFzP7
- tjOiXTsrEcfS/ooka9qtQsS1HwiY6O1o5oIyyv9fmnkdJDB1nStcF0ykSNlRO45eoCYTANVP3sc
- +k+8RTK4OvkPasKAB6CUDZLBJ9g==
-X-Received: by 2002:a17:906:1da1:: with SMTP id
- u1mr20660439ejh.307.1628004643350; 
- Tue, 03 Aug 2021 08:30:43 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxf6rV1ZatT2GQ6a3+XcXIUCr6rut+vBVs6RfI7E2ACDBMkrHwlwXE3OZTZ7a4m4dn8RViNBQ==
-X-Received: by 2002:a17:906:1da1:: with SMTP id
- u1mr20660382ejh.307.1628004643075; 
- Tue, 03 Aug 2021 08:30:43 -0700 (PDT)
-Received: from x1.localdomain
- (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
- by smtp.gmail.com with ESMTPSA id b17sm4094598edd.27.2021.08.03.08.30.40
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 03 Aug 2021 08:30:42 -0700 (PDT)
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- linux-kernel@vger.kernel.org
-Cc: tglx@linutronix.de, Peter Zijlstra <peterz@infradead.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Amit Kucheria <amitk@kernel.org>, Andrew Morton <akpm@linux-foundation.org>,
- Andy Lutomirski <luto@kernel.org>, Arnaldo Carvalho de Melo
- <acme@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Ben Segall <bsegall@google.com>, Borislav Petkov <bp@alien8.de>,
- cgroups@vger.kernel.org, Christian Borntraeger <borntraeger@de.ibm.com>,
- coresight@lists.linaro.org, Daniel Bristot de Oliveira <bristot@redhat.com>,
- Daniel Jordan <daniel.m.jordan@oracle.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Dave Hansen <dave.hansen@linux.intel.com>,
- Davidlohr Bueso <dave@stgolabs.net>, "David S. Miller"
- <davem@davemloft.net>, Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Gonglei <arei.gonglei@huawei.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Guenter Roeck <linux@roeck-us.net>, Heiko Carstens <hca@linux.ibm.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, "H. Peter Anvin" <hpa@zytor.com>,
- Ingo Molnar <mingo@kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Jakub Kicinski <kuba@kernel.org>, Jason Wang <jasowang@redhat.com>,
- Jean Delvare <jdelvare@suse.com>, Jiri Kosina <jikos@kernel.org>,
- Jiri Olsa <jolsa@redhat.com>, Joe Lawrence <joe.lawrence@redhat.com>,
- Joel Fernandes <joel@joelfernandes.org>, Johannes Weiner
- <hannes@cmpxchg.org>, John Stultz <john.stultz@linaro.org>,
- Jonathan Corbet <corbet@lwn.net>, Josh Poimboeuf <jpoimboe@redhat.com>,
- Josh Triplett <josh@joshtriplett.org>, Julian Wiedmann <jwi@linux.ibm.com>,
- Juri Lelli <juri.lelli@redhat.com>, Karol Herbst <karolherbst@gmail.com>,
- Karsten Graul <kgraul@linux.ibm.com>, kvm-ppc@vger.kernel.org,
- Lai Jiangshan <jiangshanlai@gmail.com>, Len Brown <lenb@kernel.org>,
- Len Brown <len.brown@intel.com>, Leo Yan <leo.yan@linaro.org>,
- linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-crypto@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-edac@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-mm@kvack.org, linux-pm@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-raid@vger.kernel.org,
- linux-s390@vger.kernel.org, live-patching@vger.kernel.org,
- Mark Gross <mgross@linux.intel.com>, Mark Rutland <mark.rutland@arm.com>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Mel Gorman <mgorman@suse.de>,
- Michael Ellerman <mpe@ellerman.id.au>, "Michael S. Tsirkin"
- <mst@redhat.com>, Mike Leach <mike.leach@linaro.org>,
- Mike Travis <mike.travis@hpe.com>, Miroslav Benes <mbenes@suse.cz>,
- Namhyung Kim <namhyung@kernel.org>, netdev@vger.kernel.org,
- nouveau@lists.freedesktop.org, "Paul E. McKenney" <paulmck@kernel.org>,
- Paul Mackerras <paulus@samba.org>, Pavel Machek <pavel@ucw.cz>,
- Pekka Paalanen <ppaalanen@gmail.com>, Petr Mladek <pmladek@suse.com>,
- platform-driver-x86@vger.kernel.org, "Rafael J. Wysocki"
- <rjw@rjwysocki.net>, rcu@vger.kernel.org,
- virtualization@lists.linux-foundation.org, x86@kernel.org
-References: <20210803141621.780504-1-bigeasy@linutronix.de>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <83dc5dfd-1ed0-f428-826f-fb819911fc89@redhat.com>
-Date: Tue, 3 Aug 2021 17:30:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C3B789DB5;
+ Thu,  5 Aug 2021 06:50:59 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D182560EE8;
+ Thu,  5 Aug 2021 06:50:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1628146258;
+ bh=qMsPpqQgFUPSSPnZfZavNoLnNsZYb+hVgAtPZNQBy5w=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=ObhBf+NN4GqwQxNx/Lx+8AMAwuGlEvoXaj2dr50XEIYqzYy/HZE2xI7CL2r/XBdRm
+ h7Jl0yGq7YppbC5Qi+io0LfpKg8+sqkjPa7VgkgDzQj7MZ8Za/g84FRPLsS/geIrib
+ XeHHxL9J9xr5FwusDdEI8d630JA5vK4xwDEB/ag73EcJ8nyoA5iocv71E6axsMyg03
+ MQJsYEqpOGmzbPpV4barhyJ1DNTVMGbVfR76rJJ/glh7MLH4aQwApNRc3MqRkjAboQ
+ UO7cggith/pKaisdmkMHzNieFdV7GQLpIG3V5j64ROArAcaNQjL0LWYWAPOA436KVE
+ lr78sf0ffppPw==
+Received: by mail-wr1-f54.google.com with SMTP id l18so5065705wrv.5;
+ Wed, 04 Aug 2021 23:50:58 -0700 (PDT)
+X-Gm-Message-State: AOAM5332cUY1qq1cpgRM5svl93MYyCJ8j5W7K+QSo6MC5hEm4K4wBTp0
+ PkHNgvbKa/IPX3m1fhge05g7guTBTfO7K7rkUNU=
+X-Google-Smtp-Source: ABdhPJznMWhOISmuIYDXrWpGkt4y1m+fqzTgxmRqDkmkTEHJHsPKR7IHYLL2Gk1DFScHpZ5gzgXyDTyRE3rrOBfVhqs=
+X-Received: by 2002:adf:f7c5:: with SMTP id a5mr3290312wrq.99.1628146257464;
+ Wed, 04 Aug 2021 23:50:57 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210803141621.780504-1-bigeasy@linutronix.de>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <CAK8P3a0i0WP24Z0TScmPqKxmM2ovtKnmm+qZq6+Tc1ju+hma0w@mail.gmail.com>
+ <20210804141049.499767-1-kherbst@redhat.com>
+ <CAK8P3a136c_L3yVn-841Sbfib9UMOf1M-pk+2SqWt0wD2zfRKQ@mail.gmail.com>
+ <CACO55tsLpURTm=Jf=4gRVtYQbit5h2OBYw_MFb6Vf1PFvTV7dw@mail.gmail.com>
+ <CACO55tuy5Am9zbcR490KWYYAg7MguBN5m82vbjzifGN5KpGbxw@mail.gmail.com>
+ <CAK8P3a3hZ7X5+kM5E+_Y+COUp49Kt6iDjiqMFtimiSbPk4byzQ@mail.gmail.com>
+ <CACO55tsj_dgo8NENArCQ_=qcuJoMPg9k-gfkWxZ_8FCQUOTY1A@mail.gmail.com>
+In-Reply-To: <CACO55tsj_dgo8NENArCQ_=qcuJoMPg9k-gfkWxZ_8FCQUOTY1A@mail.gmail.com>
+From: Arnd Bergmann <arnd@kernel.org>
+Date: Thu, 5 Aug 2021 08:50:41 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a1rAr0BH6cNLkhES+81x2hWW31RTLZkHLDJYK-r8+x6Gg@mail.gmail.com>
+Message-ID: <CAK8P3a1rAr0BH6cNLkhES+81x2hWW31RTLZkHLDJYK-r8+x6Gg@mail.gmail.com>
+To: Karol Herbst <kherbst@redhat.com>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Lyude Paul <lyude@redhat.com>, 
+ Ben Skeggs <bskeggs@redhat.com>, Randy Dunlap <rdunlap@infradead.org>, 
+ Daniel Vetter <daniel@ffwll.ch>, ML nouveau <nouveau@lists.freedesktop.org>, 
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Sun, 08 Aug 2021 22:14:04 +0000
-Subject: Re: [Nouveau] [PATCH 00/38] Replace deprecated CPU-hotplug
+Subject: Re: [Nouveau] [PATCH] depend on BACKLIGHT_CLASS_DEVICE for more
+ devices
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,132 +78,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Sebastien,
+On Thu, Aug 5, 2021 at 12:01 AM Karol Herbst <kherbst@redhat.com> wrote:
+>
+> On Wed, Aug 4, 2021 at 11:10 PM Arnd Bergmann <arnd@kernel.org> wrote:
+> >
+> > On Wed, Aug 4, 2021 at 8:59 PM Karol Herbst <kherbst@redhat.com> wrote:
+> > > On Wed, Aug 4, 2021 at 4:43 PM Karol Herbst <kherbst@redhat.com> wrote:
+> > > > On Wed, Aug 4, 2021 at 4:19 PM Arnd Bergmann <arnd@kernel.org> wrote:
+> > > > > On Wed, Aug 4, 2021 at 4:10 PM Karol Herbst <kherbst@redhat.com> wrote:
+> > > > > >
+> > > > > > playing around a little bit with this, I think the original "select
+> > > > > > BACKLIGHT_CLASS_DEVICE" is fine. Atm we kind of have this weird mix of
+> > > > > > drivers selecting and others depending on it. We could of course convert
+> > > > > > everything over to depend, and break those cycling dependency issues with
+> > > > > > this.
+> > > > > >
+> > > > > > Anyway this change on top of my initial patch is enough to make Kconfig
+> > > > > > happy and has the advantage of not having to mess with the deps of nouveau
+> > > > > > too much.
+> > > > >
+> > > > > Looks good to me. We'd probably want to make the BACKLIGHT_CLASS_DEVICE
+> > > > > option itself 'default FB || DRM' though, to ensure that defconfigs
+> > > > > keep working.
+> > > > >
+> > > >
+> > > > okay cool. Will send out a proper updated patch series soonish.
+> > > >
+> > >
+> > > mhh, actually that breaks drivers selecting FB_BACKLIGHT as now
+> > > BACKLIGHT_CLASS_DEVICE might be disabled :(
+> >
+> > Are you sure? It should already be the case that any driver that selects
+> > FB_BACKLIGHT either 'depends on BACKLIGHT_CLASS_DEVICE'
+> > or 'select BACKLIGHT_CLASS_DEVICE'.
+> >
+> none of the fb drivers seem to do that.
 
-On 8/3/21 4:15 PM, Sebastian Andrzej Siewior wrote:
-> This is a tree wide replacement of the deprecated CPU hotplug functions
-> which are only wrappers around the actual functions.
-> 
-> Each patch is independent and can be picked up by the relevant maintainer.
+Ah, right, I see now that my randconfig series has a couple of patches
+applied that deal with other random failures, including this one:
 
-Ok; and I take it that then also is the plan for merging these ?
+https://patchwork.kernel.org/project/linux-fbdev/patch/20200417155553.675905-8-arnd@arndb.de/
 
-FWIW I'm fine with the drivers/platform/x86 patch going upstream
-through some other tree if its easier to keep the set together ...
+Part of the series went in (through different ways) now, but this one
+never did.
 
-Regards,
-
-Hans
-
-
-
-> 
-> Cc: Alexander Shishkin <alexander.shishkin@linux.intel.com>
-> Cc: Amit Kucheria <amitk@kernel.org>
-> Cc: Andrew Morton <akpm@linux-foundation.org>
-> Cc: Andy Lutomirski <luto@kernel.org>
-> Cc: Arnaldo Carvalho de Melo <acme@kernel.org>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>
-> Cc: Ben Segall <bsegall@google.com>
-> Cc: Borislav Petkov <bp@alien8.de>
-> Cc: cgroups@vger.kernel.org
-> Cc: Christian Borntraeger <borntraeger@de.ibm.com>
-> Cc: coresight@lists.linaro.org
-> Cc: Daniel Bristot de Oliveira <bristot@redhat.com>
-> Cc: Daniel Jordan <daniel.m.jordan@oracle.com>
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: Dave Hansen <dave.hansen@linux.intel.com>
-> Cc: Davidlohr Bueso <dave@stgolabs.net>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Dietmar Eggemann <dietmar.eggemann@arm.com>
-> Cc: Gonglei <arei.gonglei@huawei.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Hans de Goede <hdegoede@redhat.com>
-> Cc: Heiko Carstens <hca@linux.ibm.com>
-> Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> Cc: "H. Peter Anvin" <hpa@zytor.com>
-> Cc: Ingo Molnar <mingo@kernel.org>
-> Cc: Ingo Molnar <mingo@redhat.com>
-> Cc: Jakub Kicinski <kuba@kernel.org>
-> Cc: Jason Wang <jasowang@redhat.com>
-> Cc: Jean Delvare <jdelvare@suse.com>
-> Cc: Jiri Kosina <jikos@kernel.org>
-> Cc: Jiri Olsa <jolsa@redhat.com>
-> Cc: Joe Lawrence <joe.lawrence@redhat.com>
-> Cc: Joel Fernandes <joel@joelfernandes.org>
-> Cc: Johannes Weiner <hannes@cmpxchg.org>
-> Cc: John Stultz <john.stultz@linaro.org>
-> Cc: Jonathan Corbet <corbet@lwn.net>
-> Cc: Josh Poimboeuf <jpoimboe@redhat.com>
-> Cc: Josh Triplett <josh@joshtriplett.org>
-> Cc: Julian Wiedmann <jwi@linux.ibm.com>
-> Cc: Juri Lelli <juri.lelli@redhat.com>
-> Cc: Karol Herbst <karolherbst@gmail.com>
-> Cc: Karsten Graul <kgraul@linux.ibm.com>
-> Cc: kvm-ppc@vger.kernel.org
-> Cc: Lai Jiangshan <jiangshanlai@gmail.com>
-> Cc: Len Brown <lenb@kernel.org>
-> Cc: Len Brown <len.brown@intel.com>
-> Cc: Leo Yan <leo.yan@linaro.org>
-> Cc: linux-acpi@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-crypto@vger.kernel.org
-> Cc: linux-doc@vger.kernel.org
-> Cc: linux-edac@vger.kernel.org
-> Cc: linux-hwmon@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-mips@vger.kernel.org
-> Cc: linux-mm@kvack.org
-> Cc: linux-pm@vger.kernel.org
-> Cc: linuxppc-dev@lists.ozlabs.org
-> Cc: linux-raid@vger.kernel.org
-> Cc: linux-s390@vger.kernel.org
-> Cc: live-patching@vger.kernel.org
-> Cc: Mark Gross <mgross@linux.intel.com>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: Mel Gorman <mgorman@suse.de>
-> Cc: Michael Ellerman <mpe@ellerman.id.au>
-> Cc: "Michael S. Tsirkin" <mst@redhat.com>
-> Cc: Mike Leach <mike.leach@linaro.org>
-> Cc: Mike Travis <mike.travis@hpe.com>
-> Cc: Miroslav Benes <mbenes@suse.cz>
-> Cc: Namhyung Kim <namhyung@kernel.org>
-> Cc: netdev@vger.kernel.org
-> Cc: nouveau@lists.freedesktop.org
-> Cc: "Paul E. McKenney" <paulmck@kernel.org>
-> Cc: Paul Mackerras <paulus@samba.org>
-> Cc: Pavel Machek <pavel@ucw.cz>
-> Cc: Pekka Paalanen <ppaalanen@gmail.com>
-> Cc: Peter Zijlstra <peterz@infradead.org>
-> Cc: Petr Mladek <pmladek@suse.com>
-> Cc: platform-driver-x86@vger.kernel.org
-> Cc: "Rafael J. Wysocki" <rjw@rjwysocki.net>
-> Cc: rcu@vger.kernel.org
-> Cc: Robin Holt <robinmholt@gmail.com>
-> Cc: Song Liu <song@kernel.org>
-> Cc: Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>
-> Cc: Steffen Klassert <steffen.klassert@secunet.com>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Steven Rostedt <rostedt@goodmis.org>
-> Cc: Steve Wahl <steve.wahl@hpe.com>
-> Cc: Stuart Hayes <stuart.w.hayes@gmail.com>
-> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
-> Cc: Tejun Heo <tj@kernel.org>
-> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Tony Luck <tony.luck@intel.com>
-> Cc: Vasily Gorbik <gor@linux.ibm.com>
-> Cc: Vincent Guittot <vincent.guittot@linaro.org>
-> Cc: Viresh Kumar <viresh.kumar@linaro.org>
-> Cc: virtualization@lists.linux-foundation.org
-> Cc: x86@kernel.org
-> Cc: Zefan Li <lizefan.x@bytedance.com>
-> Cc: Zhang Rui <rui.zhang@intel.com>
-> 
-> Sebastian
-> 
-
+      Arnd
