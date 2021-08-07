@@ -2,112 +2,75 @@ Return-Path: <SRS0=Gwq6=M7=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 86EE0C432BE
-	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BB79DC4338F
+	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 234206069E
-	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:14 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 234206069E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linutronix.de
+	by mail.kernel.org (Postfix) with ESMTPS id 8092E60F38
+	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8092E60F38
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBA1F899C4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA895899F2;
 	Sun,  8 Aug 2021 22:14:05 +0000 (UTC)
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A82289DFA
- for <nouveau@lists.freedesktop.org>; Tue,  3 Aug 2021 16:10:39 +0000 (UTC)
-Date: Tue, 3 Aug 2021 18:10:33 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1628007036;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=ZhCR89X1oG7iNKpxBHqwK160maOrSQVKgeomxdN0wRc=;
- b=LwdXqV6TEL+jelWYIVu/L1AwkukJUhfDeR6fxf6HaCffMyf5pGalG64DdzD6SrFbnK74/x
- PVNjb7a8JiALCQD3CJBVmxfKVnGPRCXtU70BUFy11admR5LtOLT9dQeI/ENtXdJ/CkhTdc
- pZNvsYTpT+QPzjRhgzvNT0CjgoFJhxwmycapteSubpDkPSBjZ+FP8bxnvUSWW30Gz0Y7dW
- 1ffy1Rr5tDaLDwQ1cWTtCeME4yw92tE3YUaDago5Lw9pEtw1H1L8au8do+a32W2/sN3gs0
- btcFKclunpFVufnMA6+fMpSDPoeRfMtyi+RFwzALyjj/jtaWzgKiRMXG8gO4tg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1628007036;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=ZhCR89X1oG7iNKpxBHqwK160maOrSQVKgeomxdN0wRc=;
- b=CjGblo5JavDHAEsakSWenCqJ60bnDYFeC+TGn7n/YdarB5rRq+iJbcWjrVSzA5F0n0kDM4
- Vc1wmHGVCRR8DGCA==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Hans de Goede <hdegoede@redhat.com>
-Cc: linux-kernel@vger.kernel.org, tglx@linutronix.de,
- Peter Zijlstra <peterz@infradead.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Amit Kucheria <amitk@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Andy Lutomirski <luto@kernel.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Ben Segall <bsegall@google.com>, Borislav Petkov <bp@alien8.de>,
- cgroups@vger.kernel.org, Christian Borntraeger <borntraeger@de.ibm.com>,
- coresight@lists.linaro.org,
- Daniel Bristot de Oliveira <bristot@redhat.com>,
- Daniel Jordan <daniel.m.jordan@oracle.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Dave Hansen <dave.hansen@linux.intel.com>,
- Davidlohr Bueso <dave@stgolabs.net>,
- "David S. Miller" <davem@davemloft.net>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Gonglei <arei.gonglei@huawei.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Guenter Roeck <linux@roeck-us.net>, Heiko Carstens <hca@linux.ibm.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- "H. Peter Anvin" <hpa@zytor.com>, Ingo Molnar <mingo@kernel.org>,
- Ingo Molnar <mingo@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Jason Wang <jasowang@redhat.com>, Jean Delvare <jdelvare@suse.com>,
- Jiri Kosina <jikos@kernel.org>, Jiri Olsa <jolsa@redhat.com>,
- Joe Lawrence <joe.lawrence@redhat.com>,
- Joel Fernandes <joel@joelfernandes.org>,
- Johannes Weiner <hannes@cmpxchg.org>, John Stultz <john.stultz@linaro.org>,
- Jonathan Corbet <corbet@lwn.net>, Josh Poimboeuf <jpoimboe@redhat.com>,
- Josh Triplett <josh@joshtriplett.org>, Julian Wiedmann <jwi@linux.ibm.com>,
- Juri Lelli <juri.lelli@redhat.com>, Karol Herbst <karolherbst@gmail.com>,
- Karsten Graul <kgraul@linux.ibm.com>, kvm-ppc@vger.kernel.org,
- Lai Jiangshan <jiangshanlai@gmail.com>, Len Brown <lenb@kernel.org>,
- Len Brown <len.brown@intel.com>, Leo Yan <leo.yan@linaro.org>,
- linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-crypto@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-edac@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-mm@kvack.org,
- linux-pm@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-raid@vger.kernel.org, linux-s390@vger.kernel.org,
- live-patching@vger.kernel.org, Mark Gross <mgross@linux.intel.com>,
- Mark Rutland <mark.rutland@arm.com>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Mel Gorman <mgorman@suse.de>, Michael Ellerman <mpe@ellerman.id.au>,
- "Michael S. Tsirkin" <mst@redhat.com>, Mike Leach <mike.leach@linaro.org>,
- Mike Travis <mike.travis@hpe.com>, Miroslav Benes <mbenes@suse.cz>,
- Namhyung Kim <namhyung@kernel.org>, netdev@vger.kernel.org,
- nouveau@lists.freedesktop.org, "Paul E. McKenney" <paulmck@kernel.org>,
- Paul Mackerras <paulus@samba.org>, Pavel Machek <pavel@ucw.cz>,
- Pekka Paalanen <ppaalanen@gmail.com>,
- Petr Mladek <pmladek@suse.com>, platform-driver-x86@vger.kernel.org,
- "Rafael J. Wysocki" <rjw@rjwysocki.net>, rcu@vger.kernel.org,
- virtualization@lists.linux-foundation.org, x86@kernel.org
-Message-ID: <20210803161033.vp3o34meyw3ek43z@linutronix.de>
-References: <20210803141621.780504-1-bigeasy@linutronix.de>
- <83dc5dfd-1ed0-f428-826f-fb819911fc89@redhat.com>
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com
+ [IPv6:2607:f8b0:4864:20::1035])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C88A66E08C
+ for <nouveau@lists.freedesktop.org>; Sat,  7 Aug 2021 03:22:19 +0000 (UTC)
+Received: by mail-pj1-x1035.google.com with SMTP id
+ u13-20020a17090abb0db0290177e1d9b3f7so25469280pjr.1
+ for <nouveau@lists.freedesktop.org>; Fri, 06 Aug 2021 20:22:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Uh+LyNoJn+/C2qxN/x3CP3dUbi+uecXz/MsGDySkhoA=;
+ b=ezLH8i5/yWdbUs21lSN0rKfxHZB7O7tAd5eQJQRyAobRiL66KcFjnL2ZBGXl8YWgv7
+ PXBk6Ycu0WMVWrKYmXQ3nbaI5JuPCWaRNxpw69i4fCdhMW0oBaL0R3WJDDSbCesgT0MJ
+ KoDluNQr2axDHrchi654p8etEwXWUkUQgWoGq4cV51KW9zz+3V3GgEtHVWVtCACj3R3N
+ L0JsaoafAt2PKsHwkDfRSzOUbB068bK6Y692e7e/o/PFLfVoRMyHnyf/kqM/F7VuSkIj
+ Hk+Q7p4qV+a2zyYHwUoIENDULn7l1DL8z10Pw2E7FbM8RtGv4+7VFlejmUa6ZqGVmW08
+ vHlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Uh+LyNoJn+/C2qxN/x3CP3dUbi+uecXz/MsGDySkhoA=;
+ b=KSyz3FK3bmaj0U6pTGN0mPbTVhVomIfdOB2kF2nQtH8SGZrzOvNqUai8jx/TIeAt/p
+ ZQdX69fEBU96+eE/WWSz61FCymhJATeZ8/zAGvJCOja6MhpoF8oMAjGFTpxY5onQ+Mne
+ Lv5O2uGy4lROlv+HbbWbYSogprLxafEmob/0S71bcAHXOgQQ2+N6Ls/sc5jYkBCdy/Vq
+ 2WzVCRagUKc9C/qVUFA2Orh3pZxa9KeVPo7UEIzkiQDpBfJqbkIKy7LqkNoGMIRSBPLt
+ 1jqb7rdRgi2iI+2gN9rX4rC8rjhPraVVMZgW7+GRAMOvz3nxicA4cneWTQNW0SgWQu6d
+ PoNw==
+X-Gm-Message-State: AOAM533gJu5r0ztPzGgoJFzLoLurz620Xk7Vf0yZwxkiJxRI0m8Dya68
+ RvteF1GT4+jvzsK+3bARkvQ=
+X-Google-Smtp-Source: ABdhPJxYlV/B6KQ8XIFc8KckV2s869t7rvEHWhyHYWJ9BNBFNeTGgIQEAzTbbrEFuEuK4aEgh7D6Zg==
+X-Received: by 2002:a63:62c7:: with SMTP id w190mr626970pgb.55.1628306539357; 
+ Fri, 06 Aug 2021 20:22:19 -0700 (PDT)
+Received: from localhost.localdomain ([193.203.214.57])
+ by smtp.gmail.com with ESMTPSA id t8sm13950866pgh.18.2021.08.06.20.22.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 06 Aug 2021 20:22:19 -0700 (PDT)
+From: cgel.zte@gmail.com
+X-Google-Original-From: yong.yiran@zte.com.cn
+To: bskeggs@redhat.com
+Cc: yong.yiran@zte.com.cn, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Zeal Robot <zealci@zte.com.cn>
+Date: Fri,  6 Aug 2021 20:20:54 -0700
+Message-Id: <20210807032054.642867-1-yong.yiran@zte.com.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <83dc5dfd-1ed0-f428-826f-fb819911fc89@redhat.com>
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sun, 08 Aug 2021 22:14:04 +0000
-Subject: Re: [Nouveau] [PATCH 00/38] Replace deprecated CPU-hotplug
+Subject: [Nouveau] [PATCH linux-next] drm/nouveau/nvenc: remove duplicate
+ include in base.c
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,26 +85,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 2021-08-03 17:30:40 [+0200], Hans de Goede wrote:
-> Hi Sebastien,
-Hi Hans,
+From: yong yiran <yong.yiran@zte.com.cn>
 
-> On 8/3/21 4:15 PM, Sebastian Andrzej Siewior wrote:
-> > This is a tree wide replacement of the deprecated CPU hotplug functions
-> > which are only wrappers around the actual functions.
-> > 
-> > Each patch is independent and can be picked up by the relevant maintainer.
-> 
-> Ok; and I take it that then also is the plan for merging these ?
-> 
-> FWIW I'm fine with the drivers/platform/x86 patch going upstream
-> through some other tree if its easier to keep the set together ...
+'priv.h' included in 'base.c' is duplicated.
+Remove all but the first include of priv.h from base.c.
 
-There is no need to keep that set together since each patch is
-independent. Please merge it through your tree.
+Reported-by: Zeal Robot <zealci@zte.com.cn>
+Signed-off-by: yong yiran <yong.yiran@zte.com.cn>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-> Regards,
-> 
-> Hans
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c b/drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c
+index c39e797dc7c9..cf5dcfda7b25 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.c
+@@ -21,7 +21,6 @@
+  */
+ #include "priv.h"
+ 
+-#include "priv.h"
+ #include <core/firmware.h>
+ 
+ static void *
+-- 
+2.25.1
 
-Sebastian
