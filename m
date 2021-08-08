@@ -1,79 +1,122 @@
-Return-Path: <SRS0=2nXB=M5=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=Gwq6=M7=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+X-Spam-Status: No, score=-12.7 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,FORGED_HOTMAIL_RCVD2,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 10883C4338F
-	for <nouveau@archiver.kernel.org>; Fri,  6 Aug 2021 16:53:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C395C4338F
+	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 19:24:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C33C661179
-	for <nouveau@archiver.kernel.org>; Fri,  6 Aug 2021 16:53:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org C33C661179
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id CD64F60E96
+	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 19:24:00 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CD64F60E96
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=hotmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E6766EB9F;
-	Fri,  6 Aug 2021 16:53:24 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C45BE6EB9F
- for <nouveau@lists.freedesktop.org>; Fri,  6 Aug 2021 16:53:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1628268801;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=ZEpSENegGTKcl94DPkyLII32ucBoa1l7fktBHRnpnpg=;
- b=iKW1uhJL8u5jodOvc+74Cx5QzRzmrZVsih1TpTD8TYN7lBZt7445z7TwIiL+y2WKSxw5NZ
- rQZnxJUxMQn3tY5Yj6Zm1uheD/NgXU46Lcyv2Lg+df42QvCyvbJB70aSJI7DBHG4U+vxGt
- MKF4HbrYOTu1rGuzIzWD5qr+FcrS9vM=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-276-B46PsNaqO7KdTkxTgJyBVA-1; Fri, 06 Aug 2021 12:53:18 -0400
-X-MC-Unique: B46PsNaqO7KdTkxTgJyBVA-1
-Received: by mail-wr1-f69.google.com with SMTP id
- v18-20020adfe2920000b029013bbfb19640so3331617wri.17
- for <nouveau@lists.freedesktop.org>; Fri, 06 Aug 2021 09:53:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
- bh=ZEpSENegGTKcl94DPkyLII32ucBoa1l7fktBHRnpnpg=;
- b=CZhaPblmlBXb2bu+RK/A3vW6MVY0BMPhHOLBcJ+HgWRVBF1LoGCFN3BMhqC0Ew2rDE
- kWqEy5rmV/QM886koIronhtebVlgjAtDxqctluZ5mW33KyDYmjDI1MIrEl8egGOk7SeY
- mempg05R7tma94uRAoln3bLw1kTaoRhakwKaNAThZulI5pdnQlWxrIzB+MO2n+2sdWiK
- 3vjf9h5TTRCfmknxy9Yi4WFxqMXsiOPt6PwcmWbbN2sRGDOUAJgY0KLPvjpnTcubrcCg
- q7iWUx9yu0n8waU5cVxwOx7p+iFf6kKCBzZxZyL37o+388speeq3zKMnFM5WSWKNTMbj
- wECg==
-X-Gm-Message-State: AOAM532n5LR0oY4Ned8A/m/97HnFiVIqPpxM7m/juRlsTyx8DS4ELXkM
- m9ivyP0MCArRDfi6VPduJO3+CIlQutSvRW6EXnvKDaSpW1bvIGftfU9hezOe89FzcanQx9JQkUM
- 08ZyTf869HEY4vicMU0fcAbasDrRwbUEd4h2CHDCBNQ==
-X-Received: by 2002:a05:600c:3581:: with SMTP id
- p1mr4257477wmq.1.1628268797381; 
- Fri, 06 Aug 2021 09:53:17 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxM1Xcmg0OD97kmQLRFS5wI8PoB/N4HGJ76QUbsdIJ0jkmu8Bgpnkdetr7TVSc21mu2BIaap7ZBZDoDE2qZGfE=
-X-Received: by 2002:a05:600c:3581:: with SMTP id
- p1mr4257451wmq.1.1628268797075; 
- Fri, 06 Aug 2021 09:53:17 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54C4389B11;
+	Sun,  8 Aug 2021 19:24:00 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12olkn2056.outbound.protection.outlook.com [40.92.23.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6B8789B11
+ for <nouveau@lists.freedesktop.org>; Sun,  8 Aug 2021 19:23:58 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iGSF8U/rsA0M005DWdh9PUYd4zsmrRc2uF+uY9Zepz/nZAfqvE8mwsGy7CSkq8Sgx0ygHaO9VEUzfsFgZtgWqLeeJ4QkBuIcDuELFwG1+3in2nhRFNYbiewMZTWuTXtJoIDO2Ry5xNwEFuU72oVau0xcIixSY5TQiCxhk0z82SfCl0ebonNJyB+CrjeSSMyPFPkfTQ8jwCxZ2rfpFp0h0O0QjK3rZ7ZyxgAbnFa9xE5udNLW4oFLp1LuKJYC/COyCzRSx1GhdqiAGaUCTh39nL74GmgEMKDy9FuUE7VQmYgYETNhVqDRvuf7Zo6fkmFgf4/SZjWEdnJF8gDcvVstlQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8MDQA2+J1gXyx2VhwlSbmpFlmvWl55/J0/Wq0MLcO+8=;
+ b=WMYMs8lyav657tJEjqHxUa1fYFEjjvAXzgtnytaGnqvah+IS/g8buaClv9o8KEi4Tulf2KRgjEG1+2DSBtIt1hYvOC0dnEB7SDqGdV+GOzYCEA1zP0UbwRd/qWvC5eFLA3fDZcAbaVkKBoDJMZCcS3hao1CjUXvBdxSrNDmdXnXPnUK7apNrIzim48RUL2OqpdCraOTYicz/hRC5/ukn7/Y6QcNfThBCECq+GC/6d2IBaUw6MZ/9TO5I26ZoodPICCy5xMkWOzNlAaGQWjwU0ZBQmIoDIl4GXs8rkNoNrmt7MECpZxvFH7+bJX0AKyVZ6w9hEGuse6JCI+2OPt/1eg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8MDQA2+J1gXyx2VhwlSbmpFlmvWl55/J0/Wq0MLcO+8=;
+ b=dq+W9BjLWrK1jexJMZTUXqANbnxoO9v7LnkPRHIx+Tfk4e47XCuid4GZLUtQB4jADhQdar6TbhDn2oo9HQx3ayT8xwlrMo/07vqQA11iasKBz2txhFm7vSOkImUf9ZwaLX5tGhPl6ECgjY5zjNNHySBRHPkuSuLFr8gJKCH7PLLD24wzHBK/AHJAkcxlyDJPn5khGCsxlc1iiCKDQbuNiqrbfWaQxr+8bDV+a4SQ0EJ8+qS9kTzGDdLhfWqP7DoJQcQgR/qT1QHZA3MrE/CM1CFB4JchxqJMT4KkrU6YPWeijiQ4oxsVy8IhNxKg81u3Cc6TtIXzPF9IRKza+aQXmA==
+Received: from BN8NAM12FT027.eop-nam12.prod.protection.outlook.com
+ (2a01:111:e400:fc66::49) by
+ BN8NAM12HT013.eop-nam12.prod.protection.outlook.com (2a01:111:e400:fc66::476)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.5; Sun, 8 Aug
+ 2021 19:23:57 +0000
+Received: from DM6PR19MB2780.namprd19.prod.outlook.com
+ (2a01:111:e400:fc66::46) by BN8NAM12FT027.mail.protection.outlook.com
+ (2a01:111:e400:fc66::138) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.5 via Frontend
+ Transport; Sun, 8 Aug 2021 19:23:57 +0000
+X-IncomingTopHeaderMarker: OriginalChecksum:99982A4A7CDEA89761CDE3E69D0CB6698C17BE51BC5A38DF7D488B71D3AD0CA5;
+ UpperCasedChecksum:E806E2E0E5758C8A377EA951F05635B2938EA81877C4ED58C8FAEDDBC17C30B3;
+ SizeAsReceived:7301; Count:45
+Received: from DM6PR19MB2780.namprd19.prod.outlook.com
+ ([fe80::d3:370:7280:e46e]) by DM6PR19MB2780.namprd19.prod.outlook.com
+ ([fe80::d3:370:7280:e46e%5]) with mapi id 15.20.4394.022; Sun, 8 Aug 2021
+ 19:23:57 +0000
+From: Ratchanan Srirattanamet <peathot@hotmail.com>
+To: bskeggs@redhat.com
+Cc: kherbst@redhat.com, nouveau@lists.freedesktop.org,
+ Ratchanan Srirattanamet <peathot@hotmail.com>
+Date: Mon,  9 Aug 2021 02:23:04 +0700
+Message-ID: <DM6PR19MB278000DDEC936A67E85752E5BCF59@DM6PR19MB2780.namprd19.prod.outlook.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [e5Rc5eRFmO/eWrsyoJ+bsBJyJtG294wB]
+X-ClientProxiedBy: SG2P153CA0035.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::22)
+ To DM6PR19MB2780.namprd19.prod.outlook.com
+ (2603:10b6:5:13d::26)
+X-Microsoft-Original-Message-ID: <20210808192304.18858-1-peathot@hotmail.com>
 MIME-Version: 1.0
-From: Karol Herbst <kherbst@redhat.com>
-Date: Fri, 6 Aug 2021 18:53:06 +0200
-Message-ID: <CACO55ttigE42t+gmPvTtZ1QD6a9=5v3Mo9r6CMsOpDYo61Jj-g@mail.gmail.com>
-To: nouveau <nouveau@lists.freedesktop.org>, 
- dri-devel <dri-devel@lists.freedesktop.org>
-Cc: Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
- Lyude Paul <lyude@redhat.com>, David Airlie <airlied@redhat.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=kherbst@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Subject: [Nouveau] Proposal for allowing more Nouveau contributors to merge
- patches
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (113.53.37.21) by
+ SG2P153CA0035.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::22) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4436.4 via Frontend Transport; Sun, 8 Aug 2021 19:23:55 +0000
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 45
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-Correlation-Id: a6bb8ffa-5dc6-4fc6-5953-08d95aa2110a
+X-MS-Exchange-SLBlob-MailProps: =?us-ascii?Q?7FNIAzWC7Tok6NFdOUOvq4eRcCUoJWmEREAmRscorAjakZTNfBaVFtQi5JXV?=
+ =?us-ascii?Q?DLL6PWEq2a1M3Y6TpdARk5zx5x5fzpAr1aesAzJ8jAHwMDJS0dY6ZD7dei4m?=
+ =?us-ascii?Q?sLZ+c+ZAhDXm0Lru9NKMyq62IoOnCgpN+80nRZ4F5/yZRhfxItOGWk3EqBfD?=
+ =?us-ascii?Q?BYYtAFPeXQ9IeJBTtiRIOTP8raCWF/MT2aEv3bUMZxDoXWWo/n8H+UXtGytl?=
+ =?us-ascii?Q?AXvSqvs9bMEPS8z4K6bpi9xhSh0rCfl1Lkdp1zfRjFFr48Stz9+c3KkrAXik?=
+ =?us-ascii?Q?PFcyeCgVLs8QVp+EQ/7ecM2QKetvBZ4BH5ER6vm4oq5uUjbhb0b3nwZTbvYr?=
+ =?us-ascii?Q?wDSjHVwCfOK2RbyKaPVsqTi4Bptyr59x919TiET1jSU7/wY5KelSGVbyCntA?=
+ =?us-ascii?Q?aq829DCor0ToRGjBY4VDlizHouwWqcC0MpLPLGUH4+LfOzkspCKXcOLLPHU8?=
+ =?us-ascii?Q?B63t7IiS2ErxXNNgIagM8moyPjN6Zh/5XnrSnyD7Kupabn/8OWevoRXNci2b?=
+ =?us-ascii?Q?9PPrZ5tutFEPy6tjhrsXWH4l7XfEpg6gP62dH6uqx55Cq8jXVxgVlCbrMXSu?=
+ =?us-ascii?Q?XfVK5o+BsaX+OwzXZL8nPLeNqg7P4iO5oLY/86nydkKoOWlul2HzX6VbEnG5?=
+ =?us-ascii?Q?PGL+BcMOz/uVWUmq9GUTIgEJJbWtQcaN9zUpiJEhMFpW/KkpYtcaIOe1d/9u?=
+ =?us-ascii?Q?/IyikaDQeVAIPctn/7Zd71aCyGlL0Q3OW5Gu/25IMrEUoR4dE1ut8B2VoB84?=
+ =?us-ascii?Q?JTqbWMyLoa4sx/QrjP9U1PpSakqLgEaKPT6ogJLzD6PLQDhJaHcZ1RoERr4D?=
+ =?us-ascii?Q?Qi7vkMcz+4Ton9qrYXzS+wF/BB/E98hPlp9c5opdVxQW11LFZv9gTd1bdM/1?=
+ =?us-ascii?Q?QVPPo1Jmnb3lxEUA7LutnAOOfRYlyR8xWUcPOebBLo1jOPVBSOMXIzmfO1HN?=
+ =?us-ascii?Q?HAgdXVZHRwOyJNJAaIwaEoksJcJt+ZDUjq3h64vdexg0oshkHi32ufHbpnnF?=
+ =?us-ascii?Q?mpGw+nGfQJmJkkXShW8VBbsCFV9wXtqbeAOLrEk2pMII0NL9LTJQ4zplmrCf?=
+ =?us-ascii?Q?NsObpcKifuM2VIH8opc=3D?=
+X-MS-TrafficTypeDiagnostic: BN8NAM12HT013:
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: a9BZtBzBQVQNp6EqyliaZXxXLDz92gDyy8wrCQYoC6TajyEg5Y4CyJaImX3y/1Mcl6mc3BeaZX8k6nbEc5VMXrt6/8aNAR7wgeDhMINunGrnCPX+YrLXtT2RIYdknPcs1NhIAr4PUsFHKSRgz/Dm24GJMfQbHxL9oVh94UFKKy85c0muTzka4dnOYLF4LOiqDeuvMlUbdvnGILQ5WMl9KF2Vi/H+5lgXQ9j9voU9eg9vXVLdeV/glvHse5rx3L5eB6ZQ+4/wl3NL7S9WS6GcbewAmKh1xGkOSiyFcFilFTXsJ4PzNXib6lhXSP/v4tRG0waq9tkLR/5KrsJLDqTqkvaTsnYJuogtS+U8GWQwgd/dPpDgiC1X+l1lOppNackdOLbgfvX0TKLwfQ2xx7mj/aBNS0NEXrNAhe+DOVu9x+x3MoerzO3JRNv099GZreRMQDP3ABSmyZH6+yc5ZM9uBzhyAF2Q3jl6r+j/YrB+XRI=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: d4vHTvra1qDXq8TwV/DAXd+o5PX6E2jIqw2IAeZfcq285xQe3X81ten6PrxpmI3fms+GehZXgPwR6AVaj24KPewSyZiNV5I06U3lqut56CRIVI8VWbzmw1oYqJ6JHZVYbVIbFb9BqxRXf6xNcs085Q==
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a6bb8ffa-5dc6-4fc6-5953-08d95aa2110a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2021 19:23:57.1735 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM12FT027.eop-nam12.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8NAM12HT013
+Subject: [Nouveau] [PATCH] drm/nouveau: don't detect DSM for non-NVIDIA
+ device
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,102 +131,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hey everybody,
+The call site of nouveau_dsm_pci_probe() uses single set of output
+variables for all invocations. So, we must not write anything to them
+unless it's an NVIDIA device. Otherwise, if we are called with another
+device after the NVIDIA device, we'll clober the result of the NVIDIA
+device.
 
-so, here is a proposal of what we could change in order to allow
-patches to land faster, more reliably and to increase the overall bus
-factor in terms of nouveau kernel maintenance.
+For example, if the other device doesn't have _PR3 resources, the
+detection later would miss the presence of power resource support, and
+the rest of the code will keep using Optimus DSM, breaking power
+management for that machine. In particular, this fixes power management
+of the NVIDIA card in Lenovo Legion 5-15ARH05... well, at least
+partially. New error shows up, but this patch is correct in itself
+anyway.
 
-But let's start with the current situation:
+Also, because we're detecting NVIDIA's DSM, it doesn't make sense to run
+this detection on a non-NVIDIA device anyway. Thus, check at the
+beginning of the detection code if this is an NVIDIA card, and just
+return if it isn't.
 
-At the moment contributors have to send patches to the nouveau mailing
-list in order to submit them for inclusion into Bens nouveau tree.
-Then Ben has to look at them and either respond with a comment on what
-needs to change or merge it. At some point Ben submits all new changes
-to nouveau for inclusion into the drm-next tree.
+As a bonus, we'll also stop preventing _PR3 usage from the bridge for
+unrelated devices, which is always nice, I guess.
 
-Practically there are a few problems here:
-1. Not all patch submissions get a response
-2. Patch submitters usually don't get to know if their patches are
-accepted unless they appear in drm-next or linus' tree.
-3. A lot of trivial patches never make it into the tree.
-4. Depending on how overloaded Ben is, even bigger patch series adding
-new features never get any responses at all.
-5. Patch series might get stale for any other reason and there is no
-good tool to track open patch submissions (no, patchwork isn't good
-and it sucks and not even in the mood to explain this to people
-thinking otherwise as this should just be obvious)
+https://gitlab.freedesktop.org/drm/nouveau/-/issues/79
 
-This usually ends up discouraging new contributors from making more
-contributions to nouveau as they see that some or all of their patches
-never get any reaction and it's even annoying to current contributors
-if they see their patches being stuck as well.
+Signed-off-by: Ratchanan Srirattanamet <peathot@hotmail.com>
+---
 
-And here I want to stress that none of this is Ben's fault and has his
-own things to work on and none of this should just depend on one
-person finding enough time. So the solution shouldn't be a simple
-"let's find a different tool and everything should be perfect" but the
-solution should be "how can we change the process so it's less time
-consuming for Ben to accept patches". And while working on this, I'd
-also want to tackle the problem that contributing to nouveau shouldn't
-be frustrating for new contributors and the process should be more
-lively overall.
+It's been discussed in the "previous" patch series ("[PATCH] drm/
+nouveau: don't touch has_pr3 for likely-non-NVIDIA device" [1]) that,
+instead of changing how the detection works, it's better to check if
+the device's vendor is NVIDIA, or if it's a secondary device. I don't
+find a feasible way to detect the secondary-ness of a device, so I
+opted for checking the vendor code [2].
 
-So for this I want to propose a new workflow, which would also spread
-some responsibilities around active members of the nouveau community:
+Thus, this makes the patch different enough to warant a different
+summary phrase and description.
 
-1. We should have a public nouveau tree (which could be
-https://gitlab.freedesktop.org/drm/nouveau or something else) with a
-nouveau-next branch collecting all patches for the next kernel major
-kernel release.
-At the moment the "official" nouveau tree is kind of
-https://github.com/skeggsb/nouveau but there is
-https://github.com/skeggsb/linux as well. The main problem is, it's a
-repository tight to a person. We already have
-https://gitlab.freedesktop.org/drm/nouveau as a bug tracker, but it
-also contains a full linux git tree which is updated automatically
-through a CI job.
+[1] https://lore.kernel.org/nouveau/CACO55tsYWW_dfAFWBFLrH51SVivUeN72Omc6DRTCtzVWSLE68w@mail.gmail.com/T/#mb710275dc1dd7e9d83028c218b886400d3a43bfc
+[2] It's been suggested to use `nouveau_dsm_get_client_id()`, however,
+    on my machine it would return _DIS on both cards, so it can't be
+    used.
 
-2. A chosen group of people should have push rights to this repository
-in order to accept patches sent in via emails to the nouveau Mailing
-List or fancy UIs (like gitlabs MRs) or other ways.
-Trusted contributors should be allowed to review and accept submitted
-patches in order to reduce the workload on Ben. Those patches will be
-collected on the nouveau-next branch. Patches from a mailing list
-could e.g. be submitted through a MR on gitlab or just pushed to the
-branch directly.
+ drivers/gpu/drm/nouveau/nouveau_acpi.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-3. We should ensure through CI that submitted patches are at least
-passing basic quality control (checkpatch, compile testing, sparse,
-etc...)
-I already worked on this and one example can be seen here:
-https://gitlab.freedesktop.org/drm/nouveau/-/merge_requests/3
-There are more things we could add to it, like checking if sparse is
-happy or add additional checks. Adding tests against hw is something
-we want to target for the future as well.
-
-4. patches from nouveau-next should be included into a "higher" git
-tree (drm-next or drm-misc-next) by authorized people after getting a
-final review by Ben or somebody else.
-The idea is to post all collected patches for final review to the
-mailing list as Ben wanted to have a final possibility to nack it in
-case something stands out. We could then depend on Ben including those
-patches, but we could also use commit rights to drm-next or
-drm-misc-next from other people as well. I have commit access to the
-drm-misc repository, and I would assume that Lyude would be able to
-get it as well or already has it.
-
-5. Urgent fixes should land via drm-fixes or drm-misc-fixes.
-We kind of already do this already though. We could spin up a
-nouveau-fixes branch in the future, but the amount of such fixes is so
-low it's not really worth the effort at the moment. And we have access
-to drm-misc.
-
-Once we decide to start and agree to some process, we should try it
-out with trivial patches, we already get enough of. Like Typo fixes,
-patches adding docs or removing dead code and can expand this to more
-"serious" work once we agree that it actually works and does have
-benefits to nouveau overall.
-
-Any thoughts on this?
+diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+index 7c15f6448428..9c55f205ab66 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
++++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+@@ -220,6 +220,9 @@ static void nouveau_dsm_pci_probe(struct pci_dev *pdev, acpi_handle *dhandle_out
+ 	int optimus_funcs;
+ 	struct pci_dev *parent_pdev;
+ 
++	if (pdev->vendor != PCI_VENDOR_ID_NVIDIA)
++		return;
++
+ 	*has_pr3 = false;
+ 	parent_pdev = pci_upstream_bridge(pdev);
+ 	if (parent_pdev) {
+-- 
+2.25.1
 
