@@ -1,68 +1,59 @@
-Return-Path: <SRS0=Gwq6=M7=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=t38E=NA=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B5A6EC4320A
-	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0D4F4C4338F
+	for <nouveau@archiver.kernel.org>; Mon,  9 Aug 2021 13:21:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 622CD6069E
-	for <nouveau@archiver.kernel.org>; Sun,  8 Aug 2021 22:14:18 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 622CD6069E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id BC59460C3E
+	for <nouveau@archiver.kernel.org>; Mon,  9 Aug 2021 13:21:04 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org BC59460C3E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.intel.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 196CF89A59;
-	Sun,  8 Aug 2021 22:14:10 +0000 (UTC)
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 410CE894D4;
- Wed,  4 Aug 2021 21:10:09 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 04F0661037;
- Wed,  4 Aug 2021 21:10:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1628111409;
- bh=AR7/8fSFLxcOU7ReweR1RJMUzQ2C6A8WBiBQgmubyxA=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=bstBTAnhv749RIOm/8A++1zEJoVPLjeLJya1QeLgs+5os8XLqTX8NVxd11Jh5ne0X
- 25RPg0sHRCshpt2JG73ht7Xyx5dhtErx1V8I9gCVolzqz237y6uQ98P1D4u3g0FnEH
- SnynInM+s3bEItadObYqiqLFG2NHBPRBkZeJYWhW+F5BV7++MeLDhNP+rF+X86XxpF
- aTbuCPg58JahZq3d68NRMmRAd9W2YnbjIVMfIoU5tbkiNR5tQSdrSe1ht84Lr9Z5cl
- 3geDZMkh8EWExQ4h3Kl04ZTQUyVWVA3XrMvZJNdyBdMaZiSkIusjDlYx8q+EiUfTyf
- 7lV0W67V/+P6g==
-Received: by mail-wm1-f53.google.com with SMTP id
- f9-20020a05600c1549b029025b0f5d8c6cso4779995wmg.4; 
- Wed, 04 Aug 2021 14:10:08 -0700 (PDT)
-X-Gm-Message-State: AOAM531+r8if8hXS6xqzu66HckzJDuSlukU09vW6PnZRUjjIP/ZuT5FM
- Vu+Q0VQlXCJmeKWWjTc0COHhqDeJ9j21Ogvb2t8=
-X-Google-Smtp-Source: ABdhPJxawV1DUFGq0xf4c1YWGB9f0ICNgrFaDVK4nvjPq8GUrxtQnE1yV12ZR4xxG8yzQp9mNDGQvEuc2xvVrRg4gF8=
-X-Received: by 2002:a7b:ce10:: with SMTP id m16mr11140796wmc.75.1628111407639; 
- Wed, 04 Aug 2021 14:10:07 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C57D89B46;
+	Mon,  9 Aug 2021 13:21:04 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 986CF89B84;
+ Mon,  9 Aug 2021 13:21:03 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10070"; a="236684800"
+X-IronPort-AV: E=Sophos;i="5.84,307,1620716400"; d="scan'208";a="236684800"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2021 06:21:03 -0700
+X-IronPort-AV: E=Sophos;i="5.84,307,1620716400"; d="scan'208";a="514951933"
+Received: from lmajkows-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.39.191])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2021 06:20:59 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Arnd Bergmann <arnd@kernel.org>, Karol Herbst <kherbst@redhat.com>
+Cc: ML nouveau <nouveau@lists.freedesktop.org>,
+ Randy Dunlap <rdunlap@infradead.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
+In-Reply-To: <CAK8P3a0i0WP24Z0TScmPqKxmM2ovtKnmm+qZq6+Tc1ju+hma0w@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210723224617.3088886-1-kherbst@redhat.com>
+ <CAK8P3a3u_jsxQW4dPXtsdKkw1mjKXL-h=qN1SGHytvUMPf3fPw@mail.gmail.com>
+ <CACO55tuNWk6emjnnukgv9h-9jbpVP564Ogmi7TGbybc9n5v+ZQ@mail.gmail.com>
+ <CAK8P3a1BceSaiqkTf+9Pr4Br-G3kgqD4ztwiaS7fxNiUg9t7Dg@mail.gmail.com>
+ <CACO55tsoi2akTKvFdz3p48UHRjFXDW7dUnOM8qVePBFWet-3UQ@mail.gmail.com>
+ <CACO55tuceMUz2pgOM23wvcmtaTqbo6S6rCB+mfLptqJRt=fMWA@mail.gmail.com>
+ <CAK8P3a3+AD02-8nbULMdae2Hc=hJ+-Zb_CL+bHF-9oGieYiZWQ@mail.gmail.com>
+ <CACO55tswMuDE9u3asU2Ls7BhA0uKGGarLk+E-WTD6MVnLwc3tw@mail.gmail.com>
+ <CAK8P3a0i0WP24Z0TScmPqKxmM2ovtKnmm+qZq6+Tc1ju+hma0w@mail.gmail.com>
+Date: Mon, 09 Aug 2021 16:20:55 +0300
+Message-ID: <87tujyoitk.fsf@intel.com>
 MIME-Version: 1.0
-References: <CAK8P3a0i0WP24Z0TScmPqKxmM2ovtKnmm+qZq6+Tc1ju+hma0w@mail.gmail.com>
- <20210804141049.499767-1-kherbst@redhat.com>
- <CAK8P3a136c_L3yVn-841Sbfib9UMOf1M-pk+2SqWt0wD2zfRKQ@mail.gmail.com>
- <CACO55tsLpURTm=Jf=4gRVtYQbit5h2OBYw_MFb6Vf1PFvTV7dw@mail.gmail.com>
- <CACO55tuy5Am9zbcR490KWYYAg7MguBN5m82vbjzifGN5KpGbxw@mail.gmail.com>
-In-Reply-To: <CACO55tuy5Am9zbcR490KWYYAg7MguBN5m82vbjzifGN5KpGbxw@mail.gmail.com>
-From: Arnd Bergmann <arnd@kernel.org>
-Date: Wed, 4 Aug 2021 23:09:51 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a3hZ7X5+kM5E+_Y+COUp49Kt6iDjiqMFtimiSbPk4byzQ@mail.gmail.com>
-Message-ID: <CAK8P3a3hZ7X5+kM5E+_Y+COUp49Kt6iDjiqMFtimiSbPk4byzQ@mail.gmail.com>
-To: Karol Herbst <kherbst@redhat.com>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Lyude Paul <lyude@redhat.com>, 
- Ben Skeggs <bskeggs@redhat.com>, Randy Dunlap <rdunlap@infradead.org>, 
- Daniel Vetter <daniel@ffwll.ch>, ML nouveau <nouveau@lists.freedesktop.org>, 
- dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Sun, 08 Aug 2021 22:14:04 +0000
-Subject: Re: [Nouveau] [PATCH] depend on BACKLIGHT_CLASS_DEVICE for more
- devices
+Content-Type: text/plain
+Subject: Re: [Nouveau] [PATCH] nouveau: make backlight support non optional
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,41 +68,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Aug 4, 2021 at 8:59 PM Karol Herbst <kherbst@redhat.com> wrote:
-> On Wed, Aug 4, 2021 at 4:43 PM Karol Herbst <kherbst@redhat.com> wrote:
-> > On Wed, Aug 4, 2021 at 4:19 PM Arnd Bergmann <arnd@kernel.org> wrote:
-> > > On Wed, Aug 4, 2021 at 4:10 PM Karol Herbst <kherbst@redhat.com> wrote:
-> > > >
-> > > > playing around a little bit with this, I think the original "select
-> > > > BACKLIGHT_CLASS_DEVICE" is fine. Atm we kind of have this weird mix of
-> > > > drivers selecting and others depending on it. We could of course convert
-> > > > everything over to depend, and break those cycling dependency issues with
-> > > > this.
-> > > >
-> > > > Anyway this change on top of my initial patch is enough to make Kconfig
-> > > > happy and has the advantage of not having to mess with the deps of nouveau
-> > > > too much.
-> > >
-> > > Looks good to me. We'd probably want to make the BACKLIGHT_CLASS_DEVICE
-> > > option itself 'default FB || DRM' though, to ensure that defconfigs
-> > > keep working.
-> > >
-> >
-> > okay cool. Will send out a proper updated patch series soonish.
-> >
+On Sat, 24 Jul 2021, Arnd Bergmann <arnd@kernel.org> wrote:
+> On Sat, Jul 24, 2021 at 4:14 PM Karol Herbst <kherbst@redhat.com> wrote:
+>>
+>> we use the MXM_WMI in code. We also have to keep arm in mind and not
+>> break stuff there. So I will try to play around with your changes and
+>> see how that goes.
 >
-> mhh, actually that breaks drivers selecting FB_BACKLIGHT as now
-> BACKLIGHT_CLASS_DEVICE might be disabled :(
+> Ok, should find any randconfig build failures for arm, arm64 or x86 over the
+> weekend. I also this on linux-next today
+>
+> ld: drivers/gpu/drm/i915/display/intel_panel.o: in function
+> `intel_backlight_device_register':
+> intel_panel.c:(.text+0x2804): undefined reference to `backlight_device_register'
+> ld: intel_panel.c:(.text+0x284e): undefined reference to
+> `backlight_device_register'
+> ld: drivers/gpu/drm/i915/display/intel_panel.o: in function
+> `intel_backlight_device_unregister':
+> intel_panel.c:(.text+0x28b1): undefined reference to
+> `backlight_device_unregister'
+>
+> and I added this same thing there to see how it goes:
 
-Are you sure? It should already be the case that any driver that selects
-FB_BACKLIGHT either 'depends on BACKLIGHT_CLASS_DEVICE'
-or 'select BACKLIGHT_CLASS_DEVICE'.
+Last I checked (and it was a while a go) you really had to make all
+users of BACKLIGHT_CLASS_DEVICE depend not select it, otherwise you end
+up with recursive dependencies.
 
-If you change all the 'select BACKLIGHT_CLASS_DEVICE' to 'depends
-on', I don't see a problem with doing 'select FB_BACKLIGHT' from
-those.
+BR,
+Jani.
 
-I have applied your patch to my randconfig tree and built a few dozen
-kernels, don't see any regressions so far, but will let it run over night.
+>
+> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+> index 87825d36335b..69c6b7aec49e 100644
+> --- a/drivers/gpu/drm/i915/Kconfig
+> +++ b/drivers/gpu/drm/i915/Kconfig
+> @@ -3,6 +3,8 @@ config DRM_I915
+>         tristate "Intel 8xx/9xx/G3x/G4x/HD Graphics"
+>         depends on DRM
+>         depends on X86 && PCI
+> +       depends on ACPI_VIDEO || !ACPI
+> +       depends on BACKLIGHT_CLASS_DEVICE
+>         select INTEL_GTT
+>         select INTERVAL_TREE
+>         # we need shmfs for the swappable backing store, and in particular
+> @@ -16,10 +18,6 @@ config DRM_I915
+>         select IRQ_WORK
+>         # i915 depends on ACPI_VIDEO when ACPI is enabled
+>         # but for select to work, need to select ACPI_VIDEO's dependencies, ick
+> -       select DRM_I915_BACKLIGHT if ACPI
+> -       select INPUT if ACPI
+> -       select ACPI_VIDEO if ACPI
+> -       select ACPI_BUTTON if ACPI
+>         select SYNC_FILE
+>         select IOSF_MBI
+>         select CRC32
+> @@ -64,13 +62,7 @@ config DRM_I915_FORCE_PROBE
+>           Use "*" to force probe the driver for all known devices.
+>
+>  config DRM_I915_BACKLIGHT
+> -       tristate "Control backlight support"
+> -       depends on DRM_I915
+> -       default DRM_I915
+> -       select BACKLIGHT_CLASS_DEVICE
+> -       help
+> -          Say Y here if you want to control the backlight of your display
+> -          (e.g. a laptop panel).
+> +       def_tristate DRM_I915
+>
+>  config DRM_I915_CAPTURE_ERROR
+>         bool "Enable capturing GPU state following a hang"
 
-      Arnd
+-- 
+Jani Nikula, Intel Open Source Graphics Center
