@@ -2,73 +2,106 @@ Return-Path: <SRS0=4uLK=NB=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A8AA8C4338F
-	for <nouveau@archiver.kernel.org>; Tue, 10 Aug 2021 02:54:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 29D43C4338F
+	for <nouveau@archiver.kernel.org>; Tue, 10 Aug 2021 02:54:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 58F4360F11
-	for <nouveau@archiver.kernel.org>; Tue, 10 Aug 2021 02:54:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 58F4360F11
+	by mail.kernel.org (Postfix) with ESMTPS id DAF4C60FE6
+	for <nouveau@archiver.kernel.org>; Tue, 10 Aug 2021 02:54:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DAF4C60FE6
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E886289E11;
-	Tue, 10 Aug 2021 02:54:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8436E89E15;
+	Tue, 10 Aug 2021 02:54:07 +0000 (UTC)
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4126989B7D;
- Mon,  9 Aug 2021 13:30:55 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1234561040;
- Mon,  9 Aug 2021 13:30:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3344D899A5;
+ Mon,  9 Aug 2021 13:09:11 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 06B8861004;
+ Mon,  9 Aug 2021 13:09:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1628515855;
- bh=3Q+Y76mabCBAkeS1OkTLTBG6PO19Eb+uHYKiEoMf0rc=;
+ s=k20201202; t=1628514551;
+ bh=YzG7BnFCln4Yyp6LxrxvxeyUMj5GmzMjIhVfIPMKSYc=;
  h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=aykCzZcVQyfJZbqutziyiWp5pX2Phw84+xn9RYd5qb9P5wBQcbZFW6eAm/pPM9Ew6
- tpUrj0CpsCmYmTT5jVWMx4ZYKtT39aJVyQH1ketghOvZhQwLPEGcVaGhqfHY3yXdV+
- OKPx1TGNOYLN5eyA1IAwewopTb3BISluGMoVYDf2hnBjb7ONWpHZuArr3pyJS63TKN
- Wvf760llZoqNTOYU3L5ub9DIEPWH2AKKOYLSC0Sn4aOceZ0XBNo+PNTR5EyKUuePiM
- fZXSZe7eatqySpm5foEFGe304cGSs404nlJejOEO9uT5TgGDn4YqAosEf66DsL9kLZ
- SBH96J32zDT/A==
-Received: by mail-wm1-f43.google.com with SMTP id
- o1-20020a05600c5101b02902e676fe1f04so2981343wms.1; 
- Mon, 09 Aug 2021 06:30:54 -0700 (PDT)
-X-Gm-Message-State: AOAM531i1pSJZlNssTZbAYXa+24cikz3LhF9aQb51rHqDuy+R4CcS4UD
- bYL6ceoSRz9RV3B1VSxAGWSQFEg/XjzRB/iFBYY=
-X-Google-Smtp-Source: ABdhPJxl4QPAglGMMc6y1IGMVOChD84KKdMB8PjGKNXhkhWJ/ORYqy5JYUFXKgx8V4dc9Ov25B5IISYTC15U0yrTqRs=
-X-Received: by 2002:a05:600c:3641:: with SMTP id
- y1mr16521594wmq.43.1628515853670; 
- Mon, 09 Aug 2021 06:30:53 -0700 (PDT)
+ b=B8pvYpwPzQ18zhH2+y0BGlUA/OJhSA/B0e0InC/nca080ep3tJvTyYkjw4iA0bIXy
+ YJkfsyL7WJqFEvGlYZsDdfkS8W4gkzs2dxMYwyXUt2VpcSaAsgcNhIj8ai/6CAVUZ2
+ ldHAUzQEOhshkYgfdQv79fOgiKArwiLUzaIB6uXf33e9Dwx6fJNaNUWADrL3Q2AY27
+ Bl9LecINy6PsqQyvEgFzW02xNT9GIlS0Tp9TuaVC5l/yfox0JcJblrMOq9WQey5+Yx
+ UjWS8SLAwRaq9m1jBvtg7XtqOaG9lvGylZ+m8LNCf4Md/cmndcHE0D+U5Qp6wYUHub
+ B20Q3cXMUBSvw==
+Received: by mail-wr1-f52.google.com with SMTP id k29so8563403wrd.7;
+ Mon, 09 Aug 2021 06:09:10 -0700 (PDT)
+X-Gm-Message-State: AOAM530HpmV+f8Lh1ZWrTeqml6bwZ6koMhJehP2RdxsiCeeG/g/Hr4PY
+ pnLbIq1I4YazeQco2P15ALRqmfHsVz9MYathnA==
+X-Google-Smtp-Source: ABdhPJzottn9lR1w4Ou5tspJmaMhExuHvfqLuRluAKs7dQZoer2iHn4k6bWFWu6HusN3FgH38v3t3o0558IoBlRW8NU=
+X-Received: by 2002:a17:906:4156:: with SMTP id
+ l22mr6919385ejk.75.1628514539014; 
+ Mon, 09 Aug 2021 06:08:59 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210723224617.3088886-1-kherbst@redhat.com>
- <CAK8P3a3u_jsxQW4dPXtsdKkw1mjKXL-h=qN1SGHytvUMPf3fPw@mail.gmail.com>
- <CACO55tuNWk6emjnnukgv9h-9jbpVP564Ogmi7TGbybc9n5v+ZQ@mail.gmail.com>
- <CAK8P3a1BceSaiqkTf+9Pr4Br-G3kgqD4ztwiaS7fxNiUg9t7Dg@mail.gmail.com>
- <CACO55tsoi2akTKvFdz3p48UHRjFXDW7dUnOM8qVePBFWet-3UQ@mail.gmail.com>
- <CACO55tuceMUz2pgOM23wvcmtaTqbo6S6rCB+mfLptqJRt=fMWA@mail.gmail.com>
- <CAK8P3a3+AD02-8nbULMdae2Hc=hJ+-Zb_CL+bHF-9oGieYiZWQ@mail.gmail.com>
- <CACO55tswMuDE9u3asU2Ls7BhA0uKGGarLk+E-WTD6MVnLwc3tw@mail.gmail.com>
- <CAK8P3a0i0WP24Z0TScmPqKxmM2ovtKnmm+qZq6+Tc1ju+hma0w@mail.gmail.com>
- <87tujyoitk.fsf@intel.com>
-In-Reply-To: <87tujyoitk.fsf@intel.com>
-From: Arnd Bergmann <arnd@kernel.org>
-Date: Mon, 9 Aug 2021 15:30:38 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a30acg_FX9iHqftKeVmS=L81bqYw3XMQJ8=1fP5aU7jMQ@mail.gmail.com>
-Message-ID: <CAK8P3a30acg_FX9iHqftKeVmS=L81bqYw3XMQJ8=1fP5aU7jMQ@mail.gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Karol Herbst <kherbst@redhat.com>,
- ML nouveau <nouveau@lists.freedesktop.org>, 
- Randy Dunlap <rdunlap@infradead.org>, 
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, 
- Ben Skeggs <bskeggs@redhat.com>
+References: <20210625082222.3845-1-tzimmermann@suse.de>
+ <20210625082222.3845-14-tzimmermann@suse.de>
+In-Reply-To: <20210625082222.3845-14-tzimmermann@suse.de>
+From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date: Mon, 9 Aug 2021 21:08:48 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_8Y7VZm2JWtPXVGfsPQ-j72wMULQJHCHdmQEV+a=TyW1Q@mail.gmail.com>
+Message-ID: <CAAOTY_8Y7VZm2JWtPXVGfsPQ-j72wMULQJHCHdmQEV+a=TyW1Q@mail.gmail.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Xinhui.Pan@amd.com, james.qian.wang@arm.com, liviu.dudau@arm.com, 
+ mihail.atanassov@arm.com, brian.starkey@arm.com, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Inki Dae <inki.dae@samsung.com>, Joonyoung Shim <jy0922.shim@samsung.com>, 
+ Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>, 
+ krzysztof.kozlowski@canonical.com, xinliang.liu@linaro.org, 
+ tiantao6@hisilicon.com, john.stultz@linaro.org, kong.kongxinwei@hisilicon.com, 
+ puck.chen@hisilicon.com, Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, 
+ Lucas Stach <l.stach@pengutronix.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, 
+ NXP Linux Team <linux-imx@nxp.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, 
+ Tomi Valkeinen <tomba@kernel.org>, Sandy Huang <hjc@rock-chips.com>, 
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Yannick Fertre <yannick.fertre@foss.st.com>,
+ Philippe Cornu <philippe.cornu@foss.st.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, jonathanh@nvidia.com, 
+ Jyri Sarha <jyri.sarha@iki.fi>, emma@anholt.net,
+ linux-graphics-maintainer@vmware.com, 
+ zackr@vmware.com, hyun.kwon@xilinx.com, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, michal.simek@xilinx.com, 
+ jani.nikula@linux.intel.com, rodrigo.vivi@intel.com, 
+ Russell King <linux@armlinux.org.uk>, kieran.bingham+renesas@ideasonboard.com, 
+ Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
+ Melissa Wen <melissa.srw@gmail.com>, 
+ Haneen Mohammed <hamohammed.sa@gmail.com>, amd-gfx@lists.freedesktop.org, 
+ DRI Development <dri-devel@lists.freedesktop.org>, 
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ linux-samsung-soc@vger.kernel.org, 
+ "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
+ nouveau@lists.freedesktop.org, 
+ linux-rockchip@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org, 
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 10 Aug 2021 02:54:05 +0000
-Subject: Re: [Nouveau] [PATCH] nouveau: make backlight support non optional
+Subject: Re: [Nouveau] [PATCH v4 13/27] drm/mediatek: Don't set struct
+ drm_device.irq_enabled
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,36 +116,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Aug 9, 2021 at 3:20 PM Jani Nikula <jani.nikula@linux.intel.com> wrote:
->
-> On Sat, 24 Jul 2021, Arnd Bergmann <arnd@kernel.org> wrote:
-> > On Sat, Jul 24, 2021 at 4:14 PM Karol Herbst <kherbst@redhat.com> wrote:
-> >>
-> >> we use the MXM_WMI in code. We also have to keep arm in mind and not
-> >> break stuff there. So I will try to play around with your changes and
-> >> see how that goes.
-> >
-> > Ok, should find any randconfig build failures for arm, arm64 or x86 over the
-> > weekend. I also this on linux-next today
-> >
-> > ld: drivers/gpu/drm/i915/display/intel_panel.o: in function
-> > `intel_backlight_device_register':
-> > intel_panel.c:(.text+0x2804): undefined reference to `backlight_device_register'
-> > ld: intel_panel.c:(.text+0x284e): undefined reference to
-> > `backlight_device_register'
-> > ld: drivers/gpu/drm/i915/display/intel_panel.o: in function
-> > `intel_backlight_device_unregister':
-> > intel_panel.c:(.text+0x28b1): undefined reference to
-> > `backlight_device_unregister'
-> >
-> > and I added this same thing there to see how it goes:
->
-> Last I checked (and it was a while a go) you really had to make all
-> users of BACKLIGHT_CLASS_DEVICE depend not select it, otherwise you end
-> up with recursive dependencies.
+Hi, Thomas:
 
-Yes, that is correct. It turns out that my randconfig tree already had a local
-patch to change most of the other users (everything outside of drivers/gpu)
-to 'depends on'.
+Thomas Zimmermann <tzimmermann@suse.de> =E6=96=BC 2021=E5=B9=B46=E6=9C=8825=
+=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=884:22=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> The field drm_device.irq_enabled is only used by legacy drivers
+> with userspace modesetting. Don't set it in mediatek.
+>
 
-      Arnd
+Acked-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c | 6 ------
+>  1 file changed, 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/med=
+iatek/mtk_drm_drv.c
+> index b46bdb8985da..9b60bec33d3b 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> @@ -270,12 +270,6 @@ static int mtk_drm_kms_init(struct drm_device *drm)
+>                 goto err_component_unbind;
+>         }
+>
+> -       /*
+> -        * We don't use the drm_irq_install() helpers provided by the DRM
+> -        * core, so we need to set this manually in order to allow the
+> -        * DRM_IOCTL_WAIT_VBLANK to operate correctly.
+> -        */
+> -       drm->irq_enabled =3D true;
+>         ret =3D drm_vblank_init(drm, MAX_CRTC);
+>         if (ret < 0)
+>                 goto err_component_unbind;
+> --
+> 2.32.0
+>
