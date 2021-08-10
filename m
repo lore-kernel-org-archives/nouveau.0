@@ -2,106 +2,73 @@ Return-Path: <SRS0=4uLK=NB=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 29D43C4338F
-	for <nouveau@archiver.kernel.org>; Tue, 10 Aug 2021 02:54:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BAAF6C4338F
+	for <nouveau@archiver.kernel.org>; Tue, 10 Aug 2021 10:11:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DAF4C60FE6
-	for <nouveau@archiver.kernel.org>; Tue, 10 Aug 2021 02:54:09 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DAF4C60FE6
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id 2F271600CD
+	for <nouveau@archiver.kernel.org>; Tue, 10 Aug 2021 10:11:41 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 2F271600CD
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8436E89E15;
-	Tue, 10 Aug 2021 02:54:07 +0000 (UTC)
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3344D899A5;
- Mon,  9 Aug 2021 13:09:11 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 06B8861004;
- Mon,  9 Aug 2021 13:09:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1628514551;
- bh=YzG7BnFCln4Yyp6LxrxvxeyUMj5GmzMjIhVfIPMKSYc=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=B8pvYpwPzQ18zhH2+y0BGlUA/OJhSA/B0e0InC/nca080ep3tJvTyYkjw4iA0bIXy
- YJkfsyL7WJqFEvGlYZsDdfkS8W4gkzs2dxMYwyXUt2VpcSaAsgcNhIj8ai/6CAVUZ2
- ldHAUzQEOhshkYgfdQv79fOgiKArwiLUzaIB6uXf33e9Dwx6fJNaNUWADrL3Q2AY27
- Bl9LecINy6PsqQyvEgFzW02xNT9GIlS0Tp9TuaVC5l/yfox0JcJblrMOq9WQey5+Yx
- UjWS8SLAwRaq9m1jBvtg7XtqOaG9lvGylZ+m8LNCf4Md/cmndcHE0D+U5Qp6wYUHub
- B20Q3cXMUBSvw==
-Received: by mail-wr1-f52.google.com with SMTP id k29so8563403wrd.7;
- Mon, 09 Aug 2021 06:09:10 -0700 (PDT)
-X-Gm-Message-State: AOAM530HpmV+f8Lh1ZWrTeqml6bwZ6koMhJehP2RdxsiCeeG/g/Hr4PY
- pnLbIq1I4YazeQco2P15ALRqmfHsVz9MYathnA==
-X-Google-Smtp-Source: ABdhPJzottn9lR1w4Ou5tspJmaMhExuHvfqLuRluAKs7dQZoer2iHn4k6bWFWu6HusN3FgH38v3t3o0558IoBlRW8NU=
-X-Received: by 2002:a17:906:4156:: with SMTP id
- l22mr6919385ejk.75.1628514539014; 
- Mon, 09 Aug 2021 06:08:59 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A964289650;
+	Tue, 10 Aug 2021 10:11:36 +0000 (UTC)
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
+ [IPv6:2a00:1450:4864:20::429])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C3A8895B9
+ for <nouveau@lists.freedesktop.org>; Tue, 10 Aug 2021 10:11:34 +0000 (UTC)
+Received: by mail-wr1-x429.google.com with SMTP id i4so8030671wru.0
+ for <nouveau@lists.freedesktop.org>; Tue, 10 Aug 2021 03:11:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=Sp29JzT+GKDKRnyCDK4QS3B3tx93s6YBezXh1eXnjCk=;
+ b=KN/o8Rnb5mrkcbzAQliYqMRaJ5IbOuO5rnRRZXUprGri1tNLXb9mmWvE2MPSePu4O6
+ SG5EnfBPLd7uDu1MKFSTLYXqoMX82CS7y2rqhsEhdM9zfLmzfcBsQhzc8dKxy+6QjWV9
+ UlxNs2GSBAKfgVbS1oWfh5kjS+XV761dVyq1M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=Sp29JzT+GKDKRnyCDK4QS3B3tx93s6YBezXh1eXnjCk=;
+ b=p/9vh5YzrlHXXcUTTamoscxmXLPKoFVoVyiJwDmpvXwvq3g5onigvK4K0P2GM/qsgb
+ zg1Avt2KFXM/51ZDpczwkhri6eEXfxXotYxQZ4LwheAhQBY8cQCO685tPUUk0NqeR/n9
+ Qeeopqnl5vOjMyn10eqK0uwPJOifvfH8Z/DAZ7XlT4Zw5ObaQbZCC1Lwt9Hu3QWFdc+E
+ b/f0Syz6chIKtMLzZ1V9AcQ79XhVbQuvzi5V6WT8m4PRwG1a8p0JbVNcSdBtI53qRiw+
+ IqFA/i0Ocr6y2pWiGIoZol7rEGYo3rmo61RbxDeCeCBIFx0UVa0pcCN79dRSfmIzm7kD
+ mImw==
+X-Gm-Message-State: AOAM532VoSn3m+fqhmFrr1il+5KA49uNfB7wOKtIDC18Z2v4O6nun56x
+ uOxjtXHFsnVLR//kSS6ettf0/A==
+X-Google-Smtp-Source: ABdhPJziWy+a07cLMssOTaRQQ5Kp0mCk/diZGxq4Myj06mkn//331sD0fUtYkLC3NC2nqrYZ6pSwpw==
+X-Received: by 2002:adf:9c8b:: with SMTP id d11mr17013687wre.43.1628590293064; 
+ Tue, 10 Aug 2021 03:11:33 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id o22sm2051768wmq.3.2021.08.10.03.11.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 10 Aug 2021 03:11:32 -0700 (PDT)
+Date: Tue, 10 Aug 2021 12:11:30 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Karol Herbst <kherbst@redhat.com>
+Cc: nouveau <nouveau@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Lyude Paul <lyude@redhat.com>, David Airlie <airlied@redhat.com>
+Message-ID: <YRJQ0ll5O3x+edT1@phenom.ffwll.local>
+References: <CACO55ttigE42t+gmPvTtZ1QD6a9=5v3Mo9r6CMsOpDYo61Jj-g@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210625082222.3845-1-tzimmermann@suse.de>
- <20210625082222.3845-14-tzimmermann@suse.de>
-In-Reply-To: <20210625082222.3845-14-tzimmermann@suse.de>
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Mon, 9 Aug 2021 21:08:48 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8Y7VZm2JWtPXVGfsPQ-j72wMULQJHCHdmQEV+a=TyW1Q@mail.gmail.com>
-Message-ID: <CAAOTY_8Y7VZm2JWtPXVGfsPQ-j72wMULQJHCHdmQEV+a=TyW1Q@mail.gmail.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, 
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Xinhui.Pan@amd.com, james.qian.wang@arm.com, liviu.dudau@arm.com, 
- mihail.atanassov@arm.com, brian.starkey@arm.com, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Inki Dae <inki.dae@samsung.com>, Joonyoung Shim <jy0922.shim@samsung.com>, 
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>, 
- krzysztof.kozlowski@canonical.com, xinliang.liu@linaro.org, 
- tiantao6@hisilicon.com, john.stultz@linaro.org, kong.kongxinwei@hisilicon.com, 
- puck.chen@hisilicon.com, Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, 
- Lucas Stach <l.stach@pengutronix.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, 
- NXP Linux Team <linux-imx@nxp.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, 
- Tomi Valkeinen <tomba@kernel.org>, Sandy Huang <hjc@rock-chips.com>, 
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Yannick Fertre <yannick.fertre@foss.st.com>,
- Philippe Cornu <philippe.cornu@foss.st.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Thierry Reding <thierry.reding@gmail.com>, jonathanh@nvidia.com, 
- Jyri Sarha <jyri.sarha@iki.fi>, emma@anholt.net,
- linux-graphics-maintainer@vmware.com, 
- zackr@vmware.com, hyun.kwon@xilinx.com, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, michal.simek@xilinx.com, 
- jani.nikula@linux.intel.com, rodrigo.vivi@intel.com, 
- Russell King <linux@armlinux.org.uk>, kieran.bingham+renesas@ideasonboard.com, 
- Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
- Melissa Wen <melissa.srw@gmail.com>, 
- Haneen Mohammed <hamohammed.sa@gmail.com>, amd-gfx@lists.freedesktop.org, 
- DRI Development <dri-devel@lists.freedesktop.org>, 
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- linux-samsung-soc@vger.kernel.org, 
- "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
- nouveau@lists.freedesktop.org, 
- linux-rockchip@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
- linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org, 
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 10 Aug 2021 02:54:05 +0000
-Subject: Re: [Nouveau] [PATCH v4 13/27] drm/mediatek: Don't set struct
- drm_device.irq_enabled
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACO55ttigE42t+gmPvTtZ1QD6a9=5v3Mo9r6CMsOpDYo61Jj-g@mail.gmail.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Nouveau] Proposal for allowing more Nouveau contributors to
+ merge patches
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,43 +83,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi, Thomas:
+On Fri, Aug 06, 2021 at 06:53:06PM +0200, Karol Herbst wrote:
+> Hey everybody,
+> 
+> so, here is a proposal of what we could change in order to allow
+> patches to land faster, more reliably and to increase the overall bus
+> factor in terms of nouveau kernel maintenance.
 
-Thomas Zimmermann <tzimmermann@suse.de> =E6=96=BC 2021=E5=B9=B46=E6=9C=8825=
-=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=884:22=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> The field drm_device.irq_enabled is only used by legacy drivers
-> with userspace modesetting. Don't set it in mediatek.
->
+Yay!
 
-Acked-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> But let's start with the current situation:
+> 
+> At the moment contributors have to send patches to the nouveau mailing
+> list in order to submit them for inclusion into Bens nouveau tree.
+> Then Ben has to look at them and either respond with a comment on what
+> needs to change or merge it. At some point Ben submits all new changes
+> to nouveau for inclusion into the drm-next tree.
+> 
+> Practically there are a few problems here:
+> 1. Not all patch submissions get a response
+> 2. Patch submitters usually don't get to know if their patches are
+> accepted unless they appear in drm-next or linus' tree.
+> 3. A lot of trivial patches never make it into the tree.
+> 4. Depending on how overloaded Ben is, even bigger patch series adding
+> new features never get any responses at all.
+> 5. Patch series might get stale for any other reason and there is no
+> good tool to track open patch submissions (no, patchwork isn't good
+> and it sucks and not even in the mood to explain this to people
+> thinking otherwise as this should just be obvious)
+> 
+> This usually ends up discouraging new contributors from making more
+> contributions to nouveau as they see that some or all of their patches
+> never get any reaction and it's even annoying to current contributors
+> if they see their patches being stuck as well.
+> 
+> And here I want to stress that none of this is Ben's fault and has his
+> own things to work on and none of this should just depend on one
+> person finding enough time. So the solution shouldn't be a simple
+> "let's find a different tool and everything should be perfect" but the
+> solution should be "how can we change the process so it's less time
+> consuming for Ben to accept patches". And while working on this, I'd
+> also want to tackle the problem that contributing to nouveau shouldn't
+> be frustrating for new contributors and the process should be more
+> lively overall.
+> 
+> So for this I want to propose a new workflow, which would also spread
+> some responsibilities around active members of the nouveau community:
+> 
+> 1. We should have a public nouveau tree (which could be
+> https://gitlab.freedesktop.org/drm/nouveau or something else) with a
+> nouveau-next branch collecting all patches for the next kernel major
+> kernel release.
+> At the moment the "official" nouveau tree is kind of
+> https://github.com/skeggsb/nouveau but there is
+> https://github.com/skeggsb/linux as well. The main problem is, it's a
+> repository tight to a person. We already have
+> https://gitlab.freedesktop.org/drm/nouveau as a bug tracker, but it
+> also contains a full linux git tree which is updated automatically
+> through a CI job.
+> 
+> 2. A chosen group of people should have push rights to this repository
+> in order to accept patches sent in via emails to the nouveau Mailing
+> List or fancy UIs (like gitlabs MRs) or other ways.
+> Trusted contributors should be allowed to review and accept submitted
+> patches in order to reduce the workload on Ben. Those patches will be
+> collected on the nouveau-next branch. Patches from a mailing list
+> could e.g. be submitted through a MR on gitlab or just pushed to the
+> branch directly.
+> 
+> 3. We should ensure through CI that submitted patches are at least
+> passing basic quality control (checkpatch, compile testing, sparse,
+> etc...)
+> I already worked on this and one example can be seen here:
+> https://gitlab.freedesktop.org/drm/nouveau/-/merge_requests/3
+> There are more things we could add to it, like checking if sparse is
+> happy or add additional checks. Adding tests against hw is something
+> we want to target for the future as well.
+> 
+> 4. patches from nouveau-next should be included into a "higher" git
+> tree (drm-next or drm-misc-next) by authorized people after getting a
+> final review by Ben or somebody else.
+> The idea is to post all collected patches for final review to the
+> mailing list as Ben wanted to have a final possibility to nack it in
+> case something stands out. We could then depend on Ben including those
+> patches, but we could also use commit rights to drm-next or
+> drm-misc-next from other people as well. I have commit access to the
+> drm-misc repository, and I would assume that Lyude would be able to
+> get it as well or already has it.
 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c | 6 ------
->  1 file changed, 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/med=
-iatek/mtk_drm_drv.c
-> index b46bdb8985da..9b60bec33d3b 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> @@ -270,12 +270,6 @@ static int mtk_drm_kms_init(struct drm_device *drm)
->                 goto err_component_unbind;
->         }
->
-> -       /*
-> -        * We don't use the drm_irq_install() helpers provided by the DRM
-> -        * core, so we need to set this manually in order to allow the
-> -        * DRM_IOCTL_WAIT_VBLANK to operate correctly.
-> -        */
-> -       drm->irq_enabled =3D true;
->         ret =3D drm_vblank_init(drm, MAX_CRTC);
->         if (ret < 0)
->                 goto err_component_unbind;
-> --
-> 2.32.0
->
+Hm I'm not sure that double-indirect makes a lot of sense. There's imo two
+reasonable models here:
+
+- commit rights on drm/nouveau, Ben sends out the pull requests to
+  drm-next for those, which gives him a good point to check over and do
+  any last touches
+
+- directly push to drm-misc-next, defacto having a group commit right
+  thing going on there directly
+
+Doing first commit rights and then resending the entire pile is way too
+much beaurocracy and wont solve much in my experience.
+
+This does mean that there's a lot of trust required for committers, since
+if the "drop/revert a patch" part becomes a regularity none of this works
+out. Otoh it also doesn't work out if committers aren't trusted, because
+then you're stuck in the "not really my problem" space.
+
+This is both from plenty of experience from other kernel teams trying to
+do something like this. If you don't have upfront trust, then commit
+rights/group maintainership model will simply not work, or at least be
+very painful. And yes this means occasionally things go wrong and need to
+be fixed up, and more importantly, a discussion about tooling, testing and
+review standards is likely required.
+
+For drm-misc/intel we handle those by asking for improvements to the dim
+tooling/docs anytime something goes wrong. This way hopefully the entire
+team learns.
+
+> 5. Urgent fixes should land via drm-fixes or drm-misc-fixes.
+> We kind of already do this already though. We could spin up a
+> nouveau-fixes branch in the future, but the amount of such fixes is so
+> low it's not really worth the effort at the moment. And we have access
+> to drm-misc.
+
+drm.git trees pretty much only take pull requests because Dave&me are
+lazy. We do push the occasionally hotfix if someone managed to set the
+tree on fire, but that's it (usually because we still suck at CI).
+
+Imo for fixes just make drm-misc the official place.
+
+> Once we decide to start and agree to some process, we should try it
+> out with trivial patches, we already get enough of. Like Typo fixes,
+> patches adding docs or removing dead code and can expand this to more
+> "serious" work once we agree that it actually works and does have
+> benefits to nouveau overall.
+> 
+> Any thoughts on this?
+
+Imo start out with fixes in drm-misc-fixes, and leave feature work and
+anything substantial to the current skeggsb/nouveau process. Then reasses
+how that's going and what needs to be improved (like get the CI infra up
+and running meanwhile, maybe move the repo to drm/nouveau if you feel
+like, that kind of stuff).
+
+At least a get a bit a feeling for big stuff nouveau aint ready yet for
+group maintainership, judging from what you're proposing here. This also
+allows you to experiment around more with gitlab CI and maybe MR, perhaps
+nouveau will got directly to that for group maintainership (with Ben and
+Marge bot as sole committers)?
+
+Plus I think offloading and speeding up the simple fixes should help a lot
+already in making nouveau more alive and perhaps attracting new
+contributors.
+
+Cheers, Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
