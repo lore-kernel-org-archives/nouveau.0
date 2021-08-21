@@ -1,49 +1,78 @@
-Return-Path: <SRS0=B35n=NL=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=NPIR=NM=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.3 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 68AC5C4338F
-	for <nouveau@archiver.kernel.org>; Fri, 20 Aug 2021 00:08:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 453EAC4338F
+	for <nouveau@archiver.kernel.org>; Sat, 21 Aug 2021 22:26:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CAD2B60ED3
-	for <nouveau@archiver.kernel.org>; Fri, 20 Aug 2021 00:08:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CAD2B60ED3
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bitmer.com
+	by mail.kernel.org (Postfix) with ESMTPS id DBDBB61242
+	for <nouveau@archiver.kernel.org>; Sat, 21 Aug 2021 22:26:49 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DBDBB61242
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 618316E9EA;
-	Fri, 20 Aug 2021 00:08:16 +0000 (UTC)
-X-Greylist: delayed 1913 seconds by postgrey-1.36 at gabe;
- Wed, 18 Aug 2021 18:25:21 UTC
-Received: from bitmer.com (49-237-179-185.static.tentacle.fi [185.179.237.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29C4E6E8B7;
- Wed, 18 Aug 2021 18:25:21 +0000 (UTC)
-Received: from 88-114-184-142.elisa-laajakaista.fi ([88.114.184.142]
- helo=[192.168.1.48])
- by bitmer.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
- (Exim 4.89) (envelope-from <jarkko.nikula@bitmer.com>)
- id 1mGPki-0008Q2-W7; Wed, 18 Aug 2021 20:53:25 +0300
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E95F89FA9;
+	Sat, 21 Aug 2021 22:26:49 +0000 (UTC)
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com
+ [IPv6:2607:f8b0:4864:20::82e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D90A888F06;
+ Sat, 21 Aug 2021 02:11:31 +0000 (UTC)
+Received: by mail-qt1-x82e.google.com with SMTP id x5so8991490qtq.13;
+ Fri, 20 Aug 2021 19:11:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=AMOMaJvaeTN/zMSoH+yottbjrmkkaZ//2BiPGEM7agI=;
+ b=AqXuCh9/8Gm644jDgI2P8NHhFOE05XE2pP0Mi6OJqgKdrdFVIBYUokPuBPnApxJgFE
+ 3+VMh/BLiG9oQUQShDiF80pIoYwLiY+Yoq+7qTXfMQRAnMacSCNMqcYxSRO9byfG6yKc
+ HJTu+WCwXBArb2J6MSFbJeHqjplAgWLLPl6k8HjMCvvRy3bVBCysfdwjg6tOOlm9OWZI
+ /1F/JEl6klG1/zEap+9tln/P8wdOk1njxgbOyMsEXIX4CeSRFiRiYN8h7P27ubvEYB9q
+ w//VOEHSFC/A/yb3h94Ea96VsypxaC4Aab+AotXxU73dzZkxgkD1nkyje9c4AJcxxbND
+ HgNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=AMOMaJvaeTN/zMSoH+yottbjrmkkaZ//2BiPGEM7agI=;
+ b=ObONfN8tIsZ2N6C0T8Ud/IlO4kO1qgHQFRmDXapt5QD+ecQLCe1Eu3yKa05H8wK3t6
+ JDQ+azgBBKPK7gqDldE+bHyRWAboQiyq9EKTr2gfCsmNMOQ1GcyY2VL1Ngk0SJPBWoGI
+ wHs+UGcGM6vIntV4ISple6mJg1hBFibQD62wyUc3djDsCnKGlSnp+CuWyhNU3ruH4y6E
+ HbZe2JYKxGn8fFF4r8xkLPGLCE+TjR2uRPDP2pKzWOg0xx80ynQhs196IIp3azrTQc7/
+ bHQ8nO6wqsQtVAKsvZ1pmUVOX1tPTmF5saHey5O2cSKfkooSCtzfgfjhSvlcOIF//Ft0
+ fNvw==
+X-Gm-Message-State: AOAM532u/eWCvURGkWwMenyA0uzdxUX+O0wb2g+mtMwMBIxOeguafQ8s
+ y2wPMg7mPfbDWXymo1iFNo8=
+X-Google-Smtp-Source: ABdhPJx7jHQlITGbPG1pD7X0WSMeLJdpYKDi+OcXhx+LFEb+S4DIg5FSZMDGWs9MqJK+54Ikcn7Hig==
+X-Received: by 2002:aed:2029:: with SMTP id 38mr20651107qta.71.1629511890769; 
+ Fri, 20 Aug 2021 19:11:30 -0700 (PDT)
+Received: from localhost.localdomain ([193.203.214.57])
+ by smtp.gmail.com with ESMTPSA id c2sm4186054qkd.57.2021.08.20.19.11.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 20 Aug 2021 19:11:30 -0700 (PDT)
+From: CGEL <cgel.zte@gmail.com>
+X-Google-Original-From: CGEL <luo.penghao@zte.com.cn>
 To: Ben Skeggs <bskeggs@redhat.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-From: Jarkko Nikula <jarkko.nikula@bitmer.com>
-Message-ID: <189814ad-62e1-2f0a-4841-81870fd2c887@bitmer.com>
-Date: Wed, 18 Aug 2021 20:53:18 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Luo penghao <luo.penghao@zte.com.cn>,
+ Zeal Robot <zealci@zte.com.cn>
+Date: Fri, 20 Aug 2021 19:11:06 -0700
+Message-Id: <20210821021106.27010-1-luo.penghao@zte.com.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 20 Aug 2021 00:08:16 +0000
-Subject: [Nouveau] nouveau resume regression after 64f7c698bea9
- ("drm/nouveau/fifo: add engine_id hook")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 21 Aug 2021 22:26:49 +0000
+Subject: [Nouveau] [PATCH linux-next] drm/nouveau/mmu: drop unneeded
+ assignment in the nvkm_uvmm_mthd_page()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,120 +87,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi
+From: Luo penghao <luo.penghao@zte.com.cn>
 
-My old Thinkpad T410i won't resume properly anymore after suspend or
-hibernation after v5.12 including today's head 614cb2751d31 ("Merge tag
-'trace-v5.14-rc6' of
-git://git.kernel.org/pub/scm/linux/kernel/git/rostedt/linux-trace").
+In order to keep the code style consistency of the whole file,
+the 'ret' assignments should be deleted.
 
-I bisected regression to commit 64f7c698bea9 ("drm/nouveau/fifo: add
-engine_id hook").
+The clang_analyzer complains as follows:
 
-Issue is that Xorg screen is completely messed up, like screen is filled
-with random pixels and changing patterns. Text console is fine but Xorg
-doesn't get better when switching between them.
+drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c:317:8:warning:
+Although the value storedto 'ret' is used in the enclosing expression,
+the value is never actually read from 'ret'.
 
-$ sudo lspci -s 01:00.0 -nnv
-01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GT218M [NVS
-3100M] [10de:0a6c] (rev a2) (prog-if 00 [VGA controller])
-        Subsystem: Lenovo ThinkPad T410 [17aa:2142]
-        Flags: bus master, fast devsel, latency 0, IRQ 30
-        Memory at cc000000 (32-bit, non-prefetchable) [size=16M]
-        Memory at d0000000 (64-bit, prefetchable) [size=256M]
-        Memory at ce000000 (64-bit, prefetchable) [size=32M]
-        I/O ports at 2000 [size=128]
-        Expansion ROM at 000c0000 [virtual] [disabled] [size=128K]
-        Capabilities: [60] Power Management version 3
-        Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
-        Capabilities: [78] Express Endpoint, MSI 00
-        Capabilities: [b4] Vendor Specific Information: Len=14 <?>
-        Capabilities: [100] Virtual Channel
-        Capabilities: [128] Power Budgeting <?>
-        Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1
-Len=024 <?>
-        Kernel driver in use: nouveau
-        Kernel modules: nouveau
+Reported-by: Zeal Robot <zealci@zte.com.cn>
+Signed-off-by: Luo penghao <luo.penghao@zte.com.cn>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-"dmesg | grep -i nouveau" before suspend:
-[    0.698044] nouveau 0000:01:00.0: vgaarb: deactivate vga console
-[    0.699574] nouveau 0000:01:00.0: NVIDIA GT218 (0a8600a2)
-[    0.737665] nouveau 0000:01:00.0: bios: version 70.18.88.00.06
-[    0.738228] nouveau 0000:01:00.0: fb: 256 MiB GDDR3
-[    0.838796] nouveau 0000:01:00.0: DRM: VRAM: 256 MiB
-[    0.838798] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
-[    0.838802] nouveau 0000:01:00.0: DRM: TMDS table version 2.0
-[    0.838804] nouveau 0000:01:00.0: DRM: DCB version 4.0
-[    0.838807] nouveau 0000:01:00.0: DRM: DCB outp 00: 01800323 00010034
-[    0.838809] nouveau 0000:01:00.0: DRM: DCB outp 01: 02811300 00000000
-[    0.838811] nouveau 0000:01:00.0: DRM: DCB outp 02: 028223a6 0f220010
-[    0.838813] nouveau 0000:01:00.0: DRM: DCB outp 03: 02822362 00020010
-[    0.838815] nouveau 0000:01:00.0: DRM: DCB outp 04: 048333b6 0f220010
-[    0.838817] nouveau 0000:01:00.0: DRM: DCB outp 05: 04833372 00020010
-[    0.838819] nouveau 0000:01:00.0: DRM: DCB outp 06: 088443c6 0f220010
-[    0.838821] nouveau 0000:01:00.0: DRM: DCB outp 07: 08844382 00020010
-[    0.838823] nouveau 0000:01:00.0: DRM: DCB conn 00: 00000040
-[    0.838825] nouveau 0000:01:00.0: DRM: DCB conn 01: 00000100
-[    0.838827] nouveau 0000:01:00.0: DRM: DCB conn 02: 00101246
-[    0.838828] nouveau 0000:01:00.0: DRM: DCB conn 03: 00202346
-[    0.838830] nouveau 0000:01:00.0: DRM: DCB conn 04: 00410446
-[    0.841812] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
-[    1.268466] nouveau 0000:01:00.0: DRM: allocated 1440x900 fb:
-0x50000, bo (____ptrval____)
-[    1.268527] fbcon: nouveaudrmfb (fb0) is primary device
-[    2.600674] nouveau 0000:01:00.0: [drm] fb0: nouveaudrmfb frame
-buffer device
-[    2.632208] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0
-on minor 0
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c
+index c43b824..d9f8e11 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c
+@@ -314,7 +314,7 @@ nvkm_uvmm_mthd_page(struct nvkm_uvmm *uvmm, void *argv, u32 argc)
+ 	page = uvmm->vmm->func->page;
+ 	for (nr = 0; page[nr].shift; nr++);
+ 
+-	if (!(ret = nvif_unpack(ret, &argv, &argc, args->v0, 0, 0, false))) {
++	if (!(nvif_unpack(ret, &argv, &argc, args->v0, 0, 0, false))) {
+ 		if ((index = args->v0.index) >= nr)
+ 			return -EINVAL;
+ 		type = page[index].type;
+-- 
+2.15.2
 
-Around suspend/resume dmesg is overrun with these kind of errors:
 
-[   80.883468] nouveau 0000:01:00.0: fb: trapped read at 00005756c0 on
-channel 1 [0fbce000 DRM] engine 0d [PCE0] client 13 [] subclient 01 []
-reason 00000006 [NULL_DMAOBJ]
-[   80.883479] nouveau 0000:01:00.0: ce: intr 00000300
-[   80.883504] nouveau 0000:01:00.0: fb: trapped read at 0000576000 on
-channel 1 [0fbce000 DRM] engine 0d [PCE0] client 13 [] subclient 01 []
-reason 00000006 [NULL_DMAOBJ]
-[   80.883515] nouveau 0000:01:00.0: ce: intr 00000300
-[   80.883523] nouveau 0000:01:00.0: fb: trapped read at 0000579170 on
-channel 1 [0fbce000 DRM] engine 0d [PCE0] client 13 [] subclient 01 []
-reason 00000006 [NULL_DMAOBJ]
-[   80.883535] nouveau 0000:01:00.0: ce: intr 00000300
-[   80.883557] nouveau 0000:01:00.0: fb: trapped write at 000057dbd0 on
-channel 1 [0fbce000 DRM] engine 0d [PCE0] client 13 [] subclient 02 []
-reason 00000006 [NULL_DMAOBJ]
-...
-[   81.435778] OOM killer enabled.
-[   81.435780] Restarting tasks ...
-[   81.436020] systemd-journald[248]: /dev/kmsg buffer overrun, some
-messages lost.
-[   81.443134] done.
-[   81.445883] nouveau 0000:01:00.0: ce: intr 00000300
-[   81.445908] nouveau 0000:01:00.0: fb: trapped read at 0000026000 on
-channel 1 [0fbce000 DRM] engine 0d [PCE0] client 13 [] subclient 01 []
-reason 00000006 [NULL_DMAOBJ]
-[   81.445932] nouveau 0000:01:00.0: ce: intr 00000300
-...
-[   81.977050] nouveau 0000:01:00.0: fb: trapped write at 00219728b0 on
-channel 1 [0fbce000 DRM] engine 0d [PCE0] client 13 [] subclient 02 []
-reason 00000006 [NULL_DMAOBJ]
-[   81.983342] nouveau 0000:01:00.0: ce: intr 00000300
-[   81.989505] nouveau 0000:01:00.0: fb: trapped write at 0021bbd2c0 on
-channel 1 [0fbce000 DRM] engine 0d [PCE0] client 13 [] subclient 02 []
-reason 00000006 [NULL_DMAOBJ]
-[   81.995758] nouveau 0000:01:00.0: ce: intr 00000300
-[   82.001600] nouveau 0000:01:00.0: fb: trapped write at 0021e13320 on
-channel 1 [0fbce000 DRM] engine 0d [PCE0] client 13 [] subclient 02 []
-reason 00000006 [NULL_DMAOBJ]
-[   82.006931] nouveau 0000:01:00.0: gr: TRAP_PROP - TP 0 - 00000040
-[RT_FAULT] - Address 0020230000
-[   82.012021] nouveau 0000:01:00.0: gr: TRAP_PROP - TP 0 - e0c:
-00000000, e18: 00000000, e1c: 00000000, e20: 00002a00, e24: 00030000
-[   82.017184] nouveau 0000:01:00.0: gr: 00200000 [] ch 4 [000f8c8000
-Xorg[628]] subc 3 class 8597 mthd 15f0 data 00170017
-[   82.022332] nouveau 0000:01:00.0: fb: trapped write at 002026bd00 on
-channel 4 [0f8c8000 Xorg[628]] engine 00 [PGRAPH] client 0b [PROP]
-subclient 00 [RT0] reason 00000002 [PAGE_NOT_PRESENT]
-
-Jarkko
