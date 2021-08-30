@@ -6,50 +6,50 @@ X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 43253C432BE
-	for <nouveau@archiver.kernel.org>; Mon, 30 Aug 2021 12:17:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 87BF6C432BE
+	for <nouveau@archiver.kernel.org>; Mon, 30 Aug 2021 12:18:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 00BAE60E77
-	for <nouveau@archiver.kernel.org>; Mon, 30 Aug 2021 12:17:13 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 00BAE60E77
+	by mail.kernel.org (Postfix) with ESMTPS id 2845F610FB
+	for <nouveau@archiver.kernel.org>; Mon, 30 Aug 2021 12:18:01 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 2845F610FB
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65C5F89AEE;
-	Mon, 30 Aug 2021 12:17:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07A0789CBA;
+	Mon, 30 Aug 2021 12:18:00 +0000 (UTC)
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE72B89AB3;
- Mon, 30 Aug 2021 12:17:12 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 608E5610FB;
- Mon, 30 Aug 2021 12:17:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E2B689CB2;
+ Mon, 30 Aug 2021 12:17:58 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 98CA560E77;
+ Mon, 30 Aug 2021 12:17:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1630325832;
- bh=tFvVHHaMT6FlpbVDOckw2bd08wQ0Fl+0KjyQgVzmY3c=;
+ s=k20201202; t=1630325877;
+ bh=Dj+5yK8xpFom0mCcZ7jfHLC+VMnh/en5i7qChO92frY=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=oMjVfd3wgG6wqDUbaNgLfLsPz3zM32dKy64W5urL0GCkXgmiM0LrLMU3MoNQiXDXc
- JsO8349ziptSjBteMiE1WofnvbNNaB+MNzUqZRJEXQBNSTgGvwylMIZAkU3EkMoe1D
- QW+Q/+ewl+bE+avsGzKgWBLCqzE3QDJeepxVgJyBInc3E1g199RegSPXTSBNH0hz0s
- kxtHDRz1z9AeEyQItbgzRrYKQU7AxAAcd6v6iaJiNVKt33F6aiVh1egbz6hTtm3zPC
- 7HWD9TRl0u+z5daA/qidwz4Khr4uelQd43pTN78T9f7KTU8Vv9VNmVokqaGGVeQ/ZF
- fPHMunvXk8yWg==
-Date: Mon, 30 Aug 2021 08:17:11 -0400
+ b=RfxnPzOqNMUipBFtamdNjXUyKphDTUVdbyQpodkhoYbs7kHS8CdJykSsn6VtHn1KC
+ wEDW+t50EQVgwAR5iKt7MuwGJWFMl6bWXWJu4dtwwEew070HWnhJssrCSWTxLE0UMM
+ e+PE4A7rRPrAFbr1eyOx5/ke3ZVWFN0AuhpanAkndBMmwl6gFrGC22cd3n92AP4kSP
+ rCI9j00lg7c+Ph91T3ppKbgJCT0VTtgcT/aRe07zNCjNXmnlqi2+ooNzzgytBndvmO
+ G8VPw2B543LXFzBXQCs4Ccyx4LVv0ZNK5Nqb2rA7RXnUob133dw7d1LU+EUvxSB+DE
+ 3xn4JBnvg+YWQ==
+Date: Mon, 30 Aug 2021 08:17:56 -0400
 From: Sasha Levin <sashal@kernel.org>
 To: Lyude Paul <lyude@redhat.com>
 Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org,
  Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org,
  nouveau@lists.freedesktop.org
-Message-ID: <YSzMR4FnrnT5gjbe@sashalap>
-References: <20210824005356.630888-1-sashal@kernel.org>
- <20210824005356.630888-20-sashal@kernel.org>
- <6607dde4207eb7ad1666b131c86f60a57a2a193c.camel@redhat.com>
+Message-ID: <YSzMdH4E1jIJd5Ed@sashalap>
+References: <20210824005528.631702-1-sashal@kernel.org>
+ <20210824005528.631702-6-sashal@kernel.org>
+ <75ccbdea6e8871856002edb75dff1a32822a5a89.camel@redhat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <6607dde4207eb7ad1666b131c86f60a57a2a193c.camel@redhat.com>
-Subject: Re: [Nouveau] [PATCH AUTOSEL 5.13 20/26] drm/nouveau: recognise
- GA107
+In-Reply-To: <75ccbdea6e8871856002edb75dff1a32822a5a89.camel@redhat.com>
+Subject: Re: [Nouveau] [PATCH AUTOSEL 4.14 6/7] drm/nouveau: block a bunch
+ of classes from userspace
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,12 +64,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Aug 24, 2021 at 01:08:28PM -0400, Lyude Paul wrote:
->This is more hardware enablement, I'm not sure this should be going into
->stable either. Ben?
+On Tue, Aug 24, 2021 at 01:05:32PM -0400, Lyude Paul wrote:
+>This isn't at all intended to be a fix to be backported, so I don't think this
+>should be included. I don't know about 5/7, but I'll let Benjamin comment on
+>that one
 
-We take this sort of hardware enablement patches (where the platform
-code is already there, and we just add quirks/ids/etc.
+I'll drop it, thanks!
 
 -- 
 Thanks,
