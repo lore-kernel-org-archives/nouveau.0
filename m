@@ -1,71 +1,79 @@
-Return-Path: <SRS0=0gRn=OA=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=pgZb=OD=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9DEEDC433FE
-	for <nouveau@archiver.kernel.org>; Fri, 10 Sep 2021 18:46:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E31C9C433F5
+	for <nouveau@archiver.kernel.org>; Mon, 13 Sep 2021 12:25:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 42BAB61250
-	for <nouveau@archiver.kernel.org>; Fri, 10 Sep 2021 18:46:05 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 42BAB61250
-Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=fudan.edu.cn
+	by mail.kernel.org (Postfix) with ESMTPS id 8726B603E5
+	for <nouveau@archiver.kernel.org>; Mon, 13 Sep 2021 12:25:25 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8726B603E5
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9890C6EA86;
-	Fri, 10 Sep 2021 18:46:04 +0000 (UTC)
-X-Greylist: delayed 444 seconds by postgrey-1.36 at gabe;
- Tue, 07 Sep 2021 12:34:19 UTC
-Received: from zg8tmty1ljiyny4xntqumjca.icoremail.net
- (zg8tmty1ljiyny4xntqumjca.icoremail.net [165.227.154.27])
- by gabe.freedesktop.org (Postfix) with SMTP id 913D789DBF;
- Tue,  7 Sep 2021 12:34:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fudan.edu.cn; s=dkim; h=Received:From:To:Cc:Subject:Date:
- Message-Id; bh=DqqdvAhQhT8ubUpthKcwBqEGHjOC11SOaq08JX4tQd8=; b=O
- ZBGiOn3u9Idg2NzkuxY75lk8m5lYt5pelCZaAeY+SD6Oh6tNImXlVbxHLHxzpQhg
- SumjUuyys6PTbKVijLxTuKPXssYNdC3ILZtgflHCy6c4YrnzVV5uLnyJ6oNTgLaz
- zv1GT16/F/WRIc0FbIAv4tETV0W1yH582LocC53hq4=
-Received: from t640 (unknown [10.176.36.8])
- by app1 (Coremail) with SMTP id XAUFCgDnkaR9WjdhdkUvAA--.44636S3;
- Tue, 07 Sep 2021 20:26:37 +0800 (CST)
-From: Chenyuan Mi <cymi20@fudan.edu.cn>
-To: 
-Cc: yuanxzhang@fudan.edu.cn, Chenyuan Mi <cymi20@fudan.edu.cn>,
- Xiyu Yang <xiyuyang19@fudan.edu.cn>, Xin Tan <tanxin.ctf@gmail.com>,
- Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Date: Tue,  7 Sep 2021 20:26:33 +0800
-Message-Id: <20210907122633.16665-1-cymi20@fudan.edu.cn>
-X-Mailer: git-send-email 2.17.1
-X-CM-TRANSID: XAUFCgDnkaR9WjdhdkUvAA--.44636S3
-X-Coremail-Antispam: 1UD129KBjvJXoWrtry5AF18JrW5CFy8Kr17ZFb_yoW8Jr4fpa
- 1DCFy2vrs8KayxKw1Iy3Z5uFyfAanrKayfGay7tas0gw1rAFy5Xw4YqryDtry7Xr1Ska4a
- vFnIgFZI9Fs8AFDanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUBq14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
- JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
- CE3s1lnxkEFVAIw20F6cxK64vIFxWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xv
- F2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r
- 4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I
- 648v4I1lFIxGxcIEc7CjxVA2Y2ka0xkIwI1lc2xSY4AK6svPMxAIw28IcxkI7VAKI48JMx
- C20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAF
- wI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwC2zVAIFx02awCIc40Y0x0EwIxGrwCI42
- IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY
- 6xAIw20EY4v20xvaj40_Wr1j6rW3Jr1lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z2
- 80aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7sRia0P7UUUUU==
-X-CM-SenderInfo: isqsiiisuqikmt6i3vldqovvfxof0/
-X-Mailman-Approved-At: Fri, 10 Sep 2021 18:46:02 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/svm: Fix refcount leak bug and
- missing check against null bug
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61DF06E183;
+	Mon, 13 Sep 2021 12:25:24 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FEA06E183
+ for <nouveau@lists.freedesktop.org>; Mon, 13 Sep 2021 12:25:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1631535922;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=R9PBEt7/CuZtqSZaYKWhgvkbmUFr8etXaLnK2K6IfPg=;
+ b=S5TCJLC2Vk+vrkmwHz6fhFCzid7/eTklBw3GBqAovwlEEMqDv2zpCOrxOzpmTA4yuw8nBj
+ c70a0pc9bXkFi342XwA1y4hPD9oUrouwLQ4KdW4ud+xxc5nA4A2JZpRFbTO+T7GpVJ2+Pl
+ EIZl2OFc7ZuFtzzUYPVI5CELTvXVjb8=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-422-R3ibjpTIMzuNRvVRkTiJtQ-1; Mon, 13 Sep 2021 08:25:19 -0400
+X-MC-Unique: R3ibjpTIMzuNRvVRkTiJtQ-1
+Received: by mail-wr1-f72.google.com with SMTP id
+ s13-20020a5d69cd000000b00159d49442cbso2612690wrw.13
+ for <nouveau@lists.freedesktop.org>; Mon, 13 Sep 2021 05:25:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=R9PBEt7/CuZtqSZaYKWhgvkbmUFr8etXaLnK2K6IfPg=;
+ b=ETn3JZkfArs9BW+7RFNO0lE8qyzpqmlGqe1ekmEcUWOgG5lnmIsun/CZaNliTFubPv
+ i3ai3XW8wInzOLy7mRXLb9cGT0n+RmberfTWIb+nzPEUMcjOEzSaopm3jZgL4fKjTHgc
+ 7vd10zW7J2aexa/AwBttCb5CTCrO1rMR8CErCIJ/cpKRkPsj/4sjFMZy4IIEHxUVEcKR
+ uAR8H9pKKv6hICP7qsOnUK94GqrH3+n8MbBVDVk7pJNXB2QcbvIyIy2qTeS9NGvJJGML
+ Snd2DwQHlEVnTpNAsyvpz9Kd3oJch8BH/QygHWhoEZgeKQQLIn0NJTTBOTo46BoWvQ13
+ ZuXA==
+X-Gm-Message-State: AOAM532d9FwJC35eGZy1aLTBBsCQB4Fpkk2un13tFXMeydPMFMtdGaOq
+ jYo7XTxH4FtZREeokv7k2/u9pWxwao0wZzT/rgyiE/AtoT1lqsWrO8gK1vx/xqBuf0YVoDSNeoy
+ HvsrWGgCN0KXaQ8OB9NwQQSgh5gET3NfDz6BnWk1Oyg==
+X-Received: by 2002:adf:e44c:: with SMTP id t12mr12614347wrm.49.1631535918379; 
+ Mon, 13 Sep 2021 05:25:18 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx/D3ue7ej0yAfVdriVDFkbGanxJ8AFfbKBsNgIIIdagpkw+ezh/hOAbTcOIWYpvO+TzZ7Tp4Ddx4WaQ4W7HoM=
+X-Received: by 2002:adf:e44c:: with SMTP id t12mr12614327wrm.49.1631535918157; 
+ Mon, 13 Sep 2021 05:25:18 -0700 (PDT)
+MIME-Version: 1.0
+References: <DM6PR19MB278000DDEC936A67E85752E5BCF59@DM6PR19MB2780.namprd19.prod.outlook.com>
+In-Reply-To: <DM6PR19MB278000DDEC936A67E85752E5BCF59@DM6PR19MB2780.namprd19.prod.outlook.com>
+From: Karol Herbst <kherbst@redhat.com>
+Date: Mon, 13 Sep 2021 14:25:07 +0200
+Message-ID: <CACO55tuzHmwrgPEnzHf-xVHt3n4gqrzQ5NJD63xMnsHYNFHiSw@mail.gmail.com>
+To: Ratchanan Srirattanamet <peathot@hotmail.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, nouveau <nouveau@lists.freedesktop.org>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=kherbst@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Nouveau] [PATCH] drm/nouveau: don't detect DSM for non-NVIDIA
+ device
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,45 +88,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The reference counting issue happens in one exception handling path of
-nouveau_svmm_bind(). When cli->svm.svmm is null, the function forgets
-to decrease the refcount of mm increased by get_task_mm(), causing a
-refcount leak.
+Sorry for taking this long to take a look, it's just that I don't want
+this to get merged without testing, and I'd like to test it on the
+different kinds of hybrid GPU setups we have so that nothing
+unexpected happens here.
 
-Fix this issue by using mmput() to decrease the refcount in the
-exception handling path.
+I am not 100% sure how all of that works before optimus, so I have to
+find a laptop covering this generation of hardware. I think my oldest
+one here actually is, but the entire system on it is quite broken and
+it still has some private stuff on it so I would rather not touch that
+one :(
 
-Also, the function forgets to do check against null when get mm
-by get_task_mm().
+But if others would be able to test that, that would be awesome.
 
-Fix this issue by adding null check after get mm by get_task_mm().
+I will see if I can find a clean machine somewhere at work I can use
+for testing.
 
-Signed-off-by: Chenyuan Mi <cymi20@fudan.edu.cn>
-Signed-off-by: Xiyu Yang <xiyuyang19@fudan.edu.cn>
-Signed-off-by: Xin Tan <tanxin.ctf@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_svm.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-index b0c3422cb01f..9985bfde015a 100644
---- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-@@ -162,10 +162,14 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
- 	 */
- 
- 	mm = get_task_mm(current);
-+	if (!mm) {
-+		return -EINVAL;
-+	}
- 	mmap_read_lock(mm);
- 
- 	if (!cli->svm.svmm) {
- 		mmap_read_unlock(mm);
-+		mmput(mm);
- 		return -EINVAL;
- 	}
- 
--- 
-2.17.1
+On Sun, Aug 8, 2021 at 9:24 PM Ratchanan Srirattanamet
+<peathot@hotmail.com> wrote:
+>
+> The call site of nouveau_dsm_pci_probe() uses single set of output
+> variables for all invocations. So, we must not write anything to them
+> unless it's an NVIDIA device. Otherwise, if we are called with another
+> device after the NVIDIA device, we'll clober the result of the NVIDIA
+> device.
+>
+> For example, if the other device doesn't have _PR3 resources, the
+> detection later would miss the presence of power resource support, and
+> the rest of the code will keep using Optimus DSM, breaking power
+> management for that machine. In particular, this fixes power management
+> of the NVIDIA card in Lenovo Legion 5-15ARH05... well, at least
+> partially. New error shows up, but this patch is correct in itself
+> anyway.
+>
+> Also, because we're detecting NVIDIA's DSM, it doesn't make sense to run
+> this detection on a non-NVIDIA device anyway. Thus, check at the
+> beginning of the detection code if this is an NVIDIA card, and just
+> return if it isn't.
+>
+> As a bonus, we'll also stop preventing _PR3 usage from the bridge for
+> unrelated devices, which is always nice, I guess.
+>
+> https://gitlab.freedesktop.org/drm/nouveau/-/issues/79
+>
+> Signed-off-by: Ratchanan Srirattanamet <peathot@hotmail.com>
+> ---
+>
+> It's been discussed in the "previous" patch series ("[PATCH] drm/
+> nouveau: don't touch has_pr3 for likely-non-NVIDIA device" [1]) that,
+> instead of changing how the detection works, it's better to check if
+> the device's vendor is NVIDIA, or if it's a secondary device. I don't
+> find a feasible way to detect the secondary-ness of a device, so I
+> opted for checking the vendor code [2].
+>
+> Thus, this makes the patch different enough to warant a different
+> summary phrase and description.
+>
+> [1] https://lore.kernel.org/nouveau/CACO55tsYWW_dfAFWBFLrH51SVivUeN72Omc6DRTCtzVWSLE68w@mail.gmail.com/T/#mb710275dc1dd7e9d83028c218b886400d3a43bfc
+> [2] It's been suggested to use `nouveau_dsm_get_client_id()`, however,
+>     on my machine it would return _DIS on both cards, so it can't be
+>     used.
+>
+>  drivers/gpu/drm/nouveau/nouveau_acpi.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+> index 7c15f6448428..9c55f205ab66 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+> @@ -220,6 +220,9 @@ static void nouveau_dsm_pci_probe(struct pci_dev *pdev, acpi_handle *dhandle_out
+>         int optimus_funcs;
+>         struct pci_dev *parent_pdev;
+>
+> +       if (pdev->vendor != PCI_VENDOR_ID_NVIDIA)
+> +               return;
+> +
+>         *has_pr3 = false;
+>         parent_pdev = pci_upstream_bridge(pdev);
+>         if (parent_pdev) {
+> --
+> 2.25.1
+>
 
