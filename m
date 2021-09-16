@@ -2,88 +2,86 @@ Return-Path: <SRS0=SODn=OI=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 50D12C433EF
-	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:26:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 35CBFC433F5
+	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:26:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1876C60F43
+	by mail.kernel.org (Postfix) with ESMTPS id 01FFC60F43
 	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:26:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1876C60F43
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 01FFC60F43
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E1606F3EF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 399786F3ED;
 	Sat, 18 Sep 2021 06:25:42 +0000 (UTC)
 Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
  [64.147.123.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B77216EE98;
- Fri, 17 Sep 2021 23:17:08 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.west.internal (Postfix) with ESMTP id AAB5C2B00381;
- Fri, 17 Sep 2021 19:17:07 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute4.internal (MEProxy); Fri, 17 Sep 2021 19:17:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
- :from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm3; bh=IGsVP4ZteAEr9xLEQV5uB/tVbZV
- zzsq4OBU4Z1IsijE=; b=ahuPRI2ir8VYkdt2zhvFA698iOyahHGujH1qVcfUL79
- NfbOKL4dS3mx19SjNEDdjbo2klBfT3hayxZNi1JK6LpronosHIzeJa8qmLHk35co
- gE4my/8oWVUINa0e0/ThD6Y5zNLvXHPQnfzRWk4vvJinnDVgIbqE2FdAS+fbz38e
- mad5TXe9hsJ7oiL9kwbC5CBGRML2QEtuM0kzZP33J/RW5RScmGkwjfuonLBAAwj7
- hSplQ7ssXbbLd2QXqnHG3PKRF28u6wuE0tSxc2/F39Aa8JuaBWNclD8qG2o6kVgf
- Rxbf09V9lVAa4kPzfQrgoMakMNhvCPDy43M2hWoadDw==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 367CD6E927;
+ Thu, 16 Sep 2021 21:25:56 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+ by mailnew.west.internal (Postfix) with ESMTP id B84122B011F6;
+ Thu, 16 Sep 2021 17:16:41 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute2.internal (MEProxy); Thu, 16 Sep 2021 17:16:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
+ :to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding; s=fm3; bh=R/tidGid4Cs5Z
+ uAv4KbqJodwLkPczaEEwqfZnwHWGhA=; b=Ww7IZCgPdJ/+CnohNULzwbPegKHZm
+ 2Fh5R4WPjB4Y81MyzS3+EckYPDynlcPE6sQQOwSX53OyiSKkaWOiMh4AFh7EXpAn
+ +wRjliC1GBDKWX5G1m4fueYXC+jQSswijqD/0wZJqisS8vsNWQws2SQA6eUwCafY
+ MHQOjNAXbFTxsRNiTHnC3h7rkVCBzSF2Oawk9eHriy7p/Vzg8/SWCnDOktGqTUiK
+ hHnLWRzO8sTDjGtc3LmanAWho+I4FiCGWBu1Dk6yov6gMr5nILEIaP0xCHaNlad6
+ LrhaLPss+rRkMvjBGCoOSMS8ODKXzKZT2C1Eu45YnxFpHw6YczUOlVMqA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=IGsVP4
- ZteAEr9xLEQV5uB/tVbZVzzsq4OBU4Z1IsijE=; b=GvkSHwukXjsuSoWvpmRGh5
- vEMdeV+XKA+/JTADNOsG07QqGwzCaP3aEQI9zrjtQT4WWbRnDmGgxT1KK7WOievF
- DtXA6UHX/fq7cUcCNcCRcug1T/U0qYYbZ1iWVpiTJv5d1WTJlrhyAOTWCYO3Ag+z
- oj9i9+h/piPoDlLkaWyNQF9uki6E154WhbWLA/f7omyi/mQ7tDOwvhTB4dfzl09j
- uLXiEbJIcoDPcrYgPiDW2EirkOkaHsv+ss/yjxmObqOED3uLvUla+zfsNWKbb/gB
- 8ENC3a7sp7zbf09GA+0v7ebG9QRTcuUC+TqYS40serjzoUtTgxY2y6eNFLpWbVkw
- ==
-X-ME-Sender: <xms:8iFFYXMO_zQQgD16oxbjbtShEjJAcDBAsKp_RAAWasAWT8nh6LvD0Q>
- <xme:8iFFYR-VjguZB1XsDUXhLpDDFmzLrelFL2k7aTsB-OGNSO7JqnNvrq8QriO1E65kD
- 4XTEPR_XlUbHgw-BQ>
-X-ME-Received: <xmr:8iFFYWSwo1d-jxo902FJTfyoVe0MLl-AzQ_P0KIOgMplSv-Q3VQF0EmLw2VBYnaJMu2OQ2JX>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehjedgudelucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpefhvghrnhgr
- nhguohcutfgrmhhoshcuoehgrhgvvghnfhhoohesuhelvddrvghuqeenucggtffrrghtth
- gvrhhnpedvjeeifeelhfetiefhhfdthfefkefhhfeutdetvdfgvefgveefheffgfekjeef
- heenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrh
- gvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:8iFFYbteP_ogjih9hbd_SFpKp1y7PfGdW8xJuqpq1y4G9RNC6lmz8w>
- <xmx:8iFFYfcbvzZqNZNeh73V4LyzP5tP0A_hIJF4U_SIA9_9eX9lAPpx6w>
- <xmx:8iFFYX1uGX3jPoazsk8MtZMVTOO38tw4vuVepVmBdO0jj3BqRm_0Yg>
- <xmx:8yFFYT6kpTIoEOo-IjQepYYNKWCqeFUVXaG9JDmibIlwyMxMnDMo76cB6Zs>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 17 Sep 2021 19:17:03 -0400 (EDT)
-Date: Sat, 18 Sep 2021 01:17:01 +0200
+ messagingengine.com; h=cc:content-transfer-encoding:date:from
+ :in-reply-to:message-id:mime-version:references:subject:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm3; bh=R/tidGid4Cs5ZuAv4KbqJodwLkPczaEEwqfZnwHWGhA=; b=o2nanYhl
+ tJ6IrghK66DSKGstszmQbsNs/9ffr+s17BLdUcdTnDI3rES+6plBw1YtKahLbuFS
+ D7jh8Qsic4+7+WuHiuLkbWiW2lfzMcRVI7TNMQstY2LKhw52HpTdPMBmnjaJt1Pr
+ ECf2x0ftFJsjdXBsCT2TYpM5KJ47mBouT4whPF9N4YWFiKvqtrgCLmTtOZYQ7LzV
+ gid6YHc3rF79+xNIxdyspAc1qkeb2otfhnE4smCW438kzJSwBffyt8BuevAUGtZr
+ ZsQ3berHJ20M3Q8vLhfStTq99P/WQTAVsCh+PTetDRRj147Bh3TfnrztmyZ7AzgD
+ e14RaGyP6+Btwg==
+X-ME-Sender: <xms:ObRDYZ7yhET2pR1O0lfl4voYSG-yazq9YUaMssrZkS_WrbqM35ojJw>
+ <xme:ObRDYW5dM5Rhn0yZr-imNxIZlf4uNUFx0uZnzTLDpIxPUr9Y5crukNzN_UMVNFAEj
+ MEkrxqyjd-ps51_tg>
+X-ME-Received: <xmr:ObRDYQf0l7yIpvoFLSWko3l9G7_o-Ie0q0pyE5Fx0QHc4GpIqVSIElCUvkIeam1VkgsU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehgedgudehvdcutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
+ ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
+ ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpeehnecu
+ rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:ObRDYSKdSB9h_UDhyjspM0TmpwERkwU-s9SzKBZGZmRHmZJQJEG9WA>
+ <xmx:ObRDYdI3syJRkb3v7NwoxSWpd2tkAe33QrtMsNoivpLMUdz2bG09Sg>
+ <xmx:ObRDYbwM9NzW-pIW8WdhdnP5TknDBiBWtTdeJTK_PjMKfzvEbNmD1Q>
+ <xmx:ObRDYWVKJ5P7d5DsQZ0etF8JKSpwYUb9y0RBJdrIsKrDIl9KPSyZkKNK1M0>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 16 Sep 2021 17:16:38 -0400 (EDT)
 From: Fernando Ramos <greenfoo@u92.eu>
-To: Sean Paul <sean@poorly.run>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org
-Message-ID: <YUUh7X+Ft7vKHlcT@zacax395.localdomain>
+To: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+Date: Thu, 16 Sep 2021 23:15:47 +0200
+Message-Id: <20210916211552.33490-11-greenfoo@u92.eu>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20210916211552.33490-1-greenfoo@u92.eu>
 References: <20210916211552.33490-1-greenfoo@u92.eu>
- <20210916211552.33490-15-greenfoo@u92.eu>
- <20210917155548.GO2515@art_vandelay>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210917155548.GO2515@art_vandelay>
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sat, 18 Sep 2021 06:25:39 +0000
-Subject: Re: [Nouveau] [PATCH 14/15] drm/amd: cleanup:
+Subject: [Nouveau] [PATCH 10/15] drm/nouveau: cleanup:
  drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -99,118 +97,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-> > +	struct drm_modeset_acquire_ctx ctx;
-> >  	int r;
-> > +	int ret;
-> 
-> Relocate ret with r please
+As requested in Documentation/gpu/todo.rst, replace driver calls to
+drm_modeset_lock_all() with DRM_MODESET_LOCK_ALL_BEGIN() and
+DRM_MODESET_LOCK_ALL_END()
 
-Done!
+Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
+---
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-> > -	drm_modeset_unlock_all(dev);
-> > +	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
-> 
-> You should check ret here
-
-Done!
-
-
-> >  	int r;
-> > +	int ret;
-> 
-> Relocate ret with r
-
-Done!
-
-
-> > -	drm_modeset_unlock_all(dev);
-> > +	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
-> >  
-> >  	return 0;
-> 
-> Return ret
-
-Done!
-
-
-> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > index 9b1fc54555ee..5196c1d26f87 100644
-> > @@ -2661,13 +2657,18 @@ static void handle_hpd_irq(void *param)
-> >  
-> >  		amdgpu_dm_update_connector_after_detect(aconnector);
-> >  
-> > -		drm_modeset_lock_all(dev);
-> > -		dm_restore_drm_connector_state(dev, connector);
-> > -		drm_modeset_unlock_all(dev);
-> > -
-> > -		if (aconnector->base.force == DRM_FORCE_UNSPECIFIED)
-> > -			drm_kms_helper_hotplug_event(dev);
-> > +	} else {
-> > +		goto out;
-> >  	}
-> > +
-> > +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
-> > +	dm_restore_drm_connector_state(dev, connector);
-> > +	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
-> 
-> Check ret here please
-
-This function ("handle_hpd_irq") returns void. What would the appropriate way of
-checking the error be?
-
-
-> > @@ -2841,14 +2838,17 @@ static void handle_hpd_rx_irq(void *param)
-> >  
-> >  			amdgpu_dm_update_connector_after_detect(aconnector);
-> >  
-> > +		} else {
-> > +			goto finish;
-> 
-> You used 'out' above and 'finish' here. It would be nice to be consistent with
-> naming, I see 'out' a lot more than 'finish', so my vote would be to change this
-> label to 'out'.
-
-I originally used "out", but turns out there is already an "out" label in this
-function :)
-
-I then searched for other "go to end" labels and found "finish" being used in 
-this same file.
-
-But I can rename it to somehitng else ("out2" maybe?) to make it less confusing.
-
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index d7b9f7f8c9e3..eb613af4cdd5 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -667,15 +667,17 @@ nv50_audio_component_bind(struct device *kdev, struct device *hda_kdev,
+ 	struct drm_device *drm_dev = dev_get_drvdata(kdev);
+ 	struct nouveau_drm *drm = nouveau_drm(drm_dev);
+ 	struct drm_audio_component *acomp = data;
++	struct drm_modeset_acquire_ctx ctx;
++	int ret;
  
-> > +		}
-> >  
-> > -			drm_modeset_lock_all(dev);
-> > -			dm_restore_drm_connector_state(dev, connector);
-> > -			drm_modeset_unlock_all(dev);
-> > +		DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
-> > +		dm_restore_drm_connector_state(dev, connector);
-> > +		DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
-> 
-> Check ret here?
-
-This is another irq-like function returning void.
-
-What can we do here after having checked the error?
-
-
-> > +#include <drm/drm_drv.h>
-> 
-> Top-level headers generally come above the driver headers. Also, now that I think
-> about this a bit more, all of the new includes in this set should probably be
-> for 'drm_modeset_lock.h' instead of 'drm_drv.h'.
-
-Ok. Let me try that.
-
-
-> > @@ -1259,13 +1257,16 @@ static ssize_t trigger_hotplug(struct file *f, const char __user *buf,
-> > +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
-> > +	dm_restore_drm_connector_state(dev, connector);
-> > +	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
-> 
-> Check ret here?
-
-This is a .write file_operations function expected to return a "size". Is it ok
-for it to return an error? I guess so, right?
+ 	if (WARN_ON(!device_link_add(hda_kdev, kdev, DL_FLAG_STATELESS)))
+ 		return -ENOMEM;
+ 
+-	drm_modeset_lock_all(drm_dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(drm_dev, ctx, 0, ret);
+ 	acomp->ops = &nv50_audio_component_ops;
+ 	acomp->dev = kdev;
+ 	drm->audio.component = acomp;
+-	drm_modeset_unlock_all(drm_dev);
++	DRM_MODESET_LOCK_ALL_END(drm_dev, ctx, ret);
+ 	return 0;
+ }
+ 
+@@ -686,12 +688,14 @@ nv50_audio_component_unbind(struct device *kdev, struct device *hda_kdev,
+ 	struct drm_device *drm_dev = dev_get_drvdata(kdev);
+ 	struct nouveau_drm *drm = nouveau_drm(drm_dev);
+ 	struct drm_audio_component *acomp = data;
++	struct drm_modeset_acquire_ctx ctx;
++	int ret;
+ 
+-	drm_modeset_lock_all(drm_dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(drm_dev, ctx, 0, ret);
+ 	drm->audio.component = NULL;
+ 	acomp->ops = NULL;
+ 	acomp->dev = NULL;
+-	drm_modeset_unlock_all(drm_dev);
++	DRM_MODESET_LOCK_ALL_END(drm_dev, ctx, ret);
+ }
+ 
+ static const struct component_ops nv50_audio_component_bind_ops = {
+-- 
+2.33.0
 
