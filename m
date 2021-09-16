@@ -2,89 +2,87 @@ Return-Path: <SRS0=SODn=OI=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AEAF8C433EF
-	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:25:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CC99CC433EF
+	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:25:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4C04A61108
-	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:25:54 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 4C04A61108
+	by mail.kernel.org (Postfix) with ESMTPS id 8FD1D60F43
+	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:25:56 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8FD1D60F43
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 756806F3D6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C80D6F3D8;
 	Sat, 18 Sep 2021 06:25:40 +0000 (UTC)
 Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
  [64.147.123.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A7056E0AC;
- Fri, 17 Sep 2021 22:37:20 +0000 (UTC)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailnew.west.internal (Postfix) with ESMTP id C9D7F2B00BC0;
- Fri, 17 Sep 2021 18:37:19 -0400 (EDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E259F6E8E5;
+ Thu, 16 Sep 2021 21:25:55 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailnew.west.internal (Postfix) with ESMTP id F32C82B011DF;
+ Thu, 16 Sep 2021 17:16:03 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
- by compute1.internal (MEProxy); Fri, 17 Sep 2021 18:37:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
- :from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm3; bh=nhWXDSFKhC1b4KAXA4XjlcmTpL5
- dZ6T2058p8Og7JQU=; b=GpzZ1qRpFwidQCCXZq88JTv0+uc9A9uiDWB+coAc0Rt
- v4qYbRrGIivtwbSUIouGbUyss2shPTXGLS1iDTfGveq+BUo5NhujQ6XEkIqVBkL5
- oh6mT/86ZQzAjEhrSjwGnxPQ/4bZku3W3sf6C6iy2XU2zEL7je5njTH74hnWnj4r
- 2ILH9Ag0DNjlw3JG5vticdChUCRNhOgJraOGQoZ7LUcNsFvK8HL2pjou0zr8Nydx
- 2xvlFdCPU/1QT6dZST2PGbZNuUHCiNyIqMzYealPoX2RoCCoUW3j5PoWB3YneBk+
- AH6GA0+oP+Jc7sIPqheHgyhE3WX3ppe68bhnV3/ve+A==
+ by compute5.internal (MEProxy); Thu, 16 Sep 2021 17:16:04 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
+ :to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding; s=fm3; bh=7drGizuMVrgy3
+ XtFLhWzlftyWemSxaP+r0ayB6xLFcI=; b=joAmPfTP2CUq1mUhs+7TF0jmnc/n0
+ a9l16AYNEAWtSKpPDPLfMnrrxBoeHIJFjfAPKPYvt/E72nlcrwAcZh5yXWmXSMAC
+ 1EUHZYmXjPnbbbxqiuYvbZER4vR23GP2wNawwz8uy7r+thYVfRdZZXT9677zSbhr
+ 1NPMYwA2dB9tGZJLYQ7SYyTIJY1cAJZc3NFVi71HSS6w1uh8p/oWC1dR7wU8VfAt
+ an0HZEBGXXtYmRQlu5DnEi2YGZAwCYjeEqWRdacjVrX1E88MPP2t7wIA4FNZ0NMC
+ sMMfZIk9c8zXUYrVZDh/3ZsNeo2jw33Ep2Q5l2fZFzo6HdUme8DFRsByQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=nhWXDS
- FKhC1b4KAXA4XjlcmTpL5dZ6T2058p8Og7JQU=; b=Iqst6REPYZrVgxFoHUXdgf
- LpiPLwYcccINEr87/9MEGzuW1AYZwnegEHwhnHrIHZg28qcVWgbNTEMUsWdUUVXI
- rHcUan8miONe1DM4+/8zggxmJTBCJDYvy4Qx2hEvMcvLeBACz5pTk/LuabCg0sjf
- tnseWz9MpNmPtSGX3WIrQuHtt5Xp4g1K+di67P8TaXKDwqak6qP9XUSdNCoQHp5T
- ndeCs13S0ppwD6hNQhy/v7jVCp8nbpO3Rw9B+8jP75pB+uK3J+wmpG/+I1pLaSzq
- OIXzgTKI4qQK2wRPKVHZnzZt/yR/A5nibfCPAKYKHtxxCj9Db912HHCgu1QwmXBA
- ==
-X-ME-Sender: <xms:nhhFYYFF07RmDkJJGGFYvTE0IHZWTMtV-kZzTIEOdImVwxC2tPCksQ>
- <xme:nhhFYRWaSAfV1zP92NdwP4NLA3dfp5t2D8qmx640v3QcOcDtEexwxvb_RqwNklkYM
- -OscQ8wBjDL7GwnuA>
-X-ME-Received: <xmr:nhhFYSLRFI0r8M6YhfvLZY-d5hDZDJlRO9vKPgYPYLeYeKDkKZCVb_jxOcgkedIC3dbUbGNr>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehjedguddvucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpefhvghrnhgr
- nhguohcutfgrmhhoshcuoehgrhgvvghnfhhoohesuhelvddrvghuqeenucggtffrrghtth
- gvrhhnpedvjeeifeelhfetiefhhfdthfefkefhhfeutdetvdfgvefgveefheffgfekjeef
- heenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrh
- gvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:nhhFYaED_VGyce_lQv2tWIhSKOQbFHEuFtMk9iPtGm2zWrSGzWMQdA>
- <xmx:nhhFYeX1rGy5XtLNApe-qZKkEwA4JoW2yZ2G4kb4mmF1TsQ05sQcbQ>
- <xmx:nhhFYdMMk3B6SqrLqJBCXrc1x48hmb940d8OhMiMIUw7K89264XOKw>
- <xmx:nxhFYaROTu3iTGp1HgObGRZWx0s6_YgwlNi1QhgwuyEEYzqah2_lNgLiJ7E>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 17 Sep 2021 18:37:15 -0400 (EDT)
-Date: Sat, 18 Sep 2021 00:37:13 +0200
+ messagingengine.com; h=cc:content-transfer-encoding:date:from
+ :in-reply-to:message-id:mime-version:references:subject:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm3; bh=7drGizuMVrgy3XtFLhWzlftyWemSxaP+r0ayB6xLFcI=; b=mThYdNSJ
+ UA6B6s4cAfzUiJoAmUqiQKSBM7j1RuTZztIRudpdIpxQpg3gyWLV1fvKYsEV6sID
+ OMasYA5qnor+pcCiQ8i96/HREyYEi6Tc7q4FR/ssNXsUk9KPkGn+6yjDb6mrUbT4
+ 25bxFE3DuX1ge/PS6kVtxc3rnzqOsvJIdKZiOYTmv/Lqz78zxbsfKoE7iozwOiyK
+ 74rDN8qDBOBOXlruo3Tkyu/O+Hjbj6wyI8rwbnRajGl3mw3ULAMFgGO1vw/JXyI9
+ XKEt336bxwlGW62VfY0cWj2RvpAIKVdJQ8GCveB8AeBJ79C+N/4/5Piql/dFYs8D
+ bGHYXUiIhzV6KA==
+X-ME-Sender: <xms:E7RDYUYaydmQ4bnDJeZ2cXCy3cG1IHgwnA1NTZBz0XsTZDj5Fd3E0g>
+ <xme:E7RDYfYvuZy7QkXcFKq6DsE6UUS_8FbPs2P9Ef-GjmQkKx7PQMj9e1aKUPkXEqJ0X
+ IE42L70621vTk499w>
+X-ME-Received: <xmr:E7RDYe_HGJ7Sgl39IjzOywbClm6pdVU5jEckgJHFnavIu_het8QDhaOOjTT01snq8PSU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehgedgudehvdcutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
+ ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
+ ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedtnecu
+ rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:E7RDYepGZWuxM7SWGgEc7seslnw_RSITX1SOUJ3eF7S-FMSojRPvNg>
+ <xmx:E7RDYfox0T-kxzBzP_7tR1vWKtP0EsEp1Ll7QVHHXpHUdhtCGlLvnA>
+ <xmx:E7RDYcR_V37ARJ5VjTaaixOM7M93W_lc_vGOBs9-iEIVMRxEZ-JJqw>
+ <xmx:E7RDYS32YQ75566ndscqtpAdV5d2m5LPgSBY7V3Q6CNJN6nEwQ_Z1gzFIzs>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 16 Sep 2021 17:16:00 -0400 (EDT)
 From: Fernando Ramos <greenfoo@u92.eu>
-To: Sean Paul <sean@poorly.run>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org
-Message-ID: <YUUYmUPT9AhizHpc@zacax395.localdomain>
+To: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+Date: Thu, 16 Sep 2021 23:15:38 +0200
+Message-Id: <20210916211552.33490-2-greenfoo@u92.eu>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20210916211552.33490-1-greenfoo@u92.eu>
 References: <20210916211552.33490-1-greenfoo@u92.eu>
- <20210916211552.33490-10-greenfoo@u92.eu>
- <20210917154136.GJ2515@art_vandelay>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210917154136.GJ2515@art_vandelay>
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sat, 18 Sep 2021 06:25:39 +0000
-Subject: Re: [Nouveau] [PATCH 09/15] drm/omapdrm: cleanup:
- drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+Subject: [Nouveau] [PATCH 01/15] dmr: cleanup: drm_modeset_lock_all_ctx()
+ --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,11 +97,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-> > -	drm_modeset_unlock_all(fb->dev);
-> > +	DRM_MODESET_LOCK_ALL_END(fb->dev, ctx, ret);
-> >  
-> >  	return 0;
-> 
-> Return ret here.
+As requested in Documentation/gpu/todo.rst, replace the boilerplate code
+surrounding drm_modeset_lock_all_ctx() with DRM_MODESET_LOCK_ALL_BEGIN()
+and DRM_MODESET_LOCK_ALL_END()
 
-Done!
+Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
+---
+ drivers/gpu/drm/drm_client_modeset.c | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
+index ced09c7c06f9..5f5184f071ed 100644
+--- a/drivers/gpu/drm/drm_client_modeset.c
++++ b/drivers/gpu/drm/drm_client_modeset.c
+@@ -574,6 +574,7 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
+ 	int num_connectors_detected = 0;
+ 	int num_tiled_conns = 0;
+ 	struct drm_modeset_acquire_ctx ctx;
++	int err;
+ 
+ 	if (!drm_drv_uses_atomic_modeset(dev))
+ 		return false;
+@@ -585,10 +586,7 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
+ 	if (!save_enabled)
+ 		return false;
+ 
+-	drm_modeset_acquire_init(&ctx, 0);
+-
+-	while (drm_modeset_lock_all_ctx(dev, &ctx) != 0)
+-		drm_modeset_backoff(&ctx);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
+ 
+ 	memcpy(save_enabled, enabled, count);
+ 	mask = GENMASK(count - 1, 0);
+@@ -743,8 +741,7 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
+ 		ret = false;
+ 	}
+ 
+-	drm_modeset_drop_locks(&ctx);
+-	drm_modeset_acquire_fini(&ctx);
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, err);
+ 
+ 	kfree(save_enabled);
+ 	return ret;
+-- 
+2.33.0
+
