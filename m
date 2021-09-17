@@ -1,80 +1,90 @@
-Return-Path: <SRS0=9rOE=OH=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=SODn=OI=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.0 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C6555C433F5
-	for <nouveau@archiver.kernel.org>; Fri, 17 Sep 2021 15:56:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B435C433EF
+	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:25:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8CAEE60F43
-	for <nouveau@archiver.kernel.org>; Fri, 17 Sep 2021 15:56:55 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8CAEE60F43
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=poorly.run
+	by mail.kernel.org (Postfix) with ESMTPS id 09D5560F43
+	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:25:45 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 09D5560F43
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C9F56EDDB;
-	Fri, 17 Sep 2021 15:56:55 +0000 (UTC)
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com
- [IPv6:2607:f8b0:4864:20::832])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A1FC6EE45
- for <nouveau@lists.freedesktop.org>; Fri, 17 Sep 2021 15:56:54 +0000 (UTC)
-Received: by mail-qt1-x832.google.com with SMTP id w17so9101426qta.9
- for <nouveau@lists.freedesktop.org>; Fri, 17 Sep 2021 08:56:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=0sCoJcMzph8m7gHdWZKN3dp454V4z1+jmuXCQGYY1eU=;
- b=UX6GzuE3DTpJzHN/aIeG3aCWzhBV+fCkDtBgEsxVhOm3+8K8AyENBXdIjuOYPRQKxs
- CTuel8m/m8KvyUEtzzp6eSepsKHiz/6oQvR50EcDMCZsQ3D7ykraTZ1895PCkIJHaqP5
- sfVz/lJFm7SXIqu1gLW50masMo1/nUD/Q4NJaqleeYLk/IDnaaWJNf0YBugq8do4COrv
- tgciBCa4sJznbQ680HUkBOi8azZ7pZjDQk932tTjNeS8fwuKs1XZMUEsUQPyod+7kBIn
- PX4L5mBmBUGYZaIWPqPbQt+e/XskkfcMsuLlF5APW7WdqHZcqEAGziGAp2Q4K1+CChVa
- kfMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=0sCoJcMzph8m7gHdWZKN3dp454V4z1+jmuXCQGYY1eU=;
- b=B1L5HrkR5N4IfqRrmTdu0nc/a2rRyl6dxLqmqNWkZiy/5B8PmnXby9VDgwYxVmarnQ
- CTqiQOafQo2VItBcW0OzBR0oq0tq5uTlcKqt0zCdQWaeG+d28gzIQzoV3RGQMrsOGGtW
- 0Y9jpfsrBn428LFLbFCMzq+QY1QzmeC53gKAymLaJBBPUi0NJ/x3OQ89lUTpOHLWt20t
- A3N+UpHxPGGtpPLtrv/3yXvpcPrbwxrQ5raxy5lzmPvIy4+JJwc5jApFRIeC42c46Xle
- YATVLW5AtWWNAJd7nmtypmmTdNO0lNoOxwaFMC6edW+QACWgXgJg7sn078JcET31nRnu
- 2wGA==
-X-Gm-Message-State: AOAM5334FHtIgcLmLJUkBrqeHJbakndyCzy408EztSwj5GB+u2PJwEa4
- iZS4Q5o/eV2e7ZQmYC7QB4+x4Q==
-X-Google-Smtp-Source: ABdhPJy2rUDs6BeN9kdSRBI5w9E4e4qiGJ6kgMTqOz5qaJIsLmkzMmZBlXt+Y/EFA7itiDo5nxOSnA==
-X-Received: by 2002:ac8:4a90:: with SMTP id l16mr5492592qtq.154.1631894213604; 
- Fri, 17 Sep 2021 08:56:53 -0700 (PDT)
-Received: from localhost ([167.100.64.199])
- by smtp.gmail.com with ESMTPSA id a8sm4075889qtx.39.2021.09.17.08.56.53
- (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Fri, 17 Sep 2021 08:56:53 -0700 (PDT)
-Date: Fri, 17 Sep 2021 11:56:52 -0400
-From: Sean Paul <sean@poorly.run>
-To: Fernando Ramos <greenfoo@u92.eu>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BA266E0DD;
+	Sat, 18 Sep 2021 06:25:40 +0000 (UTC)
+Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
+ [64.147.123.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DD086E0AF;
+ Fri, 17 Sep 2021 22:34:19 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+ by mailnew.west.internal (Postfix) with ESMTP id 887FE2B00BBD;
+ Fri, 17 Sep 2021 18:34:18 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute2.internal (MEProxy); Fri, 17 Sep 2021 18:34:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
+ :from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm3; bh=NEn6f5nwKhtlnq0PJmZb3sd10FJ
+ pseStLYb5gftDgpM=; b=bamYZWYBd65OjqTjyIfE5+RM74VnH3PJLdGAvLX6xtD
+ gShsfCfxBSdd2s+vtVanAMEDc+G1cQtG5Kwq7Xen4aPET/lhwyRfN0YEiJ4j4TSh
+ u5DDTaek9RRMZFk3JETDcYKdqiW0BWqXYsATKqDKuUr6dkDO/HK5g9ZOdDiqGJ2h
+ B27ZS9Wp9t4cWk+7wmAZ3XKMwOszDYmES0JMTTAJzjZIjXGUYV4Uq8j24TOD+uR7
+ NJZggRlZuLnb5PT8tnVpjlyA87xW4dFVIt8uQmhITVTrLU5nHUI2UvxGEEvnA0Tl
+ uosMxdue4JEGrbt9e/3QkZdR+W7ewrCx5HHlbae8dkg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=NEn6f5
+ nwKhtlnq0PJmZb3sd10FJpseStLYb5gftDgpM=; b=BBxBPOaBcRj5HGM2JAMku2
+ dCIFy0kwWhy1vQWkmT5ieWhtbFtj7RvOTOjjuWvGbfwqNMzmkF5ppKVIY0GKxDmR
+ e32beEtE54V5+ELeQHpzZ9jMgRc8UMTqQMHSveZP2mzNY3+n+nhPsTMhLYHG7aIV
+ +BbhY/JGcNKBao+CYhZ+fJh0J65oVxjE9oSsFdEG653T76Np10sb8vBKgLEloPGT
+ y74WMF9re5sFq0gdcwcGsaAczuGq6Bt+vKnVWgJ7Dth88nJ9kcNbnSjDU2wO+koG
+ oOH1+ZBFPQV7Xrl5DPm/CdBwo9h2Z22hgHwf0RJYk6z0pRemi3RfzCurBPXfnqiA
+ ==
+X-ME-Sender: <xms:6RdFYf5Ok9ND1rQMWK3kDvv2wjBALO3Q8f8WH-n0mmmj6djSh2bctA>
+ <xme:6RdFYU7yzsxBYL-VSm1VsnbXqiGmNCD3-pq5XF96Ls7DsAeiVjPIxmLDrhu13KvCp
+ CkjYU8cDY1B7XcyYw>
+X-ME-Received: <xmr:6RdFYWeXFx1fO_FK3UvC7T7TtL__I-oahbGhCAlZxFgQvj2gK6E0khM1HyKt3PNmP_gjbsCh>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehjedgudduucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpefhvghrnhgr
+ nhguohcutfgrmhhoshcuoehgrhgvvghnfhhoohesuhelvddrvghuqeenucggtffrrghtth
+ gvrhhnpedvjeeifeelhfetiefhhfdthfefkefhhfeutdetvdfgvefgveefheffgfekjeef
+ heenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrh
+ gvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:6RdFYQJt6b6BpcOK2dsf5glSeYKJdPml5a4ItJDU4MvIkSxjxLobGg>
+ <xmx:6RdFYTL6bnfyISPgIeryfHnaZp_BKZ8cCYpsZyEMzBwmkS70qdfwSQ>
+ <xmx:6RdFYZwPCBI0rzuGJK4NZ8TI150igvq0q4DLXOrxRLrCPyIdPbzhHw>
+ <xmx:6hdFYUXSG444WVG43RZURHJ1OFX4p79N5I6eaTeAB6vvxKRFDIy9IqwmH50>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 17 Sep 2021 18:34:14 -0400 (EDT)
+Date: Sat, 18 Sep 2021 00:34:12 +0200
+From: Fernando Ramos <greenfoo@u92.eu>
+To: Sean Paul <sean@poorly.run>
 Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- sean@poorly.run, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-tegra@vger.kernel.org
-Message-ID: <20210917155652.GP2515@art_vandelay>
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org
+Message-ID: <YUUX5KukyKKPy9jE@zacax395.localdomain>
 References: <20210916211552.33490-1-greenfoo@u92.eu>
- <20210916211552.33490-16-greenfoo@u92.eu>
+ <20210916211552.33490-7-greenfoo@u92.eu>
+ <20210917153805.GF2515@art_vandelay>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210916211552.33490-16-greenfoo@u92.eu>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Nouveau] [PATCH 15/15] doc: drm: remove TODO entry regarding
- DRM_MODSET_LOCK_ALL cleanup
+In-Reply-To: <20210917153805.GF2515@art_vandelay>
+X-Mailman-Approved-At: Sat, 18 Sep 2021 06:25:39 +0000
+Subject: Re: [Nouveau] [PATCH 06/15] drm/tegra: cleanup:
+ drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,70 +99,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Sep 16, 2021 at 11:15:52PM +0200, Fernando Ramos wrote:
-> The previous commits do exactly what this entry in the TODO file asks
-> for, thus we can remove it now as it is no longer applicable.
-
-Thanks for doing this work!
-
-Can we remove drm_modeset_lock_all[_ctx] now? If so, let's queue that up as part
-of the set.
-
-
-Reviewed-by: Sean Paul <sean@poorly.run>
-
-
+> >  	int err = 0;
+> > +	int ret;
 > 
-> Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
-> ---
->  Documentation/gpu/todo.rst                | 17 -----------------
->  Documentation/locking/ww-mutex-design.rst |  2 +-
->  2 files changed, 1 insertion(+), 18 deletions(-)
-> 
-> diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
-> index 12e61869939e..6613543955e9 100644
-> --- a/Documentation/gpu/todo.rst
-> +++ b/Documentation/gpu/todo.rst
-> @@ -353,23 +353,6 @@ converted, except for struct drm_driver.gem_prime_mmap.
->  
->  Level: Intermediate
->  
-> -Use DRM_MODESET_LOCK_ALL_* helpers instead of boilerplate
-> ----------------------------------------------------------
-> -
-> -For cases where drivers are attempting to grab the modeset locks with a local
-> -acquire context. Replace the boilerplate code surrounding
-> -drm_modeset_lock_all_ctx() with DRM_MODESET_LOCK_ALL_BEGIN() and
-> -DRM_MODESET_LOCK_ALL_END() instead.
-> -
-> -This should also be done for all places where drm_modeset_lock_all() is still
-> -used.
-> -
-> -As a reference, take a look at the conversions already completed in drm core.
-> -
-> -Contact: Sean Paul, respective driver maintainers
-> -
-> -Level: Starter
-> -
->  Rename CMA helpers to DMA helpers
->  ---------------------------------
->  
-> diff --git a/Documentation/locking/ww-mutex-design.rst b/Documentation/locking/ww-mutex-design.rst
-> index 6a4d7319f8f0..6a8f8beb9ec4 100644
-> --- a/Documentation/locking/ww-mutex-design.rst
-> +++ b/Documentation/locking/ww-mutex-design.rst
-> @@ -60,7 +60,7 @@ Concepts
->  Compared to normal mutexes two additional concepts/objects show up in the lock
->  interface for w/w mutexes:
->  
-> -Acquire context: To ensure eventual forward progress it is important the a task
-> +Acquire context: To ensure eventual forward progress it is important that a task
->  trying to acquire locks doesn't grab a new reservation id, but keeps the one it
->  acquired when starting the lock acquisition. This ticket is stored in the
->  acquire context. Furthermore the acquire context keeps track of debugging state
-> -- 
-> 2.33.0
-> 
+> You can use err here instead.
 
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
+Done!
