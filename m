@@ -2,57 +2,89 @@ Return-Path: <SRS0=SODn=OI=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 21E22C433F5
-	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:25:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AEAF8C433EF
+	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:25:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B776761108
-	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:25:51 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org B776761108
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=huawei.com
+	by mail.kernel.org (Postfix) with ESMTPS id 4C04A61108
+	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:25:54 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 4C04A61108
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B8FC6F3DC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 756806F3D6;
 	Sat, 18 Sep 2021 06:25:40 +0000 (UTC)
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DE2F6EB58
- for <nouveau@lists.freedesktop.org>; Sat, 11 Sep 2021 08:03:57 +0000 (UTC)
-Received: from dggemv711-chm.china.huawei.com (unknown [172.30.72.56])
- by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4H64Wj2cwMz8t2t;
- Sat, 11 Sep 2021 15:44:33 +0800 (CST)
-Received: from dggpeml500017.china.huawei.com (7.185.36.243) by
- dggemv711-chm.china.huawei.com (10.1.198.66) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.8; Sat, 11 Sep 2021 15:45:06 +0800
-Received: from huawei.com (10.175.103.91) by dggpeml500017.china.huawei.com
- (7.185.36.243) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Sat, 11 Sep
- 2021 15:45:05 +0800
-From: Yang Yingliang <yangyingliang@huawei.com>
-To: <linux-kernel@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>
-CC: <bskeggs@redhat.com>
-Date: Sat, 11 Sep 2021 15:50:23 +0800
-Message-ID: <20210911075023.3969054-2-yangyingliang@huawei.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210911075023.3969054-1-yangyingliang@huawei.com>
-References: <20210911075023.3969054-1-yangyingliang@huawei.com>
+Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
+ [64.147.123.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A7056E0AC;
+ Fri, 17 Sep 2021 22:37:20 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailnew.west.internal (Postfix) with ESMTP id C9D7F2B00BC0;
+ Fri, 17 Sep 2021 18:37:19 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute1.internal (MEProxy); Fri, 17 Sep 2021 18:37:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
+ :from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm3; bh=nhWXDSFKhC1b4KAXA4XjlcmTpL5
+ dZ6T2058p8Og7JQU=; b=GpzZ1qRpFwidQCCXZq88JTv0+uc9A9uiDWB+coAc0Rt
+ v4qYbRrGIivtwbSUIouGbUyss2shPTXGLS1iDTfGveq+BUo5NhujQ6XEkIqVBkL5
+ oh6mT/86ZQzAjEhrSjwGnxPQ/4bZku3W3sf6C6iy2XU2zEL7je5njTH74hnWnj4r
+ 2ILH9Ag0DNjlw3JG5vticdChUCRNhOgJraOGQoZ7LUcNsFvK8HL2pjou0zr8Nydx
+ 2xvlFdCPU/1QT6dZST2PGbZNuUHCiNyIqMzYealPoX2RoCCoUW3j5PoWB3YneBk+
+ AH6GA0+oP+Jc7sIPqheHgyhE3WX3ppe68bhnV3/ve+A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=nhWXDS
+ FKhC1b4KAXA4XjlcmTpL5dZ6T2058p8Og7JQU=; b=Iqst6REPYZrVgxFoHUXdgf
+ LpiPLwYcccINEr87/9MEGzuW1AYZwnegEHwhnHrIHZg28qcVWgbNTEMUsWdUUVXI
+ rHcUan8miONe1DM4+/8zggxmJTBCJDYvy4Qx2hEvMcvLeBACz5pTk/LuabCg0sjf
+ tnseWz9MpNmPtSGX3WIrQuHtt5Xp4g1K+di67P8TaXKDwqak6qP9XUSdNCoQHp5T
+ ndeCs13S0ppwD6hNQhy/v7jVCp8nbpO3Rw9B+8jP75pB+uK3J+wmpG/+I1pLaSzq
+ OIXzgTKI4qQK2wRPKVHZnzZt/yR/A5nibfCPAKYKHtxxCj9Db912HHCgu1QwmXBA
+ ==
+X-ME-Sender: <xms:nhhFYYFF07RmDkJJGGFYvTE0IHZWTMtV-kZzTIEOdImVwxC2tPCksQ>
+ <xme:nhhFYRWaSAfV1zP92NdwP4NLA3dfp5t2D8qmx640v3QcOcDtEexwxvb_RqwNklkYM
+ -OscQ8wBjDL7GwnuA>
+X-ME-Received: <xmr:nhhFYSLRFI0r8M6YhfvLZY-d5hDZDJlRO9vKPgYPYLeYeKDkKZCVb_jxOcgkedIC3dbUbGNr>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehjedguddvucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpefhvghrnhgr
+ nhguohcutfgrmhhoshcuoehgrhgvvghnfhhoohesuhelvddrvghuqeenucggtffrrghtth
+ gvrhhnpedvjeeifeelhfetiefhhfdthfefkefhhfeutdetvdfgvefgveefheffgfekjeef
+ heenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrh
+ gvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:nhhFYaED_VGyce_lQv2tWIhSKOQbFHEuFtMk9iPtGm2zWrSGzWMQdA>
+ <xmx:nhhFYeX1rGy5XtLNApe-qZKkEwA4JoW2yZ2G4kb4mmF1TsQ05sQcbQ>
+ <xmx:nhhFYdMMk3B6SqrLqJBCXrc1x48hmb940d8OhMiMIUw7K89264XOKw>
+ <xmx:nxhFYaROTu3iTGp1HgObGRZWx0s6_YgwlNi1QhgwuyEEYzqah2_lNgLiJ7E>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 17 Sep 2021 18:37:15 -0400 (EDT)
+Date: Sat, 18 Sep 2021 00:37:13 +0200
+From: Fernando Ramos <greenfoo@u92.eu>
+To: Sean Paul <sean@poorly.run>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org
+Message-ID: <YUUYmUPT9AhizHpc@zacax395.localdomain>
+References: <20210916211552.33490-1-greenfoo@u92.eu>
+ <20210916211552.33490-10-greenfoo@u92.eu>
+ <20210917154136.GJ2515@art_vandelay>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.175.103.91]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- dggpeml500017.china.huawei.com (7.185.36.243)
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210917154136.GJ2515@art_vandelay>
 X-Mailman-Approved-At: Sat, 18 Sep 2021 06:25:39 +0000
-Subject: [Nouveau] [PATCH 2/2] drm/nouveau/debugfs: fix file release memory
- leak
+Subject: Re: [Nouveau] [PATCH 09/15] drm/omapdrm: cleanup:
+ drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,28 +99,11 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-When using single_open() for opening, single_release() should be
-called, otherwise the 'op' allocated in single_open() will be leaked.
+> > -	drm_modeset_unlock_all(fb->dev);
+> > +	DRM_MODESET_LOCK_ALL_END(fb->dev, ctx, ret);
+> >  
+> >  	return 0;
+> 
+> Return ret here.
 
-Fixes: 6e9fc177399f ("drm/nouveau/debugfs: add copy of sysfs pstate interface ported to debugfs")
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
----
- drivers/gpu/drm/nouveau/nouveau_debugfs.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-index c2bc05eb2e54..1cbe01048b93 100644
---- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-@@ -207,6 +207,7 @@ static const struct file_operations nouveau_pstate_fops = {
- 	.open = nouveau_debugfs_pstate_open,
- 	.read = seq_read,
- 	.write = nouveau_debugfs_pstate_set,
-+	.release = single_release,
- };
- 
- static struct drm_info_list nouveau_debugfs_list[] = {
--- 
-2.25.1
-
+Done!
