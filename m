@@ -6,53 +6,53 @@ X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A8AAAC433F5
-	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:25:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5DB38C433EF
+	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:26:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 71CE560F43
-	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:25:58 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 71CE560F43
+	by mail.kernel.org (Postfix) with ESMTPS id 2A47F60F43
+	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:26:00 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 2A47F60F43
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14FCE6F3E2;
-	Sat, 18 Sep 2021 06:25:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A5CB6F3F0;
+	Sat, 18 Sep 2021 06:25:42 +0000 (UTC)
 Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
  [64.147.123.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 423AF6E0C4;
- Fri, 17 Sep 2021 22:41:45 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailnew.west.internal (Postfix) with ESMTP id 5AF182B0092E;
- Fri, 17 Sep 2021 18:41:42 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute5.internal (MEProxy); Fri, 17 Sep 2021 18:41:43 -0400
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F02206E079;
+ Fri, 17 Sep 2021 22:07:10 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailnew.west.internal (Postfix) with ESMTP id B227B2B00B9B;
+ Fri, 17 Sep 2021 18:07:09 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute6.internal (MEProxy); Fri, 17 Sep 2021 18:07:10 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
  :from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm3; bh=pbWS3mhStDO/vyfrIneJKdNr84W
- uoAjNdq5ZOc04Za4=; b=R8fDp2teNWIc+9ikwj5txBoV5lhAWSQU6/iSCmma86O
- opfL0jI4+of4PDSWIjSyki8qMKiVE3OHQOz1LCNTIkgxzQfM1Y6aDZtAOIJtNljb
- 1drMJ2FRRPRbzhA0NmDn2z9VkFqeokVQjsB7ewCJX0CAQjTeAaS4By7Nj362ryTx
- Q0X4l3uHnJXTYdQOGzjKEcyGsgp7syMPBOQz4Z9Np3uf5PEuqpws29hmXSUkXOeB
- rca2RsPnCVEI61CjgsqmQH9MLaH+F91MCixiNiz5taxERa9qLMhZiNpOjoTAfbwU
- m8A0Q5JqNrdGRA4q3/bD8o/aCeqOfwsXlb59GcaJAhg==
+ :content-type:in-reply-to; s=fm3; bh=RZqwfni5G08cwy4bwCn0VZ2NfU9
+ CVpPHZawELnxT/nw=; b=CFEPoLG3r9CnA2l7rKfHIt4/NhNBzFl/tYNZjS8vfyy
+ /7sCYBUgPrRC6V28BYKuk9Bt2j1P+Iff3ZTYJf4cfr5F2EApL6nSPPeHbJno94Ql
+ 0Mhe6eK4Hla69B75bTxb+z0TYEZ76Er4RbLdvE0OhGIO6nGSyfzFO1xh2UBwNaVM
+ g/kiCzmS0gRdD7Ws1BuT4FPalpabDVdL0cDH2HoLQ0l1WClEm8MdwoKvir9yF+KI
+ Mh9jLazd8l1xH2dhP9VnVnH0jZ6mP5ryxws3aKuICOK9b4psPogX/UxTPwuCe9WC
+ 1mBj4y513FOjemXjVXaGVuBzIHYG3mfy3SV8tmRQPpA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:content-type:date:from:in-reply-to
  :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=pbWS3m
- hStDO/vyfrIneJKdNr84WuoAjNdq5ZOc04Za4=; b=JXFFoS+mDQKTy8VX0SIVLE
- 4fLTLmt5IRKDFNVntUlBenpRUmKW6gIBK4g6T+7nKj/XXmyYPHcGWrH0ylQ8HSi8
- haVVIIn+wc2nGuKqkDTe2qkgDYfMh0/Yilo7llo4Vlt+nwZLYPorywKI/asRWNKB
- TT5U77VXBf/+rFNMRyz0GMta3In3hvCh1OGAtOlqcB9PauMVDDB7UhP455/zxIJX
- WxpRXWvGZOGfqPoMkMtuAMv6heOIi5AqRFZ1adiBatXdXS232F3/RvLWCl0mCsz6
- 7djJoWpEPD3tFYE6a6eqljZtrsPV4gv1lHhl85RNd3tZvnwvMX0Al+hbLhbR8msQ
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=RZqwfn
+ i5G08cwy4bwCn0VZ2NfU9CVpPHZawELnxT/nw=; b=dUn7PmC0UMgypEUPLvpOHv
+ X2kr0eFnUfnvMEeRbdehbaGOancVzRwPT/g238ZzaSTphUNKKetqLzg9ET9o591s
+ 846aL7F1yJ97PEV9sukaCt/59u/0UQEZyxt693FJCnGf9IgL4ZVBS8pI9y7XFX6R
+ b1vUC9gV4CgqBqvZrS478AfxsUpMSTnbaJLNqlTyfT//ffTxil5lyiN34OaOd3N2
+ fcsD+sZqIN6yGeKn6dtaQAGa/3Ix/Ltzmd0sIX1WufyMPD2yByw1I+6cRrLfY8a7
+ BB0lpl6jbeBHOdFRwXZX+b4l8n9B3i8taSi/p/v3fFbMQyHmap9vama1Mcgu+UsQ
  ==
-X-ME-Sender: <xms:pRlFYWkN3Y86lJehngIUJMv8N3DsXfxJsExnM98X1FZHk7Pr6xL0_g>
- <xme:pRlFYd0n7Y3SRx1vdAhpY6TWJvfY43wNQKULJQmuT-61pHe5odEI5c18rbwPRZokM
- r_ZStpINuTl0SoQ9A>
-X-ME-Received: <xmr:pRlFYUrf5tykLUPrLgbYl5ltRSUTjmyMjaWEKm_daBVJZAc-ereo6WBqvm0Db_9G_kevC3PM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehjedgudefucetufdoteggodetrfdotf
+X-ME-Sender: <xms:jBFFYfBzwibEOXj6hINpqax_AAqdbLES6-tiCke7xIA4dS-3fTR4JQ>
+ <xme:jBFFYVgZK34L1fEJ66pZVtre9X9hMnXDUFLuQVjAocnE6ZNbG6i2eJv1vJJpkM1Oa
+ _P56YQwY2SWdeCDkg>
+X-ME-Received: <xmr:jBFFYakynxWEBsySxAbMMwLqVYu2OBdDTO-q6DRNF_9Ue1MzP1ujx1ttDzjZBNsY8Jo2-akm>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehjedgtdeiucetufdoteggodetrfdotf
  fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
  uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
  cujfgurhepfffhvffukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpefhvghrnhgr
@@ -60,13 +60,13 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehjedgudefucetufdoteggod
  gvrhhnpedvjeeifeelhfetiefhhfdthfefkefhhfeutdetvdfgvefgveefheffgfekjeef
  heenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrh
  gvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:pRlFYan6BMTB8bczto6iNLZJ9_CAJqj6r2lc-MsHHyDru8iR-bP4lQ>
- <xmx:pRlFYU1UYs097VZt9TDFMtb0jFRrc6dB_8OszxctSeKclpdrQ0YvJw>
- <xmx:pRlFYRuvfcg4z7gYodUX88Pk3CqzHSEtzld19zdEbu0NnwLwEfmajg>
- <xmx:phlFYawX4uBRwiPKMsppvrKWIoqVgfccCswWszRW5lYAQe2bL9CmPK00F8M>
+X-ME-Proxy: <xmx:jRFFYRzU-8KV-gZCQwXeqUpIlPRzLmk-EbmqztYBPFonEx2DOWGrow>
+ <xmx:jRFFYUQ83lMNgvGetRzh9HM3EMX9pXtzdV9P251l9BezZyOHtkKp9A>
+ <xmx:jRFFYUZdW2dQKZSQ9UaXNHTBCwz2mm_nlAa6Zfcd4Uh3Z4nw7i9uEQ>
+ <xmx:jRFFYd8zXjMhg1IYRUCPMcoz4UPUH--EMN53o4xKu55w2dfTb_HlGjBhGno>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 17 Sep 2021 18:41:38 -0400 (EDT)
-Date: Sat, 18 Sep 2021 00:41:35 +0200
+ 17 Sep 2021 18:07:05 -0400 (EDT)
+Date: Sat, 18 Sep 2021 00:07:03 +0200
 From: Fernando Ramos <greenfoo@u92.eu>
 To: Sean Paul <sean@poorly.run>
 Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
@@ -74,17 +74,17 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
  freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org
-Message-ID: <YUUZn4gcQB/aGZCk@zacax395.localdomain>
+Message-ID: <YUURh/CDzCGdBLzj@zacax395.localdomain>
 References: <20210916211552.33490-1-greenfoo@u92.eu>
- <20210916211552.33490-12-greenfoo@u92.eu>
- <20210917154250.GL2515@art_vandelay>
+ <20210916211552.33490-2-greenfoo@u92.eu>
+ <20210917152842.GA2515@art_vandelay>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210917154250.GL2515@art_vandelay>
+In-Reply-To: <20210917152842.GA2515@art_vandelay>
 X-Mailman-Approved-At: Sat, 18 Sep 2021 06:25:39 +0000
-Subject: Re: [Nouveau] [PATCH 11/15] drm/msm: cleanup:
- drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+Subject: Re: [Nouveau] [PATCH 01/15] dmr: cleanup:
+ drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,19 +99,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-> >  	int i, out_width;
-> > +	int ret;
 > 
-> Please put ret with i & out_width
-
-Done!
-
-
-> > -	drm_modeset_unlock_all(crtc->dev);
-> > +	DRM_MODESET_LOCK_ALL_END(crtc->dev, ctx, ret);
-> >  
-> >  	return 0;
+> Could you please fix the subject, changing dmr to drm?
 > 
-> Return ret here
 
-Done!
+Ups! Sure, I'll fix that. Thanks for noticing.
+
+
+>
+> I think you can just reuse 'ret' instead of creating a new variable. That
+> ensures if the lock fails we return the error from the macros.
+> 
+
+I didn't reuse "ret" because otherwise I would have had to change the prototype
+of the function (which currently returns a "bool" instead of an "int").
+
+However I could, for example, check for any error and convert that into "false".
+Would that be ok?
