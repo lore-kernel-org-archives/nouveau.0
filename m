@@ -2,87 +2,89 @@ Return-Path: <SRS0=SODn=OI=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E174C433F5
-	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:26:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F589C433FE
+	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:26:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1ECD161212
+	by mail.kernel.org (Postfix) with ESMTPS id CDD4260F43
 	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 06:26:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1ECD161212
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CDD4260F43
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 117436F40F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99E736F412;
 	Sat, 18 Sep 2021 06:25:49 +0000 (UTC)
 Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
  [64.147.123.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06F506E8FC;
- Thu, 16 Sep 2021 21:25:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB9366EE98;
+ Fri, 17 Sep 2021 23:21:54 +0000 (UTC)
 Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.west.internal (Postfix) with ESMTP id 199272B011E5;
- Thu, 16 Sep 2021 17:16:13 -0400 (EDT)
+ by mailnew.west.internal (Postfix) with ESMTP id 863CF2B00971;
+ Fri, 17 Sep 2021 19:21:53 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
- by compute4.internal (MEProxy); Thu, 16 Sep 2021 17:16:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
- :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=fnNE3/bpQJX1h
- pzoQSY26cMfUyUc1erwvXKd9/uTahY=; b=iUc/J+KqzYC/SOJ1n5Qm7Exfbz4e8
- rQNcaAdvb37kMX1+R8W+Ry3SuLhIXvRxwqUoMd93OjAkpLFFxrlg/6N0mDnROBVF
- EtlGUMu3JTgyidP1spB854VFSskpiZI+gVBi4AKn7qcn1zVyDHHpGKlzk/3hCpmX
- WHzfRyCxzVX8ywpP5FWXviF8lCbA7vrzl3YI3cZ9ACSQfknxzHugVLIv934ftwcz
- i80XDh9GlU9FqvUiY7Q9KVG0JApM6tXKmg3axJmSwaM1/LrIGZgJIbZIoHYMsbuY
- ptPHU+v1Fk0tF6FklbPWc3JsltaWJ5/gm5gGz3SQyapjLAMV3NK3Td8cw==
+ by compute4.internal (MEProxy); Fri, 17 Sep 2021 19:21:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
+ :from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm3; bh=9D1TvVjqqwgGetcBxSubPdthhs2
+ qP2/L39fbHUN1dhg=; b=icvXUUhsZiTbYQL+UTHGxJkFbsfkRzRd9zXqXNqF0Pq
+ Yyft55LMFcsAjXmAMRyF1A6r97yyo/ATgGnQ59ZOA56zNetCyoSLOWWsV1X+v6K9
+ qnPiyKZ6sscWFQI7BDKzyd07QA3Gbj6ALlxL5osSZp3P1EdTw7N+zQkSfRAu2rn3
+ GlZ0uhOh4KveCTJRPk+LpWSfgQ1Xy+tmDq4u4ZwRd/lTvV9RMDAs/pvnJQc0SQZE
+ 42JeBDnQeeSYQnKLBBUbr3wasz+N6txMrAsilyaLR7hdYtgup5LC8n77giNJFKM/
+ 7DkW0bManZUgEdGpTxv4iU4+ZXBnnIXgR3bdpbSrMAQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-transfer-encoding:date:from
- :in-reply-to:message-id:mime-version:references:subject:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm3; bh=fnNE3/bpQJX1hpzoQSY26cMfUyUc1erwvXKd9/uTahY=; b=qaZjebld
- CC4bFZrF8IIU/ploQNy+oGHZlHwai55D12mYP4YjZ2tsUMDwyWHTeYVIX4M60raF
- TMKKPs0YY/eFUWhGK7JdXmZXfpR3Rv5k69mjXjmDXpmawcDB24pOhEDsGQEQNwMM
- UaAj+uyH0fSgN7N6dN6cFVPwNpmIqzb7MwloYQyNaHP/R/zp7BL3jYtqVP/jx5HB
- MdChTSiVLpNI0Rhl0fI/9wftxdTdXbn6yxupIJUz1tQdDrNYo54sKW3uG+Rf8S7p
- UhtSFDAT65wh7LX0+DMOemIF8MbqOx6Ty0CkuD4KM9+78dl78q28upOeSXPVVXXG
- hyLEChyurmUjMw==
-X-ME-Sender: <xms:HLRDYXZkcU_hbBgclkdE4qElC42xnxyshGsk1AycjBB_UQDTPqdTGw>
- <xme:HLRDYWbmR-zpzKgVvNrEiI0fMObvt2lfewBpnCRjHOXQX3TVF0KDwEIW0mTRpRufE
- xG-A6rvBUwW3_CXzA>
-X-ME-Received: <xmr:HLRDYZ8VBQWTmKgMrLKeGVTUEP-C2IiWmJdD78RSpDCH8CIWdOD9MQQ2LptLPkLkon_V>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehgedgudehfecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
- ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
- ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedtnecu
- rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:HLRDYdp6Dsq9Fy3JypCrfwH5H0laosX6MZdk3DtYeI_q5cCOzUL8-Q>
- <xmx:HLRDYSrvxZPOjVqunjFjNd7ZO_MLrRYjMdx3pD6LTJWqEiSnyg8nPw>
- <xmx:HLRDYTQtxSeCND0MCZ-CPg3t21bwC5BMfSjUX3LtFuTbGcU8-3gvYg>
- <xmx:HLRDYR0GgPJN1Opw9eYer407-fQWgA7iH_kOVaTtxzrXR3Atj_qXp2dygAo>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 16 Sep 2021 17:16:09 -0400 (EDT)
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=9D1TvV
+ jqqwgGetcBxSubPdthhs2qP2/L39fbHUN1dhg=; b=LLSUGVTj888HafrCp5tZJ4
+ OjpyCTAHfGymnGaJ95AGUkK9Vsn+Y44XkW1cDGf9h9YE+tCX5ePjPp++CVIXrlJv
+ OtWIf2wbSVDdxr24UPC3fnxs0AKUtK9GAY+MTIrRglK+TlvByFXYYA8cFsXcLP0l
+ Zs46gC19S75xYiRiondJMTMklM3GHx2FcvFcsggljO7cEdHzyaM57vbRys7CoYQt
+ IYNsZyH9BgSgzyKA2NiIQHNeETN7+jNJAU994bUe6UzpTCxjAAKzSFlRJxUKpZjd
+ XGfTNFRTkFBbro4lsZBRfMfOVlUemK86Hh1xgpEojdvTfAQMosFceT9UNGM3HwBw
+ ==
+X-ME-Sender: <xms:ECNFYf2AeexzJ6ACMFSdIfbY5eEbF_Cc2EBmJioiwerfS3sbWHbBzQ>
+ <xme:ECNFYeFV0XB_kyVZuIL3gDCkHlJKA9oliZNRs61PT1ws_tH5DWJZAun9WeeTqNuin
+ AJeRfpLH24gVdio9w>
+X-ME-Received: <xmr:ECNFYf4OFl0ohAw5b9lAH_NTdUEi83EiO-abc1np6ih4MqktclUsqhSqo-HsvHvmK8tY7E-n>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehjedgvdduucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpefhvghrnhgr
+ nhguohcutfgrmhhoshcuoehgrhgvvghnfhhoohesuhelvddrvghuqeenucggtffrrghtth
+ gvrhhnpedvjeeifeelhfetiefhhfdthfefkefhhfeutdetvdfgvefgveefheffgfekjeef
+ heenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrh
+ gvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:ECNFYU0C6M7ROTHINOrKLFicmRrOc54MXpjbCNB8W9v1C-Y_mHtUCg>
+ <xmx:ECNFYSHtGazCRU7_Mh9D32hqGosKvR1D0_Kf7ZhDAscX5QIleiVMTg>
+ <xmx:ECNFYV85aEvgfkcDgBu137LQFDm1UK7ytQb-FPgMLALM_VFKarLYJQ>
+ <xmx:ESNFYVBQ5mCdH7PoNQ4187ntV2s52SA_JVha30z4b_KwS6hENpVY6pR7JZ8>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 17 Sep 2021 19:21:49 -0400 (EDT)
+Date: Sat, 18 Sep 2021 01:21:47 +0200
 From: Fernando Ramos <greenfoo@u92.eu>
-To: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-tegra@vger.kernel.org
-Date: Thu, 16 Sep 2021 23:15:40 +0200
-Message-Id: <20210916211552.33490-4-greenfoo@u92.eu>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210916211552.33490-1-greenfoo@u92.eu>
+To: Sean Paul <sean@poorly.run>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org
+Message-ID: <YUUjC5MhADgMs3aw@zacax395.localdomain>
 References: <20210916211552.33490-1-greenfoo@u92.eu>
+ <20210916211552.33490-16-greenfoo@u92.eu>
+ <20210917155652.GP2515@art_vandelay>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210917155652.GP2515@art_vandelay>
 X-Mailman-Approved-At: Sat, 18 Sep 2021 06:25:39 +0000
-Subject: [Nouveau] [PATCH 03/15] dmr/msm: cleanup:
- drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
+Subject: Re: [Nouveau] [PATCH 15/15] doc: drm: remove TODO entry regarding
+ DRM_MODSET_LOCK_ALL cleanup
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,44 +99,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As requested in Documentation/gpu/todo.rst, replace the boilerplate code
-surrounding drm_modeset_lock_all_ctx() with DRM_MODESET_LOCK_ALL_BEGIN()
-and DRM_MODESET_LOCK_ALL_END()
+> Can we remove drm_modeset_lock_all[_ctx] now? If so, let's queue that up as part
+> of the set.
+> 
 
-Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
----
- drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+drm_modeset_lock_all() and drm_modeset_unlock_all() can be removed (I'll do that
+on v2 of this patch series).
 
-diff --git a/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c b/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c
-index cabe15190ec1..c83db90b0e02 100644
---- a/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c
-+++ b/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c
-@@ -99,20 +99,18 @@ static void msm_disp_capture_atomic_state(struct msm_disp_state *disp_state)
- {
- 	struct drm_device *ddev;
- 	struct drm_modeset_acquire_ctx ctx;
-+	int ret;
- 
- 	disp_state->timestamp = ktime_get();
- 
- 	ddev = disp_state->drm_dev;
- 
--	drm_modeset_acquire_init(&ctx, 0);
--
--	while (drm_modeset_lock_all_ctx(ddev, &ctx) != 0)
--		drm_modeset_backoff(&ctx);
-+	DRM_MODESET_LOCK_ALL_BEGIN(ddev, ctx, 0, ret);
- 
- 	disp_state->atomic_state = drm_atomic_helper_duplicate_state(ddev,
- 			&ctx);
--	drm_modeset_drop_locks(&ctx);
--	drm_modeset_acquire_fini(&ctx);
-+
-+	DRM_MODESET_LOCK_ALL_END(ddev, ctx, ret);
- }
- 
- void msm_disp_snapshot_capture_state(struct msm_disp_state *disp_state)
--- 
-2.33.0
+drm_modset_lock_all_ctx() is a different story and there are still two places
+(one in the i915 driver and another one in the amd driver) where they are
+needed.
 
+I would need to understand the code better before trying to remove those :)
