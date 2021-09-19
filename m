@@ -1,91 +1,71 @@
-Return-Path: <SRS0=SODn=OI=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=6vYt=OK=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+X-Spam-Level: **
+X-Spam-Status: No, score=2.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,HTML_MESSAGE,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0BBBAC433EF
-	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 19:16:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E259DC433F5
+	for <nouveau@archiver.kernel.org>; Mon, 20 Sep 2021 00:15:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A8205610A6
-	for <nouveau@archiver.kernel.org>; Sat, 18 Sep 2021 19:16:15 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org A8205610A6
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
+	by mail.kernel.org (Postfix) with ESMTPS id 920EF610A8
+	for <nouveau@archiver.kernel.org>; Mon, 20 Sep 2021 00:15:30 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 920EF610A8
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97D0E6E0EC;
-	Sat, 18 Sep 2021 19:16:14 +0000 (UTC)
-Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com
- [64.147.123.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16B606E06B;
- Sat, 18 Sep 2021 09:42:50 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailnew.west.internal (Postfix) with ESMTP id 3B3CE2B011CB;
- Sat, 18 Sep 2021 05:42:47 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute5.internal (MEProxy); Sat, 18 Sep 2021 05:42:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
- :from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm3; bh=iQMJviYlb4ZEn676riwj+ykMcaY
- gM3Bpxtt9O2JGErE=; b=WDwHHQXezEJe3XzQX3Em61caD1JOywMykQAjQo9+FvS
- BAUw0ysziTYQHd2JcCD0Bk8z0AXCgaxpNkpKZQLKoYJ1OqQBcoFQ33Qgu5/ta31z
- DyByahRv0mE53Ony+dsf9vdzav7TkXvnoNMK9J+5jBpTqlb9TTjAdddlmlrRrTqr
- Yf6gJ7BLyxE0uyTPoJtiPyFjieupdONy4OEcmHP6qj5k/GfsUOqHapmuJhhnj03u
- aNQMVgCiAY4CTWJmetOTs/5AqGukMpQkXerlp7nEGlI0rsksg0Xiyj8h6lzqpt5F
- kGOaxLJK9jw+z2uqeAdy7jRYyyLk3cfoC3lOSyJK4ZQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=iQMJvi
- Ylb4ZEn676riwj+ykMcaYgM3Bpxtt9O2JGErE=; b=NQPv4xozCXDNOuWW95l8r0
- wqgyyHyXfB+TEZFR29p5hrSTv1MyvPh8hK33MLJE8IkeC7FBi0cuYZiJYqFoOouk
- N1SMt7gdmUOFX7+6dS0zB2EDvB6PtfJ+RXPRE6Xm8Yv6zbnwvVa6/DoxXhlvqsiV
- DiPPdP8iqD22W7bL33bjydi/YElws4Ckpr/ugaxvRzvclMAOlkEEUlIc955FTNr+
- MRHnTWDFICCu6KCQ4D+EyAmzhwMruzmoz98VLdiUyE9IpnmcGdvH0hhH/n8X3vhI
- fEDavwtqAGgk1//zVUmRJDSgl5exPhNz4+P4Pt8zN7dvnYLXClZYKlaWnCVGwsuA
- ==
-X-ME-Sender: <xms:lrRFYfbjRE-L4f3Nfyw9rN67HO9pJVZbRLl_BAWGbVpLMk1TuqfX0g>
- <xme:lrRFYeYv4mcID7VMTZfIPCn8tDGxqPm2ySOv1G-A0NKEFUBuK3A-ve84o5-867vr0
- mX6PcSXDWBC1Grk_A>
-X-ME-Received: <xmr:lrRFYR9hvwXVM79X0a8T4DolehjhDAUODuSF4_ucBL_MRX00TWXEJTRAqvy--tKCLhHOxX8g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehkedgudejucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpefhvghrnhgr
- nhguohcutfgrmhhoshcuoehgrhgvvghnfhhoohesuhelvddrvghuqeenucggtffrrghtth
- gvrhhnpedvjeeifeelhfetiefhhfdthfefkefhhfeutdetvdfgvefgveefheffgfekjeef
- heenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrh
- gvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:lrRFYVqgNRMK_pamLceVRt2VyFRqwtZ2Qcb5LGQOAC_FeeRGMnNf5g>
- <xmx:lrRFYarmIXc0_KRWqyzkrnne4mGC_Rk6K5ND2K3AeQUIKytJ04dpkA>
- <xmx:lrRFYbSOSsDAnV7UWjB8L5nXiW3YpBe6JQMbwEeiJuzXn7eXbd_4lg>
- <xmx:lrRFYZ2Lu9EzyIqd7DyRxbU3UzqW3Goj4jk6MyoI0oEwokzv5BiUmX82bJc>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 18 Sep 2021 05:42:43 -0400 (EDT)
-Date: Sat, 18 Sep 2021 11:42:40 +0200
-From: Fernando Ramos <greenfoo@u92.eu>
-To: Sean Paul <sean@poorly.run>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org
-Message-ID: <YUW0kJr1XoqCENhl@zacax395.localdomain>
-References: <20210916211552.33490-1-greenfoo@u92.eu>
- <20210916211552.33490-15-greenfoo@u92.eu>
- <20210917155548.GO2515@art_vandelay>
- <YUUh7X+Ft7vKHlcT@zacax395.localdomain>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C8166E2C0;
+	Mon, 20 Sep 2021 00:15:29 +0000 (UTC)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com
+ [IPv6:2a00:1450:4864:20::129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 243E46E195
+ for <nouveau@lists.freedesktop.org>; Sun, 19 Sep 2021 05:48:57 +0000 (UTC)
+Received: by mail-lf1-x129.google.com with SMTP id z24so25814958lfu.13
+ for <nouveau@lists.freedesktop.org>; Sat, 18 Sep 2021 22:48:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=9IhiDk/89O/2Nj67usAKV1R7oJH3LrVWX+Ry2dGudN4=;
+ b=Mw6tJ4FsD0VEAMwjoKW794nzLD34+zB7lUTXpSGfKOXHp3WP7Bo0fgiAX3oO2mgbiB
+ +eV2QmQWuJrTa3Fh0RBQIKFzTKR41Prm+nu9nB/fQL96+9nP8QJIhgTVirKtsMQUaxGP
+ ZtLEm/iV6VjdayAkCn3wNBJLISfTtnj18fXv47GfaICof6QlCJfJvqMDsOjgP5Fb6hKe
+ mvgTKeHDoOzbOX6McuIQMRAIMqMHjpNHG/K997ewnKc4hj3HqNidrpfx80tHeTrXWyia
+ eaKCs30CqU3eCBCxhhYustWJw69N8CUcTFBq6rL/9JrvkiYkQEPoYCBXY75vnUthErRs
+ ij0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=9IhiDk/89O/2Nj67usAKV1R7oJH3LrVWX+Ry2dGudN4=;
+ b=dbRvdkQOILpziP3FmwREWEpc1FFndIcSJI3JX0sV/kCRq43MxhuacVzFiyzxRv2pxt
+ iaLc1bwL/ZbeezpPKWD56DvuxfrtxkMRFxJOwdbY9OljNOmv0q6XVxVd+/kaRIFrK37U
+ DnFvfjXYkjZ+O6m0q7Y83ErF9p3sQzcDEZI+qTdI5lQUdHT9yyX5+bdzRc/mwHs1ljwH
+ ++eUxokcoC3KkdUM0qcXy+4sg8u32r50y06TMD0xvOOkrMbwz5WEMI54Q84rtjSwT/NB
+ qeRDfL0vtIu1IaIWJPd9Oyxqxsd3hLUq9rmWbuXjseGO2bCwtKakQ3pfhGrQl551rGSi
+ 76kQ==
+X-Gm-Message-State: AOAM5300U3wDF6ASmMdeFFVnimeQbx5U/bc44Wl5OzdgsPvgpatj9xpE
+ lqS9wjrCYjwdu5Ln1O2bT4wgdOWM2M5+sh+VLMQ=
+X-Google-Smtp-Source: ABdhPJzuRsXbENpQi7I8CIBWS9wMqoLrjGqoPjWtQ0x12ljgq9EVqe4DFUG/7lbyoPGmm1a4d4iZaHqT2HCZ9ws3S50=
+X-Received: by 2002:a05:6512:16a9:: with SMTP id
+ bu41mr14240252lfb.41.1632030535407; 
+ Sat, 18 Sep 2021 22:48:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YUUh7X+Ft7vKHlcT@zacax395.localdomain>
-X-Mailman-Approved-At: Sat, 18 Sep 2021 19:16:13 +0000
-Subject: Re: [Nouveau] [PATCH 14/15] drm/amd: cleanup:
- drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+References: <CAN9WMdPTGBXsvF-4o6MEA8bMUOsGTa7fK=h+RVfJrs67KeVn3w@mail.gmail.com>
+ <CAN9WMdOhuTJPK98rNANSC2ye=sddw1Y_bWtt70UZnZZWnr3BbQ@mail.gmail.com>
+In-Reply-To: <CAN9WMdOhuTJPK98rNANSC2ye=sddw1Y_bWtt70UZnZZWnr3BbQ@mail.gmail.com>
+From: __- -__ <isapgswell@gmail.com>
+Date: Sun, 19 Sep 2021 02:48:43 -0300
+Message-ID: <CAN9WMdM7NXNh6_hakpEHRv4nx7QTANfcuPZimod4Rm=ZNgWgzA@mail.gmail.com>
+To: linux-bugs@nvidia.com, nouveau@lists.freedesktop.org, 
+ debian-boot@lists.debian.org, Dell Tech Support <technical_support@dell.com>, 
+ Dell Tech Support <technical_support@help.dell.com>,
+ ubuntu-users@lists.ubuntu.com, System76 <help@system76.com>
+Content-Type: multipart/alternative; boundary="0000000000005359d105cc52b8db"
+X-Mailman-Approved-At: Mon, 20 Sep 2021 00:15:28 +0000
+Subject: Re: [Nouveau] Nvidia OFFLOAD (nvidia-prime)
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,32 +80,281 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 21/09/18 01:17AM, Fernando Ramos wrote:
+--0000000000005359d105cc52b8db
+Content-Type: text/plain; charset="UTF-8"
 
-> > > +#include <drm/drm_drv.h>
-> > 
-> > Top-level headers generally come above the driver headers. Also, now that I think
-> > about this a bit more, all of the new includes in this set should probably be
-> > for 'drm_modeset_lock.h' instead of 'drm_drv.h'.
-> 
-> Ok. Let me try that.
+Hi,
 
-Turns out that the DRM_MODESET_LOCK_ALL_*() macros expansion includes a call
-to drm_drv_uses_atomic_modeset() which is defined in "drm_drv.h".
+Follow Modinfo relational
 
-Thus, #include'ing <drm/drm_drv.h> cannot be avoided.
+Look at this (10-nvidia.conf)
 
-This makes me wonder...
+Section "Files"
+    ModulePath "/usr/lib/x86_64-linux-gnu/nvidia/xorg"
+EndSection
 
-  1. "drm_drv.h" includes "drm_device.h", which includes "drm_mode_config.h",
-     which includes "drm_modeset_lock.h"
+Section "OutputClass"
+    Identifier "nvidia"
+    MatchDriver "nvidia"
+    Driver "drm"
+    Option "AllowEmptyInitialConfiguration"
+EndSection
 
-  2. "drm_modeset_lock.h" defines DRM_MODESET_LOCK_ALL_*() which expands into
-     drm_drv_uses_atomic_modeset()
+Section "OutputClass"
+    Identifier "nvidia-uvm"
+    MatchDriver "nvidia-uvm"
+    Driver "nvidia"
+    Option "AllowEmptyInitialConfiguration"
+EndSection
 
-  3. drm_drv_uses_atomic_modeset() is declared in "drm_drv.h"
+Section "OutputClass"
+    Identifier "nvidia-drm"
+    MatchDriver "nvidia-drm"
+    Driver "nvidia-modeset"
+    Option "AllowEmptyInitialConfiguration"
+EndSection
 
-There seems to be a circular dependency here.
+Section "OutputClass"
+    Identifier "nvidia-drm2"
+    MatchDriver "nvidia-drm"
+    Driver "drm_kms_helper"
+    Option "AllowEmptyInitialConfiguration"
+EndSection
 
-We can try to fix this, but I suggest to do it in a different patch series.
+Section "OutputClass"
+    Identifier "nvidia-drm3"
+    MatchDriver "nvidia-drm"
+    Driver "drm"
+    Option "AllowEmptyInitialConfiguration"
+EndSection
 
+Section "OutputClass"
+    Identifier "nvidia-modeset"
+    MatchDriver "nvidia-modeset"
+    Driver "nvidia"
+    Option "AllowEmptyInitialConfiguration"
+EndSection
+
+Anymore? autorelational?
+
+aTI,
+
+L. F
+
+
+On Sun, Sep 19, 2021 at 12:50 AM __- -__ <isapgswell@gmail.com> wrote:
+
+> Hi,
+>
+> One observation related into 10-nvidia.conf file
+>
+> Section "OutputClass"
+>     Identifier "nvidia"
+>     MatchDriver "nvidia-drm"
+>     Driver "nvidia-modeset"
+>     Option "AllowEmptyInitialConfiguration"
+>     ModulePath "/usr/lib/x86_64-linux-gnu/nvidia/xorg"
+> EndSection
+>
+> aTI,
+>
+> L. F
+>
+> On Sat, Sep 18, 2021 at 6:21 PM __- -__ <isapgswell@gmail.com> wrote:
+>
+>> Hi,
+>>
+>> I would like to share my 3 files at /usr/share/X11/xorg.conf.d/
+>>
+>> xorg.conf
+>> 10-nvidia.conf
+>> 11-nvidia-offload.conf
+>>
+>> a) xorg
+>> Section "Files"
+>>    ModulePath "/usr/lib/xorg"
+>> EndSection
+>>
+>> Section "Device"
+>>    Identifier "intel"
+>>    Driver "i915"
+>>    Option "DRI2" "on"
+>>    BusID "PCI:0:2:0"
+>> #   Option "AccelMethod" "uxa"
+>> EndSection
+>>
+>> Section "Screen"
+>>    Identifier "intel"
+>>    Device "intel"
+>> EndSection
+>>
+>> Section "Device"
+>>    Identifier "nvidia-drm"
+>>    Driver "nvidia-drm"
+>> EndSection
+>>
+>> Section "Device"
+>>    Identifier "nvidia-modeset"
+>>    Driver "nvidia-modeset"
+>> EndSection
+>>
+>> Section "Device"
+>>    Identifier "nvidia"
+>>    Driver "nvidia"
+>>    BusID "PCI:1:0:0"
+>> EndSection
+>>
+>> Section "ServerFlags"
+>>    Option "DefaultServerLayout" "layout"
+>>    Option "DisableVidModeExtension"  "on"
+>>    Option "AIGLX" "off"
+>>    Option "IndirectGLX" "off"
+>>    Option "GlxVisuals" "minimal"
+>>    Option "Log" "flush"
+>>    Option "DontVTSwitch"  "on"
+>>    Option "DontZap"  "on"
+>>    Option "DontZoom"  "on"
+>>    Option "AutoAddDevices" "on"
+>>    Option "AutoEnableDevices" "off"
+>>    Option "AutoAddGPU" "on"
+>>    Option "AutoBindGPU"  "off"
+>> EndSection
+>>
+>> Section "Extensions"
+>>    Option "RENDER" "Enable"
+>>    Option "Composite" "Enable"
+>>    Option "GLX" "Enable"
+>>    Option "MIT-SHM" "Disable"
+>> EndSection
+>>
+>> b) 10-nvidia.conf (same as default)
+>> Section "OutputClass"
+>>     Identifier "nvidia"
+>>     MatchDriver "nvidia-drm"
+>>     Driver "nvidia"
+>>     Option "AllowEmptyInitialConfiguration"
+>>     ModulePath "/usr/lib/x86_64-linux-gnu/nvidia/xorg"
+>> EndSection
+>>
+>> c) 11-nvidia-offload.conf
+>> Section "ServerLayout"
+>>     Identifier "layout"
+>>     Screen 0 "intel" 0 0
+>>     Inactive "nvidia-drm"
+>>     Inactive "nvidia-modeset"
+>>     Inactive "nvidia"
+>>     Option "AllowNVIDIAGPUScreens"
+>> EndSection
+>>
+>> My dGPU is a 940mx (nvidia) playing at 2560x1080, ubuntu 20.04 LTS
+>>
+>> aTI,
+>>
+>> L. F
+>>
+>
+
+--0000000000005359d105cc52b8db
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>Follow Modinfo relational</div><div=
+><br></div><div>Look at this (10-nvidia.conf)</div><div><br></div><div>Sect=
+ion &quot;Files&quot;</div><div>=C2=A0 =C2=A0 ModulePath &quot;/usr/lib/x86=
+_64-linux-gnu/nvidia/xorg&quot;<br></div><div>EndSection</div><div><br></di=
+v><div>Section &quot;OutputClass&quot;<br>=C2=A0 =C2=A0 Identifier &quot;nv=
+idia&quot;<br>=C2=A0 =C2=A0 MatchDriver &quot;nvidia&quot;<br>=C2=A0 =C2=A0=
+ Driver &quot;drm&quot;<br>=C2=A0 =C2=A0 Option &quot;AllowEmptyInitialConf=
+iguration&quot;<br>EndSection<br><br>Section &quot;OutputClass&quot;<br>=C2=
+=A0 =C2=A0 Identifier &quot;nvidia-uvm&quot;<br>=C2=A0 =C2=A0 MatchDriver &=
+quot;nvidia-uvm&quot;<br>=C2=A0 =C2=A0 Driver &quot;nvidia&quot;<br>=C2=A0 =
+=C2=A0 Option &quot;AllowEmptyInitialConfiguration&quot;<br>EndSection<br><=
+br>Section &quot;OutputClass&quot;<br>=C2=A0 =C2=A0 Identifier &quot;nvidia=
+-drm&quot;<br>=C2=A0 =C2=A0 MatchDriver &quot;nvidia-drm&quot;<br>=C2=A0 =
+=C2=A0 Driver &quot;nvidia-modeset&quot;<br>=C2=A0 =C2=A0 Option &quot;Allo=
+wEmptyInitialConfiguration&quot;<br>EndSection<br><br>Section &quot;OutputC=
+lass&quot;<br>=C2=A0 =C2=A0 Identifier &quot;nvidia-drm2&quot;<br>=C2=A0 =
+=C2=A0 MatchDriver &quot;nvidia-drm&quot;<br>=C2=A0 =C2=A0 Driver &quot;drm=
+_kms_helper&quot;<br>=C2=A0 =C2=A0 Option &quot;AllowEmptyInitialConfigurat=
+ion&quot;<br>EndSection<br><br>Section &quot;OutputClass&quot;<br>=C2=A0 =
+=C2=A0 Identifier &quot;nvidia-drm3&quot;<br>=C2=A0 =C2=A0 MatchDriver &quo=
+t;nvidia-drm&quot;<br>=C2=A0 =C2=A0 Driver &quot;drm&quot;<br>=C2=A0 =C2=A0=
+ Option &quot;AllowEmptyInitialConfiguration&quot;<br>EndSection<br><br>Sec=
+tion &quot;OutputClass&quot;<br>=C2=A0 =C2=A0 Identifier &quot;nvidia-modes=
+et&quot;<br>=C2=A0 =C2=A0 MatchDriver &quot;nvidia-modeset&quot;<br>=C2=A0 =
+=C2=A0 Driver &quot;nvidia&quot;<br>=C2=A0 =C2=A0 Option &quot;AllowEmptyIn=
+itialConfiguration&quot;<br>EndSection<br></div><div><br></div><div>Anymore=
+? autorelational?</div><div><br></div><div>aTI,</div><div><br></div><div>L.=
+ F</div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
+" class=3D"gmail_attr">On Sun, Sep 19, 2021 at 12:50 AM __- -__ &lt;<a href=
+=3D"mailto:isapgswell@gmail.com">isapgswell@gmail.com</a>&gt; wrote:<br></d=
+iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
+er-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<d=
+iv><br></div><div>One observation related into 10-nvidia.conf file</div><di=
+v><br></div><div>Section &quot;OutputClass&quot;<br>=C2=A0 =C2=A0 Identifie=
+r &quot;nvidia&quot;<br>=C2=A0 =C2=A0 MatchDriver &quot;nvidia-drm&quot;<br=
+>=C2=A0 =C2=A0 <font color=3D"#00ff00" style=3D"background-color:rgb(255,25=
+5,0)">Driver &quot;nvidia-modeset&quot;</font><br>=C2=A0 =C2=A0 Option &quo=
+t;AllowEmptyInitialConfiguration&quot;<br>=C2=A0 =C2=A0 ModulePath &quot;/u=
+sr/lib/x86_64-linux-gnu/nvidia/xorg&quot;<br>EndSection<br></div><div><br><=
+/div><div>aTI,</div><div><br></div><div>L. F</div></div><br><div class=3D"g=
+mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Sep 18, 2021 at 6=
+:21 PM __- -__ &lt;<a href=3D"mailto:isapgswell@gmail.com" target=3D"_blank=
+">isapgswell@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
+04);padding-left:1ex"><div dir=3D"ltr">Hi,<div><br></div><div>I would like =
+to share my 3 files at /usr/share/X11/xorg.conf.d/</div><div><br></div><div=
+><span style=3D"background-color:rgb(255,255,0)">xorg.conf=C2=A0</span></di=
+v><div><span style=3D"background-color:rgb(255,255,0)">10-nvidia.conf</span=
+></div><div><span style=3D"background-color:rgb(255,255,0)">11-nvidia-offlo=
+ad.conf</span><br></div><div><br></div><div><span style=3D"background-color=
+:rgb(255,255,0)"><font color=3D"#00ff00">a) xorg</font></span></div><div>Se=
+ction &quot;Files&quot;<br>=C2=A0 =C2=A0ModulePath &quot;/usr/lib/xorg&quot=
+;<br>EndSection<br><br>Section &quot;Device&quot;<br>=C2=A0 =C2=A0Identifie=
+r &quot;intel&quot;<br>=C2=A0 =C2=A0Driver &quot;i915&quot;<br>=C2=A0 =C2=
+=A0Option &quot;DRI2&quot; &quot;on&quot;<br>=C2=A0 =C2=A0BusID &quot;PCI:0=
+:2:0&quot;<br># =C2=A0 Option &quot;AccelMethod&quot; &quot;uxa&quot;<br>En=
+dSection<br><br>Section &quot;Screen&quot;<br>=C2=A0 =C2=A0Identifier &quot=
+;intel&quot;<br>=C2=A0 =C2=A0Device &quot;intel&quot;<br>EndSection<br><br>=
+Section &quot;Device&quot;<br>=C2=A0 =C2=A0Identifier &quot;nvidia-drm&quot=
+;<br>=C2=A0 =C2=A0Driver &quot;nvidia-drm&quot;<br>EndSection<br><br>Sectio=
+n &quot;Device&quot;<br>=C2=A0 =C2=A0Identifier &quot;nvidia-modeset&quot;<=
+br>=C2=A0 =C2=A0Driver &quot;nvidia-modeset&quot;<br>EndSection<br><br>Sect=
+ion &quot;Device&quot;<br>=C2=A0 =C2=A0Identifier &quot;nvidia&quot;<br>=C2=
+=A0 =C2=A0Driver &quot;nvidia&quot;<br>=C2=A0 =C2=A0BusID &quot;PCI:1:0:0&q=
+uot;<br>EndSection<br><br>Section &quot;ServerFlags&quot;<br>=C2=A0 =C2=A0O=
+ption &quot;DefaultServerLayout&quot; &quot;layout&quot;<br>=C2=A0 =C2=A0Op=
+tion &quot;DisableVidModeExtension&quot; =C2=A0&quot;on&quot;<br>=C2=A0 =C2=
+=A0Option &quot;AIGLX&quot; &quot;off&quot;<br>=C2=A0 =C2=A0Option &quot;In=
+directGLX&quot; &quot;off&quot;<br>=C2=A0 =C2=A0Option &quot;GlxVisuals&quo=
+t; &quot;minimal&quot;<br>=C2=A0 =C2=A0Option &quot;Log&quot; &quot;flush&q=
+uot;<br>=C2=A0 =C2=A0Option &quot;DontVTSwitch&quot; =C2=A0&quot;on&quot;<b=
+r>=C2=A0 =C2=A0Option &quot;DontZap&quot; =C2=A0&quot;on&quot;<br>=C2=A0 =
+=C2=A0Option &quot;DontZoom&quot; =C2=A0&quot;on&quot;<br>=C2=A0 =C2=A0Opti=
+on &quot;AutoAddDevices&quot; &quot;on&quot;<br>=C2=A0 =C2=A0Option &quot;A=
+utoEnableDevices&quot; &quot;off&quot;<br>=C2=A0 =C2=A0Option &quot;AutoAdd=
+GPU&quot; &quot;on&quot;<br>=C2=A0 =C2=A0Option &quot;AutoBindGPU&quot; =C2=
+=A0&quot;off&quot;<br>EndSection<br><br>Section &quot;Extensions&quot;<br>=
+=C2=A0 =C2=A0Option &quot;RENDER&quot; &quot;Enable&quot;<br>=C2=A0 =C2=A0O=
+ption &quot;Composite&quot; &quot;Enable&quot;<br>=C2=A0 =C2=A0Option &quot=
+;GLX&quot;	&quot;Enable&quot;<br>=C2=A0 =C2=A0Option &quot;MIT-SHM&quot; &q=
+uot;Disable&quot;<br>EndSection<br></div><div><br></div><div><font color=3D=
+"#ffff00" style=3D"background-color:rgb(0,255,0)">b) 10-nvidia.conf (same a=
+s default)</font></div><div>Section &quot;OutputClass&quot;<br>=C2=A0 =C2=
+=A0 Identifier &quot;nvidia&quot;<br>=C2=A0 =C2=A0 MatchDriver &quot;nvidia=
+-drm&quot;<br>=C2=A0 =C2=A0 Driver &quot;nvidia&quot;<br>=C2=A0 =C2=A0 Opti=
+on &quot;AllowEmptyInitialConfiguration&quot;<br>=C2=A0 =C2=A0 ModulePath &=
+quot;/usr/lib/x86_64-linux-gnu/nvidia/xorg&quot;<br>EndSection<br></div><di=
+v><br></div><div><font style=3D"background-color:rgb(255,255,0)" color=3D"#=
+00ff00">c)=C2=A011-nvidia-offload.conf</font></div><div>Section &quot;Serve=
+rLayout&quot;<br>=C2=A0 =C2=A0 Identifier &quot;layout&quot;<br>=C2=A0 =C2=
+=A0 Screen 0 &quot;intel&quot; 0 0<br>=C2=A0 =C2=A0 Inactive &quot;nvidia-d=
+rm&quot;<br>=C2=A0 =C2=A0 Inactive &quot;nvidia-modeset&quot;<br>=C2=A0 =C2=
+=A0 Inactive &quot;nvidia&quot;<br>=C2=A0 =C2=A0 Option &quot;AllowNVIDIAGP=
+UScreens&quot;<br>EndSection</div><div><br></div><div>My dGPU is a 940mx (n=
+vidia) playing at 2560x1080, ubuntu 20.04 LTS</div><div><br></div><div>aTI,=
+</div><div><br></div><div>L. F</div></div>
+</blockquote></div>
+</blockquote></div>
+
+--0000000000005359d105cc52b8db--
