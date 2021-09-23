@@ -2,89 +2,81 @@ Return-Path: <SRS0=nS+i=ON=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C1309C433F5
-	for <nouveau@archiver.kernel.org>; Thu, 23 Sep 2021 14:32:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E70FBC433F5
+	for <nouveau@archiver.kernel.org>; Thu, 23 Sep 2021 17:41:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8377F61152
-	for <nouveau@archiver.kernel.org>; Thu, 23 Sep 2021 14:32:20 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8377F61152
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=canonical.com
+	by mail.kernel.org (Postfix) with ESMTPS id AD2126121F
+	for <nouveau@archiver.kernel.org>; Thu, 23 Sep 2021 17:41:22 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org AD2126121F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED7346ED7E;
-	Thu, 23 Sep 2021 14:32:12 +0000 (UTC)
-X-Greylist: delayed 592 seconds by postgrey-1.36 at gabe;
- Mon, 20 Sep 2021 18:26:59 UTC
-Received: from smtp-relay-internal-1.canonical.com
- (smtp-relay-internal-1.canonical.com [185.125.188.123])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B5F66E5BE
- for <nouveau@lists.freedesktop.org>; Mon, 20 Sep 2021 18:26:59 +0000 (UTC)
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com
- [209.85.214.197])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 6D4263F338
- for <nouveau@lists.freedesktop.org>; Mon, 20 Sep 2021 18:17:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
- s=20210705; t=1632161826;
- bh=TjtorBP1QG+MBkByGdZNpa22mOVzwIsICVZSplyAbbE=;
- h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
- b=aM+Xf4yDN35MlZk4MjNWS6NRK4aeW3VBzWN+JrX0G/iyTbSewqSn7Fw4YYr4kEqe6
- Yvn+pQMDEXg8ZJVg1PEWk+DFPTR2t8d2RchPdUoerdit8uNWKpn/9hQKRkZTyFPzbj
- YVdFN1HVkXLH4dHwxSuxYmUq71Iuu957dIf8KmlEKDQoA9sYsaiGJbDW83Aw+elffL
- N2eD6VocivuPbpVHhiK3YKBhiduzbNQPaQvWec8FHz1MKWXqzJGTdh+kaSpPjqVCCE
- U1+8V/fjuLTx1Z+7d7XkKbtwMU9ERXqSRjlciyVOP0pt4li7CQUIBJ1Q+MhlvsqPbK
- TSNKQjGHu37ew==
-Received: by mail-pl1-f197.google.com with SMTP id
- b24-20020a170902d89800b00138a0292071so7384571plz.13
- for <nouveau@lists.freedesktop.org>; Mon, 20 Sep 2021 11:17:06 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 261106ED98;
+	Thu, 23 Sep 2021 17:41:22 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8BE36ED98
+ for <nouveau@lists.freedesktop.org>; Thu, 23 Sep 2021 17:41:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1632418879;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=SmDjFJsaZCA6KWN4HS486qKHt349/F7+f0mgEgYWTjc=;
+ b=NLo5wYk8+akoGlebpT6ReKvY9T3cl+wG/k5gKfvhQWS+OSAGXsnLPYMcMRMBpf44PS9nQU
+ g4jQEAeKveGdqtookQ+TW0Tlc9dBOi/tzjSxLVLso18hlpiZkoKifIXMbRNixkZ/1x4FcI
+ fhe83UnKypJNfBVUHRMe5pyLqft9yyU=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-441-KjQwG-SmMECcr2tdEIotXw-1; Thu, 23 Sep 2021 13:41:18 -0400
+X-MC-Unique: KjQwG-SmMECcr2tdEIotXw-1
+Received: by mail-wr1-f69.google.com with SMTP id
+ m1-20020a056000180100b0015e1ec30ac3so5788326wrh.8
+ for <nouveau@lists.freedesktop.org>; Thu, 23 Sep 2021 10:41:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=TjtorBP1QG+MBkByGdZNpa22mOVzwIsICVZSplyAbbE=;
- b=G+kLkVRegVo4UQm1eZZyE4o7ckVQWI8hhcgSSsZjT2YIYrghhxTcRYCMd5+C3jArdI
- yMbrsB0FY+PvdfeqMfFZMA+Pl1asT6Wx75108XfkrB4ntPBwMxHK5ZTSUBkNQ45Vjoqe
- V6eb/r9JZeXhjqoHXo/sS1q8FvOiej+bmuIdYEJZME1o49CJBiS2kBwKneHgJdPQBBg2
- B9uMRMPoS+URWJKT0l4vp1dfAx/LrHmDGayq/orVPGJfqfGM/OSCiGkb/Qbm3GVgDGbs
- q2Y42ZQQALY7kjF2lSwI5RnqpbLeJ7GW++/9m27fg7xKu/IUuabdduTgDlqggIPbWU8l
- 2bGw==
-X-Gm-Message-State: AOAM532V3dXEuBpsT8wIbL8PZgfTRFln+6jeITQRtUcCMfUibanYVAYg
- 67gTJPPNeSjiBKcVafL1HseWbVufP0yVOVarLUvG19LKVo00gqJ6IHm9WQCDOA50nbF4KAWbe92
- PtwfE3Zhme0Cq5P9eeCa6HneuWsqKM/Q4dTLKtqDszc8=
-X-Received: by 2002:a17:90a:24c:: with SMTP id
- t12mr357829pje.103.1632161824737; 
- Mon, 20 Sep 2021 11:17:04 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwDHbTX6MS7FWBtqKRkGWZ8SYTluchgpjHnl329yBqjyNyrGnU2x+2LHi5jaLReYrYUZHW5Fw==
-X-Received: by 2002:a17:90a:24c:: with SMTP id
- t12mr357801pje.103.1632161824463; 
- Mon, 20 Sep 2021 11:17:04 -0700 (PDT)
-Received: from localhost.localdomain ([69.163.84.166])
- by smtp.gmail.com with ESMTPSA id m64sm16126877pga.55.2021.09.20.11.17.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Sep 2021 11:17:03 -0700 (PDT)
-From: Tim Gardner <tim.gardner@canonical.com>
-To: nouveau@lists.freedesktop.org
-Cc: tim.gardner@canonical.com, Ben Skeggs <bskeggs@redhat.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Karol Herbst <kherbst@redhat.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Date: Mon, 20 Sep 2021 12:16:47 -0600
-Message-Id: <20210920181647.22156-1-tim.gardner@canonical.com>
-X-Mailer: git-send-email 2.33.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=SmDjFJsaZCA6KWN4HS486qKHt349/F7+f0mgEgYWTjc=;
+ b=T9/w6Fy6jzBwaHAW5U+bzQ3rq+IiWP25ZW6crNJ4d4mkuIgIJbJWAOpKCh/LNIoPhW
+ KLw+Eimdlar24tQCgID8m20rLJSX2u16/v80LL4ASTcAWAd++rKwKjg/0u2ScFzT1KEd
+ Ac4Sj+/Tq8O5T0sMLlLMk6Tlf11o+DP8KSHMFbTcTiaZh6XHb3vVICPtW63PgP5r4RwK
+ vF5aZ2cEpaQsU8CjAFDLUpVSDeMaql8C3UziobBwyeJDmEP0r/ykR4HxwoupQx1f6PSR
+ gle3KZ9HFLTpro6MR31cg5g6mcRd8ex3mGqipr8e7qWzvu1OaMx1oZGgNO3ONccVayUC
+ ivPw==
+X-Gm-Message-State: AOAM533dpV0uzSWBO4dveyV6/Be7nh5neB3bcsFNun3s6Om+LwtYDwYI
+ ii6timgmmk0yv0novZ6eHWPnul6t6JotDQCttZHX0lZGznwtREG9ZKIgoRFfMXc/IcHcyn2aZgD
+ 6+j2B7sZJATZg6oFPXzwpT3Z7orh1dZ7B2uCVvWVREw==
+X-Received: by 2002:a05:600c:4991:: with SMTP id
+ h17mr17588220wmp.74.1632418876767; 
+ Thu, 23 Sep 2021 10:41:16 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwR58YifCWksEfIlo9ENLvXvdCtjvge/aoaotzcMzz/74Md4WFfXwftxwsiOhOaLEBb2oNOxywsZZR7MWvappc=
+X-Received: by 2002:a05:600c:4991:: with SMTP id
+ h17mr17588203wmp.74.1632418876628; 
+ Thu, 23 Sep 2021 10:41:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 23 Sep 2021 14:32:11 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/ga102: Free resources on error in
- ga102_chan_new()
+References: <CAN9WMdPCd3EY866WcKoJqnx=od9pOy4k5q6HM4tsr2wrZ2ZOeQ@mail.gmail.com>
+In-Reply-To: <CAN9WMdPCd3EY866WcKoJqnx=od9pOy4k5q6HM4tsr2wrZ2ZOeQ@mail.gmail.com>
+From: Karol Herbst <kherbst@redhat.com>
+Date: Thu, 23 Sep 2021 19:41:06 +0200
+Message-ID: <CACO55ttuSOQ4mUr9pR2L15KP6qy5DuPDwz7d_eSkm_mxDEqkoA@mail.gmail.com>
+To: __- -__ <isapgswell@gmail.com>
+Cc: linux-bugs@nvidia.com, nouveau <nouveau@lists.freedesktop.org>, 
+ Dell Tech Support <technical_support@dell.com>, ubuntu-users@lists.ubuntu.com, 
+ System76 <help@system76.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=kherbst@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Nouveau] nvprime
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,86 +91,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Coverity complains of a resource leak in ga102_chan_new():
+If you have an issue with the Nvidia driver, ask Nvidia for help. And
+don't CC random Mailing lists and spam them.
 
-CID 119637 (#7 of 7): Resource leak (RESOURCE_LEAK)
-13. leaked_storage: Variable chan going out of scope leaks the storage it points to.
-190                return ret;
-
-Fix this by freeing 'chan' in the error path.
-
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Tim Gardner <tim.gardner@canonical.com>
----
- .../gpu/drm/nouveau/nvkm/engine/fifo/ga102.c  | 20 ++++++++++++-------
- 1 file changed, 13 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c
-index f897bef13acf..4dbdfb53e65f 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c
-@@ -175,19 +175,21 @@ ga102_chan_new(struct nvkm_device *device,
- 		}
- 	}
- 
--	if (!chan->ctrl.runl)
--		return -ENODEV;
-+	if (!chan->ctrl.runl) {
-+		ret = -ENODEV;
-+		goto free_chan;
-+	}
- 
- 	chan->ctrl.chan = nvkm_rd32(device, chan->ctrl.runl + 0x004) & 0xfffffff0;
- 	args->token = nvkm_rd32(device, chan->ctrl.runl + 0x008) & 0xffff0000;
- 
- 	ret = nvkm_memory_new(device, NVKM_MEM_TARGET_INST, 0x1000, 0x1000, true, &chan->mthd);
- 	if (ret)
--		return ret;
-+		goto free_chan;
- 
- 	ret = nvkm_memory_new(device, NVKM_MEM_TARGET_INST, 0x1000, 0x1000, true, &chan->inst);
- 	if (ret)
--		return ret;
-+		goto free_chan;
- 
- 	nvkm_kmap(chan->inst);
- 	nvkm_wo32(chan->inst, 0x010, 0x0000face);
-@@ -209,11 +211,11 @@ ga102_chan_new(struct nvkm_device *device,
- 
- 	ret = nvkm_memory_new(device, NVKM_MEM_TARGET_INST, 0x1000, 0x1000, true, &chan->user);
- 	if (ret)
--		return ret;
-+		goto free_chan;
- 
- 	ret = nvkm_memory_new(device, NVKM_MEM_TARGET_INST, 0x1000, 0x1000, true, &chan->runl);
- 	if (ret)
--		return ret;
-+		goto free_chan;
- 
- 	nvkm_kmap(chan->runl);
- 	nvkm_wo32(chan->runl, 0x00, 0x80030001);
-@@ -228,10 +230,14 @@ ga102_chan_new(struct nvkm_device *device,
- 
- 	ret = nvkm_vmm_join(vmm, chan->inst);
- 	if (ret)
--		return ret;
-+		goto free_chan;
- 
- 	chan->vmm = nvkm_vmm_ref(vmm);
- 	return 0;
-+
-+free_chan:
-+	kfree(chan);
-+	return ret;
- }
- 
- static const struct nvkm_device_oclass
--- 
-2.33.0
+On Thu, Sep 23, 2021 at 4:32 PM __- -__ <isapgswell@gmail.com> wrote:
+>
+> Hi,
+>
+> I launch nvidia-settings; and
+> I launch __NV_PRIME_RENDER_OFFLOAD=1  nvidia-settings
+>
+> neither
+> __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia nvidia-settings
+>
+> Sam results
+>
+> Shouldn't it?
+>
+> nvidia-smi nothing to show
+>
+> aTI,
+>
+> L. F
 
