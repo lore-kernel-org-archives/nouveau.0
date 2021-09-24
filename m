@@ -2,65 +2,65 @@ Return-Path: <SRS0=M/hv=OP=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 11A30C433FE
-	for <nouveau@archiver.kernel.org>; Sat, 25 Sep 2021 01:59:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 19009C433F5
+	for <nouveau@archiver.kernel.org>; Sat, 25 Sep 2021 01:59:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CEA23610CF
-	for <nouveau@archiver.kernel.org>; Sat, 25 Sep 2021 01:59:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CEA23610CF
+	by mail.kernel.org (Postfix) with ESMTPS id D6845610CF
+	for <nouveau@archiver.kernel.org>; Sat, 25 Sep 2021 01:59:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org D6845610CF
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03BAC6EE9E;
-	Sat, 25 Sep 2021 01:59:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B1A56EEA3;
+	Sat, 25 Sep 2021 01:59:33 +0000 (UTC)
 Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
  [66.111.4.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A16CE6EDF4;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7E0B6EE06;
  Fri, 24 Sep 2021 06:50:54 +0000 (UTC)
 Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
- by mailnew.nyi.internal (Postfix) with ESMTP id 146B858105A;
- Fri, 24 Sep 2021 02:43:44 -0400 (EDT)
+ by mailnew.nyi.internal (Postfix) with ESMTP id 71A0C581077;
+ Fri, 24 Sep 2021 02:44:08 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
- by compute2.internal (MEProxy); Fri, 24 Sep 2021 02:43:44 -0400
+ by compute2.internal (MEProxy); Fri, 24 Sep 2021 02:44:08 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
  :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=gI1USBF13b/WC
- 9GWwIX4Z1gzLGplb53rIeUu1Mo8b4o=; b=D0x7zw1JXwx7CoS+GIttUAVpXJNri
- 9RutguKJ5/bA5QBCVNooj+UJVmN8/SeycK8+eHBCl1MSWC54E+7JLRZ+v3stJl82
- bK37taAM5pTTmmMAkrXYP7WqqM8yUjz4QHTG1duJemcyNgyfbXwdMLA8bdjfjPo6
- bNsf/Y89r2ujS/IjkXLUmyq6rNU6gsCZLpdmQHpaifPjchyP8RnJDXEiIgCeRqz/
- OlWaIxsW6oCOgU62v4tkxBRGGwuZkCZSJIu6Yw5y/NXn9aCWiMQ1cjzNZr53Ggj2
- gqXpJUziJRZHzuq4SmUUDVXsnRZbRDTATyzsnlsaZ2rlIjrmbdvNLM56g==
+ :mime-version:content-transfer-encoding; s=fm3; bh=LyptZ7D7ZViCI
+ icf79djO86912HJzojvXacLkM6UT9I=; b=geNdKT834m6lveeBjTXlLmH/s4vug
+ aN7RNlRYCa/0qEWQ4DmVB/y2JM3Io+jBQrjC0Gwb0mQxvVEVi8bFpxAbGe8F/lA7
+ 0VY8xA79f/47OJ/6UPM2u3awW0AgYVcyg4c2MV2e+R1jgfRmJxrhn/+df96CsJCG
+ U2bIEfBfwVL8wkv57dR1Xxjg/PjhOnLSvxHG4Rg2o9s7sfn9pjMz/YZh6IHP+To8
+ iNPFXGGMPnbwj3nFIFOr7q5ss27XVGE1dh1EqcE4usVTgd+NA5BZ7WaTbG4HGk/7
+ VEJEdWm+3Nfcvcm2ORVLRLv112RzfFnvomhDAbMWjnUAcXQJrsPF2b7Zw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:content-transfer-encoding:date:from
  :in-reply-to:message-id:mime-version:references:subject:to
  :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm3; bh=gI1USBF13b/WC9GWwIX4Z1gzLGplb53rIeUu1Mo8b4o=; b=VmgsT00D
- So6sLP/s7+MvXRtB/P4vks7IsiEO2ho4PmQ0XQaU8+KioM3Z4i1Q8lrUpDXiqLOq
- 7NXTv7Gm4C1FKDKjzY6fv2AfyhRelcUqrUXqBEqWXB3BKK5rcPVGJsxm3rVSs5xu
- 6Pg0rmMGnkPrsYD+dZp5IJxp9ClXUu27QyTkz4HKdt3iCSXMw998ugCbksxVaX1e
- k6xD//mlEcuJEzCjJf+s8Tp1HvbbxBDI5/cD3Nu0SyywxuSk/nEoDipF0jN9p2ky
- Ai2vIlTyEMK1bAlzZP9rGvhqMZddq8MbwGZxW6pzH8IYqCOIcUvdQEZuGl/eyErn
- Ay32K5QMcti87A==
-X-ME-Sender: <xms:n3NNYbZ6FEtneoYHQiJ2uaLteVBUXqCJSGy2tOzt4dc5ys7giiVANQ>
- <xme:n3NNYabftZnGlR8uNBDHDvpAW-17ombYn6aDcqfVAtxl60TExK9yfX225NzmXrVxv
- Rxof1Ks8_CXPHugQw>
-X-ME-Received: <xmr:n3NNYd-1x_HvXC18arMggXCD1187YE-tnQ7trC_bgNJIlXTHHHAZw6l9-Bks0qzv6TRy>
+ fm3; bh=LyptZ7D7ZViCIicf79djO86912HJzojvXacLkM6UT9I=; b=ZHqXjkHN
+ B3bSNi1jQPrE2o9KN7nuKqv5jhpHxoq49Xwacix4jJQCZ8oGiSv1QvhSK2O5Taj1
+ 1i0ExZy5WI5Km0xz3KQ2y/l17irKYiTi8o+iVT2brkc/KDYJxzwwjMrQO6KSJDVA
+ xpks215z+7LhY3kE2o+BtMFnl0U43/YCoL+cKrP0WD0SyD8B5DY2MfPqwwBuaZxD
+ qQN80F19lKDI+VBPvoJYgku57MZUBnUoodjsqrdyUBukDvziLmrLQWEembF45QiV
+ qYk6FgmzzEuKinu7Ij0mU4ddAc/FnNecgGio2mPS56s9RIzIY/2oxsWGRf8agKVt
+ XAJTH5pS/0G9qw==
+X-ME-Sender: <xms:uHNNYVZlPL1spB7flpgvYmDDcPtGxhV81xF7v-Ces5LH9jEdDk0KFw>
+ <xme:uHNNYcaFAB1uYv990scFRVzey5aJR4tRMm0_VzXZy5QX0rkHXYwhS4RYTZQvJ0YZo
+ oq8eaHwa7pQrPWcUA>
+X-ME-Received: <xmr:uHNNYX8xUc-mQkTkoIf7_10XfP3EyGfGfAsrRjmV1h_9NBxb8Q-83zr9fpmI4aEmM-ZS>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudejtddguddtkecutefuodetggdotefrod
  ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
  necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
  ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
  ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedunecu
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpeefnecu
  rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:n3NNYRo25q8PdmT-EmsdL9yrEUZuydJt6kbg6_Iu47SDERpBfuRfyQ>
- <xmx:n3NNYWop3GGchQn5xl7zKLNZV13mzOiSGliI_Eb7tkRXALRXCg6Hlw>
- <xmx:n3NNYXR6kRLJnWccfsrbRIp9XkSKEYVQYYRFWqRLn38XDQxDGSpwdw>
- <xmx:oHNNYV0RvdbZ61w0BUpIWuRcZL-bmcnsa_3trz6UWp78MxtKTUasmw>
+X-ME-Proxy: <xmx:uHNNYTqZAUDyPTpoArCPo5inwD5gxc45kHyF87DQYyChcc9DxEl7fg>
+ <xmx:uHNNYQoeFHr-vPVoJWWAjQGZ2NtQq6h8B8doJHvcp6NL33kcroZRcQ>
+ <xmx:uHNNYZRirOv5IaZGmAjrJZEaTNfPBKUDWQGkoUuqbzV877Vl9XuGkg>
+ <xmx:uHNNYX189459x0dJHxU-4u0NRr0u5PK7bf1R-Fwequy4W3BdyszV0Q>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 24 Sep 2021 02:43:41 -0400 (EDT)
+ 24 Sep 2021 02:44:05 -0400 (EDT)
 From: Fernando Ramos <greenfoo@u92.eu>
 To: dri-devel@lists.freedesktop.org
 Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
@@ -68,16 +68,16 @@ Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
  linux-tegra@vger.kernel.org
-Date: Fri, 24 Sep 2021 08:43:11 +0200
-Message-Id: <20210924064324.229457-5-greenfoo@u92.eu>
+Date: Fri, 24 Sep 2021 08:43:19 +0200
+Message-Id: <20210924064324.229457-13-greenfoo@u92.eu>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20210924064324.229457-1-greenfoo@u92.eu>
 References: <20210924064324.229457-1-greenfoo@u92.eu>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sat, 25 Sep 2021 01:59:31 +0000
-Subject: [Nouveau] [PATCH v2 04/17] drm: cleanup: drm_modeset_lock_all() -->
- DRM_MODESET_LOCK_ALL_BEGIN()
+Subject: [Nouveau] [PATCH v2 12/17] drm/i915: cleanup:
+ drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,179 +97,399 @@ drm_modeset_lock_all() with DRM_MODESET_LOCK_ALL_BEGIN() and
 DRM_MODESET_LOCK_ALL_END()
 
 Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
-Reviewed-by: Sean Paul <sean@poorly.run>
 ---
- drivers/gpu/drm/drm_client_modeset.c |  5 +++--
- drivers/gpu/drm/drm_crtc_helper.c    | 18 ++++++++++++------
- drivers/gpu/drm/drm_fb_helper.c      | 10 ++++++----
- drivers/gpu/drm/drm_framebuffer.c    |  6 ++++--
- 4 files changed, 25 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/display/intel_audio.c    | 16 ++++---
+ drivers/gpu/drm/i915/display/intel_display.c  |  5 +-
+ .../drm/i915/display/intel_display_debugfs.c  | 46 ++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_overlay.c  |  6 ++-
+ drivers/gpu/drm/i915/display/intel_pipe_crc.c |  7 ++-
+ drivers/gpu/drm/i915/i915_drv.c               | 13 ++++--
+ 6 files changed, 61 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
-index 5f5184f071ed..43f772543d2a 100644
---- a/drivers/gpu/drm/drm_client_modeset.c
-+++ b/drivers/gpu/drm/drm_client_modeset.c
-@@ -1062,9 +1062,10 @@ static int drm_client_modeset_commit_legacy(struct drm_client_dev *client)
- 	struct drm_device *dev = client->dev;
- 	struct drm_mode_set *mode_set;
- 	struct drm_plane *plane;
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index 532237588511..c64f738cc062 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -26,6 +26,7 @@
+ 
+ #include <drm/drm_edid.h>
+ #include <drm/i915_component.h>
++#include <drm/drm_drv.h>
+ 
+ #include "i915_drv.h"
+ #include "intel_atomic.h"
+@@ -1214,7 +1215,8 @@ static int i915_audio_component_bind(struct device *i915_kdev,
+ {
+ 	struct i915_audio_component *acomp = data;
+ 	struct drm_i915_private *dev_priv = kdev_to_i915(i915_kdev);
+-	int i;
 +	struct drm_modeset_acquire_ctx ctx;
- 	int ret = 0;
++	int i, ret;
+ 
+ 	if (drm_WARN_ON(&dev_priv->drm, acomp->base.ops || acomp->base.dev))
+ 		return -EEXIST;
+@@ -1224,16 +1226,16 @@ static int i915_audio_component_bind(struct device *i915_kdev,
+ 					 DL_FLAG_STATELESS)))
+ 		return -ENOMEM;
+ 
+-	drm_modeset_lock_all(&dev_priv->drm);
++	DRM_MODESET_LOCK_ALL_BEGIN((&dev_priv->drm), ctx, 0, ret);
+ 	acomp->base.ops = &i915_audio_component_ops;
+ 	acomp->base.dev = i915_kdev;
+ 	BUILD_BUG_ON(MAX_PORTS != I915_MAX_PORTS);
+ 	for (i = 0; i < ARRAY_SIZE(acomp->aud_sample_rate); i++)
+ 		acomp->aud_sample_rate[i] = 0;
+ 	dev_priv->audio_component = acomp;
+-	drm_modeset_unlock_all(&dev_priv->drm);
++	DRM_MODESET_LOCK_ALL_END((&dev_priv->drm), ctx, ret);
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ static void i915_audio_component_unbind(struct device *i915_kdev,
+@@ -1241,12 +1243,14 @@ static void i915_audio_component_unbind(struct device *i915_kdev,
+ {
+ 	struct i915_audio_component *acomp = data;
+ 	struct drm_i915_private *dev_priv = kdev_to_i915(i915_kdev);
++	struct drm_modeset_acquire_ctx ctx;
++	int ret;
+ 
+-	drm_modeset_lock_all(&dev_priv->drm);
++	DRM_MODESET_LOCK_ALL_BEGIN((&dev_priv->drm), ctx, 0, ret);
+ 	acomp->base.ops = NULL;
+ 	acomp->base.dev = NULL;
+ 	dev_priv->audio_component = NULL;
+-	drm_modeset_unlock_all(&dev_priv->drm);
++	DRM_MODESET_LOCK_ALL_END((&dev_priv->drm), ctx, ret);
+ 
+ 	device_link_remove(hda_kdev, i915_kdev);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 2bf01416d656..297359411c5f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -12512,6 +12512,7 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
+ int intel_modeset_init_nogem(struct drm_i915_private *i915)
+ {
+ 	struct drm_device *dev = &i915->drm;
++	struct drm_modeset_acquire_ctx ctx;
+ 	enum pipe pipe;
+ 	struct intel_crtc *crtc;
+ 	int ret;
+@@ -12563,9 +12564,9 @@ int intel_modeset_init_nogem(struct drm_i915_private *i915)
+ 	intel_vga_disable(i915);
+ 	intel_setup_outputs(i915);
  
 -	drm_modeset_lock_all(dev);
 +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
- 	drm_for_each_plane(plane, dev) {
- 		if (plane->type != DRM_PLANE_TYPE_PRIMARY)
- 			drm_plane_force_disable(plane);
-@@ -1093,7 +1094,7 @@ static int drm_client_modeset_commit_legacy(struct drm_client_dev *client)
- 			goto out;
- 	}
- out:
+ 	intel_modeset_setup_hw_state(dev, dev->mode_config.acquire_ctx);
 -	drm_modeset_unlock_all(dev);
 +	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
  
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/drm_crtc_helper.c b/drivers/gpu/drm/drm_crtc_helper.c
-index bff917531f33..f3ce073dff79 100644
---- a/drivers/gpu/drm/drm_crtc_helper.c
-+++ b/drivers/gpu/drm/drm_crtc_helper.c
-@@ -218,11 +218,14 @@ static void __drm_helper_disable_unused_functions(struct drm_device *dev)
-  */
- void drm_helper_disable_unused_functions(struct drm_device *dev)
- {
+ 	for_each_intel_crtc(dev, crtc) {
+ 		struct intel_initial_plane_config plane_config = {};
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 8fdacb252bb1..e0a6837996e7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -5,6 +5,7 @@
+ 
+ #include <drm/drm_debugfs.h>
+ #include <drm/drm_fourcc.h>
++#include <drm/drm_drv.h>
+ 
+ #include "i915_debugfs.h"
+ #include "intel_display_debugfs.h"
+@@ -1057,11 +1058,13 @@ static int i915_display_info(struct seq_file *m, void *unused)
+ 	struct intel_crtc *crtc;
+ 	struct drm_connector *connector;
+ 	struct drm_connector_list_iter conn_iter;
 +	struct drm_modeset_acquire_ctx ctx;
+ 	intel_wakeref_t wakeref;
 +	int ret;
+ 
+ 	wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 
+ 	seq_printf(m, "CRTC info\n");
+ 	seq_printf(m, "---------\n");
+@@ -1076,20 +1079,21 @@ static int i915_display_info(struct seq_file *m, void *unused)
+ 		intel_connector_info(m, connector);
+ 	drm_connector_list_iter_end(&conn_iter);
+ 
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+ 
+ 	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ static int i915_shared_dplls_info(struct seq_file *m, void *unused)
+ {
+ 	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+ 	struct drm_device *dev = &dev_priv->drm;
+-	int i;
++	struct drm_modeset_acquire_ctx ctx;
++	int i, ret;
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 
+ 	seq_printf(m, "PLL refclks: non-SSC: %d kHz, SSC: %d kHz\n",
+ 		   dev_priv->dpll.ref_clks.nssc,
+@@ -1132,9 +1136,9 @@ static int i915_shared_dplls_info(struct seq_file *m, void *unused)
+ 		seq_printf(m, " mg_pll_tdc_coldst_bias: 0x%08x\n",
+ 			   pll->state.hw_state.mg_pll_tdc_coldst_bias);
+ 	}
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ static int i915_ipc_status_show(struct seq_file *m, void *data)
+@@ -1193,13 +1197,15 @@ static int i915_ddb_info(struct seq_file *m, void *unused)
+ {
+ 	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+ 	struct drm_device *dev = &dev_priv->drm;
++	struct drm_modeset_acquire_ctx ctx;
+ 	struct skl_ddb_entry *entry;
+ 	struct intel_crtc *crtc;
++	int ret;
+ 
+ 	if (DISPLAY_VER(dev_priv) < 9)
+ 		return -ENODEV;
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 
+ 	seq_printf(m, "%-15s%8s%8s%8s\n", "", "Start", "End", "Size");
+ 
+@@ -1223,9 +1229,9 @@ static int i915_ddb_info(struct seq_file *m, void *unused)
+ 			   entry->end, skl_ddb_entry_size(entry));
+ 	}
+ 
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ static void drrs_status_per_crtc(struct seq_file *m,
+@@ -1303,10 +1309,12 @@ static int i915_drrs_status(struct seq_file *m, void *unused)
+ {
+ 	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+ 	struct drm_device *dev = &dev_priv->drm;
++	struct drm_modeset_acquire_ctx ctx;
+ 	struct intel_crtc *crtc;
+ 	int active_crtc_cnt = 0;
++	int ret;
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 	for_each_intel_crtc(dev, crtc) {
+ 		if (crtc->base.state->active) {
+ 			active_crtc_cnt++;
+@@ -1315,7 +1323,7 @@ static int i915_drrs_status(struct seq_file *m, void *unused)
+ 			drrs_status_per_crtc(m, dev, crtc);
+ 		}
+ 	}
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+ 
+ 	if (!active_crtc_cnt)
+ 		seq_puts(m, "No active crtc found\n");
+@@ -1607,8 +1615,10 @@ static void wm_latency_show(struct seq_file *m, const u16 wm[8])
+ {
+ 	struct drm_i915_private *dev_priv = m->private;
+ 	struct drm_device *dev = &dev_priv->drm;
++	struct drm_modeset_acquire_ctx ctx;
+ 	int level;
+ 	int num_levels;
++	int ret;
+ 
+ 	if (IS_CHERRYVIEW(dev_priv))
+ 		num_levels = 3;
+@@ -1619,7 +1629,7 @@ static void wm_latency_show(struct seq_file *m, const u16 wm[8])
+ 	else
+ 		num_levels = ilk_wm_max_level(dev_priv) + 1;
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 
+ 	for (level = 0; level < num_levels; level++) {
+ 		unsigned int latency = wm[level];
+@@ -1640,7 +1650,7 @@ static void wm_latency_show(struct seq_file *m, const u16 wm[8])
+ 			   level, wm[level], latency / 10, latency % 10);
+ 	}
+ 
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+ }
+ 
+ static int pri_wm_latency_show(struct seq_file *m, void *data)
+@@ -1724,6 +1734,7 @@ static ssize_t wm_latency_write(struct file *file, const char __user *ubuf,
+ 	struct seq_file *m = file->private_data;
+ 	struct drm_i915_private *dev_priv = m->private;
+ 	struct drm_device *dev = &dev_priv->drm;
++	struct drm_modeset_acquire_ctx ctx;
+ 	u16 new[8] = { 0 };
+ 	int num_levels;
+ 	int level;
+@@ -1753,12 +1764,15 @@ static ssize_t wm_latency_write(struct file *file, const char __user *ubuf,
+ 	if (ret != num_levels)
+ 		return -EINVAL;
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 
+ 	for (level = 0; level < num_levels; level++)
+ 		wm[level] = new[level];
+ 
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
 +
- 	WARN_ON(drm_drv_uses_atomic_modeset(dev));
++	if (ret)
++		return ret;
  
--	drm_modeset_lock_all(dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
- 	__drm_helper_disable_unused_functions(dev);
--	drm_modeset_unlock_all(dev);
-+	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+ 	return len;
  }
- EXPORT_SYMBOL(drm_helper_disable_unused_functions);
+diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+index 7e3f5c6ca484..c0ee135e5499 100644
+--- a/drivers/gpu/drm/i915/display/intel_overlay.c
++++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+@@ -27,6 +27,7 @@
+  */
  
-@@ -942,12 +945,14 @@ void drm_helper_resume_force_mode(struct drm_device *dev)
- 	struct drm_crtc *crtc;
- 	struct drm_encoder *encoder;
- 	const struct drm_crtc_helper_funcs *crtc_funcs;
-+	struct drm_modeset_acquire_ctx ctx;
- 	int encoder_dpms;
- 	bool ret;
-+	int err;
+ #include <drm/drm_fourcc.h>
++#include <drm/drm_drv.h>
  
- 	WARN_ON(drm_drv_uses_atomic_modeset(dev));
- 
--	drm_modeset_lock_all(dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
- 	drm_for_each_crtc(crtc, dev) {
- 
- 		if (!crtc->enabled)
-@@ -982,7 +987,7 @@ void drm_helper_resume_force_mode(struct drm_device *dev)
- 
- 	/* disable the unused connectors while restoring the modesetting */
- 	__drm_helper_disable_unused_functions(dev);
--	drm_modeset_unlock_all(dev);
-+	DRM_MODESET_LOCK_ALL_END(dev, ctx, err);
- }
- EXPORT_SYMBOL(drm_helper_resume_force_mode);
- 
-@@ -1002,9 +1007,10 @@ EXPORT_SYMBOL(drm_helper_resume_force_mode);
- int drm_helper_force_disable_all(struct drm_device *dev)
+ #include "gem/i915_gem_pm.h"
+ #include "gt/intel_gpu_commands.h"
+@@ -1263,6 +1264,7 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
  {
- 	struct drm_crtc *crtc;
+ 	struct drm_intel_overlay_attrs *attrs = data;
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
 +	struct drm_modeset_acquire_ctx ctx;
- 	int ret = 0;
+ 	struct intel_overlay *overlay;
+ 	int ret;
+ 
+@@ -1272,7 +1274,7 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
+ 		return -ENODEV;
+ 	}
  
 -	drm_modeset_lock_all(dev);
 +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
- 	drm_for_each_crtc(crtc, dev)
- 		if (crtc->enabled) {
- 			struct drm_mode_set set = {
-@@ -1016,7 +1022,7 @@ int drm_helper_force_disable_all(struct drm_device *dev)
- 				goto out;
- 		}
- out:
+ 
+ 	ret = -EINVAL;
+ 	if (!(attrs->flags & I915_OVERLAY_UPDATE_ATTRS)) {
+@@ -1329,7 +1331,7 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
+ 
+ 	ret = 0;
+ out_unlock:
 -	drm_modeset_unlock_all(dev);
 +	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
- 	return ret;
- }
- EXPORT_SYMBOL(drm_helper_force_disable_all);
-diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
-index 3ab078321045..6860223f0068 100644
---- a/drivers/gpu/drm/drm_fb_helper.c
-+++ b/drivers/gpu/drm/drm_fb_helper.c
-@@ -940,10 +940,11 @@ static int setcmap_legacy(struct fb_cmap *cmap, struct fb_info *info)
- 	struct drm_fb_helper *fb_helper = info->par;
- 	struct drm_mode_set *modeset;
- 	struct drm_crtc *crtc;
-+	struct drm_modeset_acquire_ctx ctx;
- 	u16 *r, *g, *b;
- 	int ret = 0;
- 
--	drm_modeset_lock_all(fb_helper->dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(fb_helper->dev, ctx, 0, ret);
- 	drm_client_for_each_modeset(modeset, &fb_helper->client) {
- 		crtc = modeset->crtc;
- 		if (!crtc->funcs->gamma_set || !crtc->gamma_size) {
-@@ -970,7 +971,7 @@ static int setcmap_legacy(struct fb_cmap *cmap, struct fb_info *info)
- 			goto out;
- 	}
- out:
--	drm_modeset_unlock_all(fb_helper->dev);
-+	DRM_MODESET_LOCK_ALL_END(fb_helper->dev, ctx, ret);
  
  	return ret;
  }
-@@ -1441,10 +1442,11 @@ static int pan_display_legacy(struct fb_var_screeninfo *var,
- 	struct drm_fb_helper *fb_helper = info->par;
- 	struct drm_client_dev *client = &fb_helper->client;
- 	struct drm_mode_set *modeset;
-+	struct drm_modeset_acquire_ctx ctx;
- 	int ret = 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.c b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
+index 8ac263f471be..d0bc74904b93 100644
+--- a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
++++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
+@@ -29,6 +29,8 @@
+ #include <linux/debugfs.h>
+ #include <linux/seq_file.h>
  
- 	mutex_lock(&client->modeset_mutex);
--	drm_modeset_lock_all(fb_helper->dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(fb_helper->dev, ctx, 0, ret);
- 	drm_client_for_each_modeset(modeset, client) {
- 		modeset->x = var->xoffset;
- 		modeset->y = var->yoffset;
-@@ -1457,7 +1459,7 @@ static int pan_display_legacy(struct fb_var_screeninfo *var,
- 			}
++#include <drm/drm_drv.h>
++
+ #include "intel_atomic.h"
+ #include "intel_de.h"
+ #include "intel_display_types.h"
+@@ -76,6 +78,7 @@ static int i9xx_pipe_crc_auto_source(struct drm_i915_private *dev_priv,
+ 				     enum intel_pipe_crc_source *source)
+ {
+ 	struct drm_device *dev = &dev_priv->drm;
++	struct drm_modeset_acquire_ctx ctx;
+ 	struct intel_encoder *encoder;
+ 	struct intel_crtc *crtc;
+ 	struct intel_digital_port *dig_port;
+@@ -83,7 +86,7 @@ static int i9xx_pipe_crc_auto_source(struct drm_i915_private *dev_priv,
+ 
+ 	*source = INTEL_PIPE_CRC_SOURCE_PIPE;
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 	for_each_intel_encoder(dev, encoder) {
+ 		if (!encoder->base.crtc)
+ 			continue;
+@@ -120,7 +123,7 @@ static int i9xx_pipe_crc_auto_source(struct drm_i915_private *dev_priv,
+ 			break;
  		}
  	}
--	drm_modeset_unlock_all(fb_helper->dev);
-+	DRM_MODESET_LOCK_ALL_END(fb_helper->dev, ctx, ret);
- 	mutex_unlock(&client->modeset_mutex);
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
  
  	return ret;
-diff --git a/drivers/gpu/drm/drm_framebuffer.c b/drivers/gpu/drm/drm_framebuffer.c
-index 07f5abc875e9..205e9aa9a409 100644
---- a/drivers/gpu/drm/drm_framebuffer.c
-+++ b/drivers/gpu/drm/drm_framebuffer.c
-@@ -1059,8 +1059,10 @@ static void legacy_remove_fb(struct drm_framebuffer *fb)
- 	struct drm_device *dev = fb->dev;
- 	struct drm_crtc *crtc;
- 	struct drm_plane *plane;
+ }
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 59fb4c710c8c..e7b763ca6d10 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -44,6 +44,7 @@
+ #include <drm/drm_ioctl.h>
+ #include <drm/drm_managed.h>
+ #include <drm/drm_probe_helper.h>
++#include <drm/drm_drv.h>
+ 
+ #include "display/intel_acpi.h"
+ #include "display/intel_bw.h"
+@@ -1009,31 +1010,35 @@ static void i915_driver_postclose(struct drm_device *dev, struct drm_file *file)
+ static void intel_suspend_encoders(struct drm_i915_private *dev_priv)
+ {
+ 	struct drm_device *dev = &dev_priv->drm;
 +	struct drm_modeset_acquire_ctx ctx;
+ 	struct intel_encoder *encoder;
 +	int ret;
  
+ 	if (!HAS_DISPLAY(dev_priv))
+ 		return;
+ 
 -	drm_modeset_lock_all(dev);
 +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
- 	/* remove from any CRTC */
- 	drm_for_each_crtc(crtc, dev) {
- 		if (crtc->primary->fb == fb) {
-@@ -1082,7 +1084,7 @@ static void legacy_remove_fb(struct drm_framebuffer *fb)
- 			drm_plane_force_disable(plane);
- 		}
- 	}
+ 	for_each_intel_encoder(dev, encoder)
+ 		if (encoder->suspend)
+ 			encoder->suspend(encoder);
 -	drm_modeset_unlock_all(dev);
 +	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
  }
  
- /**
+ static void intel_shutdown_encoders(struct drm_i915_private *dev_priv)
+ {
+ 	struct drm_device *dev = &dev_priv->drm;
++	struct drm_modeset_acquire_ctx ctx;
+ 	struct intel_encoder *encoder;
++	int ret;
+ 
+ 	if (!HAS_DISPLAY(dev_priv))
+ 		return;
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 	for_each_intel_encoder(dev, encoder)
+ 		if (encoder->shutdown)
+ 			encoder->shutdown(encoder);
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+ }
+ 
+ void i915_driver_shutdown(struct drm_i915_private *i915)
 -- 
 2.33.0
 
