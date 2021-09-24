@@ -2,65 +2,65 @@ Return-Path: <SRS0=M/hv=OP=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4452EC433EF
-	for <nouveau@archiver.kernel.org>; Sat, 25 Sep 2021 01:59:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 73DD2C433F5
+	for <nouveau@archiver.kernel.org>; Sat, 25 Sep 2021 01:59:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 136FA60F24
-	for <nouveau@archiver.kernel.org>; Sat, 25 Sep 2021 01:59:54 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 136FA60F24
+	by mail.kernel.org (Postfix) with ESMTPS id 45F2D60F24
+	for <nouveau@archiver.kernel.org>; Sat, 25 Sep 2021 01:59:55 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 45F2D60F24
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BB196EEA6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83EED6EEA9;
 	Sat, 25 Sep 2021 01:59:35 +0000 (UTC)
 Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
  [66.111.4.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89C536EDF6;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87CD36EDF1;
  Fri, 24 Sep 2021 06:50:53 +0000 (UTC)
 Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.nyi.internal (Postfix) with ESMTP id 6BC92580B75;
- Fri, 24 Sep 2021 02:43:38 -0400 (EDT)
+ by mailnew.nyi.internal (Postfix) with ESMTP id 507CB58106F;
+ Fri, 24 Sep 2021 02:43:59 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
- by compute3.internal (MEProxy); Fri, 24 Sep 2021 02:43:38 -0400
+ by compute3.internal (MEProxy); Fri, 24 Sep 2021 02:43:59 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
  :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=OqazDwlqGLeCW
- 8on6jqoWGyiDynRUp/lRFNar3oIuVo=; b=o8MLSu9QdD7+d0xFbK6ipk/Ys89+s
- dECh0OLqHpqJw9/xEm4jDEv4tUEC9dmKMoc8wyg1uiWV64j0+xaeKuV+0ZY03S/V
- w8B+yBTJtDAR8WEsT260qhHlWMh38brPgw3tdz75srfzOWWt2YS6U3sM3CN43jXP
- Yro9iBszUWHdc2cNlSGvgNaS8UPU0ycA7dma1L85sUGULcDB983kdCf6w5fY/WBm
- /n+4Sz54heyS/xssLXRgH3qyMAbZ4x59lnBefAZmWSmPme+2qWNA8PJcbqt4bJ5g
- /x6VL7Z8rc1eD8lWEtZIKp+cgG3APoc/MdzEovAdxqspf33hIwgZNKlIA==
+ :mime-version:content-transfer-encoding; s=fm3; bh=42TrVQEBS+T0u
+ aTdbmpol3CTMIgV752tP7jigQFe0eQ=; b=CPK5kTuKRqui3pT5A5oFLcMoiRLMD
+ /DecsrzBd4f/OBGunPloQSHB/BSiZxsE+iRQpTWxX3UdqjBMDKEBks4PagZimtPK
+ ONhgiiA6jUrl9TBz7a/zD1a5e+LqmPgGv+5upWAhh0biFmBuZKxBJ5BBZck3IGO8
+ PH+Klo/jJW2JtW9N12YaGRvyzjGn4kcwgrh6OTpqTkOlCnrIfB0mzO7simeiwN+b
+ uGfqoqeEcVOxjOE9uR1QNXAM0PYe22vSpLJ5GX8dHgDTi4t5QELjBaBqxjnFL2dn
+ dzZ/yaMQ38oU0kIDjz78LPOuxTKaviPAd0JtWo+iUCU1bUF5L+z9uml7g==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:content-transfer-encoding:date:from
  :in-reply-to:message-id:mime-version:references:subject:to
  :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm3; bh=OqazDwlqGLeCW8on6jqoWGyiDynRUp/lRFNar3oIuVo=; b=gCMmZ3ir
- sjbJ+n/GKUO15m5PqyWcNa95tcVr9fWEv/qs5fkX+GET4AoUotETXkFCnhUqkZCM
- Rao+5e8s8e5RZ9QnYVQJIO1JVjkYbUdHDhrHazGnQ2c2J9lze1c9mskr0gt0rvnw
- P5hxOrczVb4KI8Yu67i7f2H2HrYkip6n3oAf7LgqDdMcVeJ+apunja9XhbBwFLCq
- t4/DiD1ZBuUl3BXzVFtXzb8Bwo087GbYavKqiQqqnIj4t2CoXi3bRVeKdk6xOmmM
- hFtmrH6nLFC5BItzCQUJc2ZviQaYL+gtpzB9YZRU+iKp4pHfgez9k7Y3iKXP4dGl
- 1eGLDJkLJWHaDQ==
-X-ME-Sender: <xms:mnNNYZ1U04fg4kl6wNKQqMgpZ9L3vcwwjHnr_i0CPt6fSM0F_SIAHA>
- <xme:mnNNYQExsiFBtYyHhUY5X_M6kUH9EGJjvdXmK9O2j4lqRnMEjWMf8kLBGPpOvkcUH
- GMGKS81SqLOffcuKQ>
-X-ME-Received: <xmr:mnNNYZ4bMnOT82k7jK12QYfHZMHl8HZoHMTzJOJUQoBKZiNPY1_6RcOdWwwNjzsOvan4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudejtddguddtkecutefuodetggdotefrod
+ fm3; bh=42TrVQEBS+T0uaTdbmpol3CTMIgV752tP7jigQFe0eQ=; b=Xg4VeC5Z
+ OIgWUbwetn5d/iZJd9LG54qVBHbjW9GOqVneIF7AP9O6KcWb8Qpq1ufdO0dmvF7i
+ eb8+5Mc8XajsdNswzE54rpHJeunfpC5NGxlQV2ZrBDXM29dfCbTKiIL+rw2kclK9
+ N45WUnyQeS15tBFNfQ6u7iEw3nLzlwgWdpm8RXH9UruyGCf65kz6QIZc7B3+3wZr
+ xJ4a0RnKoN9ZFJxZd0Oh6W+m7x+YZAdYIIS2E4XvDRJpDF0hWhDAze5re6uW76GH
+ bgai4H4u3bCCY5A9a8MwvC5dZ2WF8k10Z+qwbSj+jgeJHPgwJ1friWz/NIIicDK7
+ wzGrfR3V7xEubQ==
+X-ME-Sender: <xms:r3NNYbFcGl23OgpcGMjFb5SO6hi51JU23R7YgFiwaaTRvz0_sNRktQ>
+ <xme:r3NNYYWZooygMnuF7UNVZUaQwZvxjYb_-Q9Nj4n2OpQ2LnGQzuGuDpvKYMeoMOxlA
+ M99fyFEpLXJVicCQA>
+X-ME-Received: <xmr:r3NNYdIzJcvVjscopI-VWn3cAL0qU81qpyMq64QMsHBqd0gWWMYYrhhGgCK6oIg5ydL->
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudejtddguddtlecutefuodetggdotefrod
  ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
  necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
  ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
  ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedtnecu
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedunecu
  rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:mnNNYW0isc82wUEyfEe8lhELWr-QqNRIqhOZNRWxyBniMK3fKDpmPg>
- <xmx:mnNNYcFaGRL4Lo4uQtMEIPlC4UjQSY1SFIARX8CEHezuEgxahR8_2A>
- <xmx:mnNNYX-mJwWw_ywbdy9r-kf2F1cbTFDwpmtCbM4HKuwqzPn-rFsqsw>
- <xmx:mnNNYXC4t7RSpxcaeRbBhVZRVpxQn-G5UHn9_flIIe_ea_706uWo1g>
+X-ME-Proxy: <xmx:r3NNYZEo4RFt0wLeXlZdSuXw6ZkSVivM5E5agYQ2pwFsnoT8aVtcNw>
+ <xmx:r3NNYRVQQEd9v1iG3hQC37E91jYVM-0WkqDf_TaG1j_3j1zvhdmeUQ>
+ <xmx:r3NNYUOTl6guybngicq5DC1xewidITwYhY4TvnlJJF5KalX_ZCt-pA>
+ <xmx:r3NNYZSPRStSwgnezR5sHtJ9-oImratbfeikKoa0vtnK6GorWXiG7A>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 24 Sep 2021 02:43:35 -0400 (EDT)
+ 24 Sep 2021 02:43:56 -0400 (EDT)
 From: Fernando Ramos <greenfoo@u92.eu>
 To: dri-devel@lists.freedesktop.org
 Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
@@ -68,16 +68,16 @@ Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
  linux-tegra@vger.kernel.org
-Date: Fri, 24 Sep 2021 08:43:09 +0200
-Message-Id: <20210924064324.229457-3-greenfoo@u92.eu>
+Date: Fri, 24 Sep 2021 08:43:16 +0200
+Message-Id: <20210924064324.229457-10-greenfoo@u92.eu>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20210924064324.229457-1-greenfoo@u92.eu>
 References: <20210924064324.229457-1-greenfoo@u92.eu>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sat, 25 Sep 2021 01:59:31 +0000
-Subject: [Nouveau] [PATCH v2 02/17] drm/i915: cleanup:
- drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
+Subject: [Nouveau] [PATCH v2 09/17] drm/omapdrm: cleanup:
+ drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,55 +92,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As requested in Documentation/gpu/todo.rst, replace the boilerplate code
-surrounding drm_modeset_lock_all_ctx() with DRM_MODESET_LOCK_ALL_BEGIN()
-and DRM_MODESET_LOCK_ALL_END()
+As requested in Documentation/gpu/todo.rst, replace driver calls to
+drm_modeset_lock_all() with DRM_MODESET_LOCK_ALL_BEGIN() and
+DRM_MODESET_LOCK_ALL_END()
 
 Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
 Reviewed-by: Sean Paul <sean@poorly.run>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 18 +++++-------------
- 1 file changed, 5 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/omapdrm/omap_fb.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 134a6acbd8fb..2bf01416d656 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -43,6 +43,7 @@
- #include <drm/drm_plane_helper.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_rect.h>
+diff --git a/drivers/gpu/drm/omapdrm/omap_fb.c b/drivers/gpu/drm/omapdrm/omap_fb.c
+index 190afc564914..fa7636c13c19 100644
+--- a/drivers/gpu/drm/omapdrm/omap_fb.c
++++ b/drivers/gpu/drm/omapdrm/omap_fb.c
+@@ -9,6 +9,7 @@
+ #include <drm/drm_modeset_helper.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_gem_framebuffer_helper.h>
 +#include <drm/drm_drv.h>
  
- #include "display/intel_audio.h"
- #include "display/intel_crt.h"
-@@ -13476,22 +13477,13 @@ void intel_display_resume(struct drm_device *dev)
- 	if (state)
- 		state->acquire_ctx = &ctx;
+ #include "omap_dmm_tiler.h"
+ #include "omap_drv.h"
+@@ -62,15 +63,17 @@ static int omap_framebuffer_dirty(struct drm_framebuffer *fb,
+ 				  unsigned num_clips)
+ {
+ 	struct drm_crtc *crtc;
++	struct drm_modeset_acquire_ctx ctx;
++	int ret;
  
--	drm_modeset_acquire_init(&ctx, 0);
--
--	while (1) {
--		ret = drm_modeset_lock_all_ctx(dev, &ctx);
--		if (ret != -EDEADLK)
--			break;
--
--		drm_modeset_backoff(&ctx);
--	}
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+-	drm_modeset_lock_all(fb->dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(fb->dev, ctx, 0, ret);
  
--	if (!ret)
--		ret = __intel_display_resume(dev, state, &ctx);
-+	ret = __intel_display_resume(dev, state, &ctx);
+ 	drm_for_each_crtc(crtc, fb->dev)
+ 		omap_crtc_flush(crtc);
  
- 	intel_enable_ipc(dev_priv);
--	drm_modeset_drop_locks(&ctx);
--	drm_modeset_acquire_fini(&ctx);
-+
-+	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+-	drm_modeset_unlock_all(fb->dev);
++	DRM_MODESET_LOCK_ALL_END(fb->dev, ctx, ret);
  
- 	if (ret)
- 		drm_err(&dev_priv->drm,
+-	return 0;
++	return ret;
+ }
+ 
+ static const struct drm_framebuffer_funcs omap_framebuffer_funcs = {
 -- 
 2.33.0
 
