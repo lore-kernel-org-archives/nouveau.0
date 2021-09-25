@@ -2,50 +2,57 @@ Return-Path: <SRS0=VTDi=OW=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EE597C433F5
-	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DD984C433EF
+	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B458B61390
-	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:09 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org B458B61390
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linutronix.de
+	by mail.kernel.org (Postfix) with ESMTPS id 7EB6D6115C
+	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7EB6D6115C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8FFA6F466;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D69F16F465;
 	Sat,  2 Oct 2021 02:24:01 +0000 (UTC)
-X-Greylist: delayed 555 seconds by postgrey-1.36 at gabe;
- Wed, 29 Sep 2021 19:45:29 UTC
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5A436E217;
- Wed, 29 Sep 2021 19:45:29 +0000 (UTC)
-From: John Ogness <john.ogness@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1632944170;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=sSLuRBFlzDo1MDk8K9oDSXuyG2gJ98toV3YqmhcDhug=;
- b=Stg8WZylVaEbGM1n3UX2/Wx5LUrePV+Zkf6u1keyJeA8BLPB8pWH6Y0uvUcaSgsQ4hPglS
- DzI/RVE5EDD7ZvCcVLgX8T7jvc9faHaWZERzTaeT2dgYh24vycCZgk2AnyCfI2PPGrTZIv
- BgdqXU0b+8xbJQiqR1gpXQffabvj1qrlECqduS/CXvp5LW8qYa36VqdX5e1J7DTOPrc11c
- sBsn74qDPUsM4WLNeqW4d/k9o/Gq6AxN3gEuCLMxRcxub5z27qY3s4h4YXWCc8KBd8W++Z
- 2aCQ2+7Lj3b0x1lCV9s3lfwHGIko4eW1DWCf3I6i9edd3e94aH5P+HbZnktqgA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1632944170;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=sSLuRBFlzDo1MDk8K9oDSXuyG2gJ98toV3YqmhcDhug=;
- b=4ZX0DFGEEYRuiDSu9y47IbTvaUUghuyhq8jdw7mO9zzQessRdosX1P/T3O490NMd7IBaTI
- HYV5aSo70LK97bBg==
-To: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Date: Wed, 29 Sep 2021 21:42:09 +0206
-Message-ID: <87v92j18eu.fsf@jogness.linutronix.de>
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
+ [IPv6:2a00:1450:4864:20::42a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D283F6E44D
+ for <nouveau@lists.freedesktop.org>; Sat, 25 Sep 2021 17:02:40 +0000 (UTC)
+Received: by mail-wr1-x42a.google.com with SMTP id w17so37113152wrv.10
+ for <nouveau@lists.freedesktop.org>; Sat, 25 Sep 2021 10:02:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=S8BPntV9XgBE/TCsHZq87GqqqpOoQIwhpecS863GA/A=;
+ b=gTT/VwU+ytgaNHG0xLK88i6bEcZ14G3DVf9NUsj4mGkhhbzmR2EjU0ju2ByEChye7S
+ hK0stRsealcQstMdZiLsGeddqnzEDANpxuBo511+i/vlvR72PM93B85sMJ0fkrWidGXq
+ sOQAkMt+yLGv8+vrRaomVHOe4w6L16o7/4QNpN0yo5b7eJQaDtn464HDn0RyFmzB5HuE
+ Fo6AEwsVhUG4o+uxDCtiZafR7oGxN0yoSYKxFJQd96ZiYzD3f1gRebfH+Olb/QhGk/wi
+ AA6tD84p/y8L7K54eoV6JwSf9tZgW6fsRh0J9TULyJFQKHDPHEkvpZoGuuJjnLAJ3tQ8
+ bGLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=S8BPntV9XgBE/TCsHZq87GqqqpOoQIwhpecS863GA/A=;
+ b=nwKnRyYGkSaCeumpG3PjtP8anEGtsRpCsB2Xx5SsJmFnVs1RLEzfqlWt7h8dfN10aF
+ Jcw0wfH2lCROg7qQUkm+AIVIb9vPCY7Akgd9nfUYqGvYcQTCLNdqDXkqdH2q784H+Vo0
+ YlXVndAXjh14kDxznCNaiXaq3Vsuni4oLaNQIGGs+6bdbrbIUuuifJpd2yFkFt5idFFC
+ giPA5JopXbf6n9feRVPMZXKyoRDrSr0w4a6UVndgc2JFi4L1nz/HOBj7TM20ovV8o2Sj
+ Uu0/dBqVcUqVCRQWRabSLGNvpWsIIRm2cFI6MncqG5RLuNp9hhTK9Qh9DdCDvHPMadZ5
+ jEcw==
+X-Gm-Message-State: AOAM532pPC4W0ZyqG4PLZlpcPalf07VzWhzcM55S05e+M7WkZgBhJRFJ
+ OqhT91lm3eonjLYCC5uhPcqqKN2TVSfw2F/si9esI2rCpKk=
+X-Google-Smtp-Source: ABdhPJwdVN6LjSDPphsJoVFI8yP8BYP9OjbvlNFq5MtA/4oGGcfK31NNZTSVAYvnw2+18tRJh+bzSJBIQ7p4oRTlKJQ=
+X-Received: by 2002:a1c:7201:: with SMTP id n1mr7746763wmc.19.1632589359028;
+ Sat, 25 Sep 2021 10:02:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+From: Oswaldo Graterol <oswaldo.graterol@gmail.com>
+Date: Sat, 25 Sep 2021 13:02:13 -0400
+Message-ID: <CANj0vJkjpj_wQPVKo65ZKTgvTjXOfpC3hBdW60Z27c0mY8ejtA@mail.gmail.com>
+To: nouveau@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="000000000000cf1e0805ccd4d4c8"
 X-Mailman-Approved-At: Sat, 02 Oct 2021 02:24:00 +0000
-Subject: [Nouveau] kmemleak report: 5.15.0-rc3: nouveau_fence_new
+Subject: [Nouveau] Nvidia GeForce 8200M - Image flicker
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,107 +67,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hello,
+--000000000000cf1e0805ccd4d4c8
+Content-Type: text/plain; charset="UTF-8"
 
-With 5.15.0-rc3 on my ppc64 (PowerMac G5) I am seeing kmemleak
-reports. They are always 96 bytes and with the same stacktrace.
+Hi,
 
-unreferenced object 0xc000000011d2a7e0 (size 96):
-  comm "X", pid 1743, jiffies 4295010075 (age 5457.040s)
-  hex dump (first 32 bytes):
-    c0 00 00 00 0b 9f f0 00 c0 00 3d 00 00 b0 85 90  ..........=.....
-    00 00 00 a9 77 41 30 23 c0 00 00 00 08 db b7 c8  ....wA0#........
-  backtrace:
-    [<000000006f102108>] .nouveau_fence_new+0x4c/0x120 [nouveau]
-    [<00000000395e0a83>] .nouveau_bo_move+0x4f0/0x870 [nouveau]
-    [<00000000f17bc6da>] .ttm_bo_handle_move_mem+0xb4/0x1e0 [ttm]
-    [<00000000fb36762f>] .ttm_bo_validate+0x144/0x230 [ttm]
-    [<00000000a84dc7b3>] .nouveau_bo_validate+0x70/0xc0 [nouveau]
-    [<00000000b4e870a2>] .nouveau_gem_ioctl_pushbuf+0x6e0/0x1a90 [nouveau]
-    [<000000007b7c5c38>] .drm_ioctl_kernel+0x104/0x180 [drm]
-    [<000000000af76e30>] .drm_ioctl+0x244/0x490 [drm]
-    [<00000000ebb759e8>] .nouveau_drm_ioctl+0x78/0x140 [nouveau]
-    [<00000000263274a7>] .__se_sys_ioctl+0xfc/0x160
-    [<0000000088c39f3d>] .system_call_exception+0x178/0x2a0
-    [<000000000cfdf34f>] system_call_common+0xec/0x250
+I installed lubuntu 20.04 amd64 in my old laptop (Compaq CQ60-210 US), but
+the screen flicker when i open some program like firefox, i tried nvidia
+drivers to GeForce 8200M GPU, but no work to this hardware, i want to use
+nouveau drivers but need to fix the flicker problems. Can you help me with
+this?
 
-If I decode this stacktrace using decode_stacktrace.sh so that the line
-numbers can be seen, I get the following:
+Thank you for any help you can provide.
 
-.nouveau_fence_new+0x4c/0x120 [nouveau]
-linux-5.15-rc3/include/linux/slab.h:591
-linux-5.15-rc3/include/linux/slab.h:721
-linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_fence.c:424
+-- 
+Oswaldo Graterol
 
-.nouveau_bo_move+0x4f0/0x870 [nouveau]
-linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_bo.c:821
-linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_bo.c:1032
+--000000000000cf1e0805ccd4d4c8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-.ttm_bo_handle_move_mem+0xb4/0x1e0 [ttm]
-linux-5.15-rc3/drivers/gpu/drm/ttm/ttm_bo.c:197
+<div dir=3D"ltr"><div><br clear=3D"all"></div><div>Hi,=C2=A0 <br></div><div=
+><br></div><div>I installed lubuntu 20.04 amd64 in my old laptop (Compaq CQ=
+60-210 US), but the screen flicker when i open some program like firefox, i=
+ tried nvidia drivers to GeForce 8200M GPU, but no work to this hardware, i=
+ want to use nouveau drivers but need to fix the flicker problems. Can you =
+help me with this?</div><div><br></div><div>Thank you for any help you can =
+provide.<br></div><div><br></div><div>-- <br><div dir=3D"ltr" class=3D"gmai=
+l_signature" data-smartmail=3D"gmail_signature"><div>Oswaldo Graterol</div>=
+</div></div></div>
 
-.ttm_bo_validate+0x144/0x230 [ttm]
-linux-5.15-rc3/drivers/gpu/drm/ttm/ttm_bo.c:904
-linux-5.15-rc3/drivers/gpu/drm/ttm/ttm_bo.c:981
-
-.nouveau_bo_validate+0x70/0xc0 [nouveau]
-linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_bo.c:647
-
-.nouveau_gem_ioctl_pushbuf+0x6e0/0x1a90 [nouveau]
-linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_gem.c:548
-linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_gem.c:605
-linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_gem.c:799
-
-.drm_ioctl_kernel+0x104/0x180 [drm]
-linux-5.15-rc3/drivers/gpu/drm/drm_ioctl.c:795
-
-.drm_ioctl+0x244/0x490 [drm]
-linux-5.15-rc3/include/linux/thread_info.h:185
-linux-5.15-rc3/include/linux/thread_info.h:218
-linux-5.15-rc3/include/linux/uaccess.h:199
-linux-5.15-rc3/drivers/gpu/drm/drm_ioctl.c:899
-
-.nouveau_drm_ioctl+0x78/0x140 [nouveau]
-linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_drm.c:1163
-
-.__se_sys_ioctl+0xfc/0x160
-linux-5.15-rc3/fs/ioctl.c:51
-linux-5.15-rc3/fs/ioctl.c:874
-linux-5.15-rc3/fs/ioctl.c:860
-
-.system_call_exception+0x178/0x2a0
-.system_call_exception
-linux-5.15-rc3/arch/powerpc/kernel/interrupt.c:233
-
-system_call_common+0xec/0x250
-linux-5.15-rc3/arch/powerpc/kernel/interrupt_64.S:314
-
-Here are all enabled DRM and NOUVEAU configs in my kernel:
-
-CONFIG_DRM=m
-CONFIG_DRM_KMS_HELPER=m
-CONFIG_DRM_FBDEV_EMULATION=y
-CONFIG_DRM_FBDEV_OVERALLOC=100
-CONFIG_DRM_TTM=m
-CONFIG_DRM_TTM_HELPER=m
-CONFIG_DRM_NOUVEAU=m
-CONFIG_NOUVEAU_DEBUG=5
-CONFIG_NOUVEAU_DEBUG_DEFAULT=3
-CONFIG_DRM_NOUVEAU_BACKLIGHT=y
-CONFIG_DRM_PANEL=y
-CONFIG_DRM_BRIDGE=y
-CONFIG_DRM_PANEL_BRIDGE=y
-CONFIG_DRM_PANEL_ORIENTATION_QUIRKS=m
-
-And lspci output:
-
-0000:f0:10.0 VGA compatible controller: NVIDIA Corporation NV34 [GeForce FX 5200 Ultra] (rev a1)
-
-I have been running 5.12 on my machine without these reports. So it
-might be something that showed up in 5.13 or 5.14 as well.
-
-I do not know if this is a good channel for reporting this, so please
-let me know if I should report it somewhere else. Also let me know if
-you need any additional information from me.
-
-John Ogness
+--000000000000cf1e0805ccd4d4c8--
