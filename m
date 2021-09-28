@@ -2,54 +2,49 @@ Return-Path: <SRS0=VTDi=OW=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8AC50C433F5
-	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 44BB3C433F5
+	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 24C9761390
-	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:12 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 24C9761390
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=cs.unc.edu
+	by mail.kernel.org (Postfix) with ESMTPS id 3E46B61390
+	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:14 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 3E46B61390
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=inspur.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4933D6F468;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FC9E6F469;
 	Sat,  2 Oct 2021 02:24:02 +0000 (UTC)
-Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com
- [IPv6:2607:f8b0:4864:20::92b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0F086EAB1
- for <nouveau@lists.freedesktop.org>; Wed, 29 Sep 2021 15:09:42 +0000 (UTC)
-Received: by mail-ua1-x92b.google.com with SMTP id b10so1823514uaw.1
- for <nouveau@lists.freedesktop.org>; Wed, 29 Sep 2021 08:09:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cs.unc.edu; s=google;
- h=mime-version:from:date:message-id:subject:to;
- bh=D/O+NPyNGwLtciZ8Yu1dLsqPDXbE7nFv8DHaikTZgJY=;
- b=A+MX/AGMwpVT0PZVXCkLzp2fBGW2dm+i5JMGn8zDYxH1sYdHORkRHRkow9PWoVyvJ5
- lol6HnhWFR+Lb8vb26unkRKXrSVLZz9CEwR6MN8VyRyEWHyeyeI2sQj0ZdSV5Q7oTgUB
- 0JRBASHor3kY8MlmuPoIAJSxgv091xD8xPnB4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=D/O+NPyNGwLtciZ8Yu1dLsqPDXbE7nFv8DHaikTZgJY=;
- b=glIaLDQGsCOXtGJZ3+thUl1RthQcsg4Lcd1hwFg51785z5jEC0ni8e+5rmFJrHBb8n
- kX9UmVJOo+kJddpsKuX4L5a6PyfkGo9PHfKFJHYEx5iIpWCkZjIbqf+VCKtabx+iVkbV
- o5fRnb1RFA1UC5JIEf0c2eYfIrWT+QCik48rnu2pKmiLsQCkJ36dxjlO5r+7QIloZIf1
- mFHCiHIFlUuxgZzcDARafRDa40Kzhub9NKFEVdEfGda91TIaRHrILVzE0ycqBtN5kTLy
- pGwbcyUyuVlxYP3uInoFUL/3QAumh3quj8ZruZqfs4wlU6Uycg0691niqXGeU7rqV4EI
- itCg==
-X-Gm-Message-State: AOAM533O6HG9yTiwxjs3bfnL5Ytxi1GPfrhCaYFCeQLSH4s0Qv4BTcK3
- 9SbZlwsBQBF8GJ9HlRXzcV+mfnzlnTC6SdJDDKwSjk7TPVAUGiEu
-X-Google-Smtp-Source: ABdhPJwRtx5OZRsRDYtzYUuu12hBGNuR7FQX0Nn3GB9wD1rSV7eCBiYZuSk8XX9weBKHrb3XjrHfmMAI65aJjbTJp4Q=
-X-Received: by 2002:ab0:5bdc:: with SMTP id z28mr603509uae.35.1632928181301;
- Wed, 29 Sep 2021 08:09:41 -0700 (PDT)
+X-Greylist: delayed 367 seconds by postgrey-1.36 at gabe;
+ Wed, 29 Sep 2021 06:34:52 UTC
+Received: from ssh248.corpemail.net (ssh248.corpemail.net [210.51.61.248])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F1356E175;
+ Wed, 29 Sep 2021 06:34:51 +0000 (UTC)
+Received: from ([60.208.111.195])
+ by ssh248.corpemail.net ((LNX1044)) with ASMTP (SSL) id WFF00035;
+ Wed, 29 Sep 2021 14:28:35 +0800
+Received: from localhost.localdomain (10.72.201.241) by
+ jtjnmail201604.home.langchao.com (10.100.2.4) with Microsoft SMTP Server id
+ 15.1.2308.14; Wed, 29 Sep 2021 14:28:36 +0800
+From: Kai Song <songkai01@inspur.com>
+To: <bskeggs@redhat.com>, <airlied@linux.ie>, <daniel@ffwll.ch>
+CC: <dri-devel@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, Kai Song <songkai01@inspur.com>
+Date: Wed, 29 Sep 2021 03:34:53 +0800
+Message-ID: <20210928193453.60253-1-songkai01@inspur.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-From: Joshua Bakita <jbakita@cs.unc.edu>
-Date: Wed, 29 Sep 2021 11:09:31 -0400
-Message-ID: <CAAy0SxA4zz1Sn1qH_QOgug2zg+zoSvepRr-dsnab-Zv7YFK6_Q@mail.gmail.com>
-To: nouveau@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.72.201.241]
+tUid: 202192914283514c2a61f3762b548d99b739c325297b0
+X-Abuse-Reports-To: service@corp-email.com
+Abuse-Reports-To: service@corp-email.com
+X-Complaints-To: service@corp-email.com
+X-Report-Abuse-To: service@corp-email.com
 X-Mailman-Approved-At: Sat, 02 Oct 2021 02:24:00 +0000
-Subject: [Nouveau] Understanding BAR1 Offset to imem/VRAM PA Mapping
+Subject: [Nouveau] [PATCH] drm/nouveau:Fix gcc '-Wunused-but-set-variable'
+ warnings:
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,24 +59,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hello,
+drivers/gpu/drm/nouveau/nouveau_bo.c: In function 'nouveau_ttm_tt_populate':
+drivers/gpu/drm/nouveau/nouveau_bo.c:1251:17: warning: variable 'dev' set but not used [-Wunused-but-set-variable]
+drivers/gpu/drm/nouveau/nouveau_bo.c: In function 'nouveau_ttm_tt_unpopulate':
+drivers/gpu/drm/nouveau/nouveau_bo.c:1274:17: warning: variable 'dev' set but not used [-Wunused-but-set-variable]
 
-I'm trying to understand how VRAM PAs are mapped to BAR1 offsets on
-Fermi+, but I'm having difficulty digging through the abstractions in
-nouveau. I spent the better part of yesterday digging through the
-nv50_instobj_*() functions, but I lost track of which page tables are
-being modified and where they're coming from somewhere around level 7
-of indirection/aliasing from the nvkm_kmap() call (aka
-nv50_instobj_acquire()) to the actual nvkm_vmm_iter() logic which I
-think does the mapping.
+Signed-off-by: Kai Song <songkai01@inspur.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_bo.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-If page tables are used to map BAR1 offsets to VRAM PAs on Fermi+, I'd
-like to understand their relation to the normal GPU VA to PA page
-tables, and how we tell the hardware which page tables to use for the
-BAR1 mappings.
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index d3b21d318b42..7f5a3a8eec9e 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -1249,7 +1249,6 @@ nouveau_ttm_tt_populate(struct ttm_device *bdev,
+ {
+ 	struct ttm_tt *ttm_dma = (void *)ttm;
+ 	struct nouveau_drm *drm;
+-	struct device *dev;
+ 	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
+ 
+ 	if (ttm_tt_is_populated(ttm))
+@@ -1262,7 +1261,6 @@ nouveau_ttm_tt_populate(struct ttm_device *bdev,
+ 	}
+ 
+ 	drm = nouveau_bdev(bdev);
+-	dev = drm->dev->dev;
+ 
+ 	return ttm_pool_alloc(&drm->ttm.bdev.pool, ttm, ctx);
+ }
+@@ -1272,7 +1270,6 @@ nouveau_ttm_tt_unpopulate(struct ttm_device *bdev,
+ 			  struct ttm_tt *ttm)
+ {
+ 	struct nouveau_drm *drm;
+-	struct device *dev;
+ 	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
+ 
+ 	if (slave)
+@@ -1281,7 +1278,6 @@ nouveau_ttm_tt_unpopulate(struct ttm_device *bdev,
+ 	nouveau_ttm_tt_unbind(bdev, ttm);
+ 
+ 	drm = nouveau_bdev(bdev);
+-	dev = drm->dev->dev;
+ 
+ 	return ttm_pool_free(&drm->ttm.bdev.pool, ttm);
+ }
+-- 
+2.27.0
 
-Best regards,
-
-Joshua Bakita
-PhD Student
-UNC Chapel Hill | Real-Time Systems Group
