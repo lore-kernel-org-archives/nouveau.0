@@ -2,86 +2,50 @@ Return-Path: <SRS0=VTDi=OW=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 559D2C433EF
-	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EE597C433F5
+	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E7BED6115C
-	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org E7BED6115C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
+	by mail.kernel.org (Postfix) with ESMTPS id B458B61390
+	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org B458B61390
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5DEC6F464;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8FFA6F466;
 	Sat,  2 Oct 2021 02:24:01 +0000 (UTC)
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com
- [IPv6:2607:f8b0:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 700736E96C
- for <nouveau@lists.freedesktop.org>; Tue, 28 Sep 2021 20:05:44 +0000 (UTC)
-Received: by mail-pf1-x42e.google.com with SMTP id 145so19809846pfz.11
- for <nouveau@lists.freedesktop.org>; Tue, 28 Sep 2021 13:05:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=tt9tt/F3IxLyQ34cK+9pj6tNPzMMJ1v10W8CXUTZIXc=;
- b=N3sK4GpDM7NoausvCZ7uvCv2xW8y1o2GqpLxTtHdEz+qukAhK9GRVXI15tRB36rXkG
- nIIXXm2zgad8mAZpCf5s5YQsjUW2aE4PBDSL5ia/k1Nt9Mo4BFgPQLAOAlIwoYQXGXuH
- fmr97KMI5Q8zlbFdiIq/dYgMzPBdrUuYP8EE4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=tt9tt/F3IxLyQ34cK+9pj6tNPzMMJ1v10W8CXUTZIXc=;
- b=vEi1orz6se0xbmstTSlJN0JNpgPUc+u3vv9+cZjAHxtFaRtmOOIsCssPYN4JRgZgEF
- FdcBmKTK9NHKWbmmAbqQvQawGXQ9aiUfRVrTb+eWY0kIZ6pxkLm9TAh2xsjLo8Ukt3LC
- XEiHaRhuKnJGtuBP06Cnn98CSTB2DiIk5X3PhNMFWKOWyxDnzHlRmvYfoGGVpKWRSbon
- OUdJ94qBl/Q8GVGw3JW8gJxd7bRH1GTpyYTYOzF5wQ5PydIdBEmum8SS25SNV6zMeFZN
- /b9syAdlfTZYGjEP1GJwoBF4OV4wzCflqhTqOYjco4Lt2XWT/ja7i1sxFQ3R5TKfOAVG
- +tUw==
-X-Gm-Message-State: AOAM532NnQVniTcmeh0X/wGf759FZwffe457vTbMY9afmTeYR55Cufng
- X1k9PKcT9SmDgMAER7rgoWrQPnT8zhBc+Q==
-X-Google-Smtp-Source: ABdhPJxySKRj3Ymobn4cW8Zr7jA5mrjXJtwqNzCbmNi+Pwn+9z38p12fB2t6Cw7rOFPXFzcpsvOFFw==
-X-Received: by 2002:a63:9317:: with SMTP id b23mr6173088pge.199.1632859543620; 
- Tue, 28 Sep 2021 13:05:43 -0700 (PDT)
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com.
- [209.85.215.180])
- by smtp.gmail.com with ESMTPSA id d3sm8947pfn.156.2021.09.28.13.05.43
- for <nouveau@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 28 Sep 2021 13:05:43 -0700 (PDT)
-Received: by mail-pg1-f180.google.com with SMTP id m21so183471pgu.13
- for <nouveau@lists.freedesktop.org>; Tue, 28 Sep 2021 13:05:43 -0700 (PDT)
-X-Received: by 2002:a05:6e02:1847:: with SMTP id
- b7mr5900911ilv.180.1632859215623; 
- Tue, 28 Sep 2021 13:00:15 -0700 (PDT)
+X-Greylist: delayed 555 seconds by postgrey-1.36 at gabe;
+ Wed, 29 Sep 2021 19:45:29 UTC
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5A436E217;
+ Wed, 29 Sep 2021 19:45:29 +0000 (UTC)
+From: John Ogness <john.ogness@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1632944170;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=sSLuRBFlzDo1MDk8K9oDSXuyG2gJ98toV3YqmhcDhug=;
+ b=Stg8WZylVaEbGM1n3UX2/Wx5LUrePV+Zkf6u1keyJeA8BLPB8pWH6Y0uvUcaSgsQ4hPglS
+ DzI/RVE5EDD7ZvCcVLgX8T7jvc9faHaWZERzTaeT2dgYh24vycCZgk2AnyCfI2PPGrTZIv
+ BgdqXU0b+8xbJQiqR1gpXQffabvj1qrlECqduS/CXvp5LW8qYa36VqdX5e1J7DTOPrc11c
+ sBsn74qDPUsM4WLNeqW4d/k9o/Gq6AxN3gEuCLMxRcxub5z27qY3s4h4YXWCc8KBd8W++Z
+ 2aCQ2+7Lj3b0x1lCV9s3lfwHGIko4eW1DWCf3I6i9edd3e94aH5P+HbZnktqgA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1632944170;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=sSLuRBFlzDo1MDk8K9oDSXuyG2gJ98toV3YqmhcDhug=;
+ b=4ZX0DFGEEYRuiDSu9y47IbTvaUUghuyhq8jdw7mO9zzQessRdosX1P/T3O490NMd7IBaTI
+ HYV5aSo70LK97bBg==
+To: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Date: Wed, 29 Sep 2021 21:42:09 +0206
+Message-ID: <87v92j18eu.fsf@jogness.linutronix.de>
 MIME-Version: 1.0
-References: <20210927201206.682788-1-lyude@redhat.com>
- <20210927201206.682788-3-lyude@redhat.com>
-In-Reply-To: <20210927201206.682788-3-lyude@redhat.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Tue, 28 Sep 2021 13:00:04 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V00-z=zvh6oZVYt7Hw00o07zEYxCa4zMrCmgNKEzcBCw@mail.gmail.com>
-Message-ID: <CAD=FV=V00-z=zvh6oZVYt7Hw00o07zEYxCa4zMrCmgNKEzcBCw@mail.gmail.com>
-To: Lyude Paul <lyude@redhat.com>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>, 
- dri-devel <dri-devel@lists.freedesktop.org>,
- Rajeev Nandan <rajeevny@codeaurora.org>, 
- Satadru Pramanik <satadru@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Ben Skeggs <bskeggs@redhat.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
- Sean Paul <seanpaul@chromium.org>, open list <linux-kernel@vger.kernel.org>, 
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 X-Mailman-Approved-At: Sat, 02 Oct 2021 02:24:00 +0000
-Subject: Re: [Nouveau] [PATCH 2/3] drm/dp,
- drm/i915: Add support for VESA backlights using PWM for brightness
- control
+Subject: [Nouveau] kmemleak report: 5.15.0-rc3: nouveau_fence_new
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,92 +60,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
+Hello,
 
-On Mon, Sep 27, 2021 at 1:12 PM Lyude Paul <lyude@redhat.com> wrote:
->
-> @@ -3305,11 +3313,10 @@ EXPORT_SYMBOL(drm_edp_backlight_enable);
->   * @bl: Backlight capability info from drm_edp_backlight_init()
->   *
->   * This function handles disabling DPCD backlight controls on a panel over AUX. Note that some
-> - * panels have backlights that are enabled/disabled by other means, despite having their brightness
-> - * values controlled through DPCD. On such panels &drm_edp_backlight_info.aux_enable will be set to
-> - * %false, this function will become a no-op (and we will skip updating
-> - * %DP_EDP_DISPLAY_CONTROL_REGISTER), and the driver must take care to perform it's own
-> - * implementation specific step for disabling the backlight.
-> + * panels have backlights that are enabled/disabled via PWM. On such panels
-> + * &drm_edp_backlight_info.aux_enable will be set to %false, this function will become a no-op (and
-> + * we will skip updating %DP_EDP_DISPLAY_CONTROL_REGISTER), and the driver must handle disabling the
-> + * backlight via PWM.
+With 5.15.0-rc3 on my ppc64 (PowerMac G5) I am seeing kmemleak
+reports. They are always 96 bytes and with the same stacktrace.
 
-I'm not sure I understand the comment above. You say "enabled/disabled
-via PWM" and that doesn't make sense w/ my mental model. Normally I
-think of a PWM allowing you to adjust the brightness and there being a
-separate GPIO that's in charge of enable/disable. To some extent you
-could think of a PWM as being "disabled" when its duty cycle is 0%,
-but usually there's separate "enable" logic that really has nothing to
-do with the PWM itself.
+unreferenced object 0xc000000011d2a7e0 (size 96):
+  comm "X", pid 1743, jiffies 4295010075 (age 5457.040s)
+  hex dump (first 32 bytes):
+    c0 00 00 00 0b 9f f0 00 c0 00 3d 00 00 b0 85 90  ..........=.....
+    00 00 00 a9 77 41 30 23 c0 00 00 00 08 db b7 c8  ....wA0#........
+  backtrace:
+    [<000000006f102108>] .nouveau_fence_new+0x4c/0x120 [nouveau]
+    [<00000000395e0a83>] .nouveau_bo_move+0x4f0/0x870 [nouveau]
+    [<00000000f17bc6da>] .ttm_bo_handle_move_mem+0xb4/0x1e0 [ttm]
+    [<00000000fb36762f>] .ttm_bo_validate+0x144/0x230 [ttm]
+    [<00000000a84dc7b3>] .nouveau_bo_validate+0x70/0xc0 [nouveau]
+    [<00000000b4e870a2>] .nouveau_gem_ioctl_pushbuf+0x6e0/0x1a90 [nouveau]
+    [<000000007b7c5c38>] .drm_ioctl_kernel+0x104/0x180 [drm]
+    [<000000000af76e30>] .drm_ioctl+0x244/0x490 [drm]
+    [<00000000ebb759e8>] .nouveau_drm_ioctl+0x78/0x140 [nouveau]
+    [<00000000263274a7>] .__se_sys_ioctl+0xfc/0x160
+    [<0000000088c39f3d>] .system_call_exception+0x178/0x2a0
+    [<000000000cfdf34f>] system_call_common+0xec/0x250
 
-In general, it seems like the options are:
+If I decode this stacktrace using decode_stacktrace.sh so that the line
+numbers can be seen, I get the following:
 
-1. DPCD controls PWM and the "enable" logic.
+.nouveau_fence_new+0x4c/0x120 [nouveau]
+linux-5.15-rc3/include/linux/slab.h:591
+linux-5.15-rc3/include/linux/slab.h:721
+linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_fence.c:424
 
-2. DPCD controls PWM but requires an external "enable" GPIO.
+.nouveau_bo_move+0x4f0/0x870 [nouveau]
+linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_bo.c:821
+linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_bo.c:1032
 
-3. We require an external PWM but DPCD controls the "enable" logic.
+.ttm_bo_handle_move_mem+0xb4/0x1e0 [ttm]
+linux-5.15-rc3/drivers/gpu/drm/ttm/ttm_bo.c:197
 
-Maybe you need a second "capability" to describe whether the client of
-your code knows how to control an enable GPIO? ...or perhaps better
-you don't need a capability and you can just assume that if the client
-needs to set an "enable" GPIO that it will do so. That would match how
-things work today. AKA:
+.ttm_bo_validate+0x144/0x230 [ttm]
+linux-5.15-rc3/drivers/gpu/drm/ttm/ttm_bo.c:904
+linux-5.15-rc3/drivers/gpu/drm/ttm/ttm_bo.c:981
 
-a) Client calls the AUX backlight code to "enable"
+.nouveau_bo_validate+0x70/0xc0 [nouveau]
+linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_bo.c:647
 
-b) AUX backlight code will set the "enable" bit if supported.
+.nouveau_gem_ioctl_pushbuf+0x6e0/0x1a90 [nouveau]
+linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_gem.c:548
+linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_gem.c:605
+linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_gem.c:799
 
-c) Client will set the "enable" GPIO if it knows about one.
+.drm_ioctl_kernel+0x104/0x180 [drm]
+linux-5.15-rc3/drivers/gpu/drm/drm_ioctl.c:795
 
-Presumably only one of b) or c) will actually do something. If neither
-does something then this panel simply isn't compatible with this
-board.
+.drm_ioctl+0x244/0x490 [drm]
+linux-5.15-rc3/include/linux/thread_info.h:185
+linux-5.15-rc3/include/linux/thread_info.h:218
+linux-5.15-rc3/include/linux/uaccess.h:199
+linux-5.15-rc3/drivers/gpu/drm/drm_ioctl.c:899
 
+.nouveau_drm_ioctl+0x78/0x140 [nouveau]
+linux-5.15-rc3/drivers/gpu/drm/nouveau/nouveau_drm.c:1163
 
-> +/**
-> + * drm_edp_backlight_supported() - Check an eDP DPCD for VESA backlight support
-> + * @aux: The AUX channel, only used for debug logging
-> + * @edp_dpcd: The DPCD to check
-> + * @caps: The backlight capabilities this driver supports
-> + *
-> + * Returns: %True if @edp_dpcd indicates that VESA backlight controls are supported, %false
-> + * otherwise
-> + */
-> +bool drm_edp_backlight_supported(struct drm_dp_aux *aux,
-> +                                const u8 edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE],
-> +                                enum drm_edp_backlight_driver_caps caps)
-> +{
-> +       if (!(edp_dpcd[1] & DP_EDP_TCON_BACKLIGHT_ADJUSTMENT_CAP))
-> +               return false;
-> +
-> +       if (!(caps & DRM_EDP_BACKLIGHT_DRIVER_CAP_PWM) &&
-> +           (!(edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP) ||
-> +            !(edp_dpcd[2] & DP_EDP_BACKLIGHT_AUX_ENABLE_CAP))) {
+.__se_sys_ioctl+0xfc/0x160
+linux-5.15-rc3/fs/ioctl.c:51
+linux-5.15-rc3/fs/ioctl.c:874
+linux-5.15-rc3/fs/ioctl.c:860
 
-Elsewhere you match DP_EDP_BACKLIGHT_AUX_ENABLE_CAP against
-edp_dpcd[1]. Here you match against [2]. Are you sure that's correct?
+.system_call_exception+0x178/0x2a0
+.system_call_exception
+linux-5.15-rc3/arch/powerpc/kernel/interrupt.c:233
 
+system_call_common+0xec/0x250
+linux-5.15-rc3/arch/powerpc/kernel/interrupt_64.S:314
 
->  /*
->   * DisplayPort AUX channel
->   */
-> @@ -2200,7 +2182,11 @@ drm_dp_has_quirk(const struct drm_dp_desc *desc, enum drm_dp_quirk quirk)
->   * @pwm_freq_pre_divider: The PWM frequency pre-divider value being used for this backlight, if any
->   * @max: The maximum backlight level that may be set
->   * @lsb_reg_used: Do we also write values to the DP_EDP_BACKLIGHT_BRIGHTNESS_LSB register?
-> - * @aux_enable: Does the panel support the AUX enable cap?
-> + * @aux_enable: Does the panel support the AUX enable cap? Always %false when the driver doesn't
-> + * support %DRM_EDP_BACKLIGHT_DRIVER_CAP_PWM
+Here are all enabled DRM and NOUVEAU configs in my kernel:
 
-Why is aux_enable always false if it doesn't support
-DRM_EDP_BACKLIGHT_DRIVER_CAP_PWM? It doesn't seem like the code
-enforces this and I'm not sure why it would. Am I confused?
+CONFIG_DRM=m
+CONFIG_DRM_KMS_HELPER=m
+CONFIG_DRM_FBDEV_EMULATION=y
+CONFIG_DRM_FBDEV_OVERALLOC=100
+CONFIG_DRM_TTM=m
+CONFIG_DRM_TTM_HELPER=m
+CONFIG_DRM_NOUVEAU=m
+CONFIG_NOUVEAU_DEBUG=5
+CONFIG_NOUVEAU_DEBUG_DEFAULT=3
+CONFIG_DRM_NOUVEAU_BACKLIGHT=y
+CONFIG_DRM_PANEL=y
+CONFIG_DRM_BRIDGE=y
+CONFIG_DRM_PANEL_BRIDGE=y
+CONFIG_DRM_PANEL_ORIENTATION_QUIRKS=m
+
+And lspci output:
+
+0000:f0:10.0 VGA compatible controller: NVIDIA Corporation NV34 [GeForce FX 5200 Ultra] (rev a1)
+
+I have been running 5.12 on my machine without these reports. So it
+might be something that showed up in 5.13 or 5.14 as well.
+
+I do not know if this is a good channel for reporting this, so please
+let me know if I should report it somewhere else. Also let me know if
+you need any additional information from me.
+
+John Ogness
