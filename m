@@ -2,57 +2,54 @@ Return-Path: <SRS0=VTDi=OW=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DD984C433EF
-	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8AC50C433F5
+	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7EB6D6115C
-	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:11 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7EB6D6115C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 24C9761390
+	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 02:24:12 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 24C9761390
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=cs.unc.edu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D69F16F465;
-	Sat,  2 Oct 2021 02:24:01 +0000 (UTC)
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
- [IPv6:2a00:1450:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D283F6E44D
- for <nouveau@lists.freedesktop.org>; Sat, 25 Sep 2021 17:02:40 +0000 (UTC)
-Received: by mail-wr1-x42a.google.com with SMTP id w17so37113152wrv.10
- for <nouveau@lists.freedesktop.org>; Sat, 25 Sep 2021 10:02:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4933D6F468;
+	Sat,  2 Oct 2021 02:24:02 +0000 (UTC)
+Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com
+ [IPv6:2607:f8b0:4864:20::92b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0F086EAB1
+ for <nouveau@lists.freedesktop.org>; Wed, 29 Sep 2021 15:09:42 +0000 (UTC)
+Received: by mail-ua1-x92b.google.com with SMTP id b10so1823514uaw.1
+ for <nouveau@lists.freedesktop.org>; Wed, 29 Sep 2021 08:09:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cs.unc.edu; s=google;
  h=mime-version:from:date:message-id:subject:to;
- bh=S8BPntV9XgBE/TCsHZq87GqqqpOoQIwhpecS863GA/A=;
- b=gTT/VwU+ytgaNHG0xLK88i6bEcZ14G3DVf9NUsj4mGkhhbzmR2EjU0ju2ByEChye7S
- hK0stRsealcQstMdZiLsGeddqnzEDANpxuBo511+i/vlvR72PM93B85sMJ0fkrWidGXq
- sOQAkMt+yLGv8+vrRaomVHOe4w6L16o7/4QNpN0yo5b7eJQaDtn464HDn0RyFmzB5HuE
- Fo6AEwsVhUG4o+uxDCtiZafR7oGxN0yoSYKxFJQd96ZiYzD3f1gRebfH+Olb/QhGk/wi
- AA6tD84p/y8L7K54eoV6JwSf9tZgW6fsRh0J9TULyJFQKHDPHEkvpZoGuuJjnLAJ3tQ8
- bGLQ==
+ bh=D/O+NPyNGwLtciZ8Yu1dLsqPDXbE7nFv8DHaikTZgJY=;
+ b=A+MX/AGMwpVT0PZVXCkLzp2fBGW2dm+i5JMGn8zDYxH1sYdHORkRHRkow9PWoVyvJ5
+ lol6HnhWFR+Lb8vb26unkRKXrSVLZz9CEwR6MN8VyRyEWHyeyeI2sQj0ZdSV5Q7oTgUB
+ 0JRBASHor3kY8MlmuPoIAJSxgv091xD8xPnB4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=S8BPntV9XgBE/TCsHZq87GqqqpOoQIwhpecS863GA/A=;
- b=nwKnRyYGkSaCeumpG3PjtP8anEGtsRpCsB2Xx5SsJmFnVs1RLEzfqlWt7h8dfN10aF
- Jcw0wfH2lCROg7qQUkm+AIVIb9vPCY7Akgd9nfUYqGvYcQTCLNdqDXkqdH2q784H+Vo0
- YlXVndAXjh14kDxznCNaiXaq3Vsuni4oLaNQIGGs+6bdbrbIUuuifJpd2yFkFt5idFFC
- giPA5JopXbf6n9feRVPMZXKyoRDrSr0w4a6UVndgc2JFi4L1nz/HOBj7TM20ovV8o2Sj
- Uu0/dBqVcUqVCRQWRabSLGNvpWsIIRm2cFI6MncqG5RLuNp9hhTK9Qh9DdCDvHPMadZ5
- jEcw==
-X-Gm-Message-State: AOAM532pPC4W0ZyqG4PLZlpcPalf07VzWhzcM55S05e+M7WkZgBhJRFJ
- OqhT91lm3eonjLYCC5uhPcqqKN2TVSfw2F/si9esI2rCpKk=
-X-Google-Smtp-Source: ABdhPJwdVN6LjSDPphsJoVFI8yP8BYP9OjbvlNFq5MtA/4oGGcfK31NNZTSVAYvnw2+18tRJh+bzSJBIQ7p4oRTlKJQ=
-X-Received: by 2002:a1c:7201:: with SMTP id n1mr7746763wmc.19.1632589359028;
- Sat, 25 Sep 2021 10:02:39 -0700 (PDT)
+ bh=D/O+NPyNGwLtciZ8Yu1dLsqPDXbE7nFv8DHaikTZgJY=;
+ b=glIaLDQGsCOXtGJZ3+thUl1RthQcsg4Lcd1hwFg51785z5jEC0ni8e+5rmFJrHBb8n
+ kX9UmVJOo+kJddpsKuX4L5a6PyfkGo9PHfKFJHYEx5iIpWCkZjIbqf+VCKtabx+iVkbV
+ o5fRnb1RFA1UC5JIEf0c2eYfIrWT+QCik48rnu2pKmiLsQCkJ36dxjlO5r+7QIloZIf1
+ mFHCiHIFlUuxgZzcDARafRDa40Kzhub9NKFEVdEfGda91TIaRHrILVzE0ycqBtN5kTLy
+ pGwbcyUyuVlxYP3uInoFUL/3QAumh3quj8ZruZqfs4wlU6Uycg0691niqXGeU7rqV4EI
+ itCg==
+X-Gm-Message-State: AOAM533O6HG9yTiwxjs3bfnL5Ytxi1GPfrhCaYFCeQLSH4s0Qv4BTcK3
+ 9SbZlwsBQBF8GJ9HlRXzcV+mfnzlnTC6SdJDDKwSjk7TPVAUGiEu
+X-Google-Smtp-Source: ABdhPJwRtx5OZRsRDYtzYUuu12hBGNuR7FQX0Nn3GB9wD1rSV7eCBiYZuSk8XX9weBKHrb3XjrHfmMAI65aJjbTJp4Q=
+X-Received: by 2002:ab0:5bdc:: with SMTP id z28mr603509uae.35.1632928181301;
+ Wed, 29 Sep 2021 08:09:41 -0700 (PDT)
 MIME-Version: 1.0
-From: Oswaldo Graterol <oswaldo.graterol@gmail.com>
-Date: Sat, 25 Sep 2021 13:02:13 -0400
-Message-ID: <CANj0vJkjpj_wQPVKo65ZKTgvTjXOfpC3hBdW60Z27c0mY8ejtA@mail.gmail.com>
+From: Joshua Bakita <jbakita@cs.unc.edu>
+Date: Wed, 29 Sep 2021 11:09:31 -0400
+Message-ID: <CAAy0SxA4zz1Sn1qH_QOgug2zg+zoSvepRr-dsnab-Zv7YFK6_Q@mail.gmail.com>
 To: nouveau@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000cf1e0805ccd4d4c8"
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Sat, 02 Oct 2021 02:24:00 +0000
-Subject: [Nouveau] Nvidia GeForce 8200M - Image flicker
+Subject: [Nouveau] Understanding BAR1 Offset to imem/VRAM PA Mapping
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,34 +64,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
---000000000000cf1e0805ccd4d4c8
-Content-Type: text/plain; charset="UTF-8"
+Hello,
 
-Hi,
+I'm trying to understand how VRAM PAs are mapped to BAR1 offsets on
+Fermi+, but I'm having difficulty digging through the abstractions in
+nouveau. I spent the better part of yesterday digging through the
+nv50_instobj_*() functions, but I lost track of which page tables are
+being modified and where they're coming from somewhere around level 7
+of indirection/aliasing from the nvkm_kmap() call (aka
+nv50_instobj_acquire()) to the actual nvkm_vmm_iter() logic which I
+think does the mapping.
 
-I installed lubuntu 20.04 amd64 in my old laptop (Compaq CQ60-210 US), but
-the screen flicker when i open some program like firefox, i tried nvidia
-drivers to GeForce 8200M GPU, but no work to this hardware, i want to use
-nouveau drivers but need to fix the flicker problems. Can you help me with
-this?
+If page tables are used to map BAR1 offsets to VRAM PAs on Fermi+, I'd
+like to understand their relation to the normal GPU VA to PA page
+tables, and how we tell the hardware which page tables to use for the
+BAR1 mappings.
 
-Thank you for any help you can provide.
+Best regards,
 
--- 
-Oswaldo Graterol
-
---000000000000cf1e0805ccd4d4c8
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><br clear=3D"all"></div><div>Hi,=C2=A0 <br></div><div=
-><br></div><div>I installed lubuntu 20.04 amd64 in my old laptop (Compaq CQ=
-60-210 US), but the screen flicker when i open some program like firefox, i=
- tried nvidia drivers to GeForce 8200M GPU, but no work to this hardware, i=
- want to use nouveau drivers but need to fix the flicker problems. Can you =
-help me with this?</div><div><br></div><div>Thank you for any help you can =
-provide.<br></div><div><br></div><div>-- <br><div dir=3D"ltr" class=3D"gmai=
-l_signature" data-smartmail=3D"gmail_signature"><div>Oswaldo Graterol</div>=
-</div></div></div>
-
---000000000000cf1e0805ccd4d4c8--
+Joshua Bakita
+PhD Student
+UNC Chapel Hill | Real-Time Systems Group
