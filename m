@@ -1,89 +1,92 @@
-Return-Path: <SRS0=VTDi=OW=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=aM+t=OX=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 525ECC433EF
-	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 09:14:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E26F2C433F5
+	for <nouveau@archiver.kernel.org>; Sun,  3 Oct 2021 19:51:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 06BDD61B06
-	for <nouveau@archiver.kernel.org>; Sat,  2 Oct 2021 09:14:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 06BDD61B06
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id 62309617E1
+	for <nouveau@archiver.kernel.org>; Sun,  3 Oct 2021 19:51:14 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 62309617E1
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71D696E835;
-	Sat,  2 Oct 2021 09:14:22 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 021396E835
- for <nouveau@lists.freedesktop.org>; Sat,  2 Oct 2021 09:14:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1633166060;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=VJ9RXJTGIQ7TnplzhbGhNK6unhn11194McWtsI39dY4=;
- b=VcVtSCtO/4xlbQeqCAeGEAOVwJD/wlSzMZ+wTr9r96Zz4NZ/qSbGHtpjuV5blUUbJ2S9vc
- O7YPoXCVLUX5CYO7aqBDqyV6mDl5xnQfiFSuaVtGlmjzT/0F5OpEE4lk+66ltafd0oFOAv
- 9GPCvJTKF7dZ1puo+DZVOSl/dWwLiSo=
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
- [209.85.208.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-584-EuU0SvtdOX6uuCToKZ02kg-1; Sat, 02 Oct 2021 05:14:19 -0400
-X-MC-Unique: EuU0SvtdOX6uuCToKZ02kg-1
-Received: by mail-ed1-f72.google.com with SMTP id
- e21-20020a50a695000000b003daa0f84db2so12574432edc.23
- for <nouveau@lists.freedesktop.org>; Sat, 02 Oct 2021 02:14:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=VJ9RXJTGIQ7TnplzhbGhNK6unhn11194McWtsI39dY4=;
- b=QpUDbR4lZ8PVTHLa8N6aefCMAdOra9LbRRcOQEL4BNQxcu3cWj33PBwVHnlHEGaAFT
- UNPrF033gT2AQBoSBezjwpsBgqpwIb+GsIX9kxLXYw3x5Zz0o6hq7Yw38YlOqVBOonJx
- OmZQKpuzcPZpAH5bEuoaJKLzH9+n3pg16Rulrfd8N8eAsuKTgplhrTwwgmFHWTPhsXHZ
- ZN3nj9LjpTYB3fGaHs22nxaaPUGrjPdZuS0c+vjaN5A9tKi5A2N4450cA9yOtBxJk0XV
- 56ne6qCSn0CXb274h+9XFkPzcU8RqCLHo6kZPwP3o5ln86mr9Oe1EBFJZS7Pj+aVMM9s
- Dovg==
-X-Gm-Message-State: AOAM5325DTjgaiIm97/lNNHWo8uVtoLMPc8JvB1ed43U5dA0Aqt6W08f
- oxyWBuEd7D6DHDuUcNagqtS0FLYbvwv53m1rOosjr1vHGPbGpHL/L9PLwB9sKGcvRM7pkHWzpoZ
- X8poGHvH6CI0Vo9JCfNmzgqyXrklCcrJ01b6d3Q+dXvdzhRCa7mA7PU77YIstZWfng438e6WHUy
- sSWw==
-X-Received: by 2002:a17:906:2bd0:: with SMTP id
- n16mr3186265ejg.132.1633166057562; 
- Sat, 02 Oct 2021 02:14:17 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJw1WcknLHya1hGXb5KcKJOBaUIP1K0/AwOnuQKYVTxuWskWhkeiWUzh9k/0uLVoupeZjj/I0g==
-X-Received: by 2002:a17:906:2bd0:: with SMTP id
- n16mr3186232ejg.132.1633166057182; 
- Sat, 02 Oct 2021 02:14:17 -0700 (PDT)
-Received: from x1.localdomain
- (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
- by smtp.gmail.com with ESMTPSA id l23sm3882559ejn.15.2021.10.02.02.14.16
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 02 Oct 2021 02:14:16 -0700 (PDT)
-To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-References: <20211001225344.1752203-1-lyude@redhat.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <a6ea3fa3-fbbd-f5e8-54ab-3929ed9f7294@redhat.com>
-Date: Sat, 2 Oct 2021 11:14:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 238C96E876;
+	Sun,  3 Oct 2021 19:51:13 +0000 (UTC)
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB0D56F501;
+ Sat,  2 Oct 2021 17:28:10 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 647E45804E9;
+ Sat,  2 Oct 2021 13:28:08 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute6.internal (MEProxy); Sat, 02 Oct 2021 13:28:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
+ :from:to:cc:subject:message-id:references:mime-version
+ :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=N
+ dG2AiDGU0yyjfZEfSHSA1eX2my+Y7Dhy95tEwsxOEE=; b=EHf38XIxyX3AijX2q
+ ngopIdoNyr1T5LjiY1RSy1XuPrV8q1XjL/4tLTYscB1g0B6chFWCuxlMe9QImHiV
+ kUpLrMS9xdGbUshDw+eXNLhDLdgo8zVWBjqftwU0nnAVlbE+KFdfEpgLiDq38IZ4
+ AXamJNqMxQXQUKYBEugY/tcVm7z5aaZeWfLZgKrJsiQgRlW4aMI9ca3HhZF090fF
+ TY/u7r/lXgDW9S5blz3NC7PUxKj/TR7c8R646Q4AK7Nu9uCUNIXZXuEROSZtl92o
+ GYGRgcLS1zLTnpzVv/HMzNgUtzsoU8rYdAmiUHJVjxtvP/c6HfwAnyamZYrldcuB
+ 93tzw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:content-type
+ :date:from:in-reply-to:message-id:mime-version:references
+ :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+ :x-sasl-enc; s=fm1; bh=NdG2AiDGU0yyjfZEfSHSA1eX2my+Y7Dhy95tEwsxO
+ EE=; b=RrpcoIklxRRr1rba6cZd76mHODb8D+vtPu79QI+bAxxAMeXKLCDgaupqC
+ JBUzgot1VDDL+3oxEW+xFShKnLUv8F/9i97SMqx++QNxoq3x/LVndAw7I3HX3kdJ
+ /pJ7/W1ykkpDt+vPELlhrLDli4MI+GxLfSzApQw9pc2geW6yCJYw2aH9HHHcrcva
+ uSwZzMvBtjl2+H0v6OiyBRIYP9LmVlltLFMa267Jd579CWYYxFkJfi1BpSL9PqFK
+ aQfe+VLf7jqJ3oShgh3viO7+9jjJLuPfbRhF0qyGiIjt8ilL+WrvObsImLgTXnTr
+ M+oDUovLY3IvonoBXHDIz77IcXOLQ==
+X-ME-Sender: <xms:p5ZYYc6C5hKN4W1y5JtKH-pQV-GWgNVKCNp0gst7MYkbAFgbXncIXw>
+ <xme:p5ZYYd7hiKdkyl5vWoA78zGA5phD8s6tDgUtMlZBjWCMf5CXr0BN4kv6re3BEBXS4
+ dWP_07Ww8KH8SCIOw>
+X-ME-Received: <xmr:p5ZYYbf3PQTUIfpmiTMquywnIKLHp0OtfyBwiq7Vy2Og_pzRfgRNyWCRptIe86pa3FFNjg6T>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudekkedgudduvdcutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefhvghr
+ nhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhhoohesuhelvddrvghuqeenucggtffrrg
+ htthgvrhhnpeeghfffgedufeeuheevtddukedtteeikefgiefhudfhfeffjeetvedtgfff
+ keejudenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghdpmhhuthgvgidrsh
+ honecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhr
+ vggvnhhfohhosehuledvrdgvuh
+X-ME-Proxy: <xmx:qJZYYRJPiM7v-h_OyID40YuW8z7zHCbCpFD7_x7o2gIg1-LmMH0EzQ>
+ <xmx:qJZYYQKb7yPr7CSSefp3QHug76AGInQ4EfuSKY6xBTXXI7qCH73gFw>
+ <xmx:qJZYYSxoB7UTJoL9NFfxQdHs61p9oapG08SeOKgWK_YlS0lJB_xsxQ>
+ <xmx:qJZYYdDxWowz3_IF0LiVoWYot8015Y8My-CogxeqM1cnMlDwleOVxA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 2 Oct 2021 13:28:04 -0400 (EDT)
+Date: Sat, 2 Oct 2021 19:28:02 +0200
+From: Fernando Ramos <greenfoo@u92.eu>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+Message-ID: <YViWomXZWdy/81uT@zacax395.localdomain>
+References: <20210924064324.229457-1-greenfoo@u92.eu>
+ <20211001183655.GW2515@art_vandelay> <YVda4jNSGuQf50JV@intel.com>
+ <20211001204815.GA2515@art_vandelay> <YVeGOyLzuhN7zzV7@intel.com>
+ <YVfEWaLfYWdhezCa@intel.com>
+ <YVgGklsHT5fkavDL@zacax395.localdomain>
 MIME-Version: 1.0
-In-Reply-To: <20211001225344.1752203-1-lyude@redhat.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Nouveau] [Intel-gfx] [PATCH v2 0/4] drm/dp,
- drm/i915: Finish basic PWM support for VESA backlight helpers
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YVgGklsHT5fkavDL@zacax395.localdomain>
+X-Mailman-Approved-At: Sun, 03 Oct 2021 19:51:11 +0000
+Subject: Re: [Nouveau] [Intel-gfx] [PATCH v2 00/17] drm: cleanup: Use
+ DRM_MODESET_LOCK_ALL_* helpers where possible
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,54 +101,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Lyude,
+On 21/10/02 09:13AM, Fernando Ramos wrote:
+> On 21/10/02 05:30AM, Ville Syrjälä wrote:
+> > On Sat, Oct 02, 2021 at 01:05:47AM +0300, Ville Syrjälä wrote:
+> > > On Fri, Oct 01, 2021 at 04:48:15PM -0400, Sean Paul wrote:
+> > > > On Fri, Oct 01, 2021 at 10:00:50PM +0300, Ville Syrjälä wrote:
+> > > > > On Fri, Oct 01, 2021 at 02:36:55PM -0400, Sean Paul wrote:
+> > > > > > 
+> > > > > > Thank you for revising, Fernando! I've pushed the set to drm-misc-next (along
+> > > > > > with the necessary drm-tip conflict resolutions).
+> > > > > 
+> > > > > Ugh. Did anyone actually review the locking changes this does?
+> > > > > I shot the previous i915 stuff down because the commit messages
+> > > > > did not address any of it.
+> > > > 
+> > > > I reviewed the set on 9/17, I didn't see your feedback on that thread.
+> > > 
+> > > It was much earlir than that.
+> > > https://lists.freedesktop.org/archives/dri-devel/2021-June/313193.html
 
-On 10/2/21 12:53 AM, Lyude Paul wrote:
-> When I originally moved all of the VESA backlight code in i915 into DRM
-> helpers, one of the things I didn't have the hardware or time for
-> testing was machines that used a combination of PWM and DPCD in order to
-> control their backlights. This has since then caused some breakages and
-> resulted in us disabling DPCD backlight support on such machines. This
-> works fine, unless you have a machine that actually needs this
-> functionality for backlight controls to work at all. Additionally, we
-> will need to support PWM for when we start adding support for VESA's
-> product (as in the product of multiplication) control mode for better
-> brightness ranges.
-> 
-> So - let's finally finish up implementing basic support for these types
-> of backlights to solve these problems in our DP helpers, along with
-> implementing support for this in i915. And since digging into this issue
-> solved the last questions we really had about probing backlights in i915
-> for the most part, let's update some of the comments around that as
-> well!
+Sorry, I'm new to this and it did not occur to me to search for similar patches
+in the mailing list archives in case there were additional comments that applied
+to my change set.
 
-Backlight control is a topic which I'm reasonably familiar with,
-do you want me to review this series for you ?
+In case I had done that I would have found that, as you mentioned, you had
+already raised two issues back in June:
 
-Regards,
+    On Tue, Jun 29, 2021, Ville Syrjälä wrote:
+    >
+    > That looks wrong. You're using a private ctx here, but still
+    > passing dev->mode_config.acquire_ctx to the lower level stuff.
+    > 
+    > Also DRM_MODESET_LOCK_ALL_{BEGIN,END}() do not seem to be
+    > equivalent to drm_modeset_{lock,unlock}_all() when it comes to 
+    > mode_config.mutex. So would need a proper review whether we
+    > actually need that lock or not.
 
-Hans
+The first one was pointing out the same error I would later repeat in my patch
+series (ups).
+
+After further inspection of the code it looks to me that changing this:
+
+    intel_modeset_setup_hw_state(dev, dev->mode_config.acquire_ctx);
+
+...into this:
+
+    intel_modeset_setup_hw_state(dev, &ctx);
+
+...would be enough.
+
+Why? The only difference between the old drm_modeset_{lock,unlock}_all()
+functions and the new DRM_MODESET_LOCK_ALL_{BEGIN,END}() macros is that the
+former use a global context stored in dev->mode_config.acquire_ctx while the
+latter depend on a user provided one (typically in the stack).
+
+In the old (working) code the global context structure is freed in
+drm_modeset_unlock_all() thus we are sure no one is holding a reference to it at
+that point. This means that as long as no one accesses the global
+dev->mode_config.acquire_ctx context in the block that runs between lock/BEGIN
+and unlock/END, the code should be equivalent before and after my changes.
+
+In fact, now that my patch series removes the drm_modeset_{lock,unlock}_all()
+functions, the acquire_ctx field of the drm_mode_config structure should be
+deleted:
+
+    /**
+     * @acquire_ctx:
+     *
+     * Global implicit acquire context used by atomic drivers for legacy
+     * IOCTLs. Deprecated, since implicit locking contexts make it
+     * impossible to use driver-private &struct drm_modeset_lock. Users of
+     * this must hold @mutex.
+     */
+    struct drm_modeset_acquire_ctx *acquire_ctx;
+
+If I had done that (ie. removing this field) I would have detected the problem
+when compiling.
+
+There is another place (in the amdgpu driver) where this field is still being
+referenced, but before I investigate that I would like to know if you agree that
+this is a good path to follow.
+
+Regarding the second issue you raised...
+
+    > Also DRM_MODESET_LOCK_ALL_{BEGIN,END}() do not seem to be
+    > equivalent to drm_modeset_{lock,unlock}_all() when it comes to 
+    > mode_config.mutex. So would need a proper review whether we
+    > actually need that lock or not.
+
+...the only difference regarding mode_config.mutex I see is that in the new
+macros the mutex is locked only under this condition:
+
+    if (!drm_drv_uses_atomic_modeset(dev))
+
+...which seems reasonable, right? Is this what you were referring to or is it
+something else?
+
+Please let me know what you think.
+
+Thanks!
 
 
-
-> 
-> Changes:
-> * Fixup docs
-> * Add patch to stop us from breaking nouveau
-> 
-> Lyude Paul (4):
->   drm/i915: Add support for panels with VESA backlights with PWM
->     enable/disable
->   drm/nouveau/kms/nv50-: Explicitly check DPCD backlights for aux
->     enable/brightness
->   drm/dp, drm/i915: Add support for VESA backlights using PWM for
->     brightness control
->   drm/i915: Clarify probing order in intel_dp_aux_init_backlight_funcs()
-> 
->  drivers/gpu/drm/drm_dp_helper.c               | 75 +++++++++++------
->  .../drm/i915/display/intel_dp_aux_backlight.c | 80 ++++++++++++++-----
->  drivers/gpu/drm/nouveau/nouveau_backlight.c   |  5 +-
->  include/drm/drm_dp_helper.h                   |  7 +-
->  4 files changed, 122 insertions(+), 45 deletions(-)
-> 
 
