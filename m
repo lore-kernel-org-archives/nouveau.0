@@ -2,67 +2,82 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 28E4AC4332F
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9CCF8C433F5
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F1C706103B
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:15 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org F1C706103B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=net-c.es
+	by mail.kernel.org (Postfix) with ESMTPS id 71F426103B
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:16 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 71F426103B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BA146EA81;
-	Mon, 18 Oct 2021 17:18:34 +0000 (UTC)
-Received: from msg-6.mailo.com (ip-16.mailobj.net [213.182.54.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA9F66ED16;
- Fri, 15 Oct 2021 12:20:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
- t=1634297970; bh=0RCef2c/0z8Xou8hnnbMAxQ5ccP8Kcw0a2QdzLGngUY=;
- h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
- References:MIME-Version:Content-Transfer-Encoding;
- b=N2A4cnBQdM/+ag5iVAEqFQrQW5X170ALpzQm6Ri9QKnmQnU/yF2pdfumlRvwx7qKU
- oTPKQeMhar6bliCaK41MBZ2Bv/WUESMpw0sdRW7jpNwTfgYfchjEUmurFQc//cgkQq
- PGNgI0RAlg8glxbE11VB22fNnSRzKs1B6ehWlrKk=
-Received: by b-3.in.mailobj.net [192.168.90.13] with ESMTP
- via ip-206.mailobj.net [213.182.55.206]
- Fri, 15 Oct 2021 13:38:59 +0200 (CEST)
-X-EA-Auth: oQJsqlKKU+Ee2xFaVThnqrBkDGJDLzAYqbWMI2GZs2IdBiEvZ4TEnMSj9XRtXYK6c1OAOLv0ERJ4V6YIrD5VNTQjnQ1NCtR4
-From: Claudio Suarez <cssk@net-c.es>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
- Maxime Ripard <mripard@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
- Andrzej Hajda <a.hajda@samsung.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Robert Foss <robert.foss@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
- nouveau@lists.freedesktop.org
-Cc: Claudio Suarez <cssk@net-c.es>
-Date: Fri, 15 Oct 2021 13:37:12 +0200
-Message-Id: <20211015113713.630119-15-cssk@net-c.es>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2521F6EE4E;
+	Mon, 18 Oct 2021 17:18:37 +0000 (UTC)
+Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
+ [64.147.123.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BAC96E84A;
+ Thu,  7 Oct 2021 19:38:12 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailnew.west.internal (Postfix) with ESMTP id 4B3C82B009FD;
+ Thu,  7 Oct 2021 15:38:11 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute3.internal (MEProxy); Thu, 07 Oct 2021 15:38:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
+ :to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding; s=fm3; bh=2vRU8CfQA//y8
+ mJpNYyM4Fgn9sjm+M/V2WJONp99P2M=; b=rq+oY61s3KnF97is/ht0v3w2H/glU
+ kM439zn9ix0lXkvvdyGR9ltRGeqQySTbLJlKhNhptDZDJhGfYjInO8nyLDUz57c+
+ NNGKa/xWFkeVcWfPHA+jf8yLkLdsAr0geLC7cqZ1bdOV1gTS0IAgn1mlK4m41otL
+ noIbSVhgJVSWnKtPoRQt+eySDPNBWJ9IER7HSza1UfTudGxl9ZJUBEPsY6Ak1bwU
+ wW5YcVzqNgQFijx26Zi850uiOZrPGMiuZYhI/ekmyFpPR7jgIO4PhsfPR0dbcyZJ
+ xLWXn77yYA8U9qGxOS0t+v+hSOpIBPD2/G1iCpaSNNywuY97f73Q0v/DQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:date:from
+ :in-reply-to:message-id:mime-version:references:subject:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; bh=2vRU8CfQA//y8mJpNYyM4Fgn9sjm+M/V2WJONp99P2M=; b=Jn7vzD/s
+ uo1T/FSGmhLI8GoMz4+A3+KOIYRJiRLe8l6Zgn9h1uxSSl4kBGvQ3DD0RUwpaXqc
+ r2rckLFV4JTYzbGhW2hDiU3/obuFVtj10Jft92UIb+Y7CnGLmnEc5dgqmEksY14l
+ xEbso1aS3r5fo37D/5NPF4jqB9doeaijrQ/bHrQGP/PwtW5yzBfnkhWam26ko6Tk
+ gN8ObC0lwWLigSYJJlC7ZXwrOherp3kg+UlRZB9KtlaNrmKBShFP3KAqGSG2VXiF
+ jbhxDd5RWCfz7/w3a7zhUBNYyOI9I+8j0GmccQt8rmtBbRkieZd3rIRqLgs+JiAS
+ MAcjYRSUc7qUJw==
+X-ME-Sender: <xms:oUxfYbHKVHYD3Ln0GQdXRkIG2ZEPyDO8Ff489A3jq_RgFqUTPGhNQw>
+ <xme:oUxfYYVvVzGImqc7zBRosZhfR0X4sDs4me82a-JuxXnpunoFJUFZE-jW7wT5rf_Tc
+ hUKLEg7xmSHqJpZrA>
+X-ME-Received: <xmr:oUxfYdJRaKyF2Lllzy0mUkOabWViR18WezZK5A7ilgGkkETJdsmVQ2XOPoEIoaR6LQV0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudelkedgudefjecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
+ ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
+ ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedtnecu
+ rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:oUxfYZHuaPBMzdDsFz6MYpJkvZ4IQ3WHUSguCoWrh9scUO98POJRFA>
+ <xmx:oUxfYRWe84qyCZw6OLPSetJSyBS13o-n168RvnfBwXLu2b1HGvZcTw>
+ <xmx:oUxfYUPJA3zizqPfxPVLPkcqEWNoqrnckd2ZsCNbvQjLp17ZuFuvzA>
+ <xmx:oUxfYZTVSnMnhGQXi5Ue1mPFsir835dEAaf49TG_AlVmDnUIM10Itt-7mGs>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 7 Oct 2021 15:38:07 -0400 (EDT)
+From: Fernando Ramos <greenfoo@u92.eu>
+To: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+Date: Thu,  7 Oct 2021 21:37:37 +0200
+Message-Id: <20211007193755.29579-3-greenfoo@u92.eu>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211015113713.630119-1-cssk@net-c.es>
-References: <20211015113713.630119-1-cssk@net-c.es>
+In-Reply-To: <20211007193755.29579-1-greenfoo@u92.eu>
+References: <20211007193755.29579-1-greenfoo@u92.eu>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
-Subject: [Nouveau] [PATCH 14/15] drm/nouveau: replace
- drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+Subject: [Nouveau] [PATCH v3 02/20] drm/i915: cleanup:
+ drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,100 +92,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Once EDID is parsed, the monitor HDMI support information is available
-through drm_display_info.is_hdmi. Retriving the same information with
-drm_detect_hdmi_monitor() is less efficient. Change to
-drm_display_info.is_hdmi
+As requested in Documentation/gpu/todo.rst, replace the boilerplate code
+surrounding drm_modeset_lock_all_ctx() with DRM_MODESET_LOCK_ALL_BEGIN()
+and DRM_MODESET_LOCK_ALL_END()
 
-Signed-off-by: Claudio Suarez <cssk@net-c.es>
+Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
+Reviewed-by: Sean Paul <sean@poorly.run>
 ---
- drivers/gpu/drm/nouveau/dispnv50/disp.c     | 4 ++--
- drivers/gpu/drm/nouveau/dispnv50/head.c     | 8 +-------
- drivers/gpu/drm/nouveau/nouveau_connector.c | 2 +-
- drivers/gpu/drm/nouveau/nouveau_connector.h | 6 ++++++
- 4 files changed, 10 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 18 +++++-------------
+ 1 file changed, 5 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index d7b9f7f8c9e3..fadd58b015d6 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -844,7 +844,7 @@ nv50_hdmi_enable(struct drm_encoder *encoder, struct nouveau_crtc *nv_crtc,
- 	int ret;
- 	int size;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 4f0badb11bbb..cb1142447186 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -43,6 +43,7 @@
+ #include <drm/drm_plane_helper.h>
+ #include <drm/drm_probe_helper.h>
+ #include <drm/drm_rect.h>
++#include <drm/drm_drv.h>
  
--	if (!drm_detect_hdmi_monitor(nv_connector->edid))
-+	if (nouveau_connector_is_hdmi_monitor(&nv_connector->base))
- 		return;
+ #include "display/intel_audio.h"
+ #include "display/intel_crt.h"
+@@ -12656,22 +12657,13 @@ void intel_display_resume(struct drm_device *dev)
+ 	if (state)
+ 		state->acquire_ctx = &ctx;
  
- 	hdmi = &nv_connector->base.display_info.hdmi;
-@@ -1745,7 +1745,7 @@ nv50_sor_atomic_enable(struct drm_encoder *encoder, struct drm_atomic_state *sta
- 			 */
- 			if (mode->clock >= 165000 &&
- 			    nv_encoder->dcb->duallink_possible &&
--			    !drm_detect_hdmi_monitor(nv_connector->edid))
-+			    !nouveau_connector_is_hdmi_monitor(&nv_connector->base))
- 				proto = NV507D_SOR_SET_CONTROL_PROTOCOL_DUAL_TMDS;
- 		} else {
- 			proto = NV507D_SOR_SET_CONTROL_PROTOCOL_SINGLE_TMDS_B;
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/head.c b/drivers/gpu/drm/nouveau/dispnv50/head.c
-index d66f97280282..0a138bfb8f32 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/head.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/head.c
-@@ -127,14 +127,8 @@ nv50_head_atomic_check_view(struct nv50_head_atom *armh,
- 	struct drm_display_mode *omode = &asyh->state.adjusted_mode;
- 	struct drm_display_mode *umode = &asyh->state.mode;
- 	int mode = asyc->scaler.mode;
--	struct edid *edid;
- 	int umode_vdisplay, omode_hdisplay, omode_vdisplay;
- 
--	if (connector->edid_blob_ptr)
--		edid = (struct edid *)connector->edid_blob_ptr->data;
--	else
--		edid = NULL;
+-	drm_modeset_acquire_init(&ctx, 0);
 -
- 	if (!asyc->scaler.full) {
- 		if (mode == DRM_MODE_SCALE_NONE)
- 			omode = umode;
-@@ -162,7 +156,7 @@ nv50_head_atomic_check_view(struct nv50_head_atom *armh,
- 	 */
- 	if ((asyc->scaler.underscan.mode == UNDERSCAN_ON ||
- 	    (asyc->scaler.underscan.mode == UNDERSCAN_AUTO &&
--	     drm_detect_hdmi_monitor(edid)))) {
-+	     nouveau_connector_is_hdmi_monitor(connector)))) {
- 		u32 bX = asyc->scaler.underscan.hborder;
- 		u32 bY = asyc->scaler.underscan.vborder;
- 		u32 r = (asyh->view.oH << 19) / asyh->view.oW;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 22b83a6577eb..211543373b72 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -1010,7 +1010,7 @@ get_tmds_link_bandwidth(struct drm_connector *connector)
- 	unsigned duallink_scale =
- 		nouveau_duallink && nv_encoder->dcb->duallink_possible ? 2 : 1;
+-	while (1) {
+-		ret = drm_modeset_lock_all_ctx(dev, &ctx);
+-		if (ret != -EDEADLK)
+-			break;
+-
+-		drm_modeset_backoff(&ctx);
+-	}
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
  
--	if (drm_detect_hdmi_monitor(nv_connector->edid)) {
-+	if (nouveau_connector_is_hdmi_monitor(connector)) {
- 		info = &nv_connector->base.display_info;
- 		duallink_scale = 1;
- 	}
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.h b/drivers/gpu/drm/nouveau/nouveau_connector.h
-index 40f90e353540..299f3a3b2331 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.h
-@@ -167,6 +167,12 @@ nouveau_connector_is_mst(struct drm_connector *connector)
- 	return encoder->encoder_type == DRM_MODE_ENCODER_DPMST;
- }
+-	if (!ret)
+-		ret = __intel_display_resume(dev, state, &ctx);
++	ret = __intel_display_resume(dev, state, &ctx);
  
-+static inline bool
-+nouveau_connector_is_hdmi_monitor(struct drm_connector *connector)
-+{
-+	return connector->display_info.is_hdmi;
-+}
+ 	intel_enable_ipc(dev_priv);
+-	drm_modeset_drop_locks(&ctx);
+-	drm_modeset_acquire_fini(&ctx);
 +
- #define nouveau_for_each_non_mst_connector_iter(connector, iter) \
- 	drm_for_each_connector_iter(connector, iter) \
- 		for_each_if(!nouveau_connector_is_mst(connector))
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+ 
+ 	if (ret)
+ 		drm_err(&dev_priv->drm,
 -- 
 2.33.0
-
 
