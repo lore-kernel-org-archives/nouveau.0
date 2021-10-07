@@ -2,65 +2,65 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A2E07C433FE
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 381C2C4332F
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7A0CD6103B
+	by mail.kernel.org (Postfix) with ESMTPS id 04FB66103B
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:08 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7A0CD6103B
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 04FB66103B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A60576EA85;
-	Mon, 18 Oct 2021 17:18:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 794BC6EA6B;
+	Mon, 18 Oct 2021 17:18:33 +0000 (UTC)
 Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
  [64.147.123.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B2496E833;
- Thu,  7 Oct 2021 19:39:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CF836F4E3;
+ Thu,  7 Oct 2021 19:39:11 +0000 (UTC)
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id A3CDC2B00A16;
- Thu,  7 Oct 2021 15:39:01 -0400 (EDT)
+ by mailnew.west.internal (Postfix) with ESMTP id A63AC2B009FD;
+ Thu,  7 Oct 2021 15:39:10 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
- by compute6.internal (MEProxy); Thu, 07 Oct 2021 15:39:02 -0400
+ by compute6.internal (MEProxy); Thu, 07 Oct 2021 15:39:11 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
  :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=m/PMBB5pvKWQW
- STt/A5gkzeeMb050e+LA6tdqxnW7is=; b=oegF6ykCWZhbIGyq9jRWEhggaN292
- J1WBH+tuGc4EbvI2lJvpNaiXN2bfBzud3WnqNVnNkjMQ809iVxSMstqKB5u+8VEZ
- /ZIkI4APm6M25ZWJZFXNzFdrk91H7q243eKTK+yD8qek65zTIAvgEOtzn1pFn7/O
- As4SzzDO20H0RlFAdnfAQ1aKqUOBa3OPwMksWneB4m6vt0KzdSeAMyKueMDp35jb
- EF5i6LsqEzsaFhzM7VyWt6nMpecvsJeNtRUf6PY3irrrzTfuzm0ivdOGc3BeO82X
- tBHnYa/La1rZU2bY9+tOauRxwt9FhFI0KCOiezAOOt1MpftcMkssKrftQ==
+ :mime-version:content-transfer-encoding; s=fm3; bh=/243izJfdBfCx
+ xS8dW6rDyb++C/dKdNlrRpQoNqLOqA=; b=VDzwGlZUj9E0/kUffXLcn+b1Dz31b
+ WWII+RBaYfFFYujWIBUlex+FvIm2zHu0+YbQe0shxYLXGmHM6mX3pQI7TBk2yb8j
+ 8fwHjT7TqLXVr7MJT2glgzzoQneqQzrHjYAkEY59UwfQficn1RouSwzdS5FPkRcQ
+ ppiW2UuGDpTlTH+EKsWrA2hKbFRcXPjoxkbuqIcv0cvFO52Plg3y4cwZFSkvdbM4
+ BtrAd29lf6JZAf2SuFpSRWrHKVxnM4efCs/vCW68ArP4ftAk9WwskhCpIwUrvss8
+ 4xJ1JdEhCjY977qASaP5n3OMcsamoGHWd8bmaYJ7yiidtth2cxoGrvHHg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:content-transfer-encoding:date:from
  :in-reply-to:message-id:mime-version:references:subject:to
  :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; bh=m/PMBB5pvKWQWSTt/A5gkzeeMb050e+LA6tdqxnW7is=; b=erj624Z2
- C0LfZTpyoyT2jOxJyMOlS8s5Da+2WRRg5bhE6SY3cBfNpqmTZZxEan+BCCTohyD+
- 7x57v0+97FlmnWKiY7qA9UHhADF6L4YvW4X1Ze+ceUP/bj/DvO71T9MwA1SI1gg5
- GCfIZVg0qMgZaYD6m9f6AAsHTJxb13/WSbmOrjCQVNmEJfh9XC7GEFgUQ2cyAauL
- CUCMjmhAKeZd82cv6oP0I5TV8111WMr/hBFeBG/w2s79sy7DJ+IL7no2OUvqlD/P
- waumRTFV2eww9VMPbJ4elfbVe8yJdpS28dhrL7OoqXKGCchwJcebVUBPWn/u36b2
- zmPuvSDWYuH1dg==
-X-ME-Sender: <xms:1UxfYU2NhbjU2K77oGXmjMMY3tSYer_0Coi3OMlPM84TKr5eovALPQ>
- <xme:1UxfYfFzwt52EEK-sM9QNQgyHktA6gvyFE4SHlK_beiHLOgedslvaN92yjd9tkIm3
- flSHZR7Euuvf0uk-g>
-X-ME-Received: <xmr:1UxfYc47gmRvaAQ94FL5MOgQJ7xzW9zKuAF1dsPT7FGkmjgFUORYLnSeHYauuA1zJVsx>
+ fm1; bh=/243izJfdBfCxxS8dW6rDyb++C/dKdNlrRpQoNqLOqA=; b=ZInB0Zcw
+ bUlSBgkrGOyiCxagNgUBVe1I1NVChJIrf3nhz3FDeZLkxf/Ad38bkl916fk3u6js
+ dIFPzyj21gY+Hiu8tkDerctNXEvQs/KblK6AOr6HTSJ8EYAGZturqUpoMDItrRxZ
+ srKNOOQd2fKBOoxbpuxJi907xPolBuDvrIJKO2canFM/I8WllQinTils9aoX6DcC
+ HHNYCYE6b7hzzxSvlhiMoabBeVCegrQZHsXSrfJuzqZg6egscYXRCI1uYO9aEBcI
+ i3DUQWUmslxdY51RA++RlRWT1YSDcgZbg50444kAHQYJlTOGroJZrgthPJou/m8R
+ Alku8tvCr0VHJQ==
+X-ME-Sender: <xms:3kxfYUr1KksbtYcSJ6zGbWkjo_wkHr8zZENpaLeFfivMOEpCw4bBKg>
+ <xme:3kxfYaoI2S3Vqr5fxMX5Oc-apbCl2HRDJeThxGqy_aBtS8y78j6_2TwJ2QKZVQDNr
+ QlA_QBhyBTj2L3bQQ>
+X-ME-Received: <xmr:3kxfYZPESeMQnVnVzZ98MUfpJ4Uxa6gIjUdoiz1BDswN87C5J3hQf_kZVIVefcDyTgrs>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudelkedgudefjecutefuodetggdotefrod
  ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
  necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
  ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
  ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpeefnecu
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpeegnecu
  rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:1UxfYd32-dfhXbQPbNtiqz2WB1RQUMGdPDxP4HZW6CS2HRneXU-Txg>
- <xmx:1UxfYXFuOP_bHetkSAdg563tRVsL79kd5v2-FTbVbtE5RkaLpCckbA>
- <xmx:1UxfYW8oU60eFu5_2zXQp78usLZXX9aSe_owGwmmRHSBHDrMNhN_Vg>
- <xmx:1UxfYeCInqP8mxYpEXA3CJt1hvG9ZNBiaMuSmwdQuj1GsXwaG0FHUZ6KMWE>
+X-ME-Proxy: <xmx:3kxfYb4wbAM33Y_9kTqgmc9meZ69nmq1_WhylfrlGTbKjugeoaFelA>
+ <xmx:3kxfYT45R5hLFTni94fFaABEZKaglW-YvWC4bbF1lK1SXkaGNKyCHg>
+ <xmx:3kxfYbivz90zCKnlgE3-ZLD6kbp-kZq7_dpf1cVPQ3PWJT9xE8ttjw>
+ <xmx:3kxfYQH9BirBplk_jm5QO6DP2Ec3VYXWAJcEQfUiOW5H9lxodPwMe6hDrHA>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 7 Oct 2021 15:38:59 -0400 (EDT)
+ 7 Oct 2021 15:39:07 -0400 (EDT)
 From: Fernando Ramos <greenfoo@u92.eu>
 To: dri-devel@lists.freedesktop.org
 Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
@@ -68,16 +68,16 @@ Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
  linux-tegra@vger.kernel.org
-Date: Thu,  7 Oct 2021 21:37:49 +0200
-Message-Id: <20211007193755.29579-15-greenfoo@u92.eu>
+Date: Thu,  7 Oct 2021 21:37:51 +0200
+Message-Id: <20211007193755.29579-17-greenfoo@u92.eu>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211007193755.29579-1-greenfoo@u92.eu>
 References: <20211007193755.29579-1-greenfoo@u92.eu>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
-Subject: [Nouveau] [PATCH v3 14/20] drm/i915: cleanup:
- drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN() [part 3]
+Subject: [Nouveau] [PATCH v3 16/20] drm/amd: cleanup: drm_modeset_lock_all()
+ --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,87 +96,78 @@ As requested in Documentation/gpu/todo.rst, replace driver calls to
 drm_modeset_lock_all() with DRM_MODESET_LOCK_ALL_BEGIN() and
 DRM_MODESET_LOCK_ALL_END()
 
-NOTE:
-
-While the previous two commits were a simple "search and replace", this
-time I had to do a bit of refactoring as only one call to
-DRM_MODESET_LOCK_ALL_BEGIN() is allowed inside one same function.
-
 Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
 ---
- drivers/gpu/drm/i915/display/intel_overlay.c | 40 ++++++++++----------
- 1 file changed, 19 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c | 21 ++++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index c0ee135e5499..c623738c59c8 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -1105,6 +1105,7 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
- 	struct drm_crtc *drmmode_crtc;
- 	struct intel_crtc *crtc;
- 	struct drm_i915_gem_object *new_bo;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+index dc50c05f23fc..0ea7bdbc8482 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+@@ -40,6 +40,7 @@
+ #include <drm/drm_fb_helper.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_vblank.h>
++#include <drm/drm_drv.h>
+ 
+ static void amdgpu_display_flip_callback(struct dma_fence *f,
+ 					 struct dma_fence_cb *cb)
+@@ -1574,16 +1575,21 @@ int amdgpu_display_suspend_helper(struct amdgpu_device *adev)
+ 	struct drm_crtc *crtc;
+ 	struct drm_connector *connector;
+ 	struct drm_connector_list_iter iter;
+-	int r;
 +	struct drm_modeset_acquire_ctx ctx;
- 	int ret;
++	int r, ret;
  
- 	overlay = dev_priv->overlay;
-@@ -1113,24 +1114,24 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
- 		return -ENODEV;
- 	}
- 
--	if (!(params->flags & I915_OVERLAY_ENABLE)) {
--		drm_modeset_lock_all(dev);
--		ret = intel_overlay_switch_off(overlay);
--		drm_modeset_unlock_all(dev);
-+	if (params->flags & I915_OVERLAY_ENABLE) {
- 
--		return ret;
--	}
-+		drmmode_crtc = drm_crtc_find(dev, file_priv, params->crtc_id);
-+		if (!drmmode_crtc)
-+			return -ENOENT;
-+		crtc = to_intel_crtc(drmmode_crtc);
- 
--	drmmode_crtc = drm_crtc_find(dev, file_priv, params->crtc_id);
--	if (!drmmode_crtc)
--		return -ENOENT;
--	crtc = to_intel_crtc(drmmode_crtc);
-+		new_bo = i915_gem_object_lookup(file_priv, params->bo_handle);
-+		if (!new_bo)
-+			return -ENOENT;
-+	}
- 
--	new_bo = i915_gem_object_lookup(file_priv, params->bo_handle);
--	if (!new_bo)
--		return -ENOENT;
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
- 
+ 	/* turn off display hw */
 -	drm_modeset_lock_all(dev);
-+	if (!(params->flags & I915_OVERLAY_ENABLE)) {
-+		ret = intel_overlay_switch_off(overlay);
-+		goto out_unlock;
-+	}
- 
- 	if (i915_gem_object_is_tiled(new_bo)) {
- 		drm_dbg_kms(&dev_priv->drm,
-@@ -1195,14 +1196,11 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
- 	if (ret != 0)
- 		goto out_unlock;
- 
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 	drm_connector_list_iter_begin(dev, &iter);
+ 	drm_for_each_connector_iter(connector, &iter)
+ 		drm_helper_connector_dpms(connector,
+ 					  DRM_MODE_DPMS_OFF);
+ 	drm_connector_list_iter_end(&iter);
 -	drm_modeset_unlock_all(dev);
--	i915_gem_object_put(new_bo);
--
--	return 0;
--
- out_unlock:
--	drm_modeset_unlock_all(dev);
--	i915_gem_object_put(new_bo);
 +	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
 +
-+	if (params->flags & I915_OVERLAY_ENABLE)
-+		i915_gem_object_put(new_bo);
++	if (ret)
++		return ret;
++
+ 	/* unpin the front buffers and cursors */
+ 	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
+ 		struct amdgpu_crtc *amdgpu_crtc = to_amdgpu_crtc(crtc);
+@@ -1621,7 +1627,8 @@ int amdgpu_display_resume_helper(struct amdgpu_device *adev)
+ 	struct drm_connector *connector;
+ 	struct drm_connector_list_iter iter;
+ 	struct drm_crtc *crtc;
+-	int r;
++	struct drm_modeset_acquire_ctx ctx;
++	int r, ret;
  
- 	return ret;
+ 	/* pin cursors */
+ 	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
+@@ -1643,7 +1650,7 @@ int amdgpu_display_resume_helper(struct amdgpu_device *adev)
+ 	drm_helper_resume_force_mode(dev);
+ 
+ 	/* turn on display hw */
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 
+ 	drm_connector_list_iter_begin(dev, &iter);
+ 	drm_for_each_connector_iter(connector, &iter)
+@@ -1651,8 +1658,8 @@ int amdgpu_display_resume_helper(struct amdgpu_device *adev)
+ 					  DRM_MODE_DPMS_ON);
+ 	drm_connector_list_iter_end(&iter);
+ 
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+ 
+-	return 0;
++	return ret;
  }
+ 
 -- 
 2.33.0
 
