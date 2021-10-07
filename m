@@ -2,65 +2,65 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B6674C4332F
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3327DC433F5
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 898B761263
+	by mail.kernel.org (Postfix) with ESMTPS id 0A07B61263
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 898B761263
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 0A07B61263
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C8826EE3E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADD6F6EE43;
 	Mon, 18 Oct 2021 17:18:48 +0000 (UTC)
 Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
  [64.147.123.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFC396F405;
- Thu,  7 Oct 2021 19:38:42 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id C81612B009FD;
- Thu,  7 Oct 2021 15:38:41 -0400 (EDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CC726E833;
+ Thu,  7 Oct 2021 19:39:07 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailnew.west.internal (Postfix) with ESMTP id 48A172B00A30;
+ Thu,  7 Oct 2021 15:39:06 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
- by compute6.internal (MEProxy); Thu, 07 Oct 2021 15:38:42 -0400
+ by compute1.internal (MEProxy); Thu, 07 Oct 2021 15:39:07 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
  :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=42TrVQEBS+T0u
- aTdbmpol3CTMIgV752tP7jigQFe0eQ=; b=UMtQrdfzrRx1xNnDdeigfKIqi7r1V
- 7cUI1n5JrsEi/mhf5T37CtjDOartcKg5t27iPAIJ3/agsDtiiHP4UUIAwsRgo+Fy
- kK+RtH0pkkbiRAKTfELzXnH/YDnDXqjUJMj2baNkRPyCdnRmqAz2xL+ertdYqvEP
- dln1p+FFJNxbNyZdAZSYHZtV2nOrfBTia2kYdQ7LIjNG2/zLvnFZACz9MYCx9OwN
- YqKU4+NtbnlrBqlUonrf3wMNC1Mn7Oe0WK7Ma31mksAvlFFldIQcPY9KzNY6CyUG
- ir8BEji7E1R4pdh3BRQPID/3lSsQJPGUhG3UcLjbeZvVSxIweY0GuWEAg==
+ :mime-version:content-transfer-encoding; s=fm3; bh=PuRwF9Ft3UyWB
+ Jf64PRaXhYohKvgAVW28ATMLUMmKjo=; b=RQaXP9AJfoxFuuCucBricZK745w40
+ j5CfjH6wCS0XmUYiX2oN2ydxw4D3fwqUG4KA52QhPeBPolakM5o+f8TpBRdxz5jW
+ aav708HsrH8B78ZbaQzK0n44wjfMYxgBZGUi9nTZYM60+tLO4y4F5lh4DUHLHIQs
+ 961Ebmv8GPzpVmrAFXXzfzrkNZnEhANl8CGB8PkyMicBYxSr3NhJyIYGlXC+bIbm
+ vI8w3zNrpcrADoG8BUNTITSq6g32NF5qzTW/e7Jhb7YiLvBFuBqvnCgyR+7ieGmt
+ 8FMaHtuQgnDeuj7ma0hgQEjvKe7/xCzQ8djoSi0sfODsHlQHZYtITmfZg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:content-transfer-encoding:date:from
  :in-reply-to:message-id:mime-version:references:subject:to
  :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; bh=42TrVQEBS+T0uaTdbmpol3CTMIgV752tP7jigQFe0eQ=; b=QyXr7J0u
- geUgLj+DM0smWh835sfDo2aMXg5RPh/YecAuZ4amP/rAZPirZKdoFBhycurf9/FE
- SBuRxpKp7kM1PK4FFUjVnHqq0kyz9tJtukZerxMGus/xcePoHi6dvpUVDx3dnHj1
- e48vYyVP4zl6TysmPoaOgvNAA93R2eRsqLhyP0LTUUNKFl0ToLhcadk6Nm3GAcfR
- 0AXvElWwMXi/j+CgBhiLzTlHV9nySXpNlph9hgaD3mjeLfdMWnLHMzXNUYquOfTI
- z3PfCZCU4VAmLhwmrtlZ1eT20sTxem8V8cN7zkPPTt87wGnisOAmy3Yc/wIgx43G
- fhCeYvAc2vmwyA==
-X-ME-Sender: <xms:wUxfYfZPM9nK0K6YBawANWHasS-s7jSER6AjCc9z6Grkr94brfpb2w>
- <xme:wUxfYeYrbufFbE7LL_svVgTSA8BhUagKjWH4NwanjXVihuCTDYRIrvX_g3FChmiqk
- VLZn1EpkWpWtuAQLg>
-X-ME-Received: <xmr:wUxfYR-twWgVZJLthgwXUXvTet7XuH2Jbp40gl3A1WbuOeKYiVN34FnvJjVrSqgoAJsF>
+ fm1; bh=PuRwF9Ft3UyWBJf64PRaXhYohKvgAVW28ATMLUMmKjo=; b=QXXR69v0
+ TraYz6G6LdNnWh2H0LSPzFQUcCwTWPnkHZrtZIlEhU4QkpTcEZ+Ct0BIwRwcdjJq
+ klukbQdRSjPpV11/Dn7oAH/uDx/6M4u+ZHZV7auKlC3ksjTOLtHegbBOYf7y8Tdx
+ yQmljP7it90zk0uMCpsyCKr/dx0JD531qySW97bzYIW0Ehm3a/PTfV5aKeE0OPrt
+ uJOBlWtkMBn98lCCIwPHUbHPJxrrLc9RCk/3YOjJ1MFqq8cdQvcb2rMvLm9gliuF
+ nSSId5LoqPJpkfwWZS0btGfRFKNHEPDJL2/aRiDawwUkUga/aClr9jEFoFSQ8YqE
+ EA3X/9Ek7MGmKQ==
+X-ME-Sender: <xms:2UxfYagTBBR2PW3nboM5OWWJ7cDltzIhixgw7-4y00zjXWlM7Qtleg>
+ <xme:2UxfYbBqO0ZzUBLIQ3aw4y07HnIxgjC-FUvb5sdE7qXI9DrIuE-ipVxZvjL7-7Bw3
+ un-Y_4E8Lpz4cbrog>
+X-ME-Received: <xmr:2UxfYSHlxjrRiptWd6OGLxDY1Jwu7qy4plXvIt-QHoFyRCjJzwKv5wYF-mtGEz1rNOx6>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudelkedgudefjecutefuodetggdotefrod
  ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
  necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
  ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
  ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedunecu
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedtnecu
  rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:wUxfYVr8d1tObqzROC8fmoF-WL75sKj1arettgLEKJh-8TzN0-rR1w>
- <xmx:wUxfYaoSC6poWHTK3C2lEXo7eAl8QGQNh0CXbzz6zkuYDYy1v2pktA>
- <xmx:wUxfYbRKGnsdWbu4Bm8oGw_JQ7P0IlqHRfjJbf3kK_XfYFrSZxdB9Q>
- <xmx:wUxfYZ3nTF-YbTTHKj1ZdwJ5esLXlX5cwJf7mm4LpYXkLeW47Jgk3K2Zih8>
+X-ME-Proxy: <xmx:2UxfYTSh2tVT5dnivLQvOa8_3umFABtiNjC_LrTYXlFuLxHqZNFVCQ>
+ <xmx:2UxfYXwfH2ulFFaxEbMbqGO5RFMsdX_QX7ErSE5Pde-t7_VIOVgZXw>
+ <xmx:2UxfYR5swKEfbrqYRbb-bd7dDDJTLXgzqQrzY0SrLsDjgKYRfR-NYQ>
+ <xmx:2UxfYfd2aqrmQCwY6hzPspiYfyZYqVwibOxO3LawMJJfkKMLxzLKnUrWdfI>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 7 Oct 2021 15:38:38 -0400 (EDT)
+ 7 Oct 2021 15:39:02 -0400 (EDT)
 From: Fernando Ramos <greenfoo@u92.eu>
 To: dri-devel@lists.freedesktop.org
 Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
@@ -68,15 +68,15 @@ Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
  linux-tegra@vger.kernel.org
-Date: Thu,  7 Oct 2021 21:37:44 +0200
-Message-Id: <20211007193755.29579-10-greenfoo@u92.eu>
+Date: Thu,  7 Oct 2021 21:37:50 +0200
+Message-Id: <20211007193755.29579-16-greenfoo@u92.eu>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211007193755.29579-1-greenfoo@u92.eu>
 References: <20211007193755.29579-1-greenfoo@u92.eu>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
-Subject: [Nouveau] [PATCH v3 09/20] drm/omapdrm: cleanup:
+Subject: [Nouveau] [PATCH v3 15/20] drm/gma500: cleanup:
  drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -97,44 +97,85 @@ drm_modeset_lock_all() with DRM_MODESET_LOCK_ALL_BEGIN() and
 DRM_MODESET_LOCK_ALL_END()
 
 Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
-Reviewed-by: Sean Paul <sean@poorly.run>
 ---
- drivers/gpu/drm/omapdrm/omap_fb.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/gma500/psb_device.c | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/omapdrm/omap_fb.c b/drivers/gpu/drm/omapdrm/omap_fb.c
-index 190afc564914..fa7636c13c19 100644
---- a/drivers/gpu/drm/omapdrm/omap_fb.c
-+++ b/drivers/gpu/drm/omapdrm/omap_fb.c
-@@ -9,6 +9,7 @@
- #include <drm/drm_modeset_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_gem_framebuffer_helper.h>
+diff --git a/drivers/gpu/drm/gma500/psb_device.c b/drivers/gpu/drm/gma500/psb_device.c
+index 3030f18ba022..021a7238508f 100644
+--- a/drivers/gpu/drm/gma500/psb_device.c
++++ b/drivers/gpu/drm/gma500/psb_device.c
+@@ -8,6 +8,7 @@
+ #include <linux/backlight.h>
+ 
+ #include <drm/drm.h>
 +#include <drm/drm_drv.h>
  
- #include "omap_dmm_tiler.h"
- #include "omap_drv.h"
-@@ -62,15 +63,17 @@ static int omap_framebuffer_dirty(struct drm_framebuffer *fb,
- 				  unsigned num_clips)
+ #include "gma_device.h"
+ #include "intel_bios.h"
+@@ -169,8 +170,10 @@ static int psb_save_display_registers(struct drm_device *dev)
  {
+ 	struct drm_psb_private *dev_priv = to_drm_psb_private(dev);
  	struct drm_crtc *crtc;
 +	struct drm_modeset_acquire_ctx ctx;
+ 	struct gma_connector *connector;
+ 	struct psb_state *regs = &dev_priv->regs.psb;
 +	int ret;
  
--	drm_modeset_lock_all(fb->dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(fb->dev, ctx, 0, ret);
+ 	/* Display arbitration control + watermarks */
+ 	regs->saveDSPARB = PSB_RVDC32(DSPARB);
+@@ -183,7 +186,7 @@ static int psb_save_display_registers(struct drm_device *dev)
+ 	regs->saveCHICKENBIT = PSB_RVDC32(DSPCHICKENBIT);
  
- 	drm_for_each_crtc(crtc, fb->dev)
- 		omap_crtc_flush(crtc);
+ 	/* Save crtc and output state */
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
+ 		if (drm_helper_crtc_in_use(crtc))
+ 			dev_priv->ops->save_crtc(crtc);
+@@ -193,8 +196,9 @@ static int psb_save_display_registers(struct drm_device *dev)
+ 		if (connector->save)
+ 			connector->save(&connector->base);
  
--	drm_modeset_unlock_all(fb->dev);
-+	DRM_MODESET_LOCK_ALL_END(fb->dev, ctx, ret);
- 
+-	drm_modeset_unlock_all(dev);
 -	return 0;
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
++
 +	return ret;
  }
  
- static const struct drm_framebuffer_funcs omap_framebuffer_funcs = {
+ /**
+@@ -207,8 +211,10 @@ static int psb_restore_display_registers(struct drm_device *dev)
+ {
+ 	struct drm_psb_private *dev_priv = to_drm_psb_private(dev);
+ 	struct drm_crtc *crtc;
++	struct drm_modeset_acquire_ctx ctx;
+ 	struct gma_connector *connector;
+ 	struct psb_state *regs = &dev_priv->regs.psb;
++	int ret;
+ 
+ 	/* Display arbitration + watermarks */
+ 	PSB_WVDC32(regs->saveDSPARB, DSPARB);
+@@ -223,7 +229,7 @@ static int psb_restore_display_registers(struct drm_device *dev)
+ 	/*make sure VGA plane is off. it initializes to on after reset!*/
+ 	PSB_WVDC32(0x80000000, VGACNTRL);
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head)
+ 		if (drm_helper_crtc_in_use(crtc))
+ 			dev_priv->ops->restore_crtc(crtc);
+@@ -232,8 +238,8 @@ static int psb_restore_display_registers(struct drm_device *dev)
+ 		if (connector->restore)
+ 			connector->restore(&connector->base);
+ 
+-	drm_modeset_unlock_all(dev);
+-	return 0;
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
++	return ret;
+ }
+ 
+ static int psb_power_down(struct drm_device *dev)
 -- 
 2.33.0
 
