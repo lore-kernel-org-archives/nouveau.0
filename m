@@ -1,55 +1,65 @@
-Return-Path: <SRS0=aYAu=O3=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=rHaX=O4=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63588C433EF
-	for <nouveau@archiver.kernel.org>; Thu,  7 Oct 2021 21:47:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1DB6FC433EF
+	for <nouveau@archiver.kernel.org>; Fri,  8 Oct 2021 00:00:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1BC6660273
-	for <nouveau@archiver.kernel.org>; Thu,  7 Oct 2021 21:47:30 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1BC6660273
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=denx.de
+	by mail.kernel.org (Postfix) with ESMTPS id CD62260FC3
+	for <nouveau@archiver.kernel.org>; Fri,  8 Oct 2021 00:00:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CD62260FC3
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F85C6F4E5;
-	Thu,  7 Oct 2021 21:47:29 +0000 (UTC)
-X-Greylist: delayed 350 seconds by postgrey-1.36 at gabe;
- Thu, 07 Oct 2021 21:47:28 UTC
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DF5D6F4E5
- for <nouveau@lists.freedesktop.org>; Thu,  7 Oct 2021 21:47:28 +0000 (UTC)
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: marex@denx.de)
- by phobos.denx.de (Postfix) with ESMTPSA id 81051831B0;
- Thu,  7 Oct 2021 23:41:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
- s=phobos-20191101; t=1633642894;
- bh=fInwMaWN1j+5AjRLOCJ8WqzjwYwU7a4/Fu/B//8E1nw=;
- h=From:To:Cc:Subject:Date:From;
- b=Z/uylYb/+tFSSLedBMIeUw3rCZ1rMa0hhSA1jLjNFTQTFHv31pFwCXcQXpppx/V9T
- WOXzm3nMqhRPJiDTslzRwKwtYypS5Aw+Lg1FTZ5luYXvgWUw4TGTjyGgftE55Qup2i
- P5ipqybRTME+AhTCDxkW5UVS3/LCtaQ1vtceRJD3Y8COFhLGBkg2MLfw4xbnZ1BDt5
- I4lNftZr8BteE2pMfo+YOlXWPIVtKPhgb57MRZkKAZNNwLu3OjxBlPYCelMjtToa0f
- IUwyL3e4wfXhEmGifrfPxptU8Mlps32Hqu+popG4+FgvVO/zIBhry/ZB9R+1nayMHs
- A7hFUNdLb3olw==
-From: Marek Vasut <marex@denx.de>
-To: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
- stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>
-Date: Thu,  7 Oct 2021 23:41:17 +0200
-Message-Id: <20211007214117.231472-1-marex@denx.de>
-X-Mailer: git-send-email 2.33.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 673486E85C;
+	Fri,  8 Oct 2021 00:00:13 +0000 (UTC)
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com
+ [IPv6:2607:f8b0:4864:20::b2f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0976A6E04E;
+ Fri,  8 Oct 2021 00:00:12 +0000 (UTC)
+Received: by mail-yb1-xb2f.google.com with SMTP id r1so17147880ybo.10;
+ Thu, 07 Oct 2021 17:00:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=525REZtEeK0PFXhhzxFmSB8FcMG0mIL99+Md9Sh4UyI=;
+ b=DqOdOwDJqcLiF+La2Dg1kaSYIsThJfYHt2LFa1VQB0w9gkLXQhokJtJHWFs9t73bWJ
+ fea3c/m79MMYnmyW2Of9Aq6uq730fKdC58YSS+1/M/g1ErZfid3pPx9juNi+kzUPm4cR
+ 99rKU82ARLFAlyKv/dOxu/oiSBCVbDzUdnwuSYtjQPul7N6UoPHiigCj2Q9tobEiEm/i
+ NZ+hThm9NrfLxaZQywggKUcGbruAcdfGFG0UtAzzyHGQUCOLqP1w9HSZZg0NUPE2iIBm
+ waJ+e+vAJVxvvp+TwDIw349XikDiY2N6xn95uMyTPYGfaMkQFLaFbWHJniNGvVY4CGAy
+ wNQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=525REZtEeK0PFXhhzxFmSB8FcMG0mIL99+Md9Sh4UyI=;
+ b=jJxs1X+pKK4gCUEY7oY91ilhOBCdaGgOCDEC8Kj7yfR4Pk40J+pYrWGboQKsL3+n7T
+ HMiHVFR65XIN/ZEtXSQbaoJWtPCJ0u9LP5256NC2FTuupf4HnKb7W0L3dmvRqPB/sA9r
+ anTrDTdcHiUdBjE1nKTz/yGI9oWWuCgYSL2N2KUi7p2bCNYuxPmenIxSVRnTEXQpRoeI
+ zek+zqVG1o8x1RsvAJHOPtSfWt44fXz9wxfA4hWz9t6x7DoBl6wQX8EqCiFgDElameCP
+ Cvlu4wI/+ofXzq1N936gxnNpJtGD1CeMoBINVe+Bm2beBgLWeiftYAGbAG2vBCkszeN4
+ SCzw==
+X-Gm-Message-State: AOAM530t5yJY8+5+qnBAXmFKzBH6lK4mAqiTZMT4JfHlbyMBx0A4Y49h
+ xnhKihhARaem5F3aBa3oApBTSV+kw2rrgHChkDc=
+X-Google-Smtp-Source: ABdhPJxxm5SOn3w6dvn60Fm3ACaWzgy85Fy4Tbn0+YzDCnyr8cOPzcronUtgdAdVZYUPd+W8tWCocGA70ZXQDwQY8s0=
+X-Received: by 2002:a25:9a81:: with SMTP id s1mr24781ybo.230.1633651210963;
+ Thu, 07 Oct 2021 17:00:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
-Subject: [Nouveau] [PATCH] drm/nouveau/fifo: Reinstate the correct engine
- bit programming
+References: <20211007214117.231472-1-marex@denx.de>
+ <CACO55tsgmtR1CqdJOBMu9oQEEojfpnUwWNvab9gA7ZuZmyiSmA@mail.gmail.com>
+In-Reply-To: <CACO55tsgmtR1CqdJOBMu9oQEEojfpnUwWNvab9gA7ZuZmyiSmA@mail.gmail.com>
+From: Ben Skeggs <skeggsb@gmail.com>
+Date: Fri, 8 Oct 2021 09:59:59 +1000
+Message-ID: <CACAvsv54TiYbG1SFnkRdcbO0yiUR6wuHn=wWJFDGEr5shhQ5wQ@mail.gmail.com>
+To: Karol Herbst <kherbst@redhat.com>
+Cc: Marek Vasut <marex@denx.de>, dri-devel <dri-devel@lists.freedesktop.org>, 
+ nouveau <nouveau@lists.freedesktop.org>, stable@vger.kernel.org, 
+ Ben Skeggs <bskeggs@redhat.com>, Lyude Paul <lyude@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Nouveau] [PATCH] drm/nouveau/fifo: Reinstate the correct
+ engine bit programming
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,48 +74,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Commit 64f7c698bea9 ("drm/nouveau/fifo: add engine_id hook") replaced
-fifo/chang84.c g84_fifo_chan_engine() call with an indirect call of
-fifo/g84.c g84_fifo_engine_id(). The G84_FIFO_ENGN_* values returned
-from the later g84_fifo_engine_id() are incremented by 1 compared to
-the previous g84_fifo_chan_engine() return values.
+On Fri, 8 Oct 2021 at 07:46, Karol Herbst <kherbst@redhat.com> wrote:
+>
+> Reviewed-by: Karol Herbst <kherbst@redhat.com>
+Reviewed-by: Ben Skeggs <bskeggs@redhat.com>
 
-This is fine either way for most of the code, except this one line
-where an engine bit programmed into the hardware is derived from the
-return value. Decrement the return value accordingly, otherwise the
-wrong engine bit is programmed into the hardware and that leads to
-the following failure:
-nouveau 0000:01:00.0: gr: 00000030 [ILLEGAL_MTHD ILLEGAL_CLASS] ch 1 [003fbce000 DRM] subc 3 class 0000 mthd 085c data 00000420
-
-On the following hardware:
-lspci -s 01:00.0
-01:00.0 VGA compatible controller: NVIDIA Corporation GT216GLM [Quadro FX 880M] (rev a2)
-lspci -ns 01:00.0
-01:00.0 0300: 10de:0a3c (rev a2)
-
-Fixes: 64f7c698bea9 ("drm/nouveau/fifo: add engine_id hook")
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: <stable@vger.kernel.org> # 5.12+
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/nvkm/engine/fifo/chang84.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chang84.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chang84.c
-index 353b77d9b3dc..3492c561f2cf 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chang84.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chang84.c
-@@ -82,7 +82,7 @@ g84_fifo_chan_engine_fini(struct nvkm_fifo_chan *base,
- 	if (offset < 0)
- 		return 0;
- 
--	engn = fifo->base.func->engine_id(&fifo->base, engine);
-+	engn = fifo->base.func->engine_id(&fifo->base, engine) - 1;
- 	save = nvkm_mask(device, 0x002520, 0x0000003f, 1 << engn);
- 	nvkm_wr32(device, 0x0032fc, chan->base.inst->addr >> 12);
- 	done = nvkm_msec(device, 2000,
--- 
-2.33.0
-
+>
+> I haven't checked if other places need fixing up yet, and I still want
+> to test this patch, but I won't get to it until Monday. But if
+> everything is in place we can get this pushed next week so we can
+> finally fix this annoying issue :) I was also seeing some minor
+> graphical corruptions which would be cool if this patch fixes it as
+> well.
+>
+> Thanks for the patch and poking us about the bug again.
+>
+> On Thu, Oct 7, 2021 at 11:41 PM Marek Vasut <marex@denx.de> wrote:
+> >
+> > Commit 64f7c698bea9 ("drm/nouveau/fifo: add engine_id hook") replaced
+> > fifo/chang84.c g84_fifo_chan_engine() call with an indirect call of
+> > fifo/g84.c g84_fifo_engine_id(). The G84_FIFO_ENGN_* values returned
+> > from the later g84_fifo_engine_id() are incremented by 1 compared to
+> > the previous g84_fifo_chan_engine() return values.
+> >
+> > This is fine either way for most of the code, except this one line
+> > where an engine bit programmed into the hardware is derived from the
+> > return value. Decrement the return value accordingly, otherwise the
+> > wrong engine bit is programmed into the hardware and that leads to
+> > the following failure:
+> > nouveau 0000:01:00.0: gr: 00000030 [ILLEGAL_MTHD ILLEGAL_CLASS] ch 1 [003fbce000 DRM] subc 3 class 0000 mthd 085c data 00000420
+> >
+> > On the following hardware:
+> > lspci -s 01:00.0
+> > 01:00.0 VGA compatible controller: NVIDIA Corporation GT216GLM [Quadro FX 880M] (rev a2)
+> > lspci -ns 01:00.0
+> > 01:00.0 0300: 10de:0a3c (rev a2)
+> >
+> > Fixes: 64f7c698bea9 ("drm/nouveau/fifo: add engine_id hook")
+> > Signed-off-by: Marek Vasut <marex@denx.de>
+> > Cc: <stable@vger.kernel.org> # 5.12+
+> > Cc: Ben Skeggs <bskeggs@redhat.com>
+> > Cc: Karol Herbst <kherbst@redhat.com>
+> > Cc: Lyude Paul <lyude@redhat.com>
+> > ---
+> >  drivers/gpu/drm/nouveau/nvkm/engine/fifo/chang84.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chang84.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chang84.c
+> > index 353b77d9b3dc..3492c561f2cf 100644
+> > --- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chang84.c
+> > +++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chang84.c
+> > @@ -82,7 +82,7 @@ g84_fifo_chan_engine_fini(struct nvkm_fifo_chan *base,
+> >         if (offset < 0)
+> >                 return 0;
+> >
+> > -       engn = fifo->base.func->engine_id(&fifo->base, engine);
+> > +       engn = fifo->base.func->engine_id(&fifo->base, engine) - 1;
+> >         save = nvkm_mask(device, 0x002520, 0x0000003f, 1 << engn);
+> >         nvkm_wr32(device, 0x0032fc, chan->base.inst->addr >> 12);
+> >         done = nvkm_msec(device, 2000,
+> > --
+> > 2.33.0
+> >
+>
