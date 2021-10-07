@@ -2,75 +2,82 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7331BC433FE
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 861C9C433F5
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1DA656103B
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1DA656103B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
+	by mail.kernel.org (Postfix) with ESMTPS id 518106103B
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 518106103B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3ABE46EA35;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BD966EA42;
 	Mon, 18 Oct 2021 17:18:31 +0000 (UTC)
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
- [IPv6:2a00:1450:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 000FC6E430;
- Mon, 11 Oct 2021 07:05:57 +0000 (UTC)
-Received: by mail-wr1-x432.google.com with SMTP id r7so52758189wrc.10;
- Mon, 11 Oct 2021 00:05:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=sender:date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=wMNVOKH7I9nZJBmdmY82PpMuTIJnDPrxHG2zjEA5m9s=;
- b=pzSf3o5Llbrkbhs9yWVdcshQQe7s/EdjJ3wKU95Bwif3mVaeFGYa+EUBkmmBXYW03d
- DQrx0IEd6u+eYTF2YWHoL5pOUwgorBAP4CKBsOzj44HhL+zXdM2NB+Coh8cr8D/jON43
- OVCBCDKtMhQ1bWVbbSuOOzrQaLrwM8irwfgxmjgitZRbNQFf7x3CunUxuu3P0G3C50u7
- Cfr4417v1OZiiH1fXWemiB760QnXpOshNsShWDsTP4CxIloYsyoK7/xS6qR/Dx3wMq9/
- s8jnuo/KX33cv0vLJyZ9EpkpWlow2W6jwQ/Sirbmjn2IdAOpBih6kOcJW9svajFzl5bC
- vqlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
- :references:mime-version:content-disposition:in-reply-to;
- bh=wMNVOKH7I9nZJBmdmY82PpMuTIJnDPrxHG2zjEA5m9s=;
- b=GehxwMDrLu3Kpf1a5N4E2AB54R3Z/RbPBkKxRxQWfyyL3MRVYvo/fhqSZVqz1eUTrX
- eKRZV5DXSy7qIMC/7WGYo4e9Hf1jaqDzakHaovSL5BEj/at7HKWgvuLuwb4CdKZGI3hb
- e37KdcGpBvglsg7D2yxMAsQVSGv2TzeqrewAkoPBkM5AUkFx2lwZhTmNT0ntLEeqV09S
- blpDzy3bEe1hJSJePKcIJNkM5jIhSsXNmxUMjUifjYL3+fJpyLA9qyAiBfp2A9CIeUI5
- Wy6OBdjVG8ZlmfBjdzUgTlaFkMsXYmaWSVelt8mF9rQGYVUWpN78GPPCp/ThBt3p19W6
- 6nPA==
-X-Gm-Message-State: AOAM530h/KBNsY0ohc06NH5tK7xUOrR5u9enPRqBIUmJC8TvCYahspas
- rdco0ikm5A0Uz2jqYGAgbv0=
-X-Google-Smtp-Source: ABdhPJzKBXc4gUSq/yC+ip4ByIKGOGVWV28ONE7yJ0I9k61i/DnvMnUlb1J+JeJXSVO7uRqSmUCoxA==
-X-Received: by 2002:adf:ae1a:: with SMTP id x26mr21985872wrc.30.1633935956529; 
- Mon, 11 Oct 2021 00:05:56 -0700 (PDT)
-Received: from eldamar (80-218-24-251.dclient.hispeed.ch. [80.218.24.251])
- by smtp.gmail.com with ESMTPSA id u5sm7171049wrg.57.2021.10.11.00.05.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 11 Oct 2021 00:05:56 -0700 (PDT)
-Date: Mon, 11 Oct 2021 09:05:55 +0200
-From: Salvatore Bonaccorso <carnil@debian.org>
-To: Lyude Paul <lyude@redhat.com>
-Cc: Jeremy Cline <jcline@redhat.com>, Ben Skeggs <bskeggs@redhat.com>,
- Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Message-ID: <YWPiU+9G0AKglHmi@eldamar.lan>
-References: <20201103194912.184413-1-jcline@redhat.com>
- <20201125202648.5220-1-jcline@redhat.com>
- <b4da382b17a77b66e45fd374c9d806dac6054e3a.camel@redhat.com>
- <YRoN0vWFN6Lw22ej@eldamar.lan>
- <418fdcbcf554d34cc6423a88974f916b64b3664c.camel@redhat.com>
+Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
+ [64.147.123.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05E606F4E5;
+ Thu,  7 Oct 2021 19:39:24 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailnew.west.internal (Postfix) with ESMTP id 14A4E2B00A33;
+ Thu,  7 Oct 2021 15:39:23 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute1.internal (MEProxy); Thu, 07 Oct 2021 15:39:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
+ :to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding; s=fm3; bh=JMRbRjZdc3Tdp
+ VsyoSFWvoeRwxWybiBnYbFZhu98rTo=; b=ar69jEdWOUnJDV8rtAiAdLcMQ02v4
+ Gd3IOjYY4K/eInZILTtfxpd0LbRwhLL4Qc3fAvnWdwKFxtAXzKDdUJgKf2TaqkZl
+ Q/FBPLolzYfiO695DuoFL6GvuNJkDo6yUJbmunDESNa072RJXjInZ+AaC6PYa55M
+ TkuPuhjgWK2TJRXdIx5RY0o99j9GAMPTqbgBwIy6es0RidmmWg6MfjnDHlOctBSs
+ exA6p/+rkM4CPdzvxoUxUoqyJUO8boj+k2FkHTDDAGALk5ZYa0prfb5gxe1FoxDv
+ viy/EB07mmTd9mmt2LATvjXQkHaT9wneJQ+wMcFCw825ol4eQIsEVfczg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:date:from
+ :in-reply-to:message-id:mime-version:references:subject:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; bh=JMRbRjZdc3TdpVsyoSFWvoeRwxWybiBnYbFZhu98rTo=; b=ZU/GCIYu
+ 7LjIKL54SSVqLMnq8a9fpvzlnAvv/njfrr2s9Iv4yH12Omq98GW3ocapBObkS7Di
+ 2mlDdrkUmqfUg1MzrzUFo5jUEBoMcwLkWy9qgIATILDtIQsZISZdEXO58uUTm9d8
+ GVaLvOswoaCURwtDR9AtaCTvVafrGPFt8ec4Z4iVLwLFSut/I8O/hzLx2MabmnoR
+ Edjdzy02bHF0ZCMK35ofpGWYHPxNCJB7UXziifsDauKXjuSTcgHNQCCmlh7Nevkj
+ Tvx9g18t+zJWqM3tA2ly5N3Oe4s27TXWdTwDFaZMlk4OdBh/SsJnbsiUhi6TG+35
+ Y2cLapUlI+yi3w==
+X-ME-Sender: <xms:6kxfYS6oKL6lt7FBkIZEOcN8jwO3DrrNP5LiDokipD6RaUgaZw4K_g>
+ <xme:6kxfYb4Lx7QAwmktEkV70DSR0IIj8MDY3QSUpthBha4UQbe9qAHA36tt6rsmkU1s7
+ 9grYEz70vO3iXAOaQ>
+X-ME-Received: <xmr:6kxfYRcM1VuN1cr7xaC2sVHGRqUOTpw2TKd1lEkVauZPfLYa1r-FNgzNOwROKBjtetT9>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudelkedgudefjecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
+ ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
+ ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedvnecu
+ rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:6kxfYfI7qt4ZT5v-QbsygebVGqZ8iJ5raTHHus9njGGnjovGGbbS9g>
+ <xmx:6kxfYWK2shthNztAl7QNMUrfUTFD9wCnnxJQHMsIdonJcyhWktP6BA>
+ <xmx:6kxfYQxQMvpa9qC_Rti1_GcsCHzL48qdDdxv1hV_ho53TxYazCa9PQ>
+ <xmx:6kxfYTU9buR390E-RIBMvLypk8xfjHKJODaCt6lqvI6eGnwRHiOe_il8LW4>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 7 Oct 2021 15:39:20 -0400 (EDT)
+From: Fernando Ramos <greenfoo@u92.eu>
+To: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+Date: Thu,  7 Oct 2021 21:37:54 +0200
+Message-Id: <20211007193755.29579-20-greenfoo@u92.eu>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20211007193755.29579-1-greenfoo@u92.eu>
+References: <20211007193755.29579-1-greenfoo@u92.eu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <418fdcbcf554d34cc6423a88974f916b64b3664c.camel@redhat.com>
-X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
-Subject: Re: [Nouveau] [PATCH v2 0/3] drm/nouveau: fix a use-after-free in
- postclose()
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
+Subject: [Nouveau] [PATCH v3 19/20] drm: cleanup: remove
+ drm_modeset_(un)lock_all()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,34 +92,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Ben,
+Functions drm_modeset_lock_all() and drm_modeset_unlock_all() are no
+longer used anywhere and can be removed.
 
-On Tue, Aug 17, 2021 at 04:32:31PM -0400, Lyude Paul wrote:
-> It may have been, we're in the process of trying to change around how we
-> currently accept nouveau patches to stop this from happening in the future.
-> 
-> Ben, whenever you get a moment can you take a look at this?
-> 
-> On Mon, 2021-08-16 at 09:03 +0200, Salvatore Bonaccorso wrote:
-> > Hi,
-> > 
-> > On Fri, Mar 26, 2021 at 06:00:51PM -0400, Lyude Paul wrote:
-> > > This patch series is:
-> > > 
-> > > Reviewed-by: Lyude Paul <lyude@redhat.com>
-> > > 
-> > > Btw - in the future if you need to send a respin of multiple patches, you
-> > > need
-> > > to send it as it's own separate series instead of replying to the previous
-> > > one
-> > > (one-off respins can just be posted as replies though), otherwise
-> > > patchwork
-> > > won't pick it up
-> > 
-> > Did this patch series somehow fall through the cracks or got lost?
+Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
+---
+ drivers/gpu/drm/drm_modeset_lock.c | 94 +-----------------------------
+ include/drm/drm_modeset_lock.h     |  2 -
+ 2 files changed, 3 insertions(+), 93 deletions(-)
 
-Looking some older threads, noticed this one. Ben did you got a chance
-to look at it, or is it now irrelevant by other means?
+diff --git a/drivers/gpu/drm/drm_modeset_lock.c b/drivers/gpu/drm/drm_modeset_lock.c
+index bf8a6e823a15..ac49bf6169a2 100644
+--- a/drivers/gpu/drm/drm_modeset_lock.c
++++ b/drivers/gpu/drm/drm_modeset_lock.c
+@@ -77,93 +77,6 @@
+ 
+ static DEFINE_WW_CLASS(crtc_ww_class);
+ 
+-/**
+- * drm_modeset_lock_all - take all modeset locks
+- * @dev: DRM device
+- *
+- * This function takes all modeset locks, suitable where a more fine-grained
+- * scheme isn't (yet) implemented. Locks must be dropped by calling the
+- * drm_modeset_unlock_all() function.
+- *
+- * This function is deprecated. It allocates a lock acquisition context and
+- * stores it in &drm_device.mode_config. This facilitate conversion of
+- * existing code because it removes the need to manually deal with the
+- * acquisition context, but it is also brittle because the context is global
+- * and care must be taken not to nest calls. New code should use the
+- * drm_modeset_lock_all_ctx() function and pass in the context explicitly.
+- */
+-void drm_modeset_lock_all(struct drm_device *dev)
+-{
+-	struct drm_mode_config *config = &dev->mode_config;
+-	struct drm_modeset_acquire_ctx *ctx;
+-	int ret;
+-
+-	ctx = kzalloc(sizeof(*ctx), GFP_KERNEL | __GFP_NOFAIL);
+-	if (WARN_ON(!ctx))
+-		return;
+-
+-	mutex_lock(&config->mutex);
+-
+-	drm_modeset_acquire_init(ctx, 0);
+-
+-retry:
+-	ret = drm_modeset_lock_all_ctx(dev, ctx);
+-	if (ret < 0) {
+-		if (ret == -EDEADLK) {
+-			drm_modeset_backoff(ctx);
+-			goto retry;
+-		}
+-
+-		drm_modeset_acquire_fini(ctx);
+-		kfree(ctx);
+-		return;
+-	}
+-	ww_acquire_done(&ctx->ww_ctx);
+-
+-	WARN_ON(config->acquire_ctx);
+-
+-	/*
+-	 * We hold the locks now, so it is safe to stash the acquisition
+-	 * context for drm_modeset_unlock_all().
+-	 */
+-	config->acquire_ctx = ctx;
+-
+-	drm_warn_on_modeset_not_all_locked(dev);
+-}
+-EXPORT_SYMBOL(drm_modeset_lock_all);
+-
+-/**
+- * drm_modeset_unlock_all - drop all modeset locks
+- * @dev: DRM device
+- *
+- * This function drops all modeset locks taken by a previous call to the
+- * drm_modeset_lock_all() function.
+- *
+- * This function is deprecated. It uses the lock acquisition context stored
+- * in &drm_device.mode_config. This facilitates conversion of existing
+- * code because it removes the need to manually deal with the acquisition
+- * context, but it is also brittle because the context is global and care must
+- * be taken not to nest calls. New code should pass the acquisition context
+- * directly to the drm_modeset_drop_locks() function.
+- */
+-void drm_modeset_unlock_all(struct drm_device *dev)
+-{
+-	struct drm_mode_config *config = &dev->mode_config;
+-	struct drm_modeset_acquire_ctx *ctx = config->acquire_ctx;
+-
+-	if (WARN_ON(!ctx))
+-		return;
+-
+-	config->acquire_ctx = NULL;
+-	drm_modeset_drop_locks(ctx);
+-	drm_modeset_acquire_fini(ctx);
+-
+-	kfree(ctx);
+-
+-	mutex_unlock(&dev->mode_config.mutex);
+-}
+-EXPORT_SYMBOL(drm_modeset_unlock_all);
+-
+ /**
+  * drm_warn_on_modeset_not_all_locked - check that all modeset locks are locked
+  * @dev: device
+@@ -380,10 +293,9 @@ EXPORT_SYMBOL(drm_modeset_unlock);
+  * This function takes all modeset locks, suitable where a more fine-grained
+  * scheme isn't (yet) implemented.
+  *
+- * Unlike drm_modeset_lock_all(), it doesn't take the &drm_mode_config.mutex
+- * since that lock isn't required for modeset state changes. Callers which
+- * need to grab that lock too need to do so outside of the acquire context
+- * @ctx.
++ * It doesn't take the &drm_mode_config.mutex since that lock isn't required for
++ * modeset state changes. Callers which need to grab that lock too need to do so
++ * outside of the acquire context @ctx.
+  *
+  * Locks acquired with this function should be released by calling the
+  * drm_modeset_drop_locks() function on @ctx.
+diff --git a/include/drm/drm_modeset_lock.h b/include/drm/drm_modeset_lock.h
+index aafd07388eb7..865e64bcc4cb 100644
+--- a/include/drm/drm_modeset_lock.h
++++ b/include/drm/drm_modeset_lock.h
+@@ -132,8 +132,6 @@ struct drm_device;
+ struct drm_crtc;
+ struct drm_plane;
+ 
+-void drm_modeset_lock_all(struct drm_device *dev);
+-void drm_modeset_unlock_all(struct drm_device *dev);
+ void drm_warn_on_modeset_not_all_locked(struct drm_device *dev);
+ 
+ int drm_modeset_lock_all_ctx(struct drm_device *dev,
+-- 
+2.33.0
 
-Regards,
-Salvatore
