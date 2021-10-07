@@ -2,67 +2,82 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 48F26C433F5
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A2E07C433FE
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D1AA461263
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org D1AA461263
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=net-c.es
+	by mail.kernel.org (Postfix) with ESMTPS id 7A0CD6103B
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7A0CD6103B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F1026EA87;
-	Mon, 18 Oct 2021 17:18:35 +0000 (UTC)
-Received: from msg-2.mailo.com (msg-2.mailo.com [213.182.54.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C3D46ED15;
- Fri, 15 Oct 2021 12:22:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
- t=1634297850; bh=MQRO/l+EHR9JU1ioWJjmqgB8WWkE+yYekXTuFOswj+Y=;
- h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
- References:MIME-Version:Content-Transfer-Encoding;
- b=jmT7oe5w+8xJbJXvZiIKSkGCnKwIGnx+OzsvamxSx19qKwX6ySAQrusi6hQ37z92i
- ZxGtIFs9CEN43l6goAAmH750nfknm0dvTVWpD/lHCBBBFtxKXcvnxqpP3JCHDiyROE
- Lb4lVrjrvj0ZJjMXVo44k7a/k1h4hVZvKMkQcxPw=
-Received: by b-5.in.mailobj.net [192.168.90.15] with ESMTP
- via ip-206.mailobj.net [213.182.55.206]
- Fri, 15 Oct 2021 13:37:30 +0200 (CEST)
-X-EA-Auth: CRtTSwtUbuh6isJJX0SnV6erXuiGBUr2v9cRBqySyoMsALEn+um5ogs//XEthBHR+BYiHx6j1z6ycPjZkYdI84IPSn2OY8gV
-From: Claudio Suarez <cssk@net-c.es>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
- Maxime Ripard <mripard@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
- Andrzej Hajda <a.hajda@samsung.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Robert Foss <robert.foss@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
- nouveau@lists.freedesktop.org
-Cc: Claudio Suarez <cssk@net-c.es>
-Date: Fri, 15 Oct 2021 13:36:59 +0200
-Message-Id: <20211015113713.630119-2-cssk@net-c.es>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A60576EA85;
+	Mon, 18 Oct 2021 17:18:34 +0000 (UTC)
+Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
+ [64.147.123.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B2496E833;
+ Thu,  7 Oct 2021 19:39:02 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailnew.west.internal (Postfix) with ESMTP id A3CDC2B00A16;
+ Thu,  7 Oct 2021 15:39:01 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute6.internal (MEProxy); Thu, 07 Oct 2021 15:39:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
+ :to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding; s=fm3; bh=m/PMBB5pvKWQW
+ STt/A5gkzeeMb050e+LA6tdqxnW7is=; b=oegF6ykCWZhbIGyq9jRWEhggaN292
+ J1WBH+tuGc4EbvI2lJvpNaiXN2bfBzud3WnqNVnNkjMQ809iVxSMstqKB5u+8VEZ
+ /ZIkI4APm6M25ZWJZFXNzFdrk91H7q243eKTK+yD8qek65zTIAvgEOtzn1pFn7/O
+ As4SzzDO20H0RlFAdnfAQ1aKqUOBa3OPwMksWneB4m6vt0KzdSeAMyKueMDp35jb
+ EF5i6LsqEzsaFhzM7VyWt6nMpecvsJeNtRUf6PY3irrrzTfuzm0ivdOGc3BeO82X
+ tBHnYa/La1rZU2bY9+tOauRxwt9FhFI0KCOiezAOOt1MpftcMkssKrftQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:date:from
+ :in-reply-to:message-id:mime-version:references:subject:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; bh=m/PMBB5pvKWQWSTt/A5gkzeeMb050e+LA6tdqxnW7is=; b=erj624Z2
+ C0LfZTpyoyT2jOxJyMOlS8s5Da+2WRRg5bhE6SY3cBfNpqmTZZxEan+BCCTohyD+
+ 7x57v0+97FlmnWKiY7qA9UHhADF6L4YvW4X1Ze+ceUP/bj/DvO71T9MwA1SI1gg5
+ GCfIZVg0qMgZaYD6m9f6AAsHTJxb13/WSbmOrjCQVNmEJfh9XC7GEFgUQ2cyAauL
+ CUCMjmhAKeZd82cv6oP0I5TV8111WMr/hBFeBG/w2s79sy7DJ+IL7no2OUvqlD/P
+ waumRTFV2eww9VMPbJ4elfbVe8yJdpS28dhrL7OoqXKGCchwJcebVUBPWn/u36b2
+ zmPuvSDWYuH1dg==
+X-ME-Sender: <xms:1UxfYU2NhbjU2K77oGXmjMMY3tSYer_0Coi3OMlPM84TKr5eovALPQ>
+ <xme:1UxfYfFzwt52EEK-sM9QNQgyHktA6gvyFE4SHlK_beiHLOgedslvaN92yjd9tkIm3
+ flSHZR7Euuvf0uk-g>
+X-ME-Received: <xmr:1UxfYc47gmRvaAQ94FL5MOgQJ7xzW9zKuAF1dsPT7FGkmjgFUORYLnSeHYauuA1zJVsx>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudelkedgudefjecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
+ ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
+ ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpeefnecu
+ rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:1UxfYd32-dfhXbQPbNtiqz2WB1RQUMGdPDxP4HZW6CS2HRneXU-Txg>
+ <xmx:1UxfYXFuOP_bHetkSAdg563tRVsL79kd5v2-FTbVbtE5RkaLpCckbA>
+ <xmx:1UxfYW8oU60eFu5_2zXQp78usLZXX9aSe_owGwmmRHSBHDrMNhN_Vg>
+ <xmx:1UxfYeCInqP8mxYpEXA3CJt1hvG9ZNBiaMuSmwdQuj1GsXwaG0FHUZ6KMWE>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 7 Oct 2021 15:38:59 -0400 (EDT)
+From: Fernando Ramos <greenfoo@u92.eu>
+To: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+Date: Thu,  7 Oct 2021 21:37:49 +0200
+Message-Id: <20211007193755.29579-15-greenfoo@u92.eu>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211015113713.630119-1-cssk@net-c.es>
-References: <20211015113713.630119-1-cssk@net-c.es>
+In-Reply-To: <20211007193755.29579-1-greenfoo@u92.eu>
+References: <20211007193755.29579-1-greenfoo@u92.eu>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
-Subject: [Nouveau] [PATCH 01/15] gpu/drm: make drm_add_edid_modes()
- consistent when updating connector->display_info
+X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
+Subject: [Nouveau] [PATCH v3 14/20] drm/i915: cleanup:
+ drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN() [part 3]
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,40 +92,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-According to the documentation, drm_add_edid_modes
-"... Also fills out the &drm_display_info structure and ELD in @connector
-with any information which can be derived from the edid."
+As requested in Documentation/gpu/todo.rst, replace driver calls to
+drm_modeset_lock_all() with DRM_MODESET_LOCK_ALL_BEGIN() and
+DRM_MODESET_LOCK_ALL_END()
 
-drm_add_edid_modes accepts a struct edid *edid parameter which may have a
-value or may be null. When it is not null, connector->display_info and
-connector->eld are updated according to the edid. When edid=NULL, only
-connector->eld is reset. Reset connector->display_info to be consistent
-and accurate.
+NOTE:
 
-Signed-off-by: Claudio Suarez <cssk@net-c.es>
+While the previous two commits were a simple "search and replace", this
+time I had to do a bit of refactoring as only one call to
+DRM_MODESET_LOCK_ALL_BEGIN() is allowed inside one same function.
+
+Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
 ---
- drivers/gpu/drm/drm_edid.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/i915/display/intel_overlay.c | 40 ++++++++++----------
+ 1 file changed, 19 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index 6325877c5fd6..6cbe09b2357c 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -5358,10 +5358,12 @@ int drm_add_edid_modes(struct drm_connector *connector, struct edid *edid)
+diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+index c0ee135e5499..c623738c59c8 100644
+--- a/drivers/gpu/drm/i915/display/intel_overlay.c
++++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+@@ -1105,6 +1105,7 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
+ 	struct drm_crtc *drmmode_crtc;
+ 	struct intel_crtc *crtc;
+ 	struct drm_i915_gem_object *new_bo;
++	struct drm_modeset_acquire_ctx ctx;
+ 	int ret;
  
- 	if (edid == NULL) {
- 		clear_eld(connector);
-+		drm_reset_display_info(connector);
- 		return 0;
+ 	overlay = dev_priv->overlay;
+@@ -1113,24 +1114,24 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
+ 		return -ENODEV;
  	}
- 	if (!drm_edid_is_valid(edid)) {
- 		clear_eld(connector);
-+		drm_reset_display_info(connector);
- 		drm_warn(connector->dev, "%s: EDID invalid.\n",
- 			 connector->name);
- 		return 0;
+ 
+-	if (!(params->flags & I915_OVERLAY_ENABLE)) {
+-		drm_modeset_lock_all(dev);
+-		ret = intel_overlay_switch_off(overlay);
+-		drm_modeset_unlock_all(dev);
++	if (params->flags & I915_OVERLAY_ENABLE) {
+ 
+-		return ret;
+-	}
++		drmmode_crtc = drm_crtc_find(dev, file_priv, params->crtc_id);
++		if (!drmmode_crtc)
++			return -ENOENT;
++		crtc = to_intel_crtc(drmmode_crtc);
+ 
+-	drmmode_crtc = drm_crtc_find(dev, file_priv, params->crtc_id);
+-	if (!drmmode_crtc)
+-		return -ENOENT;
+-	crtc = to_intel_crtc(drmmode_crtc);
++		new_bo = i915_gem_object_lookup(file_priv, params->bo_handle);
++		if (!new_bo)
++			return -ENOENT;
++	}
+ 
+-	new_bo = i915_gem_object_lookup(file_priv, params->bo_handle);
+-	if (!new_bo)
+-		return -ENOENT;
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 
+-	drm_modeset_lock_all(dev);
++	if (!(params->flags & I915_OVERLAY_ENABLE)) {
++		ret = intel_overlay_switch_off(overlay);
++		goto out_unlock;
++	}
+ 
+ 	if (i915_gem_object_is_tiled(new_bo)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+@@ -1195,14 +1196,11 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
+ 	if (ret != 0)
+ 		goto out_unlock;
+ 
+-	drm_modeset_unlock_all(dev);
+-	i915_gem_object_put(new_bo);
+-
+-	return 0;
+-
+ out_unlock:
+-	drm_modeset_unlock_all(dev);
+-	i915_gem_object_put(new_bo);
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
++
++	if (params->flags & I915_OVERLAY_ENABLE)
++		i915_gem_object_put(new_bo);
+ 
+ 	return ret;
+ }
 -- 
 2.33.0
-
-
 
