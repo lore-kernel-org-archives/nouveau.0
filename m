@@ -2,65 +2,65 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A4D66C43219
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E1005C4167E
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 73D6661263
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 73D6661263
+	by mail.kernel.org (Postfix) with ESMTPS id A9ADD6103B
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org A9ADD6103B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5DAC6EA48;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81D736EA0F;
 	Mon, 18 Oct 2021 17:18:31 +0000 (UTC)
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
- [66.111.4.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FFB06EB2C;
- Wed, 13 Oct 2021 20:49:22 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailnew.nyi.internal (Postfix) with ESMTP id 14B69581176;
- Wed, 13 Oct 2021 16:49:22 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute6.internal (MEProxy); Wed, 13 Oct 2021 16:49:22 -0400
+Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
+ [64.147.123.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B7BF6F4EC;
+ Thu,  7 Oct 2021 19:39:15 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailnew.west.internal (Postfix) with ESMTP id A7BB22B00A16;
+ Thu,  7 Oct 2021 15:39:14 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute1.internal (MEProxy); Thu, 07 Oct 2021 15:39:15 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
  :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=r21xTV04JhLQh
- FFcwkc0d4AVLdWU1vIuTxgVGoPXBxw=; b=jmggCI4nAHOjgsyZ7LKJYxRovm3oa
- e1eidPiQPqiTEN5n3HSMh+9QE/ovfE8BF4dk6niXE4xqsPpuM6d3FVin9ZcNt4Uf
- MOJfoJyaCjxHvTQaznR0WLTzKWkx5g6TPoVO8mTxM78Jnxraghh5baPq+sCwleal
- 9U6SFRbGtL0fCwG75kHXIq3Rz4i7m1gu3TmvBo6IWxskJP1teg5x3agxP8J8yYgN
- pBpRksjRniLRt/I6kfWlQ8vp7wOnbXaGdVRaQ9HM4HNeXvNTLZiMRYEM0FioF/nc
- uB3KOZmVO8G2qh1kpVd421zqRGhbTOYO983aQOVLBgtW5WiMunLMRypRw==
+ :mime-version:content-transfer-encoding; s=fm3; bh=shVkTm124VB9F
+ 355YCG5s6oXEMEVV213FKazFR0E27k=; b=rn8/2MOjoJaObtSKwvKvWXooqX1Z2
+ ebYA/LRvCz1LtYaQrQG0tuEh9/bUoetkRA6nHESqfGgGEZvdONkz/2hFNlzvPad9
+ U0RJPQj6T75Mtfn/dd/rOCrrnsQ0+W46PD7/0fQNHQ577po6JyryeDAIeYUk4ANW
+ FQipm36Da5F1T0vb/dlhVaZPLn/eJXyqQoUJckARh8PXpEX3plSyJKDJ4FjR8tqS
+ BOz7twfOMb5cbqjEZDEe+gDJwbQzTq/uHuOKX/dPmem1WrViuPqISJa4RJF/ohig
+ bOjcv6ptuhgeJ6wgq4/7Lo28kULf9klFkdAe/TiTsrhMPV2PRna/pR+/g==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:content-transfer-encoding:date:from
  :in-reply-to:message-id:mime-version:references:subject:to
  :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; bh=r21xTV04JhLQhFFcwkc0d4AVLdWU1vIuTxgVGoPXBxw=; b=APCckOHB
- yQUvsruSR9YI/RkIl0TsTDqo9b8ukMjGIafQvtaVRYG7gbkMz8QL6Oc/qJdPGrl/
- 8bxO4nIcojW91vqtUejR51nV3CHRred37TRDyc10ggNXNz1FzK7NWN8aqbXsr2Fe
- qjwk7XWOTVrKEoifL40or+JrMBgpqYzjg+IlEYjWu8hUlmnp8dJvL/6/GsbvGgRZ
- 7wyQZfhkGf4E+qvKeZ9ZIsxLoDgXlLzgKmW+TLnXrmH17yCgociqj42KTeXnakCN
- E9kwkykGSjXGhixshWSIDINpUJVhvg1hKU2FdZ6SmsVWT1FHi0CK7v2CkuIwL8il
- 99jKAPfe446EDg==
-X-ME-Sender: <xms:UUZnYTlSd3bsa2XAUqRMxS0ln0yChXmRqg0jkR5o3jmsxjHNw0865A>
- <xme:UUZnYW1ULyetTpPE_X6Whoso1i3gatmkYkkdOKgpmCnB6Neyg3B8NOD8cjQdJFTEN
- J6pUhmwSo_FSVBLOQ>
-X-ME-Received: <xmr:UUZnYZo43YY9-v3nmnI56x-S2v-_BT9O5NOdWfRHowPNnk2SU2VuSefrA1MZFRmVarnG>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddutddgudehtdcutefuodetggdotefrod
+ fm1; bh=shVkTm124VB9F355YCG5s6oXEMEVV213FKazFR0E27k=; b=P1WaKDSb
+ 3FFIKAFboQ4lidCIJsReAj2rNloe4vHzQ3pJSkhnNmPN7+BLfU6M3wdB8/miDcn+
+ r8jTiSJ5w3CvEySSvkQLhur5SXBI+OlnMT4pKHUg/51yjt3F4bUqrh7DjDYL5LyC
+ jV+tzaCRxQvpURw7uNMFmXPBAJBEmrXbOgFyffbfWQ8NVHXnGqF59Y/6NphRxrAl
+ DaLl1KlPJpQfcSpkggYrhw33dGP8g+mRYD6d4EXDwhdTJE9qk0v/JeDluGTmvZI1
+ /ZWMWS49qSdIRWuIaQskpGothf+E9qSWRqzdQ7kyh19Kw2qoPjNWwZVmEcyRBUVA
+ EiLkjuP+s/wuuQ==
+X-ME-Sender: <xms:4kxfYV4XXATQTXjncahACZ9OnT8aiqUVnu5t5qDK3aMW8TDOY-0AhQ>
+ <xme:4kxfYS6D0u4XzsYUrFjHeqExH9F0TAF9g5XqEgIGaJAsjFjIGDvfG-XrVZzsgY-Yx
+ 1ySwqR0AXTVfIzOCA>
+X-ME-Received: <xmr:4kxfYceGRZtearcn5YSgFiELAy5jqLW8orTc6aFYtapQUFzvSjCfK0CL31O0Sw8IfKE_>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudelkedgudefjecutefuodetggdotefrod
  ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
  necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
  ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
  ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpeefnecu
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedunecu
  rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:UUZnYbnh5itb_Alq1fRxept250ycGkhXGr5y9qYq0i3CAx4fvDu5og>
- <xmx:UUZnYR0W6uAw_PL9Pp8oaWrrecNSGHMGMF-eqkjf-LjS20qlmsXNvA>
- <xmx:UUZnYasULB3Tv5R9n0-POOybTxxcSjYA_08iao68Bqjs0IVdK7HLFw>
- <xmx:UkZnYbziS7hsVZP139IWIDU_JLQTqi12-C3m1xcTLNISbyDSKSPzJA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 13 Oct 2021 16:49:19 -0400 (EDT)
+X-ME-Proxy: <xmx:4kxfYeKYCKpvUlRlABdShAFTfsBl-MO89Pe7dHYyIts8enE8G-zXtw>
+ <xmx:4kxfYZLon0dsPnDq4XtaCDA7T4xBpFEZ_iF_9vfNzG4TApU3NhgpjA>
+ <xmx:4kxfYXzOh63UhLRFGaqZaIrcMCdALPu2aD5N-IX__5wiVr5fK9cvYg>
+ <xmx:4kxfYSW23WCb_-Livhw88WSVsWqwMpYQiq5xl-q5iPWIkaPiotmpuHlpLgY>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 7 Oct 2021 15:39:11 -0400 (EDT)
 From: Fernando Ramos <greenfoo@u92.eu>
 To: dri-devel@lists.freedesktop.org
 Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
@@ -68,16 +68,16 @@ Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
  linux-tegra@vger.kernel.org
-Date: Wed, 13 Oct 2021 22:48:36 +0200
-Message-Id: <20211013204846.90026-11-greenfoo@u92.eu>
+Date: Thu,  7 Oct 2021 21:37:52 +0200
+Message-Id: <20211007193755.29579-18-greenfoo@u92.eu>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211013204846.90026-1-greenfoo@u92.eu>
-References: <20211013204846.90026-1-greenfoo@u92.eu>
+In-Reply-To: <20211007193755.29579-1-greenfoo@u92.eu>
+References: <20211007193755.29579-1-greenfoo@u92.eu>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
-Subject: [Nouveau] [PATCH v4 10/20] drm/nouveau: cleanup:
- drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+Subject: [Nouveau] [PATCH v3 17/20] drm/amd: cleanup: drm_modeset_lock_all()
+ --> DRM_MODESET_LOCK_ALL_BEGIN() [part 2]
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,67 +92,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As requested in Documentation/gpu/todo.rst, replace driver calls to
-drm_modeset_lock_all() with DRM_MODESET_LOCK_ALL_BEGIN() and
-DRM_MODESET_LOCK_ALL_END()
+Refactor places using drm_modeset_{lock,unlock}_all() so that they only
+appear once per function.
+
+This is needed so that in the next commit I can replace those functions
+by the new macros (which use labels that can only appear once per
+function).
 
 Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
-Reviewed-by: Sean Paul <sean@poorly.run>
 ---
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 44 ++++++++-----------
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 18 +++-----
+ 2 files changed, 26 insertions(+), 36 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index d7b9f7f8c9e3..86e18a844953 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -42,6 +42,7 @@
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_scdc_helper.h>
- #include <drm/drm_vblank.h>
-+#include <drm/drm_drv.h>
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index e676d0a56d50..444ad054980a 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -2909,14 +2909,6 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
+ 	if (aconnector->base.force && new_connection_type == dc_connection_none) {
+ 		emulated_link_detect(aconnector->dc_link);
  
- #include <nvif/push507c.h>
+-
+-		drm_modeset_lock_all(dev);
+-		dm_restore_drm_connector_state(dev, connector);
+-		drm_modeset_unlock_all(dev);
+-
+-		if (aconnector->base.force == DRM_FORCE_UNSPECIFIED)
+-			drm_kms_helper_hotplug_event(dev);
+-
+ 	} else if (dc_link_detect(aconnector->dc_link, DETECT_REASON_HPD)) {
+ 		if (new_connection_type == dc_connection_none &&
+ 		    aconnector->dc_link->type == dc_connection_none &&
+@@ -2925,13 +2917,18 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
  
-@@ -667,16 +668,18 @@ nv50_audio_component_bind(struct device *kdev, struct device *hda_kdev,
- 	struct drm_device *drm_dev = dev_get_drvdata(kdev);
- 	struct nouveau_drm *drm = nouveau_drm(drm_dev);
- 	struct drm_audio_component *acomp = data;
-+	struct drm_modeset_acquire_ctx ctx;
-+	int ret;
+ 		amdgpu_dm_update_connector_after_detect(aconnector);
  
- 	if (WARN_ON(!device_link_add(hda_kdev, kdev, DL_FLAG_STATELESS)))
- 		return -ENOMEM;
+-		drm_modeset_lock_all(dev);
+-		dm_restore_drm_connector_state(dev, connector);
+-		drm_modeset_unlock_all(dev);
+-
+-		if (aconnector->base.force == DRM_FORCE_UNSPECIFIED)
+-			drm_kms_helper_hotplug_event(dev);
++	} else {
++		goto out;
+ 	}
++
++	drm_modeset_lock_all(dev);
++	dm_restore_drm_connector_state(dev, connector);
++	drm_modeset_unlock_all(dev);
++
++	if (aconnector->base.force == DRM_FORCE_UNSPECIFIED)
++		drm_kms_helper_hotplug_event(dev);
++
++out:
+ 	mutex_unlock(&aconnector->hpd_lock);
  
--	drm_modeset_lock_all(drm_dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(drm_dev, ctx, 0, ret);
- 	acomp->ops = &nv50_audio_component_ops;
- 	acomp->dev = kdev;
- 	drm->audio.component = acomp;
--	drm_modeset_unlock_all(drm_dev);
--	return 0;
-+	DRM_MODESET_LOCK_ALL_END(drm_dev, ctx, ret);
-+	return ret;
  }
+@@ -3119,12 +3116,6 @@ static void handle_hpd_rx_irq(void *param)
  
- static void
-@@ -686,12 +689,14 @@ nv50_audio_component_unbind(struct device *kdev, struct device *hda_kdev,
- 	struct drm_device *drm_dev = dev_get_drvdata(kdev);
- 	struct nouveau_drm *drm = nouveau_drm(drm_dev);
- 	struct drm_audio_component *acomp = data;
-+	struct drm_modeset_acquire_ctx ctx;
-+	int ret;
+ 			amdgpu_dm_update_connector_after_detect(aconnector);
  
--	drm_modeset_lock_all(drm_dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(drm_dev, ctx, 0, ret);
- 	drm->audio.component = NULL;
- 	acomp->ops = NULL;
- 	acomp->dev = NULL;
--	drm_modeset_unlock_all(drm_dev);
-+	DRM_MODESET_LOCK_ALL_END(drm_dev, ctx, ret);
- }
+-
+-			drm_modeset_lock_all(dev);
+-			dm_restore_drm_connector_state(dev, connector);
+-			drm_modeset_unlock_all(dev);
+-
+-			drm_kms_helper_hotplug_event(dev);
+ 		} else if (dc_link_detect(dc_link, DETECT_REASON_HPDRX)) {
  
- static const struct component_ops nv50_audio_component_bind_ops = {
+ 			if (aconnector->fake_enable)
+@@ -3132,14 +3123,17 @@ static void handle_hpd_rx_irq(void *param)
+ 
+ 			amdgpu_dm_update_connector_after_detect(aconnector);
+ 
++		} else {
++			goto finish;
++		}
+ 
+-			drm_modeset_lock_all(dev);
+-			dm_restore_drm_connector_state(dev, connector);
+-			drm_modeset_unlock_all(dev);
++		drm_modeset_lock_all(dev);
++		dm_restore_drm_connector_state(dev, connector);
++		drm_modeset_unlock_all(dev);
+ 
+-			drm_kms_helper_hotplug_event(dev);
+-		}
++		drm_kms_helper_hotplug_event(dev);
+ 	}
++finish:
+ #ifdef CONFIG_DRM_AMD_DC_HDCP
+ 	if (hpd_irq_data.bytes.device_service_irq.bits.CP_IRQ) {
+ 		if (adev->dm.hdcp_workqueue)
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+index f3ada9b6be5a..4efb1f355fe7 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+@@ -1237,12 +1237,6 @@ static ssize_t trigger_hotplug(struct file *f, const char __user *buf,
+ 			goto unlock;
+ 
+ 		amdgpu_dm_update_connector_after_detect(aconnector);
+-
+-		drm_modeset_lock_all(dev);
+-		dm_restore_drm_connector_state(dev, connector);
+-		drm_modeset_unlock_all(dev);
+-
+-		drm_kms_helper_hotplug_event(dev);
+ 	} else if (param[0] == 0) {
+ 		if (!aconnector->dc_link)
+ 			goto unlock;
+@@ -1260,13 +1254,15 @@ static ssize_t trigger_hotplug(struct file *f, const char __user *buf,
+ 
+ 		amdgpu_dm_update_connector_after_detect(aconnector);
+ 
+-		drm_modeset_lock_all(dev);
+-		dm_restore_drm_connector_state(dev, connector);
+-		drm_modeset_unlock_all(dev);
+-
+-		drm_kms_helper_hotplug_event(dev);
++	} else {
++		goto unlock;
+ 	}
+ 
++	drm_modeset_lock_all(dev);
++	dm_restore_drm_connector_state(dev, connector);
++	drm_modeset_unlock_all(dev);
++	drm_kms_helper_hotplug_event(dev);
++
+ unlock:
+ 	mutex_unlock(&aconnector->hpd_lock);
+ 
 -- 
 2.33.0
 
