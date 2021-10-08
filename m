@@ -2,67 +2,83 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 62F8BC433EF
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 50D37C433FE
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3659C6126A
+	by mail.kernel.org (Postfix) with ESMTPS id 0466E6126A
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:59 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 3659C6126A
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=net-c.es
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 0466E6126A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B51996EA6D;
-	Mon, 18 Oct 2021 17:18:33 +0000 (UTC)
-Received: from msg-3.mailo.com (ip-8.mailobj.net [213.182.54.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E90A76ED93;
- Fri, 15 Oct 2021 12:22:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
- t=1634297854; bh=EXkDekAufK6goeabnufaLKQbzyG9y1fY1+pkrXICOg0=;
- h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
- References:MIME-Version:Content-Transfer-Encoding;
- b=trR0cCwk0E7f5AYxYGlukPi8aiLA98MSOI+OGdYzeIw76VbqbliTgTpjqiyHxrUs3
- tqW7FqTmOHNRialIWvv0YmRcQAGqoMelAiphnp11q/U2l+AT6kmovenU+4c1ZgbGZJ
- cYL5fIrLlIJ+UcT91uy/qFbz6KOCdnDqbKZG+660=
-Received: by b-5.in.mailobj.net [192.168.90.15] with ESMTP
- via ip-206.mailobj.net [213.182.55.206]
- Fri, 15 Oct 2021 13:37:34 +0200 (CEST)
-X-EA-Auth: FzfiRJoiBG/O1+TXf0H4ryZjXiL4Gihdpt7BFp6efST2EUumb9WCzcoiWHxfb1quhALH7eZIXa1z+3IqSJ0MB43ddQyGVYfM
-From: Claudio Suarez <cssk@net-c.es>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
- Maxime Ripard <mripard@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
- Andrzej Hajda <a.hajda@samsung.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Robert Foss <robert.foss@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
- nouveau@lists.freedesktop.org
-Cc: Claudio Suarez <cssk@net-c.es>
-Date: Fri, 15 Oct 2021 13:37:01 +0200
-Message-Id: <20211015113713.630119-4-cssk@net-c.es>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211015113713.630119-1-cssk@net-c.es>
-References: <20211015113713.630119-1-cssk@net-c.es>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E80A46EA4D;
+	Mon, 18 Oct 2021 17:18:31 +0000 (UTC)
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
+ [66.111.4.230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B1FF6E115;
+ Fri,  8 Oct 2021 20:55:22 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id A9CF0580C13;
+ Fri,  8 Oct 2021 16:55:20 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute6.internal (MEProxy); Fri, 08 Oct 2021 16:55:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=date
+ :from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm3; bh=U/0tI2WqpY8R/D5cCNUlc8nWhAl
+ LsJXOzrctQujWspY=; b=l/83LD6l0rHvCZwTBsNAVmL0SqTO0/h8C5H2nz6CaE9
+ md5NOYwRiHDc6jGDWDvKo0iR9nkIZSNGQEIjT8pR+5GYB9tddVnD9emmUQGwuHeg
+ /XaeWspPz3GuFT/xqzFkTKAIDZCsdJU6v8uZ/47/ulLKqul5XLrF7kK6IF1uaNp6
+ EvHsRJNO3E2y0TqoqAzBJE+YW16DN+aKXC7jFF0ybZUvzcCKzAcFt+eHdQnUKaU2
+ W2YgPK5I2ERA1OQHY4EFj63/CfNVxsAz0e6vdb7aua/tm9u0rj2M2Bd3Z5NaA+TZ
+ 6UJUjBL1kIy2hE9BEPChzkjElPApG3xYKnLSSlRIe1w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=U/0tI2
+ WqpY8R/D5cCNUlc8nWhAlLsJXOzrctQujWspY=; b=m2SDU6/GzFY7kNBWjel2k5
+ QMEEP9MAC0CM9LfpyTHmTohPW33zwMfXCgy9jlfJuRot5mNKDUfluGt1Chnc7S56
+ jBAE9SJ2A7OljpYYIbpisObs2KG3x2ppe/cQ6s8F+fk1a46k3RJ3gfRo3F56nQf0
+ 9y25aP8ii7jQlGiE19C/ich569t3faFmJxH8ht4VRUuDdLCMhUBPJUgE8j3ASqKD
+ JKe+BaXKl7D8AsX+faKETfGglnuEzW8UY3BVgWnLH5+btZA5wccHDMHTdmIkoP6r
+ /UuXeszP6MKZkEGiY1ezFuUB3vayyPXgDC4O1zqb4BsaKlwJKa5aXKMvZf4MOKWQ
+ ==
+X-ME-Sender: <xms:N7BgYRFnXQpksB119JM60EYoUp1HdvDkDoTj8GqluIHrunTIiMs9xA>
+ <xme:N7BgYWVEAF48p_ub6G8kiOLvInPbQRxOQveFA40yTau8rXhuZc0PI4N7JCnysYuuN
+ 5GklthLaMCdonISFw>
+X-ME-Received: <xmr:N7BgYTI1DN7JnUaNl4GIN1L0od1bEI4Lb8ivvXSmGNPh7y9W-OH-Pg9Qr9LkMibMGB6LetB3>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddttddgudehvdcutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecunecujfgurhepfffhvffukfhfgggtuggjsehttd
+ ertddttdejnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
+ ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpedvjeeifeelhfetiefhhfdthfefke
+ fhhfeutdetvdfgvefgveefheffgfekjeefheenucevlhhushhtvghrufhiiigvpedtnecu
+ rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:OLBgYXH--C3B6cyF5MQe8RYpEULz7AsYHfXfb4nxT77sNhnXV1sFqg>
+ <xmx:OLBgYXWgDRJjNqBOXiP9JxTR4PnQb05pTwdvIFS_dicO4cgnkYLOMA>
+ <xmx:OLBgYSMMudCuWYDBs09GVSCVcETxBx0_XYMLA63OpFrtXz40j5t7Hw>
+ <xmx:OLBgYXSdfmbw2Zr7_8ALlJODSWNZqACW47MJLKfrt32cPzHaIv6KdA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 8 Oct 2021 16:55:16 -0400 (EDT)
+Date: Fri, 8 Oct 2021 22:55:14 +0200
+From: Fernando Ramos <greenfoo@u92.eu>
+To: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org, sean@poorly.run,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org
+Message-ID: <YWCwMnHh09wOKwig@zacax395.localdomain>
+References: <20211007193755.29579-1-greenfoo@u92.eu>
+ <20211007193755.29579-21-greenfoo@u92.eu>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
-Subject: [Nouveau] [PATCH 03/15] drm/vc4: replace drm_detect_hdmi_monitor()
- with drm_display_info.is_hdmi
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211007193755.29579-21-greenfoo@u92.eu>
+X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
+Subject: Re: [Nouveau] [PATCH v3 20/20] drm: cleanup: remove acquire_ctx
+ from drm_mode_config
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,45 +93,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Once EDID is parsed, the monitor HDMI support information is available
-through drm_display_info.is_hdmi. Use this value instead of calling
-drm_detect_hdmi_monitor() to avoid a second parse.
-
-This is a TODO task in Documentation/gpu/todo.rst
-
-Signed-off-by: Claudio Suarez <cssk@net-c.es>
----
- drivers/gpu/drm/vc4/vc4_hdmi.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
-index b4b4653fe301..d531e4c501eb 100644
---- a/drivers/gpu/drm/vc4/vc4_hdmi.c
-+++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-@@ -182,7 +182,8 @@ vc4_hdmi_connector_detect(struct drm_connector *connector, bool force)
- 
- 			if (edid) {
- 				cec_s_phys_addr_from_edid(vc4_hdmi->cec_adap, edid);
--				vc4_hdmi->encoder.hdmi_monitor = drm_detect_hdmi_monitor(edid);
-+				vc4_hdmi->encoder.hdmi_monitor =
-+						connector->display_info.is_hdmi;
- 				kfree(edid);
- 			}
- 		}
-@@ -212,10 +213,9 @@ static int vc4_hdmi_connector_get_modes(struct drm_connector *connector)
- 	if (!edid)
- 		return -ENODEV;
- 
--	vc4_encoder->hdmi_monitor = drm_detect_hdmi_monitor(edid);
--
- 	drm_connector_update_edid_property(connector, edid);
- 	ret = drm_add_edid_modes(connector, edid);
-+	vc4_encoder->hdmi_monitor = connector->display_info.is_hdmi;
- 	kfree(edid);
- 
- 	if (vc4_hdmi->disable_4kp60) {
--- 
-2.33.0
-
-
-
+On 21/10/07 09:37PM, Fernando Ramos wrote:
+> ---
+>  include/drm/drm_mode_config.h | 10 ----------
+>  1 file changed, 10 deletions(-)
+> 
+> diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
+> index 48b7de80daf5..b214b07157f2 100644
+> 
+This patch was missing the commit description and signed-off-by line. I'll fix
+that for the next revision (v4) together with the rest of issues that might come
+up.
