@@ -2,67 +2,75 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 92D41C433EF
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7331BC433FE
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1EAA16103B
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:46 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1EAA16103B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=net-c.es
+	by mail.kernel.org (Postfix) with ESMTPS id 1DA656103B
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:47 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1DA656103B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35AE86EA2A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3ABE46EA35;
 	Mon, 18 Oct 2021 17:18:31 +0000 (UTC)
-Received: from msg-2.mailo.com (msg-2.mailo.com [213.182.54.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 465576ED91;
- Fri, 15 Oct 2021 12:22:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
- t=1634297876; bh=DVLmFijYSHc7jEHQ//GsjmH4g2DO/qzBqldU3aij94s=;
- h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
- References:MIME-Version:Content-Transfer-Encoding;
- b=glH7KeLXKuq/CPjGR5DTtE62AczVc/abB/vxVhIZ1BeV2Vrf5RKfa6rSoJ9dEDL5D
- H/eJdIR7L8k/w4HhHT/j3kzWspUz0invX/v6sw3NQZlWP3utFRnsCbWhxBiuiVuxrQ
- 5TKVUVYKiEPoNEGXlts+wJ5hVf72L/nvnXLuJAZc=
-Received: by b-1.in.mailobj.net [192.168.90.11] with ESMTP
- via ip-206.mailobj.net [213.182.55.206]
- Fri, 15 Oct 2021 13:37:56 +0200 (CEST)
-X-EA-Auth: bMDXeVoZb/Mstb19izi23xlNGkSVj8utTuF+Cy91Q/hUFeUHxLMp0CC+gpWKEdzucOXrmwCbro+eRnN+xHmGe63SD9vXpA0N
-From: Claudio Suarez <cssk@net-c.es>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
- Maxime Ripard <mripard@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
- Andrzej Hajda <a.hajda@samsung.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Robert Foss <robert.foss@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
- nouveau@lists.freedesktop.org
-Cc: Claudio Suarez <cssk@net-c.es>
-Date: Fri, 15 Oct 2021 13:37:02 +0200
-Message-Id: <20211015113713.630119-5-cssk@net-c.es>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211015113713.630119-1-cssk@net-c.es>
-References: <20211015113713.630119-1-cssk@net-c.es>
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
+ [IPv6:2a00:1450:4864:20::432])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 000FC6E430;
+ Mon, 11 Oct 2021 07:05:57 +0000 (UTC)
+Received: by mail-wr1-x432.google.com with SMTP id r7so52758189wrc.10;
+ Mon, 11 Oct 2021 00:05:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=sender:date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=wMNVOKH7I9nZJBmdmY82PpMuTIJnDPrxHG2zjEA5m9s=;
+ b=pzSf3o5Llbrkbhs9yWVdcshQQe7s/EdjJ3wKU95Bwif3mVaeFGYa+EUBkmmBXYW03d
+ DQrx0IEd6u+eYTF2YWHoL5pOUwgorBAP4CKBsOzj44HhL+zXdM2NB+Coh8cr8D/jON43
+ OVCBCDKtMhQ1bWVbbSuOOzrQaLrwM8irwfgxmjgitZRbNQFf7x3CunUxuu3P0G3C50u7
+ Cfr4417v1OZiiH1fXWemiB760QnXpOshNsShWDsTP4CxIloYsyoK7/xS6qR/Dx3wMq9/
+ s8jnuo/KX33cv0vLJyZ9EpkpWlow2W6jwQ/Sirbmjn2IdAOpBih6kOcJW9svajFzl5bC
+ vqlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+ :references:mime-version:content-disposition:in-reply-to;
+ bh=wMNVOKH7I9nZJBmdmY82PpMuTIJnDPrxHG2zjEA5m9s=;
+ b=GehxwMDrLu3Kpf1a5N4E2AB54R3Z/RbPBkKxRxQWfyyL3MRVYvo/fhqSZVqz1eUTrX
+ eKRZV5DXSy7qIMC/7WGYo4e9Hf1jaqDzakHaovSL5BEj/at7HKWgvuLuwb4CdKZGI3hb
+ e37KdcGpBvglsg7D2yxMAsQVSGv2TzeqrewAkoPBkM5AUkFx2lwZhTmNT0ntLEeqV09S
+ blpDzy3bEe1hJSJePKcIJNkM5jIhSsXNmxUMjUifjYL3+fJpyLA9qyAiBfp2A9CIeUI5
+ Wy6OBdjVG8ZlmfBjdzUgTlaFkMsXYmaWSVelt8mF9rQGYVUWpN78GPPCp/ThBt3p19W6
+ 6nPA==
+X-Gm-Message-State: AOAM530h/KBNsY0ohc06NH5tK7xUOrR5u9enPRqBIUmJC8TvCYahspas
+ rdco0ikm5A0Uz2jqYGAgbv0=
+X-Google-Smtp-Source: ABdhPJzKBXc4gUSq/yC+ip4ByIKGOGVWV28ONE7yJ0I9k61i/DnvMnUlb1J+JeJXSVO7uRqSmUCoxA==
+X-Received: by 2002:adf:ae1a:: with SMTP id x26mr21985872wrc.30.1633935956529; 
+ Mon, 11 Oct 2021 00:05:56 -0700 (PDT)
+Received: from eldamar (80-218-24-251.dclient.hispeed.ch. [80.218.24.251])
+ by smtp.gmail.com with ESMTPSA id u5sm7171049wrg.57.2021.10.11.00.05.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 11 Oct 2021 00:05:56 -0700 (PDT)
+Date: Mon, 11 Oct 2021 09:05:55 +0200
+From: Salvatore Bonaccorso <carnil@debian.org>
+To: Lyude Paul <lyude@redhat.com>
+Cc: Jeremy Cline <jcline@redhat.com>, Ben Skeggs <bskeggs@redhat.com>,
+ Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Message-ID: <YWPiU+9G0AKglHmi@eldamar.lan>
+References: <20201103194912.184413-1-jcline@redhat.com>
+ <20201125202648.5220-1-jcline@redhat.com>
+ <b4da382b17a77b66e45fd374c9d806dac6054e3a.camel@redhat.com>
+ <YRoN0vWFN6Lw22ej@eldamar.lan>
+ <418fdcbcf554d34cc6423a88974f916b64b3664c.camel@redhat.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <418fdcbcf554d34cc6423a88974f916b64b3664c.camel@redhat.com>
 X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
-Subject: [Nouveau] [PATCH 04/15] drm/radeon: replace
- drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+Subject: Re: [Nouveau] [PATCH v2 0/3] drm/nouveau: fix a use-after-free in
+ postclose()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,203 +85,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Once EDID is parsed, the monitor HDMI support information is available
-through drm_display_info.is_hdmi. Retriving the same information is less
-efficient. Change to drm_display_info.is_hdmi
+Hi Ben,
 
-This is a TODO task in Documentation/gpu/todo.rst
+On Tue, Aug 17, 2021 at 04:32:31PM -0400, Lyude Paul wrote:
+> It may have been, we're in the process of trying to change around how we
+> currently accept nouveau patches to stop this from happening in the future.
+> 
+> Ben, whenever you get a moment can you take a look at this?
+> 
+> On Mon, 2021-08-16 at 09:03 +0200, Salvatore Bonaccorso wrote:
+> > Hi,
+> > 
+> > On Fri, Mar 26, 2021 at 06:00:51PM -0400, Lyude Paul wrote:
+> > > This patch series is:
+> > > 
+> > > Reviewed-by: Lyude Paul <lyude@redhat.com>
+> > > 
+> > > Btw - in the future if you need to send a respin of multiple patches, you
+> > > need
+> > > to send it as it's own separate series instead of replying to the previous
+> > > one
+> > > (one-off respins can just be posted as replies though), otherwise
+> > > patchwork
+> > > won't pick it up
+> > 
+> > Did this patch series somehow fall through the cracks or got lost?
 
-Also, correct an inacurracy or bug in
-radeon_connector_get_edid()/radeon_connector_free_edid(). Two variables
-have EDID data:
-- struct radeon_connector.edid
-- struct drm_connector.edid_blob_ptr
-The second is updated by calling drm_connector_update_edid_property() or
-drm_get_edid() - which internally calls drm_connector_update_edid_property().
-drm_display_info.is_hdmi is updated when this function is called.
-radeon_connector_get_edid() calls drm_get_edid() to update
-drm_connector.edid_blob_ptr/drm_display_info only in some cases. Change it
-to be always up to date, so drm_display_info is always correct.
-As counterpart, reset these values in radeon_connector_free_edid().
+Looking some older threads, noticed this one. Ben did you got a chance
+to look at it, or is it now irrelevant by other means?
 
-This second change is necessary for the previous one to work properly.
-
-Signed-off-by: Claudio Suarez <cssk@net-c.es>
----
- drivers/gpu/drm/radeon/atombios_encoders.c |  6 +++---
- drivers/gpu/drm/radeon/radeon_connectors.c | 20 ++++++++++++++------
- drivers/gpu/drm/radeon/radeon_display.c    |  2 +-
- drivers/gpu/drm/radeon/radeon_encoders.c   |  4 ++--
- drivers/gpu/drm/radeon/radeon_mode.h       |  1 +
- 5 files changed, 21 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/radeon/atombios_encoders.c b/drivers/gpu/drm/radeon/atombios_encoders.c
-index 0fce73b9a646..29a140732f71 100644
---- a/drivers/gpu/drm/radeon/atombios_encoders.c
-+++ b/drivers/gpu/drm/radeon/atombios_encoders.c
-@@ -713,7 +713,7 @@ atombios_get_encoder_mode(struct drm_encoder *encoder)
- 			if (radeon_connector->use_digital &&
- 			    (radeon_connector->audio == RADEON_AUDIO_ENABLE))
- 				return ATOM_ENCODER_MODE_HDMI;
--			else if (drm_detect_hdmi_monitor(radeon_connector_edid(connector)) &&
-+			else if (radeon_connector_is_hdmi_monitor(connector) &&
- 				 (radeon_connector->audio == RADEON_AUDIO_AUTO))
- 				return ATOM_ENCODER_MODE_HDMI;
- 			else if (radeon_connector->use_digital)
-@@ -732,7 +732,7 @@ atombios_get_encoder_mode(struct drm_encoder *encoder)
- 		if (radeon_audio != 0) {
- 			if (radeon_connector->audio == RADEON_AUDIO_ENABLE)
- 				return ATOM_ENCODER_MODE_HDMI;
--			else if (drm_detect_hdmi_monitor(radeon_connector_edid(connector)) &&
-+			else if (radeon_connector_is_hdmi_monitor(connector) &&
- 				 (radeon_connector->audio == RADEON_AUDIO_AUTO))
- 				return ATOM_ENCODER_MODE_HDMI;
- 			else
-@@ -756,7 +756,7 @@ atombios_get_encoder_mode(struct drm_encoder *encoder)
- 		} else if (radeon_audio != 0) {
- 			if (radeon_connector->audio == RADEON_AUDIO_ENABLE)
- 				return ATOM_ENCODER_MODE_HDMI;
--			else if (drm_detect_hdmi_monitor(radeon_connector_edid(connector)) &&
-+			else if (radeon_connector_is_hdmi_monitor(connector) &&
- 				 (radeon_connector->audio == RADEON_AUDIO_AUTO))
- 				return ATOM_ENCODER_MODE_HDMI;
- 			else
-diff --git a/drivers/gpu/drm/radeon/radeon_connectors.c b/drivers/gpu/drm/radeon/radeon_connectors.c
-index 607ad5620bd9..0200f094467c 100644
---- a/drivers/gpu/drm/radeon/radeon_connectors.c
-+++ b/drivers/gpu/drm/radeon/radeon_connectors.c
-@@ -130,7 +130,7 @@ int radeon_get_monitor_bpc(struct drm_connector *connector)
- 	case DRM_MODE_CONNECTOR_DVII:
- 	case DRM_MODE_CONNECTOR_HDMIB:
- 		if (radeon_connector->use_digital) {
--			if (drm_detect_hdmi_monitor(radeon_connector_edid(connector))) {
-+			if (radeon_connector_is_hdmi_monitor(connector)) {
- 				if (connector->display_info.bpc)
- 					bpc = connector->display_info.bpc;
- 			}
-@@ -138,7 +138,7 @@ int radeon_get_monitor_bpc(struct drm_connector *connector)
- 		break;
- 	case DRM_MODE_CONNECTOR_DVID:
- 	case DRM_MODE_CONNECTOR_HDMIA:
--		if (drm_detect_hdmi_monitor(radeon_connector_edid(connector))) {
-+		if (radeon_connector_is_hdmi_monitor(connector)) {
- 			if (connector->display_info.bpc)
- 				bpc = connector->display_info.bpc;
- 		}
-@@ -147,7 +147,7 @@ int radeon_get_monitor_bpc(struct drm_connector *connector)
- 		dig_connector = radeon_connector->con_priv;
- 		if ((dig_connector->dp_sink_type == CONNECTOR_OBJECT_ID_DISPLAYPORT) ||
- 		    (dig_connector->dp_sink_type == CONNECTOR_OBJECT_ID_eDP) ||
--		    drm_detect_hdmi_monitor(radeon_connector_edid(connector))) {
-+		    radeon_connector_is_hdmi_monitor(connector)) {
- 			if (connector->display_info.bpc)
- 				bpc = connector->display_info.bpc;
- 		}
-@@ -171,7 +171,7 @@ int radeon_get_monitor_bpc(struct drm_connector *connector)
- 		break;
- 	}
- 
--	if (drm_detect_hdmi_monitor(radeon_connector_edid(connector))) {
-+	if (radeon_connector_is_hdmi_monitor(connector)) {
- 		/* hdmi deep color only implemented on DCE4+ */
- 		if ((bpc > 8) && !ASIC_IS_DCE4(rdev)) {
- 			DRM_DEBUG("%s: HDMI deep color %d bpc unsupported. Using 8 bpc.\n",
-@@ -348,6 +348,8 @@ static void radeon_connector_get_edid(struct drm_connector *connector)
- 			/* some servers provide a hardcoded edid in rom for KVMs */
- 			radeon_connector->edid = radeon_bios_get_hardcoded_edid(rdev);
- 		}
-+		if (radeon_connector->edid)
-+			drm_connector_update_edid_property(connector, radeon_connector->edid);
- 	}
- }
- 
-@@ -358,6 +360,7 @@ static void radeon_connector_free_edid(struct drm_connector *connector)
- 	if (radeon_connector->edid) {
- 		kfree(radeon_connector->edid);
- 		radeon_connector->edid = NULL;
-+		drm_connector_update_edid_property(connector, NULL);
- 	}
- }
- 
-@@ -1496,7 +1499,7 @@ static enum drm_mode_status radeon_dvi_mode_valid(struct drm_connector *connecto
- 		    (radeon_connector->connector_object_id == CONNECTOR_OBJECT_ID_DUAL_LINK_DVI_D) ||
- 		    (radeon_connector->connector_object_id == CONNECTOR_OBJECT_ID_HDMI_TYPE_B))
- 			return MODE_OK;
--		else if (ASIC_IS_DCE6(rdev) && drm_detect_hdmi_monitor(radeon_connector_edid(connector))) {
-+		else if (ASIC_IS_DCE6(rdev) && radeon_connector_is_hdmi_monitor(connector)) {
- 			/* HDMI 1.3+ supports max clock of 340 Mhz */
- 			if (mode->clock > 340000)
- 				return MODE_CLOCK_HIGH;
-@@ -1649,6 +1652,11 @@ bool radeon_connector_is_dp12_capable(struct drm_connector *connector)
- 	return false;
- }
- 
-+bool radeon_connector_is_hdmi_monitor(struct drm_connector *connector)
-+{
-+	return connector->display_info.is_hdmi;
-+}
-+
- static enum drm_connector_status
- radeon_dp_detect(struct drm_connector *connector, bool force)
- {
-@@ -1804,7 +1812,7 @@ static enum drm_mode_status radeon_dp_mode_valid(struct drm_connector *connector
- 		    (radeon_dig_connector->dp_sink_type == CONNECTOR_OBJECT_ID_eDP)) {
- 			return radeon_dp_mode_valid_helper(connector, mode);
- 		} else {
--			if (ASIC_IS_DCE6(rdev) && drm_detect_hdmi_monitor(radeon_connector_edid(connector))) {
-+			if (ASIC_IS_DCE6(rdev) && radeon_connector_is_hdmi_monitor(connector)) {
- 				/* HDMI 1.3+ supports max clock of 340 Mhz */
- 				if (mode->clock > 340000)
- 					return MODE_CLOCK_HIGH;
-diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
-index 573154268d43..0d1f79156ab2 100644
---- a/drivers/gpu/drm/radeon/radeon_display.c
-+++ b/drivers/gpu/drm/radeon/radeon_display.c
-@@ -1720,7 +1720,7 @@ bool radeon_crtc_scaling_mode_fixup(struct drm_crtc *crtc,
- 			    (!(mode->flags & DRM_MODE_FLAG_INTERLACE)) &&
- 			    ((radeon_encoder->underscan_type == UNDERSCAN_ON) ||
- 			     ((radeon_encoder->underscan_type == UNDERSCAN_AUTO) &&
--			      drm_detect_hdmi_monitor(radeon_connector_edid(connector)) &&
-+			      radeon_connector_is_hdmi_monitor(connector) &&
- 			      is_hdtv_mode(mode)))) {
- 				if (radeon_encoder->underscan_hborder != 0)
- 					radeon_crtc->h_border = radeon_encoder->underscan_hborder;
-diff --git a/drivers/gpu/drm/radeon/radeon_encoders.c b/drivers/gpu/drm/radeon/radeon_encoders.c
-index 46549d5179ee..8f65fa744f48 100644
---- a/drivers/gpu/drm/radeon/radeon_encoders.c
-+++ b/drivers/gpu/drm/radeon/radeon_encoders.c
-@@ -383,7 +383,7 @@ bool radeon_dig_monitor_is_duallink(struct drm_encoder *encoder,
- 	case DRM_MODE_CONNECTOR_HDMIB:
- 		if (radeon_connector->use_digital) {
- 			/* HDMI 1.3 supports up to 340 Mhz over single link */
--			if (ASIC_IS_DCE6(rdev) && drm_detect_hdmi_monitor(radeon_connector_edid(connector))) {
-+			if (ASIC_IS_DCE6(rdev) && radeon_connector_is_hdmi_monitor(connector)) {
- 				if (pixel_clock > 340000)
- 					return true;
- 				else
-@@ -408,7 +408,7 @@ bool radeon_dig_monitor_is_duallink(struct drm_encoder *encoder,
- 			return false;
- 		else {
- 			/* HDMI 1.3 supports up to 340 Mhz over single link */
--			if (ASIC_IS_DCE6(rdev) && drm_detect_hdmi_monitor(radeon_connector_edid(connector))) {
-+			if (ASIC_IS_DCE6(rdev) && radeon_connector_is_hdmi_monitor(connector)) {
- 				if (pixel_clock > 340000)
- 					return true;
- 				else
-diff --git a/drivers/gpu/drm/radeon/radeon_mode.h b/drivers/gpu/drm/radeon/radeon_mode.h
-index fe16f140a6b4..e591179d5e5d 100644
---- a/drivers/gpu/drm/radeon/radeon_mode.h
-+++ b/drivers/gpu/drm/radeon/radeon_mode.h
-@@ -739,6 +739,7 @@ extern bool radeon_dig_monitor_is_duallink(struct drm_encoder *encoder,
- extern u16 radeon_encoder_get_dp_bridge_encoder_id(struct drm_encoder *encoder);
- extern u16 radeon_connector_encoder_get_dp_bridge_encoder_id(struct drm_connector *connector);
- extern bool radeon_connector_is_dp12_capable(struct drm_connector *connector);
-+bool radeon_connector_is_hdmi_monitor(struct drm_connector *connector);
- extern int radeon_get_monitor_bpc(struct drm_connector *connector);
- 
- extern struct edid *radeon_connector_edid(struct drm_connector *connector);
--- 
-2.33.0
-
-
-
+Regards,
+Salvatore
