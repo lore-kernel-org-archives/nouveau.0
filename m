@@ -2,65 +2,65 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C5AAC433FE
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A4D66C43219
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0C1736103B
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:51 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 0C1736103B
+	by mail.kernel.org (Postfix) with ESMTPS id 73D6661263
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:52 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 73D6661263
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CD776EA4F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5DAC6EA48;
 	Mon, 18 Oct 2021 17:18:31 +0000 (UTC)
-Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
- [64.147.123.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8DA96E837;
- Thu,  7 Oct 2021 19:38:16 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailnew.west.internal (Postfix) with ESMTP id C61842B009FD;
- Thu,  7 Oct 2021 15:38:15 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute5.internal (MEProxy); Thu, 07 Oct 2021 15:38:16 -0400
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FFB06EB2C;
+ Wed, 13 Oct 2021 20:49:22 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 14B69581176;
+ Wed, 13 Oct 2021 16:49:22 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute6.internal (MEProxy); Wed, 13 Oct 2021 16:49:22 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
  :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=bjZP3Lgut5mp9
- xuokNNwrS2cdV0t8bE34sMk9sGPssk=; b=PF1a9GiJxU6Q74ZqTk7kMu6z12qgB
- AR49fr1TOKBXIwxxMQHznCFHztGY9DFqhQH4YmAlz/eVxdkatP8RrN/37LqBx7AD
- /ptdZVh4jfP9AptD8b++RnNs4cLatv8uIbjqko+57O3e6wjhPutbG0G2CD4Hi4tF
- gHfRf6bgVpw5E/eY6npsRzjtXJxP32C0FQ7nqE6OEyomdI/IkrjulGOkRPbQIaC0
- wwfE/dyGfK63a6bOuIdh6CCKluXjnev36He/172ePW0MN5yfI6THBgKZPeofhz+9
- OmJqDzfu2wkrgBvDoyFmlRrAVz2rZlxsX6EeBd86nfwQQ4miK5BhPZPww==
+ :mime-version:content-transfer-encoding; s=fm3; bh=r21xTV04JhLQh
+ FFcwkc0d4AVLdWU1vIuTxgVGoPXBxw=; b=jmggCI4nAHOjgsyZ7LKJYxRovm3oa
+ e1eidPiQPqiTEN5n3HSMh+9QE/ovfE8BF4dk6niXE4xqsPpuM6d3FVin9ZcNt4Uf
+ MOJfoJyaCjxHvTQaznR0WLTzKWkx5g6TPoVO8mTxM78Jnxraghh5baPq+sCwleal
+ 9U6SFRbGtL0fCwG75kHXIq3Rz4i7m1gu3TmvBo6IWxskJP1teg5x3agxP8J8yYgN
+ pBpRksjRniLRt/I6kfWlQ8vp7wOnbXaGdVRaQ9HM4HNeXvNTLZiMRYEM0FioF/nc
+ uB3KOZmVO8G2qh1kpVd421zqRGhbTOYO983aQOVLBgtW5WiMunLMRypRw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:content-transfer-encoding:date:from
  :in-reply-to:message-id:mime-version:references:subject:to
  :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; bh=bjZP3Lgut5mp9xuokNNwrS2cdV0t8bE34sMk9sGPssk=; b=Vyav2KIy
- XVNFrZAr+H8J/8njO7YJqRU2vO5m7horCTTXcw1fIM+RlLJkTDQojCi+eSrgDzns
- kSh+rFbrqYSwNdslQ7Ts1DUGOw2VqsWZYXg8RUfMaYceDHnVLjN2A6I/K+uJI6Ao
- 8/0+MNKdALmklHTkiapu7spyz0bNj8cjA+na9k5jefloii3OcN7EacgOlTiyfk0r
- 4wHoL37qbIq40WYnxrIVgydtbejHhGHf2GS1Fq8UNbJTzPU33TDmWxoTMHJiWap2
- YLSOC36bEAOrnvg/Y4OhUv3QbdvqEGTsOIoX7WMqOxmtbHySMtPp6ZV56TsMq8+g
- w2ucY1MxfLlfNw==
-X-ME-Sender: <xms:p0xfYYGB_S7KmfvM-CzkzjCpOwAPLdVkTv4GmNyWTk0Wbgv906s7eQ>
- <xme:p0xfYRUmLE35PDDvVShQ9qAa5BeESpsswUaWfddF4KZSpsPUPwx6OoS3NBrL8CgN4
- FKwclY0oF9LNRAPGg>
-X-ME-Received: <xmr:p0xfYSJtv87OsOUifWTqF96TTgBYzT8Ne2g26qPyQo4Hdf4VvohepMim7t0CzqhnOrDf>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudelkedgudefjecutefuodetggdotefrod
+ fm1; bh=r21xTV04JhLQhFFcwkc0d4AVLdWU1vIuTxgVGoPXBxw=; b=APCckOHB
+ yQUvsruSR9YI/RkIl0TsTDqo9b8ukMjGIafQvtaVRYG7gbkMz8QL6Oc/qJdPGrl/
+ 8bxO4nIcojW91vqtUejR51nV3CHRred37TRDyc10ggNXNz1FzK7NWN8aqbXsr2Fe
+ qjwk7XWOTVrKEoifL40or+JrMBgpqYzjg+IlEYjWu8hUlmnp8dJvL/6/GsbvGgRZ
+ 7wyQZfhkGf4E+qvKeZ9ZIsxLoDgXlLzgKmW+TLnXrmH17yCgociqj42KTeXnakCN
+ E9kwkykGSjXGhixshWSIDINpUJVhvg1hKU2FdZ6SmsVWT1FHi0CK7v2CkuIwL8il
+ 99jKAPfe446EDg==
+X-ME-Sender: <xms:UUZnYTlSd3bsa2XAUqRMxS0ln0yChXmRqg0jkR5o3jmsxjHNw0865A>
+ <xme:UUZnYW1ULyetTpPE_X6Whoso1i3gatmkYkkdOKgpmCnB6Neyg3B8NOD8cjQdJFTEN
+ J6pUhmwSo_FSVBLOQ>
+X-ME-Received: <xmr:UUZnYZo43YY9-v3nmnI56x-S2v-_BT9O5NOdWfRHowPNnk2SU2VuSefrA1MZFRmVarnG>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddutddgudehtdcutefuodetggdotefrod
  ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
  necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
  ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
  ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedtnecu
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpeefnecu
  rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:p0xfYaFvyV9G3400itk0vLuyXK5iLPsPBsjoVtjwwGXmDpz65iJX9Q>
- <xmx:p0xfYeXxvoXiEgPD__IJ8nPyUw6YGw-Q720d4kclU6JZ_1Ny3t5H-Q>
- <xmx:p0xfYdNYo5XlU4Hp5EJz7XCvEkixLWGt7PmRAP5eYy3kDw-zfIxtTQ>
- <xmx:p0xfYaS6DfdyYMtrkU5yPKdj48H90eV9vQ1NqG5bTZ9Y4WXskdwgEr1X-8o>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 7 Oct 2021 15:38:12 -0400 (EDT)
+X-ME-Proxy: <xmx:UUZnYbnh5itb_Alq1fRxept250ycGkhXGr5y9qYq0i3CAx4fvDu5og>
+ <xmx:UUZnYR0W6uAw_PL9Pp8oaWrrecNSGHMGMF-eqkjf-LjS20qlmsXNvA>
+ <xmx:UUZnYasULB3Tv5R9n0-POOybTxxcSjYA_08iao68Bqjs0IVdK7HLFw>
+ <xmx:UkZnYbziS7hsVZP139IWIDU_JLQTqi12-C3m1xcTLNISbyDSKSPzJA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 13 Oct 2021 16:49:19 -0400 (EDT)
 From: Fernando Ramos <greenfoo@u92.eu>
 To: dri-devel@lists.freedesktop.org
 Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
@@ -68,16 +68,16 @@ Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
  linux-tegra@vger.kernel.org
-Date: Thu,  7 Oct 2021 21:37:38 +0200
-Message-Id: <20211007193755.29579-4-greenfoo@u92.eu>
+Date: Wed, 13 Oct 2021 22:48:36 +0200
+Message-Id: <20211013204846.90026-11-greenfoo@u92.eu>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211007193755.29579-1-greenfoo@u92.eu>
-References: <20211007193755.29579-1-greenfoo@u92.eu>
+In-Reply-To: <20211013204846.90026-1-greenfoo@u92.eu>
+References: <20211013204846.90026-1-greenfoo@u92.eu>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
-Subject: [Nouveau] [PATCH v3 03/20] drm/msm: cleanup:
- drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
+X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
+Subject: [Nouveau] [PATCH v4 10/20] drm/nouveau: cleanup:
+ drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,55 +92,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As requested in Documentation/gpu/todo.rst, replace the boilerplate code
-surrounding drm_modeset_lock_all_ctx() with DRM_MODESET_LOCK_ALL_BEGIN()
-and DRM_MODESET_LOCK_ALL_END()
+As requested in Documentation/gpu/todo.rst, replace driver calls to
+drm_modeset_lock_all() with DRM_MODESET_LOCK_ALL_BEGIN() and
+DRM_MODESET_LOCK_ALL_END()
 
 Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
 Reviewed-by: Sean Paul <sean@poorly.run>
-Reported-by: kernel test robot <lkp@intel.com>
 ---
- drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c b/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c
-index cabe15190ec1..abda52f09b09 100644
---- a/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c
-+++ b/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c
-@@ -5,6 +5,8 @@
- 
- #define pr_fmt(fmt)	"[drm:%s:%d] " fmt, __func__, __LINE__
- 
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index d7b9f7f8c9e3..86e18a844953 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -42,6 +42,7 @@
+ #include <drm/drm_probe_helper.h>
+ #include <drm/drm_scdc_helper.h>
+ #include <drm/drm_vblank.h>
 +#include <drm/drm_drv.h>
-+
- #include "msm_disp_snapshot.h"
  
- static void msm_disp_state_dump_regs(u32 **reg, u32 aligned_len, void __iomem *base_addr)
-@@ -99,20 +101,18 @@ static void msm_disp_capture_atomic_state(struct msm_disp_state *disp_state)
- {
- 	struct drm_device *ddev;
- 	struct drm_modeset_acquire_ctx ctx;
+ #include <nvif/push507c.h>
+ 
+@@ -667,16 +668,18 @@ nv50_audio_component_bind(struct device *kdev, struct device *hda_kdev,
+ 	struct drm_device *drm_dev = dev_get_drvdata(kdev);
+ 	struct nouveau_drm *drm = nouveau_drm(drm_dev);
+ 	struct drm_audio_component *acomp = data;
++	struct drm_modeset_acquire_ctx ctx;
 +	int ret;
  
- 	disp_state->timestamp = ktime_get();
+ 	if (WARN_ON(!device_link_add(hda_kdev, kdev, DL_FLAG_STATELESS)))
+ 		return -ENOMEM;
  
- 	ddev = disp_state->drm_dev;
- 
--	drm_modeset_acquire_init(&ctx, 0);
--
--	while (drm_modeset_lock_all_ctx(ddev, &ctx) != 0)
--		drm_modeset_backoff(&ctx);
-+	DRM_MODESET_LOCK_ALL_BEGIN(ddev, ctx, 0, ret);
- 
- 	disp_state->atomic_state = drm_atomic_helper_duplicate_state(ddev,
- 			&ctx);
--	drm_modeset_drop_locks(&ctx);
--	drm_modeset_acquire_fini(&ctx);
-+
-+	DRM_MODESET_LOCK_ALL_END(ddev, ctx, ret);
+-	drm_modeset_lock_all(drm_dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(drm_dev, ctx, 0, ret);
+ 	acomp->ops = &nv50_audio_component_ops;
+ 	acomp->dev = kdev;
+ 	drm->audio.component = acomp;
+-	drm_modeset_unlock_all(drm_dev);
+-	return 0;
++	DRM_MODESET_LOCK_ALL_END(drm_dev, ctx, ret);
++	return ret;
  }
  
- void msm_disp_snapshot_capture_state(struct msm_disp_state *disp_state)
+ static void
+@@ -686,12 +689,14 @@ nv50_audio_component_unbind(struct device *kdev, struct device *hda_kdev,
+ 	struct drm_device *drm_dev = dev_get_drvdata(kdev);
+ 	struct nouveau_drm *drm = nouveau_drm(drm_dev);
+ 	struct drm_audio_component *acomp = data;
++	struct drm_modeset_acquire_ctx ctx;
++	int ret;
+ 
+-	drm_modeset_lock_all(drm_dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(drm_dev, ctx, 0, ret);
+ 	drm->audio.component = NULL;
+ 	acomp->ops = NULL;
+ 	acomp->dev = NULL;
+-	drm_modeset_unlock_all(drm_dev);
++	DRM_MODESET_LOCK_ALL_END(drm_dev, ctx, ret);
+ }
+ 
+ static const struct component_ops nv50_audio_component_bind_ops = {
 -- 
 2.33.0
 
