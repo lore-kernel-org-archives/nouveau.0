@@ -2,104 +2,82 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 752F4C433EF
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B7DAC433FE
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EED3D6103B
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:18 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org EED3D6103B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=cern.ch
+	by mail.kernel.org (Postfix) with ESMTPS id 6A1B36126A
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:19 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 6A1B36126A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B07426EA8D;
-	Mon, 18 Oct 2021 17:18:47 +0000 (UTC)
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com
- (mail-eopbgr70058.outbound.protection.outlook.com [40.107.7.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CAFE89AE6
- for <nouveau@lists.freedesktop.org>; Wed, 13 Oct 2021 01:12:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dK/ggnaHtEnURRJAo9YV6K/umhGvZkf/EOwLnabvXp7CcKhi0UwO6WH5wqODKQlLL9wWjDjypHjuK7xXxqEDhw2OYPNv7mYTDPSMyPerl3fJ8H0XkDa25Gu0mWWXTvneIURbUIWYXQqhLwlsRYYAfxOw4y46e4JXF5DnGxhUjLpPJYSLrKZzfdg0274d0yAX0HoZdxA1ujPzlU6gTYOsGSXcl5uvb9pAiovwfKYazEyFM3KfCuXuy4Ck2GPAO78GxqdwpNsq7j8VB/vcwDCPAn/bkAvavDIXig+un410pfdVzqcWJjbedFCEiWLuTzJNBpjzZQbSOqbvyDNv2PwXfw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UzDpYU3WACSUscc+YK6oCFwXrWGVDiBZs1XdkO20bzI=;
- b=BHQu5wHmFKmY1bNjMPPAQYnOzeO4R0IwlzTl51jUYZzRGtn4sPu+BNvL9UWz5QVSWgz1J23g0rOrCTtLV50nuvc3xugDNa0twpJUumbHRqZG/xpHv3z4NqnYUGxUv7QzN4mKFKzTa+Vs58tMrTR4CimQzCzQ5LDhE5+I4wOc4BaJ8Mh02n8YMfVzpc1XJGGqEGfCcHVE+7I9xlVctbow71sTKjUWidi7RUfDG/7bqPXSpTDlag/fzbhhDTHAyMxKp2rhzm9V2ujkehaaO4utv5KUJNoNxYKgMis7zxJ6TKMgJHajkJF2w3Jk7PyVFTvZKcQr7a9ZhballkRCPxrb9w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 188.184.36.50) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=cern.ch; 
- dmarc=bestguesspass action=none header.from=cern.ch; dkim=none (message not
- signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cern.onmicrosoft.com; 
- s=selector2-cern-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UzDpYU3WACSUscc+YK6oCFwXrWGVDiBZs1XdkO20bzI=;
- b=km0d0K3Od+egBa2FZRLPnllp9PUQoswhD4UQJwno6XW/+l0qt0h1pZOHjgQAunTCrR/9cE5rZgs3GSXV+1OO6ODMkIlTNtVKxfWsY7etoi7FlJr6rsDTADFJYBbq4IYbSSsmefmpH50WS1l0hpDpjYGI2uWP3OQ2bpLmmjcGlDQ=
-Received: from AM6P193CA0065.EURP193.PROD.OUTLOOK.COM (2603:10a6:209:8e::42)
- by VI1PR0602MB3680.eurprd06.prod.outlook.com (2603:10a6:803:1e::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.24; Wed, 13 Oct
- 2021 01:12:37 +0000
-Received: from AM5EUR02FT055.eop-EUR02.prod.protection.outlook.com
- (2603:10a6:209:8e:cafe::cf) by AM6P193CA0065.outlook.office365.com
- (2603:10a6:209:8e::42) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend
- Transport; Wed, 13 Oct 2021 01:12:37 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 188.184.36.50)
- smtp.mailfrom=cern.ch; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=bestguesspass action=none
- header.from=cern.ch;
-Received-SPF: Pass (protection.outlook.com: domain of cern.ch designates
- 188.184.36.50 as permitted sender) receiver=protection.outlook.com;
- client-ip=188.184.36.50; helo=cernmxgwlb4.cern.ch;
-Received: from cernmxgwlb4.cern.ch (188.184.36.50) by
- AM5EUR02FT055.mail.protection.outlook.com (10.152.9.191) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4587.18 via Frontend Transport; Wed, 13 Oct 2021 01:12:36 +0000
-Received: from cernfe02.cern.ch (188.184.36.47) by cernmxgwlb4.cern.ch
- (188.184.36.50) with Microsoft SMTP Server (TLS) id 14.3.498.0; Wed, 13 Oct
- 2021 03:12:35 +0200
-Received: from [IPv6:2600:1700:ef10:46e0:9aa1:450a:4eb:4e12]
- (2600:1700:ef10:46e0:9aa1:450a:4eb:4e12) by smtp.cern.ch
- (2001:1458:201:66::100:14) with Microsoft SMTP Server (TLS) id 14.3.498.0;
- Wed, 13 Oct 2021 03:12:35 +0200
-To: <nouveau@lists.freedesktop.org>
-From: Dhevan Gangadharan <dhevan.raja.gangadharan@cern.ch>
-Message-ID: <96ecf8a6-e75e-4f11-b3c2-92f1b95af5db@cern.ch>
-Date: Tue, 12 Oct 2021 20:12:31 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12CEA6EA53;
+	Mon, 18 Oct 2021 17:18:48 +0000 (UTC)
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73E146EB23;
+ Wed, 13 Oct 2021 20:49:11 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id D8913581178;
+ Wed, 13 Oct 2021 16:49:10 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute6.internal (MEProxy); Wed, 13 Oct 2021 16:49:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
+ :to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding; s=fm3; bh=1GQDtrRIicUub
+ XM4IWgOJW9q6Bt3kzDCmFE/H911f9o=; b=X3XvcuQLO6/iEs0vtpvScF/DMfPNl
+ kna4Ix6PvsNbV19cL87zvfzMqH2KgG3lxpQWhSolJotcNaqVbFoOFfPmGHPASYVI
+ okBDs9zDrJOs4gIx25Z/yZZM+tTGgOlaHs8AkW7ZaNVfmkD4u//WFjij8wO6mCJx
+ TNpsmfrd6CrWE1kjF6okGI4czyF+PyKeQyENUJWZLrEwGCjnBeoMd8j22NrzIBZV
+ Z8MYyvzxC24XZktBuGtD8KITxNs+2/Ig45OtP9qnrBg+iBDLiYeQ/QJ9tSQqne3W
+ vYLUrDafsfho/kyr9db1WS7R/MDwm7iderc3Qqvczrrrti6dUqzmLXsyA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:date:from
+ :in-reply-to:message-id:mime-version:references:subject:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; bh=1GQDtrRIicUubXM4IWgOJW9q6Bt3kzDCmFE/H911f9o=; b=LxN8ObR0
+ iQ9glnzWet8sGca9TB66AecyeQBL/uTIWdGYwJebfFqlGZVujO4PlhJQaGngJVAf
+ zWEFkb7BYYiP9oyXlxCm60BBBt/JSB86ZEqgdzz+Oddx6AM0rp9Qiu4rJjvqNoTF
+ 6ORaiQrQj0nUPBd+z0PEnL/ECaruJJcyKPXsz0QvymlHUaG00PKOliNk7uj65D1h
+ zIqgmC9VmFksjRWPNVPYR40w3CiozziflI/WpBCK1zWDdj9w8SO8u3M2wYgHEnXb
+ 1yaTMQAUeGb8OU4E7UVNRtFpxxz+ex55B3VEyE5d2upu7v6AAR7ZcoUDCzZGAeuG
+ XPOSEMzkdnvVnw==
+X-ME-Sender: <xms:RkZnYVU0o5tFIkgYA6r0RbwXjxhn860fXEwpNwCtUcXioKjvMHiHdQ>
+ <xme:RkZnYVnC0yHt-d7G8ItGIZ-2JKf0qcDPbnTMb0D92AGxrBNQsB6RnD_WKE5xRV1QE
+ VF4J2j6RUt-efKf3g>
+X-ME-Received: <xmr:RkZnYRYOMveaJxSLZM4lAkuNCLvQBstrM1pVKE7fbIW2KAcLK-qnX3GqvJQ-roTIGqRl>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddutddgudehtdcutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
+ ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
+ ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedunecu
+ rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:RkZnYYUvI44Ufog4bhdJ_nmAYymx4QuieJMICxlC4U_w2-_g2D-osA>
+ <xmx:RkZnYfl9jIJUTUsU3adWeBOpB3Bvpp266iDzNNya9UYDuujIj72f4Q>
+ <xmx:RkZnYVf1cV-8TQm1KA3yzfTfANvUrOPTjOnwQpePtVS3tmKGNBonYA>
+ <xmx:RkZnYYg7p-KkpJeBdoCbAlGT1FUfsMevHAOUZ6fnVYI-uWxbMMfGHQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 13 Oct 2021 16:49:08 -0400 (EDT)
+From: Fernando Ramos <greenfoo@u92.eu>
+To: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+Date: Wed, 13 Oct 2021 22:48:32 +0200
+Message-Id: <20211013204846.90026-7-greenfoo@u92.eu>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20211013204846.90026-1-greenfoo@u92.eu>
+References: <20211013204846.90026-1-greenfoo@u92.eu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Originating-IP: [2600:1700:ef10:46e0:9aa1:450a:4eb:4e12]
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 09929804-d4f7-49dd-658c-08d98de68b0a
-X-MS-TrafficTypeDiagnostic: VI1PR0602MB3680:
-X-Microsoft-Antispam-PRVS: <VI1PR0602MB368077F3AD23F60D37C35AEAB3B79@VI1PR0602MB3680.eurprd06.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9dpRp8WABQ6wDX2QhHSdzLBB+hB3GA+8EF2BCXJtU4AqTnwKrjLy79CjWDJXQJ7SVbkQ0zTT9EaevDci3DF8/MQlyJlNvIv4iwrDngQgF/ElOlyLOfFZH0JSGBsmFqsOqspuyOVG4rJuRg6tB4r2c7KAFvfOxJ4R66Od6aJfieghL5ure6fu49PlIX6e8F4FzrA4C1Gh3h5ep6ImRtZPlpmzBN92Ctmp5cqtGdWmPYMifg/xd/3wibuWu2L43wA+5nzoFplxqmVlohCWhh0tO5vP4gx+RC5nAhMkwqskI7KppL83wH41TDMMRujzcyU2YHI/qEm96gFKOs6RPSzuK9pet2OeiyrbkDHX3Z4qnfEO/lJYUGZHKE/W0lTUKnPzgdhdXkTUwmZCo3Nwd1VBOyEwbyw0uK30iwo3VKDifUhYfn5CNoYvnLvx8Cp6imR1RJP11Yrb63PXfIJVrdSq1T+5AjR/xC8xy0S8zprSbb0ggNmBO0mYaN6hTOlnl5yEUatUdho6KwiRAjCMAJru/zqkpfTELc99x3oKYb+WzNQhYPEu2PerfS59CH3p2pDgZdzF2EPEbvFCjIADTqQcLXSPIdoiIMYucHTPxVZghVWCPY/2tnDbO4yPLOQug73NeAARfXE2IyISzmSfTNn0QhZdYHpFlW3c+XHDH08i8YhEUkQG84PA/Oj4Ucl93QHPLQDvgDuDUoqk+VHR6uWUPyQFAKvZPN9ho/YMc6Ildec=
-X-Forefront-Antispam-Report: CIP:188.184.36.50; CTRY:CH; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:cernmxgwlb4.cern.ch; PTR:cernmx11.cern.ch; CAT:NONE;
- SFS:(46966006)(36840700001)(8936002)(6666004)(5660300002)(36860700001)(2616005)(316002)(82310400003)(2906002)(36756003)(508600001)(4744005)(70206006)(26005)(86362001)(31696002)(31686004)(8676002)(356005)(7116003)(70586007)(16526019)(83380400001)(426003)(6916009)(336012)(186003)(7636003)(47076005)(43740500002);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: cern.ch
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2021 01:12:36.1326 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 09929804-d4f7-49dd-658c-08d98de68b0a
-X-MS-Exchange-CrossTenant-Id: c80d3499-4a40-4a8c-986e-abce017d6b19
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=c80d3499-4a40-4a8c-986e-abce017d6b19; Ip=[188.184.36.50];
- Helo=[cernmxgwlb4.cern.ch]
-X-MS-Exchange-CrossTenant-AuthSource: AM5EUR02FT055.eop-EUR02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0602MB3680
-X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
-Subject: [Nouveau] RTX 5000 compatibility
+X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
+Subject: [Nouveau] [PATCH v4 06/20] drm/tegra: cleanup:
+ drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,13 +92,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
+As requested in Documentation/gpu/todo.rst, replace driver calls to
+drm_modeset_lock_all() with DRM_MODESET_LOCK_ALL_BEGIN() and
+DRM_MODESET_LOCK_ALL_END()
 
-I recently purchased an nvidia quadro RTX 5000 but for a certain linux 
-application the proprietary drivers do not work.  I was recommended to 
-try nouveau but first I wanted to see if this GPU is currently 
-supported.  I could not determine this from your documentation online.
-Could you let me know if your driver would work for me?  My OS is Ubuntu 20.
+Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
+Reviewed-by: Sean Paul <sean@poorly.run>
+Reported-by: kernel test robot <lkp@intel.com>
+---
+ drivers/gpu/drm/tegra/dsi.c  |  6 ++++--
+ drivers/gpu/drm/tegra/hdmi.c |  6 ++++--
+ drivers/gpu/drm/tegra/sor.c  | 11 +++++++----
+ 3 files changed, 15 insertions(+), 8 deletions(-)
 
-Thanks,
-Dhevan
+diff --git a/drivers/gpu/drm/tegra/dsi.c b/drivers/gpu/drm/tegra/dsi.c
+index f46d377f0c30..28050c188c1c 100644
+--- a/drivers/gpu/drm/tegra/dsi.c
++++ b/drivers/gpu/drm/tegra/dsi.c
+@@ -23,6 +23,7 @@
+ #include <drm/drm_mipi_dsi.h>
+ #include <drm/drm_panel.h>
+ #include <drm/drm_simple_kms_helper.h>
++#include <drm/drm_drv.h>
+ 
+ #include "dc.h"
+ #include "drm.h"
+@@ -202,10 +203,11 @@ static int tegra_dsi_show_regs(struct seq_file *s, void *data)
+ 	struct tegra_dsi *dsi = node->info_ent->data;
+ 	struct drm_crtc *crtc = dsi->output.encoder.crtc;
+ 	struct drm_device *drm = node->minor->dev;
++	struct drm_modeset_acquire_ctx ctx;
+ 	unsigned int i;
+ 	int err = 0;
+ 
+-	drm_modeset_lock_all(drm);
++	DRM_MODESET_LOCK_ALL_BEGIN(drm, ctx, 0, err);
+ 
+ 	if (!crtc || !crtc->state->active) {
+ 		err = -EBUSY;
+@@ -220,7 +222,7 @@ static int tegra_dsi_show_regs(struct seq_file *s, void *data)
+ 	}
+ 
+ unlock:
+-	drm_modeset_unlock_all(drm);
++	DRM_MODESET_LOCK_ALL_END(drm, ctx, err);
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/tegra/hdmi.c b/drivers/gpu/drm/tegra/hdmi.c
+index e5d2a4026028..a62de7f92414 100644
+--- a/drivers/gpu/drm/tegra/hdmi.c
++++ b/drivers/gpu/drm/tegra/hdmi.c
+@@ -22,6 +22,7 @@
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_probe_helper.h>
+ #include <drm/drm_simple_kms_helper.h>
++#include <drm/drm_drv.h>
+ 
+ #include "hda.h"
+ #include "hdmi.h"
+@@ -1031,10 +1032,11 @@ static int tegra_hdmi_show_regs(struct seq_file *s, void *data)
+ 	struct tegra_hdmi *hdmi = node->info_ent->data;
+ 	struct drm_crtc *crtc = hdmi->output.encoder.crtc;
+ 	struct drm_device *drm = node->minor->dev;
++	struct drm_modeset_acquire_ctx ctx;
+ 	unsigned int i;
+ 	int err = 0;
+ 
+-	drm_modeset_lock_all(drm);
++	DRM_MODESET_LOCK_ALL_BEGIN(drm, ctx, 0, err);
+ 
+ 	if (!crtc || !crtc->state->active) {
+ 		err = -EBUSY;
+@@ -1049,7 +1051,7 @@ static int tegra_hdmi_show_regs(struct seq_file *s, void *data)
+ 	}
+ 
+ unlock:
+-	drm_modeset_unlock_all(drm);
++	DRM_MODESET_LOCK_ALL_END(drm, ctx, err);
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/tegra/sor.c b/drivers/gpu/drm/tegra/sor.c
+index 0ea320c1092b..3d1c8b3d1358 100644
+--- a/drivers/gpu/drm/tegra/sor.c
++++ b/drivers/gpu/drm/tegra/sor.c
+@@ -23,6 +23,7 @@
+ #include <drm/drm_panel.h>
+ #include <drm/drm_scdc_helper.h>
+ #include <drm/drm_simple_kms_helper.h>
++#include <drm/drm_drv.h>
+ 
+ #include "dc.h"
+ #include "dp.h"
+@@ -1490,10 +1491,11 @@ static int tegra_sor_show_crc(struct seq_file *s, void *data)
+ 	struct tegra_sor *sor = node->info_ent->data;
+ 	struct drm_crtc *crtc = sor->output.encoder.crtc;
+ 	struct drm_device *drm = node->minor->dev;
++	struct drm_modeset_acquire_ctx ctx;
+ 	int err = 0;
+ 	u32 value;
+ 
+-	drm_modeset_lock_all(drm);
++	DRM_MODESET_LOCK_ALL_BEGIN(drm, ctx, 0, err);
+ 
+ 	if (!crtc || !crtc->state->active) {
+ 		err = -EBUSY;
+@@ -1522,7 +1524,7 @@ static int tegra_sor_show_crc(struct seq_file *s, void *data)
+ 	seq_printf(s, "%08x\n", value);
+ 
+ unlock:
+-	drm_modeset_unlock_all(drm);
++	DRM_MODESET_LOCK_ALL_END(drm, ctx, err);
+ 	return err;
+ }
+ 
+@@ -1652,10 +1654,11 @@ static int tegra_sor_show_regs(struct seq_file *s, void *data)
+ 	struct tegra_sor *sor = node->info_ent->data;
+ 	struct drm_crtc *crtc = sor->output.encoder.crtc;
+ 	struct drm_device *drm = node->minor->dev;
++	struct drm_modeset_acquire_ctx ctx;
+ 	unsigned int i;
+ 	int err = 0;
+ 
+-	drm_modeset_lock_all(drm);
++	DRM_MODESET_LOCK_ALL_BEGIN(drm, ctx, 0, err);
+ 
+ 	if (!crtc || !crtc->state->active) {
+ 		err = -EBUSY;
+@@ -1670,7 +1673,7 @@ static int tegra_sor_show_regs(struct seq_file *s, void *data)
+ 	}
+ 
+ unlock:
+-	drm_modeset_unlock_all(drm);
++	DRM_MODESET_LOCK_ALL_END(drm, ctx, err);
+ 	return err;
+ }
+ 
+-- 
+2.33.0
+
