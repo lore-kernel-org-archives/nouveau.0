@@ -2,67 +2,82 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AAB52C433EF
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 85FFDC433F5
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7BFE46103B
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7BFE46103B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=net-c.es
+	by mail.kernel.org (Postfix) with ESMTPS id 5788F6103B
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:18:58 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 5788F6103B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C063D6EA70;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDB256EA71;
 	Mon, 18 Oct 2021 17:18:33 +0000 (UTC)
-Received: from msg-6.mailo.com (ip-16.mailobj.net [213.182.54.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 232716ED7E;
- Fri, 15 Oct 2021 12:21:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
- t=1634297909; bh=ZmCRcmXfOn4brch3sFsuOuXp9yHp219e3PYR0mVapZM=;
- h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
- References:MIME-Version:Content-Transfer-Encoding;
- b=O1128Skmtr1SnhdEANDNi1hkk68ts5HX9BPS/Moq8Cp0kafvyh4fVew4RqhGtSpSl
- PWnHN/5XofmnK7/15qMUq2sy3vay/EbycsHJ+7BIZ22cmHx3LocG8QPq3ZG1N7kudw
- ErWB7aWu8gheb6mhdv8TjUOUAYLxHOrcSs5XIQbA=
-Received: by b-3.in.mailobj.net [192.168.90.13] with ESMTP
- via ip-206.mailobj.net [213.182.55.206]
- Fri, 15 Oct 2021 13:38:28 +0200 (CEST)
-X-EA-Auth: 46lMFJD6Kb7RTlUcDx4XAtaoqqK5Xf3+bswRZVaGohlCdBZPTG6jvNqcKCz65iozGBzSQRWBCPS9VhU6L3a6aIuBaQS38CqL
-From: Claudio Suarez <cssk@net-c.es>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
- Maxime Ripard <mripard@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
- Andrzej Hajda <a.hajda@samsung.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Robert Foss <robert.foss@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
- nouveau@lists.freedesktop.org
-Cc: Claudio Suarez <cssk@net-c.es>
-Date: Fri, 15 Oct 2021 13:37:07 +0200
-Message-Id: <20211015113713.630119-10-cssk@net-c.es>
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B36076EB13;
+ Wed, 13 Oct 2021 20:48:59 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 28723581175;
+ Wed, 13 Oct 2021 16:48:59 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute1.internal (MEProxy); Wed, 13 Oct 2021 16:48:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
+ :to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding; s=fm3; bh=4Oe5yMh7Te6eB
+ YdkvCgUULOMM7ICrH5TnOSluUVONYs=; b=eW5Ip8AomcwuwiwMkMZP8t43/Zrzi
+ j+VGIZA9Bp5PRBi6SxoyCqF6IvqryHr7L2g6iHdsblxzBtetWPB2YkTE91ObE5NI
+ mvTlkgQnATZoBUUIAxYodaAEui40FxDNszbbcektD5jOH2jxhKTKXrcWMNiB0msK
+ CzWvhLNGNZs29jV5TF8qbySckRH7T2CRFJMKEiKmSxwpTRRyfPubq7xQG3bfPBLB
+ T8CNIdyk4sZttmciko0Y8lFZB8QgCncq4HViz9Bn3TDz0/6G6nHAbjJQ4dHdcQzp
+ wqAHqoTtYWgHrfMc4HCT2P6TR6PFIl8obgtNaRjhFrq30dyMiOd0USC6w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:date:from
+ :in-reply-to:message-id:mime-version:references:subject:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; bh=4Oe5yMh7Te6eBYdkvCgUULOMM7ICrH5TnOSluUVONYs=; b=lR7Vabyd
+ wdaT0muwmAGHJkxGJpIJxF+2T3T91fYaijPGXeU7L4/16PIDzC8SpggRLtlBVX0A
+ tLVzH4HxNGj2CpNX750OgLEp5Mi+o8/y+JtgdfqFe/G650Tbg+LTAS+mU9dPsVtp
+ prVhCXGBv3xvaoaYfbiRZu0fX1YKdXH16xiITDVqOUUP8BJjFyGhJ3IGCIo+P+Sj
+ o15/AsZCwIy0txIp2bHtf1IeNuGaLCdu1nPq9nZa0Rf/7WfD2SEcga7RpYkMhQ9N
+ OfOTz5g+Ca5Zt/k40TTMXGUAMp/kg7HLuz8dQpep4Ob1eGiaDnDdrEnH2LV5VXiM
+ AWMd5VPKwdIJtQ==
+X-ME-Sender: <xms:O0ZnYa82k3hsHtV4nyh4w5EpmAuqn9GuOvzY225c_X9zovEJA5yEJQ>
+ <xme:O0ZnYaueGQ23dBvXo7HMtaThVxzNxyMdOuxkFt-Z87SEJxntzvQKTQavlIqvanw6F
+ 9uLEawS_ckokXwFAg>
+X-ME-Received: <xmr:O0ZnYQCJeh-KvZJyGxoYXN74z23BLH3OzjdBYmMO4do2M0Gsz9vwb5QVvJHATUyT6Utk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddutddgudehudcutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
+ ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
+ ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedtnecu
+ rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:O0ZnYSfBJQ_zeSsXoGElVk0ar_iSiKy12WBX6sNkSnFRz4m6AREvDQ>
+ <xmx:O0ZnYfML1HxwQrDEiZaToUnkBib19bo09LBCSftKbdZ9kRqiSsttyQ>
+ <xmx:O0ZnYckE8OeCowscXFGoWvEe9kSl9pHkhbsCyn11UBJSR4acO5nYJw>
+ <xmx:O0ZnYap52WaKdv_h1ETeTjoRN-vAhsLbaHUSLG265M0vjvex-WC99Q>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 13 Oct 2021 16:48:56 -0400 (EDT)
+From: Fernando Ramos <greenfoo@u92.eu>
+To: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+Date: Wed, 13 Oct 2021 22:48:28 +0200
+Message-Id: <20211013204846.90026-3-greenfoo@u92.eu>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211015113713.630119-1-cssk@net-c.es>
-References: <20211015113713.630119-1-cssk@net-c.es>
+In-Reply-To: <20211013204846.90026-1-greenfoo@u92.eu>
+References: <20211013204846.90026-1-greenfoo@u92.eu>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
-Subject: [Nouveau] [PATCH 09/15] drm/sun4i: replace
- drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
+Subject: [Nouveau] [PATCH v4 02/20] drm/i915: cleanup:
+ drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,35 +92,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Once EDID is parsed, the monitor HDMI support information is available
-through drm_display_info.is_hdmi. Retriving the same information with
-drm_detect_hdmi_monitor() is less efficient. Change to
-drm_display_info.is_hdmi
+As requested in Documentation/gpu/todo.rst, replace the boilerplate code
+surrounding drm_modeset_lock_all_ctx() with DRM_MODESET_LOCK_ALL_BEGIN()
+and DRM_MODESET_LOCK_ALL_END()
 
-Signed-off-by: Claudio Suarez <cssk@net-c.es>
+Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
+Reviewed-by: Sean Paul <sean@poorly.run>
 ---
- drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 18 +++++-------------
+ 1 file changed, 5 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c b/drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c
-index 2f2c9f0a1071..f57bedbbeeb8 100644
---- a/drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c
-+++ b/drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c
-@@ -215,11 +215,11 @@ static int sun4i_hdmi_get_modes(struct drm_connector *connector)
- 	if (!edid)
- 		return 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 9cf987ee143d..c7d9a58f9f98 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -43,6 +43,7 @@
+ #include <drm/drm_plane_helper.h>
+ #include <drm/drm_probe_helper.h>
+ #include <drm/drm_rect.h>
++#include <drm/drm_drv.h>
  
--	hdmi->hdmi_monitor = drm_detect_hdmi_monitor(edid);
-+	drm_connector_update_edid_property(connector, edid);
-+	hdmi->hdmi_monitor = connector->display_info.is_hdmi;
- 	DRM_DEBUG_DRIVER("Monitor is %s monitor\n",
- 			 hdmi->hdmi_monitor ? "an HDMI" : "a DVI");
+ #include "display/intel_audio.h"
+ #include "display/intel_crt.h"
+@@ -11923,22 +11924,13 @@ void intel_display_resume(struct drm_device *dev)
+ 	if (state)
+ 		state->acquire_ctx = &ctx;
  
--	drm_connector_update_edid_property(connector, edid);
- 	cec_s_phys_addr_from_edid(hdmi->cec_adap, edid);
- 	ret = drm_add_edid_modes(connector, edid);
- 	kfree(edid);
+-	drm_modeset_acquire_init(&ctx, 0);
+-
+-	while (1) {
+-		ret = drm_modeset_lock_all_ctx(dev, &ctx);
+-		if (ret != -EDEADLK)
+-			break;
+-
+-		drm_modeset_backoff(&ctx);
+-	}
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 
+-	if (!ret)
+-		ret = __intel_display_resume(dev, state, &ctx);
++	ret = __intel_display_resume(dev, state, &ctx);
+ 
+ 	intel_enable_ipc(dev_priv);
+-	drm_modeset_drop_locks(&ctx);
+-	drm_modeset_acquire_fini(&ctx);
++
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+ 
+ 	if (ret)
+ 		drm_err(&dev_priv->drm,
 -- 
 2.33.0
-
 
