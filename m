@@ -2,69 +2,104 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AAB7BC4332F
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 752F4C433EF
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7E5AF6103B
+	by mail.kernel.org (Postfix) with ESMTPS id EED3D6103B
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:18 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7E5AF6103B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=net-c.es
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org EED3D6103B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=cern.ch
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 873CC6EE54;
-	Mon, 18 Oct 2021 17:18:37 +0000 (UTC)
-X-Greylist: delayed 2573 seconds by postgrey-1.36 at gabe;
- Fri, 15 Oct 2021 12:20:30 UTC
-Received: from msg-3.mailo.com (ip-8.mailobj.net [213.182.54.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D79E6E2D5;
- Fri, 15 Oct 2021 12:20:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
- t=1634297909; bh=QBcYM19WYIft9nyGf96kprXPvyWbRp1gWatVdt76c0U=;
- h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
- References:MIME-Version:Content-Transfer-Encoding;
- b=ZztwFt1HtLz+ROpeY1J85VZapMqZASbFXSmZ5GB2VcMYc+cvCiJ7KBgU1gFpJX4HE
- e8M7Bq80v1n3fWMxiP1aUngoTSQ27V96sbW+CInQ6SLSdZKJACWmEGA9pvmJPHzdqW
- 1wzCOEExSVWdFicxjEbti5/MrJNxigsElB5z6prE=
-Received: by b-1.in.mailobj.net [192.168.90.11] with ESMTP
- via ip-206.mailobj.net [213.182.55.206]
- Fri, 15 Oct 2021 13:38:02 +0200 (CEST)
-X-EA-Auth: poGc6xz6ZqqEJXNZ9UjzI5MiSKkhrUJ4AW0hkIeTezxOINaMqijrue2rwcYd3CC4y3eESmyNBCSifR1JG/ltACbh1gPUm7js
-From: Claudio Suarez <cssk@net-c.es>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
- Maxime Ripard <mripard@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
- Andrzej Hajda <a.hajda@samsung.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Robert Foss <robert.foss@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
- nouveau@lists.freedesktop.org
-Cc: Claudio Suarez <cssk@net-c.es>
-Date: Fri, 15 Oct 2021 13:37:05 +0200
-Message-Id: <20211015113713.630119-8-cssk@net-c.es>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211015113713.630119-1-cssk@net-c.es>
-References: <20211015113713.630119-1-cssk@net-c.es>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B07426EA8D;
+	Mon, 18 Oct 2021 17:18:47 +0000 (UTC)
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com
+ (mail-eopbgr70058.outbound.protection.outlook.com [40.107.7.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CAFE89AE6
+ for <nouveau@lists.freedesktop.org>; Wed, 13 Oct 2021 01:12:40 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dK/ggnaHtEnURRJAo9YV6K/umhGvZkf/EOwLnabvXp7CcKhi0UwO6WH5wqODKQlLL9wWjDjypHjuK7xXxqEDhw2OYPNv7mYTDPSMyPerl3fJ8H0XkDa25Gu0mWWXTvneIURbUIWYXQqhLwlsRYYAfxOw4y46e4JXF5DnGxhUjLpPJYSLrKZzfdg0274d0yAX0HoZdxA1ujPzlU6gTYOsGSXcl5uvb9pAiovwfKYazEyFM3KfCuXuy4Ck2GPAO78GxqdwpNsq7j8VB/vcwDCPAn/bkAvavDIXig+un410pfdVzqcWJjbedFCEiWLuTzJNBpjzZQbSOqbvyDNv2PwXfw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UzDpYU3WACSUscc+YK6oCFwXrWGVDiBZs1XdkO20bzI=;
+ b=BHQu5wHmFKmY1bNjMPPAQYnOzeO4R0IwlzTl51jUYZzRGtn4sPu+BNvL9UWz5QVSWgz1J23g0rOrCTtLV50nuvc3xugDNa0twpJUumbHRqZG/xpHv3z4NqnYUGxUv7QzN4mKFKzTa+Vs58tMrTR4CimQzCzQ5LDhE5+I4wOc4BaJ8Mh02n8YMfVzpc1XJGGqEGfCcHVE+7I9xlVctbow71sTKjUWidi7RUfDG/7bqPXSpTDlag/fzbhhDTHAyMxKp2rhzm9V2ujkehaaO4utv5KUJNoNxYKgMis7zxJ6TKMgJHajkJF2w3Jk7PyVFTvZKcQr7a9ZhballkRCPxrb9w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 188.184.36.50) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=cern.ch; 
+ dmarc=bestguesspass action=none header.from=cern.ch; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cern.onmicrosoft.com; 
+ s=selector2-cern-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UzDpYU3WACSUscc+YK6oCFwXrWGVDiBZs1XdkO20bzI=;
+ b=km0d0K3Od+egBa2FZRLPnllp9PUQoswhD4UQJwno6XW/+l0qt0h1pZOHjgQAunTCrR/9cE5rZgs3GSXV+1OO6ODMkIlTNtVKxfWsY7etoi7FlJr6rsDTADFJYBbq4IYbSSsmefmpH50WS1l0hpDpjYGI2uWP3OQ2bpLmmjcGlDQ=
+Received: from AM6P193CA0065.EURP193.PROD.OUTLOOK.COM (2603:10a6:209:8e::42)
+ by VI1PR0602MB3680.eurprd06.prod.outlook.com (2603:10a6:803:1e::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.24; Wed, 13 Oct
+ 2021 01:12:37 +0000
+Received: from AM5EUR02FT055.eop-EUR02.prod.protection.outlook.com
+ (2603:10a6:209:8e:cafe::cf) by AM6P193CA0065.outlook.office365.com
+ (2603:10a6:209:8e::42) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend
+ Transport; Wed, 13 Oct 2021 01:12:37 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 188.184.36.50)
+ smtp.mailfrom=cern.ch; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=bestguesspass action=none
+ header.from=cern.ch;
+Received-SPF: Pass (protection.outlook.com: domain of cern.ch designates
+ 188.184.36.50 as permitted sender) receiver=protection.outlook.com;
+ client-ip=188.184.36.50; helo=cernmxgwlb4.cern.ch;
+Received: from cernmxgwlb4.cern.ch (188.184.36.50) by
+ AM5EUR02FT055.mail.protection.outlook.com (10.152.9.191) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4587.18 via Frontend Transport; Wed, 13 Oct 2021 01:12:36 +0000
+Received: from cernfe02.cern.ch (188.184.36.47) by cernmxgwlb4.cern.ch
+ (188.184.36.50) with Microsoft SMTP Server (TLS) id 14.3.498.0; Wed, 13 Oct
+ 2021 03:12:35 +0200
+Received: from [IPv6:2600:1700:ef10:46e0:9aa1:450a:4eb:4e12]
+ (2600:1700:ef10:46e0:9aa1:450a:4eb:4e12) by smtp.cern.ch
+ (2001:1458:201:66::100:14) with Microsoft SMTP Server (TLS) id 14.3.498.0;
+ Wed, 13 Oct 2021 03:12:35 +0200
+To: <nouveau@lists.freedesktop.org>
+From: Dhevan Gangadharan <dhevan.raja.gangadharan@cern.ch>
+Message-ID: <96ecf8a6-e75e-4f11-b3c2-92f1b95af5db@cern.ch>
+Date: Tue, 12 Oct 2021 20:12:31 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Originating-IP: [2600:1700:ef10:46e0:9aa1:450a:4eb:4e12]
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 09929804-d4f7-49dd-658c-08d98de68b0a
+X-MS-TrafficTypeDiagnostic: VI1PR0602MB3680:
+X-Microsoft-Antispam-PRVS: <VI1PR0602MB368077F3AD23F60D37C35AEAB3B79@VI1PR0602MB3680.eurprd06.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 9dpRp8WABQ6wDX2QhHSdzLBB+hB3GA+8EF2BCXJtU4AqTnwKrjLy79CjWDJXQJ7SVbkQ0zTT9EaevDci3DF8/MQlyJlNvIv4iwrDngQgF/ElOlyLOfFZH0JSGBsmFqsOqspuyOVG4rJuRg6tB4r2c7KAFvfOxJ4R66Od6aJfieghL5ure6fu49PlIX6e8F4FzrA4C1Gh3h5ep6ImRtZPlpmzBN92Ctmp5cqtGdWmPYMifg/xd/3wibuWu2L43wA+5nzoFplxqmVlohCWhh0tO5vP4gx+RC5nAhMkwqskI7KppL83wH41TDMMRujzcyU2YHI/qEm96gFKOs6RPSzuK9pet2OeiyrbkDHX3Z4qnfEO/lJYUGZHKE/W0lTUKnPzgdhdXkTUwmZCo3Nwd1VBOyEwbyw0uK30iwo3VKDifUhYfn5CNoYvnLvx8Cp6imR1RJP11Yrb63PXfIJVrdSq1T+5AjR/xC8xy0S8zprSbb0ggNmBO0mYaN6hTOlnl5yEUatUdho6KwiRAjCMAJru/zqkpfTELc99x3oKYb+WzNQhYPEu2PerfS59CH3p2pDgZdzF2EPEbvFCjIADTqQcLXSPIdoiIMYucHTPxVZghVWCPY/2tnDbO4yPLOQug73NeAARfXE2IyISzmSfTNn0QhZdYHpFlW3c+XHDH08i8YhEUkQG84PA/Oj4Ucl93QHPLQDvgDuDUoqk+VHR6uWUPyQFAKvZPN9ho/YMc6Ildec=
+X-Forefront-Antispam-Report: CIP:188.184.36.50; CTRY:CH; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:cernmxgwlb4.cern.ch; PTR:cernmx11.cern.ch; CAT:NONE;
+ SFS:(46966006)(36840700001)(8936002)(6666004)(5660300002)(36860700001)(2616005)(316002)(82310400003)(2906002)(36756003)(508600001)(4744005)(70206006)(26005)(86362001)(31696002)(31686004)(8676002)(356005)(7116003)(70586007)(16526019)(83380400001)(426003)(6916009)(336012)(186003)(7636003)(47076005)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: cern.ch
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2021 01:12:36.1326 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09929804-d4f7-49dd-658c-08d98de68b0a
+X-MS-Exchange-CrossTenant-Id: c80d3499-4a40-4a8c-986e-abce017d6b19
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=c80d3499-4a40-4a8c-986e-abce017d6b19; Ip=[188.184.36.50];
+ Helo=[cernmxgwlb4.cern.ch]
+X-MS-Exchange-CrossTenant-AuthSource: AM5EUR02FT055.eop-EUR02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0602MB3680
 X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
-Subject: [Nouveau] [PATCH 07/15] drm/exynos: replace
- drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+Subject: [Nouveau] RTX 5000 compatibility
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,38 +114,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Once EDID is parsed, the monitor HDMI support information is available
-through drm_display_info.is_hdmi. Retriving the same information with
-drm_detect_hdmi_monitor() is less efficient. Change to
-drm_display_info.is_hdmi
+Hi,
 
-Signed-off-by: Claudio Suarez <cssk@net-c.es>
----
- drivers/gpu/drm/exynos/exynos_hdmi.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+I recently purchased an nvidia quadro RTX 5000 but for a certain linux 
+application the proprietary drivers do not work.  I was recommended to 
+try nouveau but first I wanted to see if this GPU is currently 
+supported.  I could not determine this from your documentation online.
+Could you let me know if your driver would work for me?  My OS is Ubuntu 20.
 
-diff --git a/drivers/gpu/drm/exynos/exynos_hdmi.c b/drivers/gpu/drm/exynos/exynos_hdmi.c
-index 7655142a4651..a563d6386abe 100644
---- a/drivers/gpu/drm/exynos/exynos_hdmi.c
-+++ b/drivers/gpu/drm/exynos/exynos_hdmi.c
-@@ -893,12 +893,14 @@ static int hdmi_get_modes(struct drm_connector *connector)
- 	if (!edid)
- 		return -ENODEV;
- 
--	hdata->dvi_mode = !drm_detect_hdmi_monitor(edid);
-+	/* This updates connector->display_info */
-+	drm_connector_update_edid_property(connector, edid);
-+
-+	hdata->dvi_mode = !connector->display_info.is_hdmi;
- 	DRM_DEV_DEBUG_KMS(hdata->dev, "%s : width[%d] x height[%d]\n",
- 			  (hdata->dvi_mode ? "dvi monitor" : "hdmi monitor"),
- 			  edid->width_cm, edid->height_cm);
- 
--	drm_connector_update_edid_property(connector, edid);
- 	cec_notifier_set_phys_addr_from_edid(hdata->notifier, edid);
- 
- 	ret = drm_add_edid_modes(connector, edid);
--- 
-2.33.0
-
-
+Thanks,
+Dhevan
