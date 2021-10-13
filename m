@@ -2,65 +2,65 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BC4FAC43217
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 63230C43219
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 924946103B
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 924946103B
+	by mail.kernel.org (Postfix) with ESMTPS id 37C5B6103B
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:25 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 37C5B6103B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FC876EE4F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 702386EE52;
 	Mon, 18 Oct 2021 17:18:53 +0000 (UTC)
-Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
- [64.147.123.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09AC66E833;
- Thu,  7 Oct 2021 19:38:07 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id 1B17B2B009FD;
- Thu,  7 Oct 2021 15:38:06 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute6.internal (MEProxy); Thu, 07 Oct 2021 15:38:06 -0400
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDB606EB52;
+ Wed, 13 Oct 2021 20:49:49 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 6382758117B;
+ Wed, 13 Oct 2021 16:49:49 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute5.internal (MEProxy); Wed, 13 Oct 2021 16:49:49 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
  :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=7drGizuMVrgy3
- XtFLhWzlftyWemSxaP+r0ayB6xLFcI=; b=KvXB9xq8TlLHSJus6JCKqNaZADhq5
- MVGaDsjNudk2fAZqlWlHUuSbMD2AAakw4R2HKYsN/iQED24zPjG/cMm9ZVOnE8jJ
- noJBzjzkfRn+wrb0loh2pwrZaM+05IntAMTU4YIWChG2hTvAOyFQwpelsthUUeyg
- FBqjf4QCwbGaeB7c4MyR9fOka2oMfQY+zPJ8mbFJy76cIG4qfDftlIDZMKLW9P2g
- tLfsGVwHJeTUAEBRAjJvLL36WICGC6KiNGHD5kyy8JUVEMY63tUyzugmMjDRG4Hl
- eYNUhswO1V5oEBE4a8+0Gd2MYKLFkEp8pmsSMQ+YHISSx6CxoD76w2lug==
+ :mime-version:content-transfer-encoding; s=fm3; bh=u+zwLxcZ69Jq4
+ 9MVAvz8TDTzcn5nvEKAlwdjPR/i2e4=; b=NEaScgCU7wtbl3SvTcTTAEV+p1JSn
+ QrrVT4PYz67sYKP2gprqQCm3+w5crktcGclNsCsAzB4Z/lEfndarbEIu0RAEF0D1
+ qTFTwKV4OKiso+C1NJThfALD7i/EWKgDHHfcNMUNmmcDob/fKaHwcRdD8iCo+PEN
+ GbsPfJFfgDCR04Fcam8IQTRFeZnxuN6L3mvDzLAOOipYElByTp++8uYrejyAJfmS
+ Ce/w9zMFUkke94FOB5STrrkl7yDcXRWy64qpQizF83EIbcwCLpwh/ATKEqpDHRGi
+ emPZShksi6/vt/vTG3x8ByplA7Nu8edjbwtWbxJxBfzRX9ECzioZF4ejw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:content-transfer-encoding:date:from
  :in-reply-to:message-id:mime-version:references:subject:to
  :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; bh=7drGizuMVrgy3XtFLhWzlftyWemSxaP+r0ayB6xLFcI=; b=nT9hFVt2
- mc2sYTZLaOCw9Z7Kk5RCVO7eBRMoHclVehYvGhmyMkmQ5f726WohWcOM4Lh6epE4
- 8fnNqkbksabDVCOtZDoCEo1UeuqKeXUXpJT0owneJXnL0kWNX6yBvECkF0Nbj3yA
- 1ICIaB05UvWI/scUSfqE2JVBCGClTg7kVCvD957pNG3GXX0RFTvQZlcZJPZKgCP4
- QMJ8sSOD61uR26xt0JR1noHpz1jprOA5xNztd5CjbTFWE0rD2f8FQU+JQK4QLsoP
- M7lxQvBwR8n3je4PkI8RxoDALQEPY0+U3fG5CdI0PX0bmgX6Hkkkx2ZRorjN3mDl
- R3FUVqqnMbtpRw==
-X-ME-Sender: <xms:nUxfYUxaTBgwdTjYG9xTc4jy7PjZPpS6izJdIgqIrwQ7XR_aQCfRnQ>
- <xme:nUxfYYTWqF_slclXQ4eLhOW9pATKmLpRVrdsV5Nz5hqRgJ9zhYc0Op_XrByguoll7
- b4Ubi9eA0o0egrsaA>
-X-ME-Received: <xmr:nUxfYWVGrpz9IuTgKvXhSUB-a_BzCwGI13qlpvrPXJDYb709tyIM5vMlI7JW7r8VXQdc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudelkedgudefjecutefuodetggdotefrod
+ fm1; bh=u+zwLxcZ69Jq49MVAvz8TDTzcn5nvEKAlwdjPR/i2e4=; b=JeeT7BKE
+ X3uiLZhmU9SUoAO/f2UatIX3fQPg3pR3/vJSzqE2XOWEnJc6qVL7f3/4XETfAxkx
+ jrEJGPJY+OYf5mPzx9HqFd55VsdtOwAZ6PnXM0OQm4ne/NRaLmEw/PBMNMfMC/ag
+ SlMAzq8cNemoHIaoQe94TO599XwWrEmyejuejMkLmHL73CIGfRoECjTvag/oqTCL
+ /R4yWoSZZdjlgnEh343aSUy4CnUCVNLxi6XxYef1VhayM8sLwNvvYv1EHd6J4h5s
+ ZbchtvJeQDuCH8p7NagSq1Hul2IA0+fuN8k/y1XCgujVzeqfn5BaKNWJsi0eSjzC
+ VohtOeMMQFn44g==
+X-ME-Sender: <xms:bUZnYV3yr5UcPn9chDXTTM0-H_mPst2e6B1T8R7c_rKZgaNezRWFfQ>
+ <xme:bUZnYcHbWysbaiQQs46uKi6hvu6nLWULtrJlbGqXWKa1fMbwtYR9iXWUvf_rdH00W
+ OyZxtZ7tRNQF4iiRQ>
+X-ME-Received: <xmr:bUZnYV5P2OikOlMayWTy0fW_vomVRabjz5CzqpBMRrF3JQGJ0sVtJpXXaSqG3mIMAmVK>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddutddgudehudcutefuodetggdotefrod
  ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
  necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
  ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
  ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedtnecu
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpeegnecu
  rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:nUxfYSgjcgnn6GxQbYMqRjjZ8ZyRg3QBcAMVowrDcEnOjF3ROplG-Q>
- <xmx:nUxfYWCsUubJmCzKEHWDKbMAxh6oBou_cHjcpgxYRW2MwJcvrfxnpQ>
- <xmx:nUxfYTJBeAF_rZGm-ZxCw89KYhjCy0FPjUQ3x4C1-SxPipyWS3lJGA>
- <xmx:nUxfYetddlX3vUf2ms7cvrzo2DnVqintbqj0N10dlq5vMp1IxYO2yk7C_8s>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 7 Oct 2021 15:38:02 -0400 (EDT)
+X-ME-Proxy: <xmx:bUZnYS2r826WmePUz_zE3EMW88bvPcHrvF8wY3KWsPkKAWCcUXpEhA>
+ <xmx:bUZnYYEUSjnxSNp7m536M4skPqa51Yn4-4eXcwn3CdtqbchdPWiEPA>
+ <xmx:bUZnYT89yThTkU702A1rAQBCiCMNzkc-YhyaJaTB5NaCA4pXkSPZTg>
+ <xmx:bUZnYTDxraDKCjf74u4xmpekyT0IHlSQJpeQ1nuIjElRxilE5HXE4g>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 13 Oct 2021 16:49:46 -0400 (EDT)
 From: Fernando Ramos <greenfoo@u92.eu>
 To: dri-devel@lists.freedesktop.org
 Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
@@ -68,16 +68,16 @@ Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
  linux-tegra@vger.kernel.org
-Date: Thu,  7 Oct 2021 21:37:36 +0200
-Message-Id: <20211007193755.29579-2-greenfoo@u92.eu>
+Date: Wed, 13 Oct 2021 22:48:45 +0200
+Message-Id: <20211013204846.90026-20-greenfoo@u92.eu>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211007193755.29579-1-greenfoo@u92.eu>
-References: <20211007193755.29579-1-greenfoo@u92.eu>
+In-Reply-To: <20211013204846.90026-1-greenfoo@u92.eu>
+References: <20211013204846.90026-1-greenfoo@u92.eu>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
-Subject: [Nouveau] [PATCH v3 01/20] drm: cleanup: drm_modeset_lock_all_ctx()
- --> DRM_MODESET_LOCK_ALL_BEGIN()
+X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
+Subject: [Nouveau] [PATCH v4 19/20] drm: cleanup: remove
+ drm_modeset_(un)lock_all()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,49 +92,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As requested in Documentation/gpu/todo.rst, replace the boilerplate code
-surrounding drm_modeset_lock_all_ctx() with DRM_MODESET_LOCK_ALL_BEGIN()
-and DRM_MODESET_LOCK_ALL_END()
+Functions drm_modeset_lock_all() and drm_modeset_unlock_all() are no
+longer used anywhere and can be removed.
 
 Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
 ---
- drivers/gpu/drm/drm_client_modeset.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/drm_modeset_lock.c | 94 +-----------------------------
+ include/drm/drm_modeset_lock.h     |  2 -
+ 2 files changed, 3 insertions(+), 93 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
-index ced09c7c06f9..5f5184f071ed 100644
---- a/drivers/gpu/drm/drm_client_modeset.c
-+++ b/drivers/gpu/drm/drm_client_modeset.c
-@@ -574,6 +574,7 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
- 	int num_connectors_detected = 0;
- 	int num_tiled_conns = 0;
- 	struct drm_modeset_acquire_ctx ctx;
-+	int err;
+diff --git a/drivers/gpu/drm/drm_modeset_lock.c b/drivers/gpu/drm/drm_modeset_lock.c
+index 4d32b61fa1fd..b2b84ca2b738 100644
+--- a/drivers/gpu/drm/drm_modeset_lock.c
++++ b/drivers/gpu/drm/drm_modeset_lock.c
+@@ -117,93 +117,6 @@ static void __stack_depot_print(depot_stack_handle_t stack_depot)
+ }
+ #endif /* CONFIG_DRM_DEBUG_MODESET_LOCK */
  
- 	if (!drm_drv_uses_atomic_modeset(dev))
- 		return false;
-@@ -585,10 +586,7 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
- 	if (!save_enabled)
- 		return false;
- 
--	drm_modeset_acquire_init(&ctx, 0);
+-/**
+- * drm_modeset_lock_all - take all modeset locks
+- * @dev: DRM device
+- *
+- * This function takes all modeset locks, suitable where a more fine-grained
+- * scheme isn't (yet) implemented. Locks must be dropped by calling the
+- * drm_modeset_unlock_all() function.
+- *
+- * This function is deprecated. It allocates a lock acquisition context and
+- * stores it in &drm_device.mode_config. This facilitate conversion of
+- * existing code because it removes the need to manually deal with the
+- * acquisition context, but it is also brittle because the context is global
+- * and care must be taken not to nest calls. New code should use the
+- * drm_modeset_lock_all_ctx() function and pass in the context explicitly.
+- */
+-void drm_modeset_lock_all(struct drm_device *dev)
+-{
+-	struct drm_mode_config *config = &dev->mode_config;
+-	struct drm_modeset_acquire_ctx *ctx;
+-	int ret;
 -
--	while (drm_modeset_lock_all_ctx(dev, &ctx) != 0)
--		drm_modeset_backoff(&ctx);
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
+-	ctx = kzalloc(sizeof(*ctx), GFP_KERNEL | __GFP_NOFAIL);
+-	if (WARN_ON(!ctx))
+-		return;
+-
+-	mutex_lock(&config->mutex);
+-
+-	drm_modeset_acquire_init(ctx, 0);
+-
+-retry:
+-	ret = drm_modeset_lock_all_ctx(dev, ctx);
+-	if (ret < 0) {
+-		if (ret == -EDEADLK) {
+-			drm_modeset_backoff(ctx);
+-			goto retry;
+-		}
+-
+-		drm_modeset_acquire_fini(ctx);
+-		kfree(ctx);
+-		return;
+-	}
+-	ww_acquire_done(&ctx->ww_ctx);
+-
+-	WARN_ON(config->acquire_ctx);
+-
+-	/*
+-	 * We hold the locks now, so it is safe to stash the acquisition
+-	 * context for drm_modeset_unlock_all().
+-	 */
+-	config->acquire_ctx = ctx;
+-
+-	drm_warn_on_modeset_not_all_locked(dev);
+-}
+-EXPORT_SYMBOL(drm_modeset_lock_all);
+-
+-/**
+- * drm_modeset_unlock_all - drop all modeset locks
+- * @dev: DRM device
+- *
+- * This function drops all modeset locks taken by a previous call to the
+- * drm_modeset_lock_all() function.
+- *
+- * This function is deprecated. It uses the lock acquisition context stored
+- * in &drm_device.mode_config. This facilitates conversion of existing
+- * code because it removes the need to manually deal with the acquisition
+- * context, but it is also brittle because the context is global and care must
+- * be taken not to nest calls. New code should pass the acquisition context
+- * directly to the drm_modeset_drop_locks() function.
+- */
+-void drm_modeset_unlock_all(struct drm_device *dev)
+-{
+-	struct drm_mode_config *config = &dev->mode_config;
+-	struct drm_modeset_acquire_ctx *ctx = config->acquire_ctx;
+-
+-	if (WARN_ON(!ctx))
+-		return;
+-
+-	config->acquire_ctx = NULL;
+-	drm_modeset_drop_locks(ctx);
+-	drm_modeset_acquire_fini(ctx);
+-
+-	kfree(ctx);
+-
+-	mutex_unlock(&dev->mode_config.mutex);
+-}
+-EXPORT_SYMBOL(drm_modeset_unlock_all);
+-
+ /**
+  * drm_warn_on_modeset_not_all_locked - check that all modeset locks are locked
+  * @dev: device
+@@ -425,10 +338,9 @@ EXPORT_SYMBOL(drm_modeset_unlock);
+  * This function takes all modeset locks, suitable where a more fine-grained
+  * scheme isn't (yet) implemented.
+  *
+- * Unlike drm_modeset_lock_all(), it doesn't take the &drm_mode_config.mutex
+- * since that lock isn't required for modeset state changes. Callers which
+- * need to grab that lock too need to do so outside of the acquire context
+- * @ctx.
++ * It doesn't take the &drm_mode_config.mutex since that lock isn't required for
++ * modeset state changes. Callers which need to grab that lock too need to do so
++ * outside of the acquire context @ctx.
+  *
+  * Locks acquired with this function should be released by calling the
+  * drm_modeset_drop_locks() function on @ctx.
+diff --git a/include/drm/drm_modeset_lock.h b/include/drm/drm_modeset_lock.h
+index b84693fbd2b5..96b853530120 100644
+--- a/include/drm/drm_modeset_lock.h
++++ b/include/drm/drm_modeset_lock.h
+@@ -140,8 +140,6 @@ struct drm_device;
+ struct drm_crtc;
+ struct drm_plane;
  
- 	memcpy(save_enabled, enabled, count);
- 	mask = GENMASK(count - 1, 0);
-@@ -743,8 +741,7 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
- 		ret = false;
- 	}
+-void drm_modeset_lock_all(struct drm_device *dev);
+-void drm_modeset_unlock_all(struct drm_device *dev);
+ void drm_warn_on_modeset_not_all_locked(struct drm_device *dev);
  
--	drm_modeset_drop_locks(&ctx);
--	drm_modeset_acquire_fini(&ctx);
-+	DRM_MODESET_LOCK_ALL_END(dev, ctx, err);
- 
- 	kfree(save_enabled);
- 	return ret;
+ int drm_modeset_lock_all_ctx(struct drm_device *dev,
 -- 
 2.33.0
 
