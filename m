@@ -2,65 +2,65 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CBE6FC4332F
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6F5AFC433EF
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A14276103B
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org A14276103B
+	by mail.kernel.org (Postfix) with ESMTPS id 44CFB6103B
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:07 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 44CFB6103B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEDAA6EA73;
-	Mon, 18 Oct 2021 17:18:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D5906EA94;
+	Mon, 18 Oct 2021 17:18:35 +0000 (UTC)
 Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
  [66.111.4.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D46B6EB11;
- Wed, 13 Oct 2021 20:49:14 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailnew.nyi.internal (Postfix) with ESMTP id 0EF67581176;
- Wed, 13 Oct 2021 16:49:14 -0400 (EDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E62F36EB19;
+ Wed, 13 Oct 2021 20:49:02 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 5B9C1581176;
+ Wed, 13 Oct 2021 16:49:02 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
- by compute5.internal (MEProxy); Wed, 13 Oct 2021 16:49:14 -0400
+ by compute6.internal (MEProxy); Wed, 13 Oct 2021 16:49:02 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
  :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=AY7Rab3gEcTjh
- Ev01MQj9r/3cj4oj/2qbKLAhJHhaA8=; b=LGdn4qkrLxxrUgJe7x1nyrfBOpd8u
- sO2pc3ISrYGWoq5kkR7VQrg2BSIbFUfPz6vhHvQpuJj5iJU/4mISNDDrcnEvCIqx
- sYWrAXdbCKUI1HRlmVfJODowd5sgl4o5l8FJXZ1CQ8VsW1dlkYHqtz9F0IYcjRjR
- D1swZcO9V1dUSmmGZyhxwo1pEbxUKBzLlBTTBZzfFqSh2wWnDcPhTEJFBBxp4sLN
- xrDoe+nC3u6C1/bwlOyqddzlleIQPJPtKGoPq8wec8ifvrIYWJUJnEIPLRGQ+qsq
- pyisnCgISZ/VlnsZS4H7G/cArh6BO5MAGqN9bNl7AhQGWEQL+F3ocR2jA==
+ :mime-version:content-transfer-encoding; s=fm3; bh=bjZP3Lgut5mp9
+ xuokNNwrS2cdV0t8bE34sMk9sGPssk=; b=c6r33z9Y064wci5B+pw1tyY077FW3
+ n1lca3QGK8RKDhvQ9WWyfvMVtL3GCAEbKPXWd9etVMNOtJR/mND8WSeYcZoqfg0Q
+ YfKkF2Vdtb+vbWkeYy0raJYz07/4l6MEJJK5ev++p4jZEmIBSM1BA6qigA1nkTEy
+ 1N9cqazb37qhaFX/+dQH8tRcxK+QrdtxXKbFn5WiJG+fxWdevBn3F31HchFle683
+ M6eTC7R1Ll1pte51A8W7iQDLNf2fAxReABHdns19MoXrsFmAz8hARE1e7OgPcsps
+ 9WPmvF2dk7UBe+R/D7UyDKF5bHEfs44llLkzW1GjNx4vdsclJxEyy2YpQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:content-transfer-encoding:date:from
  :in-reply-to:message-id:mime-version:references:subject:to
  :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; bh=AY7Rab3gEcTjhEv01MQj9r/3cj4oj/2qbKLAhJHhaA8=; b=nowGajSW
- 4Mf3XQTJ325xdroRulIP/q1Q13Xz739VfQxGCkvlHRd0+fNifkS27dGYC2qcklLu
- ohHeMjwfUXARgloosymQ0vvk62Q7IJGOpd4BGvETtq2XHNIAfoqizh0VBbuHRdWc
- jlRwNYxkqMJcoCxintd2LoON8G57es2XxVLH3BCw0uOEHy3RulNdfz9AxItpcXDN
- lKwFXYV5tBrr7r8kk+QiHDRbevV+X9g5mDYHaL7HKK7FKdtO5+lR8JoswzKVOxkf
- 6q6HggtAWXEU8fuBPoYyiKAvsfxXuuJHaYiQIeFWSG5V+t/M5MlsptVsS7mdVez9
- RMSj/ji4uO2XQA==
-X-ME-Sender: <xms:SUZnYciywXgTwblkqdl2IjRrumleTCfYrxhd7wZgoGNihytf2FAoPg>
- <xme:SUZnYVDrbvm82iqcuoffzb0OWYLaocHjJ2QrXCj1oYMATimsPb9akpuf2ke4SSA6J
- D281lazz-Cosk_F7Q>
-X-ME-Received: <xmr:SUZnYUFpxCBkLMRRq1-LErkiVWLobITucdrgD970d-q5UDdhDW9n8N8CDSmLWkO6ctMT>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddutddgudehudcutefuodetggdotefrod
+ fm1; bh=bjZP3Lgut5mp9xuokNNwrS2cdV0t8bE34sMk9sGPssk=; b=neytJYoB
+ opkPEnc6uJVGuAEuW174cVJqDHTP+Kj/d3DUB8pF4giUNgx1BhvoT1qatmWi+2Pi
+ UfXsqaTUhSXZ1qD4QLFQVPPCbV1c9OU3fHuPsYb3OvHyEhOOueH6aQzOTuWnYgUo
+ YCjRJBFFd/qTAWEMF8TEZS2EBQ0seNgErJEqViEbdtMK00z758TKKnHDN50p58iK
+ WrU9CqAGhzO/k2+o7vKeXwwPg6v88Kyyn7DP7feGgLhdDUpCA1c77jw6R9+wIh2S
+ K3eIizTb2iDs2VFm1rJgp04W7zz9th9D409u5bUv3iaWOJpbmHFjvCTD6n0PW8Lj
+ 9zTtzvo6UPhhng==
+X-ME-Sender: <xms:PkZnYTDbYzcm6yMQ2PyqvV0U75E-IhrZdaYTDC5AJ-6Wt_4u6bW9pA>
+ <xme:PkZnYZiPp0S0tu3wHaruMzYe54SlzM4mcV-ItcNAzQ5SVCGbpHNcKEJ5yRypR722i
+ XZ3PT7qja92ZtvsyQ>
+X-ME-Received: <xmr:PkZnYekL2-1UOqcXp0EePJPmpJdB-jKQskM8iggmEvMMgLS_ZDdqHP15WsAdtteYNbbk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddutddgudehtdcutefuodetggdotefrod
  ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
  necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
  ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
  ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedvnecu
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedtnecu
  rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:SUZnYdSiABWPYuHca74MwB6Z-244OPfn7SAW9LCHrl2OPpLf9r3p4w>
- <xmx:SUZnYZyQQ7NCpIoUyrvP2X6qCbf50aX3rs5iXD0NvFADJ-MKbl0UXw>
- <xmx:SUZnYb5WZyDzpwJykrdhnEPyKaqcfId9RNZvYuyDNDnKmh9EJoeKEQ>
- <xmx:SkZnYZcglLuICPHjX0gh3Xx5RPsjYOMrdSpGanUt0RCvF1lqW8BMAQ>
+X-ME-Proxy: <xmx:PkZnYVzUpmA5kGL1Kc0qtvk8TnQQgeEGRl9juSlg95BIlokG4LD9Lw>
+ <xmx:PkZnYYTX5tLF4uDSTGbdzmPRHVA0OMUY6k1SOManI3uSQe0qF-Lh_g>
+ <xmx:PkZnYYb3gNj5gBu-_FAHTnXC12hRUDXhy0GLyH9f5pzJtrc9P-wBDA>
+ <xmx:PkZnYR_Eya7Uhnr6VTNh1qDUcq8l42NUKkk_blhF6wZtIB4rNM5Fsw>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 13 Oct 2021 16:49:11 -0400 (EDT)
+ 13 Oct 2021 16:48:59 -0400 (EDT)
 From: Fernando Ramos <greenfoo@u92.eu>
 To: dri-devel@lists.freedesktop.org
 Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
@@ -68,16 +68,16 @@ Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
  linux-tegra@vger.kernel.org
-Date: Wed, 13 Oct 2021 22:48:33 +0200
-Message-Id: <20211013204846.90026-8-greenfoo@u92.eu>
+Date: Wed, 13 Oct 2021 22:48:29 +0200
+Message-Id: <20211013204846.90026-4-greenfoo@u92.eu>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211013204846.90026-1-greenfoo@u92.eu>
 References: <20211013204846.90026-1-greenfoo@u92.eu>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
-Subject: [Nouveau] [PATCH v4 07/20] drm/shmobile: cleanup:
- drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+Subject: [Nouveau] [PATCH v4 03/20] drm/msm: cleanup:
+ drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,35 +92,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As requested in Documentation/gpu/todo.rst, replace driver calls to
-drm_modeset_lock_all() with DRM_MODESET_LOCK_ALL_BEGIN() and
-DRM_MODESET_LOCK_ALL_END()
+As requested in Documentation/gpu/todo.rst, replace the boilerplate code
+surrounding drm_modeset_lock_all_ctx() with DRM_MODESET_LOCK_ALL_BEGIN()
+and DRM_MODESET_LOCK_ALL_END()
 
 Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
 Reviewed-by: Sean Paul <sean@poorly.run>
+Reported-by: kernel test robot <lkp@intel.com>
 ---
- drivers/gpu/drm/shmobile/shmob_drm_drv.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/shmobile/shmob_drm_drv.c b/drivers/gpu/drm/shmobile/shmob_drm_drv.c
-index 80078a9fd7f6..1877feff2e6b 100644
---- a/drivers/gpu/drm/shmobile/shmob_drm_drv.c
-+++ b/drivers/gpu/drm/shmobile/shmob_drm_drv.c
-@@ -156,10 +156,12 @@ static int shmob_drm_pm_suspend(struct device *dev)
- static int shmob_drm_pm_resume(struct device *dev)
+diff --git a/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c b/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c
+index cabe15190ec1..abda52f09b09 100644
+--- a/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c
++++ b/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c
+@@ -5,6 +5,8 @@
+ 
+ #define pr_fmt(fmt)	"[drm:%s:%d] " fmt, __func__, __LINE__
+ 
++#include <drm/drm_drv.h>
++
+ #include "msm_disp_snapshot.h"
+ 
+ static void msm_disp_state_dump_regs(u32 **reg, u32 aligned_len, void __iomem *base_addr)
+@@ -99,20 +101,18 @@ static void msm_disp_capture_atomic_state(struct msm_disp_state *disp_state)
  {
- 	struct shmob_drm_device *sdev = dev_get_drvdata(dev);
-+	struct drm_modeset_acquire_ctx ctx;
+ 	struct drm_device *ddev;
+ 	struct drm_modeset_acquire_ctx ctx;
 +	int ret;
  
--	drm_modeset_lock_all(sdev->ddev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(sdev->ddev, ctx, 0, ret);
- 	shmob_drm_crtc_resume(&sdev->crtc);
--	drm_modeset_unlock_all(sdev->ddev);
-+	DRM_MODESET_LOCK_ALL_END(sdev->ddev, ctx, ret);
+ 	disp_state->timestamp = ktime_get();
  
- 	drm_kms_helper_poll_enable(sdev->ddev);
- 	return 0;
+ 	ddev = disp_state->drm_dev;
+ 
+-	drm_modeset_acquire_init(&ctx, 0);
+-
+-	while (drm_modeset_lock_all_ctx(ddev, &ctx) != 0)
+-		drm_modeset_backoff(&ctx);
++	DRM_MODESET_LOCK_ALL_BEGIN(ddev, ctx, 0, ret);
+ 
+ 	disp_state->atomic_state = drm_atomic_helper_duplicate_state(ddev,
+ 			&ctx);
+-	drm_modeset_drop_locks(&ctx);
+-	drm_modeset_acquire_fini(&ctx);
++
++	DRM_MODESET_LOCK_ALL_END(ddev, ctx, ret);
+ }
+ 
+ void msm_disp_snapshot_capture_state(struct msm_disp_state *disp_state)
 -- 
 2.33.0
 
