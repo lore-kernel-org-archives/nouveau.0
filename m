@@ -2,65 +2,65 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4A20DC43217
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AC0E3C433EF
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1FAF86103B
+	by mail.kernel.org (Postfix) with ESMTPS id 7BDA561263
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:22 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1FAF86103B
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7BDA561263
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FA356EE4B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C58C06EE4C;
 	Mon, 18 Oct 2021 17:18:49 +0000 (UTC)
 Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
  [66.111.4.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16A456EB57;
- Wed, 13 Oct 2021 20:49:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 721EE6EB1F;
+ Wed, 13 Oct 2021 20:49:08 +0000 (UTC)
 Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.nyi.internal (Postfix) with ESMTP id 848C558117C;
- Wed, 13 Oct 2021 16:49:52 -0400 (EDT)
+ by mailnew.nyi.internal (Postfix) with ESMTP id CB875581176;
+ Wed, 13 Oct 2021 16:49:07 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
- by compute4.internal (MEProxy); Wed, 13 Oct 2021 16:49:52 -0400
+ by compute4.internal (MEProxy); Wed, 13 Oct 2021 16:49:07 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
  :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=JGdyj4Z1k00E3
- EhPZP8xNXDzAW/iLqk7RYYsaxdxC2o=; b=KPyTnTKaEsZhOEudKbTkuUljaIWgO
- O0Oa7fj8+ywr6UaGaemCQ2WG+4qvmID+see8zbU7B+DpPIp1JYueUaY/G3u4Oxw/
- XC2t3RxCoEyCggNXgTy0dJaWOSyVlrfViTwIcP+KewBAVQTTxOTdZZ2FTMFrShEn
- 8HjtO43NRDxq63+Z9Fp2Aw1DQrVEytvKWuAAZ28XoxRTPXuPHsn98TPkA565E1JY
- s/d+B3XRMrrd68IMM4fy5ZztTGyqs+9SYvyWKfJeWS6tehFJIA6WPIjillwi27UM
- 3tl8I/lPjXZCOI1pn3vVgzuVGNLtSV2sXyGZqphaNprcf0ixkWxXzySzA==
+ :mime-version:content-transfer-encoding; s=fm3; bh=LhomnjUlqNsoF
+ aXjW53m6Qq/8PoE2SUei4fpnPBAfNQ=; b=iKG4y+A2JqVVm8l28icjhk+M5e4hq
+ LJQggHCk+5NORH5OjIjccbN1vx5rv8MsqOzL+PB7NKpttadlv5XeTS8cqH52C0Bg
+ H9jp1j/hxvvUzWd3Tt8tYb4B89ykM/a1lIwrtrjtsF7E3cxMmOOoJHM9iTjYJ8kN
+ GbnpbFDO72G9j8uU8FSf1ocOBagaQJw8gkNBey6Lpem9j9MbLeNtUlWz/l77gC6F
+ q0354BhzR6/SOCeH3jUY/SSL5tVhBi9ETH+j1MOojhLza7c0HIIWJoa6w0xciioK
+ inQNzqqaTVghoQtJ963logLvtk6dhmV+o7zIwRanoK3mELhwGXlG3GLsQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:content-transfer-encoding:date:from
  :in-reply-to:message-id:mime-version:references:subject:to
  :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; bh=JGdyj4Z1k00E3EhPZP8xNXDzAW/iLqk7RYYsaxdxC2o=; b=YRfILJKC
- LDWnMXe/4TWYmCm9/M0y22ljaVUTMTiCiNUvQyjK8JIPRKnNsaoSHTC++1N1uVCL
- qwrCA/Lz+TML+vY3LrkPSVfSnE6RxAPSkW9xZSHgoKxX1r6bCvnYvbpulct6xLWz
- RRkzNO8TYZtbrBbdsb9HqfDK0hU7+61U2/I2kvfDajXo043XJhSBIkgbHwmqEGVT
- GOikMq+d9/sdYQhdQVnMduASmTvDuZtYpAsx/NwRz55MuxaE3mm4CrbHedK8Uo08
- iWsaJTqcCzhEvcm1NhQTbsYpT2PtfjlT+xmCPmI1Ix0s6wJDflB6fKCumENhPgy/
- cAbVPSUNtlyTDQ==
-X-ME-Sender: <xms:cEZnYR166C4MQSmAee2PA1YjygVvJjL6d_aN_obPV62asFyx17i2Eg>
- <xme:cEZnYYEoZNe8M_sdSedOrNENN-BIH5UuWKuvRZg76En-4WUWRkyScA5ukZon5ZvFa
- 2psQp114SzdQq7ueQ>
-X-ME-Received: <xmr:cEZnYR59Vd6hWXOlt9NoJvlACJ0gXvHyoiOF4gW8QHCQSwbLTOcqcfMi60MJEY-njYtW>
+ fm1; bh=LhomnjUlqNsoFaXjW53m6Qq/8PoE2SUei4fpnPBAfNQ=; b=IxYvdkPL
+ SWFoZepDfvqBA3c/3x8UkOogDOaKWjj1MxqM9m7WN6cqsXqyNemMCMelM79zBe3U
+ X2QE4ZUkEVdr9RMUKxyrRGiZF1m2l9ZxueAyyHVDOudNaNxc/tT02AlE98Z2k3xK
+ qrbP5jUhm2yg4DHMJb4X04svrL5OAuluvfwmOsGTxv5elU6TT8lSY4ofEbT4OUFm
+ JfPyA9EO1k291HVETcYzowhRc8Qt1fdz8EC/aFIbMcmUTsU3oOItf7gtLVx+u4dk
+ E9NNT2gjrzFg56tdPW4pVuBHrq/eQ1BTp39AaSQIAOHlT+OnSHtN3+8CHH51UMjL
+ ZHyJPzqweKa3Nw==
+X-ME-Sender: <xms:Q0ZnYT-39_C__Sx_jPUL5qkfY3T4JTrxvBoh7FKAutn-RqbxFmJDTQ>
+ <xme:Q0ZnYfu7JQAo2jNfz5kdJdvc36XxmwTKPQF_PtleEWA7_uMwyHFzE9pe3CakSLX5c
+ H3YnB9uFEywjePR3g>
+X-ME-Received: <xmr:Q0ZnYRDkuON6OqZf6cp8kTqEHP0t4o0jWno3e3aoBvNwWD-ksIOeBto1FRPwFlR5a-BA>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddutddgudehvdcutefuodetggdotefrod
  ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
  necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
  ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
  ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpeefnecu
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedtnecu
  rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:cEZnYe2lWhmq3IeFM27MzHEdXmJtPLMuakjjxCQL-YEJRjIjv1G-3A>
- <xmx:cEZnYUFYa_V__LJt_aN0kmR2ugY7hNnq1pnKAIcTG6rcxsrPf2bOHA>
- <xmx:cEZnYf-V0SrtyQvuJknidImeO97gMyRQianffFDYJIsbtXPtZ3eKyg>
- <xmx:cEZnYfAbyVH5EYiFEXKlBHx7-qqCUzIykJXZDiQg46iJ6vXLPRX6Qw>
+X-ME-Proxy: <xmx:Q0ZnYffmQnZVn1JvuEPmGUydNjkVHSVJesUescsEej-0ArySfaKprg>
+ <xmx:Q0ZnYYMF9s_cft9AyxBGn5iYijjWuJAVB1SDGiN6Kfu5z4jfdkpWyw>
+ <xmx:Q0ZnYRmnXsS1Ya9XFnQdTa0ogt1cFJ7suvEimJZeXxjzE2HHWysV7A>
+ <xmx:Q0ZnYXqzy_GM6XKmByBcj9UnJVyl8tLz9joqCT4-er2unQuqAwTODA>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 13 Oct 2021 16:49:49 -0400 (EDT)
+ 13 Oct 2021 16:49:05 -0400 (EDT)
 From: Fernando Ramos <greenfoo@u92.eu>
 To: dri-devel@lists.freedesktop.org
 Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
@@ -68,16 +68,16 @@ Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
  linux-tegra@vger.kernel.org
-Date: Wed, 13 Oct 2021 22:48:46 +0200
-Message-Id: <20211013204846.90026-21-greenfoo@u92.eu>
+Date: Wed, 13 Oct 2021 22:48:31 +0200
+Message-Id: <20211013204846.90026-6-greenfoo@u92.eu>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211013204846.90026-1-greenfoo@u92.eu>
 References: <20211013204846.90026-1-greenfoo@u92.eu>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
-Subject: [Nouveau] [PATCH v4 20/20] drm: cleanup: remove acquire_ctx from
- drm_mode_config
+Subject: [Nouveau] [PATCH v4 05/20] drm/vmwgfx: cleanup:
+ drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,35 +92,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The previous patch removed drm_modeset_{lock,unlock}_all, which were the
-only users of this field inside the drm_mode_config structure.
+As requested in Documentation/gpu/todo.rst, replace driver calls to
+drm_modeset_lock_all() with DRM_MODESET_LOCK_ALL_BEGIN() and
+DRM_MODESET_LOCK_ALL_END()
 
 Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
+Reviewed-by: Sean Paul <sean@poorly.run>
 ---
- include/drm/drm_mode_config.h | 10 ----------
- 1 file changed, 10 deletions(-)
+ drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c | 11 +++++++----
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c   | 12 ++++++++----
+ 2 files changed, 15 insertions(+), 8 deletions(-)
 
-diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
-index 48b7de80daf5..b214b07157f2 100644
---- a/include/drm/drm_mode_config.h
-+++ b/include/drm/drm_mode_config.h
-@@ -383,16 +383,6 @@ struct drm_mode_config {
- 	 */
- 	struct drm_modeset_lock connection_mutex;
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c b/drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c
+index 28af34ab6ed6..7df35c6f1458 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c
+@@ -28,6 +28,7 @@
+ #include "vmwgfx_drv.h"
+ #include "vmwgfx_devcaps.h"
+ #include <drm/vmwgfx_drm.h>
++#include <drm/drm_drv.h>
+ #include "vmwgfx_kms.h"
  
--	/**
--	 * @acquire_ctx:
--	 *
--	 * Global implicit acquire context used by atomic drivers for legacy
--	 * IOCTLs. Deprecated, since implicit locking contexts make it
--	 * impossible to use driver-private &struct drm_modeset_lock. Users of
--	 * this must hold @mutex.
--	 */
--	struct drm_modeset_acquire_ctx *acquire_ctx;
--
- 	/**
- 	 * @idr_mutex:
- 	 *
+ int vmw_getparam_ioctl(struct drm_device *dev, void *data,
+@@ -172,6 +173,7 @@ int vmw_present_ioctl(struct drm_device *dev, void *data,
+ 	struct drm_vmw_rect __user *clips_ptr;
+ 	struct drm_vmw_rect *clips = NULL;
+ 	struct drm_framebuffer *fb;
++	struct drm_modeset_acquire_ctx ctx;
+ 	struct vmw_framebuffer *vfb;
+ 	struct vmw_resource *res;
+ 	uint32_t num_clips;
+@@ -203,7 +205,7 @@ int vmw_present_ioctl(struct drm_device *dev, void *data,
+ 		goto out_no_copy;
+ 	}
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 
+ 	fb = drm_framebuffer_lookup(dev, file_priv, arg->fb_id);
+ 	if (!fb) {
+@@ -231,7 +233,7 @@ int vmw_present_ioctl(struct drm_device *dev, void *data,
+ out_no_surface:
+ 	drm_framebuffer_put(fb);
+ out_no_fb:
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+ out_no_copy:
+ 	kfree(clips);
+ out_clips:
+@@ -250,6 +252,7 @@ int vmw_present_readback_ioctl(struct drm_device *dev, void *data,
+ 	struct drm_vmw_rect __user *clips_ptr;
+ 	struct drm_vmw_rect *clips = NULL;
+ 	struct drm_framebuffer *fb;
++	struct drm_modeset_acquire_ctx ctx;
+ 	struct vmw_framebuffer *vfb;
+ 	uint32_t num_clips;
+ 	int ret;
+@@ -280,7 +283,7 @@ int vmw_present_readback_ioctl(struct drm_device *dev, void *data,
+ 		goto out_no_copy;
+ 	}
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 
+ 	fb = drm_framebuffer_lookup(dev, file_priv, arg->fb_id);
+ 	if (!fb) {
+@@ -303,7 +306,7 @@ int vmw_present_readback_ioctl(struct drm_device *dev, void *data,
+ out_no_ttm_lock:
+ 	drm_framebuffer_put(fb);
+ out_no_fb:
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+ out_no_copy:
+ 	kfree(clips);
+ out_clips:
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
+index 74fa41909213..268095cb8c84 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
+@@ -33,6 +33,7 @@
+ #include <drm/drm_rect.h>
+ #include <drm/drm_sysfs.h>
+ #include <drm/drm_vblank.h>
++#include <drm/drm_drv.h>
+ 
+ #include "vmwgfx_kms.h"
+ 
+@@ -243,15 +244,17 @@ void vmw_kms_legacy_hotspot_clear(struct vmw_private *dev_priv)
+ 	struct drm_device *dev = &dev_priv->drm;
+ 	struct vmw_display_unit *du;
+ 	struct drm_crtc *crtc;
++	struct drm_modeset_acquire_ctx ctx;
++	int ret;
+ 
+-	drm_modeset_lock_all(dev);
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 	drm_for_each_crtc(crtc, dev) {
+ 		du = vmw_crtc_to_du(crtc);
+ 
+ 		du->hotspot_x = 0;
+ 		du->hotspot_y = 0;
+ 	}
+-	drm_modeset_unlock_all(dev);
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+ }
+ 
+ void vmw_kms_cursor_post_execbuf(struct vmw_private *dev_priv)
+@@ -1012,9 +1015,10 @@ static int vmw_framebuffer_bo_dirty(struct drm_framebuffer *framebuffer,
+ 	struct vmw_framebuffer_bo *vfbd =
+ 		vmw_framebuffer_to_vfbd(framebuffer);
+ 	struct drm_clip_rect norect;
++	struct drm_modeset_acquire_ctx ctx;
+ 	int ret, increment = 1;
+ 
+-	drm_modeset_lock_all(&dev_priv->drm);
++	DRM_MODESET_LOCK_ALL_BEGIN((&dev_priv->drm), ctx, 0, ret);
+ 
+ 	if (!num_clips) {
+ 		num_clips = 1;
+@@ -1040,7 +1044,7 @@ static int vmw_framebuffer_bo_dirty(struct drm_framebuffer *framebuffer,
+ 
+ 	vmw_cmd_flush(dev_priv, false);
+ 
+-	drm_modeset_unlock_all(&dev_priv->drm);
++	DRM_MODESET_LOCK_ALL_END((&dev_priv->drm), ctx, ret);
+ 
+ 	return ret;
+ }
 -- 
 2.33.0
 
