@@ -2,67 +2,82 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 188D6C433EF
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D130C43217
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DE3456103B
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:14 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DE3456103B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=net-c.es
+	by mail.kernel.org (Postfix) with ESMTPS id 665016103B
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 665016103B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6875A6EA76;
-	Mon, 18 Oct 2021 17:18:34 +0000 (UTC)
-Received: from msg-3.mailo.com (ip-8.mailobj.net [213.182.54.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C5B66ED65;
- Fri, 15 Oct 2021 12:21:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
- t=1634297909; bh=elbQ/Rfa9XPzohbQeT5mZjhN0nLEuIl5gnGjqEs1gGI=;
- h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
- References:MIME-Version:Content-Transfer-Encoding;
- b=uhQhLYcExiNlDlHMmi2fXqvIXIdT9Zsx177AWWe8lBnJwiintXzX/ujeyxEXR+On7
- 2wIInhwG+MuP+dGrumWHNLbDl5SnrksHRvz0CfdiYEk5iZxfadz0zCYqgweFZEoMTn
- lBHsxXLB3In8AG0xTzRo8fWAwXnP7PczDI8aTMnA=
-Received: by b-3.in.mailobj.net [192.168.90.13] with ESMTP
- via ip-206.mailobj.net [213.182.55.206]
- Fri, 15 Oct 2021 13:38:26 +0200 (CEST)
-X-EA-Auth: m+yuPqoVfZfKJvzhs4WwYWS6mMZQLuB1wXfYQyDkgGVWy09v7/iqIciNYT8F/CkgK5SECL4YhfCcPlve7qthz5S1NaR1VBAr
-From: Claudio Suarez <cssk@net-c.es>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
- Maxime Ripard <mripard@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
- Andrzej Hajda <a.hajda@samsung.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Robert Foss <robert.foss@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
- nouveau@lists.freedesktop.org
-Cc: Claudio Suarez <cssk@net-c.es>
-Date: Fri, 15 Oct 2021 13:37:06 +0200
-Message-Id: <20211015113713.630119-9-cssk@net-c.es>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FBDB6EC5E;
+	Mon, 18 Oct 2021 17:18:35 +0000 (UTC)
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E75C36EB36;
+ Wed, 13 Oct 2021 20:49:34 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 58FD558117A;
+ Wed, 13 Oct 2021 16:49:34 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute2.internal (MEProxy); Wed, 13 Oct 2021 16:49:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
+ :to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding; s=fm3; bh=m/PMBB5pvKWQW
+ STt/A5gkzeeMb050e+LA6tdqxnW7is=; b=dPFMQVwxtiS5JZx80eaCfsOuOaChy
+ 6vI/pdBAUZwRBNRR7bARAQzQBe5IuAp1dRBMcFFcUIkvSR6UqKLAsF+oLdB8AOnw
+ ADcrSHdOZ/mJQOAlLAhx6TwCAnwqfpYsbPk0QWLZ+tuzPzdpSGalHMTnJmYSagKe
+ IRQfiS7FFKprIZFbiFl0hmYvyTSPwKUFHGg4ywSeImpkfHng/Eq5SsUaQCJQ6n5U
+ 6haMBF5vu9pkWy2Ugka6M408rl+lP0w8L0LeR3/myIKV8+fXm8elY8TxNmPp1X8k
+ NcJWK8jK+V8QVjwJS3x/8qYS2pIF5oNILoLBYlEfKTkHZbabUZEfpoHLw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:date:from
+ :in-reply-to:message-id:mime-version:references:subject:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; bh=m/PMBB5pvKWQWSTt/A5gkzeeMb050e+LA6tdqxnW7is=; b=WVNevSge
+ wPjRFUAWKiA+kky5zEMljCcxrJ+iCsArH4UdFg0jbFTNLNjUvbL1w3EyJEDrCJTR
+ QditRvnLyuUCjrHEbeAARK/cL1SiQrXeSv4h+cenC8lnnIjW/C1XmlSK89FeSgLQ
+ B82m4TqRl3ZUaW8fwRIXtjflIHKZhlfKxMTwEA7yQSVEebSnAnyNMbuYjp+ihS60
+ o9clJ9qdXx0Y3/3WB/J9PMGEyXN67WiuClDwAVMCBcnO7ISYV9CfYzx7/nhFmdt7
+ 096miIXCHGhnq5dICoNwqO8KLsg9pfPDOqtgVZ+oj0Xk2m7ufyBwVO2YYaFfY4Jm
+ 8HgYjj4XOtNBaw==
+X-ME-Sender: <xms:XkZnYaBXVorL_JknrdmzaXQHbIvjWMn92Vl83if-Zt7CzLU7Dl5VxA>
+ <xme:XkZnYUgr80gNFlXPniRpYLrBMoNBkfCV6D3XkOao8shW0zUGSG6PiW1Sqy-gb793t
+ KhvwBGBiHYSQzN88Q>
+X-ME-Received: <xmr:XkZnYdl1LNZSVD-HhelFonj_6JchRjKKG9F8smjtwW0gfTdCsg25DbDOt1bZVMF7mrxB>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddutddgudehudcutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
+ ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
+ ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
+ fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedtnecu
+ rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
+X-ME-Proxy: <xmx:XkZnYYyPvjlxGjOY9xLNCQRV_UZufQBkYcK5yB99WkRHcDAsMV7hNw>
+ <xmx:XkZnYfSqbsT1pajaROMXAAO2YOL7KNDwLDnXTD4OR042rCp3CHN3qw>
+ <xmx:XkZnYTaejMJwv8XYXZsu17udIj6ez6YkybclowjMl0KAZIUJJocsrw>
+ <xmx:XkZnYU-rBs9JtJVaY-3AB4GX-2j7YauJk24E3f1v2N5DsjjoNBqtsg>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 13 Oct 2021 16:49:31 -0400 (EDT)
+From: Fernando Ramos <greenfoo@u92.eu>
+To: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+Date: Wed, 13 Oct 2021 22:48:40 +0200
+Message-Id: <20211013204846.90026-15-greenfoo@u92.eu>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211015113713.630119-1-cssk@net-c.es>
-References: <20211015113713.630119-1-cssk@net-c.es>
+In-Reply-To: <20211013204846.90026-1-greenfoo@u92.eu>
+References: <20211013204846.90026-1-greenfoo@u92.eu>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
-Subject: [Nouveau] [PATCH 08/15] drm/msm: replace drm_detect_hdmi_monitor()
- with drm_display_info.is_hdmi
+X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
+Subject: [Nouveau] [PATCH v4 14/20] drm/i915: cleanup:
+ drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN() [part 3]
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,31 +92,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Once EDID is parsed, the monitor HDMI support information is available
-through drm_display_info.is_hdmi. Retriving the same information with
-drm_detect_hdmi_monitor() is less efficient. Change to
-drm_display_info.is_hdmi
+As requested in Documentation/gpu/todo.rst, replace driver calls to
+drm_modeset_lock_all() with DRM_MODESET_LOCK_ALL_BEGIN() and
+DRM_MODESET_LOCK_ALL_END()
 
-Signed-off-by: Claudio Suarez <cssk@net-c.es>
+NOTE:
+
+While the previous two commits were a simple "search and replace", this
+time I had to do a bit of refactoring as only one call to
+DRM_MODESET_LOCK_ALL_BEGIN() is allowed inside one same function.
+
+Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
 ---
- drivers/gpu/drm/msm/hdmi/hdmi_connector.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_overlay.c | 40 ++++++++++----------
+ 1 file changed, 19 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_connector.c b/drivers/gpu/drm/msm/hdmi/hdmi_connector.c
-index 58707a1f3878..07585092f919 100644
---- a/drivers/gpu/drm/msm/hdmi/hdmi_connector.c
-+++ b/drivers/gpu/drm/msm/hdmi/hdmi_connector.c
-@@ -364,8 +364,8 @@ static int msm_hdmi_connector_get_modes(struct drm_connector *connector)
+diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+index c0ee135e5499..c623738c59c8 100644
+--- a/drivers/gpu/drm/i915/display/intel_overlay.c
++++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+@@ -1105,6 +1105,7 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
+ 	struct drm_crtc *drmmode_crtc;
+ 	struct intel_crtc *crtc;
+ 	struct drm_i915_gem_object *new_bo;
++	struct drm_modeset_acquire_ctx ctx;
+ 	int ret;
  
- 	hdmi_write(hdmi, REG_HDMI_CTRL, hdmi_ctrl);
+ 	overlay = dev_priv->overlay;
+@@ -1113,24 +1114,24 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
+ 		return -ENODEV;
+ 	}
  
--	hdmi->hdmi_mode = drm_detect_hdmi_monitor(edid);
- 	drm_connector_update_edid_property(connector, edid);
-+	hdmi->hdmi_mode = connector->display_info.is_hdmi;
+-	if (!(params->flags & I915_OVERLAY_ENABLE)) {
+-		drm_modeset_lock_all(dev);
+-		ret = intel_overlay_switch_off(overlay);
+-		drm_modeset_unlock_all(dev);
++	if (params->flags & I915_OVERLAY_ENABLE) {
  
- 	if (edid) {
- 		ret = drm_add_edid_modes(connector, edid);
+-		return ret;
+-	}
++		drmmode_crtc = drm_crtc_find(dev, file_priv, params->crtc_id);
++		if (!drmmode_crtc)
++			return -ENOENT;
++		crtc = to_intel_crtc(drmmode_crtc);
+ 
+-	drmmode_crtc = drm_crtc_find(dev, file_priv, params->crtc_id);
+-	if (!drmmode_crtc)
+-		return -ENOENT;
+-	crtc = to_intel_crtc(drmmode_crtc);
++		new_bo = i915_gem_object_lookup(file_priv, params->bo_handle);
++		if (!new_bo)
++			return -ENOENT;
++	}
+ 
+-	new_bo = i915_gem_object_lookup(file_priv, params->bo_handle);
+-	if (!new_bo)
+-		return -ENOENT;
++	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
+ 
+-	drm_modeset_lock_all(dev);
++	if (!(params->flags & I915_OVERLAY_ENABLE)) {
++		ret = intel_overlay_switch_off(overlay);
++		goto out_unlock;
++	}
+ 
+ 	if (i915_gem_object_is_tiled(new_bo)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+@@ -1195,14 +1196,11 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
+ 	if (ret != 0)
+ 		goto out_unlock;
+ 
+-	drm_modeset_unlock_all(dev);
+-	i915_gem_object_put(new_bo);
+-
+-	return 0;
+-
+ out_unlock:
+-	drm_modeset_unlock_all(dev);
+-	i915_gem_object_put(new_bo);
++	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
++
++	if (params->flags & I915_OVERLAY_ENABLE)
++		i915_gem_object_put(new_bo);
+ 
+ 	return ret;
+ }
 -- 
 2.33.0
-
 
