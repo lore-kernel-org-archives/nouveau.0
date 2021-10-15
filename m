@@ -2,82 +2,67 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E33CBC433F5
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 69BA2C43217
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B7B7061263
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:12 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org B7B7061263
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
+	by mail.kernel.org (Postfix) with ESMTPS id 3B49661263
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 3B49661263
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=net-c.es
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F31E66EE4A;
-	Mon, 18 Oct 2021 17:18:36 +0000 (UTC)
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
- [66.111.4.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9E876EB1B;
- Wed, 13 Oct 2021 20:49:05 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailnew.nyi.internal (Postfix) with ESMTP id 43EAF581176;
- Wed, 13 Oct 2021 16:49:05 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute5.internal (MEProxy); Wed, 13 Oct 2021 16:49:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
- :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=RbQsnaBKIXFPV
- U9maqxyMso97f+XJODL9KEdEEoLowg=; b=ZGe7MJoRW9x422ATVg461e2YIhh+z
- MceO2vb2GsgQK/WNPC2GAkKMhqzr03ITTnfGEXbnNNJw4hvDkgR/vAhpfsfRxfkN
- 4TiMczdpuVzTTdC8bF0Guy8bv24afttF2VLDVG7vHYr4Jcv3giVahnGk6EiX7te1
- D+i7+sj5OkVh0uiIM4NAzue52erGWifmNVxH4RFHSa6s/8M7PJmdHj7PH3+ai8Fa
- EkZ5JJqI5mKHALYFqLeXinWSN9+ZrpgsNU4WrjhBedqSuB7fn+nkrGipKkSVMK3u
- FUxgoAJ2sgJ+eiHq1wPYDQDdpwXaFaOTDSlbdaTT0vplg+wqmFnI8v5pg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-transfer-encoding:date:from
- :in-reply-to:message-id:mime-version:references:subject:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; bh=RbQsnaBKIXFPVU9maqxyMso97f+XJODL9KEdEEoLowg=; b=UTvVmxB3
- GyfKxlco7NgMZkBZqeJWuqf75HZa5Bbv0N3wHX+hCcR/CIJdNeQU0wbS07Mi7PzL
- NRv4u1ZWnPbNN/HEjDcQKFGMxPdGTT1JT7y++7AhUF+rzH0hl3mLxYVanh6qeN67
- hLm7bvT/IDScIyOgO/jJIqzMK3JBBCbEk0ACTIEsY+dTr5fwkmQstVhkb48AniFg
- rAh1CzB9XBdeLyTvIO6L8uJCiYdX84/i3BtkK4v8l7vK9EJCblhgGfNDY1Qov6GP
- 9pnzSoRNjqKO0GeLqHNngDZWVIOsceX1CfYqGXGXc2WsXw5Qs65nCTvU5HrdlQ9i
- t/u9m/VwlKTiJA==
-X-ME-Sender: <xms:QUZnYeO8GusQeTf8nuHjPTONGdu8QlJZ4fHefH2M7HaviYA88-xdCw>
- <xme:QUZnYc96UGNDH6DPKF-mKACKY2y1t48pGDf_WaJ5z5DYdH4mnZERcfgY8vkxz6AZ9
- PUqnKvFDh_7N0Vmkg>
-X-ME-Received: <xmr:QUZnYVSczkdgBGB5p70bCW6X_Rp3M9e_KlTv2asaYDEW0OpDU8w0Rj-WVs3HX4dPy6kl>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddutddgudehudcutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
- ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
- ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedunecu
- rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:QUZnYetzv22mc8LmZbArIaqm1U1ifZsYY50D4WqGmuAO8cbsQcNRZA>
- <xmx:QUZnYWdBkZ9GotaCrnnL2nalOUTIQYjuqmiJqyIBB7SesKNz6-wQNQ>
- <xmx:QUZnYS3_dY_CN4SG2BX83HcLCSy-qdNMkOkVEYZrZDQOCGHd4Z82cw>
- <xmx:QUZnYW5lFSCSmj1JKcFRVFXL3rjK2ekQkMDSDlce2fxZZEJIa3GO_Q>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 13 Oct 2021 16:49:02 -0400 (EDT)
-From: Fernando Ramos <greenfoo@u92.eu>
-To: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-tegra@vger.kernel.org
-Date: Wed, 13 Oct 2021 22:48:30 +0200
-Message-Id: <20211013204846.90026-5-greenfoo@u92.eu>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8289C6EA84;
+	Mon, 18 Oct 2021 17:18:34 +0000 (UTC)
+Received: from msg-3.mailo.com (ip-8.mailobj.net [213.182.54.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 505706ED7E;
+ Fri, 15 Oct 2021 12:21:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
+ t=1634297852; bh=DFqDGSHvr1uyycl7Se2wN6v5zUmJJohWh5q1BRuMlCo=;
+ h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
+ References:MIME-Version:Content-Transfer-Encoding;
+ b=ujxOFhSFnLXhS9zzljVr8lUx92AdE2jYrC1S7EhrjVQ96sSS4Msb4s1/zNp9HPYWP
+ GK2lea3c3GTxbKby+rravWVu4ouUbdSPE4nBua4g+SRGie+FcWAAlY9tbS8d+iGCpo
+ 3qvFgx3dvFBcFWTDw3d0hgMAkNPR4fFTuoeAk/fs=
+Received: by b-5.in.mailobj.net [192.168.90.15] with ESMTP
+ via ip-206.mailobj.net [213.182.55.206]
+ Fri, 15 Oct 2021 13:37:32 +0200 (CEST)
+X-EA-Auth: ufGBbOAyJ7YTrQM19pPR7jskv5qd4zfN9OGE0MrdQTLRfuEqXZAzOMcNePKQkbdd5/ZORT0TCYJhASsC6C2Zi3SU7KRxLiRe
+From: Claudio Suarez <cssk@net-c.es>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
+ Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
+ Andrzej Hajda <a.hajda@samsung.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Robert Foss <robert.foss@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
+ nouveau@lists.freedesktop.org
+Cc: Claudio Suarez <cssk@net-c.es>
+Date: Fri, 15 Oct 2021 13:37:00 +0200
+Message-Id: <20211015113713.630119-3-cssk@net-c.es>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211013204846.90026-1-greenfoo@u92.eu>
-References: <20211013204846.90026-1-greenfoo@u92.eu>
+In-Reply-To: <20211015113713.630119-1-cssk@net-c.es>
+References: <20211015113713.630119-1-cssk@net-c.es>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
-Subject: [Nouveau] [PATCH v4 04/20] drm: cleanup: drm_modeset_lock_all() -->
- DRM_MODESET_LOCK_ALL_BEGIN()
+X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
+Subject: [Nouveau] [PATCH 02/15] drm/amdgpu: use drm_* functions instead of
+ duplicated code in amdgpu driver
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,184 +77,357 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As requested in Documentation/gpu/todo.rst, replace driver calls to
-drm_modeset_lock_all() with DRM_MODESET_LOCK_ALL_BEGIN() and
-DRM_MODESET_LOCK_ALL_END()
+a) Once EDID is parsed, the monitor HDMI support information is available
+through drm_display_info.is_hdmi. The amdgpu driver still calls
+drm_detect_hdmi_monitor() to retrieve the same information, which
+is less efficient. Change to drm_display_info.is_hdmi
 
-Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
-Reviewed-by: Sean Paul <sean@poorly.run>
+This is a TODO task in Documentation/gpu/todo.rst
+
+b) drm_display_info is updated by drm_get_edid() or
+drm_connector_update_edid_property(). In the amdgpu driver it is almost
+always updated when the edid is read in amdgpu_connector_get_edid(),
+but not always.  Change amdgpu_connector_get_edid() and
+amdgpu_connector_free_edid() to keep drm_display_info updated. This allows a)
+to work properly.
+
+c) Use drm_edid_get_monitor_name() instead of duplicating the code that
+parses the EDID in dm_helpers_parse_edid_caps()
+
+Also, remove the unused "struct dc_context *ctx" parameter in
+dm_helpers_parse_edid_caps()
+
+Signed-off-by: Claudio Suarez <cssk@net-c.es>
 ---
- drivers/gpu/drm/drm_client_modeset.c |  5 +++--
- drivers/gpu/drm/drm_crtc_helper.c    | 18 ++++++++++++------
- drivers/gpu/drm/drm_fb_helper.c      | 10 ++++++----
- drivers/gpu/drm/drm_framebuffer.c    |  6 ++++--
- 4 files changed, 25 insertions(+), 14 deletions(-)
+ .../gpu/drm/amd/amdgpu/amdgpu_connectors.c    | 23 +++++++----
+ .../gpu/drm/amd/amdgpu/amdgpu_connectors.h    |  2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c  |  4 +-
+ .../gpu/drm/amd/amdgpu/atombios_encoders.c    |  6 +--
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  3 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 39 ++++++-------------
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |  2 +-
+ drivers/gpu/drm/amd/display/dc/dm_helpers.h   |  2 +-
+ 9 files changed, 39 insertions(+), 44 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
-index 5f5184f071ed..43f772543d2a 100644
---- a/drivers/gpu/drm/drm_client_modeset.c
-+++ b/drivers/gpu/drm/drm_client_modeset.c
-@@ -1062,9 +1062,10 @@ static int drm_client_modeset_commit_legacy(struct drm_client_dev *client)
- 	struct drm_device *dev = client->dev;
- 	struct drm_mode_set *mode_set;
- 	struct drm_plane *plane;
-+	struct drm_modeset_acquire_ctx ctx;
- 	int ret = 0;
- 
--	drm_modeset_lock_all(dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
- 	drm_for_each_plane(plane, dev) {
- 		if (plane->type != DRM_PLANE_TYPE_PRIMARY)
- 			drm_plane_force_disable(plane);
-@@ -1093,7 +1094,7 @@ static int drm_client_modeset_commit_legacy(struct drm_client_dev *client)
- 			goto out;
- 	}
- out:
--	drm_modeset_unlock_all(dev);
-+	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
- 
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/drm_crtc_helper.c b/drivers/gpu/drm/drm_crtc_helper.c
-index bff917531f33..f3ce073dff79 100644
---- a/drivers/gpu/drm/drm_crtc_helper.c
-+++ b/drivers/gpu/drm/drm_crtc_helper.c
-@@ -218,11 +218,14 @@ static void __drm_helper_disable_unused_functions(struct drm_device *dev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+index b9c11c2b2885..7b41a1120b70 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+@@ -25,6 +25,7 @@
   */
- void drm_helper_disable_unused_functions(struct drm_device *dev)
- {
-+	struct drm_modeset_acquire_ctx ctx;
-+	int ret;
-+
- 	WARN_ON(drm_drv_uses_atomic_modeset(dev));
  
--	drm_modeset_lock_all(dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
- 	__drm_helper_disable_unused_functions(dev);
--	drm_modeset_unlock_all(dev);
-+	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
- }
- EXPORT_SYMBOL(drm_helper_disable_unused_functions);
- 
-@@ -942,12 +945,14 @@ void drm_helper_resume_force_mode(struct drm_device *dev)
- 	struct drm_crtc *crtc;
- 	struct drm_encoder *encoder;
- 	const struct drm_crtc_helper_funcs *crtc_funcs;
-+	struct drm_modeset_acquire_ctx ctx;
- 	int encoder_dpms;
- 	bool ret;
-+	int err;
- 
- 	WARN_ON(drm_drv_uses_atomic_modeset(dev));
- 
--	drm_modeset_lock_all(dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
- 	drm_for_each_crtc(crtc, dev) {
- 
- 		if (!crtc->enabled)
-@@ -982,7 +987,7 @@ void drm_helper_resume_force_mode(struct drm_device *dev)
- 
- 	/* disable the unused connectors while restoring the modesetting */
- 	__drm_helper_disable_unused_functions(dev);
--	drm_modeset_unlock_all(dev);
-+	DRM_MODESET_LOCK_ALL_END(dev, ctx, err);
- }
- EXPORT_SYMBOL(drm_helper_resume_force_mode);
- 
-@@ -1002,9 +1007,10 @@ EXPORT_SYMBOL(drm_helper_resume_force_mode);
- int drm_helper_force_disable_all(struct drm_device *dev)
- {
- 	struct drm_crtc *crtc;
-+	struct drm_modeset_acquire_ctx ctx;
- 	int ret = 0;
- 
--	drm_modeset_lock_all(dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
- 	drm_for_each_crtc(crtc, dev)
- 		if (crtc->enabled) {
- 			struct drm_mode_set set = {
-@@ -1016,7 +1022,7 @@ int drm_helper_force_disable_all(struct drm_device *dev)
- 				goto out;
- 		}
- out:
--	drm_modeset_unlock_all(dev);
-+	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
- 	return ret;
- }
- EXPORT_SYMBOL(drm_helper_force_disable_all);
-diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
-index 8e7a124d6c5a..3b5661cf6c2b 100644
---- a/drivers/gpu/drm/drm_fb_helper.c
-+++ b/drivers/gpu/drm/drm_fb_helper.c
-@@ -940,10 +940,11 @@ static int setcmap_legacy(struct fb_cmap *cmap, struct fb_info *info)
- 	struct drm_fb_helper *fb_helper = info->par;
- 	struct drm_mode_set *modeset;
- 	struct drm_crtc *crtc;
-+	struct drm_modeset_acquire_ctx ctx;
- 	u16 *r, *g, *b;
- 	int ret = 0;
- 
--	drm_modeset_lock_all(fb_helper->dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(fb_helper->dev, ctx, 0, ret);
- 	drm_client_for_each_modeset(modeset, &fb_helper->client) {
- 		crtc = modeset->crtc;
- 		if (!crtc->funcs->gamma_set || !crtc->gamma_size) {
-@@ -970,7 +971,7 @@ static int setcmap_legacy(struct fb_cmap *cmap, struct fb_info *info)
- 			goto out;
- 	}
- out:
--	drm_modeset_unlock_all(fb_helper->dev);
-+	DRM_MODESET_LOCK_ALL_END(fb_helper->dev, ctx, ret);
- 
- 	return ret;
- }
-@@ -1441,10 +1442,11 @@ static int pan_display_legacy(struct fb_var_screeninfo *var,
- 	struct drm_fb_helper *fb_helper = info->par;
- 	struct drm_client_dev *client = &fb_helper->client;
- 	struct drm_mode_set *modeset;
-+	struct drm_modeset_acquire_ctx ctx;
- 	int ret = 0;
- 
- 	mutex_lock(&client->modeset_mutex);
--	drm_modeset_lock_all(fb_helper->dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(fb_helper->dev, ctx, 0, ret);
- 	drm_client_for_each_modeset(modeset, client) {
- 		modeset->x = var->xoffset;
- 		modeset->y = var->yoffset;
-@@ -1457,7 +1459,7 @@ static int pan_display_legacy(struct fb_var_screeninfo *var,
+ #include <drm/drm_edid.h>
++#include <drm/drm_connector.h>
+ #include <drm/drm_fb_helper.h>
+ #include <drm/drm_dp_helper.h>
+ #include <drm/drm_probe_helper.h>
+@@ -108,7 +109,7 @@ int amdgpu_connector_get_monitor_bpc(struct drm_connector *connector)
+ 	case DRM_MODE_CONNECTOR_DVII:
+ 	case DRM_MODE_CONNECTOR_HDMIB:
+ 		if (amdgpu_connector->use_digital) {
+-			if (drm_detect_hdmi_monitor(amdgpu_connector_edid(connector))) {
++			if (amdgpu_connector_is_hdmi_monitor(connector)) {
+ 				if (connector->display_info.bpc)
+ 					bpc = connector->display_info.bpc;
  			}
+@@ -116,7 +117,7 @@ int amdgpu_connector_get_monitor_bpc(struct drm_connector *connector)
+ 		break;
+ 	case DRM_MODE_CONNECTOR_DVID:
+ 	case DRM_MODE_CONNECTOR_HDMIA:
+-		if (drm_detect_hdmi_monitor(amdgpu_connector_edid(connector))) {
++		if (amdgpu_connector_is_hdmi_monitor(connector)) {
+ 			if (connector->display_info.bpc)
+ 				bpc = connector->display_info.bpc;
  		}
- 	}
--	drm_modeset_unlock_all(fb_helper->dev);
-+	DRM_MODESET_LOCK_ALL_END(fb_helper->dev, ctx, ret);
- 	mutex_unlock(&client->modeset_mutex);
- 
- 	return ret;
-diff --git a/drivers/gpu/drm/drm_framebuffer.c b/drivers/gpu/drm/drm_framebuffer.c
-index 07f5abc875e9..205e9aa9a409 100644
---- a/drivers/gpu/drm/drm_framebuffer.c
-+++ b/drivers/gpu/drm/drm_framebuffer.c
-@@ -1059,8 +1059,10 @@ static void legacy_remove_fb(struct drm_framebuffer *fb)
- 	struct drm_device *dev = fb->dev;
- 	struct drm_crtc *crtc;
- 	struct drm_plane *plane;
-+	struct drm_modeset_acquire_ctx ctx;
-+	int ret;
- 
--	drm_modeset_lock_all(dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
- 	/* remove from any CRTC */
- 	drm_for_each_crtc(crtc, dev) {
- 		if (crtc->primary->fb == fb) {
-@@ -1082,7 +1084,7 @@ static void legacy_remove_fb(struct drm_framebuffer *fb)
- 			drm_plane_force_disable(plane);
+@@ -125,7 +126,7 @@ int amdgpu_connector_get_monitor_bpc(struct drm_connector *connector)
+ 		dig_connector = amdgpu_connector->con_priv;
+ 		if ((dig_connector->dp_sink_type == CONNECTOR_OBJECT_ID_DISPLAYPORT) ||
+ 		    (dig_connector->dp_sink_type == CONNECTOR_OBJECT_ID_eDP) ||
+-		    drm_detect_hdmi_monitor(amdgpu_connector_edid(connector))) {
++		    (amdgpu_connector_is_hdmi_monitor(connector))) {
+ 			if (connector->display_info.bpc)
+ 				bpc = connector->display_info.bpc;
  		}
+@@ -149,7 +150,7 @@ int amdgpu_connector_get_monitor_bpc(struct drm_connector *connector)
+ 		break;
  	}
--	drm_modeset_unlock_all(dev);
-+	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
+ 
+-	if (drm_detect_hdmi_monitor(amdgpu_connector_edid(connector))) {
++	if (amdgpu_connector_is_hdmi_monitor(connector)) {
+ 		/*
+ 		 * Pre DCE-8 hw can't handle > 12 bpc, and more than 12 bpc doesn't make
+ 		 * much sense without support for > 12 bpc framebuffers. RGB 4:4:4 at
+@@ -315,8 +316,10 @@ static void amdgpu_connector_get_edid(struct drm_connector *connector)
+ 	if (!amdgpu_connector->edid) {
+ 		/* some laptops provide a hardcoded edid in rom for LCDs */
+ 		if (((connector->connector_type == DRM_MODE_CONNECTOR_LVDS) ||
+-		     (connector->connector_type == DRM_MODE_CONNECTOR_eDP)))
++		     (connector->connector_type == DRM_MODE_CONNECTOR_eDP))) {
+ 			amdgpu_connector->edid = amdgpu_connector_get_hardcoded_edid(adev);
++			drm_connector_update_edid_property(connector, amdgpu_connector->edid);
++		}
+ 	}
  }
  
- /**
+@@ -326,6 +329,7 @@ static void amdgpu_connector_free_edid(struct drm_connector *connector)
+ 
+ 	kfree(amdgpu_connector->edid);
+ 	amdgpu_connector->edid = NULL;
++	drm_connector_update_edid_property(connector, NULL);
+ }
+ 
+ static int amdgpu_connector_ddc_get_modes(struct drm_connector *connector)
+@@ -1170,7 +1174,7 @@ static enum drm_mode_status amdgpu_connector_dvi_mode_valid(struct drm_connector
+ 		    (amdgpu_connector->connector_object_id == CONNECTOR_OBJECT_ID_DUAL_LINK_DVI_D) ||
+ 		    (amdgpu_connector->connector_object_id == CONNECTOR_OBJECT_ID_HDMI_TYPE_B)) {
+ 			return MODE_OK;
+-		} else if (drm_detect_hdmi_monitor(amdgpu_connector_edid(connector))) {
++		} else if (amdgpu_connector_is_hdmi_monitor(connector)) {
+ 			/* HDMI 1.3+ supports max clock of 340 Mhz */
+ 			if (mode->clock > 340000)
+ 				return MODE_CLOCK_HIGH;
+@@ -1322,6 +1326,11 @@ bool amdgpu_connector_is_dp12_capable(struct drm_connector *connector)
+ 	return false;
+ }
+ 
++bool amdgpu_connector_is_hdmi_monitor(struct drm_connector *connector)
++{
++	return connector->display_info.is_hdmi;
++}
++
+ static enum drm_connector_status
+ amdgpu_connector_dp_detect(struct drm_connector *connector, bool force)
+ {
+@@ -1462,7 +1471,7 @@ static enum drm_mode_status amdgpu_connector_dp_mode_valid(struct drm_connector
+ 		    (amdgpu_dig_connector->dp_sink_type == CONNECTOR_OBJECT_ID_eDP)) {
+ 			return amdgpu_atombios_dp_mode_valid_helper(connector, mode);
+ 		} else {
+-			if (drm_detect_hdmi_monitor(amdgpu_connector_edid(connector))) {
++			if (amdgpu_connector_is_hdmi_monitor(connector)) {
+ 				/* HDMI 1.3+ supports max clock of 340 Mhz */
+ 				if (mode->clock > 340000)
+ 					return MODE_CLOCK_HIGH;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.h
+index 61fcef15ad72..0843540e01f2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.h
+@@ -29,6 +29,8 @@ void amdgpu_connector_hotplug(struct drm_connector *connector);
+ int amdgpu_connector_get_monitor_bpc(struct drm_connector *connector);
+ u16 amdgpu_connector_encoder_get_dp_bridge_encoder_id(struct drm_connector *connector);
+ bool amdgpu_connector_is_dp12_capable(struct drm_connector *connector);
++bool amdgpu_connector_is_hdmi_monitor(struct drm_connector *connector);
++
+ void
+ amdgpu_connector_add(struct amdgpu_device *adev,
+ 		      uint32_t connector_id,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+index dc50c05f23fc..41b43207e9fa 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+@@ -1364,7 +1364,7 @@ bool amdgpu_display_crtc_scaling_mode_fixup(struct drm_crtc *crtc,
+ 		if ((!(mode->flags & DRM_MODE_FLAG_INTERLACE)) &&
+ 		    ((amdgpu_encoder->underscan_type == UNDERSCAN_ON) ||
+ 		     ((amdgpu_encoder->underscan_type == UNDERSCAN_AUTO) &&
+-		      drm_detect_hdmi_monitor(amdgpu_connector_edid(connector)) &&
++		      amdgpu_connector_is_hdmi_monitor(connector) &&
+ 		      amdgpu_display_is_hdtv_mode(mode)))) {
+ 			if (amdgpu_encoder->underscan_hborder != 0)
+ 				amdgpu_crtc->h_border = amdgpu_encoder->underscan_hborder;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c
+index af4ef84e27a7..34799786bb40 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c
+@@ -222,7 +222,7 @@ bool amdgpu_dig_monitor_is_duallink(struct drm_encoder *encoder,
+ 	case DRM_MODE_CONNECTOR_HDMIB:
+ 		if (amdgpu_connector->use_digital) {
+ 			/* HDMI 1.3 supports up to 340 Mhz over single link */
+-			if (drm_detect_hdmi_monitor(amdgpu_connector_edid(connector))) {
++			if (amdgpu_connector_is_hdmi_monitor(connector)) {
+ 				if (pixel_clock > 340000)
+ 					return true;
+ 				else
+@@ -244,7 +244,7 @@ bool amdgpu_dig_monitor_is_duallink(struct drm_encoder *encoder,
+ 			return false;
+ 		else {
+ 			/* HDMI 1.3 supports up to 340 Mhz over single link */
+-			if (drm_detect_hdmi_monitor(amdgpu_connector_edid(connector))) {
++			if (amdgpu_connector_is_hdmi_monitor(connector)) {
+ 				if (pixel_clock > 340000)
+ 					return true;
+ 				else
+diff --git a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c b/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
+index 6134ed964027..07c4ff14f2a7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
++++ b/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
+@@ -469,7 +469,7 @@ int amdgpu_atombios_encoder_get_encoder_mode(struct drm_encoder *encoder)
+ 			if (amdgpu_connector->use_digital &&
+ 			    (amdgpu_connector->audio == AMDGPU_AUDIO_ENABLE))
+ 				return ATOM_ENCODER_MODE_HDMI;
+-			else if (drm_detect_hdmi_monitor(amdgpu_connector_edid(connector)) &&
++			else if (amdgpu_connector_is_hdmi_monitor(connector) &&
+ 				 (amdgpu_connector->audio == AMDGPU_AUDIO_AUTO))
+ 				return ATOM_ENCODER_MODE_HDMI;
+ 			else if (amdgpu_connector->use_digital)
+@@ -488,7 +488,7 @@ int amdgpu_atombios_encoder_get_encoder_mode(struct drm_encoder *encoder)
+ 		if (amdgpu_audio != 0) {
+ 			if (amdgpu_connector->audio == AMDGPU_AUDIO_ENABLE)
+ 				return ATOM_ENCODER_MODE_HDMI;
+-			else if (drm_detect_hdmi_monitor(amdgpu_connector_edid(connector)) &&
++			else if (amdgpu_connector_is_hdmi_monitor(connector) &&
+ 				 (amdgpu_connector->audio == AMDGPU_AUDIO_AUTO))
+ 				return ATOM_ENCODER_MODE_HDMI;
+ 			else
+@@ -506,7 +506,7 @@ int amdgpu_atombios_encoder_get_encoder_mode(struct drm_encoder *encoder)
+ 		} else if (amdgpu_audio != 0) {
+ 			if (amdgpu_connector->audio == AMDGPU_AUDIO_ENABLE)
+ 				return ATOM_ENCODER_MODE_HDMI;
+-			else if (drm_detect_hdmi_monitor(amdgpu_connector_edid(connector)) &&
++			else if (amdgpu_connector_is_hdmi_monitor(connector) &&
+ 				 (amdgpu_connector->audio == AMDGPU_AUDIO_AUTO))
+ 				return ATOM_ENCODER_MODE_HDMI;
+ 			else
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 1ea31dcc7a8b..02ecd216a556 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -2583,13 +2583,12 @@ void amdgpu_dm_update_connector_after_detect(
+ 			aconnector->edid =
+ 				(struct edid *)sink->dc_edid.raw_edid;
+ 
+-			drm_connector_update_edid_property(connector,
+-							   aconnector->edid);
+ 			if (aconnector->dc_link->aux_mode)
+ 				drm_dp_cec_set_edid(&aconnector->dm_dp_aux.aux,
+ 						    aconnector->edid);
+ 		}
+ 
++		drm_connector_update_edid_property(connector, aconnector->edid);
+ 		amdgpu_dm_update_freesync_caps(connector, aconnector->edid);
+ 		update_connector_ext_caps(aconnector);
+ 	} else {
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+index 6fee12c91ef5..2051dd27ef3b 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+@@ -29,6 +29,7 @@
+ 
+ #include <drm/drm_probe_helper.h>
+ #include <drm/amdgpu_drm.h>
++#include <drm/drm_connector.h>
+ #include <drm/drm_edid.h>
+ 
+ #include "dm_services.h"
+@@ -37,6 +38,7 @@
+ #include "amdgpu_dm.h"
+ #include "amdgpu_dm_irq.h"
+ #include "amdgpu_dm_mst_types.h"
++#include "amdgpu_connectors.h"
+ 
+ #include "dm_helpers.h"
+ 
+@@ -50,16 +52,17 @@
+  *	void
+  * */
+ enum dc_edid_status dm_helpers_parse_edid_caps(
+-		struct dc_context *ctx,
++		struct dc_link *link,
+ 		const struct dc_edid *edid,
+ 		struct dc_edid_caps *edid_caps)
+ {
++	struct amdgpu_dm_connector *aconnector = link->priv;
++	struct drm_connector *connector = &aconnector->base;
+ 	struct edid *edid_buf = (struct edid *) edid->raw_edid;
+ 	struct cea_sad *sads;
+ 	int sad_count = -1;
+ 	int sadb_count = -1;
+ 	int i = 0;
+-	int j = 0;
+ 	uint8_t *sadb = NULL;
+ 
+ 	enum dc_edid_status result = EDID_OK;
+@@ -78,23 +81,11 @@ enum dc_edid_status dm_helpers_parse_edid_caps(
+ 	edid_caps->manufacture_week = edid_buf->mfg_week;
+ 	edid_caps->manufacture_year = edid_buf->mfg_year;
+ 
+-	/* One of the four detailed_timings stores the monitor name. It's
+-	 * stored in an array of length 13. */
+-	for (i = 0; i < 4; i++) {
+-		if (edid_buf->detailed_timings[i].data.other_data.type == 0xfc) {
+-			while (j < 13 && edid_buf->detailed_timings[i].data.other_data.data.str.str[j]) {
+-				if (edid_buf->detailed_timings[i].data.other_data.data.str.str[j] == '\n')
+-					break;
+-
+-				edid_caps->display_name[j] =
+-					edid_buf->detailed_timings[i].data.other_data.data.str.str[j];
+-				j++;
+-			}
+-		}
+-	}
++	drm_edid_get_monitor_name(edid_buf,
++				  edid_caps->display_name,
++				  AUDIO_INFO_DISPLAY_NAME_SIZE_IN_CHARS);
+ 
+-	edid_caps->edid_hdmi = drm_detect_hdmi_monitor(
+-			(struct edid *) edid->raw_edid);
++	edid_caps->edid_hdmi = amdgpu_connector_is_hdmi_monitor(connector);
+ 
+ 	sad_count = drm_edid_to_sad((struct edid *) edid->raw_edid, &sads);
+ 	if (sad_count <= 0)
+@@ -610,14 +601,8 @@ enum dc_edid_status dm_helpers_read_local_edid(
+ 		/* We don't need the original edid anymore */
+ 		kfree(edid);
+ 
+-		/* connector->display_info will be parsed from EDID and saved
+-		 * into drm_connector->display_info from edid by call stack
+-		 * below:
+-		 * drm_parse_ycbcr420_deep_color_info
+-		 * drm_parse_hdmi_forum_vsdb
+-		 * drm_parse_cea_ext
+-		 * drm_add_display_info
+-		 * drm_connector_update_edid_property
++		/* connector->display_info is parsed from EDID and saved
++		 * into drm_connector->display_info
+ 		 *
+ 		 * drm_connector->display_info will be used by amdgpu_dm funcs,
+ 		 * like fill_stream_properties_from_drm_display_mode
+@@ -625,7 +610,7 @@ enum dc_edid_status dm_helpers_read_local_edid(
+ 		amdgpu_dm_update_connector_after_detect(aconnector);
+ 
+ 		edid_status = dm_helpers_parse_edid_caps(
+-						ctx,
++						link,
+ 						&sink->dc_edid,
+ 						&sink->edid_caps);
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index c798c65d4276..5efe89fe6c2c 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -3254,7 +3254,7 @@ struct dc_sink *dc_link_add_remote_sink(
+ 		goto fail_add_sink;
+ 
+ 	edid_status = dm_helpers_parse_edid_caps(
+-			link->ctx,
++			link,
+ 			&dc_sink->dc_edid,
+ 			&dc_sink->edid_caps);
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dm_helpers.h b/drivers/gpu/drm/amd/display/dc/dm_helpers.h
+index 9ab854293ace..94dc80060610 100644
+--- a/drivers/gpu/drm/amd/display/dc/dm_helpers.h
++++ b/drivers/gpu/drm/amd/display/dc/dm_helpers.h
+@@ -59,7 +59,7 @@ void dm_helpers_free_gpu_mem(
+ 		void *pvMem);
+ 
+ enum dc_edid_status dm_helpers_parse_edid_caps(
+-	struct dc_context *ctx,
++	struct dc_link *link,
+ 	const struct dc_edid *edid,
+ 	struct dc_edid_caps *edid_caps);
+ 
 -- 
 2.33.0
+
+
 
