@@ -2,82 +2,117 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9CCF8C433F5
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 15182C433FE
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 71F426103B
+	by mail.kernel.org (Postfix) with ESMTPS id E356B6103B
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 71F426103B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org E356B6103B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=vivo.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2521F6EE4E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43A5E6EE50;
 	Mon, 18 Oct 2021 17:18:37 +0000 (UTC)
-Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
- [64.147.123.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BAC96E84A;
- Thu,  7 Oct 2021 19:38:12 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.west.internal (Postfix) with ESMTP id 4B3C82B009FD;
- Thu,  7 Oct 2021 15:38:11 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute3.internal (MEProxy); Thu, 07 Oct 2021 15:38:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
- :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=2vRU8CfQA//y8
- mJpNYyM4Fgn9sjm+M/V2WJONp99P2M=; b=rq+oY61s3KnF97is/ht0v3w2H/glU
- kM439zn9ix0lXkvvdyGR9ltRGeqQySTbLJlKhNhptDZDJhGfYjInO8nyLDUz57c+
- NNGKa/xWFkeVcWfPHA+jf8yLkLdsAr0geLC7cqZ1bdOV1gTS0IAgn1mlK4m41otL
- noIbSVhgJVSWnKtPoRQt+eySDPNBWJ9IER7HSza1UfTudGxl9ZJUBEPsY6Ak1bwU
- wW5YcVzqNgQFijx26Zi850uiOZrPGMiuZYhI/ekmyFpPR7jgIO4PhsfPR0dbcyZJ
- xLWXn77yYA8U9qGxOS0t+v+hSOpIBPD2/G1iCpaSNNywuY97f73Q0v/DQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-transfer-encoding:date:from
- :in-reply-to:message-id:mime-version:references:subject:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; bh=2vRU8CfQA//y8mJpNYyM4Fgn9sjm+M/V2WJONp99P2M=; b=Jn7vzD/s
- uo1T/FSGmhLI8GoMz4+A3+KOIYRJiRLe8l6Zgn9h1uxSSl4kBGvQ3DD0RUwpaXqc
- r2rckLFV4JTYzbGhW2hDiU3/obuFVtj10Jft92UIb+Y7CnGLmnEc5dgqmEksY14l
- xEbso1aS3r5fo37D/5NPF4jqB9doeaijrQ/bHrQGP/PwtW5yzBfnkhWam26ko6Tk
- gN8ObC0lwWLigSYJJlC7ZXwrOherp3kg+UlRZB9KtlaNrmKBShFP3KAqGSG2VXiF
- jbhxDd5RWCfz7/w3a7zhUBNYyOI9I+8j0GmccQt8rmtBbRkieZd3rIRqLgs+JiAS
- MAcjYRSUc7qUJw==
-X-ME-Sender: <xms:oUxfYbHKVHYD3Ln0GQdXRkIG2ZEPyDO8Ff489A3jq_RgFqUTPGhNQw>
- <xme:oUxfYYVvVzGImqc7zBRosZhfR0X4sDs4me82a-JuxXnpunoFJUFZE-jW7wT5rf_Tc
- hUKLEg7xmSHqJpZrA>
-X-ME-Received: <xmr:oUxfYdJRaKyF2Lllzy0mUkOabWViR18WezZK5A7ilgGkkETJdsmVQ2XOPoEIoaR6LQV0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudelkedgudefjecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
- ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
- ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedtnecu
- rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:oUxfYZHuaPBMzdDsFz6MYpJkvZ4IQ3WHUSguCoWrh9scUO98POJRFA>
- <xmx:oUxfYRWe84qyCZw6OLPSetJSyBS13o-n168RvnfBwXLu2b1HGvZcTw>
- <xmx:oUxfYUPJA3zizqPfxPVLPkcqEWNoqrnckd2ZsCNbvQjLp17ZuFuvzA>
- <xmx:oUxfYZTVSnMnhGQXi5Ue1mPFsir835dEAaf49TG_AlVmDnUIM10Itt-7mGs>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 7 Oct 2021 15:38:07 -0400 (EDT)
-From: Fernando Ramos <greenfoo@u92.eu>
-To: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-tegra@vger.kernel.org
-Date: Thu,  7 Oct 2021 21:37:37 +0200
-Message-Id: <20211007193755.29579-3-greenfoo@u92.eu>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211007193755.29579-1-greenfoo@u92.eu>
-References: <20211007193755.29579-1-greenfoo@u92.eu>
+Received: from APC01-HK2-obe.outbound.protection.outlook.com
+ (mail-eopbgr1300105.outbound.protection.outlook.com [40.107.130.105])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A7CF6ECDC;
+ Fri, 15 Oct 2021 06:48:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ApZ1pnZgSG/rEEiD7e2WuSIFnQ5dMAF6Qc419Hfl0cFzr8pLMyFvzj2mqemqnJK1RVCh+lKvjsve/rpHq5h13laXGmKGmOI2ehItc3U7tWSDqip2cOBAu4GAt+lYlc1iKwbg70WdX/y5No9AMrpBSR+JESNc5XSCaPYSgMVu8Ehf1T5W9hltiB6ANY7pWqrDYBqISq7EkVzjonpw/YsZEUFtEaOvYr8sIiEX0E7xoIMSn+knIhJyXU4CuSn8pwoUN67b+c/UdJEx7B0NTrTUJUkaUKO7q0V+nPPgdFym3cgbzR0Lc0FLYinSC8RPbYSwlokGYRJF9XTbE5MzRLhGQw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Oy2W58NY8usioKtcniUFaGwtpEo6B4NFwxdMg0/8/qU=;
+ b=Xf4wcLwZ+Xcy0TZAaNbgDZsMMMBwNeRvQGP1z6Aqm809bUK6mWdlVrSlFDy3H/1Z7gNdLf+ACw49K1Lmx6dIwNzQqNoVXsuUDVwyq+HGL/MtxOf4Isd8ZpRPoDiWMcSUmVqyzeOVyIY3NKXw/g2i9KyszVKAvR+Rk1zo/EOV2jsJ4JXsIhSI7bUkU2k/ZnW2lWSJmsmOAKsG/8rvH3NnF6fRp4JUjPbu3/3GonXrsKl/+iXbgzMLeEtwRe8NFEm+GyzuT1e18Rc4S+iilab2jue0QSVwa1kvcjJc43C/MOvsPJcaHhPkIQUVmmByfXl/Wdrjrb4yH+zEiEEX7UEp1w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
+ dkim=pass header.d=vivo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo0.onmicrosoft.com; 
+ s=selector2-vivo0-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Oy2W58NY8usioKtcniUFaGwtpEo6B4NFwxdMg0/8/qU=;
+ b=NgOb5jU7Hlxt4HvgF060Brk9D/vNIPLb7bsScI8aoPV5sBsiMxEAEPBIbJzcoE9IArZU/6AoKzaliBZnqnzTbLFvW4iENi/HcAQx7NTxps0f2O+d60D88RnqbivkkcH7SkB4edm8arPPqEb6lIcmhjl2hHQ5LGsc8H+lb4Ttt24=
+Authentication-Results: redhat.com; dkim=none (message not signed)
+ header.d=none;redhat.com; dmarc=none action=none header.from=vivo.com;
+Received: from SL2PR06MB3082.apcprd06.prod.outlook.com (2603:1096:100:37::17)
+ by SL2PR06MB3388.apcprd06.prod.outlook.com (2603:1096:100:3c::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Fri, 15 Oct
+ 2021 06:47:57 +0000
+Received: from SL2PR06MB3082.apcprd06.prod.outlook.com
+ ([fe80::4c9b:b71f:fb67:6414]) by SL2PR06MB3082.apcprd06.prod.outlook.com
+ ([fe80::4c9b:b71f:fb67:6414%6]) with mapi id 15.20.4608.017; Fri, 15 Oct 2021
+ 06:47:57 +0000
+From: Qing Wang <wangqing@vivo.com>
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Qing Wang <wangqing@vivo.com>
+Date: Thu, 14 Oct 2021 23:47:49 -0700
+Message-Id: <1634280469-4342-1-git-send-email-wangqing@vivo.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: HK2PR02CA0177.apcprd02.prod.outlook.com
+ (2603:1096:201:21::13) To SL2PR06MB3082.apcprd06.prod.outlook.com
+ (2603:1096:100:37::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: from ubuntu.localdomain (218.213.202.189) by
+ HK2PR02CA0177.apcprd02.prod.outlook.com (2603:1096:201:21::13) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.20.4608.15 via Frontend Transport; Fri, 15 Oct 2021 06:47:56 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 697421b4-b800-4d7d-9761-08d98fa7b8f8
+X-MS-TrafficTypeDiagnostic: SL2PR06MB3388:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SL2PR06MB3388A80238A82C9B03E8B782BDB99@SL2PR06MB3388.apcprd06.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2399;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: YZ4y6vgmXIse++J+BQNX3VjntejBu6/oPxSB6N17dm+RzSPRvrW2HV7Z+p+5WW5y45uM/gr25Kh1zfNsxHsmw7Q3qOxjIOIj73NE9hNh+vZb3w1vwQKi0Wu5G/bL0AASrX1l6Na6RsR27GhIKJs25IPMwtB1DcDCKlXTAwRtDsaN4vPp0mOli7Qy8VvKvEQdnA/49uWU2ZuaSL7UyeNXc42oclZNBSjhKCqlpAwBHilJ4cNzSu7nGdXMmUfMwZQEGPkKJsxejzh0uRtQ8PQdKtUBTKVF8T8DpYFcUXpeQ2FqlXFLBEeoHvIH2GwXnChZqbIEtSJCwZVISKBc8KSITbhzv41bmoA57AvvEx5/bEXRtKCWCgtt0iN0hd2eIyxD2pFfpDYQ38CfILgEd5xmjBobZP5YTgZGcaSMDOFjfZdJ2hwTT3GZFdHX/ivsH0m/LdqQkDpcVFRyiJWcjM4tipiV/FDBZXhQdtnjpE6fL3DqG8UVT2XzzZOXFg46BuKD7iVMh8avk/alJkhP7HrX/m3XnNdUYIAxuxcc5y7yaXhad9XUKiGHu3EAcjWCXjTCCQLEsV5vmPJ6ad3tBr8RI0Ij+9hTtoHJANRrVj4Lo48GgPotfw9EjJT0IcQHKY6FZDU971vK8jwsf7W5SF4QoNVtbXIwJ1tVhxE7h0ZjeywBB5Hubn0AoQnQshnA0aAJjmf5ClXqLOqOPlRUS/xJpw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SL2PR06MB3082.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(38350700002)(38100700002)(2616005)(316002)(2906002)(26005)(107886003)(8676002)(66556008)(83380400001)(186003)(66946007)(6486002)(956004)(508600001)(36756003)(4326008)(66476007)(6666004)(6506007)(8936002)(110136005)(5660300002)(86362001)(6512007)(52116002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?SCH81e1wi8kEUwtBhGDYPSDYWJvXF7wI72ji7R4c63vAIALi9aZ6DXrAl6el?=
+ =?us-ascii?Q?WfXDSsjbUlejBEnJIe/DzhPfx9MQ8wfJnlm5Jcvt+ciePM5ZmKpoUbYytyuN?=
+ =?us-ascii?Q?MOOEAq4HS57D+Sv9bR9JkbfKRp1dRfZAqwXzZdf0x3Ytwa99doYLyCzHfHoW?=
+ =?us-ascii?Q?BNL5wQINk0WFviTIyH28wLKUwYxYYJQBb2GqN4CZd8/M//1hL3TzTE1nbQdN?=
+ =?us-ascii?Q?OdLk9niuJtWXSzFE5eSfTpgYaCbLIFpdt9ntHLZlDSz9Z9U4zZKxMbelgqqL?=
+ =?us-ascii?Q?QpdKao7vygAG1U87+qxpB2GPOfhqeOY7m4pWVY/SDUSL3OPk8sxpC/1S9X+n?=
+ =?us-ascii?Q?pJsTFCdiCoTqwZAumPdL8cg1VQ5J20gv1MjjLII82v3+TQBoB8BrxhTXojG4?=
+ =?us-ascii?Q?Ywl7PvU/n6o+UtTIJTeqixpRE6ti6KS/T/uRfyo0VUfRI9ifYgaTxQ0WoBvV?=
+ =?us-ascii?Q?aMAf5rgJEfj5yvlYWhpeb3fjZCjLqjIAVzCcjVBv7DbJTxN69gAS4vlarv6y?=
+ =?us-ascii?Q?5x4IViOVfKEy6tf5UIxJuhKc90Aw6CtFA/KS0FVfMrsOx7w9GpfbRHx27m7/?=
+ =?us-ascii?Q?MN/t6aOpspYWXlxOpC8ynevRtja3z84aOpZAac/KsPOKvsUjgAwoxdVv7U17?=
+ =?us-ascii?Q?sF+iCICQoCwBDmAOPaym/qfFZ0Ocvx4xZ1Kzgv0Gf0xtNdGfgOrM2N57TKGh?=
+ =?us-ascii?Q?0hwbjwsnk7s/2BUHBuUwUosdrn5Hmsokj0ihhMSISXcd+3Qc69x9UerJmnBG?=
+ =?us-ascii?Q?G0tEUbQOH4IkmGrL5q7hlG6NZb1S+Shnu/R+dsxsXSP68AYVIS13FHkMU2Q0?=
+ =?us-ascii?Q?ntAVCTLsLv4RHNVqDFDj3ymFHHr9m/0pQNjZklT8I4eKCnhkR40I87pCK49E?=
+ =?us-ascii?Q?uckBlLCh+8kdxg2X8zT7jQiaAhAWYsLtin6zDXwcKO9bV4rtg8+MaiFwNfzh?=
+ =?us-ascii?Q?p4CpG2ovKsFindIN6k1/BJLrj2ZyEA07gdzfm2TYZqWtBo2n/cYZyzlW4kKa?=
+ =?us-ascii?Q?2sFzPMvGOCIG4pymfb9YqyxCs+GzjrPwq3H54DRJiGd33erNHh/qnp2Mz0Y8?=
+ =?us-ascii?Q?26isFkuNHEx2/AMKkDWGy+OkadjGlDIHFgEanWnkIEIiSu/rDmoFnXSiKXIe?=
+ =?us-ascii?Q?FJxHZow4o7G+06ab2Mh84He4XuVBq62taa/W+pFMZsdxJnYROLKoErNATOL6?=
+ =?us-ascii?Q?aJLlu9JEA/R/JYN2xRVQ6Qzv08XtUoO6FQEa9MNKvN+fl7vVkeZH7IpsHJrj?=
+ =?us-ascii?Q?2JUSn1RNJ5F0WsL6PEy1IlrVxBe8QTINIc73R2mrnKXP70fiKFBSRHNHxnX/?=
+ =?us-ascii?Q?D5nrcqfTwDGKciS2XL/1H3yi?=
+X-OriginatorOrg: vivo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 697421b4-b800-4d7d-9761-08d98fa7b8f8
+X-MS-Exchange-CrossTenant-AuthSource: SL2PR06MB3082.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 06:47:57.6115 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TvnPBBJ5SeDBCWwVdXdIyavwd3Gbass1wNCLBHLjs913QsoIp0l3stSlm1xtwZMM9YDKMSmz06oxrWJ3ob9aFA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SL2PR06MB3388
 X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
-Subject: [Nouveau] [PATCH v3 02/20] drm/i915: cleanup:
- drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
+Subject: [Nouveau] [PATCH] drm: nouveau: replace snprintf in show functions
+ with sysfs_emit
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,55 +127,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As requested in Documentation/gpu/todo.rst, replace the boilerplate code
-surrounding drm_modeset_lock_all_ctx() with DRM_MODESET_LOCK_ALL_BEGIN()
-and DRM_MODESET_LOCK_ALL_END()
+show() must not use snprintf() when formatting the value to be
+returned to user space.
 
-Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
-Reviewed-by: Sean Paul <sean@poorly.run>
+Fix the following coccicheck warning:
+drivers/gpu/drm/nouveau/nouveau_hwmon.c:43:8-16: WARNING: use scnprintf or sprintf.
+drivers/gpu/drm/nouveau/nouveau_hwmon.c:57:8-16: WARNING: use scnprintf or sprintf.
+drivers/gpu/drm/nouveau/nouveau_hwmon.c:90:8-16: WARNING: use scnprintf or sprintf.
+
+Use sysfs_emit instead of scnprintf or sprintf makes more sense.
+
+Signed-off-by: Qing Wang <wangqing@vivo.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 18 +++++-------------
- 1 file changed, 5 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_hwmon.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 4f0badb11bbb..cb1142447186 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -43,6 +43,7 @@
- #include <drm/drm_plane_helper.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_rect.h>
-+#include <drm/drm_drv.h>
+diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+index 1c3104d..c6e5ee9 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+@@ -41,7 +41,7 @@ static ssize_t
+ nouveau_hwmon_show_temp1_auto_point1_pwm(struct device *d,
+ 					 struct device_attribute *a, char *buf)
+ {
+-	return snprintf(buf, PAGE_SIZE, "%d\n", 100);
++	return sysfs_emit(buf, "%d\n", 100);
+ }
+ static SENSOR_DEVICE_ATTR(temp1_auto_point1_pwm, 0444,
+ 			  nouveau_hwmon_show_temp1_auto_point1_pwm, NULL, 0);
+@@ -54,7 +54,7 @@ nouveau_hwmon_temp1_auto_point1_temp(struct device *d,
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nvkm_therm *therm = nvxx_therm(&drm->client.device);
  
- #include "display/intel_audio.h"
- #include "display/intel_crt.h"
-@@ -12656,22 +12657,13 @@ void intel_display_resume(struct drm_device *dev)
- 	if (state)
- 		state->acquire_ctx = &ctx;
+-	return snprintf(buf, PAGE_SIZE, "%d\n",
++	return sysfs_emit(buf, "%d\n",
+ 	      therm->attr_get(therm, NVKM_THERM_ATTR_THRS_FAN_BOOST) * 1000);
+ }
+ static ssize_t
+@@ -87,7 +87,7 @@ nouveau_hwmon_temp1_auto_point1_temp_hyst(struct device *d,
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nvkm_therm *therm = nvxx_therm(&drm->client.device);
  
--	drm_modeset_acquire_init(&ctx, 0);
--
--	while (1) {
--		ret = drm_modeset_lock_all_ctx(dev, &ctx);
--		if (ret != -EDEADLK)
--			break;
--
--		drm_modeset_backoff(&ctx);
--	}
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
- 
--	if (!ret)
--		ret = __intel_display_resume(dev, state, &ctx);
-+	ret = __intel_display_resume(dev, state, &ctx);
- 
- 	intel_enable_ipc(dev_priv);
--	drm_modeset_drop_locks(&ctx);
--	drm_modeset_acquire_fini(&ctx);
-+
-+	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
- 
- 	if (ret)
- 		drm_err(&dev_priv->drm,
+-	return snprintf(buf, PAGE_SIZE, "%d\n",
++	return sysfs_emit(buf, "%d\n",
+ 	 therm->attr_get(therm, NVKM_THERM_ATTR_THRS_FAN_BOOST_HYST) * 1000);
+ }
+ static ssize_t
 -- 
-2.33.0
+2.7.4
 
