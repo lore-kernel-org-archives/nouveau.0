@@ -2,85 +2,69 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E5AEC433F5
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AAB7BC4332F
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 03ADE6103B
+	by mail.kernel.org (Postfix) with ESMTPS id 7E5AF6103B
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:18 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 03ADE6103B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7E5AF6103B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=net-c.es
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C6B06EA93;
-	Mon, 18 Oct 2021 17:18:35 +0000 (UTC)
-Received: from mail-il1-x132.google.com (mail-il1-x132.google.com
- [IPv6:2607:f8b0:4864:20::132])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E70D89D67
- for <nouveau@lists.freedesktop.org>; Tue, 12 Oct 2021 20:45:18 +0000 (UTC)
-Received: by mail-il1-x132.google.com with SMTP id x1so425351ilv.4
- for <nouveau@lists.freedesktop.org>; Tue, 12 Oct 2021 13:45:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=niP7v3xFwLnCjLXmT0nzm06tTYa6qI3k7igZv8TEJsc=;
- b=MrnlfgVEgsrzhHRtZFc5utknl/ytW5WjQcYfTv2HnZ6fS9lKKuW+F42Nrbx+gHripS
- Xc2RIA6gaKDSc/bn3xBmR20a0BtY+7gzFpyZmggMd//w3Ub3xZ+2jCun1uq9tVGlgJIT
- sVMI8bJ+eODJIFrgH34toluuVDOHJLd8ha9UY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=niP7v3xFwLnCjLXmT0nzm06tTYa6qI3k7igZv8TEJsc=;
- b=OmD1E3F+wMkCUGK5F6SyMpPMZ94pMOl11qsAi6Np5v9zwD1PtMDKZL4JWlh5DesN3/
- 8kz53KV/hGXEHjKuxd38Xtkn/QoqgWS63Zv0lw6jb1wwbnOcbE0Fn1UHqoLmAOQ0NaKJ
- QKM2Jtux9JegxDeApRStwaSAuMjGLrYQUZAOP40BsesLesWH/7HVUFBq5EIFXaCIeGEW
- tJcT1Ja+GVKGZto+5vMdcWZduyoIe68oAIQT0QnXpPggFPv9HKkjoB7cMw1Fg6rNpNI9
- Xl41vLTgVTTuUjcCjZE0kifmasuFh1X8GfZlhoOGE/nY90uMu+5HTIL470RM7XJ1N+W/
- kVqg==
-X-Gm-Message-State: AOAM532wNkud7Ed+Cc1dvkR3iftbl3SrUheiaeuizSHy667DT302RoJF
- uWAuVj1l8+qnMgC+BdKOG8NoLkzGylh4Qg==
-X-Google-Smtp-Source: ABdhPJz8CvClB0ChZ53x12h90qoyg1ERUK+tZ627EW/KoOs7WF4UhfjIKWLee4I28FuH8BZJYQXilA==
-X-Received: by 2002:a05:6e02:1646:: with SMTP id
- v6mr15080516ilu.140.1634071517224; 
- Tue, 12 Oct 2021 13:45:17 -0700 (PDT)
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com.
- [209.85.166.49])
- by smtp.gmail.com with ESMTPSA id y30sm6280692iox.54.2021.10.12.13.45.15
- for <nouveau@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 12 Oct 2021 13:45:15 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id e144so379025iof.3
- for <nouveau@lists.freedesktop.org>; Tue, 12 Oct 2021 13:45:15 -0700 (PDT)
-X-Received: by 2002:a6b:f915:: with SMTP id j21mr25937447iog.98.1634071515111; 
- Tue, 12 Oct 2021 13:45:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211006024018.320394-1-lyude@redhat.com>
- <20211006024018.320394-5-lyude@redhat.com>
-In-Reply-To: <20211006024018.320394-5-lyude@redhat.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Tue, 12 Oct 2021 13:45:04 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WV15+qBBA8ZcgxwOQ=i_LHsytdrUWyqZHZZBwuJJ6CFQ@mail.gmail.com>
-Message-ID: <CAD=FV=WV15+qBBA8ZcgxwOQ=i_LHsytdrUWyqZHZZBwuJJ6CFQ@mail.gmail.com>
-To: Lyude Paul <lyude@redhat.com>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>, 
- dri-devel <dri-devel@lists.freedesktop.org>, 
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>, Rajeev Nandan <rajeevny@codeaurora.org>, 
- Satadru Pramanik <satadru@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 873CC6EE54;
+	Mon, 18 Oct 2021 17:18:37 +0000 (UTC)
+X-Greylist: delayed 2573 seconds by postgrey-1.36 at gabe;
+ Fri, 15 Oct 2021 12:20:30 UTC
+Received: from msg-3.mailo.com (ip-8.mailobj.net [213.182.54.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D79E6E2D5;
+ Fri, 15 Oct 2021 12:20:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
+ t=1634297909; bh=QBcYM19WYIft9nyGf96kprXPvyWbRp1gWatVdt76c0U=;
+ h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
+ References:MIME-Version:Content-Transfer-Encoding;
+ b=ZztwFt1HtLz+ROpeY1J85VZapMqZASbFXSmZ5GB2VcMYc+cvCiJ7KBgU1gFpJX4HE
+ e8M7Bq80v1n3fWMxiP1aUngoTSQ27V96sbW+CInQ6SLSdZKJACWmEGA9pvmJPHzdqW
+ 1wzCOEExSVWdFicxjEbti5/MrJNxigsElB5z6prE=
+Received: by b-1.in.mailobj.net [192.168.90.11] with ESMTP
+ via ip-206.mailobj.net [213.182.55.206]
+ Fri, 15 Oct 2021 13:38:02 +0200 (CEST)
+X-EA-Auth: poGc6xz6ZqqEJXNZ9UjzI5MiSKkhrUJ4AW0hkIeTezxOINaMqijrue2rwcYd3CC4y3eESmyNBCSifR1JG/ltACbh1gPUm7js
+From: Claudio Suarez <cssk@net-c.es>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <seanpaul@chromium.org>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
- open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
+ Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
+ Andrzej Hajda <a.hajda@samsung.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Robert Foss <robert.foss@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
+ nouveau@lists.freedesktop.org
+Cc: Claudio Suarez <cssk@net-c.es>
+Date: Fri, 15 Oct 2021 13:37:05 +0200
+Message-Id: <20211015113713.630119-8-cssk@net-c.es>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20211015113713.630119-1-cssk@net-c.es>
+References: <20211015113713.630119-1-cssk@net-c.es>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
-Subject: Re: [Nouveau] [PATCH v3 4/5] drm/dp,
- drm/i915: Add support for VESA backlights using PWM for brightness
- control
+Subject: [Nouveau] [PATCH 07/15] drm/exynos: replace
+ drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,24 +79,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
+Once EDID is parsed, the monitor HDMI support information is available
+through drm_display_info.is_hdmi. Retriving the same information with
+drm_detect_hdmi_monitor() is less efficient. Change to
+drm_display_info.is_hdmi
 
-On Tue, Oct 5, 2021 at 7:41 PM Lyude Paul <lyude@redhat.com> wrote:
->
-> @@ -1859,8 +1859,7 @@ drm_dp_sink_can_do_video_without_timing_msa(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
->  static inline bool
->  drm_edp_backlight_supported(const u8 edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE])
->  {
-> -       return (edp_dpcd[1] & DP_EDP_TCON_BACKLIGHT_ADJUSTMENT_CAP) &&
-> -               (edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP);
-> +       return !!(edp_dpcd[1] & DP_EDP_TCON_BACKLIGHT_ADJUSTMENT_CAP);
->  }
+Signed-off-by: Claudio Suarez <cssk@net-c.es>
+---
+ drivers/gpu/drm/exynos/exynos_hdmi.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-nit: I don't believe that the "!!" is needed in the above. C should
-automatically handle this since the return type of the function is
-"bool".
+diff --git a/drivers/gpu/drm/exynos/exynos_hdmi.c b/drivers/gpu/drm/exynos/exynos_hdmi.c
+index 7655142a4651..a563d6386abe 100644
+--- a/drivers/gpu/drm/exynos/exynos_hdmi.c
++++ b/drivers/gpu/drm/exynos/exynos_hdmi.c
+@@ -893,12 +893,14 @@ static int hdmi_get_modes(struct drm_connector *connector)
+ 	if (!edid)
+ 		return -ENODEV;
+ 
+-	hdata->dvi_mode = !drm_detect_hdmi_monitor(edid);
++	/* This updates connector->display_info */
++	drm_connector_update_edid_property(connector, edid);
++
++	hdata->dvi_mode = !connector->display_info.is_hdmi;
+ 	DRM_DEV_DEBUG_KMS(hdata->dev, "%s : width[%d] x height[%d]\n",
+ 			  (hdata->dvi_mode ? "dvi monitor" : "hdmi monitor"),
+ 			  edid->width_cm, edid->height_cm);
+ 
+-	drm_connector_update_edid_property(connector, edid);
+ 	cec_notifier_set_phys_addr_from_edid(hdata->notifier, edid);
+ 
+ 	ret = drm_add_edid_modes(connector, edid);
+-- 
+2.33.0
 
-I've reviewed the generic (non-intel) code and it looks like a
-reasonable approach to me.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
