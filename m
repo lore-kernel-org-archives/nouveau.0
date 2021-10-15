@@ -2,80 +2,64 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D50F5C4332F
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 626F0C433FE
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AC3E36103B
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:11 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org AC3E36103B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
+	by mail.kernel.org (Postfix) with ESMTPS id 34D9C6103B
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:12 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 34D9C6103B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=net-c.es
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD6F56EE48;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E7736EE40;
 	Mon, 18 Oct 2021 17:18:36 +0000 (UTC)
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
- [66.111.4.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D28E6EB09;
- Wed, 13 Oct 2021 20:48:53 +0000 (UTC)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
- by mailnew.nyi.internal (Postfix) with ESMTP id D8351581176;
- Wed, 13 Oct 2021 16:48:52 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute2.internal (MEProxy); Wed, 13 Oct 2021 16:48:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
- :to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding; s=fm3; bh=K+ngjCbNvg5biFXc4iBRazvtWT
- DSOI4XVs1u0aTjJbw=; b=Tvjc1tOnjj3zGJw0lJZ80K3vhPCpmQ4oICUTkyXtHN
- d7S1dTjM0HnRfgzQAGPwFDs9wkg/mNeRZq9Je/IyIvnILR5i8vUw0FDq7i8kdoXV
- 8OHXQb6b0gaPZooAr41EXUe6kdR/u2VNxZ1tb16g76/ABq36qxZzcvpzyFsH0Nvy
- 1v/g/4w7KD7gxDOjBICloby6BV/tSrE9+92QC/XD5Y2FsVwGd1M6M0a6rPleh2Dh
- XUEbfzqDWq6wqv3Q26I5gIBkYyfR06Y5/UMcqxiWJWL7MHEHqqwUAz4tmEiGb0HN
- rG9pP9UfmgTfvnZumPqlt+SruCihex0E4PYas5mlL+Eg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-transfer-encoding:date:from
- :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=K+ngjCbNvg5biFXc4
- iBRazvtWTDSOI4XVs1u0aTjJbw=; b=OT0uXg/paNJS3IjRzXVsRS3ataNv4/0v8
- iujH8IUrJogzX5gw5E1nzExfP/VmXpNF2YvQ4+Thm826+TxyEGUmrfG1bAWQvb6l
- 5H1VXUXQgY2+GHvB4DzYN4tR4QMzddEJIpYRdFJ9XQa99otYc7hzGyeRSEumFnzQ
- 66O0UA3Vsh7wKat3UHns2X0lStQvL+7yCZMmCtqWClFLfykwHR2pOrFEUjOpUDHi
- wjCuGJbmQznTkg2+Eu4Lb9VbAXetiym8lqt9C0K1e5dgqdQbbrZYNEO3TJwNP+DE
- v6wBXVOZWsFW0vo1ryZqbaFMdjcEOq4l3VzjXDxlSsVe3q+0KcF6g==
-X-ME-Sender: <xms:NEZnYaCj1HzF6opwzNRsaxopnIaizVToTfF_GQ_o2D9sy-jd4jnNQw>
- <xme:NEZnYUiHARGY_-ZTWQ0rdC32Utq73HPHz7K1iaBLzSCii3qxCQqV0HGOrWtliaw7D
- PkFT2duxEkBraCMjQ>
-X-ME-Received: <xmr:NEZnYdmh8boRq2KjNANujOFlMBrPY-6cbIDRh3M1u5jy8UEs33e2CLP4vLorS2dzgluD>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddutddgudehudcutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertd
- ertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhhoohes
- uhelvddrvghuqeenucggtffrrghtthgvrhhnpeegtdehgeduteehkeeugedtuedugfffhe
- fguedtudefvddtgeevudeuleegkeeitdenucffohhmrghinhepkhgvrhhnvghlrdhorhhg
- necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhrvg
- gvnhhfohhosehuledvrdgvuh
-X-ME-Proxy: <xmx:NEZnYYxLOlfgjCsN1mknSxUY6OhEw46SW-6i569oRrbxhEE8YwYWFg>
- <xmx:NEZnYfS2Bc0lpW3Gb6nLbgi9EIH56SRdvdvEwM6YhPe2zSRll0cEpQ>
- <xmx:NEZnYTa6pC95ZCv7oO6YlghtPySmIb7yOZAu8Z0w90Q8ryfcN3GZ4A>
- <xmx:NEZnYU9n6XIbyHQQuIU_I61tKhKiUR7mz1O7X6E3BPRW9P_35jNWyQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 13 Oct 2021 16:48:49 -0400 (EDT)
-From: Fernando Ramos <greenfoo@u92.eu>
-To: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-tegra@vger.kernel.org
-Date: Wed, 13 Oct 2021 22:48:26 +0200
-Message-Id: <20211013204846.90026-1-greenfoo@u92.eu>
+Received: from msg-2.mailo.com (msg-2.mailo.com [213.182.54.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2D376ECFE;
+ Fri, 15 Oct 2021 12:21:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
+ t=1634297849; bh=xi9ic6rNqNfCIC+YJGI2Qm9dmzmQTWcVKBbK7NFXYTk=;
+ h=X-EA-Auth:From:To:Subject:Date:Message-Id:X-Mailer:MIME-Version:
+ Content-Transfer-Encoding;
+ b=OmJv4PLckPjknJhn0d4syEDqIRksrDZ/mWSxGN5cEWGIQdy/ieVxmM6l7ju27JiYp
+ 0xMWKv8ifisKXgIknFw6vWmfV4B0udu15xnn60hwr4XtWY4aWdMyOzIaPlpa00GLSx
+ rn1bdevk+AZmxmoKp3R47M/isNzRWt3JveBcrLF8=
+Received: by b-5.in.mailobj.net [192.168.90.15] with ESMTP
+ via ip-206.mailobj.net [213.182.55.206]
+ Fri, 15 Oct 2021 13:37:28 +0200 (CEST)
+X-EA-Auth: 08sQSZ7/eUlrG/v1waT2s0v4RKFNiGr8japsCPLL1asNAYrDQHDNT4gppui4+kCQ9szInBhEU478UxEKqmZHFa/iYlv5DVF8
+From: Claudio Suarez <cssk@net-c.es>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
+ Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
+ Andrzej Hajda <a.hajda@samsung.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Robert Foss <robert.foss@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
+ nouveau@lists.freedesktop.org
+Date: Fri, 15 Oct 2021 13:36:58 +0200
+Message-Id: <20211015113713.630119-1-cssk@net-c.es>
 X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
-Subject: [Nouveau] [PATCH v4 00/20] drm: cleanup: Use DRM_MODESET_LOCK_ALL_*
- helpers
+X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
+Subject: [Nouveau] [PATCH 00/15] replace drm_detect_hdmi_monitor() with
+ drm_display_info.is_hdmi
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,132 +74,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi all,
+Copy&paste from the TODO document Documentation/gpu/todo.rst 
 
-One of the things in the DRM TODO list ("Documentation/gpu/todo.rst") was to
-"use DRM_MODESET_LOCAL_ALL_* helpers instead of boilerplate". That's what this
-patch series is about.
+===
+Replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+---------------------------------------------------------------
 
-You will find two types of changes here:
+Once EDID is parsed, the monitor HDMI support information is available through
+drm_display_info.is_hdmi. Many drivers still call drm_detect_hdmi_monitor() to
+retrieve the same information, which is less efficient.
 
-  - Replacing "drm_modeset_lock_all_ctx()" (and surrounding boilerplate) with
-    "DRM_MODESET_LOCK_ALL_BEGIN()/END()" in the remaining places (as it has
-    already been done in previous commits such as b7ea04d2)
+Audit each individual driver calling drm_detect_hdmi_monitor() and switch to
+drm_display_info.is_hdmi if applicable.
+=====
 
-  - Replacing "drm_modeset_lock_all()" with "DRM_MODESET_LOCK_ALL_BEGIN()/END()"
-    in the remaining places (as it has already been done in previous commits
-    such as 57037094)
-    
-Most of the changes are straight forward, except for a few cases in the "amd"
-and "i915" drivers where some extra dancing was needed to overcome the
-limitation that the DRM_MODESET_LOCK_ALL_BEGIN()/END() macros can only be used
-once inside the same function (the reason being that the macro expansion
-includes *labels*, and you can not have two labels named the same inside one
-function)
+I did it in two steps:
+- check that drm_display_info has a correct value.
+- in that case, replace drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
 
-Notice that, even after this patch series, some places remain where
-"drm_modeset_lock_all()" and "drm_modeset_lock_all_ctx()" are still present,
-all inside drm core (which makes sense), except for two (in "amd" and "i915")
-which cannot be replaced due to the way they are being used.
+Almost all occurrences of drm_detect_hdmi_monitor() could be changed. Some
+small inconsistencies have been solved.
 
-Changes in v2:
-  - Fix commit message typo
-  - Use the value returned by DRM_MODESET_LOCK_ALL_END when possible
-  - Split drm/i915 patch into two simpler ones
-  - Remove drm_modeset_(un)lock_all()
-  - Fix build problems in non-x86 platforms
+Stats:
+ drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c            | 23 ++++++++++++++++-------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.h            |  2 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c               |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c              |  4 ++--
+ drivers/gpu/drm/amd/amdgpu/atombios_encoders.c            |  6 +++---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c         |  3 +--
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 39 ++++++++++++---------------------------
+ drivers/gpu/drm/amd/display/dc/core/dc.c                  |  2 +-
+ drivers/gpu/drm/amd/display/dc/dm_helpers.h               |  2 +-
+ drivers/gpu/drm/bridge/adv7511/adv7511_drv.c              |  2 +-
+ drivers/gpu/drm/bridge/sii902x.c                          |  2 +-
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c                 |  2 +-
+ drivers/gpu/drm/drm_edid.c                                |  2 ++
+ drivers/gpu/drm/exynos/exynos_hdmi.c                      |  6 ++++--
+ drivers/gpu/drm/gma500/cdv_intel_hdmi.c                   |  3 ++-
+ drivers/gpu/drm/gma500/psb_intel_sdvo.c                   |  6 ++++--
+ drivers/gpu/drm/i915/display/intel_connector.c            |  5 +++++
+ drivers/gpu/drm/i915/display/intel_connector.h            |  1 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c                 |  2 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c                 |  3 ++-
+ drivers/gpu/drm/msm/hdmi/hdmi_connector.c                 |  2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c                   |  4 ++--
+ drivers/gpu/drm/nouveau/dispnv50/head.c                   |  8 +-------
+ drivers/gpu/drm/nouveau/nouveau_connector.c               |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_connector.h               |  6 ++++++
+ drivers/gpu/drm/radeon/atombios_encoders.c                |  6 +++---
+ drivers/gpu/drm/radeon/radeon_connectors.c                | 20 ++++++++++++++------
+ drivers/gpu/drm/radeon/radeon_display.c                   |  2 +-
+ drivers/gpu/drm/radeon/radeon_encoders.c                  |  4 ++--
+ drivers/gpu/drm/radeon/radeon_mode.h                      |  1 +
+ drivers/gpu/drm/rockchip/inno_hdmi.c                      |  4 ++--
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c                    |  2 +-
+ drivers/gpu/drm/sti/sti_hdmi.c                            | 10 ++++++----
+ drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c                    |  4 ++--
+ drivers/gpu/drm/tegra/hdmi.c                              |  6 +-----
+ drivers/gpu/drm/vc4/vc4_hdmi.c                            |  6 +++---
+ drivers/gpu/drm/zte/zx_hdmi.c                             |  4 ++--
+ 37 files changed, 112 insertions(+), 96 deletions(-)
 
-Changes in v3:
-  - Fix in drm/i915 driver to make sure global context is no longer used
-  - Fix in drm/amdgpu driver to make sure global context is no longer used
-  - Split amdgpu driver to make it easier to understand
-  - Remove acquire_ctx from drm_mode_config 
-  - Rebase on top of drm-tip
-  - WARNING: There is some discussion going on regarding whether the new macros
-    should be used (or not) in the i915 driver, as a different set of functions
-    has been proposed in the past (see here:
-    https://lore.kernel.org/dri-devel/YVriZxCeipBUgc8O@intel.com/).
-    In that case I will need to create a v4 where i915 files are left unchanged.
-    Let me know your thoughts regarding this.
-
-Changes in v4:
-  - Fix missing "Signed-off-by" in one commit
-  - No extra comments received in one week
-  - Rebase on top of drm-tip
-
-Fernando Ramos (20):
-  drm: cleanup: drm_modeset_lock_all_ctx() -->
-    DRM_MODESET_LOCK_ALL_BEGIN()
-  drm/i915: cleanup: drm_modeset_lock_all_ctx() -->
-    DRM_MODESET_LOCK_ALL_BEGIN()
-  drm/msm: cleanup: drm_modeset_lock_all_ctx() -->
-    DRM_MODESET_LOCK_ALL_BEGIN()
-  drm: cleanup: drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
-  drm/vmwgfx: cleanup: drm_modeset_lock_all() -->
-    DRM_MODESET_LOCK_ALL_BEGIN()
-  drm/tegra: cleanup: drm_modeset_lock_all() -->
-    DRM_MODESET_LOCK_ALL_BEGIN()
-  drm/shmobile: cleanup: drm_modeset_lock_all() -->
-    DRM_MODESET_LOCK_ALL_BEGIN()
-  drm/radeon: cleanup: drm_modeset_lock_all() -->
-    DRM_MODESET_LOCK_ALL_BEGIN()
-  drm/omapdrm: cleanup: drm_modeset_lock_all() -->
-    DRM_MODESET_LOCK_ALL_BEGIN()
-  drm/nouveau: cleanup: drm_modeset_lock_all() -->
-    DRM_MODESET_LOCK_ALL_BEGIN()
-  drm/msm: cleanup: drm_modeset_lock_all() -->
-    DRM_MODESET_LOCK_ALL_BEGIN()
-  drm/i915: cleanup: drm_modeset_lock_all() -->
-    DRM_MODESET_LOCK_ALL_BEGIN()
-  drm/i915: cleanup: drm_modeset_lock_all() -->
-    DRM_MODESET_LOCK_ALL_BEGIN() [part 2]
-  drm/i915: cleanup: drm_modeset_lock_all() -->
-    DRM_MODESET_LOCK_ALL_BEGIN() [part 3]
-  drm/gma500: cleanup: drm_modeset_lock_all() -->
-    DRM_MODESET_LOCK_ALL_BEGIN()
-  drm/amd: cleanup: drm_modeset_lock_all() -->
-    DRM_MODESET_LOCK_ALL_BEGIN()
-  drm/amd: cleanup: drm_modeset_lock_all() -->
-    DRM_MODESET_LOCK_ALL_BEGIN() [part 2]
-  drm/amd: cleanup: drm_modeset_lock_all() -->
-    DRM_MODESET_LOCK_ALL_BEGIN() [part 3]
-  drm: cleanup: remove drm_modeset_(un)lock_all()
-  drm: cleanup: remove acquire_ctx from drm_mode_config
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   | 21 +++--
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 58 ++++++------
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  3 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 25 ++---
- drivers/gpu/drm/drm_client_modeset.c          | 14 ++-
- drivers/gpu/drm/drm_crtc_helper.c             | 18 ++--
- drivers/gpu/drm/drm_fb_helper.c               | 10 +-
- drivers/gpu/drm/drm_framebuffer.c             |  6 +-
- drivers/gpu/drm/drm_modeset_lock.c            | 94 +------------------
- drivers/gpu/drm/gma500/psb_device.c           | 18 ++--
- drivers/gpu/drm/i915/display/intel_audio.c    | 16 ++--
- drivers/gpu/drm/i915/display/intel_display.c  | 25 ++---
- .../drm/i915/display/intel_display_debugfs.c  | 46 +++++----
- drivers/gpu/drm/i915/display/intel_overlay.c  | 46 ++++-----
- drivers/gpu/drm/i915/display/intel_pipe_crc.c |  7 +-
- drivers/gpu/drm/i915/i915_drv.c               | 13 ++-
- drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c      | 10 +-
- .../gpu/drm/msm/disp/msm_disp_snapshot_util.c | 12 +--
- drivers/gpu/drm/nouveau/dispnv50/disp.c       | 15 ++-
- drivers/gpu/drm/omapdrm/omap_fb.c             |  9 +-
- drivers/gpu/drm/radeon/radeon_device.c        | 21 +++--
- drivers/gpu/drm/radeon/radeon_dp_mst.c        | 10 +-
- drivers/gpu/drm/shmobile/shmob_drm_drv.c      |  6 +-
- drivers/gpu/drm/tegra/dsi.c                   |  6 +-
- drivers/gpu/drm/tegra/hdmi.c                  |  6 +-
- drivers/gpu/drm/tegra/sor.c                   | 11 ++-
- drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c         | 11 ++-
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.c           | 12 ++-
- include/drm/drm_mode_config.h                 | 10 --
- include/drm/drm_modeset_lock.h                |  2 -
- 30 files changed, 272 insertions(+), 289 deletions(-)
+Best regards.
+Claudio Suarez
 
 
-base-commit: 3fdfa1de4774903b9cb4fb308102b5a2d762d829
--- 
-2.33.0
+
 
