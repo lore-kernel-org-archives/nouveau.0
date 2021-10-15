@@ -2,82 +2,67 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6F5AFC433EF
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 48F26C433F5
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 44CFB6103B
+	by mail.kernel.org (Postfix) with ESMTPS id D1AA461263
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 44CFB6103B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org D1AA461263
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=net-c.es
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D5906EA94;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F1026EA87;
 	Mon, 18 Oct 2021 17:18:35 +0000 (UTC)
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
- [66.111.4.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E62F36EB19;
- Wed, 13 Oct 2021 20:49:02 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailnew.nyi.internal (Postfix) with ESMTP id 5B9C1581176;
- Wed, 13 Oct 2021 16:49:02 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute6.internal (MEProxy); Wed, 13 Oct 2021 16:49:02 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
- :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=bjZP3Lgut5mp9
- xuokNNwrS2cdV0t8bE34sMk9sGPssk=; b=c6r33z9Y064wci5B+pw1tyY077FW3
- n1lca3QGK8RKDhvQ9WWyfvMVtL3GCAEbKPXWd9etVMNOtJR/mND8WSeYcZoqfg0Q
- YfKkF2Vdtb+vbWkeYy0raJYz07/4l6MEJJK5ev++p4jZEmIBSM1BA6qigA1nkTEy
- 1N9cqazb37qhaFX/+dQH8tRcxK+QrdtxXKbFn5WiJG+fxWdevBn3F31HchFle683
- M6eTC7R1Ll1pte51A8W7iQDLNf2fAxReABHdns19MoXrsFmAz8hARE1e7OgPcsps
- 9WPmvF2dk7UBe+R/D7UyDKF5bHEfs44llLkzW1GjNx4vdsclJxEyy2YpQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-transfer-encoding:date:from
- :in-reply-to:message-id:mime-version:references:subject:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; bh=bjZP3Lgut5mp9xuokNNwrS2cdV0t8bE34sMk9sGPssk=; b=neytJYoB
- opkPEnc6uJVGuAEuW174cVJqDHTP+Kj/d3DUB8pF4giUNgx1BhvoT1qatmWi+2Pi
- UfXsqaTUhSXZ1qD4QLFQVPPCbV1c9OU3fHuPsYb3OvHyEhOOueH6aQzOTuWnYgUo
- YCjRJBFFd/qTAWEMF8TEZS2EBQ0seNgErJEqViEbdtMK00z758TKKnHDN50p58iK
- WrU9CqAGhzO/k2+o7vKeXwwPg6v88Kyyn7DP7feGgLhdDUpCA1c77jw6R9+wIh2S
- K3eIizTb2iDs2VFm1rJgp04W7zz9th9D409u5bUv3iaWOJpbmHFjvCTD6n0PW8Lj
- 9zTtzvo6UPhhng==
-X-ME-Sender: <xms:PkZnYTDbYzcm6yMQ2PyqvV0U75E-IhrZdaYTDC5AJ-6Wt_4u6bW9pA>
- <xme:PkZnYZiPp0S0tu3wHaruMzYe54SlzM4mcV-ItcNAzQ5SVCGbpHNcKEJ5yRypR722i
- XZ3PT7qja92ZtvsyQ>
-X-ME-Received: <xmr:PkZnYekL2-1UOqcXp0EePJPmpJdB-jKQskM8iggmEvMMgLS_ZDdqHP15WsAdtteYNbbk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddutddgudehtdcutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
- ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
- ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedtnecu
- rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:PkZnYVzUpmA5kGL1Kc0qtvk8TnQQgeEGRl9juSlg95BIlokG4LD9Lw>
- <xmx:PkZnYYTX5tLF4uDSTGbdzmPRHVA0OMUY6k1SOManI3uSQe0qF-Lh_g>
- <xmx:PkZnYYb3gNj5gBu-_FAHTnXC12hRUDXhy0GLyH9f5pzJtrc9P-wBDA>
- <xmx:PkZnYR_Eya7Uhnr6VTNh1qDUcq8l42NUKkk_blhF6wZtIB4rNM5Fsw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 13 Oct 2021 16:48:59 -0400 (EDT)
-From: Fernando Ramos <greenfoo@u92.eu>
-To: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-tegra@vger.kernel.org
-Date: Wed, 13 Oct 2021 22:48:29 +0200
-Message-Id: <20211013204846.90026-4-greenfoo@u92.eu>
+Received: from msg-2.mailo.com (msg-2.mailo.com [213.182.54.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C3D46ED15;
+ Fri, 15 Oct 2021 12:22:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
+ t=1634297850; bh=MQRO/l+EHR9JU1ioWJjmqgB8WWkE+yYekXTuFOswj+Y=;
+ h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
+ References:MIME-Version:Content-Transfer-Encoding;
+ b=jmT7oe5w+8xJbJXvZiIKSkGCnKwIGnx+OzsvamxSx19qKwX6ySAQrusi6hQ37z92i
+ ZxGtIFs9CEN43l6goAAmH750nfknm0dvTVWpD/lHCBBBFtxKXcvnxqpP3JCHDiyROE
+ Lb4lVrjrvj0ZJjMXVo44k7a/k1h4hVZvKMkQcxPw=
+Received: by b-5.in.mailobj.net [192.168.90.15] with ESMTP
+ via ip-206.mailobj.net [213.182.55.206]
+ Fri, 15 Oct 2021 13:37:30 +0200 (CEST)
+X-EA-Auth: CRtTSwtUbuh6isJJX0SnV6erXuiGBUr2v9cRBqySyoMsALEn+um5ogs//XEthBHR+BYiHx6j1z6ycPjZkYdI84IPSn2OY8gV
+From: Claudio Suarez <cssk@net-c.es>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
+ Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
+ Andrzej Hajda <a.hajda@samsung.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Robert Foss <robert.foss@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
+ nouveau@lists.freedesktop.org
+Cc: Claudio Suarez <cssk@net-c.es>
+Date: Fri, 15 Oct 2021 13:36:59 +0200
+Message-Id: <20211015113713.630119-2-cssk@net-c.es>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211013204846.90026-1-greenfoo@u92.eu>
-References: <20211013204846.90026-1-greenfoo@u92.eu>
+In-Reply-To: <20211015113713.630119-1-cssk@net-c.es>
+References: <20211015113713.630119-1-cssk@net-c.es>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
-Subject: [Nouveau] [PATCH v4 03/20] drm/msm: cleanup:
- drm_modeset_lock_all_ctx() --> DRM_MODESET_LOCK_ALL_BEGIN()
+X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
+Subject: [Nouveau] [PATCH 01/15] gpu/drm: make drm_add_edid_modes()
+ consistent when updating connector->display_info
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,55 +77,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As requested in Documentation/gpu/todo.rst, replace the boilerplate code
-surrounding drm_modeset_lock_all_ctx() with DRM_MODESET_LOCK_ALL_BEGIN()
-and DRM_MODESET_LOCK_ALL_END()
+According to the documentation, drm_add_edid_modes
+"... Also fills out the &drm_display_info structure and ELD in @connector
+with any information which can be derived from the edid."
 
-Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
-Reviewed-by: Sean Paul <sean@poorly.run>
-Reported-by: kernel test robot <lkp@intel.com>
+drm_add_edid_modes accepts a struct edid *edid parameter which may have a
+value or may be null. When it is not null, connector->display_info and
+connector->eld are updated according to the edid. When edid=NULL, only
+connector->eld is reset. Reset connector->display_info to be consistent
+and accurate.
+
+Signed-off-by: Claudio Suarez <cssk@net-c.es>
 ---
- drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/drm_edid.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c b/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c
-index cabe15190ec1..abda52f09b09 100644
---- a/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c
-+++ b/drivers/gpu/drm/msm/disp/msm_disp_snapshot_util.c
-@@ -5,6 +5,8 @@
+diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+index 6325877c5fd6..6cbe09b2357c 100644
+--- a/drivers/gpu/drm/drm_edid.c
++++ b/drivers/gpu/drm/drm_edid.c
+@@ -5358,10 +5358,12 @@ int drm_add_edid_modes(struct drm_connector *connector, struct edid *edid)
  
- #define pr_fmt(fmt)	"[drm:%s:%d] " fmt, __func__, __LINE__
- 
-+#include <drm/drm_drv.h>
-+
- #include "msm_disp_snapshot.h"
- 
- static void msm_disp_state_dump_regs(u32 **reg, u32 aligned_len, void __iomem *base_addr)
-@@ -99,20 +101,18 @@ static void msm_disp_capture_atomic_state(struct msm_disp_state *disp_state)
- {
- 	struct drm_device *ddev;
- 	struct drm_modeset_acquire_ctx ctx;
-+	int ret;
- 
- 	disp_state->timestamp = ktime_get();
- 
- 	ddev = disp_state->drm_dev;
- 
--	drm_modeset_acquire_init(&ctx, 0);
--
--	while (drm_modeset_lock_all_ctx(ddev, &ctx) != 0)
--		drm_modeset_backoff(&ctx);
-+	DRM_MODESET_LOCK_ALL_BEGIN(ddev, ctx, 0, ret);
- 
- 	disp_state->atomic_state = drm_atomic_helper_duplicate_state(ddev,
- 			&ctx);
--	drm_modeset_drop_locks(&ctx);
--	drm_modeset_acquire_fini(&ctx);
-+
-+	DRM_MODESET_LOCK_ALL_END(ddev, ctx, ret);
- }
- 
- void msm_disp_snapshot_capture_state(struct msm_disp_state *disp_state)
+ 	if (edid == NULL) {
+ 		clear_eld(connector);
++		drm_reset_display_info(connector);
+ 		return 0;
+ 	}
+ 	if (!drm_edid_is_valid(edid)) {
+ 		clear_eld(connector);
++		drm_reset_display_info(connector);
+ 		drm_warn(connector->dev, "%s: EDID invalid.\n",
+ 			 connector->name);
+ 		return 0;
 -- 
 2.33.0
+
+
 
