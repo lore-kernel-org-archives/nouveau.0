@@ -2,82 +2,67 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ACC9CC433EF
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4581AC43217
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7589F61263
+	by mail.kernel.org (Postfix) with ESMTPS id CF68D61263
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7589F61263
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CF68D61263
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=net-c.es
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E37966EA62;
-	Mon, 18 Oct 2021 17:18:32 +0000 (UTC)
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
- [66.111.4.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6A6D6EB4D;
- Wed, 13 Oct 2021 20:49:37 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailnew.nyi.internal (Postfix) with ESMTP id 4AE68581176;
- Wed, 13 Oct 2021 16:49:37 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute6.internal (MEProxy); Wed, 13 Oct 2021 16:49:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
- :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=PuRwF9Ft3UyWB
- Jf64PRaXhYohKvgAVW28ATMLUMmKjo=; b=TeNRBD6swzkG79I9b7TXSsHo33CRX
- Gsm+GcPGgDFQXMEyqf65VKjDd8gwa4dADG13lk8skjou25p8QV/d3q2+Mvv3pYJx
- kki+sSEjwKdQF2ihuzdBjuhotdt0SsPOS9aD+Q7ufOGJAAU7h6DRYW8gtoClN74+
- ay2lpN4YxznXxbPcTdSW66PK3RK0vWRJU28d09J6klPD2bPfR/5R91SN2kAbTqdb
- fBbXONHgFYxzvxV6gnsg30JMzbV3271HaZfnJ+hFQXQV/HUa810oVbTXTacv/+TX
- lloqyy/7Y3AkRQDhYbi1xnDuheWCVPRenyLcqZf84khS6rLfa1RqtV0aQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-transfer-encoding:date:from
- :in-reply-to:message-id:mime-version:references:subject:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; bh=PuRwF9Ft3UyWBJf64PRaXhYohKvgAVW28ATMLUMmKjo=; b=iOCBCgVY
- QLlMxtfhB0e3TIoRzHX8iKMXkYWWUHgZmwuG9+SdtL6J7qUW2MMInBerBWPlEWsU
- OueKWNTxLVYR4L+hrV8VRaaK8Q1lb+e5550vgxfzGZH3tz6gxPVPWsZ/tkUoXo0p
- nCjVar4De24RqwzyGifD6QyKhHxwfG/sxbx+A50PnjhQWUjOjXrV2aNeDS+G3a9i
- BZZj2HwGQMegLD5d56Z+JA/HAlFxMRIPx/F1YyQu2UF4E78Hr/XrR8iZNI5OOdyk
- cEinoGuAfW5JiUuLCHX6YMPDlGa8h6dg9ibg/UFcKCdeJuZNYStwQxuD9rKGSZ02
- v+6CqtUXYecZKg==
-X-ME-Sender: <xms:YUZnYYRBE_WHaHad1ctBI6yEkl-spypqj4k0GVLMr7mmX8o7iUG_RA>
- <xme:YUZnYVyZtctjoNsBBKR8NyM-hA36T13Qe8L-OHCLdvtNz-7DL96TboeaSEWwVD3zI
- 9zqj7PXEGnumrDJ_w>
-X-ME-Received: <xmr:YUZnYV1MSwT2EaLZ21J7wV2J8_mA4USbDvQbWpor6mByTWRV972haXnOhM6BoLTqinwU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddutddgudehvdcutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
- ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
- ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedtnecu
- rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:YUZnYcB9SstTsGsxADXkSUaKr8wEV_QdSUXzcz1JC6ziDZVdF_2wMQ>
- <xmx:YUZnYRjP9SRvf5prFx-0H88EnKhnWzXKvgm3fnvvAAz7YzfmtKBfaA>
- <xmx:YUZnYYpZv89_aBFVM_WvHDHiION8hnxYS_jD1vcbQFwBoBX7x2Woaw>
- <xmx:YUZnYYOO-kq-wzh-mwwf44333sOlLn7JCm5MQNyGr2_RuVl4AN5GmQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 13 Oct 2021 16:49:34 -0400 (EDT)
-From: Fernando Ramos <greenfoo@u92.eu>
-To: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-tegra@vger.kernel.org
-Date: Wed, 13 Oct 2021 22:48:41 +0200
-Message-Id: <20211013204846.90026-16-greenfoo@u92.eu>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68EB96EA65;
+	Mon, 18 Oct 2021 17:18:33 +0000 (UTC)
+Received: from msg-4.mailo.com (ip-15.mailobj.net [213.182.54.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B73F6ED24;
+ Fri, 15 Oct 2021 12:21:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
+ t=1634297970; bh=0RqSfZcuztAsxl5Z9RHnZDIQ5/yjlTF9rwDwZXErkHI=;
+ h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
+ References:MIME-Version:Content-Transfer-Encoding;
+ b=JiBJc9ICNjEPGchTO1nCRIhe2IQUWHB7JfmXKnse4hG3SQ1ztIn7ssZEATA2lzdYv
+ 6qqhHv7dOu28A2otnNbS9w+Vc3EGicBySG7lxbO62tG8Hs36ug3kNB6JT4Brl/A+Ix
+ qYyX5UH4+dmt281G4A2k2LA2y01aGUg8T9ozKgQM=
+Received: by b-3.in.mailobj.net [192.168.90.13] with ESMTP
+ via ip-206.mailobj.net [213.182.55.206]
+ Fri, 15 Oct 2021 13:38:55 +0200 (CEST)
+X-EA-Auth: 6mlP1jvI0uJdWnepf1t2wfFzPxS7+ki6kjVCm1DK6IKAqO+JzkYYrEOlPV9PEUbDU2q0kjOYpQN+Y3xhOuNF/tTZMgv04dzM
+From: Claudio Suarez <cssk@net-c.es>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
+ Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
+ Andrzej Hajda <a.hajda@samsung.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Robert Foss <robert.foss@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
+ nouveau@lists.freedesktop.org
+Cc: Claudio Suarez <cssk@net-c.es>
+Date: Fri, 15 Oct 2021 13:37:10 +0200
+Message-Id: <20211015113713.630119-13-cssk@net-c.es>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211013204846.90026-1-greenfoo@u92.eu>
-References: <20211013204846.90026-1-greenfoo@u92.eu>
+In-Reply-To: <20211015113713.630119-1-cssk@net-c.es>
+References: <20211015113713.630119-1-cssk@net-c.es>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
-Subject: [Nouveau] [PATCH v4 15/20] drm/gma500: cleanup:
- drm_modeset_lock_all() --> DRM_MODESET_LOCK_ALL_BEGIN()
+X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
+Subject: [Nouveau] [PATCH 12/15] drm/rockchip: replace
+ drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,90 +77,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As requested in Documentation/gpu/todo.rst, replace driver calls to
-drm_modeset_lock_all() with DRM_MODESET_LOCK_ALL_BEGIN() and
-DRM_MODESET_LOCK_ALL_END()
+Once EDID is parsed, the monitor HDMI support information is available
+through drm_display_info.is_hdmi. Retriving the same information with
+drm_detect_hdmi_monitor() is less efficient. Change to
+drm_display_info.is_hdmi
 
-Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
+Signed-off-by: Claudio Suarez <cssk@net-c.es>
 ---
- drivers/gpu/drm/gma500/psb_device.c | 18 ++++++++++++------
- 1 file changed, 12 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/rockchip/inno_hdmi.c   | 4 ++--
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/gma500/psb_device.c b/drivers/gpu/drm/gma500/psb_device.c
-index 3030f18ba022..021a7238508f 100644
---- a/drivers/gpu/drm/gma500/psb_device.c
-+++ b/drivers/gpu/drm/gma500/psb_device.c
-@@ -8,6 +8,7 @@
- #include <linux/backlight.h>
+diff --git a/drivers/gpu/drm/rockchip/inno_hdmi.c b/drivers/gpu/drm/rockchip/inno_hdmi.c
+index 7afdc54eb3ec..d479f230833e 100644
+--- a/drivers/gpu/drm/rockchip/inno_hdmi.c
++++ b/drivers/gpu/drm/rockchip/inno_hdmi.c
+@@ -553,9 +553,9 @@ static int inno_hdmi_connector_get_modes(struct drm_connector *connector)
  
- #include <drm/drm.h>
-+#include <drm/drm_drv.h>
+ 	edid = drm_get_edid(connector, hdmi->ddc);
+ 	if (edid) {
+-		hdmi->hdmi_data.sink_is_hdmi = drm_detect_hdmi_monitor(edid);
+-		hdmi->hdmi_data.sink_has_audio = drm_detect_monitor_audio(edid);
+ 		drm_connector_update_edid_property(connector, edid);
++		hdmi->hdmi_data.sink_is_hdmi = connector->display_info.is_hdmi;
++		hdmi->hdmi_data.sink_has_audio = drm_detect_monitor_audio(edid);
+ 		ret = drm_add_edid_modes(connector, edid);
+ 		kfree(edid);
+ 	}
+diff --git a/drivers/gpu/drm/rockchip/rk3066_hdmi.c b/drivers/gpu/drm/rockchip/rk3066_hdmi.c
+index 1c546c3a8998..03aaae39cf61 100644
+--- a/drivers/gpu/drm/rockchip/rk3066_hdmi.c
++++ b/drivers/gpu/drm/rockchip/rk3066_hdmi.c
+@@ -472,8 +472,8 @@ static int rk3066_hdmi_connector_get_modes(struct drm_connector *connector)
  
- #include "gma_device.h"
- #include "intel_bios.h"
-@@ -169,8 +170,10 @@ static int psb_save_display_registers(struct drm_device *dev)
- {
- 	struct drm_psb_private *dev_priv = to_drm_psb_private(dev);
- 	struct drm_crtc *crtc;
-+	struct drm_modeset_acquire_ctx ctx;
- 	struct gma_connector *connector;
- 	struct psb_state *regs = &dev_priv->regs.psb;
-+	int ret;
- 
- 	/* Display arbitration control + watermarks */
- 	regs->saveDSPARB = PSB_RVDC32(DSPARB);
-@@ -183,7 +186,7 @@ static int psb_save_display_registers(struct drm_device *dev)
- 	regs->saveCHICKENBIT = PSB_RVDC32(DSPCHICKENBIT);
- 
- 	/* Save crtc and output state */
--	drm_modeset_lock_all(dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
- 	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
- 		if (drm_helper_crtc_in_use(crtc))
- 			dev_priv->ops->save_crtc(crtc);
-@@ -193,8 +196,9 @@ static int psb_save_display_registers(struct drm_device *dev)
- 		if (connector->save)
- 			connector->save(&connector->base);
- 
--	drm_modeset_unlock_all(dev);
--	return 0;
-+	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
-+
-+	return ret;
- }
- 
- /**
-@@ -207,8 +211,10 @@ static int psb_restore_display_registers(struct drm_device *dev)
- {
- 	struct drm_psb_private *dev_priv = to_drm_psb_private(dev);
- 	struct drm_crtc *crtc;
-+	struct drm_modeset_acquire_ctx ctx;
- 	struct gma_connector *connector;
- 	struct psb_state *regs = &dev_priv->regs.psb;
-+	int ret;
- 
- 	/* Display arbitration + watermarks */
- 	PSB_WVDC32(regs->saveDSPARB, DSPARB);
-@@ -223,7 +229,7 @@ static int psb_restore_display_registers(struct drm_device *dev)
- 	/*make sure VGA plane is off. it initializes to on after reset!*/
- 	PSB_WVDC32(0x80000000, VGACNTRL);
- 
--	drm_modeset_lock_all(dev);
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
- 	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head)
- 		if (drm_helper_crtc_in_use(crtc))
- 			dev_priv->ops->restore_crtc(crtc);
-@@ -232,8 +238,8 @@ static int psb_restore_display_registers(struct drm_device *dev)
- 		if (connector->restore)
- 			connector->restore(&connector->base);
- 
--	drm_modeset_unlock_all(dev);
--	return 0;
-+	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
-+	return ret;
- }
- 
- static int psb_power_down(struct drm_device *dev)
+ 	edid = drm_get_edid(connector, hdmi->ddc);
+ 	if (edid) {
+-		hdmi->hdmi_data.sink_is_hdmi = drm_detect_hdmi_monitor(edid);
+ 		drm_connector_update_edid_property(connector, edid);
++		hdmi->hdmi_data.sink_is_hdmi = connector->display_info.is_hdmi;
+ 		ret = drm_add_edid_modes(connector, edid);
+ 		kfree(edid);
+ 	}
 -- 
 2.33.0
+
 
