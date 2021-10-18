@@ -2,82 +2,116 @@ Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1901CC433F5
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A583EC433EF
 	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DD1846126A
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:00 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DD1846126A
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
+	by mail.kernel.org (Postfix) with ESMTPS id 784276103B
+	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:01 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 784276103B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=vivo.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52D786EA57;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 938266EA5A;
 	Mon, 18 Oct 2021 17:18:32 +0000 (UTC)
-Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
- [64.147.123.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F1026F4E5;
- Thu,  7 Oct 2021 19:39:28 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.west.internal (Postfix) with ESMTP id 7D7F92B009FD;
- Thu,  7 Oct 2021 15:39:27 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute4.internal (MEProxy); Thu, 07 Oct 2021 15:39:28 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
- :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=q7lysNWY/y86+
- dax3X8W9SkKV4HyuolKzTejQgSxgQI=; b=KrMq1lAAXXvmaAUAnfz7lwERtfWaC
- 1f2IWwAY+tHi+KdEXrpleIa9LNWT3eQXaGcn7sN63BYG9dF7qZGWzu0MiAosyDPb
- ce1QaGb12shmJzg72jLm9WHUP5Ny88S4+ONXEw8VYt8SlyyIq93asngRmT08P5aE
- aESn7yBinfKH5T58GU1fiIM1MAaxRWPHuQcgmk4EURXu7Td4JEf8+SywPK58l8Mr
- yGVbMvOgcWQcd36HoU49Rd7U+o8dSUCYzB2+jKPDBoEGh3hRAz+uLtDOTntT+Ytf
- gwvNhSWLto8+1ERwmf+sIef9XLA3AP9dFU/9QNXXKte69Q9Z2k0DGj6lQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-transfer-encoding:date:from
- :in-reply-to:message-id:mime-version:references:subject:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; bh=q7lysNWY/y86+dax3X8W9SkKV4HyuolKzTejQgSxgQI=; b=anyH8xrh
- Cyy1FtBSxybtYyWFyaf1RqIyIKrKVFr4O59GjhxrGQP1mcJdtzT6q37scqcPWSxC
- libH/eClVWliiWIlcPX80gPN8mWp3zc43USRzhN76J6OjBnt5A7P1iHA84uHblhA
- v0kiPRmKK3Z0dnHk6vaXYmIp+63PVg3O8T25hILJ4DY3CwOXVyS0oE8QbcYqWi28
- Pv1XKrTr5JXD65D9vJHg6toMT0uxSc6PBmRJN3IeIW+C08sUfisp8YwGzvvSTYBW
- 5K6qL6A7XpVBl+A4h9sRp6ZXzktcbdMRvSE7BJVsTBmjouq5dRMGJiV2agF96EBx
- vBZMzx9jpgabLQ==
-X-ME-Sender: <xms:70xfYZV64G1o-RkvXO3g0BhYsRuHd_srNs4SD7YPG5VagRrX64Vj-Q>
- <xme:70xfYZkrCPZodCFuDCLjJL6xLZ9UOUD3-0oNNJ134tUrvVsTsbIaGrfdhMVZQN81Z
- DobPfRcIUgAw8OGxg>
-X-ME-Received: <xmr:70xfYVZeEu90nLkdjPndZOgTo3bwGwgzhboomOj38CIdzAijM_KAQGw3tghYqIEVtGp0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudelkedgudefjecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
- ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
- ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedunecu
- rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:70xfYcXavhvLWXsnQXEfviLBZqM3OZ1GwXn3Ub8Qt10CVk_f1J9xYQ>
- <xmx:70xfYTnorwh5JgS9s6uctCYzXURGXUA95iOrIUYuwN8lRa0O-n1PXg>
- <xmx:70xfYZey-8CNFk0EC8h-mJ_IJItm193yKAcs_FlagY9CR8O0qQI6uA>
- <xmx:70xfYcg2hKctP-_jFoEh1Jn3G_qywGHGiJmCkA86BU_M10X9dXJ-gwaqVlw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 7 Oct 2021 15:39:24 -0400 (EDT)
-From: Fernando Ramos <greenfoo@u92.eu>
-To: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-tegra@vger.kernel.org
-Date: Thu,  7 Oct 2021 21:37:55 +0200
-Message-Id: <20211007193755.29579-21-greenfoo@u92.eu>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211007193755.29579-1-greenfoo@u92.eu>
-References: <20211007193755.29579-1-greenfoo@u92.eu>
+Received: from APC01-SG2-obe.outbound.protection.outlook.com
+ (mail-eopbgr1310097.outbound.protection.outlook.com [40.107.131.97])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0E7B6E987;
+ Mon, 18 Oct 2021 08:00:19 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=b3uJ3PuUClO83/6R3hAwzd8kzs7Gc9rriwtE37reAy2EESUzQYOmc/oAicVIAPfnVhv3FevVct+NJoq7OkvxIAowNz2GhKiC8Ijc9YQ8rnhOLKb2tQS2JJcAIPbq5cuYD6aHFrUbwJt9ymcaOc1MDxKj9HNBlMhZrN/vwDSWyYP/hQw0IhPvN8dxGq8cJSB9eaG63pT06mOjmV8STGDqFz8qoKy/9Fv2CH6efPQ9tIuQxHarut4PN/ujtYFQhyx6MSnwTEke9U6C6KUrWnByUy8WqpTUiRlFU+JYs3xhxVAlYT/R9VmGcfrXk4yzAeVMPKMRX0l8p384R4Le7DL6yQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=F2EkW+63JYeyx3zevyvE6aX4tfO69Qqdd+W7kjP6JYY=;
+ b=Fyxuuoqyq4FYer5DuTi69sV9TsDOHdNxQt9QyPO7+PL03cBgA1aVvZqV5BcmldHd6xlxF3MZ6AEI+m1Jjg48riGOwm/rEZx5CzmODwPP2ZTD3dFZmoW41SHOCbBqn0U0k6lHhyLm1ieYzW4JKDByMbICaFDzWtdkGkMo4+WEQ9zA3kacWsxkSZwlyXdFUVDaFJ6fkyFxR0EPc6d4yywmu2CXsDGLbCTcUELEGV+t0cpuPKCwfDyICwh6fW1LiVRYobPD2lryXysLmYgftEsLIG4/oWzwJreRrgJqJaiuG/MTggc0VyAkAd/OIi420cBxFaR3tETrGALxZvkNzGhJWw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
+ dkim=pass header.d=vivo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo0.onmicrosoft.com; 
+ s=selector2-vivo0-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=F2EkW+63JYeyx3zevyvE6aX4tfO69Qqdd+W7kjP6JYY=;
+ b=U2wDU0HspjLIR/CBJ0IWhVBCmiZuswItnODddJpdULPjDp2PaeDe5K3GQ5658sIMUPhLgPELa12gceQ7Kaw2SSY04UEVa1PVYsmM95CHbysojhxFDzXZO8+YyZ288Jj+6tA0P/rOL2bQJk/8avFd72q+ykifAhiwdZyzvQ7iVos=
+Authentication-Results: redhat.com; dkim=none (message not signed)
+ header.d=none;redhat.com; dmarc=none action=none header.from=vivo.com;
+Received: from SL2PR06MB3082.apcprd06.prod.outlook.com (2603:1096:100:37::17)
+ by SL2PR06MB3387.apcprd06.prod.outlook.com (2603:1096:100:3d::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.14; Mon, 18 Oct
+ 2021 08:00:13 +0000
+Received: from SL2PR06MB3082.apcprd06.prod.outlook.com
+ ([fe80::4c9b:b71f:fb67:6414]) by SL2PR06MB3082.apcprd06.prod.outlook.com
+ ([fe80::4c9b:b71f:fb67:6414%6]) with mapi id 15.20.4608.018; Mon, 18 Oct 2021
+ 08:00:13 +0000
+From: Qing Wang <wangqing@vivo.com>
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Qing Wang <wangqing@vivo.com>
+Date: Mon, 18 Oct 2021 01:00:03 -0700
+Message-Id: <1634544003-36775-1-git-send-email-wangqing@vivo.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: HK0PR03CA0098.apcprd03.prod.outlook.com
+ (2603:1096:203:b0::14) To SL2PR06MB3082.apcprd06.prod.outlook.com
+ (2603:1096:100:37::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
-Subject: [Nouveau] [PATCH v3 20/20] drm: cleanup: remove acquire_ctx from
- drm_mode_config
+Received: from ubuntu.localdomain (218.213.202.189) by
+ HK0PR03CA0098.apcprd03.prod.outlook.com (2603:1096:203:b0::14) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.20.4608.17 via Frontend Transport; Mon, 18 Oct 2021 08:00:12 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7d81d5a4-9cd8-4aac-259c-08d9920d5038
+X-MS-TrafficTypeDiagnostic: SL2PR06MB3387:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SL2PR06MB3387B65C6FF33E66815B9862BDBC9@SL2PR06MB3387.apcprd06.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2276;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jUcR6QomI6Il2pQ7/xkZEiKy8HsTpDSnhqWzCT0KzjrytVzbn2VuIUdpzEbfOGb7YC3+UC4NA3Fb8iZBwIsdEm8lseJTMKpgEwZ+FaDfsbhDuzjjRzdt1hGVaiXaCNHFlyFCGa4uDQUhmaUaszmO7b/MxFPKVhqC/enJ+YLulJ2UklU4cKoVRz1/pBFK1llwZorTeDxTzRQee9luE9/byPMWG1CfdJJo9Numr741SjK6Ture88rQcp8+yT2Del2guLqNb5/n/Fb2nZVnoYAMtr9LFMlV60eVbXsa/w/xKsHuLPOEdPiaQZGY4oFHJkML2WRaCnbeU3qHS9oGpe95nHjTbiOjxXv1VgQ5nlNPxk0wSh6OLEkJ01sYlwSZpaNYPL0/LAeAyKK6Xp7lfJdNd0lxp+mASsfDGqmKacpfbxTU7US/jkUFgneQqxaArsK7DwH1dphW18MvyQjTtp8fn2zoEqH2aI1TTr5VC9TyBU7z7qKFZIHEEucikePT3cH7/jVlPjq1YfOwiGjK7UrozLWir99awQLb/yNVryNr+xIpLDJG8BklouzY+CXnvhfGSHEAmjJR3RV2dx12Mn7J9s335aK3k64JVZC85JuFjmjiBW4ie5mL10NroCxhSCWaCRxbBE0Mn6fHAmWN2O5tGT5aJ088+mYLglSvtKGrhNZZemFX+TW9y0TIkAHQ9GTEwoBbntdY+ZODHsNF10osPw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SL2PR06MB3082.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(508600001)(6512007)(6506007)(26005)(6486002)(86362001)(8936002)(66556008)(66476007)(66946007)(107886003)(2616005)(956004)(6666004)(316002)(5660300002)(110136005)(2906002)(4744005)(36756003)(83380400001)(52116002)(38100700002)(4326008)(38350700002)(8676002)(186003);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?UpVlTf9UpGypa9ug3Is+plfiN6tC9dmyGtgg9T++yQSQ9+EUFFgtPBIIZ3aI?=
+ =?us-ascii?Q?0HshldXvpl2sZ4NM/jn6czuaxtFQCqB7vF5HYQVEFe3s8AakgbLsQUfYhIEk?=
+ =?us-ascii?Q?kazUCuK8XBkrnMGMGNa7f8GmjLWPYUgQdZTotn605BKB09TRZ+uEXpCikVoX?=
+ =?us-ascii?Q?AYyERLdmRruxILyvCPBYMC50i6vzWnfYUntI6digrF0AYUK8awZ0HTkMHcym?=
+ =?us-ascii?Q?3oRkG2eqvA25+umBOVRozboqw5YqH+Aa9lvqEpzsfqWzc61/HjI7HnRuyH1Q?=
+ =?us-ascii?Q?fOCe2HYj7snyEoJzdRsxUbS3k0q7OVV1DtiGBloDkygI+vkXWC0zx+RN9hMH?=
+ =?us-ascii?Q?kgbyaFtXnZhp0F5IAE6nCZcpXGbqkB26pKtwUyQcKddPmXYDlPEMP6BTwzPS?=
+ =?us-ascii?Q?P76TSfYlqTTrCYd5tXVs/kMwobTXNMAlEi6cWfU3/5Fxmbz3m9r+uwIbz/I6?=
+ =?us-ascii?Q?20BUU/0NZq0l9KuFj1C/l6ogdNuW8kskeUfZUCO8pFy6lsBLY7fVg5n/HS2s?=
+ =?us-ascii?Q?BefACw4k9H+kx5isz9R9HWGuAtSJAmOhHu4m+/99J9oW9tS3HxXoAwlRLya0?=
+ =?us-ascii?Q?d5+N4c5dOkCiCxltVfh96cfXmhXKQ5Tavutej0sBIKepOpv+ZKq1tezq8AFH?=
+ =?us-ascii?Q?GW3Qs0tYet2obYiDFkVi3Pz0itZgDaghkQ2W70XUpWWcsoaFjqaudxR9XQ85?=
+ =?us-ascii?Q?PwRLlMY7YFTdbgvd3YWgmM/8pJu66DbakfSVKNfq78XSevzt/hQOl7zdAsZD?=
+ =?us-ascii?Q?4M+hSuz987lvu4iT6Gauos/zz2oYoI461RM1Qd2K/64qJGFfUb/81JMpqNe6?=
+ =?us-ascii?Q?ZGY74aRsJE+LXxuzHjDGtPixo6O9G3VT6o0Zm8mEKzXs8E9f+lo9MpPYCfQk?=
+ =?us-ascii?Q?sSDYoSKJDRcYzh9Zejvq1SI/WMv+R6hXhSkWEayiP5s86RoQnlqyRXlSwmSw?=
+ =?us-ascii?Q?kT8Z9K1j2BiNNZKxS1U8tLm661Go7yD3r+CPFibA/a4LiP6gbrzUzIAVM7C2?=
+ =?us-ascii?Q?XAsotGNrHjjnus3wbP05rrxw4QQ4WxwYJ/MtqouQ9hQnrOLurGyIoRjRXhCD?=
+ =?us-ascii?Q?ikRGTOXIj/8Q8nyGyHF2Vx6WxCRJQzrlASLc1kOdkxLikS5H3s953iRFASAf?=
+ =?us-ascii?Q?Rsr9pjkiBfack95ZLqEEic0wlegCUqJuTUJ4Uko9x2FZGki/6FnN52bgteyx?=
+ =?us-ascii?Q?/X0Z5/5EQ4/uquAxs5z6I+DW2v5aVRiFb1HeQZHI/o4pHqNVBRT8CYZQBzuJ?=
+ =?us-ascii?Q?mt0MriNWLwjj4rxl814aD+BGdzZ/kglPgdZ4bkxooM8zu1SafZ4x+FRBhnWD?=
+ =?us-ascii?Q?xkyP1/dr6MVKQTcjBeU+mGFA?=
+X-OriginatorOrg: vivo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d81d5a4-9cd8-4aac-259c-08d9920d5038
+X-MS-Exchange-CrossTenant-AuthSource: SL2PR06MB3082.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2021 08:00:12.9671 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RvTP0ZHPTYq95moqmL5kxLa26v6C9gC7CW3/sNhVHQfVfTvl8n26daHjHrzBqVd+pzMyHC/UI+PoDnq1CO0rqQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SL2PR06MB3387
+X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:27 +0000
+Subject: [Nouveau] [PATCH] gpu: drm: nouveau: switch over to vmemdup_user()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,31 +126,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
----
- include/drm/drm_mode_config.h | 10 ----------
- 1 file changed, 10 deletions(-)
+This patch fixes the following Coccinelle warning:
 
-diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
-index 48b7de80daf5..b214b07157f2 100644
---- a/include/drm/drm_mode_config.h
-+++ b/include/drm/drm_mode_config.h
-@@ -383,16 +383,6 @@ struct drm_mode_config {
- 	 */
- 	struct drm_modeset_lock connection_mutex;
+drivers/gpu/drm/nouveau/nouveau_gem.c:630: WARNING opportunity for vmemdup_user
+
+Use vmemdup_user rather than duplicating its implementation
+This is a little bit restricted to reduce false positives
+
+Signed-off-by: Qing Wang <wangqing@vivo.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_gem.c | 11 +++--------
+ 1 file changed, 3 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index 8c2ecc2..3fc6959
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -627,14 +627,9 @@ u_memcpya(uint64_t user, unsigned nmemb, unsigned size)
  
--	/**
--	 * @acquire_ctx:
--	 *
--	 * Global implicit acquire context used by atomic drivers for legacy
--	 * IOCTLs. Deprecated, since implicit locking contexts make it
--	 * impossible to use driver-private &struct drm_modeset_lock. Users of
--	 * this must hold @mutex.
--	 */
--	struct drm_modeset_acquire_ctx *acquire_ctx;
+ 	size *= nmemb;
+ 
+-	mem = kvmalloc(size, GFP_KERNEL);
+-	if (!mem)
+-		return ERR_PTR(-ENOMEM);
 -
- 	/**
- 	 * @idr_mutex:
- 	 *
+-	if (copy_from_user(mem, userptr, size)) {
+-		u_free(mem);
+-		return ERR_PTR(-EFAULT);
+-	}
++	mem = vmemdup_user(userptr, size);
++	if (IS_ERR(mem))
++		return ERR_PTR(PTR_ERR(mem));
+ 
+ 	return mem;
+ }
 -- 
-2.33.0
+2.7.4
 
