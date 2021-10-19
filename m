@@ -1,83 +1,55 @@
-Return-Path: <SRS0=orwh=PG=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=GjsR=PH=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E5475C433F5
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1FEBCC433F5
+	for <nouveau@archiver.kernel.org>; Tue, 19 Oct 2021 18:10:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BB9446103B
-	for <nouveau@archiver.kernel.org>; Mon, 18 Oct 2021 17:19:25 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org BB9446103B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=u92.eu
+	by mail.kernel.org (Postfix) with ESMTPS id C3ED96136A
+	for <nouveau@archiver.kernel.org>; Tue, 19 Oct 2021 18:10:04 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org C3ED96136A
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.intel.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 432856EE51;
-	Mon, 18 Oct 2021 17:18:53 +0000 (UTC)
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
- [66.111.4.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BE026EB45;
- Wed, 13 Oct 2021 20:49:44 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailnew.nyi.internal (Postfix) with ESMTP id 9EC94581178;
- Wed, 13 Oct 2021 16:49:43 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute6.internal (MEProxy); Wed, 13 Oct 2021 16:49:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u92.eu; h=from
- :to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding; s=fm3; bh=ecsQu7tdKkgkn
- KncDSxCGakyZcMIr6lVyFBxuQ1iKRU=; b=GnhF9DahHnTnPd4Tq+xVAhQPnlE0N
- bWHwLdwx2rJvORYJ9xSsDDptaR35qrzTgs+U7HkLbeCSO0uPWiuqxFZ/QV27+WTM
- vHuNy1O0UP4RoSdFXTbIM9MVnoGpYPUvZof/o/xm2Ctnd5Q546ItIOkjjwEUClcz
- QRNg95uER3+0cRbNVTwrLjoxz+PaZW6Hba2VuflbS5EPZCliWMSXUAwnT549U5Iy
- wFNkLbg/4SC9jfhwkQGPxG+/F6LgGhaiJ82qVHREOWdHCB1F9j8g9aA6CP6S/aca
- oC49xbl20GiksOET5HBYvZrGfXOGI1O9EiyNR/44dt1HdRAHl+bOv549w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-transfer-encoding:date:from
- :in-reply-to:message-id:mime-version:references:subject:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; bh=ecsQu7tdKkgknKncDSxCGakyZcMIr6lVyFBxuQ1iKRU=; b=EcdqXkkc
- puD4F+sN9+xN0bqSXEM0zLlL/V5tEbz6Qid4g9y8aAFTOEeOpO2DDwDcjbzr2Sv6
- /PlU2rwpgxu91KyoGsHJd2xUOWY2nEMwhBJgQ9mnSirvpS0/L+iRmh3o+131Oc51
- U4Nl9yvOKd7rqcqBf2R7m7QPBDmyuZJkEJVarxK0lJPkBq0I2m13YoL5jHEaoyBU
- 3p5EbF30OebM8EirWJ9oENXwxJh54h1MhKJ5NAKPSf5zBxbjZawYH0Y6yHfviRa6
- D/6E0899/0vCOF1weF5QhOPR1fX3dWGhy6XLrOzDTMI0PCV+DHxYUUon9o4SrjUt
- zywlkIeoDQqYsw==
-X-ME-Sender: <xms:Z0ZnYWjyVlMi3h6w0YXDR36VFBdEb1jUuC6jvB4Q-ktXAtGf4shwYw>
- <xme:Z0ZnYXDCpInBvX26x3VYsU4Ai-yzmK9SXQatPyJaPAYHADBa_y8MXunitJbqzB7jH
- ua1nkbsOnvEv0Tosg>
-X-ME-Received: <xmr:Z0ZnYeHBd_iW-DGeyhBNxILqA5zo9i3sYawA8E1NUPoDfoeQiyMzcKF7JgQAubdj0Lkl>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddutddgudehvdcutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtke
- ertdertddtnecuhfhrohhmpefhvghrnhgrnhguohcutfgrmhhoshcuoehgrhgvvghnfhho
- ohesuhelvddrvghuqeenucggtffrrghtthgvrhhnpeekleekjedtheejheekfefggeevvd
- fgueegffeuveduhfehueegkeeijedvvdejfeenucevlhhushhtvghrufhiiigvpedunecu
- rfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvvghnfhhoohesuhelvddrvghu
-X-ME-Proxy: <xmx:Z0ZnYfQefYGtJKKrO1iRTyBdwAxjvpn-5cMexUfKX2M9fJev01lJoA>
- <xmx:Z0ZnYTwqSen2grR4Rqr0lX-H3iPrYRbCm8GuqDm9JZYqTJ5FzTY0CA>
- <xmx:Z0ZnYd5_T4hBjDSuIHpYBHAVOc6OF_21xypgX-ZKauInrjiTITmuTA>
- <xmx:Z0ZnYbfkp34zM6mD4nGEO68hnq1MzJqm846wPh2_78edos1lupmsnw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 13 Oct 2021 16:49:40 -0400 (EDT)
-From: Fernando Ramos <greenfoo@u92.eu>
-To: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org, sean@poorly.run, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-tegra@vger.kernel.org
-Date: Wed, 13 Oct 2021 22:48:43 +0200
-Message-Id: <20211013204846.90026-18-greenfoo@u92.eu>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211013204846.90026-1-greenfoo@u92.eu>
-References: <20211013204846.90026-1-greenfoo@u92.eu>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C677C8999E;
+	Tue, 19 Oct 2021 18:09:58 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F09A89259;
+ Tue, 19 Oct 2021 18:09:57 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="208696114"
+X-IronPort-AV: E=Sophos;i="5.87,164,1631602800"; d="scan'208";a="208696114"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2021 11:09:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,164,1631602800"; d="scan'208";a="630077639"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga001.fm.intel.com with SMTP; 19 Oct 2021 11:09:52 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 19 Oct 2021 21:09:52 +0300
+Date: Tue, 19 Oct 2021 21:09:52 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lyude Paul <lyude@redhat.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, stable@vger.kernel.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Sean Paul <seanpaul@chromium.org>, open list <linux-kernel@vger.kernel.org>
+Message-ID: <YW8J8Nc7UJnISaVg@intel.com>
+References: <20211006024018.320394-1-lyude@redhat.com>
+ <20211006024018.320394-2-lyude@redhat.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 Oct 2021 17:18:28 +0000
-Subject: [Nouveau] [PATCH v4 17/20] drm/amd: cleanup: drm_modeset_lock_all()
- --> DRM_MODESET_LOCK_ALL_BEGIN() [part 2]
+In-Reply-To: <20211006024018.320394-2-lyude@redhat.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Nouveau] [PATCH v3 1/5] drm/i915: Add support for panels with
+ VESA backlights with PWM enable/disable
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,136 +64,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Refactor places using drm_modeset_{lock,unlock}_all() so that they only
-appear once per function.
+On Tue, Oct 05, 2021 at 10:40:14PM -0400, Lyude Paul wrote:
+> This simply adds proper support for panel backlights that can be controlled
+> via VESA's backlight control protocol, but which also require that we
+> enable and disable the backlight via PWM instead of via the DPCD interface.
+> We also enable this by default, in order to fix some people's backlights
+> that were broken by not having this enabled.
+> 
+> For reference, backlights that require this and use VESA's backlight
+> interface tend to be laptops with hybrid GPUs, but this very well may
+> change in the future.
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/3680
+> Fixes: fe7d52bccab6 ("drm/i915/dp: Don't use DPCD backlights that need PWM enable/disable")
+> Cc: <stable@vger.kernel.org> # v5.12+
+> ---
+>  .../drm/i915/display/intel_dp_aux_backlight.c | 24 ++++++++++++++-----
+>  1 file changed, 18 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index 569d17b4d00f..594fdc7453ca 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -293,6 +293,10 @@ intel_dp_aux_vesa_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  	struct intel_panel *panel = &connector->panel;
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
+>  
+> +	if (!panel->backlight.edp.vesa.info.aux_enable)
+> +		panel->backlight.pwm_funcs->enable(crtc_state, conn_state,
+> +						   panel->backlight.pwm_level_max);
 
-This is needed so that in the next commit I can replace those functions
-by the new macros (which use labels that can only appear once per
-function).
+What't the story here with the non-inverted max vs. pontetially inverted
+0 in the counterpart?
 
-Signed-off-by: Fernando Ramos <greenfoo@u92.eu>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 43 ++++++++-----------
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 18 +++-----
- 2 files changed, 26 insertions(+), 35 deletions(-)
+> +
+>  	drm_edp_backlight_enable(&intel_dp->aux, &panel->backlight.edp.vesa.info, level);
+>  }
+>  
+> @@ -304,6 +308,10 @@ static void intel_dp_aux_vesa_disable_backlight(const struct drm_connector_state
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
+>  
+>  	drm_edp_backlight_disable(&intel_dp->aux, &panel->backlight.edp.vesa.info);
+> +
+> +	if (!panel->backlight.edp.vesa.info.aux_enable)
+> +		panel->backlight.pwm_funcs->disable(old_conn_state,
+> +						    intel_backlight_invert_pwm_level(connector, 0));
+>  }
+>  
+>  static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector, enum pipe pipe)
+> @@ -321,6 +329,15 @@ static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector,
+>  	if (ret < 0)
+>  		return ret;
+>  
+> +	if (!panel->backlight.edp.vesa.info.aux_enable) {
+> +		ret = panel->backlight.pwm_funcs->setup(connector, pipe);
+> +		if (ret < 0) {
+> +			drm_err(&i915->drm,
+> +				"Failed to setup PWM backlight controls for eDP backlight: %d\n",
+> +				ret);
+> +			return ret;
+> +		}
+> +	}
+>  	panel->backlight.max = panel->backlight.edp.vesa.info.max;
+>  	panel->backlight.min = 0;
+>  	if (current_mode == DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD) {
+> @@ -340,12 +357,7 @@ intel_dp_aux_supports_vesa_backlight(struct intel_connector *connector)
+>  	struct intel_dp *intel_dp = intel_attached_dp(connector);
+>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  
+> -	/* TODO: We currently only support AUX only backlight configurations, not backlights which
+> -	 * require a mix of PWM and AUX controls to work. In the mean time, these machines typically
+> -	 * work just fine using normal PWM controls anyway.
+> -	 */
+> -	if ((intel_dp->edp_dpcd[1] & DP_EDP_BACKLIGHT_AUX_ENABLE_CAP) &&
+> -	    drm_edp_backlight_supported(intel_dp->edp_dpcd)) {
+> +	if (drm_edp_backlight_supported(intel_dp->edp_dpcd)) {
+>  		drm_dbg_kms(&i915->drm, "AUX Backlight Control Supported!\n");
+>  		return true;
+>  	}
+> -- 
+> 2.31.1
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index f35561b5a465..10ed1f8ad514 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -2935,13 +2935,6 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
- 	if (aconnector->base.force && new_connection_type == dc_connection_none) {
- 		emulated_link_detect(aconnector->dc_link);
- 
--		drm_modeset_lock_all(dev);
--		dm_restore_drm_connector_state(dev, connector);
--		drm_modeset_unlock_all(dev);
--
--		if (aconnector->base.force == DRM_FORCE_UNSPECIFIED)
--			drm_kms_helper_hotplug_event(dev);
--
- 	} else if (dc_link_detect(aconnector->dc_link, DETECT_REASON_HPD)) {
- 		if (new_connection_type == dc_connection_none &&
- 		    aconnector->dc_link->type == dc_connection_none &&
-@@ -2950,13 +2943,18 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
- 
- 		amdgpu_dm_update_connector_after_detect(aconnector);
- 
--		drm_modeset_lock_all(dev);
--		dm_restore_drm_connector_state(dev, connector);
--		drm_modeset_unlock_all(dev);
--
--		if (aconnector->base.force == DRM_FORCE_UNSPECIFIED)
--			drm_kms_helper_hotplug_event(dev);
-+	} else {
-+		goto out;
- 	}
-+
-+	drm_modeset_lock_all(dev);
-+	dm_restore_drm_connector_state(dev, connector);
-+	drm_modeset_unlock_all(dev);
-+
-+	if (aconnector->base.force == DRM_FORCE_UNSPECIFIED)
-+		drm_kms_helper_hotplug_event(dev);
-+
-+out:
- 	mutex_unlock(&aconnector->hpd_lock);
- 
- }
-@@ -3144,12 +3142,6 @@ static void handle_hpd_rx_irq(void *param)
- 
- 			amdgpu_dm_update_connector_after_detect(aconnector);
- 
--
--			drm_modeset_lock_all(dev);
--			dm_restore_drm_connector_state(dev, connector);
--			drm_modeset_unlock_all(dev);
--
--			drm_kms_helper_hotplug_event(dev);
- 		} else if (dc_link_detect(dc_link, DETECT_REASON_HPDRX)) {
- 
- 			if (aconnector->fake_enable)
-@@ -3157,14 +3149,17 @@ static void handle_hpd_rx_irq(void *param)
- 
- 			amdgpu_dm_update_connector_after_detect(aconnector);
- 
-+		} else {
-+			goto finish;
-+		}
- 
--			drm_modeset_lock_all(dev);
--			dm_restore_drm_connector_state(dev, connector);
--			drm_modeset_unlock_all(dev);
-+		drm_modeset_lock_all(dev);
-+		dm_restore_drm_connector_state(dev, connector);
-+		drm_modeset_unlock_all(dev);
- 
--			drm_kms_helper_hotplug_event(dev);
--		}
-+		drm_kms_helper_hotplug_event(dev);
- 	}
-+finish:
- #ifdef CONFIG_DRM_AMD_DC_HDCP
- 	if (hpd_irq_data.bytes.device_service_irq.bits.CP_IRQ) {
- 		if (adev->dm.hdcp_workqueue)
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index 814f67d86a3c..7751038d5788 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -1237,12 +1237,6 @@ static ssize_t trigger_hotplug(struct file *f, const char __user *buf,
- 			goto unlock;
- 
- 		amdgpu_dm_update_connector_after_detect(aconnector);
--
--		drm_modeset_lock_all(dev);
--		dm_restore_drm_connector_state(dev, connector);
--		drm_modeset_unlock_all(dev);
--
--		drm_kms_helper_hotplug_event(dev);
- 	} else if (param[0] == 0) {
- 		if (!aconnector->dc_link)
- 			goto unlock;
-@@ -1260,13 +1254,15 @@ static ssize_t trigger_hotplug(struct file *f, const char __user *buf,
- 
- 		amdgpu_dm_update_connector_after_detect(aconnector);
- 
--		drm_modeset_lock_all(dev);
--		dm_restore_drm_connector_state(dev, connector);
--		drm_modeset_unlock_all(dev);
--
--		drm_kms_helper_hotplug_event(dev);
-+	} else {
-+		goto unlock;
- 	}
- 
-+	drm_modeset_lock_all(dev);
-+	dm_restore_drm_connector_state(dev, connector);
-+	drm_modeset_unlock_all(dev);
-+	drm_kms_helper_hotplug_event(dev);
-+
- unlock:
- 	mutex_unlock(&aconnector->hpd_lock);
- 
 -- 
-2.33.0
-
+Ville Syrjälä
+Intel
