@@ -1,73 +1,90 @@
-Return-Path: <SRS0=IsjE=PU=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <SRS0=FYy6=PT=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D0593C433EF
-	for <nouveau@archiver.kernel.org>; Mon,  1 Nov 2021 19:09:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7461CC433F5
+	for <nouveau@archiver.kernel.org>; Sun, 31 Oct 2021 20:33:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8DB5F60F46
-	for <nouveau@archiver.kernel.org>; Mon,  1 Nov 2021 19:09:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8DB5F60F46
+	by mail.kernel.org (Postfix) with ESMTPS id 28DC060E54
+	for <nouveau@archiver.kernel.org>; Sun, 31 Oct 2021 20:33:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 28DC060E54
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30EA06E14F;
-	Mon,  1 Nov 2021 19:09:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 952CF89AB2;
+	Sun, 31 Oct 2021 20:33:12 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 851E36E176
- for <nouveau@lists.freedesktop.org>; Mon,  1 Nov 2021 19:09:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35C526E22B
+ for <nouveau@lists.freedesktop.org>; Mon, 25 Oct 2021 22:30:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1635793756;
+ s=mimecast20190719; t=1635201055;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=HukUEUCHpcgSi4l+3g0z+54KWpoB588PN8POrzaMgE8=;
- b=G+M85yBKYTPTv4h7xYDCeFOIjiJ/XkI6Lxc4FQ6fXQ6I0nCWG2rdEpPEMnlWap1ha/b4mI
- ZptaVgsv09/8yRA14O09hjILunQNpjuPPaKKRLIemVsSqpLgRzsV5avO25RQ02nOlTnpZn
- WYBMXach1zYscBSsteQ7r2axuzPR/j0=
-Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com
- [209.85.208.198]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-478-sb5-zg56OjSZJpUMf8SZcw-1; Mon, 01 Nov 2021 15:09:14 -0400
-X-MC-Unique: sb5-zg56OjSZJpUMf8SZcw-1
-Received: by mail-lj1-f198.google.com with SMTP id
- e13-20020a2e9e0d000000b00216ace8e8e5so116667ljk.10
- for <nouveau@lists.freedesktop.org>; Mon, 01 Nov 2021 12:09:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=HukUEUCHpcgSi4l+3g0z+54KWpoB588PN8POrzaMgE8=;
- b=vNE1/SWpCgOYtK6axcQGU89CWeU8Njl582egGz0Hz03+4Gf2TYA0ROHiVeq3+3vSqL
- Rgwta4xC/TnUd3+wuFQt8bCl1lSYdBPvMqK243Jb3Dw90UWa/lOadPgXidTd5rrVK77z
- KgmY2NvmhWM1jEee9O+tpWZt0fhiGmsE+LJGhrDSwMoS8hqYXGFoYQ5RT9M0j5lwnFpa
- LLkuDSUUgmJ23477yhx97ICwZi+5QyLs3G1Z+oOsy6zSHzA/c+vKO2ngSZuRIU+SEcx5
- cYWOqEwuU2IiGptIH+8geYvpJsI/PF2C+Qnxjot0KD/y4tISXdY4p7olT0bC3Z7WX+j1
- myXw==
-X-Gm-Message-State: AOAM531R599W56hVVkNZZrOJjTy0VjkKpCS5qEEjQIfSjzQtcL5b2O+G
- vQ+u6bpHMy4DeZqSnmG4kwCF4mZwFUSCe+yW9JuwQ8X9jgGrfcjU7QIHsmNlc+ME9hhrr9A9bJw
- Fl1mwJ47N2jMmkIhCC6W78XfK7WmA1PbXCQE0TdEA/w==
-X-Received: by 2002:a2e:5344:: with SMTP id t4mr32592550ljd.294.1635793752259; 
- Mon, 01 Nov 2021 12:09:12 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyP70/Q6U8IQQGf0DSctxI6DkcnJbFw3wAvI3uNP5MAP0PcwCIIWQxZdxI8oTJFcSpkEwN5lgERHGH8ha3yxt8=
-X-Received: by 2002:a2e:5344:: with SMTP id t4mr32592529ljd.294.1635793752029; 
- Mon, 01 Nov 2021 12:09:12 -0700 (PDT)
+ bh=4J1AonQCB7/aY+/rh+NKkrPlHas0envKCkSFtgpA41M=;
+ b=R1/p/qTypLz9pmhDjvjlVmm0hUzynjaMAy1vQ5QhBWAtysUifugE7DsIXyTJdo4B1T6JB1
+ JNZ0oU4fPkEhflQORyY9JIsGOIy1l0g8EBdNCj5JxTVsvFjxC42CIsIWZ6s66Fj9cQnBtP
+ qqQ7S6V17b995ToVusjM8kOIwuAgWY0=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-192-psKK8TUhMy-NSXFyXAzTjQ-1; Mon, 25 Oct 2021 18:30:53 -0400
+X-MC-Unique: psKK8TUhMy-NSXFyXAzTjQ-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 08B3D8018AC;
+ Mon, 25 Oct 2021 22:30:47 +0000 (UTC)
+Received: from emerald.lyude.net (unknown [10.22.9.162])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id B1BD917CDB;
+ Mon, 25 Oct 2021 22:30:42 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: dri-devel@lists.freedesktop.org,
+	amdgfx@lists.freedesktop.org
+Cc: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Ben Skeggs <bskeggs@redhat.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Fangzhi Zuo <Jerry.Zuo@amd.com>, "Leo (Hanghong) Ma" <hanghong.ma@amd.com>,
+ Jude Shih <shenshih@amd.com>, Colin Ian King <colin.king@canonical.com>,
+ Zhan Liu <zhan.liu@amd.com>, Roman Li <Roman.Li@amd.com>,
+ Bing Guo <bing.guo@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Anshuman Gupta <anshuman.gupta@intel.com>,
+ Nikola Cornij <nikola.cornij@amd.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ He Ying <heying24@huawei.com>, Sean Paul <seanpaul@chromium.org>,
+ Karol Herbst <kherbst@redhat.com>,
+ amd-gfx@lists.freedesktop.org (open list:AMD DISPLAY CORE),
+ linux-kernel@vger.kernel.org (open list),
+ intel-gfx@lists.freedesktop.org (open list:INTEL DRM DRIVERS (excluding
+ Poulsbo, Moorestow...), 
+ nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
+ GPUS)
+Date: Mon, 25 Oct 2021 18:30:26 -0400
+Message-Id: <20211025223029.300891-3-lyude@redhat.com>
+In-Reply-To: <20211025223029.300891-1-lyude@redhat.com>
+References: <20211025223029.300891-1-lyude@redhat.com>
 MIME-Version: 1.0
-References: <CAD8U+g_=X07mpM4_EJ_vteqTNdYqH+Ev7ihgea25qJW-3FZ_uw@mail.gmail.com>
- <CACO55tuZwYJKKBfHd5cgEv3_ry+B5fMO=4KCUGhvwyX8=Kq_hQ@mail.gmail.com>
-In-Reply-To: <CACO55tuZwYJKKBfHd5cgEv3_ry+B5fMO=4KCUGhvwyX8=Kq_hQ@mail.gmail.com>
-From: Karol Herbst <kherbst@redhat.com>
-Date: Mon, 1 Nov 2021 20:09:00 +0100
-Message-ID: <CACO55tv3DfrYObTfP7OqzOH6mESXx_KD5HRDtDaikUr0gH3hGg@mail.gmail.com>
-To: riveravaldez <riveravaldezmail@gmail.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=kherbst@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Nouveau] Various kernel error messages on updated Arch box
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
+X-Mailman-Approved-At: Sun, 31 Oct 2021 20:33:12 +0000
+Subject: [Nouveau] [PATCH v5 2/4] drm: Update MST First Link Slot
+ Information Based on Encoding Format
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,116 +96,236 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau <nouveau@lists.freedesktop.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Actually.. seems like somebody already filed a bug like this:
-https://gitlab.freedesktop.org/drm/nouveau/-/issues/91
+From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 
-Seems to be more widespread so I will check out if I hit this as well.
+8b/10b encoding format requires to reserve the first slot for
+recording metadata. Real data transmission starts from the second slot,
+with a total of available 63 slots available.
 
-On Mon, Nov 1, 2021 at 8:05 PM Karol Herbst <kherbst@redhat.com> wrote:
->
-> On Mon, Nov 1, 2021 at 7:38 PM riveravaldez <riveravaldezmail@gmail.com> wrote:
-> >
-> > Hi, I'm having this error messages at boot:
-> >
-> > $ sudo journalctl -ex -p3 | grep nouveau
-> > nov 01 14:47:39 arch kernel: nouveau 0000:01:00.0: ce: ucode exceeds falcon limit(s)
-> > nov 01 14:47:39 arch kernel: nouveau 0000:01:00.0: ce: init failed, -22
->
-> mhh, this shouldn't happen and the accesses below are probably related
-> to this. Mind sharing your complete dmesg via a pastebin site or just
-> go ahead and file a bug at
-> https://gitlab.freedesktop.org/drm/nouveau/-/issues ?
->
-> I assume you are on the newest kernel and everything? I will check if
-> I can reproduce it on the fermi I've got here, but could be something
-> specific to your GPU.
->
-> > nov 01 14:47:39 arch kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10312c [ PRIVRING ]
-> > nov 01 14:47:39 arch kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 103048 [ PRIVRING ]
-> > (...)
-> > nov 01 14:54:04 arch kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 103048 [ PRIVRING ]
-> > nov 01 14:54:04 arch kernel: nouveau 0000:01:00.0: bus: MMIO write of 00000000 FAULT at 103048 [ PRIVRING ]
-> > nov 01 14:54:22 arch kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 103048 [ PRIVRING ]
-> > nov 01 14:54:54 arch kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 103048 [ PRIVRING ]
-> > nov 01 14:55:06 arch kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 103048 [ PRIVRING ]
-> > (..., many similar)
-> >
-> > In this hardware:
-> >
-> > $ lspci -k
-> > 00:00.0 Host bridge: Intel Corporation 2nd Generation Core Processor Family DRAM Controller (rev 09)
-> > Subsystem: Dell Device 04b6
-> > 00:01.0 PCI bridge: Intel Corporation Xeon E3-1200/2nd Generation Core Processor Family PCI Express Root Port (rev 09)
-> > Kernel driver in use: pcieport
-> > 00:02.0 VGA compatible controller: Intel Corporation 2nd Generation Core Processor Family Integrated Graphics Controller (rev 09)
-> > Subsystem: Dell Device 04b6
-> > Kernel driver in use: i915
-> > Kernel modules: i915
-> > 00:16.0 Communication controller: Intel Corporation 6 Series/C200 Series Chipset Family MEI Controller #1 (rev 04)
-> > Subsystem: Dell Device 04b6
-> > Kernel driver in use: mei_me
-> > Kernel modules: mei_me
-> > 00:1a.0 USB controller: Intel Corporation 6 Series/C200 Series Chipset Family USB Enhanced Host Controller #2 (rev 05)
-> > Subsystem: Dell Device 04b6
-> > Kernel driver in use: ehci-pci
-> > 00:1b.0 Audio device: Intel Corporation 6 Series/C200 Series Chipset Family High Definition Audio Controller (rev 05)
-> > Subsystem: Dell Device 04b6
-> > Kernel driver in use: snd_hda_intel
-> > Kernel modules: snd_hda_intel
-> > 00:1c.0 PCI bridge: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 1 (rev b5)
-> > Kernel driver in use: pcieport
-> > 00:1c.1 PCI bridge: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 2 (rev b5)
-> > Kernel driver in use: pcieport
-> > 00:1c.3 PCI bridge: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 4 (rev b5)
-> > Kernel driver in use: pcieport
-> > 00:1c.4 PCI bridge: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 5 (rev b5)
-> > Kernel driver in use: pcieport
-> > 00:1c.5 PCI bridge: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 6 (rev b5)
-> > Kernel driver in use: pcieport
-> > 00:1d.0 USB controller: Intel Corporation 6 Series/C200 Series Chipset Family USB Enhanced Host Controller #1 (rev 05)
-> > Subsystem: Dell Device 04b6
-> > Kernel driver in use: ehci-pci
-> > 00:1f.0 ISA bridge: Intel Corporation HM67 Express Chipset LPC Controller (rev 05)
-> > Subsystem: Dell Device 04b6
-> > Kernel driver in use: lpc_ich
-> > Kernel modules: lpc_ich
-> > 00:1f.2 SATA controller: Intel Corporation 6 Series/C200 Series Chipset Family 6 port Mobile SATA AHCI Controller (rev 05)
-> > Subsystem: Dell Device 04b6
-> > Kernel driver in use: ahci
-> > 00:1f.3 SMBus: Intel Corporation 6 Series/C200 Series Chipset Family SMBus Controller (rev 05)
-> > Subsystem: Dell Device 04b6
-> > Kernel driver in use: i801_smbus
-> > Kernel modules: i2c_i801
-> > 01:00.0 VGA compatible controller: NVIDIA Corporation GF108M [GeForce GT 525M] (rev a1)
-> > Subsystem: Dell Device 04b6
-> > Kernel driver in use: nouveau
-> > Kernel modules: nouveau
-> > 01:00.1 Audio device: NVIDIA Corporation GF108 High Definition Audio Controller (rev a1)
-> > Kernel driver in use: snd_hda_intel
-> > Kernel modules: snd_hda_intel
-> > 03:00.0 Network controller: Intel Corporation Centrino Wireless-N 1030 [Rainbow Peak] (rev 34)
-> > Subsystem: Intel Corporation Centrino Wireless-N 1030 BGN
-> > Kernel driver in use: iwlwifi
-> > Kernel modules: iwlwifi
-> > 04:00.0 USB controller: NEC Corporation uPD720200 USB 3.0 Host Controller (rev 04)
-> > Subsystem: Dell Device 04b6
-> > Kernel driver in use: xhci_hcd
-> > Kernel modules: xhci_pci
-> > 06:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 06)
-> > Subsystem: Dell Device 04b6
-> > Kernel driver in use: r8169
-> > Kernel modules: r8169
-> >
-> > Updated Arch system.
-> >
-> > $ uname -a
-> > Linux arch 5.14.14-arch1-1 #1 SMP PREEMPT Wed, 20 Oct 2021 21:35:18 +0000 x86_64 GNU/Linux
-> >
-> > Something I should worry or do about?
-> >
-> > Thanks a lot in advance. Kind regards.
+In 128b/132b encoding format, metadata is transmitted separately
+in LLCP packet before MTP. Real data transmission starts from
+the first slot, with a total of 64 slots available.
+
+v2:
+* Move total/start slots to mst_state, and copy it to mst_mgr in
+atomic_check
+
+v3:
+* Only keep the slot info on the mst_state
+* add a start_slot parameter to the payload function, to facilitate non
+  atomic drivers (this is a temporary workaround and should be removed when
+  we are moving out the non atomic driver helpers)
+
+v4:
+*fixed typo and formatting
+
+v5: (no functional changes)
+* Fixed formatting in drm_dp_mst_update_slots()
+* Reference mst_state instead of mst_state->mgr for debugging info
+
+Signed-off-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+Signed-off-by: Fangzhi Zuo <Jerry.Zuo@amd.com>
+[v5 nitpicks]
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+---
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  2 +-
+ drivers/gpu/drm/drm_dp_mst_topology.c         | 36 ++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  4 +--
+ drivers/gpu/drm/nouveau/dispnv50/disp.c       |  2 +-
+ drivers/gpu/drm/radeon/radeon_dp_mst.c        |  4 +--
+ include/drm/drm_dp_mst_helper.h               |  5 ++-
+ 6 files changed, 42 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+index ff0f91c93ba4..6169488e2011 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+@@ -251,7 +251,7 @@ bool dm_helpers_dp_mst_write_payload_allocation_table(
+ 	}
+ 
+ 	/* It's OK for this to fail */
+-	drm_dp_update_payload_part1(mst_mgr);
++	drm_dp_update_payload_part1(mst_mgr, 1);
+ 
+ 	/* mst_mgr->->payloads are VC payload notify MST branch using DPCD or
+ 	 * AUX message. The sequence is slot 1-63 allocated sequence for each
+diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
+index 04ed34a7f71c..571da0c2f39f 100644
+--- a/drivers/gpu/drm/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+@@ -3355,6 +3355,10 @@ static int drm_dp_destroy_payload_step2(struct drm_dp_mst_topology_mgr *mgr,
+ /**
+  * drm_dp_update_payload_part1() - Execute payload update part 1
+  * @mgr: manager to use.
++ * @start_slot: this is the cur slot
++ *
++ * NOTE: start_slot is a temporary workaround for non-atomic drivers,
++ * this will be removed when non-atomic mst helpers are moved out of the helper
+  *
+  * This iterates over all proposed virtual channels, and tries to
+  * allocate space in the link for them. For 0->slots transitions,
+@@ -3365,12 +3369,12 @@ static int drm_dp_destroy_payload_step2(struct drm_dp_mst_topology_mgr *mgr,
+  * after calling this the driver should generate ACT and payload
+  * packets.
+  */
+-int drm_dp_update_payload_part1(struct drm_dp_mst_topology_mgr *mgr)
++int drm_dp_update_payload_part1(struct drm_dp_mst_topology_mgr *mgr, int start_slot)
+ {
+ 	struct drm_dp_payload req_payload;
+ 	struct drm_dp_mst_port *port;
+ 	int i, j;
+-	int cur_slots = 1;
++	int cur_slots = start_slot;
+ 	bool skip;
+ 
+ 	mutex_lock(&mgr->payload_lock);
+@@ -4505,6 +4509,27 @@ int drm_dp_atomic_release_vcpi_slots(struct drm_atomic_state *state,
+ }
+ EXPORT_SYMBOL(drm_dp_atomic_release_vcpi_slots);
+ 
++/**
++ * drm_dp_mst_update_slots() - updates the slot info depending on the DP ecoding format
++ * @mst_state: mst_state to update
++ * @link_encoding_cap: the ecoding format on the link
++ */
++void drm_dp_mst_update_slots(struct drm_dp_mst_topology_state *mst_state, uint8_t link_encoding_cap)
++{
++	if (link_encoding_cap == DP_CAP_ANSI_128B132B) {
++		mst_state->total_avail_slots = 64;
++		mst_state->start_slot = 0;
++	} else {
++		mst_state->total_avail_slots = 63;
++		mst_state->start_slot = 1;
++	}
++
++	DRM_DEBUG_KMS("%s encoding format on mst_state 0x%p\n",
++		      (link_encoding_cap == DP_CAP_ANSI_128B132B) ? "128b/132b":"8b/10b",
++		      mst_state);
++}
++EXPORT_SYMBOL(drm_dp_mst_update_slots);
++
+ /**
+  * drm_dp_mst_allocate_vcpi() - Allocate a virtual channel
+  * @mgr: manager for this port
+@@ -5224,7 +5249,7 @@ drm_dp_mst_atomic_check_vcpi_alloc_limit(struct drm_dp_mst_topology_mgr *mgr,
+ 					 struct drm_dp_mst_topology_state *mst_state)
+ {
+ 	struct drm_dp_vcpi_allocation *vcpi;
+-	int avail_slots = 63, payload_count = 0;
++	int avail_slots = mst_state->total_avail_slots, payload_count = 0;
+ 
+ 	list_for_each_entry(vcpi, &mst_state->vcpis, next) {
+ 		/* Releasing VCPI is always OK-even if the port is gone */
+@@ -5253,7 +5278,7 @@ drm_dp_mst_atomic_check_vcpi_alloc_limit(struct drm_dp_mst_topology_mgr *mgr,
+ 		}
+ 	}
+ 	drm_dbg_atomic(mgr->dev, "[MST MGR:%p] mst state %p VCPI avail=%d used=%d\n",
+-		       mgr, mst_state, avail_slots, 63 - avail_slots);
++		       mgr, mst_state, avail_slots, mst_state->total_avail_slots - avail_slots);
+ 
+ 	return 0;
+ }
+@@ -5530,6 +5555,9 @@ int drm_dp_mst_topology_mgr_init(struct drm_dp_mst_topology_mgr *mgr,
+ 	if (mst_state == NULL)
+ 		return -ENOMEM;
+ 
++	mst_state->total_avail_slots = 63;
++	mst_state->start_slot = 1;
++
+ 	mst_state->mgr = mgr;
+ 	INIT_LIST_HEAD(&mst_state->vcpis);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 16620172abf7..6007a79c3938 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -376,7 +376,7 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
+ 
+ 	drm_dp_mst_reset_vcpi_slots(&intel_dp->mst_mgr, connector->port);
+ 
+-	ret = drm_dp_update_payload_part1(&intel_dp->mst_mgr);
++	ret = drm_dp_update_payload_part1(&intel_dp->mst_mgr, 1);
+ 	if (ret) {
+ 		drm_dbg_kms(&i915->drm, "failed to update payload %d\n", ret);
+ 	}
+@@ -516,7 +516,7 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
+ 
+ 	intel_dp->active_mst_links++;
+ 
+-	ret = drm_dp_update_payload_part1(&intel_dp->mst_mgr);
++	ret = drm_dp_update_payload_part1(&intel_dp->mst_mgr, 1);
+ 
+ 	/*
+ 	 * Before Gen 12 this is not done as part of
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index d7b9f7f8c9e3..8e28403ea9b1 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -1414,7 +1414,7 @@ nv50_mstm_prepare(struct nv50_mstm *mstm)
+ 	int ret;
+ 
+ 	NV_ATOMIC(drm, "%s: mstm prepare\n", mstm->outp->base.base.name);
+-	ret = drm_dp_update_payload_part1(&mstm->mgr);
++	ret = drm_dp_update_payload_part1(&mstm->mgr, 1);
+ 
+ 	drm_for_each_encoder(encoder, mstm->outp->base.base.dev) {
+ 		if (encoder->encoder_type == DRM_MODE_ENCODER_DPMST) {
+diff --git a/drivers/gpu/drm/radeon/radeon_dp_mst.c b/drivers/gpu/drm/radeon/radeon_dp_mst.c
+index ec867fa880a4..751c2c075e09 100644
+--- a/drivers/gpu/drm/radeon/radeon_dp_mst.c
++++ b/drivers/gpu/drm/radeon/radeon_dp_mst.c
+@@ -423,7 +423,7 @@ radeon_mst_encoder_dpms(struct drm_encoder *encoder, int mode)
+ 		drm_dp_mst_allocate_vcpi(&radeon_connector->mst_port->mst_mgr,
+ 					 radeon_connector->port,
+ 					 mst_enc->pbn, slots);
+-		drm_dp_update_payload_part1(&radeon_connector->mst_port->mst_mgr);
++		drm_dp_update_payload_part1(&radeon_connector->mst_port->mst_mgr, 1);
+ 
+ 		radeon_dp_mst_set_be_cntl(primary, mst_enc,
+ 					  radeon_connector->mst_port->hpd.hpd, true);
+@@ -452,7 +452,7 @@ radeon_mst_encoder_dpms(struct drm_encoder *encoder, int mode)
+ 			return;
+ 
+ 		drm_dp_mst_reset_vcpi_slots(&radeon_connector->mst_port->mst_mgr, mst_enc->port);
+-		drm_dp_update_payload_part1(&radeon_connector->mst_port->mst_mgr);
++		drm_dp_update_payload_part1(&radeon_connector->mst_port->mst_mgr, 1);
+ 
+ 		drm_dp_check_act_status(&radeon_connector->mst_port->mst_mgr);
+ 		/* and this can also fail */
+diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
+index ddb9231d0309..78044ac5b59b 100644
+--- a/include/drm/drm_dp_mst_helper.h
++++ b/include/drm/drm_dp_mst_helper.h
+@@ -554,6 +554,8 @@ struct drm_dp_mst_topology_state {
+ 	struct drm_private_state base;
+ 	struct list_head vcpis;
+ 	struct drm_dp_mst_topology_mgr *mgr;
++	u8 total_avail_slots;
++	u8 start_slot;
+ };
+ 
+ #define to_dp_mst_topology_mgr(x) container_of(x, struct drm_dp_mst_topology_mgr, base)
+@@ -806,6 +808,7 @@ int drm_dp_mst_get_vcpi_slots(struct drm_dp_mst_topology_mgr *mgr, struct drm_dp
+ 
+ void drm_dp_mst_reset_vcpi_slots(struct drm_dp_mst_topology_mgr *mgr, struct drm_dp_mst_port *port);
+ 
++void drm_dp_mst_update_slots(struct drm_dp_mst_topology_state *mst_state, uint8_t link_encoding_cap);
+ 
+ void drm_dp_mst_deallocate_vcpi(struct drm_dp_mst_topology_mgr *mgr,
+ 				struct drm_dp_mst_port *port);
+@@ -815,7 +818,7 @@ int drm_dp_find_vcpi_slots(struct drm_dp_mst_topology_mgr *mgr,
+ 			   int pbn);
+ 
+ 
+-int drm_dp_update_payload_part1(struct drm_dp_mst_topology_mgr *mgr);
++int drm_dp_update_payload_part1(struct drm_dp_mst_topology_mgr *mgr, int start_slot);
+ 
+ 
+ int drm_dp_update_payload_part2(struct drm_dp_mst_topology_mgr *mgr);
+-- 
+2.31.1
 
