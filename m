@@ -2,80 +2,74 @@ Return-Path: <SRS0=fNWK=PY=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A4366C433EF
-	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:25:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F0D6FC433FE
+	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:25:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 691526044F
-	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:25:51 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 691526044F
+	by mail.kernel.org (Postfix) with ESMTPS id C51616044F
+	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:25:52 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org C51616044F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7193E6E8F0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83FBE6E8E6;
 	Fri,  5 Nov 2021 14:25:41 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D312089CD4
- for <nouveau@lists.freedesktop.org>; Fri,  5 Nov 2021 12:01:14 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 207C57386B
+ for <nouveau@lists.freedesktop.org>; Thu,  4 Nov 2021 20:09:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1636113674;
+ s=mimecast20190719; t=1636056559;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=d6mnjEfsvPWlmw0Dlsyl+1vpuoyclHqeKNkGqPRjBhA=;
- b=blUsf+DphCkAa2HzUFHJk6+P+VzzwtzOxDAyn5bgR5WNRZGlPXWs1j2BdkXG88YOnqg8Ay
- TO/sHz4yO/A7M742m4XkmdR1n4lr3z2kNopkY2ejELFhcmmoazFDDpNlPudMu7hH2+8kb4
- SaT2zuHLgAHlqMsJYaQk3CKa5l7A+fk=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-359-pw16T3ipPOy92JRCy_p5sw-1; Fri, 05 Nov 2021 08:00:52 -0400
-X-MC-Unique: pw16T3ipPOy92JRCy_p5sw-1
-Received: by mail-wm1-f72.google.com with SMTP id
- o10-20020a05600c4fca00b0033312e1ed8bso510128wmq.2
- for <nouveau@lists.freedesktop.org>; Fri, 05 Nov 2021 05:00:52 -0700 (PDT)
+ bh=WRdrRlX7d6jR9XJ1WlJwuA/7L4WdNGNHCwwgPSMtrew=;
+ b=dDewa/LtGBJX7ac4fwngfqrK3V0fYBgwe+JLjd8GGTEQ1eZqtvHimZmHkNb2MWId6OpMe4
+ HTZd/hQxjMhhf1/oCMVhZIyNr1OO3vGG7gUcU+MqTAZyqMZM+UmA92DYXS5vxkJy3HaJHG
+ WZC+ZVdbavgqa5ilcXPTOemEuhnqZWQ=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-460-7N4Q-XKwOrWnPko4RQBeGw-1; Thu, 04 Nov 2021 16:09:18 -0400
+X-MC-Unique: 7N4Q-XKwOrWnPko4RQBeGw-1
+Received: by mail-wr1-f72.google.com with SMTP id
+ h13-20020adfa4cd000000b001883fd029e8so762559wrb.11
+ for <nouveau@lists.freedesktop.org>; Thu, 04 Nov 2021 13:09:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
  :content-language:to:cc:references:from:in-reply-to
  :content-transfer-encoding;
- bh=d6mnjEfsvPWlmw0Dlsyl+1vpuoyclHqeKNkGqPRjBhA=;
- b=B/t1NywQR3XXuh2kSlKEVRqknJDGK1kLvGOpFcgr+mn02nyeN+Bn4bnVxuaYmxJp2o
- 9+smzkXprMcD7agcUdGGyLkYkpbJgsSDCCJ8dJaHWc1NyedgovdYdM854WWYc/lsrmwF
- zllGfxZ4pYGo9/Q7vrVw6CYRzMh5EnRMSytEvtCkY0U84y+YVY+3PkON5fZv5EWw1cKh
- OTvtsVdg9Qky/VU8cJgdTlzaRExv2dbKHLcIA2xAavjnZYXN8KrUWtGHej2cGsQT47xH
- vPuZHzuWaKpEfBhTHjKKncQg11xyc7+MuYi6hadK8gt82iPLQhf6m+qAgfUwT9oa/26w
- vNfw==
-X-Gm-Message-State: AOAM5327RIsPIk+yaKuJPeK5t0Q4482MmF2x2cnoEr9sTZWo2gcTNlb3
- 88Jlc4Iu0L+UNF0ZWfVh9m4++WPJuhC7+3KyqAP7FZOp3K9fXQKGzj6Px9adB/6UC6LdTXAjwtr
- QbtnShTJmldO/3bugIR4tzh6ENA==
-X-Received: by 2002:a05:6000:1868:: with SMTP id
- d8mr36559135wri.285.1636113651757; 
- Fri, 05 Nov 2021 05:00:51 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwxlHaNU9FU6Qy+ImAOwcqW/sLneLxZOG0rukxfbYjqJBdrwuSz7fg+xp3pWIymRwt/FJOPRA==
-X-Received: by 2002:a05:6000:1868:: with SMTP id
- d8mr36559073wri.285.1636113651479; 
- Fri, 05 Nov 2021 05:00:51 -0700 (PDT)
+ bh=WRdrRlX7d6jR9XJ1WlJwuA/7L4WdNGNHCwwgPSMtrew=;
+ b=GTh0fjwjTpz5Fu90yaxdOjsOe1qN80IWO+WluvI81/3ROaiZVtAXmdfSXPpCecaVu8
+ nITRkk4cXl5smpfNX2UZ5FEvq2QjsWgGTryXAiQ8uFRzjQDiHuNbrG/jd9EbZqD6FPSo
+ L7wgAtDwaP1vRvZZbNkh8hne2uOv/Fz0uPQ4fisvgyzRObOstXdy5rRLWgyecu6iTCej
+ /BrSSsx3yAgiM5jaYWMiZlTI6uYBM8EIKyqavaDamOSIEDZDvdA7J2zBmT0raaUMEipT
+ CcJ17AEumUmpeiD96Ny2Rq9bTbSPP5hpvCgfGXPwvaML5aI+Br6YPQFu7SvDzeKCWivm
+ URFQ==
+X-Gm-Message-State: AOAM532agquYKX7iQlFFH88iEsM0CYY5fQrsVxYf72BcbtiY3n1cAT5f
+ PzbLRoNMSWE6oPG1/R7KYndml8JKmyKJxm+wEQMCpBeFoxdTglvl/ZxbdHoVcXowwoFDl9v58Gr
+ LUdubWdVRMvewEA1zZr7nJv+RUw==
+X-Received: by 2002:a1c:ed03:: with SMTP id l3mr26040196wmh.86.1636056557069; 
+ Thu, 04 Nov 2021 13:09:17 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy76MY/85Rr56RxIxfOCWbJkdVKLFu3k+Td/GsoIreVUO3gSrCM0LaAND1RBuRZ0S+UgTUN+Q==
+X-Received: by 2002:a1c:ed03:: with SMTP id l3mr26040146wmh.86.1636056556830; 
+ Thu, 04 Nov 2021 13:09:16 -0700 (PDT)
 Received: from [192.168.1.128] ([92.176.231.106])
- by smtp.gmail.com with ESMTPSA id m21sm7590336wrb.2.2021.11.05.05.00.50
+ by smtp.gmail.com with ESMTPSA id z15sm6028960wrr.65.2021.11.04.13.09.15
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 05 Nov 2021 05:00:51 -0700 (PDT)
-Message-ID: <335a9e0f-cce9-480b-10e0-bd312b81e587@redhat.com>
-Date: Fri, 5 Nov 2021 13:00:49 +0100
+ Thu, 04 Nov 2021 13:09:16 -0700 (PDT)
+Message-ID: <0c07f121-42d3-9f37-1e14-842fb685b501@redhat.com>
+Date: Thu, 4 Nov 2021 21:09:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.2.0
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, linux-kernel@vger.kernel.org
+To: Jani Nikula <jani.nikula@linux.intel.com>, linux-kernel@vger.kernel.org
 References: <20211104160707.1407052-1-javierm@redhat.com>
  <20211104160707.1407052-2-javierm@redhat.com> <87ilx7ae3v.fsf@intel.com>
- <0c07f121-42d3-9f37-1e14-842fb685b501@redhat.com>
- <d4a64906-69e5-3250-2362-79f2afac0a23@suse.de>
- <38dbcc8f-2f95-6846-537f-9b85468bfa87@redhat.com> <877ddmapfj.fsf@intel.com>
 From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <877ddmapfj.fsf@intel.com>
+In-Reply-To: <87ilx7ae3v.fsf@intel.com>
 Authentication-Results: relay.mimecast.com;
  auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
 X-Mimecast-Spam-Score: 0
@@ -97,51 +91,79 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Hans de Goede <hdegoede@redhat.com>, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- amd-gfx@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
- Ben Skeggs <bskeggs@redhat.com>,
+Cc: David Airlie <airlied@linux.ie>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, amd-gfx@lists.freedesktop.org,
  VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Dave Airlie <airlied@redhat.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- virtualization@lists.linux-foundation.org, intel-gfx@lists.freedesktop.org,
+ Peter Robinson <pbrobinson@gmail.com>, nouveau@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>, Chia-I Wu <olvaffe@gmail.com>,
+ Ben Skeggs <bskeggs@redhat.com>,
  =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>,
- Peter Robinson <pbrobinson@gmail.com>
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ virtualization@lists.linux-foundation.org,
+ Pekka Paalanen <pekka.paalanen@collabora.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, spice-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ intel-gfx@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Zack Rusin <zackr@vmware.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 11/5/21 11:04, Jani Nikula wrote:
-> On Fri, 05 Nov 2021, Javier Martinez Canillas <javierm@redhat.com> wrote:
+Hello Jani,
 
-[snip]
-
->>
->> Do you envision other condition that could be added later to disable a
->> DRM driver ? Or do you think that just from a code readability point of
->> view makes worth it ?
+On 11/4/21 20:57, Jani Nikula wrote:
+> On Thu, 04 Nov 2021, Javier Martinez Canillas <javierm@redhat.com> wrote:
+>> +/**
+>> + * drm_drv_enabled - Checks if a DRM driver can be enabled
+>> + * @driver: DRM driver to check
+>> + *
+>> + * Checks whether a DRM driver can be enabled or not. This may be the case
+>> + * if the "nomodeset" kernel command line parameter is used.
+>> + *
+>> + * Return: 0 on success or a negative error code on failure.
+>> + */
+>> +int drm_drv_enabled(const struct drm_driver *driver)
+>> +{
+>> +	if (vgacon_text_force()) {
+>> +		DRM_INFO("%s driver is disabled\n", driver->name);
+>> +		return -ENODEV;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL(drm_drv_enabled);
 > 
-> Taking a step back for perspective.
+> The name implies a bool return, but it's not.
 > 
-> I think there's broad consensus in moving the parameter to drm, naming
-> the check function to drm_something_something(), and breaking the ties
-> to CONFIG_VGA_CONSOLE. I appreciate the work you're doing to that
-> effect.
->
+> 	if (drm_drv_enabled(...)) {
+> 		/* surprise, it's disabled! */
+> 	}
+> 
 
-Thanks, I appreciate your feedback and comments.
- 
-> I think everything beyond that is still a bit vague and/or
-> contentious. So how about making the first 2-3 patches just that?
-> Something we can all agree on, makes good progress, improves the kernel,
-> and gives us something to build on?
->
+It used to return a bool in v2 but Thomas suggested an int instead to
+have consistency on the errno code that was returned by the callers.
 
-That works for me. Thomas, do you agree with that approach ?
- 
+I should probably name that function differently to avoid confusion.
+
+But I think you are correct and this change is caused too much churn
+for not that much benefit, specially since is unclear that there might
+be another condition to prevent a DRM driver to load besides nomodeset.
+
+I'll just drop this patch and post only #2 but making drivers to test
+using the drm_check_modeset() function (which doesn't have a name that
+implies a bool return).
+
+> 
+> BR,
+> Jani.
+> 
+> 
+> 
+
 Best regards,
 -- 
 Javier Martinez Canillas
