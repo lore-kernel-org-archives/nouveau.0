@@ -2,77 +2,85 @@ Return-Path: <SRS0=fNWK=PY=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 86D90C433F5
-	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:25:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 61D3EC433EF
+	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:25:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 54D1861183
-	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:25:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 54D1861183
+	by mail.kernel.org (Postfix) with ESMTPS id 2DAAF6044F
+	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:25:58 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 2DAAF6044F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F9676E912;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB50D6E91A;
 	Fri,  5 Nov 2021 14:25:43 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5683F6F89B
- for <nouveau@lists.freedesktop.org>; Thu,  4 Nov 2021 16:07:27 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC59A72D95
+ for <nouveau@lists.freedesktop.org>; Thu,  4 Nov 2021 18:20:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1636042046;
+ s=mimecast20190719; t=1636050012;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=n/ejIrVb3rZrH44A2zViksmvIEiiBszGsTbTQyQjoKs=;
- b=hsDF9tJ9qoT6srxTuTvAMe2Qwg0BtWKJgkuKLTKcjAJ2GC3bY1IU8SqPb9al6Ve4d8YJn0
- Gu4gUe7bO6TzxiQbu2e1j6EYZ1lSEy3OKeiXsETr5LR781bBlgrWuTgOubjwlZTuSMJugz
- 81fy1iW51cIrz9vj548MMHHJDpX4HZM=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-513-SmKuV3_MM2eG33cXSzgM0g-1; Thu, 04 Nov 2021 12:07:22 -0400
-X-MC-Unique: SmKuV3_MM2eG33cXSzgM0g-1
-Received: by mail-wm1-f70.google.com with SMTP id
- v18-20020a7bcb52000000b00322fea1d5b7so2719506wmj.9
- for <nouveau@lists.freedesktop.org>; Thu, 04 Nov 2021 09:07:22 -0700 (PDT)
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=DPH6EuJ+PxYsGUm+zlkPCdeGhbo5rViEzGtoDqi+xkE=;
+ b=AyJES+82R9kisu7HkzQhxRyaegwLhqFlMlNoqbhpzbOZFArtKSrZRUncwyvbgXNAeEwkHy
+ XuUzYbEB8R5oXt9ILyerwebfYyFgnq1b3bPn3X1zNrXgjYDxexwjjNgZC1wcpDQqiIfdeT
+ 4XgPxXpJl8eolwykYGGRrPOwyX3ypnw=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-210-t7IGr6jMPYmllJjuFXi_6Q-1; Thu, 04 Nov 2021 14:20:10 -0400
+X-MC-Unique: t7IGr6jMPYmllJjuFXi_6Q-1
+Received: by mail-wr1-f71.google.com with SMTP id
+ j12-20020adf910c000000b0015e4260febdso1298319wrj.20
+ for <nouveau@lists.freedesktop.org>; Thu, 04 Nov 2021 11:20:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
  :content-transfer-encoding;
- bh=n/ejIrVb3rZrH44A2zViksmvIEiiBszGsTbTQyQjoKs=;
- b=C6C/KiS0CA4LI38bQnv0F6YxXyuCxf2DkzvfOOEs/eyqKxUBqWK4Io48LnEUtQWn8t
- fxEoXUcS7X/QZSygcjojY8wLo1uqAsc044+a6JMZpGuM1AqVFX2Na50dXaAuOCQmPEer
- wSMwVuPT5bl+dKgbWsFhWqAIOSjHPzN/AltQJNrMh31Tns9ECjSGFpnhGflp6csV/EWd
- av8d1TAeu5pS8/3gdCqyV/nDfIISFpchliaNz5wxE7sL//G34WPBwMr76NdqoLcBkqyc
- kkWDsx0nzJ8RtUyYQhMCiOQRf+mGk8yBzPRadqDnOYc7YiDttGkXen7UC5s53wtcCGHJ
- K4Fw==
-X-Gm-Message-State: AOAM532LMaR/YsNkwI1Uuc1JLmk1fbrpf1CcKrzCDIBBbpmkk5Y7xQmR
- x2Z5pEJMUpgZfrmrEuhEnmtcFoJlOft5qw2Vn76FL67DYoSdIuJSEfDzX2ZEIiQhr/27kQMhMRk
- siTPALgGItne6GhjA4syhwcFKsw==
-X-Received: by 2002:a7b:ca44:: with SMTP id m4mr23689901wml.100.1636042041574; 
- Thu, 04 Nov 2021 09:07:21 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwxQs3q9Q2yGgJQmZ5zypW+OBIyfR4YAS74a/Zv3Ucv5aomcisjC91zz+w+lhZHPPKLJjXLiw==
-X-Received: by 2002:a7b:ca44:: with SMTP id m4mr23689832wml.100.1636042041250; 
- Thu, 04 Nov 2021 09:07:21 -0700 (PDT)
-Received: from minerva.home ([92.176.231.106])
- by smtp.gmail.com with ESMTPSA id l18sm5877863wrt.81.2021.11.04.09.07.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 04 Nov 2021 09:07:20 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: linux-kernel@vger.kernel.org
-Date: Thu,  4 Nov 2021 17:07:05 +0100
-Message-Id: <20211104160707.1407052-1-javierm@redhat.com>
-X-Mailer: git-send-email 2.33.1
+ bh=DPH6EuJ+PxYsGUm+zlkPCdeGhbo5rViEzGtoDqi+xkE=;
+ b=d+kdt8NGGjzOrwq6xC3xkbVJM1XqNmxJMXrNPOn4YsNNHqTc5pRUUbn19y88FSJGb8
+ WW4T8HUV49qiTVl/ePXJe0gxRcCX/UNcbB/l+bAhupYGzJ2U57kTSJU1grin1o4m9QXR
+ 2oN/iSQSXCSaxmSKKN/d0ik2/WSGUOEXlj9ONFakRPMkk6AQHQizATM+bK82QZLQlvaG
+ E7SX1OScuAcfLa1tEOlWmeTPnHjNXJT2sHcxPhZZDVe3nJScaDAnGu6+0PLLU0Wp4NHl
+ Pr0OsxU994cKdNxuvK9ekL+HOFFqCAnm6YKbTRgi1BDpJ5KpzH5JDXJahmVpDBD4Lfi0
+ lo1Q==
+X-Gm-Message-State: AOAM532GBVbzmYWpIUXgUtRtFe9bpE8xzTEczEYNvvcEZblsCpt/QFQV
+ /wzJuwmceKzNWdqsTQ2eWcLvMedwxe026rogJ6DSTPVfls9VRR63Tjs2UBguUJd24MbHECOUjGQ
+ /CcfDY3xCLc+U8Woz2F3VXOfT+A==
+X-Received: by 2002:adf:ca05:: with SMTP id o5mr67030436wrh.7.1636050009633;
+ Thu, 04 Nov 2021 11:20:09 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx/X5zAKF0naXD46twKzDH8yo1eUOZPcqgT/e12WiD5Np7h+imVTH2w807R9LdbPX1VAP79Mg==
+X-Received: by 2002:adf:ca05:: with SMTP id o5mr67030370wrh.7.1636050009331;
+ Thu, 04 Nov 2021 11:20:09 -0700 (PDT)
+Received: from [192.168.1.128] ([92.176.231.106])
+ by smtp.gmail.com with ESMTPSA id o1sm5849625wru.91.2021.11.04.11.20.07
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 04 Nov 2021 11:20:08 -0700 (PDT)
+Message-ID: <eddff405-18f5-31cf-9981-27343384e12c@redhat.com>
+Date: Thu, 4 Nov 2021 19:20:06 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+To: Jani Nikula <jani.nikula@linux.intel.com>, Sam Ravnborg <sam@ravnborg.org>
+References: <20211104160707.1407052-1-javierm@redhat.com>
+ <20211104160707.1407052-2-javierm@redhat.com> <YYQaYsCr+piMlRpS@ravnborg.org>
+ <87r1bvajna.fsf@intel.com>
+From: Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <87r1bvajna.fsf@intel.com>
 Authentication-Results: relay.mimecast.com;
  auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
+Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 05 Nov 2021 14:25:38 +0000
-Subject: [Nouveau] [PATCH v2 0/2] Cleanups for the nomodeset kernel command
- line parameter logic
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Fri, 05 Nov 2021 14:25:39 +0000
+Subject: Re: [Nouveau] [PATCH v2 1/2] drm: Add a drm_drv_enabled() to check
+ if drivers should be enabled
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,100 +92,167 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, David Airlie <airlied@linux.ie>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Javier Martinez Canillas <javierm@redhat.com>, amd-gfx@lists.freedesktop.org,
+Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Dave Airlie <airlied@redhat.com>,
+ amd-gfx@lists.freedesktop.org,
  VMware Graphics <linux-graphics-maintainer@vmware.com>,
  Peter Robinson <pbrobinson@gmail.com>, nouveau@lists.freedesktop.org,
- Dave Airlie <airlied@redhat.com>, Chia-I Wu <olvaffe@gmail.com>,
+ spice-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  Ben Skeggs <bskeggs@redhat.com>,
- =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>,
+ Hans de Goede <hdegoede@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  virtualization@lists.linux-foundation.org,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, spice-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Zack Rusin <zackr@vmware.com>
+ Pekka Paalanen <pekka.paalanen@collabora.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-There is a lot of historical baggage on this parameter. It is defined in
-the vgacon driver as nomodeset, but its set function is called text_mode()
-and the value queried with a function named vgacon_text_force().
+Hello Sam,
 
-All this implies that it's about forcing text mode for VGA, yet it is not
-used in neither vgacon nor other console driver. The only users for these
-are DRM drivers, that check for the vgacon_text_force() return value to
-determine whether the driver should be loaded or not.
+On 11/4/21 18:57, Jani Nikula wrote:
+> On Thu, 04 Nov 2021, Sam Ravnborg <sam@ravnborg.org> wrote:
+>> Hi Javier,
+>>
+>> On Thu, Nov 04, 2021 at 05:07:06PM +0100, Javier Martinez Canillas wrote:
+>>> Some DRM drivers check the vgacon_text_force() function return value as an
+>>> indication on whether they should be allowed to be enabled or not.
+>>>
+>>> This function returns true if the nomodeset kernel command line parameter
+>>> was set. But there may be other conditions besides this to determine if a
+>>> driver should be enabled.
+>>>
+>>> Let's add a drm_drv_enabled() helper function to encapsulate that logic so
+>>> can be later extended if needed, without having to modify all the drivers.
+>>>
+>>> Also, while being there do some cleanup. The vgacon_text_force() function
+>>> is guarded by CONFIG_VGA_CONSOLE and there's no need for callers to do it.
+>>>
+>>> Suggested-by: Thomas Zimmermann <tzimmermann@suse.de>
+>>> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+>>> ---
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+>>> index 8214a0b1ab7f..3fb567d62881 100644
+>>> --- a/drivers/gpu/drm/drm_drv.c
+>>> +++ b/drivers/gpu/drm/drm_drv.c
+>>> @@ -975,6 +975,26 @@ int drm_dev_set_unique(struct drm_device *dev, const char *name)
+>>>  }
+>>>  EXPORT_SYMBOL(drm_dev_set_unique);
+>>>  
+>>> +/**
+>>> + * drm_drv_enabled - Checks if a DRM driver can be enabled
+>>> + * @driver: DRM driver to check
+>>> + *
+>>> + * Checks whether a DRM driver can be enabled or not. This may be the case
+>>> + * if the "nomodeset" kernel command line parameter is used.
+>>> + *
+>>> + * Return: 0 on success or a negative error code on failure.
+>>> + */
+>>> +int drm_drv_enabled(const struct drm_driver *driver)
+>>> +{
+>>> +	if (vgacon_text_force()) {
+>>> +		DRM_INFO("%s driver is disabled\n", driver->name);
+>>
+>> DRM_INFO is deprecated, please do not use it in new code.
+>> Also other users had an error message and not just info - is info
+>> enough?
+>>
 
-That makes it quite confusing to read the code, because the variables and
-function names don't reflect what they actually do and also are not in the
-same subsystem as the drivers that make use of them.
+Thanks, I didn't know that. Right, they had an error but I do wonder
+if that was correct though. After all isn't an error but an explicit
+disable due "nomodeset" being set in the kernel command line.
 
-This patch-set attempts to cleanup the code by moving the nomodseset param
-to the DRM subsystem and do some renaming to make their intention clearer.
+[snip]
 
-There is also another aspect that could be improved, and is the fact that
-drivers are checking for the nomodeset being set as an indication if have
-to be loaded.
+>>>  
+>>> -	if (vgacon_text_force() && i915_modparams.modeset == -1)
+>>> +	ret = drm_drv_enabled(&driver);
+>>
+>> You pass the local driver variable here - which looks wrong as this is
+>> not the same as the driver variable declared in another file.
+>
 
-But there may be other reasons why this could be the case, so it is better
-to encapsulate the logic in a separate function to make clear what's about.
+Yes, Jani mentioned it already. I got confused and thought that the driver
+variable was also defined in the same compilation unit...
 
-This is a v2 of the patches, that address the issues pointed out by Thomas
-Zimmermann and Jani Nikula in v1:
+Maybe I could squash the following change?
 
-https://lore.kernel.org/lkml/5b4e4534-4786-d231-e331-78fdb5d8496a@redhat.com/T/
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index b18a250e5d2e..b8f399b76363 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -89,7 +89,7 @@
+ #include "intel_region_ttm.h"
+ #include "vlv_suspend.h"
+ 
+-static const struct drm_driver driver;
++const struct drm_driver driver;
+ 
+ static int i915_get_bridge_dev(struct drm_i915_private *dev_priv)
+ {
+@@ -1777,7 +1777,7 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
+        DRM_IOCTL_DEF_DRV(I915_GEM_VM_DESTROY, i915_gem_vm_destroy_ioctl, DRM_RENDER_ALLOW),
+ };
+ 
+-static const struct drm_driver driver = {
++const struct drm_driver driver = {
+        /* Don't use MTRRs here; the Xserver or userspace app should
+         * deal with them for Intel hardware.
+         */
+diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
+index c890c1ca20c4..88f770920324 100644
+--- a/drivers/gpu/drm/i915/i915_module.c
++++ b/drivers/gpu/drm/i915/i915_module.c
+@@ -16,7 +16,7 @@
+ #include "i915_selftest.h"
+ #include "i915_vma.h"
+ 
+-static const struct drm_driver driver;
++extern const struct drm_driver driver;
+ 
+ static int i915_check_nomodeset(void)
+ {
 
-Patch #1 adds a drm_drv_enabled() function that could be used by drivers to
-check if these could be enabled, instead of just using vgacon_text_force().
+That should work and I actually got a laptop with an i915 and tested the change
+both when CONFIG_DRM_I915=m and CONFIG_DRM_I915=y is set.
 
-Patch #2 moves the nomodeset logic to the DRM subsystem and renames the
-functions and variables to better explain what these actually do.
+Another option is to declare it in i915_drv.h and not make the definition static.
+ 
+> Indeed.
+> 
+>> Maybe move the check to new function you can add to init_funcs,
+>> and locate the new function in i915_drv - so it has access to driver?
+> 
+> We don't really want that, though. This check is pretty much as early as
+> it can be, and there's a ton of useless initialization that would happen
+> if we waited until drm_driver is available.
+>
 
-Changes in v2:
-- Squash patch to add drm_drv_enabled() and make drivers use it.
-- Make the drivers changes before moving nomodeset logic to DRM.
-- Make drm_drv_enabled() return an errno and -ENODEV if nomodeset.
-- Remove debug and error messages in drivers.
-- Conditionally build drm_nomodeset.o if CONFIG_VGA_CONSOLE is set.
-- Squash patches to move nomodeset logic to DRM and do the renaming.
-- Name the function drm_check_modeset() and make it return -ENODEV.
+Agreed.
+ 
+> From my POV, drm_drv_enabled() is a solution that creates a worse
+> problem for us than it solves.
+>
 
-Javier Martinez Canillas (2):
-  drm: Add a drm_drv_enabled() to check if drivers should be enabled
-  drm: Move nomodeset kernel parameter to the DRM subsystem
+I don't have a strong opinion on this. I could just do patch #2 without adding
+a level of indirection through drm_drv_enabled(). But Thomas and Daniel Vetter
+suggested that we should do this change before.
 
- drivers/gpu/drm/Makefile                |  2 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  8 +++-----
- drivers/gpu/drm/ast/ast_drv.c           |  8 +++++---
- drivers/gpu/drm/drm_drv.c               | 21 ++++++++++++++++++++
- drivers/gpu/drm/drm_nomodeset.c         | 26 +++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_module.c      |  8 +++++---
- drivers/gpu/drm/mgag200/mgag200_drv.c   |  8 +++++---
- drivers/gpu/drm/nouveau/nouveau_drm.c   |  6 ++++--
- drivers/gpu/drm/qxl/qxl_drv.c           |  8 +++++---
- drivers/gpu/drm/radeon/radeon_drv.c     |  7 ++++---
- drivers/gpu/drm/tiny/bochs.c            |  8 +++++---
- drivers/gpu/drm/tiny/cirrus.c           |  9 ++++++---
- drivers/gpu/drm/vboxvideo/vbox_drv.c    | 10 +++++-----
- drivers/gpu/drm/virtio/virtgpu_drv.c    |  6 +++---
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c     |  6 +++---
- drivers/video/console/vgacon.c          | 21 --------------------
- include/drm/drm_drv.h                   |  1 +
- include/drm/drm_mode_config.h           |  6 ++++++
- include/linux/console.h                 |  6 ------
- 19 files changed, 109 insertions(+), 66 deletions(-)
- create mode 100644 drivers/gpu/drm/drm_nomodeset.c
+That is, the drivers could just check if should be enabled by calling to the
+drm_check_modeset() function directly if people agree that encapsulating that
+logic in a drm_drv_enabled() is not needed.
 
+> 
+> BR,
+> Jani.
+> 
+
+Best regards,
 -- 
-2.33.1
+Javier Martinez Canillas
+Linux Engineering
+Red Hat
 
