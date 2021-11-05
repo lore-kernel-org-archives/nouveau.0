@@ -2,74 +2,77 @@ Return-Path: <SRS0=fNWK=PY=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EA33CC433EF
-	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:25:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BECAFC433EF
+	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:25:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B7EA161183
-	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:25:46 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org B7EA161183
+	by mail.kernel.org (Postfix) with ESMTPS id 8A11761183
+	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:25:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8A11761183
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C2726E8E3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 407AF6E8E5;
 	Fri,  5 Nov 2021 14:25:40 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6059A732F2
- for <nouveau@lists.freedesktop.org>; Thu,  4 Nov 2021 16:44:14 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7067B6E0DE
+ for <nouveau@lists.freedesktop.org>; Fri,  5 Nov 2021 09:59:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1636044253;
+ s=mimecast20190719; t=1636106339;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=GBeSNSo+VR936LBuXFto2HVzfx/uW1FgtYIk1y3q3ig=;
- b=CBVY3wAoy78upQNbKAT1HVlHDBpW4oEl0NbOHqlw8hz+XAM45IIsqMx9wT6FBTHERDHg6I
- h207V7GgFIdF5o0vj424y1hfbUtdxmpIm3EE1+0uJwpm1eT+0mXEEd/T7hq/7E1t++v9zk
- HkSLJ2SgiK0VMUli6JbyzWmnaRWXtWQ=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-225-O2JLnxx6NcaOLhtDKpvvrg-1; Thu, 04 Nov 2021 12:44:12 -0400
-X-MC-Unique: O2JLnxx6NcaOLhtDKpvvrg-1
-Received: by mail-wm1-f71.google.com with SMTP id
- m14-20020a05600c3b0e00b0033308dcc933so2313981wms.7
- for <nouveau@lists.freedesktop.org>; Thu, 04 Nov 2021 09:44:11 -0700 (PDT)
+ bh=PAYCTLIu4BclXd+cEViyuoXMMG/fW8iPDkQUaON6iK4=;
+ b=C/8KnzySkruZmAcItDg1eTEOWfaUZnWXHfXZHiwjp9nm/iWNZRRnIpI0tAozKCZ4D834ra
+ 1dedv/ow0D6x/6/8UyLtVGwPOELbgurlFwBtkQ9CuVmjA1KfHmU3sekBW3W2iU/EDhhX3M
+ m2NO4u4yTXu1L0/TRLxeOftJmWKkHOI=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-550-jxnK9PCEPLiHPj9Z9mhR8A-1; Fri, 05 Nov 2021 05:58:58 -0400
+X-MC-Unique: jxnK9PCEPLiHPj9Z9mhR8A-1
+Received: by mail-wm1-f69.google.com with SMTP id
+ b133-20020a1c808b000000b0032cdd691994so5481162wmd.1
+ for <nouveau@lists.freedesktop.org>; Fri, 05 Nov 2021 02:58:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
  :content-language:to:cc:references:from:in-reply-to
  :content-transfer-encoding;
- bh=GBeSNSo+VR936LBuXFto2HVzfx/uW1FgtYIk1y3q3ig=;
- b=kXzYq4zs7H4SUFhNZPOBz6rx4upU1uXCzL6LbaQO0xyjMapXRQLm9cnag5UKkKkhzt
- Y0B7P4psy1GBixbujNsVY01RTCYPT86O2/geKugyXF9FS6f+WxTmYpMX5F9UGkxs4vRU
- TdhfadgTMSkGHurMOEtZQZ6nD/DQ2Kp/BDjtTvIsMjksEdNLkNoWuTP0e+OGfywVnnUu
- 8sn7OIRdQ71s+NwUzWM7x2VNnMAPpmxZwXP7tCVzl7apxn4qjXF4VHOfZC1CUKR+O6r4
- UqynHCcbjRICQP6KlcLA2+597HoLgn7O0ucmUfKfhF3h+xU32rGej8/Dl67LRAVByqgc
- TBtQ==
-X-Gm-Message-State: AOAM533cjiJD9Tcyr9ZZYTWtEKpPFonFAAcxvzmTNTrhDWdL6lmfmdJV
- fu6tS2xByZ2e3r6XVzF+VaNFi7CYj30VSSQ2iupvNRmQx9O9J0q8z0zXMQP0hTFtoFECSKjiuM+
- ABB5I6LTeSzGrqESXqKLV23jstA==
-X-Received: by 2002:a5d:4e52:: with SMTP id r18mr39525104wrt.224.1636044250772; 
- Thu, 04 Nov 2021 09:44:10 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwnATpWRYfiqKo492+/czqTIzFCv7HIX437cz1EV9eI7R7UChO4l+utit2RLduHTmaqMKEFNQ==
-X-Received: by 2002:a5d:4e52:: with SMTP id r18mr39525075wrt.224.1636044250590; 
- Thu, 04 Nov 2021 09:44:10 -0700 (PDT)
+ bh=PAYCTLIu4BclXd+cEViyuoXMMG/fW8iPDkQUaON6iK4=;
+ b=zAdgyNgUiODuGJrqWSOZkMEOn175bRAI3kNFZuq8ge7yO9IQitGNMNRIVdu7TbTaLC
+ AdYocXpGry0Uxz/GRefX7wWhkrf4WPPOx1Bed4khULhis/XkkIDqRuneomFcmkWhv+oK
+ 0iCWyt0jdlmRqiIiI4QVb7QFaoHB8siPJzXNFXYPWMxwO5TUgoPsYC3yGUlRfWNAiMYn
+ P+0ytEDXAnHXoqNT8DGHuzLRSpfRk20/FU88KkNuQjSCZDS8qjPv4xuk9o0jcXd9fgS9
+ ISiemZxvyU9RWE5VVnxq4wC4lcYPpph7ZAVyK8QYlX128DW6zv+EDhQ6jD60dI8OA/qv
+ 6B2A==
+X-Gm-Message-State: AOAM533mO53O5HWb9s4O89vgzCgLDdBLesgm2LuDUOVjI9k45XUmXLXe
+ XT4Vnw206tnrLt7QbT6h9ok15+YjlLbw25qZhENYHUoNrBlGigJM9RavHoke8yZNKszA6GMOXDY
+ 3ZjHspoW8EHPYc55z4Y8vBthFqQ==
+X-Received: by 2002:adf:ec90:: with SMTP id z16mr46047443wrn.247.1636106336898; 
+ Fri, 05 Nov 2021 02:58:56 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyVMn64qcflGLedLN5EhsNM7GWU6o/3vwDL3aOoAYuCZV9//84CDnDeN1gsW9919fwpqQaOmg==
+X-Received: by 2002:adf:ec90:: with SMTP id z16mr46047414wrn.247.1636106336738; 
+ Fri, 05 Nov 2021 02:58:56 -0700 (PDT)
 Received: from [192.168.1.128] ([92.176.231.106])
- by smtp.gmail.com with ESMTPSA id o4sm6636216wry.80.2021.11.04.09.44.08
+ by smtp.gmail.com with ESMTPSA id c17sm7678095wmk.23.2021.11.05.02.58.54
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 04 Nov 2021 09:44:10 -0700 (PDT)
-Message-ID: <3ff9fe95-9bc7-a043-78c6-d52d0ff02e23@redhat.com>
-Date: Thu, 4 Nov 2021 17:44:08 +0100
+ Fri, 05 Nov 2021 02:58:56 -0700 (PDT)
+Message-ID: <87a6bb4a-01ef-4979-f5c2-c0bb0d0a29f9@redhat.com>
+Date: Fri, 5 Nov 2021 10:58:54 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.2.0
-To: Jani Nikula <jani.nikula@linux.intel.com>, linux-kernel@vger.kernel.org
+To: Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>, linux-kernel@vger.kernel.org
 References: <20211104160707.1407052-1-javierm@redhat.com>
- <20211104160707.1407052-2-javierm@redhat.com> <87zgqjanz2.fsf@intel.com>
+ <20211104160707.1407052-3-javierm@redhat.com>
+ <f2c40b22-04bf-e8f2-9839-36d6d26189a1@suse.de> <87cznf9cty.fsf@intel.com>
+ <2698c680-6d05-f58d-d7c2-ea76aeb0bb47@suse.de>
 From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <87zgqjanz2.fsf@intel.com>
+In-Reply-To: <2698c680-6d05-f58d-d7c2-ea76aeb0bb47@suse.de>
 Authentication-Results: relay.mimecast.com;
  auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
 X-Mimecast-Spam-Score: 0
@@ -78,8 +81,8 @@ Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 05 Nov 2021 14:25:39 +0000
-Subject: Re: [Nouveau] [PATCH v2 1/2] drm: Add a drm_drv_enabled() to check
- if drivers should be enabled
+Subject: Re: [Nouveau] [PATCH v2 2/2] drm: Move nomodeset kernel parameter
+ to the DRM subsystem
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,7 +94,7 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
+Cc: linux-fbdev@vger.kernel.org, David Airlie <airlied@linux.ie>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  dri-devel@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
  Gerd Hoffmann <kraxel@redhat.com>, amd-gfx@lists.freedesktop.org,
@@ -104,7 +107,8 @@ Cc: David Airlie <airlied@linux.ie>,
  Maxime Ripard <mripard@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  virtualization@lists.linux-foundation.org,
- Pekka Paalanen <pekka.paalanen@collabora.com>, "Pan,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Pan,
  Xinhui" <Xinhui.Pan@amd.com>, spice-devel@lists.freedesktop.org,
  Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
  intel-gfx@lists.freedesktop.org,
@@ -113,28 +117,41 @@ Cc: David Airlie <airlied@linux.ie>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 11/4/21 17:24, Jani Nikula wrote:
+On 11/5/21 10:39, Thomas Zimmermann wrote:
 
 [snip]
 
->> index ab2295dd4500..45cb3e540eff 100644
->> --- a/drivers/gpu/drm/i915/i915_module.c
->> +++ b/drivers/gpu/drm/i915/i915_module.c
->> @@ -18,9 +18,12 @@
->>  #include "i915_selftest.h"
->>  #include "i915_vma.h"
->>  
->> +static const struct drm_driver driver;
->> +
+>>>>    
+>>>> +obj-$(CONFIG_VGA_CONSOLE) += drm_nomodeset.o
+>>>> +
+>>>
+>>> This now depends on the VGA textmode console. Even if you have no VGA
+>>> console, you'd want drm_nomodeset.o. Simpledrm might be built-in and can
+>>> provide graphics. Non-PC systems don't even have a VGA device.
+>>
+>> This was discussed in an earlier version, which had this builtin but the
+>> header still had a stub for CONFIG_VGA_CONSOLE=n.
+>>
+>>> I think we really want a separate boolean config option that gets
+>>> selected by CONFIG_DRM.
+>>
+>> Perhaps that should be a separate change on top.
 > 
-> No, this makes absolutely no sense, and will also oops on nomodeset.
+> Sure, make it a separate patch.
 >
 
-Ups, sorry about that. For some reason I thought that it was defined in
-the same compilation unit, but I noticed now that it is in i915_drv.c.
+Agreed. I was planning to do it as a follow-up as well and drop the
+#ifdef CONFIG_VGA_CONSOLE guard in the header.
  
-> BR,
-> Jani.
+> We want to make this work on ARM systems. I even have a request to 
+> replace offb on Power architecture by simpledrm. So the final config has 
+> to be system agnostic.
+>
+
+Same, since we want to drop the fbdev drivers in Fedora, for all arches.
+ 
+> Best regards
+> Thomas
 > 
 Best regards,
 -- 
