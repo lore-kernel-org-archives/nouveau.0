@@ -2,85 +2,57 @@ Return-Path: <SRS0=fNWK=PY=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F6C8C433F5
-	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:26:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F02E5C433EF
+	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:41:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5022B61183
-	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:26:01 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 5022B61183
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id B469A61056
+	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 14:41:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org B469A61056
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 195416E9AF;
-	Fri,  5 Nov 2021 14:25:46 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 519C66E115
- for <nouveau@lists.freedesktop.org>; Fri,  5 Nov 2021 09:55:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1636106144;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=oZ67s9sbnfsD5fqdtGG0nGBmSdAaIG5RWNWBFufx9E8=;
- b=TkztJmfb0Z4d5Q7UrtQL+DyWHuqpVNqfrdsLFZ+WiVfpGFPuMhNLrJ6F0nv5PsMlaarAZb
- Vygb0wLA0cRBG+/tiSf4jFiiLaL74ejFHMHrXXXujjjbzKMNx7ZJmLQBW7khPh6LFcMIPc
- JR7ikaxBoCVEu4dcI2OiMs+xAg75I6U=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-156-Cg11NkfsNfKoE6YrxNEFmw-1; Fri, 05 Nov 2021 05:55:43 -0400
-X-MC-Unique: Cg11NkfsNfKoE6YrxNEFmw-1
-Received: by mail-wm1-f71.google.com with SMTP id
- r6-20020a1c4406000000b0033119c22fdbso3135154wma.4
- for <nouveau@lists.freedesktop.org>; Fri, 05 Nov 2021 02:55:43 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5299B6E88C;
+	Fri,  5 Nov 2021 14:41:57 +0000 (UTC)
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com
+ [IPv6:2607:f8b0:4864:20::82e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAEA76E88C
+ for <nouveau@lists.freedesktop.org>; Fri,  5 Nov 2021 14:41:56 +0000 (UTC)
+Received: by mail-qt1-x82e.google.com with SMTP id s20so679521qtk.0
+ for <nouveau@lists.freedesktop.org>; Fri, 05 Nov 2021 07:41:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=YgjHUE6TT1UmT+VYiTGLIEcoJ5L3+flJLBV1W04dFGc=;
+ b=N7qGrk+LYnhsuLgr5CBTGMhyms0CmKVyzLIcE3LS/QBxxl6/NWzZhDBfzggX0XZB0U
+ bsmqUdDovgKQT96ajtBWnaP396xp3KwxFfqUJnFNmxpchW8YNLP8W8NCtAKM7KQXY8rL
+ YSBdqXs3JJSJYcHV7WgTJl/JsojrzkGEFs0cZqN7WE6yWL9lyn8WAm2sSjj6S/P9vLnn
+ sz6AkBaD1Yk9rsPhBvDpIMtMe16wzk4xYZulyhmjjFWX+QaQaScbsAU2KxyeYt3/WQap
+ +hfgXttLMRDEAeumBbtJ2M7H+OnGbJlF/kiZ5Jeuab6vJZE6ySXdx07TIo3UD6QI7htH
+ qSKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=oZ67s9sbnfsD5fqdtGG0nGBmSdAaIG5RWNWBFufx9E8=;
- b=SQvvK1lb50Gd6kSct0v3j4Kx4g3h9Y2sakORtVLc4j6Uu7KTxeAtkWJXYOrHLXbQFv
- aVQ/oa0KtFlNfh7tqAx9Quj8BYgYlH4kl+Oh4qPWzXC90w2KzmNQOfbSWndnbotl7CSu
- iZiJOge0WTiQceMRZ/01zlKePGkefF1RtqNHmxCuf1qvCbZeHsixZabZqY61su8OZVgh
- Y/bUzeRbNJcPSVDYc1ISf6EUMKVnAhTnykdag2LapYbl8Psdn3Y9inQJ9gj7FQCOfM+/
- JB6tI14t4gcFi3qMEq+dedLqVP+XHGUsh+IPJ65Qa5aoMoaKcGPyg1kL8DOL+cWnLWCO
- otSQ==
-X-Gm-Message-State: AOAM530HpBWTpwbeNnVwtJYULHwpo/+bvqmrqz98w8SMOfnx6bbiikq+
- hqIbvxwRKRv/9VOZo5J1t14krO7CKdkyEFa7Bi2L+N0xFewd1eST+g19COYM+V+21/fEylnbh4c
- 7F5AlbPFg84AyYgQZs+c9G8uvOA==
-X-Received: by 2002:a7b:c8d5:: with SMTP id f21mr27635763wml.146.1636106142130; 
- Fri, 05 Nov 2021 02:55:42 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyT8viACi1U7JY5S3rkG/MaHma60ZlmQ0NQODpS8eTcPcWv9ZvZPYhizNzNYarjDaHcIaJjnA==
-X-Received: by 2002:a7b:c8d5:: with SMTP id f21mr27635740wml.146.1636106141897; 
- Fri, 05 Nov 2021 02:55:41 -0700 (PDT)
-Received: from [192.168.1.128] ([92.176.231.106])
- by smtp.gmail.com with ESMTPSA id s26sm5390804wmc.0.2021.11.05.02.55.40
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 05 Nov 2021 02:55:41 -0700 (PDT)
-Message-ID: <847c2315-b4a2-3bd1-e048-4263b5f496ed@redhat.com>
-Date: Fri, 5 Nov 2021 10:55:39 +0100
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=YgjHUE6TT1UmT+VYiTGLIEcoJ5L3+flJLBV1W04dFGc=;
+ b=PJOx2hyK8UJn/O7DKZyrt+Sha48e+C6S2+JoWmJaZOxUbUFD7VMp7oBhNCEbvUdIqJ
+ HO5ynOvWc2LZuOZ4cuTcthDlccN7rt7zRiOIyt0mREPzQHOJwZgyZlwoqbs6cH/Y8I1F
+ UrLrzDWjqYKDpk/L3DsS3zM2BVaFlGdNeWYT6laN6lGwIeE6T7A+/syW375QiAiFOI2H
+ iA4NX+ELaNgZsW8VFhecfMhOlrrW/Dk0RdXjtRe2G59EL48l5Sa4o72oK3yTqzp5Gk4f
+ +8N9U8VoWZ6PBDbz72Y23VawiZdzt8wJ0B/w6EQAZaD+/36QPR2nZdWicxnC0ewHCbx1
+ NP4Q==
+X-Gm-Message-State: AOAM531g9oKHmt8Y0TFF46CuPVBbjN+jS5rMtoa2gDXz35aj/Nl4M9fA
+ 506nC24lhYDWdcxPzk5k0RQOnn7j0rN4zOjW8HALzeW+6aA=
+X-Google-Smtp-Source: ABdhPJw496kLKc4/fNcs3NXF3C/UUgPPa/9hfC2BOqobe02KDc1XvDAyLyZGX4wpYVlaIMm3DHNibckkBJsFBGGJa5E=
+X-Received: by 2002:a05:622a:493:: with SMTP id
+ p19mr55015004qtx.97.1636123315591; 
+ Fri, 05 Nov 2021 07:41:55 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-To: Thomas Zimmermann <tzimmermann@suse.de>, linux-kernel@vger.kernel.org
-References: <20211104160707.1407052-1-javierm@redhat.com>
- <20211104160707.1407052-3-javierm@redhat.com>
- <f2c40b22-04bf-e8f2-9839-36d6d26189a1@suse.de>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <f2c40b22-04bf-e8f2-9839-36d6d26189a1@suse.de>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 05 Nov 2021 14:25:39 +0000
-Subject: Re: [Nouveau] [PATCH v2 2/2] drm: Move nomodeset kernel parameter
- to the DRM subsystem
+From: Jerry Geis <jerry.geis@gmail.com>
+Date: Fri, 5 Nov 2021 10:41:44 -0400
+Message-ID: <CABr8-B7QAn9LV18d2HEWGqzvM3x4NcYj5rpvcXq=YsK-ozcoMQ@mail.gmail.com>
+To: nouveau <nouveau@lists.freedesktop.org>
+Content-Type: multipart/alternative; boundary="00000000000008def105d00ba53d"
+Subject: [Nouveau] Ubuntu 20.04 and vlc
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,78 +64,46 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, David Airlie <airlied@linux.ie>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
- Gerd Hoffmann <kraxel@redhat.com>, amd-gfx@lists.freedesktop.org,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Peter Robinson <pbrobinson@gmail.com>, nouveau@lists.freedesktop.org,
- Dave Airlie <airlied@redhat.com>, Chia-I Wu <olvaffe@gmail.com>,
- Ben Skeggs <bskeggs@redhat.com>,
- =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- virtualization@lists.linux-foundation.org,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, spice-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- intel-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Zack Rusin <zackr@vmware.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 11/5/21 10:00, Thomas Zimmermann wrote:
+--00000000000008def105d00ba53d
+Content-Type: text/plain; charset="UTF-8"
 
-[snip]
+Hi All,
 
->> +
->> +static int __init disable_modeset(char *str)
->> +{
->> +	drm_nomodeset = true;
->> +
->> +	pr_warn("You have booted with nomodeset. This means your GPU drivers are DISABLED\n");
->> +	pr_warn("Any video related functionality will be severely degraded, and you may not even be able to suspend the system properly\n");
->> +	pr_warn("Unless you actually understand what nomodeset does, you should reboot without enabling it\n");
-> 
-> I'd update this text to be less sensational.
->
+I am using Ubuntu 20.04 with VLC... normally the box boots up runs an
+plays videos just fien with about 20% usage for VLC (celeron and or intel
+Atom hardware).
+After some time - day or two of playing videos. Something happens.
+The CPU usage jumps way up like 120% kind of usage.  Like the vdpau stuff
+is no longer working.
 
-This is indeed quite sensational. But think we can do it as a follow-up patch.
+Is this a know issue ?
+What should I look for  ?
+What can I provide to help ?
 
-Since we will have to stick with nomodeset for backward compatibility, I was
-planning to add documentation to explain what this parameter is about and what
-is the actual effect of setting it.
+ Intel(R) Atom(TM) CPU D525   @ 1.80GHz
+03:00.0 VGA compatible controller: NVIDIA Corporation GT218 [ION] (rev a2)
 
-So I think we can change this as a part of that patch-set.
- 
->> +
->> +	return 1;
->> +}
->> +
->> +/* Disable kernel modesetting */
->> +__setup("nomodeset", disable_modeset);
->> diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
->> index 45cb3e540eff..c890c1ca20c4 100644
->> --- a/drivers/gpu/drm/i915/i915_module.c
->> +++ b/drivers/gpu/drm/i915/i915_module.c
->> @@ -4,8 +4,6 @@
->>    * Copyright © 2021 Intel Corporation
->>    */
->>   
->> -#include <linux/console.h>
->> -
->
-> These changes should be in patch 1?
->
+Thanks
 
-Yes, I forgot to move these when changed the order of the patches.
+Jerry
 
-Best regards, -- 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
+--00000000000008def105d00ba53d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi All,<div><br></div><div>I am using Ubuntu 20.04 with VL=
+C... normally the box boots up runs an plays=C2=A0videos just fien=C2=A0wit=
+h about 20% usage for VLC (celeron and or intel Atom hardware).</div><div>A=
+fter some time - day or two of playing videos. Something happens.</div><div=
+>The CPU usage jumps way up like 120% kind of usage.=C2=A0 Like the vdpau s=
+tuff is no longer working.</div><div><br></div><div>Is this a know issue ?<=
+/div><div>What should=C2=A0I look for=C2=A0 ?</div><div>What can I provide =
+to help ?</div><div><br></div><div>=C2=A0Intel(R) Atom(TM) CPU D525 =C2=A0 =
+@ 1.80GHz<br></div><div>03:00.0 VGA compatible controller: NVIDIA Corporati=
+on GT218 [ION] (rev a2)<br></div><div><br></div><div>Thanks</div><div><br><=
+/div><div>Jerry</div></div>
+
+--00000000000008def105d00ba53d--
