@@ -2,59 +2,58 @@ Return-Path: <SRS0=fNWK=PY=lists.freedesktop.org=nouveau-bounces@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 68AB4C433F5
-	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 18:34:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 34652C433EF
+	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 18:34:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2EA0861131
-	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 18:34:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 2EA0861131
+	by mail.kernel.org (Postfix) with ESMTPS id 02D9C61131
+	for <nouveau@archiver.kernel.org>; Fri,  5 Nov 2021 18:34:24 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 02D9C61131
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81D246EBD0;
-	Fri,  5 Nov 2021 18:34:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C0886EC75;
+	Fri,  5 Nov 2021 18:34:20 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6953E6EB6E
- for <nouveau@lists.freedesktop.org>; Fri,  5 Nov 2021 18:34:13 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B0B36EC85
+ for <nouveau@lists.freedesktop.org>; Fri,  5 Nov 2021 18:34:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1636137252;
+ s=mimecast20190719; t=1636137257;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=hS6tBGYZHTz8qEkqN34aySXE2+1TJTDCOkNXUTamhYI=;
- b=CF/CPhy66Eb2ko7DwusZ2lzjlfBQyyO6IMI4VFsHF1K+SHu9K7GuPLkUxCkHOW/dz5ZiF2
- BDk5oP21dO9ql/xyj8algs+C/4AJLtIGnDA/jhruI8FEOmzhePlZq+lk7J0ogcI/ZuKlkM
- 2hnXQk+ocy6aiuqCPoR7EAxJGg4h9P8=
+ bh=0/G6y34JOTC7UqNDqWGUgS2eZXF3BvIhBAU3/+T9uZs=;
+ b=VlmRBBVHzhuoFzVIXptux4QtScSW0w1QHvNHMrQv3oVT7SEiqTQZB35faZttqdl+SlfVGD
+ 15jwz2jyIQkBavxLv6O4VwLNTIcNb08NS2ufSaJH6fIX1YOKtqCfHR94PvL+XwAFJ3cEdO
+ tFn2kdB9RGawU89G7UFOTdMLCledPhc=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-445-FxEfksKWNuuw1RhKaaOTpw-1; Fri, 05 Nov 2021 14:34:08 -0400
-X-MC-Unique: FxEfksKWNuuw1RhKaaOTpw-1
+ us-mta-602-558qMmg2NmON34f9YiwcaQ-1; Fri, 05 Nov 2021 14:34:16 -0400
+X-MC-Unique: 558qMmg2NmON34f9YiwcaQ-1
 Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
  [10.5.11.16])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 8573587D54A;
- Fri,  5 Nov 2021 18:34:06 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 997621B2C983;
+ Fri,  5 Nov 2021 18:34:14 +0000 (UTC)
 Received: from emerald.lyude.net (unknown [10.22.16.200])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 1A59F5FC13;
- Fri,  5 Nov 2021 18:33:59 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id B3CD75FC13;
+ Fri,  5 Nov 2021 18:34:11 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
-Date: Fri,  5 Nov 2021 14:33:38 -0400
-Message-Id: <20211105183342.130810-2-lyude@redhat.com>
+Date: Fri,  5 Nov 2021 14:33:40 -0400
+Message-Id: <20211105183342.130810-4-lyude@redhat.com>
 In-Reply-To: <20211105183342.130810-1-lyude@redhat.com>
 References: <20211105183342.130810-1-lyude@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
-Subject: [Nouveau] [PATCH v5 1/5] drm/i915: Add support for panels with VESA
- backlights with PWM enable/disable
+Subject: [Nouveau] [PATCH v5 3/5] drm/dp: Don't read back backlight mode in
+ drm_edp_backlight_enable()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,98 +65,96 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@linux.ie>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- open list <linux-kernel@vger.kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>, stable@vger.kernel.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Cc: David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ open list <linux-kernel@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This simply adds proper support for panel backlights that can be controlled
-via VESA's backlight control protocol, but which also require that we
-enable and disable the backlight via PWM instead of via the DPCD interface.
-We also enable this by default, in order to fix some people's backlights
-that were broken by not having this enabled.
+As it turns out, apparently some machines will actually leave additional
+backlight functionality like dynamic backlight control on before the OS
+loads. Currently we don't take care to disable unsupported features when
+writing back the backlight mode, which can lead to some rather strange
+looking behavior when adjusting the backlight.
 
-For reference, backlights that require this and use VESA's backlight
-interface tend to be laptops with hybrid GPUs, but this very well may
-change in the future.
+So, let's fix this by just not reading back the current backlight mode on
+initial enable. I don't think there should really be any downsides to this,
+and this will ensure we don't leave any unsupported functionality enabled.
 
-v4:
-* Make sure that we call intel_backlight_level_to_pwm() in
-  intel_dp_aux_vesa_enable_backlight() - vsyrjala
+This should fix at least one (but not all) of the issues seen with DPCD
+backlight support on fi-bdw-samus
+
+v5:
+* Just avoid reading back DPCD register - Doug Anderson
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
-Link: https://gitlab.freedesktop.org/drm/intel/-/issues/3680
-Fixes: fe7d52bccab6 ("drm/i915/dp: Don't use DPCD backlights that need PWM enable/disable")
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v5.12+
+Fixes: 867cf9cd73c3 ("drm/dp: Extract i915's eDP backlight code into DRM helpers")
 ---
- .../drm/i915/display/intel_dp_aux_backlight.c | 27 ++++++++++++++-----
- 1 file changed, 21 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/drm_dp_helper.c | 40 ++++++++++-----------------------
+ 1 file changed, 12 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 569d17b4d00f..f05b71c01b8e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -293,6 +293,13 @@ intel_dp_aux_vesa_enable_backlight(const struct intel_crtc_state *crtc_state,
- 	struct intel_panel *panel = &connector->panel;
- 	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
+diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
+index ada0a1ff262d..af2aad2f4725 100644
+--- a/drivers/gpu/drm/drm_dp_helper.c
++++ b/drivers/gpu/drm/drm_dp_helper.c
+@@ -3363,27 +3363,13 @@ int drm_edp_backlight_enable(struct drm_dp_aux *aux, const struct drm_edp_backli
+ 			     const u16 level)
+ {
+ 	int ret;
+-	u8 dpcd_buf, new_dpcd_buf;
++	u8 dpcd_buf = DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD;
  
-+	if (!panel->backlight.edp.vesa.info.aux_enable) {
-+		u32 pwm_level = intel_backlight_invert_pwm_level(connector,
-+								 panel->backlight.pwm_level_max);
-+
-+		panel->backlight.pwm_funcs->enable(crtc_state, conn_state, pwm_level);
-+	}
-+
- 	drm_edp_backlight_enable(&intel_dp->aux, &panel->backlight.edp.vesa.info, level);
- }
- 
-@@ -304,6 +311,10 @@ static void intel_dp_aux_vesa_disable_backlight(const struct drm_connector_state
- 	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
- 
- 	drm_edp_backlight_disable(&intel_dp->aux, &panel->backlight.edp.vesa.info);
-+
-+	if (!panel->backlight.edp.vesa.info.aux_enable)
-+		panel->backlight.pwm_funcs->disable(old_conn_state,
-+						    intel_backlight_invert_pwm_level(connector, 0));
- }
- 
- static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector, enum pipe pipe)
-@@ -321,6 +332,15 @@ static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector,
- 	if (ret < 0)
- 		return ret;
- 
-+	if (!panel->backlight.edp.vesa.info.aux_enable) {
-+		ret = panel->backlight.pwm_funcs->setup(connector, pipe);
-+		if (ret < 0) {
-+			drm_err(&i915->drm,
-+				"Failed to setup PWM backlight controls for eDP backlight: %d\n",
-+				ret);
-+			return ret;
-+		}
-+	}
- 	panel->backlight.max = panel->backlight.edp.vesa.info.max;
- 	panel->backlight.min = 0;
- 	if (current_mode == DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD) {
-@@ -340,12 +360,7 @@ intel_dp_aux_supports_vesa_backlight(struct intel_connector *connector)
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 
--	/* TODO: We currently only support AUX only backlight configurations, not backlights which
--	 * require a mix of PWM and AUX controls to work. In the mean time, these machines typically
--	 * work just fine using normal PWM controls anyway.
--	 */
--	if ((intel_dp->edp_dpcd[1] & DP_EDP_BACKLIGHT_AUX_ENABLE_CAP) &&
--	    drm_edp_backlight_supported(intel_dp->edp_dpcd)) {
-+	if (drm_edp_backlight_supported(intel_dp->edp_dpcd)) {
- 		drm_dbg_kms(&i915->drm, "AUX Backlight Control Supported!\n");
- 		return true;
+-	ret = drm_dp_dpcd_readb(aux, DP_EDP_BACKLIGHT_MODE_SET_REGISTER, &dpcd_buf);
+-	if (ret != 1) {
+-		drm_dbg_kms(aux->drm_dev,
+-			    "%s: Failed to read backlight mode: %d\n", aux->name, ret);
+-		return ret < 0 ? ret : -EIO;
+-	}
+-
+-	new_dpcd_buf = dpcd_buf;
+-
+-	if ((dpcd_buf & DP_EDP_BACKLIGHT_CONTROL_MODE_MASK) != DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD) {
+-		new_dpcd_buf &= ~DP_EDP_BACKLIGHT_CONTROL_MODE_MASK;
+-		new_dpcd_buf |= DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD;
+-
+-		if (bl->pwmgen_bit_count) {
+-			ret = drm_dp_dpcd_writeb(aux, DP_EDP_PWMGEN_BIT_COUNT, bl->pwmgen_bit_count);
+-			if (ret != 1)
+-				drm_dbg_kms(aux->drm_dev, "%s: Failed to write aux pwmgen bit count: %d\n",
+-					    aux->name, ret);
+-		}
++	if (bl->pwmgen_bit_count) {
++		ret = drm_dp_dpcd_writeb(aux, DP_EDP_PWMGEN_BIT_COUNT, bl->pwmgen_bit_count);
++		if (ret != 1)
++			drm_dbg_kms(aux->drm_dev, "%s: Failed to write aux pwmgen bit count: %d\n",
++				    aux->name, ret);
  	}
+ 
+ 	if (bl->pwm_freq_pre_divider) {
+@@ -3393,16 +3379,14 @@ int drm_edp_backlight_enable(struct drm_dp_aux *aux, const struct drm_edp_backli
+ 				    "%s: Failed to write aux backlight frequency: %d\n",
+ 				    aux->name, ret);
+ 		else
+-			new_dpcd_buf |= DP_EDP_BACKLIGHT_FREQ_AUX_SET_ENABLE;
++			dpcd_buf |= DP_EDP_BACKLIGHT_FREQ_AUX_SET_ENABLE;
+ 	}
+ 
+-	if (new_dpcd_buf != dpcd_buf) {
+-		ret = drm_dp_dpcd_writeb(aux, DP_EDP_BACKLIGHT_MODE_SET_REGISTER, new_dpcd_buf);
+-		if (ret != 1) {
+-			drm_dbg_kms(aux->drm_dev, "%s: Failed to write aux backlight mode: %d\n",
+-				    aux->name, ret);
+-			return ret < 0 ? ret : -EIO;
+-		}
++	ret = drm_dp_dpcd_writeb(aux, DP_EDP_BACKLIGHT_MODE_SET_REGISTER, dpcd_buf);
++	if (ret != 1) {
++		drm_dbg_kms(aux->drm_dev, "%s: Failed to write aux backlight mode: %d\n",
++			    aux->name, ret);
++		return ret < 0 ? ret : -EIO;
+ 	}
+ 
+ 	ret = drm_edp_backlight_set_level(aux, bl, level);
 -- 
 2.31.1
 
