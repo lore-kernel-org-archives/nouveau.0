@@ -4,85 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94BAAC433F5
-	for <nouveau@archiver.kernel.org>; Mon, 22 Nov 2021 21:52:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34724C433EF
+	for <nouveau@archiver.kernel.org>; Mon, 22 Nov 2021 21:52:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1259F89D9B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47CF189DD2;
 	Mon, 22 Nov 2021 21:52:44 +0000 (UTC)
 X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
- Tue, 16 Nov 2021 07:15:33 UTC
-Received: from mx2.ucr.edu (mx.ucr.edu [138.23.62.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74B7E6E910
- for <nouveau@lists.freedesktop.org>; Tue, 16 Nov 2021 07:15:33 +0000 (UTC)
+ Tue, 16 Nov 2021 06:05:38 UTC
+Received: from mx-lax3-3.ucr.edu (mx-lax3-3.ucr.edu [169.235.156.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06C7B6E94C
+ for <nouveau@lists.freedesktop.org>; Tue, 16 Nov 2021 06:05:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=ucr.edu; i=@ucr.edu; q=dns/txt; s=selector3;
- t=1637046933; x=1668582933;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=VO2ps4lqNewVdq22Zvj/a2S0OmORg6rzuJt+A60klUs=;
- b=q0Aa2HlnxLQ7JzHW7Bb1D7mKP5Fo/rt2aXU+VaoZgiqPFj/kzYeQSROk
- lmeg5b+Fu4XQ7F/tJI2XLEuoOh3+bUoo47Pfg5yPsK7RT2OuougvuIZjW
- j8805uiiS5snEV8cFLTCh68c1Nr+da9d3reJumUpKpMNvHqMr+G3gkK/5
- +o5mpeNJQaDmNAP2H3QFsJ23NjccPTkzkcyM8vH7GUoE5nh/8N9W20hm6
- SwOADv6VP9KMp9auRgrFbxceEp9w8FyFfAGjuApwWWUScuHS2iKOVXjOS
- 2xPAUnqdQr79JohiPkD+jnkR168UTsHb6MOImc68i2L7jp9uxZ4p+HLHs g==;
-IronPort-SDR: ZXGEB/vQ/iTJ0WEFv+fxDO84Y+ot2EjZb9WG4U6UGU4K0aPHCVH8vW0ibLCbru89D5qB6tcFrT
- EGGDVWwyaX7ug89oiGYesiRl4vKEDjCJftOImV+pEfZXe0u2BOwHjt2TCJf1p9Uj+TJex6UfiG
- CgIuczlf7Gx2tQgvfAyI2rASzyXOzrFlGQh91hU3DxUht06U9UZL2ZxyPqg2qT1ROTBzintubI
- IS8IWBTgwnrgLH48qc2iEd9OsEHEJTB0PTzZuCTF3gf60Gr5AglrAAspGGm6X6c7uskWS+H8de
- FPRya/RR9UoUr663p+waKwSQ
-X-IronPort-AV: E=Sophos;i="5.87,238,1631602800"; d="scan'208";a="197345624"
-Received: from mail-qv1-f72.google.com ([209.85.219.72])
- by smtp2.ucr.edu with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256;
- 15 Nov 2021 23:08:26 -0800
-Received: by mail-qv1-f72.google.com with SMTP id
- dz17-20020ad45891000000b003bbb4aba6d7so18405876qvb.12
- for <nouveau@lists.freedesktop.org>; Mon, 15 Nov 2021 23:08:26 -0800 (PST)
+ t=1637042739; x=1668578739;
+ h=mime-version:references:in-reply-to:from:date:message-id:
+ subject:to:cc; bh=Z3Zujelhp95n7JiGO15pEnuj1r6cZj7PyaJcCYcZCrc=;
+ b=WRyfEVyzsvm7pJGPjszSA4HnXd1cIUYJWgx4Evz4UdPKobi3LAP8+FGR
+ C1bylyZ08m24ZUrjn+XOJuFcWpU/2JLlcFJeMseLvWdI7mvZQnqT0ZENC
+ R0CRMJgUfwDrdagWf9tc0IdG2MeEl9xZFdhXPi+fYFYf2kgN1FcUx19IO
+ x1vUysclKeO3pyGmoKE/qVt5JTOijQS72OtrVVnfKbTABT09UgLDu4itQ
+ vG6+tjwRRhr/VSC0yGHXvjCPTSBDdFY9hZ05JR3k1jvr3Ahf/x1Y1FlRx
+ ckhmokL8PZ8+WeiTq/xl8TzNY+rurlPLGCIyPNcoLI+koM0srf8kSmjDS Q==;
+IronPort-SDR: IcQ/pcOxBUM8teMchpgq28OCiwUeaCdLw1fARCKGvbT+dNvPs390zlWuF1h/vGku4mySVExjrL
+ 19qHMZctH1MD+rTyyNxzGxCL+Sc7ato6f7abpoaCZ01LEyGU4IHmSCcu23yRueqNcs5tXLTyvW
+ K/+iNRPR1Af0wjhLBDqSSaFKVQnFgefLtSrSrZlcYdFugZQklUQkfhAtunAKy2qfc1PxIXZ2gu
+ B/tHR8olvmgHnXZWTvvBdVLDCVH49w5ZdllQVQf10NWFhMJcpBq3zhHFoma1UD4YXriCxpbQZT
+ KibeQrP6XJeM2BBXZ2IecjH2
+X-IronPort-AV: E=Sophos;i="5.87,238,1631602800"; d="scan'208";a="86384917"
+Received: from mail-yb1-f200.google.com ([209.85.219.200])
+ by smtp-lax3-3.ucr.edu with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256;
+ 15 Nov 2021 21:58:31 -0800
+Received: by mail-yb1-f200.google.com with SMTP id
+ s189-20020a252cc6000000b005c1f206d91eso30602502ybs.14
+ for <nouveau@lists.freedesktop.org>; Mon, 15 Nov 2021 21:58:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucr.edu; s=rmail;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=o3HI54mJH/tMRV5CdW0GGK2Uj3sS8rXd01TKP0agSfQ=;
- b=GTwP4sC0lF0Nu4knrINh27vw5wfFRisKOITj8cPSjtfYQq9hjSO2crPj3dJH52NAxD
- Xsk5ANQ7ZKFYCveEzMIh7H+vrcaWGRxnLLueKLPqdXLSgAN66gYOwmPW+LSjmlDv5ehZ
- hv3TXuUyxOaqP1EhLfwrnsl6VhgzuNAC73d7U=
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=8/XhVolQXCHPmPCzdRzFWhpIuM6H2Dzx9QQPO3TDOnQ=;
+ b=f867r1i2Ostx6BltPr4Oc+FLyknNCfRZZ8l/kHRJB8wnAdh1Z+85jOUgfhVaqYWG43
+ PnHHT6jy+L7VBZdHouMBNsvuWuuto8figPchs2mldQ8qtJC5qaOraraScvZVlbxxkf4L
+ SkpkgUNLz56wCGs3dil3hUuNC1TeoZwqBwW/w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=o3HI54mJH/tMRV5CdW0GGK2Uj3sS8rXd01TKP0agSfQ=;
- b=lQHhdQNyPXrlyFEckjftWZwgfpuy8VpwANUGxf0Dzm0xmtmAeBjKd/AkrnKj/DAg3W
- lty6wImzRBURHdO29w+yzYImxp97KSlFwkvIjc7yoS9RWRpiM/U11xZ8yQBQMt5AedYR
- FB62Kg9wQXXkW8CkAnZN7FysYAjoyclnnRS+Hoi9O5RW+MCv9LcdIjqrF/y9hSBfvTnF
- 3gRyohC6Rou5by6cO30/vYx2MJjaHV4/kzPW2E5VK1Wq2Pxj+8oas4DYpgM9Evthvz60
- H6JEdrpUpMdHNAEvxwFzeHwnAmsHfd3VsqJ97sqAwBkRpM2yF42gmMeKYPsgsALgKAvV
- ny5w==
-X-Gm-Message-State: AOAM532u1Oq//ig3OHZpUrDxRnogSamB5v+t1QjJkdJmieQAJg0YFMGl
- yaqGX/fZYnTRIlhcXtR3cF9i8Ce2xZcXeVXu/vjzUUAspfxpd4lg+tpXeVwMiEApcIgI70U/iUt
- aCk4XNLFLNHGAcWYAjTlj9xmpaIA=
-X-Received: by 2002:a37:b5c4:: with SMTP id e187mr4262982qkf.27.1637046505204; 
- Mon, 15 Nov 2021 23:08:25 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzb3aSuqiN7aOqI9nXkfty0FhMxgFyD4ABCEt+11IBb/1fmKrOrRX6A5Su3hDTXUShP/OaowA==
-X-Received: by 2002:a37:b5c4:: with SMTP id e187mr4262967qkf.27.1637046505050; 
- Mon, 15 Nov 2021 23:08:25 -0800 (PST)
-Received: from kq.cs.ucr.edu (kq.cs.ucr.edu. [169.235.27.223])
- by smtp.googlemail.com with ESMTPSA id w10sm7205942qtj.37.2021.11.15.23.08.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Nov 2021 23:08:24 -0800 (PST)
-From: Yizhuo Zhai <yzhai003@ucr.edu>
-To: 
-Date: Mon, 15 Nov 2021 23:07:05 -0800
-Message-Id: <20211116070708.429432-2-yzhai003@ucr.edu>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211116070708.429432-1-yzhai003@ucr.edu>
-References: <20211116070708.429432-1-yzhai003@ucr.edu>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=8/XhVolQXCHPmPCzdRzFWhpIuM6H2Dzx9QQPO3TDOnQ=;
+ b=1+YfL2mHOCpZTz8kGlxsAKZNlp3B0MlbS/UqeENumrml8fxHrYNZLJIUIngJFCog0p
+ LNZmfFz3WX18YQDyXxhyGkRTF3TRwMe9Gw+KZraORkG00TFDZ22vPAFWMVy4z3YjpqvJ
+ rM9ZhjtL/4Nsxn6mc2P3t/yn9P1xl9Rj1u45ASAsxBpy8Shci2XkjnSPzydcbO0PFFgw
+ Dw5rQSh3GRKxIakHFVBMImClJkjPZGcLBVQdsvb6ejz6cIR2WB9eJGzjBxgtaoYv/QKG
+ dLaYP/CK2qa2hOEiF9ZAm3Gk8Q0M1iP4w/bsMj77UZihLrijLXd3pxNctrzmVOp6qBkQ
+ FtEQ==
+X-Gm-Message-State: AOAM531PxREYtE6RBlKoongNzf7ln6zLZgjwbOKk9XKQ5jhZQvMOR/7N
+ OFW8drQ+zQgp0gheimWhQ770NQdVrCoaDKbhVNg+1tIki5huIrIDEGoG4rn5zefiiokqqazGq/0
+ SgS9pPiHblWfKFkhkKSkHzjUa88eefLBHvtFc7C11Uso=
+X-Received: by 2002:a25:d103:: with SMTP id i3mr5547196ybg.260.1637042310185; 
+ Mon, 15 Nov 2021 21:58:30 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxwUr/rkQjN0wPIocSPR9Ha22HtX3sCwe21HdQmlEhLyrgEeqa6u/wE7tEwiSL8OX/t6aAWemYEafgo1TEtMxs=
+X-Received: by 2002:a25:d103:: with SMTP id i3mr5547162ybg.260.1637042309942; 
+ Mon, 15 Nov 2021 21:58:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CABvMjLTVZaU8vMW__2BDo6FnjFa_bsh2S-kEmg=KV4KTsFiUzA@mail.gmail.com>
+ <CACO55tuDQ9UC2rr=_Hsowvujk49oNK1zWfHj3jMnhEqsTAnh0Q@mail.gmail.com>
+In-Reply-To: <CACO55tuDQ9UC2rr=_Hsowvujk49oNK1zWfHj3jMnhEqsTAnh0Q@mail.gmail.com>
+From: Yizhuo Zhai <yzhai003@ucr.edu>
+Date: Mon, 15 Nov 2021 21:58:19 -0800
+Message-ID: <CABvMjLSFLpG4=+tE3Sr2wfRsEuKLXMm++Xx+JNmA8YXptgzkmw@mail.gmail.com>
+To: Karol Herbst <kherbst@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Mon, 22 Nov 2021 21:52:42 +0000
-Subject: [Nouveau] [PATCH] In function nvkm_ioctl_map(),
- the variable "type" could be uninitialized if "nvkm_object_map()"
- returns error code, however,
- it does not check the return value and directly use the "type" in the if
- statement, which is potentially unsafe.
+Subject: Re: [Nouveau] [PATCH] drm/nouveau/core: fix the uninitialized use
+ in nvkm_ioctl_map()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,33 +85,58 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Yizhuo Zhai <yzhai003@ucr.edu>, Ben Skeggs <bskeggs@redhat.com>,
+Cc: David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>,
  Daniel Vetter <daniel@ffwll.ch>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Fixes:01326050391ce("drm/nouveau/core/object: allow arguments to
-be passed to map function")
-Signed-off-by: Yizhuo Zhai <yzhai003@ucr.edu>
----
- drivers/gpu/drm/nouveau/nvkm/core/ioctl.c | 2 ++
- 1 file changed, 2 insertions(+)
+Hi Karol:
+Thanks for the feedback, the patch might be too old to apply to the
+latest code tree. Let me check and get back to you soon.
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c b/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
-index 735cb6816f10..4264d9d79783 100644
---- a/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
-@@ -266,6 +266,8 @@ nvkm_ioctl_map(struct nvkm_client *client,
- 		ret = nvkm_object_map(object, data, size, &type,
- 				      &args->v0.handle,
- 				      &args->v0.length);
-+		if (ret)
-+			return ret;
- 		if (type == NVKM_OBJECT_MAP_IO)
- 			args->v0.type = NVIF_IOCTL_MAP_V0_IO;
- 		else
+On Sat, Nov 13, 2021 at 12:22 PM Karol Herbst <kherbst@redhat.com> wrote:
+>
+> something seems to have messed with the patch so it doesn't apply correctly.
+>
+> On Thu, Jun 17, 2021 at 9:39 AM Yizhuo Zhai <yzhai003@ucr.edu> wrote:
+> >
+> > In function nvkm_ioctl_map(), the variable "type" could be
+> > uninitialized if "nvkm_object_map()" returns error code,
+> > however, it does not check the return value and directly
+> > use the "type" in the if statement, which is potentially
+> > unsafe.
+> >
+> > Signed-off-by: Yizhuo <yzhai003@ucr.edu>
+> > ---
+> >  drivers/gpu/drm/nouveau/nvkm/core/ioctl.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
+> > b/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
+> > index d777df5a64e6..7f2e8482f167 100644
+> > --- a/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
+> > +++ b/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
+> > @@ -266,6 +266,8 @@ nvkm_ioctl_map(struct nvkm_client *client,
+> >                 ret = nvkm_object_map(object, data, size, &type,
+> >                                       &args->v0.handle,
+> >                                       &args->v0.length);
+> > +               if (ret)
+> > +                       return ret;
+> >                 if (type == NVKM_OBJECT_MAP_IO)
+> >                         args->v0.type = NVIF_IOCTL_MAP_V0_IO;
+> >                 else
+> > --
+> > 2.17.1
+> >
+>
+
+
 -- 
-2.25.1
+Kind Regards,
 
+Yizhuo Zhai
+
+Computer Science, Graduate Student
+University of California, Riverside
