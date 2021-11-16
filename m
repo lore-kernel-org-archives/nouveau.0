@@ -1,79 +1,88 @@
-Return-Path: <SRS0=XZBY=QG=lists.freedesktop.org=nouveau-bounces@kernel.org>
+Return-Path: <nouveau-bounces@lists.freedesktop.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C8092C4332F
-	for <nouveau@archiver.kernel.org>; Fri, 19 Nov 2021 14:39:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 93BBB61B1B
-	for <nouveau@archiver.kernel.org>; Fri, 19 Nov 2021 14:39:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 93BBB61B1B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
-Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.freedesktop.org
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94BAAC433F5
+	for <nouveau@archiver.kernel.org>; Mon, 22 Nov 2021 21:52:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D0F06E194;
-	Fri, 19 Nov 2021 14:39:16 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03BD36E194
- for <nouveau@lists.freedesktop.org>; Fri, 19 Nov 2021 14:39:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1637332754;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=KPVAyMjSb/gSfj+6d4BZw3+mYUBoOnUapoYcaEraNcA=;
- b=hNRZ3eoEkMUcw+nOUT3IRcMhZxwXRQAPYi+r/RUOtE38qGlWKzfUPc29HhBPSbTTMXGu/5
- opQ58N8ex4ZSLJMKVdF2X2xeJggCZNx5bbZMipOe4jhlYXW1JiiBtBDycDpgDTr3NnlBed
- eekf+VKNPYtin0u0mP/7jM1uEkhCw2M=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-476-2sDfwiQdOOmjl7PDtYcWwA-1; Fri, 19 Nov 2021 09:39:12 -0500
-X-MC-Unique: 2sDfwiQdOOmjl7PDtYcWwA-1
-Received: by mail-wr1-f70.google.com with SMTP id
- p17-20020adff211000000b0017b902a7701so1808283wro.19
- for <nouveau@lists.freedesktop.org>; Fri, 19 Nov 2021 06:39:12 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1259F89D9B;
+	Mon, 22 Nov 2021 21:52:44 +0000 (UTC)
+X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
+ Tue, 16 Nov 2021 07:15:33 UTC
+Received: from mx2.ucr.edu (mx.ucr.edu [138.23.62.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74B7E6E910
+ for <nouveau@lists.freedesktop.org>; Tue, 16 Nov 2021 07:15:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=ucr.edu; i=@ucr.edu; q=dns/txt; s=selector3;
+ t=1637046933; x=1668582933;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=VO2ps4lqNewVdq22Zvj/a2S0OmORg6rzuJt+A60klUs=;
+ b=q0Aa2HlnxLQ7JzHW7Bb1D7mKP5Fo/rt2aXU+VaoZgiqPFj/kzYeQSROk
+ lmeg5b+Fu4XQ7F/tJI2XLEuoOh3+bUoo47Pfg5yPsK7RT2OuougvuIZjW
+ j8805uiiS5snEV8cFLTCh68c1Nr+da9d3reJumUpKpMNvHqMr+G3gkK/5
+ +o5mpeNJQaDmNAP2H3QFsJ23NjccPTkzkcyM8vH7GUoE5nh/8N9W20hm6
+ SwOADv6VP9KMp9auRgrFbxceEp9w8FyFfAGjuApwWWUScuHS2iKOVXjOS
+ 2xPAUnqdQr79JohiPkD+jnkR168UTsHb6MOImc68i2L7jp9uxZ4p+HLHs g==;
+IronPort-SDR: ZXGEB/vQ/iTJ0WEFv+fxDO84Y+ot2EjZb9WG4U6UGU4K0aPHCVH8vW0ibLCbru89D5qB6tcFrT
+ EGGDVWwyaX7ug89oiGYesiRl4vKEDjCJftOImV+pEfZXe0u2BOwHjt2TCJf1p9Uj+TJex6UfiG
+ CgIuczlf7Gx2tQgvfAyI2rASzyXOzrFlGQh91hU3DxUht06U9UZL2ZxyPqg2qT1ROTBzintubI
+ IS8IWBTgwnrgLH48qc2iEd9OsEHEJTB0PTzZuCTF3gf60Gr5AglrAAspGGm6X6c7uskWS+H8de
+ FPRya/RR9UoUr663p+waKwSQ
+X-IronPort-AV: E=Sophos;i="5.87,238,1631602800"; d="scan'208";a="197345624"
+Received: from mail-qv1-f72.google.com ([209.85.219.72])
+ by smtp2.ucr.edu with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256;
+ 15 Nov 2021 23:08:26 -0800
+Received: by mail-qv1-f72.google.com with SMTP id
+ dz17-20020ad45891000000b003bbb4aba6d7so18405876qvb.12
+ for <nouveau@lists.freedesktop.org>; Mon, 15 Nov 2021 23:08:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucr.edu; s=rmail;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=o3HI54mJH/tMRV5CdW0GGK2Uj3sS8rXd01TKP0agSfQ=;
+ b=GTwP4sC0lF0Nu4knrINh27vw5wfFRisKOITj8cPSjtfYQq9hjSO2crPj3dJH52NAxD
+ Xsk5ANQ7ZKFYCveEzMIh7H+vrcaWGRxnLLueKLPqdXLSgAN66gYOwmPW+LSjmlDv5ehZ
+ hv3TXuUyxOaqP1EhLfwrnsl6VhgzuNAC73d7U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=KPVAyMjSb/gSfj+6d4BZw3+mYUBoOnUapoYcaEraNcA=;
- b=m9w28N/QAA1QLWOAkitgwcC2nyLrIa8aWZqNariy1wfdpDqpyK/Dq/2j7yJ0BnQkxn
- zDvDDpaW6mCPqOSvZoh2QylYA1Ri8Gtgt26YVSraUHC5cZOmoVPzj4MCY9/pASuhRSt3
- 3rzxd2T3bJPlSOBKrp4HDwGNAYYLBCHwpuVzpLe2josy2fyOMCREkJBhUWr1XQTf2G5H
- BtwgAzldo/zBvZXp4hpGZ18XsV+52xd22lxcNv8sZqelVH56XzBA6F2a+h2MZuv/2SpM
- kRzJwsPcbXPD8DhxfkIVPNCU+rq3+Uh//i+s3MjPEWgl9OEt2VRtDrp9nJmdp+nkRwk1
- B9Qg==
-X-Gm-Message-State: AOAM532rFgnAhYWLBp6s9Ss1cGZdUcgPu81LWZAk7XF1vm2DlM2kPRM8
- UZGjuohPvxZVIElsRe7Ef1iIBiwSmSIQ5PZc5TYP3ipM578mINYNc8BX7W3gAGH4ZmgztVF88yd
- /8APQT6Ozd/xJkA7AQF5ffHaQ9Edrzz9uOb5HNAP0Aw==
-X-Received: by 2002:a7b:c207:: with SMTP id x7mr177663wmi.108.1637332751671;
- Fri, 19 Nov 2021 06:39:11 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyMCPD6zuoDj64o2bHPErJ/MtegllB1fynfyrNwPIhkloNW30yhjiz3Q2IkpNk26/qY4E4Nu4bdVxfVmxfBC98=
-X-Received: by 2002:a7b:c207:: with SMTP id x7mr177621wmi.108.1637332751371;
- Fri, 19 Nov 2021 06:39:11 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=o3HI54mJH/tMRV5CdW0GGK2Uj3sS8rXd01TKP0agSfQ=;
+ b=lQHhdQNyPXrlyFEckjftWZwgfpuy8VpwANUGxf0Dzm0xmtmAeBjKd/AkrnKj/DAg3W
+ lty6wImzRBURHdO29w+yzYImxp97KSlFwkvIjc7yoS9RWRpiM/U11xZ8yQBQMt5AedYR
+ FB62Kg9wQXXkW8CkAnZN7FysYAjoyclnnRS+Hoi9O5RW+MCv9LcdIjqrF/y9hSBfvTnF
+ 3gRyohC6Rou5by6cO30/vYx2MJjaHV4/kzPW2E5VK1Wq2Pxj+8oas4DYpgM9Evthvz60
+ H6JEdrpUpMdHNAEvxwFzeHwnAmsHfd3VsqJ97sqAwBkRpM2yF42gmMeKYPsgsALgKAvV
+ ny5w==
+X-Gm-Message-State: AOAM532u1Oq//ig3OHZpUrDxRnogSamB5v+t1QjJkdJmieQAJg0YFMGl
+ yaqGX/fZYnTRIlhcXtR3cF9i8Ce2xZcXeVXu/vjzUUAspfxpd4lg+tpXeVwMiEApcIgI70U/iUt
+ aCk4XNLFLNHGAcWYAjTlj9xmpaIA=
+X-Received: by 2002:a37:b5c4:: with SMTP id e187mr4262982qkf.27.1637046505204; 
+ Mon, 15 Nov 2021 23:08:25 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzb3aSuqiN7aOqI9nXkfty0FhMxgFyD4ABCEt+11IBb/1fmKrOrRX6A5Su3hDTXUShP/OaowA==
+X-Received: by 2002:a37:b5c4:: with SMTP id e187mr4262967qkf.27.1637046505050; 
+ Mon, 15 Nov 2021 23:08:25 -0800 (PST)
+Received: from kq.cs.ucr.edu (kq.cs.ucr.edu. [169.235.27.223])
+ by smtp.googlemail.com with ESMTPSA id w10sm7205942qtj.37.2021.11.15.23.08.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 15 Nov 2021 23:08:24 -0800 (PST)
+From: Yizhuo Zhai <yzhai003@ucr.edu>
+To: 
+Date: Mon, 15 Nov 2021 23:07:05 -0800
+Message-Id: <20211116070708.429432-2-yzhai003@ucr.edu>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211116070708.429432-1-yzhai003@ucr.edu>
+References: <20211116070708.429432-1-yzhai003@ucr.edu>
 MIME-Version: 1.0
-References: <19065a66-ce89-b9b9-d534-eb2cabff7825@urv.cat>
- <CACO55tuWxXJoWJk-V11f-bb+6akfjBYiG8L0RoCZfRiceo9N5Q@mail.gmail.com>
- <3f418b50-e731-ff71-dc93-b065f9be8389@urv.cat>
- <CACO55tsqBSSzyeyJbS-81rO4=JXtdJxz_vOHoc-f7rvVwZdLog@mail.gmail.com>
- <f7a8c82c-2fa3-60ed-40e4-ccde4a96b8c6@urv.cat>
-In-Reply-To: <f7a8c82c-2fa3-60ed-40e4-ccde4a96b8c6@urv.cat>
-From: Karol Herbst <kherbst@redhat.com>
-Date: Fri, 19 Nov 2021 15:39:00 +0100
-Message-ID: <CACO55tuoWJbx0wqcGypocQm78sLrp6DoS+o2nGE4mVQAidNFGg@mail.gmail.com>
-To: dmanye <dmanye@urv.cat>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=kherbst@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Nouveau] [INVALID_ARG] mthd 0414
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 22 Nov 2021 21:52:42 +0000
+Subject: [Nouveau] [PATCH] In function nvkm_ioctl_map(),
+ the variable "type" could be uninitialized if "nvkm_object_map()"
+ returns error code, however,
+ it does not check the return value and directly use the "type" in the if
+ statement, which is potentially unsafe.
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,63 +94,33 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau <nouveau@lists.freedesktop.org>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Yizhuo Zhai <yzhai003@ucr.edu>, Ben Skeggs <bskeggs@redhat.com>,
+ Daniel Vetter <daniel@ffwll.ch>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Nov 19, 2021 at 2:00 PM dmanye <dmanye@urv.cat> wrote:
->
-> On 19/11/21 13:31, Karol Herbst wrote:
-> > yeah.. not quite sure yet. I tried it out with my gk208b gpus, but
-> > couldn't hit anything. Maybe using VGA makes the difference here. Or
-> > something else is different. Might also already be fixed in 5.16...
-> > too many unknowns still. I will do another round of testing with VGA
-> > and see how that ends.
->
-> hello again,
->
-> thanks for your effort Karol. i've just found another time the bug and:
->
-> 1) kept the vga cable in the same place.
->
-> 2) connected a dvi cable between the same computer and the same monitor.
->
-> 3) told xrandr to dup the signal through the dvi cable:
->
-> DISPLAY=3D:0.0 xrandr --output DVI-D-1 --mode "1920x1080" --same-as VGA-1
->
-> 4) voil=C3=A0! the monitor, all alone, switched to dvi input and there is=
- my
-> x session up and running.
->
-> 5) if i force the monitor to change to vga input it refuses it and
-> returns to dvi
->
-> so i think the driver does its job but without actually sending anything
-> through the vga cable.
->
+Fixes:01326050391ce("drm/nouveau/core/object: allow arguments to
+be passed to map function")
+Signed-off-by: Yizhuo Zhai <yzhai003@ucr.edu>
+---
+ drivers/gpu/drm/nouveau/nvkm/core/ioctl.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-yeah.. not quite sure yet what's going on here. Maybe the cable are
-just a bit broken, or.... other signals interfering or whatever. Maybe
-a driver bug. VGA being an analog signal and stuff makes it a bit
-painful to tell what's wrong. If dmesg is clean, then no idea how to
-dig into this even. I couldn't reproduce it with my Fedora system
-running the latest 5.10 kernel either with VGA.
-
-Could also be the displays being weird...
-
-Anyway, if using DVI is an option for you I highly recommend using
-that. But I'd also like to figure out what's wrong here.
-
-What I think could help is to enable drm debugging once you hit the
-error. For that you can write "0x1ff" into
-/sys/module/drm/paramters/debug as root, restart X, change the
-resolution via xrandr to force X to set a new mode on the connector
-and pastebin the output of dmesg somewhere. Maybe that helps, maybe
-not. Let's see what information that gives us.
-
->
-> thanks.
->
->
+diff --git a/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c b/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
+index 735cb6816f10..4264d9d79783 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
++++ b/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
+@@ -266,6 +266,8 @@ nvkm_ioctl_map(struct nvkm_client *client,
+ 		ret = nvkm_object_map(object, data, size, &type,
+ 				      &args->v0.handle,
+ 				      &args->v0.length);
++		if (ret)
++			return ret;
+ 		if (type == NVKM_OBJECT_MAP_IO)
+ 			args->v0.type = NVIF_IOCTL_MAP_V0_IO;
+ 		else
+-- 
+2.25.1
 
