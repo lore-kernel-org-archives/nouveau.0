@@ -4,81 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8BEEC433FE
-	for <nouveau@archiver.kernel.org>; Mon, 22 Nov 2021 21:52:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FE27C433EF
+	for <nouveau@archiver.kernel.org>; Tue, 23 Nov 2021 19:36:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 469AC89DA6;
-	Mon, 22 Nov 2021 21:52:44 +0000 (UTC)
-Received: from mx-lax3-3.ucr.edu (mx-lax3-3.ucr.edu [169.235.156.38])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E515F6E095
- for <nouveau@lists.freedesktop.org>; Tue, 16 Nov 2021 07:07:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=ucr.edu; i=@ucr.edu; q=dns/txt; s=selector3;
- t=1637046443; x=1668582443;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=VO2ps4lqNewVdq22Zvj/a2S0OmORg6rzuJt+A60klUs=;
- b=B0VNqevkNocfDyGmMU37x9YmU72cq1T0jT4NVBbE6gqQCV6ectHEv8hd
- e/rNFQ46s5L5KF1+ERuYGKCykyyhov7eSiOiyf2OkzJfntuGjzpz0Le4r
- JkyWEpk5dbjKyVDKS76d//QhCnPMGzAEt1CFTAErs4syiwsGMlqNAYteO
- trOVAqfs6DsSKiZebMKPRe5/ctWin2c6CXj9lLaLD5z1p6+riRDlHsO40
- uSBrorTZYfuogLH4IbcaifiS+ReaLT8dFL8o6xB8GX4VQVjgqYRUy3UCX
- USQrvMd9C5VhMFlPE5+KnUhx1aLdL5gv0ZRlQpihjOcovi4OVjL6XFLfP g==;
-IronPort-SDR: UWmtEoJAHVHhk7h+uETNahDI3AHb/wHPOfNTaD1BvGvMfRd1VYdERe5YVlC5gvIBYLctqEQubN
- 5Lz9YzvoDQA7GlxetGtYEAVWBa0zEYDb5QKvDJQB7H/V7sShPOGN54H6Z5nDAPcr/KFeYvT9E1
- Rb4uU7hGUCc/bxpFbZ+6wroBD0UETHXEa4klaRPZk6D/0CwAKWh12WCJhHhEbDwT+9O2frdzZt
- 9o1rF5nrDMEHw594mM9JBJ/KnSR+g7T79hmoJPoMDCtD8i4QrjKqa7J61eNpa9ER1KlkUYZ8l7
- s9+tLhTcRSfyH09YY285NIRc
-X-IronPort-AV: E=Sophos;i="5.87,238,1631602800"; d="scan'208";a="86393205"
-Received: from mail-qk1-f197.google.com ([209.85.222.197])
- by smtp-lax3-3.ucr.edu with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256;
- 15 Nov 2021 23:07:22 -0800
-Received: by mail-qk1-f197.google.com with SMTP id
- bq9-20020a05620a468900b004681cdb3483so7975820qkb.23
- for <nouveau@lists.freedesktop.org>; Mon, 15 Nov 2021 23:07:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucr.edu; s=rmail;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=o3HI54mJH/tMRV5CdW0GGK2Uj3sS8rXd01TKP0agSfQ=;
- b=f261Bw5lz3VrnlrV1z2mQHVATuwQH6Nv2Sn8mpGgv9cJwWqwounaC+e3aDrcj3xAUr
- HajLMQLzUyo4LmusHEW65YiMETuOWE6W64PHera/XO2cNYPf41Gb8NvTLyO35Vu902XT
- 5oBdWzzt/izYc7pK1lt9bBhvSdVg+ygGGP82g=
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC8C16E12C;
+	Tue, 23 Nov 2021 19:36:02 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECABD6E0D9
+ for <nouveau@lists.freedesktop.org>; Tue, 23 Nov 2021 19:36:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1637696159;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=rZfv1IAB1L4OKPDv7Z7zl3z7pjV3ugHQdTctCyaDB7o=;
+ b=Ll1bpo9uRND0QmF9bPPAq0VYrpzd+qg/Dfadsd8oLoDaTiKm0d35aTWIjhvDEaqi0f+UgV
+ 4IQWoSxMqFr66KLH+2LE1KFZh6KGf1QK7NTHKu2eKsxgEcKVwNer8b9fyRoJvX+TK+a9S8
+ 6UAKPgyGwKkeVWZ54QBqCN8R2x5eXBk=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-478-kwG3RGSbPM27pJCnTTdhFw-1; Tue, 23 Nov 2021 14:35:58 -0500
+X-MC-Unique: kwG3RGSbPM27pJCnTTdhFw-1
+Received: by mail-qt1-f198.google.com with SMTP id
+ e14-20020a05622a110e00b002b0681d127eso233279qty.15
+ for <nouveau@lists.freedesktop.org>; Tue, 23 Nov 2021 11:35:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
  :content-transfer-encoding;
- bh=o3HI54mJH/tMRV5CdW0GGK2Uj3sS8rXd01TKP0agSfQ=;
- b=SgY6t4sHfGlAyUp8poFU7r7ENrhoane9S8Snk1SW/1oqb6iW8uMLrAWO3XpNxp/rLF
- s576BHmvsMxPtgyQPSK+YRt2JC8mB6Mjc565K0xnzLbrJJGICp7kkU/Ta8RYcHOhpzu3
- 5al2rFuCOouhTw7OMpkYoeNK0Jp/M0sN+JZrlM42k398WPBRCkes+kS5BSuxWY/i4r+m
- yPnrmlMzHTYDCCxL2fVXEmevVZU4D96YJN1Bpd6ZNqCpT+xOF+0yoD6h8URsQqj9Mdv0
- FeSm3C9HzB6v5o/Sjg+SxhyqcECtCbph3uBBX+beLm0u8acqolmsjpez/rRCIX+82DwG
- eSJg==
-X-Gm-Message-State: AOAM530oSv/QVTR4jkvK/U6/s+lcQUNGASZ05aqixsIsTFk7Y3M7bp1U
- /Ic4goP+hzjd5FpX5ommb6NqvX5ESqiRIjNT0A5HSyZBxpJWY5bMoAIeVO8zMeiOtRq0gQbK9B8
- z9WR/OoRFlMBEPUtC3oCSbanWBWg=
-X-Received: by 2002:ac8:7dd5:: with SMTP id c21mr3298172qte.176.1637046440624; 
- Mon, 15 Nov 2021 23:07:20 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyhPC/C2kELtqxHwiDBXwIfNPToSUuU8wpj8qVqVxKjt5Ut7Tn0HkLJ7k8XQtQn5Vfh9zODaQ==
-X-Received: by 2002:ac8:7dd5:: with SMTP id c21mr3298153qte.176.1637046440389; 
- Mon, 15 Nov 2021 23:07:20 -0800 (PST)
-Received: from kq.cs.ucr.edu (kq.cs.ucr.edu. [169.235.27.223])
- by smtp.googlemail.com with ESMTPSA id w10sm7205942qtj.37.2021.11.15.23.07.19
+ bh=rZfv1IAB1L4OKPDv7Z7zl3z7pjV3ugHQdTctCyaDB7o=;
+ b=jFnxBJeS7FNd3HRphQoBLoaGw3ASqGasJKfFxnX1x5juCMb+5+vObycwE5E5gVPTXa
+ qx+onhBerNtpl1q5hHpGJqJ+XsDNu3XJkJNa8UfZvkCFLYAtrB2+26YEpc717+tagW7B
+ VngYHCdiZH3M3mgdDPBJ0BbEnNRwjhCoGGWxA/P9d13edLl2Z6VlSriiOuVfZeFrcrqT
+ 7A3JrV/SYdn7jNXUCGNyLNXnHuKPY4O855mkpB+gnSFvRkZjafHzUikhLB198mHAuXXF
+ sNl0H6HO/bcNO2arWDiMMGZVl59DdBv+C/0xiuDxxIyYCgyfm437SvAd8Me5Vpj2Vh54
+ uqLQ==
+X-Gm-Message-State: AOAM530U/i/3RzJm94L5g6jaRPKTSkrNf+ss1ZHBz6rWEsbIEF/wsHOZ
+ gOzi4l9/WQ0z5G3ZE7psZeGBRR1eVgU/5wA41vOmOuND1FllC4N7DaCN5BIRnLOnja9hKoPSWoq
+ mOYGGaR+V5X/UlyASyxIN4giiyw==
+X-Received: by 2002:a05:622a:13c9:: with SMTP id
+ p9mr9530986qtk.47.1637696158322; 
+ Tue, 23 Nov 2021 11:35:58 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwd9aJm8SZb+wfUFsxDgSU42rVqDIpUUlYw//me57YbMeMFl74fEpjtGIzlLmPaOts6c7+/Mg==
+X-Received: by 2002:a05:622a:13c9:: with SMTP id
+ p9mr9530939qtk.47.1637696158082; 
+ Tue, 23 Nov 2021 11:35:58 -0800 (PST)
+Received: from [192.168.8.138] (pool-96-230-249-157.bstnma.fios.verizon.net.
+ [96.230.249.157])
+ by smtp.gmail.com with ESMTPSA id m15sm6726097qkp.76.2021.11.23.11.35.56
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Nov 2021 23:07:20 -0800 (PST)
-From: Yizhuo Zhai <yzhai003@ucr.edu>
-To: 
-Date: Mon, 15 Nov 2021 23:07:04 -0800
-Message-Id: <20211116070708.429432-1-yzhai003@ucr.edu>
-X-Mailer: git-send-email 2.25.1
+ Tue, 23 Nov 2021 11:35:57 -0800 (PST)
+Message-ID: <4dd933d333194ff8a676fcafdd5c9ef19f002c92.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Dan Carpenter <dan.carpenter@oracle.com>, Ben Skeggs <bskeggs@redhat.com>
+Date: Tue, 23 Nov 2021 14:35:55 -0500
+In-Reply-To: <20211118111314.GB1147@kili>
+References: <20211118111314.GB1147@kili>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.42.1 (3.42.1-1.fc35)
 MIME-Version: 1.0
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 22 Nov 2021 21:52:42 +0000
-Subject: [Nouveau] [PATCH] In function nvkm_ioctl_map(),
- the variable "type" could be uninitialized if "nvkm_object_map()"
- returns error code, however,
- it does not check the return value and directly use the "type" in the if
- statement, which is potentially unsafe.
+Subject: Re: [Nouveau] [PATCH] drm/nouveau/acr: fix a couple NULL vs
+ IS_ERR() checks
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,32 +87,74 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Yizhuo Zhai <yzhai003@ucr.edu>, Ben Skeggs <bskeggs@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Fixes:01326050391ce("drm/nouveau/core/object: allow arguments to
-be passed to map function")
-Signed-off-by: Yizhuo Zhai <yzhai003@ucr.edu>
----
- drivers/gpu/drm/nouveau/nvkm/core/ioctl.c | 2 ++
- 1 file changed, 2 insertions(+)
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c b/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
-index 735cb6816f10..4264d9d79783 100644
---- a/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
-@@ -266,6 +266,8 @@ nvkm_ioctl_map(struct nvkm_client *client,
- 		ret = nvkm_object_map(object, data, size, &type,
- 				      &args->v0.handle,
- 				      &args->v0.length);
-+		if (ret)
-+			return ret;
- 		if (type == NVKM_OBJECT_MAP_IO)
- 			args->v0.type = NVIF_IOCTL_MAP_V0_IO;
- 		else
+Will push this to drm-misc in a bit
+
+On Thu, 2021-11-18 at 14:13 +0300, Dan Carpenter wrote:
+> The nvkm_acr_lsfw_add() function never returns NULL.  It returns error
+> pointers on error.
+> 
+> Fixes: 22dcda45a3d1 ("drm/nouveau/acr: implement new subdev to replace
+> "secure boot"")
+> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+> ---
+>  drivers/gpu/drm/nouveau/nvkm/subdev/acr/gm200.c | 6 ++++--
+>  drivers/gpu/drm/nouveau/nvkm/subdev/acr/gp102.c | 6 ++++--
+>  2 files changed, 8 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/acr/gm200.c
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/acr/gm200.c
+> index cdb1ead26d84..82b4c8e1457c 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/acr/gm200.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/acr/gm200.c
+> @@ -207,11 +207,13 @@ int
+>  gm200_acr_wpr_parse(struct nvkm_acr *acr)
+>  {
+>         const struct wpr_header *hdr = (void *)acr->wpr_fw->data;
+> +       struct nvkm_acr_lsfw *lsfw;
+>  
+>         while (hdr->falcon_id != WPR_HEADER_V0_FALCON_ID_INVALID) {
+>                 wpr_header_dump(&acr->subdev, hdr);
+> -               if (!nvkm_acr_lsfw_add(NULL, acr, NULL, (hdr++)->falcon_id))
+> -                       return -ENOMEM;
+> +               lsfw = nvkm_acr_lsfw_add(NULL, acr, NULL, (hdr++)-
+> >falcon_id);
+> +               if (IS_ERR(lsfw))
+> +                       return PTR_ERR(lsfw);
+>         }
+>  
+>         return 0;
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/acr/gp102.c
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/acr/gp102.c
+> index fb9132a39bb1..fd97a935a380 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/acr/gp102.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/acr/gp102.c
+> @@ -161,11 +161,13 @@ int
+>  gp102_acr_wpr_parse(struct nvkm_acr *acr)
+>  {
+>         const struct wpr_header_v1 *hdr = (void *)acr->wpr_fw->data;
+> +       struct nvkm_acr_lsfw *lsfw;
+>  
+>         while (hdr->falcon_id != WPR_HEADER_V1_FALCON_ID_INVALID) {
+>                 wpr_header_v1_dump(&acr->subdev, hdr);
+> -               if (!nvkm_acr_lsfw_add(NULL, acr, NULL, (hdr++)->falcon_id))
+> -                       return -ENOMEM;
+> +               lsfw = nvkm_acr_lsfw_add(NULL, acr, NULL, (hdr++)-
+> >falcon_id);
+> +               if (IS_ERR(lsfw))
+> +                       return PTR_ERR(lsfw);
+>         }
+>  
+>         return 0;
+
 -- 
-2.25.1
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
