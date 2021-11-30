@@ -4,78 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A9BAC433FE
-	for <nouveau@archiver.kernel.org>; Fri,  3 Dec 2021 20:30:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 952E6C433F5
+	for <nouveau@archiver.kernel.org>; Fri,  3 Dec 2021 20:30:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 518846F990;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 726BB7B9D2;
 	Fri,  3 Dec 2021 20:30:01 +0000 (UTC)
-Received: from mta-p7.oit.umn.edu (mta-p7.oit.umn.edu [134.84.196.207])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76BF96E5C0
- for <nouveau@lists.freedesktop.org>; Wed,  1 Dec 2021 15:46:29 +0000 (UTC)
+X-Greylist: delayed 466 seconds by postgrey-1.36 at gabe;
+ Tue, 30 Nov 2021 14:38:23 UTC
+Received: from mta-p8.oit.umn.edu (mta-p8.oit.umn.edu [134.84.196.208])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 527846E167
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Nov 2021 14:38:23 +0000 (UTC)
 Received: from localhost (unknown [127.0.0.1])
- by mta-p7.oit.umn.edu (Postfix) with ESMTP id 4J43NP1GPnz9w2y0
- for <nouveau@lists.freedesktop.org>; Wed,  1 Dec 2021 15:46:29 +0000 (UTC)
+ by mta-p8.oit.umn.edu (Postfix) with ESMTP id 4J3PlJ53SYz9w2S6
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Nov 2021 14:30:36 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at umn.edu
-Received: from mta-p7.oit.umn.edu ([127.0.0.1])
- by localhost (mta-p7.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 4QR0M_X7RR07 for <nouveau@lists.freedesktop.org>;
- Wed,  1 Dec 2021 09:46:29 -0600 (CST)
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com
- [209.85.210.197])
+Received: from mta-p8.oit.umn.edu ([127.0.0.1])
+ by localhost (mta-p8.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Gsz_3lNLOgpD for <nouveau@lists.freedesktop.org>;
+ Tue, 30 Nov 2021 08:30:36 -0600 (CST)
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com
+ [209.85.214.199])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mta-p7.oit.umn.edu (Postfix) with ESMTPS id 4J43NN6K1Cz9w2xy
- for <nouveau@lists.freedesktop.org>; Wed,  1 Dec 2021 09:46:28 -0600 (CST)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mta-p7.oit.umn.edu 4J43NN6K1Cz9w2xy
-DKIM-Filter: OpenDKIM Filter v2.11.0 mta-p7.oit.umn.edu 4J43NN6K1Cz9w2xy
-Received: by mail-pf1-f197.google.com with SMTP id
- c131-20020a621c89000000b004a343484969so15383350pfc.3
- for <nouveau@lists.freedesktop.org>; Wed, 01 Dec 2021 07:46:28 -0800 (PST)
+ by mta-p8.oit.umn.edu (Postfix) with ESMTPS id 4J3PlJ2vD2z9w2Ry
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Nov 2021 08:30:36 -0600 (CST)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mta-p8.oit.umn.edu 4J3PlJ2vD2z9w2Ry
+DKIM-Filter: OpenDKIM Filter v2.11.0 mta-p8.oit.umn.edu 4J3PlJ2vD2z9w2Ry
+Received: by mail-pl1-f199.google.com with SMTP id
+ s16-20020a170902ea1000b00142728c2ccaso8290262plg.23
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Nov 2021 06:30:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=umn.edu; s=google;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=j9Nr51s8c+BNl5wfym5W4j50QPfmoIbsoX7lEYb7NO0=;
- b=hP54uOcAmEh8MaVfUzwmRsDFY2HD2rcZO3WGs28smCqTHW7LRClfCaHFOR0hRYxUfY
- 7/zRxZ4eYQFeucFfvEB6q4ZcneYRseHvkCnbLsO6u1G4FsxLDg8zuMMK6ewW+qdzPWth
- UHJ6Ni6dZ8BncvQcacc23wg6SCavkH2ppNsDImdLk/GYTOkFm3UZzGkWBGBnVDGDYzgQ
- s8btnpP1BnuhNHsQzSFX/VAPM3xfhMy1tkQzHa8x9d1P8PdeXEPtF5Qk1Y+FN+gwNfk+
- 5oMorQ4lM3U+r4NwmaUSVOK8V4z/wc6cj5ym3SnHzOSCWzapzfBDeq2Hedzyjtp6XSLl
- EVlA==
+ bh=ZZULR1F8PiluLDq0yfX4xdKKhgM6tyga9J4hvDhRIDI=;
+ b=j98sbNp4aGJYzZQgx7/157yo3SgUnI/mMvJ0sMqD6xBYraYZ/VnSyRscyGTn1mZca0
+ LnZErg2no+D58Bx5NnS5WYws9ygKRfBUJsrlHzoV/ViYsCnwhaZgB85ElPWaBNfUpe4V
+ V0uC103ZW8xaFVYHWB96eff4zdXKuTIQvcX+WZXtO1+2tu58tNprNj99DOQod31ofnRz
+ YBQjahbHXcA5cnNi0x2UWfo+HHu4hHiCUOTzsqYGe4tTkZApaTbrTw7XtVTn4j2R7hZL
+ XI/LL44uanBqjlyUCjov1JQaJuAl+hm555ofGNNwY0mvzZD5PsAEsWH79U9IjOsdJGAE
+ CEcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=j9Nr51s8c+BNl5wfym5W4j50QPfmoIbsoX7lEYb7NO0=;
- b=Ngf4OmU8L1oyOdWDqeIgAHODnOf05fueBsYpJgdRCGVm00sP4MHCD9sLvpN8IeeoBN
- sVSGJCfzuK6YIdSdCmy//H4D5b6BD0tGOSk6shnM36vamsNmDd9Zv0GZ6NPqekqrM7px
- e4CAysnc/E7ESZzjgLnToBXbI4DxWTeNZOc4Mb5PnnsoSID4iHGgZwGor+g04mp2BPjt
- /AIrZskBOkj17yF1nGDFARjrU0cD6QaeXSaqshfV9huFvdzHMbVNyt8lSQSzE7QDQ1k6
- 91aaOS53j7FM/dfPd+cSVHyBK/BsPgWufYXkSAHQzsxIpnKWgX2ygn+vNGiLdZoSkpSc
- BJJA==
-X-Gm-Message-State: AOAM5312UELck+TfjqmhZs79VmM1G0O2/bqUExoXwJZ9TfGIo1bwLPAx
- Hy8uTFAvs/6Vl5LroWmRzpW8qlxFBklG4HbhN2EawLrM3v5UhiJ9rmOCQSs9o3Y/SAiCM5wGd2t
- 7aBuhUsE6yGesVFz3zz5PepDwEDgKTQ==
-X-Received: by 2002:a17:90b:4a0f:: with SMTP id
- kk15mr8370545pjb.223.1638373588190; 
- Wed, 01 Dec 2021 07:46:28 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy4Jj3XUHz6YZqjUjnp03PD0GdE83Yhf0dfQDMWddCbTcxhLg/hZmT7i3Kv1K9nJpdhtmqEpQ==
-X-Received: by 2002:a17:90b:4a0f:: with SMTP id
- kk15mr8370511pjb.223.1638373587982; 
- Wed, 01 Dec 2021 07:46:27 -0800 (PST)
-Received: from zqy787-GE5S.lan ([36.7.42.22])
- by smtp.gmail.com with ESMTPSA id l13sm213390pfu.149.2021.12.01.07.46.25
+ bh=ZZULR1F8PiluLDq0yfX4xdKKhgM6tyga9J4hvDhRIDI=;
+ b=HWmks+iKgFQ0sNxmboCvzTjUae+JM+2cgTfCIa3A7eavTh8NkXnqezXc6dD8L2The9
+ wI5QV8NGmNkvf9Hn0ZcsDBtYZDPOAEumO6G4YovEEAQQQq7ORU3WlnVVtKVpeU44+EHF
+ AaS6Gbp6wGx3H2S8RcrOgBCm39g7+ELZ2P2uVpJnVrpRJ6oiStb5bUkxd+pZQhvDc4xT
+ UvM7ily4K8fjpYe6vmWTAB61Gh7CzmdFZ9ckNCTRyOLGZPAQX3UXxWyzZKlwyo0muy1M
+ vJqWXlkxLXK+VGIxcrPGNjN5tQEgIwXxKvGPCSJY66+azwlo9j48H50KMGyJ2O6vdHDH
+ cUHA==
+X-Gm-Message-State: AOAM531HSmPNtDKQffHylU2JSSsuevANzMJP4WGZbWdegsXK5D2r+a/M
+ gTn9Q7stpve5Cf/qESKdWRfoXxD3OuddfOUICmQGCu71s6ZUTR6JbMF3bkbTE/tD16I45V/p/1X
+ ADmsldtAwLDj3ZW1Lqmy/498pDfeEbQ==
+X-Received: by 2002:a63:a1a:: with SMTP id 26mr2298309pgk.350.1638282635544;
+ Tue, 30 Nov 2021 06:30:35 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzvVF8wTLFjolACqw+b3KkKUeaJ7DTif2YLF7D+bFqP/PZCqaQ+P5pB9IlYEV7eNa7sL2MV8g==
+X-Received: by 2002:a63:a1a:: with SMTP id 26mr2298269pgk.350.1638282635156;
+ Tue, 30 Nov 2021 06:30:35 -0800 (PST)
+Received: from zqy787-GE5S.lan ([36.7.42.137])
+ by smtp.gmail.com with ESMTPSA id b8sm2974809pfr.213.2021.11.30.06.30.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 01 Dec 2021 07:46:27 -0800 (PST)
+ Tue, 30 Nov 2021 06:30:34 -0800 (PST)
 From: Zhou Qingyang <zhou1615@umn.edu>
 To: zhou1615@umn.edu
-Date: Wed,  1 Dec 2021 23:45:48 +0800
-Message-Id: <20211201154550.186374-1-zhou1615@umn.edu>
+Date: Tue, 30 Nov 2021 22:30:29 +0800
+Message-Id: <20211130143030.157754-1-zhou1615@umn.edu>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 03 Dec 2021 20:30:00 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/dispnv04: Fix a NULL pointer
- dereference in nv17_tv_get_ld_modes()
+Subject: [Nouveau] [PATCH] drm/nouveau: Fix a wild pointer dereference in
+ nouveau_connector_get_modes()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,20 +89,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
  kjlu@umn.edu, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
+ Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Dave Airlie <airlied@redhat.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-In nv17_tv_get_ld_modes(), drm_mode_duplicate() is assigned to mode
-and there is a dereference of it in nv17_tv_get_ld_modes(). which could
-lead to a NULL pointer dereference on failure of
-drm_mode_duplicate().
+In nouveau_connector_get_modes(), the return value of
+drm_mode_duplicate()is assigned to mode and used in
+drm_mode_probed_add(). drm_mode_probed_add() passes mode->head to
+list_add_tail(). list_add_tail() will further call __list_add() and
+there is a dereference of mode->head in __list_add(), which could lead
+to a wild pointer dereference on failure of drm_mode_duplicate().
 
 Fix this bug by adding a check of mode.
-
-As the return value of .get_modes() can not be negative, this patch
-does not directly return error code, but uses NV_INFO to report and
-returns n.
 
 This bug was found by a static analyzer. The analysis employs
 differential checking to identify inconsistent security operations
@@ -117,28 +116,26 @@ the bug.
 Builds with CONFIG_DRM_NOUVEAU=m show no new warnings,
 and our static analyzer no longer warns about this code.
 
-Fixes: f24342375927 ("drm/nouveau: Break some long lines in the TV-out code.")
+Fixes: 6ee738610f41 ("drm/nouveau: Add DRM driver for NVIDIA GPUs")
 Signed-off-by: Zhou Qingyang <zhou1615@umn.edu>
 ---
- drivers/gpu/drm/nouveau/dispnv04/tvnv17.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
-index 6fe103fd60e9..598180a403ab 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
-@@ -208,6 +208,11 @@ static int nv17_tv_get_ld_modes(struct drm_encoder *encoder,
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 22b83a6577eb..d960b42724de 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -977,6 +977,9 @@ nouveau_connector_get_modes(struct drm_connector *connector)
  		struct drm_display_mode *mode;
-
- 		mode = drm_mode_duplicate(encoder->dev, tv_mode);
-+		if (!mode) {
-+			NV_INFO(nouveau_drm(encoder->dev),
-+				"failure in drm_mode_duplicate\n");
-+			return n;
-+		}
-
- 		mode->clock = tv_norm->tv_enc_mode.vrefresh *
- 			mode->htotal / 1000 *
+ 
+ 		mode = drm_mode_duplicate(dev, nv_connector->native_mode);
++		if (!mode)
++			return -ENOMEM;
++
+ 		drm_mode_probed_add(connector, mode);
+ 		ret = 1;
+ 	}
 -- 
 2.25.1
 
