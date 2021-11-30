@@ -4,83 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 408D8C433F5
-	for <nouveau@archiver.kernel.org>; Sun, 28 Nov 2021 07:34:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 476E7C433F5
+	for <nouveau@archiver.kernel.org>; Fri,  3 Dec 2021 20:30:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 525146EC0F;
-	Sun, 28 Nov 2021 07:34:50 +0000 (UTC)
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com
- [IPv6:2a00:1450:4864:20::22b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A19F6EE14
- for <nouveau@lists.freedesktop.org>; Thu, 25 Nov 2021 13:26:55 +0000 (UTC)
-Received: by mail-lj1-x22b.google.com with SMTP id e11so12432772ljo.13
- for <nouveau@lists.freedesktop.org>; Thu, 25 Nov 2021 05:26:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-language:content-transfer-encoding;
- bh=Gxl3XvhS3jy/Vg4tNUDSLVXMW/QY1KlnmAlTBNyzUmw=;
- b=Z0idp8uhQ9AsUuYWi2RnXFNxiSFeD/SgsFtNGz10ZBJzP7SsQtNgnkZLl/0Yq6zw88
- ZtfWmpPkursnohrG1+gdmVYyX+4ItJgd/a3eYJ8N668kcslwO1r1ZELpeljaLyoGtHT3
- ONQcpMAQhkdGCAiAKUqSzvyYfmJqCUR8U2VdpKiSaK3DNepZx5z6BX2s2ozokIcJIZeR
- 9zG5NwH6IbCEJ6xEGZrbe3YkP7d9J3sLxLtwUNLhKBX2vF21orTi+1TKC0oNNfK2T4K5
- F+QSOhdkG7MyzKuaVEkIkoA83s5Na6NAXGf2NjKR90pY8sDx13MpmxC9g4RebyrmUKsy
- 5moA==
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7F9B6F4C5;
+	Fri,  3 Dec 2021 20:30:00 +0000 (UTC)
+Received: from mta-p5.oit.umn.edu (mta-p5.oit.umn.edu [134.84.196.205])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54F1A6E84F
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Nov 2021 14:43:57 +0000 (UTC)
+Received: from localhost (unknown [127.0.0.1])
+ by mta-p5.oit.umn.edu (Postfix) with ESMTP id 4J3PrP6cJjz9yT9T
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Nov 2021 14:35:01 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at umn.edu
+Received: from mta-p5.oit.umn.edu ([127.0.0.1])
+ by localhost (mta-p5.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id rR2I0GLa7E7O for <nouveau@lists.freedesktop.org>;
+ Tue, 30 Nov 2021 08:35:01 -0600 (CST)
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com
+ [209.85.214.200])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mta-p5.oit.umn.edu (Postfix) with ESMTPS id 4J3PrP4Z1pz9yT9Z
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Nov 2021 08:35:01 -0600 (CST)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mta-p5.oit.umn.edu 4J3PrP4Z1pz9yT9Z
+DKIM-Filter: OpenDKIM Filter v2.11.0 mta-p5.oit.umn.edu 4J3PrP4Z1pz9yT9Z
+Received: by mail-pl1-f200.google.com with SMTP id
+ v18-20020a170902e8d200b00141df2da949so8315470plg.10
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Nov 2021 06:35:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=umn.edu; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=v45QaW2rM4Je/A8eu9T3JFXlWztdvqd9VNNeErMwc18=;
+ b=ZoJ7bm62EGw7ET4F1X20dpTU7jOwszuY9Bf8pk2ZQQylLCvULZZChhV65/9zTL8s3f
+ hNlp0ysjfaFVeSzUpTo+vjdJQlYwrEVHbbqCYmvLUn4A7lpiHK/SVIoJeqvFCBJANZCw
+ 6I/83GucUnXu7bRLNHWKTqrWxdVNTlH05T8nHO76x6idj5YKgCSOnkg1XtOhAK4mXkq6
+ +1oYirp7q5sbg7cLxLAWPWzZXSS76mWWWHbZF9DneEeDnTx2Eqm+3Y/IICIODVT/HDqi
+ HZ9pOp3tfkqltDdRs7fS0JlVHLh48MwjjzjjOCpVfGt44YJcYlqOEfTpUcKHaQUplA4H
+ uM/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=Gxl3XvhS3jy/Vg4tNUDSLVXMW/QY1KlnmAlTBNyzUmw=;
- b=NfpMcIgJpvP5eULujRpvUxIhq1tUpkj/AtEq0aILCofgWomUjY4cRJuTI9SNWanoa+
- yVQC7zT+lax6TLCUvkYal+aZfRfWVxyNxLspeLPTjPWU2kBmLS6hlUHa1NmSC7/XNqQg
- XGVrg4qs8rbS761QN/z263OclfGJ8NK+enSS/LcN+2TZsjsfI9xu4mdX2y4WBoEQy+fI
- c9FFNc3wUYiflcLyJw29bXUqYaQrXP24CzCjwYJ6XdsMeX8AKxOFX7hsX8oSHHWHM22v
- FwTqD8HTvD5jPz+jdj7rVk4y6eUBBMJV/jGQtk0/Ol/Q1TXvf/0vUfFvIKlYJpVqesjJ
- mksw==
-X-Gm-Message-State: AOAM532JG5uowUlQaUJnzGM4V6lUexyirWYll66pJhK4xRbix/gTMk5u
- o8IQyEzOQLjq7mmD1r1RPRovDg==
-X-Google-Smtp-Source: ABdhPJzk0rkyZtS6FTgYDoC1LTJrxi0JVWAKHJVNqgGa3UJSxIleCmDGIlTtkxqSRMXBy9YzDuv34g==
-X-Received: by 2002:a2e:9a05:: with SMTP id o5mr24471640lji.488.1637846813476; 
- Thu, 25 Nov 2021 05:26:53 -0800 (PST)
-Received: from [192.168.1.211] ([37.153.55.125])
- by smtp.gmail.com with ESMTPSA id k14sm229478ljk.57.2021.11.25.05.26.52
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 25 Nov 2021 05:26:53 -0800 (PST)
-To: Claudio Suarez <cssk@net-c.es>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
- Maxime Ripard <mripard@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
- Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
- Neil Armstrong <narmstrong@baylibre.com>,
- Robert Foss <robert.foss@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
- nouveau@lists.freedesktop.org, ville.syrjala@linux.intel.com
-References: <20211016184226.3862-1-cssk@net-c.es>
- <20211016184226.3862-8-cssk@net-c.es>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <32c14b83-c5ee-1690-525d-8cf3d02a2394@linaro.org>
-Date: Thu, 25 Nov 2021 16:26:51 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+ bh=v45QaW2rM4Je/A8eu9T3JFXlWztdvqd9VNNeErMwc18=;
+ b=PRUxTfdXia4Cvc+j2reiuz80bws1yjKgcX/85ari0TNQnlBakHW7GCzcwfv9pSzUu6
+ CH6O9YuD6/pH0U6Dd5eJzbUn4lzDKtDN2f+zFQ+I5qUCq6V8tErQ6+D77l0Cxy+/OugF
+ RB8dKIALp/sjBR+oOTKk5tAqkeVqLreIeTCgJT2ScvWOLsH7x3QY0yi0fmARc9m4gnWa
+ 8AAOcFOMTLBPtZX+7OXKxJQ/jAWIsy2R4FaOjiMBxz9RI3LGI8RzTNVEpj1RL5UNjjTx
+ YTSw388q02EUuTOY07wgi5UqlDj2esLUmq07vL7/DQZZv43ngaBfLMu2MsZnrwi9Td6g
+ 9t1Q==
+X-Gm-Message-State: AOAM533K5D9R/g/Hc2d355pn2NXng6q5VwXNfl6JsTX5DathsUpTTGjI
+ Jjxe1ZnzsMv0WjB08v7kjDfSN82KukHh0RgeoUOK2F1s6KlRCu4BWUqYBvHOZ9HfnNHHoEd4kOU
+ Mp7CC5Jyhcp0GpxzD/u+weKTd/7yqPQ==
+X-Received: by 2002:a17:90b:4a89:: with SMTP id
+ lp9mr6673739pjb.6.1638282900681; 
+ Tue, 30 Nov 2021 06:35:00 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwCRXgemJPjRW9A0gvP1wh5yNn/WdhCWBlFTQZi+PCntn4wzo5i7noyETqEeeoY0emTtll64g==
+X-Received: by 2002:a17:90b:4a89:: with SMTP id
+ lp9mr6673719pjb.6.1638282900508; 
+ Tue, 30 Nov 2021 06:35:00 -0800 (PST)
+Received: from zqy787-GE5S.lan ([36.7.42.137])
+ by smtp.gmail.com with ESMTPSA id s28sm22292818pfg.147.2021.11.30.06.34.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 30 Nov 2021 06:35:00 -0800 (PST)
+From: Zhou Qingyang <zhou1615@umn.edu>
+To: zhou1615@umn.edu
+Date: Tue, 30 Nov 2021 22:34:53 +0800
+Message-Id: <20211130143454.159221-1-zhou1615@umn.edu>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20211016184226.3862-8-cssk@net-c.es>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sun, 28 Nov 2021 07:34:49 +0000
-Subject: Re: [Nouveau] [PATCH v2 07/13] drm/msm: replace
- drm_detect_hdmi_monitor() with drm_display_info.is_hdmi
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 03 Dec 2021 20:30:00 +0000
+Subject: [Nouveau] [PATCH] drm/nouveau/dispnv04: Fix a NULL pointer
+ dereference in nv17_tv_get_hd_modes()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,40 +87,53 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ kjlu@umn.edu, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Dave Airlie <airlied@redhat.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 16/10/2021 21:42, Claudio Suarez wrote:
-> Once EDID is parsed, the monitor HDMI support information is available
-> through drm_display_info.is_hdmi. Retriving the same information with
-> drm_detect_hdmi_monitor() is less efficient. Change to
-> drm_display_info.is_hdmi
-> 
-> Signed-off-by: Claudio Suarez <cssk@net-c.es>
+In nv17_tv_get_hd_modes(), the return value of drm_mode_duplicate() is
+assigned to mode and there is a dereference of it in
+nv17_tv_get_hd_modes(), which could lead to a NULL pointer dereference
+on failure of drm_mode_duplicate().
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Fix this bug add a check of mode.
 
-> ---
->   drivers/gpu/drm/msm/hdmi/hdmi_connector.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_connector.c b/drivers/gpu/drm/msm/hdmi/hdmi_connector.c
-> index 58707a1f3878..07585092f919 100644
-> --- a/drivers/gpu/drm/msm/hdmi/hdmi_connector.c
-> +++ b/drivers/gpu/drm/msm/hdmi/hdmi_connector.c
-> @@ -364,8 +364,8 @@ static int msm_hdmi_connector_get_modes(struct drm_connector *connector)
->   
->   	hdmi_write(hdmi, REG_HDMI_CTRL, hdmi_ctrl);
->   
-> -	hdmi->hdmi_mode = drm_detect_hdmi_monitor(edid);
->   	drm_connector_update_edid_property(connector, edid);
-> +	hdmi->hdmi_mode = connector->display_info.is_hdmi;
->   
->   	if (edid) {
->   		ret = drm_add_edid_modes(connector, edid);
-> 
+This bug was found by a static analyzer. The analysis employs
+differential checking to identify inconsistent security operations
+(e.g., checks or kfrees) between two code paths and confirms that the
+inconsistent operations are not recovered in the current function or
+the callers, so they constitute bugs.
 
+Note that, as a bug found by static analysis, it can be a false
+positive or hard to trigger. Multiple researchers have cross-reviewed
+the bug.
 
+Builds with CONFIG_DRM_NOUVEAU=m show no new warnings,
+and our static analyzer no longer warns about this code.
+
+Fixes: 6ee738610f41 ("drm/nouveau: Add DRM driver for NVIDIA GPUs")
+Signed-off-by: Zhou Qingyang <zhou1615@umn.edu>
+---
+ drivers/gpu/drm/nouveau/dispnv04/tvnv17.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+index be28e7bd7490..6fe103fd60e9 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+@@ -257,6 +257,9 @@ static int nv17_tv_get_hd_modes(struct drm_encoder *encoder,
+ 		if (modes[i].hdisplay == output_mode->hdisplay &&
+ 		    modes[i].vdisplay == output_mode->vdisplay) {
+ 			mode = drm_mode_duplicate(encoder->dev, output_mode);
++			if (!mode)
++				return -ENOMEM;
++
+ 			mode->type |= DRM_MODE_TYPE_PREFERRED;
+ 
+ 		} else {
 -- 
-With best wishes
-Dmitry
+2.25.1
+
