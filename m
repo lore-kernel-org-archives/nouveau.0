@@ -4,78 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 952E6C433F5
-	for <nouveau@archiver.kernel.org>; Fri,  3 Dec 2021 20:30:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB941C433F5
+	for <nouveau@archiver.kernel.org>; Mon,  6 Dec 2021 13:37:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 726BB7B9D2;
-	Fri,  3 Dec 2021 20:30:01 +0000 (UTC)
-X-Greylist: delayed 466 seconds by postgrey-1.36 at gabe;
- Tue, 30 Nov 2021 14:38:23 UTC
-Received: from mta-p8.oit.umn.edu (mta-p8.oit.umn.edu [134.84.196.208])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 527846E167
- for <nouveau@lists.freedesktop.org>; Tue, 30 Nov 2021 14:38:23 +0000 (UTC)
-Received: from localhost (unknown [127.0.0.1])
- by mta-p8.oit.umn.edu (Postfix) with ESMTP id 4J3PlJ53SYz9w2S6
- for <nouveau@lists.freedesktop.org>; Tue, 30 Nov 2021 14:30:36 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at umn.edu
-Received: from mta-p8.oit.umn.edu ([127.0.0.1])
- by localhost (mta-p8.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Gsz_3lNLOgpD for <nouveau@lists.freedesktop.org>;
- Tue, 30 Nov 2021 08:30:36 -0600 (CST)
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com
- [209.85.214.199])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mta-p8.oit.umn.edu (Postfix) with ESMTPS id 4J3PlJ2vD2z9w2Ry
- for <nouveau@lists.freedesktop.org>; Tue, 30 Nov 2021 08:30:36 -0600 (CST)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mta-p8.oit.umn.edu 4J3PlJ2vD2z9w2Ry
-DKIM-Filter: OpenDKIM Filter v2.11.0 mta-p8.oit.umn.edu 4J3PlJ2vD2z9w2Ry
-Received: by mail-pl1-f199.google.com with SMTP id
- s16-20020a170902ea1000b00142728c2ccaso8290262plg.23
- for <nouveau@lists.freedesktop.org>; Tue, 30 Nov 2021 06:30:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=umn.edu; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=ZZULR1F8PiluLDq0yfX4xdKKhgM6tyga9J4hvDhRIDI=;
- b=j98sbNp4aGJYzZQgx7/157yo3SgUnI/mMvJ0sMqD6xBYraYZ/VnSyRscyGTn1mZca0
- LnZErg2no+D58Bx5NnS5WYws9ygKRfBUJsrlHzoV/ViYsCnwhaZgB85ElPWaBNfUpe4V
- V0uC103ZW8xaFVYHWB96eff4zdXKuTIQvcX+WZXtO1+2tu58tNprNj99DOQod31ofnRz
- YBQjahbHXcA5cnNi0x2UWfo+HHu4hHiCUOTzsqYGe4tTkZApaTbrTw7XtVTn4j2R7hZL
- XI/LL44uanBqjlyUCjov1JQaJuAl+hm555ofGNNwY0mvzZD5PsAEsWH79U9IjOsdJGAE
- CEcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=ZZULR1F8PiluLDq0yfX4xdKKhgM6tyga9J4hvDhRIDI=;
- b=HWmks+iKgFQ0sNxmboCvzTjUae+JM+2cgTfCIa3A7eavTh8NkXnqezXc6dD8L2The9
- wI5QV8NGmNkvf9Hn0ZcsDBtYZDPOAEumO6G4YovEEAQQQq7ORU3WlnVVtKVpeU44+EHF
- AaS6Gbp6wGx3H2S8RcrOgBCm39g7+ELZ2P2uVpJnVrpRJ6oiStb5bUkxd+pZQhvDc4xT
- UvM7ily4K8fjpYe6vmWTAB61Gh7CzmdFZ9ckNCTRyOLGZPAQX3UXxWyzZKlwyo0muy1M
- vJqWXlkxLXK+VGIxcrPGNjN5tQEgIwXxKvGPCSJY66+azwlo9j48H50KMGyJ2O6vdHDH
- cUHA==
-X-Gm-Message-State: AOAM531HSmPNtDKQffHylU2JSSsuevANzMJP4WGZbWdegsXK5D2r+a/M
- gTn9Q7stpve5Cf/qESKdWRfoXxD3OuddfOUICmQGCu71s6ZUTR6JbMF3bkbTE/tD16I45V/p/1X
- ADmsldtAwLDj3ZW1Lqmy/498pDfeEbQ==
-X-Received: by 2002:a63:a1a:: with SMTP id 26mr2298309pgk.350.1638282635544;
- Tue, 30 Nov 2021 06:30:35 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzvVF8wTLFjolACqw+b3KkKUeaJ7DTif2YLF7D+bFqP/PZCqaQ+P5pB9IlYEV7eNa7sL2MV8g==
-X-Received: by 2002:a63:a1a:: with SMTP id 26mr2298269pgk.350.1638282635156;
- Tue, 30 Nov 2021 06:30:35 -0800 (PST)
-Received: from zqy787-GE5S.lan ([36.7.42.137])
- by smtp.gmail.com with ESMTPSA id b8sm2974809pfr.213.2021.11.30.06.30.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Nov 2021 06:30:34 -0800 (PST)
-From: Zhou Qingyang <zhou1615@umn.edu>
-To: zhou1615@umn.edu
-Date: Tue, 30 Nov 2021 22:30:29 +0800
-Message-Id: <20211130143030.157754-1-zhou1615@umn.edu>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F4A56E4B6;
+	Mon,  6 Dec 2021 13:37:21 +0000 (UTC)
+X-Greylist: delayed 1065 seconds by postgrey-1.36 at gabe;
+ Mon, 06 Dec 2021 13:37:20 UTC
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [IPv6:2a01:488:42:1000:50ed:8234::])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DECA6E4B6
+ for <nouveau@lists.freedesktop.org>; Mon,  6 Dec 2021 13:37:20 +0000 (UTC)
+Received: from ip4d173d4a.dynamic.kabel-deutschland.de ([77.23.61.74]
+ helo=[192.168.66.200]); authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1muDu1-0006eT-DS; Mon, 06 Dec 2021 14:19:33 +0100
+Message-ID: <5dafba25-5424-3fe2-5046-ae1d4320f9c1@leemhuis.info>
+Date: Mon, 6 Dec 2021 14:19:32 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-BS
+To: Stefan Fritsch <sf@sfritsch.de>, nouveau@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+References: <da142fb9-07d7-24fe-4533-0247b8d16cdd@sfritsch.de>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+In-Reply-To: <da142fb9-07d7-24fe-4533-0247b8d16cdd@sfritsch.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 03 Dec 2021 20:30:00 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau: Fix a wild pointer dereference in
- nouveau_connector_get_modes()
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1638797840;
+ e6dcd2b8; 
+X-HE-SMSGID: 1muDu1-0006eT-DS
+Subject: Re: [Nouveau] Regression in 5.15 in nouveau
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,55 +48,283 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- kjlu@umn.edu, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
- Dave Airlie <airlied@redhat.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org,
+ "regressions@lists.linux.dev" <regressions@lists.linux.dev>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-In nouveau_connector_get_modes(), the return value of
-drm_mode_duplicate()is assigned to mode and used in
-drm_mode_probed_add(). drm_mode_probed_add() passes mode->head to
-list_add_tail(). list_add_tail() will further call __list_add() and
-there is a dereference of mode->head in __list_add(), which could lead
-to a wild pointer dereference on failure of drm_mode_duplicate().
+[TLDR: adding this regression to regzbot; most of this mail is compiled
+from a few templates paragraphs some of you will have seen aready.]
 
-Fix this bug by adding a check of mode.
+Hi, this is your Linux kernel regression tracker speaking.
 
-This bug was found by a static analyzer. The analysis employs
-differential checking to identify inconsistent security operations
-(e.g., checks or kfrees) between two code paths and confirms that the
-inconsistent operations are not recovered in the current function or
-the callers, so they constitute bugs.
+Top-posting for once, to make this easy accessible to everyone.
 
-Note that, as a bug found by static analysis, it can be a false
-positive or hard to trigger. Multiple researchers have cross-reviewed
-the bug.
+Adding the regression mailing list to the list of recipients, as it
+should be in the loop for all regressions, as explained here:
+https://www.kernel.org/doc/html/latest/admin-guide/reporting-issues.html
 
-Builds with CONFIG_DRM_NOUVEAU=m show no new warnings,
-and our static analyzer no longer warns about this code.
+To be sure this issue doesn't fall through the cracks unnoticed, I'm
+adding it to regzbot, my Linux kernel regression tracking bot:
 
-Fixes: 6ee738610f41 ("drm/nouveau: Add DRM driver for NVIDIA GPUs")
-Signed-off-by: Zhou Qingyang <zhou1615@umn.edu>
----
- drivers/gpu/drm/nouveau/nouveau_connector.c | 3 +++
- 1 file changed, 3 insertions(+)
+#regzbot ^introduced 3e1ad79bf66165bdb2baca3989f9227939241f11
+#regzbot title drm: nouveau: annoying black flickering in some
+applications with KDE Plasma with Xorg
+#regzbot ignore-activity
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 22b83a6577eb..d960b42724de 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -977,6 +977,9 @@ nouveau_connector_get_modes(struct drm_connector *connector)
- 		struct drm_display_mode *mode;
- 
- 		mode = drm_mode_duplicate(dev, nv_connector->native_mode);
-+		if (!mode)
-+			return -ENOMEM;
-+
- 		drm_mode_probed_add(connector, mode);
- 		ret = 1;
- 	}
--- 
-2.25.1
+Reminder: when fixing the issue, please add a 'Link:' tag with the URL
+to the report (the parent of this mail), then regzbot will automatically
+mark the regression as resolved once the fix lands in the appropriate
+tree. For more details about regzbot see footer.
+
+Sending this to everyone that got the initial report, to make all aware
+of the tracking. I also hope that messages like this motivate people to
+directly get at least the regression mailing list and ideally even
+regzbot involved when dealing with regressions, as messages like this
+wouldn't be needed then.
+
+Don't worry, I'll send further messages wrt to this regression just to
+the lists (with a tag in the subject so people can filter them away), as
+long as they are intended just for regzbot. With a bit of luck no such
+messages will be needed anyway.
+
+Ciao, Thorsten, your Linux kernel regression tracker.
+
+P.S.: As a Linux kernel regression tracker I'm getting a lot of reports
+on my table. I can only look briefly into most of them. Unfortunately
+therefore I sometimes will get things wrong or miss something important.
+I hope that's not the case here; if you think it is, don't hesitate to
+tell me about it in a public reply. That's in everyone's interest, as
+what I wrote above might be misleading to everyone reading this; any
+suggestion I gave they thus might sent someone reading this down the
+wrong rabbit hole, which none of us wants.
+
+BTW, I have no personal interest in this issue, which is tracked using
+regzbot, my Linux kernel regression tracking bot
+(https://linux-regtracking.leemhuis.info/regzbot/). I'm only posting
+this mail to get things rolling again and hence don't need to be CC on
+all further activities wrt to this regression.
+
+
+On 04.12.21 17:40, Stefan Fritsch wrote:
+> Hi,
+> 
+> when updating from 5.14 to 5.15 on a system with NVIDIA GP108 [GeForce
+> GT 1030] (NV138) and Ryzen 9 3900XT using kde/plasma on X (not wayland),
+> there is a regression: There is now some annoying black flickering in
+> some applications, for example thunderbird, firefox, or mpv. It mostly
+> happens when scrolling or when playing video. Only the window of the
+> application flickers, not the whole screen. But the flickering is not
+> limited to the scrolled area: for example in firefox the url and
+> bookmark bars flicker, too, not only the web site. I have bisected the
+> issue to this commit:
+> 
+> commit 3e1ad79bf66165bdb2baca3989f9227939241f11 (HEAD)
+> Author: Christian König <christian.koenig@amd.com>
+> Date:   Sun Jun 6 11:50:15 2021 +0200
+> 
+>     drm/nouveau: always wait for the exclusive fence
+> 
+>     Drivers also need to to sync to the exclusive fence when
+>     a shared one is present.
+> 
+>     Signed-off-by: Christian König <christian.koenig@amd.com>
+>     Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+>     Link:
+> https://patchwork.freedesktop.org/patch/msgid/20210702111642.17259-4-christian.koenig@amd.com
+> 
+> 
+> 
+> This sounds like performance is impacted severely by that commit. Can
+> this be fixed somehow? A partial dmesg is below.
+> 
+> Cheers,
+> Stefan
+> 
+> 
+> dmesg |grep -i -e drm -e dri -e nvidia -e nouveau -e fb
+> [    0.000000] BIOS-e820: [mem 0x00000000bc552000-0x00000000bc8fbfff]
+> reserved
+> [    0.004971] ACPI: XSDT 0x00000000BCFB0728 0000CC (v01 ALASKA A M I
+> 01072009 AMI  01000013)
+> [    0.010838] PM: hibernation: Registered nosave memory: [mem
+> 0xbc552000-0xbc8fbfff]
+> [    0.204873] Performance Events: Fam17h+ core perfctr, AMD PMU driver.
+> [    0.292761] Registering PCC driver as Mailbox controller
+> [    0.292761] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+> [    0.518295] pci 0000:06:00.0: reg 0x10: [mem 0xfb000000-0xfbffffff]
+> [    0.519132] pci 0000:06:00.1: [10de:0fb8] type 00 class 0x040300
+> [    0.519653] pci 0000:00:03.1:   bridge window [mem
+> 0xfb000000-0xfc0fffff]
+> [    0.549101] pci 0000:00:03.1:   bridge window [mem
+> 0xfb000000-0xfc0fffff]
+> [    0.550994] pci_bus 0000:06: resource 1 [mem 0xfb000000-0xfc0fffff]
+> [    0.561285] Block layer SCSI generic (bsg) driver version 0.4 loaded
+> (major 250)
+> [    0.564152] shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+> [    0.570870] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+> [    0.571531] AMD-Vi: AMD IOMMUv2 driver by Joerg Roedel <jroedel@suse.de>
+> [    0.988343] microcode: Microcode Update Driver: v2.2.
+> [    1.112435] ACPI: OSL: Resource conflict; ACPI support missing from
+> driver?
+> [    1.114174] usbcore: registered new interface driver usbfs
+> [    1.114331] usbcore: registered new interface driver hub
+> [    1.114599] usbcore: registered new device driver usb
+> [    2.373857] hid: raw HID events driver (C) Jiri Kosina
+> [    2.378553] usbcore: registered new interface driver usbhid
+> [    2.378641] usbhid: USB HID core driver
+> [    2.581069] ata3.00: supports DRM functions and may not be fully
+> accessible
+> [    2.582388] ata3.00: supports DRM functions and may not be fully
+> accessible
+> [    3.371574] ata5.00: supports DRM functions and may not be fully
+> accessible
+> [    3.396636] ata5.00: supports DRM functions and may not be fully
+> accessible
+> [    4.159005] sr 1:0:0:0: [sr0] scsi3-mmc drive: 48x/48x writer dvd-ram
+> cd/rw xa/form2 cdda tray
+> [    4.159120] cdrom: Uniform CD-ROM driver Revision: 3.20
+> [    5.936017] systemd[1]: Starting Load Kernel Module drm...
+> [    5.957038] systemd[1]: modprobe@drm.service: Deactivated successfully.
+> [    5.957238] systemd[1]: Finished Load Kernel Module drm.
+> [    6.104901] sp5100_tco: SP5100/SB800 TCO WatchDog Timer Driver
+> [    6.122007] usbcore: registered new device driver apple-mfi-fastcharge
+> [    6.213866] input: HDA NVidia HDMI/DP,pcm=3 as
+> /devices/pci0000:00/0000:00:03.1/0000:06:00.1/sound/card0/input8
+> [    6.236581] AMD64 EDAC driver v3.5.0
+> [    6.259473] input: HDA NVidia HDMI/DP,pcm=7 as
+> /devices/pci0000:00/0000:00:03.1/0000:06:00.1/sound/card0/input9
+> [    6.259631] input: HDA NVidia HDMI/DP,pcm=8 as
+> /devices/pci0000:00/0000:00:03.1/0000:06:00.1/sound/card0/input10
+> [    6.260559] input: HDA NVidia HDMI/DP,pcm=9 as
+> /devices/pci0000:00/0000:00:03.1/0000:06:00.1/sound/card0/input11
+> [    6.260913] input: HDA NVidia HDMI/DP,pcm=10 as
+> /devices/pci0000:00/0000:00:03.1/0000:06:00.1/sound/card0/input12
+> [    6.485220] nouveau 0000:06:00.0: vgaarb: deactivate vga console
+> [    6.486484] nouveau 0000:06:00.0: NVIDIA GP108 (138000a1)
+> [    6.612994] nouveau 0000:06:00.0: bios: version 86.08.24.00.23
+> [    6.617303] nouveau 0000:06:00.0: pmu: firmware unavailable
+> [    6.621410] nouveau 0000:06:00.0: fb: 2048 MiB GDDR5
+> [    6.653892] nouveau 0000:06:00.0: DRM: VRAM: 2048 MiB
+> [    6.653895] nouveau 0000:06:00.0: DRM: GART: 536870912 MiB
+> [    6.653897] nouveau 0000:06:00.0: DRM: BIT table 'A' not found
+> [    6.653899] nouveau 0000:06:00.0: DRM: BIT table 'L' not found
+> [    6.653900] nouveau 0000:06:00.0: DRM: TMDS table version 2.0
+> [    6.653902] nouveau 0000:06:00.0: DRM: DCB version 4.1
+> [    6.653904] nouveau 0000:06:00.0: DRM: DCB outp 00: 01800346 04600010
+> [    6.653906] nouveau 0000:06:00.0: DRM: DCB outp 01: 01000342 00020010
+> [    6.653908] nouveau 0000:06:00.0: DRM: DCB outp 02: 01011352 00020020
+> [    6.653909] nouveau 0000:06:00.0: DRM: DCB conn 00: 00001046
+> [    6.653911] nouveau 0000:06:00.0: DRM: DCB conn 01: 00002161
+> [    6.654295] nouveau 0000:06:00.0: DRM: MM: using COPY for buffer copies
+> [    6.655460] snd_hda_intel 0000:06:00.1: bound 0000:06:00.0 (ops
+> nv50_audio_component_bind_ops [nouveau])
+> [    6.828018] nouveau 0000:06:00.0: DRM: allocated 3840x2160 fb:
+> 0x200000, bo 000000001a41f1fe
+> [    6.828086] fbcon: nouveau (fb0) is primary device
+> [    6.915486] nouveau 0000:06:00.0: [drm] fb0: nouveau frame buffer device
+> [    6.939244] [drm] Initialized nouveau 1.3.1 20120801 for 0000:06:00.0
+> on minor 0
+> [   11.338075] audit: type=1400 audit(1638634273.245:6):
+> apparmor="STATUS" operation="profile_load" profile="unconfined"
+> name="nvidia_modprobe" pid=1354 comm="apparmor_parser"
+> [   11.338078] audit: type=1400 audit(1638634273.245:7):
+> apparmor="STATUS" operation="profile_load" profile="unconfined"
+> name="nvidia_modprobe//kmod" pid=1354 comm="apparmor_parser"
+> [   11.479123] RTL8226B_RTL8221B 2.5Gbps PHY r8169-500:00: attached PHY
+> driver (mii_bus:phy_addr=r8169-500:00, irq=MAC)
+> stf@k:~/comp/linux/linux$ sudo dmesg |less
+> stf@k:~/comp/linux/linux$ sudo dmesg |grep -i -e drm -e dri -e nvidia -e
+> nouveau -e fb
+> [    0.000000] BIOS-e820: [mem 0x00000000bc552000-0x00000000bc8fbfff]
+> reserved
+> [    0.004971] ACPI: XSDT 0x00000000BCFB0728 0000CC (v01 ALASKA A M I
+> 01072009 AMI  01000013)
+> [    0.010838] PM: hibernation: Registered nosave memory: [mem
+> 0xbc552000-0xbc8fbfff]
+> [    0.204873] Performance Events: Fam17h+ core perfctr, AMD PMU driver.
+> [    0.292761] Registering PCC driver as Mailbox controller
+> [    0.292761] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+> [    0.518295] pci 0000:06:00.0: reg 0x10: [mem 0xfb000000-0xfbffffff]
+> [    0.519132] pci 0000:06:00.1: [10de:0fb8] type 00 class 0x040300
+> [    0.519653] pci 0000:00:03.1:   bridge window [mem
+> 0xfb000000-0xfc0fffff]
+> [    0.549101] pci 0000:00:03.1:   bridge window [mem
+> 0xfb000000-0xfc0fffff]
+> [    0.550994] pci_bus 0000:06: resource 1 [mem 0xfb000000-0xfc0fffff]
+> [    0.561285] Block layer SCSI generic (bsg) driver version 0.4 loaded
+> (major 250)
+> [    0.564152] shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+> [    0.570870] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+> [    0.571531] AMD-Vi: AMD IOMMUv2 driver by Joerg Roedel <jroedel@suse.de>
+> [    0.988343] microcode: Microcode Update Driver: v2.2.
+> [    1.112435] ACPI: OSL: Resource conflict; ACPI support missing from
+> driver?
+> [    1.114174] usbcore: registered new interface driver usbfs
+> [    1.114331] usbcore: registered new interface driver hub
+> [    1.114599] usbcore: registered new device driver usb
+> [    2.373857] hid: raw HID events driver (C) Jiri Kosina
+> [    2.378553] usbcore: registered new interface driver usbhid
+> [    2.378641] usbhid: USB HID core driver
+> [    2.581069] ata3.00: supports DRM functions and may not be fully
+> accessible
+> [    2.582388] ata3.00: supports DRM functions and may not be fully
+> accessible
+> [    3.371574] ata5.00: supports DRM functions and may not be fully
+> accessible
+> [    3.396636] ata5.00: supports DRM functions and may not be fully
+> accessible
+> [    4.159005] sr 1:0:0:0: [sr0] scsi3-mmc drive: 48x/48x writer dvd-ram
+> cd/rw xa/form2 cdda tray
+> [    4.159120] cdrom: Uniform CD-ROM driver Revision: 3.20
+> [    5.936017] systemd[1]: Starting Load Kernel Module drm...
+> [    5.957038] systemd[1]: modprobe@drm.service: Deactivated successfully.
+> [    5.957238] systemd[1]: Finished Load Kernel Module drm.
+> [    6.104901] sp5100_tco: SP5100/SB800 TCO WatchDog Timer Driver
+> [    6.122007] usbcore: registered new device driver apple-mfi-fastcharge
+> [    6.213866] input: HDA NVidia HDMI/DP,pcm=3 as
+> /devices/pci0000:00/0000:00:03.1/0000:06:00.1/sound/card0/input8
+> [    6.236581] AMD64 EDAC driver v3.5.0
+> [    6.259473] input: HDA NVidia HDMI/DP,pcm=7 as
+> /devices/pci0000:00/0000:00:03.1/0000:06:00.1/sound/card0/input9
+> [    6.259631] input: HDA NVidia HDMI/DP,pcm=8 as
+> /devices/pci0000:00/0000:00:03.1/0000:06:00.1/sound/card0/input10
+> [    6.260559] input: HDA NVidia HDMI/DP,pcm=9 as
+> /devices/pci0000:00/0000:00:03.1/0000:06:00.1/sound/card0/input11
+> [    6.260913] input: HDA NVidia HDMI/DP,pcm=10 as
+> /devices/pci0000:00/0000:00:03.1/0000:06:00.1/sound/card0/input12
+> [    6.485220] nouveau 0000:06:00.0: vgaarb: deactivate vga console
+> [    6.486484] nouveau 0000:06:00.0: NVIDIA GP108 (138000a1)
+> [    6.612994] nouveau 0000:06:00.0: bios: version 86.08.24.00.23
+> [    6.617303] nouveau 0000:06:00.0: pmu: firmware unavailable
+> [    6.621410] nouveau 0000:06:00.0: fb: 2048 MiB GDDR5
+> [    6.653892] nouveau 0000:06:00.0: DRM: VRAM: 2048 MiB
+> [    6.653895] nouveau 0000:06:00.0: DRM: GART: 536870912 MiB
+> [    6.653897] nouveau 0000:06:00.0: DRM: BIT table 'A' not found
+> [    6.653899] nouveau 0000:06:00.0: DRM: BIT table 'L' not found
+> [    6.653900] nouveau 0000:06:00.0: DRM: TMDS table version 2.0
+> [    6.653902] nouveau 0000:06:00.0: DRM: DCB version 4.1
+> [    6.653904] nouveau 0000:06:00.0: DRM: DCB outp 00: 01800346 04600010
+> [    6.653906] nouveau 0000:06:00.0: DRM: DCB outp 01: 01000342 00020010
+> [    6.653908] nouveau 0000:06:00.0: DRM: DCB outp 02: 01011352 00020020
+> [    6.653909] nouveau 0000:06:00.0: DRM: DCB conn 00: 00001046
+> [    6.653911] nouveau 0000:06:00.0: DRM: DCB conn 01: 00002161
+> [    6.654295] nouveau 0000:06:00.0: DRM: MM: using COPY for buffer copies
+> [    6.655460] snd_hda_intel 0000:06:00.1: bound 0000:06:00.0 (ops
+> nv50_audio_component_bind_ops [nouveau])
+> [    6.828018] nouveau 0000:06:00.0: DRM: allocated 3840x2160 fb:
+> 0x200000, bo 000000001a41f1fe
+> [    6.828086] fbcon: nouveau (fb0) is primary device
+> [    6.915486] nouveau 0000:06:00.0: [drm] fb0: nouveau frame buffer device
+> [    6.939244] [drm] Initialized nouveau 1.3.1 20120801 for 0000:06:00.0
+> on minor 0
+> [   11.338075] audit: type=1400 audit(1638634273.245:6):
+> apparmor="STATUS" operation="profile_load" profile="unconfined"
+> name="nvidia_modprobe" pid=1354 comm="apparmor_parser"
+> [   11.338078] audit: type=1400 audit(1638634273.245:7):
+> apparmor="STATUS" operation="profile_load" profile="unconfined"
+> name="nvidia_modprobe//kmod" pid=1354 comm="apparmor_parser"
+> [   11.479123] RTL8226B_RTL8221B 2.5Gbps PHY r8169-500:00: attached PHY
+> driver (mii_bus:phy_addr=r8169-500:00, irq=MAC)
+> 
 
