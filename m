@@ -4,62 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CDAFC433EF
-	for <nouveau@archiver.kernel.org>; Sun,  2 Jan 2022 04:18:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D6C5C433F5
+	for <nouveau@archiver.kernel.org>; Sun,  2 Jan 2022 04:18:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C80CF89F99;
-	Sun,  2 Jan 2022 04:17:57 +0000 (UTC)
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com
- [IPv6:2607:f8b0:4864:20::1031])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BAD310EAAB
- for <nouveau@lists.freedesktop.org>; Wed, 22 Dec 2021 05:27:50 +0000 (UTC)
-Received: by mail-pj1-x1031.google.com with SMTP id
- o63-20020a17090a0a4500b001b1c2db8145so4640135pjo.5
- for <nouveau@lists.freedesktop.org>; Tue, 21 Dec 2021 21:27:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=igel-co-jp.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=JtiLXwAmgBFuHLKtXrWSQQgzSxpFM+VEIGudevL41xs=;
- b=I6r0aT7tT9SkOQVoh/ryKm46cLIGKp/KSznXpCYYtx6J3V8EX/UxsQq91aoIH8dk9p
- hWlGSEssGZmy8hHlBX8S70wDDC7eFw/Bnqgnk/9Sy+R6NyRMybJcxYxZlZiTde65ulM6
- 985aQyvmD/PaTl2i6SSf33KFD67D0iJa9D5bnr7R3fw7Kgxqh6x2avRrx42KE0eS1hC3
- SXNm8Hzr34az69jSepkL/2sm+H6iKMPU7aG2flTy82WtcR+qVSMRCUoHUZaPSP9K87/5
- n2D0CyduLbQJHiZ/Bfym3w/scUYPUfXGcKJht1VPM7wwSoJtNHKf12L6t2moI9h6fNHP
- wQEQ==
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D45989FA0;
+	Sun,  2 Jan 2022 04:17:58 +0000 (UTC)
+Received: from mx-lax3-2.ucr.edu (mx-lax3-2.ucr.edu [169.235.156.37])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E53210E342
+ for <nouveau@lists.freedesktop.org>; Sat, 18 Dec 2021 02:58:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=ucr.edu; i=@ucr.edu; q=dns/txt; s=selector3;
+ t=1639796297; x=1671332297;
+ h=mime-version:references:in-reply-to:from:date:message-id:
+ subject:to:cc; bh=KziBpYYiI76v0rTQKZkMxGcmjJMQJL/2X+fDliRgTY8=;
+ b=tPc+aFdt7Gj+Jfikf7QGa+cWEPmNXbDz5ScutfhOao9EUebvZ1gV4CHs
+ 4VGRs/oGNsyS+Em4immhAkzMYKtUeWQAJqOuzbVE7SQu/N/IKds5HDQ2n
+ 3aVjwd/AhpGQcYA5G0bk0jn9z9pDiX0aQWc5fePk8q60aujZb5GXY4PEy
+ sfhweaRnfmlsUQPIEO3s6p/1s27Q13c5ZIF2BIRJcQ3Z3LF4XD/9YHJSm
+ J0KnUEfO6a5DGv8HXrBdJp59YQhVlcoDUKv/4BBRHHgkKhgms1KGsqn70
+ 9EfEeFPrr2jZVI+gre1knoPOuXuPCxgSl6ubl6+e/L7S/UlamO9Jkx6sx g==;
+IronPort-SDR: DzftAW3mZXcAe5mu1Nk7nbFJMhSiLtkcRPof2k5YnxORRmHAl/B6bODiRNbTXDkzT7jDLhljOl
+ gC++kJ96UXMiu3GWQr75nyCELWddYK8hWs6R6kkxTwVbIvQd8NTLTLIxF3nHoA9B9LphzvARW1
+ Z2ZOABquQ8kxyByfj8K3uJbT55dhanE6tkViSZnVi3qtaWoF3tAmckt0RE1P3ityVnUUN0z/uT
+ +vAFm5aVnamyQfwNgI7WFf/32Assq7Izeza4jDJGU32+BIFmaJ66rqNpRu9ClQG/McFXPnSWHx
+ SWWEhDgjESuE4Dm0vMrDA9Q4
+X-IronPort-AV: E=Sophos;i="5.88,215,1635231600"; d="scan'208";a="91926352"
+Received: from mail-yb1-f197.google.com ([209.85.219.197])
+ by smtp-lax3-2.ucr.edu with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256;
+ 17 Dec 2021 18:58:16 -0800
+Received: by mail-yb1-f197.google.com with SMTP id
+ y125-20020a25dc83000000b005c2326bf744so8323557ybe.21
+ for <nouveau@lists.freedesktop.org>; Fri, 17 Dec 2021 18:58:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucr.edu; s=rmail;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=8vmmsxncbFQ/2xzccVTZIkFvvP7ArQ13zGZOkstUsL4=;
+ b=sTD11NtvmH1Wv1kqJu2D8MlUjyJcoEmt2d7+XfYXMulaWxXKuc6ajV7X/2OwVhFI22
+ 5/uGolBmOKVtUn/vvXD3Et12z1EV98H3MUEL6OMaXJqq+IJaDfnYYa0vcB5dumi3YJGf
+ y6SMwAQXEgrG9URbzO7R3PgY7j0vTkxDElUZM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=JtiLXwAmgBFuHLKtXrWSQQgzSxpFM+VEIGudevL41xs=;
- b=Ow2kTrpe57ziuFUDAYUNYswweBHC8dwZzSxq6g+dyPqFTlkVlzBKgyzlQvggVPHyDF
- dszqLW3wk2/anSuYESHUHoIcH4DH5bJ3S1xFgBeNkRER0bqILJeeC80mHT74JZ8o3eY2
- +wzvChs/63shkDBLHvmuBc/SUm95beEf3RyLlOgm0EErfqNNZNeTKdNuzoOQj55z9fAm
- DOWLsLskJ3wMODICBvVvpxB+QKiEaoM31pym72S0jCHh9MHVdUpGh3nOwxSNWkZupaVQ
- ee3sR7AAo2TCwIpHWwyv8SOL4zRNCfTifpRLX3LVazxG6JUnf91EygMRmjSvaTw9QwN0
- Qbzg==
-X-Gm-Message-State: AOAM530Ya8/MuDnBLPiU5eASPlXBez+BNAm5GTma8dScwwvBJ49IZQ2f
- O2ihnZbckQN0EacnPocL9PZM5w==
-X-Google-Smtp-Source: ABdhPJwtgmgANrL6PCusAuav1tvNpAlzWxXsIiooGWNFKODabt+qEfFqvKf6bxJrM1ZZX37yyf9Ohg==
-X-Received: by 2002:a17:90b:f82:: with SMTP id
- ft2mr1670262pjb.203.1640150869899; 
- Tue, 21 Dec 2021 21:27:49 -0800 (PST)
-Received: from aqua.hq.igel.co.jp (napt.igel.co.jp. [219.106.231.132])
- by smtp.gmail.com with ESMTPSA id v63sm737465pgv.71.2021.12.21.21.27.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Dec 2021 21:27:49 -0800 (PST)
-From: Tomohito Esaki <etom@igel.co.jp>
-To: dri-devel@lists.freedesktop.org
-Date: Wed, 22 Dec 2021 14:27:26 +0900
-Message-Id: <20211222052727.19725-3-etom@igel.co.jp>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211222052727.19725-1-etom@igel.co.jp>
-References: <20211222052727.19725-1-etom@igel.co.jp>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=8vmmsxncbFQ/2xzccVTZIkFvvP7ArQ13zGZOkstUsL4=;
+ b=dDu5Vl4kuIrf+6+pzDzkhgTL83GoBiJcVaaaGnG4qOQuv8R6NPnslr0CHTDANOV6Vw
+ W5kgW4eenlzg2wD7/RfdPnVWR605YXnliKfmZI3CivHFOnOryLwrgevsQ+Piy6npuvIt
+ 5eT9ZvaeQhVYM8JMyC9qLonmMJnJACKXf+RiVzPLnpJ6iiPhzGJ/Nh8+Tt0D1N0INEgP
+ GpSq+4YthgAPWTRP1ZSsJY8d9KCFf5rtNFjorCmpxKAYZkgfopzaLvRMCvMxvho9ekkN
+ hDwkXckybpytUuFUpZNu7aocwOY/vAAOoo37OqhDrNIlE5q+r1tascFD89C5tOrEEIpO
+ qLeQ==
+X-Gm-Message-State: AOAM530yqI/wC58AW7hsgUQFjUVvLOAAzOUhi0zrwNpK+DiPagFe/VkN
+ i/VnxJDo8OUtw0oZJNrZRt28uC3SEv2hSekW26LnrJekGCOYmpP8sgQDm3OOd2CRR08X9Q/PGmR
+ QJEw6xD5Ew2Z2BvmvdjrgNlqAmW1JtiCwPyeQfQL9kZI=
+X-Received: by 2002:a25:a2c1:: with SMTP id c1mr8726871ybn.473.1639796295384; 
+ Fri, 17 Dec 2021 18:58:15 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxp6oA3pKkoWsKv1T0ej6zGhz3AR1ptfd0MFDEzORS1I7HWhSsr8wqxEJJfoR4dKLFSYf+Key6yqyGe/HuR3xk=
+X-Received: by 2002:a25:a2c1:: with SMTP id c1mr8726855ybn.473.1639796295099; 
+ Fri, 17 Dec 2021 18:58:15 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211116070708.429432-1-yzhai003@ucr.edu>
+ <6a79eef26121afa9190de5a021f4edef53fc9651.camel@redhat.com>
+In-Reply-To: <6a79eef26121afa9190de5a021f4edef53fc9651.camel@redhat.com>
+From: Yizhuo Zhai <yzhai003@ucr.edu>
+Date: Fri, 17 Dec 2021 18:58:04 -0800
+Message-ID: <CABvMjLQky6Xe80oJ9pPALjQ_SgMmp-Crp4z-Y08SiRo4TNTPSg@mail.gmail.com>
+To: Lyude Paul <lyude@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Sun, 02 Jan 2022 04:17:56 +0000
-Subject: [Nouveau] [RFC PATH 2/3] drm: set fb_modifiers_not_supported flag
- in legacy drivers
+Subject: Re: [Nouveau] [PATCH] In function nvkm_ioctl_map(),
+ the variable "type" could be uninitialized if "nvkm_object_map()"
+ returns error code, however,
+ it does not check the return value and directly use the "type" in the if
+ statement, which is potentially unsafe.
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,156 +86,73 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- =?UTF-8?q?Michel=20D=C3=A4nzer?= <mdaenzer@redhat.com>,
- Lee Jones <lee.jones@linaro.org>, Tomohito Esaki <etom@igel.co.jp>,
- Rob Clark <robdclark@chromium.org>, Evan Quan <evan.quan@amd.com>,
- amd-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>,
- Petr Mladek <pmladek@suse.com>, Sakari Ailus <sakari.ailus@linux.intel.com>,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Abhinav Kumar <abhinavk@codeaurora.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Takanari Hayama <taki@igel.co.jp>, Sean Paul <seanpaul@chromium.org>,
- Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mark Yacoub <markyacoub@chromium.org>, Qingqing Zhuo <qingqing.zhuo@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- Simon Ser <contact@emersion.fr>, Alex Deucher <alexander.deucher@amd.com>,
- Damian Hobson-Garcia <dhobsong@igel.co.jp>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>,
+ Daniel Vetter <daniel@ffwll.ch>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Set fb_modifiers_not_supported flag in legacy drivers whose planes
-support non-linear layouts but does not support modifiers, and replace
-allow_fb_modifiers with fb_modifiers_not_supported.
+Hi Lyude:
+I appreciate your feedback and I misplaced the commit message to the
+title, I have modified it and resend the patch.
+I made my linux development tree a mess, so I sent a brandly new one
+and cc you. Thanks again for your help: )
 
-Signed-off-by: Tomohito Esaki <etom@igel.co.jp>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c | 6 +++---
- drivers/gpu/drm/amd/amdgpu/dce_v10_0.c      | 2 ++
- drivers/gpu/drm/amd/amdgpu/dce_v11_0.c      | 2 ++
- drivers/gpu/drm/amd/amdgpu/dce_v6_0.c       | 1 +
- drivers/gpu/drm/amd/amdgpu/dce_v8_0.c       | 2 ++
- drivers/gpu/drm/nouveau/nouveau_display.c   | 6 ++++--
- drivers/gpu/drm/radeon/radeon_display.c     | 2 ++
- 7 files changed, 16 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index dc50c05f23fc..cbaea9c6cfda 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -958,7 +958,7 @@ static int amdgpu_display_verify_sizes(struct amdgpu_framebuffer *rfb)
- 	int ret;
- 	unsigned int i, block_width, block_height, block_size_log2;
- 
--	if (!rfb->base.dev->mode_config.allow_fb_modifiers)
-+	if (rfb->base.dev->mode_config.fb_modifiers_not_supported)
- 		return 0;
- 
- 	for (i = 0; i < format_info->num_planes; ++i) {
-@@ -1145,7 +1145,7 @@ int amdgpu_display_framebuffer_init(struct drm_device *dev,
- 	if (ret)
- 		return ret;
- 
--	if (!dev->mode_config.allow_fb_modifiers) {
-+	if (dev->mode_config.fb_modifiers_not_supported) {
- 		drm_WARN_ONCE(dev, adev->family >= AMDGPU_FAMILY_AI,
- 			      "GFX9+ requires FB check based on format modifier\n");
- 		ret = check_tiling_flags_gfx6(rfb);
-@@ -1153,7 +1153,7 @@ int amdgpu_display_framebuffer_init(struct drm_device *dev,
- 			return ret;
- 	}
- 
--	if (dev->mode_config.allow_fb_modifiers &&
-+	if (!dev->mode_config.fb_modifiers_not_supported &&
- 	    !(rfb->base.flags & DRM_MODE_FB_MODIFIERS)) {
- 		ret = convert_tiling_flags_to_modifier(rfb);
- 		if (ret) {
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-index d1570a462a51..fb61c0814115 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-@@ -2798,6 +2798,8 @@ static int dce_v10_0_sw_init(void *handle)
- 	adev_to_drm(adev)->mode_config.preferred_depth = 24;
- 	adev_to_drm(adev)->mode_config.prefer_shadow = 1;
- 
-+	adev_to_drm(adev)->mode_config.fb_modifiers_not_supported = true;
-+
- 	adev_to_drm(adev)->mode_config.fb_base = adev->gmc.aper_base;
- 
- 	r = amdgpu_display_modeset_create_props(adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-index 18a7b3bd633b..17942a11366d 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-@@ -2916,6 +2916,8 @@ static int dce_v11_0_sw_init(void *handle)
- 	adev_to_drm(adev)->mode_config.preferred_depth = 24;
- 	adev_to_drm(adev)->mode_config.prefer_shadow = 1;
- 
-+	adev_to_drm(adev)->mode_config.fb_modifiers_not_supported = true;
-+
- 	adev_to_drm(adev)->mode_config.fb_base = adev->gmc.aper_base;
- 
- 	r = amdgpu_display_modeset_create_props(adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-index c7803dc2b2d5..2ec99ec8e1a3 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-@@ -2674,6 +2674,7 @@ static int dce_v6_0_sw_init(void *handle)
- 	adev_to_drm(adev)->mode_config.max_height = 16384;
- 	adev_to_drm(adev)->mode_config.preferred_depth = 24;
- 	adev_to_drm(adev)->mode_config.prefer_shadow = 1;
-+	adev_to_drm(adev)->mode_config.fb_modifiers_not_supported = true;
- 	adev_to_drm(adev)->mode_config.fb_base = adev->gmc.aper_base;
- 
- 	r = amdgpu_display_modeset_create_props(adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-index b200b9e722d9..8369336cec90 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-@@ -2699,6 +2699,8 @@ static int dce_v8_0_sw_init(void *handle)
- 	adev_to_drm(adev)->mode_config.preferred_depth = 24;
- 	adev_to_drm(adev)->mode_config.prefer_shadow = 1;
- 
-+	adev_to_drm(adev)->mode_config.fb_modifiers_not_supported = true;
-+
- 	adev_to_drm(adev)->mode_config.fb_base = adev->gmc.aper_base;
- 
- 	r = amdgpu_display_modeset_create_props(adev);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index 929de41c281f..1ecad7fa3e8a 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -711,10 +711,12 @@ nouveau_display_create(struct drm_device *dev)
- 				     &disp->disp);
- 		if (ret == 0) {
- 			nouveau_display_create_properties(dev);
--			if (disp->disp.object.oclass < NV50_DISP)
-+			if (disp->disp.object.oclass < NV50_DISP) {
-+				dev->mode_config.fb_modifiers_not_supported = true;
- 				ret = nv04_display_create(dev);
--			else
-+			} else {
- 				ret = nv50_display_create(dev);
-+			}
- 		}
- 	} else {
- 		ret = 0;
-diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
-index 573154268d43..b9a07677a71e 100644
---- a/drivers/gpu/drm/radeon/radeon_display.c
-+++ b/drivers/gpu/drm/radeon/radeon_display.c
-@@ -1596,6 +1596,8 @@ int radeon_modeset_init(struct radeon_device *rdev)
- 	rdev->ddev->mode_config.preferred_depth = 24;
- 	rdev->ddev->mode_config.prefer_shadow = 1;
- 
-+	rdev->ddev->mode_config.fb_modifiers_not_supported = true;
-+
- 	rdev->ddev->mode_config.fb_base = rdev->mc.aper_base;
- 
- 	ret = radeon_modeset_create_props(rdev);
--- 
-2.17.1
+On Tue, Nov 16, 2021 at 1:18 PM Lyude Paul <lyude@redhat.com> wrote:
+>
+> This is a very long patch name, it should probably be shorter and the
+> details in the patch title moved into the actual commit description
+> instead. Also a couple of things aren't formatted correctly:
+>
+> * Cc tag for stable is missing, see
+>   https://www.kernel.org/doc/html/latest/process/stable-kernel-rules.html
+> * Fixes tag isn't formatted properly
+>
+> I generally recommend using `dim fixes` from
+> https://www.kernel.org/doc/html/latest/process/stable-kernel-rules.html
+> in order to get the correct stable kernel CC tag and Fixes: tag (you can
+> drop any of the Ccs it gives you beyond the one to stable at vger dot
+> kernel dot org.
+>
+> Also, if you could try to Cc: me on the next version - will help me
+> respond faster :).
+>
+> On Mon, 2021-11-15 at 23:07 -0800, Yizhuo Zhai wrote:
+> > Fixes:01326050391ce("drm/nouveau/core/object: allow arguments to
+> > be passed to map function")
+> > Signed-off-by: Yizhuo Zhai <yzhai003@ucr.edu>
+> > ---
+> >  drivers/gpu/drm/nouveau/nvkm/core/ioctl.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
+> > b/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
+> > index 735cb6816f10..4264d9d79783 100644
+> > --- a/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
+> > +++ b/drivers/gpu/drm/nouveau/nvkm/core/ioctl.c
+> > @@ -266,6 +266,8 @@ nvkm_ioctl_map(struct nvkm_client *client,
+> >                 ret = nvkm_object_map(object, data, size, &type,
+> >                                       &args->v0.handle,
+> >                                       &args->v0.length);
+> > +               if (ret)
+> > +                       return ret;
+> >                 if (type == NVKM_OBJECT_MAP_IO)
+> >                         args->v0.type = NVIF_IOCTL_MAP_V0_IO;
+> >                 else
+>
+> --
+> Cheers,
+>  Lyude Paul (she/her)
+>  Software Engineer at Red Hat
+>
 
+
+--
+Kind Regards,
+
+Yizhuo Zhai
+
+Computer Science, Graduate Student
+University of California, Riverside
