@@ -4,57 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 646EAC433EF
-	for <nouveau@archiver.kernel.org>; Thu, 13 Jan 2022 00:03:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64601C433F5
+	for <nouveau@archiver.kernel.org>; Thu, 13 Jan 2022 13:44:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A3F410E5F3;
-	Thu, 13 Jan 2022 00:03:13 +0000 (UTC)
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com
- [IPv6:2607:f8b0:4864:20::831])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40D1910EA1E
- for <nouveau@lists.freedesktop.org>; Tue, 11 Jan 2022 10:21:37 +0000 (UTC)
-Received: by mail-qt1-x831.google.com with SMTP id y10so5653696qtw.1
- for <nouveau@lists.freedesktop.org>; Tue, 11 Jan 2022 02:21:37 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8D3B1124FA;
+	Thu, 13 Jan 2022 13:44:31 +0000 (UTC)
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com
+ [IPv6:2607:f8b0:4864:20::b29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC78B1124F8
+ for <nouveau@lists.freedesktop.org>; Thu, 13 Jan 2022 13:44:30 +0000 (UTC)
+Received: by mail-yb1-xb29.google.com with SMTP id 66so78284ybf.4
+ for <nouveau@lists.freedesktop.org>; Thu, 13 Jan 2022 05:44:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=dowhile0-org.20210112.gappssmtp.com; s=20210112;
+ d=fooishbar-org.20210112.gappssmtp.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=sYa1AOMbwuEU5EoeFlC3BWCMkWWYeKQ6MzYHnQnQ7eE=;
- b=ADWJF9NlN1riYAttU3zhO5neGE8WbLaCIvok+V9lSGE0piCV0prLf7+bn5z3SMJ+K2
- IHjlTQb93qCePszMBjx5pEpzCajoEv+8wY/FNe7qfccpCPzTFxdbklOP+qumxiq3L1VW
- uvvuDmP/W53sjpnR37YNLy9ZrfEewxiMn66a6GIGHegB21ctGhTK2tDmxwbGvnmSw9/v
- 8alfe6uTMOwU9BspizOMNMgQf2OJTzu3cSUTcyfUoMNWfA1+iF3KtNcaFy7lt9GhxsvP
- 0j9w3a1jnioAk8FlLcANFsacbWLO6Rmskg7IDKIptjcHfyUiLwVI0B+zdeGDR7Qjk+8b
- poWg==
+ :cc; bh=t4iOUVFv53bNQSQ/gO0aroSu848/nmRUJMS9RO8UVKs=;
+ b=L3t/7x5E6+oOdmCJJKKVoRGWTgQRkrBeAvTi/BR6XX6Q5XLRVBspgMP0moqqe1UGKu
+ ddfQ5RrHcPahfVgeYOmn5AHJlMWc+TOAeWBWMgyMUnrivvh+PMMHgT209bAyuKNQKk3P
+ k5e1boYAvB/kJ+LnMsQsDhZiHUXhb1sNYO6pAdHkXjVzD2b9imk89CO5pjBTJ1gRqmjn
+ 1rGkYILN48K3Xm/0nFyBivNcRKr+prkJFgLFQudXjewMCIb583bksfZpHF2EAupjIetP
+ 8tVVIFo+S6Vc8JE8qXdS6cSLm37UHqx/W5t6Ee+cWLutbIkIgEgGhIgQ0VWxA2nXMH26
+ UgGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=sYa1AOMbwuEU5EoeFlC3BWCMkWWYeKQ6MzYHnQnQ7eE=;
- b=5TTrctHpzvls36VR31bPcpUh9XNnyqNWMXfXuf2BDm5X57B2K1XrIkLKPmDzIJQHtR
- W5EOG8q8cI0qk1Pibl62dPZe2igfWLQtpl6gbY+hSNZcRO7dkC9c5u0Ra9i7F/1fAYyS
- gVE7rGPW3vjRrBOL6X1b0i8WunZobYL4RYaYOKcY6fPiugcoU7cW17cym6j/x/hztXKV
- 7JrsVmCXjN6qsrfS5BtJEdh5Lhi5c6lBgsu7Y1f7bgLW+lxnJfU7ZSVHlfruL0LzCMKk
- 2uL6tXpXSGVKnEvIpSBE2/qOWthZDL9eplblg+ynK/slV2caADj2+ZTNpiZLWapqc1ls
- vJHA==
-X-Gm-Message-State: AOAM530nmELK0f/u/LdpxmYwH+CiyHdvxGH9ma/lGuug8M1BU+Le2ol/
- Z1aGJj7lPK7vRkdPmrkGDEDkSzVOyuRNQJuUp8ZWkA==
-X-Google-Smtp-Source: ABdhPJzbbUNfgyjXmi4t4BA1QOJPl5KiyFfbLF2N8k+Y03nyY+75s+ZulSA2IoVUQkNdry1B9vDzlMJWaMglFWDoSCo=
-X-Received: by 2002:a05:622a:5d2:: with SMTP id
- d18mr3059764qtb.154.1641896496162; 
- Tue, 11 Jan 2022 02:21:36 -0800 (PST)
+ bh=t4iOUVFv53bNQSQ/gO0aroSu848/nmRUJMS9RO8UVKs=;
+ b=WRu+2ZABeYOQS1UC7ViZ5ljyMD7RdSTxdrO3lKRqKEEG1km1/TWYhtuh/0T5aO0iT8
+ qUw6RN5JpZxv+eIFXyDdzHgwq3IgUcSjMrhVnfHwTmgGaDVTLkIrTuaMZsPi2UG6HFDQ
+ kvDbLLFwbwtPyHYVCHlnd1FmAR3Vih4jGdv/5I9qvMDhv3qXek76aeE7fmqoJJi4E03S
+ MftvEbRDJUUnQkWIkylz2iO//+EENRnWdrlI1QFEI7wKPGHeM8jj02Zs1G5TBEyLaB2G
+ 85kV3MciX1fFSr0ZrGHqi/+MfVMph4xqA+CpkBZU1P7JdNHL+IwSjyPE6em93cBgk7iw
+ ZS0w==
+X-Gm-Message-State: AOAM533I3v9PeTRTINY2IHPHR6phwDslf9hVxU/M+u3uQEOfWv4YCIpz
+ vjyh4L5msqDGc1zB4XO2b7+2XTA3bHysYt6A9S9CYw==
+X-Google-Smtp-Source: ABdhPJwo6URqBePslK+oKLzNiKNduFsi241hMu0BUXNptg5RSut3Cj4rzAH5lLArTqXi4SXz//NaTZwj4mHiagIizJ4=
+X-Received: by 2002:a25:7b44:: with SMTP id w65mr5871202ybc.59.1642081469812; 
+ Thu, 13 Jan 2022 05:44:29 -0800 (PST)
 MIME-Version: 1.0
-References: <20211215104318.18866-1-tzimmermann@suse.de>
- <20211215104318.18866-4-tzimmermann@suse.de>
- <87pmpy3za7.fsf@intel.com> <2165cfb8-c9c6-1aca-b492-587a8e07eb9f@suse.de>
-In-Reply-To: <2165cfb8-c9c6-1aca-b492-587a8e07eb9f@suse.de>
-From: Javier Martinez Canillas <javier@dowhile0.org>
-Date: Tue, 11 Jan 2022 11:21:25 +0100
-Message-ID: <CABxcv=nnyfULvog9z=nMduDK0iT1ZwkxYhdKs3xW88St6C00pw@mail.gmail.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
+References: <20220113094419.12433-1-etom@igel.co.jp>
+In-Reply-To: <20220113094419.12433-1-etom@igel.co.jp>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Thu, 13 Jan 2022 13:44:18 +0000
+Message-ID: <CAPj87rPk3_8LdnwWJ3BhtJnRuR+_WHg2hfdgK2R4SMacPGCrUQ@mail.gmail.com>
+To: Tomohito Esaki <etom@igel.co.jp>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Thu, 13 Jan 2022 00:03:11 +0000
-Subject: Re: [Nouveau] [PATCH v2 3/5] drm/dp: Move DisplayPort helpers into
- separate helper module
+Subject: Re: [Nouveau] [RFC PATCH v2 0/3] Add support modifiers for drivers
+ whose planes only support linear layout
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,53 +62,52 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org,
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Michel_D=C3=A4nzer?= <mdaenzer@redhat.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Lee Jones <lee.jones@linaro.org>, Rob Clark <robdclark@chromium.org>,
+ Evan Quan <evan.quan@amd.com>, amd-gfx@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>, Petr Mladek <pmladek@suse.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
- Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- linux-arm-msm <linux-arm-msm@vger.kernel.org>, linux-tegra@vger.kernel.org,
- freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
+ Abhinav Kumar <abhinavk@codeaurora.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Takanari Hayama <taki@igel.co.jp>, Sean Paul <seanpaul@chromium.org>,
+ Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mark Yacoub <markyacoub@chromium.org>, Qingqing Zhuo <qingqing.zhuo@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ Simon Ser <contact@emersion.fr>, Alex Deucher <alexander.deucher@amd.com>,
+ Damian Hobson-Garcia <dhobsong@igel.co.jp>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Dec 15, 2021 at 12:12 PM Thomas Zimmermann <tzimmermann@suse.de> wrote:
->
-> Hi
->
-> Am 15.12.21 um 12:04 schrieb Jani Nikula:
-> > On Wed, 15 Dec 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> >>      * move DP helper code into dp/ (Jani)
-> >
-> > I suggested adding the subdirectory, but I'm going to bikeshed the name,
-> > which I didn't suggest.
-> >
-> > $ find drivers/gpu/drm -mindepth 1 -maxdepth 1 -type d | wc -l
-> > 68
-> >
-> > Assuming we move more of the drm modules to subdirectories, how are they
-> > going to stand out from drivers?
-> >
-> > I suggested drm_dp, which I understand results in tautology, but hey,
-> > all the filenames under drm/ also have drm_*.[ch]. And I find that very
-> > useful for git greps and other code archeology. With just the dp name,
-> > you'd have to know and list all the drm subdirectories when looking up
-> > stuff that's part of drm but not drivers.
->
-> I think we have enough filename prefixes already. drm/drm_dp/drm_dp_ is
-> just ridiculous.
->
+Hi Esaki-san,
 
-Maybe what can be done is to just add a drivers/gpu/drm/core
-subdirectory that would contain all the DRM core code ?
+On Thu, 13 Jan 2022 at 09:44, Tomohito Esaki <etom@igel.co.jp> wrote:
+> Some drivers whose planes only support linear layout fb do not support format
+> modifiers.
+> These drivers should support modifiers, however the DRM core should handle this
+> rather than open-coding in every driver.
+>
+> In this patch series, these drivers expose format modifiers based on the
+> following suggestion[1].
 
-Then the dp helpers could be moved to drivers/gpu/drm/core/dp/drm_dp.c
-for example. This would also make easy to differentiate the drm
-modules from the drivers with just:
+Thanks for the series, it looks like the right thing to do.
 
-$ find drivers/gpu/drm -mindepth 1 -maxdepth 1 -type d -not -name core
+Can you please change the patch ordering though? At the moment there
+will be a bisection break at patch #1, because the legacy drivers will
+suddenly start gaining modifier support, before it is removed in patch
+#2.
 
-Best regards,
-Javier
+I think a better order would be:
+  1: add fb_modifiers_not_supported flag to core and drivers
+  2: add default modifiers (and set allow_fb_modifiers) if
+fb_modifiers_not_supported flag is not set
+  3: remove allow_fb_modifiers flag
+
+Cheers,
+Daniel
