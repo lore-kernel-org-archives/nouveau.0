@@ -4,58 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E71AC4332F
-	for <nouveau@archiver.kernel.org>; Tue, 18 Jan 2022 20:08:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1CC8C433EF
+	for <nouveau@archiver.kernel.org>; Tue, 18 Jan 2022 20:08:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38A3010E566;
-	Tue, 18 Jan 2022 20:08:39 +0000 (UTC)
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com
- [IPv6:2607:f8b0:4864:20::1029])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B36721122B8
- for <nouveau@lists.freedesktop.org>; Tue, 18 Jan 2022 08:37:08 +0000 (UTC)
-Received: by mail-pj1-x1029.google.com with SMTP id hv15so22626973pjb.5
- for <nouveau@lists.freedesktop.org>; Tue, 18 Jan 2022 00:37:08 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FF5F10E23E;
+	Tue, 18 Jan 2022 20:08:41 +0000 (UTC)
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com
+ [IPv6:2607:f8b0:4864:20::429])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4625D10E163
+ for <nouveau@lists.freedesktop.org>; Mon, 17 Jan 2022 02:45:37 +0000 (UTC)
+Received: by mail-pf1-x429.google.com with SMTP id i17so8954486pfk.11
+ for <nouveau@lists.freedesktop.org>; Sun, 16 Jan 2022 18:45:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=igel-co-jp.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=tclGn/FiRJQbwpHi1/YABi2ORnKVDKyi6q1jYS35leY=;
- b=GcqAKeMVa6/4IkNacCw9otDzRpDX28nVEv5OF1TpqZZmJ1ZQb6TtCcfLTuGFsSu1hO
- phW4KAfvQTwiSSYwxeFoyrjrRaa7gUIKxv1vw8SVXmyLt/vJ/ZMUX9x+FXizkJ4rEJ0f
- pjNyCl4EhDmUQkBWi6rcWCTktIfwVgruK8aQWY8NTRVkJiPYNd9AHtPD4wAH2IR8+07t
- p+hLd47qhOrNOTkQHGmwuV/WoQVtSjhKtDExWoSOMCeiMtfScXXmj8HtHmloHDtqEV0w
- hLWBD6nlL5jPFFS7HE8id7wChtC7OVwufUwqS1i4cYOU9VXcC7k45L4aXnauGeepsS/Y
- dedg==
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :references:from:in-reply-to:content-transfer-encoding;
+ bh=qUMGXQA24GuCkD0foGZ5EQ/jWXa2C4jCsPx92Oi0DR4=;
+ b=3JcalMkLwRqtx0dh+FBtyQAGr4zEik0NNokh7CZm9OjxATON/gXp5yImWlNGSIthv+
+ GKYZ+O5JUE82OShMSyjYbUfxwuerQa/dKw8d7y9kVZm3zCqZJOKr0d1o6ayrotoo3lAJ
+ MmQZ1GZ5ae53FWqTbV1p4NViMmmFmTtzBh4sCCWV8S0DvMixlOTHfAfZkbOp699BGmZc
+ afbQ9vjEADSw0zK+vnLf4MyjIuPu5pTDn2igIrZ7D0ZnOdZrUU1kZWmPomddoEpg5LNj
+ 9nnyRMfVFRPxSyImBzr3BFn7mjlhalInCzqMRsNZTIpyJ2B3c6mTjAHrA4Tyv0wFWSRS
+ SZ5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:references:from:in-reply-to
  :content-transfer-encoding;
- bh=tclGn/FiRJQbwpHi1/YABi2ORnKVDKyi6q1jYS35leY=;
- b=u5A3UGbMcV2iW4ZhVccA+1a1R7FRFbeHq+KlWRNSHpadm5X/dMw7m4MjuTjRJMz0m+
- oETwxUMUAeZSUVd7qAiyXu+beXuK4i/PuzId5FioOG1c3oDDWaMlknk7Pcd/zBwxGf3O
- Zc+41xC3l8u+Qmwp84Qp0GcTgBq+3Fwcai4rd9Biy5VVa2DMK3NLxB9ogPBSazAONz6a
- dJ9hXzBldh323ZLEYfY2BBfTDc9Vx4azwwO9xZCCrELUd6Meamm5uVtviOM0mixzfAJb
- QJnZqBB53yaj4C32z6uG1SBNDp5I36rZTReKunYBHdxaauhhP1ITvUkJRwGYIm3avPgw
- 38VQ==
-X-Gm-Message-State: AOAM530TkNCRKDlXDrBdl+VsbgucZ8jLUj9RMOo3ht7RdIDjo5AO0MPa
- PWVP8mE71iigTjp0l1W3Ag9W9g==
-X-Google-Smtp-Source: ABdhPJwfNHQ492Uz1jSVXHWDHlMxibTErMr09yFvEjODMjXrCCY9QQ/D08NSZpGdiZoI/53grjN20A==
-X-Received: by 2002:a17:902:d483:b0:14a:58c5:3bf3 with SMTP id
- c3-20020a170902d48300b0014a58c53bf3mr26390855plg.106.1642495028323; 
- Tue, 18 Jan 2022 00:37:08 -0800 (PST)
-Received: from aqua.hq.igel.co.jp (napt.igel.co.jp. [219.106.231.132])
- by smtp.gmail.com with ESMTPSA id c6sm1775615pjo.39.2022.01.18.00.36.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 18 Jan 2022 00:37:07 -0800 (PST)
-From: Tomohito Esaki <etom@igel.co.jp>
-To: dri-devel@lists.freedesktop.org
-Date: Tue, 18 Jan 2022 17:36:49 +0900
-Message-Id: <20220118083652.16335-1-etom@igel.co.jp>
-X-Mailer: git-send-email 2.25.1
+ bh=qUMGXQA24GuCkD0foGZ5EQ/jWXa2C4jCsPx92Oi0DR4=;
+ b=JtCXOQrGONt8eIJZfZUtqeIDhvdf+Z7S7dStVmcmNeqkzurGR947V8h8WmyxvG+qmR
+ lKxueu/xum6s3hJqlQgrHaqLp3SJYwvrV3JSOeClgtB9dXV3K/E47ZOzfFancLkKBae5
+ tj+WB3i9FivKhCKkGb1nWX0mSU1YRbp/ozg/HHtMfpPbkeXplrgMzpXAzOLNRQe2vGeS
+ tMht8xMgnvqCQ4oT9i9wMIwRJjGS6ApmalanY7irMvTIlMBAMULGeyihOFRM1vMlodyJ
+ f/TZC6dt44nuJcYjhKhPk0NRoVuC+AZM46wC7cs2YZXjGmz++8U+DUgkxKGMWfcp2uoA
+ itog==
+X-Gm-Message-State: AOAM531yV1m87u8mFZexhVlxTIzsifkfC8tgtE0My7LJqpxXII0if35Z
+ EdpXfIqmWJXq6AbiHDuZf1FAgg==
+X-Google-Smtp-Source: ABdhPJzq0NYrXjwknb/WYsPDwFTg401OZR3e8p/eQrIgNjYBek+0BxMrjWkmpMsqlGtfJhXoVGGOoA==
+X-Received: by 2002:a05:6a00:188a:b0:4c2:faa1:b6ed with SMTP id
+ x10-20020a056a00188a00b004c2faa1b6edmr10839523pfh.54.1642387536771; 
+ Sun, 16 Jan 2022 18:45:36 -0800 (PST)
+Received: from [10.16.129.73] (napt.igel.co.jp. [219.106.231.132])
+ by smtp.gmail.com with ESMTPSA id c21sm2183587pgw.41.2022.01.16.18.45.29
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 16 Jan 2022 18:45:36 -0800 (PST)
+Message-ID: <dfc44001-cdb7-3a85-2c66-b6180183bd5a@igel.co.jp>
+Date: Mon, 17 Jan 2022 11:45:27 +0900
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Content-Language: en-US
+To: dri-devel@lists.freedesktop.org, Alex Deucher
+ <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=c3=b6nig?=
+ <christian.koenig@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Ben Skeggs <bskeggs@redhat.com>, =?UTF-8?Q?Michel_D=c3=a4nzer?=
+ <mdaenzer@redhat.com>, Simon Ser <contact@emersion.fr>,
+ Qingqing Zhuo <qingqing.zhuo@amd.com>,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ Mark Yacoub <markyacoub@chromium.org>, Sean Paul <seanpaul@chromium.org>,
+ Evan Quan <evan.quan@amd.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Petr Mladek <pmladek@suse.com>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Lee Jones <lee.jones@linaro.org>, Abhinav Kumar <abhinavk@codeaurora.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Rob Clark <robdclark@chromium.org>, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ Damian Hobson-Garcia <dhobsong@igel.co.jp>, Takanari Hayama <taki@igel.co.jp>
+References: <20211222052727.19725-1-etom@igel.co.jp>
+ <20211222052727.19725-2-etom@igel.co.jp>
+ <YeGpw7L3jODHHnPC@phenom.ffwll.local>
+From: Esaki Tomohito <etom@igel.co.jp>
+In-Reply-To: <YeGpw7L3jODHHnPC@phenom.ffwll.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 18 Jan 2022 20:08:37 +0000
-Subject: [Nouveau] [RFC PATCH v4 0/3] Add support modifiers for drivers
+Subject: Re: [Nouveau] [RFC PATH 1/3] drm: add support modifiers for drivers
  whose planes only support linear layout
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,91 +94,165 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- =?UTF-8?q?Michel=20D=C3=A4nzer?= <mdaenzer@redhat.com>,
- Daniel Stone <daniel@fooishbar.org>, Lee Jones <lee.jones@linaro.org>,
- Tomohito Esaki <etom@igel.co.jp>, Rob Clark <robdclark@chromium.org>,
- Evan Quan <evan.quan@amd.com>, amd-gfx@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>, Petr Mladek <pmladek@suse.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Abhinav Kumar <abhinavk@codeaurora.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Takanari Hayama <taki@igel.co.jp>, Sean Paul <seanpaul@chromium.org>,
- Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mark Yacoub <markyacoub@chromium.org>, Qingqing Zhuo <qingqing.zhuo@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- Simon Ser <contact@emersion.fr>, Alex Deucher <alexander.deucher@amd.com>,
- Damian Hobson-Garcia <dhobsong@igel.co.jp>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Some drivers whose planes only support linear layout fb do not support format
-modifiers.
-These drivers should support modifiers, however the DRM core should handle this
-rather than open-coding in every driver.
+Thank you for your reviews.
 
-In this patch series, these drivers expose format modifiers based on the
-following suggestion[1].
+On 2022/01/15 1:50, Daniel Vetter wrote:
+> On Wed, Dec 22, 2021 at 02:27:25PM +0900, Tomohito Esaki wrote:
+>> The LINEAR modifier is advertised as default if a driver doesn't specify
+>> modifiers. However, there are legacy drivers such as radeon that do not
+>> support modifiers but infer the actual layout of the underlying buffer.
+>> Therefore, a new flag not_support_fb_modifires is introduced for these
+>> legacy drivers. Allow_fb_modifiers will be replaced with this new flag.
+>>
+>> Signed-off-by: Tomohito Esaki <etom@igel.co.jp>
+>> ---
+>>   drivers/gpu/drm/drm_plane.c   | 34 ++++++++++++++++++++++++++--------
+>>   include/drm/drm_mode_config.h | 10 ++++++++++
+>>   include/drm/drm_plane.h       |  3 +++
+>>   3 files changed, 39 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
+>> index 82afb854141b..75308ee240c0 100644
+>> --- a/drivers/gpu/drm/drm_plane.c
+>> +++ b/drivers/gpu/drm/drm_plane.c
+>> @@ -161,6 +161,16 @@ modifiers_ptr(struct drm_format_modifier_blob *blob)
+>>   	return (struct drm_format_modifier *)(((char *)blob) + blob->modifiers_offset);
+>>   }
+>>   
+>> +static bool check_format_modifier(struct drm_plane *plane, uint32_t format,
+>> +				  uint64_t modifier)
+>> +{
+>> +	if (plane->funcs->format_mod_supported)
+>> +		return plane->funcs->format_mod_supported(plane, format,
+>> +							  modifier);
+>> +
+>> +	return modifier == DRM_FORMAT_MOD_LINEAR;
+>> +}
+>> +
+>>   static int create_in_format_blob(struct drm_device *dev, struct drm_plane *plane)
+>>   {
+>>   	const struct drm_mode_config *config = &dev->mode_config;
+>> @@ -203,16 +213,15 @@ static int create_in_format_blob(struct drm_device *dev, struct drm_plane *plane
+>>   	memcpy(formats_ptr(blob_data), plane->format_types, formats_size);
+>>   
+>>   	/* If we can't determine support, just bail */
+>> -	if (!plane->funcs->format_mod_supported)
+>> +	if (config->fb_modifiers_not_supported)
+>>   		goto done;
+>>   
+>>   	mod = modifiers_ptr(blob_data);
+>>   	for (i = 0; i < plane->modifier_count; i++) {
+>>   		for (j = 0; j < plane->format_count; j++) {
+>> -			if (plane->funcs->format_mod_supported(plane,
+>> -							       plane->format_types[j],
+>> -							       plane->modifiers[i])) {
+>> -
+>> +			if (check_format_modifier(plane,
+>> +						  plane->format_types[j],
+>> +						  plane->modifiers[i])) {
+>>   				mod->formats |= 1ULL << j;
+>>   			}
+>>   		}
+>> @@ -242,6 +251,10 @@ static int __drm_universal_plane_init(struct drm_device *dev,
+>>   				      const char *name, va_list ap)
+>>   {
+>>   	struct drm_mode_config *config = &dev->mode_config;
+>> +	const uint64_t default_modifiers[] = {
+>> +		DRM_FORMAT_MOD_LINEAR,
+>> +		DRM_FORMAT_MOD_INVALID
+>> +	};
+>>   	unsigned int format_modifier_count = 0;
+>>   	int ret;
+>>   
+>> @@ -282,6 +295,11 @@ static int __drm_universal_plane_init(struct drm_device *dev,
+>>   
+>>   		while (*temp_modifiers++ != DRM_FORMAT_MOD_INVALID)
+>>   			format_modifier_count++;
+>> +	} else {
+>> +		if (!dev->mode_config.fb_modifiers_not_supported) {
+>> +			format_modifiers = default_modifiers;
+>> +			format_modifier_count = 1;
+>> +		}
+>>   	}
+>>   
+>>   	/* autoset the cap and check for consistency across all planes */
+>> @@ -346,7 +364,7 @@ static int __drm_universal_plane_init(struct drm_device *dev,
+>>   		drm_object_attach_property(&plane->base, config->prop_src_h, 0);
+>>   	}
+>>   
+>> -	if (config->allow_fb_modifiers)
+>> +	if (format_modifier_count)
+>>   		create_in_format_blob(dev, plane);
+>>   
+>>   	return 0;
+>> @@ -373,8 +391,8 @@ static int __drm_universal_plane_init(struct drm_device *dev,
+>>    * drm_universal_plane_init() to let the DRM managed resource infrastructure
+>>    * take care of cleanup and deallocation.
+>>    *
+>> - * Drivers supporting modifiers must set @format_modifiers on all their planes,
+>> - * even those that only support DRM_FORMAT_MOD_LINEAR.
+>> + * For drivers supporting modifiers, all planes will advertise
+>> + * DRM_FORMAT_MOD_LINEAR support, if @format_modifiers is not set.
+>>    *
+>>    * Returns:
+>>    * Zero on success, error code on failure.
+>> diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
+>> index 48b7de80daf5..c56f298c55bd 100644
+>> --- a/include/drm/drm_mode_config.h
+>> +++ b/include/drm/drm_mode_config.h
+>> @@ -920,6 +920,16 @@ struct drm_mode_config {
+>>   	 */
+>>   	bool allow_fb_modifiers;
+>>   
+>> +	/**
+>> +	 * @fb_modifiers_not_supported:
+>> +	 *
+>> +	 * This flag is for legacy drivers such as radeon that do not support
+> 
+> Maybe don't put specific driver names into kerneldoc (in commit message to
+> motivate your changes it's fine). It's unlikely radeon ever changes on
+> this, but also no one will update this in the docs if we ever do that.
+> 
+> Perhaps also add that new driver should never set this, just to hammer it
+> home that modifiers really should work everywhere.
 
-On Thu, Nov 18, 2021 at 01:02:11PM +0000, Daniel Stone wrote:
-> I think the best way forward here is:
->   - add a new mode_config.cannot_support_modifiers flag, and enable
-> this in radeon (plus any other drivers in the same boat)
->   - change drm_universal_plane_init() to advertise the LINEAR modifier
-> when NULL is passed as the modifier list (including installing a
-> default .format_mod_supported hook)
->   - remove the mode_config.allow_fb_modifiers hook and always
-> advertise modifier support, unless
-> mode_config.cannot_support_modifiers is set
+I agree with you.
+I'll modify this docs.
 
+Thanks,
+Tomohito Esaki
 
-[1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20190509054518.10781-1-etom@igel.co.jp/#24602575
-
-v4:
-* modify documentation for fb_modifiers_not_supported flag in kerneldoc
-
-v3: https://www.spinics.net/lists/dri-devel/msg329102.html
-* change the order as follows:
-   1. add fb_modifiers_not_supported flag
-   2. add default modifiers
-   3. remove allow_fb_modifiers flag
-* add a conditional disable in amdgpu_dm_plane_init()
-
-v2: https://www.spinics.net/lists/dri-devel/msg328939.html
-* rebase to the latest master branch (5.16.0+)
-      + "drm/plane: Make format_mod_supported truly optional" patch [2]
-  [2] https://patchwork.freedesktop.org/patch/467940/?series=98255&rev=3
-
-v1: https://www.spinics.net/lists/dri-devel/msg327352.html
-* The initial patch set
-
-Tomohito Esaki (3):
-  drm: introduce fb_modifiers_not_supported flag in mode_config
-  drm: add support modifiers for drivers whose planes only support
-    linear layout
-  drm: remove allow_fb_modifiers
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  6 ++---
- drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        |  2 ++
- drivers/gpu/drm/amd/amdgpu/dce_v11_0.c        |  2 ++
- drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         |  1 +
- drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         |  2 ++
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  3 +++
- drivers/gpu/drm/drm_framebuffer.c             |  6 ++---
- drivers/gpu/drm/drm_ioctl.c                   |  2 +-
- drivers/gpu/drm/drm_plane.c                   | 22 +++++++++----------
- drivers/gpu/drm/nouveau/nouveau_display.c     |  6 +++--
- drivers/gpu/drm/radeon/radeon_display.c       |  2 ++
- .../gpu/drm/selftests/test-drm_framebuffer.c  |  1 -
- include/drm/drm_mode_config.h                 | 18 +++++----------
- include/drm/drm_plane.h                       |  3 +++
- 14 files changed, 43 insertions(+), 33 deletions(-)
-
--- 
-2.25.1
-
+> 
+> Otherwise I think this series is the right thing to do.
+> -Daniel
+> 
+>> +	 * modifiers but infer the actual layout of the underlying buffer.
+>> +	 * Generally, each drivers must support modifiers, this flag should not
+>> +	 * be set.
+>> +	 */
+>> +	bool fb_modifiers_not_supported;
+>> +
+>>   	/**
+>>   	 * @normalize_zpos:
+>>   	 *
+>> diff --git a/include/drm/drm_plane.h b/include/drm/drm_plane.h
+>> index 0c1102dc4d88..cad641b1f797 100644
+>> --- a/include/drm/drm_plane.h
+>> +++ b/include/drm/drm_plane.h
+>> @@ -803,6 +803,9 @@ void *__drmm_universal_plane_alloc(struct drm_device *dev,
+>>    *
+>>    * The @drm_plane_funcs.destroy hook must be NULL.
+>>    *
+>> + * For drivers supporting modifiers, all planes will advertise
+>> + * DRM_FORMAT_MOD_LINEAR support, if @format_modifiers is not set.
+>> + *
+>>    * Returns:
+>>    * Pointer to new plane, or ERR_PTR on failure.
+>>    */
+>> -- 
+>> 2.17.1
+>>
+> 
