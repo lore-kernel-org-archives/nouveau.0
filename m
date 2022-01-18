@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CAE3C433EF
-	for <nouveau@archiver.kernel.org>; Tue, 18 Jan 2022 20:08:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4955DC433F5
+	for <nouveau@archiver.kernel.org>; Tue, 18 Jan 2022 20:08:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AA4510E288;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D73F10E557;
 	Tue, 18 Jan 2022 20:08:38 +0000 (UTC)
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com
- [IPv6:2607:f8b0:4864:20::1034])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30866112934
- for <nouveau@lists.freedesktop.org>; Tue, 18 Jan 2022 08:37:32 +0000 (UTC)
-Received: by mail-pj1-x1034.google.com with SMTP id hv15so22627750pjb.5
- for <nouveau@lists.freedesktop.org>; Tue, 18 Jan 2022 00:37:32 -0800 (PST)
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com
+ [IPv6:2607:f8b0:4864:20::536])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BECD6112363
+ for <nouveau@lists.freedesktop.org>; Tue, 18 Jan 2022 08:37:16 +0000 (UTC)
+Received: by mail-pg1-x536.google.com with SMTP id h23so13280977pgk.11
+ for <nouveau@lists.freedesktop.org>; Tue, 18 Jan 2022 00:37:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=igel-co-jp.20210112.gappssmtp.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=nHubPpVUFbRzFLg8T8kDPGraTUFZHSM+yB+IayI7i+s=;
- b=BNVQLfmQk6md7zj5f5A2JZMLlkVY3nsW+rWNMcDQFQSSESG1iJa90hai3eZwmBFsKn
- IrVMI1n4eyrPuICVT8b+BX/szy3mZ/xRbWkq9V6tQ8FhTSadk5weQSMhQvA7y+4Ve78T
- Jq9eRUhJyvV8+eBPuLyvaGXkpEBYcxGDqtObjkINyRsC5Rpeh+jrPgikvbbOodrLWtW9
- 9KBVPKwK7PPvNHOKARO3F6N9clDzEP/XvdHUGp/UyT7ZCemmm8AonZIvKt2vqjIcULbN
- boomgfHUy5Y968l+0He/v51djOdv4spkhmPe2t6R6dEtt2mTLdDXz8+XqXKKriiZl9Eo
- ZCww==
+ bh=1m4kFgH6652R1lZQ4Zc1MR0lzqI4ggpb+GNI68K62OE=;
+ b=TeBSd0tjlFoC64i8PGLXXbqTHRdJXqKEiSA/aa8qHEleLvgy9NlDOGAX9OxnyqxfxG
+ z/YWEfiM5jZjyHzxnSz+8t1Ccb8LQBDnZzZIFhx2YYKokjlUQWRe6Z7WSd6uPrm8yuPq
+ +VJi3QXVXyCA9Sd/lDo0MwkKKdtemgQXFeH+XAbxMZu5xuyHG7WL83isF31bbd0m/1My
+ IaCRi+TJILfeID01U80dOKG38SwRYDFR/SRVHJO453AcIKKnjVASqmY1hs8mClZu5xuG
+ YMZ2azHue7ln2jsWYfCmClj26LnoDNeDf+Qz3fW/affbRvzgwgBKMs4UmHrXmiyYHf/a
+ aV3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=nHubPpVUFbRzFLg8T8kDPGraTUFZHSM+yB+IayI7i+s=;
- b=u1Z1GBWHC5P+xaXZhaAEPd9e74dLeXScQX2n3lSkLi9pxh8oXD65MJtV9PIJFb33iW
- C2zol3tBSgKw7Nqx2eY4Fa+JStmI1MmNb9yYr1Jmtg9L7jmJ4GNgF+MwdwUS8QeuFeMc
- zBe0VeVIpi3RS7BLir2R+3PG2mUSBP45sZrbewIIJW8zPAQqniqucCk0lBVkLzWZYRwo
- 3ItRpdhxw175+3X5POxNXkkVHJhosaxA8jbp0C2S4FnUWR5sNuMCAwdMCEHYFsn9O9Rs
- EtcP2+6lKa/ZNcT+1njyntbuMVqTM0PI4NQ/VFWxqe7kLJeqAW55L66CEIKFP3sSfBeJ
- p//A==
-X-Gm-Message-State: AOAM530hBWBlbW3ycZc9LrMJvPRgutq9Fes0L7xNRz4j8xWgpqUhE6fr
- pNXVDQM4oSUd81l381C8sphFvw==
-X-Google-Smtp-Source: ABdhPJzZ58k/3S62+PArMC81nnoj8/jh7NTLeCglvPNuoMj1t8UJHrK1+E/kF7kQg0Ovz0GW78kTbQ==
-X-Received: by 2002:a17:90b:1b50:: with SMTP id
- nv16mr17412800pjb.93.1642495051777; 
- Tue, 18 Jan 2022 00:37:31 -0800 (PST)
+ bh=1m4kFgH6652R1lZQ4Zc1MR0lzqI4ggpb+GNI68K62OE=;
+ b=M0Kg9HXE6VymltwxfbaeuFT+a2ki7OKSxmzi7YIn2P/WCm7bHFW3ngEUZpjJJQF2l3
+ FG2PAns4NDOl0MlYy/fDK9OBNaLScym6YUd79tMSUt57cuCBVPGZHHkOXwAflQagwSzt
+ 71bIUwu0svn8Hyt0qO+ZaFV+3nRsI5vScGwkTax9eOmZ3myWgMKcYAIQdOGKwjYmKv61
+ S/kj494sEBtGcEYaJZnteaf6R23ovi65/RDRCqft9Acf5cCEvzeJg8ITVauVaIDJfgf3
+ 3ZOYUWU4G9guEAAnMGXboaMPP7NBIYjAzNFu45a5jkl5yosbgBVXpfP3qEL+vEER3MHK
+ ES7w==
+X-Gm-Message-State: AOAM5316cnVLBuZOtaWNqtftsFxyy6CXbTYTy8B90Dlz7P2dKCub+KLs
+ JYT8C08xFr2hYMHmTqwSwhZ4Og==
+X-Google-Smtp-Source: ABdhPJxB+U2fnjTc0PCTdTHo8G5msbvf0djaj5jDFV7g4JQvt3GBjnJev67wXJOK/bsHCTgE/Mm/OA==
+X-Received: by 2002:a63:3e81:: with SMTP id l123mr22568393pga.41.1642495036334; 
+ Tue, 18 Jan 2022 00:37:16 -0800 (PST)
 Received: from aqua.hq.igel.co.jp (napt.igel.co.jp. [219.106.231.132])
- by smtp.gmail.com with ESMTPSA id c6sm1775615pjo.39.2022.01.18.00.37.24
+ by smtp.gmail.com with ESMTPSA id c6sm1775615pjo.39.2022.01.18.00.37.08
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 18 Jan 2022 00:37:31 -0800 (PST)
+ Tue, 18 Jan 2022 00:37:15 -0800 (PST)
 From: Tomohito Esaki <etom@igel.co.jp>
 To: dri-devel@lists.freedesktop.org
-Date: Tue, 18 Jan 2022 17:36:52 +0900
-Message-Id: <20220118083652.16335-4-etom@igel.co.jp>
+Date: Tue, 18 Jan 2022 17:36:50 +0900
+Message-Id: <20220118083652.16335-2-etom@igel.co.jp>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220118083652.16335-1-etom@igel.co.jp>
 References: <20220118083652.16335-1-etom@igel.co.jp>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 18 Jan 2022 20:08:37 +0000
-Subject: [Nouveau] [RFC PATCH v4 3/3] drm: remove allow_fb_modifiers
+Subject: [Nouveau] [RFC PATCH v4 1/3] drm: introduce
+ fb_modifiers_not_supported flag in mode_config
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,74 +92,221 @@ Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The allow_fb_modifiers flag is unnecessary since it has been replaced
-with cannot_support_modifiers flag.
+If only linear modifier is advertised, since there are many drivers that
+only linear supported, the DRM core should handle this rather than
+open-coding in every driver. However, there are legacy drivers such as
+radeon that do not support modifiers but infer the actual layout of the
+underlying buffer. Therefore, a new flag fb_modifiers_not_supported is
+introduced for these legacy drivers, and allow_fb_modifiers is replaced
+with this new flag.
 
 Signed-off-by: Tomohito Esaki <etom@igel.co.jp>
 ---
- drivers/gpu/drm/drm_plane.c                      |  9 ---------
- drivers/gpu/drm/selftests/test-drm_framebuffer.c |  1 -
- include/drm/drm_mode_config.h                    | 16 ----------------
- 3 files changed, 26 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c       |  6 +++---
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c            |  2 ++
+ drivers/gpu/drm/amd/amdgpu/dce_v11_0.c            |  2 ++
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c             |  1 +
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c             |  2 ++
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  3 +++
+ drivers/gpu/drm/drm_framebuffer.c                 |  6 +++---
+ drivers/gpu/drm/drm_ioctl.c                       |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_display.c         |  6 ++++--
+ drivers/gpu/drm/radeon/radeon_display.c           |  2 ++
+ include/drm/drm_mode_config.h                     | 10 ++++++++++
+ 11 files changed, 33 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
-index 5aa7e241971e..89a3d044ab59 100644
---- a/drivers/gpu/drm/drm_plane.c
-+++ b/drivers/gpu/drm/drm_plane.c
-@@ -288,15 +288,6 @@ static int __drm_universal_plane_init(struct drm_device *dev,
- 		}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+index 82011e75ed85..edbb30d47b8c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+@@ -954,7 +954,7 @@ static int amdgpu_display_verify_sizes(struct amdgpu_framebuffer *rfb)
+ 	int ret;
+ 	unsigned int i, block_width, block_height, block_size_log2;
+ 
+-	if (!rfb->base.dev->mode_config.allow_fb_modifiers)
++	if (rfb->base.dev->mode_config.fb_modifiers_not_supported)
+ 		return 0;
+ 
+ 	for (i = 0; i < format_info->num_planes; ++i) {
+@@ -1141,7 +1141,7 @@ int amdgpu_display_framebuffer_init(struct drm_device *dev,
+ 	if (ret)
+ 		return ret;
+ 
+-	if (!dev->mode_config.allow_fb_modifiers) {
++	if (dev->mode_config.fb_modifiers_not_supported) {
+ 		drm_WARN_ONCE(dev, adev->family >= AMDGPU_FAMILY_AI,
+ 			      "GFX9+ requires FB check based on format modifier\n");
+ 		ret = check_tiling_flags_gfx6(rfb);
+@@ -1149,7 +1149,7 @@ int amdgpu_display_framebuffer_init(struct drm_device *dev,
+ 			return ret;
  	}
  
--	/* autoset the cap and check for consistency across all planes */
--	if (format_modifier_count) {
--		drm_WARN_ON(dev, !config->allow_fb_modifiers &&
--			    !list_empty(&config->plane_list));
--		config->allow_fb_modifiers = true;
--	} else {
--		drm_WARN_ON(dev, config->allow_fb_modifiers);
--	}
--
- 	plane->modifier_count = format_modifier_count;
- 	plane->modifiers = kmalloc_array(format_modifier_count,
- 					 sizeof(format_modifiers[0]),
-diff --git a/drivers/gpu/drm/selftests/test-drm_framebuffer.c b/drivers/gpu/drm/selftests/test-drm_framebuffer.c
-index 61b44d3a6a61..f6d66285c5fc 100644
---- a/drivers/gpu/drm/selftests/test-drm_framebuffer.c
-+++ b/drivers/gpu/drm/selftests/test-drm_framebuffer.c
-@@ -323,7 +323,6 @@ static struct drm_device mock_drm_device = {
- 		.max_width = MAX_WIDTH,
- 		.min_height = MIN_HEIGHT,
- 		.max_height = MAX_HEIGHT,
--		.allow_fb_modifiers = true,
- 		.funcs = &mock_config_funcs,
- 	},
- };
+-	if (dev->mode_config.allow_fb_modifiers &&
++	if (!dev->mode_config.fb_modifiers_not_supported &&
+ 	    !(rfb->base.flags & DRM_MODE_FB_MODIFIERS)) {
+ 		ret = convert_tiling_flags_to_modifier(rfb);
+ 		if (ret) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
+index d1570a462a51..fb61c0814115 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
+@@ -2798,6 +2798,8 @@ static int dce_v10_0_sw_init(void *handle)
+ 	adev_to_drm(adev)->mode_config.preferred_depth = 24;
+ 	adev_to_drm(adev)->mode_config.prefer_shadow = 1;
+ 
++	adev_to_drm(adev)->mode_config.fb_modifiers_not_supported = true;
++
+ 	adev_to_drm(adev)->mode_config.fb_base = adev->gmc.aper_base;
+ 
+ 	r = amdgpu_display_modeset_create_props(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
+index 18a7b3bd633b..17942a11366d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
+@@ -2916,6 +2916,8 @@ static int dce_v11_0_sw_init(void *handle)
+ 	adev_to_drm(adev)->mode_config.preferred_depth = 24;
+ 	adev_to_drm(adev)->mode_config.prefer_shadow = 1;
+ 
++	adev_to_drm(adev)->mode_config.fb_modifiers_not_supported = true;
++
+ 	adev_to_drm(adev)->mode_config.fb_base = adev->gmc.aper_base;
+ 
+ 	r = amdgpu_display_modeset_create_props(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+index c7803dc2b2d5..2ec99ec8e1a3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+@@ -2674,6 +2674,7 @@ static int dce_v6_0_sw_init(void *handle)
+ 	adev_to_drm(adev)->mode_config.max_height = 16384;
+ 	adev_to_drm(adev)->mode_config.preferred_depth = 24;
+ 	adev_to_drm(adev)->mode_config.prefer_shadow = 1;
++	adev_to_drm(adev)->mode_config.fb_modifiers_not_supported = true;
+ 	adev_to_drm(adev)->mode_config.fb_base = adev->gmc.aper_base;
+ 
+ 	r = amdgpu_display_modeset_create_props(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
+index 8318ee8339f1..de11fbe5aba2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
+@@ -2695,6 +2695,8 @@ static int dce_v8_0_sw_init(void *handle)
+ 	adev_to_drm(adev)->mode_config.preferred_depth = 24;
+ 	adev_to_drm(adev)->mode_config.prefer_shadow = 1;
+ 
++	adev_to_drm(adev)->mode_config.fb_modifiers_not_supported = true;
++
+ 	adev_to_drm(adev)->mode_config.fb_base = adev->gmc.aper_base;
+ 
+ 	r = amdgpu_display_modeset_create_props(adev);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 2f0b14f8f833..61cb41766fae 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -7868,6 +7868,9 @@ static int amdgpu_dm_plane_init(struct amdgpu_display_manager *dm,
+ 	if (res)
+ 		return res;
+ 
++	if (modifiers == NULL)
++		adev_to_drm(dm->adev)->mode_config.fb_modifiers_not_supported = true;
++
+ 	res = drm_universal_plane_init(adev_to_drm(dm->adev), plane, possible_crtcs,
+ 				       &dm_plane_funcs, formats, num_formats,
+ 				       modifiers, plane->type, NULL);
+diff --git a/drivers/gpu/drm/drm_framebuffer.c b/drivers/gpu/drm/drm_framebuffer.c
+index 07f5abc875e9..4562a8b86579 100644
+--- a/drivers/gpu/drm/drm_framebuffer.c
++++ b/drivers/gpu/drm/drm_framebuffer.c
+@@ -309,7 +309,7 @@ drm_internal_framebuffer_create(struct drm_device *dev,
+ 	}
+ 
+ 	if (r->flags & DRM_MODE_FB_MODIFIERS &&
+-	    !dev->mode_config.allow_fb_modifiers) {
++	    dev->mode_config.fb_modifiers_not_supported) {
+ 		DRM_DEBUG_KMS("driver does not support fb modifiers\n");
+ 		return ERR_PTR(-EINVAL);
+ 	}
+@@ -594,7 +594,7 @@ int drm_mode_getfb2_ioctl(struct drm_device *dev,
+ 	r->pixel_format = fb->format->format;
+ 
+ 	r->flags = 0;
+-	if (dev->mode_config.allow_fb_modifiers)
++	if (!dev->mode_config.fb_modifiers_not_supported)
+ 		r->flags |= DRM_MODE_FB_MODIFIERS;
+ 
+ 	for (i = 0; i < ARRAY_SIZE(r->handles); i++) {
+@@ -607,7 +607,7 @@ int drm_mode_getfb2_ioctl(struct drm_device *dev,
+ 	for (i = 0; i < fb->format->num_planes; i++) {
+ 		r->pitches[i] = fb->pitches[i];
+ 		r->offsets[i] = fb->offsets[i];
+-		if (dev->mode_config.allow_fb_modifiers)
++		if (!dev->mode_config.fb_modifiers_not_supported)
+ 			r->modifier[i] = fb->modifier;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
+index 8b8744dcf691..51fcf1298023 100644
+--- a/drivers/gpu/drm/drm_ioctl.c
++++ b/drivers/gpu/drm/drm_ioctl.c
+@@ -297,7 +297,7 @@ static int drm_getcap(struct drm_device *dev, void *data, struct drm_file *file_
+ 			req->value = 64;
+ 		break;
+ 	case DRM_CAP_ADDFB2_MODIFIERS:
+-		req->value = dev->mode_config.allow_fb_modifiers;
++		req->value = !dev->mode_config.fb_modifiers_not_supported;
+ 		break;
+ 	case DRM_CAP_CRTC_IN_VBLANK_EVENT:
+ 		req->value = 1;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index 2b460835a438..2cd0932b3d68 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -708,10 +708,12 @@ nouveau_display_create(struct drm_device *dev)
+ 				     &disp->disp);
+ 		if (ret == 0) {
+ 			nouveau_display_create_properties(dev);
+-			if (disp->disp.object.oclass < NV50_DISP)
++			if (disp->disp.object.oclass < NV50_DISP) {
++				dev->mode_config.fb_modifiers_not_supported = true;
+ 				ret = nv04_display_create(dev);
+-			else
++			} else {
+ 				ret = nv50_display_create(dev);
++			}
+ 		}
+ 	} else {
+ 		ret = 0;
+diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
+index 573154268d43..b9a07677a71e 100644
+--- a/drivers/gpu/drm/radeon/radeon_display.c
++++ b/drivers/gpu/drm/radeon/radeon_display.c
+@@ -1596,6 +1596,8 @@ int radeon_modeset_init(struct radeon_device *rdev)
+ 	rdev->ddev->mode_config.preferred_depth = 24;
+ 	rdev->ddev->mode_config.prefer_shadow = 1;
+ 
++	rdev->ddev->mode_config.fb_modifiers_not_supported = true;
++
+ 	rdev->ddev->mode_config.fb_base = rdev->mc.aper_base;
+ 
+ 	ret = radeon_modeset_create_props(rdev);
 diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
-index b73af96e2c96..c41df5932a6b 100644
+index 91ca575a78de..b73af96e2c96 100644
 --- a/include/drm/drm_mode_config.h
 +++ b/include/drm/drm_mode_config.h
-@@ -917,22 +917,6 @@ struct drm_mode_config {
+@@ -933,6 +933,16 @@ struct drm_mode_config {
  	 */
- 	bool async_page_flip;
+ 	bool allow_fb_modifiers;
  
--	/**
--	 * @allow_fb_modifiers:
--	 *
--	 * Whether the driver supports fb modifiers in the ADDFB2.1 ioctl call.
--	 * Note that drivers should not set this directly, it is automatically
--	 * set in drm_universal_plane_init().
--	 *
--	 * IMPORTANT:
--	 *
--	 * If this is set the driver must fill out the full implicit modifier
--	 * information in their &drm_mode_config_funcs.fb_create hook for legacy
--	 * userspace which does not set modifiers. Otherwise the GETFB2 ioctl is
--	 * broken for modifier aware userspace.
--	 */
--	bool allow_fb_modifiers;
--
++	/**
++	 * @fb_modifiers_not_supported:
++	 *
++	 * This flag is for legacy drivers that doesn't support modifiers but
++	 * infer the actual layout of the underlying buffer.
++	 * Generally, each driver must support modifires, newly added drivers
++	 * should never set this flag.
++	 */
++	bool fb_modifiers_not_supported;
++
  	/**
- 	 * @fb_modifiers_not_supported:
+ 	 * @normalize_zpos:
  	 *
 -- 
 2.25.1
