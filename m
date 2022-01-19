@@ -4,43 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34742C433FE
-	for <nouveau@archiver.kernel.org>; Thu, 20 Jan 2022 18:17:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1104CC433EF
+	for <nouveau@archiver.kernel.org>; Thu, 20 Jan 2022 18:17:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D17810E6E7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1341C10E68A;
 	Thu, 20 Jan 2022 18:16:53 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1386510E479;
- Thu, 20 Jan 2022 08:38:11 +0000 (UTC)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
- by smtp-out2.suse.de (Postfix) with ESMTP id 1F79E1F391;
- Thu, 20 Jan 2022 08:38:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1642667889; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=S1149P6IJdsdpbMcrXZq6Mc6WqPqJoBvK3pMWsa4MN8=;
- b=mgVK2GKX4z682928eNQNmcKH4PlzeX6XpPLxSucJKp6GDejDBl9xGnHm3EQ7m1HB7u4s0x
- HmV98Y94Jgx4BP2N49y70kzTAsfC49uladYoyY9u+lMOkRTYf7K7VjPT83DyGrKubQrpNL
- 4X9INnLQQrZk7xUamCgzquBLJDcbk7E=
-Received: from suse.cz (unknown [10.100.224.162])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by relay2.suse.de (Postfix) with ESMTPS id 1E602A3B81;
- Thu, 20 Jan 2022 08:38:04 +0000 (UTC)
-Date: Thu, 20 Jan 2022 09:38:04 +0100
-From: Petr Mladek <pmladek@suse.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YekfbKMjOP9ecc5v@alley>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29C5F10E96D;
+ Wed, 19 Jan 2022 09:19:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642583952; x=1674119952;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Zf7maaT407OcqJiMSYXoEAzMcLY861f8NYGTlKtPnGA=;
+ b=ZFNwW0Dd9ESaHoa0UPh0BzF1zqZNveic6/jajEPk6qIJOnltb2XtBENE
+ 885yBSiun1DGbR2uQ7RjwbCELiS2skBvZQgtW+grFtz7tSYK6b0RBOL/y
+ AAIjYSX8rjjSgCN+Hv8SKBxs8xtEQUtwkHI1Y3mf0ZUqdF1Ay8uK9YsMy
+ ordGnhWbMpmC1jlKXmhOyE8+ftckvfAD2s515M4FB+5rjVfwwUbaSQN4p
+ EajkxxmSlJaQc/l5HNiih7vtpeb8WHIWvqYIuJruGo338HwJ7i4nFZh/P
+ e3xZpoctQHC4BqAxceYeKH38QlSoFHVCmEoST1+GVW3rgexoNpDOKK+Vw g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="232388195"
+X-IronPort-AV: E=Sophos;i="5.88,299,1635231600"; d="scan'208";a="232388195"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2022 01:19:11 -0800
+X-IronPort-AV: E=Sophos;i="5.88,299,1635231600"; d="scan'208";a="622447667"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2022 01:19:01 -0800
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+ by paasikivi.fi.intel.com (Postfix) with SMTP id CEBE0203C8;
+ Wed, 19 Jan 2022 11:18:59 +0200 (EET)
+Date: Wed, 19 Jan 2022 11:18:59 +0200
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <YefXg03hXtrdUj6y@paasikivi.fi.intel.com>
 References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
- <YegPiR7LU8aVisMf@alley> <87tudzbykz.fsf@intel.com>
+ <20220119072450.2890107-2-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87tudzbykz.fsf@intel.com>
+In-Reply-To: <20220119072450.2890107-2-lucas.demarchi@intel.com>
 X-Mailman-Approved-At: Thu, 20 Jan 2022 18:16:51 +0000
-Subject: Re: [Nouveau] [PATCH 0/3] lib/string_helpers: Add a few string
- helpers
+Subject: Re: [Nouveau] [PATCH 1/3] lib/string_helpers: Consolidate yesno()
+ implementation
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,13 +69,12 @@ Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
  Kentaro Takeda <takedakn@nttdata.co.jp>, Mikita Lipski <mikita.lipski@amd.com>,
  amd-gfx@lists.freedesktop.org, Andy Shevchenko <andy.shevchenko@gmail.com>,
  Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx@lists.freedesktop.org, Raju Rangoju <rajur@chelsio.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Steven Rostedt <rostedt@goodmis.org>, Julia Lawall <julia.lawall@lip6.fr>,
+ Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
+ Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
+ Raju Rangoju <rajur@chelsio.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Julia Lawall <julia.lawall@lip6.fr>,
  Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Eryk Brol <eryk.brol@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  linux-kernel@vger.kernel.org,
@@ -80,78 +87,22 @@ Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed 2022-01-19 16:16:12, Jani Nikula wrote:
-> On Wed, 19 Jan 2022, Petr Mladek <pmladek@suse.com> wrote:
-> > On Tue 2022-01-18 23:24:47, Lucas De Marchi wrote:
-> >> d. This doesn't bring onoff() helper as there are some places in the
-> >>    kernel with onoff as variable - another name is probably needed for
-> >>    this function in order not to shadow the variable, or those variables
-> >>    could be renamed.  Or if people wanting  <someprefix>
-> >>    try to find a short one
-> >
-> > I would call it str_on_off().
-> >
-> > And I would actually suggest to use the same style also for
-> > the other helpers.
-> >
-> > The "str_" prefix would make it clear that it is something with
-> > string. There are other <prefix>_on_off() that affect some
-> > functionality, e.g. mute_led_on_off(), e1000_vlan_filter_on_off().
-> >
-> > The dash '_' would significantly help to parse the name. yesno() and
-> > onoff() are nicely short and kind of acceptable. But "enabledisable()"
-> > is a puzzle.
-> >
-> > IMHO, str_yes_no(), str_on_off(), str_enable_disable() are a good
-> > compromise.
-> >
-> > The main motivation should be code readability. You write the
-> > code once. But many people will read it many times. Open coding
-> > is sometimes better than misleading macro names.
-> >
-> > That said, I do not want to block this patchset. If others like
-> > it... ;-)
-> 
-> I don't mind the names either way. Adding the prefix and dashes is
-> helpful in that it's possible to add the functions first and convert
-> users at leisure, though with a bunch of churn, while using names that
-> collide with existing ones requires the changes to happen in one go.
+Hi Lucas,
 
-It is also possible to support both notations at the beginning.
-And convert the existing users in the 2nd step.
+On Tue, Jan 18, 2022 at 11:24:48PM -0800, Lucas De Marchi wrote:
+> @@ -1354,8 +1345,7 @@ static bool tomoyo_print_condition(struct tomoyo_io_buffer *head,
+>  	case 3:
+>  		if (cond->grant_log != TOMOYO_GRANTLOG_AUTO)
+>  			tomoyo_io_printf(head, " grant_log=%s",
+> -					 tomoyo_yesno(cond->grant_log ==
+> -						      TOMOYO_GRANTLOG_YES));
+> +					 yesno(cond->grant_log == TOMOYO_GRANTLOG_YES));
 
-> What I do mind is grinding this series to a halt once again. I sent a
-> handful of versions of this three years ago, with inconclusive
-> bikeshedding back and forth, eventually threw my hands up in disgust,
-> and walked away.
+This would be better split on two lines.
 
-Yeah, and I am sorry for bikeshedding. Honestly, I do not know what is
-better. This is why I do not want to block this series when others
-like this.
+Then,
 
-My main motivation is to point out that:
+Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
 
-    enabledisable(enable)
-
-might be, for some people, more eye bleeding than
-
-    enable ? "enable" : "disable"
-
-
-The problem is not that visible with yesno() and onoff(). But as you said,
-onoff() confliscts with variable names. And enabledisable() sucks.
-As a result, there is a non-trivial risk of two mass changes:
-
-now:
-
-- contition ? "yes" : "no"
-+ yesno(condition)
-
-a few moths later:
-
-- yesno(condition)
-+ str_yes_no(condition)
-
-
-Best Regards,
-Petr
+-- 
+Sakari Ailus
