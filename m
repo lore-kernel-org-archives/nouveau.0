@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C28FCC433EF
-	for <nouveau@archiver.kernel.org>; Wed, 19 Jan 2022 19:35:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B9E3C433EF
+	for <nouveau@archiver.kernel.org>; Wed, 19 Jan 2022 19:35:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25CFC10EAC1;
-	Wed, 19 Jan 2022 19:35:01 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C770210EAB3;
- Wed, 19 Jan 2022 19:34:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68BA110F069;
+	Wed, 19 Jan 2022 19:35:12 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3D2E10EB17;
+ Wed, 19 Jan 2022 19:35:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642620900; x=1674156900;
+ t=1642620910; x=1674156910;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=Y7zetMO+F9o9TgvTfnNqU31+rhVBHq60hicGgEyx15I=;
- b=ZvUGnuVcbUE+E8v0nIddyIjtghLwsKMkQLFVRbVFcwqVA3/KAVnqESb3
- eMn6QRjPiwl8iLU76WjK8Ox93erxUg4lU18OLqy8TILTwm+BDMG8z4iy2
- bq+uN72Hl3nFi44N+wwobRgyV1ZapxPdi+9cooAcO+5TmD3U0fYLK37uG
- OFXVjQNO0LUeh+ecVP5z0g5OCqIL+GV3SMYugTvA5ZJQC2R0Q2EFw06Vg
- fK8fw/WK/AoPWtuWhutBvaHIq0plb+BeXfIyrNV0GFhs6jK4T1KkQmLA3
- OaCSO0In8Zjn4wkcQIBop6IY8wYH36jj70ar35KtVOqVertn/ThmT2wkd w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="242734441"
-X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="242734441"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 11:26:27 -0800
-X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="765057648"
+ bh=hA5pSNQjxDTLN0gQu3qfl7xtlPzKT55FdGnVp2YHmjo=;
+ b=F+enoCSUhhxOnKi67uwq9A2rDFl53ZOc/oHnREgt+wBSoY2mOpNxmNXQ
+ kiieHGfaQxJAzI+Tu/mVc0GFwt45XRZ1Mw6x+n5zd94rrKb7ol1SZUryu
+ ixIoE2xwbHT1aaroMYQ0f5aeU2N660KejvPn7VO33cOT49CKKcyPj98D1
+ 1am9B8fWWJRFqOV9x7/tLmFiRz/cn8oU4SJ54JICVQ5bdJHFh3YxWuyYY
+ 0GrwZsRD5tJ1Q+7qFsiy3gcc0K/xi77RABh4YRYdp+vMGD8vOXuHbNcK3
+ C1KB1S+l9Xy+Hm8WCjwhZUmtirETyazLFJUNcbTDGVFvPMSPHQb7xox/o Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="225151213"
+X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="225151213"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2022 11:18:54 -0800
+X-IronPort-AV: E=Sophos;i="5.88,300,1635231600"; d="scan'208";a="530741414"
 Received: from smile.fi.intel.com ([10.237.72.61])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 11:26:19 -0800
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2022 11:18:46 -0800
 Received: from andy by smile.fi.intel.com with local (Exim 4.95)
  (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1nAGZw-00CEZW-RK; Wed, 19 Jan 2022 21:25:08 +0200
-Date: Wed, 19 Jan 2022 21:25:08 +0200
+ id 1nAGSd-00CETd-Sx; Wed, 19 Jan 2022 21:17:35 +0200
+Date: Wed, 19 Jan 2022 21:17:35 +0200
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Steven Rostedt <rostedt@goodmis.org>
-Message-ID: <YehllDq7wC3M2PQZ@smile.fi.intel.com>
-References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
- <20220119072450.2890107-2-lucas.demarchi@intel.com>
- <YefXg03hXtrdUj6y@paasikivi.fi.intel.com>
- <20220119100635.6c45372b@gandalf.local.home>
+To: Esaki Tomohito <etom@igel.co.jp>
+Message-ID: <Yehjz1ixBKqL7Qw+@smile.fi.intel.com>
+References: <20220114101753.24996-1-etom@igel.co.jp>
+ <20220114101753.24996-3-etom@igel.co.jp>
+ <YeGFugZvwbF7l2I/@smile.fi.intel.com>
+ <0cf405a1-0d2d-ed5e-abdf-be645e7a9209@igel.co.jp>
+ <YeaOHqfTcf+evbVC@smile.fi.intel.com>
+ <94bddda6-9823-6479-bc1d-cbb8c1079877@igel.co.jp>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220119100635.6c45372b@gandalf.local.home>
+In-Reply-To: <94bddda6-9823-6479-bc1d-cbb8c1079877@igel.co.jp>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Nouveau] [PATCH 1/3] lib/string_helpers: Consolidate yesno()
- implementation
+Subject: Re: [Nouveau] [RFC PATCH v3 2/3] drm: add support modifiers for
+ drivers whose planes only support linear layout
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,67 +64,71 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Vishal Kulkarni <vishal@chelsio.com>,
- Francis Laniel <laniel_francis@privacyrequired.com>,
- Kentaro Takeda <takedakn@nttdata.co.jp>, amd-gfx@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx@lists.freedesktop.org, Raju Rangoju <rajur@chelsio.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Julia Lawall <julia.lawall@lip6.fr>,
- Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Mikita Lipski <mikita.lipski@amd.com>,
- Eryk Brol <eryk.brol@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-kernel@vger.kernel.org,
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,
+ Michel =?iso-8859-1?Q?D=E4nzer?= <mdaenzer@redhat.com>,
+ Daniel Stone <daniel@fooishbar.org>, Lee Jones <lee.jones@linaro.org>,
+ Rob Clark <robdclark@chromium.org>, Takanari Hayama <taki@igel.co.jp>,
+ amd-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>,
+ Petr Mladek <pmladek@suse.com>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Abhinav Kumar <abhinavk@codeaurora.org>,
+ Alex Deucher <alexander.deucher@amd.com>, Sean Paul <seanpaul@chromium.org>,
+ Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Evan Quan <evan.quan@amd.com>, Mark Yacoub <markyacoub@chromium.org>,
+ Qingqing Zhuo <qingqing.zhuo@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, Simon Ser <contact@emersion.fr>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Damian Hobson-Garcia <dhobsong@igel.co.jp>,
  Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
- linux-security-module@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- netdev@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- "David S . Miller" <davem@davemloft.net>
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Jan 19, 2022 at 10:06:35AM -0500, Steven Rostedt wrote:
-> On Wed, 19 Jan 2022 11:18:59 +0200
-> Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
-> > On Tue, Jan 18, 2022 at 11:24:48PM -0800, Lucas De Marchi wrote:
-> > > @@ -1354,8 +1345,7 @@ static bool tomoyo_print_condition(struct tomoyo_io_buffer *head,
-> > >  	case 3:
-> > >  		if (cond->grant_log != TOMOYO_GRANTLOG_AUTO)
-> > >  			tomoyo_io_printf(head, " grant_log=%s",
-> > > -					 tomoyo_yesno(cond->grant_log ==
-> > > -						      TOMOYO_GRANTLOG_YES));
-> > > +					 yesno(cond->grant_log == TOMOYO_GRANTLOG_YES));  
+On Wed, Jan 19, 2022 at 11:35:22AM +0900, Esaki Tomohito wrote:
+> On 2022/01/18 18:53, Andy Shevchenko wrote:
+> > On Mon, Jan 17, 2022 at 02:15:48PM +0900, Esaki Tomohito wrote:
+> > > On 2022/01/14 23:16, Andy Shevchenko wrote:
+> > > > On Fri, Jan 14, 2022 at 07:17:52PM +0900, Tomohito Esaki wrote:
+> > > > > The LINEAR modifier is advertised as default if a driver doesn't specify
+> > > > > modifiers.
+> > > > 
+> > > > ...
+> > > > 
+> > > > > +	const uint64_t default_modifiers[] = {
+> > > > > +		DRM_FORMAT_MOD_LINEAR,
+> > > > > +		DRM_FORMAT_MOD_INVALID
+> > > > 
+> > > > + Comma?
+> > > 
+> > > There is no mention in the coding style about adding/removing a comma to the
+> > > last element of an array. Is there a policy in drm driver?
+> > > 
+> > > I think the advantage of adding a comma to the last element of an array is
+> > > that diff is only one line when an element is added to the end.
+> > > However since INVALID is always the last element in the modifiers array, I
+> > > think it can be either in this case.
+> > > If there is a policy, I will match it.
 > > 
-> > This would be better split on two lines.
+> > Indeed, but there is a common sense. The idea behind (multi-line) definitions
+> > that when next time somebody will add an element in the array, there are will
+> > be:
+> > 
+> > a) no additional churn (like in case of this patch, if the item will be added
+> >     at the bottom;
+> > 
+> > b) an element that may not be added behind the terminator, which will look
+> >     weird.
+> > 
+> > That said, the question is if the element is terminator one or not, if not,
+> > comma is better than no comma and vise versa.
 > 
-> Really? Yuck!
-> 
-> I thought the "max line size" guideline was going to grow to a 100, but I
-> still see it as 80. But anyway...
-> 
-> 	cond->grant_log ==
-> 	TOMOYO_GRANTLOG_YES
-> 
-> is not readable at all. Not compared to
-> 
-> 	cond->grant_log == TOMOYO_GRANTLOG_YES
-> 
-> I say keep it one line!
-> 
-> Reviewed-by: Steven Rostedt (Google) <rostedt@goodmis.org>
+> Ah I see. In this case, DRM_FORMAT_MOD_INVALID is terminator, so it
+> should not have a comma.
 
-I believe Sakari strongly follows the 80 rule, which means...
-
-> > Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-
-...chose either of these tags and be happy with :-)
+Thanks for pointing this out. In this case we are good and any new item, AFAIU,
+must be added before _INVALID one.
 
 -- 
 With Best Regards,
