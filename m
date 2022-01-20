@@ -4,51 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1104CC433EF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1BC0C433F5
 	for <nouveau@archiver.kernel.org>; Thu, 20 Jan 2022 18:17:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1341C10E68A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B8C610E6D3;
 	Thu, 20 Jan 2022 18:16:53 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29C5F10E96D;
- Wed, 19 Jan 2022 09:19:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1642583952; x=1674119952;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Zf7maaT407OcqJiMSYXoEAzMcLY861f8NYGTlKtPnGA=;
- b=ZFNwW0Dd9ESaHoa0UPh0BzF1zqZNveic6/jajEPk6qIJOnltb2XtBENE
- 885yBSiun1DGbR2uQ7RjwbCELiS2skBvZQgtW+grFtz7tSYK6b0RBOL/y
- AAIjYSX8rjjSgCN+Hv8SKBxs8xtEQUtwkHI1Y3mf0ZUqdF1Ay8uK9YsMy
- ordGnhWbMpmC1jlKXmhOyE8+ftckvfAD2s515M4FB+5rjVfwwUbaSQN4p
- EajkxxmSlJaQc/l5HNiih7vtpeb8WHIWvqYIuJruGo338HwJ7i4nFZh/P
- e3xZpoctQHC4BqAxceYeKH38QlSoFHVCmEoST1+GVW3rgexoNpDOKK+Vw g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10231"; a="232388195"
-X-IronPort-AV: E=Sophos;i="5.88,299,1635231600"; d="scan'208";a="232388195"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 01:19:11 -0800
-X-IronPort-AV: E=Sophos;i="5.88,299,1635231600"; d="scan'208";a="622447667"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 01:19:01 -0800
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
- by paasikivi.fi.intel.com (Postfix) with SMTP id CEBE0203C8;
- Wed, 19 Jan 2022 11:18:59 +0200 (EET)
-Date: Wed, 19 Jan 2022 11:18:59 +0200
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <YefXg03hXtrdUj6y@paasikivi.fi.intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B26610E49E;
+ Thu, 20 Jan 2022 10:45:39 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out2.suse.de (Postfix) with ESMTP id 971CA1F394;
+ Thu, 20 Jan 2022 10:45:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1642675537; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=lNXsCxk1kmLzWZ3KuMXgc2QP7yNDhqQLgFtjl4LsFGg=;
+ b=s80Eh1CewTbGXaANSfdmhOC8yS7mIDv9FCt/I0hzu7cf9Pu9Si7tpC0AUMlifM6MhpyvNI
+ EdQykNw0T5LfW9CMRgRZQ36TExFEeiyITs3AE72J+aELbU1yWnXuKDUzDzoC1F8NJaMUMu
+ 9y1MB7bqBlsK9YohaVnVWyOxwl7Ul6w=
+Received: from suse.cz (unknown [10.100.224.162])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by relay2.suse.de (Postfix) with ESMTPS id 65535A3B81;
+ Thu, 20 Jan 2022 10:45:30 +0000 (UTC)
+Date: Thu, 20 Jan 2022 11:45:36 +0100
+From: Petr Mladek <pmladek@suse.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <Yek9UEHpS16/9ajt@alley>
 References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
- <20220119072450.2890107-2-lucas.demarchi@intel.com>
+ <YegPiR7LU8aVisMf@alley> <87tudzbykz.fsf@intel.com>
+ <YekfbKMjOP9ecc5v@alley> <8735libwjo.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220119072450.2890107-2-lucas.demarchi@intel.com>
+In-Reply-To: <8735libwjo.fsf@intel.com>
 X-Mailman-Approved-At: Thu, 20 Jan 2022 18:16:51 +0000
-Subject: Re: [Nouveau] [PATCH 1/3] lib/string_helpers: Consolidate yesno()
- implementation
+Subject: Re: [Nouveau] [PATCH 0/3] lib/string_helpers: Add a few string
+ helpers
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,12 +62,13 @@ Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
  Kentaro Takeda <takedakn@nttdata.co.jp>, Mikita Lipski <mikita.lipski@amd.com>,
  amd-gfx@lists.freedesktop.org, Andy Shevchenko <andy.shevchenko@gmail.com>,
  Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
- Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
- Raju Rangoju <rajur@chelsio.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Julia Lawall <julia.lawall@lip6.fr>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
+ intel-gfx@lists.freedesktop.org, Raju Rangoju <rajur@chelsio.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Julia Lawall <julia.lawall@lip6.fr>,
  Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
- Steven Rostedt <rostedt@goodmis.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Eryk Brol <eryk.brol@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  linux-kernel@vger.kernel.org,
@@ -87,22 +81,24 @@ Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Lucas,
+On Thu 2022-01-20 11:12:27, Jani Nikula wrote:
+> On Thu, 20 Jan 2022, Petr Mladek <pmladek@suse.com> wrote:
+> > The problem is not that visible with yesno() and onoff(). But as you said,
+> > onoff() confliscts with variable names. And enabledisable() sucks.
+> > As a result, there is a non-trivial risk of two mass changes:
+> 
+> My point is, in the past three years we could have churned through more
+> than two mass renames just fine, if needed, *if* we had just managed to
+> merge something for a start!
 
-On Tue, Jan 18, 2022 at 11:24:48PM -0800, Lucas De Marchi wrote:
-> @@ -1354,8 +1345,7 @@ static bool tomoyo_print_condition(struct tomoyo_io_buffer *head,
->  	case 3:
->  		if (cond->grant_log != TOMOYO_GRANTLOG_AUTO)
->  			tomoyo_io_printf(head, " grant_log=%s",
-> -					 tomoyo_yesno(cond->grant_log ==
-> -						      TOMOYO_GRANTLOG_YES));
-> +					 yesno(cond->grant_log == TOMOYO_GRANTLOG_YES));
+Huh, this sound alarming.
 
-This would be better split on two lines.
+Cosmetic changes just complicate history. They make "git blame" useless.
+They also complicate backports. I know that it is not problem for
+mainline. But there are supported stable branches, ...
 
-Then,
+There should be a good reason for such changes. They should not be
+done light-heartedly.
 
-Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-
--- 
-Sakari Ailus
+Best Regards,
+Petr
