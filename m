@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94E6FC433EF
-	for <nouveau@archiver.kernel.org>; Fri, 21 Jan 2022 01:48:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0DFCC433F5
+	for <nouveau@archiver.kernel.org>; Fri, 21 Jan 2022 06:48:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE50310E590;
-	Fri, 21 Jan 2022 01:48:18 +0000 (UTC)
-X-Greylist: delayed 605 seconds by postgrey-1.36 at gabe;
- Fri, 21 Jan 2022 01:48:16 UTC
-Received: from relay.hostedemail.com (relay031.a.hostedemail.com
- [64.99.140.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6AE110E590;
- Fri, 21 Jan 2022 01:48:16 +0000 (UTC)
-Received: from omf06.hostedemail.com (a10.router.float.18 [10.200.18.1])
- by unirelay06.hostedemail.com (Postfix) with ESMTP id DAEDB22DB5;
- Fri, 21 Jan 2022 01:38:07 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by
- omf06.hostedemail.com (Postfix) with ESMTPA id 3264F20010; 
- Fri, 21 Jan 2022 01:37:54 +0000 (UTC)
-Message-ID: <5da3e02454c8c9ff3335c7199f3ae48af2864981.camel@perches.com>
-From: Joe Perches <joe@perches.com>
-To: Steven Rostedt <rostedt@goodmis.org>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>
-Date: Thu, 20 Jan 2022 17:37:53 -0800
-In-Reply-To: <20220119160017.65bd1fa5@gandalf.local.home>
-References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
- <20220119072450.2890107-2-lucas.demarchi@intel.com>
- <YefXg03hXtrdUj6y@paasikivi.fi.intel.com>
- <20220119100635.6c45372b@gandalf.local.home>
- <YehllDq7wC3M2PQZ@smile.fi.intel.com>
- <20220119160017.65bd1fa5@gandalf.local.home>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.40.4-1ubuntu2 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48DAE10E892;
+	Fri, 21 Jan 2022 06:48:20 +0000 (UTC)
+Received: from mail-il1-f173.google.com (mail-il1-f173.google.com
+ [209.85.166.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D89610E8AC
+ for <nouveau@lists.freedesktop.org>; Fri, 21 Jan 2022 06:48:19 +0000 (UTC)
+Received: by mail-il1-f173.google.com with SMTP id w5so2698530ilo.2
+ for <nouveau@lists.freedesktop.org>; Thu, 20 Jan 2022 22:48:19 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=5KQQx46xQrc01DnZR0DSwdOR1l35gAn16zm6DTWeBJI=;
+ b=P9KkDg0C6Rh5uUT3fuoA8ES7EAJMUg9VhbZ9b62+gbXDrzrl75AC/4BhfTo+h8cubg
+ /YEkrSKNqu0xWBy2fGiDCIAzKu/Y2Qpb1QaEeaAeKj3pKaOjFwKNiuPfmqy0g6LutcHr
+ RUyeF2dng+oS2tG20SyJ0aE0z1Mlw9GYWsyOO8AFy0mzOFkFkUPNSHbaNjf0sFvbELGb
+ 791EbpvQmwJv53d3l5z2VzUmPsaLxg08LwgVryxOEbkEJ4is96LoVeC3jpLgfFTOgFsY
+ QwOByWjMK1NHiRxpP8j+Lm1YqqJXVoB52fuHBUYfkd6MnWlGRsAbkKIIfHy5nqOgp7UQ
+ upwg==
+X-Gm-Message-State: AOAM531vnuJsfYiY6piVgCfXtgpvec4mTxX3QZAQoAWjm6ZcMavX8Sob
+ 9GOW4Ip/nByjavkqP8IfqZDyLgSOWsF+/B601zKZvTX4dTs=
+X-Google-Smtp-Source: ABdhPJwLPR+ARgX/ALIKSOCcFhQ8bN30wFOtilUUrOO5X9rkm++hrv7aY2mcI+YVQIBIDC8H3SDSJ4BPcsGexKyjMF4=
+X-Received: by 2002:a05:6e02:15c5:: with SMTP id
+ q5mr1458461ilu.218.1642747698721; 
+ Thu, 20 Jan 2022 22:48:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Stat-Signature: 7rtkhruhzyxmaz9kz4md8szkb6csicqt
-X-Rspamd-Server: rspamout03
-X-Rspamd-Queue-Id: 3264F20010
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Session-ID: U2FsdGVkX1+2KBCQ3/oG0QJHNmpFhxNu1Bw+ZDwRWLg=
-X-HE-Tag: 1642729074-280175
-Subject: Re: [Nouveau] [PATCH 1/3] lib/string_helpers: Consolidate yesno()
- implementation
+References: <20220120181657.8E3BB10E684@gabe.freedesktop.org>
+ <CAKb7Uvi4+=7PTATZMh0vHcX8pg0FqR48r4_1MHphZKYQu1=hEw@mail.gmail.com>
+ <2cc8f675-dec2-4640-88ab-b64dea2e3bc6@DM3NAM02FT036.eop-nam02.prod.protection.outlook.com>
+In-Reply-To: <2cc8f675-dec2-4640-88ab-b64dea2e3bc6@DM3NAM02FT036.eop-nam02.prod.protection.outlook.com>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Date: Fri, 21 Jan 2022 01:48:07 -0500
+Message-ID: <CAKb7UvgpgHdv34oKMKXNKWMnjk=7f5y+Ab2cwfM1yDr3LkNCOQ@mail.gmail.com>
+To: Nick Lopez <nick@glowingmonkey.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Nouveau] Off-by-one or bad BIOS image? Apple eMac 800 GeForce
+ 2MX
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,48 +56,152 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Vishal Kulkarni <vishal@chelsio.com>,
- Francis Laniel <laniel_francis@privacyrequired.com>,
- Kentaro Takeda <takedakn@nttdata.co.jp>, amd-gfx@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx@lists.freedesktop.org, Raju Rangoju <rajur@chelsio.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Julia Lawall <julia.lawall@lip6.fr>,
- Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Mikita Lipski <mikita.lipski@amd.com>,
- Eryk Brol <eryk.brol@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-kernel@vger.kernel.org,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
- linux-security-module@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- netdev@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>, "David S
- . Miller" <davem@davemloft.net>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, 2022-01-19 at 16:00 -0500, Steven Rostedt wrote:
-> On Wed, 19 Jan 2022 21:25:08 +0200
-> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> 
-> > > I say keep it one line!
-> > > 
-> > > Reviewed-by: Steven Rostedt (Google) <rostedt@goodmis.org>  
-> > 
-> > I believe Sakari strongly follows the 80 rule, which means...
-> 
-> Checkpatch says "100" I think we need to simply update the docs (the
-> documentation always lags the code ;-)
+There's a surprisingly long document at
+https://docs.kernel.org/process/submitting-patches.html
 
-checkpatch doesn't say anything normally, it's a stupid script.
-It just mindlessly bleats a message when a line exceeds 100 chars...
+But basically make a git commit, make sure the commit message looks
+like other commit messages in the area (look at "git log
+drivers/gpu/drm/nouveau" for inspiration). Make sure your
+Signed-off-by is on there. Then git format-patch the commit, and use
+git send-email to send the resulting file to this mailing list +
+dri-devel (or any other method of causing the contents of that file to
+end up as the email that's sent rather than an attachment).
 
-Just fyi: I think it's nicer on a single line too.
+Cheers,
 
+  -ilia
 
+On Fri, Jan 21, 2022 at 12:07 AM Nick Lopez <nick@glowingmonkey.org> wrote:
+>
+> If it=E2=80=99s correct I=E2=80=99d like to see it make its way upstream.=
+ I have no idea what the submission procedure is.
+>
+>
+>
+> From: Ilia Mirkin
+> Sent: Thursday, January 20, 2022 11:24 AM
+> To: Nick Lopez
+> Cc: nouveau@lists.freedesktop.org
+> Subject: Re: [Nouveau] Off-by-one or bad BIOS image? Apple eMac 800 GeFor=
+ce 2MX
+>
+>
+>
+> This stuff is always so confusing. Let's think this through.... if
+>
+> bios size is 4, and we're trying to read a 4-byte thing starting at
+>
+> address 0, that _ought_ to work, I think. So in my strawman case,
+>
+> bios->size =3D=3D 4, and size =3D=3D 4. So we should only error if size >
+>
+> bios->size, not if they're =3D=3D. Looks like your patch is right.
+>
+>
+>
+> Want to make a linux kernel patch submission with this? (i.e.
+>
+> including changelog, signoff, etc?)
+>
+>
+>
+> Cheers,
+>
+>
+>
+>   -ilia
+>
+>
+>
+> On Thu, Jan 20, 2022 at 1:17 PM Nick Lopez <nick@glowingmonkey.org> wrote=
+:
+>
+> >
+>
+> > Because I watch too much retro YouTube I decided it was a good idea to =
+try installing Adelie Linux on my old G4/800 eMac, but the Live installer w=
+ould freeze. By blacklisting nouveau I was able to get it booted and manual=
+ly installed and, after hours and hours of compiling, get a working kernel =
+tree to poke at. After only a few iterations with dump_stack() and nvkm_deb=
+ug and the output of envytools/nvbios I worked out at the last initscript i=
+nstruction was stored in the last byte of the ROM. I think the bounds check=
+ in the nvbios_addr() function is miscalculating the limit as one byte shor=
+t, that=E2=80=99s why I was seeing this in the syslog:
+>
+> >
+>
+> >
+>
+> >
+>
+> > nouveau 0000:00:10.0: bios: OOB 1 000007b2 000007b2
+>
+> >
+>
+> > nouveau 0000:00:10.0: devinit: 0x000007b2[ ]: unknown opcode 0x00
+>
+> >
+>
+> > nouveau 0000:00:10.0: preinit failed with -22
+>
+> >
+>
+> > nouveau: DRM-master:00000000:00000080: init failed with -22
+>
+> >
+>
+> > nouveau 0000:00:10.0: DRM-master: Device allocation failed: -22
+>
+> >
+>
+> > nouveau: probe of 0000:00:10.0 failed with error -22
+>
+> >
+>
+> >
+>
+> >
+>
+> > After I changed the limit check from:
+>
+> >
+>
+> > if (unlikely(*addr + size >=3D bios->size)) {
+>
+> >
+>
+> > to:
+>
+> >
+>
+> > if (unlikely(*addr + size > bios->size)) {
+>
+> >
+>
+> >
+>
+> >
+>
+> > it initialized the card properly, brought up the fbconsole and even see=
+ms to be working in X with DRI. So the question is: was the bounds check wr=
+ong, or is the NVDA,BMP image provided by OpenFirmware truncated? I=E2=80=
+=99m guess this doesn=E2=80=99t turn up elsewhere because the ROM images re=
+ad through any of the other methods are the size of flash chip they=E2=80=
+=99re stored on so there=E2=80=99s always unused space at the end and they =
+never use the last byte where the NVDA,BMP provided by OpenFirmware is just=
+ the active section.
+>
+> >
+>
+> >
+>
+> >
+>
+> > The patch is against the Adelie easy-kernel patch 5.4 tree, but it look=
+s like that code is still there in the current upstream torvalds/linux git.
+>
+>
