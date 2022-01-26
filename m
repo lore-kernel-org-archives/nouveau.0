@@ -4,51 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA00EC63682
-	for <nouveau@archiver.kernel.org>; Wed, 26 Jan 2022 18:21:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08BABC2BA4C
+	for <nouveau@archiver.kernel.org>; Wed, 26 Jan 2022 18:21:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C593C10E60D;
-	Wed, 26 Jan 2022 18:21:16 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 459C610E794;
- Wed, 26 Jan 2022 10:43:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13E0010E4C2;
+	Wed, 26 Jan 2022 18:21:19 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA55810E4D4;
+ Wed, 26 Jan 2022 09:39:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643193831; x=1674729831;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Vtg1dgMFp7p9GgxTmw0mrktziInoebLsnCNjJeItTWc=;
- b=QzbZonJ+gPRdLsAL0hTpqmquRMEbVaNxONmG58nSx1HID6ljvFUmHpTv
- yJwRPm4crF+mUJ6q82mD10iSZqixbJRdo9alQxMG059v1/9ey8gqZavhR
- 2ac47zxZKQVXl4kktJUg3uolInOZeIrju60MRTa+dzfcCJX/11eeFchNC
- gzfUVO3Ma4toFimB58vbo1JAnsGyX4ICD+ZDQbFwLSWu3t9+zqehgkI98
- E5KQgMmzOTtBUsF3e5eWDzdMmRNtCl8nALgQ5Bggg/+nTBnHglpXA8wYF
- FfgqhHgh6epkXvW5G3u+RWI5r3WwUdU2HMyTOGwkO/Pf1NJDNUQ8DYzIN w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10238"; a="270975105"
-X-IronPort-AV: E=Sophos;i="5.88,317,1635231600"; d="scan'208";a="270975105"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 02:43:50 -0800
-X-IronPort-AV: E=Sophos;i="5.88,317,1635231600"; d="scan'208";a="624796941"
-Received: from richardt-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.143.219])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 02:43:48 -0800
-Date: Wed, 26 Jan 2022 02:43:45 -0800
+ t=1643189971; x=1674725971;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=uSjb9jgi2kMH0L+z03QNcdQ/wneGQJQTtAxcISB5aeM=;
+ b=nqbhHq9mtzo92WF/+p7buhDEm6DvFuwvx7I/qHijWo1Etxgb6hLfMWX7
+ Yl3ED80ZtAFdQrPJqI9ZtPtSu9WNkYDeK44XJs4DX42BzhSN5avz2hQsB
+ UbYUsf587iWX2IGKYE2cJMFefIWFf65zOXJhdoZ1mTWijhmdkoBMQcfCL
+ gUj/Apt4RMDVwkiz5UKWkjoKJ6HMkBbXsqZmGjBzb2m1Nxhqz6IkHlIRL
+ N9zj2yFJyoeTvLHpHOLPaavbyk1ga1fyGJO+2vu3SaV4hNkY7FNTaRlzV
+ /LJz4u2WbfP3wtAu+2zuUl6hAqaIxYgPztk3oVRrIXJ+gubrD5VRVaiol g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10238"; a="227188794"
+X-IronPort-AV: E=Sophos;i="5.88,317,1635231600"; d="scan'208";a="227188794"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2022 01:39:31 -0800
+X-IronPort-AV: E=Sophos;i="5.88,317,1635231600"; d="scan'208";a="477433103"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2022 01:39:30 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Message-ID: <20220126104345.r6libof7z7tqjqxi@ldmartin-desk2>
-X-Patchwork-Hint: comment
+To: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-security-module@vger.kernel.org, nouveau@lists.freedesktop.org,
+ netdev@vger.kernel.org
+Date: Wed, 26 Jan 2022 01:39:48 -0800
+Message-Id: <20220126093951.1470898-9-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220126093951.1470898-1-lucas.demarchi@intel.com>
 References: <20220126093951.1470898-1-lucas.demarchi@intel.com>
- <20220126093951.1470898-10-lucas.demarchi@intel.com>
- <CAHp75Vd+TmShx==d_JHZUu0Q-9X7CmZEOFdKnSrcRKs81Gxn3g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <CAHp75Vd+TmShx==d_JHZUu0Q-9X7CmZEOFdKnSrcRKs81Gxn3g@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 26 Jan 2022 18:21:14 +0000
-Subject: Re: [Nouveau] [Intel-gfx] [PATCH v2 09/11] drm: Convert open-coded
- yes/no strings to yesno()
+Subject: [Nouveau] [PATCH v2 08/11] drm/gem: Sort includes alphabetically
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,87 +59,72 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Vishal Kulkarni <vishal@chelsio.com>, netdev@vger.kernel.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Vishal Kulkarni <vishal@chelsio.com>,
  Francis Laniel <laniel_francis@privacyrequired.com>,
- Kentaro Takeda <takedakn@nttdata.co.jp>, amd-gfx@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
- Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
- Steven Rostedt <rostedt@goodmis.org>, Julia Lawall <julia.lawall@lip6.fr>,
+ Kentaro Takeda <takedakn@nttdata.co.jp>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>, Ben Skeggs <bskeggs@redhat.com>,
+ Jakub Kicinski <kuba@kernel.org>, Harry Wentland <harry.wentland@amd.com>,
+ Petr Mladek <pmladek@suse.com>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Leo Li <sunpeng.li@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Julia Lawall <julia.lawall@lip6.fr>,
  Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
- "David S. Miller" <davem@davemloft.net>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
- linux-security-module@vger.kernel.org,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Raju Rangoju <rajur@chelsio.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Raju Rangoju <rajur@chelsio.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  Andrew Morton <akpm@linux-foundation.org>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+ "David S. Miller" <davem@davemloft.net>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Jan 26, 2022 at 12:12:50PM +0200, Andy Shevchenko wrote:
->On Wed, Jan 26, 2022 at 11:39 AM Lucas De Marchi
-><lucas.demarchi@intel.com> wrote:
->>
->> linux/string_helpers.h provides a helper to return "yes"/"no" strings.
->> Replace the open coded versions with str_yes_no(). The places were
+Sort includes alphabetically so it's easier to add/remove includes and
+know when that is needed.
 
-oops, I replaced yesno() here but forgot to do so in the title
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/drm_gem.c | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
->> identified with the following semantic patch:
->>
->>         @@
->>         expression b;
->>         @@
->>
->>         - b ? "yes" : "no"
->>         + str_yes_no(b)
->>
->> Then the includes were added, so we include-what-we-use, and parenthesis
->> adjusted in drivers/gpu/drm/v3d/v3d_debugfs.c. After the conversion we
->> still see the same binary sizes:
->>
->>    text    data     bss     dec     hex filename
->>   51149    3295     212   54656    d580 virtio/virtio-gpu.ko.old
->>   51149    3295     212   54656    d580 virtio/virtio-gpu.ko
->> 1441491   60340     800 1502631  16eda7 radeon/radeon.ko.old
->> 1441491   60340     800 1502631  16eda7 radeon/radeon.ko
->> 6125369  328538   34000 6487907  62ff63 amd/amdgpu/amdgpu.ko.old
->> 6125369  328538   34000 6487907  62ff63 amd/amdgpu/amdgpu.ko
->>  411986   10490    6176  428652   68a6c drm.ko.old
->>  411986   10490    6176  428652   68a6c drm.ko
->>   98129    1636     264  100029   186bd dp/drm_dp_helper.ko.old
->>   98129    1636     264  100029   186bd dp/drm_dp_helper.ko
->> 1973432  109640    2352 2085424  1fd230 nouveau/nouveau.ko.old
->> 1973432  109640    2352 2085424  1fd230 nouveau/nouveau.ko
->
->This probably won't change for modules, but if you compile in the
->linker may try to optimize it. Would be nice to see the old-new for
->`make allyesconfig` or equivalent.
+diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+index 4dcdec6487bb..21631c22b374 100644
+--- a/drivers/gpu/drm/drm_gem.c
++++ b/drivers/gpu/drm/drm_gem.c
+@@ -25,20 +25,20 @@
+  *
+  */
+ 
+-#include <linux/types.h>
+-#include <linux/slab.h>
+-#include <linux/mm.h>
+-#include <linux/uaccess.h>
+-#include <linux/fs.h>
++#include <linux/dma-buf-map.h>
++#include <linux/dma-buf.h>
+ #include <linux/file.h>
+-#include <linux/module.h>
++#include <linux/fs.h>
++#include <linux/mem_encrypt.h>
++#include <linux/mm.h>
+ #include <linux/mman.h>
++#include <linux/module.h>
+ #include <linux/pagemap.h>
+-#include <linux/shmem_fs.h>
+-#include <linux/dma-buf.h>
+-#include <linux/dma-buf-map.h>
+-#include <linux/mem_encrypt.h>
+ #include <linux/pagevec.h>
++#include <linux/shmem_fs.h>
++#include <linux/slab.h>
++#include <linux/types.h>
++#include <linux/uaccess.h>
+ 
+ #include <drm/drm.h>
+ #include <drm/drm_device.h>
+-- 
+2.34.1
 
-just like it would already do, no? I can try and see what happens, but
-my feeling is that we won't have any change.
-
->
->...
->
->>         seq_printf(m, "\tDP branch device present: %s\n",
->> -                  branch_device ? "yes" : "no");
->> +                  str_yes_no(branch_device));
->
->Can it be now on one line? Same Q for all similar cases in the entire series.
-
-I saw that question in the previous version. I think those are very
-subjective is they all go a little bit over 80 chars. Some maintainers
-may prefer one way or the other.
-
-Here we are reducing just 3 chars so I assumed that is the preferred
-style here.  Also keeping it as is helps with the mass conversion since
-it's easily repeatable if another iteration is needed.
-
-thanks
-Lucas De Marchi
