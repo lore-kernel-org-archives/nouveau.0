@@ -4,84 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E280C433F5
-	for <nouveau@archiver.kernel.org>; Thu, 27 Jan 2022 10:03:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06487C433EF
+	for <nouveau@archiver.kernel.org>; Thu, 27 Jan 2022 15:42:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DCDB10F001;
-	Thu, 27 Jan 2022 10:03:32 +0000 (UTC)
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
- [IPv6:2a00:1450:4864:20::32c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2657D10F001
- for <nouveau@lists.freedesktop.org>; Thu, 27 Jan 2022 10:03:32 +0000 (UTC)
-Received: by mail-wm1-x32c.google.com with SMTP id n8so1491663wmk.3
- for <nouveau@lists.freedesktop.org>; Thu, 27 Jan 2022 02:03:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=hgAj8AjMrz1A7BDxAJfFuQ4EGSqn2ucoZeTxIYc92rk=;
- b=Q6vOh8E4uR7I456lRL9xd46Oxh3hEA4vw9DMBgAJlBFtPFLc2lys7DZQTXZA3Weh2T
- 0ZCv0WZK46pzIyXAbmjOFG5AJ3peSyMI2Er0qQC/Md1poCrDjupHiiq08TIHvhriXkRP
- QFcc5vS4ZI++Fea3tzi88TKsVzXqwdeIiDBaU=
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90C1C10E2D3;
+	Thu, 27 Jan 2022 15:42:17 +0000 (UTC)
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com
+ [IPv6:2607:f8b0:4864:20::530])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C7A710EE08
+ for <nouveau@lists.freedesktop.org>; Thu, 27 Jan 2022 03:26:16 +0000 (UTC)
+Received: by mail-pg1-x530.google.com with SMTP id s16so1009285pgs.13
+ for <nouveau@lists.freedesktop.org>; Wed, 26 Jan 2022 19:26:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=igel-co-jp.20210112.gappssmtp.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=UXgGm9s9WWnJocR1csEpEoFP0RYkPEhnyAgndhDwtjc=;
+ b=O4KjoPSuQDZNGBWdQmitA/kZxO0YlbnND4cNyWdlyu4NQbK+BjberWp7inGyjYEFJK
+ V6JfMoxtuIZkIBnyKTfo0YDRqThLerNVvqa+K1pSkgZZvEcRMTgu3/Fla5GeW5IktNNn
+ Bijtm9oz/pYUb5wZ8jBAPSSs4k9N9koKFTfDDcGFPBvT1f6aT69SbDPqjCIOCXPuxmTu
+ 3zWG6DCftxpuLhT0mrnB7Ni8jRvM2RLA+4slw5oHeDn0lLA7Qm21MGiq0iFX+UpbBapn
+ fzZcajgCC/wg3/Mw4zbuNAa0nNAWO80t/e4VHG2oUY2aJnDbWbkuoV/5ZDfxq5gVqZdt
+ hdmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=hgAj8AjMrz1A7BDxAJfFuQ4EGSqn2ucoZeTxIYc92rk=;
- b=SN5miEQs1aCmTUvPd+Qzcv0GQqB9QqCdj3+zITmnRnH96BzfhvU+oMPtyLwaq1jePb
- G6S0mzx2GbVAkK6u7HKs63K2HmG4fFZZd6t8pkIAqlR1FZ4zAh1XE/Nwx2mrNKNuGjQN
- V3EMCWuPUPiJc45MYbM5oEnDAhvMbB1hBVjFi9U6bWiqFkN9016yJWxRdDTPq3Ug3SoC
- 9xNZkkC2rtKBKgoSugqnAd1FFfOk4+ABOlnPW/eA5PTfFDgPleuut+/dD7Q31gnMFnar
- s0Nx3Zx5716SKYvMHMV25rstrN9nR2iae/a36/R0wQ8Jjaqhd9TE+GazjNhHbZHV+QPJ
- 3fcg==
-X-Gm-Message-State: AOAM531n0GVQQxD4UydLtS8KF4Wq7hxY1d0lKeYT33tcp6ld73Va1F8y
- BE+wjuQCJiU7/+gr9Fn04VYRWg==
-X-Google-Smtp-Source: ABdhPJzSG06zHL7QC0W9qJ4UoSviuojSBNboAnS5fPgZRPU8eJNpqde7XN8cpCkl7ua39RHdPNVpmA==
-X-Received: by 2002:a1c:4b13:: with SMTP id y19mr10758110wma.129.1643277810650; 
- Thu, 27 Jan 2022 02:03:30 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id s9sm1699065wrr.84.2022.01.27.02.03.29
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=UXgGm9s9WWnJocR1csEpEoFP0RYkPEhnyAgndhDwtjc=;
+ b=HZx6ZM6tICe2nGljDA+ylnkbLCHNlf2qHYVuUJ+rU98JVMbt7T1ZsVeOGLEqCFSqOL
+ OdrJOsvO3b/VJPurKsQJr+DwU3Zhw6k7UaGd0JZnclzqdI1hWRWv7tCm844JXge495/9
+ CpIjLtSQ0PFq8zu5O7oCu5yQqmmQ3YCly2mji0bUm13mOXWY/DjyrRDSygSLNgKqI8sI
+ esCuHxDR7WT/Y1NdNdaqeHdrX8B7kHTgC6huE1a2Qk4QLZwmT5zir3i2RlvBmHmWS0tU
+ wUU5VKMc0+z6TSVognd07qhKFXq7KHEfHXYF2KuEdNLgHFnm0xzYFob21S1zWvl+P8JE
+ qkdQ==
+X-Gm-Message-State: AOAM530IE2IZX/WiFtP05bdoaE21Y6OT4KuVrN/HMxvfWIo1eQY239HD
+ Uea8rZoMLR7f9lkHvTP4YA3bfw==
+X-Google-Smtp-Source: ABdhPJysmgOujAl45WjONf68QQ5jRzvfCobqxGtGJ8Z511kMtGA4DmksGOLMeNbJRLJFDxAUzyr1Nw==
+X-Received: by 2002:a63:2c07:: with SMTP id s7mr1356397pgs.181.1643253975979; 
+ Wed, 26 Jan 2022 19:26:15 -0800 (PST)
+Received: from aqua.hq.igel.co.jp (napt.igel.co.jp. [219.106.231.132])
+ by smtp.gmail.com with ESMTPSA id t15sm4203111pjy.17.2022.01.26.19.26.08
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 27 Jan 2022 02:03:30 -0800 (PST)
-Date: Thu, 27 Jan 2022 11:03:27 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Tomohito Esaki <etom@igel.co.jp>
-Message-ID: <YfJt7zQNUnSpMP+l@phenom.ffwll.local>
-Mail-Followup-To: Tomohito Esaki <etom@igel.co.jp>,
- dri-devel@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Ben Skeggs <bskeggs@redhat.com>,
- Michel =?iso-8859-1?Q?D=E4nzer?= <mdaenzer@redhat.com>,
- Simon Ser <contact@emersion.fr>,
- Qingqing Zhuo <qingqing.zhuo@amd.com>,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- Mark Yacoub <markyacoub@chromium.org>,
- Sean Paul <seanpaul@chromium.org>, Evan Quan <evan.quan@amd.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Petr Mladek <pmladek@suse.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Lee Jones <lee.jones@linaro.org>,
- Abhinav Kumar <abhinavk@codeaurora.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Rob Clark <robdclark@chromium.org>, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- Daniel Stone <daniel@fooishbar.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Damian Hobson-Garcia <dhobsong@igel.co.jp>,
- Takanari Hayama <taki@igel.co.jp>
+ Wed, 26 Jan 2022 19:26:15 -0800 (PST)
+From: Tomohito Esaki <etom@igel.co.jp>
+To: dri-devel@lists.freedesktop.org
+Date: Thu, 27 Jan 2022 12:25:39 +0900
+Message-Id: <20220127032539.9929-4-etom@igel.co.jp>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220127032539.9929-1-etom@igel.co.jp>
 References: <20220127032539.9929-1-etom@igel.co.jp>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220127032539.9929-1-etom@igel.co.jp>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-Subject: Re: [Nouveau] [RFC PATCH v5 0/3] Add support modifiers for drivers
- whose planes only support linear layout
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 27 Jan 2022 15:42:16 +0000
+Subject: [Nouveau] [RFC PATCH v5 3/3] drm: remove allow_fb_modifiers
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,12 +69,12 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org,
- Michel =?iso-8859-1?Q?D=E4nzer?= <mdaenzer@redhat.com>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <mdaenzer@redhat.com>,
  Daniel Stone <daniel@fooishbar.org>, Lee Jones <lee.jones@linaro.org>,
- Rob Clark <robdclark@chromium.org>, Evan Quan <evan.quan@amd.com>,
- amd-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>,
- Petr Mladek <pmladek@suse.com>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Tomohito Esaki <etom@igel.co.jp>, Rob Clark <robdclark@chromium.org>,
+ Evan Quan <evan.quan@amd.com>, amd-gfx@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>, Petr Mladek <pmladek@suse.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
  Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Abhinav Kumar <abhinavk@codeaurora.org>,
@@ -111,100 +86,59 @@ Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
  "Pan, Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
  Simon Ser <contact@emersion.fr>, Alex Deucher <alexander.deucher@amd.com>,
  Damian Hobson-Garcia <dhobsong@igel.co.jp>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Jan 27, 2022 at 12:25:36PM +0900, Tomohito Esaki wrote:
-> Some drivers whose planes only support linear layout fb do not support format
-> modifiers.
-> These drivers should support modifiers, however the DRM core should handle this
-> rather than open-coding in every driver.
-> 
-> In this patch series, these drivers expose format modifiers based on the
-> following suggestion[1].
-> 
-> On Thu, Nov 18, 2021 at 01:02:11PM +0000, Daniel Stone wrote:
-> > I think the best way forward here is:
-> >   - add a new mode_config.cannot_support_modifiers flag, and enable
-> > this in radeon (plus any other drivers in the same boat)
-> >   - change drm_universal_plane_init() to advertise the LINEAR modifier
-> > when NULL is passed as the modifier list (including installing a
-> > default .format_mod_supported hook)
-> >   - remove the mode_config.allow_fb_modifiers hook and always
-> > advertise modifier support, unless
-> > mode_config.cannot_support_modifiers is set
-> 
-> 
-> [1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20190509054518.10781-1-etom@igel.co.jp/#24602575
+The allow_fb_modifiers flag is unnecessary since it has been replaced
+with fb_modifiers_not_supported flag.
 
-Two procedural things:
-- There's an r-b on all the patches from Andy from the last round, please
-  include that.
-- Please also include a changelog per-patch (at least going forward), that
-  helps with judging where a patch series is.
+Signed-off-by: Tomohito Esaki <etom@igel.co.jp>
+---
+ drivers/gpu/drm/selftests/test-drm_framebuffer.c |  1 -
+ include/drm/drm_mode_config.h                    | 16 ----------------
+ 2 files changed, 17 deletions(-)
 
-But aside from this I think this looks ready.
-
-Cheers, Daniel
-
-> 
-> v5:
-> * rebase to the latest master branch (5.17-rc1+)
-> 	+ "drm/plane: Make format_mod_supported truly optional" patch [2]
->   [2] https://patchwork.freedesktop.org/patch/467940/?series=98255&rev=3
-> 
-> * change default_modifiers array from non-static to static
-> * remove terminator in default_modifiers array
-> * use ARRAY_SIZE to get the format_modifier_count
-> * keep a sanity check in plane init func
-> * modify several kerneldocs
-> 
-> v4: https://www.spinics.net/lists/dri-devel/msg329508.html
-> * modify documentation for fb_modifiers_not_supported flag in kerneldoc
-> 
-> v3: https://www.spinics.net/lists/dri-devel/msg329102.html
-> * change the order as follows:
->    1. add fb_modifiers_not_supported flag
->    2. add default modifiers
->    3. remove allow_fb_modifiers flag
-> * add a conditional disable in amdgpu_dm_plane_init()
-> 
-> v2: https://www.spinics.net/lists/dri-devel/msg328939.html
-> * rebase to the latest master branch (5.16.0+)
->       + "drm/plane: Make format_mod_supported truly optional" patch [2]
-> 
-> v1: https://www.spinics.net/lists/dri-devel/msg327352.html
-> * The initial patch set
-> 
-> Tomohito Esaki (3):
->   drm: introduce fb_modifiers_not_supported flag in mode_config
->   drm: add support modifiers for drivers whose planes only support
->     linear layout
->   drm: remove allow_fb_modifiers
-> 
->  drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  6 ++---
->  drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        |  2 ++
->  drivers/gpu/drm/amd/amdgpu/dce_v11_0.c        |  2 ++
->  drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         |  1 +
->  drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         |  2 ++
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  3 +++
->  drivers/gpu/drm/drm_framebuffer.c             |  6 ++---
->  drivers/gpu/drm/drm_ioctl.c                   |  2 +-
->  drivers/gpu/drm/drm_plane.c                   | 23 +++++++++++--------
->  drivers/gpu/drm/nouveau/nouveau_display.c     |  6 +++--
->  drivers/gpu/drm/radeon/radeon_display.c       |  2 ++
->  .../gpu/drm/selftests/test-drm_framebuffer.c  |  1 -
->  include/drm/drm_mode_config.h                 | 18 +++++----------
->  include/drm/drm_plane.h                       |  3 +++
->  14 files changed, 45 insertions(+), 32 deletions(-)
-> 
-> -- 
-> 2.25.1
-> 
-
+diff --git a/drivers/gpu/drm/selftests/test-drm_framebuffer.c b/drivers/gpu/drm/selftests/test-drm_framebuffer.c
+index 61b44d3a6a61..f6d66285c5fc 100644
+--- a/drivers/gpu/drm/selftests/test-drm_framebuffer.c
++++ b/drivers/gpu/drm/selftests/test-drm_framebuffer.c
+@@ -323,7 +323,6 @@ static struct drm_device mock_drm_device = {
+ 		.max_width = MAX_WIDTH,
+ 		.min_height = MIN_HEIGHT,
+ 		.max_height = MAX_HEIGHT,
+-		.allow_fb_modifiers = true,
+ 		.funcs = &mock_config_funcs,
+ 	},
+ };
+diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
+index 4a93dac91cf9..6b5e01295348 100644
+--- a/include/drm/drm_mode_config.h
++++ b/include/drm/drm_mode_config.h
+@@ -917,22 +917,6 @@ struct drm_mode_config {
+ 	 */
+ 	bool async_page_flip;
+ 
+-	/**
+-	 * @allow_fb_modifiers:
+-	 *
+-	 * Whether the driver supports fb modifiers in the ADDFB2.1 ioctl call.
+-	 * Note that drivers should not set this directly, it is automatically
+-	 * set in drm_universal_plane_init().
+-	 *
+-	 * IMPORTANT:
+-	 *
+-	 * If this is set the driver must fill out the full implicit modifier
+-	 * information in their &drm_mode_config_funcs.fb_create hook for legacy
+-	 * userspace which does not set modifiers. Otherwise the GETFB2 ioctl is
+-	 * broken for modifier aware userspace.
+-	 */
+-	bool allow_fb_modifiers;
+-
+ 	/**
+ 	 * @fb_modifiers_not_supported:
+ 	 *
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.25.1
+
