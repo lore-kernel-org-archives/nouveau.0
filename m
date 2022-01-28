@@ -4,57 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 755CFC433EF
-	for <nouveau@archiver.kernel.org>; Fri, 28 Jan 2022 20:02:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFD6EC433F5
+	for <nouveau@archiver.kernel.org>; Fri, 28 Jan 2022 20:10:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C78DB10E166;
-	Fri, 28 Jan 2022 20:02:01 +0000 (UTC)
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com
- [IPv6:2607:f8b0:4864:20::229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CF3810E122;
- Fri, 28 Jan 2022 20:02:00 +0000 (UTC)
-Received: by mail-oi1-x229.google.com with SMTP id m9so14336043oia.12;
- Fri, 28 Jan 2022 12:02:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4KPQs4BICnK1jcv7Ue8a1i7g7BfJfHr1ekNmdCInY0w=;
- b=l4flimN6Rgf2/XPpkMw15pfJ9RHpjcAibkUIjUJN7f5ACxUodXF5fhtEiLq25oN2nQ
- Ig0/aMHr46/+8YDNpR6y5kh/KWNZZGwl1/RlBB4a7jd41u9I8t4acBrM1vP/w+FGwjuO
- Z1JOz+F9UXZk2roXWX6TIZbw4aK+a1s25EbraaIMhdci7VexsfqRMupQ7nIlFtASA/sh
- /RemWindYWXe6KXXrV+wzRWDOv4L7GiyOql4NLTmLnT2GTsuJyBlFPQbINI742iYYadJ
- vwJ+Iq2U9y6g/xgFXqsycHnHfckiim44vVngighjOBQ14AImYd2odulSZR/M5aQ7ExGg
- Gl+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=4KPQs4BICnK1jcv7Ue8a1i7g7BfJfHr1ekNmdCInY0w=;
- b=MuTYu2l+Whh1g2qwok7SsTClZ7wbhQRsoxF+IgFJKGmRnN5tAbXIOwjT4REcdfazST
- kRrwl/jcjUCZDxgd9UP1vR1YpuZ1bFhsSUq66IUMnbv8w6/zuH6/nk2VcXic6R7y+ArF
- 5Z7jczzrvQXaMgcD8pnO2QZ0bkhNVarbWmGHQSyBhzez7zmQ9++zeiZEMwRKjsaIQZsQ
- X9F1vBRwSG/zV2r/8cVPFb7U1h/NoyGYHojVLAPffTHLRl5uSJvAmEZBwoiezmGglVWP
- PavaGWwZCru5k6sICTzGxmjCYIPz+9Uilmqp0V5we8SCka8tTqt4Xsxlgq6xaljBnP5Y
- mzOg==
-X-Gm-Message-State: AOAM531BGJY/J+wKsZdGrlgRJOOWGrAh/ob3Imp8VAsJnJVmv0xlgTIL
- fRcvMRfUbTq2YhBxhAMIc9FNWThYQ+11ccjCoKY=
-X-Google-Smtp-Source: ABdhPJx/8io+fNHpd9HG9+lbXQhrPgksb6Db7eIuis71AlCHi6W2DtR5mNQ1TzmEz/J12C/wch/XwvvMxMRDXFQAVwE=
-X-Received: by 2002:a05:6808:2189:: with SMTP id
- be9mr11252433oib.93.1643400119936; 
- Fri, 28 Jan 2022 12:01:59 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 890B510E40B;
+	Fri, 28 Jan 2022 20:10:04 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 555C711236B;
+ Fri, 28 Jan 2022 08:36:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643358972; x=1674894972;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=VeQInHmHVOmhjLd436GKM+ceZUYLSpJbxttjZYailqQ=;
+ b=V5o87AyqPXdZ7sfo2U05Vid8yVZyq4EWtRzAE/8SVGcB2rZL0aQJh8Qd
+ lh5hisz+yVbz/VsrFV44bzT0b83RWEIpe1CDot67DERuLfvKuIO0uxv6l
+ ncAlI0vOI3UmCvmvE97HuX4ckqRBgcR4X8SO3jTUpFgAuqEjH2ZGonsU4
+ GjYivyLvBata0epTHMSzJ8nGTBvOZWZgPF7Fi3FGqEN0uSg+H8j+D0xs8
+ 3Pt16d0xpgTetUb5hb4DSLUhpCXi1Ty0TDQvlWodad+5hBzFs4m0J/TN7
+ 6G7mg4BpaUfnWt9/d9usztXtLzsVoRiEgjuFYriCcYQcV0Z1ru6V97OOh A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10240"; a="247025181"
+X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="247025181"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2022 00:36:11 -0800
+X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="581788723"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2022 00:36:11 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 28 Jan 2022 00:36:14 -0800
+Message-Id: <20220128083626.3012259-3-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.35.0
+In-Reply-To: <20220128083626.3012259-1-lucas.demarchi@intel.com>
+References: <20220128083626.3012259-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-References: <20220124165856.57022-1-zhou1615@umn.edu>
- <YfPC3N+H9Fu/gqpz@kroah.com>
- <536c833413ccbe0b8ad653a50c5ea867bf975290.camel@redhat.com>
- <CADnq5_MtMPNHbs92OMHEzvPYSHGt=nPJMdrny6Siuvj3SYTAXQ@mail.gmail.com>
- <CACO55tt4P+beifvS=jcDsfwybFynngc8DHLR0n3BseeDJNrHyw@mail.gmail.com>
-In-Reply-To: <CACO55tt4P+beifvS=jcDsfwybFynngc8DHLR0n3BseeDJNrHyw@mail.gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 28 Jan 2022 15:01:48 -0500
-Message-ID: <CADnq5_MnXG6-jzVZ7sXQjd8zeBKYPimFYOiR=M8=pB02fAxDzA@mail.gmail.com>
-To: Karol Herbst <kherbst@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Nouveau] [PATCH] drm/nouveau/acr: Fix undefined behavior in
- nvkm_acr_hsfw_load_bl()
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 28 Jan 2022 20:10:03 +0000
+Subject: [Nouveau] [PATCH 02/14] misc: fastrpc: Replace dma-buf-map with
+ iosys-map
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,117 +57,38 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Greg KH <gregkh@linuxfoundation.org>,
- Kangjie Lu <kjlu@umn.edu>, LKML <linux-kernel@vger.kernel.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Ben Skeggs <bskeggs@redhat.com>, nouveau <nouveau@lists.freedesktop.org>,
- Zhou Qingyang <zhou1615@umn.edu>
+Cc: airlied@linux.ie, christian.koenig@amd.com, srinivas.kandagatla@linaro.org,
+ gregkh@linuxfoundation.org, nouveau@lists.freedesktop.org,
+ sumit.semwal@linaro.org, linux-media@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jan 28, 2022 at 2:58 PM Karol Herbst <kherbst@redhat.com> wrote:
->
-> On Fri, Jan 28, 2022 at 8:54 PM Alex Deucher <alexdeucher@gmail.com> wrote:
-> >
-> > On Fri, Jan 28, 2022 at 2:20 PM Lyude Paul <lyude@redhat.com> wrote:
-> > >
-> > > Sigh-thank you for catching this - I had totally forgot about the umn.edu ban.
-> > > I pushed this already but I will go ahead and send a revert for this patch.
-> > > Will cc you on it as well.
-> >
-> > This seems short-sighted.  If the patch is valid I see no reason to
-> > not accept it.  I'm not trying to downplay the mess umn got into, but
-> > as long as the patch is well scrutinized and fixes a valid issue, it
-> > should be applied rather than leaving potential bugs in place.
-> >
-> > Alex
-> >
->
-> Even though knowing that malicious code can be introduced via
-> perfectly fine looking patches, and sometimes one will never spot the
-> problem, this patch isn't all that bad tbh.
->
-> So should we reject patches out of "policies" or should we just be
-> extra careful? But not addressing the concerns as Greg pointed out is
-> also kind of a bad move, but also not knowing what the state of
-> resolving this mess is anyway.
+iosys-map is the new name for dma-buf-map and will gain new
+capabitilities. Replace with the new API.
 
-I think if the umn mess taught us anything, it's the need for more
-careful scrutiny.  But I certainly don't have the time to retype every
-valid patch if it comes from a umn source.  There are also ethical
-implications to that as well.  You didn't actually write the patch.
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/misc/fastrpc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Alex
+diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
+index 4ccbf43e6bfa..5c0503655212 100644
+--- a/drivers/misc/fastrpc.c
++++ b/drivers/misc/fastrpc.c
+@@ -587,11 +587,11 @@ static void fastrpc_dma_buf_detatch(struct dma_buf *dmabuf,
+ 	kfree(a);
+ }
+ 
+-static int fastrpc_vmap(struct dma_buf *dmabuf, struct dma_buf_map *map)
++static int fastrpc_vmap(struct dma_buf *dmabuf, struct iosys_map *map)
+ {
+ 	struct fastrpc_buf *buf = dmabuf->priv;
+ 
+-	dma_buf_map_set_vaddr(map, buf->virt);
++	iosys_map_set_vaddr(map, buf->virt);
+ 
+ 	return 0;
+ }
+-- 
+2.35.0
 
->
-> >
-> > >
-> > > On Fri, 2022-01-28 at 11:18 +0100, Greg KH wrote:
-> > > > On Tue, Jan 25, 2022 at 12:58:55AM +0800, Zhou Qingyang wrote:
-> > > > > In nvkm_acr_hsfw_load_bl(), the return value of kmalloc() is directly
-> > > > > passed to memcpy(), which could lead to undefined behavior on failure
-> > > > > of kmalloc().
-> > > > >
-> > > > > Fix this bug by using kmemdup() instead of kmalloc()+memcpy().
-> > > > >
-> > > > > This bug was found by a static analyzer.
-> > > > >
-> > > > > Builds with 'make allyesconfig' show no new warnings,
-> > > > > and our static analyzer no longer warns about this code.
-> > > > >
-> > > > > Fixes: 22dcda45a3d1 ("drm/nouveau/acr: implement new subdev to replace
-> > > > > "secure boot"")
-> > > > > Signed-off-by: Zhou Qingyang <zhou1615@umn.edu>
-> > > > > ---
-> > > > > The analysis employs differential checking to identify inconsistent
-> > > > > security operations (e.g., checks or kfrees) between two code paths
-> > > > > and confirms that the inconsistent operations are not recovered in the
-> > > > > current function or the callers, so they constitute bugs.
-> > > > >
-> > > > > Note that, as a bug found by static analysis, it can be a false
-> > > > > positive or hard to trigger. Multiple researchers have cross-reviewed
-> > > > > the bug.
-> > > > >
-> > > > >  drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c | 9 +++++----
-> > > > >  1 file changed, 5 insertions(+), 4 deletions(-)
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c
-> > > > > b/drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c
-> > > > > index 667fa016496e..a6ea89a5d51a 100644
-> > > > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c
-> > > > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/acr/hsfw.c
-> > > > > @@ -142,11 +142,12 @@ nvkm_acr_hsfw_load_bl(struct nvkm_acr *acr, const
-> > > > > char *name, int ver,
-> > > > >
-> > > > >         hsfw->imem_size = desc->code_size;
-> > > > >         hsfw->imem_tag = desc->start_tag;
-> > > > > -       hsfw->imem = kmalloc(desc->code_size, GFP_KERNEL);
-> > > > > -       memcpy(hsfw->imem, data + desc->code_off, desc->code_size);
-> > > > > -
-> > > > > +       hsfw->imem = kmemdup(data + desc->code_off, desc->code_size,
-> > > > > GFP_KERNEL);
-> > > > >         nvkm_firmware_put(fw);
-> > > > > -       return 0;
-> > > > > +       if (!hsfw->imem)
-> > > > > +               return -ENOMEM;
-> > > > > +       else
-> > > > > +               return 0;
-> > > > >  }
-> > > > >
-> > > > >  int
-> > > > > --
-> > > > > 2.25.1
-> > > > >
-> > > >
-> > > > As stated before, umn.edu is still not allowed to contribute to the
-> > > > Linux kernel.  Please work with your administration to resolve this
-> > > > issue.
-> > > >
-> > >
-> > > --
-> > > Cheers,
-> > >  Lyude Paul (she/her)
-> > >  Software Engineer at Red Hat
-> > >
-> >
->
