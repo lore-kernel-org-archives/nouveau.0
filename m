@@ -4,50 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 192E5C433FE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD991C433EF
 	for <nouveau@archiver.kernel.org>; Fri, 28 Jan 2022 20:10:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F78E10E50F;
-	Fri, 28 Jan 2022 20:10:06 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E96210F5D1;
- Fri, 28 Jan 2022 09:12:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643361135; x=1674897135;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Urk9Fx5Hd5Js/YOOHw/RPA40Ql9fdsPvt6tLp2JZQZM=;
- b=BLtltdDirRrvOvF87l/lsxqvyT/VXpAGO5iiGvaLoMVB5Dm8zDGdFJUP
- 6OyVPprK2pAnSKzQEophQzLgdIo7uopHeYrPK9CWokYmlhOcCQQEbMRfm
- jpMvo5KXgZKWInlc0uYs/fhJeO65JNcvSXUMb60SAGHo06y+Jb5ozwnxB
- qR3MNUlHcOffHSq3D9X51/wO+KankLHhK8qRrXmYQVEFu6aLFttgQ+kSS
- Zxdjq2QNThfe7kMhSpEqEMlru+4/Ieq4hO+0k4UjgWoNRmu2C/7UoikKA
- lqrlVwRvHhb4en/p0IE+YH44zmZ94GqXw8NVl9kFP6MQmzH4nOl0xYahS A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10240"; a="247030719"
-X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="247030719"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2022 01:12:14 -0800
-X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="625576326"
-Received: from jsstout-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.160.158])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2022 01:12:13 -0800
-Date: Fri, 28 Jan 2022 01:12:13 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Message-ID: <20220128091213.qaq6v4vbeerzvd3f@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20220128083626.3012259-1-lucas.demarchi@intel.com>
- <a45a8cef-f5e7-604c-64f1-e893ec9ba8af@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84F7F10E4B9;
+	Fri, 28 Jan 2022 20:10:05 +0000 (UTC)
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com
+ [IPv6:2607:f8b0:4864:20::102e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B85310F4CE
+ for <nouveau@lists.freedesktop.org>; Fri, 28 Jan 2022 06:09:03 +0000 (UTC)
+Received: by mail-pj1-x102e.google.com with SMTP id
+ s2-20020a17090ad48200b001b501977b23so10081612pju.2
+ for <nouveau@lists.freedesktop.org>; Thu, 27 Jan 2022 22:09:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=igel-co-jp.20210112.gappssmtp.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=9OzDyLbxHiptRu8aPtp+nu1uB5blDVW/bU01H77AoMs=;
+ b=7dbPaRC95XZLXtUt7We9hvhYTemuqRCNVRhv9im6aqLkPx1t+AXxqeElX3ZhK2E/XI
+ QjaLlFGclSQng/O1bnhUtvDIaNy0WXfjpM2AwnKIyaSA+2ooiwG2oVtWXpuFUQXhHYic
+ u+dMIAmPrz08E78nSKStMMlL5upV4ILlMwafgzCXp0NkEHszgW7UV0zvdkIJmCQCe1Q9
+ Pr9JPaSSMXhhVJOZJDUgXqQb9YnrF5gZr23ucl6Sm28gT3bDcGfvtdrPtTqNOkF9h/9a
+ YYg1WJIei14of4O3L/xyKcq9NqbhUFBocH+kSCNczOr6truWKWM6dearxgHf7KSO37qz
+ flrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=9OzDyLbxHiptRu8aPtp+nu1uB5blDVW/bU01H77AoMs=;
+ b=gFR6a3+45qTScZn+lUZCYJ/niAWzvZB2vsZmHAAz7THRieNRF92KfZR252UBc57qxy
+ YSWiZ7LPoo+QX4SFpAlhFKqnvjCp4pTfbnheHnFoGtaAVYNj0uW7Q8+rthdvEPUdXtbZ
+ bPMR2CaV+rLmGmK/fcgksypJZdX38M2WBw5WDJj+PyYdExAz00x2yJ14bG6hSqvLhd8x
+ uEcofqfzcRUDSl+orzV9Gs3liEjMjnW5PjgfVVOIojbONbLGJJr/cSRhqD9C2l300iHu
+ GJSZfhI3TCV1n6q2b4d2bfssSnWwu6NfMmFXk14zeUh3jKvp2RqgydcK8GvYO9VkVBBK
+ 87rA==
+X-Gm-Message-State: AOAM530WzXzcP21jCor8yIfexopIJbqT+urM7vjKN+8FqSbrQK8k7hhs
+ SDTG6WQnPGppNwmliHrcKdlgAw==
+X-Google-Smtp-Source: ABdhPJy2sVlRtsrg85pdzE37SLPebBW7l+fxKl8otodYNXeMZDFUM/4dx4pSYZNuMXJWGZU4YDzOdQ==
+X-Received: by 2002:a17:903:3049:: with SMTP id u9mr6896351pla.2.1643350142723; 
+ Thu, 27 Jan 2022 22:09:02 -0800 (PST)
+Received: from aqua.hq.igel.co.jp (napt.igel.co.jp. [219.106.231.132])
+ by smtp.gmail.com with ESMTPSA id h5sm7743182pfi.111.2022.01.27.22.08.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 27 Jan 2022 22:09:02 -0800 (PST)
+From: Tomohito Esaki <etom@igel.co.jp>
+To: dri-devel@lists.freedesktop.org
+Date: Fri, 28 Jan 2022 15:08:34 +0900
+Message-Id: <20220128060836.11216-2-etom@igel.co.jp>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220128060836.11216-1-etom@igel.co.jp>
+References: <20220128060836.11216-1-etom@igel.co.jp>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a45a8cef-f5e7-604c-64f1-e893ec9ba8af@amd.com>
 X-Mailman-Approved-At: Fri, 28 Jan 2022 20:10:03 +0000
-Subject: Re: [Nouveau] [PATCH 00/14] Rename dma-buf-map
+Subject: [Nouveau] [RFC PATCH v6 1/3] drm: introduce
+ fb_modifiers_not_supported flag in mode_config
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,209 +70,261 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, srinivas.kandagatla@linaro.org,
- gregkh@linuxfoundation.org, nouveau@lists.freedesktop.org,
- sumit.semwal@linaro.org, linux-media@vger.kernel.org
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <mdaenzer@redhat.com>,
+ Daniel Stone <daniel@fooishbar.org>, Lee Jones <lee.jones@linaro.org>,
+ Tomohito Esaki <etom@igel.co.jp>, Rob Clark <robdclark@chromium.org>,
+ Evan Quan <evan.quan@amd.com>, amd-gfx@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>, Harry Wentland <harry.wentland@amd.com>,
+ Petr Mladek <pmladek@suse.com>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Abhinav Kumar <abhinavk@codeaurora.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Takanari Hayama <taki@igel.co.jp>, Sean Paul <seanpaul@chromium.org>,
+ Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mark Yacoub <markyacoub@chromium.org>, Qingqing Zhuo <qingqing.zhuo@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ Simon Ser <contact@emersion.fr>, Alex Deucher <alexander.deucher@amd.com>,
+ Damian Hobson-Garcia <dhobsong@igel.co.jp>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jan 28, 2022 at 09:41:14AM +0100, Christian König wrote:
->Rule #1 is to never ever break the build.
->
->Because of this all those patches needs to be squashed into a single 
->one as far as I can see.
+If only linear modifier is advertised, since there are many drivers that
+only linear supported, the DRM core should handle this rather than
+open-coding in every driver. However, there are legacy drivers such as
+radeon that do not support modifiers but infer the actual layout of the
+underlying buffer. Therefore, a new flag fb_modifiers_not_supported is
+introduced for these legacy drivers, and allow_fb_modifiers is replaced
+with this new flag.
 
-what config are you building on? I built this series, full config with
-CONFIG_COMPILE_TEST and doing:
+v3:
+ - change the order as follows:
+   1. add fb_modifiers_not_supported flag
+   2. add default modifiers
+   3. remove allow_fb_modifiers flag
+ - add a conditional disable in amdgpu_dm_plane_init()
 
-	git rebase -i <base> -x "make -j$(nproc)"
+v4:
+ - modify kernel docs
 
-I split these patches in a way that wouldn't break the build on purpose.
-There were a couple that I couldn't build without cross compiling: tegra
-and rockchip. The others were ok.
+v5:
+ - modify kernel docs
 
-I'm not really against squashing everything in one to merge, though.
-It will be hard on the conflicts later, but should get the job done much
-quicker.
+Signed-off-by: Tomohito Esaki <etom@igel.co.jp>
+Acked-by: Harry Wentland <harry.wentland@amd.com>
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c       |  6 +++---
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c            |  2 ++
+ drivers/gpu/drm/amd/amdgpu/dce_v11_0.c            |  2 ++
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c             |  1 +
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c             |  2 ++
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  3 +++
+ drivers/gpu/drm/drm_framebuffer.c                 |  6 +++---
+ drivers/gpu/drm/drm_ioctl.c                       |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_display.c         |  6 ++++--
+ drivers/gpu/drm/radeon/radeon_display.c           |  2 ++
+ include/drm/drm_mode_config.h                     | 10 ++++++++++
+ 11 files changed, 33 insertions(+), 9 deletions(-)
 
-Lucas De Marchi
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+index 82011e75ed85..edbb30d47b8c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+@@ -954,7 +954,7 @@ static int amdgpu_display_verify_sizes(struct amdgpu_framebuffer *rfb)
+ 	int ret;
+ 	unsigned int i, block_width, block_height, block_size_log2;
+ 
+-	if (!rfb->base.dev->mode_config.allow_fb_modifiers)
++	if (rfb->base.dev->mode_config.fb_modifiers_not_supported)
+ 		return 0;
+ 
+ 	for (i = 0; i < format_info->num_planes; ++i) {
+@@ -1141,7 +1141,7 @@ int amdgpu_display_framebuffer_init(struct drm_device *dev,
+ 	if (ret)
+ 		return ret;
+ 
+-	if (!dev->mode_config.allow_fb_modifiers) {
++	if (dev->mode_config.fb_modifiers_not_supported) {
+ 		drm_WARN_ONCE(dev, adev->family >= AMDGPU_FAMILY_AI,
+ 			      "GFX9+ requires FB check based on format modifier\n");
+ 		ret = check_tiling_flags_gfx6(rfb);
+@@ -1149,7 +1149,7 @@ int amdgpu_display_framebuffer_init(struct drm_device *dev,
+ 			return ret;
+ 	}
+ 
+-	if (dev->mode_config.allow_fb_modifiers &&
++	if (!dev->mode_config.fb_modifiers_not_supported &&
+ 	    !(rfb->base.flags & DRM_MODE_FB_MODIFIERS)) {
+ 		ret = convert_tiling_flags_to_modifier(rfb);
+ 		if (ret) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
+index d1570a462a51..fb61c0814115 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
+@@ -2798,6 +2798,8 @@ static int dce_v10_0_sw_init(void *handle)
+ 	adev_to_drm(adev)->mode_config.preferred_depth = 24;
+ 	adev_to_drm(adev)->mode_config.prefer_shadow = 1;
+ 
++	adev_to_drm(adev)->mode_config.fb_modifiers_not_supported = true;
++
+ 	adev_to_drm(adev)->mode_config.fb_base = adev->gmc.aper_base;
+ 
+ 	r = amdgpu_display_modeset_create_props(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
+index 18a7b3bd633b..17942a11366d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
+@@ -2916,6 +2916,8 @@ static int dce_v11_0_sw_init(void *handle)
+ 	adev_to_drm(adev)->mode_config.preferred_depth = 24;
+ 	adev_to_drm(adev)->mode_config.prefer_shadow = 1;
+ 
++	adev_to_drm(adev)->mode_config.fb_modifiers_not_supported = true;
++
+ 	adev_to_drm(adev)->mode_config.fb_base = adev->gmc.aper_base;
+ 
+ 	r = amdgpu_display_modeset_create_props(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+index c7803dc2b2d5..2ec99ec8e1a3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+@@ -2674,6 +2674,7 @@ static int dce_v6_0_sw_init(void *handle)
+ 	adev_to_drm(adev)->mode_config.max_height = 16384;
+ 	adev_to_drm(adev)->mode_config.preferred_depth = 24;
+ 	adev_to_drm(adev)->mode_config.prefer_shadow = 1;
++	adev_to_drm(adev)->mode_config.fb_modifiers_not_supported = true;
+ 	adev_to_drm(adev)->mode_config.fb_base = adev->gmc.aper_base;
+ 
+ 	r = amdgpu_display_modeset_create_props(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
+index 8318ee8339f1..de11fbe5aba2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
+@@ -2695,6 +2695,8 @@ static int dce_v8_0_sw_init(void *handle)
+ 	adev_to_drm(adev)->mode_config.preferred_depth = 24;
+ 	adev_to_drm(adev)->mode_config.prefer_shadow = 1;
+ 
++	adev_to_drm(adev)->mode_config.fb_modifiers_not_supported = true;
++
+ 	adev_to_drm(adev)->mode_config.fb_base = adev->gmc.aper_base;
+ 
+ 	r = amdgpu_display_modeset_create_props(adev);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 7f9773f8dab6..0fbcd19489f6 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -7894,6 +7894,9 @@ static int amdgpu_dm_plane_init(struct amdgpu_display_manager *dm,
+ 	if (res)
+ 		return res;
+ 
++	if (modifiers == NULL)
++		adev_to_drm(dm->adev)->mode_config.fb_modifiers_not_supported = true;
++
+ 	res = drm_universal_plane_init(adev_to_drm(dm->adev), plane, possible_crtcs,
+ 				       &dm_plane_funcs, formats, num_formats,
+ 				       modifiers, plane->type, NULL);
+diff --git a/drivers/gpu/drm/drm_framebuffer.c b/drivers/gpu/drm/drm_framebuffer.c
+index 07f5abc875e9..4562a8b86579 100644
+--- a/drivers/gpu/drm/drm_framebuffer.c
++++ b/drivers/gpu/drm/drm_framebuffer.c
+@@ -309,7 +309,7 @@ drm_internal_framebuffer_create(struct drm_device *dev,
+ 	}
+ 
+ 	if (r->flags & DRM_MODE_FB_MODIFIERS &&
+-	    !dev->mode_config.allow_fb_modifiers) {
++	    dev->mode_config.fb_modifiers_not_supported) {
+ 		DRM_DEBUG_KMS("driver does not support fb modifiers\n");
+ 		return ERR_PTR(-EINVAL);
+ 	}
+@@ -594,7 +594,7 @@ int drm_mode_getfb2_ioctl(struct drm_device *dev,
+ 	r->pixel_format = fb->format->format;
+ 
+ 	r->flags = 0;
+-	if (dev->mode_config.allow_fb_modifiers)
++	if (!dev->mode_config.fb_modifiers_not_supported)
+ 		r->flags |= DRM_MODE_FB_MODIFIERS;
+ 
+ 	for (i = 0; i < ARRAY_SIZE(r->handles); i++) {
+@@ -607,7 +607,7 @@ int drm_mode_getfb2_ioctl(struct drm_device *dev,
+ 	for (i = 0; i < fb->format->num_planes; i++) {
+ 		r->pitches[i] = fb->pitches[i];
+ 		r->offsets[i] = fb->offsets[i];
+-		if (dev->mode_config.allow_fb_modifiers)
++		if (!dev->mode_config.fb_modifiers_not_supported)
+ 			r->modifier[i] = fb->modifier;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
+index 8b8744dcf691..51fcf1298023 100644
+--- a/drivers/gpu/drm/drm_ioctl.c
++++ b/drivers/gpu/drm/drm_ioctl.c
+@@ -297,7 +297,7 @@ static int drm_getcap(struct drm_device *dev, void *data, struct drm_file *file_
+ 			req->value = 64;
+ 		break;
+ 	case DRM_CAP_ADDFB2_MODIFIERS:
+-		req->value = dev->mode_config.allow_fb_modifiers;
++		req->value = !dev->mode_config.fb_modifiers_not_supported;
+ 		break;
+ 	case DRM_CAP_CRTC_IN_VBLANK_EVENT:
+ 		req->value = 1;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index 2b460835a438..2cd0932b3d68 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -708,10 +708,12 @@ nouveau_display_create(struct drm_device *dev)
+ 				     &disp->disp);
+ 		if (ret == 0) {
+ 			nouveau_display_create_properties(dev);
+-			if (disp->disp.object.oclass < NV50_DISP)
++			if (disp->disp.object.oclass < NV50_DISP) {
++				dev->mode_config.fb_modifiers_not_supported = true;
+ 				ret = nv04_display_create(dev);
+-			else
++			} else {
+ 				ret = nv50_display_create(dev);
++			}
+ 		}
+ 	} else {
+ 		ret = 0;
+diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
+index 573154268d43..b9a07677a71e 100644
+--- a/drivers/gpu/drm/radeon/radeon_display.c
++++ b/drivers/gpu/drm/radeon/radeon_display.c
+@@ -1596,6 +1596,8 @@ int radeon_modeset_init(struct radeon_device *rdev)
+ 	rdev->ddev->mode_config.preferred_depth = 24;
+ 	rdev->ddev->mode_config.prefer_shadow = 1;
+ 
++	rdev->ddev->mode_config.fb_modifiers_not_supported = true;
++
+ 	rdev->ddev->mode_config.fb_base = rdev->mc.aper_base;
+ 
+ 	ret = radeon_modeset_create_props(rdev);
+diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
+index 91ca575a78de..4a93dac91cf9 100644
+--- a/include/drm/drm_mode_config.h
++++ b/include/drm/drm_mode_config.h
+@@ -933,6 +933,16 @@ struct drm_mode_config {
+ 	 */
+ 	bool allow_fb_modifiers;
+ 
++	/**
++	 * @fb_modifiers_not_supported:
++	 *
++	 * When this flag is set, the DRM device will not expose modifier
++	 * support to userspace. This is only used by legacy drivers that infer
++	 * the buffer layout through heuristics without using modifiers. New
++	 * drivers shall not set fhis flag.
++	 */
++	bool fb_modifiers_not_supported;
++
+ 	/**
+ 	 * @normalize_zpos:
+ 	 *
+-- 
+2.25.1
 
->
->Regards,
->Christian.
->
->Am 28.01.22 um 09:36 schrieb Lucas De Marchi:
->>Motivation for this started in
->>https://lore.kernel.org/lkml/20220126203702.1784589-1-lucas.demarchi@intel.com/
->>when trying to extend the dma-buf-map API to cover new use cases: help a
->>single driver with allocations and sharing code paths for IO and system
->>memory. I'm leaving the API additions aside and first renaming the
->>interface as requested.
->>
->>There are already some users in tree outside the context of dma-buf
->>importer/exporter. So before extending the API, let's dissociate it from
->>dma-buf.
->>
->>The iosys-map.h is introduced in the first patch in a way that allows
->>the conversion of each driver to happen separately. After all the
->>conversions are done we can remove the old one, which is the last patch.
->>Another possible way is to squash everything and merge together,
->>but I believe this would make much harder for review.
->>
->>The conversion was done with the following semantic patch:
->>
->>	@r1@
->>	@@
->>	- struct dma_buf_map
->>	+ struct iosys_map
->>
->>	@r2@
->>	@@
->>	(
->>	- DMA_BUF_MAP_INIT_VADDR
->>	+ IOSYS_MAP_INIT_VADDR
->>	|
->>	- dma_buf_map_set_vaddr
->>	+ iosys_map_set_vaddr
->>	|
->>	- dma_buf_map_set_vaddr_iomem
->>	+ iosys_map_set_vaddr_iomem
->>	|
->>	- dma_buf_map_is_equal
->>	+ iosys_map_is_equal
->>	|
->>	- dma_buf_map_is_null
->>	+ iosys_map_is_null
->>	|
->>	- dma_buf_map_is_set
->>	+ iosys_map_is_set
->>	|
->>	- dma_buf_map_clear
->>	+ iosys_map_clear
->>	|
->>	- dma_buf_map_memcpy_to
->>	+ iosys_map_memcpy_to
->>	|
->>	- dma_buf_map_incr
->>	+ iosys_map_incr
->>	)
->>
->>	@@
->>	@@
->>	- #include <linux/dma-buf-map.h>
->>	+ #include <linux/iosys-map.h>
->>
->>and then some files had their includes adjusted so we can build
->>everything on each commit in this series. Also some comments were update
->>to remove mentions to dma-buf-map. Simply doing a sed to rename didn't
->>work as dma-buf has some APIs using the dma_buf_map prefix.
->>
->>Once finalized, I think most of this, if not all, could go through the
->>drm-misc-next branch. I split i915, msm, nouveau, and radeon in their
->>own patches in case it's preferred to take those through their own
->>trees.
->>
->>Lucas De Marchi
->>
->>Lucas De Marchi (14):
->>   iosys-map: Introduce renamed dma-buf-map
->>   misc: fastrpc: Replace dma-buf-map with iosys-map
->>   dma-buf: Replace dma-buf-map with iosys-map
->>   media: Replace dma-buf-map with iosys-map
->>   drm/ttm: Replace dma-buf-map with iosys-map
->>   drm: Replace dma-buf-map with iosys-map in drivers
->>   drm/i915: Replace dma-buf-map with iosys-map
->>   drm/msm: Replace dma-buf-map with iosys-map
->>   drm/nouveau: Replace dma-buf-map with iosys-map
->>   drm/tegra: Replace dma-buf-map with iosys-map
->>   drm/radeon: Replace dma-buf-map with iosys-map
->>   drm: Replace dma-buf-map with iosys-map in common code
->>   Documentation: Refer to iosys-map instead of dma-buf-map
->>   dma-buf-map: Remove API in favor of iosys-map
->>
->>  Documentation/driver-api/dma-buf.rst          |   4 +-
->>  Documentation/gpu/todo.rst                    |  20 +-
->>  MAINTAINERS                                   |   2 +-
->>  drivers/dma-buf/dma-buf.c                     |  22 +-
->>  drivers/dma-buf/heaps/cma_heap.c              |  10 +-
->>  drivers/dma-buf/heaps/system_heap.c           |  10 +-
->>  drivers/gpu/drm/ast/ast_drv.h                 |   2 +-
->>  drivers/gpu/drm/ast/ast_mode.c                |   8 +-
->>  drivers/gpu/drm/drm_cache.c                   |  18 +-
->>  drivers/gpu/drm/drm_client.c                  |   9 +-
->>  drivers/gpu/drm/drm_fb_helper.c               |  12 +-
->>  drivers/gpu/drm/drm_gem.c                     |  12 +-
->>  drivers/gpu/drm/drm_gem_cma_helper.c          |   9 +-
->>  drivers/gpu/drm/drm_gem_framebuffer_helper.c  |  16 +-
->>  drivers/gpu/drm/drm_gem_shmem_helper.c        |  15 +-
->>  drivers/gpu/drm/drm_gem_ttm_helper.c          |   4 +-
->>  drivers/gpu/drm/drm_gem_vram_helper.c         |  25 +-
->>  drivers/gpu/drm/drm_internal.h                |   6 +-
->>  drivers/gpu/drm/drm_mipi_dbi.c                |   8 +-
->>  drivers/gpu/drm/drm_prime.c                   |   4 +-
->>  drivers/gpu/drm/etnaviv/etnaviv_drv.h         |   2 +-
->>  drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c   |   8 +-
->>  drivers/gpu/drm/gud/gud_pipe.c                |   4 +-
->>  drivers/gpu/drm/hyperv/hyperv_drm_modeset.c   |   5 +-
->>  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |   8 +-
->>  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |   6 +-
->>  .../gpu/drm/i915/gem/selftests/mock_dmabuf.c  |   6 +-
->>  drivers/gpu/drm/lima/lima_gem.c               |   3 +-
->>  drivers/gpu/drm/lima/lima_sched.c             |   4 +-
->>  drivers/gpu/drm/mediatek/mtk_drm_gem.c        |   7 +-
->>  drivers/gpu/drm/mediatek/mtk_drm_gem.h        |   5 +-
->>  drivers/gpu/drm/mgag200/mgag200_mode.c        |   4 +-
->>  drivers/gpu/drm/msm/msm_drv.h                 |   4 +-
->>  drivers/gpu/drm/msm/msm_gem_prime.c           |   6 +-
->>  drivers/gpu/drm/nouveau/nouveau_gem.c         |   2 +
->>  drivers/gpu/drm/panfrost/panfrost_perfcnt.c   |  13 +-
->>  drivers/gpu/drm/qxl/qxl_display.c             |   8 +-
->>  drivers/gpu/drm/qxl/qxl_draw.c                |   6 +-
->>  drivers/gpu/drm/qxl/qxl_drv.h                 |  10 +-
->>  drivers/gpu/drm/qxl/qxl_object.c              |   8 +-
->>  drivers/gpu/drm/qxl/qxl_object.h              |   4 +-
->>  drivers/gpu/drm/qxl/qxl_prime.c               |   4 +-
->>  drivers/gpu/drm/radeon/radeon_gem.c           |   1 +
->>  drivers/gpu/drm/rockchip/rockchip_drm_gem.c   |   9 +-
->>  drivers/gpu/drm/rockchip/rockchip_drm_gem.h   |   5 +-
->>  drivers/gpu/drm/tegra/gem.c                   |  10 +-
->>  drivers/gpu/drm/tiny/cirrus.c                 |   8 +-
->>  drivers/gpu/drm/tiny/gm12u320.c               |   7 +-
->>  drivers/gpu/drm/ttm/ttm_bo_util.c             |  16 +-
->>  drivers/gpu/drm/ttm/ttm_resource.c            |  26 +-
->>  drivers/gpu/drm/ttm/ttm_tt.c                  |   6 +-
->>  drivers/gpu/drm/udl/udl_modeset.c             |   3 +-
->>  drivers/gpu/drm/vboxvideo/vbox_mode.c         |   4 +-
->>  drivers/gpu/drm/virtio/virtgpu_prime.c        |   1 +
->>  drivers/gpu/drm/vkms/vkms_composer.c          |   4 +-
->>  drivers/gpu/drm/vkms/vkms_drv.h               |   6 +-
->>  drivers/gpu/drm/vkms/vkms_plane.c             |   2 +-
->>  drivers/gpu/drm/vkms/vkms_writeback.c         |   2 +-
->>  drivers/gpu/drm/xen/xen_drm_front_gem.c       |   7 +-
->>  drivers/gpu/drm/xen/xen_drm_front_gem.h       |   6 +-
->>  .../common/videobuf2/videobuf2-dma-contig.c   |   8 +-
->>  .../media/common/videobuf2/videobuf2-dma-sg.c |   9 +-
->>  .../common/videobuf2/videobuf2-vmalloc.c      |  11 +-
->>  drivers/misc/fastrpc.c                        |   4 +-
->>  include/drm/drm_cache.h                       |   6 +-
->>  include/drm/drm_client.h                      |   7 +-
->>  include/drm/drm_gem.h                         |   6 +-
->>  include/drm/drm_gem_atomic_helper.h           |   6 +-
->>  include/drm/drm_gem_cma_helper.h              |   6 +-
->>  include/drm/drm_gem_framebuffer_helper.h      |   8 +-
->>  include/drm/drm_gem_shmem_helper.h            |  12 +-
->>  include/drm/drm_gem_ttm_helper.h              |   6 +-
->>  include/drm/drm_gem_vram_helper.h             |   9 +-
->>  include/drm/drm_prime.h                       |   6 +-
->>  include/drm/ttm/ttm_bo_api.h                  |  10 +-
->>  include/drm/ttm/ttm_kmap_iter.h               |  10 +-
->>  include/drm/ttm/ttm_resource.h                |   6 +-
->>  include/linux/dma-buf-map.h                   | 266 ------------------
->>  include/linux/dma-buf.h                       |  12 +-
->>  include/linux/iosys-map.h                     | 257 +++++++++++++++++
->>  80 files changed, 579 insertions(+), 552 deletions(-)
->>  delete mode 100644 include/linux/dma-buf-map.h
->>  create mode 100644 include/linux/iosys-map.h
->>
->
