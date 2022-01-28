@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2358C433F5
-	for <nouveau@archiver.kernel.org>; Fri, 28 Jan 2022 20:10:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF04AC4332F
+	for <nouveau@archiver.kernel.org>; Fri, 28 Jan 2022 20:10:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F322A10E466;
-	Fri, 28 Jan 2022 20:10:04 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 472DD11236B;
- Fri, 28 Jan 2022 08:36:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8D6610E4D5;
+	Fri, 28 Jan 2022 20:10:05 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 593B0112380;
+ Fri, 28 Jan 2022 08:36:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1643358975; x=1674894975;
+ t=1643358982; x=1674894982;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2aIO2Nzg7vHSHQkxikTS9OzoEn9FR+PiyWdB4SuXu0c=;
- b=eoZKQhOSnRqafU1/FSdfqhJlnew2ZuCmBg/1HrNBz6dyi/yRVkTHCbww
- i5z31XhTVkxslKqvI4hfKqn1VlzUjX6eYBTjd/QvYGazrmiC7PbJ58lKo
- LmbwkvmppcMmmGUN6UgRe2GFuLyFGBTrWoCTBpA8NRlcjpF5eM9OxyrLD
- u/sX/qeJyZqK8Z8QO7jX53DxLTE6wSmJzxiZ5nX9Okt8ys8b3GZ7yViUa
- tWOysA0v0HbGudULVuhVBC5fs/qB+EvY8Y4BUw5RnHixT0CUJL4fGvKFE
- xjpcgaon5dhK12WwnkawFmo0/6fZ+sno9c3eYgatt8fWGT/j4lpMWm462 w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10240"; a="247025187"
-X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="247025187"
+ bh=iA+0Hlybkhbaf/ceORtSX2kfQPF+FX4dumuEdNpYaug=;
+ b=OcKEpwexCf87rJS068u+BjJCvnr7QTp3gfu6Y6sUc8GH22foBG1lhM1N
+ PGbP8H4FKbkM6PalA7i6QYx21T94IyBj0kKA46gSub0JUStZGv2ZgQVto
+ lT6xMlpE32mcsVEEa4FbrHYGBk2vjiA9Z1wwpHIpd3mmcuLlXeTaufzjC
+ 1w0+w9N6RkWuqGd38g7Vl5QoDaidYd4c2EFuYgnqjusSavFwzEmhLQhlk
+ eTriED+MeJwvrphFtYkZTIWIIxdCs+K0+XQALE4cQDJchcTwmO2aT1fgm
+ QY3FGAA3slHD8YbRTSjrVODWWuEdf16tQyx+XEavsvi04cw2Duan10ZIY Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10240"; a="227056609"
+X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="227056609"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2022 00:36:14 -0800
-X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="581788742"
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2022 00:36:18 -0800
+X-IronPort-AV: E=Sophos;i="5.88,323,1635231600"; d="scan'208";a="581788765"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2022 00:36:14 -0800
+ 28 Jan 2022 00:36:17 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: linux-kernel@vger.kernel.org,
 	dri-devel@lists.freedesktop.org
-Date: Fri, 28 Jan 2022 00:36:18 -0800
-Message-Id: <20220128083626.3012259-7-lucas.demarchi@intel.com>
+Date: Fri, 28 Jan 2022 00:36:24 -0800
+Message-Id: <20220128083626.3012259-13-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.35.0
 In-Reply-To: <20220128083626.3012259-1-lucas.demarchi@intel.com>
 References: <20220128083626.3012259-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 28 Jan 2022 20:10:03 +0000
-Subject: [Nouveau] [PATCH 06/14] drm: Replace dma-buf-map with iosys-map in
- drivers
+Subject: [Nouveau] [PATCH 12/14] drm: Replace dma-buf-map with iosys-map in
+ common code
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,807 +65,866 @@ Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 iosys-map is the new name for dma-buf-map and will gain new
-capabitilities. Replace with the new API in some drivers.
+capabitilities. Replace with the new API in all the helpers and common
+code for the drivers.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/ast/ast_drv.h               |  2 +-
- drivers/gpu/drm/ast/ast_mode.c              |  8 ++++----
- drivers/gpu/drm/etnaviv/etnaviv_drv.h       |  2 +-
- drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c |  8 ++++----
- drivers/gpu/drm/gud/gud_pipe.c              |  4 ++--
- drivers/gpu/drm/hyperv/hyperv_drm_modeset.c |  5 +++--
- drivers/gpu/drm/lima/lima_gem.c             |  3 ++-
- drivers/gpu/drm/lima/lima_sched.c           |  4 ++--
- drivers/gpu/drm/mediatek/mtk_drm_gem.c      |  7 ++++---
- drivers/gpu/drm/mediatek/mtk_drm_gem.h      |  5 +++--
- drivers/gpu/drm/mgag200/mgag200_mode.c      |  4 ++--
- drivers/gpu/drm/panfrost/panfrost_perfcnt.c | 13 +++++++------
- drivers/gpu/drm/qxl/qxl_display.c           |  8 ++++----
- drivers/gpu/drm/qxl/qxl_draw.c              |  6 +++---
- drivers/gpu/drm/qxl/qxl_drv.h               | 10 +++++-----
- drivers/gpu/drm/qxl/qxl_object.c            |  8 ++++----
- drivers/gpu/drm/qxl/qxl_object.h            |  4 ++--
- drivers/gpu/drm/qxl/qxl_prime.c             |  4 ++--
- drivers/gpu/drm/rockchip/rockchip_drm_gem.c |  9 +++++----
- drivers/gpu/drm/rockchip/rockchip_drm_gem.h |  5 +++--
- drivers/gpu/drm/tiny/cirrus.c               |  8 +++++---
- drivers/gpu/drm/tiny/gm12u320.c             |  7 ++++---
- drivers/gpu/drm/udl/udl_modeset.c           |  3 ++-
- drivers/gpu/drm/vboxvideo/vbox_mode.c       |  4 ++--
- drivers/gpu/drm/virtio/virtgpu_prime.c      |  1 +
- drivers/gpu/drm/vkms/vkms_composer.c        |  4 ++--
- drivers/gpu/drm/vkms/vkms_drv.h             |  6 +++---
- drivers/gpu/drm/vkms/vkms_plane.c           |  2 +-
- drivers/gpu/drm/vkms/vkms_writeback.c       |  2 +-
- drivers/gpu/drm/xen/xen_drm_front_gem.c     |  7 ++++---
- drivers/gpu/drm/xen/xen_drm_front_gem.h     |  6 +++---
- 31 files changed, 91 insertions(+), 78 deletions(-)
+ drivers/gpu/drm/drm_cache.c                  | 18 +++++++-------
+ drivers/gpu/drm/drm_client.c                 |  9 +++----
+ drivers/gpu/drm/drm_fb_helper.c              | 12 +++++-----
+ drivers/gpu/drm/drm_gem.c                    | 12 +++++-----
+ drivers/gpu/drm/drm_gem_cma_helper.c         |  9 +++----
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c | 16 ++++++-------
+ drivers/gpu/drm/drm_gem_shmem_helper.c       | 15 +++++++-----
+ drivers/gpu/drm/drm_gem_ttm_helper.c         |  4 ++--
+ drivers/gpu/drm/drm_gem_vram_helper.c        | 25 +++++++++++---------
+ drivers/gpu/drm/drm_internal.h               |  6 ++---
+ drivers/gpu/drm/drm_mipi_dbi.c               |  8 +++----
+ drivers/gpu/drm/drm_prime.c                  |  4 ++--
+ include/drm/drm_cache.h                      |  6 ++---
+ include/drm/drm_client.h                     |  7 +++---
+ include/drm/drm_gem.h                        |  6 ++---
+ include/drm/drm_gem_atomic_helper.h          |  6 ++---
+ include/drm/drm_gem_cma_helper.h             |  6 +++--
+ include/drm/drm_gem_framebuffer_helper.h     |  8 +++----
+ include/drm/drm_gem_shmem_helper.h           | 12 ++++++----
+ include/drm/drm_gem_ttm_helper.h             |  6 ++---
+ include/drm/drm_gem_vram_helper.h            |  9 +++----
+ include/drm/drm_prime.h                      |  6 ++---
+ 22 files changed, 113 insertions(+), 97 deletions(-)
 
-diff --git a/drivers/gpu/drm/ast/ast_drv.h b/drivers/gpu/drm/ast/ast_drv.h
-index 00bfa41ff7cb..9c8d56b0a41b 100644
---- a/drivers/gpu/drm/ast/ast_drv.h
-+++ b/drivers/gpu/drm/ast/ast_drv.h
-@@ -107,7 +107,7 @@ struct ast_cursor_plane {
+diff --git a/drivers/gpu/drm/drm_cache.c b/drivers/gpu/drm/drm_cache.c
+index f19d9acbe959..4bb093ccf1b8 100644
+--- a/drivers/gpu/drm/drm_cache.c
++++ b/drivers/gpu/drm/drm_cache.c
+@@ -28,10 +28,10 @@
+  * Authors: Thomas Hellström <thomas-at-tungstengraphics-dot-com>
+  */
  
- 	struct {
- 		struct drm_gem_vram_object *gbo;
--		struct dma_buf_map map;
-+		struct iosys_map map;
- 		u64 off;
- 	} hwc[AST_DEFAULT_HWC_NUM];
- 
-diff --git a/drivers/gpu/drm/ast/ast_mode.c b/drivers/gpu/drm/ast/ast_mode.c
-index ab52efb15670..2c7115a4d81f 100644
---- a/drivers/gpu/drm/ast/ast_mode.c
-+++ b/drivers/gpu/drm/ast/ast_mode.c
-@@ -804,11 +804,11 @@ ast_cursor_plane_helper_atomic_update(struct drm_plane *plane,
- 	struct drm_shadow_plane_state *shadow_plane_state = to_drm_shadow_plane_state(new_state);
- 	struct drm_framebuffer *fb = new_state->fb;
- 	struct ast_private *ast = to_ast_private(plane->dev);
--	struct dma_buf_map dst_map =
-+	struct iosys_map dst_map =
- 		ast_cursor_plane->hwc[ast_cursor_plane->next_hwc_index].map;
- 	u64 dst_off =
- 		ast_cursor_plane->hwc[ast_cursor_plane->next_hwc_index].off;
--	struct dma_buf_map src_map = shadow_plane_state->data[0];
-+	struct iosys_map src_map = shadow_plane_state->data[0];
- 	unsigned int offset_x, offset_y;
- 	u16 x, y;
- 	u8 x_offset, y_offset;
-@@ -886,7 +886,7 @@ static void ast_cursor_plane_destroy(struct drm_plane *plane)
- 	struct ast_cursor_plane *ast_cursor_plane = to_ast_cursor_plane(plane);
- 	size_t i;
- 	struct drm_gem_vram_object *gbo;
--	struct dma_buf_map map;
-+	struct iosys_map map;
- 
- 	for (i = 0; i < ARRAY_SIZE(ast_cursor_plane->hwc); ++i) {
- 		gbo = ast_cursor_plane->hwc[i].gbo;
-@@ -913,7 +913,7 @@ static int ast_cursor_plane_init(struct ast_private *ast)
- 	struct drm_plane *cursor_plane = &ast_cursor_plane->base;
- 	size_t size, i;
- 	struct drm_gem_vram_object *gbo;
--	struct dma_buf_map map;
-+	struct iosys_map map;
- 	int ret;
- 	s64 off;
- 
-diff --git a/drivers/gpu/drm/etnaviv/etnaviv_drv.h b/drivers/gpu/drm/etnaviv/etnaviv_drv.h
-index 049ae87de9be..f32f4771dada 100644
---- a/drivers/gpu/drm/etnaviv/etnaviv_drv.h
-+++ b/drivers/gpu/drm/etnaviv/etnaviv_drv.h
-@@ -49,7 +49,7 @@ int etnaviv_ioctl_gem_submit(struct drm_device *dev, void *data,
- 
- int etnaviv_gem_mmap_offset(struct drm_gem_object *obj, u64 *offset);
- struct sg_table *etnaviv_gem_prime_get_sg_table(struct drm_gem_object *obj);
--int etnaviv_gem_prime_vmap(struct drm_gem_object *obj, struct dma_buf_map *map);
-+int etnaviv_gem_prime_vmap(struct drm_gem_object *obj, struct iosys_map *map);
- struct drm_gem_object *etnaviv_gem_prime_import_sg_table(struct drm_device *dev,
- 	struct dma_buf_attachment *attach, struct sg_table *sg);
- int etnaviv_gem_prime_pin(struct drm_gem_object *obj);
-diff --git a/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c b/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c
-index 6788ea8490d1..3fa2da149639 100644
---- a/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c
-+++ b/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c
-@@ -25,14 +25,14 @@ struct sg_table *etnaviv_gem_prime_get_sg_table(struct drm_gem_object *obj)
- 	return drm_prime_pages_to_sg(obj->dev, etnaviv_obj->pages, npages);
- }
- 
--int etnaviv_gem_prime_vmap(struct drm_gem_object *obj, struct dma_buf_map *map)
-+int etnaviv_gem_prime_vmap(struct drm_gem_object *obj, struct iosys_map *map)
- {
- 	void *vaddr;
- 
- 	vaddr = etnaviv_gem_vmap(obj);
- 	if (!vaddr)
- 		return -ENOMEM;
--	dma_buf_map_set_vaddr(map, vaddr);
-+	iosys_map_set_vaddr(map, vaddr);
- 
- 	return 0;
- }
-@@ -62,7 +62,7 @@ void etnaviv_gem_prime_unpin(struct drm_gem_object *obj)
- 
- static void etnaviv_gem_prime_release(struct etnaviv_gem_object *etnaviv_obj)
- {
--	struct dma_buf_map map = DMA_BUF_MAP_INIT_VADDR(etnaviv_obj->vaddr);
-+	struct iosys_map map = IOSYS_MAP_INIT_VADDR(etnaviv_obj->vaddr);
- 
- 	if (etnaviv_obj->vaddr)
- 		dma_buf_vunmap(etnaviv_obj->base.import_attach->dmabuf, &map);
-@@ -77,7 +77,7 @@ static void etnaviv_gem_prime_release(struct etnaviv_gem_object *etnaviv_obj)
- 
- static void *etnaviv_gem_prime_vmap_impl(struct etnaviv_gem_object *etnaviv_obj)
- {
--	struct dma_buf_map map;
-+	struct iosys_map map;
- 	int ret;
- 
- 	lockdep_assert_held(&etnaviv_obj->lock);
-diff --git a/drivers/gpu/drm/gud/gud_pipe.c b/drivers/gpu/drm/gud/gud_pipe.c
-index a150a5a4b5d4..4873f9799f41 100644
---- a/drivers/gpu/drm/gud/gud_pipe.c
-+++ b/drivers/gpu/drm/gud/gud_pipe.c
-@@ -152,8 +152,8 @@ static int gud_prep_flush(struct gud_device *gdrm, struct drm_framebuffer *fb,
- {
- 	struct dma_buf_attachment *import_attach = fb->obj[0]->import_attach;
- 	u8 compression = gdrm->compression;
--	struct dma_buf_map map[DRM_FORMAT_MAX_PLANES];
--	struct dma_buf_map map_data[DRM_FORMAT_MAX_PLANES];
-+	struct iosys_map map[DRM_FORMAT_MAX_PLANES];
-+	struct iosys_map map_data[DRM_FORMAT_MAX_PLANES];
- 	void *vaddr, *buf;
- 	size_t pitch, len;
- 	int ret = 0;
-diff --git a/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c b/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c
-index 93f51e70a951..e82b815f83a6 100644
---- a/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c
-+++ b/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c
-@@ -19,7 +19,7 @@
- #include "hyperv_drm.h"
- 
- static int hyperv_blit_to_vram_rect(struct drm_framebuffer *fb,
--				    const struct dma_buf_map *map,
-+				    const struct iosys_map *map,
- 				    struct drm_rect *rect)
- {
- 	struct hyperv_drm_device *hv = to_hv(fb->dev);
-@@ -38,7 +38,8 @@ static int hyperv_blit_to_vram_rect(struct drm_framebuffer *fb,
- 	return 0;
- }
- 
--static int hyperv_blit_to_vram_fullscreen(struct drm_framebuffer *fb, const struct dma_buf_map *map)
-+static int hyperv_blit_to_vram_fullscreen(struct drm_framebuffer *fb,
-+					  const struct iosys_map *map)
- {
- 	struct drm_rect fullscreen = {
- 		.x1 = 0,
-diff --git a/drivers/gpu/drm/lima/lima_gem.c b/drivers/gpu/drm/lima/lima_gem.c
-index f9a9198ef198..d0c2b1422b3b 100644
---- a/drivers/gpu/drm/lima/lima_gem.c
-+++ b/drivers/gpu/drm/lima/lima_gem.c
-@@ -2,6 +2,7 @@
- /* Copyright 2017-2019 Qiang Yu <yuq825@gmail.com> */
- 
- #include <linux/mm.h>
+-#include <linux/dma-buf-map.h>
++#include <linux/cc_platform.h>
+ #include <linux/export.h>
+ #include <linux/highmem.h>
+-#include <linux/cc_platform.h>
 +#include <linux/iosys-map.h>
- #include <linux/sync_file.h>
+ #include <xen/xen.h>
+ 
+ #include <drm/drm_cache.h>
+@@ -214,14 +214,14 @@ bool drm_need_swiotlb(int dma_bits)
+ }
+ EXPORT_SYMBOL(drm_need_swiotlb);
+ 
+-static void memcpy_fallback(struct dma_buf_map *dst,
+-			    const struct dma_buf_map *src,
++static void memcpy_fallback(struct iosys_map *dst,
++			    const struct iosys_map *src,
+ 			    unsigned long len)
+ {
+ 	if (!dst->is_iomem && !src->is_iomem) {
+ 		memcpy(dst->vaddr, src->vaddr, len);
+ 	} else if (!src->is_iomem) {
+-		dma_buf_map_memcpy_to(dst, src->vaddr, len);
++		iosys_map_memcpy_to(dst, src->vaddr, len);
+ 	} else if (!dst->is_iomem) {
+ 		memcpy_fromio(dst->vaddr, src->vaddr_iomem, len);
+ 	} else {
+@@ -305,8 +305,8 @@ static void __drm_memcpy_from_wc(void *dst, const void *src, unsigned long len)
+  * Tries an arch optimized memcpy for prefetching reading out of a WC region,
+  * and if no such beast is available, falls back to a normal memcpy.
+  */
+-void drm_memcpy_from_wc(struct dma_buf_map *dst,
+-			const struct dma_buf_map *src,
++void drm_memcpy_from_wc(struct iosys_map *dst,
++			const struct iosys_map *src,
+ 			unsigned long len)
+ {
+ 	if (WARN_ON(in_interrupt())) {
+@@ -343,8 +343,8 @@ void drm_memcpy_init_early(void)
+ 		static_branch_enable(&has_movntdqa);
+ }
+ #else
+-void drm_memcpy_from_wc(struct dma_buf_map *dst,
+-			const struct dma_buf_map *src,
++void drm_memcpy_from_wc(struct iosys_map *dst,
++			const struct iosys_map *src,
+ 			unsigned long len)
+ {
+ 	WARN_ON(in_interrupt());
+diff --git a/drivers/gpu/drm/drm_client.c b/drivers/gpu/drm/drm_client.c
+index ce45e380f4a2..af3b7395bf69 100644
+--- a/drivers/gpu/drm/drm_client.c
++++ b/drivers/gpu/drm/drm_client.c
+@@ -3,7 +3,7 @@
+  * Copyright 2018 Noralf Trønnes
+  */
+ 
+-#include <linux/dma-buf-map.h>
++#include <linux/iosys-map.h>
+ #include <linux/list.h>
+ #include <linux/module.h>
+ #include <linux/mutex.h>
+@@ -309,9 +309,10 @@ drm_client_buffer_create(struct drm_client_dev *client, u32 width, u32 height, u
+  *	0 on success, or a negative errno code otherwise.
+  */
+ int
+-drm_client_buffer_vmap(struct drm_client_buffer *buffer, struct dma_buf_map *map_copy)
++drm_client_buffer_vmap(struct drm_client_buffer *buffer,
++		       struct iosys_map *map_copy)
+ {
+-	struct dma_buf_map *map = &buffer->map;
++	struct iosys_map *map = &buffer->map;
+ 	int ret;
+ 
+ 	/*
+@@ -342,7 +343,7 @@ EXPORT_SYMBOL(drm_client_buffer_vmap);
+  */
+ void drm_client_buffer_vunmap(struct drm_client_buffer *buffer)
+ {
+-	struct dma_buf_map *map = &buffer->map;
++	struct iosys_map *map = &buffer->map;
+ 
+ 	drm_gem_vunmap(buffer->gem, map);
+ }
+diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
+index ed43b987d306..e9a9d35fbf5e 100644
+--- a/drivers/gpu/drm/drm_fb_helper.c
++++ b/drivers/gpu/drm/drm_fb_helper.c
+@@ -373,7 +373,7 @@ static void drm_fb_helper_resume_worker(struct work_struct *work)
+ 
+ static void drm_fb_helper_damage_blit_real(struct drm_fb_helper *fb_helper,
+ 					   struct drm_clip_rect *clip,
+-					   struct dma_buf_map *dst)
++					   struct iosys_map *dst)
+ {
+ 	struct drm_framebuffer *fb = fb_helper->fb;
+ 	unsigned int cpp = fb->format->cpp[0];
+@@ -382,11 +382,11 @@ static void drm_fb_helper_damage_blit_real(struct drm_fb_helper *fb_helper,
+ 	size_t len = (clip->x2 - clip->x1) * cpp;
+ 	unsigned int y;
+ 
+-	dma_buf_map_incr(dst, offset); /* go to first pixel within clip rect */
++	iosys_map_incr(dst, offset); /* go to first pixel within clip rect */
+ 
+ 	for (y = clip->y1; y < clip->y2; y++) {
+-		dma_buf_map_memcpy_to(dst, src, len);
+-		dma_buf_map_incr(dst, fb->pitches[0]);
++		iosys_map_memcpy_to(dst, src, len);
++		iosys_map_incr(dst, fb->pitches[0]);
+ 		src += fb->pitches[0];
+ 	}
+ }
+@@ -395,7 +395,7 @@ static int drm_fb_helper_damage_blit(struct drm_fb_helper *fb_helper,
+ 				     struct drm_clip_rect *clip)
+ {
+ 	struct drm_client_buffer *buffer = fb_helper->buffer;
+-	struct dma_buf_map map, dst;
++	struct iosys_map map, dst;
+ 	int ret;
+ 
+ 	/*
+@@ -2322,7 +2322,7 @@ static int drm_fb_helper_generic_probe(struct drm_fb_helper *fb_helper,
+ 	struct drm_framebuffer *fb;
+ 	struct fb_info *fbi;
+ 	u32 format;
+-	struct dma_buf_map map;
++	struct iosys_map map;
+ 	int ret;
+ 
+ 	drm_dbg_kms(dev, "surface width(%d), height(%d) and bpp(%d)\n",
+diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+index 4dcdec6487bb..8c7b24f4b0e4 100644
+--- a/drivers/gpu/drm/drm_gem.c
++++ b/drivers/gpu/drm/drm_gem.c
+@@ -36,7 +36,7 @@
  #include <linux/pagemap.h>
  #include <linux/shmem_fs.h>
-@@ -182,7 +183,7 @@ static int lima_gem_pin(struct drm_gem_object *obj)
- 	return drm_gem_shmem_pin(&bo->base);
- }
- 
--static int lima_gem_vmap(struct drm_gem_object *obj, struct dma_buf_map *map)
-+static int lima_gem_vmap(struct drm_gem_object *obj, struct iosys_map *map)
- {
- 	struct lima_bo *bo = to_lima_bo(obj);
- 
-diff --git a/drivers/gpu/drm/lima/lima_sched.c b/drivers/gpu/drm/lima/lima_sched.c
-index 5612d73f238f..390c969f74ad 100644
---- a/drivers/gpu/drm/lima/lima_sched.c
-+++ b/drivers/gpu/drm/lima/lima_sched.c
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0 OR MIT
- /* Copyright 2017-2019 Qiang Yu <yuq825@gmail.com> */
- 
+ #include <linux/dma-buf.h>
 -#include <linux/dma-buf-map.h>
 +#include <linux/iosys-map.h>
- #include <linux/kthread.h>
- #include <linux/slab.h>
- #include <linux/vmalloc.h>
-@@ -284,7 +284,7 @@ static void lima_sched_build_error_task_list(struct lima_sched_task *task)
- 	struct lima_dump_chunk_buffer *buffer_chunk;
- 	u32 size, task_size, mem_size;
- 	int i;
--	struct dma_buf_map map;
-+	struct iosys_map map;
- 	int ret;
+ #include <linux/mem_encrypt.h>
+ #include <linux/pagevec.h>
  
- 	mutex_lock(&dev->error_task_list_lock);
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_gem.c b/drivers/gpu/drm/mediatek/mtk_drm_gem.c
-index d0544962cfc1..139d7724c6d0 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_gem.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_gem.c
-@@ -220,7 +220,7 @@ struct drm_gem_object *mtk_gem_prime_import_sg_table(struct drm_device *dev,
- 	return &mtk_gem->base;
+@@ -1165,7 +1165,7 @@ void drm_gem_unpin(struct drm_gem_object *obj)
+ 		obj->funcs->unpin(obj);
  }
  
--int mtk_drm_gem_prime_vmap(struct drm_gem_object *obj, struct dma_buf_map *map)
-+int mtk_drm_gem_prime_vmap(struct drm_gem_object *obj, struct iosys_map *map)
+-int drm_gem_vmap(struct drm_gem_object *obj, struct dma_buf_map *map)
++int drm_gem_vmap(struct drm_gem_object *obj, struct iosys_map *map)
  {
- 	struct mtk_drm_gem_obj *mtk_gem = to_mtk_gem_obj(obj);
- 	struct sg_table *sgt = NULL;
-@@ -247,12 +247,13 @@ int mtk_drm_gem_prime_vmap(struct drm_gem_object *obj, struct dma_buf_map *map)
+ 	int ret;
  
- out:
- 	kfree(sgt);
--	dma_buf_map_set_vaddr(map, mtk_gem->kvaddr);
-+	iosys_map_set_vaddr(map, mtk_gem->kvaddr);
+@@ -1175,23 +1175,23 @@ int drm_gem_vmap(struct drm_gem_object *obj, struct dma_buf_map *map)
+ 	ret = obj->funcs->vmap(obj, map);
+ 	if (ret)
+ 		return ret;
+-	else if (dma_buf_map_is_null(map))
++	else if (iosys_map_is_null(map))
+ 		return -ENOMEM;
  
  	return 0;
  }
+ EXPORT_SYMBOL(drm_gem_vmap);
  
--void mtk_drm_gem_prime_vunmap(struct drm_gem_object *obj, struct dma_buf_map *map)
-+void mtk_drm_gem_prime_vunmap(struct drm_gem_object *obj,
-+			      struct iosys_map *map)
+-void drm_gem_vunmap(struct drm_gem_object *obj, struct dma_buf_map *map)
++void drm_gem_vunmap(struct drm_gem_object *obj, struct iosys_map *map)
  {
- 	struct mtk_drm_gem_obj *mtk_gem = to_mtk_gem_obj(obj);
- 	void *vaddr = map->vaddr;
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_gem.h b/drivers/gpu/drm/mediatek/mtk_drm_gem.h
-index 9a359a06cb73..78f23b07a02e 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_gem.h
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_gem.h
-@@ -42,7 +42,8 @@ int mtk_drm_gem_dumb_create(struct drm_file *file_priv, struct drm_device *dev,
- struct sg_table *mtk_gem_prime_get_sg_table(struct drm_gem_object *obj);
- struct drm_gem_object *mtk_gem_prime_import_sg_table(struct drm_device *dev,
- 			struct dma_buf_attachment *attach, struct sg_table *sg);
--int mtk_drm_gem_prime_vmap(struct drm_gem_object *obj, struct dma_buf_map *map);
--void mtk_drm_gem_prime_vunmap(struct drm_gem_object *obj, struct dma_buf_map *map);
-+int mtk_drm_gem_prime_vmap(struct drm_gem_object *obj, struct iosys_map *map);
-+void mtk_drm_gem_prime_vunmap(struct drm_gem_object *obj,
-+			      struct iosys_map *map);
+-	if (dma_buf_map_is_null(map))
++	if (iosys_map_is_null(map))
+ 		return;
  
- #endif
-diff --git a/drivers/gpu/drm/mgag200/mgag200_mode.c b/drivers/gpu/drm/mgag200/mgag200_mode.c
-index cd9ba13ad5fc..6e18d3bbd720 100644
---- a/drivers/gpu/drm/mgag200/mgag200_mode.c
-+++ b/drivers/gpu/drm/mgag200/mgag200_mode.c
-@@ -9,7 +9,7 @@
+ 	if (obj->funcs->vunmap)
+ 		obj->funcs->vunmap(obj, map);
+ 
+ 	/* Always set the mapping to NULL. Callers may rely on this. */
+-	dma_buf_map_clear(map);
++	iosys_map_clear(map);
+ }
+ EXPORT_SYMBOL(drm_gem_vunmap);
+ 
+diff --git a/drivers/gpu/drm/drm_gem_cma_helper.c b/drivers/gpu/drm/drm_gem_cma_helper.c
+index cefd0cbf9deb..88c432a7cb3c 100644
+--- a/drivers/gpu/drm/drm_gem_cma_helper.c
++++ b/drivers/gpu/drm/drm_gem_cma_helper.c
+@@ -209,7 +209,7 @@ drm_gem_cma_create_with_handle(struct drm_file *file_priv,
+ void drm_gem_cma_free(struct drm_gem_cma_object *cma_obj)
+ {
+ 	struct drm_gem_object *gem_obj = &cma_obj->base;
+-	struct dma_buf_map map = DMA_BUF_MAP_INIT_VADDR(cma_obj->vaddr);
++	struct iosys_map map = IOSYS_MAP_INIT_VADDR(cma_obj->vaddr);
+ 
+ 	if (gem_obj->import_attach) {
+ 		if (cma_obj->vaddr)
+@@ -480,9 +480,10 @@ EXPORT_SYMBOL_GPL(drm_gem_cma_prime_import_sg_table);
+  * Returns:
+  * 0 on success, or a negative error code otherwise.
   */
- 
- #include <linux/delay.h>
--#include <linux/dma-buf-map.h>
-+#include <linux/iosys-map.h>
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_atomic_state_helper.h>
-@@ -848,7 +848,7 @@ mgag200_simple_display_pipe_mode_valid(struct drm_simple_display_pipe *pipe,
- 
- static void
- mgag200_handle_damage(struct mga_device *mdev, struct drm_framebuffer *fb,
--		      struct drm_rect *clip, const struct dma_buf_map *map)
-+		      struct drm_rect *clip, const struct iosys_map *map)
+-int drm_gem_cma_vmap(struct drm_gem_cma_object *cma_obj, struct dma_buf_map *map)
++int drm_gem_cma_vmap(struct drm_gem_cma_object *cma_obj,
++		     struct iosys_map *map)
  {
- 	void __iomem *dst = mdev->vram;
- 	void *vmap = map->vaddr; /* TODO: Use mapping abstraction properly */
-diff --git a/drivers/gpu/drm/panfrost/panfrost_perfcnt.c b/drivers/gpu/drm/panfrost/panfrost_perfcnt.c
-index 1d36df5af98d..bc0df93f7f21 100644
---- a/drivers/gpu/drm/panfrost/panfrost_perfcnt.c
-+++ b/drivers/gpu/drm/panfrost/panfrost_perfcnt.c
-@@ -1,16 +1,17 @@
- // SPDX-License-Identifier: GPL-2.0
- /* Copyright 2019 Collabora Ltd */
+-	dma_buf_map_set_vaddr(map, cma_obj->vaddr);
++	iosys_map_set_vaddr(map, cma_obj->vaddr);
  
--#include <drm/drm_file.h>
--#include <drm/drm_gem_shmem_helper.h>
--#include <drm/panfrost_drm.h>
- #include <linux/completion.h>
--#include <linux/dma-buf-map.h>
- #include <linux/iopoll.h>
-+#include <linux/iosys-map.h>
- #include <linux/pm_runtime.h>
- #include <linux/slab.h>
- #include <linux/uaccess.h>
- 
-+#include <drm/drm_file.h>
-+#include <drm/drm_gem_shmem_helper.h>
-+#include <drm/panfrost_drm.h>
-+
- #include "panfrost_device.h"
- #include "panfrost_features.h"
- #include "panfrost_gem.h"
-@@ -73,7 +74,7 @@ static int panfrost_perfcnt_enable_locked(struct panfrost_device *pfdev,
- {
- 	struct panfrost_file_priv *user = file_priv->driver_priv;
- 	struct panfrost_perfcnt *perfcnt = pfdev->perfcnt;
--	struct dma_buf_map map;
-+	struct iosys_map map;
- 	struct drm_gem_shmem_object *bo;
- 	u32 cfg, as;
- 	int ret;
-@@ -181,7 +182,7 @@ static int panfrost_perfcnt_disable_locked(struct panfrost_device *pfdev,
- {
- 	struct panfrost_file_priv *user = file_priv->driver_priv;
- 	struct panfrost_perfcnt *perfcnt = pfdev->perfcnt;
--	struct dma_buf_map map = DMA_BUF_MAP_INIT_VADDR(perfcnt->buf);
-+	struct iosys_map map = IOSYS_MAP_INIT_VADDR(perfcnt->buf);
- 
- 	if (user != perfcnt->user)
- 		return -EINVAL;
-diff --git a/drivers/gpu/drm/qxl/qxl_display.c b/drivers/gpu/drm/qxl/qxl_display.c
-index 9e0a1e836011..9a9c29b1d3e1 100644
---- a/drivers/gpu/drm/qxl/qxl_display.c
-+++ b/drivers/gpu/drm/qxl/qxl_display.c
-@@ -25,7 +25,7 @@
- 
- #include <linux/crc32.h>
- #include <linux/delay.h>
--#include <linux/dma-buf-map.h>
-+#include <linux/iosys-map.h>
- 
- #include <drm/drm_drv.h>
- #include <drm/drm_atomic.h>
-@@ -566,8 +566,8 @@ static struct qxl_bo *qxl_create_cursor(struct qxl_device *qdev,
- {
- 	static const u32 size = 64 * 64 * 4;
- 	struct qxl_bo *cursor_bo;
--	struct dma_buf_map cursor_map;
--	struct dma_buf_map user_map;
-+	struct iosys_map cursor_map;
-+	struct iosys_map user_map;
- 	struct qxl_cursor cursor;
- 	int ret;
- 
-@@ -1183,7 +1183,7 @@ int qxl_create_monitors_object(struct qxl_device *qdev)
- {
- 	int ret;
- 	struct drm_gem_object *gobj;
--	struct dma_buf_map map;
-+	struct iosys_map map;
- 	int monitors_config_size = sizeof(struct qxl_monitors_config) +
- 		qxl_num_crtc * sizeof(struct qxl_head);
- 
-diff --git a/drivers/gpu/drm/qxl/qxl_draw.c b/drivers/gpu/drm/qxl/qxl_draw.c
-index 7d27891e87fa..a93de9e1977a 100644
---- a/drivers/gpu/drm/qxl/qxl_draw.c
-+++ b/drivers/gpu/drm/qxl/qxl_draw.c
-@@ -20,7 +20,7 @@
-  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-  */
- 
--#include <linux/dma-buf-map.h>
-+#include <linux/iosys-map.h>
- 
- #include <drm/drm_fourcc.h>
- 
-@@ -44,7 +44,7 @@ static struct qxl_rect *drawable_set_clipping(struct qxl_device *qdev,
- 					      unsigned int num_clips,
- 					      struct qxl_bo *clips_bo)
- {
--	struct dma_buf_map map;
-+	struct iosys_map map;
- 	struct qxl_clip_rects *dev_clips;
- 	int ret;
- 
-@@ -146,7 +146,7 @@ void qxl_draw_dirty_fb(struct qxl_device *qdev,
- 	int stride = fb->pitches[0];
- 	/* depth is not actually interesting, we don't mask with it */
- 	int depth = fb->format->cpp[0] * 8;
--	struct dma_buf_map surface_map;
-+	struct iosys_map surface_map;
- 	uint8_t *surface_base;
- 	struct qxl_release *release;
- 	struct qxl_bo *clips_bo;
-diff --git a/drivers/gpu/drm/qxl/qxl_drv.h b/drivers/gpu/drm/qxl/qxl_drv.h
-index 29641ceaab7d..47c169673088 100644
---- a/drivers/gpu/drm/qxl/qxl_drv.h
-+++ b/drivers/gpu/drm/qxl/qxl_drv.h
-@@ -30,7 +30,7 @@
-  * Definitions taken from spice-protocol, plus kernel driver specific bits.
-  */
- 
--#include <linux/dma-buf-map.h>
-+#include <linux/iosys-map.h>
- #include <linux/dma-fence.h>
- #include <linux/firmware.h>
- #include <linux/platform_device.h>
-@@ -50,7 +50,7 @@
- 
- #include "qxl_dev.h"
- 
--struct dma_buf_map;
-+struct iosys_map;
- 
- #define DRIVER_AUTHOR		"Dave Airlie"
- 
-@@ -80,7 +80,7 @@ struct qxl_bo {
- 	/* Protected by tbo.reserved */
- 	struct ttm_place		placements[3];
- 	struct ttm_placement		placement;
--	struct dma_buf_map		map;
-+	struct iosys_map		map;
- 	void				*kptr;
- 	unsigned int                    map_count;
- 	int                             type;
-@@ -427,9 +427,9 @@ struct sg_table *qxl_gem_prime_get_sg_table(struct drm_gem_object *obj);
- struct drm_gem_object *qxl_gem_prime_import_sg_table(
- 	struct drm_device *dev, struct dma_buf_attachment *attach,
- 	struct sg_table *sgt);
--int qxl_gem_prime_vmap(struct drm_gem_object *obj, struct dma_buf_map *map);
-+int qxl_gem_prime_vmap(struct drm_gem_object *obj, struct iosys_map *map);
- void qxl_gem_prime_vunmap(struct drm_gem_object *obj,
--			  struct dma_buf_map *map);
-+			  struct iosys_map *map);
- 
- /* qxl_irq.c */
- int qxl_irq_init(struct qxl_device *qdev);
-diff --git a/drivers/gpu/drm/qxl/qxl_object.c b/drivers/gpu/drm/qxl/qxl_object.c
-index fbb36e3e8564..b42a657e4c2f 100644
---- a/drivers/gpu/drm/qxl/qxl_object.c
-+++ b/drivers/gpu/drm/qxl/qxl_object.c
-@@ -23,7 +23,7 @@
-  *          Alon Levy
-  */
- 
--#include <linux/dma-buf-map.h>
-+#include <linux/iosys-map.h>
- #include <linux/io-mapping.h>
- 
- #include "qxl_drv.h"
-@@ -158,7 +158,7 @@ int qxl_bo_create(struct qxl_device *qdev, unsigned long size,
  	return 0;
  }
- 
--int qxl_bo_vmap_locked(struct qxl_bo *bo, struct dma_buf_map *map)
-+int qxl_bo_vmap_locked(struct qxl_bo *bo, struct iosys_map *map)
+@@ -557,7 +558,7 @@ drm_gem_cma_prime_import_sg_table_vmap(struct drm_device *dev,
  {
- 	int r;
- 
-@@ -184,7 +184,7 @@ int qxl_bo_vmap_locked(struct qxl_bo *bo, struct dma_buf_map *map)
- 	return 0;
- }
- 
--int qxl_bo_vmap(struct qxl_bo *bo, struct dma_buf_map *map)
-+int qxl_bo_vmap(struct qxl_bo *bo, struct iosys_map *map)
- {
- 	int r;
- 
-@@ -210,7 +210,7 @@ void *qxl_bo_kmap_atomic_page(struct qxl_device *qdev,
- 	void *rptr;
+ 	struct drm_gem_cma_object *cma_obj;
+ 	struct drm_gem_object *obj;
+-	struct dma_buf_map map;
++	struct iosys_map map;
  	int ret;
- 	struct io_mapping *map;
--	struct dma_buf_map bo_map;
-+	struct iosys_map bo_map;
  
- 	if (bo->tbo.resource->mem_type == TTM_PL_VRAM)
- 		map = qdev->vram_mapping;
-diff --git a/drivers/gpu/drm/qxl/qxl_object.h b/drivers/gpu/drm/qxl/qxl_object.h
-index cee4b52b75dd..53392cb90eec 100644
---- a/drivers/gpu/drm/qxl/qxl_object.h
-+++ b/drivers/gpu/drm/qxl/qxl_object.h
-@@ -59,8 +59,8 @@ extern int qxl_bo_create(struct qxl_device *qdev,
- 			 u32 priority,
- 			 struct qxl_surface *surf,
- 			 struct qxl_bo **bo_ptr);
--int qxl_bo_vmap(struct qxl_bo *bo, struct dma_buf_map *map);
--int qxl_bo_vmap_locked(struct qxl_bo *bo, struct dma_buf_map *map);
-+int qxl_bo_vmap(struct qxl_bo *bo, struct iosys_map *map);
-+int qxl_bo_vmap_locked(struct qxl_bo *bo, struct iosys_map *map);
- int qxl_bo_vunmap(struct qxl_bo *bo);
- void qxl_bo_vunmap_locked(struct qxl_bo *bo);
- void *qxl_bo_kmap_atomic_page(struct qxl_device *qdev, struct qxl_bo *bo, int page_offset);
-diff --git a/drivers/gpu/drm/qxl/qxl_prime.c b/drivers/gpu/drm/qxl/qxl_prime.c
-index 4a10cb0a413b..142d01415acb 100644
---- a/drivers/gpu/drm/qxl/qxl_prime.c
-+++ b/drivers/gpu/drm/qxl/qxl_prime.c
-@@ -54,7 +54,7 @@ struct drm_gem_object *qxl_gem_prime_import_sg_table(
- 	return ERR_PTR(-ENOSYS);
- }
- 
--int qxl_gem_prime_vmap(struct drm_gem_object *obj, struct dma_buf_map *map)
-+int qxl_gem_prime_vmap(struct drm_gem_object *obj, struct iosys_map *map)
+ 	ret = dma_buf_vmap(attach->dmabuf, &map);
+diff --git a/drivers/gpu/drm/drm_gem_framebuffer_helper.c b/drivers/gpu/drm/drm_gem_framebuffer_helper.c
+index 746fd8c73845..f4619803acd0 100644
+--- a/drivers/gpu/drm/drm_gem_framebuffer_helper.c
++++ b/drivers/gpu/drm/drm_gem_framebuffer_helper.c
+@@ -321,7 +321,7 @@ EXPORT_SYMBOL_GPL(drm_gem_fb_create_with_dirty);
+  * @data: returns the data address for each BO, can be NULL
+  *
+  * This function maps all buffer objects of the given framebuffer into
+- * kernel address space and stores them in struct dma_buf_map. If the
++ * kernel address space and stores them in struct iosys_map. If the
+  * mapping operation fails for one of the BOs, the function unmaps the
+  * already established mappings automatically.
+  *
+@@ -335,8 +335,8 @@ EXPORT_SYMBOL_GPL(drm_gem_fb_create_with_dirty);
+  * 0 on success, or a negative errno code otherwise.
+  */
+ int drm_gem_fb_vmap(struct drm_framebuffer *fb,
+-		    struct dma_buf_map map[static DRM_FORMAT_MAX_PLANES],
+-		    struct dma_buf_map data[DRM_FORMAT_MAX_PLANES])
++		    struct iosys_map map[static DRM_FORMAT_MAX_PLANES],
++		    struct iosys_map data[DRM_FORMAT_MAX_PLANES])
  {
- 	struct qxl_bo *bo = gem_to_qxl_bo(obj);
- 	int ret;
-@@ -67,7 +67,7 @@ int qxl_gem_prime_vmap(struct drm_gem_object *obj, struct dma_buf_map *map)
- }
+ 	struct drm_gem_object *obj;
+ 	unsigned int i;
+@@ -345,7 +345,7 @@ int drm_gem_fb_vmap(struct drm_framebuffer *fb,
+ 	for (i = 0; i < DRM_FORMAT_MAX_PLANES; ++i) {
+ 		obj = drm_gem_fb_get_obj(fb, i);
+ 		if (!obj) {
+-			dma_buf_map_clear(&map[i]);
++			iosys_map_clear(&map[i]);
+ 			continue;
+ 		}
+ 		ret = drm_gem_vmap(obj, &map[i]);
+@@ -356,9 +356,9 @@ int drm_gem_fb_vmap(struct drm_framebuffer *fb,
+ 	if (data) {
+ 		for (i = 0; i < DRM_FORMAT_MAX_PLANES; ++i) {
+ 			memcpy(&data[i], &map[i], sizeof(data[i]));
+-			if (dma_buf_map_is_null(&data[i]))
++			if (iosys_map_is_null(&data[i]))
+ 				continue;
+-			dma_buf_map_incr(&data[i], fb->offsets[i]);
++			iosys_map_incr(&data[i], fb->offsets[i]);
+ 		}
+ 	}
  
- void qxl_gem_prime_vunmap(struct drm_gem_object *obj,
--			  struct dma_buf_map *map)
-+			  struct iosys_map *map)
+@@ -386,7 +386,7 @@ EXPORT_SYMBOL(drm_gem_fb_vmap);
+  * See drm_gem_fb_vmap() for more information.
+  */
+ void drm_gem_fb_vunmap(struct drm_framebuffer *fb,
+-		       struct dma_buf_map map[static DRM_FORMAT_MAX_PLANES])
++		       struct iosys_map map[static DRM_FORMAT_MAX_PLANES])
  {
- 	struct qxl_bo *bo = gem_to_qxl_bo(obj);
- 
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
-index 63eb73b624aa..985584147da1 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
-@@ -510,7 +510,7 @@ rockchip_gem_prime_import_sg_table(struct drm_device *drm,
- 	return ERR_PTR(ret);
+ 	unsigned int i = DRM_FORMAT_MAX_PLANES;
+ 	struct drm_gem_object *obj;
+@@ -396,7 +396,7 @@ void drm_gem_fb_vunmap(struct drm_framebuffer *fb,
+ 		obj = drm_gem_fb_get_obj(fb, i);
+ 		if (!obj)
+ 			continue;
+-		if (dma_buf_map_is_null(&map[i]))
++		if (iosys_map_is_null(&map[i]))
+ 			continue;
+ 		drm_gem_vunmap(obj, &map[i]);
+ 	}
+diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
+index 621924116eb4..3e738aea2664 100644
+--- a/drivers/gpu/drm/drm_gem_shmem_helper.c
++++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+@@ -286,13 +286,14 @@ void drm_gem_shmem_unpin(struct drm_gem_shmem_object *shmem)
  }
+ EXPORT_SYMBOL(drm_gem_shmem_unpin);
  
--int rockchip_gem_prime_vmap(struct drm_gem_object *obj, struct dma_buf_map *map)
-+int rockchip_gem_prime_vmap(struct drm_gem_object *obj, struct iosys_map *map)
+-static int drm_gem_shmem_vmap_locked(struct drm_gem_shmem_object *shmem, struct dma_buf_map *map)
++static int drm_gem_shmem_vmap_locked(struct drm_gem_shmem_object *shmem,
++				     struct iosys_map *map)
  {
- 	struct rockchip_gem_object *rk_obj = to_rockchip_obj(obj);
+ 	struct drm_gem_object *obj = &shmem->base;
+ 	int ret = 0;
  
-@@ -519,18 +519,19 @@ int rockchip_gem_prime_vmap(struct drm_gem_object *obj, struct dma_buf_map *map)
- 				  pgprot_writecombine(PAGE_KERNEL));
- 		if (!vaddr)
- 			return -ENOMEM;
--		dma_buf_map_set_vaddr(map, vaddr);
-+		iosys_map_set_vaddr(map, vaddr);
+ 	if (shmem->vmap_use_count++ > 0) {
+-		dma_buf_map_set_vaddr(map, shmem->vaddr);
++		iosys_map_set_vaddr(map, shmem->vaddr);
  		return 0;
  	}
  
- 	if (rk_obj->dma_attrs & DMA_ATTR_NO_KERNEL_MAPPING)
- 		return -ENOMEM;
--	dma_buf_map_set_vaddr(map, rk_obj->kvaddr);
-+	iosys_map_set_vaddr(map, rk_obj->kvaddr);
+@@ -319,7 +320,7 @@ static int drm_gem_shmem_vmap_locked(struct drm_gem_shmem_object *shmem, struct
+ 		if (!shmem->vaddr)
+ 			ret = -ENOMEM;
+ 		else
+-			dma_buf_map_set_vaddr(map, shmem->vaddr);
++			iosys_map_set_vaddr(map, shmem->vaddr);
+ 	}
  
- 	return 0;
- }
- 
--void rockchip_gem_prime_vunmap(struct drm_gem_object *obj, struct dma_buf_map *map)
-+void rockchip_gem_prime_vunmap(struct drm_gem_object *obj,
-+			       struct iosys_map *map)
- {
- 	struct rockchip_gem_object *rk_obj = to_rockchip_obj(obj);
- 
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_gem.h b/drivers/gpu/drm/rockchip/rockchip_drm_gem.h
-index 47c1861eece0..72f59ac6d258 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_gem.h
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_gem.h
-@@ -31,8 +31,9 @@ struct drm_gem_object *
- rockchip_gem_prime_import_sg_table(struct drm_device *dev,
- 				   struct dma_buf_attachment *attach,
- 				   struct sg_table *sg);
--int rockchip_gem_prime_vmap(struct drm_gem_object *obj, struct dma_buf_map *map);
--void rockchip_gem_prime_vunmap(struct drm_gem_object *obj, struct dma_buf_map *map);
-+int rockchip_gem_prime_vmap(struct drm_gem_object *obj, struct iosys_map *map);
-+void rockchip_gem_prime_vunmap(struct drm_gem_object *obj,
-+			       struct iosys_map *map);
- 
- struct rockchip_gem_object *
- 	rockchip_gem_create_object(struct drm_device *drm, unsigned int size,
-diff --git a/drivers/gpu/drm/tiny/cirrus.c b/drivers/gpu/drm/tiny/cirrus.c
-index ecf2475d0f16..c8e791840862 100644
---- a/drivers/gpu/drm/tiny/cirrus.c
-+++ b/drivers/gpu/drm/tiny/cirrus.c
-@@ -16,7 +16,7 @@
-  * Copyright 1999-2001 Jeff Garzik <jgarzik@pobox.com>
+ 	if (ret) {
+@@ -353,7 +354,8 @@ static int drm_gem_shmem_vmap_locked(struct drm_gem_shmem_object *shmem, struct
+  * Returns:
+  * 0 on success or a negative error code on failure.
   */
+-int drm_gem_shmem_vmap(struct drm_gem_shmem_object *shmem, struct dma_buf_map *map)
++int drm_gem_shmem_vmap(struct drm_gem_shmem_object *shmem,
++		       struct iosys_map *map)
+ {
+ 	int ret;
+ 
+@@ -368,7 +370,7 @@ int drm_gem_shmem_vmap(struct drm_gem_shmem_object *shmem, struct dma_buf_map *m
+ EXPORT_SYMBOL(drm_gem_shmem_vmap);
+ 
+ static void drm_gem_shmem_vunmap_locked(struct drm_gem_shmem_object *shmem,
+-					struct dma_buf_map *map)
++					struct iosys_map *map)
+ {
+ 	struct drm_gem_object *obj = &shmem->base;
+ 
+@@ -400,7 +402,8 @@ static void drm_gem_shmem_vunmap_locked(struct drm_gem_shmem_object *shmem,
+  * This function hides the differences between dma-buf imported and natively
+  * allocated objects.
+  */
+-void drm_gem_shmem_vunmap(struct drm_gem_shmem_object *shmem, struct dma_buf_map *map)
++void drm_gem_shmem_vunmap(struct drm_gem_shmem_object *shmem,
++			  struct iosys_map *map)
+ {
+ 	mutex_lock(&shmem->vmap_lock);
+ 	drm_gem_shmem_vunmap_locked(shmem, map);
+diff --git a/drivers/gpu/drm/drm_gem_ttm_helper.c b/drivers/gpu/drm/drm_gem_ttm_helper.c
+index ecf3d2a54a98..d5962a34c01d 100644
+--- a/drivers/gpu/drm/drm_gem_ttm_helper.c
++++ b/drivers/gpu/drm/drm_gem_ttm_helper.c
+@@ -61,7 +61,7 @@ EXPORT_SYMBOL(drm_gem_ttm_print_info);
+  * 0 on success, or a negative errno code otherwise.
+  */
+ int drm_gem_ttm_vmap(struct drm_gem_object *gem,
+-		     struct dma_buf_map *map)
++		     struct iosys_map *map)
+ {
+ 	struct ttm_buffer_object *bo = drm_gem_ttm_of_gem(gem);
+ 
+@@ -78,7 +78,7 @@ EXPORT_SYMBOL(drm_gem_ttm_vmap);
+  * &drm_gem_object_funcs.vmap callback.
+  */
+ void drm_gem_ttm_vunmap(struct drm_gem_object *gem,
+-			struct dma_buf_map *map)
++			struct iosys_map *map)
+ {
+ 	struct ttm_buffer_object *bo = drm_gem_ttm_of_gem(gem);
+ 
+diff --git a/drivers/gpu/drm/drm_gem_vram_helper.c b/drivers/gpu/drm/drm_gem_vram_helper.c
+index 3f00192215d1..dc7f938bfff2 100644
+--- a/drivers/gpu/drm/drm_gem_vram_helper.c
++++ b/drivers/gpu/drm/drm_gem_vram_helper.c
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0-or-later
  
 -#include <linux/dma-buf-map.h>
 +#include <linux/iosys-map.h>
  #include <linux/module.h>
- #include <linux/pci.h>
  
-@@ -313,7 +313,8 @@ static int cirrus_mode_set(struct cirrus_device *cirrus,
- 	return 0;
+ #include <drm/drm_debugfs.h>
+@@ -116,7 +116,7 @@ static void drm_gem_vram_cleanup(struct drm_gem_vram_object *gbo)
+ 	 */
+ 
+ 	WARN_ON(gbo->vmap_use_count);
+-	WARN_ON(dma_buf_map_is_set(&gbo->map));
++	WARN_ON(iosys_map_is_set(&gbo->map));
+ 
+ 	drm_gem_object_release(&gbo->bo.base);
+ }
+@@ -365,7 +365,7 @@ int drm_gem_vram_unpin(struct drm_gem_vram_object *gbo)
+ EXPORT_SYMBOL(drm_gem_vram_unpin);
+ 
+ static int drm_gem_vram_kmap_locked(struct drm_gem_vram_object *gbo,
+-				    struct dma_buf_map *map)
++				    struct iosys_map *map)
+ {
+ 	int ret;
+ 
+@@ -377,7 +377,7 @@ static int drm_gem_vram_kmap_locked(struct drm_gem_vram_object *gbo,
+ 	 * page mapping might still be around. Only vmap if the there's
+ 	 * no mapping present.
+ 	 */
+-	if (dma_buf_map_is_null(&gbo->map)) {
++	if (iosys_map_is_null(&gbo->map)) {
+ 		ret = ttm_bo_vmap(&gbo->bo, &gbo->map);
+ 		if (ret)
+ 			return ret;
+@@ -391,14 +391,14 @@ static int drm_gem_vram_kmap_locked(struct drm_gem_vram_object *gbo,
  }
  
--static int cirrus_fb_blit_rect(struct drm_framebuffer *fb, const struct dma_buf_map *map,
-+static int cirrus_fb_blit_rect(struct drm_framebuffer *fb,
-+			       const struct iosys_map *map,
- 			       struct drm_rect *rect)
+ static void drm_gem_vram_kunmap_locked(struct drm_gem_vram_object *gbo,
+-				       struct dma_buf_map *map)
++				       struct iosys_map *map)
  {
- 	struct cirrus_device *cirrus = to_cirrus(fb->dev);
-@@ -345,7 +346,8 @@ static int cirrus_fb_blit_rect(struct drm_framebuffer *fb, const struct dma_buf_
- 	return 0;
- }
+ 	struct drm_device *dev = gbo->bo.base.dev;
  
--static int cirrus_fb_blit_fullscreen(struct drm_framebuffer *fb, const struct dma_buf_map *map)
-+static int cirrus_fb_blit_fullscreen(struct drm_framebuffer *fb,
-+				     const struct iosys_map *map)
- {
- 	struct drm_rect fullscreen = {
- 		.x1 = 0,
-diff --git a/drivers/gpu/drm/tiny/gm12u320.c b/drivers/gpu/drm/tiny/gm12u320.c
-index 6bc0c298739c..648e585d40a8 100644
---- a/drivers/gpu/drm/tiny/gm12u320.c
-+++ b/drivers/gpu/drm/tiny/gm12u320.c
-@@ -95,7 +95,7 @@ struct gm12u320_device {
- 		struct drm_rect          rect;
- 		int frame;
- 		int draw_status_timeout;
--		struct dma_buf_map src_map;
-+		struct iosys_map src_map;
- 	} fb_update;
- };
- 
-@@ -395,7 +395,8 @@ static void gm12u320_fb_update_work(struct work_struct *work)
- 		GM12U320_ERR("Frame update error: %d\n", ret);
- }
- 
--static void gm12u320_fb_mark_dirty(struct drm_framebuffer *fb, const struct dma_buf_map *map,
-+static void gm12u320_fb_mark_dirty(struct drm_framebuffer *fb,
-+				   const struct iosys_map *map,
- 				   struct drm_rect *dirty)
- {
- 	struct gm12u320_device *gm12u320 = to_gm12u320(fb->dev);
-@@ -438,7 +439,7 @@ static void gm12u320_stop_fb_update(struct gm12u320_device *gm12u320)
- 	mutex_lock(&gm12u320->fb_update.lock);
- 	old_fb = gm12u320->fb_update.fb;
- 	gm12u320->fb_update.fb = NULL;
--	dma_buf_map_clear(&gm12u320->fb_update.src_map);
-+	iosys_map_clear(&gm12u320->fb_update.src_map);
- 	mutex_unlock(&gm12u320->fb_update.lock);
- 
- 	drm_framebuffer_put(old_fb);
-diff --git a/drivers/gpu/drm/udl/udl_modeset.c b/drivers/gpu/drm/udl/udl_modeset.c
-index 32232228dae9..e67c40a48fb4 100644
---- a/drivers/gpu/drm/udl/udl_modeset.c
-+++ b/drivers/gpu/drm/udl/udl_modeset.c
-@@ -264,7 +264,8 @@ static int udl_aligned_damage_clip(struct drm_rect *clip, int x, int y,
- 	return 0;
- }
- 
--static int udl_handle_damage(struct drm_framebuffer *fb, const struct dma_buf_map *map,
-+static int udl_handle_damage(struct drm_framebuffer *fb,
-+			     const struct iosys_map *map,
- 			     int x, int y, int width, int height)
- {
- 	struct drm_device *dev = fb->dev;
-diff --git a/drivers/gpu/drm/vboxvideo/vbox_mode.c b/drivers/gpu/drm/vboxvideo/vbox_mode.c
-index 4227a915b06a..4017b0a621fc 100644
---- a/drivers/gpu/drm/vboxvideo/vbox_mode.c
-+++ b/drivers/gpu/drm/vboxvideo/vbox_mode.c
-@@ -10,7 +10,7 @@
-  *          Hans de Goede <hdegoede@redhat.com>
-  */
- 
--#include <linux/dma-buf-map.h>
-+#include <linux/iosys-map.h>
- #include <linux/export.h>
- 
- #include <drm/drm_atomic.h>
-@@ -398,7 +398,7 @@ static void vbox_cursor_atomic_update(struct drm_plane *plane,
- 	u32 height = new_state->crtc_h;
- 	struct drm_shadow_plane_state *shadow_plane_state =
- 		to_drm_shadow_plane_state(new_state);
--	struct dma_buf_map map = shadow_plane_state->data[0];
-+	struct iosys_map map = shadow_plane_state->data[0];
- 	u8 *src = map.vaddr; /* TODO: Use mapping abstraction properly */
- 	size_t data_size, mask_size;
- 	u32 flags;
-diff --git a/drivers/gpu/drm/virtio/virtgpu_prime.c b/drivers/gpu/drm/virtio/virtgpu_prime.c
-index 55d80b77d9b0..78eccd618726 100644
---- a/drivers/gpu/drm/virtio/virtgpu_prime.c
-+++ b/drivers/gpu/drm/virtio/virtgpu_prime.c
-@@ -22,6 +22,7 @@
-  * Authors: Andreas Pokorny
-  */
- 
-+#include <linux/iosys-map.h>
- #include <drm/drm_prime.h>
- #include <linux/virtio_dma_buf.h>
- 
-diff --git a/drivers/gpu/drm/vkms/vkms_composer.c b/drivers/gpu/drm/vkms/vkms_composer.c
-index 9e8204be9a14..c6a1036bf2ea 100644
---- a/drivers/gpu/drm/vkms/vkms_composer.c
-+++ b/drivers/gpu/drm/vkms/vkms_composer.c
-@@ -157,7 +157,7 @@ static void compose_plane(struct vkms_composer *primary_composer,
- 	void *vaddr;
- 	void (*pixel_blend)(const u8 *p_src, u8 *p_dst);
- 
--	if (WARN_ON(dma_buf_map_is_null(&primary_composer->map[0])))
-+	if (WARN_ON(iosys_map_is_null(&primary_composer->map[0])))
+ 	if (drm_WARN_ON_ONCE(dev, !gbo->vmap_use_count))
  		return;
  
- 	vaddr = plane_composer->map[0].vaddr;
-@@ -187,7 +187,7 @@ static int compose_active_planes(void **vaddr_out,
- 		}
- 	}
+-	if (drm_WARN_ON_ONCE(dev, !dma_buf_map_is_equal(&gbo->map, map)))
++	if (drm_WARN_ON_ONCE(dev, !iosys_map_is_equal(&gbo->map, map)))
+ 		return; /* BUG: map not mapped from this BO */
  
--	if (WARN_ON(dma_buf_map_is_null(&primary_composer->map[0])))
-+	if (WARN_ON(iosys_map_is_null(&primary_composer->map[0])))
- 		return -EINVAL;
+ 	if (--gbo->vmap_use_count > 0)
+@@ -428,7 +428,7 @@ static void drm_gem_vram_kunmap_locked(struct drm_gem_vram_object *gbo,
+  * Returns:
+  * 0 on success, or a negative error code otherwise.
+  */
+-int drm_gem_vram_vmap(struct drm_gem_vram_object *gbo, struct dma_buf_map *map)
++int drm_gem_vram_vmap(struct drm_gem_vram_object *gbo, struct iosys_map *map)
+ {
+ 	int ret;
  
- 	vaddr = primary_composer->map[0].vaddr;
-diff --git a/drivers/gpu/drm/vkms/vkms_drv.h b/drivers/gpu/drm/vkms/vkms_drv.h
-index 9496fdc900b8..91e63b12f60f 100644
---- a/drivers/gpu/drm/vkms/vkms_drv.h
-+++ b/drivers/gpu/drm/vkms/vkms_drv.h
-@@ -23,14 +23,14 @@
- #define NUM_OVERLAY_PLANES 8
+@@ -463,7 +463,8 @@ EXPORT_SYMBOL(drm_gem_vram_vmap);
+  * A call to drm_gem_vram_vunmap() unmaps and unpins a GEM VRAM buffer. See
+  * the documentation for drm_gem_vram_vmap() for more information.
+  */
+-void drm_gem_vram_vunmap(struct drm_gem_vram_object *gbo, struct dma_buf_map *map)
++void drm_gem_vram_vunmap(struct drm_gem_vram_object *gbo,
++			 struct iosys_map *map)
+ {
+ 	int ret;
  
- struct vkms_writeback_job {
+@@ -567,7 +568,7 @@ static void drm_gem_vram_bo_driver_move_notify(struct drm_gem_vram_object *gbo)
+ 		return;
+ 
+ 	ttm_bo_vunmap(bo, &gbo->map);
+-	dma_buf_map_clear(&gbo->map); /* explicitly clear mapping for next vmap call */
++	iosys_map_clear(&gbo->map); /* explicitly clear mapping for next vmap call */
+ }
+ 
+ static int drm_gem_vram_bo_driver_move(struct drm_gem_vram_object *gbo,
+@@ -802,7 +803,8 @@ static void drm_gem_vram_object_unpin(struct drm_gem_object *gem)
+  * Returns:
+  * 0 on success, or a negative error code otherwise.
+  */
+-static int drm_gem_vram_object_vmap(struct drm_gem_object *gem, struct dma_buf_map *map)
++static int drm_gem_vram_object_vmap(struct drm_gem_object *gem,
++				    struct iosys_map *map)
+ {
+ 	struct drm_gem_vram_object *gbo = drm_gem_vram_of_gem(gem);
+ 
+@@ -815,7 +817,8 @@ static int drm_gem_vram_object_vmap(struct drm_gem_object *gem, struct dma_buf_m
+  * @gem: The GEM object to unmap
+  * @map: Kernel virtual address where the VRAM GEM object was mapped
+  */
+-static void drm_gem_vram_object_vunmap(struct drm_gem_object *gem, struct dma_buf_map *map)
++static void drm_gem_vram_object_vunmap(struct drm_gem_object *gem,
++				       struct iosys_map *map)
+ {
+ 	struct drm_gem_vram_object *gbo = drm_gem_vram_of_gem(gem);
+ 
+diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
+index 17f3548c8ed2..1fbbc19f1ac0 100644
+--- a/drivers/gpu/drm/drm_internal.h
++++ b/drivers/gpu/drm/drm_internal.h
+@@ -33,7 +33,7 @@
+ 
+ struct dentry;
+ struct dma_buf;
+-struct dma_buf_map;
++struct iosys_map;
+ struct drm_connector;
+ struct drm_crtc;
+ struct drm_framebuffer;
+@@ -174,8 +174,8 @@ void drm_gem_print_info(struct drm_printer *p, unsigned int indent,
+ 
+ int drm_gem_pin(struct drm_gem_object *obj);
+ void drm_gem_unpin(struct drm_gem_object *obj);
+-int drm_gem_vmap(struct drm_gem_object *obj, struct dma_buf_map *map);
+-void drm_gem_vunmap(struct drm_gem_object *obj, struct dma_buf_map *map);
++int drm_gem_vmap(struct drm_gem_object *obj, struct iosys_map *map);
++void drm_gem_vunmap(struct drm_gem_object *obj, struct iosys_map *map);
+ 
+ int drm_gem_dumb_destroy(struct drm_file *file, struct drm_device *dev,
+ 			 u32 handle);
+diff --git a/drivers/gpu/drm/drm_mipi_dbi.c b/drivers/gpu/drm/drm_mipi_dbi.c
+index 0327d595e028..9314f2ead79f 100644
+--- a/drivers/gpu/drm/drm_mipi_dbi.c
++++ b/drivers/gpu/drm/drm_mipi_dbi.c
+@@ -201,8 +201,8 @@ int mipi_dbi_buf_copy(void *dst, struct drm_framebuffer *fb,
+ 		      struct drm_rect *clip, bool swap)
+ {
+ 	struct drm_gem_object *gem = drm_gem_fb_get_obj(fb, 0);
 -	struct dma_buf_map map[DRM_FORMAT_MAX_PLANES];
 -	struct dma_buf_map data[DRM_FORMAT_MAX_PLANES];
 +	struct iosys_map map[DRM_FORMAT_MAX_PLANES];
 +	struct iosys_map data[DRM_FORMAT_MAX_PLANES];
+ 	void *src;
+ 	int ret;
+ 
+@@ -258,8 +258,8 @@ static void mipi_dbi_set_window_address(struct mipi_dbi_dev *dbidev,
+ 
+ static void mipi_dbi_fb_dirty(struct drm_framebuffer *fb, struct drm_rect *rect)
+ {
+-	struct dma_buf_map map[DRM_FORMAT_MAX_PLANES];
+-	struct dma_buf_map data[DRM_FORMAT_MAX_PLANES];
++	struct iosys_map map[DRM_FORMAT_MAX_PLANES];
++	struct iosys_map data[DRM_FORMAT_MAX_PLANES];
+ 	struct mipi_dbi_dev *dbidev = drm_to_mipi_dbi_dev(fb->dev);
+ 	unsigned int height = rect->y2 - rect->y1;
+ 	unsigned int width = rect->x2 - rect->x1;
+diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prime.c
+index c773d3dfb1ab..e3f09f18110c 100644
+--- a/drivers/gpu/drm/drm_prime.c
++++ b/drivers/gpu/drm/drm_prime.c
+@@ -674,7 +674,7 @@ EXPORT_SYMBOL(drm_gem_unmap_dma_buf);
+  *
+  * Returns 0 on success or a negative errno code otherwise.
+  */
+-int drm_gem_dmabuf_vmap(struct dma_buf *dma_buf, struct dma_buf_map *map)
++int drm_gem_dmabuf_vmap(struct dma_buf *dma_buf, struct iosys_map *map)
+ {
+ 	struct drm_gem_object *obj = dma_buf->priv;
+ 
+@@ -690,7 +690,7 @@ EXPORT_SYMBOL(drm_gem_dmabuf_vmap);
+  * Releases a kernel virtual mapping. This can be used as the
+  * &dma_buf_ops.vunmap callback. Calls into &drm_gem_object_funcs.vunmap for device specific handling.
+  */
+-void drm_gem_dmabuf_vunmap(struct dma_buf *dma_buf, struct dma_buf_map *map)
++void drm_gem_dmabuf_vunmap(struct dma_buf *dma_buf, struct iosys_map *map)
+ {
+ 	struct drm_gem_object *obj = dma_buf->priv;
+ 
+diff --git a/include/drm/drm_cache.h b/include/drm/drm_cache.h
+index cc9de1632dd3..22deb216b59c 100644
+--- a/include/drm/drm_cache.h
++++ b/include/drm/drm_cache.h
+@@ -35,7 +35,7 @@
+ 
+ #include <linux/scatterlist.h>
+ 
+-struct dma_buf_map;
++struct iosys_map;
+ 
+ void drm_clflush_pages(struct page *pages[], unsigned long num_pages);
+ void drm_clflush_sg(struct sg_table *st);
+@@ -74,7 +74,7 @@ static inline bool drm_arch_can_wc_memory(void)
+ 
+ void drm_memcpy_init_early(void);
+ 
+-void drm_memcpy_from_wc(struct dma_buf_map *dst,
+-			const struct dma_buf_map *src,
++void drm_memcpy_from_wc(struct iosys_map *dst,
++			const struct iosys_map *src,
+ 			unsigned long len);
+ #endif
+diff --git a/include/drm/drm_client.h b/include/drm/drm_client.h
+index f07f2fb02e75..4fc8018eddda 100644
+--- a/include/drm/drm_client.h
++++ b/include/drm/drm_client.h
+@@ -3,7 +3,7 @@
+ #ifndef _DRM_CLIENT_H_
+ #define _DRM_CLIENT_H_
+ 
+-#include <linux/dma-buf-map.h>
++#include <linux/iosys-map.h>
+ #include <linux/lockdep.h>
+ #include <linux/mutex.h>
+ #include <linux/types.h>
+@@ -144,7 +144,7 @@ struct drm_client_buffer {
+ 	/**
+ 	 * @map: Virtual address for the buffer
+ 	 */
+-	struct dma_buf_map map;
++	struct iosys_map map;
+ 
+ 	/**
+ 	 * @fb: DRM framebuffer
+@@ -156,7 +156,8 @@ struct drm_client_buffer *
+ drm_client_framebuffer_create(struct drm_client_dev *client, u32 width, u32 height, u32 format);
+ void drm_client_framebuffer_delete(struct drm_client_buffer *buffer);
+ int drm_client_framebuffer_flush(struct drm_client_buffer *buffer, struct drm_rect *rect);
+-int drm_client_buffer_vmap(struct drm_client_buffer *buffer, struct dma_buf_map *map);
++int drm_client_buffer_vmap(struct drm_client_buffer *buffer,
++			   struct iosys_map *map);
+ void drm_client_buffer_vunmap(struct drm_client_buffer *buffer);
+ 
+ int drm_client_modeset_create(struct drm_client_dev *client);
+diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+index 35e7f44c2a75..e2941cee14b6 100644
+--- a/include/drm/drm_gem.h
++++ b/include/drm/drm_gem.h
+@@ -39,7 +39,7 @@
+ 
+ #include <drm/drm_vma_manager.h>
+ 
+-struct dma_buf_map;
++struct iosys_map;
+ struct drm_gem_object;
+ 
+ /**
+@@ -139,7 +139,7 @@ struct drm_gem_object_funcs {
+ 	 *
+ 	 * This callback is optional.
+ 	 */
+-	int (*vmap)(struct drm_gem_object *obj, struct dma_buf_map *map);
++	int (*vmap)(struct drm_gem_object *obj, struct iosys_map *map);
+ 
+ 	/**
+ 	 * @vunmap:
+@@ -149,7 +149,7 @@ struct drm_gem_object_funcs {
+ 	 *
+ 	 * This callback is optional.
+ 	 */
+-	void (*vunmap)(struct drm_gem_object *obj, struct dma_buf_map *map);
++	void (*vunmap)(struct drm_gem_object *obj, struct iosys_map *map);
+ 
+ 	/**
+ 	 * @mmap:
+diff --git a/include/drm/drm_gem_atomic_helper.h b/include/drm/drm_gem_atomic_helper.h
+index 0b1e2dd2ac3f..6e3319e9001a 100644
+--- a/include/drm/drm_gem_atomic_helper.h
++++ b/include/drm/drm_gem_atomic_helper.h
+@@ -3,7 +3,7 @@
+ #ifndef __DRM_GEM_ATOMIC_HELPER_H__
+ #define __DRM_GEM_ATOMIC_HELPER_H__
+ 
+-#include <linux/dma-buf-map.h>
++#include <linux/iosys-map.h>
+ 
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_plane.h>
+@@ -59,7 +59,7 @@ struct drm_shadow_plane_state {
+ 	 * The memory mappings stored in map should be established in the plane's
+ 	 * prepare_fb callback and removed in the cleanup_fb callback.
+ 	 */
+-	struct dma_buf_map map[DRM_FORMAT_MAX_PLANES];
++	struct iosys_map map[DRM_FORMAT_MAX_PLANES];
+ 
+ 	/**
+ 	 * @data: Address of each framebuffer BO's data
+@@ -67,7 +67,7 @@ struct drm_shadow_plane_state {
+ 	 * The address of the data stored in each mapping. This is different
+ 	 * for framebuffers with non-zero offset fields.
+ 	 */
+-	struct dma_buf_map data[DRM_FORMAT_MAX_PLANES];
++	struct iosys_map data[DRM_FORMAT_MAX_PLANES];
  };
  
- struct vkms_composer {
- 	struct drm_framebuffer fb;
- 	struct drm_rect src, dst;
--	struct dma_buf_map map[4];
-+	struct iosys_map map[4];
- 	unsigned int offset;
- 	unsigned int pitch;
- 	unsigned int cpp;
-diff --git a/drivers/gpu/drm/vkms/vkms_plane.c b/drivers/gpu/drm/vkms/vkms_plane.c
-index 32409e15244b..d8eb674b49a6 100644
---- a/drivers/gpu/drm/vkms/vkms_plane.c
-+++ b/drivers/gpu/drm/vkms/vkms_plane.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0+
+ /**
+diff --git a/include/drm/drm_gem_cma_helper.h b/include/drm/drm_gem_cma_helper.h
+index adb507a9dbf0..fbda4ce5d5fb 100644
+--- a/include/drm/drm_gem_cma_helper.h
++++ b/include/drm/drm_gem_cma_helper.h
+@@ -38,7 +38,8 @@ void drm_gem_cma_free(struct drm_gem_cma_object *cma_obj);
+ void drm_gem_cma_print_info(const struct drm_gem_cma_object *cma_obj,
+ 			    struct drm_printer *p, unsigned int indent);
+ struct sg_table *drm_gem_cma_get_sg_table(struct drm_gem_cma_object *cma_obj);
+-int drm_gem_cma_vmap(struct drm_gem_cma_object *cma_obj, struct dma_buf_map *map);
++int drm_gem_cma_vmap(struct drm_gem_cma_object *cma_obj,
++		     struct iosys_map *map);
+ int drm_gem_cma_mmap(struct drm_gem_cma_object *cma_obj, struct vm_area_struct *vma);
  
+ extern const struct vm_operations_struct drm_gem_cma_vm_ops;
+@@ -106,7 +107,8 @@ static inline struct sg_table *drm_gem_cma_object_get_sg_table(struct drm_gem_ob
+  * Returns:
+  * 0 on success or a negative error code on failure.
+  */
+-static inline int drm_gem_cma_object_vmap(struct drm_gem_object *obj, struct dma_buf_map *map)
++static inline int drm_gem_cma_object_vmap(struct drm_gem_object *obj,
++					  struct iosys_map *map)
+ {
+ 	struct drm_gem_cma_object *cma_obj = to_drm_gem_cma_obj(obj);
+ 
+diff --git a/include/drm/drm_gem_framebuffer_helper.h b/include/drm/drm_gem_framebuffer_helper.h
+index 905727719ead..1091e4fa08cb 100644
+--- a/include/drm/drm_gem_framebuffer_helper.h
++++ b/include/drm/drm_gem_framebuffer_helper.h
+@@ -2,7 +2,7 @@
+ #define __DRM_GEM_FB_HELPER_H__
+ 
+ #include <linux/dma-buf.h>
 -#include <linux/dma-buf-map.h>
 +#include <linux/iosys-map.h>
  
- #include <drm/drm_atomic.h>
- #include <drm/drm_atomic_helper.h>
-diff --git a/drivers/gpu/drm/vkms/vkms_writeback.c b/drivers/gpu/drm/vkms/vkms_writeback.c
-index 8694227f555f..af1604dfbbaf 100644
---- a/drivers/gpu/drm/vkms/vkms_writeback.c
-+++ b/drivers/gpu/drm/vkms/vkms_writeback.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0+
- 
--#include <linux/dma-buf-map.h>
-+#include <linux/iosys-map.h>
- 
- #include <drm/drm_atomic.h>
  #include <drm/drm_fourcc.h>
-diff --git a/drivers/gpu/drm/xen/xen_drm_front_gem.c b/drivers/gpu/drm/xen/xen_drm_front_gem.c
-index dd358ba2bf8e..5a5bf4e5b717 100644
---- a/drivers/gpu/drm/xen/xen_drm_front_gem.c
-+++ b/drivers/gpu/drm/xen/xen_drm_front_gem.c
-@@ -280,7 +280,8 @@ xen_drm_front_gem_import_sg_table(struct drm_device *dev,
- 	return &xen_obj->base;
- }
  
--int xen_drm_front_gem_prime_vmap(struct drm_gem_object *gem_obj, struct dma_buf_map *map)
-+int xen_drm_front_gem_prime_vmap(struct drm_gem_object *gem_obj,
-+				 struct iosys_map *map)
+@@ -40,10 +40,10 @@ drm_gem_fb_create_with_dirty(struct drm_device *dev, struct drm_file *file,
+ 			     const struct drm_mode_fb_cmd2 *mode_cmd);
+ 
+ int drm_gem_fb_vmap(struct drm_framebuffer *fb,
+-		    struct dma_buf_map map[static DRM_FORMAT_MAX_PLANES],
+-		    struct dma_buf_map data[DRM_FORMAT_MAX_PLANES]);
++		    struct iosys_map map[static DRM_FORMAT_MAX_PLANES],
++		    struct iosys_map data[DRM_FORMAT_MAX_PLANES]);
+ void drm_gem_fb_vunmap(struct drm_framebuffer *fb,
+-		       struct dma_buf_map map[static DRM_FORMAT_MAX_PLANES]);
++		       struct iosys_map map[static DRM_FORMAT_MAX_PLANES]);
+ int drm_gem_fb_begin_cpu_access(struct drm_framebuffer *fb, enum dma_data_direction dir);
+ void drm_gem_fb_end_cpu_access(struct drm_framebuffer *fb, enum dma_data_direction dir);
+ 
+diff --git a/include/drm/drm_gem_shmem_helper.h b/include/drm/drm_gem_shmem_helper.h
+index 311d66c9cf4b..68347b63fc71 100644
+--- a/include/drm/drm_gem_shmem_helper.h
++++ b/include/drm/drm_gem_shmem_helper.h
+@@ -113,8 +113,10 @@ int drm_gem_shmem_get_pages(struct drm_gem_shmem_object *shmem);
+ void drm_gem_shmem_put_pages(struct drm_gem_shmem_object *shmem);
+ int drm_gem_shmem_pin(struct drm_gem_shmem_object *shmem);
+ void drm_gem_shmem_unpin(struct drm_gem_shmem_object *shmem);
+-int drm_gem_shmem_vmap(struct drm_gem_shmem_object *shmem, struct dma_buf_map *map);
+-void drm_gem_shmem_vunmap(struct drm_gem_shmem_object *shmem, struct dma_buf_map *map);
++int drm_gem_shmem_vmap(struct drm_gem_shmem_object *shmem,
++		       struct iosys_map *map);
++void drm_gem_shmem_vunmap(struct drm_gem_shmem_object *shmem,
++			  struct iosys_map *map);
+ int drm_gem_shmem_mmap(struct drm_gem_shmem_object *shmem, struct vm_area_struct *vma);
+ 
+ int drm_gem_shmem_madvise(struct drm_gem_shmem_object *shmem, int madv);
+@@ -226,7 +228,8 @@ static inline struct sg_table *drm_gem_shmem_object_get_sg_table(struct drm_gem_
+  * Returns:
+  * 0 on success or a negative error code on failure.
+  */
+-static inline int drm_gem_shmem_object_vmap(struct drm_gem_object *obj, struct dma_buf_map *map)
++static inline int drm_gem_shmem_object_vmap(struct drm_gem_object *obj,
++					    struct iosys_map *map)
  {
- 	struct xen_gem_object *xen_obj = to_xen_gem_obj(gem_obj);
- 	void *vaddr;
-@@ -293,13 +294,13 @@ int xen_drm_front_gem_prime_vmap(struct drm_gem_object *gem_obj, struct dma_buf_
- 		     VM_MAP, PAGE_KERNEL);
- 	if (!vaddr)
- 		return -ENOMEM;
--	dma_buf_map_set_vaddr(map, vaddr);
-+	iosys_map_set_vaddr(map, vaddr);
+ 	struct drm_gem_shmem_object *shmem = to_drm_gem_shmem_obj(obj);
  
- 	return 0;
- }
- 
- void xen_drm_front_gem_prime_vunmap(struct drm_gem_object *gem_obj,
--				    struct dma_buf_map *map)
-+				    struct iosys_map *map)
+@@ -241,7 +244,8 @@ static inline int drm_gem_shmem_object_vmap(struct drm_gem_object *obj, struct d
+  * This function wraps drm_gem_shmem_vunmap(). Drivers that employ the shmem helpers should
+  * use it as their &drm_gem_object_funcs.vunmap handler.
+  */
+-static inline void drm_gem_shmem_object_vunmap(struct drm_gem_object *obj, struct dma_buf_map *map)
++static inline void drm_gem_shmem_object_vunmap(struct drm_gem_object *obj,
++					       struct iosys_map *map)
  {
- 	vunmap(map->vaddr);
- }
-diff --git a/drivers/gpu/drm/xen/xen_drm_front_gem.h b/drivers/gpu/drm/xen/xen_drm_front_gem.h
-index eaea470f7001..a718a1f382a3 100644
---- a/drivers/gpu/drm/xen/xen_drm_front_gem.h
-+++ b/drivers/gpu/drm/xen/xen_drm_front_gem.h
+ 	struct drm_gem_shmem_object *shmem = to_drm_gem_shmem_obj(obj);
+ 
+diff --git a/include/drm/drm_gem_ttm_helper.h b/include/drm/drm_gem_ttm_helper.h
+index 78040f6cc6f3..4c003b4f173e 100644
+--- a/include/drm/drm_gem_ttm_helper.h
++++ b/include/drm/drm_gem_ttm_helper.h
+@@ -10,7 +10,7 @@
+ #include <drm/ttm/ttm_bo_api.h>
+ #include <drm/ttm/ttm_bo_driver.h>
+ 
+-struct dma_buf_map;
++struct iosys_map;
+ 
+ #define drm_gem_ttm_of_gem(gem_obj) \
+ 	container_of(gem_obj, struct ttm_buffer_object, base)
+@@ -18,9 +18,9 @@ struct dma_buf_map;
+ void drm_gem_ttm_print_info(struct drm_printer *p, unsigned int indent,
+ 			    const struct drm_gem_object *gem);
+ int drm_gem_ttm_vmap(struct drm_gem_object *gem,
+-		     struct dma_buf_map *map);
++		     struct iosys_map *map);
+ void drm_gem_ttm_vunmap(struct drm_gem_object *gem,
+-			struct dma_buf_map *map);
++			struct iosys_map *map);
+ int drm_gem_ttm_mmap(struct drm_gem_object *gem,
+ 		     struct vm_area_struct *vma);
+ 
+diff --git a/include/drm/drm_gem_vram_helper.h b/include/drm/drm_gem_vram_helper.h
+index b4ce27a72773..c083a1d71cf4 100644
+--- a/include/drm/drm_gem_vram_helper.h
++++ b/include/drm/drm_gem_vram_helper.h
 @@ -12,7 +12,7 @@
- #define __XEN_DRM_FRONT_GEM_H
+ #include <drm/ttm/ttm_bo_driver.h>
  
+ #include <linux/container_of.h>
+-#include <linux/dma-buf-map.h>
++#include <linux/iosys-map.h>
+ 
+ struct drm_mode_create_dumb;
+ struct drm_plane;
+@@ -51,7 +51,7 @@ struct vm_area_struct;
+  */
+ struct drm_gem_vram_object {
+ 	struct ttm_buffer_object bo;
+-	struct dma_buf_map map;
++	struct iosys_map map;
+ 
+ 	/**
+ 	 * @vmap_use_count:
+@@ -97,8 +97,9 @@ void drm_gem_vram_put(struct drm_gem_vram_object *gbo);
+ s64 drm_gem_vram_offset(struct drm_gem_vram_object *gbo);
+ int drm_gem_vram_pin(struct drm_gem_vram_object *gbo, unsigned long pl_flag);
+ int drm_gem_vram_unpin(struct drm_gem_vram_object *gbo);
+-int drm_gem_vram_vmap(struct drm_gem_vram_object *gbo, struct dma_buf_map *map);
+-void drm_gem_vram_vunmap(struct drm_gem_vram_object *gbo, struct dma_buf_map *map);
++int drm_gem_vram_vmap(struct drm_gem_vram_object *gbo, struct iosys_map *map);
++void drm_gem_vram_vunmap(struct drm_gem_vram_object *gbo,
++			 struct iosys_map *map);
+ 
+ int drm_gem_vram_fill_create_dumb(struct drm_file *file,
+ 				  struct drm_device *dev,
+diff --git a/include/drm/drm_prime.h b/include/drm/drm_prime.h
+index 54f2c58305d2..2a1d01e5b56b 100644
+--- a/include/drm/drm_prime.h
++++ b/include/drm/drm_prime.h
+@@ -54,7 +54,7 @@ struct device;
+ struct dma_buf_export_info;
+ struct dma_buf;
  struct dma_buf_attachment;
 -struct dma_buf_map;
 +struct iosys_map;
- struct drm_device;
- struct drm_gem_object;
- struct sg_table;
-@@ -32,9 +32,9 @@ struct page **xen_drm_front_gem_get_pages(struct drm_gem_object *obj);
- void xen_drm_front_gem_free_object_unlocked(struct drm_gem_object *gem_obj);
  
- int xen_drm_front_gem_prime_vmap(struct drm_gem_object *gem_obj,
--				 struct dma_buf_map *map);
-+				 struct iosys_map *map);
+ enum dma_data_direction;
  
- void xen_drm_front_gem_prime_vunmap(struct drm_gem_object *gem_obj,
--				    struct dma_buf_map *map);
-+				    struct iosys_map *map);
+@@ -83,8 +83,8 @@ struct sg_table *drm_gem_map_dma_buf(struct dma_buf_attachment *attach,
+ void drm_gem_unmap_dma_buf(struct dma_buf_attachment *attach,
+ 			   struct sg_table *sgt,
+ 			   enum dma_data_direction dir);
+-int drm_gem_dmabuf_vmap(struct dma_buf *dma_buf, struct dma_buf_map *map);
+-void drm_gem_dmabuf_vunmap(struct dma_buf *dma_buf, struct dma_buf_map *map);
++int drm_gem_dmabuf_vmap(struct dma_buf *dma_buf, struct iosys_map *map);
++void drm_gem_dmabuf_vunmap(struct dma_buf *dma_buf, struct iosys_map *map);
  
- #endif /* __XEN_DRM_FRONT_GEM_H */
+ int drm_gem_prime_mmap(struct drm_gem_object *obj, struct vm_area_struct *vma);
+ int drm_gem_dmabuf_mmap(struct dma_buf *dma_buf, struct vm_area_struct *vma);
 -- 
 2.35.0
 
