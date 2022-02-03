@@ -4,75 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FAAAC4332F
-	for <nouveau@archiver.kernel.org>; Thu, 10 Feb 2022 01:00:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52E98C433FE
+	for <nouveau@archiver.kernel.org>; Thu, 10 Feb 2022 01:00:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A668910E6D7;
-	Thu, 10 Feb 2022 01:00:21 +0000 (UTC)
-X-Greylist: delayed 314 seconds by postgrey-1.36 at gabe;
- Mon, 07 Feb 2022 16:41:12 UTC
-Received: from wnew4-smtp.messagingengine.com (wnew4-smtp.messagingengine.com
- [64.147.123.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E42410E15E
- for <nouveau@lists.freedesktop.org>; Mon,  7 Feb 2022 16:41:12 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.west.internal (Postfix) with ESMTP id 5A8582B0014D;
- Mon,  7 Feb 2022 11:35:57 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute4.internal (MEProxy); Mon, 07 Feb 2022 11:35:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-transfer-encoding:date:date:from:from:in-reply-to
- :in-reply-to:message-id:mime-version:references:reply-to:sender
- :subject:subject:to:to; s=fm2; bh=RkfLFhsT0oeGyH5Q3NR1vzRXIXUZ5k
- WakkOr/SvCplw=; b=JpWwuFwE/j/V04CJHDv3wX6V0EFJqQgjmMIIv1jPDGhGZ1
- /k9gGwSmkz/Unlvo+DUYd2o2YIEz2IgqzssdY3BR3U45fnIUqZIGQX8Qn2IqjI5f
- pMwe0vLbTpx6wnZAWRAEAZOA2SAsaQ/Kv447OwvdHegl995Xe/d+6rUM+rPAXnCK
- i+KsfpnnsPtp+GqUKsQ08QFYA04LAEfOCOZZvXuQhz+VcxUBQMXSRltlMWnPUsaf
- 0WnLKkhPImhe7BBhma4XHUtgUhXUH/2kXeusX7mnGPdiOvbdqexDekyL0eN+RaeM
- /RywVkcoNtf6Bq/kHZWwATwUB427oJIZjda+CR5g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:sender:subject:subject:to:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=RkfLFh
- sT0oeGyH5Q3NR1vzRXIXUZ5kWakkOr/SvCplw=; b=nTDNgBD6enNdVjyZ7eQNR3
- 63bAs193AjFl7nFO48OejRLSgFPXpexTOjM311Xk2yKI6iBr1UZysd+mgCMZg/bS
- d/pMr/hgqOCwnRUB+23RW4DnNu2Jn32D5Gt9xBSzsJ6erwq+Hk8OBpqKHOTH3dDz
- 0CD/55FSAYILCAPvov76xCVkjIhwL45KzgYxLrq/49sv7iZvi0RQvN2sn/UaHiZY
- 7rtsbx6r+wKoI2sobPeOE40Nd51UBFqW8UwYporQa972gSRvtfDVZTAyUPZkbMrA
- YcSVtKw9mGBzsimPj2uv6WBtYJ90Ychr4bJusNF4Bwp3mbfc464/sX7VUHdB+M4w
- ==
-X-ME-Sender: <xms:bEoBYjuyiyJGb2n7FMK24TaKN7ay5yhytj7BprlBrnq5Ex3rwEPoHQ>
- <xme:bEoBYkcB9vdvVP_HM2SvkLdOQIC_XknUadgZlU_Ir5wWmKu3rM34cBaemPrm6Buaq
- GVUDThCt2DL-4VBH6g>
-X-ME-Received: <xmr:bEoBYmytuE_LlLb4JHkV5zY8AkNG_3reaqHSn_M9Gh_tOpJBW_KKP4ROk_cH__QlRNLW0RedXPgKd5bywpOjvIYo4EHU7pTe0at46vw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrheehgdekjecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
- ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
- gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
- vdenucevlhhushhtvghrufhiiigvpeegnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
- igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:bEoBYiNL5KmMiKjuLz5bhmwid_ngNA3kiZNcD_zbsUOSUJY1ubcWZQ>
- <xmx:bEoBYj80PUzuZRJI5tDiY7m1sAMxcC9OMxu2h4FXZwJFjLoyReL1pg>
- <xmx:bEoBYiV1-r-N0TiqR5iHpSZ37s1aOPcrLV67PDkv4wwECOH-daxzdw>
- <xmx:bEoBYmVQARFjq16iioq1RSH2_U-Yri-kUSUMixPmV6Os2Nw7sfKs39vS4P0>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 7 Feb 2022 11:35:56 -0500 (EST)
-From: Maxime Ripard <maxime@cerno.tech>
-To: Daniel Vetter <daniel.vetter@intel.com>,
-	David Airlie <airlied@linux.ie>
-Date: Mon,  7 Feb 2022 17:35:05 +0100
-Message-Id: <20220207163515.1038648-14-maxime@cerno.tech>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220207163515.1038648-1-maxime@cerno.tech>
-References: <20220207163515.1038648-1-maxime@cerno.tech>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0D7710E73D;
+	Thu, 10 Feb 2022 01:00:24 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55F0C10E9F8;
+ Thu,  3 Feb 2022 09:15:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643879706; x=1675415706;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=USduWklxZs7IRiW0gmkJ/DmHB0rsBVVMRvWK008NdMo=;
+ b=UDIDUpBvNa93fd5kTPC5lEkJ4EEibJ/39YcMWJvI5hvUqRi6ypXBjNkd
+ +hwK5+3R9C+KmXNyhEGr/dJYsBj/PCi4HLUEjsR51Ik6dBgg8ETXGure6
+ xl9M+MqpEmOp2rydzwQ+zxl9DVLlwUlYFcKGF1FCEYYCYMsC4udYL/d6k
+ 0bJ6XFdvL/lZow7pGLkux7aHE/UThlcGvLi59G1pWwr6ejYKu8xHkOqQV
+ 9Q61IBc9YkhVLL/KxBlEcc2tfbMV9KSTek2ZPmJPszTA2i02RzP335TzY
+ hJ7mazDwENUGybaUlTRFbsARBVfHuBBIQHYlaqu1tZ1zWoF8eywUYNP2m g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10246"; a="311410360"
+X-IronPort-AV: E=Sophos;i="5.88,339,1635231600"; d="scan'208";a="311410360"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 01:15:05 -0800
+X-IronPort-AV: E=Sophos;i="5.88,339,1635231600"; d="scan'208";a="523832099"
+Received: from ekabir-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.144.43])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2022 01:15:05 -0800
+Date: Thu, 3 Feb 2022 01:15:04 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <20220203091504.arlmfmwdaluts3ml@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20220203085614.3896538-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220203085614.3896538-1-lucas.demarchi@intel.com>
 X-Mailman-Approved-At: Thu, 10 Feb 2022 01:00:19 +0000
-Subject: [Nouveau] [PATCH 13/23] drm/nouveau/kms: Remove redundant zpos
- initialisation
+Subject: Re: [Nouveau] [PATCH v3] dma-buf-map: Rename to iosys-map
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,43 +59,210 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>, Tim Gover <tim.gover@raspberrypi.com>,
- nouveau@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Maxime Ripard <maxime@cerno.tech>,
- Phil Elwell <phil@raspberrypi.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: linux-doc@vger.kernel.org, airlied@linux.ie,
+ Jonathan Corbet <corbet@lwn.net>, srinivas.kandagatla@linaro.org,
+ gregkh@linuxfoundation.org, nouveau@lists.freedesktop.org,
+ christian.koenig@amd.com, linux-media@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The nouveau KMS driver will call drm_plane_create_zpos_property() with
-an init value depending on the plane purpose.
+On Thu, Feb 03, 2022 at 12:56:14AM -0800, Lucas De Marchi wrote:
+>Rename struct dma_buf_map to struct iosys_map and corresponding APIs.
+>Over time dma-buf-map grew up to more functionality than the one used by
+>dma-buf: in fact it's just a shim layer to abstract system memory, that
+>can be accessed via regular load and store, from IO memory that needs to
+>be acessed via arch helpers.
+>
+>The idea is to extend this API so it can fulfill other needs, internal
+>to a single driver. Example: in the i915 driver it's desired to share
+>the implementation for integrated graphics, which uses mostly system
+>memory, with discrete graphics, which may need to access IO memory.
+>
+>The conversion was mostly done with the following semantic patch:
+>
+>	@r1@
+>	@@
+>	- struct dma_buf_map
+>	+ struct iosys_map
+>
+>	@r2@
+>	@@
+>	(
+>	- DMA_BUF_MAP_INIT_VADDR
+>	+ IOSYS_MAP_INIT_VADDR
+>	|
+>	- dma_buf_map_set_vaddr
+>	+ iosys_map_set_vaddr
+>	|
+>	- dma_buf_map_set_vaddr_iomem
+>	+ iosys_map_set_vaddr_iomem
+>	|
+>	- dma_buf_map_is_equal
+>	+ iosys_map_is_equal
+>	|
+>	- dma_buf_map_is_null
+>	+ iosys_map_is_null
+>	|
+>	- dma_buf_map_is_set
+>	+ iosys_map_is_set
+>	|
+>	- dma_buf_map_clear
+>	+ iosys_map_clear
+>	|
+>	- dma_buf_map_memcpy_to
+>	+ iosys_map_memcpy_to
+>	|
+>	- dma_buf_map_incr
+>	+ iosys_map_incr
+>	)
+>
+>	@@
+>	@@
+>	- #include <linux/dma-buf-map.h>
+>	+ #include <linux/iosys-map.h>
+>
+>Then some files had their includes adjusted and some comments were update to
+>remove mentions to dma-buf-map.
+>
+>Since this is not specific to dma-buf anymore, move the documentation to
+>the "Bus-Independent Device Accesses" section.
+>
+>v2:
+>  - Squash patches
+>
+>v3:
+>  - Fix wrong removal of dma-buf.h from MAINTAINERS
+>  - Move documentation from dma-buf.rst to device-io.rst
+>
+>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>Acked-by: Christian König <christian.koenig@amd.com>
+>Acked-by: Sumit Semwal <sumit.semwal@linaro.org>
+>---
+> Documentation/driver-api/device-io.rst        |   9 +
+> Documentation/driver-api/dma-buf.rst          |   9 -
+> Documentation/gpu/todo.rst                    |  20 +-
+> MAINTAINERS                                   |   9 +-
+> drivers/dma-buf/dma-buf.c                     |  22 +-
+> drivers/dma-buf/heaps/cma_heap.c              |  10 +-
+> drivers/dma-buf/heaps/system_heap.c           |  10 +-
+> drivers/gpu/drm/ast/ast_drv.h                 |   2 +-
+> drivers/gpu/drm/ast/ast_mode.c                |   8 +-
+> drivers/gpu/drm/drm_cache.c                   |  18 +-
+> drivers/gpu/drm/drm_client.c                  |   9 +-
+> drivers/gpu/drm/drm_fb_helper.c               |  12 +-
+> drivers/gpu/drm/drm_gem.c                     |  12 +-
+> drivers/gpu/drm/drm_gem_cma_helper.c          |   9 +-
+> drivers/gpu/drm/drm_gem_framebuffer_helper.c  |  16 +-
+> drivers/gpu/drm/drm_gem_shmem_helper.c        |  15 +-
+> drivers/gpu/drm/drm_gem_ttm_helper.c          |   4 +-
+> drivers/gpu/drm/drm_gem_vram_helper.c         |  25 +-
+> drivers/gpu/drm/drm_internal.h                |   6 +-
+> drivers/gpu/drm/drm_mipi_dbi.c                |   8 +-
+> drivers/gpu/drm/drm_prime.c                   |   4 +-
+> drivers/gpu/drm/etnaviv/etnaviv_drv.h         |   2 +-
+> drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c   |   8 +-
+> drivers/gpu/drm/gud/gud_pipe.c                |   4 +-
+> drivers/gpu/drm/hyperv/hyperv_drm_modeset.c   |   5 +-
+> drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |   8 +-
+> .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |   6 +-
+> .../gpu/drm/i915/gem/selftests/mock_dmabuf.c  |   6 +-
+> drivers/gpu/drm/lima/lima_gem.c               |   3 +-
+> drivers/gpu/drm/lima/lima_sched.c             |   4 +-
+> drivers/gpu/drm/mediatek/mtk_drm_gem.c        |   7 +-
+> drivers/gpu/drm/mediatek/mtk_drm_gem.h        |   5 +-
+> drivers/gpu/drm/mgag200/mgag200_mode.c        |   4 +-
+> drivers/gpu/drm/msm/msm_drv.h                 |   4 +-
+> drivers/gpu/drm/msm/msm_gem_prime.c           |   6 +-
+> drivers/gpu/drm/panfrost/panfrost_perfcnt.c   |  13 +-
+> drivers/gpu/drm/qxl/qxl_display.c             |   8 +-
+> drivers/gpu/drm/qxl/qxl_draw.c                |   6 +-
+> drivers/gpu/drm/qxl/qxl_drv.h                 |  10 +-
+> drivers/gpu/drm/qxl/qxl_object.c              |   8 +-
+> drivers/gpu/drm/qxl/qxl_object.h              |   4 +-
+> drivers/gpu/drm/qxl/qxl_prime.c               |   4 +-
+> drivers/gpu/drm/radeon/radeon_gem.c           |   1 +
+> drivers/gpu/drm/rockchip/rockchip_drm_gem.c   |   9 +-
+> drivers/gpu/drm/rockchip/rockchip_drm_gem.h   |   5 +-
+> drivers/gpu/drm/tegra/gem.c                   |  10 +-
+> drivers/gpu/drm/tiny/cirrus.c                 |   8 +-
+> drivers/gpu/drm/tiny/gm12u320.c               |   7 +-
+> drivers/gpu/drm/ttm/ttm_bo_util.c             |  16 +-
+> drivers/gpu/drm/ttm/ttm_resource.c            |  26 +-
+> drivers/gpu/drm/ttm/ttm_tt.c                  |   6 +-
+> drivers/gpu/drm/udl/udl_modeset.c             |   3 +-
+> drivers/gpu/drm/vboxvideo/vbox_mode.c         |   4 +-
+> drivers/gpu/drm/vkms/vkms_composer.c          |   4 +-
+> drivers/gpu/drm/vkms/vkms_drv.h               |   6 +-
+> drivers/gpu/drm/vkms/vkms_plane.c             |   2 +-
+> drivers/gpu/drm/vkms/vkms_writeback.c         |   2 +-
+> drivers/gpu/drm/xen/xen_drm_front_gem.c       |   7 +-
+> drivers/gpu/drm/xen/xen_drm_front_gem.h       |   6 +-
+> .../common/videobuf2/videobuf2-dma-contig.c   |   8 +-
+> .../media/common/videobuf2/videobuf2-dma-sg.c |   9 +-
+> .../common/videobuf2/videobuf2-vmalloc.c      |  11 +-
+> drivers/misc/fastrpc.c                        |   4 +-
+> include/drm/drm_cache.h                       |   6 +-
+> include/drm/drm_client.h                      |   7 +-
+> include/drm/drm_gem.h                         |   6 +-
+> include/drm/drm_gem_atomic_helper.h           |   6 +-
+> include/drm/drm_gem_cma_helper.h              |   6 +-
+> include/drm/drm_gem_framebuffer_helper.h      |   8 +-
+> include/drm/drm_gem_shmem_helper.h            |  12 +-
+> include/drm/drm_gem_ttm_helper.h              |   6 +-
+> include/drm/drm_gem_vram_helper.h             |   9 +-
+> include/drm/drm_prime.h                       |   6 +-
+> include/drm/ttm/ttm_bo_api.h                  |  10 +-
+> include/drm/ttm/ttm_kmap_iter.h               |  10 +-
+> include/drm/ttm/ttm_resource.h                |   6 +-
+> include/linux/dma-buf-map.h                   | 266 ------------------
+> include/linux/dma-buf.h                       |  12 +-
+> include/linux/iosys-map.h                     | 257 +++++++++++++++++
+> 79 files changed, 590 insertions(+), 559 deletions(-)
+> delete mode 100644 include/linux/dma-buf-map.h
+> create mode 100644 include/linux/iosys-map.h
+>
+>diff --git a/Documentation/driver-api/device-io.rst b/Documentation/driver-api/device-io.rst
+>index e9f04b1815d1..f9dede8639c7 100644
+>--- a/Documentation/driver-api/device-io.rst
+>+++ b/Documentation/driver-api/device-io.rst
+>@@ -502,6 +502,15 @@ pcim_iomap()
+> Not using these wrappers may make drivers unusable on certain platforms with
+> stricter rules for mapping I/O memory.
+>
+>+System/IO memory abstraction
+>+----------------------------
 
-Since the initial value wasn't carried over in the state, the driver had
-to set it again in nv50_wndw_reset(). However, the helpers have been
-adjusted to set it properly at reset, so this is not needed anymore.
+Looking at it again, this would render slightly better at the same level
+as others, with "====="
 
-Cc: nouveau@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
----
- drivers/gpu/drm/nouveau/dispnv50/wndw.c | 2 --
- 1 file changed, 2 deletions(-)
+Lucas De Marchi
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-index 133c8736426a..0c1a2ea0ed04 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-@@ -635,8 +635,6 @@ nv50_wndw_reset(struct drm_plane *plane)
- 		plane->funcs->atomic_destroy_state(plane, plane->state);
- 
- 	__drm_atomic_helper_plane_reset(plane, &asyw->state);
--	plane->state->zpos = nv50_wndw_zpos_default(plane);
--	plane->state->normalized_zpos = nv50_wndw_zpos_default(plane);
- }
- 
- static void
--- 
-2.34.1
-
+>+
+>+.. kernel-doc:: include/linux/iosys-map.h
+>+   :doc: overview
+>+
+>+.. kernel-doc:: include/linux/iosys-map.h
+>+   :internal:
+>+
+> Public Functions Provided
+> =========================
+>
+>diff --git a/Documentation/driver-api/dma-buf.rst b/Documentation/driver-api/dma-buf.rst
+>index 2cd7db82d9fe..55006678394a 100644
+>--- a/Documentation/driver-api/dma-buf.rst
+>+++ b/Documentation/driver-api/dma-buf.rst
+>@@ -128,15 +128,6 @@ Kernel Functions and Structures Reference
+> .. kernel-doc:: include/linux/dma-buf.h
+>    :internal:
+>
+>-Buffer Mapping Helpers
+>-~~~~~~~~~~~~~~~~~~~~~~
+>-
+>-.. kernel-doc:: include/linux/dma-buf-map.h
+>-   :doc: overview
+>-
+>-.. kernel-doc:: include/linux/dma-buf-map.h
+>-   :internal:
+>-
+> Reservation Objects
+> -------------------
