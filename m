@@ -4,70 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9482EC433EF
-	for <nouveau@archiver.kernel.org>; Sat,  5 Feb 2022 15:27:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47C58C433F5
+	for <nouveau@archiver.kernel.org>; Mon,  7 Feb 2022 06:33:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BB5610F582;
-	Sat,  5 Feb 2022 15:27:37 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1092510F57E
- for <nouveau@lists.freedesktop.org>; Sat,  5 Feb 2022 15:27:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1644074855;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=pjmtgD9hDbE2eSozwnUFT0OXCz+k5OPkUk+zbtWjpnw=;
- b=NAQOEHHkFIuQDliZ+7qz0nBN7mE2qEzGS0ZzondHgoBu/wieUa4HU2HmjwvXASr5vq/aZ/
- 0W5KERL1yuwdVUhfhLMA6rs4ZlTYP3w+4oQhU0mVt+0eCdFlUPsg3gJt4oXYFLX5BLIjYo
- sWEB9oq6S0aJgyGF+HSuwiIkUXGpWak=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-368-ZmeLRyVBNhOK1NUxw4zTTw-1; Sat, 05 Feb 2022 10:27:32 -0500
-X-MC-Unique: ZmeLRyVBNhOK1NUxw4zTTw-1
-Received: by mail-wr1-f71.google.com with SMTP id
- a6-20020adfbc46000000b001d7370ace6eso3503764wrh.9
- for <nouveau@lists.freedesktop.org>; Sat, 05 Feb 2022 07:27:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=pjmtgD9hDbE2eSozwnUFT0OXCz+k5OPkUk+zbtWjpnw=;
- b=6zrZNJy7B83kyJWFWF1zuEh1NQu0WSvAK1miUKO1JxLf41ZcOswNEEZrC3ZL4BcIf/
- v1s7vXrHX7Y5UgvNGsqyTOELtcm6zUfc9k17WL/U5oac5cfmIG+VZytY/IOSUu2KGozr
- ZFV3uwYTd7sNrvmYPiespi4wiKdT85h4Uj+3CP8cc6ymPS9X9tjR/SP1MG1euan3GADs
- AHtLltdE4op41doEXkT63075Cx755Y+en/UBKvE6MOGUg5i9UXDSJaZBD8T9f5dciDcm
- YBTcDZp06FVdhUq/AFkA0rtTbrlJl/RYaP169MUhkMvnrnVQzsAXfbv77FWx+r1Ygb3T
- 1XEQ==
-X-Gm-Message-State: AOAM532weDPtdaZyrigW4J6Xsw3QimZDRJNvXeUV2RRMQblC4HRkxWp1
- CmUY663lNAm/3h170rdnbRamI/YoMny5p69m9rqJJ1+Hp9+eSqnHTEDKKio4yhALxKlDPGfVZ3s
- cWMHeDKz7Nrbliq74x2niLSSk9g==
-X-Received: by 2002:a5d:5052:: with SMTP id h18mr3552904wrt.350.1644074851161; 
- Sat, 05 Feb 2022 07:27:31 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxDXyrn2KzxrERhgoIpos43hCirk58UMQ3nCsqWFJ5g7LBqTHNLGaT6w0HYpj+eI+7jWIu5gw==
-X-Received: by 2002:a5d:5052:: with SMTP id h18mr3552891wrt.350.1644074850965; 
- Sat, 05 Feb 2022 07:27:30 -0800 (PST)
-Received: from kherbst.pingu.com (ip1f10bb48.dynamic.kabel-deutschland.de.
- [31.16.187.72])
- by smtp.gmail.com with ESMTPSA id j5sm4635019wrq.31.2022.02.05.07.27.29
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 05 Feb 2022 07:27:30 -0800 (PST)
-From: Karol Herbst <kherbst@redhat.com>
-To: linux-kernel@vger.kernel.org
-Date: Sat,  5 Feb 2022 16:27:28 +0100
-Message-Id: <20220205152729.2609837-1-kherbst@redhat.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id A117B10E99F;
+	Mon,  7 Feb 2022 06:33:09 +0000 (UTC)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD9B610EAC3;
+ Mon,  7 Feb 2022 06:33:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
+ :Reply-To:Content-Type:Content-ID:Content-Description;
+ bh=WofxUCZiATU1kpjAffXWYlHs1O9R63dP0KIEP8T6lOA=; b=XJHVb3iW+vRrzF9+OySIruHUHn
+ Sa6JPCczwpkeGE/buqDc+PYoIxMi8hFrFYyLseWB5aeyxAWFEuDdds4wgKz8ZRPCvCdr33rP9O0HF
+ v/pVQbdEr6bY5vfFVJrYIljpa4P0n6HzT5Jui1ak7lXKG5STjVikrsaXojUen8cqn8eYWCWs17mpr
+ iW8tBBjck+jMijGUGKCf/NKpYzo0UDqScPKpzOg/jRnU8FoVS5rJH0cx8lmOJ+IaEsF5tNnX6TI55
+ Pm5wt1la8xBFuylMyrlyQRL5aDyAZSR1a7njqGPtVv9wYqYTiF2n9Vei2jCPBt1Np6YFvt/aQ66Y+
+ bA8/QOuA==;
+Received: from [2001:4bb8:188:3efc:2cbe:55d7:bb63:46d2] (helo=localhost)
+ by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nGxa1-0099Gj-VV; Mon, 07 Feb 2022 06:32:54 +0000
+From: Christoph Hellwig <hch@lst.de>
+To: Andrew Morton <akpm@linux-foundation.org>,
+ Dan Williams <dan.j.williams@intel.com>
+Date: Mon,  7 Feb 2022 07:32:42 +0100
+Message-Id: <20220207063249.1833066-2-hch@lst.de>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220207063249.1833066-1-hch@lst.de>
+References: <20220207063249.1833066-1-hch@lst.de>
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=kherbst@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"
-Subject: [Nouveau] [PATCH] Revert "drm/nouveau/pmu/gm200-: avoid touching
- PMU outside of DEVINIT/PREOS/ACR"
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Subject: [Nouveau] [PATCH 1/8] mm: remove a pointless CONFIG_ZONE_DEVICE
+ check in memremap_pages
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,100 +51,40 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>
+Cc: nvdimm@lists.linux.dev, Ralph Campbell <rcampbell@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, nouveau@lists.freedesktop.org,
+ Felix Kuehling <Felix.Kuehling@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Jason Gunthorpe <jgg@ziepe.ca>, Ben Skeggs <bskeggs@redhat.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Logan Gunthorpe <logang@deltatee.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This reverts commit 1d2271d2fb85e54bfc9630a6c30ac0feb9ffb983.
+memremap.c is only built when CONFIG_ZONE_DEVICE is set, so remove
+the superflous extra check.
 
-This fix actually causes regressions, which I could verify on my systems
-as well. So let's revert it and figure out a proper fix for the original
-problem.
-
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Bug: https://gitlab.freedesktop.org/drm/nouveau/-/issues/149
-Signed-off-by: Karol Herbst <kherbst@redhat.com>
+Signed-off-by: Christoph Hellwig <hch@lst.de>
 ---
- .../gpu/drm/nouveau/nvkm/subdev/pmu/base.c    | 37 ++++++++-----------
- 1 file changed, 16 insertions(+), 21 deletions(-)
+ mm/memremap.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.c
-index 455e95a89259..24382875fb4f 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.c
-@@ -94,13 +94,20 @@ nvkm_pmu_fini(struct nvkm_subdev *subdev, bool suspend)
- 	return 0;
- }
- 
--static void
-+static int
- nvkm_pmu_reset(struct nvkm_pmu *pmu)
- {
- 	struct nvkm_device *device = pmu->subdev.device;
- 
- 	if (!pmu->func->enabled(pmu))
--		return;
-+		return 0;
-+
-+	/* Inhibit interrupts, and wait for idle. */
-+	nvkm_wr32(device, 0x10a014, 0x0000ffff);
-+	nvkm_msec(device, 2000,
-+		if (!nvkm_rd32(device, 0x10a04c))
-+			break;
-+	);
- 
- 	/* Reset. */
- 	if (pmu->func->reset)
-@@ -111,37 +118,25 @@ nvkm_pmu_reset(struct nvkm_pmu *pmu)
- 		if (!(nvkm_rd32(device, 0x10a10c) & 0x00000006))
- 			break;
- 	);
-+
-+	return 0;
- }
- 
- static int
- nvkm_pmu_preinit(struct nvkm_subdev *subdev)
- {
- 	struct nvkm_pmu *pmu = nvkm_pmu(subdev);
--	nvkm_pmu_reset(pmu);
--	return 0;
-+	return nvkm_pmu_reset(pmu);
- }
- 
- static int
- nvkm_pmu_init(struct nvkm_subdev *subdev)
- {
- 	struct nvkm_pmu *pmu = nvkm_pmu(subdev);
--	struct nvkm_device *device = pmu->subdev.device;
--
--	if (!pmu->func->init)
--		return 0;
--
--	if (pmu->func->enabled(pmu)) {
--		/* Inhibit interrupts, and wait for idle. */
--		nvkm_wr32(device, 0x10a014, 0x0000ffff);
--		nvkm_msec(device, 2000,
--			if (!nvkm_rd32(device, 0x10a04c))
--				break;
--		);
--
--		nvkm_pmu_reset(pmu);
--	}
--
--	return pmu->func->init(pmu);
-+	int ret = nvkm_pmu_reset(pmu);
-+	if (ret == 0 && pmu->func->init)
-+		ret = pmu->func->init(pmu);
-+	return ret;
- }
- 
- static void *
+diff --git a/mm/memremap.c b/mm/memremap.c
+index 6aa5f0c2d11fda..5f04a0709e436e 100644
+--- a/mm/memremap.c
++++ b/mm/memremap.c
+@@ -328,8 +328,7 @@ void *memremap_pages(struct dev_pagemap *pgmap, int nid)
+ 		}
+ 		break;
+ 	case MEMORY_DEVICE_FS_DAX:
+-		if (!IS_ENABLED(CONFIG_ZONE_DEVICE) ||
+-		    IS_ENABLED(CONFIG_FS_DAX_LIMITED)) {
++		if (IS_ENABLED(CONFIG_FS_DAX_LIMITED)) {
+ 			WARN(1, "File system DAX not supported\n");
+ 			return ERR_PTR(-EINVAL);
+ 		}
 -- 
-2.34.1
+2.30.2
 
