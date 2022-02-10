@@ -4,82 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDCCEC433EF
-	for <nouveau@archiver.kernel.org>; Fri, 11 Feb 2022 03:28:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB550C433FE
+	for <nouveau@archiver.kernel.org>; Fri, 11 Feb 2022 03:28:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A57AE10E9E9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E462310E9EB;
 	Fri, 11 Feb 2022 03:28:14 +0000 (UTC)
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com
- [IPv6:2607:f8b0:4864:20::d36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2155A10E98F
- for <nouveau@lists.freedesktop.org>; Thu, 10 Feb 2022 23:27:15 +0000 (UTC)
-Received: by mail-io1-xd36.google.com with SMTP id e79so9361620iof.13
- for <nouveau@lists.freedesktop.org>; Thu, 10 Feb 2022 15:27:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:subject:date:message-id:in-reply-to:references:mime-version
- :content-transfer-encoding;
- bh=yuZUTT/rXi5dMjISKVJYU5DzInQNJ+fNjCOO2/f7G8k=;
- b=j55OXYXTjVhdPRBFTmJ0hd/eeXByGxC4t0B3i9rQKb3+0S3rnp8xzD+hSP60/pxcNO
- Be9jAJMFxu9ZbzBlEOboyCGBPjddFJA1TXkBcqAY+z9d3CdxBM5uLsA17zCPm+yi23p/
- gSlhIvQ62GWYaoCo0t7FoT8VN3Q114+NR9c+g5+jWF4I1d9Jspb9+pcEmnD1SDzkq4Z6
- Tf3I6aiau8yOugjCCnnL34w85f4avkSj1tiZzP1lz19DrCs3U9/H4Eqcj1915r+1/LfB
- qOMjkORvNHKFa7feKj7YS2lbBSjbFfOFEUxlI+R9/OPdTHEf6h3Bnl6UeYP7tyc2kNHw
- YQ4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=yuZUTT/rXi5dMjISKVJYU5DzInQNJ+fNjCOO2/f7G8k=;
- b=iTsXw8QtOQiuCGirdz+knn96dIQRak3Qq/1sHL62WY9Sv0W08+e5ypkCoA5gEF/aJ3
- Kwg7IkZnfNMrgCucU0lXqB+C7A9dtpvP1WU11t6XHc2Fmd0G3qMagAMX5yx5090gUl3e
- 2WhHdG1ZwgkuGokcrpSxr4wl3wMnG+sUpZhZnmj/YV5iXQu6t1bYr+NSvXRa2C9r+vaW
- GEh2uErN9ZSMVkyWSd6XjDNXy5qoyyWwsMI9nT563z2GlCCvdfG+OcxAjqz3auSzjGre
- pRAwDlL1g5rnM6c/dvD+X7B28wcVgCuuViLYPp/Hn759N3zSL4EDwGtMSQpeIQZACYRY
- W5iA==
-X-Gm-Message-State: AOAM531L7H/7NcWk6XNjRa8YOPPj7cSlRGrCpRWtGp5BIE54UYbWneWR
- w4x9ZQTLfeHZFMHoK2c4OSU=
-X-Google-Smtp-Source: ABdhPJyuJyeIJ/FFP5Y/oWwaiFFlMwtt8E2cOYzuTD6rFFwrutNggg6s1UO76PCAuQUYz5PAgS7eNQ==
-X-Received: by 2002:a05:6638:101:: with SMTP id x1mr859923jao.23.1644535634329; 
- Thu, 10 Feb 2022 15:27:14 -0800 (PST)
-Received: from localhost ([12.28.44.171])
- by smtp.gmail.com with ESMTPSA id t195sm5516476iof.47.2022.02.10.15.27.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 10 Feb 2022 15:27:13 -0800 (PST)
-From: Yury Norov <yury.norov@gmail.com>
-To: Yury Norov <yury.norov@gmail.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Andrew Morton <akpm@linux-foundation.org>,
- =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Peter Zijlstra <peterz@infradead.org>,
- David Laight <David.Laight@aculab.com>, Joe Perches <joe@perches.com>,
- Dennis Zhou <dennis@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- Nicholas Piggin <npiggin@gmail.com>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Alexey Klimov <aklimov@redhat.com>, linux-kernel@vger.kernel.org,
- Fenghua Yu <fenghua.yu@intel.com>,
- Reinette Chatre <reinette.chatre@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
- "H. Peter Anvin" <hpa@zytor.com>, Steven Rostedt <rostedt@goodmis.org>,
- Karol Herbst <karolherbst@gmail.com>, Pekka Paalanen <ppaalanen@gmail.com>,
- Andy Lutomirski <luto@kernel.org>, Steve Wahl <steve.wahl@hpe.com>,
- Mike Travis <mike.travis@hpe.com>,
- Dimitri Sivanich <dimitri.sivanich@hpe.com>,
- Russ Anderson <russ.anderson@hpe.com>, Darren Hart <dvhart@infradead.org>,
- Andy Shevchenko <andy@infradead.org>, x86@kernel.org,
- nouveau@lists.freedesktop.org, platform-driver-x86@vger.kernel.org
-Date: Thu, 10 Feb 2022 14:49:00 -0800
-Message-Id: <20220210224933.379149-17-yury.norov@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220210224933.379149-1-yury.norov@gmail.com>
-References: <20220210224933.379149-1-yury.norov@gmail.com>
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2053.outbound.protection.outlook.com [40.107.220.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DBB810E977;
+ Thu, 10 Feb 2022 22:43:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FgpbiZG/S6ltg9tqq+QBVr/sfCiVtDC9me0IQ1giExR6CuCajSjQ9JCLBHiB/9E1n6Pxtve2ZcATgFZzy40TABsEq3DfSe5qH7Z/FeOA7xd9MfxjKNmP1Mujcgbgpgh2T8bY6CM3Ae+aYx/VGldM8ur2GYmZZta5ORK0FdEZGRPnCAi7vviU/pC99E6XbzNPB9qYmRgebQ5NXmE92qEPRhpVlLYTmvgs5mPx/Yd13msXS4IbCcO86BSHgIrGpc7fStpSCvAf8+wh2o+Vmv8wqb0o94z/V/84pncSmTsHY41BVbvTuLPCojJtru5/d2WD+gJKoYcumyVrGgPMFCMzlA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UN1eDs/KEUeUvmBl7qJuY3X9snA/o6NJJcfBhOOp0fc=;
+ b=AfiEV3WMwd0Z9PsovgFhLAnw3T9gYEwOU10BzemnYMmlYPQerMhwawrAfWySZp5zV5FcO72xMeYRqMoeyCeS7MlbpwqhbRwXp1V1C45j+qy72DRtGYq4bYOWDfnieux5H4RCBBujcMmy5sKtAFw0WcbKB/nU4bOP7t5Ik/Q0OeO5Nm1lQ9iwMVzqCu+yduzLWLhcLgDTrtXHKHioxFxG8PKNL9uhIAEghRR9kyj/RJ4VEUVjKh64ELx9QKEn23Koozh9YHpg7bzaDo3FWvLIM643Ue8auYWeRYIKBH7fEFgWMiulyG9qUbAfP5ZzulKtSD82FAuLbm7pMqbKMVfd0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UN1eDs/KEUeUvmBl7qJuY3X9snA/o6NJJcfBhOOp0fc=;
+ b=QMI7XEF2XkFvQT7T8bqhutnUKgsJKUXo2EJv70FCkWI6XCxIbwIEMm/PZIhyShjVUkEhdQG3p8goq+dTuhch3KEZbooEmvXM9j3urEW6NQULtLIYBtxAbRLgkfHWK39q9BGxtg+8Q+8EBZAV0ehn6J265H7bEEN0b26I2OEfN1o=
+Received: from BN6PR2001CA0042.namprd20.prod.outlook.com
+ (2603:10b6:405:16::28) by DM6PR12MB3948.namprd12.prod.outlook.com
+ (2603:10b6:5:1c4::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Thu, 10 Feb
+ 2022 22:43:49 +0000
+Received: from BN8NAM11FT039.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:405:16:cafe::b1) by BN6PR2001CA0042.outlook.office365.com
+ (2603:10b6:405:16::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.11 via Frontend
+ Transport; Thu, 10 Feb 2022 22:43:49 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT039.mail.protection.outlook.com (10.13.177.169) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4975.11 via Frontend Transport; Thu, 10 Feb 2022 22:43:49 +0000
+Received: from AUS-LX-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 10 Feb
+ 2022 16:43:45 -0600
+From: Mario Limonciello <mario.limonciello@amd.com>
+To: Bjorn Helgaas <bhelgaas@google.com>, Andreas Noever
+ <andreas.noever@gmail.com>, Mika Westerberg
+ <mika.westerberg@linux.intel.com>, "open list:PCI SUBSYSTEM"
+ <linux-pci@vger.kernel.org>, "open list:THUNDERBOLT DRIVER"
+ <linux-usb@vger.kernel.org>, "open list:RADEON and AMDGPU DRM DRIVERS"
+ <amd-gfx@lists.freedesktop.org>, "open list:DRM DRIVERS"
+ <dri-devel@lists.freedesktop.org>, "open list:DRM DRIVER FOR NVIDIA
+ GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, "open list:X86 PLATFORM
+ DRIVERS" <platform-driver-x86@vger.kernel.org>
+Date: Thu, 10 Feb 2022 16:43:25 -0600
+Message-ID: <20220210224329.2793-6-mario.limonciello@amd.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220210224329.2793-1-mario.limonciello@amd.com>
+References: <20220210224329.2793-1-mario.limonciello@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9e031db3-25d4-4783-03cc-08d9ece6ce2e
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3948:EE_
+X-Microsoft-Antispam-PRVS: <DM6PR12MB39488B5AD81A6FDBA05700DDE22F9@DM6PR12MB3948.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:590;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HUQQ5elLn4HA1pcApS6YnElOcXvoqLOe96g78IqA3OwcJD4t4gHt7a9pJcjNjqZylBMUrAx9uo5tSNJBZUwyF2/jZ2iQGMecgzXDOpxJ2V9N7vW7ux+9OuJlkuy8UfaMUcRBaUvX30t2mPOAcHI7gX4+/DcPkl56k0BMLIcQuLhcc/vWjIPA4TZy+HI+mCeEH72vAkY2eIDDopsh1mk2Gj30/sJjtD+i74SH/H0qZdNIoUJDOX/E9CErMl/yUSSOuhYiE/YvDK3pY0ti1HKNDFz+ffxGBfz6C/VVqjOD0b+ohFryPHMspD82mHW2PpTTvTh2RJ3jk/vYlFoHLCtSuRMFLb3BiBTeiUuL6gdTX1xKCQeS53sh+BTFPaKDzjm2OrovLz9o6KzyjxaftjjMeb8uQIaLVjZZwG5IX8xvGBtj0nFdOrMvmyK2u8dhLpn1qS+jEUjTFzkxOHHYJwgJMg3HArQykCwnDtuviSkQAvUqDMfKfe3Oe//5+L7juckT2/VEdskSvbi6/u1ZgIrD5gnItBWQPLBWvGkBjizWdtfZWL/yz9AZtDJJu29YR5CszRdbYq81PDB7z6NXrWJl5mjV2T5mI+1bbNXDoRM7tnTgt9jx7LaJco56Vrm89+R3I8ECnFluwa64dWVhKQatfamjJ5VpE2StBjyYq4Mz58X4GD/SicLcSmcS2kNzlElXYiyxxtegKC4K5bmdBWPKNwxFSKAgvEbD87wSBHqVYHI=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(8676002)(316002)(5660300002)(7696005)(70586007)(6666004)(82310400004)(40460700003)(508600001)(4326008)(47076005)(8936002)(54906003)(70206006)(86362001)(2616005)(36860700001)(83380400001)(44832011)(336012)(110136005)(426003)(16526019)(1076003)(2906002)(186003)(356005)(36756003)(26005)(81166007)(7416002)(81973001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2022 22:43:49.4609 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e031db3-25d4-4783-03cc-08d9ece6ce2e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT039.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3948
 X-Mailman-Approved-At: Fri, 11 Feb 2022 03:28:13 +0000
-Subject: [Nouveau] [PATCH 16/49] arch/x86: replace cpumask_weight with
- cpumask_empty where appropriate
+Subject: [Nouveau] [PATCH v2 5/9] drm/amd: drop the use of
+ `pci_is_thunderbolt_attached`
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,111 +111,50 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Cc: Michael Jamet <michael.jamet@intel.com>,
+ Yehezkel Bernat <YehezkelShB@gmail.com>, Alexander.Deucher@amd.com,
+ Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-In some cases, arch/x86 code calls cpumask_weight() to check if any bit of
-a given cpumask is set. We can do it more efficiently with cpumask_empty()
-because cpumask_empty() stops traversing the cpumask as soon as it finds
-first set bit, while cpumask_weight() counts all bits unconditionally.
+Currently `pci_is_thunderbolt_attached` is used to indicate a device
+is connected externally.
 
-Signed-off-by: Yury Norov <yury.norov@gmail.com>
-Reviewed-by: Steve Wahl <steve.wahl@hpe.com>
+The PCI core now marks such devices as removable and downstream drivers
+can use this instead.
+
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- arch/x86/kernel/cpu/resctrl/rdtgroup.c | 14 +++++++-------
- arch/x86/mm/mmio-mod.c                 |  2 +-
- arch/x86/platform/uv/uv_nmi.c          |  2 +-
- 3 files changed, 9 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/x86/kernel/cpu/resctrl/rdtgroup.c b/arch/x86/kernel/cpu/resctrl/rdtgroup.c
-index b57b3db9a6a7..e23ff03290b8 100644
---- a/arch/x86/kernel/cpu/resctrl/rdtgroup.c
-+++ b/arch/x86/kernel/cpu/resctrl/rdtgroup.c
-@@ -341,14 +341,14 @@ static int cpus_mon_write(struct rdtgroup *rdtgrp, cpumask_var_t newmask,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+index 1ebb91db2274..6dbf5753b5be 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+@@ -161,7 +161,7 @@ int amdgpu_driver_load_kms(struct amdgpu_device *adev, unsigned long flags)
+ 	    (amdgpu_is_atpx_hybrid() ||
+ 	     amdgpu_has_atpx_dgpu_power_cntl()) &&
+ 	    ((flags & AMD_IS_APU) == 0) &&
+-	    !pci_is_thunderbolt_attached(to_pci_dev(dev->dev)))
++	    !dev_is_removable(&adev->pdev->dev))
+ 		flags |= AMD_IS_PX;
  
- 	/* Check whether cpus belong to parent ctrl group */
- 	cpumask_andnot(tmpmask, newmask, &prgrp->cpu_mask);
--	if (cpumask_weight(tmpmask)) {
-+	if (!cpumask_empty(tmpmask)) {
- 		rdt_last_cmd_puts("Can only add CPUs to mongroup that belong to parent\n");
- 		return -EINVAL;
- 	}
+ 	parent = pci_upstream_bridge(adev->pdev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+index ee7cab37dfd5..2c5d74d836f0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+@@ -382,7 +382,7 @@ static void nbio_v2_3_enable_aspm(struct amdgpu_device *adev,
  
- 	/* Check whether cpus are dropped from this group */
- 	cpumask_andnot(tmpmask, &rdtgrp->cpu_mask, newmask);
--	if (cpumask_weight(tmpmask)) {
-+	if (!cpumask_empty(tmpmask)) {
- 		/* Give any dropped cpus to parent rdtgroup */
- 		cpumask_or(&prgrp->cpu_mask, &prgrp->cpu_mask, tmpmask);
- 		update_closid_rmid(tmpmask, prgrp);
-@@ -359,7 +359,7 @@ static int cpus_mon_write(struct rdtgroup *rdtgrp, cpumask_var_t newmask,
- 	 * and update per-cpu rmid
- 	 */
- 	cpumask_andnot(tmpmask, newmask, &rdtgrp->cpu_mask);
--	if (cpumask_weight(tmpmask)) {
-+	if (!cpumask_empty(tmpmask)) {
- 		head = &prgrp->mon.crdtgrp_list;
- 		list_for_each_entry(crgrp, head, mon.crdtgrp_list) {
- 			if (crgrp == rdtgrp)
-@@ -394,7 +394,7 @@ static int cpus_ctrl_write(struct rdtgroup *rdtgrp, cpumask_var_t newmask,
+ 		data |= NAVI10_PCIE__LC_L0S_INACTIVITY_DEFAULT << PCIE_LC_CNTL__LC_L0S_INACTIVITY__SHIFT;
  
- 	/* Check whether cpus are dropped from this group */
- 	cpumask_andnot(tmpmask, &rdtgrp->cpu_mask, newmask);
--	if (cpumask_weight(tmpmask)) {
-+	if (!cpumask_empty(tmpmask)) {
- 		/* Can't drop from default group */
- 		if (rdtgrp == &rdtgroup_default) {
- 			rdt_last_cmd_puts("Can't drop CPUs from default group\n");
-@@ -413,12 +413,12 @@ static int cpus_ctrl_write(struct rdtgroup *rdtgrp, cpumask_var_t newmask,
- 	 * and update per-cpu closid/rmid.
- 	 */
- 	cpumask_andnot(tmpmask, newmask, &rdtgrp->cpu_mask);
--	if (cpumask_weight(tmpmask)) {
-+	if (!cpumask_empty(tmpmask)) {
- 		list_for_each_entry(r, &rdt_all_groups, rdtgroup_list) {
- 			if (r == rdtgrp)
- 				continue;
- 			cpumask_and(tmpmask1, &r->cpu_mask, tmpmask);
--			if (cpumask_weight(tmpmask1))
-+			if (!cpumask_empty(tmpmask1))
- 				cpumask_rdtgrp_clear(r, tmpmask1);
- 		}
- 		update_closid_rmid(tmpmask, rdtgrp);
-@@ -488,7 +488,7 @@ static ssize_t rdtgroup_cpus_write(struct kernfs_open_file *of,
- 
- 	/* check that user didn't specify any offline cpus */
- 	cpumask_andnot(tmpmask, newmask, cpu_online_mask);
--	if (cpumask_weight(tmpmask)) {
-+	if (!cpumask_empty(tmpmask)) {
- 		ret = -EINVAL;
- 		rdt_last_cmd_puts("Can only assign online CPUs\n");
- 		goto unlock;
-diff --git a/arch/x86/mm/mmio-mod.c b/arch/x86/mm/mmio-mod.c
-index 933a2ebad471..c3317f0650d8 100644
---- a/arch/x86/mm/mmio-mod.c
-+++ b/arch/x86/mm/mmio-mod.c
-@@ -400,7 +400,7 @@ static void leave_uniprocessor(void)
- 	int cpu;
- 	int err;
- 
--	if (!cpumask_available(downed_cpus) || cpumask_weight(downed_cpus) == 0)
-+	if (!cpumask_available(downed_cpus) || cpumask_empty(downed_cpus))
- 		return;
- 	pr_notice("Re-enabling CPUs...\n");
- 	for_each_cpu(cpu, downed_cpus) {
-diff --git a/arch/x86/platform/uv/uv_nmi.c b/arch/x86/platform/uv/uv_nmi.c
-index 1e9ff28bc2e0..ea277fc08357 100644
---- a/arch/x86/platform/uv/uv_nmi.c
-+++ b/arch/x86/platform/uv/uv_nmi.c
-@@ -985,7 +985,7 @@ static int uv_handle_nmi(unsigned int reason, struct pt_regs *regs)
- 
- 	/* Clear global flags */
- 	if (master) {
--		if (cpumask_weight(uv_nmi_cpu_mask))
-+		if (!cpumask_empty(uv_nmi_cpu_mask))
- 			uv_nmi_cleanup_mask();
- 		atomic_set(&uv_nmi_cpus_in_nmi, -1);
- 		atomic_set(&uv_nmi_cpu, -1);
+-		if (pci_is_thunderbolt_attached(adev->pdev))
++		if (dev_is_removable(&adev->pdev->dev))
+ 			data |= NAVI10_PCIE__LC_L1_INACTIVITY_TBT_DEFAULT  << PCIE_LC_CNTL__LC_L1_INACTIVITY__SHIFT;
+ 		else
+ 			data |= NAVI10_PCIE__LC_L1_INACTIVITY_DEFAULT << PCIE_LC_CNTL__LC_L1_INACTIVITY__SHIFT;
 -- 
-2.32.0
+2.34.1
 
