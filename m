@@ -4,56 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFA90C433F5
-	for <nouveau@archiver.kernel.org>; Fri, 11 Feb 2022 03:28:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8CB5C433EF
+	for <nouveau@archiver.kernel.org>; Fri, 11 Feb 2022 03:28:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B6A410E9E8;
-	Fri, 11 Feb 2022 03:28:14 +0000 (UTC)
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD5B710E1F5;
- Fri, 11 Feb 2022 01:31:57 +0000 (UTC)
-X-UUID: 26d715e8ff1b490a83a18bf2609b5c7f-20220211
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com;
- s=dk; 
- h=Content-Type:Content-Transfer-Encoding:In-Reply-To:MIME-Version:Date:Message-ID:From:References:CC:To:Subject;
- bh=mPzByS0s/pMNJ28MWdnwwy704oYTTVkx0zpliBUsKhI=; 
- b=LhdY/6rlTZdwzXenoSxbgPa3RUx5lDUUpEIH4b4vtJDltuO1UFEV7H+ktMlgvcjmATzhGABCOxs9CM9KCW09I7uwj/n3Yo8azXrDW/IHPAzbsAFyJgoRsKRwLtMmpKXDijbxZq5advsuPiL0+My7aPhIxv85mIxyO3IWAb1HaUo=;
-X-UUID: 26d715e8ff1b490a83a18bf2609b5c7f-20220211
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by
- mailgw01.mediatek.com (envelope-from <macpaul.lin@mediatek.com>)
- (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
- with ESMTP id 829207914; Fri, 11 Feb 2022 09:31:53 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 11 Feb 2022 09:31:51 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 11 Feb 2022 09:31:51 +0800
-To: Mario Limonciello <mario.limonciello@amd.com>, Bjorn Helgaas
- <bhelgaas@google.com>, Andreas Noever <andreas.noever@gmail.com>, Mika
- Westerberg <mika.westerberg@linux.intel.com>, "open list:PCI SUBSYSTEM"
- <linux-pci@vger.kernel.org>, "open list:THUNDERBOLT DRIVER"
- <linux-usb@vger.kernel.org>, "open list:RADEON and AMDGPU DRM DRIVERS"
- <amd-gfx@lists.freedesktop.org>, "open list:DRM DRIVERS"
- <dri-devel@lists.freedesktop.org>, "open list:DRM DRIVER FOR NVIDIA
- GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, "open list:X86 PLATFORM
- DRIVERS" <platform-driver-x86@vger.kernel.org>
-References: <20220210224329.2793-1-mario.limonciello@amd.com>
- <20220210224329.2793-6-mario.limonciello@amd.com>
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-Message-ID: <52acd5d6-6964-464b-3f83-b1fcc3329f1e@mediatek.com>
-Date: Fri, 11 Feb 2022 09:31:51 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E3E210E9F5;
+	Fri, 11 Feb 2022 03:28:15 +0000 (UTC)
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E25D410E811;
+ Thu, 10 Feb 2022 11:37:29 +0000 (UTC)
+Received: from canpemm500002.china.huawei.com (unknown [172.30.72.56])
+ by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4JvZT42pQKzcckG;
+ Thu, 10 Feb 2022 19:36:24 +0800 (CST)
+Received: from [10.174.177.76] (10.174.177.76) by
+ canpemm500002.china.huawei.com (7.192.104.244) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Thu, 10 Feb 2022 19:37:24 +0800
+To: Christoph Hellwig <hch@lst.de>
+References: <20220210072828.2930359-1-hch@lst.de>
+ <20220210072828.2930359-2-hch@lst.de>
+From: Miaohe Lin <linmiaohe@huawei.com>
+Message-ID: <fcd1848f-19af-6572-942f-bdcd51bf143c@huawei.com>
+Date: Thu, 10 Feb 2022 19:37:24 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-In-Reply-To: <20220210224329.2793-6-mario.limonciello@amd.com>
+In-Reply-To: <20220210072828.2930359-2-hch@lst.de>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Content-Type: multipart/alternative;
- boundary="__=_Part_Boundary_008_1683732014.821183669"
+X-Originating-IP: [10.174.177.76]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ canpemm500002.china.huawei.com (7.192.104.244)
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Fri, 11 Feb 2022 03:28:13 +0000
-Subject: Re: [Nouveau] [PATCH v2 5/9] drm/amd: drop the use of
- `pci_is_thunderbolt_attached`
+Subject: Re: [Nouveau] [PATCH 01/27] mm: remove a pointless
+ CONFIG_ZONE_DEVICE check in memremap_pages
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,126 +50,51 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michael Jamet <michael.jamet@intel.com>,
- Yehezkel Bernat <YehezkelShB@gmail.com>, Alexander.Deucher@amd.com
+Cc: nvdimm@lists.linux.dev, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ Chaitanya Kulkarni <kch@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ amd-gfx@lists.freedesktop.org, Jason Gunthorpe <jgg@ziepe.ca>,
+ Ben Skeggs <bskeggs@redhat.com>, Jason Gunthorpe <jgg@nvidia.com>,
+ Ralph Campbell <rcampbell@nvidia.com>, Muchun Song <songmuchun@bytedance.com>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Logan Gunthorpe <logang@deltatee.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
---__=_Part_Boundary_008_1683732014.821183669
-Content-Type: text/html;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
+On 2022/2/10 15:28, Christoph Hellwig wrote:
+> memremap.c is only built when CONFIG_ZONE_DEVICE is set, so remove
+> the superflous extra check.
+> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
+> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> Reviewed-by: Chaitanya Kulkarni <kch@nvidia.com>
+> Reviewed-by: Muchun Song <songmuchun@bytedance.com>
+> Reviewed-by: Dan Williams <dan.j.williams@intel.com>
+> ---
+>  mm/memremap.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/mm/memremap.c b/mm/memremap.c
+> index 6aa5f0c2d11fda..5f04a0709e436e 100644
+> --- a/mm/memremap.c
+> +++ b/mm/memremap.c
+> @@ -328,8 +328,7 @@ void *memremap_pages(struct dev_pagemap *pgmap, int nid)
+>  		}
+>  		break;
+>  	case MEMORY_DEVICE_FS_DAX:
+> -		if (!IS_ENABLED(CONFIG_ZONE_DEVICE) ||
+> -		    IS_ENABLED(CONFIG_FS_DAX_LIMITED)) {
+> +		if (IS_ENABLED(CONFIG_FS_DAX_LIMITED)) {
+>  			WARN(1, "File system DAX not supported\n");
+>  			return ERR_PTR(-EINVAL);
+>  		}
+> 
 
-PHByZT4NCk9uJiMzMjsyLzExLzIyJiMzMjs2OjQzJiMzMjtBTSwmIzMyO01hcmlvJiMzMjtMaW1v
-bmNpZWxsbyYjMzI7d3JvdGU6DQomZ3Q7JiMzMjtDdXJyZW50bHkmIzMyOyYjOTY7cGNpX2lzX3Ro
-dW5kZXJib2x0X2F0dGFjaGVkJiM5NjsmIzMyO2lzJiMzMjt1c2VkJiMzMjt0byYjMzI7aW5kaWNh
-dGUmIzMyO2EmIzMyO2RldmljZQ0KJmd0OyYjMzI7aXMmIzMyO2Nvbm5lY3RlZCYjMzI7ZXh0ZXJu
-YWxseS4NCiZndDsmIzMyOw0KJmd0OyYjMzI7VGhlJiMzMjtQQ0kmIzMyO2NvcmUmIzMyO25vdyYj
-MzI7bWFya3MmIzMyO3N1Y2gmIzMyO2RldmljZXMmIzMyO2FzJiMzMjtyZW1vdmFibGUmIzMyO2Fu
-ZCYjMzI7ZG93bnN0cmVhbSYjMzI7ZHJpdmVycw0KJmd0OyYjMzI7Y2FuJiMzMjt1c2UmIzMyO3Ro
-aXMmIzMyO2luc3RlYWQuDQomZ3Q7JiMzMjsNCiZndDsmIzMyO1NpZ25lZC1vZmYtYnk6JiMzMjtN
-YXJpbyYjMzI7TGltb25jaWVsbG8mIzMyOyZsdDttYXJpby5saW1vbmNpZWxsb0BhbWQuY29tJmd0
-Ow0KJmd0OyYjMzI7LS0tDQomZ3Q7JiMzMjsmIzMyOyYjMzI7ZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvYW1kZ3B1X2ttcy5jJiMzMjt8JiMzMjsyJiMzMjsrLQ0KJmd0OyYjMzI7JiMzMjsmIzMy
-O2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L25iaW9fdjJfMy5jJiMzMjsmIzMyO3wmIzMyOzIm
-IzMyOystDQomZ3Q7JiMzMjsmIzMyOyYjMzI7MiYjMzI7ZmlsZXMmIzMyO2NoYW5nZWQsJiMzMjsy
-JiMzMjtpbnNlcnRpb25zKCspLCYjMzI7MiYjMzI7ZGVsZXRpb25zKC0pDQomZ3Q7JiMzMjsNCiZn
-dDsmIzMyO2RpZmYmIzMyOy0tZ2l0JiMzMjthL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Ft
-ZGdwdV9rbXMuYyYjMzI7Yi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfa21zLmMN
-CiZndDsmIzMyO2luZGV4JiMzMjsxZWJiOTFkYjIyNzQuLjZkYmY1NzUzYjViZSYjMzI7MTAwNjQ0
-DQomZ3Q7JiMzMjstLS0mIzMyO2EvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2tt
-cy5jDQomZ3Q7JiMzMjsrKysmIzMyO2IvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1
-X2ttcy5jDQomZ3Q7JiMzMjtAQCYjMzI7LTE2MSw3JiMzMjsrMTYxLDcmIzMyO0BAJiMzMjtpbnQm
-IzMyO2FtZGdwdV9kcml2ZXJfbG9hZF9rbXMoc3RydWN0JiMzMjthbWRncHVfZGV2aWNlJiMzMjsq
-YWRldiwmIzMyO3Vuc2lnbmVkJiMzMjtsb25nJiMzMjtmbGFncykNCiZndDsmIzMyOyYjMzI7JiMz
-MjsmIzMyOyYjMzI7JiMzMjsmIzMyOyhhbWRncHVfaXNfYXRweF9oeWJyaWQoKSYjMzI7fHwNCiZn
-dDsmIzMyOyYjMzI7JiMzMjsmIzMyOyYjMzI7JiMzMjsmIzMyOyYjMzI7YW1kZ3B1X2hhc19hdHB4
-X2RncHVfcG93ZXJfY250bCgpKSYjMzI7JmFtcDsmYW1wOw0KJmd0OyYjMzI7JiMzMjsmIzMyOyYj
-MzI7JiMzMjsmIzMyOyYjMzI7KChmbGFncyYjMzI7JmFtcDsmIzMyO0FNRF9JU19BUFUpJiMzMjs9
-PSYjMzI7MCkmIzMyOyZhbXA7JmFtcDsNCiZndDsmIzMyOy0mIzMyOyYjMzI7JiMzMjsmIzMyOyFw
-Y2lfaXNfdGh1bmRlcmJvbHRfYXR0YWNoZWQodG9fcGNpX2RldihkZXYtJmd0O2RldikpKQ0KJmd0
-OyYjMzI7KyYjMzI7JiMzMjsmIzMyOyYjMzI7IWRldl9pc19yZW1vdmFibGUoJmFtcDthZGV2LSZn
-dDtwZGV2LSZndDtkZXYpKQ0KJmd0OyYjMzI7JiMzMjsmIzMyO2ZsYWdzJiMzMjt8PSYjMzI7QU1E
-X0lTX1BYOw0KJmd0OyYjMzI7JiMzMjsmIzMyOw0KJmd0OyYjMzI7JiMzMjsmIzMyO3BhcmVudCYj
-MzI7PSYjMzI7cGNpX3Vwc3RyZWFtX2JyaWRnZShhZGV2LSZndDtwZGV2KTsNCiZndDsmIzMyO2Rp
-ZmYmIzMyOy0tZ2l0JiMzMjthL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L25iaW9fdjJfMy5j
-JiMzMjtiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L25iaW9fdjJfMy5jDQomZ3Q7JiMzMjtp
-bmRleCYjMzI7ZWU3Y2FiMzdkZmQ1Li4yYzVkNzRkODM2ZjAmIzMyOzEwMDY0NA0KJmd0OyYjMzI7
-LS0tJiMzMjthL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L25iaW9fdjJfMy5jDQomZ3Q7JiMz
-MjsrKysmIzMyO2IvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvbmJpb192Ml8zLmMNCiZndDsm
-IzMyO0BAJiMzMjstMzgyLDcmIzMyOyszODIsNyYjMzI7QEAmIzMyO3N0YXRpYyYjMzI7dm9pZCYj
-MzI7bmJpb192Ml8zX2VuYWJsZV9hc3BtKHN0cnVjdCYjMzI7YW1kZ3B1X2RldmljZSYjMzI7KmFk
-ZXYsDQomZ3Q7JiMzMjsmIzMyOyYjMzI7DQomZ3Q7JiMzMjsmIzMyOyYjMzI7ZGF0YSYjMzI7fD0m
-IzMyO05BVkkxMF9QQ0lFX19MQ19MMFNfSU5BQ1RJVklUWV9ERUZBVUxUJiMzMjsmbHQ7Jmx0OyYj
-MzI7UENJRV9MQ19DTlRMX19MQ19MMFNfSU5BQ1RJVklUWV9fU0hJRlQ7DQomZ3Q7JiMzMjsmIzMy
-OyYjMzI7DQomZ3Q7JiMzMjstaWYmIzMyOyhwY2lfaXNfdGh1bmRlcmJvbHRfYXR0YWNoZWQoYWRl
-di0mZ3Q7cGRldikpDQomZ3Q7JiMzMjsraWYmIzMyOyhkZXZfaXNfcmVtb3ZhYmxlKCZhbXA7YWRl
-di0mZ3Q7cGRldi0mZ3Q7ZGV2KSkNCiZndDsmIzMyOyYjMzI7JiMzMjtkYXRhJiMzMjt8PSYjMzI7
-TkFWSTEwX1BDSUVfX0xDX0wxX0lOQUNUSVZJVFlfVEJUX0RFRkFVTFQmIzMyOyYjMzI7Jmx0OyZs
-dDsmIzMyO1BDSUVfTENfQ05UTF9fTENfTDFfSU5BQ1RJVklUWV9fU0hJRlQ7DQomZ3Q7JiMzMjsm
-IzMyOyYjMzI7ZWxzZQ0KJmd0OyYjMzI7JiMzMjsmIzMyO2RhdGEmIzMyO3w9JiMzMjtOQVZJMTBf
-UENJRV9fTENfTDFfSU5BQ1RJVklUWV9ERUZBVUxUJiMzMjsmbHQ7Jmx0OyYjMzI7UENJRV9MQ19D
-TlRMX19MQ19MMV9JTkFDVElWSVRZX19TSElGVDsNCiZndDsmIzMyOw0KDQpSZXZpZXdlZC1ieTom
-IzMyO01hY3BhdWwmIzMyO0xpbiYjMzI7Jmx0O21hY3BhdWwubGluQG1lZGlhdGVrLmNvbSZndDsN
-Cg0KVGhhbmtzIQ0KDQpSZWdhcmRzLA0KTWFjcGF1bCYjMzI7TGluDQo8L3ByZT48IS0tdHlwZTp0
-ZXh0LS0+PCEtLXstLT48cHJlPioqKioqKioqKioqKiogTUVESUFURUsgQ29uZmlkZW50aWFsaXR5
-IE5vdGljZSAqKioqKioqKioqKioqKioqKioqKg0KVGhlIGluZm9ybWF0aW9uIGNvbnRhaW5lZCBp
-biB0aGlzIGUtbWFpbCBtZXNzYWdlIChpbmNsdWRpbmcgYW55IA0KYXR0YWNobWVudHMpIG1heSBi
-ZSBjb25maWRlbnRpYWwsIHByb3ByaWV0YXJ5LCBwcml2aWxlZ2VkLCBvciBvdGhlcndpc2UNCmV4
-ZW1wdCBmcm9tIGRpc2Nsb3N1cmUgdW5kZXIgYXBwbGljYWJsZSBsYXdzLiBJdCBpcyBpbnRlbmRl
-ZCB0byBiZSANCmNvbnZleWVkIG9ubHkgdG8gdGhlIGRlc2lnbmF0ZWQgcmVjaXBpZW50KHMpLiBB
-bnkgdXNlLCBkaXNzZW1pbmF0aW9uLCANCmRpc3RyaWJ1dGlvbiwgcHJpbnRpbmcsIHJldGFpbmlu
-ZyBvciBjb3B5aW5nIG9mIHRoaXMgZS1tYWlsIChpbmNsdWRpbmcgaXRzIA0KYXR0YWNobWVudHMp
-IGJ5IHVuaW50ZW5kZWQgcmVjaXBpZW50KHMpIGlzIHN0cmljdGx5IHByb2hpYml0ZWQgYW5kIG1h
-eSANCmJlIHVubGF3ZnVsLiBJZiB5b3UgYXJlIG5vdCBhbiBpbnRlbmRlZCByZWNpcGllbnQgb2Yg
-dGhpcyBlLW1haWwsIG9yIGJlbGlldmUgDQp0aGF0IHlvdSBoYXZlIHJlY2VpdmVkIHRoaXMgZS1t
-YWlsIGluIGVycm9yLCBwbGVhc2Ugbm90aWZ5IHRoZSBzZW5kZXIgDQppbW1lZGlhdGVseSAoYnkg
-cmVwbHlpbmcgdG8gdGhpcyBlLW1haWwpLCBkZWxldGUgYW55IGFuZCBhbGwgY29waWVzIG9mIA0K
-dGhpcyBlLW1haWwgKGluY2x1ZGluZyBhbnkgYXR0YWNobWVudHMpIGZyb20geW91ciBzeXN0ZW0s
-IGFuZCBkbyBub3QNCmRpc2Nsb3NlIHRoZSBjb250ZW50IG9mIHRoaXMgZS1tYWlsIHRvIGFueSBv
-dGhlciBwZXJzb24uIFRoYW5rIHlvdSENCjwvcHJlPjwhLS19LS0+
+LGTM. Thanks.
 
---__=_Part_Boundary_008_1683732014.821183669
-Content-Type: text/plain;
-	charset="utf-8";
-	format=flowed
-Content-Transfer-Encoding: base64
-
-T24gMi8xMS8yMiA2OjQzIEFNLCBNYXJpbyBMaW1vbmNpZWxsbyB3cm90ZToNCj4gQ3VycmVudGx5
-IGBwY2lfaXNfdGh1bmRlcmJvbHRfYXR0YWNoZWRgIGlzIHVzZWQgdG8gaW5kaWNhdGUgYSBkZXZp
-Y2UNCj4gaXMgY29ubmVjdGVkIGV4dGVybmFsbHkuDQo+IA0KPiBUaGUgUENJIGNvcmUgbm93IG1h
-cmtzIHN1Y2ggZGV2aWNlcyBhcyByZW1vdmFibGUgYW5kIGRvd25zdHJlYW0gZHJpdmVycw0KPiBj
-YW4gdXNlIHRoaXMgaW5zdGVhZC4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IE1hcmlvIExpbW9uY2ll
-bGxvIDxtYXJpby5saW1vbmNpZWxsb0BhbWQuY29tPg0KPiAtLS0NCj4gICBkcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS9hbWRncHVfa21zLmMgfCAyICstDQo+ICAgZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRncHUvbmJpb192Ml8zLmMgIHwgMiArLQ0KPiAgIDIgZmlsZXMgY2hhbmdlZCwgMiBpbnNl
-cnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9rbXMuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
-L2FtZGdwdV9rbXMuYw0KPiBpbmRleCAxZWJiOTFkYjIyNzQuLjZkYmY1NzUzYjViZSAxMDA2NDQN
-Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2ttcy5jDQo+ICsrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9rbXMuYw0KPiBAQCAtMTYxLDcgKzE2
-MSw3IEBAIGludCBhbWRncHVfZHJpdmVyX2xvYWRfa21zKHN0cnVjdCBhbWRncHVfZGV2aWNlICph
-ZGV2LCB1bnNpZ25lZCBsb25nIGZsYWdzKQ0KPiAgIAkgICAgKGFtZGdwdV9pc19hdHB4X2h5YnJp
-ZCgpIHx8DQo+ICAgCSAgICAgYW1kZ3B1X2hhc19hdHB4X2RncHVfcG93ZXJfY250bCgpKSAmJg0K
-PiAgIAkgICAgKChmbGFncyAmIEFNRF9JU19BUFUpID09IDApICYmDQo+IC0JICAgICFwY2lfaXNf
-dGh1bmRlcmJvbHRfYXR0YWNoZWQodG9fcGNpX2RldihkZXYtPmRldikpKQ0KPiArCSAgICAhZGV2
-X2lzX3JlbW92YWJsZSgmYWRldi0+cGRldi0+ZGV2KSkNCj4gICAJCWZsYWdzIHw9IEFNRF9JU19Q
-WDsNCj4gICANCj4gICAJcGFyZW50ID0gcGNpX3Vwc3RyZWFtX2JyaWRnZShhZGV2LT5wZGV2KTsN
-Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L25iaW9fdjJfMy5jIGIv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvbmJpb192Ml8zLmMNCj4gaW5kZXggZWU3Y2FiMzdk
-ZmQ1Li4yYzVkNzRkODM2ZjAgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-Z3B1L25iaW9fdjJfMy5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L25iaW9f
-djJfMy5jDQo+IEBAIC0zODIsNyArMzgyLDcgQEAgc3RhdGljIHZvaWQgbmJpb192Ml8zX2VuYWJs
-ZV9hc3BtKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LA0KPiAgIA0KPiAgIAkJZGF0YSB8PSBO
-QVZJMTBfUENJRV9fTENfTDBTX0lOQUNUSVZJVFlfREVGQVVMVCA8PCBQQ0lFX0xDX0NOVExfX0xD
-X0wwU19JTkFDVElWSVRZX19TSElGVDsNCj4gICANCj4gLQkJaWYgKHBjaV9pc190aHVuZGVyYm9s
-dF9hdHRhY2hlZChhZGV2LT5wZGV2KSkNCj4gKwkJaWYgKGRldl9pc19yZW1vdmFibGUoJmFkZXYt
-PnBkZXYtPmRldikpDQo+ICAgCQkJZGF0YSB8PSBOQVZJMTBfUENJRV9fTENfTDFfSU5BQ1RJVklU
-WV9UQlRfREVGQVVMVCAgPDwgUENJRV9MQ19DTlRMX19MQ19MMV9JTkFDVElWSVRZX19TSElGVDsN
-Cj4gICAJCWVsc2UNCj4gICAJCQlkYXRhIHw9IE5BVkkxMF9QQ0lFX19MQ19MMV9JTkFDVElWSVRZ
-X0RFRkFVTFQgPDwgUENJRV9MQ19DTlRMX19MQ19MMV9JTkFDVElWSVRZX19TSElGVDsNCj4gDQoN
-ClJldmlld2VkLWJ5OiBNYWNwYXVsIExpbiA8bWFjcGF1bC5saW5AbWVkaWF0ZWsuY29tPg0KDQpU
-aGFua3MhDQoNClJlZ2FyZHMsDQpNYWNwYXVsIExpbg==
-
---__=_Part_Boundary_008_1683732014.821183669--
-
+Reviewed-by: Miaohe Lin <linmiaohe@huawei.com>
