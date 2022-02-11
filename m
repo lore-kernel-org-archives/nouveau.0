@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B751C433EF
-	for <nouveau@archiver.kernel.org>; Sat, 12 Feb 2022 17:00:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D972C433F5
+	for <nouveau@archiver.kernel.org>; Sat, 12 Feb 2022 17:00:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A46C10E70E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6819810E726;
 	Sat, 12 Feb 2022 17:00:02 +0000 (UTC)
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2045.outbound.protection.outlook.com [40.107.244.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25E3F10EB07;
- Fri, 11 Feb 2022 19:35:15 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2075.outbound.protection.outlook.com [40.107.237.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1671E10E1A7;
+ Fri, 11 Feb 2022 19:35:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OnSCG2T3OHVct8KbuHPzVzCtjROjY4XSzjs94Y1D6pFxxwgsvrJjbb/Z3FPdl6C9AoegJO26xml+2KE6w+2uMlA/o2Cg2Sqz+JDQx5yZDEAf6ZgHigpsfyjt6Z9YzHdb0ye9G8F3L4Tlk2xwSJ5HG3y7aCqK0eN22N/o0Cb5CAAG7GEDPr9wt5JsnkbO3lhlxM63AxMt25HVSdCL4h4a5aJW9N2kmEzKa7rNuekZ93ouK7r3lddkF2xCGO2zN/cRwLaarVprvcmFDDoDn+2wJ6M+oV0E5+ANf3RudpwoNjHShdLdjZtCLQYBkdVlC8OeBNq7OK5ic5i1LY04IDhrsg==
+ b=X5ZhyrkJF2yW4FvReDvtD0B+wQiyf+ZyCcUJtVSrMxjlD6AJfEvI3xBOYrKVMBN76Sbq+Vm2twx2DjJd579yAi163OX2SSh/+oK5wHHRfqETnS3dVzXx+XNm7UGmj+JJIbLmLddlCWHz9wwXjD8TMQl9OSBNorDWt29bpXe4Sb/o/Sf7/8285X4NMr1+upm+umRUYk21pzwMkm3dAk28wrejTML58PatLci9yZKr3qmaQT5pSnlOQzHey4qSqKBfgTjcPoUu3GDtQXLjYdlGZWbVXg8coaKAbzlqmUZgc0g5F/SOfowxOST/+KYeBePoM7awptFXKw+ibJZ27fS/VQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=neyootgBRunSQAJPnXb1dPCfoyhMOxPxpCnyWraQL7E=;
- b=hT2EaqHv2hUqBa0+cfUScQ/pwOFqpJ0LBVSUtu1oRIjY7BqHai57psMdxE0gvTb0IMSl7cPXPdXb9ppJCmMKhddY4egbKmqD8JCNLJjv9RSFEJOw8zcR83afjSlz0IOHy/wvEE0tKa64SlPXfCeFXwrHUYHbKbe/6ZmnX3MIZO4PtyGUShr+4ru2KgdJZZQmk5CSned5VNbCV2xn8nz94SpCbsrCDrrD3Wo5o9Bz/s2RWR8W+kgFH49ZIFT3vqbwOCXRk33V+9rirB6V1ramPq877F1JBHajbHRcmzw1hKfOvbjYSz/CnkgwAWBWuHlJiYrsMOpg0Ebs+guPKRqufg==
+ bh=uJ6IrB2ORQe2nxPYRz7qyMCdQUrvEwbuu9iMuxKosSE=;
+ b=NfNsft/U9ImOQq1Qp867No9IuJGAseaTkVcEs8g9UQhTUnNV87iQGn/KdDHlUhm40dbBz7T3lT4ak4C07IsUESChlvUX18oyCNCvTykSjtS4TuzU9551mGnJWNoA61BGnGwD4VM5AHb8v2hT1EqNztQLs5JweSDsni2AkdaO4lOwfXc991VQpu/5ttBiuS+a7vBKdzH0A993XcFd8Ap4o/5Cdxmx14EAzeqYyLdo97hsV2Iqkv07jPJlpae8hxav6Ort6vL6Rl+/rnzZBZsJy4L8th/3y9rNK9c4Zqphbf+jrnGT8U20tnqeZTsla/dmYwqNfT4/sqAM6BTO5DOX0A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
  (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=neyootgBRunSQAJPnXb1dPCfoyhMOxPxpCnyWraQL7E=;
- b=ZOYR2zRmfdr6d2S1Td0UvbH67Vig/Tmj0WJORF3zyI3v8Tf1hFTzhoGPwqrZjY9iNPDuymACGJ0sjQuLfonL8cplPvC6wmRxXedbLTxAfH8XC2T0XXykNPU86A24Va10wiaHS1mmqEm8GDF730XQ3Vb+LcSfFpFJUVU95faOLjI=
-Received: from DM6PR08CA0042.namprd08.prod.outlook.com (2603:10b6:5:1e0::16)
- by PH7PR12MB5999.namprd12.prod.outlook.com (2603:10b6:510:1db::20) with
+ bh=uJ6IrB2ORQe2nxPYRz7qyMCdQUrvEwbuu9iMuxKosSE=;
+ b=u7/W9REHEtdLl+zgRD4RutFcT73qIgQP8om+GSB2Z3ciwtkBgE8tyew6GGlNFU9gwEXkwUs+mV+WuzY0meTWSA5ORpZm+fWZzMraTWjn3/PZ3F1xlflZjVqMVUitGo2Kv8x3VbUK8TCvirqyYsC2aQly2cZMBHYNK2mroXGLT80=
+Received: from DS7PR03CA0237.namprd03.prod.outlook.com (2603:10b6:5:3ba::32)
+ by BN9PR12MB5148.namprd12.prod.outlook.com (2603:10b6:408:119::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.18; Fri, 11 Feb
- 2022 19:35:13 +0000
-Received: from DM6NAM11FT029.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:1e0:cafe::9b) by DM6PR08CA0042.outlook.office365.com
- (2603:10b6:5:1e0::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.13 via Frontend
- Transport; Fri, 11 Feb 2022 19:35:13 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Fri, 11 Feb
+ 2022 19:35:06 +0000
+Received: from DM6NAM11FT027.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3ba:cafe::e8) by DS7PR03CA0237.outlook.office365.com
+ (2603:10b6:5:3ba::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.11 via Frontend
+ Transport; Fri, 11 Feb 2022 19:35:06 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,13 +45,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT029.mail.protection.outlook.com (10.13.173.23) with Microsoft SMTP
+ DM6NAM11FT027.mail.protection.outlook.com (10.13.172.205) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4975.11 via Frontend Transport; Fri, 11 Feb 2022 19:35:12 +0000
+ 15.20.4975.11 via Frontend Transport; Fri, 11 Feb 2022 19:35:06 +0000
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 11 Feb
- 2022 13:35:11 -0600
+ 2022 13:35:05 -0600
 From: Mario Limonciello <mario.limonciello@amd.com>
 To: Bjorn Helgaas <bhelgaas@google.com>, Mika Westerberg
  <mika.westerberg@linux.intel.com>, "open list:PCI SUBSYSTEM"
@@ -60,11 +60,9 @@ To: Bjorn Helgaas <bhelgaas@google.com>, Mika Westerberg
  <amd-gfx@lists.freedesktop.org>, "open list:DRM DRIVERS"
  <dri-devel@lists.freedesktop.org>, "open list:DRM DRIVER FOR NVIDIA
  GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>
-Date: Fri, 11 Feb 2022 13:32:48 -0600
-Message-ID: <20220211193250.1904843-11-mario.limonciello@amd.com>
+Date: Fri, 11 Feb 2022 13:32:38 -0600
+Message-ID: <20220211193250.1904843-1-mario.limonciello@amd.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220211193250.1904843-1-mario.limonciello@amd.com>
-References: <20220211193250.1904843-1-mario.limonciello@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -73,31 +71,30 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2ff62401-94b5-4128-9ff2-08d9ed959f75
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5999:EE_
-X-Microsoft-Antispam-PRVS: <PH7PR12MB599909918673977068D0F71FE2309@PH7PR12MB5999.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:514;
+X-MS-Office365-Filtering-Correlation-Id: 975a67b0-121d-4efc-6eb1-08d9ed959b6e
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5148:EE_
+X-Microsoft-Antispam-PRVS: <BN9PR12MB5148677497D5619531AB1A3BE2309@BN9PR12MB5148.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: c2nXe3SBRvAlKvPWpIsRM5CIKNd5JtqPxcLSuW7b/iPx58l5R8260YJc4JXkyVlUq2PGZjomcVIHSA5Y8rLpLaHV35U7VdF/P+xv8oocTSYgjsdwlazqi0SxV2UjVwbG1MM2RWkA/4m4ITAk7SgTdfu0DnqAp9v1dpbU9Ws7BGt7smTqUgrODnZJh/Kq36bPrLjiwcc7GgXvgjekVyc0Wz8DCeh/S3z8MreDcvk991e5QxY1adZyz22jUMbjOpuwbOD6Kbo5gkTGxW2bn9BQl7+B/ZYt+ZtbvLu42nkH4BKY0pIori0OHSiY/fu9BTbIEehjT9wmEWEKrd83dfsZM0MCelG0QVcIpOrKqNfQGZo0CMm3rmzxWgddVvs3gw9qHCVt+0skxraDb+Ri58BvUWtcknS5jMCNx/rOTwdLhBlQRha6qf6J8Ap7VeB+F1auv6XdPu9ACuKdSKRXvQcUnqOV5TuE6Xnqa2U3KFUbIQgvlUE1CdEkjlhTsSgIkjlJ8rlnUpSanRzYB+gKNrYGo3UaH6Sif1D0YVGxWjhgGFpf7QbUIiCPt6rLaoYm1HgpZENyDhJtIcTXcl0FmmCTlMWkjAuOS37LYVHN8W/zEHOYl6C2+UR2Zx57FWFZb4lLpChmqPngds7XtRKDlARCyBH468MOPjUOFFA4SDq2tipareTcSnfoc05h4rTxxae5+gCt7Ah4MFnxiE+H7L1R0Z69OxOYcQQTXEfuphw4/oE=
+X-Microsoft-Antispam-Message-Info: Sz9UVeGsqg67N4LX4cS/N4lj9FXNxVQhKDd+8XAw+8dnU/V3h6KaVwwRwdFLQ3zUgzKFU8ip+/HamXn+j3laTfsiCJRkZ6kVLcqc/gRGLUbOsodRqkXvmResqP+l9ABukS8fvxCSEwZGYbHbzJTbiWEV7n6CyLlP654wvImGJxsJtoYiDmCwGjVqqVXUzaQXsNTBvqBm/l8MDuoRXQCH49ycOglDKTiDUqM66gg5h0OAS5fk+heoFMfU469ISr3R7qGkavmtNxF1omL1dWbDvraXDtRxRF45eS6GHPYJmOzvB7lBXqKt78Z14ad5uNOIfYUetkDBpfrhdSw19Kn+wFrzo9MbWyU8mQQwDE1PM8KVR7WBD83UF7t8EPbbc8Qmy186lQTADFAScJboGltZwbdbu8s/662oQ/m3xUoc3OQ1D3Grtsr6G/qXZmK+izPwnLy1qKqtPkibYp21s0b2M6BXz7luW7NuegBUuDYdRoBT4huQIN+LVWH6rWDDjnA5zxY6zlqIGho+7lvupFedSuAZvpU8/TrgY8oW8UptLR3yY4iFWp84WkXQcPZnIt6Ld8rDzu94CIUCfbd25SPwy4KBUKdxK+FkCznSm/5R1EXS7snrjhWwOAqI/hdZUsqcXsx+up9e/FWGS27vZcmOW9t34upJfMScw5WUegHef5AZxhkhlVDktRL5VJ8hujxoG3Q3mCmW5vgLeBYlIdFL77ayijhFSwV1SEVmSiYT/Wk=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(110136005)(36756003)(508600001)(54906003)(316002)(6666004)(40460700003)(4326008)(47076005)(1076003)(2616005)(7416002)(70206006)(8936002)(82310400004)(16526019)(26005)(186003)(356005)(2906002)(5660300002)(36860700001)(8676002)(336012)(70586007)(83380400001)(426003)(86362001)(44832011)(81166007)(81973001)(36900700001);
+ SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(16526019)(186003)(2616005)(5660300002)(26005)(356005)(81166007)(36860700001)(2906002)(6666004)(1076003)(7416002)(36756003)(508600001)(47076005)(426003)(336012)(110136005)(70206006)(4326008)(86362001)(44832011)(40460700003)(316002)(70586007)(8676002)(82310400004)(8936002)(54906003)(83380400001)(81973001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2022 19:35:12.9738 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ff62401-94b5-4128-9ff2-08d9ed959f75
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2022 19:35:06.2157 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 975a67b0-121d-4efc-6eb1-08d9ed959b6e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT029.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT027.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5999
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5148
 X-Mailman-Approved-At: Sat, 12 Feb 2022 16:59:59 +0000
-Subject: [Nouveau] [PATCH v3 10/12] drm/radeon: drop the use of
- `pci_is_thunderbolt_attached`
+Subject: [Nouveau] [PATCH v3 00/12] Overhaul `is_thunderbolt`
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,53 +114,72 @@ Cc: Hans de Goede <hdegoede@redhat.com>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Currently `pci_is_thunderbolt_attached` is used to indicate a device
-is connected externally.
+Various drivers in the kernel use `is_thunderbolt` or
+`pci_is_thunderbolt_attached` to designate behaving differently
+from a device that is internally in the machine. This relies upon checks
+for a specific capability only set on Intel controllers.
 
-The PCI core now marks such devices as removable and downstream drivers
-can use this instead.
+Non-Intel USB4 designs should also match this designation so that they
+can be treated the same regardless of the host they're connected to.
 
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
- drivers/gpu/drm/radeon/radeon_device.c | 4 ++--
- drivers/gpu/drm/radeon/radeon_kms.c    | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+As part of adding the generic USB4 controller code, it was realized that
+`is_thunderbolt` and `pcie_is_thunderbolt_attached` have been overloaded.
 
-diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
-index 4f0fbf667431..5117fce23b3f 100644
---- a/drivers/gpu/drm/radeon/radeon_device.c
-+++ b/drivers/gpu/drm/radeon/radeon_device.c
-@@ -1439,7 +1439,7 @@ int radeon_device_init(struct radeon_device *rdev,
- 
- 	if (rdev->flags & RADEON_IS_PX)
- 		runtime = true;
--	if (!pci_is_thunderbolt_attached(rdev->pdev))
-+	if (!dev_is_removable(&rdev->pdev->dev))
- 		vga_switcheroo_register_client(rdev->pdev,
- 					       &radeon_switcheroo_ops, runtime);
- 	if (runtime)
-@@ -1527,7 +1527,7 @@ void radeon_device_fini(struct radeon_device *rdev)
- 	/* evict vram memory */
- 	radeon_bo_evict_vram(rdev);
- 	radeon_fini(rdev);
--	if (!pci_is_thunderbolt_attached(rdev->pdev))
-+	if (!dev_is_removable(&rdev->pdev->dev))
- 		vga_switcheroo_unregister_client(rdev->pdev);
- 	if (rdev->flags & RADEON_IS_PX)
- 		vga_switcheroo_fini_domain_pm_ops(rdev->dev);
-diff --git a/drivers/gpu/drm/radeon/radeon_kms.c b/drivers/gpu/drm/radeon/radeon_kms.c
-index 11ad210919c8..e01ee7a5cf5d 100644
---- a/drivers/gpu/drm/radeon/radeon_kms.c
-+++ b/drivers/gpu/drm/radeon/radeon_kms.c
-@@ -139,7 +139,7 @@ int radeon_driver_load_kms(struct drm_device *dev, unsigned long flags)
- 	if ((radeon_runtime_pm != 0) &&
- 	    radeon_has_atpx() &&
- 	    ((flags & RADEON_IS_IGP) == 0) &&
--	    !pci_is_thunderbolt_attached(pdev))
-+	    !dev_is_removable(&pdev->dev))
- 		flags |= RADEON_IS_PX;
- 
- 	/* radeon_device_init should report only fatal error
+Instead migrate to using removable attribute from device core.
+
+Changes from v2->v3:
+- Add various tags for patches that haven't changed from v2->v3
+- Add new patches for Mika's suggestions:
+  * Moving Apple Thunderbolt D3 declaration into quirks
+  * Detect PCIe root port used for PCIe tunneling on integrated controllers
+    using `usb4-host-interface`
+  * Detect PCIe root port used for PCIe tunneling on discrete controllers
+    using the USB4 DVSEC specification
+
+Changes from v1->v2:
+ - Add Alex's tag to first patch
+ - Move lack of command completion into a quirk (Lukas)
+ - Drop `is_thunderbolt` attribute and `pci_is_thunderbolt_attached` and
+   use device core removable attribute instead
+ - Adjust all consumers of old attribute to use removable
+
+Note: this spans USB/DRM/platform-x86/PCI trees.
+As a majority of the changes are in PCI, it should probably come through
+that tree if possible.
+
+Mario Limonciello (12):
+  thunderbolt: move definition of PCI_CLASS_SERIAL_USB_USB4
+  PCI: Move `is_thunderbolt` check for lack of command completed to a
+    quirk
+  PCI: Move check for old Apple Thunderbolt controllers into a quirk
+  PCI: Drop the `is_thunderbolt` attribute from PCI core
+  PCI: Detect root port of internal USB4 devices by
+    `usb4-host-interface`
+  PCI: Explicitly mark USB4 NHI devices as removable
+  PCI: Set ports for discrete USB4 controllers appropriately
+  drm/amd: drop the use of `pci_is_thunderbolt_attached`
+  drm/nouveau: drop the use of `pci_is_thunderbolt_attached`
+  drm/radeon: drop the use of `pci_is_thunderbolt_attached`
+  platform/x86: amd-gmux: drop the use of `pci_is_thunderbolt_attached`
+  PCI: drop `pci_is_thunderbolt_attached`
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c |  2 +-
+ drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c  |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_vga.c   |  4 +-
+ drivers/gpu/drm/radeon/radeon_device.c  |  4 +-
+ drivers/gpu/drm/radeon/radeon_kms.c     |  2 +-
+ drivers/pci/hotplug/pciehp_hpc.c        |  6 +--
+ drivers/pci/pci-acpi.c                  | 10 ++++
+ drivers/pci/pci.c                       | 12 +++--
+ drivers/pci/pci.h                       |  5 ++
+ drivers/pci/probe.c                     | 55 ++++++++++++++-----
+ drivers/pci/quirks.c                    | 70 +++++++++++++++++++++++++
+ drivers/platform/x86/apple-gmux.c       |  2 +-
+ drivers/thunderbolt/nhi.h               |  2 -
+ include/linux/pci.h                     | 25 +--------
+ include/linux/pci_ids.h                 |  3 ++
+ 15 files changed, 148 insertions(+), 56 deletions(-)
+
 -- 
 2.34.1
 
