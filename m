@@ -4,101 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD755C433F5
-	for <nouveau@archiver.kernel.org>; Fri, 11 Feb 2022 03:28:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 934E5C433EF
+	for <nouveau@archiver.kernel.org>; Fri, 11 Feb 2022 03:28:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E93C10E9E7;
-	Fri, 11 Feb 2022 03:28:14 +0000 (UTC)
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2055.outbound.protection.outlook.com [40.107.93.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34CAA10E977;
- Thu, 10 Feb 2022 22:43:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=idHSwBDmOGW0+HwlpQBTfMPFJqb1nchNpaKN6VFM7tWZkgTqwCM3655wtLppC+hZJ0b0YEDrH9x+IKdds7NvuSB1GQy3MFdNyvv6DnjyJR6F3dWYpu3lPYjRhTG79txBCz3mii1Vw6vyNPBoGh6caoas0n9dEpTNERhn4x2gVNm45QMio4RxUPRjNRbeHRGOqQ0QGzgil4c4mh3mqIDEnPOoaBOK3JvyLldeOIN2+79jAxyRkSNOJUdQmuiv1/nnUvp0Cf7uef0XPdOlwbm1ZKMUR4AeZA8sEQ3hATRyqkoHa80u2KbAmIskVROq4o3hS1R8On6XukMUQU2J3B395g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8I9wA4fSQYCyzQLcndlkzty2V699ReWQKSTO5W4ekZ0=;
- b=UEhTtJT+GzR1FvhPDEVIf9MlMF3Px9sHuIQb4ow5ajKrBap9sgzAPraxk/+LYayCcdz5dkm87JfTXHfoGWvVU6zkWHC759K+Hqla7GpBmCtqnrGs9ZbnDV/W+n+vCJM2lI3y77EKHN9UEuFppuLN7gPeON1+GucnwSn+s1oeh7oYYuYym7vVISw0EruHFjm/C4KfZ8Zebqxr1AMIZhtiu5i8u0G2gbfjScOIhjZEHfr1lIzQmbvNDe/uDHqDHUo2CTlkpv+hCIpfPUh9BsUsJTM9tmbvLa+UKTUKNfZP412kPnMmfsmRnmXLs0DEJv7/hfbItSfstMu6gg6mEIY2qg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8I9wA4fSQYCyzQLcndlkzty2V699ReWQKSTO5W4ekZ0=;
- b=qiG440SUoa1ivsjMPkWraDqAwqco0Gctm/4OQMK19SGOWxaAOb4OJfxPoDy+/hYQdksp4iG472H1qIG1rJXqUUmTttCqnsHIzmFbG7pYaNqI/oaSlEYhxnussTaPefW6/wf66GUyCB1UIvh7DrXE/CrvaktXpRomyplQFy9o4L0=
-Received: from BN6PR2001CA0048.namprd20.prod.outlook.com
- (2603:10b6:405:16::34) by SN6PR12MB4735.namprd12.prod.outlook.com
- (2603:10b6:805:e5::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.18; Thu, 10 Feb
- 2022 22:43:49 +0000
-Received: from BN8NAM11FT039.eop-nam11.prod.protection.outlook.com
- (2603:10b6:405:16:cafe::a3) by BN6PR2001CA0048.outlook.office365.com
- (2603:10b6:405:16::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.19 via Frontend
- Transport; Thu, 10 Feb 2022 22:43:49 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT039.mail.protection.outlook.com (10.13.177.169) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4975.11 via Frontend Transport; Thu, 10 Feb 2022 22:43:48 +0000
-Received: from AUS-LX-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 10 Feb
- 2022 16:43:44 -0600
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: Bjorn Helgaas <bhelgaas@google.com>, Andreas Noever
- <andreas.noever@gmail.com>, Mika Westerberg
- <mika.westerberg@linux.intel.com>, "open list:PCI SUBSYSTEM"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A81A10E9FB;
+	Fri, 11 Feb 2022 03:28:16 +0000 (UTC)
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3136010E1F5;
+ Fri, 11 Feb 2022 01:28:58 +0000 (UTC)
+X-UUID: a6ec2389a58f4263b294b95e622561b2-20220211
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com;
+ s=dk; 
+ h=Content-Type:Content-Transfer-Encoding:In-Reply-To:MIME-Version:Date:Message-ID:From:References:CC:To:Subject;
+ bh=WhoyAmQzNgF8EmbXvPhTH/2sxRsX1qfK5DKv6TsuUcY=; 
+ b=RcedtIIcAHepwm4lfcPdHFhoFPNia8hk0NyCFSw07tJVKEq4dStrY+hni3SQolZs+hbwQ0fMdAaoJwrXEimzO/YMBiAw8ru6MZbCL+FTrL9A6EDAeaUe0Pl1wBpEjuKV2XK114rbwiA+jw97ijg9XNkhf6wluhf3xjQ5RO8fEcQ=;
+X-UUID: a6ec2389a58f4263b294b95e622561b2-20220211
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+ (envelope-from <macpaul.lin@mediatek.com>)
+ (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+ with ESMTP id 1085269837; Fri, 11 Feb 2022 09:28:52 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3; 
+ Fri, 11 Feb 2022 09:28:51 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 11 Feb 2022 09:28:51 +0800
+To: Mario Limonciello <mario.limonciello@amd.com>, Bjorn Helgaas
+ <bhelgaas@google.com>, Andreas Noever <andreas.noever@gmail.com>, Mika
+ Westerberg <mika.westerberg@linux.intel.com>, "open list:PCI SUBSYSTEM"
  <linux-pci@vger.kernel.org>, "open list:THUNDERBOLT DRIVER"
  <linux-usb@vger.kernel.org>, "open list:RADEON and AMDGPU DRM DRIVERS"
  <amd-gfx@lists.freedesktop.org>, "open list:DRM DRIVERS"
  <dri-devel@lists.freedesktop.org>, "open list:DRM DRIVER FOR NVIDIA
  GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, "open list:X86 PLATFORM
  DRIVERS" <platform-driver-x86@vger.kernel.org>
-Date: Thu, 10 Feb 2022 16:43:24 -0600
-Message-ID: <20220210224329.2793-5-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220210224329.2793-1-mario.limonciello@amd.com>
 References: <20220210224329.2793-1-mario.limonciello@amd.com>
+ <20220210224329.2793-5-mario.limonciello@amd.com>
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+Message-ID: <b1b47db2-b760-649a-d0e0-79ff22ece8c0@mediatek.com>
+Date: Fri, 11 Feb 2022 09:28:51 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: eb26fefc-71c5-4e34-d006-08d9ece6cdb6
-X-MS-TrafficTypeDiagnostic: SN6PR12MB4735:EE_
-X-Microsoft-Antispam-PRVS: <SN6PR12MB47353C0FD6727ADEF5C8A389E22F9@SN6PR12MB4735.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: w5oBCBCfzbeV64YTmDQx1LJ45Ywcsv65iTYfiSCagvVaalwhdCME6wLOpnbBlwc4EGhuxQ03sFlPWlq7nGTmWNGtkQL5iZqH8Ek4jhIsRAv4//GFZozCXfssyah8pMPIIqwpKgPPvcm19G8ZBejze52uffmDcPKJpqT25cDCvoyHQlhC8TGDmPBnoK0uLhn9R1KLf7jG0xcLxokabM+QWT2s5vaajob0rJNfI5RDVSoxYo6nh+RuTBIFLOBD8m3d4asXggQ4Y/CaTRWujq87A1TcqhRBOnmqJHZRfY6vKK3QdC8ZcGnvr4yztg6zieRh374OLwjpdt1hEiQXYj3LqOHc9PHKjBoyXhXsNVSQonh8OYZtNWEKn/iiplZmJPzERWgLI2CI3b8zLOvP6dJjFsXh9MzQab0ASTQnmgNmFsjrYBUV3zd7uFbOZwcro8TkNouvjX+CvKlto9OVA13/5zHQ9b8tB1kG533GJWPeOpCDPEXWaia806m+kALZeKfj7j3iU5EOvdTqVcrbqWdkIreFxph42qH/KNhOyt+GrKE3e6V/Cj4O/c/wpiNq97kYBZiuv0YIuZF9KHg75/ZXxoSxFwGVpIoTYUxOwxodgNxxKwhGP2UYTWOBDmMnyzuY22S9kJIADD0mxMIRBPbNvPdIpr11lLBElymOZT3xZAr+YT7yQBHV2n6VxLtmbNOO1WOGthZeEqlF4ZjEodkG8A==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(82310400004)(508600001)(44832011)(36756003)(356005)(81166007)(336012)(6666004)(26005)(54906003)(86362001)(1076003)(426003)(316002)(5660300002)(47076005)(2616005)(36860700001)(4744005)(2906002)(7696005)(4326008)(8676002)(8936002)(7416002)(16526019)(70586007)(110136005)(40460700003)(70206006)(186003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2022 22:43:48.6954 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: eb26fefc-71c5-4e34-d006-08d9ece6cdb6
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT039.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB4735
+In-Reply-To: <20220210224329.2793-5-mario.limonciello@amd.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Content-Type: multipart/alternative;
+ boundary="__=_Part_Boundary_005_1648681517.2033680023"
 X-Mailman-Approved-At: Fri, 11 Feb 2022 03:28:13 +0000
-Subject: [Nouveau] [PATCH v2 4/9] PCI: mark USB4 devices as removable
+Subject: Re: [Nouveau] [PATCH v2 4/9] PCI: mark USB4 devices as removable
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,34 +66,88 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: Michael Jamet <michael.jamet@intel.com>,
- Yehezkel Bernat <YehezkelShB@gmail.com>, Alexander.Deucher@amd.com,
- Mario Limonciello <mario.limonciello@amd.com>
+ Yehezkel Bernat <YehezkelShB@gmail.com>, Alexander.Deucher@amd.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-USB4 class devices are also removable like Intel Thunderbolt devices.
+--__=_Part_Boundary_005_1648681517.2033680023
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Drivers of downstream devices use this information to declare functional
-differences in how the drivers perform by knowing that they are connected
-to an upstream TBT/USB4 port.
+PHByZT4NCk9uJiMzMjsyLzExLzIyJiMzMjs2OjQzJiMzMjtBTSwmIzMyO01hcmlvJiMzMjtMaW1v
+bmNpZWxsbyYjMzI7d3JvdGU6DQomZ3Q7JiMzMjtVU0I0JiMzMjtjbGFzcyYjMzI7ZGV2aWNlcyYj
+MzI7YXJlJiMzMjthbHNvJiMzMjtyZW1vdmFibGUmIzMyO2xpa2UmIzMyO0ludGVsJiMzMjtUaHVu
+ZGVyYm9sdCYjMzI7ZGV2aWNlcy4NCiZndDsmIzMyOw0KJmd0OyYjMzI7RHJpdmVycyYjMzI7b2Ym
+IzMyO2Rvd25zdHJlYW0mIzMyO2RldmljZXMmIzMyO3VzZSYjMzI7dGhpcyYjMzI7aW5mb3JtYXRp
+b24mIzMyO3RvJiMzMjtkZWNsYXJlJiMzMjtmdW5jdGlvbmFsDQomZ3Q7JiMzMjtkaWZmZXJlbmNl
+cyYjMzI7aW4mIzMyO2hvdyYjMzI7dGhlJiMzMjtkcml2ZXJzJiMzMjtwZXJmb3JtJiMzMjtieSYj
+MzI7a25vd2luZyYjMzI7dGhhdCYjMzI7dGhleSYjMzI7YXJlJiMzMjtjb25uZWN0ZWQNCiZndDsm
+IzMyO3RvJiMzMjthbiYjMzI7dXBzdHJlYW0mIzMyO1RCVC9VU0I0JiMzMjtwb3J0Lg0KJmd0OyYj
+MzI7DQomZ3Q7JiMzMjtTaWduZWQtb2ZmLWJ5OiYjMzI7TWFyaW8mIzMyO0xpbW9uY2llbGxvJiMz
+MjsmbHQ7bWFyaW8ubGltb25jaWVsbG9AYW1kLmNvbSZndDsNCiZndDsmIzMyOy0tLQ0KJmd0OyYj
+MzI7JiMzMjsmIzMyO2RyaXZlcnMvcGNpL3Byb2JlLmMmIzMyO3wmIzMyOzEmIzMyOysNCiZndDsm
+IzMyOyYjMzI7JiMzMjsxJiMzMjtmaWxlJiMzMjtjaGFuZ2VkLCYjMzI7MSYjMzI7aW5zZXJ0aW9u
+KCspDQomZ3Q7JiMzMjsNCiZndDsmIzMyO2RpZmYmIzMyOy0tZ2l0JiMzMjthL2RyaXZlcnMvcGNp
+L3Byb2JlLmMmIzMyO2IvZHJpdmVycy9wY2kvcHJvYmUuYw0KJmd0OyYjMzI7aW5kZXgmIzMyO2U0
+MTY1NmNkZDhmMC4uNzM2NzNhODNlYjVlJiMzMjsxMDA2NDQNCiZndDsmIzMyOy0tLSYjMzI7YS9k
+cml2ZXJzL3BjaS9wcm9iZS5jDQomZ3Q7JiMzMjsrKysmIzMyO2IvZHJpdmVycy9wY2kvcHJvYmUu
+Yw0KJmd0OyYjMzI7QEAmIzMyOy0xNjEwLDYmIzMyOysxNjEwLDcmIzMyO0BAJiMzMjtzdGF0aWMm
+IzMyO3ZvaWQmIzMyO3BjaV9zZXRfcmVtb3ZhYmxlKHN0cnVjdCYjMzI7cGNpX2RldiYjMzI7KmRl
+dikNCiZndDsmIzMyOyYjMzI7JiMzMjsmIzMyOyomIzMyO2V4cG9zZWQmIzMyO2FzJiMzMjsmcXVv
+dDtyZW1vdmFibGUmcXVvdDsmIzMyO3RvJiMzMjt1c2Vyc3BhY2UuDQomZ3Q7JiMzMjsmIzMyOyYj
+MzI7JiMzMjsqLw0KJmd0OyYjMzI7JiMzMjsmIzMyO2lmJiMzMjsodnNlYyYjMzI7fHwNCiZndDsm
+IzMyOysmIzMyOyYjMzI7JiMzMjsmIzMyO2Rldi0mZ3Q7Y2xhc3MmIzMyOz09JiMzMjtQQ0lfQ0xB
+U1NfU0VSSUFMX1VTQl9VU0I0JiMzMjt8fA0KJmd0OyYjMzI7JiMzMjsmIzMyOyYjMzI7JiMzMjsm
+IzMyOyYjMzI7KHBhcmVudCYjMzI7JmFtcDsmYW1wOw0KJmd0OyYjMzI7JiMzMjsmIzMyOyYjMzI7
+JiMzMjsmIzMyOyYjMzI7KHBhcmVudC0mZ3Q7ZXh0ZXJuYWxfZmFjaW5nJiMzMjt8fCYjMzI7ZGV2
+X2lzX3JlbW92YWJsZSgmYW1wO3BhcmVudC0mZ3Q7ZGV2KSkpKQ0KJmd0OyYjMzI7JiMzMjsmIzMy
+O2Rldl9zZXRfcmVtb3ZhYmxlKCZhbXA7ZGV2LSZndDtkZXYsJiMzMjtERVZJQ0VfUkVNT1ZBQkxF
+KTsNCiZndDsmIzMyOw0KDQpSZXZpZXdlZC1ieTomIzMyO01hY3BhdWwmIzMyO0xpbiYjMzI7Jmx0
+O21hY3BhdWwubGluQG1lZGlhdGVrLmNvbSZndDsNCg0KVGhhbmtzIQ0KDQpSZWdhcmRzLA0KTWFj
+cGF1bCYjMzI7TGluDQo8L3ByZT48IS0tdHlwZTp0ZXh0LS0+PCEtLXstLT48cHJlPioqKioqKioq
+KioqKiogTUVESUFURUsgQ29uZmlkZW50aWFsaXR5IE5vdGljZSAqKioqKioqKioqKioqKioqKioq
+Kg0KVGhlIGluZm9ybWF0aW9uIGNvbnRhaW5lZCBpbiB0aGlzIGUtbWFpbCBtZXNzYWdlIChpbmNs
+dWRpbmcgYW55IA0KYXR0YWNobWVudHMpIG1heSBiZSBjb25maWRlbnRpYWwsIHByb3ByaWV0YXJ5
+LCBwcml2aWxlZ2VkLCBvciBvdGhlcndpc2UNCmV4ZW1wdCBmcm9tIGRpc2Nsb3N1cmUgdW5kZXIg
+YXBwbGljYWJsZSBsYXdzLiBJdCBpcyBpbnRlbmRlZCB0byBiZSANCmNvbnZleWVkIG9ubHkgdG8g
+dGhlIGRlc2lnbmF0ZWQgcmVjaXBpZW50KHMpLiBBbnkgdXNlLCBkaXNzZW1pbmF0aW9uLCANCmRp
+c3RyaWJ1dGlvbiwgcHJpbnRpbmcsIHJldGFpbmluZyBvciBjb3B5aW5nIG9mIHRoaXMgZS1tYWls
+IChpbmNsdWRpbmcgaXRzIA0KYXR0YWNobWVudHMpIGJ5IHVuaW50ZW5kZWQgcmVjaXBpZW50KHMp
+IGlzIHN0cmljdGx5IHByb2hpYml0ZWQgYW5kIG1heSANCmJlIHVubGF3ZnVsLiBJZiB5b3UgYXJl
+IG5vdCBhbiBpbnRlbmRlZCByZWNpcGllbnQgb2YgdGhpcyBlLW1haWwsIG9yIGJlbGlldmUgDQp0
+aGF0IHlvdSBoYXZlIHJlY2VpdmVkIHRoaXMgZS1tYWlsIGluIGVycm9yLCBwbGVhc2Ugbm90aWZ5
+IHRoZSBzZW5kZXIgDQppbW1lZGlhdGVseSAoYnkgcmVwbHlpbmcgdG8gdGhpcyBlLW1haWwpLCBk
+ZWxldGUgYW55IGFuZCBhbGwgY29waWVzIG9mIA0KdGhpcyBlLW1haWwgKGluY2x1ZGluZyBhbnkg
+YXR0YWNobWVudHMpIGZyb20geW91ciBzeXN0ZW0sIGFuZCBkbyBub3QNCmRpc2Nsb3NlIHRoZSBj
+b250ZW50IG9mIHRoaXMgZS1tYWlsIHRvIGFueSBvdGhlciBwZXJzb24uIFRoYW5rIHlvdSENCjwv
+cHJlPjwhLS19LS0+
 
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
- drivers/pci/probe.c | 1 +
- 1 file changed, 1 insertion(+)
+--__=_Part_Boundary_005_1648681517.2033680023
+Content-Type: text/plain;
+	charset="utf-8";
+	format=flowed
+Content-Transfer-Encoding: base64
 
-diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-index e41656cdd8f0..73673a83eb5e 100644
---- a/drivers/pci/probe.c
-+++ b/drivers/pci/probe.c
-@@ -1610,6 +1610,7 @@ static void pci_set_removable(struct pci_dev *dev)
- 	 * exposed as "removable" to userspace.
- 	 */
- 	if (vsec ||
-+	    dev->class == PCI_CLASS_SERIAL_USB_USB4 ||
- 	    (parent &&
- 	    (parent->external_facing || dev_is_removable(&parent->dev))))
- 		dev_set_removable(&dev->dev, DEVICE_REMOVABLE);
--- 
-2.34.1
+T24gMi8xMS8yMiA2OjQzIEFNLCBNYXJpbyBMaW1vbmNpZWxsbyB3cm90ZToNCj4gVVNCNCBjbGFz
+cyBkZXZpY2VzIGFyZSBhbHNvIHJlbW92YWJsZSBsaWtlIEludGVsIFRodW5kZXJib2x0IGRldmlj
+ZXMuDQo+IA0KPiBEcml2ZXJzIG9mIGRvd25zdHJlYW0gZGV2aWNlcyB1c2UgdGhpcyBpbmZvcm1h
+dGlvbiB0byBkZWNsYXJlIGZ1bmN0aW9uYWwNCj4gZGlmZmVyZW5jZXMgaW4gaG93IHRoZSBkcml2
+ZXJzIHBlcmZvcm0gYnkga25vd2luZyB0aGF0IHRoZXkgYXJlIGNvbm5lY3RlZA0KPiB0byBhbiB1
+cHN0cmVhbSBUQlQvVVNCNCBwb3J0Lg0KPiANCj4gU2lnbmVkLW9mZi1ieTogTWFyaW8gTGltb25j
+aWVsbG8gPG1hcmlvLmxpbW9uY2llbGxvQGFtZC5jb20+DQo+IC0tLQ0KPiAgIGRyaXZlcnMvcGNp
+L3Byb2JlLmMgfCAxICsNCj4gICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykNCj4gDQo+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9wcm9iZS5jIGIvZHJpdmVycy9wY2kvcHJvYmUuYw0K
+PiBpbmRleCBlNDE2NTZjZGQ4ZjAuLjczNjczYTgzZWI1ZSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVy
+cy9wY2kvcHJvYmUuYw0KPiArKysgYi9kcml2ZXJzL3BjaS9wcm9iZS5jDQo+IEBAIC0xNjEwLDYg
+KzE2MTAsNyBAQCBzdGF0aWMgdm9pZCBwY2lfc2V0X3JlbW92YWJsZShzdHJ1Y3QgcGNpX2RldiAq
+ZGV2KQ0KPiAgIAkgKiBleHBvc2VkIGFzICJyZW1vdmFibGUiIHRvIHVzZXJzcGFjZS4NCj4gICAJ
+ICovDQo+ICAgCWlmICh2c2VjIHx8DQo+ICsJICAgIGRldi0+Y2xhc3MgPT0gUENJX0NMQVNTX1NF
+UklBTF9VU0JfVVNCNCB8fA0KPiAgIAkgICAgKHBhcmVudCAmJg0KPiAgIAkgICAgKHBhcmVudC0+
+ZXh0ZXJuYWxfZmFjaW5nIHx8IGRldl9pc19yZW1vdmFibGUoJnBhcmVudC0+ZGV2KSkpKQ0KPiAg
+IAkJZGV2X3NldF9yZW1vdmFibGUoJmRldi0+ZGV2LCBERVZJQ0VfUkVNT1ZBQkxFKTsNCj4gDQoN
+ClJldmlld2VkLWJ5OiBNYWNwYXVsIExpbiA8bWFjcGF1bC5saW5AbWVkaWF0ZWsuY29tPg0KDQpU
+aGFua3MhDQoNClJlZ2FyZHMsDQpNYWNwYXVsIExpbg==
+
+--__=_Part_Boundary_005_1648681517.2033680023--
 
