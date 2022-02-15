@@ -4,46 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF447C433EF
-	for <nouveau@archiver.kernel.org>; Mon, 21 Feb 2022 01:12:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D684CC433F5
+	for <nouveau@archiver.kernel.org>; Mon, 21 Feb 2022 01:12:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 329F110E280;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D3E110E283;
 	Mon, 21 Feb 2022 01:12:31 +0000 (UTC)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com
- [209.85.128.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 394BC10E591;
- Wed, 16 Feb 2022 19:05:59 +0000 (UTC)
-Received: by mail-yw1-f171.google.com with SMTP id
- 00721157ae682-2d0ede7dd9eso9275267b3.10; 
- Wed, 16 Feb 2022 11:05:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=yLrFIsE9bo3p9BnVIL7Uc7sprqnSKm0YOW7fBIQdERM=;
- b=4GNnjCmvlMwKEYZdbpj+gD8MAPb3lM3TgUJ0uEfCvtIhIfeJqWqI/IunmhVJLrw6DP
- BpMHtuZ5JE5y9oufa6A8vgGGcFG0VqaJxdiLX05WzqZjsvvbCvRl4pLI3C8RLXwwSBYh
- hbNyE84MoIc4eIGRwqrVlUbPPxLjL0f4dPLnhd4VCGwsHVzPzFCZFfoJN0/3sXqKFPv0
- kzZBDMiTiup4OPaLC2QyQURkcuKJm9WbtKCJKaiLUIF5WLstyuorzVfzalBDXWgxwXrc
- oIy8G1r0OjmnZBoG8Wh8s0hT+ElxEH3VF6SJBJUd8bCaHi3+RobGRUmdjiAbuyg/MjxL
- RvnQ==
-X-Gm-Message-State: AOAM530ENKACFS2TQdz0qxi1a0PFsbuCxp4rq8BCLSSaex8mEsd8Ibt8
- dGqf/FJslQxKX9+T7YfuLbvOTQ3nPfBElkU+L3c=
-X-Google-Smtp-Source: ABdhPJyFOmiGOmRDkw8czUhuWEAUWZI3b6hfKAcdDSxdtm3oSTgs7z2noREt7vOvPl7JarLhxJEUxltkCz2WrL99cSU=
-X-Received: by 2002:a0d:c244:0:b0:2d1:1fbb:180d with SMTP id
- e65-20020a0dc244000000b002d11fbb180dmr3902361ywd.196.1645038358332; Wed, 16
- Feb 2022 11:05:58 -0800 (PST)
-MIME-Version: 1.0
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF36510E526;
+ Tue, 15 Feb 2022 19:19:40 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 3A349617A1;
+ Tue, 15 Feb 2022 19:19:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E76B9C340EB;
+ Tue, 15 Feb 2022 19:19:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1644952780;
+ bh=RxAYLCqbUWlxjV9GFahzPwnkRBYKU9aVJMxo+INb+K8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=oa82FKq0/HZo1Hieccox0xhuEOltsBpyNCb/oKWHfz9JimsfI5qrPFHosVG+Hw9KD
+ FqjMZvJ5BquXlsEM1IUTOugfyhHJjbL+NoooCvHgJp/wzFU4N6mJ3/+qfEy0h1bhbj
+ fv9Bo5w4LHHM1g+pM9OlS1+FV6MX0/N+Aa88X5OzELy65s1Xs5Q/258d9WBNoUp0fb
+ HMGG+vm/A6PvbbvtXJ00MB45hauRqyRZCekvmCmXYRktZmaEtd9qOIjTryp50cyo1/
+ 0DT+ajNam/uql+1lfstz9xW/6FSdwogqLIyHb8bwuPl3b0gveaOfCnpwJkPBK0mL1q
+ tCTR2Et3rHU/g==
+Date: Tue, 15 Feb 2022 21:19:29 +0200
+From: Leon Romanovsky <leon@kernel.org>
+To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Message-ID: <Ygv8wY75hNqS7zO6@unreal>
 References: <20220215174743.GA878920@embeddedor>
  <202202151016.C0471D6E@keescook>
- <20220215192110.GA883653@embeddedor> <Ygv8wY75hNqS7zO6@unreal>
- <20220215193221.GA884407@embeddedor>
-In-Reply-To: <20220215193221.GA884407@embeddedor>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Wed, 16 Feb 2022 20:05:47 +0100
-Message-ID: <CAJZ5v0jpAnQk+Hub6ue6t712RW+W0YBjb_gAcZZbUeuYMGv7mg@mail.gmail.com>
-To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+ <20220215192110.GA883653@embeddedor>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220215192110.GA883653@embeddedor>
 X-Mailman-Approved-At: Mon, 21 Feb 2022 01:12:29 +0000
 Subject: Re: [Nouveau] [PATCH][next] treewide: Replace zero-length arrays
  with flexible-array members
@@ -58,61 +56,68 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..."
- <alsa-devel@alsa-project.org>, linux-ia64@vger.kernel.org,
- Linux-sh list <linux-sh@vger.kernel.org>,
- nouveau <nouveau@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Linux Memory Management List <linux-mm@kvack.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, target-devel@vger.kernel.org,
+Cc: alsa-devel@alsa-project.org, linux-ia64@vger.kernel.org,
+ linux-sh@vger.kernel.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ devicetree@vger.kernel.org, target-devel@vger.kernel.org,
  linux-hardening@vger.kernel.org, sparclinux@vger.kernel.org,
- linux-i3c@lists.infradead.org, linux-arch <linux-arch@vger.kernel.org>,
- linux-s390@vger.kernel.org, Leon Romanovsky <leon@kernel.org>,
- "open list:BLUETOOTH DRIVERS" <linux-bluetooth@vger.kernel.org>,
- linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev,
- ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
- bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
- Ext4 Developers List <linux-ext4@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, linux-xtensa@linux-xtensa.org,
+ linux-i3c@lists.infradead.org, linux-arch@vger.kernel.org,
+ linux-s390@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-bluetooth@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-staging@lists.linux.dev, linux-acpi@vger.kernel.org,
+ bcm-kernel-feedback-list@broadcom.com, linux-ext4@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-xtensa@linux-xtensa.org,
  Kees Cook <keescook@chromium.org>, mpi3mr-linuxdrv.pdl@broadcom.com,
  coresight@lists.linaro.org, sparmaintainer@unisys.com,
  linux-um@lists.infradead.org, greybus-dev@lists.linaro.org,
- linux-rpi-kernel@lists.infradead.org,
- Linux OMAP Mailing List <linux-omap@vger.kernel.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- "open list:ACPI COMPONENT ARCHITECTURE \(ACPICA\)" <devel@acpica.org>,
- linux-cifs@vger.kernel.org,
- "open list:TARGET SUBSYSTEM" <linux-scsi@vger.kernel.org>,
- netdev <netdev@vger.kernel.org>, samba-technical@lists.samba.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ linux-rpi-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, devel@acpica.org,
+ linux-cifs@vger.kernel.org, netdev@vger.kernel.org,
+ samba-technical@lists.samba.org, linux-kernel@vger.kernel.org,
  linux-perf-users@vger.kernel.org, GR-QLogic-Storage-Upstream@marvell.com,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- linux-alpha@vger.kernel.org
+ linux-crypto@vger.kernel.org, linux-alpha@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Feb 15, 2022 at 8:24 PM Gustavo A. R. Silva
-<gustavoars@kernel.org> wrote:
->
-> On Tue, Feb 15, 2022 at 09:19:29PM +0200, Leon Romanovsky wrote:
-> > On Tue, Feb 15, 2022 at 01:21:10PM -0600, Gustavo A. R. Silva wrote:
-> > > On Tue, Feb 15, 2022 at 10:17:40AM -0800, Kees Cook wrote:
-> > > > On Tue, Feb 15, 2022 at 11:47:43AM -0600, Gustavo A. R. Silva wrote:
-> > > >
-> > > > These all look trivially correct to me. Only two didn't have the end of
-> > > > the struct visible in the patch, and checking those showed them to be
-> > > > trailing members as well, so:
-> > > >
-> > > > Reviewed-by: Kees Cook <keescook@chromium.org>
-> > >
-> > > I'll add this to my -next tree.
-> >
-> > I would like to ask you to send mlx5 patch separately to netdev. We are working
-> > to delete that file completely and prefer to avoid from unnecessary merge conflicts.
->
-> Oh OK. Sure thing; I will do so.
+On Tue, Feb 15, 2022 at 01:21:10PM -0600, Gustavo A. R. Silva wrote:
+> On Tue, Feb 15, 2022 at 10:17:40AM -0800, Kees Cook wrote:
+> > On Tue, Feb 15, 2022 at 11:47:43AM -0600, Gustavo A. R. Silva wrote:
+> > > There is a regular need in the kernel to provide a way to declare
+> > > having a dynamically sized set of trailing elements in a structure.
+> > > Kernel code should always use “flexible array members”[1] for these
+> > > cases. The older style of one-element or zero-length arrays should
+> > > no longer be used[2].
+> > > 
+> > > This code was transformed with the help of Coccinelle:
+> > > (next-20220214$ spatch --jobs $(getconf _NPROCESSORS_ONLN) --sp-file script.cocci --include-headers --dir . > output.patch)
+> > > 
+> > > @@
+> > > identifier S, member, array;
+> > > type T1, T2;
+> > > @@
+> > > 
+> > > struct S {
+> > >   ...
+> > >   T1 member;
+> > >   T2 array[
+> > > - 0
+> > >   ];
+> > > };
+> > 
+> > These all look trivially correct to me. Only two didn't have the end of
+> > the struct visible in the patch, and checking those showed them to be
+> > trailing members as well, so:
+> > 
+> > Reviewed-by: Kees Cook <keescook@chromium.org>
+> 
+> I'll add this to my -next tree.
 
-Can you also send the ACPI patch separately, please?
+I would like to ask you to send mlx5 patch separately to netdev. We are working
+to delete that file completely and prefer to avoid from unnecessary merge conflicts.
 
-We would like to route it through the upstream ACPICA code base.
+Thanks
+
+> 
+> Thanks!
+> --
+> Gustavo
