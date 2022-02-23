@@ -4,121 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8EE0C433EF
-	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:37:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4E1AC433EF
+	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:37:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 633A810EB3D;
-	Tue,  1 Mar 2022 04:37:21 +0000 (UTC)
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2086.outbound.protection.outlook.com [40.107.92.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A65F110E8A7;
- Mon, 28 Feb 2022 20:07:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gL9OvQXRZlLdS0nWu38zKJUPGpd8Lw1yhpw0d+9zMnw5veNcCSl+j10Lj2ZBjoB5CfikiNko3OGYPd5ME3Vpnpr6n3gUYUUXyI/nkCpK1pboNWydXnK5jyRh9RlwUC2J4LqkRcYIcUEdvbcAPOtxCPnt41mkj7xD+m15Kvaf2q7v/g8rWPGCeIDynZ/oNm9fnv9Ju75vK4G9aE6aBcPLDtlUp1ST1JK7/NKF82SiZ4n1XSg+J4DKH5YpYNZ2xk39/JLPCrAzvhJAKKUntlEf2q3g2Pj1J5/dfEOPCBMx04zbq/GH674VvLGDrCGvs5qux8fGUlsbgRV2o3e8r2NFDQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1cP3BgbbNuGDusjcZMNEuDHV1LUQdbelhp6M0fWPy5M=;
- b=jdvC0+wMuIjUshRFXNDwX32c2zskPNpWzUT0ktJHw/5EiOrhAsU94pzDNGLqksNFWg+blmisV1k0kohfJdS4O05gRW7IHqVrOqq+Mv5c+HjZN3GrTnkeTf8cvr5w9XQlSh1NpbpQV9SfTtNox7n0FzrCxGIn2Y97pJ0Ozwd2zkUTZZwzZzxBKK4GvrZ+BR8TCxc8QZ0nYFwhOXfRlKMAnTFtySBUzXq/5mIt6py7gbpk+GQ1GQytDDsZI5lf5E8qHWfr02zFw9K3Qsuz9W3QSbnWtzK3Tll4VEq5yh73hCY4N6sQ7OaGkztdVoBWliieGcToSd9yyiqDpPsytzNReg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1cP3BgbbNuGDusjcZMNEuDHV1LUQdbelhp6M0fWPy5M=;
- b=yR2JVvc5BtwSjUOODC9WmjehMXRGxzHYe8ljFxqZPlt6ZskvnNvnIoLUWVTSqL4Nvnz3mlJ6Vj4yuzWXjUdfSbDpZboDHZVxGObnXC8gvFtZZmR10HmqPv3h4fJHh1C2OVQ9oxctvZyNbcFFjGdzd7Nu0zIl+DqaxiZBFvhDfEY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by CY4PR12MB1352.namprd12.prod.outlook.com (2603:10b6:903:3a::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.26; Mon, 28 Feb
- 2022 20:07:16 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::e03f:901a:be6c:b581]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::e03f:901a:be6c:b581%6]) with mapi id 15.20.5017.027; Mon, 28 Feb 2022
- 20:07:16 +0000
-Message-ID: <282f0f8d-f491-26fc-6ae0-604b367a5a1a@amd.com>
-Date: Mon, 28 Feb 2022 21:07:03 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Linus Torvalds <torvalds@linux-foundation.org>
-References: <20220228110822.491923-1-jakobkoschel@gmail.com>
- <20220228110822.491923-3-jakobkoschel@gmail.com>
- <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
- <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AM6P195CA0084.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:209:86::25) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED0E710EB39;
+	Tue,  1 Mar 2022 04:37:20 +0000 (UTC)
+X-Greylist: delayed 325 seconds by postgrey-1.36 at gabe;
+ Wed, 23 Feb 2022 02:24:01 UTC
+Received: from out0.migadu.com (out0.migadu.com [94.23.1.103])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 653F610E128;
+ Wed, 23 Feb 2022 02:24:01 +0000 (UTC)
+Date: Wed, 23 Feb 2022 10:18:08 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1645582713;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=s9HSBqIac/zPcJpEFk8oJTnF827U32Uw6yG20Bp5Ut4=;
+ b=Zh1gHGYqbmTgArlhIBnwJcaiIkT9Omd/5ydQ84d1RG7t6jWSe5i5JT7Ab5IQA++YbK+f+H
+ IsZbWL1hPS9Ic1zYttA7fw7dcfYF1w3DwPMaxgQZs3RpcC4dKvjhyzYvU0ksHF7C7gyDjr
+ l0R4CFWNN9VafC6IPBDigCQi1nXAUY4=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Cai Huoqing <cai.huoqing@linux.dev>
+To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Message-ID: <20220223021808.GA8457@chq-T47>
+References: <20220209065322.43938-1-cai.huoqing@linux.dev>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4780f435-f0f8-4e6e-4169-08d9faf5eaa6
-X-MS-TrafficTypeDiagnostic: CY4PR12MB1352:EE_
-X-Microsoft-Antispam-PRVS: <CY4PR12MB1352374DF851D24C14A1673183019@CY4PR12MB1352.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WfwKM4Ph3ffnU0p23PH6MmiWNssrAz4krll5evTSfx5ow0w1waswCyvqds83nXv/vKDqYeZ4nJPcE+5c6efbm9H+KF/V2vkIMjot7L3c4MJ2NUhhEHsU61Ft6hDBrl1jcnh9EapZmPmwTsw6ESVHpQs83QWblnrflHE+8n0pBPJGvO3BeOdLsq6sLykuPS1jfG+7mtvc1cC2b1biubmL14GLB/Sibk/qCZsfJd+KpT79kHhBzhYli4e6xf6Wf1XCotcM5PIbpVyqjZVKnKalewT7P85o/5nImHgkRdBqjmpldKbagBWNo3eLeex+hQocJ+uVVSXcSY7JFayKRxGcjUSrsgMDZrXESXUUKqA2mcVUrfGKkMgocWawoVlaIc8zSfyMrNNe3nWuqcEl1nUJv4F1V5m9d4aOTKdWVZb54C0D9BwOD0vvihgr/d8C1eTPDO8I+2XuopCbxIp48N14+nqKgxqddT9BQavA6sWNymzE8JSwtOP120c3NQbuDtR+2v/o2/9Bmx4GJDnVOim+gwVs91eOOaI51wF7Cfho1hyg5C8uiYQPM6RQIxlrMbnSX2DiyJmm7nOua0x6ZP0Vf9uP9VSnVikg0lwLJsx/nXxnp4VUactFuFQvm+o20VuEseTDTm8ixZYbdKCR2VF37spoXVt05gbXrIjEYGT1QRdZxRJAOxMWU/f0TemCgmhtJDDJ8n2ceV4KZQ7pwCR8VpLyLtZo05+32aCrevz7uZ8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(7406005)(86362001)(7366002)(7416002)(5660300002)(31696002)(2616005)(8936002)(316002)(6512007)(8676002)(66556008)(66476007)(66946007)(4326008)(2906002)(186003)(6506007)(53546011)(36756003)(66574015)(6486002)(6666004)(6916009)(83380400001)(508600001)(54906003)(38100700002)(31686004)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NVk3ZlI0aHd3U2MzRTQ0QkwvaWlpT1JkYWNicURJVHg1U3BkTWNEbjhxamVK?=
- =?utf-8?B?QWRpaER3c01nNWcwcXBWTjRqeDQyYVJjR01sZFUrd0FKbCswZXRYc2luTWRr?=
- =?utf-8?B?M3BRcmp2MmtvUEVxUEdJSU1YbXUvY3l2T0VlbW04TFVkM3ZVU0NacEJvOFMx?=
- =?utf-8?B?UjkxWGRjNVgxcENNZFFFTFJUbHA1Mzg1WStJMzRDb21zcUNmMitra3lES1Nj?=
- =?utf-8?B?dWxXV25UQW1NTHhKRnpweCsxZldJWGRmc3NwSU1ldFlmZnhaY3ZLbmNNSktv?=
- =?utf-8?B?a3RpQ2VhQUZDbTkyQTdRVkd6K09STzZTQ040TFU1NDZ6c3NBamFnQ3JWN3JR?=
- =?utf-8?B?R0taZkgwQzc0Q3VKRDJ5d21lNmdNRWtCNmlEVS9HRko3RXFNdzNReE4rVUVM?=
- =?utf-8?B?ZllFWDNjK3B5Wml4N0twOVNqOURNSXpNMVVra1hibUw0S2o5dnlIQzQzL2xh?=
- =?utf-8?B?QUY5WGZhODlMQXcxUTBDMGtBTjdsUHp1UFBlQVJBQUV2NklCMi92TEMzaS9O?=
- =?utf-8?B?Mmgra1dvQVh4SUoybk9IUzVSTWVlUTJaUnM1UmlhRE0vM0J5TWIrRldsNjhO?=
- =?utf-8?B?T0EvbFZlTHNWUnIxRkVIVllMTFRjTWhXTFNEQXJLZnNtSVcvaWthRHRLN3RJ?=
- =?utf-8?B?dTZtNzhuTSs4YXJhNDJLTHhnUThLSWE0VS9VSGlzQTFoN3AwSGR5RTNLWklk?=
- =?utf-8?B?aklyWXZyQ21pWFIwaGNJQW1wc2R4RGx2UDczeDJqcXh1S253WFhqVm9DeGt0?=
- =?utf-8?B?cUZncHozM0VOYllMWXdnaWRSNDhFczlIKzZVd1Fia1Q4b1M4T0hyQVIxTVdp?=
- =?utf-8?B?a0tFZzBzY1ZEemlqM2JmR1UrSlhoeDdLSUQ4c0VnaDMxZDJRS3hVM0I0dXlP?=
- =?utf-8?B?MGVzeVhzTlU1U0VSN0tBOC9CcUVkQjk5bm53STJsVFRBKzVoQVdUSUVmTDZm?=
- =?utf-8?B?UjBMYmIzR3VTWWszR2JtN0padGQyNitIbTlONXdPbUlsa1J4ckpEYnlRYlEv?=
- =?utf-8?B?WStUT2VxTHRWQmpVTDdlZ3pPWktOT1djUkU1QkhyK1lzeFJqOEJsWEFDcXpE?=
- =?utf-8?B?ZndXZE9saWpOMXBrUEtFbW0vZWpNNzY0ME1JNkp2NUZtNUtYMnY0eDlOWmFM?=
- =?utf-8?B?RlhQQzA1WXgrOG0yUUE4K0FOVkpIalp0RVF5WDYzbzlkcHNkb3ZNck5ZelpZ?=
- =?utf-8?B?bFBqeHVWekdheTRrL25YVG14OXdoNldjQkpkSTJIZ3l2aE05RDRaUThHNU1F?=
- =?utf-8?B?TGxBU1hIaHJIL3l5dVZsYVZNYTRyVDNJektucmlndUw0bFpVYkxTdGVCZURt?=
- =?utf-8?B?R082dmllRUlwYWY1SFlXYWVlSUErc3h2TkVSWXFYbWFMa1p4bFJLeUQvbUlB?=
- =?utf-8?B?Tm9WWjNWck9Nc2czQjJJajRDM2VvWG5BVWkyVGdxN1Y1YW51T2VFbjB4TmJK?=
- =?utf-8?B?V3BzNkpPaWpWemNRMlo0Zmpzdkt1MkJPQ1ZjOTRhTUZuSU9vQ0VlZkc0SHRy?=
- =?utf-8?B?VllCelFZSExvNEU5eW42SkoyOWZoc2RwLzFvaFZrVk5TYlZpeWllYi9DVDdF?=
- =?utf-8?B?VWJUZW02SU9hUjNud0RGdFhHS2VCVndtem1ycWtEVzFWY1dJT1JQb2lSRG9K?=
- =?utf-8?B?YTdOYVVINmNwOUVqZHREdTJyTnVWQ0p2Q2hPcEVyVHp1TzdXU2lPQ2NIWFcz?=
- =?utf-8?B?Z0xsNEo5VkVnSjlHb1c3Y3lvVGVtbjduOVJqRWlMRU02ZXBzZkdodkQ5Qjgw?=
- =?utf-8?B?SWRwZWlGckFDaG1zeEdoOHoramREZElwY1gwTW94V0daOGJDMUVDb1RocVVZ?=
- =?utf-8?B?T3daenQwci9BS08vUkhMR2tyaldua2dHUDNwV3IyaU90SC94eEp6a0h5a2hi?=
- =?utf-8?B?cGwvdkMySkY1Y3RZcEZzWkZQVGZEK280TnhaeTFMODlLdWNPUW9SVGZYNDZP?=
- =?utf-8?B?M3o4eHMxMWxlck13OHdWTEpMRnBuVDhMTUJkM244S2YrS3RPZ1RFR0NxNjA0?=
- =?utf-8?B?WFYxM1psMUpEWmpUYVVZdzk2alNEN3V5RmJaUzdGelcxVVp3TFlLVjFlWklJ?=
- =?utf-8?B?eFJIbHcwRjdRZ2pRK0lkbStvQ3I5MVNJWlUzM0g4N0lWTktxTDRySmZDZ1Yv?=
- =?utf-8?B?Yit3VlkwT0NvQ0RqODM0SjlyNVk1cTRrYjRUUDRROFBlZXkzdkh0Umk1V09L?=
- =?utf-8?Q?8uoT/2QhUUvglQjhlKjPyEE=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4780f435-f0f8-4e6e-4169-08d9faf5eaa6
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2022 20:07:16.2675 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9i/3JKdvHOc+ANDAjhzus2inu3JjqQ65q85KPxov4Nf4LQL0qSpalNxmpuhhtHy3
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1352
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220209065322.43938-1-cai.huoqing@linux.dev>
+X-Migadu-Flow: FLOW_OUT
+X-Migadu-Auth-User: linux.dev
 X-Mailman-Approved-At: Tue, 01 Mar 2022 04:37:20 +0000
-Subject: Re: [Nouveau] [PATCH 2/6] treewide: remove using list iterator
- after loop body as a ptr
+Subject: Re: [Nouveau] [PATCH] drm/nouveau: Remove the unused header file
+ nvif/list.h
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,106 +55,379 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-wireless <linux-wireless@vger.kernel.org>,
- alsa-devel@alsa-project.org, KVM list <kvm@vger.kernel.org>,
- "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
- nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>,
- linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
- linux-arch <linux-arch@vger.kernel.org>, CIFS <linux-cifs@vger.kernel.org>,
- linux-aspeed@lists.ozlabs.org, linux-scsi <linux-scsi@vger.kernel.org>,
- linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@ziepe.ca>,
- intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
- bcm-kernel-feedback-list@broadcom.com,
- Dan Carpenter <dan.carpenter@oracle.com>,
- Linux Media Mailing List <linux-media@vger.kernel.org>,
- Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
- Linux PM <linux-pm@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
- Nathan Chancellor <nathan@kernel.org>, dma <dmaengine@vger.kernel.org>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Jakob Koschel <jakobkoschel@gmail.com>, v9fs-developer@lists.sourceforge.net,
- linux-tegra <linux-tegra@vger.kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-sgx@vger.kernel.org,
- linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
- linux-usb@vger.kernel.org, samba-technical@lists.samba.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux F2FS Dev Mailing List <linux-f2fs-devel@lists.sourceforge.net>,
- tipc-discussion@lists.sourceforge.net,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
- linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, Mike Rapoport <rppt@kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Am 28.02.22 um 20:56 schrieb Linus Torvalds:
-> On Mon, Feb 28, 2022 at 4:19 AM Christian König
-> <christian.koenig@amd.com> wrote:
->> I don't think that using the extra variable makes the code in any way
->> more reliable or easier to read.
-> So I think the next step is to do the attached patch (which requires
-> that "-std=gnu11" that was discussed in the original thread).
->
-> That will guarantee that the 'pos' parameter of list_for_each_entry()
-> is only updated INSIDE the for_each_list_entry() loop, and can never
-> point to the (wrongly typed) head entry.
->
-> And I would actually hope that it should actually cause compiler
-> warnings about possibly uninitialized variables if people then use the
-> 'pos' pointer outside the loop. Except
->
->   (a) that code in sgx/encl.c currently initializes 'tmp' to NULL for
-> inexplicable reasons - possibly because it already expected this
-> behavior
->
->   (b) when I remove that NULL initializer, I still don't get a warning,
-> because we've disabled -Wno-maybe-uninitialized since it results in so
-> many false positives.
->
-> Oh well.
->
-> Anyway, give this patch a look, and at least if it's expanded to do
-> "(pos) = NULL" in the entry statement for the for-loop, it will avoid
-> the HEAD type confusion that Jakob is working on. And I think in a
-> cleaner way than the horrid games he plays.
->
-> (But it won't avoid possible CPU speculation of such type confusion.
-> That, in my opinion, is a completely different issue)
-
-Yes, completely agree.
-
-> I do wish we could actually poison the 'pos' value after the loop
-> somehow - but clearly the "might be uninitialized" I was hoping for
-> isn't the way to do it.
->
-> Anybody have any ideas?
-
-I think we should look at the use cases why code is touching (pos) after 
-the loop.
-
-Just from skimming over the patches to change this and experience with 
-the drivers/subsystems I help to maintain I think the primary pattern 
-looks something like this:
-
-list_for_each_entry(entry, head, member) {
-     if (some_condition_checking(entry))
-         break;
-}
-do_something_with(entry);
-
-So the solution should probably not be to change all those use cases to 
-use more temporary variables, but rather to add a list_find_entry(..., 
-condition) macro and consistently use that one instead.
-
-Regards,
-Christian.
-
->
->                  Linus
-
+On 09 2月 22 14:53:19, Cai Huoqing wrote:
+> The nouveau driver depends on include/linux/list.h instead of
+> nvif/list.h, so remove the obstacle-nvif/list.h.
+> 
+> Signed-off-by: Cai Huoqing <cai.huoqing@linux.dev>
+> ---
+Ping :)
+>  drivers/gpu/drm/nouveau/include/nvif/list.h | 353 --------------------
+>  1 file changed, 353 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/nouveau/include/nvif/list.h
+> 
+> diff --git a/drivers/gpu/drm/nouveau/include/nvif/list.h b/drivers/gpu/drm/nouveau/include/nvif/list.h
+> deleted file mode 100644
+> index 8af5d144ecb0..000000000000
+> --- a/drivers/gpu/drm/nouveau/include/nvif/list.h
+> +++ /dev/null
+> @@ -1,353 +0,0 @@
+> -/*
+> - * Copyright © 2010 Intel Corporation
+> - * Copyright © 2010 Francisco Jerez <currojerez@riseup.net>
+> - *
+> - * Permission is hereby granted, free of charge, to any person obtaining a
+> - * copy of this software and associated documentation files (the "Software"),
+> - * to deal in the Software without restriction, including without limitation
+> - * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+> - * and/or sell copies of the Software, and to permit persons to whom the
+> - * Software is furnished to do so, subject to the following conditions:
+> - *
+> - * The above copyright notice and this permission notice (including the next
+> - * paragraph) shall be included in all copies or substantial portions of the
+> - * Software.
+> - *
+> - * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> - * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> - * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+> - * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+> - * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+> - * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+> - * IN THE SOFTWARE.
+> - *
+> - */
+> -
+> -/* Modified by Ben Skeggs <bskeggs@redhat.com> to match kernel list APIs */
+> -
+> -#ifndef _XORG_LIST_H_
+> -#define _XORG_LIST_H_
+> -
+> -/**
+> - * @file Classic doubly-link circular list implementation.
+> - * For real usage examples of the linked list, see the file test/list.c
+> - *
+> - * Example:
+> - * We need to keep a list of struct foo in the parent struct bar, i.e. what
+> - * we want is something like this.
+> - *
+> - *     struct bar {
+> - *          ...
+> - *          struct foo *list_of_foos; -----> struct foo {}, struct foo {}, struct foo{}
+> - *          ...
+> - *     }
+> - *
+> - * We need one list head in bar and a list element in all list_of_foos (both are of
+> - * data type 'struct list_head').
+> - *
+> - *     struct bar {
+> - *          ...
+> - *          struct list_head list_of_foos;
+> - *          ...
+> - *     }
+> - *
+> - *     struct foo {
+> - *          ...
+> - *          struct list_head entry;
+> - *          ...
+> - *     }
+> - *
+> - * Now we initialize the list head:
+> - *
+> - *     struct bar bar;
+> - *     ...
+> - *     INIT_LIST_HEAD(&bar.list_of_foos);
+> - *
+> - * Then we create the first element and add it to this list:
+> - *
+> - *     struct foo *foo = malloc(...);
+> - *     ....
+> - *     list_add(&foo->entry, &bar.list_of_foos);
+> - *
+> - * Repeat the above for each element you want to add to the list. Deleting
+> - * works with the element itself.
+> - *      list_del(&foo->entry);
+> - *      free(foo);
+> - *
+> - * Note: calling list_del(&bar.list_of_foos) will set bar.list_of_foos to an empty
+> - * list again.
+> - *
+> - * Looping through the list requires a 'struct foo' as iterator and the
+> - * name of the field the subnodes use.
+> - *
+> - * struct foo *iterator;
+> - * list_for_each_entry(iterator, &bar.list_of_foos, entry) {
+> - *      if (iterator->something == ...)
+> - *             ...
+> - * }
+> - *
+> - * Note: You must not call list_del() on the iterator if you continue the
+> - * loop. You need to run the safe for-each loop instead:
+> - *
+> - * struct foo *iterator, *next;
+> - * list_for_each_entry_safe(iterator, next, &bar.list_of_foos, entry) {
+> - *      if (...)
+> - *              list_del(&iterator->entry);
+> - * }
+> - *
+> - */
+> -
+> -/**
+> - * The linkage struct for list nodes. This struct must be part of your
+> - * to-be-linked struct. struct list_head is required for both the head of the
+> - * list and for each list node.
+> - *
+> - * Position and name of the struct list_head field is irrelevant.
+> - * There are no requirements that elements of a list are of the same type.
+> - * There are no requirements for a list head, any struct list_head can be a list
+> - * head.
+> - */
+> -struct list_head {
+> -    struct list_head *next, *prev;
+> -};
+> -
+> -/**
+> - * Initialize the list as an empty list.
+> - *
+> - * Example:
+> - * INIT_LIST_HEAD(&bar->list_of_foos);
+> - *
+> - * @param The list to initialized.
+> - */
+> -#define LIST_HEAD_INIT(name) { &(name), &(name) }
+> -
+> -#define LIST_HEAD(name) \
+> -	struct list_head name = LIST_HEAD_INIT(name)
+> -
+> -static inline void
+> -INIT_LIST_HEAD(struct list_head *list)
+> -{
+> -    list->next = list->prev = list;
+> -}
+> -
+> -static inline void
+> -__list_add(struct list_head *entry,
+> -                struct list_head *prev, struct list_head *next)
+> -{
+> -    next->prev = entry;
+> -    entry->next = next;
+> -    entry->prev = prev;
+> -    prev->next = entry;
+> -}
+> -
+> -/**
+> - * Insert a new element after the given list head. The new element does not
+> - * need to be initialised as empty list.
+> - * The list changes from:
+> - *      head → some element → ...
+> - * to
+> - *      head → new element → older element → ...
+> - *
+> - * Example:
+> - * struct foo *newfoo = malloc(...);
+> - * list_add(&newfoo->entry, &bar->list_of_foos);
+> - *
+> - * @param entry The new element to prepend to the list.
+> - * @param head The existing list.
+> - */
+> -static inline void
+> -list_add(struct list_head *entry, struct list_head *head)
+> -{
+> -    __list_add(entry, head, head->next);
+> -}
+> -
+> -/**
+> - * Append a new element to the end of the list given with this list head.
+> - *
+> - * The list changes from:
+> - *      head → some element → ... → lastelement
+> - * to
+> - *      head → some element → ... → lastelement → new element
+> - *
+> - * Example:
+> - * struct foo *newfoo = malloc(...);
+> - * list_add_tail(&newfoo->entry, &bar->list_of_foos);
+> - *
+> - * @param entry The new element to prepend to the list.
+> - * @param head The existing list.
+> - */
+> -static inline void
+> -list_add_tail(struct list_head *entry, struct list_head *head)
+> -{
+> -    __list_add(entry, head->prev, head);
+> -}
+> -
+> -static inline void
+> -__list_del(struct list_head *prev, struct list_head *next)
+> -{
+> -    next->prev = prev;
+> -    prev->next = next;
+> -}
+> -
+> -/**
+> - * Remove the element from the list it is in. Using this function will reset
+> - * the pointers to/from this element so it is removed from the list. It does
+> - * NOT free the element itself or manipulate it otherwise.
+> - *
+> - * Using list_del on a pure list head (like in the example at the top of
+> - * this file) will NOT remove the first element from
+> - * the list but rather reset the list as empty list.
+> - *
+> - * Example:
+> - * list_del(&foo->entry);
+> - *
+> - * @param entry The element to remove.
+> - */
+> -static inline void
+> -list_del(struct list_head *entry)
+> -{
+> -    __list_del(entry->prev, entry->next);
+> -}
+> -
+> -static inline void
+> -list_del_init(struct list_head *entry)
+> -{
+> -    __list_del(entry->prev, entry->next);
+> -    INIT_LIST_HEAD(entry);
+> -}
+> -
+> -static inline void list_move_tail(struct list_head *list,
+> -				  struct list_head *head)
+> -{
+> -	__list_del(list->prev, list->next);
+> -	list_add_tail(list, head);
+> -}
+> -
+> -/**
+> - * Check if the list is empty.
+> - *
+> - * Example:
+> - * list_empty(&bar->list_of_foos);
+> - *
+> - * @return True if the list contains one or more elements or False otherwise.
+> - */
+> -static inline bool
+> -list_empty(struct list_head *head)
+> -{
+> -    return head->next == head;
+> -}
+> -
+> -/**
+> - * Returns a pointer to the container of this list element.
+> - *
+> - * Example:
+> - * struct foo* f;
+> - * f = container_of(&foo->entry, struct foo, entry);
+> - * assert(f == foo);
+> - *
+> - * @param ptr Pointer to the struct list_head.
+> - * @param type Data type of the list element.
+> - * @param member Member name of the struct list_head field in the list element.
+> - * @return A pointer to the data struct containing the list head.
+> - */
+> -#ifndef container_of
+> -#define container_of(ptr, type, member) \
+> -    (type *)((char *)(ptr) - (char *) &((type *)0)->member)
+> -#endif
+> -
+> -/**
+> - * Alias of container_of
+> - */
+> -#define list_entry(ptr, type, member) \
+> -    container_of(ptr, type, member)
+> -
+> -/**
+> - * Retrieve the first list entry for the given list pointer.
+> - *
+> - * Example:
+> - * struct foo *first;
+> - * first = list_first_entry(&bar->list_of_foos, struct foo, list_of_foos);
+> - *
+> - * @param ptr The list head
+> - * @param type Data type of the list element to retrieve
+> - * @param member Member name of the struct list_head field in the list element.
+> - * @return A pointer to the first list element.
+> - */
+> -#define list_first_entry(ptr, type, member) \
+> -    list_entry((ptr)->next, type, member)
+> -
+> -/**
+> - * Retrieve the last list entry for the given listpointer.
+> - *
+> - * Example:
+> - * struct foo *first;
+> - * first = list_last_entry(&bar->list_of_foos, struct foo, list_of_foos);
+> - *
+> - * @param ptr The list head
+> - * @param type Data type of the list element to retrieve
+> - * @param member Member name of the struct list_head field in the list element.
+> - * @return A pointer to the last list element.
+> - */
+> -#define list_last_entry(ptr, type, member) \
+> -    list_entry((ptr)->prev, type, member)
+> -
+> -#define __container_of(ptr, sample, member)				\
+> -    (void *)container_of((ptr), typeof(*(sample)), member)
+> -
+> -/**
+> - * Loop through the list given by head and set pos to struct in the list.
+> - *
+> - * Example:
+> - * struct foo *iterator;
+> - * list_for_each_entry(iterator, &bar->list_of_foos, entry) {
+> - *      [modify iterator]
+> - * }
+> - *
+> - * This macro is not safe for node deletion. Use list_for_each_entry_safe
+> - * instead.
+> - *
+> - * @param pos Iterator variable of the type of the list elements.
+> - * @param head List head
+> - * @param member Member name of the struct list_head in the list elements.
+> - *
+> - */
+> -#define list_for_each_entry(pos, head, member)				\
+> -    for (pos = __container_of((head)->next, pos, member);		\
+> -	 &pos->member != (head);					\
+> -	 pos = __container_of(pos->member.next, pos, member))
+> -
+> -/**
+> - * Loop through the list, keeping a backup pointer to the element. This
+> - * macro allows for the deletion of a list element while looping through the
+> - * list.
+> - *
+> - * See list_for_each_entry for more details.
+> - */
+> -#define list_for_each_entry_safe(pos, tmp, head, member)		\
+> -    for (pos = __container_of((head)->next, pos, member),		\
+> -	 tmp = __container_of(pos->member.next, pos, member);		\
+> -	 &pos->member != (head);					\
+> -	 pos = tmp, tmp = __container_of(pos->member.next, tmp, member))
+> -
+> -
+> -#define list_for_each_entry_reverse(pos, head, member)			\
+> -	for (pos = __container_of((head)->prev, pos, member);		\
+> -	     &pos->member != (head);					\
+> -	     pos = __container_of(pos->member.prev, pos, member))
+> -
+> -#define list_for_each_entry_continue(pos, head, member)			\
+> -	for (pos = __container_of(pos->member.next, pos, member);	\
+> -	     &pos->member != (head);					\
+> -	     pos = __container_of(pos->member.next, pos, member))
+> -
+> -#define list_for_each_entry_continue_reverse(pos, head, member)		\
+> -	for (pos = __container_of(pos->member.prev, pos, member);	\
+> -	     &pos->member != (head);					\
+> -	     pos = __container_of(pos->member.prev, pos, member))
+> -
+> -#define list_for_each_entry_from(pos, head, member)			\
+> -	for (;								\
+> -	     &pos->member != (head);					\
+> -	     pos = __container_of(pos->member.next, pos, member))
+> -
+> -#endif
+> -- 
+> 2.25.1
+> 
