@@ -4,67 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB5ECC433F5
-	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:37:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03A3FC4332F
+	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:37:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3759110EB43;
-	Tue,  1 Mar 2022 04:37:22 +0000 (UTC)
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
- [IPv6:2a00:1450:4864:20::633])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BFF510E8C7
- for <nouveau@lists.freedesktop.org>; Mon, 28 Feb 2022 20:28:38 +0000 (UTC)
-Received: by mail-ej1-x633.google.com with SMTP id r13so27238144ejd.5
- for <nouveau@lists.freedesktop.org>; Mon, 28 Feb 2022 12:28:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=uod9R4vPcpqIjzHofeC96qXcIXUlGW+U5alvKq7K0ZA=;
- b=Y+K+LAchMzIcesbCiqrzhisJgvbUIKYh3oFG/AlZJTKul1K9rRfHylHsN/EgM8hdwz
- P3hABFpC0Wcw+/0V4cKR5X0P787Wy9QwMeL5ORY50P9+oNZqmMp6NkFq4yV6NAIkP79C
- 0bvk8ZnwfFSPqzKfD7Qqea+fs2YLRTaNcLanw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=uod9R4vPcpqIjzHofeC96qXcIXUlGW+U5alvKq7K0ZA=;
- b=Ruux6OBPNPgBqzpeJzt//XcK+lh3OBhPTLPdYNDLvYy+rcYmYMH2FD2I47iwvz2Ki1
- I7QNggJslPliU+Jl3xXGfYjJ+MRoLyvB0uanWOY6tZ1JLhWxdmIp+Jg0xHv9OMdZkmc7
- RtRytC1nug+tS5XmY27mb7UUM9VjbSbKE8JXxt9BTL/UXoyJlGaGLTn08pUJd1LtaE7y
- 6whwE3wsuNzZ7qLGxmmJ55csr9YvyMB96ITwCjn6X0sOh2HVU3npatnbI808RXCi0+qL
- sxTn+xD66RSYhL+YEFQRHYRbJ6O7HtmEFgOBMcEBYHyTDvX7PDRtdltG//KITmAaVUfz
- 4Pbg==
-X-Gm-Message-State: AOAM53163NfroA1blbgq5IbVelGkQkhwTSheNeI7uu+4MjyCRbdHFoTF
- FaBrOkPILo02FNJ/vG7VbbMWPR22YyeUIQpyy5I=
-X-Google-Smtp-Source: ABdhPJyKTTYKpN05GsoEy29HH0cy73r0Poqpx6Dn1lA7psd5zo5+fENM5NH2yYkwVhGVjDQXftoz2w==
-X-Received: by 2002:a17:906:a08:b0:6ce:e6d:7a63 with SMTP id
- w8-20020a1709060a0800b006ce0e6d7a63mr16323058ejf.309.1646080116588; 
- Mon, 28 Feb 2022 12:28:36 -0800 (PST)
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com.
- [209.85.218.43]) by smtp.gmail.com with ESMTPSA id
- kw3-20020a170907770300b006d2a835ac33sm4653360ejc.197.2022.02.28.12.28.36
- for <nouveau@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 28 Feb 2022 12:28:36 -0800 (PST)
-Received: by mail-ej1-f43.google.com with SMTP id a23so27220895eju.3
- for <nouveau@lists.freedesktop.org>; Mon, 28 Feb 2022 12:28:36 -0800 (PST)
-X-Received: by 2002:ac2:44a4:0:b0:445:8fc5:a12a with SMTP id
- c4-20020ac244a4000000b004458fc5a12amr7653619lfm.27.1646078630855; Mon, 28 Feb
- 2022 12:03:50 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D518C10EB38;
+	Tue,  1 Mar 2022 04:37:20 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2045.outbound.protection.outlook.com [40.107.93.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F16D10E74E;
+ Thu, 24 Feb 2022 21:51:29 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TbBidN1/1OkQb4XaNf/LGJSIhIyxCa9+zGm5rblSp9zhQDqupUi1ti2NNhecNKiM51EnSEeJ1uXjQ2ESO4UvUiAUQQd+2MNrIIyxXyBG3SEb7W0Ub3L8l3XABzJBw5cOMgOANNFaDIHTbbOGM+8U5S/JAW7WXbY4VKf3vEo33TiDZab1vMuVrH3AWY7J9MNcb6GkbiwcLJpLxLhB3lbvwJ18ekrRgRgzKdpvLKoFCO2YW76eA0gE2Z7SzloDDluoqaQXYL2OCn2bB45LoU3wvAHo3IhXjG5fy246G+bmcFyX7Ng95U17sSY9YKmGX0ZU8HM8gkCObIdE1TlGFqM3sA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=W9WE35USorxap3FdmWnWUu6pfMAtj2Qyj+KBaDMdU8w=;
+ b=SsuIXKU8Pf0CQKbFZqQwuzl4C3Me95LawM6YaKk6ikhbua4P1g5o6xahjU/QIkj70MR9pGY4AcJTOp53HMq69lgXMiz6OnweN0gx+mO9uECVWPYazBRRMN4Um13S+iApq5TY+saw4Ohfx7Q0cVd4FDMP2XrjmbpqCZ1kpmF5m6ZgwWVd+x2eBejZm/Sd7Y0msA8tIDYwOetWqhRnf6B4ibUlmVtN3PFzI/jW9pzwgNMvl4kousGBVzGGLhRedLQUou4UgUwRTiU34ZWXKz642MmArm6X9gdPYlVlJtBm7h9Nolj5m5bb8kjs7KkjnqzII2KgY0YaKFH8fKLGcOyELQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=W9WE35USorxap3FdmWnWUu6pfMAtj2Qyj+KBaDMdU8w=;
+ b=m3VHthYPb5O3A5GeYP99tuYDVXN49lcAUFYueAxxvRkz+L0bVkmrL1AAMfriSOeaCAIfcxlnnwddHd1Hy2lH6UB1yPs9adgRZJOI0hf2cjmkxRg2rS38ozteivDrxoI7VD9ViMUzDy79zEAJVIDur0fw7YbyKdA/EwOXQKYCZQU=
+Received: from MW4PR04CA0176.namprd04.prod.outlook.com (2603:10b6:303:85::31)
+ by BN8PR12MB4594.namprd12.prod.outlook.com (2603:10b6:408:a2::30)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.21; Thu, 24 Feb
+ 2022 21:51:26 +0000
+Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:85:cafe::f7) by MW4PR04CA0176.outlook.office365.com
+ (2603:10b6:303:85::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.24 via Frontend
+ Transport; Thu, 24 Feb 2022 21:51:26 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5017.22 via Frontend Transport; Thu, 24 Feb 2022 21:51:26 +0000
+Received: from AUS-LX-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 24 Feb
+ 2022 15:51:24 -0600
+From: Mario Limonciello <mario.limonciello@amd.com>
+To: Bjorn Helgaas <bhelgaas@google.com>, Andreas Noever
+ <andreas.noever@gmail.com>, Mika Westerberg
+ <mika.westerberg@linux.intel.com>, "open list:PCI SUBSYSTEM"
+ <linux-pci@vger.kernel.org>, "open list:THUNDERBOLT DRIVER"
+ <linux-usb@vger.kernel.org>, "open list:RADEON and AMDGPU DRM DRIVERS"
+ <amd-gfx@lists.freedesktop.org>, "open list:DRM DRIVERS"
+ <dri-devel@lists.freedesktop.org>, "open list:DRM DRIVER FOR NVIDIA
+ GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, "open list:X86 PLATFORM
+ DRIVERS" <platform-driver-x86@vger.kernel.org>
+Date: Thu, 24 Feb 2022 15:51:11 -0600
+Message-ID: <20220224215116.7138-3-mario.limonciello@amd.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220224215116.7138-1-mario.limonciello@amd.com>
+References: <20220224215116.7138-1-mario.limonciello@amd.com>
 MIME-Version: 1.0
-References: <20220228110822.491923-1-jakobkoschel@gmail.com>
- <20220228110822.491923-3-jakobkoschel@gmail.com>
- <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
- <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
-In-Reply-To: <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 28 Feb 2022 12:03:34 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
-Message-ID: <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Tue, 01 Mar 2022 04:37:20 +0000
-Subject: Re: [Nouveau] [PATCH 2/6] treewide: remove using list iterator
- after loop body as a ptr
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 52fb2aea-6dca-4379-bce7-08d9f7dfce9b
+X-MS-TrafficTypeDiagnostic: BN8PR12MB4594:EE_
+X-Microsoft-Antispam-PRVS: <BN8PR12MB4594C920668624E664EF6667E23D9@BN8PR12MB4594.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: dtRQPdH7DoOP5lJDF3HqmNJUMZIwvdbsEOPuxbmDx0r5hXRCc5jEOcCYK5oBjeZ/m1kfraSb3wITNBRRB3q3fHndQ+xhGaoXLMWtkQc4Pqr5QTulOFw+0ZOExO1XT2SZLdDvcs9pPKILRuh8ZUGOwrVPA0EE83HPtf0KdckotEcoqPi/9XrhIi4f5hd26nVJCVZT12M63M67ckzNy+7Qyt9DPJpJk8gCNjRmvJ93tMQq/i0ChurmXtNJfbFJj6TAz7xmOB3kjHlOtUX5KPF6tdFWgx5P3I2Yq9S+ABeHqMVAU7qMBWa4M11kKBK2tI0cLL2lBr6ShjZsOWq5818gtEaqltxRC6IOsMUjrlEjg1tf/UDIwKPWdQx+XwP4luQo65PdNZvIOXfhxgDgso1uhSMmDkg0GOKnLs3EOsRogtHfIpLcZrvcj196a4uUq3wispZD1h4I2g050hA9sPdlvoSLvj2uFZVy4eMKrwNXeuRmDQYRdRG7ym68gMfGMg93nqU/ryy747yoghTVd4ZaqKBoy4wwPVQS2znjRUXT98rzHNE1TatySGKoe6d2jM4kuAC+tGhHlaqkUXowtFJJ22pNG5eAeRmJQiHPxHPV+CGLLegG/DO6w6ED5P5mu6Dxx8/cmJgbQK40+RmT/k3h5S5Rdv7RT86KoGfztggfwewNDH8exI+xcH3IFGxoy2Xvx5JT+QpTFW8T5ykDwFdlfKUjyKPuHXxUq4CxpvReQwpo417AOCno+l2qc+ZZQbQr
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(47660400002)(40470700004)(36840700001)(46966006)(4326008)(110136005)(83380400001)(8676002)(316002)(336012)(40460700003)(426003)(36756003)(47076005)(19627235002)(54906003)(36860700001)(186003)(86362001)(26005)(7696005)(2906002)(81166007)(5660300002)(508600001)(8936002)(45080400002)(7416002)(70586007)(6666004)(1076003)(82310400004)(44832011)(356005)(2616005)(16526019)(70206006)(46800400005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2022 21:51:26.3841 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52fb2aea-6dca-4379-bce7-08d9f7dfce9b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB4594
+X-Mailman-Approved-At: Tue, 01 Mar 2022 04:37:19 +0000
+Subject: [Nouveau] [PATCH v5 2/7] PCI: Move check for old Apple Thunderbolt
+ controllers into a quirk
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,72 +110,145 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-wireless <linux-wireless@vger.kernel.org>,
- alsa-devel@alsa-project.org, KVM list <kvm@vger.kernel.org>,
- "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
- nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>,
- linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
- linux-arch <linux-arch@vger.kernel.org>, CIFS <linux-cifs@vger.kernel.org>,
- linux-aspeed@lists.ozlabs.org, linux-scsi <linux-scsi@vger.kernel.org>,
- linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@ziepe.ca>,
- intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
- bcm-kernel-feedback-list@broadcom.com,
- Dan Carpenter <dan.carpenter@oracle.com>,
- Linux Media Mailing List <linux-media@vger.kernel.org>,
- Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
- Linux PM <linux-pm@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
- Nathan Chancellor <nathan@kernel.org>, dma <dmaengine@vger.kernel.org>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Jakob Koschel <jakobkoschel@gmail.com>, v9fs-developer@lists.sourceforge.net,
- linux-tegra <linux-tegra@vger.kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-sgx@vger.kernel.org,
- linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
- linux-usb@vger.kernel.org, samba-technical@lists.samba.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux F2FS Dev Mailing List <linux-f2fs-devel@lists.sourceforge.net>,
- tipc-discussion@lists.sourceforge.net,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
- linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, Mike Rapoport <rppt@kernel.org>
+Cc: Michael Jamet <michael.jamet@intel.com>,
+ Yehezkel Bernat <YehezkelShB@gmail.com>, Alexander.Deucher@amd.com,
+ Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Feb 28, 2022 at 11:56 AM Linus Torvalds
-<torvalds@linux-foundation.org> wrote:
->
-> I do wish we could actually poison the 'pos' value after the loop
-> somehow - but clearly the "might be uninitialized" I was hoping for
-> isn't the way to do it.
+`pci_bridge_d3_possible` currently checks explicitly for a Thunderbolt
+controller to indicate that D3 is possible.
 
-Side note: we do need *some* way to do it.
+This is used solely for older Apple systems, due to a variety of factors:
+* Apple used SW connection manager from the beginning, other manufacturers
+  used a FW connection manager (ICM)
+* Apple supported D3 initially, other manfuacturers didn't introduced this
+  until the `HotplugSupportInD3` _DSD was introduced in ~2015.
 
-Because if we make that change, and only set it to another pointer
-when not the head, then we very much change the semantics of
-"list_for_each_head()". The "list was empty" case would now exit with
-'pos' not set at all (or set to NULL if we add that). Or it would be
-set to the last entry.
+Apple has stopped creating new machines with Intel Thunderbolt controllers,
+and all other manufacturers now support D3 via `HotPlugSupportInD3` so
+this should be a fixed list.
 
-And regardless, that means that all the
+Suggested-by: Mika Westerberg <mika.westerberg@linux.intel.com>
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+---
+ drivers/pci/pci.c    | 17 +++++++----
+ drivers/pci/quirks.c | 67 ++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 79 insertions(+), 5 deletions(-)
 
-        if (pos == head)
+diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+index 9ecce435fb3f..01557c950c9f 100644
+--- a/drivers/pci/pci.c
++++ b/drivers/pci/pci.c
+@@ -1064,7 +1064,18 @@ static inline bool platform_pci_bridge_d3(struct pci_dev *dev)
+ 	if (pci_use_mid_pm())
+ 		return false;
+ 
+-	return acpi_pci_bridge_d3(dev);
++	if (acpi_pci_bridge_d3(dev))
++		return true;
++
++	/*
++	 * This is for Apple machines via a quirk
++	 * Non-Apple machines will use the ACPI property with the same name
++	 * from `acpi_pci_bridge_d3` to indciate support.
++	 */
++	if (device_property_read_bool(&dev->dev, "HotPlugSupportInD3"))
++		return true;
++
++	return false;
+ }
+ 
+ /**
+@@ -2954,10 +2965,6 @@ bool pci_bridge_d3_possible(struct pci_dev *bridge)
+ 		if (pci_bridge_d3_force)
+ 			return true;
+ 
+-		/* Even the oldest 2010 Thunderbolt controller supports D3. */
+-		if (bridge->is_thunderbolt)
+-			return true;
+-
+ 		/* Platform might know better if the bridge supports D3 */
+ 		if (platform_pci_bridge_d3(bridge))
+ 			return true;
+diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
+index ceeca7d8dd90..f74f50ea0695 100644
+--- a/drivers/pci/quirks.c
++++ b/drivers/pci/quirks.c
+@@ -3756,6 +3756,73 @@ DECLARE_PCI_FIXUP_SUSPEND_LATE(PCI_VENDOR_ID_INTEL,
+ 			       quirk_apple_poweroff_thunderbolt);
+ #endif
+ 
++/*
++ * The first machines supporting Intel Thunderbolt were released by Apple, and
++ * supported a software based connection manager including D3 support, as far
++ * back as 2010. These machines don't have ACPI companions to declare D3
++ * support.
++ *
++ * Other manufacturers introduced Thunderbolt shortly after but notably did not
++ * support:
++ * - Software based connection manager
++ * - Runtime power management
++ * Power management was handled via the BIOS when nothing was plugged in.
++ * Runtime D3 was later introduced in ~2015 and Microsoft declared when the
++ * `HotPlugSupportInD3` _DSD was present that they would support D3.
++ *
++ * This list is expected to be complete and not grow in the future as Apple
++ * has stopped producing new x86 models with Intel Thunderbolt controllers.
++ */
++static void quirk_apple_d3_thunderbolt(struct pci_dev *dev)
++{
++	struct property_entry properties[] = {
++		PROPERTY_ENTRY_BOOL("HotPlugSupportInD3"),
++		{},
++	};
++
++	if (!x86_apple_machine)
++		return;
++
++	if (device_create_managed_software_node(&dev->dev, properties, NULL))
++		pci_warn(dev, "could not add HotPlugSupportInD3 property");
++}
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_LIGHT_RIDGE,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_EAGLE_RIDGE,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_LIGHT_PEAK,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_CACTUS_RIDGE_4C,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_CACTUS_RIDGE_2C,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_PORT_RIDGE,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_REDWOOD_RIDGE_2C_NHI,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_REDWOOD_RIDGE_2C_BRIDGE,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_REDWOOD_RIDGE_4C_NHI,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_REDWOOD_RIDGE_4C_BRIDGE,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_FALCON_RIDGE_2C_NHI,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_FALCON_RIDGE_2C_BRIDGE,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_FALCON_RIDGE_4C_NHI,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_FALCON_RIDGE_4C_BRIDGE,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_ALPINE_RIDGE_2C_NHI,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_ALPINE_RIDGE_2C_BRIDGE,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_ALPINE_RIDGE_4C_NHI,
++			quirk_apple_d3_thunderbolt);
++DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_ALPINE_RIDGE_4C_BRIDGE,
++			quirk_apple_d3_thunderbolt);
++
+ /*
+  * Following are device-specific reset methods which can be used to
+  * reset a single function if other methods (e.g. FLR, PM D0->D3) are
+-- 
+2.34.1
 
-kinds of checks after the loop would be fundamentally broken.
-
-Darn. I really hoped for (and naively expected) that we could actually
-have the compiler warn about the use-after-loop case. That whole
-"compiler will now complain about bad use" was integral to my clever
-plan to use the C99 feature of declaring the iterator inside the loop.
-
-But my "clever plan" was apparently some ACME-level Wile E. Coyote sh*t.
-
-Darn.
-
-                   Linus
