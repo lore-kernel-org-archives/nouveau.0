@@ -4,124 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 630E2C4332F
-	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:38:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17434C43217
+	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:38:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F302710EB64;
-	Tue,  1 Mar 2022 04:37:37 +0000 (UTC)
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2075.outbound.protection.outlook.com [40.107.94.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1996A10E442;
- Mon, 28 Feb 2022 20:56:59 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L/NM+bF14zNbxvoixIfkS2nlK+oJNZgO88SKo9/g1KV0Oppam+GcEU2z0EELA9icO2x7c3StRZD+L5XsZvoXEnl6PVLy/BIj03Rje9tsqm2Ogz9TwVR1kU+53DaXvxnzUV10pBbsFtvcZwTeBhSG5XoHnJ8AtezvTjvVZ+2TiB9uphyUEY/t24uIvqfyDUFCcgJCUpyHWOpJrR+O1dKUBn8md08+2khFGXaCsRFoWVfX9Slai8UfHsjWVfJ274s6ToF6OK37ofjceMEyl+JvbNk/vruU+USQH//wPl2L3BuMH7xMKM4eMkb3SmKECd2NCkixzeLvRrCQut0OSRx99Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ioAqKXomsn7wJ84HI4fb0DepRBkYi6WqaGp150Ttg2U=;
- b=T+ZcZH/bBpZ+/CLoWiUxVhW3F7zcM5cWbJQWWzlPhuBNKYsC+nq97shvp9GPgIpj6aaj6U6gv98BPPUKBXiT3IeU0irbt/+GqfQkxDkqiJPA/VMsux5QFicJjkgsjmO6vZeHDjDGPYG5gkKFzRiIaaTAiP6sRNqKQEH985GD7HmJkZvvccPJteTd5sxq7n68JUuM0k7K1NN+JJMb0v+tcDo/yRnEDZ/MOVnU1seNYn8ygl3Q0AKTYwFLoch+9bIaoZF4+y77T/lYaP7nL1ePt31PJdS7ZO3ZdJ7/UOvJoxwxLxcWM1aFZTXzr8CuOgIEAvCOIqjVXbXITmYsUpjtYQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ioAqKXomsn7wJ84HI4fb0DepRBkYi6WqaGp150Ttg2U=;
- b=cnkurhixi6Q0xE7CYbTE0c8h4t9U6Rc/k8FYCxzvDE/7+IXSTpOXtRr4lrrTSxZx0zypJ5EpTZXbGAS+vcCZf5RO251cY+h1wjtjMXqGX0qJfzaX2lp0Jg8BTVshgmVq3QwrytEK2sRR4a159vv7KuqWvUIDME3Q0beBcK5Djlo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by MWHPR12MB1358.namprd12.prod.outlook.com (2603:10b6:300:d::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.22; Mon, 28 Feb
- 2022 20:56:55 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::e03f:901a:be6c:b581]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::e03f:901a:be6c:b581%6]) with mapi id 15.20.5017.027; Mon, 28 Feb 2022
- 20:56:55 +0000
-Message-ID: <0b65541a-3da7-dc35-690a-0ada75b0adae@amd.com>
-Date: Mon, 28 Feb 2022 21:56:40 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: James Bottomley <James.Bottomley@HansenPartnership.com>,
- Linus Torvalds <torvalds@linux-foundation.org>
-References: <20220228110822.491923-1-jakobkoschel@gmail.com>
- <20220228110822.491923-3-jakobkoschel@gmail.com>
- <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
- <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
- <282f0f8d-f491-26fc-6ae0-604b367a5a1a@amd.com>
- <b2d20961dbb7533f380827a7fcc313ff849875c1.camel@HansenPartnership.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <b2d20961dbb7533f380827a7fcc313ff849875c1.camel@HansenPartnership.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AS9PR06CA0391.eurprd06.prod.outlook.com
- (2603:10a6:20b:461::13) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D2FC10EB5E;
+	Tue,  1 Mar 2022 04:37:48 +0000 (UTC)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
+ [IPv6:2a00:1450:4864:20::62f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8928510E39C;
+ Mon, 28 Feb 2022 11:08:54 +0000 (UTC)
+Received: by mail-ej1-x62f.google.com with SMTP id hw13so23946782ejc.9;
+ Mon, 28 Feb 2022 03:08:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=DGHuYFjchXbmgUIZ1SnPPgINXW2r1tGfV7LKxanZ5rw=;
+ b=mx6+xil8F/OwTucWDkjx4s8oWe9qKYEvq+lRSteVfL7qHoHjMYzOaON1c2kL9OYiTX
+ db1Mykp/ffS9il6Fqi76pAlN/G5rXNdswBXj/5Gig3gkxoatbBHPRDADsVd/P2bKgern
+ FiNaHDXHNfiQkUQdDT0QxGTuel99Vo9xYQqWbNfVZEfqWt3+vAZeTOc1QbByn6ecNGa6
+ S2BlhLxmBqy/aCRkfkMxvBR+4RMiFfh+//eOhtERGL+8TdWCfHba+zdrYCDUyKUpjEKv
+ GoJF4WvvVQmT7fMcDismFLp5shdM79FKyOLpnEpulQji7R6fg8Aw9kXLsIi9eJ28dAK+
+ e6Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=DGHuYFjchXbmgUIZ1SnPPgINXW2r1tGfV7LKxanZ5rw=;
+ b=qXnfvPs//zJfzDEJV3Zl/xlJJu6fsATnMZYWYZWrSgs4cBsgNurs5a60xOpVc3IXh8
+ 3BGKjM6Z+tKPhCk70XprJHTkq8bkjNoHKvaWSzTZ/+fu/J/CTL/qOhM6VccTo+ZFhG/A
+ vfWSskLTTjzsGKPKd9b+LXQv3Gja6GNbCubyGdTI6JMJ+E+m1Mb70DWHzdCy8ic7pQLA
+ 90jCYcbrqiMIG56+O4jXEu+frgzY1EXfY8rqbqPxMcmd7Mp+EiJqyMZaDmEskoqOI0Kl
+ ZAVnzLUgscOaXi4/h6LPawvtkhAEv4gcQmRzeD0wNmYRNWhYsxWbTOk4CjONdTD/KF4W
+ 8pkw==
+X-Gm-Message-State: AOAM533GvcgGDC3Gv1W3lz8b8ZLL/S1158ARUWSQor8a71Hj1YI0pzQE
+ XgFvfEKJIPocLm+QCLVamY0=
+X-Google-Smtp-Source: ABdhPJzNctGRxtGORumk8xJxhLEhhYPBXw3MCY4PM4mZEwTJgQgzAy87Z2fgE8nw5jOtXDmEFeeNlg==
+X-Received: by 2002:a17:906:32d8:b0:6ce:d850:f79 with SMTP id
+ k24-20020a17090632d800b006ced8500f79mr14260258ejk.414.1646046532887; 
+ Mon, 28 Feb 2022 03:08:52 -0800 (PST)
+Received: from localhost.localdomain (dhcp-077-250-038-153.chello.nl.
+ [77.250.38.153]) by smtp.googlemail.com with ESMTPSA id
+ z22-20020a17090655d600b006d229436793sm4209049ejp.223.2022.02.28.03.08.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 28 Feb 2022 03:08:52 -0800 (PST)
+From: Jakob Koschel <jakobkoschel@gmail.com>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Mon, 28 Feb 2022 12:08:16 +0100
+Message-Id: <20220228110822.491923-1-jakobkoschel@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d5d93b6b-0ff9-44b8-c708-08d9fafcd9d6
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1358:EE_
-X-Microsoft-Antispam-PRVS: <MWHPR12MB135876DCC70C7010449070CC83019@MWHPR12MB1358.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: oCJwxYpH+lWcUKDM9hJhLOnNxhU8mMUL5h1/vKXYQ6mznrTp3VbXaYx8UvNzaSs6zg1AgIGaK7T3OxQja1IzwyGoagVY5toRT3tZcD6WLq383ZPLCT6arVWZmI5mJZfqc7mTfPcziJr1zGR+I+RGN0RCGU9cfxEDuDJgysZZXu4gaSt83it03POPNW7bBdx7QxCytpibh6tgwcuTn7uiy7ccKkFfoYgkCAS53qttj858vnCjTkbYOXWURVmJZMKC6HIZdI7yjjwHsHHP3SZgxKKwmYMZeZytGOvQNf30Vtg0NA078jW/+48fsy42N+AvvA1kFGUGOmNHGEj2e9Iu7Qgicf8hm0anNY7IZg0SgDc8DU6Axp6WE7fjOV+wzvkZhCpA83S+e5buUttZg40RJWQ9026lftLFsM5BLvH/9LN7mnrlRwfFFCwIHurI06uMJ6x3xNSkxjytbJbt2rrDubt0KMTRZSQZLJgRPIJ6guN3SMXTxHX3tOYzTkOJBvXRv6RK88OShcqmtm0eBPoOtgGq5rfVdgSiaXc/WQPZ8U3VreUsJf3y1xoS+Jh65CI009hxza0rPuuSP9EeYksLPGZdkK7shjZG90Yn1NLvwpP7dTXVxUWJ3tROOLPZAqmkWpvMqKf7WjQb8RLtclGiOQMaPRIC+hEqRtOHFqxZEcyf7+2vzQ4GcYmkxApvapN3vtoUVkc3thbFl8j0fqQa2vaBcFJI1GQVp4LwfiAEeDA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(8936002)(8676002)(6506007)(53546011)(31686004)(508600001)(5660300002)(6512007)(6666004)(86362001)(2616005)(186003)(38100700002)(31696002)(7366002)(7406005)(7416002)(6486002)(66946007)(66556008)(66476007)(2906002)(110136005)(4326008)(54906003)(36756003)(316002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OU5SekVSYkpVTFBzbVdSU00zSlZ0V3pOQjBOUm9JUUo0dktMYmEwbkZmOE41?=
- =?utf-8?B?S0NwSC9KQXlkQ2NCUStLQitXWVZTeFYxVDVIK3hQTkVXeXBFSU01MnB3VmFt?=
- =?utf-8?B?QXBRLzNEcndKeFdKVDQwTzE2SG9ObXNFY3lSNTN0azI1U3YwYi9pTXJwbUJV?=
- =?utf-8?B?MDlqMUI2NXphR2c1cnlkVC9hT2NWcmtFQWsvNjU2TmdHTkd0dGxsZitFeTdm?=
- =?utf-8?B?bmRGSUl4KzluM0xzQUlkMC95dzVqUDlLMHpFKzhuZkJBVHpZMWM3SkxWYVRx?=
- =?utf-8?B?V2ZoUzQybjJReVpWT0tEUVppWEJISDR1K0pzcGgwYmxkOU1JdlQrRGFudkdQ?=
- =?utf-8?B?R28yZEM4MWdHdC9LZ2c3cEZVODBwRG9ENzVpWmFXZGtucFJITndMTnBHTi9U?=
- =?utf-8?B?b2NkSElVWDY0c1pneGh2dCt2SFFlZ0hnS0dwR1hudThTdEcyTitiY2JJelgx?=
- =?utf-8?B?M0ZPaHpSaVdLdnViQ21wRno1YVJ0ZEI4V1loVHpOTG95NlI1ditpT0U4dTFE?=
- =?utf-8?B?QTlWVWVDTHJOeVN3QXVlM1d3ZVc2TVpBcndOU0JKV0RYTTJVbWQ1KzN2ZXZy?=
- =?utf-8?B?YjAxcXdnNFBiaWo4L0YzK0JYZ1grWWZISjUrSmdyY2NkdnUvVW45M1dna1Fl?=
- =?utf-8?B?aklMMkxTbnFwNkZrYUkrRUZFVWo0d0dNemxsZWxpT1ljcjRuOXJLbzFDOFRp?=
- =?utf-8?B?M1hQdzRyVll0TUNtVllyT2hERlRxMTlRNXdjY1F3RXkvNmFwZHZCQUtTdUpi?=
- =?utf-8?B?b1Rqb2VaMjYrc1R5OUVmeWN3ZWN4THMyUGdFemFKT044MTc0Z2pKTUtkaHR6?=
- =?utf-8?B?L0o4TDZRLzd6RndWTlVVVWlDckpacUlCOUU4ek4vVkpBVmpTbDRYVmtERzhH?=
- =?utf-8?B?c0UzOW5oVU5yTnNMNkpkQWhkdWNFWTVRUzhmMVRSOWh4amhqSDRsZGRkdGZ1?=
- =?utf-8?B?ZWdVWUtRUzNRTGhMV3UyaWJZQVQxeG1yWmJ6UzJ1Vk5iUzZQVDVZeGszd1NH?=
- =?utf-8?B?S3lLS3Azc0M0NFpzTWhnSkc5T3l4UWtOZ3FQSzhpRmp2OUJpRzBidkN3RE1o?=
- =?utf-8?B?Y0FTR21XZE1ZYmxYV2J4ZXR1enhHTzlldCsrYlRCanIxVXJQL2V0cktCTlhQ?=
- =?utf-8?B?WVFwQW1QSFV6bjQ1Qy9IaHpGVGdxaVpaV05sRG04TWFFcFp0cjNQdzdIYkpT?=
- =?utf-8?B?cGZRclg5QnFCVFl6WkpRK0FlRU0zTDdsVHBaU29DTERiZTI5UXZ4MFFOd21n?=
- =?utf-8?B?NnQ5Y1grZ1M4eWZGUHZNSEpDN2syaGRaclA0TjVjdHd0SjljREhnZ25tL00r?=
- =?utf-8?B?VStmWHpNVTVQcC9PeUEzWnhrMTNicEtJWE1YWU5kTXZyWis1ZmZ0NjB1bWNm?=
- =?utf-8?B?S0tpdlVhZ0dNd2tLUlBscllWLzNuUXBrOFpXQzBNbUIvcHBRU3NZeVd1cmpU?=
- =?utf-8?B?bU5VeXZJRldzZWZRSGZqbnVCUHpESVUrVVpGTlIwTEs4aTN4SmVNUldPODd1?=
- =?utf-8?B?QXpxcUREVGlndlRTSTdEVG9kYWpPdzUrcXZKVUtZNGFDYThteGZEbjU1eUNS?=
- =?utf-8?B?TVRLa2YwR3ltRWp1NDEyTnFSdE93N0U0cFZLa08zKzBMMEtsNlJlc2M5SStn?=
- =?utf-8?B?enVtRm9PMytPUlBSbTRDWmlTelcrdUdJaHJ5cHp1QVRLbXVRdXI0OXh3YWYy?=
- =?utf-8?B?YnFhT2VtYmJubGdMTUhRWjM3Qjh2OXU0b1dJSnE1U1RadzlKYVRPY3pYTHVx?=
- =?utf-8?B?MVR1YkdhcFRqZW1wV2tYZVA1dTFORGJjK1hNbVdPcWQxMkg0a3gvbXRVRVBq?=
- =?utf-8?B?cHI4UzM3SUVLYkplamliZHF5OE1XQ1QweGdpL3Vlbk9rMXN0ODFZU2VhQnla?=
- =?utf-8?B?NGoxYWFzREN1MlBqUm1mL2dhOWx5dG9iWjJVanhOZmE5ay9kWjd6MHJ1bUY1?=
- =?utf-8?B?dTRPR3pmNFJPek95eWtKVHNkeVBpcXJ1QmFVNXhCMUJRSlZEenZYTFdFUWtt?=
- =?utf-8?B?K0IrOXQ1Q2xxRGVCdmVjbnF5RUQ1a2s3RllaeURHbkxmV29POWlQVTE3TVdG?=
- =?utf-8?B?amFUZ2lVeVRFa2pQTGxkNlRnZ1o5bnRZMUkrRnI0SWhzQ3RmTlBLVFhIbTR0?=
- =?utf-8?B?QWl5c05PQVNkY1dBekFVT2tkQmlOZGN2a1A3Z2RLbFhneUMzZ0JFU1g3RGpP?=
- =?utf-8?Q?FKBOE8OU6FXI2GAhR0nL9P8=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d5d93b6b-0ff9-44b8-c708-08d9fafcd9d6
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2022 20:56:55.1037 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: T5fDrSjDhnjb50HK28WFgHk7t+a6+YLAgFGwipLcfbexSbeXvJRtJ5PwN/fXYnfj
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1358
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 01 Mar 2022 04:37:20 +0000
-Subject: Re: [Nouveau] [PATCH 2/6] treewide: remove using list iterator
- after loop body as a ptr
+Subject: [Nouveau] [PATCH 0/6] Remove usage of list iterator past the loop
+ body
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,98 +68,185 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-wireless <linux-wireless@vger.kernel.org>,
- alsa-devel@alsa-project.org, KVM list <kvm@vger.kernel.org>,
+Cc: alsa-devel@alsa-project.org, linux-aspeed@lists.ozlabs.org,
  "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
  nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>,
+ dri-devel@lists.freedesktop.org, Cristiano Giuffrida <c.giuffrida@vu.nl>,
+ amd-gfx@lists.freedesktop.org, samba-technical@lists.samba.org,
  linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
- linux-arch <linux-arch@vger.kernel.org>, CIFS <linux-cifs@vger.kernel.org>,
- linux-aspeed@lists.ozlabs.org, linux-scsi <linux-scsi@vger.kernel.org>,
- linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@ziepe.ca>,
- intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
- bcm-kernel-feedback-list@broadcom.com,
- Dan Carpenter <dan.carpenter@oracle.com>,
- Linux Media Mailing List <linux-media@vger.kernel.org>,
+ linux-arch <linux-arch@vger.kernel.org>, linux-cifs@vger.kernel.org,
+ kvm@vger.kernel.org, linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-staging@lists.linux.dev, "Bos, H.J." <h.j.bos@vu.nl>,
+ Jason Gunthorpe <jgg@ziepe.ca>, intel-wired-lan@lists.osuosl.org,
+ kgdb-bugreport@lists.sourceforge.net, bcm-kernel-feedback-list@broadcom.com,
+ Dan Carpenter <dan.carpenter@oracle.com>, linux-media@vger.kernel.org,
  Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
- Linux PM <linux-pm@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
+ linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
- Nathan Chancellor <nathan@kernel.org>, dma <dmaengine@vger.kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>, linux-fsdevel@vger.kernel.org,
  Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
  Jakob Koschel <jakobkoschel@gmail.com>, v9fs-developer@lists.sourceforge.net,
- linux-tegra <linux-tegra@vger.kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>,
+ linux-tegra@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-sgx@vger.kernel.org,
- linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
- linux-usb@vger.kernel.org, samba-technical@lists.samba.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux F2FS Dev Mailing List <linux-f2fs-devel@lists.sourceforge.net>,
- tipc-discussion@lists.sourceforge.net,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-sgx@vger.kernel.org,
+ linux-block@vger.kernel.org, netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-f2fs-devel@lists.sourceforge.net, tipc-discussion@lists.sourceforge.net,
+ linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
  linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, Mike Rapoport <rppt@kernel.org>
+ linuxppc-dev@lists.ozlabs.org, Mike Rapoport <rppt@kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+This is the first patch removing several categories of use cases of
+the list iterator variable past the loop.
+This is follow up to the discussion in:
+https://lore.kernel.org/all/20220217184829.1991035-1-jakobkoschel@gmail.com/
+
+As concluded in:
+https://lore.kernel.org/all/YhdfEIwI4EdtHdym@kroah.com/
+the correct use should be using a separate variable after the loop
+and using a 'tmp' variable as the list iterator.
+The list iterator will not point to a valid structure after the loop
+if no break/goto was hit. Invalid uses of the list iterator variable
+can be avoided altogether by simply using a separate pointer to
+iterate the list.
+
+Linus and Greg agreed on the following pattern:
+
+-	struct gr_request *req;
++	struct gr_request *req = NULL;
++	struct gr_request *tmp;
+	struct gr_ep *ep;
+	int ret = 0;
+
+-	list_for_each_entry(req, &ep->queue, queue) {
+-		if (&req->req == _req)
++	list_for_each_entry(tmp, &ep->queue, queue) {
++		if (&tmp->req == _req) {
++			req = tmp;
+			break;
++		}
+	}
+-	if (&req->req != _req) {
++	if (!req) {
+		ret = -EINVAL;
+		goto out;
+	}
 
 
-Am 28.02.22 um 21:42 schrieb James Bottomley:
-> On Mon, 2022-02-28 at 21:07 +0100, Christian König wrote:
->> Am 28.02.22 um 20:56 schrieb Linus Torvalds:
->>> On Mon, Feb 28, 2022 at 4:19 AM Christian König
->>> <christian.koenig@amd.com> wrote:
->>> [SNIP]
->>> Anybody have any ideas?
->> I think we should look at the use cases why code is touching (pos)
->> after the loop.
->>
->> Just from skimming over the patches to change this and experience
->> with the drivers/subsystems I help to maintain I think the primary
->> pattern looks something like this:
->>
->> list_for_each_entry(entry, head, member) {
->>       if (some_condition_checking(entry))
->>           break;
->> }
->> do_something_with(entry);
->
-> Actually, we usually have a check to see if the loop found anything,
-> but in that case it should something like
->
-> if (list_entry_is_head(entry, head, member)) {
->      return with error;
-> }
-> do_somethin_with(entry);
->
-> Suffice?  The list_entry_is_head() macro is designed to cope with the
-> bogus entry on head problem.
+With gnu89 the list iterator variable cannot yet be declared
+within the for loop of the list iterator.
+Moving to a more modern version of C would allow defining
+the list iterator variable within the macro, limiting
+the scope to the loop.
+This avoids any incorrect usage past the loop altogether.
 
-That will work and is also what people already do.
+This are around 30% of the cases where the iterator
+variable is used past the loop (identified with a slightly
+modified version of use_after_iter.cocci).
+I've decided to split it into at a few patches separated
+by similar use cases.
 
-The key problem is that we let people do the same thing over and over 
-again with slightly different implementations.
+Because the output of get_maintainer.pl was too big,
+I included all the found lists and everyone from the
+previous discussion.
 
-Out in the wild I've seen at least using a separate variable, using a 
-bool to indicate that something was found and just assuming that the 
-list has an entry.
+Jakob Koschel (6):
+  drivers: usb: remove usage of list iterator past the loop body
+  treewide: remove using list iterator after loop body as a ptr
+  treewide: fix incorrect use to determine if list is empty
+  drivers: remove unnecessary use of list iterator variable
+  treewide: remove dereference of list iterator after loop body
+  treewide: remove check of list iterator against head past the loop
+    body
 
-The last case is bogus and basically what can break badly.
+ arch/arm/mach-mmp/sram.c                      |  9 ++--
+ arch/arm/plat-pxa/ssp.c                       | 28 +++++-------
+ arch/powerpc/sysdev/fsl_gtm.c                 |  4 +-
+ arch/x86/kernel/cpu/sgx/encl.c                |  6 ++-
+ drivers/block/drbd/drbd_req.c                 | 45 ++++++++++++-------
+ drivers/counter/counter-chrdev.c              | 26 ++++++-----
+ drivers/crypto/cavium/nitrox/nitrox_main.c    | 11 +++--
+ drivers/dma/dw-edma/dw-edma-core.c            |  4 +-
+ drivers/dma/ppc4xx/adma.c                     | 11 +++--
+ drivers/firewire/core-transaction.c           | 32 +++++++------
+ drivers/firewire/sbp2.c                       | 14 +++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        | 19 +++++---
+ drivers/gpu/drm/drm_memory.c                  | 15 ++++---
+ drivers/gpu/drm/drm_mm.c                      | 17 ++++---
+ drivers/gpu/drm/drm_vm.c                      | 13 +++---
+ drivers/gpu/drm/gma500/oaktrail_lvds.c        |  9 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   | 14 +++---
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 15 ++++---
+ drivers/gpu/drm/i915/gt/intel_ring.c          | 15 ++++---
+ .../gpu/drm/nouveau/nvkm/subdev/clk/base.c    | 11 +++--
+ .../gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c | 13 +++---
+ drivers/gpu/drm/scheduler/sched_main.c        | 14 +++---
+ drivers/gpu/drm/ttm/ttm_bo.c                  | 19 ++++----
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c           | 22 +++++----
+ drivers/infiniband/hw/hfi1/tid_rdma.c         | 16 ++++---
+ drivers/infiniband/hw/mlx4/main.c             | 12 ++---
+ drivers/media/dvb-frontends/mxl5xx.c          | 11 +++--
+ drivers/media/pci/saa7134/saa7134-alsa.c      |  4 +-
+ drivers/media/v4l2-core/v4l2-ctrls-api.c      | 31 +++++++------
+ drivers/misc/mei/interrupt.c                  | 12 ++---
+ .../net/ethernet/intel/i40e/i40e_ethtool.c    |  3 +-
+ .../net/ethernet/qlogic/qede/qede_filter.c    | 11 +++--
+ drivers/net/wireless/ath/ath6kl/htc_mbox.c    |  2 +-
+ .../net/wireless/intel/ipw2x00/libipw_rx.c    | 15 ++++---
+ drivers/perf/xgene_pmu.c                      | 13 +++---
+ drivers/power/supply/cpcap-battery.c          | 11 +++--
+ drivers/scsi/lpfc/lpfc_bsg.c                  | 16 ++++---
+ drivers/scsi/scsi_transport_sas.c             | 17 ++++---
+ drivers/scsi/wd719x.c                         | 12 +++--
+ drivers/staging/rtl8192e/rtl819x_TSProc.c     | 17 +++----
+ drivers/staging/rtl8192e/rtllib_rx.c          | 17 ++++---
+ .../staging/rtl8192u/ieee80211/ieee80211_rx.c | 15 ++++---
+ .../rtl8192u/ieee80211/rtl819x_TSProc.c       | 19 ++++----
+ drivers/thermal/thermal_core.c                | 38 ++++++++++------
+ drivers/usb/gadget/composite.c                |  9 ++--
+ drivers/usb/gadget/configfs.c                 | 22 +++++----
+ drivers/usb/gadget/udc/aspeed-vhub/epn.c      | 11 +++--
+ drivers/usb/gadget/udc/at91_udc.c             | 26 ++++++-----
+ drivers/usb/gadget/udc/atmel_usba_udc.c       | 11 +++--
+ drivers/usb/gadget/udc/bdc/bdc_ep.c           | 11 +++--
+ drivers/usb/gadget/udc/fsl_qe_udc.c           | 11 +++--
+ drivers/usb/gadget/udc/fsl_udc_core.c         | 11 +++--
+ drivers/usb/gadget/udc/goku_udc.c             | 11 +++--
+ drivers/usb/gadget/udc/gr_udc.c               | 11 +++--
+ drivers/usb/gadget/udc/lpc32xx_udc.c          | 11 +++--
+ drivers/usb/gadget/udc/max3420_udc.c          | 11 +++--
+ drivers/usb/gadget/udc/mv_u3d_core.c          | 11 +++--
+ drivers/usb/gadget/udc/mv_udc_core.c          | 11 +++--
+ drivers/usb/gadget/udc/net2272.c              | 12 ++---
+ drivers/usb/gadget/udc/net2280.c              | 11 +++--
+ drivers/usb/gadget/udc/omap_udc.c             | 11 +++--
+ drivers/usb/gadget/udc/pxa25x_udc.c           | 11 +++--
+ drivers/usb/gadget/udc/s3c-hsudc.c            | 11 +++--
+ drivers/usb/gadget/udc/tegra-xudc.c           | 11 +++--
+ drivers/usb/gadget/udc/udc-xilinx.c           | 11 +++--
+ drivers/usb/mtu3/mtu3_gadget.c                | 11 +++--
+ drivers/usb/musb/musb_gadget.c                | 11 +++--
+ drivers/vfio/mdev/mdev_core.c                 | 11 +++--
+ fs/cifs/smb2misc.c                            | 10 +++--
+ fs/f2fs/segment.c                             |  9 ++--
+ fs/proc/kcore.c                               | 13 +++---
+ kernel/debug/kdb/kdb_main.c                   | 36 +++++++++------
+ kernel/power/snapshot.c                       | 10 +++--
+ kernel/trace/ftrace.c                         | 22 +++++----
+ kernel/trace/trace_eprobe.c                   | 15 ++++---
+ kernel/trace/trace_events.c                   | 11 ++---
+ net/9p/trans_xen.c                            | 11 +++--
+ net/ipv4/udp_tunnel_nic.c                     | 10 +++--
+ net/tipc/name_table.c                         | 11 +++--
+ net/tipc/socket.c                             | 11 +++--
+ net/xfrm/xfrm_ipcomp.c                        | 11 +++--
+ sound/soc/intel/catpt/pcm.c                   | 13 +++---
+ sound/soc/sprd/sprd-mcdt.c                    | 13 +++---
+ 83 files changed, 708 insertions(+), 465 deletions(-)
 
-If we would have an unified macro which search for an entry combined 
-with automated reporting on patches to use that macro I think the 
-potential to introduce such issues will already go down massively 
-without auditing tons of existing code.
 
-Regards,
-Christian.
-
->
-> James
->
->
-
+base-commit: 7ee022567bf9e2e0b3cd92461a2f4986ecc99673
+--
+2.25.1
