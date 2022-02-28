@@ -4,98 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05A13C4332F
-	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:38:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0305EC433EF
+	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:38:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2059F10EB7C;
-	Tue,  1 Mar 2022 04:37:27 +0000 (UTC)
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam07on2059.outbound.protection.outlook.com [40.107.95.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A47F10E72A;
- Thu, 24 Feb 2022 21:51:27 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KGd4v1xA5cAtf4yHlT6yZf1jiKZOwrryHN9W27dWo1P+fQ8q/4gG8qUizvJePf2VA7NEYKDDGooCYsvs5sB2eOHK/nGxTQMS9JHNg+lo6YIXnkhQNtxX9s+ymXsDUYDmwDVwtGlRYcHA8tIIhTqxXmzRDKmxNdUocX/HbvoDHN4J1NknqRfCtNFtgAO1keYb6D2qQqo+nZ0mT02lKXC1ctk7DO1FlhR1cORkUOz5GqnAjhsHOWzXJNrsQljRmdh1DA2K0BYnexiFKU9qxaxZGVQyDQ5z2PcG+qupwXLfCaW6aiz30p+EmsWoclu0KacHMYzn3rkE9tL7GcqnKOa4cQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nVPlYNG6piZmMsY8iC7zTDshd96rfyvJ89O18cYprFQ=;
- b=PnEDrF42gu8ss2u+jA8rIhgjhuyyGh0d7LcXBLseVf1Huju61Nb1l1DAJCTiIN4zAswXxpmZrCYi7VmToE+M5KWlW+EkW+7n2Bx5DTVif2Xb6M0SjTE5Spgugws7yUCqcpGN0NG9vlzpKN5F8yPLpk1dUAufSmk+C9hbt8EyPYg4ba2W80gxfhw8/SdW/GPCAtkwN8WXvHiznUL90EpgNTmisSe5jQv9e9w9mOq69a2ej1wt1OLgT8bBdl98wgEN4rHEha2TBouCe6B25/xwEidVnLZSgrAuLsOdSFxdd8CjO6IYxKPOZo4aFjX4KeKfaI0PV7j34y0DeIRek64gEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nVPlYNG6piZmMsY8iC7zTDshd96rfyvJ89O18cYprFQ=;
- b=DPLwvdB+UODrQBHVdNxQq5Ey8bIFnQXBiDWbk9HwSZzusgABqL85Xf2x8uqcqLNYVU8O4luplYMJv9GJxsNcUAGkxgJuDbI2WHqu9haJNrBS2wH00YpE+obfxo87xZSYbSmVlayp7ng9T/mYB2KURgyp7hOeBEsEs4a8Ko8SHUQ=
-Received: from MW4PR04CA0179.namprd04.prod.outlook.com (2603:10b6:303:85::34)
- by MN2PR12MB4640.namprd12.prod.outlook.com (2603:10b6:208:38::29)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.22; Thu, 24 Feb
- 2022 21:51:24 +0000
-Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:85:cafe::78) by MW4PR04CA0179.outlook.office365.com
- (2603:10b6:303:85::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.23 via Frontend
- Transport; Thu, 24 Feb 2022 21:51:24 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5017.22 via Frontend Transport; Thu, 24 Feb 2022 21:51:23 +0000
-Received: from AUS-LX-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 24 Feb
- 2022 15:51:21 -0600
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: Bjorn Helgaas <bhelgaas@google.com>, Andreas Noever
- <andreas.noever@gmail.com>, Mika Westerberg
- <mika.westerberg@linux.intel.com>, "open list:PCI SUBSYSTEM"
- <linux-pci@vger.kernel.org>, "open list:THUNDERBOLT DRIVER"
- <linux-usb@vger.kernel.org>, "open list:RADEON and AMDGPU DRM DRIVERS"
- <amd-gfx@lists.freedesktop.org>, "open list:DRM DRIVERS"
- <dri-devel@lists.freedesktop.org>, "open list:DRM DRIVER FOR NVIDIA
- GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, "open list:X86 PLATFORM
- DRIVERS" <platform-driver-x86@vger.kernel.org>
-Date: Thu, 24 Feb 2022 15:51:09 -0600
-Message-ID: <20220224215116.7138-1-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8181E10EB73;
+	Tue,  1 Mar 2022 04:37:26 +0000 (UTC)
+X-Greylist: delayed 519 seconds by postgrey-1.36 at gabe;
+ Mon, 28 Feb 2022 11:31:16 UTC
+Received: from nautica.notk.org (nautica.notk.org [91.121.71.147])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EB7710E3C5;
+ Mon, 28 Feb 2022 11:31:16 +0000 (UTC)
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id CA38FC023; Mon, 28 Feb 2022 12:22:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1646047354; bh=nbIjFrzgDVTmB4SrJnZGd7fIFmdwChwe2lL83Uag4us=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=KzQ5VK5bfQJ50dqk23dxDjUwDDK7TA/irQD0Z9CNQKb+g550mz4220rMxu0PuRkB0
+ zSH1KEphDNBJ7hKNULh8KlQjyIdBHOs8MI/nUYoPBmpLppCasulnFAsrKdaEXzwMTJ
+ IwpM9+gWlHHqb/G70sMsoon8bZGjqe3igvlHvXWdB+dQG/WEtTlWyekznVAIp4LN7e
+ b5pg6TDJ9pKPwGgBdsioef4sXDvyaKtcCCYy35g3YAfKpCdoJctnMsERag3cdTSjTi
+ 8bbBH2/ntqNttGvGikrePwX+5MLUaZ7SwFWR8e1TQHG1akbelVXWBNaL48rZXDJvyO
+ 7HTqyJ/PLNd5Q==
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id 6162EC009;
+ Mon, 28 Feb 2022 12:22:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1646047353; bh=nbIjFrzgDVTmB4SrJnZGd7fIFmdwChwe2lL83Uag4us=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=E7ShsxTdVoGEbpDYFF27HXnsiskOzo+90fWYK/YK/pcgewcio/aI2ukKBbk8Ggf8c
+ PSXNNRohBAnroHDgJmzD26WOCBS51v3CgaeWJoVRlz3gzi1Wk2c722FgVeG9ZC8Gq1
+ VxeMBZJsJJ2s49Z0zkRuzCFT0FdEMmJ4Jlg8so5xUNkI1Pmhr9T77hNpqbhc5MUSIm
+ Vf9CZqLUP+U5LMthWxqmxcIfa+qcI6C/HHTtBGWVbD6UPJLDQeI2MK30nqaJN3mP3G
+ MxeZ4iTWnejwYcukxHfaPz9ZlYf9Zxp1r7k3O+mRBYZR8EPZsNImCl3hToWu78+1r5
+ 3QpJ5t/64l3TQ==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 8186bc45;
+ Mon, 28 Feb 2022 11:22:16 +0000 (UTC)
+Date: Mon, 28 Feb 2022 20:22:01 +0900
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Jakob Koschel <jakobkoschel@gmail.com>
+Message-ID: <YhywWTEIY7UnCYtL@codewreck.org>
+References: <20220228110822.491923-1-jakobkoschel@gmail.com>
+ <20220228110822.491923-7-jakobkoschel@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 40131935-5b6e-44e3-d439-08d9f7dfcd27
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4640:EE_
-X-Microsoft-Antispam-PRVS: <MN2PR12MB4640C3711820F21147800908E23D9@MN2PR12MB4640.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 03bi4AqP/2PRhu4IpWctKwcN2LzStj11TEEVHsSSjgPOmIE/xutWdNKYOHOh8+gko1qVZeaaCXNZdk/a1R2TfubxomZML3ug7E9KmtVO6E054KCNhzUI1EQ3gZwaO8StNFzKg2x11PjSAa+zIRJLlDzRsxSpWpMYZrqb5xONuarQelM4z/sinJ0Mro+q9lDVDQpDPr1RSfX2N+YSS61newRw6cYH5f4TuFRAr0pvVSC50TRz6TLdKZE/aIUiFsHp8Oiz5A+9ce93XCgiakMECq0kxX8lOkztgl2jnz+ct8rx1cP0v8Rc3FCuWT44Wg6vp0PqN2vpcVbdfVAD6Vn7PbXve1BDob0zQxTyETIrozzcBsuftek/gMpPgQjGVW9Wteh3G0yFFgnXWyKYCJMA0CzGHGB9eCYW1wb+UQx6trwZ/xucm0dB4PrlBK3lWjdphD06O4Bt+fnHZDT7zTM1qMigfDM50M3WR9/MRKQ5MjMdcJhkwsf6+NJOxQyJwaewSgu9vD+yoLkMgtyB63AXTIKUqbpRpvbb9v7u885Jfpnrj2eoY7ATuFh/M0IdF91R0dCnT0JN95bl8Mrhtil8q4l+DJu3vxZ3mAs1yzBk3yD7bu8nHbNAKjUDzww68QF4+dxWL/eqVBBIuRRW4bs8xUjms3VJQuhI8wN9YXzUOVPn+LdlmU9X4WkAidqf3NIguFBujHt1Q00M9/p/Q9nNNr2+7bOqRUYxelea6T4Zquc=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(82310400004)(8936002)(86362001)(70586007)(7416002)(81166007)(2906002)(70206006)(508600001)(356005)(44832011)(40460700003)(36860700001)(4326008)(316002)(110136005)(5660300002)(54906003)(83380400001)(8676002)(47076005)(6666004)(7696005)(26005)(1076003)(2616005)(426003)(336012)(16526019)(36756003)(186003)(81973001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2022 21:51:23.9468 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40131935-5b6e-44e3-d439-08d9f7dfcd27
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4640
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220228110822.491923-7-jakobkoschel@gmail.com>
 X-Mailman-Approved-At: Tue, 01 Mar 2022 04:37:19 +0000
-Subject: [Nouveau] [PATCH v5 0/7] Overhaul `is_thunderbolt`
+Subject: Re: [Nouveau] [PATCH 6/6] treewide: remove check of list iterator
+ against head past the loop body
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,91 +64,54 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michael Jamet <michael.jamet@intel.com>,
- Yehezkel Bernat <YehezkelShB@gmail.com>, Alexander.Deucher@amd.com,
- Mario Limonciello <mario.limonciello@amd.com>
+Cc: alsa-devel@alsa-project.org, linux-aspeed@lists.ozlabs.org,
+ "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel@lists.freedesktop.org, Cristiano Giuffrida <c.giuffrida@vu.nl>,
+ amd-gfx@lists.freedesktop.org, samba-technical@lists.samba.org,
+ linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
+ linux-arch <linux-arch@vger.kernel.org>, linux-cifs@vger.kernel.org,
+ kvm@vger.kernel.org, linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-staging@lists.linux.dev, "Bos, H.J." <h.j.bos@vu.nl>,
+ Jason Gunthorpe <jgg@ziepe.ca>, intel-wired-lan@lists.osuosl.org,
+ kgdb-bugreport@lists.sourceforge.net, bcm-kernel-feedback-list@broadcom.com,
+ Dan Carpenter <dan.carpenter@oracle.com>, linux-media@vger.kernel.org,
+ Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
+ linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
+ Nathan Chancellor <nathan@kernel.org>, linux-fsdevel@vger.kernel.org,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ v9fs-developer@lists.sourceforge.net, linux-tegra@vger.kernel.org,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-arm-kernel@lists.infradead.org, linux-sgx@vger.kernel.org,
+ linux-block@vger.kernel.org, Linus Torvalds <torvalds@linux-foundation.org>,
+ linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
+ netdev@vger.kernel.org, dmaengine@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
+ linuxppc-dev@lists.ozlabs.org, Mike Rapoport <rppt@kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Various drivers in the kernel use `is_thunderbolt` or
-`pci_is_thunderbolt_attached` to designate behaving differently
-from a device that is internally in the machine. This currently works
-by an attribute in PCI core "is_thunderbolt" which makes those drivers
-only apply differences when Intel Thunderbolt controllers are encountered.
+This is a bit more work (and a lot more noise), but I'd prefer if
+this were split into as many patches as there are components.
 
-In each of these drivers' cases the code should apply whether it's another
-vendor's USB4 controller or an Intel USB4/TBT3 controller.
+I'm not going to review the parts of the patches that don't concern me,
+and if something turns out to be a problem later one (it shouldn't but
+one never knows) it'll be much easier to revert or put the blame on an
+individual smaller commit than on this...
 
-As such, overhaul the use of "is_thunderbolt" in the PCI core to instead rally
-around the device core "external" attribute. This means dropping the extra PCI
-core attribute and the extra function designation to indicate thunderbolt attached.
+With that being said, ultimately I don't care that much and will leave
+that to people who do :)
 
-Changes from v4->v5:
-- Drop USB4 related patches.  Thoes may come at a later time if they're proven to be needed.
-  At least in the integrated case vendors should be setting the _DSD to indicate the port is
-  externally facing.
-  For the discrete case we may bring it back later.
+Jakob Koschel wrote on Mon, Feb 28, 2022 at 12:08:22PM +0100:
+>  net/9p/trans_xen.c                            | 11 +++--
 
-Changes from v3->v4:
-- Add tags from last review where applicable
-- Update titles of different patches
-- Add more comments and commit messages to various patches to address
-  comments raised in review
-- Re-order the patch series, moving more contentious patches later
-- Drop patch marking NHI removable
-- Drop patch changing gmux on it's own, roll into patch to drop
-  `is_thunderbolt`
-- Modify patch to mark integrated USB4 tunnel PCIe root ports as
-  "external" instead of removable.
-- Modify patch to mark discrete USB4 tunnel root ports as "external"
-  instead of removable.
-- Fix bit mask error in discrete USB4 tunnel patch
-- Fix USB IF vendor designation location in pci_ids.h
+This 9p change looks good to me.
 
-Changes from v2->v3:
-- Add various tags for patches that haven't changed from v2->v3
-- Add new patches for Mika's suggestions:
-  * Moving Apple Thunderbolt D3 declaration into quirks
-  * Detect PCIe root port used for PCIe tunneling on integrated
-    controllers using `usb4-host-interface`
-  * Detect PCIe root port used for PCIe tunneling on discrete
-    controllers using the USB4 DVSEC specification
-
-Changes from v1->v2:
-- Add Alex's tag to first patch
-- Move lack of command completion into a quirk (Lukas)
-- Drop `is_thunderbolt` attribute and `pci_is_thunderbolt_attached` and
-  use device core removable attribute instead
-- Adjust all consumers of old attribute to use removable
-
-Note: this spans USB/DRM/platform-x86/PCI trees.
-As a majority of the changes are in PCI, it should probably come through
-that tree if possible.
-
-
-Mario Limonciello (7):
-  PCI: Move `is_thunderbolt` check for lack of command completed to a
-    quirk
-  PCI: Move check for old Apple Thunderbolt controllers into a quirk
-  PCI: Drop the `is_thunderbolt` attribute from PCI core
-  drm/amd: drop the use of `pci_is_thunderbolt_attached`
-  drm/nouveau: drop the use of `pci_is_thunderbolt_attached`
-  drm/radeon: drop the use of `pci_is_thunderbolt_attached`
-  PCI: drop `pci_is_thunderbolt_attached`
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c |  2 +-
- drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c  |  2 +-
- drivers/gpu/drm/nouveau/nouveau_vga.c   |  4 +-
- drivers/gpu/drm/radeon/radeon_device.c  |  4 +-
- drivers/gpu/drm/radeon/radeon_kms.c     |  2 +-
- drivers/pci/hotplug/pciehp_hpc.c        |  6 +-
- drivers/pci/pci.c                       | 17 +++--
- drivers/pci/probe.c                     |  2 +-
- drivers/pci/quirks.c                    | 84 +++++++++++++++++++++++++
- drivers/platform/x86/apple-gmux.c       |  2 +-
- include/linux/pci.h                     | 25 +-------
- 11 files changed, 108 insertions(+), 42 deletions(-)
+Reviewed-by: Dominique Martinet <asmadeus@codewreck.org> # 9p
 
 -- 
-2.34.1
-
+Dominique
