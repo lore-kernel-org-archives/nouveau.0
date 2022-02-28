@@ -4,101 +4,118 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03A3FC4332F
-	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:37:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3ACB7C433EF
+	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:37:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D518C10EB38;
-	Tue,  1 Mar 2022 04:37:20 +0000 (UTC)
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2045.outbound.protection.outlook.com [40.107.93.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F16D10E74E;
- Thu, 24 Feb 2022 21:51:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBEF510EB49;
+	Tue,  1 Mar 2022 04:37:22 +0000 (UTC)
+Received: from APC01-PSA-obe.outbound.protection.outlook.com
+ (mail-psaapc01on2139.outbound.protection.outlook.com [40.107.255.139])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A5B110E60F;
+ Mon, 28 Feb 2022 14:24:10 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TbBidN1/1OkQb4XaNf/LGJSIhIyxCa9+zGm5rblSp9zhQDqupUi1ti2NNhecNKiM51EnSEeJ1uXjQ2ESO4UvUiAUQQd+2MNrIIyxXyBG3SEb7W0Ub3L8l3XABzJBw5cOMgOANNFaDIHTbbOGM+8U5S/JAW7WXbY4VKf3vEo33TiDZab1vMuVrH3AWY7J9MNcb6GkbiwcLJpLxLhB3lbvwJ18ekrRgRgzKdpvLKoFCO2YW76eA0gE2Z7SzloDDluoqaQXYL2OCn2bB45LoU3wvAHo3IhXjG5fy246G+bmcFyX7Ng95U17sSY9YKmGX0ZU8HM8gkCObIdE1TlGFqM3sA==
+ b=n+gOllht2qKrm1XLLOHu8gxqlL/gOqBFKVgjmTruYJ9VGwn3FnY/Gy4hONYQSuOj9Z7J50CvkH7GRO3qAL980mVxbyKCRBe/Eum+38VG+aN3tX0uWs61l6CzUOkcFxl0yqrXNC+ZWqlBd7p0rEEBtRfGGe9O8TJXW5srWY8mxb63AP4brwLj0K0xgaMnVlxPXE8r/i0LJMyaKhvKDxPjU8igPCaS2zXNPg/kUtEprLWe/WNZP1SwYmvhd83ahNoWX9SCYiE/FWx+30HDqn2CCiSS/G4kojhjSGlpCiMQyD2VVszOrXtc+BDSzeqn3sY4+uNGUX50G+mBT6GvWpbBVg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W9WE35USorxap3FdmWnWUu6pfMAtj2Qyj+KBaDMdU8w=;
- b=SsuIXKU8Pf0CQKbFZqQwuzl4C3Me95LawM6YaKk6ikhbua4P1g5o6xahjU/QIkj70MR9pGY4AcJTOp53HMq69lgXMiz6OnweN0gx+mO9uECVWPYazBRRMN4Um13S+iApq5TY+saw4Ohfx7Q0cVd4FDMP2XrjmbpqCZ1kpmF5m6ZgwWVd+x2eBejZm/Sd7Y0msA8tIDYwOetWqhRnf6B4ibUlmVtN3PFzI/jW9pzwgNMvl4kousGBVzGGLhRedLQUou4UgUwRTiU34ZWXKz642MmArm6X9gdPYlVlJtBm7h9Nolj5m5bb8kjs7KkjnqzII2KgY0YaKFH8fKLGcOyELQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ bh=IEZ0auUTedp77GAT72BUUWABD00QiV1dQHhxE47xXDI=;
+ b=QWag8EBybgAP4LZGVZKsbvkdoK7VUUGCW26kNuTZoQY/pJo68ukUMt8wdTk/Z+rIYgvP8OrZ9XMJObQdZrnhao0t+/O8CrQWC1kXtZ6DidZFRRI2ZEq84QJhPl/xWrejX08MTyGCZfTn4gwO7kSoD/VlfmAvHoMVDU8DWCGiEAVEtXhcwdQLlgAbXkYiNzf7ghV5VqCs1KHaNkR5UId59QMcMSfD9w24ztwoe8Raww0PsgSqgGNH/Mwar1BtFhWgEpDPkew+1z+cM7iU5Djzh+I22I0OLYiTsgPY9XUSDMyix3pdn1snEQLQb9gPiJiEEmntIH60dYuY6vrxs2ICjg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
+ dkim=pass header.d=vivo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo0.onmicrosoft.com; 
+ s=selector2-vivo0-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W9WE35USorxap3FdmWnWUu6pfMAtj2Qyj+KBaDMdU8w=;
- b=m3VHthYPb5O3A5GeYP99tuYDVXN49lcAUFYueAxxvRkz+L0bVkmrL1AAMfriSOeaCAIfcxlnnwddHd1Hy2lH6UB1yPs9adgRZJOI0hf2cjmkxRg2rS38ozteivDrxoI7VD9ViMUzDy79zEAJVIDur0fw7YbyKdA/EwOXQKYCZQU=
-Received: from MW4PR04CA0176.namprd04.prod.outlook.com (2603:10b6:303:85::31)
- by BN8PR12MB4594.namprd12.prod.outlook.com (2603:10b6:408:a2::30)
+ bh=IEZ0auUTedp77GAT72BUUWABD00QiV1dQHhxE47xXDI=;
+ b=bM3hbOu/6TIMfc7LPB9GRZ7ltEDEl5BSDrheKq7dO9ciynaLa4Y7FKVNHK0VtGcw/LSGH/fAVu6dIK7oiXk0OxuQLikvWYJJ0vrB47iNgpz1KTeNFle+VNMHqmQj2Hc0w8VelDg2sIxxXHzE0O5D1PJdCb18SLigXe0lQk5ynew=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=vivo.com;
+Received: from HK2PR06MB3492.apcprd06.prod.outlook.com (2603:1096:202:2f::10)
+ by KL1PR0601MB3832.apcprd06.prod.outlook.com (2603:1096:820:1a::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.21; Thu, 24 Feb
- 2022 21:51:26 +0000
-Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:85:cafe::f7) by MW4PR04CA0176.outlook.office365.com
- (2603:10b6:303:85::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.24 via Frontend
- Transport; Thu, 24 Feb 2022 21:51:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5017.22 via Frontend Transport; Thu, 24 Feb 2022 21:51:26 +0000
-Received: from AUS-LX-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 24 Feb
- 2022 15:51:24 -0600
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: Bjorn Helgaas <bhelgaas@google.com>, Andreas Noever
- <andreas.noever@gmail.com>, Mika Westerberg
- <mika.westerberg@linux.intel.com>, "open list:PCI SUBSYSTEM"
- <linux-pci@vger.kernel.org>, "open list:THUNDERBOLT DRIVER"
- <linux-usb@vger.kernel.org>, "open list:RADEON and AMDGPU DRM DRIVERS"
- <amd-gfx@lists.freedesktop.org>, "open list:DRM DRIVERS"
- <dri-devel@lists.freedesktop.org>, "open list:DRM DRIVER FOR NVIDIA
- GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, "open list:X86 PLATFORM
- DRIVERS" <platform-driver-x86@vger.kernel.org>
-Date: Thu, 24 Feb 2022 15:51:11 -0600
-Message-ID: <20220224215116.7138-3-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220224215116.7138-1-mario.limonciello@amd.com>
-References: <20220224215116.7138-1-mario.limonciello@amd.com>
-MIME-Version: 1.0
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.26; Mon, 28 Feb
+ 2022 14:24:06 +0000
+Received: from HK2PR06MB3492.apcprd06.prod.outlook.com
+ ([fe80::d924:a610:681d:6d59]) by HK2PR06MB3492.apcprd06.prod.outlook.com
+ ([fe80::d924:a610:681d:6d59%5]) with mapi id 15.20.5017.027; Mon, 28 Feb 2022
+ 14:24:06 +0000
+From: Guo Zhengkui <guozhengkui@vivo.com>
+To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Guo Zhengkui <guozhengkui@vivo.com>,
+ dri-devel@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA
+ GEFORCE/QUADRO GPUS), 
+ nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
+ GPUS), linux-stm32@st-md-mailman.stormreply.com (moderated list:ARM/STM32
+ ARCHITECTURE), 
+ linux-arm-kernel@lists.infradead.org (moderated list:ARM/STM32 ARCHITECTURE), 
+ linux-kernel@vger.kernel.org (open list)
+Date: Mon, 28 Feb 2022 22:23:50 +0800
+Message-Id: <20220228142352.18006-1-guozhengkui@vivo.com>
+X-Mailer: git-send-email 2.20.1
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
+X-ClientProxiedBy: HK2PR0302CA0022.apcprd03.prod.outlook.com
+ (2603:1096:202::32) To HK2PR06MB3492.apcprd06.prod.outlook.com
+ (2603:1096:202:2f::10)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 52fb2aea-6dca-4379-bce7-08d9f7dfce9b
-X-MS-TrafficTypeDiagnostic: BN8PR12MB4594:EE_
-X-Microsoft-Antispam-PRVS: <BN8PR12MB4594C920668624E664EF6667E23D9@BN8PR12MB4594.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 6b0653f5-1705-4752-baf1-08d9fac5f9e8
+X-MS-TrafficTypeDiagnostic: KL1PR0601MB3832:EE_
+X-Microsoft-Antispam-PRVS: <KL1PR0601MB3832B2B3EB38C45783DD5D01C7019@KL1PR0601MB3832.apcprd06.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dtRQPdH7DoOP5lJDF3HqmNJUMZIwvdbsEOPuxbmDx0r5hXRCc5jEOcCYK5oBjeZ/m1kfraSb3wITNBRRB3q3fHndQ+xhGaoXLMWtkQc4Pqr5QTulOFw+0ZOExO1XT2SZLdDvcs9pPKILRuh8ZUGOwrVPA0EE83HPtf0KdckotEcoqPi/9XrhIi4f5hd26nVJCVZT12M63M67ckzNy+7Qyt9DPJpJk8gCNjRmvJ93tMQq/i0ChurmXtNJfbFJj6TAz7xmOB3kjHlOtUX5KPF6tdFWgx5P3I2Yq9S+ABeHqMVAU7qMBWa4M11kKBK2tI0cLL2lBr6ShjZsOWq5818gtEaqltxRC6IOsMUjrlEjg1tf/UDIwKPWdQx+XwP4luQo65PdNZvIOXfhxgDgso1uhSMmDkg0GOKnLs3EOsRogtHfIpLcZrvcj196a4uUq3wispZD1h4I2g050hA9sPdlvoSLvj2uFZVy4eMKrwNXeuRmDQYRdRG7ym68gMfGMg93nqU/ryy747yoghTVd4ZaqKBoy4wwPVQS2znjRUXT98rzHNE1TatySGKoe6d2jM4kuAC+tGhHlaqkUXowtFJJ22pNG5eAeRmJQiHPxHPV+CGLLegG/DO6w6ED5P5mu6Dxx8/cmJgbQK40+RmT/k3h5S5Rdv7RT86KoGfztggfwewNDH8exI+xcH3IFGxoy2Xvx5JT+QpTFW8T5ykDwFdlfKUjyKPuHXxUq4CxpvReQwpo417AOCno+l2qc+ZZQbQr
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(47660400002)(40470700004)(36840700001)(46966006)(4326008)(110136005)(83380400001)(8676002)(316002)(336012)(40460700003)(426003)(36756003)(47076005)(19627235002)(54906003)(36860700001)(186003)(86362001)(26005)(7696005)(2906002)(81166007)(5660300002)(508600001)(8936002)(45080400002)(7416002)(70586007)(6666004)(1076003)(82310400004)(44832011)(356005)(2616005)(16526019)(70206006)(46800400005)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2022 21:51:26.3841 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 52fb2aea-6dca-4379-bce7-08d9f7dfce9b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB4594
-X-Mailman-Approved-At: Tue, 01 Mar 2022 04:37:19 +0000
-Subject: [Nouveau] [PATCH v5 2/7] PCI: Move check for old Apple Thunderbolt
- controllers into a quirk
+X-Microsoft-Antispam-Message-Info: /WMNfhz42ODCRUXP36Zq5/Ae2cy/nBYe9yk9TRIxWGfnVQFW0hdz0pYI8vatlU26Ng8/VONK217P1YgCmKDFB2fZAGEoGVCaFqA7b5sK0RpVFG0PqsLNeeIzuCHr97e2q1QrtwT+o2Qw+sqm5L423W9TIPztjAnXaodu3iIEp0aIRjK/hprD3dFu9Zl3SVFGI4baD3+U4fERyAjnUtKyXN/crVAYD+8D4bS/V/z3lbepbjerAekKiNbwNvAaw/C/mez0lSwEL1zw6tBLcKxIGfU/JhNHLsH2lmYc5cWDdTPmlPrxTZ61OyaMHj0pVGO6qFQRHPmGSHY2zzIZicp4pfuY/tZokaM5+oYZ2uZvAfQmZC9EVL7LI98GBGvKiK6Afcd5SDxd3Z7+gYmH7q0N1+gKmTtpMTk9eI8HerNk0ISuAO2qel0I9BsWlXtXn1peyufqJ8zQZDIBIHZG+hUyk02DlWwTI3gBQuTHIN2MIw79BnQzy2sorhkKmBtv9E8rlqltoRk/YaLCtt3ztrXWwRjSBEqrTABAGs+JAlNC95KtSH74K9uKx1DwN7eeeOS89u649j+yN9pGcKVYGqY8eROdb8tizj9A362YXtdhUjou/s/35XD7ZDNmiIMjwZ2VVF9L7f+cJTMT4M12lE2/oTsv7eP2ba2vwNxgLMPGf807+W3AgBFshxlzUfiVyhfXTab/CJbT2nExBRnm43EmE3YN0w4w+v/jAvfjnpG6+5pios6aTSaiCGaFlVfwzwUeJWF/VTf2sWppfhTGB1o33h4O5BYn+gD6IddtkLXXzvDcXJSkwkroQzlSkGna0vEJ
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:HK2PR06MB3492.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(2906002)(52116002)(38100700002)(38350700002)(2616005)(921005)(316002)(36756003)(1076003)(6512007)(6486002)(8936002)(110136005)(508600001)(5660300002)(66476007)(66946007)(66556008)(966005)(86362001)(6506007)(6666004)(83380400001)(8676002)(7416002)(186003)(26005);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ncgtufGDOvLrHE1JmH7YZ+jqLTWEq1lj8fSfU7p2G1plP6/cDugk6JFHvL6a?=
+ =?us-ascii?Q?CMxWQzTXLGgGPkuw7w91P0KytyMAPNP2jbsgIHYu8QWwrS7luTQ/0V7ahXeX?=
+ =?us-ascii?Q?F6oMEqA+tBpwbELJKHg44DcYmvyuX7PyLtaAdhOpmWETJ8PQyRX5mlvUWccG?=
+ =?us-ascii?Q?dmgxq5y351vXM4YbUyehG5YBsVExJwi53hTF2l7g+OfpnH+JapDDNCiOm3YP?=
+ =?us-ascii?Q?Yktzf+cpZAM4iSMxRubJh3VqtL1ORGViKPfDvB4b7aMCys8dLFbMrib2FFv4?=
+ =?us-ascii?Q?6aF08tovC0Pj+17l3WTnGnJTC17HeNf5O6a/FptjhRbMZXpkj+g3r2gmnsQV?=
+ =?us-ascii?Q?WHtDBNRfR8dG+zkyYYjW22ym1h1hGnrdzhw+cjdHDm2SV6H/3DTPth35IRUt?=
+ =?us-ascii?Q?x50wn5kLy0pL0EijPK30CUNzk1+1vAD5Od8m37ReD2TPP6Se4Aa8TJ+rpW38?=
+ =?us-ascii?Q?AOd7OmpszszqzmUJxqlXIskb5XH+G6JOm0U/fCrWCrvBi6rhBQHBUN8C4Isp?=
+ =?us-ascii?Q?EJvEMduH4JI+UIJGhKoWmEUDsju7N4q27uNj1FT/TRlLD7sWcsHEFFAO/xsj?=
+ =?us-ascii?Q?7dbVw5QDK04X6Sx2hF9PzdPZRvlm6dvjKSF1wnJh4HYY7sGJl9EIcD+/UXeI?=
+ =?us-ascii?Q?EZLzYAivwnlY9nGtlUXBFxbmCo14aY/+Rj6YKYrWJLXFDctmpvDPKWM1F7Xu?=
+ =?us-ascii?Q?9AGnsNYFTFR81QV12VJxsn+UB2OMUIERuo2kjfkpsQAP/O0nQ/htb01aIScO?=
+ =?us-ascii?Q?K8KZHrznrftp383PKHbpw6ceTMgpHmQPH6Fas22+Y9s0nSue/nDiHKZVFI+H?=
+ =?us-ascii?Q?CFXUAicD/PsSWF6d6IXtzHCH+OEorioFJpSekhKYaoqmPb5GhzIraUEP2cpR?=
+ =?us-ascii?Q?YoQdOMO0yAZZmRvnHNTIIhaMnp4ujQEX4v9sNASHyTT8dfzxjQt+NaWGJwJ/?=
+ =?us-ascii?Q?8pGbAOlMGcHp8AycDJi37+fz2bHgd7NuRI31ckhhU8apxo4oQQM/AjrwSwvP?=
+ =?us-ascii?Q?FH7gv/8NXexugPfS/g/iEZCclmGMknDImRN17d7QMYnNq+sIi5tINOxS4UeO?=
+ =?us-ascii?Q?IE+aqgk1WgzQ6FyG9BhnBLFGhMV3yoFQ7vsMcOmBqES4TgCkZE5JFah+IS7S?=
+ =?us-ascii?Q?S+MT5EAP3t9NBL8oN+J3AR0Dv/nIw1Gp8Jr1VOEboA60D1viRTR0aOye/eZH?=
+ =?us-ascii?Q?/DdDmnI8QXs3E2i4ZkRccCNfbql82kB8qhLOXjYWV0RMAC+4FGC35BicQ5tn?=
+ =?us-ascii?Q?Trx+vmX8PkNC5QEKzD4VcncaqRVMLtcVDevC7kW6k8U5ryhYGlUyMM/psx7r?=
+ =?us-ascii?Q?pnO4qNvEw3naW3QujugCx70vGUEBlrMuUHZ3mJM1iQrCtLS3lmOZjABV39PZ?=
+ =?us-ascii?Q?G6HxjyX+qxdm+wi0Eu5o/tFjlVzBVFu6BG1mJpvE6RFkzrJWEEt26lZtIiNa?=
+ =?us-ascii?Q?vQKvrt6lRR5usmkbF0TcVVK93wzx0PtQd1NQN4ZSFDr8RXGrJ3A9PDVlAHE4?=
+ =?us-ascii?Q?faUb9Kp237VdDH+f/IgLD8imYieeIrP7qkdUlW4pnCSPeYcktL0KSweLplCQ?=
+ =?us-ascii?Q?rRM96WMQW5iU2KyD6tf7EkLCzmfK37z4XG+WcLm13S2AgfRDCIdH6NVmYECh?=
+ =?us-ascii?Q?141Shxtpaxm2+uNx7JRYm3k=3D?=
+X-OriginatorOrg: vivo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b0653f5-1705-4752-baf1-08d9fac5f9e8
+X-MS-Exchange-CrossTenant-AuthSource: HK2PR06MB3492.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2022 14:24:05.9478 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ty1WW32Fa5MR/ljIUXuYPZo7mIJjTKKkLrYb1txj1rPf8eNUB5rEzXK0EUTG7jyuGg0dI80A3+vzz3+Iid9pEg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0601MB3832
+X-Mailman-Approved-At: Tue, 01 Mar 2022 04:37:20 +0000
+Subject: [Nouveau] [PATCH] drm/nouveau/instmem: fix uninitialized_var.cocci
+ warning
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,145 +127,39 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michael Jamet <michael.jamet@intel.com>,
- Yehezkel Bernat <YehezkelShB@gmail.com>, Alexander.Deucher@amd.com,
- Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-`pci_bridge_d3_possible` currently checks explicitly for a Thunderbolt
-controller to indicate that D3 is possible.
+Fix following coccicheck warning:
+drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c:316:11-12:
+WARNING this kind of initialization is deprecated.
 
-This is used solely for older Apple systems, due to a variety of factors:
-* Apple used SW connection manager from the beginning, other manufacturers
-  used a FW connection manager (ICM)
-* Apple supported D3 initially, other manfuacturers didn't introduced this
-  until the `HotplugSupportInD3` _DSD was introduced in ~2015.
+`void *map = map` has the same form of
+uninitialized_var() macro. I remove the redundant assignement. It has
+been tested with gcc (Debian 8.3.0-6) 8.3.0.
 
-Apple has stopped creating new machines with Intel Thunderbolt controllers,
-and all other manufacturers now support D3 via `HotPlugSupportInD3` so
-this should be a fixed list.
+The patch which removed uninitialized_var() is:
+https://lore.kernel.org/all/20121028102007.GA7547@gmail.com/
+And there is very few "/* GCC */" comments in the Linux kernel code now.
 
-Suggested-by: Mika Westerberg <mika.westerberg@linux.intel.com>
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+Signed-off-by: Guo Zhengkui <guozhengkui@vivo.com>
 ---
- drivers/pci/pci.c    | 17 +++++++----
- drivers/pci/quirks.c | 67 ++++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 79 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-index 9ecce435fb3f..01557c950c9f 100644
---- a/drivers/pci/pci.c
-+++ b/drivers/pci/pci.c
-@@ -1064,7 +1064,18 @@ static inline bool platform_pci_bridge_d3(struct pci_dev *dev)
- 	if (pci_use_mid_pm())
- 		return false;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c
+index 96aca0edfa3c..c51bac76174c 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c
+@@ -313,7 +313,7 @@ nv50_instobj_dtor(struct nvkm_memory *memory)
+ 	struct nv50_instobj *iobj = nv50_instobj(memory);
+ 	struct nvkm_instmem *imem = &iobj->imem->base;
+ 	struct nvkm_vma *bar;
+-	void *map = map;
++	void *map;
  
--	return acpi_pci_bridge_d3(dev);
-+	if (acpi_pci_bridge_d3(dev))
-+		return true;
-+
-+	/*
-+	 * This is for Apple machines via a quirk
-+	 * Non-Apple machines will use the ACPI property with the same name
-+	 * from `acpi_pci_bridge_d3` to indciate support.
-+	 */
-+	if (device_property_read_bool(&dev->dev, "HotPlugSupportInD3"))
-+		return true;
-+
-+	return false;
- }
- 
- /**
-@@ -2954,10 +2965,6 @@ bool pci_bridge_d3_possible(struct pci_dev *bridge)
- 		if (pci_bridge_d3_force)
- 			return true;
- 
--		/* Even the oldest 2010 Thunderbolt controller supports D3. */
--		if (bridge->is_thunderbolt)
--			return true;
--
- 		/* Platform might know better if the bridge supports D3 */
- 		if (platform_pci_bridge_d3(bridge))
- 			return true;
-diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-index ceeca7d8dd90..f74f50ea0695 100644
---- a/drivers/pci/quirks.c
-+++ b/drivers/pci/quirks.c
-@@ -3756,6 +3756,73 @@ DECLARE_PCI_FIXUP_SUSPEND_LATE(PCI_VENDOR_ID_INTEL,
- 			       quirk_apple_poweroff_thunderbolt);
- #endif
- 
-+/*
-+ * The first machines supporting Intel Thunderbolt were released by Apple, and
-+ * supported a software based connection manager including D3 support, as far
-+ * back as 2010. These machines don't have ACPI companions to declare D3
-+ * support.
-+ *
-+ * Other manufacturers introduced Thunderbolt shortly after but notably did not
-+ * support:
-+ * - Software based connection manager
-+ * - Runtime power management
-+ * Power management was handled via the BIOS when nothing was plugged in.
-+ * Runtime D3 was later introduced in ~2015 and Microsoft declared when the
-+ * `HotPlugSupportInD3` _DSD was present that they would support D3.
-+ *
-+ * This list is expected to be complete and not grow in the future as Apple
-+ * has stopped producing new x86 models with Intel Thunderbolt controllers.
-+ */
-+static void quirk_apple_d3_thunderbolt(struct pci_dev *dev)
-+{
-+	struct property_entry properties[] = {
-+		PROPERTY_ENTRY_BOOL("HotPlugSupportInD3"),
-+		{},
-+	};
-+
-+	if (!x86_apple_machine)
-+		return;
-+
-+	if (device_create_managed_software_node(&dev->dev, properties, NULL))
-+		pci_warn(dev, "could not add HotPlugSupportInD3 property");
-+}
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_LIGHT_RIDGE,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_EAGLE_RIDGE,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_LIGHT_PEAK,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_CACTUS_RIDGE_4C,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_CACTUS_RIDGE_2C,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_PORT_RIDGE,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_REDWOOD_RIDGE_2C_NHI,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_REDWOOD_RIDGE_2C_BRIDGE,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_REDWOOD_RIDGE_4C_NHI,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_REDWOOD_RIDGE_4C_BRIDGE,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_FALCON_RIDGE_2C_NHI,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_FALCON_RIDGE_2C_BRIDGE,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_FALCON_RIDGE_4C_NHI,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_FALCON_RIDGE_4C_BRIDGE,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_ALPINE_RIDGE_2C_NHI,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_ALPINE_RIDGE_2C_BRIDGE,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_ALPINE_RIDGE_4C_NHI,
-+			quirk_apple_d3_thunderbolt);
-+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_ALPINE_RIDGE_4C_BRIDGE,
-+			quirk_apple_d3_thunderbolt);
-+
- /*
-  * Following are device-specific reset methods which can be used to
-  * reset a single function if other methods (e.g. FLR, PM D0->D3) are
+ 	mutex_lock(&imem->mutex);
+ 	if (likely(iobj->lru.next))
 -- 
-2.34.1
+2.20.1
 
