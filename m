@@ -4,43 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3469FC433FE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B60ADC4332F
 	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:38:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B373710EB8A;
-	Tue,  1 Mar 2022 04:37:28 +0000 (UTC)
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8D7310E49F;
- Mon, 28 Feb 2022 23:27:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=kySnWHttTi8Odl1WzgGLjQ1pb3b/AWH5qnYZSwnte50=; b=nt03mWtTaEB9qwsFMTflxzDbvW
- aPSsVBeLr8i8UFwA1l3fNavsuYE231uUwb0yDTUi43cd3zIwbEaMZqro2u+rXbOt0KZriPQpyGi5J
- +pW6oqM84XOoVppIQh3QNnM4ANpt9aIP3ShEwC0IGa2NKI/m2xxapQAyHhJG42Bevn7SuMSAnyA27
- 7+3DFdmFFllbJzk1MHudhAJj7GPo/5RsA7npxrePVRbtGBQKbJeOUSye2chevgvDMrFkod2y0FmL7
- JW29U+rs2LR5a0WX3s04bvbvXotX/UjRCpaaxaXPYROyoDfpDk5Wuy418QovroPX+qbpGelik5Tc/
- I0FC9RZw==;
-Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1nOpPe-0090gL-Ex; Mon, 28 Feb 2022 23:26:42 +0000
-Date: Mon, 28 Feb 2022 23:26:42 +0000
-From: Matthew Wilcox <willy@infradead.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Message-ID: <Yh1aMm3hFe/j9ZbI@casper.infradead.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6C6F10EB84;
+	Tue,  1 Mar 2022 04:37:27 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D364510E610;
+ Mon, 28 Feb 2022 22:01:20 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 5CBD2B8169B;
+ Mon, 28 Feb 2022 22:01:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 677EEC340F1;
+ Mon, 28 Feb 2022 22:01:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1646085677;
+ bh=bmzYeqH+wd1Y/i05gxZoeqc9TywPR9wpt0imv9Fx7Nw=;
+ h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+ b=lb9MoeFhEeGqaET4WoooJnliR/Aftbuf2qgeJWcsJRMUD7lxaPDCkpbBw1fltPmKc
+ jIEBu8SnVjgO3Aaf+8FYuXvVgG5MgAciJgva3R/8WVNn/ktDFk3hANDz2GKUoZWtxI
+ SvipV/Wo2m8Yu0T44/FsB9ncJWS6zqb8Cis19xBBpG1gsQAhwdKCM2xymmzy1B6vAh
+ NLgpj3CkfoCj7XXB9+t8bZHUSaMtCcXi/0/BYE3ppk5zRyoiwaHoQXmDsDHRdh2g9L
+ BKDOg0IEHzQ+qInzyklcGdLSrMWPhR+ZxEuCQewyXU3mL+4cdRVVpWMroWAhmtcL3w
+ /5xJdekiDQkIw==
+Date: Mon, 28 Feb 2022 23:59:07 +0200
+From: Mike Rapoport <rppt@kernel.org>
+To: James Bottomley <James.Bottomley@HansenPartnership.com>,
+ =?ISO-8859-1?Q?Christian_K=F6nig?= <christian.koenig@amd.com>,
+ Linus	Torvalds <torvalds@linux-foundation.org>
+User-Agent: K-9 Mail for Android
+In-Reply-To: <b2d20961dbb7533f380827a7fcc313ff849875c1.camel@HansenPartnership.com>
 References: <20220228110822.491923-1-jakobkoschel@gmail.com>
  <20220228110822.491923-3-jakobkoschel@gmail.com>
  <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
  <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
- <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
- <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
- <Yh0tl3Lni4weIMkl@casper.infradead.org>
- <CAHk-=wgBfJ1-cPA2LTvFyyy8owpfmtCuyiZi4+um8DhFNe+CyA@mail.gmail.com>
+ <282f0f8d-f491-26fc-6ae0-604b367a5a1a@amd.com>
+ <b2d20961dbb7533f380827a7fcc313ff849875c1.camel@HansenPartnership.com>
+Message-ID: <7D0C2A5D-500E-4F38-AD0C-A76E132A390E@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHk-=wgBfJ1-cPA2LTvFyyy8owpfmtCuyiZi4+um8DhFNe+CyA@mail.gmail.com>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 01 Mar 2022 04:37:20 +0000
 Subject: Re: [Nouveau] [PATCH 2/6] treewide: remove using list iterator
  after loop body as a ptr
@@ -89,53 +95,100 @@ Cc: linux-wireless <linux-wireless@vger.kernel.org>,
  Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
  linux-fsdevel <linux-fsdevel@vger.kernel.org>,
  linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Mike Rapoport <rppt@kernel.org>
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Feb 28, 2022 at 12:37:15PM -0800, Linus Torvalds wrote:
-> On Mon, Feb 28, 2022 at 12:16 PM Matthew Wilcox <willy@infradead.org> wrote:
-> >
-> > Then we can never use -Wshadow ;-(  I'd love to be able to turn it on;
-> > it catches real bugs.
-> 
-> Oh, we already can never use -Wshadow regardless of things like this.
-> That bridge hasn't just been burned, it never existed in the first
-> place.
-> 
-> The whole '-Wshadow' thing simply cannot work with local variables in
-> macros - something that we've used since day 1.
-> 
-> Try this (as a "p.c" file):
-> 
->         #define min(a,b) ({                     \
->                 typeof(a) __a = (a);            \
->                 typeof(b) __b = (b);            \
->                 __a < __b ? __a : __b; })
-> 
->         int min3(int a, int b, int c)
->         {
->                 return min(a,min(b,c));
->         }
-> 
-> and now do "gcc -O2 -S t.c".
-> 
-> Then try it with -Wshadow.
 
-#define ___PASTE(a, b)	a##b
-#define __PASTE(a, b) ___PASTE(a, b)
-#define _min(a, b, u) ({         \
-        typeof(a) __PASTE(__a,u) = (a);            \
-        typeof(b) __PASTE(__b,u) = (b);            \
-        __PASTE(__a,u) < __PASTE(__b,u) ? __PASTE(__a,u) : __PASTE(__b,u); })
 
-#define min(a, b) _min(a, b, __COUNTER__)
+On February 28, 2022 10:42:53 PM GMT+02:00, James Bottomley <James=2EBotto=
+mley@HansenPartnership=2Ecom> wrote:
+>On Mon, 2022-02-28 at 21:07 +0100, Christian K=C3=B6nig wrote:
+>> Am 28=2E02=2E22 um 20:56 schrieb Linus Torvalds:
+>> > On Mon, Feb 28, 2022 at 4:19 AM Christian K=C3=B6nig
+>> > <christian=2Ekoenig@amd=2Ecom> wrote:
+>> > > I don't think that using the extra variable makes the code in any
+>> > > way
+>> > > more reliable or easier to read=2E
+>> > So I think the next step is to do the attached patch (which
+>> > requires
+>> > that "-std=3Dgnu11" that was discussed in the original thread)=2E
+>> >=20
+>> > That will guarantee that the 'pos' parameter of
+>> > list_for_each_entry()
+>> > is only updated INSIDE the for_each_list_entry() loop, and can
+>> > never
+>> > point to the (wrongly typed) head entry=2E
+>> >=20
+>> > And I would actually hope that it should actually cause compiler
+>> > warnings about possibly uninitialized variables if people then use
+>> > the
+>> > 'pos' pointer outside the loop=2E Except
+>> >=20
+>> >   (a) that code in sgx/encl=2Ec currently initializes 'tmp' to NULL
+>> > for
+>> > inexplicable reasons - possibly because it already expected this
+>> > behavior
+>> >=20
+>> >   (b) when I remove that NULL initializer, I still don't get a
+>> > warning,
+>> > because we've disabled -Wno-maybe-uninitialized since it results in
+>> > so
+>> > many false positives=2E
+>> >=20
+>> > Oh well=2E
+>> >=20
+>> > Anyway, give this patch a look, and at least if it's expanded to do
+>> > "(pos) =3D NULL" in the entry statement for the for-loop, it will
+>> > avoid the HEAD type confusion that Jakob is working on=2E And I think
+>> > in a cleaner way than the horrid games he plays=2E
+>> >=20
+>> > (But it won't avoid possible CPU speculation of such type
+>> > confusion=2E That, in my opinion, is a completely different issue)
+>>=20
+>> Yes, completely agree=2E
+>>=20
+>> > I do wish we could actually poison the 'pos' value after the loop
+>> > somehow - but clearly the "might be uninitialized" I was hoping for
+>> > isn't the way to do it=2E
+>> >=20
+>> > Anybody have any ideas?
+>>=20
+>> I think we should look at the use cases why code is touching (pos)
+>> after the loop=2E
+>>=20
+>> Just from skimming over the patches to change this and experience
+>> with the drivers/subsystems I help to maintain I think the primary
+>> pattern looks something like this:
+>>=20
+>> list_for_each_entry(entry, head, member) {
+>>      if (some_condition_checking(entry))
+>>          break;
+>> }
+>> do_something_with(entry);
+>
+>
+>Actually, we usually have a check to see if the loop found anything,
+>but in that case it should something like
+>
+>if (list_entry_is_head(entry, head, member)) {
+>    return with error;
+>}
+>do_somethin_with(entry);
+>
+>Suffice?  The list_entry_is_head() macro is designed to cope with the
+>bogus entry on head problem=2E
 
-int min3(int a, int b, int c)
-{
-        return min(a,min(b,c));
-}
+Won't suffice because the end goal of this work is to limit scope of entry=
+ only to loop=2E Hence the need for additional variable=2E
 
-(probably there's a more elegant way to do this)
+Besides, there are no guarantees that people won't do_something_with(entry=
+) without the check or won't compare entry to NULL to check if the loop fin=
+ished with break or not=2E
+
+>James
+
+
+--=20
+Sincerely yours,
+Mike
