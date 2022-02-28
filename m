@@ -4,66 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F183C433F5
-	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:38:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32B19C433EF
+	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:38:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 524AD10EB47;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC4C010EB63;
 	Tue,  1 Mar 2022 04:37:48 +0000 (UTC)
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com
- [IPv6:2a00:1450:4864:20::136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8364F10E8C7
- for <nouveau@lists.freedesktop.org>; Mon, 28 Feb 2022 20:37:36 +0000 (UTC)
-Received: by mail-lf1-x136.google.com with SMTP id bu29so23543843lfb.0
- for <nouveau@lists.freedesktop.org>; Mon, 28 Feb 2022 12:37:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=S/LNP14iVGpJY7HEU3KoWC3rGBeIOldyeXi/18P4YEg=;
- b=JCfpf2EkV0u8p2DIwI3SoZoRhHthQMEAy9/7LEkowc8JnTmPgsFXHlzh4U3t+Q6SEk
- Lc7ftzGO2kIrejoWkV3dzzd0jpx1zu67BigJ1Dmt6MH2aSREOTU5VOooJKZjMGKU+kco
- F0IyOo2hDxkf3WtcbllN4ffR7kqC0AZqO0I4w=
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com
+ [IPv6:2607:f8b0:4864:20::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA0B710E8F3;
+ Mon, 28 Feb 2022 21:19:07 +0000 (UTC)
+Received: by mail-pl1-x62a.google.com with SMTP id e13so11824167plh.3;
+ Mon, 28 Feb 2022 13:19:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+ :subject:to:cc;
+ bh=pX3FOaQ5tpG+krWAy5EzbawK39YqA5YwRZTg6hddt4E=;
+ b=JpEWCU5sl0Tb/FD34RSH61Ey9dRKreZqOQa3CJ02luf0uqIT78+8GWNevF0TXmNO1k
+ V82hjNGseb3oWLNgnnFwXHAFmfIF+pTCtPsXm95pt2iCzBmJFwg04njU2K1WfIC8K4PQ
+ JYTCrkA4ACMCh2biL4u47uoOFfhnbmO/1jCCSOx3OESfK5+oDGNitg9s7NqsmIU5fVsE
+ xsR4ABTTJUTksMDshckaPyVLHegSArBm3erCaRT01IEJkH2S1g98XNdRHKV6JZW5AanM
+ gI9+nSzlxhKCRaqGLAQjGqwME5o9/K6faQyfblLD265MKP0MWlgdnuFxCRxjUTwlasET
+ Zo4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=S/LNP14iVGpJY7HEU3KoWC3rGBeIOldyeXi/18P4YEg=;
- b=lgD/VbTcpjr0r7EWW9xuVtTutKP//lVD7L5L+JcZtOGSlQNMcKJOjSs6FFpMGcbkCh
- 3U7ZwrdDM5oSdjjG6055XwRbXeUPWhikOqn4SEf7HjNDCjwDTLepD9YVQtKnuUlKnwGg
- QVvX+fVu6UDhadd/DRzwxuDmbrUa7OB0C6Irz6VbNTeATU4Ym8rIUxw34hmtEbhCdX1i
- mCLR4RELFMASiCOAvdDCZKShEQbfMAOdFNQA6E0K/6DRMIMkGi2LIjxFkC3zKVW4isNp
- T8mTJtptTVzoBeCdrArMDoOfHacdYi2+lQ3ACTiRPQ69kSTUe3g8GAGLi0lU3wi/geo8
- JHTQ==
-X-Gm-Message-State: AOAM532+lEwhB5+varDblLFobgoKv8Y0vylgmzcmG3k5AcatvSBP6Qrb
- 4JR9avBU8y0nYNDwwBXLwa2Xs+iHGiyumOUUATw=
-X-Google-Smtp-Source: ABdhPJx1+za66U0/gCZKfluzvEJ9JxTUf2tuVFEELZKUnCfwrpScSkySEf7zQiVeuWLwDDfBhtK5TQ==
-X-Received: by 2002:a05:6512:3335:b0:444:869:882e with SMTP id
- l21-20020a056512333500b004440869882emr13327097lfe.41.1646080654602; 
- Mon, 28 Feb 2022 12:37:34 -0800 (PST)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com.
- [209.85.208.181]) by smtp.gmail.com with ESMTPSA id
- z11-20020a2eb52b000000b00246666fdd86sm1521076ljm.72.2022.02.28.12.37.32
- for <nouveau@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 28 Feb 2022 12:37:32 -0800 (PST)
-Received: by mail-lj1-f181.google.com with SMTP id y24so79644ljh.11
- for <nouveau@lists.freedesktop.org>; Mon, 28 Feb 2022 12:37:32 -0800 (PST)
-X-Received: by 2002:a2e:924d:0:b0:246:370c:5618 with SMTP id
- v13-20020a2e924d000000b00246370c5618mr15158756ljg.358.1646080652034; Mon, 28
- Feb 2022 12:37:32 -0800 (PST)
+ h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+ :from:date:message-id:subject:to:cc;
+ bh=pX3FOaQ5tpG+krWAy5EzbawK39YqA5YwRZTg6hddt4E=;
+ b=egp74ez16sYePF6VXevNYQckygfSYtAquVgDmEOAcYIQTBoEpsLbK4H+LZuEvIwkrU
+ o9FT+OMTU6JFOombmD7QpAKGgTSlNU1ZMoGXbGc2fh9sGa6d/e6mJq7KJEUKLIg0c65L
+ ZHRidR5OQjdsIaGzQQaP3xbyP4jSfXIaX0pJi5knkKAjR7j+nJOgusWz3ZiwTcj94zX6
+ Sc8stgED187TT6TbsIhRuZADQ4kJUMxsBwx14Hm44Dry5quEJ6gUQIEXGoGEM6wwpYhm
+ UG+DqPDmELgBxqMjU9WMf9+U/8GqS/U+/eH9TzrYq+GJRLa3D6LQBfbaX3436obcQUHQ
+ sSuw==
+X-Gm-Message-State: AOAM533hTJhroOcyATPueYVwzrRJa69BtCOifI9hLOk89BiMZcyDjo5n
+ h/X7EoVxqljkiX3sojtpI4C3sFUh6w057XaZJV4=
+X-Google-Smtp-Source: ABdhPJxYQDaw0FFWrTXZCk3OvnKpy6mSdQ8Z9qbCWYQ2FvSetamSp4Rz90y2uoGU7tjomvOtre1MYsL9s+rZuYttBVs=
+X-Received: by 2002:a17:902:ce8a:b0:14f:fd0e:e4a4 with SMTP id
+ f10-20020a170902ce8a00b0014ffd0ee4a4mr22765912plg.47.1646083147399; Mon, 28
+ Feb 2022 13:19:07 -0800 (PST)
 MIME-Version: 1.0
 References: <20220228110822.491923-1-jakobkoschel@gmail.com>
  <20220228110822.491923-3-jakobkoschel@gmail.com>
  <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
  <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
- <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
- <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
- <Yh0tl3Lni4weIMkl@casper.infradead.org>
-In-Reply-To: <Yh0tl3Lni4weIMkl@casper.infradead.org>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 28 Feb 2022 12:37:15 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wgBfJ1-cPA2LTvFyyy8owpfmtCuyiZi4+um8DhFNe+CyA@mail.gmail.com>
-Message-ID: <CAHk-=wgBfJ1-cPA2LTvFyyy8owpfmtCuyiZi4+um8DhFNe+CyA@mail.gmail.com>
-To: Matthew Wilcox <willy@infradead.org>
+ <282f0f8d-f491-26fc-6ae0-604b367a5a1a@amd.com>
+ <b2d20961dbb7533f380827a7fcc313ff849875c1.camel@HansenPartnership.com>
+In-Reply-To: <b2d20961dbb7533f380827a7fcc313ff849875c1.camel@HansenPartnership.com>
+From: Jeffrey Walton <noloader@gmail.com>
+Date: Mon, 28 Feb 2022 16:18:56 -0500
+Message-ID: <CAH8yC8nwp8f3rANhCiiP_Oiw2cjfqCwAgZdTXY9OxtN9Tmm7HA@mail.gmail.com>
+To: James Bottomley <James.Bottomley@hansenpartnership.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Tue, 01 Mar 2022 04:37:20 +0000
 Subject: Re: [Nouveau] [PATCH 2/6] treewide: remove using list iterator
@@ -79,6 +69,7 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: noloader@gmail.com
 Cc: linux-wireless <linux-wireless@vger.kernel.org>,
  alsa-devel@alsa-project.org, KVM list <kvm@vger.kernel.org>,
  "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
@@ -97,6 +88,7 @@ Cc: linux-wireless <linux-wireless@vger.kernel.org>,
  Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
  Linux PM <linux-pm@vger.kernel.org>,
  intel-gfx <intel-gfx@lists.freedesktop.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
  Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
  Nathan Chancellor <nathan@kernel.org>, dma <dmaengine@vger.kernel.org>,
  Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
@@ -113,47 +105,39 @@ Cc: linux-wireless <linux-wireless@vger.kernel.org>,
  Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
  linux-fsdevel <linux-fsdevel@vger.kernel.org>,
  linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
  Mike Rapoport <rppt@kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Feb 28, 2022 at 12:16 PM Matthew Wilcox <willy@infradead.org> wrote:
+On Mon, Feb 28, 2022 at 3:45 PM James Bottomley
+<James.Bottomley@hansenpartnership.com> wrote:
+> ...
+> > Just from skimming over the patches to change this and experience
+> > with the drivers/subsystems I help to maintain I think the primary
+> > pattern looks something like this:
+> >
+> > list_for_each_entry(entry, head, member) {
+> >      if (some_condition_checking(entry))
+> >          break;
+> > }
+> > do_something_with(entry);
 >
-> Then we can never use -Wshadow ;-(  I'd love to be able to turn it on;
-> it catches real bugs.
+>
+> Actually, we usually have a check to see if the loop found anything,
+> but in that case it should something like
+>
+> if (list_entry_is_head(entry, head, member)) {
+>     return with error;
+> }
+> do_somethin_with(entry);
 
-Oh, we already can never use -Wshadow regardless of things like this.
-That bridge hasn't just been burned, it never existed in the first
-place.
+Borrowing from c++, perhaps an explicit end should be used:
 
-The whole '-Wshadow' thing simply cannot work with local variables in
-macros - something that we've used since day 1.
+  if (list_entry_not_end(entry))
+    do_somethin_with(entry)
 
-Try this (as a "p.c" file):
+It is modelled after c++ and the 'while(begin != end) {}' pattern.
 
-        #define min(a,b) ({                     \
-                typeof(a) __a = (a);            \
-                typeof(b) __b = (b);            \
-                __a < __b ? __a : __b; })
-
-        int min3(int a, int b, int c)
-        {
-                return min(a,min(b,c));
-        }
-
-and now do "gcc -O2 -S t.c".
-
-Then try it with -Wshadow.
-
-In other words, -Wshadow is simply not acceptable. Never has been,
-never will be, and that has nothing to do with the
-
-        typeof(pos) pos
-
-kind of thing.
-
-Your argument just isn't an argument.
-
-              Linus
+Jeff
