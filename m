@@ -4,101 +4,121 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4660AC433F5
-	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:37:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8EE0C433EF
+	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:37:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A52BE10EB36;
-	Tue,  1 Mar 2022 04:37:20 +0000 (UTC)
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2065.outbound.protection.outlook.com [40.107.94.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6634A10E7A6;
- Thu, 24 Feb 2022 21:51:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 633A810EB3D;
+	Tue,  1 Mar 2022 04:37:21 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2086.outbound.protection.outlook.com [40.107.92.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A65F110E8A7;
+ Mon, 28 Feb 2022 20:07:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EbdDDt9agbHD22uyJPM7iU9YXaCevuWJE0iRJ9XfzZd+WOJfcC13UKsq4S7AFUqyirQQyF53ZJLorHm+F/jNnQKcl+Xc+/5NUQn0YCXYb433Fi4zZAwCCeFcT5Oqie1N3fHWfkTy+Gb9ykF7lj0BmYR/2iVw6wcXEEGHhL9m+WSqjhVVWoGzxuQQ4SKswSMVEvA7T15HWWNwVftqnWaWQ0JAUuxi3++E61Q7STtjTeO/yTJFahlHPyn/TnkIQqNiBlsRqairbfNpQ5kOKPJd91rTXPilghJ0iOG6Hd4TMQC3jdsCMG9W/m9PiWZLjZ0mVNqOpugysdalnofzYFqLOA==
+ b=gL9OvQXRZlLdS0nWu38zKJUPGpd8Lw1yhpw0d+9zMnw5veNcCSl+j10Lj2ZBjoB5CfikiNko3OGYPd5ME3Vpnpr6n3gUYUUXyI/nkCpK1pboNWydXnK5jyRh9RlwUC2J4LqkRcYIcUEdvbcAPOtxCPnt41mkj7xD+m15Kvaf2q7v/g8rWPGCeIDynZ/oNm9fnv9Ju75vK4G9aE6aBcPLDtlUp1ST1JK7/NKF82SiZ4n1XSg+J4DKH5YpYNZ2xk39/JLPCrAzvhJAKKUntlEf2q3g2Pj1J5/dfEOPCBMx04zbq/GH674VvLGDrCGvs5qux8fGUlsbgRV2o3e8r2NFDQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ue1NSYQUIHWl7bv8ClwslJxFKCM05VXIAWbywmqWr+0=;
- b=Y8ThABSPnr9Pem8EMS4yIQp3qb4KuRCYi48MEcgVDhG29n0O9vH9uiGM+rZFgidlePa3I/lBqkslRkhHyZryCMeEZwISza59vlUhOkLSQ1+Wycre4NgVAwNTkQESV1VH3BhfWDSHQcyKvd06R+m1EQMPKh3zxuaf1HwXn1qoJSBMVWw7F36iOeQa/laUHUCxmcYv21M//69MjPnrAeUJ+kMOBYynAoIz0MLRqTKOX1X20Cv/pIZXyxnHCwWIUjfUYaF/RrZ6Qy7/5CY7XCRVHIrghnPiR0YQoiCSowrU3BtGzdsW9hk6B/wKWGKaVhHVtQEoVBOPdTvY5FOzY4cxYQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
+ bh=1cP3BgbbNuGDusjcZMNEuDHV1LUQdbelhp6M0fWPy5M=;
+ b=jdvC0+wMuIjUshRFXNDwX32c2zskPNpWzUT0ktJHw/5EiOrhAsU94pzDNGLqksNFWg+blmisV1k0kohfJdS4O05gRW7IHqVrOqq+Mv5c+HjZN3GrTnkeTf8cvr5w9XQlSh1NpbpQV9SfTtNox7n0FzrCxGIn2Y97pJ0Ozwd2zkUTZZwzZzxBKK4GvrZ+BR8TCxc8QZ0nYFwhOXfRlKMAnTFtySBUzXq/5mIt6py7gbpk+GQ1GQytDDsZI5lf5E8qHWfr02zFw9K3Qsuz9W3QSbnWtzK3Tll4VEq5yh73hCY4N6sQ7OaGkztdVoBWliieGcToSd9yyiqDpPsytzNReg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ue1NSYQUIHWl7bv8ClwslJxFKCM05VXIAWbywmqWr+0=;
- b=0K3tCqPGUjQ6m7b+IMaGktd0jaBDUkQyqLs2lisoWCqpkI3x3B3VGwH0zhN9LkDKWvZvOEIGKV420QUMgTTult98yySEBFH7GwbDx3mpwCToFSF8fynF9lmppuXqkE03E3/oNj2du7xAZKCXkpdGa7sALpdNYIIBd3zdShqtfDM=
-Received: from MW4PR04CA0167.namprd04.prod.outlook.com (2603:10b6:303:85::22)
- by MWHPR1201MB2526.namprd12.prod.outlook.com (2603:10b6:300:ec::7)
+ bh=1cP3BgbbNuGDusjcZMNEuDHV1LUQdbelhp6M0fWPy5M=;
+ b=yR2JVvc5BtwSjUOODC9WmjehMXRGxzHYe8ljFxqZPlt6ZskvnNvnIoLUWVTSqL4Nvnz3mlJ6Vj4yuzWXjUdfSbDpZboDHZVxGObnXC8gvFtZZmR10HmqPv3h4fJHh1C2OVQ9oxctvZyNbcFFjGdzd7Nu0zIl+DqaxiZBFvhDfEY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by CY4PR12MB1352.namprd12.prod.outlook.com (2603:10b6:903:3a::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.22; Thu, 24 Feb
- 2022 21:51:27 +0000
-Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:85:cafe::5d) by MW4PR04CA0167.outlook.office365.com
- (2603:10b6:303:85::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.23 via Frontend
- Transport; Thu, 24 Feb 2022 21:51:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5017.22 via Frontend Transport; Thu, 24 Feb 2022 21:51:27 +0000
-Received: from AUS-LX-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 24 Feb
- 2022 15:51:25 -0600
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: Bjorn Helgaas <bhelgaas@google.com>, Andreas Noever
- <andreas.noever@gmail.com>, Mika Westerberg
- <mika.westerberg@linux.intel.com>, "open list:PCI SUBSYSTEM"
- <linux-pci@vger.kernel.org>, "open list:THUNDERBOLT DRIVER"
- <linux-usb@vger.kernel.org>, "open list:RADEON and AMDGPU DRM DRIVERS"
- <amd-gfx@lists.freedesktop.org>, "open list:DRM DRIVERS"
- <dri-devel@lists.freedesktop.org>, "open list:DRM DRIVER FOR NVIDIA
- GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, "open list:X86 PLATFORM
- DRIVERS" <platform-driver-x86@vger.kernel.org>
-Date: Thu, 24 Feb 2022 15:51:12 -0600
-Message-ID: <20220224215116.7138-4-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220224215116.7138-1-mario.limonciello@amd.com>
-References: <20220224215116.7138-1-mario.limonciello@amd.com>
-MIME-Version: 1.0
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.26; Mon, 28 Feb
+ 2022 20:07:16 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::e03f:901a:be6c:b581]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::e03f:901a:be6c:b581%6]) with mapi id 15.20.5017.027; Mon, 28 Feb 2022
+ 20:07:16 +0000
+Message-ID: <282f0f8d-f491-26fc-6ae0-604b367a5a1a@amd.com>
+Date: Mon, 28 Feb 2022 21:07:03 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Linus Torvalds <torvalds@linux-foundation.org>
+References: <20220228110822.491923-1-jakobkoschel@gmail.com>
+ <20220228110822.491923-3-jakobkoschel@gmail.com>
+ <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
+ <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+In-Reply-To: <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
+X-ClientProxiedBy: AM6P195CA0084.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:209:86::25) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 94f8e944-d3eb-4206-04ef-08d9f7dfcf07
-X-MS-TrafficTypeDiagnostic: MWHPR1201MB2526:EE_
-X-Microsoft-Antispam-PRVS: <MWHPR1201MB2526FF8B14D00D2FE2D0FFA6E23D9@MWHPR1201MB2526.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 4780f435-f0f8-4e6e-4169-08d9faf5eaa6
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1352:EE_
+X-Microsoft-Antispam-PRVS: <CY4PR12MB1352374DF851D24C14A1673183019@CY4PR12MB1352.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QZnTnUtaHW4TQo9QlU79Aw2j9fOJP49DYtSt1F4KZNkn4ObAdLlIhPFEzLqfE6sTY18r+IxJMvsB4zsBdTAyf/KltuD0RSvbX/Pm+eZ5Ghgg5DSHfbZRsFGihfPOPceny4PTqOvmrJbS85NZhSY5ojhjHERRfdo5meaEtiMfueOPdp2CRDVpM3JvJn541SApbHS4ROeCf4MeHyP84bQgnEP1fvsai9oWXG/CR0/6Llv65BXrvwC2JHVm0G91VyJTp77M6EgkgteanpXpcS6hHj2w/o1O9jJSJ+y5WR1bFxn+T3W5sZa1sFfo/QAlKpr7RQ4QGBMONECzFM9vUaqL7TTO7689iUDeo9cJQde8L5fpRA0zZB06GAG8enw1+SshMDWsrKmx8w2BbP2glXI8Qgo01CKvLNsly6cbY8UiwwhOLs9cYhhETCKQvFH9Hsl0xDW9jWOfZEl+nx1A48id3zJ6EX9DMVzFfnYDNpT06oKG+Gjit+K/bA9Vn17ACdJf1uagIJ2eci3r2ntwusZ2leGu9xS/FgAdLoNmbI9Fcu26LVCqcXB935JepOZGQZWuQiwOvzkBcJSjico8uJC3fSBWxhtDpQuXyJAKqLJU2zRLq8Tvhrqahea6Pogzfu234QVA1gTp23zwUu81i3tpYAPzkBQ0ANt//+cCHu2WQ0/HRdCLgCzRYxzToryNYID+3rvRypAsHQeitjNEMCRC5izf84CyNf6SI9wkZ4Kl5QA=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(16526019)(186003)(26005)(426003)(82310400004)(336012)(83380400001)(8936002)(508600001)(1076003)(6666004)(47076005)(7416002)(2906002)(356005)(7696005)(8676002)(110136005)(40460700003)(70206006)(70586007)(36860700001)(36756003)(4326008)(2616005)(81166007)(5660300002)(316002)(54906003)(86362001)(44832011)(81973001)(36900700001);
+X-Microsoft-Antispam-Message-Info: WfwKM4Ph3ffnU0p23PH6MmiWNssrAz4krll5evTSfx5ow0w1waswCyvqds83nXv/vKDqYeZ4nJPcE+5c6efbm9H+KF/V2vkIMjot7L3c4MJ2NUhhEHsU61Ft6hDBrl1jcnh9EapZmPmwTsw6ESVHpQs83QWblnrflHE+8n0pBPJGvO3BeOdLsq6sLykuPS1jfG+7mtvc1cC2b1biubmL14GLB/Sibk/qCZsfJd+KpT79kHhBzhYli4e6xf6Wf1XCotcM5PIbpVyqjZVKnKalewT7P85o/5nImHgkRdBqjmpldKbagBWNo3eLeex+hQocJ+uVVSXcSY7JFayKRxGcjUSrsgMDZrXESXUUKqA2mcVUrfGKkMgocWawoVlaIc8zSfyMrNNe3nWuqcEl1nUJv4F1V5m9d4aOTKdWVZb54C0D9BwOD0vvihgr/d8C1eTPDO8I+2XuopCbxIp48N14+nqKgxqddT9BQavA6sWNymzE8JSwtOP120c3NQbuDtR+2v/o2/9Bmx4GJDnVOim+gwVs91eOOaI51wF7Cfho1hyg5C8uiYQPM6RQIxlrMbnSX2DiyJmm7nOua0x6ZP0Vf9uP9VSnVikg0lwLJsx/nXxnp4VUactFuFQvm+o20VuEseTDTm8ixZYbdKCR2VF37spoXVt05gbXrIjEYGT1QRdZxRJAOxMWU/f0TemCgmhtJDDJ8n2ceV4KZQ7pwCR8VpLyLtZo05+32aCrevz7uZ8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(7406005)(86362001)(7366002)(7416002)(5660300002)(31696002)(2616005)(8936002)(316002)(6512007)(8676002)(66556008)(66476007)(66946007)(4326008)(2906002)(186003)(6506007)(53546011)(36756003)(66574015)(6486002)(6666004)(6916009)(83380400001)(508600001)(54906003)(38100700002)(31686004)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NVk3ZlI0aHd3U2MzRTQ0QkwvaWlpT1JkYWNicURJVHg1U3BkTWNEbjhxamVK?=
+ =?utf-8?B?QWRpaER3c01nNWcwcXBWTjRqeDQyYVJjR01sZFUrd0FKbCswZXRYc2luTWRr?=
+ =?utf-8?B?M3BRcmp2MmtvUEVxUEdJSU1YbXUvY3l2T0VlbW04TFVkM3ZVU0NacEJvOFMx?=
+ =?utf-8?B?UjkxWGRjNVgxcENNZFFFTFJUbHA1Mzg1WStJMzRDb21zcUNmMitra3lES1Nj?=
+ =?utf-8?B?dWxXV25UQW1NTHhKRnpweCsxZldJWGRmc3NwSU1ldFlmZnhaY3ZLbmNNSktv?=
+ =?utf-8?B?a3RpQ2VhQUZDbTkyQTdRVkd6K09STzZTQ040TFU1NDZ6c3NBamFnQ3JWN3JR?=
+ =?utf-8?B?R0taZkgwQzc0Q3VKRDJ5d21lNmdNRWtCNmlEVS9HRko3RXFNdzNReE4rVUVM?=
+ =?utf-8?B?ZllFWDNjK3B5Wml4N0twOVNqOURNSXpNMVVra1hibUw0S2o5dnlIQzQzL2xh?=
+ =?utf-8?B?QUY5WGZhODlMQXcxUTBDMGtBTjdsUHp1UFBlQVJBQUV2NklCMi92TEMzaS9O?=
+ =?utf-8?B?Mmgra1dvQVh4SUoybk9IUzVSTWVlUTJaUnM1UmlhRE0vM0J5TWIrRldsNjhO?=
+ =?utf-8?B?T0EvbFZlTHNWUnIxRkVIVllMTFRjTWhXTFNEQXJLZnNtSVcvaWthRHRLN3RJ?=
+ =?utf-8?B?dTZtNzhuTSs4YXJhNDJLTHhnUThLSWE0VS9VSGlzQTFoN3AwSGR5RTNLWklk?=
+ =?utf-8?B?aklyWXZyQ21pWFIwaGNJQW1wc2R4RGx2UDczeDJqcXh1S253WFhqVm9DeGt0?=
+ =?utf-8?B?cUZncHozM0VOYllMWXdnaWRSNDhFczlIKzZVd1Fia1Q4b1M4T0hyQVIxTVdp?=
+ =?utf-8?B?a0tFZzBzY1ZEemlqM2JmR1UrSlhoeDdLSUQ4c0VnaDMxZDJRS3hVM0I0dXlP?=
+ =?utf-8?B?MGVzeVhzTlU1U0VSN0tBOC9CcUVkQjk5bm53STJsVFRBKzVoQVdUSUVmTDZm?=
+ =?utf-8?B?UjBMYmIzR3VTWWszR2JtN0padGQyNitIbTlONXdPbUlsa1J4ckpEYnlRYlEv?=
+ =?utf-8?B?WStUT2VxTHRWQmpVTDdlZ3pPWktOT1djUkU1QkhyK1lzeFJqOEJsWEFDcXpE?=
+ =?utf-8?B?ZndXZE9saWpOMXBrUEtFbW0vZWpNNzY0ME1JNkp2NUZtNUtYMnY0eDlOWmFM?=
+ =?utf-8?B?RlhQQzA1WXgrOG0yUUE4K0FOVkpIalp0RVF5WDYzbzlkcHNkb3ZNck5ZelpZ?=
+ =?utf-8?B?bFBqeHVWekdheTRrL25YVG14OXdoNldjQkpkSTJIZ3l2aE05RDRaUThHNU1F?=
+ =?utf-8?B?TGxBU1hIaHJIL3l5dVZsYVZNYTRyVDNJektucmlndUw0bFpVYkxTdGVCZURt?=
+ =?utf-8?B?R082dmllRUlwYWY1SFlXYWVlSUErc3h2TkVSWXFYbWFMa1p4bFJLeUQvbUlB?=
+ =?utf-8?B?Tm9WWjNWck9Nc2czQjJJajRDM2VvWG5BVWkyVGdxN1Y1YW51T2VFbjB4TmJK?=
+ =?utf-8?B?V3BzNkpPaWpWemNRMlo0Zmpzdkt1MkJPQ1ZjOTRhTUZuSU9vQ0VlZkc0SHRy?=
+ =?utf-8?B?VllCelFZSExvNEU5eW42SkoyOWZoc2RwLzFvaFZrVk5TYlZpeWllYi9DVDdF?=
+ =?utf-8?B?VWJUZW02SU9hUjNud0RGdFhHS2VCVndtem1ycWtEVzFWY1dJT1JQb2lSRG9K?=
+ =?utf-8?B?YTdOYVVINmNwOUVqZHREdTJyTnVWQ0p2Q2hPcEVyVHp1TzdXU2lPQ2NIWFcz?=
+ =?utf-8?B?Z0xsNEo5VkVnSjlHb1c3Y3lvVGVtbjduOVJqRWlMRU02ZXBzZkdodkQ5Qjgw?=
+ =?utf-8?B?SWRwZWlGckFDaG1zeEdoOHoramREZElwY1gwTW94V0daOGJDMUVDb1RocVVZ?=
+ =?utf-8?B?T3daenQwci9BS08vUkhMR2tyaldua2dHUDNwV3IyaU90SC94eEp6a0h5a2hi?=
+ =?utf-8?B?cGwvdkMySkY1Y3RZcEZzWkZQVGZEK280TnhaeTFMODlLdWNPUW9SVGZYNDZP?=
+ =?utf-8?B?M3o4eHMxMWxlck13OHdWTEpMRnBuVDhMTUJkM244S2YrS3RPZ1RFR0NxNjA0?=
+ =?utf-8?B?WFYxM1psMUpEWmpUYVVZdzk2alNEN3V5RmJaUzdGelcxVVp3TFlLVjFlWklJ?=
+ =?utf-8?B?eFJIbHcwRjdRZ2pRK0lkbStvQ3I5MVNJWlUzM0g4N0lWTktxTDRySmZDZ1Yv?=
+ =?utf-8?B?Yit3VlkwT0NvQ0RqODM0SjlyNVk1cTRrYjRUUDRROFBlZXkzdkh0Umk1V09L?=
+ =?utf-8?Q?8uoT/2QhUUvglQjhlKjPyEE=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2022 21:51:27.1028 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94f8e944-d3eb-4206-04ef-08d9f7dfcf07
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4780f435-f0f8-4e6e-4169-08d9faf5eaa6
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2022 20:07:16.2675 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB2526
-X-Mailman-Approved-At: Tue, 01 Mar 2022 04:37:19 +0000
-Subject: [Nouveau] [PATCH v5 3/7] PCI: Drop the `is_thunderbolt` attribute
- from PCI core
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9i/3JKdvHOc+ANDAjhzus2inu3JjqQ65q85KPxov4Nf4LQL0qSpalNxmpuhhtHy3
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1352
+X-Mailman-Approved-At: Tue, 01 Mar 2022 04:37:20 +0000
+Subject: Re: [Nouveau] [PATCH 2/6] treewide: remove using list iterator
+ after loop body as a ptr
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,78 +130,106 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michael Jamet <michael.jamet@intel.com>,
- Yehezkel Bernat <YehezkelShB@gmail.com>, Alexander.Deucher@amd.com,
- Mario Limonciello <mario.limonciello@amd.com>
+Cc: linux-wireless <linux-wireless@vger.kernel.org>,
+ alsa-devel@alsa-project.org, KVM list <kvm@vger.kernel.org>,
+ "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>,
+ linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
+ linux-arch <linux-arch@vger.kernel.org>, CIFS <linux-cifs@vger.kernel.org>,
+ linux-aspeed@lists.ozlabs.org, linux-scsi <linux-scsi@vger.kernel.org>,
+ linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@ziepe.ca>,
+ intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
+ bcm-kernel-feedback-list@broadcom.com,
+ Dan Carpenter <dan.carpenter@oracle.com>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>,
+ Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
+ Linux PM <linux-pm@vger.kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
+ Nathan Chancellor <nathan@kernel.org>, dma <dmaengine@vger.kernel.org>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Jakob Koschel <jakobkoschel@gmail.com>, v9fs-developer@lists.sourceforge.net,
+ linux-tegra <linux-tegra@vger.kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-sgx@vger.kernel.org,
+ linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
+ linux-usb@vger.kernel.org, samba-technical@lists.samba.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux F2FS Dev Mailing List <linux-f2fs-devel@lists.sourceforge.net>,
+ tipc-discussion@lists.sourceforge.net,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+ linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, Mike Rapoport <rppt@kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The `is_thunderbolt` attribute originally had a well defined list of
-quirks that it existed for, but it has been overloaded with more
-meaning.
+Am 28.02.22 um 20:56 schrieb Linus Torvalds:
+> On Mon, Feb 28, 2022 at 4:19 AM Christian König
+> <christian.koenig@amd.com> wrote:
+>> I don't think that using the extra variable makes the code in any way
+>> more reliable or easier to read.
+> So I think the next step is to do the attached patch (which requires
+> that "-std=gnu11" that was discussed in the original thread).
+>
+> That will guarantee that the 'pos' parameter of list_for_each_entry()
+> is only updated INSIDE the for_each_list_entry() loop, and can never
+> point to the (wrongly typed) head entry.
+>
+> And I would actually hope that it should actually cause compiler
+> warnings about possibly uninitialized variables if people then use the
+> 'pos' pointer outside the loop. Except
+>
+>   (a) that code in sgx/encl.c currently initializes 'tmp' to NULL for
+> inexplicable reasons - possibly because it already expected this
+> behavior
+>
+>   (b) when I remove that NULL initializer, I still don't get a warning,
+> because we've disabled -Wno-maybe-uninitialized since it results in so
+> many false positives.
+>
+> Oh well.
+>
+> Anyway, give this patch a look, and at least if it's expanded to do
+> "(pos) = NULL" in the entry statement for the for-loop, it will avoid
+> the HEAD type confusion that Jakob is working on. And I think in a
+> cleaner way than the horrid games he plays.
+>
+> (But it won't avoid possible CPU speculation of such type confusion.
+> That, in my opinion, is a completely different issue)
 
-Instead use the driver core removable attribute to indicate the
-detail a device is attached to a thunderbolt or USB4 chain.
+Yes, completely agree.
 
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
- drivers/pci/probe.c               | 2 +-
- drivers/platform/x86/apple-gmux.c | 2 +-
- include/linux/pci.h               | 5 ++---
- 3 files changed, 4 insertions(+), 5 deletions(-)
+> I do wish we could actually poison the 'pos' value after the loop
+> somehow - but clearly the "might be uninitialized" I was hoping for
+> isn't the way to do it.
+>
+> Anybody have any ideas?
 
-diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-index 17a969942d37..1b752d425c47 100644
---- a/drivers/pci/probe.c
-+++ b/drivers/pci/probe.c
-@@ -1584,7 +1584,7 @@ static void set_pcie_thunderbolt(struct pci_dev *dev)
- 	/* Is the device part of a Thunderbolt controller? */
- 	vsec = pci_find_vsec_capability(dev, PCI_VENDOR_ID_INTEL, PCI_VSEC_ID_INTEL_TBT);
- 	if (vsec)
--		dev->is_thunderbolt = 1;
-+		dev->external_facing = true;
- }
- 
- static void set_pcie_untrusted(struct pci_dev *dev)
-diff --git a/drivers/platform/x86/apple-gmux.c b/drivers/platform/x86/apple-gmux.c
-index 57553f9b4d1d..4444da0c39b0 100644
---- a/drivers/platform/x86/apple-gmux.c
-+++ b/drivers/platform/x86/apple-gmux.c
-@@ -596,7 +596,7 @@ static int gmux_resume(struct device *dev)
- 
- static int is_thunderbolt(struct device *dev, void *data)
- {
--	return to_pci_dev(dev)->is_thunderbolt;
-+	return to_pci_dev(dev)->external_facing;
- }
- 
- static int gmux_probe(struct pnp_dev *pnp, const struct pnp_device_id *id)
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index 1e5b769e42fc..d9719eb14654 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -442,7 +442,6 @@ struct pci_dev {
- 	unsigned int	is_virtfn:1;
- 	unsigned int	is_hotplug_bridge:1;
- 	unsigned int	shpc_managed:1;		/* SHPC owned by shpchp */
--	unsigned int	is_thunderbolt:1;	/* Thunderbolt controller */
- 	unsigned int	no_cmd_complete:1;	/* Lies about command completed events */
- 
- 	/*
-@@ -2447,11 +2446,11 @@ static inline bool pci_is_thunderbolt_attached(struct pci_dev *pdev)
- {
- 	struct pci_dev *parent = pdev;
- 
--	if (pdev->is_thunderbolt)
-+	if (dev_is_removable(&pdev->dev))
- 		return true;
- 
- 	while ((parent = pci_upstream_bridge(parent)))
--		if (parent->is_thunderbolt)
-+		if (dev_is_removable(&parent->dev))
- 			return true;
- 
- 	return false;
--- 
-2.34.1
+I think we should look at the use cases why code is touching (pos) after 
+the loop.
+
+Just from skimming over the patches to change this and experience with 
+the drivers/subsystems I help to maintain I think the primary pattern 
+looks something like this:
+
+list_for_each_entry(entry, head, member) {
+     if (some_condition_checking(entry))
+         break;
+}
+do_something_with(entry);
+
+So the solution should probably not be to change all those use cases to 
+use more temporary variables, but rather to add a list_find_entry(..., 
+condition) macro and consistently use that one instead.
+
+Regards,
+Christian.
+
+>
+>                  Linus
 
