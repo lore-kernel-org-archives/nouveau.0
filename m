@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B463C433F5
-	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:38:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64020C433FE
+	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:38:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06CBA10EB7A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8C2810EB85;
 	Tue,  1 Mar 2022 04:37:27 +0000 (UTC)
+X-Greylist: delayed 623 seconds by postgrey-1.36 at gabe;
+ Mon, 28 Feb 2022 20:53:23 UTC
 Received: from bedivere.hansenpartnership.com (bedivere.hansenpartnership.com
- [96.44.175.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFDA410E8E8;
- Mon, 28 Feb 2022 22:29:04 +0000 (UTC)
+ [IPv6:2607:fcd0:100:8a00::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F408F10E442;
+ Mon, 28 Feb 2022 20:53:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=hansenpartnership.com; s=20151216; t=1646087344;
- bh=gnitHaDoKtFYFmdfHx7ZmUK+2K99mC4OdMWiGF3yqts=;
+ d=hansenpartnership.com; s=20151216; t=1646080979;
+ bh=syYpb/xpUEM74XaWkn+xK6Z1vfQJZQo/NwVp9EVw5rs=;
  h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
- b=aDv+zUJMVLbpHnTobs88HMeKXt8e/Fsm3NyltqbtXmut8dDpKPmgZQHvU7CQAhpxT
- x8yyOH8cKkqI9wCCVd7mWgGGPtOdFvurEvTcoJzgoG8F+eqVyUcxI30U1Z3UyKmv+s
- JFRv6cmaJ/MAgdj571KO+Pve8Zec5bTLqNmzMPjU=
+ b=ujxiIgy0T+0bXa5l/GTOdjcngh6b85JmDA0WyHri0Bbh2a93S9iJ0SxWyDfl/MyPo
+ LfSkwtJLqYe+MRa0ZrGntCtSGoW1hjohSGvPcqjksKBYaUrg8Aw3UwyQBazEu7CyPQ
+ sHqUpBIAmzvzOB+1XNyd+aN4TkXOB/egoLerum4w=
 Received: from localhost (localhost [127.0.0.1])
- by bedivere.hansenpartnership.com (Postfix) with ESMTP id 2FE4A1281036;
- Mon, 28 Feb 2022 17:29:04 -0500 (EST)
+ by bedivere.hansenpartnership.com (Postfix) with ESMTP id 4748C1280EAE;
+ Mon, 28 Feb 2022 15:42:59 -0500 (EST)
 Received: from bedivere.hansenpartnership.com ([127.0.0.1])
  by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavisd-new,
  port 10024)
- with ESMTP id UdsLtl38GfVe; Mon, 28 Feb 2022 17:29:04 -0500 (EST)
+ with ESMTP id i-njNjm3Pi4q; Mon, 28 Feb 2022 15:42:59 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=hansenpartnership.com; s=20151216; t=1646087343;
- bh=gnitHaDoKtFYFmdfHx7ZmUK+2K99mC4OdMWiGF3yqts=;
+ d=hansenpartnership.com; s=20151216; t=1646080979;
+ bh=syYpb/xpUEM74XaWkn+xK6Z1vfQJZQo/NwVp9EVw5rs=;
  h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
- b=u33hwQnb0VqdOXP8ulufSc5IRuZCZipVBGZNcGF9+k1EE0TmKFXpcGOMGd4fMwEgO
- 9syQhDBoNk9Z7GUqfbwA47rALQtXFHUxFeSSP/G0sxjEsJWs9EMuAmppU6twhzQzk+
- fAgT3F3AJIbVTwM2ufsCoBYKhhHBSRhleqdyR2l4=
+ b=ujxiIgy0T+0bXa5l/GTOdjcngh6b85JmDA0WyHri0Bbh2a93S9iJ0SxWyDfl/MyPo
+ LfSkwtJLqYe+MRa0ZrGntCtSGoW1hjohSGvPcqjksKBYaUrg8Aw3UwyQBazEu7CyPQ
+ sHqUpBIAmzvzOB+1XNyd+aN4TkXOB/egoLerum4w=
 Received: from jarvis.int.hansenpartnership.com (unknown
  [IPv6:2601:5c4:4300:c551::527])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id C21DB1280D34;
- Mon, 28 Feb 2022 17:28:59 -0500 (EST)
-Message-ID: <73fa82a20910c06784be2352a655acc59e9942ea.camel@HansenPartnership.com>
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id DDA6D12806A6;
+ Mon, 28 Feb 2022 15:42:54 -0500 (EST)
+Message-ID: <b2d20961dbb7533f380827a7fcc313ff849875c1.camel@HansenPartnership.com>
 From: James Bottomley <James.Bottomley@HansenPartnership.com>
-To: Mike Rapoport <rppt@kernel.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 28 Feb 2022 17:28:58 -0500
-In-Reply-To: <7D0C2A5D-500E-4F38-AD0C-A76E132A390E@kernel.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Linus
+ Torvalds <torvalds@linux-foundation.org>
+Date: Mon, 28 Feb 2022 15:42:53 -0500
+In-Reply-To: <282f0f8d-f491-26fc-6ae0-604b367a5a1a@amd.com>
 References: <20220228110822.491923-1-jakobkoschel@gmail.com>
  <20220228110822.491923-3-jakobkoschel@gmail.com>
  <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
  <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
  <282f0f8d-f491-26fc-6ae0-604b367a5a1a@amd.com>
- <b2d20961dbb7533f380827a7fcc313ff849875c1.camel@HansenPartnership.com>
- <7D0C2A5D-500E-4F38-AD0C-A76E132A390E@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.34.4 
 MIME-Version: 1.0
@@ -106,73 +106,85 @@ Cc: linux-wireless <linux-wireless@vger.kernel.org>,
  Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
  linux-fsdevel <linux-fsdevel@vger.kernel.org>,
  linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, Mike Rapoport <rppt@kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, 2022-02-28 at 23:59 +0200, Mike Rapoport wrote:
+On Mon, 2022-02-28 at 21:07 +0100, Christian König wrote:
+> Am 28.02.22 um 20:56 schrieb Linus Torvalds:
+> > On Mon, Feb 28, 2022 at 4:19 AM Christian König
+> > <christian.koenig@amd.com> wrote:
+> > > I don't think that using the extra variable makes the code in any
+> > > way
+> > > more reliable or easier to read.
+> > So I think the next step is to do the attached patch (which
+> > requires
+> > that "-std=gnu11" that was discussed in the original thread).
+> > 
+> > That will guarantee that the 'pos' parameter of
+> > list_for_each_entry()
+> > is only updated INSIDE the for_each_list_entry() loop, and can
+> > never
+> > point to the (wrongly typed) head entry.
+> > 
+> > And I would actually hope that it should actually cause compiler
+> > warnings about possibly uninitialized variables if people then use
+> > the
+> > 'pos' pointer outside the loop. Except
+> > 
+> >   (a) that code in sgx/encl.c currently initializes 'tmp' to NULL
+> > for
+> > inexplicable reasons - possibly because it already expected this
+> > behavior
+> > 
+> >   (b) when I remove that NULL initializer, I still don't get a
+> > warning,
+> > because we've disabled -Wno-maybe-uninitialized since it results in
+> > so
+> > many false positives.
+> > 
+> > Oh well.
+> > 
+> > Anyway, give this patch a look, and at least if it's expanded to do
+> > "(pos) = NULL" in the entry statement for the for-loop, it will
+> > avoid the HEAD type confusion that Jakob is working on. And I think
+> > in a cleaner way than the horrid games he plays.
+> > 
+> > (But it won't avoid possible CPU speculation of such type
+> > confusion. That, in my opinion, is a completely different issue)
 > 
-> On February 28, 2022 10:42:53 PM GMT+02:00, James Bottomley <
-> James.Bottomley@HansenPartnership.com> wrote:
-> > On Mon, 2022-02-28 at 21:07 +0100, Christian König wrote:
-[...]
-> > > > I do wish we could actually poison the 'pos' value after the
-> > > > loop somehow - but clearly the "might be uninitialized" I was
-> > > > hoping for isn't the way to do it.
-> > > > 
-> > > > Anybody have any ideas?
-> > > 
-> > > I think we should look at the use cases why code is touching
-> > > (pos) after the loop.
-> > > 
-> > > Just from skimming over the patches to change this and experience
-> > > with the drivers/subsystems I help to maintain I think the
-> > > primary pattern looks something like this:
-> > > 
-> > > list_for_each_entry(entry, head, member) {
-> > >      if (some_condition_checking(entry))
-> > >          break;
-> > > }
-> > > do_something_with(entry);
-> > 
-> > Actually, we usually have a check to see if the loop found
-> > anything, but in that case it should something like
-> > 
-> > if (list_entry_is_head(entry, head, member)) {
-> >    return with error;
-> > }
-> > do_somethin_with(entry);
-> > 
-> > Suffice?  The list_entry_is_head() macro is designed to cope with
-> > the bogus entry on head problem.
+> Yes, completely agree.
 > 
-> Won't suffice because the end goal of this work is to limit scope of
-> entry only to loop. Hence the need for additional variable.
+> > I do wish we could actually poison the 'pos' value after the loop
+> > somehow - but clearly the "might be uninitialized" I was hoping for
+> > isn't the way to do it.
+> > 
+> > Anybody have any ideas?
+> 
+> I think we should look at the use cases why code is touching (pos)
+> after the loop.
+> 
+> Just from skimming over the patches to change this and experience
+> with the drivers/subsystems I help to maintain I think the primary
+> pattern looks something like this:
+> 
+> list_for_each_entry(entry, head, member) {
+>      if (some_condition_checking(entry))
+>          break;
+> }
+> do_something_with(entry);
 
-Well, yes, but my objection is more to the size of churn than the
-desire to do loop local.  I'm not even sure loop local is possible,
-because it's always annoyed me that for (int i = 0; ...  in C++ defines
-i in the outer scope not the loop scope, which is why I never use it.
 
-However, if the desire is really to poison the loop variable then we
-can do
+Actually, we usually have a check to see if the loop found anything,
+but in that case it should something like
 
-#define list_for_each_entry(pos, head, member)				\
-	for (pos = list_first_entry(head, typeof(*pos), member);	\
-	     !list_entry_is_head(pos, head, member) && ((pos = NULL) == NULL;			\
-	     pos = list_next_entry(pos, member))
+if (list_entry_is_head(entry, head, member)) {
+    return with error;
+}
+do_somethin_with(entry);
 
-Which would at least set pos to NULL when the loop completes.
-
-> Besides, there are no guarantees that people won't
-> do_something_with(entry) without the check or won't compare entry to
-> NULL to check if the loop finished with break or not.
-
-I get the wider goal, but we have to patch the problem cases now and a
-simple one-liner is better than a larger patch that may or may not work
-if we ever achieve the local definition or value poisoning idea.  I'm
-also fairly certain coccinelle can come up with a use without checking
-for loop completion semantic patch which we can add to 0day.
+Suffice?  The list_entry_is_head() macro is designed to cope with the
+bogus entry on head problem.
 
 James
 
