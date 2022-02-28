@@ -4,120 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E3ECC433F5
-	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:37:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 428F1C433EF
+	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:37:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A78A910EB3A;
-	Tue,  1 Mar 2022 04:37:21 +0000 (UTC)
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2050.outbound.protection.outlook.com [40.107.243.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 131F410E456;
- Mon, 28 Feb 2022 12:19:34 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Gak+0VG7f2cK1qGBIYboMz3Rmo1e2+a3Qadt70yr+SXalhPkhKa3w30ibrppZy7J9X0U+bYR1DEsjxK7vkl+BudKRh2xhxnGWokUrtqa9Ya7IfUQlH57vxKDpZGaToSEDW9l7aFNG3sxll4z7Cw3o6ihXkNwnjdKSc8q1j7cNYGZijzB+GOgJtLQlm3hrumQbSSOfCPjerllCYNa+Y6byoisv/EQrCAg39Paj09WWowL67ZuiWACgQOClzLerq7E1FeC0W9wdN7gFQiQmga03SsKY43ILsXZUa9Mucd961jBDV7QKl9s8tl1ErdLe8FWGo3uTdaFMixnDJB0vZmePQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dFAhmo3JBYJdhOBKzHNL9AJtIawE+V/fgYNxajT2ljI=;
- b=SzZWjd1fmgSJStHirEOCRnkAmcu3OmudpoaEyqknhomm8RjYXkMjnw1ABFAQ2dq8DbNrpQGxXY9ZQCiz+GnKJJqoOOTTXEuSJttXUAE7tqLVwj72QyYBoUE01Ym1R2ysVx8qf1JEPCuK12Olclw0Hna1trvdCt7Ic2GSai4vecGnv3uFeBp1cenwkYIGQD/CdiTDXQhMTXAYac+GdgHxinfvyCaI+nKqXhAaeYMEQJpqURd4/Dsaya54VHucuv6Zoch9wWHfqV2fB2v0eT2viWGd7XTwAYkc5qGDRx9T7ETYzGx6t8awxL24AQJ31xn8GI8ufl45Byu3EOXIQm4IMw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dFAhmo3JBYJdhOBKzHNL9AJtIawE+V/fgYNxajT2ljI=;
- b=AlIDg5tMzU18Zc+t9R+CoEaHA+AOb1jz/Nyu5OM7D+/2O/6lpB0dewE1ku3pJKeEoY8BydetUnPZUqFvCh2ilwJroT6ut+CA2XOTHnKRtbmsCQfR7AAIyWnBiCUAjqsHtIoqImAU9HMv8ZrZaEvOJGpDXNmlwxNnn4UlV4i6ZuQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by MWHPR12MB1295.namprd12.prod.outlook.com (2603:10b6:300:11::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.23; Mon, 28 Feb
- 2022 12:19:30 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::e03f:901a:be6c:b581]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::e03f:901a:be6c:b581%6]) with mapi id 15.20.5017.027; Mon, 28 Feb 2022
- 12:19:30 +0000
-Message-ID: <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
-Date: Mon, 28 Feb 2022 13:19:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Jakob Koschel <jakobkoschel@gmail.com>,
- Linus Torvalds <torvalds@linux-foundation.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9950910EB48;
+	Tue,  1 Mar 2022 04:37:22 +0000 (UTC)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
+ [IPv6:2a00:1450:4864:20::629])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56E2E10E3D5;
+ Mon, 28 Feb 2022 11:08:59 +0000 (UTC)
+Received: by mail-ej1-x629.google.com with SMTP id lw4so23947027ejb.12;
+ Mon, 28 Feb 2022 03:08:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=HpiN/zwO1wBD5W8vJ5qwHzWs2Mz8GYwVSPoaDyTc8jQ=;
+ b=hjvTHeqAC17Nm2rqJFqOWVUlo+eMrb6KCGjEjnmUhT0UbOoSD99k2xAziOpWZa+Icu
+ SPp4Zg1lqK8FLNpUHi/iGpToynAZh7AAx7I6BqkiBOWQWPIrLjejJ7mt0E6lp79jr43P
+ Z8Tz3UxSCHK1qzDcri6ZY14M8lx9G0bi6GCGQHl0DVbHpgXti6eqzCprjBZYIcyI1uce
+ Dn/lOukn9J64/ASqyssuY+hk5ExgHfhAh8xyytTN1bW2SLq53AUCqmHXOqxQHzvGm8yg
+ Hb8Tr+NdyPNcInoLFcy82stmYANyPP1+b2zh81uncpq/hmnHTquj2t004aepXQhNWxPC
+ QShA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=HpiN/zwO1wBD5W8vJ5qwHzWs2Mz8GYwVSPoaDyTc8jQ=;
+ b=QOZt135zUYfqwHXDab5Glylqaxh/KW8v7avVBNeX8JdPG7GTNqr/cTjZGIKJwmMG9B
+ q9hKRAmv9VMuWBSftnqQtIjKJ2k8D02VC9MJZqyNfFFKulfjfLYiqePEWQ+P9hxe7qIB
+ sTNFk+j4o5u6k3hGWzHvL553e2aDgKLsJ9vSN8h7slIrpWMI26r+fSM2OBtz1rfSe0Ge
+ X3KDISxW0XY+/i2nWEfIAYm1D0LQn+0yR59uZuyIMpMdr5gyFm54DnSga0mpw91iBKj9
+ SDXJL4wzNCT06f4fNCdYObZFX07bjlYSAh1ZgDIr+LS6MXv5NJqhZTZpJqxinVGJu/m2
+ ZZfA==
+X-Gm-Message-State: AOAM530kzidjFSOqILjIEI6LGrDd4GgUAZ0K3ztiakltYwSssGIkGOEW
+ KKz0iV8xQQWTqc+u7GEaWpc=
+X-Google-Smtp-Source: ABdhPJwIz1+OuMm91LqO5/9SwgL6U3RC8rZg6hPrO7zQUYJxh0T24GQzaSGRh+uNCyYPoPAvBQZaKw==
+X-Received: by 2002:a17:906:3803:b0:6cf:56b9:60a9 with SMTP id
+ v3-20020a170906380300b006cf56b960a9mr14108161ejc.716.1646046537823; 
+ Mon, 28 Feb 2022 03:08:57 -0800 (PST)
+Received: from localhost.localdomain (dhcp-077-250-038-153.chello.nl.
+ [77.250.38.153]) by smtp.googlemail.com with ESMTPSA id
+ z22-20020a17090655d600b006d229436793sm4209049ejp.223.2022.02.28.03.08.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 28 Feb 2022 03:08:57 -0800 (PST)
+From: Jakob Koschel <jakobkoschel@gmail.com>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Mon, 28 Feb 2022 12:08:19 +0100
+Message-Id: <20220228110822.491923-4-jakobkoschel@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220228110822.491923-1-jakobkoschel@gmail.com>
 References: <20220228110822.491923-1-jakobkoschel@gmail.com>
- <20220228110822.491923-3-jakobkoschel@gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20220228110822.491923-3-jakobkoschel@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AM6P193CA0051.EURP193.PROD.OUTLOOK.COM
- (2603:10a6:209:8e::28) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 927c171a-822c-407a-0fdb-08d9fab491db
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1295:EE_
-X-Microsoft-Antispam-PRVS: <MWHPR12MB1295A5EA7DAABF83602189E383019@MWHPR12MB1295.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qxyezJsmPy26yjbJiE7nsfiUmF0CrlIboTAwmgzX+NACMNF0P25qUQTowXZYFwLnL07ApfYLgfmlTTlbgnXiRNw3HipcQ8YR9n20WGUM4qVXClwvgS2U+5fbxmfiL1YJ3b4dKP58UnnBLEPlJ59UilT4fZs46PS1fW/z09P1pFxsFPxnfyjzXR4SKtzdPjD8pdLQ8Kuy+2l0dAgEnArYv3uj5znNa1rQ1Hoq/K9GX8bP7u3bYhwZ3G7tvOtwzFR8Ta2MGzOk18aOUbCOKf9+NPI1BAokmmASt6vuYyQl9d6diYO5nnGHvlTt8B97TsJduPfAWtmOXc4pGnhEnGvVkJzJ9Q5UoXw6MGsLnQFAvjCFOS5HUttb3W5KQYRHVWSwfogIFAGfvtFO+lDHC+zygYhcr4vKIF5NwmlrjZe/eYf8EP+TvHA9+tl3ASpRWWdauBP0CwG4cAkCxjiJR/bBkhVEPuvZl3gldzU8eZLh6J409seJbpIj1B3mXQakZi/ADxm0gFDuRFrSFkrLksAlJNLnP2ba8pyWbR8sZiD7/xv+btdb9URSvZP51q7+HLGr+O6HkKjfWrXmkHOpnHpQ0HDh1kufULkKjdiTyUbvjlsAcLox6Kv+USztKXk8wsuMfL7cp8xrU8lMEmEm4ojd6a9DhZsM9Wdu+UjIl4m5D/tT+6dGUe98wGH7LMWEEawZ3jSOjYoFYkV7E4/D5zrhIvYMsvhiVWs/D7ffpMq0AfurcvoBBzJjFVjkZdegPoSo
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(7406005)(6512007)(5660300002)(7366002)(7416002)(6506007)(31686004)(36756003)(6486002)(2906002)(83380400001)(2616005)(54906003)(508600001)(110136005)(31696002)(8936002)(86362001)(186003)(38100700002)(6666004)(316002)(4326008)(66476007)(66946007)(66556008)(8676002)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QnVEZUhHVmdLQlRDREtha0hYNEd6bWZuNDJmWmFJc2I4MHI3amtWSVdaSTNv?=
- =?utf-8?B?VkxUUUMxWU5QSzNpSHU3QzdicVZ0RWFpcTc2NHk5aVJLaUF6S2EreTNldTd2?=
- =?utf-8?B?Y1ZDZEcwakpzV0VORi9yNmt5YktCVWVlaWVSTmlQWjNUZDAyQ0NBOFlKV1R0?=
- =?utf-8?B?K3VIQnZ3N1k2ajl6WURIOTVYRmdkbzFBUlFQY1ZIVDl5ZVVNZE04WWY3RzdI?=
- =?utf-8?B?NFBENGxZMVh3KzdYSmVKYzB2MlY1YytOZ3pQdjZ1NHdiRmtNSlQwYjYrSGJS?=
- =?utf-8?B?S0lmS3RRUVU1TGh2Ym0yQkdmWWFzN1VwSmNzQW1IR0RmMmU4SjZ5Mm0ydXVP?=
- =?utf-8?B?UEN6a3N0aGJVQkQrTG5nWTVYTzVDQkI1dGxlMURwN0N2Rk1FN0g1VnNKZWVW?=
- =?utf-8?B?S1VoamV3L1BKLzBnaEdCWUhEN2I3ZERSM21LVXBEcVo1M011QmVuQXZMS05Z?=
- =?utf-8?B?NFNEV2tydTR2VlFkMlNESjdzVGhaNW1PNjlBNDA0bEthUnBJc3F3UkhvaE9o?=
- =?utf-8?B?M2ZyVVcvMTNvSU13ZTl0UTRUTXZFY3IzZmxlcnlnZ2FudWM3dXZOZ3IvNEVD?=
- =?utf-8?B?cS96alNTbmFWNzZrcUVJdUgzeGM5MCs0c2JKWUZMRnkzR3E2TVUycTB2RVFy?=
- =?utf-8?B?MzE4QUtkUmQ4bCtqcmI0QktyYVVmd3k5eXZ0Z1R4ejZwekhIUFYyUjRYVkQ0?=
- =?utf-8?B?Z1JiUWpWbzRITWtSc1FTV2lIY0ZlTzhKampXVVhwbk1qbTE4NXNobDNUdWdo?=
- =?utf-8?B?dngxTjRLTGlpYmVtYzBaZWJPNEs0Nkg0Q05ERDY1RjBzZVlZMks1UVhlYTNT?=
- =?utf-8?B?LytTbGxaV29uWFpiYmRlVjc4QUh1OEYwT3FUbHpXZDNkbnNZVkJWZHArZ0Zx?=
- =?utf-8?B?bFFMV2FTUHhtZ3BJSTNzeEd1QnpZS21nWiszbEpxWXNSOU4wb3FWUEd6WUN6?=
- =?utf-8?B?bmc4OEZ4RGY3N2tsdFdhRVZhR1E5YU1QUFJFSnAxb2s1SjI0YkRYeW1ybDI5?=
- =?utf-8?B?YzQ2c0lJZ3ZSQXVZNVVYWHFMTENXclNua3lORlhuM3Bac2pLUVQ1aFdQYldQ?=
- =?utf-8?B?Qm5iVnM2RTBoYVV6eWlVWDdFTG1NaGdZeDVVeG5HdmxGOW9oVkIxMk5GanRC?=
- =?utf-8?B?L1RxOVNMOHduYUNLM0VYbzg3TTd1TmxPQjZOV2ZzZjRScjRoejlaTURnVHJj?=
- =?utf-8?B?V3E5MHZyS0FNc0VRSmg2aGM1MVhUeFppdnBjbWtSQjUxY3hjTW9sVytKY0tl?=
- =?utf-8?B?bXI2MjJNMFZRTzZSajQyMEpHMnBqZThxK2ljY0pIN2NkemdCazdMYWZTZXhO?=
- =?utf-8?B?THpWZE9iVG16UkZvNENTUkpzdkI4eFNvMGxTWi96Q214R20xeWQ2Q3ZhZEN4?=
- =?utf-8?B?ZmZJb1N2WXc0NUsreUM5ekFOc1dlQTJQVkN5TW1QSy82WmZLTkorNE1aNzNE?=
- =?utf-8?B?dFhzdnk2dys4RmtUVytnZk9Zdlhrb1ptMFk3SWlCYmpUS1JxcGRLdWNkZTV5?=
- =?utf-8?B?K3h1SFcrOFliSWhzZWt5eGFINWpaWEFXL0FpNWRRelJOd0JMS3lpdDFEMUdP?=
- =?utf-8?B?eDhPQjhjVm9MS2xoYTgvdTlGbFd5WnZ4cW9uNjRHWWdueXlwZUJRWVBGN1Bm?=
- =?utf-8?B?b2tlcmh3Tm5pU0drcVBTVVltN2w2OXpPZS9tSjd6YTY1dTJMY1MzQnB5eUQ1?=
- =?utf-8?B?c2VHME0zd3N4dVIrUVlKeE4xcVJ0QWI2dW9vaEpkelNsVXM3cWZqRGlEZTJP?=
- =?utf-8?B?MUY2RHR3MWZ0Yk82NSthdy9FTG1CQ3J4YnFMakU5UUtlZWJlN1NXazR5a1NZ?=
- =?utf-8?B?d09rUmV5QXpwTjMzK2F6SVRZNFNMTGtlUCtTNS9qc3Byc3ZaRUJFQUtJTW5y?=
- =?utf-8?B?NUNYck1SckJLTnpOR1d4L3Rpb21OSHlSR1JkVDdZZlVGUjVXWGxlRTA2bmg5?=
- =?utf-8?B?U1JDZXdQUjd0WkVjajE4dFY0QWpYNkN1cGVxdFR1OVkxUFlGUjRaUzhEQWlp?=
- =?utf-8?B?cjYwaWc1L2Y0NTVzd3lrMlBodGMybWZLb2VUWWx2US9EclJjR29OaEZ1ZjZ4?=
- =?utf-8?B?UFdYck5CMlA2UytrZUdob1Z6YjdnTEh6cElLT0lLMjByVGJJOTBZRWE1Um5h?=
- =?utf-8?B?QmZ2OFNhNXBNU1lwVGI5YkNoRnRSdFdqeGRSbmFkL1I2anJyRXZ0bW5IeVI4?=
- =?utf-8?Q?R6iIn8pdIonNpLAFjDShZ1w=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 927c171a-822c-407a-0fdb-08d9fab491db
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2022 12:19:30.0401 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Yz+/jU3IY5U41ZTP4nxROOoIIb/zKsZboh12RZsNA0NdemZ8rLgm5wIEvLhrWIBd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1295
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 01 Mar 2022 04:37:20 +0000
-Subject: Re: [Nouveau] [PATCH 2/6] treewide: remove using list iterator
- after loop body as a ptr
+Subject: [Nouveau] [PATCH 3/6] treewide: fix incorrect use to determine if
+ list is empty
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,89 +70,133 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-wireless@vger.kernel.org, alsa-devel@alsa-project.org,
- kvm@vger.kernel.org, "Gustavo A. R. Silva" <gustavo@embeddedor.com>,
- linux-iio@vger.kernel.org, nouveau@lists.freedesktop.org,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, dri-devel@lists.freedesktop.org,
- Cristiano Giuffrida <c.giuffrida@vu.nl>, amd-gfx@lists.freedesktop.org,
+Cc: alsa-devel@alsa-project.org, linux-aspeed@lists.ozlabs.org,
+ "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel@lists.freedesktop.org, Cristiano Giuffrida <c.giuffrida@vu.nl>,
+ amd-gfx@lists.freedesktop.org, samba-technical@lists.samba.org,
  linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
  linux-arch <linux-arch@vger.kernel.org>, linux-cifs@vger.kernel.org,
- linux-aspeed@lists.ozlabs.org, linux-scsi@vger.kernel.org,
- linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev, "Bos,
- H.J." <h.j.bos@vu.nl>, Jason Gunthorpe <jgg@ziepe.ca>,
- intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
- bcm-kernel-feedback-list@broadcom.com,
+ kvm@vger.kernel.org, linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-staging@lists.linux.dev, "Bos, H.J." <h.j.bos@vu.nl>,
+ Jason Gunthorpe <jgg@ziepe.ca>, intel-wired-lan@lists.osuosl.org,
+ kgdb-bugreport@lists.sourceforge.net, bcm-kernel-feedback-list@broadcom.com,
  Dan Carpenter <dan.carpenter@oracle.com>, linux-media@vger.kernel.org,
  Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
  linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
- Nathan Chancellor <nathan@kernel.org>, dmaengine@vger.kernel.org,
+ Nathan Chancellor <nathan@kernel.org>, linux-fsdevel@vger.kernel.org,
  Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- v9fs-developer@lists.sourceforge.net, linux-tegra@vger.kernel.org,
- Thomas Gleixner <tglx@linutronix.de>,
+ Jakob Koschel <jakobkoschel@gmail.com>, v9fs-developer@lists.sourceforge.net,
+ linux-tegra@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  linux-arm-kernel@lists.infradead.org, linux-sgx@vger.kernel.org,
  linux-block@vger.kernel.org, netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- samba-technical@lists.samba.org, linux-kernel@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-f2fs-devel@lists.sourceforge.net, tipc-discussion@lists.sourceforge.net,
- linux-crypto@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
  linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
  linuxppc-dev@lists.ozlabs.org, Mike Rapoport <rppt@kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Am 28.02.22 um 12:08 schrieb Jakob Koschel:
-> If the list does not contain the expected element, the value of
-> list_for_each_entry() iterator will not point to a valid structure.
-> To avoid type confusion in such case, the list iterator
-> scope will be limited to list_for_each_entry() loop.
+The list iterator value will *always* be set by list_for_each_entry().
+It is incorrect to assume that the iterator value will be NULL if the
+list is empty.
 
-We explicitly have the list_entry_is_head() macro to test after a loop 
-if the element pointer points to the head of the list instead of a valid 
-list entry.
+Instead of checking the pointer it should be checked if
+the list is empty.
+In acpi_get_pmu_hw_inf() instead of setting the pointer to NULL
+on the break, it is set to the correct value and leaving it
+NULL if no element was found.
 
-So at least from my side I absolutely don't think that this is a good idea.
+Signed-off-by: Jakob Koschel <jakobkoschel@gmail.com>
+---
+ arch/powerpc/sysdev/fsl_gtm.c            |  4 ++--
+ drivers/media/pci/saa7134/saa7134-alsa.c |  4 ++--
+ drivers/perf/xgene_pmu.c                 | 13 +++++++------
+ 3 files changed, 11 insertions(+), 10 deletions(-)
 
-> In preparation to limiting scope of a list iterator to the list traversal
-> loop, use a dedicated pointer to point to the found element.
-> Determining if an element was found is then simply checking if
-> the pointer is != NULL.
+diff --git a/arch/powerpc/sysdev/fsl_gtm.c b/arch/powerpc/sysdev/fsl_gtm.c
+index 8963eaffb1b7..39186ad6b3c3 100644
+--- a/arch/powerpc/sysdev/fsl_gtm.c
++++ b/arch/powerpc/sysdev/fsl_gtm.c
+@@ -86,7 +86,7 @@ static LIST_HEAD(gtms);
+  */
+ struct gtm_timer *gtm_get_timer16(void)
+ {
+-	struct gtm *gtm = NULL;
++	struct gtm *gtm;
+ 	int i;
 
-Since when do we actually want to do this?
+ 	list_for_each_entry(gtm, &gtms, list_node) {
+@@ -103,7 +103,7 @@ struct gtm_timer *gtm_get_timer16(void)
+ 		spin_unlock_irq(&gtm->lock);
+ 	}
 
-Take this code here as an example:
-> diff --git a/arch/x86/kernel/cpu/sgx/encl.c b/arch/x86/kernel/cpu/sgx/encl.c
-> index 48afe96ae0f0..6c916416decc 100644
-> --- a/arch/x86/kernel/cpu/sgx/encl.c
-> +++ b/arch/x86/kernel/cpu/sgx/encl.c
-> @@ -450,7 +450,8 @@ static void sgx_mmu_notifier_release(struct mmu_notifier *mn,
->   				     struct mm_struct *mm)
->   {
->   	struct sgx_encl_mm *encl_mm = container_of(mn, struct sgx_encl_mm, mmu_notifier);
-> -	struct sgx_encl_mm *tmp = NULL;
-> +	struct sgx_encl_mm *found_encl_mm = NULL;
-> +	struct sgx_encl_mm *tmp;
->
->   	/*
->   	 * The enclave itself can remove encl_mm.  Note, objects can't be moved
-> @@ -460,12 +461,13 @@ static void sgx_mmu_notifier_release(struct mmu_notifier *mn,
->   	list_for_each_entry(tmp, &encl_mm->encl->mm_list, list) {
->   		if (tmp == encl_mm) {
->   			list_del_rcu(&encl_mm->list);
-> +			found_encl_mm = tmp;
->   			break;
->   		}
->   	}
->   	spin_unlock(&encl_mm->encl->mm_lock);
->
-> -	if (tmp == encl_mm) {
-> +	if (found_encl_mm) {
->   		synchronize_srcu(&encl_mm->encl->srcu);
->   		mmu_notifier_put(mn);
->   	}
+-	if (gtm)
++	if (!list_empty(&gtms))
+ 		return ERR_PTR(-EBUSY);
+ 	return ERR_PTR(-ENODEV);
+ }
+diff --git a/drivers/media/pci/saa7134/saa7134-alsa.c b/drivers/media/pci/saa7134/saa7134-alsa.c
+index fb24d2ed3621..d3cde05a6eba 100644
+--- a/drivers/media/pci/saa7134/saa7134-alsa.c
++++ b/drivers/media/pci/saa7134/saa7134-alsa.c
+@@ -1214,7 +1214,7 @@ static int alsa_device_exit(struct saa7134_dev *dev)
 
-I don't think that using the extra variable makes the code in any way 
-more reliable or easier to read.
+ static int saa7134_alsa_init(void)
+ {
+-	struct saa7134_dev *dev = NULL;
++	struct saa7134_dev *dev;
 
-Regards,
-Christian.
+ 	saa7134_dmasound_init = alsa_device_init;
+ 	saa7134_dmasound_exit = alsa_device_exit;
+@@ -1229,7 +1229,7 @@ static int saa7134_alsa_init(void)
+ 			alsa_device_init(dev);
+ 	}
+
+-	if (dev == NULL)
++	if (list_empty(&saa7134_devlist))
+ 		pr_info("saa7134 ALSA: no saa7134 cards found\n");
+
+ 	return 0;
+diff --git a/drivers/perf/xgene_pmu.c b/drivers/perf/xgene_pmu.c
+index 2b6d476bd213..e255f9e665d1 100644
+--- a/drivers/perf/xgene_pmu.c
++++ b/drivers/perf/xgene_pmu.c
+@@ -1460,7 +1460,8 @@ xgene_pmu_dev_ctx *acpi_get_pmu_hw_inf(struct xgene_pmu *xgene_pmu,
+ 	struct hw_pmu_info *inf;
+ 	void __iomem *dev_csr;
+ 	struct resource res;
+-	struct resource_entry *rentry;
++	struct resource_entry *rentry = NULL;
++	struct resource_entry *tmp;
+ 	int enable_bit;
+ 	int rc;
+
+@@ -1475,16 +1476,16 @@ xgene_pmu_dev_ctx *acpi_get_pmu_hw_inf(struct xgene_pmu *xgene_pmu,
+ 		return NULL;
+ 	}
+
+-	list_for_each_entry(rentry, &resource_list, node) {
+-		if (resource_type(rentry->res) == IORESOURCE_MEM) {
+-			res = *rentry->res;
+-			rentry = NULL;
++	list_for_each_entry(tmp, &resource_list, node) {
++		if (resource_type(tmp->res) == IORESOURCE_MEM) {
++			res = *tmp->res;
++			rentry = tmp;
+ 			break;
+ 		}
+ 	}
+ 	acpi_dev_free_resource_list(&resource_list);
+
+-	if (rentry) {
++	if (!rentry) {
+ 		dev_err(dev, "PMU type %d: No memory resource found\n", type);
+ 		return NULL;
+ 	}
+--
+2.25.1
+
