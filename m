@@ -4,65 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73F39C433FE
-	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:38:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52389C43217
+	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:38:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE49510EB5C;
-	Tue,  1 Mar 2022 04:37:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC99E10EB41;
+	Tue,  1 Mar 2022 04:37:23 +0000 (UTC)
 Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com
  [IPv6:2a00:1450:4864:20::135])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7CEE10E5A5
- for <nouveau@lists.freedesktop.org>; Mon, 28 Feb 2022 20:10:45 +0000 (UTC)
-Received: by mail-lf1-x135.google.com with SMTP id t13so11308030lfd.9
- for <nouveau@lists.freedesktop.org>; Mon, 28 Feb 2022 12:10:45 -0800 (PST)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5844C10E167
+ for <nouveau@lists.freedesktop.org>; Tue,  1 Mar 2022 00:55:04 +0000 (UTC)
+Received: by mail-lf1-x135.google.com with SMTP id b11so24260415lfb.12
+ for <nouveau@lists.freedesktop.org>; Mon, 28 Feb 2022 16:55:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux-foundation.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=LeZ8UzRXrDw4d1M4BG6ctt9COK0EF5j9qtOsLWtMfJg=;
- b=Jhdls+DdmLi+4DWS7o2GehQ/Yg8vWPth9HxY0ymuDsFhiEF5hlRLzgd1PV4wJ4dLVJ
- JdRWd6PhVxu3cPtesSY0XREEgjw/sVhI1zgx2ECNJUHRlykk7MmbqhfMtkifVM/LmgYS
- 6chNfwYqW0eu75y5MSRY9nnHOEZnFkvhMXNYc=
+ :cc; bh=ud5/y/EBwvp8QN7vw5ZxaiWuDsWQaCGba2UHh4N4mec=;
+ b=QDNLH8KOj2N5elfQIiFc9ZMVPG667ughU6MItd4VPmNt6fV069Cvzy3GNDu1LboIOU
+ /ukem7qn980/nnuqsEKTwz+sJAAGQSBr/OuNtNkm7jqBwkXZFdDq4KuXeUYSVdjS5Ygf
+ UbLkNglYiw3uAvK1jhMlolPsp6Bm5sW2kE0eY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=LeZ8UzRXrDw4d1M4BG6ctt9COK0EF5j9qtOsLWtMfJg=;
- b=ejQ8RHxWqp4cn9/GBMJBYUIZGBic6sBHonMy2KEU4VOPDcjSjG7UpQfYKRN0rYwL43
- F+9Al4iwbzmq5wbFH5J0DYjzz4jFk7nSQGh5cAnvLL5LH7zgipGl1XviBgdjYKjFDQlW
- izp7w/TdM4J/FBiJFQZS2z5Qdge+08dEea1Ij9/QtttgAfyaDh59vod1vrFcwWBoewR4
- WSt/t7GSi3Sc9KTxncPqkTTp1h1UUR8y7il67cEtnGBtFWRNr2wBioXbJw+K1oV1d9Bp
- GQIpyqmjYZ8cYAJjnpqqEXRgVcy8F12jH6yzx7TedcknYkqggNn19RajxgDWED9SVmxc
- i8Ig==
-X-Gm-Message-State: AOAM532n26YgyVuvm9YAZs/yyyetEBSMbO+jY/NZVl3lv+Er6XCuCSym
- 33nxnUXn58y8ersDe5uG6EV8nnvxGJF7RP7OvRI=
-X-Google-Smtp-Source: ABdhPJx9IxC784pLejS4Irrg5y4wtmB/yBGgGuVquf2z9RhhbTUiGiaJ0pyaYiGAvgvzNTt6TTTGkQ==
-X-Received: by 2002:ac2:4c93:0:b0:439:74fc:a5bd with SMTP id
- d19-20020ac24c93000000b0043974fca5bdmr13548587lfl.219.1646079043515; 
- Mon, 28 Feb 2022 12:10:43 -0800 (PST)
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com.
- [209.85.167.42]) by smtp.gmail.com with ESMTPSA id
- j2-20020ac24542000000b0044331de4941sm1116230lfm.90.2022.02.28.12.10.41
+ bh=ud5/y/EBwvp8QN7vw5ZxaiWuDsWQaCGba2UHh4N4mec=;
+ b=f662ATA2dg8nKcRDc6jiEo0woAoqcDQGRiHiBx8hkPrwHY5kRcQHDtpQTzHC8jJRxp
+ 2b0N8qSCoOv/xGnqPRszBONqr2ReFXzHxwnfa/MrEn7uXbGMHzxAP1TmNcLDxonRp5aS
+ FCxCHFnCB78zzgeg08C/ptfnf1PT7ZoVWwaYBEEBNStjVyq/DzHycLmD+FTpphX9Y7WY
+ CxO7Fc16SrIk2JlZdsOnko2Gr4poE29lJJVQ6zXB9VDF5y6K7DhA0MGAPbMLi44xp+2E
+ NneFwW3SNTFFQ/FMqTahQxP5BrX5DdyoJLb1goOBgefa45NZjIWldPx6A+y18K/AGJVH
+ e5cA==
+X-Gm-Message-State: AOAM5334FS9mP+p2WMbubFRxO/mmYp/WO6b2BDS+uu9mCb/sYgnSdqVE
+ IxxRkxMXFeXexd5sc+ChMdsaTtS4j0c0Vp6nt2M=
+X-Google-Smtp-Source: ABdhPJx542TwD70DROAfK8uSDdt1JUluF23zhLC6ldkgLX29uMPHlIytQk39H8OkEuzJe60PFPwmNQ==
+X-Received: by 2002:ac2:4e11:0:b0:443:9657:2c85 with SMTP id
+ e17-20020ac24e11000000b0044396572c85mr14269551lfr.279.1646096102508; 
+ Mon, 28 Feb 2022 16:55:02 -0800 (PST)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com.
+ [209.85.208.171]) by smtp.gmail.com with ESMTPSA id
+ d15-20020a19384f000000b00443ac96e936sm1211294lfj.304.2022.02.28.16.55.01
  for <nouveau@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 28 Feb 2022 12:10:42 -0800 (PST)
-Received: by mail-lf1-f42.google.com with SMTP id b11so23280101lfb.12
- for <nouveau@lists.freedesktop.org>; Mon, 28 Feb 2022 12:10:41 -0800 (PST)
-X-Received: by 2002:ac2:4d91:0:b0:443:127b:558a with SMTP id
- g17-20020ac24d91000000b00443127b558amr14027806lfe.542.1646079041191; Mon, 28
- Feb 2022 12:10:41 -0800 (PST)
+ Mon, 28 Feb 2022 16:55:02 -0800 (PST)
+Received: by mail-lj1-f171.google.com with SMTP id y24so768658ljh.11
+ for <nouveau@lists.freedesktop.org>; Mon, 28 Feb 2022 16:55:01 -0800 (PST)
+X-Received: by 2002:a2e:aaa2:0:b0:244:bf42:3e6e with SMTP id
+ bj34-20020a2eaaa2000000b00244bf423e6emr16240083ljb.176.1646096101617; Mon, 28
+ Feb 2022 16:55:01 -0800 (PST)
 MIME-Version: 1.0
 References: <20220228110822.491923-1-jakobkoschel@gmail.com>
  <20220228110822.491923-3-jakobkoschel@gmail.com>
  <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
  <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
- <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
-In-Reply-To: <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
+ <282f0f8d-f491-26fc-6ae0-604b367a5a1a@amd.com>
+ <b2d20961dbb7533f380827a7fcc313ff849875c1.camel@HansenPartnership.com>
+ <7D0C2A5D-500E-4F38-AD0C-A76E132A390E@kernel.org>
+ <73fa82a20910c06784be2352a655acc59e9942ea.camel@HansenPartnership.com>
+ <20220301003059.GE614@gate.crashing.org>
+In-Reply-To: <20220301003059.GE614@gate.crashing.org>
 From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 28 Feb 2022 12:10:24 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
-Message-ID: <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: multipart/mixed; boundary="0000000000008601b205d919a4ad"
+Date: Mon, 28 Feb 2022 16:54:45 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wgLYqYcw0xv65xrLSR7KDpS_6M+S9737m6NQorHGWsXYQ@mail.gmail.com>
+Message-ID: <CAHk-=wgLYqYcw0xv65xrLSR7KDpS_6M+S9737m6NQorHGWsXYQ@mail.gmail.com>
+To: Segher Boessenkool <segher@kernel.crashing.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Tue, 01 Mar 2022 04:37:20 +0000
 Subject: Re: [Nouveau] [PATCH 2/6] treewide: remove using list iterator
  after loop body as a ptr
@@ -77,15 +81,16 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-wireless <linux-wireless@vger.kernel.org>,
- alsa-devel@alsa-project.org, KVM list <kvm@vger.kernel.org>,
+Cc: alsa-devel@alsa-project.org, linux-aspeed@lists.ozlabs.org,
  "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
  nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
  dri-devel <dri-devel@lists.freedesktop.org>,
+ James Bottomley <James.Bottomley@hansenpartnership.com>,
  Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>,
- linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
- linux-arch <linux-arch@vger.kernel.org>, CIFS <linux-cifs@vger.kernel.org>,
- linux-aspeed@lists.ozlabs.org, linux-scsi <linux-scsi@vger.kernel.org>,
+ samba-technical@lists.samba.org, linux1394-devel@lists.sourceforge.net,
+ drbd-dev@lists.linbit.com, linux-arch <linux-arch@vger.kernel.org>,
+ CIFS <linux-cifs@vger.kernel.org>, KVM list <kvm@vger.kernel.org>,
+ linux-scsi <linux-scsi@vger.kernel.org>,
  linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev,
  amd-gfx list <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@ziepe.ca>,
  intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
@@ -96,7 +101,8 @@ Cc: linux-wireless <linux-wireless@vger.kernel.org>,
  Linux PM <linux-pm@vger.kernel.org>,
  intel-gfx <intel-gfx@lists.freedesktop.org>,
  Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
- Nathan Chancellor <nathan@kernel.org>, dma <dmaengine@vger.kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>,
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>,
  Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
  Jakob Koschel <jakobkoschel@gmail.com>, v9fs-developer@lists.sourceforge.net,
  linux-tegra <linux-tegra@vger.kernel.org>,
@@ -104,87 +110,49 @@ Cc: linux-wireless <linux-wireless@vger.kernel.org>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-sgx@vger.kernel.org,
  linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
- linux-usb@vger.kernel.org, samba-technical@lists.samba.org,
+ linux-usb@vger.kernel.org, linux-wireless <linux-wireless@vger.kernel.org>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  Linux F2FS Dev Mailing List <linux-f2fs-devel@lists.sourceforge.net>,
  tipc-discussion@lists.sourceforge.net,
  Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
- linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, Mike Rapoport <rppt@kernel.org>
+ dma <dmaengine@vger.kernel.org>, linux-mediatek@lists.infradead.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Mike Rapoport <rppt@kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
---0000000000008601b205d919a4ad
-Content-Type: text/plain; charset="UTF-8"
-
-On Mon, Feb 28, 2022 at 12:03 PM Linus Torvalds
-<torvalds@linux-foundation.org> wrote:
+On Mon, Feb 28, 2022 at 4:38 PM Segher Boessenkool
+<segher@kernel.crashing.org> wrote:
 >
-> Side note: we do need *some* way to do it.
+> In C its scope is the rest of the declaration and the entire loop, not
+> anything after it.  This was the same in C++98 already, btw (but in
+> pre-standard versions of C++ things were like you remember, yes, and it
+> was painful).
 
-Ooh.
+Yeah, the original C++ model was just unadulterated garbage, with no
+excuse for it, and the scope was not the loop, but the block the loop
+existed in.
 
-This patch is a work of art.
+That would never have been acceptable for the kernel - it's basically
+just an even uglier version of "put variable declarations in the
+middle of code" (and we use "-Wdeclaration-after-statement" to
+disallow that for kernel code, although apparently some of our user
+space tooling code doesn't enforce or follow that rule).
 
-And I mean that in the worst possible way.
+The actual C99 version is the sane one which actually makes it easier
+and clearer to have loop iterators that are clearly just in loop
+scope.
 
-We can do
+That's a good idea in general, and I have wanted to start using that
+in the kernel even aside from some of the loop construct macros.
+Because putting variables in natural minimal scope is a GoodThing(tm).
 
-        typeof(pos) pos
+Of course, we shouldn't go crazy with it. Even after we do that
+-std=gnu11 thing, we'll have backports to worry about. And it's not
+clear that we necessarily want to backport that gnu11 thing - since
+people who run old stable kernels also may be still using those really
+old compilers...
 
-in the 'for ()' loop, and never use __iter at all.
-
-That means that inside the for-loop, we use a _different_ 'pos' than outside.
-
-And then the compiler will not see some "might be uninitialized", but
-the outer 'pos' *will* be uninitialized.
-
-Unless, of course, the outer 'pos' had that pointless explicit initializer.
-
-Here - can somebody poke holes in this "work of art" patch?
-
-                     Linus
-
---0000000000008601b205d919a4ad
-Content-Type: text/x-patch; charset="US-ASCII"; name="patch.diff"
-Content-Disposition: attachment; filename="patch.diff"
-Content-Transfer-Encoding: base64
-Content-ID: <f_l074y7ca0>
-X-Attachment-Id: f_l074y7ca0
-
-IE1ha2VmaWxlICAgICAgICAgICAgICAgICAgICAgICB8IDIgKy0KIGFyY2gveDg2L2tlcm5lbC9j
-cHUvc2d4L2VuY2wuYyB8IDIgKy0KIGluY2x1ZGUvbGludXgvbGlzdC5oICAgICAgICAgICB8IDYg
-KysrLS0tCiAzIGZpbGVzIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkK
-CmRpZmYgLS1naXQgYS9NYWtlZmlsZSBiL01ha2VmaWxlCmluZGV4IGRhZWI1Yzg4YjUwYi4uY2M0
-YjBhMjY2YWYwIDEwMDY0NAotLS0gYS9NYWtlZmlsZQorKysgYi9NYWtlZmlsZQpAQCAtNTE1LDcg
-KzUxNSw3IEBAIEtCVUlMRF9DRkxBR1MgICA6PSAtV2FsbCAtV3VuZGVmIC1XZXJyb3I9c3RyaWN0
-LXByb3RvdHlwZXMgLVduby10cmlncmFwaHMgXAogCQkgICAtZm5vLXN0cmljdC1hbGlhc2luZyAt
-Zm5vLWNvbW1vbiAtZnNob3J0LXdjaGFyIC1mbm8tUElFIFwKIAkJICAgLVdlcnJvcj1pbXBsaWNp
-dC1mdW5jdGlvbi1kZWNsYXJhdGlvbiAtV2Vycm9yPWltcGxpY2l0LWludCBcCiAJCSAgIC1XZXJy
-b3I9cmV0dXJuLXR5cGUgLVduby1mb3JtYXQtc2VjdXJpdHkgXAotCQkgICAtc3RkPWdudTg5CisJ
-CSAgIC1zdGQ9Z251MTEKIEtCVUlMRF9DUFBGTEFHUyA6PSAtRF9fS0VSTkVMX18KIEtCVUlMRF9B
-RkxBR1NfS0VSTkVMIDo9CiBLQlVJTERfQ0ZMQUdTX0tFUk5FTCA6PQpkaWZmIC0tZ2l0IGEvYXJj
-aC94ODYva2VybmVsL2NwdS9zZ3gvZW5jbC5jIGIvYXJjaC94ODYva2VybmVsL2NwdS9zZ3gvZW5j
-bC5jCmluZGV4IDQ4YWZlOTZhZTBmMC4uODdkYjJmMzkzNmIwIDEwMDY0NAotLS0gYS9hcmNoL3g4
-Ni9rZXJuZWwvY3B1L3NneC9lbmNsLmMKKysrIGIvYXJjaC94ODYva2VybmVsL2NwdS9zZ3gvZW5j
-bC5jCkBAIC00NTAsNyArNDUwLDcgQEAgc3RhdGljIHZvaWQgc2d4X21tdV9ub3RpZmllcl9yZWxl
-YXNlKHN0cnVjdCBtbXVfbm90aWZpZXIgKm1uLAogCQkJCSAgICAgc3RydWN0IG1tX3N0cnVjdCAq
-bW0pCiB7CiAJc3RydWN0IHNneF9lbmNsX21tICplbmNsX21tID0gY29udGFpbmVyX29mKG1uLCBz
-dHJ1Y3Qgc2d4X2VuY2xfbW0sIG1tdV9ub3RpZmllcik7Ci0Jc3RydWN0IHNneF9lbmNsX21tICp0
-bXAgPSBOVUxMOworCXN0cnVjdCBzZ3hfZW5jbF9tbSAqdG1wOwogCiAJLyoKIAkgKiBUaGUgZW5j
-bGF2ZSBpdHNlbGYgY2FuIHJlbW92ZSBlbmNsX21tLiAgTm90ZSwgb2JqZWN0cyBjYW4ndCBiZSBt
-b3ZlZApkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9saXN0LmggYi9pbmNsdWRlL2xpbnV4L2xp
-c3QuaAppbmRleCBkZDZjMjA0MWQwOWMuLjcwODA3OGIyZjI0ZCAxMDA2NDQKLS0tIGEvaW5jbHVk
-ZS9saW51eC9saXN0LmgKKysrIGIvaW5jbHVkZS9saW51eC9saXN0LmgKQEAgLTYzNCw5ICs2MzQs
-OSBAQCBzdGF0aWMgaW5saW5lIHZvaWQgbGlzdF9zcGxpY2VfdGFpbF9pbml0KHN0cnVjdCBsaXN0
-X2hlYWQgKmxpc3QsCiAgKiBAaGVhZDoJdGhlIGhlYWQgZm9yIHlvdXIgbGlzdC4KICAqIEBtZW1i
-ZXI6CXRoZSBuYW1lIG9mIHRoZSBsaXN0X2hlYWQgd2l0aGluIHRoZSBzdHJ1Y3QuCiAgKi8KLSNk
-ZWZpbmUgbGlzdF9mb3JfZWFjaF9lbnRyeShwb3MsIGhlYWQsIG1lbWJlcikJCQkJXAotCWZvciAo
-cG9zID0gbGlzdF9maXJzdF9lbnRyeShoZWFkLCB0eXBlb2YoKnBvcyksIG1lbWJlcik7CVwKLQkg
-ICAgICFsaXN0X2VudHJ5X2lzX2hlYWQocG9zLCBoZWFkLCBtZW1iZXIpOwkJCVwKKyNkZWZpbmUg
-bGlzdF9mb3JfZWFjaF9lbnRyeShwb3MsIGhlYWQsIG1lbWJlcikJCQkJCVwKKwlmb3IgKHR5cGVv
-Zihwb3MpIHBvcyA9IGxpc3RfZmlyc3RfZW50cnkoaGVhZCwgdHlwZW9mKCpwb3MpLCBtZW1iZXIp
-OwlcCisJICAgICAhbGlzdF9lbnRyeV9pc19oZWFkKHBvcywgaGVhZCwgbWVtYmVyKTsJXAogCSAg
-ICAgcG9zID0gbGlzdF9uZXh0X2VudHJ5KHBvcywgbWVtYmVyKSkKIAogLyoqCg==
---0000000000008601b205d919a4ad--
+            Linus
