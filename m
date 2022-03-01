@@ -4,52 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2935C433F5
-	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:38:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85CC5C433FE
+	for <nouveau@archiver.kernel.org>; Tue,  1 Mar 2022 04:38:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 665D010EB3C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78F4F10EB50;
 	Tue,  1 Mar 2022 04:37:37 +0000 (UTC)
-Received: from mail-4321.protonmail.ch (mail-4321.protonmail.ch [185.70.43.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 493CF10E52E;
- Mon, 28 Feb 2022 22:50:16 +0000 (UTC)
-Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com
- [51.77.79.158])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits))
- (No client certificate requested)
- by mail-4321.protonmail.ch (Postfix) with ESMTPS id 4K6wZG4XXqz4x6KP;
- Mon, 28 Feb 2022 22:50:14 +0000 (UTC)
-Authentication-Results: mail-4321.protonmail.ch;
- dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com
- header.b="cBGwkD0d"
-Date: Mon, 28 Feb 2022 22:50:06 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
- s=protonmail3; t=1646088609;
- bh=EcotLxkQaYgY6ajZYic/GfxM/AoG16BTcQ37oNetF9g=;
- h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
- References:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID;
- b=cBGwkD0dY6C6UZ8ZjhjHcbwM06BMDKF9S/uxRi+rS2UvdSsFLFOG1HSm6qlJyiCUO
- uC1XgssvVNSFSsxdHJ1aOl5NwIA18vjg17jCvCkv13dOUO+5hOt3OCcfXLX2AxvryX
- lsXEg4vAoBljMT4ewAP2cK1EUDuyezakLW8pnSEAczd9xFJNkZ4Y3ZLxhFb22yslY3
- 3xdTS3cTZ9GeOv+wrf2xTPfY4Kamc1tDDmDy3yCaRm+7b1f1xP0Y+5xR0FjORV+5kM
- cK85iRo45YcxaJSZ64KqeuDyrCIZDsEiDwE78vJR0ycrL/ZWpMTXDPzJnBHTv4Qo8t
- TiTx0AcdTLM/g==
-To: James Bottomley <James.Bottomley@HansenPartnership.com>
-From: =?utf-8?Q?Barnab=C3=A1s_P=C5=91cze?= <pobrn@protonmail.com>
-Message-ID: <Ax76nlte5gO6McgVlkdlM8SHBdfYoG0hb6pFO3MJ6iEg3VCk3kzPWFQ6HS2uVDB8eeyLSr4ku62pXF-FrsROsQvF_VDAW1I5lXTFZTkkMfk=@protonmail.com>
-In-Reply-To: <73fa82a20910c06784be2352a655acc59e9942ea.camel@HansenPartnership.com>
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com
+ [IPv6:2a00:1450:4864:20::135])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58DBB10E152
+ for <nouveau@lists.freedesktop.org>; Tue,  1 Mar 2022 00:41:26 +0000 (UTC)
+Received: by mail-lf1-x135.google.com with SMTP id f37so24206515lfv.8
+ for <nouveau@lists.freedesktop.org>; Mon, 28 Feb 2022 16:41:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=cUh7YOptqnvj33mIS3WykOaibv0ctq8lQu0USbAcExo=;
+ b=gduPBw6Te4zeyjZyaNuQQxqABiMq6fHp34ckrObT/FmzNLnDhHL/6KerjIgP5i0R8H
+ Vm0a8HwZ8W8PnRRZRxnIsSc7yENLFtSGfKUqeeqvjpp8888PKIgF8NBwqM5k9ZzIrQCZ
+ iYuicfiGesL4zlgkSDywOQeUUhyrP2kMozUBc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=cUh7YOptqnvj33mIS3WykOaibv0ctq8lQu0USbAcExo=;
+ b=O/h0VTTKhMJIy2dvzSU/kfEQ2qS2/yARUP28Xl1vswmAmfvYdzIpqcWe7WJHvR6nXc
+ wt16PGt1BgRekrA+W06ijvKM+6/V6qzMhbAu1tCmfanhWyGA7iOqShboGY+fKR1EJTRP
+ 4HQ4HMwrlwV70Q/sWmoJJrd+7WLcAkgDwNzj6YW5A1iY5JRHXXBTBZ8xmjlg2KqY+iHa
+ npwa1zC8HAIx9sQP4i24Wya0TOealrmbMWW66DeewlYl1LPpXFtgIvSQBoqZIVhKPNMG
+ LDBKTx3zrqO7qYh8+5HJbSqQUQ1Ten8POQKpHnHB88YrrgVafz9IDg63Bq5e8WJ0KV9J
+ PEOA==
+X-Gm-Message-State: AOAM533fLFB/cZNhi2JcUBCDr/hcXkpg6mr1Fzo8RUW7/MqgFUgirq9f
+ DD8Iq/dXiTlE3HRrjqRgQh0LjiM1Is8RT/iNRz4=
+X-Google-Smtp-Source: ABdhPJybJt6gEYAJCcYsk06rLsXbB1ngSW2HzTyG0sZu7nLxjuU4KHsyUrwauzpDRsZAK5oogdhNXw==
+X-Received: by 2002:a19:550b:0:b0:443:e008:3e12 with SMTP id
+ n11-20020a19550b000000b00443e0083e12mr14160377lfe.11.1646095284140; 
+ Mon, 28 Feb 2022 16:41:24 -0800 (PST)
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com.
+ [209.85.167.43]) by smtp.gmail.com with ESMTPSA id
+ a2-20020ac25e62000000b00443c3466a98sm1211424lfr.11.2022.02.28.16.41.21
+ for <nouveau@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 28 Feb 2022 16:41:21 -0800 (PST)
+Received: by mail-lf1-f43.google.com with SMTP id w27so24268145lfa.5
+ for <nouveau@lists.freedesktop.org>; Mon, 28 Feb 2022 16:41:21 -0800 (PST)
+X-Received: by 2002:ac2:4d91:0:b0:443:127b:558a with SMTP id
+ g17-20020ac24d91000000b00443127b558amr14552706lfe.542.1646095280878; Mon, 28
+ Feb 2022 16:41:20 -0800 (PST)
+MIME-Version: 1.0
 References: <20220228110822.491923-1-jakobkoschel@gmail.com>
  <20220228110822.491923-3-jakobkoschel@gmail.com>
  <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
  <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
- <282f0f8d-f491-26fc-6ae0-604b367a5a1a@amd.com>
- <b2d20961dbb7533f380827a7fcc313ff849875c1.camel@HansenPartnership.com>
- <7D0C2A5D-500E-4F38-AD0C-A76E132A390E@kernel.org>
- <73fa82a20910c06784be2352a655acc59e9942ea.camel@HansenPartnership.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+ <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
+ <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
+ <FC710A1A-524E-481B-A668-FC258F529A2E@gmail.com>
+In-Reply-To: <FC710A1A-524E-481B-A668-FC258F529A2E@gmail.com>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Mon, 28 Feb 2022 16:41:04 -0800
+X-Gmail-Original-Message-ID: <CAHk-=whLK11HyvpUtEftOjc3Gup2V77KpAQ2fycj3uai=qceHw@mail.gmail.com>
+Message-ID: <CAHk-=whLK11HyvpUtEftOjc3Gup2V77KpAQ2fycj3uai=qceHw@mail.gmail.com>
+To: Jakob Koschel <jakobkoschel@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Tue, 01 Mar 2022 04:37:20 +0000
 Subject: Re: [Nouveau] [PATCH 2/6] treewide: remove using list iterator
  after loop body as a ptr
@@ -64,18 +79,18 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: =?utf-8?Q?Barnab=C3=A1s_P=C5=91cze?= <pobrn@protonmail.com>
 Cc: linux-wireless <linux-wireless@vger.kernel.org>,
  alsa-devel@alsa-project.org, KVM list <kvm@vger.kernel.org>,
  "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
  nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
  dri-devel <dri-devel@lists.freedesktop.org>,
- Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>,
+ Cristiano Giuffrida <c.giuffrida@vu.nl>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
  linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
  linux-arch <linux-arch@vger.kernel.org>, CIFS <linux-cifs@vger.kernel.org>,
  linux-aspeed@lists.ozlabs.org, linux-scsi <linux-scsi@vger.kernel.org>,
- linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@ziepe.ca>,
+ linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev, "Bos,
+ H.J." <h.j.bos@vu.nl>, Jason Gunthorpe <jgg@ziepe.ca>,
  intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
  bcm-kernel-feedback-list@broadcom.com,
  Dan Carpenter <dan.carpenter@oracle.com>,
@@ -83,11 +98,10 @@ Cc: linux-wireless <linux-wireless@vger.kernel.org>,
  Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
  Linux PM <linux-pm@vger.kernel.org>,
  intel-gfx <intel-gfx@lists.freedesktop.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
  Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
  Nathan Chancellor <nathan@kernel.org>, dma <dmaengine@vger.kernel.org>,
  Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Jakob Koschel <jakobkoschel@gmail.com>, v9fs-developer@lists.sourceforge.net,
+ v9fs-developer@lists.sourceforge.net,
  linux-tegra <linux-tegra@vger.kernel.org>,
  Thomas Gleixner <tglx@linutronix.de>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
@@ -100,39 +114,106 @@ Cc: linux-wireless <linux-wireless@vger.kernel.org>,
  Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
  linux-fsdevel <linux-fsdevel@vger.kernel.org>,
  linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
  Mike Rapoport <rppt@kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi
+On Mon, Feb 28, 2022 at 1:47 PM Jakob Koschel <jakobkoschel@gmail.com> wrote:
+>
+> The goal of this is to get compiler warnings right? This would indeed be great.
 
+Yes, so I don't mind having a one-time patch that has been gathered
+using some automated checker tool, but I don't think that works from a
+long-term maintenance perspective.
 
-2022. febru=C3=A1r 28., h=C3=A9tf=C5=91 23:28 keltez=C3=A9ssel, James Botto=
-mley =C3=ADrta:
-> [...]
-> Well, yes, but my objection is more to the size of churn than the
-> desire to do loop local.  I'm not even sure loop local is possible,
-> because it's always annoyed me that for (int i =3D 0; ...  in C++ defines
-> i in the outer scope not the loop scope, which is why I never use it.
+So if we have the basic rule being "don't use the loop iterator after
+the loop has finished, because it can cause all kinds of subtle
+issues", then in _addition_ to fixing the existing code paths that
+have this issue, I really would want to (a) get a compiler warning for
+future cases and (b) make it not actually _work_ for future cases.
 
-It is arguably off-topic to the discussion at hand, but I think you might b=
-e
-thinking of something else (or maybe it was the case in an ancient version =
-of C++)
-because that does not appear to be case. If it were,
+Because otherwise it will just happen again.
 
-  for (int i ...) { ... }
-  for (int i ...) { ... }
+> Changing the list_for_each_entry() macro first will break all of those cases
+> (e.g. the ones using 'list_entry_is_head()).
 
-would have to trigger a redeclaration error, but that happens neither in C+=
-+ nor in C.
-The variable is also inaccessible outside the loop.
+So I have no problems with breaking cases that we basically already
+have a patch for due to  your automated tool. There were certainly
+more than a handful, but it didn't look _too_ bad to just make the
+rule be "don't use the iterator after the loop".
 
+Of course, that's just based on that patch of yours. Maybe there are a
+ton of other cases that your patch didn't change, because they didn't
+match your trigger case, so I may just be overly optimistic here.
 
-> [...]
+But basically to _me_, the important part is that the end result is
+maintainable longer-term. I'm more than happy to have a one-time patch
+to fix a lot of dubious cases if we can then have clean rules going
+forward.
 
+> I assumed it is better to fix those cases first and then have a simple
+> coccinelle script changing the macro + moving the iterator into the scope
+> of the macro.
 
-Regards,
-Barnab=C3=A1s P=C5=91cze
+So that had been another plan of mine, until I actually looked at
+changing the macro. In the one case I looked at, it was ugly beyond
+belief.
+
+It turns out that just syntactically, it's really nice to give the
+type of the iterator from outside the way we do now. Yeah, it may be a
+bit odd, and maybe it's partly because I'm so used to the
+"list_for_each_list_entry()" syntax, but moving the type into the loop
+construct really made it nasty - either one very complex line, or
+having to split it over two lines which was even worse.
+
+Maybe the place I looked at just happened to have a long typename, but
+it's basically always going to be a struct, so it's never a _simple_
+type. And it just looked very odd adn unnatural to have the type as
+one of the "arguments" to that list_for_each_entry() macro.
+
+So yes, initially my idea had been to just move the iterator entirely
+inside the macro. But specifying the type got so ugly that I think
+that
+
+        typeof (pos) pos
+
+trick inside the macro really ends up giving us the best of all worlds:
+
+ (a) let's us keep the existing syntax and code for all the nice cases
+that did everything inside the loop anyway
+
+ (b) gives us a nice warning for any normal use-after-loop case
+(unless you explicitly initialized it like that
+sgx_mmu_notifier_release() function did for no good reason
+
+ (c) also guarantees that even if you don't get a warning,
+non-converted (or newly written) bad code won't actually _work_
+
+so you end up getting the new rules without any ambiguity or mistaken
+
+> With this you are no longer able to set the 'outer' pos within the list
+> iterator loop body or am I missing something?
+
+Correct. Any assignment inside the loop will be entirely just to the
+local loop case. So any "break;" out of the loop will have to set
+another variable - like your updated patch did.
+
+> I fail to see how this will make most of the changes in this
+> patch obsolete (if that was the intention).
+
+I hope my explanation above clarifies my thinking: I do not dislike
+your patch, and in fact your patch is indeed required to make the new
+semantics work.
+
+What I disliked was always the maintainability of your patch - making
+the rules be something that isn't actually visible in the source code,
+and letting the old semantics still work as well as they ever did, and
+having to basically run some verification pass to find bad users.
+
+(I also disliked your original patch that mixed up the "CPU
+speculation type safety" with the actual non-speculative problems, but
+that was another issue).
+
+                Linus
