@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3515FC433EF
-	for <nouveau@archiver.kernel.org>; Tue,  8 Mar 2022 04:27:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FC48C433F5
+	for <nouveau@archiver.kernel.org>; Tue,  8 Mar 2022 04:27:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9714C10E69F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B472410E6A0;
 	Tue,  8 Mar 2022 04:27:29 +0000 (UTC)
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com
- [IPv6:2607:f8b0:4864:20::631])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96BC610E411;
- Thu,  3 Mar 2022 07:27:22 +0000 (UTC)
-Received: by mail-pl1-x631.google.com with SMTP id q11so3741042pln.11;
- Wed, 02 Mar 2022 23:27:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=sgLnwuYIGskFjie2H2jjPO7yZK5PfHYTTkrYtctc5ws=;
- b=FXSRJXcZ2cyaSSh+RFzgN891/0EsPjQQYnYlHyt7Q6au+u55Yhw9CQjtuc/Xh+IxeA
- jmfOE8xDuyw6aNjCCweSWK23ooxkZ+FDp1vmELSXGe87/BlE9lQAJ5VCHRxCoJXheQ6e
- z0ZjBk6ntNVuChDJjKVkipnrg4PFzEOabNhKEpFBHr+LTEWxBydNvmRMp4x1CJuZdUwr
- yIPtetuwCR4pZCzLE6nNdjkyjeKTi+kDUarqoW7jVGs3qBeY6IJUgMC1jfObzr57dlqg
- 9D3LdaczFYPoymDULVGPmDhvRiVgHdjXQ/LS1xahv5fAEYKipZZ05ntIAVBo2UMKI5ki
- Sw5w==
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
+ [IPv6:2a00:1450:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71E0410E3B1
+ for <nouveau@lists.freedesktop.org>; Thu,  3 Mar 2022 12:18:30 +0000 (UTC)
+Received: by mail-wr1-x433.google.com with SMTP id b5so7566173wrr.2
+ for <nouveau@lists.freedesktop.org>; Thu, 03 Mar 2022 04:18:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=W95klwG+EWnuJlXqfneyIPG4bMJIpYFCGfgCPBAo/s4=;
+ b=BVoUYAMy6igzOx7YCxgmD2obGVeA4FBbFy39UaDXpcyotfQj1WSs4cD2dBmZ3jehpH
+ Xv0H27JfD7LtNc3KTOYt5JsPQaESLbVZdrRIjVdCS/EqEN+LtHV3OI92ZhbhaxnOPsMB
+ zwIbvmQMtvcWtqQz/AOpNYfJzkMTFsv4hojr0PuJEFUbZHgxYNi3BKpDV1mgkUzm+fR0
+ 4lMaaRE5yh5PGutSdpreHiYAqhMDl6KUHTvi2q6aV5S93rhbYz2wGWOzwPq3hB3YVbYG
+ uAhL64o8wkOM/gpLUr2Hb7oB/DraMZLkoBj2jGHmKGFPjyxdoWyrLbd/6WyXGtmMO48w
+ vp2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=sgLnwuYIGskFjie2H2jjPO7yZK5PfHYTTkrYtctc5ws=;
- b=deYoYYzC79aylWHFUCH0cT6ZYT8gNeiq7hdGSdx36j9rXjArS+kM9LtFDm93Uq2Od9
- XQpKO2zEMtkC5uCmYA80Af21yydxtdQZQk9cdxMBIWYBr7VIFmt6DXURctDddY3Bgpdl
- NfL6hloQTAQ0EtLNxkhJZGZD+HNsOTHsLch8cC3VKKX4G14em8m2IOhPOrTSTrG5UiqA
- JzV9HPS/K8SWz/vApH0zz96qT/wOUY102ADUYICdV1vUPG4nkLR3vErQjUgDgW2u6mNW
- yvRh1yUzYkqsCqu0dQ8Ox8BG+HnB7um6u6X6MmfkPgU/c/uDO88ux8SUjPjqqHM7w4sb
- cVMQ==
-X-Gm-Message-State: AOAM532rUtGk9VRkMLiIKgxfL1HQrIeHqoumg9RvstE7yhbISpJBLlzZ
- W1wZc006TmAD7wSlSRG2zug=
-X-Google-Smtp-Source: ABdhPJxXZq8uo59Ohm7FMpyCTbKfTT1earKguyYxXh9VkI02LjxK1/LHoatHqlibGa3Ordge+YwobQ==
-X-Received: by 2002:a17:902:9687:b0:151:7b31:9a57 with SMTP id
- n7-20020a170902968700b001517b319a57mr13723244plp.146.1646292442145; 
- Wed, 02 Mar 2022 23:27:22 -0800 (PST)
-Received: from ubuntu.huawei.com ([119.3.119.19])
- by smtp.googlemail.com with ESMTPSA id
- nu18-20020a17090b1b1200b001bbef4d9049sm1302089pjb.23.2022.03.02.23.27.01
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=W95klwG+EWnuJlXqfneyIPG4bMJIpYFCGfgCPBAo/s4=;
+ b=fUjQ6mP/wR52QAQkq5zPyO6db5emRI0Phe/HGy78VvtEdlO2NwuhPIGBScU+ZITgGP
+ y9Zvz4A/OasqH9CDB0bILi8FTnfV9y7Clfaw2wkAgCUGc/Sr1khF0/7vl+SaBRCPNOt8
+ AXHnRdZu3z6Zc9CeYdDklRBIGLjPC+ZiAhV0UhbY10A90l6gz8kokwRqU6ErHX7xQc5e
+ XmxX5NpSXHrTlw8K1vVAghxWMPWQvB7Gk6VgEfBfKTVVPMhStKSgfmadC26Z7hz18K5n
+ 7FQ/Zbu9cglsMdL/xVlAcTQM+MMwJy1oENlmgbeXd5eLHoGsc6MuTVYdQkkP/8aNx/U3
+ LxOw==
+X-Gm-Message-State: AOAM532iqjMBNyMK9Dr69M4H0Oxeik1cpXvWz4dd+rwl9WQmxdGhj760
+ SZ/HDE/swpNj5GKXzKHrbt7MfA==
+X-Google-Smtp-Source: ABdhPJwgYeUN7RS9hQRShRziePljKQd/1cMutSSEkk4MeQ2QRRtTjZSLz5QSndDd2pML49XlqkHAqw==
+X-Received: by 2002:a5d:6d0d:0:b0:1e8:7b6a:38e7 with SMTP id
+ e13-20020a5d6d0d000000b001e87b6a38e7mr26568054wrq.625.1646309908722; 
+ Thu, 03 Mar 2022 04:18:28 -0800 (PST)
+Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net.
+ [80.7.220.175]) by smtp.gmail.com with ESMTPSA id
+ p6-20020a5d4586000000b001f0436cb325sm1774600wrq.52.2022.03.03.04.18.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 02 Mar 2022 23:27:21 -0800 (PST)
-From: Xiaomeng Tong <xiam0nd.tong@gmail.com>
-To: david.laight@aculab.com
-Date: Thu,  3 Mar 2022 15:26:57 +0800
-Message-Id: <20220303072657.11124-1-xiam0nd.tong@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <39404befad5b44b385698ff65465abe5@AcuMS.aculab.com>
+ Thu, 03 Mar 2022 04:18:28 -0800 (PST)
+Date: Thu, 3 Mar 2022 12:18:24 +0000
+From: Daniel Thompson <daniel.thompson@linaro.org>
+To: Xiaomeng Tong <xiam0nd.tong@gmail.com>
+Message-ID: <20220303121824.qdyrognluik74iph@maple.lan>
 References: <39404befad5b44b385698ff65465abe5@AcuMS.aculab.com>
+ <20220303072657.11124-1-xiam0nd.tong@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220303072657.11124-1-xiam0nd.tong@gmail.com>
 X-Mailman-Approved-At: Tue, 08 Mar 2022 04:27:27 +0000
-Subject: Re: [Nouveau] [PATCH 2/6] treewide: remove using list iterator
- after loop body as a ptr
+Subject: Re: [Nouveau] [Kgdb-bugreport] [PATCH 2/6] treewide: remove using
+ list iterator after loop body as a ptr
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,121 +71,77 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org, gustavo@embeddedor.com,
+Cc: linux-wireless@vger.kernel.org, alsa-devel@alsa-project.org,
+ linux-aspeed@lists.ozlabs.org, gustavo@embeddedor.com,
  linux-iio@vger.kernel.org, kgdb-bugreport@lists.sourceforge.net,
  linux@rasmusvillemoes.dk, dri-devel@lists.freedesktop.org, c.giuffrida@vu.nl,
- amd-gfx@lists.freedesktop.org, torvalds@linux-foundation.org,
- samba-technical@lists.samba.org, linux1394-devel@lists.sourceforge.net,
+ amd-gfx@lists.freedesktop.org, linux1394-devel@lists.sourceforge.net,
  drbd-dev@lists.linbit.com, linux-arch@vger.kernel.org,
- linux-cifs@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
- linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
- linux-staging@lists.linux.dev, h.j.bos@vu.nl, jgg@ziepe.ca,
- intel-wired-lan@lists.osuosl.org, nouveau@lists.freedesktop.org,
+ linux-cifs@vger.kernel.org, kvm@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev, h.j.bos@vu.nl,
+ jgg@ziepe.ca, intel-wired-lan@lists.osuosl.org, nouveau@lists.freedesktop.org,
  bcm-kernel-feedback-list@broadcom.com, dan.carpenter@oracle.com,
  linux-media@vger.kernel.org, keescook@chromium.org, arnd@arndb.de,
  linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- bjohannesmeyer@gmail.com, linux-block@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, christophe.jaillet@wanadoo.fr,
- jakobkoschel@gmail.com, v9fs-developer@lists.sourceforge.net,
- linux-tegra@vger.kernel.org, tglx@linutronix.de,
- andriy.shevchenko@linux.intel.com, linux-arm-kernel@lists.infradead.org,
- linux-sgx@vger.kernel.org, nathan@kernel.org, netdev@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- xiam0nd.tong@gmail.com, tipc-discussion@lists.sourceforge.net,
- linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-mediatek@lists.infradead.org, akpm@linux-foundation.org,
- linuxppc-dev@lists.ozlabs.org, christian.koenig@amd.com, rppt@kernel.org
+ linuxppc-dev@lists.ozlabs.org, bjohannesmeyer@gmail.com,
+ linux-block@vger.kernel.org, dmaengine@vger.kernel.org,
+ christophe.jaillet@wanadoo.fr, jakobkoschel@gmail.com,
+ v9fs-developer@lists.sourceforge.net, linux-tegra@vger.kernel.org,
+ tglx@linutronix.de, andriy.shevchenko@linux.intel.com,
+ linux-arm-kernel@lists.infradead.org, linux-sgx@vger.kernel.org,
+ nathan@kernel.org, netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ samba-technical@lists.samba.org, linux-kernel@vger.kernel.org,
+ linux-f2fs-devel@lists.sourceforge.net, david.laight@aculab.com,
+ tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ akpm@linux-foundation.org, torvalds@linux-foundation.org,
+ christian.koenig@amd.com, rppt@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, 3 Mar 2022 04:58:23 +0000, David Laight wrote:
-> on 3 Mar 2022 10:27:29 +0800, Xiaomeng Tong wrote:
-> > The problem is the mis-use of iterator outside the loop on exit, and
-> > the iterator will be the HEAD's container_of pointer which pointers
-> > to a type-confused struct. Sidenote: The *mis-use* here refers to
-> > mistakely access to other members of the struct, instead of the
-> > list_head member which acutally is the valid HEAD.
->
-> The problem is that the HEAD's container_of pointer should never
-> be calculated at all.
-> This is what is fundamentally broken about the current definition.
-
-Yes, the rule is "the HEAD's container_of pointer should never be
-calculated at all outside the loop", but how do you make sure everyone
-follows this rule?
-Everyone makes mistakes, but we can eliminate them all from the beginning
-with the help of compiler which can catch such use-after-loop things.
-
-> > IOW, you would dereference a (NULL + offset_of_member) address here.
->
->Where?
-
-In the case where a developer do not follows the above rule, and mistakely
-access a non-list-head member of the HEAD's container_of pointer outside
-the loop. For example:
-    struct req{
-      int a;
-      struct list_head h;
-    }
-    struct req *r;
-    list_for_each_entry(r, HEAD, h) {
-      if (r->a == 0x10)
-        break;
-    }
-    // the developer made a mistake: he didn't take this situation into
-    // account where all entries in the list are *r->a != 0x10*, and now
-    // the r is the HEAD's container_of pointer. 
-    r->a = 0x20;
-Thus the "r->a = 0x20" would dereference a (NULL + offset_of_member)
-address here.
-
-> > Please remind me if i missed something, thanks.
+On Thu, Mar 03, 2022 at 03:26:57PM +0800, Xiaomeng Tong wrote:
+> On Thu, 3 Mar 2022 04:58:23 +0000, David Laight wrote:
+> > on 3 Mar 2022 10:27:29 +0800, Xiaomeng Tong wrote:
+> > > The problem is the mis-use of iterator outside the loop on exit, and
+> > > the iterator will be the HEAD's container_of pointer which pointers
+> > > to a type-confused struct. Sidenote: The *mis-use* here refers to
+> > > mistakely access to other members of the struct, instead of the
+> > > list_head member which acutally is the valid HEAD.
 > >
-> > Can you share your "alternative definitions" details? thanks!
->
-> The loop should probably use as extra variable that points
-> to the 'list node' in the next structure.
-> Something like:
-> 	for (xxx *iter = head->next;
-> 		iter == &head ? ((item = NULL),0) : ((item = list_item(iter),1));
-> 		iter = item->member->next) {
-> 	   ...
-> With a bit of casting you can use 'item' to hold 'iter'.
+> > The problem is that the HEAD's container_of pointer should never
+> > be calculated at all.
+> > This is what is fundamentally broken about the current definition.
+> 
+> Yes, the rule is "the HEAD's container_of pointer should never be
+> calculated at all outside the loop", but how do you make sure everyone
+> follows this rule?
 
-you still can not make sure everyone follows this rule: 
-"do not use iterator outside the loop" without the help of compiler,
-because item is declared outside the loop.
+Your formulation of the rule is correct: never run container_of() on HEAD
+pointer.
 
-BTW, to avoid ambiguity，the "alternative definitions" here i asked is
-something from you in this context:
-"OTOH there may be alternative definitions that can be used to get
-the compiler (or other compiler-like tools) to detect broken code.
-Even if the definition can't possibly generate a working kerrnel."
+However the rule that is introduced by list_for_each_entry_inside() is
+*not* this rule. The rule it introduces is: never access the iterator
+variable outside the loop.
 
-> > 
-> > > OTOH there may be alternative definitions that can be used to get
-> > > the compiler (or other compiler-like tools) to detect broken code.
-> > > Even if the definition can't possibly generate a working kerrnel.
-> > 
-> > The "list_for_each_entry_inside(pos, type, head, member)" way makes
-> > the iterator invisiable outside the loop, and would be catched by
-> > compiler if use-after-loop things happened.
+Making the iterator NULL on loop exit does follow the rule you proposed
+but using a different technique: do not allow HEAD to be stored in the
+iterator variable after loop exit. This also makes it impossible to run
+container_of() on the HEAD pointer.
 
-> It is also a compete PITA for anything doing a search.
 
-You mean it would be a burden on search? can you show me some examples?
+> Everyone makes mistakes, but we can eliminate them all from the beginning
+> with the help of compiler which can catch such use-after-loop things.
 
-Or you mean it is too long the list_for_each_entry_inside* string to live
-in one single line, and should spilt into two line? If it is the case, there
-are 2 way to mitigate it.
-1. pass a shorter t as struct type to the macro
-2. after all list_for_each_entry macros be replaced with
-list_for_each_entry_inside, remove the list_for_each_entry implementations
-and rename all list_for_each_entry_inside use back to the origin
-list_for_each_entry in a single patch.
+Indeed but if we introduce new interfaces then we don't have to worry
+about existing usages and silent regressions. Code will have been
+written knowing the loop can exit with the iterator set to NULL.
 
-For me, it is acceptable and not a such big problem.
+Sure it is still possible for programmers to make mistakes and
+dereference the NULL pointer but C programmers are well training w.r.t.
+NULL pointer checking so such mistakes are much less likely than with
+the current list_for_each_entry() macro. This risk must be offset
+against the way a NULLify approach can lead to more elegant code when we
+are doing a list search.
 
---
-Xiaomeng Tong
+
+Daniel.
