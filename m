@@ -4,63 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E0CCC433F5
-	for <nouveau@archiver.kernel.org>; Tue,  8 Mar 2022 04:27:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36F91C4332F
+	for <nouveau@archiver.kernel.org>; Tue,  8 Mar 2022 04:27:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A38F10E6A5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AAAA10E6B1;
 	Tue,  8 Mar 2022 04:27:35 +0000 (UTC)
-X-Greylist: delayed 1756 seconds by postgrey-1.36 at gabe;
- Fri, 04 Mar 2022 17:50:10 UTC
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87C3110F196;
- Fri,  4 Mar 2022 17:50:10 +0000 (UTC)
-Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
- by localhost (Postfix) with ESMTP id 4K9F4N3svmz9sT7;
- Fri,  4 Mar 2022 18:20:52 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
- by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id TyXhPEw7-5kd; Fri,  4 Mar 2022 18:20:52 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
- by pegase2.c-s.fr (Postfix) with ESMTP id 4K9F4N33rfz9sT5;
- Fri,  4 Mar 2022 18:20:52 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id 56D468B779;
- Fri,  4 Mar 2022 18:20:52 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
- by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
- with ESMTP id DBmceHuew_2J; Fri,  4 Mar 2022 18:20:52 +0100 (CET)
-Received: from PO20335.IDSI0.si.c-s.fr (unknown [192.168.204.129])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id 130BA8B763;
- Fri,  4 Mar 2022 18:20:52 +0100 (CET)
-Received: from PO20335.IDSI0.si.c-s.fr (localhost [127.0.0.1])
- by PO20335.IDSI0.si.c-s.fr (8.17.1/8.16.1) with ESMTPS id 224HKfFE1981097
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Fri, 4 Mar 2022 18:20:41 +0100
-Received: (from chleroy@localhost)
- by PO20335.IDSI0.si.c-s.fr (8.17.1/8.17.1/Submit) id 224HKeEo1981096;
- Fri, 4 Mar 2022 18:20:40 +0100
-X-Authentication-Warning: PO20335.IDSI0.si.c-s.fr: chleroy set sender to
- christophe.leroy@csgroup.eu using -f
-From: Christophe Leroy <christophe.leroy@csgroup.eu>
-To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>
-Date: Fri,  4 Mar 2022 18:20:40 +0100
-Message-Id: <2d97ae92b9c06214be0e088a72cf303eb591bf01.1646414295.git.christophe.leroy@csgroup.eu>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1646414439; l=2099; s=20211009;
- h=from:subject:message-id; bh=Khg4HGI1DyRpLRO9YvLyJlbsHAN+KPfyy8yNdyTdf+M=;
- b=7CmKxM1azLkVlusnQx1tTk/BpceR0kdJRAC/Kqbzcdc28wtrhUTIXtoUzvqf3p8Qk7aOfbzaAbrr
- +IhfTTqYCSwXAyGlGPijvOeRDltq/I/Otm6tCwoo0mFio3bmnIfC
-X-Developer-Key: i=christophe.leroy@csgroup.eu; a=ed25519;
- pk=HIzTzUj91asvincQGOFx6+ZF5AoUuP9GdOtQChs7Mm0=
-Content-Transfer-Encoding: 8bit
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
+ [IPv6:2607:f8b0:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E30C610EF5F;
+ Thu,  3 Mar 2022 08:38:55 +0000 (UTC)
+Received: by mail-pf1-x434.google.com with SMTP id s8so92267pfk.12;
+ Thu, 03 Mar 2022 00:38:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=SGMF6oSM44wO/3sji0yXCG/PEtOPShxdSQ68WLQRB2g=;
+ b=ZvINIOlHF3nZHDcX3MwxAzlzprOUAV7bE6ys/MgPVlfVq9lkuahVjDHsPLQ7QbaFo9
+ fQEFqUdMgi81YiKV62ulZnN7ZvbWazV6yRB1Qn/XiuQndMVO9fvHUymuPfTr2Dg+jh50
+ vUEnvjC71yyLrdhZGmiVJ4PzTrzLKfXKpEMH9pkW4eVCRVAqTfa9XuvSN7zcx65Vy8CK
+ d46NAYhkVq2HOhizng3Ws+JRbkWyYjQl4vq/u0RRAuHhPVUlG5PBN7oH7sIbE0gusQ26
+ 6C+XTV9PxP4Ds6jAKJQCAmbFUS0yNAc3zTUs7Z/QKxXKC+XQ8KtJ4GqninQZxzg5r19Q
+ dsow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=SGMF6oSM44wO/3sji0yXCG/PEtOPShxdSQ68WLQRB2g=;
+ b=ADHvEPv0y6kxeiDCCghDA6+TBK37cfNeXfUO44fSOaPzM/6i5rAC7mw/ZG/qadBiZF
+ JfD8PBsWJ6oUzfis4L3+wABpOYjE6nCtVy/h5d5TLAVrF0UTqyNzdwqAAk6a+p4TaRyZ
+ 3DJMXhFncgzfS4bqMV2khvtybD70PR0I7tznCsVcibKrSJw3zMFyU6+Qov1DEx1WvyG/
+ ozROh1L5YdtQuPMcEFhWkO6XvKqpQw3gsyBbD665+hCZqFi0gBTQD2td/8phtzPCpZ3Y
+ z4qpDCTHwwmu7Axbz29Aowm22Qy7UMOTgOK+TTtongU/XQRA+CHuGnFYOwd3Rg8SXZep
+ IvCQ==
+X-Gm-Message-State: AOAM530X6vynzxd9sqI6cctcwqu9JMaBWntvzqhsXplxBcuxsaT77GYb
+ 57bW3TSwy2KMuxmRzKIQAWY=
+X-Google-Smtp-Source: ABdhPJxqu7M+1zWgFCPBx1x396RDv729JpxnE5pMePfUDpYTg5HqtDHmeV1ToBxB32C6BUNb5VRxjw==
+X-Received: by 2002:a63:f03:0:b0:374:50b5:1432 with SMTP id
+ e3-20020a630f03000000b0037450b51432mr28638188pgl.308.1646296735582; 
+ Thu, 03 Mar 2022 00:38:55 -0800 (PST)
+Received: from ubuntu.huawei.com ([119.3.119.19])
+ by smtp.googlemail.com with ESMTPSA id
+ q92-20020a17090a1b6500b001bc169e26aasm6405436pjq.2.2022.03.03.00.38.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 03 Mar 2022 00:38:54 -0800 (PST)
+From: Xiaomeng Tong <xiam0nd.tong@gmail.com>
+To: xiam0nd.tong@gmail.com
+Date: Thu,  3 Mar 2022 16:38:31 +0800
+Message-Id: <20220303083831.11833-1-xiam0nd.tong@gmail.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220303083007.11640-1-xiam0nd.tong@gmail.com>
+References: <20220303083007.11640-1-xiam0nd.tong@gmail.com>
 X-Mailman-Approved-At: Tue, 08 Mar 2022 04:27:27 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/bios: Rename prom_init() and friends
- functions
+Subject: Re: [Nouveau] [PATCH 2/6] treewide: remove using list iterator
+ after loop body as a ptr
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,68 +67,38 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Christophe Leroy <christophe.leroy@csgroup.eu>, linux-kernel@vger.kernel.org
+Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org, gustavo@embeddedor.com,
+ linux-iio@vger.kernel.org, kgdb-bugreport@lists.sourceforge.net,
+ linux@rasmusvillemoes.dk, dri-devel@lists.freedesktop.org, c.giuffrida@vu.nl,
+ amd-gfx@lists.freedesktop.org, torvalds@linux-foundation.org,
+ samba-technical@lists.samba.org, linux1394-devel@lists.sourceforge.net,
+ drbd-dev@lists.linbit.com, linux-arch@vger.kernel.org,
+ linux-cifs@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+ linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-staging@lists.linux.dev, h.j.bos@vu.nl, jgg@ziepe.ca,
+ intel-wired-lan@lists.osuosl.org, nouveau@lists.freedesktop.org,
+ bcm-kernel-feedback-list@broadcom.com, dan.carpenter@oracle.com,
+ linux-media@vger.kernel.org, keescook@chromium.org, arnd@arndb.de,
+ linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ bjohannesmeyer@gmail.com, linux-block@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, christophe.jaillet@wanadoo.fr,
+ jakobkoschel@gmail.com, v9fs-developer@lists.sourceforge.net,
+ linux-tegra@vger.kernel.org, tglx@linutronix.de,
+ andriy.shevchenko@linux.intel.com, linux-arm-kernel@lists.infradead.org,
+ linux-sgx@vger.kernel.org, nathan@kernel.org, netdev@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ David.Laight@ACULAB.COM, tipc-discussion@lists.sourceforge.net,
+ linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, akpm@linux-foundation.org,
+ linuxppc-dev@lists.ozlabs.org, christian.koenig@amd.com, rppt@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-While working on powerpc headers, I ended up with the following error.
+correct for typo:
 
-	drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c:48:1: error: conflicting types for 'prom_init'; have 'void *(struct nvkm_bios *, const char *)'
-	make[5]: *** [scripts/Makefile.build:288: drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.o] Error 1
+-for (struct list_head *list = head->next, cond = (struct list_head *)-1; cond == (struct list_head *)-1; cond = NULL) \
++for (struct list_head *list = head->next, *cond = (struct list_head *)-1; cond == (struct list_head *)-1; cond = NULL) \
 
-powerpc and a few other architectures have a prom_init() global function.
-One day or another it will conflict with the one in shadowrom.c
-
-Those being static, they can easily be renamed. Do it.
-
-Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c
-index ffa4b395220a..9c951e90e622 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c
-@@ -25,7 +25,7 @@
- #include <subdev/pci.h>
- 
- static u32
--prom_read(void *data, u32 offset, u32 length, struct nvkm_bios *bios)
-+nvbios_rom_read(void *data, u32 offset, u32 length, struct nvkm_bios *bios)
- {
- 	struct nvkm_device *device = data;
- 	u32 i;
-@@ -38,14 +38,14 @@ prom_read(void *data, u32 offset, u32 length, struct nvkm_bios *bios)
- }
- 
- static void
--prom_fini(void *data)
-+nvbios_rom_fini(void *data)
- {
- 	struct nvkm_device *device = data;
- 	nvkm_pci_rom_shadow(device->pci, true);
- }
- 
- static void *
--prom_init(struct nvkm_bios *bios, const char *name)
-+nvbios_rom_init(struct nvkm_bios *bios, const char *name)
- {
- 	struct nvkm_device *device = bios->subdev.device;
- 	if (device->card_type == NV_40 && device->chipset >= 0x4c)
-@@ -57,8 +57,8 @@ prom_init(struct nvkm_bios *bios, const char *name)
- const struct nvbios_source
- nvbios_rom = {
- 	.name = "PROM",
--	.init = prom_init,
--	.fini = prom_fini,
--	.read = prom_read,
-+	.init = nvbios_rom_init,
-+	.fini = nvbios_rom_fini,
-+	.read = nvbios_rom_read,
- 	.rw = false,
- };
--- 
-2.34.1
-
+--
+Xiaomeng Tong
