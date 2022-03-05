@@ -4,74 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0875C433FE
-	for <nouveau@archiver.kernel.org>; Tue,  8 Mar 2022 04:27:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FBE0C433F5
+	for <nouveau@archiver.kernel.org>; Tue,  8 Mar 2022 04:27:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8985C10E69E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F38310E687;
 	Tue,  8 Mar 2022 04:27:29 +0000 (UTC)
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com
- [IPv6:2a00:1450:4864:20::136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7495410E1DB
- for <nouveau@lists.freedesktop.org>; Wed,  2 Mar 2022 20:19:07 +0000 (UTC)
-Received: by mail-lf1-x136.google.com with SMTP id bu29so4878084lfb.0
- for <nouveau@lists.freedesktop.org>; Wed, 02 Mar 2022 12:19:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Uy+qIY61mUv01aVZ77KYqcI4VQ6CnEr5ehBFaIlKwdg=;
- b=Be+smD91jIehBxsphVP8GxPmG9fZ7UzsziFVI8sCcayH4ghcjVwFadN69qX3SSZZfA
- w/nKcppYscRVDTynDM99u+3Int1mDvzuW1vHPoDdJ+8JxYLDdH7+xaY9DZL7COnmW4q3
- yEVm7FisHcBkdW7xwzBny/SyDipBoZU1ONqUc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Uy+qIY61mUv01aVZ77KYqcI4VQ6CnEr5ehBFaIlKwdg=;
- b=xd2cdF7EggbAI1FcjLFIg11gXLQr/gMbrwOALHhX59+cPGiGQ3kLRWRC5Y+7pAvbNE
- plZ25Lt1GNS0BPUgGf/Er4r5s7vSbLhtdArn1OZOo2BmJDj1iUWtQ6ADdf3ZhwQqtnk9
- rC6yuVQVUYvYT7pjnx82Eu0noQ7/CE++hfqnu1pWzo22tWTffleIMlsgQ848YwTMeXDG
- hLSm8o9XNrXKw6fjIQFLgzQIgDWnYX0uAibqihzKYJgbxmvCXN0c+ghI0j74F/TjwLUG
- t1BXLvavDQ2Zo4Esv5X5TNhZvdKv65sfU6zakkkQRhR/V36vc4oBaVGDvDH36JpagYxS
- NIeg==
-X-Gm-Message-State: AOAM530oFVUBE3mt4JW1+MB88iQ8MXjoR1JHNKeOTyZ7xQoEXopMKKBU
- 0sXIcv5xFQ5UeE/kUBPlY/bcNFM3jtT9LjPaDcM=
-X-Google-Smtp-Source: ABdhPJyU9O3khMRdHJxYiW+KEb/iq8XviJkY8nTlLnEqQyO6sDIytOBzwPi6+xVMkxKH0ZPJ8556Hg==
-X-Received: by 2002:ac2:4294:0:b0:442:3570:ba42 with SMTP id
- m20-20020ac24294000000b004423570ba42mr20176996lfh.54.1646252344971; 
- Wed, 02 Mar 2022 12:19:04 -0800 (PST)
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com.
- [209.85.208.179]) by smtp.gmail.com with ESMTPSA id
- h8-20020a2e5308000000b002432295576fsm2821897ljb.49.2022.03.02.12.19.02
- for <nouveau@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Mar 2022 12:19:03 -0800 (PST)
-Received: by mail-lj1-f179.google.com with SMTP id u7so3852410ljk.13
- for <nouveau@lists.freedesktop.org>; Wed, 02 Mar 2022 12:19:02 -0800 (PST)
-X-Received: by 2002:a2e:3013:0:b0:246:2ca9:365e with SMTP id
- w19-20020a2e3013000000b002462ca9365emr21092331ljw.291.1646252342192; Wed, 02
- Mar 2022 12:19:02 -0800 (PST)
+Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6684410EA1F;
+ Sat,  5 Mar 2022 09:51:47 +0000 (UTC)
+Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
+ by localhost (Postfix) with ESMTP id 4K9g3g4Tr5z9sT3;
+ Sat,  5 Mar 2022 10:51:43 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from pegase2.c-s.fr ([172.26.127.65])
+ by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 7txCBD_yNCyT; Sat,  5 Mar 2022 10:51:43 +0100 (CET)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+ by pegase2.c-s.fr (Postfix) with ESMTP id 4K9g3g3jC8z9sSx;
+ Sat,  5 Mar 2022 10:51:43 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+ by messagerie.si.c-s.fr (Postfix) with ESMTP id 6AEE38B766;
+ Sat,  5 Mar 2022 10:51:43 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+ by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+ with ESMTP id bbc_MSMvmabX; Sat,  5 Mar 2022 10:51:43 +0100 (CET)
+Received: from [192.168.204.180] (unknown [192.168.204.180])
+ by messagerie.si.c-s.fr (Postfix) with ESMTP id B56C28B763;
+ Sat,  5 Mar 2022 10:51:42 +0100 (CET)
+Message-ID: <672043db-5290-293c-fde4-440989c78d09@csgroup.eu>
+Date: Sat, 5 Mar 2022 10:51:43 +0100
 MIME-Version: 1.0
-References: <282f0f8d-f491-26fc-6ae0-604b367a5a1a@amd.com>
- <b2d20961dbb7533f380827a7fcc313ff849875c1.camel@HansenPartnership.com>
- <7D0C2A5D-500E-4F38-AD0C-A76E132A390E@kernel.org>
- <73fa82a20910c06784be2352a655acc59e9942ea.camel@HansenPartnership.com>
- <CAHk-=wiT5HX6Kp0Qv4ZYK_rkq9t5fZ5zZ7vzvi6pub9kgp=72g@mail.gmail.com>
- <7dc860874d434d2288f36730d8ea3312@AcuMS.aculab.com>
- <CAHk-=whKqg89zu4T95+ctY-hocR6kDArpo2qO14-kV40Ga7ufw@mail.gmail.com>
- <0ced2b155b984882b39e895f0211037c@AcuMS.aculab.com>
- <CAHk-=wix0HLCBs5sxAeW3uckg0YncXbTjMsE-Tv8WzmkOgLAXQ@mail.gmail.com>
- <78ccb184-405e-da93-1e02-078f90d2b9bc@rasmusvillemoes.dk>
- <202203021158.DB5204A0@keescook>
-In-Reply-To: <202203021158.DB5204A0@keescook>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Wed, 2 Mar 2022 12:18:45 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wikKPC0LUqZ8++EC5JOvGdBqVH9uUaTX=DvBioDoReYww@mail.gmail.com>
-Message-ID: <CAHk-=wikKPC0LUqZ8++EC5JOvGdBqVH9uUaTX=DvBioDoReYww@mail.gmail.com>
-To: Kees Cook <keescook@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: fr-FR
+From: Christophe Leroy <christophe.leroy@csgroup.eu>
+To: Lyude Paul <lyude@redhat.com>, Ben Skeggs <bskeggs@redhat.com>,
+ Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>
+References: <2d97ae92b9c06214be0e088a72cf303eb591bf01.1646414295.git.christophe.leroy@csgroup.eu>
+ <47e09d6010852db928c0de29b89450ea7eee74d8.camel@redhat.com>
+ <edb9aabd-09af-ae0c-348d-f0500e3405d7@csgroup.eu>
+In-Reply-To: <edb9aabd-09af-ae0c-348d-f0500e3405d7@csgroup.eu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 08 Mar 2022 04:27:27 +0000
-Subject: Re: [Nouveau] [PATCH 2/6] treewide: remove using list iterator
- after loop body as a ptr
+Subject: Re: [Nouveau] [PATCH] drm/nouveau/bios: Rename prom_init() and
+ friends functions
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,79 +62,70 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "Gustavo A. R. Silva" <gustavo@embeddedor.com>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- James Bottomley <James.Bottomley@hansenpartnership.com>,
- Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>,
- "samba-technical@lists.samba.org" <samba-technical@lists.samba.org>,
- "linux1394-devel@lists.sourceforge.net"
- <linux1394-devel@lists.sourceforge.net>,
- "drbd-dev@lists.linbit.com" <drbd-dev@lists.linbit.com>,
- linux-arch <linux-arch@vger.kernel.org>, CIFS <linux-cifs@vger.kernel.org>,
- KVM list <kvm@vger.kernel.org>, linux-scsi <linux-scsi@vger.kernel.org>,
- linux-rdma <linux-rdma@vger.kernel.org>,
- "linux-staging@lists.linux.dev" <linux-staging@lists.linux.dev>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@ziepe.ca>,
- "intel-wired-lan@lists.osuosl.org" <intel-wired-lan@lists.osuosl.org>,
- "kgdb-bugreport@lists.sourceforge.net" <kgdb-bugreport@lists.sourceforge.net>,
- "bcm-kernel-feedback-list@broadcom.com"
- <bcm-kernel-feedback-list@broadcom.com>,
- Dan Carpenter <dan.carpenter@oracle.com>,
- Linux Media Mailing List <linux-media@vger.kernel.org>,
- Arnd Bergman <arnd@arndb.de>, Linux PM <linux-pm@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
- Nathan Chancellor <nathan@kernel.org>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Jakob Koschel <jakobkoschel@gmail.com>,
- "v9fs-developer@lists.sourceforge.net" <v9fs-developer@lists.sourceforge.net>,
- linux-tegra <linux-tegra@vger.kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- "linux-sgx@vger.kernel.org" <linux-sgx@vger.kernel.org>,
- linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- linux-wireless <linux-wireless@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux F2FS Dev Mailing List <linux-f2fs-devel@lists.sourceforge.net>,
- David Laight <David.Laight@aculab.com>,
- "tipc-discussion@lists.sourceforge.net"
- <tipc-discussion@lists.sourceforge.net>,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- dma <dmaengine@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Mike Rapoport <rppt@kernel.org>
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Mar 2, 2022 at 12:07 PM Kees Cook <keescook@chromium.org> wrote:
->
-> I've long wanted to change kfree() to explicitly set pointers to NULL on
-> free. https://github.com/KSPP/linux/issues/87
 
-We've had this discussion with the gcc people in the past, and gcc
-actually has some support for it, but it's sadly tied to the actual
-function name (ie gcc has some special-casing for "free()")
 
-See
+Le 05/03/2022 à 08:38, Christophe Leroy a écrit :
+> 
+> 
+> Le 04/03/2022 à 21:24, Lyude Paul a écrit :
+>> This mostly looks good to me. Just one question (and one comment down 
+>> below
+>> that needs addressing). Is this with ppc32? (I ask because ppc64le 
+>> doesn't
+>> seem to hit this compilation error).
+> 
+> That's with PPC64, see 
+> http://kisskb.ellerman.id.au/kisskb/branch/chleroy/head/252ba609bea83234d2e35841c19ae84c67b43ec7/ 
+> 
+> 
+> But that's not (yet) with the mainline tree. That's work I'm doing to 
+> cleanup our asm/asm-protoypes.h header.
+> 
+> Since commit 4efca4ed05cb ("kbuild: modversions for EXPORT_SYMBOL() for 
+> asm") that file is dedicated to prototypes of functions defined in 
+> assembly. Therefore I'm trying to dispatch C functions prototypes in 
+> other headers. I wanted to move prom_init() prototype into asm/prom.h 
+> and then I hit the problem.
+> 
+> In the beginning I was thinking about just changing the name of the 
+> function in powerpc, but as I see that M68K, MIPS and SPARC also have a 
+> prom_init() function, I thought it would be better to change the name in 
+> shadowrom.c to avoid any future conflict like the one I got while 
+> reworking the headers.
+> 
+> 
+>>> @@ -57,8 +57,8 @@ prom_init(struct nvkm_bios *bios, const char *name)
+>>>   const struct nvbios_source
+>>>   nvbios_rom = {
+>>>          .name = "PROM",
+>>> -       .init = prom_init,
+>>> -       .fini = prom_fini,
+>>> -       .read = prom_read,
+>>> +       .init = nvbios_rom_init,
+>>> +       .fini = nvbios_rom_fini,
+>>> +       .read = nvbios_rom_read,
+>>
+>> Seeing as the source name is prom, I think using the naming convention
+>> nvbios_prom_* would be better then nvbios_rom_*.
+>>
+> 
+> Yes I wasn't sure about the best naming as the file name is shadowrom.c 
+> and not shadowprom.c.
+> 
+> I will send v2 using nvbios_prom_* as a name.
 
-    https://gcc.gnu.org/bugzilla/show_bug.cgi?id=94527
+While preparing v2 I remembered that in fact, I called the functions 
+nvbios_rom_* because the name of the nvbios_source struct is nvbios_rom, 
+so for me it made sense to use the name of the struct as a prefix for 
+the functions.
 
-for some of that discussion.
+So I'm OK to change it to nvbios_prom_* but it looks less logical to me.
 
-Oh, and I see some patch actually got merged since I looked there last
-so that you can mark "deallocator" functions, but I think it's only
-for the context matching, not for actually killing accesses to the
-pointer afterwards.
+Please confirm you still prefer nvbios_prom as prefix to the function names.
 
-               Linus
+Christophe
