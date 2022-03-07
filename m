@@ -4,65 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CA36C4332F
-	for <nouveau@archiver.kernel.org>; Tue,  8 Mar 2022 04:27:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 242B3C433F5
+	for <nouveau@archiver.kernel.org>; Tue,  8 Mar 2022 04:27:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2044910E6B7;
-	Tue,  8 Mar 2022 04:27:36 +0000 (UTC)
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
- [IPv6:2a00:1450:4864:20::635])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0374B10E9CC;
- Thu,  3 Mar 2022 07:32:36 +0000 (UTC)
-Received: by mail-ej1-x635.google.com with SMTP id a23so8728632eju.3;
- Wed, 02 Mar 2022 23:32:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=Gor8M86/GsIuBlid/S84lkBznvRDaKBCWzgLUKh5JV4=;
- b=k+fk9urovAn8Fq6hF831psJF6X0Hx41hiPVDAocMfW4Gi2tjP5gBRRyYi9UY1gS3y9
- T1f7NxhpZChRCZGs3wiKfQBYFQeu68Ugjwk2rWVNy++UqI5E9Ffm7Qe5sREsy932o9zn
- yoQiy9LiamLlfFC8y8nGBw2mIwTduboT8pHpf33UZ2RGjV2D/meZqmuHsAbl7tfxfJuC
- e8redX9TOEvOJZ9E1AYG0yGidZEg6kfprz6yLCxUQC7gampXaGyLYaXWTA6umkTeR66S
- hL8UX9htvKnv+kjTxwKZtpIsvgv4G4bDiBBsZxSW5S7a6ZZ6AFWNSxZHN5mDaVwEmoV0
- Hg1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=Gor8M86/GsIuBlid/S84lkBznvRDaKBCWzgLUKh5JV4=;
- b=3fAH0LtpJx9pZG98hAJzNtIR3MlQqnm+gmqqHR7toJAmofeGkcgmZ8N9RQmqFhvhu4
- QEieUZheNjbdgNSxGEgpI5myTO8KErwFqKjxWXHBpvS7k0z2Vy8Vql9wYFEyuxR1FLeb
- nTYMyU3Q52iKtKLDILONd9u/4NqBbdZrJK/rH7E9dTFirI9rHkfnpaJx2O20sIQOzamC
- oR395LiHVDF4kx2zMzCXnTxwLBgy4/oJDh+3AfKYokMnSKKOjruf4xGdRXGkBKmaftMW
- vSWv3/VBWFXDD2xpjpgp3AeZW9p1sX3bBL5MW1fo43j05AnCLGerbUmP1BljZh3gg2DX
- W8tQ==
-X-Gm-Message-State: AOAM533qNquOcbMivBvQRAA1jX3Xrf0KK9OSudaXkjJ7jnuNu71HtlNI
- TU1vIeCBq3Uh8eUzraPEZgk=
-X-Google-Smtp-Source: ABdhPJzeteUoFgq8PxHWf79kt1+XNtdp+qSeHQzci99kHRtMUTD40dS4a5KNav7C0/39ueCDeIyc3w==
-X-Received: by 2002:a17:906:7c93:b0:6cd:341a:a1d5 with SMTP id
- w19-20020a1709067c9300b006cd341aa1d5mr25639417ejo.698.1646292754302; 
- Wed, 02 Mar 2022 23:32:34 -0800 (PST)
-Received: from smtpclient.apple ([2a02:8109:9d80:3f6c:896:faf2:6663:1f74])
- by smtp.gmail.com with ESMTPSA id
- gj18-20020a170907741200b006da82539c83sm410819ejc.73.2022.03.02.23.32.32
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 02 Mar 2022 23:32:33 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.60.0.1.1\))
-From: Jakob Koschel <jakobkoschel@gmail.com>
-In-Reply-To: <39404befad5b44b385698ff65465abe5@AcuMS.aculab.com>
-Date: Thu, 3 Mar 2022 08:32:31 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FB4710E6B2;
+	Tue,  8 Mar 2022 04:27:35 +0000 (UTC)
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [185.58.86.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A279E10E290
+ for <nouveau@lists.freedesktop.org>; Mon,  7 Mar 2022 15:26:55 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ uk-mta-85-dcBRBPURPaqNT771jbYVzw-1; Mon, 07 Mar 2022 15:26:52 +0000
+X-MC-Unique: dcBRBPURPaqNT771jbYVzw-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
+ Server (TLS) id 15.0.1497.28; Mon, 7 Mar 2022 15:26:48 +0000
+Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
+ AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
+ 15.00.1497.028; Mon, 7 Mar 2022 15:26:48 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Dan Carpenter' <dan.carpenter@oracle.com>, Jakob Koschel
+ <jakobkoschel@gmail.com>
+Thread-Topic: [PATCH 0/6] Remove usage of list iterator past the loop body
+Thread-Index: AQHYMjRtYqIeET2JD0yO+p9PX3jHEKy0Bmqg
+Date: Mon, 7 Mar 2022 15:26:48 +0000
+Message-ID: <f7ffd78aa68340e1ade6af15fa2f06d8@AcuMS.aculab.com>
+References: <20220228110822.491923-1-jakobkoschel@gmail.com>
+ <20220307150037.GD3293@kadam>
+In-Reply-To: <20220307150037.GD3293@kadam>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
+MIME-Version: 1.0
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <A568BD90-FE81-4740-B1D3-C795EB636A5A@gmail.com>
-References: <1077f17e50d34dc2bbfdf4e52a1cb2fd@AcuMS.aculab.com>
- <20220303022729.9321-1-xiam0nd.tong@gmail.com>
- <39404befad5b44b385698ff65465abe5@AcuMS.aculab.com>
-To: David Laight <David.Laight@ACULAB.COM>
-X-Mailer: Apple Mail (2.3693.60.0.1.1)
 X-Mailman-Approved-At: Tue, 08 Mar 2022 04:27:27 +0000
-Subject: Re: [Nouveau] [PATCH 2/6] treewide: remove using list iterator
- after loop body as a ptr
+Subject: Re: [Nouveau] [PATCH 0/6] Remove usage of list iterator past the
+ loop body
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,179 +61,110 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "gustavo@embeddedor.com" <gustavo@embeddedor.com>,
+Cc: "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+ "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>, "Gustavo A.
+ R. Silva" <gustavo@embeddedor.com>,
  "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "kgdb-bugreport@lists.sourceforge.net" <kgdb-bugreport@lists.sourceforge.net>,
- "linux@rasmusvillemoes.dk" <linux@rasmusvillemoes.dk>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
  "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "c.giuffrida@vu.nl" <c.giuffrida@vu.nl>,
+ Cristiano Giuffrida <c.giuffrida@vu.nl>,
  "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "torvalds@linux-foundation.org" <torvalds@linux-foundation.org>,
- "samba-technical@lists.samba.org" <samba-technical@lists.samba.org>,
  "linux1394-devel@lists.sourceforge.net"
  <linux1394-devel@lists.sourceforge.net>,
  "drbd-dev@lists.linbit.com" <drbd-dev@lists.linbit.com>,
- "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
+ linux-arch <linux-arch@vger.kernel.org>,
  "linux-cifs@vger.kernel.org" <linux-cifs@vger.kernel.org>,
  "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
  "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
  "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
- "linux-staging@lists.linux.dev" <linux-staging@lists.linux.dev>,
- "h.j.bos@vu.nl" <h.j.bos@vu.nl>, "jgg@ziepe.ca" <jgg@ziepe.ca>,
+ "linux-staging@lists.linux.dev" <linux-staging@lists.linux.dev>, "Bos,
+ H.J." <h.j.bos@vu.nl>, Jason Gunthorpe <jgg@ziepe.ca>,
  "intel-wired-lan@lists.osuosl.org" <intel-wired-lan@lists.osuosl.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "kgdb-bugreport@lists.sourceforge.net" <kgdb-bugreport@lists.sourceforge.net>,
  "bcm-kernel-feedback-list@broadcom.com"
  <bcm-kernel-feedback-list@broadcom.com>,
- "dan.carpenter@oracle.com" <dan.carpenter@oracle.com>,
  "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "keescook@chromium.org" <keescook@chromium.org>,
- "arnd@arndb.de" <arnd@arndb.de>,
- "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ Kees Cook <keescook@chromium.org>, Arnd
+ Bergman <arnd@arndb.de>, "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "bjohannesmeyer@gmail.com" <bjohannesmeyer@gmail.com>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+ Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
  "linux-block@vger.kernel.org" <linux-block@vger.kernel.org>,
- "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
- "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
+ "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
  "v9fs-developer@lists.sourceforge.net" <v9fs-developer@lists.sourceforge.net>,
  "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
- "tglx@linutronix.de" <tglx@linutronix.de>,
- "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Andy
+ Shevchenko <andriy.shevchenko@linux.intel.com>,
  "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
  "linux-sgx@vger.kernel.org" <linux-sgx@vger.kernel.org>,
- "nathan@kernel.org" <nathan@kernel.org>,
- "tipc-discussion@lists.sourceforge.net"
- <tipc-discussion@lists.sourceforge.net>,
+ Nathan Chancellor <nathan@kernel.org>,
  "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
  "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+ "samba-technical@lists.samba.org" <samba-technical@lists.samba.org>,
  "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
  "linux-f2fs-devel@lists.sourceforge.net"
  <linux-f2fs-devel@lists.sourceforge.net>,
- Xiaomeng Tong <xiam0nd.tong@gmail.com>,
+ "tipc-discussion@lists.sourceforge.net"
+ <tipc-discussion@lists.sourceforge.net>,
  "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
- "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+ "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
  "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "rppt@kernel.org" <rppt@kernel.org>
+ Andrew Morton <akpm@linux-foundation.org>, Linus
+ Torvalds <torvalds@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-
-
-> On 3. Mar 2022, at 05:58, David Laight <David.Laight@ACULAB.COM> =
-wrote:
+From: Dan Carpenter
+> Sent: 07 March 2022 15:01
 >=20
-> From: Xiaomeng Tong
->> Sent: 03 March 2022 02:27
->>=20
->> On Wed, 2 Mar 2022 14:04:06 +0000, David Laight
->> <David.Laight@ACULAB.COM> wrote:
->>> I think that it would be better to make any alternate loop macro
->>> just set the variable to NULL on the loop exit.
->>> That is easier to code for and the compiler might be persuaded to
->>> not redo the test.
->>=20
->> No, that would lead to a NULL dereference.
->=20
-> Why, it would make it b ethe same as the 'easy to use':
-> 	for (item =3D head; item; item =3D item->next) {
-> 		...
-> 		if (...)
-> 			break;
-> 		...
-> 	}
-> 	if (!item)
-> 		return;
->=20
->> The problem is the mis-use of iterator outside the loop on exit, and
->> the iterator will be the HEAD's container_of pointer which pointers
->> to a type-confused struct. Sidenote: The *mis-use* here refers to
->> mistakely access to other members of the struct, instead of the
->> list_head member which acutally is the valid HEAD.
->=20
-> The problem is that the HEAD's container_of pointer should never
-> be calculated at all.
-> This is what is fundamentally broken about the current definition.
->=20
->> IOW, you would dereference a (NULL + offset_of_member) address here.
->=20
-> Where?
->=20
->> Please remind me if i missed something, thanks.
->>=20
->> Can you share your "alternative definitions" details? thanks!
->=20
-> The loop should probably use as extra variable that points
-> to the 'list node' in the next structure.
-> Something like:
-> 	for (xxx *iter =3D head->next;
-> 		iter =3D=3D &head ? ((item =3D NULL),0) : ((item =3D =
-list_item(iter),1));
-> 		iter =3D item->member->next) {
-> 	   ...
-> With a bit of casting you can use 'item' to hold 'iter'.
+> Updating this API is risky because some places rely on the old behavior
+> and not all of them have been updated.  Here are some additional places
+> you might want to change.
 
-I think this would make sense, it would mean you only assign the =
-containing
-element on valid elements.
+I really can't help thinking that trying to merge this patch is
+actually impossible.
+It affects far too many different parts of the tree.
 
-I was thinking something along the lines of:
+Since (I believe) this is a doubly linked list with forwards and
+backwards pointers that point to a 'node' (not that there is a
+nice comment to that effect in the header - and there are lots of
+ways to do linked lists) the 'head' pretty much has to be a 'node'.
 
-#define list_for_each_entry(pos, head, member)					=
-\
-	for (struct list_head *list =3D head->next, typeof(pos) pos;	=
-\
-	     list =3D=3D head ? 0 : (( pos =3D list_entry(pos, list, =
-member), 1));	\
-	     list =3D list->next)
+I'd write the following new defines (but I might be using
+the old names here):
 
-Although the initialization block of the for loop is not valid C, I'm
-not sure there is any way to declare two variables of a different type
-in the initialization part of the loop.
+list_first(head, field) First item, NULL if empty.
+list_last(head, field) Last item NULL if empty.
+list_next(head, item, field) Item after 'item', NULL if last.
+list_prev(head, item. field) Item before 'item', NULL if first.
 
-I believe all this does is get rid of the &pos->member =3D=3D (head) =
-check
-to terminate the list.
-It alone will not fix any of the other issues that using the iterator
-variable after the loop currently has.
+You get (something like):
+#define list_first(head, field) \
+=09head->next =3D=3D &head ? NULL : list_item(head->next, field)
+(probably needs typeof(item) from somewhere).
 
+The iterator loop is then just:
+#define loop_iterate(item, head, field) \
+=09for (item =3D list_first(head, field); item; \
+=09=09item =3D list_next(head, item, field)
 
-AFAIK Adri=C3=A1n Moreno is working on doing something along those lines
-for the list iterator in openvswitch (that was similar to the kernel
-one before) [1].
+I'm not sure, but making the 'head' be a structure that contains
+a single member that is a 'node' might help type checking.
 
-I *think* they don't declare 'pos' within the loop which we *do want*
-to avoid any uses of it after the loop.
-(If pos is not declared in the initialization block, shadowing the
-*outer* pos, it would just point to the last element of the list or stay
-uninitialized if the list is empty).
+Then all the code that uses the current defines can slowly be
+moved over (probably a couple of releases) before the existing
+defines are deleted.
 
+That should simplify all the open-coded search loops that are
+just as likely to be buggy (possibly more so).
 
-[1] https://www.mail-archive.com/ovs-dev@openvswitch.org/msg63497.html
+=09David
 
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1=
+PT, UK
+Registration No: 1397386 (Wales)
 
->=20
->>=20
->>> OTOH there may be alternative definitions that can be used to get
->>> the compiler (or other compiler-like tools) to detect broken code.
->>> Even if the definition can't possibly generate a working kerrnel.
->>=20
->> The "list_for_each_entry_inside(pos, type, head, member)" way makes
->> the iterator invisiable outside the loop, and would be catched by
->> compiler if use-after-loop things happened.
->=20
-> It is also a compete PITA for anything doing a search.
->=20
-> 	David
->=20
-> -
-> Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, =
-MK1 1PT, UK
-> Registration No: 1397386 (Wales)
->=20
-
-- Jakob=
