@@ -4,61 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77A08C433EF
-	for <nouveau@archiver.kernel.org>; Sun, 27 Mar 2022 07:44:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D50C9C4332F
+	for <nouveau@archiver.kernel.org>; Sun, 27 Mar 2022 07:44:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DD1710E0CB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6009910E0F4;
 	Sun, 27 Mar 2022 07:44:05 +0000 (UTC)
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8569210F3C3;
- Sat, 19 Mar 2022 10:28:12 +0000 (UTC)
-Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
- by localhost (Postfix) with ESMTP id 4KLHCG2thjz9sSW;
- Sat, 19 Mar 2022 11:28:10 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
- by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id mm8j_WRInuZR; Sat, 19 Mar 2022 11:28:10 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
- by pegase2.c-s.fr (Postfix) with ESMTP id 4KLHCG1bXGz9sSP;
- Sat, 19 Mar 2022 11:28:10 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id 18F288B76C;
- Sat, 19 Mar 2022 11:28:10 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
- by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
- with ESMTP id a17gy9YEoaHD; Sat, 19 Mar 2022 11:28:09 +0100 (CET)
-Received: from PO20335.IDSI0.si.c-s.fr (unknown [192.168.202.222])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id C04188B765;
- Sat, 19 Mar 2022 11:28:09 +0100 (CET)
-Received: from PO20335.IDSI0.si.c-s.fr (localhost [127.0.0.1])
- by PO20335.IDSI0.si.c-s.fr (8.17.1/8.16.1) with ESMTPS id 22JARwNd456602
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Sat, 19 Mar 2022 11:27:58 +0100
-Received: (from chleroy@localhost)
- by PO20335.IDSI0.si.c-s.fr (8.17.1/8.17.1/Submit) id 22JARuTD456594;
- Sat, 19 Mar 2022 11:27:56 +0100
-X-Authentication-Warning: PO20335.IDSI0.si.c-s.fr: chleroy set sender to
- christophe.leroy@csgroup.eu using -f
-From: Christophe Leroy <christophe.leroy@csgroup.eu>
-To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>
-Date: Sat, 19 Mar 2022 11:27:51 +0100
-Message-Id: <7e0612b61511ec8030e3b2dcbfaa7751781c8b91.1647684507.git.christophe.leroy@csgroup.eu>
-X-Mailer: git-send-email 2.35.1
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44FF410E8A4
+ for <nouveau@lists.freedesktop.org>; Wed, 16 Mar 2022 19:21:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
+ :Reply-To:Content-Type:Content-ID:Content-Description;
+ bh=mAEBdlB3OIVWW6VHbg2SecqMSqz6buQ0aUi+Rw762/Y=; b=QU8xTqKmgiaf0d2RYK0H55UDCG
+ aLJvbEgjnyUe31XqnajbeerGSgezvbj7E6vzKNEkthY9gGqTCGwCgSKs/P6N/RAY4zpEqVLmXvKbP
+ uiSRzPcbdU7p3lSpluXCtlaLUMBZuaHvqoH09vYAF9WublfayTlpUU/qLQX/IDYXeABeZH5o+zC2W
+ 8kZMfKNRXr6lT1/BQuMttKB9AK/4vNhr0ZbmY9ozWZm9W0S5VvcJ8UryNdPz0mWnabak/ruaUP3LR
+ RSlCpaIl4OEVlR7bIZCUxDmvaJ/Q+Xkkx2o2F4c2Wa2eoa9/E3ikl20nvmBdUIbACnjGJJLK415O7
+ 7YK7glNg==;
+Received: from [2601:1c0:6280:3f0::aa0b] (helo=bombadil.infradead.org)
+ by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nUZCA-00EArp-3R; Wed, 16 Mar 2022 19:20:30 +0000
+From: Randy Dunlap <rdunlap@infradead.org>
+To: linux-kernel@vger.kernel.org
+Date: Wed, 16 Mar 2022 12:20:09 -0700
+Message-Id: <20220316192010.19001-9-rdunlap@infradead.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220316192010.19001-1-rdunlap@infradead.org>
+References: <20220316192010.19001-1-rdunlap@infradead.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1647685669; l=3722; s=20211009;
- h=from:subject:message-id; bh=y5DQYDGAWf+okMg9sN/L7lksMPfKpXX0wlcMvN+TCx8=;
- b=BT0h00TI+fMGlEX6pCDLyjtx88LkgtnMe1L7kFbayDTiEZXd6XQy/COY5UB6n29i40apuruO6pqn
- hs/Pbx4tCwp2V2DyWFRrCMSLctLldhri/vsSKggV7Xx2XGdvLBsE
-X-Developer-Key: i=christophe.leroy@csgroup.eu; a=ed25519;
- pk=HIzTzUj91asvincQGOFx6+ZF5AoUuP9GdOtQChs7Mm0=
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sun, 27 Mar 2022 07:44:03 +0000
-Subject: [Nouveau] [PATCH v2] drm/nouveau/bios: Rename prom_init() and
- friends functions
+Subject: [Nouveau] [PATCH 8/9] x86/crypto: eliminate anonymous module_init &
+ module_exit
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,106 +49,223 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Christophe Leroy <christophe.leroy@csgroup.eu>, linux-kernel@vger.kernel.org
+Cc: linux-usb@vger.kernel.org, Andy Lutomirski <luto@kernel.org>,
+ "Michael S. Tsirkin" <mst@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
+ nouveau@lists.freedesktop.org, Jason Wang <jasowang@redhat.com>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Valentina Manea <valentina.manea.m@gmail.com>,
+ virtualization@lists.linux-foundation.org,
+ Krzysztof Opasiak <k.opasiak@samsung.com>, Eli Cohen <eli@mellanox.com>,
+ netdev@vger.kernel.org, Shuah Khan <shuah@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>, "H. Peter Anvin" <hpa@zytor.com>,
+ Arnd Bergmann <arnd@arndb.de>, Leon Romanovsky <leon@kernel.org>,
+ linux-rdma@vger.kernel.org, Ingo Molnar <mingo@kernel.org>,
+ Jozsef Kadlecsik <kadlec@netfilter.org>, coreteam@netfilter.org,
+ Jakub Kicinski <kuba@kernel.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Pablo Neira Ayuso <pablo@netfilter.org>,
+ Joachim Fritschi <jfritschi@freenet.de>,
+ Felipe Balbi <felipe.balbi@linux.intel.com>, Amit Shah <amit@kernel.org>,
+ "James E.J. Bottomley" <jejb@linux.ibm.com>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
+ linux-block@vger.kernel.org, Pekka Paalanen <ppaalanen@gmail.com>,
+ Borislav Petkov <bp@alien8.de>, Stefan Hajnoczi <stefanha@redhat.com>,
+ Shuah Khan <skhan@linuxfoundation.org>,
+ Jussi Kivilinna <jussi.kivilinna@mbnet.fi>,
+ Herbert Xu <herbert@gondor.apana.org.au>, Jens Axboe <axboe@kernel.dk>,
+ x86@kernel.org, linux-scsi@vger.kernel.org,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, Florian Westphal <fw@strlen.de>,
+ netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
+ Igor Kotrasinski <i.kotrasinsk@samsung.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, Saeed Mahameed <saeedm@nvidia.com>,
+ "David S. Miller" <davem@davemloft.net>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-While working at fixing powerpc headers, I ended up with the
-following error.
+Eliminate anonymous module_init() and module_exit(), which can lead to
+confusion or ambiguity when reading System.map, crashes/oops/bugs,
+or an initcall_debug log.
 
-	drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c:48:1: error: conflicting types for 'prom_init'; have 'void *(struct nvkm_bios *, const char *)'
-	make[5]: *** [scripts/Makefile.build:288: drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.o] Error 1
+Give each of these init and exit functions unique driver-specific
+names to eliminate the anonymous names.
 
-powerpc and a few other architectures have a prom_init() global function.
-One day or another it will conflict with the one in shadowrom.c
+Example 1: (System.map)
+ ffffffff832fc78c t init
+ ffffffff832fc79e t init
+ ffffffff832fc8f8 t init
 
-Those being static, they can easily be renamed. Do it.
+Example 2: (initcall_debug log)
+ calling  init+0x0/0x12 @ 1
+ initcall init+0x0/0x12 returned 0 after 15 usecs
+ calling  init+0x0/0x60 @ 1
+ initcall init+0x0/0x60 returned 0 after 2 usecs
+ calling  init+0x0/0x9a @ 1
+ initcall init+0x0/0x9a returned 0 after 74 usecs
 
-While at it, also rename the ops structure as 'nvbios_prom' instead of
-'nvbios_rom' in order to make it clear that it refers to the
-NV_PROM device.
-
-Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+Fixes: 64b94ceae8c1 ("crypto: blowfish - add x86_64 assembly implementation")
+Fixes: 676a38046f4f ("crypto: camellia-x86_64 - module init/exit functions should be static")
+Fixes: 0b95ec56ae19 ("crypto: camellia - add assembler implementation for x86_64")
+Fixes: 56d76c96a9f3 ("crypto: serpent - add AVX2/x86_64 assembler implementation of serpent cipher")
+Fixes: b9f535ffe38f ("[CRYPTO] twofish: i586 assembly version")
+Fixes: ff0a70fe0536 ("crypto: twofish-x86_64-3way - module init/exit functions should be static")
+Fixes: 8280daad436e ("crypto: twofish - add 3-way parallel x86_64 assembler implemention")
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+Cc: Jussi Kivilinna <jussi.kivilinna@mbnet.fi>
+Cc: Joachim Fritschi <jfritschi@freenet.de>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: linux-crypto@vger.kernel.org
+Cc: x86@kernel.org
 ---
-v2: using nvbios_prom prefix instead of nvbios_rom. Changed structure name to keep things consistant.
+ arch/x86/crypto/blowfish_glue.c     |    8 ++++----
+ arch/x86/crypto/camellia_glue.c     |    8 ++++----
+ arch/x86/crypto/serpent_avx2_glue.c |    8 ++++----
+ arch/x86/crypto/twofish_glue.c      |    8 ++++----
+ arch/x86/crypto/twofish_glue_3way.c |    8 ++++----
+ 5 files changed, 20 insertions(+), 20 deletions(-)
 
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/priv.h    |  2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c  |  2 +-
- .../gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c   | 14 +++++++-------
- 3 files changed, 9 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/priv.h b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/priv.h
-index fac1bff1311b..cfa8a0c356dd 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/priv.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/priv.h
-@@ -19,7 +19,7 @@ struct nvbios_source {
- int nvbios_extend(struct nvkm_bios *, u32 length);
- int nvbios_shadow(struct nvkm_bios *);
+--- lnx-517-rc8.orig/arch/x86/crypto/blowfish_glue.c
++++ lnx-517-rc8/arch/x86/crypto/blowfish_glue.c
+@@ -315,7 +315,7 @@ static int force;
+ module_param(force, int, 0);
+ MODULE_PARM_DESC(force, "Force module load, ignore CPU blacklist");
  
--extern const struct nvbios_source nvbios_rom;
-+extern const struct nvbios_source nvbios_prom;
- extern const struct nvbios_source nvbios_ramin;
- extern const struct nvbios_source nvbios_acpi_fast;
- extern const struct nvbios_source nvbios_acpi_slow;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c
-index 4b571cc6bc70..19188683c8fc 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c
-@@ -171,7 +171,7 @@ nvbios_shadow(struct nvkm_bios *bios)
- 	struct shadow mthds[] = {
- 		{ 0, &nvbios_of },
- 		{ 0, &nvbios_ramin },
--		{ 0, &nvbios_rom },
-+		{ 0, &nvbios_prom },
- 		{ 0, &nvbios_acpi_fast },
- 		{ 4, &nvbios_acpi_slow },
- 		{ 1, &nvbios_pcirom },
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c
-index ffa4b395220a..39144ceb117b 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c
-@@ -25,7 +25,7 @@
- #include <subdev/pci.h>
- 
- static u32
--prom_read(void *data, u32 offset, u32 length, struct nvkm_bios *bios)
-+nvbios_prom_read(void *data, u32 offset, u32 length, struct nvkm_bios *bios)
+-static int __init init(void)
++static int __init blowfish_init(void)
  {
- 	struct nvkm_device *device = data;
- 	u32 i;
-@@ -38,14 +38,14 @@ prom_read(void *data, u32 offset, u32 length, struct nvkm_bios *bios)
+ 	int err;
+ 
+@@ -339,15 +339,15 @@ static int __init init(void)
+ 	return err;
  }
  
- static void
--prom_fini(void *data)
-+nvbios_prom_fini(void *data)
+-static void __exit fini(void)
++static void __exit blowfish_fini(void)
  {
- 	struct nvkm_device *device = data;
- 	nvkm_pci_rom_shadow(device->pci, true);
+ 	crypto_unregister_alg(&bf_cipher_alg);
+ 	crypto_unregister_skciphers(bf_skcipher_algs,
+ 				    ARRAY_SIZE(bf_skcipher_algs));
  }
  
- static void *
--prom_init(struct nvkm_bios *bios, const char *name)
-+nvbios_prom_init(struct nvkm_bios *bios, const char *name)
+-module_init(init);
+-module_exit(fini);
++module_init(blowfish_init);
++module_exit(blowfish_fini);
+ 
+ MODULE_LICENSE("GPL");
+ MODULE_DESCRIPTION("Blowfish Cipher Algorithm, asm optimized");
+--- lnx-517-rc8.orig/arch/x86/crypto/camellia_glue.c
++++ lnx-517-rc8/arch/x86/crypto/camellia_glue.c
+@@ -1377,7 +1377,7 @@ static int force;
+ module_param(force, int, 0);
+ MODULE_PARM_DESC(force, "Force module load, ignore CPU blacklist");
+ 
+-static int __init init(void)
++static int __init camellia_init(void)
  {
- 	struct nvkm_device *device = bios->subdev.device;
- 	if (device->card_type == NV_40 && device->chipset >= 0x4c)
-@@ -55,10 +55,10 @@ prom_init(struct nvkm_bios *bios, const char *name)
+ 	int err;
+ 
+@@ -1401,15 +1401,15 @@ static int __init init(void)
+ 	return err;
  }
  
- const struct nvbios_source
--nvbios_rom = {
-+nvbios_prom = {
- 	.name = "PROM",
--	.init = prom_init,
--	.fini = prom_fini,
--	.read = prom_read,
-+	.init = nvbios_prom_init,
-+	.fini = nvbios_prom_fini,
-+	.read = nvbios_prom_read,
- 	.rw = false,
+-static void __exit fini(void)
++static void __exit camellia_fini(void)
+ {
+ 	crypto_unregister_alg(&camellia_cipher_alg);
+ 	crypto_unregister_skciphers(camellia_skcipher_algs,
+ 				    ARRAY_SIZE(camellia_skcipher_algs));
+ }
+ 
+-module_init(init);
+-module_exit(fini);
++module_init(camellia_init);
++module_exit(camellia_fini);
+ 
+ MODULE_LICENSE("GPL");
+ MODULE_DESCRIPTION("Camellia Cipher Algorithm, asm optimized");
+--- lnx-517-rc8.orig/arch/x86/crypto/serpent_avx2_glue.c
++++ lnx-517-rc8/arch/x86/crypto/serpent_avx2_glue.c
+@@ -96,7 +96,7 @@ static struct skcipher_alg serpent_algs[
+ 
+ static struct simd_skcipher_alg *serpent_simd_algs[ARRAY_SIZE(serpent_algs)];
+ 
+-static int __init init(void)
++static int __init serpent_avx2_init(void)
+ {
+ 	const char *feature_name;
+ 
+@@ -115,14 +115,14 @@ static int __init init(void)
+ 					      serpent_simd_algs);
+ }
+ 
+-static void __exit fini(void)
++static void __exit serpent_avx2_fini(void)
+ {
+ 	simd_unregister_skciphers(serpent_algs, ARRAY_SIZE(serpent_algs),
+ 				  serpent_simd_algs);
+ }
+ 
+-module_init(init);
+-module_exit(fini);
++module_init(serpent_avx2_init);
++module_exit(serpent_avx2_fini);
+ 
+ MODULE_LICENSE("GPL");
+ MODULE_DESCRIPTION("Serpent Cipher Algorithm, AVX2 optimized");
+--- lnx-517-rc8.orig/arch/x86/crypto/twofish_glue.c
++++ lnx-517-rc8/arch/x86/crypto/twofish_glue.c
+@@ -81,18 +81,18 @@ static struct crypto_alg alg = {
+ 	}
  };
--- 
-2.35.1
-
+ 
+-static int __init init(void)
++static int __init twofish_glue_init(void)
+ {
+ 	return crypto_register_alg(&alg);
+ }
+ 
+-static void __exit fini(void)
++static void __exit twofish_glue_fini(void)
+ {
+ 	crypto_unregister_alg(&alg);
+ }
+ 
+-module_init(init);
+-module_exit(fini);
++module_init(twofish_glue_init);
++module_exit(twofish_glue_fini);
+ 
+ MODULE_LICENSE("GPL");
+ MODULE_DESCRIPTION ("Twofish Cipher Algorithm, asm optimized");
+--- lnx-517-rc8.orig/arch/x86/crypto/twofish_glue_3way.c
++++ lnx-517-rc8/arch/x86/crypto/twofish_glue_3way.c
+@@ -140,7 +140,7 @@ static int force;
+ module_param(force, int, 0);
+ MODULE_PARM_DESC(force, "Force module load, ignore CPU blacklist");
+ 
+-static int __init init(void)
++static int __init twofish_3way_init(void)
+ {
+ 	if (!force && is_blacklisted_cpu()) {
+ 		printk(KERN_INFO
+@@ -154,13 +154,13 @@ static int __init init(void)
+ 					 ARRAY_SIZE(tf_skciphers));
+ }
+ 
+-static void __exit fini(void)
++static void __exit twofish_3way_fini(void)
+ {
+ 	crypto_unregister_skciphers(tf_skciphers, ARRAY_SIZE(tf_skciphers));
+ }
+ 
+-module_init(init);
+-module_exit(fini);
++module_init(twofish_3way_init);
++module_exit(twofish_3way_fini);
+ 
+ MODULE_LICENSE("GPL");
+ MODULE_DESCRIPTION("Twofish Cipher Algorithm, 3-way parallel asm optimized");
