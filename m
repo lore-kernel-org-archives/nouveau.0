@@ -4,53 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45A8AC433FE
-	for <nouveau@archiver.kernel.org>; Sun, 27 Mar 2022 07:44:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F5AEC433F5
+	for <nouveau@archiver.kernel.org>; Sun, 27 Mar 2022 07:44:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 735DC10E13D;
-	Sun, 27 Mar 2022 07:44:05 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84F4910ECDD
- for <nouveau@lists.freedesktop.org>; Thu, 17 Mar 2022 08:46:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1647506783;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=sVx9DgD8AwAJ8+xHbwqIFqUi1dP3yjGM90jTXU92h6o=;
- b=Stt1w64ygRrI4MRvGG0Q82JnK6LQQ0gv2D3EC0zPArgmA9eA6WZvpYLqrW3Zwzu74TJGzs
- pewqhnq8+QEMegzh9IPNNYB3RaQUUANUVzJkGCuCOiZz5x96BWpNbAnBPmNTDWwXxBXOHT
- xEpJwnmJdsTTUWfERK1Nl/y9EHGl57E=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-635-7I8ftN2EOIe68vrg6AndoA-1; Thu, 17 Mar 2022 04:46:20 -0400
-X-MC-Unique: 7I8ftN2EOIe68vrg6AndoA-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.rdu2.redhat.com
- [10.11.54.5])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 5987B1C03385;
- Thu, 17 Mar 2022 08:46:18 +0000 (UTC)
-Received: from localhost (unknown [10.39.194.252])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 9FB7153CF;
- Thu, 17 Mar 2022 08:46:13 +0000 (UTC)
-Date: Thu, 17 Mar 2022 08:46:12 +0000
-From: Stefan Hajnoczi <stefanha@redhat.com>
-To: Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <YjL1VK4F53hKntam@stefanha-x1.localdomain>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3041010E1C2;
+	Sun, 27 Mar 2022 07:44:06 +0000 (UTC)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B969910E8A4
+ for <nouveau@lists.freedesktop.org>; Wed, 16 Mar 2022 19:21:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
+ :Reply-To:Content-Type:Content-ID:Content-Description;
+ bh=zlk0pYgeFrBRJtw/N83n4t+jmPWdRVlr1V46qxOWdnE=; b=OWH0M3YCDaaUvZNoeBhNPzIFL8
+ 1mOFKNuRVgUQ5Iogx2eIIw9Mj4dmnKQHT/rvRLaYy7YEu6qwyj9iN55WNZ72jUQfmwyzy+g3ArdCm
+ oAlJIiC2gYZhXLC3XI/4G2V7k/3WrVQQ9xcFl2aKGM3A7RWgmcYT7G0VSZg8WJdKy0+mxV2KWtRsb
+ ktMgcdtXuN9OVRcoh5mBRUTWlMiuU5Qx+f4y4gp+RBIP8e7Iy76TUNOOuokZ0LmtPn+WZG5E5NN0r
+ p36ObkoHZue3Sl2dvNTwt8OBP6UCI2pSUL01GUxoDuJWsfMKFSZ0CcV2BnY/gDeVhh+wmf2T+ajBI
+ rw5JcjiA==;
+Received: from [2601:1c0:6280:3f0::aa0b] (helo=bombadil.infradead.org)
+ by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nUZBw-00EArp-Ge; Wed, 16 Mar 2022 19:20:16 +0000
+From: Randy Dunlap <rdunlap@infradead.org>
+To: linux-kernel@vger.kernel.org
+Date: Wed, 16 Mar 2022 12:20:02 -0700
+Message-Id: <20220316192010.19001-2-rdunlap@infradead.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220316192010.19001-1-rdunlap@infradead.org>
 References: <20220316192010.19001-1-rdunlap@infradead.org>
- <20220316192010.19001-6-rdunlap@infradead.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="3AeFxmP0HGbN94e3"
-Content-Disposition: inline
-In-Reply-To: <20220316192010.19001-6-rdunlap@infradead.org>
-X-Scanned-By: MIMEDefang 2.79 on 10.11.54.5
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sun, 27 Mar 2022 07:44:03 +0000
-Subject: Re: [Nouveau] [PATCH 5/9] virtio-scsi: eliminate anonymous
- module_init & module_exit
+Subject: [Nouveau] [PATCH 1/9] virtio_blk: eliminate anonymous module_init &
+ module_exit
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,10 +49,12 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: x86@kernel.org, "Michael S. Tsirkin" <mst@redhat.com>,
- Peter Zijlstra <peterz@infradead.org>, nouveau@lists.freedesktop.org,
- Jason Wang <jasowang@redhat.com>, Dave Hansen <dave.hansen@linux.intel.com>,
+Cc: linux-usb@vger.kernel.org, Andy Lutomirski <luto@kernel.org>,
+ "Michael S. Tsirkin" <mst@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
+ nouveau@lists.freedesktop.org, Jason Wang <jasowang@redhat.com>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
  Valentina Manea <valentina.manea.m@gmail.com>,
+ virtualization@lists.linux-foundation.org,
  Krzysztof Opasiak <k.opasiak@samsung.com>, Eli Cohen <eli@mellanox.com>,
  netdev@vger.kernel.org, Shuah Khan <shuah@kernel.org>,
  Thomas Gleixner <tglx@linutronix.de>, "H. Peter Anvin" <hpa@zytor.com>,
@@ -79,16 +68,16 @@ Cc: x86@kernel.org, "Michael S. Tsirkin" <mst@redhat.com>,
  Felipe Balbi <felipe.balbi@linux.intel.com>, Amit Shah <amit@kernel.org>,
  "James E.J. Bottomley" <jejb@linux.ibm.com>,
  Steven Rostedt <rostedt@goodmis.org>,
- =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+ =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
  linux-block@vger.kernel.org, Pekka Paalanen <ppaalanen@gmail.com>,
- Borislav Petkov <bp@alien8.de>, Andy Lutomirski <luto@kernel.org>,
+ Borislav Petkov <bp@alien8.de>, Stefan Hajnoczi <stefanha@redhat.com>,
  Shuah Khan <skhan@linuxfoundation.org>,
  Jussi Kivilinna <jussi.kivilinna@mbnet.fi>,
- virtualization@lists.linux-foundation.org,
  Herbert Xu <herbert@gondor.apana.org.au>, Jens Axboe <axboe@kernel.dk>,
- linux-scsi@vger.kernel.org, "Martin K. Petersen" <martin.petersen@oracle.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org,
- Florian Westphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
+ x86@kernel.org, linux-scsi@vger.kernel.org,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, Florian Westphal <fw@strlen.de>,
  netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
  Igor Kotrasinski <i.kotrasinsk@samsung.com>,
  Paolo Bonzini <pbonzini@redhat.com>, Saeed Mahameed <saeedm@nvidia.com>,
@@ -96,95 +85,65 @@ Cc: x86@kernel.org, "Michael S. Tsirkin" <mst@redhat.com>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+Eliminate anonymous module_init() and module_exit(), which can lead to
+confusion or ambiguity when reading System.map, crashes/oops/bugs,
+or an initcall_debug log.
 
---3AeFxmP0HGbN94e3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Give each of these init and exit functions unique driver-specific
+names to eliminate the anonymous names.
 
-On Wed, Mar 16, 2022 at 12:20:06PM -0700, Randy Dunlap wrote:
-> Eliminate anonymous module_init() and module_exit(), which can lead to
-> confusion or ambiguity when reading System.map, crashes/oops/bugs,
-> or an initcall_debug log.
->=20
-> Give each of these init and exit functions unique driver-specific
-> names to eliminate the anonymous names.
->=20
-> Example 1: (System.map)
->  ffffffff832fc78c t init
->  ffffffff832fc79e t init
->  ffffffff832fc8f8 t init
->=20
-> Example 2: (initcall_debug log)
->  calling  init+0x0/0x12 @ 1
->  initcall init+0x0/0x12 returned 0 after 15 usecs
->  calling  init+0x0/0x60 @ 1
->  initcall init+0x0/0x60 returned 0 after 2 usecs
->  calling  init+0x0/0x9a @ 1
->  initcall init+0x0/0x9a returned 0 after 74 usecs
->=20
-> Fixes: 4fe74b1cb051 ("[SCSI] virtio-scsi: SCSI driver for QEMU based virt=
-ual machines")
-> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-> Cc: "Michael S. Tsirkin" <mst@redhat.com>
-> Cc: Jason Wang <jasowang@redhat.com>
-> Cc: Paolo Bonzini <pbonzini@redhat.com>
-> Cc: Stefan Hajnoczi <stefanha@redhat.com>
-> Cc: "James E.J. Bottomley" <jejb@linux.ibm.com>
-> Cc: "Martin K. Petersen" <martin.petersen@oracle.com>
-> Cc: linux-scsi@vger.kernel.org
-> Cc: virtualization@lists.linux-foundation.org
-> ---
->  drivers/scsi/virtio_scsi.c |    8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->=20
-> --- lnx-517-rc8.orig/drivers/scsi/virtio_scsi.c
-> +++ lnx-517-rc8/drivers/scsi/virtio_scsi.c
-> @@ -988,7 +988,7 @@ static struct virtio_driver virtio_scsi_
->  	.remove =3D virtscsi_remove,
->  };
-> =20
-> -static int __init init(void)
-> +static int __init virtio_scsi_init(void)
->  {
->  	int ret =3D -ENOMEM;
-> =20
-> @@ -1020,14 +1020,14 @@ error:
->  	return ret;
->  }
-> =20
-> -static void __exit fini(void)
-> +static void __exit virtio_scsi_fini(void)
->  {
->  	unregister_virtio_driver(&virtio_scsi_driver);
->  	mempool_destroy(virtscsi_cmd_pool);
->  	kmem_cache_destroy(virtscsi_cmd_cache);
->  }
-> -module_init(init);
-> -module_exit(fini);
-> +module_init(virtio_scsi_init);
-> +module_exit(virtio_scsi_fini);
-> =20
->  MODULE_DEVICE_TABLE(virtio, id_table);
->  MODULE_DESCRIPTION("Virtio SCSI HBA driver");
->=20
+Example 1: (System.map)
+ ffffffff832fc78c t init
+ ffffffff832fc79e t init
+ ffffffff832fc8f8 t init
 
-Reviewed-by: Stefan Hajnoczi <stefanha@redhat.com>
+Example 2: (initcall_debug log)
+ calling  init+0x0/0x12 @ 1
+ initcall init+0x0/0x12 returned 0 after 15 usecs
+ calling  init+0x0/0x60 @ 1
+ initcall init+0x0/0x60 returned 0 after 2 usecs
+ calling  init+0x0/0x9a @ 1
+ initcall init+0x0/0x9a returned 0 after 74 usecs
 
---3AeFxmP0HGbN94e3
-Content-Type: application/pgp-signature; name="signature.asc"
+Fixes: e467cde23818 ("Block driver using virtio.")
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+Cc: "Michael S. Tsirkin" <mst@redhat.com>
+Cc: Jason Wang <jasowang@redhat.com>
+Cc: Paolo Bonzini <pbonzini@redhat.com>
+Cc: Stefan Hajnoczi <stefanha@redhat.com>
+Cc: virtualization@lists.linux-foundation.org
+Cc: Jens Axboe <axboe@kernel.dk>
+Cc: linux-block@vger.kernel.org
+---
+ drivers/block/virtio_blk.c |    8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEhpWov9P5fNqsNXdanKSrs4Grc8gFAmIy9VQACgkQnKSrs4Gr
-c8geUQgAw2TOHcSEnWK4BJz/IELyWnu6TzVbAIIgDLtl/bUwEsgSwAljdB7zw8K/
-6MBcR6ner6oRCLk6Vx0ltNqrAeaxRZOAPqnj1uBP+FZ13in/KYZNz4XkdVZpRbDj
-Kqgko1egvrgmbZlvwbRA15UnNntchizS8VfXd45jyGUFLD/zl1JvIKGDVU31vt7i
-ZLPUWxMdPG2LwGpgBmTEQnX9LQbK0/d2+f8AEnMAzn1SmIKp8ZgCTYwQrpuD/1xU
-eqYoCjQVhNAk7kwkL3XeL/1m0d3b+UVvNRIGaEQBo2Ia8ZJcub7kua6KFb3wfYyK
-AQM+SWYvzoTl9ws3BUL4BqsEgEItBA==
-=iao2
------END PGP SIGNATURE-----
-
---3AeFxmP0HGbN94e3--
-
+--- lnx-517-rc8.orig/drivers/block/virtio_blk.c
++++ lnx-517-rc8/drivers/block/virtio_blk.c
+@@ -1058,7 +1058,7 @@ static struct virtio_driver virtio_blk =
+ #endif
+ };
+ 
+-static int __init init(void)
++static int __init virtio_blk_init(void)
+ {
+ 	int error;
+ 
+@@ -1084,14 +1084,14 @@ out_destroy_workqueue:
+ 	return error;
+ }
+ 
+-static void __exit fini(void)
++static void __exit virtio_blk_fini(void)
+ {
+ 	unregister_virtio_driver(&virtio_blk);
+ 	unregister_blkdev(major, "virtblk");
+ 	destroy_workqueue(virtblk_wq);
+ }
+-module_init(init);
+-module_exit(fini);
++module_init(virtio_blk_init);
++module_exit(virtio_blk_fini);
+ 
+ MODULE_DEVICE_TABLE(virtio, id_table);
+ MODULE_DESCRIPTION("Virtio block driver");
