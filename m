@@ -4,43 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EA48C433F5
-	for <nouveau@archiver.kernel.org>; Sun, 27 Mar 2022 07:44:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E11F0C433FE
+	for <nouveau@archiver.kernel.org>; Sun, 27 Mar 2022 07:44:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 151CD10E037;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7D8D10E046;
 	Sun, 27 Mar 2022 07:44:04 +0000 (UTC)
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA25910E103
- for <nouveau@lists.freedesktop.org>; Thu, 17 Mar 2022 20:43:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description;
- bh=3Vg3YWtqMNGIO5AWtFE29onUKdIZ8x188s7SviF5pPg=; b=tiAHL3PCQ2t7+lPOxKztKxihGl
- vd4Y8NiotnXISBxPTEpDpjnfGwN/+2gCzocwX9f1n0YfUlqtTEW8abkTbOXNks1/pe9V0o1aeVqiU
- mg+cp1CpvBpg/qj5G5LZWflb4aiFP803B14dktG2eQTzUpOmEwNqtoyK5FiuDb0e8dEHA1UwaTcNb
- TjTsqtIXdQy5uDTkofF/krC+Z1b0PK1+/Sh9yQPukGAwmINpZ+kCjgEBdHe1EVJZaGIr2Nw3tHUkm
- Ajhuyth6TCxfsRDyg2dioL17ZEbHaHLKorjuGU+sNiNOS0MkF5l5E/OHgiJGeyQY6IVrPFktt2Xla
- WvlJyMgw==;
-Received: from [2601:1c0:6280:3f0::aa0b]
- by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nUwxB-007IuO-IC; Thu, 17 Mar 2022 20:42:37 +0000
-Message-ID: <15fdafd4-e753-2c0e-4e61-6b168e064e72@infradead.org>
-Date: Thu, 17 Mar 2022 13:42:23 -0700
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25DD410EADC
+ for <nouveau@lists.freedesktop.org>; Thu, 17 Mar 2022 03:26:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1647487568;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=v2SLUI2o5WSRk9a3lKvJBCeORiM/sUU5CpB7omPJTl4=;
+ b=AnK5gI8OF/Wbub4qLHzMhUX2C7+Ev013qW94yFvxeULCN/hZOkpVtxAll1BngHb/4aagZ9
+ RE0CcSKao7azWofPPwjmpAk2ZYQ3VmrI5G8gzYouQr3bNi3zxjj8m7nfsdVY7vVwRNLlK0
+ RfT1ieSRPyrFhJxW0K57dkxvUXJK3Bo=
+Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com
+ [209.85.208.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-161-x-_bP3xKPd-UyhEr4ZyCZQ-1; Wed, 16 Mar 2022 23:26:06 -0400
+X-MC-Unique: x-_bP3xKPd-UyhEr4ZyCZQ-1
+Received: by mail-lj1-f199.google.com with SMTP id
+ x3-20020a05651c104300b00247ebe980b7so1609049ljm.11
+ for <nouveau@lists.freedesktop.org>; Wed, 16 Mar 2022 20:26:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=v2SLUI2o5WSRk9a3lKvJBCeORiM/sUU5CpB7omPJTl4=;
+ b=bYkpdFjBOkjnlBZtFv8an5oXEdwjm3FwomjhxzRfwmV6LdbdmLKCcFDMu9QVppZnH3
+ xD85jfIt1ohetKKbYSY110R5Uy0qeTlPKzjsuqzZ8UDn9Hi7Jkj9lygnnRi0WhgMXBTy
+ BmWHs+jCzVADJHka9XD5GdwUCVhAuf4B0bOZ7srGG/IaMfQiedJr5UW2b5Q9xsfzQZ5x
+ gPWZPYJorsl4OdhSju6N0KtrNYlsu+13NvxDgbJ+eEJRi8CGREmQ4jjtHyFM3vSJMBG0
+ nWdWkg/cw+0XdlGz8oEcihGg57Y9JpmUA9keI7ehg6Ar7HQuWIht56uhtuLwJcitdndJ
+ YTbg==
+X-Gm-Message-State: AOAM530l2TrMnPq8JB8fFnhB66ihtBGjztyWbZwD4vClcrVWZu285IZ4
+ nlYw4DEl8mVIR0FE2RaN5Ff+d0oTLi/WMBFyxCZXB5dEZNxQypj25WyLlSzjcCouiBmztMD1Z6/
+ sz6p/XRi8YU8kpvBtfVk6Gx5K6E9K4XuFe/fgKyVVKw==
+X-Received: by 2002:ac2:4189:0:b0:448:bc2b:e762 with SMTP id
+ z9-20020ac24189000000b00448bc2be762mr1484732lfh.471.1647487564794; 
+ Wed, 16 Mar 2022 20:26:04 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwXgM3TrKtjE8JRO+JLQ4gZHrItL2DfPkyIFRVyKVrsUjNu6z7Jg/bAU90mtxG6avLG14+uPzJmzqIeygxmack=
+X-Received: by 2002:ac2:4189:0:b0:448:bc2b:e762 with SMTP id
+ z9-20020ac24189000000b00448bc2be762mr1484712lfh.471.1647487564603; Wed, 16
+ Mar 2022 20:26:04 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: Pablo Neira Ayuso <pablo@netfilter.org>
 References: <20220316192010.19001-1-rdunlap@infradead.org>
- <20220316192010.19001-5-rdunlap@infradead.org> <YjNYo2LKM3smgEJM@salvia>
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <YjNYo2LKM3smgEJM@salvia>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ <20220316192010.19001-6-rdunlap@infradead.org>
+In-Reply-To: <20220316192010.19001-6-rdunlap@infradead.org>
+From: Jason Wang <jasowang@redhat.com>
+Date: Thu, 17 Mar 2022 11:25:53 +0800
+Message-ID: <CACGkMEsX4bS+wmmOE=L5COZxsdFCZmbLTnCe4fZs58MZRx+tQQ@mail.gmail.com>
+To: Randy Dunlap <rdunlap@infradead.org>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=jasowang@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Sun, 27 Mar 2022 07:44:03 +0000
-Subject: Re: [Nouveau] [PATCH 4/9] netfilter: h323: eliminate anonymous
+Subject: Re: [Nouveau] [PATCH 5/9] virtio-scsi: eliminate anonymous
  module_init & module_exit
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -53,19 +78,19 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: x86@kernel.org, Andy Lutomirski <luto@kernel.org>,
- "Michael S. Tsirkin" <mst@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
- nouveau@lists.freedesktop.org, Jason Wang <jasowang@redhat.com>,
+Cc: the arch/x86 maintainers <x86@kernel.org>,
+ Andy Lutomirski <luto@kernel.org>, "Michael S. Tsirkin" <mst@redhat.com>,
+ Peter Zijlstra <peterz@infradead.org>, nouveau@lists.freedesktop.org,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
  Dave Hansen <dave.hansen@linux.intel.com>,
  Valentina Manea <valentina.manea.m@gmail.com>,
  Krzysztof Opasiak <k.opasiak@samsung.com>, Eli Cohen <eli@mellanox.com>,
- netdev@vger.kernel.org, Shuah Khan <shuah@kernel.org>,
+ netdev <netdev@vger.kernel.org>, Shuah Khan <shuah@kernel.org>,
  Thomas Gleixner <tglx@linutronix.de>, "H. Peter Anvin" <hpa@zytor.com>,
  Arnd Bergmann <arnd@arndb.de>, Leon Romanovsky <leon@kernel.org>,
- linux-rdma@vger.kernel.org, Ingo Molnar <mingo@kernel.org>,
+ RDMA mailing list <linux-rdma@vger.kernel.org>, Ingo Molnar <mingo@kernel.org>,
  Jozsef Kadlecsik <kadlec@netfilter.org>, coreteam@netfilter.org,
- Jakub Kicinski <kuba@kernel.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Jakub Kicinski <kuba@kernel.org>, Pablo Neira Ayuso <pablo@netfilter.org>,
  Joachim Fritschi <jfritschi@freenet.de>,
  Felipe Balbi <felipe.balbi@linux.intel.com>, Amit Shah <amit@kernel.org>,
  "James E.J. Bottomley" <jejb@linux.ibm.com>,
@@ -75,11 +100,11 @@ Cc: x86@kernel.org, Andy Lutomirski <luto@kernel.org>,
  Borislav Petkov <bp@alien8.de>, Stefan Hajnoczi <stefanha@redhat.com>,
  Shuah Khan <skhan@linuxfoundation.org>,
  Jussi Kivilinna <jussi.kivilinna@mbnet.fi>,
- virtualization@lists.linux-foundation.org,
+ virtualization <virtualization@lists.linux-foundation.org>,
  Herbert Xu <herbert@gondor.apana.org.au>, Jens Axboe <axboe@kernel.dk>,
  linux-scsi@vger.kernel.org, "Martin K. Petersen" <martin.petersen@oracle.com>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org,
- Florian Westphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
+ Florian Westphal <fw@strlen.de>, linux-kernel <linux-kernel@vger.kernel.org>,
  netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
  Igor Kotrasinski <i.kotrasinsk@samsung.com>,
  Paolo Bonzini <pbonzini@redhat.com>, Saeed Mahameed <saeedm@nvidia.com>,
@@ -87,83 +112,73 @@ Cc: x86@kernel.org, Andy Lutomirski <luto@kernel.org>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+On Thu, Mar 17, 2022 at 3:24 AM Randy Dunlap <rdunlap@infradead.org> wrote:
+>
+> Eliminate anonymous module_init() and module_exit(), which can lead to
+> confusion or ambiguity when reading System.map, crashes/oops/bugs,
+> or an initcall_debug log.
+>
+> Give each of these init and exit functions unique driver-specific
+> names to eliminate the anonymous names.
+>
+> Example 1: (System.map)
+>  ffffffff832fc78c t init
+>  ffffffff832fc79e t init
+>  ffffffff832fc8f8 t init
+>
+> Example 2: (initcall_debug log)
+>  calling  init+0x0/0x12 @ 1
+>  initcall init+0x0/0x12 returned 0 after 15 usecs
+>  calling  init+0x0/0x60 @ 1
+>  initcall init+0x0/0x60 returned 0 after 2 usecs
+>  calling  init+0x0/0x9a @ 1
+>  initcall init+0x0/0x9a returned 0 after 74 usecs
+>
+> Fixes: 4fe74b1cb051 ("[SCSI] virtio-scsi: SCSI driver for QEMU based virtual machines")
+> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+> Cc: "Michael S. Tsirkin" <mst@redhat.com>
+> Cc: Jason Wang <jasowang@redhat.com>
+> Cc: Paolo Bonzini <pbonzini@redhat.com>
+> Cc: Stefan Hajnoczi <stefanha@redhat.com>
+> Cc: "James E.J. Bottomley" <jejb@linux.ibm.com>
+> Cc: "Martin K. Petersen" <martin.petersen@oracle.com>
+> Cc: linux-scsi@vger.kernel.org
+> Cc: virtualization@lists.linux-foundation.org
 
+Acked-by: Jason Wang <jasowang@redhat.com>
 
-On 3/17/22 08:49, Pablo Neira Ayuso wrote:
-> On Wed, Mar 16, 2022 at 12:20:05PM -0700, Randy Dunlap wrote:
->> Eliminate anonymous module_init() and module_exit(), which can lead to
->> confusion or ambiguity when reading System.map, crashes/oops/bugs,
->> or an initcall_debug log.
->>
->> Give each of these init and exit functions unique driver-specific
->> names to eliminate the anonymous names.
->>
->> Example 1: (System.map)
->>  ffffffff832fc78c t init
->>  ffffffff832fc79e t init
->>  ffffffff832fc8f8 t init
->>
->> Example 2: (initcall_debug log)
->>  calling  init+0x0/0x12 @ 1
->>  initcall init+0x0/0x12 returned 0 after 15 usecs
->>  calling  init+0x0/0x60 @ 1
->>  initcall init+0x0/0x60 returned 0 after 2 usecs
->>  calling  init+0x0/0x9a @ 1
->>  initcall init+0x0/0x9a returned 0 after 74 usecs
-> 
-> LGTM.
-> 
-> Should I route this through the netfilter tree?
+> ---
+>  drivers/scsi/virtio_scsi.c |    8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> --- lnx-517-rc8.orig/drivers/scsi/virtio_scsi.c
+> +++ lnx-517-rc8/drivers/scsi/virtio_scsi.c
+> @@ -988,7 +988,7 @@ static struct virtio_driver virtio_scsi_
+>         .remove = virtscsi_remove,
+>  };
+>
+> -static int __init init(void)
+> +static int __init virtio_scsi_init(void)
+>  {
+>         int ret = -ENOMEM;
+>
+> @@ -1020,14 +1020,14 @@ error:
+>         return ret;
+>  }
+>
+> -static void __exit fini(void)
+> +static void __exit virtio_scsi_fini(void)
+>  {
+>         unregister_virtio_driver(&virtio_scsi_driver);
+>         mempool_destroy(virtscsi_cmd_pool);
+>         kmem_cache_destroy(virtscsi_cmd_cache);
+>  }
+> -module_init(init);
+> -module_exit(fini);
+> +module_init(virtio_scsi_init);
+> +module_exit(virtio_scsi_fini);
+>
+>  MODULE_DEVICE_TABLE(virtio, id_table);
+>  MODULE_DESCRIPTION("Virtio SCSI HBA driver");
+>
 
-Yes, please.
-Thanks.
-
-> 
->> Fixes: f587de0e2feb ("[NETFILTER]: nf_conntrack/nf_nat: add H.323 helper port")
->> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
->> Cc: Pablo Neira Ayuso <pablo@netfilter.org>
->> Cc: Jozsef Kadlecsik <kadlec@netfilter.org>
->> Cc: Florian Westphal <fw@strlen.de>
->> Cc: netfilter-devel@vger.kernel.org
->> Cc: coreteam@netfilter.org
->> Cc: "David S. Miller" <davem@davemloft.net>
->> Cc: Jakub Kicinski <kuba@kernel.org>
->> Cc: netdev@vger.kernel.org
->> ---
->>  net/ipv4/netfilter/nf_nat_h323.c |    8 ++++----
->>  1 file changed, 4 insertions(+), 4 deletions(-)
->>
->> --- lnx-517-rc8.orig/net/ipv4/netfilter/nf_nat_h323.c
->> +++ lnx-517-rc8/net/ipv4/netfilter/nf_nat_h323.c
->> @@ -580,7 +580,7 @@ static struct nf_ct_helper_expectfn call
->>  };
->>  
->>  /****************************************************************************/
->> -static int __init init(void)
->> +static int __init nf_nat_h323_init(void)
->>  {
->>  	BUG_ON(set_h245_addr_hook != NULL);
->>  	BUG_ON(set_h225_addr_hook != NULL);
->> @@ -607,7 +607,7 @@ static int __init init(void)
->>  }
->>  
->>  /****************************************************************************/
->> -static void __exit fini(void)
->> +static void __exit nf_nat_h323_fini(void)
->>  {
->>  	RCU_INIT_POINTER(set_h245_addr_hook, NULL);
->>  	RCU_INIT_POINTER(set_h225_addr_hook, NULL);
->> @@ -624,8 +624,8 @@ static void __exit fini(void)
->>  }
->>  
->>  /****************************************************************************/
->> -module_init(init);
->> -module_exit(fini);
->> +module_init(nf_nat_h323_init);
->> +module_exit(nf_nat_h323_fini);
->>  
->>  MODULE_AUTHOR("Jing Min Zhao <zhaojingmin@users.sourceforge.net>");
->>  MODULE_DESCRIPTION("H.323 NAT helper");
-
--- 
-~Randy
