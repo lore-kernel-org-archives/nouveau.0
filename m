@@ -4,43 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55A8BC433F5
-	for <nouveau@archiver.kernel.org>; Sun, 27 Mar 2022 07:44:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C0BFC433FE
+	for <nouveau@archiver.kernel.org>; Sun, 27 Mar 2022 07:44:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BBED10E157;
-	Sun, 27 Mar 2022 07:44:07 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31D1610E193
- for <nouveau@lists.freedesktop.org>; Thu, 24 Mar 2022 18:03:43 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 6347761A78;
- Thu, 24 Mar 2022 18:03:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CA14C340F0;
- Thu, 24 Mar 2022 18:03:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1648145021;
- bh=t4qj3yzjpmPxrk9bbLyU8usx0IFZLTWW+/9wIEcE8T0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=RyuBJrVfvGAO3I+jdGpD3wWjzHZ5BPFyIqWkxNU+ZGEMVRx7okKrAVg0PHdIgXy4E
- j4cvG8KokWZHeHXK0v8HaHHhcoisqdch4CPoA+WYVrKKai6xags4j49GUPqZZ6xnEB
- vX/rIS8hBuibENDX1LmjivHy2I6Qh8ZIvogvzXRALHN4kltJcr6V23dr2ZqJgOU6mP
- TD93ffV9fwme715cdPhGHRTErYTO3HZf9IkAexYWpInnigQvrxwRqgDcZRUpt8BBf8
- 0zasG5ShtBezkzkb66iOesP0vxz0bNxkuOcwbWqujbYehvDg4uxsOffNUk+FMD/dgV
- IsMlJ1z61ezEw==
-Date: Thu, 24 Mar 2022 20:03:37 +0200
-From: Leon Romanovsky <leon@kernel.org>
-To: Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <YjyyeUEAo+1Kob5v@unreal>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9D4D10E227;
+	Sun, 27 Mar 2022 07:44:06 +0000 (UTC)
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3F8C10EAFC
+ for <nouveau@lists.freedesktop.org>; Thu, 17 Mar 2022 15:49:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
+ Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+ :Reply-To:Content-ID:Content-Description;
+ bh=ThAyvdoG1U35K2Hzsm1O2USOWq/3qlMrhSaUoYHrsOs=; b=F6Vs/65oeZV/y3wN6Bw/M7u1FQ
+ 5O+4lQTnS32R0VfdvOK1oVjLmv61tBR4yMMjN/NVDsOnHzoBbLMjP382aAGEyJMaumvolGSgA+m71
+ 1Ehmx8UPj/GCllYWg+tBYociITo9JftToXJThRJBZ9nw2p07B62DgVCik4yzpt77Z8S9KNWcKP8vq
+ 3tLkrgPZtcMac/dncj65oYGZ4SvtO6CK7F7u84MgNbC6goRbCxod26J//CJV7WZO58VGV5QhSn55l
+ /KYfPXjDju0sdq2JANUCt29NuoEjYNFSGZB5nEbrQ97N+XXeTVv8WhJJ+KmWXn+usTtelySDGt3Ln
+ 87L6gQCw==;
+Received: from [54.239.6.186] (helo=freeip.amazon.com)
+ by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nUsLq-0075ta-2M; Thu, 17 Mar 2022 15:47:46 +0000
+Message-ID: <f7b858bb438d1979c1f092e105e0db4c7af47758.camel@infradead.org>
+From: Amit Shah <amit@infradead.org>
+To: Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org
+Date: Thu, 17 Mar 2022 16:47:42 +0100
+In-Reply-To: <20220316192010.19001-3-rdunlap@infradead.org>
 References: <20220316192010.19001-1-rdunlap@infradead.org>
- <20220316192010.19001-4-rdunlap@infradead.org>
+ <20220316192010.19001-3-rdunlap@infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5-0ubuntu1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220316192010.19001-4-rdunlap@infradead.org>
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Sun, 27 Mar 2022 07:44:03 +0000
-Subject: Re: [Nouveau] [PATCH 3/9] net: mlx5: eliminate anonymous
+Subject: Re: [Nouveau] [PATCH 2/9] virtio_console: eliminate anonymous
  module_init & module_exit
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,37 +56,36 @@ Cc: x86@kernel.org, Andy Lutomirski <luto@kernel.org>,
  nouveau@lists.freedesktop.org, Jason Wang <jasowang@redhat.com>,
  Dave Hansen <dave.hansen@linux.intel.com>,
  Valentina Manea <valentina.manea.m@gmail.com>,
+ virtualization@lists.linux-foundation.org,
  Krzysztof Opasiak <k.opasiak@samsung.com>, Eli Cohen <eli@mellanox.com>,
  netdev@vger.kernel.org, Shuah Khan <shuah@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, "H. Peter Anvin" <hpa@zytor.com>,
- Arnd Bergmann <arnd@arndb.de>, linux-scsi@vger.kernel.org,
- linux-rdma@vger.kernel.org, Ingo Molnar <mingo@kernel.org>,
- Jozsef Kadlecsik <kadlec@netfilter.org>, coreteam@netfilter.org,
- Jakub Kicinski <kuba@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>, "H. Peter
+ Anvin" <hpa@zytor.com>, Arnd Bergmann <arnd@arndb.de>,
+ Leon Romanovsky <leon@kernel.org>, linux-rdma@vger.kernel.org,
+ Ingo Molnar <mingo@kernel.org>, Jozsef Kadlecsik <kadlec@netfilter.org>,
+ coreteam@netfilter.org, Jakub Kicinski <kuba@kernel.org>,
  Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
  Pablo Neira Ayuso <pablo@netfilter.org>,
  Joachim Fritschi <jfritschi@freenet.de>,
  Felipe Balbi <felipe.balbi@linux.intel.com>, Amit Shah <amit@kernel.org>,
  "James E.J. Bottomley" <jejb@linux.ibm.com>,
  Steven Rostedt <rostedt@goodmis.org>,
- =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+ =?UTF-8?Q?Micha=C5=82_Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
  linux-block@vger.kernel.org, Pekka Paalanen <ppaalanen@gmail.com>,
  Borislav Petkov <bp@alien8.de>, Stefan Hajnoczi <stefanha@redhat.com>,
  Shuah Khan <skhan@linuxfoundation.org>,
  Jussi Kivilinna <jussi.kivilinna@mbnet.fi>,
- virtualization@lists.linux-foundation.org,
  Herbert Xu <herbert@gondor.apana.org.au>, Jens Axboe <axboe@kernel.dk>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
+ linux-scsi@vger.kernel.org, "Martin K. Petersen" <martin.petersen@oracle.com>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org,
- Florian Westphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
- netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
- Igor Kotrasinski <i.kotrasinsk@samsung.com>,
+ Florian Westphal <fw@strlen.de>, netfilter-devel@vger.kernel.org,
+ linux-crypto@vger.kernel.org, Igor Kotrasinski <i.kotrasinsk@samsung.com>,
  Paolo Bonzini <pbonzini@redhat.com>, Saeed Mahameed <saeedm@nvidia.com>,
  "David S. Miller" <davem@davemloft.net>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Mar 16, 2022 at 12:20:04PM -0700, Randy Dunlap wrote:
+On Wed, 2022-03-16 at 12:20 -0700, Randy Dunlap wrote:
 > Eliminate anonymous module_init() and module_exit(), which can lead to
 > confusion or ambiguity when reading System.map, crashes/oops/bugs,
 > or an initcall_debug log.
@@ -109,17 +106,32 @@ On Wed, Mar 16, 2022 at 12:20:04PM -0700, Randy Dunlap wrote:
 >  calling  init+0x0/0x9a @ 1
 >  initcall init+0x0/0x9a returned 0 after 74 usecs
 > 
-> Fixes: e126ba97dba9 ("mlx5: Add driver for Mellanox Connect-IB adapters")
-> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-> Cc: Eli Cohen <eli@mellanox.com>
-> Cc: Saeed Mahameed <saeedm@nvidia.com>
-> Cc: netdev@vger.kernel.org
-> Cc: Leon Romanovsky <leon@kernel.org>
-> Cc: linux-rdma@vger.kernel.org
-> ---
->  drivers/net/ethernet/mellanox/mlx5/core/main.c |    8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+> Fixes: 31610434bc35 ("Virtio console driver")
+> Fixes: 7177876fea83 ("virtio: console: Add ability to remove module")
+> Signed-off-by: Randy Dunlap <
+> rdunlap@infradead.org
+> >
+> Cc: Amit Shah <
+> amit@kernel.org
+> >
+> Cc: 
+> virtualization@lists.linux-foundation.org
 > 
+> Cc: Arnd Bergmann <
+> arnd@arndb.de
+> >
+> Cc: Greg Kroah-Hartman <
+> gregkh@linuxfoundation.org
+> >
+> ---
+>  drivers/char/virtio_console.c |    8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 
-Thanks,
-Reviewed-by: Leon Romanovsky <leonro@nvidia.com>
+Reviewed-by: Amit Shah <amit@kernel.org>
+
+I don't think the Fixes-by really applies here, though - we don't
+really want to push this into stable, nor do we want any automated
+tools to pick this up because of that tag..
+
+		Amit
+
