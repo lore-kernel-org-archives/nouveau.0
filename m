@@ -4,40 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F9BDC433F5
-	for <nouveau@archiver.kernel.org>; Sun, 27 Mar 2022 07:44:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77A08C433EF
+	for <nouveau@archiver.kernel.org>; Sun, 27 Mar 2022 07:44:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4D1410E075;
-	Sun, 27 Mar 2022 07:44:04 +0000 (UTC)
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71D0010E9C9
- for <nouveau@lists.freedesktop.org>; Wed, 16 Mar 2022 19:21:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
- :Reply-To:Content-Type:Content-ID:Content-Description;
- bh=bxcgHAl0Vjaoi9igyOuuv3t+bDn9tO/RrS7lBi/KU+M=; b=f6hRy706t/BpNpFO1C9Km2RrDC
- QpQAZACubPMNHVjc1Qg4uTBS8JBsSkx6wWoOO6MkPJLDnRMPb4gvs6j+IxwOBV3OSeMK+SM4Bc/qr
- cbVKkVwZ7HPLsk4PUNHYTJtLurqFWxXaUdf1VQas1wSqg474f4RVgG74C1IMA8nhCoibwkT0pOmOU
- GBglyb2fZdt3taUHK7+NnvqDf/kegkuSfBz7kIBCvuVIgmTmTlKHaYbML2syZZpq1QELYE2/RzZoa
- l0az3lska8YewVS5FuOdlrR7fZdGroVN4nksyhhqrm4CGqbCEJyDuxhNl+9rqNtKe/b3GXlgFM8kV
- vY7z0i7Q==;
-Received: from [2601:1c0:6280:3f0::aa0b] (helo=bombadil.infradead.org)
- by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nUZBy-00EArp-Bl; Wed, 16 Mar 2022 19:20:18 +0000
-From: Randy Dunlap <rdunlap@infradead.org>
-To: linux-kernel@vger.kernel.org
-Date: Wed, 16 Mar 2022 12:20:03 -0700
-Message-Id: <20220316192010.19001-3-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220316192010.19001-1-rdunlap@infradead.org>
-References: <20220316192010.19001-1-rdunlap@infradead.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DD1710E0CB;
+	Sun, 27 Mar 2022 07:44:05 +0000 (UTC)
+Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8569210F3C3;
+ Sat, 19 Mar 2022 10:28:12 +0000 (UTC)
+Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
+ by localhost (Postfix) with ESMTP id 4KLHCG2thjz9sSW;
+ Sat, 19 Mar 2022 11:28:10 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from pegase2.c-s.fr ([172.26.127.65])
+ by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id mm8j_WRInuZR; Sat, 19 Mar 2022 11:28:10 +0100 (CET)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+ by pegase2.c-s.fr (Postfix) with ESMTP id 4KLHCG1bXGz9sSP;
+ Sat, 19 Mar 2022 11:28:10 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+ by messagerie.si.c-s.fr (Postfix) with ESMTP id 18F288B76C;
+ Sat, 19 Mar 2022 11:28:10 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+ by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+ with ESMTP id a17gy9YEoaHD; Sat, 19 Mar 2022 11:28:09 +0100 (CET)
+Received: from PO20335.IDSI0.si.c-s.fr (unknown [192.168.202.222])
+ by messagerie.si.c-s.fr (Postfix) with ESMTP id C04188B765;
+ Sat, 19 Mar 2022 11:28:09 +0100 (CET)
+Received: from PO20335.IDSI0.si.c-s.fr (localhost [127.0.0.1])
+ by PO20335.IDSI0.si.c-s.fr (8.17.1/8.16.1) with ESMTPS id 22JARwNd456602
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Sat, 19 Mar 2022 11:27:58 +0100
+Received: (from chleroy@localhost)
+ by PO20335.IDSI0.si.c-s.fr (8.17.1/8.17.1/Submit) id 22JARuTD456594;
+ Sat, 19 Mar 2022 11:27:56 +0100
+X-Authentication-Warning: PO20335.IDSI0.si.c-s.fr: chleroy set sender to
+ christophe.leroy@csgroup.eu using -f
+From: Christophe Leroy <christophe.leroy@csgroup.eu>
+To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>
+Date: Sat, 19 Mar 2022 11:27:51 +0100
+Message-Id: <7e0612b61511ec8030e3b2dcbfaa7751781c8b91.1647684507.git.christophe.leroy@csgroup.eu>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1647685669; l=3722; s=20211009;
+ h=from:subject:message-id; bh=y5DQYDGAWf+okMg9sN/L7lksMPfKpXX0wlcMvN+TCx8=;
+ b=BT0h00TI+fMGlEX6pCDLyjtx88LkgtnMe1L7kFbayDTiEZXd6XQy/COY5UB6n29i40apuruO6pqn
+ hs/Pbx4tCwp2V2DyWFRrCMSLctLldhri/vsSKggV7Xx2XGdvLBsE
+X-Developer-Key: i=christophe.leroy@csgroup.eu; a=ed25519;
+ pk=HIzTzUj91asvincQGOFx6+ZF5AoUuP9GdOtQChs7Mm0=
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sun, 27 Mar 2022 07:44:03 +0000
-Subject: [Nouveau] [PATCH 2/9] virtio_console: eliminate anonymous
- module_init & module_exit
+Subject: [Nouveau] [PATCH v2] drm/nouveau/bios: Rename prom_init() and
+ friends functions
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,101 +70,106 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-usb@vger.kernel.org, Andy Lutomirski <luto@kernel.org>,
- "Michael S. Tsirkin" <mst@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
- nouveau@lists.freedesktop.org, Jason Wang <jasowang@redhat.com>,
- Dave Hansen <dave.hansen@linux.intel.com>,
- Valentina Manea <valentina.manea.m@gmail.com>,
- virtualization@lists.linux-foundation.org,
- Krzysztof Opasiak <k.opasiak@samsung.com>, Eli Cohen <eli@mellanox.com>,
- netdev@vger.kernel.org, Shuah Khan <shuah@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, "H. Peter Anvin" <hpa@zytor.com>,
- Arnd Bergmann <arnd@arndb.de>, Leon Romanovsky <leon@kernel.org>,
- linux-rdma@vger.kernel.org, Ingo Molnar <mingo@kernel.org>,
- Jozsef Kadlecsik <kadlec@netfilter.org>, coreteam@netfilter.org,
- Jakub Kicinski <kuba@kernel.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Pablo Neira Ayuso <pablo@netfilter.org>,
- Joachim Fritschi <jfritschi@freenet.de>,
- Felipe Balbi <felipe.balbi@linux.intel.com>, Amit Shah <amit@kernel.org>,
- "James E.J. Bottomley" <jejb@linux.ibm.com>,
- Steven Rostedt <rostedt@goodmis.org>,
- =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
- linux-block@vger.kernel.org, Pekka Paalanen <ppaalanen@gmail.com>,
- Borislav Petkov <bp@alien8.de>, Stefan Hajnoczi <stefanha@redhat.com>,
- Shuah Khan <skhan@linuxfoundation.org>,
- Jussi Kivilinna <jussi.kivilinna@mbnet.fi>,
- Herbert Xu <herbert@gondor.apana.org.au>, Jens Axboe <axboe@kernel.dk>,
- x86@kernel.org, linux-scsi@vger.kernel.org,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Randy Dunlap <rdunlap@infradead.org>, Florian Westphal <fw@strlen.de>,
- netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
- Igor Kotrasinski <i.kotrasinsk@samsung.com>,
- Paolo Bonzini <pbonzini@redhat.com>, Saeed Mahameed <saeedm@nvidia.com>,
- "David S. Miller" <davem@davemloft.net>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Christophe Leroy <christophe.leroy@csgroup.eu>, linux-kernel@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Eliminate anonymous module_init() and module_exit(), which can lead to
-confusion or ambiguity when reading System.map, crashes/oops/bugs,
-or an initcall_debug log.
+While working at fixing powerpc headers, I ended up with the
+following error.
 
-Give each of these init and exit functions unique driver-specific
-names to eliminate the anonymous names.
+	drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c:48:1: error: conflicting types for 'prom_init'; have 'void *(struct nvkm_bios *, const char *)'
+	make[5]: *** [scripts/Makefile.build:288: drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.o] Error 1
 
-Example 1: (System.map)
- ffffffff832fc78c t init
- ffffffff832fc79e t init
- ffffffff832fc8f8 t init
+powerpc and a few other architectures have a prom_init() global function.
+One day or another it will conflict with the one in shadowrom.c
 
-Example 2: (initcall_debug log)
- calling  init+0x0/0x12 @ 1
- initcall init+0x0/0x12 returned 0 after 15 usecs
- calling  init+0x0/0x60 @ 1
- initcall init+0x0/0x60 returned 0 after 2 usecs
- calling  init+0x0/0x9a @ 1
- initcall init+0x0/0x9a returned 0 after 74 usecs
+Those being static, they can easily be renamed. Do it.
 
-Fixes: 31610434bc35 ("Virtio console driver")
-Fixes: 7177876fea83 ("virtio: console: Add ability to remove module")
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Cc: Amit Shah <amit@kernel.org>
-Cc: virtualization@lists.linux-foundation.org
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+While at it, also rename the ops structure as 'nvbios_prom' instead of
+'nvbios_rom' in order to make it clear that it refers to the
+NV_PROM device.
+
+Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
 ---
- drivers/char/virtio_console.c |    8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+v2: using nvbios_prom prefix instead of nvbios_rom. Changed structure name to keep things consistant.
 
---- lnx-517-rc8.orig/drivers/char/virtio_console.c
-+++ lnx-517-rc8/drivers/char/virtio_console.c
-@@ -2245,7 +2245,7 @@ static struct virtio_driver virtio_rproc
- 	.remove =	virtcons_remove,
+ drivers/gpu/drm/nouveau/nvkm/subdev/bios/priv.h    |  2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c  |  2 +-
+ .../gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c   | 14 +++++++-------
+ 3 files changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/priv.h b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/priv.h
+index fac1bff1311b..cfa8a0c356dd 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/priv.h
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/priv.h
+@@ -19,7 +19,7 @@ struct nvbios_source {
+ int nvbios_extend(struct nvkm_bios *, u32 length);
+ int nvbios_shadow(struct nvkm_bios *);
+ 
+-extern const struct nvbios_source nvbios_rom;
++extern const struct nvbios_source nvbios_prom;
+ extern const struct nvbios_source nvbios_ramin;
+ extern const struct nvbios_source nvbios_acpi_fast;
+ extern const struct nvbios_source nvbios_acpi_slow;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c
+index 4b571cc6bc70..19188683c8fc 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c
+@@ -171,7 +171,7 @@ nvbios_shadow(struct nvkm_bios *bios)
+ 	struct shadow mthds[] = {
+ 		{ 0, &nvbios_of },
+ 		{ 0, &nvbios_ramin },
+-		{ 0, &nvbios_rom },
++		{ 0, &nvbios_prom },
+ 		{ 0, &nvbios_acpi_fast },
+ 		{ 4, &nvbios_acpi_slow },
+ 		{ 1, &nvbios_pcirom },
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c
+index ffa4b395220a..39144ceb117b 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c
+@@ -25,7 +25,7 @@
+ #include <subdev/pci.h>
+ 
+ static u32
+-prom_read(void *data, u32 offset, u32 length, struct nvkm_bios *bios)
++nvbios_prom_read(void *data, u32 offset, u32 length, struct nvkm_bios *bios)
+ {
+ 	struct nvkm_device *device = data;
+ 	u32 i;
+@@ -38,14 +38,14 @@ prom_read(void *data, u32 offset, u32 length, struct nvkm_bios *bios)
+ }
+ 
+ static void
+-prom_fini(void *data)
++nvbios_prom_fini(void *data)
+ {
+ 	struct nvkm_device *device = data;
+ 	nvkm_pci_rom_shadow(device->pci, true);
+ }
+ 
+ static void *
+-prom_init(struct nvkm_bios *bios, const char *name)
++nvbios_prom_init(struct nvkm_bios *bios, const char *name)
+ {
+ 	struct nvkm_device *device = bios->subdev.device;
+ 	if (device->card_type == NV_40 && device->chipset >= 0x4c)
+@@ -55,10 +55,10 @@ prom_init(struct nvkm_bios *bios, const char *name)
+ }
+ 
+ const struct nvbios_source
+-nvbios_rom = {
++nvbios_prom = {
+ 	.name = "PROM",
+-	.init = prom_init,
+-	.fini = prom_fini,
+-	.read = prom_read,
++	.init = nvbios_prom_init,
++	.fini = nvbios_prom_fini,
++	.read = nvbios_prom_read,
+ 	.rw = false,
  };
- 
--static int __init init(void)
-+static int __init virtio_console_init(void)
- {
- 	int err;
- 
-@@ -2280,7 +2280,7 @@ free:
- 	return err;
- }
- 
--static void __exit fini(void)
-+static void __exit virtio_console_fini(void)
- {
- 	reclaim_dma_bufs();
- 
-@@ -2290,8 +2290,8 @@ static void __exit fini(void)
- 	class_destroy(pdrvdata.class);
- 	debugfs_remove_recursive(pdrvdata.debugfs_dir);
- }
--module_init(init);
--module_exit(fini);
-+module_init(virtio_console_init);
-+module_exit(virtio_console_fini);
- 
- MODULE_DESCRIPTION("Virtio console driver");
- MODULE_LICENSE("GPL");
+-- 
+2.35.1
+
