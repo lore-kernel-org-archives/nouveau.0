@@ -4,40 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6236BC433FE
-	for <nouveau@archiver.kernel.org>; Sun, 27 Mar 2022 07:44:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41007C433F5
+	for <nouveau@archiver.kernel.org>; Sun, 27 Mar 2022 07:44:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37EB510E0F1;
-	Sun, 27 Mar 2022 07:44:05 +0000 (UTC)
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE9F310E9C9
- for <nouveau@lists.freedesktop.org>; Wed, 16 Mar 2022 19:21:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
- :Reply-To:Content-Type:Content-ID:Content-Description;
- bh=eCnVY7uQehwpOm+/i+ja6QzAKTO0vo8Gbh+yXOb+Gg8=; b=m6A+Wfto0x/+asj1wMXe6zUSoZ
- VW5gB9LD8p4BZS/fH+G1DjKRf3HJg9qcRbrRBBDIf4xPZl6DdNvFnd6c68IC5/fMVAQFBK3WmkBZA
- b1YgQZgXNEa2sjTW4NsgVsBFL+UlE4F6iZn8e9REQQmC6G1ejP6tabyS/AVW/K/MUTr/tJFQ04Tm3
- 7t6qa5bO1NyCGn3r6ypp7kK+AgAqgg4M8dV9+q06bvu0XOTlt5wUoD3YAbcznwzzHiizxoy8balfP
- 1W/HSRRJTvQsHB24y9B/CI3cWIlYos50+150upEuzFMLrTvzpxBYw0wPNMtDbdaVK0lksct7M2Hah
- I/B++NZA==;
-Received: from [2601:1c0:6280:3f0::aa0b] (helo=bombadil.infradead.org)
- by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nUZC0-00EArp-6Y; Wed, 16 Mar 2022 19:20:20 +0000
-From: Randy Dunlap <rdunlap@infradead.org>
-To: linux-kernel@vger.kernel.org
-Date: Wed, 16 Mar 2022 12:20:04 -0700
-Message-Id: <20220316192010.19001-4-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220316192010.19001-1-rdunlap@infradead.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 123C610E1A4;
+	Sun, 27 Mar 2022 07:44:06 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B05988735
+ for <nouveau@lists.freedesktop.org>; Sun, 20 Mar 2022 12:04:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1647777854;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=9OfrrvJ+JSNxjBs8qAJPKPxz/pmLtZ2ITjpHEArPw5E=;
+ b=RNM2hDPx/BuydcEGMaDPuIaI2BD33giuOYfEV6AIYnkPJcwIUzDFtdoLqcM196GMiiYXie
+ fsR6ecLotW6stPnE40yLWRCsxB7cM4329NQ3ELfBZ8aegmWwpK/MHPjtLxIoZyzQfrKLEv
+ OVS4dIDn/qxWT1EUxoErDFf8VqEPKc0=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-483-w3eYX4zDNIGrwpecmJf0Jw-1; Sun, 20 Mar 2022 08:04:12 -0400
+X-MC-Unique: w3eYX4zDNIGrwpecmJf0Jw-1
+Received: by mail-ej1-f70.google.com with SMTP id
+ hr26-20020a1709073f9a00b006d6d1ee8cf8so5894164ejc.19
+ for <nouveau@lists.freedesktop.org>; Sun, 20 Mar 2022 05:04:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=9OfrrvJ+JSNxjBs8qAJPKPxz/pmLtZ2ITjpHEArPw5E=;
+ b=cWorCU1gKiE4iGJaszih4bwMbmeRrPaLhw4sQBtrWwtbPvKGDZz1yyOcy8k2mRKBFv
+ jdMcAogTh4DJuBWxl6NctSG7eEXmk3PSCuBvv1FA5t/kf+oGXQylH2B45wQS+gx9pb60
+ X72oC4TRoOsbVgxfzNQzOX0SwYpeofo+09Pph2tKn2WPkrb5EOVKkhJHiINQUHjnsy/j
+ MSe7VxifW+IGO8EXT4eESPNEuTNQErahqYzj6lmWV9+8LqbAqMFK1G5ALh1ug4qqUKbX
+ pUftQ+/iIZ4AShoH5S7fpRAp7cfQtCQtDxVh+GzlMDq3PqtmvF3ix+clYmHLQtjnI1lW
+ T7tQ==
+X-Gm-Message-State: AOAM533hiC4AAcmjAu6VvtekUin1ANkE33bFYDCSohRP+Z9V7+1hvdjT
+ nV86NKTc0eJCI1jvkQjjozf4xEGRu0mSjI4y98WBddMbien4A3kd2rU8cHrQ+3lG+R8HZSMQPSJ
+ Y0S1HS3Ga5hskwbPvPgdjyAGYVQ==
+X-Received: by 2002:a17:907:7e88:b0:6db:ad88:2294 with SMTP id
+ qb8-20020a1709077e8800b006dbad882294mr16017783ejc.371.1647777851459; 
+ Sun, 20 Mar 2022 05:04:11 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJybuaY3RTwLFhNmn8ph3qfEMlXOeFvtOmTr+FUYne4h/XgSMGx9RwM3ZmeWDHdWHYLvNIiqSA==
+X-Received: by 2002:a17:907:7e88:b0:6db:ad88:2294 with SMTP id
+ qb8-20020a1709077e8800b006dbad882294mr16017754ejc.371.1647777851178; 
+ Sun, 20 Mar 2022 05:04:11 -0700 (PDT)
+Received: from redhat.com ([2.55.132.0]) by smtp.gmail.com with ESMTPSA id
+ hb6-20020a170907160600b006dff6a979fdsm856220ejc.51.2022.03.20.05.04.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 20 Mar 2022 05:04:10 -0700 (PDT)
+Date: Sun, 20 Mar 2022 08:04:00 -0400
+From: "Michael S. Tsirkin" <mst@redhat.com>
+To: Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <20220320080242-mutt-send-email-mst@kernel.org>
 References: <20220316192010.19001-1-rdunlap@infradead.org>
+ <20220316192010.19001-2-rdunlap@infradead.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220316192010.19001-2-rdunlap@infradead.org>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=mst@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Mailman-Approved-At: Sun, 27 Mar 2022 07:44:03 +0000
-Subject: [Nouveau] [PATCH 3/9] net: mlx5: eliminate anonymous module_init &
- module_exit
+Subject: Re: [Nouveau] [PATCH 1/9] virtio_blk: eliminate anonymous
+ module_init & module_exit
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,12 +83,10 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-usb@vger.kernel.org, Andy Lutomirski <luto@kernel.org>,
- "Michael S. Tsirkin" <mst@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
- nouveau@lists.freedesktop.org, Jason Wang <jasowang@redhat.com>,
- Dave Hansen <dave.hansen@linux.intel.com>,
+Cc: x86@kernel.org, Andy Lutomirski <luto@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>, nouveau@lists.freedesktop.org,
+ Jason Wang <jasowang@redhat.com>, Dave Hansen <dave.hansen@linux.intel.com>,
  Valentina Manea <valentina.manea.m@gmail.com>,
- virtualization@lists.linux-foundation.org,
  Krzysztof Opasiak <k.opasiak@samsung.com>, Eli Cohen <eli@mellanox.com>,
  netdev@vger.kernel.org, Shuah Khan <shuah@kernel.org>,
  Thomas Gleixner <tglx@linutronix.de>, "H. Peter Anvin" <hpa@zytor.com>,
@@ -68,16 +100,16 @@ Cc: linux-usb@vger.kernel.org, Andy Lutomirski <luto@kernel.org>,
  Felipe Balbi <felipe.balbi@linux.intel.com>, Amit Shah <amit@kernel.org>,
  "James E.J. Bottomley" <jejb@linux.ibm.com>,
  Steven Rostedt <rostedt@goodmis.org>,
- =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
+ =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
  linux-block@vger.kernel.org, Pekka Paalanen <ppaalanen@gmail.com>,
  Borislav Petkov <bp@alien8.de>, Stefan Hajnoczi <stefanha@redhat.com>,
  Shuah Khan <skhan@linuxfoundation.org>,
  Jussi Kivilinna <jussi.kivilinna@mbnet.fi>,
+ virtualization@lists.linux-foundation.org,
  Herbert Xu <herbert@gondor.apana.org.au>, Jens Axboe <axboe@kernel.dk>,
- x86@kernel.org, linux-scsi@vger.kernel.org,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Randy Dunlap <rdunlap@infradead.org>, Florian Westphal <fw@strlen.de>,
+ linux-scsi@vger.kernel.org, "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org,
+ Florian Westphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
  netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
  Igor Kotrasinski <i.kotrasinsk@samsung.com>,
  Paolo Bonzini <pbonzini@redhat.com>, Saeed Mahameed <saeedm@nvidia.com>,
@@ -85,62 +117,75 @@ Cc: linux-usb@vger.kernel.org, Andy Lutomirski <luto@kernel.org>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Eliminate anonymous module_init() and module_exit(), which can lead to
-confusion or ambiguity when reading System.map, crashes/oops/bugs,
-or an initcall_debug log.
+On Wed, Mar 16, 2022 at 12:20:02PM -0700, Randy Dunlap wrote:
+> Eliminate anonymous module_init() and module_exit(), which can lead to
+> confusion or ambiguity when reading System.map, crashes/oops/bugs,
+> or an initcall_debug log.
+> 
+> Give each of these init and exit functions unique driver-specific
+> names to eliminate the anonymous names.
+> 
+> Example 1: (System.map)
+>  ffffffff832fc78c t init
+>  ffffffff832fc79e t init
+>  ffffffff832fc8f8 t init
+> 
+> Example 2: (initcall_debug log)
+>  calling  init+0x0/0x12 @ 1
+>  initcall init+0x0/0x12 returned 0 after 15 usecs
+>  calling  init+0x0/0x60 @ 1
+>  initcall init+0x0/0x60 returned 0 after 2 usecs
+>  calling  init+0x0/0x9a @ 1
+>  initcall init+0x0/0x9a returned 0 after 74 usecs
+> 
+> Fixes: e467cde23818 ("Block driver using virtio.")
+> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+> Cc: "Michael S. Tsirkin" <mst@redhat.com>
+> Cc: Jason Wang <jasowang@redhat.com>
+> Cc: Paolo Bonzini <pbonzini@redhat.com>
+> Cc: Stefan Hajnoczi <stefanha@redhat.com>
+> Cc: virtualization@lists.linux-foundation.org
+> Cc: Jens Axboe <axboe@kernel.dk>
+> Cc: linux-block@vger.kernel.org
 
-Give each of these init and exit functions unique driver-specific
-names to eliminate the anonymous names.
 
-Example 1: (System.map)
- ffffffff832fc78c t init
- ffffffff832fc79e t init
- ffffffff832fc8f8 t init
+If this is done tree-wide, it's ok to do it for virtio too.
 
-Example 2: (initcall_debug log)
- calling  init+0x0/0x12 @ 1
- initcall init+0x0/0x12 returned 0 after 15 usecs
- calling  init+0x0/0x60 @ 1
- initcall init+0x0/0x60 returned 0 after 2 usecs
- calling  init+0x0/0x9a @ 1
- initcall init+0x0/0x9a returned 0 after 74 usecs
+Acked-by: Michael S. Tsirkin <mst@redhat.com>
 
-Fixes: e126ba97dba9 ("mlx5: Add driver for Mellanox Connect-IB adapters")
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Cc: Eli Cohen <eli@mellanox.com>
-Cc: Saeed Mahameed <saeedm@nvidia.com>
-Cc: netdev@vger.kernel.org
-Cc: Leon Romanovsky <leon@kernel.org>
-Cc: linux-rdma@vger.kernel.org
----
- drivers/net/ethernet/mellanox/mlx5/core/main.c |    8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+No real opinion on whether it's a good idea.
 
---- lnx-517-rc8.orig/drivers/net/ethernet/mellanox/mlx5/core/main.c
-+++ lnx-517-rc8/drivers/net/ethernet/mellanox/mlx5/core/main.c
-@@ -1893,7 +1893,7 @@ static void mlx5_core_verify_params(void
- 	}
- }
- 
--static int __init init(void)
-+static int __init mlx5_init(void)
- {
- 	int err;
- 
-@@ -1929,7 +1929,7 @@ err_debug:
- 	return err;
- }
- 
--static void __exit cleanup(void)
-+static void __exit mlx5_cleanup(void)
- {
- 	mlx5e_cleanup();
- 	mlx5_sf_driver_unregister();
-@@ -1937,5 +1937,5 @@ static void __exit cleanup(void)
- 	mlx5_unregister_debugfs();
- }
- 
--module_init(init);
--module_exit(cleanup);
-+module_init(mlx5_init);
-+module_exit(mlx5_cleanup);
+> ---
+>  drivers/block/virtio_blk.c |    8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> --- lnx-517-rc8.orig/drivers/block/virtio_blk.c
+> +++ lnx-517-rc8/drivers/block/virtio_blk.c
+> @@ -1058,7 +1058,7 @@ static struct virtio_driver virtio_blk =
+>  #endif
+>  };
+>  
+> -static int __init init(void)
+> +static int __init virtio_blk_init(void)
+>  {
+>  	int error;
+>  
+> @@ -1084,14 +1084,14 @@ out_destroy_workqueue:
+>  	return error;
+>  }
+>  
+> -static void __exit fini(void)
+> +static void __exit virtio_blk_fini(void)
+>  {
+>  	unregister_virtio_driver(&virtio_blk);
+>  	unregister_blkdev(major, "virtblk");
+>  	destroy_workqueue(virtblk_wq);
+>  }
+> -module_init(init);
+> -module_exit(fini);
+> +module_init(virtio_blk_init);
+> +module_exit(virtio_blk_fini);
+>  
+>  MODULE_DEVICE_TABLE(virtio, id_table);
+>  MODULE_DESCRIPTION("Virtio block driver");
+
