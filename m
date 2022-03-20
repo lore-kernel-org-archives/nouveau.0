@@ -4,64 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 253E2C433FE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1D8BC433EF
 	for <nouveau@archiver.kernel.org>; Sun, 27 Mar 2022 07:44:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72ADB10E125;
-	Sun, 27 Mar 2022 07:44:05 +0000 (UTC)
-Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com
- [IPv6:2607:f8b0:4864:20::c2b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDE0510E2BB
- for <nouveau@lists.freedesktop.org>; Fri, 18 Mar 2022 22:45:58 +0000 (UTC)
-Received: by mail-oo1-xc2b.google.com with SMTP id
- h16-20020a4a6f10000000b00320507b9ccfso11886270ooc.7
- for <nouveau@lists.freedesktop.org>; Fri, 18 Mar 2022 15:45:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linuxfoundation.org; s=google;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=ekiD2sX45IwGk6wtsqdwxLttTAGZcGccRjZl1i6g1JA=;
- b=dMDapo5gWo0mYQwoT0A/aOZqMdPyZSCOVsL5zPGffJvLJZp0AfN2E9xdlck/nSLv/N
- hEsSe5KNbjsmefIhgIIv1yDVHMP+6YIgd44fW9U2d/c1Akfns382n70WbM/10yIkuHjZ
- SUNIZp82WOT2MEcG49QwDBCrffF4++Gcu4CkY=
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11B4B10E173;
+	Sun, 27 Mar 2022 07:44:06 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4D3710E4A3
+ for <nouveau@lists.freedesktop.org>; Sun, 20 Mar 2022 12:05:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1647777900;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=dluyFNWHj0wdqGZD9WiZi8hb8qI80pWjkbX+xynrT7U=;
+ b=NatXzc0l1hN+DWDEjPhDLQWVCskvBWypGy0/f3JsM9la9Fem8I1WVXP33pw+FTDZ8EuMdk
+ ecThVAuHL7OiXJFuy4MV+aaotNm88zM6FWkAPaVh3A77efiyU6Zz2Qk1S062nUElNwFZ3i
+ XJRCrJqBaQxcHKASe9+UIymvmIj7i/Y=
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-32-ZujNMW1CMzSjgr4X-jh2mA-1; Sun, 20 Mar 2022 08:04:59 -0400
+X-MC-Unique: ZujNMW1CMzSjgr4X-jh2mA-1
+Received: by mail-ed1-f72.google.com with SMTP id
+ s7-20020a508dc7000000b0040f29ccd65aso7388073edh.1
+ for <nouveau@lists.freedesktop.org>; Sun, 20 Mar 2022 05:04:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=ekiD2sX45IwGk6wtsqdwxLttTAGZcGccRjZl1i6g1JA=;
- b=LH3hGx+wm8Kh1sZgQ08ZeTkyfpcHGefhN0H5B06VmSpZTniLoHUeSjFpuSBi24zVaA
- Spt54QBIE6eb2lMV0TfbFyppgLf7vuGdnavYk0q4heqb6y81fzkByFL9BMDDKY1kyJGr
- KvSktzu/1IA53V1RY79N8n/pIBBF4k+vuLJu3r91CZrlnuhe1Bl+w9/vW/qdlhh86vld
- XSz4SSNH4TdDVvHATSmJXizxBd7bkVlmaahjaEwmCzANrolWpbNeo5Yz/xK4j1mHEr/A
- 2QlSgHggzfCIke98ViO/61VG4m/PsTHup5qi53BTIOj7PbCJ1xxcvepaIrM0NijeeUJT
- FTMw==
-X-Gm-Message-State: AOAM531sXE2+ldM4Iw4Feg1VgPseIHML9O/xhlzypdGGwNORsCoQ9XAM
- J9cJu0EVuMIdA63arMALTs0o2g==
-X-Google-Smtp-Source: ABdhPJziihDBziDyTkE7iKcLTBW6BUUFUpCgkLWdsk/9MySxxcozoxXb4xoR4U6FbxLxPWes+cEMkA==
-X-Received: by 2002:a05:6820:814:b0:322:b1b2:2456 with SMTP id
- bg20-20020a056820081400b00322b1b22456mr3591951oob.0.1647643557718; 
- Fri, 18 Mar 2022 15:45:57 -0700 (PDT)
-Received: from [192.168.1.128] ([71.205.29.0])
- by smtp.gmail.com with ESMTPSA id
- x12-20020a056830244c00b005ad233e0ba3sm4330223otr.48.2022.03.18.15.45.55
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 18 Mar 2022 15:45:57 -0700 (PDT)
-To: Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=dluyFNWHj0wdqGZD9WiZi8hb8qI80pWjkbX+xynrT7U=;
+ b=Zpd9MqM4TbJpJM8YXaum+Aa/3W6Z/x0MZTFQTleEeemEMGUipuAcukBoflMhYPVXmh
+ IvNtmD4vbDMkdjyS01dJOif+jPbzVuWlR1N+Qs56H3eoAnXhqE6sV+IElMWBm4kjjB4V
+ hndrhr0ZScFKSpSvK2JCqwTUyM+rbrcFCNuPQWRkVn6VvK6oqZoxBBOoPRjFYICDT4XY
+ ZkqG7fz8036nmh0uSC/9SV9TNsqn6cW+FgiFsXp/8yaW+h6jqMSnf/SipTZ2HNTeIpe1
+ gvdJD281qaEi5sXNJgqnKf0vnKaQMwJJKhO0C6r2DY5TXfSN+JOUIq0Vw9G71X4dnAKc
+ F5PQ==
+X-Gm-Message-State: AOAM532xijsYpOFku0Vhz0CzrXRD7ntCQ0Qf7F+VX4i4vNOdF+JTbOqq
+ CAtpXMat4UcUTu4oyqIKPNRHor8ax4JUH9z4e/Ttpb0PnmnVsFFE8lHLs2fv6E98LTjrQRadwvr
+ n7oYMRmeEHKhU3Zrp9Ly39mmYRg==
+X-Received: by 2002:a05:6402:40c5:b0:418:e73c:a1ab with SMTP id
+ z5-20020a05640240c500b00418e73ca1abmr18517045edb.52.1647777898070; 
+ Sun, 20 Mar 2022 05:04:58 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzfAQhzmlNy6q9yY+EnFX+2g1gYETe+axmQh3kzhVOc32at9/0TqUx+j50nzMAK4FS++1BWlA==
+X-Received: by 2002:a05:6402:40c5:b0:418:e73c:a1ab with SMTP id
+ z5-20020a05640240c500b00418e73ca1abmr18517008edb.52.1647777897820; 
+ Sun, 20 Mar 2022 05:04:57 -0700 (PDT)
+Received: from redhat.com ([2.55.132.0]) by smtp.gmail.com with ESMTPSA id
+ 27-20020a17090600db00b006df6b34d9b8sm5854831eji.211.2022.03.20.05.04.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 20 Mar 2022 05:04:57 -0700 (PDT)
+Date: Sun, 20 Mar 2022 08:04:48 -0400
+From: "Michael S. Tsirkin" <mst@redhat.com>
+To: Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <20220320080438-mutt-send-email-mst@kernel.org>
 References: <20220316192010.19001-1-rdunlap@infradead.org>
- <20220316192010.19001-8-rdunlap@infradead.org>
-From: Shuah Khan <skhan@linuxfoundation.org>
-Message-ID: <282f4857-7b4f-810e-af0e-e9ca8129c7fc@linuxfoundation.org>
-Date: Fri, 18 Mar 2022 16:45:54 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ <20220316192010.19001-3-rdunlap@infradead.org>
 MIME-Version: 1.0
-In-Reply-To: <20220316192010.19001-8-rdunlap@infradead.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20220316192010.19001-3-rdunlap@infradead.org>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=mst@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Mailman-Approved-At: Sun, 27 Mar 2022 07:44:03 +0000
-Subject: Re: [Nouveau] [PATCH 7/9] usb: usbip: eliminate anonymous
+Subject: Re: [Nouveau] [PATCH 2/9] virtio_console: eliminate anonymous
  module_init & module_exit
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,11 +84,9 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: x86@kernel.org, Andy Lutomirski <luto@kernel.org>,
- "Michael S. Tsirkin" <mst@redhat.com>, Peter Zijlstra <peterz@infradead.org>,
- nouveau@lists.freedesktop.org, Jason Wang <jasowang@redhat.com>,
- Dave Hansen <dave.hansen@linux.intel.com>,
+ Peter Zijlstra <peterz@infradead.org>, nouveau@lists.freedesktop.org,
+ Jason Wang <jasowang@redhat.com>, Dave Hansen <dave.hansen@linux.intel.com>,
  Valentina Manea <valentina.manea.m@gmail.com>,
- virtualization@lists.linux-foundation.org,
  Krzysztof Opasiak <k.opasiak@samsung.com>, Eli Cohen <eli@mellanox.com>,
  netdev@vger.kernel.org, Shuah Khan <shuah@kernel.org>,
  Thomas Gleixner <tglx@linutronix.de>, "H. Peter Anvin" <hpa@zytor.com>,
@@ -93,22 +100,24 @@ Cc: x86@kernel.org, Andy Lutomirski <luto@kernel.org>,
  Felipe Balbi <felipe.balbi@linux.intel.com>, Amit Shah <amit@kernel.org>,
  "James E.J. Bottomley" <jejb@linux.ibm.com>,
  Steven Rostedt <rostedt@goodmis.org>,
- =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+ =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
  linux-block@vger.kernel.org, Pekka Paalanen <ppaalanen@gmail.com>,
  Borislav Petkov <bp@alien8.de>, Stefan Hajnoczi <stefanha@redhat.com>,
  Shuah Khan <skhan@linuxfoundation.org>,
  Jussi Kivilinna <jussi.kivilinna@mbnet.fi>,
+ virtualization@lists.linux-foundation.org,
  Herbert Xu <herbert@gondor.apana.org.au>, Jens Axboe <axboe@kernel.dk>,
  linux-scsi@vger.kernel.org, "Martin K. Petersen" <martin.petersen@oracle.com>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org,
- Florian Westphal <fw@strlen.de>, netfilter-devel@vger.kernel.org,
- linux-crypto@vger.kernel.org, Igor Kotrasinski <i.kotrasinsk@samsung.com>,
+ Florian Westphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
+ netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
+ Igor Kotrasinski <i.kotrasinsk@samsung.com>,
  Paolo Bonzini <pbonzini@redhat.com>, Saeed Mahameed <saeedm@nvidia.com>,
  "David S. Miller" <davem@davemloft.net>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 3/16/22 1:20 PM, Randy Dunlap wrote:
+On Wed, Mar 16, 2022 at 12:20:03PM -0700, Randy Dunlap wrote:
 > Eliminate anonymous module_init() and module_exit(), which can lead to
 > confusion or ambiguity when reading System.map, crashes/oops/bugs,
 > or an initcall_debug log.
@@ -117,68 +126,67 @@ On 3/16/22 1:20 PM, Randy Dunlap wrote:
 > names to eliminate the anonymous names.
 > 
 > Example 1: (System.map)
->   ffffffff832fc78c t init
->   ffffffff832fc79e t init
->   ffffffff832fc8f8 t init
+>  ffffffff832fc78c t init
+>  ffffffff832fc79e t init
+>  ffffffff832fc8f8 t init
 > 
 > Example 2: (initcall_debug log)
->   calling  init+0x0/0x12 @ 1
->   initcall init+0x0/0x12 returned 0 after 15 usecs
->   calling  init+0x0/0x60 @ 1
->   initcall init+0x0/0x60 returned 0 after 2 usecs
->   calling  init+0x0/0x9a @ 1
->   initcall init+0x0/0x9a returned 0 after 74 usecs
+>  calling  init+0x0/0x12 @ 1
+>  initcall init+0x0/0x12 returned 0 after 15 usecs
+>  calling  init+0x0/0x60 @ 1
+>  initcall init+0x0/0x60 returned 0 after 2 usecs
+>  calling  init+0x0/0x9a @ 1
+>  initcall init+0x0/0x9a returned 0 after 74 usecs
 > 
-> Fixes: 80fd9cd52de6 ("usbip: vudc: Add VUDC main file")
+> Fixes: 31610434bc35 ("Virtio console driver")
+> Fixes: 7177876fea83 ("virtio: console: Add ability to remove module")
 > Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-> Cc: Krzysztof Opasiak <k.opasiak@samsung.com>
-> Cc: Igor Kotrasinski <i.kotrasinsk@samsung.com>
+> Cc: Amit Shah <amit@kernel.org>
+> Cc: virtualization@lists.linux-foundation.org
+> Cc: Arnd Bergmann <arnd@arndb.de>
 > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Valentina Manea <valentina.manea.m@gmail.com>
-> Cc: Shuah Khan <shuah@kernel.org>
-> Cc: Shuah Khan <skhan@linuxfoundation.org>
-> Cc: linux-usb@vger.kernel.org
+
+
+If this is done tree-wide, it's ok to do it for virtio too.
+
+Acked-by: Michael S. Tsirkin <mst@redhat.com>
+
+No real opinion on whether it's a good idea.
+
+
 > ---
->   drivers/usb/usbip/vudc_main.c |    8 ++++----
->   1 file changed, 4 insertions(+), 4 deletions(-)
+>  drivers/char/virtio_console.c |    8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
-> --- lnx-517-rc8.orig/drivers/usb/usbip/vudc_main.c
-> +++ lnx-517-rc8/drivers/usb/usbip/vudc_main.c
-> @@ -28,7 +28,7 @@ static struct platform_driver vudc_drive
->   
->   static struct list_head vudc_devices = LIST_HEAD_INIT(vudc_devices);
->   
+> --- lnx-517-rc8.orig/drivers/char/virtio_console.c
+> +++ lnx-517-rc8/drivers/char/virtio_console.c
+> @@ -2245,7 +2245,7 @@ static struct virtio_driver virtio_rproc
+>  	.remove =	virtcons_remove,
+>  };
+>  
 > -static int __init init(void)
-> +static int __init vudc_init(void)
->   {
->   	int retval = -ENOMEM;
->   	int i;
-> @@ -86,9 +86,9 @@ cleanup:
->   out:
->   	return retval;
->   }
+> +static int __init virtio_console_init(void)
+>  {
+>  	int err;
+>  
+> @@ -2280,7 +2280,7 @@ free:
+>  	return err;
+>  }
+>  
+> -static void __exit fini(void)
+> +static void __exit virtio_console_fini(void)
+>  {
+>  	reclaim_dma_bufs();
+>  
+> @@ -2290,8 +2290,8 @@ static void __exit fini(void)
+>  	class_destroy(pdrvdata.class);
+>  	debugfs_remove_recursive(pdrvdata.debugfs_dir);
+>  }
 > -module_init(init);
-> +module_init(vudc_init);
->   
-> -static void __exit cleanup(void)
-> +static void __exit vudc_cleanup(void)
->   {
->   	struct vudc_device *udc_dev = NULL, *udc_dev2 = NULL;
->   
-> @@ -103,7 +103,7 @@ static void __exit cleanup(void)
->   	}
->   	platform_driver_unregister(&vudc_driver);
->   }
-> -module_exit(cleanup);
-> +module_exit(vudc_cleanup);
->   
->   MODULE_DESCRIPTION("USB over IP Device Controller");
->   MODULE_AUTHOR("Krzysztof Opasiak, Karol Kosik, Igor Kotrasinski");
-> 
+> -module_exit(fini);
+> +module_init(virtio_console_init);
+> +module_exit(virtio_console_fini);
+>  
+>  MODULE_DESCRIPTION("Virtio console driver");
+>  MODULE_LICENSE("GPL");
 
-Thanks for fixing this.
-
-Acked-by: Shuah Khan <skhan@linuxfoundation.org>
-
-thanks,
--- Shuah
