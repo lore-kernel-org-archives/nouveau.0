@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DDA0C4332F
-	for <nouveau@archiver.kernel.org>; Sun, 27 Mar 2022 07:44:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02905C433FE
+	for <nouveau@archiver.kernel.org>; Sun, 27 Mar 2022 07:44:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5362710E254;
-	Sun, 27 Mar 2022 07:44:07 +0000 (UTC)
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEFB210E7B4;
- Fri, 18 Mar 2022 09:55:25 +0000 (UTC)
-Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
- by localhost (Postfix) with ESMTP id 4KKfWv0q49z9sT4;
- Fri, 18 Mar 2022 10:55:23 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
- by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ypqx9pvwL4Ck; Fri, 18 Mar 2022 10:55:23 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
- by pegase2.c-s.fr (Postfix) with ESMTP id 4KKfWt6h7pz9sT2;
- Fri, 18 Mar 2022 10:55:22 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id D35208B78D;
- Fri, 18 Mar 2022 10:55:22 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
- by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
- with ESMTP id iOqzYB9RuqTt; Fri, 18 Mar 2022 10:55:22 +0100 (CET)
-Received: from [192.168.202.177] (unknown [192.168.202.177])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id 2E47E8B767;
- Fri, 18 Mar 2022 10:55:22 +0100 (CET)
-Message-ID: <9aebcbbf-aaba-f7e8-7397-18284e74ab0d@csgroup.eu>
-Date: Fri, 18 Mar 2022 10:55:20 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Content-Language: fr-FR
-From: Christophe Leroy <christophe.leroy@csgroup.eu>
-To: Lyude Paul <lyude@redhat.com>, Ben Skeggs <bskeggs@redhat.com>,
- Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>
-References: <2d97ae92b9c06214be0e088a72cf303eb591bf01.1646414295.git.christophe.leroy@csgroup.eu>
- <47e09d6010852db928c0de29b89450ea7eee74d8.camel@redhat.com>
- <edb9aabd-09af-ae0c-348d-f0500e3405d7@csgroup.eu>
- <672043db-5290-293c-fde4-440989c78d09@csgroup.eu>
-In-Reply-To: <672043db-5290-293c-fde4-440989c78d09@csgroup.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF87010E226;
+	Sun, 27 Mar 2022 07:44:06 +0000 (UTC)
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com
+ [IPv6:2607:f8b0:4864:20::52a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 732BA10E376;
+ Sun, 27 Mar 2022 05:31:48 +0000 (UTC)
+Received: by mail-pg1-x52a.google.com with SMTP id q19so9752932pgm.6;
+ Sat, 26 Mar 2022 22:31:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id;
+ bh=T9ii1s/vDDaD1QA64Ks3s/bvtYbdmXDV59Ucnc6x+8M=;
+ b=KDf55Yv5mpN2AkGspc9VfaKo0K2v900aUEgARfmtbxGdDUL6QXuvltflUnnxq9PkHt
+ YhW79cDOHms4RxghCJ1odTS3nROpbDTpCnIHmpQ0gIsgSaHGWxR/Ajl+aqYrON7uxevK
+ ZGbYyFQdZtH7S4orjIPps5iSgN/1w/8COOndrIemkzpS5iGeY6Fm3KpBjqrdsFfrOFVL
+ iSwc8hN81KgS13LzY0muEQDppdLDaOI63J4hYMNlhm9atCWo8og4mXVlxxKGPjLdU3uY
+ AHyqFXZQ4LoJ/FMpl6b2E4O6S3ZOb0KN+Y0yfnQw2Quy7wUbvzjmRUDB+CJNT8rRFKQ8
+ lbZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=T9ii1s/vDDaD1QA64Ks3s/bvtYbdmXDV59Ucnc6x+8M=;
+ b=gRQBPTvEjyQB/fcRi047rHQivm+TDAOybEuRsmE9azLC+n2Rmk9WV5Zam+WCIN9Cl7
+ UYygelZzvk+U/x009zRPJZEgwuJW8XyZDYMXNCq/PwsBTWE7cp9DJgUzyWnT5cNuk7wL
+ f2u6rTpKUNXbsho5VKdtv0/SkdYQ5DuvHEUgxAZC8eJdFSn0JD9q4TdBYxHVGQGl8ExM
+ XDlTk8jWBj6hLcBcjnRmWWelXeKfWugLn8ENyJSQMdJaD7okg4VpxeXO2Iz4loCrQ9UA
+ ett7iXXM3a0oR2Q4OeufdI/8+Lqf+ag6OiP+KPa9/ZCCMpcGmqogUYqUoiAJNUI1xkax
+ 5IeA==
+X-Gm-Message-State: AOAM530vVQd+RjgpZXZolqzbxIHS7PWIlPAFInmAlRlT37WXEV4XUyUN
+ AwMix6lERF8RajeabowRsiE=
+X-Google-Smtp-Source: ABdhPJzkzp7Reb+gYTSiszuRxap2P3TtfajgbjK+Rluk16gl1IRBjl55f5DmGDmjeshiq0mHS3yx2A==
+X-Received: by 2002:a05:6a00:849:b0:4fb:1112:c19f with SMTP id
+ q9-20020a056a00084900b004fb1112c19fmr10667773pfk.74.1648359108089; 
+ Sat, 26 Mar 2022 22:31:48 -0700 (PDT)
+Received: from localhost.localdomain ([115.220.243.108])
+ by smtp.googlemail.com with ESMTPSA id
+ f15-20020a056a001acf00b004fb2ad05521sm3894539pfv.215.2022.03.26.22.31.44
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 26 Mar 2022 22:31:47 -0700 (PDT)
+From: Xiaomeng Tong <xiam0nd.tong@gmail.com>
+To: bskeggs@redhat.com
+Date: Sun, 27 Mar 2022 13:31:39 +0800
+Message-Id: <20220327053139.2572-1-xiam0nd.tong@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Sun, 27 Mar 2022 07:44:03 +0000
-Subject: Re: [Nouveau] [PATCH] drm/nouveau/bios: Rename prom_init() and
- friends functions
+Subject: [Nouveau] [PATCH] device: fix missing check on list iterator
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,84 +63,64 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Cc: airlied@linux.ie, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Xiaomeng Tong <xiam0nd.tong@gmail.com>, stable@vger.kernel.org,
+ daniel@ffwll.ch, linux@roeck-us.net
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Paul,
+The bug is here:
+	lo = pstate->base.domain[domain->name];
 
-Le 05/03/2022 à 10:51, Christophe Leroy a écrit :
-> 
-> 
-> Le 05/03/2022 à 08:38, Christophe Leroy a écrit :
->>
->>
->> Le 04/03/2022 à 21:24, Lyude Paul a écrit :
->>> This mostly looks good to me. Just one question (and one comment down 
->>> below
->>> that needs addressing). Is this with ppc32? (I ask because ppc64le 
->>> doesn't
->>> seem to hit this compilation error).
->>
->> That's with PPC64, see 
->> http://kisskb.ellerman.id.au/kisskb/branch/chleroy/head/252ba609bea83234d2e35841c19ae84c67b43ec7/ 
->>
->>
->> But that's not (yet) with the mainline tree. That's work I'm doing to 
->> cleanup our asm/asm-protoypes.h header.
->>
->> Since commit 4efca4ed05cb ("kbuild: modversions for EXPORT_SYMBOL() 
->> for asm") that file is dedicated to prototypes of functions defined in 
->> assembly. Therefore I'm trying to dispatch C functions prototypes in 
->> other headers. I wanted to move prom_init() prototype into asm/prom.h 
->> and then I hit the problem.
->>
->> In the beginning I was thinking about just changing the name of the 
->> function in powerpc, but as I see that M68K, MIPS and SPARC also have 
->> a prom_init() function, I thought it would be better to change the 
->> name in shadowrom.c to avoid any future conflict like the one I got 
->> while reworking the headers.
->>
->>
->>>> @@ -57,8 +57,8 @@ prom_init(struct nvkm_bios *bios, const char *name)
->>>>   const struct nvbios_source
->>>>   nvbios_rom = {
->>>>          .name = "PROM",
->>>> -       .init = prom_init,
->>>> -       .fini = prom_fini,
->>>> -       .read = prom_read,
->>>> +       .init = nvbios_rom_init,
->>>> +       .fini = nvbios_rom_fini,
->>>> +       .read = nvbios_rom_read,
->>>
->>> Seeing as the source name is prom, I think using the naming convention
->>> nvbios_prom_* would be better then nvbios_rom_*.
->>>
->>
->> Yes I wasn't sure about the best naming as the file name is 
->> shadowrom.c and not shadowprom.c.
->>
->> I will send v2 using nvbios_prom_* as a name.
-> 
-> While preparing v2 I remembered that in fact, I called the functions 
-> nvbios_rom_* because the name of the nvbios_source struct is nvbios_rom, 
-> so for me it made sense to use the name of the struct as a prefix for 
-> the functions.
-> 
-> So I'm OK to change it to nvbios_prom_* but it looks less logical to me.
-> 
-> Please confirm you still prefer nvbios_prom as prefix to the function 
-> names.
-> 
+The list iterator 'pstate' will point to a bogus position containing
+HEAD if the list is empty or no element is found. This case should
+be checked before any use of the iterator, otherwise it will lead
+to a invalid memory access.
 
-Are you still expecting a v2 for this patch ?
+To fix this bug, add an check. Use a new value 'iter' as the list
+iterator, while use the old value 'pstate' as a dedicated variable
+to point to the found element.
 
-As the name of the structure is nvbios_rom, do you really prefer the 
-functions to be called nvbios_prom_* as you mentionned in your comment ?
+Cc: stable@vger.kernel.org
+Fixes: 9838366c1597d ("drm/nouveau/device: initial control object class, with pstate control methods")
+Signed-off-by: Xiaomeng Tong <xiam0nd.tong@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-In that case, do you also expect the structure name to be changed to 
-nvbios_prom ?
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c
+index ce774579c89d..6b768635e8ba 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c
+@@ -72,7 +72,7 @@ nvkm_control_mthd_pstate_attr(struct nvkm_control *ctrl, void *data, u32 size)
+ 	} *args = data;
+ 	struct nvkm_clk *clk = ctrl->device->clk;
+ 	const struct nvkm_domain *domain;
+-	struct nvkm_pstate *pstate;
++	struct nvkm_pstate *pstate = NULL, *iter;
+ 	struct nvkm_cstate *cstate;
+ 	int i = 0, j = -1;
+ 	u32 lo, hi;
+@@ -103,11 +103,16 @@ nvkm_control_mthd_pstate_attr(struct nvkm_control *ctrl, void *data, u32 size)
+ 		return -EINVAL;
+ 
+ 	if (args->v0.state != NVIF_CONTROL_PSTATE_ATTR_V0_STATE_CURRENT) {
+-		list_for_each_entry(pstate, &clk->states, head) {
+-			if (i++ == args->v0.state)
++		list_for_each_entry(iter, &clk->states, head) {
++			if (i++ == args->v0.state) {
++				pstate = iter;
+ 				break;
++			}
+ 		}
+ 
++		if (!pstate)
++			return -EINVAL;
++
+ 		lo = pstate->base.domain[domain->name];
+ 		hi = lo;
+ 		list_for_each_entry(cstate, &pstate->list, head) {
+-- 
+2.17.1
 
-Thanks
-Christophe
