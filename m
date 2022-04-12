@@ -4,41 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE5A5C433F5
-	for <nouveau@archiver.kernel.org>; Tue, 12 Apr 2022 07:05:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD84FC433EF
+	for <nouveau@archiver.kernel.org>; Tue, 12 Apr 2022 07:21:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65C3310FEBC;
-	Tue, 12 Apr 2022 07:05:36 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A975A10FEBB;
- Tue, 12 Apr 2022 07:05:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 680AD10FBDA;
+	Tue, 12 Apr 2022 07:21:18 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A8FB10FBDC;
+ Tue, 12 Apr 2022 07:21:17 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 1AB12615F7;
- Tue, 12 Apr 2022 07:05:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 293B9C385A6;
- Tue, 12 Apr 2022 07:05:32 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 0EA9EB81B4F;
+ Tue, 12 Apr 2022 07:21:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A239C385A1;
+ Tue, 12 Apr 2022 07:21:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1649747133;
+ s=korg; t=1649748074;
  bh=qVZQZO1froVUTZ6TwlksDchw3cHLrw0uS/UZVNIs+5k=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=vrNMr9muHEC+CxZbM1H8mNNiqpHplYua50Y7dOSd7WWi2wiQhHF5rt4owBuLlyL3a
- 8FMg3VhakrAhIQXK5Bvz4bZhgw5xOMBWYbY3N+0WA7HekVRUMbLSf7yyXm7zeg0b4T
- oYIY7EHYpX6VHteJg7V+tpwDuv6X/JC8aLOur/lI=
+ b=WYOlBrW5XwLS6TEGR6KFD4gikTUrVl10RnYBY8RheGegig0AQGXqDjHuz7ho3xH/S
+ JCtv/XAA4opxP5/LaPNsSPcxG1Tv7KF0Tq0SRzZ7xoveOrjW21S9FCYMCbt84ilTim
+ RPyPo0m5HcUM/mFP4QJl897aI4JcRU7z+Zg/OTuA=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: linux-kernel@vger.kernel.org
-Date: Tue, 12 Apr 2022 08:31:53 +0200
-Message-Id: <20220412062951.049355968@linuxfoundation.org>
+Date: Tue, 12 Apr 2022 08:32:07 +0200
+Message-Id: <20220412063000.240457912@linuxfoundation.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220412062943.670770901@linuxfoundation.org>
-References: <20220412062943.670770901@linuxfoundation.org>
+In-Reply-To: <20220412062951.095765152@linuxfoundation.org>
+References: <20220412062951.095765152@linuxfoundation.org>
 User-Agent: quilt/0.66
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH 5.16 256/285] drm/nouveau/pmu: Add missing
+Subject: [Nouveau] [PATCH 5.17 309/343] drm/nouveau/pmu: Add missing
  callbacks for Tegra devices
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
