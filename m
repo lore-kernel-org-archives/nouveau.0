@@ -4,82 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93B1DC433F5
-	for <nouveau@archiver.kernel.org>; Tue, 19 Apr 2022 20:31:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A230C433EF
+	for <nouveau@archiver.kernel.org>; Thu, 21 Apr 2022 05:07:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF7EC10EACB;
-	Tue, 19 Apr 2022 20:31:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94E9C10F334;
+	Thu, 21 Apr 2022 05:07:15 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4647A10E9D3
- for <nouveau@lists.freedesktop.org>; Tue, 19 Apr 2022 20:31:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EBD610EBE6
+ for <nouveau@lists.freedesktop.org>; Mon, 18 Apr 2022 14:18:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1650400265;
+ s=mimecast20190719; t=1650291533;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=be6VP4VL+z444uHhPHKMJh9PH6wDtAablx8mg5VMxYw=;
- b=PeuvFF89AYuBBmjiKzDwc1kABqVNIsj2fYMg8wDBvvRmfmSvEA5IJl+NeBCLaKZa5RARRY
- X8RYTzB+e1BWNORLQDxd1RlmpQNniL+H6gTVoCEagp7q4ngUlodOK1jUmah2NX+K8Qg9LW
- Dvw9Bi631GuYHxM1QFigWuR92rT6zcA=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=rU+BOzU7OFMdCRKMQTeeqDo4Ukzfu12ch4PVunTJ6T0=;
+ b=IWIxtE8Yh8nNA/YNswKDgmdkPlJO+B7q1y63TdJWP4IIGT7l6HyXS3SvuRSHXcR3wYfBMD
+ 0XNBi2kOJ598tCBzC8lOSaLNuskU0UU7sIFgLGV6PQ5JUiZaA3WH4ttaNCVWFFvf27XoZ9
+ OCbaAnLE4QvY0v5YHjH8nN+fe3WtDPA=
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-494-r3v1MhgROxSU-vpn15Fi7w-1; Tue, 19 Apr 2022 16:31:02 -0400
-X-MC-Unique: r3v1MhgROxSU-vpn15Fi7w-1
-Received: by mail-qt1-f197.google.com with SMTP id
- cj27-20020a05622a259b00b002f334b76068so2442385qtb.4
- for <nouveau@lists.freedesktop.org>; Tue, 19 Apr 2022 13:31:02 -0700 (PDT)
+ us-mta-444-WmAJA0R7MuaASupfoIlxWw-1; Mon, 18 Apr 2022 10:18:49 -0400
+X-MC-Unique: WmAJA0R7MuaASupfoIlxWw-1
+Received: by mail-qk1-f197.google.com with SMTP id
+ m23-20020a05620a221700b006809e1fa4fdso10440490qkh.6
+ for <nouveau@lists.freedesktop.org>; Mon, 18 Apr 2022 07:18:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
- :references:organization:user-agent:mime-version
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=be6VP4VL+z444uHhPHKMJh9PH6wDtAablx8mg5VMxYw=;
- b=F2t1HMJrpk5jULZQtC6nU9dmx5ieMSZiaReQr2TetLz+Y6oHa3C55acV6ahb7k345B
- bZ37Kq39T3TBR/F/m7MPGMSEE91SHXPC8P9xizf5YxMK6QmsWNot0+4Zsd88fjS/0f5D
- FmdJn6tqwztEXX2WMlDM/Gsye2NMvkk0QwMsqN/x+UksUqH00tovxP9r/tbHmvQ93/Qy
- VsZZueALHA1OrnicmyzjUC7vUljsgWFK+3GkE2gou4m0Mw7WOx7yiWIHBuNuG3XDxSCj
- eqiNQ7wwy17ETDGdYTEzpRQMKPUamDfpMTTfEhcqxLz0loHjrJtFm/RO7tqeaDjHnthZ
- EXXg==
-X-Gm-Message-State: AOAM530aoE9MZ4oYpq1Q9CgQxHsPjoHKYjl8qI5WlDzkWInWObFuqqxV
- YKfQfORgnVzNv5dQbfEeigIQGUgqO2wafECpADiEd6d7u4VApBUrr0Nx1h/lOnaRPOGiv/JAh1e
- y8iEC2pLJ/61T2bzfxDF+VytXWQ==
-X-Received: by 2002:a37:510:0:b0:69e:8868:c691 with SMTP id
- 16-20020a370510000000b0069e8868c691mr8634587qkf.731.1650400261764; 
- Tue, 19 Apr 2022 13:31:01 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJx/S5ftop0ghBWPqC6VcdbCKk2EHMRpvcn+OOjAta4APIO+s/kcOllMhR+W7PX4+MaicfOv5Q==
-X-Received: by 2002:a37:510:0:b0:69e:8868:c691 with SMTP id
- 16-20020a370510000000b0069e8868c691mr8634569qkf.731.1650400261514; 
- Tue, 19 Apr 2022 13:31:01 -0700 (PDT)
-Received: from [192.168.8.138] (pool-71-126-244-162.bstnma.fios.verizon.net.
- [71.126.244.162]) by smtp.gmail.com with ESMTPSA id
- f16-20020a05622a105000b002ed4688f116sm612817qte.86.2022.04.19.13.30.59
+ bh=rU+BOzU7OFMdCRKMQTeeqDo4Ukzfu12ch4PVunTJ6T0=;
+ b=3cuB+KgO+2Jby8XmVlf3APkT9hKgnMTlwP1yz/iboe38UgX+8dx9JXpInTPh+3yEi1
+ 71LMsA3uXfiIRzp3/ScxMX4RKTWDtr8vXTm2kQpyVchYSEUvN91Ydw9OgpkbyNcExDJr
+ DnlA7oe+FzWHqMnLiwhqbsXR6KxBqYDYIEE7WNc2mHvgvBN4KsU9R1IPsetk5/c2BmD1
+ 1os7eN/kUkgLvfqRKLafwsQQJLXOfVzAew8kp7DM69zh0HCe/IJdKLFa1Xhm96AFdbxQ
+ DaJDNuw5x5ghlxKGRj9PiWXa8j9frdYcbb2B/I+Qw2sR4u0xJkCNwI8BkMEHqby10kym
+ Mlxw==
+X-Gm-Message-State: AOAM530zCNh1dyfxFWaULH48Twpll2SxyVPJID/DEOVp5PM7+O2WHQuD
+ ljRThr3h9xTE3glXmBbS9/DKF4hJxveZGqmjldbPO9nb26XHop2PVnuFNK5yp6YPd0+FS1UTDml
+ pTVsfev4Q6WBi7d1izzW6tDfJSQ==
+X-Received: by 2002:ac8:7f06:0:b0:2f1:f823:856a with SMTP id
+ f6-20020ac87f06000000b002f1f823856amr5665530qtk.623.1650291528869; 
+ Mon, 18 Apr 2022 07:18:48 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz/SQVkTBbtpx6NFVq6KE6yRW7/GHXsA0oi2d+LEGg7hhPI3vQ5/gmQ8L/2ysPbdvyDIKURNQ==
+X-Received: by 2002:ac8:7f06:0:b0:2f1:f823:856a with SMTP id
+ f6-20020ac87f06000000b002f1f823856amr5665514qtk.623.1650291528603; 
+ Mon, 18 Apr 2022 07:18:48 -0700 (PDT)
+Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
+ (nat-pool-bos-t.redhat.com. [66.187.233.206])
+ by smtp.gmail.com with ESMTPSA id
+ d2-20020ac85ac2000000b002e1cc2d363asm7785952qtd.24.2022.04.18.07.18.47
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 Apr 2022 13:31:00 -0700 (PDT)
-Message-ID: <55713be81efe8d2b9d19f6e4ad8d64a88087289f.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: elections@foundation.x.org, events@lists.x.org, 
- xorg-devel@lists.freedesktop.org, wayland-devel@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, mesa-dev@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, libre-soc-dev@lists.libre-soc.org, 
- members@x.org
-Date: Tue, 19 Apr 2022 16:30:59 -0400
-In-Reply-To: <b75862cc1cb0a05b02c9249bb4858e8d9013be30.camel@redhat.com>
-References: <b75862cc1cb0a05b02c9249bb4858e8d9013be30.camel@redhat.com>
-Organization: Red Hat Inc.
-User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
+ Mon, 18 Apr 2022 07:18:48 -0700 (PDT)
+From: Tom Rix <trix@redhat.com>
+To: bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com, airlied@linux.ie,
+ daniel@ffwll.ch
+Date: Mon, 18 Apr 2022 10:18:42 -0400
+Message-Id: <20220418141842.296386-1-trix@redhat.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] 2022 X.Org Foundation Election vote results
+Content-Type: text/plain; charset="US-ASCII"; x-default=true
+X-Mailman-Approved-At: Thu, 21 Apr 2022 05:07:14 +0000
+Subject: [Nouveau] [PATCH] drm/nouveau: change base917c_format from global
+ to static
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,34 +84,37 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Tom Rix <trix@redhat.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The Board of Directors election and the vote on the By-laws concluded at
-23:59 UTC on 18 April 2022. There are 80 current Members of the X.Org
-Foundation, and 52 Members cast votes. This is a 65.0% turn out.
+Smatch reports this issue
+base917c.c:26:1: warning: symbol 'base917c_format'
+  was not declared. Should it be static?
 
-In the election of the Directors to the Board of the X.Org Foundation,
-the results were that Emma Anholt, Alyssa Rosenzweig, Mark Filion and
-Ricardo Garcia were elected for two year terms.
+base917c_format is only used in base917.c.  Single
+file variables should not be global so change
+base917c_format's storage-class specifier to static.
 
-The old full board is: Emma Anholt, Samuel Iglesias Gonsálvez, Mark
-Filion, Manasi D Navare, Keith Packard, Lyude Paul, Daniel Vetter, Harry
-Wentland
+Signed-off-by: Tom Rix <trix@redhat.com>
+---
+ drivers/gpu/drm/nouveau/dispnv50/base917c.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-The new full board is: Emma Anholt, Samuel Iglesias Gonsálvez, Mark
-Filion, Manasi D Navare, Alyssa Rosenzweig, Lyude Paul, Daniel Vetter,
-and Ricardo Garcia
-
-The full election results were as follows:
-
-           Option | Rank 1 | Rank 2 | Rank 3 | Rank 4 | Rank 5 | Rank 6 | Final Score
-      Emma Anholt |     21 |     16 |      4 |      1 |      5 |      5 |         240
-Alyssa Rosenzweig |      4 |     10 |     17 |      7 |     11 |      3 |         188
-      Mark Filion |      8 |     12 |      7 |     10 |      5 |     10 |         186
-   Ricardo Garcia |      9 |      4 |      5 |     17 |     10 |      7 |         172
-      Lucas Stach |      4 |      5 |     14 |      9 |     11 |      9 |         163
-  Shashank Sharma |      6 |      5 |      5 |      8 |     10 |     18 |         143
-
-Lyude Paul, on behalf of the X.Org elections committee
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/base917c.c b/drivers/gpu/drm/nouveau/dispnv50/base917c.c
+index a1baed4fe0e9..ca260509a4f1 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/base917c.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/base917c.c
+@@ -22,7 +22,7 @@
+ #include "base.h"
+ #include "atom.h"
+ 
+-const u32
++static const u32
+ base917c_format[] = {
+ 	DRM_FORMAT_C8,
+ 	DRM_FORMAT_XRGB8888,
+-- 
+2.27.0
 
