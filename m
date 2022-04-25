@@ -4,34 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D1D8C433EF
-	for <nouveau@archiver.kernel.org>; Sun,  8 May 2022 03:49:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D96BC433F5
+	for <nouveau@archiver.kernel.org>; Sun,  8 May 2022 03:49:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D5B410F6AE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEF9810F6B1;
 	Sun,  8 May 2022 03:49:55 +0000 (UTC)
-X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
- Thu, 05 May 2022 08:19:01 UTC
-Received: from out30-133.freemail.mail.aliyun.com
- (out30-133.freemail.mail.aliyun.com [115.124.30.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48D1510E193;
- Thu,  5 May 2022 08:19:01 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R191e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04407;
- MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
- TI=SMTPD_---0VCK6oaA_1651738428; 
-Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
- fp:SMTPD_---0VCK6oaA_1651738428) by smtp.aliyun-inc.com(127.0.0.1);
- Thu, 05 May 2022 16:13:53 +0800
-From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-To: bskeggs@redhat.com
-Date: Thu,  5 May 2022 16:13:45 +0800
-Message-Id: <20220505081345.89762-1-jiapeng.chong@linux.alibaba.com>
-X-Mailer: git-send-email 2.20.1.7.g153144c
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26D9610E25E
+ for <nouveau@lists.freedesktop.org>; Mon, 25 Apr 2022 13:13:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1650892405;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=OV5M88ExrHBJLlDEVqDhMiG8Kzj0MFYt6DBHZT5ejGQ=;
+ b=OgPqQWJC45XVV6F6RBvLOpH87b0v0rEKbu+C6SQC7IAgE1nXT5j9Mbwab62BV/7lIBhk8v
+ sM2ub9jqzUuteWzoMFZfafmirpRmecfckKfKg1yR9fGGrjAOiq0j3komsjQy2gTwFn9crR
+ lbCRrdvUQ9s/dG/FqtfNuDRfCRPHLT0=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-61-hXKIu4T5Pua9N1yRTxdPAg-1; Mon, 25 Apr 2022 09:13:17 -0400
+X-MC-Unique: hXKIu4T5Pua9N1yRTxdPAg-1
+Received: by mail-qk1-f200.google.com with SMTP id
+ t3-20020a05620a034300b0069e60a0760cso9634601qkm.20
+ for <nouveau@lists.freedesktop.org>; Mon, 25 Apr 2022 06:13:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=OV5M88ExrHBJLlDEVqDhMiG8Kzj0MFYt6DBHZT5ejGQ=;
+ b=0v9uD1J0ltfQsYis+YPLvTnMZCGdYcreyBjCm7gLUWtzvbX6LaleF1NiOa05ELIKkA
+ 2ZhABGMxUuTY0mPZAspsHFqBiWSfvO1xFs9TgcPcgAWPoGiK8atJVxam8O3VadqT/fic
+ 2rD0ejUXgzQKof6jZAIehH+aYNrcPuiRTQuV6PcFN0bosalCswwt1yEaxjGiQskwfHYe
+ gmEvDhYaynkCoTRROYgp/TdYxqj1x5yeTOO3y+KYh2HpDF5wqAIJX42hraNQRXWGsM1I
+ 3uuAhDD3HMJj/lOPejVYNVzDQn9qB2PqS6SjJuFTrBTiXc9qJ9W8I2TDFG7S9E+3qCOO
+ IgOw==
+X-Gm-Message-State: AOAM5319E6UQv8uEmLaal8uRdZwqo33Dt65+GBb9uW540gC5LgRc0e2N
+ DvnhHMaUdL3emCBONMKR/5h4yWzSO7U6QbkkTwrD2iPIr8PRmux942ZxTKp/rQ/lS0ccbJT3CY2
+ lsHo7jKyQyD8TfJcAmeRNEzU0Eg==
+X-Received: by 2002:a05:6214:1c87:b0:42d:20cb:e484 with SMTP id
+ ib7-20020a0562141c8700b0042d20cbe484mr12145222qvb.10.1650892396730; 
+ Mon, 25 Apr 2022 06:13:16 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzPOqTD8cO+BzlbfrXGx8bSpW2fXt9dKS1tp8Lcv1B7tS2bEgBAUJkY4Q26CjFWa0jOYCeRbQ==
+X-Received: by 2002:a05:6214:1c87:b0:42d:20cb:e484 with SMTP id
+ ib7-20020a0562141c8700b0042d20cbe484mr12145207qvb.10.1650892396506; 
+ Mon, 25 Apr 2022 06:13:16 -0700 (PDT)
+Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
+ (nat-pool-bos-t.redhat.com. [66.187.233.206])
+ by smtp.gmail.com with ESMTPSA id
+ s195-20020a37a9cc000000b0069ca29ab6f4sm4961900qke.26.2022.04.25.06.13.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 25 Apr 2022 06:13:16 -0700 (PDT)
+From: Tom Rix <trix@redhat.com>
+To: bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com, airlied@linux.ie,
+ daniel@ffwll.ch
+Date: Mon, 25 Apr 2022 09:13:08 -0400
+Message-Id: <20220425131308.158635-1-trix@redhat.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"; x-default=true
 X-Mailman-Approved-At: Sun, 08 May 2022 03:49:54 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/gr/gf100-: Clean up some inconsistent
- indenting
+Subject: [Nouveau] [PATCH] drm/nouveau/disp/gv100: make gv100_disp_wndw and
+ gv100_disp_wndw_mthd static
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,38 +84,45 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, airlied@linux.ie,
- nouveau@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, daniel@ffwll.ch
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Tom Rix <trix@redhat.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Eliminate the follow smatch warning:
+Sparse reports these issues
+wndwgv100.c:120:1: warning: symbol 'gv100_disp_wndw_mthd' was not declared. Should it be static?
+wndwgv100.c:140:1: warning: symbol 'gv100_disp_wndw' was not declared. Should it be static?
 
-drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c:1925
-gf100_gr_oneinit_tiles() warn: inconsistent indenting.
+These variable are only used in wndwgv100.c.  Single file variables should be static.
+So use static as their storage-class specifiers.
 
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+Signed-off-by: Tom Rix <trix@redhat.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c | 4 ++--
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/wndwgv100.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-index 397ff4fe9df8..f16eabf4f642 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-@@ -1922,8 +1922,8 @@ gf100_gr_oneinit_tiles(struct gf100_gr *gr)
- 
- 	for (i = 0; i < gr->gpc_nr; i++) {
- 		init_frac[i] = gr->tpc_nr[gpc_map[i]] * gr->gpc_nr * mul_factor;
--		 init_err[i] = i * gr->tpc_max * mul_factor - comm_denom/2;
--		  run_err[i] = init_frac[i] + init_err[i];
-+		init_err[i] = i * gr->tpc_max * mul_factor - comm_denom/2;
-+		run_err[i] = init_frac[i] + init_err[i];
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/wndwgv100.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/wndwgv100.c
+index 5d3b641dbb14..e635247d794f 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/wndwgv100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/wndwgv100.c
+@@ -116,7 +116,7 @@ gv100_disp_wndw_mthd_base = {
  	}
+ };
  
- 	for (i = 0; i < gr->tpc_total;) {
+-const struct nv50_disp_chan_mthd
++static const struct nv50_disp_chan_mthd
+ gv100_disp_wndw_mthd = {
+ 	.name = "Window",
+ 	.addr = 0x001000,
+@@ -136,7 +136,7 @@ gv100_disp_wndw_intr(struct nv50_disp_chan *chan, bool en)
+ 	nvkm_mask(device, 0x611da4, mask, data);
+ }
+ 
+-const struct nv50_disp_chan_func
++static const struct nv50_disp_chan_func
+ gv100_disp_wndw = {
+ 	.init = gv100_disp_dmac_init,
+ 	.fini = gv100_disp_dmac_fini,
 -- 
-2.20.1.7.g153144c
+2.27.0
 
