@@ -4,38 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32518C433EF
-	for <nouveau@archiver.kernel.org>; Mon, 30 May 2022 14:47:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5797C433FE
+	for <nouveau@archiver.kernel.org>; Mon, 30 May 2022 14:47:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43BA710E8A5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F6DC10E95A;
 	Mon, 30 May 2022 14:46:54 +0000 (UTC)
-X-Greylist: delayed 332 seconds by postgrey-1.36 at gabe;
- Mon, 30 May 2022 03:40:33 UTC
-Received: from mail.meizu.com (unknown [14.29.68.187])
- by gabe.freedesktop.org (Postfix) with ESMTP id CA17010EF0E
- for <nouveau@lists.freedesktop.org>; Mon, 30 May 2022 03:40:33 +0000 (UTC)
-Received: from IT-EXMB-1-125.meizu.com (172.16.1.125) by mz-mail04.meizu.com
- (172.16.1.16) with Microsoft SMTP Server (TLS) id 14.3.487.0; Mon, 30 May
- 2022 11:10:51 +0800
-Received: from meizu.meizu.com (172.16.137.70) by IT-EXMB-1-125.meizu.com
- (172.16.1.125) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.14; Mon, 30 May
- 2022 11:10:47 +0800
-From: Haowen Bai <baihaowen@meizu.com>
-To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>, Lyude
- Paul <lyude@redhat.com>, David Airlie <airlied@linux.ie>, "Daniel Vetter"
- <daniel@ffwll.ch>
-Date: Mon, 30 May 2022 11:10:46 +0800
-Message-ID: <1653880246-23670-1-git-send-email-baihaowen@meizu.com>
-X-Mailer: git-send-email 2.7.4
+X-Greylist: delayed 428 seconds by postgrey-1.36 at gabe;
+ Sat, 21 May 2022 11:19:10 UTC
+Received: from mail3-relais-sop.national.inria.fr
+ (mail3-relais-sop.national.inria.fr [192.134.164.104])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF04910E055
+ for <nouveau@lists.freedesktop.org>; Sat, 21 May 2022 11:19:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=inria.fr; s=dc;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9tnuHSBQjVBU2e2Ow85bDHqPS4HDRuu3ASTrqzZC4Ic=;
+ b=qH1MiJKlYojzoNEW1uuAP8YqCZ0Xx+YPVGCRDYmGBTP/xeMYcv3gkW6G
+ sf56jp43t+xJrjQylm0ggAdyqow78lQMVvyZ0xMNYpiSVcZNCrLo4rw/y
+ z/eKfkof9qWFXa2Hj2teoZzOeilXISidsdEnd0Xitlu+In606Jnss6V0T 4=;
+Authentication-Results: mail3-relais-sop.national.inria.fr;
+ dkim=none (message not signed) header.i=none;
+ spf=SoftFail smtp.mailfrom=Julia.Lawall@inria.fr;
+ dmarc=fail (p=none dis=none) d=inria.fr
+X-IronPort-AV: E=Sophos;i="5.91,242,1647298800"; d="scan'208";a="14727960"
+Received: from i80.paris.inria.fr (HELO i80.paris.inria.fr.) ([128.93.90.48])
+ by mail3-relais-sop.national.inria.fr with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 May 2022 13:12:02 +0200
+From: Julia Lawall <Julia.Lawall@inria.fr>
+To: Ben Skeggs <bskeggs@redhat.com>
+Date: Sat, 21 May 2022 13:11:07 +0200
+Message-Id: <20220521111145.81697-57-Julia.Lawall@inria.fr>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [172.16.137.70]
-X-ClientProxiedBy: IT-EXMB-1-126.meizu.com (172.16.1.126) To
- IT-EXMB-1-125.meizu.com (172.16.1.125)
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 30 May 2022 14:46:51 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/therm: Fix pointer dereferenced
- before checking
+Subject: [Nouveau] [PATCH] drm/nouveau/mmu: fix typo in comment
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,35 +50,32 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, Haowen Bai <baihaowen@meizu.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The fan->base is dereferencing before null checking, so move
-it after checking.
+Spelling mistake (triple letters) in comment.
+Detected with the help of Coccinelle.
 
-Signed-off-by: Haowen Bai <baihaowen@meizu.com>
+Signed-off-by: Julia Lawall <Julia.Lawall@inria.fr>
+
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/therm/fanpwm.c | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/fanpwm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/fanpwm.c
-index 340f37a299dc..b13ba9b2f6be 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/fanpwm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/fanpwm.c
-@@ -98,10 +98,10 @@ nvkm_fanpwm_create(struct nvkm_therm *therm, struct dcb_gpio_func *func)
- 		return -ENODEV;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+index 8bf00b396ec1..8b11dfa0998d 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+@@ -280,7 +280,7 @@ nvkm_vmm_unref_ptes(struct nvkm_vmm_iter *it, bool pfn, u32 ptei, u32 ptes)
+ 	if (desc->type == SPT && (pgt->refs[0] || pgt->refs[1]))
+ 		nvkm_vmm_unref_sptes(it, pgt, desc, ptei, ptes);
  
- 	fan = kzalloc(sizeof(*fan), GFP_KERNEL);
--	therm->fan = &fan->base;
- 	if (!fan)
- 		return -ENOMEM;
- 
-+	therm->fan = &fan->base;
- 	fan->base.type = "PWM";
- 	fan->base.get = nvkm_fanpwm_get;
- 	fan->base.set = nvkm_fanpwm_set;
--- 
-2.7.4
+-	/* PT no longer neeed?  Destroy it. */
++	/* PT no longer needed?  Destroy it. */
+ 	if (!pgt->refs[type]) {
+ 		it->lvl++;
+ 		TRA(it, "%s empty", nvkm_vmm_desc_type(desc));
 
