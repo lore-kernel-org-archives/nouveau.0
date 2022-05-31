@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C987C433FE
-	for <nouveau@archiver.kernel.org>; Tue, 31 May 2022 10:00:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 881CAC433F5
+	for <nouveau@archiver.kernel.org>; Tue, 31 May 2022 10:00:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF7B01125BE;
-	Tue, 31 May 2022 10:00:13 +0000 (UTC)
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
- [IPv6:2a00:1450:4864:20::630])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45D401125CB;
- Tue, 31 May 2022 10:00:12 +0000 (UTC)
-Received: by mail-ej1-x630.google.com with SMTP id gh17so25575851ejc.6;
- Tue, 31 May 2022 03:00:12 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B05E71125CB;
+	Tue, 31 May 2022 10:00:16 +0000 (UTC)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com
+ [IPv6:2a00:1450:4864:20::52f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09ACE1120D9;
+ Tue, 31 May 2022 10:00:15 +0000 (UTC)
+Received: by mail-ed1-x52f.google.com with SMTP id w27so10102988edl.7;
+ Tue, 31 May 2022 03:00:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=9n4cw6tJMuGq8sS9FRBgBhCHODwjr6qBUbzPf/1V2sg=;
- b=IzX+BgNjUX84qtPBtVsu+ZQQ2nO4Huw6BvTBNd8rhiurCDNaaV5UMg4BXEj7C+GRmG
- pLAlNrJvCnrtY74d5Bo/qYvdZdIp6QkYn6H+D4DPT+ND58p4F/z8e2zkIZQsRYdjuNP2
- 1DxX3EdJHY8KDTNcYKELGBk86yao2J8VuJlSo/c21/2arZjhHOW0lpAc7cG/anLi+GyZ
- EIYmtu/053mPuutoapsZROblF0FdT729/3v6UpunSQlMe0lkJeQVmj9gHa/cACRiumXh
- G4ykLDd0yxJynuBwQinr7e62C8Qnq4ExNeWx17W3s71BABDAerQSHOy+HAkfJOD712fC
- cGtQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=SljQJAeVhGKeIBI51MbYTdJihy0sRNkihcgcWrQIyMk=;
+ b=ZBp9EWdv4dyFa/WsIYerVBV/5Czl1dSOQzB0bWaLR8VuemQ6QOm1M4R69eKpHA9nd6
+ c1HPF6oYuRRxZPShB/rzFxpDYr2SzpVcfmaTTI1/AsPIJMT2sPHv14VCM3Ka5VBHYXAs
+ x+RhdpJZ93axyquUdQTI8BbhfGTHEGOHs1mum12ZFtPHB/T1dEkf20VpzDu5c8o8JJxt
+ L5805s8can7oaGbMP04m/NeJEPnJ5J3kmnPoXDsme1EeBIo1b0t4i/Kl8NIO/OOcqJec
+ 9FKHHAZGXXE+S9p7n7ifDG4TYZso+CBFSqXccDBgxGoDfbZX1IAhrrimZdFs69Jaqd2K
+ a48g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=9n4cw6tJMuGq8sS9FRBgBhCHODwjr6qBUbzPf/1V2sg=;
- b=H47VJ8gTvjgKc0Gnq/n7crNvFlhXr9rIlrGnzcoYhAHxF01Jb713+cFw5NyKhaARMD
- AIi6zemDaA5iqfvcgELByuVGDLxhqLPpZS/XRgfOJ9N5GUXRqJpsnjpjNb58+T9VW4Rj
- NZ3tiailaj/DqyxoPZOSrpK6BXeuq2wac69G0hH6gaZJVHzYUX+5Ht7kvzuySZ5X4B3l
- fgcFnGnQGTC7uLvTPNg0Tjwx5mGb4bJRKgIwFklSl0GdPyDQo/nzPaggFDejt82t62Jv
- oLSRpd+sfTzjCX0lSz+nVOPWF3cjWc7ex/4lDI+yrDm9y44zqFWCc+8JDnPFg5rrMXm2
- 2JKQ==
-X-Gm-Message-State: AOAM5339IaYA7RJ6OkWyg7+OTMx4mmYnwN+dgtM0LvObKC6p0CuCT5jd
- BO+A+scXAYVFdQPXZXmiH9Q=
-X-Google-Smtp-Source: ABdhPJwCJfAmChYPGSG1MS5K/vbZUKtFI7ycuya8OGZo2oGfMsdkIctwKWtBLMWRNLTmB2Z1/mcwZQ==
-X-Received: by 2002:a17:907:7d88:b0:6fe:d709:6735 with SMTP id
- oz8-20020a1709077d8800b006fed7096735mr38261002ejc.76.1653991210599; 
- Tue, 31 May 2022 03:00:10 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=SljQJAeVhGKeIBI51MbYTdJihy0sRNkihcgcWrQIyMk=;
+ b=HiYzugW02zuHHgbI4M1tKjSR3nnaryb0K76Lixs4Bf+FeNaE48ATRaRCe/I5vinwoq
+ aRv26So1qG4HxxdXBFXyRXlFytFaTUoGhU5RZvHz7fvbLqCczYMm1UR2hpsdxNBv0Bu8
+ 5BZXSOraH45TTKhQYmUaeNXbypLIRplTPjgla7k30nxT5ydG+PE0wbMCqIymKoZ/+DXR
+ 9wvcHpdu763542OM4Bnh/1RTES21YxryYDQzaHFyFGT3/Ro1IZR0abm+S6tdF1GGhQdB
+ qAt497z/YDHk736+LYdXyp+MOxKTNoZtSI/g76JVl4U79AXjP+zBxGgb2k2GVNa9v3yw
+ Qylg==
+X-Gm-Message-State: AOAM531Z9g0ovuFh3WRcT82DT1Wj9hh9yBc4Faevl2RPIkpFi6xrblDd
+ VzJrW+o3G5sJSqNe0MIsRdU=
+X-Google-Smtp-Source: ABdhPJyZPq+OysWRAlAZamevHlLGk4fQamGD+X1EEEY6OJezkY6NR4XeOrBHuCnsv4+0HlBYkj/10Q==
+X-Received: by 2002:a05:6402:34d4:b0:42b:35e5:fc78 with SMTP id
+ w20-20020a05640234d400b0042b35e5fc78mr53286582edc.372.1653991213421; 
+ Tue, 31 May 2022 03:00:13 -0700 (PDT)
 Received: from able.fritz.box (p5b0ea02f.dip0.t-ipconnect.de. [91.14.160.47])
  by smtp.gmail.com with ESMTPSA id
- r13-20020a056402018d00b0042617ba6389sm582062edv.19.2022.05.31.03.00.09
+ r13-20020a056402018d00b0042617ba6389sm582062edv.19.2022.05.31.03.00.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 31 May 2022 03:00:10 -0700 (PDT)
+ Tue, 31 May 2022 03:00:13 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
@@ -54,13 +54,14 @@ To: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, linux-tegra@vger.kernel.org,
  linux-fsdevel@vger.kernel.org, linux-mm@kvack.org
-Date: Tue, 31 May 2022 11:59:54 +0200
-Message-Id: <20220531100007.174649-1-christian.koenig@amd.com>
+Date: Tue, 31 May 2022 11:59:56 +0200
+Message-Id: <20220531100007.174649-3-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220531100007.174649-1-christian.koenig@amd.com>
+References: <20220531100007.174649-1-christian.koenig@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] Per file OOM badness
+Subject: [Nouveau] [PATCH 02/13] oom: take per file badness into account
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,68 +79,64 @@ Cc: andrey.grodzovsky@amd.com, hughd@google.com, viro@zeniv.linux.org.uk,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hello everyone, 
+From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
 
-To summarize the issue I'm trying to address here: Processes can allocate
-resources through a file descriptor without being held responsible for it.
+Try to make better decisions which process to kill based on
+per file OOM badness. For this the per file oom badness is queried from
+every file which supports that and divided by the number of references to
+that file structure.
 
-Especially for the DRM graphics driver subsystem this is rather
-problematic. Modern games tend to allocate huge amounts of system memory
-through the DRM drivers to make it accessible to GPU rendering.
+Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+---
+ mm/oom_kill.c | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-But even outside of the DRM subsystem this problem exists and it is
-trivial to exploit. See the following simple example of
-using memfd_create():
-
-         fd = memfd_create("test", 0);
-         while (1)
-                 write(fd, page, 4096);
-
-Compile this and you can bring down any standard desktop system within
-seconds.
-
-The background is that the OOM killer will kill every processes in the
-system, but just not the one which holds the only reference to the memory
-allocated by the memfd.
-
-Those problems where brought up on the mailing list multiple times now
-[1][2][3], but without any final conclusion how to address them. Since
-file descriptors are considered shared the process can not directly held
-accountable for allocations made through them. Additional to that file
-descriptors can also easily move between processes as well.
-
-So what this patch set does is to instead of trying to account the
-allocated memory to a specific process it adds a callback to struct
-file_operations which the OOM killer can use to query the specific OOM
-badness of this file reference. This badness is then divided by the
-file_count, so that every process using a shmem file, DMA-buf or DRM
-driver will get it's equal amount of OOM badness.
-
-Callbacks are then implemented for the two core users (memfd and DMA-buf)
-as well as 72 DRM based graphics drivers.
-
-The result is that the OOM killer can now much better judge if a process
-is worth killing to free up memory. Resulting a quite a bit better system
-stability in OOM situations, especially while running games.
-
-The only other possibility I can see would be to change the accounting of
-resources whenever references to the file structure change, but this would
-mean quite some additional overhead for a rather common operation.
-
-Additionally I think trying to limit device driver allocations using
-cgroups is orthogonal to this effort. While cgroups is very useful, it
-works on per process limits and tries to enforce a collaborative model on
-memory management while the OOM killer enforces a competitive model.
-
-Please comment and/or review, we have that problem flying around for years
-now and are not at a point where we finally need to find a solution for
-this.
-
-Regards,
-Christian.
-
-[1] https://lists.freedesktop.org/archives/dri-devel/2015-September/089778.html
-[2] https://lkml.org/lkml/2018/1/18/543
-[3] https://lkml.org/lkml/2021/2/4/799
-
+diff --git a/mm/oom_kill.c b/mm/oom_kill.c
+index 49d7df39b02d..8a4d05e9568b 100644
+--- a/mm/oom_kill.c
++++ b/mm/oom_kill.c
+@@ -52,6 +52,8 @@
+ #define CREATE_TRACE_POINTS
+ #include <trace/events/oom.h>
+ 
++#include <linux/fdtable.h>
++
+ int sysctl_panic_on_oom;
+ int sysctl_oom_kill_allocating_task;
+ int sysctl_oom_dump_tasks = 1;
+@@ -189,6 +191,19 @@ static bool should_dump_unreclaim_slab(void)
+ 	return (global_node_page_state_pages(NR_SLAB_UNRECLAIMABLE_B) > nr_lru);
+ }
+ 
++/* Sumup how much resources are bound by files opened. */
++static int oom_file_badness(const void *points, struct file *file, unsigned n)
++{
++	long badness;
++
++	if (!file->f_op->oom_badness)
++		return 0;
++
++	badness = file->f_op->oom_badness(file);
++	*((long *)points) += DIV_ROUND_UP(badness, file_count(file));
++	return 0;
++}
++
+ /**
+  * oom_badness - heuristic function to determine which candidate task to kill
+  * @p: task struct of which task we should calculate
+@@ -229,6 +244,12 @@ long oom_badness(struct task_struct *p, unsigned long totalpages)
+ 	 */
+ 	points = get_mm_rss(p->mm) + get_mm_counter(p->mm, MM_SWAPENTS) +
+ 		mm_pgtables_bytes(p->mm) / PAGE_SIZE;
++
++	/*
++	 * Add how much memory a task uses in opened files, e.g. device drivers.
++	 */
++	iterate_fd(p->files, 0, oom_file_badness, &points);
++
+ 	task_unlock(p);
+ 
+ 	/* Normalize to oom_score_adj units */
+-- 
+2.25.1
 
