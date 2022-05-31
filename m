@@ -4,65 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD3FCC43217
-	for <nouveau@archiver.kernel.org>; Tue, 31 May 2022 10:00:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F045BC433F5
+	for <nouveau@archiver.kernel.org>; Tue, 31 May 2022 18:52:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4168112630;
-	Tue, 31 May 2022 10:00:37 +0000 (UTC)
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com
- [IPv6:2a00:1450:4864:20::532])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4731B1125E5;
- Tue, 31 May 2022 10:00:26 +0000 (UTC)
-Received: by mail-ed1-x532.google.com with SMTP id v19so9456819edd.4;
- Tue, 31 May 2022 03:00:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=CBtdyMzsAJ1/aOexJ9rl7ZeO2ErFHAD5HxTQN3Dqn3Q=;
- b=clhRBft+k4X+UmpE7If794qBfOtGFA7pbEByZ2pinyy2YRsA2O6lLDOynJMSIVJoFM
- Wvro65LH9mtebwNBzBwhrtxkvox46+r6wwZH4eYd+mYlM8gfp2s7dxCrtouRZ2HvQ9rb
- 5qqKVWSj4jEdYbd8S6LPV6K7PJCG4fHMCcDZkvLBlGNukalvsGNQKBVKwFWP7x+ZUNc0
- mZXiAkmse4krF81HSAGDete8t78Ll4SG7G5gaBi9gesUSTbQOYIe2O3LdV31q8XNetNL
- YzKH8enFbBx54aGHmjR5bRjrnOqioVrO6oNE62MwqlFCmvCaYYCBPM8DqoQ36EIiOpxJ
- EWLw==
+	by gabe.freedesktop.org (Postfix) with ESMTP id 588BD10E09B;
+	Tue, 31 May 2022 18:52:03 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63C4C10E00E
+ for <nouveau@lists.freedesktop.org>; Tue, 31 May 2022 18:52:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1654023120;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=sZAMyRELxB7F9um/lFWtV+zzG8SAX14QHBVnpeIBNDs=;
+ b=Me/kolUCFohOO9SmbEx6FrJHiuvpZzq2YaV0ks44Mdh2QX9sb81kIVZXnN129t4yTEu62V
+ aXgkNfWy14+Qsb0Rxo2OLQRbcuMmEP9KV6lF9zNH3Xn9RKhLxZdSvAnWVFDvs5tY/P07xo
+ azAphis5lPmGIW8x9GXQGOiLnsANNfw=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-639-jBxCaEoOM3ynjR0l422NMQ-1; Tue, 31 May 2022 14:51:59 -0400
+X-MC-Unique: jBxCaEoOM3ynjR0l422NMQ-1
+Received: by mail-qv1-f70.google.com with SMTP id
+ kl23-20020a056214519700b0046200065604so10730252qvb.19
+ for <nouveau@lists.freedesktop.org>; Tue, 31 May 2022 11:51:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=CBtdyMzsAJ1/aOexJ9rl7ZeO2ErFHAD5HxTQN3Dqn3Q=;
- b=S8DRI9NZVRjAOoLYXCty90+06GLEbaLBYY8TRotfovmRk4A1rv+TSSHtr/xbfF9khB
- q1XjzgzjgnF138UUx39y63Vll9GGTxI+tNiIF8d7besSlWxqu1IGAFfk9xfuM6aA5XCR
- F86OaNnOqZj4mPkGvq/P/YRhu/KjFvFwEOHo3/EYYsfvdNweG5Tsq0lfO+8zgb99b+Ce
- fCV1hxNnNfFQYaHFy0lEBa0yXK7RWqH7ZFAbfKjbPpeukv9QAFQmrsncz+xo9rUBSQCp
- iP1jFM4kXwayWsqX5zEpv4Ib9XGaUPjzCGR6d7M8h11MhmwsgacP9We3UblK4XoA0P3n
- +xSg==
-X-Gm-Message-State: AOAM533240JZ6Wr1ML5OcHBjKAY1UsBihuo7G42Y/MJZTSFxtyZ2etrM
- jzoiJ1iYyxFCGl1uIPwcdHI=
-X-Google-Smtp-Source: ABdhPJw42FrkjYM4LnR278q9mfBravYOk4Zj2lNKJYJUZ/HCUi9Q4cA6PZiVhbQJK68MTRAAzi0sdA==
-X-Received: by 2002:aa7:d285:0:b0:42d:ca4f:a046 with SMTP id
- w5-20020aa7d285000000b0042dca4fa046mr13232089edq.354.1653991224557; 
- Tue, 31 May 2022 03:00:24 -0700 (PDT)
-Received: from able.fritz.box (p5b0ea02f.dip0.t-ipconnect.de. [91.14.160.47])
- by smtp.gmail.com with ESMTPSA id
- r13-20020a056402018d00b0042617ba6389sm582062edv.19.2022.05.31.03.00.23
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=sZAMyRELxB7F9um/lFWtV+zzG8SAX14QHBVnpeIBNDs=;
+ b=y2dXHRtzXh0Zt94Hi2oyb0nDIP7+seDrZNXqPgVQTHa1T8bAWSfAtYHX8aHOzSiRhB
+ wkfI7t7lLCWx61YgANTyUoSgKAmyVruQQCUDXJgdTSDjuKVoYDblV+qC0sz6AOLWEF36
+ KT4iqPAC6KcOPxu+h6fXgzyj4jQp2ScowOkG6oSrUvHK+OfEuzTaeW+wLlFZimISTTKG
+ 29weg07ROwhm2L904Qlx8BBFjl0E0kR96CQ23jmWqyw0yqjxaqr60OQBqL3nyAJe+4K0
+ eWRbS15zOKSroRxLjSEJK8/MTEk+2g5bQD4JIpQXGjdV+RIo60IKnDY4b3UlpD6Xnn/z
+ np3Q==
+X-Gm-Message-State: AOAM53301AE9WeXRN6DR+dscCf1qHHuR+E4TrhYjVqCb777YXw9QO7zY
+ BSQCyfHmfJ47MJW1abtkEEpNofJK2zqPtoKyR5u96yCuE9b/+FP18Mwse/N1828ezjSAl+kufJV
+ TD1YUFz1F+9xh9pMCwsKRAE7m9A==
+X-Received: by 2002:a05:6214:629:b0:45b:c82:e5f2 with SMTP id
+ a9-20020a056214062900b0045b0c82e5f2mr51162983qvx.89.1654023118892; 
+ Tue, 31 May 2022 11:51:58 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzodGyqn8Bmz6b43p2yNc0fAAzKr06KKy5cRAHwm0CUS2cAXLIS7Tt/3JKcEHC+x2wOBUDH4A==
+X-Received: by 2002:a05:6214:629:b0:45b:c82:e5f2 with SMTP id
+ a9-20020a056214062900b0045b0c82e5f2mr51162963qvx.89.1654023118669; 
+ Tue, 31 May 2022 11:51:58 -0700 (PDT)
+Received: from [192.168.8.138] (static-71-184-137-158.bstnma.ftas.verizon.net.
+ [71.184.137.158]) by smtp.gmail.com with ESMTPSA id
+ q11-20020a37a70b000000b0069fc13ce211sm9787136qke.66.2022.05.31.11.51.57
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 31 May 2022 03:00:24 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, linux-mm@kvack.org
-Date: Tue, 31 May 2022 12:00:04 +0200
-Message-Id: <20220531100007.174649-11-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220531100007.174649-1-christian.koenig@amd.com>
-References: <20220531100007.174649-1-christian.koenig@amd.com>
+ Tue, 31 May 2022 11:51:58 -0700 (PDT)
+Message-ID: <ffaf5842daad97fb6c9a522551b7d00aac86c306.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Tom Rix <trix@redhat.com>, bskeggs@redhat.com, kherbst@redhat.com, 
+ airlied@linux.ie, daniel@ffwll.ch
+Date: Tue, 31 May 2022 14:51:57 -0400
+In-Reply-To: <20220528141836.4155970-1-trix@redhat.com>
+References: <20220528141836.4155970-1-trix@redhat.com>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH 10/13] drm/nouveau: use drm_oom_badness
+Subject: Re: [Nouveau] [PATCH] drm/nouveau/fifo/gv100-: set
+ gv100_fifo_runlist storage-class to static
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,31 +87,44 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: andrey.grodzovsky@amd.com, hughd@google.com, viro@zeniv.linux.org.uk,
- daniel@ffwll.ch, alexander.deucher@amd.com, akpm@linux-foundation.org,
- christian.koenig@amd.com
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This allows the OOM killer to make a better decision which process to reap.
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/nouveau/nouveau_drm.c | 1 +
- 1 file changed, 1 insertion(+)
+Will push to the appropriate branch in a moment
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 561309d447e0..5439b6938455 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -1218,6 +1218,7 @@ nouveau_driver_fops = {
- 	.compat_ioctl = nouveau_compat_ioctl,
- #endif
- 	.llseek = noop_llseek,
-+	.oom_badness = drm_oom_badness,
- };
- 
- static struct drm_driver
+On Sat, 2022-05-28 at 10:18 -0400, Tom Rix wrote:
+> sparse reports
+> drivers/gpu/drm/nouveau/nvkm/engine/fifo/gv100.c:56:1: warning: symbol
+> 'gv100_fifo_runlist' was not declared. Should it be static?
+> 
+> gv100_fifo_runlist is only used in gv100.c, so change it to static.
+> 
+> Signed-off-by: Tom Rix <trix@redhat.com>
+> ---
+>  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gv100.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gv100.c
+> b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gv100.c
+> index 70e16a91ac12..faf0fe9f704c 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gv100.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gv100.c
+> @@ -52,7 +52,7 @@ gv100_fifo_runlist_cgrp(struct nvkm_fifo_cgrp *cgrp,
+>         nvkm_wo32(memory, offset + 0xc, 0x00000000);
+>  }
+>  
+> -const struct gk104_fifo_runlist_func
+> +static const struct gk104_fifo_runlist_func
+>  gv100_fifo_runlist = {
+>         .size = 16,
+>         .cgrp = gv100_fifo_runlist_cgrp,
+
 -- 
-2.25.1
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
