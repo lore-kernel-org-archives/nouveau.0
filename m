@@ -4,90 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B599DC25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:45:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2603C25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:45:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA0CBA7039;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 890E218B66C;
 	Thu,  4 Aug 2022 20:39:15 +0000 (UTC)
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 432F599CB2;
- Mon, 25 Jul 2022 11:43:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i2sVA4vmkjiBzxuCjntWkB/dRIyDUqhcVKdEZ30qRziO24zNJvZJLjcDnlDlBwYzWiwH/eMtnPmOnw/bW8WhlPBfqWbcV4JFHpE79xF0M4pnp0QAuSNQLxlRnm6e0DhH0cwKz5KSqbvX7ybE0t60TQ/1VE5gKrH/jk7SY2reeNaxrSisbNZxYPRoN5kvR/Y2XPGfu4HQlWltYfl/B2Nk+O8XsFrmoj6JWSOakQ+G8/wi9gdCkh1MjpUdDV6DdKDOWx0jIv1Bf87/ylCRDUqq6c6Q4axS4zCBd+vj8+agQz9bzesOSQB4Wye8FtNmN+FizT4XE1Px5ywDDehBWPWLcQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7Oy4/ciJAL7Hjhfb3kaoTaClOx5uU4W2OAtkai13UdA=;
- b=C0hs9I1P5zyjU/vvo75j8PqLyyIeACbd5zw+y3+NPMI3zx/xp7AKdfZDgIyaO8gv+7mPxibx4OPEpJ0JGvLMh0/QynudijJzI5+O5/UidQ+jpGNmhGotKpdP7f0oKF50v6aVWozTzMbILrzJwDUhBcO5PAMRoY8YB7mL1b8q9j0hb+AVCzTj+3ygoOZfFm/ajpB13OFcNGuIuFxe8RCnzIqb+vVNFX7KLa9kq/n7lVKVcYhcO/4MHRtX/j0WYZVamqEaQRHWOP4N7hm9M8XKIOQvLE3bXATLhRj6Tq6/F4rmAXtMX5tffq9jbH2szHx1WRB6iRWpeWhR7Wuk7Y8A3g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7Oy4/ciJAL7Hjhfb3kaoTaClOx5uU4W2OAtkai13UdA=;
- b=f9R6sGZwxE5MdpjdJW/nPHgNnr88H7CA4zgnH7JQ+jsCYSVdhkKYj6i1Uw92ZBOCcLmMiWaRyDPy9CZFivAbB2M3tQZgRcKEEM6uclkj7zBMamwV5gGfLHzxIBQTgQr52j/RBmE1jjms/8lBiy5glrzgu1m1ptSC2cfhW74ICSw=
-Received: from BN9PR03CA0481.namprd03.prod.outlook.com (2603:10b6:408:130::6)
- by DM6PR12MB3529.namprd12.prod.outlook.com (2603:10b6:5:15d::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.23; Mon, 25 Jul
- 2022 11:43:26 +0000
-Received: from BN8NAM11FT035.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:130:cafe::14) by BN9PR03CA0481.outlook.office365.com
- (2603:10b6:408:130::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.23 via Frontend
- Transport; Mon, 25 Jul 2022 11:43:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT035.mail.protection.outlook.com (10.13.177.116) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5458.17 via Frontend Transport; Mon, 25 Jul 2022 11:43:26 +0000
-Received: from amd-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Mon, 25 Jul 2022 06:43:23 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Date: Mon, 25 Jul 2022 04:42:35 -0700
-Message-ID: <20220725114240.4844-1-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BD4412A8D6;
+ Thu,  9 Jun 2022 14:21:11 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out2.suse.de (Postfix) with ESMTP id CBBB01FE8B;
+ Thu,  9 Jun 2022 14:21:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1654784469; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=fY1GGI2PmNa9I/bhZ0fwzUE7IhjxYe1c+FuipaBGfM4=;
+ b=WZBqe2Ngc57dpZ7Y9YIpBMWIEGgtumFc7wHEEmS3iMGOErxmCbDE8Y4kutoItwMX8mXOot
+ aI38i6FM3xM1D1L9ytfvCrvrCh274JSZGEs2spz0dIdXONggDsS4OArMC9r3EchMRvbyoB
+ Fra0izLAWYuEpWfzqf3+ibWKEYv1Htg=
+Received: from suse.cz (unknown [10.100.201.86])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by relay2.suse.de (Postfix) with ESMTPS id 7E6282C141;
+ Thu,  9 Jun 2022 14:21:09 +0000 (UTC)
+Date: Thu, 9 Jun 2022 16:21:05 +0200
+From: Michal Hocko <mhocko@suse.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <YqIB0bavUeU8Abwl@dhcp22.suse.cz>
+References: <20220531100007.174649-1-christian.koenig@amd.com>
+ <20220531100007.174649-4-christian.koenig@amd.com>
+ <YqG67sox6L64E6wV@dhcp22.suse.cz>
+ <77b99722-fc13-e5c5-c9be-7d4f3830859c@amd.com>
+ <YqHuH5brYFQUfW8l@dhcp22.suse.cz>
+ <26d3e1c7-d73c-cc95-54ef-58b2c9055f0c@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c8e6d598-cdac-4979-7a6c-08da6e32e2ef
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3529:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: h7RlFae/q+hMOl1MeHfI6HBuMzrCt/n+3+HLPbYSK5sTgGB4vucVvMH1UXAsne7c/Pp6J0riH8kaEeKBItYKMPk35EM0t1Um6N8HIS0Gf6W86r/9uOxycZWBFwNXDNkAkD/+xaXb7btYk4zkNL7pzxr55bAGi1nUOIGlgPZsbHHap9EIWrTYr5SCgBJYCLBWCRrCtzxHXbBwfLNQhmW3opS3cdeMFnjPnYvqlBDslH5z2T25zOopV1f0TaAHB4/JIvCrzZTd0aLfyHkprLuCkvEPKC1JJNrS2mQyoIzeiaQDhQ5Ridu7dgaegDD73L5FvFcraO0MkKviOcgJHhKpm1SNr1FRP6a344B1cqdwfKf4FHllL+DpaKXyBghn6jeiHp4VVRlWbuJTU3Ss6+auYLnI8KBA29vkdi/kZXGdEsyz/U+Luyf3AcACmI+PU1e8YGX47pM8HDJcrIQCjCF7UnLBbq2Wm/VHHkWimDBQqh44sgZipZFKpIJy+tFUxVoRu2AvlXkfeBg1Xw+Peq8Wks9QTuWvSfiCJXSBRGJxaDp4VwNFB494clDRPz5MxstRlo/PT7Buxk2Z75s8rc7qhpvBAA/VIIRWBBASnPfS3n6q0EiIil4e8RwUC4zJNKB6+keg8PjgsThEZRWGQLe2SWF0wkaQtLEg6B6SPOJAeNU1eVoBdwLH5DAtqzq5oawYC0bMgIbFljuQizPa30sfpiZd6WUeewjh9tazp2SSVw/7qRCaE5eDEII4swRRa0g1NtiF+3sfS8GAHA3WfR5bPKK61iYwBRAa5OhFwDjgP4U8qQ+g1ftP6qRy58VN/AW7qXxkifTjW8twiE/jQvLjuA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(396003)(346002)(376002)(136003)(40470700004)(36840700001)(46966006)(8676002)(41300700001)(40480700001)(5660300002)(356005)(36756003)(82740400003)(70206006)(81166007)(6666004)(8936002)(478600001)(26005)(1076003)(47076005)(336012)(7696005)(186003)(16526019)(36860700001)(316002)(54906003)(110136005)(40460700003)(2616005)(82310400005)(4326008)(2906002)(70586007)(86362001)(426003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2022 11:43:26.0330 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c8e6d598-cdac-4979-7a6c-08da6e32e2ef
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT035.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3529
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:35:09 +0000
-Subject: [Nouveau] [PATCH v2 1/6] drm/ttm: Add new callbacks to ttm res mgr
+In-Reply-To: <26d3e1c7-d73c-cc95-54ef-58b2c9055f0c@gmail.com>
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:56 +0000
+Subject: Re: [Nouveau] [PATCH 03/13] mm: shmem: provide oom badness for
+ shmem files
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,153 +58,69 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- luben.tuikov@amd.com, christian.koenig@amd.com, matthew.auld@intel.com
+Cc: andrey.grodzovsky@amd.com, linux-mm@kvack.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ hughd@google.com, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-fsdevel@vger.kernel.org, viro@zeniv.linux.org.uk, daniel@ffwll.ch,
+ linux-tegra@vger.kernel.org, alexander.deucher@amd.com,
+ akpm@linux-foundation.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-We are adding two new callbacks to ttm resource manager
-function to handle intersection and compatibility of
-placement and resources.
+On Thu 09-06-22 16:10:33, Christian König wrote:
+> Am 09.06.22 um 14:57 schrieb Michal Hocko:
+> > On Thu 09-06-22 14:16:56, Christian König wrote:
+> > > Am 09.06.22 um 11:18 schrieb Michal Hocko:
+> > > > On Tue 31-05-22 11:59:57, Christian König wrote:
+> > > > > This gives the OOM killer an additional hint which processes are
+> > > > > referencing shmem files with potentially no other accounting for them.
+> > > > > 
+> > > > > Signed-off-by: Christian König <christian.koenig@amd.com>
+> > > > > ---
+> > > > >    mm/shmem.c | 6 ++++++
+> > > > >    1 file changed, 6 insertions(+)
+> > > > > 
+> > > > > diff --git a/mm/shmem.c b/mm/shmem.c
+> > > > > index 4b2fea33158e..a4ad92a16968 100644
+> > > > > --- a/mm/shmem.c
+> > > > > +++ b/mm/shmem.c
+> > > > > @@ -2179,6 +2179,11 @@ unsigned long shmem_get_unmapped_area(struct file *file,
+> > > > >    	return inflated_addr;
+> > > > >    }
+> > > > > +static long shmem_oom_badness(struct file *file)
+> > > > > +{
+> > > > > +	return i_size_read(file_inode(file)) >> PAGE_SHIFT;
+> > > > > +}
+> > > > This doesn't really represent the in memory size of the file, does it?
+> > > Well the file could be partially or fully swapped out as anonymous memory or
+> > > the address space only sparse populated, but even then just using the file
+> > > size as OOM badness sounded like the most straightforward approach to me.
+> > It covers hole as well, right?
+> 
+> Yes, exactly.
 
-v2: move the amdgpu and ttm_range_manager changes to
-    separate patches (Christian)
+So let's say I have a huge sparse shmem file. I will get killed because
+the oom_badness of such a file would be large as well...
 
-Signed-off-by: Christian KÃ¶nig <christian.koenig@amd.com>
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
----
- drivers/gpu/drm/ttm/ttm_resource.c | 59 ++++++++++++++++++++++++++++++
- include/drm/ttm/ttm_resource.h     | 39 ++++++++++++++++++++
- 2 files changed, 98 insertions(+)
+> > > What could happen is that the file is also mmaped and we double account.
+> > > 
+> > > > Also the memcg oom handling could be considerably skewed if the file was
+> > > > shared between more memcgs.
+> > > Yes, and that's one of the reasons why I didn't touched the memcg by this
+> > > and only affected the classic OOM killer.
+> > oom_badness is for all oom handlers, including memcg. Maybe I have
+> > misread an earlier patch but I do not see anything specific to global
+> > oom handling.
+> 
+> As far as I can see the oom_badness() function is only used in
+> oom_kill.c and in procfs to return the oom score. Did I missed
+> something?
 
-diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-index 20f9adcc3235..4cd31d24c3e7 100644
---- a/drivers/gpu/drm/ttm/ttm_resource.c
-+++ b/drivers/gpu/drm/ttm/ttm_resource.c
-@@ -253,6 +253,65 @@ void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res)
- }
- EXPORT_SYMBOL(ttm_resource_free);
- 
-+/**
-+ * ttm_resource_intersect - test for intersection
-+ *
-+ * @bdev: TTM device structure
-+ * @res: The resource to test
-+ * @place: The placement to test
-+ * @size: How many bytes the new allocation needs.
-+ *
-+ * Test if @res intersects with @place and @size. Used for testing if evictions
-+ * are valueable or not.
-+ *
-+ * Returns true if the res placement intersects with @place and @size.
-+ */
-+bool ttm_resource_intersect(struct ttm_device *bdev,
-+			    struct ttm_resource *res,
-+			    const struct ttm_place *place,
-+			    size_t size)
-+{
-+	struct ttm_resource_manager *man;
-+
-+	if (!res)
-+		return false;
-+
-+	man = ttm_manager_type(bdev, res->mem_type);
-+	if (!place || !man->func->intersect)
-+		return true;
-+
-+	return man->func->intersect(man, res, place, size);
-+}
-+
-+/**
-+ * ttm_resource_compatible - test for compatibility
-+ *
-+ * @bdev: TTM device structure
-+ * @res: The resource to test
-+ * @place: The placement to test
-+ * @size: How many bytes the new allocation needs.
-+ *
-+ * Test if @res compatible with @place and @size.
-+ *
-+ * Returns true if the res placement compatible with @place and @size.
-+ */
-+bool ttm_resource_compatible(struct ttm_device *bdev,
-+			     struct ttm_resource *res,
-+			     const struct ttm_place *place,
-+			     size_t size)
-+{
-+	struct ttm_resource_manager *man;
-+
-+	if (!res)
-+		return false;
-+
-+	man = ttm_manager_type(bdev, res->mem_type);
-+	if (!place || !man->func->compatible)
-+		return true;
-+
-+	return man->func->compatible(man, res, place, size);
-+}
-+
- static bool ttm_resource_places_compat(struct ttm_resource *res,
- 				       const struct ttm_place *places,
- 				       unsigned num_placement)
-diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
-index ca89a48c2460..68042e165c40 100644
---- a/include/drm/ttm/ttm_resource.h
-+++ b/include/drm/ttm/ttm_resource.h
-@@ -88,6 +88,37 @@ struct ttm_resource_manager_func {
- 	void (*free)(struct ttm_resource_manager *man,
- 		     struct ttm_resource *res);
- 
-+	/**
-+	 * struct ttm_resource_manager_func member intersect
-+	 *
-+	 * @man: Pointer to a memory type manager.
-+	 * @res: Pointer to a struct ttm_resource to be checked.
-+	 * @place: Placement to check against.
-+	 * @size: Size of the check.
-+	 *
-+	 * Test if @res intersects with @place + @size. Used to judge if
-+	 * evictions are valueable or not.
-+	 */
-+	bool (*intersect)(struct ttm_resource_manager *man,
-+			  struct ttm_resource *res,
-+			  const struct ttm_place *place,
-+			  size_t size);
-+
-+	/**
-+	 * struct ttm_resource_manager_func member compatible
-+	 *
-+	 * @man: Pointer to a memory type manager.
-+	 * @res: Pointer to a struct ttm_resource to be checked.
-+	 * @place: Placement to check against.
-+	 * @size: Size of the check.
-+	 *
-+	 * Test if @res compatible with @place + @size.
-+	 */
-+	bool (*compatible)(struct ttm_resource_manager *man,
-+			   struct ttm_resource *res,
-+			   const struct ttm_place *place,
-+			   size_t size);
-+
- 	/**
- 	 * struct ttm_resource_manager_func member debug
- 	 *
-@@ -329,6 +360,14 @@ int ttm_resource_alloc(struct ttm_buffer_object *bo,
- 		       const struct ttm_place *place,
- 		       struct ttm_resource **res);
- void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res);
-+bool ttm_resource_intersect(struct ttm_device *bdev,
-+			    struct ttm_resource *res,
-+			    const struct ttm_place *place,
-+			    size_t size);
-+bool ttm_resource_compatible(struct ttm_device *bdev,
-+			     struct ttm_resource *res,
-+			     const struct ttm_place *place,
-+			     size_t size);
- bool ttm_resource_compat(struct ttm_resource *res,
- 			 struct ttm_placement *placement);
- void ttm_resource_set_bo(struct ttm_resource *res,
+oom_kill.c implements most of the oom killer functionality. Memcg oom
+killing is a part of that. Have a look at select_bad_process.
+
 -- 
-2.25.1
-
+Michal Hocko
+SUSE Labs
