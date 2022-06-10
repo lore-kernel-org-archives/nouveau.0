@@ -4,61 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FB36C25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:47:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9DE4C25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:48:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DF7391DBD;
-	Thu,  4 Aug 2022 20:40:24 +0000 (UTC)
-Received: from mail-il1-x134.google.com (mail-il1-x134.google.com
- [IPv6:2607:f8b0:4864:20::134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58D00A9CD9;
- Mon, 18 Jul 2022 06:38:46 +0000 (UTC)
-Received: by mail-il1-x134.google.com with SMTP id c16so4317225ils.7;
- Sun, 17 Jul 2022 23:38:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=iJtOb8MGNrfDuJNUjp5ciUTwfOiM98w6evAABfdr9NA=;
- b=WYIhANiX/rnwdl1wGs8g9tolshMpjMJENKvfZ4nu+8Df+KAtVWK+gOVeMtkqVNFuxM
- xgGLFN5Nt6Vbh0bT92b0sDnEb4w6AnzbAXmZmxUX0ar1Non8iFaVUPE+pnw72UAgOhwp
- XZAs5mni6rl0mxXF2AK411mi9tegBInJ2ldLYdtmC4FC3QuSiWT/5JBm7gEbptZJtUBf
- rNCDKqZeRrS9ZAzfabRqyV0riSczrmrZG+LgrikZQTyHe0jhB4yX/MulB9yfWbq/DzUe
- QupWyJANJo3U3zrND0KlN/sOUNYNijRrJJaqUnCZmJQvluQg6FkUp68UQMMVl59WDRTR
- dv5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=iJtOb8MGNrfDuJNUjp5ciUTwfOiM98w6evAABfdr9NA=;
- b=RnhAiXwWR87Hi1iHpTZGfy0rf+aCNEC+yvGGE1zuXnw6MDuVx/Ayd9B9NcVfGFq3wl
- 3taqyVhwTd18yeJ1i9AOVZawPs7GSedtuvWhGPh6+hcnYAEymzKsDbftsPux5Za/QEkb
- v0o9+tq/UUx9y+lx1wmzR5rTSrguJfT73Y+wWJ8kVJXyJyiixjuMfMw/PsNTJh0cY68w
- WguSb9vBAWyy8dTbLC4D0MGdChCXWhVUAMYR+jjKrSN+FtFTSrpWjB05C5AB+/RyBZn5
- /PdQWuKGPukUul0UlCT/ATU+TFaQAMtJkmbPsSoXGS1mLvBhXCPXgEOtauQEoVpgDJ9q
- JdLQ==
-X-Gm-Message-State: AJIora8Itb5XaANMwZNDxZEKAQiHzpA4PQii23Ap7JbIKpckRVMjFM1G
- aEPNNALfV+d0Ryd2PV0viNij/3XcMSE=
-X-Google-Smtp-Source: AGRyM1vgNV0Aih9Ut/mUoy7UDugZ2ZlpeWghK1hcW1/ieZ1xjM0F8ouC8yLzdpCK5zNz55sG34Vk2A==
-X-Received: by 2002:a05:6e02:20e2:b0:2dc:88c6:f03d with SMTP id
- q2-20020a056e0220e200b002dc88c6f03dmr13341989ilv.35.1658126325991; 
- Sun, 17 Jul 2022 23:38:45 -0700 (PDT)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.38.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 17 Jul 2022 23:38:45 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: jbaron@akamai.com
-Date: Mon, 18 Jul 2022 00:36:07 -0600
-Message-Id: <20220718063641.9179-24-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
-References: <20220718063641.9179-1-jim.cromie@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63D8DA70AA;
+	Thu,  4 Aug 2022 20:40:50 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 349F910E918;
+ Fri, 10 Jun 2022 11:44:46 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out1.suse.de (Postfix) with ESMTP id B60B7220D8;
+ Fri, 10 Jun 2022 11:44:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1654861484; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=c2yNehDhwyQqo17iHRnrFd5b2B4xhq7rJYv9z6HMzWs=;
+ b=h+J12/+6dA8PdIqRIwQ/dq8CBxwmkTtmJN+f1WSXzGepjWfdRUp6+83ihl6g6uUh9msQ3L
+ qwEBdbkyLPmTrWlEDIIcEPJJpJ7gw2yT7LTS2tkfBcUYqvZX9r9bfGgNgjmvM1nTYHbhA6
+ iZFt0rZqsig307bTfbxENF96s0p7l0Q=
+Received: from suse.cz (unknown [10.100.201.86])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by relay2.suse.de (Postfix) with ESMTPS id 48F442C141;
+ Fri, 10 Jun 2022 11:44:44 +0000 (UTC)
+Date: Fri, 10 Jun 2022 13:44:43 +0200
+From: Michal Hocko <mhocko@suse.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <YqMuq/ZrV8loC3jE@dhcp22.suse.cz>
+References: <20220531100007.174649-1-christian.koenig@amd.com>
+ <20220531100007.174649-4-christian.koenig@amd.com>
+ <YqG67sox6L64E6wV@dhcp22.suse.cz>
+ <77b99722-fc13-e5c5-c9be-7d4f3830859c@amd.com>
+ <YqHuH5brYFQUfW8l@dhcp22.suse.cz>
+ <26d3e1c7-d73c-cc95-54ef-58b2c9055f0c@gmail.com>
+ <YqIB0bavUeU8Abwl@dhcp22.suse.cz>
+ <d4a19481-7a9f-19bf-c270-d89baa0970fc@amd.com>
+ <YqIMmK18mb/+s5de@dhcp22.suse.cz>
+ <3f7d3d96-0858-fb6d-07a3-4c18964f888e@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:48 +0000
-Subject: [Nouveau] [PATCH v3 23/41] drm_print: wrap drm_*_dbg in dyndbg
- descriptor factory macro
+In-Reply-To: <3f7d3d96-0858-fb6d-07a3-4c18964f888e@gmail.com>
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:56 +0000
+Subject: Re: [Nouveau] [PATCH 03/13] mm: shmem: provide oom badness for
+ shmem files
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,101 +62,97 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: andrey.grodzovsky@amd.com, linux-mm@kvack.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ hughd@google.com, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-fsdevel@vger.kernel.org, viro@zeniv.linux.org.uk, daniel@ffwll.ch,
+ linux-tegra@vger.kernel.org, alexander.deucher@amd.com,
+ akpm@linux-foundation.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-For CONFIG_DRM_USE_DYNAMIC_DEBUG=y, wrap __drm_dbg() & __drm_dev_dbg()
-in one of dyndbg's Factory macros: _dynamic_func_call_no_desc().
+On Fri 10-06-22 12:58:53, Christian König wrote:
+> Am 09.06.22 um 17:07 schrieb Michal Hocko:
+> > On Thu 09-06-22 16:29:46, Christian König wrote:
+> > [...]
+> > > Is that a show stopper? How should we address this?
+> > This is a hard problem to deal with and I am not sure this simple
+> > solution is really a good fit. Not only because of the memcg side of
+> > things. I have my doubts that sparse files handling is ok as well.
+> 
+> Well I didn't claimed that this would be easy, we juts need to start
+> somewhere.
+> 
+> Regarding the sparse file handling, how about using file->f_mapping->nrpages
+> as badness for shmem files?
+> 
+> That should give us the real number of pages allocated through this shmem
+> file and gracefully handles sparse files.
 
-This adds the callsite descriptor into the code, and an entry for each
-into /proc/dynamic_debug/control.
+Yes, this would be a better approximation.
 
-  #> echo class DRM_UT_ATOMIC +p > /proc/dynamic_debug/control
+> > I do realize this is a long term problem and there is a demand for some
+> > solution at least. I am not sure how to deal with shared resources
+> > myself. The best approximation I can come up with is to limit the scope
+> > of the damage into a memcg context. One idea I was playing with (but
+> > never convinced myself it is really a worth) is to allow a new mode of
+> > the oom victim selection for the global oom event.
 
-CONFIG_DRM_USE_DYNAMIC_DEBUG=y/n is configurable because of the .data
-footprint cost of per-callsite control; 56 bytes/site * ~2k for i915,
-~4k callsites for amdgpu.  This is large enough that a kernel builder
-might not want it.
+And just for the clarity. I have mentioned global oom event here but the
+concept could be extended to per-memcg oom killer as well.
 
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- drivers/gpu/drm/Kconfig  | 12 ++++++++++++
- drivers/gpu/drm/Makefile |  2 ++
- include/drm/drm_print.h  | 12 ++++++++++++
- 3 files changed, 26 insertions(+)
+> > It would be an opt in
+> > and the victim would be selected from the biggest leaf memcg (or kill
+> > the whole memcg if it has group_oom configured.
+> > 
+> > That would address at least some of the accounting issue because charges
+> > are better tracked than per process memory consumption. It is a crude
+> > and ugly hack and it doesn't solve the underlying problem as shared
+> > resources are not guaranteed to be freed when processes die but maybe it
+> > would be just slightly better than the existing scheme which is clearly
+> > lacking behind existing userspace.
+> 
+> Well, what is so bad at the approach of giving each process holding a
+> reference to some shared memory it's equal amount of badness even when the
+> processes belong to different memory control groups?
 
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index e88c497fa010..bb1fa20a8eb2 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -50,6 +50,18 @@ config DRM_DEBUG_MM
+I am not claiming this is wrong per se. It is just an approximation and
+it can surely be wrong in some cases (e.g. in those workloads where the
+share memory is mostly owned by one process while the shared content is
+consumed by many).
+
+The primary question is whether it actually helps much or what kind of
+scenarios it can help with and whether we can actually do better for
+those. Also do not forget that shared file memory is not the only thing
+to care about. What about the kernel memory used on behalf of processes?
+
+Just consider the above mentioned memcg driven model. It doesn't really
+require to chase specific files and do some arbitrary math to share the
+responsibility. It has a clear accounting and responsibility model.
+
+It shares the same underlying problem that the oom killing is not
+resource aware and therefore there is no guarantee that memory really
+gets freed.  But it allows sane configurations where shared resources do
+not cross memcg boundaries at least. With that in mind and oom_cgroup
+semantic you can get at least some semi-sane guarantees. Is it
+pefect? No, by any means. But I would expect it to be more predictable.
+
+Maybe we can come up with a saner model, but just going with per file
+stats sounds like a hard to predict and debug approach to me. OOM
+killing is a very disruptive operation and having random tasks killed
+just because they have mapped few pages from a shared resource sounds
+like a terrible thing to debug and explain to users.
  
- 	  If in doubt, say "N".
- 
-+config DRM_USE_DYNAMIC_DEBUG
-+	bool "use dynamic debug to implement drm.debug"
-+	default y
-+	depends on DRM
-+	depends on DYNAMIC_DEBUG || DYNAMIC_DEBUG_CORE
-+	depends on JUMP_LABEL
-+	help
-+	  Use dynamic-debug to avoid drm_debug_enabled() runtime overheads.
-+	  Due to callsite counts in DRM drivers (~4k in amdgpu) and 56
-+	  bytes per callsite, the .data costs can be substantial, and
-+	  are therefore configurable.
-+
- config DRM_DEBUG_SELFTEST
- 	tristate "kselftests for DRM"
- 	depends on DRM
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index 15fe3163f822..272de137d207 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -3,6 +3,8 @@
- # Makefile for the drm device driver.  This driver provides support for the
- # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
- 
-+CFLAGS-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)	+= -DDYNAMIC_DEBUG_MODULE
-+
- drm-y       :=	drm_aperture.o drm_auth.o drm_cache.o \
- 		drm_file.o drm_gem.o drm_ioctl.o \
- 		drm_drv.o \
-diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-index c429c258c957..2d2cef76b5c1 100644
---- a/include/drm/drm_print.h
-+++ b/include/drm/drm_print.h
-@@ -384,8 +384,14 @@ void __drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
- 	}								\
- })
- 
-+#if !defined(CONFIG_DRM_USE_DYNAMIC_DEBUG)
- #define drm_dev_dbg(dev, cat, fmt, ...)				\
- 	__drm_dev_dbg(dev, cat, fmt, ##__VA_ARGS__)
-+#else
-+#define drm_dev_dbg(dev, cat, fmt, ...)				\
-+	_dynamic_func_call_no_desc(fmt, __drm_dev_dbg,			\
-+				   dev, cat, fmt, ##__VA_ARGS__)
-+#endif
- 
- /**
-  * DRM_DEV_DEBUG() - Debug output for generic drm code
-@@ -492,7 +498,13 @@ void ___drm_dbg(enum drm_debug_category category, const char *format, ...);
- __printf(1, 2)
- void __drm_err(const char *format, ...);
- 
-+#if !defined(CONFIG_DRM_USE_DYNAMIC_DEBUG)
- #define __drm_dbg(fmt, ...)		___drm_dbg(fmt, ##__VA_ARGS__)
-+#else
-+#define __drm_dbg(cat, fmt, ...)					\
-+	_dynamic_func_call_no_desc(fmt, ___drm_dbg,			\
-+				   cat, fmt, ##__VA_ARGS__)
-+#endif
- 
- /* Macros to make printk easier */
- 
+> If you really think that this would be a hard problem for upstreaming we
+> could as well keep the behavior for memcg as it is for now. We would just
+> need to adjust the paramters to oom_badness() a bit.
+
+Say we ignore the memcg side of things for now. How does it help long
+term? Special casing the global oom is not all that hard but any future
+change would very likely be disruptive with some semantic implications
+AFAICS.
 -- 
-2.36.1
-
+Michal Hocko
+SUSE Labs
