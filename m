@@ -4,60 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2994C25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:39:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66CD3C25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:39:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5643A12ABEC;
-	Thu,  4 Aug 2022 20:37:48 +0000 (UTC)
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com
- [IPv6:2607:f8b0:4864:20::d2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E218A9C1F;
- Mon, 18 Jul 2022 06:37:59 +0000 (UTC)
-Received: by mail-io1-xd2c.google.com with SMTP id 125so8546622iou.6;
- Sun, 17 Jul 2022 23:37:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=cXOS454We3xvQC3yPmBTyPjVfKFZCejZgeG5/lQTXdI=;
- b=nh2D4yiWgmQKhgN1E674klHLZ86aG/U8w6p6fMV6zjWQ+g9QB/15hahoMQdJcP5YkM
- JPGSxE+fav1xVLASfHACS/SBiIp1Qbxqfsp87QM6NjVpBZs091eXALHhuynKlDFQu2tI
- /2btxjwmkJsGTzbONlQsvM3pWjDLSZhneBnwMwAZAoST++XJ7t4wNiH4G7RPPH6bQ+pR
- /Qnm05I/tBTIG0mjQjxJe4D0NBA1l0Mg8ZShBOZC01V1EOauyL76qMPADEHWQqnkA4WV
- Dguz/Ozffn8+uugpOOr6N3OD+HTuEd80LyJ+Pea5igo+UlS5EAYUtPJIP9zKsGtsQkas
- T1hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=cXOS454We3xvQC3yPmBTyPjVfKFZCejZgeG5/lQTXdI=;
- b=YmgYQuDxz5NUz4S3/LOj9QwMUlpU9p/y880ZC3y1DY6MLr4/QlfC5lsKPxy/ZE5hoj
- Ed9n6FzolLYsUCD0t+ZR5Y9DrTqi9lyKU4jRqPEExZUCqyqmti9fY1NCiT+LrWwt+UcQ
- fy/dbWS/TsdCf9GcziYGlVDkXBCbT01sCdhtPhqLSqt4ekZX5wnJsO0Uaufhl4xqNg6r
- pTtciLo3sh/f8LxX0T79jPLZfXkZR7UuDdsW2P2XAuk48H6oj4BaiZ3MbV4mmtFaBzhq
- 6mLIgdl1lTDVbZLKVPXB8+SnDxz7SIVMLf9w5wKIQ0niqcPMHf9RGlvZPQI/rN9E/X31
- LeNQ==
-X-Gm-Message-State: AJIora9hB+xGwH9LoKVZT/1CX6u5MtNdMZYjJSJMuGGN5OIN82QsCxPY
- fbdEMoMvk2G7a+PT3/0Bf7I=
-X-Google-Smtp-Source: AGRyM1uPdYgo1Db55gBMu5KywHcniCVhxiTm+2oOcj5N6zIZgvZwV4g6M2XKTZ3eR3X1ICiY9iXSOg==
-X-Received: by 2002:a05:6638:50:b0:33f:17b9:be63 with SMTP id
- a16-20020a056638005000b0033f17b9be63mr14476634jap.92.1658126278578; 
- Sun, 17 Jul 2022 23:37:58 -0700 (PDT)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.37.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 17 Jul 2022 23:37:58 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: jbaron@akamai.com
-Date: Mon, 18 Jul 2022 00:35:45 -0600
-Message-Id: <20220718063641.9179-2-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
-References: <20220718063641.9179-1-jim.cromie@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A92A1A6F49;
+	Thu,  4 Aug 2022 20:37:50 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A30010F0FE;
+ Mon, 13 Jun 2022 07:45:05 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out1.suse.de (Postfix) with ESMTP id 2E50D21A93;
+ Mon, 13 Jun 2022 07:45:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1655106304; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=5WMle8KoXV0j63rwJ5QZ4pysRjmykK+gll6/m96aiCQ=;
+ b=FuLo+VOBBkI+oWNStM4seHkoiyK0Hr+aHMOvDiwt9GGELjWedVV4eVmmgJbe872jPvORqJ
+ Vc5aqY4498GBGJEsynJOBtP7uacBYTxS6Qceg9YAfnVQkKLxppmCRYRI6VnRd0Ehidw6e7
+ VkwY4jb2uXaKjgqii9bZJVgtGLmxSos=
+Received: from suse.cz (unknown [10.100.201.86])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by relay2.suse.de (Postfix) with ESMTPS id B0E0C2C141;
+ Mon, 13 Jun 2022 07:45:03 +0000 (UTC)
+Date: Mon, 13 Jun 2022 09:45:01 +0200
+From: Michal Hocko <mhocko@suse.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <Yqbq/Q5jz2ou87Jx@dhcp22.suse.cz>
+References: <YqHuH5brYFQUfW8l@dhcp22.suse.cz>
+ <26d3e1c7-d73c-cc95-54ef-58b2c9055f0c@gmail.com>
+ <YqIB0bavUeU8Abwl@dhcp22.suse.cz>
+ <d4a19481-7a9f-19bf-c270-d89baa0970fc@amd.com>
+ <YqIMmK18mb/+s5de@dhcp22.suse.cz>
+ <3f7d3d96-0858-fb6d-07a3-4c18964f888e@gmail.com>
+ <YqMuq/ZrV8loC3jE@dhcp22.suse.cz>
+ <2e7e050e-04eb-0c0a-0675-d7f1c3ae7aed@amd.com>
+ <YqNSSFQELx/LeEHR@dhcp22.suse.cz>
+ <288528c3-411e-fb25-2f08-92d4bb9f1f13@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:46 +0000
-Subject: [Nouveau] [PATCH v3 01/41] dyndbg: fix static_branch manipulation
+In-Reply-To: <288528c3-411e-fb25-2f08-92d4bb9f1f13@gmail.com>
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:56 +0000
+Subject: Re: [Nouveau] [PATCH 03/13] mm: shmem: provide oom badness for
+ shmem files
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,73 +62,66 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, vincent.whitchurch@axis.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: andrey.grodzovsky@amd.com, linux-mm@kvack.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ hughd@google.com, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-fsdevel@vger.kernel.org, viro@zeniv.linux.org.uk, daniel@ffwll.ch,
+ linux-tegra@vger.kernel.org, alexander.deucher@amd.com,
+ akpm@linux-foundation.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-In https://lore.kernel.org/lkml/20211209150910.GA23668@axis.com/
+On Sat 11-06-22 10:06:18, Christian König wrote:
+> Am 10.06.22 um 16:16 schrieb Michal Hocko:
+[...]
+> > > So what happens when a games over allocates texture resources is that your
+> > > whole desktop restarts because the compositor is killed. This obviously also
+> > > kills the game, but it would be much nice if we would be more selective
+> > > here.
+> > > 
+> > > For hardware rendering DMA-buf and GPU drivers are used, but for the
+> > > software fallback shmem files is what is used under the hood as far as I
+> > > know. And the underlying problem is the same for both.
+> > For shmem files the end user of the buffer can preallocate and so own
+> > the buffer and be accounted for it.
+> 
+> The problem is just that it can easily happen that one process is allocating
+> the resource and a different one freeing it.
+> 
+> So just imaging the following example: Process opens X window, get reference
+> to the handle of the buffer backing this window for drawing, tells X to
+> close the window again and then a bit later closes the buffer handle.
+> 
+> In this example the X server would be charged allocating the buffer and the
+> client (which is most likely in a different memcg group) is charged freeing
+> it.
 
-Vincent's patch commented on, and worked around, a bug toggling
-static_branch's, when a 2nd PRINTK-ish flag was added.  The bug
-results in a premature static_branch_disable when the 1st of 2 flags
-was disabled.
+Thanks for the clarification.
 
-The cited commit computed newflags, but then in the JUMP_LABEL block,
-failed to use that result, instead using just one of the terms in it.
-Using newflags instead made the code work properly.
+> I could of course add something to struct page to track which memcg (or
+> process) it was charged against, but extending struct page is most likely a
+> no-go.
 
-This is Vincents test-case, reduced.  It needs the 2nd flag to
-demonstrate the bug, but it's explanatory here.
+Struct page already maintains is memcg. The one which has charged it and
+it will stay constatnt throughout of the allocation lifetime (cgroup v1
+has a concept of the charge migration but this hasn't been adopted in
+v2).
 
-pt_test() {
-    echo 5 > /sys/module/dynamic_debug/verbose
+We have a concept of active_memcg which allows to charge against a
+different memcg than the allocating context. From your example above I
+do not think this is really usable for the described usecase as the X is
+not aware where the request comes from?
 
-    site="module tcp" # just one callsite
-    echo " $site =_ " > /proc/dynamic_debug/control # clear it
+> Alternative I could try to track the "owner" of a buffer (e.g. a shmem
+> file), but then it can happen that one processes creates the object and
+> another one is writing to it and actually allocating the memory.
 
-    # A B ~A ~B
-    for flg in +T +p "-T #broke here" -p; do
-	echo " $site $flg " > /proc/dynamic_debug/control
-    done;
-
-    # A B ~B ~A
-    for flg in +T +p "-p #broke here" -T; do
-	echo " $site $flg " > /proc/dynamic_debug/control
-    done
-}
-pt_test
-
-Fixes: 84da83a6ffc0 dyndbg: combine flags & mask into a struct, simplify with it
-CC: vincent.whitchurch@axis.com
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-Acked-by: Jason Baron <jbaron@akamai.com>
----
-.drop @stable, no exposed bug.
-.add jbaron ack
----
- lib/dynamic_debug.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-index dd7f56af9aed..a56c1286ffa4 100644
---- a/lib/dynamic_debug.c
-+++ b/lib/dynamic_debug.c
-@@ -211,10 +211,11 @@ static int ddebug_change(const struct ddebug_query *query,
- 				continue;
- #ifdef CONFIG_JUMP_LABEL
- 			if (dp->flags & _DPRINTK_FLAGS_PRINT) {
--				if (!(modifiers->flags & _DPRINTK_FLAGS_PRINT))
-+				if (!(newflags & _DPRINTK_FLAGS_PRINT))
- 					static_branch_disable(&dp->key.dd_key_true);
--			} else if (modifiers->flags & _DPRINTK_FLAGS_PRINT)
-+			} else if (newflags & _DPRINTK_FLAGS_PRINT) {
- 				static_branch_enable(&dp->key.dd_key_true);
-+			}
- #endif
- 			dp->flags = newflags;
- 			v4pr_info("changed %s:%d [%s]%s =%s\n",
+If you can enforce that the owner is really responsible for the
+allocation then all should be fine. That would require MAP_POPULATE like
+semantic and I suspect this is not really feasible with the existing
+userspace. It would be certainly hard to enforce for bad players.
 -- 
-2.36.1
-
+Michal Hocko
+SUSE Labs
