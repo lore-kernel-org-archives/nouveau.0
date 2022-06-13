@@ -4,60 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D47EEC25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:38:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E0AFC25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:38:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D427A6F5A;
-	Thu,  4 Aug 2022 20:37:27 +0000 (UTC)
-Received: from mail-il1-x136.google.com (mail-il1-x136.google.com
- [IPv6:2607:f8b0:4864:20::136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1829DA9D95;
- Mon, 18 Jul 2022 06:39:22 +0000 (UTC)
-Received: by mail-il1-x136.google.com with SMTP id o2so4131434ill.6;
- Sun, 17 Jul 2022 23:39:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=vaEDPEvXL4gSKTwnQoP5IRm/Ux2q5cs9y+rjMuT2rqM=;
- b=qMxASVlV5EL3DSN4X5/kL7cEnYwqbADj3CB3z4Fg9I85YvNgk34E2/E5wcvqxqNZGJ
- lR7OMxJn5PqJmog8D9kGvWBfe63dld5tMiiSjzFVaOFTa7bYBrGxl3/XniSxML1t5CzT
- 5Exvh09DTmTnqG42b3XWTNTvYERish7mkT4ZNUIb5V43pg8kFGoTl+KVf6gdxhWw5gab
- K/xKpzjAaJ6xW8KHl3qEVPgfbrPJ2QbUa+l5TG4XEi3v00icYP/vTH779SctLUgf5J41
- Eka1kRejuJU8cduZeMy3R1002VD0Rcfvb6vtwgiFQU3+iwBRGIVMnH1fpf5zp4W0S46I
- Bg9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=vaEDPEvXL4gSKTwnQoP5IRm/Ux2q5cs9y+rjMuT2rqM=;
- b=zIEnAvVbDh8J0JsFhUk0tLKJARUAz31Q1DDlXwe7AFaRgPFDtLe+TKauq0G1wat+qM
- XlCqvHUyiPM5OgI1GFV9LJGfQiQloZNrANiUY8jJohBai/SFEvZih43q3eTK9h7oNoJG
- NaY2anm7UBmnLMe0Ab2wivX6ueAz18rex/WxTHAe/1cedSFuM0S6ya2w19/wksURnb/w
- wEyuPEGVgL19VrLT5Dtx5+NY1ANCkOv/gEgJpgnNhlig4jAiI0kzDljheANqGfPVR4x7
- MfPWGw+HxODnOkkJ0QCufJPvsxNdosDBhQMLRSs1fre5AZStZQMpjm+vz6cHW/3rDoby
- aeIw==
-X-Gm-Message-State: AJIora+7rMwOShv1cXom0Cb+c2mjQsqM/WnL+BtJtVSNh4ERNv4nn9zW
- tuA8Azr/p3X4gZ5mTGAvskHOdE7cS9Q=
-X-Google-Smtp-Source: AGRyM1vcs+T31eEMCQrZChPj8oRUl45l02/rwkdoUrIzXEzbiS+uYCGi2q1Oyqi9DlCUt+d+B5+qpw==
-X-Received: by 2002:a05:6e02:1d0a:b0:2dc:553f:13ab with SMTP id
- i10-20020a056e021d0a00b002dc553f13abmr13047274ila.49.1658126361438; 
- Sun, 17 Jul 2022 23:39:21 -0700 (PDT)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.39.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 17 Jul 2022 23:39:20 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: jbaron@akamai.com
-Date: Mon, 18 Jul 2022 00:36:33 -0600
-Message-Id: <20220718063641.9179-50-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
-References: <20220718063641.9179-1-jim.cromie@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5225AA6F6F;
+	Thu,  4 Aug 2022 20:37:32 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D6DB10E15E;
+ Mon, 13 Jun 2022 12:11:21 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out2.suse.de (Postfix) with ESMTP id ED1C71F38A;
+ Mon, 13 Jun 2022 12:11:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1655122279; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=cWi4yPYQYuWcLCZhlzRL/FUwfVjRk7PfFZtsphXFstQ=;
+ b=fWc9Ypl2KcwfmmeUMR5vxJsHU3nImiAo3Pbtm/FripjpX/mp8Fjs3Rh1gZ6Tn3ex0cZ3W+
+ 0OvfKRLBxncV3yGLDHAgrGqvdZlefo3rLxodVymu5Y4osdFhZqLOhmsWXnI11DWNlx/VZ0
+ h9lRYJlBhcSh3hyTWiqlBbym/yTUmaw=
+Received: from suse.cz (unknown [10.100.201.86])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by relay2.suse.de (Postfix) with ESMTPS id 66AB32C141;
+ Mon, 13 Jun 2022 12:11:18 +0000 (UTC)
+Date: Mon, 13 Jun 2022 14:11:17 +0200
+From: Michal Hocko <mhocko@suse.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Message-ID: <YqcpZY3Xx7Mk2ROH@dhcp22.suse.cz>
+References: <YqIB0bavUeU8Abwl@dhcp22.suse.cz>
+ <d4a19481-7a9f-19bf-c270-d89baa0970fc@amd.com>
+ <YqIMmK18mb/+s5de@dhcp22.suse.cz>
+ <3f7d3d96-0858-fb6d-07a3-4c18964f888e@gmail.com>
+ <YqMuq/ZrV8loC3jE@dhcp22.suse.cz>
+ <2e7e050e-04eb-0c0a-0675-d7f1c3ae7aed@amd.com>
+ <YqNSSFQELx/LeEHR@dhcp22.suse.cz>
+ <288528c3-411e-fb25-2f08-92d4bb9f1f13@gmail.com>
+ <Yqbq/Q5jz2ou87Jx@dhcp22.suse.cz>
+ <b8b9aba5-575e-8a34-e627-79bef4ed7f97@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:48 +0000
-Subject: [Nouveau] [PATCH v3 36/39] nv-subdev-debug
+In-Reply-To: <b8b9aba5-575e-8a34-e627-79bef4ed7f97@amd.com>
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:56 +0000
+Subject: Re: [Nouveau] [PATCH 03/13] mm: shmem: provide oom badness for
+ shmem files
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,63 +62,41 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: andrey.grodzovsky@amd.com, linux-mm@kvack.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ hughd@google.com, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-fsdevel@vger.kernel.org, viro@zeniv.linux.org.uk, daniel@ffwll.ch,
+ Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ linux-tegra@vger.kernel.org, alexander.deucher@amd.com,
+ akpm@linux-foundation.org, linux-media@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-clone the nvkm_printk,_,__ macro ladder into nvkm_drmdbg,_,__.
-And alter debug, trace, spam macros to use the renamed ladder.
+On Mon 13-06-22 13:50:28, Christian König wrote:
+> Am 13.06.22 um 09:45 schrieb Michal Hocko:
+> > On Sat 11-06-22 10:06:18, Christian König wrote:
+> > > Am 10.06.22 um 16:16 schrieb Michal Hocko:
+[...]
+> > > Alternative I could try to track the "owner" of a buffer (e.g. a shmem
+> > > file), but then it can happen that one processes creates the object and
+> > > another one is writing to it and actually allocating the memory.
+> > If you can enforce that the owner is really responsible for the
+> > allocation then all should be fine. That would require MAP_POPULATE like
+> > semantic and I suspect this is not really feasible with the existing
+> > userspace. It would be certainly hard to enforce for bad players.
+> 
+> I've tried this today and the result was: "BUG: Bad rss-counter state
+> mm:000000008751d9ff type:MM_FILEPAGES val:-571286".
+> 
+> The problem is once more that files are not informed when the process
+> clones. So what happened is that somebody called fork() with an mm_struct
+> I've accounted my pages to. The result is just that we messed up the
+> rss_stats and  the the "BUG..." above.
+> 
+> The key difference between normal allocated pages and the resources here is
+> just that we are not bound to an mm_struct in any way.
 
-This *sets-up* (not done yet) to remove the _subdev->debug >= (l)
-condition, once the bitmap-param is wired up correctly, and figured
-into dyndbg's jump-label enablement.
-
-starting with:
-
-    static struct ddebug_classes_bitmap_param drm_trace_bitmap = {
-	.bits = &__drm_trace,
-	.flags = "T",
-	.map = &drm_trace_classes,
-    };
-    module_param_cb(tracecats, &param_ops_dyndbg_classes, &drm_trace_bitmap, 0600);
-
-The missing part might be re-setting the .bits field to ref
-_subdev->debug, while respecting the _subdev's lifecycle.
-
-no functional changes.
-
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h b/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
-index 065d07ccea87..b9c2afab321f 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
-@@ -59,9 +59,17 @@ void nvkm_subdev_intr(struct nvkm_subdev *);
- #define nvkm_error(s,f,a...) nvkm_printk((s), ERROR,    err, f, ##a)
- #define nvkm_warn(s,f,a...)  nvkm_printk((s),  WARN, notice, f, ##a)
- #define nvkm_info(s,f,a...)  nvkm_printk((s),  INFO,   info, f, ##a)
--#define nvkm_debug(s,f,a...) nvkm_printk((s), DEBUG,    dbg, f, ##a)
--#define nvkm_trace(s,f,a...) nvkm_printk((s), TRACE,    dbg, f, ##a)
--#define nvkm_spam(s,f,a...)  nvkm_printk((s),  SPAM,    dbg, f, ##a)
-+
-+#define nvkm_drmdbg__(s,l,p,f,a...) do {				\
-+	const struct nvkm_subdev *_subdev = (s);			\
-+	if (CONFIG_NOUVEAU_DEBUG >= (l) && _subdev->debug >= (l))	\
-+		dev_dbg(_subdev->device->dev, "%s: "f, _subdev->name, ##a); \
-+} while(0)
-+#define nvkm_drmdbg_(s,l,f,a...) nvkm_drmdbg__((s), NV_DBG_##l, dbg, f, ##a)
-+#define nvkm_debug(s,f,a...) nvkm_drmdbg_((s), DEBUG, f, ##a)
-+#define nvkm_trace(s,f,a...) nvkm_drmdbg_((s), TRACE, f, ##a)
-+#define nvkm_spam(s,f,a...)  nvkm_drmdbg_((s),  SPAM, f, ##a)
- 
- #define nvkm_error_ratelimited(s,f,a...) nvkm_printk((s), ERROR, err_ratelimited, f, ##a)
-+
- #endif
+It is not really clear to me what exactly you have tried.
 -- 
-2.36.1
-
+Michal Hocko
+SUSE Labs
