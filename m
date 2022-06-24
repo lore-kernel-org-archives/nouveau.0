@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30A52C433EF
-	for <nouveau@archiver.kernel.org>; Fri, 24 Jun 2022 08:05:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 218BAC433EF
+	for <nouveau@archiver.kernel.org>; Fri, 24 Jun 2022 08:05:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63919112C1B;
-	Fri, 24 Jun 2022 08:04:58 +0000 (UTC)
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
- [IPv6:2a00:1450:4864:20::52b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3935C1126F8;
- Fri, 24 Jun 2022 08:04:53 +0000 (UTC)
-Received: by mail-ed1-x52b.google.com with SMTP id z11so2295779edp.9;
- Fri, 24 Jun 2022 01:04:53 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEB38112C41;
+	Fri, 24 Jun 2022 08:05:00 +0000 (UTC)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
+ [IPv6:2a00:1450:4864:20::52a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1141F112C27;
+ Fri, 24 Jun 2022 08:04:59 +0000 (UTC)
+Received: by mail-ed1-x52a.google.com with SMTP id eo8so2392621edb.0;
+ Fri, 24 Jun 2022 01:04:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=L5yGqzzqrexdqI+R/PrE1Mdxo3qJEBrMBxvOId5dYac=;
- b=ZFpcJ7bvOxDeoKsD9BSu/DxMgNBu0hFRZLpPD7H8Fycd+7tSFvQFmizj3ywr0jzQq1
- RkmWSN6e5/pg9bL1XB9hzGeR8093OZYGPUC1VX+qdANm04kbOdINANUaSr8NgFtMu/Hg
- S45PN9KwSxrjbZrDs/0J9vao+7RX5SaEiDjzAEM/leu8JhfBoxI41HP181Zf6KMSE/Fm
- okg8/IZK989tO7X6nINgpZg+gCf89iLArC3DLvGvtKCEh5a3lg9AQAQTzCwnNJJjsuVY
- Qbpff4o19u7sF6PEYo7AgFemk0vj1/sz2hNghcnALHaM/9bNwI7G4YVqTXOgFT/zKotW
- 1lGw==
+ bh=CVQLS1Q8p0L2oqy2feCuipYYw0Dn51iYeixzeYC0qk0=;
+ b=diumkHDMGen9Vt3PpkuAbvqzWKQd+Xdn973nNKdfdCDDC0zTX2C6hvIxsHe2V7Hoc4
+ IOhBR2vnm8dxvhsKFIBXPaolCk/OFXCBQ1WZCwL71kg8/Qq8WUQziQwUP00AOcwUcOGP
+ rXTcnuW7puIRMcesyziDQyu7bT1G2aJvnhdPeFeaq+EwQpiHIGMo14FD4eE8URrxEDxV
+ 0m2ZDeucEfDeKkG17Nd8V6yPSz995Flq0dRdec0ubvhe6xb2D8xZHUXfzD0udY0tRU0C
+ HcnFjUnQwXhFVgFVmkiIUcsMCluaFxgfHNgP1bHGOZQJ0mTg8yzEf2GVutNriYht8F60
+ tNsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=L5yGqzzqrexdqI+R/PrE1Mdxo3qJEBrMBxvOId5dYac=;
- b=7IFZKfLZdo7RF9j/6l4mRUKDNtNcHv3jM7jbdUlmcdWTWWl9DNFtZO7WVhJggjOl4Y
- jKPjQSTGtGjm9k19TtHmG5rAAKZayFfGcC021FIUyQXwRG2Tya43ytF9ih0RpSvgz9/N
- b5DauL/R+rJVYrNmgac4ZPTev/Hut3UE/fl1fCLaR6lKuvzu2r5yHjWz2sdvfFDdqill
- 3uaHrheLzuPFSttHq4gE/t5UwEPJ13wu9nsJL1SywyIZR8E1ai2fRWi+iREL2q9+QxKC
- 5BfBpQC3+NwhKLzhAGeXS00zDmx+V1qlMhXcWu5DXhsuPUP440Xc8JjLK/pnZViAkUwF
- 1QGQ==
-X-Gm-Message-State: AJIora+hXxTKVOdXl4xt9vnS2QXmg9Et4cunbmuPW2KrhWmAtktKmSOw
- PRKVWlvk80YwgtgndsMflwIXjC+1+nE=
-X-Google-Smtp-Source: AGRyM1v9WvX+EG4ooIeBZBCJi3ju+tuSkjouIG1NrE30YmCwfmias9TA1ULdOZTofk7OgF27mN/vJA==
-X-Received: by 2002:a50:ef0d:0:b0:435:6829:e980 with SMTP id
- m13-20020a50ef0d000000b004356829e980mr15867707eds.192.1656057891610; 
- Fri, 24 Jun 2022 01:04:51 -0700 (PDT)
+ bh=CVQLS1Q8p0L2oqy2feCuipYYw0Dn51iYeixzeYC0qk0=;
+ b=VNqcNj6revDChOlzSUl5dI/bQxdNazVE7lZDbJT0lrG0nmipXLYL04TVfqG2Pk0633
+ cPAj304GX8KxraCuTt6uAR+Yw9MD55B9sweBfoe0nC9yq87Qml8w12ojdZwseWEg6jbE
+ Lr0mRLKBIfdnNVdO4nYXH4eP9d+ql+dYj6qI3MLIlmGg6a+YMYp+aDPjN77acUTd6JJy
+ h+5roHsZzjuHuMVSN6ui9kE6PB8uQ9Pqbm18iFmKhprUNJG7W1l7tOCF0PKQTFHlbzay
+ 5zOZSmDzmXBrXh6kDNnAlxk49Rb1b/ESAoagvnECD0tiPBUuuLNRvUsz7VzfLbw0lpBl
+ gmIw==
+X-Gm-Message-State: AJIora83xkXYw8AR4yN19MR0+oNEvV/1x0dCP4urLRYJRrAPybfkDqXQ
+ LTTLObJNXD0SwcaYDSimTGk=
+X-Google-Smtp-Source: AGRyM1usD8rMmmeAdvKoxrU4g0pKdJN3rPJZdiIs4qY40gFmdzYVGQwJIExPFW+J17A2KjUq7SPWiA==
+X-Received: by 2002:a05:6402:4408:b0:435:9ed2:9be with SMTP id
+ y8-20020a056402440800b004359ed209bemr15656191eda.81.1656057897642; 
+ Fri, 24 Jun 2022 01:04:57 -0700 (PDT)
 Received: from able.fritz.box (p57b0bd9f.dip0.t-ipconnect.de. [87.176.189.159])
  by smtp.gmail.com with ESMTPSA id
- c19-20020a170906155300b006fea43db5c1sm697779ejd.21.2022.06.24.01.04.50
+ c19-20020a170906155300b006fea43db5c1sm697779ejd.21.2022.06.24.01.04.56
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Jun 2022 01:04:51 -0700 (PDT)
+ Fri, 24 Jun 2022 01:04:57 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
@@ -55,15 +55,14 @@ To: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  nouveau@lists.freedesktop.org, linux-tegra@vger.kernel.org,
  linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
  dri-devel@lists.freedesktop.org
-Date: Fri, 24 Jun 2022 10:04:33 +0200
-Message-Id: <20220624080444.7619-4-christian.koenig@amd.com>
+Date: Fri, 24 Jun 2022 10:04:38 +0200
+Message-Id: <20220624080444.7619-9-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220624080444.7619-1-christian.koenig@amd.com>
 References: <20220624080444.7619-1-christian.koenig@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH 03/14] proc: expose per file RSS
+Subject: [Nouveau] [PATCH 08/14] drm/amdgpu: use drm_file_rss
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,112 +74,34 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: mhocko@suse.com,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>, mhocko@suse.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Add the per file RSS to the memory management accounting.
+From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
 
-This allows to see the per file RSS in tools like top as well.
+This allows the OOM killer to make a better decision which process to reap.
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
 ---
- fs/proc/array.c      | 7 +++++--
- fs/proc/internal.h   | 3 ++-
- fs/proc/task_mmu.c   | 6 ++++--
- fs/proc/task_nommu.c | 3 ++-
- 4 files changed, 13 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/fs/proc/array.c b/fs/proc/array.c
-index eb815759842c..a3aabe4ac7c8 100644
---- a/fs/proc/array.c
-+++ b/fs/proc/array.c
-@@ -437,7 +437,7 @@ int proc_pid_status(struct seq_file *m, struct pid_namespace *ns,
- 	task_state(m, ns, pid, task);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 8890300766a5..4508791fe80c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -2635,8 +2635,9 @@ static const struct file_operations amdgpu_driver_kms_fops = {
+ 	.compat_ioctl = amdgpu_kms_compat_ioctl,
+ #endif
+ #ifdef CONFIG_PROC_FS
+-	.show_fdinfo = amdgpu_show_fdinfo
++	.show_fdinfo = amdgpu_show_fdinfo,
+ #endif
++	.file_rss = drm_file_rss,
+ };
  
- 	if (mm) {
--		task_mem(m, mm);
-+		task_mem(m, mm, task->files);
- 		task_core_dumping(m, task);
- 		task_thp_status(m, mm);
- 		mmput(mm);
-@@ -589,7 +589,8 @@ static int do_task_stat(struct seq_file *m, struct pid_namespace *ns,
- 	seq_put_decimal_ull(m, " ", 0);
- 	seq_put_decimal_ull(m, " ", start_time);
- 	seq_put_decimal_ull(m, " ", vsize);
--	seq_put_decimal_ull(m, " ", mm ? get_mm_rss(mm) : 0);
-+	seq_put_decimal_ull(m, " ", (mm ? get_mm_rss(mm) : 0) +
-+			    files_rss(task->files));
- 	seq_put_decimal_ull(m, " ", rsslim);
- 	seq_put_decimal_ull(m, " ", mm ? (permitted ? mm->start_code : 1) : 0);
- 	seq_put_decimal_ull(m, " ", mm ? (permitted ? mm->end_code : 1) : 0);
-@@ -673,6 +674,8 @@ int proc_pid_statm(struct seq_file *m, struct pid_namespace *ns,
- 		size = task_statm(mm, &shared, &text, &data, &resident);
- 		mmput(mm);
- 
-+		shared += files_rss(task->files);
-+
- 		/*
- 		 * For quick read, open code by putting numbers directly
- 		 * expected format is
-diff --git a/fs/proc/internal.h b/fs/proc/internal.h
-index 06a80f78433d..1b123893f7ae 100644
---- a/fs/proc/internal.h
-+++ b/fs/proc/internal.h
-@@ -305,7 +305,8 @@ extern unsigned long task_vsize(struct mm_struct *);
- extern unsigned long task_statm(struct mm_struct *,
- 				unsigned long *, unsigned long *,
- 				unsigned long *, unsigned long *);
--extern void task_mem(struct seq_file *, struct mm_struct *);
-+extern void task_mem(struct seq_file *, struct mm_struct *,
-+		     struct files_struct *);
- 
- extern const struct dentry_operations proc_net_dentry_ops;
- static inline void pde_force_lookup(struct proc_dir_entry *pde)
-diff --git a/fs/proc/task_mmu.c b/fs/proc/task_mmu.c
-index 2d04e3470d4c..a4adc6fc13d3 100644
---- a/fs/proc/task_mmu.c
-+++ b/fs/proc/task_mmu.c
-@@ -20,6 +20,7 @@
- #include <linux/shmem_fs.h>
- #include <linux/uaccess.h>
- #include <linux/pkeys.h>
-+#include <linux/fdtable.h>
- 
- #include <asm/elf.h>
- #include <asm/tlb.h>
-@@ -28,13 +29,14 @@
- 
- #define SEQ_PUT_DEC(str, val) \
- 		seq_put_decimal_ull_width(m, str, (val) << (PAGE_SHIFT-10), 8)
--void task_mem(struct seq_file *m, struct mm_struct *mm)
-+void task_mem(struct seq_file *m, struct mm_struct *mm,
-+	      struct files_struct *files)
- {
- 	unsigned long text, lib, swap, anon, file, shmem;
- 	unsigned long hiwater_vm, total_vm, hiwater_rss, total_rss;
- 
- 	anon = get_mm_counter(mm, MM_ANONPAGES);
--	file = get_mm_counter(mm, MM_FILEPAGES);
-+	file = get_mm_counter(mm, MM_FILEPAGES) + files_rss(files);
- 	shmem = get_mm_counter(mm, MM_SHMEMPAGES);
- 
- 	/*
-diff --git a/fs/proc/task_nommu.c b/fs/proc/task_nommu.c
-index a6d21fc0033c..5b6b9c5ed9ec 100644
---- a/fs/proc/task_nommu.c
-+++ b/fs/proc/task_nommu.c
-@@ -18,7 +18,8 @@
-  * each process that owns it. Non-shared memory is counted
-  * accurately.
-  */
--void task_mem(struct seq_file *m, struct mm_struct *mm)
-+void task_mem(struct seq_file *m, struct mm_struct *mm,
-+	      struct files_struct *files)
- {
- 	struct vm_area_struct *vma;
- 	struct vm_region *region;
+ int amdgpu_file_to_fpriv(struct file *filp, struct amdgpu_fpriv **fpriv)
 -- 
 2.25.1
 
