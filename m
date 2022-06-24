@@ -4,61 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DF97C25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:40:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4454C25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:40:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1016CA6F96;
-	Thu,  4 Aug 2022 20:38:02 +0000 (UTC)
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com
- [IPv6:2607:f8b0:4864:20::130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2F4CA9CE2;
- Mon, 18 Jul 2022 06:38:39 +0000 (UTC)
-Received: by mail-il1-x130.google.com with SMTP id o2so4130880ill.6;
- Sun, 17 Jul 2022 23:38:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=ZHDzkEhZoFsdqauYBoZorLHVYYv4cPxhPxoqjWUWckg=;
- b=D8GYAvhZhTZeEhHFfnRjiqQ4IebIK9Fcxbj4xbf+4JSCJosgOQJPsiWVTMPDa6Uuvw
- vLoYI4TDQcgxpj3LreTrh0Rb5URwaPNH1FzUTMktRvE5L50HGr5xYZywdat+N2qmIUQH
- phZQ5C1Hat40HNJlClICjNmPyCrMQVxGLyCaPsR1UhsPwbs+CVF5hTaV6CPDfJ3iOhG2
- 8HZkDqcwbLTFkf29Ejf08Ivbxr9NKv92N3Y3U3nqXvf5o92iWkdepIladKseAFbgN+sW
- y39MQkpBlqOJxzggQyI0A99U1bHvCJeQsa41WsRdLCz2lJPr4wThzpP5iQE1dH+URjx0
- Ld4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=ZHDzkEhZoFsdqauYBoZorLHVYYv4cPxhPxoqjWUWckg=;
- b=cSL8s/FdiKw4BpJtDZwoivZcJhZDE5L7y8CXsTd9hXo/UTZRufnqN8QV+fPemZtBwb
- yUWIvk8wpO/gBlposGwvi+4fJTQpZh6tYtEEKZjj1Ah57g3pTYIAZjJgiDwVaUQAemvM
- kpXmbHOIxHi0krDNjDZpN4cdFOZokqLFFd1xVvY/Nprtx2NlKU5HXJowtfg3rYnpfi87
- +vyixvjlLGWeyy3kERpGPQbB0SqkR9/FHJN5YYyCv9igNFZqZXLjp6DwfXc97OmcEyiG
- gS8TMOnR2qhRSeMoNK8MpNcqGCvEJY/E2J6X7F41Do63Bb4DVnFb5SnJnLEjDIGEggO8
- wQIA==
-X-Gm-Message-State: AJIora8Ur77f5430CZRUWU4f5+OSErKuUf40Ix1AzvjD33R2ZKnAfM5q
- tMXY5S6lMpSntcMSodWA4JKQpKSD8Lw=
-X-Google-Smtp-Source: AGRyM1v2aJ89+/Y57Ak3yg6kmB0cJaOyWHzQUbSRoMReM05StZqRzlIQJDOfGR8Sg+hnD4rWy4tfyw==
-X-Received: by 2002:a05:6e02:2188:b0:2dc:7546:1ea9 with SMTP id
- j8-20020a056e02218800b002dc75461ea9mr13622716ila.136.1658126318918; 
- Sun, 17 Jul 2022 23:38:38 -0700 (PDT)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.38.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 17 Jul 2022 23:38:38 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: jbaron@akamai.com
-Date: Mon, 18 Jul 2022 00:36:02 -0600
-Message-Id: <20220718063641.9179-19-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
-References: <20220718063641.9179-1-jim.cromie@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FD65A6F8F;
+	Thu,  4 Aug 2022 20:38:00 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F0E710E378;
+ Fri, 24 Jun 2022 09:59:12 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out1.suse.de (Postfix) with ESMTP id 29BB821A74;
+ Fri, 24 Jun 2022 09:59:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1656064751; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=YRx5MsPC3bOKBussEAACbRbCrT13pUlZg+D3y9hzeFQ=;
+ b=k1jLteFpvAGft+ORFG/tzqlURXKLRNicj7+oUgUIuX8osjH4+RjNVm62/jfqHf/FKhN7zD
+ JkM1/iDo+UtWtCT89LSvKZPXJRE/SPVqpxUdXuUhXgeFakRbgDUpIRPPRwwC/o9HRxOK/+
+ gqzcjpY9QSRIzgUY++eA0/TlwRk7dss=
+Received: from suse.cz (unknown [10.100.201.86])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by relay2.suse.de (Postfix) with ESMTPS id D56122C1E2;
+ Fri, 24 Jun 2022 09:59:10 +0000 (UTC)
+Date: Fri, 24 Jun 2022 11:59:10 +0200
+From: Michal Hocko <mhocko@suse.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <YrWK7pwZP3K2vbye@dhcp22.suse.cz>
+References: <20220624080444.7619-1-christian.koenig@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:47 +0000
-Subject: [Nouveau] [PATCH v3 18/41] doc-dyndbg: describe "class CLASS_NAME"
- query support
+In-Reply-To: <20220624080444.7619-1-christian.koenig@amd.com>
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:57 +0000
+Subject: Re: [Nouveau] [RFC] Per file OOM-badness / RSS once more
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,56 +52,72 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: linux-mm@kvack.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-fsdevel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ linux-media@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Add an explanation of the new "class CLASS_NAME" syntax and meaning,
-noting that the module determines if CLASS_NAME applies to it.
+On Fri 24-06-22 10:04:30, Christian König wrote:
+> Hello everyone,
+> 
+> To summarize the issue I'm trying to address here: Processes can allocate
+> resources through a file descriptor without being held responsible for it.
+> 
+> I'm not explaining all the details again. See here for a more deeply
+> description of the problem: https://lwn.net/ml/linux-kernel/20220531100007.174649-1-christian.koenig@amd.com/
+> 
+> With this iteration I'm trying to address a bunch of the comments Michal Hocko
+> (thanks a lot for that) gave as well as giving some new ideas.
+> 
+> Changes made so far:
+> 1. Renamed the callback into file_rss(). This is at least a start to better
+>    describe what this is all about. I've been going back and forth over the
+>    naming here, if you have any better idea please speak up.
+> 
+> 2. Cleanups, e.g. now providing a helper function in the fs layer to sum up
+>    all the pages allocated by the files in a file descriptor table.
+> 
+> 3. Using the actual number of allocated pages for the shmem implementation
+>    instead of just the size. I also tried to ignore shmem files which are part
+>    of tmpfs, cause that has a separate accounting/limitation approach.
 
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- Documentation/admin-guide/dynamic-debug-howto.rst | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+OK, this is better than the original approach there are still holes
+there though I am afraid. I am not sure your i_count hack is correct
+but that would be mostly an implementation detail.  The scheme will
+over-account memory mapped files (including memfd).  How much that
+matters will really differ.
 
-diff --git a/Documentation/admin-guide/dynamic-debug-howto.rst b/Documentation/admin-guide/dynamic-debug-howto.rst
-index a89cfa083155..d8954ab05c7b 100644
---- a/Documentation/admin-guide/dynamic-debug-howto.rst
-+++ b/Documentation/admin-guide/dynamic-debug-howto.rst
-@@ -35,6 +35,7 @@ Dynamic debug has even more useful features:
-    - line number (including ranges of line numbers)
-    - module name
-    - format string
-+   - class name (as known/declared by each module)
- 
-  * Provides a debugfs control file: ``<debugfs>/dynamic_debug/control``
-    which can be read to display the complete list of known debug
-@@ -142,6 +143,7 @@ against.  Possible keywords are:::
- 		 'file' string |
- 		 'module' string |
- 		 'format' string |
-+		 'class' string |
- 		 'line' line-range
- 
-   line-range ::= lineno |
-@@ -203,6 +205,15 @@ format
- 	format "nfsd: SETATTR"  // a neater way to match a format with whitespace
- 	format 'nfsd: SETATTR'  // yet another way to match a format with whitespace
- 
-+class
-+    The given class_name is validated against each module, which may
-+    have declared a list of known class_names.  If the class_name is
-+    found for a module, callsite & class matching and adjustment
-+    proceeds.  Examples::
-+
-+	class DRM_UT_KMS	# a DRM.debug category
-+	class JUNK		# silent non-match
-+
- line
-     The given line number or range of line numbers is compared
-     against the line number of each ``pr_debug()`` callsite.  A single
+For the global OOM situations it is very likely that there will be
+barely any disk based page cache as it would be reclaimed by the time
+the oom killer is invoked. So this should be OK. Swap backed page cache
+(shmem and its users) is more tricky. It is swap bound and processes
+which map it will get "charged" in the form of swap entries while those
+which rely on read/write will just escape from the sight of the oom
+killer no matter how much memory they own via their shmem backed fd.
+This sounds rather serious to me and I hope I haven't missed anything
+subtle here that would keep those pages somehow visible. Anyway
+something to very carefully document.
+
+For the memcg OOM this gets even more tricky. Files can be shared among
+tasks accross memcgs. Something that is not really straightforward from
+the userspace POV because this is not strictly deterministic as
+first-one-first-charged logic is applied so a lot might depend on timing.
+This could also easily mean that a large part of the in memory state of
+the file is outside of the reclaim and therefore OOM scope of the memcg
+which is hitting the hard limit. This could result in tasks being killed
+just because they (co)operate on a large file outside of their memcg
+domain. To be honest I am not sure how big of a problem this would be in
+practice and the existing behavior has its own cons so to me it sounds
+like changing one set of deficiency with other.
+
+As we have discussed previously, there is unlikely a great solution but
+you a) need to document most prominent downsides so that people can at
+least see this is understood and documented behavior and b) think of the
+runaway situation wrt non mapped shmems memtioned above and see whether
+there is something we can do about that.
 -- 
-2.36.1
-
+Michal Hocko
+SUSE Labs
