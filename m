@@ -4,60 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EC5DC25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:43:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8556EC25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:43:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C126A6F82;
-	Thu,  4 Aug 2022 20:38:34 +0000 (UTC)
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com
- [IPv6:2607:f8b0:4864:20::12f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2922BA9D68;
- Mon, 18 Jul 2022 06:39:21 +0000 (UTC)
-Received: by mail-il1-x12f.google.com with SMTP id c16so4317650ils.7;
- Sun, 17 Jul 2022 23:39:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=KKkb9oOdw91XqyLkF4FwBMUXpB/qcPhIT6fnMrSUSuE=;
- b=PbQrc+id7LhSU1v+A8gvSmMtePFyY6tUCfqWN0lMtrIk2gbMzhrXLDW8G8tPKLccsZ
- PEhgzLQ2gjVbdvcT/2HtqEl4WLck63d0umxHVhKP2TzwyGU1kipFMSG4OYazgtbdoGyv
- NER5EbeWFPsjAa9Zs5XNOiuL4Ld9FTIMjp4mOVASQvlds7pv2UZeyh53ZOcKwqGhJLZ0
- FEINVQPABCEHjKMA46+d8G9F0X+i2qNj5+3lUiKIxXa+E7HyssjlA0gDm5Y6IOIhweDg
- 7kYm4/IFWW8dAqZ8x7lbyzqkMrxRlYd3XGIses+uQv1M4sHodB5X+bezsVgjsSkUR+C/
- A7Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=KKkb9oOdw91XqyLkF4FwBMUXpB/qcPhIT6fnMrSUSuE=;
- b=tA9uSlypFzN/UnOGCbQX3VOK+GwNwV4JYWjpn1jjN0ZluIDLheEWmGW5UfaGmt7pQE
- P1RPf+mLRfp09QcM1wp8kjqByOy23I4uKvCXkbI18WGSxqC19QV/e4M+a4VJkFYZZkAO
- CUwBqPZd2nG4Rea7+ppCihiUmNvSy21/o+wOI2slFmlBumseUd08G4pUVh9yFtumYT1J
- JdJ1WtfkBnu9A2m5jBcwRHevXaPvjad5PBVFHYQaoqkttWiNxgPNSOlseRY5oEf0H6pH
- q/ITRPDdXIlQy09gXDIdDYvGTrpzeC2p+B4mb8RGHhgkztMkmGM9kWwgg7CZ4s+a4EGo
- HpzQ==
-X-Gm-Message-State: AJIora9iBX1fc45QeZGjDIpY+R7ZsxXgKAQHovf1vAe1Yr4Kw0NU9AvV
- EysNuQ43EyEfA5ti8kCYfmMHJJgoF4A=
-X-Google-Smtp-Source: AGRyM1vWADfdH5kRs/2RdufSwHJDp2A0hCBdeaEWXGBmF2kYnkVax/tF3WuTEuKwPHyyNiOAKYOOHw==
-X-Received: by 2002:a05:6e02:1845:b0:2dc:777d:1ef8 with SMTP id
- b5-20020a056e02184500b002dc777d1ef8mr13003358ilv.246.1658126360343; 
- Sun, 17 Jul 2022 23:39:20 -0700 (PDT)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.39.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 17 Jul 2022 23:39:19 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: jbaron@akamai.com
-Date: Mon, 18 Jul 2022 00:36:32 -0600
-Message-Id: <20220718063641.9179-49-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
-References: <20220718063641.9179-1-jim.cromie@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05220A6FF0;
+	Thu,  4 Aug 2022 20:38:35 +0000 (UTC)
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org
+ [IPv6:2001:67c:2050:0:465::101])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D5E911AAB8;
+ Tue, 28 Jun 2022 10:34:56 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4LXLZL2bFCz9sbl;
+ Tue, 28 Jun 2022 12:34:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1656412490;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=GCsmhwxPKBHJ46dWmiVRWHiUT3ks2E1dAcyONJ6hmBo=;
+ b=osKoUFpDaV9Xn6/YR52+bC3Tp28nCtNfV1JX5uc6mV+dvDRWGRuKf/MHczF+HeCF4rqvR7
+ mezcwxwPkJRVbqBszbnVuriVCGDFFqb56FfwdDKZl6ybcE1cZhXjAEVbKEzu/c9i+avuJy
+ lLhvsIRSB4qRpw7QlHM89oMr1xADNSThQcLNaR0vCS79jfevUDcDgd+uYUamRsUMkX+xHh
+ T58dZSzAHkXHgmwp1SyMUhnYq7ZVj6wokc/STn8FlrgS1dFtokX/XxUiId1/ylmbG7yicV
+ CTJOo7cvhVVQ+tSZZmZsMfvlZhAuTHjdcj6XiuHiWgfBRE7IdRMx6quP7QoJ/w==
+Message-ID: <9d02d901-8015-dc02-250b-97ed1cfa16c2@mailbox.org>
+Date: Tue, 28 Jun 2022 12:34:48 +0200
 MIME-Version: 1.0
+Content-Language: en-CA
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+ dri-devel@lists.freedesktop.org
+References: <20220624080444.7619-1-christian.koenig@amd.com>
+ <20220624080444.7619-10-christian.koenig@amd.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel.daenzer@mailbox.org>
+In-Reply-To: <20220624080444.7619-10-christian.koenig@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:48 +0000
-Subject: [Nouveau] [PATCH v3 36/41] dyndbg/drm: POC add tracebits sysfs-knob
+X-MBO-RS-META: cutc5b13i4ckkykp1cme1mpqiajc1ikh
+X-MBO-RS-ID: dec7526ba758fff16cd
+X-Rspamd-Queue-Id: 4LXLZL2bFCz9sbl
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:35:18 +0000
+Subject: Re: [Nouveau] [PATCH 09/14] drm/radeon: use drm_oom_badness
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,59 +64,35 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: mhocko@suse.com,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-clone DRM.debug interface to DRM.tracebits: ie declare __drm_trace,
-map its bits to drm-debug-categories, except this interface enables
-messages to tracefs, not to syslog.
+On 2022-06-24 10:04, Christian König wrote:
+> This allows the OOM killer to make a better decision which process to reap.
+> 
+> Signed-off-by: Christian König <christian.koenig@amd.com>
+> ---
+>  drivers/gpu/drm/radeon/radeon_drv.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
+> index 956c72b5aa33..11d310cdd2e8 100644
+> --- a/drivers/gpu/drm/radeon/radeon_drv.c
+> +++ b/drivers/gpu/drm/radeon/radeon_drv.c
+> @@ -550,6 +550,7 @@ static const struct file_operations radeon_driver_kms_fops = {
+>  #ifdef CONFIG_COMPAT
+>  	.compat_ioctl = radeon_kms_compat_ioctl,
+>  #endif
+> +	.file_rss = drm_file_rss,
+>  };
+>  
+>  static const struct drm_ioctl_desc radeon_ioctls_kms[] = {
 
-1- we reuse the drm_debug_classes class-map added previously.
-   this reflects the single source of both syslog/trace events
-   and is why structs classmap and bitmap-param are separate.
+Shortlog should now say "use drm_file_rss", right?
 
-2- add a 2nd struct ddebug_classes_bitmap_param
-   refs 1, reusing it.
-   flags = "T", to enable trace-events on this callsite.
 
-3- module_param_cb([2]) - does the sysfs part
-
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- drivers/gpu/drm/drm_print.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
-index 9fb0b8e40dca..47a41d96beea 100644
---- a/drivers/gpu/drm/drm_print.c
-+++ b/drivers/gpu/drm/drm_print.c
-@@ -45,6 +45,9 @@
- unsigned long __drm_debug;
- EXPORT_SYMBOL(__drm_debug);
- 
-+unsigned long __drm_trace;
-+EXPORT_SYMBOL(__drm_trace);
-+
- MODULE_PARM_DESC(debug, "Enable debug output, where each bit enables a debug category.\n"
- "\t\tBit 0 (0x01)  will enable CORE messages (drm core code)\n"
- "\t\tBit 1 (0x02)  will enable DRIVER messages (drm controller code)\n"
-@@ -77,6 +80,13 @@ static struct ddebug_classes_bitmap_param drm_debug_bitmap = {
- 	.map = &drm_debug_classes,
- };
- module_param_cb(debug, &param_ops_dyndbg_classes, &drm_debug_bitmap, 0600);
-+
-+static struct ddebug_classes_bitmap_param drm_trace_bitmap = {
-+	.bits = &__drm_trace,
-+	.flags = "T",
-+	.map = &drm_debug_classes,
-+};
-+module_param_cb(tracecats, &param_ops_dyndbg_classes, &drm_trace_bitmap, 0600);
- #endif
- 
- void __drm_puts_coredump(struct drm_printer *p, const char *str)
 -- 
-2.36.1
-
+Earthling Michel Dänzer            |                  https://redhat.com
+Libre software enthusiast          |         Mesa and Xwayland developer
