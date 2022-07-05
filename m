@@ -4,65 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C40DDC25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:38:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F512C25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:38:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E832A6F42;
-	Thu,  4 Aug 2022 20:37:26 +0000 (UTC)
-X-Greylist: delayed 347 seconds by postgrey-1.36 at gabe;
- Mon, 13 Jun 2022 09:14:45 UTC
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org
- [IPv6:2001:67c:2050:0:465::201])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C704A10E0EC;
- Mon, 13 Jun 2022 09:14:45 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org
- [IPv6:2001:67c:2050:b231:465::202])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4LM5N73Srsz9sZR;
- Mon, 13 Jun 2022 11:08:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1655111335;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=/diBHTT7FJGtxv9Ix4yOBCZ8RnU/aeUMZMRq1jZWVd0=;
- b=Znxifht26gApX39S8dBdMlCkItNVWLXnXVPMEVWY3AG9zAT6gRrWMY9rhTZyANLJTCXA+T
- /Py+ybJGqRWT/5GkeLRhJZiWzDalGM3ZvZadEpQEYyYCU21C9ACURqw1LrNyUVHsOxWjvx
- 1p9izA8OmzrQ5cxuRmCiyhEfNhVce3b+LqtSrMJHG1exvU+qFVCJb9AZGKmxkawe7s4w+F
- /Xrajo+QQRwLwU5ACiJOqV5anBx0ps2Y2wIrqp32YeXJCOeBwJm20EiuG6GVGM12Bl5Dy4
- ebLpFyJ47wP6J1/GG07XltI+NvUdJKpT2sZ8ndEXg24vYNlBTBRianCdqohCbA==
-Message-ID: <51536e97-ca5f-abe4-b46c-ee3eb57f891e@mailbox.org>
-Date: Mon, 13 Jun 2022 11:08:52 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA176A6F38;
+	Thu,  4 Aug 2022 20:37:25 +0000 (UTC)
+X-Greylist: delayed 910 seconds by postgrey-1.36 at gabe;
+ Tue, 05 Jul 2022 09:58:33 UTC
+Received: from mail-m973.mail.163.com (mail-m973.mail.163.com [123.126.97.3])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 759C910E021
+ for <nouveau@lists.freedesktop.org>; Tue,  5 Jul 2022 09:58:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=vctMm
+ aZ2jCBteIBCD7D0uyHlHM+0VSnNr88RsGWlQb4=; b=pUITOL14hlFwwm209DVEZ
+ EUktxKrGXxmWZ1GZm5R9a1j1W2kOWuTw6/BBujYn5+40cpltEYBD4Cc14Ws9q9IQ
+ Coe8A2wi/6vAoMH6xrHnKV9od0RRf7+9O963QFsLwR2qSqI2tZ/UhHwKippcZero
+ O2L6FDEPcFYLL5EFcDQA7A=
+Received: from localhost.localdomain (unknown [123.112.69.106])
+ by smtp3 (Coremail) with SMTP id G9xpCgAn4GmrB8Ri0an9NQ--.2574S4;
+ Tue, 05 Jul 2022 17:43:16 +0800 (CST)
+From: Jianglei Nie <niejianglei2021@163.com>
+To: bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com, airlied@linux.ie,
+ daniel@ffwll.ch
+Date: Tue,  5 Jul 2022 17:43:06 +0800
+Message-Id: <20220705094306.2244103-1-niejianglei2021@163.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Language: en-CA
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Michal Hocko <mhocko@suse.com>, =?UTF-8?Q?Christian_K=c3=b6nig?=
- <christian.koenig@amd.com>
-References: <YqG67sox6L64E6wV@dhcp22.suse.cz>
- <77b99722-fc13-e5c5-c9be-7d4f3830859c@amd.com>
- <YqHuH5brYFQUfW8l@dhcp22.suse.cz>
- <26d3e1c7-d73c-cc95-54ef-58b2c9055f0c@gmail.com>
- <YqIB0bavUeU8Abwl@dhcp22.suse.cz>
- <d4a19481-7a9f-19bf-c270-d89baa0970fc@amd.com>
- <YqIMmK18mb/+s5de@dhcp22.suse.cz>
- <3f7d3d96-0858-fb6d-07a3-4c18964f888e@gmail.com>
- <YqMuq/ZrV8loC3jE@dhcp22.suse.cz>
- <2e7e050e-04eb-0c0a-0675-d7f1c3ae7aed@amd.com>
- <YqNSSFQELx/LeEHR@dhcp22.suse.cz>
- <288528c3-411e-fb25-2f08-92d4bb9f1f13@gmail.com>
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel.daenzer@mailbox.org>
-In-Reply-To: <288528c3-411e-fb25-2f08-92d4bb9f1f13@gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: 577iphbxb4bs3945taqe58kkqzbs8imi
-X-MBO-RS-ID: 72e59480f2d70ddaf00
-X-Rspamd-Queue-Id: 4LM5N73Srsz9sZR
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:35:18 +0000
-Subject: Re: [Nouveau] [PATCH 03/13] mm: shmem: provide oom badness for
- shmem files
+X-CM-TRANSID: G9xpCgAn4GmrB8Ri0an9NQ--.2574S4
+X-Coremail-Antispam: 1Uf129KBjvdXoWrZw1kXrWDJF17Xw4DZr13Jwb_yoWDtrg_uF
+ 4IqF17Wr9Ykrs8tw4qyw1jvFWSkw4kuFWkZF95ta4SqrW7Jw13Wr4UXry3Wry7AFWjgr9x
+ ZanYvFyakwnFgjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUvcSsGvfC2KfnxnUUI43ZEXa7xREs2-3UUUUU==
+X-Originating-IP: [123.112.69.106]
+X-CM-SenderInfo: xqlhyxxdqjzvrlsqjii6rwjhhfrp/xtbB0RQ1jFzIBxqqrgAAsx
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:15 +0000
+Subject: [Nouveau] [PATCH] drm/nouveau/nouveau_bo: fix potential memory leak
+ in nouveau_bo_alloc()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,36 +52,39 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: andrey.grodzovsky@amd.com, linux-tegra@vger.kernel.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- hughd@google.com, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-mm@kvack.org, viro@zeniv.linux.org.uk, daniel@ffwll.ch,
- linux-fsdevel@vger.kernel.org, alexander.deucher@amd.com,
- akpm@linux-foundation.org, linux-media@vger.kernel.org
+Cc: nouveau@lists.freedesktop.org, ri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Jianglei Nie <niejianglei2021@163.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 2022-06-11 10:06, Christian König wrote:
-> Am 10.06.22 um 16:16 schrieb Michal Hocko:
->> [...]
->>>> Just consider the above mentioned memcg driven model. It doesn't really
->>>> require to chase specific files and do some arbitrary math to share the
->>>> responsibility. It has a clear accounting and responsibility model.
->>> Ok, how does that work then?
->> The memory is accounted to whoever faults that memory in or to the
->> allocating context if that is a kernel memory (in most situations).
-> 
-> That's what I had in mind as well. Problem with this approach is that file descriptors are currently not informed that they are shared between processes.
-> 
-> So to make this work we would need something like attach/detach to process in struct file_operations.
-> 
-> And as I noted, this happens rather often. For example a game which renders 120 frames per second needs to transfer 120 buffers per second between client and X.
+nouveau_bo_alloc() allocates a memory chunk for "nvbo" with kzalloc().
+When some error occurs, "nvbo" should be released. But when
+WARN_ON(pi < 0)) equals true, the function return ERR_PTR without
+releasing the "nvbo", which will lead to a memory leak.
 
-FWIW, in the steady state, the game will cycle between a small (generally 2-5) set of buffers. The game will not cause new buffers to be exported & imported for every frame.
+We should release the "nvbo" with kfree() if WARN_ON(pi < 0)) equals true.
 
-In general, I'd expect dma-buf export & import to happen relatively rarely, e.g. when a window is opened or resized.
+Signed-off-by: Jianglei Nie <niejianglei2021@163.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_bo.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index 05076e530e7d..d0887438b07e 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -281,8 +281,10 @@ nouveau_bo_alloc(struct nouveau_cli *cli, u64 *size, int *align, u32 domain,
+ 			break;
+ 	}
+ 
+-	if (WARN_ON(pi < 0))
++	if (WARN_ON(pi < 0)) {
++		kfree(nvbo);
+ 		return ERR_PTR(-EINVAL);
++	}
+ 
+ 	/* Disable compression if suitable settings couldn't be found. */
+ 	if (nvbo->comp && !vmm->page[pi].comp) {
 -- 
-Earthling Michel Dänzer            |                  https://redhat.com
-Libre software enthusiast          |         Mesa and Xwayland developer
+2.25.1
+
