@@ -4,54 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09BECC25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:39:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 484EBC25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:39:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60F04A5B71;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45966A1ED4;
 	Thu,  4 Aug 2022 20:37:37 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CA4018A2EB;
- Tue, 26 Jul 2022 10:41:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1658832097; x=1690368097;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=jHZFk/+Ykb15Y5aLVAk7YLb5W9xuHiLms4IfcLqlpQQ=;
- b=GUVsp5tNQGzsTrsbKu7dxM1/YB4fpeGwR0GILtvAhfY39RnHlZ5xouyE
- 9AW0VO1K/l+yNICdOkbJozzxdpMhH921Aea7NGR7LwWGfRT9TCQaTycN2
- knnZmGh6NTeNcAEDookq84eqyfgC9ZQGNHFd6XeUFElmOOFztCcyAuEQg
- PswzGANhk4Ee82r0P+tXJnSYf8n4cvSPlW4vLIAbdPgiXBfTUFmtdVRWF
- qFsDdHA2Ioucvq57933WZTWNOws/QZ2HTXyR7QXlIo0fDj3NFyO2rKBOP
- hUDs34OKVpLoU2moyhbw9cp6OQu0+dj3s1fl4i8VjXSF2ws/yLrTB+XNU g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10419"; a="349622931"
-X-IronPort-AV: E=Sophos;i="5.93,193,1654585200"; d="scan'208";a="349622931"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2022 03:41:36 -0700
-X-IronPort-AV: E=Sophos;i="5.93,193,1654585200"; d="scan'208";a="667857204"
-Received: from gwolonhu-mobl.gar.corp.intel.com (HELO [10.214.160.8])
- ([10.214.160.8])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2022 03:41:32 -0700
-Message-ID: <41eea55c-93d6-6406-d279-0583e17ab56c@intel.com>
-Date: Tue, 26 Jul 2022 11:41:27 +0100
+Received: from mail-m975.mail.163.com (mail-m975.mail.163.com [123.126.97.5])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 92358113C3F;
+ Tue,  5 Jul 2022 13:26:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=gXy/Y
+ z4KCId8SFCAfrVNi5PuBJCfR9XEK9tE4hr3UMk=; b=fp/zwUlITCGkn7mKyHq76
+ 3krFugiAzVymSNKB6opO8r/aqqAyx0KMRPca+hoLlf7cD0vyKh3WvQixS6wt7Hu+
+ StnA0YOMVgm4NIf7pn3PqgsfLAKdAvoeYNclnWAJcPpN8OpiIDc1U5AImG+CbnyU
+ x6VAsFgL4FQSIbf8K3VHRQ=
+Received: from localhost.localdomain (unknown [123.112.69.106])
+ by smtp5 (Coremail) with SMTP id HdxpCgBXgTLcO8RiQtNIMg--.52057S4;
+ Tue, 05 Jul 2022 21:25:55 +0800 (CST)
+From: Jianglei Nie <niejianglei2021@163.com>
+To: bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com, airlied@linux.ie,
+ daniel@ffwll.ch
+Date: Tue,  5 Jul 2022 21:25:46 +0800
+Message-Id: <20220705132546.2247677-1-niejianglei2021@163.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.11.0
-Content-Language: en-GB
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
-References: <20220725114240.4844-1-Arunpravin.PaneerSelvam@amd.com>
- <20220725114240.4844-4-Arunpravin.PaneerSelvam@amd.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20220725114240.4844-4-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:26 +0000
-Subject: Re: [Nouveau] [PATCH v2 4/6] drm/i915: Implement
- intersect/compatible functions
+X-CM-TRANSID: HdxpCgBXgTLcO8RiQtNIMg--.52057S4
+X-Coremail-Antispam: 1Uf129KBjvdXoWrKFy7tFy5KFyfJFWrJF47urg_yoWkXwb_ur
+ yxZFnxWw1kKFs8ArsFy34UAFy29ay8XrWkuas2qF95t39xJr1ruFW7Zr18u34kurWIgr9x
+ G3Wqvas0krn7WjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUvcSsGvfC2KfnxnUUI43ZEXa7xRGsj8UUUUUU==
+X-Originating-IP: [123.112.69.106]
+X-CM-SenderInfo: xqlhyxxdqjzvrlsqjii6rwjhhfrp/xtbBOQM1jF-POWd5wwAAs3
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:15 +0000
+Subject: [Nouveau] [PATCH] drm/nouveau: fix a use-after-free in
+ nouveau_gem_prime_import_sg_table()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,113 +50,36 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, luben.tuikov@amd.com, christian.koenig@amd.com
+Cc: nouveau@lists.freedesktop.org, Jianglei Nie <niejianglei2021@163.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 25/07/2022 12:42, Arunpravin Paneer Selvam wrote:
-> Implemented a new intersect and compatible callback function
-> fetching start offset from drm buddy allocator.
-> 
-> Signed-off-by: Christian König <christian.koenig@amd.com>
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> ---
->   drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 43 +++++++++++++++++++
->   1 file changed, 43 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-> index a5109548abc0..b5801c05bd41 100644
-> --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-> +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-> @@ -178,6 +178,47 @@ static void i915_ttm_buddy_man_free(struct ttm_resource_manager *man,
->   	kfree(bman_res);
->   }
->   
-> +static bool i915_ttm_buddy_man_intersect(struct ttm_resource_manager *man,
-> +					 struct ttm_resource *res,
-> +					 const struct ttm_place *place,
-> +					 size_t size)
-> +{
-> +	struct i915_ttm_buddy_resource *bman_res = to_ttm_buddy_resource(res);
-> +	u32 start, num_pages = PFN_UP(size);
-> +	struct drm_buddy_block *block;
-> +
-> +	/* Check each drm buddy block individually */
-> +	list_for_each_entry(block, &bman_res->blocks, link) {
-> +		start = drm_buddy_block_offset(block) >> PAGE_SHIFT;
-> +		/* Don't evict BOs outside of the requested placement range */
-> +		if (place->fpfn >= (start + num_pages) ||
-> +		    (place->lpfn && place->lpfn <= start))
-> +			return false;
-> +	}
-> +
-> +	return true;
-> +}
+nouveau_bo_init() is backed by ttm_bo_init() and ferries its return code
+back to the caller. On failures, ttm will call nouveau_bo_del_ttm() and
+free the memory.Thus, when nouveau_bo_init() returns an error, the gem
+object has already been released. Then the call to nouveau_bo_ref() will
+use the freed "nvbo->bo" and lead to a use-after-free bug.
 
-This looks like a nice idea. We should be able to clean up 
-i915_ttm_eviction_valuable() a fair bit I think, if we now call 
-ttm_bo_eviction_valuable() at the end (like in amdgpu), and move the 
-bits that are specific to buddy_man here?
+We should delete the call to nouveau_bo_ref() to avoid the use-after-free.
 
-So something like:
+Signed-off-by: Jianglei Nie <niejianglei2021@163.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_prime.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-if (!place->fpfn && !place->lpfn)
-     return true;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_prime.c b/drivers/gpu/drm/nouveau/nouveau_prime.c
+index 347488685f74..9608121e49b7 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_prime.c
++++ b/drivers/gpu/drm/nouveau/nouveau_prime.c
+@@ -71,7 +71,6 @@ struct drm_gem_object *nouveau_gem_prime_import_sg_table(struct drm_device *dev,
+ 	ret = nouveau_bo_init(nvbo, size, align, NOUVEAU_GEM_DOMAIN_GART,
+ 			      sg, robj);
+ 	if (ret) {
+-		nouveau_bo_ref(NULL, &nvbo);
+ 		obj = ERR_PTR(ret);
+ 		goto unlock;
+ 	}
+-- 
+2.25.1
 
-if (!place->fpfn &&
-     place->lpfn == i915_buddy_man_visible_size(man))
-     return bman_res->used_visible_size > 0;
-
-/* Check each drm buddy block individually */
-....
-
-> +
-> +static bool i915_ttm_buddy_man_compatible(struct ttm_resource_manager *man,
-> +					  struct ttm_resource *res,
-> +					  const struct ttm_place *place,
-> +					  size_t size)
-
-Is it not possible to derive the size from res->num_pages?
-
-> +{
-> +	struct i915_ttm_buddy_resource *bman_res = to_ttm_buddy_resource(res);
-> +	u32 start, num_pages = PFN_UP(size);
-> +	struct drm_buddy_block *block;
-> +
-> +	/* Check each drm buddy block individually */
-> +	list_for_each_entry(block, &bman_res->blocks, link) {
-> +		start = drm_buddy_block_offset(block) >> PAGE_SHIFT;
-> +		if (start < place->fpfn ||
-> +		    (place->lpfn && (start + num_pages) > place->lpfn))
-> +			return false;
-> +	}
-
-if (!place->fpfn && !place->lpfn)
-     return true;
-
-if (!place->fpfn &&
-     place->lpfn == i915_buddy_man_visible_size(man))
-     return bman_res->used_visible_size == res->num_pages;
-
-/* Check each drm buddy block individually */
-...
-
-> +
-> +	return true;
-> +}
-> +
->   static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
->   				     struct drm_printer *printer)
->   {
-> @@ -205,6 +246,8 @@ static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
->   static const struct ttm_resource_manager_func i915_ttm_buddy_manager_func = {
->   	.alloc = i915_ttm_buddy_man_alloc,
->   	.free = i915_ttm_buddy_man_free,
-> +	.intersect = i915_ttm_buddy_man_intersect,
-
-s/intersect/intersects/ ?
-
-> +	.compatible = i915_ttm_buddy_man_compatible,
->   	.debug = i915_ttm_buddy_man_debug,
->   };
->   
