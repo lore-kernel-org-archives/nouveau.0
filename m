@@ -4,63 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE9ACC433EF
-	for <nouveau@archiver.kernel.org>; Thu,  7 Jul 2022 10:25:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6475BC433EF
+	for <nouveau@archiver.kernel.org>; Thu,  7 Jul 2022 10:25:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11AB614A367;
-	Thu,  7 Jul 2022 10:25:09 +0000 (UTC)
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
- [IPv6:2a00:1450:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37A121131A8;
- Thu,  7 Jul 2022 10:25:00 +0000 (UTC)
-Received: by mail-wr1-x42e.google.com with SMTP id f2so20265858wrr.6;
- Thu, 07 Jul 2022 03:25:00 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2440214A984;
+	Thu,  7 Jul 2022 10:25:14 +0000 (UTC)
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
+ [IPv6:2a00:1450:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09E9C10FE19;
+ Thu,  7 Jul 2022 10:25:02 +0000 (UTC)
+Received: by mail-wr1-x431.google.com with SMTP id a5so10955584wrx.12;
+ Thu, 07 Jul 2022 03:25:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=gmsLTjbvmHAI5Qt/fKzn1ZA7X8A0fRrENrMR1C3tdAY=;
- b=gbIbxd/6sRrwuA4araxry5QTbXHLjKRgLNuFh2MzXZwo08dO4hDtyvg/iysjWCFIVY
- CjygSqpT+Lm4aE6cFscHBnouvuMkvx3yRlpUx0fSyrbDIb4niJEYI3GO4heNKCDAkZsa
- /FcXPsvw56XPPSREEMN8PgJfee43UKMmESrD6U2WGtHyk50cdpTHc+NFTPWk983Jr7n7
- NXGNfud9FfbwX85/G4Ho2B3ZP5bwDDo9QOVdS/XQpFzT2vry4ArHktwGrewCh60uo+kz
- xzu/CVaQnhpFw/tLiSHb97PjAB13mKZC/dZwmMpz28BoKI+rBW2GeW86fRHmsCbJnKqM
- 2vDQ==
+ bh=kK6ndtBfNyXHqhkSLKg1LtqtVJJfhWr9bEm4kExNfWU=;
+ b=kGohQwUbMyh+lZQt7Rj+0+5GqB/QcyLZdJzSC/UubDHHujW1BM8HR2JLZuuCq+BCHO
+ aiA/2iUEpDPTD667woVWd6YQgzLnyRWfgyeQaj/K0v+Jrp6Rk0uKdyYUzIXelnaaM7hA
+ YuRdNBkiAAgTgd748FRfZiWFlXztBJAGjL67MWg3L/o+Sy5O9UudDUBHl9dsbVirCOQL
+ NPt4ZYKOVynnO2atgyGmE6l5388Y+mcK5bi6qinnnLEt1oocr1WwkLMKB9c+mb+8gMCR
+ XtwlI8MhsELTtxmtRm88GgMbUTnikRLxX4KxMCbMFzQ5XnAswFDxYFfV+R8lvA3Roi01
+ U1fA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=gmsLTjbvmHAI5Qt/fKzn1ZA7X8A0fRrENrMR1C3tdAY=;
- b=cEcd85IQ6s39hFz3VQikRi09CbZ2VohqBYfVTZsTvLGlU5RABmWzXtyiPwKGb+/3Il
- uiGDqYWyGI9bOYSKqLjLXrpkTH3uaJruhzlMX2/4bAk6M6fSWAH0z1n+rmUdffWmBuU8
- svYDDDe+/A9iVDfWXAjw7lsUOZ6F45wkpc0n55yYfRqzc2AzOI06lKlX6UmvkQvRm9v9
- +jnTF6ObuwWbqHybqJS5419uH2supbW4IFnfBILWNaDL4h9gWpUlZj4tj7gJJpqHr+Be
- 9kme8YQMVUrmQ81GAli5ZW658hGMVQ0kdPH4UzVLFDa3uIOz9Vp/22UbHT8XQLPoW687
- 733Q==
-X-Gm-Message-State: AJIora8SDV6p4jfmhDkwhE6ItWyo6sX8kGO/xINqDD2Clv0LRudXDoWV
- b6n9K4c5EC16I7Cix3oD8Rle31yVfGE=
-X-Google-Smtp-Source: AGRyM1syGpQLXkF/DpblswCcKG91/inbkVvL/NKkt9tNHxoolryvaG4hE3+Z2WSShXieJLhNM+q7wA==
-X-Received: by 2002:a5d:6a88:0:b0:21d:6ee4:1fb1 with SMTP id
- s8-20020a5d6a88000000b0021d6ee41fb1mr15338055wru.249.1657189498760; 
- Thu, 07 Jul 2022 03:24:58 -0700 (PDT)
+ bh=kK6ndtBfNyXHqhkSLKg1LtqtVJJfhWr9bEm4kExNfWU=;
+ b=zfE8AYtByrDVy++7rWNj7CqvrkCuS7rq57SnDEVvcbqxqONkwW/RT7bCEpjwZGgkcO
+ PmbmBiiqHH5b4Cb/dQ2W28xurY82tluS5Uhds5xb46XhHXqBoCRDpDl0OvLd30nbz+r4
+ yyGnZ2EnmB5fB+C8RjR9OYuqsSK7EuAPfWMsFb+PFtMmONI3vaMwhtprieBoJYXq8KXJ
+ VCJ3m0AOcDBQ7Iq9uAcfIt3XLt2/JNnCb6OGYaX/XLF8TTJoK5J0lWS4DmDOjyM/0gfq
+ T4z63vCeIo2GpB1grzxXqJv0YB+0Y+sCalUM6kKhlYyy48uEcS3i3wDT9ORO42nIN2ha
+ 94ZA==
+X-Gm-Message-State: AJIora9rUna49/f18M3N6ABB5wurud3PtVzK/6ufyTJBNNXKGmAkEjr8
+ TEsWBsSLBPUZUQP5c5WMDPCGth1ZXMQ=
+X-Google-Smtp-Source: AGRyM1vy2LWZSmeJmS9kr/k4KTJ2MmhGCcH6oHrG0WxnwsiwkZqlkLGHPBrunwy9XZPe5ReRwXkahQ==
+X-Received: by 2002:a5d:6d8a:0:b0:21b:a2a3:55f8 with SMTP id
+ l10-20020a5d6d8a000000b0021ba2a355f8mr40393270wrs.283.1657189501665; 
+ Thu, 07 Jul 2022 03:25:01 -0700 (PDT)
 Received: from able.fritz.box (p57b0bd9f.dip0.t-ipconnect.de. [87.176.189.159])
  by smtp.gmail.com with ESMTPSA id
- e10-20020a05600c4e4a00b00397402ae674sm20091950wmq.11.2022.07.07.03.24.57
+ e10-20020a05600c4e4a00b00397402ae674sm20091950wmq.11.2022.07.07.03.25.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 Jul 2022 03:24:58 -0700 (PDT)
+ Thu, 07 Jul 2022 03:25:01 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Date: Thu,  7 Jul 2022 12:24:50 +0200
-Message-Id: <20220707102453.3633-4-christian.koenig@amd.com>
+Date: Thu,  7 Jul 2022 12:24:53 +0200
+Message-Id: <20220707102453.3633-7-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220707102453.3633-1-christian.koenig@amd.com>
 References: <20220707102453.3633-1-christian.koenig@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH 3/6] drm/nouveau: audit bo->resource usage
+Subject: [Nouveau] [PATCH 6/6] drm/ttm: stop allocating a dummy resource for
+ pipelined gutting
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,27 +77,74 @@ Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Make sure we can at least move and release BOs without backing store.
+That should not be necessary any more when drivers should at least be
+able to handle a move without a resource.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_bo.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 15 ++-------------
+ 1 file changed, 2 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 92cd19021084..f83fb43b2e44 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -1006,7 +1006,8 @@ nouveau_bo_move(struct ttm_buffer_object *bo, bool evict,
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index 1530982338e9..1e76149c62ff 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -603,16 +603,10 @@ EXPORT_SYMBOL(ttm_bo_move_sync_cleanup);
+  */
+ int ttm_bo_pipeline_gutting(struct ttm_buffer_object *bo)
+ {
+-	static const struct ttm_place sys_mem = { .mem_type = TTM_PL_SYSTEM };
+ 	struct ttm_buffer_object *ghost;
+-	struct ttm_resource *sys_res;
+ 	struct ttm_tt *ttm;
+ 	int ret;
+ 
+-	ret = ttm_resource_alloc(bo, &sys_mem, &sys_res);
+-	if (ret)
+-		return ret;
+-
+ 	/* If already idle, no need for ghost object dance. */
+ 	ret = ttm_bo_wait(bo, false, true);
+ 	if (ret != -EBUSY) {
+@@ -620,14 +614,13 @@ int ttm_bo_pipeline_gutting(struct ttm_buffer_object *bo)
+ 			/* See comment below about clearing. */
+ 			ret = ttm_tt_create(bo, true);
+ 			if (ret)
+-				goto error_free_sys_mem;
++				return ret;
+ 		} else {
+ 			ttm_tt_unpopulate(bo->bdev, bo->ttm);
+ 			if (bo->type == ttm_bo_type_device)
+ 				ttm_tt_mark_for_clear(bo->ttm);
+ 		}
+ 		ttm_resource_free(bo, &bo->resource);
+-		ttm_bo_assign_mem(bo, sys_res);
+ 		return 0;
  	}
  
- 	/* Fake bo copy. */
--	if (old_reg->mem_type == TTM_PL_SYSTEM && !bo->ttm) {
-+	if (!old_reg || (old_reg->mem_type == TTM_PL_SYSTEM &&
-+			 !bo->ttm)) {
- 		ttm_bo_move_null(bo, new_reg);
- 		goto out;
- 	}
+@@ -644,7 +637,7 @@ int ttm_bo_pipeline_gutting(struct ttm_buffer_object *bo)
+ 	ret = ttm_tt_create(bo, true);
+ 	swap(bo->ttm, ttm);
+ 	if (ret)
+-		goto error_free_sys_mem;
++		return ret;
+ 
+ 	ret = ttm_buffer_object_transfer(bo, &ghost);
+ 	if (ret)
+@@ -658,13 +651,9 @@ int ttm_bo_pipeline_gutting(struct ttm_buffer_object *bo)
+ 	dma_resv_unlock(&ghost->base._resv);
+ 	ttm_bo_put(ghost);
+ 	bo->ttm = ttm;
+-	ttm_bo_assign_mem(bo, sys_res);
+ 	return 0;
+ 
+ error_destroy_tt:
+ 	ttm_tt_destroy(bo->bdev, ttm);
+-
+-error_free_sys_mem:
+-	ttm_resource_free(bo, &sys_res);
+ 	return ret;
+ }
 -- 
 2.25.1
 
