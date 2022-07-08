@@ -4,61 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76926C25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:41:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C748C25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:41:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44E0AA6FBA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA5D1A6F56;
 	Thu,  4 Aug 2022 20:38:05 +0000 (UTC)
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com
- [IPv6:2607:f8b0:4864:20::130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1848A9D8A;
- Mon, 18 Jul 2022 06:39:24 +0000 (UTC)
-Received: by mail-il1-x130.google.com with SMTP id f15so2085784ilj.9;
- Sun, 17 Jul 2022 23:39:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=DYM4oZeCQZAwGpVpwmNpl90aZ63atL40nykTImP7CCo=;
- b=PSGBBGTrbv3RTpJvjFPm809/JDJ/e8lEvBEsAZRnTygTu8oeviCuyCTu0cbOVlyV0I
- S9sjNNBTYK6NZVwekSMjgYnGGkSkm4yYGgAriqKr/e5MmxBudc1cPCNBvanWbv9iF6n3
- GQBQMsC1FIFUAzWVDCVnNovuU8Cx8tsPaXNRpfJa93fxjo+d2zUfEVhN6d6aqqy+vxdL
- xf3CaTMKtHCJHCQvGoglKeJawDYQ67fhMolozuq45Dn4KdYVEU2CwYlvP6AI9/qwJj6E
- 1Dm+KnpKQn+Vu2CFiWp1+D70JEJ+6veFZBB/n/q8TULpEVywpr0L/+5CEkBn9mT2VAGD
- yvAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=DYM4oZeCQZAwGpVpwmNpl90aZ63atL40nykTImP7CCo=;
- b=7nn7ctgWpseyjEhgDDjCF4flthC86yL6t3RWkF6/SIz4sQvnM6aMBExDmJozf6nAq6
- RYDtblyP6+8htkAtSndi6xWeCcZtdACXq6K7XOVSU+LalbeOKLbLSftHZEyS7oEA/udD
- NIiPmeSp1TTsGFdf3qu+J4v22kpz4FD0hzlDqVAHG+FSwPACV+AncY4eZbDMj6bwMKcW
- zSu+tqyhUuKTH5O36LxulNL5Ghy69sz5maYibgs6EMWprNr73G37GFAePV2CASijm3Rf
- 0Y8uAzl4Eyih84qnpSQKEiuvyKYvpLXPHvv0IFy/Y0qMU6xTeeU2ohxq/tJ5V5/kFCP7
- s8mg==
-X-Gm-Message-State: AJIora+5H22FFJ7zbbN1B/EULuPXUxHsgGpVWV/dowgWbxgzJpVlWEsB
- 3gwH/ZzuI5bJcrhnY8B2qiI=
-X-Google-Smtp-Source: AGRyM1vvtaUjzudxOgZE6LTFP2qplJku4p6PhWyL5nxW1RBaHyJR4aOKmK97QcpYC9VojPqGA0QGwQ==
-X-Received: by 2002:a05:6e02:20c7:b0:2dc:efd1:fec9 with SMTP id
- 7-20020a056e0220c700b002dcefd1fec9mr1110328ilq.123.1658126363990; 
- Sun, 17 Jul 2022 23:39:23 -0700 (PDT)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.39.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 17 Jul 2022 23:39:23 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: jbaron@akamai.com
-Date: Mon, 18 Jul 2022 00:36:35 -0600
-Message-Id: <20220718063641.9179-52-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
-References: <20220718063641.9179-1-jim.cromie@gmail.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C3F3113C86;
+ Fri,  8 Jul 2022 13:34:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1657287250; x=1688823250;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=u3EMweNVvnicXBE3W12uS+fN/o+HWEO+ZA3pt2mYZVA=;
+ b=kI2e90cWb1FWZtgQ0esYo9wsgX0wnJTc2E1y2QMpqPFoboqfzUUudsSB
+ xIZ7oQTYlSV2Z8eIcygLEww8DgLfa1OILNyJsA/76F2wXVwId4eDdllFV
+ 6MCHA+Crb7vI6ea48Moohfwa1a6Wf5A9kyDQ9y2Xovln0HRIMJEqmQphu
+ tjKetQgYAzJDhltI3wMyiDG7uLLKgoUQ9KWmSCICPX5aMqWW7GkgWp/s4
+ hoIlztbueJkHCm6ty3HlGVpugfUWA/j/EStkOQhufnISOTsVAxxqDfW0J
+ kTbelgHHPaJcWg5iYEgiQmmj5dZa27E+po1GQc/Oc9V8/laMeAZ+b7DOG w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10401"; a="283031176"
+X-IronPort-AV: E=Sophos;i="5.92,255,1650956400"; d="scan'208";a="283031176"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2022 06:34:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,255,1650956400"; d="scan'208";a="598372450"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
+ by fmsmga007.fm.intel.com with ESMTP; 08 Jul 2022 06:34:09 -0700
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Fri, 8 Jul 2022 06:34:09 -0700
+Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
+ ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Fri, 8 Jul 2022 06:34:08 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27 via Frontend Transport; Fri, 8 Jul 2022 06:34:08 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Fri, 8 Jul 2022 06:34:08 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KiX9yzZViF7y76LPQq5ySi1mNUCsKbJGP4aaYY+6twWxW0j04BFlzQizkmGelNUcQrZpiTsK+/q2W9KfWuxr9PYTqyinV9F9lYWJvLJynDVJFNm9NSEd+vCP8U3yJpNAp0bl+Nu4MbqBOsDja2Z7q3DouCJzru436KoIm9g5y5br8Boc2ft8HBgsnoaUXZnWnSRXvH1RX8j+wV5i+DMxjpy1mbwRIaUs1FYxdzQYiWrKlkaZK7rj6w64i5mvKtvkQy6c9TGQ7kS8r5PuuZNJdrqfzDTIChePTlNo7He3X3qsfm2ME7SzimYD6eLY1rNoVwMhofuM9AJqN56zcSBqyg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=u3EMweNVvnicXBE3W12uS+fN/o+HWEO+ZA3pt2mYZVA=;
+ b=AOugk+Q4rFmEZnjWeqLOaDc6knndrSG6tT0VCnXSnDUxP3tWkCy/PueCjgPMdK2uJPtS5UHZNCx8jxqGSYm6AXmCY21a1L8KhR79d2aUnMMJtpw+FBvEGd2WnfiflC6st1DWyRspewdIjjFL0OKZSf9DTZ3t+WOIh2P3rJ3L0l97uW8FlP0v8J0I9yqYYwk0pmXFlxXlhjr0j5Rl8ctB2hccRTeo4aV3/HsDPl8KFAsGTdxppdcC2TAy4BjNUXIASF7G9tsM+n9X+W74w+qPcTbqy6HcNQEOoFrpZDREEPr4cWTxEntZGO1FVpKq9pVU9rtPDG9lSgY0nzg+IRKvWg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM5PR11MB1324.namprd11.prod.outlook.com (2603:10b6:3:15::14) by
+ MW3PR11MB4650.namprd11.prod.outlook.com (2603:10b6:303:54::18) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5395.17; Fri, 8 Jul 2022 13:34:06 +0000
+Received: from DM5PR11MB1324.namprd11.prod.outlook.com
+ ([fe80::79c1:20d:d786:eba9]) by DM5PR11MB1324.namprd11.prod.outlook.com
+ ([fe80::79c1:20d:d786:eba9%11]) with mapi id 15.20.5417.021; Fri, 8 Jul 2022
+ 13:34:06 +0000
+From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+To: =?utf-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <ckoenig.leichtzumerken@gmail.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 2/6] drm/amdgpu: audit bo->resource usage
+Thread-Index: AQHYkevwVycaDbA6RUmWWa6U4ewXfq10etmA
+Date: Fri, 8 Jul 2022 13:34:05 +0000
+Message-ID: <DM5PR11MB1324A53FD216A5CEC0FAFE88C1829@DM5PR11MB1324.namprd11.prod.outlook.com>
+References: <20220707102453.3633-1-christian.koenig@amd.com>
+ <20220707102453.3633-3-christian.koenig@amd.com>
+In-Reply-To: <20220707102453.3633-3-christian.koenig@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.500.17
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3449a2eb-b508-4ef2-8a3a-08da60e6878f
+x-ms-traffictypediagnostic: MW3PR11MB4650:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0HoZGIdO5t2hwd97flzWPSBUMlYVX9CmHRq/7PbJTaZCXxEyflZ6GU5r7fg1sWyd2/E7k94nN47cPNCMlUtx9TMSbEiwNo/KKBFVaivk05mlS+zbGnFZVmu3Nb5o1NLDKcWlGCITcnxLIfORwut4u/GTXIqjE7V7DcR0yGkr64G5s06jkx1FFD2FpDkL+wxbixJp07e/RVDKNB9ROMefPRKayJIi6EfOq9PrBkfAe2fEKuR4u1QGnUIUdlY4O7H2/O7m1e/n2udiKFU1/01R8+Db+uW3EoXMFMcb/1R3jJUbaGgU6j+x9+U3R9FCQOdNSkNJapfe8uAeqbm3bgdAe9NeLmYVPqrBV3i3OdSsUKB0ysh3r9hYdXheFJoXUZVIW4kFvbfuykj1/4O5sbD0I/sChHLQbr7jkSKaIA88PV0FukGz6Bf2qqKt1zbffrUwz6G3KkHmPfZPUKEgyFjq6nbmyGvo5sEQ5fzn4POxTOQQxZ0kEdKTu+aCfLOWjHZRMRkWmQbc3d3DrAJR9rcHm3gDkDmR4ISLoC3Zs5LP2mRd70PA86Zi8rnbwfkvJKBhG1GblF3goJJ9bwhcVogFkINfdDAlfj3QFnxhdy/Ou+GCLBQ/XgeWUcn45Tv8PKUHHw2QHzAKpfZbxZztJynmh/Lutt8FRQTkl1UWfS56VE9P3b+bpIgLTKqmvcPhw+U+G5mqDT4vT/exUw3zZALavt9eDPSpVN9q7aaW9OJCwMPcajLEAy6cPmFEJ+3clxXTiEMM7wyK/xcZr9FcGOWph8voGrqc20+o7DtT8oVJUx8K+7fvoPUmUpLFhV2jZw7G
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR11MB1324.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(396003)(346002)(136003)(39860400002)(376002)(366004)(478600001)(186003)(83380400001)(64756008)(66446008)(55016003)(71200400001)(4326008)(110136005)(8676002)(66556008)(66946007)(76116006)(82960400001)(66574015)(8936002)(26005)(122000001)(38100700002)(9686003)(52536014)(5660300002)(316002)(33656002)(38070700005)(2906002)(6506007)(86362001)(66476007)(41300700001)(7696005);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?N1ZydGtOc1ZCdlFITVVjVFp2NFhsbEkxeGZQUWk2dTZCN0lFVUVLWjJzUy9R?=
+ =?utf-8?B?b1VORzZZZkUwa0VsSDltMElwV3hnbjNaOUtIRFdDUFJGbUx1T2sxMkpqN0pT?=
+ =?utf-8?B?enJWa095aW8wVnNXYnI5c0JWdmw4dlNYZ0hSUHMwR2ZSeHdtblVwWnJ0TjAy?=
+ =?utf-8?B?SzVNeDhJbHVXZitMaXFvSzZLWUpJRFpRMzJJSExhaHUxZjBkNk9YTEFzTEtF?=
+ =?utf-8?B?RFJWek9nOG4zaVRNZHByeDc4ZlNRck5aVDRVV1BqbmlLL0dLN1BicXBFcy9u?=
+ =?utf-8?B?NlJtWllycVd0V0hyb2FPcWNhNktpb1A3WlM2TzZ1VXp3SGdQWXBhYlUza0cz?=
+ =?utf-8?B?ajZXSjIyTC85QndRcTlSUkF3L1c0OWJMVS9DSmZ2VmM5UndERGtCRkprSlZO?=
+ =?utf-8?B?clZHaElCeXg5UUtqTlNKY0tyalYvdktMZTl4ZVVmMWdIdVhTWkZiVzVFY0ov?=
+ =?utf-8?B?YzZRY2pEM1ljaDVNSEhJaXY0R2JESy8xZU5pejlWaStyUWlTM3J4Rk9WQW11?=
+ =?utf-8?B?dHRNVWt2OUxhNmRrMWdTeGJwcjcyaXhHT0lCTzZRVXlYQ1NCamhXZ2w0YkNK?=
+ =?utf-8?B?K0NONzRRQU1xRUxuVnpHQ1BBRHR1VGFzMHJHVzJiUzBCVDVNTFVCc3M5VVRG?=
+ =?utf-8?B?M3FJNERwQ1ZsTWF0d2FsbDVKbkZyMGwzZXpFWWkvam51a1Zwckd1c1JPRjJM?=
+ =?utf-8?B?RUhIWlVBZ2dFOGtmQ2Q0Z3VySngzV1dLOC9tS01WRm1XMGJMc2pRd0FHRkw5?=
+ =?utf-8?B?aTVKSE9hTytXZGV0WTkyb05BcTFvbmZmdGQ2M1QyUVNwZ1J0czJUL0gwbnBV?=
+ =?utf-8?B?dW5RSHUzMW5pUmZST0NOVmVubFpib1JRbXhGWnZ2Vk9RM3VVaTcvS3d3aCto?=
+ =?utf-8?B?dGg3bFZvNHB3RGRvWkZobHo2VnJ3djBRTlB3YWUrT1pZcW5VMGhkRFdPdWtO?=
+ =?utf-8?B?cldQU2M3WUFWRzM1eUxwUks2SFVhVXZBNk5oWjZZUDlZZHU1UFgzYUdEZitv?=
+ =?utf-8?B?S3hxWmtSa3lXYjdjWGtxV20yZmhwWlQ5SEtkUXRHVjBXL1JWditZK3VjNFZN?=
+ =?utf-8?B?TG5Ucks4K0puWHBmN25acVpURWlnN0J4NjQxamlTSXR2TkN6ekRxa1VYMkdn?=
+ =?utf-8?B?STZGOWUxNVgzT2ZXbE51VHVzMVBianhzaW5yNS81cVl0d3g4bjNTQ0YvT0hG?=
+ =?utf-8?B?T3FGdTlWR2NyZjRpa2ZibkNJSzRPY2JoWk45MlRuY2hsajJrVTQxbS9IRjJl?=
+ =?utf-8?B?Z0g4dTFGd3VYdUMyaDdBbVdzSi9iQVBkcWVTMys1cWZ4ck9kQmFQUU5Pd1Zm?=
+ =?utf-8?B?QytwNGhoZFRDK0VEQnF4d0lEcmpzcms0c2lZL0QvK2MvNklzYk1xYU9hMTl0?=
+ =?utf-8?B?dGc0L3FmMXdPeDBuRkE0dWhSZXV0Tlo2cUkxWUFGbEdqSDc4WHBHQ2xCRm1S?=
+ =?utf-8?B?L2Y5dmM1ZmlvQ0g3YVJJbWtUQ2V1aCtoODFWeGxPUUpscm5BNHRhTGdxR2lF?=
+ =?utf-8?B?REFKQkVsd0xPMG1wZ2dyUTVHNFpnekVPU1BSN29DM0VUMTVVSzRlUHNPRUd3?=
+ =?utf-8?B?OHhUWm9oV0xDZEZzelVLc1plVS92aDBjZ3JJV2lhYUNsL1g3TlEyT2x6Q1Zx?=
+ =?utf-8?B?ZXhnem5neG1zdkNxaHlHT1pYT0F4RWFsV3YrUnhTQVhUa0ZLRDQ1RElObkNQ?=
+ =?utf-8?B?T0NvbVVyQzFNd29aUm9sTHFIcjBVMWdaTnM1SGNqMzh1TjNMdFVZcmYxcnpw?=
+ =?utf-8?B?M1dvWklYM3Z1eHNVdStMWG00UllDMVU3TmZ0RDdZYkk0R1JxQ2hFMGs3ZjlR?=
+ =?utf-8?B?bGJOQXU5d0x5R1JTVkVUZFRibXI5RCt5UkRhaDd5NjF1M3VFb0ZLdkcyMkJn?=
+ =?utf-8?B?QlY3RzRvb3RvOG9rYS8wWW9VU1NXLzl3WUlobCsyVmVCWHl4VGFGRTZGSGZK?=
+ =?utf-8?B?amEyZVJqdUFOeG1hd3pqMHpqaU90LzhEWGZsV290dFJOTDBLVkdXaTh1a09L?=
+ =?utf-8?B?N0o4Unp1RUptYUFTeGdsK3BQOWVsMGMvRHd2VzBjNERUY29UN2F6ZjV6bSt4?=
+ =?utf-8?B?cUV5SGlxMkdCeVc1cHRLVi9nZUVMMFo3dXhrMUQ5V3p0eEN4eE1RdmFvbHF0?=
+ =?utf-8?Q?ykqU+rWOV+gbtiJLVleyOsQ3t?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:48 +0000
-Subject: [Nouveau] [PATCH v3 37/39] nouveau-dbg: add 2 verbose-classmaps for
- CLI, SUBDEV
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR11MB1324.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3449a2eb-b508-4ef2-8a3a-08da60e6878f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jul 2022 13:34:05.8797 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 4nQeLgBCQkZc9UOct9sxH99Pm6sSMwvImdhT6A5K3ZgY+RY18UTGirjV0IT6A4+1Au57nCNEgmWAgv7a/BMBHN/notbqZS/WkK7yJBxCizQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4650
+X-OriginatorOrg: intel.com
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:35 +0000
+Subject: Re: [Nouveau] [Intel-gfx] [PATCH 2/6] drm/amdgpu: audit
+ bo->resource usage
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,160 +165,44 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: =?utf-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-nouveau has additional debug variables to consider:
-
-drivers/gpu/drm/nouveau/include/nvkm/core/device.h
-131:	if (_device->debug >= (l))                                             \
-
-drivers/gpu/drm/nouveau/include/nvkm/core/client.h
-39:	if (_client->debug >= NV_DBG_##l)                                      \
-
-drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
-54:	if (CONFIG_NOUVEAU_DEBUG >= (l) && _subdev->debug >= (l))              \
-
-This is another baby-step, that seems not to break, so lets get a
-snapshot.
-
-whats done here:
-
-In nouveau_drm.c, do DECLARE_DYNDBG_CLASSMAP(verbose-type) 2x more,
-right after the drm DECLARE, for cli and subdev.  Adjust base for
-each, to share the 0..30 classid-space.
-
-These declare class-names: NV_CLI_DBG_* NV_SUBDEV_DBG_* accordingly.
-Note: class-name-space is flat and wide, so super-generic names like
-INFO should be prefixed; who could predict what a generic V3 does
-across all modules.
-
-s should be included
-
-adjusting the base to avoid each other, and the 0-10
-already mapped to drm-debug-categorys (just above this addition).
-
-In nvkm/core/debug.h, add enums to match the names, with initial
-values to match the bases.
-
-In nvkm/core/subdev.h, alter (recently added) nvkm_drmdbg_() to use
-NV_SUBDEV_DBG_* instead of NV_DBG_*.
-
-NB: in both classmaps, Ive left FATAL..WARN out, they're not really
-optional the way INFO..SPAM are; dyndbg shouldn't be able to turn them off.
-
-bash-5.1# modprobe nouveau
-[  966.107833] dyndbg:   3 debug prints in module wmi
-[  966.342188] dyndbg: class[0]: module:nouveau base:15 len:5 ty:1
-[  966.342873] dyndbg:  15: 0 NV_SUBDEV_DBG_OFF
-[  966.343352] dyndbg:  16: 1 NV_SUBDEV_DBG_INFO
-[  966.343912] dyndbg:  17: 2 NV_SUBDEV_DBG_DEBUG
-[  966.344443] dyndbg:  18: 3 NV_SUBDEV_DBG_TRACE
-[  966.344938] dyndbg:  19: 4 NV_SUBDEV_DBG_SPAM
-[  966.345402] dyndbg: class[1]: module:nouveau base:10 len:5 ty:1
-[  966.346011] dyndbg:  10: 0 NV_CLI_DBG_OFF
-[  966.346477] dyndbg:  11: 1 NV_CLI_DBG_INFO
-[  966.346989] dyndbg:  12: 2 NV_CLI_DBG_DEBUG
-[  966.347442] dyndbg:  13: 3 NV_CLI_DBG_TRACE
-[  966.347875] dyndbg:  14: 4 NV_CLI_DBG_SPAM
-[  966.348284] dyndbg: class[2]: module:nouveau base:0 len:10 ty:0
-[  966.348888] dyndbg:  0: 0 DRM_UT_CORE
-[  966.349310] dyndbg:  1: 1 DRM_UT_DRIVER
-[  966.349694] dyndbg:  2: 2 DRM_UT_KMS
-[  966.350083] dyndbg:  3: 3 DRM_UT_PRIME
-[  966.350482] dyndbg:  4: 4 DRM_UT_ATOMIC
-[  966.351016] dyndbg:  5: 5 DRM_UT_VBL
-[  966.351475] dyndbg:  6: 6 DRM_UT_STATE
-[  966.351899] dyndbg:  7: 7 DRM_UT_LEASE
-[  966.352309] dyndbg:  8: 8 DRM_UT_DP
-[  966.352678] dyndbg:  9: 9 DRM_UT_DRMRES
-[  966.353104] dyndbg: module:nouveau attached 3 classes
-[  966.353759] dyndbg: 119 debug prints in module nouveau
-
-NOTE: it was 632 with previous commit, switching NV_DEBUG to use
-NV_SUBDEV_DBG_DEBUG instead of NV_DBG_DEBUG may be the cause.
-
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- .../gpu/drm/nouveau/include/nvkm/core/debug.h    | 16 ++++++++++++++++
- .../gpu/drm/nouveau/include/nvkm/core/subdev.h   |  3 ++-
- drivers/gpu/drm/nouveau/nouveau_drm.c            | 14 ++++++++++++++
- 3 files changed, 32 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/debug.h b/drivers/gpu/drm/nouveau/include/nvkm/core/debug.h
-index b4a9c7d991ca..6a155a23a3d1 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/core/debug.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/core/debug.h
-@@ -9,4 +9,20 @@
- #define NV_DBG_TRACE    5
- #define NV_DBG_PARANOIA 6
- #define NV_DBG_SPAM     7
-+
-+enum nv_cli_dbg_verbose {
-+	NV_CLI_DBG_OFF = 10,
-+	NV_CLI_DBG_INFO,
-+	NV_CLI_DBG_DEBUG,
-+	NV_CLI_DBG_TRACE,
-+	NV_CLI_DBG_SPAM
-+};
-+enum nv_subdev_dbg_verbose {
-+	NV_SUBDEV_DBG_OFF = 15,
-+	NV_SUBDEV_DBG_INFO,
-+	NV_SUBDEV_DBG_DEBUG,
-+	NV_SUBDEV_DBG_TRACE,
-+	NV_SUBDEV_DBG_SPAM
-+};
-+
- #endif
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h b/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
-index b9c2afab321f..bf9c69f4fc3e 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
-@@ -2,6 +2,7 @@
- #ifndef __NVKM_SUBDEV_H__
- #define __NVKM_SUBDEV_H__
- #include <core/device.h>
-+#include <core/debug.h>
- 
- enum nvkm_subdev_type {
- #define NVKM_LAYOUT_ONCE(t,s,p,...) t,
-@@ -65,7 +66,7 @@ void nvkm_subdev_intr(struct nvkm_subdev *);
- 	if (CONFIG_NOUVEAU_DEBUG >= (l) && _subdev->debug >= (l))	\
- 		dev_dbg(_subdev->device->dev, "%s: "f, _subdev->name, ##a); \
- } while(0)
--#define nvkm_drmdbg_(s,l,f,a...) nvkm_drmdbg__((s), NV_DBG_##l, dbg, f, ##a)
-+#define nvkm_drmdbg_(s,l,f,a...) nvkm_drmdbg__((s), NV_SUBDEV_DBG_##l, dbg, f, ##a)
- #define nvkm_debug(s,f,a...) nvkm_drmdbg_((s), DEBUG, f, ##a)
- #define nvkm_trace(s,f,a...) nvkm_drmdbg_((s), TRACE, f, ##a)
- #define nvkm_spam(s,f,a...)  nvkm_drmdbg_((s),  SPAM, f, ##a)
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 76e3a8d50b01..85b63b527877 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -83,6 +83,20 @@ DECLARE_DYNDBG_CLASSMAP(drm_debug_classes, DD_CLASS_TYPE_DISJOINT, 0,
- 			"DRM_UT_DP",
- 			"DRM_UT_DRMRES");
- 
-+DECLARE_DYNDBG_CLASSMAP(nv_cli_debug_verbose, DD_CLASS_TYPE_VERBOSE, 10,
-+			"NV_CLI_DBG_OFF",
-+			"NV_CLI_DBG_INFO",
-+			"NV_CLI_DBG_DEBUG",
-+			"NV_CLI_DBG_TRACE",
-+			"NV_CLI_DBG_SPAM");
-+
-+DECLARE_DYNDBG_CLASSMAP(nv_subdev_debug_verbose, DD_CLASS_TYPE_VERBOSE, 15,
-+			"NV_SUBDEV_DBG_OFF",
-+			"NV_SUBDEV_DBG_INFO",
-+			"NV_SUBDEV_DBG_DEBUG",
-+			"NV_SUBDEV_DBG_TRACE",
-+			"NV_SUBDEV_DBG_SPAM");
-+
- MODULE_PARM_DESC(config, "option string to pass to driver core");
- static char *nouveau_config;
- module_param_named(config, nouveau_config, charp, 0400);
--- 
-2.36.1
-
+Pi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+RnJvbTogSW50ZWwtZ2Z4IDxpbnRlbC1nZngt
+Ym91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZg0KPkNocmlzdGlhbiBL
+w7ZuaWcNCj5TZW50OiBUaHVyc2RheSwgSnVseSA3LCAyMDIyIDY6MjUgQU0NCj5UbzogaW50ZWwt
+Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZzsNCj5ub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgYW1kLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcNCj5DYzogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29t
+Pg0KPlN1YmplY3Q6IFtJbnRlbC1nZnhdIFtQQVRDSCAyLzZdIGRybS9hbWRncHU6IGF1ZGl0IGJv
+LT5yZXNvdXJjZSB1c2FnZQ0KPg0KPk1ha2Ugc3VyZSB3ZSBjYW4gYXQgbGVhc3QgbW92ZSBhbmQg
+cmVsZWFzZSBCT3Mgd2l0aG91dCBiYWNraW5nIHN0b3JlLg0KPg0KPlNpZ25lZC1vZmYtYnk6IENo
+cmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4NCg0KUmV2aWV3ZWQtYnk6
+IE1pY2hhZWwgSi4gUnVobCA8bWljaGFlbC5qLnJ1aGxAaW50ZWwuY29tPg0KDQpNDQoNCj4tLS0N
+Cj4gZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X29iamVjdC5jIHwgMiArLQ0KPiBk
+cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdHRtLmMgICAgfCAzICsrLQ0KPiAyIGZp
+bGVzIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4NCj5kaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X29iamVjdC5jDQo+Yi9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfb2JqZWN0LmMNCj5pbmRleCBkOWNmZTI1OWYy
+YTkuLjY3N2QxZGZhYjM3ZiAxMDA2NDQNCj4tLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
+dS9hbWRncHVfb2JqZWN0LmMNCj4rKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
+cHVfb2JqZWN0LmMNCj5AQCAtMTMwNSw3ICsxMzA1LDcgQEAgdm9pZCBhbWRncHVfYm9fcmVsZWFz
+ZV9ub3RpZnkoc3RydWN0DQo+dHRtX2J1ZmZlcl9vYmplY3QgKmJvKQ0KPiAJaWYgKGJvLT5iYXNl
+LnJlc3YgPT0gJmJvLT5iYXNlLl9yZXN2KQ0KPiAJCWFtZGdwdV9hbWRrZmRfcmVtb3ZlX2ZlbmNl
+X29uX3B0X3BkX2JvcyhhYm8pOw0KPg0KPi0JaWYgKGJvLT5yZXNvdXJjZS0+bWVtX3R5cGUgIT0g
+VFRNX1BMX1ZSQU0gfHwNCj4rCWlmICghYm8tPnJlc291cmNlIHx8IGJvLT5yZXNvdXJjZS0+bWVt
+X3R5cGUgIT0gVFRNX1BMX1ZSQU0gfHwNCj4gCSAgICAhKGFiby0+ZmxhZ3MgJg0KPkFNREdQVV9H
+RU1fQ1JFQVRFX1ZSQU1fV0lQRV9PTl9SRUxFQVNFKSB8fA0KPiAJICAgIGFkZXYtPmluX3N1c3Bl
+bmQgfHwgYWRldi0+c2h1dGRvd24pDQo+IAkJcmV0dXJuOw0KPmRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdHRtLmMNCj5iL2RyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1kZ3B1L2FtZGdwdV90dG0uYw0KPmluZGV4IGJlNmY3NmEzMGFjNi4uM2JkZGYyNjZlOGI1IDEw
+MDY0NA0KPi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYw0KPisr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYw0KPkBAIC00NzEsNyAr
+NDcxLDggQEAgc3RhdGljIGludCBhbWRncHVfYm9fbW92ZShzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmpl
+Y3QNCj4qYm8sIGJvb2wgZXZpY3QsDQo+DQo+IAlhZGV2ID0gYW1kZ3B1X3R0bV9hZGV2KGJvLT5i
+ZGV2KTsNCj4NCj4tCWlmIChvbGRfbWVtLT5tZW1fdHlwZSA9PSBUVE1fUExfU1lTVEVNICYmIGJv
+LT50dG0gPT0gTlVMTCkgew0KPisJaWYgKCFvbGRfbWVtIHx8IChvbGRfbWVtLT5tZW1fdHlwZSA9
+PSBUVE1fUExfU1lTVEVNICYmDQo+KwkJCSBiby0+dHRtID09IE5VTEwpKSB7DQo+IAkJdHRtX2Jv
+X21vdmVfbnVsbChibywgbmV3X21lbSk7DQo+IAkJZ290byBvdXQ7DQo+IAl9DQo+LS0NCj4yLjI1
+LjENCg0K
