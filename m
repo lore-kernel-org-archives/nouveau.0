@@ -4,61 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E665EC25B07
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:40:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA023C25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:40:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 002F2A6F7E;
-	Thu,  4 Aug 2022 20:37:55 +0000 (UTC)
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com
- [IPv6:2607:f8b0:4864:20::d33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92992A9CE8;
- Mon, 18 Jul 2022 06:38:48 +0000 (UTC)
-Received: by mail-io1-xd33.google.com with SMTP id y2so8523927ior.12;
- Sun, 17 Jul 2022 23:38:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=2hIofP2/7RnzwmpB4+2uKZhOwCVDBUsWlubLiM5FRUQ=;
- b=BptF5SO8TMeLvQP9nIR9RVXdw4qv8na8Vw7ejbab15/7BwGx+J5DC24eMPbyXxj2tC
- rt4S+7JIQ/Yx1hHaNFzjARNzG6SwS4RWQTor4tsNS+NZ7iPPc62YEtenlLY5spAthuqE
- r6rK753qyWwNSP+lOhTaU5JPLCztfI6n51t+fEtcDO/EwwJEthun8k9aLfjifuoXbzsz
- 11dd9GGtZZsrtKU+GwTsNn82LcTf9+cRxL/4Cx1k3zZLz+a3o5iDenlc9/i8v/zZmFI1
- x16WAAhhIO79sB2tZh6/f2RCiSgiWLrRyGRMCpjfVwB6h8SQBX3FdUHgv9uE1KsbphjV
- gejA==
+	by gabe.freedesktop.org (Postfix) with ESMTP id A02F4A6FB1;
+	Thu,  4 Aug 2022 20:38:04 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58B2910E05A
+ for <nouveau@lists.freedesktop.org>; Fri, 15 Jul 2022 20:24:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1657916686;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=puUwKs/uapaCvqGKE4ZR+Eb1cZy4rC5wzi3H3IGXfKc=;
+ b=KfuxC1IvgVBTexxC2sKHr58/ucU1ilbPF7CtRurAwtQa6tkWsyRg+R7Dhkve6/4Bx6BceV
+ LlFC8foT8wMMptIbJcRXbWU445j8DCko4WBbhVuZsZnN0ygJHmQnAPN0xi3JiW3TpHORF5
+ CNffQO9mINl2+IyAJxkKt5tHURoZ850=
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-288-08IzTygCOhme72YHHw0xyA-1; Fri, 15 Jul 2022 16:24:45 -0400
+X-MC-Unique: 08IzTygCOhme72YHHw0xyA-1
+Received: by mail-qk1-f197.google.com with SMTP id
+ k190-20020a37bac7000000b006af6d953751so4241948qkf.13
+ for <nouveau@lists.freedesktop.org>; Fri, 15 Jul 2022 13:24:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=2hIofP2/7RnzwmpB4+2uKZhOwCVDBUsWlubLiM5FRUQ=;
- b=Ptm0ax0JuRu/5XV5PVQBUYmpjXeUlvlGkX/f0+2eFqJjwt3m/cVRtiUxWCoxCsgshg
- LVNv7bdROVwmcbc1h+ietqpgtC4GTuGPkep1n79HXufee/ARoGxIFjVdvhaBUiyA42NX
- St26+psxny5JTegsuOUs4fD3lVswoKbDoRlUUR345TtJR7eMcqnpHbW/XpcfMqxbVD6H
- izfP916IdzK7dKzN3aZamtlkmyTbu2uy8mtEjnzTgYS6uidgrQ78rCQjssAnAjRCvxv5
- lfQXrta8dm1CfvDCd2GAzUArjtUcTFpMAwBfRIA8NmRAU2dOWa3H1ncuR3S0s4eqZ+5c
- ckQw==
-X-Gm-Message-State: AJIora8SjaX+ZBke8n6MXzZAy/4N2asL7vbAtS2NYzRtlkLSY9jcIwMq
- Q6axfAiy0dHatQfN5wSi86CJztQtfCY=
-X-Google-Smtp-Source: AGRyM1uOGHqHtEyIbe2ocfQMqbQb/S+AT6j18yc09C7xpuA8r22WTJcVIZMtR4hYU8rRvg724c3Ogw==
-X-Received: by 2002:a05:6638:3801:b0:341:68f6:932 with SMTP id
- i1-20020a056638380100b0034168f60932mr2386338jav.71.1658126328294; 
- Sun, 17 Jul 2022 23:38:48 -0700 (PDT)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.38.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 17 Jul 2022 23:38:47 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: jbaron@akamai.com
-Date: Mon, 18 Jul 2022 00:36:09 -0600
-Message-Id: <20220718063641.9179-26-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
-References: <20220718063641.9179-1-jim.cromie@gmail.com>
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=puUwKs/uapaCvqGKE4ZR+Eb1cZy4rC5wzi3H3IGXfKc=;
+ b=QPW42Bx8R3XW6St9rzPRMzmp2ZG1NsQUHA+flDYDo4u9gRMaLMg7bNF3lNkcl+nvq1
+ Jv22kuhR06d1CWjxyZbpjH4l++XAeQ+4p/N8S58v7HFOY6ORVAIqmKyEOODD79XsZWKM
+ 5liECA/BH05i9wt3NHdjmTg+On+mXjhq29aWZhXNUAZbaZLbWLW1Ku4PzKXeTKaIhGgz
+ yvpFCZXNrcgkCEum2zRP1X3DtiBlNNEM3t+GhanhAKrQcg2UDbkSI0mB/ljsta28Ic4q
+ dQ92/BbB9A/WEUUtXwcA2WfwUy+um9deI3UrBl+RnxEyiq8aFJz5cJ8H/tzKveMCQLO7
+ bkLA==
+X-Gm-Message-State: AJIora8fM+ORXGTCYddhcG7TC5PRD0G8BbjUTi4PFxIm6v+cUcUI1gkB
+ KyBIxL6YHNa1mAMyJQbu+KDAA5UVhoudhmfOODECzx9DTm2YD77xUyrQDbg7VAXdbCdG+CJRJ5w
+ NqCOEVtb/UJfdTRTwVjmde3t7Pw==
+X-Received: by 2002:a05:622a:144:b0:31d:428a:fdd5 with SMTP id
+ v4-20020a05622a014400b0031d428afdd5mr13554027qtw.529.1657916684930; 
+ Fri, 15 Jul 2022 13:24:44 -0700 (PDT)
+X-Google-Smtp-Source: AGRyM1v+kDYEmsZNCpJqhElMCI/kiibn3wjaahXsdxbRBjTE40s0SJKRoLNwukwRh59sXFKQjnDR0g==
+X-Received: by 2002:a05:622a:144:b0:31d:428a:fdd5 with SMTP id
+ v4-20020a05622a014400b0031d428afdd5mr13554013qtw.529.1657916684720; 
+ Fri, 15 Jul 2022 13:24:44 -0700 (PDT)
+Received: from localhost.localdomain (024-205-208-113.res.spectrum.com.
+ [24.205.208.113]) by smtp.gmail.com with ESMTPSA id
+ s27-20020a05622a1a9b00b0031d3996d304sm4516821qtc.17.2022.07.15.13.24.42
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 15 Jul 2022 13:24:44 -0700 (PDT)
+To: Lyude Paul <lyude@redhat.com>, bskeggs@redhat.com, kherbst@redhat.com,
+ airlied@linux.ie, daniel@ffwll.ch, nathan@kernel.org, ndesaulniers@google.com
+References: <20220702153904.1696595-1-trix@redhat.com>
+ <91194b7190081545a8eeb10d20e24de864dfe259.camel@redhat.com>
+ <44d6fc01654b16f9cdd6b517999ddec76038d547.camel@redhat.com>
+From: Tom Rix <trix@redhat.com>
+Message-ID: <e21c527b-9f58-25ba-ce00-1bfccf048d1e@redhat.com>
+Date: Fri, 15 Jul 2022 13:24:41 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
+In-Reply-To: <44d6fc01654b16f9cdd6b517999ddec76038d547.camel@redhat.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:48 +0000
-Subject: [Nouveau] [PATCH v3 24/39] drm-print: include dyndbg header
- indirectly
+Content-Language: en-US
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:35:22 +0000
+Subject: Re: [Nouveau] [PATCH] drm/nouveau/bios: set info only when the
+ return is not 0
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,45 +91,67 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, llvm@lists.linux.dev,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-lkp robot told me:
 
-  >> drivers/gpu/drm/drm_ioc32.c:989:2:
-  error: call to undeclared function '_dynamic_func_call_cls';
-  ISO C99 and later do not support implicit function declarations
-  [-Wimplicit-function-declaration]
+On 7/15/22 12:09 PM, Lyude Paul wrote:
+> On Mon, 2022-07-04 at 17:32 -0400, Lyude Paul wrote:
+>> Reviewed-by: Lyude Paul <lyude@redhat.com>
+>>
+>> Currently on flakey internet in the back of a car, so I probably won't be
+>> able
+>> to push this until I get back tonight or early tomorrow
+> Whoops! Slipped my mind when I got back, but I just remembered it now so I
+> will go ahead and push :). apologies for the delay!
 
-           DRM_DEBUG("comm=\"%s\", pid=%d, dev=0x%lx, auth=%d, %s\n",
+Thanks!
 
-Since that macro is defined in drm_print.h, include <dynamic_debug.h>
-there too, so that any uses have the definitions of all the macros in
-the callchain.
+T
 
-This is done as a separate patch mostly to see how lkp sorts it;
-I'll probably squash it with HEAD~1
-
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- include/drm/drm_print.h | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-index 2d2cef76b5c1..f8bb3e7158c6 100644
---- a/include/drm/drm_print.h
-+++ b/include/drm/drm_print.h
-@@ -31,6 +31,7 @@
- #include <linux/seq_file.h>
- #include <linux/device.h>
- #include <linux/debugfs.h>
-+#include <linux/dynamic_debug.h>
- 
- #include <drm/drm.h>
- 
--- 
-2.36.1
+>
+>> On Sat, 2022-07-02 at 11:39 -0400, Tom Rix wrote:
+>>> clang static analysis reports
+>>> drivers/gpu/drm/nouveau/nvkm/subdev/bios/pmu.c:68:17: warning: The right
+>>> operand of '*' is a garbage value [core.UndefinedBinaryOperatorResult]
+>>>          switch (!!data * *ver) {
+>>>                         ^ ~~~~
+>>> A switch statement with only a default should be reduced to an if.
+>>>
+>>> If nvbios_pmuEp() returns 0, via the data variable, the output info
+>>> parameter
+>>> is not used.  So set info only when data is not 0.
+>>>
+>>> The struct nvbios_pmuE only has the type and data elements.  Since both of
+>>> these
+>>> are explicitly set, memset is not needed.  So remove it.
+>>>
+>>> Signed-off-by: Tom Rix <trix@redhat.com>
+>>> ---
+>>>   drivers/gpu/drm/nouveau/nvkm/subdev/bios/pmu.c | 5 +----
+>>>   1 file changed, 1 insertion(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/pmu.c
+>>> b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/pmu.c
+>>> index b4a308f3cf7b..49e2664a734c 100644
+>>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/pmu.c
+>>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/pmu.c
+>>> @@ -64,12 +64,9 @@ nvbios_pmuEp(struct nvkm_bios *bios, int idx, u8 *ver,
+>>> u8
+>>> *hdr,
+>>>               struct nvbios_pmuE *info)
+>>>   {
+>>>          u32 data = nvbios_pmuEe(bios, idx, ver, hdr);
+>>> -       memset(info, 0x00, sizeof(*info));
+>>> -       switch (!!data * *ver) {
+>>> -       default:
+>>> +       if (data) {
+>>>                  info->type = nvbios_rd08(bios, data + 0x00);
+>>>                  info->data = nvbios_rd32(bios, data + 0x02);
+>>> -               break;
+>>>          }
+>>>          return data;
+>>>   }
 
