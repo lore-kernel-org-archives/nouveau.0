@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 372B8C25B08
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:40:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DF97C25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:40:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2104CA6F85;
-	Thu,  4 Aug 2022 20:37:58 +0000 (UTC)
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com
- [IPv6:2607:f8b0:4864:20::d2a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED35DA9D1D;
- Mon, 18 Jul 2022 06:39:14 +0000 (UTC)
-Received: by mail-io1-xd2a.google.com with SMTP id q14so8517747iod.3;
- Sun, 17 Jul 2022 23:39:14 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1016CA6F96;
+	Thu,  4 Aug 2022 20:38:02 +0000 (UTC)
+Received: from mail-il1-x130.google.com (mail-il1-x130.google.com
+ [IPv6:2607:f8b0:4864:20::130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2F4CA9CE2;
+ Mon, 18 Jul 2022 06:38:39 +0000 (UTC)
+Received: by mail-il1-x130.google.com with SMTP id o2so4130880ill.6;
+ Sun, 17 Jul 2022 23:38:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=8zHXuCHSDAst3rnpwf/s/tuXP/BC2Qx6HTatuli9S1A=;
- b=HpUCWwhIZ+SPM2kb66ap0jVQGyYiP/y7KsE+xJW8/Jme2FFvYNs22pPBLdn2Y7GTNm
- sMR37ROiNLaDmEKYSwrQ3FHiPJiH1jFCeTnLV6RioPX7rkiVey8jRDaz6/TduCagW4C+
- +7FmxWNuOVNpS/YyEvuzngBafSqYRcwqQqVYC9PTa0IhLCwo1hxrqsGBpjGfVKFrRaHO
- v6rX9Qoxhk1hpm953ltm7GbunkSkrLYAxvgDkRXBymZped1KRvBeANLc2Do97lmwui0N
- ACP7NDCTGx+DmY3eVVmUcakGuVUxV6/Ww/rCLahi0Xm8nE1oD2mChoFtBq8C9RxnB4Az
- 8kmA==
+ bh=ZHDzkEhZoFsdqauYBoZorLHVYYv4cPxhPxoqjWUWckg=;
+ b=D8GYAvhZhTZeEhHFfnRjiqQ4IebIK9Fcxbj4xbf+4JSCJosgOQJPsiWVTMPDa6Uuvw
+ vLoYI4TDQcgxpj3LreTrh0Rb5URwaPNH1FzUTMktRvE5L50HGr5xYZywdat+N2qmIUQH
+ phZQ5C1Hat40HNJlClICjNmPyCrMQVxGLyCaPsR1UhsPwbs+CVF5hTaV6CPDfJ3iOhG2
+ 8HZkDqcwbLTFkf29Ejf08Ivbxr9NKv92N3Y3U3nqXvf5o92iWkdepIladKseAFbgN+sW
+ y39MQkpBlqOJxzggQyI0A99U1bHvCJeQsa41WsRdLCz2lJPr4wThzpP5iQE1dH+URjx0
+ Ld4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=8zHXuCHSDAst3rnpwf/s/tuXP/BC2Qx6HTatuli9S1A=;
- b=kVOPCwtSjvWdocxPyuBgo/3auZfCgTerOuju+0jhftTelxY/Tw/FXHTxiV92BaAZZZ
- 3OWQLKUtEhzAYltNbgLrfxxrZaa1wr0UnzAu3gAOjR8Bzo6zjtR1wEJlRdUp85Fj0Ctn
- pmlqCxCrigs7ZklEGcyRW7virsT+YJ0ZJJmiVHzMVVTIGi7OI/XDQmeF1kOjHk5NpJzM
- aoJtcv39Xi/mdKSam8xLf9W0OaWvt6gvGJewn4s0tULIRbjx5azdwXSWQtqcrn1MpxM+
- 0SgRUKINcvppUY5Sc5f24dzcib2rKLTKhRJhVcS5NFFeInUIK5enytIATzjlUbyeX9+1
- ehjQ==
-X-Gm-Message-State: AJIora/NfNXkaCnbE7j/HJqPRsOZW4jpMyPIx6FMOtYaf6J7avlTQYo7
- ldi8Ba/ijAfL3nU9oLkhxU0=
-X-Google-Smtp-Source: AGRyM1sJBj4nLaEskUkGmuCRBLJIAyPe7+LsOChkXpcppNCu1bb7UiTa85pMp8rNV9/mHZ/+ccRe2A==
-X-Received: by 2002:a05:6638:2595:b0:341:4683:782a with SMTP id
- s21-20020a056638259500b003414683782amr9266471jat.49.1658126354570; 
- Sun, 17 Jul 2022 23:39:14 -0700 (PDT)
+ bh=ZHDzkEhZoFsdqauYBoZorLHVYYv4cPxhPxoqjWUWckg=;
+ b=cSL8s/FdiKw4BpJtDZwoivZcJhZDE5L7y8CXsTd9hXo/UTZRufnqN8QV+fPemZtBwb
+ yUWIvk8wpO/gBlposGwvi+4fJTQpZh6tYtEEKZjj1Ah57g3pTYIAZjJgiDwVaUQAemvM
+ kpXmbHOIxHi0krDNjDZpN4cdFOZokqLFFd1xVvY/Nprtx2NlKU5HXJowtfg3rYnpfi87
+ +vyixvjlLGWeyy3kERpGPQbB0SqkR9/FHJN5YYyCv9igNFZqZXLjp6DwfXc97OmcEyiG
+ gS8TMOnR2qhRSeMoNK8MpNcqGCvEJY/E2J6X7F41Do63Bb4DVnFb5SnJnLEjDIGEggO8
+ wQIA==
+X-Gm-Message-State: AJIora8Ur77f5430CZRUWU4f5+OSErKuUf40Ix1AzvjD33R2ZKnAfM5q
+ tMXY5S6lMpSntcMSodWA4JKQpKSD8Lw=
+X-Google-Smtp-Source: AGRyM1v2aJ89+/Y57Ak3yg6kmB0cJaOyWHzQUbSRoMReM05StZqRzlIQJDOfGR8Sg+hnD4rWy4tfyw==
+X-Received: by 2002:a05:6e02:2188:b0:2dc:7546:1ea9 with SMTP id
+ j8-20020a056e02218800b002dc75461ea9mr13622716ila.136.1658126318918; 
+ Sun, 17 Jul 2022 23:38:38 -0700 (PDT)
 Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
  by smtp.googlemail.com with ESMTPSA id
- o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.39.13
+ o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.38.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 17 Jul 2022 23:39:13 -0700 (PDT)
+ Sun, 17 Jul 2022 23:38:38 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: jbaron@akamai.com
-Date: Mon, 18 Jul 2022 00:36:28 -0600
-Message-Id: <20220718063641.9179-45-jim.cromie@gmail.com>
+Date: Mon, 18 Jul 2022 00:36:02 -0600
+Message-Id: <20220718063641.9179-19-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
 References: <20220718063641.9179-1-jim.cromie@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:48 +0000
-Subject: [Nouveau] [PATCH v3 34/39] drm-print: add drm_dbg_driver,
- improve namespace symmetry
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:47 +0000
+Subject: [Nouveau] [PATCH v3 18/41] doc-dyndbg: describe "class CLASS_NAME"
+ query support
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,44 +76,50 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-drm_print defines all of these:
-    drm_dbg_{core,kms,prime,atomic,vbl,lease,_dp,_drmres}
-
-but not drm_dbg_driver itself, which was the original drm_dbg.
-
-To improve namespace symmetry, change the drm_dbg defn to
-drm_dbg_driver, and redef grandfathered name to symmetric one.
-
-This may help with nouveau, which uses its own stack of macros to
-construct calls to dev_info, dev_dbg, etc, for which adaptation might
-mean drm_dbg_##driver constructs.
+Add an explanation of the new "class CLASS_NAME" syntax and meaning,
+noting that the module determines if CLASS_NAME applies to it.
 
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- include/drm/drm_print.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ Documentation/admin-guide/dynamic-debug-howto.rst | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-index 2879a2f84381..46f14cfb401e 100644
---- a/include/drm/drm_print.h
-+++ b/include/drm/drm_print.h
-@@ -497,7 +497,7 @@ void __drm_dev_dbg(struct _ddebug *desc, const struct device *dev,
+diff --git a/Documentation/admin-guide/dynamic-debug-howto.rst b/Documentation/admin-guide/dynamic-debug-howto.rst
+index a89cfa083155..d8954ab05c7b 100644
+--- a/Documentation/admin-guide/dynamic-debug-howto.rst
++++ b/Documentation/admin-guide/dynamic-debug-howto.rst
+@@ -35,6 +35,7 @@ Dynamic debug has even more useful features:
+    - line number (including ranges of line numbers)
+    - module name
+    - format string
++   - class name (as known/declared by each module)
  
- #define drm_dbg_core(drm, fmt, ...)					\
- 	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_CORE, fmt, ##__VA_ARGS__)
--#define drm_dbg(drm, fmt, ...)						\
-+#define drm_dbg_driver(drm, fmt, ...)						\
- 	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_DRIVER, fmt, ##__VA_ARGS__)
- #define drm_dbg_kms(drm, fmt, ...)					\
- 	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_KMS, fmt, ##__VA_ARGS__)
-@@ -516,6 +516,7 @@ void __drm_dev_dbg(struct _ddebug *desc, const struct device *dev,
- #define drm_dbg_drmres(drm, fmt, ...)					\
- 	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_DRMRES, fmt, ##__VA_ARGS__)
+  * Provides a debugfs control file: ``<debugfs>/dynamic_debug/control``
+    which can be read to display the complete list of known debug
+@@ -142,6 +143,7 @@ against.  Possible keywords are:::
+ 		 'file' string |
+ 		 'module' string |
+ 		 'format' string |
++		 'class' string |
+ 		 'line' line-range
  
-+#define drm_dbg(drm, fmt, ...)	drm_dbg_driver(drm, fmt, ##__VA_ARGS__)
+   line-range ::= lineno |
+@@ -203,6 +205,15 @@ format
+ 	format "nfsd: SETATTR"  // a neater way to match a format with whitespace
+ 	format 'nfsd: SETATTR'  // yet another way to match a format with whitespace
  
- /*
-  * printk based logging
++class
++    The given class_name is validated against each module, which may
++    have declared a list of known class_names.  If the class_name is
++    found for a module, callsite & class matching and adjustment
++    proceeds.  Examples::
++
++	class DRM_UT_KMS	# a DRM.debug category
++	class JUNK		# silent non-match
++
+ line
+     The given line number or range of line numbers is compared
+     against the line number of each ``pr_debug()`` callsite.  A single
 -- 
 2.36.1
 
