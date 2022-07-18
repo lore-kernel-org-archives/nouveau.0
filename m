@@ -4,45 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9A18C25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:37:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80CC6C25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:37:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC9CE12A1D1;
-	Thu,  4 Aug 2022 20:37:21 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD35910F55B;
- Thu,  9 Jun 2022 09:18:40 +0000 (UTC)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
- by smtp-out1.suse.de (Postfix) with ESMTP id 897FE21DD8;
- Thu,  9 Jun 2022 09:18:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1654766319; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=HayFit8bzwaDzpMDwYah/6SiOyQ4+BuRvDiuto6PjDE=;
- b=J3GHj6NgeZC2l6CCYS42pH1ur4gz/kZ8MjGwuv4MbjKYXuPXxJ+9p2sVq8TpFihaL3ga3L
- OiWYpUIDPFjIZgZ9CnMwU2mlrRW3/WMDJfS2SqBYd9qIWY6OST8injns6Do0hW5LlP8Sp/
- haVizaclvKA0L+81Pw2138qaN9TGJvI=
-Received: from suse.cz (unknown [10.100.201.86])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by relay2.suse.de (Postfix) with ESMTPS id 351742C142;
- Thu,  9 Jun 2022 09:18:39 +0000 (UTC)
-Date: Thu, 9 Jun 2022 11:18:38 +0200
-From: Michal Hocko <mhocko@suse.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <YqG67sox6L64E6wV@dhcp22.suse.cz>
-References: <20220531100007.174649-1-christian.koenig@amd.com>
- <20220531100007.174649-4-christian.koenig@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEC47A6F1A;
+	Thu,  4 Aug 2022 20:37:22 +0000 (UTC)
+Received: from mail-il1-x134.google.com (mail-il1-x134.google.com
+ [IPv6:2607:f8b0:4864:20::134])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1451A9C7E;
+ Mon, 18 Jul 2022 06:38:27 +0000 (UTC)
+Received: by mail-il1-x134.google.com with SMTP id c16so4317003ils.7;
+ Sun, 17 Jul 2022 23:38:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=r/u3pzpNzNChEPNWjqUZH0DBLx6ctPNr/Z8rp47SNdY=;
+ b=cMOqknqZRdoKMsxzpen8KrJU9GQo/J0NfoM4oAmUu+6OWP9rMZ8fBGy5NqXBQRn/5R
+ /zxURRfW05yXhAscj3tk9e/DuQ192B2tDTqRWpgsMUTABb39F2ixkRwjh4Y3v03qXuAs
+ ExFFTXrLFsPQOBZAoys36aHRBFuL9q3rQnGlks4lMxy3WOmhEQCkUDx4Uz94p38JW7r5
+ kg+/IP59aO2RtaiDz5c+ZZTx5bELzTO01+3LilGDtvXIB4lihLvnFR45Jxt/FQvDhOAV
+ cNxZsbUuGA26mSmXXtiYugGQ0GtWiWC5t5rC8ribVxD7czkDMvcTDD75xKtn8oTqjYFO
+ EfKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=r/u3pzpNzNChEPNWjqUZH0DBLx6ctPNr/Z8rp47SNdY=;
+ b=XsuQznHi7WWcOMpay0i1IFfrDcagorb9gVESpLR0QQbAwHoiRPWUDuJgsdxD0tlyEI
+ wMfs3g/NQ6enDIIcqyn/VidBhUP4al85Wj8CHdSt0Hg+4v/qRG5WeEceddLoJ1b+YfOU
+ zSgOF3nuLbtCO46M7VqbUaj2AROUGRDGP3sXnwxyGc05MNhfe1idqfaCWu7Gjo97WBdU
+ eGe6GyW6cnMbq8jsqd8viGGc+HyuwkLUMdGvTXlK0O/0TFXr1GJsvsjxBwVQdTEq47o4
+ 1nmD63cyJ9Bm3TBf0FWQeZbW2UDScHpciGWdqNzn1h425CVKYYkbmoWVgR+KaoWvTx9h
+ jbPg==
+X-Gm-Message-State: AJIora8GHiMac20wZ9w/PF8NK67DwCOQGPqNvzHcrBbZYkmQjWprGR6O
+ EgYag68gK0s96EEuTWCXwFI=
+X-Google-Smtp-Source: AGRyM1tmk2IYTGmmCyuInvDO9Ilrz54HX4rYzpu8nO1JcM/9dFE6e7lGZ6/DhdHBFgtC43rT1Gh1Ww==
+X-Received: by 2002:a05:6e02:12c8:b0:2dc:98f4:2de with SMTP id
+ i8-20020a056e0212c800b002dc98f402demr12831942ilm.57.1658126307400; 
+ Sun, 17 Jul 2022 23:38:27 -0700 (PDT)
+Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
+ by smtp.googlemail.com with ESMTPSA id
+ o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.38.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 17 Jul 2022 23:38:26 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: jbaron@akamai.com
+Date: Mon, 18 Jul 2022 00:35:53 -0600
+Message-Id: <20220718063641.9179-10-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
+References: <20220718063641.9179-1-jim.cromie@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220531100007.174649-4-christian.koenig@amd.com>
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:56 +0000
-Subject: Re: [Nouveau] [PATCH 03/13] mm: shmem: provide oom badness for
- shmem files
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:46 +0000
+Subject: [Nouveau] [PATCH v3 09/41] dyndbg: drop EXPORTed
+ dynamic_debug_exec_queries
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,42 +70,94 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: andrey.grodzovsky@amd.com, linux-mm@kvack.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- hughd@google.com, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-fsdevel@vger.kernel.org, viro@zeniv.linux.org.uk, daniel@ffwll.ch,
- linux-tegra@vger.kernel.org, alexander.deucher@amd.com,
- akpm@linux-foundation.org, christian.koenig@amd.com,
- linux-media@vger.kernel.org
+Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue 31-05-22 11:59:57, Christian König wrote:
-> This gives the OOM killer an additional hint which processes are
-> referencing shmem files with potentially no other accounting for them.
-> 
-> Signed-off-by: Christian König <christian.koenig@amd.com>
-> ---
->  mm/shmem.c | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/mm/shmem.c b/mm/shmem.c
-> index 4b2fea33158e..a4ad92a16968 100644
-> --- a/mm/shmem.c
-> +++ b/mm/shmem.c
-> @@ -2179,6 +2179,11 @@ unsigned long shmem_get_unmapped_area(struct file *file,
->  	return inflated_addr;
->  }
->  
-> +static long shmem_oom_badness(struct file *file)
-> +{
-> +	return i_size_read(file_inode(file)) >> PAGE_SHIFT;
-> +}
+This exported fn is unused, and will not be needed. Lets dump it.
 
-This doesn't really represent the in memory size of the file, does it?
-Also the memcg oom handling could be considerably skewed if the file was
-shared between more memcgs.
+The export was added to let drm control pr_debugs, as part of using
+them to avoid drm_debug_enabled overheads.  But its better to just
+implement the drm.debug bitmap interface, then its available for
+everyone.
 
+Fixes: a2d375eda771 ("dyndbg: refine export, rename to dynamic_debug_exec_queries()")
+Fixes: 4c0d77828d4f ("dyndbg: export ddebug_exec_queries")
+Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+---
+ include/linux/dynamic_debug.h |  9 ---------
+ lib/dynamic_debug.c           | 29 -----------------------------
+ 2 files changed, 38 deletions(-)
+
+diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debug.h
+index f30b01aa9fa4..8d9eec5f6d8b 100644
+--- a/include/linux/dynamic_debug.h
++++ b/include/linux/dynamic_debug.h
+@@ -55,9 +55,6 @@ struct _ddebug {
+ 
+ #if defined(CONFIG_DYNAMIC_DEBUG_CORE)
+ 
+-/* exported for module authors to exercise >control */
+-int dynamic_debug_exec_queries(const char *query, const char *modname);
+-
+ int ddebug_add_module(struct _ddebug *tab, unsigned int n,
+ 				const char *modname);
+ extern int ddebug_remove_module(const char *mod_name);
+@@ -221,12 +218,6 @@ static inline int ddebug_dyndbg_module_param_cb(char *param, char *val,
+ 				rowsize, groupsize, buf, len, ascii);	\
+ 	} while (0)
+ 
+-static inline int dynamic_debug_exec_queries(const char *query, const char *modname)
+-{
+-	pr_warn("kernel not built with CONFIG_DYNAMIC_DEBUG_CORE\n");
+-	return 0;
+-}
+-
+ #endif /* !CONFIG_DYNAMIC_DEBUG_CORE */
+ 
+ #endif
+diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
+index 5a849716220a..e96dc216463b 100644
+--- a/lib/dynamic_debug.c
++++ b/lib/dynamic_debug.c
+@@ -558,35 +558,6 @@ static int ddebug_exec_queries(char *query, const char *modname)
+ 	return nfound;
+ }
+ 
+-/**
+- * dynamic_debug_exec_queries - select and change dynamic-debug prints
+- * @query: query-string described in admin-guide/dynamic-debug-howto
+- * @modname: string containing module name, usually &module.mod_name
+- *
+- * This uses the >/proc/dynamic_debug/control reader, allowing module
+- * authors to modify their dynamic-debug callsites. The modname is
+- * canonically struct module.mod_name, but can also be null or a
+- * module-wildcard, for example: "drm*".
+- */
+-int dynamic_debug_exec_queries(const char *query, const char *modname)
+-{
+-	int rc;
+-	char *qry; /* writable copy of query */
+-
+-	if (!query) {
+-		pr_err("non-null query/command string expected\n");
+-		return -EINVAL;
+-	}
+-	qry = kstrndup(query, PAGE_SIZE, GFP_KERNEL);
+-	if (!qry)
+-		return -ENOMEM;
+-
+-	rc = ddebug_exec_queries(qry, modname);
+-	kfree(qry);
+-	return rc;
+-}
+-EXPORT_SYMBOL_GPL(dynamic_debug_exec_queries);
+-
+ #define PREFIX_SIZE 64
+ 
+ static int remaining(int wrote)
 -- 
-Michal Hocko
-SUSE Labs
+2.36.1
+
