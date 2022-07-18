@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77582C25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:38:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 095F5C25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:38:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2B0B12B0C8;
-	Thu,  4 Aug 2022 20:37:35 +0000 (UTC)
-Received: from mail-il1-x132.google.com (mail-il1-x132.google.com
- [IPv6:2607:f8b0:4864:20::132])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5459EA9D54;
- Mon, 18 Jul 2022 06:39:27 +0000 (UTC)
-Received: by mail-il1-x132.google.com with SMTP id d4so5550290ilc.8;
- Sun, 17 Jul 2022 23:39:27 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B005A6F72;
+	Thu,  4 Aug 2022 20:37:34 +0000 (UTC)
+Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com
+ [IPv6:2607:f8b0:4864:20::d2b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89A19A9CC6;
+ Mon, 18 Jul 2022 06:38:44 +0000 (UTC)
+Received: by mail-io1-xd2b.google.com with SMTP id l24so8517031ion.13;
+ Sun, 17 Jul 2022 23:38:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=4h3uY9TThXC1PV4gG3mzVW2/VJmh8sYmlsiKmbk1ueg=;
- b=pragKMwsSkcMk3t0vUXFzvmCdBkZfTmsKdg6x1AsQUUj8DyJYts9OeNeWFGnwDYrhX
- blQS0nSUVlBDFUcV2TV4PM68hBNlWKYtWwowbHYIng6Vc8H7vPaLR5vhOB4ZpUbQ8jE0
- v4Pw/nsT0XWMU1Je6Kc6QtSrG5JwvPK7JTXKwCcmgDg0gjiPCuHtBZVEQ8xvu0pNOl8P
- vQahuu3q30bsO200BSvYmMw3I4xTsqFVz62wJKlFG8prZcmNzAZ7SPl9Way3cL5g5FXe
- 1YmrIXPWwDgjsJ4v1ehXDNO+ABJVGB6b+aF83J8X5Ed0IW3CdDXTfGmyXPNmJp86H5oA
- dSKw==
+ bh=HZbYvD7pJXDxjfsN+JYVR2+qF0bIhodb6pVaemEpRTA=;
+ b=DVfDSAp6lTbMSFPvkbjehOZ6LZJElB5FrtozBMZPeYQaehZ0jMu2pGyXPkCXBiYr/l
+ KTYn1PWEufvvtIAWygJEiuei4vNm7urPTkmMdcjUeO1Dd3/bwKSp6Z5YBbjOaIcXIic4
+ X6Gdt2D8zhap98SR9eWnyV3tLXRVCvoosICwDcykgTaPlTul5RaxJxm1yU2Izp+g8g0V
+ ldLoHvqT8gYeUktw8FZ0XNjqCcGxDZGsSoVg9m71J8xUqfmaQDxMuebD+ssLyDKtRMN0
+ YTjJLEhVPXaKfasM9eNxN88qzHy1iYuXoHKFyukkyq0ZQOj90Vbv/fSnb4aV8AYXE1qA
+ Yp5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=4h3uY9TThXC1PV4gG3mzVW2/VJmh8sYmlsiKmbk1ueg=;
- b=Vex1BtxzCUwv83z7PPtgyoHHQa79R5EI1F2xrbKx9sX/OuwF0cIpxRG+wk9g3aKjMv
- W6yhQiA4wa2ted3sShXvyFP+ip7n4tJmgZJ3ztpfH75btMSHLaUDtDicUzvlz4B+KHzr
- QmWTKE+TU/R03xNWf6RJ4xtxq272vzNe6LW8suMlBJ9Z/hIt+r7/aWm8UG2wlrX2ppig
- +ijia0GdlOPrxQdCnBjxCsKSahu/YzVCNeNQqtdGePikEv4eUpICF1A+ypJ9e4qfzzRt
- mSDcQtA7soCw0xXCgKj0HtY1IE+uiPOnNG4LcPI9nk8pUV1hzpt5lnDyTmAIkolKVsPI
- nu8g==
-X-Gm-Message-State: AJIora/zvFUAxJ3mtF8vG+0nm0M+uEkoAnYBePDzSTLfyibejBhmDOic
- +LvnomdVQml1x+9kvyMckIA=
-X-Google-Smtp-Source: AGRyM1uxkIZYdg2hpRqOBvqhpK/kcl3egJaIC6Zu3w+t42+3lEhhgc1jI9Fd8BolosGMwq/dbywnVQ==
-X-Received: by 2002:a05:6e02:1b0c:b0:2dc:8b29:f1d5 with SMTP id
- i12-20020a056e021b0c00b002dc8b29f1d5mr12741424ilv.184.1658126366608; 
- Sun, 17 Jul 2022 23:39:26 -0700 (PDT)
+ bh=HZbYvD7pJXDxjfsN+JYVR2+qF0bIhodb6pVaemEpRTA=;
+ b=yiyIa1H4dPMcJGyu/e4/SBmo32MN3UD/Y+J3347ERoN6AeIrS7LALd/3JKnHjSEPYR
+ CLrRZwOmCdNHLonNMt7f1+bjhpg5PdK4YU1FBRMqe8c3HyvatQM/87j5iYU6mjIR5k8t
+ 3Bt4ZXudcC3I3LHqEcBQxbvp8e20tFbdtgZ51tZorDCs54G5iNPwqkjqLb0hf8bOrrXd
+ ekWl/olBPW6Ou6XOTahDLskyuhj8c7UZbV65REkF90XXqqWI5KOn6f5NK8ZLkRZGf1Rg
+ +SKr8by8gky+fVVewGWO33Khm/RrEnDouaH+rwVwQAGqZqSqIi0Uq+zibf6L4Zz9y0fD
+ +lYQ==
+X-Gm-Message-State: AJIora9aInreA3a3102xwL2+bS7j65u0CEDXM/RUjp+R57hCi0WrncYd
+ BnsmW6CXLUl/apLEtbiZ4vx5FNPMDd4=
+X-Google-Smtp-Source: AGRyM1ve3HEn0xSuO4XS/cO+T0gvt9rKJGOiZa15RwoYtQgDmzTVvFd1e2yJmy5rBcYAtyRJAWNfDA==
+X-Received: by 2002:a05:6638:304a:b0:335:ba01:8be9 with SMTP id
+ u10-20020a056638304a00b00335ba018be9mr13944818jak.273.1658126324219; 
+ Sun, 17 Jul 2022 23:38:44 -0700 (PDT)
 Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
  by smtp.googlemail.com with ESMTPSA id
- o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.39.25
+ o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.38.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 17 Jul 2022 23:39:26 -0700 (PDT)
+ Sun, 17 Jul 2022 23:38:43 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: jbaron@akamai.com
-Date: Mon, 18 Jul 2022 00:36:37 -0600
-Message-Id: <20220718063641.9179-54-jim.cromie@gmail.com>
+Date: Mon, 18 Jul 2022 00:36:06 -0600
+Message-Id: <20220718063641.9179-23-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
 References: <20220718063641.9179-1-jim.cromie@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:48 +0000
-Subject: [Nouveau] [PATCH v3 38/41] nouveau-dyndbg: alter DEBUG, TRACE,
- SPAM levels to use dyndbg
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:47 +0000
+Subject: [Nouveau] [PATCH v3 22/41] drm_print: interpose drm_*dbg with
+ forwarding macros
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,63 +76,111 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-clone the nvkm_printk,_,__ macro ladder into nvkm_drmdbg,_,__.
-And alter debug, trace, spam macros to use the renamed ladder.
+change drm_dev_dbg & drm_dbg to macros, which forward to the renamed
+functions (with __ prefix added).
 
-This *sets-up* to remove the _subdev->debug >= (l) condition from the
-__ macro, once the bitmap-param is wired up correctly (pointing at the
-right state-bit-vector), and figured into dyndbg's jump-label
-enablement.
+Those functions sit below the categorized layer of macros implementing
+the DRM debug.category API, and implement most of it.  These are good
+places to insert dynamic-debug jump-label mechanics, which will allow
+DRM to avoid the runtime cost of drm_debug_enabled().
 
-Also, with DYNDBG=y, sites will be off, until enabled by >control, or
-by #define DEBUG at compile time.
+no functional changes.
 
-Starting with this as a model:
-
-    static struct ddebug_classes_bitmap_param drm_trace_bitmap = {
-	.bits = &__drm_trace,
-	.flags = "T",
-	.map = &drm_trace_classes,
-    };
-    module_param_cb(tracecats, &param_ops_dyndbg_classes, &drm_trace_bitmap,..
-
-We basically need to clone that, but ref a different .bits:
-	.bits = &_subdev->debug,
-	while respecting the _subdev's lifecycle.
-	hints welcomed.
-
-no functional changes. (other than dyndbg's default-off)
+memory cost baseline: (unchanged)
+bash-5.1# drms_load
+[    9.220389] dyndbg:   1 debug prints in module drm
+[    9.224426] ACPI: bus type drm_connector registered
+[    9.302192] dyndbg:   2 debug prints in module ttm
+[    9.305033] dyndbg:   8 debug prints in module video
+[    9.627563] dyndbg: 127 debug prints in module i915
+[    9.721505] AMD-Vi: AMD IOMMUv2 functionality not available on this system - This is not a bug.
+[   10.091345] dyndbg: 2196 debug prints in module amdgpu
+[   10.106589] [drm] amdgpu kernel modesetting enabled.
+[   10.107270] amdgpu: CRAT table not found
+[   10.107926] amdgpu: Virtual CRAT table created for CPU
+[   10.108398] amdgpu: Topology: Add CPU node
+[   10.168507] dyndbg:   3 debug prints in module wmi
+[   10.329587] dyndbg:   3 debug prints in module nouveau
 
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/drm_print.c | 10 +++++-----
+ include/drm/drm_print.h     |  9 +++++++--
+ 2 files changed, 12 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h b/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
-index 065d07ccea87..b9c2afab321f 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
-@@ -59,9 +59,17 @@ void nvkm_subdev_intr(struct nvkm_subdev *);
- #define nvkm_error(s,f,a...) nvkm_printk((s), ERROR,    err, f, ##a)
- #define nvkm_warn(s,f,a...)  nvkm_printk((s),  WARN, notice, f, ##a)
- #define nvkm_info(s,f,a...)  nvkm_printk((s),  INFO,   info, f, ##a)
--#define nvkm_debug(s,f,a...) nvkm_printk((s), DEBUG,    dbg, f, ##a)
--#define nvkm_trace(s,f,a...) nvkm_printk((s), TRACE,    dbg, f, ##a)
--#define nvkm_spam(s,f,a...)  nvkm_printk((s),  SPAM,    dbg, f, ##a)
-+
-+#define nvkm_drmdbg__(s,l,p,f,a...) do {				\
-+	const struct nvkm_subdev *_subdev = (s);			\
-+	if (CONFIG_NOUVEAU_DEBUG >= (l) && _subdev->debug >= (l))	\
-+		dev_dbg(_subdev->device->dev, "%s: "f, _subdev->name, ##a); \
-+} while(0)
-+#define nvkm_drmdbg_(s,l,f,a...) nvkm_drmdbg__((s), NV_DBG_##l, dbg, f, ##a)
-+#define nvkm_debug(s,f,a...) nvkm_drmdbg_((s), DEBUG, f, ##a)
-+#define nvkm_trace(s,f,a...) nvkm_drmdbg_((s), TRACE, f, ##a)
-+#define nvkm_spam(s,f,a...)  nvkm_drmdbg_((s),  SPAM, f, ##a)
+diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
+index 44be95fac164..21b416af0be2 100644
+--- a/drivers/gpu/drm/drm_print.c
++++ b/drivers/gpu/drm/drm_print.c
+@@ -279,8 +279,8 @@ void drm_dev_printk(const struct device *dev, const char *level,
+ }
+ EXPORT_SYMBOL(drm_dev_printk);
  
- #define nvkm_error_ratelimited(s,f,a...) nvkm_printk((s), ERROR, err_ratelimited, f, ##a)
+-void drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
+-		 const char *format, ...)
++void __drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
++		   const char *format, ...)
+ {
+ 	struct va_format vaf;
+ 	va_list args;
+@@ -301,9 +301,9 @@ void drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
+ 
+ 	va_end(args);
+ }
+-EXPORT_SYMBOL(drm_dev_dbg);
++EXPORT_SYMBOL(__drm_dev_dbg);
+ 
+-void __drm_dbg(enum drm_debug_category category, const char *format, ...)
++void ___drm_dbg(enum drm_debug_category category, const char *format, ...)
+ {
+ 	struct va_format vaf;
+ 	va_list args;
+@@ -320,7 +320,7 @@ void __drm_dbg(enum drm_debug_category category, const char *format, ...)
+ 
+ 	va_end(args);
+ }
+-EXPORT_SYMBOL(__drm_dbg);
++EXPORT_SYMBOL(___drm_dbg);
+ 
+ void __drm_err(const char *format, ...)
+ {
+diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+index 668273e36c2c..c429c258c957 100644
+--- a/include/drm/drm_print.h
++++ b/include/drm/drm_print.h
+@@ -335,7 +335,7 @@ __printf(3, 4)
+ void drm_dev_printk(const struct device *dev, const char *level,
+ 		    const char *format, ...);
+ __printf(3, 4)
+-void drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
++void __drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
+ 		 const char *format, ...);
+ 
+ /**
+@@ -384,6 +384,9 @@ void drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
+ 	}								\
+ })
+ 
++#define drm_dev_dbg(dev, cat, fmt, ...)				\
++	__drm_dev_dbg(dev, cat, fmt, ##__VA_ARGS__)
 +
- #endif
+ /**
+  * DRM_DEV_DEBUG() - Debug output for generic drm code
+  *
+@@ -485,10 +488,12 @@ void drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
+  */
+ 
+ __printf(2, 3)
+-void __drm_dbg(enum drm_debug_category category, const char *format, ...);
++void ___drm_dbg(enum drm_debug_category category, const char *format, ...);
+ __printf(1, 2)
+ void __drm_err(const char *format, ...);
+ 
++#define __drm_dbg(fmt, ...)		___drm_dbg(fmt, ##__VA_ARGS__)
++
+ /* Macros to make printk easier */
+ 
+ #define _DRM_PRINTK(once, level, fmt, ...)				\
 -- 
 2.36.1
 
