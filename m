@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F39AAC25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:46:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E42FEC25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:46:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F17889919;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09FABA5C6D;
 	Thu,  4 Aug 2022 20:39:22 +0000 (UTC)
-Received: from out162-62-57-87.mail.qq.com (out162-62-57-87.mail.qq.com
- [162.62.57.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEAA010E974
- for <nouveau@lists.freedesktop.org>; Thu, 16 Jun 2022 06:58:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
- t=1655362726; bh=85KKuETUcWzKJtpChUuBAv9+zzpvhjTFeCbMbi2CSXI=;
- h=In-Reply-To:References:From:To:Cc:Subject:Date;
- b=z66Mg13CTB9voRNcwuxdz2X4q7EZDRF8gxlnHeRbvtQitWrV7wKiFj4ufXwHNBW4b
- dnoVYLZAEZ+TMXRp6HYiDBio4x0rl/AUbruu6d3u0sPcK/ouNh7lmiB+e9IRTcmvzW
- XZrXy3SpD7B3FtmAynbAsTWjrd11wpH3Dehk3N+c=
-X-QQ-FEAT: oHWrrGTW1dCi2Uhv/TjzETR5+gOBkNuu
-X-QQ-SSF: 00000000000000F0000000000000
-X-QQ-XMAILINFO: NNy5VkfPTUBBYxm/CY2b10LnAREOsSkoyzr2XYdYNiZZDErhh/WNMtiXL9NNd+
- TQUfYZe3Q/z6Rd9ZBKJuemZ1Uc7C9ACEguQtbxP1/2qHrU8nmqhVFeIFKOLQ77hoguZRabZKxKxEV
- axUxOBOxLuyXQWrbWtqi195Xc0Kj19uAciHTNkFYgaPh+G2G8VD7iz8WtEff4q0a+YxXbWloBjRmi
- 5a8g8jk7BjurCuIRqZmoLNkzkQPctDmu4JoKLvhLCPSa8YCjCNoIH2hm1u/RuKNsGQ60pivIMBmZ8
- M5zJd+Sj7g2BeL35S89oGXmi0n+qKKU5ysLBWPmJp830x0JNdvePvxcKKqIjmNWH1ASE+6vGfGRrW
- EN4kyObI8gRBkK5/C7o/oFw0oXONvcD80M8KELstRlgJqj+Tb7N0aqUl3qrhqArTDEuA7iCFVnuCP
- VKQWEfK4YWd0Dsdebo1tyv9Afs+hXC/bOBBrJPE8oDKhHe7tQgEYwBfu9Ao8S2eTieujENSuN04Qz
- B1fotSXvUpFdyREFqpymm6zZVeLdtgju3HQGIBHBKoDUiGQdjj85SZGwrNjV930X3FcitQF7GDhWl
- Vew1grbWPJnFF01xrfwcIbPuVM5r7XLwdg72vsaIEKDU8BC8ltPP6SSqGpvpciAZSkllnVGyJoi31
- 84PuRsRJ6AaHacCakSVAECXv38E4Kwn9JdEONDWunJZJArS2IEEN5tewZbp/JAmOGEnl9hAdoXUzA
- kQ1GmfMo5JuXKjbrXeff3g/Ff5d86naeelNDot3iODaNo+misI62sPq9AuUMEgWA0WNRlDS/qTIIh
- O8gMosqU/4FtbEOBjFFTtWY+qVsfM49qGWasYucxLZcT6/QZVAJQDoC/UsB1pgbBf/KhEC7bOqJKx
- BEH2RogXEfQFXa/xfER4A==
-X-HAS-ATTACH: no
-X-QQ-BUSINESS-ORIGIN: 2
-X-Originating-IP: 116.128.80.98
-In-Reply-To: <d8a12051e71ec322f489beed252576e16802a172.camel@redhat.com>
-References: <tencent_655C23622640268A069B49A6A5ADDEECB508@qq.com>
- <d8a12051e71ec322f489beed252576e16802a172.camel@redhat.com>
-X-QQ-STYLE: 
-X-QQ-mid: webmail221t1655362618t9890312
-From: "=?gb18030?B?MTA2NDA5NDkzNQ==?=" <1064094935@qq.com>
-To: "=?gb18030?B?THl1ZGUgUGF1bA==?=" <lyude@redhat.com>,
- "=?gb18030?B?QmVuIFNrZWdncw==?=" <bskeggs@redhat.com>
-Mime-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="----=_NextPart_62AAD439_1235DA08_6A2ED2BF"
-Content-Transfer-Encoding: 8Bit
-Date: Thu, 16 Jun 2022 14:56:57 +0800
-X-Priority: 3
-Message-ID: <tencent_D362AE3DB129A03B459B4D23D3BED619F607@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:36 +0000
-Subject: [Nouveau] =?gb18030?b?u9i4tKO6IFtQQVRDSCA1LzVdIGRybS9ub3V2ZWF1?=
- =?gb18030?q?=3A_Fix_spelling_typo_in_comments?=
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com
+ [IPv6:2607:f8b0:4864:20::d33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E651A9CA7;
+ Mon, 18 Jul 2022 06:38:37 +0000 (UTC)
+Received: by mail-io1-xd33.google.com with SMTP id y2so8523711ior.12;
+ Sun, 17 Jul 2022 23:38:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=SGsxNGoyeS6i6viq97Hpi9t+LziL3Bicz8xpppAaUyQ=;
+ b=CTklXbUHN/RqwJtsTXWNf8kER4L41lqgco4x1FbZplXaOxaWcMWYmcC/OiCS8hRlRi
+ XromEI9R7iJaei8N7bAEH6uft4snrGJ73FYiJ4btA4o5/UfJ6+xQ45KtxYT0lQja3ykC
+ wqVCvplLyP79ViD2DY10baxQoJD8WzptnFZV5JrdrNw/wZVuTXp6MyDFfXiJ7/N6R0qn
+ 5CIxhsbNlmoQ4v2tON+O89Z7IwfPVAr4tKmXM42E20K1lTifgeE1QZ8TKS/saOM/QTbQ
+ ANgKEyAubDF+STrKkQY3Pq2rFPD8PiUJS7e7LDMPBS+XRuMSTIgOXWUh8QBGbbtVlC9H
+ wRPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=SGsxNGoyeS6i6viq97Hpi9t+LziL3Bicz8xpppAaUyQ=;
+ b=sziuNTUhgCAzGypN1S/sXIw2BD4fqrF6D8FZ/wIbLXsSeG3fnrYJqN+3u+IlC2CBYa
+ xG22+PRpRI0ASlWqGQH3l95KKoJ84NB9pGdbuLj/IKBpuG7+grQeKdvpiWfrYK1KUFFN
+ T21tDgqaROP07M24Xbe1BJFZ4iHYZH69cPEVc3OjdNIVciYLpB/omJL2P8QswnmST9ve
+ 2Mxmb4AUO0g8czYc5fHzUL+E6L9/IUTr3nbNDjHizQ4ludYvcrv/GTHFwx6r5ftTT06L
+ b43c3drZjxSMxBqgg67l8zxYZTZvEImKV66jMBv6vHLV1EsIVBvvp6vWFY+CDTB1dPCV
+ tNMA==
+X-Gm-Message-State: AJIora+KenxLi18JZkNNlDpwYga1pKLzb0sNpedyNwQwvrkuILRY7RRC
+ sN+ia2o7YpitSBbECa0OyfQ=
+X-Google-Smtp-Source: AGRyM1uza3edZ9sVrrdHQT1pY7JVdKYWz1SqRx7/VRjkWV5CWONYdnSRzN/CqICxCw89oPeEx2f42Q==
+X-Received: by 2002:a05:6638:d52:b0:341:40ca:b21f with SMTP id
+ d18-20020a0566380d5200b0034140cab21fmr10374091jak.35.1658126316349; 
+ Sun, 17 Jul 2022 23:38:36 -0700 (PDT)
+Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
+ by smtp.googlemail.com with ESMTPSA id
+ o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.38.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 17 Jul 2022 23:38:35 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: jbaron@akamai.com
+Date: Mon, 18 Jul 2022 00:36:00 -0600
+Message-Id: <20220718063641.9179-17-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
+References: <20220718063641.9179-1-jim.cromie@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:47 +0000
+Subject: [Nouveau] [PATCH v3 16/41] dyndbg: add drm.debug style bitmap
+ support
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,204 +70,337 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?gb18030?B?RGF2aWQgQWlybGll?= <airlied@linux.ie>,
- =?gb18030?B?bm91dmVhdQ==?= <nouveau@lists.freedesktop.org>,
- =?gb18030?B?bGludXgta2VybmVs?= <linux-kernel@vger.kernel.org>,
- =?gb18030?B?ZHJpLWRldmVs?= <dri-devel@lists.freedesktop.org>,
- =?gb18030?B?cGVuZ2Z1eXVhbg==?= <pengfuyuan@kylinos.cn>,
- =?gb18030?B?RGFuaWVsIFZldHRlcg==?= <daniel@ffwll.ch>,
- =?gb18030?B?azJjaQ==?= <kernel-bot@kylinos.cn>
+Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
+Add kernel_param_ops and callbacks to apply a class-map to a
+sysfs-node, which then can control classes defined in that class-map.
+This supports uses like:
 
-------=_NextPart_62AAD439_1235DA08_6A2ED2BF
-Content-Type: text/plain;
-	charset="gb18030"
-Content-Transfer-Encoding: base64
+  echo 0x3 > /sys/module/drm/parameters/debug
 
-SGksDQpJJ20gdmVyeSBzb3JyeSwgdGhlc2UgZml2ZSBwYXRjaGVzIGFyZSBub3QgYSBzZXJp
-ZXMsIHRoZSBvdGhlciBmb3VyIGFyZSBmcm9tIG90aGVyIGJyYW5jaGVzLiBJIG1hZGUgYSBt
-aXN0YWtlIHdoZW4gc3VibWl0dGluZyB0aGUgcGF0Y2guIENhbiB5b3UgaGVscCBtZSBwdXNo
-IHRoaXMgdG8gZHJtLW1pc2M/IE9yIEkgd2lsbCByZXN1Ym1pdCB0aGlzIHBhdGNoIGFnYWlu
-Lg0KDQoNCg0KQmVzdCByZWdhcmRzLA0KcGVuZ2Z1eXVhbg0KDQoNCg0KLS0tLS0tLS0tLS0t
-LS0tLS0tJm5ic3A71K3KvNPKvP4mbmJzcDstLS0tLS0tLS0tLS0tLS0tLS0NCreivP7Iyzog
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAiTHl1ZGUgUGF1bCIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8
-bHl1ZGVAcmVkaGF0LmNvbSZndDs7DQq3osvNyrG85DombmJzcDsyMDIyxOo11MIyOMjVKNDH
-xtrB+SkgweizvzA6MjcNCsrVvP7IyzombmJzcDsiMTA2NDA5NDkzNSI8MTA2NDA5NDkzNUBx
-cS5jb20mZ3Q7OyJCZW4gU2tlZ2dzIjxic2tlZ2dzQHJlZGhhdC5jb20mZ3Q7Ow0Ks63LzTom
-bmJzcDsiS2Fyb2wgSGVyYnN0IjxraGVyYnN0QHJlZGhhdC5jb20mZ3Q7OyJEYXZpZCBBaXJs
-aWUiPGFpcmxpZWRAbGludXguaWUmZ3Q7OyJEYW5pZWwgVmV0dGVyIjxkYW5pZWxAZmZ3bGwu
-Y2gmZ3Q7OyJkcmktZGV2ZWwiPGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcmZ3Q7
-OyJub3V2ZWF1Ijxub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZyZndDs7ImxpbnV4LWtl
-cm5lbCI8bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZyZndDs7InBlbmdmdXl1YW4iPHBl
-bmdmdXl1YW5Aa3lsaW5vcy5jbiZndDs7ImsyY2kiPGtlcm5lbC1ib3RAa3lsaW5vcy5jbiZn
-dDs7DQrW98ziOiZuYnNwO1JlOiBbUEFUQ0ggNS81XSBkcm0vbm91dmVhdTogRml4IHNwZWxs
-aW5nIHR5cG8gaW4gY29tbWVudHMNCg0KDQoNClJldmlld2VkLWJ5OiBMeXVkZSBQYXVsIDxs
-eXVkZUByZWRoYXQuY29tJmd0Ow0KDQpEbyB5b3UgbmVlZCBtZSB0byBwdXNoIHRoaXMgdG8g
-ZHJtLW1pc2M/IE9yIHdpbGwgdGhpcyBiZSBwdXNoZWQgYXMgb25lIHNlcmllcz8NCg0KT24g
-RnJpLCAyMDIyLTA1LTI3IGF0IDEyOjIyICswODAwLCAxMDY0MDk0OTM1QHFxLmNvbSB3cm90
-ZToNCiZndDsgRnJvbTogcGVuZ2Z1eXVhbiA8cGVuZ2Z1eXVhbkBreWxpbm9zLmNuJmd0Ow0K
-Jmd0OyANCiZndDsgRml4IHNwZWxsaW5nIHR5cG8gaW4gY29tbWVudHMuDQomZ3Q7IA0KJmd0
-OyBSZXBvcnRlZC1ieTogazJjaSA8a2VybmVsLWJvdEBreWxpbm9zLmNuJmd0Ow0KJmd0OyBT
-aWduZWQtb2ZmLWJ5OiBwZW5nZnV5dWFuIDxwZW5nZnV5dWFuQGt5bGlub3MuY24mZ3Q7DQom
-Z3Q7IC0tLQ0KJmd0OyAmbmJzcDtkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252
-aHcvZHJmLmggfCA0ICsrLS0NCiZndDsgJm5ic3A7MSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0
-aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCiZndDsgDQomZ3Q7IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252aHcvZHJmLmgNCiZndDsgYi9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252aHcvZHJmLmgNCiZndDsgaW5kZXggYmQwZmM0
-MTQ0NmUyLi5kNjk2OWMwZTJmMjkgMTAwNjQ0DQomZ3Q7IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L2luY2x1ZGUvbnZody9kcmYuaA0KJmd0OyArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9pbmNsdWRlL252aHcvZHJmLmgNCiZndDsgQEAgLTE5MCw3ICsxOTAsNyBA
-QA0KJmd0OyAmbmJzcDsjZGVmaW5lIERSRl9NRF8oWCxfMSxfMixfMyxfNCxfNSxfNixfNyxf
-OCxfOSxfMTAsSU1QTCwuLi4pIElNUEwNCiZndDsgJm5ic3A7I2RlZmluZSBEUkZfTUQoQS4u
-LikgRFJGX01EXyhYLCAjI0EsIERSRl9NRF9JLCBEUkZfTURfTikoWCwgIyNBKQ0KJmd0OyAm
-bmJzcDsNCiZndDsgLS8qIEhlbHBlciBmb3IgdGVzdGluZyBhZ2FpbnN0IGZpZWxkIHZhbHVl
-IGluIGFyaWJ0cmFyeSBvYmplY3QgKi8NCiZndDsgKy8qIEhlbHBlciBmb3IgdGVzdGluZyBh
-Z2FpbnN0IGZpZWxkIHZhbHVlIGluIGFyYml0cmFyeSBvYmplY3QgKi8NCiZndDsgJm5ic3A7
-I2RlZmluZSBEUkZfVFZfTihYLGUscCxvLGQsciwmbmJzcDsNCiZndDsgZixjbXAsdikmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgXA0KJmd0OyAmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtOVlZBTF9URVNUX1goRFJGX1JEX1goZSwg
-KHApLCAobyksIGQjI18jI3ImbmJzcDsmbmJzcDsgKSwgZCMjXyMjciMjXyMjZiwgY21wLA0K
-Jmd0OyAodikpDQomZ3Q7ICZuYnNwOyNkZWZpbmUNCiZndDsgRFJGX1RWX0koWCxlLHAsbyxk
-LHIsaSxmLGNtcCx2KSZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBcDQomZ3Q7IEBA
-IC0xOTgsNyArMTk4LDcgQEANCiZndDsgJm5ic3A7I2RlZmluZSBEUkZfVFZfKFgsXzEsXzIs
-XzMsXzQsXzUsXzYsXzcsXzgsXzksSU1QTCwuLi4pIElNUEwNCiZndDsgJm5ic3A7I2RlZmlu
-ZSBEUkZfVFYoQS4uLikgRFJGX1RWXyhYLCAjI0EsIERSRl9UVl9JLCBEUkZfVFZfTikoWCwg
-IyNBKQ0KJmd0OyAmbmJzcDsNCiZndDsgLS8qIEhlbHBlciBmb3IgdGVzdGluZyBhZ2FpbnN0
-IGZpZWxkIGRlZmluaXRpb24gaW4gYXJpYnRyYXJ5IG9iamVjdCAqLw0KJmd0OyArLyogSGVs
-cGVyIGZvciB0ZXN0aW5nIGFnYWluc3QgZmllbGQgZGVmaW5pdGlvbiBpbiBhcmJpdHJhcnkg
-b2JqZWN0ICovDQomZ3Q7ICZuYnNwOyNkZWZpbmUgRFJGX1REX04oWCxlLHAsbyxkLHIsJm5i
-c3A7DQomZ3Q7IGYsY21wLHYpJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFwNCiZndDsgJm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7TlZWQUxfVEVTVF9YKERS
-Rl9SRF9YKGUsIChwKSwgKG8pLCBkIyNfIyNyJm5ic3A7Jm5ic3A7ICksIGQjI18jI3IjI18j
-I2YsIGNtcCwNCiZndDsgZCMjXyMjciMjXyMjZiMjXyMjdikNCiZndDsgJm5ic3A7I2RlZmlu
-ZQ0KJmd0OyBEUkZfVERfSShYLGUscCxvLGQscixpLGYsY21wLHYpJm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQomZ3Q7ICZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyBcDQoNCi0tIA0KQ2hlZXJzLA0KJm5ic3A7THl1ZGUgUGF1bCAoc2hlL2hl
-cikNCiZuYnNwO1NvZnR3YXJlIEVuZ2luZWVyIGF0IFJlZCBIYXQ=
+IE add these:
 
-------=_NextPart_62AAD439_1235DA08_6A2ED2BF
-Content-Type: text/html;
-	charset="gb18030"
-Content-Transfer-Encoding: base64
+ - int param_set_dyndbg_classes()
+ - int param_get_dyndbg_classes()
+ - struct kernel_param_ops param_ops_dyndbg_classes
 
-PG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNo
-YXJzZXQ9R0IxODAzMCI+PGRpdj5IaSw8L2Rpdj48ZGl2PkknbSB2ZXJ5IHNvcnJ5LCB0aGVz
-ZSBmaXZlIHBhdGNoZXMgYXJlIG5vdCBhIHNlcmllcywgdGhlIG90aGVyIGZvdXIgYXJlIGZy
-b20gb3RoZXIgYnJhbmNoZXMuIEkgbWFkZSBhIG1pc3Rha2Ugd2hlbiBzdWJtaXR0aW5nIHRo
-ZSBwYXRjaC4gQ2FuIHlvdSBoZWxwIG1lIHB1c2ggdGhpcyB0byBkcm0tbWlzYz8gT3IgSSB3
-aWxsIHJlc3VibWl0IHRoaXMgcGF0Y2ggYWdhaW4uPGJyPjwvZGl2PjxkaXYgc3R5bGU9InBv
-c2l0aW9uOiByZWxhdGl2ZTsiPjxkaXY+PGJyPjwvZGl2PjxkaXY+QmVzdCByZWdhcmRzLDxi
-cj5wZW5nZnV5dWFuPGJyPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQt
-c2l6ZTogMTJweDtmb250LWZhbWlseTogQXJpYWwgTmFycm93O3BhZGRpbmc6MnB4IDAgMnB4
-IDA7Ij4tLS0tLS0tLS0tLS0tLS0tLS0mbmJzcDvUrcq808q8/iZuYnNwOy0tLS0tLS0tLS0t
-LS0tLS0tLTwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZTogMTJweDtiYWNrZ3JvdW5kOiNl
-ZmVmZWY7cGFkZGluZzo4cHg7Ij48ZGl2PjxiPreivP7Iyzo8L2I+ICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIkx5
-dWRlIFBhdWwiICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJmx0O2x5dWRlQHJlZGhh
-dC5jb20mZ3Q7OzwvZGl2PjxkaXY+PGI+t6LLzcqxvOQ6PC9iPiZuYnNwOzIwMjLE6jXUwjI4
-yNUo0MfG2sH5KSDB6LO/MDoyNzwvZGl2PjxkaXY+PGI+ytW8/sjLOjwvYj4mbmJzcDsiMTA2
-NDA5NDkzNSImbHQ7MTA2NDA5NDkzNUBxcS5jb20mZ3Q7OyJCZW4gU2tlZ2dzIiZsdDtic2tl
-Z2dzQHJlZGhhdC5jb20mZ3Q7Ozx3YnI+PC9kaXY+PGRpdj48Yj6zrcvNOjwvYj4mbmJzcDsi
-S2Fyb2wgSGVyYnN0IiZsdDtraGVyYnN0QHJlZGhhdC5jb20mZ3Q7OyJEYXZpZCBBaXJsaWUi
-Jmx0O2FpcmxpZWRAbGludXguaWUmZ3Q7OyJEYW5pZWwgVmV0dGVyIiZsdDtkYW5pZWxAZmZ3
-bGwuY2gmZ3Q7OyJkcmktZGV2ZWwiJmx0O2RyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcmZ3Q7OyJub3V2ZWF1IiZsdDtub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZyZndDs7
-ImxpbnV4LWtlcm5lbCImbHQ7bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZyZndDs7InBl
-bmdmdXl1YW4iJmx0O3BlbmdmdXl1YW5Aa3lsaW5vcy5jbiZndDs7ImsyY2kiJmx0O2tlcm5l
-bC1ib3RAa3lsaW5vcy5jbiZndDs7PHdicj48L2Rpdj48ZGl2PjxiPtb3zOI6PC9iPiZuYnNw
-O1JlOiBbUEFUQ0ggNS81XSBkcm0vbm91dmVhdTogRml4IHNwZWxsaW5nIHR5cG8gaW4gY29t
-bWVudHM8L2Rpdj48L2Rpdj48ZGl2Pjxicj48L2Rpdj5SZXZpZXdlZC1ieTogTHl1ZGUgUGF1
-bCAmbHQ7bHl1ZGVAcmVkaGF0LmNvbSZndDs8YnI+PGJyPkRvIHlvdSBuZWVkIG1lIHRvIHB1
-c2ggdGhpcyB0byBkcm0tbWlzYz8gT3Igd2lsbCB0aGlzIGJlIHB1c2hlZCBhcyBvbmUgc2Vy
-aWVzPzxicj48YnI+T24gRnJpLCAyMDIyLTA1LTI3IGF0IDEyOjIyICswODAwLCAxMDY0MDk0
-OTM1QHFxLmNvbSB3cm90ZTo8YnI+Jmd0OyBGcm9tOiBwZW5nZnV5dWFuICZsdDtwZW5nZnV5
-dWFuQGt5bGlub3MuY24mZ3Q7PGJyPiZndDsgPGJyPiZndDsgRml4IHNwZWxsaW5nIHR5cG8g
-aW4gY29tbWVudHMuPGJyPiZndDsgPGJyPiZndDsgUmVwb3J0ZWQtYnk6IGsyY2kgJmx0O2tl
-cm5lbC1ib3RAa3lsaW5vcy5jbiZndDs8YnI+Jmd0OyBTaWduZWQtb2ZmLWJ5OiBwZW5nZnV5
-dWFuICZsdDtwZW5nZnV5dWFuQGt5bGlub3MuY24mZ3Q7PGJyPiZndDsgLS0tPGJyPiZndDsg
-Jm5ic3A7ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmh3L2RyZi5oIHwgNCAr
-Ky0tPGJyPiZndDsgJm5ic3A7MSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBk
-ZWxldGlvbnMoLSk8YnI+Jmd0OyA8YnI+Jmd0OyBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvaW5jbHVkZS9udmh3L2RyZi5oPGJyPiZndDsgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9pbmNsdWRlL252aHcvZHJmLmg8YnI+Jmd0OyBpbmRleCBiZDBmYzQxNDQ2
-ZTIuLmQ2OTY5YzBlMmYyOSAxMDA2NDQ8YnI+Jmd0OyAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9pbmNsdWRlL252aHcvZHJmLmg8YnI+Jmd0OyArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9pbmNsdWRlL252aHcvZHJmLmg8YnI+Jmd0OyBAQCAtMTkwLDcgKzE5MCw3
-IEBAPGJyPiZndDsgJm5ic3A7I2RlZmluZSBEUkZfTURfKFgsXzEsXzIsXzMsXzQsXzUsXzYs
-XzcsXzgsXzksXzEwLElNUEwsLi4uKSBJTVBMPGJyPiZndDsgJm5ic3A7I2RlZmluZSBEUkZf
-TUQoQS4uLikgRFJGX01EXyhYLCAjI0EsIERSRl9NRF9JLCBEUkZfTURfTikoWCwgIyNBKTxi
-cj4mZ3Q7ICZuYnNwOzxicj4mZ3Q7IC0vKiBIZWxwZXIgZm9yIHRlc3RpbmcgYWdhaW5zdCBm
-aWVsZCB2YWx1ZSBpbiBhcmlidHJhcnkgb2JqZWN0ICovPGJyPiZndDsgKy8qIEhlbHBlciBm
-b3IgdGVzdGluZyBhZ2FpbnN0IGZpZWxkIHZhbHVlIGluIGFyYml0cmFyeSBvYmplY3QgKi88
-YnI+Jmd0OyAmbmJzcDsjZGVmaW5lIERSRl9UVl9OKFgsZSxwLG8sZCxyLCZuYnNwOzxicj4m
-Z3Q7IGYsY21wLHYpJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFw8YnI+Jmd0OyAm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtOVlZBTF9U
-RVNUX1goRFJGX1JEX1goZSwgKHApLCAobyksIGQjI18jI3ImbmJzcDsmbmJzcDsgKSwgZCMj
-XyMjciMjXyMjZiwgY21wLDxicj4mZ3Q7ICh2KSk8YnI+Jmd0OyAmbmJzcDsjZGVmaW5lPGJy
-PiZndDsgRFJGX1RWX0koWCxlLHAsbyxkLHIsaSxmLGNtcCx2KSZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyBcPGJyPiZndDsgQEAgLTE5OCw3ICsxOTgsNyBAQDxicj4mZ3Q7ICZu
-YnNwOyNkZWZpbmUgRFJGX1RWXyhYLF8xLF8yLF8zLF80LF81LF82LF83LF84LF85LElNUEws
-Li4uKSBJTVBMPGJyPiZndDsgJm5ic3A7I2RlZmluZSBEUkZfVFYoQS4uLikgRFJGX1RWXyhY
-LCAjI0EsIERSRl9UVl9JLCBEUkZfVFZfTikoWCwgIyNBKTxicj4mZ3Q7ICZuYnNwOzxicj4m
-Z3Q7IC0vKiBIZWxwZXIgZm9yIHRlc3RpbmcgYWdhaW5zdCBmaWVsZCBkZWZpbml0aW9uIGlu
-IGFyaWJ0cmFyeSBvYmplY3QgKi88YnI+Jmd0OyArLyogSGVscGVyIGZvciB0ZXN0aW5nIGFn
-YWluc3QgZmllbGQgZGVmaW5pdGlvbiBpbiBhcmJpdHJhcnkgb2JqZWN0ICovPGJyPiZndDsg
-Jm5ic3A7I2RlZmluZSBEUkZfVERfTihYLGUscCxvLGQsciwmbmJzcDs8YnI+Jmd0OyBmLGNt
-cCx2KSZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBcPGJyPiZndDsgJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7TlZWQUxfVEVTVF9YKERSRl9SRF9YKGUsIChw
-KSwgKG8pLCBkIyNfIyNyJm5ic3A7Jm5ic3A7ICksIGQjI18jI3IjI18jI2YsIGNtcCw8YnI+
-Jmd0OyBkIyNfIyNyIyNfIyNmIyNfIyN2KTxicj4mZ3Q7ICZuYnNwOyNkZWZpbmU8YnI+Jmd0
-OyBEUkZfVERfSShYLGUscCxvLGQscixpLGYsY21wLHYpJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7PGJyPiZndDsgJm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7IFw8YnI+PGJyPi0tIDxicj5DaGVlcnMsPGJyPiZuYnNwO0x5dWRlIFBhdWwgKHNo
-ZS9oZXIpPGJyPiZuYnNwO1NvZnR3YXJlIEVuZ2luZWVyIGF0IFJlZCBIYXQ8YnI+PC9kaXY+
+Following the model of kernel/params.c STANDARD_PARAM_DEFS, these are
+non-static and exported.  This might be unnecessary here.
 
+get/set use an augmented kernel_param; the arg refs a new struct
+ddebug_classes_bitmap_param, initialized by DYNAMIC_DEBUG_CLASSBITS
+macro, which contains:
 
-------=_NextPart_62AAD439_1235DA08_6A2ED2BF--
+BITS: a pointer to the user module's ulong holding the bits/state.  By
+ref'g the client's bit-state _var, we coordinate with existing code
+(such as drm_debug_enabled) which uses the _var, so it works
+unchanged, even as the foundation is switched out underneath it..
+Using a ulong allows use of BIT() etc.
+
+FLAGS: dyndbg.flags toggled by changes to bitmap. Usually just "p".
+
+MAP: a pointer to struct ddebug_classes_map, which maps those
+class-names to .class_ids 0..N that the module is using.  This
+class-map is declared & initialized by DEFINE_DYNDBG_CLASSMAP.
+
+map-type: add support here for DD_CLASS_DISJOINT, DD_CLASS_VERBOSE.
+
+These 2 class-types both expect an integer; _DISJOINT treats input
+like a bit-vector (ala drm.debug), and sets each bit accordingly.
+
+_VERBOSE treats input like a bit-pos:N, then sets bits(0..N)=1, and
+bits(N+1..max)=0.  This applies (bit<N) semantics on top of disjoint
+bits.
+
+cases DD_CLASS_SYMBOLIC, DD_CLASS_LEVELS are included for the complete
+picture, with commented out call to a following commit.
+
+NOTES:
+
+this now includes SYMBOLIC/LEVELS support, too tedious to keep
+separate thru all the tweaking.
+
+get-param undoes the bit-pos -> bitmap transform that set-param does
+on VERBOSE inputs, this gives the read-what-was-written property.
+
+_VERBOSE is overlay on _DISJOINT:
+
+verbose-maps still need class-names, even though theyre not usable at
+the sysfs interface (unlike with _SYMBOLIC/_LEVELS).
+
+ - It must have a "V0" name,
+   something below "V1" to turn "V1" off.
+   __pr_debug_cls(V0,..) is printk, don't do that.
+
+ - "class names" is required at the >control interface.
+ - relative levels are not enforced at >control
+
+IOW this is possible, and maybe confusing:
+
+  echo class V3 +p > control
+  echo class V1 -p > control
+
+IMO thats ok, relative verbosity is an interface property.
+
+Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+---
+. drop kp->mod->name as unneeded (build-dependent) <lkp>
+---
+ include/linux/dynamic_debug.h |  18 ++++
+ lib/dynamic_debug.c           | 193 ++++++++++++++++++++++++++++++++++
+ 2 files changed, 211 insertions(+)
+
+diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debug.h
+index f57076e02767..b50bdd5c8184 100644
+--- a/include/linux/dynamic_debug.h
++++ b/include/linux/dynamic_debug.h
+@@ -113,6 +113,12 @@ struct ddebug_class_map {
+ #define NUM_TYPE_ARGS(eltype, ...)				\
+ 	(sizeof((eltype[]) {__VA_ARGS__}) / sizeof(eltype))
+ 
++struct ddebug_classes_bitmap_param {
++	unsigned long *bits;
++	char flags[8];
++	const struct ddebug_class_map *map;
++};
++
+ #if defined(CONFIG_DYNAMIC_DEBUG_CORE)
+ 
+ int ddebug_add_module(struct _ddebug *tab, unsigned int num_debugs,
+@@ -274,6 +280,10 @@ void __dynamic_ibdev_dbg(struct _ddebug *descriptor,
+ 				   KERN_DEBUG, prefix_str, prefix_type,	\
+ 				   rowsize, groupsize, buf, len, ascii)
+ 
++struct kernel_param;
++int param_set_dyndbg_classes(const char *instr, const struct kernel_param *kp);
++int param_get_dyndbg_classes(char *buffer, const struct kernel_param *kp);
++
+ /* for test only, generally expect drm.debug style macro wrappers */
+ #define __pr_debug_cls(cls, fmt, ...) do {			\
+ 	BUILD_BUG_ON_MSG(!__builtin_constant_p(cls),		\
+@@ -322,6 +332,14 @@ static inline int ddebug_dyndbg_module_param_cb(char *param, char *val,
+ 				rowsize, groupsize, buf, len, ascii);	\
+ 	} while (0)
+ 
++struct kernel_param;
++static inline int param_set_dyndbg_classes(const char *instr, const struct kernel_param *kp)
++{ return 0; }
++static inline int param_get_dyndbg_classes(char *buffer, const struct kernel_param *kp)
++{ return 0; }
++
+ #endif /* !CONFIG_DYNAMIC_DEBUG_CORE */
+ 
++extern const struct kernel_param_ops param_ops_dyndbg_classes;
++
+ #endif
+diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
+index 4c27bbe5187e..dd27dc514aa3 100644
+--- a/lib/dynamic_debug.c
++++ b/lib/dynamic_debug.c
+@@ -596,6 +596,199 @@ static int ddebug_exec_queries(char *query, const char *modname)
+ 	return nfound;
+ }
+ 
++static int ddebug_apply_class_bitmap(const struct ddebug_classes_bitmap_param *dcp,
++				     unsigned long inbits)
++{
++#define QUERY_SIZE 128
++	char query[QUERY_SIZE];
++	const struct ddebug_class_map *map = dcp->map;
++	int matches = 0;
++	int bi, ct;
++
++	v2pr_info("in: 0x%lx on: 0x%lx\n", inbits, *dcp->bits);
++
++	for (bi = 0; bi < map->length; bi++) {
++		if (test_bit(bi, &inbits) == test_bit(bi, dcp->bits))
++			continue;
++
++		snprintf(query, QUERY_SIZE, "class %s %c%s", map->class_names[bi],
++			 test_bit(bi, &inbits) ? '+' : '-', dcp->flags);
++
++		ct = ddebug_exec_queries(query, NULL);
++		matches += ct;
++
++		v2pr_info("bit_%d: %d matches on class: %s -> 0x%lx\n", bi,
++			  ct, map->class_names[bi], inbits);
++	}
++	return matches;
++}
++
++/* support for [+-] symbolic-name boolean list */
++static int param_set_dyndbg_class_strings(const char *instr, const struct kernel_param *kp)
++{
++	const struct ddebug_classes_bitmap_param *dcp = kp->arg;
++	const struct ddebug_class_map *map = dcp->map;
++	unsigned long inbits;
++	int idx, totct = 0;
++	bool wanted;
++	char *cls, *p;
++
++	cls = kstrdup(instr, GFP_KERNEL);
++	p = strchr(cls, '\n');
++	if (p)
++		*p = '\0';
++
++	vpr_info("\"%s\" > %s\n", cls, kp->name);
++	inbits = *dcp->bits;
++
++	for (; cls; cls = p) {
++		p = strchr(cls, ',');
++		if (p)
++			*p++ = '\0';
++
++		if (*cls == '-') {
++			wanted = false;
++			cls++;
++		} else {
++			wanted = true;
++			if (*cls == '+')
++				cls++;
++		}
++		idx = match_string(map->class_names, map->length, cls);
++		if (idx < 0) {
++			pr_err("%s unknown to %s\n", cls, kp->name);
++			continue;
++		}
++
++		switch (map->map_type) {
++		case DD_CLASS_TYPE_SYMBOLIC:
++			if (test_bit(idx, &inbits) == wanted) {
++				v3pr_info("no change on %s\n", cls);
++				continue;
++			}
++			inbits ^= BIT(idx);
++			break;
++		case DD_CLASS_TYPE_LEVELS:
++			/* bitmask must respect classmap ranges, this does not */
++			inbits = (1 << (idx + wanted));
++			break;
++		default:
++			pr_err("illegal map-type value %d\n", map->map_type);
++		}
++		v2pr_info("%s: bit %d: %s\n", kp->name, idx, map->class_names[idx]);
++		totct += ddebug_apply_class_bitmap(dcp, inbits);
++	}
++	kfree(cls);
++	*dcp->bits = inbits;
++	vpr_info("total matches: %d\n", totct);
++	return 0;
++}
++
++#define CLASSMAP_BITMASK(width) ((1UL << (width)) - 1)
++
++/**
++ * param_set_dyndbg_classes - bits => categories >control setter
++ * @instr: string echo>d to sysfs
++ * @kp:    kp->arg has state: bits, map
++ *
++ * Enable/disable prdbgs by their "category", as given in the
++ * arguments to DYNAMIC_DEBUG_CLASSES.
++ *
++ * Returns: 0 or <0 if error.
++ */
++int param_set_dyndbg_classes(const char *instr, const struct kernel_param *kp)
++{
++	const struct ddebug_classes_bitmap_param *dcp = kp->arg;
++	const struct ddebug_class_map *map = dcp->map;
++	unsigned long inrep;
++	int rc, totct = 0;
++
++	switch (map->map_type) {
++
++	case DD_CLASS_TYPE_SYMBOLIC:
++	case DD_CLASS_TYPE_LEVELS:
++		/* CSV list of [+-]classnames */
++		return param_set_dyndbg_class_strings(instr, kp);
++
++	case DD_CLASS_TYPE_DISJOINT:
++	case DD_CLASS_TYPE_VERBOSE:
++		/* numeric input */
++		rc = kstrtoul(instr, 0, &inrep);
++		if (rc) {
++			pr_err("expecting numeric input: %s > %s\n", instr, kp->name);
++			return -EINVAL;
++		}
++		break;
++	default:
++		pr_err("%s: bad map type: %d\n", kp->name, map->map_type);
++		return -EINVAL;
++	}
++
++	switch (map->map_type) {
++	case DD_CLASS_TYPE_DISJOINT:
++		/* expect bits. mask and warn if too many */
++		if (inrep & ~CLASSMAP_BITMASK(map->length)) {
++			pr_warn("%s: input: 0x%lx exceeds mask: 0x%lx, masking\n",
++				kp->name, inrep, CLASSMAP_BITMASK(map->length));
++			inrep &= CLASSMAP_BITMASK(map->length);
++		}
++		break;
++	case DD_CLASS_TYPE_VERBOSE:
++		/* input is bitpos, of highest verbosity enabled */
++		if (inrep > map->length) {
++			pr_warn("%s: verbosity:%ld exceeds range:%d, clamping\n",
++				kp->name, inrep, map->length);
++			inrep = map->length;
++		}
++		v2pr_info("VERBOSE: %ld > %s\n", inrep, kp->name);
++		inrep = CLASSMAP_BITMASK(inrep + 1);
++		break;
++	default:
++		pr_warn("%s: bad map type: %d\n", kp->name, map->map_type);
++	}
++	totct += ddebug_apply_class_bitmap(dcp, inrep);
++	*dcp->bits = inrep;
++
++	vpr_info("%s: total matches: %d\n", kp->name, totct);
++	return 0;
++}
++EXPORT_SYMBOL(param_set_dyndbg_classes);
++
++/**
++ * param_get_dyndbg_classes - classes reader
++ * @buffer: string description of controlled bits -> classes
++ * @kp:     kp->arg has state: bits, map
++ *
++ * Reads last written bits, underlying prdbg state may have changed since.
++ * Returns: #chars written or <0 on error
++ */
++int param_get_dyndbg_classes(char *buffer, const struct kernel_param *kp)
++{
++	const struct ddebug_classes_bitmap_param *dcp = kp->arg;
++	const struct ddebug_class_map *map = dcp->map;
++	unsigned long val = *dcp->bits;
++
++	switch (map->map_type) {
++	case DD_CLASS_TYPE_SYMBOLIC:
++	case DD_CLASS_TYPE_DISJOINT:
++	case DD_CLASS_TYPE_LEVELS:
++		return scnprintf(buffer, PAGE_SIZE, "0x%lx\n", val);
++	case DD_CLASS_TYPE_VERBOSE:
++		/* convert internal bits to a level */
++		return scnprintf(buffer, PAGE_SIZE, "%lu\n",
++				 find_first_zero_bit(&val, map->length) - 1);
++	default:
++		return -1;
++	}
++}
++EXPORT_SYMBOL(param_get_dyndbg_classes);
++
++const struct kernel_param_ops param_ops_dyndbg_classes = {
++	.set = param_set_dyndbg_classes,
++	.get = param_get_dyndbg_classes,
++};
++EXPORT_SYMBOL(param_ops_dyndbg_classes);
++
+ #define PREFIX_SIZE 64
+ 
+ static int remaining(int wrote)
+-- 
+2.36.1
 
