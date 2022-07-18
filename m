@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78C14C25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:39:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9742C25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:39:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94B3FA6F40;
-	Thu,  4 Aug 2022 20:37:53 +0000 (UTC)
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com
- [IPv6:2607:f8b0:4864:20::d2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8B9CA9D3E;
- Mon, 18 Jul 2022 06:39:03 +0000 (UTC)
-Received: by mail-io1-xd2c.google.com with SMTP id n138so7290180iod.4;
- Sun, 17 Jul 2022 23:39:03 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10C74A6F54;
+	Thu,  4 Aug 2022 20:37:51 +0000 (UTC)
+Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com
+ [IPv6:2607:f8b0:4864:20::d2b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D813BA9C30;
+ Mon, 18 Jul 2022 06:38:04 +0000 (UTC)
+Received: by mail-io1-xd2b.google.com with SMTP id l24so8516288ion.13;
+ Sun, 17 Jul 2022 23:38:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Fn4wAUPertAH2IA5+xSEy3cch5p5d8c17PURO4Ajqk0=;
- b=lVEQWHyYITJ4+0uYGwdqAqAfCGK2lKAyEBowEO80UDUa+yolFh6p2B/oXUOlxcrFAH
- asOb3GWPCUAYO0XH1AHvIO2lLLkqWHxmoYhzJ2X5q8d9KFcuPZpV/zd1WFyZt71ggc2+
- aNVcJRuryddz7TzzoQCHl8i+Kold+tyg7PHVri56NVFpda8Umf1G1Vpxi6FVmtzwN5Wa
- tvzagpyuQdKudrbhdIJW2CMLjvlpq/K7Iue0wQBAGo+OmeFVOBb5ptCmeex5NtKn/GRU
- K2sRGcKYyfef6ZymA2lQ03b5Q8D5vS+YAprXMZJYUkQ4dR2jXAisUWYiebpQB+GLUUbb
- TfPg==
+ bh=IPNh34U+sqtG6x3Rqc7e7njlWizKyk0P6OLkXAqGKGA=;
+ b=CWXNKUl2oC0JpFs9jqDa87Vno3+RLCLA6G0xNcdbl9BsR13Af/NvZhMVBVoe63cJYq
+ 3R+NWb2lxBavblo6hskj1ilGw69u6auGquaudxOHrEKKnNZ569QiuEkrC2aqB4EwuUYf
+ MRnuPjV/0Y7cAAkzYx3FNF6GP+2sAcNFf64Gja6eDowYRKqmWJ/rNj3cTHRtb0SRefbS
+ Mvmh3bkuuM8sAtyjy7FIhawYuB3B2cSEkse1sd7i7/0BELbUO5cV64a8VnmlkTk17Wmh
+ gLrpCigv3DhBVdHEK7Yt2UtRZfPUElRDIBj9eRc4k8n5I7x1Th0KKOP3un/GC2q0JgOJ
+ 1jPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Fn4wAUPertAH2IA5+xSEy3cch5p5d8c17PURO4Ajqk0=;
- b=zqzOOm6jSf49mbklHa15I3YDIeYn/1iRkz+YztTU2rJfyveAg9f3yWSYpuQfP9KeSh
- R+aoHaIO8iWLT0rZxfQKSv7ESkm1gKL8G2DfCiVwbhUUobUfh7PevmaePiDcufRiTP4p
- BgVcAFo8OYfuroAjWX6dV+Vu11eAvoQwnQ2FhfIsQgBkCDwQ+c+WuJ3rEu5cOeLH9tkF
- XXwgSQ/zTkm847wGHhSi9uKAfBpWmirAOlfiN4MvYs1eLY0R1PVFEpYtVojdLJ3Ajj4Z
- YMK4Lm7IrhYlBrPy0jnDj5z+Q8G+hAOTtl+eJ9nb26r2zXQavfQkCvO7AP/utV/h3xFt
- EC0w==
-X-Gm-Message-State: AJIora+JNZqIsvsQ+H9qbfbb4wMV0r1qzMbcsLK96Hz3O7DXJnFcMLlR
- 18EEbe9YLwV5tbQ0NWU37NQ=
-X-Google-Smtp-Source: AGRyM1tykn1JmsOayzYo37PBCvpyIS8w2tA9wKnPxwe6SfwoeynLFqfjrZ6UFH7lrTWm4G74oRMSzQ==
-X-Received: by 2002:a02:a918:0:b0:33f:2a28:a2c6 with SMTP id
- n24-20020a02a918000000b0033f2a28a2c6mr13822689jam.8.1658126342980; 
- Sun, 17 Jul 2022 23:39:02 -0700 (PDT)
+ bh=IPNh34U+sqtG6x3Rqc7e7njlWizKyk0P6OLkXAqGKGA=;
+ b=RhFWJ/n7v8JjsgV4DBsiYMsXUMxPbCQ3sC7AQlXm/wenk4or4PQKP2/zqfU3lIVdOR
+ YEZXtiDkXJ78FawOVePglrSJNMPN27I0cuQYJWfvQfivVsLIlvuHoDd/A4ikurSumfL1
+ 4Lt/esh50yRS8Gdrz3+EKJfhyNSYXCyq1iqH5s2mzCWF5X+BD/pawZ9KTeoLFUYDe3D4
+ xvgyXRjsCGJzFuUos97Q++A0uE/m+6noXMwuFlJBoJ1dspkJvls8GIlg13o4Enwwgd7y
+ zh40/n72YZYJD1VN32hJNn041VO+XLmC8+ZzOV+Jw8KL+HyA9plspdjrjNi1zhLQRDXe
+ 5nKQ==
+X-Gm-Message-State: AJIora87jYdt/PSaWEV48jMSyCTzrk7GVhIVhxGKV0dCCA9JU8/NULZg
+ iq8H//8Mr/l/OyuY3/8d3hI=
+X-Google-Smtp-Source: AGRyM1v/pX/7Q8RmuMwku5MwbEOexJrr5+k20FEB1/CnVJgnuaZGT4QPo0FJy0hNYZERNtFzRe3RIA==
+X-Received: by 2002:a05:6638:d54:b0:33f:8e41:a3b3 with SMTP id
+ d20-20020a0566380d5400b0033f8e41a3b3mr11626785jak.251.1658126284089; 
+ Sun, 17 Jul 2022 23:38:04 -0700 (PDT)
 Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
  by smtp.googlemail.com with ESMTPSA id
- o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.39.01
+ o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.38.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 17 Jul 2022 23:39:02 -0700 (PDT)
+ Sun, 17 Jul 2022 23:38:03 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: jbaron@akamai.com
-Date: Mon, 18 Jul 2022 00:36:20 -0600
-Message-Id: <20220718063641.9179-37-jim.cromie@gmail.com>
+Date: Mon, 18 Jul 2022 00:35:46 -0600
+Message-Id: <20220718063641.9179-3-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
 References: <20220718063641.9179-1-jim.cromie@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:48 +0000
-Subject: [Nouveau] [PATCH v3 30/39] dyndbg: add _DPRINTK_FLAGS_TRACE
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:46 +0000
+Subject: [Nouveau] [PATCH v3 02/41] dyndbg: fix module.dyndbg handling
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,34 +70,46 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, vincent.whitchurch@axis.com,
+ intel-gfx@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-add new flag, and OR it into _DPRINTK_FLAGS_ENABLED definition
+For CONFIG_DYNAMIC_DEBUG=N, the ddebug_dyndbg_module_param_cb()
+stub-fn is too permissive:
 
-CC: vincent.whitchurch@axis.com
+bash-5.1# modprobe drm JUNKdyndbg
+bash-5.1# modprobe drm dyndbgJUNK
+[   42.933220] dyndbg param is supported only in CONFIG_DYNAMIC_DEBUG builds
+[   42.937484] ACPI: bus type drm_connector registered
+
+This caused no ill effects, because unknown parameters are either
+ignored by default (with an "unknown parameter" warning, see below),
+or ignored because dyndbg allows its no-effect use on non-dyndbg builds.
+
+But since the code has an explicit feedback message, it should be
+issued accurately.  Fix with strcmp for exact param-name match.
+
+Reported-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Fixes: b48420c1d301 dynamic_debug: make dynamic-debug work for module initialization
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- include/linux/dynamic_debug.h | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ include/linux/dynamic_debug.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debug.h
-index 38cfdd5c0bdc..0752e6c21c6e 100644
+index dce631e678dd..f30b01aa9fa4 100644
 --- a/include/linux/dynamic_debug.h
 +++ b/include/linux/dynamic_debug.h
-@@ -42,7 +42,9 @@ struct _ddebug {
- 	(_DPRINTK_FLAGS_INCL_MODNAME | _DPRINTK_FLAGS_INCL_FUNCNAME |\
- 	 _DPRINTK_FLAGS_INCL_LINENO  | _DPRINTK_FLAGS_INCL_TID)
- 
--#define _DPRINTK_FLAGS_ENABLED		_DPRINTK_FLAGS_PRINTK
-+#define _DPRINTK_FLAGS_TRACE		(1 << 5)
-+#define _DPRINTK_FLAGS_ENABLED		(_DPRINTK_FLAGS_PRINTK | \
-+					 _DPRINTK_FLAGS_TRACE)
- 
- #if defined DEBUG
- #define _DPRINTK_FLAGS_DEFAULT _DPRINTK_FLAGS_PRINTK
+@@ -201,7 +201,7 @@ static inline int ddebug_remove_module(const char *mod)
+ static inline int ddebug_dyndbg_module_param_cb(char *param, char *val,
+ 						const char *modname)
+ {
+-	if (strstr(param, "dyndbg")) {
++	if (!strcmp(param, "dyndbg")) {
+ 		/* avoid pr_warn(), which wants pr_fmt() fully defined */
+ 		printk(KERN_WARNING "dyndbg param is supported only in "
+ 			"CONFIG_DYNAMIC_DEBUG builds\n");
 -- 
 2.36.1
 
