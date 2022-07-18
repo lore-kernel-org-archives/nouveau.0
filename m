@@ -4,92 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CC6DC25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:38:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77582C25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:38:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2A0E12B297;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2B0B12B0C8;
 	Thu,  4 Aug 2022 20:37:35 +0000 (UTC)
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2083.outbound.protection.outlook.com [40.107.220.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E87E10F32F;
- Wed, 20 Jul 2022 07:41:05 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lSNKfCe0eMACy4Mvzq58CyudSCP3/vZIrxzbQ9F9Tz46I5pR8RusFvth7uHL3tNONVwFjUQKQqtqNZIwQYMVMQj/74RgIEwTG2GpQhT/H8Vgj6tWDhj+GdkJz4jXCEraGeo70jPMzNOME36cddKSoU5uXbGN5hQg37/II4hrD3ZQ2V+rtTfocU3gbNyP6F537mtUUfRFrWND8MjNkgfWQpKx+FyEhU+yds3ksc6KN4gHJMnFy6uh3xkmck4SLOOtaRY54VMjReDZVvqpaux4awl6CyzAQ494iBaob+7X00yHSluBXHD79mcNPoS7axoc23qgpA33kP8LDYZenFVOtQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ByHo5yDs5s1Imb3nJc7NLGwDstL+YMUwak6J3JkGHLM=;
- b=cTEro17bMX2+Qj4eudoLftGwgEYmSVgYkUsuQ+kcNOSV+r/cqREEbCUtIPVyInlkk9QNMVBTHVWWb4don+NLCWQcpTjDkti/sHWPJazn6NVh/FmZ2LGBnCSmJkdBRGzHVzwyPEJa+vYwN1JTbK+lKqhuE5jRkrjgsNxJY1IxSR0ucawyzvzWjyIO6yT0F6RYm9MqPDCBL6hnIItvDEwN3FRVnltIjdHnflzI+9NQmYSeGNp6NoDkfVHm7VqYWSD+uwLQ2hfdPMOjnzNcThjTAA7A11kXf3aaS/SpclFM1MhDdmmIRv/YUtJ7o/hLTlGE1HsPSRhKxETcaSnw4OT1hA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ByHo5yDs5s1Imb3nJc7NLGwDstL+YMUwak6J3JkGHLM=;
- b=x9IBp8DFzpYR+yuGlyOKTHJ6KmFi1Ou9sGbSWXMenV1/laPSKCTaXOvMTjSNQyqE+B/y5Tq7M3zyZQGHViNahwOgGcjlf1dkOC3lm07+D0GcNE8WfzJai4uaGOnUJNQciYT//4BZ1hlDlUYwXHlXgnZZFfePnhmm+Czk2ENq9tI=
-Received: from DM6PR08CA0033.namprd08.prod.outlook.com (2603:10b6:5:80::46) by
- MWHPR12MB1405.namprd12.prod.outlook.com (2603:10b6:300:13::18) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5438.21; Wed, 20 Jul 2022 07:41:01 +0000
-Received: from DM6NAM11FT014.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:80:cafe::a2) by DM6PR08CA0033.outlook.office365.com
- (2603:10b6:5:80::46) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.17 via Frontend
- Transport; Wed, 20 Jul 2022 07:41:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT014.mail.protection.outlook.com (10.13.173.132) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5458.17 via Frontend Transport; Wed, 20 Jul 2022 07:41:00 +0000
-Received: from amd-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Wed, 20 Jul 2022 02:40:57 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Date: Wed, 20 Jul 2022 00:36:04 -0700
-Message-ID: <20220720073606.3885-2-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220720073606.3885-1-Arunpravin.PaneerSelvam@amd.com>
-References: <20220720073606.3885-1-Arunpravin.PaneerSelvam@amd.com>
+Received: from mail-il1-x132.google.com (mail-il1-x132.google.com
+ [IPv6:2607:f8b0:4864:20::132])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5459EA9D54;
+ Mon, 18 Jul 2022 06:39:27 +0000 (UTC)
+Received: by mail-il1-x132.google.com with SMTP id d4so5550290ilc.8;
+ Sun, 17 Jul 2022 23:39:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=4h3uY9TThXC1PV4gG3mzVW2/VJmh8sYmlsiKmbk1ueg=;
+ b=pragKMwsSkcMk3t0vUXFzvmCdBkZfTmsKdg6x1AsQUUj8DyJYts9OeNeWFGnwDYrhX
+ blQS0nSUVlBDFUcV2TV4PM68hBNlWKYtWwowbHYIng6Vc8H7vPaLR5vhOB4ZpUbQ8jE0
+ v4Pw/nsT0XWMU1Je6Kc6QtSrG5JwvPK7JTXKwCcmgDg0gjiPCuHtBZVEQ8xvu0pNOl8P
+ vQahuu3q30bsO200BSvYmMw3I4xTsqFVz62wJKlFG8prZcmNzAZ7SPl9Way3cL5g5FXe
+ 1YmrIXPWwDgjsJ4v1ehXDNO+ABJVGB6b+aF83J8X5Ed0IW3CdDXTfGmyXPNmJp86H5oA
+ dSKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=4h3uY9TThXC1PV4gG3mzVW2/VJmh8sYmlsiKmbk1ueg=;
+ b=Vex1BtxzCUwv83z7PPtgyoHHQa79R5EI1F2xrbKx9sX/OuwF0cIpxRG+wk9g3aKjMv
+ W6yhQiA4wa2ted3sShXvyFP+ip7n4tJmgZJ3ztpfH75btMSHLaUDtDicUzvlz4B+KHzr
+ QmWTKE+TU/R03xNWf6RJ4xtxq272vzNe6LW8suMlBJ9Z/hIt+r7/aWm8UG2wlrX2ppig
+ +ijia0GdlOPrxQdCnBjxCsKSahu/YzVCNeNQqtdGePikEv4eUpICF1A+ypJ9e4qfzzRt
+ mSDcQtA7soCw0xXCgKj0HtY1IE+uiPOnNG4LcPI9nk8pUV1hzpt5lnDyTmAIkolKVsPI
+ nu8g==
+X-Gm-Message-State: AJIora/zvFUAxJ3mtF8vG+0nm0M+uEkoAnYBePDzSTLfyibejBhmDOic
+ +LvnomdVQml1x+9kvyMckIA=
+X-Google-Smtp-Source: AGRyM1uxkIZYdg2hpRqOBvqhpK/kcl3egJaIC6Zu3w+t42+3lEhhgc1jI9Fd8BolosGMwq/dbywnVQ==
+X-Received: by 2002:a05:6e02:1b0c:b0:2dc:8b29:f1d5 with SMTP id
+ i12-20020a056e021b0c00b002dc8b29f1d5mr12741424ilv.184.1658126366608; 
+ Sun, 17 Jul 2022 23:39:26 -0700 (PDT)
+Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
+ by smtp.googlemail.com with ESMTPSA id
+ o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.39.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 17 Jul 2022 23:39:26 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: jbaron@akamai.com
+Date: Mon, 18 Jul 2022 00:36:37 -0600
+Message-Id: <20220718063641.9179-54-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
+References: <20220718063641.9179-1-jim.cromie@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: bbf8bd53-7ee9-428a-6fb2-08da6a23311c
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1405:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bfTOKtfM3o0IIBVqpLbhE1oBLdNsR7DeNwdNEC/JN1pF9VcLxUonnt7X5D2AcDPzQNwy0WrbyT6t2HMptYWUGnLbf+u7ZU0+ISWmz1E2ElFx6Uf91g72dLInnhyFqHoD7NxyzNpmr3/CFQYGSJv7vjG/mAuKuK9W0Ms2VEYPycMfwUF0Pa+KNEDiKp4OHHySTh5kbtXhHuf86UVF2TE7fIDnyrhkhEYNtaCr8jTRQSsCmZbbd2qPFMv5nhlD2YtkunlDwRuf0BE7w7ucXSQEL1OLl3TGP9NuQclt4vHuCnYtvMIeepcmY6pQMK2iXXdVYBcOcn66nUugxGgJEeVUe6+5T+USr15g/c5lHD2DHlZQTUYsdymd9EpmSRaq3XGTyXGHm8sgqSIRqGBLKV100yv9lUri0zPS5SuJffC6I7mRwvE3QrhTFImC1shY7JmmJKlpDCuOc2T1FoZUir4agt9WlaMemhePnsYRhxvc/zcrK5/Kt6A3KC36ZQjO3MBLV3OuDlyxxywWnLAdwXlHXX+b8VUIDvS+ykZOeFlIiRwnHpOy35dM60ZPS2FQhTRoOtcq8ArYsigqmpVeqYldO5jIVM3mwA5bwwH+vZ/sjvAVvfpuC/0TErtSIxYzA7HWgAbvG9Wcdc4i7RPyqAI8Q36/4if/ngrws7txrl4+826qEcSUFTEHwb7EbP1BmpS0I+UdVEN6SEk+WRZYxNzoaO83rEhY3HJQ+wwjNOxdLd+CmJ/rTVzB5e49J78RI9Ju5VQATksT8kFDm8i/Mb575zXOtrySrDS/5pHHVqB7mdZX6V80kpam5x7+qwqc0ocYSisSy9P/u4KpJ65NVOXETA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(346002)(376002)(396003)(136003)(40470700004)(46966006)(36840700001)(54906003)(110136005)(16526019)(6666004)(36860700001)(47076005)(41300700001)(4326008)(7696005)(316002)(1076003)(2616005)(186003)(8676002)(5660300002)(426003)(336012)(26005)(86362001)(36756003)(8936002)(70586007)(70206006)(356005)(2906002)(81166007)(83380400001)(478600001)(82310400005)(82740400003)(40460700003)(40480700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2022 07:41:00.5599 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bbf8bd53-7ee9-428a-6fb2-08da6a23311c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT014.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1405
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:35:09 +0000
-Subject: [Nouveau] [PATCH 2/4] drm/i915: Add intersect callback function
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:48 +0000
+Subject: [Nouveau] [PATCH v3 38/41] nouveau-dyndbg: alter DEBUG, TRACE,
+ SPAM levels to use dyndbg
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,62 +70,69 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- christian.koenig@amd.com, matthew.auld@intel.com
+Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Add a new intersect callback function fetching
-start offset from backend drm buddy allocator.
+clone the nvkm_printk,_,__ macro ladder into nvkm_drmdbg,_,__.
+And alter debug, trace, spam macros to use the renamed ladder.
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+This *sets-up* to remove the _subdev->debug >= (l) condition from the
+__ macro, once the bitmap-param is wired up correctly (pointing at the
+right state-bit-vector), and figured into dyndbg's jump-label
+enablement.
+
+Also, with DYNDBG=y, sites will be off, until enabled by >control, or
+by #define DEBUG at compile time.
+
+Starting with this as a model:
+
+    static struct ddebug_classes_bitmap_param drm_trace_bitmap = {
+	.bits = &__drm_trace,
+	.flags = "T",
+	.map = &drm_trace_classes,
+    };
+    module_param_cb(tracecats, &param_ops_dyndbg_classes, &drm_trace_bitmap,..
+
+We basically need to clone that, but ref a different .bits:
+	.bits = &_subdev->debug,
+	while respecting the _subdev's lifecycle.
+	hints welcomed.
+
+no functional changes. (other than dyndbg's default-off)
+
+Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-index a5109548abc0..30bb8ade67a9 100644
---- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-+++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-@@ -178,6 +178,28 @@ static void i915_ttm_buddy_man_free(struct ttm_resource_manager *man,
- 	kfree(bman_res);
- }
+diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h b/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
+index 065d07ccea87..b9c2afab321f 100644
+--- a/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
++++ b/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
+@@ -59,9 +59,17 @@ void nvkm_subdev_intr(struct nvkm_subdev *);
+ #define nvkm_error(s,f,a...) nvkm_printk((s), ERROR,    err, f, ##a)
+ #define nvkm_warn(s,f,a...)  nvkm_printk((s),  WARN, notice, f, ##a)
+ #define nvkm_info(s,f,a...)  nvkm_printk((s),  INFO,   info, f, ##a)
+-#define nvkm_debug(s,f,a...) nvkm_printk((s), DEBUG,    dbg, f, ##a)
+-#define nvkm_trace(s,f,a...) nvkm_printk((s), TRACE,    dbg, f, ##a)
+-#define nvkm_spam(s,f,a...)  nvkm_printk((s),  SPAM,    dbg, f, ##a)
++
++#define nvkm_drmdbg__(s,l,p,f,a...) do {				\
++	const struct nvkm_subdev *_subdev = (s);			\
++	if (CONFIG_NOUVEAU_DEBUG >= (l) && _subdev->debug >= (l))	\
++		dev_dbg(_subdev->device->dev, "%s: "f, _subdev->name, ##a); \
++} while(0)
++#define nvkm_drmdbg_(s,l,f,a...) nvkm_drmdbg__((s), NV_DBG_##l, dbg, f, ##a)
++#define nvkm_debug(s,f,a...) nvkm_drmdbg_((s), DEBUG, f, ##a)
++#define nvkm_trace(s,f,a...) nvkm_drmdbg_((s), TRACE, f, ##a)
++#define nvkm_spam(s,f,a...)  nvkm_drmdbg_((s),  SPAM, f, ##a)
  
-+static bool i915_ttm_buddy_man_intersect(struct ttm_resource_manager *man,
-+					 struct ttm_resource *res,
-+					 const struct ttm_place *place,
-+					 size_t size)
-+{
-+	struct i915_ttm_buddy_resource *bman_res = to_ttm_buddy_resource(res);
-+	struct list_head *list = &bman_res->blocks;
-+	struct drm_buddy_block *block;
-+	u32 num_pages = PFN_UP(size);
-+	u32 start;
+ #define nvkm_error_ratelimited(s,f,a...) nvkm_printk((s), ERROR, err_ratelimited, f, ##a)
 +
-+	/* Check each drm buddy block individually */
-+	list_for_each_entry(block, list, link) {
-+		start = drm_buddy_block_offset(block) >> PAGE_SHIFT;
-+		if (start < place->fpfn ||
-+		    (place->lpfn && (start + num_pages) > place->lpfn))
-+			return false;
-+	}
-+
-+	return true;
-+}
-+
- static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
- 				     struct drm_printer *printer)
- {
-@@ -205,6 +227,7 @@ static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
- static const struct ttm_resource_manager_func i915_ttm_buddy_manager_func = {
- 	.alloc = i915_ttm_buddy_man_alloc,
- 	.free = i915_ttm_buddy_man_free,
-+	.intersect = i915_ttm_buddy_man_intersect,
- 	.debug = i915_ttm_buddy_man_debug,
- };
- 
+ #endif
 -- 
-2.25.1
+2.36.1
 
