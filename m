@@ -4,39 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E08F4C25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:39:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78C14C25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:39:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1740DA6F33;
-	Thu,  4 Aug 2022 20:37:52 +0000 (UTC)
-X-Greylist: delayed 447 seconds by postgrey-1.36 at gabe;
- Tue, 21 Jun 2022 13:47:59 UTC
-Received: from smtpbg.qq.com (smtpbg139.qq.com [175.27.65.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9631410E749
- for <nouveau@lists.freedesktop.org>; Tue, 21 Jun 2022 13:47:59 +0000 (UTC)
-X-QQ-mid: bizesmtp65t1655818767tu45ejch
-Received: from ubuntu.localdomain ( [106.117.99.68])
- by bizesmtp.qq.com (ESMTP) with 
- id ; Tue, 21 Jun 2022 21:39:22 +0800 (CST)
-X-QQ-SSF: 0100000000700060B000D00A0000000
-X-QQ-FEAT: FXvDfBZI5O6DgV0I3s0IakLWZaVbIOeZptt8jkiqdC1X/yUp5ELNdn8Vvimqw
- kdqB7vxeV000srLFqPrzmvpRv3xMNGqY/WTZykt2a5+hrZU2ouG6aJY0FwkNxIcz91BpQfG
- VqR06qnanaOXzeMMt3XsO3ofR/u0v1o+Xuvjmy/MwCxeN2KgF90IWZySikkpVqMJ8bHPXsH
- NRdlOMeNA03XnMjqUcn+s0TupNOs31NxK4wghTnvYQSVuCs/aZAMQLbyUfXO3/oIHKhjpYk
- JiuqbONKtHaOpWVxC5aL0UXAns7l7YBvcX5cguXNa3+mnNVAM1JO3eagNC3l7urNzzhZOa9
- rm3F+l7prWovBsId6MgNgmymtknZw==
-X-QQ-GoodBg: 0
-From: Jiang Jian <jiangjian@cdjrlc.com>
-To: airlied@linux.ie,
-	daniel@ffwll.ch
-Date: Tue, 21 Jun 2022 21:39:20 +0800
-Message-Id: <20220621133920.8112-1-jiangjian@cdjrlc.com>
-X-Mailer: git-send-email 2.17.1
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:cdjrlc.com:qybgspam:qybgspam6
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:51 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/mmu: drop unexpected word "the" in
- the comments
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94B3FA6F40;
+	Thu,  4 Aug 2022 20:37:53 +0000 (UTC)
+Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com
+ [IPv6:2607:f8b0:4864:20::d2c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8B9CA9D3E;
+ Mon, 18 Jul 2022 06:39:03 +0000 (UTC)
+Received: by mail-io1-xd2c.google.com with SMTP id n138so7290180iod.4;
+ Sun, 17 Jul 2022 23:39:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=Fn4wAUPertAH2IA5+xSEy3cch5p5d8c17PURO4Ajqk0=;
+ b=lVEQWHyYITJ4+0uYGwdqAqAfCGK2lKAyEBowEO80UDUa+yolFh6p2B/oXUOlxcrFAH
+ asOb3GWPCUAYO0XH1AHvIO2lLLkqWHxmoYhzJ2X5q8d9KFcuPZpV/zd1WFyZt71ggc2+
+ aNVcJRuryddz7TzzoQCHl8i+Kold+tyg7PHVri56NVFpda8Umf1G1Vpxi6FVmtzwN5Wa
+ tvzagpyuQdKudrbhdIJW2CMLjvlpq/K7Iue0wQBAGo+OmeFVOBb5ptCmeex5NtKn/GRU
+ K2sRGcKYyfef6ZymA2lQ03b5Q8D5vS+YAprXMZJYUkQ4dR2jXAisUWYiebpQB+GLUUbb
+ TfPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=Fn4wAUPertAH2IA5+xSEy3cch5p5d8c17PURO4Ajqk0=;
+ b=zqzOOm6jSf49mbklHa15I3YDIeYn/1iRkz+YztTU2rJfyveAg9f3yWSYpuQfP9KeSh
+ R+aoHaIO8iWLT0rZxfQKSv7ESkm1gKL8G2DfCiVwbhUUobUfh7PevmaePiDcufRiTP4p
+ BgVcAFo8OYfuroAjWX6dV+Vu11eAvoQwnQ2FhfIsQgBkCDwQ+c+WuJ3rEu5cOeLH9tkF
+ XXwgSQ/zTkm847wGHhSi9uKAfBpWmirAOlfiN4MvYs1eLY0R1PVFEpYtVojdLJ3Ajj4Z
+ YMK4Lm7IrhYlBrPy0jnDj5z+Q8G+hAOTtl+eJ9nb26r2zXQavfQkCvO7AP/utV/h3xFt
+ EC0w==
+X-Gm-Message-State: AJIora+JNZqIsvsQ+H9qbfbb4wMV0r1qzMbcsLK96Hz3O7DXJnFcMLlR
+ 18EEbe9YLwV5tbQ0NWU37NQ=
+X-Google-Smtp-Source: AGRyM1tykn1JmsOayzYo37PBCvpyIS8w2tA9wKnPxwe6SfwoeynLFqfjrZ6UFH7lrTWm4G74oRMSzQ==
+X-Received: by 2002:a02:a918:0:b0:33f:2a28:a2c6 with SMTP id
+ n24-20020a02a918000000b0033f2a28a2c6mr13822689jam.8.1658126342980; 
+ Sun, 17 Jul 2022 23:39:02 -0700 (PDT)
+Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
+ by smtp.googlemail.com with ESMTPSA id
+ o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.39.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 17 Jul 2022 23:39:02 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: jbaron@akamai.com
+Date: Mon, 18 Jul 2022 00:36:20 -0600
+Message-Id: <20220718063641.9179-37-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
+References: <20220718063641.9179-1-jim.cromie@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:48 +0000
+Subject: [Nouveau] [PATCH v3 30/39] dyndbg: add _DPRINTK_FLAGS_TRACE
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,38 +69,35 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Julia.Lawall@inria.fr, jiangjian@cdjrlc.com,
- bskeggs@redhat.com
+Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, vincent.whitchurch@axis.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-there is an unexpected word "the" in the comments that need to be dropped
+add new flag, and OR it into _DPRINTK_FLAGS_ENABLED definition
 
-file: drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-line: 1051
- * have the the deepest nesting of page tables.
-changed to
- * have the deepest nesting of page tables.
-
-Signed-off-by: Jiang Jian <jiangjian@cdjrlc.com>
+CC: vincent.whitchurch@axis.com
+Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ include/linux/dynamic_debug.h | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-index ca74775834dd..ae793f400ba1 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-@@ -1048,7 +1048,7 @@ nvkm_vmm_ctor(const struct nvkm_vmm_func *func, struct nvkm_mmu *mmu,
- 	__mutex_init(&vmm->mutex, "&vmm->mutex", key ? key : &_key);
+diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debug.h
+index 38cfdd5c0bdc..0752e6c21c6e 100644
+--- a/include/linux/dynamic_debug.h
++++ b/include/linux/dynamic_debug.h
+@@ -42,7 +42,9 @@ struct _ddebug {
+ 	(_DPRINTK_FLAGS_INCL_MODNAME | _DPRINTK_FLAGS_INCL_FUNCNAME |\
+ 	 _DPRINTK_FLAGS_INCL_LINENO  | _DPRINTK_FLAGS_INCL_TID)
  
- 	/* Locate the smallest page size supported by the backend, it will
--	 * have the the deepest nesting of page tables.
-+	 * have the deepest nesting of page tables.
- 	 */
- 	while (page[1].shift)
- 		page++;
+-#define _DPRINTK_FLAGS_ENABLED		_DPRINTK_FLAGS_PRINTK
++#define _DPRINTK_FLAGS_TRACE		(1 << 5)
++#define _DPRINTK_FLAGS_ENABLED		(_DPRINTK_FLAGS_PRINTK | \
++					 _DPRINTK_FLAGS_TRACE)
+ 
+ #if defined DEBUG
+ #define _DPRINTK_FLAGS_DEFAULT _DPRINTK_FLAGS_PRINTK
 -- 
-2.17.1
+2.36.1
 
