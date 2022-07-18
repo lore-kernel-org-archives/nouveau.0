@@ -4,43 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F512C25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:38:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D47EEC25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:38:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA176A6F38;
-	Thu,  4 Aug 2022 20:37:25 +0000 (UTC)
-X-Greylist: delayed 910 seconds by postgrey-1.36 at gabe;
- Tue, 05 Jul 2022 09:58:33 UTC
-Received: from mail-m973.mail.163.com (mail-m973.mail.163.com [123.126.97.3])
- by gabe.freedesktop.org (Postfix) with ESMTP id 759C910E021
- for <nouveau@lists.freedesktop.org>; Tue,  5 Jul 2022 09:58:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=vctMm
- aZ2jCBteIBCD7D0uyHlHM+0VSnNr88RsGWlQb4=; b=pUITOL14hlFwwm209DVEZ
- EUktxKrGXxmWZ1GZm5R9a1j1W2kOWuTw6/BBujYn5+40cpltEYBD4Cc14Ws9q9IQ
- Coe8A2wi/6vAoMH6xrHnKV9od0RRf7+9O963QFsLwR2qSqI2tZ/UhHwKippcZero
- O2L6FDEPcFYLL5EFcDQA7A=
-Received: from localhost.localdomain (unknown [123.112.69.106])
- by smtp3 (Coremail) with SMTP id G9xpCgAn4GmrB8Ri0an9NQ--.2574S4;
- Tue, 05 Jul 2022 17:43:16 +0800 (CST)
-From: Jianglei Nie <niejianglei2021@163.com>
-To: bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com, airlied@linux.ie,
- daniel@ffwll.ch
-Date: Tue,  5 Jul 2022 17:43:06 +0800
-Message-Id: <20220705094306.2244103-1-niejianglei2021@163.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D427A6F5A;
+	Thu,  4 Aug 2022 20:37:27 +0000 (UTC)
+Received: from mail-il1-x136.google.com (mail-il1-x136.google.com
+ [IPv6:2607:f8b0:4864:20::136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1829DA9D95;
+ Mon, 18 Jul 2022 06:39:22 +0000 (UTC)
+Received: by mail-il1-x136.google.com with SMTP id o2so4131434ill.6;
+ Sun, 17 Jul 2022 23:39:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=vaEDPEvXL4gSKTwnQoP5IRm/Ux2q5cs9y+rjMuT2rqM=;
+ b=qMxASVlV5EL3DSN4X5/kL7cEnYwqbADj3CB3z4Fg9I85YvNgk34E2/E5wcvqxqNZGJ
+ lR7OMxJn5PqJmog8D9kGvWBfe63dld5tMiiSjzFVaOFTa7bYBrGxl3/XniSxML1t5CzT
+ 5Exvh09DTmTnqG42b3XWTNTvYERish7mkT4ZNUIb5V43pg8kFGoTl+KVf6gdxhWw5gab
+ K/xKpzjAaJ6xW8KHl3qEVPgfbrPJ2QbUa+l5TG4XEi3v00icYP/vTH779SctLUgf5J41
+ Eka1kRejuJU8cduZeMy3R1002VD0Rcfvb6vtwgiFQU3+iwBRGIVMnH1fpf5zp4W0S46I
+ Bg9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=vaEDPEvXL4gSKTwnQoP5IRm/Ux2q5cs9y+rjMuT2rqM=;
+ b=zIEnAvVbDh8J0JsFhUk0tLKJARUAz31Q1DDlXwe7AFaRgPFDtLe+TKauq0G1wat+qM
+ XlCqvHUyiPM5OgI1GFV9LJGfQiQloZNrANiUY8jJohBai/SFEvZih43q3eTK9h7oNoJG
+ NaY2anm7UBmnLMe0Ab2wivX6ueAz18rex/WxTHAe/1cedSFuM0S6ya2w19/wksURnb/w
+ wEyuPEGVgL19VrLT5Dtx5+NY1ANCkOv/gEgJpgnNhlig4jAiI0kzDljheANqGfPVR4x7
+ MfPWGw+HxODnOkkJ0QCufJPvsxNdosDBhQMLRSs1fre5AZStZQMpjm+vz6cHW/3rDoby
+ aeIw==
+X-Gm-Message-State: AJIora+7rMwOShv1cXom0Cb+c2mjQsqM/WnL+BtJtVSNh4ERNv4nn9zW
+ tuA8Azr/p3X4gZ5mTGAvskHOdE7cS9Q=
+X-Google-Smtp-Source: AGRyM1vcs+T31eEMCQrZChPj8oRUl45l02/rwkdoUrIzXEzbiS+uYCGi2q1Oyqi9DlCUt+d+B5+qpw==
+X-Received: by 2002:a05:6e02:1d0a:b0:2dc:553f:13ab with SMTP id
+ i10-20020a056e021d0a00b002dc553f13abmr13047274ila.49.1658126361438; 
+ Sun, 17 Jul 2022 23:39:21 -0700 (PDT)
+Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
+ by smtp.googlemail.com with ESMTPSA id
+ o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.39.20
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 17 Jul 2022 23:39:20 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: jbaron@akamai.com
+Date: Mon, 18 Jul 2022 00:36:33 -0600
+Message-Id: <20220718063641.9179-50-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
+References: <20220718063641.9179-1-jim.cromie@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: G9xpCgAn4GmrB8Ri0an9NQ--.2574S4
-X-Coremail-Antispam: 1Uf129KBjvdXoWrZw1kXrWDJF17Xw4DZr13Jwb_yoWDtrg_uF
- 4IqF17Wr9Ykrs8tw4qyw1jvFWSkw4kuFWkZF95ta4SqrW7Jw13Wr4UXry3Wry7AFWjgr9x
- ZanYvFyakwnFgjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUvcSsGvfC2KfnxnUUI43ZEXa7xREs2-3UUUUU==
-X-Originating-IP: [123.112.69.106]
-X-CM-SenderInfo: xqlhyxxdqjzvrlsqjii6rwjhhfrp/xtbB0RQ1jFzIBxqqrgAAsx
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:15 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/nouveau_bo: fix potential memory leak
- in nouveau_bo_alloc()
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:48 +0000
+Subject: [Nouveau] [PATCH v3 36/39] nv-subdev-debug
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,39 +69,63 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, ri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Jianglei Nie <niejianglei2021@163.com>
+Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-nouveau_bo_alloc() allocates a memory chunk for "nvbo" with kzalloc().
-When some error occurs, "nvbo" should be released. But when
-WARN_ON(pi < 0)) equals true, the function return ERR_PTR without
-releasing the "nvbo", which will lead to a memory leak.
+clone the nvkm_printk,_,__ macro ladder into nvkm_drmdbg,_,__.
+And alter debug, trace, spam macros to use the renamed ladder.
 
-We should release the "nvbo" with kfree() if WARN_ON(pi < 0)) equals true.
+This *sets-up* (not done yet) to remove the _subdev->debug >= (l)
+condition, once the bitmap-param is wired up correctly, and figured
+into dyndbg's jump-label enablement.
 
-Signed-off-by: Jianglei Nie <niejianglei2021@163.com>
+starting with:
+
+    static struct ddebug_classes_bitmap_param drm_trace_bitmap = {
+	.bits = &__drm_trace,
+	.flags = "T",
+	.map = &drm_trace_classes,
+    };
+    module_param_cb(tracecats, &param_ops_dyndbg_classes, &drm_trace_bitmap, 0600);
+
+The missing part might be re-setting the .bits field to ref
+_subdev->debug, while respecting the _subdev's lifecycle.
+
+no functional changes.
+
+Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_bo.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 05076e530e7d..d0887438b07e 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -281,8 +281,10 @@ nouveau_bo_alloc(struct nouveau_cli *cli, u64 *size, int *align, u32 domain,
- 			break;
- 	}
+diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h b/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
+index 065d07ccea87..b9c2afab321f 100644
+--- a/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
++++ b/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
+@@ -59,9 +59,17 @@ void nvkm_subdev_intr(struct nvkm_subdev *);
+ #define nvkm_error(s,f,a...) nvkm_printk((s), ERROR,    err, f, ##a)
+ #define nvkm_warn(s,f,a...)  nvkm_printk((s),  WARN, notice, f, ##a)
+ #define nvkm_info(s,f,a...)  nvkm_printk((s),  INFO,   info, f, ##a)
+-#define nvkm_debug(s,f,a...) nvkm_printk((s), DEBUG,    dbg, f, ##a)
+-#define nvkm_trace(s,f,a...) nvkm_printk((s), TRACE,    dbg, f, ##a)
+-#define nvkm_spam(s,f,a...)  nvkm_printk((s),  SPAM,    dbg, f, ##a)
++
++#define nvkm_drmdbg__(s,l,p,f,a...) do {				\
++	const struct nvkm_subdev *_subdev = (s);			\
++	if (CONFIG_NOUVEAU_DEBUG >= (l) && _subdev->debug >= (l))	\
++		dev_dbg(_subdev->device->dev, "%s: "f, _subdev->name, ##a); \
++} while(0)
++#define nvkm_drmdbg_(s,l,f,a...) nvkm_drmdbg__((s), NV_DBG_##l, dbg, f, ##a)
++#define nvkm_debug(s,f,a...) nvkm_drmdbg_((s), DEBUG, f, ##a)
++#define nvkm_trace(s,f,a...) nvkm_drmdbg_((s), TRACE, f, ##a)
++#define nvkm_spam(s,f,a...)  nvkm_drmdbg_((s),  SPAM, f, ##a)
  
--	if (WARN_ON(pi < 0))
-+	if (WARN_ON(pi < 0)) {
-+		kfree(nvbo);
- 		return ERR_PTR(-EINVAL);
-+	}
- 
- 	/* Disable compression if suitable settings couldn't be found. */
- 	if (nvbo->comp && !vmm->page[pi].comp) {
+ #define nvkm_error_ratelimited(s,f,a...) nvkm_printk((s), ERROR, err_ratelimited, f, ##a)
++
+ #endif
 -- 
-2.25.1
+2.36.1
 
