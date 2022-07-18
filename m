@@ -4,93 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EDA7C25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:43:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1227C25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:43:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D385A6FFD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62FCCA6FF2;
 	Thu,  4 Aug 2022 20:38:40 +0000 (UTC)
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2076.outbound.protection.outlook.com [40.107.223.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DBF590F74;
- Thu,  4 Aug 2022 09:00:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=c2pGEz6jfFHH5GriH2hwpa4HZphqau8B/4DZyq5Vl2qN825jFHYG85WOSuKeiV4IM+w6CkR3cLNDyGg4ituYzwRLwdks+7LC33IVXJrzYFrWFY+C1ZqJddtE7tahqddbY8KtA0yn8b4tYtFRWdzrW8CP4KLw6suMgRx0DTiDfifD9Lfg4+dYUTXXe9jgFLhyCY+py9XW8E3UyHwvZNPfOni8yWE6OL5hiq2WkqLhZV5vHwIVL6neUJ0s0kZ+vi4fYQSi1QVZ5bsjVV4o8armv0YnStjdva6oB4QBBScNSL9V+i11yWIFfevfI+lbxauz2fyhwkjQW6PxDEPJmNqwog==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mO9cpq7gNK7adIY3F8pLCFd9WyxhZp3RF8abfTiVzJA=;
- b=WyVr+AvS5rfOEi4g4f1aUUtBh+rZ4TwaTMtPVuDydMrnI/+k4cvV/xOlUfHfUT/RSaObWIhE/DFMwa0xb3pyuwLcbpKK194d+6RuM8sOyfxZpC3yrvVjaSEOEXBwt7c+gMprHwQqmOM6gBxNI+f9ulhB5v+34RAHxr5UFhYCzKb4DLCY32Fl5eOUsfHvPUhSLAXVD3sMCr0TnE5N/seTKZkkJAFPGR3ZnTcD5d4FXrKYQybKBBZcNEbazIIbFOTeshbfL/ofMkOMXZ7Z4eWrvGiretVDkAbsZLnn0fYWw7YrBWgGpbIK7TtMvTJTLT0v4XxIybB/5UMDmwmrSSPrug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mO9cpq7gNK7adIY3F8pLCFd9WyxhZp3RF8abfTiVzJA=;
- b=F4f1Y5D0EsyvecbuuWAlcuTeB2YSn5oCI6QosU4g/GuDBn1dwg83XY633jJyuNhTOAxfxYwVUTlWkSIoBparoIZx2VBMDJt15bxtSsJt093+tWB9T88a5BB4b1M8ehRWlW9x9vkiRa/2nFEk7opVqPqtcLRfl9/SJMxuhImaEC4=
-Received: from DM6PR10CA0014.namprd10.prod.outlook.com (2603:10b6:5:60::27) by
- MWHPR12MB1277.namprd12.prod.outlook.com (2603:10b6:300:f::16) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5504.14; Thu, 4 Aug 2022 09:00:18 +0000
-Received: from DM6NAM11FT050.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:60:cafe::16) by DM6PR10CA0014.outlook.office365.com
- (2603:10b6:5:60::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.16 via Frontend
- Transport; Thu, 4 Aug 2022 09:00:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT050.mail.protection.outlook.com (10.13.173.111) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5504.14 via Frontend Transport; Thu, 4 Aug 2022 09:00:17 +0000
-Received: from amd-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Thu, 4 Aug 2022 04:00:14 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Date: Thu, 4 Aug 2022 01:59:48 -0700
-Message-ID: <20220804085952.6137-2-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220804085952.6137-1-Arunpravin.PaneerSelvam@amd.com>
-References: <20220804085952.6137-1-Arunpravin.PaneerSelvam@amd.com>
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com
+ [IPv6:2607:f8b0:4864:20::d2a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5616FA9D4A;
+ Mon, 18 Jul 2022 06:39:05 +0000 (UTC)
+Received: by mail-io1-xd2a.google.com with SMTP id q14so8517584iod.3;
+ Sun, 17 Jul 2022 23:39:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=Nl54cX1u1Pw+xbM+qyQgaqDsIGtd0gTdygEK0JFz91w=;
+ b=Ky9uWL2giKCVrxKO1OUf9p53q7o25R1cfcDHN/XyXFBnE3hFPHYG+Yj1vv33+aBEgK
+ TgQudprAFPlgAHTX2lfXoW9iHPQ/oMV0NkT9OJ3UFuA70/x680iBKO26uCDaDvPRD+ER
+ N8MZ7bZCksHFYywDpJL5R3HzwPzc7XbY304wfxfF8vOEAhjnZrSsqAHmQi0PAvFJHXNA
+ VszcqGq6Swueads2b8AITUo99acVthkdhzWOUJxDIFuLD7xwpB/UAglKT/nneducW+oP
+ umoAI/WEmRNk/VgmYt4KFN8rr+NqmHtbPxNk9cvjy7WtmzaxeLDuW68OwVIlJShz9PXE
+ 3VCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=Nl54cX1u1Pw+xbM+qyQgaqDsIGtd0gTdygEK0JFz91w=;
+ b=sypJ7uwSt6jzsVRonM92uTYH12Qs7a616gLI7UlLDItx5Qme+SS6KOexd9xlvNyIxj
+ JbPU+AhwoKoL0hVgX2nrJLneGWdsU5x5SsVKRqyYrsoqD6kQ6+RMgW0rImNpKiQIUvLY
+ 7TF/g2n1tAtuqDng9M21QMG3kk8d9LJvVv+mg0a4gkzWkhrsSRnbIeHoqi1oNS0LJrc9
+ YTOLAcB1jDiF0eiQU6CFbBZwkZCtIPdi8VFrGhutmTdRqxsUw4oiwNRD/hCJTGrUnYp9
+ DBACQNpEAs0SdY9mscutE+hGcxpjJtz0P6+6tN2Wuid4yTwA1UbTBsU9DfsJHYt7VEEG
+ qN7w==
+X-Gm-Message-State: AJIora/Yp4OIApRjWtH9X6jNP7L9NjnkSIRoLhZznMoo4cq6XdgoLk3m
+ GCxQbzfFauCLJ5IIbOi26LE=
+X-Google-Smtp-Source: AGRyM1tAwpgsOl0zB0ydlAY3TMnLwLZ9uXEXXWBjQBAFlLmhchkr8yX0VqdeBMLL8iDT7GxyR0nitQ==
+X-Received: by 2002:a6b:7c47:0:b0:67b:8727:38aa with SMTP id
+ b7-20020a6b7c47000000b0067b872738aamr12356158ioq.49.1658126344571; 
+ Sun, 17 Jul 2022 23:39:04 -0700 (PDT)
+Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
+ by smtp.googlemail.com with ESMTPSA id
+ o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.39.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 17 Jul 2022 23:39:04 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: jbaron@akamai.com
+Date: Mon, 18 Jul 2022 00:36:21 -0600
+Message-Id: <20220718063641.9179-38-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
+References: <20220718063641.9179-1-jim.cromie@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 999ef677-efa4-4fd5-f72e-08da75f7c0b7
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1277:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BIrBAXSgwH4gSkZhdG8RjraFS0B0AQaHzyinTpLTkU/fZWd+Ll2t7ULJkXz/6PRRVy1tqvT8NOLDmVVHg1ZBc5wX+C9X9x0D7drZ8CDTZadPSTVOOkVEcHqVAbIFXcLPOySivoCEL0bfht3qvJzgxBazM7msG2KLvSiZQVi7o1hNBvm6ReTl84J+D0SnLsOWyTkqLbD/XCvahAno2AnDyON0DFgx50mBsTedGbSnWOYQfGk59LaC4yloszcPA+KlMzSKJ8iEybSyQ6C0X15vnVEk+m9/M7X531tisyKIk4jakKg2edFuEOG3t7X29vf5oUq6FZTwfwc/eiT0bMhBIaGZohz4E+Umzf1zUDkJ5RX5iQbaAK9COWy8zyjkU8FpTKGjLJq1mdNmFnAk6Qwb4j+pJu6K/2auuam45CHKJAxTjbmjrB8Bh+QNRwbrW1wXhjviuMplT95C8A0N7dcDqdxyoMzIRnCKUZhJJfLliWCfAixKRbsatYfDN7Ni4scmU7EwaS94lMGU3iUH88Bo7SHo9eFTANQTaftDACjU0e63TZXpdQ8osZwUXQlkFl7p2oxamcEjfgGWk1AlWiLpb/c3hbPau154lGWfVg//3XJM/7dF/YHk8LURaS5Qr8h9EXmNRl1YEUZ/8Wj6a8WXF1dzLiBDN9GGXrZPblWUR7lKXAYgiUESdE6b4Pf8hhq4tMZ+zJ2+3CAZrElzn+LKu9aBZP5ArDKFW+Vpq2idC0eIigAVK8dvdxUCu01wHjzPo399kmrBOZGa7CbsOr/tjtR2EiyTa+VP2uWdyWCu6IW3IsMaFET6ZQPWuYa0xFqyVLTFPY0mGYO94+uEaGxt3w==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(136003)(39860400002)(376002)(396003)(346002)(36840700001)(46966006)(40470700004)(316002)(110136005)(82740400003)(54906003)(40460700003)(86362001)(356005)(81166007)(36756003)(36860700001)(16526019)(186003)(82310400005)(1076003)(336012)(426003)(83380400001)(478600001)(40480700001)(41300700001)(2616005)(7696005)(6666004)(47076005)(26005)(8936002)(5660300002)(2906002)(70586007)(4326008)(8676002)(70206006)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Aug 2022 09:00:17.5906 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 999ef677-efa4-4fd5-f72e-08da75f7c0b7
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT050.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1277
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:35:10 +0000
-Subject: [Nouveau] [PATCH v4 2/6] drm/ttm: Implement intersect/compatible
- functions
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:47 +0000
+Subject: [Nouveau] [PATCH v3 30/41] tracing/events: Add __vstring() and
+ __assign_vstr() helper macros
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,73 +70,212 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- luben.tuikov@amd.com, christian.koenig@amd.com, matthew.auld@intel.com
+Cc: Marek Lindner <mareklindner@neomailbox.ch>, nouveau@lists.freedesktop.org,
+ Antonio Quartulli <a@unstable.cc>, dri-devel@lists.freedesktop.org,
+ Eric Dumazet <edumazet@google.com>,
+ Gregory Greenman <gregory.greenman@intel.com>, Ingo Molnar <mingo@kernel.org>,
+ Sven Eckelmann <sven@narfation.org>, Leon Romanovsky <leon@kernel.org>,
+ Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
+ amd-gfx@lists.freedesktop.org, Jason Gunthorpe <jgg@ziepe.ca>,
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Kalle Valo <kvalo@kernel.org>,
+ Mathias Nyman <mathias.nyman@intel.com>, intel-gfx@lists.freedesktop.org,
+ Hante Meuleman <hante.meuleman@broadcom.com>,
+ "Steven Rostedt \(Google\)" <rostedt@goodmis.org>, Bin Liu <b-liu@ti.com>,
+ Franky Lin <franky.lin@broadcom.com>, Arend van Spriel <aspriel@gmail.com>,
+ Simon Wunderlich <sw@simonwunderlich.de>, Jim Cromie <jim.cromie@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Peter Chen <peter.chen@kernel.org>, Johannes Berg <johannes@sipsolutions.net>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "David S. Miller" <davem@davemloft.net>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Implemented a new intersect and compatible callback functions
-to ttm range manager fetching start offset from drm mm range
-allocator.
+From: "Steven Rostedt (Google)" <rostedt@goodmis.org>
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+There's several places that open code the following logic:
+
+  TP_STRUCT__entry(__dynamic_array(char, msg, MSG_MAX)),
+  TP_fast_assign(vsnprintf(__get_str(msg), MSG_MAX, vaf->fmt, *vaf->va);)
+
+To load a string created by variable array va_list.
+
+The main issue with this approach is that "MSG_MAX" usage in the
+__dynamic_array() portion. That actually just reserves the MSG_MAX in the
+event, and even wastes space because there's dynamic meta data also saved
+in the event to denote the offset and size of the dynamic array. It would
+have been better to just use a static __array() field.
+
+Instead, create __vstring() and __assign_vstr() that work like __string
+and __assign_str() but instead of taking a destination string to copy,
+take a format string and a va_list pointer and fill in the values.
+
+It uses the helper:
+
+ #define __trace_event_vstr_len(fmt, va)	\
+ ({						\
+	va_list __ap;				\
+	int __ret;				\
+						\
+	va_copy(__ap, *(va));			\
+	__ret = vsnprintf(NULL, 0, fmt, __ap);	\
+	va_end(__ap);				\
+						\
+	min(__ret, TRACE_EVENT_STR_MAX);	\
+ })
+
+To figure out the length to store the string. It may be slightly slower as
+it needs to run the vsnprintf() twice, but it now saves space on the ring
+buffer.
+
+Link: https://lkml.kernel.org/r/20220705224749.053570613@goodmis.org
+
+Cc: Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>
+Cc: Ingo Molnar <mingo@kernel.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Leon Romanovsky <leon@kernel.org>
+Cc: Kalle Valo <kvalo@kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Eric Dumazet <edumazet@google.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Arend van Spriel <aspriel@gmail.com>
+Cc: Franky Lin <franky.lin@broadcom.com>
+Cc: Hante Meuleman <hante.meuleman@broadcom.com>
+Cc: Gregory Greenman <gregory.greenman@intel.com>
+Cc: Peter Chen <peter.chen@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Mathias Nyman <mathias.nyman@intel.com>
+Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc: Bin Liu <b-liu@ti.com>
+Cc: Marek Lindner <mareklindner@neomailbox.ch>
+Cc: Simon Wunderlich <sw@simonwunderlich.de>
+Cc: Antonio Quartulli <a@unstable.cc>
+Cc: Sven Eckelmann <sven@narfation.org>
+Cc: Johannes Berg <johannes@sipsolutions.net>
+Cc: Jim Cromie <jim.cromie@gmail.com>
+Signed-off-by: Steven Rostedt (Google) <rostedt@goodmis.org>
 ---
- drivers/gpu/drm/ttm/ttm_range_manager.c | 33 +++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+ include/linux/trace_events.h                 | 18 ++++++++++++++++++
+ include/trace/stages/stage1_struct_define.h  |  3 +++
+ include/trace/stages/stage2_data_offsets.h   |  3 +++
+ include/trace/stages/stage4_event_fields.h   |  3 +++
+ include/trace/stages/stage5_get_offsets.h    |  4 ++++
+ include/trace/stages/stage6_event_callback.h |  7 +++++++
+ 6 files changed, 38 insertions(+)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_range_manager.c b/drivers/gpu/drm/ttm/ttm_range_manager.c
-index d91666721dc6..4cfef2b3514d 100644
---- a/drivers/gpu/drm/ttm/ttm_range_manager.c
-+++ b/drivers/gpu/drm/ttm/ttm_range_manager.c
-@@ -113,6 +113,37 @@ static void ttm_range_man_free(struct ttm_resource_manager *man,
- 	kfree(node);
- }
+diff --git a/include/linux/trace_events.h b/include/linux/trace_events.h
+index e6e95a9f07a5..b18759a673c6 100644
+--- a/include/linux/trace_events.h
++++ b/include/linux/trace_events.h
+@@ -916,6 +916,24 @@ perf_trace_buf_submit(void *raw_data, int size, int rctx, u16 type,
  
-+static bool ttm_range_man_intersects(struct ttm_resource_manager *man,
-+				     struct ttm_resource *res,
-+				     const struct ttm_place *place,
-+				     size_t size)
-+{
-+	struct drm_mm_node *node = &to_ttm_range_mgr_node(res)->mm_nodes[0];
-+	u32 num_pages = PFN_UP(size);
+ #endif
+ 
++#define TRACE_EVENT_STR_MAX	512
 +
-+	/* Don't evict BOs outside of the requested placement range */
-+	if (place->fpfn >= (node->start + num_pages) ||
-+	    (place->lpfn && place->lpfn <= node->start))
-+		return false;
++/*
++ * gcc warns that you can not use a va_list in an inlined
++ * function. But lets me make it into a macro :-/
++ */
++#define __trace_event_vstr_len(fmt, va)			\
++({							\
++	va_list __ap;					\
++	int __ret;					\
++							\
++	va_copy(__ap, *(va));				\
++	__ret = vsnprintf(NULL, 0, fmt, __ap) + 1;	\
++	va_end(__ap);					\
++							\
++	min(__ret, TRACE_EVENT_STR_MAX);		\
++})
 +
-+	return true;
-+}
+ #endif /* _LINUX_TRACE_EVENT_H */
+ 
+ /*
+diff --git a/include/trace/stages/stage1_struct_define.h b/include/trace/stages/stage1_struct_define.h
+index a16783419687..1b7bab60434c 100644
+--- a/include/trace/stages/stage1_struct_define.h
++++ b/include/trace/stages/stage1_struct_define.h
+@@ -26,6 +26,9 @@
+ #undef __string_len
+ #define __string_len(item, src, len) __dynamic_array(char, item, -1)
+ 
++#undef __vstring
++#define __vstring(item, fmt, ap) __dynamic_array(char, item, -1)
 +
-+static bool ttm_range_man_compatible(struct ttm_resource_manager *man,
-+				     struct ttm_resource *res,
-+				     const struct ttm_place *place,
-+				     size_t size)
-+{
-+	struct drm_mm_node *node = &to_ttm_range_mgr_node(res)->mm_nodes[0];
-+	u32 num_pages = PFN_UP(size);
+ #undef __bitmask
+ #define __bitmask(item, nr_bits) __dynamic_array(char, item, -1)
+ 
+diff --git a/include/trace/stages/stage2_data_offsets.h b/include/trace/stages/stage2_data_offsets.h
+index 42fd1e8813ec..1b7a8f764fdd 100644
+--- a/include/trace/stages/stage2_data_offsets.h
++++ b/include/trace/stages/stage2_data_offsets.h
+@@ -32,6 +32,9 @@
+ #undef __string_len
+ #define __string_len(item, src, len) __dynamic_array(char, item, -1)
+ 
++#undef __vstring
++#define __vstring(item, fmt, ap) __dynamic_array(char, item, -1)
 +
-+	if (node->start < place->fpfn ||
-+	    (place->lpfn && (node->start + num_pages) > place->lpfn))
-+		return false;
+ #undef __bitmask
+ #define __bitmask(item, nr_bits) __dynamic_array(unsigned long, item, -1)
+ 
+diff --git a/include/trace/stages/stage4_event_fields.h b/include/trace/stages/stage4_event_fields.h
+index e80cdc397a43..c3790ec7a453 100644
+--- a/include/trace/stages/stage4_event_fields.h
++++ b/include/trace/stages/stage4_event_fields.h
+@@ -38,6 +38,9 @@
+ #undef __string_len
+ #define __string_len(item, src, len) __dynamic_array(char, item, -1)
+ 
++#undef __vstring
++#define __vstring(item, fmt, ap) __dynamic_array(char, item, -1)
 +
-+	return true;
-+}
+ #undef __bitmask
+ #define __bitmask(item, nr_bits) __dynamic_array(unsigned long, item, -1)
+ 
+diff --git a/include/trace/stages/stage5_get_offsets.h b/include/trace/stages/stage5_get_offsets.h
+index 7ee5931300e6..fba4c24ed9e6 100644
+--- a/include/trace/stages/stage5_get_offsets.h
++++ b/include/trace/stages/stage5_get_offsets.h
+@@ -39,6 +39,10 @@
+ #undef __string_len
+ #define __string_len(item, src, len) __dynamic_array(char, item, (len) + 1)
+ 
++#undef __vstring
++#define __vstring(item, fmt, ap) __dynamic_array(char, item,		\
++		      __trace_event_vstr_len(fmt, ap))
 +
- static void ttm_range_man_debug(struct ttm_resource_manager *man,
- 				struct drm_printer *printer)
- {
-@@ -126,6 +157,8 @@ static void ttm_range_man_debug(struct ttm_resource_manager *man,
- static const struct ttm_resource_manager_func ttm_range_manager_func = {
- 	.alloc = ttm_range_man_alloc,
- 	.free = ttm_range_man_free,
-+	.intersects = ttm_range_man_intersects,
-+	.compatible = ttm_range_man_compatible,
- 	.debug = ttm_range_man_debug
- };
+ #undef __rel_dynamic_array
+ #define __rel_dynamic_array(type, item, len)				\
+ 	__item_length = (len) * sizeof(type);				\
+diff --git a/include/trace/stages/stage6_event_callback.h b/include/trace/stages/stage6_event_callback.h
+index e1724f73594b..0f51f6b3ab70 100644
+--- a/include/trace/stages/stage6_event_callback.h
++++ b/include/trace/stages/stage6_event_callback.h
+@@ -24,6 +24,9 @@
+ #undef __string_len
+ #define __string_len(item, src, len) __dynamic_array(char, item, -1)
+ 
++#undef __vstring
++#define __vstring(item, fmt, ap) __dynamic_array(char, item, -1)
++
+ #undef __assign_str
+ #define __assign_str(dst, src)						\
+ 	strcpy(__get_str(dst), (src) ? (const char *)(src) : "(null)");
+@@ -35,6 +38,10 @@
+ 		__get_str(dst)[len] = '\0';				\
+ 	} while(0)
+ 
++#undef __assign_vstr
++#define __assign_vstr(dst, fmt, va)					\
++	vsnprintf(__get_str(dst), TRACE_EVENT_STR_MAX, fmt, *(va))
++
+ #undef __bitmask
+ #define __bitmask(item, nr_bits) __dynamic_array(unsigned long, item, -1)
  
 -- 
-2.25.1
+2.36.1
 
