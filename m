@@ -4,93 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79B6DC25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:48:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0752C25B08
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:49:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF25FA70F7;
-	Thu,  4 Aug 2022 20:42:04 +0000 (UTC)
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2078.outbound.protection.outlook.com [40.107.237.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B07899F03;
- Mon, 25 Jul 2022 11:43:41 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QNyMghcAoxNR589IX/zEvqYsQayWRtbyXxJ48+mCoaAkFX3pwAG58eL9zlHrJKFrraPJpGImxtHU2j7cmwQ1IMILptuD9cuXhA/9lKdP7lQQo4jjLEeJJjVl8s6fN4k2v9FmbaPRHgZkDkxluJKhygy7X3t3SkexgMetO9L8xiM8DBO4pNBkI939QPVQhlcYP/DcG8+KUr9JTugO3PY2aS0GAHkRIMF7yv9OpvCrZKMtzAzCMu0CFZfhd/9li71amGxVHEjuucl7dI3n+m4lAiVO93W4hSas4XYXwlb7xqlETqs9w3ALwcqgr9vmk9mkALdvzn0Qnp5VpzrzB/hb2Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A4jeD1FwCiZsoUEqT0QALsMbgVdYUPyrZP2J1Zm+tlo=;
- b=gkv9l3mYIefGnK974buOMNcexQb1sgHul0YbEbiDE08mz2MvbrPxOS6qpMOgLLN1uspM5Fr8odQSrCY8QG6/hYABrG6PRsrnrOOjzJQrEimmKFEsMrrCz9XN20RLxem48kc5S8nqcQdnHMvV2qdv4Qkr1Nhxia+kowYWsCZXKiLscLn9bODRuDco8hmJBNjDoWtYnZm9YghRm861HuHqBSAE1eS/6qrz4UoWpmuKiDdD6gr9PxYpXaOdqcljzkV7KcfsH5o2mRZ2OPddrtuTzr2acBZqUu0U0dQ8M1zV3v5JaF4hSgSzvabywDRPooNkcXf9LXiLaID4gPqeucIohg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A4jeD1FwCiZsoUEqT0QALsMbgVdYUPyrZP2J1Zm+tlo=;
- b=eyRvxGP/63b5k2yW61ymZMiQv0QBt68bMshzlmlafI/uw2GrLgr95VHouPgIBhC3qdujaXNHoj+xCUG2Kku3Fo/q7/SlHwVAYihKxZW2K9+ySUlxaby9gY1AbjV4usF9+X5L6MuuCZ5BF3+tr0kQBZ+AJGe46oX5zI9c5XRJnvg=
-Received: from BN9PR03CA0244.namprd03.prod.outlook.com (2603:10b6:408:ff::9)
- by DM6PR12MB3241.namprd12.prod.outlook.com (2603:10b6:5:186::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.18; Mon, 25 Jul
- 2022 11:43:39 +0000
-Received: from BN8NAM11FT004.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:ff:cafe::8b) by BN9PR03CA0244.outlook.office365.com
- (2603:10b6:408:ff::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.23 via Frontend
- Transport; Mon, 25 Jul 2022 11:43:38 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT004.mail.protection.outlook.com (10.13.176.164) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5458.17 via Frontend Transport; Mon, 25 Jul 2022 11:43:38 +0000
-Received: from amd-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Mon, 25 Jul 2022 06:43:35 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Date: Mon, 25 Jul 2022 04:42:39 -0700
-Message-ID: <20220725114240.4844-5-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220725114240.4844-1-Arunpravin.PaneerSelvam@amd.com>
-References: <20220725114240.4844-1-Arunpravin.PaneerSelvam@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACC4189E36;
+	Thu,  4 Aug 2022 20:42:19 +0000 (UTC)
+Received: from mail-il1-x129.google.com (mail-il1-x129.google.com
+ [IPv6:2607:f8b0:4864:20::129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0576A9D1D;
+ Mon, 18 Jul 2022 06:39:28 +0000 (UTC)
+Received: by mail-il1-x129.google.com with SMTP id w16so5094794ilh.0;
+ Sun, 17 Jul 2022 23:39:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=CRaYOM5N2Fpgdluj7apd1mQHejWq3ClMMzk6PiyYq0c=;
+ b=UCp4LmmEli9JSGOZxhB+PM6vmpQEpN6oEdrOeADstttiSDeNCDeesOLbEgY+HgKEcc
+ Ytrg4CFkytA2c1O8ReqEolNJk13C608JyU35ae6lRYSh4nvoPFcodaaMPZUthZ6OrSZz
+ WkeFIhr5Zh3eAJdDXN0cCyoVU6GwhWcm5wm4OhGJsDfc6lcmf1ecnvRGaLD5UOeGauHA
+ CZtM5FbUMdDjhQhaB5hlsjsBTW7T8k8w/Mw/jcghIFG7TMTztxEsyGMOOzlR4umW90IY
+ +3ku1plLnAUO+mJASLB5XuEoFIS8IivKKHXBKqXJ0M/3OVAe4A6PD5++8hnxCichZO/D
+ T51A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=CRaYOM5N2Fpgdluj7apd1mQHejWq3ClMMzk6PiyYq0c=;
+ b=MDxM0O5VxTtOK7esEkW8h2KgIjt++OHfTlMKaj0GCM7k5Qrq7SbQkjV/uWpLIThskB
+ aOc2uoingqiRp4WPmkTvUveza6Fb0nyAjHcBraQFCQ+H7O44hOeorU/HWYGUUCsYmbQj
+ 4bbqGHM11zO/9h5gZ48FahfUM/VYT4byYqPNbjjRunpHt57Q5gAWYyxsBO0d9GN1iqnj
+ liTn4IMfLhc9JVVng7PTBRKTUN56eshic9OQTTc4Ka9HtP7nlXY3WigiD/Dzxtg9D/2L
+ qVOZrh/hDqouru1O/slonX6xoD8e57H3+/q0dywr3ECAxvcDBIs1vHlK0aXdo8Fjd5GP
+ KmOw==
+X-Gm-Message-State: AJIora8AqbXIw2YIX7ZRepgHZqaEKUBOBQ1rJOkBKtTV+Qs+vpN6nsHv
+ mi2XtTEOpXNBwjqx9/VmHgI=
+X-Google-Smtp-Source: AGRyM1uk7CbZyzjhZdLeyISwfXvc3vTUVD1FONDcjDrIlsIzJfD1mIwVx8r5I4nBchvhmmhMH2B+Cw==
+X-Received: by 2002:a92:c247:0:b0:2dc:8467:170c with SMTP id
+ k7-20020a92c247000000b002dc8467170cmr12283048ilo.225.1658126367871; 
+ Sun, 17 Jul 2022 23:39:27 -0700 (PDT)
+Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
+ by smtp.googlemail.com with ESMTPSA id
+ o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.39.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 17 Jul 2022 23:39:27 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: jbaron@akamai.com
+Date: Mon, 18 Jul 2022 00:36:38 -0600
+Message-Id: <20220718063641.9179-55-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
+References: <20220718063641.9179-1-jim.cromie@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3e24697d-b1ae-4ffc-c37d-08da6e32ea8f
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3241:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CddLj6nh8lPyEjnlDLm99HJ5dSpisyY/yxN8GFdV4EuaXL81ht0w9p3boDsx/AS1TvlOur0PyFAQowGWYaWbz47fsgsHSeIlfDNzUUorUcOhS6QFXoo5atEMO6xUM9cetMnEjkknCy1xwtIII+mDzihbjriw3TYM2nJJQFbyXclpOVevkgVcusrR9v3duixMn0fqeymrBJ1VLuEaZvUk8k5V0sj+3Grq9WbhRuaWFyD/8u4OHA41bdxW+8ja/eSirczVk8ASqdDrBkydIQlaNUZ1zVlZgFQJm6ecgrzc46liKvsadDoB2Z/VntlLUL8rGG6gi1lJCZnHXn1Zg3B7o2ba2pW3SuM3vjkoMQJxZbqCpP8i65yDmMVn4Ai73DCMaaEeBsVSiUwGO7Eh7X1eyATwh+yoMcU+t6RNVO+7WcIqH+Cl4f8JKKPjKtZGAePjxeSXArljymzY5Mi+bUit3rBOnXH7dc9KS/LCmkvodFc1iVuba0pB5vpMJjBSXVIUwOpIBlj2Z/zsTnd+2nXNcU/a7OhFuDQDHW12bimvYMO+L2W7xcIWgD8Z32MVl4yzKjVYtYiHl0mlJdDCN2invfS0W5MR/vAvNQJQm4FJn4wnPBVtoHNIfRgFOtXQGMWVLpyih5wA6jYHrZ5OwycdQXw/qPn9zKAAOy46C3plId9yavfm7MU1muQbgx/zA7vmRCsDQpHFpUFGr1bpt+4q+uAHStxUGRkJCt7Alk+gnyVh1Pzg2k4Uv/e7BPUTQAwMuyEMfn38pVAwvyoGZ/gs92QyBXND1Lrv9qkpzz969ri3lY00RGlBAouhD6NYwZtANCUBU73TSwCqsd1RLdl84w==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(346002)(396003)(376002)(136003)(39860400002)(36840700001)(46966006)(40470700004)(36860700001)(356005)(36756003)(82740400003)(86362001)(26005)(8936002)(336012)(47076005)(16526019)(2616005)(1076003)(426003)(81166007)(83380400001)(7696005)(40460700003)(478600001)(110136005)(54906003)(40480700001)(41300700001)(316002)(186003)(4326008)(8676002)(5660300002)(70586007)(82310400005)(70206006)(2906002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2022 11:43:38.7806 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e24697d-b1ae-4ffc-c37d-08da6e32ea8f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT004.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3241
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:35:09 +0000
-Subject: [Nouveau] [PATCH v2 5/6] drm/nouveau: Implement
- intersect/compatible functions
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:48 +0000
+Subject: [Nouveau] [PATCH v3 39/41] nouveau-dbg: add 2 verbose-classmaps for
+ CLI, SUBDEV
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,133 +70,164 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- luben.tuikov@amd.com, christian.koenig@amd.com, matthew.auld@intel.com
+Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Implemented a new intersect and compatible callback function
-fetching the start offset from struct ttm_resource.
+nouveau has additional debug variables to consider:
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+drivers/gpu/drm/nouveau/include/nvkm/core/device.h
+131:	if (_device->debug >= (l))                                             \
+
+drivers/gpu/drm/nouveau/include/nvkm/core/client.h
+39:	if (_client->debug >= NV_DBG_##l)                                      \
+
+drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
+54:	if (CONFIG_NOUVEAU_DEBUG >= (l) && _subdev->debug >= (l))              \
+
+This is another baby-step, that seems not to break, so lets get a
+snapshot.
+
+whats done here:
+
+In nouveau_drm.c, declare class-names: NV_CLI_DBG_* NV_SUBDEV_DBG_* by
+calling DECLARE_DYNDBG_CLASSMAP(verbose-type) 2x more, right after the
+drm DECLARE, for cli and subdev.  Adjust base to 10,15, to avoid 0-10
+allocated subsystem-wide for drm.debug.  This shares the 0..30
+classid-space.
+
+In nvkm/core/debug.h, add enums to match the names, with initial
+values to match the bases.
+
+In nvkm/core/subdev.h, alter (recently added) nvkm_drmdbg_() to use
+NV_SUBDEV_DBG_* instead of NV_DBG_*.  Note: this is undone next,
+because base != CONFIG_NOUVEAU_DEBUG.
+
+NOTES:
+
+class-name-space is flat and wide, so super-generic names like INFO
+should be prefixed; who could predict what a generic "V1" does across
+all modules.
+
+A sub-system prefix, such as "DRM_UT_" could be considered a working
+shorthand for module "foo,bar,buzz" (which wouldnt work), but it adds
+a layer of authors-judgment in the classifications.
+
+In both classmaps, Ive left FATAL..WARN out, they're not really
+optional the way INFO..SPAM are; even if they were defaulted to on,
+dyndbg shouldn't be able to turn them off.
+
+bash-5.1# modprobe nouveau
+[  966.107833] dyndbg:   3 debug prints in module wmi
+[  966.342188] dyndbg: class[0]: module:nouveau base:15 len:5 ty:1
+[  966.342873] dyndbg:  15: 0 NV_SUBDEV_DBG_OFF
+[  966.343352] dyndbg:  16: 1 NV_SUBDEV_DBG_INFO
+[  966.343912] dyndbg:  17: 2 NV_SUBDEV_DBG_DEBUG
+[  966.344443] dyndbg:  18: 3 NV_SUBDEV_DBG_TRACE
+[  966.344938] dyndbg:  19: 4 NV_SUBDEV_DBG_SPAM
+[  966.345402] dyndbg: class[1]: module:nouveau base:10 len:5 ty:1
+[  966.346011] dyndbg:  10: 0 NV_CLI_DBG_OFF
+[  966.346477] dyndbg:  11: 1 NV_CLI_DBG_INFO
+[  966.346989] dyndbg:  12: 2 NV_CLI_DBG_DEBUG
+[  966.347442] dyndbg:  13: 3 NV_CLI_DBG_TRACE
+[  966.347875] dyndbg:  14: 4 NV_CLI_DBG_SPAM
+[  966.348284] dyndbg: class[2]: module:nouveau base:0 len:10 ty:0
+[  966.348888] dyndbg:  0: 0 DRM_UT_CORE
+[  966.349310] dyndbg:  1: 1 DRM_UT_DRIVER
+[  966.349694] dyndbg:  2: 2 DRM_UT_KMS
+[  966.350083] dyndbg:  3: 3 DRM_UT_PRIME
+[  966.350482] dyndbg:  4: 4 DRM_UT_ATOMIC
+[  966.351016] dyndbg:  5: 5 DRM_UT_VBL
+[  966.351475] dyndbg:  6: 6 DRM_UT_STATE
+[  966.351899] dyndbg:  7: 7 DRM_UT_LEASE
+[  966.352309] dyndbg:  8: 8 DRM_UT_DP
+[  966.352678] dyndbg:  9: 9 DRM_UT_DRMRES
+[  966.353104] dyndbg: module:nouveau attached 3 classes
+[  966.353759] dyndbg: 119 debug prints in module nouveau
+
+NOTE: it was 632 with previous commit, switching NV_DEBUG to use
+NV_SUBDEV_DBG_DEBUG instead of NV_DBG_DEBUG is the cause.
+
+Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_mem.c | 29 +++++++++++++++++++++++++++
- drivers/gpu/drm/nouveau/nouveau_mem.h |  6 ++++++
- drivers/gpu/drm/nouveau/nouveau_ttm.c | 24 ++++++++++++++++++++++
- 3 files changed, 59 insertions(+)
+ .../gpu/drm/nouveau/include/nvkm/core/debug.h    | 16 ++++++++++++++++
+ .../gpu/drm/nouveau/include/nvkm/core/subdev.h   |  3 ++-
+ drivers/gpu/drm/nouveau/nouveau_drm.c            | 14 ++++++++++++++
+ 3 files changed, 32 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_mem.c b/drivers/gpu/drm/nouveau/nouveau_mem.c
-index 2e517cdc24c9..18f1c22fbc2c 100644
---- a/drivers/gpu/drm/nouveau/nouveau_mem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_mem.c
-@@ -187,3 +187,32 @@ nouveau_mem_new(struct nouveau_cli *cli, u8 kind, u8 comp,
- 	*res = &mem->base;
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/debug.h b/drivers/gpu/drm/nouveau/include/nvkm/core/debug.h
+index b4a9c7d991ca..6a155a23a3d1 100644
+--- a/drivers/gpu/drm/nouveau/include/nvkm/core/debug.h
++++ b/drivers/gpu/drm/nouveau/include/nvkm/core/debug.h
+@@ -9,4 +9,20 @@
+ #define NV_DBG_TRACE    5
+ #define NV_DBG_PARANOIA 6
+ #define NV_DBG_SPAM     7
 +
-+bool
-+nouveau_mem_intersect(struct ttm_resource *res,
-+		      const struct ttm_place *place,
-+		      size_t size)
-+{
-+	u32 num_pages = PFN_UP(size);
++enum nv_cli_dbg_verbose {
++	NV_CLI_DBG_OFF = 10,
++	NV_CLI_DBG_INFO,
++	NV_CLI_DBG_DEBUG,
++	NV_CLI_DBG_TRACE,
++	NV_CLI_DBG_SPAM
++};
++enum nv_subdev_dbg_verbose {
++	NV_SUBDEV_DBG_OFF = 15,
++	NV_SUBDEV_DBG_INFO,
++	NV_SUBDEV_DBG_DEBUG,
++	NV_SUBDEV_DBG_TRACE,
++	NV_SUBDEV_DBG_SPAM
++};
 +
-+	/* Don't evict BOs outside of the requested placement range */
-+	if (place->fpfn >= (res->start + num_pages) ||
-+	    (place->lpfn && place->lpfn <= res->start))
-+		return false;
-+
-+	return true;
-+}
-+
-+bool
-+nouveau_mem_compatible(struct ttm_resource *res,
-+		       const struct ttm_place *place,
-+		       size_t size)
-+{
-+	u32 num_pages = PFN_UP(size);
-+
-+	if (res->start < place->fpfn ||
-+	    (place->lpfn && (res->start + num_pages) > place->lpfn))
-+		return false;
-+
-+	return true;
-+}
-diff --git a/drivers/gpu/drm/nouveau/nouveau_mem.h b/drivers/gpu/drm/nouveau/nouveau_mem.h
-index 325551eba5cd..4910e0e992ea 100644
---- a/drivers/gpu/drm/nouveau/nouveau_mem.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_mem.h
-@@ -25,6 +25,12 @@ int nouveau_mem_new(struct nouveau_cli *, u8 kind, u8 comp,
- 		    struct ttm_resource **);
- void nouveau_mem_del(struct ttm_resource_manager *man,
- 		     struct ttm_resource *);
-+bool nouveau_mem_intersect(struct ttm_resource *res,
-+			   const struct ttm_place *place,
-+			   size_t size);
-+bool nouveau_mem_compatible(struct ttm_resource *res,
-+			    const struct ttm_place *place,
-+			    size_t size);
- int nouveau_mem_vram(struct ttm_resource *, bool contig, u8 page);
- int nouveau_mem_host(struct ttm_resource *, struct ttm_tt *);
- void nouveau_mem_fini(struct nouveau_mem *);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-index 85f1f5a0fe5d..c5e6f0eac47e 100644
---- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-@@ -42,6 +42,24 @@ nouveau_manager_del(struct ttm_resource_manager *man,
- 	nouveau_mem_del(man, reg);
- }
+ #endif
+diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h b/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
+index b9c2afab321f..bf9c69f4fc3e 100644
+--- a/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
++++ b/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h
+@@ -2,6 +2,7 @@
+ #ifndef __NVKM_SUBDEV_H__
+ #define __NVKM_SUBDEV_H__
+ #include <core/device.h>
++#include <core/debug.h>
  
-+static bool
-+nouveau_manager_intersect(struct ttm_resource_manager *man,
-+			  struct ttm_resource *res,
-+			  const struct ttm_place *place,
-+			  size_t size)
-+{
-+	return nouveau_mem_intersect(res, place, size);
-+}
+ enum nvkm_subdev_type {
+ #define NVKM_LAYOUT_ONCE(t,s,p,...) t,
+@@ -65,7 +66,7 @@ void nvkm_subdev_intr(struct nvkm_subdev *);
+ 	if (CONFIG_NOUVEAU_DEBUG >= (l) && _subdev->debug >= (l))	\
+ 		dev_dbg(_subdev->device->dev, "%s: "f, _subdev->name, ##a); \
+ } while(0)
+-#define nvkm_drmdbg_(s,l,f,a...) nvkm_drmdbg__((s), NV_DBG_##l, dbg, f, ##a)
++#define nvkm_drmdbg_(s,l,f,a...) nvkm_drmdbg__((s), NV_SUBDEV_DBG_##l, dbg, f, ##a)
+ #define nvkm_debug(s,f,a...) nvkm_drmdbg_((s), DEBUG, f, ##a)
+ #define nvkm_trace(s,f,a...) nvkm_drmdbg_((s), TRACE, f, ##a)
+ #define nvkm_spam(s,f,a...)  nvkm_drmdbg_((s),  SPAM, f, ##a)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 76e3a8d50b01..85b63b527877 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -83,6 +83,20 @@ DECLARE_DYNDBG_CLASSMAP(drm_debug_classes, DD_CLASS_TYPE_DISJOINT, 0,
+ 			"DRM_UT_DP",
+ 			"DRM_UT_DRMRES");
+ 
++DECLARE_DYNDBG_CLASSMAP(nv_cli_debug_verbose, DD_CLASS_TYPE_VERBOSE, 10,
++			"NV_CLI_DBG_OFF",
++			"NV_CLI_DBG_INFO",
++			"NV_CLI_DBG_DEBUG",
++			"NV_CLI_DBG_TRACE",
++			"NV_CLI_DBG_SPAM");
 +
-+static bool
-+nouveau_manager_compatible(struct ttm_resource_manager *man,
-+			   struct ttm_resource *res,
-+			   const struct ttm_place *place,
-+			   size_t size)
-+{
-+	return nouveau_mem_compatible(res, place, size);
-+}
++DECLARE_DYNDBG_CLASSMAP(nv_subdev_debug_verbose, DD_CLASS_TYPE_VERBOSE, 15,
++			"NV_SUBDEV_DBG_OFF",
++			"NV_SUBDEV_DBG_INFO",
++			"NV_SUBDEV_DBG_DEBUG",
++			"NV_SUBDEV_DBG_TRACE",
++			"NV_SUBDEV_DBG_SPAM");
 +
- static int
- nouveau_vram_manager_new(struct ttm_resource_manager *man,
- 			 struct ttm_buffer_object *bo,
-@@ -73,6 +91,8 @@ nouveau_vram_manager_new(struct ttm_resource_manager *man,
- const struct ttm_resource_manager_func nouveau_vram_manager = {
- 	.alloc = nouveau_vram_manager_new,
- 	.free = nouveau_manager_del,
-+	.intersect = nouveau_manager_intersect,
-+	.compatible = nouveau_manager_compatible,
- };
- 
- static int
-@@ -97,6 +117,8 @@ nouveau_gart_manager_new(struct ttm_resource_manager *man,
- const struct ttm_resource_manager_func nouveau_gart_manager = {
- 	.alloc = nouveau_gart_manager_new,
- 	.free = nouveau_manager_del,
-+	.intersect = nouveau_manager_intersect,
-+	.compatible = nouveau_manager_compatible,
- };
- 
- static int
-@@ -130,6 +152,8 @@ nv04_gart_manager_new(struct ttm_resource_manager *man,
- const struct ttm_resource_manager_func nv04_gart_manager = {
- 	.alloc = nv04_gart_manager_new,
- 	.free = nouveau_manager_del,
-+	.intersect = nouveau_manager_intersect,
-+	.compatible = nouveau_manager_compatible,
- };
- 
- static int
+ MODULE_PARM_DESC(config, "option string to pass to driver core");
+ static char *nouveau_config;
+ module_param_named(config, nouveau_config, charp, 0400);
 -- 
-2.25.1
+2.36.1
 
