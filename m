@@ -4,93 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F1B9C25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:43:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C269C25B06
+	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:43:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D8C2A6FF4;
-	Thu,  4 Aug 2022 20:38:36 +0000 (UTC)
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B7F310E175;
- Thu, 28 Jul 2022 14:34:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UuJoyEaYpo3IK8+DAwOS5YTZnJydAnTE2DsdHRv3VzAVgvWtlR3/+UUX0xFkDL8sh7tHbVzWQUKZlWrtWLP+0aNiULYTbhq2GYTkGr1x8n5PiJB0RN5TcHcwczwyB9dW7l8htuz/GUQ6fqG+oSRPaSLyV+4a8d5u5gN73T2sXdjkjEQm7ZKHfpRSLTWIf1QPPl6fr1jNYV/+GBnLmJRg3PdrQ194+FHCxmCu6zlEKaQSQ5rZNr2S3jyw11EWAycqWvHFgwq6CBKemV470G/I4lzdGX3V0aJFPsBJ1mORV/yGVFOIePZ41F6zTkkj1nB1RP/05WCiybmFLsQqgucP2Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rlQU8N9o4xcYU7E3SQCd1aZWdyux9rh/qHLE1sWMmZA=;
- b=Jh1oBfADZZ0iy+3j0nOeIbKnVXoNeVY47RoAuKDAzLF3TZbdSLDyNIPdO8E0dcLBhxgVv7fCIHQ+vTSNIhQkDkKT3s14QayK/yOaMkyTwukvKCmkV5vax1Og/m4e5cSqZR+QX7MbN0okrcgX+Gdc5ue7vUlaCWjG5faDU23Og8oWjmkQYZXZ9oQ0uM1yLxNbYdj9C0cQRXT5j/ZeE/NRxWmL1ECJvB2cOErtmT4soOuU9EV3s0Hfu/jWUrfSSdmT9QSXg2uze2X7v/xKMkSXhPc/Uhf/h90iGzJUcGjTMLcm2RaBQnmkfHdJhYWfQ3mJF8DtTAC49osm7C4xBboseQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rlQU8N9o4xcYU7E3SQCd1aZWdyux9rh/qHLE1sWMmZA=;
- b=NmdyM+hj/hYW6oMGn/WECszB+NUprnzE8TvUYi9rrSMiutrQ143AqmhtaR09STWt1AS4OC5o/OD7EqS9AVRziKXn3yaJNAkPlfVn0izFT/ii3KOV7w4FkGq/NEvRte6PDYtuP+uGbInB7v8uTAITl/Pa4pDianh4xwIzYTabuRs=
-Received: from MW2PR16CA0011.namprd16.prod.outlook.com (2603:10b6:907::24) by
- MN2PR12MB3792.namprd12.prod.outlook.com (2603:10b6:208:16e::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.6; Thu, 28 Jul
- 2022 14:34:22 +0000
-Received: from CO1NAM11FT005.eop-nam11.prod.protection.outlook.com
- (2603:10b6:907:0:cafe::ae) by MW2PR16CA0011.outlook.office365.com
- (2603:10b6:907::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.10 via Frontend
- Transport; Thu, 28 Jul 2022 14:34:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT005.mail.protection.outlook.com (10.13.174.147) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5482.11 via Frontend Transport; Thu, 28 Jul 2022 14:34:22 +0000
-Received: from amd-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Thu, 28 Jul 2022 09:34:18 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Date: Thu, 28 Jul 2022 07:33:13 -0700
-Message-ID: <20220728143315.968590-4-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220728143315.968590-1-Arunpravin.PaneerSelvam@amd.com>
-References: <20220728143315.968590-1-Arunpravin.PaneerSelvam@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDFB2A6FEC;
+	Thu,  4 Aug 2022 20:38:37 +0000 (UTC)
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com
+ [IPv6:2607:f8b0:4864:20::d2a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E71D3A9D27;
+ Mon, 18 Jul 2022 06:39:08 +0000 (UTC)
+Received: by mail-io1-xd2a.google.com with SMTP id x64so186682iof.1;
+ Sun, 17 Jul 2022 23:39:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=mA57lJawQaJrr0pn5IjfHrgO78kF+VSuSTaNvQRvlzQ=;
+ b=dTJEItRgWoU2ChLx8Cg/dTBGyAjxpYCTnQ6vlyXIDILTz7AFhVb/vvSoPpPCGVp6Fa
+ cp8dlmivB1PIq4/oTgp3oBt8s2RsFNCGVxlMzooDOFsG6ocAC/KlkIbuc2cux6SbiJqk
+ cS6z/Z1aHg0bh2hEuM/iReKNJBQxu4aVRIuv8VzEjH71IgOf3bmVrcYywI/9w5xzMzBj
+ qAna8ni1J5PE31fqmI6Du20DAMiBBXOCBiIMWOGtpD8MnmaU41ZWiRZ4XzUAjAI3UuuF
+ VjcBeWk6ff0eKs0M9IlmhlF0j/n8kYPEyPwkjhfAyLMlkaeVTi/lYxK7vQYbtRHWVd8V
+ 1QbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=mA57lJawQaJrr0pn5IjfHrgO78kF+VSuSTaNvQRvlzQ=;
+ b=yxW9jsFGm9x5qL61d89iMkwN9dlMAzDS39WCiyh7Na0uRtHBeDTmzXkZPysYDkF4PK
+ mcb1dFrE95b3FdH51bWpgUmgv27llCaciHYDscU1lJ2+nPIdKvOInoN5L9yNSTSREMn0
+ mZV63q+gZvJjWY+XEHku58z0/AgFKurkdbI59beYGlZHwV2P7NQ8NjnysRc3rgXV4G6q
+ LYg50tyD7zpbaEsbQq/Pbq3kS04qxM3Ekm4NaRu+ejg1k98FEn5UwyJBH+t215FrWxZw
+ Sd8RsIU23wHKwdowtLWBxmkubNXAJZ0AeRjMUgrlBCByV8BWui5kfJmezEK7VYieuaFb
+ nm7g==
+X-Gm-Message-State: AJIora+MkPFwSdlj4ds+NBTzfwYZ6OpRcBf4yxvY/IAVE+AOQloeQQ27
+ aYpAQ2+Bq9bOLQ7nFpsqs9AoWeXKsweMvw==
+X-Google-Smtp-Source: AGRyM1sn52nQ1/dO/M0gx/EsB1/U07tR4XrPgr7RZcrf5WaQiM8qtrRiUz3Xe4dXcF1GYMMGcFBauw==
+X-Received: by 2002:a05:6602:1406:b0:649:d35b:4bbb with SMTP id
+ t6-20020a056602140600b00649d35b4bbbmr12272509iov.23.1658126348538; 
+ Sun, 17 Jul 2022 23:39:08 -0700 (PDT)
+Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
+ by smtp.googlemail.com with ESMTPSA id
+ o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.39.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 17 Jul 2022 23:39:08 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: jbaron@akamai.com
+Date: Mon, 18 Jul 2022 00:36:24 -0600
+Message-Id: <20220718063641.9179-41-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
+References: <20220718063641.9179-1-jim.cromie@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9c81635b-4da5-4952-62f9-08da70a64356
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3792:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4x2D1Lx5ynnwfIBFtJj/Ws2xabMYiKdAAopIdgtAD3FqLoNXLM4PwlrjptWDlEkOhBE5Ug2AlzyG119FBf1zTLw9ZUrIk5pQB9HuBL51c8Na5T4++IUKBV4i6TlrbTITSHZy6PdYOUKXUv/aJUEMd2mRos9rHWJyRU4BIBtTnxHwXzJRbddzwmb+XXtJqElCiY11IseW2QHKqSxX43BYNew/4areo9sZNnzILNYleCkFVGzYNsice7XoggmDvCsAwA7UAQ0/lEDEJpjo/uMVN+ZoZUJzKzdjp7astgCTUlSAuGbGP1z1CWa8akLpPlK8QM7lqquS58bEunrsCueFX2L1ioNL1NFTD6VSad2r+ApLyoQfScVqvIYoYuBgckTXWmznQ1hrgjXWM7wIrjte5dKQNgl6+4iDrhnippFXw8s+pEHuMHaiIHdtwErL+zA2xaCYwZsFJditgS3jZ1frdEnTi1Z5wQRLrbeTbOhsw54JaSH6X8X82rm76+lfMMMFsk5FJIYHh2dK0WMtgekU6u1zdyZouewQJoCZuegIe1KasAFmhVWj08VCpbA5horneGa2+wCYmJwhmYfBgPuVXT1UenanuMaSpEgLxxJWcyBTJxqMVWGKPORXsyDdJAl8stNtisPLSA6ZJu+HI0izrn6uYkmPJQiRL+AZzpvKvWTJ+ncfjCqBVW2clyGu4Jv0+JcZAgxL4lCIcPzj9IIUq0uTiPyfZTOHIaRvPu+slNuQKKfRZhinmOZVPTUFsA5Q2+skDUkd4v65GCkS8qP7no9UIBNKyluBciXFYTDAXlvVhSybWIirneJhgKoRxzHRd6HfuEO2OVE5dOQnY4vEdg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(346002)(39860400002)(396003)(136003)(376002)(36840700001)(40470700004)(46966006)(41300700001)(6666004)(7696005)(478600001)(40480700001)(82310400005)(2906002)(36756003)(86362001)(26005)(54906003)(316002)(110136005)(4326008)(356005)(82740400003)(81166007)(186003)(16526019)(1076003)(2616005)(336012)(47076005)(426003)(5660300002)(8676002)(70206006)(70586007)(40460700003)(8936002)(83380400001)(36860700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2022 14:34:22.0932 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9c81635b-4da5-4952-62f9-08da70a64356
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT005.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3792
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:35:10 +0000
-Subject: [Nouveau] [PATCH v3 4/6] drm/i915: Implement intersect/compatible
- functions
+X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:48 +0000
+Subject: [Nouveau] [PATCH v3 32/39] dyndbg: 4 new trace-events: pr_debug,
+ dev_dbg, drm_{, dev}debug
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,154 +70,461 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- luben.tuikov@amd.com, christian.koenig@amd.com, matthew.auld@intel.com
+Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Implemented a new intersect and compatible callback function
-fetching start offset from drm buddy allocator.
+ddebug_trace() currently issues a single printk:console event.
+Replace that, adding include/trace/events/dyndbg.h, which defines 2
+new events:
 
-v2: move the bits that are specific to buddy_man (Matthew)
+- dyndbg:prdbg  - from trace_prdbg()  - if !dev
+- dyndbg:devdbg - from trace_devdbg() - if !!dev
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+This links the legacy pr_debug API to tracefs, via dyndbg, allowing
+pr_debug()s etc to add just a little more user-context to the
+trace-logs, and then at users option, less syslog.
+
+The 2 new trace_*() calls accept their caller's args respectively,
+keeping the available info w/o alteration; we can't improve on
+transparency.  The args:
+
+ 1- struct _ddebug *descriptor, giving tracefs all of dyndbg's info.
+ 2- struct device *dev, used by trace_devdbg(), if !!dev
+
+The trace_*() calls need the descriptor arg, the callchain prototypes
+above them are extended to provide it.
+
+The existing category param in this callchain is partially redundant;
+when descriptor is available, it has the class_id.
+
+dev_dbg(desc, dev...), if dev is true, issues a trace_devdbg(),
+otherwise trace_prdbg().  This way we dont consume buffer space
+storing nulls.  Otherwise the events are equivalent.
+
+Also add include/trace/events/drm.h, to create 2 events for use in
+drm_dbg() and drm_devdbg(), and call them.  This recapitulates the
+changes described above, connecting 3-10K drm.debug callsites to
+tracefs.
+
+Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 39 +-----------
- drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 62 +++++++++++++++++++
- 2 files changed, 64 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/drm_print.c   | 25 ++++++++----
+ include/trace/events/drm.h    | 68 ++++++++++++++++++++++++++++++++
+ include/trace/events/dyndbg.h | 74 +++++++++++++++++++++++++++++++++++
+ lib/dynamic_debug.c           | 73 +++++++++++++++++-----------------
+ 4 files changed, 197 insertions(+), 43 deletions(-)
+ create mode 100644 include/trace/events/drm.h
+ create mode 100644 include/trace/events/dyndbg.h
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index 70e2ed4e99df..54eead15d74b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -396,43 +396,8 @@ static bool i915_ttm_eviction_valuable(struct ttm_buffer_object *bo,
- 	if (!i915_gem_object_evictable(obj))
- 		return false;
+diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
+index 92f3f45e410c..9fb0b8e40dca 100644
+--- a/drivers/gpu/drm/drm_print.c
++++ b/drivers/gpu/drm/drm_print.c
+@@ -35,6 +35,9 @@
+ #include <drm/drm_drv.h>
+ #include <drm/drm_print.h>
  
--	switch (res->mem_type) {
--	case I915_PL_LMEM0: {
--		struct ttm_resource_manager *man =
--			ttm_manager_type(bo->bdev, res->mem_type);
--		struct i915_ttm_buddy_resource *bman_res =
--			to_ttm_buddy_resource(res);
--		struct drm_buddy *mm = bman_res->mm;
--		struct drm_buddy_block *block;
--
--		if (!place->fpfn && !place->lpfn)
--			return true;
--
--		GEM_BUG_ON(!place->lpfn);
--
--		/*
--		 * If we just want something mappable then we can quickly check
--		 * if the current victim resource is using any of the CPU
--		 * visible portion.
--		 */
--		if (!place->fpfn &&
--		    place->lpfn == i915_ttm_buddy_man_visible_size(man))
--			return bman_res->used_visible_size > 0;
--
--		/* Real range allocation */
--		list_for_each_entry(block, &bman_res->blocks, link) {
--			unsigned long fpfn =
--				drm_buddy_block_offset(block) >> PAGE_SHIFT;
--			unsigned long lpfn = fpfn +
--				(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
--
--			if (place->fpfn < lpfn && place->lpfn > fpfn)
--				return true;
--		}
--		return false;
--	} default:
--		break;
--	}
-+	if (res->mem_type == I915_PL_LMEM0)
-+		return ttm_bo_eviction_valuable(bo, place);
++#define CREATE_TRACE_POINTS
++#include <trace/events/drm.h>
++
+ /*
+  * __drm_debug: Enable debug output.
+  * Bitmask of DRM_UT_x. See include/drm/drm_print.h for details.
+@@ -293,13 +296,19 @@ void __drm_dev_dbg(struct _ddebug *desc, const struct device *dev,
+ 	vaf.fmt = format;
+ 	vaf.va = &args;
  
- 	return true;
- }
-diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-index a5109548abc0..9d2a31154d58 100644
---- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-+++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
-@@ -178,6 +178,66 @@ static void i915_ttm_buddy_man_free(struct ttm_resource_manager *man,
- 	kfree(bman_res);
- }
- 
-+static bool i915_ttm_buddy_man_intersect(struct ttm_resource_manager *man,
-+					 struct ttm_resource *res,
-+					 const struct ttm_place *place,
-+					 size_t size)
-+{
-+	struct i915_ttm_buddy_resource *bman_res = to_ttm_buddy_resource(res);
-+	u32 start, num_pages = PFN_UP(size);
-+	struct drm_buddy_block *block;
-+
-+	if (!place->fpfn && !place->lpfn)
-+		return true;
-+
-+	/*
-+	 * If we just want something mappable then we can quickly check
-+	 * if the current victim resource is using any of the CP
-+	 * visible portion.
-+	 */
-+	if (!place->fpfn &&
-+	    place->lpfn == i915_ttm_buddy_man_visible_size(man))
-+		return bman_res->used_visible_size > 0;
-+
-+	/* Check each drm buddy block individually */
-+	list_for_each_entry(block, &bman_res->blocks, link) {
-+		start = drm_buddy_block_offset(block) >> PAGE_SHIFT;
-+		/* Don't evict BOs outside of the requested placement range */
-+		if (place->fpfn >= (start + num_pages) ||
-+		    (place->lpfn && place->lpfn <= start))
-+			return false;
+-	if (dev)
+-		dev_printk(KERN_DEBUG, dev, "[" DRM_NAME ":%ps] %pV",
+-			   __builtin_return_address(0), &vaf);
+-	else
+-		printk(KERN_DEBUG "[" DRM_NAME ":%ps] %pV",
+-		       __builtin_return_address(0), &vaf);
+-
++	if (dev) {
++		if (desc->flags & _DPRINTK_FLAGS_PRINTK)
++			dev_printk(KERN_DEBUG, dev, "[" DRM_NAME ":%ps] %pV",
++				   __builtin_return_address(0), &vaf);
++		if (desc->flags & _DPRINTK_FLAGS_TRACE)
++			trace_drm_devdbg(dev, category, &vaf);
++	} else {
++		if (desc->flags & _DPRINTK_FLAGS_PRINTK)
++			printk(KERN_DEBUG "[" DRM_NAME ":%ps] %pV",
++			       __builtin_return_address(0), &vaf);
++		if (desc->flags & _DPRINTK_FLAGS_TRACE)
++			trace_drm_debug(category, &vaf);
 +	}
+ 	va_end(args);
+ }
+ EXPORT_SYMBOL(__drm_dev_dbg);
+@@ -319,6 +328,8 @@ void ___drm_dbg(struct _ddebug *desc, enum drm_debug_category category, const ch
+ 	printk(KERN_DEBUG "[" DRM_NAME ":%ps] %pV",
+ 	       __builtin_return_address(0), &vaf);
+ 
++	trace_drm_debug(category, &vaf);
 +
-+	return true;
-+}
+ 	va_end(args);
+ }
+ EXPORT_SYMBOL(___drm_dbg);
+diff --git a/include/trace/events/drm.h b/include/trace/events/drm.h
+new file mode 100644
+index 000000000000..6de80dd68620
+--- /dev/null
++++ b/include/trace/events/drm.h
+@@ -0,0 +1,68 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#undef TRACE_SYSTEM
++#define TRACE_SYSTEM drm
 +
-+static bool i915_ttm_buddy_man_compatible(struct ttm_resource_manager *man,
-+					  struct ttm_resource *res,
-+					  const struct ttm_place *place,
-+					  size_t size)
-+{
-+	struct i915_ttm_buddy_resource *bman_res = to_ttm_buddy_resource(res);
-+	u32 start, num_pages = PFN_UP(size);
-+	struct drm_buddy_block *block;
++#if !defined(_TRACE_DRM_H) || defined(TRACE_HEADER_MULTI_READ)
++#define _TRACE_DRM_H
 +
-+	if (!place->fpfn && !place->lpfn)
-+		return true;
++#include <linux/tracepoint.h>
 +
-+	if (!place->fpfn &&
-+	    place->lpfn == i915_ttm_buddy_man_visible_size(man))
-+		return bman_res->used_visible_size == res->num_pages;
++/* drm_debug() was called, pass its args */
++TRACE_EVENT(drm_debug,
++	    TP_PROTO(int drm_debug_category, struct va_format *vaf),
 +
-+	/* Check each drm buddy block individually */
-+	list_for_each_entry(block, &bman_res->blocks, link) {
-+		start = drm_buddy_block_offset(block) >> PAGE_SHIFT;
-+		if (start < place->fpfn ||
-+		    (place->lpfn && (start + num_pages) > place->lpfn))
-+			return false;
-+	}
++	    TP_ARGS(drm_debug_category, vaf),
 +
-+	return true;
-+}
++	    TP_STRUCT__entry(
++		    __field(int, drm_debug_category)
++		    __dynamic_array(char, msg, 256)
++		    ),
 +
- static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
- 				     struct drm_printer *printer)
++	    TP_fast_assign(
++		    int len;
++
++		    __entry->drm_debug_category = drm_debug_category;
++		    vsnprintf(__get_str(msg), 256, vaf->fmt, *vaf->va);
++
++		    len = strlen(__get_str(msg));
++		    if (len > 0 && (__get_str(msg)[len - 1] == '\n'))
++			    len -= 1;
++		    __get_str(msg)[len] = 0;
++		    ),
++
++	    TP_printk("%s", __get_str(msg))
++);
++
++/* drm_devdbg() was called, pass its args, preserving order */
++TRACE_EVENT(drm_devdbg,
++	    TP_PROTO(const struct device *dev, int drm_debug_category, struct va_format *vaf),
++
++	    TP_ARGS(dev, drm_debug_category, vaf),
++
++	    TP_STRUCT__entry(
++		    __field(const struct device*, dev)
++		    __field(int, drm_debug_category)
++		    __dynamic_array(char, msg, 256)
++		    ),
++
++	    TP_fast_assign(
++		    int len;
++
++		    __entry->drm_debug_category = drm_debug_category;
++		    __entry->dev = dev;
++		    vsnprintf(__get_str(msg), 256, vaf->fmt, *vaf->va);
++
++		    len = strlen(__get_str(msg));
++		    if (len > 0 && (__get_str(msg)[len - 1] == '\n'))
++			    len -= 1;
++		    __get_str(msg)[len] = 0;
++		    ),
++
++	    TP_printk("cat:%d, %s %s", __entry->drm_debug_category,
++		      dev_name(__entry->dev), __get_str(msg))
++);
++
++#endif /* _TRACE_DRM_H */
++
++/* This part must be outside protection */
++#include <trace/define_trace.h>
+diff --git a/include/trace/events/dyndbg.h b/include/trace/events/dyndbg.h
+new file mode 100644
+index 000000000000..e19fcb56566c
+--- /dev/null
++++ b/include/trace/events/dyndbg.h
+@@ -0,0 +1,74 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#undef TRACE_SYSTEM
++#define TRACE_SYSTEM dyndbg
++
++#if !defined(_TRACE_DYNDBG_H) || defined(TRACE_HEADER_MULTI_READ)
++#define _TRACE_DYNDBG_H
++
++#include <linux/tracepoint.h>
++
++/* capture pr_debug() callsite descriptor and message */
++TRACE_EVENT(prdbg,
++	    TP_PROTO(const struct _ddebug *desc, const char *text, size_t len),
++
++	    TP_ARGS(desc, text, len),
++
++	    TP_STRUCT__entry(
++		    __field(const struct _ddebug *, desc)
++		    __dynamic_array(char, msg, len + 1)
++		    ),
++
++	    TP_fast_assign(
++		    __entry->desc = desc;
++		    /*
++		     * Each trace entry is printed in a new line.
++		     * If the msg finishes with '\n', cut it off
++		     * to avoid blank lines in the trace.
++		     */
++		    if (len > 0 && (text[len - 1] == '\n'))
++			    len -= 1;
++
++		    memcpy(__get_str(msg), text, len);
++		    __get_str(msg)[len] = 0;
++		    ),
++
++	    TP_printk("%s.%s %s", __entry->desc->modname,
++		      __entry->desc->function, __get_str(msg))
++);
++
++/* capture dev_dbg() callsite descriptor, device, and message */
++TRACE_EVENT(devdbg,
++	    TP_PROTO(const struct _ddebug *desc, const struct device *dev,
++		     const char *text, size_t len),
++
++	    TP_ARGS(desc, dev, text, len),
++
++	    TP_STRUCT__entry(
++		    __field(const struct _ddebug *, desc)
++		    __field(const struct device *, dev)
++		    __dynamic_array(char, msg, len + 1)
++		    ),
++
++	    TP_fast_assign(
++		    __entry->desc = desc;
++		    __entry->dev = (struct device *) dev;
++		    /*
++		     * Each trace entry is printed in a new line.
++		     * If the msg finishes with '\n', cut it off
++		     * to avoid blank lines in the trace.
++		     */
++		    if (len > 0 && (text[len - 1] == '\n'))
++			    len -= 1;
++
++		    memcpy(__get_str(msg), text, len);
++		    __get_str(msg)[len] = 0;
++		    ),
++
++	    TP_printk("%s.%s %s", __entry->desc->modname,
++		      __entry->desc->function, __get_str(msg))
++);
++
++#endif /* _TRACE_DYNDBG_H */
++
++/* This part must be outside protection */
++#include <trace/define_trace.h>
+diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
+index 66f12b9127c7..e000d037cb2e 100644
+--- a/lib/dynamic_debug.c
++++ b/lib/dynamic_debug.c
+@@ -36,7 +36,9 @@
+ #include <linux/sched.h>
+ #include <linux/device.h>
+ #include <linux/netdevice.h>
+-#include <trace/events/printk.h>
++
++#define CREATE_TRACE_POINTS
++#include <trace/events/dyndbg.h>
+ 
+ #include <rdma/ib_verbs.h>
+ 
+@@ -855,7 +857,9 @@ struct ddebug_trace_bufs {
+ static DEFINE_PER_CPU(struct ddebug_trace_bufs, ddebug_trace_bufs);
+ static DEFINE_PER_CPU(int, ddebug_trace_reserve);
+ 
+-static void ddebug_trace(const char *fmt, va_list args)
++__printf(3, 0)
++static void ddebug_trace(struct _ddebug *desc, const struct device *dev,
++			 const char *fmt, va_list args)
  {
-@@ -205,6 +265,8 @@ static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
- static const struct ttm_resource_manager_func i915_ttm_buddy_manager_func = {
- 	.alloc = i915_ttm_buddy_man_alloc,
- 	.free = i915_ttm_buddy_man_free,
-+	.intersects = i915_ttm_buddy_man_intersect,
-+	.compatible = i915_ttm_buddy_man_compatible,
- 	.debug = i915_ttm_buddy_man_debug,
- };
+ 	struct ddebug_trace_buf *buf;
+ 	int bufidx;
+@@ -874,7 +878,11 @@ static void ddebug_trace(const char *fmt, va_list args)
+ 	buf = this_cpu_ptr(ddebug_trace_bufs.bufs) + bufidx;
  
+ 	len = vscnprintf(buf->buf, sizeof(buf->buf), fmt, args);
+-	trace_console(buf->buf, len);
++
++	if (!dev)
++		trace_prdbg(desc, buf->buf, len);
++	else
++		trace_devdbg(desc, dev, buf->buf, len);
+ 
+ out:
+ 	/* As above. */
+@@ -884,9 +892,9 @@ static void ddebug_trace(const char *fmt, va_list args)
+ }
+ 
+ __printf(2, 3)
+-static void ddebug_printk(unsigned int flags, const char *fmt, ...)
++static void ddebug_printk(struct _ddebug *desc, const char *fmt, ...)
+ {
+-	if (flags & _DPRINTK_FLAGS_TRACE) {
++	if (desc->flags & _DPRINTK_FLAGS_TRACE) {
+ 		va_list args;
+ 
+ 		va_start(args, fmt);
+@@ -894,11 +902,11 @@ static void ddebug_printk(unsigned int flags, const char *fmt, ...)
+ 		 * All callers include the KERN_DEBUG prefix to keep the
+ 		 * vprintk case simple; strip it out for tracing.
+ 		 */
+-		ddebug_trace(fmt + strlen(KERN_DEBUG), args);
++		ddebug_trace(desc, NULL, fmt + strlen(KERN_DEBUG), args);
+ 		va_end(args);
+ 	}
+ 
+-	if (flags & _DPRINTK_FLAGS_PRINTK) {
++	if (desc->flags & _DPRINTK_FLAGS_PRINTK) {
+ 		va_list args;
+ 
+ 		va_start(args, fmt);
+@@ -908,19 +916,19 @@ static void ddebug_printk(unsigned int flags, const char *fmt, ...)
+ }
+ 
+ __printf(3, 4)
+-static void ddebug_dev_printk(unsigned int flags, const struct device *dev,
++static void ddebug_dev_printk(struct _ddebug *desc, const struct device *dev,
+ 			      const char *fmt, ...)
+ {
+ 
+-	if (flags & _DPRINTK_FLAGS_TRACE) {
++	if (desc->flags & _DPRINTK_FLAGS_TRACE) {
+ 		va_list args;
+ 
+ 		va_start(args, fmt);
+-		ddebug_trace(fmt, args);
++		ddebug_trace(desc, dev, fmt, args);
+ 		va_end(args);
+ 	}
+ 
+-	if (flags & _DPRINTK_FLAGS_PRINTK) {
++	if (desc->flags & _DPRINTK_FLAGS_PRINTK) {
+ 		va_list args;
+ 
+ 		va_start(args, fmt);
+@@ -943,7 +951,7 @@ void __dynamic_pr_debug(struct _ddebug *descriptor, const char *fmt, ...)
+ 	vaf.fmt = fmt;
+ 	vaf.va = &args;
+ 
+-	ddebug_printk(descriptor->flags, KERN_DEBUG "%s%pV",
++	ddebug_printk(descriptor, KERN_DEBUG "%s%pV",
+ 		      dynamic_emit_prefix(descriptor, buf), &vaf);
+ 
+ 	va_end(args);
+@@ -954,7 +962,6 @@ void __dynamic_dev_dbg(struct _ddebug *descriptor,
+ 		       const struct device *dev, const char *fmt, ...)
+ {
+ 	struct va_format vaf;
+-	unsigned int flags;
+ 	va_list args;
+ 
+ 	BUG_ON(!descriptor);
+@@ -964,15 +971,14 @@ void __dynamic_dev_dbg(struct _ddebug *descriptor,
+ 
+ 	vaf.fmt = fmt;
+ 	vaf.va = &args;
+-	flags = descriptor->flags;
+ 
+ 	if (!dev) {
+-		ddebug_printk(flags, KERN_DEBUG "(NULL device *): %pV",
+-			      &vaf);
++		ddebug_printk(descriptor, KERN_DEBUG "(NULL device *): %pV",
++			       &vaf);
+ 	} else {
+ 		char buf[PREFIX_SIZE] = "";
+ 
+-		ddebug_dev_printk(flags, dev, "%s%s %s: %pV",
++		ddebug_dev_printk(descriptor, dev, "%s%s %s: %pV",
+ 				  dynamic_emit_prefix(descriptor, buf),
+ 				  dev_driver_string(dev), dev_name(dev),
+ 				  &vaf);
+@@ -988,7 +994,6 @@ void __dynamic_netdev_dbg(struct _ddebug *descriptor,
+ 			  const struct net_device *dev, const char *fmt, ...)
+ {
+ 	struct va_format vaf;
+-	unsigned int flags;
+ 	va_list args;
+ 
+ 	BUG_ON(!descriptor);
+@@ -998,24 +1003,22 @@ void __dynamic_netdev_dbg(struct _ddebug *descriptor,
+ 
+ 	vaf.fmt = fmt;
+ 	vaf.va = &args;
+-	flags = descriptor->flags;
+ 
+ 	if (dev && dev->dev.parent) {
+ 		char buf[PREFIX_SIZE] = "";
+ 
+-		ddebug_dev_printk(flags, dev->dev.parent,
+-				   "%s%s %s %s%s: %pV",
+-				   dynamic_emit_prefix(descriptor, buf),
+-				   dev_driver_string(dev->dev.parent),
+-				   dev_name(dev->dev.parent),
+-				   netdev_name(dev), netdev_reg_state(dev),
+-				   &vaf);
++		ddebug_dev_printk(descriptor, dev->dev.parent,
++				  "%s%s %s %s%s: %pV",
++				  dynamic_emit_prefix(descriptor, buf),
++				  dev_driver_string(dev->dev.parent),
++				  dev_name(dev->dev.parent),
++				  netdev_name(dev), netdev_reg_state(dev),
++				  &vaf);
+ 	} else if (dev) {
+-		ddebug_printk(flags, KERN_DEBUG "%s%s: %pV",
+-			       netdev_name(dev), netdev_reg_state(dev), &vaf);
++		ddebug_dev_printk(descriptor, &dev->dev, KERN_DEBUG "%s%s: %pV",
++				  netdev_name(dev), netdev_reg_state(dev), &vaf);
+ 	} else {
+-		ddebug_printk(flags, KERN_DEBUG "(NULL net_device): %pV",
+-			       &vaf);
++		ddebug_printk(descriptor, KERN_DEBUG "(NULL net_device): %pV", &vaf);
+ 	}
+ 
+ 	va_end(args);
+@@ -1031,18 +1034,16 @@ void __dynamic_ibdev_dbg(struct _ddebug *descriptor,
+ {
+ 	struct va_format vaf;
+ 	va_list args;
+-	unsigned int flags;
+ 
+ 	va_start(args, fmt);
+ 
+ 	vaf.fmt = fmt;
+ 	vaf.va = &args;
+-	flags = descriptor->flags;
+ 
+ 	if (ibdev && ibdev->dev.parent) {
+ 		char buf[PREFIX_SIZE] = "";
+ 
+-		ddebug_dev_printk(flags, ibdev->dev.parent,
++		ddebug_dev_printk(descriptor, ibdev->dev.parent,
+ 				  "%s%s %s %s: %pV",
+ 				  dynamic_emit_prefix(descriptor, buf),
+ 				  dev_driver_string(ibdev->dev.parent),
+@@ -1050,10 +1051,10 @@ void __dynamic_ibdev_dbg(struct _ddebug *descriptor,
+ 				  dev_name(&ibdev->dev),
+ 				  &vaf);
+ 	} else if (ibdev) {
+-		ddebug_printk(flags, KERN_DEBUG "%s: %pV",
+-			      dev_name(&ibdev->dev), &vaf);
++		ddebug_dev_printk(descriptor, &ibdev->dev, KERN_DEBUG "%s: %pV",
++				  dev_name(&ibdev->dev), &vaf);
+ 	} else {
+-		ddebug_printk(flags, KERN_DEBUG "(NULL ip_device): %pV", &vaf);
++		ddebug_printk(descriptor, KERN_DEBUG "(NULL ip_device): %pV", &vaf);
+ 	}
+ 
+ 	va_end(args);
 -- 
-2.25.1
+2.36.1
 
