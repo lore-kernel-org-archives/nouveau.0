@@ -4,61 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 615C9C25B06
-	for <nouveau@archiver.kernel.org>; Thu,  4 Aug 2022 20:49:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DA45C00140
+	for <nouveau@archiver.kernel.org>; Fri,  5 Aug 2022 09:09:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C563AA711F;
-	Thu,  4 Aug 2022 20:42:37 +0000 (UTC)
-Received: from mail-il1-x134.google.com (mail-il1-x134.google.com
- [IPv6:2607:f8b0:4864:20::134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 489D2A9CAE;
- Mon, 18 Jul 2022 06:38:36 +0000 (UTC)
-Received: by mail-il1-x134.google.com with SMTP id w9so2043460ilg.1;
- Sun, 17 Jul 2022 23:38:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=Bh0/DFoYhEptZ3Qmb/gPoAkKxPWthqE3Rxq7bl/8jnk=;
- b=K/N03qVc1QzIwf6M5NDJI4ORkODBkAgXm+R6M0pzFztLSNH2lxdUOr3Bdk22ZYFZv5
- sDl5rIy6kNaoz2BNwD/pzj57EVUtLhkipWZJqnfrV/L0VBnN0eh/2z8foMXlEJ0+Qgkl
- Sql2bmyd+cmxfwkWeGIDAhfrgSUq7RlNh5cM+tWoSkVtR3fjxGJy2KEUi/xwbmFB5nJn
- xleOLiyXScTiZkgKeoSnP25A5sprhtifuHlsIYnGA6EZOIrfNonifb+marff6kLexoQ6
- gEnt5ASK9MkJZhzQOxhFH/hjRmPOdX9JVRk/Knt/ZznS5ee9pO/KsQTiF0Y6/3RQrG6J
- Bh3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=Bh0/DFoYhEptZ3Qmb/gPoAkKxPWthqE3Rxq7bl/8jnk=;
- b=qDu/sPhKORgF5xWS38h71ExrWoQyK+rX2uSPIcSqxWKtI/imUrrAPvFYKBxoC16BQi
- k7klOjBMwjUVkwPr0O2EIpGYEMnjnL5oGkta+w/qH+jHBoIbQ/0EvDE2sZKJHg56ZR0r
- SnLYO9O/OWwUwVCNhcD5al/9uIbseoPtJzYNn7tvs9Q+H0M1UMLMtqQZNQi2AzoiSv1Q
- xyniuxjr8DPHNXhiIXJxgJRItfl4uJ+VtLK+QBca0CCjqYINgethuzhgMEaTIZoO7WTB
- jHQuo6DVk0DXGlB9sNoUEfePeZZfx6YWdczLx9QpypD6MmlnOmVRXngRuzxYiCL+jeha
- JQDQ==
-X-Gm-Message-State: AJIora+ckO5Kkw0qeEYGT347yL/+lh/JJq4l//BpR+VYgFFLKUF07xHt
- QSOZthnifq1ibxS+NTul81oMSCd6+GY=
-X-Google-Smtp-Source: AGRyM1v2fbTo5fmEy4gFJ9UlFaZlXXEOOpfE4jwoyvAkD4TJOBnHASiczSSjOBILUXqmUAzKJBWjFQ==
-X-Received: by 2002:a05:6e02:1bcb:b0:2dc:ec0e:9e7 with SMTP id
- x11-20020a056e021bcb00b002dcec0e09e7mr1749649ilv.213.1658126315309; 
- Sun, 17 Jul 2022 23:38:35 -0700 (PDT)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- o12-20020a92a80c000000b002dcd35bb030sm2342604ilh.74.2022.07.17.23.38.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 17 Jul 2022 23:38:34 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: jbaron@akamai.com
-Date: Mon, 18 Jul 2022 00:35:59 -0600
-Message-Id: <20220718063641.9179-16-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220718063641.9179-1-jim.cromie@gmail.com>
-References: <20220718063641.9179-1-jim.cromie@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E886B1AE9;
+	Fri,  5 Aug 2022 09:09:13 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BDC510E3C3;
+ Fri,  5 Aug 2022 09:08:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1659690529; x=1691226529;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=HcwH7rBY8c9G5DxpGNSvCKWHB22AViIT69knXHJMmAw=;
+ b=GXaKM9iruNLc1EMGzDXitVupLYPkQr1gvbjdaLhtJl/+B5l4CwrfthMg
+ GbaV4wvS44VqRp4T2Q+eWlRFVtWc/e2UZXtKUSC71OtoZ1MjD9HirKZVb
+ QUgKoO2fUl9bVyJUdrnUcjapwsJfWx3ujGMgbjTVua4e05vaMi4jHEJ7S
+ EIadZLO+LCU9BPgBoJJX2NVtJl4xyzKkRpZPb/WXXuSUgVnu9sBOg4m3W
+ JY3m3BKp18gzY41p/oX/yijZ8deiEgf6Du01OfcYwTP1BvruYsLio63w1
+ YjxbV+LCFPoO7IMNBtNWlNvOjvlqPHrzav1JHjN+2p9RYZ9cQ5cagcYp/ g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10429"; a="287721249"
+X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="287721249"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2022 02:08:47 -0700
+X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="554047600"
+Received: from namitaga-mobl.ger.corp.intel.com (HELO [10.213.224.55])
+ ([10.213.224.55])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2022 02:08:45 -0700
+Message-ID: <3a0ef983-6774-7de4-a2e5-0424e215460d@intel.com>
+Date: Fri, 5 Aug 2022 10:08:43 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.12.0
+Content-Language: en-GB
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+References: <20220804085952.6137-1-Arunpravin.PaneerSelvam@amd.com>
+ <20220804085952.6137-4-Arunpravin.PaneerSelvam@amd.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20220804085952.6137-4-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 Aug 2022 20:34:47 +0000
-Subject: [Nouveau] [PATCH v3 15/41] dyndbg: validate class FOO by checking
- with module
+Subject: Re: [Nouveau] [PATCH v4 4/6] drm/i915: Implement
+ intersect/compatible functions
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,189 +62,176 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, luben.tuikov@amd.com, christian.koenig@amd.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Add module-to-class validation:
+On 04/08/2022 09:59, Arunpravin Paneer Selvam wrote:
+> Implemented a new intersect and compatible callback function
+> fetching start offset from drm buddy allocator.
+> 
+> v3: move the bits that are specific to buddy_man (Matthew)
+> v4: consider the block size /range (Matthew)
+> 
+> Signed-off-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 41 +----------
+>   drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 73 +++++++++++++++++++
+>   2 files changed, 74 insertions(+), 40 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> index 70e2ed4e99df..bf5fd6886ca0 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> @@ -379,7 +379,6 @@ static bool i915_ttm_eviction_valuable(struct ttm_buffer_object *bo,
+>   				       const struct ttm_place *place)
+>   {
+>   	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+> -	struct ttm_resource *res = bo->resource;
+>   
+>   	if (!obj)
+>   		return false;
+> @@ -396,45 +395,7 @@ static bool i915_ttm_eviction_valuable(struct ttm_buffer_object *bo,
+>   	if (!i915_gem_object_evictable(obj))
+>   		return false;
+>   
+> -	switch (res->mem_type) {
+> -	case I915_PL_LMEM0: {
+> -		struct ttm_resource_manager *man =
+> -			ttm_manager_type(bo->bdev, res->mem_type);
+> -		struct i915_ttm_buddy_resource *bman_res =
+> -			to_ttm_buddy_resource(res);
+> -		struct drm_buddy *mm = bman_res->mm;
+> -		struct drm_buddy_block *block;
+> -
+> -		if (!place->fpfn && !place->lpfn)
+> -			return true;
+> -
+> -		GEM_BUG_ON(!place->lpfn);
+> -
+> -		/*
+> -		 * If we just want something mappable then we can quickly check
+> -		 * if the current victim resource is using any of the CPU
+> -		 * visible portion.
+> -		 */
+> -		if (!place->fpfn &&
+> -		    place->lpfn == i915_ttm_buddy_man_visible_size(man))
+> -			return bman_res->used_visible_size > 0;
+> -
+> -		/* Real range allocation */
+> -		list_for_each_entry(block, &bman_res->blocks, link) {
+> -			unsigned long fpfn =
+> -				drm_buddy_block_offset(block) >> PAGE_SHIFT;
+> -			unsigned long lpfn = fpfn +
+> -				(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
+> -
+> -			if (place->fpfn < lpfn && place->lpfn > fpfn)
+> -				return true;
+> -		}
+> -		return false;
+> -	} default:
+> -		break;
+> -	}
+> -
+> -	return true;
+> +	return ttm_bo_eviction_valuable(bo, place);
+>   }
+>   
+>   static void i915_ttm_evict_flags(struct ttm_buffer_object *bo,
+> diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> index a5109548abc0..9def01d5f368 100644
+> --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> @@ -178,6 +178,77 @@ static void i915_ttm_buddy_man_free(struct ttm_resource_manager *man,
+>   	kfree(bman_res);
+>   }
+>   
+> +static bool i915_ttm_buddy_man_intersects(struct ttm_resource_manager *man,
+> +					  struct ttm_resource *res,
+> +					  const struct ttm_place *place,
+> +					  size_t size)
+> +{
+> +	struct i915_ttm_buddy_resource *bman_res = to_ttm_buddy_resource(res);
+> +	struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
+> +	struct drm_buddy *mm = &bman->mm;
+> +	struct drm_buddy_block *block;
+> +
+> +	if (!place->fpfn && !place->lpfn)
+> +		return true;
+> +
+> +	GEM_BUG_ON(!place->lpfn);
+> +
+> +	/*
+> +	 * If we just want something mappable then we can quickly check
+> +	 * if the current victim resource is using any of the CP
 
-  #> echo class DRM_UT_KMS +p > /proc/dynamic_debug/control
+Nit: s/CP/CPU/
 
-If a query has "class FOO", then ddebug_find_valid_class(), called
-from ddebug_change(), requires that FOO is known to module X,
-otherwize the query is skipped entirely for X.  This protects each
-module's class-space, other than the default:31.
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-The authors' choice of FOO is highly selective, giving isolation
-and/or coordinated sharing of FOOs.  For example, only DRM modules
-should know and respond to DRM_UT_KMS.
-
-So this, combined with module's opt-in declaration of known classes,
-effectively privatizes the .class_id space for each module (or
-coordinated set of modules).
-
-Notes:
-
-For all "class FOO" queries, ddebug_find_valid_class() is called, it
-returns the map matching the query, and sets valid_class via an
-*outvar).
-
-If no "class FOO" is supplied, valid_class = _CLASS_DFLT.  This
-insures that legacy queries do not trample on new class'd callsites,
-as they get added.
-
-Also add a new column to control-file output, displaying non-default
-class-name (when found) or the "unknown _id:", if it has not been
-(correctly) declared with one of the declarator macros.
-
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- lib/dynamic_debug.c | 76 ++++++++++++++++++++++++++++++++++++++++-----
- 1 file changed, 68 insertions(+), 8 deletions(-)
-
-diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-index e29730686cfb..4c27bbe5187e 100644
---- a/lib/dynamic_debug.c
-+++ b/lib/dynamic_debug.c
-@@ -56,6 +56,7 @@ struct ddebug_query {
- 	const char *module;
- 	const char *function;
- 	const char *format;
-+	const char *class_string;
- 	unsigned int first_lineno, last_lineno;
- };
- 
-@@ -136,15 +137,33 @@ static void vpr_info_dq(const struct ddebug_query *query, const char *msg)
- 			fmtlen--;
- 	}
- 
--	v3pr_info("%s: func=\"%s\" file=\"%s\" module=\"%s\" format=\"%.*s\" lineno=%u-%u\n",
--		 msg,
--		 query->function ?: "",
--		 query->filename ?: "",
--		 query->module ?: "",
--		 fmtlen, query->format ?: "",
--		 query->first_lineno, query->last_lineno);
-+	v3pr_info("%s: func=\"%s\" file=\"%s\" module=\"%s\" format=\"%.*s\" lineno=%u-%u class=%s\n",
-+		  msg,
-+		  query->function ?: "",
-+		  query->filename ?: "",
-+		  query->module ?: "",
-+		  fmtlen, query->format ?: "",
-+		  query->first_lineno, query->last_lineno, query->class_string);
- }
- 
-+static struct ddebug_class_map *ddebug_find_valid_class(struct ddebug_table const *dt,
-+							  const char *class_string, int *class_id)
-+{
-+	struct ddebug_class_map *map;
-+	int idx;
-+
-+	list_for_each_entry(map, &dt->maps, link) {
-+		idx = match_string(map->class_names, map->length, class_string);
-+		if (idx >= 0) {
-+			*class_id = idx + map->base;
-+			return map;
-+		}
-+	}
-+	*class_id = -ENOENT;
-+	return NULL;
-+}
-+
-+#define __outvar /* filled by callee */
- /*
-  * Search the tables for _ddebug's which match the given `query' and
-  * apply the `flags' and `mask' to them.  Returns number of matching
-@@ -159,6 +178,8 @@ static int ddebug_change(const struct ddebug_query *query,
- 	unsigned int newflags;
- 	unsigned int nfound = 0;
- 	struct flagsbuf fbuf, nbuf;
-+	struct ddebug_class_map *map = NULL;
-+	int __outvar valid_class;
- 
- 	/* search for matching ddebugs */
- 	mutex_lock(&ddebug_lock);
-@@ -169,9 +190,22 @@ static int ddebug_change(const struct ddebug_query *query,
- 		    !match_wildcard(query->module, dt->mod_name))
- 			continue;
- 
-+		if (query->class_string) {
-+			map = ddebug_find_valid_class(dt, query->class_string, &valid_class);
-+			if (!map)
-+				continue;
-+		} else {
-+			/* constrain query, do not touch class'd callsites */
-+			valid_class = _DPRINTK_CLASS_DFLT;
-+		}
-+
- 		for (i = 0; i < dt->num_ddebugs; i++) {
- 			struct _ddebug *dp = &dt->ddebugs[i];
- 
-+			/* match site against query-class */
-+			if (dp->class_id != valid_class)
-+				continue;
-+
- 			/* match against the source filename */
- 			if (query->filename &&
- 			    !match_wildcard(query->filename, dp->filename) &&
-@@ -420,6 +454,8 @@ static int ddebug_parse_query(char *words[], int nwords,
- 		} else if (!strcmp(keyword, "line")) {
- 			if (parse_linerange(query, arg))
- 				return -EINVAL;
-+		} else if (!strcmp(keyword, "class")) {
-+			rc = check_set(&query->class_string, arg, "class");
- 		} else {
- 			pr_err("unknown keyword \"%s\"\n", keyword);
- 			return -EINVAL;
-@@ -854,6 +890,20 @@ static void *ddebug_proc_next(struct seq_file *m, void *p, loff_t *pos)
- 	return dp;
- }
- 
-+#define class_in_range(class_id, map)					\
-+	(class_id >= map->base && class_id < map->base + map->length)
-+
-+static const char *ddebug_class_name(struct ddebug_iter *iter, struct _ddebug *dp)
-+{
-+	struct ddebug_class_map *map;
-+
-+	list_for_each_entry(map, &iter->table->maps, link)
-+		if (class_in_range(dp->class_id, map))
-+			return map->class_names[dp->class_id - map->base];
-+
-+	return NULL;
-+}
-+
- /*
-  * Seq_ops show method.  Called several times within a read()
-  * call from userspace, with ddebug_lock held.  Formats the
-@@ -865,6 +915,7 @@ static int ddebug_proc_show(struct seq_file *m, void *p)
- 	struct ddebug_iter *iter = m->private;
- 	struct _ddebug *dp = p;
- 	struct flagsbuf flags;
-+	char const *class;
- 
- 	if (p == SEQ_START_TOKEN) {
- 		seq_puts(m,
-@@ -877,7 +928,16 @@ static int ddebug_proc_show(struct seq_file *m, void *p)
- 		   iter->table->mod_name, dp->function,
- 		   ddebug_describe_flags(dp->flags, &flags));
- 	seq_escape_str(m, dp->format, ESCAPE_SPACE, "\t\r\n\"");
--	seq_puts(m, "\"\n");
-+	seq_puts(m, "\"");
-+
-+	if (dp->class_id != _DPRINTK_CLASS_DFLT) {
-+		class = ddebug_class_name(iter, dp);
-+		if (class)
-+			seq_printf(m, " class:%s", class);
-+		else
-+			seq_printf(m, " class unknown, _id:%d", dp->class_id);
-+	}
-+	seq_puts(m, "\n");
- 
- 	return 0;
- }
--- 
-2.36.1
-
+> +	 * visible portion.
+> +	 */
+> +	if (!place->fpfn &&
+> +	    place->lpfn == i915_ttm_buddy_man_visible_size(man))
+> +		return bman_res->used_visible_size > 0;
+> +
+> +	/* Check each drm buddy block individually */
+> +	list_for_each_entry(block, &bman_res->blocks, link) {
+> +		unsigned long fpfn =
+> +			drm_buddy_block_offset(block) >> PAGE_SHIFT;
+> +		unsigned long lpfn = fpfn +
+> +			(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
+> +
+> +		if (place->fpfn < lpfn && place->lpfn > fpfn)
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+> +static bool i915_ttm_buddy_man_compatible(struct ttm_resource_manager *man,
+> +					  struct ttm_resource *res,
+> +					  const struct ttm_place *place,
+> +					  size_t size)
+> +{
+> +	struct i915_ttm_buddy_resource *bman_res = to_ttm_buddy_resource(res);
+> +	struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
+> +	struct drm_buddy *mm = &bman->mm;
+> +	struct drm_buddy_block *block;
+> +
+> +	if (!place->fpfn && !place->lpfn)
+> +		return true;
+> +
+> +	GEM_BUG_ON(!place->lpfn);
+> +
+> +	if (!place->fpfn &&
+> +	    place->lpfn == i915_ttm_buddy_man_visible_size(man))
+> +		return bman_res->used_visible_size == res->num_pages;
+> +
+> +	/* Check each drm buddy block individually */
+> +	list_for_each_entry(block, &bman_res->blocks, link) {
+> +		unsigned long fpfn =
+> +			drm_buddy_block_offset(block) >> PAGE_SHIFT;
+> +		unsigned long lpfn = fpfn +
+> +			(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
+> +
+> +		if (fpfn < place->fpfn || lpfn > place->lpfn)
+> +			return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +
+>   static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
+>   				     struct drm_printer *printer)
+>   {
+> @@ -205,6 +276,8 @@ static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
+>   static const struct ttm_resource_manager_func i915_ttm_buddy_manager_func = {
+>   	.alloc = i915_ttm_buddy_man_alloc,
+>   	.free = i915_ttm_buddy_man_free,
+> +	.intersects = i915_ttm_buddy_man_intersects,
+> +	.compatible = i915_ttm_buddy_man_compatible,
+>   	.debug = i915_ttm_buddy_man_debug,
+>   };
+>   
