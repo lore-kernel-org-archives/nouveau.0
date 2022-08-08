@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47276C00140
-	for <nouveau@archiver.kernel.org>; Mon,  8 Aug 2022 23:57:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE82EC25B0C
+	for <nouveau@archiver.kernel.org>; Mon,  8 Aug 2022 23:57:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 336272B349;
-	Mon,  8 Aug 2022 23:55:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3A07ADDA5;
+	Mon,  8 Aug 2022 23:55:29 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7148412B7F6
- for <nouveau@lists.freedesktop.org>; Mon,  8 Aug 2022 23:54:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A509A18A978
+ for <nouveau@lists.freedesktop.org>; Mon,  8 Aug 2022 23:55:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1660002897;
+ s=mimecast20190719; t=1660002914;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=yFuI9l5h91DZudC/kp5qPp1NJKZ67KzBNjAbMhUbReQ=;
- b=RtuGqa6+wEmtVPKDSgPUYztndXXkCZiFVac8CBCVs99pS8Yqzyt8gsYlOtJ+7QmgA9OJIJ
- /e9GYAcnjsIUvF3EegMEx/zjV3L6GUFB4R4UbJgo+94ywGBZaGiQ00fPeU5VzoYnFSAdBe
- l1Gobh27PHaAtx05XPPEU7thQbmdf4o=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=Lwx8PaWh6vygwU1UFyt3KfAFGt9fHxhNC+ENd2udmJQ=;
+ b=MhEO0vtfQQLdYagnwgC4qxX2+2uMWhC2oYAf6hc7bRnSHR+UvjxjO2dzlBtW44bbPJGPE5
+ RH/MQxJNTjXCaABDqjkkhz0ylv2hLWh39AaEZjIx2nreWZSh+WV+Pgljb7XoPDeHHcwxq6
+ Mf15jAIxjtXq1mrOkYKkFS2y8g1oZAs=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-517-jO9EHuizMSGdFeXprMRd3A-1; Mon, 08 Aug 2022 19:54:50 -0400
-X-MC-Unique: jO9EHuizMSGdFeXprMRd3A-1
+ us-mta-499-qwG6YdUkPqGXCsLRpEDo_A-1; Mon, 08 Aug 2022 19:55:09 -0400
+X-MC-Unique: qwG6YdUkPqGXCsLRpEDo_A-1
 Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.rdu2.redhat.com
  [10.11.54.8])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 92E901C05AA3;
- Mon,  8 Aug 2022 23:54:49 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 7DD7618A6522;
+ Mon,  8 Aug 2022 23:55:08 +0000 (UTC)
 Received: from emerald.lyude.net (unknown [10.22.17.154])
- by smtp.corp.redhat.com (Postfix) with ESMTP id F0B5CC15BA1;
- Mon,  8 Aug 2022 23:54:48 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id E099DC15BA1;
+ Mon,  8 Aug 2022 23:55:07 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Date: Mon,  8 Aug 2022 19:51:55 -0400
-Message-Id: <20220808235203.123892-11-lyude@redhat.com>
+Date: Mon,  8 Aug 2022 19:51:59 -0400
+Message-Id: <20220808235203.123892-15-lyude@redhat.com>
 In-Reply-To: <20220808235203.123892-1-lyude@redhat.com>
 References: <20220808235203.123892-1-lyude@redhat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Scanned-By: MIMEDefang 2.85 on 10.11.54.8
-Subject: [Nouveau] [RFC v2 10/18] drm/display/dp_mst: Fix modeset tracking
- in drm_dp_atomic_release_vcpi_slots()
+Subject: [Nouveau] [RFC v2 14/18] drm/display/dp_mst: Drop all ports from
+ topology on CSNs before queueing link address work
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,21 +70,17 @@ Cc: Jani Nikula <jani.nikula@intel.com>, Imre Deak <imre.deak@intel.com>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Currently with the MST helpers we avoid releasing payloads _and_ avoid
-pulling in the MST state if there aren't any actual payload changes. While
-we want to keep the first step, we need to now make sure that we're always
-pulling in the MST state on all modesets that can modify payloads - even if
-the resulting payloads in the atomic state are identical to the previous
-ones.
+We want to start cutting down on all of the places that we use port
+validation, so that ports may be removed from the topology as quickly as
+possible to minimize the number of errors we run into as a result of being
+out of sync with the current topology status. This isn't a very typical
+scenario and I don't think I've ever even run into it - but since the next
+commit is going to make some changes to payload updates depending on their
+hotplug status I think it's a probably good idea to take precautions.
 
-This is mainly to make it so that if a CRTC is still assigned to a
-connector but is set to DPMS off, the CRTC still holds it's payload
-allocation in the atomic state and still appropriately pulls in the MST
-state for commit tracking. Otherwise, we'll occasionally forget to update
-MST payloads from changes caused by non-atomic DPMS changes. Doing this
-also allows us to track bandwidth limitations in a state correctly even
-between DPMS changes, so that there's no chance of a simple ->active change
-being rejected by the atomic check.
+Let's do this with CSNs by moving some code around so that we only queue
+link address probing work at the end of handling all CSNs - allowing us to
+make sure we drop as many topology references as we can beforehand.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 Cc: Wayne Lin <Wayne.Lin@amd.com>
@@ -96,46 +92,66 @@ Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
 Cc: Sean Paul <sean@poorly.run>
 Acked-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/display/drm_dp_mst_topology.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-index aa6dcd9ff6a5..2f7c43f88d74 100644
+index 97e8f8a83ed4..a5460cadf2c8 100644
 --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
 +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-@@ -4474,6 +4474,7 @@ int drm_dp_atomic_release_time_slots(struct drm_atomic_state *state,
- 	struct drm_dp_mst_topology_state *topology_state;
- 	struct drm_dp_mst_atomic_payload *payload;
- 	struct drm_connector_state *old_conn_state, *new_conn_state;
-+	bool update_payload = true;
+@@ -2509,7 +2509,7 @@ drm_dp_mst_handle_link_address_port(struct drm_dp_mst_branch *mstb,
+ 	return ret;
+ }
  
- 	old_conn_state = drm_atomic_get_old_connector_state(state, port->connector);
- 	if (!old_conn_state->crtc)
-@@ -4485,10 +4486,12 @@ int drm_dp_atomic_release_time_slots(struct drm_atomic_state *state,
- 		struct drm_crtc_state *crtc_state =
- 			drm_atomic_get_new_crtc_state(state, new_conn_state->crtc);
+-static void
++static int
+ drm_dp_mst_handle_conn_stat(struct drm_dp_mst_branch *mstb,
+ 			    struct drm_dp_connection_status_notify *conn_stat)
+ {
+@@ -2522,7 +2522,7 @@ drm_dp_mst_handle_conn_stat(struct drm_dp_mst_branch *mstb,
  
--		if (!crtc_state ||
--		    !drm_atomic_crtc_needs_modeset(crtc_state) ||
--		    crtc_state->enable)
-+		/* No modeset means no payload changes, so it's safe to not pull in the MST state */
-+		if (!crtc_state || !drm_atomic_crtc_needs_modeset(crtc_state))
- 			return 0;
-+
-+		if (!crtc_state->mode_changed && !crtc_state->connectors_changed)
-+			update_payload = false;
- 	}
- 
- 	topology_state = drm_atomic_get_mst_topology_state(state, mgr);
-@@ -4496,6 +4499,8 @@ int drm_dp_atomic_release_time_slots(struct drm_atomic_state *state,
- 		return PTR_ERR(topology_state);
- 
- 	topology_state->pending_crtc_mask |= drm_crtc_mask(old_conn_state->crtc);
-+	if (!update_payload)
+ 	port = drm_dp_get_port(mstb, conn_stat->port_number);
+ 	if (!port)
+-		return;
 +		return 0;
  
- 	payload = drm_atomic_get_mst_payload_state(topology_state, port);
- 	if (WARN_ON(!payload)) {
+ 	if (port->connector) {
+ 		if (!port->input && conn_stat->input_port) {
+@@ -2575,8 +2575,7 @@ drm_dp_mst_handle_conn_stat(struct drm_dp_mst_branch *mstb,
+ 
+ out:
+ 	drm_dp_mst_topology_put_port(port);
+-	if (dowork)
+-		queue_work(system_long_wq, &mstb->mgr->work);
++	return dowork;
+ }
+ 
+ static struct drm_dp_mst_branch *drm_dp_get_mst_branch_device(struct drm_dp_mst_topology_mgr *mgr,
+@@ -4060,7 +4059,7 @@ drm_dp_mst_process_up_req(struct drm_dp_mst_topology_mgr *mgr,
+ 	struct drm_dp_mst_branch *mstb = NULL;
+ 	struct drm_dp_sideband_msg_req_body *msg = &up_req->msg;
+ 	struct drm_dp_sideband_msg_hdr *hdr = &up_req->hdr;
+-	bool hotplug = false;
++	bool hotplug = false, dowork = false;
+ 
+ 	if (hdr->broadcast) {
+ 		const u8 *guid = NULL;
+@@ -4083,11 +4082,14 @@ drm_dp_mst_process_up_req(struct drm_dp_mst_topology_mgr *mgr,
+ 
+ 	/* TODO: Add missing handler for DP_RESOURCE_STATUS_NOTIFY events */
+ 	if (msg->req_type == DP_CONNECTION_STATUS_NOTIFY) {
+-		drm_dp_mst_handle_conn_stat(mstb, &msg->u.conn_stat);
++		dowork = drm_dp_mst_handle_conn_stat(mstb, &msg->u.conn_stat);
+ 		hotplug = true;
+ 	}
+ 
+ 	drm_dp_mst_topology_put_mstb(mstb);
++
++	if (dowork)
++		queue_work(system_long_wq, &mgr->work);
+ 	return hotplug;
+ }
+ 
 -- 
 2.37.1
 
