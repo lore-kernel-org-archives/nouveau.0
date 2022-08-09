@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00DA5C19F2D
-	for <nouveau@archiver.kernel.org>; Tue,  9 Aug 2022 09:23:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25AE4C19F2D
+	for <nouveau@archiver.kernel.org>; Tue,  9 Aug 2022 09:24:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3A3B90BEB;
-	Tue,  9 Aug 2022 09:23:45 +0000 (UTC)
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam07on2072.outbound.protection.outlook.com [40.107.212.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6464710F3B9;
- Tue,  9 Aug 2022 09:23:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EDDF908EC;
+	Tue,  9 Aug 2022 09:23:52 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2050.outbound.protection.outlook.com [40.107.94.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0435C11226D;
+ Tue,  9 Aug 2022 09:23:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ccG53vbVM7uDPLslrZtUkIUQktyM4MGa4gndVUOJ1I/IyzbkKTmRSceGnjUcva3f5Arhb4+11idXODkFlMHmfFBLWknM/81LEkONS99WYp54rITGC5NgmZvxIDHsWaNMtgw83uCWfMjGl2b4h3O50+W2mFLviQWn1xwgDvWzySDHcxMcdGromo1F/Axq9It0u/2mRUSQ7Nf6Jxnx9JS9FlrKC5oOMB/XnVDNFXT7uY43/iAOycHKiGjnKf1AXplEyHhtNjV7F7STq7r8TX7JatmDg/85UCFSvMCzrux0n0D8J2KylzhR765CeZcR84ksYk0WThBI6XyHM64x8frjSQ==
+ b=W5lKkbaJHUdb7gjAH8d3CWuaJmKq5+3Z5EdqHwjFt6pidsKMbtIEX21Lpc1FGCfw+3faJP66ewYNz6E5iUNXZbaf3pAKbsfwSPkVN0k6h+9vEKJeSRfrF7YkmiH0v6dURL17NL+mfuMYMbsm/l6yWhcs3oM3lTZSpU0q5EF+n1nOGeuWJfjUIeh5KTzpTTr6IaPi9gfdbMyKoYZ4+sPqff8Vk7X6VRda0qBP3YKJrdd9WMlHx2XWJBUHjIsCAdgMFBueWfzVCmZCTZ6EFqMek2CMrqEM+gPs2QeYBOkwVnrBjbPH75ouRpM/4XzixcbPQ0Yit70fG9wjdt3IJBtdzQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8v6w+tI5Qh2FNNZ5F9CX8rAR6L0gg/O0dShmJZ0CJ/Y=;
- b=Mzndpe4U/R3TNg3HmGrnhwuXALJOz5klKKmAxJ/msD8c+gclbhyp1YQ2BM061413eyFROAQ0m1Pme5o1W7XfaJQJRAJX7zhYCNwfdNOZ478ULhf3jLmZrvy0Hu6ESspDgsZkCJ6CHXz60HSvAJVCDTj5rg/gFlds68wegRbQGiqBAgPJIyd0Tl5wtCcuRQnSrwEXIi2As4UtZs/YvOSe6NgD0bHmlNhcV3Ko/8+xY7ziCgov8Qyzd+T+KOfPvmvEQYmv6Z4j5SeNqVprrsIdF2WsCNNeldS0lvdKZdab/t+ZPzXqI4VYZNwIKsCGF80iyXnRAwZjOGkw8YRkQTmuzQ==
+ bh=mH1z88cU1KioknbxoZoSI6DcQOJrItFETDvKaYpgLGs=;
+ b=W0+RDNU6pytQGdYikTXpWG49Nz5aR38MbSXdqJqyVzHMmUVozTS4kVilNWnykSmF5i/a5ONMuS2Lhk1CKtcO1Hy6Pi4JtChKG6fNjVIIlq80hwMjE5UcikXkjeoikXuPIlQHujHTkv2ZS5/UMTP9C/JL7YfKFRtNMS1B8OImtuJwp43NyYmznmw2cUxhtuCppVj4hWWEpYnvyTVaP8t/P6tL7EUiJs/sx+8sE9bu9xcPAE7zy96tG7EPFWV5ig01dNRtI15xe3Vt4Y3j1hEIqFxPtEKvCVNjmF4ThlusOrsoq2seR65de8qJBNVzgxG/x3vJQ7VGc4DPAtzufpx+LQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8v6w+tI5Qh2FNNZ5F9CX8rAR6L0gg/O0dShmJZ0CJ/Y=;
- b=oAyYolJXWHuK7n0GRzQyQDdeq1wUWFjH8kiu9P14jf2D9D7iq56jN2pmupyHKxefmQWPlwWYJ62fq3qvADsuKHxcE8D7aGRxQQ9FRYk9ma9ykXjqmHi7qGKiF8Ss4aXfENaOPaJf3Op2HZrXMgEVQT+gpAcIAWDX0REdiJLf5gg=
-Received: from DM5PR07CA0051.namprd07.prod.outlook.com (2603:10b6:4:ad::16) by
- SN6PR12MB4767.namprd12.prod.outlook.com (2603:10b6:805:e5::32) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5504.15; Tue, 9 Aug 2022 09:23:21 +0000
-Received: from DM6NAM11FT004.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:ad:cafe::8d) by DM5PR07CA0051.outlook.office365.com
- (2603:10b6:4:ad::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.14 via Frontend
- Transport; Tue, 9 Aug 2022 09:23:21 +0000
+ bh=mH1z88cU1KioknbxoZoSI6DcQOJrItFETDvKaYpgLGs=;
+ b=SqsT47VOqQkOz6cSrNhAF7LYP7Eo2VXlR4zsn+KTKPOSFSNI4Ej8QN3KRZWjTqwMpjYkRLZl6P6xohZDNhbZ0K1z0Bp7h/Kv6476eMrtCApivgjreIpzECvw/wQmv4nwG2HZ7kBk0HCX7GJ9YiVjgtlsZNjyUcu3IDyy+Q5g3oA=
+Received: from MW4PR04CA0360.namprd04.prod.outlook.com (2603:10b6:303:8a::35)
+ by CH0PR12MB5187.namprd12.prod.outlook.com (2603:10b6:610:ba::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14; Tue, 9 Aug
+ 2022 09:23:34 +0000
+Received: from CO1NAM11FT042.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:8a:cafe::b2) by MW4PR04CA0360.outlook.office365.com
+ (2603:10b6:303:8a::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.18 via Frontend
+ Transport; Tue, 9 Aug 2022 09:23:34 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,19 +45,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT004.mail.protection.outlook.com (10.13.172.217) with Microsoft SMTP
+ CO1NAM11FT042.mail.protection.outlook.com (10.13.174.250) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5504.14 via Frontend Transport; Tue, 9 Aug 2022 09:23:21 +0000
+ 15.20.5504.14 via Frontend Transport; Tue, 9 Aug 2022 09:23:34 +0000
 Received: from amd-X570-AORUS-ELITE.amd.com (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Tue, 9 Aug 2022 04:23:18 -0500
+ 15.1.2375.28; Tue, 9 Aug 2022 04:23:27 -0500
 From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
 To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
  <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Date: Tue, 9 Aug 2022 02:22:25 -0700
-Message-ID: <20220809092230.2808-1-Arunpravin.PaneerSelvam@amd.com>
+Date: Tue, 9 Aug 2022 02:22:28 -0700
+Message-ID: <20220809092230.2808-4-Arunpravin.PaneerSelvam@amd.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220809092230.2808-1-Arunpravin.PaneerSelvam@amd.com>
+References: <20220809092230.2808-1-Arunpravin.PaneerSelvam@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
@@ -66,27 +68,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f9800ff1-7850-4b3f-e154-08da79e8cdb4
-X-MS-TrafficTypeDiagnostic: SN6PR12MB4767:EE_
+X-MS-Office365-Filtering-Correlation-Id: eae84a76-60a6-46db-7ac6-08da79e8d52c
+X-MS-TrafficTypeDiagnostic: CH0PR12MB5187:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NI7wnBeq5b/cMe8zeTwfJ/7q0lWJeJzwliLudtxiOxTmzDf/mDkFaO7FagruS4V558dvsr42owMIZeGBPDKrF9Pzrn3kvkSoezaepdDXyrWXiK15jP96zMXRIMQCA/zzr3i396tQbL5MrL5mXizMScL7wb01pcmjduEEVLZM0Y9762M9Lne80pNs58ltXMcRTsilCaUh6QKXRw8bzfGAMjRZqI8WZ118vKKVr508j4YXkLQCLAChRtTD734i7T9NIKxzIqM8vZMIEFsP7F8+8aPAoVqaM4CZh7vChXtT63qBcO1fpkFNoDpRIqw/k4+e4Af/5p1MLRVJvomBdx6skKAlVkBzNSI3LvGYbod2kAoj5tit15n4DZC41xrUVMePCY5c2Uee4lOjLNog3TFyMUTULk6ZWBtdQjjUc3XUR3RFMWdzWNPryKJ6DL0FwgP/1Z+Ypw2S6uFu7fADv9L05Q3kR4Gs79O9ZPHiS088Q7QxceePdO5xUn16RokMK1k7UmPovQU8Tc3eh9PsYwZp+r7+alboH4QSVGbU3n8kI3jsaLWdZVN7N0JK7rNAip5UUXRVuOMuGsodDGNmvh4u6ByzjYiV1pxfwHE0mozgZN4+/AGf6IPhkmwWjH7/YXy0unmGpgk9KrmDeLU8rsnAHMPo7nBNnySrE/dh82YmdcQubWolVYIH2B/DaPHbsDp0KHYfyNIZL542t0pFcNYza2Q25uYI9T1serXLNWn80mW+H80bJeI7TWKxN4382/4PUOLcsAisJEHMT1NboAYxMWn3yReqrs/f4gv54/YhK7crJlLIte9Qburodk1F48z8UBzgtkW/3rxiHA0cIwYMaA==
+X-Microsoft-Antispam-Message-Info: 3XBXK9zg+cYWufpeZKQjlZz8DYRhHFghXvcQ51JU89mm4vR9pIlN/FLDgqP6pPvKgfMWhU14jU9b8KY2uYml4myDc9tEvG8MZmIarMvlwQ3xdDTX1B+akzhm9/U9cN/qpJUQa/a7NYDhIDRsNxueyraxnwZXmE2C6Mx7iULDqGiJGxJoF/HQgdzEOrcX05LznrEHZAZCaBwRuRdyuePUmClLuDoVoWstuhXYvts7zU7kBBf4kN2F3oR1hlVhvrBW4pZH8Xp8hZ7N8Lh9pcZW8rCX+j5TSjL2b3BOUZQ49P1H3OjKP7xGfwYpd1rDIQ3MXyg8kHJq4pPb28G9XAKtjpeCnsb1i8quOEzs+9JyV/FDRyqEtQPqyKArrrIyLmZ+P9N7hhs2y6s3uOeO/Zl8zWK0i7/mq7jYGL4n8bi89ZP8M2L4/1vJM9RJ5AwdGae/agRtUia12fCrTnhxJ4smUdnhq7s68WbtWuGJvDaSMHk8LgNQ2k5ncHhk/BnSwwoU3pv0Ivl2VZgXGrXKIGXYpclJGxhO9Nx6CfhNKeicb4FZ+qdn4JqejXtMPesyE/t6Y3QnG9rJdmeJjbjJNYPYjOf8kpnFYQY8qV0FJW0O0np/uIsqS67mQTm36iPSWDiFUZIReWSTCuCGnleBTIveOrf0a8nkXv85mqozAU+P0IyHUMDAOG4Tg57rukx8MWIMTP1gyjOz6fkLqFYYzr51fjrPdv3rexEyE4foNpOe+RCrAChKs83H5qEqF+l6ba4lvTxjWfGhlzRnbOuoWZ7MHHzAEGHZzqkEUltmj/jl8rnIkmLAQ/KnCtU9bK65JIZsIoOUcVVDbGzBd5a1XqC41g==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(396003)(346002)(136003)(376002)(40470700004)(46966006)(36840700001)(8676002)(5660300002)(70586007)(82310400005)(70206006)(40480700001)(4326008)(8936002)(40460700003)(16526019)(2906002)(36860700001)(47076005)(82740400003)(81166007)(356005)(86362001)(2616005)(26005)(6666004)(110136005)(54906003)(36756003)(41300700001)(316002)(336012)(7696005)(1076003)(186003)(426003)(478600001)(36900700001);
+ SFS:(13230016)(4636009)(136003)(376002)(346002)(39860400002)(396003)(40470700004)(46966006)(36840700001)(83380400001)(41300700001)(7696005)(70586007)(8676002)(4326008)(70206006)(40480700001)(316002)(1076003)(186003)(16526019)(336012)(426003)(110136005)(26005)(82740400003)(54906003)(47076005)(82310400005)(86362001)(36756003)(2906002)(2616005)(40460700003)(8936002)(81166007)(478600001)(356005)(36860700001)(5660300002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2022 09:23:21.5966 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f9800ff1-7850-4b3f-e154-08da79e8cdb4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2022 09:23:34.0307 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: eae84a76-60a6-46db-7ac6-08da79e8d52c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT004.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT042.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB4767
-Subject: [Nouveau] [PATCH v5 1/6] drm/ttm: Add new callbacks to ttm res mgr
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5187
+Subject: [Nouveau] [PATCH v5 4/6] drm/i915: Implement intersect/compatible
+ functions
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,153 +107,170 @@ Cc: alexander.deucher@amd.com,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-We are adding two new callbacks to ttm resource manager
-function to handle intersection and compatibility of
-placement and resources.
+Implemented a new intersect and compatible callback function
+fetching start offset from drm buddy allocator.
 
-v2: move the amdgpu and ttm_range_manager changes to
-    separate patches (Christian)
-v3: rename "intersect" to "intersects" (Matthew)
-v4: move !place check to the !res if and return false
-    in ttm_resource_compatible() function (Christian)
+v3: move the bits that are specific to buddy_man (Matthew)
+v4: consider the block size /range (Matthew)
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/ttm/ttm_resource.c | 59 ++++++++++++++++++++++++++++++
- include/drm/ttm/ttm_resource.h     | 40 ++++++++++++++++++++
- 2 files changed, 99 insertions(+)
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 41 +----------
+ drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 73 +++++++++++++++++++
+ 2 files changed, 74 insertions(+), 40 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-index 20f9adcc3235..ea67976f1f60 100644
---- a/drivers/gpu/drm/ttm/ttm_resource.c
-+++ b/drivers/gpu/drm/ttm/ttm_resource.c
-@@ -253,6 +253,65 @@ void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index 70e2ed4e99df..bf5fd6886ca0 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -379,7 +379,6 @@ static bool i915_ttm_eviction_valuable(struct ttm_buffer_object *bo,
+ 				       const struct ttm_place *place)
+ {
+ 	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+-	struct ttm_resource *res = bo->resource;
+ 
+ 	if (!obj)
+ 		return false;
+@@ -396,45 +395,7 @@ static bool i915_ttm_eviction_valuable(struct ttm_buffer_object *bo,
+ 	if (!i915_gem_object_evictable(obj))
+ 		return false;
+ 
+-	switch (res->mem_type) {
+-	case I915_PL_LMEM0: {
+-		struct ttm_resource_manager *man =
+-			ttm_manager_type(bo->bdev, res->mem_type);
+-		struct i915_ttm_buddy_resource *bman_res =
+-			to_ttm_buddy_resource(res);
+-		struct drm_buddy *mm = bman_res->mm;
+-		struct drm_buddy_block *block;
+-
+-		if (!place->fpfn && !place->lpfn)
+-			return true;
+-
+-		GEM_BUG_ON(!place->lpfn);
+-
+-		/*
+-		 * If we just want something mappable then we can quickly check
+-		 * if the current victim resource is using any of the CPU
+-		 * visible portion.
+-		 */
+-		if (!place->fpfn &&
+-		    place->lpfn == i915_ttm_buddy_man_visible_size(man))
+-			return bman_res->used_visible_size > 0;
+-
+-		/* Real range allocation */
+-		list_for_each_entry(block, &bman_res->blocks, link) {
+-			unsigned long fpfn =
+-				drm_buddy_block_offset(block) >> PAGE_SHIFT;
+-			unsigned long lpfn = fpfn +
+-				(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
+-
+-			if (place->fpfn < lpfn && place->lpfn > fpfn)
+-				return true;
+-		}
+-		return false;
+-	} default:
+-		break;
+-	}
+-
+-	return true;
++	return ttm_bo_eviction_valuable(bo, place);
  }
- EXPORT_SYMBOL(ttm_resource_free);
  
-+/**
-+ * ttm_resource_intersects - test for intersection
-+ *
-+ * @bdev: TTM device structure
-+ * @res: The resource to test
-+ * @place: The placement to test
-+ * @size: How many bytes the new allocation needs.
-+ *
-+ * Test if @res intersects with @place and @size. Used for testing if evictions
-+ * are valueable or not.
-+ *
-+ * Returns true if the res placement intersects with @place and @size.
-+ */
-+bool ttm_resource_intersects(struct ttm_device *bdev,
-+			     struct ttm_resource *res,
-+			     const struct ttm_place *place,
-+			     size_t size)
+ static void i915_ttm_evict_flags(struct ttm_buffer_object *bo,
+diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+index a5109548abc0..56d017e4038b 100644
+--- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
++++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+@@ -178,6 +178,77 @@ static void i915_ttm_buddy_man_free(struct ttm_resource_manager *man,
+ 	kfree(bman_res);
+ }
+ 
++static bool i915_ttm_buddy_man_intersects(struct ttm_resource_manager *man,
++					  struct ttm_resource *res,
++					  const struct ttm_place *place,
++					  size_t size)
 +{
-+	struct ttm_resource_manager *man;
++	struct i915_ttm_buddy_resource *bman_res = to_ttm_buddy_resource(res);
++	struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
++	struct drm_buddy *mm = &bman->mm;
++	struct drm_buddy_block *block;
 +
-+	if (!res)
-+		return false;
-+
-+	man = ttm_manager_type(bdev, res->mem_type);
-+	if (!place || !man->func->intersects)
++	if (!place->fpfn && !place->lpfn)
 +		return true;
 +
-+	return man->func->intersects(man, res, place, size);
++	GEM_BUG_ON(!place->lpfn);
++
++	/*
++	 * If we just want something mappable then we can quickly check
++	 * if the current victim resource is using any of the CPU
++	 * visible portion.
++	 */
++	if (!place->fpfn &&
++	    place->lpfn == i915_ttm_buddy_man_visible_size(man))
++		return bman_res->used_visible_size > 0;
++
++	/* Check each drm buddy block individually */
++	list_for_each_entry(block, &bman_res->blocks, link) {
++		unsigned long fpfn =
++			drm_buddy_block_offset(block) >> PAGE_SHIFT;
++		unsigned long lpfn = fpfn +
++			(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
++
++		if (place->fpfn < lpfn && place->lpfn > fpfn)
++			return true;
++	}
++
++	return false;
 +}
 +
-+/**
-+ * ttm_resource_compatible - test for compatibility
-+ *
-+ * @bdev: TTM device structure
-+ * @res: The resource to test
-+ * @place: The placement to test
-+ * @size: How many bytes the new allocation needs.
-+ *
-+ * Test if @res compatible with @place and @size.
-+ *
-+ * Returns true if the res placement compatible with @place and @size.
-+ */
-+bool ttm_resource_compatible(struct ttm_device *bdev,
-+			     struct ttm_resource *res,
-+			     const struct ttm_place *place,
-+			     size_t size)
++static bool i915_ttm_buddy_man_compatible(struct ttm_resource_manager *man,
++					  struct ttm_resource *res,
++					  const struct ttm_place *place,
++					  size_t size)
 +{
-+	struct ttm_resource_manager *man;
++	struct i915_ttm_buddy_resource *bman_res = to_ttm_buddy_resource(res);
++	struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
++	struct drm_buddy *mm = &bman->mm;
++	struct drm_buddy_block *block;
 +
-+	if (!res || !place)
-+		return false;
-+
-+	man = ttm_manager_type(bdev, res->mem_type);
-+	if (!man->func->compatible)
++	if (!place->fpfn && !place->lpfn)
 +		return true;
 +
-+	return man->func->compatible(man, res, place, size);
++	GEM_BUG_ON(!place->lpfn);
++
++	if (!place->fpfn &&
++	    place->lpfn == i915_ttm_buddy_man_visible_size(man))
++		return bman_res->used_visible_size == res->num_pages;
++
++	/* Check each drm buddy block individually */
++	list_for_each_entry(block, &bman_res->blocks, link) {
++		unsigned long fpfn =
++			drm_buddy_block_offset(block) >> PAGE_SHIFT;
++		unsigned long lpfn = fpfn +
++			(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
++
++		if (fpfn < place->fpfn || lpfn > place->lpfn)
++			return false;
++	}
++
++	return true;
 +}
 +
- static bool ttm_resource_places_compat(struct ttm_resource *res,
- 				       const struct ttm_place *places,
- 				       unsigned num_placement)
-diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
-index ca89a48c2460..5afc6d664fde 100644
---- a/include/drm/ttm/ttm_resource.h
-+++ b/include/drm/ttm/ttm_resource.h
-@@ -88,6 +88,38 @@ struct ttm_resource_manager_func {
- 	void (*free)(struct ttm_resource_manager *man,
- 		     struct ttm_resource *res);
+ static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
+ 				     struct drm_printer *printer)
+ {
+@@ -205,6 +276,8 @@ static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
+ static const struct ttm_resource_manager_func i915_ttm_buddy_manager_func = {
+ 	.alloc = i915_ttm_buddy_man_alloc,
+ 	.free = i915_ttm_buddy_man_free,
++	.intersects = i915_ttm_buddy_man_intersects,
++	.compatible = i915_ttm_buddy_man_compatible,
+ 	.debug = i915_ttm_buddy_man_debug,
+ };
  
-+	/**
-+	 * struct ttm_resource_manager_func member intersects
-+	 *
-+	 * @man: Pointer to a memory type manager.
-+	 * @res: Pointer to a struct ttm_resource to be checked.
-+	 * @place: Placement to check against.
-+	 * @size: Size of the check.
-+	 *
-+	 * Test if @res intersects with @place + @size. Used to judge if
-+	 * evictions are valueable or not.
-+	 */
-+	bool (*intersects)(struct ttm_resource_manager *man,
-+			   struct ttm_resource *res,
-+			   const struct ttm_place *place,
-+			   size_t size);
-+
-+	/**
-+	 * struct ttm_resource_manager_func member compatible
-+	 *
-+	 * @man: Pointer to a memory type manager.
-+	 * @res: Pointer to a struct ttm_resource to be checked.
-+	 * @place: Placement to check against.
-+	 * @size: Size of the check.
-+	 *
-+	 * Test if @res compatible with @place + @size. Used to check of
-+	 * the need to move the backing store or not.
-+	 */
-+	bool (*compatible)(struct ttm_resource_manager *man,
-+			   struct ttm_resource *res,
-+			   const struct ttm_place *place,
-+			   size_t size);
-+
- 	/**
- 	 * struct ttm_resource_manager_func member debug
- 	 *
-@@ -329,6 +361,14 @@ int ttm_resource_alloc(struct ttm_buffer_object *bo,
- 		       const struct ttm_place *place,
- 		       struct ttm_resource **res);
- void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res);
-+bool ttm_resource_intersects(struct ttm_device *bdev,
-+			     struct ttm_resource *res,
-+			     const struct ttm_place *place,
-+			     size_t size);
-+bool ttm_resource_compatible(struct ttm_device *bdev,
-+			     struct ttm_resource *res,
-+			     const struct ttm_place *place,
-+			     size_t size);
- bool ttm_resource_compat(struct ttm_resource *res,
- 			 struct ttm_placement *placement);
- void ttm_resource_set_bo(struct ttm_resource *res,
-
-base-commit: 5727dcfd8486399c40e39d2c08fe36fedab29d99
 -- 
 2.25.1
 
