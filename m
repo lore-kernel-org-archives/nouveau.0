@@ -4,52 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D1C4C25B0C
-	for <nouveau@archiver.kernel.org>; Mon,  8 Aug 2022 23:58:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9944C19F2D
+	for <nouveau@archiver.kernel.org>; Tue,  9 Aug 2022 08:27:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 015DEADE31;
-	Mon,  8 Aug 2022 23:55:50 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F19A9A6733
- for <nouveau@lists.freedesktop.org>; Mon,  8 Aug 2022 23:55:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1660002915;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=m2leLlKnhht5Zd1Jvvd0vHV196LjRIIKrLG7rDDvvSk=;
- b=MKsMECs/dWUfhuy+C4L0XsJnpdFYPZjQZ5aj9V6hersJuByhQVbesVRDDCSSFI6e7Y086N
- 6VyDNrt5l0h5IlKNVAOeHwDzL/RdlHTk87uOPRO0x6Jgt8YEHGk94YxKFFv3b7L/Sq9N+t
- KORixTE8PHFjv7+O1UtPI/8DRJoVJiY=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-584-ViECr-QnNtKXqpg0guHCpg-1; Mon, 08 Aug 2022 19:55:11 -0400
-X-MC-Unique: ViECr-QnNtKXqpg0guHCpg-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.rdu2.redhat.com
- [10.11.54.8])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 366EF3C0CD5A;
- Mon,  8 Aug 2022 23:55:11 +0000 (UTC)
-Received: from emerald.lyude.net (unknown [10.22.17.154])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 9BA89C15BA1;
- Mon,  8 Aug 2022 23:55:10 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Date: Mon,  8 Aug 2022 19:52:00 -0400
-Message-Id: <20220808235203.123892-16-lyude@redhat.com>
-In-Reply-To: <20220808235203.123892-1-lyude@redhat.com>
-References: <20220808235203.123892-1-lyude@redhat.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+	by gabe.freedesktop.org (Postfix) with ESMTP id 706D2CB6ED;
+	Tue,  9 Aug 2022 08:27:15 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2044.outbound.protection.outlook.com [40.107.237.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBAC9CB6B4;
+ Tue,  9 Aug 2022 08:26:49 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Xml2weWBSXi8AqOzUkYHHuOzxzHIWUWFHHKzW/+E1h2G+VeTtJ8og+z9kp8QZToHeZHxAkCZPEy3qRA0AjPx4/bdXwyggHEu8I834bwuf5vptXKN7lHk1Lyyi4YGmtUWrAyRYGeHPDio0Rg05FghUBHAKshtquTe/XJc1KnSdqBbmPt0ebvHGN+rnzR1WMCptg41lQoa2vx31PjAecVTJSFbh/svai1pdTRs5oxhmEtTsO6rcQFqWppzhhgH7aAtHwYY/g2EwYYIIoevDqkNav42uXHlWuYGvTxo7uqDsf0fTsishEEcFDMDMvpTH/8siJtzo+8a+q9LdY15hGSsVg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uSG/xG8nN2tqkfCUWkQbAHPc4qL0mss6vSMbOIPMF7U=;
+ b=bhwJgYePFsGttNq/ZgiLcP8OZ7x3GCv+ciHh+WZZMXn7CDPWbPIwz2l/A2wdnu/6BjWDaX9grrYKAB0crRLl80ZdM5dtgxCudxs/vvf1YmcvuY+s8QpCKgs1FWSpvrycDFygxrZjsC6IlLUDLWpA4qljcM8+O86cskRbjs1SROutOeX/n2RzRoCEQnDBtY4u0J3fHsgoGUAV/P9Zg440mt5FAwvs1GA0S8aHtVH5Vfah7/pRNHeKSqdJM3PyCUDB6iB1FNQXC57aSQTKnRtE2WTXH0/mncb1qDAH2+hFGVUpDP1PRQdlxhT34wu1CixwAgqks7tG+RLEseGKB6mgLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uSG/xG8nN2tqkfCUWkQbAHPc4qL0mss6vSMbOIPMF7U=;
+ b=mFlOoaU1/+Lwz2dWDF7W5lHByfUpi1fIjLGokupCxEGGn7evKtuh8trLlJ53xgx5ooiPpeWNd73oMlRRJx8Y10tlDoLRqK7BpNb5l4a7pgH81QrG/gusNxI7hdiLkzKs6DSh/Ccz5ErHHy0ZJgfSC3/79z3kFN+VGT87URxvc2A=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
+ by BN8PR12MB2897.namprd12.prod.outlook.com (2603:10b6:408:99::25)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14; Tue, 9 Aug
+ 2022 08:26:46 +0000
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::a1d8:6a71:213b:6e14]) by MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::a1d8:6a71:213b:6e14%9]) with mapi id 15.20.5504.020; Tue, 9 Aug 2022
+ 08:26:46 +0000
+Message-ID: <9d08224f-b1d6-fee6-4536-5ad34dc7773e@amd.com>
+Date: Tue, 9 Aug 2022 13:56:36 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+References: <20220725114240.4844-1-Arunpravin.PaneerSelvam@amd.com>
+ <20220725114240.4844-2-Arunpravin.PaneerSelvam@amd.com>
+ <8398d805-a749-dac6-9bf8-6f93935dd2ec@gmail.com>
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <8398d805-a749-dac6-9bf8-6f93935dd2ec@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 2.85 on 10.11.54.8
-Subject: [Nouveau] [RFC v2 15/18] drm/display/dp_mst: Skip releasing
- payloads if last connected port isn't connected
+X-ClientProxiedBy: PN3PR01CA0079.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:9a::19) To MN2PR12MB4342.namprd12.prod.outlook.com
+ (2603:10b6:208:264::7)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 22312ffd-74c1-4e89-91a7-08da79e0e5ef
+X-MS-TrafficTypeDiagnostic: BN8PR12MB2897:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: renoYPX6i/ygLQgOtdIuWonOheGA9IhkQ/uW+Z3zkVqj+tSMnh7wrOvH+2LOdfTWLcZOvHZubKznLsBm3A9WlRs7qiX9XIpnpP+Iuimt2KyheKwnN2EimzsdqgFFJCF2o/ieAXiruIUPdGlJUkYhoaA96rzZz2YkEjbdH1dYuhIEyTcKilt7DDK8wCl24HhYH79257rhmZg6VNgVq3QdWDvsMuLwFjN3c/64qNKWcx+5Euhe/4q5Amo3OU7UeZ7tfF5RqQi9ByIw0J0utiNhYP0udjmjw3XGKJf4eHDF/t7eZj9Wh/KoTMHtbfjMeHJpYjDJHXrunUUovkvLIXOOZ2Wrdp3GZrjqI7RtA+q2+Aatwgg2mxS9tsrJKgL2AnlFwDo0nwTB4qsKTkaXzuMySKBPINOvbHRjlVxBg/NWln040igUIbpWQ9++kp5SCz4OtP53KpylXFZl0Y0qmoceYFKaK6qAMYgHv8MUk1OMybUy35UyTF4v0aRV6qj/uV2kp3dT1mps+T1TIq0UdX9FK0mRnPOtQnAH7U72Wa3juXYJmL39y+9+7EoU7IOzluFidzTLLdHAs9c/ucSIYY+UeQzpwMAQOKWO4glODkFxzEuqeJqF9F8ar4PM4qyZvqkwwmVM/PdMI8SCgRTz3qM5lVpMGhnHovVlxYYf/v0661z+Dj9dnWosvwqF7ZYIRt5hlYlb5KEKYc8tbLNAFH5oK/dTqk1PdanM+4XiZryinWrnUA+ss/3t/aSKJCqiwNJQU7LPQMNllcKto/ZEROQBRIBktgrcVU0tQ/yaHAUzwmzuyt/QcpNQx97qYbgxDh8v9uoVKfEakS5X45mDZOcdTA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(396003)(39860400002)(366004)(376002)(346002)(136003)(41300700001)(316002)(6512007)(6506007)(6666004)(2616005)(186003)(26005)(53546011)(31696002)(36756003)(31686004)(86362001)(38100700002)(66556008)(66476007)(66946007)(478600001)(6486002)(83380400001)(5660300002)(2906002)(8936002)(8676002)(4326008)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a1VUUXpyWjZUOWR6RTNRMXQ3ZlU4VGR4ZFRQaFl1T24xMGtsNDdnNFAyU1dP?=
+ =?utf-8?B?VmN4V3JuYkVjcElON1lPTDVEZHkxeHJBVStHaFNqWFVoM0kvZTBmR0gyMUw5?=
+ =?utf-8?B?a3RHOC9MSldwZWRzY1FNckhQVWlHVlJ5WGQ0QWo3MXhscWdrcnd0ZDN4UVNF?=
+ =?utf-8?B?cTR2YUprWk1waVV0NUU0c1NYaFNUdUlzNFNTSEVGN0FXaHFkQ1kvMVlxUDh0?=
+ =?utf-8?B?UlpHL21IdnhxOW1vZHhWYUQ1VjVHQ2xMVkZ3ME5yS0xNYmxUNWdCK2ZzZi85?=
+ =?utf-8?B?cWVLZm9Id0x5ekJDOWI1UlF4VVlXMmNLTVJJamt6WWtOMkNNSnBxd3BBOEYr?=
+ =?utf-8?B?a0dudHROWU44cHk1aFBrNkhtbDBrT3BoYUFxQTl6V0U0RDNOUXZ3SDVyWTdV?=
+ =?utf-8?B?NDNwT0RsaXdncS8wYlRnekFTQWJLMmlGTHgwNGFvdUsvUEVvMmhpd1F2WmpJ?=
+ =?utf-8?B?c09hNHRHZ0R3MXFYdENpZExzQWs5dm4yOWgyZFNOeEZIUlByUFlrYU8wVWUw?=
+ =?utf-8?B?Q0VMNjF0ZmZSNEZFUDBqTWkxNFBLRmlHazVEVS9jY2RDeDkrNENzakhubVpU?=
+ =?utf-8?B?SGphcnM2SVM5c0t1UHprTnVER3ZUem45QjZxeHBjTkhFWHRiU2p2SGE3YSt3?=
+ =?utf-8?B?eVcrL3B3c2tEN0RwbzNrZTFCVy9FRnI3UHJKTEdkaDRSbFRnVGxlYmN6MS9M?=
+ =?utf-8?B?bFRyT2s4SlFyZ21GQlVnZ0VuWGszcDlidTZaTHhabGRUaXhlbk82ME1zOHg4?=
+ =?utf-8?B?MzdIdGdIV0ZiMUw3SjB4VUlwNW9TMTZaUEhxeVRMdGFuZnN5Vk9YdEhXN1cv?=
+ =?utf-8?B?M0gyRXExbVFocnU1MHBwdmxHdWNlUk5GQTRMWnhWRG8rb0lEUzBzT0pZOWhh?=
+ =?utf-8?B?MTRSTGdLakw4YnlLVG5PaFRseVNqNzB6V2ZRNUlaSklKS1FWcnRFQnVETWx5?=
+ =?utf-8?B?Q1pmUmpYZ1hYNGVWQXJGeFV1YzJPR2IwWXQvYlVPMlo4QzY1VE5FZGFwb3Iy?=
+ =?utf-8?B?VkRIRGI5RGdab2x4MGNEWDVrTElhMU1YTm4yOFRBVGdjS0tjcHpqdnhwMy81?=
+ =?utf-8?B?eDg5dWZTdDFQWnp3VjdLY0RHdmJldDZnU2duWnM1c2didis3V29MK0lHMjhn?=
+ =?utf-8?B?MHlYcENuWXZ1V0lPc1EzTUJWaWRqTVgvYmZpTUIzMjFTRlg5WmJ3Q1ZLa1V5?=
+ =?utf-8?B?NkJPZDY4ZlBORkRmeTl1V0kvOXF6MGx5bHBzZkMyWk5ZRzhRQkQ3U3ZOT3Ba?=
+ =?utf-8?B?cGNtQk1OOWYremR2dWRTSi9PeS96WUhjT3M2VWJzTEUvbVM2ZmZrdGtDaUdT?=
+ =?utf-8?B?YWhEYzhrVFcyZjJBZ1hnaTIxbTlMcytoblpsVk51Um5BRllEcnd0LzQ5Vzhi?=
+ =?utf-8?B?Vzg5TUs5REtLL1BlYW1SUUpyWmxJeVAyWC9TUEdoTmV2ZE9MWm13UWlzMlA3?=
+ =?utf-8?B?NlFTR1ZibUs2UU1GclQ3d1pWdnF1bGEzdnFCQlZneFl1c2c2c0VseHNXbGdG?=
+ =?utf-8?B?eFROanc5b3FHSUlFYWMxT2ZCR1J3OEIyTUY3dHJER2g4LzFXWmI3ZGRCb25L?=
+ =?utf-8?B?anZ5QmpXQ1lyNElIeDZUbGw4RStURENjQlIvK3JyS2hLRnBvT2pPNktqQ3Rt?=
+ =?utf-8?B?RFdYOFFrQUl1NkhwVjZid0JZWGxFTCtuclF3OGw5di9EWnlnRWFkdGFrZ2xY?=
+ =?utf-8?B?UTBqYkFEd1lNQTdjSTEyVndNV3ptWmRzSlFvY0dZcWNlREhGa0dadi9oSDBC?=
+ =?utf-8?B?SldVZDhzRW5VR1dnS0VKWjFydFhuS3VRTVI2QTJmWS8zWGtYZndsWTZYQ21m?=
+ =?utf-8?B?Q25JNTQ4VUdBajJXSWhvTmMvc1J4dlBIOUxrMm94bUhpYTNtN0l1VTNIUyto?=
+ =?utf-8?B?dlFhVk1LVWNYNVRtVnVSaXIrWnJleXFwRFAvYnFIMjlYZUpUQU95S1B6VE5r?=
+ =?utf-8?B?bzZUay9YTnlvbjNZdTNkRmJZWS9GVDNIcWdiM00wSmJUVlNYOXpBRDNCT1dw?=
+ =?utf-8?B?UUxSbkVUa1dNL3MyVmp2Zlg5U0VRWHFoWGVucThzTU9NQTMyM1A5WXgwVXp0?=
+ =?utf-8?B?clhBNmhtMDA4NW9TVHdWUXhPTWxFZmhPZFVneFdWa2owZGoxb3NkSkIyT1h0?=
+ =?utf-8?Q?K/Wl/XaETFYy3ohsB7V+mWigg?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22312ffd-74c1-4e89-91a7-08da79e0e5ef
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2022 08:26:46.6476 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: USt5vpJrVwW+bU5CKw9OSzTf1bAhmkLrIjyE2cvJ8gUFMh+KcwWWe6l+YvmM62be/u2YNlGPzAss+Daod5LRvA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2897
+Subject: Re: [Nouveau] [PATCH v2 2/6] drm/ttm: Implement
+ intersect/compatible functions
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,191 +128,94 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Imre Deak <imre.deak@intel.com>,
- open list <linux-kernel@vger.kernel.org>,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, David Airlie <airlied@linux.ie>,
- Fangzhi Zuo <Jerry.Zuo@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
- Wayne Lin <Wayne.Lin@amd.com>, Sean Paul <sean@poorly.run>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Cc: alexander.deucher@amd.com, luben.tuikov@amd.com, christian.koenig@amd.com,
+ matthew.auld@intel.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-In the past, we've ran into strange issues regarding errors in response to
-trying to destroy payloads after a port has been unplugged. We fixed this
-back in:
 
-This is intended to replace the workaround that was added here:
 
-commit 3769e4c0af5b ("drm/dp_mst: Avoid to mess up payload table by ports in stale topology")
+On 8/8/2022 5:00 PM, Christian König wrote:
+>
+>
+> Am 25.07.22 um 13:42 schrieb Arunpravin Paneer Selvam:
+>> Implemented a new intersect and compatible callback functions
+>> to ttm range manager fetching start offset from drm mm range
+>> allocator.
+>>
+>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>> Signed-off-by: Arunpravin Paneer Selvam 
+>> <Arunpravin.PaneerSelvam@amd.com>
+>> ---
+>>   drivers/gpu/drm/ttm/ttm_range_manager.c | 33 +++++++++++++++++++++++++
+>>   1 file changed, 33 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/ttm/ttm_range_manager.c 
+>> b/drivers/gpu/drm/ttm/ttm_range_manager.c
+>> index d91666721dc6..12b8d9b36fe6 100644
+>> --- a/drivers/gpu/drm/ttm/ttm_range_manager.c
+>> +++ b/drivers/gpu/drm/ttm/ttm_range_manager.c
+>> @@ -113,6 +113,37 @@ static void ttm_range_man_free(struct 
+>> ttm_resource_manager *man,
+>>       kfree(node);
+>>   }
+>>   +static bool ttm_range_man_intersect(struct ttm_resource_manager *man,
+>> +                    struct ttm_resource *res,
+>> +                    const struct ttm_place *place,
+>> +                    size_t size)
+>> +{
+>> +    struct drm_mm_node *node = 
+>> &to_ttm_range_mgr_node(res)->mm_nodes[0];
+>> +    u32 num_pages = PFN_UP(size);
+>> +
+>> +    /* Don't evict BOs outside of the requested placement range */
+>> +    if (place->fpfn >= (node->start + num_pages) ||
+>> +        (place->lpfn && place->lpfn <= node->start))
+>> +        return false;
+>> +
+>> +    return true;
+>> +}
+>> +
+>> +static bool ttm_range_man_compatible(struct ttm_resource_manager *man,
+>> +                     struct ttm_resource *res,
+>> +                     const struct ttm_place *place,
+>> +                     size_t size)
+>> +{
+>> +    struct drm_mm_node *node = 
+>> &to_ttm_range_mgr_node(res)->mm_nodes[0];
+>> +    u32 num_pages = PFN_UP(size);
+>> +
+>> +    if (node->start < place->fpfn ||
+>
+> This should probably be "<=".
+We are checking the false condition here, if node->start == place->fpfn, 
+then the node->start
+value is compatible with place->fpfn, therefore, we don't return false.
 
-which was intended fix to some of the payload leaks that were observed
-before, where we would attempt to determine if the port was still connected
-to the topology before updating payloads using
-drm_dp_mst_port_downstream_of_branch. This wasn't a particularly good
-solution, since one of the points of still having port and mstb validation
-is to avoid sending messages to newly disconnected branches wherever
-possible - thus the required use of drm_dp_mst_port_downstream_of_branch
-would indicate something may be wrong with said validation.
-
-It seems like it may have just been races and luck that made
-drm_dp_mst_port_downstream_of_branch work however, as while I was trying to
-figure out the true cause of this issue when removing the legacy MST code -
-I discovered an important excerpt in section 2.14.2.3.3.6 of the DP 2.0
-specs:
-
-"BAD_PARAM - This reply is transmitted when a Message Transaction parameter
-is in error; for example, the next port number is invalid or /no device is
-connected/ to the port associated with the port number."
-
-Sure enough - removing the calls to drm_dp_mst_port_downstream_of_branch()
-and instead checking the ->ddps field of the parent port to see whether we
-should release a given payload or not seems to totally fix the issue. This
-does actually make sense to me, as it seems the implication is that given a
-topology where an MSTB is removed, the payload for the MST parent's port
-will be released automatically if that port is also marked as disconnected.
-However, if there's another parent in the chain after that which is
-connected - payloads must be released there with an ALLOCATE_PAYLOAD
-message.
-
-So, let's do that!
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: Wayne Lin <Wayne.Lin@amd.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Fangzhi Zuo <Jerry.Zuo@amd.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Sean Paul <sean@poorly.run>
-Acked-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/display/drm_dp_mst_topology.c | 51 +++++++------------
- 1 file changed, 17 insertions(+), 34 deletions(-)
-
-diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-index a5460cadf2c8..e9cf09a4b2a4 100644
---- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-@@ -3128,7 +3128,7 @@ static struct drm_dp_mst_port *drm_dp_get_last_connected_port_to_mstb(struct drm
- static struct drm_dp_mst_branch *
- drm_dp_get_last_connected_port_and_mstb(struct drm_dp_mst_topology_mgr *mgr,
- 					struct drm_dp_mst_branch *mstb,
--					int *port_num)
-+					struct drm_dp_mst_port **last_port)
- {
- 	struct drm_dp_mst_branch *rmstb = NULL;
- 	struct drm_dp_mst_port *found_port;
-@@ -3144,7 +3144,8 @@ drm_dp_get_last_connected_port_and_mstb(struct drm_dp_mst_topology_mgr *mgr,
- 
- 		if (drm_dp_mst_topology_try_get_mstb(found_port->parent)) {
- 			rmstb = found_port->parent;
--			*port_num = found_port->port_num;
-+			*last_port = found_port;
-+			drm_dp_mst_get_port_malloc(found_port);
- 		} else {
- 			/* Search again, starting from this parent */
- 			mstb = found_port->parent;
-@@ -3161,7 +3162,7 @@ static int drm_dp_payload_send_msg(struct drm_dp_mst_topology_mgr *mgr,
- 				   int pbn)
- {
- 	struct drm_dp_sideband_msg_tx *txmsg;
--	struct drm_dp_mst_branch *mstb;
-+	struct drm_dp_mst_branch *mstb = NULL;
- 	int ret, port_num;
- 	u8 sinks[DRM_DP_MAX_SDP_STREAMS];
- 	int i;
-@@ -3169,12 +3170,22 @@ static int drm_dp_payload_send_msg(struct drm_dp_mst_topology_mgr *mgr,
- 	port_num = port->port_num;
- 	mstb = drm_dp_mst_topology_get_mstb_validated(mgr, port->parent);
- 	if (!mstb) {
--		mstb = drm_dp_get_last_connected_port_and_mstb(mgr,
--							       port->parent,
--							       &port_num);
-+		struct drm_dp_mst_port *rport = NULL;
-+		bool ddps;
- 
-+		mstb = drm_dp_get_last_connected_port_and_mstb(mgr, port->parent, &rport);
- 		if (!mstb)
- 			return -EINVAL;
-+
-+		ddps = rport->ddps;
-+		port_num = rport->port_num;
-+		drm_dp_mst_put_port_malloc(rport);
-+
-+		/* If the port is currently marked as disconnected, don't send a payload message */
-+		if (!ddps) {
-+			ret = -EINVAL;
-+			goto fail_put;
-+		}
- 	}
- 
- 	txmsg = kzalloc(sizeof(*txmsg), GFP_KERNEL);
-@@ -3375,7 +3386,6 @@ int drm_dp_update_payload_part1(struct drm_dp_mst_topology_mgr *mgr, int start_s
- 	struct drm_dp_mst_port *port;
- 	int i, j;
- 	int cur_slots = start_slot;
--	bool skip;
- 
- 	mutex_lock(&mgr->payload_lock);
- 	for (i = 0; i < mgr->max_payloads; i++) {
-@@ -3390,16 +3400,6 @@ int drm_dp_update_payload_part1(struct drm_dp_mst_topology_mgr *mgr, int start_s
- 			port = container_of(vcpi, struct drm_dp_mst_port,
- 					    vcpi);
- 
--			mutex_lock(&mgr->lock);
--			skip = !drm_dp_mst_port_downstream_of_branch(port, mgr->mst_primary);
--			mutex_unlock(&mgr->lock);
--
--			if (skip) {
--				drm_dbg_kms(mgr->dev,
--					    "Virtual channel %d is not in current topology\n",
--					    i);
--				continue;
--			}
- 			/* Validated ports don't matter if we're releasing
- 			 * VCPI
- 			 */
-@@ -3500,7 +3500,6 @@ int drm_dp_update_payload_part2(struct drm_dp_mst_topology_mgr *mgr)
- 	struct drm_dp_mst_port *port;
- 	int i;
- 	int ret = 0;
--	bool skip;
- 
- 	mutex_lock(&mgr->payload_lock);
- 	for (i = 0; i < mgr->max_payloads; i++) {
-@@ -3510,13 +3509,6 @@ int drm_dp_update_payload_part2(struct drm_dp_mst_topology_mgr *mgr)
- 
- 		port = container_of(mgr->proposed_vcpis[i], struct drm_dp_mst_port, vcpi);
- 
--		mutex_lock(&mgr->lock);
--		skip = !drm_dp_mst_port_downstream_of_branch(port, mgr->mst_primary);
--		mutex_unlock(&mgr->lock);
--
--		if (skip)
--			continue;
--
- 		drm_dbg_kms(mgr->dev, "payload %d %d\n", i, mgr->payloads[i].payload_state);
- 		if (mgr->payloads[i].payload_state == DP_PAYLOAD_LOCAL) {
- 			ret = drm_dp_create_payload_step2(mgr, port, mgr->proposed_vcpis[i]->vcpi, &mgr->payloads[i]);
-@@ -4769,18 +4761,9 @@ EXPORT_SYMBOL(drm_dp_mst_reset_vcpi_slots);
- void drm_dp_mst_deallocate_vcpi(struct drm_dp_mst_topology_mgr *mgr,
- 				struct drm_dp_mst_port *port)
- {
--	bool skip;
--
- 	if (!port->vcpi.vcpi)
- 		return;
- 
--	mutex_lock(&mgr->lock);
--	skip = !drm_dp_mst_port_downstream_of_branch(port, mgr->mst_primary);
--	mutex_unlock(&mgr->lock);
--
--	if (skip)
--		return;
--
- 	drm_dp_mst_put_payload_id(mgr, port->vcpi.vcpi);
- 	port->vcpi.num_slots = 0;
- 	port->vcpi.pbn = 0;
--- 
-2.37.1
+Thanks,
+Arun
+>
+> Regards,
+> Christian.
+>
+>> +        (place->lpfn && (node->start + num_pages) > place->lpfn))
+>> +        return false;
+>> +
+>> +    return true;
+>> +}
+>> +
+>>   static void ttm_range_man_debug(struct ttm_resource_manager *man,
+>>                   struct drm_printer *printer)
+>>   {
+>> @@ -126,6 +157,8 @@ static void ttm_range_man_debug(struct 
+>> ttm_resource_manager *man,
+>>   static const struct ttm_resource_manager_func 
+>> ttm_range_manager_func = {
+>>       .alloc = ttm_range_man_alloc,
+>>       .free = ttm_range_man_free,
+>> +    .intersect = ttm_range_man_intersect,
+>> +    .compatible = ttm_range_man_compatible,
+>>       .debug = ttm_range_man_debug
+>>   };
+>
 
