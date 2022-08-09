@@ -4,83 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DFC5C19F2D
-	for <nouveau@archiver.kernel.org>; Tue,  9 Aug 2022 22:38:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 047B8C19F2D
+	for <nouveau@archiver.kernel.org>; Tue,  9 Aug 2022 23:44:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF1F3D72E2;
-	Tue,  9 Aug 2022 22:38:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54470DDA67;
+	Tue,  9 Aug 2022 23:43:20 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B032A227E
- for <nouveau@lists.freedesktop.org>; Mon,  8 Aug 2022 22:53:19 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36BF8DDA3D
+ for <nouveau@lists.freedesktop.org>; Tue,  9 Aug 2022 23:43:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1659999198;
+ s=mimecast20190719; t=1660088583;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=rPqclY0FSVViUDl2UYDey0E/+Y0xI7OX+B7XXIVceOQ=;
- b=gdBzzaQMpZgyCsaonF6RNE4We54P5diiv6K7zE/HA1XFItIA8myMyljN6b2g+UguMtWdJL
- YwCaC/L5DBSHuSmm+8U5X7qkjJxMTYFu5FH0B32Ri0mnXmsxppJv2IKRz2W33foKING6om
- 07Fp3dTSu3APmsQwHHy2J5erUZkOPt0=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=AUpfOTYrSH4dy2eE+ZqJO2+PWrqvVOIkfWOVnHZIzSk=;
+ b=Z3bL+VhhrVx6JN/IEE55fJ92APLYmq7dv+wsrmPPuEvot1oK3CCTI9FDy7M8T0HsKWfefv
+ +tTK8qiNyR4UH930aQdmnahnjQUWQqd5MIAhaWlw2x3OoQDTPqp5p7ZUIXuKAzpZIl2yG+
+ w65Gp7WBQZ2LNOPY7BTcz0A3L7aAZzI=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-552--03SjW3sNFKtuXot5MvptA-1; Mon, 08 Aug 2022 18:53:17 -0400
-X-MC-Unique: -03SjW3sNFKtuXot5MvptA-1
-Received: by mail-qv1-f69.google.com with SMTP id
- cv14-20020ad44d8e000000b004760bec67a8so5272963qvb.14
- for <nouveau@lists.freedesktop.org>; Mon, 08 Aug 2022 15:53:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:user-agent:organization
- :references:in-reply-to:date:cc:to:from:subject:message-id
- :x-gm-message-state:from:to:cc;
- bh=rPqclY0FSVViUDl2UYDey0E/+Y0xI7OX+B7XXIVceOQ=;
- b=rkTqQd4QteakAvUOXpG6+ryCAqWALKC16E018AQdKT9LOjte8yhSYkCbBXJbgZuaiI
- BIYqUs2l/zC5bq/qFwSNlTeHzGHXcHOG5o/ylqtZOpNc3f3VPw/V+s6CCVIe0pLlmoiU
- q8qD1y7sYn8xEBDDJ2UHMOvJc6xTRTN07xO4aNDRhTuMtuGd73WWJDS0AxywXkwap2hF
- irIg1aMd0ryqeBitMjM3PxlFGtNPZ4vZkbP629eCsoq9qzlTaEIDrQ6T98bET0ytVYJm
- 8rFJLM/x7YwKEOLdqjQr3ejK89Oo7WLSclMSG68AXc4UObzOU6fYmessSLwQxqQ/80kb
- acwA==
-X-Gm-Message-State: ACgBeo1mm7Puf8Yx5UIfr9vwH8R/mLo4jf6CAOHchty3AVxungkAQB7D
- x1ImiaZmixYQDin2PsXYsqwdryhYZx+iZIuT5KIise3J+VlFhLqhq38obq/NOEfzowrDgZ20+1k
- HynxXZTWq9kFHy3dMubHnA0b5jQ==
-X-Received: by 2002:a05:622a:19a7:b0:33e:ca27:6206 with SMTP id
- u39-20020a05622a19a700b0033eca276206mr18143208qtc.629.1659999197057; 
- Mon, 08 Aug 2022 15:53:17 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR6keWmjIk9Kdkkn+Z2BPeGcqVR5KnxuwQWKh/amSVfycmJNCYkwfkDof+GiBWGMkH9wNX9cLQ==
-X-Received: by 2002:a05:622a:19a7:b0:33e:ca27:6206 with SMTP id
- u39-20020a05622a19a700b0033eca276206mr18143191qtc.629.1659999196813; 
- Mon, 08 Aug 2022 15:53:16 -0700 (PDT)
-Received: from [192.168.8.138] (pool-100-0-245-4.bstnma.fios.verizon.net.
- [100.0.245.4]) by smtp.gmail.com with ESMTPSA id
- bj41-20020a05620a192900b006b91c0b6404sm7731982qkb.41.2022.08.08.15.53.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 08 Aug 2022 15:53:16 -0700 (PDT)
-Message-ID: <4ea5f21ea66446ad7924bc883af30b136fa0ca22.camel@redhat.com>
+ us-mta-335-iaAickkbOnqP2U-A_qKlTQ-1; Tue, 09 Aug 2022 19:42:58 -0400
+X-MC-Unique: iaAickkbOnqP2U-A_qKlTQ-1
+Received: from smtp.corp.redhat.com (int-mx10.intmail.prod.int.rdu2.redhat.com
+ [10.11.54.10])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id A99208037B5;
+ Tue,  9 Aug 2022 23:42:56 +0000 (UTC)
+Received: from emerald.redhat.com (unknown [10.22.16.176])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 6DC11492C3B;
+ Tue,  9 Aug 2022 23:42:54 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
-To: "Lin, Wayne" <Wayne.Lin@amd.com>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org"
- <nouveau@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Date: Mon, 08 Aug 2022 18:53:13 -0400
-In-Reply-To: <CO6PR12MB54896ECA603462858C9AFBA2FC639@CO6PR12MB5489.namprd12.prod.outlook.com>
-References: <20220607192933.1333228-1-lyude@redhat.com>
- <20220607192933.1333228-19-lyude@redhat.com>
- <CO6PR12MB5489BAFF2DDCD67F8BDCD827FC819@CO6PR12MB5489.namprd12.prod.outlook.com>
- <848f35a693b26bfd15b3c6539eacd3e313dcd3a7.camel@redhat.com>
- <CO6PR12MB54896ECA603462858C9AFBA2FC639@CO6PR12MB5489.namprd12.prod.outlook.com>
-Organization: Red Hat Inc.
-User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
+To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Date: Tue,  9 Aug 2022 19:42:38 -0400
+Message-Id: <20220809234252.295372-1-lyude@redhat.com>
+In-Reply-To: <20220808235203.123892-14-lyude@redhat.com>
+References: <20220808235203.123892-14-lyude@redhat.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 09 Aug 2022 22:34:13 +0000
-Subject: Re: [Nouveau] [RESEND RFC 18/18] drm/display/dp_mst: Move all
- payload info into the atomic state
+X-Scanned-By: MIMEDefang 2.85 on 10.11.54.10
+Subject: [Nouveau] [RFC v3] drm/display/dp_mst: Add helpers for serializing
+ SST <-> MST transitions
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,151 +61,257 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Chen, Ian" <Ian.Chen@amd.com>, David Airlie <airlied@linux.ie>,
- Imre Deak <imre.deak@intel.com>,
+Cc: David Airlie <airlied@linux.ie>, Imre Deak <imre.deak@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- =?ISO-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>,
- open list <linux-kernel@vger.kernel.org>, "Lei, Jun" <Jun.Lei@amd.com>,
- Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, "Lakha, 
- Bhawanpreet" <Bhawanpreet.Lakha@amd.com>, "Siqueira,
- Rodrigo" <Rodrigo.Siqueira@amd.com>,
- Javier Martinez Canillas <javierm@redhat.com>, "Li, 
- Sun peng \(Leo\)" <Sunpeng.Li@amd.com>, "Zuo, Jerry" <Jerry.Zuo@amd.com>, "Shih,
- Jude" <Jude.Shih@amd.com>, Ben Skeggs <bskeggs@redhat.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, "Strauss,
- Michael" <Michael.Strauss@amd.com>, "Wentland, Harry" <Harry.Wentland@amd.com>,
- Juston Li <juston.li@intel.com>, Jani Nikula <jani.nikula@intel.com>,
- Anshuman Gupta <anshuman.gupta@intel.com>,
- "open list:INTEL DRM DRIVERS" <intel-gfx@lists.freedesktop.org>,
- Luo Jiaxing <luojiaxing@huawei.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- "Liu, Wenjing" <Wenjing.Liu@amd.com>, "Wu, Hersen" <hersenxs.wu@amd.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, "Ma, Leo" <Hanghong.Ma@amd.com>,
- Mikita Lipski <mikita.lipski@amd.com>, Sean Paul <sean@poorly.run>,
- He Ying <heying24@huawei.com>, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Simon Ser <contact@emersion.fr>, "Pan, Xinhui" <Xinhui.Pan@amd.com>, "Li,
- Roman" <Roman.Li@amd.com>, "Koenig, Christian" <Christian.Koenig@amd.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- Sean Paul <seanpaul@chromium.org>, Colin Ian King <colin.king@intel.com>,
- "Kazlauskas, 
- Nicholas" <Nicholas.Kazlauskas@amd.com>, Fernando Ramos <greenfoo@u92.eu>
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ open list <linux-kernel@vger.kernel.org>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Fangzhi Zuo <Jerry.Zuo@amd.com>, Uma Shankar <uma.shankar@intel.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>,
+ Harry Wentland <harry.wentland@amd.com>, Jani Nikula <jani.nikula@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>, Sean Paul <seanpaul@chromium.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Jude Shih <shenshih@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Roman Li <roman.li@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Manasi Navare <manasi.d.navare@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Wayne Lin <Wayne.Lin@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Fernando Ramos <greenfoo@u92.eu>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, 2022-08-08 at 10:02 +0000, Lin, Wayne wrote:
-> [Public]
-> 
-> 
-> 
-> > -----Original Message-----
-> > From: Lyude Paul <lyude@redhat.com>
-> > Sent: Thursday, August 4, 2022 4:28 AM
-> > To: Lin, Wayne <Wayne.Lin@amd.com>; dri-devel@lists.freedesktop.org;
-> > nouveau@lists.freedesktop.org; amd-gfx@lists.freedesktop.org
-> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>; Zuo, Jerry
-> > <Jerry.Zuo@amd.com>; Jani Nikula <jani.nikula@intel.com>; Imre Deak
-> > <imre.deak@intel.com>; Daniel Vetter <daniel.vetter@ffwll.ch>; Sean Paul
-> > <sean@poorly.run>; Wentland, Harry <Harry.Wentland@amd.com>; Li, Sun
-> > peng (Leo) <Sunpeng.Li@amd.com>; Siqueira, Rodrigo
-> > <Rodrigo.Siqueira@amd.com>; Deucher, Alexander
-> > <Alexander.Deucher@amd.com>; Koenig, Christian
-> > <Christian.Koenig@amd.com>; Pan, Xinhui <Xinhui.Pan@amd.com>; David
-> > Airlie <airlied@linux.ie>; Daniel Vetter <daniel@ffwll.ch>; Jani Nikula
-> > <jani.nikula@linux.intel.com>; Joonas Lahtinen
-> > <joonas.lahtinen@linux.intel.com>; Rodrigo Vivi <rodrigo.vivi@intel.com>;
-> > Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>; Ben Skeggs
-> > <bskeggs@redhat.com>; Karol Herbst <kherbst@redhat.com>; Kazlauskas,
-> > Nicholas <Nicholas.Kazlauskas@amd.com>; Li, Roman
-> > <Roman.Li@amd.com>; Shih, Jude <Jude.Shih@amd.com>; Simon Ser
-> > <contact@emersion.fr>; Lakha, Bhawanpreet
-> > <Bhawanpreet.Lakha@amd.com>; Mikita Lipski <mikita.lipski@amd.com>;
-> > Claudio Suarez <cssk@net-c.es>; Chen, Ian <Ian.Chen@amd.com>; Colin Ian
-> > King <colin.king@intel.com>; Wu, Hersen <hersenxs.wu@amd.com>; Liu,
-> > Wenjing <Wenjing.Liu@amd.com>; Lei, Jun <Jun.Lei@amd.com>; Strauss,
-> > Michael <Michael.Strauss@amd.com>; Ma, Leo <Hanghong.Ma@amd.com>;
-> > Thomas Zimmermann <tzimmermann@suse.de>; José Roberto de Souza
-> > <jose.souza@intel.com>; He Ying <heying24@huawei.com>; Anshuman
-> > Gupta <anshuman.gupta@intel.com>; Andi Shyti
-> > <andi.shyti@linux.intel.com>; Ashutosh Dixit <ashutosh.dixit@intel.com>;
-> > Juston Li <juston.li@intel.com>; Sean Paul <seanpaul@chromium.org>;
-> > Fernando Ramos <greenfoo@u92.eu>; Luo Jiaxing
-> > <luojiaxing@huawei.com>; Javier Martinez Canillas <javierm@redhat.com>;
-> > open list <linux-kernel@vger.kernel.org>; open list:INTEL DRM DRIVERS
-> > <intel-gfx@lists.freedesktop.org>
-> > Subject: Re: [RESEND RFC 18/18] drm/display/dp_mst: Move all payload info
-> > into the atomic state
-> > 
-> > On Tue, 2022-07-05 at 09:10 +0000, Lin, Wayne wrote:
-> > > > +struct drm_dp_mst_port;
-> > > > +
-> > > >   /* DP MST stream allocation (payload bandwidth number) */
-> > > >   struct dc_dp_mst_stream_allocation {
-> > > >    uint8_t vcp_id;
-> > > >    /* number of slots required for the DP stream in
-> > > >    * transport packet */
-> > > >    uint8_t slot_count;
-> > > > + /* The MST port this is on, this is used to associate DC MST
-> > > > + payloads
-> > > > with their
-> > > > + * respective DRM payloads allocations, and can be ignored on non-
-> > > > Linux.
-> > > > + */
-> > > 
-> > > Is it necessary for adding this new member? Since this is for setting
-> > > the DC HW and not relating to drm.
-> > 
-> > I don't entirely know, honestly. The reasons I did it:
-> > 
-> >  * Mapping things from DRM to DC and from DC to DRM is really confusing for
-> >    outside contributors like myself, so it wasn't even really clear to me if
-> >    there was another way to reconstruct the DRM context from the spots
-> > where
-> >    we call from DC up to DM (not a typo, see next point).
-> >  * These DC structs for MST are already layer mixing as far as I can tell,
-> >    just not in an immediately obvious way. While this struct itself is for DC,
-> >    there's multiple spots where we pass the DC payload structs down from
-> > DM to
-> >    DC, then pass them back up from DC to DM and have to figure out how to
-> >    reconstruct the DRM context that we actually need to use the MST helpers
-> >    from that. So, that kind of further complicates the confusion of where
-> >    layers should be separated.
-> >  * As far as I'm aware with C there shouldn't be any issue with adding a
-> >    pointer to a struct whose contents are undefined. IMHO, this is also
-> >    preferable to just using void* because then at least you get some hint as
-> >    to the actual type of the data and avoid the possibility of casting it to
-> >    the wrong type. So tl;dr, on any platform even outside of Linux with a
-> >    reasonably compliant compiler this should still build just fine. It'll even
-> >    give you the added bonus of warning people if they try to access the
-> >    contents of this member in DC on non-Linux platforms. If void* is preferred
-> >    though I'm fine with switching it to that.
-> > 
-> > --
-> > Cheers, Lyude Paul (she/her) Software Engineer at Red Hat
-> 
-> Hi Lyude,
-> 
-> Thanks for your time!
-> I was thinking that our DC just mainly takes care of HW related programming. 
-> Struct dc_dp_mst_stream_allocation is only used to construct a copy of the virtual 
-> channel payload ID and slots count of payload allocation table determined by
-> dm/drm. ID and slots are only things required for programming HW registers.
-> I think there shouldn't be any spots to try to construct the DRM context from
-> this dc struct since there is no such concept in HW level. Our HW should only 
-> take care of local DP link and it doesn't have overall topology info.
+There's another kind of situation where we could potentially race with
+nonblocking modesets and MST, especially if we were to only use the locking
+provided by atomic modesetting:
 
-Looking at the code I wrote again and realizing I slightly misspoke, looking
-at the code again I think I probably can drop this. It's likely I just got
-totally lost with the DC codebase and thought this was necessary when it
-wasn't. Will drop in the respin
+* Display 1 begins as enabled on DP-1 in SST mode
+* Display 1 switches to MST mode, exposes one sink in MST mode
+* Userspace does non-blocking modeset to disable the SST display
+* Userspace does non-blocking modeset to enable the MST display with a
+  different CRTC, but the SST display hasn't been fully taken down yet
+* Execution order between the last two commits isn't guaranteed since they
+  share no drm resources
 
-> 
-> Thanks!
-> 
-> Regards,
-> Wayne
+We can fix this however, by ensuring that we always pull in the atomic
+topology state whenever a connector capable of driving an MST display
+performs its atomic check - and then tracking CRTC commits happening on the
+SST connector in the MST topology state. So, let's add some simple helpers
+for doing that and hook them up in various drivers.
 
+v2:
+* Use intel_dp_mst_source_support() to check for MST support in i915, fixes
+  CI failures
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: Wayne Lin <Wayne.Lin@amd.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Fangzhi Zuo <Jerry.Zuo@amd.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Sean Paul <sean@poorly.run>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+---
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  7 +++
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 59 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.c       |  9 +++
+ drivers/gpu/drm/nouveau/dispnv50/disp.c       |  2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.h       |  2 +
+ drivers/gpu/drm/nouveau/nouveau_connector.c   | 14 +++++
+ include/drm/display/drm_dp_mst_helper.h       |  2 +
+ 7 files changed, 94 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 1739710003a4..51732bd603a9 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -6318,10 +6318,17 @@ amdgpu_dm_connector_atomic_check(struct drm_connector *conn,
+ 		drm_atomic_get_old_connector_state(state, conn);
+ 	struct drm_crtc *crtc = new_con_state->crtc;
+ 	struct drm_crtc_state *new_crtc_state;
++	struct amdgpu_dm_connector *aconn = to_amdgpu_dm_connector(conn);
+ 	int ret;
+ 
+ 	trace_amdgpu_dm_connector_atomic_check(new_con_state);
+ 
++	if (conn->connector_type == DRM_MODE_CONNECTOR_DisplayPort) {
++		ret = drm_dp_mst_root_conn_atomic_check(new_con_state, &aconn->mst_mgr);
++		if (ret < 0)
++			return ret;
++	}
++
+ 	if (!crtc)
+ 		return 0;
+ 
+diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+index 2f7c43f88d74..97e8f8a83ed4 100644
+--- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+@@ -4597,6 +4597,65 @@ void drm_dp_mst_atomic_wait_for_dependencies(struct drm_atomic_state *state)
+ }
+ EXPORT_SYMBOL(drm_dp_mst_atomic_wait_for_dependencies);
+ 
++/**
++ * drm_dp_mst_root_conn_atomic_check() - Serialize CRTC commits on MST-capable connectors operating
++ * in SST mode
++ * @new_conn_state: The new connector state of the &drm_connector
++ * @mgr: The MST topology manager for the &drm_connector
++ *
++ * Since MST uses fake &drm_encoder structs, the generic atomic modesetting code isn't able to
++ * serialize non-blocking commits happening on the real DP connector of an MST topology switching
++ * into/away from MST mode - as the CRTC on the real DP connector and the CRTCs on the connector's
++ * MST topology will never share the same &drm_encoder.
++ *
++ * This function takes care of this serialization issue, by checking a root MST connector's atomic
++ * state to determine if it is about to have a modeset - and then pulling in the MST topology state
++ * if so, along with adding any relevant CRTCs to &drm_dp_mst_topology_state.pending_crtc_mask.
++ *
++ * Drivers implementing MST must call this function from the
++ * &drm_connector_helper_funcs.atomic_check hook of any physical DP &drm_connector capable of
++ * driving MST sinks.
++ *
++ * Returns:
++ * 0 on success, negative error code otherwise
++ */
++int drm_dp_mst_root_conn_atomic_check(struct drm_connector_state *new_conn_state,
++				      struct drm_dp_mst_topology_mgr *mgr)
++{
++	struct drm_atomic_state *state = new_conn_state->state;
++	struct drm_connector_state *old_conn_state =
++		drm_atomic_get_old_connector_state(state, new_conn_state->connector);
++	struct drm_crtc_state *crtc_state;
++	struct drm_dp_mst_topology_state *mst_state = NULL;
++
++	if (new_conn_state->crtc) {
++		crtc_state = drm_atomic_get_new_crtc_state(state, new_conn_state->crtc);
++		if (crtc_state && drm_atomic_crtc_needs_modeset(crtc_state)) {
++			mst_state = drm_atomic_get_mst_topology_state(state, mgr);
++			if (IS_ERR(mst_state))
++				return PTR_ERR(mst_state);
++
++			mst_state->pending_crtc_mask |= drm_crtc_mask(new_conn_state->crtc);
++		}
++	}
++
++	if (old_conn_state->crtc) {
++		crtc_state = drm_atomic_get_new_crtc_state(state, old_conn_state->crtc);
++		if (crtc_state && drm_atomic_crtc_needs_modeset(crtc_state)) {
++			if (!mst_state) {
++				mst_state = drm_atomic_get_mst_topology_state(state, mgr);
++				if (IS_ERR(mst_state))
++					return PTR_ERR(mst_state);
++			}
++
++			mst_state->pending_crtc_mask |= drm_crtc_mask(old_conn_state->crtc);
++		}
++	}
++
++	return 0;
++}
++EXPORT_SYMBOL(drm_dp_mst_root_conn_atomic_check);
++
+ /**
+  * drm_dp_mst_update_slots() - updates the slot info depending on the DP ecoding format
+  * @mst_state: mst_state to update
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 32292c0be2bd..a4e113253df3 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4992,12 +4992,21 @@ static int intel_dp_connector_atomic_check(struct drm_connector *conn,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(conn->dev);
+ 	struct intel_atomic_state *state = to_intel_atomic_state(_state);
++	struct drm_connector_state *conn_state = drm_atomic_get_new_connector_state(_state, conn);
++	struct intel_connector *intel_conn = to_intel_connector(conn);
++	struct intel_dp *intel_dp = enc_to_intel_dp(intel_conn->encoder);
+ 	int ret;
+ 
+ 	ret = intel_digital_connector_atomic_check(conn, &state->base);
+ 	if (ret)
+ 		return ret;
+ 
++	if (intel_dp_mst_source_support(intel_dp)) {
++		ret = drm_dp_mst_root_conn_atomic_check(conn_state, &intel_dp->mst_mgr);
++		if (ret)
++			return ret;
++	}
++
+ 	/*
+ 	 * We don't enable port sync on BDW due to missing w/as and
+ 	 * due to not having adjusted the modeset sequence appropriately.
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index 24807aa9da5f..7e9a0b50bb42 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -1813,7 +1813,7 @@ nv50_sor_func = {
+ 	.destroy = nv50_sor_destroy,
+ };
+ 
+-static bool nv50_has_mst(struct nouveau_drm *drm)
++bool nv50_has_mst(struct nouveau_drm *drm)
+ {
+ 	struct nvkm_bios *bios = nvxx_bios(&drm->client.device);
+ 	u32 data;
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.h b/drivers/gpu/drm/nouveau/dispnv50/disp.h
+index 38dec11e7dda..9d66c9c726c3 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.h
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.h
+@@ -106,6 +106,8 @@ void nv50_dmac_destroy(struct nv50_dmac *);
+  */
+ struct nouveau_encoder *nv50_real_outp(struct drm_encoder *encoder);
+ 
++bool nv50_has_mst(struct nouveau_drm *drm);
++
+ u32 *evo_wait(struct nv50_dmac *, int nr);
+ void evo_kick(u32 *, struct nv50_dmac *);
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index bdaec3427f14..6c412c1c1221 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -1105,11 +1105,25 @@ nouveau_connector_best_encoder(struct drm_connector *connector)
+ 	return NULL;
+ }
+ 
++static int
++nouveau_connector_atomic_check(struct drm_connector *connector, struct drm_atomic_state *state)
++{
++	struct nouveau_connector *nv_conn = nouveau_connector(connector);
++	struct drm_connector_state *conn_state =
++		drm_atomic_get_new_connector_state(state, connector);
++
++	if (!nv_conn->dp_encoder || !nv50_has_mst(nouveau_drm(connector->dev)))
++		return 0;
++
++	return drm_dp_mst_root_conn_atomic_check(conn_state, &nv_conn->dp_encoder->dp.mstm->mgr);
++}
++
+ static const struct drm_connector_helper_funcs
+ nouveau_connector_helper_funcs = {
+ 	.get_modes = nouveau_connector_get_modes,
+ 	.mode_valid = nouveau_connector_mode_valid,
+ 	.best_encoder = nouveau_connector_best_encoder,
++	.atomic_check = nouveau_connector_atomic_check,
+ };
+ 
+ static const struct drm_connector_funcs
+diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/display/drm_dp_mst_helper.h
+index 0ef7d0e6cf0c..b9c361b242ea 100644
+--- a/include/drm/display/drm_dp_mst_helper.h
++++ b/include/drm/display/drm_dp_mst_helper.h
+@@ -911,6 +911,8 @@ int drm_dp_send_query_stream_enc_status(struct drm_dp_mst_topology_mgr *mgr,
+ 		struct drm_dp_mst_port *port,
+ 		struct drm_dp_query_stream_enc_status_ack_reply *status);
+ int __must_check drm_dp_mst_atomic_check(struct drm_atomic_state *state);
++int __must_check drm_dp_mst_root_conn_atomic_check(struct drm_connector_state *new_conn_state,
++						   struct drm_dp_mst_topology_mgr *mgr);
+ 
+ void drm_dp_mst_get_port_malloc(struct drm_dp_mst_port *port);
+ void drm_dp_mst_put_port_malloc(struct drm_dp_mst_port *port);
 -- 
-Cheers,
- Lyude Paul (she/her)
- Software Engineer at Red Hat
+2.37.1
 
