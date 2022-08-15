@@ -4,85 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3E31C00140
-	for <nouveau@archiver.kernel.org>; Thu, 18 Aug 2022 20:39:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B354FC00140
+	for <nouveau@archiver.kernel.org>; Thu, 18 Aug 2022 21:05:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDCFB10E476;
-	Thu, 18 Aug 2022 20:39:34 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60D0A10E476
- for <nouveau@lists.freedesktop.org>; Thu, 18 Aug 2022 20:39:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1660855169;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=bpR/tJi/jrulna5YIAWe+qqOZ/zrYmmeUY37b7NZkCI=;
- b=R/1QhrlTYYY2xQfYeRyN/+XoEN5kNO7ZakHSCCENC3R1nrV8WGXa7BE/hfgQ/K9GKlo0kX
- WvMcZG1QIgXKvzOS7Hl6CVQOiI6cy/O+5CcVl/IonE8IRvVezzN05YdfUPiMB96fpUnmjn
- aigJbFVGzX095bEo5cusiR3FQ3epWhA=
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-606-pKaRWSD8P6eLhN8QyTbo9g-1; Thu, 18 Aug 2022 16:39:28 -0400
-X-MC-Unique: pKaRWSD8P6eLhN8QyTbo9g-1
-Received: by mail-qt1-f198.google.com with SMTP id
- z10-20020a05622a124a00b003445680ff47so1978975qtx.8
- for <nouveau@lists.freedesktop.org>; Thu, 18 Aug 2022 13:39:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:user-agent:organization
- :references:in-reply-to:date:cc:to:from:subject:message-id
- :x-gm-message-state:from:to:cc;
- bh=bpR/tJi/jrulna5YIAWe+qqOZ/zrYmmeUY37b7NZkCI=;
- b=NdJ1It8MU1+TksmEJt5elHrzZeel1cY6yDz6qrn4J6x8/37QhfrEYX7iPh04wfVN0g
- Ih8AlP58JcZXXPYIMFWKH7tH0x7atmjwYe04ukCsJIDHTldbIlxyRAReFUHUa1xSRdhZ
- zBsOpx1spIQgTuJD0Oae9Embi4s6PWFYP4Hx1VCezu1IpMrawbkEnk16ItQEkSmFXqwy
- U52SDgRkXi3+zCUlWeNAGMpZSglX3Fe5E9xUYCBZkE+BSwZSk/a76SeaJprYGFy1Ta12
- VSv0Uo0NIPWpBX9/I0gFdUK9hJxw9K7TVq+qMpm0GVThgAVsX1NUQucO6XZRYwbVu6Ao
- loOQ==
-X-Gm-Message-State: ACgBeo1C0o1a6yM9FUEK2gkBDVc4hdi6nL2GhggSQIgrWQ/pbtdtbE5A
- 3yza8hzLOIQ+h4emCCs9JERLx+e5FCbowCJiFzCHm2zWZySLiAGirey6jGHH/EhKjuL2yr0ULRb
- xmzYfR/b8hwBhSngYFFLyDhAxCA==
-X-Received: by 2002:a05:622a:1aa2:b0:344:5ffd:3190 with SMTP id
- s34-20020a05622a1aa200b003445ffd3190mr4254618qtc.80.1660855167798; 
- Thu, 18 Aug 2022 13:39:27 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR7EDStAK6GjaGlN339wGqtBhkMA6eDN3LHTMalY+SXOZUeP/bmGCfFuDWUG1RAaEssKn/9BMQ==
-X-Received: by 2002:a05:622a:1aa2:b0:344:5ffd:3190 with SMTP id
- s34-20020a05622a1aa200b003445ffd3190mr4254606qtc.80.1660855167563; 
- Thu, 18 Aug 2022 13:39:27 -0700 (PDT)
-Received: from [192.168.8.138] (pool-100-0-245-4.bstnma.fios.verizon.net.
- [100.0.245.4]) by smtp.gmail.com with ESMTPSA id
- bi24-20020a05620a319800b006b9d4f45c83sm2207050qkb.97.2022.08.18.13.39.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 Aug 2022 13:39:26 -0700 (PDT)
-Message-ID: <eac32fb892e7260efd8d5ad82696efa076c9e36e.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Karol Herbst <kherbst@redhat.com>
-Date: Thu, 18 Aug 2022 16:39:25 -0400
-In-Reply-To: <CACO55tvBR5exrpMP=mKhxZjfJVQxuvQoYApnwFZjQWxFv_6msQ@mail.gmail.com>
-References: <CAHSpYy3G7EPhLBAiy4MgngKRqFgs1cTC-pnJb662vxxmkmxPXA@mail.gmail.com>
- <CAKb7UvhBekZhHhq=aD+hLCfOWe33whi_bScbLiDhXDwvEvbzfA@mail.gmail.com>
- <YWhgFZPqx3qKqr0C@debian.fritz.box>
- <CAKb7UviFVRe7hbtEXF6hUQh2TuZPthu+bt90h+8haf3A1FYt7g@mail.gmail.com>
- <2296778.YFyOdMMpyM@debian>
- <CAHSpYy1HJzY5kNoxk36yGRsKhmxQYP7FVM=Orn7RyKCtZc293w@mail.gmail.com>
- <CACO55tsJCPLw+UH6ADyHy62CfQKTtAwskoP86as2pwKnO7-NwQ@mail.gmail.com>
- <071b71819660d61d9b5caa368f683189a192754f.camel@redhat.com>
- <CACO55ttafiSS+eU=g0=uqwvU7yi+B_6LJK1VJ2FLObn6Rg8LYQ@mail.gmail.com>
- <31a134642314b288771637610659a4f50f971f27.camel@redhat.com>
- <CACO55tvBR5exrpMP=mKhxZjfJVQxuvQoYApnwFZjQWxFv_6msQ@mail.gmail.com>
-Organization: Red Hat Inc.
-User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFA0710E61E;
+	Thu, 18 Aug 2022 21:05:55 +0000 (UTC)
+X-Greylist: delayed 488 seconds by postgrey-1.36 at gabe;
+ Mon, 15 Aug 2022 20:49:31 UTC
+Received: from resqmta-h1p-028590.sys.comcast.net
+ (resqmta-h1p-028590.sys.comcast.net [IPv6:2001:558:fd02:2446::8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EDFA14A8ED
+ for <nouveau@lists.freedesktop.org>; Mon, 15 Aug 2022 20:49:31 +0000 (UTC)
+Received: from resomta-h1p-028515.sys.comcast.net ([96.102.179.209])
+ by resqmta-h1p-028590.sys.comcast.net with ESMTP
+ id NfBJoJd4vgfn1Ngtmow1xj; Mon, 15 Aug 2022 20:41:22 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+ s=20190202a; t=1660596082;
+ bh=8Od0Z6DHVOL1tF9j5+8OtlDIo9lHRfsNgefdkSbaJq8=;
+ h=Received:Received:Message-ID:Date:MIME-Version:To:From:Subject:
+ Content-Type;
+ b=yjJDZzwYYsSllBbRdgJMohPOgOJzAWZHoDZKCdPLyYeeSCoF14ILVec+oro9OEbBL
+ Qj4R4T2nnfoRVknyPN2MAyyMoE5qVihCg9b4Rvc2hXlzUNTinNzqX8xYZ4SPPe447f
+ aA8/dEmr/sHXMCv5gDk4+TCyjqe6+nohuG/MuzPvNBBoAvXkJYS1Nn3QPDTIjsykKP
+ KEq0+0GnvGXlMn07zREnLMv8VjpFKTviiw5Zn0/y/Kk1+joMSq1rALhbGrEPu+GB+v
+ bbpA0ukLQ5iCatiKgmulTvJoo7zdc5hf7Xqfq0kTqLR+vIW1YVTp0sfkVqdCXBLU0n
+ IL7yhx0JuXYLQ==
+Received: from [10.0.0.21] ([69.141.7.248])
+ by resomta-h1p-028515.sys.comcast.net with ESMTPSA
+ id NgtkoEXJZSGHANgtloqytZ; Mon, 15 Aug 2022 20:41:22 +0000
+X-Xfinity-VAAS: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehvddgudehgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucevohhmtggrshhtqdftvghsihdpqfgfvfdppffquffrtefokffrnecuuegrihhlohhuthemuceftddunecunecujfgurhepkfffgggfvffhufgtgfesthekredttdefjeenucfhrhhomhepfdffrghvihguucfirdcurfhitghkvghtthdfuceoffgrvhhiugfirfhitghkvghtthestghomhgtrghsthdrnhgvtheqnecuggftrfgrthhtvghrnhepgedvgfdvkeetgefgffeljeevleeuhfdtvdffieelvdehvdfhgfetgfetiefhveelnecukfhppeeiledrudeguddrjedrvdegkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhephhgvlhhopegluddtrddtrddtrddvudgnpdhinhgvthepieelrddugedurdejrddvgeekpdhmrghilhhfrhhomhepuggrvhhiughgphhitghkvghtthestghomhgtrghsthdrnhgvthdpnhgspghrtghpthhtohepuddprhgtphhtthhopehnohhuvhgvrghusehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+X-Xfinity-VMeta: sc=0.00;st=legit
+Message-ID: <6e42fcba-0554-c28b-9317-88dd29db4c2b@comcast.net>
+Date: Mon, 15 Aug 2022 16:41:20 -0400
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Nouveau] Advice about debugging nouveau driver suspend issue
- (init_on_alloc=1 and init_on_free=1)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+To: nouveau@lists.freedesktop.org
+Content-Language: en-US
+From: "David G. Pickett" <DavidGPickett@comcast.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 18 Aug 2022 21:05:47 +0000
+Subject: [Nouveau] Ubuntu 22.04 system freeze on nVidia GT218 [GeForce 210]
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,44 +57,17 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-So then - if we can get this patch re-submitted with the /* TODO */ added,
-I'll be happy to push this
-
-On Fri, 2022-08-12 at 01:07 +0200, Karol Herbst wrote:
-> On Thu, Aug 11, 2022 at 11:20 PM Lyude Paul <lyude@redhat.com> wrote:
-> > 
-> > On Thu, 2022-08-11 at 00:08 +0200, Karol Herbst wrote:
-> > > the thing is, without this patch, the "hw path" fails with a timeout
-> > > of... 30 seconds?, the code falls back to sw and it takes up to 2-3
-> > > minutes to finish up. So even if this solution is overkill, it fixes a
-> > > real issue. I suspect _something_ is bonkers with the fencing we do
-> > > here and we don't see that the stuff is actually finished or whatever,
-> > > or maybe we never emit the fence in the first place.. I didn't dig
-> > > deep enough.
-> > > 
-> > > With this, it's really quick and everything.
-> > 
-> > I guess with a todo comment this is probably fine then, since this would only
-> > really be affecting GPUs using m2mf anyway
-> > 
-> 
-> I was mostly wondering if this is safe, but it probably is and it does
-> fix real user issues. I don't have a better solution at the moment
-> anyway.
-> 
-> > --
-> > Cheers,
-> >  Lyude Paul (she/her)
-> >  Software Engineer at Red Hat
-> > 
-> 
-
--- 
-Cheers,
- Lyude Paul (she/her)
- Software Engineer at Red Hat
+When I upgraded to Ubuntu 22.04 LTS from 20.04 LTS, it removed my 
+proprietary nvidia drivers and installed nouveau.  When I run graphical 
+apps like Chrome, Firefox, especially both, or even gnucash, it freezes, 
+sometimes after a time seems to unfreeze, and then refreezes.  Other 
+users have switched back to the nvidia proprietary driver, but I have 
+not figured out how.  I had similar problems on 20.04 LTS and figured 
+out how to go to nvidia, but it seems like the option is missing in 
+22.04.  As a bonus for going to nvidia, BOINC apps were able to use my 
+GPU.  I have a nVidia GT218 [GeForce 210] GPU, apparently part of the 
+nvidia 340 family of drivers.
 
