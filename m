@@ -4,39 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5E67C00140
-	for <nouveau@archiver.kernel.org>; Thu, 18 Aug 2022 18:46:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36B3EC32772
+	for <nouveau@archiver.kernel.org>; Thu, 18 Aug 2022 18:46:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DEDC10ED7A;
-	Thu, 18 Aug 2022 18:44:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8037E10EA82;
+	Thu, 18 Aug 2022 18:44:54 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E01910EBE8
- for <nouveau@lists.freedesktop.org>; Thu, 18 Aug 2022 18:44:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9347F10EC8B
+ for <nouveau@lists.freedesktop.org>; Thu, 18 Aug 2022 18:44:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1660848262;
+ s=mimecast20190719; t=1660848278;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=mQ93MFygjHtn+pj1JiwZkpRA5Z7Viuv96I2pphNTU0o=;
- b=eXHvBfb9SWm4U6hzWglQPQ935jCqkpN5BwhZRneLC3UNBGlGlpgEp9zsN95vtjcmz2PpvI
- 8lyx/hDk9o2VGdCs0Veyv8n18usWW7wIS2Puwkl3OPmKovVpaQLhMWw/ZDME0TkJUKEESx
- Xx7ebG5MPDfQ91ZXBb+OiIdTvmx8HyY=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=YqEqzSG53aD58AoTXBk3s3SN9cZL717VoO9W1oD9K+k=;
+ b=LlEtNwVul7gBfnf2O6QdwiAfWguEPyie2OmnB/JaUMsGD9zm0+55s99sVCjoc0VBbwMzS7
+ vVK2DS4M16fGWxMeH30tpb+AfY6m4iPEVaInGDqcOFd7sM9deVYB8aB2+srBzK5O8PFfF2
+ b+bLT6+TlqBfHYnWGAA7obOX2+bXalY=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-182-woStfovqMROjSBVE2HNTYA-1; Thu, 18 Aug 2022 14:44:19 -0400
-X-MC-Unique: woStfovqMROjSBVE2HNTYA-1
+ us-mta-652-n5trYiWlPwi-yILLi5ny7A-1; Thu, 18 Aug 2022 14:44:35 -0400
+X-MC-Unique: n5trYiWlPwi-yILLi5ny7A-1
 Received: from smtp.corp.redhat.com (int-mx10.intmail.prod.int.rdu2.redhat.com
  [10.11.54.10])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 07DD83815D2A;
- Thu, 18 Aug 2022 18:44:18 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 50A46811E75;
+ Thu, 18 Aug 2022 18:44:34 +0000 (UTC)
 Received: from localhost.localdomain (unknown [10.39.192.20])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 48EFF492C3B;
- Thu, 18 Aug 2022 18:44:14 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 8223B403340;
+ Thu, 18 Aug 2022 18:44:30 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: Ben Skeggs <bskeggs@redhat.com>,
 	Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>,
@@ -55,15 +55,15 @@ To: Ben Skeggs <bskeggs@redhat.com>,
 	Mika Westerberg <mika.westerberg@linux.intel.com>,
 	Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
 	Andy Shevchenko <andy@kernel.org>
-Date: Thu, 18 Aug 2022 20:42:47 +0200
-Message-Id: <20220818184302.10051-17-hdegoede@redhat.com>
+Date: Thu, 18 Aug 2022 20:42:51 +0200
+Message-Id: <20220818184302.10051-21-hdegoede@redhat.com>
 In-Reply-To: <20220818184302.10051-1-hdegoede@redhat.com>
 References: <20220818184302.10051-1-hdegoede@redhat.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Scanned-By: MIMEDefang 2.85 on 10.11.54.10
-Subject: [Nouveau] [PATCH v3 16/31] ACPI: video: Refactor
- acpi_video_get_backlight_type() a bit
+Subject: [Nouveau] [PATCH v3 20/31] platform/x86: apple-gmux: Stop calling
+ acpi/video.h functions
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,89 +77,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: linux-acpi@vger.kernel.org, David Airlie <airlied@linux.ie>,
  nouveau@lists.freedesktop.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
  dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
  Hans de Goede <hdegoede@redhat.com>, amd-gfx@lists.freedesktop.org,
  Daniel Vetter <daniel@ffwll.ch>, Len Brown <lenb@kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Refactor acpi_video_get_backlight_type() so that the heuristics /
-detection steps are stricly in order of descending precedence.
+Now that acpi_video_get_backlight_type() has apple-gmux detection (using
+apple_gmux_present()), it is no longer necessary for the apple-gmux code
+to manually remove possibly conflicting drivers.
 
-Also move the comments describing the steps to when the various steps are
-actually done, to avoid the comments getting out of sync with the code.
+So remove the handling for this from the apple-gmux driver.
 
-Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
 Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 ---
- drivers/acpi/video_detect.c | 39 ++++++++++++++++++++++---------------
- 1 file changed, 23 insertions(+), 16 deletions(-)
+ drivers/platform/x86/apple-gmux.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c
-index fb49b8f4523a..cc9d0d91e268 100644
---- a/drivers/acpi/video_detect.c
-+++ b/drivers/acpi/video_detect.c
-@@ -537,16 +537,6 @@ static const struct dmi_system_id video_detect_dmi_table[] = {
- /*
-  * Determine which type of backlight interface to use on this system,
-  * First check cmdline, then dmi quirks, then do autodetect.
-- *
-- * The autodetect order is:
-- * 1) Is the acpi-video backlight interface supported ->
-- *  no, use a vendor interface
-- * 2) Is this a win8 "ready" BIOS and do we have a native interface ->
-- *  yes, use a native interface
-- * 3) Else use the acpi-video interface
-- *
-- * Arguably the native on win8 check should be done first, but that would
-- * be a behavior change, which may causes issues.
-  */
- static enum acpi_backlight_type __acpi_video_get_backlight_type(bool native)
- {
-@@ -569,19 +559,36 @@ static enum acpi_backlight_type __acpi_video_get_backlight_type(bool native)
- 		native_available = true;
- 	mutex_unlock(&init_mutex);
+diff --git a/drivers/platform/x86/apple-gmux.c b/drivers/platform/x86/apple-gmux.c
+index ffe98a18440b..ca33df7ea550 100644
+--- a/drivers/platform/x86/apple-gmux.c
++++ b/drivers/platform/x86/apple-gmux.c
+@@ -21,7 +21,6 @@
+ #include <linux/delay.h>
+ #include <linux/pci.h>
+ #include <linux/vga_switcheroo.h>
+-#include <acpi/video.h>
+ #include <asm/io.h>
  
-+	/*
-+	 * The below heuristics / detection steps are in order of descending
-+	 * presedence. The commandline takes presedence over anything else.
-+	 */
- 	if (acpi_backlight_cmdline != acpi_backlight_undef)
- 		return acpi_backlight_cmdline;
+ /**
+@@ -694,7 +693,6 @@ static int gmux_probe(struct pnp_dev *pnp, const struct pnp_device_id *id)
+ 	 * backlight control and supports more levels than other options.
+ 	 * Disable the other backlight choices.
+ 	 */
+-	acpi_video_set_dmi_backlight_type(acpi_backlight_vendor);
+ 	apple_bl_unregister();
  
-+	/* DMI quirks override any autodetection. */
- 	if (acpi_backlight_dmi != acpi_backlight_undef)
- 		return acpi_backlight_dmi;
+ 	gmux_data->power_state = VGA_SWITCHEROO_ON;
+@@ -804,7 +802,6 @@ static void gmux_remove(struct pnp_dev *pnp)
+ 	apple_gmux_data = NULL;
+ 	kfree(gmux_data);
  
--	if (!(video_caps & ACPI_VIDEO_BACKLIGHT))
--		return acpi_backlight_vendor;
--
--	if (acpi_osi_is_win8() && native_available)
--		return acpi_backlight_native;
-+	/* On systems with ACPI video use either native or ACPI video. */
-+	if (video_caps & ACPI_VIDEO_BACKLIGHT) {
-+		/*
-+		 * Windows 8 and newer no longer use the ACPI video interface,
-+		 * so it often does not work. If the ACPI tables are written
-+		 * for win8 and native brightness ctl is available, use that.
-+		 *
-+		 * The native check deliberately is inside the if acpi-video
-+		 * block on older devices without acpi-video support native
-+		 * is usually not the best choice.
-+		 */
-+		if (acpi_osi_is_win8() && native_available)
-+			return acpi_backlight_native;
-+		else
-+			return acpi_backlight_video;
-+	}
- 
--	return acpi_backlight_video;
-+	/* No ACPI video (old hw), use vendor specific fw methods. */
-+	return acpi_backlight_vendor;
+-	acpi_video_register();
+ 	apple_bl_register();
  }
  
- enum acpi_backlight_type acpi_video_get_backlight_type(void)
 -- 
 2.37.2
 
