@@ -4,90 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 541B0C32772
-	for <nouveau@archiver.kernel.org>; Tue, 23 Aug 2022 18:51:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 517DDC32772
+	for <nouveau@archiver.kernel.org>; Tue, 23 Aug 2022 21:09:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFD26112EE9;
-	Tue, 23 Aug 2022 18:51:42 +0000 (UTC)
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2069.outbound.protection.outlook.com [40.107.223.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B023A10FAF8
- for <nouveau@lists.freedesktop.org>; Tue, 23 Aug 2022 18:51:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MJ4Fs/bee2/cNDUXh3l3u7Qcb6LNO0GqwXy//A1itGwHHd0qY+owmE1yJ2LYDHWcqB6nuBKBkM7jDrwoE9PS/aTIEm0xE1rePrr+mgdvTzKssagklg/89Qw9lUkuWoj1FJ2g/ypHzRFcfF3xgCOwF68gbSAgDdXLjNx1Z6LLiobH6tKGkl1KGfed71HYxF1XcXaWFwM+VZDcCqbedsAY27rz52ySuNNvHb/PQsmemnT58gzvH7T+IklMD02Y/kjAag3BeZQnZr42gWXla2fbaXfowRM0GaEHS5N3GELw5ZetGgbjO3/ZR15FuBmot00Gxd7H7aK0l28gSHeEnR0mLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ThCe2AeyMszMrjZlffl5JDkCXNOJ3GrfsgCWYhio1zg=;
- b=CTZs9elJcKh6zPh2Nrz1rOYxBaA6WqjsF+zt5GABIx7/OcQ3HgZFwbYXbNMHb4cmWsF1A8tWhjLT8KklWb16jITqwtKP5nTrrDabl/ITZJaCEQBJWBN2rzKpcXZhhh4HkNr84LtZzlgYHIu5uvV+2DVFvMtTnd+OGQPfgFW6WFB77mtkBZtbxR/hC1H+8bQlSCr0E0O/ia/f/RfPt4pgRGrBK2DSWO+XC8S6JZpe77TChLXgr4m5zOZZA7L3TiJn0AKlokqdm6GAMUbKuQMjYYN4wDuqZJ4r/U2QxRQMulocqN+6/EtPAje3TMbXpbQyDkQsVEocuQ63gIgrD0mH/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ThCe2AeyMszMrjZlffl5JDkCXNOJ3GrfsgCWYhio1zg=;
- b=kz76vHmV5wAMl1Xx4dqJeEmOVzEytWnfKKLFxrb5eYf9xlm9s+T4T9SDWZ7OFbGCTcqiakmml6j7dwcMV2aOb3Sl9YIVWT19b8v8RWKgXQL9wSuKYlTO+FCCnm7BBlU5OYoT6OxL8R/l3Dx4tgE7ZmDUt5eiZKfXX+bV4pqahaU=
-Received: from MW4PR03CA0114.namprd03.prod.outlook.com (2603:10b6:303:b7::29)
- by PH7PR12MB6718.namprd12.prod.outlook.com (2603:10b6:510:1b1::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.16; Tue, 23 Aug
- 2022 18:51:23 +0000
-Received: from CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:b7:cafe::16) by MW4PR03CA0114.outlook.office365.com
- (2603:10b6:303:b7::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.20 via Frontend
- Transport; Tue, 23 Aug 2022 18:51:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT064.mail.protection.outlook.com (10.13.175.77) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5566.15 via Frontend Transport; Tue, 23 Aug 2022 18:51:22 +0000
-Received: from AUS-LX-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 23 Aug
- 2022 13:51:21 -0500
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: <rafael@kernel.org>, Len Brown <lenb@kernel.org>
-Date: Tue, 23 Aug 2022 13:51:31 -0500
-Message-ID: <20220823185134.14464-2-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220823185134.14464-1-mario.limonciello@amd.com>
-References: <20220823185134.14464-1-mario.limonciello@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11D6C10FA30;
+	Tue, 23 Aug 2022 21:09:33 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C16C610F9CD
+ for <nouveau@lists.freedesktop.org>; Tue, 23 Aug 2022 21:09:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1661288966;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=GQSM/RGh8mGdrtSfQj9vauiNBm4oVfOIxDJRMUWZlC0=;
+ b=WSLeR/F0AYsRVGwujoYPGuukV7kLAU1FRhIOqCeybBXFdLE6EPRHdVmqRtomMpTXLBoOE5
+ SVlSRJVR+i8d1GGfrhu7TjvlKkExZrw1O/va+kea46sqTi5hH3DUSWqZalw6jBo7cuvjsl
+ MPXfKhjA34pLkuyFkjxWdeFCHBJUqYU=
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-647-UopdwmxtOqypwdX-yzds9w-1; Tue, 23 Aug 2022 17:09:22 -0400
+X-MC-Unique: UopdwmxtOqypwdX-yzds9w-1
+Received: by mail-qt1-f197.google.com with SMTP id
+ fc18-20020a05622a489200b00344b09d2578so7114752qtb.13
+ for <nouveau@lists.freedesktop.org>; Tue, 23 Aug 2022 14:09:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:user-agent:organization
+ :references:in-reply-to:date:cc:to:from:subject:message-id
+ :x-gm-message-state:from:to:cc;
+ bh=GQSM/RGh8mGdrtSfQj9vauiNBm4oVfOIxDJRMUWZlC0=;
+ b=Vp2IWIfmpil1cxXvOuKXqQodh2j467ZuT53EZ25FUD7uCb7x2sHG38qTsMpbKB7Re5
+ 5mMYU+1DlRoxoftpe9i9E8MFpshF1pB1jUOJRI6PBh9B062OJ0zuOReUAuEt8ouz52CR
+ dKyVJj9EeYpzVCtQU8MZ3efjg4cxK4D/kHj8MTKWSpq8CfNgCpQhYAPTKUb/xzh+as+i
+ CVaPq9qQNp7STu2lRe+aqpIUKAt/Xbmqr2C8PotCL6lgt09SASXeq3EFlG09lL1wjvXI
+ hQM7pjiL5MqT3uXT0J2L7chrHqVbsFw6WNBEA6XFuo7xamRCxMmPM9BGVZHsYlE4UAaI
+ oOdw==
+X-Gm-Message-State: ACgBeo3JtHdDtwLuJq+wOM4ff76PiEIbs5KvtAasvtA0xqEDrHbEaPj1
+ jc7EgF+YTGUNYw2E6TqlOmaIco0mIC7lRTZviT0GG0Hd3sh+HCaOuuqdRxzE8rq3IrM5Nw7mJGk
+ RBecPk6kV7JohuZiHLbJQggCQZw==
+X-Received: by 2002:ac8:5dd1:0:b0:343:7ddc:8d0a with SMTP id
+ e17-20020ac85dd1000000b003437ddc8d0amr21524805qtx.615.1661288962422; 
+ Tue, 23 Aug 2022 14:09:22 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR69HDzVSzJrEZ+8qYYkXXMohhZEq9scSqarTaD8uVSSTD+0zynybEJisjiWIws6Y1e5GcHLDw==
+X-Received: by 2002:ac8:5dd1:0:b0:343:7ddc:8d0a with SMTP id
+ e17-20020ac85dd1000000b003437ddc8d0amr21524783qtx.615.1661288962182; 
+ Tue, 23 Aug 2022 14:09:22 -0700 (PDT)
+Received: from [192.168.8.139] (pool-100-0-245-4.bstnma.fios.verizon.net.
+ [100.0.245.4]) by smtp.gmail.com with ESMTPSA id
+ j12-20020a05620a288c00b006b61b2cb1d2sm13834744qkp.46.2022.08.23.14.09.20
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 23 Aug 2022 14:09:21 -0700 (PDT)
+Message-ID: <4f179363055570228d2932c9636735a269f3b5ef.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Date: Tue, 23 Aug 2022 17:09:19 -0400
+In-Reply-To: <c22a559b64b1ca9f9d80ed9b5a6a4e97636cd19c.camel@redhat.com>
+References: <20220817193847.557945-1-lyude@redhat.com>
+ <c22a559b64b1ca9f9d80ed9b5a6a4e97636cd19c.camel@redhat.com>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
 MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 79580f12-5648-42de-3e72-08da8538796a
-X-MS-TrafficTypeDiagnostic: PH7PR12MB6718:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: VzDp1L7kswL62aYDPILXBlEj66uLPHzSBlz9l2JnWF4Ky8qvfuFqzRaTbg4lgNNg4v7LeRWqcUlNA47i7pvBuOSxeFpKugcKnzzWQ+cdWImf2YzNt1ylfE5qJQT+XfQvnwJP3Bn0w6sGbpPfS2WnAuK6qpID+J2Pffd5fnSTwaqY7CkCi/1Hz8dOcGfL3mOI9LmpLfesbM+MwB17l4WV7Wm0/1y8GMqZzwwRBrRbsuwAGmSpiiMMMY5JAsIZh8vmvMZYK3JnA1hSItMd/IGrhBvQ9SKnO11Aw11eLcXhlUlIE0ZfscCZYLI87BfMJ1xrRxbcCFVmPLRks3jNSKZiWnkGYpGJSuCM5rGUmEG7DCn9ulEmEO2eeVLUcx/4PloS8oalg2aDhAsBIMJEdf8+td4ytT+ZHJXbGxnT8uM+iqCDb5l/eY7AIwG2/1kXYzjfsP1vXsY+jG8ChzETa4GeL5Pyl1xrC1LkVsVWqYNxanYAF2SMXzoJvjBgUhJ08Iw0tRwkMcyUVcU9vHnuDchSgbWT5QOcZjFqtO1s8TESMmWe1pU01Io5xBlev8kGCcJVoFtxN4vOyCPKY+bz5D7cNVa25Kq+2wjSCLTTNEmXhCOKDozvvmMGUZfwC7fO+MoStlr+V/F60TiZt78S03OE+TILM2N1iue5j3hWsrpYyecfr847dM7gbZ0xTPcsviA5taqN2PI72HiVT/VEjGt6sGg4n00EZ1QuYVWhGQDaqlrV2HfsDmq21sj/YdamUO5q14FUue2oEJcZHQ5fjLyvqtsHmskEML2KyOlsiqWWRfW0etwD5dIcJ1kR/HcSNtF4
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(136003)(396003)(376002)(346002)(40470700004)(36840700001)(46966006)(8676002)(426003)(47076005)(83380400001)(2616005)(26005)(7696005)(1076003)(336012)(2906002)(16526019)(186003)(81166007)(356005)(40460700003)(86362001)(82740400003)(36860700001)(7416002)(82310400005)(70206006)(5660300002)(44832011)(41300700001)(316002)(70586007)(54906003)(36756003)(110136005)(478600001)(40480700001)(6666004)(8936002)(4326008)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2022 18:51:22.6140 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79580f12-5648-42de-3e72-08da8538796a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6718
-Subject: [Nouveau] [PATCH 1/4] ACPI: OSI: Remove Linux-Dell-Video _OSI string
+Subject: Re: [Nouveau] [RFC v4 00/17] drm/display/dp_mst: Drop Radeon MST
+ support, make MST atomic-only
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,45 +86,129 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: ddadap@nvidia.com, linux-acpi@vger.kernel.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- hdegoede@redhat.com, kai.heng.feng@canonical.com,
- Mario Limonciello <mario.limonciello@amd.com>, Dell.Client.Kernel@dell.com
+Cc: Jani Nikula <jani.nikula@intel.com>, Imre Deak <imre.deak@intel.com>,
+ Fangzhi Zuo <Jerry.Zuo@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
+ Sean Paul <sean@poorly.run>,
+ Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This string was introduced because drivers for NVIDIA hardware
-had bugs supporting RTD3 in the past.  Thoes bugs have been fixed
-by commit 5775b843a619 ("PCI: Restore config space on runtime resume
-despite being unbound"). so vendors shouldn't be using this string
-to modify ASL anymore.
+Actually, talked with airlied and they suggested at this point I should just
+go ahead and push. So, pushed! Have fun getting nice DSC support everyone :)
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
- drivers/acpi/osi.c | 9 ---------
- 1 file changed, 9 deletions(-)
+On Tue, 2022-08-23 at 13:26 -0400, Lyude Paul wrote:
+> Would anyone have any issues if I merged this today? The whole series is
+> acked, but I'm not sure if we would like to wait for R-b's?
+> 
+> 
+> On Wed, 2022-08-17 at 15:38 -0400, Lyude Paul wrote:
+> > For quite a while we've been carrying around a lot of legacy modesetting
+> > code in the MST helpers that has been rather annoying to keep around,
+> > and very often gets in the way of trying to implement additional
+> > functionality in MST such as fallback link rate retraining, dynamic BPC
+> > management and DSC support, etc. because of the fact that we can't rely
+> > on atomic for everything.
+> > 
+> > Luckily, we only actually have one user of the legacy MST code in the
+> > kernel - radeon. Originally I was thinking of trying to maintain this
+> > code and keep it around in some form, but I'm pretty unconvinced anyone
+> > is actually using this. My reasoning for that is because I've seen
+> > nearly no issues regarding MST on radeon for quite a while now - despite
+> > the fact my local testing seems to indicate it's quite broken. This
+> > isn't too surprising either, as MST support in radeon.ko is gated behind
+> > a module parameter that isn't enabled by default. This isn't to say I
+> > wouldn't be open to alternative suggestions, but I'd rather not be the
+> > one to have to spend time on that if at all possible! Plus, I already
+> > floated the idea of dropping this code by AMD folks a few times and
+> > didn't get much resistance.
+> > 
+> > As well, this series has some basic refactoring that I did along the way
+> > and some bugs I had to fix in order to get my atomic-only MST code
+> > working. Most of this is pretty straight forward and simply renaming
+> > things to more closely match the DisplayPort specification, as I think
+> > this will also make maintaining this code a lot easier in the long run
+> > (I've gotten myself confused way too many times because of this).
+> > 
+> > So far I've tested this on all three MST drivers: amdgpu, i915 and
+> > nouveau, along with making sure that removing the radeon MST code
+> > doesn't break anything else. The one thing I very much could use help
+> > with regarding testing though is making sure that this works with
+> > amdgpu's DSC support on MST.
+> > 
+> > So, with this we should be using the atomic state as much as possible
+> > with MST modesetting, hooray!
+> > 
+> > V4:
+> > * Get rid of fix that Wayne pointed out isn't needed
+> > 
+> > Cc: Wayne Lin <Wayne.Lin@amd.com>
+> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Cc: Fangzhi Zuo <Jerry.Zuo@amd.com>
+> > Cc: Jani Nikula <jani.nikula@intel.com>
+> > Cc: Imre Deak <imre.deak@intel.com>
+> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > Cc: Sean Paul <sean@poorly.run>
+> > 
+> > Lyude Paul (17):
+> >   drm/amdgpu/dc/mst: Rename dp_mst_stream_allocation(_table)
+> >   drm/amdgpu/dm/mst: Rename get_payload_table()
+> >   drm/display/dp_mst: Rename drm_dp_mst_vcpi_allocation
+> >   drm/display/dp_mst: Call them time slots, not VCPI slots
+> >   drm/display/dp_mst: Fix confusing docs for
+> >     drm_dp_atomic_release_time_slots()
+> >   drm/display/dp_mst: Add some missing kdocs for atomic MST structs
+> >   drm/display/dp_mst: Add helper for finding payloads in atomic MST
+> >     state
+> >   drm/display/dp_mst: Add nonblocking helpers for DP MST
+> >   drm/display/dp_mst: Don't open code modeset checks for releasing time
+> >     slots
+> >   drm/display/dp_mst: Fix modeset tracking in
+> >     drm_dp_atomic_release_vcpi_slots()
+> >   drm/nouveau/kms: Cache DP encoders in nouveau_connector
+> >   drm/nouveau/kms: Pull mst state in for all modesets
+> >   drm/display/dp_mst: Add helpers for serializing SST <-> MST
+> >     transitions
+> >   drm/display/dp_mst: Drop all ports from topology on CSNs before
+> >     queueing link address work
+> >   drm/display/dp_mst: Maintain time slot allocations when deleting
+> >     payloads
+> >   drm/radeon: Drop legacy MST support
+> >   drm/display/dp_mst: Move all payload info into the atomic state
+> > 
+> >  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   68 +-
+> >  .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  108 +-
+> >  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  125 +-
+> >  drivers/gpu/drm/amd/display/dc/core/dc_link.c |   10 +-
+> >  drivers/gpu/drm/amd/display/dc/dm_helpers.h   |    4 +-
+> >  .../amd/display/include/link_service_types.h  |   14 +-
+> >  drivers/gpu/drm/display/drm_dp_mst_topology.c | 1137 ++++++++---------
+> >  drivers/gpu/drm/i915/display/intel_display.c  |    6 +
+> >  drivers/gpu/drm/i915/display/intel_dp.c       |    9 +
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c   |   91 +-
+> >  drivers/gpu/drm/i915/display/intel_hdcp.c     |   24 +-
+> >  drivers/gpu/drm/nouveau/dispnv50/disp.c       |  197 ++-
+> >  drivers/gpu/drm/nouveau/dispnv50/disp.h       |    2 +
+> >  drivers/gpu/drm/nouveau/nouveau_connector.c   |   18 +-
+> >  drivers/gpu/drm/nouveau/nouveau_connector.h   |    3 +
+> >  drivers/gpu/drm/radeon/Makefile               |    2 +-
+> >  drivers/gpu/drm/radeon/atombios_crtc.c        |   11 +-
+> >  drivers/gpu/drm/radeon/atombios_encoders.c    |   59 -
+> >  drivers/gpu/drm/radeon/radeon_atombios.c      |    2 -
+> >  drivers/gpu/drm/radeon/radeon_connectors.c    |   61 +-
+> >  drivers/gpu/drm/radeon/radeon_device.c        |    1 -
+> >  drivers/gpu/drm/radeon/radeon_dp_mst.c        |  778 -----------
+> >  drivers/gpu/drm/radeon/radeon_drv.c           |    4 -
+> >  drivers/gpu/drm/radeon/radeon_encoders.c      |   14 +-
+> >  drivers/gpu/drm/radeon/radeon_irq_kms.c       |   10 +-
+> >  drivers/gpu/drm/radeon/radeon_mode.h          |   40 -
+> >  include/drm/display/drm_dp_mst_helper.h       |  234 ++--
+> >  27 files changed, 955 insertions(+), 2077 deletions(-)
+> >  delete mode 100644 drivers/gpu/drm/radeon/radeon_dp_mst.c
+> > 
+> 
 
-diff --git a/drivers/acpi/osi.c b/drivers/acpi/osi.c
-index 9f6853809138..c2f6b2f553d9 100644
---- a/drivers/acpi/osi.c
-+++ b/drivers/acpi/osi.c
-@@ -44,15 +44,6 @@ osi_setup_entries[OSI_STRING_ENTRIES_MAX] __initdata = {
- 	{"Processor Device", true},
- 	{"3.0 _SCP Extensions", true},
- 	{"Processor Aggregator Device", true},
--	/*
--	 * Linux-Dell-Video is used by BIOS to disable RTD3 for NVidia graphics
--	 * cards as RTD3 is not supported by drivers now.  Systems with NVidia
--	 * cards will hang without RTD3 disabled.
--	 *
--	 * Once NVidia drivers officially support RTD3, this _OSI strings can
--	 * be removed if both new and old graphics cards are supported.
--	 */
--	{"Linux-Dell-Video", true},
- 	/*
- 	 * Linux-Lenovo-NV-HDMI-Audio is used by BIOS to power on NVidia's HDMI
- 	 * audio device which is turned off for power-saving in Windows OS.
 -- 
-2.34.1
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
