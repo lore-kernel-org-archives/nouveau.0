@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BD86C32772
-	for <nouveau@archiver.kernel.org>; Tue, 23 Aug 2022 18:51:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 541B0C32772
+	for <nouveau@archiver.kernel.org>; Tue, 23 Aug 2022 18:51:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB6D6112E9B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFD26112EE9;
 	Tue, 23 Aug 2022 18:51:42 +0000 (UTC)
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2064.outbound.protection.outlook.com [40.107.92.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 114C110E520
- for <nouveau@lists.freedesktop.org>; Tue, 23 Aug 2022 18:51:28 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2069.outbound.protection.outlook.com [40.107.223.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B023A10FAF8
+ for <nouveau@lists.freedesktop.org>; Tue, 23 Aug 2022 18:51:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lpEvTF0zqQNFrwAMUOOQJg9OTdV3L4tj+zrdfHMF8djHZwJokr2ZP+zTOEoNDPUIUImunTUSMkXDkUpxEju+FXCJpTqowZNdwvjYyFAITL/XYuGZagLRtsUSYN8Y7wKhdO5Dqr8lEC24lp2P6jwOAY9b5FDpLsvYYYnrfzAWWsX6F0noxXXk1qnTaKGeKyFWG6CEZprIRBlV2z/DPO7BL2/HP8dZWb6SbTXhDbqqjlydZGhDqq9lPGPp/07mluSAx9JstPlozpxdTYlBx6NSCH73h6kygg46uNHnC0tfrX/LIY+AGobshZsrWZnX4aH1y+QZ+zD0m5ZaLCSYsQferg==
+ b=MJ4Fs/bee2/cNDUXh3l3u7Qcb6LNO0GqwXy//A1itGwHHd0qY+owmE1yJ2LYDHWcqB6nuBKBkM7jDrwoE9PS/aTIEm0xE1rePrr+mgdvTzKssagklg/89Qw9lUkuWoj1FJ2g/ypHzRFcfF3xgCOwF68gbSAgDdXLjNx1Z6LLiobH6tKGkl1KGfed71HYxF1XcXaWFwM+VZDcCqbedsAY27rz52ySuNNvHb/PQsmemnT58gzvH7T+IklMD02Y/kjAag3BeZQnZr42gWXla2fbaXfowRM0GaEHS5N3GELw5ZetGgbjO3/ZR15FuBmot00Gxd7H7aK0l28gSHeEnR0mLw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lFnR3bXw3qX7mpCr4BxgPiUUU7a3SMELH8mcisBCcOU=;
- b=UT+Dq29fmxiOCIizlbm/5AqOey0PkJ+/0ab1aO1u6vB6DmoiN5kGe4quEJ2GM5wnEN60E6Xj0FezJMc3uCvpLabclLxC2BuT4EdpxFSeKapyQYK740JJXKfeTzA/DoIQUwROxw4+EbUA65RDGK37yAwG2+3+1VT5bYP0cU4AyG3ELTCJa2ndOpvhj1EzbA59BkpBBnzlPj7/JC+uTQP9c6ZW9GR+iutrA8m7Caa6F1kJqab+2/WOVo5MGFphyfVy61tYNZev6m7f+/89lpu41A2zsWjA8RowSdtNQszfgRMHiNMmWbuCwrOa5xwuKxGFAo3q3xTewo8+QXGzqZbM9g==
+ bh=ThCe2AeyMszMrjZlffl5JDkCXNOJ3GrfsgCWYhio1zg=;
+ b=CTZs9elJcKh6zPh2Nrz1rOYxBaA6WqjsF+zt5GABIx7/OcQ3HgZFwbYXbNMHb4cmWsF1A8tWhjLT8KklWb16jITqwtKP5nTrrDabl/ITZJaCEQBJWBN2rzKpcXZhhh4HkNr84LtZzlgYHIu5uvV+2DVFvMtTnd+OGQPfgFW6WFB77mtkBZtbxR/hC1H+8bQlSCr0E0O/ia/f/RfPt4pgRGrBK2DSWO+XC8S6JZpe77TChLXgr4m5zOZZA7L3TiJn0AKlokqdm6GAMUbKuQMjYYN4wDuqZJ4r/U2QxRQMulocqN+6/EtPAje3TMbXpbQyDkQsVEocuQ63gIgrD0mH/A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
  (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lFnR3bXw3qX7mpCr4BxgPiUUU7a3SMELH8mcisBCcOU=;
- b=dAPZljonxU0Xj61no47gh7896Eu661KiWDWYvdOrgXtHSSEOV7EtKK7OKXav9yrnDtWrkI+AXlOa5CCbQDHmWHMdxbTjckMv2KZWLx84cM89EfiOz3qzgJNRJLmHwqAnyXbXmsuBpEigPBMoNj18cCZySxDAQOFcDROvPdZ0dZg=
-Received: from MW4PR03CA0103.namprd03.prod.outlook.com (2603:10b6:303:b7::18)
- by CY4PR12MB1784.namprd12.prod.outlook.com (2603:10b6:903:11e::19)
+ bh=ThCe2AeyMszMrjZlffl5JDkCXNOJ3GrfsgCWYhio1zg=;
+ b=kz76vHmV5wAMl1Xx4dqJeEmOVzEytWnfKKLFxrb5eYf9xlm9s+T4T9SDWZ7OFbGCTcqiakmml6j7dwcMV2aOb3Sl9YIVWT19b8v8RWKgXQL9wSuKYlTO+FCCnm7BBlU5OYoT6OxL8R/l3Dx4tgE7ZmDUt5eiZKfXX+bV4pqahaU=
+Received: from MW4PR03CA0114.namprd03.prod.outlook.com (2603:10b6:303:b7::29)
+ by PH7PR12MB6718.namprd12.prod.outlook.com (2603:10b6:510:1b1::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.21; Tue, 23 Aug
- 2022 18:51:25 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.16; Tue, 23 Aug
+ 2022 18:51:23 +0000
 Received: from CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:b7:cafe::31) by MW4PR03CA0103.outlook.office365.com
- (2603:10b6:303:b7::18) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:303:b7:cafe::16) by MW4PR03CA0114.outlook.office365.com
+ (2603:10b6:303:b7::29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.20 via Frontend
- Transport; Tue, 23 Aug 2022 18:51:25 +0000
+ Transport; Tue, 23 Aug 2022 18:51:22 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,15 +47,15 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT064.mail.protection.outlook.com (10.13.175.77) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5566.15 via Frontend Transport; Tue, 23 Aug 2022 18:51:25 +0000
+ 15.20.5566.15 via Frontend Transport; Tue, 23 Aug 2022 18:51:22 +0000
 Received: from AUS-LX-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 23 Aug
- 2022 13:51:24 -0500
+ 2022 13:51:21 -0500
 From: Mario Limonciello <mario.limonciello@amd.com>
 To: <rafael@kernel.org>, Len Brown <lenb@kernel.org>
-Date: Tue, 23 Aug 2022 13:51:34 -0500
-Message-ID: <20220823185134.14464-5-mario.limonciello@amd.com>
+Date: Tue, 23 Aug 2022 13:51:31 -0500
+Message-ID: <20220823185134.14464-2-mario.limonciello@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220823185134.14464-1-mario.limonciello@amd.com>
 References: <20220823185134.14464-1-mario.limonciello@amd.com>
@@ -67,28 +67,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 29c8b374-d37d-4be9-8736-08da85387aff
-X-MS-TrafficTypeDiagnostic: CY4PR12MB1784:EE_
+X-MS-Office365-Filtering-Correlation-Id: 79580f12-5648-42de-3e72-08da8538796a
+X-MS-TrafficTypeDiagnostic: PH7PR12MB6718:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: K+PHUQuXyAN9k3u26Re7Tg8/lsUs6dsi8hz83U0scoF+JwnRgVPbWhq10rFTVcxXOeeSEAOvCmcYNZxgFG4Mdf70rMDCv/hds39Wvdqz6AXAugueqNki3zihlH8tujoUlmC3Bx02OoeuKmhIVPlywQYKddw2DNYcqBkelGEOmr+mZUy6LP6NC74YRYPIbrRPcwyVj1cj4jaaKotiJo/T5h57kniPOrdZt1e0A6xCmM8kBo9itIgDnzfjavgZS02kWGvTfj4H1L1yWbEwEkCxLJjuqg/8ssDjGIQ1hZ7iQZmeoD5U5Dtmg9eA0JRvf1cNEOJcYAu3BC8Y7M5qeqCD0eJObjdt0tV5ovqdANuFf+8s4AUtYx+QocWg1ixDd+AnLgMf8x8gOdUfAFrbNvPpcHEII111be/DYtS4+3LNx8NzKlrVAUPD1eXgt14ZK8m1l14HiQjf3tW8qGAqXODWqjQ1fuanrFWYiVlgJTPoOva7yrtQiC8HEQDL8XYedgbzCS7ehHVjJnwv4mSkDiR2cf4DWeVVoQITGvfmw7i4IxEX2WH579v8VH6bm/X+/SnlaKGG3hYTTFmtXvsAagUAjM8SNRPJjxtmlBQlTcbVC3vGrhyzAtWS8XAyN6z6+xrdM42LmUZXE8BXXmKJjM8NsJpVI0p8Oe08lfI50oCBrS+tErgyXRS14Ig6tdOCvPXGBuGpjYxG3E4H1WKaeMbc77CjFiu4hCGYBsyVn32uSm9ZkJOe0UTZuvViSGC1W8DFBLrM0zRZufmZ+p80/Dc2h8+DgrPOLtgsi9TTLrhnjXEmTy7EZZTNb0kGpncfrl51
+X-Microsoft-Antispam-Message-Info: VzDp1L7kswL62aYDPILXBlEj66uLPHzSBlz9l2JnWF4Ky8qvfuFqzRaTbg4lgNNg4v7LeRWqcUlNA47i7pvBuOSxeFpKugcKnzzWQ+cdWImf2YzNt1ylfE5qJQT+XfQvnwJP3Bn0w6sGbpPfS2WnAuK6qpID+J2Pffd5fnSTwaqY7CkCi/1Hz8dOcGfL3mOI9LmpLfesbM+MwB17l4WV7Wm0/1y8GMqZzwwRBrRbsuwAGmSpiiMMMY5JAsIZh8vmvMZYK3JnA1hSItMd/IGrhBvQ9SKnO11Aw11eLcXhlUlIE0ZfscCZYLI87BfMJ1xrRxbcCFVmPLRks3jNSKZiWnkGYpGJSuCM5rGUmEG7DCn9ulEmEO2eeVLUcx/4PloS8oalg2aDhAsBIMJEdf8+td4ytT+ZHJXbGxnT8uM+iqCDb5l/eY7AIwG2/1kXYzjfsP1vXsY+jG8ChzETa4GeL5Pyl1xrC1LkVsVWqYNxanYAF2SMXzoJvjBgUhJ08Iw0tRwkMcyUVcU9vHnuDchSgbWT5QOcZjFqtO1s8TESMmWe1pU01Io5xBlev8kGCcJVoFtxN4vOyCPKY+bz5D7cNVa25Kq+2wjSCLTTNEmXhCOKDozvvmMGUZfwC7fO+MoStlr+V/F60TiZt78S03OE+TILM2N1iue5j3hWsrpYyecfr847dM7gbZ0xTPcsviA5taqN2PI72HiVT/VEjGt6sGg4n00EZ1QuYVWhGQDaqlrV2HfsDmq21sj/YdamUO5q14FUue2oEJcZHQ5fjLyvqtsHmskEML2KyOlsiqWWRfW0etwD5dIcJ1kR/HcSNtF4
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(136003)(346002)(376002)(396003)(46966006)(40470700004)(36840700001)(1076003)(8676002)(70206006)(478600001)(70586007)(4326008)(54906003)(316002)(110136005)(5660300002)(41300700001)(8936002)(36756003)(7416002)(16526019)(2906002)(82310400005)(2616005)(47076005)(7696005)(15650500001)(6666004)(44832011)(426003)(83380400001)(26005)(40480700001)(36860700001)(336012)(356005)(86362001)(40460700003)(186003)(82740400003)(81166007)(36900700001);
+ SFS:(13230016)(4636009)(39860400002)(136003)(396003)(376002)(346002)(40470700004)(36840700001)(46966006)(8676002)(426003)(47076005)(83380400001)(2616005)(26005)(7696005)(1076003)(336012)(2906002)(16526019)(186003)(81166007)(356005)(40460700003)(86362001)(82740400003)(36860700001)(7416002)(82310400005)(70206006)(5660300002)(44832011)(41300700001)(316002)(70586007)(54906003)(36756003)(110136005)(478600001)(40480700001)(6666004)(8936002)(4326008)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2022 18:51:25.2701 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 29c8b374-d37d-4be9-8736-08da85387aff
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2022 18:51:22.6140 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79580f12-5648-42de-3e72-08da8538796a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1784
-Subject: [Nouveau] [PATCH 4/4] ACPI: OSI: Update Documentation on custom
- _OSI strings
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6718
+Subject: [Nouveau] [PATCH 1/4] ACPI: OSI: Remove Linux-Dell-Video _OSI string
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,64 +106,38 @@ Cc: ddadap@nvidia.com, linux-acpi@vger.kernel.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Originally when there was some custom ASL needed for Linux the guidance
-for Linux friendly OEMs was to introduced a new string in APCI tables
-and discuss it on the kernel mailing lists.  This lead to 3 strings
-being introduced.  Those strings now have the original problems fixed
-in the kernel and have since been removed.  The kernel no longer
-advertises any custom Linux-* _OSI strings for OEM use.
+This string was introduced because drivers for NVIDIA hardware
+had bugs supporting RTD3 in the past.  Thoes bugs have been fixed
+by commit 5775b843a619 ("PCI: Restore config space on runtime resume
+despite being unbound"). so vendors shouldn't be using this string
+to modify ASL anymore.
 
-It was discovered that these removed strings were actually being abused
-to detect Linux for unrelated reasons.  So drop the encouragement for
-new ones to be added.
-
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- Documentation/firmware-guide/acpi/osi.rst | 25 ++++++++++-------------
- 1 file changed, 11 insertions(+), 14 deletions(-)
+ drivers/acpi/osi.c | 9 ---------
+ 1 file changed, 9 deletions(-)
 
-diff --git a/Documentation/firmware-guide/acpi/osi.rst b/Documentation/firmware-guide/acpi/osi.rst
-index 05869c0045d7..c9d508ba2ec7 100644
---- a/Documentation/firmware-guide/acpi/osi.rst
-+++ b/Documentation/firmware-guide/acpi/osi.rst
-@@ -41,26 +41,23 @@ But it is likely that they will all eventually be added.
- What should an OEM do if they want to support Linux and Windows
- using the same BIOS image?  Often they need to do something different
- for Linux to deal with how Linux is different from Windows.
--Here the BIOS should ask exactly what it wants to know:
- 
-+In this case, the OEM should create custom ASL to be executed by the
-+Linux kernel and changes to Linux kernel drivers to execute this custom
-+ASL.  The easiest way to accomplish this is to introduce a device specific
-+method (_DSM) that is called from the Linux kernel.
-+
-+In the past the kernel used to support something like:
- _OSI("Linux-OEM-my_interface_name")
- where 'OEM' is needed if this is an OEM-specific hook,
- and 'my_interface_name' describes the hook, which could be a
- quirk, a bug, or a bug-fix.
- 
--In addition, the OEM should send a patch to upstream Linux
--via the linux-acpi@vger.kernel.org mailing list.  When that patch
--is checked into Linux, the OS will answer "YES" when the BIOS
--on the OEM's system uses _OSI to ask if the interface is supported
--by the OS.  Linux distributors can back-port that patch for Linux
--pre-installs, and it will be included by all distributions that
--re-base to upstream.  If the distribution can not update the kernel binary,
--they can also add an acpi_osi=Linux-OEM-my_interface_name
--cmdline parameter to the boot loader, as needed.
--
--If the string refers to a feature where the upstream kernel
--eventually grows support, a patch should be sent to remove
--the string when that support is added to the kernel.
-+However this was discovered to be abused by other BIOS vendors to change
-+completely unrelated code on completely unrelated systems.  This prompted
-+an evaluation of all of it's uses. This uncovered that they aren't needed
-+for any of the original reasons. As such, the kernel will not respond to
-+any custom Linux-* strings by default.
- 
- That was easy.  Read on, to find out how to do it wrong.
- 
+diff --git a/drivers/acpi/osi.c b/drivers/acpi/osi.c
+index 9f6853809138..c2f6b2f553d9 100644
+--- a/drivers/acpi/osi.c
++++ b/drivers/acpi/osi.c
+@@ -44,15 +44,6 @@ osi_setup_entries[OSI_STRING_ENTRIES_MAX] __initdata = {
+ 	{"Processor Device", true},
+ 	{"3.0 _SCP Extensions", true},
+ 	{"Processor Aggregator Device", true},
+-	/*
+-	 * Linux-Dell-Video is used by BIOS to disable RTD3 for NVidia graphics
+-	 * cards as RTD3 is not supported by drivers now.  Systems with NVidia
+-	 * cards will hang without RTD3 disabled.
+-	 *
+-	 * Once NVidia drivers officially support RTD3, this _OSI strings can
+-	 * be removed if both new and old graphics cards are supported.
+-	 */
+-	{"Linux-Dell-Video", true},
+ 	/*
+ 	 * Linux-Lenovo-NV-HDMI-Audio is used by BIOS to power on NVidia's HDMI
+ 	 * audio device which is turned off for power-saving in Windows OS.
 -- 
 2.34.1
 
