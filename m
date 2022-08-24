@@ -4,39 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A061C32793
-	for <nouveau@archiver.kernel.org>; Wed, 24 Aug 2022 12:17:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7C56C32793
+	for <nouveau@archiver.kernel.org>; Wed, 24 Aug 2022 12:17:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BE0D10E807;
-	Wed, 24 Aug 2022 12:16:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC77511AAE3;
+	Wed, 24 Aug 2022 12:16:33 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E71E610EB3D
- for <nouveau@lists.freedesktop.org>; Wed, 24 Aug 2022 12:16:04 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E326011AAE3
+ for <nouveau@lists.freedesktop.org>; Wed, 24 Aug 2022 12:16:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1661343364;
+ s=mimecast20190719; t=1661343374;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=ctknI6XdgE6psrxrW1LvE+6pAp4DwJeu5LZT9v6kjls=;
- b=Yc5MFEmBZ19C/2GwuWG7S9pM63y7cZbLjvWkRzTggkzempo0MOuACh5ZiODXs83inL/J3B
- rMM2KkReuHvi2H59HqgQjlAlnw9iQdpVeCIh3DjJcaBeeinYWUJndBMJ5JY1PYEOdoaf9f
- Bp1lrQcXlue/jXUNwTB2tD8o694T8Eg=
+ bh=Gy4nad6Qh8tnv7TIvT0rDPmcwKdzWmM3aE/TJMfZBr0=;
+ b=itevg9+wvsCjkP3eSjumIoePozBTE2i5slKVkPZf820MXLYB6ad3wwemF3Qj4mDClcTKf1
+ BNF1Kt+UpoNZBuZVaygsOoihsjgAGmmTd9oA8VdEvmn+g7Vs4RwyHIPs7oMGdBScZJZ9U0
+ GfzA96LDCCWLiSC+4HFzFgAdKdDrpSM=
 Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
  [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-502-MDA0CH0kMhOeG1PzeRyRAA-1; Wed, 24 Aug 2022 08:16:02 -0400
-X-MC-Unique: MDA0CH0kMhOeG1PzeRyRAA-1
+ us-mta-99-B1CFP824NueVmTUdm_g31Q-1; Wed, 24 Aug 2022 08:16:10 -0400
+X-MC-Unique: B1CFP824NueVmTUdm_g31Q-1
 Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.rdu2.redhat.com
  [10.11.54.8])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 3413B101E985;
- Wed, 24 Aug 2022 12:16:01 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 6F5368032FB;
+ Wed, 24 Aug 2022 12:16:09 +0000 (UTC)
 Received: from localhost.localdomain (unknown [10.39.193.103])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 536D3C15BB3;
- Wed, 24 Aug 2022 12:15:57 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 8BEACC15BB3;
+ Wed, 24 Aug 2022 12:16:05 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: Ben Skeggs <bskeggs@redhat.com>,
 	Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>,
@@ -55,15 +55,15 @@ To: Ben Skeggs <bskeggs@redhat.com>,
 	Mika Westerberg <mika.westerberg@linux.intel.com>,
 	Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
 	Andy Shevchenko <andy@kernel.org>
-Date: Wed, 24 Aug 2022 14:14:58 +0200
-Message-Id: <20220824121523.1291269-7-hdegoede@redhat.com>
+Date: Wed, 24 Aug 2022 14:15:00 +0200
+Message-Id: <20220824121523.1291269-9-hdegoede@redhat.com>
 In-Reply-To: <20220824121523.1291269-1-hdegoede@redhat.com>
 References: <20220824121523.1291269-1-hdegoede@redhat.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Scanned-By: MIMEDefang 2.85 on 10.11.54.8
-Subject: [Nouveau] [PATCH v4 06/31] ACPI: video: Drop
- backlight_device_get_by_type() call from acpi_video_get_backlight_type()
+Subject: [Nouveau] [PATCH v4 08/31] ACPI: video: Simplify
+ acpi_video_unregister_backlight()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,37 +84,38 @@ Cc: linux-acpi@vger.kernel.org, David Airlie <airlied@linux.ie>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-All x86/ACPI kms drivers which register native/BACKLIGHT_RAW type
-backlight devices call acpi_video_backlight_use_native() now. This sets
-__acpi_video_get_backlight_type()'s internal static native_available flag.
-
-This makes the backlight_device_get_by_type(BACKLIGHT_RAW) check
-unnecessary.
-
-Relying on the cached native_available value not only is simpler, it will
-also work correctly in cases where then native backlight registration was
-skipped because of acpi_video_backlight_use_native() returning false.
+When acpi_video_register() has not run yet the video_bus_head will be
+empty, so there is no need to check the register_count flag first.
 
 Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
 Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 ---
- drivers/acpi/video_detect.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/acpi/acpi_video.c | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c
-index 5f105eaa7d30..385eb49c763f 100644
---- a/drivers/acpi/video_detect.c
-+++ b/drivers/acpi/video_detect.c
-@@ -608,8 +608,7 @@ static enum acpi_backlight_type __acpi_video_get_backlight_type(bool native)
- 	if (!(video_caps & ACPI_VIDEO_BACKLIGHT))
- 		return acpi_backlight_vendor;
+diff --git a/drivers/acpi/acpi_video.c b/drivers/acpi/acpi_video.c
+index cde8ffa9f0b8..8545bf94866f 100644
+--- a/drivers/acpi/acpi_video.c
++++ b/drivers/acpi/acpi_video.c
+@@ -2257,14 +2257,10 @@ void acpi_video_unregister_backlight(void)
+ {
+ 	struct acpi_video_bus *video;
  
--	if (acpi_osi_is_win8() &&
--	    (native_available || backlight_device_get_by_type(BACKLIGHT_RAW)))
-+	if (acpi_osi_is_win8() && native_available)
- 		return acpi_backlight_native;
+-	mutex_lock(&register_count_mutex);
+-	if (register_count) {
+-		mutex_lock(&video_list_lock);
+-		list_for_each_entry(video, &video_bus_head, entry)
+-			acpi_video_bus_unregister_backlight(video);
+-		mutex_unlock(&video_list_lock);
+-	}
+-	mutex_unlock(&register_count_mutex);
++	mutex_lock(&video_list_lock);
++	list_for_each_entry(video, &video_bus_head, entry)
++		acpi_video_bus_unregister_backlight(video);
++	mutex_unlock(&video_list_lock);
+ }
  
- 	return acpi_backlight_video;
+ bool acpi_video_handles_brightness_key_presses(void)
 -- 
 2.37.2
 
