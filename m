@@ -4,92 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BCC2C04AA5
-	for <nouveau@archiver.kernel.org>; Thu, 25 Aug 2022 08:54:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EF34C3F6B0
+	for <nouveau@archiver.kernel.org>; Thu, 25 Aug 2022 09:48:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C785A1124BA;
-	Thu, 25 Aug 2022 08:54:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5C1A11B5AD;
+	Thu, 25 Aug 2022 09:48:21 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 144CF11B54D
- for <nouveau@lists.freedesktop.org>; Thu, 25 Aug 2022 08:54:43 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8FD011B5AD
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Aug 2022 09:48:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1661417682;
+ s=mimecast20190719; t=1661420895;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=7OWfNCpLdSo1viH5XGsi5IJxCkX8SeFaK11y2Vq0C60=;
- b=JScAjQkKZ9yAhCJvk6rjiH8wRGldGnhB7caGUMVDgU0PZfPY8cpul1MDNS5KJA5VmIQ1xT
- C+BvJVquEMSQmxHq8YqzOQhBmMb9Fvv7NoSK4QYG48jZuuzvz221viiKmjp8ZhRwn0wueu
- Av9OqQwDgQAu2CRuT/SVgtOvDteJRyE=
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=QQYWm+a+dWbY84ofHv5p7ZkgFL1UHTJco9y7zH1BEdE=;
+ b=DwYH8ckhO1HdF1rwJK1gJu3NyPEXktt4tfuDVAIHSOwL9RqP9+KL4M09aOl0o2Io10Eske
+ rniHcbwnUbpzlwcULFL0uP+601GtAGskLML8Ql+C1ceqvuYRENTD5n61KBBNTL+GcqzjQY
+ 8f7ZJ+R5Mwe7Vh4fERcyZkKbL98/kCE=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-310-VV15GYXjMWOWlSH2PCNpCQ-1; Thu, 25 Aug 2022 04:54:41 -0400
-X-MC-Unique: VV15GYXjMWOWlSH2PCNpCQ-1
-Received: by mail-ed1-f69.google.com with SMTP id
- o2-20020a056402438200b0043d552deb2aso12391887edc.0
- for <nouveau@lists.freedesktop.org>; Thu, 25 Aug 2022 01:54:40 -0700 (PDT)
+ us-mta-360-PJk_OSloPbeQcs0al7geMw-1; Wed, 24 Aug 2022 13:41:26 -0400
+X-MC-Unique: PJk_OSloPbeQcs0al7geMw-1
+Received: by mail-qk1-f199.google.com with SMTP id
+ g6-20020a05620a40c600b006bbdeb0b1f2so12541580qko.22
+ for <nouveau@lists.freedesktop.org>; Wed, 24 Aug 2022 10:41:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
+ h=content-transfer-encoding:mime-version:user-agent:organization
+ :references:in-reply-to:date:cc:to:from:subject:message-id
  :x-gm-message-state:from:to:cc;
- bh=7OWfNCpLdSo1viH5XGsi5IJxCkX8SeFaK11y2Vq0C60=;
- b=FvZZsgZp2oASzBCffu92ubbosLL401DFXlHb1tf5oJH0seCthyudKl8h67pQoRB+Y0
- 1EXMS32O12BuxGIrjZSXEsUpRwLmtIGEUaNLkv2Nt0ywOimYb8ixzy+flQ/1+VoAJYPr
- mFiZYMyYVhsdOs3D2NWh4QeX6YaPQSkx4682rjY7Fng1LP5gT+oyrYnAaAQtSduSgQM7
- iimemWBAQroZAehkq/eqBwQELOM4z0myN84+MsS861xPcHfkiQi7orSfagi0226L9MlF
- Du64+XChpFYCkZuQNAvKbXU3vJl9mgKBbxEdmxkvQVGOjwdkBi0ISDOJBCd5HBJBpK5K
- ey8Q==
-X-Gm-Message-State: ACgBeo3rJ5kDjVgleYIaewNHIAVy1sVyjABUNrE+RtKbeltLU+OB1WVu
- dnbmZlksUW6bz0qhdcxJujl2eRQHw46SiCZptRqlniQ9EA9OfxW7sKqNqxWdpU3JifisNcFWyNj
- Lcwqw0nWBAGfYU/nkEo/iamFhDw==
-X-Received: by 2002:a17:907:728d:b0:731:8396:ea86 with SMTP id
- dt13-20020a170907728d00b007318396ea86mr1742642ejc.361.1661417679940; 
- Thu, 25 Aug 2022 01:54:39 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR4iRqqUbLSIQozsEoevWSbUBOoNa7wZuPHEqVSEVtqoqW7Rc5PQi4B3ygUaYiDI2xHU+dtygQ==
-X-Received: by 2002:a17:907:728d:b0:731:8396:ea86 with SMTP id
- dt13-20020a170907728d00b007318396ea86mr1742616ejc.361.1661417679691; 
- Thu, 25 Aug 2022 01:54:39 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c1e:bf00:d69d:5353:dba5:ee81?
- (2001-1c00-0c1e-bf00-d69d-5353-dba5-ee81.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:d69d:5353:dba5:ee81])
- by smtp.gmail.com with ESMTPSA id
- q23-20020a17090676d700b0073d74e1a467sm997841ejn.167.2022.08.25.01.54.38
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 25 Aug 2022 01:54:39 -0700 (PDT)
-Message-ID: <914dec00-65f4-f49c-9ace-39321b88e8b6@redhat.com>
-Date: Thu, 25 Aug 2022 10:54:38 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-To: Jani Nikula <jani.nikula@linux.intel.com>, Ben Skeggs
- <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude <lyude@redhat.com>, Daniel Dadap <ddadap@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, "Rafael J . Wysocki"
- <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>,
- Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
- Andy Shevchenko <andy@kernel.org>
+ bh=QQYWm+a+dWbY84ofHv5p7ZkgFL1UHTJco9y7zH1BEdE=;
+ b=bRg1YX6ED5cDpxjUN9+tdR8EtUGozQ4xbSHTnUZhaA5s/FCQYCj2kr8DMicDNAQuoC
+ 9lwnZafE96+V6766Exg1uf0Kv8UUhCSwjHtmm0sqo6Ub3JsffAbh14JWkRmlY4Ood50P
+ qgfOo853SBnAR9rVFrVjGlbeXZ8GrHWruiChfRyh00sQ+8boG90KfSnDbuZHozBMpX8m
+ UcFdNROayCvXckZcHgofaCP/JfcxUY+sepgy4sK5ZQj6F1SC47WEwmk9c+pZ8FN5ZSXQ
+ 15qB1gDN256NV922Fj9unbocdu5lJ0T1sYBti14b8PLg8S6Th+v/Y4Z7SKclLrxCMlyF
+ 0I4Q==
+X-Gm-Message-State: ACgBeo2ycoP5saDcVBOHK0IPCq9lhNGElsqghojbljnWfCBfFCsFD7A0
+ Bgy7AM+ONT3MY/gRk62svMTGe+s7VtRPpKpY1OqtUs30zueMEARmZ9Au33O+JIYjJwTvLtdPYzK
+ Gwnfw6NIcjQmILWbnt2J3XnivJw==
+X-Received: by 2002:a05:620a:2a0a:b0:6bb:d296:3196 with SMTP id
+ o10-20020a05620a2a0a00b006bbd2963196mr241444qkp.785.1661362885745; 
+ Wed, 24 Aug 2022 10:41:25 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR4k9upIjIL6VhJVoX42w7PZHf4ZeB0YlayxyCpkfOZfncucIivKxnpawGDLxvj+codgniVL0w==
+X-Received: by 2002:a05:620a:2a0a:b0:6bb:d296:3196 with SMTP id
+ o10-20020a05620a2a0a00b006bbd2963196mr241398qkp.785.1661362885362; 
+ Wed, 24 Aug 2022 10:41:25 -0700 (PDT)
+Received: from [192.168.8.139] (pool-100-0-245-4.bstnma.fios.verizon.net.
+ [100.0.245.4]) by smtp.gmail.com with ESMTPSA id
+ bm30-20020a05620a199e00b006bb11f9a859sm15477427qkb.122.2022.08.24.10.41.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 24 Aug 2022 10:41:24 -0700 (PDT)
+Message-ID: <1463d0d38e97e5664dbc0b67a7a5620bb198bcce.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, 
+ Karol Herbst <kherbst@redhat.com>, Daniel Dadap <ddadap@nvidia.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>,  Thomas Zimmermann <tzimmermann@suse.de>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Pan Xinhui <Xinhui.Pan@amd.com>, "Rafael J .
+ Wysocki" <rafael@kernel.org>, Mika Westerberg
+ <mika.westerberg@linux.intel.com>, Lukas Wunner <lukas@wunner.de>, Mark
+ Gross <markgross@kernel.org>, Andy Shevchenko <andy@kernel.org>
+Date: Wed, 24 Aug 2022 13:41:22 -0400
+In-Reply-To: <20220824121523.1291269-6-hdegoede@redhat.com>
 References: <20220824121523.1291269-1-hdegoede@redhat.com>
- <20220824121523.1291269-3-hdegoede@redhat.com> <87v8qhiz4f.fsf@intel.com>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <87v8qhiz4f.fsf@intel.com>
+ <20220824121523.1291269-6-hdegoede@redhat.com>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
+MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Nouveau] [PATCH v4 02/31] drm/i915: Don't register backlight
- when another backlight should be used
+Subject: Re: [Nouveau] [PATCH v4 05/31] drm/nouveau: Don't register
+ backlight when another backlight should be used (v2)
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,78 +96,103 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
- amd-gfx@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
- linux-acpi@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Len Brown <lenb@kernel.org>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, amd-gfx@lists.freedesktop.org,
+ platform-driver-x86@vger.kernel.org, linux-acpi@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Len Brown <lenb@kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi All,
+Just one tiny nitpick below:
 
-On 8/24/22 14:50, Jani Nikula wrote:
-> On Wed, 24 Aug 2022, Hans de Goede <hdegoede@redhat.com> wrote:
->> Before this commit when we want userspace to use the acpi_video backlight
->> device we register both the GPU's native backlight device and acpi_video's
->> firmware acpi_video# backlight device. This relies on userspace preferring
->> firmware type backlight devices over native ones.
->>
->> Registering 2 backlight devices for a single display really is
->> undesirable, don't register the GPU's native backlight device when
->> another backlight device should be used.
->>
->> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_backlight.c | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
->> index 681ebcda97ad..a4dd7924e0c1 100644
->> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
->> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
->> @@ -8,6 +8,8 @@
->>  #include <linux/pwm.h>
->>  #include <linux/string_helpers.h>
->>  
->> +#include <acpi/video.h>
->> +
->>  #include "intel_backlight.h"
->>  #include "intel_backlight_regs.h"
->>  #include "intel_connector.h"
->> @@ -952,6 +954,11 @@ int intel_backlight_device_register(struct intel_connector *connector)
->>  
->>  	WARN_ON(panel->backlight.max == 0);
->>  
->> +	if (!acpi_video_backlight_use_native()) {
->> +		DRM_INFO("Skipping intel_backlight registration\n");
+On Wed, 2022-08-24 at 14:14 +0200, Hans de Goede wrote:
+> Before this commit when we want userspace to use the acpi_video backlight
+> device we register both the GPU's native backlight device and acpi_video's
+> firmware acpi_video# backlight device. This relies on userspace preferring
+> firmware type backlight devices over native ones.
 > 
-> Could use drm_info with drm_device.
-
-Ack, fixed for v5.
-
-> Either way,
+> Registering 2 backlight devices for a single display really is
+> undesirable, don't register the GPU's native backlight device when
+> another backlight device should be used.
 > 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-Thank you.
-
-> and ack for merging via whichever tree suits you best.
-
-My plan is to create a branch with the series on top
-of 6.0-rc1 and then send a pull-req to all involved trees.
-
-So far there are no conflicts between this branch and drm-tip...
-
-Regards,
-
-Hans
-
-
-
->> +		return 0;
->> +	}
->> +
->>  	memset(&props, 0, sizeof(props));
->>  	props.type = BACKLIGHT_RAW;
+> Changes in v2:
+> - Add nouveau_acpi_video_backlight_use_native() wrapper to avoid unresolved
+>   symbol errors on non X86
 > 
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_acpi.c      | 5 +++++
+>  drivers/gpu/drm/nouveau/nouveau_acpi.h      | 2 ++
+>  drivers/gpu/drm/nouveau/nouveau_backlight.c | 6 ++++++
+>  3 files changed, 13 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+> index 6140db756d06..1592c9cd7750 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+> @@ -386,3 +386,8 @@ nouveau_acpi_edid(struct drm_device *dev, struct drm_connector *connector)
+>  
+>  	return kmemdup(edid, EDID_LENGTH, GFP_KERNEL);
+>  }
+> +
+> +bool nouveau_acpi_video_backlight_use_native(void)
+> +{
+> +	return acpi_video_backlight_use_native();
+> +}
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.h b/drivers/gpu/drm/nouveau/nouveau_acpi.h
+> index 330f9b837066..3c666c30dfca 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_acpi.h
+> +++ b/drivers/gpu/drm/nouveau/nouveau_acpi.h
+> @@ -11,6 +11,7 @@ void nouveau_register_dsm_handler(void);
+>  void nouveau_unregister_dsm_handler(void);
+>  void nouveau_switcheroo_optimus_dsm(void);
+>  void *nouveau_acpi_edid(struct drm_device *, struct drm_connector *);
+> +bool nouveau_acpi_video_backlight_use_native(void);
+>  #else
+>  static inline bool nouveau_is_optimus(void) { return false; };
+>  static inline bool nouveau_is_v1_dsm(void) { return false; };
+> @@ -18,6 +19,7 @@ static inline void nouveau_register_dsm_handler(void) {}
+>  static inline void nouveau_unregister_dsm_handler(void) {}
+>  static inline void nouveau_switcheroo_optimus_dsm(void) {}
+>  static inline void *nouveau_acpi_edid(struct drm_device *dev, struct drm_connector *connector) { return NULL; }
+> +static inline bool nouveau_acpi_video_backlight_use_native(void) { return true; }
+>  #endif
+>  
+>  #endif
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c b/drivers/gpu/drm/nouveau/nouveau_backlight.c
+> index a2141d3d9b1d..d2b8f8c13db4 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
+> @@ -38,6 +38,7 @@
+>  #include "nouveau_reg.h"
+>  #include "nouveau_encoder.h"
+>  #include "nouveau_connector.h"
+> +#include "nouveau_acpi.h"
+>  
+>  static struct ida bl_ida;
+>  #define BL_NAME_SIZE 15 // 12 for name + 2 for digits + 1 for '\0'
+> @@ -405,6 +406,11 @@ nouveau_backlight_init(struct drm_connector *connector)
+>  		goto fail_alloc;
+>  	}
+>  
+> +	if (!nouveau_acpi_video_backlight_use_native()) {
+> +		NV_INFO(drm, "Skipping nv_backlight registration\n");
+> +		goto fail_alloc;
+> +	}
+
+We should probably make this say something like "No native backlight
+interface, using ACPI instead" instead. With that fixed
+
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+
+> +
+>  	if (!nouveau_get_backlight_name(backlight_name, bl)) {
+>  		NV_ERROR(drm, "Failed to retrieve a unique name for the backlight interface\n");
+>  		goto fail_alloc;
+
+-- 
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
