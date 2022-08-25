@@ -4,39 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F18AAC28D13
-	for <nouveau@archiver.kernel.org>; Thu, 25 Aug 2022 14:40:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4C54C28D13
+	for <nouveau@archiver.kernel.org>; Thu, 25 Aug 2022 14:40:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAFF910E5B7;
-	Thu, 25 Aug 2022 14:39:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F57710E59D;
+	Thu, 25 Aug 2022 14:39:24 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CD9E10E458
- for <nouveau@lists.freedesktop.org>; Thu, 25 Aug 2022 14:38:56 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5985610E512
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Aug 2022 14:39:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1661438335;
+ s=mimecast20190719; t=1661438355;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=NeOiUam8i0iMUrZ+eJUZuSLppU1C5I8c24I/CR/8HBU=;
- b=ZErjnR5q+GOu1idwnrZA5L8atZQC3akVUpq4kPHnNQkWO1aFOjWljTHtY1L9Pdsi1nuNbS
- itRaViNg/Sy2sWRgHsHEQAqpa6RfdAjY+cBeFk1EQJkVDCaZCPHO0k+wtQXUHegFbDr7bc
- jxzGpBsoUMKwFYC0ZlJ8xB0sd1lgwNA=
+ bh=iU57+kDoMYdFvB7lQdFql6dEi9DvKLoCSpf/eh9uMYs=;
+ b=Vg2ncvLmOEnVW0kEPeiqzlKtQDcy/6RueJtZCEZuYiYJW1bsf21WtqbURuSxlTcHES375j
+ vbIyUqNRJb/4vLtmZUi0PIxcLDr2ISemrxnkD4bTOlFINNWnelnnAgWL7I+cp56RRsfHuX
+ MX4MjmAJmap2QojVPI3UDO8xm5C9bf4=
 Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
  [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-668-LFt7gDFBNlSK4kH4dQMBkA-1; Thu, 25 Aug 2022 10:38:49 -0400
-X-MC-Unique: LFt7gDFBNlSK4kH4dQMBkA-1
+ us-mta-277-3XlYAT3iMIKM6sXsL-yr-g-1; Thu, 25 Aug 2022 10:39:10 -0400
+X-MC-Unique: 3XlYAT3iMIKM6sXsL-yr-g-1
 Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.rdu2.redhat.com
  [10.11.54.6])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 4F3E91C004F0;
- Thu, 25 Aug 2022 14:38:48 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 74FDC1C004F1;
+ Thu, 25 Aug 2022 14:39:08 +0000 (UTC)
 Received: from shalem.redhat.com (unknown [10.39.193.46])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 93EAA2166B26;
- Thu, 25 Aug 2022 14:38:44 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 919792166B26;
+ Thu, 25 Aug 2022 14:39:04 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: Ben Skeggs <bskeggs@redhat.com>,
 	Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>,
@@ -55,15 +55,15 @@ To: Ben Skeggs <bskeggs@redhat.com>,
 	Mika Westerberg <mika.westerberg@linux.intel.com>,
 	Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
 	Andy Shevchenko <andy@kernel.org>
-Date: Thu, 25 Aug 2022 16:37:14 +0200
-Message-Id: <20220825143726.269890-20-hdegoede@redhat.com>
+Date: Thu, 25 Aug 2022 16:37:19 +0200
+Message-Id: <20220825143726.269890-25-hdegoede@redhat.com>
 In-Reply-To: <20220825143726.269890-1-hdegoede@redhat.com>
 References: <20220825143726.269890-1-hdegoede@redhat.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Scanned-By: MIMEDefang 2.78 on 10.11.54.6
-Subject: [Nouveau] [PATCH v5 19/31] platform/x86: nvidia-wmi-ec-backlight:
- Use acpi_video_get_backlight_type()
+Subject: [Nouveau] [PATCH v5 24/31] platform/x86: asus-wmi: Move
+ acpi_backlight=vendor quirks to ACPI video_detect.c
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,77 +76,190 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: linux-acpi@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org,
- platform-driver-x86@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>,
- amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- David Airlie <airlied@redhat.com>, Len Brown <lenb@kernel.org>
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
+ Hans de Goede <hdegoede@redhat.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@redhat.com>,
+ Len Brown <lenb@kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Add an acpi_video_get_backlight_type() == acpi_backlight_nvidia_wmi_ec
-check. This will make nvidia-wmi-ec-backlight properly honor the user
-selecting a different backlight driver through the acpi_backlight=...
-kernel commandline option.
+Remove the asus-wmi quirk_entry.wmi_backlight_power quirk-flag, which
+called acpi_video_set_dmi_backlight_type(acpi_backlight_vendor) and replace
+it with acpi/video_detect.c video_detect_dmi_table[] entries using the
+video_detect_force_vendor callback.
 
-Since the auto-detect code check for nvidia-wmi-ec-backlight in
-drivers/acpi/video_detect.c already checks that the WMI advertised
-brightness-source is the embedded controller, this new check makes it
-unnecessary for nvidia_wmi_ec_backlight_probe() to check this itself.
+acpi_video_set_dmi_backlight_type() is troublesome because it may end up
+getting called after other backlight drivers have already called
+acpi_video_get_backlight_type() resulting in the other drivers
+already being registered even though they should not.
 
-Suggested-by: Daniel Dadap <ddadap@nvidia.com>
-Reviewed-by: Daniel Dadap <ddadap@nvidia.com>
+Note no entries are dropped from the dmi_system_id table in asus-nb-wmi.c.
+This is because the entries using the removed wmi_backlight_power flag
+also use other model specific quirks from the asus-wmi quirk_entry struct.
+So the quirk_asus_x55u struct and the entries pointing to it cannot be
+dropped.
+
+Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
 Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 ---
- drivers/platform/x86/Kconfig                   |  1 +
- drivers/platform/x86/nvidia-wmi-ec-backlight.c | 14 +++-----------
- 2 files changed, 4 insertions(+), 11 deletions(-)
+ drivers/acpi/video_detect.c        | 40 ++++++++++++++++++++++++++++++
+ drivers/platform/x86/asus-nb-wmi.c |  7 ------
+ drivers/platform/x86/asus-wmi.c    |  3 ---
+ drivers/platform/x86/asus-wmi.h    |  1 -
+ drivers/platform/x86/eeepc-wmi.c   | 25 +------------------
+ 5 files changed, 41 insertions(+), 35 deletions(-)
 
-diff --git a/drivers/platform/x86/Kconfig b/drivers/platform/x86/Kconfig
-index f2f98e942cf2..0cc5ac35fc57 100644
---- a/drivers/platform/x86/Kconfig
-+++ b/drivers/platform/x86/Kconfig
-@@ -93,6 +93,7 @@ config PEAQ_WMI
+diff --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c
+index 6a2523bc02ba..d893313fe1a0 100644
+--- a/drivers/acpi/video_detect.c
++++ b/drivers/acpi/video_detect.c
+@@ -174,6 +174,46 @@ static const struct dmi_system_id video_detect_dmi_table[] = {
+ 		DMI_MATCH(DMI_PRODUCT_NAME, "UL30A"),
+ 		},
+ 	},
++	{
++	 .callback = video_detect_force_vendor,
++	 /* Asus X55U */
++	 .matches = {
++		DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
++		DMI_MATCH(DMI_PRODUCT_NAME, "X55U"),
++		},
++	},
++	{
++	 .callback = video_detect_force_vendor,
++	 /* Asus X101CH */
++	 .matches = {
++		DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
++		DMI_MATCH(DMI_PRODUCT_NAME, "X101CH"),
++		},
++	},
++	{
++	 .callback = video_detect_force_vendor,
++	 /* Asus X401U */
++	 .matches = {
++		DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
++		DMI_MATCH(DMI_PRODUCT_NAME, "X401U"),
++		},
++	},
++	{
++	 .callback = video_detect_force_vendor,
++	 /* Asus X501U */
++	 .matches = {
++		DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
++		DMI_MATCH(DMI_PRODUCT_NAME, "X501U"),
++		},
++	},
++	{
++	 .callback = video_detect_force_vendor,
++	 /* Asus 1015CX */
++	 .matches = {
++		DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
++		DMI_MATCH(DMI_PRODUCT_NAME, "1015CX"),
++		},
++	},
+ 	{
+ 	.callback = video_detect_force_vendor,
+ 	/* GIGABYTE GB-BXBT-2807 */
+diff --git a/drivers/platform/x86/asus-nb-wmi.c b/drivers/platform/x86/asus-nb-wmi.c
+index 478dd300b9c9..810a94557a85 100644
+--- a/drivers/platform/x86/asus-nb-wmi.c
++++ b/drivers/platform/x86/asus-nb-wmi.c
+@@ -79,12 +79,10 @@ static struct quirk_entry quirk_asus_q500a = {
  
- config NVIDIA_WMI_EC_BACKLIGHT
- 	tristate "EC Backlight Driver for Hybrid Graphics Notebook Systems"
-+	depends on ACPI_VIDEO
- 	depends on ACPI_WMI
- 	depends on BACKLIGHT_CLASS_DEVICE
- 	help
-diff --git a/drivers/platform/x86/nvidia-wmi-ec-backlight.c b/drivers/platform/x86/nvidia-wmi-ec-backlight.c
-index be803e47eac0..baccdf658538 100644
---- a/drivers/platform/x86/nvidia-wmi-ec-backlight.c
-+++ b/drivers/platform/x86/nvidia-wmi-ec-backlight.c
-@@ -10,6 +10,7 @@
- #include <linux/platform_data/x86/nvidia-wmi-ec-backlight.h>
- #include <linux/types.h>
- #include <linux/wmi.h>
-+#include <acpi/video.h>
+ /*
+  * For those machines that need software to control bt/wifi status
+- * and can't adjust brightness through ACPI interface
+  * and have duplicate events(ACPI and WMI) for display toggle
+  */
+ static struct quirk_entry quirk_asus_x55u = {
+ 	.wapf = 4,
+-	.wmi_backlight_power = true,
+ 	.wmi_backlight_set_devstate = true,
+ 	.no_display_toggle = true,
+ };
+@@ -147,11 +145,6 @@ static const struct dmi_system_id asus_quirks[] = {
+ 			DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK Computer Inc."),
+ 			DMI_MATCH(DMI_PRODUCT_NAME, "U32U"),
+ 		},
+-		/*
+-		 * Note this machine has a Brazos APU, and most Brazos Asus
+-		 * machines need quirk_asus_x55u / wmi_backlight_power but
+-		 * here acpi-video seems to work fine for backlight control.
+-		 */
+ 		.driver_data = &quirk_asus_wapf4,
+ 	},
+ 	{
+diff --git a/drivers/platform/x86/asus-wmi.c b/drivers/platform/x86/asus-wmi.c
+index 301166a5697d..5cf9d9aff164 100644
+--- a/drivers/platform/x86/asus-wmi.c
++++ b/drivers/platform/x86/asus-wmi.c
+@@ -3634,9 +3634,6 @@ static int asus_wmi_add(struct platform_device *pdev)
+ 	if (asus->driver->quirks->wmi_force_als_set)
+ 		asus_wmi_set_als();
  
- /**
-  * wmi_brightness_notify() - helper function for calling WMI-wrapped ACPI method
-@@ -87,19 +88,10 @@ static int nvidia_wmi_ec_backlight_probe(struct wmi_device *wdev, const void *ct
- {
- 	struct backlight_properties props = {};
- 	struct backlight_device *bdev;
--	u32 source;
- 	int ret;
- 
--	ret = wmi_brightness_notify(wdev, WMI_BRIGHTNESS_METHOD_SOURCE,
--	                           WMI_BRIGHTNESS_MODE_GET, &source);
--	if (ret)
--		return ret;
+-	if (asus->driver->quirks->wmi_backlight_power)
+-		acpi_video_set_dmi_backlight_type(acpi_backlight_vendor);
 -
--	/*
--	 * This driver is only to be used when brightness control is handled
--	 * by the EC; otherwise, the GPU driver(s) should control brightness.
--	 */
--	if (source != WMI_BRIGHTNESS_SOURCE_EC)
-+	/* drivers/acpi/video_detect.c also checks that SOURCE == EC */
-+	if (acpi_video_get_backlight_type() != acpi_backlight_nvidia_wmi_ec)
- 		return -ENODEV;
+ 	if (asus->driver->quirks->wmi_backlight_native)
+ 		acpi_video_set_dmi_backlight_type(acpi_backlight_native);
  
- 	/*
+diff --git a/drivers/platform/x86/asus-wmi.h b/drivers/platform/x86/asus-wmi.h
+index b302415bf1d9..30770e411301 100644
+--- a/drivers/platform/x86/asus-wmi.h
++++ b/drivers/platform/x86/asus-wmi.h
+@@ -29,7 +29,6 @@ struct quirk_entry {
+ 	bool hotplug_wireless;
+ 	bool scalar_panel_brightness;
+ 	bool store_backlight_power;
+-	bool wmi_backlight_power;
+ 	bool wmi_backlight_native;
+ 	bool wmi_backlight_set_devstate;
+ 	bool wmi_force_als_set;
+diff --git a/drivers/platform/x86/eeepc-wmi.c b/drivers/platform/x86/eeepc-wmi.c
+index ce86d84ee796..32d9f0ba6be3 100644
+--- a/drivers/platform/x86/eeepc-wmi.c
++++ b/drivers/platform/x86/eeepc-wmi.c
+@@ -96,11 +96,6 @@ static struct quirk_entry quirk_asus_et2012_type3 = {
+ 	.store_backlight_power = true,
+ };
+ 
+-static struct quirk_entry quirk_asus_x101ch = {
+-	/* We need this when ACPI function doesn't do this well */
+-	.wmi_backlight_power = true,
+-};
+-
+ static struct quirk_entry *quirks;
+ 
+ static void et2012_quirks(void)
+@@ -151,25 +146,7 @@ static const struct dmi_system_id asus_quirks[] = {
+ 		},
+ 		.driver_data = &quirk_asus_unknown,
+ 	},
+-	{
+-		.callback = dmi_matched,
+-		.ident = "ASUSTeK Computer INC. X101CH",
+-		.matches = {
+-			DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
+-			DMI_MATCH(DMI_PRODUCT_NAME, "X101CH"),
+-		},
+-		.driver_data = &quirk_asus_x101ch,
+-	},
+-	{
+-		.callback = dmi_matched,
+-		.ident = "ASUSTeK Computer INC. 1015CX",
+-		.matches = {
+-			DMI_MATCH(DMI_SYS_VENDOR, "ASUSTeK COMPUTER INC."),
+-			DMI_MATCH(DMI_PRODUCT_NAME, "1015CX"),
+-		},
+-		.driver_data = &quirk_asus_x101ch,
+-	},
+-	{},
++	{}
+ };
+ 
+ static void eeepc_wmi_key_filter(struct asus_wmi_driver *asus_wmi, int *code,
 -- 
 2.37.2
 
