@@ -4,66 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6576DC64991
-	for <nouveau@archiver.kernel.org>; Thu, 25 Aug 2022 14:41:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95C39ECAA25
+	for <nouveau@archiver.kernel.org>; Thu, 25 Aug 2022 18:20:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B974B10E3A4;
-	Thu, 25 Aug 2022 14:40:16 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D138610E4BF
- for <nouveau@lists.freedesktop.org>; Thu, 25 Aug 2022 14:39:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1661438369;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=6hOid1vZUGZdEuJXGdrOHfUoljYJ7OyAU7Mxe9wPP3o=;
- b=af2LYlpeitNRLgukmPK25IQKN2IelyOAaU4Gzti+wFJ3EaTS7mqihs6Im5mNElBjmL2+1n
- xcDVh3zTUxC1mCwgaZBeukhdqtjD5lH2lI2235SGkwV56Q/UjeOV3+CJ5Gll7qeV3hYAbV
- d5H1YLaVmWGU5YmmCsCCa7Psr3d1D9c=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-226-rcuxiBZ3Mzu8sqv9GJIQjQ-1; Thu, 25 Aug 2022 10:39:26 -0400
-X-MC-Unique: rcuxiBZ3Mzu8sqv9GJIQjQ-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.rdu2.redhat.com
- [10.11.54.6])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 8B3DB380406E;
- Thu, 25 Aug 2022 14:39:24 +0000 (UTC)
-Received: from shalem.redhat.com (unknown [10.39.193.46])
- by smtp.corp.redhat.com (Postfix) with ESMTP id C1E402166B26;
- Thu, 25 Aug 2022 14:39:20 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Ben Skeggs <bskeggs@redhat.com>,
-	Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>,
-	Daniel Dadap <ddadap@nvidia.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Jani Nikula <jani.nikula@linux.intel.com>,
-	Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>,
-	Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
-	Alex Deucher <alexander.deucher@amd.com>,
-	=?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
-	Pan@freedesktop.org, Xinhui <Xinhui.Pan@amd.com>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>
-Date: Thu, 25 Aug 2022 16:37:23 +0200
-Message-Id: <20220825143726.269890-29-hdegoede@redhat.com>
-In-Reply-To: <20220825143726.269890-1-hdegoede@redhat.com>
-References: <20220825143726.269890-1-hdegoede@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A16EF10E072;
+	Thu, 25 Aug 2022 18:20:33 +0000 (UTC)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com
+ [209.85.128.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E7E410E025
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Aug 2022 18:20:28 +0000 (UTC)
+Received: by mail-yw1-f181.google.com with SMTP id
+ 00721157ae682-33dbbf69b3dso65360797b3.1
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Aug 2022 11:20:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc;
+ bh=uig/6MYAR36rD59j8Vi6nTWfQhMgr5YARco48vJAMTI=;
+ b=JFrkJwGGZeKVga/c2+MKx88XR6c+dlO5XCgy56hk/Y8PhtGEVjJ91VDUXYrQ9/tjGU
+ M7VVBfKpbwURNCY23QyiqbJKXtvPzPuwA21qLrId7UzkEKqxD9Ax+9UOJ6b6A5qjJUR9
+ pPxe8CajLWwun67IxYFY6AJfBUFJth5AuHuidqFthEQLLjf4Tx0qEjQvXApp4NQ4Yf1T
+ N4U1e3HXBIXqkocsAyYojK04fm+W4Kq7iRXQPHVaPJP5lQUboLMMniH3eFpic73Wvv++
+ 0R53/WfXnyUAAWt5ki1QXWMjVTlHlpKJQspgthNaERSXHD5U82lLev7D1S7svhHmL6HG
+ GqfA==
+X-Gm-Message-State: ACgBeo3BGmY8GfXD7Nh3QfQ5sdxQQVR42GAVYBW1DyqTYp3NalnTPfUo
+ Z23OAAuZAYeLElAfsMmx4nuGcoaavk0yrgx85Y0=
+X-Google-Smtp-Source: AA6agR7qzCbl13Mm9e8JxxntHyv9wGkANy9di366zSW3SCCGjr0uQd6hZbQWdeTFC4Rf0dy5fw0tVnA6ltCE0hcrePk=
+X-Received: by 2002:a25:ec0c:0:b0:690:d092:2d56 with SMTP id
+ j12-20020a25ec0c000000b00690d0922d56mr4105726ybh.622.1661451627618; Thu, 25
+ Aug 2022 11:20:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 2.78 on 10.11.54.6
-Subject: [Nouveau] [PATCH v5 28/31] ACPI: video: Drop "Samsung X360"
- acpi_backlight=native quirk
+References: <20220823185134.14464-1-mario.limonciello@amd.com>
+ <20220823185134.14464-2-mario.limonciello@amd.com>
+ <CAAd53p6MfBaRTTNJ5mAFU6XfDndLFJihLHKdrbq8Nq-27LArjg@mail.gmail.com>
+ <MN0PR12MB6101DE7A18DC0343AEBE89C5E2739@MN0PR12MB6101.namprd12.prod.outlook.com>
+In-Reply-To: <MN0PR12MB6101DE7A18DC0343AEBE89C5E2739@MN0PR12MB6101.namprd12.prod.outlook.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Thu, 25 Aug 2022 20:20:16 +0200
+Message-ID: <CAJZ5v0gdn7+EyQ7Br5WxT8pDr4+Y+Fgc274-at5-CZfQ572QKg@mail.gmail.com>
+To: "Limonciello, Mario" <Mario.Limonciello@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Nouveau] [PATCH 1/4] ACPI: OSI: Remove Linux-Dell-Video _OSI
+ string
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,60 +57,62 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-acpi@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
- dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
- Hans de Goede <hdegoede@redhat.com>, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@redhat.com>,
+Cc: "ddadap@nvidia.com" <ddadap@nvidia.com>,
+ "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
+ "rafael@kernel.org" <rafael@kernel.org>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "hdegoede@redhat.com" <hdegoede@redhat.com>,
+ Kai-Heng Feng <kai.heng.feng@canonical.com>,
+ "Dell.Client.Kernel@dell.com" <Dell.Client.Kernel@dell.com>,
  Len Brown <lenb@kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-acpi_backlight=native is the default for the "Samsung X360", but as
-the comment explains the quirk was still necessary because even
-briefly registering the acpi_video0 backlight; and then unregistering
-it once the native driver showed up, was leading to issues.
+On Wed, Aug 24, 2022 at 8:28 PM Limonciello, Mario
+<Mario.Limonciello@amd.com> wrote:
+>
+> [Public]
+>
+>
+>
+> > -----Original Message-----
+> > From: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> > Sent: Wednesday, August 24, 2022 09:17
+> > To: Limonciello, Mario <Mario.Limonciello@amd.com>
+> > Cc: rafael@kernel.org; Len Brown <lenb@kernel.org>;
+> > nouveau@lists.freedesktop.org; hdegoede@redhat.com;
+> > ddadap@nvidia.com; Dell.Client.Kernel@dell.com; kherbst@redhat.com;
+> > Lyude Paul <lyude@redhat.com>; linux-acpi@vger.kernel.org; linux-
+> > kernel@vger.kernel.org
+> > Subject: Re: [PATCH 1/4] ACPI: OSI: Remove Linux-Dell-Video _OSI string
+> >
+> > On Wed, Aug 24, 2022 at 2:51 AM Mario Limonciello
+> > <mario.limonciello@amd.com> wrote:
+> > >
+> > > This string was introduced because drivers for NVIDIA hardware
+> > > had bugs supporting RTD3 in the past.  Thoes bugs have been fixed
+> > > by commit 5775b843a619 ("PCI: Restore config space on runtime resume
+> > > despite being unbound"). so vendors shouldn't be using this string
+> > > to modify ASL anymore.
+> >
+> > Add some backgrounds on what happened.
+> >
+> > Before proprietary NVIDIA driver supports RTD3, Ubuntu has a mechanism
+> > that can switch PRIME on and off, though it requires to logout/login
+> > to make the library switch happen.
+> > When the PRIME is off, the mechanism unload NVIDIA driver and put the
+> > device to D3cold, but GPU never came back to D0 again. So ODM use the
+> > _OSI to expose an old _DSM method to switch the power on/off.
+> >
+> > The issue is fixed by the said commit so we can discard the workaround now.
+> >
+>
+> Thanks for that.  If this series needs to spin I'll roll that into the commit message.
+> Otherwise perhaps Rafael can pick up some of it if he thinks it makes sense to include.
 
-After the "ACPI: video: Make backlight class device registration
-a separate step" patch from earlier in this patch-series, we no
-longer briefly register the acpi_video0 backlight on systems where
-the native driver should be used.
+I've applied the series (as 6.1 material) and included the information
+above into the changelog of the first patch.  I've also edited the
+changelogs of the other patches somewhat.
 
-So this is no longer an issue an the quirk is no longer needed.
-
-Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- drivers/acpi/video_detect.c | 15 ---------------
- 1 file changed, 15 deletions(-)
-
-diff --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c
-index 67a0211c07b4..af2833b57b8b 100644
---- a/drivers/acpi/video_detect.c
-+++ b/drivers/acpi/video_detect.c
-@@ -132,21 +132,6 @@ static int video_detect_force_none(const struct dmi_system_id *d)
- }
- 
- static const struct dmi_system_id video_detect_dmi_table[] = {
--	/* On Samsung X360, the BIOS will set a flag (VDRV) if generic
--	 * ACPI backlight device is used. This flag will definitively break
--	 * the backlight interface (even the vendor interface) until next
--	 * reboot. It's why we should prevent video.ko from being used here
--	 * and we can't rely on a later call to acpi_video_unregister().
--	 */
--	{
--	 .callback = video_detect_force_vendor,
--	 /* X360 */
--	 .matches = {
--		DMI_MATCH(DMI_SYS_VENDOR, "SAMSUNG ELECTRONICS CO., LTD."),
--		DMI_MATCH(DMI_PRODUCT_NAME, "X360"),
--		DMI_MATCH(DMI_BOARD_NAME, "X360"),
--		},
--	},
- 	{
- 	 /* https://bugzilla.redhat.com/show_bug.cgi?id=1128309 */
- 	 .callback = video_detect_force_vendor,
--- 
-2.37.2
-
+Thanks!
