@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 261B9C38145
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2FFBECAAA1
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B01A410EAA5;
-	Tue,  6 Sep 2022 20:32:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5176310EAC0;
+	Tue,  6 Sep 2022 20:32:04 +0000 (UTC)
 Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
  [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF57710F2E2;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97A2610F2DB;
  Mon, 29 Aug 2022 13:25:49 +0000 (UTC)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailnew.west.internal (Postfix) with ESMTP id B22912B0606D;
- Mon, 29 Aug 2022 09:14:34 -0400 (EDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailnew.west.internal (Postfix) with ESMTP id DF5142B05E5E;
+ Mon, 29 Aug 2022 09:15:53 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
- by compute1.internal (MEProxy); Mon, 29 Aug 2022 09:14:37 -0400
+ by compute2.internal (MEProxy); Mon, 29 Aug 2022 09:15:56 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
  :cc:content-transfer-encoding:content-type:date:date:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778874; x=
- 1661786074; bh=O2K8vY3bz7CqbtV7SDqiw++49YhOhYlXnJRYT6GaHo0=; b=G
- mx2HOjqpy8Vuvh7ofDmXwVGjdnqoscgUXD45ef0jj/VIxTBVoLcBrYJQs8sYRiqR
- Dij9Fq0CPWGv02esfBUo/xKVSg/Fo7C2x3FlueiZz7fLApbwaeIKaOM0fdg9ke0W
- DBXrqN68/DR7zgEZdlvOH4mqOiO0beAxYVgaEdg49TGwj3wzAMnBWlOwInQ+GBN6
- eH3njcImHLuDrVVQHLNPiYowCAxj8+wf99sFfnRmPP1e6xXYKphDVf/H0mkQDdsX
- Ox13UDxzdwWzileclBwOVNjIbxg6xrz1Zt1vpV1kVzAzoOxoMwdIBlQ0jKeadwNb
- mqlg437OYD4VLtsWNm0/A==
+ :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778953; x=
+ 1661786153; bh=fGq4pxjwR9dhN8V94rScn9Z1raHP34bbSYZqQRlSHw0=; b=c
+ VXAet/qyIapvApr4WQBJpPocgntulpZY1iMHgEOHg6IOdnmDSveEjj3Z8AKVmHc7
+ C3snlSKLgltL8UUmjsAtZfPms8eriiJSBQMJMMv96+UWrrIZbcihxTFOzArWyOUS
+ WYbvYV1ir05vDLmz/OcTIJUsqeJPnF0O4HFr56HWO+O6dnm42EWhfga8x4dwhgm4
+ wj07s+IrTQg1peX5jGvfNDhFycYUccwXfFSFYh0v7Jin/SzkCTbbx2AUa2TCzJiH
+ ZOqUGD7DJTplKseM17IJPtDX3OCWHkeNrc5iOZ/S0+nDdioFGvGvk9CX5VMP9WJr
+ WMRsBmhG0wdCzBgWU2a+g==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-transfer-encoding
  :content-type:date:date:feedback-id:feedback-id:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
  :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778874; x=
- 1661786074; bh=O2K8vY3bz7CqbtV7SDqiw++49YhOhYlXnJRYT6GaHo0=; b=K
- 0hspOg0VCsB6jyOqPWfY4/sDjtqkAc0SYamNpCVVcVpTPSf9aLgwmKhvlwddAdhU
- Fcl3UIJijcevRdfTS6wlnaFFsa7dBe9DCaR626pTcZUM4c3nu8UMBSQffXzDDo6r
- nok/uuCfq+LUGqYK6ewj3PPuftAqO1UlwEV914t1B2aVCHfbOUUBPWF9J/wjSn9n
- jvX9xq7g3fpZw4zx2+1Rvu3XkhjKbXTKAnOSRcJPw1/1WdA5gitVV6z9P2+2Kh2X
- z53AGiXB49TRNB8zs3lby1yb8fluGTn2Rw8PZGL6YdVlAWG6Hk37cycmFliP5es/
- FoOlNdNLdqGzfuJxcrybQ==
-X-ME-Sender: <xms:ubsMY3-87EQumtTshQqj-HyFShbwgODSF9jC83KH55vlRwDYT37Xkg>
- <xme:ubsMYzt4MDk2R_lNCRXuOCZzJwo5nk_5GoQS6ZD8umAK9tdHwkln5FtcxX3XYZkGX
- xtMB8uBdBKGz18qKro>
-X-ME-Received: <xmr:ubsMY1CLbN3V18WThM7neX4gowWExfnHt1t7YZS6EyJOWpDYVZwX6ACxwL0o>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieefucetufdoteggodetrfdotf
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778953; x=
+ 1661786153; bh=fGq4pxjwR9dhN8V94rScn9Z1raHP34bbSYZqQRlSHw0=; b=t
+ XOfZrOEyjM13jfV1nPLKePsnAo8mXNQfreTSb+SO/DhCM67pNDSwKfdu2lE9O7MZ
+ 8dA6mZBcgOJSrU1zbEtdHJ3nNM0gmeERQXR0SI6jApcEXKgu+LWtYRQ+stQRcA9a
+ 1QvQq/z/rLnXizwQ/LU4Oo+LlHDDwW4WWup/C9Hqderml0ot9FMIYHFIl9yKjHCM
+ G1xzNsm/sPJCmUV741nzZ6KcIdYWeZ2Rj43M08xaNOAa3OmaXGiBsmPaCo+ewMmR
+ dRWTGI8I//uQzxge+fvfoMw9BUx+yhAB5h0t3v5gU29SrQ5rypa+sry1bXeIbZ9+
+ rFvdyor2LMfebHEuijAZQ==
+X-ME-Sender: <xms:CbwMY5lv_41j_OE-P-G8UBWFUExV6USRSTZ7JBatlEBZWisV4tblpw>
+ <xme:CbwMY00WCMtyhe2SDEKoguUCPgWtj-tJ8kMKSyhAIfuCMeyI018c9Iv9pPD8T6zia
+ JePfdDp2vt0rhLCkEw>
+X-ME-Received: <xmr:CbwMY_oE1wIe6eHHH-09LpWsGskMyYBz8-OaIjupOr2NK53P07ukT7baWM-k>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieegucetufdoteggodetrfdotf
  fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
  uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
  cujfgurhephffvvefufffkofgjfhggtgfogfesthhqredtredtjeenucfhrhhomhepofgr
  gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
  frrghtthgvrhhnpeefiedvfefggffgffehveejieffuddtgffhjefggeetieduvdeileet
- lefgveegtdenucevlhhushhtvghrufhiiigvpeefnecurfgrrhgrmhepmhgrihhlfhhroh
+ lefgveegtdenucevlhhushhtvghrufhiiigvpeejnecurfgrrhgrmhepmhgrihhlfhhroh
  hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:ursMYzedBN8T2O4CQkeke4ZjfzJSXCRM1o81eM361nRqPaN11hROqg>
- <xmx:ursMY8MeLveIjkJu-sTMa4b97-TXyXYcgr_AQ9Bi9lUF6QOXVO19cQ>
- <xmx:ursMY1nn8KSwg2CjArVw_FaPwYLXsoj1xI18WnURYANW4kJYYgllzg>
- <xmx:ursMYw1vxVIhQ0tAQTW7AHXH9LtTHFNtypE0B2SvZFdUbMp5Gau_Sy7ZzrI>
+X-ME-Proxy: <xmx:CbwMY5kmYQu1bfBSA0m59MNTZhRKTVlAevVrZ7iYvn64h5f92_tKPg>
+ <xmx:CbwMY32pWqA9-pSWFG91Wnpv4yx3CXcdvGY5fXLabDHvxErI8WJX-g>
+ <xmx:CbwMY4sUA-FUVrMlExBuoAxl9eYhppLJgBcQ1w_1853zshtafthUKA>
+ <xmx:CbwMY4_VJPI7-GrSiiQYvxgizfO_nDFDkni_CMwTUm0Jap8D8j65BFlVQb8>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 29 Aug 2022 09:14:33 -0400 (EDT)
+ 29 Aug 2022 09:15:52 -0400 (EDT)
 From: Maxime Ripard <maxime@cerno.tech>
 To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
  David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
@@ -75,25 +75,24 @@ To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
  =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
  Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Mon, 29 Aug 2022 15:11:37 +0200
-Message-Id: <20220728-rpi-analog-tv-properties-v2-23-459522d653a7@cerno.tech>
+Date: Mon, 29 Aug 2022 15:11:49 +0200
+Message-Id: <20220728-rpi-analog-tv-properties-v2-35-459522d653a7@cerno.tech>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.10.0-dev-65ba7
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2877; i=maxime@cerno.tech;
- h=from:subject:message-id; bh=tMMQ9LmYriVsBj4/ucBagVoAOsUAypD775BhY4mJj98=;
- b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8uxSEEpcYRiVtnm5f0vzng0aRVHzokRLm5M9q+ydZcLkv
- t6zvKGVhEONikBVTZIkRNl8Sd2rW6042vnkwc1iZQIYwcHEKwEQ0tjD804uellbiNPGm/pk/Ua662V
- WPORQ/TUjzm+Ske/nLFOVzBxj+yr66VvabxS7y8fzzXlP2/43Wf+RRuDV0oay9+4SlaW8m8QEA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1624; i=maxime@cerno.tech;
+ h=from:subject:message-id; bh=EjOnDOZq2Ss8h1qrZ2KbpJgd2LCqDkVnUyJOEPlgRRU=;
+ b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8uxSZmRf9TNF9MLFCtKDh5WYP9ySNxJebzPxF3ifKTegX
+ //Oho5SFQYyLQVZMkSVG2HxJ3KlZrzvZ+ObBzGFlAhnCwMUpABN5wc3I0C3w1OXska8Z0ziW3cybKH
+ d28trNi/xnvNBh45Yo2PNjxhRGhkkfI1cdvB1c0TZjwVWp4y6Fs9e7/trsvM4iWiQ+JfzHEyYA
 X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
-Subject: [Nouveau] [PATCH v2 23/41] drm/atomic-helper: Add an analog TV
- atomic_check implementation
+Subject: [Nouveau] [PATCH v2 35/41] drm/sun4i: tv: Convert to atomic hooks
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,95 +114,50 @@ Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The analog TV connector drivers share some atomic_check logic, and the new=
-=0D
-TV standard property have created a bunch of new constraints that needs to=
-=0D
-be shared across drivers too.=0D
-=0D
-Let's create an atomic_check helper for those use cases.=0D
+The sun4i TV driver still uses legacy enable and disable hook=0D
+implementation. Let's convert to the atomic variants.=0D
 =0D
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>=0D
 =0D
-diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/dr=
-m_atomic_state_helper.c=0D
-index 0373c3dc824b..d64733c6aae3 100644=0D
---- a/drivers/gpu/drm/drm_atomic_state_helper.c=0D
-+++ b/drivers/gpu/drm/drm_atomic_state_helper.c=0D
-@@ -556,6 +556,42 @@ void drm_atomic_helper_connector_tv_reset(struct drm_c=
-onnector *connector)=0D
+diff --git a/drivers/gpu/drm/sun4i/sun4i_tv.c b/drivers/gpu/drm/sun4i/sun4i=
+_tv.c=0D
+index 53152d77c392..f7aad995ab5b 100644=0D
+--- a/drivers/gpu/drm/sun4i/sun4i_tv.c=0D
++++ b/drivers/gpu/drm/sun4i/sun4i_tv.c=0D
+@@ -339,7 +339,8 @@ static void sun4i_tv_mode_to_drm_mode(const struct tv_m=
+ode *tv_mode,=0D
+ 	mode->vtotal =3D mode->vsync_end  + tv_mode->vback_porch;=0D
  }=0D
- EXPORT_SYMBOL(drm_atomic_helper_connector_tv_reset);=0D
  =0D
-+/**=0D
-+ * @drm_atomic_helper_connector_tv_check: Validate an analog TV connector =
-state=0D
-+ * @connector: DRM Connector=0D
-+ * @state: the DRM State object=0D
-+ *=0D
-+ * Checks the state object to see if the requested state is valid for an=0D
-+ * analog TV connector.=0D
-+ *=0D
-+ * Returns:=0D
-+ * Zero for success, a negative error code on error.=0D
-+ */=0D
-+int drm_atomic_helper_connector_tv_check(struct drm_connector *connector,=
-=0D
-+					 struct drm_atomic_state *state)=0D
-+{=0D
-+	struct drm_connector_state *old_conn_state =3D=0D
-+		drm_atomic_get_old_connector_state(state, connector);=0D
-+	struct drm_connector_state *new_conn_state =3D=0D
-+		drm_atomic_get_new_connector_state(state, connector);=0D
-+	struct drm_crtc_state *crtc_state;=0D
-+	struct drm_crtc *crtc;=0D
-+=0D
-+	crtc =3D new_conn_state->crtc;=0D
-+	if (!crtc)=0D
-+		return 0;=0D
-+=0D
-+	crtc_state =3D drm_atomic_get_new_crtc_state(state, crtc);=0D
-+	if (!crtc_state)=0D
-+		return -EINVAL;=0D
-+=0D
-+	if (old_conn_state->tv.mode !=3D new_conn_state->tv.mode)=0D
-+		crtc_state->mode_changed =3D true;=0D
-+=0D
-+	return 0;=0D
-+}=0D
-+EXPORT_SYMBOL(drm_atomic_helper_connector_tv_check);=0D
-+=0D
- /**=0D
-  * __drm_atomic_helper_connector_duplicate_state - copy atomic connector s=
-tate=0D
-  * @connector: connector object=0D
-diff --git a/include/drm/drm_atomic_state_helper.h b/include/drm/drm_atomic=
-_state_helper.h=0D
-index c8fbce795ee7..b9740edb2658 100644=0D
---- a/include/drm/drm_atomic_state_helper.h=0D
-+++ b/include/drm/drm_atomic_state_helper.h=0D
-@@ -26,6 +26,7 @@=0D
+-static void sun4i_tv_disable(struct drm_encoder *encoder)=0D
++static void sun4i_tv_disable(struct drm_encoder *encoder,=0D
++			    struct drm_atomic_state *state)=0D
+ {=0D
+ 	struct sun4i_tv *tv =3D drm_encoder_to_sun4i_tv(encoder);=0D
+ 	struct sun4i_crtc *crtc =3D drm_crtc_to_sun4i_crtc(encoder->crtc);=0D
+@@ -353,7 +354,8 @@ static void sun4i_tv_disable(struct drm_encoder *encode=
+r)=0D
+ 	sunxi_engine_disable_color_correction(crtc->engine);=0D
+ }=0D
  =0D
- #include <linux/types.h>=0D
+-static void sun4i_tv_enable(struct drm_encoder *encoder)=0D
++static void sun4i_tv_enable(struct drm_encoder *encoder,=0D
++			    struct drm_atomic_state *state)=0D
+ {=0D
+ 	struct sun4i_tv *tv =3D drm_encoder_to_sun4i_tv(encoder);=0D
+ 	struct sun4i_crtc *crtc =3D drm_crtc_to_sun4i_crtc(encoder->crtc);=0D
+@@ -469,8 +471,8 @@ static void sun4i_tv_mode_set(struct drm_encoder *encod=
+er,=0D
+ }=0D
  =0D
-+struct drm_atomic_state;=0D
- struct drm_bridge;=0D
- struct drm_bridge_state;=0D
- struct drm_crtc;=0D
-@@ -71,6 +72,8 @@ void __drm_atomic_helper_connector_reset(struct drm_conne=
-ctor *connector,=0D
- 					 struct drm_connector_state *conn_state);=0D
- void drm_atomic_helper_connector_reset(struct drm_connector *connector);=0D
- void drm_atomic_helper_connector_tv_reset(struct drm_connector *connector)=
-;=0D
-+int drm_atomic_helper_connector_tv_check(struct drm_connector *connector,=
-=0D
-+					 struct drm_atomic_state *state);=0D
- void drm_atomic_helper_connector_tv_margins_reset(struct drm_connector *co=
-nnector);=0D
- void=0D
- __drm_atomic_helper_connector_duplicate_state(struct drm_connector *connec=
-tor,=0D
+ static const struct drm_encoder_helper_funcs sun4i_tv_helper_funcs =3D {=0D
+-	.disable	=3D sun4i_tv_disable,=0D
+-	.enable		=3D sun4i_tv_enable,=0D
++	.atomic_disable	=3D sun4i_tv_disable,=0D
++	.atomic_enable	=3D sun4i_tv_enable,=0D
+ 	.mode_set	=3D sun4i_tv_mode_set,=0D
+ };=0D
+ =0D
 =0D
 -- =0D
 b4 0.10.0-dev-65ba7=0D
