@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF11DECAAA1
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40068C54EE9
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C371210EAAD;
-	Tue,  6 Sep 2022 20:31:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B850B10EAB7;
+	Tue,  6 Sep 2022 20:31:32 +0000 (UTC)
 Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
  [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C940F10F2DF;
- Mon, 29 Aug 2022 13:25:49 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.west.internal (Postfix) with ESMTP id B86CE2B06066;
- Mon, 29 Aug 2022 09:14:08 -0400 (EDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D72FC10F2B8;
+ Mon, 29 Aug 2022 13:20:49 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailnew.west.internal (Postfix) with ESMTP id 0808E2B05FC1;
+ Mon, 29 Aug 2022 09:12:34 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
- by compute3.internal (MEProxy); Mon, 29 Aug 2022 09:14:11 -0400
+ by compute4.internal (MEProxy); Mon, 29 Aug 2022 09:12:37 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
  :cc:content-transfer-encoding:content-type:date:date:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778848; x=
- 1661786048; bh=vGDBfdmuxgUQ4QJ2EO3YyCslKAl67xEK9kOPBn5ikEM=; b=d
- MNgifcNhTnevrazfsuCpNwA8ccw5/PQcnG0PkoOaHYtU/iBvNmK6rRiq7vyBZ1DN
- Gr9C9YOwQB2j1cjoxfcGpgf/o+y7TZ7zeF9IZuIJZbS2tgwIwhXBKuiztI4tyj1L
- K3HHg1vRauMP093WqfVfO6JpPD/qG3ZxAwMKEo7AHx6OpYx1A1ousM+/FfgRU85P
- 5m9/3nPOIOHH1yOIWkBrpjJ+hZk5XaMesRgC8EAIs1uMHB1UNyWtYCl+qQztZJuE
- nIP6DwTVOph7Joma3I2MlYwhvx1x+QJiedc01HelyygN9t6ycLhvO7XrQ6Xl/fOf
- /5a9Z2SlFcURoacptcOhw==
+ :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778754; x=
+ 1661785954; bh=wC1MCSMyamp+ianAX1wM6m9oLjQ/Jokt+gcamRRc2nc=; b=a
+ r/767dE+02wlc8UfKbricPWsWDIA1SqfERwC5cOBvHG47iiop6R8a8R2LxI4b4jh
+ 0hJhmpzDmNRY2jOw2y1EcWSjRZ3dHA3ecw/DxlrVBDmPN8s+nV0+Vbpf16v7h9Jz
+ 0UVUylYYSv2jBWJuP7DgYeJx8RZs0/m5aUwDZRVSD9bP3MZmec7vTRqvdRy0PxX8
+ LQFTLeTP4a4R6VVKtl9op32qYaW7l1kAiiOWzUSClvAN/6Kt4X33uM3sRSvzvnVa
+ X/nKyZsX5AALni0MRSG6E9YnDFS64Zgln9U0Ze3ngu83SZt33OGXv6gE2I6vAhS6
+ BIR0aD+00E/R6L0atU/YQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-transfer-encoding
  :content-type:date:date:feedback-id:feedback-id:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
  :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778848; x=
- 1661786048; bh=vGDBfdmuxgUQ4QJ2EO3YyCslKAl67xEK9kOPBn5ikEM=; b=F
- Nrc+3KWlslifeaTXCexiwt1w5Hgv45De91Vj1l/08DBog8Lw29VuZAOrqCC41AWy
- lymme6zCmcFK2H8Upy+r3xKFGjL4U9u+DjqT15dPJLd3mg5rBQmyBXerSc5YZgyH
- XuovPVtwKpMnQsYZFQTwBKNWiyDH94tFvS7gJ2lrhT2DNCTlfAmp7TaOJxGTpb9H
- acUtPlUq/VAXSs7wx+q1qWbvtx4sQfPfT0BokLbuOaHLuj8VnRMe5Q4JPuD8rVos
- vNu1et+dYSFKgyBp9fpOLZOLXwGiedFEpeB9tsGmvZ38/XxZUlLA3c4D3yxBbSgZ
- DGQKIpEFNen/7+CZpoAlg==
-X-ME-Sender: <xms:oLsMY51pZa9rGPZiAnUjIBi6SwpLdBoOT1Ggv36-y_7Fs9saejgRLg>
- <xme:oLsMYwEiw5Xs3yZfwHYStWwbhEC0abTRuXG6aqz2gxT_8egxyJh6T5v3urJvd63Yc
- fn0mg0IuwdJgZkkR9M>
-X-ME-Received: <xmr:oLsMY5647kJesrS0XyE2OXkafm6MJozfu2eFCAxeL9gSid2mWyr9tJKU0nhY>
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778754; x=
+ 1661785954; bh=wC1MCSMyamp+ianAX1wM6m9oLjQ/Jokt+gcamRRc2nc=; b=V
+ xB2TkUS2Gg3GAX6vzHidiTQP+yruJJx2eSEcnC4Os87sepZFX+z+IKlMP+9+FeRK
+ hFIfnLxpGdk+rkBPPdwhmf4DlShUCwkT+NowCh5MqGZa/ANUnwPMxvA1D4+fx56Z
+ 4ioW6x5wfO9h5pSWSpwHI9MGA9YmLbnAegsQxjAdxtNUdqfjzuZug7AFfKIbcBlv
+ YmXaGz07DK7UguLGZR0oGgUWtBa1gEHdDkYhG8c/INpJochNBGFKuJBr/NCS9CAR
+ scy4FbQzB5+NOKU//RZcz3FvAo+g0eZNMKCNEKTVh1N17Tb3e2naJHJ6t5B8FSKD
+ W9HRbj7pYCXUSx659vHwQ==
+X-ME-Sender: <xms:QrsMY8L4O4L2ZiPhf5yTBhwKDQsRCx_jangWS7G13Zw47EN4XJKT_w>
+ <xme:QrsMY8JS1Sux0aOaqll_ctTwNMKt6e5gjokGTgRYfJP03kmozbq-W_iQ6jJ9AjkLi
+ bkKC-RzX2ysOyHkEO4>
+X-ME-Received: <xmr:QrsMY8vgZtD_1ivb0MZqoDSiN-QBmL9iHTUFJqrrbyzuelmpOTtdEZFyjepO>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieefucetufdoteggodetrfdotf
  fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
  uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
  cujfgurhephffvvefufffkofgjfhggtgfogfesthhqredtredtjeenucfhrhhomhepofgr
  gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
  frrghtthgvrhhnpeefiedvfefggffgffehveejieffuddtgffhjefggeetieduvdeileet
- lefgveegtdenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhroh
+ lefgveegtdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
  hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:oLsMY237DXSVacpe3xUM3x8njScGC9lzRoe2XGkct_kFwNZVaVNbZw>
- <xmx:oLsMY8G_l4TOrpMbbRPwOwiPapprHz0xb49xxz1IHRblH2OGw2AYVg>
- <xmx:oLsMY3-ntm9nCV-2DIRiM8f4tQmz6TpzBfzEn36NW39ptlau917LFA>
- <xmx:oLsMY6M9DgxpknTqhLdK7BumIHZ0UT48JvJgPBl5UlEOPbLGuj6VojFEvBo>
+X-ME-Proxy: <xmx:QrsMY5aEy7OzLkVPszG9MPsXMl0eMhNSWnCGjEmsWJv-K6_SgdnqaA>
+ <xmx:QrsMYzb8UfGy7w2-5T_GKbbD71ZeAJB0s733eezJEsRX9QDK2l9sMg>
+ <xmx:QrsMY1CDLz92ZRw8bMZj2cA0OHcr4yCJ6aCueUu1rxCD9dwrSR6HkA>
+ <xmx:QrsMY9xgezmZiiJZE0el7VhGKN_QcB3y4K3hoBf5s10NgAKeIewliU1EwUM>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 29 Aug 2022 09:14:07 -0400 (EDT)
+ 29 Aug 2022 09:12:33 -0400 (EDT)
 From: Maxime Ripard <maxime@cerno.tech>
 To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
  David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
@@ -75,25 +75,25 @@ To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
  =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
  Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Mon, 29 Aug 2022 15:11:33 +0200
-Message-Id: <20220728-rpi-analog-tv-properties-v2-19-459522d653a7@cerno.tech>
+Date: Mon, 29 Aug 2022 15:11:19 +0200
+Message-Id: <20220728-rpi-analog-tv-properties-v2-5-459522d653a7@cerno.tech>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.10.0-dev-65ba7
-X-Developer-Signature: v=1; a=openpgp-sha256; l=11213; i=maxime@cerno.tech;
- h=from:subject:message-id; bh=NDabIx53tuQKr6EzimhAU/xCP6zMPL7S96XwMvmuHj0=;
- b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8uxTSj/WbrfjxYmlFql+68tJ0WYdzvZxzDht91dy97dFk
- xYjQjlIWBjEuBlkxRZYYYfMlcadmve5k45sHM4eVCWQIAxenAEzE7iLD/+KXXAX5J/x/XjpsxNuzN7
- jE69YR2wi2f1fPZ5i+lDOWj2f472iv++mu0//fHE86r7H2hZhv2ri6fNtkjWS/oobnDkyfGQA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2320; i=maxime@cerno.tech;
+ h=from:subject:message-id; bh=keMkoQHm0yMChbpLobWpiICEXyJzAsMIi/15U14W+ng=;
+ b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8u+S1/dbq5VfKfn60+2hW4dng1dt7tYpCBZtU/LgL34i9
+ 0V/dUcrCIMbFICumyBIjbL4k7tSs151sfPNg5rAygQxh4OIUgIlY5zEyfCuwzJXcwqU5Wb7XzPdWf4
+ HYybIfL/Xe1uz8WPCez+I4N8M/lQ/3pD80hn07G3I4mfmbwOSuD+YX9r+5KnD+0owFDkbO3AA=
 X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
-Subject: [Nouveau] [PATCH v2 19/41] drm/modes: Introduce the tv_mode
- property as a command-line option
+Subject: [Nouveau] [PATCH v2 05/41] drm/atomic: Add TV subconnector property
+ to get/set_property
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,356 +115,61 @@ Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Our new tv mode option allows to specify the TV mode from a property.=0D
-However, it can still be useful, for example to avoid any boot time=0D
-artifact, to set that property directly from the kernel command line.=0D
+The subconnector property was created by drm_mode_create_tv_properties(),=0D
+but wasn't exposed to the userspace through the generic=0D
+atomic_get/set_property implementation, and wasn't stored in any generic=0D
+state structure.=0D
 =0D
-Let's add some code to allow it, and some unit tests to exercise that code.=
-=0D
+Let's solve this.=0D
 =0D
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>=0D
+Reviewed-by: Noralf Tr=C3=B8nnes <noralf@tronnes.org>=0D
 =0D
-diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c=0D
-index 73d01e755496..a759a4ba0036 100644=0D
---- a/drivers/gpu/drm/drm_modes.c=0D
-+++ b/drivers/gpu/drm/drm_modes.c=0D
-@@ -2115,6 +2115,30 @@ static int drm_mode_parse_panel_orientation(const ch=
-ar *delim,=0D
- 	return 0;=0D
- }=0D
- =0D
-+static int drm_mode_parse_tv_mode(const char *delim,=0D
-+				  struct drm_cmdline_mode *mode)=0D
-+{=0D
-+	const char *value;=0D
-+	unsigned int len;=0D
-+	int ret;=0D
-+=0D
-+	if (*delim !=3D '=3D')=0D
-+		return -EINVAL;=0D
-+=0D
-+	value =3D delim + 1;=0D
-+	delim =3D strchr(value, ',');=0D
-+	if (!delim)=0D
-+		delim =3D value + strlen(value);=0D
-+=0D
-+	ret =3D drm_get_tv_mode_from_name(value, delim - value);=0D
-+	if (ret < 0)=0D
-+		return ret;=0D
-+=0D
-+	mode->tv_mode =3D ret;=0D
-+=0D
-+	return 0;=0D
-+}=0D
-+=0D
- static int drm_mode_parse_cmdline_options(const char *str,=0D
- 					  bool freestanding,=0D
- 					  const struct drm_connector *connector,=0D
-@@ -2184,6 +2208,9 @@ static int drm_mode_parse_cmdline_options(const char =
-*str,=0D
- 		} else if (!strncmp(option, "panel_orientation", delim - option)) {=0D
- 			if (drm_mode_parse_panel_orientation(delim, mode))=0D
- 				return -EINVAL;=0D
-+		} else if (!strncmp(option, "tv_mode", delim - option)) {=0D
-+			if (drm_mode_parse_tv_mode(delim, mode))=0D
-+				return -EINVAL;=0D
- 		} else {=0D
- 			return -EINVAL;=0D
- 		}=0D
-@@ -2212,20 +2239,22 @@ struct drm_named_mode {=0D
- 	unsigned int xres;=0D
- 	unsigned int yres;=0D
- 	unsigned int flags;=0D
-+	unsigned int tv_mode;=0D
- };=0D
- =0D
--#define NAMED_MODE(_name, _pclk, _x, _y, _flags)	\=0D
-+#define NAMED_MODE(_name, _pclk, _x, _y, _flags, _mode)	\=0D
- 	{						\=0D
- 		.name =3D _name,				\=0D
- 		.pixel_clock_khz =3D _pclk,		\=0D
- 		.xres =3D _x,				\=0D
- 		.yres =3D _y,				\=0D
- 		.flags =3D _flags,			\=0D
-+		.tv_mode =3D _mode,			\=0D
- 	}=0D
- =0D
- static const struct drm_named_mode drm_named_modes[] =3D {=0D
--	NAMED_MODE("NTSC", 13500, 720, 480, DRM_MODE_FLAG_INTERLACE),=0D
--	NAMED_MODE("PAL", 13500, 720, 576, DRM_MODE_FLAG_INTERLACE),=0D
-+	NAMED_MODE("NTSC", 13500, 720, 480, DRM_MODE_FLAG_INTERLACE, DRM_MODE_TV_=
-MODE_NTSC_M),=0D
-+	NAMED_MODE("PAL", 13500, 720, 576, DRM_MODE_FLAG_INTERLACE, DRM_MODE_TV_M=
-ODE_PAL_B),=0D
- };=0D
- =0D
- static int drm_mode_parse_cmdline_named_mode(const char *name,=0D
-@@ -2271,6 +2300,7 @@ static int drm_mode_parse_cmdline_named_mode(const ch=
-ar *name,=0D
- 		cmdline_mode->xres =3D mode->xres;=0D
- 		cmdline_mode->yres =3D mode->yres;=0D
- 		cmdline_mode->interlace =3D !!(mode->flags & DRM_MODE_FLAG_INTERLACE);=0D
-+		cmdline_mode->tv_mode =3D mode->tv_mode;=0D
- 		cmdline_mode->specified =3D true;=0D
- =0D
- 		return 1;=0D
-diff --git a/drivers/gpu/drm/tests/drm_cmdline_parser_test.c b/drivers/gpu/=
-drm/tests/drm_cmdline_parser_test.c=0D
-index 59b29cdfdd35..f1e73ed65be0 100644=0D
---- a/drivers/gpu/drm/tests/drm_cmdline_parser_test.c=0D
-+++ b/drivers/gpu/drm/tests/drm_cmdline_parser_test.c=0D
-@@ -885,6 +885,201 @@ static void drm_cmdline_test_multiple_options(struct =
-kunit *test)=0D
- 	KUNIT_EXPECT_EQ(test, mode.force, DRM_FORCE_UNSPECIFIED);=0D
- }=0D
- =0D
-+static void drm_cmdline_test_tv_options(struct kunit *test,=0D
-+					const char *cmdline,=0D
-+					const struct drm_display_mode *expected_mode,=0D
-+					unsigned int expected_tv_mode)=0D
-+{=0D
-+	struct drm_cmdline_mode mode =3D { };=0D
-+=0D
-+	KUNIT_EXPECT_TRUE(test, drm_mode_parse_command_line_for_connector(cmdline=
-,=0D
-+									  &no_connector, &mode));=0D
-+	KUNIT_EXPECT_TRUE(test, mode.specified);=0D
-+	KUNIT_EXPECT_EQ(test, mode.xres, expected_mode->hdisplay);=0D
-+	KUNIT_EXPECT_EQ(test, mode.yres, expected_mode->vdisplay);=0D
-+	KUNIT_EXPECT_EQ(test, mode.tv_mode, expected_tv_mode);=0D
-+=0D
-+	KUNIT_EXPECT_FALSE(test, mode.refresh_specified);=0D
-+=0D
-+	KUNIT_EXPECT_FALSE(test, mode.bpp_specified);=0D
-+=0D
-+	KUNIT_EXPECT_FALSE(test, mode.rb);=0D
-+	KUNIT_EXPECT_FALSE(test, mode.cvt);=0D
-+	KUNIT_EXPECT_EQ(test, mode.interlace, !!(expected_mode->flags & DRM_MODE_=
-FLAG_INTERLACE));=0D
-+	KUNIT_EXPECT_FALSE(test, mode.margins);=0D
-+	KUNIT_EXPECT_EQ(test, mode.force, DRM_FORCE_UNSPECIFIED);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_ntsc_443(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x480i,tv_mode=3DNTSC-443",=0D
-+				    drm_mode_analog_ntsc_480i(NULL),=0D
-+				    DRM_MODE_TV_MODE_NTSC_443);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_ntsc_j(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x480i,tv_mode=3DNTSC-J",=0D
-+				    drm_mode_analog_ntsc_480i(NULL),=0D
-+				    DRM_MODE_TV_MODE_NTSC_J);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_ntsc_m(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x480i,tv_mode=3DNTSC-M",=0D
-+				    drm_mode_analog_ntsc_480i(NULL),=0D
-+				    DRM_MODE_TV_MODE_NTSC_M);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_pal_60(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x576i,tv_mode=3DPAL-60",=0D
-+				    drm_mode_analog_pal_576i(NULL),=0D
-+				    DRM_MODE_TV_MODE_PAL_60);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_pal_b(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x576i,tv_mode=3DPAL-B",=0D
-+				    drm_mode_analog_pal_576i(NULL),=0D
-+				    DRM_MODE_TV_MODE_PAL_B);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_pal_d(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x576i,tv_mode=3DPAL-D",=0D
-+				    drm_mode_analog_pal_576i(NULL),=0D
-+				    DRM_MODE_TV_MODE_PAL_D);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_pal_g(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x576i,tv_mode=3DPAL-G",=0D
-+				    drm_mode_analog_pal_576i(NULL),=0D
-+				    DRM_MODE_TV_MODE_PAL_G);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_pal_h(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x576i,tv_mode=3DPAL-H",=0D
-+				    drm_mode_analog_pal_576i(NULL),=0D
-+				    DRM_MODE_TV_MODE_PAL_H);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_pal_i(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x576i,tv_mode=3DPAL-I",=0D
-+				    drm_mode_analog_pal_576i(NULL),=0D
-+				    DRM_MODE_TV_MODE_PAL_I);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_pal_m(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x480i,tv_mode=3DPAL-M",=0D
-+				    drm_mode_analog_ntsc_480i(NULL),=0D
-+				    DRM_MODE_TV_MODE_PAL_M);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_pal_n(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x576i,tv_mode=3DPAL-N",=0D
-+				    drm_mode_analog_pal_576i(NULL),=0D
-+				    DRM_MODE_TV_MODE_PAL_N);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_pal_nc(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x576i,tv_mode=3DPAL-Nc",=0D
-+				    drm_mode_analog_pal_576i(NULL),=0D
-+				    DRM_MODE_TV_MODE_PAL_NC);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_secam_60(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x576i,tv_mode=3DSECAM-60",=0D
-+				    drm_mode_analog_pal_576i(NULL),=0D
-+				    DRM_MODE_TV_MODE_SECAM_60);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_secam_b(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x576i,tv_mode=3DSECAM-B",=0D
-+				    drm_mode_analog_pal_576i(NULL),=0D
-+				    DRM_MODE_TV_MODE_SECAM_B);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_secam_d(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x576i,tv_mode=3DSECAM-D",=0D
-+				    drm_mode_analog_pal_576i(NULL),=0D
-+				    DRM_MODE_TV_MODE_SECAM_D);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_secam_g(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x576i,tv_mode=3DSECAM-G",=0D
-+				    drm_mode_analog_pal_576i(NULL),=0D
-+				    DRM_MODE_TV_MODE_SECAM_G);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_secam_k(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x576i,tv_mode=3DSECAM-K",=0D
-+				    drm_mode_analog_pal_576i(NULL),=0D
-+				    DRM_MODE_TV_MODE_SECAM_K);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_secam_k1(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x576i,tv_mode=3DSECAM-K1",=0D
-+				    drm_mode_analog_pal_576i(NULL),=0D
-+				    DRM_MODE_TV_MODE_SECAM_K1);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_secam_l(struct kunit *test)=0D
-+{=0D
-+	drm_cmdline_test_tv_options(test,=0D
-+				    "720x576i,tv_mode=3DSECAM-L",=0D
-+				    drm_mode_analog_pal_576i(NULL),=0D
-+				    DRM_MODE_TV_MODE_SECAM_L);=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_invalid(struct kunit *test)=0D
-+{=0D
-+	struct drm_cmdline_mode mode =3D { };=0D
-+	const char *cmdline =3D "720x480i,tv_mode=3Dinvalid";=0D
-+=0D
-+	KUNIT_EXPECT_FALSE(test, drm_mode_parse_command_line_for_connector(cmdlin=
-e,=0D
-+									   &no_connector, &mode));=0D
-+}=0D
-+=0D
-+static void drm_cmdline_test_tv_option_truncated(struct kunit *test)=0D
-+{=0D
-+	struct drm_cmdline_mode mode =3D { };=0D
-+	const char *cmdline =3D "720x480i,tv_mode=3DNTSC";=0D
-+=0D
-+	KUNIT_EXPECT_FALSE(test, drm_mode_parse_command_line_for_connector(cmdlin=
-e,=0D
-+									   &no_connector, &mode));=0D
-+}=0D
-+=0D
- static void drm_cmdline_test_invalid_option(struct kunit *test)=0D
- {=0D
- 	struct drm_cmdline_mode mode =3D { };=0D
-@@ -1047,6 +1242,27 @@ static struct kunit_case drm_cmdline_parser_tests[] =
-=3D {=0D
- 	KUNIT_CASE(drm_cmdline_test_name_refresh_invalid_mode),=0D
- 	KUNIT_CASE(drm_cmdline_test_name_option),=0D
- 	KUNIT_CASE(drm_cmdline_test_name_bpp_option),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_ntsc_443),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_ntsc_j),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_ntsc_m),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_pal_60),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_pal_b),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_pal_d),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_pal_g),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_pal_h),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_pal_i),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_pal_m),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_pal_n),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_pal_nc),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_secam_60),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_secam_b),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_secam_d),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_secam_g),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_secam_k),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_secam_k1),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_secam_l),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_invalid),=0D
-+	KUNIT_CASE(drm_cmdline_test_tv_option_truncated),=0D
- 	KUNIT_CASE(drm_cmdline_test_rotate_0),=0D
- 	KUNIT_CASE(drm_cmdline_test_rotate_90),=0D
- 	KUNIT_CASE(drm_cmdline_test_rotate_180),=0D
+diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic=
+_uapi.c=0D
+index c74c78a28171..c06d0639d552 100644=0D
+--- a/drivers/gpu/drm/drm_atomic_uapi.c=0D
++++ b/drivers/gpu/drm/drm_atomic_uapi.c=0D
+@@ -688,6 +688,8 @@ static int drm_atomic_connector_set_property(struct drm=
+_connector *connector,=0D
+ 		return -EINVAL;=0D
+ 	} else if (property =3D=3D config->tv_select_subconnector_property) {=0D
+ 		state->tv.select_subconnector =3D val;=0D
++	} else if (property =3D=3D config->tv_subconnector_property) {=0D
++		state->tv.subconnector =3D val;=0D
+ 	} else if (property =3D=3D config->tv_left_margin_property) {=0D
+ 		state->tv.margins.left =3D val;=0D
+ 	} else if (property =3D=3D config->tv_right_margin_property) {=0D
+@@ -796,6 +798,8 @@ drm_atomic_connector_get_property(struct drm_connector =
+*connector,=0D
+ 			*val =3D connector->dpms;=0D
+ 	} else if (property =3D=3D config->tv_select_subconnector_property) {=0D
+ 		*val =3D state->tv.select_subconnector;=0D
++	} else if (property =3D=3D config->tv_subconnector_property) {=0D
++		*val =3D state->tv.subconnector;=0D
+ 	} else if (property =3D=3D config->tv_left_margin_property) {=0D
+ 		*val =3D state->tv.margins.left;=0D
+ 	} else if (property =3D=3D config->tv_right_margin_property) {=0D
 diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h=0D
-index 49d261977d4e..9589108ba202 100644=0D
+index 60b5662dec7c..1d5e3cccb9e3 100644=0D
 --- a/include/drm/drm_connector.h=0D
 +++ b/include/drm/drm_connector.h=0D
-@@ -1447,6 +1447,11 @@ struct drm_cmdline_mode {=0D
- 	 * @tv_margins: TV margins to apply to the mode.=0D
- 	 */=0D
- 	struct drm_connector_tv_margins tv_margins;=0D
-+=0D
-+	/**=0D
-+	 * @tv_mode: TV mode standard. See DRM_MODE_TV_MODE_*.=0D
-+	 */=0D
-+	enum drm_connector_tv_mode tv_mode;=0D
- };=0D
- =0D
+@@ -693,6 +693,7 @@ struct drm_connector_tv_margins {=0D
  /**=0D
+  * struct drm_tv_connector_state - TV connector related states=0D
+  * @select_subconnector: selected subconnector=0D
++ * @subconnector: detected subconnector=0D
+  * @margins: TV margins=0D
+  * @mode: TV mode=0D
+  * @brightness: brightness in percent=0D
+@@ -704,6 +705,7 @@ struct drm_connector_tv_margins {=0D
+  */=0D
+ struct drm_tv_connector_state {=0D
+ 	enum drm_mode_subconnector select_subconnector;=0D
++	enum drm_mode_subconnector subconnector;=0D
+ 	struct drm_connector_tv_margins margins;=0D
+ 	unsigned int mode;=0D
+ 	unsigned int brightness;=0D
 =0D
 -- =0D
 b4 0.10.0-dev-65ba7=0D
