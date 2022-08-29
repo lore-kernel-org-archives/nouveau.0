@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03FE6C38145
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:33:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAC08C54EE9
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:33:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BB0610EAC2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85EB410EAC8;
 	Tue,  6 Sep 2022 20:33:13 +0000 (UTC)
 Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
  [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0DEC10F2C3;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F61210F2D4;
  Mon, 29 Aug 2022 13:25:49 +0000 (UTC)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id 7C3232B0608B;
- Mon, 29 Aug 2022 09:16:19 -0400 (EDT)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailnew.west.internal (Postfix) with ESMTP id D00CF2B06078;
+ Mon, 29 Aug 2022 09:15:06 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
- by compute2.internal (MEProxy); Mon, 29 Aug 2022 09:16:22 -0400
+ by compute1.internal (MEProxy); Mon, 29 Aug 2022 09:15:09 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
  :cc:content-transfer-encoding:content-type:date:date:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778979; x=
- 1661786179; bh=2pxPB8e3CUm+60/d+Ajs5F0Dd4Kd+gAOE9TGfZOvPi0=; b=s
- IFzr/KwlpJ8OIhfGNGLHBQZSFbYXA/GT17RVJbxwYyhlHyMA12oQDgfug6L0m9aD
- X0IDX/9OOlU5kSeAcMawyeLAQKO0XIgBCsm1ZFdVniAQWCHANKzHtpBNo3cAZww0
- 5MicvOD/rEkF3wNV/UB9O7nKs1xzJY9wLXTV/GogF93gLyWvVWJi4ngfOWMSnWh5
- CwygGs605KWyBc1wCllQfe3TbNN6uVtsY9HtvpnE3O5Y/Zoag1prGyRPCSVL3nWo
- 0Gabzdw9tf46rgj4C8mlK+bWWDnD7Q6ujmZDRNy1TSiqfDM1t95jNN/epM1ns6UZ
- Ph43mk9o9BiUEA0LYSdaw==
+ :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778906; x=
+ 1661786106; bh=Geyfyn7lfIjW9QZzqjQEZrV6BKt6Cr6Jw67lImD/OP4=; b=h
+ 33Sqoi3MkH+ZfTUG5VyM/1Yc4D0pxeQLMY9HSQHQ9Mo2IG1PDJUNCVB3pqA9rvnL
+ LMEKXt4dmv0GP0ITDYj/FfUZCwY15kFl0QdezZEf+TDII8t/6NhrR2pG8lfdD++7
+ NeE/0udJEPaol0QQoe3yfkJzOzVLUneLEp+0Nt09Bxxgoaxmx2GmbU/qsgTiI0js
+ ATh3k2IB2n00v5oUh/H8snvsQCI17AhnLXatMoWEKsQOsyi5mJbJ6TLo8dOUeDDm
+ ebhsRkqfPzYj6g/0V/FWZMGcINYxs0eyHBG6ZAT85WMspC5azLuoHo+oyJg43Mvy
+ IfUnKoNoU0/A19XLmZh5A==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-transfer-encoding
  :content-type:date:date:feedback-id:feedback-id:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
  :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778979; x=
- 1661786179; bh=2pxPB8e3CUm+60/d+Ajs5F0Dd4Kd+gAOE9TGfZOvPi0=; b=K
- amRuNAMz7RG67NNqG11/jS2FJetLjnF/YCqhACRhauGq6fVhcyl24R02JFViBwod
- kN9W9BEWH6Qnz/aarJGl7Btr7qRERvCqBl8TbrtR4A8V5KBA3t0837rb60apLAw9
- xd7KmfwJlAIc76trDkH6gtlXNNURuAyRxS2nGYkKq8KXkIKHXNAyHKlfdtXQ+y6K
- HdJxeD4NiKCPAa6F9109Yq58K2kJCaWeFzj4dpW0sCMB9T281wJzF4SXFOh+wCG8
- jJmAZsevO8Fyfym2peyHMM6WQdbYnl4/4zdiM1Pm4AItNfYQXOCRF+UGirJUNFkP
- +BKov0Dj/yu9diciK0emQ==
-X-ME-Sender: <xms:IrwMY6HKXmvjcrY5OUBLX29cLbQRNmqBvvc4dJt-ijjE3u7qqOZzpw>
- <xme:IrwMY7UIy5M6u2zppGrV1v1INpY7hHSWYxRrJ2pXn8-pEmjQeiTC0LSBU5KsWJ7Dp
- rQSBkomKIbxepqfW1Q>
-X-ME-Received: <xmr:IrwMY0KrgUvJl6XDQktT5t25aTSJoP54fuSaRJv8HoOdknF2idNzwUoutWg_>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieegucetufdoteggodetrfdotf
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778906; x=
+ 1661786106; bh=Geyfyn7lfIjW9QZzqjQEZrV6BKt6Cr6Jw67lImD/OP4=; b=3
+ Bjv21wSh+GGHvc5hlBIDbzL3rKJF7MtA9EN/oaUUinAyKYv9FP8JEhwty3Gxx4Mc
+ AVqF2CHgMXYa99YqyJGyr47vci3oBHhHtPT41H4FixhO8T2EkP2Xr11FsKcOEOte
+ 3yH5F/kyqxt0IY5QDRMpUeKpvrmg5ERKdUWcatbn34ENW5F6gBo8JYwq3ok6x/wC
+ 8oV9h9Mb6bsRWOEugQAZpZDfDx+l++ASlzQ4IsM1d7w1Q9FHtvc1fkXaR3s8+L4v
+ Z8SbooHfl3vcmjVqdIQ9V3MNlcfpUEEna6w7Ll35wX7YeSPl9ZxbCpX7+/3P16kJ
+ DUSmGdh31y/ZWOWPRX44Q==
+X-ME-Sender: <xms:2rsMY8JCdF_8rteGEr2k2yvQvhEBGnq9oQvCRPBEQayX95Y_HN5I7g>
+ <xme:2rsMY8LUSCcC0VEGgs0qrwXBu9pIftsmHF101NVYfZ7iyFHKddotBBCBbJI9LoKUg
+ l6kKqSrV_0MfxruZyI>
+X-ME-Received: <xmr:2rsMY8s6YX-G6cO9GjDtYI3LOp8psHcne1FsHvtym8aZAuJSVvo7F0eyjrNo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieefucetufdoteggodetrfdotf
  fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
  uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
  cujfgurhephffvvefufffkofgjfhggtgfogfesthhqredtredtjeenucfhrhhomhepofgr
  gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
  frrghtthgvrhhnpeefiedvfefggffgffehveejieffuddtgffhjefggeetieduvdeileet
- lefgveegtdenucevlhhushhtvghrufhiiigvpeelnecurfgrrhgrmhepmhgrihhlfhhroh
+ lefgveegtdenucevlhhushhtvghrufhiiigvpeehnecurfgrrhgrmhepmhgrihhlfhhroh
  hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:IrwMY0GjzgcwM3BsMZ3jxQq-KmMz2K0Nqr9J9l5R-g0RmyXBXmW4iw>
- <xmx:IrwMYwWt1xN9sEbEUp3EbfmQBszTubS0qin7I7vvO_RPdmiq0ZTY7g>
- <xmx:IrwMY3PFyY_-BojPHYtG0V0KAsWDX6NIRt7zs8Y_ej0GKRowTr6nKQ>
- <xmx:I7wMY7co049-iAcdjZG-cJJFkWtE5pmmq790n3kevJM2HHXZuXHzz71yOeA>
+X-ME-Proxy: <xmx:2rsMY5bWPxkAVFpDeM43i4y_BVD63X8wGJmW6fAM1R81raTncLzWCg>
+ <xmx:2rsMYzbmhD1B_2j8SrSNGK_75-LzYQC9Ywi4hMPZmczx1gL8M0oBCA>
+ <xmx:2rsMY1AlGSd7E8HpeiuRyAdKh7xwlBoJh9MY27lytQZhq2hJD2_0WA>
+ <xmx:2rsMY9zSQ2tNxwqPsy_4R-vp1fu-0LcZF8Y0y42MtY_gRvlqp9q5ko7iVfI>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 29 Aug 2022 09:16:17 -0400 (EDT)
+ 29 Aug 2022 09:15:05 -0400 (EDT)
 From: Maxime Ripard <maxime@cerno.tech>
 To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
  David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
@@ -75,24 +75,24 @@ To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
  =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
  Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Mon, 29 Aug 2022 15:11:53 +0200
-Message-Id: <20220728-rpi-analog-tv-properties-v2-39-459522d653a7@cerno.tech>
+Date: Mon, 29 Aug 2022 15:11:42 +0200
+Message-Id: <20220728-rpi-analog-tv-properties-v2-28-459522d653a7@cerno.tech>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.10.0-dev-65ba7
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1217; i=maxime@cerno.tech;
- h=from:subject:message-id; bh=992aKe2/qrCZVBZV8U/tKPDwh4IEN+c9wkBDNYDBbNw=;
- b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8uxTL71furRMuLyvh3dMXLdC772S+DmPCi8cBU29O2WvA
- qFffUcrCIMbFICumyBIjbL4k7tSs151sfPNg5rAygQxh4OIUgIlsX8Hw36lcJjPlBVej+dHv2ofUdy
- 3jua8+67uphfXJTysbF+QuUmf4nzo9Nr7FyGiSnJlYzZNy83ZFqXeOm77bTWD/fCHy9fQybgA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1306; i=maxime@cerno.tech;
+ h=from:subject:message-id; bh=9tioiA5EY1yO34HzEK5H+VWpSJS31+Xh9uw365Ba2yU=;
+ b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8uxRU4rkSg9yPxRosun83wiov2a7/nrxu9Y6Aph1rXLe0
+ 7mLuKGVhEONikBVTZIkRNl8Sd2rW6042vnkwc1iZQIYwcHEKwETu7GZkmMWzwP741qhVqtP7flkdWf
+ nO+EBY5h7n/M235WT1pRIuMDIyrP2h9Snyj8H1n6cVJOKSZlgmxAnPyzI2qlKMVZz4s/sLBwA=
 X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
-Subject: [Nouveau] [PATCH v2 39/41] drm/sun4i: tv: Rename error label
+Subject: [Nouveau] [PATCH v2 28/41] drm/vc4: vec: Fix timings for VEC modes
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,41 +114,41 @@ Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The other error labels in sun4i_tv_bind() are named after the task they=0D
-perform (err_disable_clk to call clk_disable_unprepare for example).=0D
+From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>=0D
 =0D
-However, the err_cleanup_connector is named after the calling site=0D
-(drm_connector_init failing) and will actually cleanup the encoder. Let's=0D
-rename it to err_cleanup_encoder to be consistent.=0D
+This commit fixes vertical timings of the VEC (composite output) modes=0D
+to accurately represent the 525-line ("NTSC") and 625-line ("PAL") ITU-R=0D
+standards.=0D
 =0D
+Previous timings were actually defined as 502 and 601 lines, resulting=0D
+in non-standard 62.69 Hz and 52 Hz signals being generated,=0D
+respectively.=0D
+=0D
+Signed-off-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>=0D
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>=0D
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>=0D
 =0D
-diff --git a/drivers/gpu/drm/sun4i/sun4i_tv.c b/drivers/gpu/drm/sun4i/sun4i=
-_tv.c=0D
-index 6d7e1d51569a..ad6a3739bfa9 100644=0D
---- a/drivers/gpu/drm/sun4i/sun4i_tv.c=0D
-+++ b/drivers/gpu/drm/sun4i/sun4i_tv.c=0D
-@@ -580,7 +580,7 @@ static int sun4i_tv_bind(struct device *dev, struct dev=
-ice *master,=0D
- 	if (ret) {=0D
- 		dev_err(dev,=0D
- 			"Couldn't initialise the Composite connector\n");=0D
--		goto err_cleanup_connector;=0D
-+		goto err_cleanup_encoder;=0D
- 	}=0D
- 	tv->connector.interlace_allowed =3D true;=0D
+diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_vec.c=
+=0D
+index 4d7bc7c20704..d1d40b69279e 100644=0D
+--- a/drivers/gpu/drm/vc4/vc4_vec.c=0D
++++ b/drivers/gpu/drm/vc4/vc4_vec.c=0D
+@@ -227,14 +227,14 @@ static const struct debugfs_reg32 vec_regs[] =3D {=0D
+ static const struct drm_display_mode ntsc_mode =3D {=0D
+ 	DRM_MODE("720x480", DRM_MODE_TYPE_DRIVER, 13500,=0D
+ 		 720, 720 + 14, 720 + 14 + 64, 720 + 14 + 64 + 60, 0,=0D
+-		 480, 480 + 3, 480 + 3 + 3, 480 + 3 + 3 + 16, 0,=0D
++		 480, 480 + 7, 480 + 7 + 6, 525, 0,=0D
+ 		 DRM_MODE_FLAG_INTERLACE)=0D
+ };=0D
  =0D
-@@ -588,7 +588,7 @@ static int sun4i_tv_bind(struct device *dev, struct dev=
-ice *master,=0D
+ static const struct drm_display_mode pal_mode =3D {=0D
+ 	DRM_MODE("720x576", DRM_MODE_TYPE_DRIVER, 13500,=0D
+ 		 720, 720 + 20, 720 + 20 + 64, 720 + 20 + 64 + 60, 0,=0D
+-		 576, 576 + 2, 576 + 2 + 3, 576 + 2 + 3 + 20, 0,=0D
++		 576, 576 + 4, 576 + 4 + 6, 625, 0,=0D
+ 		 DRM_MODE_FLAG_INTERLACE)=0D
+ };=0D
  =0D
- 	return 0;=0D
- =0D
--err_cleanup_connector:=0D
-+err_cleanup_encoder:=0D
- 	drm_encoder_cleanup(&tv->encoder);=0D
- err_disable_clk:=0D
- 	clk_disable_unprepare(tv->clk);=0D
 =0D
 -- =0D
 b4 0.10.0-dev-65ba7=0D
