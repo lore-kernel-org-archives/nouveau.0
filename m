@@ -4,77 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A4A2C38145
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:33:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50122ECAAA1
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:33:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C99810EACD;
-	Tue,  6 Sep 2022 20:33:14 +0000 (UTC)
-Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
- [66.111.4.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2C5810E37C;
- Mon,  5 Sep 2022 13:32:58 +0000 (UTC)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailnew.nyi.internal (Postfix) with ESMTP id 052A0580222;
- Mon,  5 Sep 2022 09:32:56 -0400 (EDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A5C610EAD3;
+	Tue,  6 Sep 2022 20:33:15 +0000 (UTC)
+Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
+ [64.147.123.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F5C610F298;
+ Mon, 29 Aug 2022 13:20:49 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailnew.west.internal (Postfix) with ESMTP id 3A4012B05FD7;
+ Mon, 29 Aug 2022 09:12:48 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
- by compute1.internal (MEProxy); Mon, 05 Sep 2022 09:32:56 -0400
+ by compute2.internal (MEProxy); Mon, 29 Aug 2022 09:12:50 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm3; t=1662384775; x=1662391975; bh=BndZD3o0f1
- E/yy3CgHU6/gGUoZque82OSFD4UL+mJ2w=; b=EO51DpMNeWzuyeJKd9el0Z+cLH
- NUdELGUgfHmAmQwc9bO1eHIsyTCjVb6fKeXAsOOP0ooT7ZtS2CvRU3B6PonShX5s
- uR1ZZJCbH9yQLk6K7VKSGB0tZzBOR3Jlv5eAjhNha5mscFH185qRmHsoEf9c+4uo
- Wklciyf30h9oq+Q1YRb7azkX0Ij2Pu+51iPcbqca2LJUTAXwKgwvEM1lPI8x3QbT
- YGUgQzEKtEgQEHFNV8Q99Xoh3iP8e2e1GWifyq6iCSJ9pG5v9BLg9b9zwlXEz+uz
- 4cffC29v8jg8wdVkqY0Mm42LGPU8Bl0mUMLOg3+sgCmCurF2BMm7Lcx0DkFA==
+ :cc:content-transfer-encoding:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778767; x=
+ 1661785967; bh=6PNL3E05HqgK9IW/MtDEQBeUSg/jnNc6krZQZz7WWqU=; b=S
+ CrmkmWG+i+etfnzZ/jW3Y/UWhtS9n8Tx3Mi1wBI/2ps7AfxEAHmgC9ChWUa9RSX/
+ fkIfNETMt9ipYhmeM2jNWGAeVHnDQeOdpzSivQXBg1z8viUKEHihiX6qUUwi8Icx
+ WYELVnyFExAByIdK3vMTVoCIHtOiMAjEjtRl6UfBPOHkOQe6AAHqscTYxTunEdBR
+ y0zBUpDKvNbHYKT2yKehiJXJ6DvcdgzrqEtSoOTsNAr6C5frVJGR91FZnsKJcn8S
+ vI/I9R4rWZGVATEVVhWykj/ThLdsDQ5tHmxZy0lbzvkvsU4Soh0ABEuQbyiWyB0I
+ /ko2ZM9j3xfI4EqgtVbfA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:in-reply-to:message-id
- :mime-version:references:reply-to:sender:subject:subject:to:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; t=1662384775; x=1662391975; bh=BndZD3o0f1E/yy3CgHU6/gGUoZqu
- e82OSFD4UL+mJ2w=; b=eU6yw1G07vynu4cue4gKD5m5vvy2eoMhdBh/KSUVFtrn
- OUHh1USV2SgljBW7GMgHjMVt1pViT9lTam3HwIj+hEA+6zBGFGRYdXyQzNUaR+P1
- s+Vw/H5yGqPzR8nsRpmlqTwvnfOcemY9NIcLfzzj4uy5i7AUbqZXWLxdQkOLY7Po
- ajXvr2CJAnU3Nw8C28s5CvVrLWnyOlrg1GnRLgKn0ODjH1LwOVW5d1gYYexnKnWr
- wiB1smyxmMIORDxbolYI3+7smjffMX8HE/C8SGJlp29qtKsYk0QXBdYWxLGiK/hN
- yUZG8hJ6HVustSYeynQVK7Ceq0Tcxc0erG6EqlYr6A==
-X-ME-Sender: <xms:h_oVY3ntSP4q_zNMDo5xX_moISXZo_3a78JIoPIkWjpzZtplMSiF6A>
- <xme:h_oVY63u6evuIVUF6Y36KuJoCroqVm1wNJGkDxHFkFsgAGgkTY_pBB26geJa1KOQM
- OiVcTfteeITkIwmKAU>
-X-ME-Received: <xmr:h_oVY9pl5qN70CXGDREiRUgiL9wEzYSC0SEmuWMrKPJ-jErkIkktumflK6E>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeliedgieejucetufdoteggodetrfdotf
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:feedback-id:feedback-id:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778767; x=
+ 1661785967; bh=6PNL3E05HqgK9IW/MtDEQBeUSg/jnNc6krZQZz7WWqU=; b=s
+ bCXQbOmwgGQejzwb7lDjTyCP4/nXAv1nQzo9pqqyVqE7JxCZe8fwO/6vxIMhmPS+
+ 9jXzOHoH56gSFpxXdj6b8NxHUO/m6QWvT9lZjU3TlMXNMttfWoxf+5rrHYMzClzh
+ lRLACh7k0K3BLb/3j0m1/PQ/mKpYfnfaJY62uWUVr/r1eLe8Ww32IMHJNQ3faCf/
+ G4iCgS8yZ+vB3vDgppF3MWGiUaExqKhHv9UsouScEg7Z+P3fwXRKqb/aqNKtTyyq
+ uv5JMeFR0Dn0IUHQtdJfyQK5Iy8nrdJ5EcvqJLKl+RRGbOtq4ZUkNqTewP+RnYlR
+ V2gQYsmjbYmJz02Pi8Nsw==
+X-ME-Sender: <xms:T7sMY_jPT6dwQOA4BCu5LdXKEyY3JXwP_zk-LHkYdIBhyPpUCwvpDQ>
+ <xme:T7sMY8B4agLnKGuRwwlFHsr00_SzMW7ZUfTz4HGmIk0TrQTvdEDBqSuSbDEuYOZkg
+ Qnj5b_GTgRkAMvPnzA>
+X-ME-Received: <xmr:T7sMY_FBMng_G1f4uWnfBSOYILxtXUpFCGZ7MHSM6BNKDWsMKm02O5FTQ2Da>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieefucetufdoteggodetrfdotf
  fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
  uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
- mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
- htthgvrhhnpeetfefffefgkedtfefgledugfdtjeefjedvtddtkeetieffjedvgfehheff
- hfevudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
- hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:h_oVY_mldv5lSIFtb7mKoEW2f0hlNSlAc-J18EeAua7zN2oMUkSQVw>
- <xmx:h_oVY10lch1CZ3LlXmV-mLsgR6-5czKaO49jNv1oc1WXeW4MSawITw>
- <xmx:h_oVY-sSzq_ImTLpiuqqa5s1CXxjawZc82_NlD6orN-th3Uf9_2_yw>
- <xmx:h_oVYzERo3S5Dd--_eLY6ZmpwGdnUPC48g_gkuWxbcQVfLpC5gZLnw>
+ cujfgurhephffvvefufffkofgjfhggtgfogfesthhqredtredtjeenucfhrhhomhepofgr
+ gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
+ frrghtthgvrhhnpeefiedvfefggffgffehveejieffuddtgffhjefggeetieduvdeileet
+ lefgveegtdenucevlhhushhtvghrufhiiigvpedvnecurfgrrhgrmhepmhgrihhlfhhroh
+ hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:T7sMY8QFtGEVYPHVigOnhSYdkOxABWsrfVHiGyWjWogYCw_MexauLg>
+ <xmx:T7sMY8xQyNvqOR0x08HW_yCl8KDqoujGm1zjppqlEBgFWffoduCdDA>
+ <xmx:T7sMYy5L2HGUCkedtkrToySWGVCELLnPoI8dhrpzF4SJjMLl8MPbcA>
+ <xmx:T7sMY-olBjx9ozhnzgCaWgsvJW1Ydho-X4hekT6-pqvZPkUi-UqadSvzSvE>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 5 Sep 2022 09:32:54 -0400 (EDT)
-Date: Mon, 5 Sep 2022 15:32:51 +0200
+ 29 Aug 2022 09:12:46 -0400 (EDT)
 From: Maxime Ripard <maxime@cerno.tech>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Message-ID: <20220905133251.js26hxdosibx4r4i@houat>
+To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
+ David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
+ =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Date: Mon, 29 Aug 2022 15:11:21 +0200
+Message-Id: <20220728-rpi-analog-tv-properties-v2-7-459522d653a7@cerno.tech>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
- <20220728-rpi-analog-tv-properties-v2-10-459522d653a7@cerno.tech>
- <242d272b-5b79-986c-9aaf-64e62f6b37ff@gmail.com>
- <CAMuHMdWq3aOO4-2AReDeaC2VBJb=QJF2dTMZP=DGmwCg6ZOffA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="33jm6ubzzouafw3w"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdWq3aOO4-2AReDeaC2VBJb=QJF2dTMZP=DGmwCg6ZOffA@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: b4 0.10.0-dev-65ba7
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1503; i=maxime@cerno.tech;
+ h=from:subject:message-id; bh=360DckfKUI/oiBSyUvmkKcjfDELX/wp7WZq7mSLzHYY=;
+ b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8u+R9F749fcX+URp/0+mNklts/+osLbExydeqlHnk5xCx
+ cO2hjlIWBjEuBlkxRZYYYfMlcadmve5k45sHM4eVCWQIAxenAEzEdwfDf2eNYsvfu42bnU+zT+xnfO
+ Q79+f8ozt6fzV8Prf4WvmC2SGMDP31u7j2GFU3anCHMd34KpJz8v3pBU7M7drctyrSzPUOsgEA
+X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
+ fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
-Subject: Re: [Nouveau] [PATCH v2 10/41] drm/modes: Add a function to
- generate analog display modes
+Subject: [Nouveau] [PATCH v2 07/41] drm/connector: Only register TV mode
+ property if present
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,84 +105,58 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Nouveau Dev <nouveau@lists.freedesktop.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Ben Skeggs <bskeggs@redhat.com>, linux-sunxi@lists.linux.dev,
- Mateusz Kwiatkowski <kfyatek@gmail.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Dom Cobley <dom@raspberrypi.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
+ Hans de Goede <hdegoede@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Maxime Ripard <maxime@cerno.tech>,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-
---33jm6ubzzouafw3w
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Wed, Aug 31, 2022 at 10:14:28AM +0200, Geert Uytterhoeven wrote:
-> > > +enum drm_mode_analog {
-> > > +    DRM_MODE_ANALOG_NTSC,
-> > > +    DRM_MODE_ANALOG_PAL,
-> > > +};
-> >
-> > Using "NTSC" and "PAL" to describe the 50Hz and 60Hz analog TV modes is=
- common,
-> > but strictly speaking a misnomer. Those are color encoding systems, and=
- your
-> > patchset fully supports lesser used, but standard encodings for those (=
-e.g.
-> > PAL-M for 60Hz and SECAM for 50Hz). I'd propose switching to some more =
-neutral
-> > naming scheme. Some ideas:
-> >
-> > - DRM_MODE_ANALOG_60_HZ / DRM_MODE_ANALOG_50_HZ (after standard refresh=
- rate)
-> > - DRM_MODE_ANALOG_525_LINES / DRM_MODE_ANALOG_625_LINES (after standard=
- line
-> >   count)
->=20
-> IMHO these are bad names, as e.g. VGA640x480@60 is also analog, using
-> 60 Hz and 525 lines.  Add "TV" to the name?
->=20
-> > - DRM_MODE_ANALOG_JM / DRM_MODE_ANALOG_BDGHIKLN (after corresponding IT=
-U System
-> >   Letter Designations)
->=20
-> Or DRM_MODE_ITU_*?
-> But given the long list of letters, this looks fragile to me.
-
-Does it matter at all? It's an internal API that isn't exposed at all.
-I'd rather have a common name that everyone can understand in this case
-rather than a *perfect* name where most will scratch their head
-wondering what it's about.
-
-Maxime
-
---33jm6ubzzouafw3w
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYxX6gwAKCRDj7w1vZxhR
-xRY+APwO4YqnioLJFYdWxGYCqIG80ImumXUFbL0Tx5/LHpbRnAD9GcSO3ME950qT
-a6PSCUqylWFq013v3epQ49LG4896+QQ=
-=dwqa
------END PGP SIGNATURE-----
-
---33jm6ubzzouafw3w--
+The drm_create_tv_properties() will create the TV mode property=0D
+unconditionally.=0D
+=0D
+However, since we'll gradually phase it out, let's register it only if we=0D
+have a list passed as an argument. This will make the transition easier.=0D
+=0D
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>=0D
+Acked-by: Noralf Tr=C3=B8nnes <noralf@tronnes.org>=0D
+=0D
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connecto=
+r.c=0D
+index ede6025638d7..17a5913cefe3 100644=0D
+--- a/drivers/gpu/drm/drm_connector.c=0D
++++ b/drivers/gpu/drm/drm_connector.c=0D
+@@ -1686,15 +1686,18 @@ int drm_mode_create_tv_properties(struct drm_device=
+ *dev,=0D
+ 	if (drm_mode_create_tv_margin_properties(dev))=0D
+ 		goto nomem;=0D
+ =0D
+-	dev->mode_config.legacy_tv_mode_property =3D=0D
+-		drm_property_create(dev, DRM_MODE_PROP_ENUM,=0D
+-				    "mode", num_modes);=0D
+-	if (!dev->mode_config.legacy_tv_mode_property)=0D
+-		goto nomem;=0D
+ =0D
+-	for (i =3D 0; i < num_modes; i++)=0D
+-		drm_property_add_enum(dev->mode_config.legacy_tv_mode_property,=0D
+-				      i, modes[i]);=0D
++	if (num_modes) {=0D
++		dev->mode_config.legacy_tv_mode_property =3D=0D
++			drm_property_create(dev, DRM_MODE_PROP_ENUM,=0D
++					    "mode", num_modes);=0D
++		if (!dev->mode_config.legacy_tv_mode_property)=0D
++			goto nomem;=0D
++=0D
++		for (i =3D 0; i < num_modes; i++)=0D
++			drm_property_add_enum(dev->mode_config.legacy_tv_mode_property,=0D
++					      i, modes[i]);=0D
++	}=0D
+ =0D
+ 	dev->mode_config.tv_brightness_property =3D=0D
+ 		drm_property_create_range(dev, 0, "brightness", 0, 100);=0D
+=0D
+-- =0D
+b4 0.10.0-dev-65ba7=0D
