@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F3A3ECAAA1
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:31:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D916C38145
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:31:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7271910EA99;
-	Tue,  6 Sep 2022 20:31:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8530D10EA9D;
+	Tue,  6 Sep 2022 20:31:25 +0000 (UTC)
 Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
  [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1842610F2A6;
- Mon, 29 Aug 2022 13:20:49 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.west.internal (Postfix) with ESMTP id 8A0532B0605A;
- Mon, 29 Aug 2022 09:13:29 -0400 (EDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E25CD10F2C7;
+ Mon, 29 Aug 2022 13:25:48 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailnew.west.internal (Postfix) with ESMTP id 1F6682B0608F;
+ Mon, 29 Aug 2022 09:16:26 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
- by compute3.internal (MEProxy); Mon, 29 Aug 2022 09:13:32 -0400
+ by compute1.internal (MEProxy); Mon, 29 Aug 2022 09:16:28 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
  :cc:content-transfer-encoding:content-type:date:date:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778809; x=
- 1661786009; bh=brLbE95VBy9k5VrYGsPmloGy1lQZHCg9ZtxvtLcN1Qo=; b=j
- VkdkcClmfca8ElGpw0RAUt6m0Gv54+jM4X6lntwUEfv7lCmbcJuIth2VWei8y+cd
- 66vxd9smnQcFRnfejC9XHL3S/pFGm3WLbPCILUneIvSGk3FbOZvvx8rQZ54aD4H/
- QESHl1LRxXzJ4lQsnoTMXHZwcX8kaQ8XHL7iFQcNHlrjJfsvqd1DW5rok2+9xKdo
- 2/ezTLRD3N85GwYKFj/d+b6Bfjv2THt9bzbFmMtpIarDyuTdJmhk/KDYz4AQRZBj
- ydDkQIwX1JY93ko3aHmBviKn27JS+SPSX2YpgqD9dsTXD8otEF8OKpEj/d2RbE63
- FNX6zFHaMH5eWLAarNhjQ==
+ :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778985; x=
+ 1661786185; bh=lN7bNSOCMzy68afbhfiVt1hAVLOOacA7oPD2TeryXSs=; b=g
+ aeOBAyFL3r2QIe8OCH1iFRgWnMODA4K0311mTQusoNqJTsW7pyd4XnwmegAiCpt9
+ +En8iXRtrSPElJv91UWRtxnyPn/aYJldPEebV0n95tUpwahYP6UyLB+LTesuYSeg
+ Gbt4eFuQyw+NwzT2V6cB1qsCx0Y5yM78mV333wM/GHS5OjKxRw+dfph989WqMoR+
+ QgiGEf4sCj5YmcKNBvCAKvJLRD05ae0jQ27z5Exs4qJrN2jm07+5dIuL+zBCQCmW
+ KB/CrUcgOdohHUrYImGxpXLotbR4wJaev5JNNlba7zadu67EqptVuogoxmSiLN1o
+ 4L2wXaX/NLI+l7KxLpqfw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-transfer-encoding
  :content-type:date:date:feedback-id:feedback-id:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
  :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778809; x=
- 1661786009; bh=brLbE95VBy9k5VrYGsPmloGy1lQZHCg9ZtxvtLcN1Qo=; b=k
- ZHECdYLCXDeqxnapuI20tTO8mFMpxYBQYiVrjy+m6DUhl5NvVrBks99gMNPLfLAY
- 3D8/PGAc1flNRTn+dXSvw9R8UO5AGc6GPOKYt8NqCIXuCHOhRUu16hHRvtmoLRZH
- DotvcSUISFUVXeue3GIVZLJZoY84yQEE8IA1dsXYe+cv5h3k67XugSpptyOx2Qrp
- rWO0M5YRCDKFrYm5OKKzUNKit1Wq3hbZX6P/n9jObYnNyYevwieztoe2ZmWdgdjA
- Dfu6iHgyigQ7fYceitKtlN7DyGUZrxlcQUmBsshaUl6QedFeUKFNI4y6A0RIZRNZ
- WV7FFCRLoBXBkZDiNZcPg==
-X-ME-Sender: <xms:eLsMYx-k30xNKcfIfBUAGm8QzciM8dzD8ju-pAF1Mhl3Zs0nVpiC7A>
- <xme:eLsMY1vXNh8vfJhO2E69RjDFdh3cs1r2fcg3-caHwVzV-Uvv_1X2GQ8nNVz5VNgdH
- NRYteJ95su7LqneZbY>
-X-ME-Received: <xmr:eLsMY_DLGfk3bEXA8hZy78q0izch0pvofAoeDoSKttZtQHygEAV1lua_CaVa>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieefucetufdoteggodetrfdotf
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778985; x=
+ 1661786185; bh=lN7bNSOCMzy68afbhfiVt1hAVLOOacA7oPD2TeryXSs=; b=T
+ NGs8CcQ9zOUdtTiQPSqj65UfjOy2DqmcoCtDZ+24PqWm9TtsDUYyWT9vrrwMliod
+ MjooPslBJABqRez7Dy7PwgG5Aflf0XXeZ+m1qjiQycHYbjfRQc3UJhyv1SQl+j9L
+ j9xQuhKPPBMlXGPbJZJuZNqtPiMNcqA1tPSRNSTyiotKgD/PK9BNTKbHXxk+hdyT
+ XnLEVDrk+d8Ea2wtXa4vTAoIxOI75qlZ/M6t8xrMvyVcwgePO2L5SC4e05xm+sMo
+ UvJy0VSVVvzB0BXjB6vUjsBj8zbnYVXrfTiEqp+WKms66VJPXNDuuib4fowtrrGY
+ 8JRPKVGvPMsha+caC4cwQ==
+X-ME-Sender: <xms:KbwMYydCVFbmRfWurdOP39J-E1nqQoTpfWcVbGMsBK9aDfXX-voE1A>
+ <xme:KbwMY8NQOYt-RhB9EaABtO35TJU4DT28ECC0ji-4Fayf-yyDYfaMfhB_b4PH5AtSJ
+ TiYWPFV-Bddl8Wz4aM>
+X-ME-Received: <xmr:KbwMYzjtGkuh2sFOwV43cl1use8afEixHCyuS_pw-KNORjq5KI1JRXYXvfzH>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieegucetufdoteggodetrfdotf
  fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
  uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
  cujfgurhephffvvefufffkofgjfhggtgfogfesthhqredtredtjeenucfhrhhomhepofgr
@@ -54,13 +54,13 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieefucetufdoteggod
  frrghtthgvrhhnpeefiedvfefggffgffehveejieffuddtgffhjefggeetieduvdeileet
  lefgveegtdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
  hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:eLsMY1fhWKOYSlHLK_LzIPSxvB7_5upFBxB0Qg7fGRju77aaIy6CAQ>
- <xmx:eLsMY2Pgw9G2XZ2WGwMhDpyr6gaF0Pcm_SUCdxbmLq9jg0Db5xsGAQ>
- <xmx:eLsMY3kYKoIEewvgagvRiAvWHm1LFnTqzygukxn5rpW3AfaH0WOZ0Q>
- <xmx:ebsMYy1l87pGpn4yhP19T-A11S3jwvzMkVV63U1V_wp5kGuEoEQECXWDVg4>
+X-ME-Proxy: <xmx:KbwMY_-8GrCU0SaHRljZtnJ5IgtOgva8MBhLMe5_IkmdduUQvFb6ig>
+ <xmx:KbwMY-tWh5oCgXzpqfMjnrRaqBc1L380_KpNimftfkhr8Jphf5SpLA>
+ <xmx:KbwMY2HAQc9-JBMR_krLYdAZXgtByZlUd0qz7A95GnoqPs6tWij7IQ>
+ <xmx:KbwMY1WHUMQY6dAP14j79txCnoECNibXa2I2snItS-jwL8uOqKUs2up1rTU>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 29 Aug 2022 09:13:28 -0400 (EDT)
+ 29 Aug 2022 09:16:24 -0400 (EDT)
 From: Maxime Ripard <maxime@cerno.tech>
 To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
  David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
@@ -75,25 +75,25 @@ To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
  =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
  Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Mon, 29 Aug 2022 15:11:27 +0200
-Message-Id: <20220728-rpi-analog-tv-properties-v2-13-459522d653a7@cerno.tech>
+Date: Mon, 29 Aug 2022 15:11:54 +0200
+Message-Id: <20220728-rpi-analog-tv-properties-v2-40-459522d653a7@cerno.tech>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.10.0-dev-65ba7
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4333; i=maxime@cerno.tech;
- h=from:subject:message-id; bh=/dKwZjZwU+Jvp9SGqNZ5BX5aWEOsSsT2gHorhJZbBUM=;
- b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8u+SZN0uElihtmCoZ1NGtY/5u1Y6L0ut/76w9svehzJqG
- 5a/XdJSyMIhxMciKKbLECJsviTs163UnG988mDmsTCBDGLg4BWAiaw8xMkxar1m//ENZ/Xb9ul+GZb
- 8u6+nv9nNcbW2SapnN9TWGfTfDH37F6e/nPQjbtKnCjeH689/T3/ldbpyjo6/PfJUvxDOwnx0A
+X-Developer-Signature: v=1; a=openpgp-sha256; l=815; i=maxime@cerno.tech;
+ h=from:subject:message-id; bh=r7LcpFs7qXcJi8XUdtLYEk3itduP1hTLzq2Bc5XOe7Q=;
+ b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8uxR5qjSTzZ5o7LpVE7xN9dyhQ549wbl2azjmXeU0dlrf
+ 906/o5SFQYyLQVZMkSVG2HxJ3KlZrzvZ+ObBzGFlAhnCwMUpABOZpcDIcE9cdX7DrmXcxb/Y7f67c/
+ IXqTOzfJ62UcRzrd/Wc9/NHjH8s779wy7khmruMYsYS3e5B3z58Ssabv2u33eslvGSVa0bAwA=
 X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
-Subject: [Nouveau] [PATCH v2 13/41] drm/client: Add some tests for
- drm_connector_pick_cmdline_mode()
+Subject: [Nouveau] [PATCH v2 40/41] drm/sun4i: tv: Add missing reset
+ assertion
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,154 +115,28 @@ Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-drm_connector_pick_cmdline_mode() is in charge of finding a proper=0D
-drm_display_mode from the definition we got in the video=3D command line=0D
-argument.=0D
+The reset line is deasserted at bind, and asserted if we ever encounter an=
 =0D
-Let's add some unit tests to make sure we're not getting any regressions=0D
-there.=0D
+error there. However, it's never asserted in unbind which will lead to a=0D
+resource unbalance.=0D
 =0D
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>=0D
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>=0D
 =0D
-diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_cli=
-ent_modeset.c=0D
-index bbc535cc50dd..d553e793e673 100644=0D
---- a/drivers/gpu/drm/drm_client_modeset.c=0D
-+++ b/drivers/gpu/drm/drm_client_modeset.c=0D
-@@ -1237,3 +1237,7 @@ int drm_client_modeset_dpms(struct drm_client_dev *cl=
-ient, int mode)=0D
- 	return ret;=0D
+diff --git a/drivers/gpu/drm/sun4i/sun4i_tv.c b/drivers/gpu/drm/sun4i/sun4i=
+_tv.c=0D
+index ad6a3739bfa9..74ff5ad6a8b9 100644=0D
+--- a/drivers/gpu/drm/sun4i/sun4i_tv.c=0D
++++ b/drivers/gpu/drm/sun4i/sun4i_tv.c=0D
+@@ -605,6 +605,7 @@ static void sun4i_tv_unbind(struct device *dev, struct =
+device *master,=0D
+ 	drm_connector_cleanup(&tv->connector);=0D
+ 	drm_encoder_cleanup(&tv->encoder);=0D
+ 	clk_disable_unprepare(tv->clk);=0D
++	reset_control_assert(tv->reset);=0D
  }=0D
- EXPORT_SYMBOL(drm_client_modeset_dpms);=0D
-+=0D
-+#ifdef CONFIG_DRM_KUNIT_TEST=0D
-+#include "tests/drm_client_modeset_test.c"=0D
-+#endif=0D
-diff --git a/drivers/gpu/drm/tests/drm_client_modeset_test.c b/drivers/gpu/=
-drm/tests/drm_client_modeset_test.c=0D
-new file mode 100644=0D
-index 000000000000..46335de7bc6b=0D
---- /dev/null=0D
-+++ b/drivers/gpu/drm/tests/drm_client_modeset_test.c=0D
-@@ -0,0 +1,114 @@=0D
-+// SPDX-License-Identifier: GPL-2.0=0D
-+/*=0D
-+ * Copyright (c) 2022 Maxime Ripard <mripard@kernel.org>=0D
-+ */=0D
-+=0D
-+#include <kunit/test.h>=0D
-+=0D
-+#include <drm/drm_connector.h>=0D
-+#include <drm/drm_edid.h>=0D
-+#include <drm/drm_drv.h>=0D
-+#include <drm/drm_modes.h>=0D
-+#include <drm/drm_modeset_helper_vtables.h>=0D
-+#include <drm/drm_probe_helper.h>=0D
-+=0D
-+#include "drm_kunit_helpers.h"=0D
-+=0D
-+struct drm_client_modeset_test_priv {=0D
-+	struct drm_device *drm;=0D
-+	struct drm_connector connector;=0D
-+};=0D
-+=0D
-+static int drm_client_modeset_connector_get_modes(struct drm_connector *co=
-nnector)=0D
-+{=0D
-+	struct drm_display_mode *mode;=0D
-+	int count;=0D
-+=0D
-+	count =3D drm_add_modes_noedid(connector, 1920, 1200);=0D
-+=0D
-+	return count;=0D
-+}=0D
-+=0D
-+static const struct drm_connector_helper_funcs drm_client_modeset_connecto=
-r_helper_funcs =3D {=0D
-+	.get_modes =3D drm_client_modeset_connector_get_modes,=0D
-+};=0D
-+=0D
-+static const struct drm_connector_funcs drm_client_modeset_connector_funcs=
- =3D {=0D
-+};=0D
-+=0D
-+static int drm_client_modeset_test_init(struct kunit *test)=0D
-+{=0D
-+	struct drm_client_modeset_test_priv *priv;=0D
-+	int ret;=0D
-+=0D
-+	priv =3D kunit_kzalloc(test, sizeof(*priv), GFP_KERNEL);=0D
-+	if (!priv)=0D
-+		return -ENOMEM;=0D
-+	test->priv =3D priv;=0D
-+=0D
-+	priv->drm =3D drm_kunit_device_init("drm-client-modeset-test");=0D
-+	if (IS_ERR(priv->drm))=0D
-+		return PTR_ERR(priv->drm);=0D
-+=0D
-+	ret =3D drmm_connector_init(priv->drm, &priv->connector,=0D
-+				  &drm_client_modeset_connector_funcs,=0D
-+				  DRM_MODE_CONNECTOR_Unknown,=0D
-+				  NULL);=0D
-+	if (ret)=0D
-+		return ret;=0D
-+	drm_connector_helper_add(&priv->connector, &drm_client_modeset_connector_=
-helper_funcs);=0D
-+=0D
-+	return 0;=0D
-+}=0D
-+=0D
-+static void drm_client_modeset_test_exit(struct kunit *test)=0D
-+{=0D
-+	struct drm_client_modeset_test_priv *priv =3D test->priv;=0D
-+=0D
-+	drm_kunit_device_exit(priv->drm);=0D
-+}=0D
-+=0D
-+static void drm_pick_cmdline_res_1920_1080_60(struct kunit *test)=0D
-+{=0D
-+	struct drm_client_modeset_test_priv *priv =3D test->priv;=0D
-+	struct drm_device *drm =3D priv->drm;=0D
-+	struct drm_connector *connector =3D &priv->connector;=0D
-+	struct drm_cmdline_mode *cmdline_mode =3D &connector->cmdline_mode;=0D
-+	struct drm_display_mode *expected_mode, *mode;=0D
-+	const char *cmdline =3D "1920x1080@60";=0D
-+	int ret;=0D
-+=0D
-+	expected_mode =3D drm_mode_find_dmt(priv->drm, 1920, 1080, 60, false);=0D
-+	KUNIT_ASSERT_PTR_NE(test, expected_mode, NULL);=0D
-+=0D
-+	KUNIT_ASSERT_TRUE(test,=0D
-+			  drm_mode_parse_command_line_for_connector(cmdline,=0D
-+								    connector,=0D
-+								    cmdline_mode));=0D
-+=0D
-+	mutex_lock(&drm->mode_config.mutex);=0D
-+	ret =3D drm_helper_probe_single_connector_modes(connector, 1920, 1080);=0D
-+	mutex_unlock(&drm->mode_config.mutex);=0D
-+	KUNIT_ASSERT_GT(test, ret, 0);=0D
-+=0D
-+	mode =3D drm_connector_pick_cmdline_mode(connector);=0D
-+	KUNIT_ASSERT_PTR_NE(test, mode, NULL);=0D
-+=0D
-+	KUNIT_EXPECT_TRUE(test, drm_mode_equal(expected_mode, mode));=0D
-+}=0D
-+=0D
-+static struct kunit_case drm_pick_cmdline_tests[] =3D {=0D
-+	KUNIT_CASE(drm_pick_cmdline_res_1920_1080_60),=0D
-+	{}=0D
-+};=0D
-+=0D
-+static struct kunit_suite drm_pick_cmdline_test_suite =3D {=0D
-+	.name =3D "drm_pick_cmdline",=0D
-+	.init =3D drm_client_modeset_test_init,=0D
-+	.exit =3D drm_client_modeset_test_exit,=0D
-+	.test_cases =3D drm_pick_cmdline_tests=0D
-+};=0D
-+=0D
-+kunit_test_suite(drm_pick_cmdline_test_suite);=0D
-+MODULE_AUTHOR("Maxime Ripard <mripard@kernel.org>");=0D
-+MODULE_LICENSE("GPL");=0D
+ =0D
+ static const struct component_ops sun4i_tv_ops =3D {=0D
 =0D
 -- =0D
 b4 0.10.0-dev-65ba7=0D
