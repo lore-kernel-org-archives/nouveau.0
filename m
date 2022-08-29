@@ -4,63 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F3FAECAAA1
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31605C38145
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 911D510EAA6;
-	Tue,  6 Sep 2022 20:31:29 +0000 (UTC)
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
- [IPv6:2a00:1450:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43E2510E37B;
- Thu,  1 Sep 2022 22:52:11 +0000 (UTC)
-Received: by mail-lj1-x233.google.com with SMTP id bn9so574973ljb.6;
- Thu, 01 Sep 2022 15:52:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:from:to:cc;
- bh=Dhwd+COjDW5ThjQ0eGNlcg2FwWXLsRihwwituLHXIZw=;
- b=Qg20bj9HVOA0O2Dv7pbgLFpIerRd3OpfYftDq4iLQONPRjHm8OE5FicN0K1WL1v+S3
- bISpN5k4Xg9gTk37HMqAreo6nvuLyU3JTBpgQLIjzDvBJIqAXMP5MfRK4NHoGkdf8jpo
- 3glN34VMEDD6Gh+Zf1murR+o5lg06tWVopJIiQgpwbgHGnSUZUKhfMxhxUfv/PKpvsCf
- qwtgF3sgpUqP0AbUb+d/a1esSHZ+I5KHKcW+5WE2OKOtNa+X+J/AAtNMS15RdoIDBSEy
- T+m/BQNhtbsQ6WmcJD2FSngsG3cTf0OyGVh/5RtK7l/wyzsThnJPsLTNCVmQ7lejIS6h
- shRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:x-gm-message-state:from:to:cc;
- bh=Dhwd+COjDW5ThjQ0eGNlcg2FwWXLsRihwwituLHXIZw=;
- b=Fd99hL1u+xo4KfogEckDrFppovOpq2htnG7hmysVP0dlV01lJjiWjUYuNGF0QlrtKB
- CLP16JJUEg1jdcI4Kqx0mkk67JFzDp3qwecfs/w8ITXqpxJ112WLKmvUGhMjfSMjX1oU
- q500eDp2jNCZGbZEln3nGh/wa3QEYjCBQmfQu2LrOamr5Xsci27L8qMavSs1OqV0BOe6
- kB+jbIyV7yMIT/mtOxaZ0e5WtwMPXcPlLZSifBzD3nXFco6GLOHdrZHfk8NoRHJv82Bt
- /kEGheXDwjMmKk5/J1iqN2hd4zecE7Txbwr8fyiiju8QqsFto5PmmvmSwoMJElOldUQE
- qOjQ==
-X-Gm-Message-State: ACgBeo2IgvLFYuE+Zd+6FGvB4X5oxPh6fTGVFoYrI22c6L8pDDtseE9p
- 8+GcWoZay2IpeamjalNsIYE=
-X-Google-Smtp-Source: AA6agR5VyqkvxxIZF1flgFAUFyuS1vlvIP1xurquBEUnw5mRA/4PMLSVlwqN/Hy1Kir2419wd9jhSA==
-X-Received: by 2002:a2e:bd0e:0:b0:268:c03b:cf56 with SMTP id
- n14-20020a2ebd0e000000b00268c03bcf56mr1277850ljq.393.1662072729392; 
- Thu, 01 Sep 2022 15:52:09 -0700 (PDT)
-Received: from ?IPV6:2a02:a31a:a240:1700:9c45:8fa1:8ce7:8852?
- ([2a02:a31a:a240:1700:9c45:8fa1:8ce7:8852])
- by smtp.googlemail.com with ESMTPSA id
- w9-20020a2e1609000000b0025e15fe421bsm29224ljd.17.2022.09.01.15.52.07
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 01 Sep 2022 15:52:08 -0700 (PDT)
-From: Mateusz Kwiatkowski <kfyatek@gmail.com>
-X-Google-Original-From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
-Message-ID: <768daa58-d1cd-7e9d-4f6e-722f2b0afab9@gmail.com>
-Date: Fri, 2 Sep 2022 00:52:06 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.2.0
-Content-Language: pl
-To: Maxime Ripard <maxime@cerno.tech>, Maxime Ripard <mripard@kernel.org>,
- Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
- Chen-Yu Tsai <wens@csie.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBEB410EA9B;
+	Tue,  6 Sep 2022 20:31:28 +0000 (UTC)
+Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
+ [64.147.123.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDD2710F2C5;
+ Mon, 29 Aug 2022 13:25:48 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailnew.west.internal (Postfix) with ESMTP id 1EB102B0606F;
+ Mon, 29 Aug 2022 09:14:41 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute5.internal (MEProxy); Mon, 29 Aug 2022 09:14:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-transfer-encoding:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778880; x=
+ 1661786080; bh=j2xVn9DQqZPAbk7DRoXYb3Gc5hDkTHCbiLk8VjWo/kk=; b=e
+ W3j3X3F1dNP+pa/mcTJLoDMJqZBef4D/FGT1sPX4/CUeEpPKponvnnrEfXDmFBgW
+ 0Nub1MuB1jlLAg/EzhjXasY8BJUQ8rKpHIhcMKQh61X8TJfZsAxPI/jJnpc24i90
+ amfoHYudd41jeY0PkAw7Jp/Fcu79hBGKQIp4/5g8zG3whwSC2XXJxiqJUBJamYBs
+ /SqSk4izVhzmg7fSYZdJkXJf8tSmPWUhoa6V49XHefL01GJA2dx5AR2S1A6oV3Gc
+ FncuE4NhSo/1roMVoYOH1bKkMMq0z+E3bkpBugIXnIl2MM3fsGVUdg9EAZcujSKu
+ 85ZZzfRCjIjbUg1WWfj6Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:feedback-id:feedback-id:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778880; x=
+ 1661786080; bh=j2xVn9DQqZPAbk7DRoXYb3Gc5hDkTHCbiLk8VjWo/kk=; b=R
+ HBNrPu/uPbhJTXjGYBfVwYJnJN3W4TTcnoJ3vA0o7bJq86e2MA+10nN6ul7AbD37
+ jVqeMevFjyloNkTLwRwQpNle6qq0HueW3Z1b3XTkmD61LWaWJIGRvOdgm32a/Xd0
+ TkifOGVrVAi9wCnTHlUdfeOcaXKQK6sRrTS5QreBHaSKp5KJhuCn6xAV85d66/Ow
+ MW+sGOR0ogvbG9B94FjPdrFgp+P0q983icXxiPxEy0oJ4Vlp1DyHC6OVHN8onIHY
+ UvZRZMbKEb/ELFDqnDG2OWte0uSu+63ry4ZDBYgcC7acx7bPmVZHu2+7S71OPgQl
+ R7KxYA08ud/pbOMvcV8Cw==
+X-ME-Sender: <xms:wLsMY1NekOJvxc_t9tAGy9mE_YZCC630Jsknh-TDy-wK_jzugvAljA>
+ <xme:wLsMY3_XsGJu6S8ULZCYbAdSSxKe-9Z3WHOPVgxV2OGN7AJkIoexttVmIAO5kaSjc
+ rwZBt4htsUNe__QrBA>
+X-ME-Received: <xmr:wLsMY0QzXKmM-RlRXXfub5YUGjDBc_TIi7VLYEPYEVTAmrFjgJa3H-nWlqua>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieefucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhephffvvefufffkofgjfhggtgfogfesthhqredtredtjeenucfhrhhomhepofgr
+ gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
+ frrghtthgvrhhnpeefiedvfefggffgffehveejieffuddtgffhjefggeetieduvdeileet
+ lefgveegtdenucevlhhushhtvghrufhiiigvpedvnecurfgrrhgrmhepmhgrihhlfhhroh
+ hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:wLsMYxtY5HFuMIuHg1D34nW9s-bvI5G1aJdF3kUGOVkqQgn5YsYwEQ>
+ <xmx:wLsMY9eJiYQbhUO7N6FRJiFjjIeTWlZOaX3hdPmmltuGqZu2wBQS3g>
+ <xmx:wLsMY912gQU1m3gcNa1mkC1SNypESQ5blsOxESnBQF6Gwg6u_k0Vlg>
+ <xmx:wLsMYzHW6Ip96oCKchx9zN31DvAn_RpDnv6qmUWlyApecVVNVWuWLZrUAbY>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 29 Aug 2022 09:14:39 -0400 (EDT)
+From: Maxime Ripard <maxime@cerno.tech>
+To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
+ David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
  Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
  Philipp Zabel <p.zabel@pengutronix.de>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -68,17 +72,27 @@ To: Maxime Ripard <maxime@cerno.tech>, Maxime Ripard <mripard@kernel.org>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  Jernej Skrabec <jernej.skrabec@gmail.com>,
  Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
  Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Date: Mon, 29 Aug 2022 15:11:38 +0200
+Message-Id: <20220728-rpi-analog-tv-properties-v2-24-459522d653a7@cerno.tech>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
- <20220728-rpi-analog-tv-properties-v2-20-459522d653a7@cerno.tech>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v2-20-459522d653a7@cerno.tech>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:03 +0000
-Subject: Re: [Nouveau] [PATCH v2 20/41] drm/modes: Properly generate a
- drm_display_mode from a named mode
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: b4 0.10.0-dev-65ba7
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1269; i=maxime@cerno.tech;
+ h=from:subject:message-id; bh=wQYMsg2bmhLsKtW1lnmR3k72TWcOcF4pQQLI7ZjpLm0=;
+ b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8uxQqthccT5d7kl7cGP7Z2vzITQYBtV97u7dd+v/Ya6bS
+ jAb2jlIWBjEuBlkxRZYYYfMlcadmve5k45sHM4eVCWQIAxenAEzkqQ4jw9L3sqcktpqIlbzZcln/k6
+ C34ko95pNZC9sU98xq3jih5SwjQ5dQc8fjcOFz9xle79zLrRrpuTpw68Zld2Q5+rb8bPfN4QUA
+X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
+ fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
+Subject: [Nouveau] [PATCH v2 24/41] drm/vc4: vec: Remove empty mode_fixup
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,18 +108,49 @@ Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
  Hans de Goede <hdegoede@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Maxime Ripard <maxime@cerno.tech>,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
  Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Maxime,
-
-> +        if (!named_mode->tv_mode)
-> +            continue;
-
-As mentioned in the previous email replying to 19/41, this makes it impossible
-to specify DRM_MODE_TV_MODE_NTSC_443 as currently defined in the named mode
-successfully.
-
-Best regards,
-Mateusz Kwiatkowski
+The mode_fixup hooks are deprecated, and the behaviour we implement is the=
+=0D
+default one anyway. Let's remove it.=0D
+=0D
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>=0D
+=0D
+diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_vec.c=
+=0D
+index d5140fe0be4f..d521ffd8d75c 100644=0D
+--- a/drivers/gpu/drm/vc4/vc4_vec.c=0D
++++ b/drivers/gpu/drm/vc4/vc4_vec.c=0D
+@@ -483,14 +483,6 @@ static void vc4_vec_encoder_enable(struct drm_encoder =
+*encoder)=0D
+ 	drm_dev_exit(idx);=0D
+ }=0D
+ =0D
+-=0D
+-static bool vc4_vec_encoder_mode_fixup(struct drm_encoder *encoder,=0D
+-				       const struct drm_display_mode *mode,=0D
+-				       struct drm_display_mode *adjusted_mode)=0D
+-{=0D
+-	return true;=0D
+-}=0D
+-=0D
+ static void vc4_vec_encoder_atomic_mode_set(struct drm_encoder *encoder,=0D
+ 					struct drm_crtc_state *crtc_state,=0D
+ 					struct drm_connector_state *conn_state)=0D
+@@ -518,7 +510,6 @@ static int vc4_vec_encoder_atomic_check(struct drm_enco=
+der *encoder,=0D
+ static const struct drm_encoder_helper_funcs vc4_vec_encoder_helper_funcs =
+=3D {=0D
+ 	.disable =3D vc4_vec_encoder_disable,=0D
+ 	.enable =3D vc4_vec_encoder_enable,=0D
+-	.mode_fixup =3D vc4_vec_encoder_mode_fixup,=0D
+ 	.atomic_check =3D vc4_vec_encoder_atomic_check,=0D
+ 	.atomic_mode_set =3D vc4_vec_encoder_atomic_mode_set,=0D
+ };=0D
+=0D
+-- =0D
+b4 0.10.0-dev-65ba7=0D
