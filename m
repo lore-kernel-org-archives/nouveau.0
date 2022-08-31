@@ -4,67 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D6C6C54EE9
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B65FECAAA1
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B67910EA9A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 777C110EAA8;
 	Tue,  6 Sep 2022 20:31:30 +0000 (UTC)
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FDE110F299;
- Mon, 29 Aug 2022 13:25:49 +0000 (UTC)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id A60042B0605D;
- Mon, 29 Aug 2022 09:13:48 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute2.internal (MEProxy); Mon, 29 Aug 2022 09:13:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-transfer-encoding:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778828; x=
- 1661786028; bh=AAvXImFRqhXK3wzdRCgVDl9APZWKjeBdFuiGKB1+8lA=; b=O
- 3Ju7lSD9HBG2Jp2F5aPP1xNX7MinO6GQLZ1QfrCnLDMSS1OaLPtEww6liBm0C7AK
- 1W25pMbOBRD59a1kpko5mU92VQHgrxQn3NKxVuIUdL3vjbS/AnhQ33yp0PQS/Azp
- HfUI7mD2BILNiCwU4Y08fqhBmgIpxDHG57SaMG+muUzCCeab2JL0FAAwqzp6DpRO
- AtGZM+wAyNl02LsE7VrB446RlL95Y+Ab1KYOyGy6Y+zlrY2tBZjKZLv9nr0SeivU
- sxwhkaV80DT55n+8ot86G1y7T1QFeWQJe6bzM7fHnxrgH313kAXBY8jcVm0tRCYu
- 4GYWR2GWwuOn9oBF842Lg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778828; x=
- 1661786028; bh=AAvXImFRqhXK3wzdRCgVDl9APZWKjeBdFuiGKB1+8lA=; b=r
- 7HiL1g/pL8NSYTqdGC8mulIobHbDSVRvB90imWhz2bioxrU71fBtvzh2iQhTOD0P
- fY6OuyimI2YOK6y1EeK+QB+VTylc5tM/G5tJOc2VSLHRvQJYX9gzUL8YPWh3bY2/
- WtR/I6DZEHtkCKCQo/a90fKS9hh5DaO47jVEED9d7bqe9HfZeD+RWn50EkmzgnkZ
- 84RYzBF73EeOumdLJeVNNnQ23pX7csARnQ+HUc4qtQtD4VpGCWklnU8jTXKSwUJ6
- /OMtztafTFh9AqrLgmCSfuJ2FAaLyCK8AhqcQt/ZpNz8dHQLoEKhvek1zLvtTBXg
- VtL+udw+acHjQqUK7ybhA==
-X-ME-Sender: <xms:i7sMYy85J60l4VBWG5rvMR3BvDNEvYbfHTc_nMs7at1UpJhvGb1VkA>
- <xme:i7sMYyuvXbgIHjw7YJAgq2H0biWrESgpNEaqSWPc6UnknVLaNi1HoZl7tRZNYIuPM
- g80Ek9iBKoDSD7VIn4>
-X-ME-Received: <xmr:i7sMY4CPSGj3xem-c06yHUEEHOHl98rtxr_pfkgbFPvLJD_Uu7koNIJAalCt>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieegucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhephffvvefufffkofgjfhggtgfogfesthhqredtredtjeenucfhrhhomhepofgr
- gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
- frrghtthgvrhhnpeefiedvfefggffgffehveejieffuddtgffhjefggeetieduvdeileet
- lefgveegtdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
- hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:i7sMY6eFtSbF4hHYRonDP_DPSSzmbhoOpOcE1pgITN0fOg2ZRTGrKA>
- <xmx:i7sMY3O2ldVXG-x_0fDQF4sB0h4QzdQn6rQM2P2-Fq9e10Wg8cWlKA>
- <xmx:i7sMY0mdlN8gD1G5_PTOpC6n599SFzll59cUbU4Apdh9cm-qGTkiWw>
- <xmx:jLsMY33mKs4wVsDab7xs7OlT_22CLClMyxBK6ldA3V7PM0xVGKLHo1z3bl4>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 29 Aug 2022 09:13:47 -0400 (EDT)
-From: Maxime Ripard <maxime@cerno.tech>
-To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
- David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
+ [IPv6:2a00:1450:4864:20::12b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 758A010E15B;
+ Wed, 31 Aug 2022 02:23:26 +0000 (UTC)
+Received: by mail-lf1-x12b.google.com with SMTP id g7so1072507lfe.11;
+ Tue, 30 Aug 2022 19:23:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:from:to:cc;
+ bh=D594wEp0LEmyYOAx7Tirjq3SGwda2pe5svLBID/NRVI=;
+ b=eyXn8XNL5R+c7skqJd2CXAmkkmv+PO53H99rqyOH87xBrXhsqaRc9Cafy09+sKEMJA
+ iijHh/Vgr/N8ms8DrRs7ZsyH/kfkPXSLcSAHRoh1+w4hJSgtLHkhgFqawSk+ZXu7vLVu
+ etWsQ2c8F5mlpD6pXL4Jnwu7reEvEQPvt2Kcq7iIfhsfn4Yu0eFb5/ZnRE0d433DYCkK
+ cdghwZHl1psSvBmHBmPiKQam64a3GgKwsjlObk+WtdqaHxXkPRZOKXlEsDxfpMbOFJ+F
+ qvawNpaI/5HTMI7FX7pKKny6H0CoBufGQKBaV+h3B0J6ooncWt1iyUW0Dhc0OQr52xk/
+ Icrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:x-gm-message-state:from:to:cc;
+ bh=D594wEp0LEmyYOAx7Tirjq3SGwda2pe5svLBID/NRVI=;
+ b=ONsodCQJDYGLAzmir2o5yxXoNw+Csqxt2vulJxJk3aNqmZmDXH4sxAuK7ITh3DddZj
+ GOURpw3Sz7//7Ipg25hgxH6qcI3u2Jc2zqgch9rG0lC1QmYXO/tyT7x8UzEK0BGDeg7m
+ 7N0ZiLVFqF3Rk9vMS/7h6OWQgPcRRva4Sxq1zik1DTc/PXB+9Bj2xl94hFWJJIhg7gbl
+ Re7JKKPdZbWi/RGNHZaMCYYj8qHAux5sxjfbfA16PBeTeZq3KSYp1NIpxGuj0IbSo5Mk
+ mgvOu7XcYte4oeUkvC0f8cCYxPF4SFlQ0pTUOZfJogw8xnBJIhX2/XvqVNI9fy/tweOi
+ RGmQ==
+X-Gm-Message-State: ACgBeo2eAjWedWz0Cs9xKe4AwX4VNlZyuqZH+ylp+UnB6GbcS7BxMNdO
+ J4N+DgJiXWg/nLdOqAA5Xe8=
+X-Google-Smtp-Source: AA6agR5RnfuFyIONMTqsPbIII5CYS1rbgB3cSxzqkqMVekfKEnddXN6p9IGLZ6Lzgilorerw0vcwmQ==
+X-Received: by 2002:a05:6512:1054:b0:494:8ce3:24c8 with SMTP id
+ c20-20020a056512105400b004948ce324c8mr235583lfb.360.1661912604645; 
+ Tue, 30 Aug 2022 19:23:24 -0700 (PDT)
+Received: from ?IPV6:2a02:a31a:a240:1700:d40b:b088:5bfe:3b81?
+ ([2a02:a31a:a240:1700:d40b:b088:5bfe:3b81])
+ by smtp.googlemail.com with ESMTPSA id
+ k9-20020a2eb749000000b00261eb75fa5dsm1960508ljo.41.2022.08.30.19.23.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 30 Aug 2022 19:23:24 -0700 (PDT)
+From: Mateusz Kwiatkowski <kfyatek@gmail.com>
+X-Google-Original-From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+Message-ID: <c8f8015a-75da-afa8-ca7f-b2b134cacd16@gmail.com>
+Date: Wed, 31 Aug 2022 04:23:21 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.2.0
+Content-Language: pl
+To: Maxime Ripard <maxime@cerno.tech>, Maxime Ripard <mripard@kernel.org>,
+ Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
+ Chen-Yu Tsai <wens@csie.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
  Philipp Zabel <p.zabel@pengutronix.de>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -72,28 +68,17 @@ To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  Jernej Skrabec <jernej.skrabec@gmail.com>,
  Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
- =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
  Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Mon, 29 Aug 2022 15:11:30 +0200
-Message-Id: <20220728-rpi-analog-tv-properties-v2-16-459522d653a7@cerno.tech>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.10.0-dev-65ba7
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1645; i=maxime@cerno.tech;
- h=from:subject:message-id; bh=cx3bZ2Z+vnsINoBvMJVTM9LZ3rHQTrc0mEfL62Vz/88=;
- b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8u+Rzt3OsVsjbJGv7UNrGwSXJqZuBm/2ZUZuby4QFFz5Y
- NU7tKGVhEONikBVTZIkRNl8Sd2rW6042vnkwc1iZQIYwcHEKwESW8jMyHI33m2VpfF5wnZj/uaSObg
- 7Z31KKeUJrtxS89ApY86M4gZGhQUtZ/lNcn530bpOoYvOQe/8nLJQ+8uHtTHt94Td/M3ayAgA=
-X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
- fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
-Subject: [Nouveau] [PATCH v2 16/41] drm/modes: Fill drm_cmdline mode from
- named modes
+ <20220728-rpi-analog-tv-properties-v2-32-459522d653a7@cerno.tech>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v2-32-459522d653a7@cerno.tech>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:03 +0000
+Subject: Re: [Nouveau] [PATCH v2 32/41] drm/vc4: vec: Convert to the new TV
+ mode property
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,64 +94,104 @@ Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
  Hans de Goede <hdegoede@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Maxime Ripard <maxime@cerno.tech>,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
  Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The current code to deal with named modes will only set the mode name, and=
-=0D
-then it's up to drivers to try to match that name to whatever mode or=0D
-configuration they see fit.=0D
-=0D
-The plan is to remove that need and move the named mode handling out of=0D
-drivers and into the core, and only rely on modes and properties. Let's=0D
-start by properly filling drm_cmdline_mode from a named mode.=0D
-=0D
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>=0D
-=0D
-diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c=0D
-index 1fdfa004b139..5e898699b532 100644=0D
---- a/drivers/gpu/drm/drm_modes.c=0D
-+++ b/drivers/gpu/drm/drm_modes.c=0D
-@@ -2208,11 +2208,22 @@ static int drm_mode_parse_cmdline_options(const cha=
-r *str,=0D
- =0D
- struct drm_named_mode {=0D
- 	const char *name;=0D
-+	unsigned int xres;=0D
-+	unsigned int yres;=0D
-+	unsigned int flags;=0D
- };=0D
- =0D
-+#define NAMED_MODE(_name, _x, _y, _flags)		\=0D
-+	{						\=0D
-+		.name =3D _name,				\=0D
-+		.xres =3D _x,				\=0D
-+		.yres =3D _y,				\=0D
-+		.flags =3D _flags,			\=0D
-+	}=0D
-+=0D
- static const struct drm_named_mode drm_named_modes[] =3D {=0D
--	{ "NTSC", },=0D
--	{ "PAL", },=0D
-+	NAMED_MODE("NTSC", 720, 480, DRM_MODE_FLAG_INTERLACE),=0D
-+	NAMED_MODE("PAL", 720, 576, DRM_MODE_FLAG_INTERLACE),=0D
- };=0D
- =0D
- static int drm_mode_parse_cmdline_named_mode(const char *name,=0D
-@@ -2254,6 +2265,9 @@ static int drm_mode_parse_cmdline_named_mode(const ch=
-ar *name,=0D
- 			continue;=0D
- =0D
- 		strcpy(cmdline_mode->name, mode->name);=0D
-+		cmdline_mode->xres =3D mode->xres;=0D
-+		cmdline_mode->yres =3D mode->yres;=0D
-+		cmdline_mode->interlace =3D !!(mode->flags & DRM_MODE_FLAG_INTERLACE);=0D
- 		cmdline_mode->specified =3D true;=0D
- =0D
- 		return 1;=0D
-=0D
--- =0D
-b4 0.10.0-dev-65ba7=0D
+Hi Maxime,
+
+I tested your patchset on my Pi and it mostly works. Good work! However,
+I noticed a couple of issues.
+
+> -static int vc4_vec_encoder_atomic_check(struct drm_encoder *encoder,
+> -                    struct drm_crtc_state *crtc_state,
+> -                    struct drm_connector_state *conn_state)
+> -{
+> -    const struct vc4_vec_tv_mode *vec_mode;
+> -
+> -    vec_mode = &vc4_vec_tv_modes[conn_state->tv.mode];
+> -
+> -    if (conn_state->crtc &&
+> -        !drm_mode_equal(vec_mode->mode, &crtc_state->adjusted_mode))
+> -        return -EINVAL;
+> -
+> -    return 0;
+> -}
+
+I may have said it myself that we should allow custom modelines without too
+much validation. The VC4 and VEC, however, have some considerable limitations
+when it comes to the modelines that they can reliably output.
+
+In particular, attempting to use "50 Hz" timings in NTSC/PAL-M modes (or
+"60 Hz" in PAL/SECAM modes) results in a weirdly skewed image. Here's how it
+may look like:
+https://user-images.githubusercontent.com/4499762/187575940-736e7262-c82d-42f3-a2d8-f309cbd51139.png
+
+This is because if the CRTC does not trigger the sync pulses within an
+acceptable time window, the VEC apparently generates them itself. This causes
+the VEC sync pulses (which go onto the wire) not quite line up with the ones
+from the modeline, which results in what you see on the screenshot.
+
+I once wrote a validation function based on extensive testing of what
+produces a sensible output and what doesn't. You can find it here:
+https://github.com/raspberrypi/linux/pull/4406/commits/15c0c51. I think it
+might be a good idea to include something like that - even though I know it's
+somewhat ugly.
+
+(BTW, those %2 checks on vertical timings in that linked commit can be ignored;
+those values are divided by 2 for interlaced modes anyway. Those checks were
+intended to ensure proper odd-first or even-first timings; I'm not sure if your
+code calculates those in the same way)
+
+>  static int vc4_vec_connector_get_modes(struct drm_connector *connector)
+>  {
+> -    struct drm_connector_state *state = connector->state;
+>      struct drm_display_mode *mode;
+> +    int count = 0;
+>  
+> -    mode = drm_mode_duplicate(connector->dev,
+> -                  vc4_vec_tv_modes[state->tv.mode].mode);
+> +    mode = drm_mode_analog_ntsc_480i(connector->dev);
+>      if (!mode) {
+>          DRM_ERROR("Failed to create a new display mode\n");
+>          return -ENOMEM;
+>      }
+>  
+>      drm_mode_probed_add(connector, mode);
+> +    count += 1;
+>  
+> -    return 1;
+> +    mode = drm_mode_analog_pal_576i(connector->dev);
+> +    if (!mode) {
+> +        DRM_ERROR("Failed to create a new display mode\n");
+> +        return -ENOMEM;
+> +    }
+> +
+> +    drm_mode_probed_add(connector, mode);
+> +    count += 1;
+> +
+> +    return count;
+> +}
+
+Xorg is pretty confused by these modes being reported like that. The 576i mode
+is *always* preferred, presumably because of the higher resolution. If the NTSC
+mode is set (via the kernel cmdline or just due to it being the default), this
+results in a mess on the screen - exactly the same thing as on the screenshot
+linked above.
+
+Note that drm_helper_probe_add_cmdline_mode() *does* add the
+DRM_MODE_TYPE_USERDEF flag to the 480i mode, having detected it as preferred
+on the command line - but Xorg does not seem to care about that.
+
+I remember Noralf suggesting setting DRM_MODE_TYPE_PREFERRED for the mode that
+corresponds to the currently chosen tv_mode - that would fix the problem.
+An alternative would be to _not_ add the "opposite" mode at all, like the
+current default Raspberry Pi OS kernel behaves.
+
+Note that if you decide to add the modeline validation like I suggested in the
+comment above, then without setting the preferred mode properly, Xorg will just
+give up and sit on a blank screen until you run xrandr from another terminal
+if tv_mode incompatible with 576i is selected.
+
+Best regards,
+Mateusz Kwiatkowski
