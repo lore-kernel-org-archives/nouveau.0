@@ -4,79 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1790C54EE9
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49F1EC38145
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3116410EABD;
-	Tue,  6 Sep 2022 20:31:34 +0000 (UTC)
-Received: from new1-smtp.messagingengine.com (new1-smtp.messagingengine.com
- [66.111.4.221])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21B9E10E073;
- Tue, 30 Aug 2022 12:03:38 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailnew.nyi.internal (Postfix) with ESMTP id 7213D5802D9;
- Tue, 30 Aug 2022 08:03:36 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute5.internal (MEProxy); Tue, 30 Aug 2022 08:03:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-transfer-encoding:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm3; t=1661861016; x=
- 1661868216; bh=Un4EFnpmCrjF0op+CQJbf6xj3KV7/HPMuOuXK7AEo2I=; b=D
- tvEwgKsQqnUenjfacp4PZwK0ZhaN/HT87mq75are5HFk0XfZglYSMRXUP2aNVpdO
- tabv3AyDoz4CT5k++l9c3y9JHGnsYqDVm7cgR/iWQye24reLcluU/RRGezMHMa3o
- 26lJD1g9RgnfgW/OANYyo9K4c6vWlN71CduB2tRPAJqZq16cgjpZieIr87H4Jlg7
- CMhS9/azps7Am17rwoqUK1Uzi2DSu+b8JpaWS9CO4G+HZmfnAPs/5HNsjBkwTnzN
- ipQSgsrTKotKvLM9y8XxkH7d+I9Z2kpDV/7B7h5Pj3SpiRe4LvYuUnsxAp9CyoMZ
- AwL0Hm7CQETZv9e626ipQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661861016; x=
- 1661868216; bh=Un4EFnpmCrjF0op+CQJbf6xj3KV7/HPMuOuXK7AEo2I=; b=3
- 6dbXYWyKPwm/+6hbuyU/giI2uQ63drNFQSePRhBlilQ67WGUWjcWLI1p+LqEK73g
- fs0NRJU95nYgN8bDHN8FFYkRwp8xIREz5mPdBI26UdsvXS/065X+RwB5GxhnS7De
- rKK6aH8bgofjNfDGB4pg6ieTA8OIAtlPiMqiN5aA38ZA7g7KDM7sUn9DyxZVOCOe
- vrAeQ7vrwxvCPu8swnYxmAZY1Ax1Ud1UUMQ8fqiDPb28jmFFKhi09+a0LWmcu3Xn
- 7E4+8+7+U/xAMvq+LZ7fMjdTdaqwxfwhcecTw/1UJu+ZPvkslXODYswUAoZdUdOo
- vaJgClnI41QuGh/kzRTgA==
-X-ME-Sender: <xms:l_wNY6oGFCuPrXLu_lICDTdCbSEu35J3iVJVjDE6nUcPvveRoHEZiw>
- <xme:l_wNY4quMS5CXVM1erpTf7cw2djyVbwpuQRrcz2Jhxok1vKHyOF8yaKwhraLbbSse
- sSXcX3CLE88lmpFNxA>
-X-ME-Received: <xmr:l_wNY_Okj9gTra9L6Fm8reAM8HlENdzUrpVeFZ0H_Ckc2Ky9DkU-Uuh76b0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekfedggeelucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvfevuffkfhggtggugfgjsehtqhertddttddvnecuhfhrohhmpeforgig
- ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
- grthhtvghrnheptefgleeggfegkeekgffgleduieduffejffegveevkeejudektdduueet
- feetfefgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
- epmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:l_wNY575QlKLJhE0dUITZhr1Y2xjKtL3jvcKcW6f6p2TbHDxlpTffA>
- <xmx:l_wNY54AtJBpBRMzVSilS5LlYoWV0xW1oilUo4CAO7DJ4OoEQbFw9A>
- <xmx:l_wNY5jTwGvBb8C8tqMpNARDm_YnrE5LfgJuayPRMJOXWiSvsec9ig>
- <xmx:mPwNY16sLANYyD2X2vgc2p_03AS9Unm3tT13yoQ8vkPx2iJxXj6aNQ>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 30 Aug 2022 08:03:34 -0400 (EDT)
-Date: Tue, 30 Aug 2022 14:03:30 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20220830120330.6f5f22d35gu7cbr3@houat>
-References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
- <20220728-rpi-analog-tv-properties-v2-14-459522d653a7@cerno.tech>
- <CAMuHMdV9wVgHFfwHoqtBoYzJDnjDmKTfaZkAKvTVKh1Y-2x1pA@mail.gmail.com>
- <87czcidnb8.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3CC210EAB5;
+	Tue,  6 Sep 2022 20:31:31 +0000 (UTC)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com
+ [IPv6:2a00:1450:4864:20::129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DDD610E33B;
+ Thu,  1 Sep 2022 22:00:39 +0000 (UTC)
+Received: by mail-lf1-x129.google.com with SMTP id bt10so724051lfb.1;
+ Thu, 01 Sep 2022 15:00:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:from:to:cc;
+ bh=9ZOA/uLVkdbadD8sl+x2FgrUVnWNaT54IH6CMV7M0qU=;
+ b=LHm7XQKmoioehKLe+x8wv4sg51dxY3iK7GBIf0ie+fcfdWHmpj8uhKVo1qfStRYUDt
+ hYYwKyXLa6F8Vss8qsGXnhsSbaWjrIFZiJWH0w+6WT1drr8SW/5N5uWQUY13CtCu8RT7
+ XFGF/pp/ZAdp6alq7wI37+qWMkMsD15jW9A1A3zaqPv8x1Ugm06xru39RntLJn/t21Zd
+ Io+z1YLdKsVMwCmBwJgUdIXcFGDcNDdzsiH8DINgDlhluHlE98GV0dVvSpde0N5jFpG/
+ 4M6RwAzfFXYpV1BXP/VnjdTCqnFT6/utQ9dJtdN/u84FrH7SItMET/4Tm6x8CjaYhOPO
+ 0DtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:x-gm-message-state:from:to:cc;
+ bh=9ZOA/uLVkdbadD8sl+x2FgrUVnWNaT54IH6CMV7M0qU=;
+ b=gGQkfy3UtYK3mMTYfQWTCfVx/9Ze79mtVuNrVg+SoLNrcMtv/qC+b8FnzACzQWXN7/
+ dYn/jSOEjEhtJKRACSgXtD4gJmDPRweYdOoF04dE16pZo9oNKjTPN+h6u+OK200/lqcX
+ bYhkmhtDZVrj13FbTyKF5ZXWHu25uSLN0evBGsITjvAoXZMdI9hICrFj7hTzHARIdfQh
+ BWwV+g+mjBXG12WKto286WtTk9tN8vCCvmvlHaY0PJNf9g6VmPVWAPwu75KJiKyOyUxV
+ bEoWOcboL7fxkpEQ9mFTDh3gkg+SVBYtZBnr/r7dzHlYuC0+yNhFGQPE4ef6OE5Gg1TU
+ iC1A==
+X-Gm-Message-State: ACgBeo0jx+LmuBto2+1P/FjTOn/FoQa3M4YNG6cGBEPtpgj2lUfssZJd
+ Wyil5+G/0GV6hmi3FcFmN1s=
+X-Google-Smtp-Source: AA6agR4a/l8hP1u0P8WpD1zmFedHFbGPzszs2HMqNR8fDJ9LD3T/K1IWhmRhwuymqEvOv4w8sp3YdA==
+X-Received: by 2002:a05:6512:3503:b0:481:4470:4134 with SMTP id
+ h3-20020a056512350300b0048144704134mr11024002lfs.42.1662069637088; 
+ Thu, 01 Sep 2022 15:00:37 -0700 (PDT)
+Received: from ?IPV6:2a02:a31a:a240:1700:9c45:8fa1:8ce7:8852?
+ ([2a02:a31a:a240:1700:9c45:8fa1:8ce7:8852])
+ by smtp.googlemail.com with ESMTPSA id
+ w15-20020a2e160f000000b0025e4e7c016dsm25477ljd.16.2022.09.01.15.00.34
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 01 Sep 2022 15:00:36 -0700 (PDT)
+From: Mateusz Kwiatkowski <kfyatek@gmail.com>
+X-Google-Original-From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+Message-ID: <30a9d7cd-d9ff-3177-ac6c-e7c1f966d89a@gmail.com>
+Date: Fri, 2 Sep 2022 00:00:33 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <87czcidnb8.fsf@intel.com>
-X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
-Subject: Re: [Nouveau] [PATCH v2 14/41] drm/modes: Move named modes parsing
- to a separate function
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.2.0
+Content-Language: pl
+To: Maxime Ripard <maxime@cerno.tech>, Maxime Ripard <mripard@kernel.org>,
+ Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
+ Chen-Yu Tsai <wens@csie.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-9-459522d653a7@cerno.tech>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v2-9-459522d653a7@cerno.tech>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:03 +0000
+Subject: Re: [Nouveau] [PATCH v2 09/41] drm/connector: Add TV standard
+ property
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,61 +90,117 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Nouveau Dev <nouveau@lists.freedesktop.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
- Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Hans de Goede <hdegoede@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Dom Cobley <dom@raspberrypi.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
+ Hans de Goede <hdegoede@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
+Hi Maxime,
 
-On Tue, Aug 30, 2022 at 01:43:07PM +0300, Jani Nikula wrote:
-> On Tue, 30 Aug 2022, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Mon, Aug 29, 2022 at 3:13 PM Maxime Ripard <maxime@cerno.tech> wrote:
-> >> +#define STR_STRICT_EQ(str, len, cmp) \
-> >> +       ((strlen(cmp) =3D=3D len) && !strncmp(str, cmp, len))
-> >
-> > This is not part of the move, but newly added.
->=20
-> The same construct is also duplicated elsewhere in the series, and I
-> kept being confused by it.
+W dniu 29.08.2022 o 15:11, Maxime Ripard pisze:
+> The TV mode property has been around for a while now to select and get the
+> current TV mode output on an analog TV connector.
+>
+> Despite that property name being generic, its content isn't and has been
+> driver-specific which makes it hard to build any generic behaviour on top
+> of it, both in kernel and user-space.
+>
+> Let's create a new bitmask tv norm property, that can contain any of the
+> analog TV standards currently supported by kernel drivers. Each driver can
+> then pass in a bitmask of the modes it supports.
 
-I'm not sure what is confusing, but I can add a comment if needed.
+This is not a bitmask property anymore, you've just changed it to an enum.
+The commit message is now misleading.
 
-> The above is precisely the same as:
->=20
-> 	str_has_prefix(str, cmp) =3D=3D len
+> +static const struct drm_prop_enum_list drm_tv_mode_enum_list[] = {
+> +    { DRM_MODE_TV_MODE_NTSC_443, "NTSC-443" },
+> +    { DRM_MODE_TV_MODE_NTSC_J, "NTSC-J" },
+> +    { DRM_MODE_TV_MODE_NTSC_M, "NTSC-M" },
+> +    { DRM_MODE_TV_MODE_PAL_60, "PAL-60" },
+> +    { DRM_MODE_TV_MODE_PAL_B, "PAL-B" },
+> +    { DRM_MODE_TV_MODE_PAL_D, "PAL-D" },
+> +    { DRM_MODE_TV_MODE_PAL_G, "PAL-G" },
+> +    { DRM_MODE_TV_MODE_PAL_H, "PAL-H" },
+> +    { DRM_MODE_TV_MODE_PAL_I, "PAL-I" },
+> +    { DRM_MODE_TV_MODE_PAL_M, "PAL-M" },
+> +    { DRM_MODE_TV_MODE_PAL_N, "PAL-N" },
+> +    { DRM_MODE_TV_MODE_PAL_NC, "PAL-Nc" },
+> +    { DRM_MODE_TV_MODE_SECAM_60, "SECAM-60" },
+> +    { DRM_MODE_TV_MODE_SECAM_B, "SECAM-B" },
+> +    { DRM_MODE_TV_MODE_SECAM_D, "SECAM-D" },
+> +    { DRM_MODE_TV_MODE_SECAM_G, "SECAM-G" },
+> +    { DRM_MODE_TV_MODE_SECAM_K, "SECAM-K" },
+> +    { DRM_MODE_TV_MODE_SECAM_K1, "SECAM-K1" },
+> +    { DRM_MODE_TV_MODE_SECAM_L, "SECAM-L" },
+> +};
 
-Here, it's used to make sure we don't have a named mode starting with
-either e, d, or D.
+I did not comment on it the last time, but this list looks a little bit random.
 
-If I understood str_has_prefix() right, str_has_prefix("DUMB-MODE", "D")
-=3D=3D strlen("DUMB-MODE") would return true, while it's actually what we
-want to avoid.
+Compared to the standards defined by V4L2, you also define SECAM-60 (a good
+thing to define, because why not), but don't define PAL-B1, PAL-D1, PAL-K,
+SECAM-H, SECAM-LC (whatever that is - probably just another name for SECAM-L,
+see my comment about PAL-Nc below), or NTSC-M-KR (a Korean variant of NTSC).
 
-It's also used indeed in drm_get_tv_mode_from_name(), where we try to
-match a list of names with one passed as argument.
+Like I mentioned previously, I'm personally not a fan of including all those
+CCIR/ITU system variants, as they don't mean any difference to the output unless
+there is an RF modulator involved. But I get it that they have already been used
+and regressing probably wouldn't be a very good idea. But in that case keeping
+it consistent with the set of values used by V4L2 would be wise, I think.
 
-With drm_get_tv_mode_from_name("NSTC", strlen("NTSC")), we would end up
-calling str_has_prefix("NTSC-J", "NTSC") =3D=3D strlen("NTSC-J") which would
-work. However, we end up calling prefix not a prefix, but an entire
-string we want to match against, which is very confusing to me too.
+> +/**
+> + * drm_mode_create_tv_properties - create TV specific connector properties
+> + * @dev: DRM device
+> + * @supported_tv_modes: Bitmask of TV modes supported (See DRM_MODE_TV_MODE_*)
+> +
+> + * Called by a driver's TV initialization routine, this function creates
+> + * the TV specific connector properties for a given device.  Caller is
+> + * responsible for allocating a list of format names and passing them to
+> + * this routine.
+> + *
+> + * Returns:
+> + * 0 on success or a negative error code on failure.
+> + */
+> +int drm_mode_create_tv_properties(struct drm_device *dev,
+> +                  unsigned int supported_tv_modes)
 
-Maxime
+supported_tv_modes is supposed to be a bitmask of BIT(DRM_MODE_TV_MODE_*)
+(or (1<<DRM_MODE_TV_MODE_*)) rather than DRM_MODE_TV_MODE_* directly, but this
+is not said explicitly anywhere in this doc comment.
+
+> +    /**
+> +     * @DRM_MODE_TV_MODE_PAL_NC: Seems equivalent to
+> +     * @DRM_MODE_TV_MODE_PAL_N.
+> +     */
+> +    DRM_MODE_TV_MODE_PAL_NC,
+
+AFAIK, the entire reason that "PAL-Nc" is ever mentioned as something separate
+from PAL-N is a result of a misunderstanding or misreading of the CCIR/ITU
+documents. See also the posting signed as Alchaemist here:
+https://en.wikipedia.org/wiki/Talk:PAL#PAL-N_versus_PAL-Nc
+
+That being said, we probably want to keep it if we want to remaing compatible
+with the loads of software and drivers which enumerate those as separate
+systems. But from a technical standpoint, PAL-N and PAL-Nc (and N/PAL, PAL-CN
+etc.) are just different "spellings" referring to exactly the same system.
+
+> +    /**
+> +     * @DRM_MODE_TV_MODE_SECAM_K: CCIR System G together with the
+> +     * SECAM color system. Similar to @DRM_MODE_TV_MODE_SECAM_G but
+> +     * with different channels.
+> +     */
+> +    DRM_MODE_TV_MODE_SECAM_K,
+> +
+> +    /**
+> +     * @DRM_MODE_TV_MODE_SECAM_K1: CCIR System G together with the
+> +     * SECAM color system. Similar to @DRM_MODE_TV_MODE_SECAM_G and
+> +     * @DRM_MODE_TV_MODE_SECAM_K but with different channels.
+> +     */
+> +    DRM_MODE_TV_MODE_SECAM_K1,
+
+Typos: you meant CCIR Systems K and K1, not System G.
+
+Best regards,
+Mateusz Kwiatkowski
