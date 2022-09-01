@@ -4,75 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1D7FC38145
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F3FAECAAA1
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE65610EAA3;
-	Tue,  6 Sep 2022 20:31:28 +0000 (UTC)
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com
- [IPv6:2a00:1450:4864:20::536])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A46C10E173;
- Tue,  6 Sep 2022 20:06:14 +0000 (UTC)
-Received: by mail-ed1-x536.google.com with SMTP id a70so472036edf.10;
- Tue, 06 Sep 2022 13:06:14 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 911D510EAA6;
+	Tue,  6 Sep 2022 20:31:29 +0000 (UTC)
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
+ [IPv6:2a00:1450:4864:20::233])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43E2510E37B;
+ Thu,  1 Sep 2022 22:52:11 +0000 (UTC)
+Received: by mail-lj1-x233.google.com with SMTP id bn9so574973ljb.6;
+ Thu, 01 Sep 2022 15:52:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
- bh=Ck2CZ63xlROKRuum+VYM3RwNiQt6GcNFVn5yjUBlhbU=;
- b=ga9QR8QkKm4EnEDibK+a4UuClq5Nes777nVtiyAuRinh0/Ie7mM1tSBVCLqEH1ugiO
- IlouNRGGlGMh8PAy0X4s9054Xim8TCwe/VTCAwjrlTZXNA3deVSy1W+0kPuHUKF5mEwa
- VTWo3H/ib5eNxXgdPa14jDUVTGHJ2tK67OXVAXeaI/dAT1e8V0IliyVBcbFMyNqRUK8J
- Nl9Ll59iDrM4I1zhPVWBkq3EN3RcA+ihfnEWg5akxMCg2CZM9H0H54FiZ+VU7vHQEVyq
- o1TomSxBabXQ1G2qK6IA+bOsodqiGTNWSOoMkVt0Vubj6i/Ya4sZOl9R2Aq5jCViRSCd
- ZuHQ==
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:from:to:cc;
+ bh=Dhwd+COjDW5ThjQ0eGNlcg2FwWXLsRihwwituLHXIZw=;
+ b=Qg20bj9HVOA0O2Dv7pbgLFpIerRd3OpfYftDq4iLQONPRjHm8OE5FicN0K1WL1v+S3
+ bISpN5k4Xg9gTk37HMqAreo6nvuLyU3JTBpgQLIjzDvBJIqAXMP5MfRK4NHoGkdf8jpo
+ 3glN34VMEDD6Gh+Zf1murR+o5lg06tWVopJIiQgpwbgHGnSUZUKhfMxhxUfv/PKpvsCf
+ qwtgF3sgpUqP0AbUb+d/a1esSHZ+I5KHKcW+5WE2OKOtNa+X+J/AAtNMS15RdoIDBSEy
+ T+m/BQNhtbsQ6WmcJD2FSngsG3cTf0OyGVh/5RtK7l/wyzsThnJPsLTNCVmQ7lejIS6h
+ shRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date;
- bh=Ck2CZ63xlROKRuum+VYM3RwNiQt6GcNFVn5yjUBlhbU=;
- b=hr3tRtNkjrpztCc/LxaL2A007hkvE5oF411ymyNWlXPsJmnKj37Cef+5xsMiqxodUP
- tTvCh0Y6oDpuUiTWNfF1BWvTrGIpUkefwrpNYREScYiqBii+ZztdbJ6knAgBMuZ9jv/K
- yt24N/6KeND76rTukE3tprV/xcglMRbpd2cQQNUZ5Kk2ApUwmp/XUJLT4DpbV+sm5iuE
- 9SnuYCpWzybC/r1+Cm3Pj3OYT4zAf5+6EQmsbjH5udKvLR4hlW7iwpbZ0L8HtsPhN+ql
- jyiIVG3QqmPggybGYAd3cDnFLx9+yU5RhzIXFIygn4iU55fkgP5JpBNfr5/dnZPuWSuW
- utIQ==
-X-Gm-Message-State: ACgBeo02rxhxuxHbYJw4ms/XlAasiMLQpCfBJPsDGzrbi/vLzdeqKPYG
- bwwP/MtCXbeWVDlfQUN2hlo=
-X-Google-Smtp-Source: AA6agR7CUAhPy+9MFPuH6DzgDy2S60+/E2h57c49ihYMLFNyPbmAh/8ehJuHA/jwsSZISEkVJfO+GA==
-X-Received: by 2002:aa7:d803:0:b0:44e:af34:e47e with SMTP id
- v3-20020aa7d803000000b0044eaf34e47emr233791edq.310.1662494773089; 
- Tue, 06 Sep 2022 13:06:13 -0700 (PDT)
-Received: from kista.localnet (82-149-1-172.dynamic.telemach.net.
- [82.149.1.172]) by smtp.gmail.com with ESMTPSA id
- wl23-20020a170907311700b0073d645e6dd8sm7123443ejb.223.2022.09.06.13.06.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 06 Sep 2022 13:06:12 -0700 (PDT)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
- David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:x-gm-message-state:from:to:cc;
+ bh=Dhwd+COjDW5ThjQ0eGNlcg2FwWXLsRihwwituLHXIZw=;
+ b=Fd99hL1u+xo4KfogEckDrFppovOpq2htnG7hmysVP0dlV01lJjiWjUYuNGF0QlrtKB
+ CLP16JJUEg1jdcI4Kqx0mkk67JFzDp3qwecfs/w8ITXqpxJ112WLKmvUGhMjfSMjX1oU
+ q500eDp2jNCZGbZEln3nGh/wa3QEYjCBQmfQu2LrOamr5Xsci27L8qMavSs1OqV0BOe6
+ kB+jbIyV7yMIT/mtOxaZ0e5WtwMPXcPlLZSifBzD3nXFco6GLOHdrZHfk8NoRHJv82Bt
+ /kEGheXDwjMmKk5/J1iqN2hd4zecE7Txbwr8fyiiju8QqsFto5PmmvmSwoMJElOldUQE
+ qOjQ==
+X-Gm-Message-State: ACgBeo2IgvLFYuE+Zd+6FGvB4X5oxPh6fTGVFoYrI22c6L8pDDtseE9p
+ 8+GcWoZay2IpeamjalNsIYE=
+X-Google-Smtp-Source: AA6agR5VyqkvxxIZF1flgFAUFyuS1vlvIP1xurquBEUnw5mRA/4PMLSVlwqN/Hy1Kir2419wd9jhSA==
+X-Received: by 2002:a2e:bd0e:0:b0:268:c03b:cf56 with SMTP id
+ n14-20020a2ebd0e000000b00268c03bcf56mr1277850ljq.393.1662072729392; 
+ Thu, 01 Sep 2022 15:52:09 -0700 (PDT)
+Received: from ?IPV6:2a02:a31a:a240:1700:9c45:8fa1:8ce7:8852?
+ ([2a02:a31a:a240:1700:9c45:8fa1:8ce7:8852])
+ by smtp.googlemail.com with ESMTPSA id
+ w9-20020a2e1609000000b0025e15fe421bsm29224ljd.17.2022.09.01.15.52.07
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 01 Sep 2022 15:52:08 -0700 (PDT)
+From: Mateusz Kwiatkowski <kfyatek@gmail.com>
+X-Google-Original-From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+Message-ID: <768daa58-d1cd-7e9d-4f6e-722f2b0afab9@gmail.com>
+Date: Fri, 2 Sep 2022 00:52:06 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.2.0
+Content-Language: pl
+To: Maxime Ripard <maxime@cerno.tech>, Maxime Ripard <mripard@kernel.org>,
+ Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
+ Chen-Yu Tsai <wens@csie.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
  Philipp Zabel <p.zabel@pengutronix.de>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
  Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
- Noralf =?ISO-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
  Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Maxime Ripard <maxime@cerno.tech>
-Date: Tue, 06 Sep 2022 22:06:10 +0200
-Message-ID: <1903427.PYKUYFuaPT@kista>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v2-37-459522d653a7@cerno.tech>
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
- <20220728-rpi-analog-tv-properties-v2-37-459522d653a7@cerno.tech>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+ <20220728-rpi-analog-tv-properties-v2-20-459522d653a7@cerno.tech>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v2-20-459522d653a7@cerno.tech>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:03 +0000
-Subject: Re: [Nouveau] [PATCH v2 37/41] drm/sun4i: tv: Remove useless
- function
+Subject: Re: [Nouveau] [PATCH v2 20/41] drm/modes: Properly generate a
+ drm_display_mode from a named mode
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,21 +94,18 @@ Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
  Hans de Goede <hdegoede@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Maxime Ripard <maxime@cerno.tech>,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
  Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Dne ponedeljek, 29. avgust 2022 ob 15:11:51 CEST je Maxime Ripard napisal(a):
-> The drm_connector_to_sun4i_tv() function isn't used anywhere in the driver,
-> so let's remove it.
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+Hi Maxime,
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> +        if (!named_mode->tv_mode)
+> +            continue;
+
+As mentioned in the previous email replying to 19/41, this makes it impossible
+to specify DRM_MODE_TV_MODE_NTSC_443 as currently defined in the named mode
+successfully.
 
 Best regards,
-Jernej
-
-
+Mateusz Kwiatkowski
