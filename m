@@ -4,75 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97547C54EE9
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:33:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E416BC38145
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:33:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F74310EAD6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 593B310EAD7;
 	Tue,  6 Sep 2022 20:33:16 +0000 (UTC)
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com
- [IPv6:2a00:1450:4864:20::530])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BF1010EA76;
- Tue,  6 Sep 2022 20:04:36 +0000 (UTC)
-Received: by mail-ed1-x530.google.com with SMTP id w2so16681810edc.0;
- Tue, 06 Sep 2022 13:04:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
- bh=plI2ccCtxFfQQaA/IHicso25P4hNeiGkni4LSwxPbm4=;
- b=Oa0+iWZ5DBGIMbtbaWYlC5APlU/wi67OB46kQ8Fked1WkqCJO7eSuYV4pXcpMtsrLh
- h4m8ns9bM2EwwF1pb3EvhBxIuI6zX9ev0R6fn6dUX6ngsdv7SQcvBDNqWnFLGSyURMsG
- 3t1udFKm1hYrJJ9BkltIYCn31OmFy6AZPUQ8/Sj6T1LlhFdQjhA57LTt7OJxR5vTJLKR
- IuunwxnSMYyOBJoMqzyfHehMGdq3P/FdVikYQbvRTcieYwm9qSRwWDkFuVFhqCAaAZGj
- eCCSN7KdX2r0rqA0gSJxLFOqvSdqphm5EeP5zTMWlKZ20BzoIgCkXDmhh8P46XPQ9TEb
- YhLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date;
- bh=plI2ccCtxFfQQaA/IHicso25P4hNeiGkni4LSwxPbm4=;
- b=5o13LKN2PkvV/C9fZ56DE8aPboCVafCeagRc5KCDQGrIievs7C5BiKEAx4229tU7C1
- LGNEbq++oGbdSwKjZylg8SHZzsVlPz7H1Egq0lPg8t/5ZPEEz9abCQTkoPUtXFUtHxAT
- NQZBrAExsdiNzDxW1h4PLP3oAKGagLmtabN/jwXuD0Opj+WIjD+dnxuNS3h5UPX3mYq/
- ouuudtPwFFP1sOGPjsVjby/0r38hRrAfQiDOiSoMRcT3t90DftPC8x5rbmMBLzxDgiyf
- sNNJNFrSVCEcxLNjhw+kWw5XEbu6K4KaUIBqtc5HPrluHaK+WcGKCk0xMMZYs7FhUm/0
- wteQ==
-X-Gm-Message-State: ACgBeo0qcwIj7Susj4vc9tFLGsohlan9NeknoTjT0jbw9IJj5gK4CoR+
- WkbsmpiqDkAqMT7FO2Jm9Kk=
-X-Google-Smtp-Source: AA6agR6Kk9aCcEfrY5Ey5jOi/kWmdkQVgNAUGJ16H1QclaprIGEZQnyZQvab5nv2idHUjXMCwzagDQ==
-X-Received: by 2002:a05:6402:911:b0:44e:a5b4:74f7 with SMTP id
- g17-20020a056402091100b0044ea5b474f7mr211765edz.249.1662494675009; 
- Tue, 06 Sep 2022 13:04:35 -0700 (PDT)
-Received: from kista.localnet (82-149-1-172.dynamic.telemach.net.
- [82.149.1.172]) by smtp.gmail.com with ESMTPSA id
- i6-20020a170906850600b0073d9a0d0cbcsm7193709ejx.72.2022.09.06.13.04.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 06 Sep 2022 13:04:33 -0700 (PDT)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
- David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
- Noralf =?ISO-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
- Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Maxime Ripard <maxime@cerno.tech>
-Date: Tue, 06 Sep 2022 22:04:32 +0200
-Message-ID: <10138422.nUPlyArG6x@kista>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v2-36-459522d653a7@cerno.tech>
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
+ [66.111.4.230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AADC410E3A5;
+ Mon,  5 Sep 2022 13:37:58 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 0AAC7580281;
+ Mon,  5 Sep 2022 09:37:58 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute2.internal (MEProxy); Mon, 05 Sep 2022 09:37:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm3; t=1662385078; x=1662392278; bh=0O41lIsAoQ
+ E7Npc7joN//WSwmuH7s7KunBYUx8/vABE=; b=X7HWNhyjGfDlsQRlHJm0m7wprr
+ 6MFfZlhumCRQ3p4goinni3jIkeUQf4wueWlUdIWrJ4uEKSLLsgDihlVS7h8NI0So
+ W3IBZU0nCWqt6lcprZaMfQt+MdhJHQnb/fikIDm3i2mWEKS1+83DLroJ5FL8rtla
+ Zsg8ziSEc1AfokXUmnhpFS5GYU80ZBOAND76jLKH2U115nexXrrE6xPnki3ot+v2
+ auZcnuSPcKaQd2WIhOUsvlmmO2uAQbXQaFNLN3V38gg6kejHXtkWIpGetN5hW1sF
+ 3LSBVWWAshMasYkAzu3JsB75wgKmKhgFC++sTAEg98VImAOXbJogQmUo59Xg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+ :mime-version:references:reply-to:sender:subject:subject:to:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; t=1662385078; x=1662392278; bh=0O41lIsAoQE7Npc7joN//WSwmuH7
+ s7KunBYUx8/vABE=; b=GVlBEYLqTO4rnteutkIbGoa1BxOG7P5pOdaf/SCczvni
+ Rfs3e+UBVE6kP/hQvryAZs7xMI5vGrFmlmuLiwiBg06SBrWrAtKgDFwQEegEY8D+
+ XUhaOOa8h1gGUUhCGMBRWQCsmOyo2Wcf3SdsqA+75+dpPtpyB3RJX9rqDf3RvsA7
+ mflQjKITUnKFVg+NQVrIWR3UMuI36HLsgJxlJfUyj+UIRyImf1t+7SxiehvdEK19
+ uCDv9GLBNMj4EhFJzFnis+tcFRCZzh7bhq0C7f9eGtBhJf/nf4+Lm/Trd0k7m21h
+ bNCLgGwUYSP+DcrhHzxPLYy+eQ7DPmqfrWfXZ3Y6uw==
+X-ME-Sender: <xms:tfsVY8b0Kl6Ra5AnJ4dKw2JaW5T35FCq4jufnrR541SQPq3_pl7PLQ>
+ <xme:tfsVY3Y4slKtxcZft9QOhBcaVSxasUXNI-SNEqtsWilOxLPalbRFyAzGkMr4FFPpJ
+ nj9L4X6jjO-Ybs_bok>
+X-ME-Received: <xmr:tfsVY29mxKw0OakVqKVQU4WbRe3SXGMYOXjsLA2ZG1YhBY3YUjLFhNueEvw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeliedgieekucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
+ mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+ htthgvrhhnpeejveefheefkeeiffegveelveetgffffeektdefuefhtedtgeejhefggedu
+ ffffudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+ hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:tfsVY2rD3viHBtzbhj594zPV9bmkEUUK7yOUcbvgaugvOkJGSwXIqg>
+ <xmx:tfsVY3o0ZmiIRr9Omgyv00mK4GPuoifoE87tADOUFvaDAbczazTmcA>
+ <xmx:tfsVY0SQCPSmnmkPUS0J6DYFUboV1uF0JCC3rrxYIVhnds-z0q032A>
+ <xmx:tvsVYwovTK2UsDiFCbTKDlmUEEVG_54Vq2mKbf3iP2ZX11gGa7md4A>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 5 Sep 2022 09:37:56 -0400 (EDT)
+Date: Mon, 5 Sep 2022 15:37:55 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Mateusz Kwiatkowski <kfyatek@gmail.com>
+Message-ID: <20220905133755.gcmmntg3wnecyqjq@houat>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
- <20220728-rpi-analog-tv-properties-v2-36-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-10-459522d653a7@cerno.tech>
+ <242d272b-5b79-986c-9aaf-64e62f6b37ff@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:03 +0000
-Subject: Re: [Nouveau] [PATCH v2 36/41] drm/sun4i: tv: Merge mode_set into
- atomic_enable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="duymfdwojjs2xq73"
+Content-Disposition: inline
+In-Reply-To: <242d272b-5b79-986c-9aaf-64e62f6b37ff@gmail.com>
+X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
+Subject: Re: [Nouveau] [PATCH v2 10/41] drm/modes: Add a function to
+ generate analog display modes
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,88 +85,96 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
- Hans de Goede <hdegoede@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Maxime Ripard <maxime@cerno.tech>,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Phil Elwell <phil@raspberrypi.com>,
+ Emma Anholt <emma@anholt.net>, Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ linux-arm-kernel@lists.infradead.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Dom Cobley <dom@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Dne ponedeljek, 29. avgust 2022 ob 15:11:50 CEST je Maxime Ripard napisal(a):
-> Our mode_set implementation can be merged into our atomic_enable
-> implementation to simplify things, so let's do this.
 
-Are you sure this is a good thing in long term? What if user wants to change 
-mode? Unlikely, but why not.
+--duymfdwojjs2xq73
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Jernej
+Hi,
 
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
-> diff --git a/drivers/gpu/drm/sun4i/sun4i_tv.c
-> b/drivers/gpu/drm/sun4i/sun4i_tv.c
-> index f7aad995ab5b..3944da9a3c34 100644
-> --- a/drivers/gpu/drm/sun4i/sun4i_tv.c
-> +++ b/drivers/gpu/drm/sun4i/sun4i_tv.c
-> @@ -359,23 +359,13 @@ static void sun4i_tv_enable(struct drm_encoder
-> *encoder,
- {
->  	struct sun4i_tv *tv = drm_encoder_to_sun4i_tv(encoder);
->  	struct sun4i_crtc *crtc = drm_crtc_to_sun4i_crtc(encoder->crtc);
-> -
-> -	DRM_DEBUG_DRIVER("Enabling the TV Output\n");
-> -
-> -	sunxi_engine_apply_color_correction(crtc->engine);
-> -
-> -	regmap_update_bits(tv->regs, SUN4I_TVE_EN_REG,
-> -			   SUN4I_TVE_EN_ENABLE,
-> -			   SUN4I_TVE_EN_ENABLE);
-> -}
-> -
-> -static void sun4i_tv_mode_set(struct drm_encoder *encoder,
-> -			      struct drm_display_mode *mode,
-> -			      struct drm_display_mode 
-*adjusted_mode)
-> -{
-> -	struct sun4i_tv *tv = drm_encoder_to_sun4i_tv(encoder);
-> +	struct drm_crtc_state *crtc_state =
-> +		drm_atomic_get_new_crtc_state(state, encoder->crtc);
-> +	struct drm_display_mode *mode = &crtc_state->mode;
->  	const struct tv_mode *tv_mode = sun4i_tv_find_tv_by_mode(mode);
->  
-> +	DRM_DEBUG_DRIVER("Enabling the TV Output\n");
-> +
->  	/* Enable and map the DAC to the output */
->  	regmap_update_bits(tv->regs, SUN4I_TVE_EN_REG,
->  			   SUN4I_TVE_EN_DAC_MAP_MASK,
-> @@ -468,12 +458,17 @@ static void sun4i_tv_mode_set(struct drm_encoder
-> *encoder,
-> SUN4I_TVE_RESYNC_FIELD : 0));
->  
->  	regmap_write(tv->regs, SUN4I_TVE_SLAVE_REG, 0);
-> +
-> +	sunxi_engine_apply_color_correction(crtc->engine);
-> +
-> +	regmap_update_bits(tv->regs, SUN4I_TVE_EN_REG,
-> +			   SUN4I_TVE_EN_ENABLE,
-> +			   SUN4I_TVE_EN_ENABLE);
->  }
->  
->  static const struct drm_encoder_helper_funcs sun4i_tv_helper_funcs = {
->  	.atomic_disable	= sun4i_tv_disable,
->  	.atomic_enable	= sun4i_tv_enable,
-> -	.mode_set	= sun4i_tv_mode_set,
->  };
->  
->  static int sun4i_tv_comp_get_modes(struct drm_connector *connector)
-> 
-> -- 
-> b4 0.10.0-dev-65ba7
+On Wed, Aug 31, 2022 at 03:44:52AM +0200, Mateusz Kwiatkowski wrote:
+> > +#define NTSC_HFP_DURATION_TYP_NS=A0=A0 =A01500
+> > +#define NTSC_HFP_DURATION_MIN_NS=A0=A0 =A01270
+> > +#define NTSC_HFP_DURATION_MAX_NS=A0=A0 =A02220
+>=20
+> You've defined those min/typ/max ranges, but you're not using the "typ" f=
+ield
+> for anything other than hslen.
 
+Yeah... I've left most of them because it was so hard to find most of
+them, it's useful at least for documentation purposes. And it's a define
+so there's pretty much no downside to it as far as the final binary is
+involved.
 
+> The actual "typical" value is thus always the midpoint, which isn't
+> necessarily the best choice.
+>=20
+> In particular, for the standard 720px wide modes at 13.5 MHz, hsync_start
+> ends up being 735 for 480i and 734 for 576i, instead of 736 and 732 reque=
+sted
+> by BT.601. That's all obviously within tolerances, but the image ends up
+> noticeably off-center (at least on modern TVs), especially in the 576i ca=
+se.
 
+I'll try to fix that up.
+
+> > +=A0=A0 =A0htotal =3D params->line_duration_ns * pixel_clock_hz / NSEC_=
+PER_SEC;
+>=20
+> You're multiplying an unsigned int and an unsigned long - both types are =
+only
+> required to be 32 bit, so this is likely to overflow. You need to use a c=
+ast to
+> unsigned long long, and then call do_div() for 64-bit division.
+>=20
+> This actually overflowed on me on my Pi running ARM32 kernel, resulting in
+> negative horizontal porch lengths, and drm_helper_probe_add_cmdline_mode()
+> taking over the mode generation (badly), and a horrible mess on screen.
+
+Indeed, that's bad.
+
+> > +=A0=A0 =A0vfp =3D vfp_min + (porches_rem / 2);
+> > +=A0=A0 =A0vbp =3D porches - vfp;
+>=20
+> Relative position of the vertical sync within the VBI effectively moves t=
+he
+> image up and down. Adding that (porches_rem / 2) moves the image up off c=
+enter
+> by that many pixels. I'd keep the VFP always at minimum to keep the image
+> centered.
+
+And you would increase the back porch only then?
+
+Maxime
+
+--duymfdwojjs2xq73
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYxX7swAKCRDj7w1vZxhR
+xYNaAP9smEnRh5n1ZGmEenQrzOJSe2qrC45ne/SGvv82vvsHOAD/S1/3mpdTYjRp
+q9UQRTTfatktAcjCnUHE0eBICMwRtA4=
+=w772
+-----END PGP SIGNATURE-----
+
+--duymfdwojjs2xq73--
