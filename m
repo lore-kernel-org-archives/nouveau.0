@@ -4,95 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55E7CC38145
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEA69C54EE9
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C96F710EAC7;
-	Tue,  6 Sep 2022 20:31:37 +0000 (UTC)
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AB1110F2A1;
- Mon, 29 Aug 2022 13:20:48 +0000 (UTC)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id 590872B05FB1;
- Mon, 29 Aug 2022 09:12:08 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute2.internal (MEProxy); Mon, 29 Aug 2022 09:12:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-transfer-encoding:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778727; x=
- 1661785927; bh=zJuhyh+MgUs2/ekVdAk6Kq0Wq9YXzzJHxtL6DSlw5Og=; b=k
- zHKsj20k4Y1V8oAN8pdbv09/LtrrxTfu6xKOFoSAUycKY4JOCCduqUyHRsntS+et
- IM7lsrOH6nm6Xvsq+47vfHBvEr0Y/tnvEYZ9AZRuwMvJKshBkHYwIr0rsrRUTbcy
- eshM1LtLdsFXNWZpBPBNeZdII53z+surSm2v4H52XqXT2iPAxWt6XWWmZJ3Szayn
- hKsvgPEb0g6q75CiYQFpjlWl5caWAQa+xouZv1UrhAnBpvEIVqPs1HqeTmm5ctzu
- KkdCker+kfOnOswaCFFSnMdAle5IJ+9lEAoYCy0CvxFx97g3zMgFm1NVJ/uDFRSf
- GihPrFbwQgqt0zuKmOTyw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778727; x=
- 1661785927; bh=zJuhyh+MgUs2/ekVdAk6Kq0Wq9YXzzJHxtL6DSlw5Og=; b=c
- ftMy0ztc0ShuXT+IqZw9bSUt5U+hyi2h7n8R0hLq8ouh5wBvh8zAu21pCESuKn8W
- KI5HZPBSaCwI1wtEfCMioTeUGA3//z1fTeIsA6vwnhwzSG47jchavbSTLUm0p69H
- oTKi93f3Wp6v1t5Ewnb3dxc1s4KmxA3XKGTmQvOpH1wBToONSX5LjiER/4YqMiDf
- Ikccon49YxgN5GnbLTg6lQPa9MqR0IbVJnigiGqp2E6KD5OMq1IBDfNI45OuceV0
- Hztcgf7kTuhCWGaiwZGHkAIsP0DZKSa8uAgTGz9FzqKlStgpybjelId3VGvucdxe
- FyDKkY9hH8yEXd0jLm18w==
-X-ME-Sender: <xms:J7sMY6hePGuVxWxRIJZf5x4IelO5UrQZE1KNj52UndvMubdKz9l50g>
- <xme:J7sMY7BZlSAoP7Jlz0pvtVMhqgH0jEDgKnUGYjmKfmkU1618vqMUbmr1k6OrMLBJu
- F6SQxpxAlrqkE8zSr4>
-X-ME-Received: <xmr:J7sMYyGoy1MI4w7qVE_5xh8ryUd3XGNjtGygeAdimxebcdnaCsMWzjyI5YSW>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieefucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhephffvvefufffkofgjfhggtgfogfesthhqredtredtjeenucfhrhhomhepofgr
- gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
- frrghtthgvrhhnpeefiedvfefggffgffehveejieffuddtgffhjefggeetieduvdeileet
- lefgveegtdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
- hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:J7sMYzSoE4gUKhbx6qxQke5xDHJoi9oBCWLtJLKUmN6VnB3lmSDmcQ>
- <xmx:J7sMY3wasf2R1BwniKvBXezBWo1kO4LYyWBikwsprl5TBdP7aegbug>
- <xmx:J7sMYx5LapU8G_AiAS-96RU9kahBV0ZTqVT_tDbpAR_YKoV0Yl-FUQ>
- <xmx:J7sMY1r3QHlTqLj8Lj8A4i9kMzpuAwC4Y3QKcFSsN2qGNhFCk-pxfLO7L0c>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 29 Aug 2022 09:12:06 -0400 (EDT)
-From: Maxime Ripard <maxime@cerno.tech>
-To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
- David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
- =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Mon, 29 Aug 2022 15:11:15 +0200
-Message-Id: <20220728-rpi-analog-tv-properties-v2-1-459522d653a7@cerno.tech>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
-References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FC5E10EABB;
+	Tue,  6 Sep 2022 20:31:40 +0000 (UTC)
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com
+ [IPv6:2a00:1450:4864:20::130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 543E010E448;
+ Mon,  5 Sep 2022 16:44:47 +0000 (UTC)
+Received: by mail-lf1-x130.google.com with SMTP id bq23so13824926lfb.7;
+ Mon, 05 Sep 2022 09:44:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:from:to:cc:subject:date;
+ bh=pg/PAiNvnu7vtuOyQRQ/USUHgpjKV+PX2R3Qe58I9a8=;
+ b=gpdNZAEDxje8wnITyn+RZoWmy+HDFnOquwNGCkPFH4u26oFe9BJkGsChjuvli+EpUC
+ udG041BUDBCsixXiASZMPopuq5kkYgAZ75M5qx/664s54esc8z1HhBFqbN3K9kHPpL1i
+ /c/k2keYZOCrifzS9i3Jol3/Ys8sNIUeajA/nxV7uULUR3TcQoLuptOLB6RGc/f719/2
+ O/X4incruiAcIvG6rSJmQeWED2QziZfV7nNN+Xw4npnDsDvap4T4VaB6gU99RsKT0/sK
+ ObY9ODTZh1llvOmzGkvb7+zUE3IWaTV/TsOIDkNGg6kHEUV4Ijytw/jtF/wsnn40KB7l
+ WmKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:x-gm-message-state:from:to:cc:subject:date;
+ bh=pg/PAiNvnu7vtuOyQRQ/USUHgpjKV+PX2R3Qe58I9a8=;
+ b=MkhxCQONUXlubNxbbx/NHGId4pCjcxQSBxl6i556YH6RZyWtarIZnH4r4rqAPDF1Ae
+ 2SMkkpWTn2cRrtRSnmM3HqZMyeuWcVmG2IrvMs4FhevTkZNVT8D98Cpi/35KlDsald2I
+ +hx4m+qV46Rj2fYKP9U8ADei168DJAY0ot9xiz05n+iC4llDjBQ8Y4nQac5nRQ4aDRSg
+ V9NPmZa5RxP7uRMSvuMD2LRW4/3MO6bEMqs+yH4X7sdimv6a0xUcLI8BangKtRW7Aub8
+ dexkCj7q6TWhjY7goaK75o5CQ/1t1I30NASufNbvytV/ASNVjE8g/EOSbZ90FUoFzhj7
+ lH0w==
+X-Gm-Message-State: ACgBeo0fK2SrVBhKD4mXet0JsIpApfGJgCDavZ5c3d1J193QTGHGxSM7
+ wqRbdVDBCzs+ATEHDmW4ufU=
+X-Google-Smtp-Source: AA6agR5QgKJH0v/+7sAguBYeCvG9a+g/CeSbeIITanudZorCWC9+TludMawIYPfRu4Xh0pTJ0sIw1w==
+X-Received: by 2002:a05:6512:ba2:b0:494:6d93:e9ee with SMTP id
+ b34-20020a0565120ba200b004946d93e9eemr11762898lfv.378.1662396285601; 
+ Mon, 05 Sep 2022 09:44:45 -0700 (PDT)
+Received: from ?IPV6:2a02:a31a:a240:1700:9c45:8fa1:8ce7:8852?
+ ([2a02:a31a:a240:1700:9c45:8fa1:8ce7:8852])
+ by smtp.googlemail.com with ESMTPSA id
+ q5-20020a2eb4a5000000b0025e59f125fbsm1469514ljm.53.2022.09.05.09.44.43
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 05 Sep 2022 09:44:45 -0700 (PDT)
+From: Mateusz Kwiatkowski <kfyatek@gmail.com>
+X-Google-Original-From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+Message-ID: <10ce686a-d7c8-9ce4-3979-735ad8eab3b5@gmail.com>
+Date: Mon, 5 Sep 2022 18:44:42 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.10.0-dev-65ba7
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1038; i=maxime@cerno.tech;
- h=from:subject:message-id; bh=7wf09uYZmOlzEdMLSbfvbGYOI6J6pbrZA084PMpLFI8=;
- b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8u+QCtJc+19tw1dnPLoUp63uAlPSLTZNOzt7jFLTp8xRp
- vUd1HaUsDGJcDLJiiiwxwuZL4k7Net3JxjcPZg4rE8gQBi5OAZiIxwyGvwJi6fvdU59tEF2+1WaTqG
- fLLKOP7P4v1x/7V8fsu+XSoRhGht/bauWCa76+r5Cz/DXnwv07FYkCMW2rF6967BCaNfWRFB8A
-X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
- fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
-Subject: [Nouveau] [PATCH v2 01/41] drm/tests: Order Kunit tests in Makefile
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.2.1
+Content-Language: pl
+To: Maxime Ripard <maxime@cerno.tech>
+References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-10-459522d653a7@cerno.tech>
+ <242d272b-5b79-986c-9aaf-64e62f6b37ff@gmail.com>
+ <20220905133755.gcmmntg3wnecyqjq@houat>
+In-Reply-To: <20220905133755.gcmmntg3wnecyqjq@houat>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:03 +0000
+Subject: Re: [Nouveau] [PATCH v2 10/41] drm/modes: Add a function to
+ generate analog display modes
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,48 +80,57 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
- Hans de Goede <hdegoede@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Maxime Ripard <maxime@cerno.tech>,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Phil Elwell <phil@raspberrypi.com>,
+ Emma Anholt <emma@anholt.net>, Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ linux-arm-kernel@lists.infradead.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Dom Cobley <dom@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Since we've recently added a ton of tests, the list starts to be a bit=0D
-of a mess and creates unneeded conflicts.=0D
-=0D
-Let's order it alphabetically.=0D
-=0D
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>=0D
-=0D
-diff --git a/drivers/gpu/drm/tests/Makefile b/drivers/gpu/drm/tests/Makefil=
-e=0D
-index 91b70f7d2769..2d9f49b62ecb 100644=0D
---- a/drivers/gpu/drm/tests/Makefile=0D
-+++ b/drivers/gpu/drm/tests/Makefile=0D
-@@ -1,5 +1,13 @@=0D
- # SPDX-License-Identifier: GPL-2.0=0D
- =0D
--obj-$(CONFIG_DRM_KUNIT_TEST) +=3D drm_format_helper_test.o drm_damage_help=
-er_test.o \=0D
--	drm_cmdline_parser_test.o drm_rect_test.o drm_format_test.o drm_plane_hel=
-per_test.o \=0D
--	drm_dp_mst_helper_test.o drm_framebuffer_test.o drm_buddy_test.o drm_mm_t=
-est.o=0D
-+obj-$(CONFIG_DRM_KUNIT_TEST) +=3D \=0D
-+	drm_buddy_test.o \=0D
-+	drm_cmdline_parser_test.o \=0D
-+	drm_damage_helper_test.o \=0D
-+	drm_dp_mst_helper_test.o \=0D
-+	drm_format_helper_test.o \=0D
-+	drm_format_test.o \=0D
-+	drm_framebuffer_test.o \=0D
-+	drm_mm_test.o \=0D
-+	drm_plane_helper_test.o \=0D
-+	drm_rect_test.o=0D
-=0D
--- =0D
-b4 0.10.0-dev-65ba7=0D
+Hi Maxime,
+
+W dniu 5.09.2022 o 15:37, Maxime Ripard pisze:
+>>> +    vfp = vfp_min + (porches_rem / 2);
+>>> +    vbp = porches - vfp;
+>>
+>> Relative position of the vertical sync within the VBI effectively moves the
+>> image up and down. Adding that (porches_rem / 2) moves the image up off center
+>> by that many pixels. I'd keep the VFP always at minimum to keep the image
+>> centered.
+>
+> And you would increase the back porch only then?
+
+Well, increasing vbp only gives a centered image with the default 480i/576i
+resolutions. However, only ever changing vbp will cause the image to be always
+at the bottom of the screen when the active line count is decreased (e.g.
+setting the resolution to 720x480 but for 50Hz "PAL" - like many game consoles
+did back in the day).
+
+I believe that the perfect solution would:
+
+- Use the canonical / standard-defined blanking line counts for the standard
+  vertical resolutions (480/486/576)
+- Increase vfp and vbp from there by the same number if a smaller number of
+  active lines is specified, so that the resulting image is centered
+- Likewise, decrease vfp and vbp by the same number if the active line number
+  is larger and there is still leeway (this should allow for seamless handling
+  of 480i vs. 486i for 60 Hz "NTSC")
+- If even more active lines are specified, once the limit for vfp is hit, then
+  decrease vbp only - the resulting image will definitely be off-center, but
+  there's no other way
+
+I hope this makes sense for you as well.
+
+Best regards,
+Mateusz Kwiatkowski
