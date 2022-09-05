@@ -4,95 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F18ACC54EE9
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78510ECAAA1
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F24810EABA;
-	Tue,  6 Sep 2022 20:31:50 +0000 (UTC)
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72FDC10F277;
- Mon, 29 Aug 2022 13:25:49 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailnew.west.internal (Postfix) with ESMTP id AE7762B06070;
- Mon, 29 Aug 2022 09:14:47 -0400 (EDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13D8710EAB2;
+	Tue,  6 Sep 2022 20:32:02 +0000 (UTC)
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
+ [66.111.4.230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9988710E3F3;
+ Mon,  5 Sep 2022 14:28:49 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailnew.nyi.internal (Postfix) with ESMTP id BD5585801E7;
+ Mon,  5 Sep 2022 10:28:48 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
- by compute5.internal (MEProxy); Mon, 29 Aug 2022 09:14:50 -0400
+ by compute4.internal (MEProxy); Mon, 05 Sep 2022 10:28:48 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-transfer-encoding:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778887; x=
- 1661786087; bh=1ES+VOTkYU9rnnkPaBougZFX79N+rt0kzSsceGA4Dk4=; b=M
- wZDwK3QFSLqZ36eWW+KO1/5GMbyX9ChUPOFrT6PvlScVECJOImCcBqpeht8w8ulb
- ogPSElJUwpgl9ERxHhdYtTltYUcuc61gN7734nHtlWtRaVv3W1oLgMUWs0WmovQd
- TL6I56S0tCInc4Z4C4chLyUtsSJi9VsUP9bt2BKQ1ZgAzovM6anF2q9X8VN+g//i
- X5XyOmrXV2k22dO7KJN9awbAlfPmFj71KIxS1T/sTAoJhJ9CGWHnTVr2sgJGxvxe
- dALbZFQR7Q1cAQjvFgIC//wXd/dGuWblC/yp8GYpDBodShNTCxP15gZntj7/kB1t
- Stm31oKJUNCzO79AbBQmA==
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm3; t=1662388128; x=1662395328; bh=vefUy4dRsZ
+ VWF0YIrw3msOYzL5sGqxLnWRwOjKgBDrQ=; b=K2XS8PGlr2rLCbhGAhNKVV1mKa
+ oE5a/DxS0PxYT09GHAoeKfQb2EbQCJ9mu4w58MqnAKA1v9KKxxsiYAxH7YOsy1BN
+ 33JRgsa8h4OHegIECgAC9cSpyUMc/Lo2C5mNrEChFfPna0d7iS4gIrwUted9CHx7
+ qbnimRJOdwi2we5OgCLd/60A+k3wyzn4j3TdiHlGFcBFcI08cKnqIx93lEL+bLCT
+ CqAKbzWub2maQ+RaEAZeMK1h2/Od9syCt1Oc4Z5nD1+HayHeRoUYskPKsrsmSzCh
+ e3N7WD2rFsuM/GYBLynULlDETMkMlutJu524iww9KxGAYCF5MtrBhwWigXQg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778887; x=
- 1661786087; bh=1ES+VOTkYU9rnnkPaBougZFX79N+rt0kzSsceGA4Dk4=; b=w
- 97fUtYA19t9UK+q9mCQiBJHAOH+axUa0YqjU5/XMg2iPAhrYN00M/6+SluyFgdvf
- +69/5+YyOapg1HP2UTkMEatEvoSPwR0PQCbSv/YotPgh4lz0W7BUzVnT30k8rzAg
- VKL4x5t9nxKpWEyWTlGWrfmfTFMLVq85MkX9iwj40BNVzDKqHVPbcvofyMQxSJHN
- joCulLM2R+sabLZx2wlXVUCXzLXm/v4rCL8Fv6/DwUT3AgFFRn8/FLXAWNortXTR
- aNbBzO2JuwTKj2hDrbcguqKooDv1VR8sEzLpZW4pzGWTxMa8d5GHgf4tx8/cQQjz
- orY73i1Jj6Vf+53W2hKGQ==
-X-ME-Sender: <xms:x7sMYzTs4trYybJjPiDt8rdltEu4bzDju4zsuxh-loRZmiYgkNK-Ig>
- <xme:x7sMY0xmuzJTbpQqB_O5rDXh0g2ojoTozEijLZcKL4y12XugVgG34mLtP7AFXNRAG
- zwM4HWSIAhousDcpXY>
-X-ME-Received: <xmr:x7sMY40uIyWCD4NzwRUYgnq-Fb1hckxwcQ6DtHjYlRmrhpWk0WOva_3OSEh5>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieefucetufdoteggodetrfdotf
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+ :mime-version:references:reply-to:sender:subject:subject:to:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; t=1662388128; x=1662395328; bh=vefUy4dRsZVWF0YIrw3msOYzL5sG
+ qxLnWRwOjKgBDrQ=; b=YSGrRmXY76fbUtPERuSV+9e6lsEx56hA5vrGlNt2Qpgs
+ zOPKczGZQJsxK88Md2RogOECuW5zwHOeJnPTijXakF/dmAlb5LGVud5m+mQe5Sl7
+ Nx+dNIsVXROz/pUj6cCxv3K2uWryMWKWKGA87vjkcV2kZd3PrAyjrivRHG//4Cy0
+ 8npyhIOZIK0GH7J2zQzX6NbvhdhETzfHNoxutJTlJzbT/hn62C0tzHeBHUXEmf+L
+ nIWXmDFc1kwRBghV8udUcYftvhHn+v2vzmUQ7nlzQb7ok4/4d57hANxyRbucnqdL
+ hJAerM1Ql35aS0OaCNwHAOYgRUdk2HE+fkLZivJ7tw==
+X-ME-Sender: <xms:nwcWY7093cdWfRq1oL7PNGQ3QbK4j2DgD8slA2vtr3StBwgGGw142A>
+ <xme:nwcWY6Ez3fbf7mpeixDFWX2eEq9xironQYCF1CjLV_Vykb9d2mW3Nq5tK_mX90nBc
+ ToYcAdDkoXzgclW77E>
+X-ME-Received: <xmr:nwcWY775XQbKfjcX_e98PD2zWRbESjZF_sRzppZfjrunik7KbWARapTpHMI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeliedgjeelucetufdoteggodetrfdotf
  fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
  uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhephffvvefufffkofgjfhggtgfogfesthhqredtredtjeenucfhrhhomhepofgr
- gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
- frrghtthgvrhhnpeefiedvfefggffgffehveejieffuddtgffhjefggeetieduvdeileet
- lefgveegtdenucevlhhushhtvghrufhiiigvpeefnecurfgrrhgrmhepmhgrihhlfhhroh
- hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:x7sMYzDsrOB5cbSBR3mdmof8mOIunJ4aU7m_S4sQFOHTIzZUMRkP8Q>
- <xmx:x7sMY8h0V56AVRtPSHBFDBMKVmBDqP4uk2IwP4NDzpT2aF5Llk0F0Q>
- <xmx:x7sMY3oFb5esYG9Y600cA1mdtUuyKvInXk2d5Se144IkyE_osfcitg>
- <xmx:x7sMYxaNo8zfdA562v1KyQlnIJixUP-awwbp95qZy1uWdNjq32yjL6vV64Y>
+ cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
+ mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+ htthgvrhhnpeejveefheefkeeiffegveelveetgffffeektdefuefhtedtgeejhefggedu
+ ffffudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+ hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:nwcWYw12b2jj41_bSVOi0TppjyxIf8LchC1b24hD7MOItMAE-N9bDQ>
+ <xmx:nwcWY-G1xPGMeuA36sQ6S2FIufVxVxSWprdiwbTGxYuMmpu4v35syw>
+ <xmx:nwcWYx8zfPZgx1nEtBKLuqnYkkH7Y6J0qlXcYHDdVgjRUegS2oJLNw>
+ <xmx:oAcWY2VbCYUlEte486NIa6WhcoO6WH8JGlPVm3Js638-GMARhcFlug>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 29 Aug 2022 09:14:46 -0400 (EDT)
+ 5 Sep 2022 10:28:46 -0400 (EDT)
+Date: Mon, 5 Sep 2022 16:28:42 +0200
 From: Maxime Ripard <maxime@cerno.tech>
-To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
- David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
- =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Mon, 29 Aug 2022 15:11:39 +0200
-Message-Id: <20220728-rpi-analog-tv-properties-v2-25-459522d653a7@cerno.tech>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+To: Mateusz Kwiatkowski <kfyatek@gmail.com>
+Message-ID: <20220905142842.c3rvtupggdmavq7z@houat>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-19-459522d653a7@cerno.tech>
+ <2f607c7d-6da1-c8df-1c02-8dd344a92343@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.10.0-dev-65ba7
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1629; i=maxime@cerno.tech;
- h=from:subject:message-id; bh=SxDDz/o7uhOTCndIHsGuYDX1d+DNJtbtuvzEgbuAGH4=;
- b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8uxR+LFyY/Frnu8fpLtE/ZnOKX0TuDe6bF7j1w6svMbv/
- emY87ihlYRDjYpAVU2SJETZfEndq1utONr55MHNYmUCGMHBxCsBEMtQZ/rtyan/KSFCUMIrkmjBRka
- PAOOmKk7KsuOHKvTGhUy0cHjH805uite6Zrn/J+68tOo77wpeGn/cQuD7t6ZTPD1ZZNcmeZgQA
-X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
- fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="a666jub4kxs6fn4h"
+Content-Disposition: inline
+In-Reply-To: <2f607c7d-6da1-c8df-1c02-8dd344a92343@gmail.com>
 X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
-Subject: [Nouveau] [PATCH v2 25/41] drm/vc4: vec: Convert to atomic helpers
+Subject: Re: [Nouveau] [PATCH v2 19/41] drm/modes: Introduce the tv_mode
+ property as a command-line option
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,62 +85,87 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
- Hans de Goede <hdegoede@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Maxime Ripard <maxime@cerno.tech>,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Phil Elwell <phil@raspberrypi.com>,
+ Emma Anholt <emma@anholt.net>, Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ linux-arm-kernel@lists.infradead.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Dom Cobley <dom@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The VC4 VEC driver still uses legacy enable and disable hook=0D
-implementation. Let's convert to the atomic variants.=0D
-=0D
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>=0D
-=0D
-diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_vec.c=
-=0D
-index d521ffd8d75c..72eee0cbb615 100644=0D
---- a/drivers/gpu/drm/vc4/vc4_vec.c=0D
-+++ b/drivers/gpu/drm/vc4/vc4_vec.c=0D
-@@ -375,7 +375,8 @@ static int vc4_vec_connector_init(struct drm_device *de=
-v, struct vc4_vec *vec)=0D
- 	return 0;=0D
- }=0D
- =0D
--static void vc4_vec_encoder_disable(struct drm_encoder *encoder)=0D
-+static void vc4_vec_encoder_disable(struct drm_encoder *encoder,=0D
-+				    struct drm_atomic_state *state)=0D
- {=0D
- 	struct drm_device *drm =3D encoder->dev;=0D
- 	struct vc4_vec *vec =3D encoder_to_vc4_vec(encoder);=0D
-@@ -406,7 +407,8 @@ static void vc4_vec_encoder_disable(struct drm_encoder =
-*encoder)=0D
- 	drm_dev_exit(idx);=0D
- }=0D
- =0D
--static void vc4_vec_encoder_enable(struct drm_encoder *encoder)=0D
-+static void vc4_vec_encoder_enable(struct drm_encoder *encoder,=0D
-+				   struct drm_atomic_state *state)=0D
- {=0D
- 	struct drm_device *drm =3D encoder->dev;=0D
- 	struct vc4_vec *vec =3D encoder_to_vc4_vec(encoder);=0D
-@@ -508,9 +510,9 @@ static int vc4_vec_encoder_atomic_check(struct drm_enco=
-der *encoder,=0D
- }=0D
- =0D
- static const struct drm_encoder_helper_funcs vc4_vec_encoder_helper_funcs =
-=3D {=0D
--	.disable =3D vc4_vec_encoder_disable,=0D
--	.enable =3D vc4_vec_encoder_enable,=0D
- 	.atomic_check =3D vc4_vec_encoder_atomic_check,=0D
-+	.atomic_disable =3D vc4_vec_encoder_disable,=0D
-+	.atomic_enable =3D vc4_vec_encoder_enable,=0D
- 	.atomic_mode_set =3D vc4_vec_encoder_atomic_mode_set,=0D
- };=0D
- =0D
-=0D
--- =0D
-b4 0.10.0-dev-65ba7=0D
+
+--a666jub4kxs6fn4h
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Sep 02, 2022 at 12:46:29AM +0200, Mateusz Kwiatkowski wrote:
+> > @@ -2212,20 +2239,22 @@ struct drm_named_mode {
+> > =A0=A0=A0 =A0unsigned int xres;
+> > =A0=A0=A0 =A0unsigned int yres;
+> > =A0=A0=A0 =A0unsigned int flags;
+> > +=A0=A0 =A0unsigned int tv_mode;
+> >=A0 };
+>=20
+> Are _all_ named modes supposed to be about analog TV?
+>
+> If so, then probably this structure should be renamed drm_named_analog_tv=
+_mode
+> or something.
+
+I don't think they need to, but it's the only use case we've had so far.
+We could also imagine using UHD for 3840x2160 for example, so I wouldn't
+say it's limited to analog tv.
+
+> If not, then including tv_mode in all of them sounds almost dangrous. 0 i=
+s a
+> valid value for enum drm_connector_tv_mode, corresponding to
+> DRM_MODE_TV_MODE_NTSC_443. This is a very weird default (maybe it shouldn=
+'t be
+> the one that has a numeric value of 0?) and if there ever is a named mode=
+ that
+> is not related to analog TV, it looks that it will refer to NTSC-443.
+>=20
+> Not sure where could that actually propagate, and maybe what I'm saying c=
+an't
+> happen, but I'm imagining weird scenarios where a GPU that has both a
+> VGA/HDMI/whatever output, and a composite output, switches to NTSC-443 on=
+ the
+> composite output by default because a named mode for the modern output is
+> selected.
+
+So, named modes are per-connector so the fact that there's another
+output doesn't really matter. Then, the answer is quite simple actually,
+the HDMI driver wouldn't register and use the TV mode property at all,
+so it would completely ignore it, no matter what value it has.
+
+So it's not really a concern.
+
+> Maybe something like DRM_MODE_TV_MODE_NONE =3D 0 would make sense?
+
+But I guess we can add it still.
+
+Maxime
+
+--a666jub4kxs6fn4h
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYxYHmgAKCRDj7w1vZxhR
+xTGUAP9bRX6FEHBUM7XR2y0SEv7Im5MOyJ9Xu+nxahCL5Zr27gEAtUuO35mNsB/a
+iZZfvcVDyPB/1iJJ1p/8F2uKg1G0pQI=
+=y2zk
+-----END PGP SIGNATURE-----
+
+--a666jub4kxs6fn4h--
