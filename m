@@ -4,95 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAC08C54EE9
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:33:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A4A2C38145
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:33:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85EB410EAC8;
-	Tue,  6 Sep 2022 20:33:13 +0000 (UTC)
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F61210F2D4;
- Mon, 29 Aug 2022 13:25:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C99810EACD;
+	Tue,  6 Sep 2022 20:33:14 +0000 (UTC)
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
+ [66.111.4.230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2C5810E37C;
+ Mon,  5 Sep 2022 13:32:58 +0000 (UTC)
 Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailnew.west.internal (Postfix) with ESMTP id D00CF2B06078;
- Mon, 29 Aug 2022 09:15:06 -0400 (EDT)
+ by mailnew.nyi.internal (Postfix) with ESMTP id 052A0580222;
+ Mon,  5 Sep 2022 09:32:56 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
- by compute1.internal (MEProxy); Mon, 29 Aug 2022 09:15:09 -0400
+ by compute1.internal (MEProxy); Mon, 05 Sep 2022 09:32:56 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-transfer-encoding:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778906; x=
- 1661786106; bh=Geyfyn7lfIjW9QZzqjQEZrV6BKt6Cr6Jw67lImD/OP4=; b=h
- 33Sqoi3MkH+ZfTUG5VyM/1Yc4D0pxeQLMY9HSQHQ9Mo2IG1PDJUNCVB3pqA9rvnL
- LMEKXt4dmv0GP0ITDYj/FfUZCwY15kFl0QdezZEf+TDII8t/6NhrR2pG8lfdD++7
- NeE/0udJEPaol0QQoe3yfkJzOzVLUneLEp+0Nt09Bxxgoaxmx2GmbU/qsgTiI0js
- ATh3k2IB2n00v5oUh/H8snvsQCI17AhnLXatMoWEKsQOsyi5mJbJ6TLo8dOUeDDm
- ebhsRkqfPzYj6g/0V/FWZMGcINYxs0eyHBG6ZAT85WMspC5azLuoHo+oyJg43Mvy
- IfUnKoNoU0/A19XLmZh5A==
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm3; t=1662384775; x=1662391975; bh=BndZD3o0f1
+ E/yy3CgHU6/gGUoZque82OSFD4UL+mJ2w=; b=EO51DpMNeWzuyeJKd9el0Z+cLH
+ NUdELGUgfHmAmQwc9bO1eHIsyTCjVb6fKeXAsOOP0ooT7ZtS2CvRU3B6PonShX5s
+ uR1ZZJCbH9yQLk6K7VKSGB0tZzBOR3Jlv5eAjhNha5mscFH185qRmHsoEf9c+4uo
+ Wklciyf30h9oq+Q1YRb7azkX0Ij2Pu+51iPcbqca2LJUTAXwKgwvEM1lPI8x3QbT
+ YGUgQzEKtEgQEHFNV8Q99Xoh3iP8e2e1GWifyq6iCSJ9pG5v9BLg9b9zwlXEz+uz
+ 4cffC29v8jg8wdVkqY0Mm42LGPU8Bl0mUMLOg3+sgCmCurF2BMm7Lcx0DkFA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778906; x=
- 1661786106; bh=Geyfyn7lfIjW9QZzqjQEZrV6BKt6Cr6Jw67lImD/OP4=; b=3
- Bjv21wSh+GGHvc5hlBIDbzL3rKJF7MtA9EN/oaUUinAyKYv9FP8JEhwty3Gxx4Mc
- AVqF2CHgMXYa99YqyJGyr47vci3oBHhHtPT41H4FixhO8T2EkP2Xr11FsKcOEOte
- 3yH5F/kyqxt0IY5QDRMpUeKpvrmg5ERKdUWcatbn34ENW5F6gBo8JYwq3ok6x/wC
- 8oV9h9Mb6bsRWOEugQAZpZDfDx+l++ASlzQ4IsM1d7w1Q9FHtvc1fkXaR3s8+L4v
- Z8SbooHfl3vcmjVqdIQ9V3MNlcfpUEEna6w7Ll35wX7YeSPl9ZxbCpX7+/3P16kJ
- DUSmGdh31y/ZWOWPRX44Q==
-X-ME-Sender: <xms:2rsMY8JCdF_8rteGEr2k2yvQvhEBGnq9oQvCRPBEQayX95Y_HN5I7g>
- <xme:2rsMY8LUSCcC0VEGgs0qrwXBu9pIftsmHF101NVYfZ7iyFHKddotBBCBbJI9LoKUg
- l6kKqSrV_0MfxruZyI>
-X-ME-Received: <xmr:2rsMY8s6YX-G6cO9GjDtYI3LOp8psHcne1FsHvtym8aZAuJSVvo7F0eyjrNo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieefucetufdoteggodetrfdotf
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+ :mime-version:references:reply-to:sender:subject:subject:to:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; t=1662384775; x=1662391975; bh=BndZD3o0f1E/yy3CgHU6/gGUoZqu
+ e82OSFD4UL+mJ2w=; b=eU6yw1G07vynu4cue4gKD5m5vvy2eoMhdBh/KSUVFtrn
+ OUHh1USV2SgljBW7GMgHjMVt1pViT9lTam3HwIj+hEA+6zBGFGRYdXyQzNUaR+P1
+ s+Vw/H5yGqPzR8nsRpmlqTwvnfOcemY9NIcLfzzj4uy5i7AUbqZXWLxdQkOLY7Po
+ ajXvr2CJAnU3Nw8C28s5CvVrLWnyOlrg1GnRLgKn0ODjH1LwOVW5d1gYYexnKnWr
+ wiB1smyxmMIORDxbolYI3+7smjffMX8HE/C8SGJlp29qtKsYk0QXBdYWxLGiK/hN
+ yUZG8hJ6HVustSYeynQVK7Ceq0Tcxc0erG6EqlYr6A==
+X-ME-Sender: <xms:h_oVY3ntSP4q_zNMDo5xX_moISXZo_3a78JIoPIkWjpzZtplMSiF6A>
+ <xme:h_oVY63u6evuIVUF6Y36KuJoCroqVm1wNJGkDxHFkFsgAGgkTY_pBB26geJa1KOQM
+ OiVcTfteeITkIwmKAU>
+X-ME-Received: <xmr:h_oVY9pl5qN70CXGDREiRUgiL9wEzYSC0SEmuWMrKPJ-jErkIkktumflK6E>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeliedgieejucetufdoteggodetrfdotf
  fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
  uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhephffvvefufffkofgjfhggtgfogfesthhqredtredtjeenucfhrhhomhepofgr
- gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
- frrghtthgvrhhnpeefiedvfefggffgffehveejieffuddtgffhjefggeetieduvdeileet
- lefgveegtdenucevlhhushhtvghrufhiiigvpeehnecurfgrrhgrmhepmhgrihhlfhhroh
- hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:2rsMY5bWPxkAVFpDeM43i4y_BVD63X8wGJmW6fAM1R81raTncLzWCg>
- <xmx:2rsMYzbmhD1B_2j8SrSNGK_75-LzYQC9Ywi4hMPZmczx1gL8M0oBCA>
- <xmx:2rsMY1AlGSd7E8HpeiuRyAdKh7xwlBoJh9MY27lytQZhq2hJD2_0WA>
- <xmx:2rsMY9zSQ2tNxwqPsy_4R-vp1fu-0LcZF8Y0y42MtY_gRvlqp9q5ko7iVfI>
+ cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+ mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+ htthgvrhhnpeetfefffefgkedtfefgledugfdtjeefjedvtddtkeetieffjedvgfehheff
+ hfevudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+ hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:h_oVY_mldv5lSIFtb7mKoEW2f0hlNSlAc-J18EeAua7zN2oMUkSQVw>
+ <xmx:h_oVY10lch1CZ3LlXmV-mLsgR6-5czKaO49jNv1oc1WXeW4MSawITw>
+ <xmx:h_oVY-sSzq_ImTLpiuqqa5s1CXxjawZc82_NlD6orN-th3Uf9_2_yw>
+ <xmx:h_oVYzERo3S5Dd--_eLY6ZmpwGdnUPC48g_gkuWxbcQVfLpC5gZLnw>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 29 Aug 2022 09:15:05 -0400 (EDT)
+ 5 Sep 2022 09:32:54 -0400 (EDT)
+Date: Mon, 5 Sep 2022 15:32:51 +0200
 From: Maxime Ripard <maxime@cerno.tech>
-To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
- David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
- =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Mon, 29 Aug 2022 15:11:42 +0200
-Message-Id: <20220728-rpi-analog-tv-properties-v2-28-459522d653a7@cerno.tech>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Message-ID: <20220905133251.js26hxdosibx4r4i@houat>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-10-459522d653a7@cerno.tech>
+ <242d272b-5b79-986c-9aaf-64e62f6b37ff@gmail.com>
+ <CAMuHMdWq3aOO4-2AReDeaC2VBJb=QJF2dTMZP=DGmwCg6ZOffA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.10.0-dev-65ba7
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1306; i=maxime@cerno.tech;
- h=from:subject:message-id; bh=9tioiA5EY1yO34HzEK5H+VWpSJS31+Xh9uw365Ba2yU=;
- b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8uxRU4rkSg9yPxRosun83wiov2a7/nrxu9Y6Aph1rXLe0
- 7mLuKGVhEONikBVTZIkRNl8Sd2rW6042vnkwc1iZQIYwcHEKwETu7GZkmMWzwP741qhVqtP7flkdWf
- nO+EBY5h7n/M235WT1pRIuMDIyrP2h9Snyj8H1n6cVJOKSZlgmxAnPyzI2qlKMVZz4s/sLBwA=
-X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
- fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="33jm6ubzzouafw3w"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdWq3aOO4-2AReDeaC2VBJb=QJF2dTMZP=DGmwCg6ZOffA@mail.gmail.com>
 X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
-Subject: [Nouveau] [PATCH v2 28/41] drm/vc4: vec: Fix timings for VEC modes
+Subject: Re: [Nouveau] [PATCH v2 10/41] drm/modes: Add a function to
+ generate analog display modes
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,51 +86,84 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
- Hans de Goede <hdegoede@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Maxime Ripard <maxime@cerno.tech>,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
+Cc: David Airlie <airlied@linux.ie>,
+ Nouveau Dev <nouveau@lists.freedesktop.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Ben Skeggs <bskeggs@redhat.com>, linux-sunxi@lists.linux.dev,
+ Mateusz Kwiatkowski <kfyatek@gmail.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Dom Cobley <dom@raspberrypi.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>=0D
-=0D
-This commit fixes vertical timings of the VEC (composite output) modes=0D
-to accurately represent the 525-line ("NTSC") and 625-line ("PAL") ITU-R=0D
-standards.=0D
-=0D
-Previous timings were actually defined as 502 and 601 lines, resulting=0D
-in non-standard 62.69 Hz and 52 Hz signals being generated,=0D
-respectively.=0D
-=0D
-Signed-off-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>=0D
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>=0D
-=0D
-diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_vec.c=
-=0D
-index 4d7bc7c20704..d1d40b69279e 100644=0D
---- a/drivers/gpu/drm/vc4/vc4_vec.c=0D
-+++ b/drivers/gpu/drm/vc4/vc4_vec.c=0D
-@@ -227,14 +227,14 @@ static const struct debugfs_reg32 vec_regs[] =3D {=0D
- static const struct drm_display_mode ntsc_mode =3D {=0D
- 	DRM_MODE("720x480", DRM_MODE_TYPE_DRIVER, 13500,=0D
- 		 720, 720 + 14, 720 + 14 + 64, 720 + 14 + 64 + 60, 0,=0D
--		 480, 480 + 3, 480 + 3 + 3, 480 + 3 + 3 + 16, 0,=0D
-+		 480, 480 + 7, 480 + 7 + 6, 525, 0,=0D
- 		 DRM_MODE_FLAG_INTERLACE)=0D
- };=0D
- =0D
- static const struct drm_display_mode pal_mode =3D {=0D
- 	DRM_MODE("720x576", DRM_MODE_TYPE_DRIVER, 13500,=0D
- 		 720, 720 + 20, 720 + 20 + 64, 720 + 20 + 64 + 60, 0,=0D
--		 576, 576 + 2, 576 + 2 + 3, 576 + 2 + 3 + 20, 0,=0D
-+		 576, 576 + 4, 576 + 4 + 6, 625, 0,=0D
- 		 DRM_MODE_FLAG_INTERLACE)=0D
- };=0D
- =0D
-=0D
--- =0D
-b4 0.10.0-dev-65ba7=0D
+
+--33jm6ubzzouafw3w
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Wed, Aug 31, 2022 at 10:14:28AM +0200, Geert Uytterhoeven wrote:
+> > > +enum drm_mode_analog {
+> > > +    DRM_MODE_ANALOG_NTSC,
+> > > +    DRM_MODE_ANALOG_PAL,
+> > > +};
+> >
+> > Using "NTSC" and "PAL" to describe the 50Hz and 60Hz analog TV modes is=
+ common,
+> > but strictly speaking a misnomer. Those are color encoding systems, and=
+ your
+> > patchset fully supports lesser used, but standard encodings for those (=
+e.g.
+> > PAL-M for 60Hz and SECAM for 50Hz). I'd propose switching to some more =
+neutral
+> > naming scheme. Some ideas:
+> >
+> > - DRM_MODE_ANALOG_60_HZ / DRM_MODE_ANALOG_50_HZ (after standard refresh=
+ rate)
+> > - DRM_MODE_ANALOG_525_LINES / DRM_MODE_ANALOG_625_LINES (after standard=
+ line
+> >   count)
+>=20
+> IMHO these are bad names, as e.g. VGA640x480@60 is also analog, using
+> 60 Hz and 525 lines.  Add "TV" to the name?
+>=20
+> > - DRM_MODE_ANALOG_JM / DRM_MODE_ANALOG_BDGHIKLN (after corresponding IT=
+U System
+> >   Letter Designations)
+>=20
+> Or DRM_MODE_ITU_*?
+> But given the long list of letters, this looks fragile to me.
+
+Does it matter at all? It's an internal API that isn't exposed at all.
+I'd rather have a common name that everyone can understand in this case
+rather than a *perfect* name where most will scratch their head
+wondering what it's about.
+
+Maxime
+
+--33jm6ubzzouafw3w
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYxX6gwAKCRDj7w1vZxhR
+xRY+APwO4YqnioLJFYdWxGYCqIG80ImumXUFbL0Tx5/LHpbRnAD9GcSO3ME950qT
+a6PSCUqylWFq013v3epQ49LG4896+QQ=
+=dwqa
+-----END PGP SIGNATURE-----
+
+--33jm6ubzzouafw3w--
