@@ -4,95 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BF2CC54EE9
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0E21ECAAA1
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8345F10EAA1;
-	Tue,  6 Sep 2022 20:31:27 +0000 (UTC)
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0CD510F2CF;
- Mon, 29 Aug 2022 13:20:49 +0000 (UTC)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailnew.west.internal (Postfix) with ESMTP id 72EC62B05F9B;
- Mon, 29 Aug 2022 09:12:15 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute1.internal (MEProxy); Mon, 29 Aug 2022 09:12:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-transfer-encoding:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778734; x=
- 1661785934; bh=ELfkVxUr/la37A7msWR/2jnnu/mFwFNLuNnzkr6V0mg=; b=O
- 5gzqV7pYTkeD9LdWrNNZzPJ5npg15h0PMl0JEq/NEZwH5E5AFm5az6ZFcPLpToIb
- 5TjeWBhkrRrJNk2p0G6XUUV/0SOMr00N9NoQlffJrJRFh+MS1uSASARym+GT47OW
- esM33Tj8ZK6LII08ud8MjButKRh3DlQx98EnUzq0aeUEVeL1kmPAllng07KEKmWq
- Lmwy2eqsd/LAY2M20DeQxcMVaNgFF2escO1umOLxsxIOLlix9iDINm/m3WdpAOFd
- UPve3yeXAnbP3w90QobblR9uj3vLw4hZe/gGqn2/L0QRguVUSW9+6oM1szRTGl4e
- 5CDr2kqGGN0a4UWiR5EnQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778734; x=
- 1661785934; bh=ELfkVxUr/la37A7msWR/2jnnu/mFwFNLuNnzkr6V0mg=; b=G
- K0c86PPa4XUcKDqrVNDLDw+NEzkns7uXqzmwzJePQK2l17VlFmjoGwhzDFmeaSZK
- 4dKRPAHwsRIK6vAg3rnnrcFyZc3lPOQBRW8fc85VhLQfnibdRe4yVDL+weUyiSo8
- vqeJtSIE6Z4JHifBsLQQagdUHyMMQLK/Q0XjP9jE2EwDTwMGy0KGE0UOj7TGKQpg
- 3Uvp5ZpaREBUFZOPgkKNbZ6guHd5k/Emn6ct3wgNpV2+lyHsrxpofY2SlqYhM09v
- PmpUxsze7vDLo0sd0K5/3dZ1TpLJW30JUiS4BbvetzA2SOks8Lc0b+Xi3BJBdP4O
- xahFOaMIq4nkEPF2xtowg==
-X-ME-Sender: <xms:LrsMY_NZGFw8UutOzSWrTPo3_PhH8UzlRpg_I0A-j-4Zp9DskFYzHg>
- <xme:LrsMY5-6KAV5pU6SgAzDNM9HVIofymLN43Oo-YIjkc_Tb8SMKLHtpZhTkjcnnZHaM
- Ag93asnHKQ8eY9jFI8>
-X-ME-Received: <xmr:LrsMY-Sn9q3IQ4-Yx1cI3SzuPcXsWJsIwLhHyEXlmFpbfnv9zH6U4Xqdm4N5>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieefucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhephffvvefufffkofgjfhggtgfogfesthhqredtredtjeenucfhrhhomhepofgr
- gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
- frrghtthgvrhhnpeefiedvfefggffgffehveejieffuddtgffhjefggeetieduvdeileet
- lefgveegtdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
- hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:LrsMYzvA72-1JyzNf3ovpcQMfOfxlnwNGZMzTUj_Eai5vamfhziVrg>
- <xmx:LrsMY3efcay5g7OCtXGUrcpe27etgunwjX31lq9W1R-djb_Oj9OQUg>
- <xmx:LrsMY_1rQDb9RpwEH1BbjPphPfNsm86dYxAzZ9o7_sQ9khW57_56TQ>
- <xmx:LrsMY1EwHrEaDwgzl4KBspVs9LGf9yTUnBEQexFQ4cniqj7vqwsDZY2HM1A>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 29 Aug 2022 09:12:13 -0400 (EDT)
-From: Maxime Ripard <maxime@cerno.tech>
-To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
- David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
- =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Mon, 29 Aug 2022 15:11:16 +0200
-Message-Id: <20220728-rpi-analog-tv-properties-v2-2-459522d653a7@cerno.tech>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
-References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB68810EAB4;
+	Tue,  6 Sep 2022 20:31:31 +0000 (UTC)
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com
+ [IPv6:2a00:1450:4864:20::22d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD7B710E44F;
+ Mon,  5 Sep 2022 16:32:18 +0000 (UTC)
+Received: by mail-lj1-x22d.google.com with SMTP id by6so9717067ljb.11;
+ Mon, 05 Sep 2022 09:32:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:from:to:cc:subject:date;
+ bh=8JQHR0mNkkvaucEp4HNFvrtWVwipxgdCyYirWkcxCuc=;
+ b=Ee8/zXiC17K5Rmn0dM8r0JytBnfg1FnzFfKZcmoJMYt08MtgAEUEjpKH7+0UHsqlkK
+ BZrCCHBnA1Je5o+/sxNlA3yrl0TxM37U7XpZXjbsaVxHKMl2x7PzYQchiiwPobO+z7V/
+ tYJCFJd1YCvEbeeLM6BvAS/M1DUr6tpSFJVdgoRwA8WStFNY9E6PPHdk4RZZCOrggakT
+ xyQ8/6DOwLr6S51gainQauwtIl7r4PsEHnn/94yga+F5jpf0cp7C0OxDPl+JWqQDMoGv
+ UZySK3bX2kiLPPNYAc06FY4U1q0dxZf5LlWu/claShZQeiMPrvC2bab0MTV9I+5YA40i
+ L12g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:x-gm-message-state:from:to:cc:subject:date;
+ bh=8JQHR0mNkkvaucEp4HNFvrtWVwipxgdCyYirWkcxCuc=;
+ b=EE4eyaTrT0YQ5eN2QI+aVkhSCvGriBL7Kr/8sPd5LUHF2br+9OTfonZPfwxDxAVCJm
+ Ou+fkmKti7Sl8VWRdlmvWzMBQQ40JPCgZhwg5rfrFrVMxm3lpeqQIoRFbM/O3wMzFqOh
+ Vmt9Cj1AAVFTD2UQ3N+lWH7hg3CgGmRRakbD4THiXGrOWClIying5TkVd1E1l30Q0DIK
+ iwypk5HinwUNQQgjK5NUYHNrqeNwm+QR95UTKZVSojZfpLlsTl6wrqjRphpkwXVInUxY
+ uUsgjjMLb+peTkl0EWHXHaCjHe7660+9i80xzuhgNN0bzBziyl1T0lTquxYU/IvDKioJ
+ 11IA==
+X-Gm-Message-State: ACgBeo0+JGE2T9EPArA2/pYbDW2rCj0iDc2LbDFEAAc4IY/yYfK4imyc
+ NU07X8EDG/nrN+IqipiwiEz15JwPPcrdbg==
+X-Google-Smtp-Source: AA6agR47yvdHHgnlIjy9Ip2njnz0g5/SwgXMzTGVjcmNgzpxzvtvdxNNmmfmzBYcTnu1KYoufiDMaA==
+X-Received: by 2002:a2e:88d2:0:b0:263:2c63:d784 with SMTP id
+ a18-20020a2e88d2000000b002632c63d784mr11481762ljk.12.1662395536908; 
+ Mon, 05 Sep 2022 09:32:16 -0700 (PDT)
+Received: from ?IPV6:2a02:a31a:a240:1700:9c45:8fa1:8ce7:8852?
+ ([2a02:a31a:a240:1700:9c45:8fa1:8ce7:8852])
+ by smtp.googlemail.com with ESMTPSA id
+ q13-20020a056512210d00b004946a758d21sm1235189lfr.161.2022.09.05.09.32.14
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 05 Sep 2022 09:32:16 -0700 (PDT)
+From: Mateusz Kwiatkowski <kfyatek@gmail.com>
+X-Google-Original-From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+Message-ID: <6ac67d1f-e5b5-2687-372f-4146eed5cc5d@gmail.com>
+Date: Mon, 5 Sep 2022 18:32:14 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.10.0-dev-65ba7
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2642; i=maxime@cerno.tech;
- h=from:subject:message-id; bh=epeQixwNzn3d4RRhZr1OO6FT9bd6N3aHX8QjcYiaO/E=;
- b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8u+QXbWpvWW/meZV/YSi7V3O/Ofv3//lZt0IEMz9bz9t9
- Lo+5o5SFQYyLQVZMkSVG2HxJ3KlZrzvZ+ObBzGFlAhnCwMUpABNZd5Dhf1r92Zv9Cuav0/P7mybwHA
- ldVZWw9bdPmkjD3d164mz5nxj+Rz1ZMF0lJ1S06Mg+q2PssQsu699Zt+hR3COJV3VTz/QbMQEA
-X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
- fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
-Subject: [Nouveau] [PATCH v2 02/41] drm/tests: Add Kunit Helpers
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.2.1
+Content-Language: pl
+To: Maxime Ripard <maxime@cerno.tech>,
+ Geert Uytterhoeven <geert@linux-m68k.org>
+References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-10-459522d653a7@cerno.tech>
+ <242d272b-5b79-986c-9aaf-64e62f6b37ff@gmail.com>
+ <CAMuHMdWq3aOO4-2AReDeaC2VBJb=QJF2dTMZP=DGmwCg6ZOffA@mail.gmail.com>
+ <20220905133251.js26hxdosibx4r4i@houat>
+In-Reply-To: <20220905133251.js26hxdosibx4r4i@houat>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:03 +0000
+Subject: Re: [Nouveau] [PATCH v2 10/41] drm/modes: Add a function to
+ generate analog display modes
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,115 +82,64 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
- Hans de Goede <hdegoede@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Maxime Ripard <maxime@cerno.tech>,
- Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
- Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
+Cc: David Airlie <airlied@linux.ie>,
+ Nouveau Dev <nouveau@lists.freedesktop.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Phil Elwell <phil@raspberrypi.com>, Emma Anholt <emma@anholt.net>,
+ Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Ben Skeggs <bskeggs@redhat.com>, linux-sunxi@lists.linux.dev,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Dom Cobley <dom@raspberrypi.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As the number of kunit tests in KMS grows further, we start to have=0D
-multiple test suites that, for example, need to register a mock DRM=0D
-driver to interact with the KMS function they are supposed to test.=0D
-=0D
-Let's add a file meant to provide those kind of helpers to avoid=0D
-duplication.=0D
-=0D
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>=0D
-=0D
-diff --git a/drivers/gpu/drm/tests/Makefile b/drivers/gpu/drm/tests/Makefil=
-e=0D
-index 2d9f49b62ecb..b29ef1085cad 100644=0D
---- a/drivers/gpu/drm/tests/Makefile=0D
-+++ b/drivers/gpu/drm/tests/Makefile=0D
-@@ -8,6 +8,7 @@ obj-$(CONFIG_DRM_KUNIT_TEST) +=3D \=0D
- 	drm_format_helper_test.o \=0D
- 	drm_format_test.o \=0D
- 	drm_framebuffer_test.o \=0D
-+	drm_kunit_helpers.o \=0D
- 	drm_mm_test.o \=0D
- 	drm_plane_helper_test.o \=0D
- 	drm_rect_test.o=0D
-diff --git a/drivers/gpu/drm/tests/drm_kunit_helpers.c b/drivers/gpu/drm/te=
-sts/drm_kunit_helpers.c=0D
-new file mode 100644=0D
-index 000000000000..7ebd620481c1=0D
---- /dev/null=0D
-+++ b/drivers/gpu/drm/tests/drm_kunit_helpers.c=0D
-@@ -0,0 +1,54 @@=0D
-+#include <drm/drm_drv.h>=0D
-+#include <drm/drm_managed.h>=0D
-+=0D
-+#include <linux/device.h>=0D
-+=0D
-+static const struct drm_mode_config_funcs drm_mode_config_funcs =3D {=0D
-+};=0D
-+=0D
-+static const struct drm_driver drm_mode_driver =3D {=0D
-+};=0D
-+=0D
-+static void drm_kunit_free_device(struct drm_device *drm, void *ptr)=0D
-+{=0D
-+	struct device *dev =3D ptr;=0D
-+=0D
-+	root_device_unregister(dev);=0D
-+}=0D
-+=0D
-+struct drm_device *drm_kunit_device_init(const char *name)=0D
-+{=0D
-+	struct drm_device *drm;=0D
-+	struct device *dev;=0D
-+	int ret;=0D
-+=0D
-+	dev =3D root_device_register(name);=0D
-+	if (IS_ERR(dev))=0D
-+		return ERR_CAST(dev);=0D
-+=0D
-+	drm =3D drm_dev_alloc(&drm_mode_driver, dev);=0D
-+	if (IS_ERR(drm)) {=0D
-+		root_device_unregister(dev);=0D
-+		return ERR_CAST(drm);=0D
-+	}=0D
-+	drm->mode_config.funcs =3D &drm_mode_config_funcs;=0D
-+=0D
-+	ret =3D drmm_add_action_or_reset(drm, drm_kunit_free_device, dev);=0D
-+	if (ret)=0D
-+		goto err_put_device;=0D
-+=0D
-+	ret =3D drmm_mode_config_init(drm);=0D
-+	if (ret)=0D
-+		return ERR_PTR(ret);=0D
-+=0D
-+	return drm;=0D
-+=0D
-+err_put_device:=0D
-+	drm_dev_put(drm);=0D
-+	return ERR_PTR(ret);=0D
-+}=0D
-+=0D
-+void drm_kunit_device_exit(struct drm_device *drm)=0D
-+{=0D
-+	drm_dev_put(drm);=0D
-+}=0D
-diff --git a/drivers/gpu/drm/tests/drm_kunit_helpers.h b/drivers/gpu/drm/te=
-sts/drm_kunit_helpers.h=0D
-new file mode 100644=0D
-index 000000000000..5015a327a8c1=0D
---- /dev/null=0D
-+++ b/drivers/gpu/drm/tests/drm_kunit_helpers.h=0D
-@@ -0,0 +1,9 @@=0D
-+#ifndef DRM_KUNIT_HELPERS_H_=0D
-+#define DRM_KUNIT_HELPERS_H_=0D
-+=0D
-+struct drm_device;=0D
-+=0D
-+struct drm_device *drm_kunit_device_init(const char *name);=0D
-+void drm_kunit_device_exit(struct drm_device *drm);=0D
-+=0D
-+#endif // DRM_KUNIT_HELPERS_H_=0D
-=0D
--- =0D
-b4 0.10.0-dev-65ba7=0D
+Hi Maxime,
+
+W dniu 5.09.2022 o 15:32, Maxime Ripard pisze:
+> Hi,
+>
+> On Wed, Aug 31, 2022 at 10:14:28AM +0200, Geert Uytterhoeven wrote:
+>>>> +enum drm_mode_analog {
+>>>> +    DRM_MODE_ANALOG_NTSC,
+>>>> +    DRM_MODE_ANALOG_PAL,
+>>>> +};
+>>>
+>>> Using "NTSC" and "PAL" to describe the 50Hz and 60Hz analog TV modes is common,
+>>> but strictly speaking a misnomer. Those are color encoding systems, and your
+>>> patchset fully supports lesser used, but standard encodings for those (e.g.
+>>> PAL-M for 60Hz and SECAM for 50Hz). I'd propose switching to some more neutral
+>>> naming scheme. Some ideas:
+>>>
+>>> - DRM_MODE_ANALOG_60_HZ / DRM_MODE_ANALOG_50_HZ (after standard refresh rate)
+>>> - DRM_MODE_ANALOG_525_LINES / DRM_MODE_ANALOG_625_LINES (after standard line
+>>>   count)
+>>
+>> IMHO these are bad names, as e.g. VGA640x480@60 is also analog, using
+>> 60 Hz and 525 lines.  Add "TV" to the name?
+>>
+>>> - DRM_MODE_ANALOG_JM / DRM_MODE_ANALOG_BDGHIKLN (after corresponding ITU System
+>>>   Letter Designations)
+>>
+>> Or DRM_MODE_ITU_*?
+>> But given the long list of letters, this looks fragile to me.
+>
+> Does it matter at all? It's an internal API that isn't exposed at all.
+> I'd rather have a common name that everyone can understand in this case
+> rather than a *perfect* name where most will scratch their head
+> wondering what it's about.
+
+You may have a point. But in that case, maybe it'd make sense to at least add
+a short comment explaining what do you mean by "NTSC" and "PAL" in this context?
+
+Best regards,
+Mateusz Kwiatkowski
