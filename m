@@ -4,64 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50122ECAAA1
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:33:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97547C54EE9
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:33:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A5C610EAD3;
-	Tue,  6 Sep 2022 20:33:15 +0000 (UTC)
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F5C610F298;
- Mon, 29 Aug 2022 13:20:49 +0000 (UTC)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id 3A4012B05FD7;
- Mon, 29 Aug 2022 09:12:48 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute2.internal (MEProxy); Mon, 29 Aug 2022 09:12:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-transfer-encoding:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778767; x=
- 1661785967; bh=6PNL3E05HqgK9IW/MtDEQBeUSg/jnNc6krZQZz7WWqU=; b=S
- CrmkmWG+i+etfnzZ/jW3Y/UWhtS9n8Tx3Mi1wBI/2ps7AfxEAHmgC9ChWUa9RSX/
- fkIfNETMt9ipYhmeM2jNWGAeVHnDQeOdpzSivQXBg1z8viUKEHihiX6qUUwi8Icx
- WYELVnyFExAByIdK3vMTVoCIHtOiMAjEjtRl6UfBPOHkOQe6AAHqscTYxTunEdBR
- y0zBUpDKvNbHYKT2yKehiJXJ6DvcdgzrqEtSoOTsNAr6C5frVJGR91FZnsKJcn8S
- vI/I9R4rWZGVATEVVhWykj/ThLdsDQ5tHmxZy0lbzvkvsU4Soh0ABEuQbyiWyB0I
- /ko2ZM9j3xfI4EqgtVbfA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778767; x=
- 1661785967; bh=6PNL3E05HqgK9IW/MtDEQBeUSg/jnNc6krZQZz7WWqU=; b=s
- bCXQbOmwgGQejzwb7lDjTyCP4/nXAv1nQzo9pqqyVqE7JxCZe8fwO/6vxIMhmPS+
- 9jXzOHoH56gSFpxXdj6b8NxHUO/m6QWvT9lZjU3TlMXNMttfWoxf+5rrHYMzClzh
- lRLACh7k0K3BLb/3j0m1/PQ/mKpYfnfaJY62uWUVr/r1eLe8Ww32IMHJNQ3faCf/
- G4iCgS8yZ+vB3vDgppF3MWGiUaExqKhHv9UsouScEg7Z+P3fwXRKqb/aqNKtTyyq
- uv5JMeFR0Dn0IUHQtdJfyQK5Iy8nrdJ5EcvqJLKl+RRGbOtq4ZUkNqTewP+RnYlR
- V2gQYsmjbYmJz02Pi8Nsw==
-X-ME-Sender: <xms:T7sMY_jPT6dwQOA4BCu5LdXKEyY3JXwP_zk-LHkYdIBhyPpUCwvpDQ>
- <xme:T7sMY8B4agLnKGuRwwlFHsr00_SzMW7ZUfTz4HGmIk0TrQTvdEDBqSuSbDEuYOZkg
- Qnj5b_GTgRkAMvPnzA>
-X-ME-Received: <xmr:T7sMY_FBMng_G1f4uWnfBSOYILxtXUpFCGZ7MHSM6BNKDWsMKm02O5FTQ2Da>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieefucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhephffvvefufffkofgjfhggtgfogfesthhqredtredtjeenucfhrhhomhepofgr
- gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
- frrghtthgvrhhnpeefiedvfefggffgffehveejieffuddtgffhjefggeetieduvdeileet
- lefgveegtdenucevlhhushhtvghrufhiiigvpedvnecurfgrrhgrmhepmhgrihhlfhhroh
- hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:T7sMY8QFtGEVYPHVigOnhSYdkOxABWsrfVHiGyWjWogYCw_MexauLg>
- <xmx:T7sMY8xQyNvqOR0x08HW_yCl8KDqoujGm1zjppqlEBgFWffoduCdDA>
- <xmx:T7sMYy5L2HGUCkedtkrToySWGVCELLnPoI8dhrpzF4SJjMLl8MPbcA>
- <xmx:T7sMY-olBjx9ozhnzgCaWgsvJW1Ydho-X4hekT6-pqvZPkUi-UqadSvzSvE>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 29 Aug 2022 09:12:46 -0400 (EDT)
-From: Maxime Ripard <maxime@cerno.tech>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F74310EAD6;
+	Tue,  6 Sep 2022 20:33:16 +0000 (UTC)
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com
+ [IPv6:2a00:1450:4864:20::530])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BF1010EA76;
+ Tue,  6 Sep 2022 20:04:36 +0000 (UTC)
+Received: by mail-ed1-x530.google.com with SMTP id w2so16681810edc.0;
+ Tue, 06 Sep 2022 13:04:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+ bh=plI2ccCtxFfQQaA/IHicso25P4hNeiGkni4LSwxPbm4=;
+ b=Oa0+iWZ5DBGIMbtbaWYlC5APlU/wi67OB46kQ8Fked1WkqCJO7eSuYV4pXcpMtsrLh
+ h4m8ns9bM2EwwF1pb3EvhBxIuI6zX9ev0R6fn6dUX6ngsdv7SQcvBDNqWnFLGSyURMsG
+ 3t1udFKm1hYrJJ9BkltIYCn31OmFy6AZPUQ8/Sj6T1LlhFdQjhA57LTt7OJxR5vTJLKR
+ IuunwxnSMYyOBJoMqzyfHehMGdq3P/FdVikYQbvRTcieYwm9qSRwWDkFuVFhqCAaAZGj
+ eCCSN7KdX2r0rqA0gSJxLFOqvSdqphm5EeP5zTMWlKZ20BzoIgCkXDmhh8P46XPQ9TEb
+ YhLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date;
+ bh=plI2ccCtxFfQQaA/IHicso25P4hNeiGkni4LSwxPbm4=;
+ b=5o13LKN2PkvV/C9fZ56DE8aPboCVafCeagRc5KCDQGrIievs7C5BiKEAx4229tU7C1
+ LGNEbq++oGbdSwKjZylg8SHZzsVlPz7H1Egq0lPg8t/5ZPEEz9abCQTkoPUtXFUtHxAT
+ NQZBrAExsdiNzDxW1h4PLP3oAKGagLmtabN/jwXuD0Opj+WIjD+dnxuNS3h5UPX3mYq/
+ ouuudtPwFFP1sOGPjsVjby/0r38hRrAfQiDOiSoMRcT3t90DftPC8x5rbmMBLzxDgiyf
+ sNNJNFrSVCEcxLNjhw+kWw5XEbu6K4KaUIBqtc5HPrluHaK+WcGKCk0xMMZYs7FhUm/0
+ wteQ==
+X-Gm-Message-State: ACgBeo0qcwIj7Susj4vc9tFLGsohlan9NeknoTjT0jbw9IJj5gK4CoR+
+ WkbsmpiqDkAqMT7FO2Jm9Kk=
+X-Google-Smtp-Source: AA6agR6Kk9aCcEfrY5Ey5jOi/kWmdkQVgNAUGJ16H1QclaprIGEZQnyZQvab5nv2idHUjXMCwzagDQ==
+X-Received: by 2002:a05:6402:911:b0:44e:a5b4:74f7 with SMTP id
+ g17-20020a056402091100b0044ea5b474f7mr211765edz.249.1662494675009; 
+ Tue, 06 Sep 2022 13:04:35 -0700 (PDT)
+Received: from kista.localnet (82-149-1-172.dynamic.telemach.net.
+ [82.149.1.172]) by smtp.gmail.com with ESMTPSA id
+ i6-20020a170906850600b0073d9a0d0cbcsm7193709ejx.72.2022.09.06.13.04.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 06 Sep 2022 13:04:33 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
 To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
  David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
  Thomas Zimmermann <tzimmermann@suse.de>,
@@ -70,30 +57,22 @@ To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
  Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
- =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Noralf =?ISO-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
  Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Mon, 29 Aug 2022 15:11:21 +0200
-Message-Id: <20220728-rpi-analog-tv-properties-v2-7-459522d653a7@cerno.tech>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Maxime Ripard <maxime@cerno.tech>
+Date: Tue, 06 Sep 2022 22:04:32 +0200
+Message-ID: <10138422.nUPlyArG6x@kista>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v2-36-459522d653a7@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-36-459522d653a7@cerno.tech>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.10.0-dev-65ba7
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1503; i=maxime@cerno.tech;
- h=from:subject:message-id; bh=360DckfKUI/oiBSyUvmkKcjfDELX/wp7WZq7mSLzHYY=;
- b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8u+R9F749fcX+URp/0+mNklts/+osLbExydeqlHnk5xCx
- cO2hjlIWBjEuBlkxRZYYYfMlcadmve5k45sHM4eVCWQIAxenAEzEdwfDf2eNYsvfu42bnU+zT+xnfO
- Q79+f8ozt6fzV8Prf4WvmC2SGMDP31u7j2GFU3anCHMd34KpJz8v3pBU7M7drctyrSzPUOsgEA
-X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
- fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
-Subject: [Nouveau] [PATCH v2 07/41] drm/connector: Only register TV mode
- property if present
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:03 +0000
+Subject: Re: [Nouveau] [PATCH v2 36/41] drm/sun4i: tv: Merge mode_set into
+ atomic_enable
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,48 +94,78 @@ Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The drm_create_tv_properties() will create the TV mode property=0D
-unconditionally.=0D
-=0D
-However, since we'll gradually phase it out, let's register it only if we=0D
-have a list passed as an argument. This will make the transition easier.=0D
-=0D
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>=0D
-Acked-by: Noralf Tr=C3=B8nnes <noralf@tronnes.org>=0D
-=0D
-diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connecto=
-r.c=0D
-index ede6025638d7..17a5913cefe3 100644=0D
---- a/drivers/gpu/drm/drm_connector.c=0D
-+++ b/drivers/gpu/drm/drm_connector.c=0D
-@@ -1686,15 +1686,18 @@ int drm_mode_create_tv_properties(struct drm_device=
- *dev,=0D
- 	if (drm_mode_create_tv_margin_properties(dev))=0D
- 		goto nomem;=0D
- =0D
--	dev->mode_config.legacy_tv_mode_property =3D=0D
--		drm_property_create(dev, DRM_MODE_PROP_ENUM,=0D
--				    "mode", num_modes);=0D
--	if (!dev->mode_config.legacy_tv_mode_property)=0D
--		goto nomem;=0D
- =0D
--	for (i =3D 0; i < num_modes; i++)=0D
--		drm_property_add_enum(dev->mode_config.legacy_tv_mode_property,=0D
--				      i, modes[i]);=0D
-+	if (num_modes) {=0D
-+		dev->mode_config.legacy_tv_mode_property =3D=0D
-+			drm_property_create(dev, DRM_MODE_PROP_ENUM,=0D
-+					    "mode", num_modes);=0D
-+		if (!dev->mode_config.legacy_tv_mode_property)=0D
-+			goto nomem;=0D
-+=0D
-+		for (i =3D 0; i < num_modes; i++)=0D
-+			drm_property_add_enum(dev->mode_config.legacy_tv_mode_property,=0D
-+					      i, modes[i]);=0D
-+	}=0D
- =0D
- 	dev->mode_config.tv_brightness_property =3D=0D
- 		drm_property_create_range(dev, 0, "brightness", 0, 100);=0D
-=0D
--- =0D
-b4 0.10.0-dev-65ba7=0D
+Dne ponedeljek, 29. avgust 2022 ob 15:11:50 CEST je Maxime Ripard napisal(a):
+> Our mode_set implementation can be merged into our atomic_enable
+> implementation to simplify things, so let's do this.
+
+Are you sure this is a good thing in long term? What if user wants to change 
+mode? Unlikely, but why not.
+
+Best regards,
+Jernej
+
+> 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> 
+> diff --git a/drivers/gpu/drm/sun4i/sun4i_tv.c
+> b/drivers/gpu/drm/sun4i/sun4i_tv.c
+> index f7aad995ab5b..3944da9a3c34 100644
+> --- a/drivers/gpu/drm/sun4i/sun4i_tv.c
+> +++ b/drivers/gpu/drm/sun4i/sun4i_tv.c
+> @@ -359,23 +359,13 @@ static void sun4i_tv_enable(struct drm_encoder
+> *encoder,
+ {
+>  	struct sun4i_tv *tv = drm_encoder_to_sun4i_tv(encoder);
+>  	struct sun4i_crtc *crtc = drm_crtc_to_sun4i_crtc(encoder->crtc);
+> -
+> -	DRM_DEBUG_DRIVER("Enabling the TV Output\n");
+> -
+> -	sunxi_engine_apply_color_correction(crtc->engine);
+> -
+> -	regmap_update_bits(tv->regs, SUN4I_TVE_EN_REG,
+> -			   SUN4I_TVE_EN_ENABLE,
+> -			   SUN4I_TVE_EN_ENABLE);
+> -}
+> -
+> -static void sun4i_tv_mode_set(struct drm_encoder *encoder,
+> -			      struct drm_display_mode *mode,
+> -			      struct drm_display_mode 
+*adjusted_mode)
+> -{
+> -	struct sun4i_tv *tv = drm_encoder_to_sun4i_tv(encoder);
+> +	struct drm_crtc_state *crtc_state =
+> +		drm_atomic_get_new_crtc_state(state, encoder->crtc);
+> +	struct drm_display_mode *mode = &crtc_state->mode;
+>  	const struct tv_mode *tv_mode = sun4i_tv_find_tv_by_mode(mode);
+>  
+> +	DRM_DEBUG_DRIVER("Enabling the TV Output\n");
+> +
+>  	/* Enable and map the DAC to the output */
+>  	regmap_update_bits(tv->regs, SUN4I_TVE_EN_REG,
+>  			   SUN4I_TVE_EN_DAC_MAP_MASK,
+> @@ -468,12 +458,17 @@ static void sun4i_tv_mode_set(struct drm_encoder
+> *encoder,
+> SUN4I_TVE_RESYNC_FIELD : 0));
+>  
+>  	regmap_write(tv->regs, SUN4I_TVE_SLAVE_REG, 0);
+> +
+> +	sunxi_engine_apply_color_correction(crtc->engine);
+> +
+> +	regmap_update_bits(tv->regs, SUN4I_TVE_EN_REG,
+> +			   SUN4I_TVE_EN_ENABLE,
+> +			   SUN4I_TVE_EN_ENABLE);
+>  }
+>  
+>  static const struct drm_encoder_helper_funcs sun4i_tv_helper_funcs = {
+>  	.atomic_disable	= sun4i_tv_disable,
+>  	.atomic_enable	= sun4i_tv_enable,
+> -	.mode_set	= sun4i_tv_mode_set,
+>  };
+>  
+>  static int sun4i_tv_comp_get_modes(struct drm_connector *connector)
+> 
+> -- 
+> b4 0.10.0-dev-65ba7
+
+
+
