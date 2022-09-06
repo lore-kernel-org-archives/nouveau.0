@@ -4,64 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28FDEC54EE9
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1D7FC38145
+	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:32:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04E3D10EAA2;
-	Tue,  6 Sep 2022 20:31:27 +0000 (UTC)
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C21E10F2C4;
- Mon, 29 Aug 2022 13:25:50 +0000 (UTC)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailnew.west.internal (Postfix) with ESMTP id 0476E2B06062;
- Mon, 29 Aug 2022 09:14:01 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute1.internal (MEProxy); Mon, 29 Aug 2022 09:14:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-transfer-encoding:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm3; t=1661778841; x=
- 1661786041; bh=yoaENtujWDk2YoyUfMlWzPbfHesL4mBWigqPk9djZvs=; b=f
- d9mQL3XqdfvxkmnIOAr4zeHb8+fyR98wQCL6yRhZGsZL9hiDIpvmv0HpX8Txvql7
- Q9bWee+eLxH+EEYGTgo8BQYBI4j7bQj301VJI0O7r/aJkvkb8BcyJStBMYEiidYm
- txaVLVN5SVmtC20Y7sQBbZJRB3iuQNY7pVbUDLifp73Wzqr6u2kHsDhNubXQcqEl
- vHI15lEijNN1+rlj2tEKQtinuk5QKUw+CN2JoHBEGhC0rbiWKA7u4G4enTH4udVa
- hbNqiM7x+6F/u0vaZSfW1VfFmqQB66uefjwPJoPFVUGl0jFcGKnbjDa2wNoI9F1N
- uw6FSQ0vZ/jYKqLZOLB6Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661778841; x=
- 1661786041; bh=yoaENtujWDk2YoyUfMlWzPbfHesL4mBWigqPk9djZvs=; b=d
- Zk9nwZmUpnx+HmXyKpkJCVr7ucshcCzqh0RWAW2vVqikaUE2XhsiK7xDEofNcCxb
- 9Y5RET5Qfpp5DZ+6+cqHcrH+4/nJf44AYd5SEYfmuMVD13Nc2ZjszQNFRxdz7g0W
- +zBpYpFxVQmo7o3jwrROWksR2nyR9PPjEnSdu7ASowlbkh7NaErSymJdsT6lPi6m
- 118EvdFCzeVvycRHKD4pmzh3yP9QBIzJ9+2p4oQ88cDwCX8B7lq1g8Rp86SVd63G
- ORYTQSzlsNiwTeLRbI4zyVxa1WBoHojra06jN5Lh++GMVM80DOc8ik4FqpGuPH6J
- CFLeI1nT+Z/NIz77Z1yfw==
-X-ME-Sender: <xms:mLsMYzDY7jXexFNkm617fj3SANggZaDmQ94vKX0Tb3-WFy52uw48vQ>
- <xme:mLsMY5hII8F1IqQ03qu1XVk_23US0_iDkkNRf9otQJUqP4MqJksLk_ftayqA9ZYv4
- v_YU_NjjuKp0DoVMJA>
-X-ME-Received: <xmr:mLsMY-nQvqLIlO16hoIJch4AHhXzwpkY5cj7Ek6PHpl28lvh3BQsiE5IaDSc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekuddgieefucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhephffvvefufffkofgjfhggtgfogfesthhqredtredtjeenucfhrhhomhepofgr
- gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
- frrghtthgvrhhnpeefiedvfefggffgffehveejieffuddtgffhjefggeetieduvdeileet
- lefgveegtdenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhroh
- hmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:mLsMY1y1n6SVjuUdhToUIWfOCIKkG6IuIDinUY11zIk6MLyfrw0fRA>
- <xmx:mLsMY4SkBMplSM0gdeJl0oVGscW_NrbxLi1p_HDSMje61lv4hyCqgQ>
- <xmx:mLsMY4ZAX9IDWbruNd-tYW384PkvVDLwI0QdaAk4Ru7MXnsVgIUdpw>
- <xmx:mbsMYwKjjHZVlJYCK6NPN206XpiWizW0FbJcWPYZEgUXmmfoOTsEXWQUXTw>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 29 Aug 2022 09:13:59 -0400 (EDT)
-From: Maxime Ripard <maxime@cerno.tech>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE65610EAA3;
+	Tue,  6 Sep 2022 20:31:28 +0000 (UTC)
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com
+ [IPv6:2a00:1450:4864:20::536])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A46C10E173;
+ Tue,  6 Sep 2022 20:06:14 +0000 (UTC)
+Received: by mail-ed1-x536.google.com with SMTP id a70so472036edf.10;
+ Tue, 06 Sep 2022 13:06:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+ bh=Ck2CZ63xlROKRuum+VYM3RwNiQt6GcNFVn5yjUBlhbU=;
+ b=ga9QR8QkKm4EnEDibK+a4UuClq5Nes777nVtiyAuRinh0/Ie7mM1tSBVCLqEH1ugiO
+ IlouNRGGlGMh8PAy0X4s9054Xim8TCwe/VTCAwjrlTZXNA3deVSy1W+0kPuHUKF5mEwa
+ VTWo3H/ib5eNxXgdPa14jDUVTGHJ2tK67OXVAXeaI/dAT1e8V0IliyVBcbFMyNqRUK8J
+ Nl9Ll59iDrM4I1zhPVWBkq3EN3RcA+ihfnEWg5akxMCg2CZM9H0H54FiZ+VU7vHQEVyq
+ o1TomSxBabXQ1G2qK6IA+bOsodqiGTNWSOoMkVt0Vubj6i/Ya4sZOl9R2Aq5jCViRSCd
+ ZuHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date;
+ bh=Ck2CZ63xlROKRuum+VYM3RwNiQt6GcNFVn5yjUBlhbU=;
+ b=hr3tRtNkjrpztCc/LxaL2A007hkvE5oF411ymyNWlXPsJmnKj37Cef+5xsMiqxodUP
+ tTvCh0Y6oDpuUiTWNfF1BWvTrGIpUkefwrpNYREScYiqBii+ZztdbJ6knAgBMuZ9jv/K
+ yt24N/6KeND76rTukE3tprV/xcglMRbpd2cQQNUZ5Kk2ApUwmp/XUJLT4DpbV+sm5iuE
+ 9SnuYCpWzybC/r1+Cm3Pj3OYT4zAf5+6EQmsbjH5udKvLR4hlW7iwpbZ0L8HtsPhN+ql
+ jyiIVG3QqmPggybGYAd3cDnFLx9+yU5RhzIXFIygn4iU55fkgP5JpBNfr5/dnZPuWSuW
+ utIQ==
+X-Gm-Message-State: ACgBeo02rxhxuxHbYJw4ms/XlAasiMLQpCfBJPsDGzrbi/vLzdeqKPYG
+ bwwP/MtCXbeWVDlfQUN2hlo=
+X-Google-Smtp-Source: AA6agR7CUAhPy+9MFPuH6DzgDy2S60+/E2h57c49ihYMLFNyPbmAh/8ehJuHA/jwsSZISEkVJfO+GA==
+X-Received: by 2002:aa7:d803:0:b0:44e:af34:e47e with SMTP id
+ v3-20020aa7d803000000b0044eaf34e47emr233791edq.310.1662494773089; 
+ Tue, 06 Sep 2022 13:06:13 -0700 (PDT)
+Received: from kista.localnet (82-149-1-172.dynamic.telemach.net.
+ [82.149.1.172]) by smtp.gmail.com with ESMTPSA id
+ wl23-20020a170907311700b0073d645e6dd8sm7123443ejb.223.2022.09.06.13.06.11
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 06 Sep 2022 13:06:12 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
 To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
  David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
  Thomas Zimmermann <tzimmermann@suse.de>,
@@ -70,30 +57,22 @@ To: Maxime Ripard <mripard@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
  Samuel Holland <samuel@sholland.org>, Karol Herbst <kherbst@redhat.com>,
- =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Noralf =?ISO-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
  Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Mon, 29 Aug 2022 15:11:32 +0200
-Message-Id: <20220728-rpi-analog-tv-properties-v2-18-459522d653a7@cerno.tech>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Maxime Ripard <maxime@cerno.tech>
+Date: Tue, 06 Sep 2022 22:06:10 +0200
+Message-ID: <1903427.PYKUYFuaPT@kista>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v2-37-459522d653a7@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-37-459522d653a7@cerno.tech>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.10.0-dev-65ba7
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2253; i=maxime@cerno.tech;
- h=from:subject:message-id; bh=aZsDW2fSgZ75fEDwwGs+4i//mN9OlBrWjoxn+bTDlQ8=;
- b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMk8uxQ0Od59aMvJeOlf+r7704+U5q/Xu9L2p4hudt7KdeN/
- 3luBjlIWBjEuBlkxRZYYYfMlcadmve5k45sHM4eVCWQIAxenAEyEK5yRocE8o/WP67Zfy0uWT3M43j
- 7bX/L3IbvtpSs1/CPaTl3bvYbhf16R29Onf/1nFLmkX1/6/Of5hpmyDR03D3me3PUwKfsqExcA
-X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
- fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
-Subject: [Nouveau] [PATCH v2 18/41] drm/connector: Add a function to lookup
- a TV mode by its name
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:03 +0000
+Subject: Re: [Nouveau] [PATCH v2 37/41] drm/sun4i: tv: Remove useless
+ function
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,68 +94,15 @@ Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As part of the command line parsing rework coming in the next patches,=0D
-we'll need to lookup drm_connector_tv_mode values by their name, already=0D
-defined in drm_tv_mode_enum_list.=0D
-=0D
-In order to avoid any code duplication, let's do a function that will=0D
-perform a lookup of a TV mode name and return its value.=0D
-=0D
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>=0D
-=0D
-diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connecto=
-r.c=0D
-index b1fcacd150e8..0fe01a1c20ad 100644=0D
---- a/drivers/gpu/drm/drm_connector.c=0D
-+++ b/drivers/gpu/drm/drm_connector.c=0D
-@@ -1003,6 +1003,30 @@ static const struct drm_prop_enum_list drm_tv_mode_e=
-num_list[] =3D {=0D
- };=0D
- DRM_ENUM_NAME_FN(drm_get_tv_mode_name, drm_tv_mode_enum_list)=0D
- =0D
-+/**=0D
-+ * drm_get_tv_mode_from_name - Translates a TV mode name into its enum val=
-ue=0D
-+ * @name: TV Mode name we want to convert=0D
-+ * @len: Length of @name=0D
-+ *=0D
-+ * Translates @name into an enum drm_connector_tv_mode.=0D
-+ *=0D
-+ * Returns: the enum value on success, a negative errno otherwise.=0D
-+ */=0D
-+int drm_get_tv_mode_from_name(const char *name, size_t len)=0D
-+{=0D
-+	unsigned int i;=0D
-+=0D
-+	for (i =3D 0; i < ARRAY_SIZE(drm_tv_mode_enum_list); i++) {=0D
-+		const struct drm_prop_enum_list *item =3D &drm_tv_mode_enum_list[i];=0D
-+=0D
-+		if (strlen(item->name) =3D=3D len && !strncmp(item->name, name, len))=0D
-+			return item->type;=0D
-+	}=0D
-+=0D
-+	return -EINVAL;=0D
-+}=0D
-+EXPORT_SYMBOL(drm_get_tv_mode_from_name)=0D
-+=0D
- static const struct drm_prop_enum_list drm_tv_select_enum_list[] =3D {=0D
- 	{ DRM_MODE_SUBCONNECTOR_Automatic, "Automatic" }, /* DVI-I and TV-out */=
-=0D
- 	{ DRM_MODE_SUBCONNECTOR_Composite, "Composite" }, /* TV-out */=0D
-diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h=0D
-index bb39d2bb806e..49d261977d4e 100644=0D
---- a/include/drm/drm_connector.h=0D
-+++ b/include/drm/drm_connector.h=0D
-@@ -1943,6 +1943,8 @@ const char *drm_get_dp_subconnector_name(int val);=0D
- const char *drm_get_content_protection_name(int val);=0D
- const char *drm_get_hdcp_content_type_name(int val);=0D
- =0D
-+int drm_get_tv_mode_from_name(const char *name, size_t len);=0D
-+=0D
- int drm_mode_create_dvi_i_properties(struct drm_device *dev);=0D
- void drm_connector_attach_dp_subconnector_property(struct drm_connector *c=
-onnector);=0D
- =0D
-=0D
--- =0D
-b4 0.10.0-dev-65ba7=0D
+Dne ponedeljek, 29. avgust 2022 ob 15:11:51 CEST je Maxime Ripard napisal(a):
+> The drm_connector_to_sun4i_tv() function isn't used anywhere in the driver,
+> so let's remove it.
+> 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Best regards,
+Jernej
+
+
