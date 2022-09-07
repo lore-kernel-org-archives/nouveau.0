@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45A47C38145
-	for <nouveau@archiver.kernel.org>; Wed,  7 Sep 2022 08:37:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63499C38145
+	for <nouveau@archiver.kernel.org>; Wed,  7 Sep 2022 08:37:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B619510E4A0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B2F410E49D;
 	Wed,  7 Sep 2022 08:36:39 +0000 (UTC)
 Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
  [64.147.123.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4D2B10E495;
- Wed,  7 Sep 2022 08:36:31 +0000 (UTC)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id 6E4912B059B3;
- Wed,  7 Sep 2022 04:36:28 -0400 (EDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96E2810E495;
+ Wed,  7 Sep 2022 08:36:17 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailnew.west.internal (Postfix) with ESMTP id 4245E2B05918;
+ Wed,  7 Sep 2022 04:36:14 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
- by compute2.internal (MEProxy); Wed, 07 Sep 2022 04:36:31 -0400
+ by compute3.internal (MEProxy); Wed, 07 Sep 2022 04:36:17 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
  :cc:content-transfer-encoding:content-type:date:date:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm2; t=1662539787; x=
- 1662546987; bh=po9Xm858L0cddUdWZdiBQdG3q0GGzu520DX8oi90AHk=; b=t
- nTK9Vm0HxO6Dz2vyUXzwimDbDYlwCmlQyjZ7GgmLgpSPym19UNCgba9j/hZgbPDz
- plhRvnZE4tkFDfA6QEu6H1SZUmHSmkaJf7AMF6I6ULSerLZJKaNGn1JXx+5ve9xA
- lfOSLypV51NKc+drg+SY7e97CeM7MVg45FovCocuWRudrN+ynqGtiYIixTIT4sUW
- LO2RJy8hNgXQCKO88w93cvEqVMlTHgy/jmPVvbr91vOfhCzesjnMPGP8HkZZUvy6
- BldlOyGN/fmSRsPmNbG7bPzZPaIjP5yj5G7vQ6a587hK4mvNc6meprt8abnJP83g
- ZwmgfCcRFk7OhyTLTw76Q==
+ :reply-to:sender:subject:subject:to:to; s=fm2; t=1662539773; x=
+ 1662546973; bh=rLFNfQ2mi/UOeK131VY+ISj9/vvbSVnssaatn4l2ajw=; b=J
+ CjPBQQxAlWPg2C7odV5L7gB7R7vuVeN8kgJQ7iaa28d++BExy7+V5pE4aR8+ZbjH
+ Ib99hn0RC3k9OqLHu3tB5qyHDikiBh4Wg8Ll4TqUB2ucnwVE3dRKoqwqC7reyBbB
+ L4GAFUI4j8D2z9esUCjOH42UW2/uJiUV5Y8Cno7MjENu5Ba8Nba3V4mj2aZFcZX4
+ nAn5UnMzBew5+2S1K8iGPQ90UkDmQBM1k0QF2TIMYfi0ndJXHWlAHissCJP4G8xp
+ qli6HXewXKAjkfBz9TbCgyp39h9GOO6WOxWPwHxM24rQJvIqeBxPctikfMia1O1u
+ 4XyGAtO/EkyqK/s3hJE1Q==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-transfer-encoding
  :content-type:date:date:feedback-id:feedback-id:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
  :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1662539787; x=
- 1662546987; bh=po9Xm858L0cddUdWZdiBQdG3q0GGzu520DX8oi90AHk=; b=A
- p4Fx1/TRiqWHa2y+oaJMxELoiun10IIXj8MIAzE6xrPWAvQGG9d1qXZlRbJckUVI
- Afn2O/7fWg1JIShzwNabM1Zqtgqwkas36Abyp2CI9omix1KWyotBFbLeklVmTpvc
- 3NJFOSZcdGRpwwVOPEqwssZELovxLmPJSavIm6iZzqyem8pT8yAyPLn7sLEjXhZv
- E8n9cb3wsXE+OGIfVDJV2ZT8OY3jnqFXP+zXxB027LDU3vO3oUzefyq3Quwji6DD
- doWWRBw+Add2E8xo0L1F7kImsTlOFCSR1AXxta8JD7VY7hHUHO3JBrxRUmiidXGU
- rfVL3Hu5Tdx+gUaxx321A==
-X-ME-Sender: <xms:C1gYYylGD6PWkNVmDgOax7oZftfh_BO6Gf7nxG5yoqLDm2MD0IjtLA>
- <xme:C1gYY53RS6pV--bsb_FfxREhb_VFJ7q04WWXl2UfcddOlFmKt462GNtq31Nk0ebdi
- OVu7JQZ4ZnYitCXX8Q>
-X-ME-Received: <xmr:C1gYYwqmt_rIHWH1uPAalaANaiwhDkntB5WnmdwLlVO5IaXC2N4JGtMwVOc>
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1662539773; x=
+ 1662546973; bh=rLFNfQ2mi/UOeK131VY+ISj9/vvbSVnssaatn4l2ajw=; b=t
+ NCRLRHxqulbbxBV03PmIAmnOKYjLg6BB3AkP51Kd9rwWBgEXLFAEKwAVVL8rEIct
+ k1M0C24iHmsWnGy6e7bfU2n0uwQOzW2N7HwmpwfVip3CNRiailPddb0peJOOmNp6
+ Q/2j6QGCUa/tC8N/VexznK+eeidLaQ4dMcfp9lp+VecRB2+P5SQ0kzJK6uHcDn/6
+ kwbjoZoopdUPnCezeINTW1rgO167o67vbA/vhEbGOnuAiHF7fYr9HkgcoCmwqthA
+ kvR/MCPW9W8lrwrK8EGxeHQsnE0aIPI9j8cYZ8ReokwLYoX4H6eo0LqKnz0EmZsA
+ qI9+dWuF8bC7hGfvpX0vQ==
+X-ME-Sender: <xms:_VcYY3xPXPFnJZN-wnJtxmMSr0kRGTtOMVxgttFEryuKj1LuSlL4tw>
+ <xme:_VcYY_Rb_ckUNXJRr4nC2U0Q4ak94pm7DrtGsIykRFrW_TbSDaB7OU-zj-uTMAEBF
+ rI9MFyrCTGthBr7Rxk>
+X-ME-Received: <xmr:_VcYYxW3zfU4-h0vcRIpL4vSiZOhuMjeYGDBnESxmfLCa99wLBfFLMpyp28>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfedttddgtdegucetufdoteggodetrfdotf
  fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
  uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
@@ -54,38 +54,38 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfedttddgtdegucetufdoteggod
  grthhtvghrnhepueeigefghfffffeifeehudeiuedvteegueefffevgfetvdffheehkeff
  vedufeeinecuvehluhhsthgvrhfuihiivgepfeenucfrrghrrghmpehmrghilhhfrhhomh
  epmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:C1gYY2kaesFMDJteUnwOJadqi1nctjmr8fclh3Ryv7ySqWHqbuSAWQ>
- <xmx:C1gYYw1Zx7eHWPn0Y4zhHvMgszuf8E1s_xe6MwkEuUZ6W3d-f-vPlQ>
- <xmx:C1gYY9s0xTinewcUWfzthCh9e2S1kauqPhnlbLw5f3xuY6ZGzaMHyg>
- <xmx:C1gYY1_eV0VIiPvx_YzD44rNwJKuP3WfNv7tT5koXSbBBFao9odE-Tpb84U>
+X-ME-Proxy: <xmx:_VcYYxg-U71Q2w5G9kqWzUBCLE_kxC4MVisxf1YbAv_u0hVR1hB_pw>
+ <xmx:_VcYY5DEnrCheau8dIKSAgNn4hogEMBIL4hEip9BMVz2bFIbYdnCbw>
+ <xmx:_VcYY6Kt2W31GC47vlQ-ko8X5YaT_S6Hap2yy5dOZkxa3m6DWsfp1Q>
+ <xmx:_VcYY35pKGM0K__e8jjWgvlkINmxNaorg0ufB80uZK39PeT_eXPhHLE2fpY>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 7 Sep 2022 04:36:26 -0400 (EDT)
+ 7 Sep 2022 04:36:12 -0400 (EDT)
 From: Maxime Ripard <maxime@cerno.tech>
 To: David Airlie <airlied@linux.ie>, Samuel Holland <samuel@sholland.org>,
  Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
  Maxime Ripard <mripard@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
  Jani Nikula <jani.nikula@linux.intel.com>, Ben Skeggs <bskeggs@redhat.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Emma Anholt <emma@anholt.net>,
  =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Emma Anholt <emma@anholt.net>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lyude Paul <lyude@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Lyude Paul <lyude@redhat.com>,
+ Karol Herbst <kherbst@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Jernej Skrabec <jernej.skrabec@gmail.com>,
  Maxime Ripard <maxime@cerno.tech>
-Date: Wed,  7 Sep 2022 10:35:09 +0200
-Message-Id: <166253967462.2236193.8270005092779709066.b4-ty@cerno.tech>
+Date: Wed,  7 Sep 2022 10:35:07 +0200
+Message-Id: <166253967462.2236193.13167889603983513294.b4-ty@cerno.tech>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220728-rpi-analog-tv-properties-v2-40-459522d653a7@cerno.tech>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v2-38-459522d653a7@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
- <20220728-rpi-analog-tv-properties-v2-40-459522d653a7@cerno.tech>
+ <20220728-rpi-analog-tv-properties-v2-38-459522d653a7@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Nouveau] (subset) [PATCH v2 40/41] drm/sun4i: tv: Add missing
- reset assertion
+Subject: Re: [Nouveau] (subset) [PATCH v2 38/41] drm/sun4i: tv: Remove
+ useless destroy function
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,10 +106,9 @@ Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, 29 Aug 2022 15:11:54 +0200, Maxime Ripard wrote:
-> The reset line is deasserted at bind, and asserted if we ever encounter an
-> error there. However, it's never asserted in unbind which will lead to a
-> resource unbalance.
+On Mon, 29 Aug 2022 15:11:52 +0200, Maxime Ripard wrote:
+> Our destroy implementation is just calling the generic helper, so let's
+> just remove our function and directly use the helper.
 > 
 > 
 
