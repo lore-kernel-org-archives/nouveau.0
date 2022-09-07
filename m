@@ -4,76 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E416BC38145
-	for <nouveau@archiver.kernel.org>; Tue,  6 Sep 2022 20:33:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC43DECAAD3
+	for <nouveau@archiver.kernel.org>; Wed,  7 Sep 2022 07:41:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 593B310EAD7;
-	Tue,  6 Sep 2022 20:33:16 +0000 (UTC)
-Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
- [66.111.4.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AADC410E3A5;
- Mon,  5 Sep 2022 13:37:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7061310E3DC;
+	Wed,  7 Sep 2022 07:41:52 +0000 (UTC)
+Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com
+ [64.147.123.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27F8110E3D6;
+ Wed,  7 Sep 2022 07:41:45 +0000 (UTC)
 Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailnew.nyi.internal (Postfix) with ESMTP id 0AAC7580281;
- Mon,  5 Sep 2022 09:37:58 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute2.internal (MEProxy); Mon, 05 Sep 2022 09:37:58 -0400
+ by mailnew.west.internal (Postfix) with ESMTP id D52402B05879;
+ Wed,  7 Sep 2022 03:41:39 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute2.internal (MEProxy); Wed, 07 Sep 2022 03:41:42 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
  :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
  :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm3; t=1662385078; x=1662392278; bh=0O41lIsAoQ
- E7Npc7joN//WSwmuH7s7KunBYUx8/vABE=; b=X7HWNhyjGfDlsQRlHJm0m7wprr
- 6MFfZlhumCRQ3p4goinni3jIkeUQf4wueWlUdIWrJ4uEKSLLsgDihlVS7h8NI0So
- W3IBZU0nCWqt6lcprZaMfQt+MdhJHQnb/fikIDm3i2mWEKS1+83DLroJ5FL8rtla
- Zsg8ziSEc1AfokXUmnhpFS5GYU80ZBOAND76jLKH2U115nexXrrE6xPnki3ot+v2
- auZcnuSPcKaQd2WIhOUsvlmmO2uAQbXQaFNLN3V38gg6kejHXtkWIpGetN5hW1sF
- 3LSBVWWAshMasYkAzu3JsB75wgKmKhgFC++sTAEg98VImAOXbJogQmUo59Xg==
+ :subject:to:to; s=fm2; t=1662536499; x=1662543699; bh=y/msntKdqi
+ pj+ejDnjeq3oXEB7xQmRBAGIlH51MmHWE=; b=0ASl9C6mR2JMJ57u2qgHquxhFK
+ iVA9dUYYNSoFW3HVkNKZTO+8uwr9a6Fj/JbJcHJ3sW/n4A+fv3twntq80py1N6BE
+ TpdZw+aiJmEkIHDX78ZTWAaJl6+A/0AIkRL5jt5lHLxZCRuVNN9az3kImEy7bjDu
+ e9cIkIQnKAeGumwknFXlG5Zw0pz7R0jRuRT48BBz6Q0nNJmpyFDXyy2ZX+NIRq1G
+ ROApjkaFKXrWyLKH14m6Y5qp6EGXB8IaImBNbHd/uCeTEordLWBhom6z4Ri6itQM
+ 7fG5hj2twZnUtCscGT2JLGiszHJg8h9XBHn+VznC3VJR+b8azpY3jOft/5Ew==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
  :feedback-id:from:from:in-reply-to:in-reply-to:message-id
  :mime-version:references:reply-to:sender:subject:subject:to:to
  :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; t=1662385078; x=1662392278; bh=0O41lIsAoQE7Npc7joN//WSwmuH7
- s7KunBYUx8/vABE=; b=GVlBEYLqTO4rnteutkIbGoa1BxOG7P5pOdaf/SCczvni
- Rfs3e+UBVE6kP/hQvryAZs7xMI5vGrFmlmuLiwiBg06SBrWrAtKgDFwQEegEY8D+
- XUhaOOa8h1gGUUhCGMBRWQCsmOyo2Wcf3SdsqA+75+dpPtpyB3RJX9rqDf3RvsA7
- mflQjKITUnKFVg+NQVrIWR3UMuI36HLsgJxlJfUyj+UIRyImf1t+7SxiehvdEK19
- uCDv9GLBNMj4EhFJzFnis+tcFRCZzh7bhq0C7f9eGtBhJf/nf4+Lm/Trd0k7m21h
- bNCLgGwUYSP+DcrhHzxPLYy+eQ7DPmqfrWfXZ3Y6uw==
-X-ME-Sender: <xms:tfsVY8b0Kl6Ra5AnJ4dKw2JaW5T35FCq4jufnrR541SQPq3_pl7PLQ>
- <xme:tfsVY3Y4slKtxcZft9QOhBcaVSxasUXNI-SNEqtsWilOxLPalbRFyAzGkMr4FFPpJ
- nj9L4X6jjO-Ybs_bok>
-X-ME-Received: <xmr:tfsVY29mxKw0OakVqKVQU4WbRe3SXGMYOXjsLA2ZG1YhBY3YUjLFhNueEvw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeliedgieekucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
- mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
- htthgvrhhnpeejveefheefkeeiffegveelveetgffffeektdefuefhtedtgeejhefggedu
- ffffudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
- hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:tfsVY2rD3viHBtzbhj594zPV9bmkEUUK7yOUcbvgaugvOkJGSwXIqg>
- <xmx:tfsVY3o0ZmiIRr9Omgyv00mK4GPuoifoE87tADOUFvaDAbczazTmcA>
- <xmx:tfsVY0SQCPSmnmkPUS0J6DYFUboV1uF0JCC3rrxYIVhnds-z0q032A>
- <xmx:tvsVYwovTK2UsDiFCbTKDlmUEEVG_54Vq2mKbf3iP2ZX11gGa7md4A>
+ fm2; t=1662536499; x=1662543699; bh=y/msntKdqipj+ejDnjeq3oXEB7xQ
+ mRBAGIlH51MmHWE=; b=L7sJEzcOhJLtRU29J81qbMFqhlCjRJ78s+lS4UkTN35I
+ mJ0ztQLKKLJsrVEmIs48j/0LyEA3sCSpi72I0BuU7xVK0Or+3uS6y7/jgdaf59j+
+ MoNvxjgy/YvUIeaJJ2Sh3OD/opeWrHcGakOpugY5VhbxAw1NrljjLYlVdBz9POHR
+ FUr/Slrji681XDD7wpxX1Myr7vbMNpJcQxhMq2ZMdPAWMSBXIgFI2HPFZnydsmnx
+ WRR3+gtE8IQn7MZqb0OHDYsSVsRGIt1n5LChPQEIzjlhI2/keF07pgA+UektVb7b
+ I82sQwfu8yD9/o2Qvfb+cT5mzadzvWwcovM18ENhTQ==
+X-ME-Sender: <xms:MksYYwVncUW7PiRwsQFP8Pl6tYZ1h8QmNxnjxyY4ozlLumGybwZpvQ>
+ <xme:MksYY0l3aQpfy5ttitwFK-w0hMvekCDHdDZ5VaoZNQ_Yt_LAoMf2bjR7jARKOUAnP
+ uPV-d3sgR8SCM3HbIw>
+X-ME-Received: <xmr:MksYY0a4v2y0W68OkCY4zBJrOjgZ0zB4oLEn029t2UKbqg2ue_ilVwrMYIE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdelledguddvgecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvvefukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforgig
+ ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
+ grthhtvghrnhepheeuudefieehudeludevuefgtddvgffggefhleffvddvvdfgudeilefh
+ heeiiefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecuvehluhhsthgvrhfuih
+ iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
+ vggthh
+X-ME-Proxy: <xmx:MksYY_XFm2aTYEbFlm97pwKepkddGu_vuJOTn8OXbiLuYiAynDx7yw>
+ <xmx:MksYY6krTdQCeRcWWqpLiNfwWtdXBIOctTEM-1jU4em_YlNGFbTMoA>
+ <xmx:MksYY0cJyAjD2i8fl7D5nwp3Qo4cV5yRVJfXU12_PTIfe6NTPLT7Jw>
+ <xmx:M0sYY41lA31tNqmg20VQfh6esnzeLlCyNcIb8YWnzI4_LJFDLNpmDWSz62A>
 Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 5 Sep 2022 09:37:56 -0400 (EDT)
-Date: Mon, 5 Sep 2022 15:37:55 +0200
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 7 Sep 2022 03:41:37 -0400 (EDT)
+Date: Wed, 7 Sep 2022 09:41:34 +0200
 From: Maxime Ripard <maxime@cerno.tech>
-To: Mateusz Kwiatkowski <kfyatek@gmail.com>
-Message-ID: <20220905133755.gcmmntg3wnecyqjq@houat>
+To: Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Message-ID: <20220907074134.36yysxrnnpty4ngw@houat>
 References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
- <20220728-rpi-analog-tv-properties-v2-10-459522d653a7@cerno.tech>
- <242d272b-5b79-986c-9aaf-64e62f6b37ff@gmail.com>
+ <20220728-rpi-analog-tv-properties-v2-36-459522d653a7@cerno.tech>
+ <10138422.nUPlyArG6x@kista>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="duymfdwojjs2xq73"
+ protocol="application/pgp-signature"; boundary="hs4qhyrj3xkup6mv"
 Content-Disposition: inline
-In-Reply-To: <242d272b-5b79-986c-9aaf-64e62f6b37ff@gmail.com>
-X-Mailman-Approved-At: Tue, 06 Sep 2022 20:31:04 +0000
-Subject: Re: [Nouveau] [PATCH v2 10/41] drm/modes: Add a function to
- generate analog display modes
+In-Reply-To: <10138422.nUPlyArG6x@kista>
+Subject: Re: [Nouveau] [PATCH v2 36/41] drm/sun4i: tv: Merge mode_set into
+ atomic_enable
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,92 +89,63 @@ Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  dri-devel@lists.freedesktop.org, Phil Elwell <phil@raspberrypi.com>,
  Emma Anholt <emma@anholt.net>, Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
- linux-sunxi@lists.linux.dev, intel-gfx@lists.freedesktop.org,
+ Chen-Yu Tsai <wens@csie.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Ben Skeggs <bskeggs@redhat.com>, linux-sunxi@lists.linux.dev,
+ intel-gfx@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Jani Nikula <jani.nikula@linux.intel.com>, Hans de Goede <hdegoede@redhat.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
  linux-arm-kernel@lists.infradead.org,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  Dom Cobley <dom@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
  Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
  Philipp Zabel <p.zabel@pengutronix.de>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 
---duymfdwojjs2xq73
-Content-Type: text/plain; charset=iso-8859-1
+--hs4qhyrj3xkup6mv
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-On Wed, Aug 31, 2022 at 03:44:52AM +0200, Mateusz Kwiatkowski wrote:
-> > +#define NTSC_HFP_DURATION_TYP_NS=A0=A0 =A01500
-> > +#define NTSC_HFP_DURATION_MIN_NS=A0=A0 =A01270
-> > +#define NTSC_HFP_DURATION_MAX_NS=A0=A0 =A02220
+On Tue, Sep 06, 2022 at 10:04:32PM +0200, Jernej =C5=A0krabec wrote:
+> Dne ponedeljek, 29. avgust 2022 ob 15:11:50 CEST je Maxime Ripard napisal=
+(a):
+> > Our mode_set implementation can be merged into our atomic_enable
+> > implementation to simplify things, so let's do this.
 >=20
-> You've defined those min/typ/max ranges, but you're not using the "typ" f=
-ield
-> for anything other than hslen.
+> Are you sure this is a good thing in long term? What if user wants to cha=
+nge=20
+> mode? Unlikely, but why not.
 
-Yeah... I've left most of them because it was so hard to find most of
-them, it's useful at least for documentation purposes. And it's a define
-so there's pretty much no downside to it as far as the final binary is
-involved.
+It doesn't change anything feature-wise: whenever the mode is changed on
+the CRTC, the encoder is going to be disabled and enabled.
 
-> The actual "typical" value is thus always the midpoint, which isn't
-> necessarily the best choice.
->=20
-> In particular, for the standard 720px wide modes at 13.5 MHz, hsync_start
-> ends up being 735 for 480i and 734 for 576i, instead of 736 and 732 reque=
-sted
-> by BT.601. That's all obviously within tolerances, but the image ends up
-> noticeably off-center (at least on modern TVs), especially in the 576i ca=
-se.
+It's disabled here:
+https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/drm_atomic_h=
+elper.c#L1064
 
-I'll try to fix that up.
+And enabled here:
+https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/drm_atomic_h=
+elper.c#L1403
 
-> > +=A0=A0 =A0htotal =3D params->line_duration_ns * pixel_clock_hz / NSEC_=
-PER_SEC;
->=20
-> You're multiplying an unsigned int and an unsigned long - both types are =
-only
-> required to be 32 bit, so this is likely to overflow. You need to use a c=
-ast to
-> unsigned long long, and then call do_div() for 64-bit division.
->=20
-> This actually overflowed on me on my Pi running ARM32 kernel, resulting in
-> negative horizontal porch lengths, and drm_helper_probe_add_cmdline_mode()
-> taking over the mode generation (badly), and a horrible mess on screen.
-
-Indeed, that's bad.
-
-> > +=A0=A0 =A0vfp =3D vfp_min + (porches_rem / 2);
-> > +=A0=A0 =A0vbp =3D porches - vfp;
->=20
-> Relative position of the vertical sync within the VBI effectively moves t=
-he
-> image up and down. Adding that (porches_rem / 2) moves the image up off c=
-enter
-> by that many pixels. I'd keep the VFP always at minimum to keep the image
-> centered.
-
-And you would increase the back porch only then?
+With drm_atomic_crtc_needs_modeset() being defined here:
+https://elixir.bootlin.com/linux/latest/source/include/drm/drm_atomic.h#L10=
+49
 
 Maxime
 
---duymfdwojjs2xq73
+--hs4qhyrj3xkup6mv
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYxX7swAKCRDj7w1vZxhR
-xYNaAP9smEnRh5n1ZGmEenQrzOJSe2qrC45ne/SGvv82vvsHOAD/S1/3mpdTYjRp
-q9UQRTTfatktAcjCnUHE0eBICMwRtA4=
-=w772
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYxhLLgAKCRDj7w1vZxhR
+xc3fAQCln8DK77u9XIhbZwrlXlxRZD8r9dSaa/Wm+6VIuvo9WAEA/N2B7TOwCRYY
+WZhwLuKago4QDcoZHalP5O1dmFuJ9wE=
+=RBGO
 -----END PGP SIGNATURE-----
 
---duymfdwojjs2xq73--
+--hs4qhyrj3xkup6mv--
