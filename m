@@ -4,59 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED0FDC6FA82
-	for <nouveau@archiver.kernel.org>; Tue, 20 Sep 2022 21:24:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D46B6C6FA82
+	for <nouveau@archiver.kernel.org>; Tue, 20 Sep 2022 21:24:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9B2410E7A8;
-	Tue, 20 Sep 2022 21:24:18 +0000 (UTC)
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com
- [IPv6:2607:f8b0:4864:20::642])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0A7910E422;
- Wed, 14 Sep 2022 07:11:00 +0000 (UTC)
-Received: by mail-pl1-x642.google.com with SMTP id p18so14217116plr.8;
- Wed, 14 Sep 2022 00:11:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date;
- bh=AU4dxVt2EZAwAafSPDdpJ60cBcN1PRUQqw+/acHisPM=;
- b=ik+MeS4ugOup3HBtZTVSS5/0wdLMPXxMvOk2AgInP8jvjMAeU3zysTsW6v4FjAlcko
- MBsFiQj1RPbj8SCNpCZsAuYveLCJMJ2IUhs4GQdddwY5HuDk0mafoLIrOqrrHb8uft4w
- h1uC/TpbMe/2iMuxa508eRbW1d/IaloCrgzg6e+Y4Ht7H5bBKGZsyKOc93muJkcPGrHy
- 55/I8Nwdvv5yX/XAjKfWLxOwtdZuWkU/7Uo0eLbN9vK26Um8Rr7YSQwNv1wbt8ExQPPN
- kgfVr8MG9xHFtiho2G589cprKn0xZmBd3R25OZtIiWXLCMSdDDUDwr5Ef3+619/wTkHg
- KwZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date;
- bh=AU4dxVt2EZAwAafSPDdpJ60cBcN1PRUQqw+/acHisPM=;
- b=34TBLfJpNfemc7VXwC3JfS5TfdUpX7HcrPW7Tu9A7ujIt+2yefAO29zbW7rQcP6gpX
- xdxCcsQDWglf+h14NH8aMTtwItTM4pTreU96SUrV8lWlpdi+pny6jDDNyYyTYSCqLc5q
- RKdGlRG3s6dLG5ErZ4tI205Zgq3HMKgCebLhqI/2/5e6Vg8ChMnMcTKJw5+tqmEXCE8r
- h9645DCxPWq4oNs6hxv6ZP4LSuCYed6ygteoDDgeMaCq3+VhjQEnReL+QLO/w3me2E3v
- WCbxoc+os0A22l2PQsCnPuIabXNnAzaD9K+OK6qwUkCcmYUi0F4ueRrRQ5YA0998qt/+
- AvoA==
-X-Gm-Message-State: ACrzQf1Ojk/BT1se++hHjgiUq4dhla8jdUJo0Pogl7qV58ObfXZecjGL
- xFWRy484iMYDfiNij9wUfBw=
-X-Google-Smtp-Source: AMsMyM4/hZ0xpGlMz6cxwGj5nfP51rRTcZW+ZUMZXe4Q/71GdlLYxy+VH14c7/MMVh32/oK797/6JQ==
-X-Received: by 2002:a17:90a:e586:b0:1fa:d28b:ab9b with SMTP id
- g6-20020a17090ae58600b001fad28bab9bmr3357604pjz.47.1663139460468; 
- Wed, 14 Sep 2022 00:11:00 -0700 (PDT)
-Received: from hbh25y.. ([129.227.150.140]) by smtp.gmail.com with ESMTPSA id
- w37-20020a631625000000b0041bfa382dfesm8837396pgl.67.2022.09.14.00.10.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 14 Sep 2022 00:11:00 -0700 (PDT)
-From: Hangyu Hua <hbh25y@gmail.com>
-To: bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com, airlied@linux.ie,
- daniel@ffwll.ch
-Date: Wed, 14 Sep 2022 15:10:50 +0800
-Message-Id: <20220914071050.21823-1-hbh25y@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id E37AE10E7AA;
+	Tue, 20 Sep 2022 21:24:19 +0000 (UTC)
+X-Greylist: delayed 353 seconds by postgrey-1.36 at gabe;
+ Wed, 07 Sep 2022 10:42:37 UTC
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02B8210E546;
+ Wed,  7 Sep 2022 10:42:36 +0000 (UTC)
+Received: from [192.168.1.138] ([37.4.248.23]) by mrelayeu.kundenserver.de
+ (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MBlgy-1odXvW2p1o-00CEBe; Wed, 07 Sep 2022 12:36:06 +0200
+Message-ID: <965de5c0-bc6a-7210-c946-b916ae2219fc@i2se.com>
+Date: Wed, 7 Sep 2022 12:36:03 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Maxime Ripard <maxime@cerno.tech>, =?UTF-8?Q?Noralf_Tr=c3=b8nnes?=
+ <noralf@tronnes.org>
+References: <20220728-rpi-analog-tv-properties-v2-0-459522d653a7@cerno.tech>
+ <24e09a29-6d04-3b1e-63ce-cd3c31d350e2@tronnes.org>
+ <020d44e6-884b-a817-8265-3461638cac71@tronnes.org>
+ <20220905145729.ln675jko3aw6sgzs@houat>
+From: Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <20220905145729.ln675jko3aw6sgzs@houat>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 20 Sep 2022 21:24:04 +0000
-Subject: [Nouveau] [PATCH] drm: nouveau: move bounds checking to the front
- in nouveau_svm_fault_buffer_dtor()
+X-Provags-ID: V03:K1:raTGFr7ptnGZr2h9Jh6nKg1Z14xx0x8riNatR19Mgp3HoRXLPdX
+ FN+/gOxN9VXjXLIhXVkBpgujUpNMYSy+G4CQp211BQEbL4066eK8AZ57x7+Ryp53nqef83R
+ XG19WvSzjiVdclyB4a503Xj8phHhNIsA5aMzvA3iiMzzCLqNQD5cu7Y+WiuUERVXn8PvvlY
+ lI8tCye4pEPGe1CN/8vMQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:4njlfsGRC8s=:ocGf4vtKJR1Zun/4Yo9Gew
+ oV3WA6jbTihJu4RIdmFFuTHK3kktStgU7S9zvefX/Uhazuyps7stnTU2x3JqvoEXjhTdnVbHU
+ qwY1Q/WMxCFL6JR4wLPfSTPCGsmlEYphfk1SiH/Bcir2uS5YOQKO/mFmA8KX3O2nMy8am3g0E
+ KIwNisfJurVnvt/yAavIe3GeFCV60loPn0+iIKFNQjZ7SOqEXMuVhM6FELQr9qKGkKdEDa7Q1
+ A9wg9nmhVj/EtYbfJ2PNuClR30bKQg+3V2rYG/j/cGyi1p//mBN8Sy1DhZncYRcGdhhnz7Niq
+ 45qpsR6TOWOvz33/DJj/XtmOkMpXfWVjvBlCmSJygsmgSTz1fYJHLSBywB9Rin+rQtWHtoWj7
+ dJrU2wGnRqUzI9sLWTzRv2aKqAjgfJ2VGh6nRfI/KQM/bm6OwI9Kxw4Sysfjrg4Vzxbj+jaZW
+ X2yCy+xVoP8s5IvGrcmxqykNKk0QWUEy8GlDbk7akxSA2x8g9uz5XnFt6vKG2hW2MnxJ+3uF6
+ mFMuBh8idCuY4qTO0jbDtmJoZePoAwwD22L8dkdLaLuzds0uVnC9Xs8GhL8i4WFPKuv/9NQdW
+ VwRMyYQchqhbhhAZGPZFIEiQCxgMeb9Nv2+z6VDPT/DYjgBEuqnaDrsW/Tp2VJJWKpPuDDBUK
+ MELDZt551/OYOXwNUWK67qlinaEMnaW3TLzS4TlmnDUwn6wUAg8uBC2OIN5uDdBNTeZDhRR6z
+ SiMdl7zgJeN/5xOO4iQk/QT9URtagyTBr5s1KpbHjqpuemPNZnzFUfgbVuPiv5ZBJhOIsAIJg
+ 93udFi74Vi+UTGrEiD2nBU95bTZhg==
+X-Mailman-Approved-At: Tue, 20 Sep 2022 21:24:03 +0000
+Subject: Re: [Nouveau] [PATCH v2 00/41] drm: Analog TV Improvements
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,32 +63,81 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Hangyu Hua <hbh25y@gmail.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Phil Elwell <phil@raspberrypi.com>,
+ Emma Anholt <emma@anholt.net>, Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-sunxi@lists.linux.dev, intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Hans de Goede <hdegoede@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ linux-arm-kernel@lists.infradead.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Dom Cobley <dom@raspberrypi.com>, linux-kernel@vger.kernel.org,
+ Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-It is better to check i before use it in array to avoid potential out of
-bound access.
+Hi Maxime,
 
-Signed-off-by: Hangyu Hua <hbh25y@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_svm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-index 31a5b81ee9fc..5c49a8eaf593 100644
---- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-@@ -957,7 +957,7 @@ nouveau_svm_fault_buffer_dtor(struct nouveau_svm *svm, int id)
- 	int i;
- 
- 	if (buffer->fault) {
--		for (i = 0; buffer->fault[i] && i < buffer->entries; i++)
-+		for (i = 0; i < buffer->entries && buffer->fault[i]; i++)
- 			kfree(buffer->fault[i]);
- 		kvfree(buffer->fault);
- 	}
--- 
-2.34.1
-
+Am 05.09.22 um 16:57 schrieb Maxime Ripard:
+> On Fri, Sep 02, 2022 at 01:28:16PM +0200, Noralf Trønnes wrote:
+>>
+>> Den 01.09.2022 21.35, skrev Noralf Trønnes:
+>>>
+>>> I have finally found a workaround for my kernel hangs.
+>>>
+>>> Dom had a look at my kernel and found that the VideoCore was fine, and
+>>> he said this:
+>>>
+>>>> That suggests cause of lockup was on arm side rather than VC side.
+>>>>
+>>>> But it's hard to diagnose further. Once you've had a peripheral not
+>>>> respond, the AXI bus locks up and no further operations are possible.
+>>>> Usual causes of this are required clocks being stopped or domains
+>>>> disabled and then trying to access the hardware.
+>>>>
+>>> So when I got this on my 64-bit build:
+>>>
+>>> [  166.702171] SError Interrupt on CPU1, code 0x00000000bf000002 -- SError
+>>> [  166.702187] CPU: 1 PID: 8 Comm: kworker/u8:0 Tainted: G        W
+>>>      5.19.0-rc6-00096-gba7973977976-dirty #1
+>>> [  166.702200] Hardware name: Raspberry Pi 4 Model B Rev 1.1 (DT)
+>>> [  166.702206] Workqueue: events_freezable_power_ thermal_zone_device_check
+>>> [  166.702231] pstate: 200000c5 (nzCv daIF -PAN -UAO -TCO -DIT -SSBS
+>>> BTYPE=--)
+>>> [  166.702242] pc : regmap_mmio_read32le+0x10/0x28
+>>> [  166.702261] lr : regmap_mmio_read+0x44/0x70
+>>> ...
+>>> [  166.702606]  bcm2711_get_temp+0x58/0xb0 [bcm2711_thermal]
+>>>
+>>> I wondered if that reg read was stalled due to a clock being stopped.
+>>>
+>>> Lo and behold, disabling runtime pm and keeping the vec clock running
+>>> all the time fixed it[1].
+>>>
+>>> I don't know what the problem is, but at least I can now test this patchset.
+>>>
+>>> [1] https://gist.github.com/notro/23b984e7fa05cfbda2db50a421cac065
+>>>
+>> It turns out I didn't have to disable runtime pm:
+>> https://gist.github.com/notro/0adcfcb12460b54e54458afe11dc8ea2
+> If the bcm2711_thermal IP needs that clock to be enabled, it should grab
+> a reference itself, but it looks like even the device tree binding
+> doesn't ask for one.
+The missing clock in the device tree binding is expected, because 
+despite of the code there is not much information about the BCM2711 
+clock tree. But i'm skeptical that the AVS IP actually needs the VEC 
+clock, i think it's more likely that the VEC clock parent is changed and 
+that cause this issue. I could take care of the bcm2711 binding & driver 
+if i know which clock is really necessary.
+>
+> Maxime
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
