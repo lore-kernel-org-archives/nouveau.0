@@ -4,79 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1B65C54EE9
-	for <nouveau@archiver.kernel.org>; Tue, 20 Sep 2022 21:24:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51E05C54EE9
+	for <nouveau@archiver.kernel.org>; Tue, 20 Sep 2022 21:24:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D52C810E7A4;
-	Tue, 20 Sep 2022 21:24:12 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F13FB10E380
- for <nouveau@lists.freedesktop.org>; Fri, 16 Sep 2022 11:00:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1663326049;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=2ZbmxGQFx5NUyXDI3oRsG3PEO6C5R/qvXpxefqzSfSQ=;
- b=GcWnRw3qPRyiFG+esrgCK6Srz4waAS+YpfrwCDDSHZiSGfKeiJL9NeOSzQydbLtBtA2TSV
- Q6jcQMlI/7yxh1w7v+sgU0oVQ13S6qO4lCnC7+UQHVGLynuwJTS/LiOqLubZJe3RMguRnZ
- EOKlTYcAPMO0pNVtpcPtffk+tOiRpyA=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-110-F4Uzr5SONras9gb_jn29sw-1; Fri, 16 Sep 2022 07:00:45 -0400
-X-MC-Unique: F4Uzr5SONras9gb_jn29sw-1
-Received: by mail-wm1-f72.google.com with SMTP id
- f14-20020a1c6a0e000000b003b46dafde71so6630643wmc.3
- for <nouveau@lists.freedesktop.org>; Fri, 16 Sep 2022 04:00:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date;
- bh=2ZbmxGQFx5NUyXDI3oRsG3PEO6C5R/qvXpxefqzSfSQ=;
- b=fJTtu/YEFYux/QanEkZVHOsfM/DgmKc7FvgHMeEsaFzYlP5FO58ilCbylqJVgRhoQy
- Fuh+EMQP0ySdxBeiB6kct9Cr62R20MVgPHzAiddF0XuvSFvpEYZ12QHvx9OFZZohpfRG
- 9uL46zLAPi1oCY035kd9USfPoprq8Rs0izFCWQsbn+NX8F4a44LBAbbZxkwwjs12cU87
- JCxnaB1j3hlw6SzG29AqmZTPe5d1uhfcHfkIx9BlIqDwwrHxRXKx3GSNM7L52D9bCSvt
- v3IE/svIl3dSUKxOtJ9Yk2PZFAxxSzAlaZDjvdchuKJpdJ/NnV3FN96urfZ5nhhx1BQu
- whww==
-X-Gm-Message-State: ACrzQf2m9hSyrnNEJPgbgrOJ62sYa+4g/cMwXOAHm/NTiEISY9IaD9LJ
- bj1pqIWbjjSvNjQn8wguVBfWVhzZ2IBR/3HTf56VdVuCnwC9v5tKujCZw+pBdezFFTJk8JS4zDF
- WysvophMvDZL8/pogoLM6bJ3bjg==
-X-Received: by 2002:a5d:5848:0:b0:22a:c104:c2f1 with SMTP id
- i8-20020a5d5848000000b0022ac104c2f1mr2519350wrf.699.1663326044858; 
- Fri, 16 Sep 2022 04:00:44 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM43fBOdh9afnK2x5mvyniWJnGPpavwwlgRXAzXhit5u76P4eHdYTeO9LfpPvGZhI/+XXh73Tw==
-X-Received: by 2002:a5d:5848:0:b0:22a:c104:c2f1 with SMTP id
- i8-20020a5d5848000000b0022ac104c2f1mr2519331wrf.699.1663326044582; 
- Fri, 16 Sep 2022 04:00:44 -0700 (PDT)
-Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es.
- [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
- b14-20020adff90e000000b00225307f43fbsm4772079wrr.44.2022.09.16.04.00.42
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 16 Sep 2022 04:00:43 -0700 (PDT)
-Message-ID: <e15772ac-5ad5-37a1-9957-0b1f2fc5284c@redhat.com>
-Date: Fri, 16 Sep 2022 13:00:42 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id B92C810E79F;
+	Tue, 20 Sep 2022 21:24:16 +0000 (UTC)
+X-Greylist: delayed 2538 seconds by postgrey-1.36 at gabe;
+ Tue, 13 Sep 2022 09:49:37 UTC
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0212610E694;
+ Tue, 13 Sep 2022 09:49:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+ s=20161220; h=Subject:References:Cc:To:Message-ID:From:
+ Content-Transfer-Encoding:Content-Type:Date:MIME-Version:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=gBtxmYHP5Jj7f7rvEhp/JUGfwWkpfUScRndU2I8SJKo=; b=0ec/oNWAcu6fZuy69R295iV2bW
+ GKpD/c2Y6/4qNCd7l3xd2mUi5qemziJ8Qih/18M1AHdYfsavxFhWvwtWjlQR3TYz1vZsCfgAZ9lMA
+ 08kFUyuPJF4D1ue988mez0SkX8jCUnhkSgIRfHDmAcjdCxoMyspjbdrha3Mc/Pwru2YzRUMQwRA2O
+ 0HQlKKnucH7qdrXalqSYe85DDFY9LDDtG2Hp9HmrvC+HhD7DdUF1sUhgDwoxxfhYNwEhu0BMg24m2
+ TVL686NLtG1zK8CVvHAYxbns+jM3KSvO6KeMt+2ioiq/zwBFg2qVqM98Lb3hKG53uS9p6pw55fVQg
+ 61XRPOWQ==;
+Received: from [2001:67c:1be8::200] (helo=rainloop.kapsi.fi)
+ by mail.kapsi.fi with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
+ (envelope-from <jyri.sarha@iki.fi>)
+ id 1oY1sB-00DLg3-RF; Tue, 13 Sep 2022 12:06:28 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-To: Thomas Zimmermann <tzimmermann@suse.de>,
+Date: Tue, 13 Sep 2022 09:06:26 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+From: jyri.sarha@iki.fi
+Message-ID: <04399a9fe6a4b53a2cc012dad40b3c67c32b875f@iki.fi>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>,
  maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@linux.ie,
  daniel@ffwll.ch, bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com,
- laurent.pinchart@ideasonboard.com, kieran.bingham+renesas@ideasonboard.com,
- jyri.sarha@iki.fi, tomba@kernel.org, sam@ravnborg.org
-References: <20220909105947.6487-1-tzimmermann@suse.de>
- <20220909105947.6487-2-tzimmermann@suse.de>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20220909105947.6487-2-tzimmermann@suse.de>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ laurent.pinchart@ideasonboard.com,
+ kieran.bingham+renesas@ideasonboard.com, jyri.sarha@iki.fi,
+ tomba@kernel.org, sam@ravnborg.org
+References: undefined <20220909105947.6487-1-tzimmermann@suse.de>
+X-SA-Exim-Connect-IP: 2001:67c:1be8::200
+X-SA-Exim-Mail-From: jyri.sarha@iki.fi
+X-SA-Exim-Version: 4.2.1 (built Sat, 13 Feb 2021 17:57:42 +0000)
+X-SA-Exim-Scanned: Yes (on mail.kapsi.fi)
 X-Mailman-Approved-At: Tue, 20 Sep 2022 21:24:04 +0000
 Subject: Re: [Nouveau] [PATCH 1/4] drm/plane: Remove drm_plane_init()
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -95,44 +66,191 @@ Cc: linux-renesas-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hello Thomas,
+September 9, 2022 at 1:59 PM, "Thomas Zimmermann" <tzimmermann@suse.de ma=
+ilto:tzimmermann@suse.de?to=3D%22Thomas%20Zimmermann%22%20%3Ctzimmermann%=
+40suse.de%3E > wrote:
 
-On 9/9/22 12:59, Thomas Zimmermann wrote:
-> Open-code drm_plane_init() and remove the function from DRM. The
+>=20
+>=20Open-code drm_plane_init() and remove the function from DRM. The
 > implementation of drm_plane_init() is a simple wrapper around a call
 > to drm_universal_plane_init(), so drivers can just use that instead.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>=20
+>=20Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+Acked-by: Jyri Sarha <jyri.sarha@iki.fi>
+
 > ---
-
-[...]
-
-> diff --git a/drivers/gpu/drm/nouveau/dispnv04/overlay.c b/drivers/gpu/drm/nouveau/dispnv04/overlay.c
+> drivers/gpu/drm/drm_modeset_helper.c | 3 +-
+> drivers/gpu/drm/drm_plane.c | 32 ----------------------
+> drivers/gpu/drm/nouveau/dispnv04/overlay.c | 13 +++++----
+> drivers/gpu/drm/shmobile/shmob_drm_plane.c | 7 +++--
+> drivers/gpu/drm/tilcdc/tilcdc_plane.c | 9 +++---
+> include/drm/drm_plane.h | 8 +-----
+> 6 files changed, 17 insertions(+), 55 deletions(-)
+>=20
+>=20diff --git a/drivers/gpu/drm/drm_modeset_helper.c b/drivers/gpu/drm/d=
+rm_modeset_helper.c
+> index bd609a978848..611dd01fb604 100644
+> --- a/drivers/gpu/drm/drm_modeset_helper.c
+> +++ b/drivers/gpu/drm/drm_modeset_helper.c
+> @@ -100,8 +100,7 @@ EXPORT_SYMBOL(drm_helper_mode_fill_fb_struct);
+> * This is the minimal list of formats that seem to be safe for modeset =
+use
+> * with all current DRM drivers. Most hardware can actually support more
+> * formats than this and drivers may specify a more accurate list when
+> - * creating the primary plane. However drivers that still call
+> - * drm_plane_init() will use this minimal format list as the default.
+> + * creating the primary plane.
+> */
+> static const uint32_t safe_modeset_formats[] =3D {
+>  DRM_FORMAT_XRGB8888,
+> diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
+> index 726f2f163c26..0f14b4d3bb10 100644
+> --- a/drivers/gpu/drm/drm_plane.c
+> +++ b/drivers/gpu/drm/drm_plane.c
+> @@ -482,38 +482,6 @@ void drm_plane_unregister_all(struct drm_device *d=
+ev)
+>  }
+> }
+>=20
+>=20-/**
+> - * drm_plane_init - Initialize a legacy plane
+> - * @dev: DRM device
+> - * @plane: plane object to init
+> - * @possible_crtcs: bitmask of possible CRTCs
+> - * @funcs: callbacks for the new plane
+> - * @formats: array of supported formats (DRM_FORMAT\_\*)
+> - * @format_count: number of elements in @formats
+> - * @is_primary: plane type (primary vs overlay)
+> - *
+> - * Legacy API to initialize a DRM plane.
+> - *
+> - * New drivers should call drm_universal_plane_init() instead.
+> - *
+> - * Returns:
+> - * Zero on success, error code on failure.
+> - */
+> -int drm_plane_init(struct drm_device *dev, struct drm_plane *plane,
+> - uint32_t possible_crtcs,
+> - const struct drm_plane_funcs *funcs,
+> - const uint32_t *formats, unsigned int format_count,
+> - bool is_primary)
+> -{
+> - enum drm_plane_type type;
+> -
+> - type =3D is_primary ? DRM_PLANE_TYPE_PRIMARY : DRM_PLANE_TYPE_OVERLAY=
+;
+> - return drm_universal_plane_init(dev, plane, possible_crtcs, funcs,
+> - formats, format_count,
+> - NULL, type, NULL);
+> -}
+> -EXPORT_SYMBOL(drm_plane_init);
+> -
+> /**
+> * drm_plane_cleanup - Clean up the core plane usage
+> * @plane: plane to cleanup
+> diff --git a/drivers/gpu/drm/nouveau/dispnv04/overlay.c b/drivers/gpu/d=
+rm/nouveau/dispnv04/overlay.c
 > index 37e63e98cd08..33f29736024a 100644
 > --- a/drivers/gpu/drm/nouveau/dispnv04/overlay.c
 > +++ b/drivers/gpu/drm/nouveau/dispnv04/overlay.c
 > @@ -296,9 +296,10 @@ nv10_overlay_init(struct drm_device *device)
->  		break;
->  	}
->  
-> -	ret = drm_plane_init(device, &plane->base, 3 /* both crtc's */,
-> -			     &nv10_plane_funcs,
-> -			     formats, num_formats, false);
-> +	ret = drm_universal_plane_init(device, &plane->base, 3 /* both crtc's */,
-> +				       &nv10_plane_funcs,
-> +				       formats, num_formats, NULL,
-> +				       DRM_PLANE_TYPE_OVERLAY, NULL);
-
-Not only drm_plane_init() doesn't add much value but makes the code
-harder to read. Since by calling drm_universal_plane_init() instead,
-it's explicit whether the initialized plane is primary or an overlay.
-
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-
--- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+>  break;
+>  }
+>=20
+>=20- ret =3D drm_plane_init(device, &plane->base, 3 /* both crtc's */,
+> - &nv10_plane_funcs,
+> - formats, num_formats, false);
+> + ret =3D drm_universal_plane_init(device, &plane->base, 3 /* both crtc=
+'s */,
+> + &nv10_plane_funcs,
+> + formats, num_formats, NULL,
+> + DRM_PLANE_TYPE_OVERLAY, NULL);
+>  if (ret)
+>  goto err;
+>=20
+>=20@@ -475,9 +476,9 @@ nv04_overlay_init(struct drm_device *device)
+>  if (!plane)
+>  return;
+>=20
+>=20- ret =3D drm_plane_init(device, &plane->base, 1 /* single crtc */,
+> - &nv04_plane_funcs,
+> - formats, 2, false);
+> + ret =3D drm_universal_plane_init(device, &plane->base, 1 /* single cr=
+tc */,
+> + &nv04_plane_funcs, formats, 2, NULL,
+> + DRM_PLANE_TYPE_OVERLAY, NULL);
+>  if (ret)
+>  goto err;
+>=20
+>=20diff --git a/drivers/gpu/drm/shmobile/shmob_drm_plane.c b/drivers/gpu=
+/drm/shmobile/shmob_drm_plane.c
+> index 54228424793a..6c5f0cbe7d95 100644
+> --- a/drivers/gpu/drm/shmobile/shmob_drm_plane.c
+> +++ b/drivers/gpu/drm/shmobile/shmob_drm_plane.c
+> @@ -252,9 +252,10 @@ int shmob_drm_plane_create(struct shmob_drm_device=
+ *sdev, unsigned int index)
+>  splane->index =3D index;
+>  splane->alpha =3D 255;
+>=20
+>=20- ret =3D drm_plane_init(sdev->ddev, &splane->plane, 1,
+> - &shmob_drm_plane_funcs, formats,
+> - ARRAY_SIZE(formats), false);
+> + ret =3D drm_universal_plane_init(sdev->ddev, &splane->plane, 1,
+> + &shmob_drm_plane_funcs,
+> + formats, ARRAY_SIZE(formats), NULL,
+> + DRM_PLANE_TYPE_OVERLAY, NULL);
+>=20
+>=20 return ret;
+> }
+> diff --git a/drivers/gpu/drm/tilcdc/tilcdc_plane.c b/drivers/gpu/drm/ti=
+lcdc/tilcdc_plane.c
+> index 0ccf791301cb..cf77a8ce7398 100644
+> --- a/drivers/gpu/drm/tilcdc/tilcdc_plane.c
+> +++ b/drivers/gpu/drm/tilcdc/tilcdc_plane.c
+> @@ -105,11 +105,10 @@ int tilcdc_plane_init(struct drm_device *dev,
+>  struct tilcdc_drm_private *priv =3D dev->dev_private;
+>  int ret;
+>=20
+>=20- ret =3D drm_plane_init(dev, plane, 1,
+> - &tilcdc_plane_funcs,
+> - priv->pixelformats,
+> - priv->num_pixelformats,
+> - true);
+> + ret =3D drm_universal_plane_init(dev, plane, 1, &tilcdc_plane_funcs,
+> + priv->pixelformats,
+> + priv->num_pixelformats,
+> + NULL, DRM_PLANE_TYPE_PRIMARY, NULL);
+>  if (ret) {
+>  dev_err(dev->dev, "Failed to initialize plane: %d\n", ret);
+>  return ret;
+> diff --git a/include/drm/drm_plane.h b/include/drm/drm_plane.h
+> index 89ea54652e87..910cb941f3d5 100644
+> --- a/include/drm/drm_plane.h
+> +++ b/include/drm/drm_plane.h
+> @@ -631,7 +631,7 @@ struct drm_plane {
+>  unsigned int format_count;
+>  /**
+>  * @format_default: driver hasn't supplied supported formats for the
+> - * plane. Used by the drm_plane_init compatibility wrapper only.
+> + * plane. Used by the non-atomic driver compatibility wrapper only.
+>  */
+>  bool format_default;
+>=20
+>=20@@ -762,12 +762,6 @@ int drm_universal_plane_init(struct drm_device *=
+dev,
+>  const uint64_t *format_modifiers,
+>  enum drm_plane_type type,
+>  const char *name, ...);
+> -int drm_plane_init(struct drm_device *dev,
+> - struct drm_plane *plane,
+> - uint32_t possible_crtcs,
+> - const struct drm_plane_funcs *funcs,
+> - const uint32_t *formats, unsigned int format_count,
+> - bool is_primary);
+> void drm_plane_cleanup(struct drm_plane *plane);
+>=20
+>=20__printf(10, 11)
+> --=20
+>=202.37.2
+>
