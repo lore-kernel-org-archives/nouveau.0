@@ -4,82 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBF4FC6FA8B
-	for <nouveau@archiver.kernel.org>; Tue, 20 Sep 2022 21:24:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED0FDC6FA82
+	for <nouveau@archiver.kernel.org>; Tue, 20 Sep 2022 21:24:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1659C10E7A6;
-	Tue, 20 Sep 2022 21:24:17 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B7D310EBE9
- for <nouveau@lists.freedesktop.org>; Fri, 16 Sep 2022 11:25:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1663327501;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=FWT1aNW0ZX4uFyjwmsjPL1bKB9oSfjQTT8f6OZuNFHg=;
- b=dSxU7r7329dN0FoTAdkyh3qUZOU6nG/bqQIxlm5GOkHSGwae/K+/pRdzfuDdqyWbxeJDeF
- k+fV/mIiTJUxgrHwtYqR260lW/izgftwANPTChAyjeqkQL24yc3JUvncaoAPHLJ9t9bAb1
- 121T7sBpq4bjW7iI8OcqtWrqsJjPO6k=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-390-3PGcCdTqNTisPFTWzcrUlg-1; Fri, 16 Sep 2022 07:25:00 -0400
-X-MC-Unique: 3PGcCdTqNTisPFTWzcrUlg-1
-Received: by mail-wm1-f71.google.com with SMTP id
- f25-20020a7bc8d9000000b003b4768dcd9cso6411435wml.9
- for <nouveau@lists.freedesktop.org>; Fri, 16 Sep 2022 04:25:00 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9B2410E7A8;
+	Tue, 20 Sep 2022 21:24:18 +0000 (UTC)
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com
+ [IPv6:2607:f8b0:4864:20::642])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0A7910E422;
+ Wed, 14 Sep 2022 07:11:00 +0000 (UTC)
+Received: by mail-pl1-x642.google.com with SMTP id p18so14217116plr.8;
+ Wed, 14 Sep 2022 00:11:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date;
+ bh=AU4dxVt2EZAwAafSPDdpJ60cBcN1PRUQqw+/acHisPM=;
+ b=ik+MeS4ugOup3HBtZTVSS5/0wdLMPXxMvOk2AgInP8jvjMAeU3zysTsW6v4FjAlcko
+ MBsFiQj1RPbj8SCNpCZsAuYveLCJMJ2IUhs4GQdddwY5HuDk0mafoLIrOqrrHb8uft4w
+ h1uC/TpbMe/2iMuxa508eRbW1d/IaloCrgzg6e+Y4Ht7H5bBKGZsyKOc93muJkcPGrHy
+ 55/I8Nwdvv5yX/XAjKfWLxOwtdZuWkU/7Uo0eLbN9vK26Um8Rr7YSQwNv1wbt8ExQPPN
+ kgfVr8MG9xHFtiho2G589cprKn0xZmBd3R25OZtIiWXLCMSdDDUDwr5Ef3+619/wTkHg
+ KwZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date;
- bh=FWT1aNW0ZX4uFyjwmsjPL1bKB9oSfjQTT8f6OZuNFHg=;
- b=gKYB+fH0BgFuUJl8I5DlGDHBn2sHk9opXbnVm3p5ORR8nnaRiGvfgnrU96p7Jzn4EZ
- w9+uNHf+iNJ04zlCyQU0oK4vbz1MNNTSqKjMhCWo4THBYDiXk7l5qrIF8rbNG5NmVh7A
- N5NHFqephjqnIWQ310YWzBS9FsCwmbhGiNBjVo6AC9fWEEiB73s1o8B0tvu2Wlp/KXYg
- CuTDimbNdKT6PN4qBO4W2rgt++MCrYwKO7W+3JDZoK6+sx9wm5I3zEF13FwjpmbnuVnp
- ivCsa79SJtZpOUZxQT/G/+Xs3MojfJXXRHxjzTC5kANgkdpcakQ7zIUhmX1HxVb9E+47
- pHeQ==
-X-Gm-Message-State: ACrzQf1c1EBHVQsuQsvkocP6uO76KtjxGcWyXfy6poKbGNwttCRSMPcP
- cly6eU1IFGczmVH0lV3KVcL14zOETKWrwBh0AeQ+w7kIrFKAGslyPHDH0RhIgsSZ8R5YOpLrZPH
- NJts1G/Kpme9JNlOfQ4hwhTTmgg==
-X-Received: by 2002:a1c:4b03:0:b0:3b4:74d3:b4c5 with SMTP id
- y3-20020a1c4b03000000b003b474d3b4c5mr2953796wma.96.1663327499415; 
- Fri, 16 Sep 2022 04:24:59 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM6n/5/jPTh15owYiIdxqtDHEqMzxYlB4BIVX5SyvX66tGS3HAdFaQlivz6iDfYJgd4mjkRCCQ==
-X-Received: by 2002:a1c:4b03:0:b0:3b4:74d3:b4c5 with SMTP id
- y3-20020a1c4b03000000b003b474d3b4c5mr2953782wma.96.1663327499183; 
- Fri, 16 Sep 2022 04:24:59 -0700 (PDT)
-Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es.
- [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
- k2-20020a7bc402000000b003a5c999cd1asm2275331wmi.14.2022.09.16.04.24.58
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 16 Sep 2022 04:24:58 -0700 (PDT)
-Message-ID: <4d492346-36fc-a230-4112-e182caa158af@redhat.com>
-Date: Fri, 16 Sep 2022 13:24:57 +0200
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date;
+ bh=AU4dxVt2EZAwAafSPDdpJ60cBcN1PRUQqw+/acHisPM=;
+ b=34TBLfJpNfemc7VXwC3JfS5TfdUpX7HcrPW7Tu9A7ujIt+2yefAO29zbW7rQcP6gpX
+ xdxCcsQDWglf+h14NH8aMTtwItTM4pTreU96SUrV8lWlpdi+pny6jDDNyYyTYSCqLc5q
+ RKdGlRG3s6dLG5ErZ4tI205Zgq3HMKgCebLhqI/2/5e6Vg8ChMnMcTKJw5+tqmEXCE8r
+ h9645DCxPWq4oNs6hxv6ZP4LSuCYed6ygteoDDgeMaCq3+VhjQEnReL+QLO/w3me2E3v
+ WCbxoc+os0A22l2PQsCnPuIabXNnAzaD9K+OK6qwUkCcmYUi0F4ueRrRQ5YA0998qt/+
+ AvoA==
+X-Gm-Message-State: ACrzQf1Ojk/BT1se++hHjgiUq4dhla8jdUJo0Pogl7qV58ObfXZecjGL
+ xFWRy484iMYDfiNij9wUfBw=
+X-Google-Smtp-Source: AMsMyM4/hZ0xpGlMz6cxwGj5nfP51rRTcZW+ZUMZXe4Q/71GdlLYxy+VH14c7/MMVh32/oK797/6JQ==
+X-Received: by 2002:a17:90a:e586:b0:1fa:d28b:ab9b with SMTP id
+ g6-20020a17090ae58600b001fad28bab9bmr3357604pjz.47.1663139460468; 
+ Wed, 14 Sep 2022 00:11:00 -0700 (PDT)
+Received: from hbh25y.. ([129.227.150.140]) by smtp.gmail.com with ESMTPSA id
+ w37-20020a631625000000b0041bfa382dfesm8837396pgl.67.2022.09.14.00.10.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 14 Sep 2022 00:11:00 -0700 (PDT)
+From: Hangyu Hua <hbh25y@gmail.com>
+To: bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com, airlied@linux.ie,
+ daniel@ffwll.ch
+Date: Wed, 14 Sep 2022 15:10:50 +0800
+Message-Id: <20220914071050.21823-1-hbh25y@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@linux.ie,
- daniel@ffwll.ch, bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com,
- laurent.pinchart@ideasonboard.com, kieran.bingham+renesas@ideasonboard.com,
- jyri.sarha@iki.fi, tomba@kernel.org, sam@ravnborg.org
-References: <20220909105947.6487-1-tzimmermann@suse.de>
- <20220909105947.6487-5-tzimmermann@suse.de>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20220909105947.6487-5-tzimmermann@suse.de>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 20 Sep 2022 21:24:04 +0000
-Subject: Re: [Nouveau] [PATCH 4/4] drm/plane-helper: Provide
- DRM_PLANE_NON_ATOMIC_FUNCS initializer macro
+Subject: [Nouveau] [PATCH] drm: nouveau: move bounds checking to the front
+ in nouveau_svm_fault_buffer_dtor()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,26 +68,32 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-renesas-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Hangyu Hua <hbh25y@gmail.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 9/9/22 12:59, Thomas Zimmermann wrote:
-> Provide DRM_PLANE_NON_ATOMIC_FUNCS, which initializes plane functions
-> of non-atomic drivers to default values. The macro is not supposed to
-> be used in new code, but helps with documenting and finding existing
-> users.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
+It is better to check i before use it in array to avoid potential out of
+bound access.
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+Signed-off-by: Hangyu Hua <hbh25y@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_svm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+index 31a5b81ee9fc..5c49a8eaf593 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_svm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+@@ -957,7 +957,7 @@ nouveau_svm_fault_buffer_dtor(struct nouveau_svm *svm, int id)
+ 	int i;
+ 
+ 	if (buffer->fault) {
+-		for (i = 0; buffer->fault[i] && i < buffer->entries; i++)
++		for (i = 0; i < buffer->entries && buffer->fault[i]; i++)
+ 			kfree(buffer->fault[i]);
+ 		kvfree(buffer->fault);
+ 	}
 -- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+2.34.1
 
