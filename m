@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8ACDEC54EE9
-	for <nouveau@archiver.kernel.org>; Tue, 20 Sep 2022 21:24:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1B65C54EE9
+	for <nouveau@archiver.kernel.org>; Tue, 20 Sep 2022 21:24:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0635110E797;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D52C810E7A4;
 	Tue, 20 Sep 2022 21:24:12 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DD4C10ECBF
- for <nouveau@lists.freedesktop.org>; Fri, 16 Sep 2022 11:51:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F13FB10E380
+ for <nouveau@lists.freedesktop.org>; Fri, 16 Sep 2022 11:00:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1663329103;
+ s=mimecast20190719; t=1663326049;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=bU7kCXLJSgLZrxOeLHX/KqgOsD8qkxHVpVMYeFKVWKA=;
- b=UKdsOL/Fh7D1f2/9TV4SYLgGzLVU6zXEViAmoGpMELILhqGQeJ6UfSaeGxqhp68NHcX3Gc
- 31t9UZdxJ5omcXs/ertGhOBdszv5l6NRrOn7+HqSYVXSwCa6d4NyCBUSl4vUARSFlZo1RG
- LAQCF4VH0W74hqEnM2yIjUBTPgdcFUg=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=2ZbmxGQFx5NUyXDI3oRsG3PEO6C5R/qvXpxefqzSfSQ=;
+ b=GcWnRw3qPRyiFG+esrgCK6Srz4waAS+YpfrwCDDSHZiSGfKeiJL9NeOSzQydbLtBtA2TSV
+ Q6jcQMlI/7yxh1w7v+sgU0oVQ13S6qO4lCnC7+UQHVGLynuwJTS/LiOqLubZJe3RMguRnZ
+ EOKlTYcAPMO0pNVtpcPtffk+tOiRpyA=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-176-3RsspqFsPvGgMe-yQ_f4mw-1; Fri, 16 Sep 2022 07:51:42 -0400
-X-MC-Unique: 3RsspqFsPvGgMe-yQ_f4mw-1
-Received: by mail-wm1-f69.google.com with SMTP id
- c5-20020a7bc005000000b003a63a3570f2so7648898wmb.8
- for <nouveau@lists.freedesktop.org>; Fri, 16 Sep 2022 04:51:42 -0700 (PDT)
+ us-mta-110-F4Uzr5SONras9gb_jn29sw-1; Fri, 16 Sep 2022 07:00:45 -0400
+X-MC-Unique: F4Uzr5SONras9gb_jn29sw-1
+Received: by mail-wm1-f72.google.com with SMTP id
+ f14-20020a1c6a0e000000b003b46dafde71so6630643wmc.3
+ for <nouveau@lists.freedesktop.org>; Fri, 16 Sep 2022 04:00:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date;
- bh=bU7kCXLJSgLZrxOeLHX/KqgOsD8qkxHVpVMYeFKVWKA=;
- b=rOU1EDZQ47UZYHKBzS9HOk/Ga1yrPTWfqBZjKvTtNYUcCA4rrKpp95duWU/Len1xUY
- 588B4rD/+jAc39QUd4zEpsnah+IIku2m+4QdS2zg6cnL8Q+9ezbZTco2itAcmAtW4nWK
- Tb6hV2eh7IjkrFwijRcHxj0oyH2I+9+eIXQHteOyiZpjAxfnyWyCgsrVOR0CzCRnCKAu
- 5f3sDUt59ApXrQP1E90F/83T/Vi8Ll6JGExsL6uBwJPWfWetHtepAAKf3k9p5gfAYTHt
- YwgW63umcrwFtsDr2Tos7MKcA7dJPQEuxEmP0OR4n4ny/Rzu/+4Pyd8yauLSM/JH/V/E
- 8gnQ==
-X-Gm-Message-State: ACrzQf3qeSB9Hp1I5cVspnfJibvFGmpWctS6srE3Td6RV1fTBbr5Esig
- 6oYJMK1Z8TI9CUzM3BjeSH1gjUlQuVHM6IuTuql7cF4SEfvU/Lp7Yux1el8zkrbQsr6EkeJVF2C
- CQmp3qXu+e63AeoZ+ISeL1Kfr4w==
-X-Received: by 2002:a05:600c:1e24:b0:3b4:6c1e:8bb7 with SMTP id
- ay36-20020a05600c1e2400b003b46c1e8bb7mr3211910wmb.1.1663329101264; 
- Fri, 16 Sep 2022 04:51:41 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM7aRBJ75LlLwOGHdB7wI38p8BMKPnM0FH/WgnmHmp9FOfuZcOJAWAz1q0E6oPTsuUXGYrcnbg==
-X-Received: by 2002:a05:600c:1e24:b0:3b4:6c1e:8bb7 with SMTP id
- ay36-20020a05600c1e2400b003b46c1e8bb7mr3211892wmb.1.1663329101076; 
- Fri, 16 Sep 2022 04:51:41 -0700 (PDT)
+ bh=2ZbmxGQFx5NUyXDI3oRsG3PEO6C5R/qvXpxefqzSfSQ=;
+ b=fJTtu/YEFYux/QanEkZVHOsfM/DgmKc7FvgHMeEsaFzYlP5FO58ilCbylqJVgRhoQy
+ Fuh+EMQP0ySdxBeiB6kct9Cr62R20MVgPHzAiddF0XuvSFvpEYZ12QHvx9OFZZohpfRG
+ 9uL46zLAPi1oCY035kd9USfPoprq8Rs0izFCWQsbn+NX8F4a44LBAbbZxkwwjs12cU87
+ JCxnaB1j3hlw6SzG29AqmZTPe5d1uhfcHfkIx9BlIqDwwrHxRXKx3GSNM7L52D9bCSvt
+ v3IE/svIl3dSUKxOtJ9Yk2PZFAxxSzAlaZDjvdchuKJpdJ/NnV3FN96urfZ5nhhx1BQu
+ whww==
+X-Gm-Message-State: ACrzQf2m9hSyrnNEJPgbgrOJ62sYa+4g/cMwXOAHm/NTiEISY9IaD9LJ
+ bj1pqIWbjjSvNjQn8wguVBfWVhzZ2IBR/3HTf56VdVuCnwC9v5tKujCZw+pBdezFFTJk8JS4zDF
+ WysvophMvDZL8/pogoLM6bJ3bjg==
+X-Received: by 2002:a5d:5848:0:b0:22a:c104:c2f1 with SMTP id
+ i8-20020a5d5848000000b0022ac104c2f1mr2519350wrf.699.1663326044858; 
+ Fri, 16 Sep 2022 04:00:44 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM43fBOdh9afnK2x5mvyniWJnGPpavwwlgRXAzXhit5u76P4eHdYTeO9LfpPvGZhI/+XXh73Tw==
+X-Received: by 2002:a5d:5848:0:b0:22a:c104:c2f1 with SMTP id
+ i8-20020a5d5848000000b0022ac104c2f1mr2519331wrf.699.1663326044582; 
+ Fri, 16 Sep 2022 04:00:44 -0700 (PDT)
 Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es.
  [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
- n1-20020a1c2701000000b003b3307fb98fsm1973286wmn.24.2022.09.16.04.51.40
+ b14-20020adff90e000000b00225307f43fbsm4772079wrr.44.2022.09.16.04.00.42
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 16 Sep 2022 04:51:40 -0700 (PDT)
-Message-ID: <1bc734be-91e8-9845-66a0-d693d62c9297@redhat.com>
-Date: Fri, 16 Sep 2022 13:51:39 +0200
+ Fri, 16 Sep 2022 04:00:43 -0700 (PDT)
+Message-ID: <e15772ac-5ad5-37a1-9957-0b1f2fc5284c@redhat.com>
+Date: Fri, 16 Sep 2022 13:00:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.0
@@ -69,19 +69,16 @@ To: Thomas Zimmermann <tzimmermann@suse.de>,
  laurent.pinchart@ideasonboard.com, kieran.bingham+renesas@ideasonboard.com,
  jyri.sarha@iki.fi, tomba@kernel.org, sam@ravnborg.org
 References: <20220909105947.6487-1-tzimmermann@suse.de>
- <20220909105947.6487-3-tzimmermann@suse.de>
- <7080a54e-9e0d-93f4-ecba-150d3af03226@redhat.com>
- <7013378e-9434-d6c6-b777-67af945cb0f8@suse.de>
+ <20220909105947.6487-2-tzimmermann@suse.de>
 From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <7013378e-9434-d6c6-b777-67af945cb0f8@suse.de>
+In-Reply-To: <20220909105947.6487-2-tzimmermann@suse.de>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 20 Sep 2022 21:24:04 +0000
-Subject: Re: [Nouveau] [PATCH 2/4] drm/plane: Allocate planes with
- drm_universal_plane_alloc()
+Subject: Re: [Nouveau] [PATCH 1/4] drm/plane: Remove drm_plane_init()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,47 +95,39 @@ Cc: linux-renesas-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 9/16/22 13:41, Thomas Zimmermann wrote:
+Hello Thomas,
+
+On 9/9/22 12:59, Thomas Zimmermann wrote:
+> Open-code drm_plane_init() and remove the function from DRM. The
+> implementation of drm_plane_init() is a simple wrapper around a call
+> to drm_universal_plane_init(), so drivers can just use that instead.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
 
 [...]
 
->>
->>> + * @dev: DRM device
->>> + * @type: the type of the struct which contains struct &drm_plane
->>> + * @member: the name of the &drm_plane within @type
->>> + * @possible_crtcs: bitmask of possible CRTCs
->>> + * @funcs: callbacks for the new plane
->>> + * @formats: array of supported formats (DRM_FORMAT\_\*)
->>> + * @format_count: number of elements in @formats
->>> + * @format_modifiers: array of struct drm_format modifiers terminated by
->>> + *                    DRM_FORMAT_MOD_INVALID
->>> + * @plane_type: type of plane (overlay, primary, cursor)
->>> + * @name: printf style format string for the plane name, or NULL for default name
->>> + *
->>> + * Allocates and initializes a plane object of type @type. The caller
->>> + * is responsible for releasing the allocated memory with kfree().
->>> + *
->>
->> I thought that all the drmm_*_alloc() managed interfaces should use the
->> drmm_k{z,m}alloc() helpers, so that the memory is automatically freed
->> on the last drm_dev_put() call ?
-> 
-> For new drivers, managed cleanup is preferred. But this is an existing 
-> unmanaged cleanup.
-> 
-> I don't know if drmm_ changes the semantics in unexpected ways (well, 
-> probably not). With managed memory releases, I was worried that plane 
-> memory might stay around longer than expected. And we'd have to fix the 
-> plane-destroy function in each user as well.
-> 
-> Adding the existing code as a new function is the trivial solution and 
-> allows to address each driver individually. Also see my reply to 
-> Laurent's question on that topic.
->
+> diff --git a/drivers/gpu/drm/nouveau/dispnv04/overlay.c b/drivers/gpu/drm/nouveau/dispnv04/overlay.c
+> index 37e63e98cd08..33f29736024a 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv04/overlay.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv04/overlay.c
+> @@ -296,9 +296,10 @@ nv10_overlay_init(struct drm_device *device)
+>  		break;
+>  	}
+>  
+> -	ret = drm_plane_init(device, &plane->base, 3 /* both crtc's */,
+> -			     &nv10_plane_funcs,
+> -			     formats, num_formats, false);
+> +	ret = drm_universal_plane_init(device, &plane->base, 3 /* both crtc's */,
+> +				       &nv10_plane_funcs,
+> +				       formats, num_formats, NULL,
+> +				       DRM_PLANE_TYPE_OVERLAY, NULL);
 
-Ah, never mind. I misread the function name definition and thought that
-you had a drmm_ suffix but, now on second read I see that is only drm_
-so just ignore my comment about using managed memory alloc / release.
+Not only drm_plane_init() doesn't add much value but makes the code
+harder to read. Since by calling drm_universal_plane_init() instead,
+it's explicit whether the initialized plane is primary or an overlay.
+
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 
 -- 
 Best regards,
