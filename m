@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEB50C6FA82
-	for <nouveau@archiver.kernel.org>; Tue, 20 Sep 2022 21:24:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8ACDEC54EE9
+	for <nouveau@archiver.kernel.org>; Tue, 20 Sep 2022 21:24:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37BC410E2BE;
-	Tue, 20 Sep 2022 21:24:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0635110E797;
+	Tue, 20 Sep 2022 21:24:12 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 728FD10EC16
- for <nouveau@lists.freedesktop.org>; Fri, 16 Sep 2022 11:22:09 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DD4C10ECBF
+ for <nouveau@lists.freedesktop.org>; Fri, 16 Sep 2022 11:51:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1663327328;
+ s=mimecast20190719; t=1663329103;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=FZStFFZ+iI6FXYbByTwSalDf1O2JmtSMbYAUVSsU2G0=;
- b=FQHyTAlQesxTg66gKAs8pNPjCblInH9m5U0Z7zJDgqautU+ihe5UXNJ4m442qefTSEDYSZ
- v4zBvrIupvE4c07vBTbfgjhLAhKRzk4YdisOLODg/TWsnU9OMbDdtN9Z3zMtdvoA7HRBcM
- COH5pJ/DmABcrCA1bc8/kqe9UF+ZGGM=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=bU7kCXLJSgLZrxOeLHX/KqgOsD8qkxHVpVMYeFKVWKA=;
+ b=UKdsOL/Fh7D1f2/9TV4SYLgGzLVU6zXEViAmoGpMELILhqGQeJ6UfSaeGxqhp68NHcX3Gc
+ 31t9UZdxJ5omcXs/ertGhOBdszv5l6NRrOn7+HqSYVXSwCa6d4NyCBUSl4vUARSFlZo1RG
+ LAQCF4VH0W74hqEnM2yIjUBTPgdcFUg=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-495-X4U0b1C5M_Cp0s9riPby3w-1; Fri, 16 Sep 2022 07:22:07 -0400
-X-MC-Unique: X4U0b1C5M_Cp0s9riPby3w-1
-Received: by mail-wm1-f71.google.com with SMTP id
- b5-20020a05600c4e0500b003b499f99aceso1913499wmq.1
- for <nouveau@lists.freedesktop.org>; Fri, 16 Sep 2022 04:22:07 -0700 (PDT)
+ us-mta-176-3RsspqFsPvGgMe-yQ_f4mw-1; Fri, 16 Sep 2022 07:51:42 -0400
+X-MC-Unique: 3RsspqFsPvGgMe-yQ_f4mw-1
+Received: by mail-wm1-f69.google.com with SMTP id
+ c5-20020a7bc005000000b003a63a3570f2so7648898wmb.8
+ for <nouveau@lists.freedesktop.org>; Fri, 16 Sep 2022 04:51:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date;
- bh=FZStFFZ+iI6FXYbByTwSalDf1O2JmtSMbYAUVSsU2G0=;
- b=ed9X4/oWhu/1eT4rvn6M1wBv8ulolTPWFmBeKDy4e+9yAENCK0xBqUsVMc7v8uj547
- s+ir8LuGUi/NFheiNt9AkIMun6LsGtGYTbi30wTM9bBvocVGP4YyHcKxTf+/U53xCkC9
- HcfJYcRGprUvrOs/saXHajd83++plsiBbGriRyxnQGk22NAab43dgbKErp9XWr66UhoW
- 2hMgz601eBYp3BvAObYXHcFYn4xn5P0o5Q1H4dOgAGLKzYh6+/Ti0VtloRaPsIMaeM6e
- RR5TRtorV1YCJgcGfD16pDM8LaGw3ZHpsj+A4yfA+uHDJhBoYW/5NwYYkFRFh00OoHIr
- 6bEg==
-X-Gm-Message-State: ACrzQf3XuGKTY+qlpBJ1yYCQmrsW9PqkGLRa+vABZPAl1HJPlyAaZB70
- O8zA+QL4PGkpU5aPZmXiKwYI2FtNi0x5GTbJrirEUhScNWOyhM8HFgCAbqI50P+sPBPeA4OLPkm
- 5CJaVa21DSpbSzWaIJogMBnJO1Q==
-X-Received: by 2002:a05:600c:2142:b0:3b4:9289:9d4e with SMTP id
- v2-20020a05600c214200b003b492899d4emr3014121wml.197.1663327326459; 
- Fri, 16 Sep 2022 04:22:06 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM50/Fus1+u1OkFAc1JDfNO6cvMZsMd9NEZGcHTTB2Bq15UChaJpRUR0BIpVpBusOvuQyI2Tvg==
-X-Received: by 2002:a05:600c:2142:b0:3b4:9289:9d4e with SMTP id
- v2-20020a05600c214200b003b492899d4emr3014107wml.197.1663327326256; 
- Fri, 16 Sep 2022 04:22:06 -0700 (PDT)
+ bh=bU7kCXLJSgLZrxOeLHX/KqgOsD8qkxHVpVMYeFKVWKA=;
+ b=rOU1EDZQ47UZYHKBzS9HOk/Ga1yrPTWfqBZjKvTtNYUcCA4rrKpp95duWU/Len1xUY
+ 588B4rD/+jAc39QUd4zEpsnah+IIku2m+4QdS2zg6cnL8Q+9ezbZTco2itAcmAtW4nWK
+ Tb6hV2eh7IjkrFwijRcHxj0oyH2I+9+eIXQHteOyiZpjAxfnyWyCgsrVOR0CzCRnCKAu
+ 5f3sDUt59ApXrQP1E90F/83T/Vi8Ll6JGExsL6uBwJPWfWetHtepAAKf3k9p5gfAYTHt
+ YwgW63umcrwFtsDr2Tos7MKcA7dJPQEuxEmP0OR4n4ny/Rzu/+4Pyd8yauLSM/JH/V/E
+ 8gnQ==
+X-Gm-Message-State: ACrzQf3qeSB9Hp1I5cVspnfJibvFGmpWctS6srE3Td6RV1fTBbr5Esig
+ 6oYJMK1Z8TI9CUzM3BjeSH1gjUlQuVHM6IuTuql7cF4SEfvU/Lp7Yux1el8zkrbQsr6EkeJVF2C
+ CQmp3qXu+e63AeoZ+ISeL1Kfr4w==
+X-Received: by 2002:a05:600c:1e24:b0:3b4:6c1e:8bb7 with SMTP id
+ ay36-20020a05600c1e2400b003b46c1e8bb7mr3211910wmb.1.1663329101264; 
+ Fri, 16 Sep 2022 04:51:41 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM7aRBJ75LlLwOGHdB7wI38p8BMKPnM0FH/WgnmHmp9FOfuZcOJAWAz1q0E6oPTsuUXGYrcnbg==
+X-Received: by 2002:a05:600c:1e24:b0:3b4:6c1e:8bb7 with SMTP id
+ ay36-20020a05600c1e2400b003b46c1e8bb7mr3211892wmb.1.1663329101076; 
+ Fri, 16 Sep 2022 04:51:41 -0700 (PDT)
 Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es.
  [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
- u5-20020a5d4345000000b002287d99b455sm4645486wrr.15.2022.09.16.04.22.05
+ n1-20020a1c2701000000b003b3307fb98fsm1973286wmn.24.2022.09.16.04.51.40
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 16 Sep 2022 04:22:05 -0700 (PDT)
-Message-ID: <7080a54e-9e0d-93f4-ecba-150d3af03226@redhat.com>
-Date: Fri, 16 Sep 2022 13:22:04 +0200
+ Fri, 16 Sep 2022 04:51:40 -0700 (PDT)
+Message-ID: <1bc734be-91e8-9845-66a0-d693d62c9297@redhat.com>
+Date: Fri, 16 Sep 2022 13:51:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.0
@@ -70,8 +70,10 @@ To: Thomas Zimmermann <tzimmermann@suse.de>,
  jyri.sarha@iki.fi, tomba@kernel.org, sam@ravnborg.org
 References: <20220909105947.6487-1-tzimmermann@suse.de>
  <20220909105947.6487-3-tzimmermann@suse.de>
+ <7080a54e-9e0d-93f4-ecba-150d3af03226@redhat.com>
+ <7013378e-9434-d6c6-b777-67af945cb0f8@suse.de>
 From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20220909105947.6487-3-tzimmermann@suse.de>
+In-Reply-To: <7013378e-9434-d6c6-b777-67af945cb0f8@suse.de>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
@@ -96,63 +98,47 @@ Cc: linux-renesas-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 9/9/22 12:59, Thomas Zimmermann wrote:
-> Provide drm_univeral_plane_alloc(), which allocated an initializes a
-> plane. Code for non-atomic drivers uses this pattern. Convert it to
-> the new function. The modeset helpers contain a quirk for handling their
-> color formats differently. Set the flag outside plane allocation.
-> 
-> The new function is already deprecated to some extend. Drivers should
-> rather use drmm_univeral_plane_alloc() or drm_universal_plane_init().
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
+On 9/16/22 13:41, Thomas Zimmermann wrote:
 
 [...]
 
->  
-> +__printf(10, 11)
-> +void *__drm_universal_plane_alloc(struct drm_device *dev,
-> +				  size_t size, size_t offset,
-> +				  uint32_t possible_crtcs,
-> +				  const struct drm_plane_funcs *funcs,
-> +				  const uint32_t *formats,
-> +				  unsigned int format_count,
-> +				  const uint64_t *format_modifiers,
-> +				  enum drm_plane_type plane_type,
-> +				  const char *name, ...);
-> +
-> +/**
-> + * drm_universal_plane_alloc - Allocate and initialize an universal plane object
+>>
+>>> + * @dev: DRM device
+>>> + * @type: the type of the struct which contains struct &drm_plane
+>>> + * @member: the name of the &drm_plane within @type
+>>> + * @possible_crtcs: bitmask of possible CRTCs
+>>> + * @funcs: callbacks for the new plane
+>>> + * @formats: array of supported formats (DRM_FORMAT\_\*)
+>>> + * @format_count: number of elements in @formats
+>>> + * @format_modifiers: array of struct drm_format modifiers terminated by
+>>> + *                    DRM_FORMAT_MOD_INVALID
+>>> + * @plane_type: type of plane (overlay, primary, cursor)
+>>> + * @name: printf style format string for the plane name, or NULL for default name
+>>> + *
+>>> + * Allocates and initializes a plane object of type @type. The caller
+>>> + * is responsible for releasing the allocated memory with kfree().
+>>> + *
+>>
+>> I thought that all the drmm_*_alloc() managed interfaces should use the
+>> drmm_k{z,m}alloc() helpers, so that the memory is automatically freed
+>> on the last drm_dev_put() call ?
+> 
+> For new drivers, managed cleanup is preferred. But this is an existing 
+> unmanaged cleanup.
+> 
+> I don't know if drmm_ changes the semantics in unexpected ways (well, 
+> probably not). With managed memory releases, I was worried that plane 
+> memory might stay around longer than expected. And we'd have to fix the 
+> plane-destroy function in each user as well.
+> 
+> Adding the existing code as a new function is the trivial solution and 
+> allows to address each driver individually. Also see my reply to 
+> Laurent's question on that topic.
+>
 
-Should functions kernel-doc definitions use parenthesis or not? I see in
-https://elixir.bootlin.com/linux/latest/source/Documentation/doc-guide/kernel-doc.rst#L59
-that the example has it but notice that there is not consistency in DRM
-about this.
-
-> + * @dev: DRM device
-> + * @type: the type of the struct which contains struct &drm_plane
-> + * @member: the name of the &drm_plane within @type
-> + * @possible_crtcs: bitmask of possible CRTCs
-> + * @funcs: callbacks for the new plane
-> + * @formats: array of supported formats (DRM_FORMAT\_\*)
-> + * @format_count: number of elements in @formats
-> + * @format_modifiers: array of struct drm_format modifiers terminated by
-> + *                    DRM_FORMAT_MOD_INVALID
-> + * @plane_type: type of plane (overlay, primary, cursor)
-> + * @name: printf style format string for the plane name, or NULL for default name
-> + *
-> + * Allocates and initializes a plane object of type @type. The caller
-> + * is responsible for releasing the allocated memory with kfree().
-> + *
-
-I thought that all the drmm_*_alloc() managed interfaces should use the
-drmm_k{z,m}alloc() helpers, so that the memory is automatically freed
-on the last drm_dev_put() call ?
-
-Other than those two nits, the patch looks good to me.
-
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+Ah, never mind. I misread the function name definition and thought that
+you had a drmm_ suffix but, now on second read I see that is only drm_
+so just ignore my comment about using managed memory alloc / release.
 
 -- 
 Best regards,
