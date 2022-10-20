@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD27FC4332F
-	for <nouveau@archiver.kernel.org>; Thu, 20 Oct 2022 10:41:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A54BC4332F
+	for <nouveau@archiver.kernel.org>; Thu, 20 Oct 2022 10:41:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEBE210E803;
-	Thu, 20 Oct 2022 10:38:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AEF210E78C;
+	Thu, 20 Oct 2022 10:38:27 +0000 (UTC)
 Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A156C10E431;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B51110E6B4;
  Thu, 20 Oct 2022 10:38:02 +0000 (UTC)
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id D2CAA22B47;
- Thu, 20 Oct 2022 10:38:00 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id B282722B42;
+ Thu, 20 Oct 2022 10:37:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1666262280; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1666262278; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=jWFK76GZFYsgYwc+6vxSArga9uMmZ2Tc8oMprbqiqw0=;
- b=Ejd78jRSYmwnBxX2aipwC3Ox8skiLUbjtMay59sDp649DdHDOhbUxuiSAsJXDe59jzY039
- 7m8t3LalhptMXwLVTrzVkCxp54leuuDcxIxewQ+X5Z1wJw/nYtKJ6C9nQ6NwMv8FXkTkGO
- 3RqSYtiMQc/Rly3XWIlnJ+uGnR6kSNM=
+ bh=dfNCfewKdF4qrRIFBcdy7kMwlQEEw/he+rN8lqzuO0c=;
+ b=sT2vIrk7gnJPmpN3+w8QkaaTa6QUjGrubtLOteaO8q4FcNJyLa4bQ5A3cJng6/bv4x1ZRW
+ Lz3p/ro9/w3xl+AVVT9FPWpjAMPcA8qn3cc/ebFvAESW96dJmzCi9Vt9UP6A/tQvx+rg4o
+ YGUKbfUA6e96QHnR/bkR596lb9w56ZA=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1666262280;
+ s=susede2_ed25519; t=1666262278;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=jWFK76GZFYsgYwc+6vxSArga9uMmZ2Tc8oMprbqiqw0=;
- b=9Bhly1S29cGBzEZtlHvw8BUo8sDLPZ+WqFVhjceEyB7ynwh+OKfDst1qZxL/12nJNg8l+J
- LjNHGoN0NcLl8OAw==
+ bh=dfNCfewKdF4qrRIFBcdy7kMwlQEEw/he+rN8lqzuO0c=;
+ b=R9wURktsZ4GUuQFrOAQNChz7Mxyve21ulKCwP98mDiqGdgQ9gW2RRTX44wOhGGfIABxhoh
+ cnNyRpZaMJHX9BCA==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 598D613AF5;
- Thu, 20 Oct 2022 10:38:00 +0000 (UTC)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 3F55713B72;
+ Thu, 20 Oct 2022 10:37:58 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id UMn+FAglUWPPYwAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 20 Oct 2022 10:38:00 +0000
+ by imap2.suse-dmz.suse.de with ESMTPSA id qG2kDgYlUWPPYwAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 20 Oct 2022 10:37:58 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org, javierm@redhat.com,
  mripard@kernel.org, maarten.lankhorst@linux.intel.com
-Date: Thu, 20 Oct 2022 12:37:41 +0200
-Message-Id: <20221020103755.24058-8-tzimmermann@suse.de>
+Date: Thu, 20 Oct 2022 12:37:37 +0200
+Message-Id: <20221020103755.24058-4-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <20221020103755.24058-1-tzimmermann@suse.de>
 References: <20221020103755.24058-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH 07/21] drm/rockchip: Don't set struct
+Subject: [Nouveau] [PATCH 03/21] drm/ingenic: Don't set struct
  drm_driver.lastclose
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -83,35 +83,28 @@ Cc: linux-hyperv@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Don't set struct drm_driver.lastclose. It's used to restore the
-fbdev console. But as rockchip uses generic fbdev emulation, the
-console is being restored by the DRM client helpers already. See
-the call to drm_client_dev_restore() in drm_lastclose().
+Don't set struct drm_mode_config.output_poll_changed. It's used to
+inform the fbdev console about conncetor changes. But as ingenic
+uses generic fbdev emulation, the console is being informed by the
+DRM client helpers already. See the calls to drm_client_dev_hotplug()
+in drm_probe_helper.c.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/rockchip/rockchip_drm_fb.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/ingenic/ingenic-drm-drv.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
-index 092bf863110b7..7de64b0ad047f 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
-@@ -9,7 +9,6 @@
- #include <drm/drm.h>
- #include <drm/drm_atomic.h>
- #include <drm/drm_damage_helper.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_gem_framebuffer_helper.h>
-@@ -101,7 +100,6 @@ rockchip_fb_create(struct drm_device *dev, struct drm_file *file,
+diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+index ab0515d2c420a..99f86f1ba8bee 100644
+--- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
++++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+@@ -1018,7 +1018,6 @@ static const struct drm_bridge_funcs ingenic_drm_bridge_funcs = {
  
- static const struct drm_mode_config_funcs rockchip_drm_mode_config_funcs = {
- 	.fb_create = rockchip_fb_create,
--	.output_poll_changed = drm_fb_helper_output_poll_changed,
- 	.atomic_check = drm_atomic_helper_check,
- 	.atomic_commit = drm_atomic_helper_commit,
+ static const struct drm_mode_config_funcs ingenic_drm_mode_config_funcs = {
+ 	.fb_create		= ingenic_drm_gem_fb_create,
+-	.output_poll_changed	= drm_fb_helper_output_poll_changed,
+ 	.atomic_check		= drm_atomic_helper_check,
+ 	.atomic_commit		= drm_atomic_helper_commit,
  };
 -- 
 2.38.0
