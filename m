@@ -4,44 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80A38C77B78
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:31:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8633EC77B7C
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:31:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6BB210E390;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D802210E392;
 	Thu,  4 May 2023 12:31:41 +0000 (UTC)
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6B8810EE7C;
- Fri, 17 Mar 2023 08:23:19 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 5D6E8B824FF;
- Fri, 17 Mar 2023 08:23:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E3EEC433A0;
- Fri, 17 Mar 2023 08:23:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1679041397;
- bh=fLtbhWgCsGsjs2LsMlU/YO3L1k01VNDjn64lqWtvZXk=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=UGVuQp1GOkBI9jvFetIsa9u3o1htjU2WAgXauzbmjb6UD4o4gDEi8FHkf/0SKUMJs
- oPik83Qk3lI6Hbrh8Z4oXmG33xJyLeCF5JYhuxrqE9NS8vAzntafM65E/Cs2iCce5L
- d/bC0nXKuqPcFFXhAkVt6SfjB2Gz+Q0v34UkqLiejTTqQMmsx6slTcoSc5Mb39zpkb
- J/YXKultGej0ddqO40xSNH5QBxLfKCetHnn3pfgnrt+NM+4lFcb3HnOkBZ6MZmy86/
- luRWVJLCal1S9CqH1MqwprMDyv3Rpa7jHpIriBcA0nfB3gcLAv9ns7TsxNG0rAPw+X
- y2nyphzHbUpDw==
-From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 17 Mar 2023 08:17:05 +0000
-Message-Id: <20230317081718.2650744-25-lee@kernel.org>
-X-Mailer: git-send-email 2.40.0.rc1.284.g88254d51c5-goog
-In-Reply-To: <20230317081718.2650744-1-lee@kernel.org>
-References: <20230317081718.2650744-1-lee@kernel.org>
+Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1660E10E275;
+ Fri, 21 Oct 2022 01:07:10 +0000 (UTC)
+Received: from vertex.vmware.com (pool-173-49-113-140.phlapa.fios.verizon.net
+ [173.49.113.140]) (Authenticated sender: zack)
+ by letterbox.kde.org (Postfix) with ESMTPSA id E046B321FBE;
+ Fri, 21 Oct 2022 02:07:05 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
+ t=1666314428; bh=mEZCh6DKMZxYs93u5HYN5AP3T4mH4+XzTxRdxvODvmw=;
+ h=From:To:Cc:Subject:Date:From;
+ b=f+8WwnTl+3Upzwg+ngXQt0iN2WuzWtkNoNapASjI96Li+fZnYuE06m/AkjvfVx9fz
+ wKwI5nSLVtziDl/hAwOn+u3PEbKlwLhlH+AXn789MxamNoe874UrdW1EVoVkUswoLn
+ K+2Uibop1+YSgaf3JJte7NgpUyAQJXKGXsrarKPPzEfSyp0MYQzgRW4f8GpVrfnBZQ
+ EEkD1hAUd/jKBUWLFPcrlbuGudZIv20cDhY4A9SvRHBjs7oh08v5RU7zdjKnscuNdD
+ F+BCCZU3M40Wy8/Q6SQdnwDS0B0ggIn2VtfGYDo5esOlb63uU6RkRHJ5h9InNxgDWY
+ H8sMvUFCaozRg==
+From: Zack Rusin <zack@kde.org>
+To: dri-devel@lists.freedesktop.org
+Date: Thu, 20 Oct 2022 21:07:03 -0400
+Message-Id: <20221021010703.536318-1-zack@kde.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:31 +0000
-Subject: [Nouveau] [PATCH 24/37] drm/nouveau/nvkm/engine/gr/gf100: Demote
- kerneldoc abuse
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:35 +0000
+Subject: [Nouveau] [PATCH] drm/nouveau: Remove unused variable
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,40 +46,44 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
+Reply-To: Zack Rusin <zackr@vmware.com>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Thomas Zimmermann <tzimemrmann@suse.de>, nouveau@lists.freedesktop.org,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Zack Rusin <zackr@vmware.com>, Ben Skeggs <bskeggs@redhat.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Fixes the following W=1 kernel build warning(s):
+From: Zack Rusin <zackr@vmware.com>
 
- drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c:1044: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+Trivial removal of an unused variable. Not sure how it snuck by me and
+build bots in the 7c99616e3fe7.
 
+Fixes: 7c99616e3fe7 ("drm: Remove drm_mode_config::fb_base")
+Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Thomas Zimmermann <tzimemrmann@suse.de>
+Cc: Christian König <christian.koenig@amd.com>
 Cc: Ben Skeggs <bskeggs@redhat.com>
 Cc: Karol Herbst <kherbst@redhat.com>
 Cc: Lyude Paul <lyude@redhat.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Signed-off-by: Lee Jones <lee@kernel.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nouveau_display.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-index 5f20079c3660f..7d4c2264d3c05 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-@@ -1040,7 +1040,7 @@ gf100_gr_zbc_init(struct gf100_gr *gr)
- 	}
- }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index 928fdfa8e8e5..2e97186090c8 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -659,7 +659,6 @@ int
+ nouveau_display_create(struct drm_device *dev)
+ {
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+-	struct nvkm_device *device = nvxx_device(&drm->client.device);
+ 	struct nouveau_display *disp;
+ 	int ret;
  
--/**
-+/*
-  * Wait until GR goes idle. GR is considered idle if it is disabled by the
-  * MC (0x200) register, or GR is not busy and a context switch is not in
-  * progress.
 -- 
-2.40.0.rc1.284.g88254d51c5-goog
+2.34.1
 
