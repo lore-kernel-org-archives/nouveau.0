@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83AA9EB646C
-	for <nouveau@archiver.kernel.org>; Mon, 24 Oct 2022 11:21:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E66FEB6460
+	for <nouveau@archiver.kernel.org>; Mon, 24 Oct 2022 11:21:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0679410E38A;
-	Mon, 24 Oct 2022 11:20:16 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60AC010E354;
- Mon, 24 Oct 2022 11:20:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6650F10E399;
+	Mon, 24 Oct 2022 11:20:20 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 100B610E354;
+ Mon, 24 Oct 2022 11:20:03 +0000 (UTC)
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 144561FD87;
- Mon, 24 Oct 2022 11:19:59 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id ABA5D21E6C;
+ Mon, 24 Oct 2022 11:20:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1666610399; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1666610401; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=sHEv3PMrKNnInemYrMBOWuesS2nTAxE1RBtBG3/fya4=;
- b=DU+FrXvCzuxXQKLji2130cdqJNDZWimFa17voIFRqiJi9YV6yEP/tBOuVsk/aXIYcCZ22y
- dJiA417KPEM2/2KMkoVkU4zzdd8/7BAQ4EpaiKoLTwl80ROKkpi47TqcaKS1RcNYwv6d18
- wgULj8VNsST/jnqrt41vfMG2qbcKw9k=
+ bh=KzUh1CY9McKeyFVUe5+c2z/ffAcO2RMpJv1VeOGC9tQ=;
+ b=mJuvcbrCHArgybf76oDkRVpZgUITZFn7CovoyPGZ8Jtv/UeMegrPQvqhlC4gqPhmZXYyQ5
+ nyw2fxZM1NKfoLBbsIZoJA6WpSIpBCD/fHNYDvp53Aw0xc20byoQ6y7tqBRhoLy+x8gwzs
+ +x10SJ6gN4dZ8eoX6TqRc81bLJ3uHts=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1666610399;
+ s=susede2_ed25519; t=1666610401;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=sHEv3PMrKNnInemYrMBOWuesS2nTAxE1RBtBG3/fya4=;
- b=DFl0JbhoaL2BQZ30SVNdzW5dYpDazf0fWLsyS8qsMNBMAzt7PPP4vh0I1oF+6Qg/vaPBp/
- dCQW5hsUlPHLLpBw==
+ bh=KzUh1CY9McKeyFVUe5+c2z/ffAcO2RMpJv1VeOGC9tQ=;
+ b=8g9D481esPMqcRBF31NMNzhU5N29eN97tkX3rl/iBf15e+H/kdGgypTXNXjKZ9RnTtjNHR
+ RKdSYVDZGZcV18Ag==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 9654513A98;
- Mon, 24 Oct 2022 11:19:58 +0000 (UTC)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 3DADB13357;
+ Mon, 24 Oct 2022 11:20:01 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id kMjTI950VmOYMgAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Mon, 24 Oct 2022 11:19:58 +0000
+ by imap2.suse-dmz.suse.de with ESMTPSA id 6NJFDuF0VmOYMgAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 24 Oct 2022 11:20:01 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org, javierm@redhat.com,
  mripard@kernel.org, maarten.lankhorst@linux.intel.com
-Date: Mon, 24 Oct 2022 13:19:33 +0200
-Message-Id: <20221024111953.24307-2-tzimmermann@suse.de>
+Date: Mon, 24 Oct 2022 13:19:38 +0200
+Message-Id: <20221024111953.24307-7-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <20221024111953.24307-1-tzimmermann@suse.de>
 References: <20221024111953.24307-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH v2 01/21] drm/komeda: Don't set struct
- drm_driver.lastclose
+Subject: [Nouveau] [PATCH v2 06/21] drm/ingenic: Don't set struct
+ drm_driver.output_poll_changed
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,36 +83,32 @@ Cc: linux-hyperv@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Don't set struct drm_driver.lastclose. It's used to restore the
-fbdev console. But as komeda uses generic fbdev emulation, the
-console is being restored by the DRM client helpers already. See
-the call to drm_client_dev_restore() in drm_lastclose().
+Don't set struct drm_driver.output_poll_changed. It's used to restore
+the fbdev console. But as ingenic uses generic fbdev emulation, the
+console is being restored by the DRM client helpers already. See the
+functions drm_kms_helper_hotplug_event() and
+drm_kms_helper_connector_hotplug_event() in drm_probe_helper.c.
+
+v2:
+	* fix commit description (Christian, Sergey)
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/arm/display/komeda/komeda_kms.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/ingenic/ingenic-drm-drv.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-index 451746ebbe713..62dc64550793e 100644
---- a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-+++ b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-@@ -10,7 +10,6 @@
- #include <drm/drm_atomic.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_drv.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_gem_dma_helper.h>
- #include <drm/drm_gem_framebuffer_helper.h>
- #include <drm/drm_managed.h>
-@@ -59,7 +58,6 @@ static irqreturn_t komeda_kms_irq_handler(int irq, void *data)
+diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+index ab0515d2c420a..99f86f1ba8bee 100644
+--- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
++++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+@@ -1018,7 +1018,6 @@ static const struct drm_bridge_funcs ingenic_drm_bridge_funcs = {
  
- static const struct drm_driver komeda_kms_driver = {
- 	.driver_features = DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
--	.lastclose			= drm_fb_helper_lastclose,
- 	DRM_GEM_DMA_DRIVER_OPS_WITH_DUMB_CREATE(komeda_gem_dma_dumb_create),
- 	.fops = &komeda_cma_fops,
- 	.name = "komeda",
+ static const struct drm_mode_config_funcs ingenic_drm_mode_config_funcs = {
+ 	.fb_create		= ingenic_drm_gem_fb_create,
+-	.output_poll_changed	= drm_fb_helper_output_poll_changed,
+ 	.atomic_check		= drm_atomic_helper_check,
+ 	.atomic_commit		= drm_atomic_helper_commit,
+ };
 -- 
 2.38.0
 
