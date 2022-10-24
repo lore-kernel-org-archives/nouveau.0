@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4136FEB6460
-	for <nouveau@archiver.kernel.org>; Mon, 24 Oct 2022 11:22:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D7E2EB6462
+	for <nouveau@archiver.kernel.org>; Mon, 24 Oct 2022 11:22:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4692F10E44D;
-	Mon, 24 Oct 2022 11:20:32 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16D7110E34C;
- Mon, 24 Oct 2022 11:20:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F009610E470;
+	Mon, 24 Oct 2022 11:20:34 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 725EB10E374;
+ Mon, 24 Oct 2022 11:20:03 +0000 (UTC)
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 2A99A21E9E;
- Mon, 24 Oct 2022 11:20:04 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 29EAE21EAA;
+ Mon, 24 Oct 2022 11:20:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1666610404; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1666610402; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=YkMHENyFsh6/3SjkSTuYRYMbHc7R5XzWBBCbrwJgYhc=;
- b=UL0Xm/SZ/boCID7H9JNHrmtRrt3jufekwWgojpJwcDZDOUJLVFxOogJl2v0+1qP4CEAeGU
- fRM0GF4CApRdd83X31cW2Rzd2aSdlQtJf4S4YZtJ5sXZLrj58aqT6Gv8ztwFTV2hZcAoSy
- t9VQtHXjrBPan1liZ0sZc/2fCWmDYDA=
+ bh=1Wm7qKYcP3zcqB8vN6ctrVYh+kdKBx4YB6Ib1oO4WIs=;
+ b=xPkb3DU7zI67ZFwwt8i+2oIu3zEy8S+ECkGZtacr+DZXiIOzuTSjP8+cV+Kw0IQBdfXUo+
+ MJiMncM2IgAUUvxEIi39/XnXet5/F8YKawvYQ2EQjYeXe8iODcnDUmUI4PC7DJQDPYWDnX
+ J8V/1uqou8zKm0Tyycio1hC+zvbT5b8=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1666610404;
+ s=susede2_ed25519; t=1666610402;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=YkMHENyFsh6/3SjkSTuYRYMbHc7R5XzWBBCbrwJgYhc=;
- b=vDfrFs9N/fTxnSB8q3qlPxjXKDXlJR8QXIEAG/fSF+rYVJqcaIrdG6KxsnY74D6kAk8scf
- 1FIUDLCuQMoaGJDg==
+ bh=1Wm7qKYcP3zcqB8vN6ctrVYh+kdKBx4YB6Ib1oO4WIs=;
+ b=kIm2zNLE982JNr9RaYNRmUkTVKj1xJOWVyT/wZa+SNDh/UCrjkiXo7EdEAb/Myj9aL3fKn
+ 1B5bUJdL74Je4xDw==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id A51C113357;
- Mon, 24 Oct 2022 11:20:03 +0000 (UTC)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id B018613A98;
+ Mon, 24 Oct 2022 11:20:01 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id MClwJ+N0VmOYMgAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Mon, 24 Oct 2022 11:20:03 +0000
+ by imap2.suse-dmz.suse.de with ESMTPSA id 0DQ1KuF0VmOYMgAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 24 Oct 2022 11:20:01 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org, javierm@redhat.com,
  mripard@kernel.org, maarten.lankhorst@linux.intel.com
-Date: Mon, 24 Oct 2022 13:19:43 +0200
-Message-Id: <20221024111953.24307-12-tzimmermann@suse.de>
+Date: Mon, 24 Oct 2022 13:19:39 +0200
+Message-Id: <20221024111953.24307-8-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <20221024111953.24307-1-tzimmermann@suse.de>
 References: <20221024111953.24307-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH v2 11/21] drm/fb-helper: Cleanup include
- statements in header file
+Subject: [Nouveau] [PATCH v2 07/21] drm/logicvc: Don't set struct
+ drm_driver.output_poll_changed
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,31 +83,40 @@ Cc: linux-hyperv@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Only include what we have to.
+Don't set struct drm_driver.output_poll_changed. It's used to restore
+the fbdev console. But as logicvc uses generic fbdev emulation, the
+console is being restored by the DRM client helpers already. See the
+functions drm_kms_helper_hotplug_event() and
+drm_kms_helper_connector_hotplug_event() in drm_probe_helper.c.
+
+v2:
+	* fix commit description (Christian)
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- include/drm/drm_fb_helper.h | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/logicvc/logicvc_mode.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/include/drm/drm_fb_helper.h b/include/drm/drm_fb_helper.h
-index fddd0d1af6891..e923089522896 100644
---- a/include/drm/drm_fb_helper.h
-+++ b/include/drm/drm_fb_helper.h
-@@ -32,11 +32,9 @@
+diff --git a/drivers/gpu/drm/logicvc/logicvc_mode.c b/drivers/gpu/drm/logicvc/logicvc_mode.c
+index d8207ffda1af9..9971950ebd4ee 100644
+--- a/drivers/gpu/drm/logicvc/logicvc_mode.c
++++ b/drivers/gpu/drm/logicvc/logicvc_mode.c
+@@ -10,7 +10,6 @@
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_crtc_helper.h>
+ #include <drm/drm_drv.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_gem_dma_helper.h>
+ #include <drm/drm_gem_framebuffer_helper.h>
+ #include <drm/drm_mode_config.h>
+@@ -26,7 +25,6 @@
  
- struct drm_fb_helper;
- 
--#include <drm/drm_client.h>
--#include <drm/drm_crtc.h>
--#include <drm/drm_device.h>
- #include <linux/fb.h>
--#include <linux/kgdb.h>
-+
-+#include <drm/drm_client.h>
- 
- enum mode_set_atomic {
- 	LEAVE_ATOMIC_MODE_SET,
+ static const struct drm_mode_config_funcs logicvc_mode_config_funcs = {
+ 	.fb_create		= drm_gem_fb_create,
+-	.output_poll_changed	= drm_fb_helper_output_poll_changed,
+ 	.atomic_check		= drm_atomic_helper_check,
+ 	.atomic_commit		= drm_atomic_helper_commit,
+ };
 -- 
 2.38.0
 
