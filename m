@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAF8FEB6462
-	for <nouveau@archiver.kernel.org>; Mon, 24 Oct 2022 11:22:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B67EDEB6462
+	for <nouveau@archiver.kernel.org>; Mon, 24 Oct 2022 11:22:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAE2C10E450;
-	Mon, 24 Oct 2022 11:20:32 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB5DF10E3A9;
- Mon, 24 Oct 2022 11:20:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7959C10E432;
+	Mon, 24 Oct 2022 11:20:28 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FCC010E35C;
+ Mon, 24 Oct 2022 11:20:01 +0000 (UTC)
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id ABA7C22165;
- Mon, 24 Oct 2022 11:20:08 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 483001FD8A;
+ Mon, 24 Oct 2022 11:20:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1666610408; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1666610400; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=RsAQdHzLmddns92tHuvM6Lu3vuWZMSsqH8X6KbiDvyM=;
- b=Kx1ESk/2KWWWJMh3Mri7dZecKO9mDXs/G5Kh0hAdewWvuLJo1pmQHD6rKx9LyO4DYlvE07
- UGREIOW+1c7j8jBFE461HY6tuNFiQnMEGgwugb6mTlj5JySyPdYx6wCGz/kRV3vA9LOEnU
- 7GPrrBN1V+6dySJr6LCuxBMM9CtyYDY=
+ bh=4LfKpOswsnembvGTw5A10DEjilDnUQNy6bx3ya4350M=;
+ b=m//CahVjAIiwm/8S9Rrkcalu4YtsvYMGGlJ/x4Cns20xgjuFMU4yn3EqTWSWLmkTa9FkiO
+ P1egYdKroy9VxXHn0JsFcKjWtsyvCOmSPeGERoEx8TVmcqNzs14xAcL9DZvbr8t/4xCHCg
+ /2U9Styzy9LPub+xgp0gbwecRUNssHg=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1666610408;
+ s=susede2_ed25519; t=1666610400;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=RsAQdHzLmddns92tHuvM6Lu3vuWZMSsqH8X6KbiDvyM=;
- b=I2Hs34Ejsna6X414YeSewXudyPLIgsJ7R9rpNpC8j9+h3eJE58RTZnzq5HJHAxqpk4Udik
- FqboT04ghHFQrhAA==
+ bh=4LfKpOswsnembvGTw5A10DEjilDnUQNy6bx3ya4350M=;
+ b=4UdU9G008irTIhYRdGZAhb4TkPgDNu7vcVNG1gFEt2csZ303NBfR+i2HKEQYQeahsz2TFN
+ M+Z1LM+GGDDUmeBQ==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 034EE13357;
- Mon, 24 Oct 2022 11:20:07 +0000 (UTC)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 8E1BC13A98;
+ Mon, 24 Oct 2022 11:19:59 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id 8O1PO+d0VmOYMgAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Mon, 24 Oct 2022 11:20:07 +0000
+ by imap2.suse-dmz.suse.de with ESMTPSA id WNHmId90VmOYMgAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 24 Oct 2022 11:19:59 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org, javierm@redhat.com,
  mripard@kernel.org, maarten.lankhorst@linux.intel.com
-Date: Mon, 24 Oct 2022 13:19:51 +0200
-Message-Id: <20221024111953.24307-20-tzimmermann@suse.de>
+Date: Mon, 24 Oct 2022 13:19:35 +0200
+Message-Id: <20221024111953.24307-4-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <20221024111953.24307-1-tzimmermann@suse.de>
 References: <20221024111953.24307-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH v2 19/21] drm/fb-helper: Always initialize generic
- fbdev emulation
+Subject: [Nouveau] [PATCH v2 03/21] drm/vboxvideo: Don't set struct
+ drm_driver.lastclose
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,44 +83,29 @@ Cc: linux-hyperv@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Initialize the generic fbdev emulation even if it has been disabled
-on the kernel command line. The hotplug and mode initialization will
-fail accordingly.
-
-The kernel parameter can still be changed at runtime and the emulation
-will initialize after hotplugging the connector.
+Don't set struct drm_driver.lastclose. It's used to restore the
+fbdev console. But as vboxvideo uses generic fbdev emulation, the
+console is being restored by the DRM client helpers already. See
+the call to drm_client_dev_restore() in drm_lastclose().
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/drm_fb_helper.c | 8 --------
- 1 file changed, 8 deletions(-)
+ drivers/gpu/drm/vboxvideo/vbox_drv.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
-index fbc5c5445fdb0..d1afb420c6e06 100644
---- a/drivers/gpu/drm/drm_fb_helper.c
-+++ b/drivers/gpu/drm/drm_fb_helper.c
-@@ -526,11 +526,6 @@ int drm_fb_helper_init(struct drm_device *dev,
- {
- 	int ret;
+diff --git a/drivers/gpu/drm/vboxvideo/vbox_drv.c b/drivers/gpu/drm/vboxvideo/vbox_drv.c
+index f4f2bd79a7cb6..1cd716eb17a1c 100644
+--- a/drivers/gpu/drm/vboxvideo/vbox_drv.c
++++ b/drivers/gpu/drm/vboxvideo/vbox_drv.c
+@@ -178,8 +178,6 @@ static const struct drm_driver driver = {
+ 	.driver_features =
+ 	    DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
  
--	if (!drm_fbdev_emulation) {
--		dev->fb_helper = fb_helper;
--		return 0;
--	}
+-	.lastclose = drm_fb_helper_lastclose,
 -
- 	/*
- 	 * If this is not the generic fbdev client, initialize a drm_client
- 	 * without callbacks so we can use the modesets.
-@@ -2716,9 +2711,6 @@ void drm_fbdev_generic_setup(struct drm_device *dev,
- 	drm_WARN(dev, !dev->registered, "Device has not been registered.\n");
- 	drm_WARN(dev, dev->fb_helper, "fb_helper is already set!\n");
- 
--	if (!drm_fbdev_emulation)
--		return;
--
- 	fb_helper = kzalloc(sizeof(*fb_helper), GFP_KERNEL);
- 	if (!fb_helper) {
- 		drm_err(dev, "Failed to allocate fb_helper\n");
+ 	.fops = &vbox_fops,
+ 	.name = DRIVER_NAME,
+ 	.desc = DRIVER_DESC,
 -- 
 2.38.0
 
