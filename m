@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECD3EEB6460
-	for <nouveau@archiver.kernel.org>; Mon, 24 Oct 2022 11:22:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAF8FEB6462
+	for <nouveau@archiver.kernel.org>; Mon, 24 Oct 2022 11:22:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BBE910E3F2;
-	Mon, 24 Oct 2022 11:20:25 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24C5910E34C;
- Mon, 24 Oct 2022 11:20:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAE2C10E450;
+	Mon, 24 Oct 2022 11:20:32 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB5DF10E3A9;
+ Mon, 24 Oct 2022 11:20:09 +0000 (UTC)
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id BBF0821E2C;
- Mon, 24 Oct 2022 11:20:00 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id ABA7C22165;
+ Mon, 24 Oct 2022 11:20:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1666610400; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1666610408; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=EW5TY2zOig0VQgLGZt6zu4ywOY5c8c72AcSCo9faV+M=;
- b=sRgtI48QF7bf+VIYrcVz0Tw2w1Cf8T/YWUiNtrjtyHZUpvRuMN53cEj5mPfHgvdecNrUsM
- XQJoc72PMyO1t5Ia3kDiDm6v98mDXtwRhGNaOBH5KLVHVN9EeHFvLMqP2ay5IW6B2p/0Dh
- +o+yXXiXkBougCJ6OpNC/5SS59yRycc=
+ bh=RsAQdHzLmddns92tHuvM6Lu3vuWZMSsqH8X6KbiDvyM=;
+ b=Kx1ESk/2KWWWJMh3Mri7dZecKO9mDXs/G5Kh0hAdewWvuLJo1pmQHD6rKx9LyO4DYlvE07
+ UGREIOW+1c7j8jBFE461HY6tuNFiQnMEGgwugb6mTlj5JySyPdYx6wCGz/kRV3vA9LOEnU
+ 7GPrrBN1V+6dySJr6LCuxBMM9CtyYDY=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1666610400;
+ s=susede2_ed25519; t=1666610408;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=EW5TY2zOig0VQgLGZt6zu4ywOY5c8c72AcSCo9faV+M=;
- b=1eeELNAaTvtHN8xWSr5qUVKL25eVbFE3UWSwQnH4k+xW0211/wycpGLvV95zp8WdPO22+D
- qw7fQN+V4hnY6/CA==
+ bh=RsAQdHzLmddns92tHuvM6Lu3vuWZMSsqH8X6KbiDvyM=;
+ b=I2Hs34Ejsna6X414YeSewXudyPLIgsJ7R9rpNpC8j9+h3eJE58RTZnzq5HJHAxqpk4Udik
+ FqboT04ghHFQrhAA==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 4F7B213357;
- Mon, 24 Oct 2022 11:20:00 +0000 (UTC)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 034EE13357;
+ Mon, 24 Oct 2022 11:20:07 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id CCeqEuB0VmOYMgAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Mon, 24 Oct 2022 11:20:00 +0000
+ by imap2.suse-dmz.suse.de with ESMTPSA id 8O1PO+d0VmOYMgAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 24 Oct 2022 11:20:07 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org, javierm@redhat.com,
  mripard@kernel.org, maarten.lankhorst@linux.intel.com
-Date: Mon, 24 Oct 2022 13:19:36 +0200
-Message-Id: <20221024111953.24307-5-tzimmermann@suse.de>
+Date: Mon, 24 Oct 2022 13:19:51 +0200
+Message-Id: <20221024111953.24307-20-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <20221024111953.24307-1-tzimmermann@suse.de>
 References: <20221024111953.24307-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH v2 04/21] drm/amdgpu: Don't set struct
- drm_driver.output_poll_changed
+Subject: [Nouveau] [PATCH v2 19/21] drm/fb-helper: Always initialize generic
+ fbdev emulation
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,53 +83,44 @@ Cc: linux-hyperv@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Don't set struct drm_driver.output_poll_changed. It's used to restore
-the fbdev console. But as amdgpu uses generic fbdev emulation, the
-console is being restored by the DRM client helpers already. See the
-functions drm_kms_helper_hotplug_event() and
-drm_kms_helper_connector_hotplug_event() in drm_probe_helper.c.
+Initialize the generic fbdev emulation even if it has been disabled
+on the kernel command line. The hotplug and mode initialization will
+fail accordingly.
 
-v2:
-	* fix commit description (Christian)
+The kernel parameter can still be changed at runtime and the emulation
+will initialize after hotplugging the connector.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c       | 1 -
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 --
- 2 files changed, 3 deletions(-)
+ drivers/gpu/drm/drm_fb_helper.c | 8 --------
+ 1 file changed, 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index 1a06b8d724f39..dd6f9ae6fbe9f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -1214,7 +1214,6 @@ amdgpu_display_user_framebuffer_create(struct drm_device *dev,
+diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
+index fbc5c5445fdb0..d1afb420c6e06 100644
+--- a/drivers/gpu/drm/drm_fb_helper.c
++++ b/drivers/gpu/drm/drm_fb_helper.c
+@@ -526,11 +526,6 @@ int drm_fb_helper_init(struct drm_device *dev,
+ {
+ 	int ret;
  
- const struct drm_mode_config_funcs amdgpu_mode_funcs = {
- 	.fb_create = amdgpu_display_user_framebuffer_create,
--	.output_poll_changed = drm_fb_helper_output_poll_changed,
- };
+-	if (!drm_fbdev_emulation) {
+-		dev->fb_helper = fb_helper;
+-		return 0;
+-	}
+-
+ 	/*
+ 	 * If this is not the generic fbdev client, initialize a drm_client
+ 	 * without callbacks so we can use the modesets.
+@@ -2716,9 +2711,6 @@ void drm_fbdev_generic_setup(struct drm_device *dev,
+ 	drm_WARN(dev, !dev->registered, "Device has not been registered.\n");
+ 	drm_WARN(dev, dev->fb_helper, "fb_helper is already set!\n");
  
- static const struct drm_prop_enum_list amdgpu_underscan_enum_list[] =
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 0db2a88cd4d7b..528b8be516ff6 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -82,7 +82,6 @@
- #include <drm/drm_atomic_uapi.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_blend.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_vblank.h>
-@@ -2810,7 +2809,6 @@ const struct amdgpu_ip_block_version dm_ip_block =
- static const struct drm_mode_config_funcs amdgpu_dm_mode_funcs = {
- 	.fb_create = amdgpu_display_user_framebuffer_create,
- 	.get_format_info = amd_get_format_info,
--	.output_poll_changed = drm_fb_helper_output_poll_changed,
- 	.atomic_check = amdgpu_dm_atomic_check,
- 	.atomic_commit = drm_atomic_helper_commit,
- };
+-	if (!drm_fbdev_emulation)
+-		return;
+-
+ 	fb_helper = kzalloc(sizeof(*fb_helper), GFP_KERNEL);
+ 	if (!fb_helper) {
+ 		drm_err(dev, "Failed to allocate fb_helper\n");
 -- 
 2.38.0
 
