@@ -4,82 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0343BC7EE23
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFBC8C7EE26
 	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A28DA10E471;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0F3B10E475;
 	Thu,  4 May 2023 12:32:51 +0000 (UTC)
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
- [IPv6:2a00:1450:4864:20::52b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1FE310E200;
- Sat, 18 Feb 2023 12:22:29 +0000 (UTC)
-Received: by mail-ed1-x52b.google.com with SMTP id fd2so2451992edb.2;
- Sat, 18 Feb 2023 04:22:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=vSFhK0gX7xLAjDvAdw5Ub/even+FiWfI7Dc8rnupOLE=;
- b=CnBvEplv2WTtQW0d4GTeBfKkksECcd8nz6dItfyfYbVPba/xmypBoSCaAWqIggDqJW
- CEKF9sMAtqIXLzQUDJcoJy883Exs+OIb7jD7nT3LzDetwrxCeIyCo3IL2dx4Fgkb2nnW
- 2615xl5Q70pYsjrmgYgcXifBgSEkFDfmpYExVKT09qxGHxMOFHpxoE/8zQgxdQ37+Z9Z
- uEjLi4NYS3AkdWjW5OBf+738yCyTeagFydqcgyd3p5VaiSsg4TzkdrzHJfuYI9DXbTXw
- O0jal2afwN3LQ/lCkNzNVsh77JZDVHPsgCG8C09T7Wa0Qpva49+67fOXcFCBM9WHBSoi
- aerQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=vSFhK0gX7xLAjDvAdw5Ub/even+FiWfI7Dc8rnupOLE=;
- b=Y9hLyI1d8BvE1qEXlEfc7+Xx7I0CR++IYwHJxxE34riX5st+Z+rOcxmvuWxW8WE6pd
- Fc5Kr3O3Xslil/LcXod1Ua+VuDrS4jNC6l6Iz0a8Pce9bw4qkQvQFEFPIQmXioMoTlB+
- px2rRXQ2C0OpoFmAw0Fb0gPbg+VmVmF03+2ug4WdlcqJB7EPXgMDy9WrGzb3nDjXlkPF
- TQhsk5hETF9g7AkgJSNgqCSw/T04P1FPhFFXKUg0bD1Aam7jgqeg6ZORAJNohgZiGGgN
- VYp7WHdELMzm6FwEKkUGOEq3olx/Gs8T2DhBmHSkF58l9gn9FcfILmRPZrGXW5g1UX1W
- Ca9Q==
-X-Gm-Message-State: AO0yUKXFHX31eu8b0A/X5VFaqUjVQ1Pd1J9M+Wkf0tu1ym+dXxLgsafm
- JKuuB9RENcWl+9OZh0jdt7g=
-X-Google-Smtp-Source: AK7set8joj7Ao/gmx+ebDbKwbsXBNeMBvonzeqxp071jClpYHAKYIdLsR2ZYh7d/QxWXD4DACj03pA==
-X-Received: by 2002:a17:906:8258:b0:8ae:b008:9b5a with SMTP id
- f24-20020a170906825800b008aeb0089b5amr2139465ejx.69.1676722948146; 
- Sat, 18 Feb 2023 04:22:28 -0800 (PST)
-Received: from [192.168.1.10] (97e09f27.skybroadband.com. [151.224.159.39])
- by smtp.googlemail.com with ESMTPSA id
- ha13-20020a170906a88d00b008b12823f0f7sm3311971ejb.88.2023.02.18.04.22.27
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 18 Feb 2023 04:22:27 -0800 (PST)
-Message-ID: <181bea6a-e501-f5bd-b002-de7a244a921a@googlemail.com>
-Date: Sat, 18 Feb 2023 12:22:25 +0000
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AA3910E31F;
+ Tue, 25 Oct 2022 10:17:50 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 9B8C9B81CD1;
+ Tue, 25 Oct 2022 10:17:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AC4FC433C1;
+ Tue, 25 Oct 2022 10:17:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1666693067;
+ bh=loBjWPuoKTGF/gO56VzkKo6krQdgRby7JIrG/EzZOSQ=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=d6ZDNCAcK4F26u54xQf8kDBp/8b3DW5BfO6g1lzeUvpUqST0Kw+Ohe0820AGWKYi+
+ /7Iqw8NZ0p6eQ/pqwMi1Gu67j2R14VHUyxddgBClTRfmn7+eiBCfjsq3GSF79nNNGz
+ 0X7g+J7DfNAmhkRl2i3xi1iShD/jLXV9iOD0Aj/KAyEV5IbzhVMFLMbIuW+YD0HX3T
+ B8i2fs2s6CKT9WlZ6lTFZXa/hnB4DlVRnIIZi1IMECfFVAoF+8Q0qD/kHO/VT7rrxh
+ ahRkwDT3WUrOsLHpVfVQd0i2lzMAzWlJ4qQ4wL0BQod1CCuVzaQiHLp5VsXHdnMHQK
+ 2bogCqmt8gCvw==
+Message-ID: <f36153fe-214c-2904-e155-ab9cee8a2a2c@kernel.org>
+Date: Tue, 25 Oct 2022 12:17:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-To: Karol Herbst <kherbst@redhat.com>,
- Linux regressions mailing list <regressions@lists.linux.dev>
-References: <b64705e3-2e63-a466-f829-f9568b06766a@googlemail.com>
- <CACAvsv4sOtPjCVnEcKd2RCUqYWxSn5XKyksbS-Bds2qCqyusVw@mail.gmail.com>
- <1cdb84ac-f7a8-66ba-98fc-3db302b49a5a@googlemail.com>
- <dab6eb81-db3f-8fa1-84ad-9b40e209514b@googlemail.com>
- <CACAvsv5iYdF3P8AbyrbYo3zGmYRYhxDWn7WbAR5V9qHpbgBXRA@mail.gmail.com>
- <1632a9ef-2954-c8f0-cdc9-03157c9d8547@googlemail.com>
- <5abbee70-cc84-1528-c3d8-9befd9edd611@googlemail.com>
- <5cf46df8-0fa2-e9f5-aa8e-7f7f703d96dd@googlemail.com>
- <f72fe15b-db1d-56dd-aaf6-3cba68a8bf0a@leemhuis.info>
- <CACO55tvR4ydDOXt=9nbR3n2aFLKrj8zeuGRR_xpezVQBBLrjqg@mail.gmail.com>
- <a6188878-f84c-0fcc-9509-b9d7ab797f4c@leemhuis.info>
- <d031f0a5-8d5e-af51-6db6-11844de3eeba@googlemail.com>
- <CAPM=9tz+wksJTvMi_4Ef7XWezfH0ReN2se189s8Q=obJjHC+Fw@mail.gmail.com>
- <4e786e22-f17a-da76-5129-8fef0c7c825a@googlemail.com>
- <b829633e-ccc4-7a54-1cad-f29254de1251@leemhuis.info>
- <CACO55tsvM07_6mGU3dCgeji0a6B4JJKSDOOBuCHv2Mw3rYbCHg@mail.gmail.com>
-Content-Language: en-GB
-From: Chris Clayton <chris2553@googlemail.com>
-In-Reply-To: <CACO55tsvM07_6mGU3dCgeji0a6B4JJKSDOOBuCHv2Mw3rYbCHg@mail.gmail.com>
+ Thunderbird/102.3.3
+Content-Language: en-US
+To: Alistair Popple <apopple@nvidia.com>,
+ Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org
+References: <cover.60659b549d8509ddecafad4f498ee7f03bb23c69.1664366292.git-series.apopple@nvidia.com>
+From: "Vlastimil Babka (SUSE)" <vbabka@kernel.org>
+In-Reply-To: <cover.60659b549d8509ddecafad4f498ee7f03bb23c69.1664366292.git-series.apopple@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
-Subject: Re: [Nouveau] linux-6.2-rc4+ hangs on poweroff/reboot: Bisected
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:35 +0000
+Subject: Re: [Nouveau] [PATCH v2 0/8] Fix several device private page
+ reference counting issues
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,118 +57,78 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: ML nouveau <nouveau@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>, bskeggs@redhat.com
+Cc: nouveau@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-
-
-On 15/02/2023 11:09, Karol Herbst wrote:
-> On Wed, Feb 15, 2023 at 11:36 AM Linux regression tracking #update
-> (Thorsten Leemhuis) <regressions@leemhuis.info> wrote:
->>
->> On 13.02.23 10:14, Chris Clayton wrote:
->>> On 13/02/2023 02:57, Dave Airlie wrote:
->>>> On Sun, 12 Feb 2023 at 00:43, Chris Clayton <chris2553@googlemail.com> wrote:
->>>>>
->>>>>
->>>>>
->>>>> On 10/02/2023 19:33, Linux regression tracking (Thorsten Leemhuis) wrote:
->>>>>> On 10.02.23 20:01, Karol Herbst wrote:
->>>>>>> On Fri, Feb 10, 2023 at 7:35 PM Linux regression tracking (Thorsten
->>>>>>> Leemhuis) <regressions@leemhuis.info> wrote:
->>>>>>>>
->>>>>>>> On 08.02.23 09:48, Chris Clayton wrote:
->>>>>>>>>
->>>>>>>>> I'm assuming  that we are not going to see a fix for this regression before 6.2 is released.
->>>>>>>>
->>>>>>>> Yeah, looks like it. That's unfortunate, but happens. But there is still
->>>>>>>> time to fix it and there is one thing I wonder:
->>>>>>>>
->>>>>>>> Did any of the nouveau developers look at the netconsole captures Chris
->>>>>>>> posted more than a week ago to check if they somehow help to track down
->>>>>>>> the root of this problem?
->>>>>>>
->>>>>>> I did now and I can't spot anything. I think at this point it would
->>>>>>> make sense to dump the active tasks/threads via sqsrq keys to see if
->>>>>>> any is in a weird state preventing the machine from shutting down.
->>>>>>
->>>>>> Many thx for looking into it!
->>>>>
->>>>> Yes, thanks Karol.
->>>>>
->>>>> Attached is the output from dmesg when this block of code:
->>>>>
->>>>>         /bin/mount /dev/sda7 /mnt/sda7
->>>>>         /bin/mountpoint /proc || /bin/mount /proc
->>>>>         /bin/dmesg -w > /mnt/sda7/sysrq.dmesg.log &
->>>>>         /bin/echo t > /proc/sysrq-trigger
->>>>>         /bin/sleep 1
->>>>>         /bin/sync
->>>>>         /bin/sleep 1
->>>>>         kill $(pidof dmesg)
->>>>>         /bin/umount /mnt/sda7
->>>>>
->>>>> is executed immediately before /sbin/reboot is called as the final step of rebooting my system.
->>>>>
->>>>> I hope this is what you were looking for, but if not, please let me know what you need
->>>
->>> Thanks Dave. [...]
->> FWIW, in case anyone strands here in the archives: the msg was
->> truncated. The full post can be found in a new thread:
->>
->> https://lore.kernel.org/lkml/e0b80506-b3cf-315b-4327-1b988d86031e@googlemail.com/
->>
->> Sadly it seems the info "With runpm=0, both reboot and poweroff work on
->> my laptop." didn't bring us much further to a solution. :-/ I don't
->> really like it, but for regression tracking I'm now putting this on the
->> back-burner, as a fix is not in sight.
->>
->> #regzbot monitor:
->> https://lore.kernel.org/lkml/e0b80506-b3cf-315b-4327-1b988d86031e@googlemail.com/
->> #regzbot backburner: hard to debug and apparently rare
->> #regzbot ignore-activity
->>
+On 9/28/22 14:01, Alistair Popple wrote:
+> This series aims to fix a number of page reference counting issues in
+> drivers dealing with device private ZONE_DEVICE pages. These result in
+> use-after-free type bugs, either from accessing a struct page which no
+> longer exists because it has been removed or accessing fields within the
+> struct page which are no longer valid because the page has been freed.
 > 
-> yeah.. this bug looks a little annoying. Sadly the only Turing based
-> laptop I got doesn't work on Nouveau because of firmware related
-> issues and we probably need to get updated ones from Nvidia here :(
+> During normal usage it is unlikely these will cause any problems. However
+> without these fixes it is possible to crash the kernel from userspace.
+> These crashes can be triggered either by unloading the kernel module or
+> unbinding the device from the driver prior to a userspace task exiting. In
+> modules such as Nouveau it is also possible to trigger some of these issues
+> by explicitly closing the device file-descriptor prior to the task exiting
+> and then accessing device private memory.
+
+Hi, as this series was noticed to create a CVE [1], do you think a stable
+backport is warranted? I think the "It is possible to launch the attack
+remotely." in [1] is incorrect though, right?
+
+It looks to me that patch 1 would be needed since the CONFIG_DEVICE_PRIVATE
+introduction, while the following few only to kernels with 27674ef6c73f
+(probably not so critical as that includes no LTS)?
+
+Thanks,
+Vlastimil
+
+[1] https://nvd.nist.gov/vuln/detail/CVE-2022-3523
+
+> This involves some minor changes to both PowerPC and AMD GPU code.
+> Unfortunately I lack hardware to test either of those so any help there
+> would be appreciated. The changes mimic what is done in for both Nouveau
+> and hmm-tests though so I doubt they will cause problems.
 > 
-> But it's a bit weird that the kernel doesn't shutdown, because I don't
-> see anything in the logs which would prevent that from happening.
-> Unless it's waiting on one of the tasks to complete, but none of them
-> looked in any way nouveau related.
+> To: Andrew Morton <akpm@linux-foundation.org>
+> To: linux-mm@kvack.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: amd-gfx@lists.freedesktop.org
+> Cc: nouveau@lists.freedesktop.org
+> Cc: dri-devel@lists.freedesktop.org
 > 
-> If somebody else has any fancy kernel debugging tips here to figure
-> out why it hangs, that would be very helpful...
+> Alistair Popple (8):
+>   mm/memory.c: Fix race when faulting a device private page
+>   mm: Free device private pages have zero refcount
+>   mm/memremap.c: Take a pgmap reference on page allocation
+>   mm/migrate_device.c: Refactor migrate_vma and migrate_deivce_coherent_page()
+>   mm/migrate_device.c: Add migrate_device_range()
+>   nouveau/dmem: Refactor nouveau_dmem_fault_copy_one()
+>   nouveau/dmem: Evict device private memory during release
+>   hmm-tests: Add test for migrate_device_range()
 > 
-
-I think I've figured this out. It's to do with how my system is configured. I do have an initrd, but the only thing on
-it is the cpu microcode which, it is recommended, should be loaded early. The absence of the NVidia firmare from an
-initrd doesn't matter because the drivers for the hardware that need to load firmware are all built as modules, So, by
-the time the devices are configured via udev, the root partition is mounted and the drivers can get at the firmware.
-
-I've found, by turning on nouveau debug and taking a video of the screen as the system shuts down, that nouveau seems to
-be trying to run the scrubber very very late in the shutdown process. The problem is that by this time, I think the root
-partition, and thus the scrubber binary, have become inaccessible.
-
-I seem to have two choices - either make the firmware accessible on an initrd or unload the module in a shutdown script
-before the scrubber binary becomes inaccessible. The latter of these is the workaround I have implemented whilst the
-problem I reported has been under investigation. For simplicity, I think I'll promote my workaround to being the
-permanent solution.
-
-So, apologies (and thanks) to everyone whose time I have taken up with this non-bug.
-
-Chris
-
->> Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
->> --
->> Everything you wanna know about Linux kernel regression tracking:
->> https://linux-regtracking.leemhuis.info/about/#tldr
->> That page also explains what to do if mails like this annoy you.
->>
->> #regzbot ignore-activity
->>
+>  arch/powerpc/kvm/book3s_hv_uvmem.c       |  17 +-
+>  drivers/gpu/drm/amd/amdkfd/kfd_migrate.c |  19 +-
+>  drivers/gpu/drm/amd/amdkfd/kfd_migrate.h |   2 +-
+>  drivers/gpu/drm/amd/amdkfd/kfd_svm.c     |  11 +-
+>  drivers/gpu/drm/nouveau/nouveau_dmem.c   | 108 +++++++----
+>  include/linux/memremap.h                 |   1 +-
+>  include/linux/migrate.h                  |  15 ++-
+>  lib/test_hmm.c                           | 129 ++++++++++---
+>  lib/test_hmm_uapi.h                      |   1 +-
+>  mm/memory.c                              |  16 +-
+>  mm/memremap.c                            |  30 ++-
+>  mm/migrate.c                             |  34 +--
+>  mm/migrate_device.c                      | 239 +++++++++++++++++-------
+>  mm/page_alloc.c                          |   8 +-
+>  tools/testing/selftests/vm/hmm-tests.c   |  49 +++++-
+>  15 files changed, 516 insertions(+), 163 deletions(-)
 > 
+> base-commit: 088b8aa537c2c767765f1c19b555f21ffe555786
+
