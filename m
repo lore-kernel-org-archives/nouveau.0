@@ -4,65 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D9E6C7EE26
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8520CC7EE23
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 249F210E40F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74F0E10E419;
 	Thu,  4 May 2023 12:31:46 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74D0910E358;
- Thu, 12 Jan 2023 20:12:07 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 012FC3505B;
- Thu, 12 Jan 2023 20:12:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1673554320; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Xar8pXmKetwoRnV4ZeNTqm/Qm8vEkDqxH/VsBrUwJNk=;
- b=Z+QnjGBIIoGox++T8uxpUQvjwxAz6q1i5vREEJbrkwZPKoOy8ToZpO27py5ZoYo4/p/C+o
- s3WY9Dc5j6Sk4gAKvKHJXAzgIx9YoRwsHm1ds4T5HJPwP8Hs/d5AbVHzRNTmfv1nb4uIFD
- qOLMrP30AFQfX+YmjYRCKvEqijZfALU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1673554320;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Xar8pXmKetwoRnV4ZeNTqm/Qm8vEkDqxH/VsBrUwJNk=;
- b=DD7Gn41GmJLkZ7NHm+O5eXrCtxRwkUWH0xOhxn/ovcpmvuLKpfTN0KrYt1kpfSYeGiN8su
- HBv5WeoRW6mf+KBw==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 51EAE1377D;
- Thu, 12 Jan 2023 20:11:59 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id sDo0E49pwGMGKgAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 12 Jan 2023 20:11:59 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- tvrtko.ursulin@linux.intel.com, bskeggs@redhat.com, kherbst@redhat.com,
- lyude@redhat.com, evan.quan@amd.com, jose.souza@intel.com
-Date: Thu, 12 Jan 2023 21:11:55 +0100
-Message-Id: <20230112201156.26849-3-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230112201156.26849-1-tzimmermann@suse.de>
-References: <20230112201156.26849-1-tzimmermann@suse.de>
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com
+ [IPv6:2607:f8b0:4864:20::533])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB98710E02A;
+ Tue,  1 Nov 2022 02:12:01 +0000 (UTC)
+Received: by mail-pg1-x533.google.com with SMTP id q1so12226523pgl.11;
+ Mon, 31 Oct 2022 19:12:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=eLIgCkgfgn5iTxPM1gVk+h8esf5par019LyioMO/CLQ=;
+ b=gU2fp1alF/CfGOz27zUV1tjPYcplNa+O+KfQ2mlTKNBOYkbaz2YHEWSbyw9BTJ1iB9
+ CXJmh50YXtArdV/k5JEmRpQT7DHUB13lbMbIEtMBtOo+wtF6Y1gfdeeoGWJBl62TkAzQ
+ BEfh7yEbZSKS008pEA1eFifU/N7E7UzTdJM7X4nRvegykLKHnXQ+jVyGFPsgg0Ulhl9Q
+ ox24q4Ks2nKRUU2/XPksxf2/D9e6nIWtubBmOjYa3dURJXgXRmFaIpH8cglg/K2hIxIl
+ xX9QGIkiqZjks4prwAhu1OqO7bIYQ0E0+sIiXC75Mn9QhPJTVFgtkV1g77gONuYDTja9
+ vpUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=eLIgCkgfgn5iTxPM1gVk+h8esf5par019LyioMO/CLQ=;
+ b=CtmXHADk1yCTojL0C+iLmc89b2c3AyEpKSkksxkxUfszKClfdoSSMjGU9GITHI5ryj
+ vbxABDklZ5SKrvykRM8vDi055fSFuoUlrjO1CPZ6WnYGzEGiP6wNDtngHaxoD/WIBy09
+ 3n/TFJ9IiqktPATq/caQ1oxteVdMTQ0PZv2cj0jS0zanXuixbW4+pGB5G/5x4mjlowqd
+ tsTF4kVLJnm5Pm+sTbGpa3Jz0mP9PrPPWgniaVqCu14yTAzFXQIZFkoppnUEzHY4N3bq
+ SokfDe6grh5TuATy7dejai1hEGBcKvxzFwRvtHmjZs72Q6DFgpfw3gvcJZuTpSvZAhqX
+ ghMA==
+X-Gm-Message-State: ACrzQf2Qn4LnAZek7eFmWlkqf3aNL1DKprAVnQOSuE3ErpHvPDIr8vCF
+ bm49iqrI/IKr39BPWIvj6Sk=
+X-Google-Smtp-Source: AMsMyM4mI22oj7nqThjTGVGTfQDqYJrZXRbzCHmvjp5TFLMaXojFrrR1id5r7IJQp6VGKrbltoxdnw==
+X-Received: by 2002:a05:6a02:186:b0:431:25fb:f1fe with SMTP id
+ bj6-20020a056a02018600b0043125fbf1femr15584524pgb.130.1667268721265; 
+ Mon, 31 Oct 2022 19:12:01 -0700 (PDT)
+Received: from [192.168.43.80] (subs02-180-214-232-90.three.co.id.
+ [180.214.232.90]) by smtp.gmail.com with ESMTPSA id
+ 11-20020a63134b000000b0043ae1797e2bsm4744655pgt.63.2022.10.31.19.11.58
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 31 Oct 2022 19:12:00 -0700 (PDT)
+Message-ID: <5a61ae6a-8a16-8abb-e718-895c41e2e7a8@gmail.com>
+Date: Tue, 1 Nov 2022 09:11:54 +0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+To: antoniospg <antoniospg100@gmail.com>, linux-kernel@vger.kernel.org
+References: <20221029184851.25340-1-antoniospg100@gmail.com>
+ <20221031163211.13228-1-antoniospg100@gmail.com>
+Content-Language: en-US
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+In-Reply-To: <20221031163211.13228-1-antoniospg100@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:33 +0000
-Subject: [Nouveau] [PATCH v2 2/3] drm/fb-helper: Set framebuffer for
- vga-switcheroo clients
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:31 +0000
+Subject: Re: [Nouveau] [PATCH] drm/nouveau: Add support to control backlight
+ using bl_power for nva3.
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,118 +76,41 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
- Hamza Mahfooz <hamza.mahfooz@amd.com>, Likun Gao <Likun.Gao@amd.com>,
- Sam Ravnborg <sam@ravnborg.org>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Guchun Chen <guchun.chen@amd.com>,
- Javier Martinez Canillas <javierm@redhat.com>, amd-gfx@lists.freedesktop.org,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Stanley Yang <Stanley.Yang@amd.com>, nouveau@lists.freedesktop.org,
- Dave Airlie <airlied@redhat.com>,
- =?UTF-8?q?Marek=20Ol=C5=A1=C3=A1k?= <marek.olsak@amd.com>,
- Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Jani Nikula <jani.nikula@intel.com>, Bokun Zhang <Bokun.Zhang@amd.com>,
- intel-gfx@lists.freedesktop.org, "Tianci.Yin" <tianci.yin@amd.com>,
- Hans de Goede <hdegoede@redhat.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Xiaojian Du <Xiaojian.Du@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, stable@vger.kernel.org,
- Solomon Chiu <solomon.chiu@amd.com>,
- Kai-Heng Feng <kai.heng.feng@canonical.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>,
+ Daniel Vetter <daniel@ffwll.ch>, sam@ravnborg.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Set the framebuffer info for drivers that support VGA switcheroo. Only
-affects the amdgpu and nouveau drivers, which use VGA switcheroo and
-generic fbdev emulation. For other drivers, this does nothing.
+On 10/31/22 23:32, antoniospg wrote:
+> Summary:
+> 
+> * Add support to turn on/off backlight when changing values in bl_power
+>   file. This is achieved by using function backlight_get_brightness()
+>   in nva3_set_intensity to get current brightness.
+> 
 
-This fixes a potential regression in the console code. Both, amdgpu and
-nouveau, invoked vga_switcheroo_client_fb_set() from their internal fbdev
-code. But the call got lost when the drivers switched to the generic
-emulation.
+This is [PATCH v2], right? If so, next time please pass -v <version
+number> to git-format-patch(1).
 
-Fixes: 087451f372bf ("drm/amdgpu: use generic fb helpers instead of setting up AMD own's.")
-Fixes: 4a16dd9d18a0 ("drm/nouveau/kms: switch to drm fbdev helpers")
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Evan Quan <evan.quan@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Hawking Zhang <Hawking.Zhang@amd.com>
-Cc: Likun Gao <Likun.Gao@amd.com>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: Stanley Yang <Stanley.Yang@amd.com>
-Cc: "Tianci.Yin" <tianci.yin@amd.com>
-Cc: Xiaojian Du <Xiaojian.Du@amd.com>
-Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
-Cc: YiPeng Chai <YiPeng.Chai@amd.com>
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-Cc: Bokun Zhang <Bokun.Zhang@amd.com>
-Cc: Guchun Chen <guchun.chen@amd.com>
-Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Cc: Mario Limonciello <mario.limonciello@amd.com>
-Cc: Solomon Chiu <solomon.chiu@amd.com>
-Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>
-Cc: Felix Kuehling <Felix.Kuehling@amd.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: "Marek Olšák" <marek.olsak@amd.com>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Hans de Goede <hdegoede@redhat.com>
-Cc: "Ville Syrjälä" <ville.syrjala@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v5.17+
----
- drivers/gpu/drm/drm_fb_helper.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Also, just say the prose without using bullet list. "Summary:" line
+is also redundant. And again, please describe why this change be made.
 
-diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
-index 427631706128..5e445c61252d 100644
---- a/drivers/gpu/drm/drm_fb_helper.c
-+++ b/drivers/gpu/drm/drm_fb_helper.c
-@@ -30,7 +30,9 @@
- #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
- 
- #include <linux/console.h>
-+#include <linux/pci.h>
- #include <linux/sysrq.h>
-+#include <linux/vga_switcheroo.h>
- 
- #include <drm/drm_atomic.h>
- #include <drm/drm_drv.h>
-@@ -1940,6 +1942,7 @@ static int drm_fb_helper_single_fb_probe(struct drm_fb_helper *fb_helper,
- 					 int preferred_bpp)
- {
- 	struct drm_client_dev *client = &fb_helper->client;
-+	struct drm_device *dev = fb_helper->dev;
- 	struct drm_fb_helper_surface_size sizes;
- 	int ret;
- 
-@@ -1961,6 +1964,11 @@ static int drm_fb_helper_single_fb_probe(struct drm_fb_helper *fb_helper,
- 		return ret;
- 
- 	strcpy(fb_helper->fb->comm, "[fbcon]");
-+
-+	/* Set the fb info for vgaswitcheroo clients. Does nothing otherwise. */
-+	if (dev_is_pci(dev->dev))
-+		vga_switcheroo_client_fb_set(to_pci_dev(dev->dev), fb_helper->info);
-+
- 	return 0;
- }
- 
+> Test plan:
+> 
+> * Turn off:
+> echo 1 > /sys/class/backlight/nv_backlight/bl_power
+> 
+> * Turn on:
+> echo 0 > /sys/class/backlight/nv_backlight/bl_power
+> 
+
+Shouldn't "test plan" above be documented in Documentation/ instead?
+
+Last but not least, is "antoniospg" your real, legal name?
+
+Thanks.
+
 -- 
-2.39.0
+An old man doll... just what I always wanted! - Clara
 
