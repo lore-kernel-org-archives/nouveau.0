@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6EE0C4332F
-	for <nouveau@archiver.kernel.org>; Thu,  3 Nov 2022 15:18:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FC80C4332F
+	for <nouveau@archiver.kernel.org>; Thu,  3 Nov 2022 15:18:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECAC610E6F2;
-	Thu,  3 Nov 2022 15:15:30 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 912CD10E621;
- Thu,  3 Nov 2022 15:15:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3215310E6D1;
+	Thu,  3 Nov 2022 15:15:26 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 425E510E62E;
+ Thu,  3 Nov 2022 15:15:01 +0000 (UTC)
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 426EA1F900;
- Thu,  3 Nov 2022 15:15:02 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id D1F3C21E06;
+ Thu,  3 Nov 2022 15:14:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1667488502; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1667488499; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=HgxG97nmydzNCVipkHzgPf3aCI1grjy0cqRB+0/Ck74=;
- b=kcgtu9PKiyMKUj8GxwYh+/ORcWz7+UhaRslLpGT/0EYXH4EiaVWbRO1rXX+RnuBF5OjTj2
- Xec3+JBI90xwvAliyOtjTY3B94F0kq3muNjviJe52VZzz9N0Nd9Yc6Mfuv+xD0GBg/lfBm
- F9ORYgDvXcxRapg5A3YBRJRoUxxeEtI=
+ bh=UVBxH0SCO//07QUQ6EK/LfA90pQs6KDqJ9dD5J474xM=;
+ b=yvt0gOxB2lenOEStb/UiJX1DHn3g2kKsI7mtE4SGpNQSAhB7lYBWctzlz1reFVQJV5Q7Dr
+ 9KtiNP07UesIRoJkQ20OBX+QffIA0guywKHcw8bFrTEd942EgwbZfJYBXbqYb3+CHu7FpM
+ 9uqeHjGX+09FJKRvQbcgI46xl268Eu8=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1667488502;
+ s=susede2_ed25519; t=1667488499;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=HgxG97nmydzNCVipkHzgPf3aCI1grjy0cqRB+0/Ck74=;
- b=BTICG+mmiOcUdGuFYoU4C0nyEBYhfhmngf4Ev9loTA8Jed/wbNJaxvDDbye+EQL4FS5m+K
- t/wO99a1pUjQkKCQ==
+ bh=UVBxH0SCO//07QUQ6EK/LfA90pQs6KDqJ9dD5J474xM=;
+ b=JgfauNgkk7JwnVqiJlezA/GaUozyirPiPZWwmsrpZSHazdzqxSROAFO3R1veLQkMRJ/Bf/
+ B6Qfs11b1jHuJuBQ==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id B325D13AAF;
- Thu,  3 Nov 2022 15:15:01 +0000 (UTC)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 55B7F13ADB;
+ Thu,  3 Nov 2022 15:14:59 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id 8LVrKvXaY2PBGgAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 03 Nov 2022 15:15:01 +0000
+ by imap2.suse-dmz.suse.de with ESMTPSA id OMwZFPPaY2PBGgAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 03 Nov 2022 15:14:59 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org, javierm@redhat.com,
  mripard@kernel.org, maarten.lankhorst@linux.intel.com
-Date: Thu,  3 Nov 2022 16:14:46 +0100
-Message-Id: <20221103151446.2638-24-tzimmermann@suse.de>
+Date: Thu,  3 Nov 2022 16:14:42 +0100
+Message-Id: <20221103151446.2638-20-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <20221103151446.2638-1-tzimmermann@suse.de>
 References: <20221103151446.2638-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH v3 23/23] drm/fb-helper: Clarify use of last_close
- and output_poll_changed
+Subject: [Nouveau] [PATCH v3 19/23] drm/fb-helper: Always initialize generic
+ fbdev emulation
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,35 +83,45 @@ Cc: linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Clarify documentation in the use of struct drm_driver.last_close and
-struct drm_mode_config_funcs.output_poll_changed. Those callbacks should
-not be said for fbdev implementations on top of struct drm_client_funcs.
+Initialize the generic fbdev emulation even if it has been disabled
+on the kernel command line. The hotplug and mode initialization will
+fail accordingly.
+
+The kernel parameter can still be changed at runtime and the emulation
+will initialize after hotplugging the connector.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 ---
- drivers/gpu/drm/drm_fb_helper.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/drm_fb_helper.c | 8 --------
+ 1 file changed, 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
-index 5eb2f0d4bf8d4..e0384f967c0b3 100644
+index 3dfda1e3830b3..95f389433c4a6 100644
 --- a/drivers/gpu/drm/drm_fb_helper.c
 +++ b/drivers/gpu/drm/drm_fb_helper.c
-@@ -89,11 +89,13 @@ static DEFINE_MUTEX(kernel_fb_helper_lock);
-  * It will automatically set up deferred I/O if the driver requires a shadow
-  * buffer.
-  *
-- * At runtime drivers should restore the fbdev console by using
-+ * Existing fbdev implementations should restore the fbdev console by using
-  * drm_fb_helper_lastclose() as their &drm_driver.lastclose callback.
-  * They should also notify the fb helper code from updates to the output
-  * configuration by using drm_fb_helper_output_poll_changed() as their
-- * &drm_mode_config_funcs.output_poll_changed callback.
-+ * &drm_mode_config_funcs.output_poll_changed callback. New implementations
-+ * of fbdev should be build on top of struct &drm_client_funcs, which handles
-+ * this automatically. Setting the old callbacks should be avoided.
-  *
-  * For suspend/resume consider using drm_mode_config_helper_suspend() and
-  * drm_mode_config_helper_resume() which takes care of fbdev as well.
+@@ -526,11 +526,6 @@ int drm_fb_helper_init(struct drm_device *dev,
+ {
+ 	int ret;
+ 
+-	if (!drm_fbdev_emulation) {
+-		dev->fb_helper = fb_helper;
+-		return 0;
+-	}
+-
+ 	/*
+ 	 * If this is not the generic fbdev client, initialize a drm_client
+ 	 * without callbacks so we can use the modesets.
+@@ -2716,9 +2711,6 @@ void drm_fbdev_generic_setup(struct drm_device *dev,
+ 	drm_WARN(dev, !dev->registered, "Device has not been registered.\n");
+ 	drm_WARN(dev, dev->fb_helper, "fb_helper is already set!\n");
+ 
+-	if (!drm_fbdev_emulation)
+-		return;
+-
+ 	fb_helper = kzalloc(sizeof(*fb_helper), GFP_KERNEL);
+ 	if (!fb_helper) {
+ 		drm_err(dev, "Failed to allocate fb_helper\n");
 -- 
 2.38.0
 
