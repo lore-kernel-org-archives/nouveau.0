@@ -4,59 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DFBEC4332F
-	for <nouveau@archiver.kernel.org>; Thu,  3 Nov 2022 15:18:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 695C2C433FE
+	for <nouveau@archiver.kernel.org>; Fri,  4 Nov 2022 02:56:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1568E10E624;
-	Thu,  3 Nov 2022 15:15:37 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECC5C10E620;
- Thu,  3 Nov 2022 15:15:02 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id ADBCA21E0F;
- Thu,  3 Nov 2022 15:15:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1667488501; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=tKKDgnAGRekThl+Kef4OIp3bhWwiXQhMBkwOIt4sJLE=;
- b=qcoaEe5YDt/TSoDF9LlZD6Ng+7gD76PPx58VoLgyC2ai3047WiYzO6VG3UqAQIKy3YKHXg
- REz70h7mZR412dIJJPtt6KeG1I2HUyUb1PBRsZuXjXfuKD9CPq7uVKM+mBw35lKrclD5/3
- d/CmcLsUtt54A7ePpp2jBuYDLUuRSlM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1667488501;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=tKKDgnAGRekThl+Kef4OIp3bhWwiXQhMBkwOIt4sJLE=;
- b=vNkdqKAyelvn3nPdMe6vc+09jji6Lk7jXBt2wG5SEJu98SaBJt2CYv2mNsp1sZeqm7L53F
- HQNJ4nEa4KQxHwDA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 2463D13ADB;
- Thu,  3 Nov 2022 15:15:01 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id sNoICPXaY2PBGgAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 03 Nov 2022 15:15:01 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org, javierm@redhat.com,
- mripard@kernel.org, maarten.lankhorst@linux.intel.com
-Date: Thu,  3 Nov 2022 16:14:45 +0100
-Message-Id: <20221103151446.2638-23-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.38.0
-In-Reply-To: <20221103151446.2638-1-tzimmermann@suse.de>
-References: <20221103151446.2638-1-tzimmermann@suse.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B82FC10E78F;
+	Fri,  4 Nov 2022 02:56:49 +0000 (UTC)
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com
+ [IPv6:2607:f8b0:4864:20::32b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8930A10E78F
+ for <nouveau@lists.freedesktop.org>; Fri,  4 Nov 2022 02:56:45 +0000 (UTC)
+Received: by mail-ot1-x32b.google.com with SMTP id
+ cn2-20020a056830658200b0066c74617e3dso2042588otb.2
+ for <nouveau@lists.freedesktop.org>; Thu, 03 Nov 2022 19:56:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=j8XLJBcgjNTIkVR2NzJVwfaf5k6oy9u8H2+Wy7zKPPE=;
+ b=algUXXPVSCLjBYiGt83FkiT14Ke4pMWG727ATXgbURLW9yV//ii7pp0v3AL2vuISLz
+ zmf2DIgYjgiN9W3crF3JzE9JR5LeG2Xlq+QrrxzeVuyGgdnlBDwfRpuy6KyUPRqPiqFH
+ PUpz1zgQfMaQq2yU4rl8a11eXYPQiw5N4J22QGq053xlGm7iNnjAP57fT+vpmiCyJrZm
+ t4Z6ut1hUpJsRWNGmv+ZTuYhYilTGfSRkRnebFpYbBD+W+vn7zSIBzYthDZoXt4x43ky
+ 2BddZz3JtUK6cYdoMWYzq+BdKNuyizZKMa/RyMv2qawrabKVj+h1K+IDF79QdmTkd3E3
+ CTNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=j8XLJBcgjNTIkVR2NzJVwfaf5k6oy9u8H2+Wy7zKPPE=;
+ b=mHZEUNr3S6n2Anlqc328NZxDM/NgY1X/NcWm5J+O99WnZugUtUCIcu2b2b+YWs1WQc
+ JXwdBwsv6IlCE4yh2k1Ql2MBc9CWDkIC1bOoJGbWSenndEqb9geXEanzUTCdbxFK3a4G
+ PAv3eTb9bawFSEsg7qskVi9/4+JbGSutE3pgr/9bflVwQfJDzWPQ41kK5h58CoV/7clM
+ G7LEL41tTPhifjmdGtQvueI1fmpNsFWWVDVDCKvRtDajAl8NLZlml0l2ipKxtRgIi8tD
+ 3t6k7Gymwi1GQ9rk4k2+FYGieVW0nfPQH6mxxrtWDcMy/BHwJMb2jK7f9KFuoTkWzqop
+ XIkw==
+X-Gm-Message-State: ACrzQf3q5+9T44NDOlV4Cf7NkZWe7onfVxBI17GuBL4LKdj1kvz3GjEr
+ ZbaO1z76RdlDImFJa8WTJ5pSnMXfG1Q7yJXwFyJLNqHFzrZVWg==
+X-Google-Smtp-Source: AMsMyM4I6vu+DHk5tPSkOSwBJCLocjd0TQrsRRD9iFCMCc5wbrS28v0Eus6MANhSyoIEruqiv5Tx1KV/vvpBZ6gVmqQ=
+X-Received: by 2002:a9d:20e3:0:b0:655:d819:244b with SMTP id
+ x90-20020a9d20e3000000b00655d819244bmr16211594ota.232.1667530603932; Thu, 03
+ Nov 2022 19:56:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH v3 22/23] drm/fb-helper: Remove unnecessary
- include statements
+From: Lukas Satin <luke.satin@gmail.com>
+Date: Fri, 4 Nov 2022 03:56:32 +0100
+Message-ID: <CAEFVmOL+163rX7hEpgKn20RrzMXekw6JcM30rY4AmoHhDV_5Qw@mail.gmail.com>
+To: nouveau@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="0000000000004cafe205ec9c39b3"
+Subject: [Nouveau] TV Out question
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,475 +61,111 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- spice-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- xen-devel@lists.xenproject.org, linux-tegra@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- "linux-hyperv@vger.kernel.orglinux-hyperv"@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- freedreno@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Remove include statements for <drm/drm_fb_helper.h> where it is not
-required (i.e., most of them). In a few places include other header
-files that are required by the source code.
+--0000000000004cafe205ec9c39b3
+Content-Type: text/plain; charset="UTF-8"
 
-v3:
-	* fix amdgpu include statements
-	* fix rockchip include statements
+Hi, I am currently testing Batocera Linux for retrogaming with 15KHz output
+on CRT / TV.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c  | 1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c      | 1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c     | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c         | 1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h        | 1 -
- drivers/gpu/drm/amd/amdgpu/dce_v10_0.c          | 1 +
- drivers/gpu/drm/amd/amdgpu/dce_v11_0.c          | 1 +
- drivers/gpu/drm/amd/amdgpu/dce_v6_0.c           | 1 +
- drivers/gpu/drm/amd/amdgpu/dce_v8_0.c           | 1 +
- drivers/gpu/drm/arm/hdlcd_crtc.c                | 1 -
- drivers/gpu/drm/ast/ast_drv.h                   | 1 -
- drivers/gpu/drm/bridge/tc358762.c               | 2 +-
- drivers/gpu/drm/drm_crtc_helper.c               | 1 -
- drivers/gpu/drm/drm_gem_framebuffer_helper.c    | 1 -
- drivers/gpu/drm/drm_probe_helper.c              | 1 -
- drivers/gpu/drm/etnaviv/etnaviv_drv.h           | 3 ++-
- drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h | 1 -
- drivers/gpu/drm/hyperv/hyperv_drm_modeset.c     | 1 -
- drivers/gpu/drm/imx/imx-ldb.c                   | 2 +-
- drivers/gpu/drm/imx/imx-tve.c                   | 1 -
- drivers/gpu/drm/imx/parallel-display.c          | 2 +-
- drivers/gpu/drm/kmb/kmb_plane.c                 | 1 -
- drivers/gpu/drm/mgag200/mgag200_drv.h           | 1 -
- drivers/gpu/drm/qxl/qxl_drv.h                   | 1 -
- drivers/gpu/drm/rockchip/rockchip_drm_drv.h     | 2 +-
- drivers/gpu/drm/rockchip/rockchip_drm_gem.c     | 1 +
- drivers/gpu/drm/tidss/tidss_kms.c               | 1 -
- drivers/gpu/drm/v3d/v3d_drv.c                   | 1 -
- drivers/gpu/drm/vboxvideo/vbox_main.c           | 1 -
- drivers/gpu/drm/virtio/virtgpu_drv.h            | 1 -
- drivers/gpu/drm/xen/xen_drm_front_gem.c         | 1 -
- 31 files changed, 14 insertions(+), 24 deletions(-)
+The machine I discovered is a certified Windows Media Center / Intel ViiV
+machine: Acer iDEA 510
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-index 491d4846fc02c..e1320edfc5274 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-@@ -26,7 +26,6 @@
- 
- #include <drm/display/drm_dp_helper.h>
- #include <drm/drm_edid.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/amdgpu_drm.h>
- #include "amdgpu.h"
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index ddaecb2610c94..56a031a2e087e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -37,6 +37,7 @@
- #include <linux/pci-p2pdma.h>
- 
- #include <drm/drm_atomic_helper.h>
-+#include <drm/drm_fb_helper.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/amdgpu_drm.h>
- #include <linux/vgaarb.h>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index dd6f9ae6fbe9f..311a8ea6f0654 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -39,8 +39,8 @@
- #include <linux/pm_runtime.h>
- #include <drm/drm_crtc_helper.h>
- #include <drm/drm_edid.h>
--#include <drm/drm_gem_framebuffer_helper.h>
- #include <drm/drm_fb_helper.h>
-+#include <drm/drm_gem_framebuffer_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_vblank.h>
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index bf1ff8f0e7120..e3a18f069ce5e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -29,6 +29,7 @@
- #include "amdgpu.h"
- #include <drm/amdgpu_drm.h>
- #include <drm/drm_drv.h>
-+#include <drm/drm_fb_helper.h>
- #include "amdgpu_uvd.h"
- #include "amdgpu_vce.h"
- #include "atom.h"
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-index 37322550d7508..8a39300b1a845 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-@@ -36,7 +36,6 @@
- #include <drm/drm_encoder.h>
- #include <drm/drm_fixed.h>
- #include <drm/drm_crtc_helper.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_probe_helper.h>
- #include <linux/i2c.h>
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-index 05051d5d2ec31..90f87b2d985b5 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-@@ -21,6 +21,7 @@
-  *
-  */
- 
-+#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_vblank.h>
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-index c928bc9eb2026..0352de72c886a 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-@@ -21,6 +21,7 @@
-  *
-  */
- 
-+#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_vblank.h>
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-index 62315fd5a05f2..07bd16e820461 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-@@ -23,6 +23,7 @@
- 
- #include <linux/pci.h>
- 
-+#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_vblank.h>
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-index 87d5e4c21cb37..d73df100f2b3b 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-@@ -21,6 +21,7 @@
-  *
-  */
- 
-+#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_vblank.h>
- 
-diff --git a/drivers/gpu/drm/arm/hdlcd_crtc.c b/drivers/gpu/drm/arm/hdlcd_crtc.c
-index 7030339fa2323..ddbe1dd2d44ef 100644
---- a/drivers/gpu/drm/arm/hdlcd_crtc.c
-+++ b/drivers/gpu/drm/arm/hdlcd_crtc.c
-@@ -19,7 +19,6 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_fb_dma_helper.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_gem_dma_helper.h>
- #include <drm/drm_of.h>
-diff --git a/drivers/gpu/drm/ast/ast_drv.h b/drivers/gpu/drm/ast/ast_drv.h
-index 74f41282444f6..d51b81fea9c80 100644
---- a/drivers/gpu/drm/ast/ast_drv.h
-+++ b/drivers/gpu/drm/ast/ast_drv.h
-@@ -38,7 +38,6 @@
- #include <drm/drm_encoder.h>
- #include <drm/drm_mode.h>
- #include <drm/drm_framebuffer.h>
--#include <drm/drm_fb_helper.h>
- 
- #define DRIVER_AUTHOR		"Dave Airlie"
- 
-diff --git a/drivers/gpu/drm/bridge/tc358762.c b/drivers/gpu/drm/bridge/tc358762.c
-index 7f4fce1aa9988..0b6a284368859 100644
---- a/drivers/gpu/drm/bridge/tc358762.c
-+++ b/drivers/gpu/drm/bridge/tc358762.c
-@@ -11,6 +11,7 @@
-  */
- 
- #include <linux/delay.h>
-+#include <linux/mod_devicetable.h>
- #include <linux/module.h>
- #include <linux/of_graph.h>
- #include <linux/regulator/consumer.h>
-@@ -19,7 +20,6 @@
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_crtc.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_mipi_dsi.h>
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
-diff --git a/drivers/gpu/drm/drm_crtc_helper.c b/drivers/gpu/drm/drm_crtc_helper.c
-index f5fb22e0d0337..a209659a996c7 100644
---- a/drivers/gpu/drm/drm_crtc_helper.c
-+++ b/drivers/gpu/drm/drm_crtc_helper.c
-@@ -43,7 +43,6 @@
- #include <drm/drm_drv.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_encoder.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_print.h>
-diff --git a/drivers/gpu/drm/drm_gem_framebuffer_helper.c b/drivers/gpu/drm/drm_gem_framebuffer_helper.c
-index e35e224e6303a..e93533b86037f 100644
---- a/drivers/gpu/drm/drm_gem_framebuffer_helper.c
-+++ b/drivers/gpu/drm/drm_gem_framebuffer_helper.c
-@@ -9,7 +9,6 @@
- #include <linux/module.h>
- 
- #include <drm/drm_damage_helper.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_gem.h>
-diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_probe_helper.c
-index 2fc21df709bcb..bcd9611dabfd9 100644
---- a/drivers/gpu/drm/drm_probe_helper.c
-+++ b/drivers/gpu/drm/drm_probe_helper.c
-@@ -36,7 +36,6 @@
- #include <drm/drm_client.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_edid.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_modeset_helper_vtables.h>
- #include <drm/drm_print.h>
-diff --git a/drivers/gpu/drm/etnaviv/etnaviv_drv.h b/drivers/gpu/drm/etnaviv/etnaviv_drv.h
-index f32f4771dada7..2bb4c25565dcb 100644
---- a/drivers/gpu/drm/etnaviv/etnaviv_drv.h
-+++ b/drivers/gpu/drm/etnaviv/etnaviv_drv.h
-@@ -6,13 +6,14 @@
- #ifndef __ETNAVIV_DRV_H__
- #define __ETNAVIV_DRV_H__
- 
-+#include <linux/io.h>
- #include <linux/list.h>
- #include <linux/mm_types.h>
- #include <linux/sizes.h>
- #include <linux/time64.h>
- #include <linux/types.h>
- 
--#include <drm/drm_fb_helper.h>
-+#include <drm/drm_drv.h>
- #include <drm/drm_gem.h>
- #include <drm/etnaviv_drm.h>
- #include <drm/gpu_scheduler.h>
-diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h
-index 4a0cd22c10e21..f957552c6c507 100644
---- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h
-+++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h
-@@ -19,7 +19,6 @@
- #include <linux/i2c.h>
- 
- #include <drm/drm_edid.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_framebuffer.h>
- 
- struct hibmc_connector {
-diff --git a/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c b/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c
-index 28e732f94bf2f..6c6b572987973 100644
---- a/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c
-+++ b/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c
-@@ -8,7 +8,6 @@
- #include <drm/drm_damage_helper.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_edid.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_format_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_framebuffer.h>
-diff --git a/drivers/gpu/drm/imx/imx-ldb.c b/drivers/gpu/drm/imx/imx-ldb.c
-index 41799011f73b6..c45fc8f4744d0 100644
---- a/drivers/gpu/drm/imx/imx-ldb.c
-+++ b/drivers/gpu/drm/imx/imx-ldb.c
-@@ -7,6 +7,7 @@
- 
- #include <linux/clk.h>
- #include <linux/component.h>
-+#include <linux/i2c.h>
- #include <linux/media-bus-format.h>
- #include <linux/mfd/syscon.h>
- #include <linux/mfd/syscon/imx6q-iomuxc-gpr.h>
-@@ -23,7 +24,6 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
- #include <drm/drm_edid.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_managed.h>
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
-diff --git a/drivers/gpu/drm/imx/imx-tve.c b/drivers/gpu/drm/imx/imx-tve.c
-index 6b34fac3f73a0..d64ebd2cf15e8 100644
---- a/drivers/gpu/drm/imx/imx-tve.c
-+++ b/drivers/gpu/drm/imx/imx-tve.c
-@@ -19,7 +19,6 @@
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_edid.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_managed.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_simple_kms_helper.h>
-diff --git a/drivers/gpu/drm/imx/parallel-display.c b/drivers/gpu/drm/imx/parallel-display.c
-index 06723b2e9b847..0fa0b590830b6 100644
---- a/drivers/gpu/drm/imx/parallel-display.c
-+++ b/drivers/gpu/drm/imx/parallel-display.c
-@@ -8,6 +8,7 @@
- #include <linux/component.h>
- #include <linux/media-bus-format.h>
- #include <linux/module.h>
-+#include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/videodev2.h>
- 
-@@ -16,7 +17,6 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
- #include <drm/drm_edid.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_managed.h>
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
-diff --git a/drivers/gpu/drm/kmb/kmb_plane.c b/drivers/gpu/drm/kmb/kmb_plane.c
-index a42f63f6f9573..d172a302f9024 100644
---- a/drivers/gpu/drm/kmb/kmb_plane.c
-+++ b/drivers/gpu/drm/kmb/kmb_plane.c
-@@ -9,7 +9,6 @@
- #include <drm/drm_crtc.h>
- #include <drm/drm_crtc_helper.h>
- #include <drm/drm_fb_dma_helper.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_gem_dma_helper.h>
-diff --git a/drivers/gpu/drm/mgag200/mgag200_drv.h b/drivers/gpu/drm/mgag200/mgag200_drv.h
-index f0c2349404b46..9e604dbb8e448 100644
---- a/drivers/gpu/drm/mgag200/mgag200_drv.h
-+++ b/drivers/gpu/drm/mgag200/mgag200_drv.h
-@@ -18,7 +18,6 @@
- #include <drm/drm_connector.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_encoder.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_gem.h>
- #include <drm/drm_gem_shmem_helper.h>
- #include <drm/drm_plane.h>
-diff --git a/drivers/gpu/drm/qxl/qxl_drv.h b/drivers/gpu/drm/qxl/qxl_drv.h
-index 432758ad39a35..76f060810f634 100644
---- a/drivers/gpu/drm/qxl/qxl_drv.h
-+++ b/drivers/gpu/drm/qxl/qxl_drv.h
-@@ -38,7 +38,6 @@
- 
- #include <drm/drm_crtc.h>
- #include <drm/drm_encoder.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_gem_ttm_helper.h>
- #include <drm/drm_ioctl.h>
- #include <drm/drm_gem.h>
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-index 1641440837af5..aeb03a57240fd 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-@@ -9,10 +9,10 @@
- #ifndef _ROCKCHIP_DRM_DRV_H
- #define _ROCKCHIP_DRM_DRV_H
- 
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_gem.h>
- 
-+#include <linux/i2c.h>
- #include <linux/module.h>
- #include <linux/component.h>
- 
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
-index da8a69953706d..6edb7c52cb3dc 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
-@@ -9,6 +9,7 @@
- #include <linux/vmalloc.h>
- 
- #include <drm/drm.h>
-+#include <drm/drm_fb_helper.h>
- #include <drm/drm_gem.h>
- #include <drm/drm_gem_dma_helper.h>
- #include <drm/drm_prime.h>
-diff --git a/drivers/gpu/drm/tidss/tidss_kms.c b/drivers/gpu/drm/tidss/tidss_kms.c
-index afb2879980c6c..345bcc3011e4f 100644
---- a/drivers/gpu/drm/tidss/tidss_kms.c
-+++ b/drivers/gpu/drm/tidss/tidss_kms.c
-@@ -10,7 +10,6 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
- #include <drm/drm_crtc_helper.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_gem_framebuffer_helper.h>
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
-diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
-index e8c975b815859..478f1f0f60dec 100644
---- a/drivers/gpu/drm/v3d/v3d_drv.c
-+++ b/drivers/gpu/drm/v3d/v3d_drv.c
-@@ -22,7 +22,6 @@
- #include <linux/reset.h>
- 
- #include <drm/drm_drv.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_managed.h>
- #include <uapi/drm/v3d_drm.h>
- 
-diff --git a/drivers/gpu/drm/vboxvideo/vbox_main.c b/drivers/gpu/drm/vboxvideo/vbox_main.c
-index c9e8b3a63c621..3b83e550f4df5 100644
---- a/drivers/gpu/drm/vboxvideo/vbox_main.c
-+++ b/drivers/gpu/drm/vboxvideo/vbox_main.c
-@@ -11,7 +11,6 @@
- #include <linux/pci.h>
- #include <linux/vbox_err.h>
- 
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_crtc_helper.h>
- #include <drm/drm_damage_helper.h>
- 
-diff --git a/drivers/gpu/drm/virtio/virtgpu_drv.h b/drivers/gpu/drm/virtio/virtgpu_drv.h
-index 9b98470593b06..b7a64c7dcc2c9 100644
---- a/drivers/gpu/drm/virtio/virtgpu_drv.h
-+++ b/drivers/gpu/drm/virtio/virtgpu_drv.h
-@@ -35,7 +35,6 @@
- #include <drm/drm_atomic.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_encoder.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_gem.h>
-diff --git a/drivers/gpu/drm/xen/xen_drm_front_gem.c b/drivers/gpu/drm/xen/xen_drm_front_gem.c
-index e31554d7139f1..4c95ebcdcc2d3 100644
---- a/drivers/gpu/drm/xen/xen_drm_front_gem.c
-+++ b/drivers/gpu/drm/xen/xen_drm_front_gem.c
-@@ -12,7 +12,6 @@
- #include <linux/scatterlist.h>
- #include <linux/shmem_fs.h>
- 
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_gem.h>
- #include <drm/drm_prime.h>
- #include <drm/drm_probe_helper.h>
--- 
-2.38.0
+It features:
+RCA component output
+S-Video CVBS output
+S-Video DIN output
+Scart IN / Scart OUT (two DVB-T tuners for realtime playback and recording)
+DVI-I out
+HDMI out
 
+Laptop style components, MXM module Geforce 7 Go 7600 (NVIDIA Curie).
+
+Now, BIOS default output via RCA component is 640x480 NTSC (480i, 60Hz). In
+Windows I can switch between NTSC and PAL (480i or 576i).
+
+As this is EU machine, after BIOS it often defaults to 576i PAL, unless set
+otherwise.
+
+Now your nouveau driver therefore defaults to 576i.
+
+Xrandr looks like this:
+TV-1 connected 640x480+0+0 (normal left inverted right x axis y axis) 0mm x
+0mm
+   720x576       50.00 +
+   1024x768      50.00
+   800x600       50.00
+   720x480       50.00
+   640x480       50.00*
+   400x300       50.00
+   320x240       50.00
+   320x200       50.00
+   768x576       50.00
+   360x200       60.00
+   360x240       60.00
+   640x240       60.00
+
+I tried to add some additional modelines. But look at 640x480. It forces
+50Hz and I am unable to remove it, create new or change it to 60Hz.
+Therefore the TV is always set to 576i and screen output is 640x480,
+therefore it looks like GPU scaled. First I read your troubleshooting which
+mentions scaling, so I tried to disable scaling. Did not help.
+
+Now I read about this:
+https://nvidia.custhelp.com/app/answers/detail/a_id/177/~/linux---configuring-tv-out
+
+And this might be the solution and issue. It would correspond with what can
+be observed in Windows 7.
+
+Does your driver have some options for configuring TV Out and name
+switching from PAL to NTSC or HD480i mode? It should be automatic based on
+480i or 576i or 240p or 288p, but it is not.
+
+Thanks,
+Lukas
+
+--0000000000004cafe205ec9c39b3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi, I am currently testing Batocera Linux for retrogaming =
+with 15KHz output on CRT / TV.<div><br></div><div>The machine I discovered =
+is a certified Windows Media Center / Intel ViiV machine: Acer iDEA 510</di=
+v><div><br></div><div>It features:</div><div>RCA component output</div><div=
+>S-Video CVBS output</div><div>S-Video DIN output</div><div>Scart IN / Scar=
+t OUT (two DVB-T tuners for realtime playback and recording)</div><div>DVI-=
+I out</div><div>HDMI out</div><div><br></div><div>Laptop style components, =
+MXM module Geforce 7 Go 7600 (NVIDIA Curie).</div><div><br></div><div>Now, =
+BIOS default output via RCA component is 640x480 NTSC (480i, 60Hz). In Wind=
+ows I can switch between NTSC and PAL (480i or 576i).</div><div><br></div><=
+div>As this is EU machine, after BIOS it often defaults to 576i PAL, unless=
+ set otherwise.</div><div><br></div><div>Now your nouveau driver therefore =
+defaults to 576i.</div><div><br></div><div>Xrandr looks like this:</div><di=
+v>TV-1 connected 640x480+0+0 (normal left inverted right x axis y axis) 0mm=
+ x 0mm<br>=C2=A0 =C2=A0720x576 =C2=A0 =C2=A0 =C2=A0 50.00 +<br>=C2=A0 =C2=
+=A01024x768 =C2=A0 =C2=A0 =C2=A050.00<br>=C2=A0 =C2=A0800x600 =C2=A0 =C2=A0=
+ =C2=A0 50.00<br>=C2=A0 =C2=A0720x480 =C2=A0 =C2=A0 =C2=A0 50.00<br>=C2=A0 =
+=C2=A0640x480 =C2=A0 =C2=A0 =C2=A0 50.00*<br>=C2=A0 =C2=A0400x300 =C2=A0 =
+=C2=A0 =C2=A0 50.00<br>=C2=A0 =C2=A0320x240 =C2=A0 =C2=A0 =C2=A0 50.00<br>=
+=C2=A0 =C2=A0320x200 =C2=A0 =C2=A0 =C2=A0 50.00<br>=C2=A0 =C2=A0768x576 =C2=
+=A0 =C2=A0 =C2=A0 50.00<br>=C2=A0 =C2=A0360x200 =C2=A0 =C2=A0 =C2=A0 60.00<=
+br>=C2=A0 =C2=A0360x240 =C2=A0 =C2=A0 =C2=A0 60.00<br>=C2=A0 =C2=A0640x240 =
+=C2=A0 =C2=A0 =C2=A0 60.00<br></div><div><br></div><div>I tried to add some=
+ additional modelines. But look at 640x480. It forces 50Hz and I am unable =
+to remove it, create new or change it to 60Hz. Therefore the TV is always s=
+et to 576i and screen output is 640x480, therefore it looks like GPU scaled=
+. First I read your troubleshooting which mentions scaling, so I tried to d=
+isable scaling. Did not help.</div><div><br></div><div>Now I read about thi=
+s:</div><div><a href=3D"https://nvidia.custhelp.com/app/answers/detail/a_id=
+/177/~/linux---configuring-tv-out">https://nvidia.custhelp.com/app/answers/=
+detail/a_id/177/~/linux---configuring-tv-out</a><br></div><div><br></div><d=
+iv>And this might be the solution and issue. It would correspond with what =
+can be observed in Windows 7.</div><div><br></div><div>Does your driver hav=
+e some options for configuring TV Out and name switching from PAL to NTSC o=
+r HD480i mode? It should be automatic based on 480i or 576i or 240p or 288p=
+, but it is not.</div><div><br></div><div>Thanks,</div><div>Lukas</div></di=
+v>
+
+--0000000000004cafe205ec9c39b3--
