@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5D1FC433FE
-	for <nouveau@archiver.kernel.org>; Mon,  7 Nov 2022 14:18:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F216C43219
+	for <nouveau@archiver.kernel.org>; Mon,  7 Nov 2022 14:18:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F9BC10E347;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 080C510E34D;
 	Mon,  7 Nov 2022 14:17:48 +0000 (UTC)
 Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
  [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A699010E33C;
- Mon,  7 Nov 2022 14:17:38 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.west.internal (Postfix) with ESMTP id E9C6B2B05E60;
- Mon,  7 Nov 2022 09:17:35 -0500 (EST)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7706810E338;
+ Mon,  7 Nov 2022 14:17:29 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailnew.west.internal (Postfix) with ESMTP id BA74D2B066F4;
+ Mon,  7 Nov 2022 09:17:26 -0500 (EST)
 Received: from mailfrontend1 ([10.202.2.162])
- by compute3.internal (MEProxy); Mon, 07 Nov 2022 09:17:38 -0500
+ by compute5.internal (MEProxy); Mon, 07 Nov 2022 09:17:28 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
  :cc:content-transfer-encoding:content-type:date:date:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm2; t=1667830655; x=
- 1667837855; bh=P1KWsASnYvTi2I1+CBGAVsqir1G/tMqeUHWEZ+PSqHs=; b=h
- S2xCfU/fygdElNNHroTorMWajd0Le0Umyz3+94zhUQuipmxHUsQt3zShZ2hXLbaQ
- pcISmCuzlWNNvtrPGlVJUPa6ePs5sZjq2sPOoaaAJdSjysYoeA8exVMidX5pVSEZ
- GD/42ev4Qj2UYYq2dzZdrK5eb74+CpT5hmqNZEB194aZexeJ8+9DeV3kI03E/xx9
- E9oXx1i/e0GjQrhjxu5ZtakNAMvqoGFzwG5QxRZaiSAjwfhmtD1dzgzNO7EY9kFU
- 2IL1lGYrZuQnv+wi/XRJA8itjku5m0etEGWpG4W78WJeLSIMOfGzzQNCcrJjhhGm
- hXK1Qz3fy4ITROH9Mbh3Q==
+ :reply-to:sender:subject:subject:to:to; s=fm2; t=1667830646; x=
+ 1667837846; bh=Ngp8whnuDWvZJFV5jotNpMrQ4mHBLOAsMNO1rcVm9kQ=; b=E
+ vHG7QsL+VmAAFbFs178cud5gFq8O+bP4K5gxZsUPolQrtpokO83Uh8lqY6rHBRDL
+ 20nJDImNybhJhBYxYlwe4f68upZzMIF1/TTXYStVt+oMKR/SI3vsMh8cen3IxcUP
+ uf9uDZkgFPnH4KThjQZLJGCkYOAESZSsQSrtyfUhZfbG2w3sGdu1YO88d3KSCt6r
+ nQ91G0ED/S5G4VNny41Wtq8XoJCQsn/qBWmxDqvlL02Wn/NxC53VRuqzf5q2AKgq
+ WG7i3DwqhSoAdXW1kfLHvf+L8FHznma3lrowcHB1EjqwK+FD1bovQ3b7BzSmuC1m
+ zm9r0sAMtiy/tzVYd0KPA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-transfer-encoding
  :content-type:date:date:feedback-id:feedback-id:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
  :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1667830655; x=
- 1667837855; bh=P1KWsASnYvTi2I1+CBGAVsqir1G/tMqeUHWEZ+PSqHs=; b=p
- VkqTLgAIlTvk8WPNyUDZRKe/9M1XgCxsboBvelMsktSDWRe5u2r33eP7Nyc2EJNW
- slmPpPS1BjP4ecXDTpoqV3NPf97LoB+05Rg7QHjvXYsXTkGM8FTipJPAgKFtz8UL
- GTCl6IUWyWGQGyqNjadFgGGLCiE8HSr73rdmAEKXmsaoHAl8jGAa8Dsqhw0e6vx6
- gLukdyr1jB9M6yH1jmIJLsRV5gojDpkEH4VL/nCrUUzeKKHLaoVGaHOrdgjm01wI
- gDgQ6ghsvCj2+5I254snhcwQWOREtK1Rc7aUPmiIotg9eDgxZC1k1V/NO0bpB1U2
- msDpqMAykaEQUCSUuDcsQ==
-X-ME-Sender: <xms:fxNpY0iX-AAM0e0mzRmiejkozFX7PwcvlulZG_-l85Pc8GXkPMMu_w>
- <xme:fxNpY9A1GfDdEqE2t6Nun-_3Tu8D5wJiQJ-Q6Ev8PS4wYUhXBsgVExg9En2-RyTp-
- DnOwGYgyjFhhPoyNS0>
-X-ME-Received: <xmr:fxNpY8EhNdTGxkijNkpHZTljbDckuaUutRVMglDVbaj3aQmY1CDzanEtxIl8F-2GHsevv0rv6ESJVY7sJxltcRv1sEJXWuGUGVYONrZXOZfhXQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrvdekgdeiudcutefuodetggdotefrodftvf
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1667830646; x=
+ 1667837846; bh=Ngp8whnuDWvZJFV5jotNpMrQ4mHBLOAsMNO1rcVm9kQ=; b=o
+ gahNBtJhsf4lczNvByGhhGhnqf/Ab70p8nsY6+3z+dz0+YtaUTs4VyDn48GwPimR
+ ZyMi8Up9QnYHwWnn8Z7LoSp6kcol1Z3IO8cv3z6S2voU6f0ygXZ0eMe6Yyst1Ws7
+ ww2GlyHwLpr7gQi+duOa2mWOVyItK/oCWC0BgeBaBgnNOFGY+5sWe0KkrNqU0izm
+ R9gHzzRs79vUYMxmkKe5W6U9KDJUxFTWbyirTZNAXI8t09HwVgMzQe76w7XZAbmt
+ X+kzLq03wWZUUKoe5F1y/UqECZLH5/JLfIZBQ1Ymhk1kaAs+Psd/lYvSVuAIOtNS
+ FXV3Op1bCtidfttYgSDig==
+X-ME-Sender: <xms:dhNpY3z6DNqL5JvHREul7fkrrlLwNTwofcziqUTnrL4Y2WCngZcn1g>
+ <xme:dhNpY_Qq2Dq4lUiC7zjHbXDRIpP2HMi84N5DLwMz8ZXi-JWPizF4Q6OWyqQ3ZveUu
+ MqGVVy6M2vrnurnYPQ>
+X-ME-Received: <xmr:dhNpYxXa8WxuHxODcohbX2iRh62Ui8LA_hToA6R3sGbk9WXC62msjERRSGKATYc_MjYfuvKAji9iCaYu6OIKVQTwBx0uLV5rC2UG8TNIXtOEJA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrvdekgdeivdcutefuodetggdotefrodftvf
  curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
  uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
  fjughrpefhfffuggfgtgfkfhgjvfevofesthekredtredtjeenucfhrhhomhepofgrgihi
  mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
  htthgvrhhnpedvgfevjefhtdetveevhfelieeuueetgfdvgeevkeegudejffegfffgtedt
- leelhfenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+ leelhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
  hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:fxNpY1QxwtdnkllYowbf4hLTFU_W412cKeeGSE7AjshEtFQhn-2lMA>
- <xmx:fxNpYxw9tOMPnjevXQh3W4Q8p_7FZYUaH4ucvNNvY-kE-0IiGFlViw>
- <xmx:fxNpYz7JWwHeIBHlwLherVkP9-3SCD6_E2m6IckovzoSDMA2tvWtVg>
- <xmx:fxNpYxdETs3afHJVhT5ACC5lc1_hEOZFKZp4KA8dJX56Sed4k1o0Hxz3R6g>
+X-ME-Proxy: <xmx:dhNpYxglKDMyMZ-4oHGpXxg-Nla7pC4rIrQ3gAE11HAshcyEDWERoA>
+ <xmx:dhNpY5AfzxdBGpRwn1e0VPSGZptoBsAygEJM8VtEmn_1nAQzQ0u4dQ>
+ <xmx:dhNpY6JsMrO1klTM1le3Z33ny9cKLz5NGgkjP-tOgWW9BmU0iqmG-Q>
+ <xmx:dhNpY6sHpl42Gb87nS8Y941Jb4HOXjyAESJVCWlOJoi-AOQBQ1K6oHcMq3k>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 7 Nov 2022 09:17:34 -0500 (EST)
+ 7 Nov 2022 09:17:25 -0500 (EST)
 From: Maxime Ripard <maxime@cerno.tech>
-Date: Mon, 07 Nov 2022 15:16:38 +0100
+Date: Mon, 07 Nov 2022 15:16:36 +0100
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20220728-rpi-analog-tv-properties-v7-12-7072a478c6b3@cerno.tech>
+Message-Id: <20220728-rpi-analog-tv-properties-v7-10-7072a478c6b3@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v7-0-7072a478c6b3@cerno.tech>
 In-Reply-To: <20220728-rpi-analog-tv-properties-v7-0-7072a478c6b3@cerno.tech>
 To: Jani Nikula <jani.nikula@linux.intel.com>,
@@ -81,15 +81,15 @@ To: Jani Nikula <jani.nikula@linux.intel.com>,
  Lyude Paul <lyude@redhat.com>, 
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>
 X-Mailer: b4 0.11.0-dev-99e3a
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5877; i=maxime@cerno.tech;
- h=from:subject:message-id; bh=OibD9L+0N3v79XwK5wYQ+LNcQ4mtLEndDfkBHXvN8N8=;
- b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMmZwg6iPVHPz4rP7rxQt/eu7/OI3zfyjuSUmVRfeHGFUTuJ
- cfPcjlIWBjEuBlkxRZYYYfMlcadmve5k45sHM4eVCWQIAxenAEzkQSQjw0dR/Y4VfBMFFNMmiv26du
- LppCyrnfq/JDe8bw9jbZ7wLpaRYUeJEu//X7OW5kn4pZy9mVLq5bdIJ6H40YKdBwr1nQ/GsQEA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1857; i=maxime@cerno.tech;
+ h=from:subject:message-id; bh=FcO2lRsVFO8/cJ2pFa8Sj2nk/izc0QvJ9lvsv6CGgOk=;
+ b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMmZwg4WyW+3ztV+7Xj+fsNrBcVFHX06E/+lPNkZqb3IWDv6
+ nlNARykLgxgXg6yYIkuMsPmSuFOzXney8c2DmcPKBDKEgYtTACbyyoaR4U7nh9fh2c+0bI581D8h4i
+ 36eVO9n46rwCY24TSeYxpnixn+2U7OSn2xnFWluVxn9n+lc0efdjKoZ2ZNOvFoS5WmQd40BgA=
 X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
-Subject: [Nouveau] [PATCH v7 12/23] drm/connector: Add a function to lookup
- a TV mode by its name
+Subject: [Nouveau] [PATCH v7 10/23] drm/modes: Fill drm_cmdline mode from
+ named modes
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,182 +105,63 @@ Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org, intel-gfx@l
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As part of the command line parsing rework coming in the next patches,
-we'll need to lookup drm_connector_tv_mode values by their name, already
-defined in drm_tv_mode_enum_list.
+The current code to deal with named modes will only set the mode name, and
+then it's up to drivers to try to match that name to whatever mode or
+configuration they see fit.
 
-In order to avoid any code duplication, let's do a function that will
-perform a lookup of a TV mode name and return its value.
+The plan is to remove that need and move the named mode handling out of
+drivers and into the core, and only rely on modes and properties. Let's
+start by properly filling drm_cmdline_mode from a named mode.
 
 Reviewed-by: Noralf Trønnes <noralf@tronnes.org>
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
 ---
 Changes in v7:
-- Add kunit tests
+- Add Noralf Reviewed-by:w
 ---
- drivers/gpu/drm/drm_connector.c            | 24 ++++++++
- drivers/gpu/drm/tests/Makefile             |  1 +
- drivers/gpu/drm/tests/drm_connector_test.c | 90 ++++++++++++++++++++++++++++++
- include/drm/drm_connector.h                |  2 +
- 4 files changed, 117 insertions(+)
+ drivers/gpu/drm/drm_modes.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-index f9a6cb792bda..9aec878c8509 100644
---- a/drivers/gpu/drm/drm_connector.c
-+++ b/drivers/gpu/drm/drm_connector.c
-@@ -995,6 +995,30 @@ static const struct drm_prop_enum_list drm_tv_mode_enum_list[] = {
+diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
+index 7594b657f86a..acee23e1a8b7 100644
+--- a/drivers/gpu/drm/drm_modes.c
++++ b/drivers/gpu/drm/drm_modes.c
+@@ -2226,11 +2226,22 @@ static int drm_mode_parse_cmdline_options(const char *str,
+ 
+ struct drm_named_mode {
+ 	const char *name;
++	unsigned int xres;
++	unsigned int yres;
++	unsigned int flags;
  };
- DRM_ENUM_NAME_FN(drm_get_tv_mode_name, drm_tv_mode_enum_list)
  
-+/**
-+ * drm_get_tv_mode_from_name - Translates a TV mode name into its enum value
-+ * @name: TV Mode name we want to convert
-+ * @len: Length of @name
-+ *
-+ * Translates @name into an enum drm_connector_tv_mode.
-+ *
-+ * Returns: the enum value on success, a negative errno otherwise.
-+ */
-+int drm_get_tv_mode_from_name(const char *name, size_t len)
-+{
-+	unsigned int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(drm_tv_mode_enum_list); i++) {
-+		const struct drm_prop_enum_list *item = &drm_tv_mode_enum_list[i];
-+
-+		if (strlen(item->name) == len && !strncmp(item->name, name, len))
-+			return item->type;
++#define NAMED_MODE(_name, _x, _y, _flags)		\
++	{						\
++		.name = _name,				\
++		.xres = _x,				\
++		.yres = _y,				\
++		.flags = _flags,			\
 +	}
 +
-+	return -EINVAL;
-+}
-+EXPORT_SYMBOL(drm_get_tv_mode_from_name);
-+
- static const struct drm_prop_enum_list drm_tv_select_enum_list[] = {
- 	{ DRM_MODE_SUBCONNECTOR_Automatic, "Automatic" }, /* DVI-I and TV-out */
- 	{ DRM_MODE_SUBCONNECTOR_Composite, "Composite" }, /* TV-out */
-diff --git a/drivers/gpu/drm/tests/Makefile b/drivers/gpu/drm/tests/Makefile
-index b22ac96fdd65..c7903c112c65 100644
---- a/drivers/gpu/drm/tests/Makefile
-+++ b/drivers/gpu/drm/tests/Makefile
-@@ -3,6 +3,7 @@
- obj-$(CONFIG_DRM_KUNIT_TEST) += \
- 	drm_buddy_test.o \
- 	drm_cmdline_parser_test.o \
-+	drm_connector_test.o \
- 	drm_damage_helper_test.o \
- 	drm_dp_mst_helper_test.o \
- 	drm_format_helper_test.o \
-diff --git a/drivers/gpu/drm/tests/drm_connector_test.c b/drivers/gpu/drm/tests/drm_connector_test.c
-new file mode 100644
-index 000000000000..f2272b9df211
---- /dev/null
-+++ b/drivers/gpu/drm/tests/drm_connector_test.c
-@@ -0,0 +1,90 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Kunit test for drm_modes functions
-+ */
-+
-+#include <drm/drm_connector.h>
-+
-+#include <kunit/test.h>
-+
-+struct drm_get_tv_mode_from_name_test {
-+	const char *name;
-+	enum drm_connector_tv_mode expected_mode;
-+};
-+
-+#define TV_MODE_NAME(_name, _mode)		\
-+	{					\
-+		.name = _name,			\
-+		.expected_mode = _mode,		\
-+	}
-+
-+static void drm_test_get_tv_mode_from_name_valid(struct kunit *test)
-+{
-+	const struct drm_get_tv_mode_from_name_test *params = test->param_value;
-+
-+	KUNIT_EXPECT_EQ(test,
-+			drm_get_tv_mode_from_name(params->name, strlen(params->name)),
-+			params->expected_mode);
-+}
-+
-+static const
-+struct drm_get_tv_mode_from_name_test drm_get_tv_mode_from_name_valid_tests[] = {
-+	TV_MODE_NAME("NTSC", DRM_MODE_TV_MODE_NTSC),
-+	TV_MODE_NAME("NTSC-443", DRM_MODE_TV_MODE_NTSC_443),
-+	TV_MODE_NAME("NTSC-J", DRM_MODE_TV_MODE_NTSC_J),
-+	TV_MODE_NAME("PAL", DRM_MODE_TV_MODE_PAL),
-+	TV_MODE_NAME("PAL-M", DRM_MODE_TV_MODE_PAL_M),
-+	TV_MODE_NAME("PAL-N", DRM_MODE_TV_MODE_PAL_N),
-+	TV_MODE_NAME("SECAM", DRM_MODE_TV_MODE_SECAM),
-+};
-+
-+static void
-+drm_get_tv_mode_from_name_valid_desc(const struct drm_get_tv_mode_from_name_test *t,
-+				     char *desc)
-+{
-+	sprintf(desc, "%s", t->name);
-+}
-+KUNIT_ARRAY_PARAM(drm_get_tv_mode_from_name_valid,
-+		  drm_get_tv_mode_from_name_valid_tests,
-+		  drm_get_tv_mode_from_name_valid_desc);
-+
-+static void drm_test_get_tv_mode_from_name_invalid(struct kunit *test)
-+{
-+	const char *name = *(const char **)test->param_value;
-+
-+	KUNIT_EXPECT_LT(test,
-+			drm_get_tv_mode_from_name(name, strlen(name)),
-+			0);
-+}
-+
-+static const
-+char *drm_get_tv_mode_from_name_invalid_tests[] = {
-+	/* Truncated */
-+	"NTS",
-+};
-+
-+static void
-+drm_get_tv_mode_from_name_invalid_desc(const char **name, char *desc)
-+{
-+	sprintf(desc, "%s", *name);
-+}
-+KUNIT_ARRAY_PARAM(drm_get_tv_mode_from_name_invalid,
-+		  drm_get_tv_mode_from_name_invalid_tests,
-+		  drm_get_tv_mode_from_name_invalid_desc);
-+
-+static struct kunit_case drm_get_tv_mode_from_name_tests[] = {
-+	KUNIT_CASE_PARAM(drm_test_get_tv_mode_from_name_valid,
-+			 drm_get_tv_mode_from_name_valid_gen_params),
-+	KUNIT_CASE_PARAM(drm_test_get_tv_mode_from_name_invalid,
-+			 drm_get_tv_mode_from_name_invalid_gen_params),
-+	{ }
-+};
-+
-+static struct kunit_suite drm_get_tv_mode_from_name_test_suite = {
-+	.name = "drm_get_tv_mode_from_name",
-+	.test_cases = drm_get_tv_mode_from_name_tests,
-+};
-+
-+kunit_test_suites(
-+	&drm_get_tv_mode_from_name_test_suite
-+);
-diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-index 4927dcb2573f..c856f4871697 100644
---- a/include/drm/drm_connector.h
-+++ b/include/drm/drm_connector.h
-@@ -1872,6 +1872,8 @@ const char *drm_get_dp_subconnector_name(int val);
- const char *drm_get_content_protection_name(int val);
- const char *drm_get_hdcp_content_type_name(int val);
+ static const struct drm_named_mode drm_named_modes[] = {
+-	{ "NTSC", },
+-	{ "PAL", },
++	NAMED_MODE("NTSC", 720, 480, DRM_MODE_FLAG_INTERLACE),
++	NAMED_MODE("PAL", 720, 576, DRM_MODE_FLAG_INTERLACE),
+ };
  
-+int drm_get_tv_mode_from_name(const char *name, size_t len);
-+
- int drm_mode_create_dvi_i_properties(struct drm_device *dev);
- void drm_connector_attach_dp_subconnector_property(struct drm_connector *connector);
+ static int drm_mode_parse_cmdline_named_mode(const char *name,
+@@ -2271,6 +2282,9 @@ static int drm_mode_parse_cmdline_named_mode(const char *name,
+ 			continue;
  
+ 		strcpy(cmdline_mode->name, mode->name);
++		cmdline_mode->xres = mode->xres;
++		cmdline_mode->yres = mode->yres;
++		cmdline_mode->interlace = !!(mode->flags & DRM_MODE_FLAG_INTERLACE);
+ 		cmdline_mode->specified = true;
+ 
+ 		return 1;
 
 -- 
 b4 0.11.0-dev-99e3a
