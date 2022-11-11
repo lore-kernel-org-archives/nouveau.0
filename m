@@ -4,61 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3841AC77B78
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF781C7EE29
 	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:34:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BE7010E4DC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9778310E4E1;
 	Thu,  4 May 2023 12:33:54 +0000 (UTC)
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com
- [IPv6:2607:f8b0:4864:20::102c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD00710E357
- for <nouveau@lists.freedesktop.org>; Tue,  7 Mar 2023 04:25:10 +0000 (UTC)
-Received: by mail-pj1-x102c.google.com with SMTP id
- m20-20020a17090ab79400b00239d8e182efso15315673pjr.5
- for <nouveau@lists.freedesktop.org>; Mon, 06 Mar 2023 20:25:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1678163110;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=s3KTnrnv3dHcE3f0vIugluw/FAEArmhiZErhNRUYdOI=;
- b=JCWbMWcIe94/eoDecPbu1BSXlFXilW6amLFsklUPmQfAy/SwqTxb1QanUFqSIl2TAR
- EU0u5XyNa+1Hz0GdSMbJ0GVogKlTZFEpE57kMF8EwDLy8Zj/npvjsFvQ/x0PNvFojBwQ
- GwGFFSbBPJhVf/N0JGfDPrqxPKF5Nc/UmzhpSTaUXtD38mNfjZCS0GrNTvW9ir45VRT7
- 9Ekdlhmq8TJT26P2w/ttNMjzQ36qQrVH5tnc8uwVhIlJlYwlxm8PNJ3FAUpQ3qpd2/yG
- Tgn19JQ/4g9wJbu1FlRumOn/U190Eb2sDneZq2y3moRHGAUunK+c9CnJDkZKtxhHJ4pt
- 6kNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678163110;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=s3KTnrnv3dHcE3f0vIugluw/FAEArmhiZErhNRUYdOI=;
- b=YA0ZOuw9qCEurRXKVcA5CfWGFc5vLJns8/2B6t0/6QFgj77nBkiP+vzWvmElkAIrMT
- /Kufsf5/AwnVjTbxt9JCXhCS0bdMqUD2hAxcIEAH7MGVkKxeSndwkReJcvc5XhvtAS92
- qAdq7zewuluqf9rKl0HqNLOloZIwcFcowB/nC3bsB3ULhf2hzgJx9AEufooo4wO5SotL
- D5E9OoUSRlmMbvnqAjqZtb6fGGY/rCNjMyLm//Xk2eS+tY3hrgb+R01P6zTvoNVUH3oe
- hw4zG3+qhG33hcmyGR0k1dyt3b99KQbkauj0Rjk0j6SPF+r8heoqEf0mfkUwfGG09Vz2
- NyyA==
-X-Gm-Message-State: AO0yUKWNwMEF4eM5N1+UBQARK51n8VugBkTFZ/aF1FTC6xFM4R31h1gc
- ZWElrr6eASQgrVtRj0Hpe6P2VN3hMMQeVgEOYXI=
-X-Google-Smtp-Source: AK7set/16SayqVO0T/l1KqHu4xJ95/iM0Gu0PLByPiWI+Ia6I+98f3uYrMX2bHVwAw8aLBcT0g1wTIC1OH0pVtPqSCc=
-X-Received: by 2002:a17:902:ef92:b0:19a:8259:c754 with SMTP id
- iz18-20020a170902ef9200b0019a8259c754mr5099471plb.0.1678163109892; Mon, 06
- Mar 2023 20:25:09 -0800 (PST)
+Received: from out30-133.freemail.mail.aliyun.com
+ (out30-133.freemail.mail.aliyun.com [115.124.30.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2141D10E7B1;
+ Fri, 11 Nov 2022 09:11:57 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R761e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046051;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
+ TI=SMTPD_---0VUWiU1j_1668157910; 
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0VUWiU1j_1668157910) by smtp.aliyun-inc.com;
+ Fri, 11 Nov 2022 17:11:54 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: bskeggs@redhat.com
+Date: Fri, 11 Nov 2022 17:11:29 +0800
+Message-Id: <20221111091130.57178-4-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
+In-Reply-To: <20221111091130.57178-1-jiapeng.chong@linux.alibaba.com>
+References: <20221111091130.57178-1-jiapeng.chong@linux.alibaba.com>
 MIME-Version: 1.0
-References: <20221029074654.203153-1-zyytlz.wz@163.com>
- <5882bd80983ac04a32676f07622cba7d0e245e55.camel@redhat.com>
-In-Reply-To: <5882bd80983ac04a32676f07622cba7d0e245e55.camel@redhat.com>
-From: Zheng Hacker <hackerzheng666@gmail.com>
-Date: Tue, 7 Mar 2023 12:24:58 +0800
-Message-ID: <CAJedcCxmnnrVsq6TtyNPp1v7yv6hszbWnRub8V=ZNFA7OaFa=g@mail.gmail.com>
-To: Lyude Paul <lyude@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 04 May 2023 12:31:36 +0000
-Subject: Re: [Nouveau] [PATCH] drm/nouveau/mmu: fix use-after-free bug in
- nvkm_vmm_pfn_map
+Subject: [Nouveau] [PATCH 4/5] drm/nouveau/fifo/gf100-: make
+ gf100_fifo_nonstall_block() static
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,61 +44,36 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: alex000young@gmail.com, security@kernel.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Julia.Lawall@inria.fr, bskeggs@redhat.com,
- daniel@ffwll.ch, Zheng Wang <zyytlz.wz@163.com>
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ nouveau@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, daniel@ffwll.ch
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
+This symbol is not used outside of gf100.c, so marks it static.
 
-This bug has been proved to be a false positive. So there is no need
-to make the patch.
+drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c:451:1: warning: no previous prototype for ‘gf100_fifo_nonstall_block’.
 
-Thanks,
-Zheng
+Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=3021
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Lyude Paul <lyude@redhat.com> =E4=BA=8E2023=E5=B9=B43=E6=9C=887=E6=97=A5=E5=
-=91=A8=E4=BA=8C 08:11=E5=86=99=E9=81=93=EF=BC=9A
->
-> Actually - could you resend this with dri-devel@lists.freedesktop.org add=
-ed to
-> the cc list just to make patchwork happy?
->
-> On Sat, 2022-10-29 at 15:46 +0800, Zheng Wang wrote:
-> > If it failed in kzalloc, vma will be freed in nvkm_vmm_node_merge.
-> > The later use of vma will casue use after free.
-> >
-> > Reported-by: Zheng Wang <hackerzheng666@gmail.com>
-> > Reported-by: Zhuorao Yang <alex000young@gmail.com>
-> >
-> > Fix it by returning to upper caller as soon as error occurs.
-> >
-> > Signed-off-by: Zheng Wang <zyytlz.wz@163.com>
-> > ---
-> >  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 3 +--
-> >  1 file changed, 1 insertion(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gp=
-u/drm/nouveau/nvkm/subdev/mmu/vmm.c
-> > index ae793f400ba1..04befd28f80b 100644
-> > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-> > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-> > @@ -1272,8 +1272,7 @@ nvkm_vmm_pfn_map(struct nvkm_vmm *vmm, u8 shift, =
-u64 addr, u64 size, u64 *pfn)
-> >                                                      page -
-> >                                                      vmm->func->page, m=
-ap);
-> >                       if (WARN_ON(!tmp)) {
-> > -                             ret =3D -ENOMEM;
-> > -                             goto next;
-> > +                             return -ENOMEM;
-> >                       }
-> >
-> >                       if ((tmp->mapped =3D map))
->
-> --
-> Cheers,
->  Lyude Paul (she/her)
->  Software Engineer at Red Hat
->
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c
+index 5bb65258c36d..6c94451d0faa 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c
+@@ -447,7 +447,7 @@ gf100_fifo_nonstall_allow(struct nvkm_event *event, int type, int index)
+ 	spin_unlock_irqrestore(&fifo->lock, flags);
+ }
+ 
+-void
++static void
+ gf100_fifo_nonstall_block(struct nvkm_event *event, int type, int index)
+ {
+ 	struct nvkm_fifo *fifo = container_of(event, typeof(*fifo), nonstall.event);
+-- 
+2.20.1.7.g153144c
+
