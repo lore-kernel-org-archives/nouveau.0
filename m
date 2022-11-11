@@ -4,62 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CF87C7EE29
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A687DC7EE2A
 	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A33D10E42B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01E4210E41F;
 	Thu,  4 May 2023 12:31:47 +0000 (UTC)
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
- [IPv6:2a00:1450:4864:20::529])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67CFB10E099;
- Thu, 19 Jan 2023 22:54:06 +0000 (UTC)
-Received: by mail-ed1-x529.google.com with SMTP id 18so4739488edw.7;
- Thu, 19 Jan 2023 14:54:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=khL1Nx5/0J4PkaYH2tde4UnbrwukvlMmrAWH0vjr2bI=;
- b=Ac2OX+39mFVECn4hmmfAWS6rVP1xBX7Wn30/vwGx8/3ZfjypN7OQgYqrpKb07D8Jlx
- j77BkYexw/gJ1baOWzJ0FtaD5JHwFDfB1FuciuirfpHEBa1UPw7h2lKdabbcKpenEhzc
- 9psvBAIsSdBOmYKdPZrBkCZy/eP7Ucr/axblCgKlPqt2qnLpfGXeAnZBe2QtTTIygv+e
- E+LDkFrXqBcIqcFz7xbc+f/ax6knJTfluBa7GV7QkMJTeGEXxRWXNaKcoovlCGBVK99J
- 14SdtIXYuok20iBvWMOtCrz+/fTV1A1UCFtWmA2HakOb+K6bWmVAIfHTElFx2k+dOqMI
- Yuqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=khL1Nx5/0J4PkaYH2tde4UnbrwukvlMmrAWH0vjr2bI=;
- b=GNpRH7XbM17+X87LYGYuxaZDN+JQdYjsAlHoSr2msO4RzSiduBUo4rplAEYdchrLNl
- Sqe9e8wPqeylMhp7ca0Y9+JY8IQIE8OS5QJo32C2Vqgac/vayvIHQ87rO8bdMVa0GwAn
- S99jdJeK10VSYfxgQlr1aucjHfnpjOi4ReOFKfnUIGX5ZM1CWY6Bhpg4PWebsFQCpa3c
- LIFvYL9VDEEXUxmQ7XuDLmpOMVkmy7Wpa4nPNIF9KRnHyEFERTR29wbPob3Hy+tXnpUn
- qMs5uW8TZG3F77c1ZO44TcMcuoDSblVuGsA42g04XOIgc45awSQcdx4W91adOqAZ2dTw
- E5Yg==
-X-Gm-Message-State: AFqh2kpRDOEVMNygkPzTehtzemwuJiDnxmBAku/fHhTSBU3AqOj8kH7E
- /xZsV7GkaYOfGuKZJnIYG/4=
-X-Google-Smtp-Source: AMrXdXsUCyTMzdubcmLV/sZTktU8cjOIaxH0ioMYdQNFrdyqzBYrF/7iQaq0jIBMed1wxB8P61zQzA==
-X-Received: by 2002:a05:6402:289b:b0:49e:8410:ff1f with SMTP id
- eg27-20020a056402289b00b0049e8410ff1fmr1881349edb.28.1674168844603; 
- Thu, 19 Jan 2023 14:54:04 -0800 (PST)
-Received: from Tanmay.. (ip5f5ad407.dynamic.kabel-deutschland.de.
- [95.90.212.7]) by smtp.gmail.com with ESMTPSA id
- d14-20020a170906304e00b0077077c62cadsm16916985ejd.31.2023.01.19.14.54.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 19 Jan 2023 14:54:04 -0800 (PST)
-From: Tanmay Bhushan <007047221b@gmail.com>
-To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Date: Thu, 19 Jan 2023 23:53:51 +0100
-Message-Id: <20230119225351.71657-1-007047221b@gmail.com>
-X-Mailer: git-send-email 2.34.1
+Received: from out30-45.freemail.mail.aliyun.com
+ (out30-45.freemail.mail.aliyun.com [115.124.30.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9AA210E7C0;
+ Fri, 11 Nov 2022 09:11:53 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R451e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046049;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
+ TI=SMTPD_---0VUWiU.x_1668157905; 
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0VUWiU.x_1668157905) by smtp.aliyun-inc.com;
+ Fri, 11 Nov 2022 17:11:49 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: bskeggs@redhat.com
+Date: Fri, 11 Nov 2022 17:11:28 +0800
+Message-Id: <20221111091130.57178-3-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
+In-Reply-To: <20221111091130.57178-1-jiapeng.chong@linux.alibaba.com>
+References: <20221111091130.57178-1-jiapeng.chong@linux.alibaba.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:32 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau: Fix bug in buffer relocs for Nouveau
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:36 +0000
+Subject: [Nouveau] [PATCH 3/5] drm/nouveau/fifo: make nvkm_engn_cgrp_get
+ static
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,34 +44,36 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tanmay Bhushan <007047221b@gmail.com>
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ nouveau@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, daniel@ffwll.ch
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-dma_resv_wait_timeout returns greater than zero on success
-as opposed to ttm_bo_wait_ctx. As a result of that relocs
-will fail and give failure even when it was a success.
+This symbol is not used outside of runl.c, so marks it static.
 
-Signed-off-by: Tanmay Bhushan <007047221b@gmail.com>
+drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c:34:1: warning: no previous prototype for ‘nvkm_engn_cgrp_get’.
+
+Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=3022
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_gem.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index f77e44958037..0e3690459144 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -706,9 +706,8 @@ nouveau_gem_pushbuf_reloc_apply(struct nouveau_cli *cli,
- 		ret = dma_resv_wait_timeout(nvbo->bo.base.resv,
- 					    DMA_RESV_USAGE_BOOKKEEP,
- 					    false, 15 * HZ);
--		if (ret == 0)
-+		if (ret <= 0) {
- 			ret = -EBUSY;
--		if (ret) {
- 			NV_PRINTK(err, cli, "reloc wait_idle failed: %ld\n",
- 				  ret);
- 			break;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c
+index b5836cbc29aa..93d628d7d508 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c
+@@ -30,7 +30,7 @@
+ #include <subdev/timer.h>
+ #include <subdev/top.h>
+ 
+-struct nvkm_cgrp *
++static struct nvkm_cgrp *
+ nvkm_engn_cgrp_get(struct nvkm_engn *engn, unsigned long *pirqflags)
+ {
+ 	struct nvkm_cgrp *cgrp = NULL;
 -- 
-2.34.1
+2.20.1.7.g153144c
 
