@@ -4,56 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14F2AC77B7C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D202AC7EE26
 	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB43510E3BA;
-	Thu,  4 May 2023 12:31:42 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2650110E519;
- Tue, 17 Jan 2023 08:36:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673944567; x=1705480567;
- h=message-id:date:mime-version:cc:subject:to:references:
- from:in-reply-to:content-transfer-encoding;
- bh=+/sep6cg202vL4sr/HrqlldWJYwNCPz0Civ/zJRrPiM=;
- b=kC944rsttNMM+kTKzgf2E/C+rzjwxmZRrkJVXgzZ3EiDmtz6Rw40MWbC
- 5UEHD4aWdxRx1XjE2T0TxTgPNmZW4mgstfaKJ1TiE2tqdQoXQV/I1Vruw
- OmJougsFpSQY1CGfNOek7e8WxJ/dko6ceEu1BDK7Sr1lJ94Ero8exXZ4i
- N1kZQ9oiW6Svwt2hLBk7ruV4FdOWgbeMKQLoEKaP0XZbWofYBFkIQhD6i
- ls74gTBUo3uw+C9XyVghHutEPDYX2MkNJnMtn5xg2bq+lUwBJruN2OwX7
- FmOWdhSb7y5Mt/72NB/NfMjejUuvzSKs3mZKm7E6h1hTW2HRqvRsygxyo w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="324696293"
-X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; d="scan'208";a="324696293"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2023 00:36:06 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="783168240"
-X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; d="scan'208";a="783168240"
-Received: from blu2-mobl.ccr.corp.intel.com (HELO [10.252.187.178])
- ([10.252.187.178])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2023 00:35:59 -0800
-Message-ID: <c742969d-d692-1580-d22c-0f8f3d897201@linux.intel.com>
-Date: Tue, 17 Jan 2023 16:35:56 +0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27B5210E3B6;
+	Thu,  4 May 2023 12:31:43 +0000 (UTC)
+Received: from out30-56.freemail.mail.aliyun.com
+ (out30-56.freemail.mail.aliyun.com [115.124.30.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3471E10E0CA;
+ Fri, 11 Nov 2022 09:48:16 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R691e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046059;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
+ TI=SMTPD_---0VUX1Y0n_1668160086; 
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0VUX1Y0n_1668160086) by smtp.aliyun-inc.com;
+ Fri, 11 Nov 2022 17:48:13 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: bskeggs@redhat.com
+Date: Fri, 11 Nov 2022 17:48:04 +0800
+Message-Id: <20221111094804.103459-1-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: "Tian, Kevin" <kevin.tian@intel.com>, Jason Gunthorpe <jgg@nvidia.com>,
- Joerg Roedel <joro@8bytes.org>, Matthew Rosato <mjrosato@linux.ibm.com>,
- Robin Murphy <robin.murphy@arm.com>
-References: <0-v1-6e8b3997c46d+89e-iommu_map_gfp_jgg@nvidia.com>
- <7-v1-6e8b3997c46d+89e-iommu_map_gfp_jgg@nvidia.com>
- <BN9PR11MB52765EE38CA21BA27EEA06548CC69@BN9PR11MB5276.namprd11.prod.outlook.com>
-From: Baolu Lu <baolu.lu@linux.intel.com>
-In-Reply-To: <BN9PR11MB52765EE38CA21BA27EEA06548CC69@BN9PR11MB5276.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:34 +0000
-Subject: Re: [Nouveau] [PATCH 7/8] iommu/intel: Support the gfp argument to
- the map_pages op
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:36 +0000
+Subject: [Nouveau] [PATCH] drm/nouveau/svm: Remove set but unused variable
+ 'priority'
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,51 +41,46 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- Niklas Schnelle <schnelle@linux.ibm.com>,
- "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
- "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-stm32@st-md-mailman.stormreply.com"
- <linux-stm32@st-md-mailman.stormreply.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "ath10k@lists.infradead.org" <ath10k@lists.infradead.org>,
- "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- "virtualization@lists.linux-foundation.org"
- <virtualization@lists.linux-foundation.org>,
- "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
- baolu.lu@linux.intel.com
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ nouveau@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, daniel@ffwll.ch
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 2023/1/17 11:38, Tian, Kevin wrote:
->> From: Jason Gunthorpe<jgg@nvidia.com>
->> Sent: Saturday, January 7, 2023 12:43 AM
->>
->> @@ -2368,7 +2372,7 @@ static int iommu_domain_identity_map(struct
->> dmar_domain *domain,
->>
->>   	return __domain_mapping(domain, first_vpfn,
->>   				first_vpfn, last_vpfn - first_vpfn + 1,
->> -				DMA_PTE_READ|DMA_PTE_WRITE);
->> +				DMA_PTE_READ|DMA_PTE_WRITE,
->> GFP_KERNEL);
->>   }
-> Baolu, can you help confirm whether switching from GFP_ATOMIC to
-> GFP_KERNEL is OK in this path? it looks fine to me in a quick glance
-> but want to be conservative here.
+Variable priority is not effectively used in the function, so delete it.
 
-This is also good for me. The memory notifier callback runs in a process
-context and allowed to block.
+drivers/gpu/drm/nouveau/nouveau_svm.c:115:24: warning: variable 'priority' set but not used.
 
-Best regards,
-baolu
+Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=3028
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_svm.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+index a74ba8d84ba7..2b1f600ed723 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_svm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+@@ -112,7 +112,7 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ {
+ 	struct nouveau_cli *cli = nouveau_cli(file_priv);
+ 	struct drm_nouveau_svm_bind *args = data;
+-	unsigned target, cmd, priority;
++	unsigned int target, cmd;
+ 	unsigned long addr, end;
+ 	struct mm_struct *mm;
+ 
+@@ -136,9 +136,6 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
+ 		return -EINVAL;
+ 	}
+ 
+-	priority = args->header >> NOUVEAU_SVM_BIND_PRIORITY_SHIFT;
+-	priority &= NOUVEAU_SVM_BIND_PRIORITY_MASK;
+-
+ 	/* FIXME support CPU target ie all target value < GPU_VRAM */
+ 	target = args->header >> NOUVEAU_SVM_BIND_TARGET_SHIFT;
+ 	target &= NOUVEAU_SVM_BIND_TARGET_MASK;
+-- 
+2.20.1.7.g153144c
+
