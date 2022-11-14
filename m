@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5194C4332F
-	for <nouveau@archiver.kernel.org>; Mon, 14 Nov 2022 13:01:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EEC3C433FE
+	for <nouveau@archiver.kernel.org>; Mon, 14 Nov 2022 13:01:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33B3010E297;
-	Mon, 14 Nov 2022 13:00:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DEF710E29F;
+	Mon, 14 Nov 2022 13:00:53 +0000 (UTC)
 Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
  [66.111.4.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F25710E1DD;
- Mon, 14 Nov 2022 13:00:43 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailnew.nyi.internal (Postfix) with ESMTP id 8EF09580406;
- Mon, 14 Nov 2022 08:00:42 -0500 (EST)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4B3510E0AE;
+ Mon, 14 Nov 2022 13:00:36 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 7D31F580401;
+ Mon, 14 Nov 2022 08:00:35 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
- by compute5.internal (MEProxy); Mon, 14 Nov 2022 08:00:42 -0500
+ by compute4.internal (MEProxy); Mon, 14 Nov 2022 08:00:35 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
  :cc:content-transfer-encoding:content-type:date:date:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm2; t=1668430842; x=
- 1668438042; bh=XWqHG0ugO/KF71pgDQTt6xRnJ0HMhYVNq0XbrZsO0vc=; b=m
- CXW2WiskFTT96m7/d24kWqJeA02FsUTqpgNdrxB+3BcADZOvZBsj4xCbM9qV0ygK
- R2WoyoEYF8zytvCbOC0gmk/9ZRpKGbzgKoIjJBJKfK4FfGGknbD7+N3ny9Zj3YSW
- U7qqUlVjNiXpRGzJYRvVF/8KdsaV5oBmu9nxQN4LX69vAHSLkVdBw38LdVnGVrrk
- j0UqkiWrCeK79ZLwmqM4sA85m0VVXD7Mo/ze6Gq3rUetIHaKBZKWD3MbkZPXpwXn
- /03q8R44LQR1YEdkgMVs2Bl3mWaP5b1icGiBzV6+3WxCNoLIxrtGK/su1X2DuPpk
- QspDEbaA8npAbZPt9kLwA==
+ :reply-to:sender:subject:subject:to:to; s=fm2; t=1668430835; x=
+ 1668438035; bh=0JWLmMS4ys53k+X9d2nf5UFm2Qt1wBBlnbOmVwqA2+A=; b=P
+ 2fMj4KVYbgu6OYfTCbnyhUqrbpstYhG2qs8K1avdLRBBbqBLyApf2QITRDktrcv1
+ oBpY+ASY1YL46/+YRaH2cs1JhGhgTy4mP3iqot4niMC0aG6Uk2bv/7OHYMEx8FX5
+ OSunRc2kfqb3Y9ZuwIbB4MYTTPLCC13bRnxAIP1cr/iZqAoedlFjKz6JqovE5Ik8
+ 7Ya3CBcJbahPCPgX2w1i06qi75QhxpRKlWLJY7+MzZlx+GOO5mpzUvBhbkaLExyt
+ fjmyKbwJ5yRzFsviTZS26Rq+ZgTU/LgGiBTOQ2cfAEExiJJtTu18P3RtkN2bM5jT
+ 6b211sMAOT4NflUf7SWRQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-transfer-encoding
  :content-type:date:date:feedback-id:feedback-id:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
  :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1668430842; x=
- 1668438042; bh=XWqHG0ugO/KF71pgDQTt6xRnJ0HMhYVNq0XbrZsO0vc=; b=I
- qaFaTHS0DYCvINZdHI8GFnRkbco0kN56Q8YLaKDX/YvTmg7pdiRE2BT7BdeN1ErK
- PHqhg2gzNH2DckyRoAc5WovQI87Q7S7lF0BFhZijtxuDsigvjhRsFNKb0qwUBoY2
- b7PZYmcrcsnFrJLnS9S0Zz5UUwrSSKiiRScMEXo/cgfY4U6FkoDyXAP1nPQtzxV9
- k03Acd6+PdeHjFRjD4+H3IvaqPwRiCqZK+ZLhOyccfIrn6Z4gzRRt18+zDHjRrqy
- yX//9IN3siBwU/N2TISdkia5GXVzF5OKsFRQKkBNyenSOQ4Wix/DZtxySplNrYgT
- 4kyMqS5jyvfeb9F2s+7PQ==
-X-ME-Sender: <xms:-jtyY5X37UWmGVqpG1HKw09f3wDbRT9ic_UqSme-U1EdaSBDotCFFA>
- <xme:-jtyY5lkFE7vSHNSmgLFTu2UbtbuAcUZwXmFccmdH1gLHLWoNvfDE54BGafpzssNV
- j3x8ZgzBgpQpej-2tQ>
-X-ME-Received: <xmr:-jtyY1ajfPO9-5fDRD3r3F4gowRsbBdcV-o4jVVY-OqhRho9iL1WDga3rxKBJhrOqSlf7xCcmJ9E-XZ4XrOplq3sdxT3leBkHbmrAyHWYHXmrA>
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1668430835; x=
+ 1668438035; bh=0JWLmMS4ys53k+X9d2nf5UFm2Qt1wBBlnbOmVwqA2+A=; b=N
+ dHvTNE3efzcmT1UmedezIyraShPjtEqqQE2l5qJMa08kAwuEizrUhJ9m7cPesNlh
+ k2YXLOAtQkr+AQp2AnjHVikZX5q4wN+G3ZFty6nOpz3Hd9X1VqqInFUtmUioicVd
+ S1chJTeJdCJ4EVI/SyUp1LxQ6v2EP1D1hl3R9Wun6kc518o4ox8221tfIA/aNhSM
+ uWmA4T3/BnCZKrZWxz8rN4WBCR4fbSQR2v/oVy7CK+K3Wq+Ne2OzCsNFY48wSW2R
+ 9NKmwrPvbiio7AK6qMk6+E4cLmbu95VYpC2EhIDVlLEY8QwH2QrGVUg7vblcspOL
+ NKSIdfX3EuG7Pvs2d1NBg==
+X-ME-Sender: <xms:8jtyYwlVjutUWWEQYDpQIm3vHyutqlz6lIWkw-WeOHZ-jN6Qg5HijA>
+ <xme:8jtyY_1mQqbRk4WPiyVZr6XbynMn1zI3DeFJLfF5ZM9S6AaJUiS7WYM3m3Var6nIq
+ MtEAqc8CVshQLLxgJ8>
+X-ME-Received: <xmr:8jtyY-p_acGZV8nvD_kjFmYa7Zs3KkmjKEiTIWjJK-d-2viu9KnvWEAZ-gr7zoOShgGQCRVGH8mNkUOgBUeHM8_DLEAFg8-lnVgThy7O7ycpGw>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgedvgddvtdcutefuodetggdotefrodftvf
  curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
  uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpefhfffuggfgtgfkfhgjvfevofesthekredtredtjeenucfhrhhomhepofgrgihi
+ fjughrpefhfffugggtgffkfhgjvfevofesthekredtredtjeenucfhrhhomhepofgrgihi
  mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
- htthgvrhhnpedvgfevjefhtdetveevhfelieeuueetgfdvgeevkeegudejffegfffgtedt
- leelhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+ htthgvrhhnpeduudduhfevjeetfeegvdffvdevvdejudegudekjeehtdelhfffveethfej
+ ledtveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
  hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:-jtyY8U7_BKuD60zGQhQqDSzvmnVLg5NeTyYnXwpc44_Q8nTpi7hqQ>
- <xmx:-jtyYzk1-N4AJk1AViJeed_UgrXWtrzMyrHmUyUiOf5iK7U-0tcmYg>
- <xmx:-jtyY5d78u4c4QQM7CRpqVXiYtVPZDUp6VQ1pCDraWPtnUGB_N-J7A>
- <xmx:-jtyY3wAqhi-KhDUdnLyuKb9NyEHc6lJWEDv1_GXNsZrqOiTfllpbg>
+X-ME-Proxy: <xmx:8ztyY8kecz8It04O9L2nEnKKmw4rqt1evKFwBQGL7i_zR_jC03nWFA>
+ <xmx:8ztyY-11PF2S69MF3NsW62ThupeSuRWxv3oqPFoF_Z2FFy_GJ_jA3Q>
+ <xmx:8ztyYzvAE8JYZ6PC4o9shpIdoiCNM-eOiZXR-CHEZ6ylPLnucBnKbA>
+ <xmx:8ztyY1AMIRxTP18_-z7r6SXTRSFCY5iBG2eJeQqkaVd_f8ljTBuG8A>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 14 Nov 2022 08:00:41 -0500 (EST)
+ 14 Nov 2022 08:00:34 -0500 (EST)
 From: Maxime Ripard <maxime@cerno.tech>
-Date: Mon, 14 Nov 2022 14:00:23 +0100
+Date: Mon, 14 Nov 2022 14:00:20 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20220728-rpi-analog-tv-properties-v9-4-24b168e5bcd5@cerno.tech>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20220728-rpi-analog-tv-properties-v9-1-24b168e5bcd5@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v9-0-24b168e5bcd5@cerno.tech>
 In-Reply-To: <20220728-rpi-analog-tv-properties-v9-0-24b168e5bcd5@cerno.tech>
 To: Maxime Ripard <mripard@kernel.org>, Karol Herbst <kherbst@redhat.com>,
@@ -81,15 +81,14 @@ To: Maxime Ripard <mripard@kernel.org>, Karol Herbst <kherbst@redhat.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, 
  David Airlie <airlied@linux.ie>, Jernej Skrabec <jernej.skrabec@gmail.com>
 X-Mailer: b4 0.11.0-dev-99e3a
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1680; i=maxime@cerno.tech;
- h=from:subject:message-id; bh=8uVhL7qzOAhSYtnGt8Ufng4gvViIiWyq0mJiST1/yTc=;
- b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMlF1q9/vOx5Zb6u66sKr8kOG82wRU0dMiu7eSSXFP/gtF+y
- 9p5YRykLgxgXg6yYIkuMsPmSuFOzXney8c2DmcPKBDKEgYtTACbCsInhF/OBmgknemb1sLoFXC0Iqv
- OY7sh/sVzK/pLWObcbDhcXfmdkmBasL9u4X+roobV+nW5cXh9fR9x5nNqW/PrYo8WP82y92AA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1097; i=maxime@cerno.tech;
+ h=from:subject:message-id; bh=HwgUgivGxiNK6PYRp//hctyxx0DYl44g6S9kEphLQOk=;
+ b=owGbwMvMwCX2+D1vfrpE4FHG02pJDMlF1q8DGM6ms7pM2VtQ/7Zulsi/EzNsjjs05BX+ymw16+4r
+ qHvWUcrCIMbFICumyBIjbL4k7tSs151sfPNg5rAygQxh4OIUgIns92f4X7WPycHy9hcD0UeCJ/4XG1
+ 2JCii9d9I5tz988V+D/eYvOBgZ9lhnbp04wc7zgOSWPTfSvO/d3HWlq63cs22R35eGlsZ7DAA=
 X-Developer-Key: i=maxime@cerno.tech; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
-Subject: [Nouveau] [PATCH v9 04/25] drm/connector: Only register TV mode
- property if present
+Subject: [Nouveau] [PATCH v9 01/25] docs/fb: Document current named modes
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,50 +104,34 @@ Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org, intel-gfx@l
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The drm_create_tv_properties() will create the TV mode property
-unconditionally.
+KMS supports a number of named modes already, but it's never been
+documented anywhere, let's fix that.
 
-However, since we'll gradually phase it out, let's register it only if we
-have a list passed as an argument. This will make the transition easier.
-
-Acked-by: Noralf Trønnes <noralf@tronnes.org>
-Tested-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
----
- drivers/gpu/drm/drm_connector.c | 19 +++++++++++--------
- 1 file changed, 11 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-index 05edff79d312..78fcffae100b 100644
---- a/drivers/gpu/drm/drm_connector.c
-+++ b/drivers/gpu/drm/drm_connector.c
-@@ -1690,15 +1690,18 @@ int drm_mode_create_tv_properties(struct drm_device *dev,
- 	if (drm_mode_create_tv_margin_properties(dev))
- 		goto nomem;
+---
+Changes in v9:
+- New patch
+---
+ Documentation/fb/modedb.rst | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Documentation/fb/modedb.rst b/Documentation/fb/modedb.rst
+index 4d2411e32ebb..e53375033146 100644
+--- a/Documentation/fb/modedb.rst
++++ b/Documentation/fb/modedb.rst
+@@ -26,6 +26,11 @@ Valid mode specifiers (mode_option argument)::
+ with <xres>, <yres>, <bpp> and <refresh> decimal numbers and <name> a string.
+ Things between square brackets are optional.
  
--	dev->mode_config.legacy_tv_mode_property =
--		drm_property_create(dev, DRM_MODE_PROP_ENUM,
--				    "mode", num_modes);
--	if (!dev->mode_config.legacy_tv_mode_property)
--		goto nomem;
- 
--	for (i = 0; i < num_modes; i++)
--		drm_property_add_enum(dev->mode_config.legacy_tv_mode_property,
--				      i, modes[i]);
-+	if (num_modes) {
-+		dev->mode_config.legacy_tv_mode_property =
-+			drm_property_create(dev, DRM_MODE_PROP_ENUM,
-+					    "mode", num_modes);
-+		if (!dev->mode_config.legacy_tv_mode_property)
-+			goto nomem;
++Valid names are::
 +
-+		for (i = 0; i < num_modes; i++)
-+			drm_property_add_enum(dev->mode_config.legacy_tv_mode_property,
-+					      i, modes[i]);
-+	}
- 
- 	dev->mode_config.tv_brightness_property =
- 		drm_property_create_range(dev, 0, "brightness", 0, 100);
++  - NSTC: 480i output, with the CCIR System-M TV mode and NTSC color encoding
++  - PAL: 576i output, with the CCIR System-B TV mode and PAL color encoding
++
+ If 'M' is specified in the mode_option argument (after <yres> and before
+ <bpp> and <refresh>, if specified) the timings will be calculated using
+ VESA(TM) Coordinated Video Timings instead of looking up the mode from a table.
 
 -- 
 b4 0.11.0-dev-99e3a
