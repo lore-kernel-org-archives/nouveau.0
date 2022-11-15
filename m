@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3440BC4332F
-	for <nouveau@archiver.kernel.org>; Tue, 15 Nov 2022 09:14:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77E69C4332F
+	for <nouveau@archiver.kernel.org>; Tue, 15 Nov 2022 09:14:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9CCC10E38B;
-	Tue, 15 Nov 2022 09:14:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD1CE10E38C;
+	Tue, 15 Nov 2022 09:14:39 +0000 (UTC)
 Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
  [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CD3810E387;
- Tue, 15 Nov 2022 09:14:22 +0000 (UTC)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id AF4F12B067C0;
- Tue, 15 Nov 2022 04:14:17 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute2.internal (MEProxy); Tue, 15 Nov 2022 04:14:22 -0500
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26CAB10E38D;
+ Tue, 15 Nov 2022 09:14:36 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailnew.west.internal (Postfix) with ESMTP id 4E0712B067C0;
+ Tue, 15 Nov 2022 04:14:31 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute1.internal (MEProxy); Tue, 15 Nov 2022 04:14:35 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
  :cc:content-transfer-encoding:content-type:date:date:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm2; t=1668503657; x=
- 1668510857; bh=QVtIw/Y9KtoCntXzzfTXbTAVgaNNlVUhyJyAL6sHpPY=; b=V
- CsWb5ifjNvx6+/NWM24hujYYOQB1Fogv4DYY5Bcj8G8jgMyA0QYotPA5vItweyvs
- OExq9bNT1iPOTi1zbTqNt22qX/WkKBoO8rEMRt6ClxrgV5HothtCe5thnZOfjYlW
- MTMdGL5tKWy9PXJLraFZuHdJtCKBPK+qY1zzHMLWsowtECFXLjR8LThSXXYghpYQ
- qBSU/wcmYcP3vn8Mmr7IdB2++h1+zvuFKE1bLo4LvF6oCpf6RNpIB8u4hOtIXpY0
- oFckmS+XgxwhRfQNCIRpMYVe3jVjTDqJ/sGAME+fqoD5Br/sEvYHZOrA1KBCPIrB
- 5LcnROWKvubfVkM993Wpg==
+ :reply-to:sender:subject:subject:to:to; s=fm2; t=1668503670; x=
+ 1668510870; bh=B1HEeJHxwnzHMxiVdBTQmsyU7uCgsJAkffynGla9mpE=; b=P
+ 2EN0cTMJ2S9FfAxml4lJjMakA7nOzg5ntroVW5OIcyWN46a/MUtUIJytuuAqdHQq
+ dcLfn9M9wzFh8jDeem4ZEBPCMsnT3PB8ZVAahddXjLBCmbapxoee7mleZf+Ubm/o
+ XIJb2Z0fxl8BkkeK6/f2v3792vw5ebdTjdHzlZxxDO3NwPkKzXRXDco2bg9Bvlad
+ r/cCcTR9FLmonzQxu7G/iR1HuBQDOstVh/vT40JJTPSCkWAYTn+ZDFOeAtPYU+RQ
+ DdDfF7hDyO0BCct41T/TlZe7/3XF89pdS//6s2QTwii98wRWAydINzbPmfrjlls0
+ XaG/0peZJT9tZ2i0o4aYg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-transfer-encoding
  :content-type:date:date:feedback-id:feedback-id:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
  :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1668503657; x=
- 1668510857; bh=QVtIw/Y9KtoCntXzzfTXbTAVgaNNlVUhyJyAL6sHpPY=; b=l
- WROtZPBu8bmI8iGai6V0kIzuUaGu5xyED5z6Xwr1YFqkHffRknPG42jBuBEmCyhn
- ymus8GVFZixL/A+s6JB4HIhslV6+CmpntG87uePP13IlZFKitVg65zSDgRgnYZR8
- 3i9x10I3ugzWECG1eVbtUvnPubiPXH3BBXNJZUvFXUNqMg7Max3rdSx2SQqgJc/f
- AiesCIsXY5KQce+LX0ETTOY1u3VL1XTAo/850vvhNT64ODCBQ5J6kzDbFb4+Ieb/
- vGprk90Onaby61m3irlcw/FaXrfUeZsDoyC7vdtys5jPJsc5qR1GqDOsZitvNw1h
- 5Gn8XjQccz4ZDT0AiPPnQ==
-X-ME-Sender: <xms:aFhzY3tMoNMAyI6FN5KNqtzLj4jwa1BbM9HZz-AzkT3WEBEged8Z4w>
- <xme:aFhzY4cuUZNXc5VotaCY-IedgrDlEgilsmGefvXz5iymBR1NBeA1gP8qCbRGWlhIC
- KLCJ_a0TkS_5F3YUYw>
-X-ME-Received: <xmr:aFhzY6xxMpd3Z78I-iYLmV3ciWFlwtYtX_0cAKezbMrCl8OGHb-vcUoDu6k7QrPwHYq_C5i_ipzW1gzKjDgmFMqpyHrR6IZRzWcVghh-QJTbaw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgeeggddtvdcutefuodetggdotefrodftvf
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1668503670; x=
+ 1668510870; bh=B1HEeJHxwnzHMxiVdBTQmsyU7uCgsJAkffynGla9mpE=; b=F
+ h50lMAr1HYrUiCIim5H9z3kaTC9Q+TmD+3BWhIGMrTVUI+kdE70jD9rWWtULGqh5
+ 7J3pDrdwk5dDN5j86IMQBlAIoCVREhRkSj/oMNsEBI3HEr6pGeQ0NITLsk+f8pvr
+ ln01CDj/BMI5cbTIA48Wi3W9iySjGtoduzjHq+IZrTAgtGfKJmfOaY/Ghzyo/k/k
+ IoNYYZvT+8p63yCqLklNN9TfOHxMKYq5omQesHFKtvqnvTdmwUTPJ1ByDfC+gZGN
+ TDb/RG8aksv2+4yCcgunkejeaMltc35mWQxQkNlRFYqEm4VHMDatIQiUzI3mJ97i
+ VYc3C3JRkJ573s4+/1ZGg==
+X-ME-Sender: <xms:dlhzY1NAqFST4EY0YmoPQLoh1j96v6U_nbo-0rhgmHgTw2xZe62Zlw>
+ <xme:dlhzY38R6MMs2kOFFlwOg4A3OEblQVCm_80yU44XgUlawXXWfmnXXsLx7rSIWLIWx
+ cY2Rto-L1VEnb1QEYE>
+X-ME-Received: <xmr:dlhzY0Tl-yPjhem97wgb0Uss2mi1e5qFaKteYXjjWajStRSceE-tUVsrunE6sQajbr3n_MEk98fHT0o4nprw5DGVz-9mYP-Xs6diTNGJkzKcyQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgeeggddtudcutefuodetggdotefrodftvf
  curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
  uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
  fjughrpefhvfevjghfuffkffggtgfgofesthekredtredtjeenucfhrhhomhepofgrgihi
@@ -54,37 +54,38 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgeeggddtvdcutefuodetggdote
  htthgvrhhnpeeifeeigeelhfehkeeltdetjeetueelteeuveekueevffduhefffefhhfeh
  gfehieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
  hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:aFhzY2NaDurz4r4KzSDVxoh7BXNlFUg8TX2ZI-7W-ZDKTBIZqFGCPQ>
- <xmx:aFhzY38y2fbwlsGvKClqgwth1OJC-mPAarz27Svr47IfsmWMGagO5Q>
- <xmx:aFhzY2U20238DUG_7WZIToGhKdgBp-N6TyT3o3qdJS_07T4-stFJ3w>
- <xmx:aVhzY_YxachXRSv1oy6sT74UEDKSWVvYwU3VgHaGfpaqRhOoo5QXn1bywq4>
+X-ME-Proxy: <xmx:dlhzYxsizzn8i87QQzxERWWJrNH_5hQXEw14WwpbNf182N5a0otq8g>
+ <xmx:dlhzY9eL_cyHXBX-lEOnyg0-1qUxC0LYHvY4bGzlgKYVTpJY5ZjiMQ>
+ <xmx:dlhzY91QsvAOyNWepVa6nYqnyy2cer3EOkDqaH1svEzJchPnR5_kXw>
+ <xmx:dlhzY06jgqCGMwegW9ZKn44q5KI8fg1NiDdgJPlfmXgooTqbsZZXJHOJZ_s>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 15 Nov 2022 04:14:16 -0500 (EST)
+ 15 Nov 2022 04:14:30 -0500 (EST)
 From: Maxime Ripard <maxime@cerno.tech>
 To: Maxime Ripard <maxime@cerno.tech>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Samuel Holland <samuel@sholland.org>, 
- Chen-Yu Tsai <wens@csie.org>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Ben Skeggs <bskeggs@redhat.com>, 
- David Airlie <airlied@linux.ie>, Karol Herbst <kherbst@redhat.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Emma Anholt <emma@anholt.net>, Lyude Paul <lyude@redhat.com>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v9-2-24b168e5bcd5@cerno.tech>
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
+ Karol Herbst <kherbst@redhat.com>, 
+ Maxime Ripard <mripard@kernel.org>, Emma Anholt <emma@anholt.net>,
+ Lyude Paul <lyude@redhat.com>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v9-9-24b168e5bcd5@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v9-0-24b168e5bcd5@cerno.tech>
- <20220728-rpi-analog-tv-properties-v9-2-24b168e5bcd5@cerno.tech>
-Message-Id: <166850357412.1237314.5112893845627847606.b4-ty@cerno.tech>
-Date: Tue, 15 Nov 2022 10:12:54 +0100
+ <20220728-rpi-analog-tv-properties-v9-9-24b168e5bcd5@cerno.tech>
+Message-Id: <166850358688.1237314.7482343887898823948.b4-ty@cerno.tech>
+Date: Tue, 15 Nov 2022 10:13:06 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Mailer: b4 0.10.1
-Subject: Re: [Nouveau] (subset) [PATCH v9 02/25] drm/tests: Add Kunit Helpers
+Subject: Re: [Nouveau] (subset) [PATCH v9 09/25] drm/modes: Move named modes
+ parsing to a separate function
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,13 +101,13 @@ Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org, intel-gfx@l
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, 14 Nov 2022 14:00:21 +0100, Maxime Ripard wrote:
-> As the number of kunit tests in KMS grows further, we start to have
-> multiple test suites that, for example, need to register a mock DRM
-> driver to interact with the KMS function they are supposed to test.
+On Mon, 14 Nov 2022 14:00:28 +0100, Maxime Ripard wrote:
+> The current construction of the named mode parsing doesn't allow to extend
+> it easily. Let's move it to a separate function so we can add more
+> parameters and modes.
 > 
-> Let's add a file meant to provide those kind of helpers to avoid
-> duplication.
+> In order for the tests to still pass, some extra checks are needed, so
+> it's not a 1:1 move.
 > 
 > [...]
 
