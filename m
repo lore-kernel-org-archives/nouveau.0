@@ -4,46 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A96D6C7EE26
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C9F4C77B78
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D4E710E432;
-	Thu,  4 May 2023 12:32:46 +0000 (UTC)
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CB5910E8EE;
- Wed, 19 Apr 2023 09:11:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:Date:Cc:To:
- From:Subject:Message-ID:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=mW/ELGGt+nNEUAioDFQ7F2YKqEHixe4y/Tu+mBqY3bY=; b=sD6slWErxN+WjXUQ15qGbuB9z3
- jou8pW5owHP2j8nHACEHInYln2uuJZL4/k/tgAAfWM/kVDG99YOAWt73PTypdh3xYQ8ppYgnoBcWN
- dFVDTbbWc2qdp283dLXK0PzCboTCXb7gbsO/lbaTbUlVICCPgtW6F0LKtebQJOyPozSfLEP6bU2L1
- barlVlLGnQhqTb7KnFv9zkMFSjSLSt1kBu35ZiI7gys/JXqw6w6GVlXn3nfMHq9qnClMlXyKnaRLY
- tETt0A2QOrXv96UaFGsvBenj6qonBKY04307DLujXiFSScHAcmGudUHuJak1wRa+4iXYgs5Ym29OF
- +aJbYBow==;
-Received: from 137.red-83-52-2.dynamicip.rima-tde.net ([83.52.2.137]
- helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1pp3qs-004fyJ-RG; Wed, 19 Apr 2023 11:11:46 +0200
-Message-ID: <fa0f5162f38baf2743e3a8e01d4fc9ddc985da69.camel@igalia.com>
-From: Ricardo Garcia <rgarcia@igalia.com>
-To: members@x.org, events@lists.x.org, xorg-devel@lists.freedesktop.org, 
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- libre-soc-dev <libre-soc-dev@lists.libre-soc.org>
-Date: Wed, 19 Apr 2023 11:11:45 +0200
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6950410E41B;
+	Thu,  4 May 2023 12:32:47 +0000 (UTC)
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
+ [IPv6:2a00:1450:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA98310E3C9;
+ Tue, 15 Nov 2022 13:16:04 +0000 (UTC)
+Received: by mail-wr1-x431.google.com with SMTP id cl5so24192541wrb.9;
+ Tue, 15 Nov 2022 05:16:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=lDR217x86eHv/O2MIJhnIDN/LEOiRAy9N41xfhJ3Nqk=;
+ b=YyWv9BqEL9CrEcH+u2dhpebWMAeYJ29kCNHj+Rk5fRm4KofEXDKHzUcvg9c2kwkf36
+ dM56gfOKBqDYI2OF8FinIh1qM98PPgztfN6sAJE8INImFZ42TtA/1jo/aPLTGVVhwbHC
+ dYEQbUMJkp47JbH6E5+LvJurNunoxC2uSnMhSkf/L8D0GXeO9ANO2uqYe8RYHOhJR17N
+ Q02RCbKZNnBEu7uNz7ck0GRSDsB5BuvvdHRCznEi8XfYhSshT6lUMiVW7dU7E/FA8aiP
+ /0pwjpAScfINHlPpH3wrCTZzAq6b080jjkPxGKjub1c11yrLO8us9FoP5fXs8WnTLpoD
+ bUew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=lDR217x86eHv/O2MIJhnIDN/LEOiRAy9N41xfhJ3Nqk=;
+ b=SdIK0hTVijPxAgLsM9AUrkAAe9WneZitoSHAqXqR5Yo0s7Mz1lL14XhUgDDkuFyh15
+ Locpm6eNrfqPM/ZRJQnTUPnkslQCWNROQZs590CVcqlZ5rkHwN99NO2ens3vqS6MGBdZ
+ 64YRw7sZBb9LcQwAwZW8ge4jRAGVCGo6/SJOXYq7MDaTMMKB0u4Cv8ic8zHU/JlY3PyN
+ HGKM8ek6vIhFuAR474L7hkfOx4oaU2tGWe3+wRdsutJZO/BHH3qgEGzCxKOK2o+VZNsq
+ 1R6GRm7/cnZ3vtt5rndlgt+hw8sBtMz27bXGtpPOHXk6U6vnOFL0wSUsE6tNNmGgaXvm
+ 82WQ==
+X-Gm-Message-State: ANoB5pm63basHlCiwVuo0smaozVPktSjoEbFYzmQxzTwXWGpFn8ylB9m
+ OX4lQmIODUswdv0Y4/4R1AU=
+X-Google-Smtp-Source: AA0mqf6anvzacpwGbfPmwCJwNcs0zplfHCs35EcuMnktxA5cZzn2SR5okgnQ2mmLJOdidn4tV5o4uA==
+X-Received: by 2002:a05:6000:18c5:b0:23a:cdf5:3676 with SMTP id
+ w5-20020a05600018c500b0023acdf53676mr11416313wrq.336.1668518163349; 
+ Tue, 15 Nov 2022 05:16:03 -0800 (PST)
+Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
+ v10-20020adf8b4a000000b00235da296623sm12429028wra.31.2022.11.15.05.16.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 15 Nov 2022 05:16:02 -0800 (PST)
+Date: Tue, 15 Nov 2022 16:16:00 +0300
+From: Dan Carpenter <error27@gmail.com>
+To: Ben Skeggs <bskeggs@redhat.com>
+Message-ID: <Y3JdtQYrWonlhwW0@kili>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:38 +0000
-Subject: [Nouveau] 2023 X.Org Foundation Membership deadline extended
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:32 +0000
+Subject: [Nouveau] [PATCH] drm/nouveau/fifo: make nvkm_runl_new() return
+ error pointers
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,37 +67,42 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: board <board@foundation.x.org>
+Cc: nouveau@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Several people reported getting multiple membership and election emails
-recently for the first time when we flushed the queue of messages which
-had been unfortunately held in moderation in the events@lists.x.org
-mailing list queue. Thanks Luc, Laurent and Harald for getting in touch!
+All six callers expect error pointers instead of NULL so make the
+nvkm_runl_new() return error pointers as expected.
 
-Thanks to other mailing lists, we believe to have reached a wide
-audience in any case. Membership numbers look good and we already have 8
-candidates lined up for the upcoming voting process that was scheduled
-to start this week.
+Fixes: d94470e9d150 ("drm/nouveau/fifo: add common runlist/engine topology")
+Signed-off-by: Dan Carpenter <error27@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Still, we believe it's fair to extend the membership application/renewal
-deadline until the end of this week for those who haven't had the chance
-to do so yet. The new deadline is April 23rd 23:59 UTC.
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c
+index b5836cbc29aa..adc4a9544ebc 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c
+@@ -399,7 +399,7 @@ nvkm_runl_new(struct nvkm_fifo *fifo, int runi, u32 addr, int id_nr)
+ 	int ret;
+ 
+ 	if (!(runl = kzalloc(sizeof(*runl), GFP_KERNEL)))
+-		return NULL;
++		return ERR_PTR(-ENOMEM);
+ 
+ 	runl->func = fifo->func->runl;
+ 	runl->fifo = fifo;
+@@ -419,7 +419,7 @@ nvkm_runl_new(struct nvkm_fifo *fifo, int runi, u32 addr, int id_nr)
+ 		    (ret = nvkm_chid_new(&nvkm_chan_event, subdev, id_nr, 0, id_nr, &runl->chid))) {
+ 			RUNL_ERROR(runl, "cgid/chid: %d", ret);
+ 			nvkm_runl_del(runl);
+-			return NULL;
++			return ERR_PTR(ret);
+ 		}
+ 	} else {
+ 		runl->cgid = nvkm_chid_ref(fifo->cgid);
+-- 
+2.35.1
 
-Please note that only current members can vote in the upcoming election.
-If you are interested in joining the X.Org Foundation or in renewing
-your membership, please visit the membership system site at:
-https://members.x.org/
-
-In order not to delay the process further, however, we will not accept
-new candidates. You can see the current list here:
-
-https://wiki.freedesktop.org/xorg/BoardOfDirectors/Elections/2023/
-
-The election will start on April 24th and end on May 1st as was
-initially planned, so members will have 1 week for voting instead of 2.
-Reminders will be sent throughout the election week to members@x.org.
-
-Thanks again for your attention,
--Ricardo Garcia, on behalf of the X.Org elections committee
