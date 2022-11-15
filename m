@@ -4,87 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E45F5C433FE
-	for <nouveau@archiver.kernel.org>; Tue, 15 Nov 2022 09:14:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6693C4332F
+	for <nouveau@archiver.kernel.org>; Tue, 15 Nov 2022 09:14:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98D9610E38D;
-	Tue, 15 Nov 2022 09:14:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52DA710E393;
+	Tue, 15 Nov 2022 09:14:49 +0000 (UTC)
 Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
  [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48A0710E387;
- Tue, 15 Nov 2022 09:14:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6F3B10E38D;
+ Tue, 15 Nov 2022 09:14:42 +0000 (UTC)
 Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailnew.west.internal (Postfix) with ESMTP id 6D5822B067B9;
- Tue, 15 Nov 2022 04:14:24 -0500 (EST)
+ by mailnew.west.internal (Postfix) with ESMTP id 098B82B067B9;
+ Tue, 15 Nov 2022 04:14:37 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
- by compute2.internal (MEProxy); Tue, 15 Nov 2022 04:14:28 -0500
+ by compute2.internal (MEProxy); Tue, 15 Nov 2022 04:14:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
  :cc:content-transfer-encoding:content-type:date:date:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm2; t=1668503664; x=
- 1668510864; bh=82rrm1cPM5h8knW+8auhgpBiIWvA4DKT6azSx+4b8hE=; b=S
- 5Z8aQMsDNqRonESvyTgzYgATFhMBJzcrTjGxZosyLrCPKbvwOHspyZMG2/tZK1Ow
- XXJqlk/ohT+n1B0axV2xSZR2l5d7yPgsYqxy2r6tkwQCs5j0Cwr2DyjmJsv9OV9a
- 6L0Z4tECbsbR7efjbHbKAnUQ/Ah8q3kEtxE3QLy/f6OtdDysNDptPvdVCxoakKb9
- AA2dP9HqGGtAHJcHj/LNuGX4I5xVLHl36LEvFbRBXvQ95yRMw6+M/dpEUJWThjXL
- JsUTtII2WHTcAdwclDlM8bMptye1Mnst6tyofX0TZPiZgcO4F65gN2fALWoLvw36
- rWOWfcSr8vha34zMZlMVw==
+ :reply-to:sender:subject:subject:to:to; s=fm2; t=1668503677; x=
+ 1668510877; bh=0lq3nSwtolEbjeEz/Nq2/eFTkydppkODiDO31Lyiho0=; b=F
+ jrj/4072JriJ/iU9tCcqtF3V1pHX5cGhOnfM2UKB/+moruRCOqi8vO96iQz3HK3E
+ SxkebTpPzD4F6jWTDQoyqgSte7Zk+w2vqDWA3X/R5FWwaKXx9NOe05NjiLelvzvM
+ 9QTu7Fy83oK2EZaJmumijOgp0rVOoZGkB8GYa3fHgJSBm99O/bEXQUMQUNcDRuX3
+ VfVVNBRYUATD3ycEYmhCNW9SbePaxaxuDLZ/8wzKnmCicLOY7clIikJEd9XAdDqq
+ Llm//ZMxDE+65ow/Txb5Se6HRqbXKr3Vd9dePxqVmIr4ScQwE+VJt7YZyJELCH1d
+ t4vVSEAoXcbFXCWulD0Tw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-transfer-encoding
  :content-type:date:date:feedback-id:feedback-id:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
  :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1668503664; x=
- 1668510864; bh=82rrm1cPM5h8knW+8auhgpBiIWvA4DKT6azSx+4b8hE=; b=V
- +j7Qoh4kD3FTCtCfOkuHOVNIQFM8GjIAzB6lCnuFbxCZFvwu4PG/LSqtJ0mLBsvL
- +ns1HgX1FfD8bFJCUHyiX2Cj4ROpQ6N6NtqV0F7FdTzZhVE408/3VwJJQoCm51ak
- 7Vg+Dac9jcwq3EHx8cuWOd6Gs1Hl/A6OK2xSD8MlSxt38Lz3D5gf/ThXS800g4I2
- EKgiYHC3pm2ndaIyAK/cym/PeBPZHbPiwL5WTGsVTp4+JWtdYPKg/CpVbmR+LV4t
- 93HPyJ8sEqgC8GGk1SBePA913EqQyW+6FtrIBydQSatiwMFhpPVv6BHlBB9jdDmu
- 7Tj794qKyvyvpotjGSIUg==
-X-ME-Sender: <xms:b1hzYzu-mDq3L2PGB3nQ_DaeweunMaHSCKnbNM3rCvm5epmk7a4V3Q>
- <xme:b1hzY0cdTP4ehXQm9rasinMtDFPZb0HYYGQNriFLZDMSKDS-MnqHRu21OW7m8qRvr
- Ktba9VhqQluokyQqxY>
-X-ME-Received: <xmr:b1hzY2yZii-6BOxoEvJ5vPTfmJfNPr4eVd2xi1eCS4t7ShNH3w6ZQFcgLSddClUcgBvVHuke0XhkHB42VvE6qxBoo-eObKNe03Q5AtNYOccR0g>
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1668503677; x=
+ 1668510877; bh=0lq3nSwtolEbjeEz/Nq2/eFTkydppkODiDO31Lyiho0=; b=W
+ NYPyBGMmG9x9vRdp5sphpeEnRBy/0TGPcNDBkj8OIzYKa2OD7wgAn63bAMyw6gws
+ Wsw0pEFFaJxdgSNvxATdK7hvbFBe72V8QD1XJKjjJSRkXvtbJMOKqSvLbCz7+yd5
+ rausE1P18MOAArDB+4iNsz/kbGC7QWlNrxjfTgqYS+OFZMFhG/u+fh/rPYgj5/3J
+ AAEDeHD0z8jGf4aucWuCvAWjHofFHb/i5X7jrck46kUyDEFNEr+gCj328e5x58sZ
+ 1OVPnxEcAs1gEGbRgRj3GyMF1Ji8hDuhVZwkjnfv1XY9qPBFoJGfsFKwE9GlTLAH
+ pmn94cMFkQrXD/kjmGToA==
+X-ME-Sender: <xms:fVhzY1sm5rB83vtMny2u8LnR2uVplUZVa3976ao57QoOlxl79PbSvQ>
+ <xme:fVhzY-cyTqbeOtowXq1Yjda64WPyw3Sh-RtVK0nNzfOdTMffzJ89B8g6OpK-4k2A_
+ iu8JwSkZ7tlYXqoPFw>
+X-ME-Received: <xmr:fVhzY4yOW0fx5y-ipKxFYd9du4CwJCPmQYyZx06E59pMOHWmoF3WLSNIaO5TINJhbDb8AaRxpsnW3p3WA7r9sCWba4kaj7Xxkj1OCYa98GO1_w>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgeeggddtvdcutefuodetggdotefrodftvf
  curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
  uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
  fjughrpefhvfevjghfuffkffggtgfgofesthekredtredtjeenucfhrhhomhepofgrgihi
  mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
  htthgvrhhnpeeifeeigeelhfehkeeltdetjeetueelteeuveekueevffduhefffefhhfeh
- gfehieenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+ gfehieenucevlhhushhtvghrufhiiigvpedvnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
  hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:b1hzYyPHTSDlI1KZlqRlaFHyJYbtH7vgrzu0RcymXPq6pWDq3R8EzA>
- <xmx:b1hzYz8Aj8x7xQA0E3T737TnygB6FaJDZG231X_y9pEG2XN0fntCPw>
- <xmx:b1hzYyVRFvCm9GioiUmkLvdOtP6FTR1DDhhMXuV-yRVaSHruOSS07w>
- <xmx:cFhzY7a_AnRl5_VASlAuVkxX61xdom3w2SmdMPPJeaip9JA7g5GxbQAosJY>
+X-ME-Proxy: <xmx:fVhzY8PlALrCoDTrcgg3wUSDOhPGQ8bBTYAsv2yBmvnpkJ1fUibjbA>
+ <xmx:fVhzY1_K1ia8DPoaRYI06JKHkXIf4YlLZ46IMZGMB0Sux_XNQOAE0g>
+ <xmx:fVhzY8UgwPURGtdYNbbDaRAU97hMoF2tJTLF3HObbMr6_KrsmzgFSQ>
+ <xmx:fVhzY9ap8TsCyMq5UfRPu_rI8dmBKObpvS5OBD40kQMzCNPnconVwEoeun0>
 Feedback-ID: i8771445c:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 15 Nov 2022 04:14:23 -0500 (EST)
+ 15 Nov 2022 04:14:36 -0500 (EST)
 From: Maxime Ripard <maxime@cerno.tech>
 To: Maxime Ripard <maxime@cerno.tech>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
  Jani Nikula <jani.nikula@linux.intel.com>, Samuel Holland <samuel@sholland.org>,
  Chen-Yu Tsai <wens@csie.org>, 
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, 
  Karol Herbst <kherbst@redhat.com>, Maxime Ripard <mripard@kernel.org>,
  Emma Anholt <emma@anholt.net>, Lyude Paul <lyude@redhat.com>
-In-Reply-To: <20220728-rpi-analog-tv-properties-v9-8-24b168e5bcd5@cerno.tech>
+In-Reply-To: <20220728-rpi-analog-tv-properties-v9-10-24b168e5bcd5@cerno.tech>
 References: <20220728-rpi-analog-tv-properties-v9-0-24b168e5bcd5@cerno.tech>
- <20220728-rpi-analog-tv-properties-v9-8-24b168e5bcd5@cerno.tech>
-Message-Id: <166850358084.1237314.23879958208527722.b4-ty@cerno.tech>
-Date: Tue, 15 Nov 2022 10:13:00 +0100
+ <20220728-rpi-analog-tv-properties-v9-10-24b168e5bcd5@cerno.tech>
+Message-Id: <166850359293.1237314.13430360277429512424.b4-ty@cerno.tech>
+Date: Tue, 15 Nov 2022 10:13:12 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Mailer: b4 0.10.1
-Subject: Re: [Nouveau] (subset) [PATCH v9 08/25] drm/client: Add some tests
- for drm_connector_pick_cmdline_mode()
+Subject: Re: [Nouveau] (subset) [PATCH v9 10/25] drm/modes: Switch to named
+ mode descriptors
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,13 +100,13 @@ Cc: Dom Cobley <dom@raspberrypi.com>, nouveau@lists.freedesktop.org, intel-gfx@l
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, 14 Nov 2022 14:00:27 +0100, Maxime Ripard wrote:
-> drm_connector_pick_cmdline_mode() is in charge of finding a proper
-> drm_display_mode from the definition we got in the video= command line
-> argument.
+On Mon, 14 Nov 2022 14:00:29 +0100, Maxime Ripard wrote:
+> The current named mode parsing relies only on the mode name, and doesn't
+> allow to specify any other parameter.
 > 
-> Let's add some unit tests to make sure we're not getting any regressions
-> there.
+> Let's convert that string list to an array of a custom structure that will
+> hold the name and some additional parameters in the future.
+> 
 > 
 > [...]
 
