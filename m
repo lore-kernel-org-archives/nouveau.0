@@ -4,44 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BC24C77B7C
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13FD2C77B78
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E374110E424;
-	Thu,  4 May 2023 12:32:45 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07B7A10EE6A;
- Fri, 17 Mar 2023 08:23:11 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 8485762225;
- Fri, 17 Mar 2023 08:23:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83EADC433A1;
- Fri, 17 Mar 2023 08:23:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1679041390;
- bh=zJPpymlz/PVT9Wlua6kFKjgPKChBJflnKxi72FkxNwg=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=DVDAwORkAiQnEWz6+nViqSR8Lr0B7YnIQt3H9TemIvtpK0SOwrESnbQBTtSd15LJZ
- 8LKTTphZWXSNFiDj8RQuNi5luzmX1sZFMkotSgk7ciD5b7cOOMiB1S/ZcaoQPbJziC
- yjaO0T01e4Wi71fkZU3JBqFKbFhYD2GDyUR66KPhVommrJiRM5W4u0m3H0XiQJXtwj
- uZd1Jda1Vm38ZFZ24AGw5i4eiSgvKOfWu+7f1w2O/+BBZ+aJla71dLmat6pLs2Qnrk
- HnUSIbWGBp5Nh+t/KA32aK3+aaLRYN83LmD4gdHODxbiPDXwl4esBd12awnC1l7em6
- 1f3YdDKU2qVBw==
-From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 17 Mar 2023 08:17:02 +0000
-Message-Id: <20230317081718.2650744-22-lee@kernel.org>
-X-Mailer: git-send-email 2.40.0.rc1.284.g88254d51c5-goog
-In-Reply-To: <20230317081718.2650744-1-lee@kernel.org>
-References: <20230317081718.2650744-1-lee@kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C9A410E438;
+	Thu,  4 May 2023 12:32:44 +0000 (UTC)
+Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 997D710E204
+ for <nouveau@lists.freedesktop.org>; Fri, 18 Nov 2022 09:20:50 +0000 (UTC)
+Received: from dggpemm500023.china.huawei.com (unknown [172.30.72.53])
+ by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4NDB8Q70T5z15MjF;
+ Fri, 18 Nov 2022 17:20:22 +0800 (CST)
+Received: from dggpemm500007.china.huawei.com (7.185.36.183) by
+ dggpemm500023.china.huawei.com (7.185.36.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Fri, 18 Nov 2022 17:20:47 +0800
+Received: from huawei.com (10.175.103.91) by dggpemm500007.china.huawei.com
+ (7.185.36.183) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 18 Nov
+ 2022 17:20:46 +0800
+From: Yang Yingliang <yangyingliang@huawei.com>
+To: <bskeggs@redhat.com>, <kherbst@redhat.com>, <lyude@redhat.com>,
+ <airlied@gmail.com>, <daniel@ffwll.ch>
+Date: Fri, 18 Nov 2022 17:19:09 +0800
+Message-ID: <20221118091909.54935-1-yangyingliang@huawei.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:31 +0000
-Subject: [Nouveau] [PATCH 21/37] drm/nouveau/nvkm/subdev/volt/gk20a: Demote
- kerneldoc abuses
+Content-Type: text/plain
+X-Originating-IP: [10.175.103.91]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ dggpemm500007.china.huawei.com (7.185.36.183)
+X-CFilter-Loop: Reflected
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:38 +0000
+Subject: [Nouveau] [PATCH] drm/nouveau/fb: fix pci device refcount leak in
+ nv1a_ram_new()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,50 +50,34 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
+Cc: nouveau@lists.freedesktop.org, yangyingliang@huawei.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Fixes the following W=1 kernel build warning(s):
+As comment of pci_get_domain_bus_and_slot() says, it returns
+a pci device with refcount increment, when finish using it,
+the caller must decrement the reference count by calling
+pci_dev_put(). So call it after using to avoid refcount leak.
 
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:49: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c:62: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Signed-off-by: Lee Jones <lee@kernel.org>
+Fixes: 6ee738610f41 ("drm/nouveau: Add DRM driver for NVIDIA GPUs")
+Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c b/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c
-index 8c2faa9645111..ccac88da88648 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c
-@@ -45,7 +45,7 @@ static const struct cvb_coef gk20a_cvb_coef[] = {
- 	/* 852 */ { 1608418, -21643, -269,     0,    763,  -48},
- };
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c
+index 18241c6ba5fa..4d52a158f320 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c
+@@ -51,6 +51,8 @@ nv1a_ram_new(struct nvkm_fb *fb, struct nvkm_ram **pram)
+ 		mib = ((mem >> 4) & 127) + 1;
+ 	}
  
--/**
-+/*
-  * cvb_mv = ((c2 * speedo / s_scale + c1) * speedo / s_scale + c0)
-  */
- static inline int
-@@ -58,7 +58,7 @@ gk20a_volt_get_cvb_voltage(int speedo, int s_scale, const struct cvb_coef *coef)
- 	return mv;
++	pci_dev_put(bridge);
++
+ 	return nvkm_ram_new_(&nv04_ram_func, fb, NVKM_RAM_TYPE_STOLEN,
+ 			     mib * 1024 * 1024, pram);
  }
- 
--/**
-+/*
-  * cvb_t_mv =
-  * ((c2 * speedo / s_scale + c1) * speedo / s_scale + c0) +
-  * ((c3 * speedo / s_scale + c4 + c5 * T / t_scale) * T / t_scale)
 -- 
-2.40.0.rc1.284.g88254d51c5-goog
+2.25.1
 
