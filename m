@@ -4,47 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B843BC77B7C
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AF01C77B78
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 295C710E3DB;
-	Thu,  4 May 2023 12:31:44 +0000 (UTC)
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E39B810E142;
- Wed, 15 Feb 2023 20:53:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:Date:Cc:To:
- From:Subject:Message-ID:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=DbZhMIqbxxxVLTui1okwUmu8iO/ZN5e4U1qMEUfbdtU=; b=ZvFsUU3+u3FgKVWAPWwQbxZW94
- SdCoE/rVS2BNGSYETy8LJSh7krL6LwpBL+5EWl6D9zhaoiRA+tyDs62+2KF48egXWoDtDANTJtAcl
- uI5bJ3SWVbIklJ1STLUDs3VaOJFcjoJnyrM70zpeI750DfP2oowqZlKCo/JY6ZRSXE8IzOitNlMDr
- FQlODtgPes1Pb0zWn68FV+YUPhKNTC0rSC95YyKR0BMQ4nD2CDFKfVYqm9/CG7xRQlawzkgT0q7SD
- Qp+xCPiFY6LMYm5B+HZWoV3kBWIBCtr96bPvyj85mIUGJ1Aq9ftXvzQkTE+O2d4azajeaTuN3EOmk
- PkSMYvDQ==;
-Received: from 137.red-83-52-2.dynamicip.rima-tde.net ([83.52.2.137]
- helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1pSOmQ-003Vjs-Sg; Wed, 15 Feb 2023 21:53:30 +0100
-Message-ID: <c1c2591a7f7c9bcb05b69b08da529ddb8fc8145c.camel@igalia.com>
-From: Ricardo Garcia <rgarcia@igalia.com>
-To: members@x.org, events@lists.x.org, xorg-devel@lists.freedesktop.org, 
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- libre-soc-dev <libre-soc-dev@lists.libre-soc.org>
-Date: Wed, 15 Feb 2023 21:53:30 +0100
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F75110E3DE;
+	Thu,  4 May 2023 12:31:45 +0000 (UTC)
+Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6687A10E1F7
+ for <nouveau@lists.freedesktop.org>; Fri, 18 Nov 2022 09:17:50 +0000 (UTC)
+Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.54])
+ by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4NDB1m50QRzJnpq;
+ Fri, 18 Nov 2022 17:14:36 +0800 (CST)
+Received: from dggpemm500007.china.huawei.com (7.185.36.183) by
+ dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Fri, 18 Nov 2022 17:17:47 +0800
+Received: from huawei.com (10.175.103.91) by dggpemm500007.china.huawei.com
+ (7.185.36.183) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 18 Nov
+ 2022 17:17:46 +0800
+From: Yang Yingliang <yangyingliang@huawei.com>
+To: <bskeggs@redhat.com>, <kherbst@redhat.com>, <lyude@redhat.com>,
+ <airlied@gmail.com>, <daniel@ffwll.ch>, <tzimmermann@suse.de>
+Date: Fri, 18 Nov 2022 17:16:11 +0800
+Message-ID: <20221118091611.18706-1-yangyingliang@huawei.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.175.103.91]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ dggpemm500007.china.huawei.com (7.185.36.183)
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Thu, 04 May 2023 12:31:38 +0000
-Subject: [Nouveau] 2023 X.Org Board of Directors Elections Nomination period
- is NOW
+Subject: [Nouveau] [PATCH] drm/nouveau/kms/nv04: fix pci device refcount leak
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,51 +49,83 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: board <board@foundation.x.org>
+Cc: nouveau@lists.freedesktop.org, yangyingliang@huawei.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-We are seeking nominations for candidates for election to the X.Org
-Foundation Board of Directors. All X.Org Foundation members are eligible
-for election to the board.
+As comment of pci_get_domain_bus_and_slot() says, it returns
+a pci device with refcount increment, when finish using it,
+the caller must decrement the reference count by calling
+pci_dev_put().
 
-Nominations for the 2023 election are now open and will remain open
-until 23:59 UTC on 19 March 2023.
+In nv04_update_arb() and nouveau_hw_get_clock(), after using
+pci_dev_put() is called to avoid refcount leak.
 
-The Board consists of directors elected from the membership. Each year,
-an election is held to bring the total number of directors to eight. The
-four members receiving the highest vote totals will serve as directors
-for two year terms.
+Fixes: 6ee738610f41 ("drm/nouveau: Add DRM driver for NVIDIA GPUs")
+Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
+---
+ drivers/gpu/drm/nouveau/dispnv04/arb.c |  6 ++++--
+ drivers/gpu/drm/nouveau/dispnv04/hw.c  | 13 +++++++++----
+ 2 files changed, 13 insertions(+), 6 deletions(-)
 
-The directors who received two year terms starting in 2022 were Emma
-Anholt, Mark Filion, Alyssa Rosenzweig and Ricardo Garcia. They will
-continue to serve until their term ends in 2024. Current directors whose
-term expires in 2023 are Samuel Iglesias Gons=C3=A1lvez, Manasi D Navare,
-Lyude Paul and Daniel Vetter.
-
-A director is expected to participate in the fortnightly IRC meeting to
-discuss current business and to attend the annual meeting of the X.Org
-Foundation, which will be held at a location determined in advance by
-the Board of Directors.
-
-A member may nominate themselves or any other member they feel is
-qualified. Nominations should be sent to the Election Committee at
-elections at x.org.
-
-Nominees shall be required to be current members of the X.Org
-Foundation, and submit a personal statement of up to 200 words that will
-be provided to prospective voters. The collected statements, along with
-the statement of contribution to the X.Org Foundation in the member's
-account page on http://members.x.org, will be made available to all
-voters to help them make their voting decisions.
-
-Nominations, membership applications or renewals and completed personal
-statements must be received no later than 23:59 UTC on 19 March 2023.
-
-The slate of candidates will be published 26 March 2023 and candidate
-Q&A will begin then. The deadline for Xorg membership applications and
-renewals is 26 March 2023.
-
-Cheers,
-Ricardo Garcia, on behalf of the X.Org BoD
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/arb.c b/drivers/gpu/drm/nouveau/dispnv04/arb.c
+index 1d3542d6006b..697e67fb21d3 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/arb.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/arb.c
+@@ -209,11 +209,13 @@ nv04_update_arb(struct drm_device *dev, int VClk, int bpp,
+ 	sim_data.two_heads = nv_two_heads(dev);
+ 	if ((pdev->device & 0xffff) == 0x01a0 /*CHIPSET_NFORCE*/ ||
+ 	    (pdev->device & 0xffff) == 0x01f0 /*CHIPSET_NFORCE2*/) {
++		struct pci_dev *pdev;
+ 		uint32_t type;
+ 		int domain = pci_domain_nr(pdev->bus);
+ 
+-		pci_read_config_dword(pci_get_domain_bus_and_slot(domain, 0, 1),
+-				      0x7c, &type);
++		pdev = pci_get_domain_bus_and_slot(domain, 0, 1);
++		pci_read_config_dword(pdev, 0x7c, &type);
++		pci_dev_put(pdev);
+ 
+ 		sim_data.memory_type = (type >> 12) & 1;
+ 		sim_data.memory_width = 64;
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/hw.c b/drivers/gpu/drm/nouveau/dispnv04/hw.c
+index f7d35657aa64..52e3999225d5 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/hw.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/hw.c
+@@ -216,6 +216,7 @@ nouveau_hw_get_clock(struct drm_device *dev, enum nvbios_pll_type plltype)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(dev->dev);
+ 	struct nvkm_pll_vals pllvals;
++	struct pci_dev *tmp_pdev;
+ 	int ret;
+ 	int domain;
+ 
+@@ -224,8 +225,10 @@ nouveau_hw_get_clock(struct drm_device *dev, enum nvbios_pll_type plltype)
+ 	if (plltype == PLL_MEMORY &&
+ 	    (pdev->device & 0x0ff0) == CHIPSET_NFORCE) {
+ 		uint32_t mpllP;
+-		pci_read_config_dword(pci_get_domain_bus_and_slot(domain, 0, 3),
+-				      0x6c, &mpllP);
++
++		tmp_pdev = pci_get_domain_bus_and_slot(domain, 0, 3);
++		pci_read_config_dword(tmp_pdev, 0x6c, &mpllP);
++		pci_dev_put(tmp_pdev);
+ 		mpllP = (mpllP >> 8) & 0xf;
+ 		if (!mpllP)
+ 			mpllP = 4;
+@@ -236,8 +239,10 @@ nouveau_hw_get_clock(struct drm_device *dev, enum nvbios_pll_type plltype)
+ 	    (pdev->device & 0xff0) == CHIPSET_NFORCE2) {
+ 		uint32_t clock;
+ 
+-		pci_read_config_dword(pci_get_domain_bus_and_slot(domain, 0, 5),
+-				      0x4c, &clock);
++		tmp_pdev = pci_get_domain_bus_and_slot(domain, 0, 5);
++		pci_read_config_dword(tmp_pdev, 0x4c, &clock);
++		pci_dev_put(tmp_pdev);
++
+ 		return clock / 1000;
+ 	}
+ 
+-- 
+2.25.1
 
