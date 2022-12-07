@@ -4,52 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCF83C7EE23
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:31:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5760C77B7C
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:31:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20E1610E39B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 507A710E3A7;
 	Thu,  4 May 2023 12:31:42 +0000 (UTC)
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt
- [193.136.128.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C01610E0A1;
- Sat, 14 Jan 2023 16:01:01 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id E8468600086B;
- Sat, 14 Jan 2023 16:00:55 +0000 (WET)
-X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
- tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
- by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
- with LMTP id xTKXyWXOQpbs; Sat, 14 Jan 2023 16:00:53 +0000 (WET)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt
- [IPv6:2001:690:2100:1::b3dd:b9ac])
- by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 77ED46000868;
- Sat, 14 Jan 2023 16:00:53 +0000 (WET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
- s=mail; t=1673712053;
- bh=RZU58FeLyRmpVsu+m1wZmQJWulTa9BOooLU8AzAOYRQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=gxS1l7bAin500lDfFN68KnKCFACBeuW1O0mIxDiHof35CCJRwhMnWnR/B/udQJU1l
- 56W9yezlyN7kzFLhDUJlTKCj/FzKKCzaopWAy9EILTsltcmDtNfn/cuH5nPKqwbynr
- 8FtQsNA8StHxguSO7574xCJNvzrQB5MSqaeJbwe4=
-Received: from wslaptop (unknown [IPv6:2001:818:dcb5:dc00:d990:b664:f16:4cb2])
- (Authenticated sender: ist187313)
- by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id B5F1F36008B;
- Sat, 14 Jan 2023 16:00:52 +0000 (WET)
-Date: Sat, 14 Jan 2023 15:58:37 +0000
-From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-To: Linux regressions mailing list <regressions@lists.linux.dev>
-Message-ID: <20230114155837.edqhigueohrkd3os@wslaptop>
-References: <20221228144914.z7t7a4fdwvbblnak@wslaptop>
- <c32ea02c-d706-ea2f-aa13-660b8db958ef@leemhuis.info>
- <481f19ba-da7e-6900-0bb2-64ba92d59ce6@leemhuis.info>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <481f19ba-da7e-6900-0bb2-64ba92d59ce6@leemhuis.info>
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:35 +0000
-Subject: Re: [Nouveau] [REGRESSION] GM20B probe fails after commit
- 2541626cfb79
+Received: from mxct.zte.com.cn (mxct.zte.com.cn [58.251.27.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DAA210E163
+ for <nouveau@lists.freedesktop.org>; Wed,  7 Dec 2022 01:11:40 +0000 (UTC)
+Received: from mxde.zte.com.cn (unknown [10.35.20.165])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mxct.zte.com.cn (FangMail) with ESMTPS id 4NRfPj5RfszvLm
+ for <nouveau@lists.freedesktop.org>; Wed,  7 Dec 2022 09:11:37 +0800 (CST)
+Received: from mxus.zte.com.cn (unknown [10.207.168.7])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mxde.zte.com.cn (FangMail) with ESMTPS id 4NRfPR1YH3z4xD1n
+ for <nouveau@lists.freedesktop.org>; Wed,  7 Dec 2022 09:11:23 +0800 (CST)
+Received: from mxhk.zte.com.cn (unknown [192.168.250.138])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mxus.zte.com.cn (FangMail) with ESMTPS id 4NRfPM5W7Pz9tyD6
+ for <nouveau@lists.freedesktop.org>; Wed,  7 Dec 2022 09:11:19 +0800 (CST)
+Received: from mse-fl1.zte.com.cn (unknown [10.5.228.132])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mxhk.zte.com.cn (FangMail) with ESMTPS id 4NRfPH1mPfz5BNRf;
+ Wed,  7 Dec 2022 09:11:15 +0800 (CST)
+Received: from szxlzmapp06.zte.com.cn ([10.5.230.252])
+ by mse-fl1.zte.com.cn with SMTP id 2B71B7sg055208;
+ Wed, 7 Dec 2022 09:11:07 +0800 (+08)
+ (envelope-from yang.yang29@zte.com.cn)
+Received: from mapi (szxlzmapp02[null]) by mapi (Zmail) with MAPI id mid14;
+ Wed, 7 Dec 2022 09:11:08 +0800 (CST)
+Date: Wed, 7 Dec 2022 09:11:08 +0800 (CST)
+X-Zmail-TransId: 2b04638fe82cffffffffe2d7a552
+X-Mailer: Zmail v1.0
+Message-ID: <202212070911086649831@zte.com.cn>
+Mime-Version: 1.0
+From: <yang.yang29@zte.com.cn>
+To: <bskeggs@redhat.com>
+Content-Type: text/plain;
+	charset="UTF-8"
+X-MAIL: mse-fl1.zte.com.cn 2B71B7sg055208
+X-Fangmail-Gw-Spam-Type: 0
+X-FangMail-Miltered: at cgslv5.04-192.168.251.14.novalocal with ID
+ 638FE848.000 by FangMail milter!
+X-FangMail-Envelope: 1670375497/4NRfPj5RfszvLm/638FE848.000/10.35.20.165/[10.35.20.165]/mxde.zte.com.cn/<yang.yang29@zte.com.cn>
+X-Fangmail-Anti-Spam-Filtered: true
+X-Fangmail-MID-QID: 638FE848.000/4NRfPj5RfszvLm
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:34 +0000
+Subject: [Nouveau] =?utf-8?q?=5BPATCH_linux-next=5D_drm/nouveau/nvkm/core?=
+ =?utf-8?q?/firmware=3A_replace_strncpy=28=29_with_strscpy=28=29?=
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,21 +68,36 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- bskeggs@redhat.com, Daniel Vetter <daniel@ffwll.ch>, airlied@redhat.com
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, yang.yang29@zte.com.cn, daniel@ffwll.ch,
+ xu.panda@zte.com.cn
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jan 13, 2023 at 02:19:06PM +0100, Linux kernel regression tracking (Thorsten Leemhuis) wrote:
-> Diogo, for that it would be really helpful to known: is the issue still
-> happening with latest mainline? Is it possible to revert 2541626cfb79
-> easily? And if so: do things work afterwards again?
+From: Xu Panda <xu.panda@zte.com.cn>
 
-Hello,
+The implementation of strscpy() is more robust and safer.
+That's now the recommended way to copy NUL terminated strings.
 
-Thank you for your attention to this! I have checked the latest mainline and
-it still occurs. As for reverting, I think it is complicated to do,
-since this commit is a part of a larger rework, but I'm afraid I don't know
-enough about the code to give a proper answer.
+Signed-off-by: Xu Panda <xu.panda@zte.com.cn>
+Signed-off-by: Yang Yang <yang.yang29@zte.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/core/firmware.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Diogo
+diff --git a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
+index fcf2a002f6cb..5554f907e0d4 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
++++ b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
+@@ -79,8 +79,7 @@ nvkm_firmware_get(const struct nvkm_subdev *subdev, const char *fwname, int ver,
+ 	int i;
+
+ 	/* Convert device name to lowercase */
+-	strncpy(cname, device->chip->name, sizeof(cname));
+-	cname[sizeof(cname) - 1] = '\0';
++	strscpy(cname, device->chip->name, sizeof(cname));
+ 	i = strlen(cname);
+ 	while (i) {
+ 		--i;
+-- 
+2.15.2
