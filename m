@@ -4,71 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8326C10F1B
-	for <nouveau@archiver.kernel.org>; Mon, 19 Dec 2022 09:01:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A35D0C4167B
+	for <nouveau@archiver.kernel.org>; Fri, 23 Dec 2022 09:44:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A553A10E22D;
-	Mon, 19 Dec 2022 09:01:56 +0000 (UTC)
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
- [85.220.165.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14A0710E1F9
- for <nouveau@lists.freedesktop.org>; Mon, 19 Dec 2022 09:01:47 +0000 (UTC)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1p7BdX-00055t-G9; Mon, 19 Dec 2022 09:36:39 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
- by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1p7BdS-000I7t-UR; Mon, 19 Dec 2022 09:36:34 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1p7BdS-006GXR-8z; Mon, 19 Dec 2022 09:36:34 +0100
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Dave Airlie <airlied@redhat.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Xinliang Liu <xinliang.liu@linaro.org>, Tian Tao <tiantao6@hisilicon.com>,
- John Stultz <jstultz@google.com>,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Chen Feng <puck.chen@hisilicon.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>,
- Javier Martinez Canillas <javierm@redhat.com>
-Date: Mon, 19 Dec 2022 09:36:27 +0100
-Message-Id: <20221219083627.1401627-1-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.38.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55E7189EFF;
+	Fri, 23 Dec 2022 09:44:11 +0000 (UTC)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com
+ [IPv6:2a00:1450:4864:20::62e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0A0E89EFF
+ for <nouveau@lists.freedesktop.org>; Fri, 23 Dec 2022 09:44:07 +0000 (UTC)
+Received: by mail-ej1-x62e.google.com with SMTP id ud5so10890682ejc.4
+ for <nouveau@lists.freedesktop.org>; Fri, 23 Dec 2022 01:44:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=pupsl173ER+FNF5b3/wQ+7hV6OTifqboCmhZDPM5uH8=;
+ b=mkOnvVt+7lozUiIaZqRc1a9x+zgMVNPurzuEZ7Y5i08pH5lB4WohjtEG1zwBOlC7AV
+ GC5newXFPEmaPG/zzj8gExnAG/q7IP2lCTswv9a5dwrD/K/XjP3+xCr3eFVZI98Q+tE7
+ 1qbxNWP2oM5XVFxlXgnnxQhsp8DhIZV7BOHfzZay33b2SIBxxi3n1EtmyRHnrX2IIb5J
+ v8gdv6DBKskv46S1ecF5rrUXCi69v3UA+1MyYb1ed6cMHo40/0Wf5Zq9Yd9FD3FFp7zJ
+ dhplagEz00rRqP8MRgCNG9bTaxD34ahFrSlWLGpQC8Z4cxd83B4J1jXTa98h+WlrJM0c
+ 3ARQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=pupsl173ER+FNF5b3/wQ+7hV6OTifqboCmhZDPM5uH8=;
+ b=OWRIm+NRRVS2/V57ZJQRYqy+6caYX4ZgTZfAjsLKtfXUN3vwdu52zuMtFo3lxQDmof
+ hioAagrgoRpEYMVCH4W9gEbkETrZaZcOQ6FWe1UG/W9x68RYB7hDRdYhM+nDMxvo9Koo
+ lp9vlH8JDe7yHuZVcF42qf0mwqXH3R44B0sO3PLJs5s4Iiu7RShh6HzMhHfSzZB68UEg
+ j0REmNGZtaGsaTs0dyPnJau0bCTNFUoWZNIRVUtWpN6olLWsyNj33BYGbZD8bLP4FiVK
+ /4TGPnBcmt9un6ROThnD0VBAdXSCdILyOTvXK+pvi09AyyCNsvDzviDe79D5+AeL8hss
+ TntQ==
+X-Gm-Message-State: AFqh2kpx7LV5+kNA2xTGCyAGC3qgxIOr8sIT6jlf9NdV2pY+DkCz3l2I
+ V4Ty8f32B7K41KlrL7y2k+gVOUph5R0tTxtfOm0=
+X-Google-Smtp-Source: AMrXdXvEQQOOGkdKpTEPByCdj6HJfxZQ+Y4Ny9nRn3Q5KobRTUHLngj++8FDMsQ29n3Nd8OWw0z5ovY8aCm1Nw1wllg=
+X-Received: by 2002:a17:906:dcf:b0:7c1:6781:9c97 with SMTP id
+ p15-20020a1709060dcf00b007c167819c97mr664049eji.676.1671788645486; Fri, 23
+ Dec 2022 01:44:05 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5224;
- i=u.kleine-koenig@pengutronix.de; h=from:subject;
- bh=ZqfFbvgJpMyKVKFmiZCYnPmobkFNQjvPehywec6oyBE=;
- b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBjoCKHEJAtYyv1GKjnjBFZ0ZCBl4J5k3935lB4hMVw
- 9i3WuFyJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCY6AihwAKCRDB/BR4rcrsCcixB/
- 9hHo0+rNOd9s5KE7RHOsnO3muEbuMyw3QJhVVfVboODKLwdKCmjvBrrjRCG61slD4Xm5T6TnhZ0rHY
- gEaIra20QAEkhbb1rDBig3igiMCvo3TOSg07DiOfbJAQivllRgTvvYZ5Sta55/ipBt58svNiQpdkd3
- 7hvV5XzAXzK6RNL6H1tg71K2M2RI0AFI4rdJf2ACrubw/fAc/lHKxy8CxO0GjqhRvGrsG0TAfiQdYA
- /ghQjMcj3J4H4XapZ8XwJJSJlhSHIxh/VU1kzB6AEuA4U8z03CU829UClkJGz6lASW97FQXMzKoZJ+
- rwf5wKvKN0Jn6M68TphEMosYDhGEHP
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp;
- fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: nouveau@lists.freedesktop.org
-Subject: [Nouveau] [PATCH v3] drm: Only select I2C_ALGOBIT for drivers that
- actually need it
+References: <20220819200928.401416-1-kherbst@redhat.com>
+ <CAHSpYy0HAifr4f+z64h+xFUmMNbB4hCR1r2Z==TsB4WaHatQqg@mail.gmail.com>
+ <CACO55tv0jO2TmuWcwFiAUQB-__DZVwhv7WNN9MfgMXV053gknw@mail.gmail.com>
+In-Reply-To: <CACO55tv0jO2TmuWcwFiAUQB-__DZVwhv7WNN9MfgMXV053gknw@mail.gmail.com>
+From: Computer Enthusiastic <computer.enthusiastic@gmail.com>
+Date: Fri, 23 Dec 2022 10:43:52 +0100
+Message-ID: <CAHSpYy117N0A1QJKVNmFNii3iL9mU71_RusiUo5ZAMcJZciM-g@mail.gmail.com>
+To: Karol Herbst <kherbst@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Nouveau] [PATCH] nouveau: explicitly wait on the fence in
+ nouveau_bo_move_m2mf
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,149 +66,75 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel@pengutronix.de, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>,
+ Salvatore Bonaccorso <carnil@debian.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-While working on a drm driver that doesn't need the i2c algobit stuff I
-noticed that DRM selects this code even though only 8 drivers actually use
-it. While also only some drivers use i2c, keep the select for I2C for the
-next cleanup patch. Still prepare this already by also selecting I2C for
-the individual drivers.
+Hello Karol,
 
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
- drivers/gpu/drm/Kconfig                 | 1 -
- drivers/gpu/drm/amd/amdgpu/Kconfig      | 2 ++
- drivers/gpu/drm/ast/Kconfig             | 2 ++
- drivers/gpu/drm/gma500/Kconfig          | 2 ++
- drivers/gpu/drm/hisilicon/hibmc/Kconfig | 2 ++
- drivers/gpu/drm/i915/Kconfig            | 2 ++
- drivers/gpu/drm/mgag200/Kconfig         | 2 ++
- drivers/gpu/drm/nouveau/Kconfig         | 2 ++
- drivers/gpu/drm/radeon/Kconfig          | 2 ++
- 9 files changed, 16 insertions(+), 1 deletion(-)
+Il giorno mar 1 nov 2022 alle ore 11:46 Karol Herbst
+<kherbst@redhat.com> ha scritto:
+>
+> On Tue, Nov 1, 2022 at 7:45 AM Computer Enthusiastic
+> <computer.enthusiastic@gmail.com> wrote:
+> >
+> > Hello,
+> >
+> > Il giorno ven 19 ago 2022 alle ore 22:09 Karol Herbst
+> > <kherbst@redhat.com> ha scritto:
+> > >
+> > > It is a bit unlcear to us why that's helping, but it does and unbreaks
+> > > suspend/resume on a lot of GPUs without any known drawbacks.
+> > >
+> > > Cc: stable@vger.kernel.org # v5.15+
+> > > Closes: https://gitlab.freedesktop.org/drm/nouveau/-/issues/156
+> > > Signed-off-by: Karol Herbst <kherbst@redhat.com>
+> > > ---
+> > >  drivers/gpu/drm/nouveau/nouveau_bo.c | 9 +++++++++
+> > >  1 file changed, 9 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> > > index 35bb0bb3fe61..126b3c6e12f9 100644
+> > > --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
+> > > +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> > > @@ -822,6 +822,15 @@ nouveau_bo_move_m2mf(struct ttm_buffer_object *bo, int evict,
+> > >                 if (ret == 0) {
+> > >                         ret = nouveau_fence_new(chan, false, &fence);
+> > >                         if (ret == 0) {
+> > > +                               /* TODO: figure out a better solution here
+> > > +                                *
+> > > +                                * wait on the fence here explicitly as going through
+> > > +                                * ttm_bo_move_accel_cleanup somehow doesn't seem to do it.
+> > > +                                *
+> > > +                                * Without this the operation can timeout and we'll fallback to a
+> > > +                                * software copy, which might take several minutes to finish.
+> > > +                                */
+> > > +                               nouveau_fence_wait(fence, false, false);
+> > >                                 ret = ttm_bo_move_accel_cleanup(bo,
+> > >                                                                 &fence->base,
+> > >                                                                 evict, false,
+> > > --
+> > > 2.37.1
+> > >
+> >
+> > Do you think it could be possible to make the patch land in kernel
+> > 5.10.x in the near future ?
+> >
+> > Is there something I can do to help it to happen ?
+> >
+>
+> you can send it out to the stable mailing list and I ack it there. I
+> just totally forgot about it, sorry.
+>
+> > Thanks.
+> >
 
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 315cbdf61979..93c732a8f870 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -12,7 +12,6 @@ menuconfig DRM
- 	select HDMI
- 	select FB_CMDLINE
- 	select I2C
--	select I2C_ALGOBIT
- 	select DMA_SHARED_BUFFER
- 	select SYNC_FILE
- # gallium uses SYS_kcmp for os_same_file_description() to de-duplicate
-diff --git a/drivers/gpu/drm/amd/amdgpu/Kconfig b/drivers/gpu/drm/amd/amdgpu/Kconfig
-index 5fcd510f1abb..5341b6b242c3 100644
---- a/drivers/gpu/drm/amd/amdgpu/Kconfig
-+++ b/drivers/gpu/drm/amd/amdgpu/Kconfig
-@@ -13,6 +13,8 @@ config DRM_AMDGPU
- 	select DRM_TTM_HELPER
- 	select POWER_SUPPLY
- 	select HWMON
-+	select I2C
-+	select I2C_ALGOBIT
- 	select BACKLIGHT_CLASS_DEVICE
- 	select INTERVAL_TREE
- 	select DRM_BUDDY
-diff --git a/drivers/gpu/drm/ast/Kconfig b/drivers/gpu/drm/ast/Kconfig
-index d367a90cd3de..563fa7a3b546 100644
---- a/drivers/gpu/drm/ast/Kconfig
-+++ b/drivers/gpu/drm/ast/Kconfig
-@@ -4,6 +4,8 @@ config DRM_AST
- 	depends on DRM && PCI && MMU
- 	select DRM_GEM_SHMEM_HELPER
- 	select DRM_KMS_HELPER
-+	select I2C
-+	select I2C_ALGOBIT
- 	help
- 	 Say yes for experimental AST GPU driver. Do not enable
- 	 this driver without having a working -modesetting,
-diff --git a/drivers/gpu/drm/gma500/Kconfig b/drivers/gpu/drm/gma500/Kconfig
-index 807b989e3c77..2efc0eb41c64 100644
---- a/drivers/gpu/drm/gma500/Kconfig
-+++ b/drivers/gpu/drm/gma500/Kconfig
-@@ -3,6 +3,8 @@ config DRM_GMA500
- 	tristate "Intel GMA500/600/3600/3650 KMS Framebuffer"
- 	depends on DRM && PCI && X86 && MMU
- 	select DRM_KMS_HELPER
-+	select I2C
-+	select I2C_ALGOBIT
- 	# GMA500 depends on ACPI_VIDEO when ACPI is enabled, just like i915
- 	select ACPI_VIDEO if ACPI
- 	select BACKLIGHT_CLASS_DEVICE if ACPI
-diff --git a/drivers/gpu/drm/hisilicon/hibmc/Kconfig b/drivers/gpu/drm/hisilicon/hibmc/Kconfig
-index 4e41c144a290..126504318a4f 100644
---- a/drivers/gpu/drm/hisilicon/hibmc/Kconfig
-+++ b/drivers/gpu/drm/hisilicon/hibmc/Kconfig
-@@ -7,6 +7,8 @@ config DRM_HISI_HIBMC
- 	select DRM_VRAM_HELPER
- 	select DRM_TTM
- 	select DRM_TTM_HELPER
-+	select I2C
-+	select I2C_ALGOBIT
- 	help
- 	  Choose this option if you have a Hisilicon Hibmc soc chipset.
- 	  If M is selected the module will be called hibmc-drm.
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index 3efce05d7b57..c6e3792622f2 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -18,6 +18,8 @@ config DRM_I915
- 	select DRM_PANEL
- 	select DRM_MIPI_DSI
- 	select RELAY
-+	select I2C
-+	select I2C_ALGOBIT
- 	select IRQ_WORK
- 	# i915 depends on ACPI_VIDEO when ACPI is enabled
- 	# but for select to work, need to select ACPI_VIDEO's dependencies, ick
-diff --git a/drivers/gpu/drm/mgag200/Kconfig b/drivers/gpu/drm/mgag200/Kconfig
-index eec59658a938..b28c5e4828f4 100644
---- a/drivers/gpu/drm/mgag200/Kconfig
-+++ b/drivers/gpu/drm/mgag200/Kconfig
-@@ -4,6 +4,8 @@ config DRM_MGAG200
- 	depends on DRM && PCI && MMU
- 	select DRM_GEM_SHMEM_HELPER
- 	select DRM_KMS_HELPER
-+	select I2C
-+	select I2C_ALGOBIT
- 	help
- 	 This is a KMS driver for Matrox G200 chips. It supports the original
- 	 MGA G200 desktop chips and the server variants. It requires 0.3.0
-diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
-index 03d12caf9e26..a0bb3987bf63 100644
---- a/drivers/gpu/drm/nouveau/Kconfig
-+++ b/drivers/gpu/drm/nouveau/Kconfig
-@@ -10,6 +10,8 @@ config DRM_NOUVEAU
- 	select DRM_KMS_HELPER
- 	select DRM_TTM
- 	select DRM_TTM_HELPER
-+	select I2C
-+	select I2C_ALGOBIT
- 	select BACKLIGHT_CLASS_DEVICE if DRM_NOUVEAU_BACKLIGHT
- 	select X86_PLATFORM_DEVICES if ACPI && X86
- 	select ACPI_WMI if ACPI && X86
-diff --git a/drivers/gpu/drm/radeon/Kconfig b/drivers/gpu/drm/radeon/Kconfig
-index 97a277f9a25e..62a596d3a891 100644
---- a/drivers/gpu/drm/radeon/Kconfig
-+++ b/drivers/gpu/drm/radeon/Kconfig
-@@ -15,6 +15,8 @@ config DRM_RADEON
- 	select HWMON
- 	select BACKLIGHT_CLASS_DEVICE
- 	select INTERVAL_TREE
-+	select I2C
-+	select I2C_ALGOBIT
- 	# radeon depends on ACPI_VIDEO when ACPI is enabled, for select to work
- 	# ACPI_VIDEO's dependencies must also be selected.
- 	select INPUT if ACPI
+As you suggested, I sent a request to a request to linux-kernel [1],
+but it was not acknowledged.
 
-base-commit: ca39c4daa6f7f770b1329ffb46f1e4a6bcc3f291
--- 
-2.38.1
+What else can I do to help the patch land in the 5.10.x kernel in the future ?
 
+Thanks and happy Christmas.
+
+[1] https://marc.info/?l=linux-kernel&m=166883482714930&w=2
