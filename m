@@ -4,40 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AF01C77B78
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2E60C7EE26
 	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F75110E3DE;
-	Thu,  4 May 2023 12:31:45 +0000 (UTC)
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6687A10E1F7
- for <nouveau@lists.freedesktop.org>; Fri, 18 Nov 2022 09:17:50 +0000 (UTC)
-Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.54])
- by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4NDB1m50QRzJnpq;
- Fri, 18 Nov 2022 17:14:36 +0800 (CST)
-Received: from dggpemm500007.china.huawei.com (7.185.36.183) by
- dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 18 Nov 2022 17:17:47 +0800
-Received: from huawei.com (10.175.103.91) by dggpemm500007.china.huawei.com
- (7.185.36.183) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 18 Nov
- 2022 17:17:46 +0800
-From: Yang Yingliang <yangyingliang@huawei.com>
-To: <bskeggs@redhat.com>, <kherbst@redhat.com>, <lyude@redhat.com>,
- <airlied@gmail.com>, <daniel@ffwll.ch>, <tzimmermann@suse.de>
-Date: Fri, 18 Nov 2022 17:16:11 +0800
-Message-ID: <20221118091611.18706-1-yangyingliang@huawei.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F18D10E40E;
+	Thu,  4 May 2023 12:31:46 +0000 (UTC)
+X-Greylist: delayed 435 seconds by postgrey-1.36 at gabe;
+ Wed, 28 Dec 2022 14:58:46 UTC
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt
+ [193.136.128.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6E8610E3A6
+ for <nouveau@lists.freedesktop.org>; Wed, 28 Dec 2022 14:58:46 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id D721C6008775;
+ Wed, 28 Dec 2022 14:50:49 +0000 (WET)
+X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
+ tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
+ with LMTP id HQFEh9eA__YI; Wed, 28 Dec 2022 14:50:46 +0000 (WET)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt
+ [IPv6:2001:690:2100:1::b3dd:b9ac])
+ by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id C49DE600876F;
+ Wed, 28 Dec 2022 14:50:46 +0000 (WET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
+ s=mail; t=1672239046;
+ bh=1HO4Euafnc3ATG0WLfDkiuUVCgo90WriGTavAR16hUY=;
+ h=Date:From:To:Cc:Subject;
+ b=KL4BZIRAdPdUIOiqIBxUYZv/G2GM/dz0gLzls8Q/Z380lvMaG3gkaJpapim4aKqVg
+ CLk037AggI/XDTjxSVJ4PcEcr4nrxJEylm2W91WH0aeFkS1ZsL5q0eKr38e/uyMJ2Z
+ mi/mKUOiyDvJdIiZpWBaXRhRprfhJgK42ZOEWjFc=
+Received: from wslaptop (unknown [IPv6:2001:8a0:fbe7:6700:65be:d034:d2ec:60ff])
+ (Authenticated sender: ist187313)
+ by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id DE47B360071;
+ Wed, 28 Dec 2022 14:50:45 +0000 (WET)
+Date: Wed, 28 Dec 2022 14:49:14 +0000
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+To: diogo.ivo@tecnico.ulisboa.pt
+Message-ID: <20221228144914.z7t7a4fdwvbblnak@wslaptop>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.175.103.91]
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- dggpemm500007.china.huawei.com (7.185.36.183)
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:38 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/kms/nv04: fix pci device refcount leak
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:35 +0000
+Subject: [Nouveau] [REGRESSION] GM20B probe fails after commit 2541626cfb79
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,83 +58,84 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, yangyingliang@huawei.com
+Cc: nouveau@lists.freedesktop.org, airlied@redhat.com,
+ regressions@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ bskeggs@redhat.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As comment of pci_get_domain_bus_and_slot() says, it returns
-a pci device with refcount increment, when finish using it,
-the caller must decrement the reference count by calling
-pci_dev_put().
+Hello,
 
-In nv04_update_arb() and nouveau_hw_get_clock(), after using
-pci_dev_put() is called to avoid refcount leak.
+Commit 2541626cfb79 breaks GM20B probe with
+the following kernel log:
 
-Fixes: 6ee738610f41 ("drm/nouveau: Add DRM driver for NVIDIA GPUs")
-Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
----
- drivers/gpu/drm/nouveau/dispnv04/arb.c |  6 ++++--
- drivers/gpu/drm/nouveau/dispnv04/hw.c  | 13 +++++++++----
- 2 files changed, 13 insertions(+), 6 deletions(-)
+[    2.153892] ------------[ cut here ]------------
+[    2.153897] WARNING: CPU: 1 PID: 36 at drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgf100.c:273 gf100_vmm_valid+0x2c4/0x390
+[    2.153916] Modules linked in:
+[    2.153922] CPU: 1 PID: 36 Comm: kworker/u8:1 Not tainted 6.1.0+ #1
+[    2.153929] Hardware name: Google Pixel C (DT)
+[    2.153933] Workqueue: events_unbound deferred_probe_work_func
+[    2.153943] pstate: 80000005 (Nzcv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[    2.153950] pc : gf100_vmm_valid+0x2c4/0x390
+[    2.153959] lr : gf100_vmm_valid+0xb4/0x390
+[    2.153966] sp : ffffffc009e134b0
+[    2.153969] x29: ffffffc009e134b0 x28: 0000000000000000 x27: ffffffc008fd44c8
+[    2.153979] x26: 00000000ffffffea x25: ffffffc0087b98d0 x24: ffffff8080f89038
+[    2.153987] x23: ffffff8081fadc08 x22: 0000000000000000 x21: 0000000000000000
+[    2.153995] x20: ffffff8080f8a000 x19: ffffffc009e13678 x18: 0000000000000000
+[    2.154003] x17: f37a8b93418958e6 x16: ffffffc009f0d000 x15: 0000000000000000
+[    2.154011] x14: 0000000000000002 x13: 000000000003a020 x12: ffffffc008000000
+[    2.154019] x11: 0000000102913000 x10: 0000000000000000 x9 : 0000000000000000
+[    2.154026] x8 : ffffffc009e136d8 x7 : ffffffc008fd44c8 x6 : ffffff80803d0f00
+[    2.154034] x5 : 0000000000000000 x4 : ffffff8080f88c00 x3 : 0000000000000010
+[    2.154041] x2 : 000000000000000c x1 : 00000000ffffffea x0 : 00000000ffffffea
+[    2.154050] Call trace:
+[    2.154053]  gf100_vmm_valid+0x2c4/0x390
+[    2.154061]  nvkm_vmm_map_valid+0xd4/0x204
+[    2.154069]  nvkm_vmm_map_locked+0xa4/0x344
+[    2.154076]  nvkm_vmm_map+0x50/0x84
+[    2.154083]  nvkm_firmware_mem_map+0x84/0xc4
+[    2.154094]  nvkm_falcon_fw_oneinit+0xc8/0x320
+[    2.154101]  nvkm_acr_oneinit+0x428/0x5b0
+[    2.154109]  nvkm_subdev_oneinit_+0x50/0x104
+[    2.154114]  nvkm_subdev_init_+0x3c/0x12c
+[    2.154119]  nvkm_subdev_init+0x60/0xa0
+[    2.154125]  nvkm_device_init+0x14c/0x2a0
+[    2.154133]  nvkm_udevice_init+0x60/0x9c
+[    2.154140]  nvkm_object_init+0x48/0x1b0
+[    2.154144]  nvkm_ioctl_new+0x168/0x254
+[    2.154149]  nvkm_ioctl+0xd0/0x220
+[    2.154153]  nvkm_client_ioctl+0x10/0x1c
+[    2.154162]  nvif_object_ctor+0xf4/0x22c
+[    2.154168]  nvif_device_ctor+0x28/0x70
+[    2.154174]  nouveau_cli_init+0x150/0x590
+[    2.154180]  nouveau_drm_device_init+0x60/0x2a0
+[    2.154187]  nouveau_platform_device_create+0x90/0xd0
+[    2.154193]  nouveau_platform_probe+0x3c/0x9c
+[    2.154200]  platform_probe+0x68/0xc0
+[    2.154207]  really_probe+0xbc/0x2dc
+[    2.154211]  __driver_probe_device+0x78/0xe0
+[    2.154216]  driver_probe_device+0xd8/0x160
+[    2.154221]  __device_attach_driver+0xb8/0x134
+[    2.154226]  bus_for_each_drv+0x78/0xd0
+[    2.154230]  __device_attach+0x9c/0x1a0
+[    2.154234]  device_initial_probe+0x14/0x20
+[    2.154239]  bus_probe_device+0x98/0xa0
+[    2.154243]  deferred_probe_work_func+0x88/0xc0
+[    2.154247]  process_one_work+0x204/0x40c
+[    2.154256]  worker_thread+0x230/0x450
+[    2.154261]  kthread+0xc8/0xcc
+[    2.154266]  ret_from_fork+0x10/0x20
+[    2.154273] ---[ end trace 0000000000000000 ]---
+[    2.154278] nouveau 57000000.gpu: pmu: map -22
+[    2.154285] nouveau 57000000.gpu: acr: one-time init failed, -22
+[    2.154559] nouveau 57000000.gpu: init failed with -22
+[    2.154564] nouveau: DRM-master:00000000:00000080: init failed with -22
+[    2.154574] nouveau 57000000.gpu: DRM-master: Device allocation failed: -22
+[    2.162905] nouveau: probe of 57000000.gpu failed with error -22
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/arb.c b/drivers/gpu/drm/nouveau/dispnv04/arb.c
-index 1d3542d6006b..697e67fb21d3 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/arb.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/arb.c
-@@ -209,11 +209,13 @@ nv04_update_arb(struct drm_device *dev, int VClk, int bpp,
- 	sim_data.two_heads = nv_two_heads(dev);
- 	if ((pdev->device & 0xffff) == 0x01a0 /*CHIPSET_NFORCE*/ ||
- 	    (pdev->device & 0xffff) == 0x01f0 /*CHIPSET_NFORCE2*/) {
-+		struct pci_dev *pdev;
- 		uint32_t type;
- 		int domain = pci_domain_nr(pdev->bus);
- 
--		pci_read_config_dword(pci_get_domain_bus_and_slot(domain, 0, 1),
--				      0x7c, &type);
-+		pdev = pci_get_domain_bus_and_slot(domain, 0, 1);
-+		pci_read_config_dword(pdev, 0x7c, &type);
-+		pci_dev_put(pdev);
- 
- 		sim_data.memory_type = (type >> 12) & 1;
- 		sim_data.memory_width = 64;
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/hw.c b/drivers/gpu/drm/nouveau/dispnv04/hw.c
-index f7d35657aa64..52e3999225d5 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/hw.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/hw.c
-@@ -216,6 +216,7 @@ nouveau_hw_get_clock(struct drm_device *dev, enum nvbios_pll_type plltype)
- {
- 	struct pci_dev *pdev = to_pci_dev(dev->dev);
- 	struct nvkm_pll_vals pllvals;
-+	struct pci_dev *tmp_pdev;
- 	int ret;
- 	int domain;
- 
-@@ -224,8 +225,10 @@ nouveau_hw_get_clock(struct drm_device *dev, enum nvbios_pll_type plltype)
- 	if (plltype == PLL_MEMORY &&
- 	    (pdev->device & 0x0ff0) == CHIPSET_NFORCE) {
- 		uint32_t mpllP;
--		pci_read_config_dword(pci_get_domain_bus_and_slot(domain, 0, 3),
--				      0x6c, &mpllP);
-+
-+		tmp_pdev = pci_get_domain_bus_and_slot(domain, 0, 3);
-+		pci_read_config_dword(tmp_pdev, 0x6c, &mpllP);
-+		pci_dev_put(tmp_pdev);
- 		mpllP = (mpllP >> 8) & 0xf;
- 		if (!mpllP)
- 			mpllP = 4;
-@@ -236,8 +239,10 @@ nouveau_hw_get_clock(struct drm_device *dev, enum nvbios_pll_type plltype)
- 	    (pdev->device & 0xff0) == CHIPSET_NFORCE2) {
- 		uint32_t clock;
- 
--		pci_read_config_dword(pci_get_domain_bus_and_slot(domain, 0, 5),
--				      0x4c, &clock);
-+		tmp_pdev = pci_get_domain_bus_and_slot(domain, 0, 5);
-+		pci_read_config_dword(tmp_pdev, 0x4c, &clock);
-+		pci_dev_put(tmp_pdev);
-+
- 		return clock / 1000;
- 	}
- 
--- 
-2.25.1
+#regzbot introduced: 2541626cfb79
 
+Thanks,
+
+Diogo Ivo
