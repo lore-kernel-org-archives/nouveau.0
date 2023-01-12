@@ -4,34 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF931C7EE23
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E1F5C7EE2A
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A49210E3C1;
-	Thu,  4 May 2023 12:31:43 +0000 (UTC)
-X-Greylist: delayed 307 seconds by postgrey-1.36 at gabe;
- Mon, 17 Oct 2022 00:12:40 UTC
-Received: from out30-45.freemail.mail.aliyun.com
- (out30-45.freemail.mail.aliyun.com [115.124.30.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F58C10EBBC
- for <nouveau@lists.freedesktop.org>; Mon, 17 Oct 2022 00:12:39 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R371e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046049;
- MF=yang.lee@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
- TI=SMTPD_---0VSFZyNl_1665965246; 
-Received: from localhost(mailfrom:yang.lee@linux.alibaba.com
- fp:SMTPD_---0VSFZyNl_1665965246) by smtp.aliyun-inc.com;
- Mon, 17 Oct 2022 08:07:27 +0800
-From: Yang Li <yang.lee@linux.alibaba.com>
-To: bskeggs@redhat.com
-Date: Mon, 17 Oct 2022 08:07:23 +0800
-Message-Id: <20221017000723.113744-1-yang.lee@linux.alibaba.com>
-X-Mailer: git-send-email 2.20.1.7.g153144c
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2758410E3DA;
+	Thu,  4 May 2023 12:31:44 +0000 (UTC)
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com
+ [IPv6:2607:f8b0:4864:20::542])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6C8C10E888;
+ Thu, 12 Jan 2023 07:18:46 +0000 (UTC)
+Received: by mail-pg1-x542.google.com with SMTP id r18so12165459pgr.12;
+ Wed, 11 Jan 2023 23:18:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=UDSVYKBNF2+Uy+iLNC5V0cr7qiLHD6nPA7wwnGptmgE=;
+ b=SijGG49NZHdI1KNM+q13z6V78bOY7XyDD6HAs474o0IjHEkHj57jWZBXi4RWTHkifD
+ pY0kXWrxRJgkaaZMeRuiHTKfz41QF01vcK8r0DwR+a5Fp45ftlUykQqAtwDKVAp5inKA
+ TgWzdgKzm6hU2Bojxi5+zYOPgEs1Triw2BYpBl51NwbGYBgA2UIvT+iPxk7Jm+zeWp7M
+ DsZa+dSnR6q20RsGSLEot1ZrQAr04dx4ABX0zA4B2aQ1aInJ5bS39y5FMT6xMPzscQwR
+ xkuAhZP0tzGvfWNu25b5AmnuK+5+U0C0P1fv8gjo95guqzF1+eGgDSxwR8cfUYHmoOT5
+ Jwog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=UDSVYKBNF2+Uy+iLNC5V0cr7qiLHD6nPA7wwnGptmgE=;
+ b=OLjz18+9PkMgeE7RBz/ftU1AU8gK6wnku1D4fH1XtJ/LfD622RBgm/A4xAKhgT3ABS
+ fpJxoj7HBIBasUxk5XdN4Wc02komchQK/uFlnvrvoWu2962iujhyzfu/HJWGZRVyGPtN
+ SWPJarYre/8f48bBFS83TF1vTLH6p70CY53hed6W/yYC4ujIKyPhkIGBYINtKIcaeNAQ
+ VJI2LOps4XIuFXLimZvAvVnnIITrT9VfSshFIlhIGgx3xGWTbFj+z5IqNgLXFoyWQ4Bq
+ IFpFeG0t7OMl1KTi/gab1/3zJRwzuFjdh8e0BMliU3J/D76e9w1MsGLcMwimLro1hSzr
+ uLOg==
+X-Gm-Message-State: AFqh2krOiA/ahpVKcm3Ub/aA5I6sBlXPSCLsLcuCCKkdBAdvXrNVKtSG
+ y/snmzmI1HH3mfJ24wH4rTelFb61FQQYqQ==
+X-Google-Smtp-Source: AMrXdXuZYt2mUlQGkVh+q0eNdji128F4aLy4TNV26HWjm8aiwgOEHsgMnZSu+LHtNx6YoVKwe8NlSQ==
+X-Received: by 2002:a62:6d03:0:b0:582:998a:bed5 with SMTP id
+ i3-20020a626d03000000b00582998abed5mr4990282pfc.23.1673507926535; 
+ Wed, 11 Jan 2023 23:18:46 -0800 (PST)
+Received: from localhost.localdomain ([43.132.141.9])
+ by smtp.gmail.com with ESMTPSA id
+ e17-20020aa798d1000000b0058ba98f16a3sm289121pfm.171.2023.01.11.23.18.44
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 11 Jan 2023 23:18:46 -0800 (PST)
+From: korantwork@gmail.com
+To: bskeggs@redhat.com, kherbst@redhat.com, airlied@gmail.com, daniel@ffwll.ch
+Date: Thu, 12 Jan 2023 15:18:42 +0800
+Message-Id: <20230112071842.819123-1-korantwork@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:36 +0000
-Subject: [Nouveau] [PATCH -next] nouveau/dmem: Remove duplicated include in
- nouveau_dmem.c
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:33 +0000
+Subject: [Nouveau] [PATCH] drm/nouveau/mmu: Fix an UAF issue in NVKM
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,34 +68,39 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Yang Li <yang.lee@linux.alibaba.com>, daniel@ffwll.ch
+Cc: nouveau@lists.freedesktop.org, loydlv <loydlv@tencent.com>,
+ Xinghui Li <korantli@tencent.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-./drivers/gpu/drm/nouveau/nouveau_dmem.c: nvif/if000c.h is included more
-than once.
+From: Xinghui Li <korantli@tencent.com>
 
-Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=2404
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
+In nvkm_mem_new_host, the mem is be alloced. And mem->memory is
+assigned to pmemory. During this process, the mem will be free if
+the error occurs. But the *pmemory still points to the &mem->memory
+which has been relased.Laterly, the nvkm_memory_unref will put the
+memory which points to the pmemory again.So, we set the *pmemory to
+NULL to avoid UAF issue.
+
+Reported-by: loydlv <loydlv@tencent.com>
+Signed-off-by: Xinghui Li <korantli@tencent.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_dmem.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/nouveau/nvkm/subdev/mmu/mem.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-index 5fe209107246..e2c500aac273 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -33,7 +33,6 @@
- #include <nvif/if000c.h>
- #include <nvif/if500b.h>
- #include <nvif/if900b.h>
--#include <nvif/if000c.h>
- 
- #include <nvhw/class/cla0b5.h>
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/mem.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/mem.c
+index 92e363dbbc5a..ab30eb1fc0a3 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/mem.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/mem.c
+@@ -185,6 +185,7 @@ nvkm_mem_new_host(struct nvkm_mmu *mmu, int type, u8 page, u64 size,
+ 	} else
+ 	if ( (ret = nvif_unvers(ret, &argv, &argc, args->vn))) {
+ 		kfree(mem);
++		*pmemory = NULL;
+ 		return ret;
+ 	}
  
 -- 
-2.20.1.7.g153144c
+2.31.1
 
