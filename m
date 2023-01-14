@@ -4,72 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBC18C77B7C
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:34:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F195BC7EE29
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:34:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EE5310E4B7;
-	Thu,  4 May 2023 12:33:08 +0000 (UTC)
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80B2810E17C;
- Sat, 28 Jan 2023 11:29:37 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id m7so7141291wru.8;
- Sat, 28 Jan 2023 03:29:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=JZ1xTDKyjH5p8vliIZMR6idzBEt9CT83BKCLR4uL47U=;
- b=b8ycbPxp3whx6/XEh4a8jC6lqNyM4v4LqLtl0bW6c/TrTn68SSFdUqkyQpIUbg3iJb
- vOsQu/p7o0zfr8vrTD8mw4O3zgFPAYBtSOMGZDrNwCdJpu7H0zt0FFSxsj09d4SXoAtZ
- 8FDpWyUq4YaQWsZe30AqU6CjJNvErLG0MEEt6Tad9U95F+F5tXFki/4SG3U5ksJIXDjn
- tq/Zx6Ay0O5slTRzkxbwz0Tg83IRFQ7IdqJUFBflg/hKLJKRhIq69B+bNnullCdr+h/v
- dUPickcVjXMYwXMhTLHzg+WlT0gGBZl/cAtrOJDJ09zWKshm6qKDhFWmrWz3YgVJg4I3
- QvtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=JZ1xTDKyjH5p8vliIZMR6idzBEt9CT83BKCLR4uL47U=;
- b=0/vS+/N/FJEfmwY83wFCvR0S4BQKd9OvkrWnPReA1xUWtTbBx9T+vlWYeWUBU5hy/k
- 2AnZPeXQKeQGMLrJtTuF7MItEVa4Cc2r5TD3aB6PqPzdVnSlt2m46pEHPcHX08ECn5c7
- 7JBiotyCB0+It7KaMRX1dn2VjJBDRzIh+1dX3VT7AusQAmq+8U32HVJYENfK18GKrkm7
- XFmtgJFUddrYvT06JJvVwApi/ECk2MJF330qWDdvi8yZ8vwLimRAVP0jlXKiDhzEA1A6
- 4EH3JXQKOA+brpGdhnQyXesGvECyuizUXqUiU6F2dGgejESLxG1eZDKOW0BOwatDxstI
- iZTA==
-X-Gm-Message-State: AO0yUKVj1Wt7fS+xkI8zBPxeSIxlri1sckOFqChP77AmhXHXlmwX3GHT
- VBhKbLeAYC4dyfHhJLwnH/I=
-X-Google-Smtp-Source: AK7set8jZBChQ4Mh1964/1gOr1EHny2Xr+bR6F+kxFYXVwe6cfyTwJ7DZORX26wfiUEPOtTTV23brQ==
-X-Received: by 2002:a5d:534c:0:b0:2bf:cfc0:ac71 with SMTP id
- t12-20020a5d534c000000b002bfcfc0ac71mr6538619wrv.53.1674905375766; 
- Sat, 28 Jan 2023 03:29:35 -0800 (PST)
-Received: from [192.168.1.10] (97e09f27.skybroadband.com. [151.224.159.39])
- by smtp.googlemail.com with ESMTPSA id
- x26-20020a1c7c1a000000b003db01178b62sm10298989wmc.40.2023.01.28.03.29.34
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 28 Jan 2023 03:29:35 -0800 (PST)
-Message-ID: <ab1b0f73-6b4e-8602-2999-b7bec25d92db@googlemail.com>
-Date: Sat, 28 Jan 2023 11:29:33 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 746B310E480;
+	Thu,  4 May 2023 12:33:09 +0000 (UTC)
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt
+ [193.136.128.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC51610E095;
+ Sat, 14 Jan 2023 16:05:50 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 145846000868;
+ Sat, 14 Jan 2023 16:05:49 +0000 (WET)
+X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
+ tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
+ with LMTP id H0Y-aJ0Xu617; Sat, 14 Jan 2023 16:05:46 +0000 (WET)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt
+ [IPv6:2001:690:2100:1::b3dd:b9ac])
+ by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 9069A6005C43;
+ Sat, 14 Jan 2023 16:05:46 +0000 (WET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
+ s=mail; t=1673712346;
+ bh=vzXaWVOe417yn1eurWDHhug9jNmcWoC9tlMda/DYJUU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=Ni9fRADPTR8k6eKtihAN715qic5GmHRVGh4biRYhd4Mhiw7jm3t3w1j5Xpv7J5bwV
+ VxUf74p9cnvg1X8LgFV0l0IkQTdlKj+eoc0NIUT1FF3NFs7EVogtw8qwiKXEfrfrkx
+ HszLI9RRUWO6So931P5AoLfkjciPgOxzqdW9RvQY=
+Received: from wslaptop (unknown [IPv6:2001:818:dcb5:dc00:d990:b664:f16:4cb2])
+ (Authenticated sender: ist187313)
+ by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 68FAF360079;
+ Sat, 14 Jan 2023 16:05:46 +0000 (WET)
+Date: Sat, 14 Jan 2023 16:03:36 +0000
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+To: Karol Herbst <kherbst@redhat.com>
+Message-ID: <20230114160336.2jsh3ztij6cpzcee@wslaptop>
+References: <20221228144914.z7t7a4fdwvbblnak@wslaptop>
+ <c32ea02c-d706-ea2f-aa13-660b8db958ef@leemhuis.info>
+ <481f19ba-da7e-6900-0bb2-64ba92d59ce6@leemhuis.info>
+ <CACO55tv3E7y31MgyhW22GdDkE=XCYJF+boMivc5AEmyQ-svMhA@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-To: Linux regressions mailing list <regressions@lists.linux.dev>,
- bskeggs@redhat.com, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>
-References: <b64705e3-2e63-a466-f829-f9568b06766a@googlemail.com>
- <fcec3c78-b5d9-eb48-0fc0-d1f27de87f23@leemhuis.info>
- <b21fa1f6-a71d-5657-8596-ee0be73185ea@leemhuis.info>
- <3ab28896-70e9-6f90-5b97-e5397b06e715@googlemail.com>
- <a163dd7b-c5d1-a07b-a816-7a2dfd3edfd4@leemhuis.info>
-Content-Language: en-GB
-From: Chris Clayton <chris2553@googlemail.com>
-In-Reply-To: <a163dd7b-c5d1-a07b-a816-7a2dfd3edfd4@leemhuis.info>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
-Subject: Re: [Nouveau] linux-6.2-rc4+ hangs on poweroff/reboot: Bisected
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACO55tv3E7y31MgyhW22GdDkE=XCYJF+boMivc5AEmyQ-svMhA@mail.gmail.com>
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:35 +0000
+Subject: Re: [Nouveau] [REGRESSION] GM20B probe fails after commit
+ 2541626cfb79
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,157 +62,47 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: ML nouveau <nouveau@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Linux regressions mailing list <regressions@lists.linux.dev>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ bskeggs@redhat.com, Daniel Vetter <daniel@ffwll.ch>, airlied@redhat.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+On Sat, Jan 14, 2023 at 04:27:38AM +0100, Karol Herbst wrote:
+> I tried to look into it, but my jetson nano, just constantly behaves
+> in very strange ways. I tried to compile and install a 6.1 kernel onto
+> it, but any kernel just refuses to boot and I have no idea what's up
+> with that device. The kernel starts to boot and it just stops in the
+> middle. From what I can tell is that most of the tegra devices never
+> worked reliably in the first place and there are a couple of random
+> and strange bugs around. I've attached my dmesg, so if anybody has any
+> clues why the kernel just stops doing anything, it would really help
+> me.
 
+Hello,
 
-On 28/01/2023 05:42, Linux kernel regression tracking (Thorsten Leemhuis) wrote:
-> On 27.01.23 20:46, Chris Clayton wrote:
->> [Resend because the mail client on my phone decided to turn HTML on behind my back, so my reply got bounced.]
->>
->> Thanks Thorsten.
->>
->> I did try to revert but it didnt revert cleanly and I don't have the knowledge to fix it up.
->>
->> The patch was part of a merge that included a number of related patches. Tomorrow, I'll try to revert the lot and report
->> back.
+Thank you for looking into this! I have seen this type of hang in
+mainline on this SoC, and it was due to a reset not being deasserted.
+Would you mind getting a log with initcall_debug enabled to pinpoint
+where the hang occurs? I would be happy to help if I can.
+
+> But maybe it would be for the best to just pull tegra support out of
+> nouveau, because in the current situation we really can't spare much
+> time dealing with them and we are already busy enough just dealing
+> with the desktop GPUs. And the firmware we got from Nvidia is so
+> ancient and different from the desktop GPU ones, that without actually
+> having all those boards available and properly tested, we can't be
+> sure to not break them.
 > 
-> You are free to do so, but there is no need for that from my side. I
-> only wanted to know if a simple revert would do the trick; if it
-> doesn't, it in my experience often is best to leave things to the
-> developers of the code in question, 
+> And afaik there are almost no _actual_ users, just distribution folks
+> wanting to claim "support" for those devices, but then ending up using
+> Nvidia's out of tree Tegra driver in deployments anyway.
 
-Sound advice, Thorsten. Way to many conflicts for me to resolve.
+> If there are actual users using them for their daily life, I'd like to
+> know, because I'm aware of none.
 
-as they know it best and thus have a
-> better idea which hidden side effect a more complex revert might have.
-> 
-> Ciao, Thorsten
-> 
->> On 27/01/2023 11:20, Linux kernel regression tracking (Thorsten Leemhuis) wrote:
->>> Hi, this is your Linux kernel regression tracker. Top-posting for once,
->>> to make this easily accessible to everyone.
->>>
->>> @nouveau-maintainers, did anyone take a look at this? The report is
->>> already 8 days old and I don't see a single reply. Sure, we'll likely
->>> get a -rc8, but still it would be good to not fix this on the finish line.
->>>
->>> Chris, btw, did you try if you can revert the commit on top of latest
->>> mainline? And if so, does it fix the problem?
->>>
->>> Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
->>> --
->>> Everything you wanna know about Linux kernel regression tracking:
->>> https://linux-regtracking.leemhuis.info/about/#tldr
->>> If I did something stupid, please tell me, as explained on that page.
->>>
->>> #regzbot poke
->>>
->>> On 19.01.23 15:33, Linux kernel regression tracking (Thorsten Leemhuis)
->>> wrote:
->>>> [adding various lists and the two other nouveau maintainers to the list
->>>> of recipients]
->>>
->>>> On 18.01.23 21:59, Chris Clayton wrote:
->>>>> Hi.
->>>>>
->>>>> I build and installed the lastest development kernel earlier this week. I've found that when I try the laptop down (or
->>>>> reboot it), it hangs right at the end of closing the current session. The last line I see on  the screen when rebooting is:
->>>>>
->>>>> 	sd 4:0:0:0: [sda] Synchronising SCSI cache
->>>>>
->>>>> when closing down I see one additional line:
->>>>>
->>>>> 	sd 4:0:0:0 [sda]Stopping disk
->>>>>
->>>>> In both cases the machine then hangs and I have to hold down the power button fot a few seconds to switch it off.
->>>>>
->>>>> Linux 6.1 is OK but 6.2-rc1 hangs, so I bisected between this two and landed on:
->>>>>
->>>>> 	# first bad commit: [0e44c21708761977dcbea9b846b51a6fb684907a] drm/nouveau/flcn: new code to load+boot simple HS FWs
->>>>> (VPR scrubber)
->>>>>
->>>>> I built and installed a kernel with f15cde64b66161bfa74fb58f4e5697d8265b802e (the parent of the bad commit) checked out
->>>>> and that shuts down and reboots fine. It the did the same with the bad commit checked out and that does indeed hang, so
->>>>> I'm confident the bisect outcome is OK.
->>>>>
->>>>> Kernels 6.1.6 and 5.15.88 are also OK.
->>>>>
->>>>> My system had dual GPUs - one intel and one NVidia. Related extracts from 'lscpi -v' is:
->>>>>
->>>>> 00:02.0 VGA compatible controller: Intel Corporation CometLake-H GT2 [UHD Graphics] (rev 05) (prog-if 00 [VGA controller])
->>>>>         Subsystem: CLEVO/KAPOK Computer CometLake-H GT2 [UHD Graphics]
->>>>>
->>>>>         Flags: bus master, fast devsel, latency 0, IRQ 142
->>>>>
->>>>>         Memory at c2000000 (64-bit, non-prefetchable) [size=16M]
->>>>>
->>>>>         Memory at a0000000 (64-bit, prefetchable) [size=256M]
->>>>>
->>>>>         I/O ports at 5000 [size=64]
->>>>>
->>>>>         Expansion ROM at 000c0000 [virtual] [disabled] [size=128K]
->>>>>
->>>>>         Capabilities: [40] Vendor Specific Information: Len=0c <?>
->>>>>
->>>>>         Capabilities: [70] Express Root Complex Integrated Endpoint, MSI 00
->>>>>
->>>>>         Capabilities: [ac] MSI: Enable+ Count=1/1 Maskable- 64bit-
->>>>>
->>>>>         Capabilities: [d0] Power Management version 2
->>>>>
->>>>>         Kernel driver in use: i915
->>>>>
->>>>>         Kernel modules: i915
->>>>>
->>>>>
->>>>> 01:00.0 VGA compatible controller: NVIDIA Corporation TU117M [GeForce GTX 1650 Ti Mobile] (rev a1) (prog-if 00 [VGA
->>>>> controller])
->>>>>         Subsystem: CLEVO/KAPOK Computer TU117M [GeForce GTX 1650 Ti Mobile]
->>>>>         Flags: bus master, fast devsel, latency 0, IRQ 141
->>>>>         Memory at c4000000 (32-bit, non-prefetchable) [size=16M]
->>>>>         Memory at b0000000 (64-bit, prefetchable) [size=256M]
->>>>>         Memory at c0000000 (64-bit, prefetchable) [size=32M]
->>>>>         I/O ports at 4000 [size=128]
->>>>>         Expansion ROM at c3000000 [disabled] [size=512K]
->>>>>         Capabilities: [60] Power Management version 3
->>>>>         Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
->>>>>         Capabilities: [78] Express Legacy Endpoint, MSI 00
->>>>>         Kernel driver in use: nouveau
->>>>>         Kernel modules: nouveau
->>>>>
->>>>> DRI_PRIME=1 is exported in one of my init scripts (yes, I am still using sysvinit).
->>>>>
->>>>> I've attached the bisect.log, but please let me know if I can provide any other diagnostics. Please cc me as I'm not
->>>>> subscribed.
->>>>
->>>> Thanks for the report. To be sure the issue doesn't fall through the
->>>> cracks unnoticed, I'm adding it to regzbot, the Linux kernel regression
->>>> tracking bot:
->>>>
->>>> #regzbot ^introduced e44c2170876197
->>>> #regzbot title drm: nouveau: hangs on poweroff/reboot
->>>> #regzbot ignore-activity
->>>>
->>>> This isn't a regression? This issue or a fix for it are already
->>>> discussed somewhere else? It was fixed already? You want to clarify when
->>>> the regression started to happen? Or point out I got the title or
->>>> something else totally wrong? Then just reply and tell me -- ideally
->>>> while also telling regzbot about it, as explained by the page listed in
->>>> the footer of this mail.
->>>>
->>>> Developers: When fixing the issue, remember to add 'Link:' tags pointing
->>>> to the report (the parent of this mail). See page linked in footer for
->>>> details.
->>>>
->>>> Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
->>>> --
->>>> Everything you wanna know about Linux kernel regression tracking:
->>>> https://linux-regtracking.leemhuis.info/about/#tldr
->>>> That page also explains what to do if mails like this annoy you.
->>
->>
+For what it's worth, I consider myself a user of nouveau. Granted, I'm
+using it as a hobby project, but in its current state it is not far from
+a usable desktop experience on the Pixel C.
+
+Diogo
