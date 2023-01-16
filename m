@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40787C63797
-	for <nouveau@archiver.kernel.org>; Mon, 16 Jan 2023 13:13:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C302C677F1
+	for <nouveau@archiver.kernel.org>; Mon, 16 Jan 2023 13:13:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F01F010E431;
-	Mon, 16 Jan 2023 13:12:57 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23BAE10E40E;
- Mon, 16 Jan 2023 13:12:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7371310E446;
+	Mon, 16 Jan 2023 13:12:58 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16FCA10E072;
+ Mon, 16 Jan 2023 13:12:42 +0000 (UTC)
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id D486F3751A;
- Mon, 16 Jan 2023 13:12:43 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id B6C1E67774;
+ Mon, 16 Jan 2023 13:12:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1673874763; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1673874760; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=OO536y1oIIavqxJbggquU+Ve/xMHXk1PsPJeSriBnEc=;
- b=Udkbksja4U2SmueaT/CBQsB1+CnfK2yVlqG1l9ZE5v78J3trCBUlXz2roVXvwoK8JV+j/5
- RJBpTXJMbF1eF1IVQTt5IsaogDnmOtmBRNYkOH3qPIyZY2v7XlyXWADk1UpBB17xSI4khU
- CZJDLkGyF0XQJr3XVOuEWpBhmMoHRt4=
+ bh=aGIRfrzVt2lRRJCGWOkDzXbm/q1OhozGZKyV82xrWWY=;
+ b=AS5i292l/TLgt4y3tGHiRr01JCShlfp66THwbAg3jJFIvnImn7Ct5+50iO9uIlgjh8MZQd
+ tQfNMSwxEbemShLlp/b33L8ieGHwaQif1y2izATuwJW66AnyuBL/ixmmMbhx5yPH5WbUDs
+ pTXW2tCqZOU34yzoIjzEPBt66vjaaNE=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1673874763;
+ s=susede2_ed25519; t=1673874760;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=OO536y1oIIavqxJbggquU+Ve/xMHXk1PsPJeSriBnEc=;
- b=9MzN2mh+4Y19EA2xQcARcGH/wwJ5CLbTFhxyzTEtdsZAzOAJxfT4YnHxkMNDoB0Q8nvGy/
- kHh7OuLMzJlFZ8AQ==
+ bh=aGIRfrzVt2lRRJCGWOkDzXbm/q1OhozGZKyV82xrWWY=;
+ b=rOl/art5B6sAVF+ULi2azkGtW2PW8r8ly1/1Kntr5X0XMWjqhkvrRVE/NwY/U8yaFWfWbG
+ 2eAWnTQU0aIcWFDQ==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 94FAB138FA;
- Mon, 16 Jan 2023 13:12:43 +0000 (UTC)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 74066139C3;
+ Mon, 16 Jan 2023 13:12:40 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id WB17I0tNxWNrNQAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Mon, 16 Jan 2023 13:12:43 +0000
+ by imap2.suse-dmz.suse.de with ESMTPSA id sHD7GkhNxWNrNQAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 16 Jan 2023 13:12:40 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: sam@ravnborg.org,
 	daniel@ffwll.ch,
 	airlied@gmail.com
-Date: Mon, 16 Jan 2023 14:12:35 +0100
-Message-Id: <20230116131235.18917-23-tzimmermann@suse.de>
+Date: Mon, 16 Jan 2023 14:12:24 +0100
+Message-Id: <20230116131235.18917-12-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230116131235.18917-1-tzimmermann@suse.de>
 References: <20230116131235.18917-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH 22/22] drm/crtc-helper: Remove most include
- statements from drm_crtc_helper.h
+Subject: [Nouveau] [PATCH 11/22] drm/kmb: Remove unnecessary include
+ statements for drm_crtc_helper.h
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,43 +77,43 @@ Cc: linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Remove most include statements from crm_crtc_helper.h and forward-
-declare the contained types in drm_crtc_helper.h. Only keep <linux/types.h>
-for the definition of 'bool'.
+Several source files include drm_crtc_helper.h without needing it or
+only to get its transitive include statements; leading to unnecessary
+compile-time dependencies.
 
-Suggested-by: Sam Ravnborg <sam@ravnborg.org>
+Directly include required headers and drop drm_crtc_helper.h where
+possible.
+
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- include/drm/drm_crtc_helper.h | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/kmb/kmb_crtc.c  | 1 -
+ drivers/gpu/drm/kmb/kmb_plane.c | 1 -
+ 2 files changed, 2 deletions(-)
 
-diff --git a/include/drm/drm_crtc_helper.h b/include/drm/drm_crtc_helper.h
-index 072bc4f90349..8c886fc46ef2 100644
---- a/include/drm/drm_crtc_helper.h
-+++ b/include/drm/drm_crtc_helper.h
-@@ -33,13 +33,17 @@
- #ifndef __DRM_CRTC_HELPER_H__
- #define __DRM_CRTC_HELPER_H__
- 
--#include <linux/spinlock.h>
- #include <linux/types.h>
--#include <linux/idr.h>
- 
--#include <drm/drm_crtc.h>
--#include <drm/drm_modeset_helper_vtables.h>
--#include <drm/drm_modeset_helper.h>
-+struct drm_atomic_state;
-+struct drm_connector;
-+struct drm_crtc;
-+struct drm_device;
-+struct drm_display_mode;
-+struct drm_encoder;
-+struct drm_framebuffer;
-+struct drm_mode_set;
-+struct drm_modeset_acquire_ctx;
- 
- void drm_helper_disable_unused_functions(struct drm_device *dev);
- int drm_crtc_helper_set_config(struct drm_mode_set *set,
+diff --git a/drivers/gpu/drm/kmb/kmb_crtc.c b/drivers/gpu/drm/kmb/kmb_crtc.c
+index 06613ffeaaf8..647872f65bff 100644
+--- a/drivers/gpu/drm/kmb/kmb_crtc.c
++++ b/drivers/gpu/drm/kmb/kmb_crtc.c
+@@ -8,7 +8,6 @@
+ #include <drm/drm_atomic.h>
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_crtc.h>
+-#include <drm/drm_crtc_helper.h>
+ #include <drm/drm_print.h>
+ #include <drm/drm_vblank.h>
+ #include <drm/drm_modeset_helper_vtables.h>
+diff --git a/drivers/gpu/drm/kmb/kmb_plane.c b/drivers/gpu/drm/kmb/kmb_plane.c
+index d172a302f902..9e0562aa2bcb 100644
+--- a/drivers/gpu/drm/kmb/kmb_plane.c
++++ b/drivers/gpu/drm/kmb/kmb_plane.c
+@@ -7,7 +7,6 @@
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_blend.h>
+ #include <drm/drm_crtc.h>
+-#include <drm/drm_crtc_helper.h>
+ #include <drm/drm_fb_dma_helper.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_framebuffer.h>
 -- 
 2.39.0
 
