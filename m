@@ -4,63 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6F60C7EE26
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC8C8C77B7C
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE07510E3A8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 837ED10E3CC;
 	Thu,  4 May 2023 12:31:43 +0000 (UTC)
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
- [IPv6:2a00:1450:4864:20::62a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 909A010E9A9
- for <nouveau@lists.freedesktop.org>; Fri, 27 Jan 2023 15:52:58 +0000 (UTC)
-Received: by mail-ej1-x62a.google.com with SMTP id ud5so14893088ejc.4
- for <nouveau@lists.freedesktop.org>; Fri, 27 Jan 2023 07:52:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:subject:from:cc:to:content-language
- :user-agent:mime-version:date:message-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=guSQQsPsfTpqh05BsPnGdHThXLaG3PZgG3GcERxsikE=;
- b=l1cAUlEswCEWcTC5cDGszLbYSt1RK5TUz71tZk1XgI+3ImPiLv6Q0R7mDHOskZQ5In
- Jf0OcSlmWS1AR2CrO2RJ60rzbE92TBYMdDzv7C9Cc0ieDh9yZ85fhiFx4zfeAaNPKVeR
- MLjey51wNFIh64lLPpgtu6sbHJmDR47VMK5dHocZrYVgC3afL0JfDuLZCS8QCk8rrHtR
- +UmU3MZ9xoT9b/Q29KSGNltVsMrZdgVNer785JB+YgKgxgTK2Dd4SYQDdOmZXGvL9DRK
- lKuFJN6xOeefHrdZdOwPsh9m59n5WVro0y8Y/+ddvDatLoH1tgXUqpDWM3UGwrR28qfk
- GZwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:subject:from:cc:to:content-language
- :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=guSQQsPsfTpqh05BsPnGdHThXLaG3PZgG3GcERxsikE=;
- b=l9peQtVEB9EuT1mwboTLYWd9HkqTpBpj3+pWH7kXx6brlxlilj/XiYwblWAGsEP/um
- vD/PQpkYCTgg6w3SGd5hwbmuUAfiJswH9BgjgpE5LZMeBxwIxvNW1fN/qzRvSNSs5xf0
- BVrmU4fyJpLam/at7boDBj1ntahr2fd5RYcYw+uinFQH3sN5S2O4EtHN9hfuOCAxfcEs
- dFq0l+/NX1fRSjw2f29mhNRD5BE+LePeAiHjhOim9HHicU8LzRPYCc9b9JUVmcDYgBJ1
- p1O2HGedmU7QFkmKfaoPia0kcWgX8eJngyHgek0BHX9B8DgFwZCXYNMMk0TnyXuTViLT
- ALQw==
-X-Gm-Message-State: AO0yUKWBhL55r0luUGZ4qLR3j6NSSSex2wDVv0X/Ch840IVu67TbEPpb
- t7zHY2ixSbqdRHtyitnXYS1gIEgw5mctMQ==
-X-Google-Smtp-Source: AK7set+iDaZfuOtEWrPU9vb29V6cGzy6JRgQs56q/1MPQd0zIFh8CS7KSdZKpquFYB2CBSLH5A+U7w==
-X-Received: by 2002:a17:906:a408:b0:878:8073:4915 with SMTP id
- l8-20020a170906a40800b0087880734915mr4534105ejz.15.1674834776949; 
- Fri, 27 Jan 2023 07:52:56 -0800 (PST)
-Received: from ?IPV6:2a03:1b20:3:f011::a01d? ([2a03:1b20:3:f011::a01d])
- by smtp.gmail.com with ESMTPSA id
- fp35-20020a1709069e2300b00878683acac3sm2451699ejc.112.2023.01.27.07.52.56
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 27 Jan 2023 07:52:56 -0800 (PST)
-Message-ID: <e1bc7665-3348-bbb4-58b9-807c1aa96c54@gmail.com>
-Date: Fri, 27 Jan 2023 16:52:57 +0100
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18E5410E2B4;
+ Mon, 16 Jan 2023 10:07:24 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 7CCF460EEA;
+ Mon, 16 Jan 2023 10:07:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99940C433EF;
+ Mon, 16 Jan 2023 10:07:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1673863642;
+ bh=12Oegiwv5+ajWab6JX3x49VzyjwNVu3L68Wu90nFrm4=;
+ h=From:To:Cc:Subject:Date:From;
+ b=YlsM9rM2TmtIsjX64tzh/6QANd83dOW6mXZziDxqSbpurh1sqPtj+amtf//Rk0dhQ
+ H7g8TR34e7oVetIFbBoxwMmoSDxdOqqiXz1lO0P0GV9xF1kLb1HisYIA3u5kzQEr/1
+ mxQT1K+A3jnbiJodmDup6qfFwVzaqbMLRWO72tP3b+7kgehYcsR6rknHkXNP0j8Xxk
+ X4GsPp6lg/+hRtulVMBqD2eLZkTs49K1bCVPYDvUQ4sjAZ8QLIaSbYsCcNfE1UbVOO
+ r+xzvZFAWlY6lpEoi3CJwWA+GA5H35ZNBN29hH4bzll1jN7TG85k9rA66E1kaBpYhJ
+ 88Etd7cXeqnxg==
+From: "Jiri Slaby (SUSE)" <jirislaby@kernel.org>
+To: airlied@redhat.com
+Date: Mon, 16 Jan 2023 11:07:18 +0100
+Message-Id: <20230116100718.12832-1-jirislaby@kernel.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Content-Language: en-US
-To: nouveau@lists.freedesktop.org
-From: Shahab Vahedi <shahab.vahedi@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 04 May 2023 12:31:38 +0000
-Subject: [Nouveau] Separate TTYs on a Single Dual Head G94 Card
+Subject: [Nouveau] [PATCH -resend] drm/nouveau/kms/nv50- (gcc13): fix
+ nv50_wndw_new_ prototype
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,75 +51,65 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Shahab Vahedi <shahab.vahedi@gmail.com>
+Cc: "Jiri Slaby \(SUSE\)" <jirislaby@kernel.org>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>,
+ Daniel Vetter <daniel@ffwll.ch>, nouveau@lists.freedesktop.org,
+ Martin Liska <mliska@suse.cz>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-I have two monitors attached to my G94 graphic card. One is connected
-through the HDMI output and the other through DVI. When the kernel
-fully boots to its virtual console (getty), both monitors duplicate
-the same output. Please see [0] for the log and setup.
+gcc-13 warns about mismatching types for enums. That revealed switched
+arguments of nv50_wndw_new_():
+  drivers/gpu/drm/nouveau/dispnv50/wndw.c:696:1: error: conflicting types for 'nv50_wndw_new_' due to enum/integer mismatch; have 'int(const struct nv50_wndw_func *, struct drm_device *, enum drm_plane_type,  const char *, int,  const u32 *, u32,  enum nv50_disp_interlock_type,  u32,  struct nv50_wndw **)'
+  drivers/gpu/drm/nouveau/dispnv50/wndw.h:36:5: note: previous declaration of 'nv50_wndw_new_' with type 'int(const struct nv50_wndw_func *, struct drm_device *, enum drm_plane_type,  const char *, int,  const u32 *, enum nv50_disp_interlock_type,  u32,  u32,  struct nv50_wndw **)'
 
-I'd like to assign separate TTYs to these monitors. Say tty1 on the
-first monitor and tty2 on the second. Is there anyway to do this?
+It can be barely visible, but the declaration says about the parameters
+in the middle:
+  enum nv50_disp_interlock_type,
+  u32 interlock_data,
+  u32 heads,
 
-I've done a little bit of research and to me it looks like if I
-could end up with two framebuffers (/dev/fb{0,1}) per output, then
-maybe there's a chance:
+While the definition states differently:
+  u32 heads,
+  enum nv50_disp_interlock_type interlock_type,
+  u32 interlock_data,
 
-A) pass fbcon=map:01 as kernel parameter
-B) or maybe use an old "con2fb.c" [1] program from [2]
+Unify/fix the declaration to match the definition.
 
-Is there anyway, with or without a second framebuffer, to get
-these two monitors show separate outputs? If not, given the
-current design of nouveau/kernel/libdrm, is it feasible to add
-such feature? If yes, I like to work on it as a hobby project
-with the community support hopefully [3].
+Cc: Martin Liska <mliska@suse.cz>
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: Karol Herbst <kherbst@redhat.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Jiri Slaby (SUSE) <jirislaby@kernel.org>
+---
 
-Just to be clear, I'm looking for a solution that doesn't involve
-X/Wayland, or adding a second graphic card.
+Notes:
+    [v2] switch to uint instead of to enum
 
-Cheers,
-Shahab
+ drivers/gpu/drm/nouveau/dispnv50/wndw.h | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-[0]
-$ dmesg
-  ...
-  nouveau 0000:01:00.0: vgaarb: deactivate vga console
-  Console: switching to colour dummy device 80x25
-  nouveau 0000:01:00.0: NVIDIA G94 (094380a1)
-  nouveau 0000:01:00.0: bios: version 62.94.6a.00.12
-  nouveau 0000:01:00.0: fb: 512 MiB GDDR3
-  nouveau 0000:01:00.0: DRM: VRAM: 512 MiB
-  nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
-  nouveau 0000:01:00.0: DRM: TMDS table version 2.0
-  nouveau 0000:01:00.0: DRM: DCB version 4.0
-  nouveau 0000:01:00.0: DRM: DCB outp 00: 04000310 00000028
-  nouveau 0000:01:00.0: DRM: DCB outp 01: 02011300 00000028
-  nouveau 0000:01:00.0: DRM: DCB outp 02: 01011302 00000030
-  nouveau 0000:01:00.0: DRM: DCB outp 03: 02022332 00020010
-  nouveau 0000:01:00.0: DRM: DCB conn 00: 00000000
-  nouveau 0000:01:00.0: DRM: DCB conn 01: 00001130
-  nouveau 0000:01:00.0: DRM: DCB conn 02: 00002261
-  nouveau 0000:01:00.0: DRM: MM: using CRYPT for buffer copies
-  nouveau 0000:01:00.0: DRM: allocated 1680x1050 fb: 0x70000, bo 0000000033b61dde
-  fbcon: nouveaudrmfb (fb0) is primary device
-  Console: switching to colour frame buffer device 210x65
-  nouveau 0000:01:00.0: [drm] fb0: nouveaudrmfb frame buffer device
-  [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on minor 0
-  ...
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.h b/drivers/gpu/drm/nouveau/dispnv50/wndw.h
+index 591c852f326b..76a6ae5d5652 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/wndw.h
++++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.h
+@@ -35,8 +35,9 @@ struct nv50_wndw {
+ 
+ int nv50_wndw_new_(const struct nv50_wndw_func *, struct drm_device *,
+ 		   enum drm_plane_type, const char *name, int index,
+-		   const u32 *format, enum nv50_disp_interlock_type,
+-		   u32 interlock_data, u32 heads, struct nv50_wndw **);
++		   const u32 *format, u32 heads,
++		   enum nv50_disp_interlock_type, u32 interlock_data,
++		   struct nv50_wndw **);
+ void nv50_wndw_flush_set(struct nv50_wndw *, u32 *interlock,
+ 			 struct nv50_wndw_atom *);
+ void nv50_wndw_flush_clr(struct nv50_wndw *, u32 *interlock, bool flush,
+-- 
+2.39.0
 
-$ ls /dev/fb*
-  /dev/fb0
-
-$ cat /proc/fb
-  0 nouveaudrmfb
-
-[1]
-https://dafyddcrosby.com/dual-framebuffers/con2fb.c
-
-[2]
-https://dafyddcrosby.com/dual-framebuffers/
-
-[3]
-https://nouveau.freedesktop.org/IntroductoryCourse.html
