@@ -4,50 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8267AC54EBE
-	for <nouveau@archiver.kernel.org>; Mon, 16 Jan 2023 20:34:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47F12C67871
+	for <nouveau@archiver.kernel.org>; Mon, 16 Jan 2023 20:47:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D43EE10E4BF;
-	Mon, 16 Jan 2023 20:34:29 +0000 (UTC)
-X-Greylist: delayed 964 seconds by postgrey-1.36 at gabe;
- Mon, 16 Jan 2023 20:34:27 UTC
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94F4F10E05D;
+	Mon, 16 Jan 2023 20:47:14 +0000 (UTC)
 Received: from mailrelay3-1.pub.mailoutpod2-cph3.one.com
  (mailrelay3-1.pub.mailoutpod2-cph3.one.com [IPv6:2a02:2350:5:402::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0B5D10E4BF
- for <nouveau@lists.freedesktop.org>; Mon, 16 Jan 2023 20:34:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5EB510E4C9
+ for <nouveau@lists.freedesktop.org>; Mon, 16 Jan 2023 20:47:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ravnborg.org; s=rsa2;
  h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
  from:date:from;
- bh=bytMIduQNheRqZe6kytm7ykaGcqK/vKRwfXEFkmSQ90=;
- b=QyWyNEP/8+tGmIwWiEt9T7RyGf/vIOdDrLK40zukj0pdscxv8+C/qAH+sgoBlHmgjVIefXoSUF4jH
- Xt9O1NouPoVELk7nTE/xW6hIZBEW1ZJ6Qr2QTro/02sZYiWpOed3SFv1PerB5de3A/aXdMVkw82Cz0
- wZjKtq+ux5P3qYOysPwrHB5utIaKFtMxIf3ybwGNSOQunHtchICX6AFPhIUSSPHjbe7VjamdWH/T4A
- am9/LBvAr5TLWp3D5Dtrz2asFE6c2vHwR/p25qvtnYe1GeIrrCCygm9z5knlSWirunI6DZHRTMEKVm
- vTANNZ/ycTbCK28vo9dFA/JId2NgLyw==
+ bh=hRkGhkGEnmgInCvs3rVTwzKWsHh71Vg6LNBuwBJhnGI=;
+ b=QpnuNWjLm3HBShNHcv1jkSScOozA8nnb9tpP+9W+043hpJ6PGppYJYI84cxZGlrmGe7ujd0PptYxG
+ UUvbYWLLqfrxsTfUgKV/DOQoSkAJgPOD5o+u6sNhB99ST605WNzltrTnMSpRVz6aEQk41HeRil52vw
+ DvtpDbVTkouMlsjRLL4/z0jE88xfAHyxmDyfHOEGzmyQyQPuL/r2CYcpx1flwP3+rHOCEdicnuvs/W
+ jM7Sl2WRxpVKA/mNBJ35JXcIEKPBseR8jqbmHVxwY0qvlMsWz5KI6lrsqzage8xYkyxtnvI445elRs
+ 23dxmjsrEbVTFfR9rEzkEYmhMT9TGuA==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
  d=ravnborg.org; s=ed2;
  h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
  from:date:from;
- bh=bytMIduQNheRqZe6kytm7ykaGcqK/vKRwfXEFkmSQ90=;
- b=vtzSjnBZqhZ4qvoCa9tGfq1uiYGVTigg/jlRxjalISRNzouXb9Cok8iKjyjF61/lGG6D46KLzGBKy
- 7zf9MIgCA==
-X-HalOne-ID: eb382d74-95da-11ed-b179-ede074c87fad
+ bh=hRkGhkGEnmgInCvs3rVTwzKWsHh71Vg6LNBuwBJhnGI=;
+ b=mCI+axuI2AfxFUOLQXYc2VJUv0VtmpAfcrLE6qklmT6q+xl8lgRJLmMDbSswchsPqWUlGnmCIrq0A
+ k5Y79kqBw==
+X-HalOne-ID: f12f8be1-95de-11ed-b1f5-ede074c87fad
 Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
  by mailrelay3 (Halon) with ESMTPSA
- id eb382d74-95da-11ed-b179-ede074c87fad;
- Mon, 16 Jan 2023 20:18:21 +0000 (UTC)
-Date: Mon, 16 Jan 2023 21:18:20 +0100
+ id f12f8be1-95de-11ed-b1f5-ede074c87fad;
+ Mon, 16 Jan 2023 20:47:09 +0000 (UTC)
+Date: Mon, 16 Jan 2023 21:47:07 +0100
 From: Sam Ravnborg <sam@ravnborg.org>
 To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <Y8WxDCtn8HriRhyG@ravnborg.org>
+Message-ID: <Y8W3y32sOpP3D6YX@ravnborg.org>
 References: <20230116131235.18917-1-tzimmermann@suse.de>
- <20230116131235.18917-4-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230116131235.18917-4-tzimmermann@suse.de>
-Subject: Re: [Nouveau] [PATCH 03/22] drm/amdgpu: Remove unnecessary include
- statements for drm_crtc_helper.h
+In-Reply-To: <20230116131235.18917-1-tzimmermann@suse.de>
+Subject: Re: [Nouveau] [PATCH 00/22] drm: Remove includes for
+ drm_crtc_helper.h
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,183 +64,188 @@ Cc: linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Jan 16, 2023 at 02:12:16PM +0100, Thomas Zimmermann wrote:
-> Several source files include drm_crtc_helper.h without needing it or
-> only to get its transitive include statements; leading to unnecessary
-> compile-time dependencies.
-> 
-> Directly include required headers and drop drm_crtc_helper.h where
-> possible.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c | 2 ++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c     | 1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_display.c    | 1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c   | 1 -
->  drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c        | 1 -
->  drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h       | 1 -
->  drivers/gpu/drm/amd/amdgpu/atombios_crtc.c     | 1 -
->  drivers/gpu/drm/amd/amdgpu/atombios_encoders.c | 1 -
->  drivers/gpu/drm/amd/amdgpu/dce_v10_0.c         | 2 ++
->  drivers/gpu/drm/amd/amdgpu/dce_v11_0.c         | 2 ++
->  drivers/gpu/drm/amd/amdgpu/dce_v6_0.c          | 2 ++
->  drivers/gpu/drm/amd/amdgpu/dce_v8_0.c          | 2 ++
->  12 files changed, 12 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-> index 2ebbc6382a06..3c962d0214cc 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-> @@ -25,7 +25,9 @@
->   */
->  
->  #include <drm/display/drm_dp_helper.h>
-> +#include <drm/drm_crtc_helper.h>
->  #include <drm/drm_edid.h>
-> +#include <drm/drm_modeset_helper_vtables.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/amdgpu_drm.h>
->  #include "amdgpu.h"
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 0993ee91fe18..63122482208d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -39,6 +39,7 @@
->  #include <drm/drm_aperture.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_fb_helper.h>
-> +#include <drm/drm_crtc_helper.h>
-Move it one line up to keep the sorting.
+Hi Thomas.
 
-With this fixed:
+On Mon, Jan 16, 2023 at 02:12:13PM +0100, Thomas Zimmermann wrote:
+> A lot of source files include drm_crtc_helper.h for its contained
+> include statements. This leads to excessive compile-time dependencies.
+> 
+> Where possible, remove the include statements for drm_crtc_helper.h
+> and include the required source files directly. Also remove the
+> include statements from drm_crtc_helper.h itself, which doesn't need
+> most of them.
+With this patchset drm_crtc_helper usage is reduced from 85 places to 35
+places. And the 35 places is only .c files.
+This is a very nice reduction of bloat! I hope this has a measureable
+effect on building times.
+
+I was working on something similar, but that approach only added missing
+includes, and did not kill all the unnessesary includes - which I think
+is the biggest win here.
+
+All patches are:
 Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/amdgpu_drm.h>
->  #include <linux/vgaarb.h>
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-> index b22471b3bd63..c5b98e9a69e9 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-> @@ -42,6 +42,7 @@
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_modeset_helper.h>
->  #include <drm/drm_vblank.h>
->  
->  /**
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c
-> index c96e458ed088..27a782a9dc72 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c
-> @@ -24,7 +24,6 @@
->   *          Alex Deucher
->   */
->  
-> -#include <drm/drm_crtc_helper.h>
->  #include <drm/amdgpu_drm.h>
->  #include "amdgpu.h"
->  #include "amdgpu_connectors.h"
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-> index a6aef488a822..d0a1cc88832c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-> @@ -45,7 +45,6 @@
->  #include <linux/irq.h>
->  #include <linux/pci.h>
->  
-> -#include <drm/drm_crtc_helper.h>
->  #include <drm/drm_vblank.h>
->  #include <drm/amdgpu_drm.h>
->  #include <drm/drm_drv.h>
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-> index 8a39300b1a84..cf4b6e8d7d1e 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-> @@ -35,7 +35,6 @@
->  #include <drm/drm_edid.h>
->  #include <drm/drm_encoder.h>
->  #include <drm/drm_fixed.h>
-> -#include <drm/drm_crtc_helper.h>
->  #include <drm/drm_framebuffer.h>
->  #include <drm/drm_probe_helper.h>
->  #include <linux/i2c.h>
-> diff --git a/drivers/gpu/drm/amd/amdgpu/atombios_crtc.c b/drivers/gpu/drm/amd/amdgpu/atombios_crtc.c
-> index afad094f84c2..10098fdd33fc 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/atombios_crtc.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/atombios_crtc.c
-> @@ -24,7 +24,6 @@
->   *          Alex Deucher
->   */
->  
-> -#include <drm/drm_crtc_helper.h>
->  #include <drm/amdgpu_drm.h>
->  #include <drm/drm_fixed.h>
->  #include "amdgpu.h"
-> diff --git a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c b/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
-> index 18ae9433e463..d95b2dc78063 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/atombios_encoders.c
-> @@ -28,7 +28,6 @@
->  
->  #include <acpi/video.h>
->  
-> -#include <drm/drm_crtc_helper.h>
->  #include <drm/amdgpu_drm.h>
->  #include "amdgpu.h"
->  #include "amdgpu_connectors.h"
-> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-> index a2452fc304c5..01d1e2a631be 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-> @@ -22,6 +22,8 @@
->   */
->  
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_modeset_helper.h>
-> +#include <drm/drm_modeset_helper_vtables.h>
->  #include <drm/drm_vblank.h>
->  
->  #include "amdgpu.h"
-> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-> index 6ac680c4c6e2..973abe989ebe 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-> @@ -22,6 +22,8 @@
->   */
->  
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_modeset_helper.h>
-> +#include <drm/drm_modeset_helper_vtables.h>
->  #include <drm/drm_vblank.h>
->  
->  #include "amdgpu.h"
-> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-> index 354ae09cc9a2..86e95b1c9d0e 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-> @@ -24,6 +24,8 @@
->  #include <linux/pci.h>
->  
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_modeset_helper.h>
-> +#include <drm/drm_modeset_helper_vtables.h>
->  #include <drm/drm_vblank.h>
->  
->  #include "amdgpu.h"
-> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-> index 33977b0ba19d..f81f1d5d3e8a 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-> @@ -22,6 +22,8 @@
->   */
->  
->  #include <drm/drm_fourcc.h>
-> +#include <drm/drm_modeset_helper.h>
-> +#include <drm/drm_modeset_helper_vtables.h>
->  #include <drm/drm_vblank.h>
->  
->  #include "amdgpu.h"
+
+For a few of them the r-b is conditional, see the specific comments
+posted.
+
+
+I did a build check here with the archs and config I verifies with.
+This covers "alpha arm arm64 sparc64 i386 x86 powerpc s390 riscv sh"
+and everything was fine. I have a few specific configs to pull in
+drivers that need a bit extra to be built.
+So I consider build coverage OK for applying, but it would be nice to
+wait a few days for the bots to verify too.
+
+My own work on slimming drm_atomic_helper.h and drm_print.h will be
+rebased on top of your work before I continue it.
+I need to look into removing unused includes too.
+
+	Sam
+
+> 
+> I built this patchset on x86-64, aarch64 and arm. Hopefully I found
+> all include dependencies.
+> 
+> Thanks to Sam Ravnborg for bringing this to my attention.
+> 
+> Thomas Zimmermann (22):
+>   drm/amdgpu: Fix coding style
+>   drm: Remove unnecessary include statements for drm_crtc_helper.h
+>   drm/amdgpu: Remove unnecessary include statements for
+>     drm_crtc_helper.h
+>   drm/arm/komeda: Remove unnecessary include statements for
+>     drm_crtc_helper.h
+>   drm/aspeed: Remove unnecessary include statements for
+>     drm_crtc_helper.h
+>   drm/ast: Remove unnecessary include statements for drm_crtc_helper.h
+>   drm/bridge: Remove unnecessary include statements for
+>     drm_crtc_helper.h
+>   drm/gma500: Remove unnecessary include statements for
+>     drm_crtc_helper.h
+>   drm/i2c/ch7006: Remove unnecessary include statements for
+>     drm_crtc_helper.h
+>   drm/ingenic: Remove unnecessary include statements for
+>     drm_crtc_helper.h
+>   drm/kmb: Remove unnecessary include statements for drm_crtc_helper.h
+>   drm/logicvc: Remove unnecessary include statements for
+>     drm_crtc_helper.h
+>   drm/nouveau: Remove unnecessary include statements for
+>     drm_crtc_helper.h
+>   drm/radeon: Remove unnecessary include statements for
+>     drm_crtc_helper.h
+>   drm/rockchip: Remove unnecessary include statements for
+>     drm_crtc_helper.h
+>   drm/shmobile: Remove unnecessary include statements for
+>     drm_crtc_helper.h
+>   drm/sprd: Remove unnecessary include statements for drm_crtc_helper.h
+>   drm/sun4i: Remove unnecessary include statements for drm_crtc_helper.h
+>   drm/tidss: Remove unnecessary include statements for drm_crtc_helper.h
+>   drm/udl: Remove unnecessary include statements for drm_crtc_helper.h
+>   drm/vboxvideo: Remove unnecessary include statements for
+>     drm_crtc_helper.h
+>   drm/crtc-helper: Remove most include statements from drm_crtc_helper.h
+> 
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c     |  2 ++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c         |  5 +++--
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_display.c        |  1 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c       |  1 -
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c            |  1 -
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h           |  1 -
+>  drivers/gpu/drm/amd/amdgpu/atombios_crtc.c         |  1 -
+>  drivers/gpu/drm/amd/amdgpu/atombios_encoders.c     |  1 -
+>  drivers/gpu/drm/amd/amdgpu/dce_v10_0.c             |  2 ++
+>  drivers/gpu/drm/amd/amdgpu/dce_v11_0.c             |  2 ++
+>  drivers/gpu/drm/amd/amdgpu/dce_v6_0.c              |  2 ++
+>  drivers/gpu/drm/amd/amdgpu/dce_v8_0.c              |  2 ++
+>  drivers/gpu/drm/arm/display/komeda/komeda_crtc.c   |  1 -
+>  drivers/gpu/drm/arm/display/komeda/komeda_kms.h    |  1 -
+>  drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c           |  1 -
+>  drivers/gpu/drm/aspeed/aspeed_gfx_drv.c            |  1 -
+>  drivers/gpu/drm/aspeed/aspeed_gfx_out.c            |  1 -
+>  drivers/gpu/drm/ast/ast_drv.c                      |  1 -
+>  drivers/gpu/drm/ast/ast_main.c                     |  1 -
+>  drivers/gpu/drm/ast/ast_mode.c                     |  1 -
+>  drivers/gpu/drm/bridge/analogix/analogix-anx6345.c |  1 -
+>  drivers/gpu/drm/bridge/analogix/anx7625.c          |  1 -
+>  .../gpu/drm/bridge/cadence/cdns-mhdp8546-core.c    |  1 -
+>  drivers/gpu/drm/bridge/ite-it6505.c                |  1 -
+>  drivers/gpu/drm/bridge/ite-it66121.c               |  1 -
+>  drivers/gpu/drm/bridge/tc358768.c                  |  1 -
+>  drivers/gpu/drm/bridge/tc358775.c                  |  1 -
+>  drivers/gpu/drm/drm_crtc_helper.c                  |  1 -
+>  drivers/gpu/drm/drm_lease.c                        |  2 +-
+>  drivers/gpu/drm/drm_plane_helper.c                 |  1 -
+>  drivers/gpu/drm/gma500/cdv_device.c                |  1 +
+>  drivers/gpu/drm/gma500/cdv_intel_crt.c             |  2 ++
+>  drivers/gpu/drm/gma500/cdv_intel_display.c         |  1 +
+>  drivers/gpu/drm/gma500/cdv_intel_dp.c              |  1 +
+>  drivers/gpu/drm/gma500/cdv_intel_hdmi.c            |  2 ++
+>  drivers/gpu/drm/gma500/cdv_intel_lvds.c            |  2 ++
+>  drivers/gpu/drm/gma500/framebuffer.c               |  2 ++
+>  drivers/gpu/drm/gma500/gma_display.c               |  2 ++
+>  drivers/gpu/drm/gma500/oaktrail_crtc.c             |  1 +
+>  drivers/gpu/drm/gma500/oaktrail_hdmi.c             |  2 ++
+>  drivers/gpu/drm/gma500/oaktrail_lvds.c             |  1 +
+>  drivers/gpu/drm/gma500/psb_device.c                |  1 +
+>  drivers/gpu/drm/gma500/psb_intel_display.c         |  3 +++
+>  drivers/gpu/drm/gma500/psb_intel_drv.h             |  1 -
+>  drivers/gpu/drm/gma500/psb_intel_lvds.c            |  2 ++
+>  drivers/gpu/drm/gma500/psb_intel_sdvo.c            |  2 ++
+>  drivers/gpu/drm/i2c/ch7006_drv.c                   |  2 ++
+>  drivers/gpu/drm/i2c/ch7006_priv.h                  |  1 -
+>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c          |  1 -
+>  drivers/gpu/drm/kmb/kmb_crtc.c                     |  1 -
+>  drivers/gpu/drm/kmb/kmb_plane.c                    |  1 -
+>  drivers/gpu/drm/logicvc/logicvc_interface.c        |  1 -
+>  drivers/gpu/drm/logicvc/logicvc_mode.c             |  1 -
+>  drivers/gpu/drm/nouveau/dispnv04/crtc.c            |  1 +
+>  drivers/gpu/drm/nouveau/dispnv04/dac.c             |  2 +-
+>  drivers/gpu/drm/nouveau/dispnv04/dfp.c             |  2 +-
+>  drivers/gpu/drm/nouveau/dispnv04/tvmodesnv17.c     |  1 -
+>  drivers/gpu/drm/nouveau/dispnv04/tvnv04.c          |  2 +-
+>  drivers/gpu/drm/nouveau/dispnv04/tvnv17.c          |  1 +
+>  drivers/gpu/drm/nouveau/dispnv50/head.c            |  1 -
+>  drivers/gpu/drm/nouveau/nouveau_drm.c              |  1 -
+>  drivers/gpu/drm/nouveau/nouveau_vga.c              |  1 -
+>  drivers/gpu/drm/radeon/atombios_crtc.c             |  2 +-
+>  drivers/gpu/drm/radeon/atombios_encoders.c         |  1 +
+>  drivers/gpu/drm/radeon/r300.c                      |  1 -
+>  drivers/gpu/drm/radeon/radeon_asic.c               |  1 -
+>  drivers/gpu/drm/radeon/radeon_connectors.c         |  1 +
+>  drivers/gpu/drm/radeon/radeon_display.c            |  1 +
+>  drivers/gpu/drm/radeon/radeon_drv.c                |  1 -
+>  drivers/gpu/drm/radeon/radeon_encoders.c           |  1 -
+>  drivers/gpu/drm/radeon/radeon_irq_kms.c            |  1 -
+>  drivers/gpu/drm/radeon/radeon_legacy_crtc.c        |  2 +-
+>  drivers/gpu/drm/radeon/radeon_legacy_encoders.c    |  2 +-
+>  drivers/gpu/drm/radeon/radeon_legacy_tv.c          |  1 -
+>  drivers/gpu/drm/radeon/radeon_mode.h               |  2 +-
+>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |  1 -
+>  drivers/gpu/drm/shmobile/shmob_drm_crtc.c          |  2 ++
+>  drivers/gpu/drm/shmobile/shmob_drm_drv.c           |  1 -
+>  drivers/gpu/drm/shmobile/shmob_drm_plane.c         |  1 -
+>  drivers/gpu/drm/sprd/sprd_dpu.c                    |  1 -
+>  drivers/gpu/drm/sprd/sprd_drm.c                    |  1 -
+>  drivers/gpu/drm/sprd/sprd_dsi.c                    |  1 -
+>  drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c              |  2 +-
+>  drivers/gpu/drm/tidss/tidss_crtc.c                 |  1 -
+>  drivers/gpu/drm/tidss/tidss_drv.c                  |  1 -
+>  drivers/gpu/drm/tidss/tidss_encoder.c              |  2 +-
+>  drivers/gpu/drm/tidss/tidss_kms.c                  |  1 -
+>  drivers/gpu/drm/tidss/tidss_plane.c                |  1 -
+>  drivers/gpu/drm/udl/udl_drv.c                      |  2 +-
+>  drivers/gpu/drm/udl/udl_modeset.c                  |  1 -
+>  drivers/gpu/drm/vboxvideo/vbox_drv.c               |  2 +-
+>  drivers/gpu/drm/vboxvideo/vbox_main.c              |  1 -
+>  include/drm/drm_crtc_helper.h                      | 14 +++++++++-----
+>  include/drm/drm_fixed.h                            |  1 +
+>  94 files changed, 70 insertions(+), 70 deletions(-)
+> 
+> 
+> base-commit: 68d139b609a97a83e7c231189d4864aba4e1679b
+> prerequisite-patch-id: 0aa359f6144c4015c140c8a6750be19099c676fb
+> prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
+> prerequisite-patch-id: 3f204510fcbf9530d6540bd8e6128cce598988b6
 > -- 
 > 2.39.0
