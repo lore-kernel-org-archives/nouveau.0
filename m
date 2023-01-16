@@ -4,68 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA52FC54EBE
-	for <nouveau@archiver.kernel.org>; Mon, 16 Jan 2023 11:34:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE3EBC46467
+	for <nouveau@archiver.kernel.org>; Mon, 16 Jan 2023 11:54:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FD2110E3D0;
-	Mon, 16 Jan 2023 11:34:30 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E668310E3D0
- for <nouveau@lists.freedesktop.org>; Mon, 16 Jan 2023 11:34:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1673868866;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F48410E3DE;
+	Mon, 16 Jan 2023 11:54:31 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C31C210E3DC;
+ Mon, 16 Jan 2023 11:54:29 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 7BB7A33A00;
+ Mon, 16 Jan 2023 11:54:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1673870068; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=CWPoxshq9dPBmcr/9P1qWrfk56DNaf4wBLS0tkWKWM0=;
- b=SQdxHpnjXB//su/tJZp+td5/4w7FSFKZmSyV4s7C6yyIQyXlPDVdmQuiGVLaZPFSLwbY23
- ifmhR+k3CYJXd0J0jILDE0jIIrZkakPWXTz6rZKSEipzFmbhwra5ceoyWZNF4M3OgDuBJi
- yJa7SIqTt8CFsqXETLtOCgabe1D5diI=
-Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com
- [209.85.167.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-635-r47oQomSMPOv9BL6iUkhUg-1; Mon, 16 Jan 2023 06:34:25 -0500
-X-MC-Unique: r47oQomSMPOv9BL6iUkhUg-1
-Received: by mail-lf1-f70.google.com with SMTP id
- u13-20020a056512128d00b004b53d7241f6so10294964lfs.4
- for <nouveau@lists.freedesktop.org>; Mon, 16 Jan 2023 03:34:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=CWPoxshq9dPBmcr/9P1qWrfk56DNaf4wBLS0tkWKWM0=;
- b=NUb0wv2E1dn02QeWUp4pUWuBojxg99c6LZjy5Qho0DGhwT90bFAekIkH4ajuQuQY/w
- tzAwqQWrnmYkrD0N9HVpAAJkCpWURZhOJT4u4o3zccDcVABcX0K0cZdeQm3P9tOCJXXG
- PeY472/MdsSKay6WBzP7wHsdSoBkqOPl1WmARcxfwVZZYhtrWoM8hIYXXGgrsZ/f/Ql0
- NRVfk1HKicbgPSw2GKJG4WBpG4YjvpgVxxPm6eMypeMaexSzOH1pkE16Be92T9UnR+zi
- Or7LgGyq2wC/SIkuC8S/v3rIwo242dyGMokoaUQGfCCaasoEoKxOu9Jw1tWptLWWGUd8
- JQdg==
-X-Gm-Message-State: AFqh2ko3QhEDoK3FSO/tB/JKBIOIcefuEjTmsC3TgRVn8SE9MMcEymF3
- 8DsZ+EBb/RQdKkcyABCzfeyaw0m2qpkxO5KZI6d2O3jli7qzGF1Z5RExhDKIFkPkhfKqUs8IiIA
- 0kKUz5/LWPmar28Kly2qc9CHKrBXKmvgoLQx6CW1KYQ==
-X-Received: by 2002:a2e:380b:0:b0:287:87ef:f274 with SMTP id
- f11-20020a2e380b000000b0028787eff274mr1024782lja.507.1673868864543; 
- Mon, 16 Jan 2023 03:34:24 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXs/A3BEIyrgk+b4q28+jNwXWqJsjWo4v5qbUO0d4qKJWtn0IHAJojTWDkmuo/bhHVhwciUfZfa4XHzMGXxQoWU=
-X-Received: by 2002:a2e:380b:0:b0:287:87ef:f274 with SMTP id
- f11-20020a2e380b000000b0028787eff274mr1024771lja.507.1673868864276; Mon, 16
- Jan 2023 03:34:24 -0800 (PST)
+ bh=sGmxwmLUhAbC3mg2UjIGg7BdcCt6B/pF9fkmcMljNRM=;
+ b=A/b46kcDcsW3NbnlB9Obbk+zoZlS8nvtPHrwbLSdnUiyn6OU3eQgpS8zPgWwxQV33IFdxB
+ 6qKg4/nxmXLJEwxVY2wYbGCIvcS0tLeOS1EU0d7NmsuXAAjnVGRLBGzvq0UWTQgROANQMG
+ iwJDvC+gsyidyGZDbK4ggc/DodvFydQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1673870068;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=sGmxwmLUhAbC3mg2UjIGg7BdcCt6B/pF9fkmcMljNRM=;
+ b=rVbQxLwOBcITkHrX/i/hcRPS6HkD8yKt4Kl/ANeBiVlg/wDLls3Z7W86MwEtA1XSPvZN3c
+ ioArKYdVxY8LeXAA==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id E1006138FE;
+ Mon, 16 Jan 2023 11:54:27 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id +NcrNvM6xWPLBAAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 16 Jan 2023 11:54:27 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ tvrtko.ursulin@linux.intel.com, bskeggs@redhat.com, kherbst@redhat.com,
+ lyude@redhat.com, evan.quan@amd.com, jose.souza@intel.com
+Date: Mon, 16 Jan 2023 12:54:23 +0100
+Message-Id: <20230116115425.13484-2-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230116115425.13484-1-tzimmermann@suse.de>
+References: <20230116115425.13484-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-References: <20230116100718.12832-1-jirislaby@kernel.org>
-In-Reply-To: <20230116100718.12832-1-jirislaby@kernel.org>
-From: Karol Herbst <kherbst@redhat.com>
-Date: Mon, 16 Jan 2023 12:34:12 +0100
-Message-ID: <CACO55tvnedcj5ZmEoqLw1Vz2vJQjpKjtdbvMMQVbjydZ51JvJQ@mail.gmail.com>
-To: "Jiri Slaby (SUSE)" <jirislaby@kernel.org>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Nouveau] [PATCH -resend] drm/nouveau/kms/nv50- (gcc13): fix
- nv50_wndw_new_ prototype
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Nouveau] [PATCH v3 1/3] drm/i915: Allow switching away via
+ vga-switcheroo if uninitialized
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,82 +73,106 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Martin Liska <mliska@suse.cz>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>, nouveau@lists.freedesktop.org,
- airlied@redhat.com
+Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>, nouveau@lists.freedesktop.org,
+ Imre Deak <imre.deak@intel.com>, dri-devel@lists.freedesktop.org,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Julia Lawall <Julia.Lawall@inria.fr>, amd-gfx@lists.freedesktop.org,
+ Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ Uma Shankar <uma.shankar@intel.com>, Andi Shyti <andi.shyti@linux.intel.com>,
+ Ramalingam C <ramalingam.c@intel.com>,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Radhakrishna Sripada <radhakrishna.sripada@intel.com>, stable@vger.kernel.org,
+ Manasi Navare <manasi.d.navare@intel.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Jan 16, 2023 at 11:07 AM Jiri Slaby (SUSE) <jirislaby@kernel.org> w=
-rote:
->
-> gcc-13 warns about mismatching types for enums. That revealed switched
-> arguments of nv50_wndw_new_():
->   drivers/gpu/drm/nouveau/dispnv50/wndw.c:696:1: error: conflicting types=
- for 'nv50_wndw_new_' due to enum/integer mismatch; have 'int(const struct =
-nv50_wndw_func *, struct drm_device *, enum drm_plane_type,  const char *, =
-int,  const u32 *, u32,  enum nv50_disp_interlock_type,  u32,  struct nv50_=
-wndw **)'
->   drivers/gpu/drm/nouveau/dispnv50/wndw.h:36:5: note: previous declaratio=
-n of 'nv50_wndw_new_' with type 'int(const struct nv50_wndw_func *, struct =
-drm_device *, enum drm_plane_type,  const char *, int,  const u32 *, enum n=
-v50_disp_interlock_type,  u32,  u32,  struct nv50_wndw **)'
->
-> It can be barely visible, but the declaration says about the parameters
-> in the middle:
->   enum nv50_disp_interlock_type,
->   u32 interlock_data,
->   u32 heads,
->
-> While the definition states differently:
->   u32 heads,
->   enum nv50_disp_interlock_type interlock_type,
->   u32 interlock_data,
->
-> Unify/fix the declaration to match the definition.
->
+Always allow switching away via vga-switcheroo if the display is
+uninitalized. Instead prevent switching to i915 if the device has
+not been initialized.
 
-Reviewed-by: Karol Herbst <kherbst@redhat.com>
+This issue was introduced by commit 5df7bd130818 ("drm/i915: skip
+display initialization when there is no display") protected, which
+protects code paths from being executed on uninitialized devices.
+In the case of vga-switcheroo, we want to allow a switch away from
+i915's device. So run vga_switcheroo_process_delayed_switch() and
+test in the switcheroo callbacks if the i915 device is available.
 
-will merge it into drm-misc soon
+Fixes: 5df7bd130818 ("drm/i915: skip display initialization when there is no display")
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: "Ville Syrjälä" <ville.syrjala@linux.intel.com>
+Cc: Manasi Navare <manasi.d.navare@intel.com>
+Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: "Jouni Högander" <jouni.hogander@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Ramalingam C <ramalingam.c@intel.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: "José Roberto de Souza" <jose.souza@intel.com>
+Cc: Julia Lawall <Julia.Lawall@inria.fr>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v5.14+
+---
+ drivers/gpu/drm/i915/i915_driver.c     | 3 +--
+ drivers/gpu/drm/i915/i915_switcheroo.c | 6 +++++-
+ 2 files changed, 6 insertions(+), 3 deletions(-)
 
-> Cc: Martin Liska <mliska@suse.cz>
-> Cc: Ben Skeggs <bskeggs@redhat.com>
-> Cc: Karol Herbst <kherbst@redhat.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.org
-> Cc: linux-kernel@vger.kernel.org
-> Signed-off-by: Jiri Slaby (SUSE) <jirislaby@kernel.org>
-> ---
->
-> Notes:
->     [v2] switch to uint instead of to enum
->
->  drivers/gpu/drm/nouveau/dispnv50/wndw.h | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.h b/drivers/gpu/drm/no=
-uveau/dispnv50/wndw.h
-> index 591c852f326b..76a6ae5d5652 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/wndw.h
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.h
-> @@ -35,8 +35,9 @@ struct nv50_wndw {
->
->  int nv50_wndw_new_(const struct nv50_wndw_func *, struct drm_device *,
->                    enum drm_plane_type, const char *name, int index,
-> -                  const u32 *format, enum nv50_disp_interlock_type,
-> -                  u32 interlock_data, u32 heads, struct nv50_wndw **);
-> +                  const u32 *format, u32 heads,
-> +                  enum nv50_disp_interlock_type, u32 interlock_data,
-> +                  struct nv50_wndw **);
->  void nv50_wndw_flush_set(struct nv50_wndw *, u32 *interlock,
->                          struct nv50_wndw_atom *);
->  void nv50_wndw_flush_clr(struct nv50_wndw *, u32 *interlock, bool flush,
-> --
-> 2.39.0
->
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index c1e427ba57ae..33e231b120c1 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -1075,8 +1075,7 @@ static void i915_driver_lastclose(struct drm_device *dev)
+ 
+ 	intel_fbdev_restore_mode(dev);
+ 
+-	if (HAS_DISPLAY(i915))
+-		vga_switcheroo_process_delayed_switch();
++	vga_switcheroo_process_delayed_switch();
+ }
+ 
+ static void i915_driver_postclose(struct drm_device *dev, struct drm_file *file)
+diff --git a/drivers/gpu/drm/i915/i915_switcheroo.c b/drivers/gpu/drm/i915/i915_switcheroo.c
+index 23777d500cdf..f45bd6b6cede 100644
+--- a/drivers/gpu/drm/i915/i915_switcheroo.c
++++ b/drivers/gpu/drm/i915/i915_switcheroo.c
+@@ -19,6 +19,10 @@ static void i915_switcheroo_set_state(struct pci_dev *pdev,
+ 		dev_err(&pdev->dev, "DRM not initialized, aborting switch.\n");
+ 		return;
+ 	}
++	if (!HAS_DISPLAY(i915)) {
++		dev_err(&pdev->dev, "Device state not initialized, aborting switch.\n");
++		return;
++	}
+ 
+ 	if (state == VGA_SWITCHEROO_ON) {
+ 		drm_info(&i915->drm, "switched on\n");
+@@ -44,7 +48,7 @@ static bool i915_switcheroo_can_switch(struct pci_dev *pdev)
+ 	 * locking inversion with the driver load path. And the access here is
+ 	 * completely racy anyway. So don't bother with locking for now.
+ 	 */
+-	return i915 && atomic_read(&i915->drm.open_count) == 0;
++	return i915 && HAS_DISPLAY(i915) && atomic_read(&i915->drm.open_count) == 0;
+ }
+ 
+ static const struct vga_switcheroo_client_ops i915_switcheroo_ops = {
+-- 
+2.39.0
 
