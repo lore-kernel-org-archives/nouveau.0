@@ -4,60 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64B8BC77B78
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B1DEC7EE23
 	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7F3E10E45C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA26A10E456;
 	Thu,  4 May 2023 12:32:47 +0000 (UTC)
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
- [IPv6:2a00:1450:4864:20::32c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E70310E3D6;
- Tue, 15 Nov 2022 13:16:32 +0000 (UTC)
-Received: by mail-wm1-x32c.google.com with SMTP id
- h186-20020a1c21c3000000b003cfe48519a6so86492wmh.0; 
- Tue, 15 Nov 2022 05:16:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=vauApsbc4UItGo8j86KlPEM6J2rbnw+bhzYXpI7YoWM=;
- b=isLPesBDOxojosEmqtH37oSLsnYQ+jBvATAQRBQCEEE7sNeleCbC0h30hD94qv2TC8
- oiNkbHcykai/3l5VZvnw3WKaReQwa3PSZ5U0oqfyKYBTMcBSkFTDfKxTXoyzwGGGNTf5
- DSp9iZ4p1iRFcas/U1VyWFjwym52luX8ZlyM2LieSuwWGDKVd4pz6cgeq6s9ojuWqJGJ
- 1+7dfq0sPaMt27W1d3AGiBGAp1SfylFopjH3/cJoYUdRsbSn42EJ9/lVP+L62EMq7TVu
- d6H/H+587hDQTR+PKhUTl2o6k4qFlaf6Bl0NLt3r8MekefsZFpHo0JNdsO8y8fao7zA3
- lYKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=vauApsbc4UItGo8j86KlPEM6J2rbnw+bhzYXpI7YoWM=;
- b=1dqP6UYdyX3oEvJWVQjHXddG86shDsQIDh9lhYoOlGR8rIRvL1DFO/tBvLfdDonY6E
- ok+VW1ZzrEja8yCf/yrTR4Ku3XTIqRkDWwimiSlST+m19J5YI4blKeSXMR66hvgHPDVM
- lXNZc4CDbu/zxikvKfw7La+xuV94uLSC4MOqw8+qk8qspaxHxW+xAfryhJ96keQVJX/b
- ts1xWnmCjuTN1lPNledxBNWOOAIr7PFwTuWqN6o0dJueqeoGmADwBqIc7Is6lmcXiq3P
- 2eRNxIpR4aV3m1G/1+tFQNkbQvc80nvK4J8RIOT3bWnpun3pk9k/U6Yfyr3WpCer3Fnb
- Gytg==
-X-Gm-Message-State: ANoB5pmZRsI/vp0iTNuoLklI1HYDsux9VZ88hoX+4wfOs+eoctcdRCWY
- p4gE8A7OOFSlSPuNkL4xw6o=
-X-Google-Smtp-Source: AA0mqf7caGDVbLS846G0EB5PU7FYFbjEvGpWyiaMSjJd8HX8o7LSMxw/oKEE2kXNf9icY5Gm3sWPQQ==
-X-Received: by 2002:a05:600c:212:b0:3cf:cfea:904c with SMTP id
- 18-20020a05600c021200b003cfcfea904cmr456990wmi.33.1668518190808; 
- Tue, 15 Nov 2022 05:16:30 -0800 (PST)
-Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- a11-20020a5d570b000000b0022ca921dc67sm12422379wrv.88.2022.11.15.05.16.29
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 15 Nov 2022 05:16:30 -0800 (PST)
-Date: Tue, 15 Nov 2022 16:16:27 +0300
-From: Dan Carpenter <error27@gmail.com>
-To: Ben Skeggs <bskeggs@redhat.com>
-Message-ID: <Y3Jd0JYhjPe4wTXh@kili>
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt
+ [193.136.128.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75AF310E3F5;
+ Mon, 16 Jan 2023 12:27:05 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 11F0E6008768;
+ Mon, 16 Jan 2023 12:27:03 +0000 (WET)
+X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
+ tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
+ with LMTP id 7cdRpeg_D0dx; Mon, 16 Jan 2023 12:27:00 +0000 (WET)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt
+ [IPv6:2001:690:2100:1::b3dd:b9ac])
+ by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id DB48C6008767;
+ Mon, 16 Jan 2023 12:26:59 +0000 (WET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
+ s=mail; t=1673872020;
+ bh=XkE1A2YnrbrU2WIxkcPZ+PORJqR8hAkePFOr8rxfZuE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=a8Xo4bkmsvTuqonsY4ekcnc5dvWH3mlZRjabBlWJkbOAWhp3rdDaUNODmHarhe2TH
+ H7Go9Ii3nCMaTd4Sd+q5JKYVxcOiaBrFMkQ2Lf5zBefVAuViUjOY0seSUGsOYEmhfx
+ 7qpXOISRmKIcZZ9Ro8jMZa1ERBnEr5r0BQs6JiUo=
+Received: from wslaptop (unknown [IPv6:2001:818:dcb5:dc00:d990:b664:f16:4cb2])
+ (Authenticated sender: ist187313)
+ by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 4A87C360078;
+ Mon, 16 Jan 2023 12:26:59 +0000 (WET)
+Date: Mon, 16 Jan 2023 12:24:37 +0000
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+To: David Airlie <airlied@redhat.com>
+Message-ID: <20230116122403.upk5ci4mbebw23m7@wslaptop>
+References: <20221228144914.z7t7a4fdwvbblnak@wslaptop>
+ <CAMwc25rY4xpn0yvCScMr6Hk9pFSdvt=9QOypSQDfj1d5tWmtvA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:32 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/gr/gv100-: unlock on error in
- gf100_gr_chan_new()
+In-Reply-To: <CAMwc25rY4xpn0yvCScMr6Hk9pFSdvt=9QOypSQDfj1d5tWmtvA@mail.gmail.com>
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:35 +0000
+Subject: Re: [Nouveau] [REGRESSION] GM20B probe fails after commit
+ 2541626cfb79
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,31 +60,85 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>
+Cc: nouveau@lists.freedesktop.org, regressions@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, bskeggs@redhat.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Drop the "gr->fecs.mutex" lock before returning on this error path.
+On Mon, Jan 16, 2023 at 07:45:05AM +1000, David Airlie wrote:
+> On Thu, Dec 29, 2022 at 12:58 AM Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt> wrote:
+> As a quick check can you try changing
+> 
+> drivers/gpu/drm/nouveau/nvkm/core/firmware.c:nvkm_firmware_mem_target
+> from NVKM_MEM_TARGET_HOST to NVKM_MEM_TARGET_NCOH ?
 
-Fixes: ca081fff6ecc ("drm/nouveau/gr/gf100-: generate golden context during first object alloc")
-Signed-off-by: Dan Carpenter <error27@gmail.com>
----
- drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c | 1 +
- 1 file changed, 1 insertion(+)
+Hello!
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-index 5f20079c3660..24bec8f8f83e 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-@@ -442,6 +442,7 @@ gf100_gr_chan_new(struct nvkm_gr *base, struct nvkm_fifo_chan *fifoch,
- 	if (gr->data == NULL) {
- 		ret = gf100_grctx_generate(gr, chan, fifoch->inst);
- 		if (ret) {
-+			mutex_unlock(&gr->fecs.mutex);
- 			nvkm_error(&base->engine.subdev, "failed to construct context\n");
- 			return ret;
- 		}
--- 
-2.35.1
+Applying this change breaks probing in a different way, with a
+bad PC=0x0. From a quick look at nvkm_falcon_load_dmem it looks like this
+could happen due to the .load_dmem() callback not being properly
+initialized. This is the kernel log I got:
 
+[    2.010601] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
+[    2.019436] Mem abort info:
+[    2.022273]   ESR = 0x0000000086000005
+[    2.026066]   EC = 0x21: IABT (current EL), IL = 32 bits
+[    2.031429]   SET = 0, FnV = 0
+[    2.034528]   EA = 0, S1PTW = 0
+[    2.037694]   FSC = 0x05: level 1 translation fault
+[    2.042572] [0000000000000000] user address but active_mm is swapper
+[    2.048961] Internal error: Oops: 0000000086000005 [#1] SMP
+[    2.054529] Modules linked in:
+[    2.057582] CPU: 0 PID: 36 Comm: kworker/u8:1 Not tainted 6.2.0-rc3+ #2
+[    2.064190] Hardware name: Google Pixel C (DT)
+[    2.068628] Workqueue: events_unbound deferred_probe_work_func
+[    2.074463] pstate: 40000005 (nZcv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[    2.081417] pc : 0x0
+[    2.083600] lr : nvkm_falcon_load_dmem+0x58/0x80
+[    2.088218] sp : ffffffc009ddb6f0
+[    2.091526] x29: ffffffc009ddb6f0 x28: ffffff808028a008 x27: ffffff8081e43c38
+[    2.098658] x26: 00000000000000ff x25: ffffff808028a0a0 x24: 0000000000000000
+[    2.105788] x23: ffffff8080c328f8 x22: 000000000000002c x21: 0000000000005fd4
+[    2.112917] x20: ffffffc009ddb76c x19: ffffff8080c328b8 x18: 0000000000000000
+[    2.120047] x17: 2e74696e695f646f x16: 6874656d5f77732f x15: 0000000000000000
+[    2.127176] x14: 0000000002f546c2 x13: 0000000000000000 x12: 00000000000001ce
+[    2.134306] x11: 0000000000000001 x10: 0000000000000a90 x9 : ffffffc009ddb600
+[    2.141436] x8 : ffffff80803d19f0 x7 : ffffff80bf971180 x6 : 00000000000001b9
+[    2.148565] x5 : 0000000000000000 x4 : 0000000000000000 x3 : 000000000000002c
+[    2.155693] x2 : 0000000000005fd4 x1 : ffffffc009ddb76c x0 : ffffff8080c328b8
+[    2.162822] Call trace:
+[    2.165264]  0x0
+[    2.167099]  gm20b_pmu_init+0x78/0xb4
+[    2.170762]  nvkm_pmu_init+0x20/0x34
+[    2.174334]  nvkm_subdev_init_+0x60/0x12c
+[    2.178339]  nvkm_subdev_init+0x60/0xa0
+[    2.182171]  nvkm_device_init+0x14c/0x2a0
+[    2.186178]  nvkm_udevice_init+0x60/0x9c
+[    2.190097]  nvkm_object_init+0x48/0x1b0
+[    2.194013]  nvkm_ioctl_new+0x168/0x254
+[    2.197843]  nvkm_ioctl+0xd0/0x220
+[    2.201239]  nvkm_client_ioctl+0x10/0x1c
+[    2.205160]  nvif_object_ctor+0xf4/0x22c
+[    2.209079]  nvif_device_ctor+0x28/0x70
+[    2.212910]  nouveau_cli_init+0x150/0x590
+[    2.216916]  nouveau_drm_device_init+0x60/0x2a0
+[    2.221442]  nouveau_platform_device_create+0x90/0xd0
+[    2.226489]  nouveau_platform_probe+0x3c/0x9c
+[    2.230841]  platform_probe+0x68/0xc0
+[    2.234500]  really_probe+0xbc/0x2dc
+[    2.238070]  __driver_probe_device+0x78/0xe0
+[    2.242334]  driver_probe_device+0xd8/0x160
+[    2.246511]  __device_attach_driver+0xb8/0x134
+[    2.250948]  bus_for_each_drv+0x78/0xd0
+[    2.254782]  __device_attach+0x9c/0x1a0
+[    2.258612]  device_initial_probe+0x14/0x20
+[    2.262789]  bus_probe_device+0x98/0xa0
+[    2.266619]  deferred_probe_work_func+0x88/0xc0
+[    2.271142]  process_one_work+0x204/0x40c
+[    2.275150]  worker_thread+0x230/0x450
+[    2.278894]  kthread+0xc8/0xcc
+[    2.281946]  ret_from_fork+0x10/0x20
+[    2.285525] Code: bad PC value
+[    2.288576] ---[ end trace 0000000000000000 ]---
+
+Diogo
