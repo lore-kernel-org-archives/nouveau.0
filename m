@@ -4,60 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 995AAC46467
-	for <nouveau@archiver.kernel.org>; Mon, 16 Jan 2023 13:14:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF885C46467
+	for <nouveau@archiver.kernel.org>; Mon, 16 Jan 2023 14:41:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F9CE10E445;
-	Mon, 16 Jan 2023 13:13:08 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E50A810E40D;
- Mon, 16 Jan 2023 13:12:44 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 9111867844;
- Mon, 16 Jan 2023 13:12:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1673874763; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FED710E44D;
+	Mon, 16 Jan 2023 14:41:46 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6BE910E44D
+ for <nouveau@lists.freedesktop.org>; Mon, 16 Jan 2023 14:41:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1673880103;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=6JTsaS5Itv2WUrYDEfFY8Xq4YS7/xxUHFbe/7NeE6mk=;
- b=oQw2rOAh/cNeRb0/IveUeZAqwaW9Ain49q1eKnxxaDSxfd4+/c0YMuaR9TExZtL4UcVRuG
- 14HwSLIt8i14xjTae4vPLMf6kfhMm0M583wGS85M7JWfwIdoXK4f0XsJShTUTpEtl3hELa
- b7A8oxL9sQQoLdpSzjy1BRbzb/CFod4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1673874763;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=6JTsaS5Itv2WUrYDEfFY8Xq4YS7/xxUHFbe/7NeE6mk=;
- b=f+TuoKDAQuHVU0wJ76nF7XwmpGW8ZoID/fo/Mj2NQqqsxpiUQpBu7o/o0kyFB1aLNfFYDw
- bvhM4QEx4WMb26AQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 53DFE139C3;
- Mon, 16 Jan 2023 13:12:43 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id yKieE0tNxWNrNQAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Mon, 16 Jan 2023 13:12:43 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: sam@ravnborg.org,
-	daniel@ffwll.ch,
-	airlied@gmail.com
-Date: Mon, 16 Jan 2023 14:12:34 +0100
-Message-Id: <20230116131235.18917-22-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230116131235.18917-1-tzimmermann@suse.de>
-References: <20230116131235.18917-1-tzimmermann@suse.de>
+ bh=NOdvTIf1x9tQkJ1orPjPgaQ6ppXgSvc8Pon55J0dM/o=;
+ b=h6BpwuVnDAj/m1HKKGRIYV13TK1ZazKwRMVE58UgX8Z2J1vPigDjHTtnq58KjXitKg2kXG
+ CVfvBCtTTRzlIe18vFK+Usn3m/lm9jqRE3KEsE9ZqLGnDiGNOgWobubDRs803CxPzOcZS8
+ CM26zgjaGtSgrgv7ibehLvRpQLhECN8=
+Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com
+ [209.85.208.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-411-eQIhcwxqNv6TdeB5yQvwig-1; Mon, 16 Jan 2023 09:41:42 -0500
+X-MC-Unique: eQIhcwxqNv6TdeB5yQvwig-1
+Received: by mail-lj1-f200.google.com with SMTP id
+ a31-20020a2ebe9f000000b0028b64076c42so2349909ljr.22
+ for <nouveau@lists.freedesktop.org>; Mon, 16 Jan 2023 06:41:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=NOdvTIf1x9tQkJ1orPjPgaQ6ppXgSvc8Pon55J0dM/o=;
+ b=ierPK45KLTxQw2A5Za3brcCzFwhdceBmE38dlGx8kjOUhFsiNKYHAbkxuOEb98U5AU
+ VtYpjnXGelCF2y+TyqQHq6mPlXWJTN43eMLOPYiw6yvaYdbILVYwoHJhs64g1B7T8iGc
+ iGgLQfrqnWqmab9s4EvdkiIszOHVEy6CGXUuiifzRCMWFNw9krJUhlSz1T+Eya6hRoHC
+ DrIMyeeQ+Pf6C0sOQAdfxEbX2/kCFfhnaJ2W7FqVVflsSEjYt/XX8JzNZ97wWk5Tut4L
+ 7ZawRF1B6mLeK1JqHxZ7wjRw6nRVE3Md+KnJycep8JDvSJJg1NiwRCvTfybqULwOXJC6
+ zEfw==
+X-Gm-Message-State: AFqh2krNOT/Pn8k+40zxyDWMfkNSHfE+i/KGEUBwAonJIodyjQalJYNd
+ 3Z8303VNDNIhA1CruyAyHSUiJNeQiyHsAqesploDWC7RWJSUYfnBQRN4lSIZZajueqP9Le4nW9d
+ ob+4lyqCrezuoXR08gRBoO/rHOjFN5pBrG9k/GzLLzw==
+X-Received: by 2002:a2e:a278:0:b0:276:4462:2d20 with SMTP id
+ k24-20020a2ea278000000b0027644622d20mr2384ljm.19.1673880101123; 
+ Mon, 16 Jan 2023 06:41:41 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXt9sY30K02/f5zO7kr1kC+X6IUBM2xn7/y8ozy2/Ri3RfIQeuDJUUrDrh1bQKXOq8bdG47xKQOTvByre+UJEzQ=
+X-Received: by 2002:a2e:a278:0:b0:276:4462:2d20 with SMTP id
+ k24-20020a2ea278000000b0027644622d20mr2374ljm.19.1673880100820; Mon, 16 Jan
+ 2023 06:41:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH 21/22] drm/vboxvideo: Remove unnecessary include
- statements for drm_crtc_helper.h
+References: <Y7zB0q2pr7lEpHGs@work> <202301121449.EE489AA@keescook>
+In-Reply-To: <202301121449.EE489AA@keescook>
+From: Karol Herbst <kherbst@redhat.com>
+Date: Mon, 16 Jan 2023 15:41:29 +0100
+Message-ID: <CACO55ttCY1KbqWqzGS1adrJno6kUs7b5_QY7X1AE6qYUqztWNQ@mail.gmail.com>
+To: Kees Cook <keescook@chromium.org>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Nouveau] [PATCH][next] drm/nouveau/nvkm: Replace zero-length
+ array with flexible-array member
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,57 +75,37 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
- linux-mips@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
+Cc: nouveau@lists.freedesktop.org,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>,
+ Daniel Vetter <daniel@ffwll.ch>, linux-hardening@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Several source files include drm_crtc_helper.h without needing it or
-only to get its transitive include statements; leading to unnecessary
-compile-time dependencies.
+Reviewed-by: Karol Herbst <kherbst@redhat.com>
 
-Directly include required headers and drop drm_crtc_helper.h where
-possible.
+will push in a moment
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/vboxvideo/vbox_drv.c  | 2 +-
- drivers/gpu/drm/vboxvideo/vbox_main.c | 1 -
- 2 files changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/vboxvideo/vbox_drv.c b/drivers/gpu/drm/vboxvideo/vbox_drv.c
-index 12fee99dbfe8..4fee15c97c34 100644
---- a/drivers/gpu/drm/vboxvideo/vbox_drv.c
-+++ b/drivers/gpu/drm/vboxvideo/vbox_drv.c
-@@ -12,12 +12,12 @@
- #include <linux/vt_kern.h>
- 
- #include <drm/drm_aperture.h>
--#include <drm/drm_crtc_helper.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_fbdev_generic.h>
- #include <drm/drm_file.h>
- #include <drm/drm_ioctl.h>
- #include <drm/drm_managed.h>
-+#include <drm/drm_modeset_helper.h>
- #include <drm/drm_module.h>
- 
- #include "vbox_drv.h"
-diff --git a/drivers/gpu/drm/vboxvideo/vbox_main.c b/drivers/gpu/drm/vboxvideo/vbox_main.c
-index 3b83e550f4df..42c2d8a99509 100644
---- a/drivers/gpu/drm/vboxvideo/vbox_main.c
-+++ b/drivers/gpu/drm/vboxvideo/vbox_main.c
-@@ -11,7 +11,6 @@
- #include <linux/pci.h>
- #include <linux/vbox_err.h>
- 
--#include <drm/drm_crtc_helper.h>
- #include <drm/drm_damage_helper.h>
- 
- #include "vbox_drv.h"
--- 
-2.39.0
+On Thu, Jan 12, 2023 at 11:49 PM Kees Cook <keescook@chromium.org> wrote:
+>
+> On Mon, Jan 09, 2023 at 07:39:30PM -0600, Gustavo A. R. Silva wrote:
+> > Zero-length arrays are deprecated[1] and we are moving towards
+> > adopting C99 flexible-array members instead. So, replace zero-length
+> > array declaration in struct nvfw_hs_load_header_v2 with flex-array
+> > member.
+> >
+> > This helps with the ongoing efforts to tighten the FORTIFY_SOURCE
+> > routines on memcpy() and help us make progress towards globally
+> > enabling -fstrict-flex-arrays=3 [2].
+> >
+> > Link: https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-length-and-one-element-arrays [1]
+> > Link: https://gcc.gnu.org/pipermail/gcc-patches/2022-October/602902.html [2]
+> > Link: https://github.com/KSPP/linux/issues/78
+> > Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
+>
+> Reviewed-by: Kees Cook <keescook@chromium.org>
+>
+> --
+> Kees Cook
+>
 
