@@ -4,93 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE987C77B7C
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B7C7C7EE23
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD34110E4D8;
-	Thu,  4 May 2023 12:33:05 +0000 (UTC)
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2074.outbound.protection.outlook.com [40.107.101.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2E4910E77F;
- Wed, 25 Jan 2023 10:49:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Yr6WDDjeuf1aYtpz3c69aVGBUsfKUPZIWZ7f6FbOaiohlzamEliOnarSH5WDS6Tri8DmkK27izQOG1mN02vGBTtPhnJH4rRTMcZtR7YxGerbKAHo3BG3d5+vnLCi6D0cdPAXHcxM36s2pRyXjro3t3kPB5qxZPwpK9pTQ8cfjh+dckLxti5HFTj8Hn02LXFuA9vliiCWfVpQEDz6i9WFgbPvqzgJMZO8ZCLSmpO+SfUGmQvJ+0xwcG8WjvTARLGgqR+8Z7xViG5HcHBwZb/BNgKtRYnk6T3Yovlr3IW2ryUNtw6ti8tmW3ASJOUzTKukkP482ZVay13tkGHedh/YCQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2OjU3Uf1jKly6VGS2xb6CAxNsnFfr7d/YjQufQfdGUo=;
- b=U8lHuYM0EJhNHHmMlwEKmvsAWAv8QRCKUmKePEncH/OvKvvD3xxMqOoxHkG0r06+Eaf7AP8VygQ34ZfAIPuZAI74SrqjdM07WmHLazZxZcMQ0rFGDFJm7kkTEdoLMVlGIreuIcFyI26ou6ZamAgP9zb3G5vCBVDrZr+3PgRKLMk0Hj7c8GVii+AKia8/2aq/mQ+HqfjoXOs2VSwSU3Uq26vsL21UEJ6nPCN2wxrEYcEjqCeLkk/QOwd5NMz6MrTEhj4HXsBHmXJ6f0kmzbUKi9PYTEBhe5iRW3Q40/CSnX7SdngIgBSUXW02yBhDdRAFYoWZ4IzSHPwIri1cXBCJeA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2OjU3Uf1jKly6VGS2xb6CAxNsnFfr7d/YjQufQfdGUo=;
- b=sFDIos5OA+V+CvYNdi27q0xMeL7y1NlNLKrl+1sWj1BbU56OwO0Th/VIHSvgrb/jmRGPcADg2/feLt0nTGHJ0b2iOVeDHl1wSyE5t7YFKyEIWqxE3KTyrWs1VupeCl8WlHO87fgS2fzcWZI9m4PRttRnLS3WZRtV+KyrbWaBQgc=
-Received: from BL1PR13CA0113.namprd13.prod.outlook.com (2603:10b6:208:2b9::28)
- by CY5PR12MB6179.namprd12.prod.outlook.com (2603:10b6:930:24::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.21; Wed, 25 Jan
- 2023 10:49:11 +0000
-Received: from BL02EPF000108EB.namprd05.prod.outlook.com
- (2603:10b6:208:2b9:cafe::6c) by BL1PR13CA0113.outlook.office365.com
- (2603:10b6:208:2b9::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.21 via Frontend
- Transport; Wed, 25 Jan 2023 10:49:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF000108EB.mail.protection.outlook.com (10.167.241.200) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6043.12 via Frontend Transport; Wed, 25 Jan 2023 10:49:11 +0000
-Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Wed, 25 Jan 2023 04:49:08 -0600
-From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Date: Wed, 25 Jan 2023 16:18:36 +0530
-Message-ID: <20230125104838.23596-2-Amaranath.Somalapuram@amd.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20230125104838.23596-1-Amaranath.Somalapuram@amd.com>
-References: <20230125104838.23596-1-Amaranath.Somalapuram@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6086410E49C;
+	Thu,  4 May 2023 12:33:06 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9596E10E3DC;
+ Mon, 16 Jan 2023 11:54:30 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 49B9233B43;
+ Mon, 16 Jan 2023 11:54:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1673870069; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=EUggysgncP9uMhVH+dhNfBvNG/A+cX9Zl3Vz7+cHkwc=;
+ b=yxk3skraO/Mtj5vW9U468+SdCqUo76uvOOBqxcntqYHfu8yby99nvJCGJzs5PMG8fjHkBj
+ mEiOR8kxkfox2YIiVgZ9sDTHU+8Lwsr4UqojgdhCJCz2zmYNyU1vV/TM0rXzxVRwokCn4H
+ v1yhwCoLg2pvV6eD89eO2yFdoFelesE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1673870069;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=EUggysgncP9uMhVH+dhNfBvNG/A+cX9Zl3Vz7+cHkwc=;
+ b=S4GS866Ou0/y6g8PuMrZ9fXlBegOCcv3edlcCNcfMSttSyBU7pgZ46BBXsXpY79aawt7qM
+ qX4LmkHG7Zi9BJDQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 86905139C2;
+ Mon, 16 Jan 2023 11:54:28 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id MMoXIPQ6xWPLBAAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 16 Jan 2023 11:54:28 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ tvrtko.ursulin@linux.intel.com, bskeggs@redhat.com, kherbst@redhat.com,
+ lyude@redhat.com, evan.quan@amd.com, jose.souza@intel.com
+Date: Mon, 16 Jan 2023 12:54:24 +0100
+Message-Id: <20230116115425.13484-3-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230116115425.13484-1-tzimmermann@suse.de>
+References: <20230116115425.13484-1-tzimmermann@suse.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF000108EB:EE_|CY5PR12MB6179:EE_
-X-MS-Office365-Filtering-Correlation-Id: d98a8ae0-d6c8-4a00-31f3-08dafec1cadc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sLP7jlOT1Nwu4/tgOorwq3AGbnknzNCiIFXwE6dZ8prSxe0FUISoPE/xZprVNUInxrYqUdOCFEraHcfqLpPdLobwrhn9/Fo6MgZ6c26eUws2m/8gZYxNUbngPgrzReKdqyM+HYFXPNvr1lQZ0Tjqs+v1PKUryr9reHU6HdKfWIhMvabF/CWff5vlxnw+AtG7ShUUzJBfNS00EdJKCCMmBvBb4RT48DBkUh3ZK8LCXtSxRkvEi9+nSsgtHbKNODhD2m5so3dfTQvuGflIXvQ2hxz09j7NXkQ19X0P3jhBMLIQoMK04BhyVDy8PQ7KmupbNmuhlrTYZl+iYIcum667yRkj2k05VqE/TiIZdAWFr+eS0w0ImCXZvj1f7ybrgkCq6B5F0gErc23jbEVQUscnRqYjYyhvIFHstTCGXjmpQs1LQd15nQokOZe9DLzcwCom6Jwh81pon8kuvmMPhl9U5DN864dGvTBotIUJqk4nel0NE3M7TfJ4ywiXwr6p5dOK6qrglnjpAw9Oa6CjH2nCJZ2F5s8+Kqmq65vUoDyDgjQeGxFm7Rp8ome61Qeh1YXViIUtz0msQ4DgVK8m1pJU5trWoBk5Op0uQrk8WtZ8HcCw98soekMnFxI724ycmP/h/oJDDx9bn6G6iDvpgLnTjYPkirevvmxTf53gpgOCP8Cl1wBdL3JmX9YgxRKeR/Js1C6P/WoCLXgxROop+3t1DWP7umnoEtGyI1loprdUDEM=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(39860400002)(396003)(136003)(346002)(376002)(451199018)(40470700004)(36840700001)(46966006)(47076005)(82310400005)(54906003)(86362001)(40460700003)(36756003)(40480700001)(81166007)(356005)(36860700001)(82740400003)(110136005)(316002)(2906002)(41300700001)(4326008)(8936002)(70206006)(70586007)(8676002)(450100002)(5660300002)(16526019)(186003)(26005)(1076003)(2616005)(83380400001)(7696005)(426003)(6666004)(478600001)(336012)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 10:49:11.1605 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d98a8ae0-d6c8-4a00-31f3-08dafec1cadc
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF000108EB.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6179
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
-Subject: [Nouveau] [PATCH v2 2/4] drm/amdkfd: Use cursor start instead of
- ttm resource start
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:33 +0000
+Subject: [Nouveau] [PATCH v3 2/3] drm/fb-helper: Set framebuffer for
+ vga-switcheroo clients
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,39 +74,118 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: shashank.sharma@amd.com, arunpravin.paneerselvam@amd.com,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, arvind.yadav@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
+ Hamza Mahfooz <hamza.mahfooz@amd.com>, Likun Gao <Likun.Gao@amd.com>,
+ Sam Ravnborg <sam@ravnborg.org>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Guchun Chen <guchun.chen@amd.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, amd-gfx@lists.freedesktop.org,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Stanley Yang <Stanley.Yang@amd.com>, nouveau@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>,
+ =?UTF-8?q?Marek=20Ol=C5=A1=C3=A1k?= <marek.olsak@amd.com>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Jani Nikula <jani.nikula@intel.com>, Bokun Zhang <Bokun.Zhang@amd.com>,
+ intel-gfx@lists.freedesktop.org, "Tianci.Yin" <tianci.yin@amd.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Xiaojian Du <Xiaojian.Du@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, stable@vger.kernel.org,
+ Solomon Chiu <solomon.chiu@amd.com>,
+ Kai-Heng Feng <kai.heng.feng@canonical.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-cleanup PAGE_SHIFT operation and replacing
-ttm_resource resource->start with cursor start
-using amdgpu_res_first API
-v1 -> v2: reorder patch sequence
+Set the framebuffer info for drivers that support VGA switcheroo. Only
+affects the amdgpu and nouveau drivers, which use VGA switcheroo and
+generic fbdev emulation. For other drivers, this does nothing.
 
-Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+This fixes a potential regression in the console code. Both, amdgpu and
+nouveau, invoked vga_switcheroo_client_fb_set() from their internal fbdev
+code. But the call got lost when the drivers switched to the generic
+emulation.
+
+Fixes: 087451f372bf ("drm/amdgpu: use generic fb helpers instead of setting up AMD own's.")
+Fixes: 4a16dd9d18a0 ("drm/nouveau/kms: switch to drm fbdev helpers")
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: Karol Herbst <kherbst@redhat.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Javier Martinez Canillas <javierm@redhat.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Evan Quan <evan.quan@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Likun Gao <Likun.Gao@amd.com>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: Stanley Yang <Stanley.Yang@amd.com>
+Cc: "Tianci.Yin" <tianci.yin@amd.com>
+Cc: Xiaojian Du <Xiaojian.Du@amd.com>
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+Cc: YiPeng Chai <YiPeng.Chai@amd.com>
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+Cc: Bokun Zhang <Bokun.Zhang@amd.com>
+Cc: Guchun Chen <guchun.chen@amd.com>
+Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Cc: Mario Limonciello <mario.limonciello@amd.com>
+Cc: Solomon Chiu <solomon.chiu@amd.com>
+Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>
+Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: "Marek Olšák" <marek.olsak@amd.com>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Hans de Goede <hdegoede@redhat.com>
+Cc: "Ville Syrjälä" <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v5.17+
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/drm_fb_helper.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index c06ada0844ba..f87ce4f1cb93 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -200,8 +200,11 @@ static int add_queue_mes(struct device_queue_manager *dqm, struct queue *q,
- 	queue_input.wptr_addr = (uint64_t)q->properties.write_ptr;
+diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
+index 367fb8b2d5fa..c5c13e192b64 100644
+--- a/drivers/gpu/drm/drm_fb_helper.c
++++ b/drivers/gpu/drm/drm_fb_helper.c
+@@ -30,7 +30,9 @@
+ #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
  
- 	if (q->wptr_bo) {
-+		struct amdgpu_res_cursor cursor;
- 		wptr_addr_off = (uint64_t)q->properties.write_ptr & (PAGE_SIZE - 1);
--		queue_input.wptr_mc_addr = ((uint64_t)q->wptr_bo->tbo.resource->start << PAGE_SHIFT) + wptr_addr_off;
-+		amdgpu_res_first(q->wptr_bo->tbo.resource, 0,
-+				 q->wptr_bo->tbo.resource->size, &cursor);
-+		queue_input.wptr_mc_addr = cursor.start + wptr_addr_off;
- 	}
+ #include <linux/console.h>
++#include <linux/pci.h>
+ #include <linux/sysrq.h>
++#include <linux/vga_switcheroo.h>
  
- 	queue_input.is_kfd_process = 1;
+ #include <drm/drm_atomic.h>
+ #include <drm/drm_drv.h>
+@@ -1924,6 +1926,7 @@ static int drm_fb_helper_single_fb_probe(struct drm_fb_helper *fb_helper,
+ 					 int preferred_bpp)
+ {
+ 	struct drm_client_dev *client = &fb_helper->client;
++	struct drm_device *dev = fb_helper->dev;
+ 	struct drm_fb_helper_surface_size sizes;
+ 	int ret;
+ 
+@@ -1945,6 +1948,11 @@ static int drm_fb_helper_single_fb_probe(struct drm_fb_helper *fb_helper,
+ 		return ret;
+ 
+ 	strcpy(fb_helper->fb->comm, "[fbcon]");
++
++	/* Set the fb info for vgaswitcheroo clients. Does nothing otherwise. */
++	if (dev_is_pci(dev->dev))
++		vga_switcheroo_client_fb_set(to_pci_dev(dev->dev), fb_helper->info);
++
+ 	return 0;
+ }
+ 
 -- 
-2.32.0
+2.39.0
 
