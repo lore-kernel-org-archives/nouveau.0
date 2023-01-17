@@ -4,52 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10E41C7EE2C
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28A69C7EE23
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D83110E3FA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8237310E3F7;
 	Thu,  4 May 2023 12:31:45 +0000 (UTC)
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt
- [193.136.128.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3482010EA36;
- Fri, 20 Jan 2023 11:37:22 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 769D26008831;
- Fri, 20 Jan 2023 11:37:20 +0000 (WET)
-X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
- tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
- by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
- with LMTP id ycM_b9OLVerz; Fri, 20 Jan 2023 11:37:18 +0000 (WET)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
- by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id C98626008828;
- Fri, 20 Jan 2023 11:37:17 +0000 (WET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
- s=mail; t=1674214638;
- bh=Xceh/ltBYNbtbQTxGHxOIwMD72Lbmf8kpmBAZEASpkE=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=JdyXvczcQUGMYfdwQuGfdfmR0IQNaf9xCiY1/23qDPJ7xLEsyMrqH6u3MIJg/IeiA
- YxzvXehwCSosD+ViCsPFh1yxnEW3kXfxrfWzgibHKiUAYa7B0gstWThkQ1HoYHxhpj
- rflecTJF3he+AV99L3OvDpP5AMdFEExGDSOzz5Tg=
-Received: from wslaptop (unknown [IPv6:2001:818:dcb5:dc00:d990:b664:f16:4cb2])
- (Authenticated sender: ist187313)
- by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 66A0F360079;
- Fri, 20 Jan 2023 11:37:17 +0000 (WET)
-Date: Fri, 20 Jan 2023 11:34:43 +0000
-From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-To: Ben Skeggs <skeggsb@gmail.com>
-Message-ID: <20230120113443.wgwhwp7tm6rnc6je@wslaptop>
-References: <20221228144914.z7t7a4fdwvbblnak@wslaptop>
- <CAMwc25rY4xpn0yvCScMr6Hk9pFSdvt=9QOypSQDfj1d5tWmtvA@mail.gmail.com>
- <20230116122403.upk5ci4mbebw23m7@wslaptop>
- <CACAvsv48vH6hbacQCN+yKP8ZcDjFMWciBt6U_Xv-LEYJHZ1q9g@mail.gmail.com>
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4D3910E1B3;
+ Tue, 17 Jan 2023 16:39:14 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 65B22B8166E;
+ Tue, 17 Jan 2023 16:39:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9D5FC433D2;
+ Tue, 17 Jan 2023 16:39:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1673973552;
+ bh=ySEJMU3KFh+SZ1kFanOfIpyzm2CVjH6uK0xDkFyQROU=;
+ h=From:To:Cc:Subject:Date:From;
+ b=eW7zq9g1aG1mp/LEKIMRBrKcu7V83Wp32f8TQWHkG7X1GY8T/FqSazEJLctqAuZN2
+ 7BqfQEtSyZhKlXvqJDAyvO8qeHGoS8/sbDOoEQJWRe4WhtinlYRUC+FTkBkNfUVFnX
+ pMnMkh/cwVDHf2o2hJikIYAflfIeZfxuYlYPEwEDV6/jUlWFMV2gyE7f+HJspVLx72
+ /kU/EMUzt51+eW92mKUCN5mMRcDyCgpbAUBHHl3213CZhlIwGupRg0jCXZUWIuUur/
+ uA75N4S6APQJjsSCptU54CwkzuPmFgcmr6IRt7+9MTOv7C2h7T17ot3l4fVf/hX6k7
+ VSISGdV7hoSCg==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+Date: Tue, 17 Jan 2023 17:39:00 +0100
+Message-Id: <20230117163907.1081223-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACAvsv48vH6hbacQCN+yKP8ZcDjFMWciBt6U_Xv-LEYJHZ1q9g@mail.gmail.com>
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:35 +0000
-Subject: Re: [Nouveau] [REGRESSION] GM20B probe fails after commit
- 2541626cfb79
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:34 +0000
+Subject: [Nouveau] [PATCH] nouveau: fix nv50_wndw_new_() prototype
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,29 +52,49 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: regressions@lists.linux.dev, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, bskeggs@redhat.com,
- David Airlie <airlied@redhat.com>
+Cc: Dave Airlie <airlied@redhat.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Arnd Bergmann <arnd@arndb.de>,
+ nouveau@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Jan 18, 2023 at 11:28:49AM +1000, Ben Skeggs wrote:
-> On Mon, 16 Jan 2023 at 22:27, Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt> wrote:
-> > On Mon, Jan 16, 2023 at 07:45:05AM +1000, David Airlie wrote:
-> > > As a quick check can you try changing
-> > >
-> > > drivers/gpu/drm/nouveau/nvkm/core/firmware.c:nvkm_firmware_mem_target
-> > > from NVKM_MEM_TARGET_HOST to NVKM_MEM_TARGET_NCOH ?
+From: Arnd Bergmann <arnd@arndb.de>
 
-> In addition to Dave's change, can you try changing the
-> nvkm_falcon_load_dmem() call in gm20b_pmu_init() to:
-> 
-> nvkm_falcon_pio_wr(falcon, (u8 *)&args, 0, 0, DMEM, addr_args,
-> sizeof(args), 0, false);
+gcc-13 complains about a mismatched function declaration:
 
-Hello!
+drivers/gpu/drm/nouveau/dispnv50/wndw.c:696:1: error: conflicting types for 'nv50_wndw_new_' due to enum/integer mismatch; have 'int(const struct nv50_wndw_func *, struct drm_device *, enum drm_plane_type,  const char *, int,  const u32 *, u32,  enum nv50_disp_interlock_type,  u32,  struct nv50_wndw **)' {aka 'int(const struct nv50_wndw_func *, struct drm_device *, enum drm_plane_type,  const char *, int,  const unsigned int *, unsigned int,  enum nv50_disp_interlock_type,  unsigned int,  struct nv50_wndw **)'} [-Werror=enum-int-mismatch]
+  696 | nv50_wndw_new_(const struct nv50_wndw_func *func, struct drm_device *dev,
+      | ^~~~~~~~~~~~~~
+In file included from drivers/gpu/drm/nouveau/dispnv50/wndw.c:22:
+drivers/gpu/drm/nouveau/dispnv50/wndw.h:36:5: note: previous declaration of 'nv50_wndw_new_' with type 'int(const struct nv50_wndw_func *, struct drm_device *, enum drm_plane_type,  const char *, int,  const u32 *, enum nv50_disp_interlock_type,  u32,  u32,  struct nv50_wndw **)' {aka 'int(const struct nv50_wndw_func *, struct drm_device *, enum drm_plane_type,  const char *, int,  const unsigned int *, enum nv50_disp_interlock_type,  unsigned int,  unsigned int,  struct nv50_wndw **)'}
+   36 | int nv50_wndw_new_(const struct nv50_wndw_func *, struct drm_device *,
+      |     ^~~~~~~~~~~~~~
 
-Chiming in just to say that with this change I see the same as Nicolas
-except that the init message size is 255 instead of 0:
+All the callers are ok, just the header file mixes up the order of
+the arguments.
 
-[    2.196934] nouveau 57000000.gpu: pmu: unexpected init message size 255 vs 42
+Fixes: 53e0a3e70de6 ("drm/nouveau/kms/nv50-: simplify tracking of channel interlocks")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ drivers/gpu/drm/nouveau/dispnv50/wndw.h | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.h b/drivers/gpu/drm/nouveau/dispnv50/wndw.h
+index 591c852f326b..76a6ae5d5652 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/wndw.h
++++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.h
+@@ -35,8 +35,9 @@ struct nv50_wndw {
+ 
+ int nv50_wndw_new_(const struct nv50_wndw_func *, struct drm_device *,
+ 		   enum drm_plane_type, const char *name, int index,
+-		   const u32 *format, enum nv50_disp_interlock_type,
+-		   u32 interlock_data, u32 heads, struct nv50_wndw **);
++		   const u32 *format, u32 heads,
++		   enum nv50_disp_interlock_type, u32 interlock_data,
++		   struct nv50_wndw **);
+ void nv50_wndw_flush_set(struct nv50_wndw *, u32 *interlock,
+ 			 struct nv50_wndw_atom *);
+ void nv50_wndw_flush_clr(struct nv50_wndw *, u32 *interlock, bool flush,
+-- 
+2.39.0
+
