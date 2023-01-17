@@ -4,49 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2E60C7EE26
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48A13C7EE23
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F18D10E40E;
-	Thu,  4 May 2023 12:31:46 +0000 (UTC)
-X-Greylist: delayed 435 seconds by postgrey-1.36 at gabe;
- Wed, 28 Dec 2022 14:58:46 UTC
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt
- [193.136.128.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6E8610E3A6
- for <nouveau@lists.freedesktop.org>; Wed, 28 Dec 2022 14:58:46 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id D721C6008775;
- Wed, 28 Dec 2022 14:50:49 +0000 (WET)
-X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
- tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
- by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
- with LMTP id HQFEh9eA__YI; Wed, 28 Dec 2022 14:50:46 +0000 (WET)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt
- [IPv6:2001:690:2100:1::b3dd:b9ac])
- by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id C49DE600876F;
- Wed, 28 Dec 2022 14:50:46 +0000 (WET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
- s=mail; t=1672239046;
- bh=1HO4Euafnc3ATG0WLfDkiuUVCgo90WriGTavAR16hUY=;
- h=Date:From:To:Cc:Subject;
- b=KL4BZIRAdPdUIOiqIBxUYZv/G2GM/dz0gLzls8Q/Z380lvMaG3gkaJpapim4aKqVg
- CLk037AggI/XDTjxSVJ4PcEcr4nrxJEylm2W91WH0aeFkS1ZsL5q0eKr38e/uyMJ2Z
- mi/mKUOiyDvJdIiZpWBaXRhRprfhJgK42ZOEWjFc=
-Received: from wslaptop (unknown [IPv6:2001:8a0:fbe7:6700:65be:d034:d2ec:60ff])
- (Authenticated sender: ist187313)
- by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id DE47B360071;
- Wed, 28 Dec 2022 14:50:45 +0000 (WET)
-Date: Wed, 28 Dec 2022 14:49:14 +0000
-From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-To: diogo.ivo@tecnico.ulisboa.pt
-Message-ID: <20221228144914.z7t7a4fdwvbblnak@wslaptop>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BA2E10E3F8;
+	Thu,  4 May 2023 12:31:45 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4774310E17A;
+ Tue, 17 Jan 2023 03:35:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673926514; x=1705462514;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=X00iEq+wswc+M9vbDEREoKiAkIzRtUNwGnVmM3D89RM=;
+ b=jxxYVrx3J7/bOXAUhTYreCpmAS3azR+EdjRGJ9+QSVMAk/YcqeJZc7pq
+ zNw9SsQoJY17VF45oDYBn93eZVprHSNi4EwXMO4N4FOmWpzaw98y5DX9s
+ hq3eKxd478NZ674ldh9YJR57TAOzqTcJytQfB7lXeWrl2RCBF/6vVRX97
+ pTYhw+sdUawtPP3uPzoQCbcG+a0d81jpfD9tr5andmo7zBYg6A96/N4OY
+ wwUsswY7eNrQ9gYUduwvYC5UNNZTEstz7HewCinTksivNPYKydY1JQou4
+ f8VVl9M3W0bFeK/YbqkMID/OCU1HWI9bPmoI9aNH05DIfCLBC36PY1u1a Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="304290487"
+X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; d="scan'208";a="304290487"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2023 19:35:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="689658811"
+X-IronPort-AV: E=Sophos;i="5.97,222,1669104000"; d="scan'208";a="689658811"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga008.jf.intel.com with ESMTP; 16 Jan 2023 19:35:11 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Mon, 16 Jan 2023 19:35:11 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Mon, 16 Jan 2023 19:35:10 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Mon, 16 Jan 2023 19:35:10 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Mon, 16 Jan 2023 19:35:10 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EMNb1P4q3ZVY3DFA7FnoI5Qf48pLFfqiXLZN6De1HE9M55n8Wx0rp9eujh2OTFDbYgSu0i0WXadqphrIjaEH2uJ93kDwRfCmy6TuStQlWkLsoC1XNuPd+pJx2HW+LZgo/9HtK5RFfPcwbFDTSCbn/PyaigFyTyOj1LC9d+kT4iaJ2u8XSHB1h2s6iyriFEZuz3t+T5xPTN5ZBKullhJDZ3TVEbNFd87oo5tFh961x+Io02ooKDvd/piBLdqBIkXpQb9WOcjt2KlWi1TNWC0gji42opji6ZHfVY14vCc4mfwTvaTzkkiQndpxGTv6iFbOb0O6/xbd57dJcspjm3o2Yg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4EKzyfBtFzH6GMPTOXGrg/m9TT2U3MVwV54cEkyYlME=;
+ b=BZFITOtnsruxg7zZxC49jGhFxywqT+xoNxP3wgMReLbuzVxBsbf2vW2vlIhy6KyOxcJ90NxFIUtSUSjN2GruHSBXTQVw1OO5cjhYSSSXJfkBhOB28Kh3yeuXEZyzeYMMuI6AR3ay60oGgXoLNqnCUFPtdzKsRxnMZYMQc0j+B+5yTtxP4hWKPyvSowcGlcunqidDqzbK8MXEK0ScbWPi3C2soWb5hsmmPDKCZZob7SP/k+v1JEBseTQ9lzwjbWSmWXI33cjzYVgYzM6Bpojiq8wUE/dfOFQgC/5OrOl5h6YG0HMVpULbMKGwRZwFw6mLfq7ecqOPWhXcLXDClne7Yg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BN9PR11MB5276.namprd11.prod.outlook.com (2603:10b6:408:135::18)
+ by SA2PR11MB4874.namprd11.prod.outlook.com (2603:10b6:806:f9::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Tue, 17 Jan
+ 2023 03:35:09 +0000
+Received: from BN9PR11MB5276.namprd11.prod.outlook.com
+ ([fe80::6a8d:b95:e1b5:d79d]) by BN9PR11MB5276.namprd11.prod.outlook.com
+ ([fe80::6a8d:b95:e1b5:d79d%9]) with mapi id 15.20.5986.023; Tue, 17 Jan 2023
+ 03:35:08 +0000
+From: "Tian, Kevin" <kevin.tian@intel.com>
+To: Jason Gunthorpe <jgg@nvidia.com>, Lu Baolu <baolu.lu@linux.intel.com>,
+ Joerg Roedel <joro@8bytes.org>, Matthew Rosato <mjrosato@linux.ibm.com>,
+ Robin Murphy <robin.murphy@arm.com>
+Thread-Topic: [PATCH 6/8] iommu/intel: Add a gfp parameter to
+ alloc_pgtable_page()
+Thread-Index: AQHZIe30VE0qujIGcUC6i9HTWHZFcq6iBWPg
+Date: Tue, 17 Jan 2023 03:35:08 +0000
+Message-ID: <BN9PR11MB5276A8193DE752CA8D8D89928CC69@BN9PR11MB5276.namprd11.prod.outlook.com>
+References: <0-v1-6e8b3997c46d+89e-iommu_map_gfp_jgg@nvidia.com>
+ <6-v1-6e8b3997c46d+89e-iommu_map_gfp_jgg@nvidia.com>
+In-Reply-To: <6-v1-6e8b3997c46d+89e-iommu_map_gfp_jgg@nvidia.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN9PR11MB5276:EE_|SA2PR11MB4874:EE_
+x-ms-office365-filtering-correlation-id: f21960e4-e56a-4178-aaeb-08daf83bd510
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: kCPbd2VtI1HW9VFIac27jep3abDo1i4Im+Uv8AxZ1tN9yPt0/8aIpXfHFm9C9TrreevF3r4wmJi9u1G5gddgUVyXMHFhURkL7nKKGJXFV++//a4xc7Gj6OGdPagnrL7UszLXdSlSbuqnMX0pyAXiH4L0HOwWTwnuFJEwWFiBE61FKe+3uyUh/HaliAXR9Pq7A+G4chDPHqwA/1SEXe5ZD0/GF2+27DJVQiOj6jTUv2C9ieo2BTr8TQylKdnXiefXf6SGefKyOtRjM8xffDp2zh0mbCs1Xcdtc8uOdAm/Uwl3U0Ac7xDJAiCi0EfvoFqPnkP35OrYJhxwFVjtbEz7IYis77hywANtyso/7iWLZG1ly/BmqlGbSQDMuMv6ZQlsL7KBUXcEsK0lzhhPDS1tpboUsSxr0PvcKejARjisobD4oCib08oqN5ojDNDWhEgkjS7u0O9/RTVlfaLbYK1iY4g9O1iN1LYiSqmuUPlu+aokgChs8Rf9FBE/gxnNpce+pdx9zsjwGyEmG5Ag8lVQT0AlxKAZUnYNJqwITPFKWLfeA7IW82Xlu+z5KcRWMtVvKFxxbPGhEIaovfnBRnZk9lo/ebzFkJRtSVzgQ8UF/KrJGlEn0ISusCKb1iE3Yf6k7rFruSC2A0y9zVlqaY8lSZ50Kr9GK1h8QQz+2JbYSXT5RhRru3TGRbiLl1j1nW1rQssI+oFnaHP6kKl7KOBc9A==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5276.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(346002)(396003)(366004)(136003)(376002)(39860400002)(451199015)(86362001)(558084003)(33656002)(186003)(9686003)(26005)(41300700001)(4326008)(64756008)(8676002)(66946007)(66556008)(66476007)(76116006)(66446008)(55016003)(71200400001)(316002)(7696005)(2906002)(6506007)(110136005)(54906003)(478600001)(122000001)(7416002)(38070700005)(38100700002)(52536014)(5660300002)(82960400001)(8936002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?GlZf83d76V76P5/l5vgsCQfHdEbPTs/mAzZH7ATO8MQ9EWiwWs+tI0KbjA+v?=
+ =?us-ascii?Q?LpZjM5TMuVHAjmdgjjfcKNx4BCYu2nzH9kSCnhwZUOiVvadNyDD+P8GDpsO1?=
+ =?us-ascii?Q?8LBAqy/jMAlx0w2bY37rmgREn4i4guKqVYAaj0OpgDVt3TRWHocbGcHfURxC?=
+ =?us-ascii?Q?pNmkubPLizBNDXPY4ABY9gswfB2avrU7EIfNfeqpScTtOfqzyE1ZM3prNb0M?=
+ =?us-ascii?Q?FbJ3Z8kBb6e4KjWGDLpVnnxHOWamqKvebOldTBwLfIesXMqC86gCi7NuqLuE?=
+ =?us-ascii?Q?F+20vauyIXcZOfKYQhwF2rz5QNrgn/YUJY/jhW8P2k4iQc5uYjnuQRLygOUq?=
+ =?us-ascii?Q?VwyHtm+Olyfui3LCBsK7lo+BcoOOSU9JJv8Ts5RSCeWO54uK0sk9CbyULCSf?=
+ =?us-ascii?Q?AD1JDWzZCaVZVTZWfSCxyDX0r2dPQrZxDkGaZ1FqGvoAnZ2zKu1oas+4X5lK?=
+ =?us-ascii?Q?xu+49UGfOkmzOSAZttMwlsn8v60u2wEOWCjvqrIhQOu6+V/EU7+p1SNAwiqd?=
+ =?us-ascii?Q?yRCGKNs5LFWvQK/Vikd7Dt4DmSj4s13htCIMc0WsA65q5C9UKLmnHdQROcoD?=
+ =?us-ascii?Q?FOLxnknSIPvqKxeebg7TUP2M8h0NyWiyvVapYh1XtROzmekG9skYaYabPYEj?=
+ =?us-ascii?Q?8IvGaSTkBmyUGtOUnROtAtkmaSiodq58F+MYopsRv9Y+k0uHzSJURhRVMmm9?=
+ =?us-ascii?Q?NEiYkR4VFQ7vUgRUttxeZRGX27l5QMPYY/i/YTRv0qm//6n5ihMMoU/b4pPS?=
+ =?us-ascii?Q?4E/2xf/MIpKJf6Vysd8/f+Lb01K98lR4m0soO0X29DRnAzJO9VZtnvZ+ei+G?=
+ =?us-ascii?Q?9vdlzyeOjqNg/aIH3DszQ2cx/x2qwV3jU/Qmffn8qb/9Jjhqrna73HXb3Aaj?=
+ =?us-ascii?Q?6ASdX/iIL2r1cPP1Vu625rumuNfxSkz/XTqTC9Q60SutQgTiHecrV4fShtlr?=
+ =?us-ascii?Q?JrRwnE2L6wAT3H/qhedvUkekR5SrqMOMLzyD/NkELczNbac9nSFfoJyDPy9/?=
+ =?us-ascii?Q?+DcH5ZdVUS+tdk2gTHVp7hkLxsYB5lTZsLx9OE48zMzqXPINEzSF7Qk7c/rw?=
+ =?us-ascii?Q?bvxtURGhsZHZ5m+4v4Xpxk4d/KllcAB/To1zjvMT+/om7RsPAJb4AqNBovAJ?=
+ =?us-ascii?Q?2GKSVpZjlztOWkCaTcTuBStmOp5JJYCzFOIlDC0TOL4m9jHIDZ68MpVnSn9K?=
+ =?us-ascii?Q?PPoLkK4AuuRXdkBv3VelYBmCaR3lYmzoUDgTzA6rrn9E346bholfPdW6HGb+?=
+ =?us-ascii?Q?eA6K5g9uYccXuiwgEvYDQG3+ZNQNUXqvTRQaaqcaXhKN0bBVAawdSMkRa4ZM?=
+ =?us-ascii?Q?Zch4D07i368f1cAVV6TfG/sV8W1RoO8m2yAHckrf+O/CSc2Wf93Lx1/Roxpx?=
+ =?us-ascii?Q?9dYSJZHO+yHOiaKx76d/cKIOiPo/MkH8OU35fz1VnU4aZzc8u3cMcUEyO72Q?=
+ =?us-ascii?Q?nbEzukGhWU03XjlaSla1PrQ0/SwzaaNmDj3WNGR3l6xcoXIr98kL+BuzsoWy?=
+ =?us-ascii?Q?VJECxGaKcLCIWTjs0rmbfAENdUNyYO+kvELFayu42zxANTxjxIuNNNrKA8tT?=
+ =?us-ascii?Q?XQTvUZcCJ+7Zbiqe0pdp+Q0NQ2atBDMVSFsYr2yT?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:35 +0000
-Subject: [Nouveau] [REGRESSION] GM20B probe fails after commit 2541626cfb79
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5276.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f21960e4-e56a-4178-aaeb-08daf83bd510
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jan 2023 03:35:08.7432 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: aPJuTk1yQn9s5N4feLo+zGc8Xz4UGPDZgSWprDdqKQD+eAl0xPcnysejpNLvdO+J0Uqco+fUtpk3d8qs3PfjBw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4874
+X-OriginatorOrg: intel.com
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:33 +0000
+Subject: Re: [Nouveau] [PATCH 6/8] iommu/intel: Add a gfp parameter to
+ alloc_pgtable_page()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,84 +153,41 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, airlied@redhat.com,
- regressions@lists.linux.dev, dri-devel@lists.freedesktop.org,
- bskeggs@redhat.com
+Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ Niklas Schnelle <schnelle@linux.ibm.com>,
+ "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+ "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-stm32@st-md-mailman.stormreply.com"
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "ath10k@lists.infradead.org" <ath10k@lists.infradead.org>,
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+ "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ "virtualization@lists.linux-foundation.org"
+ <virtualization@lists.linux-foundation.org>,
+ "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hello,
+> From: Jason Gunthorpe <jgg@nvidia.com>
+> Sent: Saturday, January 7, 2023 12:43 AM
+>=20
+> @@ -2676,7 +2676,7 @@ static int copy_context_table(struct intel_iommu
+> *iommu,
+>  			if (!old_ce)
+>  				goto out;
+>=20
+> -			new_ce =3D alloc_pgtable_page(iommu->node);
+> +			new_ce =3D alloc_pgtable_page(iommu->node,
+> GFP_KERNEL);
 
-Commit 2541626cfb79 breaks GM20B probe with
-the following kernel log:
-
-[    2.153892] ------------[ cut here ]------------
-[    2.153897] WARNING: CPU: 1 PID: 36 at drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgf100.c:273 gf100_vmm_valid+0x2c4/0x390
-[    2.153916] Modules linked in:
-[    2.153922] CPU: 1 PID: 36 Comm: kworker/u8:1 Not tainted 6.1.0+ #1
-[    2.153929] Hardware name: Google Pixel C (DT)
-[    2.153933] Workqueue: events_unbound deferred_probe_work_func
-[    2.153943] pstate: 80000005 (Nzcv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-[    2.153950] pc : gf100_vmm_valid+0x2c4/0x390
-[    2.153959] lr : gf100_vmm_valid+0xb4/0x390
-[    2.153966] sp : ffffffc009e134b0
-[    2.153969] x29: ffffffc009e134b0 x28: 0000000000000000 x27: ffffffc008fd44c8
-[    2.153979] x26: 00000000ffffffea x25: ffffffc0087b98d0 x24: ffffff8080f89038
-[    2.153987] x23: ffffff8081fadc08 x22: 0000000000000000 x21: 0000000000000000
-[    2.153995] x20: ffffff8080f8a000 x19: ffffffc009e13678 x18: 0000000000000000
-[    2.154003] x17: f37a8b93418958e6 x16: ffffffc009f0d000 x15: 0000000000000000
-[    2.154011] x14: 0000000000000002 x13: 000000000003a020 x12: ffffffc008000000
-[    2.154019] x11: 0000000102913000 x10: 0000000000000000 x9 : 0000000000000000
-[    2.154026] x8 : ffffffc009e136d8 x7 : ffffffc008fd44c8 x6 : ffffff80803d0f00
-[    2.154034] x5 : 0000000000000000 x4 : ffffff8080f88c00 x3 : 0000000000000010
-[    2.154041] x2 : 000000000000000c x1 : 00000000ffffffea x0 : 00000000ffffffea
-[    2.154050] Call trace:
-[    2.154053]  gf100_vmm_valid+0x2c4/0x390
-[    2.154061]  nvkm_vmm_map_valid+0xd4/0x204
-[    2.154069]  nvkm_vmm_map_locked+0xa4/0x344
-[    2.154076]  nvkm_vmm_map+0x50/0x84
-[    2.154083]  nvkm_firmware_mem_map+0x84/0xc4
-[    2.154094]  nvkm_falcon_fw_oneinit+0xc8/0x320
-[    2.154101]  nvkm_acr_oneinit+0x428/0x5b0
-[    2.154109]  nvkm_subdev_oneinit_+0x50/0x104
-[    2.154114]  nvkm_subdev_init_+0x3c/0x12c
-[    2.154119]  nvkm_subdev_init+0x60/0xa0
-[    2.154125]  nvkm_device_init+0x14c/0x2a0
-[    2.154133]  nvkm_udevice_init+0x60/0x9c
-[    2.154140]  nvkm_object_init+0x48/0x1b0
-[    2.154144]  nvkm_ioctl_new+0x168/0x254
-[    2.154149]  nvkm_ioctl+0xd0/0x220
-[    2.154153]  nvkm_client_ioctl+0x10/0x1c
-[    2.154162]  nvif_object_ctor+0xf4/0x22c
-[    2.154168]  nvif_device_ctor+0x28/0x70
-[    2.154174]  nouveau_cli_init+0x150/0x590
-[    2.154180]  nouveau_drm_device_init+0x60/0x2a0
-[    2.154187]  nouveau_platform_device_create+0x90/0xd0
-[    2.154193]  nouveau_platform_probe+0x3c/0x9c
-[    2.154200]  platform_probe+0x68/0xc0
-[    2.154207]  really_probe+0xbc/0x2dc
-[    2.154211]  __driver_probe_device+0x78/0xe0
-[    2.154216]  driver_probe_device+0xd8/0x160
-[    2.154221]  __device_attach_driver+0xb8/0x134
-[    2.154226]  bus_for_each_drv+0x78/0xd0
-[    2.154230]  __device_attach+0x9c/0x1a0
-[    2.154234]  device_initial_probe+0x14/0x20
-[    2.154239]  bus_probe_device+0x98/0xa0
-[    2.154243]  deferred_probe_work_func+0x88/0xc0
-[    2.154247]  process_one_work+0x204/0x40c
-[    2.154256]  worker_thread+0x230/0x450
-[    2.154261]  kthread+0xc8/0xcc
-[    2.154266]  ret_from_fork+0x10/0x20
-[    2.154273] ---[ end trace 0000000000000000 ]---
-[    2.154278] nouveau 57000000.gpu: pmu: map -22
-[    2.154285] nouveau 57000000.gpu: acr: one-time init failed, -22
-[    2.154559] nouveau 57000000.gpu: init failed with -22
-[    2.154564] nouveau: DRM-master:00000000:00000080: init failed with -22
-[    2.154574] nouveau 57000000.gpu: DRM-master: Device allocation failed: -22
-[    2.162905] nouveau: probe of 57000000.gpu failed with error -22
-
-#regzbot introduced: 2541626cfb79
-
-Thanks,
-
-Diogo Ivo
+GFP_ATOMIC
