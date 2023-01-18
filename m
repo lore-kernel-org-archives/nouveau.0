@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 757B0C004D4
-	for <nouveau@archiver.kernel.org>; Wed, 18 Jan 2023 06:13:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6163C32793
+	for <nouveau@archiver.kernel.org>; Wed, 18 Jan 2023 06:14:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F58510E695;
-	Wed, 18 Jan 2023 06:13:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BA7310E696;
+	Wed, 18 Jan 2023 06:14:03 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D12C10E685
- for <nouveau@lists.freedesktop.org>; Wed, 18 Jan 2023 06:13:52 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D0AE10E697
+ for <nouveau@lists.freedesktop.org>; Wed, 18 Jan 2023 06:14:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1674022431;
+ s=mimecast20190719; t=1674022439;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=THkjWbjdTDoalDkhZzXhw8wgGXeOdJbZJd1kVOay+qU=;
- b=L1dzCLf4n8uzmuue44gYTbIS/BsDjw9lNEQju1Um1Yrhto5L0H7NtdTWKwN+0fLXq1oEDn
- ZW/Ipw9+EXWhtRkP1PN+gtmBcvNg+uGFfAm99UwgvTC4zvwYGvTs2ZxFi29InCBJde/mvs
- ICWQqGWTcxkKWiVHBcECrua7z4ETfco=
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
- [209.85.218.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=kuIA/967bi8fJ2s/oMp21AWFew5v50JdzBzuNFK8Osw=;
+ b=eQFONCsQNmIf39t+2fLq5M1nMbNSsgn0zux+egY1kWyRUx49bl/8Sgnu73y1df7OMq9Iqv
+ dCWAWfjSLayASoQfMktOrkNFy5fNfymTUDAGQbLeUkGjp4h0duJbrm0gjzWDOLZIy7BH0R
+ q6JX8nw/VuWDdKpURNXtdNqQ6FjJAM8=
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
+ [209.85.218.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-486-DS5DSVIXO_qjukM8mlcGKA-1; Wed, 18 Jan 2023 01:13:50 -0500
-X-MC-Unique: DS5DSVIXO_qjukM8mlcGKA-1
-Received: by mail-ej1-f69.google.com with SMTP id
- sc9-20020a1709078a0900b0086910fdf624so10744439ejc.13
- for <nouveau@lists.freedesktop.org>; Tue, 17 Jan 2023 22:13:49 -0800 (PST)
+ us-mta-571-92Gjtwc_P2GpqLmZXgcAUw-1; Wed, 18 Jan 2023 01:13:58 -0500
+X-MC-Unique: 92Gjtwc_P2GpqLmZXgcAUw-1
+Received: by mail-ej1-f72.google.com with SMTP id
+ nd38-20020a17090762a600b00871ff52c6b5so3695657ejc.0
+ for <nouveau@lists.freedesktop.org>; Tue, 17 Jan 2023 22:13:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=THkjWbjdTDoalDkhZzXhw8wgGXeOdJbZJd1kVOay+qU=;
- b=1EtQgfsQ0ilrPbaTvJRrA+y77shF2tS6JBNcA1sOUwm1v9uFwBxPFHDIz94feOiMU/
- Nxea5cynFl2vVIA3QjJewF/17syzr+ZMIy1H0MoJdk4GnTobC/dgjzHoJj9UMQQKozL4
- gWZWXrVWC8SBWm/2LT77tqMxhrjRRG5md/lZRstByI1YRYbUuR37xUGwqueYxl4cWfuP
- NpW2VP48l9VHu001E/VGo2Syh5zyfs+mDlYpK67HjEheL39nUYEvLbqk7hy3NqWbBwUf
- +CQ+S1BONg6cPh5hsCO88UobHRgsxABUR11z064WTThCmKkqeVJkfpD/dAQb7LDnTJuW
- Jm5A==
-X-Gm-Message-State: AFqh2koFko8euFfwgGjY7RYKkPg93qdmq5iQWwBXk559iysHyyc3Dva8
- AV/+nywtsUKl7BKiPDB+SEz94ADQbRbW6RLAM82NkDChYge9KguJRVPj8sFyaRPP3ekTbJsCHEb
- HCJ1qwPD/gbR6bGN0IK1xGzYQow==
-X-Received: by 2002:a17:907:62a8:b0:86a:d385:81df with SMTP id
- nd40-20020a17090762a800b0086ad38581dfmr8955216ejc.3.1674022428967; 
- Tue, 17 Jan 2023 22:13:48 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXv8POTKI4k6olZcwo0e0gJ4B/NW0lciBAeJE2/KV3jsK0Dqe+uZfReADyqZ8IOCRKZS+M2fsg==
-X-Received: by 2002:a17:907:62a8:b0:86a:d385:81df with SMTP id
- nd40-20020a17090762a800b0086ad38581dfmr8955202ejc.3.1674022428774; 
- Tue, 17 Jan 2023 22:13:48 -0800 (PST)
+ bh=kuIA/967bi8fJ2s/oMp21AWFew5v50JdzBzuNFK8Osw=;
+ b=BwPHZoQyweeIUiHstlLGbjza/q1xd1m+Xv02ldqo3EN322zi3dwLgSyeS15rdfsY3q
+ bCAHbfo+knshl5u2bA/Olsf1G4ZQeSQrw+gNceSksb9c2Q1S5Ld0C+G/j2g3GEamKTLm
+ iN3hwPOiBmhjUEiCfqKpxGVyzivzMOB/k1ZGN7Dh9wA7OTMSiZgB90JMdBMZ/OCgeDoY
+ a7z5qSgxEPu4DMYIFhg8tw3qgH/zKJw8S+wtYHA+nqrAci8yI2CGfFqBFkcKicjNx/y2
+ Iwl9QAFwch/+AHKWsQcParlYbBXXzIHOgiQz9tMgFQ6u+L0pzJPuAA+VldDXeOvVRFFZ
+ DjLQ==
+X-Gm-Message-State: AFqh2kqQT6zik2cgrcbzr0vcEl7JyoYh+wVIjhmk+daGr9Abp0numo9T
+ 7J5+S/7uoSjEd9FiX/4I5J9Uyfx0bYOZIo5S5dyNhVhF3PFCiiiYhMGuEJCz4rkfv42ELjf3+89
+ h1pTmsxSMyhwSwUCWD5l/jgD7zg==
+X-Received: by 2002:a17:906:549:b0:84d:3822:a14e with SMTP id
+ k9-20020a170906054900b0084d3822a14emr5532744eja.64.1674022437317; 
+ Tue, 17 Jan 2023 22:13:57 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXv86GpSfYd+wwTGTqkBFiIhaFIdaUkZl6RvjU2Bnz8b7FM4BmyUqqqu3yOGXwZAwyOl/axmZQ==
+X-Received: by 2002:a17:906:549:b0:84d:3822:a14e with SMTP id
+ k9-20020a170906054900b0084d3822a14emr5532728eja.64.1674022437107; 
+ Tue, 17 Jan 2023 22:13:57 -0800 (PST)
 Received: from cassiopeiae.. ([2a02:810d:4b3f:de78:642:1aff:fe31:a19f])
  by smtp.gmail.com with ESMTPSA id
- k2-20020a170906970200b0073dbaeb50f6sm13961020ejx.169.2023.01.17.22.13.47
+ 11-20020a170906300b00b008675df83251sm7184811ejz.34.2023.01.17.22.13.55
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Jan 2023 22:13:48 -0800 (PST)
+ Tue, 17 Jan 2023 22:13:56 -0800 (PST)
 From: Danilo Krummrich <dakr@redhat.com>
 To: daniel@ffwll.ch, airlied@redhat.com, christian.koenig@amd.com,
  bskeggs@redhat.com, jason@jlekstrand.net, tzimmermann@suse.de,
  mripard@kernel.org, corbet@lwn.net
-Date: Wed, 18 Jan 2023 07:12:48 +0100
-Message-Id: <20230118061256.2689-7-dakr@redhat.com>
+Date: Wed, 18 Jan 2023 07:12:50 +0100
+Message-Id: <20230118061256.2689-9-dakr@redhat.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230118061256.2689-1-dakr@redhat.com>
 References: <20230118061256.2689-1-dakr@redhat.com>
@@ -72,8 +72,8 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset="US-ASCII"; x-default=true
-Subject: [Nouveau] [PATCH drm-next 06/14] drm/nouveau: get vmm via
- nouveau_cli_vmm()
+Subject: [Nouveau] [PATCH drm-next 08/14] drm/nouveau: move usercopy helpers
+ to nouveau_drv.h
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,95 +90,89 @@ Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Provide a getter function for the client's current vmm context. Since
-we'll add a new (u)vmm context for UMD bindings in subsequent commits,
-this will keep the code clean.
+Move the usercopy helpers to a common driver header file to make it
+usable for the new API added in subsequent commits.
 
 Signed-off-by: Danilo Krummrich <dakr@redhat.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_bo.c   | 2 +-
- drivers/gpu/drm/nouveau/nouveau_chan.c | 2 +-
- drivers/gpu/drm/nouveau/nouveau_drv.h  | 9 +++++++++
- drivers/gpu/drm/nouveau/nouveau_gem.c  | 6 +++---
- 4 files changed, 14 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_drv.h | 26 ++++++++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_gem.c | 26 --------------------------
+ 2 files changed, 26 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 335fa91ca4ad..d2b32a47e480 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -204,7 +204,7 @@ nouveau_bo_alloc(struct nouveau_cli *cli, u64 *size, int *align, u32 domain,
- 	struct nouveau_drm *drm = cli->drm;
- 	struct nouveau_bo *nvbo;
- 	struct nvif_mmu *mmu = &cli->mmu;
--	struct nvif_vmm *vmm = cli->svm.cli ? &cli->svm.vmm : &cli->vmm.vmm;
-+	struct nvif_vmm *vmm = &nouveau_cli_vmm(cli)->vmm;
- 	int i, pi = -1;
- 
- 	if (!*size) {
-diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
-index e648ecd0c1a0..1068abe41024 100644
---- a/drivers/gpu/drm/nouveau/nouveau_chan.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
-@@ -148,7 +148,7 @@ nouveau_channel_prep(struct nouveau_drm *drm, struct nvif_device *device,
- 
- 	chan->device = device;
- 	chan->drm = drm;
--	chan->vmm = cli->svm.cli ? &cli->svm : &cli->vmm;
-+	chan->vmm = nouveau_cli_vmm(cli);
- 	atomic_set(&chan->killed, 0);
- 
- 	/* allocate memory for dma push buffer */
 diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index b5de312a523f..81350e685b50 100644
+index 81350e685b50..20a7f31b9082 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_drv.h
 +++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -112,6 +112,15 @@ struct nouveau_cli_work {
- 	struct dma_fence_cb cb;
- };
+@@ -130,6 +130,32 @@ nouveau_cli(struct drm_file *fpriv)
+ 	return fpriv ? fpriv->driver_priv : NULL;
+ }
  
-+static inline struct nouveau_vmm *
-+nouveau_cli_vmm(struct nouveau_cli *cli)
++static inline void
++u_free(void *addr)
 +{
-+	if (cli->svm.cli)
-+		return &cli->svm;
-+
-+	return &cli->vmm;
++	kvfree(addr);
 +}
 +
- void nouveau_cli_work_queue(struct nouveau_cli *, struct dma_fence *,
- 			    struct nouveau_cli_work *);
++static inline void *
++u_memcpya(uint64_t user, unsigned nmemb, unsigned size)
++{
++	void *mem;
++	void __user *userptr = (void __force __user *)(uintptr_t)user;
++
++	size *= nmemb;
++
++	mem = kvmalloc(size, GFP_KERNEL);
++	if (!mem)
++		return ERR_PTR(-ENOMEM);
++
++	if (copy_from_user(mem, userptr, size)) {
++		u_free(mem);
++		return ERR_PTR(-EFAULT);
++	}
++
++	return mem;
++}
++
+ #include <nvif/object.h>
+ #include <nvif/parent.h>
  
 diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index ac5793c96957..48e6ba00ec27 100644
+index 48e6ba00ec27..5dad2d0dd5cb 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_gem.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -103,7 +103,7 @@ nouveau_gem_object_open(struct drm_gem_object *gem, struct drm_file *file_priv)
- 	struct nouveau_bo *nvbo = nouveau_gem_object(gem);
- 	struct nouveau_drm *drm = nouveau_bdev(nvbo->bo.bdev);
- 	struct device *dev = drm->dev->dev;
--	struct nouveau_vmm *vmm = cli->svm.cli ? &cli->svm : &cli->vmm;
-+	struct nouveau_vmm *vmm = nouveau_cli_vmm(cli);
- 	struct nouveau_vma *vma;
- 	int ret;
+@@ -613,32 +613,6 @@ nouveau_gem_pushbuf_validate(struct nouveau_channel *chan,
+ 	return 0;
+ }
  
-@@ -180,7 +180,7 @@ nouveau_gem_object_close(struct drm_gem_object *gem, struct drm_file *file_priv)
- 	struct nouveau_bo *nvbo = nouveau_gem_object(gem);
- 	struct nouveau_drm *drm = nouveau_bdev(nvbo->bo.bdev);
- 	struct device *dev = drm->dev->dev;
--	struct nouveau_vmm *vmm = cli->svm.cli ? &cli->svm : & cli->vmm;
-+	struct nouveau_vmm *vmm = nouveau_cli_vmm(cli);
- 	struct nouveau_vma *vma;
- 	int ret;
- 
-@@ -269,7 +269,7 @@ nouveau_gem_info(struct drm_file *file_priv, struct drm_gem_object *gem,
- {
- 	struct nouveau_cli *cli = nouveau_cli(file_priv);
- 	struct nouveau_bo *nvbo = nouveau_gem_object(gem);
--	struct nouveau_vmm *vmm = cli->svm.cli ? &cli->svm : &cli->vmm;
-+	struct nouveau_vmm *vmm = nouveau_cli_vmm(cli);
- 	struct nouveau_vma *vma;
- 
- 	if (is_power_of_2(nvbo->valid_domains))
+-static inline void
+-u_free(void *addr)
+-{
+-	kvfree(addr);
+-}
+-
+-static inline void *
+-u_memcpya(uint64_t user, unsigned nmemb, unsigned size)
+-{
+-	void *mem;
+-	void __user *userptr = (void __force __user *)(uintptr_t)user;
+-
+-	size *= nmemb;
+-
+-	mem = kvmalloc(size, GFP_KERNEL);
+-	if (!mem)
+-		return ERR_PTR(-ENOMEM);
+-
+-	if (copy_from_user(mem, userptr, size)) {
+-		u_free(mem);
+-		return ERR_PTR(-EFAULT);
+-	}
+-
+-	return mem;
+-}
+-
+ static int
+ nouveau_gem_pushbuf_reloc_apply(struct nouveau_cli *cli,
+ 				struct drm_nouveau_gem_pushbuf *req,
 -- 
 2.39.0
 
