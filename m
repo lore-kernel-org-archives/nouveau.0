@@ -4,93 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC0ACC77B7C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05472C7EE2D
 	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC1DD10E465;
-	Thu,  4 May 2023 12:32:50 +0000 (UTC)
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2047.outbound.protection.outlook.com [40.107.100.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A461210E37A;
- Wed, 25 Jan 2023 10:03:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lgPQ4wfWRf4QKU9AoNzizI/Cl1dC0N4wK/9SQ6jYbMyFRNCBehE7NtNW9YraGi/LEu19n1XQ8t0jHj+GH3jbUf7xZKI6Hw95rLQr/DqYsgYxKcjRbOr0FeaxMWdKVro4P3sl7hSz5UQkszPgqKhWh1Rdqt+HxhCjY0POVxXkx6gpHjOiXWA2YxDhlJQJsK4hddFSAgcxgJ7lYwzc5ukyye8dBxPssru29jmpVfuVJyqoXEskYF1rF0FqUkwD1+bZDUUIejCG8XOP09Zp10SlvN9eaL/XHTH0dxPkIRDbGEwcV+sOGzVlokUHlnERJz79l4ZgvjxSFzV41JiTYc4Ywg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=upo6YJUccw0tI/B2/Tu+R9CdUn1pMZLDc3ynXo3uccE=;
- b=M/RbRPGBAsXl98i8yNobrHU6/G8rSCzvtwWxD+ukLGyir5Z0yFE4r1yr9/Xyx+kcr10PBsTz7/+AP7EzdxS1GMzaB6WuAb8EJSfpFf6zkepKGxGzFJZkw9JjZOr2CncHQdc/K3HGolthoWgzjqLoh8X5cHIXQHovGrrPXJalCbvlajs+7hrwOUSq3AvIIOal8D5twbIjVVQ6GqoMetGfOQ5R/NcH+GuteoryLxcAdUKl6Xy9edsf6OsQY27NghfathIrMq9BQUatqthYbohjLxT0YQc0nbHtQE+I2nEoW4SoKKM4ObUmtkj5f7Wd+PYs8IARd7s7eVYQpdVrPle0GQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=upo6YJUccw0tI/B2/Tu+R9CdUn1pMZLDc3ynXo3uccE=;
- b=DYVMibzdJI+yVeSfkpc0Q1FqkvVL6f4kCNCfhEwmyEeuVGvTsF2Pg+4uKxay7f59BaGTKW50WYAJWabThhS66I+W/Mz8ICpXNIj18c+WHiwgAU0MwL0W+/7l7DLRQqyBZK6yd+PBe4yDeZYtuUTcCyxTXJT2q4GvNrB9U8kQavM=
-Received: from MW4PR03CA0122.namprd03.prod.outlook.com (2603:10b6:303:8c::7)
- by DM6PR12MB4877.namprd12.prod.outlook.com (2603:10b6:5:1bb::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Wed, 25 Jan
- 2023 10:03:56 +0000
-Received: from CO1NAM11FT033.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8c:cafe::a7) by MW4PR03CA0122.outlook.office365.com
- (2603:10b6:303:8c::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.20 via Frontend
- Transport; Wed, 25 Jan 2023 10:03:55 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT033.mail.protection.outlook.com (10.13.174.247) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6043.17 via Frontend Transport; Wed, 25 Jan 2023 10:03:55 +0000
-Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Wed, 25 Jan 2023 04:03:51 -0600
-From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Date: Wed, 25 Jan 2023 15:33:14 +0530
-Message-ID: <20230125100315.6214-3-Amaranath.Somalapuram@amd.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20230125100315.6214-1-Amaranath.Somalapuram@amd.com>
-References: <20230125100315.6214-1-Amaranath.Somalapuram@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8BEC10E44C;
+	Thu,  4 May 2023 12:32:49 +0000 (UTC)
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com
+ [IPv6:2607:f8b0:4864:20::1033])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C751710E8A4;
+ Thu, 19 Jan 2023 04:14:47 +0000 (UTC)
+Received: by mail-pj1-x1033.google.com with SMTP id o13so1185619pjg.2;
+ Wed, 18 Jan 2023 20:14:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=tEL5q0gdvRQcXcMbCv9i2khmy9sVAvwANWZ5CU7Ktw8=;
+ b=DdG+KDKzzl/Q10f5IwLdjJKtkg54MM38BjvhsBf4QA470iha1Z9YdIb7y+x5NJN+1z
+ ER9Y/GetiKL0MhMUHpc5Z9FwVu8NU3vLs2OcEbLPnXXs3zlA3xCNx+P6a9D4ub1S4q5q
+ T1OWL2zrXkyFrY4D4E3K0qcuZVwLk75OzrElTTvWyR9wBWZ5pblp21Cn+/jjmBKZAB0H
+ IS/X91U5reo/5s8DRUaRxPD/ahxWJX2LA8bGZ35RQ46Bp62CKw0hrq0oKIPI3wM8PedS
+ Z2boh2QjbYv7xh1TCpWyfiFCngGGWNbQbJ27HS9EP3jsWkzUh7B0Zij8bSmOUCnDDFk0
+ V4FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=tEL5q0gdvRQcXcMbCv9i2khmy9sVAvwANWZ5CU7Ktw8=;
+ b=W4QuSEEmWs1z4YnBRi/haEnmAzT6z65l9cCI9RnApuYP9V0nthdXCNNUE5N+ye0xNl
+ 9BM3nkFJKS6h/m+3sW0L8F9dt2stX1q64Gh2IzNWY5RWv8nR/a6HWZBFr8G2q2WzxT93
+ 9kQ5Msj9kAYgO1cWcgyq7iC1NYsWSnTELQMPykyLCAjok2WejWPZCQ+IKJBR/NqJXSvW
+ 7y4hhru/R01kBFkdP8Pn8WufWyTkveO2wlQZ9jGGBtzAXb4QJUYG/ioefRZANA+jjr31
+ 4uYkXEBao5k5HF0aGCAgeAFrl/+sc6NWpIGn3xRrXzDTzgFfGwRnc/SyTC9qsWHtRShE
+ PZrA==
+X-Gm-Message-State: AFqh2kofTec64maI3vdHWqkeJSIRAQjcjrEEXbN1ra2+nueEknSrb2Zb
+ 7+x4WQpd5ixft3+zpNs3btonj9iDAji9EA==
+X-Google-Smtp-Source: AMrXdXs3n9dYoZdp5en3XPTTghFRNT/V6cDPyp3Ke/b/VTPp7u+7tHub9LILE8A3rWVMFFHjd3c0HQ==
+X-Received: by 2002:a17:902:7404:b0:194:97c8:84c3 with SMTP id
+ g4-20020a170902740400b0019497c884c3mr9939488pll.66.1674101687091; 
+ Wed, 18 Jan 2023 20:14:47 -0800 (PST)
+Received: from debian.me (subs03-180-214-233-1.three.co.id. [180.214.233.1])
+ by smtp.gmail.com with ESMTPSA id
+ j3-20020a170903028300b001886ff822ffsm444399plr.186.2023.01.18.20.14.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 18 Jan 2023 20:14:46 -0800 (PST)
+Received: by debian.me (Postfix, from userid 1000)
+ id 9C126104FA9; Thu, 19 Jan 2023 11:14:42 +0700 (WIB)
+Date: Thu, 19 Jan 2023 11:14:42 +0700
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+To: Danilo Krummrich <dakr@redhat.com>, daniel@ffwll.ch, airlied@redhat.com,
+ christian.koenig@amd.com, bskeggs@redhat.com, jason@jlekstrand.net,
+ tzimmermann@suse.de, mripard@kernel.org, corbet@lwn.net
+Message-ID: <Y8jDsqGc5gXoIBAO@debian.me>
+References: <20230118061256.2689-1-dakr@redhat.com>
+ <20230118061256.2689-4-dakr@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT033:EE_|DM6PR12MB4877:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2915f4e6-c997-46bb-fb32-08dafebb783c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uMPjknvUNcqZO6yoDQn/yOY+C1MfCrwVodS13VmKUmYO/SzHIHSSyAJyJelM3hrlIPZceHUNm+IAWq7gEivVmShmZfAmtfk/3bNAEFa+Wpr43YD1oGTiscS8HpHFfsxfq2HT6pGLfOP8MM8wWYuLaGG4DDonCHB71CYf/vqAnCryBi1yJED7e38kd4tl7vhLyyeQfB362KGttFZ8sgCoN3WGU32jLgX3wey1vArTnpT/kpo82AH8SnRIEz3O7a9g9cnKLqAJaKGZmkQ78VDl6EjHZ3Uk5w3xhfB2YriYBqBrQ5P5Slgc3+gMAjCNlORxnSeP5xKu9etLkdU4Jio/fn9T3VXCHTnRboCHpDhUpxpjZbSEcdLqY4JQV1+jUzYYEJ9P/89686W48UvNlL50e5jQp1KIj5dcst8/0Ts1+LkWk4J4UVNU9qpk/tDyG2TvUOHVLuxbz72VB5q8C55lsAJ5YlseCYXV8CcucjWo+GosJwD3ggZACtISXMzveeI2JoppxYFuE0HEkN+ZjYj0jt+7RK4IlQvOikwE9Ze6xAMY8MqaGyRJuZsI47b1SO6AiYh+W3TBu8Ew0ELpEMqmau7pm+VKFZXKa0oyITC5Pgy33UVfSurK4tUV+D+oYp6smsKObRdEwOmb1gEn9K/lhfAORmd55WQ/lQpQF4MkmTZsrSdv6hx/dUSCE9lOOtA9QtZqFonZ3VVIJ3cfFB9FvHrjkY9PFwtANP+gp3oW4Xk=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(136003)(39860400002)(396003)(346002)(376002)(451199018)(36840700001)(40470700004)(46966006)(70586007)(41300700001)(4326008)(8676002)(54906003)(36860700001)(110136005)(26005)(450100002)(316002)(70206006)(2616005)(336012)(8936002)(356005)(1076003)(81166007)(5660300002)(82310400005)(40480700001)(40460700003)(426003)(2906002)(16526019)(83380400001)(7696005)(6666004)(82740400003)(86362001)(47076005)(478600001)(36756003)(186003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 10:03:55.4385 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2915f4e6-c997-46bb-fb32-08dafebb783c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT033.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4877
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
-Subject: [Nouveau] [PATCH v4 3/4] drm/amdgpu: GDS/GWS/OA cleanup the page
- shift operation
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="st4xfXKFTYFcRLrQ"
+Content-Disposition: inline
+In-Reply-To: <20230118061256.2689-4-dakr@redhat.com>
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:31 +0000
+Subject: Re: [Nouveau] [PATCH drm-next 03/14] drm: manager to keep track of
+ GPUs VA mappings
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,95 +77,621 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: shashank.sharma@amd.com, arunpravin.paneerselvam@amd.com,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, arvind.yadav@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Remove page shift operations as ttm_resource moved
-from num_pages to size_t size in bytes.
-v1 – v4: adding missing related to amdgpu_ttm_init_on_chip
 
-Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    | 12 ++++++------
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c |  3 +--
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c    |  6 +++---
- 3 files changed, 10 insertions(+), 11 deletions(-)
+--st4xfXKFTYFcRLrQ
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-index 9e549923622b..2732d89c8468 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-@@ -142,16 +142,16 @@ void amdgpu_job_set_resources(struct amdgpu_job *job, struct amdgpu_bo *gds,
- 			      struct amdgpu_bo *gws, struct amdgpu_bo *oa)
- {
- 	if (gds) {
--		job->gds_base = amdgpu_bo_gpu_offset(gds) >> PAGE_SHIFT;
--		job->gds_size = amdgpu_bo_size(gds) >> PAGE_SHIFT;
-+		job->gds_base = amdgpu_bo_gpu_offset(gds);
-+		job->gds_size = amdgpu_bo_size(gds);
- 	}
- 	if (gws) {
--		job->gws_base = amdgpu_bo_gpu_offset(gws) >> PAGE_SHIFT;
--		job->gws_size = amdgpu_bo_size(gws) >> PAGE_SHIFT;
-+		job->gws_base = amdgpu_bo_gpu_offset(gws);
-+		job->gws_size = amdgpu_bo_size(gws);
- 	}
- 	if (oa) {
--		job->oa_base = amdgpu_bo_gpu_offset(oa) >> PAGE_SHIFT;
--		job->oa_size = amdgpu_bo_size(oa) >> PAGE_SHIFT;
-+		job->oa_base = amdgpu_bo_gpu_offset(oa);
-+		job->oa_size = amdgpu_bo_size(oa);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 2ab67ab204df..bbd0a4550fbf 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -541,12 +541,11 @@ int amdgpu_bo_create(struct amdgpu_device *adev,
- 	if (bp->domain & (AMDGPU_GEM_DOMAIN_GWS | AMDGPU_GEM_DOMAIN_OA)) {
- 		/* GWS and OA don't need any alignment. */
- 		page_align = bp->byte_align;
--		size <<= PAGE_SHIFT;
- 
- 	} else if (bp->domain & AMDGPU_GEM_DOMAIN_GDS) {
- 		/* Both size and alignment must be a multiple of 4. */
- 		page_align = ALIGN(bp->byte_align, 4);
--		size = ALIGN(size, 4) << PAGE_SHIFT;
-+		size = ALIGN(size, 4);
- 	} else {
- 		/* Memory should be aligned at least to a page size. */
- 		page_align = ALIGN(bp->byte_align, PAGE_SIZE) >> PAGE_SHIFT;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index ffe6a1ab7f9a..c1500875b4ad 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -1849,19 +1849,19 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
- 	}
- 
- 	/* Initialize various on-chip memory pools */
--	r = amdgpu_ttm_init_on_chip(adev, AMDGPU_PL_GDS, adev->gds.gds_size);
-+	r = amdgpu_ttm_init_on_chip(adev, AMDGPU_PL_GDS, adev->gds.gds_size << PAGE_SHIFT);
- 	if (r) {
- 		DRM_ERROR("Failed initializing GDS heap.\n");
- 		return r;
- 	}
- 
--	r = amdgpu_ttm_init_on_chip(adev, AMDGPU_PL_GWS, adev->gds.gws_size);
-+	r = amdgpu_ttm_init_on_chip(adev, AMDGPU_PL_GWS, adev->gds.gws_size << PAGE_SHIFT);
- 	if (r) {
- 		DRM_ERROR("Failed initializing gws heap.\n");
- 		return r;
- 	}
- 
--	r = amdgpu_ttm_init_on_chip(adev, AMDGPU_PL_OA, adev->gds.oa_size);
-+	r = amdgpu_ttm_init_on_chip(adev, AMDGPU_PL_OA, adev->gds.oa_size << PAGE_SHIFT);
- 	if (r) {
- 		DRM_ERROR("Failed initializing oa heap.\n");
- 		return r;
--- 
-2.32.0
+On Wed, Jan 18, 2023 at 07:12:45AM +0100, Danilo Krummrich wrote:
+> This adds the infrastructure for a manager implementation to keep track
+> of GPU virtual address (VA) mappings.
 
+"Add infrastructure for ..."
+
+> + * Analogue to drm_gpuva_sm_map_ops_create() drm_gpuva_sm_unmap_ops_crea=
+te()
+> + * provides drivers a the list of operations to be executed in order to =
+unmap
+> + * a range of GPU VA space. The logic behind this functions is way simpl=
+er
+> + * though: For all existent mappings enclosed by the given range unmap
+> + * operations are created. For mappings which are only partically locate=
+d within
+> + * the given range, remap operations are created such that those mapping=
+s are
+> + * split up and re-mapped partically.
+
+"Analogous to ..."
+
+> + *
+> + * The following paragraph depicts the basic constellations of existent =
+GPU VA
+> + * mappings, a newly requested mapping and the resulting mappings as imp=
+lemented
+> + * by drm_gpuva_sm_map_ops_create()  - it doesn't cover arbitrary combin=
+ations
+> + * of those constellations.
+> + *
+> + * ::
+> + *
+> + *	1) Existent mapping is kept.
+> + *	----------------------------
+> + *
+> + *	     0     a     1
+> + *	old: |-----------| (bo_offset=3Dn)
+> + *
+> + *	     0     a     1
+> + *	req: |-----------| (bo_offset=3Dn)
+> + *
+> + *	     0     a     1
+> + *	new: |-----------| (bo_offset=3Dn)
+> + *
+> + *
+> + *	2) Existent mapping is replaced.
+> + *	--------------------------------
+> + *
+> + *	     0     a     1
+> + *	old: |-----------| (bo_offset=3Dn)
+> + *
+> + *	     0     a     1
+> + *	req: |-----------| (bo_offset=3Dm)
+> + *
+> + *	     0     a     1
+> + *	new: |-----------| (bo_offset=3Dm)
+> + *
+> + *
+> + *	3) Existent mapping is replaced.
+> + *	--------------------------------
+> + *
+> + *	     0     a     1
+> + *	old: |-----------| (bo_offset=3Dn)
+> + *
+> + *	     0     b     1
+> + *	req: |-----------| (bo_offset=3Dn)
+> + *
+> + *	     0     b     1
+> + *	new: |-----------| (bo_offset=3Dn)
+> + *
+> + *
+> + *	4) Existent mapping is replaced.
+> + *	--------------------------------
+> + *
+> + *	     0  a  1
+> + *	old: |-----|       (bo_offset=3Dn)
+> + *
+> + *	     0     a     2
+> + *	req: |-----------| (bo_offset=3Dn)
+> + *
+> + *	     0     a     2
+> + *	new: |-----------| (bo_offset=3Dn)
+> + *
+> + *	Note: We expect to see the same result for a request with a different=
+ bo
+> + *	      and/or bo_offset.
+> + *
+> + *
+> + *	5) Existent mapping is split.
+> + *	-----------------------------
+> + *
+> + *	     0     a     2
+> + *	old: |-----------| (bo_offset=3Dn)
+> + *
+> + *	     0  b  1
+> + *	req: |-----|       (bo_offset=3Dn)
+> + *
+> + *	     0  b  1  a' 2
+> + *	new: |-----|-----| (b.bo_offset=3Dn, a.bo_offset=3Dn+1)
+> + *
+> + *	Note: We expect to see the same result for a request with a different=
+ bo
+> + *	      and/or non-contiguous bo_offset.
+> + *
+> + *
+> + *	6) Existent mapping is kept.
+> + *	----------------------------
+> + *
+> + *	     0     a     2
+> + *	old: |-----------| (bo_offset=3Dn)
+> + *
+> + *	     0  a  1
+> + *	req: |-----|       (bo_offset=3Dn)
+> + *
+> + *	     0     a     2
+> + *	new: |-----------| (bo_offset=3Dn)
+> + *
+> + *
+> + *	7) Existent mapping is split.
+> + *	-----------------------------
+> + *
+> + *	     0     a     2
+> + *	old: |-----------| (bo_offset=3Dn)
+> + *
+> + *	           1  b  2
+> + *	req:       |-----| (bo_offset=3Dm)
+> + *
+> + *	     0  a  1  b  2
+> + *	new: |-----|-----| (a.bo_offset=3Dn,b.bo_offset=3Dm)
+> + *
+> + *
+> + *	8) Existent mapping is kept.
+> + *	----------------------------
+> + *
+> + *	      0     a     2
+> + *	old: |-----------| (bo_offset=3Dn)
+> + *
+> + *	           1  a  2
+> + *	req:       |-----| (bo_offset=3Dn+1)
+> + *
+> + *	     0     a     2
+> + *	new: |-----------| (bo_offset=3Dn)
+> + *
+> + *
+> + *	9) Existent mapping is split.
+> + *	-----------------------------
+> + *
+> + *	     0     a     2
+> + *	old: |-----------|       (bo_offset=3Dn)
+> + *
+> + *	           1     b     3
+> + *	req:       |-----------| (bo_offset=3Dm)
+> + *
+> + *	     0  a  1     b     3
+> + *	new: |-----|-----------| (a.bo_offset=3Dn,b.bo_offset=3Dm)
+> + *
+> + *
+> + *	10) Existent mapping is merged.
+> + *	-------------------------------
+> + *
+> + *	     0     a     2
+> + *	old: |-----------|       (bo_offset=3Dn)
+> + *
+> + *	           1     a     3
+> + *	req:       |-----------| (bo_offset=3Dn+1)
+> + *
+> + *	     0        a        3
+> + *	new: |-----------------| (bo_offset=3Dn)
+> + *
+> + *
+> + *	11) Existent mapping is split.
+> + *	------------------------------
+> + *
+> + *	     0        a        3
+> + *	old: |-----------------| (bo_offset=3Dn)
+> + *
+> + *	           1  b  2
+> + *	req:       |-----|       (bo_offset=3Dm)
+> + *
+> + *	     0  a  1  b  2  a' 3
+> + *	new: |-----|-----|-----| (a.bo_offset=3Dn,b.bo_offset=3Dm,a'.bo_offse=
+t=3Dn+2)
+> + *
+> + *
+> + *	12) Existent mapping is kept.
+> + *	-----------------------------
+> + *
+> + *	     0        a        3
+> + *	old: |-----------------| (bo_offset=3Dn)
+> + *
+> + *	           1  a  2
+> + *	req:       |-----|       (bo_offset=3Dn+1)
+> + *
+> + *	     0        a        3
+> + *	old: |-----------------| (bo_offset=3Dn)
+> + *
+> + *
+> + *	13) Existent mapping is replaced.
+> + *	---------------------------------
+> + *
+> + *	           1  a  2
+> + *	old:       |-----| (bo_offset=3Dn)
+> + *
+> + *	     0     a     2
+> + *	req: |-----------| (bo_offset=3Dn)
+> + *
+> + *	     0     a     2
+> + *	new: |-----------| (bo_offset=3Dn)
+> + *
+> + *	Note: We expect to see the same result for a request with a different=
+ bo
+> + *	      and/or non-contiguous bo_offset.
+> + *
+> + *
+> + *	14) Existent mapping is replaced.
+> + *	---------------------------------
+> + *
+> + *	           1  a  2
+> + *	old:       |-----| (bo_offset=3Dn)
+> + *
+> + *	     0        a       3
+> + *	req: |----------------| (bo_offset=3Dn)
+> + *
+> + *	     0        a       3
+> + *	new: |----------------| (bo_offset=3Dn)
+> + *
+> + *	Note: We expect to see the same result for a request with a different=
+ bo
+> + *	      and/or non-contiguous bo_offset.
+> + *
+> + *
+> + *	15) Existent mapping is split.
+> + *	------------------------------
+> + *
+> + *	           1     a     3
+> + *	old:       |-----------| (bo_offset=3Dn)
+> + *
+> + *	     0     b     2
+> + *	req: |-----------|       (bo_offset=3Dm)
+> + *
+> + *	     0     b     2  a' 3
+> + *	new: |-----------|-----| (b.bo_offset=3Dm,a.bo_offset=3Dn+2)
+> + *
+> + *
+> + *	16) Existent mappings are merged.
+> + *	---------------------------------
+> + *
+> + *	     0     a     1
+> + *	old: |-----------|                        (bo_offset=3Dn)
+> + *
+> + *	                            2     a     3
+> + *	old':                       |-----------| (bo_offset=3Dn+2)
+> + *
+> + *	                1     a     2
+> + *	req:            |-----------|             (bo_offset=3Dn+1)
+> + *
+> + *	                      a
+> + *	new: |----------------------------------| (bo_offset=3Dn)
+> + */
+
+Factor out lists from the big code block above:
+
+---- >8 ----
+
+diff --git a/drivers/gpu/drm/drm_gpuva_mgr.c b/drivers/gpu/drm/drm_gpuva_mg=
+r.c
+index e665f642689d03..411c0aa80bfa1f 100644
+--- a/drivers/gpu/drm/drm_gpuva_mgr.c
++++ b/drivers/gpu/drm/drm_gpuva_mgr.c
+@@ -129,15 +129,14 @@
+  * the given range, remap operations are created such that those mappings =
+are
+  * split up and re-mapped partically.
+  *
+- * The following paragraph depicts the basic constellations of existent GP=
+U VA
++ * The following diagram depicts the basic relationships of existent GPU VA
+  * mappings, a newly requested mapping and the resulting mappings as imple=
+mented
+- * by drm_gpuva_sm_map_ops_create()  - it doesn't cover arbitrary combinat=
+ions
+- * of those constellations.
++ * by drm_gpuva_sm_map_ops_create()  - it doesn't cover any arbitrary
++ * combinations of these.
+  *
+- * ::
+- *
+- *	1) Existent mapping is kept.
+- *	----------------------------
++ * 1) Existent mapping is kept.
++ *=20
++ *    ::
+  *
+  *	     0     a     1
+  *	old: |-----------| (bo_offset=3Dn)
+@@ -149,8 +148,9 @@
+  *	new: |-----------| (bo_offset=3Dn)
+  *
+  *
+- *	2) Existent mapping is replaced.
+- *	--------------------------------
++ * 2) Existent mapping is replaced.
++ *
++ *    ::
+  *
+  *	     0     a     1
+  *	old: |-----------| (bo_offset=3Dn)
+@@ -162,8 +162,9 @@
+  *	new: |-----------| (bo_offset=3Dm)
+  *
+  *
+- *	3) Existent mapping is replaced.
+- *	--------------------------------
++ * 3) Existent mapping is replaced.
++ *
++ *    ::
+  *
+  *	     0     a     1
+  *	old: |-----------| (bo_offset=3Dn)
+@@ -175,8 +176,9 @@
+  *	new: |-----------| (bo_offset=3Dn)
+  *
+  *
+- *	4) Existent mapping is replaced.
+- *	--------------------------------
++ * 4) Existent mapping is replaced.
++ *
++ *    ::
+  *
+  *	     0  a  1
+  *	old: |-----|       (bo_offset=3Dn)
+@@ -187,12 +189,14 @@
+  *	     0     a     2
+  *	new: |-----------| (bo_offset=3Dn)
+  *
+- *	Note: We expect to see the same result for a request with a different bo
+- *	      and/or bo_offset.
++ *    .. note::
++ *       We expect to see the same result for a request with a different bo
++ *       and/or bo_offset.
+  *
+  *
+- *	5) Existent mapping is split.
+- *	-----------------------------
++ * 5) Existent mapping is split.
++ *
++ *    ::
+  *
+  *	     0     a     2
+  *	old: |-----------| (bo_offset=3Dn)
+@@ -203,12 +207,14 @@
+  *	     0  b  1  a' 2
+  *	new: |-----|-----| (b.bo_offset=3Dn, a.bo_offset=3Dn+1)
+  *
+- *	Note: We expect to see the same result for a request with a different bo
+- *	      and/or non-contiguous bo_offset.
++ *    .. note::
++ *       We expect to see the same result for a request with a different bo
++ *       and/or non-contiguous bo_offset.
+  *
+  *
+- *	6) Existent mapping is kept.
+- *	----------------------------
++ * 6) Existent mapping is kept.
++ *
++ *    ::
+  *
+  *	     0     a     2
+  *	old: |-----------| (bo_offset=3Dn)
+@@ -220,8 +226,9 @@
+  *	new: |-----------| (bo_offset=3Dn)
+  *
+  *
+- *	7) Existent mapping is split.
+- *	-----------------------------
++ * 7) Existent mapping is split.
++ *
++ *    ::
+  *
+  *	     0     a     2
+  *	old: |-----------| (bo_offset=3Dn)
+@@ -233,8 +240,9 @@
+  *	new: |-----|-----| (a.bo_offset=3Dn,b.bo_offset=3Dm)
+  *
+  *
+- *	8) Existent mapping is kept.
+- *	----------------------------
++ * 8) Existent mapping is kept.
++ *
++ *    ::
+  *
+  *	      0     a     2
+  *	old: |-----------| (bo_offset=3Dn)
+@@ -246,8 +254,9 @@
+  *	new: |-----------| (bo_offset=3Dn)
+  *
+  *
+- *	9) Existent mapping is split.
+- *	-----------------------------
++ * 9) Existent mapping is split.
++ *
++ *    ::
+  *
+  *	     0     a     2
+  *	old: |-----------|       (bo_offset=3Dn)
+@@ -259,104 +268,113 @@
+  *	new: |-----|-----------| (a.bo_offset=3Dn,b.bo_offset=3Dm)
+  *
+  *
+- *	10) Existent mapping is merged.
+- *	-------------------------------
++ * 10) Existent mapping is merged.
+  *
+- *	     0     a     2
+- *	old: |-----------|       (bo_offset=3Dn)
++ *     ::
+  *
+- *	           1     a     3
+- *	req:       |-----------| (bo_offset=3Dn+1)
++ *	      0     a     2
++ *	 old: |-----------|       (bo_offset=3Dn)
+  *
+- *	     0        a        3
+- *	new: |-----------------| (bo_offset=3Dn)
++ *	            1     a     3
++ *	 req:       |-----------| (bo_offset=3Dn+1)
++ *
++ *	      0        a        3
++ *	 new: |-----------------| (bo_offset=3Dn)
+  *
+  *
+- *	11) Existent mapping is split.
+- *	------------------------------
++ * 11) Existent mapping is split.
+  *
+- *	     0        a        3
+- *	old: |-----------------| (bo_offset=3Dn)
++ *     ::
+  *
+- *	           1  b  2
+- *	req:       |-----|       (bo_offset=3Dm)
++ *	      0        a        3
++ *	 old: |-----------------| (bo_offset=3Dn)
+  *
+- *	     0  a  1  b  2  a' 3
+- *	new: |-----|-----|-----| (a.bo_offset=3Dn,b.bo_offset=3Dm,a'.bo_offset=
+=3Dn+2)
++ *	            1  b  2
++ *	 req:       |-----|       (bo_offset=3Dm)
++ *
++ *	      0  a  1  b  2  a' 3
++ *	 new: |-----|-----|-----| (a.bo_offset=3Dn,b.bo_offset=3Dm,a'.bo_offset=
+=3Dn+2)
+  *
+  *
+- *	12) Existent mapping is kept.
+- *	-----------------------------
++ * 12) Existent mapping is kept.
+  *
+- *	     0        a        3
+- *	old: |-----------------| (bo_offset=3Dn)
++ *     ::
+  *
+- *	           1  a  2
+- *	req:       |-----|       (bo_offset=3Dn+1)
++ *	      0        a        3
++ *	 old: |-----------------| (bo_offset=3Dn)
+  *
+- *	     0        a        3
+- *	old: |-----------------| (bo_offset=3Dn)
++ *	            1  a  2
++ *	 req:       |-----|       (bo_offset=3Dn+1)
++ *
++ *	      0        a        3
++ *	 old: |-----------------| (bo_offset=3Dn)
+  *
+  *
+- *	13) Existent mapping is replaced.
+- *	---------------------------------
++ * 13) Existent mapping is replaced.
+  *
+- *	           1  a  2
+- *	old:       |-----| (bo_offset=3Dn)
++ *     ::
+  *
+- *	     0     a     2
+- *	req: |-----------| (bo_offset=3Dn)
++ *	            1  a  2
++ *	 old:       |-----| (bo_offset=3Dn)
+  *
+- *	     0     a     2
+- *	new: |-----------| (bo_offset=3Dn)
++ *	      0     a     2
++ *	 req: |-----------| (bo_offset=3Dn)
+  *
+- *	Note: We expect to see the same result for a request with a different bo
+- *	      and/or non-contiguous bo_offset.
++ *	      0     a     2
++ *	 new: |-----------| (bo_offset=3Dn)
++ *
++ *     .. note::
++ *        We expect to see the same result for a request with a different =
+bo
++ *        and/or non-contiguous bo_offset.
+  *
+  *
+- *	14) Existent mapping is replaced.
+- *	---------------------------------
++ * 14) Existent mapping is replaced.
+  *
+- *	           1  a  2
+- *	old:       |-----| (bo_offset=3Dn)
++ *     ::
+  *
+- *	     0        a       3
+- *	req: |----------------| (bo_offset=3Dn)
++ *	            1  a  2
++ *	 old:       |-----| (bo_offset=3Dn)
+  *
+- *	     0        a       3
+- *	new: |----------------| (bo_offset=3Dn)
++ *	      0        a       3
++ *	 req: |----------------| (bo_offset=3Dn)
+  *
+- *	Note: We expect to see the same result for a request with a different bo
+- *	      and/or non-contiguous bo_offset.
++ *	      0        a       3
++ *	 new: |----------------| (bo_offset=3Dn)
++ *
++ *     .. note::
++ *        We expect to see the same result for a request with a different =
+bo
++ *        and/or non-contiguous bo_offset.
+  *
+  *
+- *	15) Existent mapping is split.
+- *	------------------------------
++ * 15) Existent mapping is split.
+  *
+- *	           1     a     3
+- *	old:       |-----------| (bo_offset=3Dn)
++ *     ::
+  *
+- *	     0     b     2
+- *	req: |-----------|       (bo_offset=3Dm)
++ *	            1     a     3
++ *	 old:       |-----------| (bo_offset=3Dn)
+  *
+- *	     0     b     2  a' 3
+- *	new: |-----------|-----| (b.bo_offset=3Dm,a.bo_offset=3Dn+2)
++ *	      0     b     2
++ *	 req: |-----------|       (bo_offset=3Dm)
++ *
++ *	      0     b     2  a' 3
++ *	 new: |-----------|-----| (b.bo_offset=3Dm,a.bo_offset=3Dn+2)
+  *
+  *
+- *	16) Existent mappings are merged.
+- *	---------------------------------
++ * 16) Existent mappings are merged.
+  *
+- *	     0     a     1
+- *	old: |-----------|                        (bo_offset=3Dn)
++ *     ::
+  *
+- *	                            2     a     3
+- *	old':                       |-----------| (bo_offset=3Dn+2)
++ *	      0     a     1
++ *	 old: |-----------|                        (bo_offset=3Dn)
+  *
+- *	                1     a     2
+- *	req:            |-----------|             (bo_offset=3Dn+1)
++ *	                             2     a     3
++ *	 old':                       |-----------| (bo_offset=3Dn+2)
+  *
+- *	                      a
+- *	new: |----------------------------------| (bo_offset=3Dn)
++ *	                 1     a     2
++ *	 req:            |-----------|             (bo_offset=3Dn+1)
++ *
++ *	                       a
++ *	 new: |----------------------------------| (bo_offset=3Dn)
+  */
+=20
+ /**
+
+However, the relationship scenario descriptions are too generic (different
+diagrams are described by the same text). Please rewrite them, taking into
+account bo_offset values in each scenario.
+
+Thanks.
+
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--st4xfXKFTYFcRLrQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCY8jDrQAKCRD2uYlJVVFO
+oyc5AQDzS32MPEoI8XEnJ+yGcruwTqG4VgFpXjQO6ybbNI0oaAD/cDphbOXxvq0A
+nY3OKSukKaxO8u18WTRGbGOfkLvASA0=
+=bBlm
+-----END PGP SIGNATURE-----
+
+--st4xfXKFTYFcRLrQ--
