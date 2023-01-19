@@ -4,42 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAC73C7EE2D
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49B9BC7EE26
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C44D710E40A;
-	Thu,  4 May 2023 12:31:47 +0000 (UTC)
-X-Greylist: delayed 917 seconds by postgrey-1.36 at gabe;
- Fri, 30 Dec 2022 07:43:31 UTC
-Received: from m12.mail.163.com (m12.mail.163.com [123.126.96.234])
- by gabe.freedesktop.org (Postfix) with ESMTP id 24BE410E0D0
- for <nouveau@lists.freedesktop.org>; Fri, 30 Dec 2022 07:43:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=BZVBV
- RQVrTSn4BzI4JujaZV4qktmUeRF9eHZ5CKmHQM=; b=gJadKLaWCNs+R5dJcOlvU
- pXAWaVns4xKQJLjAOu+DCzyNHH7dhJ3pj3HBpKS6uyqCsb9Hz5V5ts2/uazefHoT
- t+TzH+ipfiNnAwWJ/KJaRUX3DCOcCdjr1SyFCyCIczbjTBIXcwvMrD8tlF5jnqtg
- Ercxuwa3ZpPBCNZF8HhgUQ=
-Received: from leanderwang-LC2.localdomain (unknown [111.206.145.21])
- by smtp16 (Coremail) with SMTP id MNxpCgCnzzsVk65jw+eMDQ--.25047S2;
- Fri, 30 Dec 2022 15:28:21 +0800 (CST)
-From: Zheng Wang <zyytlz.wz@163.com>
-To: bskeggs@redhat.com
-Date: Fri, 30 Dec 2022 15:27:58 +0800
-Message-Id: <20221230072758.443644-1-zyytlz.wz@163.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F5A110E3F5;
+	Thu,  4 May 2023 12:31:48 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A68110E061;
+ Thu, 19 Jan 2023 12:00:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674129653; x=1705665653;
+ h=message-id:date:mime-version:cc:subject:to:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=a0VAKNGfVX7Xb0tncsnGiNJiQB7rZGtxb86sJ68DmJ0=;
+ b=eMBmSPsEDMKrHL99mV9lC4DRORcUPu9bVTFjOEtupFxiWvzdgWQNHTbN
+ /3bEBEfSk7hN2e+1yCxjgnvFK06PbsBGWwzUGBEuzZo+NWwWNaZrYc9qX
+ y5Pod1jLOrz+TojLlBGy+nbc5mZ+upy0M0t4b9zjRMhn0peExivLGmPpd
+ v0JZsiBGnLWViB8UM138SPLlwdUg+mMbQiEBb50549RZY/9hi0w7Fgg4i
+ 80W/FIXl2soo6mK6VV582uC/b2G4nLyW4P3C2MCBmD7TTmEnM2wIXFE3y
+ S/ZVdcdKaY1XVXBKohlhyy8vi+x/ROmH+XuSYlFX8Mc5F98XOYn2+oKYN g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="305638208"
+X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="305638208"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2023 04:00:52 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="692393552"
+X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="692393552"
+Received: from blu2-mobl.ccr.corp.intel.com (HELO [10.252.185.248])
+ ([10.252.185.248])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2023 04:00:46 -0800
+Message-ID: <4f93e58d-2406-6b29-d546-02f90c4815b8@linux.intel.com>
+Date: Thu, 19 Jan 2023 20:00:44 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: MNxpCgCnzzsVk65jw+eMDQ--.25047S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7GF15Gr48ur17XrW5WryxGrg_yoW8JF4rpF
- 45uryYvryxuF4Ut340vFy8ur90kan2yFWIk34YvasIvwnxZ3y0vFW5AryUGryrZw4xWw1a
- qr4DGr1fWry5ArJanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0ziaZXrUUUUU=
-X-Originating-IP: [111.206.145.21]
-X-CM-SenderInfo: h2113zf2oz6qqrwthudrp/xtbCbxTnU2BbEN8pBAAAsW
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:35 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/mmu: fix Use after Free bug in
- nvkm_vmm_node_split
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Jason Gunthorpe <jgg@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
+ Kevin Tian <kevin.tian@intel.com>, Matthew Rosato <mjrosato@linux.ibm.com>,
+ Robin Murphy <robin.murphy@arm.com>
+References: <8-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
+From: Baolu Lu <baolu.lu@linux.intel.com>
+In-Reply-To: <8-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:34 +0000
+Subject: Re: [Nouveau] [PATCH v2 08/10] iommu/intel: Use GFP_KERNEL in
+ sleepable contexts
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,42 +63,26 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: alex000young@gmail.com, security@kernel.org, nouveau@lists.freedesktop.org,
- hackerzheng666@gmail.com, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, daniel@ffwll.ch, Zheng Wang <zyytlz.wz@163.com>
+Cc: linux-s390@vger.kernel.org, linux-media@vger.kernel.org,
+ kvm@vger.kernel.org, nouveau@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, Niklas Schnelle <schnelle@linux.ibm.com>,
+ linux-remoteproc@vger.kernel.org, iommu@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com,
+ Alex Williamson <alex.williamson@redhat.com>, netdev@vger.kernel.org,
+ ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ linux-tegra@vger.kernel.org, Christian Borntraeger <borntraeger@linux.ibm.com>,
+ virtualization@lists.linux-foundation.org, ath11k@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, baolu.lu@linux.intel.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Here is a function call chain.
-nvkm_vmm_pfn_map->nvkm_vmm_pfn_split_merge->nvkm_vmm_node_split
-If nvkm_vma_tail return NULL in nvkm_vmm_node_split, it will
-finally invoke nvkm_vmm_node_merge->nvkm_vmm_node_delete, which
-will free the vma. However, nvkm_vmm_pfn_map didn't notice that.
-It goes into next label and UAF happens.
+On 2023/1/19 2:00, Jason Gunthorpe wrote:
+> These contexts are sleepable, so use the proper annotation. The GFP_ATOMIC
+> was added mechanically in the prior patches.
+> 
+> Signed-off-by: Jason Gunthorpe<jgg@nvidia.com>
 
-Fix it by returning the return-value of nvkm_vmm_node_merge
-instead of NULL.
+Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
 
-Signed-off-by: Zheng Wang <zyytlz.wz@163.com>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-index ae793f400ba1..84d6fc87b2e8 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-@@ -937,8 +937,8 @@ nvkm_vmm_node_split(struct nvkm_vmm *vmm,
- 	if (vma->size != size) {
- 		struct nvkm_vma *tmp;
- 		if (!(tmp = nvkm_vma_tail(vma, vma->size - size))) {
--			nvkm_vmm_node_merge(vmm, prev, vma, NULL, vma->size);
--			return NULL;
-+			tmp = nvkm_vmm_node_merge(vmm, prev, vma, NULL, vma->size);
-+			return tmp;
- 		}
- 		tmp->part = true;
- 		nvkm_vmm_node_insert(vmm, tmp);
--- 
-2.25.1
-
+Best regards,
+baolu
