@@ -4,140 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EFF3C7EE29
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 982C9C77B7C
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F05B810E40B;
-	Thu,  4 May 2023 12:31:45 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FBD810E22F;
- Thu, 19 Jan 2023 03:47:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674100046; x=1705636046;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=DN9kl9nqDA8ngQe1mVj5twRO/qn8yckmar+F8LondK4=;
- b=k+j56R4z3PJTOBcLjUcTxPF6YbIxTld29S65CwXB9dNzrRRYE+1fncUw
- cO/TCTqVTBkw1f74cWY8iEjMJcP7E+jmC1N6Q7BKvTupXFdijSJ6358DD
- aHYVv3EVXz76mv7MbxXh3mQ4Gl9YieiIVMPQaoQWtXGS9AuqBU4yRYOdT
- fI60k5hp2OjZ3qNSi/QAMwIE7RC3JjlZVrOMeAAzN14sYnVAu1JdInGrZ
- SOPJWdkdRPEBh6cttT5N22GvElNPCrs6vxhGGSPufE/iNEoZ/RSZ79iuD
- 6Ry0u6hwV8/8cE9WRAL2zT83oPH8ZqTIDSh8Vp5amQAE/6B5FvXQLvI+f Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="352436473"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="352436473"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 19:47:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="783912734"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="783912734"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga004.jf.intel.com with ESMTP; 18 Jan 2023 19:47:22 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 18 Jan 2023 19:47:22 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Wed, 18 Jan 2023 19:47:22 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.108)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Wed, 18 Jan 2023 19:47:21 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B23v+HEAwwv+uv/mbPh9xKqMlue16qJ7diNE1oxk8xaQAYCWAtaZxpMOiR0yHFKLFzVTpDEaR2841eT3FW+jlPa+1D64YhFR02g4hhcYoVhVJFb4iIgF5YO6hV9wutVFF5PO1JR0sb3SAVIMov8ZL+dL8mNAp+Q1e9WEtIu86D4404wVGItIso+TZoZxLJlaqDnZWMmZatmr0nUPOoWd7H7uGn03K+N+B7/rZfedgR+/m65CMgsp56OMaB+62g2l+bH/h5FaE+t4vECFagu706NxvGqpjXq8bmd1nJzXuXJhBeFMDNZSQWt3AN/JpvYh6SYiEmuaSizsxjhou4rh9w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DN9kl9nqDA8ngQe1mVj5twRO/qn8yckmar+F8LondK4=;
- b=GuK2Gf0FXeIFZn3nv+k4xTZ2oy/W+e+/efDbwGNQ9flfl2WUM9y+8x9hw47lQrVCI9bmGViJtiKCgeLr6TdaExpoGnu11E9Mg8f194auLKW0mYFoVPL/3xf5zOnoqy9dJEP9HAQ1SBFb0c29ZCH5VxMkpCcFRbySlhb7Vskj6F2C30oYIOK2FxKXvxKVVAT1rjHTKdQJ2DirWQ3ywFKshheXEVGY7luJ/+CGQsIPEXVroukMOJfY4GdX0qAkYUoSWSNgWlTjeKwE/8LRoEF299x8ehhWV09ASFVTQFEUUGY0DOj3pG5h/QvJ4qL62Ul+dzs79htJHJeDKmzhCzUVug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BN9PR11MB5276.namprd11.prod.outlook.com (2603:10b6:408:135::18)
- by SN7PR11MB6948.namprd11.prod.outlook.com (2603:10b6:806:2ab::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.13; Thu, 19 Jan
- 2023 03:47:20 +0000
-Received: from BN9PR11MB5276.namprd11.prod.outlook.com
- ([fe80::6a8d:b95:e1b5:d79d]) by BN9PR11MB5276.namprd11.prod.outlook.com
- ([fe80::6a8d:b95:e1b5:d79d%9]) with mapi id 15.20.6002.025; Thu, 19 Jan 2023
- 03:47:19 +0000
-From: "Tian, Kevin" <kevin.tian@intel.com>
-To: Jason Gunthorpe <jgg@nvidia.com>, Lu Baolu <baolu.lu@linux.intel.com>,
- Joerg Roedel <joro@8bytes.org>, Matthew Rosato <mjrosato@linux.ibm.com>,
- Robin Murphy <robin.murphy@arm.com>
-Thread-Topic: [PATCH v2 04/10] iommu/dma: Use the gfp parameter in
- __iommu_dma_alloc_noncontiguous()
-Thread-Index: AQHZK2bius/8GLHPH0Wq7FV2W22SAa6lGolA
-Date: Thu, 19 Jan 2023 03:47:19 +0000
-Message-ID: <BN9PR11MB52766C5C3A4F6A5A3CD7374E8CC49@BN9PR11MB5276.namprd11.prod.outlook.com>
-References: <0-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
- <4-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
-In-Reply-To: <4-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR11MB5276:EE_|SN7PR11MB6948:EE_
-x-ms-office365-filtering-correlation-id: 673cb8de-254f-422e-7e0b-08daf9cfdda3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: B6bnKcwoszx9W0T0vt9S1+tKdq0eP+oUskuaYtW5ySheWEcI7UWXgL5EgmIwQLn5g2GORH4YVMucKjBB/2e53hCc8E2lQ4WWAkrMcNPxW3SnKuc7CERHyfvcdgyoLMH1zNFpR9l3eYrbShAGP0XcYWZgUl7PbEu8ovNKKvooBSAeYwSIqckFyv9D5B1/mXE00WTn9sCmAmOJ8xuGx//uqaSUfpijkIYuaSdkJp+zNaDyYvKgzQoBd2xmG/8Pqyp/bq+1l7fz4jrXb3vSjuTqf4DfFXr/ArWFGxgv8HdqpnxuY19sTWWt8YmwlwmCxxI7Wd2rPvbbiLTE5X6w22b81oOrrg+oS587Fy3pga+AfdTW77ZOsqrwr6/UNP3qQg2JdEoybmYGL4WGp3ny4wjVYjvofW4CypPzj19sjS0SM+Tb0noaBNf9T/Oe/CJusAEIAFUaYkkuGJRU40DyjHgWBDD5GaZo7Pe3J5AZ2Tbpv4KicSV7y26Us66p34Npr1aBKXNCVzvBdX0d+F+sOPJh9ZeGmFfJiqXzC00PLwpcIvxBpjyEiEoFv7eLMW95/tLCO1MOuHzrWNQ9SUYavYSYvPqxsauK2TOg05+79IKMCr9HKP8/tnrXEI2jOofSf67lSL1FpgHkkvpVOUG1aKKszBLMDjpwtQb2vNc5B00huyceFFCzeSHakqUUac/xgpAybkSSuHzRSSPZd5q93jLVdg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5276.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(39860400002)(396003)(376002)(346002)(366004)(136003)(451199015)(6506007)(26005)(186003)(9686003)(7696005)(122000001)(71200400001)(33656002)(478600001)(54906003)(316002)(110136005)(76116006)(66946007)(66556008)(64756008)(66446008)(8676002)(4326008)(66476007)(41300700001)(8936002)(52536014)(55016003)(7416002)(2906002)(4744005)(5660300002)(38070700005)(38100700002)(82960400001)(86362001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ZuHmyAlyV2tx/krIo2Oh31cQZckpSOTJe84y0kx5rO8ryHOpHRBVbyRg3C42?=
- =?us-ascii?Q?jxpL0g1APDWDAICAqSkXow2PiKJNJ2dPgjUQkNQyPq+vlUzx8mRczqGeKMgY?=
- =?us-ascii?Q?BdOsh60GVy7ZUA0zDS+er/KUz6W4/enEGROmZNNWbvwhKvkufXqxovrDpVCN?=
- =?us-ascii?Q?gQ31Nh6VZ9KXzqqNVjnJ3IZkCD6Jh+v0clSpvjQv7uLAnpphG+S8x79ZTf7N?=
- =?us-ascii?Q?CFzcxIABPz9GMn6Z5OYGeHAwySWWfe7j7nkV7tAXAuIJblDWdCR9G+wV06oj?=
- =?us-ascii?Q?Y/aVXo4FGQoM0n88DF7ZzFrxQ2GE9emBubMBtEhNmqe12mro/byRGW5SRjjw?=
- =?us-ascii?Q?0c/T08lgNGCw7y/6Z5B+pRrzGdhplKblTOJLAAaqZOyYTsAO/FG0UWCFApF2?=
- =?us-ascii?Q?8BpPGMIuMhtOkVBB5j8iNL6xPOtTQFbnycPKW3I85hVWNr5MUif9BDHUscrj?=
- =?us-ascii?Q?YLwZ/vTRxNvNKhRUDWJDDP928KH47RZwE60KCHdftR0DLiwb7m+f4IA/5kBC?=
- =?us-ascii?Q?WL/N90got0MmdrVTkCyCE9o0dOoB0bQ0wP+HDnyeDLeMhcslNO834lkJESYZ?=
- =?us-ascii?Q?W7BlI7yOQpsX5ZoP2Hi4VpGB+LuNFMGnf1XAIsjtIs6bKZRrh7jdFIr0ZTsz?=
- =?us-ascii?Q?6Zzvfq4I8ci/mgu4kbTHmQpu7ENiAo1OB89SSJ05IkwsaRe0uALYB4vnhiIr?=
- =?us-ascii?Q?yUSnqKxGL/spjqef2Ve23Un7DXgDbUHlonD2pb40WNMG03LciKsVQpoRWDnc?=
- =?us-ascii?Q?QXms8jesMatVVCiyXh2YsUXh+lU/GwkBRk57zJuup0wMKzb97W8dB2JAMFBt?=
- =?us-ascii?Q?aGK0gi2sjJVn62Qp+Aqd7CQszDC/j0G0I2URuOXx0zVF3Wiss5YnO4/TW6v9?=
- =?us-ascii?Q?hNkU5N6FgjlRjoeJpjXhADyhbZgKK15T0PgXUM6lHQ+YZBoIxno8EmOy7RZV?=
- =?us-ascii?Q?vEixHddreU49E9OCW0dH9z99+jrcPm2AXO3nS/4TT+uk5iKRxUwkSW00RDve?=
- =?us-ascii?Q?+nQJ5En6O1z7jJ4R4agppS+OfJQIGOjvDozoDJ5YcoIDVoAWy8TBl8BGxBKL?=
- =?us-ascii?Q?jQL1t40Jm34utSmCzbCPQubO2rW13wSXuO7D/de4Kdp1M6IAN0p/x+fYDyK8?=
- =?us-ascii?Q?Pz6SS8cfcJURQ5KR7gDgqoI5X+KiMk+gGGbi2NDRWxGVq8i5og+7qWgB+ic7?=
- =?us-ascii?Q?hUrxX+g4H1thYCR0Y5lp1aj7v4zdM+NHR/YW75jLS4zLelLUMjbIjwFPKgYG?=
- =?us-ascii?Q?q6gxfMXF1QoJLOXFmGMM+5CWOdYPZyozbQ2SuTnNgeAttc9j3qZCkWPtO++z?=
- =?us-ascii?Q?4iaJy0sn1LLDQzfYDO1DjlOtLFdpVCkh1LYqYGt9CsKlTPACsSs0xQDB04Ha?=
- =?us-ascii?Q?2PfSmRgYp4eXBmOIoTcFNwU1pDteXFeJwiOi5+3HyQ63rncjV1MUJfnAA5j6?=
- =?us-ascii?Q?2qyzuGnNJOTaw81HrLezu5owFZyxO1sH0K6iMoRRQ8MBLzQflE7iyoC8sB6e?=
- =?us-ascii?Q?+Ld/v/WcDzyVuLoxKJD1bxwzkGWMM51hsrEMVqMyqoge0A39PNHWBgnBFJA2?=
- =?us-ascii?Q?mYt1mepXkIlZkwQZW4wnaHts1Ai3KNIkkZtr24Na?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3920B10E411;
+	Thu,  4 May 2023 12:31:46 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5DD410E8CF;
+ Thu, 19 Jan 2023 08:06:57 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 2B1CE5CA96;
+ Thu, 19 Jan 2023 08:06:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1674115616; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=xFYatVT434CKDQQui+qf2wAuBLLLuHdxPFc0/JYSK38=;
+ b=UZ3/tZiPVKA7KVBgXRpxyePRpLmyzxeQQ7jDUZIhZv5CYqn/iFSBZ4gzP04ii2AsHwNwk3
+ CZ3Gq2K0929c6ySkM0Eb3688Qi/twZzMeY9hu8u0nRujC5w1N97PUvvDKNXx08xGPnn6Gj
+ UguOxak7a7A2E9yp/ZXRPDwlAGTk4Hc=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1674115616;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=xFYatVT434CKDQQui+qf2wAuBLLLuHdxPFc0/JYSK38=;
+ b=8V6r1mgUvT4wMFfdPkGCzYZTCs8B6fffZe9Rnj3La7WPhbuUAC6En7Do/07N6dNy0bCVCp
+ /SguAEO+avvXEuAg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 60B3A139ED;
+ Thu, 19 Jan 2023 08:06:55 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id zOKcFh/6yGO4TgAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 19 Jan 2023 08:06:55 +0000
+Message-ID: <7ec650c7-d530-54f7-5323-45c05ee50802@suse.de>
+Date: Thu, 19 Jan 2023 09:06:54 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5276.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 673cb8de-254f-422e-7e0b-08daf9cfdda3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jan 2023 03:47:19.7747 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +jDv5ghg0b/37XlBqCWHyFfJMAFO83UqFy5UTJ0xJT9tx2dGuntua2eJmihjTL31QALmcgcybcUOD8MuQ7zCDQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6948
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, maarten.lankhorst@linux.intel.com, 
+ mripard@kernel.org, airlied@redhat.com
+References: <20230112201156.26849-1-tzimmermann@suse.de>
+ <20230112201156.26849-3-tzimmermann@suse.de> <Y8hGsX+yafmFbq4g@intel.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <Y8hGsX+yafmFbq4g@intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------20Gcd1EgZn6SADONFQDI9tmo"
 X-Mailman-Approved-At: Thu, 04 May 2023 12:31:33 +0000
-Subject: Re: [Nouveau] [PATCH v2 04/10] iommu/dma: Use the gfp parameter in
- __iommu_dma_alloc_noncontiguous()
+Subject: Re: [Nouveau] [Intel-gfx] [PATCH v2 2/3] drm/fb-helper: Set
+ framebuffer for vga-switcheroo clients
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,41 +72,180 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- Niklas Schnelle <schnelle@linux.ibm.com>,
- "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
- "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-stm32@st-md-mailman.stormreply.com"
- <linux-stm32@st-md-mailman.stormreply.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "ath10k@lists.infradead.org" <ath10k@lists.infradead.org>,
- "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- "virtualization@lists.linux-foundation.org"
- <virtualization@lists.linux-foundation.org>,
- "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>
+Cc: Xinhui.Pan@amd.com, dri-devel@lists.freedesktop.org,
+ YiPeng Chai <YiPeng.Chai@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>, Likun Gao <Likun.Gao@amd.com>,
+ Sam Ravnborg <sam@ravnborg.org>, Guchun Chen <guchun.chen@amd.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, amd-gfx@lists.freedesktop.org,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Stanley Yang <Stanley.Yang@amd.com>, bskeggs@redhat.com,
+ nouveau@lists.freedesktop.org, Hamza Mahfooz <hamza.mahfooz@amd.com>,
+ =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <marek.olsak@amd.com>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Jani Nikula <jani.nikula@intel.com>, Bokun Zhang <Bokun.Zhang@amd.com>,
+ intel-gfx@lists.freedesktop.org, "Tianci.Yin" <tianci.yin@amd.com>,
+ Hans de Goede <hdegoede@redhat.com>, jose.souza@intel.com, evan.quan@amd.com,
+ tvrtko.ursulin@linux.intel.com, Xiaojian Du <Xiaojian.Du@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, stable@vger.kernel.org,
+ Solomon Chiu <solomon.chiu@amd.com>,
+ Kai-Heng Feng <kai.heng.feng@canonical.com>, alexander.deucher@amd.com,
+ Hawking Zhang <Hawking.Zhang@amd.com>, christian.koenig@amd.com,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-> From: Jason Gunthorpe <jgg@nvidia.com>
-> Sent: Thursday, January 19, 2023 2:01 AM
->=20
-> Change the sg_alloc_table_from_pages() allocation that was hardwired to
-> GFP_KERNEL to use the gfp parameter like the other allocations in this
-> function.
->=20
-> Auditing says this is never called from an atomic context, so it is safe
-> as is, but reads wrong.
->=20
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------20Gcd1EgZn6SADONFQDI9tmo
+Content-Type: multipart/mixed; boundary="------------30ez6gaNoE0IbDxaITUeHioD";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, airlied@redhat.com
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ kherbst@redhat.com, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>, Likun Gao
+ <Likun.Gao@amd.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Guchun Chen <guchun.chen@amd.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ amd-gfx@lists.freedesktop.org, Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Stanley Yang <Stanley.Yang@amd.com>, bskeggs@redhat.com,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Jani Nikula <jani.nikula@intel.com>, Bokun Zhang <Bokun.Zhang@amd.com>,
+ =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <marek.olsak@amd.com>,
+ "Tianci.Yin" <tianci.yin@amd.com>, Hans de Goede <hdegoede@redhat.com>,
+ jose.souza@intel.com, evan.quan@amd.com, tvrtko.ursulin@linux.intel.com,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Xiaojian Du <Xiaojian.Du@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>,
+ Xinhui.Pan@amd.com, stable@vger.kernel.org,
+ Solomon Chiu <solomon.chiu@amd.com>,
+ Kai-Heng Feng <kai.heng.feng@canonical.com>, alexander.deucher@amd.com,
+ Hawking Zhang <Hawking.Zhang@amd.com>, christian.koenig@amd.com,
+ Hamza Mahfooz <hamza.mahfooz@amd.com>
+Message-ID: <7ec650c7-d530-54f7-5323-45c05ee50802@suse.de>
+Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/fb-helper: Set framebuffer for
+ vga-switcheroo clients
+References: <20230112201156.26849-1-tzimmermann@suse.de>
+ <20230112201156.26849-3-tzimmermann@suse.de> <Y8hGsX+yafmFbq4g@intel.com>
+In-Reply-To: <Y8hGsX+yafmFbq4g@intel.com>
 
-Reviewed-by: Kevin Tian <kevin.tian@intel.com>
+--------------30ez6gaNoE0IbDxaITUeHioD
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
+
+SGkNCg0KQW0gMTguMDEuMjMgdW0gMjA6MjEgc2NocmllYiBSb2RyaWdvIFZpdmk6DQo+IE9u
+IFRodSwgSmFuIDEyLCAyMDIzIGF0IDA5OjExOjU1UE0gKzAxMDAsIFRob21hcyBaaW1tZXJt
+YW5uIHdyb3RlOg0KPj4gU2V0IHRoZSBmcmFtZWJ1ZmZlciBpbmZvIGZvciBkcml2ZXJzIHRo
+YXQgc3VwcG9ydCBWR0Egc3dpdGNoZXJvby4gT25seQ0KPj4gYWZmZWN0cyB0aGUgYW1kZ3B1
+IGFuZCBub3V2ZWF1IGRyaXZlcnMsIHdoaWNoIHVzZSBWR0Egc3dpdGNoZXJvbyBhbmQNCj4+
+IGdlbmVyaWMgZmJkZXYgZW11bGF0aW9uLiBGb3Igb3RoZXIgZHJpdmVycywgdGhpcyBkb2Vz
+IG5vdGhpbmcuDQo+Pg0KPj4gVGhpcyBmaXhlcyBhIHBvdGVudGlhbCByZWdyZXNzaW9uIGlu
+IHRoZSBjb25zb2xlIGNvZGUuIEJvdGgsIGFtZGdwdSBhbmQNCj4+IG5vdXZlYXUsIGludm9r
+ZWQgdmdhX3N3aXRjaGVyb29fY2xpZW50X2ZiX3NldCgpIGZyb20gdGhlaXIgaW50ZXJuYWwg
+ZmJkZXYNCj4+IGNvZGUuIEJ1dCB0aGUgY2FsbCBnb3QgbG9zdCB3aGVuIHRoZSBkcml2ZXJz
+IHN3aXRjaGVkIHRvIHRoZSBnZW5lcmljDQo+PiBlbXVsYXRpb24uDQo+Pg0KPj4gRml4ZXM6
+IDA4NzQ1MWYzNzJiZiAoImRybS9hbWRncHU6IHVzZSBnZW5lcmljIGZiIGhlbHBlcnMgaW5z
+dGVhZCBvZiBzZXR0aW5nIHVwIEFNRCBvd24ncy4iKQ0KPj4gRml4ZXM6IDRhMTZkZDlkMThh
+MCAoImRybS9ub3V2ZWF1L2ttczogc3dpdGNoIHRvIGRybSBmYmRldiBoZWxwZXJzIikNCj4+
+IFNpZ25lZC1vZmYtYnk6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRl
+Pg0KPj4gUmV2aWV3ZWQtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwu
+Y2g+DQo+PiBSZXZpZXdlZC1ieTogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBh
+bWQuY29tPg0KPj4gQ2M6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4NCj4+IENj
+OiBLYXJvbCBIZXJic3QgPGtoZXJic3RAcmVkaGF0LmNvbT4NCj4+IENjOiBMeXVkZSBQYXVs
+IDxseXVkZUByZWRoYXQuY29tPg0KPj4gQ2M6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVy
+bWFubkBzdXNlLmRlPg0KPj4gQ2M6IEphdmllciBNYXJ0aW5leiBDYW5pbGxhcyA8amF2aWVy
+bUByZWRoYXQuY29tPg0KPj4gQ2M6IExhdXJlbnQgUGluY2hhcnQgPGxhdXJlbnQucGluY2hh
+cnRAaWRlYXNvbmJvYXJkLmNvbT4NCj4+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFA
+aW50ZWwuY29tPg0KPj4gQ2M6IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+DQo+
+PiBDYzogRXZhbiBRdWFuIDxldmFuLnF1YW5AYW1kLmNvbT4NCj4+IENjOiBDaHJpc3RpYW4g
+S8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+DQo+PiBDYzogQWxleCBEZXVjaGVy
+IDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPg0KPj4gQ2M6IEhhd2tpbmcgWmhhbmcgPEhh
+d2tpbmcuWmhhbmdAYW1kLmNvbT4NCj4+IENjOiBMaWt1biBHYW8gPExpa3VuLkdhb0BhbWQu
+Y29tPg0KPj4gQ2M6ICJDaHJpc3RpYW4gS8O2bmlnIiA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQu
+Y29tPg0KPj4gQ2M6IFN0YW5sZXkgWWFuZyA8U3RhbmxleS5ZYW5nQGFtZC5jb20+DQo+PiBD
+YzogIlRpYW5jaS5ZaW4iIDx0aWFuY2kueWluQGFtZC5jb20+DQo+PiBDYzogWGlhb2ppYW4g
+RHUgPFhpYW9qaWFuLkR1QGFtZC5jb20+DQo+PiBDYzogQW5kcmV5IEdyb2R6b3Zza3kgPGFu
+ZHJleS5ncm9kem92c2t5QGFtZC5jb20+DQo+PiBDYzogWWlQZW5nIENoYWkgPFlpUGVuZy5D
+aGFpQGFtZC5jb20+DQo+PiBDYzogU29tYWxhcHVyYW0gQW1hcmFuYXRoIDxBbWFyYW5hdGgu
+U29tYWxhcHVyYW1AYW1kLmNvbT4NCj4+IENjOiBCb2t1biBaaGFuZyA8Qm9rdW4uWmhhbmdA
+YW1kLmNvbT4NCj4+IENjOiBHdWNodW4gQ2hlbiA8Z3VjaHVuLmNoZW5AYW1kLmNvbT4NCj4+
+IENjOiBIYW16YSBNYWhmb296IDxoYW16YS5tYWhmb296QGFtZC5jb20+DQo+PiBDYzogQXVy
+YWJpbmRvIFBpbGxhaSA8YXVyYWJpbmRvLnBpbGxhaUBhbWQuY29tPg0KPj4gQ2M6IE1hcmlv
+IExpbW9uY2llbGxvIDxtYXJpby5saW1vbmNpZWxsb0BhbWQuY29tPg0KPj4gQ2M6IFNvbG9t
+b24gQ2hpdSA8c29sb21vbi5jaGl1QGFtZC5jb20+DQo+PiBDYzogS2FpLUhlbmcgRmVuZyA8
+a2FpLmhlbmcuZmVuZ0BjYW5vbmljYWwuY29tPg0KPj4gQ2M6IEZlbGl4IEt1ZWhsaW5nIDxG
+ZWxpeC5LdWVobGluZ0BhbWQuY29tPg0KPj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52
+ZXR0ZXJAZmZ3bGwuY2g+DQo+PiBDYzogIk1hcmVrIE9sxaHDoWsiIDxtYXJlay5vbHNha0Bh
+bWQuY29tPg0KPj4gQ2M6IFNhbSBSYXZuYm9yZyA8c2FtQHJhdm5ib3JnLm9yZz4NCj4+IENj
+OiBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPg0KPj4gQ2M6ICJWaWxsZSBT
+eXJqw6Rsw6QiIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4+IENjOiBkcmkt
+ZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+PiBDYzogbm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcNCj4+IENjOiA8c3RhYmxlQHZnZXIua2VybmVsLm9yZz4gIyB2NS4xNysN
+Cj4+IC0tLQ0KPj4gICBkcml2ZXJzL2dwdS9kcm0vZHJtX2ZiX2hlbHBlci5jIHwgOCArKysr
+KysrKw0KPj4gICAxIGZpbGUgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCspDQo+Pg0KPj4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZmJfaGVscGVyLmMgYi9kcml2ZXJzL2dw
+dS9kcm0vZHJtX2ZiX2hlbHBlci5jDQo+PiBpbmRleCA0Mjc2MzE3MDYxMjguLjVlNDQ1YzYx
+MjUyZCAxMDA2NDQNCj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZmJfaGVscGVyLmMN
+Cj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZmJfaGVscGVyLmMNCj4+IEBAIC0zMCw3
+ICszMCw5IEBADQo+PiAgICNkZWZpbmUgcHJfZm10KGZtdCkgS0JVSUxEX01PRE5BTUUgIjog
+IiBmbXQNCj4+ICAgDQo+PiAgICNpbmNsdWRlIDxsaW51eC9jb25zb2xlLmg+DQo+PiArI2lu
+Y2x1ZGUgPGxpbnV4L3BjaS5oPg0KPj4gICAjaW5jbHVkZSA8bGludXgvc3lzcnEuaD4NCj4+
+ICsjaW5jbHVkZSA8bGludXgvdmdhX3N3aXRjaGVyb28uaD4NCj4+ICAgDQo+PiAgICNpbmNs
+dWRlIDxkcm0vZHJtX2F0b21pYy5oPg0KPj4gICAjaW5jbHVkZSA8ZHJtL2RybV9kcnYuaD4N
+Cj4+IEBAIC0xOTQwLDYgKzE5NDIsNyBAQCBzdGF0aWMgaW50IGRybV9mYl9oZWxwZXJfc2lu
+Z2xlX2ZiX3Byb2JlKHN0cnVjdCBkcm1fZmJfaGVscGVyICpmYl9oZWxwZXIsDQo+PiAgIAkJ
+CQkJIGludCBwcmVmZXJyZWRfYnBwKQ0KPj4gICB7DQo+PiAgIAlzdHJ1Y3QgZHJtX2NsaWVu
+dF9kZXYgKmNsaWVudCA9ICZmYl9oZWxwZXItPmNsaWVudDsNCj4+ICsJc3RydWN0IGRybV9k
+ZXZpY2UgKmRldiA9IGZiX2hlbHBlci0+ZGV2Ow0KPiANCj4gT24gZHJtLXRpcCwgdGhpcyBj
+b21taXQgaGFzIGEgc2lsZW50IGNvbmZsaWN0IHdpdGgNCj4gY2ZmODRiYWM5OTIyICgiZHJt
+L2ZoLWhlbHBlcjogU3BsaXQgZmJkZXYgc2luZ2xlLXByb2JlIGhlbHBlciIpDQo+IHRoYXQn
+cyBhbHJlYWR5IGluIGRybS1uZXh0Lg0KPiANCj4gSSBoYWQgY3JlYXRlZCBhIGZpeC11cCBw
+YXRjaCBpbiBkcm0tdGlwIHJlLWludHJvZHVjaW5nIHRoaXMgbGluZS4NCg0KVGhhbmsgeW91
+LiBJcyBpdCBmaXhlZCBmb3Igbm93Pw0KDQo+IA0KPiBXZSBwcm9iYWJseSBuZWVkIGEgYmFj
+a21lcmdlIGZyb20gZHJtLW5leHQgaW50byBkcm0tbWlzYy1maXhlcyB3aXRoDQo+IHRoZSBy
+ZXNvbHV0aW9uIGFwcGxpZWQgdGhlcmUuIEFuZCBwcm9iYWJseSBwcm9wYWdhdGVkIHRoYXQg
+cmVzb2x1dGlvbg0KPiBsYXRlci4uLg0KDQpCYWNrbWVyZ2luZyBmcm9tIC1uZXh0IGludG8g
+LWZpeGVzIGJyYW5jaGVzIGlzIGEgcHJvYmxlbSwgYXMgLWZpeGVzIA0Kc2hvdWxkIGJlIGNs
+b3NlIHRvIHRoZSBsYXRlc3QgcmVsZWFzZS4NCg0KQ2FuIHdlIHNvbHZlIHRoaXMgYnkgbWVy
+Z2luZyAtZml4ZXMgaW50byB1cHN0cmVhbSBhbmQgYmFja21lcmdpbmcgdGhpcyANCmludG8g
+b3VyIC1uZXh0IGJyYW5jaGVzPw0KDQpCZXN0IHJlZ2FyZHMNClRob21hcw0KDQo+IA0KPj4g
+ICAJc3RydWN0IGRybV9mYl9oZWxwZXJfc3VyZmFjZV9zaXplIHNpemVzOw0KPj4gICAJaW50
+IHJldDsNCj4+ICAgDQo+PiBAQCAtMTk2MSw2ICsxOTY0LDExIEBAIHN0YXRpYyBpbnQgZHJt
+X2ZiX2hlbHBlcl9zaW5nbGVfZmJfcHJvYmUoc3RydWN0IGRybV9mYl9oZWxwZXIgKmZiX2hl
+bHBlciwNCj4+ICAgCQlyZXR1cm4gcmV0Ow0KPj4gICANCj4+ICAgCXN0cmNweShmYl9oZWxw
+ZXItPmZiLT5jb21tLCAiW2ZiY29uXSIpOw0KPj4gKw0KPj4gKwkvKiBTZXQgdGhlIGZiIGlu
+Zm8gZm9yIHZnYXN3aXRjaGVyb28gY2xpZW50cy4gRG9lcyBub3RoaW5nIG90aGVyd2lzZS4g
+Ki8NCj4+ICsJaWYgKGRldl9pc19wY2koZGV2LT5kZXYpKQ0KPj4gKwkJdmdhX3N3aXRjaGVy
+b29fY2xpZW50X2ZiX3NldCh0b19wY2lfZGV2KGRldi0+ZGV2KSwgZmJfaGVscGVyLT5pbmZv
+KTsNCj4+ICsNCj4+ICAgCXJldHVybiAwOw0KPj4gICB9DQo+PiAgIA0KPj4gLS0gDQo+PiAy
+LjM5LjANCj4+DQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERyaXZlciBE
+ZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0KTWF4ZmVs
+ZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55DQooSFJCIDM2ODA5LCBBRyBOw7xy
+bmJlcmcpDQpHZXNjaMOkZnRzZsO8aHJlcjogSXZvIFRvdGV2DQo=
+
+--------------30ez6gaNoE0IbDxaITUeHioD--
+
+--------------20Gcd1EgZn6SADONFQDI9tmo
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmPI+h4FAwAAAAAACgkQlh/E3EQov+CD
+WhAAsFekX+ilJqwN8sgGZ28FhcC7j7nx4WAhh8krXat4LbcZOSqXNagMXaz8F3YPxesdguza++Al
+IOYVj1CFoi0NcwUDFACPADysnYnitrVaGs7fiFbgnaTZmVPQ5nKqzZ9gN3xFv2EkTc+BvHdoIDMu
+kSmS1+AJpTVmjAkrZ/m/vQ1NPz0v8ar2JR2zvPQwyfN7knFnoXFMmOcjAQIf7o9LBP8BlM73JsOb
+M0im+n7PLCEfePW/gCY3AnNPF8h2CTc4fM3FXyDKm3cdaou2e6Va/Y6wu0pNScfeuXJ07xwJOLdG
+6RcpPJunVfh4UNMHJRhnnLZIA4Wmid79627eEgyMEeACLmmSrWHIDf07Kch+YchmpSwui7FH8egE
+Yxt3FdcWffjct+RQcdPZj2U+v77OGAgvw/0/i31C/p71Bj7th1/ysPfbnNLoZ2ghsLuC0C9WQn0F
+7DIawWd6KNPoHmWbhIJBc1MTkJKsPGNP5NnwhV+vbOWufjkxAYIRIL5lbE9Ybr0S3oYzo3bnS+EW
+gAXMF8NGfAI/8OL0xcAuRQuJ2SiE1Mf7VrxtLNbau4I0KlNxiX17hibVqLcXm6BzCo+9qzrXosqp
+XIJW2ezPPTu1maDfP29aA60Y1mEwCp05hsCUdL7ySbHAAJdUvFsbjHBIqVErrw9Z8oFqooOW1Y8P
+djE=
+=hJ58
+-----END PGP SIGNATURE-----
+
+--------------20Gcd1EgZn6SADONFQDI9tmo--
