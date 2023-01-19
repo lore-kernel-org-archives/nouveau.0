@@ -4,42 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34ECEC77B78
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF697C7EE26
 	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D85D110E452;
-	Thu,  4 May 2023 12:33:03 +0000 (UTC)
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FF8E10E2B0;
- Mon, 16 Jan 2023 10:06:19 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 9AE3BB80D0A;
- Mon, 16 Jan 2023 10:06:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03D5AC433EF;
- Mon, 16 Jan 2023 10:06:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1673863576;
- bh=12Oegiwv5+ajWab6JX3x49VzyjwNVu3L68Wu90nFrm4=;
- h=From:To:Cc:Subject:Date:From;
- b=HlLE0xTLSiJ3rFQURgW6QqGArjnjfyVNbF42zQu/l+X+BmgA2QeIhrNX7GwNfLkNC
- Zf0PwfV96ckvmRR8CbdV4Qj3hqlyu/j2LcYvdKBUBdhr4uWCT0Vo2iXLwGHJ+QByDq
- STMrJb5cwe1XB0zy4sqbxF7sZecUVoi3/3+DgcXsOwFJ9jsvcIxjy4jmkHduJOhxX4
- /sfB9h81XN4+MejqdqEL+2QMTiCf1hFA7zl/V0Vl/3mBibRA174bc8Uv+9ub5oklOW
- FtgDqB3+g7B/dq1SW2stvPVrRI83UEKFapJthZ/LUnObclyp0bLfTk0DKAe90fOK7a
- WOkLccOa0lWkg==
-From: "Jiri Slaby (SUSE)" <jirislaby@kernel.org>
-To: airlied@redhat.com
-Date: Mon, 16 Jan 2023 11:06:10 +0100
-Message-Id: <20230116100611.12712-1-jirislaby@kernel.org>
-X-Mailer: git-send-email 2.39.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2788010E459;
+	Thu,  4 May 2023 12:33:04 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 480E910E914;
+ Thu, 19 Jan 2023 11:47:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674128872; x=1705664872;
+ h=message-id:date:mime-version:cc:subject:to:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=DuOBg1V/kEEpNk+BV4bYqVrWJSOOFRR3sdWDamFrvt0=;
+ b=GUc1sDL2PLjN2+V+ZitG8REELvXg2ry77rnL1wALEEp9g7zCLSwtkvhP
+ 2GEG53DjwoA7MfgR/pV33eujZZCrD8Lc95Rb9kpwdpV4DLV69thjCb8+Y
+ 2g/8F/8h9/X2fOGgOFvyOLZKw9aUQxSGE3TF2N2obI0bexlZivji6/uUz
+ Pgm4qrguFrApgul0eZ1z0PWYaTGsC1sFuzQB25cknUn6XFl/+zjOKriR/
+ k0A//aYL/4Bv5kuSZhHP9C13jk3sDtFkq7MwY8iU5N/kXWUm11HQJLEKl
+ hWs6L0dsW+vW51TNVYm8UG0RWo4pPV/qzgL/+9UQabnZU6sLtHbIWxQdK w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="308821077"
+X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="308821077"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2023 03:47:51 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="988957189"
+X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="988957189"
+Received: from blu2-mobl.ccr.corp.intel.com (HELO [10.252.185.248])
+ ([10.252.185.248])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2023 03:47:45 -0800
+Message-ID: <08c874f6-0c59-0b74-a2c8-7ad61356af6f@linux.intel.com>
+Date: Thu, 19 Jan 2023 19:47:42 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
-Subject: [Nouveau] [PATCH -resend] drm/nouveau/kms/nv50- (gcc13): fix
- nv50_wndw_new_ prototype
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Jason Gunthorpe <jgg@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
+ Kevin Tian <kevin.tian@intel.com>, Matthew Rosato <mjrosato@linux.ibm.com>,
+ Robin Murphy <robin.murphy@arm.com>
+References: <6-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
+From: Baolu Lu <baolu.lu@linux.intel.com>
+In-Reply-To: <6-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:34 +0000
+Subject: Re: [Nouveau] [PATCH v2 06/10] iommu/intel: Add a gfp parameter to
+ alloc_pgtable_page()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,65 +63,26 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Jiri Slaby \(SUSE\)" <jirislaby@kernel.org>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>, nouveau@lists.freedesktop.org,
- Martin Liska <mliska@suse.cz>
+Cc: linux-s390@vger.kernel.org, linux-media@vger.kernel.org,
+ kvm@vger.kernel.org, nouveau@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, Niklas Schnelle <schnelle@linux.ibm.com>,
+ linux-remoteproc@vger.kernel.org, iommu@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com,
+ Alex Williamson <alex.williamson@redhat.com>, netdev@vger.kernel.org,
+ ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ linux-tegra@vger.kernel.org, Christian Borntraeger <borntraeger@linux.ibm.com>,
+ virtualization@lists.linux-foundation.org, ath11k@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, baolu.lu@linux.intel.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-gcc-13 warns about mismatching types for enums. That revealed switched
-arguments of nv50_wndw_new_():
-  drivers/gpu/drm/nouveau/dispnv50/wndw.c:696:1: error: conflicting types for 'nv50_wndw_new_' due to enum/integer mismatch; have 'int(const struct nv50_wndw_func *, struct drm_device *, enum drm_plane_type,  const char *, int,  const u32 *, u32,  enum nv50_disp_interlock_type,  u32,  struct nv50_wndw **)'
-  drivers/gpu/drm/nouveau/dispnv50/wndw.h:36:5: note: previous declaration of 'nv50_wndw_new_' with type 'int(const struct nv50_wndw_func *, struct drm_device *, enum drm_plane_type,  const char *, int,  const u32 *, enum nv50_disp_interlock_type,  u32,  u32,  struct nv50_wndw **)'
+On 2023/1/19 2:00, Jason Gunthorpe wrote:
+> This is eventually called by iommufd through intel_iommu_map_pages() and
+> it should not be forced to atomic. Push the GFP_ATOMIC to all callers.
+> 
+> Signed-off-by: Jason Gunthorpe<jgg@nvidia.com>
 
-It can be barely visible, but the declaration says about the parameters
-in the middle:
-  enum nv50_disp_interlock_type,
-  u32 interlock_data,
-  u32 heads,
+Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
 
-While the definition states differently:
-  u32 heads,
-  enum nv50_disp_interlock_type interlock_type,
-  u32 interlock_data,
-
-Unify/fix the declaration to match the definition.
-
-Cc: Martin Liska <mliska@suse.cz>
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Jiri Slaby (SUSE) <jirislaby@kernel.org>
----
-
-Notes:
-    [v2] switch to uint instead of to enum
-
- drivers/gpu/drm/nouveau/dispnv50/wndw.h | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.h b/drivers/gpu/drm/nouveau/dispnv50/wndw.h
-index 591c852f326b..76a6ae5d5652 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/wndw.h
-+++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.h
-@@ -35,8 +35,9 @@ struct nv50_wndw {
- 
- int nv50_wndw_new_(const struct nv50_wndw_func *, struct drm_device *,
- 		   enum drm_plane_type, const char *name, int index,
--		   const u32 *format, enum nv50_disp_interlock_type,
--		   u32 interlock_data, u32 heads, struct nv50_wndw **);
-+		   const u32 *format, u32 heads,
-+		   enum nv50_disp_interlock_type, u32 interlock_data,
-+		   struct nv50_wndw **);
- void nv50_wndw_flush_set(struct nv50_wndw *, u32 *interlock,
- 			 struct nv50_wndw_atom *);
- void nv50_wndw_flush_clr(struct nv50_wndw *, u32 *interlock, bool flush,
--- 
-2.39.0
-
+Best regards,
+baolu
