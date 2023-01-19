@@ -4,29 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0948C77B78
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5147AC7EE23
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1043310E479;
-	Thu,  4 May 2023 12:32:54 +0000 (UTC)
-Received: from luna (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net
- [86.15.83.122])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8FD210E3EF;
- Thu, 29 Dec 2022 15:55:13 +0000 (UTC)
-Received: from ben by luna with local (Exim 4.96)
- (envelope-from <ben@luna.fluff.org>) id 1pAvFP-002oFi-2h;
- Thu, 29 Dec 2022 15:55:11 +0000
-From: Ben Dooks <ben-linux@fluff.org>
-To: dri-devel@lists.freedesktop.org,
-	nouveau@lists.freedesktop.org
-Date: Thu, 29 Dec 2022 15:55:10 +0000
-Message-Id: <20221229155510.669817-1-ben-linux@fluff.org>
-X-Mailer: git-send-email 2.39.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 733AB10E48C;
+	Thu,  4 May 2023 12:32:53 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B525E10E91D;
+ Thu, 19 Jan 2023 11:59:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1674129579; x=1705665579;
+ h=message-id:date:mime-version:cc:subject:to:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=5iljU3ubicNtm4iB5o/W1SF+gNSsJnJBGq8FDgyaBeE=;
+ b=nyBQzx/7hPPaIuyVULYmDaVpB8M6VrlCYsttgbfYd94fwm6PbPUgRBRG
+ pznr5Nb0K7Uxd01M2kRl8AcJ5Xwxfev1cZyV2EQXMPNE22lGrmzjBZt5J
+ /dow7zx4QNK/vu8MazONny6gNshRKbx1ssw7q/Qiky5v10jyuqRKc7D5g
+ QLJgXmS0ksg6tC7L0a25MFn6mH3Qp2+CccHBBczwp53RhiKfSlZoE88JF
+ neAZF2u+u2vsDqMwzYTQy+k97OzBE8oNi4iZlhEHA6dH91Am5ZuiaycnU
+ hALqroSsJqZHgHNC/oTjjBlNJeIvs7qqD+v848iQ9iltFhFfmouzI/9Tp w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="352522355"
+X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="352522355"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2023 03:59:38 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="833967799"
+X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; d="scan'208";a="833967799"
+Received: from blu2-mobl.ccr.corp.intel.com (HELO [10.252.185.248])
+ ([10.252.185.248])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jan 2023 03:59:31 -0800
+Message-ID: <54887e93-22a1-496a-838c-ad6a8b4a830f@linux.intel.com>
+Date: Thu, 19 Jan 2023 19:59:28 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:36 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/fifo: make gf100_fifo_nonstall_block
- static
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To: Jason Gunthorpe <jgg@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
+ Kevin Tian <kevin.tian@intel.com>, Matthew Rosato <mjrosato@linux.ibm.com>,
+ Robin Murphy <robin.murphy@arm.com>
+References: <7-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
+ <e44077a7-e275-4e34-b7ad-3e1382ea974d@linux.intel.com>
+From: Baolu Lu <baolu.lu@linux.intel.com>
+In-Reply-To: <e44077a7-e275-4e34-b7ad-3e1382ea974d@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:34 +0000
+Subject: Re: [Nouveau] [PATCH v2 07/10] iommu/intel: Support the gfp
+ argument to the map_pages op
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,33 +64,30 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ben Dooks <ben-linux@fluff.org>, bskeggs@redhat.com, daniel@ffwll.ch
+Cc: linux-s390@vger.kernel.org, linux-media@vger.kernel.org,
+ kvm@vger.kernel.org, nouveau@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, Niklas Schnelle <schnelle@linux.ibm.com>,
+ linux-remoteproc@vger.kernel.org, iommu@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com,
+ Alex Williamson <alex.williamson@redhat.com>, netdev@vger.kernel.org,
+ ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ linux-tegra@vger.kernel.org, Christian Borntraeger <borntraeger@linux.ibm.com>,
+ virtualization@lists.linux-foundation.org, ath11k@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, baolu.lu@linux.intel.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Make gf100_fifo_nonstall_block as it isn't exported, to
-silence the following sparse warning:
+On 2023/1/19 19:57, Baolu Lu wrote:
+> On 2023/1/19 2:00, Jason Gunthorpe wrote:
+>> Flow it down to alloc_pgtable_page() via pfn_to_dma_pte() and
+>> __domain_mapping().
+>>
+>> Signed-off-by: Jason Gunthorpe<jgg@nvidia.com>
+> 
+> Irrelevant to this patch, GFP_ATOMIC could be changed to GFP_KERNEL in
+> some places. I will follow up further to clean it up.
 
-drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c:451:1: warning: symbol 'gf100_fifo_nonstall_block' was not declared. Should it be static?
+It has been done in the next patch. Sorry for the noise.
 
-Signed-off-by: Ben Dooks <ben-linux@fluff.org>
----
- drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c
-index 5bb65258c36d..6c94451d0faa 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c
-@@ -447,7 +447,7 @@ gf100_fifo_nonstall_allow(struct nvkm_event *event, int type, int index)
- 	spin_unlock_irqrestore(&fifo->lock, flags);
- }
- 
--void
-+static void
- gf100_fifo_nonstall_block(struct nvkm_event *event, int type, int index)
- {
- 	struct nvkm_fifo *fifo = container_of(event, typeof(*fifo), nonstall.event);
--- 
-2.39.0
-
+Best regards,
+baolu
