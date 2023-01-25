@@ -4,143 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EED2C7EE2C
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC0ACC77B7C
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02B6310E45D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC1DD10E465;
 	Thu,  4 May 2023 12:32:50 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDB7C10E037;
- Thu, 19 Jan 2023 03:45:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674099930; x=1705635930;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=7akVbq0P52BNTMgJDfm7MfKXhG+VYySWKfey57WLr5k=;
- b=Y5br0YE1s4xtRwZEcgdMGuHfnm2cvm/+UjhL4s8os21HRlqJ9zzTTvwb
- sSxqxgRH4P0JPx6lbdRKMewr4+EPyIPweHitIMckT58ZmJAIp36oTQvGX
- 2sYp0LpD1WqB13sFMSZR+1ycIBL/ymeusNClx6SlwNj28in/ODRB95Sf8
- TgJXoUf+ePcWTpVmLC7JLIORPzBTsr64oqNvaC+WddSGaK1SNSTh3v/Pn
- dXrQC/68gxG6jlLpuCtmY9045VZP7unwfAyIe2VW1sPExtL/JGx//GCI4
- jXCPVPMTlyOz+aarYJ8Orn8CjivkwdPm7aznfdkAzTeuJxfoyIq3Qjcl1 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="352436285"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="352436285"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2023 19:45:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="783912415"
-X-IronPort-AV: E=Sophos;i="5.97,226,1669104000"; d="scan'208";a="783912415"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga004.jf.intel.com with ESMTP; 18 Jan 2023 19:45:30 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 18 Jan 2023 19:45:29 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 18 Jan 2023 19:45:29 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Wed, 18 Jan 2023 19:45:29 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.103)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Wed, 18 Jan 2023 19:45:29 -0800
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2047.outbound.protection.outlook.com [40.107.100.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A461210E37A;
+ Wed, 25 Jan 2023 10:03:58 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YlbNH4rpsshthMK9jAuTyK2huyS6ead1iPK/bPe/W0DN7oBAn39IrzsqWSIPRGnDnyaEplq3fQ2sRytd8VgpVxJVBtf7icXHMKOk2704NsBA+kJmtmCMmH/TJszKFbTTFbqNItjv462Ugf6vNmWPeMV5JtNc+KfhmwX43EMD/UJ+NdxjK1R+z0y+pnXkQ0QKYRgMOUquPNrqkI3ZLJErItJOlYS8mCqww9/zTNxK//EOUU8xW/8S1uTVyO56eb6R//qRvBNk9SC81jkDxy1R0f+Kc9PPA0+lAbCTTrvqrWK7L2GxYK+8U8SpwNPqN7ntvI0FUwsTnvSNv1TsbTWw5Q==
+ b=lgPQ4wfWRf4QKU9AoNzizI/Cl1dC0N4wK/9SQ6jYbMyFRNCBehE7NtNW9YraGi/LEu19n1XQ8t0jHj+GH3jbUf7xZKI6Hw95rLQr/DqYsgYxKcjRbOr0FeaxMWdKVro4P3sl7hSz5UQkszPgqKhWh1Rdqt+HxhCjY0POVxXkx6gpHjOiXWA2YxDhlJQJsK4hddFSAgcxgJ7lYwzc5ukyye8dBxPssru29jmpVfuVJyqoXEskYF1rF0FqUkwD1+bZDUUIejCG8XOP09Zp10SlvN9eaL/XHTH0dxPkIRDbGEwcV+sOGzVlokUHlnERJz79l4ZgvjxSFzV41JiTYc4Ywg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7akVbq0P52BNTMgJDfm7MfKXhG+VYySWKfey57WLr5k=;
- b=TXNDXjMTGTNwRxg9DwdUUiHGPqwzjUaunpQXwM5iEJqse5plqalsKhpO2fTEM2czsKKW5xvyQT5aRGau0QHD3tMvIxYK+RwFvQAjIUKLx8+cxdWoa1AMxmrH8AIR8//HHNDupIdfq/8DcEY4qQfW4IrPzr15G8lH1VvuGyIGETikf31VMtWzqY3XpPZS7WNwCg5UkEraa+fzGBqATVpDiTGkzXZg6SpGWScOpM+wQWHUYyMXNw5DQewY8c4H08dLt0wEdSths59pvmRAVsRDNK8jbmBaRaVBQtX8BcQ9noAwUzA/XF/v6gvsGVFO0gC5cI7ptIorI0ua514SaV5/BQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BN9PR11MB5276.namprd11.prod.outlook.com (2603:10b6:408:135::18)
- by DM4PR11MB7374.namprd11.prod.outlook.com (2603:10b6:8:102::11) with
+ bh=upo6YJUccw0tI/B2/Tu+R9CdUn1pMZLDc3ynXo3uccE=;
+ b=M/RbRPGBAsXl98i8yNobrHU6/G8rSCzvtwWxD+ukLGyir5Z0yFE4r1yr9/Xyx+kcr10PBsTz7/+AP7EzdxS1GMzaB6WuAb8EJSfpFf6zkepKGxGzFJZkw9JjZOr2CncHQdc/K3HGolthoWgzjqLoh8X5cHIXQHovGrrPXJalCbvlajs+7hrwOUSq3AvIIOal8D5twbIjVVQ6GqoMetGfOQ5R/NcH+GuteoryLxcAdUKl6Xy9edsf6OsQY27NghfathIrMq9BQUatqthYbohjLxT0YQc0nbHtQE+I2nEoW4SoKKM4ObUmtkj5f7Wd+PYs8IARd7s7eVYQpdVrPle0GQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=upo6YJUccw0tI/B2/Tu+R9CdUn1pMZLDc3ynXo3uccE=;
+ b=DYVMibzdJI+yVeSfkpc0Q1FqkvVL6f4kCNCfhEwmyEeuVGvTsF2Pg+4uKxay7f59BaGTKW50WYAJWabThhS66I+W/Mz8ICpXNIj18c+WHiwgAU0MwL0W+/7l7DLRQqyBZK6yd+PBe4yDeZYtuUTcCyxTXJT2q4GvNrB9U8kQavM=
+Received: from MW4PR03CA0122.namprd03.prod.outlook.com (2603:10b6:303:8c::7)
+ by DM6PR12MB4877.namprd12.prod.outlook.com (2603:10b6:5:1bb::24) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Thu, 19 Jan
- 2023 03:45:27 +0000
-Received: from BN9PR11MB5276.namprd11.prod.outlook.com
- ([fe80::6a8d:b95:e1b5:d79d]) by BN9PR11MB5276.namprd11.prod.outlook.com
- ([fe80::6a8d:b95:e1b5:d79d%9]) with mapi id 15.20.6002.025; Thu, 19 Jan 2023
- 03:45:27 +0000
-From: "Tian, Kevin" <kevin.tian@intel.com>
-To: Jason Gunthorpe <jgg@nvidia.com>, Lu Baolu <baolu.lu@linux.intel.com>,
- Joerg Roedel <joro@8bytes.org>, Matthew Rosato <mjrosato@linux.ibm.com>,
- Robin Murphy <robin.murphy@arm.com>
-Thread-Topic: [PATCH v2 01/10] iommu: Add a gfp parameter to iommu_map()
-Thread-Index: AQHZK2bhAG5uFdBTPE6j23ADS1S6Ba6lGgRA
-Date: Thu, 19 Jan 2023 03:45:27 +0000
-Message-ID: <BN9PR11MB5276FF1670244D0F0924E9948CC49@BN9PR11MB5276.namprd11.prod.outlook.com>
-References: <0-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
- <1-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
-In-Reply-To: <1-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR11MB5276:EE_|DM4PR11MB7374:EE_
-x-ms-office365-filtering-correlation-id: 512d9d41-4181-4abb-0f4d-08daf9cf9ac5
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: nXsKyRwmcMM6jgR7Ux03qKu4xruHqnfKKJorqaUybbE+OrhdRYZeiDJmeX8EVsSTkZdmkbumai1vJaHQUB6fV916ADgD2xjw3eCpLQfHfV4I+EIBPPN2cdkJk7fS5XKzy/7mRBM81so7AnuUB47B2mcvmzw/n4I4noUwB6M7WAQPZyBStCH5ZF3kFYp6ygGnKy3ZsboHvULfCNv6JEkMRtr7We93y7Fka7LQbyF3UaSYaI0dCEwfq5v2cM0wWjE0L+41zaWc9/ZIvdP1v56rNfsJ9JiDMguWBEWTDpOekmunQvXhlCiDvKQd5hvOdygwR+caW8ADzto2++z3/dsnbHk8rLHpv5bl4hH+huJPuTUvt5btdDJJ3wBKNy0V1vUys+etwe0KRXfua4u9C0oMLImdPC8BWHyzkWb+uO7l+2b1eC1zoew/+rbFjinLvspM06ac43IO1y4zUSlqVngAFVlsBulyZ99WDm8r/057J6haWxByXqXTq49+gfkVJExsC85D0ARuE286hAKVYmQo3ZyFSXcbL3wXqHUvow2DNa3ysHtHyGqC5eVal7tKNvwbKD388vvmi8kQEaz8/DUwg09MA3AiZOAstZdyps/G3VQt7apx81CezjjeJqeZm8EtmOfBgCIj+LOMn+bhcSWa8QI1P80hqyA240Nvw6CQIQOe6pZ8tZTo5oLtQgYmiUtq0tJ4e6v6ArxrW9HLxC1KaA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5276.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(376002)(39860400002)(366004)(346002)(136003)(396003)(451199015)(4326008)(38070700005)(64756008)(76116006)(8936002)(316002)(66446008)(66946007)(52536014)(66476007)(7416002)(8676002)(5660300002)(66556008)(4744005)(55016003)(2906002)(83380400001)(38100700002)(82960400001)(41300700001)(122000001)(33656002)(7696005)(54906003)(110136005)(478600001)(71200400001)(86362001)(6506007)(186003)(26005)(9686003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?V70RZtzN/HC2Vyvnpyc48yZ79OFEewzTIV97kSb1DxWEQqoP0Enl4R3GyPBS?=
- =?us-ascii?Q?L2yufo1OhJuwCYBJ6+g8CMvM4IQTZWAd/zGV1ir7bPEAsjmUPJOgmM2ucbTD?=
- =?us-ascii?Q?Ai+nEYv223gtgc08jrDFgcpF4RB+aR+AjRzx2ZD7ODTklNF70tWw2ry2vFIw?=
- =?us-ascii?Q?o6ACBN91TAsKNf7SyqTaSubYEhFS6p12wwq/EGw+bNDfs4j4BuufYTYzn+OQ?=
- =?us-ascii?Q?MOFZD88EYTY1J89mM+ZJeoO2doN4Og/MSRy0ncODlZ1HcYHRbOKFSVPaNT+Z?=
- =?us-ascii?Q?WKNoGdNjHNzjSVUlL1R4hezqKMasr8L2AifrWP7xom53rFlkdYeVk4yE6FPb?=
- =?us-ascii?Q?j/4OOqxPutuRVCnEI17j7lXQID48fLkTYwgbKRgJd0s7eAZOmVg7/3bVYgeV?=
- =?us-ascii?Q?QOxrN1Pt3070gpoMGeeGDzbQTejc2X+UmM6vtAlu0B7M1TkAqIwh66T5Dfc+?=
- =?us-ascii?Q?osVPhSPXnnbmTGg0vkfghgNkkJoJx3p8qnBIEBwIx5SMSwpKs9rqXvraPpfJ?=
- =?us-ascii?Q?BHJA0nEPgxPA1wOaEK/8xnKAfY2ZwcSOcakYwBl41PkLZBWcJ7OzRugJXoQj?=
- =?us-ascii?Q?rRj8hp8yE7k3dsT+96d3lnntd9lQpQB5DXQDNNF7695I/SjfIkHqXGwQEDc4?=
- =?us-ascii?Q?7Uje8BO6FqvdqXmRrCIlLKd6RO2edszBIYae+suoGG24htW0q5joAysYVAEy?=
- =?us-ascii?Q?API4TutROEezmP5mSdfEpLzcRbLBhTpCoPah0rAGXnurZLR6yLQ/y371OxNp?=
- =?us-ascii?Q?dcpPE4NuVTdQD4A0eNEZVBjnBirCpGnzzIUu1+XEZRv7PbvLC809la3m5bJj?=
- =?us-ascii?Q?YTPSFkkjZXBx4VzllfBmrey8CSTtxDB9bE6AOLbqMpNJF2bOmcQErD1B7M2Z?=
- =?us-ascii?Q?rvEqvoGUVic1oZwu9efG9VacK48gsqJRRpmVg1IwgyR1mtXRYkGYdowhQwrP?=
- =?us-ascii?Q?/KkyhFhX4P4aUxsX2c79hulbqYbxEgddFl7wkeFQPXGIKMgkacuGyyD4njna?=
- =?us-ascii?Q?Flo8Pbii6eJZR+75BYi7wzmUBUdBFUsD4chtZ2I2iQN6zNjdFrv6IGz2fCNb?=
- =?us-ascii?Q?tr3dPrck4jPe7x6EuClk3uWStrsh9pRAZG0zClMPbCE12E/ViZ4xlg2RPAd3?=
- =?us-ascii?Q?oDx9oC1Rk29aN5WGb/33jwFZMxIR+1ZknFAJKUpzr38JZkv0eRWH6mu5bOcX?=
- =?us-ascii?Q?vPK4XxDhM5ngCoOE992oLKA7/Gx5tJmRY4PhfzpaAzh1I1yt2Zw/NYPfFhjD?=
- =?us-ascii?Q?xxz/yc1vhBcsGNn6+DwpTx34Yr0F8/MHgvgJO+I4T5vf9zdVBYeTgReVFo4+?=
- =?us-ascii?Q?oljl2VtFXN5pknpif1AOcJz3BrXMMq0O6hEhylTDhSDq/2Nzie9jdXj7oHBp?=
- =?us-ascii?Q?iWk86ZXMHcSxxRwG6+yDXumyc+axGJQpf3SSA4K+6Xl5briW7I7Sq4ms/2SY?=
- =?us-ascii?Q?kwQLPyU2QWePi4rkl4gqE7uw21or7ocNfB9wf4SMfYLL9A5Dxy+U34IyEwAT?=
- =?us-ascii?Q?uQSaWJiumqjSfod9Eu+bcM49jh+LpcaXHJhUFlCeu0WaymkyhAOh+MFJCdyt?=
- =?us-ascii?Q?5KOS7dvMa+FDxaWSnf6aU5eEwyVLNzdf8NUmdv3u?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Wed, 25 Jan
+ 2023 10:03:56 +0000
+Received: from CO1NAM11FT033.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:8c:cafe::a7) by MW4PR03CA0122.outlook.office365.com
+ (2603:10b6:303:8c::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.20 via Frontend
+ Transport; Wed, 25 Jan 2023 10:03:55 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT033.mail.protection.outlook.com (10.13.174.247) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6043.17 via Frontend Transport; Wed, 25 Jan 2023 10:03:55 +0000
+Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Wed, 25 Jan 2023 04:03:51 -0600
+From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
+Date: Wed, 25 Jan 2023 15:33:14 +0530
+Message-ID: <20230125100315.6214-3-Amaranath.Somalapuram@amd.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20230125100315.6214-1-Amaranath.Somalapuram@amd.com>
+References: <20230125100315.6214-1-Amaranath.Somalapuram@amd.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5276.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 512d9d41-4181-4abb-0f4d-08daf9cf9ac5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jan 2023 03:45:27.5873 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: VhImZFlxTjjhEYAMo0jxG32ZRffp7cdiw//Vf57QwMKssahbl6155KdZ8tcZYWR+Wf5paRmWFgTBcaaOvWsjOw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7374
-X-OriginatorOrg: intel.com
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:33 +0000
-Subject: Re: [Nouveau] [PATCH v2 01/10] iommu: Add a gfp parameter to
- iommu_map()
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT033:EE_|DM6PR12MB4877:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2915f4e6-c997-46bb-fb32-08dafebb783c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uMPjknvUNcqZO6yoDQn/yOY+C1MfCrwVodS13VmKUmYO/SzHIHSSyAJyJelM3hrlIPZceHUNm+IAWq7gEivVmShmZfAmtfk/3bNAEFa+Wpr43YD1oGTiscS8HpHFfsxfq2HT6pGLfOP8MM8wWYuLaGG4DDonCHB71CYf/vqAnCryBi1yJED7e38kd4tl7vhLyyeQfB362KGttFZ8sgCoN3WGU32jLgX3wey1vArTnpT/kpo82AH8SnRIEz3O7a9g9cnKLqAJaKGZmkQ78VDl6EjHZ3Uk5w3xhfB2YriYBqBrQ5P5Slgc3+gMAjCNlORxnSeP5xKu9etLkdU4Jio/fn9T3VXCHTnRboCHpDhUpxpjZbSEcdLqY4JQV1+jUzYYEJ9P/89686W48UvNlL50e5jQp1KIj5dcst8/0Ts1+LkWk4J4UVNU9qpk/tDyG2TvUOHVLuxbz72VB5q8C55lsAJ5YlseCYXV8CcucjWo+GosJwD3ggZACtISXMzveeI2JoppxYFuE0HEkN+ZjYj0jt+7RK4IlQvOikwE9Ze6xAMY8MqaGyRJuZsI47b1SO6AiYh+W3TBu8Ew0ELpEMqmau7pm+VKFZXKa0oyITC5Pgy33UVfSurK4tUV+D+oYp6smsKObRdEwOmb1gEn9K/lhfAORmd55WQ/lQpQF4MkmTZsrSdv6hx/dUSCE9lOOtA9QtZqFonZ3VVIJ3cfFB9FvHrjkY9PFwtANP+gp3oW4Xk=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230025)(4636009)(136003)(39860400002)(396003)(346002)(376002)(451199018)(36840700001)(40470700004)(46966006)(70586007)(41300700001)(4326008)(8676002)(54906003)(36860700001)(110136005)(26005)(450100002)(316002)(70206006)(2616005)(336012)(8936002)(356005)(1076003)(81166007)(5660300002)(82310400005)(40480700001)(40460700003)(426003)(2906002)(16526019)(83380400001)(7696005)(6666004)(82740400003)(86362001)(47076005)(478600001)(36756003)(186003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 10:03:55.4385 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2915f4e6-c997-46bb-fb32-08dafebb783c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT033.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4877
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
+Subject: [Nouveau] [PATCH v4 3/4] drm/amdgpu: GDS/GWS/OA cleanup the page
+ shift operation
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,39 +102,95 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- Niklas Schnelle <schnelle@linux.ibm.com>,
- "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
- "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-stm32@st-md-mailman.stormreply.com"
- <linux-stm32@st-md-mailman.stormreply.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "ath10k@lists.infradead.org" <ath10k@lists.infradead.org>,
- "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- "virtualization@lists.linux-foundation.org"
- <virtualization@lists.linux-foundation.org>,
- "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>
+Cc: shashank.sharma@amd.com, arunpravin.paneerselvam@amd.com,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, arvind.yadav@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-> From: Jason Gunthorpe <jgg@nvidia.com>
-> Sent: Thursday, January 19, 2023 2:01 AM
->=20
-> The internal mechanisms support this, but instead of exposting the gfp to
-> the caller it wrappers it into iommu_map() and iommu_map_atomic()
->=20
-> Fix this instead of adding more variants for GFP_KERNEL_ACCOUNT.
->=20
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+Remove page shift operations as ttm_resource moved
+from num_pages to size_t size in bytes.
+v1 – v4: adding missing related to amdgpu_ttm_init_on_chip
 
-Reviewed-by: Kevin Tian <kevin.tian@intel.com>
+Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    | 12 ++++++------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c |  3 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c    |  6 +++---
+ 3 files changed, 10 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+index 9e549923622b..2732d89c8468 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+@@ -142,16 +142,16 @@ void amdgpu_job_set_resources(struct amdgpu_job *job, struct amdgpu_bo *gds,
+ 			      struct amdgpu_bo *gws, struct amdgpu_bo *oa)
+ {
+ 	if (gds) {
+-		job->gds_base = amdgpu_bo_gpu_offset(gds) >> PAGE_SHIFT;
+-		job->gds_size = amdgpu_bo_size(gds) >> PAGE_SHIFT;
++		job->gds_base = amdgpu_bo_gpu_offset(gds);
++		job->gds_size = amdgpu_bo_size(gds);
+ 	}
+ 	if (gws) {
+-		job->gws_base = amdgpu_bo_gpu_offset(gws) >> PAGE_SHIFT;
+-		job->gws_size = amdgpu_bo_size(gws) >> PAGE_SHIFT;
++		job->gws_base = amdgpu_bo_gpu_offset(gws);
++		job->gws_size = amdgpu_bo_size(gws);
+ 	}
+ 	if (oa) {
+-		job->oa_base = amdgpu_bo_gpu_offset(oa) >> PAGE_SHIFT;
+-		job->oa_size = amdgpu_bo_size(oa) >> PAGE_SHIFT;
++		job->oa_base = amdgpu_bo_gpu_offset(oa);
++		job->oa_size = amdgpu_bo_size(oa);
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+index 2ab67ab204df..bbd0a4550fbf 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+@@ -541,12 +541,11 @@ int amdgpu_bo_create(struct amdgpu_device *adev,
+ 	if (bp->domain & (AMDGPU_GEM_DOMAIN_GWS | AMDGPU_GEM_DOMAIN_OA)) {
+ 		/* GWS and OA don't need any alignment. */
+ 		page_align = bp->byte_align;
+-		size <<= PAGE_SHIFT;
+ 
+ 	} else if (bp->domain & AMDGPU_GEM_DOMAIN_GDS) {
+ 		/* Both size and alignment must be a multiple of 4. */
+ 		page_align = ALIGN(bp->byte_align, 4);
+-		size = ALIGN(size, 4) << PAGE_SHIFT;
++		size = ALIGN(size, 4);
+ 	} else {
+ 		/* Memory should be aligned at least to a page size. */
+ 		page_align = ALIGN(bp->byte_align, PAGE_SIZE) >> PAGE_SHIFT;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index ffe6a1ab7f9a..c1500875b4ad 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -1849,19 +1849,19 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
+ 	}
+ 
+ 	/* Initialize various on-chip memory pools */
+-	r = amdgpu_ttm_init_on_chip(adev, AMDGPU_PL_GDS, adev->gds.gds_size);
++	r = amdgpu_ttm_init_on_chip(adev, AMDGPU_PL_GDS, adev->gds.gds_size << PAGE_SHIFT);
+ 	if (r) {
+ 		DRM_ERROR("Failed initializing GDS heap.\n");
+ 		return r;
+ 	}
+ 
+-	r = amdgpu_ttm_init_on_chip(adev, AMDGPU_PL_GWS, adev->gds.gws_size);
++	r = amdgpu_ttm_init_on_chip(adev, AMDGPU_PL_GWS, adev->gds.gws_size << PAGE_SHIFT);
+ 	if (r) {
+ 		DRM_ERROR("Failed initializing gws heap.\n");
+ 		return r;
+ 	}
+ 
+-	r = amdgpu_ttm_init_on_chip(adev, AMDGPU_PL_OA, adev->gds.oa_size);
++	r = amdgpu_ttm_init_on_chip(adev, AMDGPU_PL_OA, adev->gds.oa_size << PAGE_SHIFT);
+ 	if (r) {
+ 		DRM_ERROR("Failed initializing oa heap.\n");
+ 		return r;
+-- 
+2.32.0
+
