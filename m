@@ -4,41 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2DB2C77B7C
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BC67C7EE23
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 141F610E444;
-	Thu,  4 May 2023 12:32:32 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7077D10E184;
- Mon, 12 Dec 2022 10:22:39 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id CA2D860F75;
- Mon, 12 Dec 2022 10:22:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDEC5C433D2;
- Mon, 12 Dec 2022 10:22:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1670840558;
- bh=82Mek9NsJD1mKAuPA30xuCcYkcZNBfTDDhKVt3EFQzM=;
- h=From:To:Cc:Subject:Date:From;
- b=NSxvdpOfC0nfZOwWAx93P5YDuR9z+uaqCTm72wucNf2PtG00NySQJGfuaJixbOQkZ
- ovks+zAa18D9YtDhXA49qCe8mGX9BGQLVx6vaCFoazXUXNrXhPCJA0JWyAO3Xob28n
- 3hZHGBTIALF+7G66iHKqdtWdSmE9w5CuaoevQxeKWKfs5LqmernO+jaICDGK7l2NOD
- dde8cnUM8pU30uWYypHFk6Kd7G2pDUfq/RJysmEYwResxD+de45QAsi1VlW2ey11Te
- q61JxKm41cSkIVdP4w/c1Haa3sz5b4Jjl0ZW80SiXaETGhS3PrhWY4EdBovnQxhJSl
- EBlNkCAhXlD8Q==
-From: "Jiri Slaby (SUSE)" <jirislaby@kernel.org>
-To: airlied@redhat.com
-Date: Mon, 12 Dec 2022 11:22:33 +0100
-Message-Id: <20221212102233.22212-1-jirislaby@kernel.org>
-X-Mailer: git-send-email 2.38.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3E9210E441;
+	Thu,  4 May 2023 12:32:31 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2089.outbound.protection.outlook.com [40.107.223.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D00310E37A;
+ Wed, 25 Jan 2023 10:03:57 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=epF+9rQy8SPy4OiP3+0Z9fNmuxHz6iiYiSPjtZI3yD2t3Gok6U5qtl9co8YaDKDESUDVZhb1+JNuMgqnCDMPJQovcBvzwhZ9uHE79jjEyQhakI/AD0e6IzLxs1Rdc0GqeRIjMm/URSfMihpVGbSFe6HDcrSsCATGb9mPfm95bOPr2wLJ+xQAjRtdCP5664O9bv3dwtCZ4QkAHxELFnN7I2qHg5mWgz/EWfrvjl1wc1z5l2fc9KNTTJXSaEq7cMQv8l5tS/ahRdesfOrSIJhyj5YkB0UgCoEngEtGvs6CdP2H8BE5amJYhqHg/3WC4J6n8e56vlHwlZ8M36qGgXB4tQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MHYZa/ZbmjxYTLo3XR1Skukn38Cs2A2GS5sxMyOmWRY=;
+ b=LOvSg5hHoY6/PFd4bpuSwBq6VHI78osNycZQsroY063JOVNRha0cThgJRgoixMgrwU6/JAEewYNNbnPf7ZBVcbYqoR9CZ3bW+ST1vLAC9HDEOdmZowqIowCAusXwYFM4+kp3gmf1vikgp/POBpl1xNKOyNnMGD4K1tNASQfGBfoErtRLroMGzFODKj18H5u3igLRyuI41k7RClzc91ifxJixzo2xDPsOIcV1eGH5UjdE6OUoqGl0pueqTB9t6wLqJoHD0CT3TuJ4NdH9HNc9/mTPd76YTOxY8MkYEg3SxYZjVu+aorVhmevHJ540TNPoiuo0FOYF7p2syCqhcWcqjA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MHYZa/ZbmjxYTLo3XR1Skukn38Cs2A2GS5sxMyOmWRY=;
+ b=LgBwQt5hrGe2MTyWFJJUTdyO7t/M/veVqrnpX8vGzJfAXRkwiiznSFhkDpkMe2jcBmad0o5qr/n692LWCupz6hYplftW428weIvua4YvHlTdsEhz27IOAsgLBp8hrJuVnncSNaosYLX+eRJRJuluD2UUij42XrdA1jg+ivDole4=
+Received: from MW4PR03CA0122.namprd03.prod.outlook.com (2603:10b6:303:8c::7)
+ by MW4PR12MB6731.namprd12.prod.outlook.com (2603:10b6:303:1eb::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Wed, 25 Jan
+ 2023 10:03:52 +0000
+Received: from CO1NAM11FT033.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:8c:cafe::c5) by MW4PR03CA0122.outlook.office365.com
+ (2603:10b6:303:8c::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.20 via Frontend
+ Transport; Wed, 25 Jan 2023 10:03:52 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT033.mail.protection.outlook.com (10.13.174.247) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6043.17 via Frontend Transport; Wed, 25 Jan 2023 10:03:51 +0000
+Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Wed, 25 Jan 2023 04:03:47 -0600
+From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
+Date: Wed, 25 Jan 2023 15:33:13 +0530
+Message-ID: <20230125100315.6214-2-Amaranath.Somalapuram@amd.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20230125100315.6214-1-Amaranath.Somalapuram@amd.com>
+References: <20230125100315.6214-1-Amaranath.Somalapuram@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT033:EE_|MW4PR12MB6731:EE_
+X-MS-Office365-Filtering-Correlation-Id: 93c1b39d-27f0-472b-1bf5-08dafebb75d1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: kgjfNI7aU1dPs0AFJW0cpQg+q1BjflxJBVBP6OrXIJwgPbMHp1ogjghO0AIK8aXimsUd6VJA2kEu4dSVrIUAJ6c+SDZzWUBNZTk323MIKtT4hsmgff8V/egyDa7obS7eUtlbAhkDBY3jVjkSUgcM99a01BLd/zjUIohXkEfJ+uxcBn+u8mspSjMG82Qq6547hg8AFSf9AVw9v3/N8M4pV1odmsBIF22iKJ80aGcsdeD+edKKrdmvV8cmsQ0Co0xiDqKBHli9xypBojDNsROBhOUVBj5DPFoCXKHMi4s2kOemw93CjKkFHf7X4R4FkI/K+OTixpDVfmXjuRi6jgQkph57cGwaXP3nqUM+u3fulyr0uhloz7G9sUuUcRl+sMHjVwzs/y/qaQ2j/BNMTCkoa8igSTY+mV/MJpGA/OqUBEspOOxe7HkwsObGtTaGaIUDMOuRWhuVMWEGFaTKY2i9cLZbXknvLZN32w/Rv4OjZiuanUIyomOlIqaD6adcw7Tt5i0ZwQSjdaNL23Yf6x3p8BGAZt+t6cx5ZRryHZfvBBDCAdnGVO2y9XlvUfW/joWECF2IAV66RH1n+wWoppzUB6VW1ac61MnMlEZVhtyNAdpUKM0AU/BmoBMd8YjTDwAdtq+tGd/qqXHO+YG8H0F2jSgB8opWVwCRARFMuP/Za4fWfNChvNDugkduyWwWygEK+Wu9058TrQwcinRIYNLVcLTGALPJTmialQvCIx2HVF0=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230025)(4636009)(376002)(39860400002)(136003)(346002)(396003)(451199018)(40470700004)(46966006)(36840700001)(83380400001)(36860700001)(426003)(336012)(54906003)(47076005)(2616005)(478600001)(8676002)(186003)(450100002)(36756003)(1076003)(70206006)(70586007)(110136005)(7696005)(356005)(2906002)(86362001)(82740400003)(41300700001)(26005)(81166007)(5660300002)(16526019)(316002)(40480700001)(40460700003)(6666004)(4326008)(82310400005)(8936002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 10:03:51.3918 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 93c1b39d-27f0-472b-1bf5-08dafebb75d1
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT033.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6731
 X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/kms/nv50- (gcc13): fix nv50_wndw_new_
- prototype
+Subject: [Nouveau] [PATCH v4 2/4] drm/ttm: Clean up page shift operation
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,61 +101,65 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Jiri Slaby \(SUSE\)" <jirislaby@kernel.org>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>, nouveau@lists.freedesktop.org,
- Martin Liska <mliska@suse.cz>
+Cc: shashank.sharma@amd.com, arunpravin.paneerselvam@amd.com,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, arvind.yadav@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-gcc-13 warns about mismatching types for enums. That revealed switched
-arguments of nv50_wndw_new_():
-  drivers/gpu/drm/nouveau/dispnv50/wndw.c:696:1: error: conflicting types for 'nv50_wndw_new_' due to enum/integer mismatch; have 'int(const struct nv50_wndw_func *, struct drm_device *, enum drm_plane_type,  const char *, int,  const u32 *, u32,  enum nv50_disp_interlock_type,  u32,  struct nv50_wndw **)'
-  drivers/gpu/drm/nouveau/dispnv50/wndw.h:36:5: note: previous declaration of 'nv50_wndw_new_' with type 'int(const struct nv50_wndw_func *, struct drm_device *, enum drm_plane_type,  const char *, int,  const u32 *, enum nv50_disp_interlock_type,  u32,  u32,  struct nv50_wndw **)'
+Remove page shift operations as ttm_resource moved
+from num_pages to size_t size in bytes.
+v1 -> v2: fix missing page shift to fpfn and lpfn
+v2 -> v3: separate patches based on driver module
 
-It can be barely visible, but the declaration says about the parameters
-in the middle:
-  enum nv50_disp_interlock_type,
-  u32 interlock_data,
-  u32 heads,
-
-While the definition states differently:
-  u32 heads,
-  enum nv50_disp_interlock_type interlock_type,
-  u32 interlock_data,
-
-Unify/fix the declaration to match the definition.
-
-Cc: Martin Liska <mliska@suse.cz>
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Jiri Slaby (SUSE) <jirislaby@kernel.org>
+Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
 ---
- drivers/gpu/drm/nouveau/dispnv50/wndw.h | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/ttm/ttm_range_manager.c | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.h b/drivers/gpu/drm/nouveau/dispnv50/wndw.h
-index 591c852f326b..76a6ae5d5652 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/wndw.h
-+++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.h
-@@ -35,8 +35,9 @@ struct nv50_wndw {
+diff --git a/drivers/gpu/drm/ttm/ttm_range_manager.c b/drivers/gpu/drm/ttm/ttm_range_manager.c
+index ae11d07eb63a..3703cbc6d368 100644
+--- a/drivers/gpu/drm/ttm/ttm_range_manager.c
++++ b/drivers/gpu/drm/ttm/ttm_range_manager.c
+@@ -83,9 +83,10 @@ static int ttm_range_man_alloc(struct ttm_resource_manager *man,
  
- int nv50_wndw_new_(const struct nv50_wndw_func *, struct drm_device *,
- 		   enum drm_plane_type, const char *name, int index,
--		   const u32 *format, enum nv50_disp_interlock_type,
--		   u32 interlock_data, u32 heads, struct nv50_wndw **);
-+		   const u32 *format, u32 heads,
-+		   enum nv50_disp_interlock_type, u32 interlock_data,
-+		   struct nv50_wndw **);
- void nv50_wndw_flush_set(struct nv50_wndw *, u32 *interlock,
- 			 struct nv50_wndw_atom *);
- void nv50_wndw_flush_clr(struct nv50_wndw *, u32 *interlock, bool flush,
+ 	spin_lock(&rman->lock);
+ 	ret = drm_mm_insert_node_in_range(mm, &node->mm_nodes[0],
+-					  PFN_UP(node->base.size),
++					  node->base.size,
+ 					  bo->page_alignment, 0,
+-					  place->fpfn, lpfn, mode);
++					  place->fpfn << PAGE_SHIFT,
++					  lpfn << PAGE_SHIFT, mode);
+ 	spin_unlock(&rman->lock);
+ 
+ 	if (unlikely(ret)) {
+@@ -119,11 +120,10 @@ static bool ttm_range_man_intersects(struct ttm_resource_manager *man,
+ 				     size_t size)
+ {
+ 	struct drm_mm_node *node = &to_ttm_range_mgr_node(res)->mm_nodes[0];
+-	u32 num_pages = PFN_UP(size);
+ 
+ 	/* Don't evict BOs outside of the requested placement range */
+-	if (place->fpfn >= (node->start + num_pages) ||
+-	    (place->lpfn && place->lpfn <= node->start))
++	if ((place->fpfn << PAGE_SHIFT) >= (node->start + size) ||
++	    (place->lpfn && (place->lpfn << PAGE_SHIFT) <= node->start))
+ 		return false;
+ 
+ 	return true;
+@@ -135,10 +135,9 @@ static bool ttm_range_man_compatible(struct ttm_resource_manager *man,
+ 				     size_t size)
+ {
+ 	struct drm_mm_node *node = &to_ttm_range_mgr_node(res)->mm_nodes[0];
+-	u32 num_pages = PFN_UP(size);
+ 
+ 	if (node->start < place->fpfn ||
+-	    (place->lpfn && (node->start + num_pages) > place->lpfn))
++	    (place->lpfn && (node->start + size) > place->lpfn << PAGE_SHIFT))
+ 		return false;
+ 
+ 	return true;
 -- 
-2.38.1
+2.32.0
 
