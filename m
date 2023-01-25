@@ -4,81 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0EF9C7EE29
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34B9EC7EE26
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDD2A10E49B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAF8110E463;
 	Thu,  4 May 2023 12:32:54 +0000 (UTC)
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
- [IPv6:2a00:1450:4864:20::534])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D015D10E66E;
- Mon, 20 Feb 2023 10:51:40 +0000 (UTC)
-Received: by mail-ed1-x534.google.com with SMTP id s26so2901295edw.11;
- Mon, 20 Feb 2023 02:51:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=1zcGRTl/9l2GpF8LYO2/lWbNZQDU6Xe0XQhuGFj5NQk=;
- b=B6uKlERavDvKoVnUAsopmtnUrrjgtlfadYYrEW+1d6mx6Dp7WDWk2LSrMYkiBImSJg
- 2MX6IMhFhciuSVo2IVdK8RLwB099a6FrmRRNKXdb3xxENLlHDWHjotUUUjAmEQMwuDBe
- aWatdxsvw3ci4l9yYNl7gE2GQyoa2bsMEDG8FHeP41AvnHs8C2Sgi+aqRlOGr1pd27J+
- yWI91Q1FxLXu1h9QAHxbsHEzDLzpqA8mH9ElWsKR9LNn1dG3voNVw2FGedLk/3Q3Qu+D
- 4rvRA2DokgYwEo4qjf2yMgW+juWr0Isi0hDCc5TUrVYjbei39zGSC9v0Q+uO43XgTm7E
- Ax0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=1zcGRTl/9l2GpF8LYO2/lWbNZQDU6Xe0XQhuGFj5NQk=;
- b=btlu3wLscviRz+kfn7jPXFfepSRKcgtcSBjhHBnhywZdDdTq43tMYflmIUDO4KglFs
- Om8UsEjJTJEGXhIOzYWn8RQjRKUfSYPlgTVRV63ytoAPNGkgmjjp3Z7B7VOkFwXpktVo
- OAL1IyxGpz7RxOv6JmnmdjXOEOF2UTpXEQJLnaLWh5FKhxHDms9CJOD9cADtfU9ujWDa
- mqLQpN4fSpll/W+ZVJdY93EZGRwJ8sFvLJmCEvw1surRevjcVX0UZhxCp8jRni5BfnD5
- Xdhdgu+OG69rwydOdbZJ6Nwnn422rQjfmDmxn0qa22m0oGzFWn2l4RC8mumRgsX1AWV7
- kp/w==
-X-Gm-Message-State: AO0yUKVEKz6sYd/NnAgBdBnfJsfeEb+L9lFIHFdU8cVUtOKyn1YhEjDa
- Bsd7hzQhWWmbEm1dLLFOatu1AnbJtTU=
-X-Google-Smtp-Source: AK7set8TW5veSVICkPbHeLQ5wN2iSlqP+gqOJcmhQuifsFLIWce6R5b8cWaoCiDrC0NMmPiqdjWQjg==
-X-Received: by 2002:a05:6402:3890:b0:4a3:43c1:843e with SMTP id
- fd16-20020a056402389000b004a343c1843emr1507395edb.18.1676890299222; 
- Mon, 20 Feb 2023 02:51:39 -0800 (PST)
-Received: from [192.168.1.10] (97e09f27.skybroadband.com. [151.224.159.39])
- by smtp.googlemail.com with ESMTPSA id
- m9-20020a50c189000000b004ad7af3955dsm832108edf.15.2023.02.20.02.51.38
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 20 Feb 2023 02:51:38 -0800 (PST)
-Message-ID: <c12aa9b8-65a1-0cdf-8948-15309f16b955@googlemail.com>
-Date: Mon, 20 Feb 2023 10:51:36 +0000
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06E9210E777;
+ Wed, 25 Jan 2023 10:04:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fP4QeDNq0GC2CAc7bahA49q5PgQr0caXs33jxycsbMHVxTipA/21UfoV3f1G1dlOOTHPoMAET2AkN3aZKM9Pfwf1jJlKyoB7HEs9lAA/7mZzJDuVbNvvHWk0esZXqPr6nFnq6oyiC79m8HR8/EWAOu3Bkr17Z6f/+2YeqvXKHVJFLsUVxkEwQd1fQr52j8bBhjXN8mDz/zqNvmrh0qEEzDSPr+5AImyWDoWWSKSnLKWkkOmafk13rLwsCuspDR1TVcSZWowbb1awXQeWGnZFjBHe9WBYEzz1m3wnakFAgtPffrbK68PSvkmQ1BZu2JKbHeMoTuTVjUGccYmiMVtNog==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=j/qeUh7S6/2i+kDiqlzhItj7sxHWJ7Ck9Me0toGfJUk=;
+ b=bArRBX+0QW3lb3XjD00D0tJJ0PY4/3VwqKO/N0JbBY5uVcXoppXOY0Y0HYWUSUfp23t7j4vClPQZNqHg6hpVZFhLPrGebyI64oL0nKoNNHFqoM8pFssfwsfKUGI4ZPYsvViCB43XO8EIt4vV6s21JvWITac7LcDx0YF3iDlpuKAloaUi+8FoKM0Lg4n3F7pFW0SBY2Efcck8EOC71JVWjyFhKbYZd3W0Tc4L9D79aiMO0KBzdeY8LjxNR+OPhuWkv2Epy1VuVZbWe/JDlvl0VWGe5f1UeB7Dd8zHDwOCz6sRW+7y12YmllzrFXXwKcyvkuHleNiKlw6wYfmEYCLMRA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=j/qeUh7S6/2i+kDiqlzhItj7sxHWJ7Ck9Me0toGfJUk=;
+ b=VZ6zAVBpKGRZv3uM8AdOxgBAHiVSZ6CoVzmpnArZVFHSS4f/FewQ9bDdKreRCQAiSo1lAHpI4VOrH4ovNOjdPp37vf5Ll4PYy6A+ewQZMg6B6w8sLauZnDVa24i31TRX0jk9kLPRdqolqtW4u+LjAkzuJhF7kYduLrXWV31ixxk=
+Received: from DM6PR13CA0060.namprd13.prod.outlook.com (2603:10b6:5:134::37)
+ by SJ0PR12MB6784.namprd12.prod.outlook.com (2603:10b6:a03:44f::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Wed, 25 Jan
+ 2023 10:04:00 +0000
+Received: from DM6NAM11FT114.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:134:cafe::30) by DM6PR13CA0060.outlook.office365.com
+ (2603:10b6:5:134::37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.16 via Frontend
+ Transport; Wed, 25 Jan 2023 10:04:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT114.mail.protection.outlook.com (10.13.172.206) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6043.17 via Frontend Transport; Wed, 25 Jan 2023 10:03:59 +0000
+Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Wed, 25 Jan 2023 04:03:56 -0600
+From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
+Date: Wed, 25 Jan 2023 15:33:15 +0530
+Message-ID: <20230125100315.6214-4-Amaranath.Somalapuram@amd.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20230125100315.6214-1-Amaranath.Somalapuram@amd.com>
+References: <20230125100315.6214-1-Amaranath.Somalapuram@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-To: Ben Skeggs <skeggsb@gmail.com>
-References: <b64705e3-2e63-a466-f829-f9568b06766a@googlemail.com>
- <5abbee70-cc84-1528-c3d8-9befd9edd611@googlemail.com>
- <5cf46df8-0fa2-e9f5-aa8e-7f7f703d96dd@googlemail.com>
- <f72fe15b-db1d-56dd-aaf6-3cba68a8bf0a@leemhuis.info>
- <CACO55tvR4ydDOXt=9nbR3n2aFLKrj8zeuGRR_xpezVQBBLrjqg@mail.gmail.com>
- <a6188878-f84c-0fcc-9509-b9d7ab797f4c@leemhuis.info>
- <d031f0a5-8d5e-af51-6db6-11844de3eeba@googlemail.com>
- <CAPM=9tz+wksJTvMi_4Ef7XWezfH0ReN2se189s8Q=obJjHC+Fw@mail.gmail.com>
- <4e786e22-f17a-da76-5129-8fef0c7c825a@googlemail.com>
- <b829633e-ccc4-7a54-1cad-f29254de1251@leemhuis.info>
- <CACO55tsvM07_6mGU3dCgeji0a6B4JJKSDOOBuCHv2Mw3rYbCHg@mail.gmail.com>
- <181bea6a-e501-f5bd-b002-de7a244a921a@googlemail.com>
- <CACO55tsGXfy9-a-nexvcn7pnDGoEWXMqhiQEBwCDkGyOeT1sXQ@mail.gmail.com>
- <dbfc1f77-29f3-7690-c231-55f906a4e7e5@googlemail.com>
- <7f6ec5b3-b5c7-f564-003e-132f112b7cf4@googlemail.com>
- <CACAvsv7Uf5=K44y8YLsiy0aMnc1zvGEQdeDe7RQF=AV+fxxzuQ@mail.gmail.com>
-Content-Language: en-GB
-From: Chris Clayton <chris2553@googlemail.com>
-In-Reply-To: <CACAvsv7Uf5=K44y8YLsiy0aMnc1zvGEQdeDe7RQF=AV+fxxzuQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT114:EE_|SJ0PR12MB6784:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1beb53d3-7b64-4322-104d-08dafebb7acd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: F9qOXXRN1TSrtWdWdu3sz8L/omNDQQMt5Fyna9eoTWd9nseNiEjXlOYsbDQAP8Ea/lAVsxf24uhIUgbPPGFoD0c5Mz+i1qVEj8IqCl6DHTEsByTbDa73LUnAx8s3rwq09kv6K8QkWmw2YiqIwbvQRKSdwg4IuX3hwUa3mgNRt6owsABGEpW7f/T04h8c5fXR3C0YU3PnbwheRhDLc/bYbGCqgoEAnJpQ2MOjhliY5jyJgZrgCc7GkU8N6m9y55fAkuhtrsWRgdE5hs6RoSDJ6ohd9HMhjjs8svSjDnHlvjtGrC/k0uuHF7FoGWM+DTmnoNlTL/oNgADVAKRZE+W3klC2pplsqNEPPaQlO9CaUmWknIdYuERxCcpShGk1M/LdpNZT0pMwBetC/2F8nvzciXkySxwgbboRjJBS5Wj26TwbRtToFZgYks8U3jZa2R3kxkevbpGhhzd/FLAvS2ZHIvsCQlghtoeUPPz+9wGj7K7bqnAFWaIEa7L4O2UQVqT6gRSMSIOnfLTLNsnvMTpmkuMeWBwX0WML4I2KgNtT0zYy5kh1AhAibjuJDRjH6g0AYoAU1JAbhDabINnCB0KuNxXFV2JaqQLk/87LdSBdpsymRNwu/T7C9ESOiFua0sfD39Bidv5HQlY5b8C46yb/hb3h7ihIM8IzOw4WmH4t8tClohMZvC9blk4jN03V36nrjU5ePkNpIbGiNOZ3gCCDh7fer56tQNh/t9KkTv5HSbc=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230025)(4636009)(39860400002)(376002)(136003)(346002)(396003)(451199018)(46966006)(36840700001)(40470700004)(8676002)(316002)(86362001)(70586007)(70206006)(36860700001)(36756003)(54906003)(8936002)(5660300002)(336012)(47076005)(426003)(82740400003)(2906002)(40460700003)(82310400005)(4326008)(41300700001)(26005)(6666004)(40480700001)(186003)(450100002)(81166007)(1076003)(2616005)(16526019)(478600001)(83380400001)(356005)(7696005)(110136005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 10:03:59.8164 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1beb53d3-7b64-4322-104d-08dafebb7acd
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT114.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6784
 X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
-Subject: Re: [Nouveau] linux-6.2-rc4+ hangs on poweroff/reboot: Bisected
+Subject: [Nouveau] [PATCH v4 4/4] drm/i915: Clean up page shift operation
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,182 +101,44 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux regressions mailing list <regressions@lists.linux.dev>,
- ML nouveau <nouveau@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>, bskeggs@redhat.com
+Cc: shashank.sharma@amd.com, arunpravin.paneerselvam@amd.com,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, arvind.yadav@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+Remove page shift operations as ttm_resource moved
+from num_pages to size_t size in bytes.
 
+Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+---
+ drivers/gpu/drm/i915/i915_scatterlist.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-On 20/02/2023 05:35, Ben Skeggs wrote:
-> On Sun, 19 Feb 2023 at 04:55, Chris Clayton <chris2553@googlemail.com> wrote:
->>
->>
->>
->> On 18/02/2023 15:19, Chris Clayton wrote:
->>>
->>>
->>> On 18/02/2023 12:25, Karol Herbst wrote:
->>>> On Sat, Feb 18, 2023 at 1:22 PM Chris Clayton <chris2553@googlemail.com> wrote:
->>>>>
->>>>>
->>>>>
->>>>> On 15/02/2023 11:09, Karol Herbst wrote:
->>>>>> On Wed, Feb 15, 2023 at 11:36 AM Linux regression tracking #update
->>>>>> (Thorsten Leemhuis) <regressions@leemhuis.info> wrote:
->>>>>>>
->>>>>>> On 13.02.23 10:14, Chris Clayton wrote:
->>>>>>>> On 13/02/2023 02:57, Dave Airlie wrote:
->>>>>>>>> On Sun, 12 Feb 2023 at 00:43, Chris Clayton <chris2553@googlemail.com> wrote:
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> On 10/02/2023 19:33, Linux regression tracking (Thorsten Leemhuis) wrote:
->>>>>>>>>>> On 10.02.23 20:01, Karol Herbst wrote:
->>>>>>>>>>>> On Fri, Feb 10, 2023 at 7:35 PM Linux regression tracking (Thorsten
->>>>>>>>>>>> Leemhuis) <regressions@leemhuis.info> wrote:
->>>>>>>>>>>>>
->>>>>>>>>>>>> On 08.02.23 09:48, Chris Clayton wrote:
->>>>>>>>>>>>>>
->>>>>>>>>>>>>> I'm assuming  that we are not going to see a fix for this regression before 6.2 is released.
->>>>>>>>>>>>>
->>>>>>>>>>>>> Yeah, looks like it. That's unfortunate, but happens. But there is still
->>>>>>>>>>>>> time to fix it and there is one thing I wonder:
->>>>>>>>>>>>>
->>>>>>>>>>>>> Did any of the nouveau developers look at the netconsole captures Chris
->>>>>>>>>>>>> posted more than a week ago to check if they somehow help to track down
->>>>>>>>>>>>> the root of this problem?
->>>>>>>>>>>>
->>>>>>>>>>>> I did now and I can't spot anything. I think at this point it would
->>>>>>>>>>>> make sense to dump the active tasks/threads via sqsrq keys to see if
->>>>>>>>>>>> any is in a weird state preventing the machine from shutting down.
->>>>>>>>>>>
->>>>>>>>>>> Many thx for looking into it!
->>>>>>>>>>
->>>>>>>>>> Yes, thanks Karol.
->>>>>>>>>>
->>>>>>>>>> Attached is the output from dmesg when this block of code:
->>>>>>>>>>
->>>>>>>>>>         /bin/mount /dev/sda7 /mnt/sda7
->>>>>>>>>>         /bin/mountpoint /proc || /bin/mount /proc
->>>>>>>>>>         /bin/dmesg -w > /mnt/sda7/sysrq.dmesg.log &
->>>>>>>>>>         /bin/echo t > /proc/sysrq-trigger
->>>>>>>>>>         /bin/sleep 1
->>>>>>>>>>         /bin/sync
->>>>>>>>>>         /bin/sleep 1
->>>>>>>>>>         kill $(pidof dmesg)
->>>>>>>>>>         /bin/umount /mnt/sda7
->>>>>>>>>>
->>>>>>>>>> is executed immediately before /sbin/reboot is called as the final step of rebooting my system.
->>>>>>>>>>
->>>>>>>>>> I hope this is what you were looking for, but if not, please let me know what you need
->>>>>>>>
->>>>>>>> Thanks Dave. [...]
->>>>>>> FWIW, in case anyone strands here in the archives: the msg was
->>>>>>> truncated. The full post can be found in a new thread:
->>>>>>>
->>>>>>> https://lore.kernel.org/lkml/e0b80506-b3cf-315b-4327-1b988d86031e@googlemail.com/
->>>>>>>
->>>>>>> Sadly it seems the info "With runpm=0, both reboot and poweroff work on
->>>>>>> my laptop." didn't bring us much further to a solution. :-/ I don't
->>>>>>> really like it, but for regression tracking I'm now putting this on the
->>>>>>> back-burner, as a fix is not in sight.
->>>>>>>
->>>>>>> #regzbot monitor:
->>>>>>> https://lore.kernel.org/lkml/e0b80506-b3cf-315b-4327-1b988d86031e@googlemail.com/
->>>>>>> #regzbot backburner: hard to debug and apparently rare
->>>>>>> #regzbot ignore-activity
->>>>>>>
->>>>>>
->>>>>> yeah.. this bug looks a little annoying. Sadly the only Turing based
->>>>>> laptop I got doesn't work on Nouveau because of firmware related
->>>>>> issues and we probably need to get updated ones from Nvidia here :(
->>>>>>
->>>>>> But it's a bit weird that the kernel doesn't shutdown, because I don't
->>>>>> see anything in the logs which would prevent that from happening.
->>>>>> Unless it's waiting on one of the tasks to complete, but none of them
->>>>>> looked in any way nouveau related.
->>>>>>
->>>>>> If somebody else has any fancy kernel debugging tips here to figure
->>>>>> out why it hangs, that would be very helpful...
->>>>>>
->>>>>
->>>>> I think I've figured this out. It's to do with how my system is configured. I do have an initrd, but the only thing on
->>>>> it is the cpu microcode which, it is recommended, should be loaded early. The absence of the NVidia firmare from an
->>>>> initrd doesn't matter because the drivers for the hardware that need to load firmware are all built as modules, So, by
->>>>> the time the devices are configured via udev, the root partition is mounted and the drivers can get at the firmware.
->>>>>
->>>>> I've found, by turning on nouveau debug and taking a video of the screen as the system shuts down, that nouveau seems to
->>>>> be trying to run the scrubber very very late in the shutdown process. The problem is that by this time, I think the root
->>>>> partition, and thus the scrubber binary, have become inaccessible.
->>>>>
->>>>> I seem to have two choices - either make the firmware accessible on an initrd or unload the module in a shutdown script
->>>>> before the scrubber binary becomes inaccessible. The latter of these is the workaround I have implemented whilst the
->>>>> problem I reported has been under investigation. For simplicity, I think I'll promote my workaround to being the
->>>>> permanent solution.
->>>>>
->>>>> So, apologies (and thanks) to everyone whose time I have taken up with this non-bug.
->>>>>
->>>>
->>>> Well.. nouveau shouldn't prevent the system from shutting down if the
->>>> firmware file isn't available. Or at least it should print a
->>>> warning/error. Mind messing with the code a little to see if skipping
->>>> it kind of works? I probably can also come up with a patch by next
->>>> week.
->>>>
->>> Well, I'd love to but a quick glance at the code caused me to bump into this obscenity:
->>>
->>> int
->>> gm200_flcn_reset_wait_mem_scrubbing(struct nvkm_falcon *falcon)
->>> {
->>>         nvkm_falcon_mask(falcon, 0x040, 0x00000000, 0x00000000);
->>>
->>>         if (nvkm_msec(falcon->owner->device, 10,
->>>                 if (!(nvkm_falcon_rd32(falcon, 0x10c) & 0x00000006))
->>>                         break;
->>>         ) < 0)
->>>                 return -ETIMEDOUT;
->>>
->>>         return 0;
->>> }
->>>
->>> nvkm_msec is #defined to nvkm_usec which in turn is #defined to nvkm_nsec where the loop that the break is related to
->>> appears
->>
->> I think someone who knows the code needs to look at this. What I can confirm is that after a freeze, I waited for 90
->> seconds for a timeout to occur, but it didn't.
-> Hey,
-> 
-> Are you able to try the attached patch for me please?
-> 
-> Thanks,
-> Ben.
-> 
+diff --git a/drivers/gpu/drm/i915/i915_scatterlist.c b/drivers/gpu/drm/i915/i915_scatterlist.c
+index 114e5e39aa72..bd7aaf7738f4 100644
+--- a/drivers/gpu/drm/i915/i915_scatterlist.c
++++ b/drivers/gpu/drm/i915/i915_scatterlist.c
+@@ -94,7 +94,7 @@ struct i915_refct_sgt *i915_rsgt_from_mm_node(const struct drm_mm_node *node,
+ 	if (!rsgt)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	i915_refct_sgt_init(rsgt, node->size << PAGE_SHIFT);
++	i915_refct_sgt_init(rsgt, node->size);
+ 	st = &rsgt->table;
+ 	if (sg_alloc_table(st, DIV_ROUND_UP_ULL(node->size, segment_pages),
+ 			   GFP_KERNEL)) {
+@@ -105,8 +105,8 @@ struct i915_refct_sgt *i915_rsgt_from_mm_node(const struct drm_mm_node *node,
+ 	sg = st->sgl;
+ 	st->nents = 0;
+ 	prev_end = (resource_size_t)-1;
+-	block_size = node->size << PAGE_SHIFT;
+-	offset = node->start << PAGE_SHIFT;
++	block_size = node->size;
++	offset = node->start;
+ 
+ 	while (block_size) {
+ 		u64 len;
+-- 
+2.32.0
 
-Thanks Ben.
-
-Yes, this patch fixes the lockup on reboot and poweroff that I've been seeing on my laptop. As you would expect,
-offloaded rendering is still working and the discrete GPU is being powered on and off as required.
-
-Thanks.
-
-Reported-by: Chris Clayton <chris2553@googlemail.com>
-Tested-by: Chris Clayton <chris2553@googlemail.com>
-
->>
->>
->> .> Chris
->>>>>
->>>>>>> Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
->>>>>>> --
->>>>>>> Everything you wanna know about Linux kernel regression tracking:
->>>>>>> https://linux-regtracking.leemhuis.info/about/#tldr
->>>>>>> That page also explains what to do if mails like this annoy you.
->>>>>>>
->>>>>>> #regzbot ignore-activity
->>>>>>>
->>>>>>
->>>>>
->>>>
