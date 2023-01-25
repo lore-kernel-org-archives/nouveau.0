@@ -4,44 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BE29C7EE2A
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E2BDC7EE29
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A51A710E43F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 711BC10E435;
 	Thu,  4 May 2023 12:32:31 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A55010E36B;
- Mon, 17 Apr 2023 21:03:16 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 0A8CF62517;
- Mon, 17 Apr 2023 21:03:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39E1AC433EF;
- Mon, 17 Apr 2023 21:03:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1681765395;
- bh=6v5l4vPJTur+E1/6K1HeqdG2RoCvkceddg82nGQhHzo=;
- h=From:To:Cc:Subject:Date:From;
- b=uYSogoOgT3vkHqwAHouEmEcZ1WY9ayQbD/3q4D41z4V5W2bvOcpjGr+v+6RcS/ToR
- ksjBYY8BTb2gZZnZ0G17NgHokSTPCyuics1K/YIDbFQFwiCNJswJzMe8i7FW+6DPt9
- 52zM9KfWyr7b5MYhgF9JxykVPv/YC3pT2XZXAJje/5IFUzIT1evA79NODj8MbJHPOy
- Amxip8uDsZS2YSK4nY3QAUDOEEtTN/mY+2GR7t4gnHNpv3MuD+OktfnJchWFgFJ+zn
- uLpUN1SU8EpmkuHjdaPSKbZtvNshNng42Z2WkAmiA4ZETtmOX+uK9ncFHVzxrHIzq6
- DHQ31NPo574MQ==
-From: Arnd Bergmann <arnd@kernel.org>
+Received: from msg-4.mailo.com (msg-4.mailo.com [213.182.54.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59B4810E7F9;
+ Wed, 25 Jan 2023 15:07:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailo.com; s=mailo;
+ t=1674659245; bh=3kVFSj9F5r4zxQcKbBTyYKgIq05zuwPxG6KbVQ++e3g=;
+ h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:MIME-Version:
+ Content-Type;
+ b=ijJPXqb9T9rNuYug9wDmBjZNcoI7knQGv8uhpPu+63nu+Scs9p8fYO64+AHMrkdJw
+ 2hMEv2cUyhkIYyYKWWdSmFP6WRIHhgWibdJ96z0Uzi+3QmMsPdDM1iwhLzm/ba//Yr
+ 5e3iaPKb81ODwt4zzBRTTxWkaerko2Z6dcXhC0Zc=
+Received: by b-2.in.mailobj.net [192.168.90.12] with ESMTP
+ via ip-206.mailobj.net [213.182.55.206]
+ Wed, 25 Jan 2023 16:07:24 +0100 (CET)
+X-EA-Auth: P9eRXJcvULD/LlNSEoxED6IvPVWZxGaHOnHgLK9K0jZ0NU4zvHdVexZOWXhZmyT1B6y9xTnZegI4FpF4U7FiqDfX7yUYLlBh
+Date: Wed, 25 Jan 2023 20:37:14 +0530
+From: Deepak R Varma <drv@mailo.com>
 To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
  Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Date: Mon, 17 Apr 2023 23:03:04 +0200
-Message-Id: <20230417210310.2443152-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.2
+ Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Message-ID: <Y9FFoooIXjlr+UP1@ubun2204.myguest.virtualbox.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:34 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau: remove unused tu102_gr_load()
- function
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:32 +0000
+Subject: [Nouveau] [PATCH] drm/nouveau/devinit: Convert function disable()
+ to be void
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,49 +47,240 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Arnd Bergmann <arnd@arndb.de>,
- Gourav Samaiya <gsamaiya@nvidia.com>
+Cc: Praveen Kumar <kumarpraveen@linux.microsoft.com>,
+ Saurabh Singh Sengar <ssengar@microsoft.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
+The current design of callback function disable() of struct
+nvkm_devinit_func is defined to return a u64 value. In its implementation
+in the driver modules, the function always returns a fixed value 0. Hence
+the design and implementation of this function should be enhanced to return
+void instead of a fixed value. This change also eliminates untouched
+return variables.
 
-tu102_gr_load() is completely unused and can be removed to address
-this warning:
+The change is identified using the returnvar.cocci Coccinelle semantic
+patch script.
 
-drivers/gpu/drm/nouveau/dispnv50/disp.c:2517:1: error: no previous prototype for 'nv50_display_create'
-
-Fixes: 1cd97b5490c8 ("drm/nouveau/gr/tu102-: use sw_veid_bundle_init from firmware")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Deepak R Varma <drv@mailo.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/engine/gr/tu102.c | 13 -------------
- 1 file changed, 13 deletions(-)
+Please note: The change is compile build tested only.
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/tu102.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/tu102.c
-index 3b6c8100a242..a7775aa18541 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/tu102.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/tu102.c
-@@ -206,19 +206,6 @@ tu102_gr_av_to_init_veid(struct nvkm_blob *blob, struct gf100_gr_pack **ppack)
- 	return gk20a_gr_av_to_init_(blob, 64, 0x00100000, ppack);
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/base.c  | 3 ++-
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g84.c   | 5 +----
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g98.c   | 4 +---
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c | 4 +---
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm107.c | 4 +---
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gt215.c | 4 +---
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/mcp89.c | 4 +---
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.c  | 5 +----
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.h  | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/priv.h  | 2 +-
+ 10 files changed, 11 insertions(+), 26 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/base.c
+index dd4981708fe4..3d9319c319c6 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/base.c
+@@ -51,7 +51,8 @@ u64
+ nvkm_devinit_disable(struct nvkm_devinit *init)
+ {
+ 	if (init && init->func->disable)
+-		return init->func->disable(init);
++		init->func->disable(init);
++
+ 	return 0;
  }
  
--int
--tu102_gr_load(struct gf100_gr *gr, int ver, const struct gf100_gr_fwif *fwif)
--{
--	int ret;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g84.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g84.c
+index c224702b7bed..00df7811dd10 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g84.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g84.c
+@@ -26,13 +26,12 @@
+ #include <subdev/bios.h>
+ #include <subdev/bios/init.h>
+ 
+-static u64
++static void
+ g84_devinit_disable(struct nvkm_devinit *init)
+ {
+ 	struct nvkm_device *device = init->subdev.device;
+ 	u32 r001540 = nvkm_rd32(device, 0x001540);
+ 	u32 r00154c = nvkm_rd32(device, 0x00154c);
+-	u64 disable = 0ULL;
+ 
+ 	if (!(r001540 & 0x40000000)) {
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_MPEG, 0);
+@@ -47,8 +46,6 @@ g84_devinit_disable(struct nvkm_devinit *init)
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_BSP, 0);
+ 	if (!(r00154c & 0x00000040))
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_CIPHER, 0);
 -
--	ret = gm200_gr_load(gr, ver, fwif);
--	if (ret)
--		return ret;
+-	return disable;
+ }
+ 
+ static const struct nvkm_devinit_func
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g98.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g98.c
+index 8977483a9f42..54bee499b982 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g98.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g98.c
+@@ -26,7 +26,7 @@
+ #include <subdev/bios.h>
+ #include <subdev/bios/init.h>
+ 
+-static u64
++static void
+ g98_devinit_disable(struct nvkm_devinit *init)
+ {
+ 	struct nvkm_device *device = init->subdev.device;
+@@ -45,8 +45,6 @@ g98_devinit_disable(struct nvkm_devinit *init)
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_MSVLD, 0);
+ 	if (!(r00154c & 0x00000040))
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_SEC, 0);
 -
--	return gk20a_gr_load_net(gr, "gr/", "sw_veid_bundle_init", ver, tu102_gr_av_to_init_veid,
--				 &gr->bundle_veid);
--}
+-	return 0ULL;
+ }
+ 
+ static const struct nvkm_devinit_func
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
+index 5b7cb1fe7897..5368e705e7fd 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
+@@ -63,7 +63,7 @@ gf100_devinit_pll_set(struct nvkm_devinit *init, u32 type, u32 freq)
+ 	return ret;
+ }
+ 
+-static u64
++static void
+ gf100_devinit_disable(struct nvkm_devinit *init)
+ {
+ 	struct nvkm_device *device = init->subdev.device;
+@@ -85,8 +85,6 @@ gf100_devinit_disable(struct nvkm_devinit *init)
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_CE, 0);
+ 	if (r022500 & 0x00000200)
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_CE, 1);
 -
- static const struct gf100_gr_fwif
- tu102_gr_fwif[] = {
- 	{  0, gm200_gr_load, &tu102_gr, &gp108_gr_fecs_acr, &gp108_gr_gpccs_acr },
+-	return 0ULL;
+ }
+ 
+ void
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm107.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm107.c
+index 8955af2704c7..7bcbc4895ec2 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm107.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm107.c
+@@ -26,7 +26,7 @@
+ #include <subdev/bios.h>
+ #include <subdev/bios/init.h>
+ 
+-u64
++void
+ gm107_devinit_disable(struct nvkm_devinit *init)
+ {
+ 	struct nvkm_device *device = init->subdev.device;
+@@ -39,8 +39,6 @@ gm107_devinit_disable(struct nvkm_devinit *init)
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_CE, 2);
+ 	if (r021c04 & 0x00000001)
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_DISP, 0);
+-
+-	return 0ULL;
+ }
+ 
+ static const struct nvkm_devinit_func
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gt215.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gt215.c
+index 3d0ab86c3115..dbca92318baf 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gt215.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gt215.c
+@@ -62,7 +62,7 @@ gt215_devinit_pll_set(struct nvkm_devinit *init, u32 type, u32 freq)
+ 	return ret;
+ }
+ 
+-static u64
++static void
+ gt215_devinit_disable(struct nvkm_devinit *init)
+ {
+ 	struct nvkm_device *device = init->subdev.device;
+@@ -80,8 +80,6 @@ gt215_devinit_disable(struct nvkm_devinit *init)
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_MSVLD, 0);
+ 	if (!(r00154c & 0x00000200))
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_CE, 0);
+-
+-	return 0ULL;
+ }
+ 
+ static u32
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/mcp89.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/mcp89.c
+index a9cdf2411187..a24bd2e7d7ce 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/mcp89.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/mcp89.c
+@@ -26,7 +26,7 @@
+ #include <subdev/bios.h>
+ #include <subdev/bios/init.h>
+ 
+-static u64
++static void
+ mcp89_devinit_disable(struct nvkm_devinit *init)
+ {
+ 	struct nvkm_device *device = init->subdev.device;
+@@ -46,8 +46,6 @@ mcp89_devinit_disable(struct nvkm_devinit *init)
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_VIC, 0);
+ 	if (!(r00154c & 0x00000200))
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_CE, 0);
+-
+-	return 0;
+ }
+ 
+ static const struct nvkm_devinit_func
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.c
+index 380995d398b1..07ed8fd778b2 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.c
+@@ -77,17 +77,14 @@ nv50_devinit_pll_set(struct nvkm_devinit *init, u32 type, u32 freq)
+ 	return 0;
+ }
+ 
+-static u64
++static void
+ nv50_devinit_disable(struct nvkm_devinit *init)
+ {
+ 	struct nvkm_device *device = init->subdev.device;
+ 	u32 r001540 = nvkm_rd32(device, 0x001540);
+-	u64 disable = 0ULL;
+ 
+ 	if (!(r001540 & 0x40000000))
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_MPEG, 0);
+-
+-	return disable;
+ }
+ 
+ void
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.h b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.h
+index 987a7f478b84..8de409c084c1 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.h
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.h
+@@ -23,7 +23,7 @@ int  gf100_devinit_ctor(struct nvkm_object *, struct nvkm_object *,
+ int  gf100_devinit_pll_set(struct nvkm_devinit *, u32, u32);
+ void gf100_devinit_preinit(struct nvkm_devinit *);
+ 
+-u64  gm107_devinit_disable(struct nvkm_devinit *);
++void  gm107_devinit_disable(struct nvkm_devinit *);
+ 
+ int gm200_devinit_post(struct nvkm_devinit *, bool);
+ void gm200_devinit_preos(struct nv50_devinit *, bool);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/priv.h b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/priv.h
+index dd8b038a8cee..a648482d06e9 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/priv.h
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/priv.h
+@@ -12,7 +12,7 @@ struct nvkm_devinit_func {
+ 	u32  (*mmio)(struct nvkm_devinit *, u32);
+ 	void (*meminit)(struct nvkm_devinit *);
+ 	int  (*pll_set)(struct nvkm_devinit *, u32 type, u32 freq);
+-	u64  (*disable)(struct nvkm_devinit *);
++	void (*disable)(struct nvkm_devinit *);
+ };
+ 
+ void nvkm_devinit_ctor(const struct nvkm_devinit_func *, struct nvkm_device *,
 -- 
-2.39.2
+2.34.1
+
+
 
