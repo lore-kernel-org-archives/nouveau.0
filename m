@@ -4,73 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5180C77B7C
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 859C9C7EE29
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BF3E10E478;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CCFB10E47B;
 	Thu,  4 May 2023 12:32:52 +0000 (UTC)
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com
- [IPv6:2a00:1450:4864:20::543])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 827C610E52C;
- Mon, 13 Mar 2023 13:55:13 +0000 (UTC)
-Received: by mail-ed1-x543.google.com with SMTP id da10so49147443edb.3;
- Mon, 13 Mar 2023 06:55:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1678715712;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=YQMWWiVCaLWuBxIvo4NBZRafIwrEjOq/YzvonHvtnhU=;
- b=Yf0R58L3Yy2Z5DOHytLD67pMKox+tlfR+N8fFQJFfVdDiVsavKYbShOCBIHGh24jas
- uvgceGV9qq7wSvvXzPkTCVDWW5wndpGNB26vpGMGl6wbArRl0+dDWjx9+Fxm70jcD8mB
- gRKguTqTvFXK/qfHfDJFxIAib43ryxD8vJ0AltSkPbDENLMCr2aKzqfQTCppGQys0QPF
- QSoA/1j8xP1nY4YaBIgpYrfJ+9GgrZbrXIz3adgWk6sTzlckwVMwmRwOcDp8Dyc6lBWm
- YThHHjz1VFw5p4RXlqrB5l2ljWmiI0rm9bI1C0s0Rlslxlq4Ke8m0/2YObWekNkOcwi/
- kPDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678715712;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=YQMWWiVCaLWuBxIvo4NBZRafIwrEjOq/YzvonHvtnhU=;
- b=naC6xwAvMR1VU0LTFr+bZiug0ow/iUmQkKFxfmslRb+OliaNJ//bWdScPWYKHOSj1E
- EmDBlcDwwPfkTNf/lnU11qMHi3Sh5IaTDCZhDUe3vD+2yHloNJjyl0Kd2ZjFtV7Ez74E
- r7ImMMXKco3zEhk2or7wNjEvbLBK8xhLxamWHi0DoWkM+MIIeh3iTX0hYcAUCgneN4m6
- sRW6fyuEOE208mdO5+9EcjCZUuAton0yOuMpaUUet5M5GAPND3UPy/zWZj2keg2T4XZY
- ZGTfla3kqbzHQn7D8zA3rKNNOlbvuKufGaPxVGhoYQnACaVYffjavAI2sGy7kq0JxAJV
- YzNw==
-X-Gm-Message-State: AO0yUKWGaCrF02d3hy1uJooIIXdpc+c51HmpNC1OVCGkmI3DfQNZKj8n
- yj0wlr3YHmXnksiPhRwDroo=
-X-Google-Smtp-Source: AK7set8lCGoAX0P9HXROv/p6iMsiXt3USrbD9mK8YRTNkUxIrbZz8XA1726UaEDnrGS4sMrE1NMvGw==
-X-Received: by 2002:a17:907:6e15:b0:8b1:75a0:e5c6 with SMTP id
- sd21-20020a1709076e1500b008b175a0e5c6mr47095276ejc.18.1678715712008; 
- Mon, 13 Mar 2023 06:55:12 -0700 (PDT)
-Received: from [127.0.1.1] (i130160.upc-i.chello.nl. [62.195.130.160])
- by smtp.googlemail.com with ESMTPSA id
- t29-20020a50d71d000000b004fb419921e2sm2100094edi.57.2023.03.13.06.55.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 13 Mar 2023 06:55:11 -0700 (PDT)
-From: Jakob Koschel <jkl820.git@gmail.com>
-Date: Mon, 13 Mar 2023 14:54:49 +0100
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2080.outbound.protection.outlook.com [40.107.94.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE04410E760;
+ Wed, 25 Jan 2023 10:01:13 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=C+W8wXfRfGFK/dul2NB8XVVmCo57KwwbsouPg175rEYr23Dwxn/nUs7XNceCnSsTOYD2zzAbSUEP/rSAmCbqBL+1rRcCCyg1ULv9pemREAKul9In8pExnjhwd7M+E5n8mDHbDdebXVpzj0219uMqaa9cP7IrXn19ZcrEv789cL4uTjByN+CaNpZUojd4kh/X7jblvKuJn11jwMeXYVfvxBXpRlpz7krbKceUaGS8brMXnbJNf+MKXgpBlZyg9N6SNGKZvJqkzVNnyyICUa6ZcbXUIr1t1oWB4xLHjjFnqkeWeF/YJMz9+yqaxwA/jHegVoCWJbGE4QehZuyC9lj3OA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7r3JfSAfhnn3KRCPJFXp1OeRcIc18o5+h8G6Bv4ocCQ=;
+ b=Y8S0sJpzpNZiUVX2qYlNXsVeRdnSO3SmR/Np7zffZ6kcGBxhMEcki5upHOVwCYP5jC8sRZ8vDAp6TUYI/Qnx1ZewgFb1Ijv5M1rJI/N9Mp7FaVC8g3jfx6f580ozX4eX6EDKog2GbS3B05jt7eLZBNimgXMbY2VvlgqFrVN4zHO4c1Cyv/gaU3I3kIbVf04OZNGWxPjZx4Fq8VWDRn+/Kdd1AAy//yM5km6a7Kh24oEVjFKv3R3RZjJUittyEwXUbHgRlOIFqDZ9DjksgS34JdA1efk6x7zhcIOwiqYcaLf4FfyrdgELHoUNMmnoTLw4V94J/HAZS11izUrYjOFGHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7r3JfSAfhnn3KRCPJFXp1OeRcIc18o5+h8G6Bv4ocCQ=;
+ b=Gxh3usbTys7USM8GNCUbgt25318pDWhYYEwn/3TOjC//DsuqNqtT6w3W9vM8bQuBXTzoJuP3zeiOuXFrhVIjBL8C5sNzakcCd0ok+NaMJjupRMtpkUmgt4PMEog+zAYD/FQqW+iX4wNasNzYUpm17JncbIBBOJjBnUMsigARdUE=
+Received: from MW4PR03CA0132.namprd03.prod.outlook.com (2603:10b6:303:8c::17)
+ by SJ0PR12MB6903.namprd12.prod.outlook.com (2603:10b6:a03:485::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Wed, 25 Jan
+ 2023 10:01:11 +0000
+Received: from CO1NAM11FT029.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:8c:cafe::e7) by MW4PR03CA0132.outlook.office365.com
+ (2603:10b6:303:8c::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.21 via Frontend
+ Transport; Wed, 25 Jan 2023 10:01:11 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT029.mail.protection.outlook.com (10.13.174.214) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6023.16 via Frontend Transport; Wed, 25 Jan 2023 10:01:10 +0000
+Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Wed, 25 Jan 2023 04:01:07 -0600
+From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
+Date: Wed, 25 Jan 2023 15:30:23 +0530
+Message-ID: <20230125100026.5086-1-Amaranath.Somalapuram@amd.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230301-drm-nouveau-avoid-iter-after-loop-v2-1-1e6428cc7fa8@gmail.com>
-References: <20230301-drm-nouveau-avoid-iter-after-loop-v2-0-1e6428cc7fa8@gmail.com>
-In-Reply-To: <20230301-drm-nouveau-avoid-iter-after-loop-v2-0-1e6428cc7fa8@gmail.com>
-To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>, 
- Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>, 
- Daniel Vetter <daniel@ffwll.ch>
-X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1678715710; l=2039;
- i=jkl820.git@gmail.com; s=20230112; h=from:subject:message-id;
- bh=RCUT54CX+NpzTn0yHGplIg6IrZjwVxr6QHVNRA20sLQ=;
- b=qci++s58ATu52iCe714PEq1foIrqUIYGQGQsmHIFjf3jzCx35PGOL4mU7B8vhy/T+RFJT/iwr8JA
- 8wBfR15GDIsxqU5hr0ujxz0IA9OaAMuiBuMzXoIBPrtJJPdzmUuA
-X-Developer-Key: i=jkl820.git@gmail.com; a=ed25519;
- pk=rcRpP90oZXet9udPj+2yOibfz31aYv8tpf0+ZYOQhyA=
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:35 +0000
-Subject: [Nouveau] [PATCH v2 1/2] drm/nouveau/device: avoid usage of list
- iterator after loop
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT029:EE_|SJ0PR12MB6903:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0abe643d-87e0-4692-9d54-08dafebb1623
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zMWdEmQKO5J3wDLRKstZS3+6QfX+snH95UoAUD2ugRo7YjL7BRWth18pcaqSu4OTyH0a+LMCHyO/R3WTajkHepv3ssB7ogfIdXEZsW4wuWQVgV9x2CrU7GjhgfU/BTBKzUqlkJz8mjWwVWTLOycE1q4TwbM1kEivkYBUwaTlR7qLh2EUoOw8BcEMqR76K64IbIUOpIEMd2Z6C4NpdWiBfgX/y3Jndv/Ea63sjnG9cXNAzQJ/MZDRl4fEmk8O6CWEvj8blRfo9+zz9Lpcu0K1HPqpsZW2YCRQkMDK56O/WK2zOgGalf9+ZhW0PEIZvH4p4lVkiEXzu2hZtMXH4kSn2hCd8YvzRr43FJ7rzUT1E5K2lqAdj04ak1TpfAhpHSSby5zGPKK+2ZTLmLvP+0yVtTCAf+05T5ZlikLS7vBvcRmdQM22UAIUjahPQ4yBYvucq2W8YMC9wQpqfKIjOMV/zIu/89DWZOCGtPmnb1JZtL3KCMeDgVI1nsxM7c3F84QOkhTXJnDgRBOV/mJ/Kcxuzslxi16OsRqB6Z2sOvqrhMNGIPQiO90nlWYo/x/+fu3qWkPrQ4sLc2jfjEzf7PXl5Df0p1dBHev8nwxgSIf9Nl3sh64U0BeZr2/mjDmFFf1cRH8mIRoPAcqyyhNzQViNCQ99OVUBXmZ5cnb4kZZI7Qbjz6XhrBTUKALd0CFKdwP1yvRfXoqlHyW03IbouoiyzJoLsr6arQli1cAEypPLvyE=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230025)(4636009)(376002)(39860400002)(136003)(346002)(396003)(451199018)(46966006)(36840700001)(40470700004)(36860700001)(83380400001)(426003)(336012)(54906003)(47076005)(2616005)(478600001)(8676002)(186003)(450100002)(36756003)(1076003)(70206006)(70586007)(110136005)(7696005)(356005)(2906002)(86362001)(82740400003)(41300700001)(26005)(81166007)(5660300002)(16526019)(316002)(40480700001)(40460700003)(6666004)(4326008)(82310400005)(8936002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 10:01:10.8556 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0abe643d-87e0-4692-9d54-08dafebb1623
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT029.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6903
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
+Subject: [Nouveau] [PATCH 1/4] drm/amdgpu: Movie the amdgpu_gtt_mgr start
+ and size from pages to bytes
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,63 +100,46 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, Pietro Borrello <borrello@diag.uniroma1.it>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>,
- Jakob Koschel <jkl820.git@gmail.com>
+Cc: shashank.sharma@amd.com, arunpravin.paneerselvam@amd.com,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, arvind.yadav@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-If potentially no valid element is found, 'pstate' would contain an
-invalid pointer past the iterator loop. To ensure 'pstate' is always
-valid, we only set it if the correct element was found. That allows
-adding a WARN_ON() in case the code works incorrectly, exposing
-currently undetectable potential bugs.
+To support GTT manager amdgpu_res_first, amdgpu_res_next
+from pages to bytes and clean up PAGE_SHIFT operation.
 
-Additionally, Linus proposed to avoid any use of the list iterator
-variable after the loop, in the attempt to move the list iterator
-variable declaration into the macro to avoid any potential misuse after
-the loop [1].
-
-Link: https://lore.kernel.org/all/CAHk-=wgRr_D8CB-D9Kg-c=EHreAsk5SqXPwr9Y7k9sA6cWXJ6w@mail.gmail.com/ [1]
-Signed-off-by: Jakob Koschel <jkl820.git@gmail.com>
+Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c
-index ce774579c89d..8ae14ab8f88e 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c
-@@ -72,7 +72,7 @@ nvkm_control_mthd_pstate_attr(struct nvkm_control *ctrl, void *data, u32 size)
- 	} *args = data;
- 	struct nvkm_clk *clk = ctrl->device->clk;
- 	const struct nvkm_domain *domain;
--	struct nvkm_pstate *pstate;
-+	struct nvkm_pstate *pstate = NULL, *iter;
- 	struct nvkm_cstate *cstate;
- 	int i = 0, j = -1;
- 	u32 lo, hi;
-@@ -103,11 +103,16 @@ nvkm_control_mthd_pstate_attr(struct nvkm_control *ctrl, void *data, u32 size)
- 		return -EINVAL;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
+index 5c4f93ee0c57..5c78f0b09351 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
+@@ -94,8 +94,8 @@ static inline void amdgpu_res_first(struct ttm_resource *res,
+ 		while (start >= node->size << PAGE_SHIFT)
+ 			start -= node++->size << PAGE_SHIFT;
  
- 	if (args->v0.state != NVIF_CONTROL_PSTATE_ATTR_V0_STATE_CURRENT) {
--		list_for_each_entry(pstate, &clk->states, head) {
--			if (i++ == args->v0.state)
-+		list_for_each_entry(iter, &clk->states, head) {
-+			if (i++ == args->v0.state) {
-+				pstate = iter;
- 				break;
-+			}
- 		}
+-		cur->start = (node->start << PAGE_SHIFT) + start;
+-		cur->size = min((node->size << PAGE_SHIFT) - start, size);
++		cur->start = node->start + start;
++		cur->size = min(node->size - start, size);
+ 		cur->remaining = size;
+ 		cur->node = node;
+ 		break;
+@@ -155,8 +155,8 @@ static inline void amdgpu_res_next(struct amdgpu_res_cursor *cur, uint64_t size)
+ 		node = cur->node;
  
-+		if (WARN_ON_ONCE(!pstate))
-+			return -EINVAL;
-+
- 		lo = pstate->base.domain[domain->name];
- 		hi = lo;
- 		list_for_each_entry(cstate, &pstate->list, head) {
-
+ 		cur->node = ++node;
+-		cur->start = node->start << PAGE_SHIFT;
+-		cur->size = min(node->size << PAGE_SHIFT, cur->remaining);
++		cur->start = node->start;
++		cur->size = min(node->size, cur->remaining);
+ 		break;
+ 	default:
+ 		return;
 -- 
-2.34.1
+2.32.0
 
