@@ -4,35 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF781C7EE29
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:34:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92BC9C7EE2A
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:34:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9778310E4E1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8F8310E4E8;
 	Thu,  4 May 2023 12:33:54 +0000 (UTC)
-Received: from out30-133.freemail.mail.aliyun.com
- (out30-133.freemail.mail.aliyun.com [115.124.30.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2141D10E7B1;
- Fri, 11 Nov 2022 09:11:57 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R761e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046051;
- MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
- TI=SMTPD_---0VUWiU1j_1668157910; 
-Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
- fp:SMTPD_---0VUWiU1j_1668157910) by smtp.aliyun-inc.com;
- Fri, 11 Nov 2022 17:11:54 +0800
-From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-To: bskeggs@redhat.com
-Date: Fri, 11 Nov 2022 17:11:29 +0800
-Message-Id: <20221111091130.57178-4-jiapeng.chong@linux.alibaba.com>
-X-Mailer: git-send-email 2.20.1.7.g153144c
-In-Reply-To: <20221111091130.57178-1-jiapeng.chong@linux.alibaba.com>
-References: <20221111091130.57178-1-jiapeng.chong@linux.alibaba.com>
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt
+ [193.136.128.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4881910E446;
+ Fri, 27 Jan 2023 10:42:53 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 0E4476007C24;
+ Fri, 27 Jan 2023 10:42:51 +0000 (WET)
+X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
+ tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
+ with LMTP id D_GNnw6Kc8Qd; Fri, 27 Jan 2023 10:42:48 +0000 (WET)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
+ by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 8F1206008769;
+ Fri, 27 Jan 2023 10:42:48 +0000 (WET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
+ s=mail; t=1674816168;
+ bh=RVMq2cCO9Sul6gjbW012jY94VUJxlmcmXK6BQRcKNcA=;
+ h=Date:From:To:Cc:Subject:In-Reply-To;
+ b=WWBJIj/mfTjX9zUBO3vkUdwOTxo3vJYE5g0bv0igowysqsy49iC3qTaxZteHBXao/
+ X2BzNGPsWZeRdcI8QShPbIx8oI8fR+gz9JIsSkM6O4DLRrLds/VzXlAhtzCBC4Zk4k
+ QZtTyRvAXfqz4rUFFRaoaI15hLDa+z5FfPtnUPjY=
+Received: from wslaptop (unknown [IPv6:2001:8a0:fbe7:6700:65be:d034:d2ec:60ff])
+ (Authenticated sender: ist187313)
+ by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id EFF0636008C;
+ Fri, 27 Jan 2023 10:42:47 +0000 (WET)
+Date: Fri, 27 Jan 2023 10:39:59 +0000
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+To: Ben Skeggs <skeggsb@gmail.com>
+Message-ID: <20230127103959.5nqk57sb7qchtaw6@wslaptop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACAvsv4_XJLSwnA-s0BXLVbBCESDfnK7kx5-WUPd2+vdJuMojg@mail.gmail.com>
 X-Mailman-Approved-At: Thu, 04 May 2023 12:31:36 +0000
-Subject: [Nouveau] [PATCH 4/5] drm/nouveau/fifo/gf100-: make
- gf100_fifo_nonstall_block() static
+Subject: Re: [Nouveau] [REGRESSION] GM20B probe fails after commit
+ 2541626cfb79
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,36 +57,44 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
- nouveau@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, daniel@ffwll.ch
+Cc: regressions@lists.linux.dev, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, airlied@redhat.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This symbol is not used outside of gf100.c, so marks it static.
+On Fri, Jan 27, 2023 at 04:00:59PM +1000, Ben Skeggs wrote:
+> On Fri, 20 Jan 2023 at 21:37, Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt> wrote:
+> >
+> > On Wed, Jan 18, 2023 at 11:28:49AM +1000, Ben Skeggs wrote:
+> > > On Mon, 16 Jan 2023 at 22:27, Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt> wrote:
+> > > > On Mon, Jan 16, 2023 at 07:45:05AM +1000, David Airlie wrote:
+> > > > > As a quick check can you try changing
+> > > > >
+> > > > > drivers/gpu/drm/nouveau/nvkm/core/firmware.c:nvkm_firmware_mem_target
+> > > > > from NVKM_MEM_TARGET_HOST to NVKM_MEM_TARGET_NCOH ?
+> >
+> > > In addition to Dave's change, can you try changing the
+> > > nvkm_falcon_load_dmem() call in gm20b_pmu_init() to:
+> > >
+> > > nvkm_falcon_pio_wr(falcon, (u8 *)&args, 0, 0, DMEM, addr_args,
+> > > sizeof(args), 0, false);
+> >
+> > Chiming in just to say that with this change I see the same as Nicolas
+> > except that the init message size is 255 instead of 0:
+> >
+> > [    2.196934] nouveau 57000000.gpu: pmu: unexpected init message size 255 vs 42
+> I've attached an entirely untested patch (to go on top of the other
+> hacks/fixes so far), that will hopefully get us a little further.
 
-drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c:451:1: warning: no previous prototype for ‘gf100_fifo_nonstall_block’.
+Hello,
 
-Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=3021
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
----
- drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thank you for the patch! I can confirm that it fixes the problem
+on the Pixel C, and everything works as before the regression.
+With this, for the combination of patches
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c
-index 5bb65258c36d..6c94451d0faa 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c
-@@ -447,7 +447,7 @@ gf100_fifo_nonstall_allow(struct nvkm_event *event, int type, int index)
- 	spin_unlock_irqrestore(&fifo->lock, flags);
- }
- 
--void
-+static void
- gf100_fifo_nonstall_block(struct nvkm_event *event, int type, int index)
- {
- 	struct nvkm_fifo *fifo = container_of(event, typeof(*fifo), nonstall.event);
--- 
-2.20.1.7.g153144c
+Tested-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt> 
 
+which I can resend after testing the final patch version.
+
+Thanks,
+Diogo
