@@ -4,177 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9666C7EE23
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D384C7EE2A
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EDBF10E472;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5005D10E469;
 	Thu,  4 May 2023 12:32:55 +0000 (UTC)
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
- [205.220.177.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34CEB10E884;
- Tue, 21 Feb 2023 16:52:53 +0000 (UTC)
-Received: from pps.filterd (m0333520.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 31LGhhR7015537; Tue, 21 Feb 2023 16:52:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : references : content-type : in-reply-to :
- mime-version; s=corp-2022-7-12;
- bh=0qvzB4cRoR+2uu//zERx3WMCJQB6ybvcFvt3enWAN0E=;
- b=h9vRN0D5FH2pWzfQ5EfqfxoJYKTYab7k/433SwYZYCsDZ6VZOkR9IXG7kJUX1qrOKRD/
- XJy2lc3aXyFbhUOWLjnOYceSaBUjWFBI8x8A1F7fDTaTLIKtiSIJ0k+RU0C00rCKtuOA
- A0AsUT4u+0uoK07EmvJGVTC/lxLZEJTBRZEm0Fd7rHY/Bn9lpPDrdG139MDc7zUyvnPG
- hhafsLn3faFz7EwBMHs8qNDsqKRoIxYfBpc/RGe4snj8SksGrHh0+s2qejtBsemjWo2q
- f2DEJ8kdxJDaIsY89i5MKLIs7joNKZ8rdqt6zC2AvihsggJ7I4ye9IcQa4SX138c7x15 Xg== 
-Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com
- (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
- by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3ntpqcdr2c-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 21 Feb 2023 16:52:26 +0000
-Received: from pps.filterd
- (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
- by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.5/8.17.1.5)
- with ESMTP id 31LFOxCT006926; Tue, 21 Feb 2023 16:52:26 GMT
-Received: from nam04-dm6-obe.outbound.protection.outlook.com
- (mail-dm6nam04lp2040.outbound.protection.outlook.com [104.47.73.40])
- by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
- 3ntn4bwj3a-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 21 Feb 2023 16:52:26 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TMpuaRgGptjMhgJMEPgZ3uU++i220c0GrBeMP/OHULKI29lzS/pVxW0lsINlqGLBlImZTb0DIKjcKoppr0c15GSzN6BbDk0NyFGYtvR3wvzK0IACzcElWX18v/0KSJbJSjKDIi4V00z3vGKiLRr4D0uuK1J8Q0snfPGncCBmQHwlJ4Wfe5u/KX4LMzuGC+3O4pFyrq4WTrzq7uGGzQXsukF4ND5EZNsyWjt/B3W0kdWmtSaR4wX8xPygTTEdxFwmZ/VLldNX31t9qxlMjucNqWFr3q1HU9jKXdOffymrksjb6i8lh+pco0NFB+xRMfX+KCz4+iIJDvkEwxaJf214PA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0qvzB4cRoR+2uu//zERx3WMCJQB6ybvcFvt3enWAN0E=;
- b=XsrZcZaWOGMZBjtyuXnr4k0WMGSWQYiGkySvVuFk9KSfH6kIhJRGy4OfQDm50Z44LgRgdUEYoprNEH8ufp0R/XFyh/8Avx4KFbc7vTA/60fXIh9fdLVlW4ah7FIs+5/JdwJIPlcwAlT8WBjm/ysLEM37RbnJrS4PsKrZJQ6o+RNJvSmcOPJYc3Zqu5U5UYeNCC8UHhxiYyCLYgVgYZpR2Gnf90Z7jjBOWXNIOv5LYvZC+Vq1CNKSrZKYFP0sI+WfEPSoC3A+R0cFkDhhBD9WpVYdSXJ5WtNCgtPvmR8bF+y2mcIehlk+WzDeSAol+4i35XprR9w8G59KpIjc7YogGQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com
+ [IPv6:2a00:1450:4864:20::129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DDD810E9AB;
+ Fri, 27 Jan 2023 15:58:45 +0000 (UTC)
+Received: by mail-lf1-x129.google.com with SMTP id f34so8790781lfv.10;
+ Fri, 27 Jan 2023 07:58:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0qvzB4cRoR+2uu//zERx3WMCJQB6ybvcFvt3enWAN0E=;
- b=PpfC2WLxak0tyLn/bhJb4rldrSEV2jiIni3oidTRJDxxWbYsfZT2ovbu0SZyXeR057IgJ52xvoO31extsx9eghKWyBuQ0diva9Qri4sg+6L0psnVBUeIXgurBtrO2KzRSc/N6TRSHaJrN5W3jBQsPZVF2hkY+wXbFJ1kiidXMCM=
-Received: from SN6PR10MB3022.namprd10.prod.outlook.com (2603:10b6:805:d8::25)
- by SJ0PR10MB4686.namprd10.prod.outlook.com (2603:10b6:a03:2d7::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.17; Tue, 21 Feb
- 2023 16:52:23 +0000
-Received: from SN6PR10MB3022.namprd10.prod.outlook.com
- ([fe80::93c9:c99e:5ab:4319]) by SN6PR10MB3022.namprd10.prod.outlook.com
- ([fe80::93c9:c99e:5ab:4319%7]) with mapi id 15.20.6134.017; Tue, 21 Feb 2023
- 16:52:23 +0000
-Date: Tue, 21 Feb 2023 11:52:19 -0500
-From: "Liam R. Howlett" <Liam.Howlett@Oracle.com>
-To: Danilo Krummrich <dakr@redhat.com>
-Message-ID: <20230221165219.omgbrjmow6hszzgt@revolver>
-Mail-Followup-To: "Liam R. Howlett" <Liam.Howlett@Oracle.com>,
- Danilo Krummrich <dakr@redhat.com>, airlied@gmail.com,
- daniel@ffwll.ch, tzimmermann@suse.de, mripard@kernel.org,
- corbet@lwn.net, christian.koenig@amd.com, bskeggs@redhat.com,
- matthew.brost@intel.com, boris.brezillon@collabora.com,
- alexdeucher@gmail.com, ogabbay@kernel.org, bagasdotme@gmail.com,
- willy@infradead.org, jason@jlekstrand.net,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-doc@vger.kernel.org, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org
-References: <20230217134422.14116-1-dakr@redhat.com>
- <20230217134422.14116-4-dakr@redhat.com>
- <20230217183404.jmjew5lrduts6cpo@revolver>
- <3c9e368a-0ecb-fc60-dac4-f12fa23d8f60@redhat.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3c9e368a-0ecb-fc60-dac4-f12fa23d8f60@redhat.com>
-User-Agent: NeoMutt/20220429
-X-ClientProxiedBy: YT2PR01CA0010.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:38::15) To SN6PR10MB3022.namprd10.prod.outlook.com
- (2603:10b6:805:d8::25)
+ d=googlemail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=gxPYGkBTLyNwdnpWXyMidWkyToKrKS2TDNAp8XKdcr0=;
+ b=ltgTBhYyECT4aeWJUQHm1M5VrbDTeEYKKPy3TlfpSBPHPEyHpyCwVRQYNb6pOWXa/8
+ JMdvt/o0YODaBX4gNvTyeFU2m5qO4b48n7cXLRGFARYV46Z4V+42B07PhEAPeDehdYqO
+ sQ13OD9zuvfwukgpJw5Jemf1H+StxBdNXyY+ee/tM/4LaGnyD0fDH8bwTZhUJtB6D1T0
+ 093uw82/Ek9zV+/hQay/Fo4H0oSb33BmvmpZdoLiAQzocEFbBmivhwTUsxfM7yZOjfxN
+ mK9Spkn2R0vmHarwJWz36Sn6HxaVwSJytU1VdgafpSN+SdeNXgnNxsBuZWidRXECllpc
+ demg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=gxPYGkBTLyNwdnpWXyMidWkyToKrKS2TDNAp8XKdcr0=;
+ b=RSkgt3QEcFJG98GD9ueBU1TW4L8+2gZgKvy3laXiDdH226cB5c1tgf599N7YpgNrWj
+ 9WJWKxw1gG8nLGsKthV5uP/3XwrlLeFpPaaaZJt93XzwznbmNJpqfsWcixJAEBsc8IFA
+ Rq1OHZJaE1v/5WD/2fQZjdzVDlIsynnOQVuqBAIbMmZKQpV0rEIz28vVM6UtrbSLFFov
+ gtFYDIfLRUFmdg3SItalIOPZIxzNNA9k1AIQSU+OKQ/aP6hLEsQ0WEoC88Q08EnB+kPX
+ Ruho/pd0aQQUuTarPRHr6lmuBmjUfoOFpC38CsoSXn79OEYy3YJyt+PdBf5gGWCbZYhP
+ OF8A==
+X-Gm-Message-State: AFqh2kq5Y+6FA62x1j8vQngxDJUxWnB0FRcNSijpsPrd7T++ygvHQYfZ
+ 6MrCLqNNDxT3+LigzSuJq31jPobCPTepBq7EfYY=
+X-Google-Smtp-Source: AMrXdXvIluarNvYG0CtDBhA8Lzuu88bokR/qsJ4KfMXHbvl8AcCkstnd9L+0r8FIqD6ztdfcghLyV3SVtwJ1LXGwfAg=
+X-Received: by 2002:ac2:5dfb:0:b0:4b5:6a20:ca94 with SMTP id
+ z27-20020ac25dfb000000b004b56a20ca94mr3207427lfq.135.1674835123630; Fri, 27
+ Jan 2023 07:58:43 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR10MB3022:EE_|SJ0PR10MB4686:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2602b520-f277-474c-c470-08db142c010c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lPR1JwqVCqYua0HW+ymOG7mOvBD1gbmbnL5UmmTfBWNeMYPbtU+JUZflK16Loyd/w0dnvJJTKseByvea/m3LzXXJm1PFnIW0QTTwTSX6w+s8RFK8jJClSOYOupoIz1PHuVB5/lmnS15/gYRp5feaunwbTIIm56He3yNV+j2R8ZaVA+/ObLhdYH1gY0yfbIka5LrfbcX+yGJsilpXaYjNu6GL9lxEIcSV3ku1Iw6G4IsdZ4D17/G79dXeKV9CuYXu0GoHJjUG3wJLPIjBvQpw4NAt6v1L6Vk3eFJragK6L2qiGax2JpT3z0pdTSPnfse19nrYqfOZTCC5LLaBnRlM/zO03k9XT1H2eXwJnhlE1aUgG4h0wX16zyOgBiejg44vvpHGxsJ0xl0FI02alN+wAebY4KPguYJQey/PC2TGTRRrBwYWASyTR25neWjZ0IMnk9o7ASzdr10Gbvg70kVDDKFNNwHxgMFpnkTo8q2H4F3CUEhGM9bIvffOyxH9gtE3LANCe+YQwUxbsPCYQaNPew0RBk2jeo5JahC3bgtLSbVrn/i/NQkBdZsY6huMf3NZSuanCwSZfWGoiNbI30GqU0LAdR0UobGWXNqcnjtqYDnyFGWnvJ5tnVZjhB7R3S4in8/egjwnpBfdfnt2uTzm+4H4AxJlIfImnhGp0jJDOzY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN6PR10MB3022.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(7916004)(39860400002)(396003)(376002)(366004)(346002)(136003)(451199018)(26005)(186003)(38100700002)(316002)(83380400001)(478600001)(966005)(1076003)(2906002)(86362001)(41300700001)(6512007)(6666004)(6486002)(8676002)(4326008)(6506007)(6916009)(9686003)(53546011)(7416002)(8936002)(33716001)(5660300002)(66476007)(66946007)(66556008);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sYzOBbRZUYxpN7ubFRGVyUp6GafDSHjMJe96DCL/wZ5SPsP2DX1ArgxUozDZ?=
- =?us-ascii?Q?fV2HOBEOjO76NoqV3FAGD1e2cbZWgSmMYfLudATb2QL4Lrkw9wYyHWqpWNpR?=
- =?us-ascii?Q?hL2CYc8oIu/1JkTg+eAnKEs5XG3PLtR8TU6MMDLleETb2px3h+bir1fPJYLF?=
- =?us-ascii?Q?hV8LMN6Vn55pl/IQXcoqPYyUY02l4vZKyBPlw97y1dW3/gjMUb3DQSq11DNh?=
- =?us-ascii?Q?W/+Q6orTCQPBoT8samt4/dhU6CFuQ6aF9NskvwGSOiBcYXPvEpGIQ5QHBuE0?=
- =?us-ascii?Q?SFwLbi2/YJJCorS6+LMcu/5DeyrQb/L4XujuCcJrYz32ol6DJCJKSEVNdju3?=
- =?us-ascii?Q?YPslbTY/FBq5A/STek4XSbF42ZBTqC88IwqC0UMPEQDj9lSJqkghWwczwA5z?=
- =?us-ascii?Q?JY7gHuTAiWCvApgLrz/dSz+oN0B+I1N5BD80S2dODUq9CsqiBTywCKxCvIIx?=
- =?us-ascii?Q?KBfVWIewd5oflcCKjjwMNutSXDwNMUHMvBYy4uxoq/TXgcgAVwYmtH3z921L?=
- =?us-ascii?Q?lIWGmx543Iv+Y/e/ZvYrI8/VDpH0EX6c4A/sA6mtC00N+OBdq46EQCT0qMHM?=
- =?us-ascii?Q?nR5OHid0kPyaG99lGs4P+bZGPVECWA9tRr4DavMYSOmxipBrAfA5MSqiPli/?=
- =?us-ascii?Q?E2zY42dvvc1cOwOzHClzIhGpTQgPKgIMw4tNZeN+PIC/+fb+dr6tlRtVdPtk?=
- =?us-ascii?Q?hGrjRMTh5nMFPe70gtSbjr6bHEtAFRly8SxjiZ5NjsReV9nn3sYSSi+gOIH7?=
- =?us-ascii?Q?8YgvltboniNG7OdJV7oDFrwa+jRZ2Pqmx7xSRRisptNmxguXiaVwc+2M+uZV?=
- =?us-ascii?Q?BfC0X99lk+GFa27kOaMEVB3dCADEW4w3QWCJVnkGhH6MzHapwhGA8X+Aocdu?=
- =?us-ascii?Q?tn9k6WnliGdeuPzJVCEi0R5dvkdtg3AgrCznlpSCOgZeX7PkVh7NxDp+t7aj?=
- =?us-ascii?Q?39QbQBGIKxY4YvEhEmyl1Bpk+tsgpJs/M8EvwFWOkQefbTbAs+tFzbcul7nK?=
- =?us-ascii?Q?QSY6q0XDJ4hV5/pAglMG9q7/EfrqBcaa0hkVDwBtvEvryvW33iY4JZcmdvRN?=
- =?us-ascii?Q?Ad0S/p3XYz+zHm6gxWE7hJUmNUuSuDD4DiP0mWes+arevsuPj4rsRsjvzqSN?=
- =?us-ascii?Q?op6IOm8WR0irvWw67RJnx1tbmSvrpN/W0MLWN7viE0YzUMVqgx3nTQE+B6E/?=
- =?us-ascii?Q?xtqbGP1Y3+LFBx0MImsP8Qx+2Yc3RzobVK4yzjeQA84u7qFdICa443jzwqYv?=
- =?us-ascii?Q?xd6I8ts0R7ha0ceTO6rVazI018QtBRvYYwn2hEx+9GLjBMuU16aK95vmyhrA?=
- =?us-ascii?Q?4PZbQ4WCdg5BjG+Aq+XAnnYnas5iTLISh4DKxi+7ZCOocLnUr1smTvF2OoJu?=
- =?us-ascii?Q?xyzhT/ic/1ZdgrgKkAtujJAHAM1H427xkWXz3ZbQXLiGKGV1N/IZ0cJ8s6fF?=
- =?us-ascii?Q?Cs14HwP0oQZ0ouDnvUoAUfK+BF1jS02P9jGtMaeZTwHxpoNluBic5WXFD6uO?=
- =?us-ascii?Q?hVP25rEu4DQLDsQOzJLCOkq0y76joJqIYi6aDbJEO/vK82p0GOAzu5xDUs0g?=
- =?us-ascii?Q?EO7yRUFFm8tGy5ziv63S5nt4ubgF9HPKZu6A5R0Pbw97gaC1+VxMjKaevpIA?=
- =?us-ascii?Q?xw=3D=3D?=
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: =?us-ascii?Q?9ipNMNeEoLxLFc8sKIRxG/vCzalyDSTRxVOjxQvi/RZVs73nrAgOBSJVWYbW?=
- =?us-ascii?Q?YpIwG7nmXHSheKsn7Uv8aA4vj0Y3E3OhmrwiIlnDRfKIVouKPWTg55Uhpvgz?=
- =?us-ascii?Q?jrz3qet7kXe5pigcA09NiRUeGAeMZCVG6TzZvIQ78nQBJt3FqF7NccgVRyrY?=
- =?us-ascii?Q?ilBaqh5Eayay4uO9sDDa3lghHX/DIxu6TsPJJYqiHZy0JWIKM297yfWLr3wj?=
- =?us-ascii?Q?tcRgd0ecJKWBjqODSr31rx5zv7i8neMKi1M+dIUL7trkMnSeP6auPd+t3C30?=
- =?us-ascii?Q?B90DTjPb93z6oYVZ2yHPjCOYlO1qST/n/WC5ExrTr0cQ3dxQdMB9OWlBbQnM?=
- =?us-ascii?Q?2jz7r60qjqKR4bq0p4sFg1HQXTqu/v+SgxQ1pfW8HWNXJI7DMTVR+RV2aw49?=
- =?us-ascii?Q?/XdymXlm4BH8h/X1Jc2iwsgN931kcEi9vwKrgE7HrawOM/3BOW7AAWi3tK3v?=
- =?us-ascii?Q?fKpr5p70gvOV4fLjBRT7BFhq4eN5EZVgRPmTd5q7p2o7GmKyOtemBdG/V1pe?=
- =?us-ascii?Q?twSrz4tPIQBQGqSOtUU7LaXv02tSvvzGpNYM6H9xq8e2Yq0Mr2+/+6NB5elF?=
- =?us-ascii?Q?+o4/r0x1ubiqKxjzz4cpm0EUXFZDZydSYafvPGHRTLuXP1faMszcp9Cywxij?=
- =?us-ascii?Q?A52VSKMqiVLyq/VqZXSARQzLAkxAYW66IwJ2zT78v3NdALDbJw4DeynqLuF+?=
- =?us-ascii?Q?hSZQyCHGMZbqzM4jMROkiuIB6Z8XetMcl2u/w4m/PwAbOEO55C3J/ZDtO/5N?=
- =?us-ascii?Q?h50f6xN7Y7GHRzlN5WiHpE7qxmAu81MStXS1uolCtVw0f0f0PwruFvw3hgVM?=
- =?us-ascii?Q?tvyi86TS9TASFkZXgRh1Ol0pDF1UWoAqBav/8+fhk2KdZ5rfwZ98R+M1bWNX?=
- =?us-ascii?Q?kC+7qZ03VuCErm5cW9O1OyN0EHqqrsi2W5GJnb4jNE4wZESJFJknfKBUzltK?=
- =?us-ascii?Q?/A4+uJTcrtQx8fThoq0lQZ0La0F2bxl3X58Y8W7yzqm5qhDlX3VV64B3szJh?=
- =?us-ascii?Q?ndhS5onQePfBLcMAct7uKyuUo0bJ3+uZ8sTogmfhNfg03NgUTdTGAtHXiDlf?=
- =?us-ascii?Q?GQqePOe54Tmo2hzf9MFjs3whoJrbUUB4XqzX0N5Q/jEHDG7YyVBfyE7/FXiH?=
- =?us-ascii?Q?aLtawVY2cY0c+euMLnWdB1KO3WooUpfMCw=3D=3D?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2602b520-f277-474c-c470-08db142c010c
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR10MB3022.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2023 16:52:23.7880 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /6Zn7a2MSM8il5auVRZIiSkFOiuDOpX6XkVHTC6zBuAxk3LSbos7a2D2iKUEvVSR//kuE9lrwE1nAwsdRoo9EQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB4686
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-21_09,2023-02-20_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
- phishscore=0 suspectscore=0
- mlxlogscore=999 adultscore=0 mlxscore=0 bulkscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2302210141
-X-Proofpoint-GUID: 9H0BeSVfXWEtzpBzio8Cn1NXcozYxisL
-X-Proofpoint-ORIG-GUID: 9H0BeSVfXWEtzpBzio8Cn1NXcozYxisL
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:36 +0000
-Subject: Re: [Nouveau] [PATCH drm-next v2 03/16] maple_tree: split up
- MA_STATE() macro
+References: <b64705e3-2e63-a466-f829-f9568b06766a@googlemail.com>
+ <fcec3c78-b5d9-eb48-0fc0-d1f27de87f23@leemhuis.info>
+ <b21fa1f6-a71d-5657-8596-ee0be73185ea@leemhuis.info>
+In-Reply-To: <b21fa1f6-a71d-5657-8596-ee0be73185ea@leemhuis.info>
+From: Chris Clayton <chris2553@googlemail.com>
+Date: Fri, 27 Jan 2023 15:58:29 +0000
+Message-ID: <CAGGLNVj1Jnb115jc6opcmg1YJ7-trObAWpqv2w_EtLnvbecSvw@mail.gmail.com>
+To: Linux regressions mailing list <regressions@lists.linux.dev>
+Content-Type: multipart/alternative; boundary="00000000000099f63605f340f04a"
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
+Subject: Re: [Nouveau] linux-6.2-rc4+ hangs on poweroff/reboot: Bisected
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -186,130 +67,349 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.brost@intel.com, willy@infradead.org, daniel@ffwll.ch,
- dri-devel@lists.freedesktop.org, corbet@lwn.net, nouveau@lists.freedesktop.org,
- ogabbay@kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- mripard@kernel.org, linux-mm@kvack.org, boris.brezillon@collabora.com,
- bskeggs@redhat.com, alexdeucher@gmail.com, bagasdotme@gmail.com,
- christian.koenig@amd.com, jason@jlekstrand.net
+Cc: ML nouveau <nouveau@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>, bskeggs@redhat.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-* Danilo Krummrich <dakr@redhat.com> [230220 09:38]:
-> On 2/17/23 19:34, Liam R. Howlett wrote:
-> > * Danilo Krummrich <dakr@redhat.com> [230217 08:44]:
-> > > Split up the MA_STATE() macro such that components using the maple tree
-> > > can easily inherit from struct ma_state and build custom tree walk
-> > > macros to hide their internals from users.
-> > > 
-> > > Example:
-> > > 
-> > > struct sample_iter {
-> > > 	struct ma_state mas;
-> > > 	struct sample_mgr *mgr;
-> > > 	struct sample_entry *entry;
-> > > };
-> > > 
-> > > \#define SAMPLE_ITER(name, __mgr) \
-> > > 	struct sample_iter name = { \
-> > > 		.mas = __MA_STATE(&(__mgr)->mt, 0, 0),
-> > > 		.mgr = __mgr,
-> > > 		.entry = NULL,
-> > > 	}
-> > 
-> > I see this patch is to allow for anonymous maple states, this looks
-> > good.
-> > 
-> > I've a lengthy comment about the iterator that I'm adding here to head
-> > off anyone that may copy your example below.
-> > 
-> > > 
-> > > \#define sample_iter_for_each_range(it__, start__, end__) \
-> > > 	for ((it__).mas.index = start__, (it__).entry = mas_find(&(it__).mas, end__ - 1); \
-> > > 	     (it__).entry; (it__).entry = mas_find(&(it__).mas, end__ - 1))
-> > 
-> > I see you've added something like the above in your patch set as well.
-> > I'd like to point out that the index isn't the only state information
-> > that needs to be altered here, and in fact, this could go very wrong.
-> > 
-> > The maple state has a node and an offset within that node.  If you set
-> > the index to lower than the current position of your iterator and call
-> > mas_find() then what happens is somewhat undefined.  I expect you will
-> > get the wrong value (most likely either the current value or the very
-> > next one that the iterator is already pointing to).  I believe you have
-> > been using a fresh maple state for each iterator in your patches, but I
-> > haven't had a deep look into your code yet.
-> 
-> Yes, I'm aware that I'd need to reset the whole iterator in order to re-use
-> it.
+--00000000000099f63605f340f04a
+Content-Type: text/plain; charset="UTF-8"
 
-Okay, good.  The way you have it written makes it unsafe to just call
-without knowledge of the state and that will probably end poorly over
-the long run.  If it's always starting from MAS_START then it's probably
-safer to just initialize when you want to use it to the correct start
-address.
+Thanks Thorsten.
 
-> 
-> Regarding the other considerations of the iterator design please see my
-> answer to Matthew.
-> 
-> > 
-> > We have methods of resetting the iterator and set the range (mas_set()
-> > and mas_set_range()) which are safe for what you are doing, but they
-> > will start the walk from the root node to the index again.
-> > 
-> > So, if you know what you are doing is safe, then the way you have
-> > written it will work, but it's worth mentioning that this could occur.
-> > 
-> > It is also worth pointing out that it would be much safer to use a
-> > function to do the above so you get type safety.. and I was asked to add
-> > this to the VMA interface by Linus [1], which is on its way upstream [2].
-> > 
-> > 1. https://lore.kernel.org/linux-mm/CAHk-=wg9WQXBGkNdKD2bqocnN73rDswuWsavBB7T-tekykEn_A@mail.gmail.com/
-> > 2. https://lore.kernel.org/linux-mm/20230120162650.984577-1-Liam.Howlett@oracle.com/
-> 
-> You mean having wrappers like sample_find() instead of directly using
-> mas_find()?
+I did try to revert but it didnt revert cleanly and I don't have the
+knowledge to fix it up.
 
-I'm not sure you need to go that low level, but I would ensure I have a
-store/load function that ensures the correct type being put in/read from
-are correct on compile - especially since you seem to have two trees to
-track two different sets of things.  That iterator is probably safe
-since the type is defined within itself.
+The patch was part of a merge that included a number of related patches.
+I'll try to revert the lot and report back.
 
-> 
-> > 
-> > > 
-> > > Signed-off-by: Danilo Krummrich <dakr@redhat.com>
-> > > ---
-> > >   include/linux/maple_tree.h | 7 +++++--
-> > >   1 file changed, 5 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/include/linux/maple_tree.h b/include/linux/maple_tree.h
-> > > index e594db58a0f1..ca04c900e51a 100644
-> > > --- a/include/linux/maple_tree.h
-> > > +++ b/include/linux/maple_tree.h
-> > > @@ -424,8 +424,8 @@ struct ma_wr_state {
-> > >   #define MA_ERROR(err) \
-> > >   		((struct maple_enode *)(((unsigned long)err << 2) | 2UL))
-> > > -#define MA_STATE(name, mt, first, end)					\
-> > > -	struct ma_state name = {					\
-> > > +#define __MA_STATE(mt, first, end)					\
-> > > +	{								\
-> > >   		.tree = mt,						\
-> > >   		.index = first,						\
-> > >   		.last = end,						\
-> > > @@ -435,6 +435,9 @@ struct ma_wr_state {
-> > >   		.alloc = NULL,						\
-> > >   	}
-> > > +#define MA_STATE(name, mt, first, end)					\
-> > > +	struct ma_state name = __MA_STATE(mt, first, end)
-> > > +
-> > >   #define MA_WR_STATE(name, ma_state, wr_entry)				\
-> > >   	struct ma_wr_state name = {					\
-> > >   		.mas = ma_state,					\
-> > > -- 
-> > > 2.39.1
-> > > 
-> > 
-> 
+Chris
+
+
+On Fri, 27 Jan 2023, 11:20 Linux kernel regression tracking (Thorsten
+Leemhuis), <regressions@leemhuis.info> wrote:
+
+> Hi, this is your Linux kernel regression tracker. Top-posting for once,
+> to make this easily accessible to everyone.
+>
+> @nouveau-maintainers, did anyone take a look at this? The report is
+> already 8 days old and I don't see a single reply. Sure, we'll likely
+> get a -rc8, but still it would be good to not fix this on the finish line.
+>
+> Chris, btw, did you try if you can revert the commit on top of latest
+> mainline? And if so, does it fix the problem?
+>
+> Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+> --
+> Everything you wanna know about Linux kernel regression tracking:
+> https://linux-regtracking.leemhuis.info/about/#tldr
+> If I did something stupid, please tell me, as explained on that page.
+>
+> #regzbot poke
+>
+> On 19.01.23 15:33, Linux kernel regression tracking (Thorsten Leemhuis)
+> wrote:
+> > [adding various lists and the two other nouveau maintainers to the list
+> > of recipients]
+>
+> > On 18.01.23 21:59, Chris Clayton wrote:
+> >> Hi.
+> >>
+> >> I build and installed the lastest development kernel earlier this week.
+> I've found that when I try the laptop down (or
+> >> reboot it), it hangs right at the end of closing the current session.
+> The last line I see on  the screen when rebooting is:
+> >>
+> >>      sd 4:0:0:0: [sda] Synchronising SCSI cache
+> >>
+> >> when closing down I see one additional line:
+> >>
+> >>      sd 4:0:0:0 [sda]Stopping disk
+> >>
+> >> In both cases the machine then hangs and I have to hold down the power
+> button fot a few seconds to switch it off.
+> >>
+> >> Linux 6.1 is OK but 6.2-rc1 hangs, so I bisected between this two and
+> landed on:
+> >>
+> >>      # first bad commit: [0e44c21708761977dcbea9b846b51a6fb684907a]
+> drm/nouveau/flcn: new code to load+boot simple HS FWs
+> >> (VPR scrubber)
+> >>
+> >> I built and installed a kernel with
+> f15cde64b66161bfa74fb58f4e5697d8265b802e (the parent of the bad commit)
+> checked out
+> >> and that shuts down and reboots fine. It the did the same with the bad
+> commit checked out and that does indeed hang, so
+> >> I'm confident the bisect outcome is OK.
+> >>
+> >> Kernels 6.1.6 and 5.15.88 are also OK.
+> >>
+> >> My system had dual GPUs - one intel and one NVidia. Related extracts
+> from 'lscpi -v' is:
+> >>
+> >> 00:02.0 VGA compatible controller: Intel Corporation CometLake-H GT2
+> [UHD Graphics] (rev 05) (prog-if 00 [VGA controller])
+> >>         Subsystem: CLEVO/KAPOK Computer CometLake-H GT2 [UHD Graphics]
+> >>
+> >>         Flags: bus master, fast devsel, latency 0, IRQ 142
+> >>
+> >>         Memory at c2000000 (64-bit, non-prefetchable) [size=16M]
+> >>
+> >>         Memory at a0000000 (64-bit, prefetchable) [size=256M]
+> >>
+> >>         I/O ports at 5000 [size=64]
+> >>
+> >>         Expansion ROM at 000c0000 [virtual] [disabled] [size=128K]
+> >>
+> >>         Capabilities: [40] Vendor Specific Information: Len=0c <?>
+> >>
+> >>         Capabilities: [70] Express Root Complex Integrated Endpoint,
+> MSI 00
+> >>
+> >>         Capabilities: [ac] MSI: Enable+ Count=1/1 Maskable- 64bit-
+> >>
+> >>         Capabilities: [d0] Power Management version 2
+> >>
+> >>         Kernel driver in use: i915
+> >>
+> >>         Kernel modules: i915
+> >>
+> >>
+> >> 01:00.0 VGA compatible controller: NVIDIA Corporation TU117M [GeForce
+> GTX 1650 Ti Mobile] (rev a1) (prog-if 00 [VGA
+> >> controller])
+> >>         Subsystem: CLEVO/KAPOK Computer TU117M [GeForce GTX 1650 Ti
+> Mobile]
+> >>         Flags: bus master, fast devsel, latency 0, IRQ 141
+> >>         Memory at c4000000 (32-bit, non-prefetchable) [size=16M]
+> >>         Memory at b0000000 (64-bit, prefetchable) [size=256M]
+> >>         Memory at c0000000 (64-bit, prefetchable) [size=32M]
+> >>         I/O ports at 4000 [size=128]
+> >>         Expansion ROM at c3000000 [disabled] [size=512K]
+> >>         Capabilities: [60] Power Management version 3
+> >>         Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
+> >>         Capabilities: [78] Express Legacy Endpoint, MSI 00
+> >>         Kernel driver in use: nouveau
+> >>         Kernel modules: nouveau
+> >>
+> >> DRI_PRIME=1 is exported in one of my init scripts (yes, I am still
+> using sysvinit).
+> >>
+> >> I've attached the bisect.log, but please let me know if I can provide
+> any other diagnostics. Please cc me as I'm not
+> >> subscribed.
+> >
+> > Thanks for the report. To be sure the issue doesn't fall through the
+> > cracks unnoticed, I'm adding it to regzbot, the Linux kernel regression
+> > tracking bot:
+> >
+> > #regzbot ^introduced e44c2170876197
+> > #regzbot title drm: nouveau: hangs on poweroff/reboot
+> > #regzbot ignore-activity
+> >
+> > This isn't a regression? This issue or a fix for it are already
+> > discussed somewhere else? It was fixed already? You want to clarify when
+> > the regression started to happen? Or point out I got the title or
+> > something else totally wrong? Then just reply and tell me -- ideally
+> > while also telling regzbot about it, as explained by the page listed in
+> > the footer of this mail.
+> >
+> > Developers: When fixing the issue, remember to add 'Link:' tags pointing
+> > to the report (the parent of this mail). See page linked in footer for
+> > details.
+> >
+> > Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+> > --
+> > Everything you wanna know about Linux kernel regression tracking:
+> > https://linux-regtracking.leemhuis.info/about/#tldr
+> > That page also explains what to do if mails like this annoy you.
+>
+
+--00000000000099f63605f340f04a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Thanks Thorsten.<div dir=3D"auto"><br></div><div dir=3D"a=
+uto">I did try to revert but it didnt revert cleanly and I don&#39;t have t=
+he knowledge to fix it up.</div><div dir=3D"auto"><br></div><div dir=3D"aut=
+o">The patch was part of a merge that included a number of related patches.=
+ I&#39;ll try to revert the lot and report back.</div><div dir=3D"auto"><br=
+></div><div dir=3D"auto">Chris<br><div dir=3D"auto"><br></div></div></div><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri,=
+ 27 Jan 2023, 11:20 Linux kernel regression tracking (Thorsten Leemhuis), &=
+lt;<a href=3D"mailto:regressions@leemhuis.info">regressions@leemhuis.info</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 =
+0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi, this is your Linu=
+x kernel regression tracker. Top-posting for once,<br>
+to make this easily accessible to everyone.<br>
+<br>
+@nouveau-maintainers, did anyone take a look at this? The report is<br>
+already 8 days old and I don&#39;t see a single reply. Sure, we&#39;ll like=
+ly<br>
+get a -rc8, but still it would be good to not fix this on the finish line.<=
+br>
+<br>
+Chris, btw, did you try if you can revert the commit on top of latest<br>
+mainline? And if so, does it fix the problem?<br>
+<br>
+Ciao, Thorsten (wearing his &#39;the Linux kernel&#39;s regression tracker&=
+#39; hat)<br>
+--<br>
+Everything you wanna know about Linux kernel regression tracking:<br>
+<a href=3D"https://linux-regtracking.leemhuis.info/about/#tldr" rel=3D"nore=
+ferrer noreferrer" target=3D"_blank">https://linux-regtracking.leemhuis.inf=
+o/about/#tldr</a><br>
+If I did something stupid, please tell me, as explained on that page.<br>
+<br>
+#regzbot poke<br>
+<br>
+On 19.01.23 15:33, Linux kernel regression tracking (Thorsten Leemhuis)<br>
+wrote:<br>
+&gt; [adding various lists and the two other nouveau maintainers to the lis=
+t<br>
+&gt; of recipients]<br>
+<br>
+&gt; On 18.01.23 21:59, Chris Clayton wrote:<br>
+&gt;&gt; Hi.<br>
+&gt;&gt;<br>
+&gt;&gt; I build and installed the lastest development kernel earlier this =
+week. I&#39;ve found that when I try the laptop down (or<br>
+&gt;&gt; reboot it), it hangs right at the end of closing the current sessi=
+on. The last line I see on=C2=A0 the screen when rebooting is:<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 sd 4:0:0:0: [sda] Synchronising SCSI cache<br>
+&gt;&gt;<br>
+&gt;&gt; when closing down I see one additional line:<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 sd 4:0:0:0 [sda]Stopping disk<br>
+&gt;&gt;<br>
+&gt;&gt; In both cases the machine then hangs and I have to hold down the p=
+ower button fot a few seconds to switch it off.<br>
+&gt;&gt;<br>
+&gt;&gt; Linux 6.1 is OK but 6.2-rc1 hangs, so I bisected between this two =
+and landed on:<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 # first bad commit: [0e44c21708761977dcbea9b84=
+6b51a6fb684907a] drm/nouveau/flcn: new code to load+boot simple HS FWs<br>
+&gt;&gt; (VPR scrubber)<br>
+&gt;&gt;<br>
+&gt;&gt; I built and installed a kernel with f15cde64b66161bfa74fb58f4e5697=
+d8265b802e (the parent of the bad commit) checked out<br>
+&gt;&gt; and that shuts down and reboots fine. It the did the same with the=
+ bad commit checked out and that does indeed hang, so<br>
+&gt;&gt; I&#39;m confident the bisect outcome is OK.<br>
+&gt;&gt;<br>
+&gt;&gt; Kernels 6.1.6 and 5.15.88 are also OK.<br>
+&gt;&gt;<br>
+&gt;&gt; My system had dual GPUs - one intel and one NVidia. Related extrac=
+ts from &#39;lscpi -v&#39; is:<br>
+&gt;&gt;<br>
+&gt;&gt; 00:02.0 VGA compatible controller: Intel Corporation CometLake-H G=
+T2 [UHD Graphics] (rev 05) (prog-if 00 [VGA controller])<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Subsystem: CLEVO/KAPOK Computer C=
+ometLake-H GT2 [UHD Graphics]<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Flags: bus master, fast devsel, l=
+atency 0, IRQ 142<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Memory at c2000000 (64-bit, non-p=
+refetchable) [size=3D16M]<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Memory at a0000000 (64-bit, prefe=
+tchable) [size=3D256M]<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0I/O ports at 5000 [size=3D64]<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Expansion ROM at 000c0000 [virtua=
+l] [disabled] [size=3D128K]<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Capabilities: [40] Vendor Specifi=
+c Information: Len=3D0c &lt;?&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Capabilities: [70] Express Root C=
+omplex Integrated Endpoint, MSI 00<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Capabilities: [ac] MSI: Enable+ C=
+ount=3D1/1 Maskable- 64bit-<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Capabilities: [d0] Power Manageme=
+nt version 2<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Kernel driver in use: i915<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Kernel modules: i915<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; 01:00.0 VGA compatible controller: NVIDIA Corporation TU117M [GeFo=
+rce GTX 1650 Ti Mobile] (rev a1) (prog-if 00 [VGA<br>
+&gt;&gt; controller])<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Subsystem: CLEVO/KAPOK Computer T=
+U117M [GeForce GTX 1650 Ti Mobile]<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Flags: bus master, fast devsel, l=
+atency 0, IRQ 141<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Memory at c4000000 (32-bit, non-p=
+refetchable) [size=3D16M]<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Memory at b0000000 (64-bit, prefe=
+tchable) [size=3D256M]<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Memory at c0000000 (64-bit, prefe=
+tchable) [size=3D32M]<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0I/O ports at 4000 [size=3D128]<br=
+>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Expansion ROM at c3000000 [disabl=
+ed] [size=3D512K]<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Capabilities: [60] Power Manageme=
+nt version 3<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Capabilities: [68] MSI: Enable+ C=
+ount=3D1/1 Maskable- 64bit+<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Capabilities: [78] Express Legacy=
+ Endpoint, MSI 00<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Kernel driver in use: nouveau<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Kernel modules: nouveau<br>
+&gt;&gt;<br>
+&gt;&gt; DRI_PRIME=3D1 is exported in one of my init scripts (yes, I am sti=
+ll using sysvinit).<br>
+&gt;&gt;<br>
+&gt;&gt; I&#39;ve attached the bisect.log, but please let me know if I can =
+provide any other diagnostics. Please cc me as I&#39;m not<br>
+&gt;&gt; subscribed.<br>
+&gt; <br>
+&gt; Thanks for the report. To be sure the issue doesn&#39;t fall through t=
+he<br>
+&gt; cracks unnoticed, I&#39;m adding it to regzbot, the Linux kernel regre=
+ssion<br>
+&gt; tracking bot:<br>
+&gt; <br>
+&gt; #regzbot ^introduced e44c2170876197<br>
+&gt; #regzbot title drm: nouveau: hangs on poweroff/reboot<br>
+&gt; #regzbot ignore-activity<br>
+&gt; <br>
+&gt; This isn&#39;t a regression? This issue or a fix for it are already<br=
+>
+&gt; discussed somewhere else? It was fixed already? You want to clarify wh=
+en<br>
+&gt; the regression started to happen? Or point out I got the title or<br>
+&gt; something else totally wrong? Then just reply and tell me -- ideally<b=
+r>
+&gt; while also telling regzbot about it, as explained by the page listed i=
+n<br>
+&gt; the footer of this mail.<br>
+&gt; <br>
+&gt; Developers: When fixing the issue, remember to add &#39;Link:&#39; tag=
+s pointing<br>
+&gt; to the report (the parent of this mail). See page linked in footer for=
+<br>
+&gt; details.<br>
+&gt; <br>
+&gt; Ciao, Thorsten (wearing his &#39;the Linux kernel&#39;s regression tra=
+cker&#39; hat)<br>
+&gt; --<br>
+&gt; Everything you wanna know about Linux kernel regression tracking:<br>
+&gt; <a href=3D"https://linux-regtracking.leemhuis.info/about/#tldr" rel=3D=
+"noreferrer noreferrer" target=3D"_blank">https://linux-regtracking.leemhui=
+s.info/about/#tldr</a><br>
+&gt; That page also explains what to do if mails like this annoy you.<br>
+</blockquote></div>
+
+--00000000000099f63605f340f04a--
