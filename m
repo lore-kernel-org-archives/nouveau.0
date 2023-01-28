@@ -4,93 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AE71C77B78
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBC18C77B7C
 	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:34:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35FCA10E4F0;
-	Thu,  4 May 2023 12:33:07 +0000 (UTC)
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2052.outbound.protection.outlook.com [40.107.244.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5804110E7CF;
- Wed, 25 Jan 2023 14:24:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Eh2HFFLHpnQExS/B6NIRTek5xG5DhTLBdm1KCKFfeW0a5I64Q19PajdbsL0fcT9rCtU+DANJfOVEuUMcrmZsSnBoL+qsJxTK8A3MDT9xrE+rHc9HXCshj8NoAwZ2RReDSPMcn3/CuN65hlqVX6Z+Ftv8Okz2gDjTg7hDVYFS/LW0GWTch9bUeKNazNzQhe9YziVUyRX8oVy3jck2p2JtLwt2afQfUslKp9mnHs/dUWQ0f3DsojQmVq/zkoumFAM8iGQ+n1VHuS++IDLV+CiyROEOiYH6bN52g5/HNsEq1BY8z1Whv6WwkmOCZf3wLdudrXgZOg1rYhgNJUm2vTSO1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A22QUjgyBJt+DQEA8e/+iGgtcSFwuiFt/KkSM+Sx/6g=;
- b=WqUBV/ni+oBXRQqjfYJSbGv9h6uWf+p1VUnyLi6j3s6dQxLO6Aavy4wXeoIac06uSbTaxQ07CmiQFf8QImCcPxl2BrENMyTDmDbIzinJd+Hmqulbn9nCAfW3JUKJiwIBlZhCzMszrCH3tGPEPwoVkXF0RwvwkBJtA47GEPlJIn6m61SsCfdi2BUKwTK0wV4c+ph8mHsVjfs7O6achAm1oxFSG/ouUpxxNaxVHSrx99/1ePCwTJkWmUq3L6u0HkIe0LCLLDq/uNd5WMuUJk3ASyDkBhDlNgZ0SNSyXA+2zHUr3Xuxs/B+9rmBW0sGnGMeEuFV2fZhbPXHxHqZgVJgig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A22QUjgyBJt+DQEA8e/+iGgtcSFwuiFt/KkSM+Sx/6g=;
- b=0CQjdJBlgVu31z09nCbAFFeqRF60CF9A6IT4MqQdoFBaCrH3d5FjpVT4CjAwbSRYqOp2tySUpROBfU1fKZZt3WCCPJ7NQwtji7AqGVwXF+a04iIBRR9wAL2nAB0EgjPkvVSS+xTg77L+EsUepEcAh5vyADXWRWz7/efRIy1Dskg=
-Received: from BN8PR03CA0024.namprd03.prod.outlook.com (2603:10b6:408:94::37)
- by MN2PR12MB4080.namprd12.prod.outlook.com (2603:10b6:208:1d9::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.21; Wed, 25 Jan
- 2023 14:24:50 +0000
-Received: from BN8NAM11FT109.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:94:cafe::5b) by BN8PR03CA0024.outlook.office365.com
- (2603:10b6:408:94::37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.21 via Frontend
- Transport; Wed, 25 Jan 2023 14:24:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT109.mail.protection.outlook.com (10.13.176.221) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6043.17 via Frontend Transport; Wed, 25 Jan 2023 14:24:50 +0000
-Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Wed, 25 Jan 2023 08:24:46 -0600
-From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Date: Wed, 25 Jan 2023 19:54:13 +0530
-Message-ID: <20230125142415.18546-2-Amaranath.Somalapuram@amd.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20230125142415.18546-1-Amaranath.Somalapuram@amd.com>
-References: <20230125142415.18546-1-Amaranath.Somalapuram@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EE5310E4B7;
+	Thu,  4 May 2023 12:33:08 +0000 (UTC)
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
+ [IPv6:2a00:1450:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80B2810E17C;
+ Sat, 28 Jan 2023 11:29:37 +0000 (UTC)
+Received: by mail-wr1-x431.google.com with SMTP id m7so7141291wru.8;
+ Sat, 28 Jan 2023 03:29:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=JZ1xTDKyjH5p8vliIZMR6idzBEt9CT83BKCLR4uL47U=;
+ b=b8ycbPxp3whx6/XEh4a8jC6lqNyM4v4LqLtl0bW6c/TrTn68SSFdUqkyQpIUbg3iJb
+ vOsQu/p7o0zfr8vrTD8mw4O3zgFPAYBtSOMGZDrNwCdJpu7H0zt0FFSxsj09d4SXoAtZ
+ 8FDpWyUq4YaQWsZe30AqU6CjJNvErLG0MEEt6Tad9U95F+F5tXFki/4SG3U5ksJIXDjn
+ tq/Zx6Ay0O5slTRzkxbwz0Tg83IRFQ7IdqJUFBflg/hKLJKRhIq69B+bNnullCdr+h/v
+ dUPickcVjXMYwXMhTLHzg+WlT0gGBZl/cAtrOJDJ09zWKshm6qKDhFWmrWz3YgVJg4I3
+ QvtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=JZ1xTDKyjH5p8vliIZMR6idzBEt9CT83BKCLR4uL47U=;
+ b=0/vS+/N/FJEfmwY83wFCvR0S4BQKd9OvkrWnPReA1xUWtTbBx9T+vlWYeWUBU5hy/k
+ 2AnZPeXQKeQGMLrJtTuF7MItEVa4Cc2r5TD3aB6PqPzdVnSlt2m46pEHPcHX08ECn5c7
+ 7JBiotyCB0+It7KaMRX1dn2VjJBDRzIh+1dX3VT7AusQAmq+8U32HVJYENfK18GKrkm7
+ XFmtgJFUddrYvT06JJvVwApi/ECk2MJF330qWDdvi8yZ8vwLimRAVP0jlXKiDhzEA1A6
+ 4EH3JXQKOA+brpGdhnQyXesGvECyuizUXqUiU6F2dGgejESLxG1eZDKOW0BOwatDxstI
+ iZTA==
+X-Gm-Message-State: AO0yUKVj1Wt7fS+xkI8zBPxeSIxlri1sckOFqChP77AmhXHXlmwX3GHT
+ VBhKbLeAYC4dyfHhJLwnH/I=
+X-Google-Smtp-Source: AK7set8jZBChQ4Mh1964/1gOr1EHny2Xr+bR6F+kxFYXVwe6cfyTwJ7DZORX26wfiUEPOtTTV23brQ==
+X-Received: by 2002:a5d:534c:0:b0:2bf:cfc0:ac71 with SMTP id
+ t12-20020a5d534c000000b002bfcfc0ac71mr6538619wrv.53.1674905375766; 
+ Sat, 28 Jan 2023 03:29:35 -0800 (PST)
+Received: from [192.168.1.10] (97e09f27.skybroadband.com. [151.224.159.39])
+ by smtp.googlemail.com with ESMTPSA id
+ x26-20020a1c7c1a000000b003db01178b62sm10298989wmc.40.2023.01.28.03.29.34
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 28 Jan 2023 03:29:35 -0800 (PST)
+Message-ID: <ab1b0f73-6b4e-8602-2999-b7bec25d92db@googlemail.com>
+Date: Sat, 28 Jan 2023 11:29:33 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT109:EE_|MN2PR12MB4080:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1dab5202-a2a0-4731-891a-08dafedfeb09
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qG9j4JlY1E/i6yj3PSRXQ85d0EAbQyjqxgZAmHsKKFQoK4TK/BdualHqa3X2ube3nbEJ1ATo6hkV3wofP7Ncn0XxcZ0WffxHnOBtdf4H5W2PZ9U0bNGEqMQuS8+8cP97cfTK4WqhUyt9Umyu10sWpjmhhaZKhU0eGUj2Cga/bOtk8F8fUUKx8/z4J3jjCk7wwEOnSRlZtcn2ZVvYtdvc1dQdAHy4M4k2jfsj38qQKzLKz6LFNGzWmleNi1vVcj+R5RA41WZZOWm4RonzCWRDodRE9kQ/j4uagr5KV3zeRsxOuGB7s0bf4/lkV1nQI5yQqb8wqMbfbRjy16NgBslpfvR+TaLKNZIimzpsEzjy7MlNYdDYjURewwaXu7+QUhjEuNIaywqdnPiChdU96m5i9cjmSNXqJJY1Cay+SBVMIWipP19Jibnkmc6gl4rq0J0dDanMt7nSAipGLt3hnHNm7LrCEgVgLdlTyy3lCRFB5fAXJdPTCrUeEL+MsbG9N/SnPDRH3L5n/zxNqSwn9i7GSZRDFUfS1QommwVDnsXcPOghFnHhfEAuvS3GbQMzmnYPeWxBQKh2sCY7lW6bqeifbF68pKfkIrYyCLBDaFgG7I7Vfb0T55su5JT1avZVxuLsqud2N8lqrfiwfnuV9UfIFVQjN6oyNpMsI99o0rlEn8J4MvlC8QraqS51TKsYKBQ1XupDtm4EnD3Xt5f1Qj3fRdTNWUDU/4/xJRu7EUZX8m4=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(136003)(376002)(346002)(396003)(39860400002)(451199018)(40470700004)(36840700001)(46966006)(86362001)(5660300002)(40460700003)(36756003)(2906002)(478600001)(83380400001)(36860700001)(6666004)(16526019)(1076003)(316002)(426003)(47076005)(336012)(26005)(2616005)(186003)(450100002)(54906003)(41300700001)(110136005)(8936002)(8676002)(70586007)(70206006)(4326008)(82740400003)(82310400005)(81166007)(40480700001)(7696005)(356005)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 14:24:50.0310 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1dab5202-a2a0-4731-891a-08dafedfeb09
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT109.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4080
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+To: Linux regressions mailing list <regressions@lists.linux.dev>,
+ bskeggs@redhat.com, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>
+References: <b64705e3-2e63-a466-f829-f9568b06766a@googlemail.com>
+ <fcec3c78-b5d9-eb48-0fc0-d1f27de87f23@leemhuis.info>
+ <b21fa1f6-a71d-5657-8596-ee0be73185ea@leemhuis.info>
+ <3ab28896-70e9-6f90-5b97-e5397b06e715@googlemail.com>
+ <a163dd7b-c5d1-a07b-a816-7a2dfd3edfd4@leemhuis.info>
+Content-Language: en-GB
+From: Chris Clayton <chris2553@googlemail.com>
+In-Reply-To: <a163dd7b-c5d1-a07b-a816-7a2dfd3edfd4@leemhuis.info>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
-Subject: [Nouveau] [PATCH v3 2/4] drm/amdkfd: Use cursor start instead of
- ttm resource start
+Subject: Re: [Nouveau] linux-6.2-rc4+ hangs on poweroff/reboot: Bisected
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,41 +81,157 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: shashank.sharma@amd.com, arunpravin.paneerselvam@amd.com,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, arvind.yadav@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: ML nouveau <nouveau@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-cleanup PAGE_SHIFT operation and replacing
-ttm_resource resource->start with cursor start
-using amdgpu_res_first API.
-v1 -> v2: reorder patch sequence
-v2 -> v3: addressing review comment v2
 
-Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index c06ada0844ba..9114393d2ee6 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -200,8 +200,12 @@ static int add_queue_mes(struct device_queue_manager *dqm, struct queue *q,
- 	queue_input.wptr_addr = (uint64_t)q->properties.write_ptr;
- 
- 	if (q->wptr_bo) {
-+		struct amdgpu_res_cursor cursor;
-+
- 		wptr_addr_off = (uint64_t)q->properties.write_ptr & (PAGE_SIZE - 1);
--		queue_input.wptr_mc_addr = ((uint64_t)q->wptr_bo->tbo.resource->start << PAGE_SHIFT) + wptr_addr_off;
-+		amdgpu_res_first(q->wptr_bo->tbo.resource, 0,
-+				 q->wptr_bo->tbo.resource->size, &cursor);
-+		queue_input.wptr_mc_addr = cursor.start + wptr_addr_off;
- 	}
- 
- 	queue_input.is_kfd_process = 1;
--- 
-2.32.0
+On 28/01/2023 05:42, Linux kernel regression tracking (Thorsten Leemhuis) wrote:
+> On 27.01.23 20:46, Chris Clayton wrote:
+>> [Resend because the mail client on my phone decided to turn HTML on behind my back, so my reply got bounced.]
+>>
+>> Thanks Thorsten.
+>>
+>> I did try to revert but it didnt revert cleanly and I don't have the knowledge to fix it up.
+>>
+>> The patch was part of a merge that included a number of related patches. Tomorrow, I'll try to revert the lot and report
+>> back.
+> 
+> You are free to do so, but there is no need for that from my side. I
+> only wanted to know if a simple revert would do the trick; if it
+> doesn't, it in my experience often is best to leave things to the
+> developers of the code in question, 
 
+Sound advice, Thorsten. Way to many conflicts for me to resolve.
+
+as they know it best and thus have a
+> better idea which hidden side effect a more complex revert might have.
+> 
+> Ciao, Thorsten
+> 
+>> On 27/01/2023 11:20, Linux kernel regression tracking (Thorsten Leemhuis) wrote:
+>>> Hi, this is your Linux kernel regression tracker. Top-posting for once,
+>>> to make this easily accessible to everyone.
+>>>
+>>> @nouveau-maintainers, did anyone take a look at this? The report is
+>>> already 8 days old and I don't see a single reply. Sure, we'll likely
+>>> get a -rc8, but still it would be good to not fix this on the finish line.
+>>>
+>>> Chris, btw, did you try if you can revert the commit on top of latest
+>>> mainline? And if so, does it fix the problem?
+>>>
+>>> Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+>>> --
+>>> Everything you wanna know about Linux kernel regression tracking:
+>>> https://linux-regtracking.leemhuis.info/about/#tldr
+>>> If I did something stupid, please tell me, as explained on that page.
+>>>
+>>> #regzbot poke
+>>>
+>>> On 19.01.23 15:33, Linux kernel regression tracking (Thorsten Leemhuis)
+>>> wrote:
+>>>> [adding various lists and the two other nouveau maintainers to the list
+>>>> of recipients]
+>>>
+>>>> On 18.01.23 21:59, Chris Clayton wrote:
+>>>>> Hi.
+>>>>>
+>>>>> I build and installed the lastest development kernel earlier this week. I've found that when I try the laptop down (or
+>>>>> reboot it), it hangs right at the end of closing the current session. The last line I see on  the screen when rebooting is:
+>>>>>
+>>>>> 	sd 4:0:0:0: [sda] Synchronising SCSI cache
+>>>>>
+>>>>> when closing down I see one additional line:
+>>>>>
+>>>>> 	sd 4:0:0:0 [sda]Stopping disk
+>>>>>
+>>>>> In both cases the machine then hangs and I have to hold down the power button fot a few seconds to switch it off.
+>>>>>
+>>>>> Linux 6.1 is OK but 6.2-rc1 hangs, so I bisected between this two and landed on:
+>>>>>
+>>>>> 	# first bad commit: [0e44c21708761977dcbea9b846b51a6fb684907a] drm/nouveau/flcn: new code to load+boot simple HS FWs
+>>>>> (VPR scrubber)
+>>>>>
+>>>>> I built and installed a kernel with f15cde64b66161bfa74fb58f4e5697d8265b802e (the parent of the bad commit) checked out
+>>>>> and that shuts down and reboots fine. It the did the same with the bad commit checked out and that does indeed hang, so
+>>>>> I'm confident the bisect outcome is OK.
+>>>>>
+>>>>> Kernels 6.1.6 and 5.15.88 are also OK.
+>>>>>
+>>>>> My system had dual GPUs - one intel and one NVidia. Related extracts from 'lscpi -v' is:
+>>>>>
+>>>>> 00:02.0 VGA compatible controller: Intel Corporation CometLake-H GT2 [UHD Graphics] (rev 05) (prog-if 00 [VGA controller])
+>>>>>         Subsystem: CLEVO/KAPOK Computer CometLake-H GT2 [UHD Graphics]
+>>>>>
+>>>>>         Flags: bus master, fast devsel, latency 0, IRQ 142
+>>>>>
+>>>>>         Memory at c2000000 (64-bit, non-prefetchable) [size=16M]
+>>>>>
+>>>>>         Memory at a0000000 (64-bit, prefetchable) [size=256M]
+>>>>>
+>>>>>         I/O ports at 5000 [size=64]
+>>>>>
+>>>>>         Expansion ROM at 000c0000 [virtual] [disabled] [size=128K]
+>>>>>
+>>>>>         Capabilities: [40] Vendor Specific Information: Len=0c <?>
+>>>>>
+>>>>>         Capabilities: [70] Express Root Complex Integrated Endpoint, MSI 00
+>>>>>
+>>>>>         Capabilities: [ac] MSI: Enable+ Count=1/1 Maskable- 64bit-
+>>>>>
+>>>>>         Capabilities: [d0] Power Management version 2
+>>>>>
+>>>>>         Kernel driver in use: i915
+>>>>>
+>>>>>         Kernel modules: i915
+>>>>>
+>>>>>
+>>>>> 01:00.0 VGA compatible controller: NVIDIA Corporation TU117M [GeForce GTX 1650 Ti Mobile] (rev a1) (prog-if 00 [VGA
+>>>>> controller])
+>>>>>         Subsystem: CLEVO/KAPOK Computer TU117M [GeForce GTX 1650 Ti Mobile]
+>>>>>         Flags: bus master, fast devsel, latency 0, IRQ 141
+>>>>>         Memory at c4000000 (32-bit, non-prefetchable) [size=16M]
+>>>>>         Memory at b0000000 (64-bit, prefetchable) [size=256M]
+>>>>>         Memory at c0000000 (64-bit, prefetchable) [size=32M]
+>>>>>         I/O ports at 4000 [size=128]
+>>>>>         Expansion ROM at c3000000 [disabled] [size=512K]
+>>>>>         Capabilities: [60] Power Management version 3
+>>>>>         Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
+>>>>>         Capabilities: [78] Express Legacy Endpoint, MSI 00
+>>>>>         Kernel driver in use: nouveau
+>>>>>         Kernel modules: nouveau
+>>>>>
+>>>>> DRI_PRIME=1 is exported in one of my init scripts (yes, I am still using sysvinit).
+>>>>>
+>>>>> I've attached the bisect.log, but please let me know if I can provide any other diagnostics. Please cc me as I'm not
+>>>>> subscribed.
+>>>>
+>>>> Thanks for the report. To be sure the issue doesn't fall through the
+>>>> cracks unnoticed, I'm adding it to regzbot, the Linux kernel regression
+>>>> tracking bot:
+>>>>
+>>>> #regzbot ^introduced e44c2170876197
+>>>> #regzbot title drm: nouveau: hangs on poweroff/reboot
+>>>> #regzbot ignore-activity
+>>>>
+>>>> This isn't a regression? This issue or a fix for it are already
+>>>> discussed somewhere else? It was fixed already? You want to clarify when
+>>>> the regression started to happen? Or point out I got the title or
+>>>> something else totally wrong? Then just reply and tell me -- ideally
+>>>> while also telling regzbot about it, as explained by the page listed in
+>>>> the footer of this mail.
+>>>>
+>>>> Developers: When fixing the issue, remember to add 'Link:' tags pointing
+>>>> to the report (the parent of this mail). See page linked in footer for
+>>>> details.
+>>>>
+>>>> Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+>>>> --
+>>>> Everything you wanna know about Linux kernel regression tracking:
+>>>> https://linux-regtracking.leemhuis.info/about/#tldr
+>>>> That page also explains what to do if mails like this annoy you.
+>>
+>>
