@@ -4,94 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05D29C7EE26
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0225CC77B7C
 	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C42510E488;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57A0110E487;
 	Thu,  4 May 2023 12:32:53 +0000 (UTC)
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2043.outbound.protection.outlook.com [40.107.93.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1091F10E6E1;
- Wed,  8 Feb 2023 09:02:02 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OUTb7gNz7vemeyIo0mtLFGmozn0IY5jcPldR+fg/5Okkvk2wtsFd0x5FJSHKKJDMBnEe3P3qw+nZYper6rLlu6xjxtmTMjJC7j+BeAiqHSIG8hYXhOmSEwx9rpVFsvfUSu/eul4unrx2tAhytR22r6u9EMQArwkc5nQlX3sLtyQUR7awp1Jo9aM6tflz0ooHwEsk0EVKT88Iryx+uWLuuscC0zvftbvvSt38SVGM1dbUCfoo4/1D+81mmlAjQHkc8flzjOn4fLcmfo89T6tGe0VEptCL+tlTusTSyHoRR1+7FPYzaRNYkoauCibP4UUxq7vpmiB1m5GuhpTzKn5mpA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZvSz4nNJj0ftQTyDv0JhIyYioyL8Dm2ndD5DHlDVh+o=;
- b=AlfntoYhxqllBWmvHpCKAaMhNHKdRd0JSh2oXntk76M8Kq/cf5cS343wV67/Rdc7PI9KPPBM5rORz6w32ZEtnSJqoGc2Y/zdCXMG2gzvT28bGRfIHs8rIdXbr5Hq+kcQaoYyLCSb7LqVCZDGjjpFIfBdJwvoiy0hZTDIzJh8pR/k6NVZ4qcMYi7fK5JpW0O0s+zQb0y547fRIX8/0nJZ+bB37/4fHOhuDCoz6lqI/DCiDskiibF3IfJC/tDHNc5d3Ip4krJ14ibEKfjTfriGDlhvJgcDDudZMYXawTwIeb/y3FHT2fRXEUcuwzFUJqtVyGlwsmqWD1MTa6UqK4Vd8Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZvSz4nNJj0ftQTyDv0JhIyYioyL8Dm2ndD5DHlDVh+o=;
- b=q8LAxonsx/4WuzzQKQIdqCtzRthK30eKM4XvDXsjS61RbUTEY8GpWcR2kuPNrTtEtpw0yKDSZIDSwnoDmGY61aQ96WSu+sI68eJKUqYk4QGEMEb26NVus19yl6091ePMD/ZUba80tP1NyPV/o7f92P1gPVuTvyTsk7p3EpaxZJo=
-Received: from BN0PR03CA0038.namprd03.prod.outlook.com (2603:10b6:408:e7::13)
- by PH0PR12MB8005.namprd12.prod.outlook.com (2603:10b6:510:26c::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.17; Wed, 8 Feb
- 2023 09:02:00 +0000
-Received: from BN8NAM11FT091.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e7:cafe::61) by BN0PR03CA0038.outlook.office365.com
- (2603:10b6:408:e7::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.17 via Frontend
- Transport; Wed, 8 Feb 2023 09:01:59 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT091.mail.protection.outlook.com (10.13.176.134) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6086.17 via Frontend Transport; Wed, 8 Feb 2023 09:01:59 +0000
-Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Wed, 8 Feb 2023 03:01:56 -0600
-From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>,
- <linux-graphics-maintainer@vmware.com>
-Date: Wed, 8 Feb 2023 14:31:02 +0530
-Message-ID: <20230208090106.9659-2-Amaranath.Somalapuram@amd.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20230208090106.9659-1-Amaranath.Somalapuram@amd.com>
-References: <20230208090106.9659-1-Amaranath.Somalapuram@amd.com>
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
+ [IPv6:2a00:1450:4864:20::430])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4A5B10E087;
+ Mon, 30 Jan 2023 23:09:14 +0000 (UTC)
+Received: by mail-wr1-x430.google.com with SMTP id t18so12697631wro.1;
+ Mon, 30 Jan 2023 15:09:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:content-language:references
+ :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=nBJSf0ujnLSINj9vtVqCPIJUNHNqvfxIwQaQ2Pf5QPI=;
+ b=fXcEGnHpuTMxqjF81LzYGEjxdrRIVQpkK8XSxfBNzkMdookleOEbuAVmp9Z5ZVCotS
+ axdeMivX2doj/9+R0+xbQz1Y1nF9wfApIhaw3QTUcBdcDbrHYmxBs1Exl0zeZLk/3DM3
+ /uxGpyKWy8DgAJTo4Y8kw8495ulb/GEnvszPW1ranocA8TLjhYyKQ17IdCAdAmQHPFSM
+ /CSNJn6eXTvZ71KVMXEWliE05kW9VLLJr8XOYXMnFdECSqrJr49SqN5WEPdU7Ml6FUld
+ J32j1DVQ1agb1+2fdR5OQeoAHj+CIZKsiIx23H6y6/lbYHW2bsDA0TCIw8+Qa21nqqZv
+ mLcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:content-language:references
+ :cc:to:from:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=nBJSf0ujnLSINj9vtVqCPIJUNHNqvfxIwQaQ2Pf5QPI=;
+ b=2Tz5hJGhm5W8QSZkmkucYm31+rjAbsKiwmvCThbZfqs2Qgo76CaZOnCgEAT26Hzj/F
+ 2ezKWht+XW4fjJC5RE8o/ZnrIJau3qawKGOwJbwN3iT85DdNxYblv4B/b0U7sv/L9Pr8
+ cwa7bky3y5e0g4w+bZV+x55wCMfMKivdorBn7V7xtUzD+jj32hLTmKsCQpJBOk4XQAq7
+ /hdJWkV2uLrEK2JNx7lkNx5wzLuQu+kGJNey/wwFy38APANJ0eOKxV1BUwq/pKSFIELN
+ zszgZ6/ipJCzQHbkULdUmmvuq0oqVBx/+2rwXhBH/vHeh/fDCpnoDKa4l6OHIyBonNhK
+ C5gw==
+X-Gm-Message-State: AFqh2kq49O1WCcyvcYGd5702VLWAByA4oQrUol64fW22lqPloOja6BUH
+ w1RJCeJAGDAW7k/uHWfrrOg=
+X-Google-Smtp-Source: AMrXdXstvNWA6suGxYdZtreTUdrAXIng9NTIHs6qOi5zxQJ73BED5Zi8z5jOZvFUQJs+vVi5Hs9OsA==
+X-Received: by 2002:a5d:6282:0:b0:2bf:9516:d295 with SMTP id
+ k2-20020a5d6282000000b002bf9516d295mr30547069wru.22.1675120153156; 
+ Mon, 30 Jan 2023 15:09:13 -0800 (PST)
+Received: from [192.168.1.10] (97e09f27.skybroadband.com. [151.224.159.39])
+ by smtp.googlemail.com with ESMTPSA id
+ g2-20020a5d4882000000b002bdf3809f59sm12707867wrq.38.2023.01.30.15.09.10
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 30 Jan 2023 15:09:12 -0800 (PST)
+Message-ID: <dab6eb81-db3f-8fa1-84ad-9b40e209514b@googlemail.com>
+Date: Mon, 30 Jan 2023 23:09:08 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT091:EE_|PH0PR12MB8005:EE_
-X-MS-Office365-Filtering-Correlation-Id: 606405e4-79bc-4b1e-e45b-08db09b32349
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eNbC0fyl3NC5vvKEgx/vPh0N88x+ie4HMy1meQRutiA0KPH4MU9Qqfm0b/nOzb8s85WzVwOiIO+i4VM/ssJjNFQxO8ieUB3mrXU5SGGinoOz5hXvSXFrskSiF42aDWu3WOkqKs7KAyrmSeSuP0V7mMZ4SSunrAgQeS7Ew/vglInl062Mn4bRcxRKZRgPR1zNXadSrjlYuzSjcacvlrHyhHBh/7Aqn4ScJrJyPBPxDfPfw+UKJ1HzIgFiWmEy1JYRBxfHy9djACE/b0rQeYdsfkLXyJE1NHYhIJeduo3P0jqSCmzIYte+ar2QGCBpbFxbQitBUuvQJGrlSC9PiVIQcI6WPMwgE3LgMoPdKh1WowoIq0lU9jWMNLkqTdjfWnWQHrG35eJ1jSR6hd/ilp4vhAGSO97H2IQ4JqnWYeOA75UdeioHGaq0k4LqJoE2o6JbB5+S5Hj0QHWn1g8+we77to0QekJ6Lwe1kLakmFjfisx0DEZbhYIuAt0E+qm+HyMT1h8HwTbqWv1eRv0IXygtl4JiZg7vukBKSc1RXRIv0ya0Su47KvBP69MoR80hn7E+gObqDexv6ed7RFHWKowBYCtWuh0AmHXXvmbCqr3UB4PaO7KcirMaxzOZaDziaVOfrcPxTtwpQ7EjR2onrkT4/I3nC/Plq8x3P1cV7mybuRIipoAFq21QhRcbF2FfJ0wje3naB/Qv0LyzRjEdU/l7bjvD0QCihhTv0vKtIUO1ieM=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(136003)(346002)(396003)(39860400002)(376002)(451199018)(36840700001)(46966006)(40470700004)(40480700001)(5660300002)(8936002)(2906002)(36756003)(41300700001)(186003)(8676002)(4326008)(16526019)(40460700003)(336012)(478600001)(426003)(47076005)(1076003)(26005)(2616005)(6666004)(54906003)(110136005)(83380400001)(316002)(70206006)(70586007)(86362001)(356005)(82310400005)(7696005)(82740400003)(36860700001)(81166007)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2023 09:01:59.8429 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 606405e4-79bc-4b1e-e45b-08db09b32349
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT091.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8005
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+From: Chris Clayton <chris2553@googlemail.com>
+To: Ben Skeggs <skeggsb@gmail.com>
+References: <b64705e3-2e63-a466-f829-f9568b06766a@googlemail.com>
+ <fcec3c78-b5d9-eb48-0fc0-d1f27de87f23@leemhuis.info>
+ <b21fa1f6-a71d-5657-8596-ee0be73185ea@leemhuis.info>
+ <3ab28896-70e9-6f90-5b97-e5397b06e715@googlemail.com>
+ <a163dd7b-c5d1-a07b-a816-7a2dfd3edfd4@leemhuis.info>
+ <ab1b0f73-6b4e-8602-2999-b7bec25d92db@googlemail.com>
+ <CACAvsv4sOtPjCVnEcKd2RCUqYWxSn5XKyksbS-Bds2qCqyusVw@mail.gmail.com>
+ <1cdb84ac-f7a8-66ba-98fc-3db302b49a5a@googlemail.com>
+Content-Language: en-GB
+In-Reply-To: <1cdb84ac-f7a8-66ba-98fc-3db302b49a5a@googlemail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
-Subject: [Nouveau] [PATCH 2/6] drm/amdgpu: Remove TTM resource->start
- visible VRAM condition
+Subject: Re: [Nouveau] linux-6.2-rc4+ hangs on poweroff/reboot: Bisected
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,62 +82,60 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: shashank.sharma@amd.com, arunpravin.paneerselvam@amd.com,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, arvind.yadav@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: Linux regressions mailing list <regressions@lists.linux.dev>,
+ ML nouveau <nouveau@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>, bskeggs@redhat.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Use amdgpu_bo_in_cpu_visible_vram() instead.
+Hi again.
 
-Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+On 30/01/2023 20:19, Chris Clayton wrote:
+> Thanks, Ben.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 981010de0a28..d835ee2131d2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -600,7 +600,7 @@ int amdgpu_bo_create(struct amdgpu_device *adev,
- 
- 	if (!amdgpu_gmc_vram_full_visible(&adev->gmc) &&
- 	    bo->tbo.resource->mem_type == TTM_PL_VRAM &&
--	    bo->tbo.resource->start < adev->gmc.visible_vram_size >> PAGE_SHIFT)
-+	    amdgpu_bo_in_cpu_visible_vram(bo))
- 		amdgpu_cs_report_moved_bytes(adev, ctx.bytes_moved,
- 					     ctx.bytes_moved);
- 	else
-@@ -1346,7 +1346,6 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
- 	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->bdev);
- 	struct ttm_operation_ctx ctx = { false, false };
- 	struct amdgpu_bo *abo = ttm_to_amdgpu_bo(bo);
--	unsigned long offset;
- 	int r;
- 
- 	/* Remember that this BO was accessed by the CPU */
-@@ -1355,8 +1354,7 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
- 	if (bo->resource->mem_type != TTM_PL_VRAM)
- 		return 0;
- 
--	offset = bo->resource->start << PAGE_SHIFT;
--	if ((offset + bo->base.size) <= adev->gmc.visible_vram_size)
-+	if (amdgpu_bo_in_cpu_visible_vram(abo))
- 		return 0;
- 
- 	/* Can't move a pinned BO to visible VRAM */
-@@ -1378,10 +1376,9 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
- 	else if (unlikely(r))
- 		return VM_FAULT_SIGBUS;
- 
--	offset = bo->resource->start << PAGE_SHIFT;
- 	/* this should never happen */
- 	if (bo->resource->mem_type == TTM_PL_VRAM &&
--	    (offset + bo->base.size) > adev->gmc.visible_vram_size)
-+	    amdgpu_bo_in_cpu_visible_vram(abo))
- 		return VM_FAULT_SIGBUS;
- 
- 	ttm_bo_move_to_lru_tail_unlocked(bo);
--- 
-2.32.0
+<snip>
 
+>> Hey,
+>>
+>> This is a complete shot-in-the-dark, as I don't see this behaviour on
+>> *any* of my boards.  Could you try the attached patch please?
+> 
+> Unfortunately, the patch made no difference.
+> 
+> I've been looking at how the graphics on my laptop is set up, and have a bit of a worry about whether the firmware might
+> be playing a part in this problem. In order to offload video decoding to the NVidia TU117 GPU, it seems the scrubber
+> firmware must be available, but as far as I know,that has not been released by NVidia. To get it to work, I followed
+> what ubuntu have done and the scrubber in /lib/firmware/nvidia/tu117/nvdec/ is a symlink to
+> ../../tu116/nvdev/scrubber.bin. That, of course, means that some of the firmware loaded is for a different card is being
+> loaded. I note that processing related to firmware is being changed in the patch. Might my set up be at the root of my
+> problem?
+> 
+> I'll have a fiddle an see what I can work out.
+> 
+> Chris
+> 
+>>
+>> Thanks,
+>> Ben.
+>>
+>>>
+
+Well, my fiddling has got my system rebooting and shutting down successfully again. I found that if I delete the symlink
+to the scrubber firmware, reboot and shutdown work again. There are however, a number of other files in the tu117
+firmware directory tree that that are symlinks to actual files in its tu116 counterpart. So I deleted all of those too.
+Unfortunately, the absence of one or more of those symlinks causes Xorg to fail to start. I've reinstated all the links
+except scrubber and I now have a system that works as it did until I tried to run a kernel that includes the bad commit
+I identified in my bisection. That includes offloading video decoding to the NVidia card, so what ever I read that said
+the scrubber firmware was needed seems to have been wrong. I get a new message that (nouveau 0000:01:00.0: fb: VPR
+locked, but no scrubber binary!), but, hey, we can't have everything.
+
+If you still want to get to the bottom of this, let me know what you need me to provide and I'll do my best. I suspect
+you might want to because there will a n awful lot of Ubuntu-based systems out there with that scrubber.bin symlink in
+place. On the other hand,m it could but quite a while before ubuntu are deploying 6.2 or later kernels.
+
+Thanks,
+
+Chris
+
+<snip>
