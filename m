@@ -4,50 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49F8AC7EE26
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2DF7C77B7C
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8E4D10E457;
-	Thu,  4 May 2023 12:32:34 +0000 (UTC)
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4B5110E288;
- Fri, 17 Mar 2023 21:54:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
- In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=+GbVqzctd4n33a2yd9rymKGEXP8gzDcHMfyXnPYe278=; b=OZAFd+LZk8wcpvfkH9hf8/m1uw
- gn/iBfzaHcOQC1S2njhHeV5ZJ8WkKVf0Utb3o/IwebMMHuL8l35Gz2CZ7JeQUsOiQT7Rjk2nsevnl
- 8xI6+E28Snt8kx67u8hSvLJ3jIauClqE+9Ao/i0xH5f8HwUIgEPjIaUofu/r8APxgkVc9W3RR1yYY
- r14QWzuuAmwamCeqbV0rAf+ZIo8JfXRM4aQEbrP6Hxk7wj85HTDV4whgdGPTU6aBDqgfI3c4xrq6r
- 7Mi1tqQT3KGvkKvNtYX8O6zpda9rnlAT5lRinN62+0pneQIdA67mZR0cNuMPN1YV5GrPg1EozotSE
- XarGB0Mg==;
-Received: from 137.red-83-52-2.dynamicip.rima-tde.net ([83.52.2.137]
- helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1pdI2E-00GMAw-36; Fri, 17 Mar 2023 22:54:49 +0100
-Message-ID: <21eeb767a9ef197f4ca443231bb483a00291afdb.camel@igalia.com>
-From: Ricardo Garcia <rgarcia@igalia.com>
-To: members@x.org, events@lists.x.org, xorg-devel@lists.freedesktop.org, 
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- libre-soc-dev <libre-soc-dev@lists.libre-soc.org>
-Date: Fri, 17 Mar 2023 22:54:49 +0100
-In-Reply-To: <19f8b5328550abde46a316189c8cd746339819b0.camel@igalia.com>
-References: <c1c2591a7f7c9bcb05b69b08da529ddb8fc8145c.camel@igalia.com>
- <19f8b5328550abde46a316189c8cd746339819b0.camel@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 825B310E413;
+	Thu,  4 May 2023 12:32:41 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam04on2076.outbound.protection.outlook.com [40.107.102.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1920410E6FB;
+ Wed,  8 Feb 2023 09:02:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EyTAYUpU8j+N22WM1HFyF6KmlB/9VbcbqmcXHQdbVVdtC8vc6iuTREDa6FoCMJ4f3VZpaqQaK+2QdZF6yT9yG/PgHYbthRMmukorxOoE0LxS6nDlUg6fkseAMaCcfejsvyAGA9rua1P5sbRkTmNZ8A+RmmGo1KC/LAp8rZBP52Zy9Bkv5bplM4xKaKOl9eeEXlVmCpBhHIZjNi2cg5YYHvjuoBqKQYD1hoy1V42mM5nEwDeVH/ohglaXyw5so2SrYfDZ04jH0fpWl3zSkEnuPP9nWBiZ4Id1zL82SYR8uxef6FqfIcKn4e6RZk2VfKttYXuDRRM5c4Sal7HPyiLR2g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Qq1NTmmvf6gpMJ8tY6KJk7MPsdFUaad6aobSTKwETdk=;
+ b=WokhJdSqgRCJ/Tpwhv+Srlv9GgSPaQV4mOfRdypOHeVzriZYL3nFCto62bHViczCGpXG17ykqSBLB7LmFhAez9REqJ9N/7UjUOD8/Lx8I7KZnGyz8yr8BKoSvw91NNaR4q2LZuQBxdD2xFutuQV+4yg9x6K53pP5EBY2m+MFM8/rKfXTKOtXDYLDxl5yGCTL+6TJkDaW6H+oLeylS4ThdRGzbA2rIz0EX4+P6+Vnd61nsuQz1UE1EfLk8l5FAK/LTOGDrDV7hzai0yp+YoXiF3i5U25AX2IwbfEDCmYeQAxaDM4K/6yDKsMnyQ+IbvPgoAbPrMkz4Uw5JRPPfX9uXA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Qq1NTmmvf6gpMJ8tY6KJk7MPsdFUaad6aobSTKwETdk=;
+ b=EoxXikZlOgtm2W5ohHZCFghF69borwKTCG20r5JbSb1xdzolsoPFsf8rt+kRzCzenKPL6YSgVFz05cBC2J2A0vHyCmrt+N48CA9b7KXZUA6GNf0/kTVpsiwDlo16FfQRqvfLxgIW9RpVjlg5qfMvXIl+zskpeH/k3IDl51LiwvA=
+Received: from BN8PR07CA0012.namprd07.prod.outlook.com (2603:10b6:408:ac::25)
+ by SJ2PR12MB7944.namprd12.prod.outlook.com (2603:10b6:a03:4c5::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.35; Wed, 8 Feb
+ 2023 09:01:57 +0000
+Received: from BN8NAM11FT055.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:ac:cafe::83) by BN8PR07CA0012.outlook.office365.com
+ (2603:10b6:408:ac::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.17 via Frontend
+ Transport; Wed, 8 Feb 2023 09:01:57 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT055.mail.protection.outlook.com (10.13.177.62) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6086.17 via Frontend Transport; Wed, 8 Feb 2023 09:01:57 +0000
+Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Wed, 8 Feb 2023 03:01:45 -0600
+From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>,
+ <linux-graphics-maintainer@vmware.com>
+Date: Wed, 8 Feb 2023 14:31:01 +0530
+Message-ID: <20230208090106.9659-1-Amaranath.Somalapuram@amd.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:38 +0000
-Subject: [Nouveau] Reminder: Only 2 days left to nominate candidates for the
- 2023 X.Org Board of Directors Elections
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT055:EE_|SJ2PR12MB7944:EE_
+X-MS-Office365-Filtering-Correlation-Id: 636e20ec-a108-4929-70a0-08db09b321ab
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: bTu6tHK4J4kLc5G5fjiOhR9saZXE5e5YYZTXM40I/vCW4o4bn25aSMuHiAh0Yf8fUEsjVpPHL75M5hXCl69uD9jSrbhM0nSF+xKyhGCt+umHEEDp0aKXNTTLv9MbRB/8TKq3C5rpSKttbmJ8kgva/hj1wjj8c413Op6+oMGjGM36rYOe5d89YZM0Du67PpMRPG/81mH9T7lKhcvZIJHgXCCuRM8vLgkUqp8E4kGk/WOgamfGTJbZ2Ho3SF/23xuGhXVUg8fTzDZhFcw/GTKcnEyXQWHTpXqRIl/SAj6Hc3pZrSnx3K4dFngXlCJxb12EXATNj8nRyZoWkWhG13JxEGv1TIfNw3Ui4Vd0ON4oCMSvJ9tsx7pHsC255CAkRctmykXNvkrSnxaiR0WItStvG2mvf0va7nIiRGNb1r3XeFEpRNXgkPaNH3h4YlsJqA1JggZ/MlvfDHH8D2toBHnWjOPse2tBZbu06xH0LRh0rR3CutP9WInd8Bw1X2aahxYo5In2Je89Xkm660oJAwks4x5tK07loN1HOO/Mx5QZWLbt9mvsfDIXbnANqMmW1iGohTrjPQnr09V9AoleoC76s5IfLs7TyeTOpn/CN4vMeitIrgLnF/cdfVmkmvw4fUThpT3fINWFDnlQxuHuZbap9fK1NdvLZ4xBnVz7FsznC4MfcbALOb0PhlIaAST1XzsJZOWSydNN32N297zXBr7QpxwODgi3wqroTnJLbQvAw6I=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230025)(4636009)(346002)(376002)(39860400002)(396003)(136003)(451199018)(36840700001)(40470700004)(46966006)(2906002)(82310400005)(4744005)(36756003)(47076005)(5660300002)(8936002)(41300700001)(426003)(336012)(83380400001)(40460700003)(70206006)(70586007)(36860700001)(2616005)(4326008)(316002)(16526019)(186003)(86362001)(110136005)(356005)(81166007)(54906003)(1076003)(8676002)(40480700001)(26005)(478600001)(82740400003)(7696005)(6666004)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2023 09:01:57.1268 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 636e20ec-a108-4929-70a0-08db09b321ab
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT055.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7944
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
+Subject: [Nouveau] [PATCH 1/6] drm/gem: Remove BUG_ON in
+ drm_gem_private_object_init
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,85 +101,32 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: board <board@foundation.x.org>
+Cc: shashank.sharma@amd.com, arunpravin.paneerselvam@amd.com,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, arvind.yadav@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Further reminder that the nomination period for the X.Org Board of
-Director elections finishes in only 2 days, on March 19th.
+ttm_resource can allocate size in bytes to support less than page size.
 
-Please send your nominations or self-nominations as soon as possible
-following the instructions below.
+Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+---
+ drivers/gpu/drm/drm_gem.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-Thanks again for your attention.
-
-On Mon, 2023-03-13 at 16:27 +0100, Ricardo Garcia wrote:
-> This is a reminder that the nomination period for the X.Org Board of
-> Director elections finishes in a week, on March 19th.
->=20
-> If you would like to nominate yourself please send email to the election
-> committee elections@x.org, giving your
->=20
->     name
->     current professional affiliation
->     a statement of contribution to X.Org or related technologies
->     a personal statement.
->=20
-> To vote or to be elected to the Board you needed to be a Member of the
-> X.Org Foundation. To be a Member of the X.Org Foundation you need to
-> apply or renew your membership until the end of the nomination period.
->=20
-> Original email follows below. Thanks for your attention.
->=20
-> On Wed, 2023-02-15 at 21:53 +0100, Ricardo Garcia wrote:
-> > We are seeking nominations for candidates for election to the X.Org
-> > Foundation Board of Directors. All X.Org Foundation members are eligibl=
-e
-> > for election to the board.
-> >=20
-> > Nominations for the 2023 election are now open and will remain open
-> > until 23:59 UTC on 19 March 2023.
-> >=20
-> > The Board consists of directors elected from the membership. Each year,
-> > an election is held to bring the total number of directors to eight. Th=
-e
-> > four members receiving the highest vote totals will serve as directors
-> > for two year terms.
-> >=20
-> > The directors who received two year terms starting in 2022 were Emma
-> > Anholt, Mark Filion, Alyssa Rosenzweig and Ricardo Garcia. They will
-> > continue to serve until their term ends in 2024. Current directors whos=
-e
-> > term expires in 2023 are Samuel Iglesias Gons=C3=A1lvez, Manasi D Navar=
-e,
-> > Lyude Paul and Daniel Vetter.
-> >=20
-> > A director is expected to participate in the fortnightly IRC meeting to
-> > discuss current business and to attend the annual meeting of the X.Org
-> > Foundation, which will be held at a location determined in advance by
-> > the Board of Directors.
-> >=20
-> > A member may nominate themselves or any other member they feel is
-> > qualified. Nominations should be sent to the Election Committee at
-> > elections at x.org.
-> >=20
-> > Nominees shall be required to be current members of the X.Org
-> > Foundation, and submit a personal statement of up to 200 words that wil=
-l
-> > be provided to prospective voters. The collected statements, along with
-> > the statement of contribution to the X.Org Foundation in the member's
-> > account page on http://members.x.org, will be made available to all
-> > voters to help them make their voting decisions.
-> >=20
-> > Nominations, membership applications or renewals and completed personal
-> > statements must be received no later than 23:59 UTC on 19 March 2023.
-> >=20
-> > The slate of candidates will be published 26 March 2023 and candidate
-> > Q&A will begin then. The deadline for Xorg membership applications and
-> > renewals is 26 March 2023.
-> >=20
-> > Cheers,
-> > Ricardo Garcia, on behalf of the X.Org BoD
-> >=20
->=20
+diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+index 59a0bb5ebd85..ee8b5c2b6c60 100644
+--- a/drivers/gpu/drm/drm_gem.c
++++ b/drivers/gpu/drm/drm_gem.c
+@@ -152,8 +152,6 @@ EXPORT_SYMBOL(drm_gem_object_init);
+ void drm_gem_private_object_init(struct drm_device *dev,
+ 				 struct drm_gem_object *obj, size_t size)
+ {
+-	BUG_ON((size & (PAGE_SIZE - 1)) != 0);
+-
+ 	obj->dev = dev;
+ 	obj->filp = NULL;
+ 
+-- 
+2.32.0
 
