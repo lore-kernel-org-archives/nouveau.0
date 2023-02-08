@@ -4,81 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D696C7EE23
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05D29C7EE26
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F40510E46B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C42510E488;
 	Thu,  4 May 2023 12:32:53 +0000 (UTC)
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com
- [IPv6:2a00:1450:4864:20::533])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E211110E547;
- Sat, 18 Feb 2023 18:55:48 +0000 (UTC)
-Received: by mail-ed1-x533.google.com with SMTP id dm15so5763038edb.0;
- Sat, 18 Feb 2023 10:55:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:content-language:references
- :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
- :cc:subject:date:message-id:reply-to;
- bh=stB38V3fdBlcd6D0cBa/2Lgks2xX7xVFDJ6BHXxoksE=;
- b=SoAYDh8SnuZb8Gu4r2FwfYCw0QJtRY3AfujYJ/7viSKDIdxnLUVDbPtITB9EaJHVX+
- RVIZZNYSGSALLsukfpvmCvs/+l3+Va+FHJ4Z31hrY/HKaHta3HRqPt8DYoIUS6F1FQ+e
- ljkSWRig2kLXGnhw3P6ZPPz6Vf6UIX0fl9ql6j6JwbKkM/eXNbOBi/W5ACxDhGjxsnci
- SGaQpcp9nKH9rJXVMljVOPEQfek36g2CPqpQTwfWuMehFCi2ypMsU+X8kqndCTeRwpWm
- zuV5aYuYoVb/oJdye1YBmKfPPH4NW3Cr5PLC3awVMeK8R4bDDIpOI7LfDbh+Cl8dMRU1
- Fo3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:content-language:references
- :cc:to:from:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=stB38V3fdBlcd6D0cBa/2Lgks2xX7xVFDJ6BHXxoksE=;
- b=RLA2Goz5S2zu8SzPIz5jm+7FIYG+mbFjeOsV74BdkNQpGLdgK5KczGeUrmXe/OOn5S
- D9pGFOfRhYnspojZfrAmQkA52W0c1uNqGSt/6qg/RdtjIHNnLVw+2A9nhypXPpRBRqGZ
- wX/FctStVmGvs6ygMrrtQsVyEOe6wUj1zlTCQIPthK7a8dle+s25UgeGOBb9oi9xm1pi
- j5j5UW2pDlpS/pFt6Zs6zpRo6wIr9UL5tFFbL0piNH1aLSVHLuQM+jpqs2IVlccXVx6O
- LvVeLrPi42fUDOe9WwxC7OMERbRTZ9olXtt+5Shvjdpwyem7TXKaqFlbAGEhDVtq1K7G
- 82rA==
-X-Gm-Message-State: AO0yUKWbvf/AF2jROr3nfgl2neXiqoXBbb2VoeNdt5nWacSA1BtjHrTi
- h3g8NyvfQiFvQB0x/Jc4S7k=
-X-Google-Smtp-Source: AK7set+QftzU/ZbqTZ1haMAMnd1BnHKFmoA2oiAhrtjAqxMxs9LfYRgveg1CfLTpJBhLO2CbZln4pg==
-X-Received: by 2002:aa7:c9c2:0:b0:4ac:c6ca:b1f8 with SMTP id
- i2-20020aa7c9c2000000b004acc6cab1f8mr4281544edt.12.1676746547156; 
- Sat, 18 Feb 2023 10:55:47 -0800 (PST)
-Received: from [192.168.1.10] (97e09f27.skybroadband.com. [151.224.159.39])
- by smtp.googlemail.com with ESMTPSA id
- x29-20020a50d61d000000b0049e1f167956sm3952361edi.9.2023.02.18.10.55.45
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 18 Feb 2023 10:55:46 -0800 (PST)
-Message-ID: <7f6ec5b3-b5c7-f564-003e-132f112b7cf4@googlemail.com>
-Date: Sat, 18 Feb 2023 18:55:44 +0000
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2043.outbound.protection.outlook.com [40.107.93.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1091F10E6E1;
+ Wed,  8 Feb 2023 09:02:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OUTb7gNz7vemeyIo0mtLFGmozn0IY5jcPldR+fg/5Okkvk2wtsFd0x5FJSHKKJDMBnEe3P3qw+nZYper6rLlu6xjxtmTMjJC7j+BeAiqHSIG8hYXhOmSEwx9rpVFsvfUSu/eul4unrx2tAhytR22r6u9EMQArwkc5nQlX3sLtyQUR7awp1Jo9aM6tflz0ooHwEsk0EVKT88Iryx+uWLuuscC0zvftbvvSt38SVGM1dbUCfoo4/1D+81mmlAjQHkc8flzjOn4fLcmfo89T6tGe0VEptCL+tlTusTSyHoRR1+7FPYzaRNYkoauCibP4UUxq7vpmiB1m5GuhpTzKn5mpA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZvSz4nNJj0ftQTyDv0JhIyYioyL8Dm2ndD5DHlDVh+o=;
+ b=AlfntoYhxqllBWmvHpCKAaMhNHKdRd0JSh2oXntk76M8Kq/cf5cS343wV67/Rdc7PI9KPPBM5rORz6w32ZEtnSJqoGc2Y/zdCXMG2gzvT28bGRfIHs8rIdXbr5Hq+kcQaoYyLCSb7LqVCZDGjjpFIfBdJwvoiy0hZTDIzJh8pR/k6NVZ4qcMYi7fK5JpW0O0s+zQb0y547fRIX8/0nJZ+bB37/4fHOhuDCoz6lqI/DCiDskiibF3IfJC/tDHNc5d3Ip4krJ14ibEKfjTfriGDlhvJgcDDudZMYXawTwIeb/y3FHT2fRXEUcuwzFUJqtVyGlwsmqWD1MTa6UqK4Vd8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZvSz4nNJj0ftQTyDv0JhIyYioyL8Dm2ndD5DHlDVh+o=;
+ b=q8LAxonsx/4WuzzQKQIdqCtzRthK30eKM4XvDXsjS61RbUTEY8GpWcR2kuPNrTtEtpw0yKDSZIDSwnoDmGY61aQ96WSu+sI68eJKUqYk4QGEMEb26NVus19yl6091ePMD/ZUba80tP1NyPV/o7f92P1gPVuTvyTsk7p3EpaxZJo=
+Received: from BN0PR03CA0038.namprd03.prod.outlook.com (2603:10b6:408:e7::13)
+ by PH0PR12MB8005.namprd12.prod.outlook.com (2603:10b6:510:26c::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.17; Wed, 8 Feb
+ 2023 09:02:00 +0000
+Received: from BN8NAM11FT091.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:e7:cafe::61) by BN0PR03CA0038.outlook.office365.com
+ (2603:10b6:408:e7::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.17 via Frontend
+ Transport; Wed, 8 Feb 2023 09:01:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT091.mail.protection.outlook.com (10.13.176.134) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6086.17 via Frontend Transport; Wed, 8 Feb 2023 09:01:59 +0000
+Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Wed, 8 Feb 2023 03:01:56 -0600
+From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>,
+ <linux-graphics-maintainer@vmware.com>
+Date: Wed, 8 Feb 2023 14:31:02 +0530
+Message-ID: <20230208090106.9659-2-Amaranath.Somalapuram@amd.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20230208090106.9659-1-Amaranath.Somalapuram@amd.com>
+References: <20230208090106.9659-1-Amaranath.Somalapuram@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-From: Chris Clayton <chris2553@googlemail.com>
-To: Karol Herbst <kherbst@redhat.com>
-References: <b64705e3-2e63-a466-f829-f9568b06766a@googlemail.com>
- <CACAvsv5iYdF3P8AbyrbYo3zGmYRYhxDWn7WbAR5V9qHpbgBXRA@mail.gmail.com>
- <1632a9ef-2954-c8f0-cdc9-03157c9d8547@googlemail.com>
- <5abbee70-cc84-1528-c3d8-9befd9edd611@googlemail.com>
- <5cf46df8-0fa2-e9f5-aa8e-7f7f703d96dd@googlemail.com>
- <f72fe15b-db1d-56dd-aaf6-3cba68a8bf0a@leemhuis.info>
- <CACO55tvR4ydDOXt=9nbR3n2aFLKrj8zeuGRR_xpezVQBBLrjqg@mail.gmail.com>
- <a6188878-f84c-0fcc-9509-b9d7ab797f4c@leemhuis.info>
- <d031f0a5-8d5e-af51-6db6-11844de3eeba@googlemail.com>
- <CAPM=9tz+wksJTvMi_4Ef7XWezfH0ReN2se189s8Q=obJjHC+Fw@mail.gmail.com>
- <4e786e22-f17a-da76-5129-8fef0c7c825a@googlemail.com>
- <b829633e-ccc4-7a54-1cad-f29254de1251@leemhuis.info>
- <CACO55tsvM07_6mGU3dCgeji0a6B4JJKSDOOBuCHv2Mw3rYbCHg@mail.gmail.com>
- <181bea6a-e501-f5bd-b002-de7a244a921a@googlemail.com>
- <CACO55tsGXfy9-a-nexvcn7pnDGoEWXMqhiQEBwCDkGyOeT1sXQ@mail.gmail.com>
- <dbfc1f77-29f3-7690-c231-55f906a4e7e5@googlemail.com>
-Content-Language: en-GB
-In-Reply-To: <dbfc1f77-29f3-7690-c231-55f906a4e7e5@googlemail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT091:EE_|PH0PR12MB8005:EE_
+X-MS-Office365-Filtering-Correlation-Id: 606405e4-79bc-4b1e-e45b-08db09b32349
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: eNbC0fyl3NC5vvKEgx/vPh0N88x+ie4HMy1meQRutiA0KPH4MU9Qqfm0b/nOzb8s85WzVwOiIO+i4VM/ssJjNFQxO8ieUB3mrXU5SGGinoOz5hXvSXFrskSiF42aDWu3WOkqKs7KAyrmSeSuP0V7mMZ4SSunrAgQeS7Ew/vglInl062Mn4bRcxRKZRgPR1zNXadSrjlYuzSjcacvlrHyhHBh/7Aqn4ScJrJyPBPxDfPfw+UKJ1HzIgFiWmEy1JYRBxfHy9djACE/b0rQeYdsfkLXyJE1NHYhIJeduo3P0jqSCmzIYte+ar2QGCBpbFxbQitBUuvQJGrlSC9PiVIQcI6WPMwgE3LgMoPdKh1WowoIq0lU9jWMNLkqTdjfWnWQHrG35eJ1jSR6hd/ilp4vhAGSO97H2IQ4JqnWYeOA75UdeioHGaq0k4LqJoE2o6JbB5+S5Hj0QHWn1g8+we77to0QekJ6Lwe1kLakmFjfisx0DEZbhYIuAt0E+qm+HyMT1h8HwTbqWv1eRv0IXygtl4JiZg7vukBKSc1RXRIv0ya0Su47KvBP69MoR80hn7E+gObqDexv6ed7RFHWKowBYCtWuh0AmHXXvmbCqr3UB4PaO7KcirMaxzOZaDziaVOfrcPxTtwpQ7EjR2onrkT4/I3nC/Plq8x3P1cV7mybuRIipoAFq21QhRcbF2FfJ0wje3naB/Qv0LyzRjEdU/l7bjvD0QCihhTv0vKtIUO1ieM=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230025)(4636009)(136003)(346002)(396003)(39860400002)(376002)(451199018)(36840700001)(46966006)(40470700004)(40480700001)(5660300002)(8936002)(2906002)(36756003)(41300700001)(186003)(8676002)(4326008)(16526019)(40460700003)(336012)(478600001)(426003)(47076005)(1076003)(26005)(2616005)(6666004)(54906003)(110136005)(83380400001)(316002)(70206006)(70586007)(86362001)(356005)(82310400005)(7696005)(82740400003)(36860700001)(81166007)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2023 09:01:59.8429 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 606405e4-79bc-4b1e-e45b-08db09b32349
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT091.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8005
 X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
-Subject: Re: [Nouveau] linux-6.2-rc4+ hangs on poweroff/reboot: Bisected
+Subject: [Nouveau] [PATCH 2/6] drm/amdgpu: Remove TTM resource->start
+ visible VRAM condition
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,159 +103,62 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux regressions mailing list <regressions@lists.linux.dev>,
- ML nouveau <nouveau@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>, bskeggs@redhat.com
+Cc: shashank.sharma@amd.com, arunpravin.paneerselvam@amd.com,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, arvind.yadav@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+Use amdgpu_bo_in_cpu_visible_vram() instead.
 
+Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
 
-On 18/02/2023 15:19, Chris Clayton wrote:
-> 
-> 
-> On 18/02/2023 12:25, Karol Herbst wrote:
->> On Sat, Feb 18, 2023 at 1:22 PM Chris Clayton <chris2553@googlemail.com> wrote:
->>>
->>>
->>>
->>> On 15/02/2023 11:09, Karol Herbst wrote:
->>>> On Wed, Feb 15, 2023 at 11:36 AM Linux regression tracking #update
->>>> (Thorsten Leemhuis) <regressions@leemhuis.info> wrote:
->>>>>
->>>>> On 13.02.23 10:14, Chris Clayton wrote:
->>>>>> On 13/02/2023 02:57, Dave Airlie wrote:
->>>>>>> On Sun, 12 Feb 2023 at 00:43, Chris Clayton <chris2553@googlemail.com> wrote:
->>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>> On 10/02/2023 19:33, Linux regression tracking (Thorsten Leemhuis) wrote:
->>>>>>>>> On 10.02.23 20:01, Karol Herbst wrote:
->>>>>>>>>> On Fri, Feb 10, 2023 at 7:35 PM Linux regression tracking (Thorsten
->>>>>>>>>> Leemhuis) <regressions@leemhuis.info> wrote:
->>>>>>>>>>>
->>>>>>>>>>> On 08.02.23 09:48, Chris Clayton wrote:
->>>>>>>>>>>>
->>>>>>>>>>>> I'm assuming  that we are not going to see a fix for this regression before 6.2 is released.
->>>>>>>>>>>
->>>>>>>>>>> Yeah, looks like it. That's unfortunate, but happens. But there is still
->>>>>>>>>>> time to fix it and there is one thing I wonder:
->>>>>>>>>>>
->>>>>>>>>>> Did any of the nouveau developers look at the netconsole captures Chris
->>>>>>>>>>> posted more than a week ago to check if they somehow help to track down
->>>>>>>>>>> the root of this problem?
->>>>>>>>>>
->>>>>>>>>> I did now and I can't spot anything. I think at this point it would
->>>>>>>>>> make sense to dump the active tasks/threads via sqsrq keys to see if
->>>>>>>>>> any is in a weird state preventing the machine from shutting down.
->>>>>>>>>
->>>>>>>>> Many thx for looking into it!
->>>>>>>>
->>>>>>>> Yes, thanks Karol.
->>>>>>>>
->>>>>>>> Attached is the output from dmesg when this block of code:
->>>>>>>>
->>>>>>>>         /bin/mount /dev/sda7 /mnt/sda7
->>>>>>>>         /bin/mountpoint /proc || /bin/mount /proc
->>>>>>>>         /bin/dmesg -w > /mnt/sda7/sysrq.dmesg.log &
->>>>>>>>         /bin/echo t > /proc/sysrq-trigger
->>>>>>>>         /bin/sleep 1
->>>>>>>>         /bin/sync
->>>>>>>>         /bin/sleep 1
->>>>>>>>         kill $(pidof dmesg)
->>>>>>>>         /bin/umount /mnt/sda7
->>>>>>>>
->>>>>>>> is executed immediately before /sbin/reboot is called as the final step of rebooting my system.
->>>>>>>>
->>>>>>>> I hope this is what you were looking for, but if not, please let me know what you need
->>>>>>
->>>>>> Thanks Dave. [...]
->>>>> FWIW, in case anyone strands here in the archives: the msg was
->>>>> truncated. The full post can be found in a new thread:
->>>>>
->>>>> https://lore.kernel.org/lkml/e0b80506-b3cf-315b-4327-1b988d86031e@googlemail.com/
->>>>>
->>>>> Sadly it seems the info "With runpm=0, both reboot and poweroff work on
->>>>> my laptop." didn't bring us much further to a solution. :-/ I don't
->>>>> really like it, but for regression tracking I'm now putting this on the
->>>>> back-burner, as a fix is not in sight.
->>>>>
->>>>> #regzbot monitor:
->>>>> https://lore.kernel.org/lkml/e0b80506-b3cf-315b-4327-1b988d86031e@googlemail.com/
->>>>> #regzbot backburner: hard to debug and apparently rare
->>>>> #regzbot ignore-activity
->>>>>
->>>>
->>>> yeah.. this bug looks a little annoying. Sadly the only Turing based
->>>> laptop I got doesn't work on Nouveau because of firmware related
->>>> issues and we probably need to get updated ones from Nvidia here :(
->>>>
->>>> But it's a bit weird that the kernel doesn't shutdown, because I don't
->>>> see anything in the logs which would prevent that from happening.
->>>> Unless it's waiting on one of the tasks to complete, but none of them
->>>> looked in any way nouveau related.
->>>>
->>>> If somebody else has any fancy kernel debugging tips here to figure
->>>> out why it hangs, that would be very helpful...
->>>>
->>>
->>> I think I've figured this out. It's to do with how my system is configured. I do have an initrd, but the only thing on
->>> it is the cpu microcode which, it is recommended, should be loaded early. The absence of the NVidia firmare from an
->>> initrd doesn't matter because the drivers for the hardware that need to load firmware are all built as modules, So, by
->>> the time the devices are configured via udev, the root partition is mounted and the drivers can get at the firmware.
->>>
->>> I've found, by turning on nouveau debug and taking a video of the screen as the system shuts down, that nouveau seems to
->>> be trying to run the scrubber very very late in the shutdown process. The problem is that by this time, I think the root
->>> partition, and thus the scrubber binary, have become inaccessible.
->>>
->>> I seem to have two choices - either make the firmware accessible on an initrd or unload the module in a shutdown script
->>> before the scrubber binary becomes inaccessible. The latter of these is the workaround I have implemented whilst the
->>> problem I reported has been under investigation. For simplicity, I think I'll promote my workaround to being the
->>> permanent solution.
->>>
->>> So, apologies (and thanks) to everyone whose time I have taken up with this non-bug.
->>>
->>
->> Well.. nouveau shouldn't prevent the system from shutting down if the
->> firmware file isn't available. Or at least it should print a
->> warning/error. Mind messing with the code a little to see if skipping
->> it kind of works? I probably can also come up with a patch by next
->> week.
->>
-> Well, I'd love to but a quick glance at the code caused me to bump into this obscenity:
-> 
-> int
-> gm200_flcn_reset_wait_mem_scrubbing(struct nvkm_falcon *falcon)
-> {
->         nvkm_falcon_mask(falcon, 0x040, 0x00000000, 0x00000000);
-> 
->         if (nvkm_msec(falcon->owner->device, 10,
->                 if (!(nvkm_falcon_rd32(falcon, 0x10c) & 0x00000006))
->                         break;
->         ) < 0)
->                 return -ETIMEDOUT;
-> 
->         return 0;
-> }
-> 
-> nvkm_msec is #defined to nvkm_usec which in turn is #defined to nvkm_nsec where the loop that the break is related to
-> appears
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+index 981010de0a28..d835ee2131d2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+@@ -600,7 +600,7 @@ int amdgpu_bo_create(struct amdgpu_device *adev,
+ 
+ 	if (!amdgpu_gmc_vram_full_visible(&adev->gmc) &&
+ 	    bo->tbo.resource->mem_type == TTM_PL_VRAM &&
+-	    bo->tbo.resource->start < adev->gmc.visible_vram_size >> PAGE_SHIFT)
++	    amdgpu_bo_in_cpu_visible_vram(bo))
+ 		amdgpu_cs_report_moved_bytes(adev, ctx.bytes_moved,
+ 					     ctx.bytes_moved);
+ 	else
+@@ -1346,7 +1346,6 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
+ 	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->bdev);
+ 	struct ttm_operation_ctx ctx = { false, false };
+ 	struct amdgpu_bo *abo = ttm_to_amdgpu_bo(bo);
+-	unsigned long offset;
+ 	int r;
+ 
+ 	/* Remember that this BO was accessed by the CPU */
+@@ -1355,8 +1354,7 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
+ 	if (bo->resource->mem_type != TTM_PL_VRAM)
+ 		return 0;
+ 
+-	offset = bo->resource->start << PAGE_SHIFT;
+-	if ((offset + bo->base.size) <= adev->gmc.visible_vram_size)
++	if (amdgpu_bo_in_cpu_visible_vram(abo))
+ 		return 0;
+ 
+ 	/* Can't move a pinned BO to visible VRAM */
+@@ -1378,10 +1376,9 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
+ 	else if (unlikely(r))
+ 		return VM_FAULT_SIGBUS;
+ 
+-	offset = bo->resource->start << PAGE_SHIFT;
+ 	/* this should never happen */
+ 	if (bo->resource->mem_type == TTM_PL_VRAM &&
+-	    (offset + bo->base.size) > adev->gmc.visible_vram_size)
++	    amdgpu_bo_in_cpu_visible_vram(abo))
+ 		return VM_FAULT_SIGBUS;
+ 
+ 	ttm_bo_move_to_lru_tail_unlocked(bo);
+-- 
+2.32.0
 
-I think someone who knows the code needs to look at this. What I can confirm is that after a freeze, I waited for 90
-seconds for a timeout to occur, but it didn't.
-
-
-.> Chris
->>>
->>>>> Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
->>>>> --
->>>>> Everything you wanna know about Linux kernel regression tracking:
->>>>> https://linux-regtracking.leemhuis.info/about/#tldr
->>>>> That page also explains what to do if mails like this annoy you.
->>>>>
->>>>> #regzbot ignore-activity
->>>>>
->>>>
->>>
->>
