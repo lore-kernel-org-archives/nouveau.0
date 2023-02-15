@@ -4,67 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0D65C7EE29
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B843BC77B7C
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E89D810E3EC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 295C710E3DB;
 	Thu,  4 May 2023 12:31:44 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
- [IPv6:2a00:1450:4864:20::634])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66B5D10E876
- for <nouveau@lists.freedesktop.org>; Thu, 10 Nov 2022 15:22:36 +0000 (UTC)
-Received: by mail-ej1-x634.google.com with SMTP id ud5so5855038ejc.4
- for <nouveau@lists.freedesktop.org>; Thu, 10 Nov 2022 07:22:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=in-reply-to:from:references:cc:to:content-language:subject
- :user-agent:mime-version:date:message-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=6d0D2mWc0p6TOs3yjnJ78ySw3xrOX6SYV20k47DqtpQ=;
- b=ga8FBPk/nBNCLcym6IQmq98rrk8UiX4wPBkn9SRRAU5cn2mGbb857uy0FsS0PDrjHx
- sJ8GzUWjEiGg7VTyZ0qia7luiAALC/1CF8z9wq51uX8IoRwUQZ+SJgTrbF57CZcaxOrN
- KB5jchRZglqjNkFbRCDtDILt+8fy80UGUOAsb61nMwCKRP8pyHnDu1crTAGaRS5NeJ1P
- wyZgZJ6Qg2rtKLXu55peSYCaJHp2LLPhVKIRx/6lFNDgRFj0PY397mgrGV/0L9qKc8kg
- O+Xn4QGk6EXX40QKopTSLd9RikxLJ6vyrEJqMeQ4xILgrHqVZNGyyUO04cxFWR1lCv1a
- 8AwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:from:references:cc:to:content-language:subject
- :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=6d0D2mWc0p6TOs3yjnJ78ySw3xrOX6SYV20k47DqtpQ=;
- b=FNG1VDjyVGwP+CS72vtprZn7biBNYbB+vdVLxk/15DnR3eJjh7fVTk50XUAWdv4xAK
- gPnchZtoiGrv8NM/7mSMIOXkjvZcr9AHyn/TNpwnI1z3TT4+VW7uz0OtnPvmdzxg+DXt
- aF634qNMPf+r7zj7wjGK6DV8FguNVaddz/wUQrAzCmBDKHj+e8UMPSQNApRpxoj8IXpc
- +XS4z15cclirhsEhZm4Bpyt6LNPvBibom4au8+RMYNo1reoiXg0/9YC0cb6Wd4uWYx/n
- x9PRMlR8wci6sGWVu79AChjCpU+6bV9IWN6DBneFv6J4vS7q1NzUU1HTs7R7bdJwzxFt
- 0Vbg==
-X-Gm-Message-State: ACrzQf1vn9QY2duV7aw+atbesVGLfUNISpUA7TrJxBqTdN4SBlfBpDd+
- g6dw4z/8LdEFbI5S1w9viA==
-X-Google-Smtp-Source: AMsMyM5s9iuAWKwm9s/X5huTIhKPbpaV39w/jTupO0Mw8BuVF5jEUYeJUj5j4KGsoiCDI+FJ04/duA==
-X-Received: by 2002:a17:906:a190:b0:7ad:dc7e:1b8d with SMTP id
- s16-20020a170906a19000b007addc7e1b8dmr2940759ejy.276.1668093754606; 
- Thu, 10 Nov 2022 07:22:34 -0800 (PST)
-Received: from ?IPV6:2a02:2f01:740e:c00::2110? ([2a02:2f01:740e:c00::2110])
- by smtp.gmail.com with ESMTPSA id
- et19-20020a170907295300b0078df26efb7dsm7252772ejc.107.2022.11.10.07.22.33
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 10 Nov 2022 07:22:33 -0800 (PST)
-Content-Type: multipart/alternative;
- boundary="------------ns0XG0mYt3tdyEtA3330u94W"
-Message-ID: <ba834410-641c-0219-711b-aa6136a8fd55@gmail.com>
-Date: Thu, 10 Nov 2022 17:22:32 +0200
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E39B810E142;
+ Wed, 15 Feb 2023 20:53:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=MIME-Version:Content-Transfer-Encoding:Content-Type:Date:Cc:To:
+ From:Subject:Message-ID:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=DbZhMIqbxxxVLTui1okwUmu8iO/ZN5e4U1qMEUfbdtU=; b=ZvFsUU3+u3FgKVWAPWwQbxZW94
+ SdCoE/rVS2BNGSYETy8LJSh7krL6LwpBL+5EWl6D9zhaoiRA+tyDs62+2KF48egXWoDtDANTJtAcl
+ uI5bJ3SWVbIklJ1STLUDs3VaOJFcjoJnyrM70zpeI750DfP2oowqZlKCo/JY6ZRSXE8IzOitNlMDr
+ FQlODtgPes1Pb0zWn68FV+YUPhKNTC0rSC95YyKR0BMQ4nD2CDFKfVYqm9/CG7xRQlawzkgT0q7SD
+ Qp+xCPiFY6LMYm5B+HZWoV3kBWIBCtr96bPvyj85mIUGJ1Aq9ftXvzQkTE+O2d4azajeaTuN3EOmk
+ PkSMYvDQ==;
+Received: from 137.red-83-52-2.dynamicip.rima-tde.net ([83.52.2.137]
+ helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1pSOmQ-003Vjs-Sg; Wed, 15 Feb 2023 21:53:30 +0100
+Message-ID: <c1c2591a7f7c9bcb05b69b08da529ddb8fc8145c.camel@igalia.com>
+From: Ricardo Garcia <rgarcia@igalia.com>
+To: members@x.org, events@lists.x.org, xorg-devel@lists.freedesktop.org, 
+ wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ libre-soc-dev <libre-soc-dev@lists.libre-soc.org>
+Date: Wed, 15 Feb 2023 21:53:30 +0100
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Content-Language: en-US
-To: Ajay Gupta <ajayg@nvidia.com>, Karol Herbst <kherbst@redhat.com>
-References: <tk6dm1$jsm$1@ciao.gmane.io>
- <CACO55tt5QTM=Amm560pBoDyKdib+YL77-d3rArhi0AmtLOdPMg@mail.gmail.com>
- <DM4PR12MB57708357FD79CF2D7FF02298DC3E9@DM4PR12MB5770.namprd12.prod.outlook.com>
-From: Timothy Madden <terminatorul@gmail.com>
-In-Reply-To: <DM4PR12MB57708357FD79CF2D7FF02298DC3E9@DM4PR12MB5770.namprd12.prod.outlook.com>
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:33 +0000
-Subject: Re: [Nouveau] Fans ramping up randomly when idle
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:38 +0000
+Subject: [Nouveau] 2023 X.Org Board of Directors Elections Nomination period
+ is NOW
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,258 +56,51 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Cc: board <board@foundation.x.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------ns0XG0mYt3tdyEtA3330u94W
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+We are seeking nominations for candidates for election to the X.Org
+Foundation Board of Directors. All X.Org Foundation members are eligible
+for election to the board.
 
+Nominations for the 2023 election are now open and will remain open
+until 23:59 UTC on 19 March 2023.
 
-On 11/10/22 00:50, Ajay Gupta wrote:
->
->>> This issue happens even when the card is not connected to a monitor.
->>>
->>> My dmesg output from nouveau is included below, I think the last 2
->>> lines are the relevant ones:
->>> [ 9426.768449] nvidia-gpu 0000:0b:00.3: Unable to change power state
->>> from D3hot to D0, device inaccessible [ 9427.889387] nvidia-gpu
->>> 0000:0b:00.3: i2c timeout error ffffffff
-> This only implies that there is no usb/ucsi device on the card, it is expected from
-> such cards and should be seen in dmesg even when heating issue is not there.
->
-> Thanks
+The Board consists of directors elected from the membership. Each year,
+an election is held to bring the total number of directors to eight. The
+four members receiving the highest vote totals will serve as directors
+for two year terms.
 
-The 2080 Ti graphics card has an USB-C output, that works if I connect 
-an USB storage device
-(see the DataTraveler device below).
+The directors who received two year terms starting in 2022 were Emma
+Anholt, Mark Filion, Alyssa Rosenzweig and Ricardo Garcia. They will
+continue to serve until their term ends in 2024. Current directors whose
+term expires in 2023 are Samuel Iglesias Gons=C3=A1lvez, Manasi D Navare,
+Lyude Paul and Daniel Vetter.
 
-Should I try the USB port as a video output ? I need to bring in an 
-USB-C monitor first
-from a different location. I also have an USB-C to HDMI adapter, but 
-using such an
-adapter gives a different crash with nouveau driver, that I found on a 
-different machine
-(my work laptop at the time), that I reported before. So I suppose it 
-would not be a
-good test now.
+A director is expected to participate in the fortnightly IRC meeting to
+discuss current business and to attend the annual meeting of the X.Org
+Foundation, which will be held at a location determined in advance by
+the Board of Directors.
 
+A member may nominate themselves or any other member they feel is
+qualified. Nominations should be sent to the Election Committee at
+elections at x.org.
 
-localhost:/home/timothy #lsusb
-Bus 008 Device 002: ID 05e3:0616 Genesys Logic, Inc. hub
-Bus 008 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 007 Device 002: ID 05e3:0610 Genesys Logic, Inc. Hub
-Bus 007 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-Bus 006 Device 002: ID 0951:176c Kingston Technology DataTraveler Max
-Bus 006 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 005 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-Bus 002 Device 003: ID 11b0:5111 ATECH FLASH TECHNOLOGY PRO88 Reader
-Bus 002 Device 002: ID 11b0:0031 ATECH FLASH TECHNOLOGY USB3.1 Hub
-Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 001 Device 006: ID 09da:2268 A4Tech Co., Ltd. USB Keyboard
-Bus 001 Device 004: ID 1a40:0101 Terminus Technology Inc. Hub
-Bus 001 Device 003: ID 8087:0025 Intel Corp. Wireless-AC 9260 Bluetooth 
-Adapter
-Bus 001 Device 005: ID 046d:c24a Logitech, Inc. G600 Gaming Mouse
-Bus 001 Device 002: ID 11b0:0021 ATECH FLASH TECHNOLOGY USB2.0 Hub
-Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-localhost:/home/timothy #lsusb --tree
-/:  Bus 08.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/4p, 5000M
-    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/2p, 5000M
-/:  Bus 07.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/4p, 480M
-    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/2p, 480M
-/:  Bus 06.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/4p, 10000M
-    |__ Port 1: Dev 2, If 0, Class=Mass Storage, Driver=uas, 10000M
-/:  Bus 05.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/2p, 480M
-/:  Bus 04.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/2p, 10000M
-/:  Bus 03.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/2p, 480M
-/:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/8p, 10000M
-    |__ Port 2: Dev 2, If 0, Class=Hub, Driver=hub/4p, 5000M
-        |__ Port 1: Dev 3, If 0, Class=Mass Storage, Driver=usb-storage, 
-5000M
-/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/14p, 480M
-    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
-    |__ Port 2: Dev 3, If 0, Class=Wireless, Driver=btusb, 12M
-    |__ Port 2: Dev 3, If 1, Class=Wireless, Driver=btusb, 12M
-    |__ Port 9: Dev 4, If 0, Class=Hub, Driver=hub/4p, 480M
-        |__ Port 3: Dev 6, If 0, Class=Human Interface Device, 
-Driver=usbhid, 1.5M
-        |__ Port 3: Dev 6, If 1, Class=Human Interface Device, 
-Driver=usbhid, 1.5M
-    |__ Port 10: Dev 5, If 0, Class=Human Interface Device, 
-Driver=usbhid, 12M
-    |__ Port 10: Dev 5, If 1, Class=Human Interface Device, 
-Driver=usbhid, 12M
-localhost:/home/timothy #
+Nominees shall be required to be current members of the X.Org
+Foundation, and submit a personal statement of up to 200 words that will
+be provided to prospective voters. The collected statements, along with
+the statement of contribution to the X.Org Foundation in the member's
+account page on http://members.x.org, will be made available to all
+voters to help them make their voting decisions.
 
+Nominations, membership applications or renewals and completed personal
+statements must be received no later than 23:59 UTC on 19 March 2023.
 
---------------ns0XG0mYt3tdyEtA3330u94W
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+The slate of candidates will be published 26 March 2023 and candidate
+Q&A will begin then. The deadline for Xorg membership applications and
+renewals is 26 March 2023.
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 11/10/22 00:50, Ajay Gupta wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:DM4PR12MB57708357FD79CF2D7FF02298DC3E9@DM4PR12MB5770.namprd12.prod.outlook.com"><br>
-      <blockquote type="cite">
-        <blockquote type="cite">
-          <pre class="moz-quote-pre" wrap="">This issue happens even when the card is not connected to a monitor.
+Cheers,
+Ricardo Garcia, on behalf of the X.Org BoD
 
-My dmesg output from nouveau is included below, I think the last 2
-lines are the relevant ones:
-[ 9426.768449] nvidia-gpu 0000:0b:00.3: Unable to change power state
-from D3hot to D0, device inaccessible [ 9427.889387] nvidia-gpu
-0000:0b:00.3: i2c timeout error ffffffff
-</pre>
-        </blockquote>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">This only implies that there is no usb/ucsi device on the card, it is expected from
-such cards and should be seen in dmesg even when heating issue is not there.
-
-Thanks
-</pre>
-    </blockquote>
-    <p>The 2080 Ti graphics card has an USB-C output, that works if I
-      connect an USB storage device<br>
-      (see the DataTraveler device below).</p>
-    <p>Should I try the USB port as a video output ? I need to bring in
-      an USB-C monitor first<br>
-      from a different location. I also have an USB-C to HDMI adapter,
-      but using such an<br>
-      adapter gives a different crash with nouveau driver, that I found
-      on a different machine<br>
-      (my work laptop at the time), that I reported before. So I suppose
-      it would not be a<br>
-      good test now.</p>
-    <p><br>
-    </p>
-    <p><span style="font-family:monospace"><span
-          style="font-weight:bold;color:#ff5454;background-color:#ffffff;"><a class="moz-txt-link-freetext" href="localhost:/home/timothy">localhost:/home/timothy</a>
-          #</span><span style="color:#000000;background-color:#ffffff;">
-          lsusb
-        </span><br>
-        Bus 008 Device 002: ID 05e3:0616 Genesys Logic, Inc. hub
-        <br>
-        Bus 008 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-        <br>
-        Bus 007 Device 002: ID 05e3:0610 Genesys Logic, Inc. Hub
-        <br>
-        Bus 007 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-        <br>
-        Bus 006 Device 002: ID 0951:176c Kingston Technology
-        DataTraveler Max
-        <br>
-        Bus 006 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-        <br>
-        Bus 005 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-        <br>
-        Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-        <br>
-        Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-        <br>
-        Bus 002 Device 003: ID 11b0:5111 ATECH FLASH TECHNOLOGY PRO88
-        Reader
-        <br>
-        Bus 002 Device 002: ID 11b0:0031 ATECH FLASH TECHNOLOGY USB3.1
-        Hub
-        <br>
-        Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-        <br>
-        Bus 001 Device 006: ID 09da:2268 A4Tech Co., Ltd. USB Keyboard
-        <br>
-        Bus 001 Device 004: ID 1a40:0101 Terminus Technology Inc. Hub
-        <br>
-        Bus 001 Device 003: ID 8087:0025 Intel Corp. Wireless-AC 9260
-        Bluetooth Adapter
-        <br>
-        Bus 001 Device 005: ID 046d:c24a Logitech, Inc. G600 Gaming
-        Mouse
-        <br>
-        Bus 001 Device 002: ID 11b0:0021 ATECH FLASH TECHNOLOGY USB2.0
-        Hub
-        <br>
-        Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-        <br>
-        <span
-          style="font-weight:bold;color:#ff5454;background-color:#ffffff;"><a class="moz-txt-link-freetext" href="localhost:/home/timothy">localhost:/home/timothy</a>
-          #</span><span style="color:#000000;background-color:#ffffff;">
-          lsusb --tree
-        </span><br>
-        /:  Bus 08.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/4p,
-        5000M
-        <br>
-           |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/2p, 5000M
-        <br>
-        /:  Bus 07.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/4p,
-        480M
-        <br>
-           |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/2p, 480M
-        <br>
-        /:  Bus 06.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/4p,
-        10000M
-        <br>
-           |__ Port 1: Dev 2, If 0, Class=Mass Storage, Driver=uas,
-        10000M
-        <br>
-        /:  Bus 05.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/2p,
-        480M
-        <br>
-        /:  Bus 04.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/2p,
-        10000M
-        <br>
-        /:  Bus 03.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/2p,
-        480M
-        <br>
-        /:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/8p,
-        10000M
-        <br>
-           |__ Port 2: Dev 2, If 0, Class=Hub, Driver=hub/4p, 5000M
-        <br>
-               |__ Port 1: Dev 3, If 0, Class=Mass Storage,
-        Driver=usb-storage, 5000M
-        <br>
-        /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/14p,
-        480M
-        <br>
-           |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
-        <br>
-           |__ Port 2: Dev 3, If 0, Class=Wireless, Driver=btusb, 12M
-        <br>
-           |__ Port 2: Dev 3, If 1, Class=Wireless, Driver=btusb, 12M
-        <br>
-           |__ Port 9: Dev 4, If 0, Class=Hub, Driver=hub/4p, 480M
-        <br>
-               |__ Port 3: Dev 6, If 0, Class=Human Interface Device,
-        Driver=usbhid, 1.5M
-        <br>
-               |__ Port 3: Dev 6, If 1, Class=Human Interface Device,
-        Driver=usbhid, 1.5M
-        <br>
-           |__ Port 10: Dev 5, If 0, Class=Human Interface Device,
-        Driver=usbhid, 12M
-        <br>
-           |__ Port 10: Dev 5, If 1, Class=Human Interface Device,
-        Driver=usbhid, 12M
-        <br>
-        <span
-          style="font-weight:bold;color:#ff5454;background-color:#ffffff;"><a class="moz-txt-link-freetext" href="localhost:/home/timothy">localhost:/home/timothy</a>
-          #</span><span style="color:#000000;background-color:#ffffff;">
-        </span><br>
-        <br>
-        <br>
-      </span></p>
-  </body>
-</html>
-
---------------ns0XG0mYt3tdyEtA3330u94W--
