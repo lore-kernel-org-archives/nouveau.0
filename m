@@ -4,62 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 171A8C7EE29
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6BB6C77B7C
 	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:34:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4244E10E4D5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEB2110E4BD;
 	Thu,  4 May 2023 12:33:52 +0000 (UTC)
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
- [IPv6:2a00:1450:4864:20::32c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B803B10E50F;
- Tue, 11 Apr 2023 09:03:49 +0000 (UTC)
-Received: by mail-wm1-x32c.google.com with SMTP id m8so17779007wmq.5;
- Tue, 11 Apr 2023 02:03:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1681203825; x=1683795825;
- h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
- :to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=VhbjHS7f684AMrsrL5Er1DA55AW7x3S5l3rSApeJOqk=;
- b=Nu//j/rS3LtN3X2i17tHZhPw8EHilSW+C2VbUpolr9AHWgc1pp8iMooPiN7xqtsD+k
- aI+zn+htnOginSj+ExUxrEyJQHuyW4677GTQuvPjsGPBBCBtTZkxvrDC9FGFcDnDSz8R
- F1h6baNxvTROsUw3nyHNktusiJS6Ef7tVxsSnL/5hXbNLWjwlFG9eKcXBTjIPny+B1XP
- PzYxsrZNvT6sVZ8ZLMo9iGR+LL+nMJMV3aqBH9IIYXy9hhtHHZEIU5Ekn/kSsj9L9umV
- wU2cK3ZRXqoY0vtkUYBIHoxj7BnZ6kA+Xv7/vvcWQwPfcHr6Np1NwpCSsK/5nA8rXQzV
- ZMWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1681203825; x=1683795825;
- h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
- :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=VhbjHS7f684AMrsrL5Er1DA55AW7x3S5l3rSApeJOqk=;
- b=bs9pzlz9A1sIPKRujJTk0jUU3/Zr3hRYerEZxFDDBbCJaUFZ58EWjwBp4aP3N4nlAk
- C6aX0ArML1LOxl5TkvmEkCFNVKMnVjKp8UQTi6LeDTua1Qrs8/3mVfCTbelL3btYwglX
- xhxjHJT2eTnwJB9CcDAC4ByEHLQl/Sv7UUCvYR7wmhD50/7i564Y6MUCt5cTwqFHAIM8
- zNPmRQ5gDsDvHubDtvYSdVHGXboIZZw7kiQ/c1l6HgkmXfohXRyckZv1B9ilu2geDuzV
- L6wROHFbmu15Lmxth1JXmolt74K1uBPv4q9IKNmmyTZ+A0aI+/u2C3oAdx5FOYG/YRWR
- 7lQA==
-X-Gm-Message-State: AAQBX9fZdINjj9bmPYLCVRNTKSfP0C0W/6wBdQwXc3SGDk5V0idjc/WP
- QvDCIEwCq/W9mOB5Mxnhdrs=
-X-Google-Smtp-Source: AKy350bgg5RwSlOXMKRI4ovS6rDs7ITa/A3clS+O5rtifEu1hG9ZuyjaxXafENTRSStFwgtTrOIKDA==
-X-Received: by 2002:a05:600c:298:b0:3f0:7e02:a159 with SMTP id
- 24-20020a05600c029800b003f07e02a159mr8881545wmk.15.1681203824036; 
- Tue, 11 Apr 2023 02:03:44 -0700 (PDT)
-Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- g9-20020a05600c310900b003f080b2f9f4sm10959042wmo.27.2023.04.11.02.03.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 11 Apr 2023 02:03:43 -0700 (PDT)
-Date: Tue, 11 Apr 2023 12:03:39 +0300
-From: Dan Carpenter <error27@gmail.com>
-To: oe-kbuild@lists.linux.dev, Lyude Paul <lyude@redhat.com>,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Message-ID: <7d0bca47-db75-4a68-9565-7bdb5995d1e3@kili.mountain>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE28210E6BE;
+ Fri,  3 Mar 2023 15:39:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1677857957; x=1709393957;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=PsLUt0hhdShhtqMCwP0MEZHkvWgjYOP7Rv4o2wUr3Dw=;
+ b=CyyWU1r+LlqhNxKEekjbL6EM7dGmMucH7uKULqHrDuQ3GuSdcA4HhiPB
+ SUQ2O4IxlbMnmIvvyFagFFEUreKUPHyqVtsbQFmsZckb0BMeFyOEM5LHy
+ iswjgvX4WBK/xkWKMocqIHuzA8GS3Z/fQqf1oEZgvamnRO9Yyj9sIovIe
+ +JS//rErl6kSsxb7gBPXbhTDCv6QugD0AtLIDIhdNHojl2eAwt77ktCg1
+ T8GIGucc69t9C5hpXlYBAXnGYKeZaK9A1VQbS+MzPQgBTA4mXZBUtqGpJ
+ /2RowhY/VhcrgnbuSfJRGK9K6/PT36q0oKV5lfs2hY2dl7xw3cxXKsSvp Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10638"; a="332552244"
+X-IronPort-AV: E=Sophos;i="5.98,231,1673942400"; d="scan'208";a="332552244"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2023 07:39:17 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10638"; a="785294950"
+X-IronPort-AV: E=Sophos;i="5.98,231,1673942400"; d="scan'208";a="785294950"
+Received: from joe-255.igk.intel.com (HELO localhost) ([10.91.220.57])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2023 07:39:14 -0800
+Date: Fri, 3 Mar 2023 16:39:13 +0100
+From: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
+To: Michel =?iso-8859-1?Q?D=E4nzer?= <michel.daenzer@mailbox.org>
+Message-ID: <20230303153913.GH3963532@linux.intel.com>
+References: <20230303071659.1213074-1-Amaranath.Somalapuram@amd.com>
+ <da7e9be8-4a80-7166-d6f8-20f3acf8bf9c@mailbox.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230407222133.1425969-2-lyude@redhat.com>
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:32 +0000
-Subject: Re: [Nouveau] [PATCH 2/2] drm/nouveau/kms: Add INHERIT ioctl to
- nvkm/nvif for reading IOR state
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <da7e9be8-4a80-7166-d6f8-20f3acf8bf9c@mailbox.org>
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:35 +0000
+Subject: Re: [Nouveau] [PATCH] Change the meaning of the fields in the
+ ttm_place structure from pfn to bytes
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,115 +59,53 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: lkp@intel.com, Jani Nikula <jani.nikula@intel.com>,
- open list <linux-kernel@vger.kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
- oe-kbuild-all@lists.linux.dev, Dave Airlie <airlied@redhat.com>,
- Kees Cook <keescook@chromium.org>
+Cc: shashank.sharma@amd.com, arvind.yadav@amd.com,
+ arunpravin.paneerselvam@amd.com, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ amd-gfx@lists.freedesktop.org, linux-graphics-maintainer@vmware.com,
+ dri-devel@lists.freedesktop.org, alexander.deucher@amd.com,
+ christian.koenig@amd.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Lyude,
+On Fri, Mar 03, 2023 at 03:55:56PM +0100, Michel Dänzer wrote:
+> On 3/3/23 08:16, Somalapuram Amaranath wrote:
+> > Change the ttm_place structure member fpfn, lpfn, mem_type to
+> > res_start, res_end, res_type.
+> > Change the unsigned to u64.
+> > Fix the dependence in all the DRM drivers and
+> > clean up PAGE_SHIFT operation.
+> > 
+> > Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+> > 
+> > [...]
+> > 
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> > index 44367f03316f..5b5104e724e3 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> > @@ -131,11 +131,12 @@ static int amdgpu_gtt_mgr_new(struct ttm_resource_manager *man,
+> >  		goto err_free;
+> >  	}
+> >  
+> > -	if (place->lpfn) {
+> > +	if (place->res_end) {
+> >  		spin_lock(&mgr->lock);
+> >  		r = drm_mm_insert_node_in_range(&mgr->mm, &node->mm_nodes[0],
+> > -						num_pages, tbo->page_alignment,
+> > -						0, place->fpfn, place->lpfn,
+> > +						num_pages, tbo->page_alignment,	0,
+> > +						place->res_start << PAGE_SHIFT,
+> > +						place->res_end << PAGE_SHIFT,
+> >  						DRM_MM_INSERT_BEST);
+> 
+> This should be >> or no shift instead of <<, shouldn't it? Multiplying a value in bytes by the page size doesn't make sense.
+> 
+> 
+> I didn't check the rest of the patch in detail, but it's easy introduce subtle regressions with this kind of change. It'll require a lot of review & testing scrutiny.
 
-kernel test robot noticed the following build warnings:
+Also good justification. The changelog says only what is done, nothing about why the change is needed.
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Lyude-Paul/drm-nouveau-kms-Add-INHERIT-ioctl-to-nvkm-nvif-for-reading-IOR-state/20230408-062329
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20230407222133.1425969-2-lyude%40redhat.com
-patch subject: [PATCH 2/2] drm/nouveau/kms: Add INHERIT ioctl to nvkm/nvif for reading IOR state
-config: csky-randconfig-m031-20230409 (https://download.01.org/0day-ci/archive/20230409/202304091929.Sr0CfHlN-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 12.1.0
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <error27@gmail.com>
-| Link: https://lore.kernel.org/r/202304091929.Sr0CfHlN-lkp@intel.com/
-
-New smatch warnings:
-drivers/gpu/drm/nouveau/dispnv50/disp.c:2518 nv50_display_read_hw_or_state() error: uninitialized symbol 'head_idx'.
-
-vim +/head_idx +2518 drivers/gpu/drm/nouveau/dispnv50/disp.c
-
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2477  static inline void
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2478  nv50_display_read_hw_or_state(struct drm_device *dev, struct nv50_disp *disp,
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2479  			      struct nouveau_encoder *outp)
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2480  {
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2481  	struct drm_crtc *crtc;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2482  	struct drm_connector_list_iter conn_iter;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2483  	struct drm_connector *conn;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2484  	struct nv50_head_atom *armh;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2485  	const u32 encoder_mask = drm_encoder_mask(&outp->base.base);
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2486  	bool found_conn = false, found_head = false;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2487  	u8 proto;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2488  	int head_idx;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2489  	int ret;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2490  
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2491  	switch (outp->dcb->type) {
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2492  	case DCB_OUTPUT_TMDS:
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2493  		ret = nvif_outp_inherit_tmds(&outp->outp, &proto);
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2494  		break;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2495  	case DCB_OUTPUT_DP:
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2496  		ret = nvif_outp_inherit_dp(&outp->outp, &proto);
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2497  		break;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2498  	case DCB_OUTPUT_LVDS:
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2499  		ret = nvif_outp_inherit_lvds(&outp->outp, &proto);
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2500  		break;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2501  	case DCB_OUTPUT_ANALOG:
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2502  		ret = nvif_outp_inherit_rgb_crt(&outp->outp, &proto);
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2503  		break;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2504  	default:
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2505  		drm_dbg_kms(dev, "Readback for %s not implemented yet, skipping\n",
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2506  			    outp->base.base.name);
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2507  		drm_WARN_ON(dev, true);
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2508  		return;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2509  	}
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2510  	if (ret >= 0) {
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2511  		head_idx = ret;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2512  		ret = 0;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2513  	} else if (ret == -ENODEV) {
-
-What if it fails with a different error code?
-
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2514  		return;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2515  	}
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2516  
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2517  	drm_for_each_crtc(crtc, dev) {
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07 @2518  		if (crtc->index != head_idx)
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2519  			continue;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2520  
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2521  		armh = nv50_head_atom(crtc->state);
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2522  		found_head = true;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2523  		break;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2524  	}
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2525  	if (drm_WARN_ON(dev, !found_head))
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2526  		return;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2527  
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2528  	/* Figure out which connector is being used by this encoder */
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2529  	drm_connector_list_iter_begin(dev, &conn_iter);
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2530  	nouveau_for_each_non_mst_connector_iter(conn, &conn_iter) {
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2531  		if (nouveau_connector(conn)->index == outp->dcb->connector) {
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2532  			found_conn = true;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2533  			break;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2534  		}
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2535  	}
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2536  	drm_connector_list_iter_end(&conn_iter);
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2537  	if (drm_WARN_ON(dev, !found_conn))
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2538  		return;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2539  
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2540  	armh->state.encoder_mask = encoder_mask;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2541  	armh->state.connector_mask = drm_connector_mask(conn);
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2542  	armh->state.active = true;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2543  	armh->state.enable = true;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2544  
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2545  	outp->crtc = crtc;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2546  	outp->ctrl = NVVAL(NV507D, SOR_SET_CONTROL, PROTOCOL, proto) | BIT(crtc->index);
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2547  
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2548  	conn->state->crtc = crtc;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2549  	conn->state->best_encoder = &outp->base.base;
-a3d963915cf6f2 drivers/gpu/drm/nouveau/dispnv50/disp.c Lyude Paul 2023-04-07  2550  }
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
-
+Regards
+Stanislaw
