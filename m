@@ -4,78 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFB60C61DA4
-	for <nouveau@archiver.kernel.org>; Tue,  7 Mar 2023 00:20:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F425C6FD1E
+	for <nouveau@archiver.kernel.org>; Tue,  7 Mar 2023 17:18:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E437510E286;
-	Tue,  7 Mar 2023 00:20:12 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79CEA10E34B
- for <nouveau@lists.freedesktop.org>; Tue,  7 Mar 2023 00:20:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1678148409;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=7+4tzxyqERGXd7AQ2o1b0aj9Gq2c77AeuI8QhLTg5i8=;
- b=Gucy5EU/48KSZY6P3z7x8WMddzm7ZY7BYDAEl8Y/mj+3zd/IpViPYu9CwodmXQEChdqL95
- Wp3nOAYlNXNH/Y6zSPwfcPan4cCtRvuhfZYJv4akxaGIEiFiMiV5YsQhUZPWxkl8a6Seq4
- ZZUn57DMEbOpgoMpXMWQlo+D9VZSVx0=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-41-8I04OEsTPROXnZ5zD5sl_w-1; Mon, 06 Mar 2023 19:20:08 -0500
-X-MC-Unique: 8I04OEsTPROXnZ5zD5sl_w-1
-Received: by mail-qv1-f71.google.com with SMTP id
- x10-20020ad440ca000000b005800220da38so5364730qvp.14
- for <nouveau@lists.freedesktop.org>; Mon, 06 Mar 2023 16:20:08 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0151A10E145;
+	Tue,  7 Mar 2023 17:18:44 +0000 (UTC)
+Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com
+ [IPv6:2607:f8b0:4864:20::c2d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDF8410E1D6
+ for <nouveau@lists.freedesktop.org>; Tue,  7 Mar 2023 17:18:41 +0000 (UTC)
+Received: by mail-oo1-xc2d.google.com with SMTP id
+ p8-20020a4a3c48000000b0052527a9d5f0so2141177oof.1
+ for <nouveau@lists.freedesktop.org>; Tue, 07 Mar 2023 09:18:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1678209521;
+ h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=/HMBfX07KVRWkQ0kOyT2/vOgE9Jf6P/W9PmITfPmKps=;
+ b=jxochXknDZlvSl7JrHD1M+CIGjkZC3aBOh8shPchdNB5fxt6yHw/yKxvKsHdaYZLIH
+ fFYtms1z9yDKRtUf51z/Rg+yMIHk6t0ySC0kTwUa0Rt0kKH4i8k/p1i4pIkVtAc1UjW/
+ yjkk21I22ET2CV7gB01ytRnQWRPPGkz9xQkXheFkxg3vfGvhP+YcSbyMpWnLd6fQwtGo
+ kdlTb66LcbtQHj9UG53S7N36lZwppd8xSfPtOay0EWzTSlNtgu3vN7FVBUhTzeY0AuzG
+ qoe0EglI98VfqAFCmoE5vUSMnMwf165ePdAgpMjJ3SVRboQ0YReVSJ0mavffv5PxZa2i
+ hMfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678148407;
- h=mime-version:user-agent:content-transfer-encoding:organization
- :references:in-reply-to:date:cc:to:from:subject:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=3OO5g3ulKc98Lo7VM2vnzz9iptcrpwzftjrdFER2j9g=;
- b=3GHQ9U+2E+mjT9L4jdcbaP2dnHDU4FPAo6kQ2RKGuuDuSdExwj+7+4XuVulrNrHY75
- WvaCqoSDJ8VG2tvulH5CH1GzeUmE6NwZuwhlOz/4V2Shchbwj/Wrzzlrwj8MNnLV+p0O
- 6UvG7wEbscOqwjTuyJa+Q7LcSGHYrL6huTKgb5NY4kzQ8vSuNm7VZXfMM9SUkuM9jv81
- XyaIFLOJSgqFRhIvOzwzIyEhW6BELK70uwuwBlpcykhHVnQ9dqMtt1DltwZ0S6pBGh3j
- zqIvYt2cHTGkDq5jHVGlAHHZgCLj0K6ln/aC3t1mwFf3Ly6zbw0qu62uOV3kPlOJWJLl
- KY6A==
-X-Gm-Message-State: AO0yUKUMhfZs5PT8x+FW8fFFBmJYVqaY2SS9q4tY3hVTiLAh0oa29K7X
- J9EfCDKHeIj3WTJ3NbTEVszPH2MBEj0mGFIc3bhO08qjuFC1ovM816D3I0OBr/hvrL0pnDILFJF
- bhUm1qP3qRZiyqsgg+qMuS8rVKQ==
-X-Received: by 2002:ac8:5e0c:0:b0:3bf:b1d6:359e with SMTP id
- h12-20020ac85e0c000000b003bfb1d6359emr17210014qtx.7.1678148407652; 
- Mon, 06 Mar 2023 16:20:07 -0800 (PST)
-X-Google-Smtp-Source: AK7set9G99b4/F24c6ODRtdenQOBsR+rNyjSK/ievkE2R8v6jyZs5TelbiEvYAAjwLxnvAJSnVjzCA==
-X-Received: by 2002:ac8:5e0c:0:b0:3bf:b1d6:359e with SMTP id
- h12-20020ac85e0c000000b003bfb1d6359emr17209989qtx.7.1678148407373; 
- Mon, 06 Mar 2023 16:20:07 -0800 (PST)
-Received: from ?IPv6:2600:4040:5c68:6800::feb? ([2600:4040:5c68:6800::feb])
- by smtp.gmail.com with ESMTPSA id
- n132-20020a37408a000000b007425dade624sm8526056qka.41.2023.03.06.16.20.06
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 06 Mar 2023 16:20:06 -0800 (PST)
-Message-ID: <cf9f2bba28420dd19e14f449f4049ed23cfc41a2.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Deepak R Varma <drv@mailo.com>, Ben Skeggs <bskeggs@redhat.com>, Karol
- Herbst <kherbst@redhat.com>, David Airlie <airlied@gmail.com>, Daniel
- Vetter <daniel@ffwll.ch>,  dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org,  linux-kernel@vger.kernel.org
-Date: Mon, 06 Mar 2023 19:20:05 -0500
-In-Reply-To: <Y/+pDaHOgG1x8Py2@ubun2204.myguest.virtualbox.org>
-References: <Y/+pDaHOgG1x8Py2@ubun2204.myguest.virtualbox.org>
-Organization: Red Hat Inc.
-User-Agent: Evolution 3.44.4 (3.44.4-2.fc36)
+ d=1e100.net; s=20210112; t=1678209521;
+ h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=/HMBfX07KVRWkQ0kOyT2/vOgE9Jf6P/W9PmITfPmKps=;
+ b=30AdqNupame5/6WGmr1jsQSxMA7irIqZz+NRKkmrIwUyYfdinsK/hazNtfqBdc5RAM
+ JV2FEtuCjJC9lLYeQSJ8THzds9W3DW6KH29m8y7k99xsx3Ar3P9/CLrOjpBi0/0HXhoS
+ dI1y1KP+OU1ffwpzuyXMpgbnrMv+yOhaNW/CqopyaJltt8P/KtBTAy85iG9UYu2wCK62
+ 5lTvZEylogPGCHu4Btx+ddVkgSUsnikXS446l1DolPjt83U7KqLAdFA88ep+1Kf6hx2z
+ 3nIROiIXsSxP+fbQKXISQ51GZIWm7tKPFwoyI0N3uz5UiZRhbgXtudAgXLY4bLk66UWu
+ H8LQ==
+X-Gm-Message-State: AO0yUKXb0C9+82RZLfY1POJk569WKgVk9Fc0FhGfS3ChM1789vdH6h4j
+ r2ti1xTd1gvr8q9O3eIC0Uu2JQx0uY252ucdGWxhHT4J8gU=
+X-Google-Smtp-Source: AK7set82tMDiyW4lH6YUCn7bPJmFvjE8GZVu2j4/SoVwjee7nRpIKTMiHznErRDI6DtR8prTj6r3s+eofUelPEpQnOM=
+X-Received: by 2002:a4a:da01:0:b0:524:f77c:5443 with SMTP id
+ e1-20020a4ada01000000b00524f77c5443mr5119734oou.1.1678209520714; Tue, 07 Mar
+ 2023 09:18:40 -0800 (PST)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
+From: Nicolas Chauvet <kwizart@gmail.com>
+Date: Tue, 7 Mar 2023 18:18:29 +0100
+Message-ID: <CABr+WTmcAxFXUFJiYS6s98zcaFmiOEQ3i-WV=yvT6jdTWh5TMw@mail.gmail.com>
+To: nouveau@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Nouveau] [PATCH RESEND] drm/nouveau/hwmon: Use sysfs_emit in
- show function callsbacks
+Subject: [Nouveau] Panic on deferred probe with nouveau - jetson-tx1 -
+ 6.3-rc1
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,72 +63,90 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Praveen Kumar <kumarpraveen@linux.microsoft.com>,
- Saurabh Singh Sengar <ssengar@microsoft.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
+Hi,
 
-Will push upstream in a moment
+I'm using the fedora rawhide kernel-6.3.0-0.rc1.16.fc39.aarch64 on a
+fedora 38 userspace with jetson-tx1.
 
-On Thu, 2023-03-02 at 01:05 +0530, Deepak R Varma wrote:
-> According to Documentation/filesystems/sysfs.rst, the show() callback
-> function of kobject attributes should strictly use sysfs_emit() instead
-> of sprintf() family functions. So, make this change.
-> Issue identified using the coccinelle device_attr_show.cocci script.
->=20
-> Signed-off-by: Deepak R Varma <drv@mailo.com>
-> ---
-> Note:
->    Resending the patch for review and feedback. No functional changes.
->=20
->=20
->  drivers/gpu/drm/nouveau/nouveau_hwmon.c | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/no=
-uveau/nouveau_hwmon.c
-> index a7db7c31064b..e844be49e11e 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-> @@ -41,7 +41,7 @@ static ssize_t
->  nouveau_hwmon_show_temp1_auto_point1_pwm(struct device *d,
->  =09=09=09=09=09 struct device_attribute *a, char *buf)
->  {
-> -=09return snprintf(buf, PAGE_SIZE, "%d\n", 100);
-> +=09return sysfs_emit(buf, "%d\n", 100);
->  }
->  static SENSOR_DEVICE_ATTR(temp1_auto_point1_pwm, 0444,
->  =09=09=09  nouveau_hwmon_show_temp1_auto_point1_pwm, NULL, 0);
-> @@ -54,8 +54,8 @@ nouveau_hwmon_temp1_auto_point1_temp(struct device *d,
->  =09struct nouveau_drm *drm =3D nouveau_drm(dev);
->  =09struct nvkm_therm *therm =3D nvxx_therm(&drm->client.device);
-> =20
-> -=09return snprintf(buf, PAGE_SIZE, "%d\n",
-> -=09      therm->attr_get(therm, NVKM_THERM_ATTR_THRS_FAN_BOOST) * 1000);
-> +=09return sysfs_emit(buf, "%d\n",
-> +=09=09=09  therm->attr_get(therm, NVKM_THERM_ATTR_THRS_FAN_BOOST) * 1000=
-);
->  }
->  static ssize_t
->  nouveau_hwmon_set_temp1_auto_point1_temp(struct device *d,
-> @@ -87,8 +87,8 @@ nouveau_hwmon_temp1_auto_point1_temp_hyst(struct device=
- *d,
->  =09struct nouveau_drm *drm =3D nouveau_drm(dev);
->  =09struct nvkm_therm *therm =3D nvxx_therm(&drm->client.device);
-> =20
-> -=09return snprintf(buf, PAGE_SIZE, "%d\n",
-> -=09 therm->attr_get(therm, NVKM_THERM_ATTR_THRS_FAN_BOOST_HYST) * 1000);
-> +=09return sysfs_emit(buf, "%d\n",
-> +=09=09=09  therm->attr_get(therm, NVKM_THERM_ATTR_THRS_FAN_BOOST_HYST) *=
- 1000);
->  }
->  static ssize_t
->  nouveau_hwmon_set_temp1_auto_point1_temp_hyst(struct device *d,
+I'm experiencing the following panic [0]. The workaround is to
+blacklist nouveau at boot (using rd.driver.blacklist=nouveau
+modprobe.blacklist=nouveau on cmdline) . modprobe nouveau after boot
+and restart display. (userspace still needs fixes as seen on the mesa
+gitlab instance).
 
---=20
-Cheers,
- Lyude Paul (she/her)
- Software Engineer at Red Hat
+[0]
+[    9.158155] Failed to set up IOMMU for device 57000000.gpu;
+retaining platform DMA ops
+[   51.278556] SError Interrupt on CPU3, code 0x00000000bf000002 -- SError
+[   51.278570] CPU: 3 PID: 9 Comm: kworker/u8:0 Not tainted
+6.3.0-0.rc1.16.fc39.aarch64 #1
+[   51.278578] Hardware name: nvidia,p2371-2180 NVIDIA
+P2371-2180/NVIDIA P2371-2180, BIOS 2022.10 10/01/2022
+[   51.278583] Workqueue: events_unbound deferred_probe_work_func
+[   51.278603] pstate: 404000c5 (nZcv daIF +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[   51.278611] pc : el1_interrupt+0x20/0x70
+[   51.278623] lr : el1h_64_irq_handler+0x18/0x28
+[   51.278631] sp : ffff80000b99b880
+[   51.278634] x29: ffff80000b99b880 x28: ffff00008032c400 x27: 0000000000000001
+[   51.278645] x26: ffff00008d510c48 x25: ffff800001649960 x24: ffff800001649960
+[   51.278654] x23: 0000000060400005 x22: ffff8000014cafd0 x21: 00000000f40cf000
+[   51.278663] x20: ffff8000080700d0 x19: ffff80000b99b8b0 x18: 0000000000000000
+[   51.278671] x17: 0000000000000000 x16: 0000000000000000 x15: 0000000000000000
+[   51.278679] x14: 0000000000000000 x13: 0000000000000010 x12: ffff80000dffffff
+[   51.278688] x11: 000000000000007e x10: ffff0000ff1ff008 x9 : 0000000058000000
+[   51.278697] x8 : ffff80000dffffff x7 : 000000000000003f x6 : ffff80000de00000
+[   51.278706] x5 : ffff0000ff1fe380 x4 : ffff80000e000000 x3 : 0000000058000000
+[   51.278714] x2 : 0068000000000713 x1 : 00000000000000c0 x0 : ffff80000b99b8b0
+[   51.278724] Kernel panic - not syncing: Asynchronous SError Interrupt
+[   51.278728] CPU: 3 PID: 9 Comm: kworker/u8:0 Not tainted
+6.3.0-0.rc1.16.fc39.aarch64 #1
+[   51.278734] Hardware name: nvidia,p2371-2180 NVIDIA
+P2371-2180/NVIDIA P2371-2180, BIOS 2022.10 10/01/2022
+[   51.278737] Workqueue: events_unbound deferred_probe_work_func
+[   51.278748] Call trace:
+[   51.278750]  dump_backtrace+0xa8/0x138
+[   51.278760]  show_stack+0x20/0x38
+[   51.278765]  dump_stack_lvl+0x48/0x60
+[   51.278773]  dump_stack+0x18/0x28
+[   51.278778]  panic+0x358/0x370
+[   51.278787]  nmi_panic+0xb4/0xc0
+[   51.278794]  arm64_serror_panic+0x6c/0x88
+[   51.278801]  do_serror+0x44/0x80
+[   51.278807]  el1h_64_error_handler+0x30/0x48
+[   51.278813] VDD_PEX_1V05: disabling
+[   51.278814]  el1h_64_error+0x68/0x70
+[   51.278820]  el1_interrupt+0x20/0x70
+[   51.278826]  el1h_64_irq_handler+0x18/0x28
+[   51.278833]  el1h_64_irq+0x68/0x70
+[   51.278837]  nvkm_device_ctor+0x1ba0/0x3950 [nouveau]
+[   51.279720]  nvkm_device_tegra_new+0x2e4/0x388 [nouveau]
+[   51.280511]  nouveau_platform_device_create+0x44/0xd8 [nouveau]
+[   51.281259]  nouveau_platform_probe+0x44/0xa8 [nouveau]
+[   51.281994]  platform_probe+0x70/0xd8
+[   51.282004]  really_probe+0x18c/0x3e0
+[   51.282013]  __driver_probe_device+0x84/0x198
+[   51.282022]  driver_probe_device+0x44/0x120
+[   51.282031]  __device_attach_driver+0xc4/0x168
+[   51.282040]  bus_for_each_drv+0x8c/0xf0
+[   51.282048]  __device_attach+0xa4/0x1c0
+[   51.282056]  device_initial_probe+0x1c/0x30
+[   51.282065]  bus_probe_device+0xb4/0xc0
+[   51.282073]  deferred_probe_work_func+0xbc/0x118
+[   51.282081]  process_one_work+0x1e8/0x488
+[   51.282089]  worker_thread+0x74/0x418
+[   51.282094]  kthread+0xe8/0x100
+[   51.282101]  ret_from_fork+0x10/0x20
+[   51.282111] SMP: stopping secondary CPUs
+[   51.285427] Kernel Offset: 0x60000 from 0xffff800008000000
+[   51.285431] PHYS_OFFSET: 0x80000000
+[   51.285434] CPU features: 0x440002,022c0400,0000421b
+[   51.285439] Memory Limit: none
 
+
+-- 
+-
+
+Nicolas (kwizart)
