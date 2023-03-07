@@ -4,42 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76B39C6FD1E
-	for <nouveau@archiver.kernel.org>; Tue,  7 Mar 2023 17:19:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39B46C6FA99
+	for <nouveau@archiver.kernel.org>; Tue,  7 Mar 2023 22:43:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2249F10E16C;
-	Tue,  7 Mar 2023 17:19:30 +0000 (UTC)
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC11C10E16C;
- Tue,  7 Mar 2023 17:19:27 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 3763AB819A9;
- Tue,  7 Mar 2023 17:19:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A05CFC4339B;
- Tue,  7 Mar 2023 17:19:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1678209564;
- bh=4wcmjOK3au9c7YzgOC3bkT1t8nJpoFaFDjWP1hCHNd0=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=L47y4j+KYbU8LnYFNSp8v4rLx78dyGttBEaD57W94DuFBL7+WWOvHb25kWefqeL4m
- GvJjw3MSMIfiOIEG0r4maEGEVVyq0kx5/m0NLS1u6vCdpUI/W9Lg/sD2jYu6jDjcOR
- 7thko4Y4lQRaip/R8MR7MwUKCkjt732Ss+WwH21g=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Date: Tue,  7 Mar 2023 17:50:00 +0100
-Message-Id: <20230307170031.764563907@linuxfoundation.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230307170022.094103862@linuxfoundation.org>
-References: <20230307170022.094103862@linuxfoundation.org>
-User-Agent: quilt/0.67
+	by gabe.freedesktop.org (Postfix) with ESMTP id A12E410E55C;
+	Tue,  7 Mar 2023 22:43:14 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6175610E55C
+ for <nouveau@lists.freedesktop.org>; Tue,  7 Mar 2023 22:43:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1678228991;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=bBISRmWtyk5b0q7tO/ZlpLIwLMdyIaEEvwZMNTD2oyo=;
+ b=LnhD8ZopbZZz6e9Rn9+o+e3d+qD1qJNluPe3gkNt0xwI5PeCpDF/vDrBcDmhuALu0s8iuy
+ gJH+ogCO9ro4ZUSahvmWP4X5TKf8lVWRyu++5NY4KKE2MVwIcep6NXGITo4oD3wTff+tqF
+ Ogvk4/WOmL6N3FGLLR0hSaN//xL56xA=
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-445-1jlhInatOZG35ZevITMEYQ-1; Tue, 07 Mar 2023 17:43:10 -0500
+X-MC-Unique: 1jlhInatOZG35ZevITMEYQ-1
+Received: by mail-qk1-f197.google.com with SMTP id
+ x14-20020ae9e90e000000b007429af46d5eso8245168qkf.12
+ for <nouveau@lists.freedesktop.org>; Tue, 07 Mar 2023 14:43:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1678228990;
+ h=mime-version:user-agent:content-transfer-encoding:organization
+ :references:in-reply-to:date:cc:to:from:subject:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=bBISRmWtyk5b0q7tO/ZlpLIwLMdyIaEEvwZMNTD2oyo=;
+ b=Z1TK24uaUfBDrI1/d5lQIslLncHcX8Qf1jwRh6vBPemgjslazP0Kdrew02J3qenMoV
+ Fi/bCy+ezoVPVl/pnqf4K7kAnzW2S9vjL3BZchrN92n84N+lp3eoy4MVnOOiM9aG2j+1
+ kiFb9vETSXveQfaoUzvVVD5dyXbkioKcxyQickcg0r2ljBB+6n+rljiBICFvN1ItAd8M
+ pu3mOpQaDW1gvJRYIxeixEoKZIdPmeZNo43eXHSvgOInbyIJKS0SsXL++RQKsNAd1g41
+ m7g2fEyUO407L3jo/24X1DX1CMnz1+3JkrK1ozeeB1ENDIVH47sKL1y+F4Dyp/cyzQck
+ FZEg==
+X-Gm-Message-State: AO0yUKVKS9pAznL9kdBZyoSe9ayrJZ85JDNfiAveJDFwrQYqOCPEBrTf
+ U+K+VzDcL7oyShw2nQ1p2fhPGJMSE9Uo4/zXA6H1cvMcJm+seVeJxO4i9lF3wDHfcmQAOptdfS0
+ 9ofmngXxAGw3q/DU+f8tedQj0/A==
+X-Received: by 2002:ac8:5c02:0:b0:3b8:525e:15ec with SMTP id
+ i2-20020ac85c02000000b003b8525e15ecmr30590760qti.27.1678228989835; 
+ Tue, 07 Mar 2023 14:43:09 -0800 (PST)
+X-Google-Smtp-Source: AK7set+Me9bTPhI1hFsGeGjWpMBd7fZ9BKtiTY5Thb2DH2wKRapu1088yY+WA0JY2Qyr92U3nNacYw==
+X-Received: by 2002:ac8:5c02:0:b0:3b8:525e:15ec with SMTP id
+ i2-20020ac85c02000000b003b8525e15ecmr30590731qti.27.1678228989586; 
+ Tue, 07 Mar 2023 14:43:09 -0800 (PST)
+Received: from ?IPv6:2600:4040:5c68:6800::feb? ([2600:4040:5c68:6800::feb])
+ by smtp.gmail.com with ESMTPSA id
+ u24-20020a37ab18000000b006fa16fe93bbsm10313451qke.15.2023.03.07.14.43.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 07 Mar 2023 14:43:09 -0800 (PST)
+Message-ID: <2732d141a82c0f9410d001fe656d30c5e32311de.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Jakob Koschel <jkl820.git@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, 
+ Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@gmail.com>, Daniel
+ Vetter <daniel@ffwll.ch>
+Date: Tue, 07 Mar 2023 17:43:07 -0500
+In-Reply-To: <20230301-drm-nouveau-avoid-iter-after-loop-v1-0-0702ec23f970@gmail.com>
+References: <20230301-drm-nouveau-avoid-iter-after-loop-v1-0-0702ec23f970@gmail.com>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.44.4 (3.44.4-2.fc36)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH 6.2 0228/1001] drm/nouveau/disp: Fix
- nvif_outp_acquire_dp() argument size
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Nouveau] [PATCH 0/2] drm/nouveau: avoid usage of list iterator
+ after loop
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,96 +86,50 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Kees Cook <keescook@chromium.org>,
- "Gustavo A. R. Silva" <gustavo@embeddedor.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- dri-devel@lists.freedesktop.org, patches@lists.linux.dev,
- coverity-bot <keescook+coverity-bot@chromium.org>,
- Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
- nouveau@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>
+Cc: nouveau@lists.freedesktop.org, Pietro Borrello <borrello@diag.uniroma1.it>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Kees Cook <keescook@chromium.org>
-
-[ Upstream commit 4076ea2419cf15bc1e1580f8b24ddf675fbdb02c ]
-
-Both Coverity and GCC with -Wstringop-overflow noticed that
-nvif_outp_acquire_dp() accidentally defined its second argument with 1
-additional element:
-
-drivers/gpu/drm/nouveau/dispnv50/disp.c: In function 'nv50_pior_atomic_enable':
-drivers/gpu/drm/nouveau/dispnv50/disp.c:1813:17: error: 'nvif_outp_acquire_dp' accessing 16 bytes in a region of size 15 [-Werror=stringop-overflow=]
- 1813 |                 nvif_outp_acquire_dp(&nv_encoder->outp, nv_encoder->dp.dpcd, 0, 0, false, false);
-      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/nouveau/dispnv50/disp.c:1813:17: note: referencing argument 2 of type 'u8[16]' {aka 'unsigned char[16]'}
-drivers/gpu/drm/nouveau/include/nvif/outp.h:24:5: note: in a call to function 'nvif_outp_acquire_dp'
-   24 | int nvif_outp_acquire_dp(struct nvif_outp *, u8 dpcd[16],
-      |     ^~~~~~~~~~~~~~~~~~~~
-
-Avoid these warnings by defining the argument size using the matching
-define (DP_RECEIVER_CAP_SIZE, 15) instead of having it be a literal
-(and incorrect) value (16).
-
-Reported-by: coverity-bot <keescook+coverity-bot@chromium.org>
-Addresses-Coverity-ID: 1527269 ("Memory - corruptions")
-Addresses-Coverity-ID: 1527268 ("Memory - corruptions")
-Link: https://lore.kernel.org/lkml/202211100848.FFBA2432@keescook/
-Link: https://lore.kernel.org/lkml/202211100848.F4C2819BB@keescook/
-Fixes: 813443721331 ("drm/nouveau/disp: move DP link config into acquire")
 Reviewed-by: Lyude Paul <lyude@redhat.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Signed-off-by: Kees Cook <keescook@chromium.org>
-Link: https://lore.kernel.org/r/20221127183036.never.139-kees@kernel.org
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/nouveau/include/nvif/outp.h | 3 ++-
- drivers/gpu/drm/nouveau/nvif/outp.c         | 2 +-
- 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/include/nvif/outp.h b/drivers/gpu/drm/nouveau/include/nvif/outp.h
-index 45daadec3c0c7..fa76a7b5e4b37 100644
---- a/drivers/gpu/drm/nouveau/include/nvif/outp.h
-+++ b/drivers/gpu/drm/nouveau/include/nvif/outp.h
-@@ -3,6 +3,7 @@
- #define __NVIF_OUTP_H__
- #include <nvif/object.h>
- #include <nvif/if0012.h>
-+#include <drm/display/drm_dp.h>
- struct nvif_disp;
- 
- struct nvif_outp {
-@@ -21,7 +22,7 @@ int nvif_outp_acquire_rgb_crt(struct nvif_outp *);
- int nvif_outp_acquire_tmds(struct nvif_outp *, int head,
- 			   bool hdmi, u8 max_ac_packet, u8 rekey, u8 scdc, bool hda);
- int nvif_outp_acquire_lvds(struct nvif_outp *, bool dual, bool bpc8);
--int nvif_outp_acquire_dp(struct nvif_outp *, u8 dpcd[16],
-+int nvif_outp_acquire_dp(struct nvif_outp *outp, u8 dpcd[DP_RECEIVER_CAP_SIZE],
- 			 int link_nr, int link_bw, bool hda, bool mst);
- void nvif_outp_release(struct nvif_outp *);
- int nvif_outp_infoframe(struct nvif_outp *, u8 type, struct nvif_outp_infoframe_v0 *, u32 size);
-diff --git a/drivers/gpu/drm/nouveau/nvif/outp.c b/drivers/gpu/drm/nouveau/nvif/outp.c
-index 7da39f1eae9fb..c24bc5eae3ecf 100644
---- a/drivers/gpu/drm/nouveau/nvif/outp.c
-+++ b/drivers/gpu/drm/nouveau/nvif/outp.c
-@@ -127,7 +127,7 @@ nvif_outp_acquire(struct nvif_outp *outp, u8 proto, struct nvif_outp_acquire_v0
- }
- 
- int
--nvif_outp_acquire_dp(struct nvif_outp *outp, u8 dpcd[16],
-+nvif_outp_acquire_dp(struct nvif_outp *outp, u8 dpcd[DP_RECEIVER_CAP_SIZE],
- 		     int link_nr, int link_bw, bool hda, bool mst)
- {
- 	struct nvif_outp_acquire_v0 args;
--- 
-2.39.2
+Will push upstream in just a moment
 
+On Wed, 2023-03-01 at 18:25 +0100, Jakob Koschel wrote:
+> This patch set includes two instances where the list iterator variable
+> 'pstate' is implicitly assumed to be valid after the iterator loop.
+> While in pratice that is most likely the case (if
+> 'pstatei'/'args->v0.state' is <=3D the elements in clk->states), we shoul=
+d
+> explicitly only allow 'pstate' to always point to correct 'nvkm_pstate'
+> structs.
+>=20
+> That allows catching potential bugs with BUG_ON(!pstate) that otherwise
+> would be completely undetectable.
+>=20
+> It also helps the greater mission to hopefully move the list iterator
+> variable into the iterating macro directly [1].
+>=20
+> Link: https://lore.kernel.org/all/CAHk-=3DwgRr_D8CB-D9Kg-c=3DEHreAsk5SqXP=
+wr9Y7k9sA6cWXJ6w@mail.gmail.com/ [1]
+> Signed-off-by: Jakob Koschel <jkl820.git@gmail.com>
+> ---
+> Jakob Koschel (2):
+>       drm/nouveau/device: avoid usage of list iterator after loop
+>       drm/nouveau/clk: avoid usage of list iterator after loop
+>=20
+>  drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c | 9 ++++++---
+>  drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c    | 9 ++++++---
+>  2 files changed, 12 insertions(+), 6 deletions(-)
+> ---
+> base-commit: c0927a7a5391f7d8e593e5e50ead7505a23cadf9
+> change-id: 20230301-drm-nouveau-avoid-iter-after-loop-4bff97166efa
+>=20
+> Best regards,
 
+--=20
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
