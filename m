@@ -4,49 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D8E7C7EE26
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:34:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3841AC77B78
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:34:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCD3010E4D6;
-	Thu,  4 May 2023 12:33:52 +0000 (UTC)
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D69D410E572;
- Mon, 13 Mar 2023 15:27:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
- In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=wpCxvwf3fbLAPDA2SBvrNdTlpxqBWm7vfBvxAU0BSDE=; b=ERpsLSYOO/B08jOgkxgecMzR/U
- AydhYvnHCxhNZAXDoir04qXs7ABCb+EG7RjsVugtQRv2DrrYGBpjBKmqXB5baDrwwZP/PXr3VBgIy
- IBwmBSgqEYgHSUevrat5RX1SwBJz4vM/LmTzmgPhVMYrh95ibu36pb/b/KEqlO+PtULlaqSES4F3z
- jCBDKiVsGU7wIyAb25c88bQ7lYyqeih9QOg+85noNQtOEFrpsbAr3EIEtvmrvoShgaPPENHqragRM
- aJwTp0hL1SqG0K7VR5pWHO+Emfgti8IvYO3EB2LxJ2MPKy7YFH1criDC8UH9N4gz8KxRC8ETMR1i7
- tBLUp8ng==;
-Received: from 137.red-83-52-2.dynamicip.rima-tde.net ([83.52.2.137]
- helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1pbk4r-007m0t-VO; Mon, 13 Mar 2023 16:27:09 +0100
-Message-ID: <19f8b5328550abde46a316189c8cd746339819b0.camel@igalia.com>
-From: Ricardo Garcia <rgarcia@igalia.com>
-To: members@x.org, events@lists.x.org, xorg-devel@lists.freedesktop.org, 
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- libre-soc-dev <libre-soc-dev@lists.libre-soc.org>
-Date: Mon, 13 Mar 2023 16:27:09 +0100
-In-Reply-To: <c1c2591a7f7c9bcb05b69b08da529ddb8fc8145c.camel@igalia.com>
-References: <c1c2591a7f7c9bcb05b69b08da529ddb8fc8145c.camel@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BE7010E4DC;
+	Thu,  4 May 2023 12:33:54 +0000 (UTC)
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com
+ [IPv6:2607:f8b0:4864:20::102c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD00710E357
+ for <nouveau@lists.freedesktop.org>; Tue,  7 Mar 2023 04:25:10 +0000 (UTC)
+Received: by mail-pj1-x102c.google.com with SMTP id
+ m20-20020a17090ab79400b00239d8e182efso15315673pjr.5
+ for <nouveau@lists.freedesktop.org>; Mon, 06 Mar 2023 20:25:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1678163110;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=s3KTnrnv3dHcE3f0vIugluw/FAEArmhiZErhNRUYdOI=;
+ b=JCWbMWcIe94/eoDecPbu1BSXlFXilW6amLFsklUPmQfAy/SwqTxb1QanUFqSIl2TAR
+ EU0u5XyNa+1Hz0GdSMbJ0GVogKlTZFEpE57kMF8EwDLy8Zj/npvjsFvQ/x0PNvFojBwQ
+ GwGFFSbBPJhVf/N0JGfDPrqxPKF5Nc/UmzhpSTaUXtD38mNfjZCS0GrNTvW9ir45VRT7
+ 9Ekdlhmq8TJT26P2w/ttNMjzQ36qQrVH5tnc8uwVhIlJlYwlxm8PNJ3FAUpQ3qpd2/yG
+ Tgn19JQ/4g9wJbu1FlRumOn/U190Eb2sDneZq2y3moRHGAUunK+c9CnJDkZKtxhHJ4pt
+ 6kNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1678163110;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=s3KTnrnv3dHcE3f0vIugluw/FAEArmhiZErhNRUYdOI=;
+ b=YA0ZOuw9qCEurRXKVcA5CfWGFc5vLJns8/2B6t0/6QFgj77nBkiP+vzWvmElkAIrMT
+ /Kufsf5/AwnVjTbxt9JCXhCS0bdMqUD2hAxcIEAH7MGVkKxeSndwkReJcvc5XhvtAS92
+ qAdq7zewuluqf9rKl0HqNLOloZIwcFcowB/nC3bsB3ULhf2hzgJx9AEufooo4wO5SotL
+ D5E9OoUSRlmMbvnqAjqZtb6fGGY/rCNjMyLm//Xk2eS+tY3hrgb+R01P6zTvoNVUH3oe
+ hw4zG3+qhG33hcmyGR0k1dyt3b99KQbkauj0Rjk0j6SPF+r8heoqEf0mfkUwfGG09Vz2
+ NyyA==
+X-Gm-Message-State: AO0yUKWNwMEF4eM5N1+UBQARK51n8VugBkTFZ/aF1FTC6xFM4R31h1gc
+ ZWElrr6eASQgrVtRj0Hpe6P2VN3hMMQeVgEOYXI=
+X-Google-Smtp-Source: AK7set/16SayqVO0T/l1KqHu4xJ95/iM0Gu0PLByPiWI+Ia6I+98f3uYrMX2bHVwAw8aLBcT0g1wTIC1OH0pVtPqSCc=
+X-Received: by 2002:a17:902:ef92:b0:19a:8259:c754 with SMTP id
+ iz18-20020a170902ef9200b0019a8259c754mr5099471plb.0.1678163109892; Mon, 06
+ Mar 2023 20:25:09 -0800 (PST)
+MIME-Version: 1.0
+References: <20221029074654.203153-1-zyytlz.wz@163.com>
+ <5882bd80983ac04a32676f07622cba7d0e245e55.camel@redhat.com>
+In-Reply-To: <5882bd80983ac04a32676f07622cba7d0e245e55.camel@redhat.com>
+From: Zheng Hacker <hackerzheng666@gmail.com>
+Date: Tue, 7 Mar 2023 12:24:58 +0800
+Message-ID: <CAJedcCxmnnrVsq6TtyNPp1v7yv6hszbWnRub8V=ZNFA7OaFa=g@mail.gmail.com>
+To: Lyude Paul <lyude@redhat.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
-MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:38 +0000
-Subject: Re: [Nouveau] 2023 X.Org Board of Directors Elections Nomination
- period is NOW
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:36 +0000
+Subject: Re: [Nouveau] [PATCH] drm/nouveau/mmu: fix use-after-free bug in
+ nvkm_vmm_pfn_map
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,70 +70,61 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: board <board@foundation.x.org>
+Cc: alex000young@gmail.com, security@kernel.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Julia.Lawall@inria.fr, bskeggs@redhat.com,
+ daniel@ffwll.ch, Zheng Wang <zyytlz.wz@163.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This is a reminder that the nomination period for the X.Org Board of
-Director elections finishes in a week, on March 19th.
+Hi,
 
-If you would like to nominate yourself please send email to the election
-committee elections@x.org, giving your
+This bug has been proved to be a false positive. So there is no need
+to make the patch.
 
-    name
-    current professional affiliation
-    a statement of contribution to X.Org or related technologies
-    a personal statement.
+Thanks,
+Zheng
 
-To vote or to be elected to the Board you needed to be a Member of the
-X.Org Foundation. To be a Member of the X.Org Foundation you need to
-apply or renew your membership until the end of the nomination period.
-
-Original email follows below. Thanks for your attention.
-
-On Wed, 2023-02-15 at 21:53 +0100, Ricardo Garcia wrote:
-> We are seeking nominations for candidates for election to the X.Org
-> Foundation Board of Directors. All X.Org Foundation members are eligible
-> for election to the board.
->=20
-> Nominations for the 2023 election are now open and will remain open
-> until 23:59 UTC on 19 March 2023.
->=20
-> The Board consists of directors elected from the membership. Each year,
-> an election is held to bring the total number of directors to eight. The
-> four members receiving the highest vote totals will serve as directors
-> for two year terms.
->=20
-> The directors who received two year terms starting in 2022 were Emma
-> Anholt, Mark Filion, Alyssa Rosenzweig and Ricardo Garcia. They will
-> continue to serve until their term ends in 2024. Current directors whose
-> term expires in 2023 are Samuel Iglesias Gons=C3=A1lvez, Manasi D Navare,
-> Lyude Paul and Daniel Vetter.
->=20
-> A director is expected to participate in the fortnightly IRC meeting to
-> discuss current business and to attend the annual meeting of the X.Org
-> Foundation, which will be held at a location determined in advance by
-> the Board of Directors.
->=20
-> A member may nominate themselves or any other member they feel is
-> qualified. Nominations should be sent to the Election Committee at
-> elections at x.org.
->=20
-> Nominees shall be required to be current members of the X.Org
-> Foundation, and submit a personal statement of up to 200 words that will
-> be provided to prospective voters. The collected statements, along with
-> the statement of contribution to the X.Org Foundation in the member's
-> account page on http://members.x.org, will be made available to all
-> voters to help them make their voting decisions.
->=20
-> Nominations, membership applications or renewals and completed personal
-> statements must be received no later than 23:59 UTC on 19 March 2023.
->=20
-> The slate of candidates will be published 26 March 2023 and candidate
-> Q&A will begin then. The deadline for Xorg membership applications and
-> renewals is 26 March 2023.
->=20
+Lyude Paul <lyude@redhat.com> =E4=BA=8E2023=E5=B9=B43=E6=9C=887=E6=97=A5=E5=
+=91=A8=E4=BA=8C 08:11=E5=86=99=E9=81=93=EF=BC=9A
+>
+> Actually - could you resend this with dri-devel@lists.freedesktop.org add=
+ed to
+> the cc list just to make patchwork happy?
+>
+> On Sat, 2022-10-29 at 15:46 +0800, Zheng Wang wrote:
+> > If it failed in kzalloc, vma will be freed in nvkm_vmm_node_merge.
+> > The later use of vma will casue use after free.
+> >
+> > Reported-by: Zheng Wang <hackerzheng666@gmail.com>
+> > Reported-by: Zhuorao Yang <alex000young@gmail.com>
+> >
+> > Fix it by returning to upper caller as soon as error occurs.
+> >
+> > Signed-off-by: Zheng Wang <zyytlz.wz@163.com>
+> > ---
+> >  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 3 +--
+> >  1 file changed, 1 insertion(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gp=
+u/drm/nouveau/nvkm/subdev/mmu/vmm.c
+> > index ae793f400ba1..04befd28f80b 100644
+> > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+> > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+> > @@ -1272,8 +1272,7 @@ nvkm_vmm_pfn_map(struct nvkm_vmm *vmm, u8 shift, =
+u64 addr, u64 size, u64 *pfn)
+> >                                                      page -
+> >                                                      vmm->func->page, m=
+ap);
+> >                       if (WARN_ON(!tmp)) {
+> > -                             ret =3D -ENOMEM;
+> > -                             goto next;
+> > +                             return -ENOMEM;
+> >                       }
+> >
+> >                       if ((tmp->mapped =3D map))
+>
+> --
 > Cheers,
-> Ricardo Garcia, on behalf of the X.Org BoD
->=20
-
+>  Lyude Paul (she/her)
+>  Software Engineer at Red Hat
+>
