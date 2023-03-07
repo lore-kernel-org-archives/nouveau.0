@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EF32C7EE26
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5588C77B78
 	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4ADFE10E446;
-	Thu,  4 May 2023 12:32:32 +0000 (UTC)
-Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
- [205.220.165.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3713A10E013;
- Thu, 23 Feb 2023 19:10:19 +0000 (UTC)
-Received: from pps.filterd (m0333521.ppops.net [127.0.0.1])
+	by gabe.freedesktop.org (Postfix) with ESMTP id E805C10E42D;
+	Thu,  4 May 2023 12:32:31 +0000 (UTC)
+Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
+ [205.220.177.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 572A010E565;
+ Tue,  7 Mar 2023 22:43:48 +0000 (UTC)
+Received: from pps.filterd (m0333520.ppops.net [127.0.0.1])
  by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 31NHsxd5029263; Thu, 23 Feb 2023 19:09:49 GMT
+ 327JwsGD018534; Tue, 7 Mar 2023 22:43:21 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
  h=date : from : to : cc
  : subject : message-id : references : content-type : in-reply-to :
  mime-version; s=corp-2022-7-12;
- bh=BEN4IGU9hWOjsLmSc7Gp4cJCjNnM1ToV83A7K/czaDE=;
- b=Ucarj1sWp63Mbq3MLiQyT7OkFHhPQwYM8zJNADjlOISZbIl5XcKBwt6SYcupe+JbP5kp
- HTz0YsqFJ0wx6dVbt3l5iHK7lKc2RNBOGHhmoSII1dlN27HsniNn794x5pXCelRYPCvA
- 5C0Qt896HPwDnGGhnWhyxRn1tPdaai+o0VEY6fa0xN2TiOkeQUGT2UKh0Bj7V6pg/GWL
- 5xV7IQsfC5/5JpWPD8+DU8+RvKg1YkpDoppbt9aYT1zdSLnQZZ93zGzquHr42PmRxXRz
- DczFAsdL8mN4miPupt9+D/9ieO2vWc7doJpiRM0/+EH0EIVaCIiFge53d72XPIu0yFxQ 3w== 
-Received: from phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com
- (phxpaimrmta03.appoci.oracle.com [138.1.37.129])
- by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3ntnkbua0s-1
+ bh=cpR4FLDtTsX8gXgsNGYKBIFSKCD3jX8XPy/upEQmkxE=;
+ b=RLX+oLrEVaiQsf9yJcyUGxawVdXVwXiR1v4jShhrV1irINdZLe+GkRvMbCIH691lTOsm
+ BvEFK4cBnracAfTkFp4KOCt8+AEbIvQSPhKA7ZmyphwU1N9QfnqugaJn79EUJNknWP4a
+ cvbWEma0pV2aF7v8Zpe8+4EG5/nra+fmPWPhPbDV2YqxyJYtOFW5N9TkOz+vfHYd9iYa
+ 8nWNqlkwd3dk2MX8DTl7Lj05wkaqBnRwBrSL3gol18uesDPfkAMlRW+D+KAGNvyWRe03
+ t/8u/R8zwCliun4Vr/GDYY0NNoYPQTA4vVmYFcdoyHkGou2/xaFYTHEH8SwX1KgD5wuH hg== 
+Received: from phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com
+ (phxpaimrmta01.appoci.oracle.com [138.1.114.2])
+ by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3p415hxw57-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 23 Feb 2023 19:09:49 +0000
+ Tue, 07 Mar 2023 22:43:20 +0000
 Received: from pps.filterd
- (phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
- by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (8.17.1.5/8.17.1.5)
- with ESMTP id 31NIHiFi030263; Thu, 23 Feb 2023 19:09:48 GMT
-Received: from nam02-sn1-obe.outbound.protection.outlook.com
- (mail-sn1nam02lp2047.outbound.protection.outlook.com [104.47.57.47])
- by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id
- 3ntn48fgqu-1
+ (phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+ by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (8.17.1.5/8.17.1.5)
+ with ESMTP id 327KlblE023396; Tue, 7 Mar 2023 22:43:19 GMT
+Received: from nam02-dm3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02lp2042.outbound.protection.outlook.com [104.47.56.42])
+ by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id
+ 3p4u06wm3h-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 23 Feb 2023 19:09:47 +0000
+ Tue, 07 Mar 2023 22:43:19 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U+Tzmi50A/ZAmsoCrKHqAPILdAFTEiTyZiFVQ53vnfn3hHXW0yT0oQ/ZcN+ih97LSV0YZUyvZR4oHb+Vwc0gom8dMH5K9/F/zNeNftdo7lP/WF/PbbTJLzgmCUlgkYeVu6DwAfnwj22oZMZ4klZR3jEf32cVAx0E5JQSGJgPJbPw3OIlgrVllLLEeArUtwbfepNWQEqJXNE1vUe1mSOTra18gW9keGmIXVWwfVDJavKcYI9EwTlA/Alkqac8NEN4bbBAE/7Ebgp7Q3+fIaSuiuB/9AdM6aj8AwA6dpswCHMkBr6JKKZyNpJFjJR+vUrdeTuADBC0F9wuxoHHMrdbfQ==
+ b=btpwTLa+D7aDbjr/bN7X84wtEqFBeL33QkJcZo+H5qJ67QsAVA/wVI1ewyho9vGZ/hMgRP39TEJpxM8KrQEAn+s4R7zqzcd8ZMOpOniQ1vFGOADaWlsaIlTf5p4ksC/1ElnozVElMWQVSlMF37fAb7abmUkvFB4MEQAVKvFUv3DVLJh545s3+Pw1HoWxqltmhJ33iz4Ox3dEtbY+YB+ZoVuwomq03zdoh4CA1caklC66/ZbIalKWJwK/fTEdyP1NBAD+T3ZZtgUR8JIgqlY6FtPb6JBsbhxJRbxmzBvdImcSEWQItkXzJKC2nX36sFUm0EMD9XctLSGkXFN36SpJJQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BEN4IGU9hWOjsLmSc7Gp4cJCjNnM1ToV83A7K/czaDE=;
- b=L+6YCJ11/x1YPAMvWIHUHDMYC+ApxC5soOPOtAxBSQSrnxXPbHe333A/hMXef/tMC8/X5M4e0pxkX6c/4KCizKTNzByH8vdF4LQ+x1gDF4y7L1dEh0/soIhkmk8hoIH2Jp/kDueY0wREdYV732JJF6fMC53xq6hpNC8+TottGDqVhUwbin3loQsRfRfgVQpp8w4Ei8isS5CZWb4LKPdsAAbdG+DfsNbUWtUbd5kPhrkX4u0V0BFyKhwki/6IKhEFCFD6kvkuIHlMAWqNq7iKt1ualEH9hAbudXnYwpuvJ+wqL0lc1n6nzheqDSSGmlxW6Tyu0PAOQ2Lwan7CEvXDXg==
+ bh=cpR4FLDtTsX8gXgsNGYKBIFSKCD3jX8XPy/upEQmkxE=;
+ b=Xe15OKHkyXtqcAaY+ZdE1ySg0KnwMlKIMQxaw2E2prcwjwHmpGRI20wzpaM0/VcN13e1XhHyJCFsonO1CyIqU0s80/HcAG2kOvdw9EIWeTonCGdkR2aHbcduyfu0FXaEaG1PMy5GCaTAqhldx70hyYuGTHpR0Qq+ZulHn5wbHScdgr8HBmm4GYFkqxTf5lStfP5Ol6orSVUC3GRszvu6uKlhQjk76OGGhSvbI5aRw5yBD1f26C5o44tY+ElydYbDxph0+pACwMj2eYkvoHu6z65eRt8ud3NJRen2oY8ONqUrFjq3EE665KkjFcxvBh6f8BfqMwDvyL4qJOMedmauNQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
  dkim=pass header.d=oracle.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BEN4IGU9hWOjsLmSc7Gp4cJCjNnM1ToV83A7K/czaDE=;
- b=KLhpXPcAn+dz+YaHNE9TY0T1hj98FOiCP1TCyL6aQ7JjpI2dIq/0bUJvyYqwDNROL1n/ywzqiazE4NtXcq9MGVBn3RFCicytcdD/JLgV6mAIHa6T4yw95sRiIUqonPuaRu8C9MIfz1ATKHcyXJxR4CPHfS+eqYheqB3i9ReCA/E=
+ bh=cpR4FLDtTsX8gXgsNGYKBIFSKCD3jX8XPy/upEQmkxE=;
+ b=zPX3s6lA530HgBVuW0Y7zFrVoL2SUCJAWxeRb/5VPZHjnKUyAB7JJgY37eDzVmgh6zD7+9dx9gQJ5cBjrmaL/pIZm6NI/W3bCGSxJdGcgmmP4OPpFsJj6eGrspMxIUG2PoCq1NRGkr/Ce6z4gCeZvTY0hWDXZ/84GeL3R1CVBiA=
 Received: from SN6PR10MB3022.namprd10.prod.outlook.com (2603:10b6:805:d8::25)
- by CH2PR10MB4328.namprd10.prod.outlook.com (2603:10b6:610:7e::15)
+ by CH3PR10MB6715.namprd10.prod.outlook.com (2603:10b6:610:148::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.19; Thu, 23 Feb
- 2023 19:09:45 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.28; Tue, 7 Mar
+ 2023 22:43:16 +0000
 Received: from SN6PR10MB3022.namprd10.prod.outlook.com
  ([fe80::93c9:c99e:5ab:4319]) by SN6PR10MB3022.namprd10.prod.outlook.com
- ([fe80::93c9:c99e:5ab:4319%7]) with mapi id 15.20.6134.017; Thu, 23 Feb 2023
- 19:09:44 +0000
-Date: Thu, 23 Feb 2023 14:09:41 -0500
+ ([fe80::93c9:c99e:5ab:4319%7]) with mapi id 15.20.6156.028; Tue, 7 Mar 2023
+ 22:43:16 +0000
+Date: Tue, 7 Mar 2023 17:43:12 -0500
 From: "Liam R. Howlett" <Liam.Howlett@Oracle.com>
 To: Danilo Krummrich <dakr@redhat.com>
-Message-ID: <20230223190941.bkkloowmvqjiu6d7@revolver>
+Message-ID: <20230307224312.a4kxlykzlzkrcmpf@revolver>
 Mail-Followup-To: "Liam R. Howlett" <Liam.Howlett@Oracle.com>,
  Danilo Krummrich <dakr@redhat.com>, airlied@gmail.com,
  daniel@ffwll.ch, tzimmermann@suse.de, mripard@kernel.org,
@@ -83,95 +83,99 @@ References: <20230217134422.14116-1-dakr@redhat.com>
  <20230217134422.14116-6-dakr@redhat.com>
  <20230221182050.day6z5ge2e3dxerv@revolver>
  <ce3ee7f2-e8a3-80eb-9bca-cd465f7f332e@redhat.com>
+ <20230223190941.bkkloowmvqjiu6d7@revolver>
+ <0868bbeb-11b4-b832-a601-f289278e3e76@redhat.com>
+ <20230302023829.kcxyukt7guacr7xg@revolver>
+ <87be9261-1206-75db-6aeb-27abe6e05821@redhat.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ce3ee7f2-e8a3-80eb-9bca-cd465f7f332e@redhat.com>
+In-Reply-To: <87be9261-1206-75db-6aeb-27abe6e05821@redhat.com>
 User-Agent: NeoMutt/20220429
-X-ClientProxiedBy: YT4PR01CA0321.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:10a::15) To SN6PR10MB3022.namprd10.prod.outlook.com
+X-ClientProxiedBy: YT4PR01CA0323.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:10a::29) To SN6PR10MB3022.namprd10.prod.outlook.com
  (2603:10b6:805:d8::25)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR10MB3022:EE_|CH2PR10MB4328:EE_
-X-MS-Office365-Filtering-Correlation-Id: aa070dc5-8b3b-4515-a2c7-08db15d18620
+X-MS-TrafficTypeDiagnostic: SN6PR10MB3022:EE_|CH3PR10MB6715:EE_
+X-MS-Office365-Filtering-Correlation-Id: f62a01f9-d9b8-4418-8d70-08db1f5d5792
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3PF5d+upAfuyKuOcMu/nJSIeRxLypZJ23IJxyBmn7DxTwkYCmpvxXJnSVj7+d5CD2VdwqmavxQp3IXZTcFBui0guNI+H7S3nNbzDt2aVy+6GXP3FBWt8hNultj4ppwPpwLL6EoJb/1ZZWLSN0qcFroQdCOtEKCacwWTm4ylvtZOfuXHeNEMh5XhvZ35zG0APfCsPf3zMXo4YrsG0eaQWf4J3tHaoyG6mS9usinPqKlxWRbrAxbsfA+ajkqq2Xaxq8Lf4x/W3AQJGVLTLTq9xszz05ps30gp6VlCM0AOkINXtAxQUknW0ajNXFscb4TPqix+fQ1W28XFBRTFLR6IW4r/0ptN3VWStTWyFiZJ2zH0rfUZFfUTRgOfqOmFBLZe1pDUK8Aq6sRKeF2+3RCfT+Sx07vDyqbz5svGJZ3RVkxmEi1PL/sY/QHROxE4EwGpiM268aOrFl99/UKD6CqhwYRJiQ32io4YRko24O9b8oxBKVml1O0nRrMndAFSMDggyUYcAToosWpqqhBdPLUIZ7f5Kzqvyh4ewmlJzVRnUCHjdX04DE9W+jNQh50O4Hqh5NU/XqlVu4JJF4WkFUElibv6fqeHoFGLBDLFb72YbqOzUro5ezp9wyz5gacDZZZuv08/CSiJxnHB2lzxLBr8fqQ==
+X-Microsoft-Antispam-Message-Info: /Dvd1wgAeryJ/lQE2tAG54hTTyalm6Ei89tjYnfIA97N0hbdaWPtBYOekTqXfaljMNYWCzknNrskk3C3zWduOR4ZdLtk1y5dFPDvRi+blrFg55IiPQEIm+OnS65iOrWx3/WWoOc5HvTTvJpnFNXkyjGbG9ruPUhR0u572H9rljlKKeEJzGfTaYpTmUHQ1tqjUVq8WFmQqc2NzRIo0DzRxU/H2hU1QZgsjUzXajvvC1WGDxZsAubPNxUhUKBTXWWQRCkv90wGfDNe60RZzO+jdBCoNlINfyUfVbQ9vT7Q2i4QZiwMSUOmTTWKDvfmEjoZgzcDxCWMNGwwOHMaTaS86puA4K7uevYrfnOkwxaOC2J3yUWHhp96JL6jWtcOVsVcWmmDZiIu6/2Cf7jrUBNBOxkmp4OhDeqjzbRQF3bUj7FFZgDBPXGKauYMDn4FGNpHYQ+DSSVH/I5ucm6EszraIIDcQjQF2sIiPoaqtcrlXEREid7yFe5fqtD8I8jMuxRBg/fjr9mWTposQTr98ulsJDAie8xjOKzU84ubefcytiDTdOcd8KAjkLNxqCwAZJWUoz7az0G9apWURqxl4YYHtaDRbEBvIs55Gzzcp/wEgGXoTeShOgmlKej1X5sBufwd
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN6PR10MB3022.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(7916004)(136003)(376002)(366004)(396003)(346002)(39860400002)(451199018)(66899018)(84970400001)(33716001)(6506007)(83380400001)(1076003)(316002)(6666004)(38100700002)(9686003)(478600001)(186003)(26005)(6512007)(6486002)(53546011)(7416002)(8936002)(41300700001)(5660300002)(2906002)(4326008)(8676002)(66476007)(6916009)(66946007)(30864003)(86362001)(66556008);
+ SFS:(13230025)(7916004)(346002)(39860400002)(376002)(366004)(396003)(136003)(451199018)(66899018)(7416002)(41300700001)(66556008)(4326008)(8936002)(8676002)(6916009)(2906002)(5660300002)(66946007)(30864003)(86362001)(66476007)(38100700002)(6666004)(478600001)(6486002)(1076003)(84970400001)(316002)(33716001)(6512007)(6506007)(83380400001)(186003)(9686003)(53546011)(26005);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?y/WoEv9eMM5lyYzPDcdaLFAo9EHRl1STO85I1nx/4OIjk97z86Noy1UePpQO?=
- =?us-ascii?Q?4j+oVPtqajXpJ47g35ngg58hAR91OYvPbaAesoD7IG8qbTYCRAORJCfC4W9u?=
- =?us-ascii?Q?SCJSCHO6fTTp9g0MP/cmDGxY5RIVKIajRaOENPT76pDKtRvkRj1aReh5+9Q7?=
- =?us-ascii?Q?DdGkdgDX8OtVgwrcgN0sUH9HhIH6FiU+bh7tKzHKx4ydFOg68i2ezaGWhYRX?=
- =?us-ascii?Q?LwjP6XbAer/E2eWWduLNWG/9z+Il092Srdv5y9ZDzhhUa57N/H85gN9Zfvtu?=
- =?us-ascii?Q?4eOnyt3ZGhlQUZdQvyIOVCK3/RfWB593jdeYOrQqLjMVCl6yaVw8GPmbx1vG?=
- =?us-ascii?Q?qt1RJyi8PwEvjzFn7oyROiM8gnBQTtxN8REaWjUoZ6Z02NJA27ImrQnZCAAP?=
- =?us-ascii?Q?OD3olxqYXgccy2JIoYYT8TstPJedwvf/dsIoXtlDfqGV5SQnywkobA2gOQFh?=
- =?us-ascii?Q?oKxmnxaBxPb9YMYSub3OYvW9o1DPsJk+fzd3gc9ipIHEwZWApVPCPkkXadFl?=
- =?us-ascii?Q?BLCNI0Xh/eN9rKo6WcLQnxxIUb1QOKweMWxGH2olMLq7+zSe/etuia84Gb4c?=
- =?us-ascii?Q?WpV8EB0TeLS/DWlNxCj6nMJd+xS612UJSA7+Hk8qctPJuTOWenfznyNAjVp6?=
- =?us-ascii?Q?mMSu0/Qiho7rC5Bsnm1zJMMBGVxVqG3ZSlmyykm3BKOkkFwARFfWcOAtwsQF?=
- =?us-ascii?Q?B/b5LX2J6vg9pZ9DyjlxoTuFDWPV8i1ojKAl2VJEbpHKqEBGzXCN0NKeFLMR?=
- =?us-ascii?Q?YKx4vIItNY2u7vPutSTqA3KU8Idi/Kuiodvadn6pFCxZ4Ti93bPdNzTB0Ou+?=
- =?us-ascii?Q?rjYrG++dDTEZXn5l6pKtWHQzNAoXy3GtChEFyfoMGqwmn7MOZifEKfSXOliE?=
- =?us-ascii?Q?A1rl4iwxnbanlCAV71rtRQRWskHXBox5PUfjbRsbq0AE88fWdAkkt9QON5sI?=
- =?us-ascii?Q?iqfeUQPYwTgtdZtIVxawDj20r570ZSdhwkPZ0+kOjVqxSDw07dBWTTe2YLuq?=
- =?us-ascii?Q?Z2Nr0o85kAWGa2qZ2uJakfFXFZjEA4w0DtO0dGj3Qjd88sPR01RP6V5Sx3Fv?=
- =?us-ascii?Q?P46Pey7wAzWUAPvmSQMpR5noiBHGNlxjzMeyq7kgzAWETMUmu1VG4p6LrvbM?=
- =?us-ascii?Q?se+DkOdGxO27Tc+V+D7O2pyaaVkSUKkZZ2Z1He3OwuC6UFfJzkCsNUXTHVn0?=
- =?us-ascii?Q?dBgr1VlaBhjaXmZgXJZWc8EX3hge5EpmwuqpxkvzVPkejrBwaf0KvRlN/6bf?=
- =?us-ascii?Q?OsaCFnK2LXRp90Vy7DIsQUBI+eXcUQfFWCDMQSvghEJw9mLvcE9hkVtZZqNE?=
- =?us-ascii?Q?ntk9gCt058Uk8lFmOl3FlgYcAE6Ec7ZDd3r4gRi6qXh4NV5PLuW6MEmN+QeG?=
- =?us-ascii?Q?TiuC8inRgRIkMgPn8a9yWDKmawaCELQbHNVHl94Ls7YYA1JVLRM/J1OLneIl?=
- =?us-ascii?Q?K/8loCX5mk08wK6EA1eH5KS1VZBBZWHKAV2o/UA17fH7rfhxI39YlBnVcJcP?=
- =?us-ascii?Q?HEIPFKKMsiqnNaRFVBi0Wr+s7Hh+S/Hs8kjhPAlldA/xYH/hn+ADvWrrcJBi?=
- =?us-ascii?Q?PGG9WnRcdhW9lb01HIFF8+gDe1OwizpoKaTLHlraco9n4EIEQ6XrnHqibXuB?=
- =?us-ascii?Q?UA=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IOmjYbbK1FDuO/y3miQ36niaoFw4fQNTwQIfAmpFZ1/v+4u7lW31SaydqnF8?=
+ =?us-ascii?Q?iHc2751ipROhcHqrKiRjfTYhFLWDMFSc/KnYQJ/GUkQbU215YocCQkut0mio?=
+ =?us-ascii?Q?Iz6w2S4FDtFESBkNrbdIkPk7nzOh0VV60litcYpgKtF2gFx3whZmY3zDZL8W?=
+ =?us-ascii?Q?g9hDja8sY4Pmjhg1Dcdzi7xoC7/crI1bmCtwjxflfGnI0RwjmXKRsGyBvA27?=
+ =?us-ascii?Q?ncqMVyhYfUa3/0o0FFAEXPwQ8Q9eT/oVUqAjFuV2LOdv0juCLU881BjUQ9Em?=
+ =?us-ascii?Q?7DNEzUQlIM2UEIhUCNAIiH62M6REiFS8Ovtf82jjc812UVZOvFOmVeN0VoZl?=
+ =?us-ascii?Q?lQppbBsc3sLfmowQ7o26xiaE/EGjG24o+NsgI9LFOBzou/wWHI/QeCl4eA4h?=
+ =?us-ascii?Q?T3RxNf1xSEiW4ZJTClnTcGGTDIgbqlwP+MiO1y03+HcbTSx3IpxOxVknFsj3?=
+ =?us-ascii?Q?h9nz7srxNmDAZBdg62WLGRG61bDMkpd7ZdF4TSWsex42B5HYhvNdcEjg47wJ?=
+ =?us-ascii?Q?uP9oRRZQp4MbZGXsCsour1ifoq5ctdBLj1XO+6TxjNGnk66e9ws9mft/HLus?=
+ =?us-ascii?Q?65nWy2xMD8f15qivws9uTuxgEoFHehJaSbzpeMibDAAF0gcTCrGZo+nqHb/X?=
+ =?us-ascii?Q?wvsa7w5fwedpc1d65CLYZVLNZ+0Cd94TxaEc7ymmEkTSmXxbW9Sh1NSjq9To?=
+ =?us-ascii?Q?8BfqbUxpvlfTs08+p0k/JqWauPpPgUsbn7J108D48f4MsRWniTx8388gBtg5?=
+ =?us-ascii?Q?3ASuQYn5saJtWoCFXLJ+yi5zMlAS6WPsovMjuogopiSS/hNhzYgchv7KACkp?=
+ =?us-ascii?Q?HWm6IpjqZtyWsuyM75uBy8gsY1OeG9JWDN9zx88ER/DsDTlDLfJ8tQGvLB+w?=
+ =?us-ascii?Q?lWjeK6Z7Sy+lbeUZUGuYkRF1NREtHAKS6VZY9QhgoW4ok8zVsltKRzmJVgWa?=
+ =?us-ascii?Q?N33H+EtX7g5DU/5c30ZJAvGr0+mcbr7Ao2lkSrj8d6U07uMo5icups6mltSB?=
+ =?us-ascii?Q?i4Ivnr1lCG/aQSLyTsCtnurEvTG65gEETmOQErlCSewb5tksixM62QeuI4CQ?=
+ =?us-ascii?Q?me7ohgVS3TZtT/fx48OKBFOufltmYCzYVeGX/IQbgZ19R8xTFGojoVJCqVuY?=
+ =?us-ascii?Q?QtVLXbW2XTxUtfmP+2ZelGj0PJf1jVD6B1gYccHkC+WVwX/Ox9Cr+5jKM6kg?=
+ =?us-ascii?Q?2u1aCJ4lzUUaZWReNJx2QvW28smdYZjSzsoBq7wL5RYRMI5Ibg67NIQmHjM3?=
+ =?us-ascii?Q?X/aj/cVN7MItI70YtUtvYmyCRxyqnBHhG8YG5AY5rCUUbaBcqWC2xsh8omv7?=
+ =?us-ascii?Q?ppfSpvCVyufZlc/hTQ/pKV/5GkNh6bX99JFUKEGV8+h7lawp576H8rW5BR5h?=
+ =?us-ascii?Q?8+p5KbfyIFjEYDqb9qoGTq0Fi2ausK93XthYO898bbEYDTRvDMQfAw9n5aDp?=
+ =?us-ascii?Q?AfcFOBXgrHvpGkMjaPKwTR8GUzIe+rOjJxnXy+F7mEy7L0QoCh+WGxiSnDXe?=
+ =?us-ascii?Q?mjiGxtFvorPPwpll43NP3U3zCcWhnZnyMO/5+gTBeMODvWXq5WawdXJ+A0mb?=
+ =?us-ascii?Q?BlcNnqqtAY/KqfDGDQomFb3GmytQy92LW9viOHfv+9Jsvi4p86qfzFGofldS?=
+ =?us-ascii?Q?Hg=3D=3D?=
 X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: =?us-ascii?Q?Z2xi0AbXEUYYAWKSVPufUHNeR3bJ7w4bluFLaKwoyef6oDc2pN+POEEjJ7y/?=
- =?us-ascii?Q?+UDE96//w+fk+XI+N5rmOvtt//w4i4mVdj/1e7s5ggPkgGFxmMRPLQ3g7ORI?=
- =?us-ascii?Q?JICoXl2NM1klmrGpNZo9DLVBK6YLSfO2uuQzX8yJcDO+Lg+91BCIB1xAgBu8?=
- =?us-ascii?Q?O/XfdoR3NsDu7wGbq/8uvv/cXqjvkbtvKXpABCx7oLi6XWmd4WzRCUtW3ape?=
- =?us-ascii?Q?V4XyhQnwBEYGJ27REncGc2Her9vMGkaQ78V5aSgWw9/rxQYeZkxf8YnVBT+Q?=
- =?us-ascii?Q?3nBS0gVTUDVHjWSuTUaR9M89zU41RhaD5IRGL1fJXBYf6QhL0Ik+ETITtz04?=
- =?us-ascii?Q?KcPmPGvHwBVJGzMRc2vFhoh3OIrvMn5G+WWY82oD2dgKFJFFRMzP+a0KfGSn?=
- =?us-ascii?Q?sWMzF84lkdqTR3Hh7c27fn2GhKwIQDvBgiUmQCmJwC1PGsB4lIiU+EyOLxUc?=
- =?us-ascii?Q?qVTZ9WOxHCFaUssZiLrtnx3RXXMPR5pSSiRn/33jCjQQ1jXrg7FBAZkkpcvU?=
- =?us-ascii?Q?54IfuXmyCYEJbzNoag0W8g6xwcLW1qpiFvcpulcVyTYNAyB+ZxzgkCDoL49B?=
- =?us-ascii?Q?jCQKdGhI9ituA4ZlikOK3KSvdxv8bL8CmqJYKjNTYaZAP7Z5RS3ESJ9mazFY?=
- =?us-ascii?Q?mI/vFdo8+RnV9HE7UdesevukGD2AIx1FMuzs/FqAVYYi36AibJNPvROhhUTV?=
- =?us-ascii?Q?SiUc2T+GVEWdYazuexDZsIKPMbx9frgvOtxS9hu/bxS19XLobrAdQQvLsDAi?=
- =?us-ascii?Q?VVKGBtMSNmABXa0M4Or2RhI6/Rih6sPzpWjw7kMfu72njt+TQkY7nLa/6RNg?=
- =?us-ascii?Q?wFrYmIgNGbp5oW8eDKtb1H22s0Qgz0yKHM3ITYHCsqEWC5aFzzWYYlajETua?=
- =?us-ascii?Q?lCyVtstKdgqqjX6uSPfbHldAV4bAtC4xy+trJm+fITIGxf4nSj6ycKB48+yr?=
- =?us-ascii?Q?Tqblg9DBtKB4VTF65fCEv5CE5HKZ+VEX0vn83vypsUtpC75KZm4APMJkbVPL?=
- =?us-ascii?Q?G15cS0Xd785P9Chu3IVERUjCSiz3r4eXkUzD8kX7Ajnr2IK3bWnaMr8EwURk?=
- =?us-ascii?Q?phaCyB8uHxNYgnGQEC3y7sQwQMZqqVlyg2bLTAnGysBExaFk9zMPE+1tSDil?=
- =?us-ascii?Q?r9LxIMTeK65lBWDSK18qLOiC4ZZDHAmYlg=3D=3D?=
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: =?us-ascii?Q?zVQP+mVwJAbluWu/cmGAal3UKClsd/XNTsQ6LmmqX36JzbPItvO9Hiqz4bHk?=
+ =?us-ascii?Q?EuQorOuQzLR81EErJbvHxeySt4gP0Gq94gyUud/EndiYRrHAZNXSfUFhxhl2?=
+ =?us-ascii?Q?NOT5sFFQR9yo1OqotUilw2mjFCNBMOO4qxx0F89oSJlplWMBug8RMNnXnXR/?=
+ =?us-ascii?Q?Dt3dppGqRuHuoYds8NIugHwDyf8a28qJyxojEPA5yV6NF+ShyMaCkpeVNndl?=
+ =?us-ascii?Q?p37mgohZXrP/usOEYCwQ8ddQXKi9ReoBowVBhl9KnLB0RV80HxYtNUs2NNGt?=
+ =?us-ascii?Q?IB0WVZ3KSaKfmCu/U5VPEPj2XwYbxkgpDlaoqfAqo/yrrx655reVOAUPvZeh?=
+ =?us-ascii?Q?C/XBN6c4dbt1Brg+3mKZ75jEWjhjGOV3Q2/hUzQ5KblzWNM/h8JPWABM8wjm?=
+ =?us-ascii?Q?X6oR7PUAwfSRLPeJnO49z5K9ftfxbQWIubbP44hE7+4M7p0bj1BA8o+3nHkC?=
+ =?us-ascii?Q?91IT8qlzFwyGMqVghVElPuItSMU6PH9rtR2ok/UY5SPWCky48IPXV8KqiOap?=
+ =?us-ascii?Q?GQOi4x8pxIsqnIqCRHmpBbGthIn1XXf8G2PFIxFrPrwJ/fXKk0jiWlD9+KRF?=
+ =?us-ascii?Q?oPSQMX2+5nMrjkjd0DPTwY8f3uQNQ6EKvXD9BObvepRxUWVU91gQTfLcjkti?=
+ =?us-ascii?Q?WCAzoiVpZk9NlO/qW/jsoZqSaCn7qKAeb2QlOcD7jGUFbb90GVxCwZk2z42u?=
+ =?us-ascii?Q?3jsEOHUNr9kG7173t75zoEN4oO/C5CURBhrcp938HCBkXqXg7olxkECVEGU8?=
+ =?us-ascii?Q?ml22tOMTq+zS6sILfhqmjWD5t0dBzJgsmN8lNOfxX5hNKOdNN0utf6CnORrr?=
+ =?us-ascii?Q?evg0TxtjLmX/ZzLdfZ8Ea9qT4+5r2qGUqIbFMR0GICdnRrB9q3OW+wjeQHZa?=
+ =?us-ascii?Q?MOBhdkrB7VfFKHdHHJ1QmOFqo/OdAk7y+0IV9UExxfmn/KKz5Y4druoYlf9h?=
+ =?us-ascii?Q?C8asq5aKOuNf3OX6ASyrdl5gJ8ahj1Gdt//rchEnEdmVY908SqtTWESUKv5G?=
+ =?us-ascii?Q?PY7+WDpRcAPDbmMt6JEz3sF1pUiDk8IaLdBYT1OsFBlfgNlgzOrbT+RN4vNJ?=
+ =?us-ascii?Q?LApSgepwEhkvOl1Gaisdi3tkac+qzV6uXA+Uj6Iyw2iAqkWEQdoq6Mgdw6W1?=
+ =?us-ascii?Q?odYyKNC9j+bXQSPNMgNTcXThANwuZn9kDQ=3D=3D?=
 X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa070dc5-8b3b-4515-a2c7-08db15d18620
+X-MS-Exchange-CrossTenant-Network-Message-Id: f62a01f9-d9b8-4418-8d70-08db1f5d5792
 X-MS-Exchange-CrossTenant-AuthSource: SN6PR10MB3022.namprd10.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Feb 2023 19:09:44.8347 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2023 22:43:16.7511 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: IUutq2C2/15z6bYQet+rHMNXOCNjVvWQGh5qrELGSFNcXL5ycjaylA3MPmsmLcgVJrGdK3Kdhc3a0RPKX1Ka0Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR10MB4328
+X-MS-Exchange-CrossTenant-UserPrincipalName: WHZuRkJHKqmMpyTO8mUhj4cfn+cQR1mwEIDTzGSkwFie2cPeCoI3SHcMyKFOpnICVy+wDGkl7HvnNmOfKKC46w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR10MB6715
 X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-23_12,2023-02-23_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
- bulkscore=0 phishscore=0
- suspectscore=0 malwarescore=0 mlxscore=0 mlxlogscore=999 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2302230159
-X-Proofpoint-GUID: RQE1uPbpZKNDviN7alq9kvtpw_IlmfkQ
-X-Proofpoint-ORIG-GUID: RQE1uPbpZKNDviN7alq9kvtpw_IlmfkQ
+ engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-07_16,2023-03-07_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
+ mlxlogscore=999
+ suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 malwarescore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2303070199
+X-Proofpoint-GUID: wdlfdMLS6-gf7YOLhwWe7XZ-SXQZDx5n
+X-Proofpoint-ORIG-GUID: wdlfdMLS6-gf7YOLhwWe7XZ-SXQZDx5n
 X-Mailman-Approved-At: Thu, 04 May 2023 12:31:36 +0000
 Subject: Re: [Nouveau] [PATCH drm-next v2 05/16] drm: manager to keep track
  of GPUs VA mappings
@@ -195,577 +199,313 @@ Cc: matthew.brost@intel.com, willy@infradead.org, daniel@ffwll.ch,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-* Danilo Krummrich <dakr@redhat.com> [230222 13:13]:
-> On 2/21/23 19:20, Liam R. Howlett wrote:
-> > * Danilo Krummrich <dakr@redhat.com> [230217 08:45]:
-> > > Add infrastructure to keep track of GPU virtual address (VA) mappings
-> > > with a decicated VA space manager implementation.
-> > > 
-> > > New UAPIs, motivated by Vulkan sparse memory bindings graphics drivers
-> > > start implementing, allow userspace applications to request multiple and
-> > > arbitrary GPU VA mappings of buffer objects. The DRM GPU VA manager is
-> > > intended to serve the following purposes in this context.
-> > > 
-> > > 1) Provide infrastructure to track GPU VA allocations and mappings,
-> > >     making use of the maple_tree.
-> > > 
-> > > 2) Generically connect GPU VA mappings to their backing buffers, in
-> > >     particular DRM GEM objects.
-> > > 
-> > > 3) Provide a common implementation to perform more complex mapping
-> > >     operations on the GPU VA space. In particular splitting and merging
-> > >     of GPU VA mappings, e.g. for intersecting mapping requests or partial
-> > >     unmap requests.
-> > > 
-> > > Suggested-by: Dave Airlie <airlied@redhat.com>
-> > > Signed-off-by: Danilo Krummrich <dakr@redhat.com>
-> > > ---
-> > >   Documentation/gpu/drm-mm.rst    |   31 +
-> > >   drivers/gpu/drm/Makefile        |    1 +
-> > >   drivers/gpu/drm/drm_gem.c       |    3 +
-> > >   drivers/gpu/drm/drm_gpuva_mgr.c | 1704 +++++++++++++++++++++++++++++++
-> > >   include/drm/drm_drv.h           |    6 +
-> > >   include/drm/drm_gem.h           |   75 ++
-> > >   include/drm/drm_gpuva_mgr.h     |  714 +++++++++++++
-> > >   7 files changed, 2534 insertions(+)
-> > >   create mode 100644 drivers/gpu/drm/drm_gpuva_mgr.c
-> > >   create mode 100644 include/drm/drm_gpuva_mgr.h
-> > > 
-> > > diff --git a/Documentation/gpu/drm-mm.rst b/Documentation/gpu/drm-mm.rst
-> > > index a52e6f4117d6..c9f120cfe730 100644
-> > > --- a/Documentation/gpu/drm-mm.rst
-> > > +++ b/Documentation/gpu/drm-mm.rst
-> > > @@ -466,6 +466,37 @@ DRM MM Range Allocator Function References
-> > >   .. kernel-doc:: drivers/gpu/drm/drm_mm.c
-> > >      :export:
-> > ...
-> > 
-> > > +
-> > > +/**
-> > > + * drm_gpuva_remove_iter - removes the iterators current element
-> > > + * @it: the &drm_gpuva_iterator
-> > > + *
-> > > + * This removes the element the iterator currently points to.
-> > > + */
-> > > +void
-> > > +drm_gpuva_iter_remove(struct drm_gpuva_iterator *it)
-> > > +{
-> > > +	mas_erase(&it->mas);
-> > > +}
-> > > +EXPORT_SYMBOL(drm_gpuva_iter_remove);
-> > > +
-> > > +/**
-> > > + * drm_gpuva_insert - insert a &drm_gpuva
-> > > + * @mgr: the &drm_gpuva_manager to insert the &drm_gpuva in
-> > > + * @va: the &drm_gpuva to insert
-> > > + * @addr: the start address of the GPU VA
-> > > + * @range: the range of the GPU VA
-> > > + *
-> > > + * Insert a &drm_gpuva with a given address and range into a
-> > > + * &drm_gpuva_manager.
-> > > + *
-> > > + * Returns: 0 on success, negative error code on failure.
-> > > + */
-> > > +int
-> > > +drm_gpuva_insert(struct drm_gpuva_manager *mgr,
-> > > +		 struct drm_gpuva *va)
-> > > +{
-> > > +	u64 addr = va->va.addr;
-> > > +	u64 range = va->va.range;
-> > > +	MA_STATE(mas, &mgr->va_mt, addr, addr + range - 1);
-> > > +	struct drm_gpuva_region *reg = NULL;
-> > > +	int ret;
-> > > +
-> > > +	if (unlikely(!drm_gpuva_in_mm_range(mgr, addr, range)))
-> > > +		return -EINVAL;
-> > > +
-> > > +	if (unlikely(drm_gpuva_in_kernel_region(mgr, addr, range)))
-> > > +		return -EINVAL;
-> > > +
-> > > +	if (mgr->flags & DRM_GPUVA_MANAGER_REGIONS) {
-> > > +		reg = drm_gpuva_in_region(mgr, addr, range);
-> > > +		if (unlikely(!reg))
-> > > +			return -EINVAL;
-> > > +	}
-> > > +
-> > 
-> > -----
-> > 
-> > > +	if (unlikely(drm_gpuva_find_first(mgr, addr, range)))
-> > > +		return -EEXIST;
-> > > +
-> > > +	ret = mas_store_gfp(&mas, va, GFP_KERNEL);
-> > 
-> > mas_walk() will set the internal maple state to the limits to what it
-> > finds.  So, instead of an iterator, you can use the walk function and
-> > ensure there is a large enough area in the existing NULL:
-> > 
-> > /*
-> >   * Nothing at addr, mas now points to the location where the store would
-> >   * happen
-> >   */
-> > if (mas_walk(&mas))
-> > 	return -EEXIST;
-> > 
-> > /* The NULL entry ends at mas.last, make sure there is room */
-> > if (mas.last < (addr + range - 1))
-> > 	return -EEXIST;
-> > 
-> > /* Limit the store size to the correct end address, and store */
-> >   mas.last = addr + range - 1;
-> >   ret = mas_store_gfp(&mas, va, GFP_KERNEL);
-> > 
-> 
-> Would this variant be significantly more efficient?
-
-Well, what you are doing is walking the tree to see if there's anything
-there... then re-walking the tree to store it.  So, yes, it's much more
-efficient..  However, writing is heavier.  How much of the time is spent
-walking vs writing depends on the size of the tree, but it's rather easy
-to do this in a single walk of the tree so why wouldn't you?
-
-> 
-> Also, would this also work while already walking the tree?
-
-Yes, to an extent.  If you are at the correct location in the tree, you
-can write to that location.  If you are not in the correct location and
-try to write to the tree then things will go poorly..  In this scenario,
-we are very much walking the tree and writing to it in two steps.
-
-> 
-> To remove an entry while walking the tree I have a separate function
-> drm_gpuva_iter_remove(). Would I need something similar for inserting
-> entries?
-
-I saw that.  Your remove function uses the erase operation which is
-implemented as a walk to that location and a store of a null over the
-range that is returned.  You do not need a function to insert an entry
-if the maple state is at the correct location, and that doesn't just
-mean setting mas.index/mas.last to the correct value.  There is a node &
-offset saved in the maple state that needs to be in the correct
-location.  If you store to that node then the node may be replaced, so
-other iterators that you have may become stale, but the one you used
-execute the store operation will now point to the new node with the new
-entry.
-
-> 
-> I already provided this example in a separate mail thread, but it may makes
-> sense to move this to the mailing list:
-> 
-> In __drm_gpuva_sm_map() we're iterating a given range of the tree, where the
-> given range is the size of the newly requested mapping. __drm_gpuva_sm_map()
-> invokes a callback for each sub-operation that needs to be taken in order to
-> fulfill this mapping request. In most cases such a callback just creates a
-> drm_gpuva_op object and stores it in a list.
-> 
-> However, drivers can also implement the callback, such that they directly
-> execute this operation within the callback.
-> 
-> Let's have a look at the following example:
-> 
->      0     a     2
-> old: |-----------|       (bo_offset=n)
-> 
->            1     b     3
-> req:       |-----------| (bo_offset=m)
-> 
->      0  a' 1     b     3
-> new: |-----|-----------| (a.bo_offset=n,b.bo_offset=m)
-> 
-> This would result in the following operations.
-> 
-> __drm_gpuva_sm_map() finds entry "a" and calls back into the driver
-> suggesting to re-map "a" with the new size. The driver removes entry "a"
-> from the tree and adds "a'"
-
-What you have here won't work.  The driver will cause your iterators
-maple state to point to memory that is freed.  You will either need to
-pass through your iterator so that the modifications can occur with that
-maple state so it remains valid, or you will need to invalidate the
-iterator on every modification by the driver.
-
-I'm sure the first idea you have will be to invalidate the iterator, but
-that is probably not the way to proceed.  Even ignoring the unclear
-locking of two maple states trying to modify the tree, this is rather
-inefficient - each invalidation means a re-walk of the tree.  You may as
-well not use an iterator in this case.
-
-Depending on how/when the lookups occur, you could still iterate over
-the tree and let the driver modify the ending of "a", but leave the tree
-alone and just store b over whatever - but the failure scenarios may
-cause you grief.
-
-If you pass the iterator through, then you can just use it to do your
-writes and keep iterating as if nothing changed.
-
-> 
-> __drm_gpuva_sm_map(), ideally, continues the loop searching for nodes
-> starting from the end of "a" (which is 2) till the end of the requested
-> mapping "b" (which is 3). Since it doesn't find any other mapping within
-> this range it calls back into the driver suggesting to finally map "b".
-> 
-> If there would have been another mapping between 2 and 3 it would have
-> called back into the driver asking to unmap this mapping beforehand.
-> 
-> So, it boils down to re-mapping as described at the beginning (and
-> analogously at the end) of a new mapping range and removing of entries that
-> are enclosed by the new mapping range.
-
-I assume the unmapped area is no longer needed, and the 're-map' is
-really a removal of information?  Otherwise I'd suggest searching for a
-gap which fits your request.  What you have here is a lot like
-"MAP_FIXED" vs top-down/bottom-up search in the VMA code, this seems to
-be like your __drm_gpuva_sm_map() and the drm mm range allocator with
-DRM_MM_INSERT_LOW, and DRM_MM_INSERT_HIGH.
-
-Why can these split/unmappings fail?  Is it because they are still
-needed?
-
-> 
-> > > +	if (unlikely(ret))
-> > > +		return ret;
-> > > +
-> > > +	va->mgr = mgr;
-> > > +	va->region = reg;
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +EXPORT_SYMBOL(drm_gpuva_insert);
-> > > +
-> > > +/**
-> > > + * drm_gpuva_remove - remove a &drm_gpuva
-> > > + * @va: the &drm_gpuva to remove
-> > > + *
-> > > + * This removes the given &va from the underlaying tree.
-> > > + */
-> > > +void
-> > > +drm_gpuva_remove(struct drm_gpuva *va)
-> > > +{
-> > > +	MA_STATE(mas, &va->mgr->va_mt, va->va.addr, 0);
-> > > +
-> > > +	mas_erase(&mas);
-> > > +}
-> > > +EXPORT_SYMBOL(drm_gpuva_remove);
-> > > +
-> > ...
-> > 
-> > > +/**
-> > > + * drm_gpuva_find_first - find the first &drm_gpuva in the given range
-> > > + * @mgr: the &drm_gpuva_manager to search in
-> > > + * @addr: the &drm_gpuvas address
-> > > + * @range: the &drm_gpuvas range
-> > > + *
-> > > + * Returns: the first &drm_gpuva within the given range
-> > > + */
-> > > +struct drm_gpuva *
-> > > +drm_gpuva_find_first(struct drm_gpuva_manager *mgr,
-> > > +		     u64 addr, u64 range)
-> > > +{
-> > > +	MA_STATE(mas, &mgr->va_mt, addr, 0);
-> > > +
-> > > +	return mas_find(&mas, addr + range - 1);
-> > > +}
-> > > +EXPORT_SYMBOL(drm_gpuva_find_first);
-> > > +
-> > > +/**
-> > > + * drm_gpuva_find - find a &drm_gpuva
-> > > + * @mgr: the &drm_gpuva_manager to search in
-> > > + * @addr: the &drm_gpuvas address
-> > > + * @range: the &drm_gpuvas range
-> > > + *
-> > > + * Returns: the &drm_gpuva at a given &addr and with a given &range
-> > 
-> > Note that mas_find() will continue upwards in the address space if there
-> > isn't anything at @addr.  This means that &drm_gpuva may not be at
-> > &addr.  If you want to check just at &addr, use mas_walk().
-> 
-> Good catch. drm_gpuva_find() should then either also check for 'va->va.addr
-> == addr' as well or, alternatively, use mas_walk(). As above, any reason to
-> prefer mas_walk()?
-> 
-> > 
-> > > + */
-> > > +struct drm_gpuva *
-> > > +drm_gpuva_find(struct drm_gpuva_manager *mgr,
-> > > +	       u64 addr, u64 range)
-> > > +{
-> > > +	struct drm_gpuva *va;
-> > > +
-> > > +	va = drm_gpuva_find_first(mgr, addr, range);
-> > > +	if (!va)
-> > > +		goto out;
-> > > +
-> > > +	if (va->va.range != range)
-> > > +		goto out;
-> > > +
-> > > +	return va;
-> > > +
-> > > +out:
-> > > +	return NULL;
-> > > +}
-> > > +EXPORT_SYMBOL(drm_gpuva_find);
-> > > +
-> > > +/**
-> > > + * drm_gpuva_find_prev - find the &drm_gpuva before the given address
-> > > + * @mgr: the &drm_gpuva_manager to search in
-> > > + * @start: the given GPU VA's start address
-> > > + *
-> > > + * Find the adjacent &drm_gpuva before the GPU VA with given &start address.
-> > > + *
-> > > + * Note that if there is any free space between the GPU VA mappings no mapping
-> > > + * is returned.
-> > > + *
-> > > + * Returns: a pointer to the found &drm_gpuva or NULL if none was found
-> > > + */
-> > > +struct drm_gpuva *
-> > > +drm_gpuva_find_prev(struct drm_gpuva_manager *mgr, u64 start)
-> > 
-> > find_prev() usually continues beyond 1 less than the address. I found
-> > this name confusing.
-> 
-> Don't really get that, mind explaining?
-
-When I ask for the previous one in a list or tree, I think the one
-before.. but since you are limiting your search from start to start - 1,
-you may as well walk to start - 1 and see if one exists.
-
-Is that what you meant to do here?
-
-> 
-> > You may as well use mas_walk(), it would be faster.
-> 
-> How would I use mas_walk() for that? If I understand it correctly,
-> mas_walk() requires me to know that start address, which I don't know for
-> the previous entry.
-
-mas_walk() walks to the value you specify and returns the entry at that
-address, not necessarily the start address, but any address in the
-range.
-
-If you have a tree and store A = [0x1000 - 0x2000] and set your maple
-state to walk to 0x1500, mas_walk() will return A, and the maple state
-will have mas.index = 0x1000 and mas.last = 0x2000.
-
-You have set the maple state to start at "start" and called
-mas_prev(&mas, start - 1).  start - 1 is the lower limit, so the
-internal implementation will walk to start then go to the previous entry
-until start - 1.. it will stop at start - 1 and return NULL if there
-isn't one there.
-
-> 
-> However, mas_walk() seems to be a good alternative to use for
-> drm_gpuva_find_next().
-> 
-> > > +{
-> > > +	MA_STATE(mas, &mgr->va_mt, start, 0);
-> > > +
-> > > +	if (start <= mgr->mm_start ||
-> > > +	    start > (mgr->mm_start + mgr->mm_range))
-> > > +		return NULL;
-> > > +
-> > > +	return mas_prev(&mas, start - 1);
-> > > +}
-> > > +EXPORT_SYMBOL(drm_gpuva_find_prev);
-> > > +
-> > > +/**
-> > > + * drm_gpuva_find_next - find the &drm_gpuva after the given address
-> > > + * @mgr: the &drm_gpuva_manager to search in
-> > > + * @end: the given GPU VA's end address
-> > > + *
-> > > + * Find the adjacent &drm_gpuva after the GPU VA with given &end address.
-> > > + *
-> > > + * Note that if there is any free space between the GPU VA mappings no mapping
-> > > + * is returned.
-> > > + *
-> > > + * Returns: a pointer to the found &drm_gpuva or NULL if none was found
-> > > + */
-> > > +struct drm_gpuva *
-> > > +drm_gpuva_find_next(struct drm_gpuva_manager *mgr, u64 end)
-> > 
-> > This name is also a bit confusing for the same reason.  Again, it seems
-> > worth just walking to end here.
-> > 
-> > > +{
-> > > +	MA_STATE(mas, &mgr->va_mt, end - 1, 0);
-> > > +
-> > > +	if (end < mgr->mm_start ||
-> > > +	    end >= (mgr->mm_start + mgr->mm_range))
-> > > +		return NULL;
-> > > +
-> > > +	return mas_next(&mas, end);
-> > > +}
-> > > +EXPORT_SYMBOL(drm_gpuva_find_next);
-> > > +
-> > > +static int
-> > > +__drm_gpuva_region_insert(struct drm_gpuva_manager *mgr,
-> > > +			  struct drm_gpuva_region *reg)
-> > > +{
-> > > +	u64 addr = reg->va.addr;
-> > > +	u64 range = reg->va.range;
-> > > +	MA_STATE(mas, &mgr->region_mt, addr, addr + range - 1);
-> > > +	int ret;
-> > > +
-> > > +	if (unlikely(!drm_gpuva_in_mm_range(mgr, addr, range)))
-> > > +		return -EINVAL;
-> > > +
-> > > +	ret = mas_store_gfp(&mas, reg, GFP_KERNEL);
-> > > +	if (unlikely(ret))
-> > > +		return ret;
-> > > +
-> > > +	reg->mgr = mgr;
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +/**
-> > > + * drm_gpuva_region_insert - insert a &drm_gpuva_region
-> > > + * @mgr: the &drm_gpuva_manager to insert the &drm_gpuva in
-> > > + * @reg: the &drm_gpuva_region to insert
-> > > + * @addr: the start address of the GPU VA
-> > > + * @range: the range of the GPU VA
-> > > + *
-> > > + * Insert a &drm_gpuva_region with a given address and range into a
-> > > + * &drm_gpuva_manager.
-> > > + *
-> > > + * Returns: 0 on success, negative error code on failure.
-> > > + */
-> > > +int
-> > > +drm_gpuva_region_insert(struct drm_gpuva_manager *mgr,
-> > > +			struct drm_gpuva_region *reg)
-> > > +{
-> > > +	if (unlikely(!(mgr->flags & DRM_GPUVA_MANAGER_REGIONS)))
-> > > +		return -EINVAL;
-> > > +
-> > > +	return __drm_gpuva_region_insert(mgr, reg);
-> > > +}
-> > > +EXPORT_SYMBOL(drm_gpuva_region_insert);
-> > > +
-> > > +static void
-> > > +__drm_gpuva_region_remove(struct drm_gpuva_region *reg)
-> > > +{
-> > > +	struct drm_gpuva_manager *mgr = reg->mgr;
-> > > +	MA_STATE(mas, &mgr->region_mt, reg->va.addr, 0);
-> > > +
-> > > +	mas_erase(&mas);
-> > > +}
-> > > +
-> > > +/**
-> > > + * drm_gpuva_region_remove - remove a &drm_gpuva_region
-> > > + * @reg: the &drm_gpuva to remove
-> > > + *
-> > > + * This removes the given &reg from the underlaying tree.
-> > > + */
-> > > +void
-> > > +drm_gpuva_region_remove(struct drm_gpuva_region *reg)
-> > > +{
-> > > +	struct drm_gpuva_manager *mgr = reg->mgr;
-> > > +
-> > > +	if (unlikely(!(mgr->flags & DRM_GPUVA_MANAGER_REGIONS)))
-> > > +		return;
-> > > +
-> > > +	if (unlikely(reg == &mgr->kernel_alloc_region)) {
-> > > +		WARN(1, "Can't destroy kernel reserved region.\n");
-> > > +		return;
-> > > +	}
-> > > +
-> > > +	if (unlikely(!drm_gpuva_region_empty(reg)))
-> > > +		WARN(1, "GPU VA region should be empty on destroy.\n");
-> > > +
-> > > +	__drm_gpuva_region_remove(reg);
-> > > +}
-> > > +EXPORT_SYMBOL(drm_gpuva_region_remove);
-> > > +
-> > > +/**
-> > > + * drm_gpuva_region_empty - indicate whether a &drm_gpuva_region is empty
-> > > + * @reg: the &drm_gpuva to destroy
-> > > + *
-> > > + * Returns: true if the &drm_gpuva_region is empty, false otherwise
-> > > + */
-> > > +bool
-> > > +drm_gpuva_region_empty(struct drm_gpuva_region *reg)
-> > > +{
-> > > +	DRM_GPUVA_ITER(it, reg->mgr);
-> > > +
-> > > +	drm_gpuva_iter_for_each_range(it, reg->va.addr,
-> > > +				      reg->va.addr +
-> > > +				      reg->va.range)
-> > > +		return false;
-> > > +
-> > > +	return true;
-> > > +}
-> > > +EXPORT_SYMBOL(drm_gpuva_region_empty);
-> > > +
-> > > +/**
-> > > + * drm_gpuva_region_find_first - find the first &drm_gpuva_region in the given
-> > > + * range
-> > > + * @mgr: the &drm_gpuva_manager to search in
-> > > + * @addr: the &drm_gpuva_regions address
-> > > + * @range: the &drm_gpuva_regions range
-> > > + *
-> > > + * Returns: the first &drm_gpuva_region within the given range
-> > > + */
-> > > +struct drm_gpuva_region *
-> > > +drm_gpuva_region_find_first(struct drm_gpuva_manager *mgr,
-> > > +			    u64 addr, u64 range)
-> > > +{
-> > > +	MA_STATE(mas, &mgr->region_mt, addr, 0);
-> > > +
-> > > +	return mas_find(&mas, addr + range - 1);
-> > > +}
-> > > +EXPORT_SYMBOL(drm_gpuva_region_find_first);
-> > > +
-> > > +/**
-> > > + * drm_gpuva_region_find - find a &drm_gpuva_region
-> > > + * @mgr: the &drm_gpuva_manager to search in
-> > > + * @addr: the &drm_gpuva_regions address
-> > > + * @range: the &drm_gpuva_regions range
-> > > + *
-> > > + * Returns: the &drm_gpuva_region at a given &addr and with a given &range
-> > 
-> > again, I'm not sure you want to find first or walk here.. It sounds like
-> > you want exactly addr to addr + range VMA?
-> 
-> Exactly, same as above.
-
-MA_STATE(mas, &mgr->region_mt, addr, addr);
-
-reg = mas_walk(&mas);
-if (!reg)
-	return reg;
-
-if ((mas.index != addr) | (mas.last != range - 1))
-	return NULL;
-
-return reg;
-
-> 
-> > 
-> > > + */
-> > > +struct drm_gpuva_region *
-> > > +drm_gpuva_region_find(struct drm_gpuva_manager *mgr,
-> > > +		      u64 addr, u64 range)
-> > > +{
-> > > +	struct drm_gpuva_region *reg;
-> > > +
-> > > +	reg = drm_gpuva_region_find_first(mgr, addr, range);
-
-mas_find() will keep searching, so you may get a VMA that starts higher
-than addr.
-
-> > > +	if (!reg)
-> > > +		goto out;
-> > > +
-> > > +	if (reg->va.range != range)
-> > > +		goto out;
-> > > +
-> > > +	return reg;
-> > > +
-> > > +out:
-> > > +	return NULL;
-> > > +}
-> > > +EXPORT_SYMBOL(drm_gpuva_region_find);
-> > > +
+* Danilo Krummrich <dakr@redhat.com> [230306 10:46]:
+> On 3/2/23 03:38, Liam R. Howlett wrote:
+> > * Danilo Krummrich <dakr@redhat.com> [230227 08:17]:
 > > 
 > > ...
+> > > > > Would this variant be significantly more efficient?
+> > > > 
+> > > > Well, what you are doing is walking the tree to see if there's anything
+> > > > there... then re-walking the tree to store it.  So, yes, it's much more
+> > > > efficient..  However, writing is heavier.  How much of the time is spent
+> > > > walking vs writing depends on the size of the tree, but it's rather easy
+> > > > to do this in a single walk of the tree so why wouldn't you?
+> > > 
+> > > I will, I was just curious about how much of an impact it has.
+> > > 
+> > > > 
+> > > > > 
+> > > > > Also, would this also work while already walking the tree?
+> > > > 
+> > > > Yes, to an extent.  If you are at the correct location in the tree, you
+> > > > can write to that location.  If you are not in the correct location and
+> > > > try to write to the tree then things will go poorly..  In this scenario,
+> > > > we are very much walking the tree and writing to it in two steps.
+> > > > 
+> > > > > 
+> > > > > To remove an entry while walking the tree I have a separate function
+> > > > > drm_gpuva_iter_remove(). Would I need something similar for inserting
+> > > > > entries?
+> > > > 
+> > > > I saw that.  Your remove function uses the erase operation which is
+> > > > implemented as a walk to that location and a store of a null over the
+> > > > range that is returned.  You do not need a function to insert an entry
+> > > > if the maple state is at the correct location, and that doesn't just
+> > > > mean setting mas.index/mas.last to the correct value.  There is a node &
+> > > > offset saved in the maple state that needs to be in the correct
+> > > > location.  If you store to that node then the node may be replaced, so
+> > > > other iterators that you have may become stale, but the one you used
+> > > > execute the store operation will now point to the new node with the new
+> > > > entry.
+> > > > 
+> > > > > 
+> > > > > I already provided this example in a separate mail thread, but it may makes
+> > > > > sense to move this to the mailing list:
+> > > > > 
+> > > > > In __drm_gpuva_sm_map() we're iterating a given range of the tree, where the
+> > > > > given range is the size of the newly requested mapping. __drm_gpuva_sm_map()
+> > > > > invokes a callback for each sub-operation that needs to be taken in order to
+> > > > > fulfill this mapping request. In most cases such a callback just creates a
+> > > > > drm_gpuva_op object and stores it in a list.
+> > > > > 
+> > > > > However, drivers can also implement the callback, such that they directly
+> > > > > execute this operation within the callback.
+> > > > > 
+> > > > > Let's have a look at the following example:
+> > > > > 
+> > > > >        0     a     2
+> > > > > old: |-----------|       (bo_offset=n)
+> > > > > 
+> > > > >              1     b     3
+> > > > > req:       |-----------| (bo_offset=m)
+> > > > > 
+> > > > >        0  a' 1     b     3
+> > > > > new: |-----|-----------| (a.bo_offset=n,b.bo_offset=m)
+> > > > > 
+> > > > > This would result in the following operations.
+> > > > > 
+> > > > > __drm_gpuva_sm_map() finds entry "a" and calls back into the driver
+> > > > > suggesting to re-map "a" with the new size. The driver removes entry "a"
+> > > > > from the tree and adds "a'"
+> > > > 
+> > > > What you have here won't work.  The driver will cause your iterators
+> > > > maple state to point to memory that is freed.  You will either need to
+> > > > pass through your iterator so that the modifications can occur with that
+> > > > maple state so it remains valid, or you will need to invalidate the
+> > > > iterator on every modification by the driver.
+> > > > 
+> > > > I'm sure the first idea you have will be to invalidate the iterator, but
+> > > > that is probably not the way to proceed.  Even ignoring the unclear
+> > > > locking of two maple states trying to modify the tree, this is rather
+> > > > inefficient - each invalidation means a re-walk of the tree.  You may as
+> > > > well not use an iterator in this case.
+> > > > 
+> > > > Depending on how/when the lookups occur, you could still iterate over
+> > > > the tree and let the driver modify the ending of "a", but leave the tree
+> > > > alone and just store b over whatever - but the failure scenarios may
+> > > > cause you grief.
+> > > > 
+> > > > If you pass the iterator through, then you can just use it to do your
+> > > > writes and keep iterating as if nothing changed.
+> > > 
+> > > Passing through the iterater clearly seems to be the way to go.
+> > > 
+> > > I assume that if the entry to insert isn't at the location of the iterator
+> > > (as in the following example) we can just keep walking to this location my
+> > > changing the index of the mas and calling mas_walk()?
 > > 
+> > no.  You have to mas_set() to the value and walk from the top of the
+> > tree.  mas_walk() walks down, not from side to side - well, it does go
+> > forward within a node (increasing offset), but if you hit the node limit
+> > then you have gotten yourself in trouble.
+> > 
+> > > This would also imply
+> > > that the "outer" tree walk continues after the entry we just inserted,
+> > > right?
+> > 
+> > I don't understand the "outer" tree walk statement.
 > 
+> I think I could have phrased this better. I just mean "my" iterator walking
+> each tree entry rather than an internal tree walk, as it happens in e.g.
+> mas_walk() or mas_find().
+> 
+> > 
+> > > 
+> > >             1     a     3
+> > > old:       |-----------| (bo_offset=n)
+> > > 
+> > >       0     b     2
+> > > req: |-----------|       (bo_offset=m)
+> > > 
+> > >       0     b     2  a' 3
+> > > new: |-----------|-----| (b.bo_offset=m,a.bo_offset=n+2)
+> > > 
+> > > Again, after finding "a", we want to remove it and insert "a'" instead.
+> > 
+> > Ah, so you could walk to 0, see that it's NULL from 0 - 1, call
+> > mas_next() and get "a" from 1 - 3, write "a'" from 2 - 3:
+> > 
+> >          0     1  a   2  a' 3
+> > broken: |-----|------|-----| (a is broken in this 1/2 step)
+> > 
+> > mas_set_range(&mas, 0, 2); /* Resets the tree location to MAS_START */
+> > mas_store(&mas, b);
+> >          0     b     2  a' 3
+> > new:    |-----------|-----| (b.bo_offset=m,a.bo_offset=n+2)
+> > 
+> > 
+> > You can *probably* also get away with this:
+> > 
+> > walk to 0, see that it's NULL from 0 - 1, call mas_next() and get "a"
+> > from 1 - 3, write "a'" from 2 - 3:
+> > 
+> >          0     1  a   2  a' 3
+> > broken: |-----|------|-----| (a is broken in this 1/2 step)
+> > 
+> > mas_prev(&mas, 0); /* Looking at broken a from 1-2.
+> > mas_store(&mas, NULL); /* NULL is expanded on write to 0-2.
+> >              0    NULL   2  a' 3
+> > broken':    |-----------|-----| (b.bo_offset=m,a.bo_offset=n+2)
+> > 
+> > mas_store(&mas, b);
+> >          0     b     2  a' 3
+> > new:    |-----------|-----| (b.bo_offset=m,a.bo_offset=n+2)
+> > 
+> > You may want to iterate backwards and do the writes as you go until you
+> > have enough room.. it really depends how you want to go about doing
+> > things.
+> 
+> I see, again thanks for explaining.
+> 
+> I think I would prefer to either (1) have generic insert() function with a
+> similar behavior as when iterating through a list or (2) have a function
+> dedicated to the "split" use case.
+> 
+> 1) When iterating the tree inserting entries at arbitrary locations should
+> not influence the next iteration step. Unless the new entry really is the
+> next entry, but that'd be optional. I don't see a use case for that.
+> 
+> 2) Similar to how you broke it down above I could imagine a function
+> dedicated to the split operation. This would be similar to what you mention
+> for mmap below. However, it wouldn't be a single operation.
+> 
+> The GPUVA manager provides sub-operations to the driver for a single mapping
+> request. Those can be an arbitrary amount of unmaps (for mappings "in the
+> way", as you say below), one or two remaps (for splits at the beginning or
+> end or both) and exactly one map (which is the last sub-operation adding the
+> newly requested mapping).
+> 
+> Remaps consist out of the mapping to unmap and one or two new mappings to
+> map. The only case where a remap sub-op has two new mappings to map is when
+> the newly requested mapping is enclosed by a single existing mapping. If we
+> overlap a mapping at the beginning and another one at the end this would be
+> two separate remap sub-ops. Of course, between the two remaps there could be
+> an arbitrary amount of unmap sub-ops.
+> 
+> Unmap sub-ops are simple, I just need to remove a single entry in the tree.
+> drm_gpuva_iter_remove() should be fine for that.
+> 
+> For remap sub-ops, I would need a function that removes an entry and then
+> adds one or two new entries within the range of the removed one. The next
+> loop iteration should then continue at the entry (is any) after the range of
+> the removed one.
+> 
+> However, I'm unsure how to implement this. Would I need to just do a
+> mas_store() of the new entry/entries (since the nodes should already be
+> allocated) and then clean up the nodes that are left with mas_erase()?
+> 
+> Let's say there is an entry A = [0 - 5] and I want to replace it with B = [0
+> - 1] and C = [4 - 5].
+> 
+> Could I just store B and C and then somehow clean up the range [2 - 3]?
+
+The most efficient way:
+mas_set(&mas, 0);
+// Walk down to 0
+mas_walk(&mas);
+// We are now pointing at A (index = 0, last = 5)
+mas.last = 1;
+// No walk here.
+mas_store(&mas, B);
+// Going to the next entry is very fast.
+mas_next(&mas)
+// We are now pointing at a fragment of A (index = 2, last = 5)
+mas.last = 3;
+// No walk here.
+mas_store(&mas, NULL);
+// Going to the next entry is very fast
+mas_next(&mas);
+// We are now pointing at a fragment of A (index = 4, last = 5)
+mas_store(&mas, C);
+
+Less efficient, but still fine:
+// Walk down to 0 and store
+mas_set_range(&mas, 0, 1);
+mas_store(&mas, B);
+// Reset to the top of the tree
+mas_set_range(&mas, 4, 5);
+// Walk down to 4 and store
+mas_store(&mas, C);
+// Reset to the top of the tree
+mas_set_range(&mas, 2, 3);
+// Walk down to 2 and store
+mas_store(&mas, NULL);
+
+
+> 
+> Maybe 1) would be the most flexible way, however, if 2) can be implemented
+> more efficiently that's perfectly fine too.
+
+You can do anything you want, but the more you can use the same maple
+state and save walking from the top the more efficient it will be.
+Every level is another dereference down the tree..  We do have a
+branching factor of 16 here, so I don't know the size of your tree and
+how worth the effort it is for you.
+
+> 
+> > 
+> > > 
+> > > > 
+> > > > > 
+> > > > > __drm_gpuva_sm_map(), ideally, continues the loop searching for nodes
+> > > > > starting from the end of "a" (which is 2) till the end of the requested
+> > > > > mapping "b" (which is 3). Since it doesn't find any other mapping within
+> > > > > this range it calls back into the driver suggesting to finally map "b".
+> > > > > 
+> > > > > If there would have been another mapping between 2 and 3 it would have
+> > > > > called back into the driver asking to unmap this mapping beforehand.
+> > > > > 
+> > > > > So, it boils down to re-mapping as described at the beginning (and
+> > > > > analogously at the end) of a new mapping range and removing of entries that
+> > > > > are enclosed by the new mapping range.
+> > > > 
+> > > > I assume the unmapped area is no longer needed, and the 're-map' is
+> > > > really a removal of information?  Otherwise I'd suggest searching for a
+> > > > gap which fits your request.  What you have here is a lot like
+> > > > "MAP_FIXED" vs top-down/bottom-up search in the VMA code, this seems to
+> > > > be like your __drm_gpuva_sm_map() and the drm mm range allocator with
+> > > > DRM_MM_INSERT_LOW, and DRM_MM_INSERT_HIGH.
+> > > > 
+> > > > Why can these split/unmappings fail?  Is it because they are still
+> > > > needed?
+> > > > 
+> > > 
+> > > You mean the check before the mas_*() operations in drm_gpuva_insert()?
+> > 
+> > Yes, the callbacks.
+> > 
+> > > 
+> > > Removing entries should never fail, inserting entries should fail when the
+> > > caller tries to store to an area outside of the VA space (it doesn't
+> > > necessarily span the whole 64-bit space), a kernel reserved area of the VA
+> > > space, is not in any pre-allocated range of the VA space (if regions are
+> > > enabled) or an entry already exists at that location.
+> > 
+> > In the mmap code, I have to deal with splitting the start/end VMA and
+> > removing any VMAs in the way.  I do this by making a 'detached' tree
+> > that is dealt with later, then just overwriting the area with one
+> > mas_store() operation.  Would something like that work for you?
+> 
+> I think this is pretty much the same thing I want to do, hence this should
+> work. However, this would require more state keeping for the whole
+> iteration, I guess. Drivers shouldn't know how the GPUVA manager keeps track
+> of mappings internally (and hence they shouldn't know about the maple tree).
+> If I could get away with something similar to what I wrote above, I think
+> I'd probably not add this extra complexity, unless there are relevant
+> performance reasons to do so.
+> 
+
+Well maybe you can tell your drivers that there's something in the way
+and they can remove it from their end but not alter the tree.  Sort of
+like a "Untracked" callback.
+
+If you have a "This range has changed to X-Y" then you can use this
+along with the "Untracked" to implement the above in a single
+write.  Iterate through the area , call back to the driver to alter the
+start range, then keep "Untracing" until you alter the end range.
+
+...
+
+Cheers,
+Liam
