@@ -4,91 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 859C9C7EE29
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72B58C7EE23
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CCFB10E47B;
-	Thu,  4 May 2023 12:32:52 +0000 (UTC)
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2080.outbound.protection.outlook.com [40.107.94.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE04410E760;
- Wed, 25 Jan 2023 10:01:13 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C+W8wXfRfGFK/dul2NB8XVVmCo57KwwbsouPg175rEYr23Dwxn/nUs7XNceCnSsTOYD2zzAbSUEP/rSAmCbqBL+1rRcCCyg1ULv9pemREAKul9In8pExnjhwd7M+E5n8mDHbDdebXVpzj0219uMqaa9cP7IrXn19ZcrEv789cL4uTjByN+CaNpZUojd4kh/X7jblvKuJn11jwMeXYVfvxBXpRlpz7krbKceUaGS8brMXnbJNf+MKXgpBlZyg9N6SNGKZvJqkzVNnyyICUa6ZcbXUIr1t1oWB4xLHjjFnqkeWeF/YJMz9+yqaxwA/jHegVoCWJbGE4QehZuyC9lj3OA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7r3JfSAfhnn3KRCPJFXp1OeRcIc18o5+h8G6Bv4ocCQ=;
- b=Y8S0sJpzpNZiUVX2qYlNXsVeRdnSO3SmR/Np7zffZ6kcGBxhMEcki5upHOVwCYP5jC8sRZ8vDAp6TUYI/Qnx1ZewgFb1Ijv5M1rJI/N9Mp7FaVC8g3jfx6f580ozX4eX6EDKog2GbS3B05jt7eLZBNimgXMbY2VvlgqFrVN4zHO4c1Cyv/gaU3I3kIbVf04OZNGWxPjZx4Fq8VWDRn+/Kdd1AAy//yM5km6a7Kh24oEVjFKv3R3RZjJUittyEwXUbHgRlOIFqDZ9DjksgS34JdA1efk6x7zhcIOwiqYcaLf4FfyrdgELHoUNMmnoTLw4V94J/HAZS11izUrYjOFGHA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7r3JfSAfhnn3KRCPJFXp1OeRcIc18o5+h8G6Bv4ocCQ=;
- b=Gxh3usbTys7USM8GNCUbgt25318pDWhYYEwn/3TOjC//DsuqNqtT6w3W9vM8bQuBXTzoJuP3zeiOuXFrhVIjBL8C5sNzakcCd0ok+NaMJjupRMtpkUmgt4PMEog+zAYD/FQqW+iX4wNasNzYUpm17JncbIBBOJjBnUMsigARdUE=
-Received: from MW4PR03CA0132.namprd03.prod.outlook.com (2603:10b6:303:8c::17)
- by SJ0PR12MB6903.namprd12.prod.outlook.com (2603:10b6:a03:485::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Wed, 25 Jan
- 2023 10:01:11 +0000
-Received: from CO1NAM11FT029.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8c:cafe::e7) by MW4PR03CA0132.outlook.office365.com
- (2603:10b6:303:8c::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.21 via Frontend
- Transport; Wed, 25 Jan 2023 10:01:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT029.mail.protection.outlook.com (10.13.174.214) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6023.16 via Frontend Transport; Wed, 25 Jan 2023 10:01:10 +0000
-Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Wed, 25 Jan 2023 04:01:07 -0600
-From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Date: Wed, 25 Jan 2023 15:30:23 +0530
-Message-ID: <20230125100026.5086-1-Amaranath.Somalapuram@amd.com>
-X-Mailer: git-send-email 2.32.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEA8610E476;
+	Thu,  4 May 2023 12:32:51 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EEE010E7D0;
+ Thu,  9 Mar 2023 09:48:46 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 3F5B56603007;
+ Thu,  9 Mar 2023 09:48:44 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1678355324;
+ bh=A50/72yir9yl+4D3pjJl/L2YPO9X4ebuwpQ6QWEfGK8=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=BlA9bNQGTwENVcuchUmZU0zKRIQtfqHMv+XEHNt1n1px6HtnR7et8gClwpnnVdkIn
+ IsLWvioyN29w7AqACudpFr57ZctauG6ZIgJFd8LftSXgf0CS38ZZzV83iRogQTFBWL
+ sF11OCF68vbVN1Q1lGeMs89xhkNjZOMZN8s386GpenrH5dhZ3C9kzlB0ljekHfrbZ+
+ aTBlrwC1DbsFNIaqc0c5qjzOEExd2mkcY8NUCtPlSfxkj0CgG9FVWYKTW4BaEycQ9Z
+ SR9E5bo+zEr5A5xTgQqQyb0UFurgErllvE2vblGYI1jIncZB+DGGb/blpuN+cDwku2
+ /qsm7DdJQybZA==
+Date: Thu, 9 Mar 2023 10:48:41 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Danilo Krummrich <dakr@redhat.com>
+Message-ID: <20230309104841.7c03d5b4@collabora.com>
+In-Reply-To: <20230309101243.1150506f@collabora.com>
+References: <20230217134422.14116-1-dakr@redhat.com>
+ <20230309101243.1150506f@collabora.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT029:EE_|SJ0PR12MB6903:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0abe643d-87e0-4692-9d54-08dafebb1623
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zMWdEmQKO5J3wDLRKstZS3+6QfX+snH95UoAUD2ugRo7YjL7BRWth18pcaqSu4OTyH0a+LMCHyO/R3WTajkHepv3ssB7ogfIdXEZsW4wuWQVgV9x2CrU7GjhgfU/BTBKzUqlkJz8mjWwVWTLOycE1q4TwbM1kEivkYBUwaTlR7qLh2EUoOw8BcEMqR76K64IbIUOpIEMd2Z6C4NpdWiBfgX/y3Jndv/Ea63sjnG9cXNAzQJ/MZDRl4fEmk8O6CWEvj8blRfo9+zz9Lpcu0K1HPqpsZW2YCRQkMDK56O/WK2zOgGalf9+ZhW0PEIZvH4p4lVkiEXzu2hZtMXH4kSn2hCd8YvzRr43FJ7rzUT1E5K2lqAdj04ak1TpfAhpHSSby5zGPKK+2ZTLmLvP+0yVtTCAf+05T5ZlikLS7vBvcRmdQM22UAIUjahPQ4yBYvucq2W8YMC9wQpqfKIjOMV/zIu/89DWZOCGtPmnb1JZtL3KCMeDgVI1nsxM7c3F84QOkhTXJnDgRBOV/mJ/Kcxuzslxi16OsRqB6Z2sOvqrhMNGIPQiO90nlWYo/x/+fu3qWkPrQ4sLc2jfjEzf7PXl5Df0p1dBHev8nwxgSIf9Nl3sh64U0BeZr2/mjDmFFf1cRH8mIRoPAcqyyhNzQViNCQ99OVUBXmZ5cnb4kZZI7Qbjz6XhrBTUKALd0CFKdwP1yvRfXoqlHyW03IbouoiyzJoLsr6arQli1cAEypPLvyE=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(376002)(39860400002)(136003)(346002)(396003)(451199018)(46966006)(36840700001)(40470700004)(36860700001)(83380400001)(426003)(336012)(54906003)(47076005)(2616005)(478600001)(8676002)(186003)(450100002)(36756003)(1076003)(70206006)(70586007)(110136005)(7696005)(356005)(2906002)(86362001)(82740400003)(41300700001)(26005)(81166007)(5660300002)(16526019)(316002)(40480700001)(40460700003)(6666004)(4326008)(82310400005)(8936002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 10:01:10.8556 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0abe643d-87e0-4692-9d54-08dafebb1623
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT029.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6903
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
-Subject: [Nouveau] [PATCH 1/4] drm/amdgpu: Movie the amdgpu_gtt_mgr start
- and size from pages to bytes
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:34 +0000
+Subject: Re: [Nouveau] [PATCH drm-next v2 00/16] [RFC] DRM GPUVA Manager &
+ Nouveau VM_BIND UAPI
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,46 +55,77 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: shashank.sharma@amd.com, arunpravin.paneerselvam@amd.com,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, arvind.yadav@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: matthew.brost@intel.com, willy@infradead.org, daniel@ffwll.ch,
+ dri-devel@lists.freedesktop.org, corbet@lwn.net, nouveau@lists.freedesktop.org,
+ ogabbay@kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ mripard@kernel.org, linux-mm@kvack.org, alexdeucher@gmail.com,
+ bskeggs@redhat.com, Liam.Howlett@oracle.com, bagasdotme@gmail.com,
+ christian.koenig@amd.com, jason@jlekstrand.net
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-To support GTT manager amdgpu_res_first, amdgpu_res_next
-from pages to bytes and clean up PAGE_SHIFT operation.
+On Thu, 9 Mar 2023 10:12:43 +0100
+Boris Brezillon <boris.brezillon@collabora.com> wrote:
 
-Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+> Hi Danilo,
+> 
+> On Fri, 17 Feb 2023 14:44:06 +0100
+> Danilo Krummrich <dakr@redhat.com> wrote:
+> 
+> > Changes in V2:
+> > ==============
+> >   Nouveau:
+> >     - Reworked the Nouveau VM_BIND UAPI to avoid memory allocations in fence
+> >       signalling critical sections. Updates to the VA space are split up in three
+> >       separate stages, where only the 2. stage executes in a fence signalling
+> >       critical section:
+> > 
+> >         1. update the VA space, allocate new structures and page tables  
+> 
+> Sorry for the silly question, but I didn't find where the page tables
+> pre-allocation happens. Mind pointing it to me? It's also unclear when
+> this step happens. Is this at bind-job submission time, when the job is
+> not necessarily ready to run, potentially waiting for other deps to be
+> signaled. Or is it done when all deps are met, as an extra step before
+> jumping to step 2. If that's the former, then I don't see how the VA
+> space update can happen, since the bind-job might depend on other
+> bind-jobs modifying the same portion of the VA space (unbind ops might
+> lead to intermediate page table levels disappearing while we were
+> waiting for deps). If it's the latter, I wonder why this is not
+> considered as an allocation in the fence signaling path (for the
+> bind-job out-fence to be signaled, you need these allocations to
+> succeed, unless failing to allocate page-tables is considered like a HW
+> misbehavior and the fence is signaled with an error in that case).
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
-index 5c4f93ee0c57..5c78f0b09351 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
-@@ -94,8 +94,8 @@ static inline void amdgpu_res_first(struct ttm_resource *res,
- 		while (start >= node->size << PAGE_SHIFT)
- 			start -= node++->size << PAGE_SHIFT;
- 
--		cur->start = (node->start << PAGE_SHIFT) + start;
--		cur->size = min((node->size << PAGE_SHIFT) - start, size);
-+		cur->start = node->start + start;
-+		cur->size = min(node->size - start, size);
- 		cur->remaining = size;
- 		cur->node = node;
- 		break;
-@@ -155,8 +155,8 @@ static inline void amdgpu_res_next(struct amdgpu_res_cursor *cur, uint64_t size)
- 		node = cur->node;
- 
- 		cur->node = ++node;
--		cur->start = node->start << PAGE_SHIFT;
--		cur->size = min(node->size << PAGE_SHIFT, cur->remaining);
-+		cur->start = node->start;
-+		cur->size = min(node->size, cur->remaining);
- 		break;
- 	default:
- 		return;
--- 
-2.32.0
+Ok, so I just noticed you only have one bind queue per drm_file
+(cli->sched_entity), and jobs are executed in-order on a given queue,
+so I guess that allows you to modify the VA space at submit time
+without risking any modifications to the VA space coming from other
+bind-queues targeting the same VM. And, if I'm correct, synchronous
+bind/unbind ops take the same path, so no risk for those to modify the
+VA space either (just wonder if it's a good thing to have to sync
+bind/unbind operations waiting on async ones, but that's a different
+topic).
+
+> 
+> Note that I'm not familiar at all with Nouveau or TTM, and it might
+> be something that's solved by another component, or I'm just
+> misunderstanding how the whole thing is supposed to work. This being
+> said, I'd really like to implement a VM_BIND-like uAPI in pancsf using
+> the gpuva_manager infra you're proposing here, so please bare with me
+> :-).
+> 
+> >         2. (un-)map the requested memory bindings
+> >         3. free structures and page tables
+> > 
+> >     - Separated generic job scheduler code from specific job implementations.
+> >     - Separated the EXEC and VM_BIND implementation of the UAPI.
+> >     - Reworked the locking parts of the nvkm/vmm RAW interface, such that
+> >       (un-)map operations can be executed in fence signalling critical sections.
+> >   
+> 
+> Regards,
+> 
+> Boris
+> 
 
