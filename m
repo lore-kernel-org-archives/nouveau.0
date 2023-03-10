@@ -4,73 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0225CC77B7C
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB2F2C7EE29
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57A0110E487;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B55810E484;
 	Thu,  4 May 2023 12:32:53 +0000 (UTC)
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
- [IPv6:2a00:1450:4864:20::430])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4A5B10E087;
- Mon, 30 Jan 2023 23:09:14 +0000 (UTC)
-Received: by mail-wr1-x430.google.com with SMTP id t18so12697631wro.1;
- Mon, 30 Jan 2023 15:09:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:content-language:references
- :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
- :cc:subject:date:message-id:reply-to;
- bh=nBJSf0ujnLSINj9vtVqCPIJUNHNqvfxIwQaQ2Pf5QPI=;
- b=fXcEGnHpuTMxqjF81LzYGEjxdrRIVQpkK8XSxfBNzkMdookleOEbuAVmp9Z5ZVCotS
- axdeMivX2doj/9+R0+xbQz1Y1nF9wfApIhaw3QTUcBdcDbrHYmxBs1Exl0zeZLk/3DM3
- /uxGpyKWy8DgAJTo4Y8kw8495ulb/GEnvszPW1ranocA8TLjhYyKQ17IdCAdAmQHPFSM
- /CSNJn6eXTvZ71KVMXEWliE05kW9VLLJr8XOYXMnFdECSqrJr49SqN5WEPdU7Ml6FUld
- J32j1DVQ1agb1+2fdR5OQeoAHj+CIZKsiIx23H6y6/lbYHW2bsDA0TCIw8+Qa21nqqZv
- mLcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:content-language:references
- :cc:to:from:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=nBJSf0ujnLSINj9vtVqCPIJUNHNqvfxIwQaQ2Pf5QPI=;
- b=2Tz5hJGhm5W8QSZkmkucYm31+rjAbsKiwmvCThbZfqs2Qgo76CaZOnCgEAT26Hzj/F
- 2ezKWht+XW4fjJC5RE8o/ZnrIJau3qawKGOwJbwN3iT85DdNxYblv4B/b0U7sv/L9Pr8
- cwa7bky3y5e0g4w+bZV+x55wCMfMKivdorBn7V7xtUzD+jj32hLTmKsCQpJBOk4XQAq7
- /hdJWkV2uLrEK2JNx7lkNx5wzLuQu+kGJNey/wwFy38APANJ0eOKxV1BUwq/pKSFIELN
- zszgZ6/ipJCzQHbkULdUmmvuq0oqVBx/+2rwXhBH/vHeh/fDCpnoDKa4l6OHIyBonNhK
- C5gw==
-X-Gm-Message-State: AFqh2kq49O1WCcyvcYGd5702VLWAByA4oQrUol64fW22lqPloOja6BUH
- w1RJCeJAGDAW7k/uHWfrrOg=
-X-Google-Smtp-Source: AMrXdXstvNWA6suGxYdZtreTUdrAXIng9NTIHs6qOi5zxQJ73BED5Zi8z5jOZvFUQJs+vVi5Hs9OsA==
-X-Received: by 2002:a5d:6282:0:b0:2bf:9516:d295 with SMTP id
- k2-20020a5d6282000000b002bf9516d295mr30547069wru.22.1675120153156; 
- Mon, 30 Jan 2023 15:09:13 -0800 (PST)
-Received: from [192.168.1.10] (97e09f27.skybroadband.com. [151.224.159.39])
- by smtp.googlemail.com with ESMTPSA id
- g2-20020a5d4882000000b002bdf3809f59sm12707867wrq.38.2023.01.30.15.09.10
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 30 Jan 2023 15:09:12 -0800 (PST)
-Message-ID: <dab6eb81-db3f-8fa1-84ad-9b40e209514b@googlemail.com>
-Date: Mon, 30 Jan 2023 23:09:08 +0000
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3258B10E2A9;
+ Fri, 10 Mar 2023 17:25:42 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 0886A66003B0;
+ Fri, 10 Mar 2023 17:25:40 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1678469140;
+ bh=wM54TmsN2cbOzHJr/5TpGI05vTyX+Oe7JKg+tq6vv6E=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=TmcRYGkEuRzs7i+cH0kQa41ntt/LAH7dNLd532WuM7EUdDdyUoWKer7VEEXgoE4Wd
+ Jnc1ZSfw3gKnCIXy1FccES9JiGkavm2cxV6HWPjhicEXLRBZKtuEMyRmdO4zJZAwHM
+ aDLTEKR8bLrtwcaRxIoYt+ZuC7VYWLYEkHTEMmaS4+ReEwdB++QwXDBsYx2cDnyILe
+ DeFr89UuUdVq9ceDu7XFxtBItyBnah1+PynhJ8hvELzQLmQHLIG/oPleydhB7e7A6b
+ 7rY0Vv8dTdtXYTgvR4t1pTe8EakW9eE2MxUzOpYmhnSi7gObXPPqEiJqu+puyW+Rk0
+ maVtGaCIv9w5w==
+Date: Fri, 10 Mar 2023 18:25:36 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Danilo Krummrich <dakr@redhat.com>
+Message-ID: <20230310182536.571315f3@collabora.com>
+In-Reply-To: <d0e59837-703b-964a-877e-38c244f58a85@redhat.com>
+References: <20230217134422.14116-1-dakr@redhat.com>
+ <20230309101243.1150506f@collabora.com>
+ <20230309104841.7c03d5b4@collabora.com>
+ <d0e59837-703b-964a-877e-38c244f58a85@redhat.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-From: Chris Clayton <chris2553@googlemail.com>
-To: Ben Skeggs <skeggsb@gmail.com>
-References: <b64705e3-2e63-a466-f829-f9568b06766a@googlemail.com>
- <fcec3c78-b5d9-eb48-0fc0-d1f27de87f23@leemhuis.info>
- <b21fa1f6-a71d-5657-8596-ee0be73185ea@leemhuis.info>
- <3ab28896-70e9-6f90-5b97-e5397b06e715@googlemail.com>
- <a163dd7b-c5d1-a07b-a816-7a2dfd3edfd4@leemhuis.info>
- <ab1b0f73-6b4e-8602-2999-b7bec25d92db@googlemail.com>
- <CACAvsv4sOtPjCVnEcKd2RCUqYWxSn5XKyksbS-Bds2qCqyusVw@mail.gmail.com>
- <1cdb84ac-f7a8-66ba-98fc-3db302b49a5a@googlemail.com>
-Content-Language: en-GB
-In-Reply-To: <1cdb84ac-f7a8-66ba-98fc-3db302b49a5a@googlemail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
-Subject: Re: [Nouveau] linux-6.2-rc4+ hangs on poweroff/reboot: Bisected
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:34 +0000
+Subject: Re: [Nouveau] [PATCH drm-next v2 00/16] [RFC] DRM GPUVA Manager &
+ Nouveau VM_BIND UAPI
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,60 +56,134 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux regressions mailing list <regressions@lists.linux.dev>,
- ML nouveau <nouveau@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>, bskeggs@redhat.com
+Cc: matthew.brost@intel.com, willy@infradead.org, daniel@ffwll.ch,
+ dri-devel@lists.freedesktop.org, corbet@lwn.net, nouveau@lists.freedesktop.org,
+ ogabbay@kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ mripard@kernel.org, linux-mm@kvack.org, alexdeucher@gmail.com,
+ bskeggs@redhat.com, Liam.Howlett@oracle.com, bagasdotme@gmail.com,
+ christian.koenig@amd.com, jason@jlekstrand.net
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi again.
+Hi Danilo,
 
-On 30/01/2023 20:19, Chris Clayton wrote:
-> Thanks, Ben.
+On Fri, 10 Mar 2023 17:45:58 +0100
+Danilo Krummrich <dakr@redhat.com> wrote:
 
-<snip>
-
->> Hey,
->>
->> This is a complete shot-in-the-dark, as I don't see this behaviour on
->> *any* of my boards.  Could you try the attached patch please?
+> Hi Boris,
 > 
-> Unfortunately, the patch made no difference.
+> On 3/9/23 10:48, Boris Brezillon wrote:
+> > On Thu, 9 Mar 2023 10:12:43 +0100
+> > Boris Brezillon <boris.brezillon@collabora.com> wrote:
+> >   
+> >> Hi Danilo,
+> >>
+> >> On Fri, 17 Feb 2023 14:44:06 +0100
+> >> Danilo Krummrich <dakr@redhat.com> wrote:
+> >>  
+> >>> Changes in V2:
+> >>> ==============
+> >>>    Nouveau:
+> >>>      - Reworked the Nouveau VM_BIND UAPI to avoid memory allocations in fence
+> >>>        signalling critical sections. Updates to the VA space are split up in three
+> >>>        separate stages, where only the 2. stage executes in a fence signalling
+> >>>        critical section:
+> >>>
+> >>>          1. update the VA space, allocate new structures and page tables  
+> >>
+> >> Sorry for the silly question, but I didn't find where the page tables
+> >> pre-allocation happens. Mind pointing it to me? It's also unclear when
+> >> this step happens. Is this at bind-job submission time, when the job is
+> >> not necessarily ready to run, potentially waiting for other deps to be
+> >> signaled. Or is it done when all deps are met, as an extra step before
+> >> jumping to step 2. If that's the former, then I don't see how the VA
+> >> space update can happen, since the bind-job might depend on other
+> >> bind-jobs modifying the same portion of the VA space (unbind ops might
+> >> lead to intermediate page table levels disappearing while we were
+> >> waiting for deps). If it's the latter, I wonder why this is not
+> >> considered as an allocation in the fence signaling path (for the
+> >> bind-job out-fence to be signaled, you need these allocations to
+> >> succeed, unless failing to allocate page-tables is considered like a HW
+> >> misbehavior and the fence is signaled with an error in that case).  
+> > 
+> > Ok, so I just noticed you only have one bind queue per drm_file
+> > (cli->sched_entity), and jobs are executed in-order on a given queue,
+> > so I guess that allows you to modify the VA space at submit time
+> > without risking any modifications to the VA space coming from other
+> > bind-queues targeting the same VM. And, if I'm correct, synchronous
+> > bind/unbind ops take the same path, so no risk for those to modify the
+> > VA space either (just wonder if it's a good thing to have to sync
+> > bind/unbind operations waiting on async ones, but that's a different
+> > topic).  
 > 
-> I've been looking at how the graphics on my laptop is set up, and have a bit of a worry about whether the firmware might
-> be playing a part in this problem. In order to offload video decoding to the NVidia TU117 GPU, it seems the scrubber
-> firmware must be available, but as far as I know,that has not been released by NVidia. To get it to work, I followed
-> what ubuntu have done and the scrubber in /lib/firmware/nvidia/tu117/nvdec/ is a symlink to
-> ../../tu116/nvdev/scrubber.bin. That, of course, means that some of the firmware loaded is for a different card is being
-> loaded. I note that processing related to firmware is being changed in the patch. Might my set up be at the root of my
-> problem?
+> Yes, that's all correct.
 > 
-> I'll have a fiddle an see what I can work out.
+> The page table allocation happens through nouveau_uvmm_vmm_get() which 
+> either allocates the corresponding page tables or increases the 
+> reference count, in case they already exist, accordingly.
+> The call goes all the way through nvif into the nvkm layer (not the 
+> easiest to follow the call chain) and ends up in nvkm_vmm_ptes_get().
 > 
-> Chris
+> There are multiple reasons for updating the VA space at submit time in 
+> Nouveau.
 > 
->>
->> Thanks,
->> Ben.
->>
->>>
+> 1) Subsequent EXEC ioctl() calls would need to wait for the bind jobs 
+> they depend on within the ioctl() rather than in the scheduler queue, 
+> because at the point of time where the ioctl() happens the VA space 
+> wouldn't be up-to-date.
 
-Well, my fiddling has got my system rebooting and shutting down successfully again. I found that if I delete the symlink
-to the scrubber firmware, reboot and shutdown work again. There are however, a number of other files in the tu117
-firmware directory tree that that are symlinks to actual files in its tu116 counterpart. So I deleted all of those too.
-Unfortunately, the absence of one or more of those symlinks causes Xorg to fail to start. I've reinstated all the links
-except scrubber and I now have a system that works as it did until I tried to run a kernel that includes the bad commit
-I identified in my bisection. That includes offloading video decoding to the NVidia card, so what ever I read that said
-the scrubber firmware was needed seems to have been wrong. I get a new message that (nouveau 0000:01:00.0: fb: VPR
-locked, but no scrubber binary!), but, hey, we can't have everything.
+Hm, actually that's what explicit sync is all about, isn't it? If you
+have async binding ops, you should retrieve the bind-op out-fences and
+pass them back as in-fences to the EXEC call, so you're sure all the
+memory mappings you depend on are active when you execute those GPU
+jobs. And if you're using sync binds, the changes are guaranteed to be
+applied before the ioctl() returns. Am I missing something?
 
-If you still want to get to the bottom of this, let me know what you need me to provide and I'll do my best. I suspect
-you might want to because there will a n awful lot of Ubuntu-based systems out there with that scrubber.bin symlink in
-place. On the other hand,m it could but quite a while before ubuntu are deploying 6.2 or later kernels.
+> 
+> 2) Let's assume a new mapping is requested and within it's range other 
+> mappings already exist. Let's also assume that those existing mappings 
+> aren't contiguous, such that there are gaps between them. In such a case 
+> I need to allocate page tables only for the gaps between the existing 
+> mappings, or alternatively, allocate them for the whole range of the new 
+> mapping, but free / decrease the reference count of the page tables for 
+> the ranges of the previously existing mappings afterwards.
+> In the first case I need to know the gaps to allocate page tables for 
+> when submitting the job, which means the VA space must be up-to-date. In 
+> the latter one I must save the ranges of the previously existing 
+> mappings somewhere in order to clean them up, hence I need to allocate 
+> memory to store this information. Since I can't allocate this memory in 
+> the jobs run() callback (fence signalling critical section) I need to do 
+> it when submitting the job already and hence the VA space must be 
+> up-to-date again.
 
-Thanks,
+Yep that makes perfect sense, and that explains how the whole thing can
+work. When I initially read the patch series, I had more complex use
+cases in mind, with multiple bind queues targeting the same VM, and
+synchronous bind taking a fast path (so they don't have to wait on
+async binds which can in turn wait on external deps). This model makes
+it hard to predict what the VA space will look like when an async bind
+operation gets to be executed, thus making page table allocation more
+complex, or forcing us to over-estimate the amount of pages we need for
+this update (basically one page per MMU level, except maybe the top
+level, plus the number of pages you'll always need for the bind
+operation itself).
 
-Chris
+> However, this is due to how page table management currently works in 
+> Nouveau and we might change that in the future.
 
-<snip>
+I'm curious to hear about that if you have a bit of time. I'm starting
+from scratch with pancsf, and I might consider going for something
+similar to what you plan to do next.
+
+> 
+> Synchronous binds/unbinds taking the same path through the scheduler is 
+> a downside of this approach.
+
+Indeed. I mean, I can probably live with this limitation, but I'm
+curious to know if the pg table management changes you're considering
+for the future would solve that problem.
+
+Anyway, thanks for taking the time to answer my question, things are
+much clearer now.
+
+Boris
