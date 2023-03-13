@@ -4,48 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFBC8C7EE26
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5180C77B7C
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0F3B10E475;
-	Thu,  4 May 2023 12:32:51 +0000 (UTC)
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AA3910E31F;
- Tue, 25 Oct 2022 10:17:50 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 9B8C9B81CD1;
- Tue, 25 Oct 2022 10:17:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AC4FC433C1;
- Tue, 25 Oct 2022 10:17:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1666693067;
- bh=loBjWPuoKTGF/gO56VzkKo6krQdgRby7JIrG/EzZOSQ=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=d6ZDNCAcK4F26u54xQf8kDBp/8b3DW5BfO6g1lzeUvpUqST0Kw+Ohe0820AGWKYi+
- /7Iqw8NZ0p6eQ/pqwMi1Gu67j2R14VHUyxddgBClTRfmn7+eiBCfjsq3GSF79nNNGz
- 0X7g+J7DfNAmhkRl2i3xi1iShD/jLXV9iOD0Aj/KAyEV5IbzhVMFLMbIuW+YD0HX3T
- B8i2fs2s6CKT9WlZ6lTFZXa/hnB4DlVRnIIZi1IMECfFVAoF+8Q0qD/kHO/VT7rrxh
- ahRkwDT3WUrOsLHpVfVQd0i2lzMAzWlJ4qQ4wL0BQod1CCuVzaQiHLp5VsXHdnMHQK
- 2bogCqmt8gCvw==
-Message-ID: <f36153fe-214c-2904-e155-ab9cee8a2a2c@kernel.org>
-Date: Tue, 25 Oct 2022 12:17:43 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BF3E10E478;
+	Thu,  4 May 2023 12:32:52 +0000 (UTC)
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com
+ [IPv6:2a00:1450:4864:20::543])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 827C610E52C;
+ Mon, 13 Mar 2023 13:55:13 +0000 (UTC)
+Received: by mail-ed1-x543.google.com with SMTP id da10so49147443edb.3;
+ Mon, 13 Mar 2023 06:55:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1678715712;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=YQMWWiVCaLWuBxIvo4NBZRafIwrEjOq/YzvonHvtnhU=;
+ b=Yf0R58L3Yy2Z5DOHytLD67pMKox+tlfR+N8fFQJFfVdDiVsavKYbShOCBIHGh24jas
+ uvgceGV9qq7wSvvXzPkTCVDWW5wndpGNB26vpGMGl6wbArRl0+dDWjx9+Fxm70jcD8mB
+ gRKguTqTvFXK/qfHfDJFxIAib43ryxD8vJ0AltSkPbDENLMCr2aKzqfQTCppGQys0QPF
+ QSoA/1j8xP1nY4YaBIgpYrfJ+9GgrZbrXIz3adgWk6sTzlckwVMwmRwOcDp8Dyc6lBWm
+ YThHHjz1VFw5p4RXlqrB5l2ljWmiI0rm9bI1C0s0Rlslxlq4Ke8m0/2YObWekNkOcwi/
+ kPDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1678715712;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=YQMWWiVCaLWuBxIvo4NBZRafIwrEjOq/YzvonHvtnhU=;
+ b=naC6xwAvMR1VU0LTFr+bZiug0ow/iUmQkKFxfmslRb+OliaNJ//bWdScPWYKHOSj1E
+ EmDBlcDwwPfkTNf/lnU11qMHi3Sh5IaTDCZhDUe3vD+2yHloNJjyl0Kd2ZjFtV7Ez74E
+ r7ImMMXKco3zEhk2or7wNjEvbLBK8xhLxamWHi0DoWkM+MIIeh3iTX0hYcAUCgneN4m6
+ sRW6fyuEOE208mdO5+9EcjCZUuAton0yOuMpaUUet5M5GAPND3UPy/zWZj2keg2T4XZY
+ ZGTfla3kqbzHQn7D8zA3rKNNOlbvuKufGaPxVGhoYQnACaVYffjavAI2sGy7kq0JxAJV
+ YzNw==
+X-Gm-Message-State: AO0yUKWGaCrF02d3hy1uJooIIXdpc+c51HmpNC1OVCGkmI3DfQNZKj8n
+ yj0wlr3YHmXnksiPhRwDroo=
+X-Google-Smtp-Source: AK7set8lCGoAX0P9HXROv/p6iMsiXt3USrbD9mK8YRTNkUxIrbZz8XA1726UaEDnrGS4sMrE1NMvGw==
+X-Received: by 2002:a17:907:6e15:b0:8b1:75a0:e5c6 with SMTP id
+ sd21-20020a1709076e1500b008b175a0e5c6mr47095276ejc.18.1678715712008; 
+ Mon, 13 Mar 2023 06:55:12 -0700 (PDT)
+Received: from [127.0.1.1] (i130160.upc-i.chello.nl. [62.195.130.160])
+ by smtp.googlemail.com with ESMTPSA id
+ t29-20020a50d71d000000b004fb419921e2sm2100094edi.57.2023.03.13.06.55.11
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 13 Mar 2023 06:55:11 -0700 (PDT)
+From: Jakob Koschel <jkl820.git@gmail.com>
+Date: Mon, 13 Mar 2023 14:54:49 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To: Alistair Popple <apopple@nvidia.com>,
- Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org
-References: <cover.60659b549d8509ddecafad4f498ee7f03bb23c69.1664366292.git-series.apopple@nvidia.com>
-From: "Vlastimil Babka (SUSE)" <vbabka@kernel.org>
-In-Reply-To: <cover.60659b549d8509ddecafad4f498ee7f03bb23c69.1664366292.git-series.apopple@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20230301-drm-nouveau-avoid-iter-after-loop-v2-1-1e6428cc7fa8@gmail.com>
+References: <20230301-drm-nouveau-avoid-iter-after-loop-v2-0-1e6428cc7fa8@gmail.com>
+In-Reply-To: <20230301-drm-nouveau-avoid-iter-after-loop-v2-0-1e6428cc7fa8@gmail.com>
+To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>, 
+ Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>, 
+ Daniel Vetter <daniel@ffwll.ch>
+X-Mailer: b4 0.12.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1678715710; l=2039;
+ i=jkl820.git@gmail.com; s=20230112; h=from:subject:message-id;
+ bh=RCUT54CX+NpzTn0yHGplIg6IrZjwVxr6QHVNRA20sLQ=;
+ b=qci++s58ATu52iCe714PEq1foIrqUIYGQGQsmHIFjf3jzCx35PGOL4mU7B8vhy/T+RFJT/iwr8JA
+ 8wBfR15GDIsxqU5hr0ujxz0IA9OaAMuiBuMzXoIBPrtJJPdzmUuA
+X-Developer-Key: i=jkl820.git@gmail.com; a=ed25519;
+ pk=rcRpP90oZXet9udPj+2yOibfz31aYv8tpf0+ZYOQhyA=
 X-Mailman-Approved-At: Thu, 04 May 2023 12:31:35 +0000
-Subject: Re: [Nouveau] [PATCH v2 0/8] Fix several device private page
- reference counting issues
+Subject: [Nouveau] [PATCH v2 1/2] drm/nouveau/device: avoid usage of list
+ iterator after loop
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,78 +82,63 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
+Cc: nouveau@lists.freedesktop.org, Pietro Borrello <borrello@diag.uniroma1.it>,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
+ Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>,
+ Jakob Koschel <jkl820.git@gmail.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 9/28/22 14:01, Alistair Popple wrote:
-> This series aims to fix a number of page reference counting issues in
-> drivers dealing with device private ZONE_DEVICE pages. These result in
-> use-after-free type bugs, either from accessing a struct page which no
-> longer exists because it has been removed or accessing fields within the
-> struct page which are no longer valid because the page has been freed.
-> 
-> During normal usage it is unlikely these will cause any problems. However
-> without these fixes it is possible to crash the kernel from userspace.
-> These crashes can be triggered either by unloading the kernel module or
-> unbinding the device from the driver prior to a userspace task exiting. In
-> modules such as Nouveau it is also possible to trigger some of these issues
-> by explicitly closing the device file-descriptor prior to the task exiting
-> and then accessing device private memory.
+If potentially no valid element is found, 'pstate' would contain an
+invalid pointer past the iterator loop. To ensure 'pstate' is always
+valid, we only set it if the correct element was found. That allows
+adding a WARN_ON() in case the code works incorrectly, exposing
+currently undetectable potential bugs.
 
-Hi, as this series was noticed to create a CVE [1], do you think a stable
-backport is warranted? I think the "It is possible to launch the attack
-remotely." in [1] is incorrect though, right?
+Additionally, Linus proposed to avoid any use of the list iterator
+variable after the loop, in the attempt to move the list iterator
+variable declaration into the macro to avoid any potential misuse after
+the loop [1].
 
-It looks to me that patch 1 would be needed since the CONFIG_DEVICE_PRIVATE
-introduction, while the following few only to kernels with 27674ef6c73f
-(probably not so critical as that includes no LTS)?
+Link: https://lore.kernel.org/all/CAHk-=wgRr_D8CB-D9Kg-c=EHreAsk5SqXPwr9Y7k9sA6cWXJ6w@mail.gmail.com/ [1]
+Signed-off-by: Jakob Koschel <jkl820.git@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-Thanks,
-Vlastimil
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c
+index ce774579c89d..8ae14ab8f88e 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c
+@@ -72,7 +72,7 @@ nvkm_control_mthd_pstate_attr(struct nvkm_control *ctrl, void *data, u32 size)
+ 	} *args = data;
+ 	struct nvkm_clk *clk = ctrl->device->clk;
+ 	const struct nvkm_domain *domain;
+-	struct nvkm_pstate *pstate;
++	struct nvkm_pstate *pstate = NULL, *iter;
+ 	struct nvkm_cstate *cstate;
+ 	int i = 0, j = -1;
+ 	u32 lo, hi;
+@@ -103,11 +103,16 @@ nvkm_control_mthd_pstate_attr(struct nvkm_control *ctrl, void *data, u32 size)
+ 		return -EINVAL;
+ 
+ 	if (args->v0.state != NVIF_CONTROL_PSTATE_ATTR_V0_STATE_CURRENT) {
+-		list_for_each_entry(pstate, &clk->states, head) {
+-			if (i++ == args->v0.state)
++		list_for_each_entry(iter, &clk->states, head) {
++			if (i++ == args->v0.state) {
++				pstate = iter;
+ 				break;
++			}
+ 		}
+ 
++		if (WARN_ON_ONCE(!pstate))
++			return -EINVAL;
++
+ 		lo = pstate->base.domain[domain->name];
+ 		hi = lo;
+ 		list_for_each_entry(cstate, &pstate->list, head) {
 
-[1] https://nvd.nist.gov/vuln/detail/CVE-2022-3523
-
-> This involves some minor changes to both PowerPC and AMD GPU code.
-> Unfortunately I lack hardware to test either of those so any help there
-> would be appreciated. The changes mimic what is done in for both Nouveau
-> and hmm-tests though so I doubt they will cause problems.
-> 
-> To: Andrew Morton <akpm@linux-foundation.org>
-> To: linux-mm@kvack.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org
-> 
-> Alistair Popple (8):
->   mm/memory.c: Fix race when faulting a device private page
->   mm: Free device private pages have zero refcount
->   mm/memremap.c: Take a pgmap reference on page allocation
->   mm/migrate_device.c: Refactor migrate_vma and migrate_deivce_coherent_page()
->   mm/migrate_device.c: Add migrate_device_range()
->   nouveau/dmem: Refactor nouveau_dmem_fault_copy_one()
->   nouveau/dmem: Evict device private memory during release
->   hmm-tests: Add test for migrate_device_range()
-> 
->  arch/powerpc/kvm/book3s_hv_uvmem.c       |  17 +-
->  drivers/gpu/drm/amd/amdkfd/kfd_migrate.c |  19 +-
->  drivers/gpu/drm/amd/amdkfd/kfd_migrate.h |   2 +-
->  drivers/gpu/drm/amd/amdkfd/kfd_svm.c     |  11 +-
->  drivers/gpu/drm/nouveau/nouveau_dmem.c   | 108 +++++++----
->  include/linux/memremap.h                 |   1 +-
->  include/linux/migrate.h                  |  15 ++-
->  lib/test_hmm.c                           | 129 ++++++++++---
->  lib/test_hmm_uapi.h                      |   1 +-
->  mm/memory.c                              |  16 +-
->  mm/memremap.c                            |  30 ++-
->  mm/migrate.c                             |  34 +--
->  mm/migrate_device.c                      | 239 +++++++++++++++++-------
->  mm/page_alloc.c                          |   8 +-
->  tools/testing/selftests/vm/hmm-tests.c   |  49 +++++-
->  15 files changed, 516 insertions(+), 163 deletions(-)
-> 
-> base-commit: 088b8aa537c2c767765f1c19b555f21ffe555786
+-- 
+2.34.1
 
