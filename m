@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6BB6C77B7C
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:34:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D8E7C7EE26
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:34:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEB2110E4BD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCD3010E4D6;
 	Thu,  4 May 2023 12:33:52 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE28210E6BE;
- Fri,  3 Mar 2023 15:39:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677857957; x=1709393957;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=PsLUt0hhdShhtqMCwP0MEZHkvWgjYOP7Rv4o2wUr3Dw=;
- b=CyyWU1r+LlqhNxKEekjbL6EM7dGmMucH7uKULqHrDuQ3GuSdcA4HhiPB
- SUQ2O4IxlbMnmIvvyFagFFEUreKUPHyqVtsbQFmsZckb0BMeFyOEM5LHy
- iswjgvX4WBK/xkWKMocqIHuzA8GS3Z/fQqf1oEZgvamnRO9Yyj9sIovIe
- +JS//rErl6kSsxb7gBPXbhTDCv6QugD0AtLIDIhdNHojl2eAwt77ktCg1
- T8GIGucc69t9C5hpXlYBAXnGYKeZaK9A1VQbS+MzPQgBTA4mXZBUtqGpJ
- /2RowhY/VhcrgnbuSfJRGK9K6/PT36q0oKV5lfs2hY2dl7xw3cxXKsSvp Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10638"; a="332552244"
-X-IronPort-AV: E=Sophos;i="5.98,231,1673942400"; d="scan'208";a="332552244"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2023 07:39:17 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10638"; a="785294950"
-X-IronPort-AV: E=Sophos;i="5.98,231,1673942400"; d="scan'208";a="785294950"
-Received: from joe-255.igk.intel.com (HELO localhost) ([10.91.220.57])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2023 07:39:14 -0800
-Date: Fri, 3 Mar 2023 16:39:13 +0100
-From: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
-To: Michel =?iso-8859-1?Q?D=E4nzer?= <michel.daenzer@mailbox.org>
-Message-ID: <20230303153913.GH3963532@linux.intel.com>
-References: <20230303071659.1213074-1-Amaranath.Somalapuram@amd.com>
- <da7e9be8-4a80-7166-d6f8-20f3acf8bf9c@mailbox.org>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D69D410E572;
+ Mon, 13 Mar 2023 15:27:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
+ In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=wpCxvwf3fbLAPDA2SBvrNdTlpxqBWm7vfBvxAU0BSDE=; b=ERpsLSYOO/B08jOgkxgecMzR/U
+ AydhYvnHCxhNZAXDoir04qXs7ABCb+EG7RjsVugtQRv2DrrYGBpjBKmqXB5baDrwwZP/PXr3VBgIy
+ IBwmBSgqEYgHSUevrat5RX1SwBJz4vM/LmTzmgPhVMYrh95ibu36pb/b/KEqlO+PtULlaqSES4F3z
+ jCBDKiVsGU7wIyAb25c88bQ7lYyqeih9QOg+85noNQtOEFrpsbAr3EIEtvmrvoShgaPPENHqragRM
+ aJwTp0hL1SqG0K7VR5pWHO+Emfgti8IvYO3EB2LxJ2MPKy7YFH1criDC8UH9N4gz8KxRC8ETMR1i7
+ tBLUp8ng==;
+Received: from 137.red-83-52-2.dynamicip.rima-tde.net ([83.52.2.137]
+ helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1pbk4r-007m0t-VO; Mon, 13 Mar 2023 16:27:09 +0100
+Message-ID: <19f8b5328550abde46a316189c8cd746339819b0.camel@igalia.com>
+From: Ricardo Garcia <rgarcia@igalia.com>
+To: members@x.org, events@lists.x.org, xorg-devel@lists.freedesktop.org, 
+ wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ libre-soc-dev <libre-soc-dev@lists.libre-soc.org>
+Date: Mon, 13 Mar 2023 16:27:09 +0100
+In-Reply-To: <c1c2591a7f7c9bcb05b69b08da529ddb8fc8145c.camel@igalia.com>
+References: <c1c2591a7f7c9bcb05b69b08da529ddb8fc8145c.camel@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <da7e9be8-4a80-7166-d6f8-20f3acf8bf9c@mailbox.org>
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:35 +0000
-Subject: Re: [Nouveau] [PATCH] Change the meaning of the fields in the
- ttm_place structure from pfn to bytes
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:38 +0000
+Subject: Re: [Nouveau] 2023 X.Org Board of Directors Elections Nomination
+ period is NOW
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,53 +58,70 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: shashank.sharma@amd.com, arvind.yadav@amd.com,
- arunpravin.paneerselvam@amd.com, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- amd-gfx@lists.freedesktop.org, linux-graphics-maintainer@vmware.com,
- dri-devel@lists.freedesktop.org, alexander.deucher@amd.com,
- christian.koenig@amd.com
+Cc: board <board@foundation.x.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Mar 03, 2023 at 03:55:56PM +0100, Michel Dänzer wrote:
-> On 3/3/23 08:16, Somalapuram Amaranath wrote:
-> > Change the ttm_place structure member fpfn, lpfn, mem_type to
-> > res_start, res_end, res_type.
-> > Change the unsigned to u64.
-> > Fix the dependence in all the DRM drivers and
-> > clean up PAGE_SHIFT operation.
-> > 
-> > Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-> > 
-> > [...]
-> > 
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
-> > index 44367f03316f..5b5104e724e3 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
-> > @@ -131,11 +131,12 @@ static int amdgpu_gtt_mgr_new(struct ttm_resource_manager *man,
-> >  		goto err_free;
-> >  	}
-> >  
-> > -	if (place->lpfn) {
-> > +	if (place->res_end) {
-> >  		spin_lock(&mgr->lock);
-> >  		r = drm_mm_insert_node_in_range(&mgr->mm, &node->mm_nodes[0],
-> > -						num_pages, tbo->page_alignment,
-> > -						0, place->fpfn, place->lpfn,
-> > +						num_pages, tbo->page_alignment,	0,
-> > +						place->res_start << PAGE_SHIFT,
-> > +						place->res_end << PAGE_SHIFT,
-> >  						DRM_MM_INSERT_BEST);
-> 
-> This should be >> or no shift instead of <<, shouldn't it? Multiplying a value in bytes by the page size doesn't make sense.
-> 
-> 
-> I didn't check the rest of the patch in detail, but it's easy introduce subtle regressions with this kind of change. It'll require a lot of review & testing scrutiny.
+This is a reminder that the nomination period for the X.Org Board of
+Director elections finishes in a week, on March 19th.
 
-Also good justification. The changelog says only what is done, nothing about why the change is needed.
+If you would like to nominate yourself please send email to the election
+committee elections@x.org, giving your
 
-Regards
-Stanislaw
+    name
+    current professional affiliation
+    a statement of contribution to X.Org or related technologies
+    a personal statement.
+
+To vote or to be elected to the Board you needed to be a Member of the
+X.Org Foundation. To be a Member of the X.Org Foundation you need to
+apply or renew your membership until the end of the nomination period.
+
+Original email follows below. Thanks for your attention.
+
+On Wed, 2023-02-15 at 21:53 +0100, Ricardo Garcia wrote:
+> We are seeking nominations for candidates for election to the X.Org
+> Foundation Board of Directors. All X.Org Foundation members are eligible
+> for election to the board.
+>=20
+> Nominations for the 2023 election are now open and will remain open
+> until 23:59 UTC on 19 March 2023.
+>=20
+> The Board consists of directors elected from the membership. Each year,
+> an election is held to bring the total number of directors to eight. The
+> four members receiving the highest vote totals will serve as directors
+> for two year terms.
+>=20
+> The directors who received two year terms starting in 2022 were Emma
+> Anholt, Mark Filion, Alyssa Rosenzweig and Ricardo Garcia. They will
+> continue to serve until their term ends in 2024. Current directors whose
+> term expires in 2023 are Samuel Iglesias Gons=C3=A1lvez, Manasi D Navare,
+> Lyude Paul and Daniel Vetter.
+>=20
+> A director is expected to participate in the fortnightly IRC meeting to
+> discuss current business and to attend the annual meeting of the X.Org
+> Foundation, which will be held at a location determined in advance by
+> the Board of Directors.
+>=20
+> A member may nominate themselves or any other member they feel is
+> qualified. Nominations should be sent to the Election Committee at
+> elections at x.org.
+>=20
+> Nominees shall be required to be current members of the X.Org
+> Foundation, and submit a personal statement of up to 200 words that will
+> be provided to prospective voters. The collected statements, along with
+> the statement of contribution to the X.Org Foundation in the member's
+> account page on http://members.x.org, will be made available to all
+> voters to help them make their voting decisions.
+>=20
+> Nominations, membership applications or renewals and completed personal
+> statements must be received no later than 23:59 UTC on 19 March 2023.
+>=20
+> The slate of candidates will be published 26 March 2023 and candidate
+> Q&A will begin then. The deadline for Xorg membership applications and
+> renewals is 26 March 2023.
+>=20
+> Cheers,
+> Ricardo Garcia, on behalf of the X.Org BoD
+>=20
+
