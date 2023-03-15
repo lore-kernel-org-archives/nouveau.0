@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF8EBC61DA4
-	for <nouveau@archiver.kernel.org>; Wed, 15 Mar 2023 12:27:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC50FC61DA4
+	for <nouveau@archiver.kernel.org>; Wed, 15 Mar 2023 12:33:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BC9310E037;
-	Wed, 15 Mar 2023 12:27:38 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AEB310E037;
- Wed, 15 Mar 2023 12:27:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37BAD10E9C1;
+	Wed, 15 Mar 2023 12:33:19 +0000 (UTC)
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0AC810E9C1;
+ Wed, 15 Mar 2023 12:33:17 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 7334461D49;
- Wed, 15 Mar 2023 12:27:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5833BC433EF;
- Wed, 15 Mar 2023 12:27:35 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTPS id 653C7CE19C1;
+ Wed, 15 Mar 2023 12:33:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39AE9C433EF;
+ Wed, 15 Mar 2023 12:33:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1678883255;
- bh=XaCohvPX/DT15FSlywtvC7JBU0feq6KLerYbCEVXnno=;
+ s=korg; t=1678883593;
+ bh=etYCdQjmQ3MfcfmwcIxY4173EwgJTDNwtqJOInfO2s4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Osfjf1HbhMS4YwjZWAYH3GaDjolb0v9CnqT0vwD7PheeI/8irL332n5YOZ3wHlQQ3
- yLC5csLWgiPKDMlYFR348A42KUegewj3HZx++eEoiNBiG+aBmmtzmDbqodOXyOhYtq
- t9rjBHBB23gGtcxWCaiWPTRtm9LiGyOkp9/gvMvE=
+ b=g5Sz8vMJwXKxnKGNkyvaVA67/SqBCKrlusF3mxzFwZFOKKZM9z7s9caaM7UTC2S6n
+ eA9Z43SS/xxgYR97ONgbEqSnu0Q/0a3MeGl+u0lEd80YPJpR8ZXZ/93poiUM8+cpNs
+ fZaj0bCJbgjZ/mkWoeYdq1n7mqRr3jlcc9rJs8ac=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
-Date: Wed, 15 Mar 2023 13:11:50 +0100
-Message-Id: <20230315115740.533087448@linuxfoundation.org>
+Date: Wed, 15 Mar 2023 13:12:24 +0100
+Message-Id: <20230315115742.284910999@linuxfoundation.org>
 X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230315115738.951067403@linuxfoundation.org>
-References: <20230315115738.951067403@linuxfoundation.org>
+In-Reply-To: <20230315115740.429574234@linuxfoundation.org>
+References: <20230315115740.429574234@linuxfoundation.org>
 User-Agent: quilt/0.67
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH 5.15 044/145] drm/nouveau/kms/nv50: fix
+Subject: [Nouveau] [PATCH 6.1 058/143] drm/nouveau/kms/nv50: fix
  nv50_wndw_new_ prototype
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -100,10 +100,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.h b/drivers/gpu/drm/nouveau/dispnv50/wndw.h
-index 980f8ea96d54a..6c64864da4550 100644
+index 591c852f326b9..76a6ae5d56526 100644
 --- a/drivers/gpu/drm/nouveau/dispnv50/wndw.h
 +++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.h
-@@ -38,8 +38,9 @@ struct nv50_wndw {
+@@ -35,8 +35,9 @@ struct nv50_wndw {
  
  int nv50_wndw_new_(const struct nv50_wndw_func *, struct drm_device *,
  		   enum drm_plane_type, const char *name, int index,
