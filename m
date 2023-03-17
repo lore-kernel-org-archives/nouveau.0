@@ -4,59 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5760C77B7C
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:31:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D3B5C77B78
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:31:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 507A710E3A7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A0DD10E3B7;
 	Thu,  4 May 2023 12:31:42 +0000 (UTC)
-Received: from mxct.zte.com.cn (mxct.zte.com.cn [58.251.27.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DAA210E163
- for <nouveau@lists.freedesktop.org>; Wed,  7 Dec 2022 01:11:40 +0000 (UTC)
-Received: from mxde.zte.com.cn (unknown [10.35.20.165])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mxct.zte.com.cn (FangMail) with ESMTPS id 4NRfPj5RfszvLm
- for <nouveau@lists.freedesktop.org>; Wed,  7 Dec 2022 09:11:37 +0800 (CST)
-Received: from mxus.zte.com.cn (unknown [10.207.168.7])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mxde.zte.com.cn (FangMail) with ESMTPS id 4NRfPR1YH3z4xD1n
- for <nouveau@lists.freedesktop.org>; Wed,  7 Dec 2022 09:11:23 +0800 (CST)
-Received: from mxhk.zte.com.cn (unknown [192.168.250.138])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mxus.zte.com.cn (FangMail) with ESMTPS id 4NRfPM5W7Pz9tyD6
- for <nouveau@lists.freedesktop.org>; Wed,  7 Dec 2022 09:11:19 +0800 (CST)
-Received: from mse-fl1.zte.com.cn (unknown [10.5.228.132])
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6A4310EE5E;
+ Fri, 17 Mar 2023 08:22:45 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mxhk.zte.com.cn (FangMail) with ESMTPS id 4NRfPH1mPfz5BNRf;
- Wed,  7 Dec 2022 09:11:15 +0800 (CST)
-Received: from szxlzmapp06.zte.com.cn ([10.5.230.252])
- by mse-fl1.zte.com.cn with SMTP id 2B71B7sg055208;
- Wed, 7 Dec 2022 09:11:07 +0800 (+08)
- (envelope-from yang.yang29@zte.com.cn)
-Received: from mapi (szxlzmapp02[null]) by mapi (Zmail) with MAPI id mid14;
- Wed, 7 Dec 2022 09:11:08 +0800 (CST)
-Date: Wed, 7 Dec 2022 09:11:08 +0800 (CST)
-X-Zmail-TransId: 2b04638fe82cffffffffe2d7a552
-X-Mailer: Zmail v1.0
-Message-ID: <202212070911086649831@zte.com.cn>
-Mime-Version: 1.0
-From: <yang.yang29@zte.com.cn>
-To: <bskeggs@redhat.com>
-Content-Type: text/plain;
-	charset="UTF-8"
-X-MAIL: mse-fl1.zte.com.cn 2B71B7sg055208
-X-Fangmail-Gw-Spam-Type: 0
-X-FangMail-Miltered: at cgslv5.04-192.168.251.14.novalocal with ID
- 638FE848.000 by FangMail milter!
-X-FangMail-Envelope: 1670375497/4NRfPj5RfszvLm/638FE848.000/10.35.20.165/[10.35.20.165]/mxde.zte.com.cn/<yang.yang29@zte.com.cn>
-X-Fangmail-Anti-Spam-Filtered: true
-X-Fangmail-MID-QID: 638FE848.000/4NRfPj5RfszvLm
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:34 +0000
-Subject: [Nouveau] =?utf-8?q?=5BPATCH_linux-next=5D_drm/nouveau/nvkm/core?=
- =?utf-8?q?/firmware=3A_replace_strncpy=28=29_with_strscpy=28=29?=
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 3EEEA62226;
+ Fri, 17 Mar 2023 08:22:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 141A6C433AA;
+ Fri, 17 Mar 2023 08:22:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1679041365;
+ bh=kEByat5b/Y9PEY6bAA+YM9uRJXah16TROqAgidb3URA=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=T1Y8j+We04gYPwoB5d1ScEV1dJucqJYQyg7loY92w+M8w7hWIOEtThLQGyjy5hy6a
+ 2crovOyj7oULmI+BMiDH8xb0UQ7FcRmN1sk7Qr4j9LC5hwqA71zJptWbsgbSRSlVNT
+ WOcvKkFkJe5UuCWb/Oxu0spBEidWAgyvaVm0YIQ0URKl699dcVrTXcoAw92UEDwYeO
+ OVhCoof/ddPfMrZBslyT91eTg1qR8ry72pn7JwERw/7ICnZ0IhFEHYZ8j+dHSyHQm+
+ f/jxkGhUD021RUt6TlORS3MhNeh5j4AW76HbNlWvF3s/7cNmMVyKMLluROl3AhRjbv
+ jq5tSUddtXZAg==
+From: Lee Jones <lee@kernel.org>
+To: lee@kernel.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 17 Mar 2023 08:16:52 +0000
+Message-Id: <20230317081718.2650744-12-lee@kernel.org>
+X-Mailer: git-send-email 2.40.0.rc1.284.g88254d51c5-goog
+In-Reply-To: <20230317081718.2650744-1-lee@kernel.org>
+References: <20230317081718.2650744-1-lee@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:31 +0000
+Subject: [Nouveau] [PATCH 11/37] drm/nouveau/nvkm/subdev/acr/lsfw: Remove
+ unused variable 'loc'
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,35 +55,50 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, yang.yang29@zte.com.cn, daniel@ffwll.ch,
- xu.panda@zte.com.cn
+ Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Gourav Samaiya <gsamaiya@nvidia.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Xu Panda <xu.panda@zte.com.cn>
+Fixes the following W=1 kernel build warning(s):
 
-The implementation of strscpy() is more robust and safer.
-That's now the recommended way to copy NUL terminated strings.
+ drivers/gpu/drm/nouveau/nvkm/subdev/acr/lsfw.c: In function ‘nvkm_acr_lsfw_load_sig_image_desc_v2’:
+ drivers/gpu/drm/nouveau/nvkm/subdev/acr/lsfw.c:221:21: warning: variable ‘loc’ set but not used [-Wunused-but-set-variable]
 
-Signed-off-by: Xu Panda <xu.panda@zte.com.cn>
-Signed-off-by: Yang Yang <yang.yang29@zte.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: Karol Herbst <kherbst@redhat.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Gourav Samaiya <gsamaiya@nvidia.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Signed-off-by: Lee Jones <lee@kernel.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/core/firmware.c | 3 +--
+ drivers/gpu/drm/nouveau/nvkm/subdev/acr/lsfw.c | 3 +--
  1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
-index fcf2a002f6cb..5554f907e0d4 100644
---- a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
-@@ -79,8 +79,7 @@ nvkm_firmware_get(const struct nvkm_subdev *subdev, const char *fwname, int ver,
- 	int i;
-
- 	/* Convert device name to lowercase */
--	strncpy(cname, device->chip->name, sizeof(cname));
--	cname[sizeof(cname) - 1] = '\0';
-+	strscpy(cname, device->chip->name, sizeof(cname));
- 	i = strlen(cname);
- 	while (i) {
- 		--i;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/acr/lsfw.c b/drivers/gpu/drm/nouveau/nvkm/subdev/acr/lsfw.c
+index f36a359d4531c..bd104a030243a 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/acr/lsfw.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/acr/lsfw.c
+@@ -218,7 +218,7 @@ nvkm_acr_lsfw_load_sig_image_desc_v2(struct nvkm_subdev *subdev,
+ 		const struct firmware *hsbl;
+ 		const struct nvfw_ls_hsbl_bin_hdr *hdr;
+ 		const struct nvfw_ls_hsbl_hdr *hshdr;
+-		u32 loc, sig, cnt, *meta;
++		u32 sig, cnt, *meta;
+ 
+ 		ret = nvkm_firmware_load_name(subdev, path, "hs_bl_sig", ver, &hsbl);
+ 		if (ret)
+@@ -227,7 +227,6 @@ nvkm_acr_lsfw_load_sig_image_desc_v2(struct nvkm_subdev *subdev,
+ 		hdr = nvfw_ls_hsbl_bin_hdr(subdev, hsbl->data);
+ 		hshdr = nvfw_ls_hsbl_hdr(subdev, hsbl->data + hdr->header_offset);
+ 		meta = (u32 *)(hsbl->data + hshdr->meta_data_offset);
+-		loc = *(u32 *)(hsbl->data + hshdr->patch_loc);
+ 		sig = *(u32 *)(hsbl->data + hshdr->patch_sig);
+ 		cnt = *(u32 *)(hsbl->data + hshdr->num_sig);
+ 
 -- 
-2.15.2
+2.40.0.rc1.284.g88254d51c5-goog
+
