@@ -4,29 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C06F3C7EE26
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65C2DC77B7C
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D6C010E3A6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2360F10E3D7;
 	Thu,  4 May 2023 12:31:44 +0000 (UTC)
-Received: from luna (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net
- [86.15.83.122])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0846A10E3F7;
- Thu, 29 Dec 2022 16:13:24 +0000 (UTC)
-Received: from ben by luna with local (Exim 4.96)
- (envelope-from <ben@luna.fluff.org>) id 1pAv84-002nyB-1E;
- Thu, 29 Dec 2022 15:47:36 +0000
-From: Ben Dooks <ben-linux@fluff.org>
-To: dri-devel@lists.freedesktop.org,
-	nouveau@lists.freedesktop.org
-Date: Thu, 29 Dec 2022 15:47:35 +0000
-Message-Id: <20221229154735.668730-1-ben-linux@fluff.org>
-X-Mailer: git-send-email 2.39.0
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49F9610EE85;
+ Fri, 17 Mar 2023 08:23:37 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id CCCAC6222E;
+ Fri, 17 Mar 2023 08:23:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A760C4339B;
+ Fri, 17 Mar 2023 08:23:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1679041416;
+ bh=K14kJzGojeCxMluFI6QiVv0lBCF/HwsSC+Z7ZESWU9g=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=fDVfEdT1wa9OcA4pGiCNbQX+Z8xAghut2r37oZK/RmAoULy65epMIK91U3e+a6mXh
+ LEkvlmwSCClF+5SwdrbvtG2mBiyfPxSn5bAdztY3HkwkyEacclP8Jtx5UKQBvDgAK5
+ 3GF+4npPFW2YEba8YKTNQoZFdS8tdKBG+so9Q8ghB0iNYfgqfs6lyv+mxQ5L+nIzjF
+ igAsjCEF73w8O2YkFGyKdNVW2lKqV46tlX0OGRZu/riLrRw25QbTf8VTROfJyuS4+9
+ vzDx5gYc1kwtMqvVY5RirIY7DHUDJ4frHVlxKNZrBC9iRuSkBO4zTmIMSpk6XiCarB
+ SDvXDUuyfP7Wg==
+From: Lee Jones <lee@kernel.org>
+To: lee@kernel.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 17 Mar 2023 08:17:12 +0000
+Message-Id: <20230317081718.2650744-32-lee@kernel.org>
+X-Mailer: git-send-email 2.40.0.rc1.284.g88254d51c5-goog
+In-Reply-To: <20230317081718.2650744-1-lee@kernel.org>
+References: <20230317081718.2650744-1-lee@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:36 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/acr/ga102: make ga102_gsps static
- (not exported)
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:31 +0000
+Subject: [Nouveau] [PATCH 31/37] drm/nouveau/dispnv04/crtc: Demote kerneldoc
+ abuses
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,33 +54,50 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ben Dooks <ben-linux@fluff.org>, bskeggs@redhat.com, daniel@ffwll.ch
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The ga102_gsps is not exported, so make it static to avoid the
-following sparse warning:
+Fixes the following W=1 kernel build warning(s):
 
-drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c:49:1: warning: symbol 'ga102_gsps' was not declared. Should it be static?
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c:453: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c:629: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
 
-Signed-off-by: Ben Dooks <ben-linux@fluff.org>
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: Karol Herbst <kherbst@redhat.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Signed-off-by: Lee Jones <lee@kernel.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
-index 525267412c3e..a3996ceca995 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
-@@ -45,7 +45,7 @@ ga102_gsp_nofw(struct nvkm_gsp *gsp, int ver, const struct nvkm_gsp_fwif *fwif)
- 	return 0;
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+index a6f2e681bde98..7794902df17d5 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+@@ -449,7 +449,7 @@ nv_crtc_mode_set_vga(struct drm_crtc *crtc, struct drm_display_mode *mode)
+ 	regp->Attribute[NV_CIO_AR_CSEL_INDEX] = 0x00;
  }
  
--struct nvkm_gsp_fwif
-+static struct nvkm_gsp_fwif
- ga102_gsps[] = {
- 	{ -1, ga102_gsp_nofw, &ga102_gsp },
- 	{}
+-/**
++/*
+  * Sets up registers for the given mode/adjusted_mode pair.
+  *
+  * The clocks, CRTCs and outputs attached to this CRTC must be off.
+@@ -625,7 +625,7 @@ nv_crtc_swap_fbs(struct drm_crtc *crtc, struct drm_framebuffer *old_fb)
+ 	return ret;
+ }
+ 
+-/**
++/*
+  * Sets up registers for the given mode/adjusted_mode pair.
+  *
+  * The clocks, CRTCs and outputs attached to this CRTC must be off.
 -- 
-2.39.0
+2.40.0.rc1.284.g88254d51c5-goog
 
