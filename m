@@ -4,58 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C9F4C77B78
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56316C7EE23
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6950410E41B;
-	Thu,  4 May 2023 12:32:47 +0000 (UTC)
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA98310E3C9;
- Tue, 15 Nov 2022 13:16:04 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id cl5so24192541wrb.9;
- Tue, 15 Nov 2022 05:16:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=lDR217x86eHv/O2MIJhnIDN/LEOiRAy9N41xfhJ3Nqk=;
- b=YyWv9BqEL9CrEcH+u2dhpebWMAeYJ29kCNHj+Rk5fRm4KofEXDKHzUcvg9c2kwkf36
- dM56gfOKBqDYI2OF8FinIh1qM98PPgztfN6sAJE8INImFZ42TtA/1jo/aPLTGVVhwbHC
- dYEQbUMJkp47JbH6E5+LvJurNunoxC2uSnMhSkf/L8D0GXeO9ANO2uqYe8RYHOhJR17N
- Q02RCbKZNnBEu7uNz7ck0GRSDsB5BuvvdHRCznEi8XfYhSshT6lUMiVW7dU7E/FA8aiP
- /0pwjpAScfINHlPpH3wrCTZzAq6b080jjkPxGKjub1c11yrLO8us9FoP5fXs8WnTLpoD
- bUew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=lDR217x86eHv/O2MIJhnIDN/LEOiRAy9N41xfhJ3Nqk=;
- b=SdIK0hTVijPxAgLsM9AUrkAAe9WneZitoSHAqXqR5Yo0s7Mz1lL14XhUgDDkuFyh15
- Locpm6eNrfqPM/ZRJQnTUPnkslQCWNROQZs590CVcqlZ5rkHwN99NO2ens3vqS6MGBdZ
- 64YRw7sZBb9LcQwAwZW8ge4jRAGVCGo6/SJOXYq7MDaTMMKB0u4Cv8ic8zHU/JlY3PyN
- HGKM8ek6vIhFuAR474L7hkfOx4oaU2tGWe3+wRdsutJZO/BHH3qgEGzCxKOK2o+VZNsq
- 1R6GRm7/cnZ3vtt5rndlgt+hw8sBtMz27bXGtpPOHXk6U6vnOFL0wSUsE6tNNmGgaXvm
- 82WQ==
-X-Gm-Message-State: ANoB5pm63basHlCiwVuo0smaozVPktSjoEbFYzmQxzTwXWGpFn8ylB9m
- OX4lQmIODUswdv0Y4/4R1AU=
-X-Google-Smtp-Source: AA0mqf6anvzacpwGbfPmwCJwNcs0zplfHCs35EcuMnktxA5cZzn2SR5okgnQ2mmLJOdidn4tV5o4uA==
-X-Received: by 2002:a05:6000:18c5:b0:23a:cdf5:3676 with SMTP id
- w5-20020a05600018c500b0023acdf53676mr11416313wrq.336.1668518163349; 
- Tue, 15 Nov 2022 05:16:03 -0800 (PST)
-Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- v10-20020adf8b4a000000b00235da296623sm12429028wra.31.2022.11.15.05.16.02
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 15 Nov 2022 05:16:02 -0800 (PST)
-Date: Tue, 15 Nov 2022 16:16:00 +0300
-From: Dan Carpenter <error27@gmail.com>
-To: Ben Skeggs <bskeggs@redhat.com>
-Message-ID: <Y3JdtQYrWonlhwW0@kili>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94BEC10E458;
+	Thu,  4 May 2023 12:32:45 +0000 (UTC)
+X-Greylist: delayed 636 seconds by postgrey-1.36 at gabe;
+ Mon, 27 Mar 2023 08:55:08 UTC
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EB0010E338;
+ Mon, 27 Mar 2023 08:55:08 +0000 (UTC)
+From: John Ogness <john.ogness@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1679906669;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to; bh=2sySZtQBfq4L19gj/4gjZ3ggLK9raMfJSFg59Wjh2eU=;
+ b=PC1Fc8oyBCQtNOG/RnSIyDobcxaq7sMrCF1hF+CwvZPusMXk3D5P/LTBXewhtj7bNe4fVB
+ S7EyLoO+7d5gI/uO00+66r0SOEQ1nvCEANuJ3QPNHhB1WQ96YZ5z9EKnR5qVFMBanGbqDX
+ rvW0Tz3EeCoqCROjgXWGVnYMcsU1cpwl67gLTxd1FvsxFg/1kEnnte8u6Z0KGd9muZyi/p
+ cfPp6HueDZ4WUX+WIqBS54k7cL2jSfiPitT3sIxEjRcVJk4GOGbcHDmJiyFSZ7wlrK64Zi
+ f3M8F42H3SCSM4HvI8cKlYKKxFSyjX8WThZMnvyc2ERzcYAmjtxg/snBuNML9Q==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1679906669;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to; bh=2sySZtQBfq4L19gj/4gjZ3ggLK9raMfJSFg59Wjh2eU=;
+ b=2Ow1ZUN2AJU6ec7XoFSU8BgyUDtigL8sf39ypFZkE/5U6DU1vxTwZ+GirXQ594h0jEES5u
+ aVhREx4DPqz5lNBw==
+To: Tanmay Bhushan <007047221b@gmail.com>, Ben Skeggs <bskeggs@redhat.com>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, David
+ Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, =?utf-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>
+In-Reply-To: <20230119225351.71657-1-007047221b@gmail.com>
+Date: Mon, 27 Mar 2023 10:48:48 +0206
+Message-ID: <87r0taa8l3.fsf@jogness.linutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:32 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/fifo: make nvkm_runl_new() return
- error pointers
+Content-Type: text/plain
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:34 +0000
+Subject: Re: [Nouveau] [PATCH] drm/nouveau: Fix bug in buffer relocs for
+ Nouveau
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,42 +58,92 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>
+Cc: Tanmay Bhushan <007047221b@gmail.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-All six callers expect error pointers instead of NULL so make the
-nvkm_runl_new() return error pointers as expected.
+On 2023-01-19, Tanmay Bhushan <007047221b@gmail.com> wrote:
+> dma_resv_wait_timeout returns greater than zero on success
+> as opposed to ttm_bo_wait_ctx. As a result of that relocs
+> will fail and give failure even when it was a success.
 
-Fixes: d94470e9d150 ("drm/nouveau/fifo: add common runlist/engine topology")
-Signed-off-by: Dan Carpenter <error27@gmail.com>
----
- drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Today I switched my workstation from 6.2 to 6.3-rc3 and started seeing
+lots of new kernel messages:
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c
-index b5836cbc29aa..adc4a9544ebc 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c
-@@ -399,7 +399,7 @@ nvkm_runl_new(struct nvkm_fifo *fifo, int runi, u32 addr, int id_nr)
- 	int ret;
- 
- 	if (!(runl = kzalloc(sizeof(*runl), GFP_KERNEL)))
--		return NULL;
-+		return ERR_PTR(-ENOMEM);
- 
- 	runl->func = fifo->func->runl;
- 	runl->fifo = fifo;
-@@ -419,7 +419,7 @@ nvkm_runl_new(struct nvkm_fifo *fifo, int runi, u32 addr, int id_nr)
- 		    (ret = nvkm_chid_new(&nvkm_chan_event, subdev, id_nr, 0, id_nr, &runl->chid))) {
- 			RUNL_ERROR(runl, "cgid/chid: %d", ret);
- 			nvkm_runl_del(runl);
--			return NULL;
-+			return ERR_PTR(ret);
- 		}
- 	} else {
- 		runl->cgid = nvkm_chid_ref(fifo->cgid);
--- 
-2.35.1
+[  642.138313][ T1751] nouveau 0000:f0:10.0: X[1751]: reloc wait_idle failed: 1500
+[  642.138389][ T1751] nouveau 0000:f0:10.0: X[1751]: reloc apply: 1500
+[  646.123490][ T1751] nouveau 0000:f0:10.0: X[1751]: reloc wait_idle failed: 1500
+[  646.123573][ T1751] nouveau 0000:f0:10.0: X[1751]: reloc apply: 1500
 
+The graphics seemed to go slower or hang a bit when these messages would
+appear. I then found your patch! However, I have some comments about it.
+
+First, it should include a fixes tag:
+
+Fixes: 41d351f29528 ("drm/nouveau: stop using ttm_bo_wait")
+
+> Signed-off-by: Tanmay Bhushan <007047221b@gmail.com>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_gem.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+> index f77e44958037..0e3690459144 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_gem.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+> @@ -706,9 +706,8 @@ nouveau_gem_pushbuf_reloc_apply(struct nouveau_cli *cli,
+>  		ret = dma_resv_wait_timeout(nvbo->bo.base.resv,
+>  					    DMA_RESV_USAGE_BOOKKEEP,
+>  					    false, 15 * HZ);
+> -		if (ret == 0)
+> +		if (ret <= 0) {
+>  			ret = -EBUSY;
+
+This is incorrect for 2 reasons:
+
+* it treats restarts as timeouts
+
+* this function now returns >0 on success
+
+> -		if (ret) {
+>  			NV_PRINTK(err, cli, "reloc wait_idle failed: %ld\n",
+>  				  ret);
+>  			break;
+
+I rearranged things to basically correctly translate the return code of
+dma_resv_wait_timeout() to match the previous ttm_bo_wait():
+
+		ret = dma_resv_wait_timeout(nvbo->bo.base.resv,
+					    DMA_RESV_USAGE_BOOKKEEP,
+					    false, 15 * HZ);
+		if (ret == 0)
+			ret = -EBUSY;
+		if (ret > 0)
+			ret = 0;
+		if (ret) {
+			NV_PRINTK(err, cli, "reloc wait_idle failed: %ld\n",
+				  ret);
+			break;
+		}
+
+So the patch just becomes:
+
+@@ -708,6 +708,8 @@ nouveau_gem_pushbuf_reloc_apply(struct n
+ 					    false, 15 * HZ);
+ 		if (ret == 0)
+ 			ret = -EBUSY;
++		if (ret > 0)
++			ret = 0;
+ 		if (ret) {
+ 			NV_PRINTK(err, cli, "reloc wait_idle failed: %ld\n",
+ 				  ret);
+
+With this variant, everything runs correctly on my workstation again.
+
+It probably deserves a comment about why @ret is being translated. Or
+perhaps a new variable should be introduced to separate the return value
+of dma_resv_wait_timeout() from the return value of this function.
+
+Either way, this is an important fix for 6.3-rc!
+
+John Ogness
