@@ -4,98 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73ABAC6FD18
-	for <nouveau@archiver.kernel.org>; Thu, 30 Mar 2023 01:45:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3ED7C6FD18
+	for <nouveau@archiver.kernel.org>; Thu, 30 Mar 2023 03:15:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93E9D10E2A4;
-	Thu, 30 Mar 2023 01:45:04 +0000 (UTC)
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2066.outbound.protection.outlook.com [40.107.93.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E51110E2A4
- for <nouveau@lists.freedesktop.org>; Thu, 30 Mar 2023 01:45:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1F4310E0A5;
+	Thu, 30 Mar 2023 03:15:52 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F0DA10E0A5
+ for <nouveau@lists.freedesktop.org>; Thu, 30 Mar 2023 03:15:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EB7Cij960prXbKIZ2ghpr9053FuyNwH0+iUv0NYHevBORU++zOe+dqcIJ8TCPd1XGGIcgf/0mgLxwh4+7qqZDPPuYyZaKTDsbqJahq6xV5MeJ7xMJhqnqyDdd6bNy2cSs/2e2MwBSozBCgUdP3SXAUvaD/WM/8TxiOQyT5eeey1Y6shmAXPkMOoY7pIa8K4QgHeS9devxJCYYua95P/9K0g77FYMTC4CgLj6god+i3qv9HN+aIw3TbZZcwRtFbWY6kCDuiTGS5y7vQvRcYjXgWkpttYN3AouWz1/t68oANpw0Jo2geWn0spJgJswlg+7U41xAJF/ugAuXAndXqhO8A==
+ b=b6B4PZrkLM8vKzFM1hLZJz6aFKIxZfv48sllfALXOYtYEioGTZGxevd9llORIp1cw2tEUm+e+v+zm9LT4AYQzsGDFlcTr4ENKfVCO9OkjNkgEJS6UIU66OcSlv6tewmErjggI5YpxGVQP02u96LL/zCAvlS3XVTA1nEdeYSjKE4KtzLZY9rcUHbiPWyBS8mxVeTSB8SKMcdxVC+Ic7NzbhRDoEa3lgrDZxfAZFRPe3GtnUhqwsOoEgM8cGcBfFurMYWA4OIH6H00P+sDO9YXkBL1TsPLk/fcMc33x89QNfKrduMgqj2htMoSZC1RW9J6uYP2iQrKS1G+w6IWlDsuQw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5mD9c9Pos7YjQZjtZtuDjFkLrseBBf1D9sgnC0ePsZY=;
- b=Dkj7r7cWpEVCQTGNdS7xVMPMwEzIBH1lxpzWrNO2f773haViOvmYyfROuSQZ6bHw3hHaZy566pw+pQ9YOumhAmTzXhnrHZfEP0xXGO6UTJBot6kQLj9d5WA1UfAVIlfnmajkD76nXndfei6/QKkIRlz91zNasGtbH/k4TDJtmV96dR/VsR/oDiYCwvsHQ7XRh/TPQ8jZs14+ZOQNikXyflwfRy4n6Wl1viBlCUPSjfpIcoNxyItn8lGnwEytb8FLgL1hXBSnc+iR+2/3nnqrsJjcRPSn+w+RkvCGPVGMB13zIsDnMluRrNtit2ODTlgfMQyV4cu7Y7UqrF7tLjTUaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=kvack.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
+ bh=s0Ukv29Hkts/Ni4uxasjMZSuQa6STa91LkmbyXGJ/gE=;
+ b=mO1NYyp5aJmWhMPw42bsViMwLj+itzpYH1wrxpApLkMd5PIE3EBzeZkgS6C6Q1MPOzq4CnidjxBIAkVjLAGIjx2L0NiiAmd8wg0EvyCMCfNWH2+eFlo5Ii4rpq1sy2fC1wguv1/PoIxajQ+bw3qtiE/bvqVvuqVYDbQAhEygd9lVhBSkQFIzMp9y4byANwoA4arnNaU7mBZOrcCI6qYlxTW6RrCFf1SACiEkhc1FxL8m5DsxK0UdWsU+uOr8m9KrJ9nOrE1VcutXjrSDPC8/1gTzSiGqZtpPs+7Jt5dCHAfynlz4tswOOvUqvQtqY1qUmujyXXK3iS0sdgF70VyCXw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5mD9c9Pos7YjQZjtZtuDjFkLrseBBf1D9sgnC0ePsZY=;
- b=SK+7syhAGOLSVHaTKjnZnxPJnxHOPJZFhyDh1Q0cGY5PGvwXS45EbacS9Hg27gz6rm4xXPJmKEEr52VtXYD5f5G6ztUKujdM56SIzL2MzHCtnkJFoFaMs0Bxz8ncbk/AdRaZabU4afHhoxOSYmIGmGksFGmpzRwQLeahGMc7rUBAKVvb7vUCf9lyLoNpZAgDw5nKBz1jdkF2hgm6lcEbqsQwZsAvj0IZQQjkoKGCWql09EjgXohNFK+aAEXv+Oeut71zHSQbxfPyJgOiADyQjt+DxUQod2ZylQ7etuy2o2J5jPr6tXO1DPB6OcrKXwwkn8W7yg5Zlju3HSoEbkYzxg==
-Received: from DM6PR18CA0011.namprd18.prod.outlook.com (2603:10b6:5:15b::24)
- by BL1PR12MB5288.namprd12.prod.outlook.com (2603:10b6:208:314::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.35; Thu, 30 Mar
- 2023 01:44:58 +0000
-Received: from DS1PEPF0000B078.namprd05.prod.outlook.com
- (2603:10b6:5:15b:cafe::37) by DM6PR18CA0011.outlook.office365.com
- (2603:10b6:5:15b::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.20 via Frontend
- Transport; Thu, 30 Mar 2023 01:44:58 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- DS1PEPF0000B078.mail.protection.outlook.com (10.167.17.9) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6178.26 via Frontend Transport; Thu, 30 Mar 2023 01:44:58 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Wed, 29 Mar 2023
- 18:44:48 -0700
-Received: from [10.110.48.28] (10.126.231.37) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Wed, 29 Mar
- 2023 18:44:48 -0700
-Message-ID: <83040531-ce19-0dca-6e73-ef08407a6669@nvidia.com>
-Date: Wed, 29 Mar 2023 18:44:48 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Content-Language: en-US
-To: Alistair Popple <apopple@nvidia.com>, <linux-mm@kvack.org>, Andrew Morton
- <akpm@linux-foundation.org>
+ bh=s0Ukv29Hkts/Ni4uxasjMZSuQa6STa91LkmbyXGJ/gE=;
+ b=KOejPDDwkiyAVCW8JOBhbJrYl4mfj4TdS5DGFllr3vgV83lEmML9frNTw227n4kxzbcvLDv97T096I67xh2YK92hBySM1a0tP9GyzFtty+SZGrzGCSaRZNDiXBTAyG2JGvP869XtsZARkURiJWgT0EUc+cJubsWCEaet6gy16YK65vu6h8VKruJXwPCxsambR6eLpPL7bOc1/tgfjWs42xOnBQ51e5naIJeNjteBK6U7QHCvAh7GUlxPdlQ0CF2zG+2v3xwfdP+gNbWp7ALasJ8niON5MUMnDtyCKfjwC87k8uMOf9UQ+BYL1tp4fGWq/4vk6xU0+UToJ7FPc0H6xg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from BYAPR12MB3176.namprd12.prod.outlook.com (2603:10b6:a03:134::26)
+ by SN7PR12MB6814.namprd12.prod.outlook.com (2603:10b6:806:266::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Thu, 30 Mar
+ 2023 03:15:48 +0000
+Received: from BYAPR12MB3176.namprd12.prod.outlook.com
+ ([fe80::84b1:7c9:e9f0:bab5]) by BYAPR12MB3176.namprd12.prod.outlook.com
+ ([fe80::84b1:7c9:e9f0:bab5%7]) with mapi id 15.20.6222.035; Thu, 30 Mar 2023
+ 03:15:47 +0000
 References: <20230330012519.804116-1-apopple@nvidia.com>
-From: John Hubbard <jhubbard@nvidia.com>
-In-Reply-To: <20230330012519.804116-1-apopple@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.126.231.37]
-X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
+ <ZCTykyabcaS98Jnm@infradead.org>
+User-agent: mu4e 1.8.10; emacs 28.2
+From: Alistair Popple <apopple@nvidia.com>
+To: Christoph Hellwig <hch@infradead.org>
+Date: Thu, 30 Mar 2023 14:11:29 +1100
+In-reply-to: <ZCTykyabcaS98Jnm@infradead.org>
+Message-ID: <875yajapzz.fsf@nvidia.com>
+Content-Type: text/plain
+X-ClientProxiedBy: BY3PR05CA0058.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b::33) To BYAPR12MB3176.namprd12.prod.outlook.com
+ (2603:10b6:a03:134::26)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0000B078:EE_|BL1PR12MB5288:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5bc39ea9-adf1-400e-5853-08db30c05eb5
+X-MS-TrafficTypeDiagnostic: BYAPR12MB3176:EE_|SN7PR12MB6814:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1fef56df-2df1-474a-8d4b-08db30cd0e8b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: q37KwuiI9d/8m9NJlkSK8x/NPnH4fGma0+5FOtUoEtuG3gLxDS8xZRW7zX1bDXqsORmbayGP01h3c0XSqKZ28MmbdcAp9+2OiCJQVB1Egt0esg2OKe2XRafgL3RPf8ctPj1LRdzXwz50GyoKOS7AuRFqMhpVCFSPL7tukM8LWc2zU985mgJ+XwJvId4XrCoez+1yBzk4QE2LxrDZFmSOdUfgzYsOXUJl52cy2xg2pe/9JmJATKCu8DuULp7TLnd4Ar8/v08qY8BYEn5a/LpSFw9XOG1AoDBSXwOd0ClHvv2wmBUdh56DoxwWnTrOUet2JAE4C6hcRmi+rHxlBe+MOV7Cn215s6dvq6xAynZpTviBO6wEp6wAzBKWbr71ZcDhPGe+jJkjUo2kRH1qQBXxT2sWnvlswmOkZo7fZddlQsbZLXYFSmq60dW2AdDaUprD40V6z5O2WLilQCLFTnmctLz7lu4KzJQWXRIEB71kYVNOdxi7FMqCdRmQB8baIQBZUcDaLYd3o2UUHiBOqryOMWxlfyRNSMVolYKVODtvKZJJJsZlbWbQu0WCAQZD+4HA76tstM8cxzbpCUTKmnwFAjG6vq+djrL029AgJf421xLmIDGDDAWkF2DqfKMijKO7u4aqLKmK+CUHWp5A5cC6zar3FousOsJgrF9R48Z5w4VqZceuAK5WEhYe0VEk6gS69CZC45vQQYFsdYQfg/y6kSzRRACUSnZ2IwB1qXKeMaohqVE5OZuGcQjMJ1kaCayO
-X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(39860400002)(396003)(376002)(346002)(451199021)(36840700001)(46966006)(70586007)(26005)(7636003)(82740400003)(356005)(53546011)(478600001)(47076005)(426003)(36860700001)(186003)(16526019)(336012)(8936002)(5660300002)(2906002)(2616005)(36756003)(70206006)(82310400005)(110136005)(16576012)(54906003)(316002)(31696002)(40480700001)(41300700001)(4326008)(86362001)(8676002)(83380400001)(31686004)(43740500002);
+X-Microsoft-Antispam-Message-Info: ZesSMmalGWW6VGT6RMWXsYerP7WVA0CpLdTWiKb/M+vR8fwbb/a6m+VnwgqbUXbgqDwxcLuqZgglBy7XMvDUPtG39XsQjKz2odWav2KPJ4Fhty967+Kh6N0quqdUMJLDgVpxhx8TdgK0LDVpD44mvUjO1fzEx+RKPsJGvjjLaT/xzzXDDquvwFHfDvhGGVtrft6EQ7f4dKc0tFVqrNr1lp963IFuwFfdb/3e+FZk2voMk1JqDN7M+U3/mhiYPPiEb0GtztKAYvobp2JJEIwVJClvuPy1zW8oH+B0tJd+HhE4iJx2mADQKbG/GgBlEhsMPkQxjJqm93FR428dpI/Wd+8ctXDenXwQYYLy3KQMFNtn3OWOuxyWKiHPcNh5MdmIzJYTuVCG1jVsa5vYaa4lSDAdMsuyMyCDbIQUtQKL38PbCOUoIPmUh1Kwxt3fWs40Sl4nIBaJZyq/k+qbXRdomdf4PpIpVEXH7oG0XvL+EOAUGQKVYSdQXCliBrLJAHE51vKBDcPh/TibpjQo1i/Y0L1aXyUUiIJIMDBQoHXHqoDIpGCRthgFdpQy9sMmwx+1
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR12MB3176.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(396003)(39860400002)(376002)(366004)(136003)(346002)(451199021)(38100700002)(36756003)(86362001)(66899021)(6506007)(54906003)(186003)(478600001)(6512007)(316002)(66946007)(41300700001)(4744005)(4326008)(26005)(8676002)(2616005)(6916009)(2906002)(6486002)(66476007)(66556008)(6666004)(5660300002)(8936002);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?aofK7z8sOWu7XPzFCEChIQ2tomgJVBzJKusrpZbR4cHhf1fMJ4fMZXXel3dE?=
+ =?us-ascii?Q?gd8iNz1B9gO5kKA85eyeY0AOjI90qCI1+GRkpFU4FPMAt1M1/zTLW5DS5YA1?=
+ =?us-ascii?Q?uD8mUViG0h30I0xX285Zrc7vcc2oEb1mEsLOcrMZ9HPkLvrBCpSQvxjJKvDs?=
+ =?us-ascii?Q?rRo4v692cR74y9fPUdrrKE9agWYml5zzk2RZmIpH1/RHiJbuvi945+9ebQkp?=
+ =?us-ascii?Q?LBMOHk/xfeYk292ljfVMeEkgZRgQK9N4ifEgPaZzwHCfZxS6FLswyxXdmECb?=
+ =?us-ascii?Q?TitDJShYRYtfU2ZAkl2mpAX32PG2UE5PR+5ppbuvv8mh1FGj2uTKESOz7Svk?=
+ =?us-ascii?Q?gMZtaGnPURB2g880YH7hdYfNzSJNXKuVGnjCMkONelXjlCeUqq8mdYMt0gWG?=
+ =?us-ascii?Q?HWcnA0YdprkS+0R42ehRuIPuoiHVRZ+DNlYPz5wxfRFGRF8qLvGvU2GDRE+E?=
+ =?us-ascii?Q?8wvs0Cjzdje2vNKpTKL8iA6oJ74TMxKbT8zk0InPc1XgE8SGGM44mDxqQNvS?=
+ =?us-ascii?Q?6mbUw/ukGhBW67Xuc99cc2qVK7DJAI1tMgQhRKCLXIAzcOdUE/AVQSu3UDPS?=
+ =?us-ascii?Q?r5knApKV+Bz+vuqbvIwQa9nuU+mDL5J2jl4mzeeJ/D3E0IUob28SCNe+YF3Q?=
+ =?us-ascii?Q?dgJg8WlazYRiG9LRRBheEFS/Td8zKEzeGCBucEN+8p3ju9ntVBoHB4y1l+rc?=
+ =?us-ascii?Q?GaDiVz1GOxjQg42/4v8tjzFD0PCtd842EJFzstivBxfl58+j2//KBJKY3VzV?=
+ =?us-ascii?Q?kretdaLLgBIUArsxj3xp/YvZyjqofbDeSCj47wnzTdcnJ+z0NZMP7OgnD0BT?=
+ =?us-ascii?Q?+PlnUXpnJfBesNZ6aIgpJfB3lC+ahVSLhkPOjumitFWa5nYGalgHvLPePj4V?=
+ =?us-ascii?Q?eGKqX2x7wg6+uNkH0VWFGpBSoB63f/vK8m5libU78oPUwhyB5Q4g0xBZx8lY?=
+ =?us-ascii?Q?kCIg9oDw10BursQXgki/OSSxbfH+HbDSLMc4aDo5UApSopx/fcRklEH3ZF3j?=
+ =?us-ascii?Q?ZnLIQZZekaZcuw6NQ7Gb82uWeMUNKJ0DBgSC1TizB8ghxjFVdTwjA6j2odEA?=
+ =?us-ascii?Q?ccGr3hYCfM/wgtdqnwMky1hcYz7T8ff9JFGv9LHDauVXMGwELXaHReukaRro?=
+ =?us-ascii?Q?2wTYpwJWa29kGE3GhbqqFwBvqCEzpv5ffUXuM4TQwfprJvsTIOxvebF6RshG?=
+ =?us-ascii?Q?yeynvHTiXUXnZhLRSNdtOvTGQBDS6e1IKDwhQxrSXlKkMg5I4ekDf5vlThkF?=
+ =?us-ascii?Q?LFk7v6iiI9cUQNidC2WAFh+/Z/Q9BEbbF7dNRB4uTCOlR0CsSBKTDdqSC19y?=
+ =?us-ascii?Q?MYHzh4NL2ASiWAWKd8Vcw16FsKuMmZXTte7W8emKQnAnPzJ95qsStYgeOEoo?=
+ =?us-ascii?Q?9gkoZX+jC+u0hE3n3vsgnTa3cO0FD+v4s5H8jxP15SRmpBAJEoVwzkPms2RV?=
+ =?us-ascii?Q?SYBlPgR3ajdcY+iUqWUmBgxaUVvJR+nI8NXzIDlIFZnFAfy4f+NBWOBtk9ca?=
+ =?us-ascii?Q?cbaimNb5zcqvWNYOgcfuCCWFQmTZ024+Jqg6ecJvgZrayjA+AF4fhPLHHYWJ?=
+ =?us-ascii?Q?HoWM9ANvVEbnN7v10nOLhBa79adT69J+D9aNGmTc?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 01:44:58.2291 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5bc39ea9-adf1-400e-5853-08db30c05eb5
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1fef56df-2df1-474a-8d4b-08db30cd0e8b
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB3176.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 03:15:47.5409 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0000B078.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5288
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aH0kc+MJF4PQvUafZV/znLk5IBsUHV1zXiz6fSAcNZuRUOsoX1m2l3g6gC4KMXF0/qR86icQNj1Vp+KPS/84bQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6814
 Subject: Re: [Nouveau] [PATCH v2] mm: Take a page reference when removing
  device exclusive entries
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -109,100 +114,18 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, Ralph Campbell <rcampbell@nvidia.com>,
- stable@vger.kernel.org, Matthew Wilcox <willy@infradead.org>
+Cc: Ralph Campbell <rcampbell@nvidia.com>, nouveau@lists.freedesktop.org,
+ Matthew Wilcox <willy@infradead.org>, linux-mm@kvack.org,
+ stable@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 3/29/23 18:25, Alistair Popple wrote:
-> Device exclusive page table entries are used to prevent CPU access to
-> a page whilst it is being accessed from a device. Typically this is
-> used to implement atomic operations when the underlying bus does not
-> support atomic access. When a CPU thread encounters a device exclusive
-> entry it locks the page and restores the original entry after calling
-> mmu notifiers to signal drivers that exclusive access is no longer
-> available.
-> 
-> The device exclusive entry holds a reference to the page making it
-> safe to access the struct page whilst the entry is present. However
-> the fault handling code does not hold the PTL when taking the page
-> lock. This means if there are multiple threads faulting concurrently
-> on the device exclusive entry one will remove the entry whilst others
-> will wait on the page lock without holding a reference.
-> 
-> This can lead to threads locking or waiting on a folio with a zero
-> refcount. Whilst mmap_lock prevents the pages getting freed via
-> munmap() they may still be freed by a migration. This leads to
-> warnings such as PAGE_FLAGS_CHECK_AT_FREE due to the page being locked
-> when the refcount drops to zero.
-> 
-> Fix this by trying to take a reference on the folio before locking
-> it. The code already checks the PTE under the PTL and aborts if the
-> entry is no longer there. It is also possible the folio has been
-> unmapped, freed and re-allocated allowing a reference to be taken on
-> an unrelated folio. This case is also detected by the PTE check and
-> the folio is unlocked without further changes.
-> 
-> Signed-off-by: Alistair Popple <apopple@nvidia.com>
-> Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
-> Reviewed-by: John Hubbard <jhubbard@nvidia.com>
-> Fixes: b756a3b5e7ea ("mm: device exclusive memory access")
-> Cc: stable@vger.kernel.org
-> 
-> ---
-> 
-> Changes for v2:
-> 
->   - Rebased to Linus master
->   - Reworded commit message
->   - Switched to using folios (thanks Matthew!)
->   - Added Reviewed-by's
 
-v2 looks correct to me.
+Christoph Hellwig <hch@infradead.org> writes:
 
-thanks,
--- 
-John Hubbard
-NVIDIA
+> s/page/folio/ in the entire commit log?
 
-> ---
->   mm/memory.c | 16 +++++++++++++++-
->   1 file changed, 15 insertions(+), 1 deletion(-)
-> 
-> diff --git a/mm/memory.c b/mm/memory.c
-> index f456f3b5049c..01a23ad48a04 100644
-> --- a/mm/memory.c
-> +++ b/mm/memory.c
-> @@ -3563,8 +3563,21 @@ static vm_fault_t remove_device_exclusive_entry(struct vm_fault *vmf)
->   	struct vm_area_struct *vma = vmf->vma;
->   	struct mmu_notifier_range range;
->   
-> -	if (!folio_lock_or_retry(folio, vma->vm_mm, vmf->flags))
-> +	/*
-> +	 * We need a reference to lock the folio because we don't hold
-> +	 * the PTL so a racing thread can remove the device-exclusive
-> +	 * entry and unmap it. If the folio is free the entry must
-> +	 * have been removed already. If it happens to have already
-> +	 * been re-allocated after being freed all we do is lock and
-> +	 * unlock it.
-> +	 */
-> +	if (!folio_try_get(folio))
-> +		return 0;
-> +
-> +	if (!folio_lock_or_retry(folio, vma->vm_mm, vmf->flags)) {
-> +		folio_put(folio);
->   		return VM_FAULT_RETRY;
-> +	}
->   	mmu_notifier_range_init_owner(&range, MMU_NOTIFY_EXCLUSIVE, 0,
->   				vma->vm_mm, vmf->address & PAGE_MASK,
->   				(vmf->address & PAGE_MASK) + PAGE_SIZE, NULL);
-> @@ -3577,6 +3590,7 @@ static vm_fault_t remove_device_exclusive_entry(struct vm_fault *vmf)
->   
->   	pte_unmap_unlock(vmf->pte, vmf->ptl);
->   	folio_unlock(folio);
-> +	folio_put(folio);
->   
->   	mmu_notifier_invalidate_range_end(&range);
->   	return 0;
-
-
+I debated that but settled on leaving it as is because device exclusive
+entries only deal with non-compound pages for now and didn't want to
+give any other impression. Happy to change that though if people think
+it would be better/clearer.
