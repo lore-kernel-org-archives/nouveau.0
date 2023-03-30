@@ -4,40 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC5D4C74A5B
-	for <nouveau@archiver.kernel.org>; Thu, 30 Mar 2023 03:25:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EA39C6FD1D
+	for <nouveau@archiver.kernel.org>; Thu, 30 Mar 2023 15:40:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8636010E1C6;
-	Thu, 30 Mar 2023 03:25:05 +0000 (UTC)
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11F9310E1C6
- for <nouveau@lists.freedesktop.org>; Thu, 30 Mar 2023 03:25:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=QsdrcA/589ltjZTcCcSDKKxhiJ7CxFHhrMptES1Y1Y4=; b=kCLl9rOwAukh7rxNPXxtiHwW8O
- lQAXiJJLCBIJoYmn25bgm7fUmTyjao2WNq0fUKa7MYSEoZkj5uhTcDXOflP0I/EG+CK/Wew4f9MDI
- ev9V3sICwqrdQpAn8cdhaRxIIySQ9L+GQDxbS2RKgQ5Clti3OhhC46fYAIb/TmKjYBq4fWhPdCVlm
- mPaO8xMRZ4Sz8smTpsbJBXGG990uT1jm5bcRHC+covfjndwA+GADrfEG+E/pEawLdsgkRos45E+gF
- ERT5FiN9iD7VrIq4peh8JlAgh3StRBGWf8owsshEdK50kvcTDDS5QLMix8kDddaydtYeZ6kXnt0PJ
- x7iNrOnQ==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.96 #2 (Red Hat
- Linux)) id 1phhwZ-002LET-1c; Thu, 30 Mar 2023 02:23:15 +0000
-Date: Wed, 29 Mar 2023 19:23:15 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: Alistair Popple <apopple@nvidia.com>
-Message-ID: <ZCTykyabcaS98Jnm@infradead.org>
-References: <20230330012519.804116-1-apopple@nvidia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE66E10EEDA;
+	Thu, 30 Mar 2023 15:40:09 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A01F310EED9;
+ Thu, 30 Mar 2023 15:40:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680190807; x=1711726807;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0FhdH0p/HcWeBfk5OJ7HWQw0UUWQdBGYy04tFYP7/6M=;
+ b=n89gg+p7ASW5oF+nA56LbsoUEeRJ/hGtSkOEZKYiqDKoLJgsBT4E++L+
+ UHg1ZyNyc9p5b/Hyrfts8qX6W/zrsxndtVKRSsEQRcFvgBQblqhH4iwiR
+ 0lkrNHPnxHTsGnZWc0LhQl0pxp2wnPvN/vy/QxGqUMocRx5aTbOa+aWo5
+ HsRUtSogOLxaYuyaTEjE2FOF28wYBHMh89Wn3DeKubwDlet/UyWuwbgeW
+ Vqa+d1o1wTIvNEyMPH4fttMGfBxLf9eQonp6bA4DUknvJm55eEbfvw0v8
+ oWbbk8NoltNB7Jm32BoheJSx0+iMBldE0eTCCmJfYYwkK0GBnQbwpb5g2 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="329722047"
+X-IronPort-AV: E=Sophos;i="5.98,305,1673942400"; d="scan'208";a="329722047"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2023 08:40:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="774032104"
+X-IronPort-AV: E=Sophos;i="5.98,305,1673942400"; d="scan'208";a="774032104"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2023 08:39:55 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Thu, 30 Mar 2023 18:39:37 +0300
+Message-Id: <cover.1680190534.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230330012519.804116-1-apopple@nvidia.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-Subject: Re: [Nouveau] [PATCH v2] mm: Take a page reference when removing
- device exclusive entries
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Nouveau] [PATCH 00/12] drm: reduce
+ drm_detect_monitor_audio/drm_detect_hdmi_monitor/edid_blob_ptr usage
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,10 +57,93 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ralph Campbell <rcampbell@nvidia.com>, nouveau@lists.freedesktop.org,
- Matthew Wilcox <willy@infradead.org>, linux-mm@kvack.org,
- stable@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>
+Cc: =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+	jani.nikula@intel.com, nouveau@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org, Xinhui <Xinhui.Pan@amd.com>,
+	Seung-Woo Kim <sw0312.kim@samsung.com>,
+	Russell King <linux@armlinux.org.uk>, amd-gfx@lists.freedesktop.org,
+	Sandy Huang <hjc@rock-chips.com>, Inki Dae <inki.dae@samsung.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Ben Skeggs <bskeggs@redhat.com>,
+	Alex Deucher <alexander.deucher@amd.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	=?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+	Pan@freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-s/page/folio/ in the entire commit log?
+THIS IS UNTESTED for anything other than i915.
+
+Use previously parsed EDID where possible for display audio/hdmi
+detection. This in turn reduces edid_blob_ptr usage in a number of
+places. Further reduce edid_blob_ptr usage, and document that it should
+not be used by drivers directly.
+
+BR,
+Jani.
+
+
+Cc: Alain Volmat <alain.volmat@foss.st.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Heiko Stübner <heiko@sntech.de>
+Cc: Inki Dae <inki.dae@samsung.com>
+Cc: Karol Herbst <kherbst@redhat.com>
+Cc: Kyungmin Park <kyungmin.park@samsung.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: nouveau@lists.freedesktop.org
+Cc: Pan, Xinhui <Xinhui.Pan@amd.com>
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: Sandy Huang <hjc@rock-chips.com>
+Cc: Seung-Woo Kim <sw0312.kim@samsung.com>
+
+
+Jani Nikula (12):
+  drm/edid: parse display info has_audio similar to is_hdmi
+  drm/nouveau: convert to using is_hdmi and has_audio from display info
+  drm/radeon: convert to using is_hdmi and has_audio from display info
+  drm/radeon: remove radeon_connector_edid() and stop using
+    edid_blob_ptr
+  drm/amdgpu: remove amdgpu_connector_edid() and stop using
+    edid_blob_ptr
+  drm/i915/debugfs: stop using edid_blob_ptr
+  drm/exynos: fix is_hdmi usage
+  drm/i2c/tda998x: convert to using has_audio from display_info
+  drm/sti/sti_hdmi: convert to using is_hdmi from display info
+  drm/rockchip: cdn-dp: call drm_connector_update_edid_property()
+    unconditionally
+  drm/rockchip: convert to using has_audio from display_info
+  drm/connector: update edid_blob_ptr documentation
+
+ .../gpu/drm/amd/amdgpu/amdgpu_connectors.c    | 15 -----------
+ .../gpu/drm/amd/amdgpu/amdgpu_connectors.h    |  1 -
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        |  4 +--
+ drivers/gpu/drm/amd/amdgpu/dce_v11_0.c        |  4 +--
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         |  4 +--
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         |  4 +--
+ drivers/gpu/drm/drm_edid.c                    |  6 +++++
+ drivers/gpu/drm/exynos/exynos_hdmi.c          |  3 ++-
+ drivers/gpu/drm/i2c/tda998x_drv.c             |  2 +-
+ .../drm/i915/display/intel_display_debugfs.c  | 10 +++----
+ drivers/gpu/drm/nouveau/dispnv50/disp.c       |  8 +++---
+ drivers/gpu/drm/nouveau/dispnv50/head.c       |  8 +-----
+ drivers/gpu/drm/nouveau/nouveau_connector.c   |  2 +-
+ drivers/gpu/drm/radeon/atombios_encoders.c    | 10 +++----
+ drivers/gpu/drm/radeon/evergreen_hdmi.c       |  5 ++--
+ drivers/gpu/drm/radeon/radeon_audio.c         | 11 ++++----
+ drivers/gpu/drm/radeon/radeon_connectors.c    | 27 +++++--------------
+ drivers/gpu/drm/radeon/radeon_display.c       |  2 +-
+ drivers/gpu/drm/radeon/radeon_encoders.c      |  4 +--
+ drivers/gpu/drm/radeon/radeon_mode.h          |  2 --
+ drivers/gpu/drm/rockchip/cdn-dp-core.c        |  7 +++--
+ drivers/gpu/drm/rockchip/inno_hdmi.c          |  3 ++-
+ drivers/gpu/drm/sti/sti_hdmi.c                | 11 ++++----
+ drivers/gpu/drm/sti/sti_hdmi.h                |  2 --
+ include/drm/drm_connector.h                   | 14 +++++++++-
+ 25 files changed, 73 insertions(+), 96 deletions(-)
+
+-- 
+2.39.2
+
