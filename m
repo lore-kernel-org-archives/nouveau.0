@@ -4,72 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB847C7EE2A
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:34:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60F42C7EE26
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:34:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42A8F10E4B4;
-	Thu,  4 May 2023 12:33:44 +0000 (UTC)
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com
- [IPv6:2a00:1450:4864:20::542])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B763210E1CE;
- Wed,  1 Mar 2023 17:25:46 +0000 (UTC)
-Received: by mail-ed1-x542.google.com with SMTP id f13so56908036edz.6;
- Wed, 01 Mar 2023 09:25:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=StPWDobta73ip1qDTST6ZbHesp2pu7tDl2nHqqljCSg=;
- b=AX6dkWbGG7HI7qWP8CQ2n0fejalpaDQtYhUXIEsv9EbPRRD47CjPsul90m5PkZAmAO
- KKduqdAX8ad+UjyKoLhYhCjC9Z53VJcJkA7RBtvbcCVVg0P+kDlYQwgrLjmtPqZ28vfo
- Lcevqt3SnDuifMdPCh6ZgEXiPNEhK8fNp6JA/MK5DloTwx6SjgUQbAsLqM0YExtZOlhE
- c035ccUmu2uAKpuLFDA4Uwh1h3+f/Mtaz0bUOh/Jd6cRGtUHi/QP2hUjuWzKtcD+XbDX
- eTKbcgoQXyUDA7qbqR+CmWDe//fPLfzbpXvA4+mKQSzKCmB6TP8fnRB0nnYhqkPyVS2K
- JZQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=StPWDobta73ip1qDTST6ZbHesp2pu7tDl2nHqqljCSg=;
- b=QZyvSOyXcb0G6KHbmoW5SjmOpN6ww+hSz8cSGmtcqCRkjfy6P07a4jQnEM/GKLD9Jw
- 4QBSbAnW7gC0mvA+GzHwsCa2BapmAYhd1EPLWfAwDvD5bRdCEnUc2Ed5p0ixsRz26hyH
- KaTwU3tMh0gYWey7l37u4UhNV9lyQHtbKBU4Fb6RBUEm+iZF7c3ZJE/ENvduW7ea0gE4
- nHphuV3g6Qg/IbjyQUTrlIwOG5rUWS8anT05t/VmZ6XFNPtV+Aks2p0YZBB0gKXcXSle
- fUibAywFYWJwaMQdL3vMmh1WAjw29dRmpmMJIGHjW8/7YNqNsEGTNPkhHVQoVv71cNH6
- bMxw==
-X-Gm-Message-State: AO0yUKWbCBvPLUUUqAsXaiRdB8sIjPgsZY07l1CFOz47YfiYQ8UOUrCE
- fVOBNSlyScUhin9gseP0br4=
-X-Google-Smtp-Source: AK7set+hg3kOeoOWYBWlvzIhtELcU/JRDHSU+x12DxpDjzNnm58yMunzJ50vgAJ2p6Dz+DqIBA6Srw==
-X-Received: by 2002:a17:906:aaca:b0:878:6477:d7 with SMTP id
- kt10-20020a170906aaca00b00878647700d7mr7041024ejb.72.1677691545111; 
- Wed, 01 Mar 2023 09:25:45 -0800 (PST)
-Received: from [127.0.1.1] (i130160.upc-i.chello.nl. [62.195.130.160])
- by smtp.googlemail.com with ESMTPSA id
- v23-20020a170906489700b008e9ac1ad79dsm5974715ejq.194.2023.03.01.09.25.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 01 Mar 2023 09:25:44 -0800 (PST)
-From: Jakob Koschel <jkl820.git@gmail.com>
-Date: Wed, 01 Mar 2023 18:25:38 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E38A10E4C6;
+	Thu,  4 May 2023 12:33:52 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A89B10E03D;
+ Fri,  7 Apr 2023 15:00:47 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id CD9D065099;
+ Fri,  7 Apr 2023 15:00:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C026C4339B;
+ Fri,  7 Apr 2023 15:00:42 +0000 (UTC)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ nouveau@lists.freedesktop.org
+Date: Fri,  7 Apr 2023 17:00:31 +0200
+Message-Id: <20230407150031.79749-2-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230407150031.79749-1-krzysztof.kozlowski@linaro.org>
+References: <20230407150031.79749-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230301-drm-nouveau-avoid-iter-after-loop-v1-2-0702ec23f970@gmail.com>
-References: <20230301-drm-nouveau-avoid-iter-after-loop-v1-0-0702ec23f970@gmail.com>
-In-Reply-To: <20230301-drm-nouveau-avoid-iter-after-loop-v1-0-0702ec23f970@gmail.com>
-To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>, 
- Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>, 
- Daniel Vetter <daniel@ffwll.ch>
-X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1677691543; l=1723;
- i=jkl820.git@gmail.com; s=20230112; h=from:subject:message-id;
- bh=cB1L+buYcR+Tpr+4lhFvQl5kYWyprM+RBeyV2GzjhSo=;
- b=CEGNMg2otXSMBx1WQApv1HsHMopWqKLPZgrWcoZGewVvf/Xlo1d5jWyKYFGMquZX2RVdLaQPeqUL
- neXY1hPKDE8yiBEM2brKl63q2RgIUrUzEYQgrSoMVWjniUabUl+H
-X-Developer-Key: i=jkl820.git@gmail.com; a=ed25519;
- pk=rcRpP90oZXet9udPj+2yOibfz31aYv8tpf0+ZYOQhyA=
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:35 +0000
-Subject: [Nouveau] [PATCH 2/2] drm/nouveau/clk: avoid usage of list iterator
- after loop
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:36 +0000
+Subject: [Nouveau] [PATCH 2/2] drm/nouveau: constify pointers to
+ hwmon_channel_info
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,56 +51,44 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, Pietro Borrello <borrello@diag.uniroma1.it>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>,
- Jakob Koschel <jkl820.git@gmail.com>
+Cc: linux-hwmon@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-If potentially no valid element is found, 'pstate' would contain an
-invalid pointer past the iterator loop. To ensure 'pstate' is always
-valid, we only set it if the correct element was found. That allows
-adding a BUG_ON in case the code works incorrectly, exposing currently
-undetectable potential bugs.
+Statically allocated array of pointed to hwmon_channel_info can be made
+const for safety.
 
-Additionally, Linus proposed to avoid any use of the list iterator
-variable after the loop, in the attempt to move the list iterator
-variable declaration into the marcro to avoid any potential misuse after
-the loop [1].
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Link: https://lore.kernel.org/all/CAHk-=wgRr_D8CB-D9Kg-c=EHreAsk5SqXPwr9Y7k9sA6cWXJ6w@mail.gmail.com/ [1]
-Signed-off-by: Jakob Koschel <jkl820.git@gmail.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
-index da07a2fbef06..871127dfe1d7 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
-@@ -269,14 +269,17 @@ nvkm_pstate_prog(struct nvkm_clk *clk, int pstatei)
- 	struct nvkm_subdev *subdev = &clk->subdev;
- 	struct nvkm_fb *fb = subdev->device->fb;
- 	struct nvkm_pci *pci = subdev->device->pci;
--	struct nvkm_pstate *pstate;
-+	struct nvkm_pstate *pstate = NULL, *iter;
- 	int ret, idx = 0;
- 
--	list_for_each_entry(pstate, &clk->states, head) {
--		if (idx++ == pstatei)
-+	list_for_each_entry(iter, &clk->states, head) {
-+		if (idx++ == pstatei) {
-+			pstate = iter;
- 			break;
-+		}
- 	}
- 
-+	BUG_ON(!pstate);
- 	nvkm_debug(subdev, "setting performance state %d\n", pstatei);
- 	clk->pstate = pstatei;
- 
+This depends on hwmon core patch:
+https://lore.kernel.org/all/20230406203103.3011503-2-krzysztof.kozlowski@linaro.org/
 
+Therefore I propose this should also go via hwmon tree.
+
+Cc: Jean Delvare <jdelvare@suse.com>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: linux-hwmon@vger.kernel.org
+---
+ drivers/gpu/drm/nouveau/nouveau_hwmon.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+index e844be49e11e..db30a4c2cd4d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+@@ -211,7 +211,7 @@ static const struct attribute_group temp1_auto_point_sensor_group = {
+ 
+ #define N_ATTR_GROUPS   3
+ 
+-static const struct hwmon_channel_info *nouveau_info[] = {
++static const struct hwmon_channel_info * const nouveau_info[] = {
+ 	HWMON_CHANNEL_INFO(chip,
+ 			   HWMON_C_UPDATE_INTERVAL),
+ 	HWMON_CHANNEL_INFO(temp,
 -- 
 2.34.1
 
