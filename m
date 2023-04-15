@@ -4,91 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A7D3C77B7C
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A968AC77B78
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33F2610E3E9;
-	Thu,  4 May 2023 12:32:29 +0000 (UTC)
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2087.outbound.protection.outlook.com [40.107.243.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 755CE10E0DF;
- Wed, 25 Jan 2023 10:49:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LIJi41hnpNmD6RX4OthrobqCTPbCqKUNF5BiQmNqjErRzgjCjzHGJCnIVApdiyMxUqqAoEP34vm7BiOBdT2AEicLGuMyYpjXx0mHnZlVTY/oIcUWYHXTSW8RojkGw0KdVkOEJlYYjjLuuBM/UkghLatpThuSUPJ+qhHHX7NW39vLu4eK+agZMXxtuvQuNXbr5iY6FXhL1hgEKGgU5cuNgnDbC4G/qIZ22Jmvo124UybaX9RueWqc3nCpdRxGxcwoRsF8TNJb+hHt40NVpGDFoIgMfatGWm5zkDJhjgSB/6uPvhPP+nuz4j633JhpCaO7MeyRNRgXEIkP/6BP7w7f2A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZJ2fQbMWY5HOM+P7DIXaa/fkQ1qgJsLmwkOa3tbp16o=;
- b=a33nt9vuynt/JQjUjCsWiO4Qs2QOxaD5MZF9OHwESc8eJcCWDp+/VgBI62AzIaBmQu9lktRDR4ZwiPeEUUBh+CSpsxZ76xuYbDU6lVUpOxJcdSej2ceQdl5n0C9iSLOz0AZ259trFa6iMR6Zdk7umtmsyTEz4wXQbOtAtVkeLJrjdZ04MY5gXsVeSEWeY4ut2+Xkbkm4SHHXCMQqsDUEFNvRbuuDFHrd7163zTpLp/ko1ZdtQilKOlDxxrmat+9qR8bZxTWvVfCPbn70nF3y1SB7dgVYIVYhuVFRZaTruY6YPzaixD5KQ1+m/PZVwjcChrrfAEwBkH9f86Xk3ETAYw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZJ2fQbMWY5HOM+P7DIXaa/fkQ1qgJsLmwkOa3tbp16o=;
- b=wH0cKWBwf9ntf0EelCd+wutgPVafY0yi91WpFHgsATwjikrkKDX7kBuBhrfbioyNyUUB97QLgk2d16TRdDC6bYcKZI6CM5BPSA4J98gvmpNw2IlOSsQWQhoVc8cHROJ9XAk4nTlrV1EMN2upBpvZEPcZPtnpNXDeq+e4k8vtTNw=
-Received: from BN8PR04CA0053.namprd04.prod.outlook.com (2603:10b6:408:d4::27)
- by IA1PR12MB6116.namprd12.prod.outlook.com (2603:10b6:208:3e8::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.31; Wed, 25 Jan
- 2023 10:49:07 +0000
-Received: from BN8NAM11FT022.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:d4:cafe::d8) by BN8PR04CA0053.outlook.office365.com
- (2603:10b6:408:d4::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33 via Frontend
- Transport; Wed, 25 Jan 2023 10:49:06 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT022.mail.protection.outlook.com (10.13.176.112) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6043.17 via Frontend Transport; Wed, 25 Jan 2023 10:49:06 +0000
-Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Wed, 25 Jan 2023 04:49:02 -0600
-From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Date: Wed, 25 Jan 2023 16:18:35 +0530
-Message-ID: <20230125104838.23596-1-Amaranath.Somalapuram@amd.com>
-X-Mailer: git-send-email 2.32.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7565010E41D;
+	Thu,  4 May 2023 12:32:30 +0000 (UTC)
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12DD710E00F;
+ Sat, 15 Apr 2023 02:04:46 +0000 (UTC)
+From: John Ogness <john.ogness@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1681524285;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=QvcA5HnArT0juQcF/pl/UzocaIDN3s8qO05ZD9AHBzE=;
+ b=WAdGjtojvZtiEi0uFTGSkIhurdv40v6CO9/2ElIZENNMe/XpJb6QqRTo7lK+AVvZ/QSaGu
+ SPGx0ndC+0A0mVsTL5HcIh77lBq3+ojEHj/h2i1mdbQwHu5g5UQonlvrLc3bzGwj/iF8Hw
+ LZAU4Yl5o+nGNAQHinyQRG/Xo7Arffk53TSjXUxrl95YRoifE4rCEgk9k6PbW/RCxbK3lg
+ liSjFPsFw/KfoepDZKW8S4GVazp/pNLxibZntNctNFHBpdRExSRd8LLAIr6uNSys3ETss5
+ bfw+YjOoIq+xe3QCyRsDSlzi5w7Nn3SJS2plz21OPFI94G/6w4U2OgU/zVbZdQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1681524285;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=QvcA5HnArT0juQcF/pl/UzocaIDN3s8qO05ZD9AHBzE=;
+ b=CwlW0QiZiaCRp7T+kaLraqtWcuxFmF7F3Nw4r2zMdjo8BTw+gg7+DNlx4B/zx+6AeXqakD
+ jLgy4BY6abTjgwBQ==
+To: =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20230415012137.615305-1-john.ogness@linutronix.de>
+References: <20230415012137.615305-1-john.ogness@linutronix.de>
+Date: Sat, 15 Apr 2023 04:08:50 +0206
+Message-ID: <87edolaomt.fsf@jogness.linutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT022:EE_|IA1PR12MB6116:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5427f07c-bb72-4150-391c-08dafec1c80e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SzlgAJJALNihXWGsRTQr/UTuguShNDt62ETFUJn23NZKfuZcOPLkb/X1vHdHjAQwRMWcY3GagE8RJq9ABWaX9DHCD5O8aGydlr6xPOkz1ZJNmAmc/MaeE1WW1w9U6ljXCzNnmXruaIrljqZGc69PdVUORjxxiA9FxlYziekAinHhfTsjlCWEBshy41cCn+uKXHczuCGty5pc/xy9SxGApdqI0XoLredKNk8GkGnV7trPSfl8qYT4WaJISO8J6eGREc9c3uAwZXuWAb9JensI+XYxEPhZ2l5ZdFDjnJ+K8utEsbp2PSSNCut/vmUFfxlBBwBLEIDAEsJJJvyvyH56ttYxD6nYJAvtq8Mq2GAVBcAzsZT0zh79XMIsnvGz0ndx89WD/COuh3eFewbIPi+kK5yr6erFSc65Zavme16Ehe/3zV67rMfWP2l00nQcaPOuX2lPPoAH7rc3sbYvCqyw4+HMxz5bm4bRIEAhYJgAzZCbolJ1ydz6iWXVneokRKjWWjzEXfZRQRmgzHKNNODLCinDkkfQuq2WAVXYLufClzV45HO2EogyRSOC+qtY0tYyfU9D4VFuFOsqc0Ki9Ta7alkv8Nj0BNEt7IFwG47aO/YMrApRuFJXKvHIPjEOhZY8Ha0LWKnRHEj/QvjP0bffQ36ZC9DQz66OXUkBJJn+7/awMMNwDwXLklbHAm62S1WZaW8roSplsaKHG/fB0lR4puRlG1J5cr9JeQc1RNwI72M=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(39860400002)(346002)(136003)(376002)(396003)(451199018)(46966006)(40470700004)(36840700001)(186003)(5660300002)(82740400003)(36756003)(450100002)(41300700001)(70206006)(4326008)(8676002)(70586007)(16526019)(83380400001)(47076005)(336012)(426003)(81166007)(6666004)(2616005)(356005)(7696005)(478600001)(86362001)(36860700001)(40480700001)(82310400005)(316002)(26005)(110136005)(1076003)(8936002)(2906002)(40460700003)(54906003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 10:49:06.4396 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5427f07c-bb72-4150-391c-08dafec1c80e
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT022.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6116
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:37 +0000
-Subject: [Nouveau] [PATCH v2 1/4] drm/amdgpu: Use cursor start instead of
- ttm resource start
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:34 +0000
+Subject: [Nouveau] [PATCH v3] drm/nouveau: fix incorrect conversion to
+ dma_resv_wait_timeout()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,117 +54,81 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: shashank.sharma@amd.com, arunpravin.paneerselvam@amd.com,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, arvind.yadav@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Tanmay Bhushan <007047221b@gmail.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-cleanup PAGE_SHIFT operation and replacing
-ttm_resource resource->start with cursor start
-using amdgpu_res_first API.
-v1 -> v2: reorder patch sequence
+Commit 41d351f29528 ("drm/nouveau: stop using ttm_bo_wait")
+converted from ttm_bo_wait_ctx() to dma_resv_wait_timeout().
+However, dma_resv_wait_timeout() returns greater than zero on
+success as opposed to ttm_bo_wait_ctx(). As a result, relocs
+will fail and log errors even when it was a success.
 
-Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+Change the return code handling to match that of
+nouveau_gem_ioctl_cpu_prep(), which was already using
+dma_resv_wait_timeout() correctly.
+
+Fixes: 41d351f29528 ("drm/nouveau: stop using ttm_bo_wait")
+Reported-by: Tanmay Bhushan <007047221b@gmail.com>
+Link: https://lore.kernel.org/lkml/20230119225351.71657-1-007047221b@gmail.com
+Signed-off-by: John Ogness <john.ogness@linutronix.de>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 11 ++++++++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c    | 10 +++++++---
- 2 files changed, 15 insertions(+), 6 deletions(-)
+ I just realized that the nouveau driver style prefers to scope
+ variables used only in loops.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 25a68d8888e0..2ab67ab204df 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -1346,6 +1346,7 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
- 	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->bdev);
- 	struct ttm_operation_ctx ctx = { false, false };
- 	struct amdgpu_bo *abo = ttm_to_amdgpu_bo(bo);
-+	struct amdgpu_res_cursor cursor;
- 	unsigned long offset;
- 	int r;
- 
-@@ -1355,7 +1356,8 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
- 	if (bo->resource->mem_type != TTM_PL_VRAM)
- 		return 0;
- 
--	offset = bo->resource->start << PAGE_SHIFT;
-+	amdgpu_res_first(bo->resource, 0, bo->resource->size, &cursor);
-+	offset = cursor.start;
- 	if ((offset + bo->base.size) <= adev->gmc.visible_vram_size)
- 		return 0;
- 
-@@ -1378,7 +1380,8 @@ vm_fault_t amdgpu_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
- 	else if (unlikely(r))
- 		return VM_FAULT_SIGBUS;
- 
--	offset = bo->resource->start << PAGE_SHIFT;
-+	amdgpu_res_first(bo->resource, 0, bo->resource->size, &cursor);
-+	offset = cursor.start;
- 	/* this should never happen */
- 	if (bo->resource->mem_type == TTM_PL_VRAM &&
- 	    (offset + bo->base.size) > adev->gmc.visible_vram_size)
-@@ -1491,9 +1494,11 @@ u64 amdgpu_bo_gpu_offset(struct amdgpu_bo *bo)
- u64 amdgpu_bo_gpu_offset_no_check(struct amdgpu_bo *bo)
+ v3: Define @lret within the for-loop.
+
+ drivers/gpu/drm/nouveau/nouveau_gem.c | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index f77e44958037..ab9062e50977 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -645,7 +645,7 @@ nouveau_gem_pushbuf_reloc_apply(struct nouveau_cli *cli,
+ 				struct drm_nouveau_gem_pushbuf_reloc *reloc,
+ 				struct drm_nouveau_gem_pushbuf_bo *bo)
  {
- 	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->tbo.bdev);
-+	struct amdgpu_res_cursor cursor;
- 	uint64_t offset;
+-	long ret = 0;
++	int ret = 0;
+ 	unsigned i;
  
--	offset = (bo->tbo.resource->start << PAGE_SHIFT) +
-+	amdgpu_res_first(bo->tbo.resource, 0, bo->tbo.resource->size, &cursor);
-+	offset = cursor.start +
- 		 amdgpu_ttm_domain_start(adev, bo->tbo.resource->mem_type);
+ 	for (i = 0; i < req->nr_relocs; i++) {
+@@ -653,6 +653,7 @@ nouveau_gem_pushbuf_reloc_apply(struct nouveau_cli *cli,
+ 		struct drm_nouveau_gem_pushbuf_bo *b;
+ 		struct nouveau_bo *nvbo;
+ 		uint32_t data;
++		long lret;
  
- 	return amdgpu_gmc_sign_extend(offset);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index c5ef7f7bdc15..ffe6a1ab7f9a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -849,6 +849,7 @@ static int amdgpu_ttm_backend_bind(struct ttm_device *bdev,
- {
- 	struct amdgpu_device *adev = amdgpu_ttm_adev(bdev);
- 	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(ttm);
-+	struct amdgpu_res_cursor cursor;
- 	uint64_t flags;
- 	int r;
+ 		if (unlikely(r->bo_index >= req->nr_buffers)) {
+ 			NV_PRINTK(err, cli, "reloc bo index invalid\n");
+@@ -703,13 +704,18 @@ nouveau_gem_pushbuf_reloc_apply(struct nouveau_cli *cli,
+ 				data |= r->vor;
+ 		}
  
-@@ -896,7 +897,8 @@ static int amdgpu_ttm_backend_bind(struct ttm_device *bdev,
- 	flags = amdgpu_ttm_tt_pte_flags(adev, ttm, bo_mem);
- 
- 	/* bind pages into GART page tables */
--	gtt->offset = (u64)bo_mem->start << PAGE_SHIFT;
-+	amdgpu_res_first(bo_mem, 0, bo_mem->size, &cursor);
-+	gtt->offset = cursor.start;
- 	amdgpu_gart_bind(adev, gtt->offset, ttm->num_pages,
- 			 gtt->ttm.dma_address, flags);
- 	gtt->bound = true;
-@@ -916,6 +918,7 @@ int amdgpu_ttm_alloc_gart(struct ttm_buffer_object *bo)
- 	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->bdev);
- 	struct ttm_operation_ctx ctx = { false, false };
- 	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(bo->ttm);
-+	struct amdgpu_res_cursor cursor;
- 	struct ttm_placement placement;
- 	struct ttm_place placements;
- 	struct ttm_resource *tmp;
-@@ -927,7 +930,7 @@ int amdgpu_ttm_alloc_gart(struct ttm_buffer_object *bo)
- 
- 	addr = amdgpu_gmc_agp_addr(bo);
- 	if (addr != AMDGPU_BO_INVALID_OFFSET) {
--		bo->resource->start = addr >> PAGE_SHIFT;
-+		bo->resource->start = addr;
- 		return 0;
- 	}
- 
-@@ -949,7 +952,8 @@ int amdgpu_ttm_alloc_gart(struct ttm_buffer_object *bo)
- 	flags = amdgpu_ttm_tt_pte_flags(adev, bo->ttm, tmp);
- 
- 	/* Bind pages */
--	gtt->offset = (u64)tmp->start << PAGE_SHIFT;
-+	amdgpu_res_first(tmp, 0, tmp->size, &cursor);
-+	gtt->offset = cursor.start;
- 	amdgpu_ttm_gart_bind(adev, bo, flags);
- 	amdgpu_gart_invalidate_tlb(adev);
- 	ttm_resource_free(bo, &bo->resource);
+-		ret = dma_resv_wait_timeout(nvbo->bo.base.resv,
+-					    DMA_RESV_USAGE_BOOKKEEP,
+-					    false, 15 * HZ);
+-		if (ret == 0)
++		lret = dma_resv_wait_timeout(nvbo->bo.base.resv,
++					     DMA_RESV_USAGE_BOOKKEEP,
++					     false, 15 * HZ);
++		if (!lret)
+ 			ret = -EBUSY;
++		else if (lret > 0)
++			ret = 0;
++		else
++			ret = lret;
++
+ 		if (ret) {
+-			NV_PRINTK(err, cli, "reloc wait_idle failed: %ld\n",
++			NV_PRINTK(err, cli, "reloc wait_idle failed: %d\n",
+ 				  ret);
+ 			break;
+ 		}
+
+base-commit: 09a9639e56c01c7a00d6c0ca63f4c7c41abe075d
 -- 
-2.32.0
-
+2.30.2
