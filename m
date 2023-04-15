@@ -4,45 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 982F5C77B78
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02FDFC77B7C
 	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B124110E4AB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC98A10E4A2;
 	Thu,  4 May 2023 12:32:58 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F71210ECC6;
- Fri, 28 Apr 2023 10:18:20 +0000 (UTC)
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbrezillon)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 265436602097;
- Fri, 28 Apr 2023 11:18:17 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1682677097;
- bh=Yk5D9b+oPUkoCZwzeMIIJtHOgvXide7fZoW+I8ghpV0=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=mhhECMNxkLs1iW+QaB2pRm8nUySryOtAT9Y4NOyMqr2EqHYzZmpOT+adaU6/ID1a9
- no1OdnK+ALZIj8/C7cBWw20X2bNzE89ZFuf6mYMbos909zeCh8D7m0E2UFsLyi3fri
- MJloqfSnhMn9R9NfMh89i03ukNYFMrsV08bymj3SSPhXtXvaNygxNTThFredKI91aT
- E3NP3647tgYI23H9PtLyuLvhEXAJoK4jHGAjfi09ZqIlAzfKWTKK6G/5bZj9bKGvUX
- sM8uGnfSD66AngdfS1WteFdbKzplq4xmhjx4GPFm5NVhHHnboQ0n6DZdSmsdshX2G0
- mCGmVSSVOfJmw==
-Date: Fri, 28 Apr 2023 12:18:13 +0200
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Danilo Krummrich <dakr@redhat.com>
-Message-ID: <20230428121813.309ea609@collabora.com>
-In-Reply-To: <20230404012741.116502-5-dakr@redhat.com>
-References: <20230404012741.116502-1-dakr@redhat.com>
- <20230404012741.116502-5-dakr@redhat.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4685410EEE5;
+ Sat, 15 Apr 2023 01:23:42 +0000 (UTC)
+From: John Ogness <john.ogness@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1681521812;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=wk6tBRL4rOUhZyc8yDlJOrUexb/aW0doiLcILhv9l7I=;
+ b=K3VpJIa7/dxb0WP7AvWLftrAQNOTsaZjvZmKQ6YN2nguYFLsK6AsUuyRV9uDrC6jiWGzPD
+ lganGKWEcmuOvIgBuHlfalKv3fuJVLucbbyw+e9JWAQyXZ84woRWVrjWslhuXs85CfHp9c
+ omAzaAOG5TzCfmfat02AeNfKJW9OCG2hOwekQ+PE6TYZMtIjsUYjIU2xXGrikg1ws+V8IS
+ bdJ/57TjCAwVw/BA+SNG8YFss8jEtMXwtWg+dZqBAbssKa0td9ruPW/8anxCcbkqwD67qg
+ 8bfNP4vxgc3Ums3ojYGSf6fK8w0v6DukzGWb5n0z5MF+slXH5C6fP3az35hViA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1681521812;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=wk6tBRL4rOUhZyc8yDlJOrUexb/aW0doiLcILhv9l7I=;
+ b=sD8RwqQUN1CEo6InqlzRlqogbgz0MsLVKyf2S6UvbYcE7yi6nc7UxCvpXgQQkjg45mnbnl
+ XS7dLzTzE7fWAlDw==
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Date: Sat, 15 Apr 2023 03:27:37 +0206
+Message-Id: <20230415012137.615305-1-john.ogness@linutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 04 May 2023 12:31:34 +0000
-Subject: Re: [Nouveau] [PATCH drm-next v3 04/15] drm: manager to keep track
- of GPUs VA mappings
+Subject: [Nouveau] [PATCH v2] drm/nouveau: fix incorrect conversion to
+ dma_resv_wait_timeout()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,53 +52,77 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.brost@intel.com, willy@infradead.org, daniel@ffwll.ch,
- dri-devel@lists.freedesktop.org, corbet@lwn.net, nouveau@lists.freedesktop.org,
- ogabbay@kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- mripard@kernel.org, linux-mm@kvack.org, alexdeucher@gmail.com,
- bskeggs@redhat.com, Liam.Howlett@oracle.com, Dave Airlie <airlied@redhat.com>,
- bagasdotme@gmail.com, christian.koenig@amd.com, jason@jlekstrand.net
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Tanmay Bhushan <007047221b@gmail.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue,  4 Apr 2023 03:27:30 +0200
-Danilo Krummrich <dakr@redhat.com> wrote:
+Commit 41d351f29528 ("drm/nouveau: stop using ttm_bo_wait")
+converted from ttm_bo_wait_ctx() to dma_resv_wait_timeout().
+However, dma_resv_wait_timeout() returns greater than zero on
+success as opposed to ttm_bo_wait_ctx(). As a result, relocs
+will fail and log errors even when it was a success.
 
-> +struct drm_gpuva_manager {
-> +	/**
-> +	 * @name: the name of the DRM GPU VA space
-> +	 */
-> +	const char *name;
-> +
-> +	/**
-> +	 * @mm_start: start of the VA space
-> +	 */
-> +	u64 mm_start;
-> +
-> +	/**
-> +	 * @mm_range: length of the VA space
-> +	 */
-> +	u64 mm_range;
-> +
-> +	/**
-> +	 * @mtree: the &maple_tree to track GPU VA mappings
-> +	 */
-> +	struct maple_tree mtree;
-> +
-> +	/**
-> +	 * @kernel_alloc_node:
-> +	 *
-> +	 * &drm_gpuva representing the address space cutout reserved for
-> +	 * the kernel
-> +	 */
-> +	struct drm_gpuva kernel_alloc_node;
-> +
-> +	/**
-> +	 * @ops: &drm_gpuva_fn_ops providing the split/merge steps to drivers
-> +	 */
-> +	struct drm_gpuva_fn_ops *ops;
+Change the return code handling to match that of
+nouveau_gem_ioctl_cpu_prep(), which was already using
+dma_resv_wait_timeout() correctly.
 
-Any reason for not making that a const object (same goes for all the
-functions being passed a drm_gpuva_fn_ops)?
+Fixes: 41d351f29528 ("drm/nouveau: stop using ttm_bo_wait")
+Reported-by: Tanmay Bhushan <007047221b@gmail.com>
+Link: https://lore.kernel.org/lkml/20230119225351.71657-1-007047221b@gmail.com
+Signed-off-by: John Ogness <john.ogness@linutronix.de>
+---
+ The original report was actually a patch that needed fixing.
+ Since nobody has stepped up to fix this regression correctly,
+ I'm posting the v2.
 
-> +};
+ This is a real regression introduced in 6.3-rc1.
+
+ drivers/gpu/drm/nouveau/nouveau_gem.c | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index f77e44958037..346839c24273 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -645,8 +645,9 @@ nouveau_gem_pushbuf_reloc_apply(struct nouveau_cli *cli,
+ 				struct drm_nouveau_gem_pushbuf_reloc *reloc,
+ 				struct drm_nouveau_gem_pushbuf_bo *bo)
+ {
+-	long ret = 0;
++	int ret = 0;
+ 	unsigned i;
++	long lret;
+ 
+ 	for (i = 0; i < req->nr_relocs; i++) {
+ 		struct drm_nouveau_gem_pushbuf_reloc *r = &reloc[i];
+@@ -703,13 +704,18 @@ nouveau_gem_pushbuf_reloc_apply(struct nouveau_cli *cli,
+ 				data |= r->vor;
+ 		}
+ 
+-		ret = dma_resv_wait_timeout(nvbo->bo.base.resv,
+-					    DMA_RESV_USAGE_BOOKKEEP,
+-					    false, 15 * HZ);
+-		if (ret == 0)
++		lret = dma_resv_wait_timeout(nvbo->bo.base.resv,
++					     DMA_RESV_USAGE_BOOKKEEP,
++					     false, 15 * HZ);
++		if (!lret)
+ 			ret = -EBUSY;
++		else if (lret > 0)
++			ret = 0;
++		else
++			ret = lret;
++
+ 		if (ret) {
+-			NV_PRINTK(err, cli, "reloc wait_idle failed: %ld\n",
++			NV_PRINTK(err, cli, "reloc wait_idle failed: %d\n",
+ 				  ret);
+ 			break;
+ 		}
+
+base-commit: 09a9639e56c01c7a00d6c0ca63f4c7c41abe075d
+-- 
+2.30.2
+
