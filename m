@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15292C77B61
-	for <nouveau@archiver.kernel.org>; Sun, 16 Apr 2023 09:43:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50010C77B76
+	for <nouveau@archiver.kernel.org>; Sun, 16 Apr 2023 09:44:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB34710E2F0;
-	Sun, 16 Apr 2023 09:43:34 +0000 (UTC)
-Received: from mout.web.de (mout.web.de [212.227.15.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09F9E10E2F0
- for <nouveau@lists.freedesktop.org>; Sun, 16 Apr 2023 09:43:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D88FB10E2F6;
+	Sun, 16 Apr 2023 09:44:18 +0000 (UTC)
+Received: from mout.web.de (mout.web.de [212.227.15.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9454010E2F6;
+ Sun, 16 Apr 2023 09:44:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de; s=s29768273;
- t=1681638210; i=markus.elfring@web.de;
- bh=taXUqh59A6s5jLK2AMqvzxLyUAQof+foOlZbJMHpMq8=;
- h=X-UI-Sender-Class:Date:Subject:From:To:References:Cc:In-Reply-To;
- b=oR1aBvnwe/BN/rPG5Zkcb5wAhq4DMnmC9wNp3KNGdr7WHZYF4vRbKqVkRX2+2NuuY
- hMWRXm6hFrxSg9NinKW6uhrtZGkh1RTunXs6ndMmlMqTVTnVHXNt7q11A3uOFeZtPb
- PSk3/IL75+rzOCqZiQJroD+hIo+Cj86p5RaQZj1ZpB+acVqYvM+A8vNoxDX7kBwLus
- HNm2/0yRjQH3pklpBILXb2pIITiCjq6YA9r0vVXKagp/MnM6uzDdpG6PIW6FvsPmkY
- QOPjMebyhufw7ZcdHgj6afFjQUw1S7B/waWtnZVUTc7EVi+f5qhpKTsyKm6sJX74Ct
- 1oo7n9/wUh9QQ==
+ t=1681638251; i=markus.elfring@web.de;
+ bh=n41gQARwukkaDyUnJDCzmOZrW02lD6AxTHrmVuVuCEg=;
+ h=X-UI-Sender-Class:Date:Subject:From:To:Cc:References:In-Reply-To;
+ b=RJ80FrIqGvs6zBpUClKiNhle9Yu4n+NMVf3DqRPZJyvhldcuSg9t4rykBvsWSWx6I
+ /T+GtC2utkKxFSaOJoxKERM1bWq/nybgmppzTbkcs+h8aQjHMuCbokHDFzlbe9qTP4
+ keVVwzHud+EYV+Li5I7SXMiYTWYjCaf9d4c2EbhsttJ90BIpvl7x3qw259xTsSyKT3
+ uO6iIgHMgDskXfHZ0b7F4ofFivQS0c7alcAT+d6GAyLrOQO0CwcPgUBLmR1JqMl6QF
+ E58v59Ytd0xj3ztAVRuIc1zGtNPMaTNxdlr2Wg/yIUsoOD2/RbDGdQ+K289WtbAt2/
+ Q4hgNoHpMyYkw==
 X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
 Received: from [192.168.178.21] ([94.31.85.83]) by smtp.web.de (mrweb005
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MLARS-1q4xdN0mZ8-00IAk1; Sun, 16
- Apr 2023 11:30:31 +0200
-Message-ID: <2a746461-844a-2ad6-7b52-03f13fe1b9bf@web.de>
-Date: Sun, 16 Apr 2023 11:30:22 +0200
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MCGSU-1pefFp1ysc-009TBU; Sun, 16
+ Apr 2023 11:44:11 +0200
+Message-ID: <6435d829-2c9b-a3f7-c8cd-cf923508a092@web.de>
+Date: Sun, 16 Apr 2023 11:44:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
@@ -39,29 +39,30 @@ To: kernel-janitors@vger.kernel.org, nouveau@lists.freedesktop.org,
  Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>
 References: <40c60719-4bfe-b1a4-ead7-724b84637f55@web.de>
  <1a11455f-ab57-dce0-1677-6beb8492a257@web.de>
-In-Reply-To: <1a11455f-ab57-dce0-1677-6beb8492a257@web.de>
+ <2a746461-844a-2ad6-7b52-03f13fe1b9bf@web.de>
+In-Reply-To: <2a746461-844a-2ad6-7b52-03f13fe1b9bf@web.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:iw+v+aCnrNtx+5y/6kxjkN4Kl9V8fZd2CmNmbqSHjI8zITy1Dor
- mtT4EPmX04v67L/2/64dI2v9e304IcgaVfVslHTvtnl9ifXrlbphIXi+qVRda/UUCGKRLb4
- Dv81299GNFZMUAqzqwVIiR9pOeRdpk0+qqY9WtkH0E0yV0HEZvKpdofwKlUPV1700fVGAbb
- 09ujBRsH5FoaJkta6rswQ==
-UI-OutboundReport: notjunk:1;M01:P0:ZE4ZfEO7EDg=;x5L5c+MZr2yi8kk8j3pmt7kByW0
- SW7LEFEMoqtgBwx9bW+7bXyTalD9WaN5RiulVHzTv27ufL3nMaSt3RbQ/Qpetv1qPPnikmUfK
- UZqvfVvtpSlYZm5JfFD6z6AHln0zjWQ18hmYVaS+AVjwFksU0gGvcauW406yM6NTswFQpcfQk
- aHvrJInM654M7Dl7PcASkldvNLRkh0TDroWpknjphpWIKatiLpdBFDtbWAzhJKh0P5W2gRHzs
- SJ6Uks4hsrRsoxQ0KpoPK72H2UIyn/57DuswV/Ie2G3A7n+p7siamUwM5ixBcAsUtSIH74zqZ
- s7T06juNtIEwOaGwL4SAqhNrCwlwKwjtaQjaux2ZXeRGkmAoTFPUi3cOjMdsgy2l1LeMHPLfx
- m7cIdywPUZjcXF4N9WysgYKqpX75m3J1FYcYCjco/UB21ijbd8HhnF7n6X4RPtrVtH+rFVxaz
- gePmaJH+z+AgvJa9zYND+675pEo/l80SauDmJ8XWehI6c3vfDFywhP2KLbjGWw56dePRuCfxT
- pA6aTKJfa4wTQ6ch5946bcCue4+tHF/3RayY7o8Ns24TzUlvvbfcZWui+38V74M177Y7LxZKY
- 5uDKPuaK786hmks6yDfj1H5KMoGteCtRYGFC4kzoMMPzqbOEKDXTM6qYBa0l/kyDXSefPQ7WJ
- jurAm90A3QOCwtGHSw6JnRJNGFL+KNDkpKfAcxY05TVLnHzSby778O9flMlMmhunVbCp1RvjV
- YLbqEkeHc41FPHqjYbiy7AB1MoR/YQOvNZx2F0vnDBrn9YiYX2rtEUD8gveOJKgv7dRzxeOhD
- tzaWujl+IIUYs64nsfz15z0WbAqv4T1g8YEeOuFixIFvkwe1h1avI7Tz8BYO8ElibeR5Kux/q
- tYeCZnPGbSHvgG8mNkJntgkyGX/Oy+Sz4mJivqY5N5NnoSZyggfNd1dHg
-Subject: [Nouveau] [PATCH 0/9] GPU-DRM-nouveau: Adjustments for seven
- function implementations
+X-Provags-ID: V03:K1:ODzhENw+XW+cNy69bxLsZXHfyG05+9RtBh+2vTyrh6Z+8DxqdGR
+ 8OAVcxt8+Utl3xdxvXvI3nY5PpyoGQTUGr06U+RSDttOnkz6tMsVf29j+mn5mwOImjmcVpo
+ zWH6m+duQWzHeABBTzABLHiuwtpJty+AOIuX8o6RsJNSXbVaXyc5HmacSlKbDZH5g8SSEqw
+ D8/R+9tdCjVHoMl8cqriA==
+UI-OutboundReport: notjunk:1;M01:P0:fBJoNokfgZo=;9w9dNcYmRVyg5DJZRXvBx+samPs
+ ztj0sTDy/hrsksoH9Xx+u5tZIeizXgpcXDG0id/w/nPQTXkMuJuh9GQW4+txG7p91qw4L6opG
+ K6KTIbM7NSkQSO4eVOVSLT3WWv9P5Pf8wMt5vyeX6Gw4yuOQwrHrXwjkxmvYwR0DoT8op7tb9
+ Hrv9WkRb5Wd5NTzuvfN6cUOLm+4xEJkGrjtfJvIV+wEOe/47FmycJCMH/A+gQIV19nu8ZH9Ui
+ Cf3PS5Gu89ZxZT5wfD5GTJFGpsWvUtfeNKTULL8bz6jV8E7ZJElcZg4rzF+pZ2G0ToecCf54v
+ 7lOvEIz6Hl1CNCVmPFMRQe4rHzFGQmpd/oHg0n3QzXOtaa374qpVpFTkiqEmPZjN7S+tKOm/X
+ 8G5oDGYqzM0KP6QVPSDfqtliMmCRhWeNKNYNlgm49E5Y7wWoEsK7Z9DEIMpS3EbswQExFt98B
+ t4Ir89kPLpzskp8AXXWroBF8V3SSuKgQOWulWsxMmC851QlW9J1NeoU11w1r8JW1inTbHNfwT
+ SFZIUZjjbWg3xwQJRg22ruxDzy7q/yidUp+gUd/FmpCgZUv6IKvUTa2sFyoDCjah+7DsFe2Vn
+ OtFGdFkTeTFV5huDhVXFdaqgZrXHjIq0qfuLOxQ8ZdWET8TQIWOFO+kQnX75Pc/TEtfcG3NCd
+ ysVr61bHNUzdbJhTbiu9TRIYrty4sLs3jHp1BngcKUEn44qo4Sxtrq/LlwywJsmUUZfZtcmuL
+ SwwNhZQ3Pn/xET1UeTNdQoIUOlWx7NODN4LxANwE/uLcmVTHf0ZBt77fP7j7I7kwLu1hYHVXX
+ Mt9CPqNn59z20+mIusoc7SsPwOD9/X5AEFkb0vWED99suFm2Po8tvOF/hamU0rql9ZOOH6HNE
+ UF2vfFFM3gXYmqfKDT0vbMm0V9bukwbRhbaBbygLQqR0BjBsnrFROsvV4
+Subject: [Nouveau] [PATCH 6/9] drm/nouveau/clk: Move a variable assignment
+ behind a null pointer check in nvkm_pstate_new()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,39 +78,45 @@ Cc: LKML <linux-kernel@vger.kernel.org>, cocci@inria.fr
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Date: Sun, 16 Apr 2023 11:22:23 +0200
+Date: Sun, 16 Apr 2023 07:45:54 +0200
 
-Several update suggestions were taken into account
-from static source code analysis.
+The address of a data structure member was determined before
+a corresponding null pointer check in the implementation of
+the function =E2=80=9Cnvkm_pstate_new=E2=80=9D.
 
-Markus Elfring (9):
-  debugfs: Move an expression into a function call parameter
-    in nouveau_debugfs_pstate_set()
-  debugfs: Move a variable assignment behind a null pointer check
-    in nouveau_debugfs_pstate_get()
-  debugfs: Use seq_putc()
-    in nouveau_debugfs_pstate_get()
-  debugfs: Replace five seq_printf() calls by seq_puts()
-    in nouveau_debugfs_pstate_get()
-  power_budget: Move an expression into a macro call parameter
-    in nvbios_power_budget_header()
-  clk: Move a variable assignment behind a null pointer check
-    in nvkm_pstate_new()
-  pci: Move a variable assignment behind condition checks
-    in nvkm_pcie_set_link()
-  pci: Move an expression into a function call parameter
-    in nvkm_pcie_set_link()
-  therm: Move an assignment statement behind a null pointer check
-    in two functions
+Thus avoid the risk for undefined behaviour by moving the assignment
+for the variable =E2=80=9Ccstate=E2=80=9D behind the null pointer check.
 
- drivers/gpu/drm/nouveau/nouveau_debugfs.c     | 19 ++++++++++---------
- .../nouveau/nvkm/subdev/bios/power_budget.c   |  3 +--
- .../gpu/drm/nouveau/nvkm/subdev/clk/base.c    |  2 +-
- .../gpu/drm/nouveau/nvkm/subdev/pci/pcie.c    |  7 +++----
- .../drm/nouveau/nvkm/subdev/therm/fanpwm.c    |  2 +-
- .../drm/nouveau/nvkm/subdev/therm/fantog.c    |  2 +-
- 6 files changed, 17 insertions(+), 18 deletions(-)
+This issue was detected by using the Coccinelle software.
 
+Fixes: 7c856522069755ab9d163a24ac332cd3cb35fe30 ("drm/nouveau/clk: impleme=
+nt power state and engine clock control in core")
+Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
+=2D--
+ drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c b/drivers/gpu/=
+drm/nouveau/nvkm/subdev/clk/base.c
+index da07a2fbef06..178dc56909c2 100644
+=2D-- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+@@ -417,7 +417,6 @@ nvkm_pstate_new(struct nvkm_clk *clk, int idx)
+ 		return 0;
+
+ 	pstate =3D kzalloc(sizeof(*pstate), GFP_KERNEL);
+-	cstate =3D &pstate->base;
+ 	if (!pstate)
+ 		return -ENOMEM;
+
+@@ -427,6 +426,7 @@ nvkm_pstate_new(struct nvkm_clk *clk, int idx)
+ 	pstate->fanspeed =3D perfE.fanspeed;
+ 	pstate->pcie_speed =3D perfE.pcie_speed;
+ 	pstate->pcie_width =3D perfE.pcie_width;
++	cstate =3D &pstate->base;
+ 	cstate->voltage =3D perfE.voltage;
+ 	cstate->domain[nv_clk_src_core] =3D perfE.core;
+ 	cstate->domain[nv_clk_src_shader] =3D perfE.shader;
 =2D-
 2.40.0
 
