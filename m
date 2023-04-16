@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59184C77B61
-	for <nouveau@archiver.kernel.org>; Sun, 16 Apr 2023 09:41:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8AEFC77B79
+	for <nouveau@archiver.kernel.org>; Sun, 16 Apr 2023 09:42:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBC9E10E2E2;
-	Sun, 16 Apr 2023 09:41:36 +0000 (UTC)
-Received: from mout.web.de (mout.web.de [212.227.15.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 957A310E2E2
- for <nouveau@lists.freedesktop.org>; Sun, 16 Apr 2023 09:41:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0196410E2EE;
+	Sun, 16 Apr 2023 09:42:24 +0000 (UTC)
+Received: from mout.web.de (mout.web.de [212.227.15.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 587B910E2E7;
+ Sun, 16 Apr 2023 09:42:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de; s=s29768273;
- t=1681638092; i=markus.elfring@web.de;
- bh=VbiCcvFD+Qi96Uu3AYsuuKIDaQ41gEUacwhrpgjbDtQ=;
+ t=1681638136; i=markus.elfring@web.de;
+ bh=lgS1D4M4giXfq9onDRIVPrtymyGrqry6IsUpJ8t1W14=;
  h=X-UI-Sender-Class:Date:Subject:From:To:Cc:References:In-Reply-To;
- b=XVBlAQOYOJBZ/s0JjYTtr/TxyXIASHVz6BprYNyZw8sKpFQob94N3SOh+db+26+B6
- 7SnaSjN87dLufMPJhTXdAa6EkedpTWihsLa9xUA4ZVldiFssFM7cIMaRp4F7ooyejG
- QbNnuplBkBTkH1g9NvP/CpI8Undxn1lzfZtrxcwm9pzLodpAbDaPaEhxSiec3LGgXo
- v5098yxWxQKl42u6JGgABooRaB5zJ1XFf6AKDoI57FQYHXbi4JPkLOZCSzgz94w2VX
- ttNCVbiKS+wa0+b0LLVVf2DOdKstNDuw27PRQoTAVhcnt0tJtPEvTN1sX5inQuBU3C
- Qd0vJtiZlfGVA==
+ b=SrFM4vR0iVIhNqq/22VSIFSKpmJJjqkaX+yf08tztkbRzvWZOekuAmLpz7IzHbNxG
+ EwVqvPsywpIGLW29aQO8AuhlZQokzUpuHFmapW3CYQIjyFWJQ2VtHjzDaz8rP46Oce
+ FbxRNOUKUzYR48EDjjlpxVgjYJUnhHHu2NC4RlLP5ncemXv9ZZUfzwZwNxSGFEvwQ1
+ YfIBK3Biqycn2LOVg2dJQiCcbXcBm4PYPc3YhTmL+DgzyKvYFnak4hEtvgC3u7BWIN
+ E3a7ypDyXxoCU2IHRw7qdxzax06ui+3u2vMkxtaq+IE6HBvWDImTGnl29r8rQf4gxd
+ JfI7lw0ahYtnw==
 X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
 Received: from [192.168.178.21] ([94.31.85.83]) by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MA4fW-1pcTYe2hli-00C1jS; Sun, 16
- Apr 2023 11:36:18 +0200
-Message-ID: <5b7b99f7-1692-74e5-4b1e-cfa14dad7c57@web.de>
-Date: Sun, 16 Apr 2023 11:36:18 +0200
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MdO9E-1qN2bH3Yw4-00ZUwb; Sun, 16
+ Apr 2023 11:42:15 +0200
+Message-ID: <529fe82e-59f0-71a2-1e33-b051f833b67c@web.de>
+Date: Sun, 16 Apr 2023 11:42:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
@@ -43,26 +43,26 @@ References: <40c60719-4bfe-b1a4-ead7-724b84637f55@web.de>
 In-Reply-To: <2a746461-844a-2ad6-7b52-03f13fe1b9bf@web.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:AJ9D9+EKDgZDPgbcMafxaHj4mOgWlvC+BvY25gB1NZGB6gNVx+O
- xhlki1nbLNhebMQqVZC12o1VYHnC/hTtQPF1DAizUyk2o7v3fn2fPTUi/m+RNs0cM8+MNFf
- ohoDmlpNTR62CxT6BFNOCtonYB30A9B+2zGYwJaAbi6U2WStWeJhow8NUeolN5fEtVgp6P3
- RRdDPeBeF+6FzYAzg1i2w==
-UI-OutboundReport: notjunk:1;M01:P0:nOy3efXdRWs=;6Ze/pKz000AeCbOgES8VQCM7IF1
- vXLcJI/GO75QjcVIKnOTXVf0PmSsTL4zEfCBZIlBEv4tQEb+paIVZkPS6uqK8XHtF/uW4faqR
- RLyUFGvuFQl0REbJq9DoQacgbM6j7SwgPAHkX+VIX+kPS5py3zvXf9Tygo1gIgFKhSr7t6+SN
- 5sWP48lfW+Y59OEbwlB0NwBRupXK255XWggT9bmtpiX4mnlivF7Jox/ECZsm9llvJ2xUFSxfV
- L74ca+WLS5aX4kRy+drz8sue9MB4amxT9k/n3b0WUZTz5q+KntKcWrr/0sVsq57veJEo13yPu
- LLaSFIP1BHys78SemzLTWyhOTbWmCB06Fa+j/iqFrg7JHDFfuqpBAow4Ybv6lKtazU5qkg1pG
- QqZyrCmC8jJCTn3nh332ovMyRcq9FH1lMnvhn1jRqvGtpYZQnW2ah3ZAjAt6vHUbTjR+NGJQG
- 7sVZmnhP1DFHK3SBZvFeW4hThiv1hJHOIdTD3jgchQt6EQApBgn90sxTC0J+WL1HfQFS3SCe0
- SD4QOaZa6CqKV6flKH8wBvUmfxV95vAj7XeUcA9kFsbSKmzKob9hza5OWtyQ+Ktjd6DhaW82s
- jtNVi+FimO+pMAM4WqnoaOmukRQQuGfJkINb3nGmbmqsm+ChbQm5959uypi1xcvRVN1ucQ04J
- H6ncExQWwy1JhSpnMg0B6OoqI3+aP32CWW1JLv+pAuVEvRPJlEntOZO0PnmYS7ypSyNIcSFcJ
- YwJalWrFi2BCdkOs7wKNWwwCyJAIl4Iekk9gwwB6bH430UyBNBPqcWVLwzpl8Gx944lG9DdS6
- blzIXrn5s1Fwb/eEuuWg4jvGjgv6tu7BHAcDohw1c8HmBtuJmD+wMNeiRHrfatSwRcRvTvtvA
- F9xeqEHRGtnMzIx4qX/KeW5o/maP9IZWCPbPEMmsqba7fBVq3pzRLiAOs
-Subject: [Nouveau] [PATCH 2/9] drm/nouveau/debugfs: Move a variable
- assignment behind a null pointer check in nouveau_debugfs_pstate_get()
+X-Provags-ID: V03:K1:aiPmQfJG06hSJK2eCipymGgnde+p2W0i8rwt96FvWfIh709EcJo
+ huBlDJaHqtKRwjAw5FzH739qc+nTz+sl7BKJQuDI6zQP3z0vowOFIdOxbwP7Hwl8QLmhJfe
+ 7DwTfvwy3jdKcqhGSUC4FoykEWy7zvQSdAji7Q7MiY8hB1EvSgcBoYP3NvQqrNvu0rgzYHl
+ gBZaGVhMoZbinNL4Wyhrg==
+UI-OutboundReport: notjunk:1;M01:P0:WfemR50h7fw=;I11z2a74WOXS6RqcP5qwGcJ9Mrs
+ TkV/M5RkJMl9d5KvBZSijoUqI/pHt4AjPLB9Zhm2Orm3adoBtEfu2Vuq8wV00x9TcXQIfKy2c
+ NAteq8yGb7mwsVeCFTljwhBR9DoObdCs3TaxMc2zNCIRQAmjXRftFOSgMl/xXg3SRY2emzUdA
+ U6wRjmY6u8ofo/vI6gApnlhyX/XsZqatiJcJeVS/tl97TMe5Fa0Pabt8eLKa/LsDH/JMcAjtu
+ p5rp8P1CYPbb+aEHcdJVfFElIxEtLvirpJMHTOW3smFoGhfzrGyV3tvWT5rRrK7g02J/H158K
+ YTGen6ipZxaR3GnG7pnzOHTAv1qka7RQ0NT9k14WpdRAZXAu0nZFHVaR2a9b1KKdYr7bfTT4X
+ AaExemkCRuM3zU9anbFOhNFhIfiomVDMZMO0qUupgm+CWU9G22912OZGy55ZlAPvE8le0KGsC
+ MLTIoDLNzl4GR8Tof3RCU7KRJD/31Drm/3N3iTGlwGTcDCKK1KMwJJNgghLHpO79QaQ4/tyUb
+ qVIX55yOJyb1I86CTBHTKGAve4qPdJSeN8nqWTTH9BsskD4bawcTVftSi3pj4igEAfq8naYdQ
+ zi/yDa3ozYoywgWSDHt9RHbMaz1bZ4nFqqUysjagGWKeHV7N96CpX4JCh3kcvRmE8PAAyBcd1
+ ZHZNnuMRrWyE3WDed2ncjcPUXIcHCrv7JPk9PlBX488cntWFsW2ocbslyuEZtMlJ4AdaRZS49
+ 9i8O7BKNgtp3u2dNMvW7G8Ae7SQ/lVdXipx0fqeV1Zizhgje0MrV6ksLGRkq3+pTgkzF426q7
+ kj4XUiVdx8wkj8Zv3/QoWevlRb7NNs5DgiW98Nz/5F1kR0viY1aR9jRjqDGYwXsd6zeHXwJHV
+ fOk0ALSWX2GtS4OlbI9aiPpClaLbkyCjcaQWm0NE/0gjiq5ECktJQj2pi
+Subject: [Nouveau] [PATCH 5/9] drm/nouveau/bios/power_budget: Move an
+ expression into a macro call parameter in nvbios_power_budget_header()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,46 +78,46 @@ Cc: LKML <linux-kernel@vger.kernel.org>, cocci@inria.fr
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Date: Sat, 15 Apr 2023 21:24:43 +0200
+Date: Sat, 15 Apr 2023 22:30:30 +0200
 
 The address of a data structure member was determined before
 a corresponding null pointer check in the implementation of
-the function =E2=80=9Cnouveau_debugfs_pstate_get=E2=80=9D.
+the function =E2=80=9Cnvbios_power_budget_header=E2=80=9D.
 
-Thus avoid the risk for undefined behaviour by moving the assignment
-for the variable =E2=80=9Cctrl=E2=80=9D behind the null pointer check.
+Thus avoid the risk for undefined behaviour by moving the usage
+of an expression into a parameter for a macro call in one if branch.
 
 This issue was detected by using the Coccinelle software.
 
-Fixes: 6e9fc177399f08446293fec7607913fdbc95e191 ("drm/nouveau/debugfs: add=
- copy of sysfs pstate interface ported to debugfs")
+Fixes: e5f8eabc0077ea3f77b3362e28d3969ae62e70f0 ("drm/nouveau/bios/power_b=
+udget: Add basic power budget parsing")
 Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
 =2D--
- drivers/gpu/drm/nouveau/nouveau_debugfs.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nvkm/subdev/bios/power_budget.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/n=
-ouveau/nouveau_debugfs.c
-index 44e26b6e74c7..a859a086f308 100644
-=2D-- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-@@ -73,13 +73,14 @@ nouveau_debugfs_pstate_get(struct seq_file *m, void *d=
-ata)
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/power_budget.c b/dri=
+vers/gpu/drm/nouveau/nvkm/subdev/bios/power_budget.c
+index 03d2f970a29f..2ba992bdb19d 100644
+=2D-- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/power_budget.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/power_budget.c
+@@ -59,7 +59,6 @@ int
+ nvbios_power_budget_header(struct nvkm_bios *bios,
+                            struct nvbios_power_budget *budget)
  {
- 	struct drm_device *drm =3D m->private;
- 	struct nouveau_debugfs *debugfs =3D nouveau_debugfs(drm);
--	struct nvif_object *ctrl =3D &debugfs->ctrl;
-+	struct nvif_object *ctrl;
- 	struct nvif_control_pstate_info_v0 info =3D {};
- 	int ret, i;
+-	struct nvkm_subdev *subdev =3D &bios->subdev;
+ 	u8 ver, hdr, cnt, len, cap_entry;
+ 	u32 header;
 
- 	if (!debugfs)
- 		return -ENODEV;
+@@ -82,7 +81,7 @@ nvbios_power_budget_header(struct nvkm_bios *bios,
+ 	}
 
-+	ctrl =3D &debugfs->ctrl;
- 	ret =3D nvif_mthd(ctrl, NVIF_CONTROL_PSTATE_INFO, &info, sizeof(info));
- 	if (ret)
- 		return ret;
+ 	if (cap_entry >=3D cnt && cap_entry !=3D 0xff) {
+-		nvkm_warn(subdev,
++		nvkm_warn(&bios->subdev,
+ 		          "invalid cap_entry in power budget table found\n");
+ 		budget->cap_entry =3D 0xff;
+ 		return -EINVAL;
 =2D-
 2.40.0
 
