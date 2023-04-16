@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B80D9C77B76
-	for <nouveau@archiver.kernel.org>; Sun, 16 Apr 2023 09:39:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5D70C77B61
+	for <nouveau@archiver.kernel.org>; Sun, 16 Apr 2023 09:40:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BAD510E2D8;
-	Sun, 16 Apr 2023 09:39:05 +0000 (UTC)
-Received: from mout.web.de (mout.web.de [212.227.15.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 870E210E130
- for <nouveau@lists.freedesktop.org>; Sun, 16 Apr 2023 09:39:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 603CC10E2D7;
+	Sun, 16 Apr 2023 09:40:21 +0000 (UTC)
+Received: from mout.web.de (mout.web.de [212.227.15.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E70ED10E130;
+ Sun, 16 Apr 2023 09:40:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de; s=s29768273;
- t=1681637941; i=markus.elfring@web.de;
- bh=8uHpunreb8Uo0Uleoeb/IuBORjGn6rkAngQmsnHu6wo=;
+ t=1681638014; i=markus.elfring@web.de;
+ bh=+NCsfkXOgfuHgoQl17J8LhHx9x3ANJMwQ5mx9xKblt0=;
  h=X-UI-Sender-Class:Date:Subject:From:To:Cc:References:In-Reply-To;
- b=CPy2JuSM7ZOJI9p75OOOELHfSisOhgI3mgubeHA5gNRQwjb7gYxqR7PfVtQVpm2Bc
- Q4PRBPTgtPW1JzZU3Kvg8fFn5rUa9axPOHfQ5RtI5n0M0KRh7r3C0mvz0V3jQg7y6N
- sa8GEXRK84L9ieKJUQPUMgdTmildR5Cl1AUvPYYvHavr9Ac4KnUQxCL7WZCcok9W1T
- 0I91nRl3qIqk4GoD/E6iqyKXXVTiqRGVELTl5EfiEC/ut31RTDYNEoXJDKeOQ6o334
- 9xAJBcHKTd9qL/YWwwt+cl/OEATK5jvEpG/jmI8ZulKsxOjCzMw08M7gP4PR+oxX9x
- C+1PX3IPe2b+g==
+ b=pzqg3t2qAM3m219l/pA9avqJGTNlIlkgDmHDFLaYF5w29VTNZ/QOZ12N7zw08tCAr
+ q/9XG1SYZx1okSEYUjbNGPrDpsI10RKVN7XwyPs0xMmWMGhMM9BenohNpJWzfY8fGV
+ fdYSHCpVwnIRTqj/AHA9FzjhRcHRp5ENsUpf5ga7K5cf7lJN6KApaodVE3TV2Y1aaE
+ iVt6wJH93/8BFokSbwyO6GPeMmNizJ+RA3rO0i+fBHxVRZxeu1jA3lCboB6ykZcMc9
+ r/+/ubID8CRdvYm0WLtVQFgiX9qQLNRP8jxG+fDGCp6NQrr8r9nIKdtgQ/mO1Y4DA0
+ 967tp06U3k9MQ==
 X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
 Received: from [192.168.178.21] ([94.31.85.83]) by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MsaS7-1qbYVm0bDH-00tdS0; Sun, 16
- Apr 2023 11:33:45 +0200
-Message-ID: <1903e057-57d3-e12e-da37-008e23afd2e2@web.de>
-Date: Sun, 16 Apr 2023 11:33:44 +0200
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1N8n46-1qRyYK1tfq-0162Pr; Sun, 16
+ Apr 2023 11:40:14 +0200
+Message-ID: <bdee7e41-094a-91d1-3f6f-56df402d70b7@web.de>
+Date: Sun, 16 Apr 2023 11:40:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
@@ -43,26 +43,26 @@ References: <40c60719-4bfe-b1a4-ead7-724b84637f55@web.de>
 In-Reply-To: <2a746461-844a-2ad6-7b52-03f13fe1b9bf@web.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:4oF3Th7JF7y2HCnR8fozd4gR12wECkP6ixJoym1j256YmWiDIVo
- 8GgH4sILld65578JRcAcU0gwMo0Bqhm9yfFuy3aU4LPez80+WkLFlNb+mZ1sk/pKTiK+que
- d1iRYCljX6TbqL+5MQ7+Pjz07Cp/Xqvo8DOxxV/na0LIac1BqwyBmnVHbu2AzbIHi0WS/La
- vNUKTLphOY36wAc8QbohQ==
-UI-OutboundReport: notjunk:1;M01:P0:1aENxpWCNus=;qf4iqrY8BgyggS/G9yde+2+VFb4
- /grH3nmLG8mRX1bdsItSmLkRB7uw/2RAGDepNCJzoXr0rz69JN/B//euVMdfCodta0SVxe+Fy
- BuxbK9+Wttl2xF/p3i7DoNVMjwMrBWvGk9zfqJSBOf8P6ByEacvDmwZkh/RjU+aoG9h01pS2E
- T5r8cHXoNTm4gyWDfWkVQet3dJbLJuskuO3JKDU+p0oxkUW0lRWpTgIb3KQ+LcPLjJkvE8MhX
- HbM98LfvnjgolCu0UoVM9Txhxx65eNkTJnBjcD71K7XS9WRBHYj3YtpBTiLcdF6k1vszIqwpY
- Ir8AElkLtirhtHd+xK3zamjzGl7n6XjJXxRdJu6yAXy5JLdM95BIQyML9R1fAMbrZrHrSKiYm
- TX9BJP6KtPJjVPabFdbJSojoNxvBmHXsuu4myamK0yVqZoLrybwXCfvF7pi/mvtOp+wMAiUa8
- ZomVp1mRXSUlfyZLOItC1y2wteIIkcxiG078sU2hrI5jdW6dWy0hdtp+8E/s7xVqc7JwHyEtY
- XWpHVFtjfhBRvXG7Yyf3V3v0Z28OZUbTz0t6syIAioPzOQGk3Gei+kzctYcP5ieoijaCWhIdP
- KKNMxvbjQYE3XaJli5+lwRWpreCA5vNkZsOGQ9JzuyoDCDgvMptDeIeUnBJGfo3z4ImynhRO4
- 4KrX0s7NXOmarthqWQP1ST8q39+X5gjBbM9GLb9NHfvN4b5R17wtWMZmOs2+zKybAmD+DAcDi
- zVnotkI7ErdXazKE199YCQyk1IN3LCoVdECurJmfH9XbmR6MJioS42Rro0Larh5/gFl9opwNM
- q25S7NmyTn/Ak9PKc2TtmkHJBpKnTP0WiaTy1lhhXkCmm/omy71dsgT345wStKoAWLTnL77GP
- Jy+ka3HnWz/fFdGEeWssrR/z1oXw4p1b3FULgesRiz4xWOPUNwCODCYH0
-Subject: [Nouveau] [PATCH 1/9] drm/nouveau/debugfs: Move an expression into
- a function call parameter in nouveau_debugfs_pstate_set()
+X-Provags-ID: V03:K1:DOJiTspO1yVyqj5IRQ7Ck8IrgQpJ3wpqDiP4YB6SicStSNsT1Wn
+ zp7gzbThX2mCd7NQP9lFztsSN3AbdrHL4LBRg4RzusLl0mqq2AYR3d88j7ApbbiVAZQyWUK
+ LY2CTCL3HOldVjlLD6FREpXfB9psxEG6m/vbkd+VHWgzOPwxmgJDzVHS2+xrWwaKbxmmvZH
+ Xawl5dHvP8+cF9FOr3jfA==
+UI-OutboundReport: notjunk:1;M01:P0:vNiijIQRaJM=;tWbqBgSB+ngyZfoRofZ0uVvXENa
+ Q8zDybNEY/Kbdtz7HRgy3rueuLGY9NaCbEDrLjc5Aa0VlPfqGWWf5V7r6u4Byl6b+QbIDdjsC
+ 45awXuBGjpYxOqZkq+9aqTifX/KR3uPR+Bfyctu8hXxJzjB61zIXpG0lYj8h+HGBxECJxRMbw
+ UTnjLEsC2x9LaiBrmawNJ9GUhyNfFRxA4XQjKEKfKCClZ380ZdkwCxXQOYmcQkyohRhbkUnWV
+ 0mQh32fGIhe9R2VxLzHNW++qDVB1xqWS/MDgezikZp5Yf18ht/GHAii5mDk2ucv5KTLPtTRjV
+ znGy5eBwFRRAfelcyP72FokgLm+WeWeVqlptFdCOcZfPcYnIDLqW5f/glKWfZg3sD07UPJ4jc
+ shVu7LcdDbMGc4BUIrBSYOYlP8rZlz4qzuHLzd8Lws91J9ZwLLzcAW7UMuq3OsMN0qWW8Z72w
+ uPVpre+Nmc6Xfnp2UPg71NNL6nmz84oVCo7o1x0CgYhoSn6WWnBGAQNRCZCSqRwNgS05gCrku
+ CPCGjDobwoeHjdf5SYgfNgXu5yOU6oll5bkfJ6HYZsWB8DMq9cARlLx1sYVTxYPSEQcG4TVQa
+ bw44HMYJ4ZXGFJwqfJfQPuCPB0LV23+M+I3sYIkph/J8v/V1DnHj+L8d0RmVYApLHFOnmLUfl
+ DEs+GdhYvLSKjAVHhk+pdmRAZ6Sku33p3TmlUEHIhRQ1ItWw+74ROlG58nCAkwhYS7oeVWIkh
+ jZLAPS1MwBv9QRLSe+TE/YYiTY9FOdno237aX5Ux4dQzyvl5eV9EVp1m/yNYnn+HI9aFYNwXI
+ Lxeetawd00ykyklv2ji/zl41wEfRzE6/cri1mRCrB8j1ud5lOFqzY0pTPb1PeIu0QTe7o3ZUv
+ eHdDLj1y3Czq+OS11ZBrOmbuNGN9Kre8l3hx9pfWiOwAsJuGdz++yHI30
+Subject: [Nouveau] [PATCH 4/9] drm/nouveau/debugfs: Replace five
+ seq_printf() calls by seq_puts() in nouveau_debugfs_pstate_get()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,49 +78,47 @@ Cc: LKML <linux-kernel@vger.kernel.org>, cocci@inria.fr
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Date: Sat, 15 Apr 2023 21:06:06 +0200
+Date: Sat, 15 Apr 2023 22:02:31 +0200
 
-The address of a data structure member was determined before
-a corresponding null pointer check in the implementation of
-the function =E2=80=9Cnouveau_debugfs_pstate_set=E2=80=9D.
-
-Thus avoid the risk for undefined behaviour by moving the usage
-of an expression into a parameter for a function call at the end.
+Five strings which did not contain a data format specification should
+be put into a sequence. Thus use the corresponding function =E2=80=9Cseq_p=
+uts=E2=80=9D.
 
 This issue was detected by using the Coccinelle software.
 
-Fixes: 6e9fc177399f08446293fec7607913fdbc95e191 ("drm/nouveau/debugfs: add=
- copy of sysfs pstate interface ported to debugfs")
 Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
 =2D--
- drivers/gpu/drm/nouveau/nouveau_debugfs.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_debugfs.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/n=
 ouveau/nouveau_debugfs.c
-index 2a36d1ca8fda..44e26b6e74c7 100644
+index 13c82eea8828..99d022a91afc 100644
 =2D-- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-@@ -144,7 +144,6 @@ nouveau_debugfs_pstate_set(struct file *file, const ch=
-ar __user *ubuf,
- 	struct seq_file *m =3D file->private_data;
- 	struct drm_device *drm =3D m->private;
- 	struct nouveau_debugfs *debugfs =3D nouveau_debugfs(drm);
--	struct nvif_object *ctrl =3D &debugfs->ctrl;
- 	struct nvif_control_pstate_user_v0 args =3D { .pwrsrc =3D -EINVAL };
- 	char buf[32] =3D {}, *tmp, *cur =3D buf;
- 	long value, ret;
-@@ -188,7 +187,8 @@ nouveau_debugfs_pstate_set(struct file *file, const ch=
-ar __user *ubuf,
- 		return ret;
- 	}
+@@ -120,16 +120,16 @@ nouveau_debugfs_pstate_get(struct seq_file *m, void =
+*data)
 
--	ret =3D nvif_mthd(ctrl, NVIF_CONTROL_PSTATE_USER, &args, sizeof(args));
-+	ret =3D nvif_mthd(&debugfs->ctrl, NVIF_CONTROL_PSTATE_USER,
-+			&args, sizeof(args));
- 	pm_runtime_put_autosuspend(drm->dev);
- 	if (ret < 0)
- 		return ret;
+ 		if (state >=3D 0) {
+ 			if (info.ustate_ac =3D=3D state)
+-				seq_printf(m, " AC");
++				seq_puts(m, " AC");
+ 			if (info.ustate_dc =3D=3D state)
+-				seq_printf(m, " DC");
++				seq_puts(m, " DC");
+ 			if (info.pstate =3D=3D state)
+-				seq_printf(m, " *");
++				seq_puts(m, " *");
+ 		} else {
+ 			if (info.ustate_ac < -1)
+-				seq_printf(m, " AC");
++				seq_puts(m, " AC");
+ 			if (info.ustate_dc < -1)
+-				seq_printf(m, " DC");
++				seq_puts(m, " DC");
+ 		}
+
+ 		seq_putc(m, '\n');
 =2D-
 2.40.0
 
