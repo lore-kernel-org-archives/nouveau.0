@@ -4,33 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15294C7EE26
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BE29C7EE2A
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E9F110E418;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A51A710E43F;
 	Thu,  4 May 2023 12:32:31 +0000 (UTC)
-X-Greylist: delayed 306 seconds by postgrey-1.36 at gabe;
- Fri, 04 Nov 2022 02:58:31 UTC
-Received: from out30-133.freemail.mail.aliyun.com
- (out30-133.freemail.mail.aliyun.com [115.124.30.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D77F10E791
- for <nouveau@lists.freedesktop.org>; Fri,  4 Nov 2022 02:58:30 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R221e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046051;
- MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
- TI=SMTPD_---0VTuj9Jz_1667530379; 
-Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
- fp:SMTPD_---0VTuj9Jz_1667530379) by smtp.aliyun-inc.com;
- Fri, 04 Nov 2022 10:53:20 +0800
-From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-To: bskeggs@redhat.com
-Date: Fri,  4 Nov 2022 10:52:58 +0800
-Message-Id: <20221104025258.69534-1-jiapeng.chong@linux.alibaba.com>
-X-Mailer: git-send-email 2.20.1.7.g153144c
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A55010E36B;
+ Mon, 17 Apr 2023 21:03:16 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 0A8CF62517;
+ Mon, 17 Apr 2023 21:03:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39E1AC433EF;
+ Mon, 17 Apr 2023 21:03:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1681765395;
+ bh=6v5l4vPJTur+E1/6K1HeqdG2RoCvkceddg82nGQhHzo=;
+ h=From:To:Cc:Subject:Date:From;
+ b=uYSogoOgT3vkHqwAHouEmEcZ1WY9ayQbD/3q4D41z4V5W2bvOcpjGr+v+6RcS/ToR
+ ksjBYY8BTb2gZZnZ0G17NgHokSTPCyuics1K/YIDbFQFwiCNJswJzMe8i7FW+6DPt9
+ 52zM9KfWyr7b5MYhgF9JxykVPv/YC3pT2XZXAJje/5IFUzIT1evA79NODj8MbJHPOy
+ Amxip8uDsZS2YSK4nY3QAUDOEEtTN/mY+2GR7t4gnHNpv3MuD+OktfnJchWFgFJ+zn
+ uLpUN1SU8EpmkuHjdaPSKbZtvNshNng42Z2WkAmiA4ZETtmOX+uK9ncFHVzxrHIzq6
+ DHQ31NPo574MQ==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+Date: Mon, 17 Apr 2023 23:03:04 +0200
+Message-Id: <20230417210310.2443152-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:36 +0000
-Subject: [Nouveau] [PATCH] $drm/nouveau: Fix kernel-doc
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:34 +0000
+Subject: [Nouveau] [PATCH] drm/nouveau: remove unused tu102_gr_load()
+ function
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,46 +53,49 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
- nouveau@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, daniel@ffwll.ch
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Arnd Bergmann <arnd@arndb.de>,
+ Gourav Samaiya <gsamaiya@nvidia.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-No functional modification involved.
+From: Arnd Bergmann <arnd@arndb.de>
 
-drivers/gpu/drm/nouveau/nouveau_ioc32.c:52: warning: expecting prototype for Called whenever a 32-bit process running under a 64(). Prototype was for nouveau_compat_ioctl() instead.
+tu102_gr_load() is completely unused and can be removed to address
+this warning:
 
-Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=2730
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+drivers/gpu/drm/nouveau/dispnv50/disp.c:2517:1: error: no previous prototype for 'nv50_display_create'
+
+Fixes: 1cd97b5490c8 ("drm/nouveau/gr/tu102-: use sw_veid_bundle_init from firmware")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
- drivers/gpu/drm/nouveau/nouveau_ioc32.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/engine/gr/tu102.c | 13 -------------
+ 1 file changed, 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_ioc32.c b/drivers/gpu/drm/nouveau/nouveau_ioc32.c
-index adf01ca9e035..d13a64c0b529 100644
---- a/drivers/gpu/drm/nouveau/nouveau_ioc32.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_ioc32.c
-@@ -39,13 +39,13 @@
- #include "nouveau_ioctl.h"
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/tu102.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/tu102.c
+index 3b6c8100a242..a7775aa18541 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/tu102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/tu102.c
+@@ -206,19 +206,6 @@ tu102_gr_av_to_init_veid(struct nvkm_blob *blob, struct gf100_gr_pack **ppack)
+ 	return gk20a_gr_av_to_init_(blob, 64, 0x00100000, ppack);
+ }
  
- /**
-- * Called whenever a 32-bit process running under a 64-bit kernel
-+ * nouveau_compat_ioctl - Called whenever a 32-bit process running under a 64-bit kernel
-  * performs an ioctl on /dev/dri/card<n>.
-  *
-- * \param filp file pointer.
-- * \param cmd command.
-- * \param arg user argument.
-- * \return zero on success or negative number on failure.
-+ * @filp: file pointer.
-+ * @cmd: command.
-+ * @arg: user argument.
-+ * Return zero on success or negative number on failure.
-  */
- long nouveau_compat_ioctl(struct file *filp, unsigned int cmd,
- 			 unsigned long arg)
+-int
+-tu102_gr_load(struct gf100_gr *gr, int ver, const struct gf100_gr_fwif *fwif)
+-{
+-	int ret;
+-
+-	ret = gm200_gr_load(gr, ver, fwif);
+-	if (ret)
+-		return ret;
+-
+-	return gk20a_gr_load_net(gr, "gr/", "sw_veid_bundle_init", ver, tu102_gr_av_to_init_veid,
+-				 &gr->bundle_veid);
+-}
+-
+ static const struct gf100_gr_fwif
+ tu102_gr_fwif[] = {
+ 	{  0, gm200_gr_load, &tu102_gr, &gp108_gr_fecs_acr, &gp108_gr_gpccs_acr },
 -- 
-2.20.1.7.g153144c
+2.39.2
 
