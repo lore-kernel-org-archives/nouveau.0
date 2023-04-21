@@ -4,40 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2ADE8C7EE26
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEEEAC77B78
 	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:33:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B475610E489;
-	Thu,  4 May 2023 12:32:56 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32A8010E03D;
- Fri,  7 Apr 2023 15:00:43 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 83D2465004;
- Fri,  7 Apr 2023 15:00:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C88BC433D2;
- Fri,  7 Apr 2023 15:00:37 +0000 (UTC)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- nouveau@lists.freedesktop.org
-Date: Fri,  7 Apr 2023 17:00:30 +0200
-Message-Id: <20230407150031.79749-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2593210E497;
+	Thu,  4 May 2023 12:32:57 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D720C10E130;
+ Fri, 21 Apr 2023 10:46:28 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 11EA96602040;
+ Fri, 21 Apr 2023 11:46:26 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1682073986;
+ bh=xy1oqjU5V/MfMlLIxJBwQthAmE3+07DxTdM+2r5CRK4=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=Jjamna4sOjLQkH1nkuIHUE36adS3B1KZwwMxTmygRn+u3/pxkEYo1F5PkmJVw4239
+ wJ2unj8E4sgzv5F/dTBIm4We4BM1YRFVftcf1/unkDQWK2Gd8rlwkOk9isIcl8ZU4K
+ u3XVV6sZQ+x6LNMVcVXbvfWEV7n0cWBzE/lFdNDolnKXKo1R0RgZY1KEKNYJjymDZe
+ 1pjNjYuBEHtQJtRZME2qyikHAFFiWNiovamiotKiNxWQ1hFWpN/6yOaGatSU0+IjMt
+ oBZ1VO0ap3BM0VFBCdynQBNuj87otIdpOiix9tBW/8hGrk0GbKGltZP8Kp2AIPgw2M
+ F57uTnKdV+DXQ==
+Date: Fri, 21 Apr 2023 12:46:22 +0200
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Danilo Krummrich <dakr@redhat.com>
+Message-ID: <20230421124622.6386cd60@collabora.com>
+In-Reply-To: <20230404012741.116502-5-dakr@redhat.com>
+References: <20230404012741.116502-1-dakr@redhat.com>
+ <20230404012741.116502-5-dakr@redhat.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 04 May 2023 12:31:36 +0000
-Subject: [Nouveau] [PATCH 1/2] drm/i915: constify pointers to
- hwmon_channel_info
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 04 May 2023 12:31:34 +0000
+Subject: Re: [Nouveau] [PATCH drm-next v3 04/15] drm: manager to keep track
+ of GPUs VA mappings
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,53 +54,44 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hwmon@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>
+Cc: matthew.brost@intel.com, willy@infradead.org, daniel@ffwll.ch,
+ dri-devel@lists.freedesktop.org, corbet@lwn.net, nouveau@lists.freedesktop.org,
+ ogabbay@kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ mripard@kernel.org, linux-mm@kvack.org, alexdeucher@gmail.com,
+ bskeggs@redhat.com, Liam.Howlett@oracle.com, Dave Airlie <airlied@redhat.com>,
+ bagasdotme@gmail.com, christian.koenig@amd.com, jason@jlekstrand.net,
+ donald.robson@imgtec.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Statically allocated array of pointed to hwmon_channel_info can be made
-const for safety.
+On Tue,  4 Apr 2023 03:27:30 +0200
+Danilo Krummrich <dakr@redhat.com> wrote:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +/**
+> + * drm_gpuva_prealloc_create - creates a preallocated node to store a
+> + * &drm_gpuva entry.
+> + *
+> + * Returns: the &drm_gpuva_prealloc object on success, NULL on failure
+> + */
+> +struct drm_gpuva_prealloc *
+> +drm_gpuva_prealloc_create(void)
+> +{
+> +	struct drm_gpuva_prealloc *pa;
+> +
+> +	pa = kzalloc(sizeof(*pa), GFP_KERNEL);
+> +	if (!pa)
+> +		return NULL;
+> +
+> +	if (mas_preallocate(&pa->mas, GFP_KERNEL)) {
 
----
+mas_preallocate() needs a valid tree field to calculate the number
+of nodes to pre-allocate. I guess we're missing a MA_STATE_INIT() here,
+and we need to pass a gpuva_mgr object to this helper.
 
-This depends on hwmon core patch:
-https://lore.kernel.org/all/20230406203103.3011503-2-krzysztof.kozlowski@linaro.org/
-
-Therefore I propose this should also go via hwmon tree.
-
-Cc: Jean Delvare <jdelvare@suse.com>
-Cc: Guenter Roeck <linux@roeck-us.net>
-Cc: linux-hwmon@vger.kernel.org
----
- drivers/gpu/drm/i915/i915_hwmon.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-index 596dd2c07010..87b527a54272 100644
---- a/drivers/gpu/drm/i915/i915_hwmon.c
-+++ b/drivers/gpu/drm/i915/i915_hwmon.c
-@@ -267,7 +267,7 @@ static const struct attribute_group *hwm_groups[] = {
- 	NULL
- };
- 
--static const struct hwmon_channel_info *hwm_info[] = {
-+static const struct hwmon_channel_info * const hwm_info[] = {
- 	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT),
- 	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT),
- 	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
-@@ -275,7 +275,7 @@ static const struct hwmon_channel_info *hwm_info[] = {
- 	NULL
- };
- 
--static const struct hwmon_channel_info *hwm_gt_info[] = {
-+static const struct hwmon_channel_info * const hwm_gt_info[] = {
- 	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
- 	NULL
- };
--- 
-2.34.1
-
+> +		kfree(pa);
+> +		return NULL;
+> +	}
+> +
+> +	return pa;
+> +}
+> +EXPORT_SYMBOL(drm_gpuva_prealloc_create);
