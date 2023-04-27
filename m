@@ -4,63 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9354EC77B73
-	for <nouveau@archiver.kernel.org>; Mon, 24 Apr 2023 15:21:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82C93C77B61
+	for <nouveau@archiver.kernel.org>; Thu, 27 Apr 2023 22:58:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA35B10E4A4;
-	Mon, 24 Apr 2023 15:21:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 874B010E1A7;
+	Thu, 27 Apr 2023 22:46:45 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB7F010E363
- for <nouveau@lists.freedesktop.org>; Mon, 24 Apr 2023 15:21:42 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0CFF10E19D
+ for <nouveau@lists.freedesktop.org>; Thu, 27 Apr 2023 22:46:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1682349701;
+ s=mimecast20190719; t=1682635602;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=h9mLtuhNzL4W66bGMVKcTb36aTtFdYTyTbAVeY28DY4=;
- b=gCyH4L7TnMsZueFsBXCxZugx2zdtcC+Uhj1qoEE156Ng4gffSgP/5oki6UcXyEUG82w1Nx
- ApEk9tOD558bYA4hqkweQZc2UZsWYe4tmZkutLvOIGMGPh/ixpVqngrAO/qmDbhVa6tyhG
- 2JbO9mtAxg9rbDV65mJnj7WPIDkja5Y=
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com
- [209.85.167.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=0uOP6QjpCqnaQ0Jr5WnOAlZwPbe5PitpX/6uFN4BwUE=;
+ b=Rgju1dGkz1+wxgDFyFKVr8/eQWmaYlMfy/OIsEf9pwIT+uMvuBH4SVRP1B4JyWVmI+QRt4
+ gHEXgdovyrkul/k0BtXE1ZD0lLuEfzdSgbBeGaIywbyPC+US/PT5rALKcZuTfpHsPp0jof
+ t3cofyecl/P7r176zJIy3fAN06MsRWs=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-597-Q0EIeminOjOh2HenIC2Yvw-1; Mon, 24 Apr 2023 11:21:40 -0400
-X-MC-Unique: Q0EIeminOjOh2HenIC2Yvw-1
-Received: by mail-lf1-f71.google.com with SMTP id
- 2adb3069b0e04-4ec55b6b585so721697e87.0
- for <nouveau@lists.freedesktop.org>; Mon, 24 Apr 2023 08:21:40 -0700 (PDT)
+ us-mta-460-DIhkLYHVMWaq7BpLBRS7Jw-1; Thu, 27 Apr 2023 18:46:39 -0400
+X-MC-Unique: DIhkLYHVMWaq7BpLBRS7Jw-1
+Received: by mail-qv1-f71.google.com with SMTP id
+ 6a1803df08f44-5ef8c84cae4so127568196d6.1
+ for <nouveau@lists.freedesktop.org>; Thu, 27 Apr 2023 15:46:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1682349698; x=1684941698;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=h9mLtuhNzL4W66bGMVKcTb36aTtFdYTyTbAVeY28DY4=;
- b=DcaIoK9lkVNit+w7tzCxO7o8BNF3eMOjn3l38CnLE5Aemjr8WinKQos9fGOyFClvGY
- 78FlijdM/z2jk+18viksOmVpWTWa/ukvSOGKf1lvkKtRE5AAjiMd+cG3bqNZaAzCuPmZ
- WgsqFSPgxGOQCuroDX4+QKKh1oWFmVI2jY+jl8N1dSDVCua8woca6jGLsrYB/aCHy6kj
- kXKF1Wnx60KP/xLGxg9L+IT+HTUGjoXsVwT9jESENgBB6XWgFBun2/SbSzy0ZNnuMlkD
- tngewwE7LZFpqxUwjxzfNUeRmd/+TWmwcPuj1pK9RSZePyJkye5cNRX5kw2c302pDyel
- sKhw==
-X-Gm-Message-State: AAQBX9dPNxj3rxTj8hK6KkOs9LeurgEe4iu4lsviDs97iq/XDCMSMT3+
- WxFS8tzfYs6RdO5FO3LXuYPJyqTiVVTMwDkYUFmDTO8wwTiWKF07onUie6lwrfxsfp4p3rt49Vq
- 9J99hfDQnK1l6Bfsm7CPjs5c+LjyX3pDbm+FB9R7yCjwo4k+6lg==
-X-Received: by 2002:a2e:bea2:0:b0:2a7:ab72:1687 with SMTP id
- a34-20020a2ebea2000000b002a7ab721687mr3595012ljr.5.1682349698371; 
- Mon, 24 Apr 2023 08:21:38 -0700 (PDT)
-X-Google-Smtp-Source: AKy350YxGt6Cwo4tIqSGLrVoLpjanytXyrNDC0r+4Mb8YdvhCBq1mG2uXlYEQc0hcpiACAZU/uRrtQYtpZLEX+kTCpc=
-X-Received: by 2002:a2e:bea2:0:b0:2a7:ab72:1687 with SMTP id
- a34-20020a2ebea2000000b002a7ab721687mr3595004ljr.5.1682349698092; Mon, 24 Apr
- 2023 08:21:38 -0700 (PDT)
-MIME-Version: 1.0
+ d=1e100.net; s=20221208; t=1682635599; x=1685227599;
+ h=mime-version:user-agent:content-transfer-encoding:organization
+ :references:in-reply-to:date:cc:to:from:subject:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=0uOP6QjpCqnaQ0Jr5WnOAlZwPbe5PitpX/6uFN4BwUE=;
+ b=MxCrXV+F5QuuknHLGfnogtV/eT//7JoyLIs6HDOYY0Iu9kgaL8ZvsSXZKw0i+shcLi
+ OF/t68Jr1xytJbPpQC1HirtqUOBio0qN2nk/JOIIdH0B+Z6MKI7Vw59ZzcmN9hU0wZHd
+ Nhsf66RphazjvIVVqmTWnCYq387TKkVzEXzILxynLtwtHLkBtpIx1H5LFv1x8Hk3Fd/u
+ aBr98rtckpbnud/5z3w5hFUQDbuACnH1oz+wIWngMB+rKOFeTGfQ+fkfl96ec+mwJ1TI
+ GDVX4EZPtJ2Uk78Rp+z+L7DlPCrqhmgxVlDjCRfcgk12qKtRAU+yb3i/8paj9Fp72PCq
+ 0jdw==
+X-Gm-Message-State: AC+VfDworyeSXRDcTFTfs3j2tIUN5f5RJJbd3IxRczKzUVqqRkDZcjQu
+ ydyQU3htGJsddzs6/xD7aZP0CQhLFsdQOEXKhpGicBSomJ99vuuhU490cgYvZL+4KK2CKl0JRol
+ 0PxtA+thmPXFRecHgEDfSkDg/Vw==
+X-Received: by 2002:a05:6214:1c4c:b0:5f1:606b:a9bd with SMTP id
+ if12-20020a0562141c4c00b005f1606ba9bdmr5889447qvb.26.1682635598895; 
+ Thu, 27 Apr 2023 15:46:38 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ7fPVyEtt/9kgNDyjBcu3Uydoi+UsOztYz07sDBkhuwPge5XYqH9lKydzc/axceKM8HxCpDsw==
+X-Received: by 2002:a05:6214:1c4c:b0:5f1:606b:a9bd with SMTP id
+ if12-20020a0562141c4c00b005f1606ba9bdmr5889422qvb.26.1682635598656; 
+ Thu, 27 Apr 2023 15:46:38 -0700 (PDT)
+Received: from ?IPv6:2600:4040:5c62:8200::feb? ([2600:4040:5c62:8200::feb])
+ by smtp.gmail.com with ESMTPSA id
+ p17-20020a0cf551000000b005ef59a383e6sm5966786qvm.119.2023.04.27.15.46.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 27 Apr 2023 15:46:37 -0700 (PDT)
+Message-ID: <529e56c85732b0bfcf277de9c651f6c58f47b3b4.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Kees Cook <kees@kernel.org>, Linus Torvalds
+ <torvalds@linux-foundation.org>,  Kees Cook <keescook@chromium.org>
+Date: Thu, 27 Apr 2023 18:46:36 -0400
+In-Reply-To: <D57F9A07-AB77-4FF9-B0A6-C502DC60D093@kernel.org>
 References: <CAHk-=whMiMqAv5ATKRkjrdgP2R7WgWmCS4hW2mPwBcL=gzdDNw@mail.gmail.com>
  <D57F9A07-AB77-4FF9-B0A6-C502DC60D093@kernel.org>
-In-Reply-To: <D57F9A07-AB77-4FF9-B0A6-C502DC60D093@kernel.org>
-From: Karol Herbst <kherbst@redhat.com>
-Date: Mon, 24 Apr 2023 17:21:27 +0200
-Message-ID: <CACO55tvLHh4jfdT==t=B9JpPGEH-5vnEE3Q6AfJWZ_v_1uC6pg@mail.gmail.com>
-To: Kees Cook <kees@kernel.org>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.44.4 (3.44.4-2.fc36)
+MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
@@ -77,86 +85,89 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kees Cook <keescook@chromium.org>, gustavo@embeddedor.com,
- nouveau@lists.freedesktop.org, dri-devel <dri-devel@lists.freedesktop.org>,
- qing.zhao@oracle.com, Ben Skeggs <bskeggs@redhat.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
+Cc: gustavo@embeddedor.com, nouveau@lists.freedesktop.org,
+ dri-devel <dri-devel@lists.freedesktop.org>, qing.zhao@oracle.com,
+ Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
  linux-hardening@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Sun, Apr 23, 2023 at 10:24=E2=80=AFPM Kees Cook <kees@kernel.org> wrote:
->
+Hey Linus, Kees. Responses below
+
+On Sun, 2023-04-23 at 13:23 -0700, Kees Cook wrote:
 > On April 23, 2023 10:36:24 AM PDT, Linus Torvalds <torvalds@linux-foundat=
 ion.org> wrote:
-> >Kees,
+> > Kees,
 > >  I made the mistake of upgrading my M2 Macbook Air to Fedora-38, and
-> >in the process I got gcc-13 which is not WERROR-clean because we only
-> >limited the 'array-bounds' warning to gcc-11 and gcc-12. But gcc-13
-> >has all the same issues.
-> >
-> >And I want to be able to do my arm64 builds with WERROR on still...
-> >
-> >I guess it never made much sense to hope it was going to go away
-> >without having a confirmation, so I just changed it to be gcc-11+.
->
+> > in the process I got gcc-13 which is not WERROR-clean because we only
+> > limited the 'array-bounds' warning to gcc-11 and gcc-12. But gcc-13
+> > has all the same issues.
+> >=20
+> > And I want to be able to do my arm64 builds with WERROR on still...
+> >=20
+> > I guess it never made much sense to hope it was going to go away
+> > without having a confirmation, so I just changed it to be gcc-11+.
+>=20
 > Yeah, that's fine. GCC 13 released without having a fix for at least one =
 (hopefully last) known array-bounds vs jump threading bug:
 > https://gcc.gnu.org/bugzilla/show_bug.cgi?id=3D109071
->
-> >And one of them is from you.
-> >
-> >In particular, commit 4076ea2419cf ("drm/nouveau/disp: Fix
-> >nvif_outp_acquire_dp() argument size") cannot possibly be right, It
-> >changes
-> >
+>=20
+> > And one of them is from you.
+> >=20
+> > In particular, commit 4076ea2419cf ("drm/nouveau/disp: Fix
+> > nvif_outp_acquire_dp() argument size") cannot possibly be right, It
+> > changes
+> >=20
 > > nvif_outp_acquire_dp(struct nvif_outp *outp, u8 dpcd[16],
-> >
-> >to
-> >
+> >=20
+> > to
+> >=20
 > > nvif_outp_acquire_dp(struct nvif_outp *outp, u8 dpcd[DP_RECEIVER_CAP_SI=
 ZE],
-> >
-> >and then does
-> >
+> >=20
+> > and then does
+> >=20
 > >        memcpy(args.dp.dpcd, dpcd, sizeof(args.dp.dpcd));
-> >
-> >where that 'args.dp.dpcd' is a 16-byte array, and DP_RECEIVER_CAP_SIZE i=
-s 15.
->
+> >=20
+> > where that 'args.dp.dpcd' is a 16-byte array, and DP_RECEIVER_CAP_SIZE =
+is 15.
+>=20
 > Yeah, it was an incomplete fix. I sent the other half here, but it fell t=
 hrough the cracks:
 > https://lore.kernel.org/lkml/20230204184307.never.825-kees@kernel.org/
->
 
-left a review on that patch. Any preferred way of getting it upstream?
-I could push it through drm-misc, but the delay until it reaches
-Linus' tree is a bit high.
+Thanks for bringing this to our attention, yeah this definitely just looks
+like it got missed somewhere down the line. It looks like Karol responded
+already so I assume the patch is in the pipeline now, but let me know if
+there's anything else you need.
 
->
->
-> >
->
-> >I think it's all entirely harmless from a code generation standpoint,
-> >because the 15-byte field will be padded out to 16 bytes in the
-> >structure that contains it, but it's most definitely buggy.
->
+>=20
+>=20
+>=20
+> >=20
+>=20
+> > I think it's all entirely harmless from a code generation standpoint,
+> > because the 15-byte field will be padded out to 16 bytes in the
+> > structure that contains it, but it's most definitely buggy.
+>=20
 > Right; between this, that GCC 13 wasn't released yet, and I had no feedba=
 ck from NV folks, I didn't chase down landing that fix.
->
-> >
-> >So that warning does find real cases of wrong code. But when those
-> >real cases are hidden by hundreds of lines of unfixable false
-> >positives, we don't have much choice.
->
+>=20
+> >=20
+> > So that warning does find real cases of wrong code. But when those
+> > real cases are hidden by hundreds of lines of unfixable false
+> > positives, we don't have much choice.
+>=20
 > Yup, totally agreed. The false positives I've looked at all seem to be si=
 milar to the outstanding jump threading bug, so I'm hoping once that gets f=
 ixed we'll finally have a good signal with that warning enabled. :)
->
+>=20
 > -Kees
->
->
-> --
-> Kees Cook
->
+>=20
+>=20
+
+--=20
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
