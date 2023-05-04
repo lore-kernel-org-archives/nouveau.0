@@ -4,41 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13FD2C77B78
-	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 597ADC7EE2A
+	for <nouveau@archiver.kernel.org>; Thu,  4 May 2023 12:32:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C9A410E438;
-	Thu,  4 May 2023 12:32:44 +0000 (UTC)
-Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 997D710E204
- for <nouveau@lists.freedesktop.org>; Fri, 18 Nov 2022 09:20:50 +0000 (UTC)
-Received: from dggpemm500023.china.huawei.com (unknown [172.30.72.53])
- by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4NDB8Q70T5z15MjF;
- Fri, 18 Nov 2022 17:20:22 +0800 (CST)
-Received: from dggpemm500007.china.huawei.com (7.185.36.183) by
- dggpemm500023.china.huawei.com (7.185.36.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 18 Nov 2022 17:20:47 +0800
-Received: from huawei.com (10.175.103.91) by dggpemm500007.china.huawei.com
- (7.185.36.183) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 18 Nov
- 2022 17:20:46 +0800
-From: Yang Yingliang <yangyingliang@huawei.com>
-To: <bskeggs@redhat.com>, <kherbst@redhat.com>, <lyude@redhat.com>,
- <airlied@gmail.com>, <daniel@ffwll.ch>
-Date: Fri, 18 Nov 2022 17:19:09 +0800
-Message-ID: <20221118091909.54935-1-yangyingliang@huawei.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F83310E440;
+	Thu,  4 May 2023 12:32:46 +0000 (UTC)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2648910E087;
+ Thu,  4 May 2023 11:41:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=MIME-Version:Content-Transfer-Encoding:Content-Type:Date:To:
+ From:Subject:Message-ID:Sender:Reply-To:Cc:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=DY2Ok8279LYbukTn4RyVDpj5MbcGHsCyoi1DnlySgWk=; b=coqZ51PvbgUdFwIKttmgO2Wczt
+ rNJcEsJlXANwIm5gE46wTOvrfBWb2mskizyrA1UwrsZB/iKxW5/54r63SZEFAcIdZIZ1EAPhhEUYY
+ CYVzeVefmvYA63395H0nHKEB3vz3Jbzl9y0LYb4BDn4ay7pRR3rus5b6/9qO60EbBo7r7ASiegCa5
+ KCLX+scCQQLqKdB69QSty1zn7PvOaKKYTpSJsGL+uiretyyQpQ8aHMcGd8K2wtX65IhlDi+lzO+Ie
+ zT02dI85ukQjm6EKZLxuk1pMmIaNZYcYTMNa11dlT0UpHNuSonulW8ZXuI2HP6l4RW/S5jlGfuCkd
+ mGz8l/dQ==;
+Received: from 137.red-83-52-2.dynamicip.rima-tde.net ([83.52.2.137]
+ helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1puXKZ-001506-AJ; Thu, 04 May 2023 13:41:03 +0200
+Message-ID: <bd27b87dc34f5ff00d346a8115cbf3bbb22b911b.camel@igalia.com>
+From: Ricardo Garcia <rgarcia@igalia.com>
+To: events@lists.x.org, xorg-devel@lists.x.org, 
+ wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ libre-soc-dev@lists.libre-soc.org, elections@x.org, members@x.org, 
+ xorg@lists.freedesktop.org
+Date: Thu, 04 May 2023 13:41:02 +0200
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.175.103.91]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- dggpemm500007.china.huawei.com (7.185.36.183)
-X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Thu, 04 May 2023 12:31:38 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/fb: fix pci device refcount leak in
- nv1a_ram_new()
+Subject: [Nouveau] 2023 X.Org Foundation Election vote results
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,34 +56,50 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, yangyingliang@huawei.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As comment of pci_get_domain_bus_and_slot() says, it returns
-a pci device with refcount increment, when finish using it,
-the caller must decrement the reference count by calling
-pci_dev_put(). So call it after using to avoid refcount leak.
+The Board of Directors election and the vote on the By-laws concluded at
+14:00 UTC on May 1st 2023 and these are the results:
 
-Fixes: 6ee738610f41 ("drm/nouveau: Add DRM driver for NVIDIA GPUs")
-Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c | 2 ++
- 1 file changed, 2 insertions(+)
+- We had 75 members this year, of which 55 cast a vote, so the turnout
+is 73.3%.
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c
-index 18241c6ba5fa..4d52a158f320 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c
-@@ -51,6 +51,8 @@ nv1a_ram_new(struct nvkm_fb *fb, struct nvkm_ram **pram)
- 		mib = ((mem >> 4) & 127) + 1;
- 	}
- 
-+	pci_dev_put(bridge);
-+
- 	return nvkm_ram_new_(&nv04_ram_func, fb, NVKM_RAM_TYPE_STOLEN,
- 			     mib * 1024 * 1024, pram);
- }
--- 
-2.25.1
+- On the question "Do you accept the proposed By-Law changes to make SFC
+the new fiscal sponsor of the X.Org foundation, replacing SPI?" 52 of
+the 55 members voted yes (94.5%). Among all 75 members, approval is
+69.3% (52/75, over 2/3), so we can consider this change approved using
+the current by-law rules.
+
+- On the question "Do you accept the proposed By-Law changes to modify
+the special voting quorum requirements to be limited to present (meaning
+voting) members?" 48 of the 55 members voted yes (87.3%). Despite this,
+48 votes represent only 64% of the members, which means the by-laws
+change does not pass.
+
+- In the election of the Directors to the Board of the X.Org Foundation,
+the results were that Daniel Vetter, Lyude Paul, Arkadiusz Hiler and
+Christopher Michael were elected for two-year terms.
+
+The old full board is: Emma Anholt, Mark Filion, Ricardo Garcia, Samuel
+Iglesias Gons=C3=A1lvez, Manasi D Navare, Lyude Paul, Alyssa Rosenzweig and
+Daniel Vetter.
+
+The new full board is: Emma Anholt, Mark Filion, Ricardo Garcia,
+Arkadiusz Hiler, Christopher Michael, Lyude Paul, Alyssa Rosenzweig and
+Daniel Vetter.
+
+Full election results, sorted by points:
+
+* Daniel Vetter (367 points)
+* Lyude Paul (348 points)
+* Arkadiusz Hiler (286 points)
+* Christopher Michael (263 points)
+* Manasi Navare (195 points)
+* Uma Shankar (157 points)
+* Thomas Adam (105 points)
+* William Weeks-Balconi (51 points)
+
+Thanks everyone,
+-Ricardo Garcia, on behalf of the X.Org elections committee
 
