@@ -4,57 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A22A9EB64DC
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 853DFEB64D7
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29D3F10E32A;
-	Tue, 20 Jun 2023 18:20:18 +0000 (UTC)
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2410310E62B;
- Fri,  9 Jun 2023 01:54:29 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8Cxe+pUhoJkZ9YAAA--.2707S3;
- Fri, 09 Jun 2023 09:54:28 +0800 (CST)
-Received: from [10.20.42.43] (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8AxZuRThoJkXW0JAA--.29103S3; 
- Fri, 09 Jun 2023 09:54:28 +0800 (CST)
-Message-ID: <5f47425c-69b7-3274-55eb-4551a152c0fe@loongson.cn>
-Date: Fri, 9 Jun 2023 09:54:27 +0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1A4510E32D;
+	Tue, 20 Jun 2023 18:20:17 +0000 (UTC)
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com
+ [IPv6:2607:f8b0:4864:20::52d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9C8E10E0C2;
+ Fri, 12 May 2023 19:26:21 +0000 (UTC)
+Received: by mail-pg1-x52d.google.com with SMTP id
+ 41be03b00d2f7-52c30fa5271so5450870a12.0; 
+ Fri, 12 May 2023 12:26:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1683919581; x=1686511581;
+ h=content-disposition:mime-version:message-id:subject:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=Yz4DYKSNmBeEVN5VVceILj1aZ1bLp7+YNm7+Yoele00=;
+ b=GdGO7tJ4IIUXweKlz+dCEQNC4Jf9giqrZ6IQWsiG1yctoFoJUmWBZf1pDY+NSPN5EF
+ 8QHk5X08ZDhLvo1aTU9OeDLX7TNJt7TYJiZn3Ddz38fWq//zCdSzINTj/mdDUd0ryo43
+ kpyAnVNpeI6uFrEAFnQkIrmNluVRMi8FDSTuho8UK8nD02zBM1GLG78rAVDqdqzhvlBj
+ TTlB554DoFhi6MzAJYNLUUDhY9H6/IoYnPKa1GwkYcZteDq0Ae0iVRqpkkyOLY2cYk1c
+ hjH8FdKRI9UuLEhJPsWUzT/CmUi0ThL8rox40SCNkRv4N87OV8bbNKARNFVU0A3Mb77a
+ lllw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1683919581; x=1686511581;
+ h=content-disposition:mime-version:message-id:subject:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Yz4DYKSNmBeEVN5VVceILj1aZ1bLp7+YNm7+Yoele00=;
+ b=aeQxa2rhLCi0MeilFmzS22KVBxSvpfhXC01Zl0kBeKdFpwpT+a5vl3YVE+eHjhCbm4
+ ZZ/3fEd1KsQa3fC+g09HDWKd0VXTFA1bxstR5MUkQJ13jEBoIIhg2v8KzD1wkGEnb91T
+ Yg9EMXdSrM4zzBK0LreEtA0gKo4Ed3TCMHuA14jaYSlooZAtZTRA4YqNHhecp1qdiTcI
+ 7OIBg/AKUb4QuyBTDWx0COVLXK0oFte+yzx9dz8G7z1470lMOm16uYjfXdmnE87yyTQQ
+ 6u7gTF6LetIe5TDTlbuL6zfqiSjVSPToEmJ4Pjav3+vwLnEtCK7DcZVmNStRkm06VwN2
+ QnhQ==
+X-Gm-Message-State: AC+VfDyPxqJGMP3SloeXuDPFLBr4IKnLkJBkYfA3FZfYK1XK0xYFKmvs
+ SB8XTfR5x5zyPuFzQ3XJKkY=
+X-Google-Smtp-Source: ACHHUZ4oAT/GxHasWc1+hnu5yWxpHeEJ05uQYZwgtlcpevP5ZF9ks5XZ87fIDTRvaTXgidAuos4Pww==
+X-Received: by 2002:a17:902:e54b:b0:1ac:712d:2032 with SMTP id
+ n11-20020a170902e54b00b001ac712d2032mr25367398plf.50.1683919580676; 
+ Fri, 12 May 2023 12:26:20 -0700 (PDT)
+Received: from yoga ([2400:1f00:13:5d8c:29b4:3ace:81ca:10f])
+ by smtp.gmail.com with ESMTPSA id
+ x1-20020a63f701000000b0051b8172fa68sm7171336pgh.38.2023.05.12.12.26.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 12 May 2023 12:26:20 -0700 (PDT)
+Date: Sat, 13 May 2023 00:56:13 +0530
+From: Anup Sharma <anupnewsmail@gmail.com>
+To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Message-ID: <ZF6S1bg2AzuBjhxW@yoga>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Bjorn Helgaas <helgaas@kernel.org>, Sui Jingfeng <15330273260@189.cn>
-References: <20230608190730.GA1209607@bhelgaas>
-From: Sui Jingfeng <suijingfeng@loongson.cn>
-Organization: Loongson
-In-Reply-To: <20230608190730.GA1209607@bhelgaas>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID: AQAAf8AxZuRThoJkXW0JAA--.29103S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj93XoW7trW8GryUXFy8Gw45ZFy8CrX_yoW8Xw4xp3
- 4YkF93Cws3Gr15WryxZr4fXFWfX395J3WUt3W5Wr93AwnxK34kKrsYyan8KFW3Xr9FyF40
- qF4jgr43G3W3uFgCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUPab4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
- 6r4UJVWxJr1ln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
- xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
- 6r1DMcIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr4
- 1lc7I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxG
- rwCFx2IqxVCFs4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14
- v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Wrv_Gr1UMIIY
- rxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_JFI_Gr1lIxAIcVC0I7IYx2IY6xkF7I0E14
- v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWx
- JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUaTa0DU
- UUU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: Re: [Nouveau] [Intel-gfx] [PATCH v3 1/4] PCI/VGA: tidy up the code
- and comment format
+Subject: [Nouveau] [PATCH] gpu: drm: nouveau: nvkm: engine: gr: Remove
+ Unneeded semicolon
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,80 +73,32 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- nouveau@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Ville Syrjala <ville.syrjala@linux.intel.com>, Yi Liu <yi.l.liu@intel.com>,
- kvm@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Jason Gunthorpe <jgg@ziepe.ca>, Ben Skeggs <bskeggs@redhat.com>,
- linux-pci@vger.kernel.org, Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Kevin Tian <kevin.tian@intel.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Bokun Zhang <Bokun.Zhang@amd.com>,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, loongson-kernel@lists.loongnix.cn,
- Alex Williamson <alex.williamson@redhat.com>,
- Abhishek Sahu <abhsahu@nvidia.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Yishai Hadas <yishaih@nvidia.com>, Li Yi <liyi@loongson.cn>,
- Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- Cornelia Huck <cohuck@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Konig <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
+Remove the extra semicolon at end. Issue identified using
+semicolon.cocci Coccinelle semantic patch.
+Warning:
+drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c:423:31-32: Unneeded semicolon
 
-On 2023/6/9 03:07, Bjorn Helgaas wrote:
-> Capitalize subject to match ("Tidy ...")
->
-> On Thu, Jun 08, 2023 at 07:43:19PM +0800, Sui Jingfeng wrote:
->> From: Sui Jingfeng <suijingfeng@loongson.cn>
->>
->> This patch replaces the leading space with a tab and removes the double
->> blank line, no functional change.
-> Can you move this to the end of the series?  The functional changes
-> are more likely to be backported, and I think the backport may be a
-> little easier without the cleanup in the middle.
+Signed-off-by: Anup Sharma <anupnewsmail@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-OK, acceptable.
-
->>   	/* we could in theory hand out locks on IO and mem
->> -	 * separately to userspace but it can cause deadlocks */
->> +	 * separately to userspace but it can cause deadlocks
->> +	 */
-> Since you're touching this anyway, can you update it to the
-> conventional multi-line comment style:
->
->    /*
->     * We could in theory ...
->     */
->
-> And capitalize "We", add a period at end, and rewrap to fill 78
-> columns or so?  Same for other comments below.
-OK, I could improve this at next version.
->> +++ b/include/linux/vgaarb.h
->> @@ -23,9 +23,7 @@
->>    * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
->>    * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
->>    * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
->> - * DEALINGS
->> - * IN THE SOFTWARE.
->> - *
->> + * DEALINGS IN THE SOFTWARE.
->>    */
-> Can you make a separate patch to replace this entire copyright notice
-> with the appropriate SPDX-License-Identifier header?
-> Documentation/process/license-rules.rst has details.
-
-Wow ...
-
-> Bjorn
-
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
+index 5f20079c3660..204516891ece 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
+@@ -420,7 +420,7 @@ gf100_gr_chan_new(struct nvkm_gr *base, struct nvkm_fifo_chan *fifoch,
+ 			return ret;
+ 	} else {
+ 		ret = nvkm_memory_map(gr->attrib_cb, 0, chan->vmm, chan->attrib_cb,
+-				      &args, sizeof(args));;
++				      &args, sizeof(args));
+ 		if (ret)
+ 			return ret;
+ 	}
 -- 
-Jingfeng
+2.34.1
 
