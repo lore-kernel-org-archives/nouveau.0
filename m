@@ -4,57 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8346C0015E
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FBEFEB64D8
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21D2D10E117;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83B9910E335;
 	Tue, 20 Jun 2023 18:20:31 +0000 (UTC)
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8437B10E25B;
- Fri,  9 Jun 2023 12:22:22 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8Bxa+p8GYNk_xUBAA--.3213S3;
- Fri, 09 Jun 2023 20:22:20 +0800 (CST)
-Received: from [10.20.42.43] (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8CxReR6GYNkDyELAA--.33801S3; 
- Fri, 09 Jun 2023 20:22:18 +0800 (CST)
-Message-ID: <8e7fe36d-0d0d-bab4-9ace-a738d7a48111@loongson.cn>
-Date: Fri, 9 Jun 2023 20:22:18 +0800
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
+ [IPv6:2a00:1450:4864:20::62f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EDEA10E15F;
+ Mon, 15 May 2023 07:51:36 +0000 (UTC)
+Received: by mail-ej1-x62f.google.com with SMTP id
+ a640c23a62f3a-9659443fb56so1940914966b.2; 
+ Mon, 15 May 2023 00:51:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1684137094; x=1686729094;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=cfDqT6X1hpnQXZe1MRUmzHPyHIv4YDADYndQ1imD+oM=;
+ b=QEzBGKrSjRdyzYe6ieOdJODPeNUdYdnBUcfXpn0/moCF5bU4GDKao8GZRQQbw0ScSj
+ hEalhWz2jHazrnbym08knKa0kriRSwPike6V7qFdb0SYkq5ZdsbY7DsO7FPGWFcQZc4I
+ yx7v9MO0EFs1BsS1BzlrMU/49f38+CFEbN6cwavsTi/YNhpLd6/f7T/SGEGYx3nr8Hyq
+ 96GIg2iw6p9BedFsBmDM+AKZnAYeClMxXQ4dl34JgRS9vWkoZvXTodDnKACwzKvENSpl
+ oGu3By0XqyO1n0TJjlvlzyTkzr2Q3JL9FS6JcHCYIaNwZPRY3PgIiLlR3XqzyirohV+9
+ 19TQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684137094; x=1686729094;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=cfDqT6X1hpnQXZe1MRUmzHPyHIv4YDADYndQ1imD+oM=;
+ b=dazo6CPwxuBxz2bUJxhE5lU01GVbkDiERxwjjUIih3rmYo1f5hsa3YmPeJm72RGjMT
+ DPkcH/fiRCWHzaGcDevSptkCukZkxLHhL7d1Zy5Z6uHAKu13BzDMXSSWK56H9w/vWZXB
+ MKxKU3bA3EM5ibZveQxu/qgbXd1Cc7QJoh/sDvsVoxDDX8+ZIkBlwdcK3aHQm0C4i5ZR
+ RqXiFVZxr4EipgtOAyJBF4JcNWTr6qVsbDsCBe9aLHdN9/4spy1lSq1D1vCJLtzYoOzT
+ kNuk7S00KZHkPByoTP+VfuegCZJQm18/Z1wWx8bTqo9aDdh4KS/dsWygyO/CBbfXclE0
+ oy1w==
+X-Gm-Message-State: AC+VfDyY82OX6GUSwkiSGQxJq5TdZ6SpO1oPXaoyH3yFh49Gq/hbKoFn
+ SqLn0YgrWxDcC+Ltiz/cwbJTYBoqdPxrZfn0gxI=
+X-Google-Smtp-Source: ACHHUZ73K81XIZGLByuufDfxqMz465SRmfWrwBUtXlzEFG2IITIGcj/PIpOa0fmbOAVOCPKBAxevZY68jzd4AtlbsQg=
+X-Received: by 2002:a17:907:7211:b0:96b:4ed5:a1c9 with SMTP id
+ dr17-20020a170907721100b0096b4ed5a1c9mr1098991ejc.51.1684137093827; Mon, 15
+ May 2023 00:51:33 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-To: Bjorn Helgaas <helgaas@kernel.org>, Sui Jingfeng <15330273260@189.cn>
-References: <20230608191221.GA1209912@bhelgaas>
-Content-Language: en-US
-From: Sui Jingfeng <suijingfeng@loongson.cn>
-Organization: Loongson
-In-Reply-To: <20230608191221.GA1209912@bhelgaas>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxReR6GYNkDyELAA--.33801S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxtFyUWw4rAr48JFykGFykZwc_yoW7ZF4Dpa
- yrGayfKrWkWF17Cryav3WUZFy5u39Yya4fKr4Ykw1YkanxCryFqFyrKrW5A3W7JrZrGF10
- vFWUt3W7Wa1qqagCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUPlb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
- xVWxJr0_GcWln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
- xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
- 6r1DMcIj6I8E87Iv67AKxVW8Jr0_Cr1UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwI
- xGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAK
- I48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrV
- AFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWrXVW8Jr1l
- IxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxV
- AFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4U
- JVWxJr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVFxhVjvjDU0xZFpf9x07
- jhl19UUUUU=
-X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: Re: [Nouveau] [Intel-gfx] [PATCH v3 3/4] PCI/VGA: only deal with
- VGA class devices
+References: <20230507162616.1368908-1-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20230507162616.1368908-1-u.kleine-koenig@pengutronix.de>
+From: Inki Dae <daeinki@gmail.com>
+Date: Mon, 15 May 2023 16:50:57 +0900
+Message-ID: <CAAQKjZP5jhwFg9sNndpa6_7G6HoV76heQbt=knoOEZZskexrhg@mail.gmail.com>
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:13 +0000
+Subject: Re: [Nouveau] [PATCH 00/53] drm: Convert to platform remove
+ callback returning void
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,220 +69,374 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- nouveau@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Ville Syrjala <ville.syrjala@linux.intel.com>, Yi Liu <yi.l.liu@intel.com>,
- kvm@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Jason Gunthorpe <jgg@ziepe.ca>, Ben Skeggs <bskeggs@redhat.com>,
- linux-pci@vger.kernel.org, Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Kevin Tian <kevin.tian@intel.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Bokun Zhang <Bokun.Zhang@amd.com>,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, loongson-kernel@lists.loongnix.cn,
- Alex Williamson <alex.williamson@redhat.com>,
- Abhishek Sahu <abhsahu@nvidia.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Yishai Hadas <yishaih@nvidia.com>, Li Yi <liyi@loongson.cn>,
- Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- Cornelia Huck <cohuck@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Konig <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Xinliang Liu <xinliang.liu@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
+ Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Steven Price <steven.price@arm.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>, Joel@pengutronix.de,
+ Robert Foss <rfoss@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ =?UTF-8?B?TWHDrXJhIENhbmFs?= <mcanal@igalia.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ Akhil P Oommen <quic_akhilpo@quicinc.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Miaoqian Lin <linmq006@gmail.com>, linux-rockchip@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, Rahul T R <r-ravikumar@ti.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+ Jani Nikula <jani.nikula@intel.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ etnaviv@lists.freedesktop.org, Stephen Boyd <swboyd@chromium.org>,
+ Sean Paul <sean@poorly.run>, Johan Hovold <johan+linaro@kernel.org>,
+ Hyun Kwon <hyun.kwon@xilinx.com>, Andrew Jeffery <andrew@aj.id.au>,
+ Jingoo Han <jingoohan1@gmail.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>, kernel@pengutronix.de,
+ Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
+ Claudiu Beznea <claudiu.beznea@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ linux-aspeed@lists.ozlabs.org,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Edmund Dea <edmund.j.dea@intel.com>, Thierry Reding <thierry.reding@gmail.com>,
+ Yongqin Liu <yongqin.liu@linaro.org>,
+ Mihail Atanassov <mihail.atanassov@arm.com>, Liang He <windhl@126.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ lima@lists.freedesktop.org, Chunyan Zhang <zhang.lyra@gmail.com>,
+ Alexey Brodkin <abrodkin@synopsys.com>, Minghao Chi <chi.minghao@zte.com.cn>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Russell King <linux+etnaviv@armlinux.org.uk>,
+ Alain Volmat <alain.volmat@foss.st.com>, linux-mips@vger.kernel.org,
+ Liu Ying <victor.liu@nxp.com>, linux-arm-msm@vger.kernel.org,
+ Maxime Ripard <mripard@kernel.org>, linux-samsung-soc@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Boris Brezillon <bbrezillon@kernel.org>,
+ Douglas Anderson <dianders@chromium.org>, John Stultz <jstultz@google.com>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Brian Starkey <brian.starkey@arm.com>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Yuan Can <yuancan@huawei.com>, Stefan Agner <stefan@agner.ch>,
+ Michal Simek <michal.simek@xilinx.com>, linux-tegra@vger.kernel.org,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Rob Herring <robh@kernel.org>, Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Mali DP Maintainers <malidp@foss.arm.com>, Joel Stanley <joel@jms.id.au>,
+ nouveau@lists.freedesktop.org, Orson Zhai <orsonzhai@gmail.com>,
+ Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Guo Zhengkui <guozhengkui@vivo.com>,
+ Konrad Dybcio <konrad.dybcio@somainline.org>,
+ Alison Wang <alison.wang@nxp.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Maxime Ripard <maxime@cerno.tech>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Liu Shixin <liushixin2@huawei.com>, Tomi Valkeinen <tomba@kernel.org>,
+ Deepak R Varma <drv@mailo.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Ricardo Ribalda <ribalda@chromium.org>, Tian Tao <tiantao6@hisilicon.com>,
+ Shawn Guo <shawnguo@kernel.org>, Yannick Fertre <yannick.fertre@foss.st.com>,
+ linux-stm32@st-md-mailman.stormreply.com, Emma Anholt <emma@anholt.net>,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Sandy Huang <hjc@rock-chips.com>, Paul Cercueil <paul@crapouillou.net>,
+ James@pengutronix.de, Marek Vasut <marex@denx.de>,
+ linux-renesas-soc@vger.kernel.org, Jayshri Pawar <jpawar@cadence.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Rob Clark <robdclark@gmail.com>,
+ Philippe Cornu <philippe.cornu@foss.st.com>, Melissa Wen <mwen@igalia.com>,
+ linux-mediatek@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Qiang Yu <yuq825@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Jyri Sarha <jyri.sarha@iki.fi>,
+ Lucas Stach <l.stach@pengutronix.de>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 Hi,
 
-On 2023/6/9 03:12, Bjorn Helgaas wrote:
-> Start with verb and capitalize to match ("Deal only with ...")
+2023=EB=85=84 5=EC=9B=94 8=EC=9D=BC (=EC=9B=94) =EC=98=A4=EC=A0=84 1:32, Uw=
+e Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>=EB=8B=98=EC=9D=B4 =EC=
+=9E=91=EC=84=B1:
 >
-> On Thu, Jun 08, 2023 at 07:43:21PM +0800, Sui Jingfeng wrote:
->> From: Sui Jingfeng <suijingfeng@loongson.cn>
->>
->> vgaarb only deal with the VGA devcie(pdev->class == 0x0300), so replace the
->> pci_get_subsys() function with pci_get_class(). Filter the non pci display
->> device out. There no need to process the non display PCI device.
-> s/non pci/non-PCI/
-> s/non display/non-display/
+> Hello,
 >
-> This is fine, and I'll merge this, but someday I would like to get rid
-> of the bus_register_notifier() and call vga_arbiter_add_pci_device()
-> and vga_arbiter_del_pci_device() directly from the PCI core.
+> this patch series adapts the platform drivers below drivers/gpu/drm
+> to use the .remove_new() callback. Compared to the traditional .remove()
+> callback .remove_new() returns no value. This is a good thing because
 
-Nice idea!
+First of all, I apologize for the delay in providing my review comments.
 
+Not related to this patch but seems that the "remove_new" callback
+naming implicitly implies that there is no need to return anything
+since its return type is void. To help users understand the intended
+behavior based on the callback name, how about considering a modified
+naming convention like "remove_no_return" or something similar?
 
-But I'm wondering there are traps in this.
+The relevant patch has already been merged as outlined below,
+author Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> 2022-12-09
+16:09:14 +0100
+committer Greg Kroah-Hartman <gregkh@linuxfoundation.org> 2023-01-17
+19:04:17 +0100
+commit 5c5a7680e67ba6fbbb5f4d79fa41485450c1985c (patch)
+tree 0b6dbc003a6bb4a3f7fb084d31326bbfa3ba3f7c
+parent 7bbb89b420d9e290cb34864832de8fcdf2c140dc (diff)
+download linux-5c5a7680e67ba6fbbb5f4d79fa41485450c1985c.tar.gz
+platform: Provide a remove callback that returns no value
 
-The pci_notifier in vgaarb.c is still need on Mips platform.
+Maybe a trivial thing but how about renaming it? I think the postfix,
+'new', is a very generic word. I think you could introduce another
+patch for it if you think it's reasonable.
 
-Because of loading order problems.
+Thanks,
+Inki Dae
 
-On MIPS system, PCI devices are enumerated by pcibios_init(),
-
-which runs after vga_arb_device_init(). This is true until now.
-
-When vga_arb_device_init() function get called, it will capture nothing.
-
-On that time, the system have no PCI device enumerated.
-
-Because of this, there are various problems in the past.
-
-This is the reason we still need the notifier,
-
-we need a way to capture the PCI display device after vgaarb already 
-loaded(finished).
-
-
-On complex case, there are ASpeed BMC, loongson integrated display 
-controller,
-
-and radeon discrete video card co-exist on Loongson 3B4000 server.
-
-I have fixed various bug at our downstream(linux-4.19) environment.
-
-
-I have fixed a bug on downstream involved with aspeed bmc, by workaround[1].
-
-Chen Huacai grabbing my patch[1] and rewrite it, submit together with 
-him-self's.
-
-Its fine,  but those patch still look paleness in the front of Loongson 
-integrated display controller.
-
-Loongson integrated display controller don't has a dedicated VRAM bar.
-
-vga_is_firmware_default() will lose its effectiveness then.
-
-This is the reason we reveal our patch(0004 in this series) to face 
-upstream.
-
-Its not only for loongson integrated display controller through.
-
-Its not uncommon that ARM servers have A aspeed BMC and discrete amdgpu 
-or old radeon card.
-
-Let the device drivers gave us a hint probably can help to resolve 
-multi-video card co-exist
-
-problem.
-
-Consider that sometime user want to use integrate gpu, sometime user 
-want to use discrete gpu.
-
-Also, during driver developing(or debugging),
-
-driver writer may want override the default boot device.
-
-
-vgaarb probable shouldn't make the decision
-
-without giving the device driver a chance to override.
-
-
-Beside,  vga_is_firmware_default() only apply for PCI display device.
-
-On ARM64 system, there are a lot of platform device.
-
-If we move this function back to the device driver,
-
-it probably applicable for a platform display controller + one/two PCI 
-display devices case.
-
-
-We find a method at downstream during we get efifb works LoongArch platform.
-
-We can utilize the screen_info, screen_info say where's the firmware 
-framebuffer is located at.
-
-Drivers for specific hardware platform perhaps know more clearly than 
-vgaarb.
-
-if it is the default boot device.
-
-
-[1] 
-https://lore.kernel.org/all/20210514080025.1828197-6-chenhuacai@loongson.cn/
-
-> Or if you wanted to do that now, that would be even better :)
+> the driver core doesn't (and cannot) cope for errors during remove. The
+> only effect of a non-zero return value in .remove() is that the driver
+> core emits a warning. The device is removed anyhow and an early return
+> from .remove() usually yields a resource leak.
 >
-> Bjorn
+> By changing the remove callback to return void driver authors cannot
+> reasonably (but wrongly) assume any more that there happens some kind of
+> cleanup later.
 >
->> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
->> ---
->>   drivers/pci/vgaarb.c | 22 ++++++++++++----------
->>   1 file changed, 12 insertions(+), 10 deletions(-)
->>
->> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
->> index 7f0347f4f6fd..b0bf4952a95d 100644
->> --- a/drivers/pci/vgaarb.c
->> +++ b/drivers/pci/vgaarb.c
->> @@ -756,10 +756,6 @@ static bool vga_arbiter_add_pci_device(struct pci_dev *pdev)
->>   	struct pci_dev *bridge;
->>   	u16 cmd;
->>   
->> -	/* Only deal with VGA class devices */
->> -	if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
->> -		return false;
->> -
->>   	/* Allocate structure */
->>   	vgadev = kzalloc(sizeof(struct vga_device), GFP_KERNEL);
->>   	if (vgadev == NULL) {
->> @@ -1499,7 +1495,9 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
->>   	struct pci_dev *pdev = to_pci_dev(dev);
->>   	bool notify = false;
->>   
->> -	vgaarb_dbg(dev, "%s\n", __func__);
->> +	/* Only deal with VGA class devices */
->> +	if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
->> +		return 0;
->>   
->>   	/* For now we're only intereted in devices added and removed. I didn't
->>   	 * test this thing here, so someone needs to double check for the
->> @@ -1509,6 +1507,8 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
->>   	else if (action == BUS_NOTIFY_DEL_DEVICE)
->>   		notify = vga_arbiter_del_pci_device(pdev);
->>   
->> +	vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
->> +
->>   	if (notify)
->>   		vga_arbiter_notify_clients();
->>   	return 0;
->> @@ -1533,8 +1533,8 @@ static struct miscdevice vga_arb_device = {
->>   
->>   static int __init vga_arb_device_init(void)
->>   {
->> +	struct pci_dev *pdev = NULL;
->>   	int rc;
->> -	struct pci_dev *pdev;
->>   
->>   	rc = misc_register(&vga_arb_device);
->>   	if (rc < 0)
->> @@ -1545,11 +1545,13 @@ static int __init vga_arb_device_init(void)
->>   	/* We add all PCI devices satisfying VGA class in the arbiter by
->>   	 * default
->>   	 */
->> -	pdev = NULL;
->> -	while ((pdev =
->> -		pci_get_subsys(PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
->> -			       PCI_ANY_ID, pdev)) != NULL)
->> +	while (1) {
->> +		pdev = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, pdev);
->> +		if (!pdev)
->> +			break;
->> +
->>   		vga_arbiter_add_pci_device(pdev);
->> +	};
->>   
->>   	pr_info("loaded\n");
->>   	return rc;
->> -- 
->> 2.25.1
->>
--- 
-Jingfeng
-
+> Best regards
+> Uwe
+>
+> Uwe Kleine-K=C3=B6nig (53):
+>   drm/komeda: Convert to platform remove callback returning void
+>   drm/arm/hdlcd: Convert to platform remove callback returning void
+>   drm/arm/malidp: Convert to platform remove callback returning void
+>   drm/armada: Convert to platform remove callback returning void
+>   drm/aspeed: Convert to platform remove callback returning void
+>   drm/atmel-hlcdc: Convert to platform remove callback returning void
+>   drm/bridge: cdns-dsi: Convert to platform remove callback returning
+>     void
+>   drm/bridge: display-connector: Convert to platform remove callback
+>     returning void
+>   drm/bridge: fsl-ldb: Convert to platform remove callback returning
+>     void
+>   drm/imx/imx8*: Convert to platform remove callback returning void
+>   drm/bridge: lvds-codec: Convert to platform remove callback returning
+>     void
+>   drm/bridge: nwl-dsi: Convert to platform remove callback returning
+>     void
+>   drm/bridge: simple-bridge: Convert to platform remove callback
+>     returning void
+>   drm/bridge: synopsys: Convert to platform remove callback returning
+>     void
+>   drm/bridge: thc63lvd1024: Convert to platform remove callback
+>     returning void
+>   drm/bridge: tfp410: Convert to platform remove callback returning void
+>   drm/etnaviv: Convert to platform remove callback returning void
+>   drm/exynos: Convert to platform remove callback returning void
+>   drm/fsl-dcu: Convert to platform remove callback returning void
+>   drm/hisilicon: Convert to platform remove callback returning void
+>   drm/imx/dcss: Convert to platform remove callback returning void
+>   drm/imx/ipuv3: Convert to platform remove callback returning void
+>   drm/ingenic: Convert to platform remove callback returning void
+>   drm/kmb: Convert to platform remove callback returning void
+>   drm/lima: Convert to platform remove callback returning void
+>   drm/logicvc: Convert to platform remove callback returning void
+>   drm/mcde: Convert to platform remove callback returning void
+>   drm/mediatek: Convert to platform remove callback returning void
+>   drm/mediatek: Convert to platform remove callback returning void
+>   drm/meson: Convert to platform remove callback returning void
+>   drm/msm: Convert to platform remove callback returning void
+>   drm/mxsfb: Convert to platform remove callback returning void
+>   drm/nouveau: Convert to platform remove callback returning void
+>   drm/omap: Convert to platform remove callback returning void
+>   drm/panel: Convert to platform remove callback returning void
+>   drm/panfrost: Convert to platform remove callback returning void
+>   drm/rcar-du: Convert to platform remove callback returning void
+>   drm/rockchip: Convert to platform remove callback returning void
+>   drm/shmobile: Convert to platform remove callback returning void
+>   drm/sprd: Convert to platform remove callback returning void
+>   drm/sti: Convert to platform remove callback returning void
+>   drm/stm: Convert to platform remove callback returning void
+>   drm/sun4i: Convert to platform remove callback returning void
+>   drm/tegra: Convert to platform remove callback returning void
+>   drm/tests: helpers: Convert to platform remove callback returning void
+>   drm/tidss: Convert to platform remove callback returning void
+>   drm/tilcdc: Convert to platform remove callback returning void
+>   drm/tiny: Convert to platform remove callback returning void
+>   drm/tiny: Convert to platform remove callback returning void
+>   drm/tve200: Convert to platform remove callback returning void
+>   drm/v3d: Convert to platform remove callback returning void
+>   drm/vc4: Convert to platform remove callback returning void
+>   drm/xlnx/zynqmp_dpsub: Convert to platform remove callback returning
+>     void
+>
+>  drivers/gpu/drm/arm/display/komeda/komeda_drv.c     | 5 ++---
+>  drivers/gpu/drm/arm/hdlcd_drv.c                     | 5 ++---
+>  drivers/gpu/drm/arm/malidp_drv.c                    | 5 ++---
+>  drivers/gpu/drm/armada/armada_crtc.c                | 5 ++---
+>  drivers/gpu/drm/armada/armada_drv.c                 | 5 ++---
+>  drivers/gpu/drm/aspeed/aspeed_gfx_drv.c             | 6 ++----
+>  drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c        | 6 ++----
+>  drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c      | 6 ++----
+>  drivers/gpu/drm/bridge/display-connector.c          | 6 ++----
+>  drivers/gpu/drm/bridge/fsl-ldb.c                    | 6 ++----
+>  drivers/gpu/drm/bridge/imx/imx8qm-ldb-drv.c         | 6 ++----
+>  drivers/gpu/drm/bridge/imx/imx8qxp-ldb-drv.c        | 6 ++----
+>  drivers/gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c | 6 ++----
+>  drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c     | 6 ++----
+>  drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c        | 6 ++----
+>  drivers/gpu/drm/bridge/lvds-codec.c                 | 6 ++----
+>  drivers/gpu/drm/bridge/nwl-dsi.c                    | 5 ++---
+>  drivers/gpu/drm/bridge/simple-bridge.c              | 6 ++----
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi-ahb-audio.c | 6 ++----
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c       | 6 ++----
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi-gp-audio.c  | 6 ++----
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c | 6 ++----
+>  drivers/gpu/drm/bridge/thc63lvd1024.c               | 6 ++----
+>  drivers/gpu/drm/bridge/ti-tfp410.c                  | 6 ++----
+>  drivers/gpu/drm/etnaviv/etnaviv_drv.c               | 6 ++----
+>  drivers/gpu/drm/etnaviv/etnaviv_gpu.c               | 5 ++---
+>  drivers/gpu/drm/exynos/exynos5433_drm_decon.c       | 6 ++----
+>  drivers/gpu/drm/exynos/exynos7_drm_decon.c          | 6 ++----
+>  drivers/gpu/drm/exynos/exynos_dp.c                  | 6 ++----
+>  drivers/gpu/drm/exynos/exynos_drm_drv.c             | 5 ++---
+>  drivers/gpu/drm/exynos/exynos_drm_dsi.c             | 6 ++----
+>  drivers/gpu/drm/exynos/exynos_drm_fimc.c            | 6 ++----
+>  drivers/gpu/drm/exynos/exynos_drm_fimd.c            | 6 ++----
+>  drivers/gpu/drm/exynos/exynos_drm_g2d.c             | 6 ++----
+>  drivers/gpu/drm/exynos/exynos_drm_gsc.c             | 6 ++----
+>  drivers/gpu/drm/exynos/exynos_drm_mic.c             | 6 ++----
+>  drivers/gpu/drm/exynos/exynos_drm_rotator.c         | 6 ++----
+>  drivers/gpu/drm/exynos/exynos_drm_scaler.c          | 6 ++----
+>  drivers/gpu/drm/exynos/exynos_hdmi.c                | 6 ++----
+>  drivers/gpu/drm/exynos/exynos_mixer.c               | 6 ++----
+>  drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c           | 6 ++----
+>  drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.c        | 6 ++----
+>  drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c     | 5 ++---
+>  drivers/gpu/drm/imx/dcss/dcss-drv.c                 | 6 ++----
+>  drivers/gpu/drm/imx/ipuv3/dw_hdmi-imx.c             | 6 ++----
+>  drivers/gpu/drm/imx/ipuv3/imx-drm-core.c            | 5 ++---
+>  drivers/gpu/drm/imx/ipuv3/imx-ldb.c                 | 5 ++---
+>  drivers/gpu/drm/imx/ipuv3/imx-tve.c                 | 5 ++---
+>  drivers/gpu/drm/imx/ipuv3/ipuv3-crtc.c              | 5 ++---
+>  drivers/gpu/drm/imx/ipuv3/parallel-display.c        | 6 ++----
+>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c           | 6 ++----
+>  drivers/gpu/drm/ingenic/ingenic-ipu.c               | 5 ++---
+>  drivers/gpu/drm/kmb/kmb_drv.c                       | 5 ++---
+>  drivers/gpu/drm/lima/lima_drv.c                     | 5 ++---
+>  drivers/gpu/drm/logicvc/logicvc_drm.c               | 6 ++----
+>  drivers/gpu/drm/mcde/mcde_drv.c                     | 6 ++----
+>  drivers/gpu/drm/mcde/mcde_dsi.c                     | 6 ++----
+>  drivers/gpu/drm/mediatek/mtk_cec.c                  | 5 ++---
+>  drivers/gpu/drm/mediatek/mtk_disp_aal.c             | 6 ++----
+>  drivers/gpu/drm/mediatek/mtk_disp_ccorr.c           | 6 ++----
+>  drivers/gpu/drm/mediatek/mtk_disp_color.c           | 6 ++----
+>  drivers/gpu/drm/mediatek/mtk_disp_gamma.c           | 6 ++----
+>  drivers/gpu/drm/mediatek/mtk_disp_merge.c           | 6 ++----
+>  drivers/gpu/drm/mediatek/mtk_disp_ovl.c             | 6 ++----
+>  drivers/gpu/drm/mediatek/mtk_disp_rdma.c            | 6 ++----
+>  drivers/gpu/drm/mediatek/mtk_dp.c                   | 6 ++----
+>  drivers/gpu/drm/mediatek/mtk_dpi.c                  | 6 ++----
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c              | 6 ++----
+>  drivers/gpu/drm/mediatek/mtk_dsi.c                  | 6 ++----
+>  drivers/gpu/drm/mediatek/mtk_hdmi.c                 | 5 ++---
+>  drivers/gpu/drm/mediatek/mtk_hdmi_ddc.c             | 6 ++----
+>  drivers/gpu/drm/mediatek/mtk_mdp_rdma.c             | 5 ++---
+>  drivers/gpu/drm/meson/meson_drv.c                   | 6 ++----
+>  drivers/gpu/drm/meson/meson_dw_hdmi.c               | 6 ++----
+>  drivers/gpu/drm/msm/adreno/adreno_device.c          | 5 ++---
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c             | 6 ++----
+>  drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c            | 6 ++----
+>  drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c            | 5 ++---
+>  drivers/gpu/drm/msm/dp/dp_display.c                 | 6 ++----
+>  drivers/gpu/drm/msm/dsi/dsi.c                       | 6 ++----
+>  drivers/gpu/drm/msm/hdmi/hdmi.c                     | 6 ++----
+>  drivers/gpu/drm/msm/hdmi/hdmi_phy.c                 | 6 ++----
+>  drivers/gpu/drm/msm/msm_drv.c                       | 6 ++----
+>  drivers/gpu/drm/msm/msm_mdss.c                      | 6 ++----
+>  drivers/gpu/drm/mxsfb/lcdif_drv.c                   | 6 ++----
+>  drivers/gpu/drm/mxsfb/mxsfb_drv.c                   | 6 ++----
+>  drivers/gpu/drm/nouveau/nouveau_platform.c          | 5 ++---
+>  drivers/gpu/drm/omapdrm/dss/dispc.c                 | 5 ++---
+>  drivers/gpu/drm/omapdrm/dss/dsi.c                   | 6 ++----
+>  drivers/gpu/drm/omapdrm/dss/dss.c                   | 6 ++----
+>  drivers/gpu/drm/omapdrm/dss/hdmi4.c                 | 5 ++---
+>  drivers/gpu/drm/omapdrm/dss/hdmi5.c                 | 5 ++---
+>  drivers/gpu/drm/omapdrm/dss/venc.c                  | 5 ++---
+>  drivers/gpu/drm/omapdrm/omap_dmm_tiler.c            | 9 +++------
+>  drivers/gpu/drm/omapdrm/omap_drv.c                  | 6 ++----
+>  drivers/gpu/drm/panel/panel-lvds.c                  | 6 ++----
+>  drivers/gpu/drm/panel/panel-seiko-43wvf1g.c         | 6 ++----
+>  drivers/gpu/drm/panel/panel-sharp-ls037v7dw01.c     | 6 ++----
+>  drivers/gpu/drm/panel/panel-simple.c                | 6 ++----
+>  drivers/gpu/drm/panfrost/panfrost_drv.c             | 5 ++---
+>  drivers/gpu/drm/rcar-du/rcar_cmm.c                  | 6 ++----
+>  drivers/gpu/drm/rcar-du/rcar_du_drv.c               | 6 ++----
+>  drivers/gpu/drm/rcar-du/rcar_dw_hdmi.c              | 6 ++----
+>  drivers/gpu/drm/rcar-du/rcar_lvds.c                 | 6 ++----
+>  drivers/gpu/drm/rcar-du/rcar_mipi_dsi.c             | 6 ++----
+>  drivers/gpu/drm/rcar-du/rzg2l_mipi_dsi.c            | 6 ++----
+>  drivers/gpu/drm/rockchip/analogix_dp-rockchip.c     | 6 ++----
+>  drivers/gpu/drm/rockchip/cdn-dp-core.c              | 6 ++----
+>  drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c     | 6 ++----
+>  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c         | 6 ++----
+>  drivers/gpu/drm/rockchip/inno_hdmi.c                | 6 ++----
+>  drivers/gpu/drm/rockchip/rk3066_hdmi.c              | 6 ++----
+>  drivers/gpu/drm/rockchip/rockchip_drm_drv.c         | 6 ++----
+>  drivers/gpu/drm/rockchip/rockchip_lvds.c            | 6 ++----
+>  drivers/gpu/drm/rockchip/rockchip_vop2_reg.c        | 6 ++----
+>  drivers/gpu/drm/rockchip/rockchip_vop_reg.c         | 6 ++----
+>  drivers/gpu/drm/shmobile/shmob_drm_drv.c            | 6 ++----
+>  drivers/gpu/drm/sprd/sprd_dpu.c                     | 6 ++----
+>  drivers/gpu/drm/sprd/sprd_drm.c                     | 5 ++---
+>  drivers/gpu/drm/sprd/sprd_dsi.c                     | 6 ++----
+>  drivers/gpu/drm/sti/sti_compositor.c                | 5 ++---
+>  drivers/gpu/drm/sti/sti_drv.c                       | 6 ++----
+>  drivers/gpu/drm/sti/sti_dvo.c                       | 5 ++---
+>  drivers/gpu/drm/sti/sti_hda.c                       | 5 ++---
+>  drivers/gpu/drm/sti/sti_hdmi.c                      | 6 ++----
+>  drivers/gpu/drm/sti/sti_hqvdp.c                     | 5 ++---
+>  drivers/gpu/drm/sti/sti_tvout.c                     | 5 ++---
+>  drivers/gpu/drm/stm/drv.c                           | 6 ++----
+>  drivers/gpu/drm/stm/dw_mipi_dsi-stm.c               | 6 ++----
+>  drivers/gpu/drm/sun4i/sun4i_backend.c               | 6 ++----
+>  drivers/gpu/drm/sun4i/sun4i_drv.c                   | 6 ++----
+>  drivers/gpu/drm/sun4i/sun4i_frontend.c              | 6 ++----
+>  drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c              | 6 ++----
+>  drivers/gpu/drm/sun4i/sun4i_tcon.c                  | 6 ++----
+>  drivers/gpu/drm/sun4i/sun4i_tv.c                    | 6 ++----
+>  drivers/gpu/drm/sun4i/sun6i_drc.c                   | 6 ++----
+>  drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c              | 6 ++----
+>  drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c               | 6 ++----
+>  drivers/gpu/drm/sun4i/sun8i_mixer.c                 | 6 ++----
+>  drivers/gpu/drm/sun4i/sun8i_tcon_top.c              | 6 ++----
+>  drivers/gpu/drm/tegra/dpaux.c                       | 6 ++----
+>  drivers/gpu/drm/tests/drm_kunit_helpers.c           | 5 ++---
+>  drivers/gpu/drm/tidss/tidss_drv.c                   | 6 ++----
+>  drivers/gpu/drm/tilcdc/tilcdc_panel.c               | 6 ++----
+>  drivers/gpu/drm/tiny/arcpgu.c                       | 6 ++----
+>  drivers/gpu/drm/tiny/ofdrm.c                        | 6 ++----
+>  drivers/gpu/drm/tiny/simpledrm.c                    | 6 ++----
+>  drivers/gpu/drm/tve200/tve200_drv.c                 | 6 ++----
+>  drivers/gpu/drm/v3d/v3d_drv.c                       | 6 ++----
+>  drivers/gpu/drm/vc4/vc4_crtc.c                      | 5 ++---
+>  drivers/gpu/drm/vc4/vc4_dpi.c                       | 5 ++---
+>  drivers/gpu/drm/vc4/vc4_drv.c                       | 6 ++----
+>  drivers/gpu/drm/vc4/vc4_dsi.c                       | 6 ++----
+>  drivers/gpu/drm/vc4/vc4_hdmi.c                      | 5 ++---
+>  drivers/gpu/drm/vc4/vc4_hvs.c                       | 5 ++---
+>  drivers/gpu/drm/vc4/vc4_txp.c                       | 5 ++---
+>  drivers/gpu/drm/vc4/vc4_v3d.c                       | 5 ++---
+>  drivers/gpu/drm/vc4/vc4_vec.c                       | 5 ++---
+>  drivers/gpu/drm/xlnx/zynqmp_dpsub.c                 | 6 ++----
+>  159 files changed, 319 insertions(+), 597 deletions(-)
+>
+>
+> base-commit: 457391b0380335d5e9a5babdec90ac53928b23b4
+> --
+> 2.39.2
+>
