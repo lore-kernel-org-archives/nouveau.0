@@ -4,45 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80355EB64DD
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF2A6EB64D7
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 733C110E37A;
-	Tue, 20 Jun 2023 18:21:23 +0000 (UTC)
-Received: from 189.cn (ptr.189.cn [183.61.185.103])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2D26810E18B;
- Mon, 19 Jun 2023 03:45:35 +0000 (UTC)
-HMM_SOURCE_IP: 10.64.8.43:57978.1471128269
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
- by 189.cn (HERMES) with SMTP id 505FA10029B;
- Mon, 19 Jun 2023 11:45:30 +0800 (CST)
-Received: from  ([114.242.206.180])
- by gateway-151646-dep-75648544bd-7vx9t with ESMTP id
- 7239e2ea64ab49028b0edbdbd8b976d0 for macro@orcam.me.uk; 
- Mon, 19 Jun 2023 11:45:32 CST
-X-Transaction-ID: 7239e2ea64ab49028b0edbdbd8b976d0
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-Message-ID: <c53476a4-fbc9-00e9-d47d-51a4ce5b9259@189.cn>
-Date: Mon, 19 Jun 2023 11:45:30 +0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D48610E369;
+	Tue, 20 Jun 2023 18:21:55 +0000 (UTC)
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com
+ [66.111.4.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ABBB10E53E
+ for <nouveau@lists.freedesktop.org>; Thu, 18 May 2023 18:18:47 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailout.nyi.internal (Postfix) with ESMTP id 467EA5C0189;
+ Thu, 18 May 2023 14:18:45 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute1.internal (MEProxy); Thu, 18 May 2023 14:18:45 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ invisiblethingslab.com; h=cc:cc:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:sender:subject:subject:to:to; s=fm3; t=
+ 1684433925; x=1684520325; bh=8axqpDZcBJUL6/RSlQEGx3UykZkeYDfsoFq
+ sKS4DlH8=; b=LTDJ72ZJBNU4Q+wdQtTMHbKI7Rf7xCwPmPlFPa/OWtk6KR2yIsb
+ wUx4TgI9fwxNTiD9tCkEW9fGhx6uFOOexL8CANKKVptANJ3uJC8nIcLpDQnNeuJ5
+ 9tieBz0pNDhKd4uSNPNux7XAJUkWci2MO18bTW3KhOKheIthnn54/C2EIz2B7n0p
+ ArsV7dtXoA+8i7LqZVw5QBTuof9aSMA381lGLdwimEdPy6/4q2hSQupv4lFLphcq
+ Xz1nGSd9blAmwB1xoafB3KUXW/7h0gRdkot2+/Ph2RsVSc6V0quQymU13VP2wcXw
+ AuAa+ike1zV5TPGd9EvSg2UdVQTk5IVi74g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:content-type:date:date
+ :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+ :x-sasl-enc; s=fm1; t=1684433925; x=1684520325; bh=8axqpDZcBJUL6
+ /RSlQEGx3UykZkeYDfsoFqsKS4DlH8=; b=ahTrDDMNHMprtR6j7zsInmHT0unIR
+ qAyeVpbtq7fyzs/HsksHaOtng51EzIdD1Y4DmO8WoPBkTWZ5M3rG0m/mcJ6JDmPw
+ Ecy4AFX/C+Uewwq8xxSQ0sk7Is2WYhYYslyESxZijdWH/cei3IxLH5Fq8X6pTphq
+ SxFdOZPf2JQXVzxxMxEilNQPw4mbB+ZrezIiDlKcdSqxv2j25fEZnzUl0MJ8yfLX
+ 4IBsMTnU58G/IcA7jgPp15uxmuqzn8dHYvRHo01VfoDYtRBqchFq9RUOtpPcUI9N
+ ZflIOipXAScjPuYZeecwD2XoSt2p9rjtUfsNR+ACw3XeX8tFtlst0182g==
+X-ME-Sender: <xms:BGxmZEHwrxvzj2rUdyQFtkeClxzfILEtdDb-xaRPscDsugNfa_gRhg>
+ <xme:BGxmZNXNpf0AMvINhbKCxiq-tUTzBaefoJnHwWVNaDikDkZjQkGPm_8uhSk2JyFpn
+ 4sOIN4kpu3nRQ>
+X-ME-Received: <xmr:BGxmZOJZQmSuEVRCprIH4kzePADrtGYRp1bSQUHUENFrUWHdOe2cZ4QgvTtelEMwRsTpyFOh_IZf-gSqvSecmq8Ebl-rrYiRAFA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeeifedguddvfecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvvefukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforghr
+ vghkucforghrtgiihihkohifshhkihdqifpkrhgvtghkihcuoehmrghrmhgrrhgvkhesih
+ hnvhhishhisghlvghthhhinhhgshhlrggsrdgtohhmqeenucggtffrrghtthgvrhhnpefg
+ udelteefvefhfeehieetleeihfejhfeludevteetkeevtedtvdegueetfeejudenucevlh
+ hushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrghrmhgrrhgv
+ khesihhnvhhishhisghlvghthhhinhhgshhlrggsrdgtohhm
+X-ME-Proxy: <xmx:BGxmZGG9PGqozfwHtPqImZp0h9jq6zXETkRQMUn2ych4Vg8Ht-Fv7g>
+ <xmx:BGxmZKWMsb0cJjwvkTZF5RgdlJXSFKEsQNnO8v9cj_4G3rifEk9oVA>
+ <xmx:BGxmZJO894ds2AjAhhHmsTz7sH_UR233C-BOjr4cInJFMiOoHG__fw>
+ <xmx:BWxmZDVQItjPzKlagxJxlOPA1P5hwMRsW1KjHLFzxth6sl8DCB60tA>
+Feedback-ID: i1568416f:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 18 May 2023 14:18:42 -0400 (EDT)
+Date: Thu, 18 May 2023 20:18:39 +0200
+From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?=
+ <marmarek@invisiblethingslab.com>
+To: Christoph Hellwig <hch@lst.de>
+Message-ID: <ZGZr/xgbUmVqpOpN@mail-itl>
+References: <20230518134253.909623-1-hch@lst.de>
+ <20230518134253.909623-3-hch@lst.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: "Maciej W. Rozycki" <macro@orcam.me.uk>
-References: <20230613030151.216625-1-15330273260@189.cn>
- <20230613030151.216625-3-15330273260@189.cn>
- <alpine.DEB.2.21.2306190339590.14084@angie.orcam.me.uk>
-From: Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <alpine.DEB.2.21.2306190339590.14084@angie.orcam.me.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: Re: [Nouveau] [PATCH v7 2/8] PCI/VGA: Deal only with VGA class
- devices
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="CsM+DO8kg05XbydD"
+Content-Disposition: inline
+In-Reply-To: <20230518134253.909623-3-hch@lst.de>
+X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:11 +0000
+Subject: Re: [Nouveau] [PATCH 2/4] x86: always initialize xen-swiotlb when
+ xen-pcifront is enabling
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,57 +87,161 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Sui Jingfeng <suijingfeng@loongson.cn>,
- kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>
+Cc: Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>, nouveau@lists.freedesktop.org,
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+ linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Ben Skeggs <bskeggs@redhat.com>, "H. Peter Anvin" <hpa@zytor.com>,
+ xen-devel@lists.xenproject.org, Thomas Gleixner <tglx@linutronix.de>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
 
-On 2023/6/19 11:02, Maciej W. Rozycki wrote:
-> On Tue, 13 Jun 2023, Sui Jingfeng wrote:
->
->> Deal only with the VGA devcie(pdev->class == 0x0300), so replace the
->   Typo here: s/devcie/device/.
-Thanks a lot,
->> pci_get_subsys() function with pci_get_class(). Filter the non-PCI display
->> device(pdev->class != 0x0300) out. There no need to process the non-display
->> PCI device.
->   I've only come across this patch series now.  Without diving into what
-> this code actually does I have just one question as a matter of interest.
->
->> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
->> index c1bc6c983932..22a505e877dc 100644
->> --- a/drivers/pci/vgaarb.c
->> +++ b/drivers/pci/vgaarb.c
->> @@ -1500,7 +1496,9 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
->>   	struct pci_dev *pdev = to_pci_dev(dev);
->>   	bool notify = false;
->>   
->> -	vgaarb_dbg(dev, "%s\n", __func__);
->> +	/* Only deal with VGA class devices */
->> +	if (pdev->class != PCI_CLASS_DISPLAY_VGA << 8)
->> +		return 0;
->   Hmm, shouldn't this also handle PCI_CLASS_NOT_DEFINED_VGA?
+--CsM+DO8kg05XbydD
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 18 May 2023 20:18:39 +0200
+From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?= <marmarek@invisiblethingslab.com>
+To: Christoph Hellwig <hch@lst.de>
+Cc: Juergen Gross <jgross@suse.com>,
+	Stefano Stabellini <sstabellini@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>, Ben Skeggs <bskeggs@redhat.com>,
+	Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+	xen-devel@lists.xenproject.org, iommu@lists.linux.dev,
+	linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
+Subject: Re: [PATCH 2/4] x86: always initialize xen-swiotlb when xen-pcifront
+ is enabling
 
-If your machine have only one such a VGA card, it probably don't hurt.
+On Thu, May 18, 2023 at 03:42:51PM +0200, Christoph Hellwig wrote:
+> Remove the dangerous late initialization of xen-swiotlb in
+> pci_xen_swiotlb_init_late and instead just always initialize
+> xen-swiotlb in the boot code if CONFIG_XEN_PCIDEV_FRONTEND is enabled.
+>=20
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
 
-But, such a card will also get ignored originally (before applying this 
-patch).
+Doesn't it mean all the PV guests will basically waste 64MB of RAM
+by default each if they don't really have PCI devices?
 
->   As far as I
-> know it is the equivalent of PCI_CLASS_DISPLAY_VGA for PCI <= 2.0 devices
-> that were implemented before the idea of PCI device classes has developed
-> into its current form.
+> ---
+>  arch/x86/include/asm/xen/swiotlb-xen.h |  6 ------
+>  arch/x86/kernel/pci-dma.c              | 25 +++----------------------
+>  drivers/pci/xen-pcifront.c             |  6 ------
+>  3 files changed, 3 insertions(+), 34 deletions(-)
+>=20
+> diff --git a/arch/x86/include/asm/xen/swiotlb-xen.h b/arch/x86/include/as=
+m/xen/swiotlb-xen.h
+> index 77a2d19cc9909e..abde0f44df57dc 100644
+> --- a/arch/x86/include/asm/xen/swiotlb-xen.h
+> +++ b/arch/x86/include/asm/xen/swiotlb-xen.h
+> @@ -2,12 +2,6 @@
+>  #ifndef _ASM_X86_SWIOTLB_XEN_H
+>  #define _ASM_X86_SWIOTLB_XEN_H
+> =20
+> -#ifdef CONFIG_SWIOTLB_XEN
+> -extern int pci_xen_swiotlb_init_late(void);
+> -#else
+> -static inline int pci_xen_swiotlb_init_late(void) { return -ENXIO; }
+> -#endif
+> -
+>  int xen_swiotlb_fixup(void *buf, unsigned long nslabs);
+>  int xen_create_contiguous_region(phys_addr_t pstart, unsigned int order,
+>  				unsigned int address_bits,
+> diff --git a/arch/x86/kernel/pci-dma.c b/arch/x86/kernel/pci-dma.c
+> index f887b08ac5ffe4..c4a7ead9eb674e 100644
+> --- a/arch/x86/kernel/pci-dma.c
+> +++ b/arch/x86/kernel/pci-dma.c
+> @@ -81,27 +81,6 @@ static void __init pci_xen_swiotlb_init(void)
+>  	if (IS_ENABLED(CONFIG_PCI))
+>  		pci_request_acs();
+>  }
+> -
+> -int pci_xen_swiotlb_init_late(void)
+> -{
+> -	if (dma_ops =3D=3D &xen_swiotlb_dma_ops)
+> -		return 0;
+> -
+> -	/* we can work with the default swiotlb */
+> -	if (!io_tlb_default_mem.nslabs) {
+> -		int rc =3D swiotlb_init_late(swiotlb_size_or_default(),
+> -					   GFP_KERNEL, xen_swiotlb_fixup);
+> -		if (rc < 0)
+> -			return rc;
+> -	}
+> -
+> -	/* XXX: this switches the dma ops under live devices! */
+> -	dma_ops =3D &xen_swiotlb_dma_ops;
+> -	if (IS_ENABLED(CONFIG_PCI))
+> -		pci_request_acs();
+> -	return 0;
+> -}
+> -EXPORT_SYMBOL_GPL(pci_xen_swiotlb_init_late);
+>  #else
+>  static inline void __init pci_xen_swiotlb_init(void)
+>  {
+> @@ -111,7 +90,9 @@ static inline void __init pci_xen_swiotlb_init(void)
+>  void __init pci_iommu_alloc(void)
+>  {
+>  	if (xen_pv_domain()) {
+> -		if (xen_initial_domain() || x86_swiotlb_enable)
+> +		if (xen_initial_domain() ||
+> +		    IS_ENABLED(CONFIG_XEN_PCIDEV_FRONTEND) ||
+> +		    x86_swiotlb_enable)
+>  			pci_xen_swiotlb_init();
+>  		return;
+>  	}
+> diff --git a/drivers/pci/xen-pcifront.c b/drivers/pci/xen-pcifront.c
+> index 83c0ab50676dff..11636634ae512f 100644
+> --- a/drivers/pci/xen-pcifront.c
+> +++ b/drivers/pci/xen-pcifront.c
+> @@ -22,7 +22,6 @@
+>  #include <linux/bitops.h>
+>  #include <linux/time.h>
+>  #include <linux/ktime.h>
+> -#include <linux/swiotlb.h>
+>  #include <xen/platform_pci.h>
+> =20
+>  #include <asm/xen/swiotlb-xen.h>
+> @@ -669,11 +668,6 @@ static int pcifront_connect_and_init_dma(struct pcif=
+ront_device *pdev)
+> =20
+>  	spin_unlock(&pcifront_dev_lock);
+> =20
+> -	if (!err && !is_swiotlb_active(&pdev->xdev->dev)) {
+> -		err =3D pci_xen_swiotlb_init_late();
+> -		if (err)
+> -			dev_err(&pdev->xdev->dev, "Could not setup SWIOTLB!\n");
+> -	}
+>  	return err;
+>  }
+> =20
+> --=20
+> 2.39.2
+>=20
+>=20
 
-If multiple video card problems on your machine is matter,
+--=20
+Best Regards,
+Marek Marczykowski-G=C3=B3recki
+Invisible Things Lab
 
-then I think it do deserve another patch to clarify this issue and to 
-explain the rationale.
+--CsM+DO8kg05XbydD
+Content-Type: application/pgp-signature; name="signature.asc"
 
->   I may have such a VGA device somewhere.
->
->    Maciej
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEhrpukzGPukRmQqkK24/THMrX1ywFAmRma/8ACgkQ24/THMrX
+1yzT+gf/S1uwHKmjBfQtKqzw50EE/PUeNAO8869wN0cpWYT6WkKJT5BxXOVgbJfW
+9mibLfMCcVO0H1cE8+PCxvC9BIv3ldhC7KVtSQks99V24zf0mPiqBiGM2mAI9VRD
+SYMwmipIXDSRFERIcBo1XomAt4ytJj/BkqCv+Xy5PgYIqdABz9R4G3HT2q6rN0Lq
+M2sLnKWdGwoYdk8hOmlTY5F3/iYdv/Zlel4Ki2s5ZzLUBxCZ1IKErb31wRaRid8p
+APcTnrs8RZE8+YBL7nzdr9HudKMlaChsiZsPkIo0v0aI5oFa+OHs6Z5sOXOP0RAB
+qmCDKShHiVUc6Lqc1gT6VHLmZdEEig==
+=Y97F
+-----END PGP SIGNATURE-----
+
+--CsM+DO8kg05XbydD--
