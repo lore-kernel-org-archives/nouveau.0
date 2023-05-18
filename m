@@ -4,73 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88201C77B7F
-	for <nouveau@archiver.kernel.org>; Wed, 17 May 2023 13:31:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A06CFC7EE23
+	for <nouveau@archiver.kernel.org>; Thu, 18 May 2023 13:43:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05C5410E414;
-	Wed, 17 May 2023 13:31:22 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02D8910E420
- for <nouveau@lists.freedesktop.org>; Wed, 17 May 2023 13:31:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1684330278;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=qLttclHj7hHhcC/wb0vN9cazD/0VuMDK2HeUMirb6Q8=;
- b=VeLNIEGF/3i8WwXiyvLAH73xkL4rSZqtEx6mnFaICbh02euPDKFtvMZJ/prZrN0usiP5UN
- G8HqFdSzJMyfu4pLiLlRfXklgpsFyjsIvToWCs7gGp/syt97iJE3eBVsuxkKGoSWqYdKfV
- 8f2IGKeAHwBMYpKhzNJWSL4shRB6JS4=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-500-M3leW48YOditVRLLDsnBeQ-1; Wed, 17 May 2023 09:31:16 -0400
-X-MC-Unique: M3leW48YOditVRLLDsnBeQ-1
-Received: by mail-qv1-f69.google.com with SMTP id
- 6a1803df08f44-6238a4e544bso2656026d6.0
- for <nouveau@lists.freedesktop.org>; Wed, 17 May 2023 06:31:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684330276; x=1686922276;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=qLttclHj7hHhcC/wb0vN9cazD/0VuMDK2HeUMirb6Q8=;
- b=jwNiHOWwh17Xl40vhjDiPw1wUBG2d7gPJCIayRzu8dwKicq5Z+gRh1xoEfOpMDQNUn
- aq/s0RT++EHM0d5NTOTlIMSv6Dz8KI57kS5x1sFiZab5eqsNL0VTGJGgVMR2pSPRLAwF
- o0t3IbNT9ZsbfFOcTNm9/fNWnMrngWUfDN6FsYJhI/e0ILU4a9OBQzF10/X8uS73awSu
- qKbmfLSg2Osl1EOUuNs7VK5/k9Yc4gUBYAoe3rgV6kvWl1xCVNqP5BVg4Maiql7UoTal
- WaunarDZ/yB/XOJuSaM1YVUVs30rPJd/xszw/VEge06M0LGxa9vfm3ryXksJwa9erGMe
- EINA==
-X-Gm-Message-State: AC+VfDynHvcXtrpiY5L7Jtp56O91In2nUxtRADdUnMCFddbndWQt3fwB
- MhpjOXfi89PCP4sa2YoOsP7FOr+KXd4Sp2pg6Wuy+G0gVk/uuyRpnjLH8L4spNY4bUXoBkkMoMP
- zRXQ9DO+mjGS4y+CwhM7TZRrj4g==
-X-Received: by 2002:ad4:5cce:0:b0:5ef:8c35:296c with SMTP id
- iu14-20020ad45cce000000b005ef8c35296cmr59457576qvb.44.1684330276111; 
- Wed, 17 May 2023 06:31:16 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ7pTwMVj9jWn4rorpVRcw8fHanBa08ioE8BoJ41Rc+agDBnPWOfYwP+DUBx0MafDcOonzskyw==
-X-Received: by 2002:ad4:5cce:0:b0:5ef:8c35:296c with SMTP id
- iu14-20020ad45cce000000b005ef8c35296cmr59457545qvb.44.1684330275723; 
- Wed, 17 May 2023 06:31:15 -0700 (PDT)
-Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
- (nat-pool-bos-t.redhat.com. [66.187.233.206])
- by smtp.gmail.com with ESMTPSA id
- v13-20020a0cdd8d000000b006215e9d0503sm4691777qvk.21.2023.05.17.06.31.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 17 May 2023 06:31:15 -0700 (PDT)
-From: Tom Rix <trix@redhat.com>
-To: bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com,
- airlied@gmail.com, daniel@ffwll.ch, gsamaiya@nvidia.com
-Date: Wed, 17 May 2023 09:31:12 -0400
-Message-Id: <20230517133112.873856-1-trix@redhat.com>
-X-Mailer: git-send-email 2.27.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 512FD10E0BD;
+	Thu, 18 May 2023 13:43:24 +0000 (UTC)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:3::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A55288A3E
+ for <nouveau@lists.freedesktop.org>; Thu, 18 May 2023 13:43:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
+ :Reply-To:Content-Type:Content-ID:Content-Description;
+ bh=NrwaDXndPVrlGW4jqCyf20MCAXo0YJy7aoO3FDItFxI=; b=lh9YNaJgqjsQ4ABDzfBXPDYhnF
+ 0rgvGegVpdV31RoZMvM9hbEbN94AXBXG4zrc9vSce86yoaAY93okWrN31ceblBj4ur0q1+YmfM6Hg
+ v2JiJP+oecPzr+HP7G86rf0eM/dmlMOfuhqIhS4tMRcj+JGXLecrE0QZepRPPoZJwkQxnA+j3FdZt
+ RlxkFpSPRj7ljl509O3DDGybPMxj20tGTo404+biDFXzMLHmhd46mUIWs42T8tBhOx2EJsaRBCXG2
+ KFhN7YElPvMIUpYDvbAlPmwYYGOnFHuhw97nSyrLo0FGUtm5W07Q29cDo0EwumNuBftywhBKx3uyT
+ dshNqNvg==;
+Received: from [2001:4bb8:188:3dd5:1149:8081:5f51:3e54] (helo=localhost)
+ by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
+ id 1pzduN-00D6T3-0S; Thu, 18 May 2023 13:43:07 +0000
+From: Christoph Hellwig <hch@lst.de>
+To: Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
+ x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>
+Date: Thu, 18 May 2023 15:42:53 +0200
+Message-Id: <20230518134253.909623-5-hch@lst.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230518134253.909623-1-hch@lst.de>
+References: <20230518134253.909623-1-hch@lst.de>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
-Subject: [Nouveau] [PATCH] drm/nouveau/acr/ga102: set variable ga102_gsps
- storage-class-specifier to static
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Subject: [Nouveau] [PATCH 4/4] swiotlb: unexport is_swiotlb_active
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,35 +55,30 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Tom Rix <trix@redhat.com>
+Cc: xen-devel@lists.xenproject.org, iommu@lists.linux.dev,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-smatch reports
-drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c:49:1: warning: symbol
-  'ga102_gsps' was not declared. Should it be static?
+Drivers have no business looking at dma-mapping or swiotlb internals.
 
-This variable is only used in its defining file, so it should be static
-
-Signed-off-by: Tom Rix <trix@redhat.com>
+Signed-off-by: Christoph Hellwig <hch@lst.de>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ kernel/dma/swiotlb.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
-index 525267412c3e..a3996ceca995 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
-@@ -45,7 +45,7 @@ ga102_gsp_nofw(struct nvkm_gsp *gsp, int ver, const struct nvkm_gsp_fwif *fwif)
- 	return 0;
- }
+diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
+index af2e304c672c43..9f1fd28264a067 100644
+--- a/kernel/dma/swiotlb.c
++++ b/kernel/dma/swiotlb.c
+@@ -921,7 +921,6 @@ bool is_swiotlb_active(struct device *dev)
  
--struct nvkm_gsp_fwif
-+static struct nvkm_gsp_fwif
- ga102_gsps[] = {
- 	{ -1, ga102_gsp_nofw, &ga102_gsp },
- 	{}
+ 	return mem && mem->nslabs;
+ }
+-EXPORT_SYMBOL_GPL(is_swiotlb_active);
+ 
+ #ifdef CONFIG_DEBUG_FS
+ 
 -- 
-2.27.0
+2.39.2
 
