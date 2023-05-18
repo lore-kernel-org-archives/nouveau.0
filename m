@@ -4,46 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59887C77B7D
-	for <nouveau@archiver.kernel.org>; Thu, 18 May 2023 13:43:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FFD8C77B73
+	for <nouveau@archiver.kernel.org>; Thu, 18 May 2023 20:30:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 997C610E52E;
-	Thu, 18 May 2023 13:43:28 +0000 (UTC)
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D31A810E0B6
- for <nouveau@lists.freedesktop.org>; Thu, 18 May 2023 13:43:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
- :Reply-To:Content-Type:Content-ID:Content-Description;
- bh=0qIa3nDGH6TUOBAqJwF2s8Hp3AbyQ3Z9bxsITaMukWA=; b=pbfDTeq5MMRbhVEH4CcdLdnaIl
- cLan6u3lCSEqM4f7q8nJqZieDbhwOHHwFhSmsXM+2qxYj6DG3yMd0HOMjR58sstguuZ77BU9YJPyF
- Gq2BxiI4p9KIc19qV7MrhjjquWR8DTa68qrZBvDpK4lspAF2bcFqXQFEGH/ctEOaYlz0ydULrznJu
- fTKWdqL1KcqMzgW8IWNlqgjkpiSonSU/N02Ryto3srwkIe5afJY4CG3YrCwULl9ZWmNuF8if5C7Pj
- f+9G6D6Evcs7iO6Gx1cZhk6B1nbfBHfS3KpZeNIVDKkj5akOhZyeVSrW5OgkXWV06WpKhlDx7WvLX
- bin8x6rQ==;
-Received: from [2001:4bb8:188:3dd5:1149:8081:5f51:3e54] (helo=localhost)
- by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1pzduK-00D6SB-1r; Thu, 18 May 2023 13:43:05 +0000
-From: Christoph Hellwig <hch@lst.de>
-To: Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
- x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>,
- Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>
-Date: Thu, 18 May 2023 15:42:52 +0200
-Message-Id: <20230518134253.909623-4-hch@lst.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230518134253.909623-1-hch@lst.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91CCD10E0D9;
+	Thu, 18 May 2023 20:30:56 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1519010E0D9
+ for <nouveau@lists.freedesktop.org>; Thu, 18 May 2023 20:30:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1684441852;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Ks6xt/wC6E+ECyHt7NO8D94Kf2RxqGGaF/pXlLsIP+4=;
+ b=Xcu2aauVAMjYTh1Sz2prOawI1hQ8JIZgwA06LQALNrDF5czWJ/qRU14Ml2MijH439JGokE
+ VKefuLLbt0z+tFCZ6tXJ2O7wCbnSnfq1AaAHOFGx2uDZcBYxf2wskQFPe4hPSAvdI6a5ns
+ 7/xOtkIWEV6MlIaNOiwP+EL8Za8rbt0=
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
+ [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-272-RvnMEO_9NtiOK64HSUk6cg-1; Thu, 18 May 2023 16:30:51 -0400
+X-MC-Unique: RvnMEO_9NtiOK64HSUk6cg-1
+Received: by mail-qv1-f69.google.com with SMTP id
+ 6a1803df08f44-62384132fe5so15864836d6.3
+ for <nouveau@lists.freedesktop.org>; Thu, 18 May 2023 13:30:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684441851; x=1687033851;
+ h=mime-version:user-agent:content-transfer-encoding:organization
+ :references:in-reply-to:date:cc:to:from:subject:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=UBHXSM6N4oYTfABvCGd3gPEAq2HM572bDIbMq8xh2Y4=;
+ b=gRan9+GlQqfakzxOhYfH+NSe9WDBNI043T7FHxK4JmzDSyomAicabos2wPvGP50xyO
+ QCnNAao+0i5wu6u856aOo62g8/Covoge52OmCC+tnFpV74xV1r/lROq5MS+WAoujXH1t
+ 8BHVkEdnF0dAZHQjp5gY6NEUD8LsRbPpeNtPToiipzQVeNEzfnvnSKu+Bd57lCTwDnox
+ KU8Wq6RecDb0euoM2o8h1AxeniSkujxVo+TzPns97/KSSE4XG7cz4+XDJI75jk+Vw1Di
+ bDPggVh/sjLUTsOgHFksYJsZpWW+wU0Ftg8BP29BMUToT3hOkEXDMwmo1LebJY9VUqCM
+ QtZw==
+X-Gm-Message-State: AC+VfDyBY39SrARrCADwEMT1zdx6gJVgx6hTmKJs+GlppeOGw3HLr2di
+ oxxUiRSaCp1UfarzL3g9TDWX2i8sVPexiary7iH57BzBf2bjMuN2lnsTNjVz8FypbUYthxTPA5x
+ Jnmn35MmsNqWsjAt5awiinzgqzQ==
+X-Received: by 2002:a05:6214:e4d:b0:5c7:d03c:f2b2 with SMTP id
+ o13-20020a0562140e4d00b005c7d03cf2b2mr361315qvc.28.1684441851037; 
+ Thu, 18 May 2023 13:30:51 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ7vnjCpdmwKeoU/jIRT/FUAUaf5A1UGyq52Jfrp1Qr7akRm4t7XVgexBhARVnPncRSkeITgNQ==
+X-Received: by 2002:a05:6214:e4d:b0:5c7:d03c:f2b2 with SMTP id
+ o13-20020a0562140e4d00b005c7d03cf2b2mr361277qvc.28.1684441850746; 
+ Thu, 18 May 2023 13:30:50 -0700 (PDT)
+Received: from ?IPv6:2600:4040:5c62:8200::feb? ([2600:4040:5c62:8200::feb])
+ by smtp.gmail.com with ESMTPSA id
+ cx3-20020a056214188300b006238f82cde4sm763000qvb.108.2023.05.18.13.30.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 18 May 2023 13:30:50 -0700 (PDT)
+Message-ID: <b07c93bc7cb71a32091794cd97f7c702c34539da.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Christoph Hellwig <hch@lst.de>, Juergen Gross <jgross@suse.com>, Stefano
+ Stabellini <sstabellini@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>,  Borislav Petkov <bp@alien8.de>, Dave
+ Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, "H. Peter Anvin"
+ <hpa@zytor.com>, Ben Skeggs <bskeggs@redhat.com>, Karol Herbst
+ <kherbst@redhat.com>
+Date: Thu, 18 May 2023 16:30:49 -0400
+In-Reply-To: <20230518134253.909623-4-hch@lst.de>
 References: <20230518134253.909623-1-hch@lst.de>
+ <20230518134253.909623-4-hch@lst.de>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.44.4 (3.44.4-3.fc36)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-Subject: [Nouveau] [PATCH 3/4] drm/nouveau: stop using is_swiotlb_active
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Nouveau] [PATCH 3/4] drm/nouveau: stop using is_swiotlb_active
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,58 +94,68 @@ Cc: xen-devel@lists.xenproject.org, iommu@lists.linux.dev,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Drivers have no business looking into dma-mapping internals and check
-what backend is used.  Unfortunstely the DRM core is still broken and
-tries to do plain page allocations instead of using DMA API allocators
-by default and uses various bandaids on when to use dma_alloc_coherent.
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-Switch nouveau to use the same (broken) scheme as amdgpu and radeon
-to remove the last driver user of is_swiotlb_active.
+Thanks for getting to this!
 
-Signed-off-by: Christoph Hellwig <hch@lst.de>
----
- drivers/gpu/drm/nouveau/nouveau_ttm.c | 10 +++-------
- 1 file changed, 3 insertions(+), 7 deletions(-)
+On Thu, 2023-05-18 at 15:42 +0200, Christoph Hellwig wrote:
+> Drivers have no business looking into dma-mapping internals and check
+> what backend is used.  Unfortunstely the DRM core is still broken and
+> tries to do plain page allocations instead of using DMA API allocators
+> by default and uses various bandaids on when to use dma_alloc_coherent.
+>=20
+> Switch nouveau to use the same (broken) scheme as amdgpu and radeon
+> to remove the last driver user of is_swiotlb_active.
+>=20
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_ttm.c | 10 +++-------
+>  1 file changed, 3 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouv=
+eau/nouveau_ttm.c
+> index 1469a88910e45d..486f39f31a38df 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+> @@ -24,9 +24,9 @@
+>   */
+> =20
+>  #include <linux/limits.h>
+> -#include <linux/swiotlb.h>
+> =20
+>  #include <drm/ttm/ttm_range_manager.h>
+> +#include <drm/drm_cache.h>
+> =20
+>  #include "nouveau_drv.h"
+>  #include "nouveau_gem.h"
+> @@ -265,7 +265,6 @@ nouveau_ttm_init(struct nouveau_drm *drm)
+>  =09struct nvkm_pci *pci =3D device->pci;
+>  =09struct nvif_mmu *mmu =3D &drm->client.mmu;
+>  =09struct drm_device *dev =3D drm->dev;
+> -=09bool need_swiotlb =3D false;
+>  =09int typei, ret;
+> =20
+>  =09ret =3D nouveau_ttm_init_host(drm, 0);
+> @@ -300,13 +299,10 @@ nouveau_ttm_init(struct nouveau_drm *drm)
+>  =09=09drm->agp.cma =3D pci->agp.cma;
+>  =09}
+> =20
+> -#if IS_ENABLED(CONFIG_SWIOTLB) && IS_ENABLED(CONFIG_X86)
+> -=09need_swiotlb =3D is_swiotlb_active(dev->dev);
+> -#endif
+> -
+>  =09ret =3D ttm_device_init(&drm->ttm.bdev, &nouveau_bo_driver, drm->dev-=
+>dev,
+>  =09=09=09=09  dev->anon_inode->i_mapping,
+> -=09=09=09=09  dev->vma_offset_manager, need_swiotlb,
+> +=09=09=09=09  dev->vma_offset_manager,
+> +=09=09=09=09  drm_need_swiotlb(drm->client.mmu.dmabits),
+>  =09=09=09=09  drm->client.mmu.dmabits <=3D 32);
+>  =09if (ret) {
+>  =09=09NV_ERROR(drm, "error initialising bo driver, %d\n", ret);
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-index 1469a88910e45d..486f39f31a38df 100644
---- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-@@ -24,9 +24,9 @@
-  */
- 
- #include <linux/limits.h>
--#include <linux/swiotlb.h>
- 
- #include <drm/ttm/ttm_range_manager.h>
-+#include <drm/drm_cache.h>
- 
- #include "nouveau_drv.h"
- #include "nouveau_gem.h"
-@@ -265,7 +265,6 @@ nouveau_ttm_init(struct nouveau_drm *drm)
- 	struct nvkm_pci *pci = device->pci;
- 	struct nvif_mmu *mmu = &drm->client.mmu;
- 	struct drm_device *dev = drm->dev;
--	bool need_swiotlb = false;
- 	int typei, ret;
- 
- 	ret = nouveau_ttm_init_host(drm, 0);
-@@ -300,13 +299,10 @@ nouveau_ttm_init(struct nouveau_drm *drm)
- 		drm->agp.cma = pci->agp.cma;
- 	}
- 
--#if IS_ENABLED(CONFIG_SWIOTLB) && IS_ENABLED(CONFIG_X86)
--	need_swiotlb = is_swiotlb_active(dev->dev);
--#endif
--
- 	ret = ttm_device_init(&drm->ttm.bdev, &nouveau_bo_driver, drm->dev->dev,
- 				  dev->anon_inode->i_mapping,
--				  dev->vma_offset_manager, need_swiotlb,
-+				  dev->vma_offset_manager,
-+				  drm_need_swiotlb(drm->client.mmu.dmabits),
- 				  drm->client.mmu.dmabits <= 32);
- 	if (ret) {
- 		NV_ERROR(drm, "error initialising bo driver, %d\n", ret);
--- 
-2.39.2
+--=20
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
