@@ -4,40 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6B56EB64DB
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EBBDEB64D8
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98C9C10E328;
-	Tue, 20 Jun 2023 18:20:16 +0000 (UTC)
-Received: from 189.cn (ptr.189.cn [183.61.185.102])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2ED0110E31C;
- Tue, 13 Jun 2023 03:02:14 +0000 (UTC)
-HMM_SOURCE_IP: 10.64.8.43:47948.1267835893
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
- by 189.cn (HERMES) with SMTP id 07D72100312;
- Tue, 13 Jun 2023 11:02:10 +0800 (CST)
-Received: from  ([114.242.206.180])
- by gateway-151646-dep-75648544bd-7vx9t with ESMTP id
- cc3a4c0ad4584704b36637bc3ff8007e for bhelgaas@google.com; 
- Tue, 13 Jun 2023 11:02:13 CST
-X-Transaction-ID: cc3a4c0ad4584704b36637bc3ff8007e
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-From: Sui Jingfeng <15330273260@189.cn>
-To: Bjorn Helgaas <bhelgaas@google.com>
-Date: Tue, 13 Jun 2023 11:01:48 +0800
-Message-Id: <20230613030151.216625-6-15330273260@189.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230613030151.216625-1-15330273260@189.cn>
-References: <20230613030151.216625-1-15330273260@189.cn>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE52B10E32E;
+	Tue, 20 Jun 2023 18:20:17 +0000 (UTC)
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com
+ [66.111.4.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D2AD10E080
+ for <nouveau@lists.freedesktop.org>; Fri, 19 May 2023 10:10:34 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailout.nyi.internal (Postfix) with ESMTP id 590545C014B;
+ Fri, 19 May 2023 06:10:32 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute4.internal (MEProxy); Fri, 19 May 2023 06:10:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ invisiblethingslab.com; h=cc:cc:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:sender:subject:subject:to:to; s=fm1; t=
+ 1684491032; x=1684577432; bh=WmoTlhd7e1kwJpAAsaCCOOQJxMdCzpL/nDP
+ L1E42Cfo=; b=P5i+sNrzGgkybQ2llHpdSW2AKLSaYvzjLV/X1tKoCOnMEuquyum
+ Xz7L7fUs5n+bcz3EquSOz/LyYzo4+bnInf6pePRv8KXFTe1Ri70wn0/aQTymk6Nj
+ 3cOgoNnjULfVW8UqeTZdOxRVQ+EBZ+LWRXrUhP2M9QLZF0gH6sQkNPc9qKZCOrO9
+ 9MfZ9MN3Y9m8U5zroM3O8KCYAEdroMxEt0djE4C7v+kuG5NSqqLCvp420255lmj3
+ Zfhv2QVb/G0g/MmOCnqA0OBNGNTtKmfHSBfBvNe+eSi5vldVRS0rB6sPFGLPp1+q
+ imYfiENJ01Bse+gNazzWEmT6kALsLF8G68A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:content-type:date:date
+ :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+ :x-sasl-enc; s=fm1; t=1684491032; x=1684577432; bh=WmoTlhd7e1kwJ
+ pAAsaCCOOQJxMdCzpL/nDPL1E42Cfo=; b=xGmbjPzlgjhHajV61PT0fxHOkTPA9
+ P/BKddYJeZL8r3HwmUtZQoGkTKDM3sMX2G2E47LEKMHpnsftch7DUZCK3BGFhY94
+ qp7VHIhqnZbVw9bKSeYk7xj1S+ywBdu1R3Z+/eMTB4h0v5/lNdk7d0UjJ6+USLn/
+ P/hvq8ohUkOE9QafrdILUftyhnmjgg631lGCldrTurUHMVTM73uZKI3dDsT/NJWJ
+ X/UjqL6iaIaAhkO2lv6CnDY+vYB14qlO0xDRW15Eu4p2VpQ+NsZcRo5gdaBSL5/u
+ UwkL3yHLMhGBwUUudXDfwgnrAIf6s8EPADQJkSMIokbsiTEV/s8yHvbEw==
+X-ME-Sender: <xms:F0tnZHkDT-Yelrchp8VYR0XaK9crha449BTfficNd73wBREUMflA5A>
+ <xme:F0tnZK1MRXbgM7v-C9t2xZc8E_Or2jhOZiSv4A9o_b74SKo8qEk7L9IO1Y9kSOg3U
+ ai88nLPPn61bA>
+X-ME-Received: <xmr:F0tnZNprQUsXTFl7lvK1CHl92nb7NWLH5Vh17LdECZL8ASWuJUyNkriWpp4gXXVb2KbHmK8hrICDHD5zZXDlUakiFA6EOjfasJI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeeihedgvdeiucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrrhgv
+ khcuofgrrhgtiiihkhhofihskhhiqdfikphrvggtkhhiuceomhgrrhhmrghrvghksehinh
+ hvihhsihgslhgvthhhihhnghhslhgrsgdrtghomheqnecuggftrfgrthhtvghrnhepgfdu
+ leetfeevhfefheeiteeliefhjefhleduveetteekveettddvgeeuteefjedunecuvehluh
+ hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrrhhmrghrvghk
+ sehinhhvihhsihgslhgvthhhihhnghhslhgrsgdrtghomh
+X-ME-Proxy: <xmx:F0tnZPkznI8Dzysbg3Je1q1Haflx3_kES29BO_hzPvRFEZZya4yEfA>
+ <xmx:F0tnZF2bA5DdY11UUPtFQPCIHoGt_tmnpY_iR1S6AbEzh2Q89gSLLg>
+ <xmx:F0tnZOtQwe94V3TNIOi1__ZV8Bk1B_Z4LPUSCGxb79tkGw_tF69vFw>
+ <xmx:GEtnZE3OXQaasri_Ttvfhpz8-Ksd1lV6mvoGRbShRHswItGlXDiKsw>
+Feedback-ID: i1568416f:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 19 May 2023 06:10:29 -0400 (EDT)
+Date: Fri, 19 May 2023 12:10:26 +0200
+From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?=
+ <marmarek@invisiblethingslab.com>
+To: Christoph Hellwig <hch@lst.de>
+Message-ID: <ZGdLErBzi9MANL3i@mail-itl>
+References: <20230518134253.909623-1-hch@lst.de>
+ <20230518134253.909623-3-hch@lst.de> <ZGZr/xgbUmVqpOpN@mail-itl>
+ <20230519040405.GA10818@lst.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: [Nouveau] [PATCH v7 5/8] video/aperture: Add a helper to detect if
- an aperture contains firmware FB
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="A3eIvvbx7EttM1KL"
+Content-Disposition: inline
+In-Reply-To: <20230519040405.GA10818@lst.de>
+X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:11 +0000
+Subject: Re: [Nouveau] [PATCH 2/4] x86: always initialize xen-swiotlb when
+ xen-pcifront is enabling
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,160 +88,85 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, linux-fbdev@vger.kernel.org,
- Sui Jingfeng <suijingfeng@loongson.cn>, Daniel Vetter <daniel@ffwll.ch>,
- kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Javier Martinez Canillas <javierm@redhat.com>, amd-gfx@lists.freedesktop.org,
- linux-pci@vger.kernel.org, Helge Deller <deller@gmx.de>
+Cc: Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>, nouveau@lists.freedesktop.org,
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+ linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Ben Skeggs <bskeggs@redhat.com>, "H. Peter Anvin" <hpa@zytor.com>,
+ xen-devel@lists.xenproject.org, Thomas Gleixner <tglx@linutronix.de>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Sui Jingfeng <suijingfeng@loongson.cn>
 
-This patch adds the aperture_contain_firmware_fb() function to do the
-determination. Unfortunately due to the fact that apertures list will be
-freed dynamically, the location and size information of the firmware fb
-will be lost after dedicated drivers call
-aperture_remove_conflicting_devices(),
-aperture_remove_conflicting_pci_devices() or
-aperture_remove_all_conflicting_devices() functions
+--A3eIvvbx7EttM1KL
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 19 May 2023 12:10:26 +0200
+From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?= <marmarek@invisiblethingslab.com>
+To: Christoph Hellwig <hch@lst.de>
+Cc: Juergen Gross <jgross@suse.com>,
+	Stefano Stabellini <sstabellini@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>, Ben Skeggs <bskeggs@redhat.com>,
+	Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+	xen-devel@lists.xenproject.org, iommu@lists.linux.dev,
+	linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
+Subject: Re: [PATCH 2/4] x86: always initialize xen-swiotlb when xen-pcifront
+ is enabling
 
-We handle this problem by introducing two static variables which record the
-firmware framebuffer's start addrness and end addrness. It assumes that the
-system has only one active firmware framebuffer driver at a time.
+On Fri, May 19, 2023 at 06:04:05AM +0200, Christoph Hellwig wrote:
+> On Thu, May 18, 2023 at 08:18:39PM +0200, Marek Marczykowski-G=C3=B3recki=
+ wrote:
+> > On Thu, May 18, 2023 at 03:42:51PM +0200, Christoph Hellwig wrote:
+> > > Remove the dangerous late initialization of xen-swiotlb in
+> > > pci_xen_swiotlb_init_late and instead just always initialize
+> > > xen-swiotlb in the boot code if CONFIG_XEN_PCIDEV_FRONTEND is enabled.
+> > >=20
+> > > Signed-off-by: Christoph Hellwig <hch@lst.de>
+> >=20
+> > Doesn't it mean all the PV guests will basically waste 64MB of RAM
+> > by default each if they don't really have PCI devices?
+>=20
+> If CONFIG_XEN_PCIDEV_FRONTEND is enabled, and the kernel's isn't booted
+> with swiotlb=3Dnoforce, yes.
 
-We don't use the global structure screen_info here, because PCI resource
-may get reallocated(the VRAM BAR could be moved) at kernel boot stage.
+That's "a bit" unfortunate, since that might be significant part of the
+VM memory, or if you have a lot of VMs, a significant part of the host
+memory - it quickly adds up.
+While I would say PCI passthrough is not very common for PV guests, can
+the decision about xen-swiotlb be delayed until you can enumerate
+xenstore to check if there are any PCI devices connected (and not
+allocate xen-swiotlb by default if there are none)? This would
+still not cover the hotplug case (in which case, you'd need to force it
+with a cmdline), but at least you wouldn't loose much memory just
+because one of your VMs may use PCI passthrough (so, you have it enabled
+in your kernel).
+Please remember that guest kernel is not always under full control of
+the host admin, so making guests loose 64MB of RAM always, in default
+setup isn't good for customers of such VMs...
 
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Helge Deller <deller@gmx.de>
-Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
----
- drivers/gpu/drm/drm_aperture.c | 16 ++++++++++++++++
- drivers/video/aperture.c       | 29 +++++++++++++++++++++++++++++
- include/drm/drm_aperture.h     |  2 ++
- include/linux/aperture.h       |  7 +++++++
- 4 files changed, 54 insertions(+)
+--=20
+Best Regards,
+Marek Marczykowski-G=C3=B3recki
+Invisible Things Lab
 
-diff --git a/drivers/gpu/drm/drm_aperture.c b/drivers/gpu/drm/drm_aperture.c
-index 5729f3bb4398..6e5d8a08683c 100644
---- a/drivers/gpu/drm/drm_aperture.c
-+++ b/drivers/gpu/drm/drm_aperture.c
-@@ -190,3 +190,19 @@ int drm_aperture_remove_conflicting_pci_framebuffers(struct pci_dev *pdev,
- 	return aperture_remove_conflicting_pci_devices(pdev, req_driver->name);
- }
- EXPORT_SYMBOL(drm_aperture_remove_conflicting_pci_framebuffers);
-+
-+/**
-+ * drm_aperture_contain_firmware_fb - Determine if a aperture contains firmware framebuffer
-+ *
-+ * @base: the aperture's base address in physical memory
-+ * @size: aperture size in bytes
-+ *
-+ * Returns:
-+ * true on if there is a firmware framebuffer belong to the aperture passed in,
-+ * or false otherwise.
-+ */
-+bool drm_aperture_contain_firmware_fb(resource_size_t base, resource_size_t size)
-+{
-+	return aperture_contain_firmware_fb(base, base + size);
-+}
-+EXPORT_SYMBOL(drm_aperture_contain_firmware_fb);
-diff --git a/drivers/video/aperture.c b/drivers/video/aperture.c
-index 561be8feca96..5a5422cec669 100644
---- a/drivers/video/aperture.c
-+++ b/drivers/video/aperture.c
-@@ -141,6 +141,9 @@ struct aperture_range {
- static LIST_HEAD(apertures);
- static DEFINE_MUTEX(apertures_lock);
- 
-+static resource_size_t firm_fb_start;
-+static resource_size_t firm_fb_end;
-+
- static bool overlap(resource_size_t base1, resource_size_t end1,
- 		    resource_size_t base2, resource_size_t end2)
- {
-@@ -170,6 +173,9 @@ static int devm_aperture_acquire(struct device *dev,
- 
- 	mutex_lock(&apertures_lock);
- 
-+	firm_fb_start = base;
-+	firm_fb_end = end;
-+
- 	list_for_each(pos, &apertures) {
- 		ap = container_of(pos, struct aperture_range, lh);
- 		if (overlap(base, end, ap->base, ap->base + ap->size)) {
-@@ -377,3 +383,26 @@ int aperture_remove_conflicting_pci_devices(struct pci_dev *pdev, const char *na
- 
- }
- EXPORT_SYMBOL(aperture_remove_conflicting_pci_devices);
-+
-+/**
-+ * aperture_contain_firmware_fb - Detect if the firmware framebuffer belong to
-+ *                                a aperture.
-+ * @ap_start: the aperture's start address in physical memory
-+ * @ap_end: the aperture's end address in physical memory
-+ *
-+ * Returns:
-+ * true on if there is a firmware framebuffer belong to the aperture passed in,
-+ * or false otherwise.
-+ */
-+bool aperture_contain_firmware_fb(resource_size_t ap_start, resource_size_t ap_end)
-+{
-+	/* No firmware framebuffer support */
-+	if (!firm_fb_start || !firm_fb_end)
-+		return false;
-+
-+	if (firm_fb_start >= ap_start && firm_fb_end <= ap_end)
-+		return true;
-+
-+	return false;
-+}
-+EXPORT_SYMBOL(aperture_contain_firmware_fb);
-diff --git a/include/drm/drm_aperture.h b/include/drm/drm_aperture.h
-index cbe33b49fd5d..6a0b9bacb081 100644
---- a/include/drm/drm_aperture.h
-+++ b/include/drm/drm_aperture.h
-@@ -35,4 +35,6 @@ drm_aperture_remove_framebuffers(const struct drm_driver *req_driver)
- 							    req_driver);
- }
- 
-+bool drm_aperture_contain_firmware_fb(resource_size_t base, resource_size_t size);
-+
- #endif
-diff --git a/include/linux/aperture.h b/include/linux/aperture.h
-index 1a9a88b11584..d4dc5917c49b 100644
---- a/include/linux/aperture.h
-+++ b/include/linux/aperture.h
-@@ -19,6 +19,8 @@ int aperture_remove_conflicting_devices(resource_size_t base, resource_size_t si
- int __aperture_remove_legacy_vga_devices(struct pci_dev *pdev);
- 
- int aperture_remove_conflicting_pci_devices(struct pci_dev *pdev, const char *name);
-+
-+bool aperture_contain_firmware_fb(resource_size_t ap_start, resource_size_t ap_end);
- #else
- static inline int devm_aperture_acquire_for_platform_device(struct platform_device *pdev,
- 							    resource_size_t base,
-@@ -42,6 +44,11 @@ static inline int aperture_remove_conflicting_pci_devices(struct pci_dev *pdev,
- {
- 	return 0;
- }
-+
-+static inline bool aperture_contain_firmware_fb(resource_size_t ap_start, resource_size_t ap_end)
-+{
-+	return false;
-+}
- #endif
- 
- /**
--- 
-2.25.1
+--A3eIvvbx7EttM1KL
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEhrpukzGPukRmQqkK24/THMrX1ywFAmRnSxEACgkQ24/THMrX
+1yxoZQgAigYwLANKEDjGQFkztgAogWxy1LFDTtNJ3E+BQRNBEzsMU2jP0ND6oIWA
+fuzuDMHRtd7zAop8RQSHwJ+x9OTpPlBR1a7tSxaszuF9tm+l1lWN/6M+fFKNNG+C
+C8hCEe5NjlcrGsCOzfsPrU2/141dN/1DayOWQ6DPpBawF7PBOZrhqdEKVV+SfVEL
+D7HM1k8hZj8Nxn39zU0AztoC4HpnhA/ovojpuL7HhyKrs/PbUFgQeJJhYAWDxsNI
+1CGjRlyzNFMFBtmC1r7foXOX8AKpcOGeGLcnw5aoMCBnAlZi7rUE/WY+fHGud1tk
+iPlvgAJ6SgmEF/kRu7VrzljzR8eZZA==
+=fKf1
+-----END PGP SIGNATURE-----
+
+--A3eIvvbx7EttM1KL--
