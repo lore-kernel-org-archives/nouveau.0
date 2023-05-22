@@ -4,63 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DE37EB64DB
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C2CCEB64DD
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9ADAA10E353;
-	Tue, 20 Jun 2023 18:20:34 +0000 (UTC)
-X-Greylist: delayed 332 seconds by postgrey-1.36 at gabe;
- Sun, 04 Jun 2023 21:04:12 UTC
-Received: from 189.cn (ptr.189.cn [183.61.185.103])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7874B10E0FC
- for <nouveau@lists.freedesktop.org>; Sun,  4 Jun 2023 21:04:12 +0000 (UTC)
-HMM_SOURCE_IP: 10.64.8.43:47878.118806016
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
- by 189.cn (HERMES) with SMTP id A5DA710029A;
- Mon,  5 Jun 2023 04:58:33 +0800 (CST)
-Received: from  ([114.242.206.180])
- by gateway-151646-dep-75648544bd-7vx9t with ESMTP id
- 7eb87e86c4c04d1db87dbc5c9319b4e0 for alexander.deucher@amd.com; 
- Mon, 05 Jun 2023 04:58:36 CST
-X-Transaction-ID: 7eb87e86c4c04d1db87dbc5c9319b4e0
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-From: Sui Jingfeng <15330273260@189.cn>
-To: Alex Deucher <alexander.deucher@amd.com>,
- Christian Konig <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Hawking Zhang <Hawking.Zhang@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
- Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- Bokun Zhang <Bokun.Zhang@amd.com>,
- Ville Syrjala <ville.syrjala@linux.intel.com>, Li Yi <liyi@loongson.cn>,
- Sui Jingfeng <suijingfeng@loongson.cn>, Jason Gunthorpe <jgg@ziepe.ca>,
- Kevin Tian <kevin.tian@intel.com>, Cornelia Huck <cohuck@redhat.com>,
- Yishai Hadas <yishaih@nvidia.com>, Abhishek Sahu <abhsahu@nvidia.com>,
- Yi Liu <yi.l.liu@intel.com>
-Date: Mon,  5 Jun 2023 04:58:30 +0800
-Message-Id: <20230604205831.3357596-1-15330273260@189.cn>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31B4910E338;
+	Tue, 20 Jun 2023 18:20:35 +0000 (UTC)
+X-Greylist: delayed 348 seconds by postgrey-1.36 at gabe;
+ Mon, 22 May 2023 07:58:29 UTC
+Received: from bee.tesarici.cz (bee.tesarici.cz [77.93.223.253])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B60710E262
+ for <nouveau@lists.freedesktop.org>; Mon, 22 May 2023 07:58:29 +0000 (UTC)
+Received: from meshulam.tesarici.cz
+ (dynamic-2a00-1028-83b8-1e7a-4427-cc85-6706-c595.ipv6.o2.cz
+ [IPv6:2a00:1028:83b8:1e7a:4427:cc85:6706:c595])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by bee.tesarici.cz (Postfix) with ESMTPSA id EF59213B56F;
+ Mon, 22 May 2023 09:52:36 +0200 (CEST)
+Authentication-Results: mail.tesarici.cz;
+ dmarc=fail (p=none dis=none) header.from=tesarici.cz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tesarici.cz; s=mail;
+ t=1684741957; bh=jsaH7ZUR8wFCXeTPqJ2mL6nQoFiuy/hnhhZO4oD2tJI=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=fXLslpJh2pwyFKw46yDmLuFNtmDG417D/1pluDHbFUpLWOwxyyXphbZ+9lLt3heq7
+ TOb5LFM2ep8I/lYW4Rxr5pHLuRjmIlNZoYtrmqI1HI1Aj8EtmH0K1aKdNONSyGD1Py
+ XdEor7u4dVunv3kxrnDKD6H6CPX2AwcjRZNJe7gb2lMO9/J9SGd4Q4jlhu1PXBOR9X
+ umCg5oPeTTUZBH6IYcTRYkSLv2mz+GU1YhZ1d2/UJvK2yGwyYjAY4LOa34SP/h5Vwo
+ 3uqicj2hzNb+4IDukPrPnygCZF3c4jC6VDTzVjC0Yz6vqF4Y4Ik5ldeKmw8O39I5xE
+ IgfjiqYv6v6TQ==
+Date: Mon, 22 May 2023 09:52:36 +0200
+From: Petr =?UTF-8?B?VGVzYcWZw61r?= <petr@tesarici.cz>
+To: Christoph Hellwig <hch@lst.de>
+Message-ID: <20230522095236.27460d93@meshulam.tesarici.cz>
+In-Reply-To: <20230520062103.GA1225@lst.de>
+References: <20230518134253.909623-1-hch@lst.de>
+ <20230518134253.909623-3-hch@lst.de> <ZGZr/xgbUmVqpOpN@mail-itl>
+ <20230519040405.GA10818@lst.de> <ZGdLErBzi9MANL3i@mail-itl>
+ <20230519124118.GA5869@lst.de>
+ <8617570c-6dc4-74f5-7418-98f04f7e0ece@citrix.com>
+ <20230519125857.GA6994@lst.de> <20230520062103.GA1225@lst.de>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-suse-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:11 +0000
-Subject: [Nouveau] [PATCH v2 1/2] vgaarb: various coding style and comments
- fix
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
+Subject: Re: [Nouveau] [PATCH 2/4] x86: always initialize xen-swiotlb when
+ xen-pcifront is enabling
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,144 +62,81 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, loongson-kernel@lists.loongnix.cn,
- amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
+Cc: Juergen Gross <jgross@suse.com>, x86@kernel.org,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Andrew Cooper <andrew.cooper3@citrix.com>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Marek =?UTF-8?B?TWFyY3p5?= =?UTF-8?B?a293c2tpLUfDs3JlY2tp?=
+ <marmarek@invisiblethingslab.com>, linux-kernel@vger.kernel.org,
+ iommu@lists.linux.dev, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, Ben Skeggs <bskeggs@redhat.com>,
+ "H. Peter Anvin" <hpa@zytor.com>, nouveau@lists.freedesktop.org,
+ xen-devel@lists.xenproject.org, Thomas Gleixner <tglx@linutronix.de>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Sui Jingfeng <suijingfeng@loongson.cn>
+Hi Christoph,
 
-To keep consistent with vga_iostate_to_str() function, the third argument
-of vga_str_to_iostate() function should be 'unsigned int *'.
+On Sat, 20 May 2023 08:21:03 +0200
+Christoph Hellwig <hch@lst.de> wrote:
 
-Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
----
- drivers/pci/vgaarb.c   | 29 +++++++++++++++--------------
- include/linux/vgaarb.h |  8 +++-----
- 2 files changed, 18 insertions(+), 19 deletions(-)
+> On Fri, May 19, 2023 at 02:58:57PM +0200, Christoph Hellwig wrote:
+> > On Fri, May 19, 2023 at 01:49:46PM +0100, Andrew Cooper wrote:  
+> > > > The alternative would be to finally merge swiotlb-xen into swiotlb, in
+> > > > which case we might be able to do this later.  Let me see what I can
+> > > > do there.  
+> > > 
+> > > If that is an option, it would be great to reduce the special-cashing.  
+> > 
+> > I think it's doable, and I've been wanting it for a while.  I just
+> > need motivated testers, but it seems like I just found at least two :)  
+> 
+> So looking at swiotlb-xen it does these off things where it takes a value
+> generated originally be xen_phys_to_dma, then only does a dma_to_phys
+> to go back and call pfn_valid on the result.  Does this make sense, or
+> is it wrong and just works by accident?  I.e. is the patch below correct?
+> 
+> 
+> diff --git a/drivers/xen/swiotlb-xen.c b/drivers/xen/swiotlb-xen.c
+> index 67aa74d201627d..3396c5766f0dd8 100644
+> --- a/drivers/xen/swiotlb-xen.c
+> +++ b/drivers/xen/swiotlb-xen.c
+> @@ -90,9 +90,7 @@ static inline int range_straddles_page_boundary(phys_addr_t p, size_t size)
+>  
+>  static int is_xen_swiotlb_buffer(struct device *dev, dma_addr_t dma_addr)
+>  {
+> -	unsigned long bfn = XEN_PFN_DOWN(dma_to_phys(dev, dma_addr));
+> -	unsigned long xen_pfn = bfn_to_local_pfn(bfn);
+> -	phys_addr_t paddr = (phys_addr_t)xen_pfn << XEN_PAGE_SHIFT;
+> +	phys_addr_t paddr = xen_dma_to_phys(dev, dma_addr);
 
-diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
-index 5a696078b382..e40e6e5e5f03 100644
---- a/drivers/pci/vgaarb.c
-+++ b/drivers/pci/vgaarb.c
-@@ -61,7 +61,6 @@ static bool vga_arbiter_used;
- static DEFINE_SPINLOCK(vga_lock);
- static DECLARE_WAIT_QUEUE_HEAD(vga_wait_queue);
- 
--
- static const char *vga_iostate_to_str(unsigned int iostate)
- {
- 	/* Ignore VGA_RSRC_IO and VGA_RSRC_MEM */
-@@ -77,10 +76,12 @@ static const char *vga_iostate_to_str(unsigned int iostate)
- 	return "none";
- }
- 
--static int vga_str_to_iostate(char *buf, int str_size, int *io_state)
-+static int vga_str_to_iostate(char *buf, int str_size, unsigned int *io_state)
- {
--	/* we could in theory hand out locks on IO and mem
--	 * separately to userspace but it can cause deadlocks */
-+	/*
-+	 * we could in theory hand out locks on IO and mem
-+	 * separately to userspace but it can cause deadlocks
-+	 */
- 	if (strncmp(buf, "none", 4) == 0) {
- 		*io_state = VGA_RSRC_NONE;
- 		return 1;
-@@ -99,7 +100,7 @@ static int vga_str_to_iostate(char *buf, int str_size, int *io_state)
- 	return 1;
- }
- 
--/* this is only used a cookie - it should not be dereferenced */
-+/* This is only used as cookie, it should not be dereferenced */
- static struct pci_dev *vga_default;
- 
- /* Find somebody in our list */
-@@ -194,13 +195,15 @@ int vga_remove_vgacon(struct pci_dev *pdev)
- EXPORT_SYMBOL(vga_remove_vgacon);
- 
- /* If we don't ever use VGA arb we should avoid
--   turning off anything anywhere due to old X servers getting
--   confused about the boot device not being VGA */
-+ * turning off anything anywhere due to old X servers getting
-+ * confused about the boot device not being VGA
-+ */
- static void vga_check_first_use(void)
- {
- 	/* we should inform all GPUs in the system that
- 	 * VGA arb has occurred and to try and disable resources
--	 * if they can */
-+	 * if they can
-+	 */
- 	if (!vga_arbiter_used) {
- 		vga_arbiter_used = true;
- 		vga_arbiter_notify_clients();
-@@ -865,8 +868,7 @@ static bool vga_arbiter_del_pci_device(struct pci_dev *pdev)
- }
- 
- /* this is called with the lock */
--static inline void vga_update_device_decodes(struct vga_device *vgadev,
--					     int new_decodes)
-+static void vga_update_device_decodes(struct vga_device *vgadev, int new_decodes)
- {
- 	struct device *dev = &vgadev->pdev->dev;
- 	int old_decodes, decodes_removed, decodes_unlocked;
-@@ -956,9 +958,9 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
-  * @set_decode callback: If a client can disable its GPU VGA resource, it
-  * will get a callback from this to set the encode/decode state.
-  *
-- * Rationale: we cannot disable VGA decode resources unconditionally some single
-- * GPU laptops seem to require ACPI or BIOS access to the VGA registers to
-- * control things like backlights etc.  Hopefully newer multi-GPU laptops do
-+ * Rationale: we cannot disable VGA decode resources unconditionally, some
-+ * single GPU laptops seem to require ACPI or BIOS access to the VGA registers
-+ * to control things like backlights etc. Hopefully newer multi-GPU laptops do
-  * something saner, and desktops won't have any special ACPI for this. The
-  * driver will get a callback when VGA arbitration is first used by userspace
-  * since some older X servers have issues.
-@@ -988,7 +990,6 @@ int vga_client_register(struct pci_dev *pdev,
- bail:
- 	spin_unlock_irqrestore(&vga_lock, flags);
- 	return ret;
--
- }
- EXPORT_SYMBOL(vga_client_register);
- 
-diff --git a/include/linux/vgaarb.h b/include/linux/vgaarb.h
-index b4b9137f9792..d36225c582ee 100644
---- a/include/linux/vgaarb.h
-+++ b/include/linux/vgaarb.h
-@@ -23,9 +23,7 @@
-  * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-- * DEALINGS
-- * IN THE SOFTWARE.
-- *
-+ * DEALINGS IN THE SOFTWARE.
-  */
- 
- #ifndef LINUX_VGA_H
-@@ -96,7 +94,7 @@ static inline int vga_client_register(struct pci_dev *pdev,
- static inline int vga_get_interruptible(struct pci_dev *pdev,
- 					unsigned int rsrc)
- {
--       return vga_get(pdev, rsrc, 1);
-+	return vga_get(pdev, rsrc, 1);
- }
- 
- /**
-@@ -111,7 +109,7 @@ static inline int vga_get_interruptible(struct pci_dev *pdev,
- static inline int vga_get_uninterruptible(struct pci_dev *pdev,
- 					  unsigned int rsrc)
- {
--       return vga_get(pdev, rsrc, 0);
-+	return vga_get(pdev, rsrc, 0);
- }
- 
- static inline void vga_client_unregister(struct pci_dev *pdev)
--- 
-2.25.1
 
+I'm no big Xen expert, but I think this is wrong. Let's go through it
+line by line:
+
+- bfn = XEN_PFN_DOWN(dma_to_phys(dev, dma_addr));
+
+  Take the DMA address (as seen by devices on the bus), convert it to a
+  physical address (as seen by the CPU on the bus) and shift it right
+  by XEN_PAGE_SHIFT. The result is a Xen machine PFN.
+
+- xen_pfn = bfn_to_local_pfn(bfn);
+
+  Take the machine PFN and converts it to a physical PFN.
+
+- paddr = (phys_addr_t)xen_pfn << XEN_PAGE_SHIFT;
+
+  Convert the physical PFN to a physical address.
+
+The important thing here is that Xen PV does not have auto-translated
+physical addresses, so physical address != machine address. Physical
+addresses in Xen PV domains are "artificial", used by the kernel to
+index the mem_map array, so a PFN can be easily converted to a struct
+page pointer and back. However, these addresses are never used by
+hardware, not even by CPU. The addresses used by the CPU are called
+machine addresses. There is no address translation between VCPUs and
+CPUs, because a PV domain runs directly on the CPU. After all, that's
+why it is called _para_virtualized.
+
+HTH
+Petr T
