@@ -4,50 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DFB4EB64DB
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 825F3EB64D7
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EC2B10E313;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF80F10E31A;
 	Tue, 20 Jun 2023 18:20:14 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47A4F10E167;
- Mon,  5 Jun 2023 22:16:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686003380; x=1717539380;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=j6OmYXev5dSof4jSEuXxwO0jYGsXKhESRMOiQiPGbO8=;
- b=ek/6TtVrlrqh5Jr2gADyO4L7zr0YpEXKhi2HY0GTbFru+FdnESVB1z/S
- ez6GBO9gABtf8Jzzob+cARTRjG7OhNb+z1ELcAfc+lplYVki1W4wdHfar
- +sEpG9pzqqQGn0ejWMNWDB5ltH35ztaYVqa7wWZAoWGg1GxBfJKz4wXz8
- +fYVk0RpmbwtY5qFpPPvfTq2Tir5zP2Qw4HWT6wrvUsoF2eMDCr9N+QEw
- cv0n/hEOvW7pRkmibrYLknOZq0BFhC3FaN7XymsyVAt3W0EeXa/fhpEwb
- 84ZBk+dKEwcvSkcKUwbHePXkQEZRa7/MkDUsMov43qd7wjnsZalvQ/E1Q w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="359812698"
-X-IronPort-AV: E=Sophos;i="6.00,218,1681196400"; d="scan'208";a="359812698"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2023 15:16:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="686267039"
-X-IronPort-AV: E=Sophos;i="6.00,218,1681196400"; d="scan'208";a="686267039"
-Received: from twgeistx-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.249.42.176])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2023 15:16:09 -0700
-Date: Tue, 6 Jun 2023 00:16:04 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Sui Jingfeng <15330273260@189.cn>
-Message-ID: <ZH5epG6rfTOWT6CS@ashyti-mobl2.lan>
-References: <20230604205831.3357596-1-15330273260@189.cn>
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
+ [IPv6:2a00:1450:4864:20::32b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC37210E132
+ for <nouveau@lists.freedesktop.org>; Wed, 31 May 2023 08:32:00 +0000 (UTC)
+Received: by mail-wm1-x32b.google.com with SMTP id
+ 5b1f17b1804b1-3f606912ebaso56960275e9.3
+ for <nouveau@lists.freedesktop.org>; Wed, 31 May 2023 01:32:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1685521917; x=1688113917;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=WhA/sfDRnLuDCN7yHv6nCUiMzZVvvoBjYdsSnPZ2b68=;
+ b=Qf9zKFrn4Y6OFuEjXy7xAuVGz/ckgeam+xe7JLoo1sZ2JIwV3Zle4eGVrClGw0Suuu
+ EuPu5XqzoGtSat0xDB8XzH//945LkSMdRioWZ07l3M+g3sQPSG6k5rbbiURKiTm3B7io
+ beFK2eG3qQGuU7oqTYBxDur924FFE9Kd6DwSCXq6CmSdUPSY7ZYVbroOjtE0rOpBialT
+ 2pRHtuwWKBsxHuAUF0xHP+WoE6Cpl5WLqdOnWc2v6+hVQ1Y3woLNfCrW5f8kxg0qVI9C
+ WdnZVK5XxDrJP5HkDypnDQoH7zGtbRZct9zHWKgpsrYdownAuH6HRocfvXIjm7fhRODu
+ PeLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1685521917; x=1688113917;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=WhA/sfDRnLuDCN7yHv6nCUiMzZVvvoBjYdsSnPZ2b68=;
+ b=TMPrm1Qe+ZIypPmWJ+/r3cjCZPszzNAUqhsYcVEKrbRqJPuBx6lk1VDWYVZh0D6d7/
+ wCmyZGAvTe+fcsB8RMFWBUo/9xG23Ze3n7RjH98VI8539znhniS2XrrU0aRazhPymxn1
+ RFsnXuwJ5p+UcZT90SJAvR9vp24J/rCinoXilQmUg0VGO/W48oKB3CBZisy+tMn/cOiz
+ yWMY3tLM/zps8q9geonW626slN0dirG+FH0SL3lvrmM6c4WauktDEindeaEEKwFce5gb
+ P8fVHZ/MRPFt1FhveEFjxDvuTj6+ZbYiSp+YwRASHo/v0edubKO0CFKTLu3G2SVXBfEv
+ Jt8w==
+X-Gm-Message-State: AC+VfDzj28lvcXxPxFbiGId3nPATFiC5a6/D/wVP9YeaU/OXM12QyfGG
+ cjRfLM9OzcIlgTjkybzIK4Awtg==
+X-Google-Smtp-Source: ACHHUZ4S5/0dJg8BIO5Y3X1Ar+fFJRW029hscEdyzxU/RK6FIShaB3l5woWFqtMhhmxltyEBwA5dOw==
+X-Received: by 2002:a1c:f216:0:b0:3f1:7581:eaaf with SMTP id
+ s22-20020a1cf216000000b003f17581eaafmr3223629wmc.4.1685521916624; 
+ Wed, 31 May 2023 01:31:56 -0700 (PDT)
+Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
+ q13-20020a7bce8d000000b003f43f82001asm23557270wmj.31.2023.05.31.01.31.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 31 May 2023 01:31:54 -0700 (PDT)
+Date: Wed, 31 May 2023 11:31:50 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Su Hui <suhui@nfschina.com>
+Message-ID: <00e84595-e2c9-48ea-8737-18da34eaafbf@kili.mountain>
+References: <20230531043826.991183-1-suhui@nfschina.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230604205831.3357596-1-15330273260@189.cn>
-X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: Re: [Nouveau] [Intel-gfx] [PATCH v2 1/2] vgaarb: various coding
- style and comments fix
+In-Reply-To: <20230531043826.991183-1-suhui@nfschina.com>
+X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:11 +0000
+Subject: Re: [Nouveau] [PATCH] drm/nouveau/nvif: use struct_size()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,85 +71,43 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- nouveau@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Sui Jingfeng <suijingfeng@loongson.cn>,
- Ville Syrjala <ville.syrjala@linux.intel.com>, Yi Liu <yi.l.liu@intel.com>,
- kvm@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Jason Gunthorpe <jgg@ziepe.ca>, Ben Skeggs <bskeggs@redhat.com>,
- linux-pci@vger.kernel.org, Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Kevin Tian <kevin.tian@intel.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Bokun Zhang <Bokun.Zhang@amd.com>,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, loongson-kernel@lists.loongnix.cn,
- Alex Williamson <alex.williamson@redhat.com>,
- Abhishek Sahu <abhsahu@nvidia.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Yishai Hadas <yishaih@nvidia.com>, Li Yi <liyi@loongson.cn>,
- Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- Cornelia Huck <cohuck@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Konig <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: nouveau@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
+ airlied@redhat.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Sui,
-
-On Mon, Jun 05, 2023 at 04:58:30AM +0800, Sui Jingfeng wrote:
-> From: Sui Jingfeng <suijingfeng@loongson.cn>
+On Wed, May 31, 2023 at 12:38:26PM +0800, Su Hui wrote:
+> Use struct_size() instead of hand writing it.
+> This is less verbose and more informative.
 > 
-> To keep consistent with vga_iostate_to_str() function, the third argument
-> of vga_str_to_iostate() function should be 'unsigned int *'.
-
-I think the real reason is not to keep consistent with
-vga_iostate_to_str() but because vga_str_to_iostate() is actually
-only taking "unsigned int *" parameters.
-
-> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+> Signed-off-by: Su Hui <suhui@nfschina.com>
 > ---
->  drivers/pci/vgaarb.c   | 29 +++++++++++++++--------------
->  include/linux/vgaarb.h |  8 +++-----
->  2 files changed, 18 insertions(+), 19 deletions(-)
+>  drivers/gpu/drm/nouveau/nvif/object.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
-> index 5a696078b382..e40e6e5e5f03 100644
-> --- a/drivers/pci/vgaarb.c
-> +++ b/drivers/pci/vgaarb.c
-> @@ -61,7 +61,6 @@ static bool vga_arbiter_used;
->  static DEFINE_SPINLOCK(vga_lock);
->  static DECLARE_WAIT_QUEUE_HEAD(vga_wait_queue);
+> diff --git a/drivers/gpu/drm/nouveau/nvif/object.c b/drivers/gpu/drm/nouveau/nvif/object.c
+> index 4d1aaee8fe15..4bd693aa4ee0 100644
+> --- a/drivers/gpu/drm/nouveau/nvif/object.c
+> +++ b/drivers/gpu/drm/nouveau/nvif/object.c
+> @@ -65,7 +65,7 @@ nvif_object_sclass_get(struct nvif_object *object, struct nvif_sclass **psclass)
+>  	u32 size;
 >  
-> -
+>  	while (1) {
+> -		size = sizeof(*args) + cnt * sizeof(args->sclass.oclass[0]);
+> +		size = struct_size(args, sclass.oclass, cnt);
 
-drop this change
+This is from the original code, but now that you are using the
+struct_size() macro static checkers will complain about it.  (Maybe they
+don't yet?).  size is a u32.  Never save struct_size() returns to
+anything except unsigned long or size_t.  (ssize_t is also fine, I
+suppose).  Otherwise, you do not benefit from the integer overflow
+checking.
 
->  static const char *vga_iostate_to_str(unsigned int iostate)
->  {
->  	/* Ignore VGA_RSRC_IO and VGA_RSRC_MEM */
-> @@ -77,10 +76,12 @@ static const char *vga_iostate_to_str(unsigned int iostate)
->  	return "none";
->  }
->  
-> -static int vga_str_to_iostate(char *buf, int str_size, int *io_state)
-> +static int vga_str_to_iostate(char *buf, int str_size, unsigned int *io_state)
+>  		if (!(args = kmalloc(size, GFP_KERNEL)))
+>  			return -ENOMEM;
+>  		args->ioctl.version = 0;
 
-this is OK, it's actually what you are describing in the commit
-log, but...
-
->  {
-> -	/* we could in theory hand out locks on IO and mem
-> -	 * separately to userspace but it can cause deadlocks */
-> +	/*
-> +	 * we could in theory hand out locks on IO and mem
-> +	 * separately to userspace but it can cause deadlocks
-> +	 */
-
-... all the rest needs to go on different patches as it doesn't
-have anything to do with what you describe.
-
-Andi
+regards,
+dan carpenter
