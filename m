@@ -4,55 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9F17EB64D8
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DE37EB64DB
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE56A10E354;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9ADAA10E353;
 	Tue, 20 Jun 2023 18:20:34 +0000 (UTC)
-X-Greylist: delayed 355 seconds by postgrey-1.36 at gabe;
- Wed, 14 Jun 2023 08:47:42 UTC
-Received: from mail.208.org (unknown [183.242.55.162])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE56110E42F
- for <nouveau@lists.freedesktop.org>; Wed, 14 Jun 2023 08:47:42 +0000 (UTC)
-Received: from mail.208.org (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTP id 4QgzRp3WVbzBQgny
- for <nouveau@lists.freedesktop.org>; Wed, 14 Jun 2023 16:41:42 +0800 (CST)
-Authentication-Results: mail.208.org (amavisd-new); dkim=pass
- reason="pass (just generated, assumed good)" header.d=208.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
- content-transfer-encoding:content-type:message-id:user-agent
- :references:in-reply-to:subject:to:from:date:mime-version; s=
- dkim; t=1686732102; x=1689324103; bh=h+SpAy2nuTWlCvtX2/0Ll4CB5fW
- +IZqeULGpgLetKiY=; b=YPl3IUT3c8A9pD7JjJZRLaCPkv8lYszY6faKW+FkZ+g
- ms5Ugg2d1JtqRgms5GLDz78j02fjR71+ffUdkMOg5ViBvcufuWE8UnE4Hux+xp/G
- UvaUCMbqvtGeeqVlIUdoBnm5dv+a4iWYOYT2IoF7PEECnfWYqmjRqYZ1l5ZkS4tZ
- AQlDW8/YIb1GaL4hfcTTnZVIy06/Z/PIK++DeGdo2xkFGtr4L+uub05RW8iBUycK
- H8zHXwobqTF3FBNjoOcm2sQUpEXD1356ujKasAPtUNNVfsOSUEvTOatw9lgBXZ5+
- 36rI+xIG1OBlFC82JI2isD6Lzno2gYDxOD+/xvJzlNw==
-X-Virus-Scanned: amavisd-new at mail.208.org
-Received: from mail.208.org ([127.0.0.1])
- by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id 2l8XLxMGvNWP for <nouveau@lists.freedesktop.org>;
- Wed, 14 Jun 2023 16:41:42 +0800 (CST)
-Received: from localhost (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTPSA id 4QgzRn71C3zBJJCt;
- Wed, 14 Jun 2023 16:41:41 +0800 (CST)
+X-Greylist: delayed 332 seconds by postgrey-1.36 at gabe;
+ Sun, 04 Jun 2023 21:04:12 UTC
+Received: from 189.cn (ptr.189.cn [183.61.185.103])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7874B10E0FC
+ for <nouveau@lists.freedesktop.org>; Sun,  4 Jun 2023 21:04:12 +0000 (UTC)
+HMM_SOURCE_IP: 10.64.8.43:47878.118806016
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
+ by 189.cn (HERMES) with SMTP id A5DA710029A;
+ Mon,  5 Jun 2023 04:58:33 +0800 (CST)
+Received: from  ([114.242.206.180])
+ by gateway-151646-dep-75648544bd-7vx9t with ESMTP id
+ 7eb87e86c4c04d1db87dbc5c9319b4e0 for alexander.deucher@amd.com; 
+ Mon, 05 Jun 2023 04:58:36 CST
+X-Transaction-ID: 7eb87e86c4c04d1db87dbc5c9319b4e0
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+From: Sui Jingfeng <15330273260@189.cn>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Christian Konig <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Hawking Zhang <Hawking.Zhang@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ Bokun Zhang <Bokun.Zhang@amd.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>, Li Yi <liyi@loongson.cn>,
+ Sui Jingfeng <suijingfeng@loongson.cn>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Kevin Tian <kevin.tian@intel.com>, Cornelia Huck <cohuck@redhat.com>,
+ Yishai Hadas <yishaih@nvidia.com>, Abhishek Sahu <abhsahu@nvidia.com>,
+ Yi Liu <yi.l.liu@intel.com>
+Date: Mon,  5 Jun 2023 04:58:30 +0800
+Message-Id: <20230604205831.3357596-1-15330273260@189.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Date: Wed, 14 Jun 2023 16:41:41 +0800
-From: baomingtong001@208suo.com
-To: bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com,
- airlied@gmail.com, daniel@ffwll.ch
-In-Reply-To: <20230614083928.30151-1-luojianhong@cdjrlc.com>
-References: <20230614083928.30151-1-luojianhong@cdjrlc.com>
-User-Agent: Roundcube Webmail
-Message-ID: <a43c84a95c83eb9b049c1d99a092aed3@208suo.com>
-X-Sender: baomingtong001@208suo.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:13 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/nvkm/engine/gr/gf100: Remove unneeded
- semicolon
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:11 +0000
+Subject: [Nouveau] [PATCH v2 1/2] vgaarb: various coding style and comments
+ fix
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,31 +72,144 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, loongson-kernel@lists.loongnix.cn,
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-./drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c:423:31-32: Unneeded 
-semicolon
+From: Sui Jingfeng <suijingfeng@loongson.cn>
 
-Signed-off-by: Mingtong Bao <baomingtong001@208suo.com>
+To keep consistent with vga_iostate_to_str() function, the third argument
+of vga_str_to_iostate() function should be 'unsigned int *'.
+
+Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
 ---
-  drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c | 2 +-
-  1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/pci/vgaarb.c   | 29 +++++++++++++++--------------
+ include/linux/vgaarb.h |  8 +++-----
+ 2 files changed, 18 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c 
-b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-index 5f20079c3660..204516891ece 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-@@ -420,7 +420,7 @@ gf100_gr_chan_new(struct nvkm_gr *base, struct 
-nvkm_fifo_chan *fifoch,
-              return ret;
-      } else {
-          ret = nvkm_memory_map(gr->attrib_cb, 0, chan->vmm, 
-chan->attrib_cb,
--                      &args, sizeof(args));;
-+                      &args, sizeof(args));
-          if (ret)
-              return ret;
-      }
+diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+index 5a696078b382..e40e6e5e5f03 100644
+--- a/drivers/pci/vgaarb.c
++++ b/drivers/pci/vgaarb.c
+@@ -61,7 +61,6 @@ static bool vga_arbiter_used;
+ static DEFINE_SPINLOCK(vga_lock);
+ static DECLARE_WAIT_QUEUE_HEAD(vga_wait_queue);
+ 
+-
+ static const char *vga_iostate_to_str(unsigned int iostate)
+ {
+ 	/* Ignore VGA_RSRC_IO and VGA_RSRC_MEM */
+@@ -77,10 +76,12 @@ static const char *vga_iostate_to_str(unsigned int iostate)
+ 	return "none";
+ }
+ 
+-static int vga_str_to_iostate(char *buf, int str_size, int *io_state)
++static int vga_str_to_iostate(char *buf, int str_size, unsigned int *io_state)
+ {
+-	/* we could in theory hand out locks on IO and mem
+-	 * separately to userspace but it can cause deadlocks */
++	/*
++	 * we could in theory hand out locks on IO and mem
++	 * separately to userspace but it can cause deadlocks
++	 */
+ 	if (strncmp(buf, "none", 4) == 0) {
+ 		*io_state = VGA_RSRC_NONE;
+ 		return 1;
+@@ -99,7 +100,7 @@ static int vga_str_to_iostate(char *buf, int str_size, int *io_state)
+ 	return 1;
+ }
+ 
+-/* this is only used a cookie - it should not be dereferenced */
++/* This is only used as cookie, it should not be dereferenced */
+ static struct pci_dev *vga_default;
+ 
+ /* Find somebody in our list */
+@@ -194,13 +195,15 @@ int vga_remove_vgacon(struct pci_dev *pdev)
+ EXPORT_SYMBOL(vga_remove_vgacon);
+ 
+ /* If we don't ever use VGA arb we should avoid
+-   turning off anything anywhere due to old X servers getting
+-   confused about the boot device not being VGA */
++ * turning off anything anywhere due to old X servers getting
++ * confused about the boot device not being VGA
++ */
+ static void vga_check_first_use(void)
+ {
+ 	/* we should inform all GPUs in the system that
+ 	 * VGA arb has occurred and to try and disable resources
+-	 * if they can */
++	 * if they can
++	 */
+ 	if (!vga_arbiter_used) {
+ 		vga_arbiter_used = true;
+ 		vga_arbiter_notify_clients();
+@@ -865,8 +868,7 @@ static bool vga_arbiter_del_pci_device(struct pci_dev *pdev)
+ }
+ 
+ /* this is called with the lock */
+-static inline void vga_update_device_decodes(struct vga_device *vgadev,
+-					     int new_decodes)
++static void vga_update_device_decodes(struct vga_device *vgadev, int new_decodes)
+ {
+ 	struct device *dev = &vgadev->pdev->dev;
+ 	int old_decodes, decodes_removed, decodes_unlocked;
+@@ -956,9 +958,9 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
+  * @set_decode callback: If a client can disable its GPU VGA resource, it
+  * will get a callback from this to set the encode/decode state.
+  *
+- * Rationale: we cannot disable VGA decode resources unconditionally some single
+- * GPU laptops seem to require ACPI or BIOS access to the VGA registers to
+- * control things like backlights etc.  Hopefully newer multi-GPU laptops do
++ * Rationale: we cannot disable VGA decode resources unconditionally, some
++ * single GPU laptops seem to require ACPI or BIOS access to the VGA registers
++ * to control things like backlights etc. Hopefully newer multi-GPU laptops do
+  * something saner, and desktops won't have any special ACPI for this. The
+  * driver will get a callback when VGA arbitration is first used by userspace
+  * since some older X servers have issues.
+@@ -988,7 +990,6 @@ int vga_client_register(struct pci_dev *pdev,
+ bail:
+ 	spin_unlock_irqrestore(&vga_lock, flags);
+ 	return ret;
+-
+ }
+ EXPORT_SYMBOL(vga_client_register);
+ 
+diff --git a/include/linux/vgaarb.h b/include/linux/vgaarb.h
+index b4b9137f9792..d36225c582ee 100644
+--- a/include/linux/vgaarb.h
++++ b/include/linux/vgaarb.h
+@@ -23,9 +23,7 @@
+  * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+- * DEALINGS
+- * IN THE SOFTWARE.
+- *
++ * DEALINGS IN THE SOFTWARE.
+  */
+ 
+ #ifndef LINUX_VGA_H
+@@ -96,7 +94,7 @@ static inline int vga_client_register(struct pci_dev *pdev,
+ static inline int vga_get_interruptible(struct pci_dev *pdev,
+ 					unsigned int rsrc)
+ {
+-       return vga_get(pdev, rsrc, 1);
++	return vga_get(pdev, rsrc, 1);
+ }
+ 
+ /**
+@@ -111,7 +109,7 @@ static inline int vga_get_interruptible(struct pci_dev *pdev,
+ static inline int vga_get_uninterruptible(struct pci_dev *pdev,
+ 					  unsigned int rsrc)
+ {
+-       return vga_get(pdev, rsrc, 0);
++	return vga_get(pdev, rsrc, 0);
+ }
+ 
+ static inline void vga_client_unregister(struct pci_dev *pdev)
+-- 
+2.25.1
+
