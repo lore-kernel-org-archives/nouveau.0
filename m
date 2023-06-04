@@ -4,53 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEF23EB64DC
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71A9EEB64DB
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 935C010E361;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3F6410E362;
 	Tue, 20 Jun 2023 18:20:38 +0000 (UTC)
 Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id E1FF410E244;
- Tue,  6 Jun 2023 19:06:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id AA64F10E041;
+ Sun,  4 Jun 2023 20:55:39 +0000 (UTC)
 Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8AxmOmqg39ku0wAAA--.393S3;
- Wed, 07 Jun 2023 03:06:19 +0800 (CST)
+ by gateway (Coremail) with SMTP id _____8CxZ_FJ+nxkV2gEAA--.9186S3;
+ Mon, 05 Jun 2023 04:55:37 +0800 (CST)
 Received: from openarena.loongson.cn (unknown [10.20.42.43])
  by localhost.localdomain (Coremail) with SMTP id
- AQAAf8AxPMqpg39k9fgCAA--.3107S2; 
- Wed, 07 Jun 2023 03:06:17 +0800 (CST)
+ AQAAf8BxLL5I+nxkF7SJAA--.24647S2; 
+ Mon, 05 Jun 2023 04:55:36 +0800 (CST)
 From: Sui Jingfeng <suijingfeng@loongson.cn>
-To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Sui Jingfeng <suijingfeng@loongson.cn>
-Date: Wed,  7 Jun 2023 03:06:17 +0800
-Message-Id: <20230606190617.300080-1-suijingfeng@loongson.cn>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Christian Konig <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Hawking Zhang <Hawking.Zhang@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ Bokun Zhang <Bokun.Zhang@amd.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>, Li Yi <liyi@loongson.cn>,
+ Sui Jingfeng <suijingfeng@loongson.cn>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Kevin Tian <kevin.tian@intel.com>, Cornelia Huck <cohuck@redhat.com>,
+ Yishai Hadas <yishaih@nvidia.com>, Abhishek Sahu <abhsahu@nvidia.com>,
+ Yi Liu <yi.l.liu@intel.com>
+Date: Mon,  5 Jun 2023 04:55:35 +0800
+Message-Id: <20230604205536.3357439-1-suijingfeng@loongson.cn>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxPMqpg39k9fgCAA--.3107S2
+X-CM-TRANSID: AQAAf8BxLL5I+nxkF7SJAA--.24647S2
 X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj93XoW7Aw18Kr1DZryxGr4UKr1UXFc_yoW8tF4DpF
- ZrCFyFgaykta1Fg3W8tF1v9FWrGan3KayIk3ZrCwsag3ZIyr1UZr4YkF93Zr9xXFyxCw17
- trnrtF1agF4FyrcCm3ZEXasCq-sJn29KB7ZKAUJUUUU5529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUvFb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
- Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx1l5I
- 8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AK
- xVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxVAaw2AFwI
- 0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG
- 67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MI
- IYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E
- 14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JV
- WxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU2a9a
- DUUUU
+X-Coremail-Antispam: 1Uk129KBjvJXoWxXw4kur1fXFWrtrW3ZrWDurg_yoWrKw1Upr
+ Zakas8CrW8XFs7ZrsrXF4rGF1Y9393CFyfArWakwn3AF15JFn2qF9YyryYv3yfJ392kF4I
+ qan8tF4UuF4UJFJanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+ qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+ bS8YFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
+ 1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
+ wVC0I7IYx2IY67AKxVWUCVW8JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
+ x0Y4vEx4A2jsIE14v26F4j6r4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2kK
+ e7AKxVWUAVWUtwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI
+ 0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280
+ aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxkF7I0En4
+ kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI
+ 1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_Jr
+ Wlx4CE17CEb7AF67AKxVWrXVW8Jr1lIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWU
+ CVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r
+ 1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1U
+ YxBIdaVFxhVjvjDU0xZFpf9x07j0mhrUUUUU=
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau: fix codeing style
+Subject: [Nouveau] [PATCH v2 1/2] vgaarb: various coding style and comments
+ fix
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,67 +82,142 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Cc: kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, loongson-kernel@lists.loongnix.cn,
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-drivers/gpu/drm/nouveau/dispnv04/crtc.c:453: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
- * Sets up registers for the given mode/adjusted_mode pair.
-drivers/gpu/drm/nouveau/dispnv04/crtc.c:629: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
- * Sets up registers for the given mode/adjusted_mode pair.
+To keep consistent with vga_iostate_to_str() function, the third argument
+of vga_str_to_iostate() function should be 'unsigned int *'.
 
 Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
 ---
- drivers/gpu/drm/nouveau/dispnv04/crtc.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/pci/vgaarb.c   | 29 +++++++++++++++--------------
+ include/linux/vgaarb.h |  8 +++-----
+ 2 files changed, 18 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-index a6f2e681bde9..2a9400ba4b92 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-@@ -413,8 +413,8 @@ nv_crtc_mode_set_vga(struct drm_crtc *crtc, struct drm_display_mode *mode)
- 		regp->CRTC[NV_CIO_CRE_ILACE__INDEX] = 0xff;  /* interlace off */
+diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+index 5a696078b382..e40e6e5e5f03 100644
+--- a/drivers/pci/vgaarb.c
++++ b/drivers/pci/vgaarb.c
+@@ -61,7 +61,6 @@ static bool vga_arbiter_used;
+ static DEFINE_SPINLOCK(vga_lock);
+ static DECLARE_WAIT_QUEUE_HEAD(vga_wait_queue);
  
- 	/*
--	* Graphics Display Controller
--	*/
-+	 * Graphics Display Controller
+-
+ static const char *vga_iostate_to_str(unsigned int iostate)
+ {
+ 	/* Ignore VGA_RSRC_IO and VGA_RSRC_MEM */
+@@ -77,10 +76,12 @@ static const char *vga_iostate_to_str(unsigned int iostate)
+ 	return "none";
+ }
+ 
+-static int vga_str_to_iostate(char *buf, int str_size, int *io_state)
++static int vga_str_to_iostate(char *buf, int str_size, unsigned int *io_state)
+ {
+-	/* we could in theory hand out locks on IO and mem
+-	 * separately to userspace but it can cause deadlocks */
++	/*
++	 * we could in theory hand out locks on IO and mem
++	 * separately to userspace but it can cause deadlocks
 +	 */
- 	regp->Graphics[NV_VIO_GX_SR_INDEX] = 0x00;
- 	regp->Graphics[NV_VIO_GX_SREN_INDEX] = 0x00;
- 	regp->Graphics[NV_VIO_GX_CCOMP_INDEX] = 0x00;
-@@ -449,7 +449,7 @@ nv_crtc_mode_set_vga(struct drm_crtc *crtc, struct drm_display_mode *mode)
- 	regp->Attribute[NV_CIO_AR_CSEL_INDEX] = 0x00;
+ 	if (strncmp(buf, "none", 4) == 0) {
+ 		*io_state = VGA_RSRC_NONE;
+ 		return 1;
+@@ -99,7 +100,7 @@ static int vga_str_to_iostate(char *buf, int str_size, int *io_state)
+ 	return 1;
  }
  
--/**
-+/*
-  * Sets up registers for the given mode/adjusted_mode pair.
+-/* this is only used a cookie - it should not be dereferenced */
++/* This is only used as cookie, it should not be dereferenced */
+ static struct pci_dev *vga_default;
+ 
+ /* Find somebody in our list */
+@@ -194,13 +195,15 @@ int vga_remove_vgacon(struct pci_dev *pdev)
+ EXPORT_SYMBOL(vga_remove_vgacon);
+ 
+ /* If we don't ever use VGA arb we should avoid
+-   turning off anything anywhere due to old X servers getting
+-   confused about the boot device not being VGA */
++ * turning off anything anywhere due to old X servers getting
++ * confused about the boot device not being VGA
++ */
+ static void vga_check_first_use(void)
+ {
+ 	/* we should inform all GPUs in the system that
+ 	 * VGA arb has occurred and to try and disable resources
+-	 * if they can */
++	 * if they can
++	 */
+ 	if (!vga_arbiter_used) {
+ 		vga_arbiter_used = true;
+ 		vga_arbiter_notify_clients();
+@@ -865,8 +868,7 @@ static bool vga_arbiter_del_pci_device(struct pci_dev *pdev)
+ }
+ 
+ /* this is called with the lock */
+-static inline void vga_update_device_decodes(struct vga_device *vgadev,
+-					     int new_decodes)
++static void vga_update_device_decodes(struct vga_device *vgadev, int new_decodes)
+ {
+ 	struct device *dev = &vgadev->pdev->dev;
+ 	int old_decodes, decodes_removed, decodes_unlocked;
+@@ -956,9 +958,9 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
+  * @set_decode callback: If a client can disable its GPU VGA resource, it
+  * will get a callback from this to set the encode/decode state.
   *
-  * The clocks, CRTCs and outputs attached to this CRTC must be off.
-@@ -625,7 +625,7 @@ nv_crtc_swap_fbs(struct drm_crtc *crtc, struct drm_framebuffer *old_fb)
+- * Rationale: we cannot disable VGA decode resources unconditionally some single
+- * GPU laptops seem to require ACPI or BIOS access to the VGA registers to
+- * control things like backlights etc.  Hopefully newer multi-GPU laptops do
++ * Rationale: we cannot disable VGA decode resources unconditionally, some
++ * single GPU laptops seem to require ACPI or BIOS access to the VGA registers
++ * to control things like backlights etc. Hopefully newer multi-GPU laptops do
+  * something saner, and desktops won't have any special ACPI for this. The
+  * driver will get a callback when VGA arbitration is first used by userspace
+  * since some older X servers have issues.
+@@ -988,7 +990,6 @@ int vga_client_register(struct pci_dev *pdev,
+ bail:
+ 	spin_unlock_irqrestore(&vga_lock, flags);
  	return ret;
+-
+ }
+ EXPORT_SYMBOL(vga_client_register);
+ 
+diff --git a/include/linux/vgaarb.h b/include/linux/vgaarb.h
+index b4b9137f9792..d36225c582ee 100644
+--- a/include/linux/vgaarb.h
++++ b/include/linux/vgaarb.h
+@@ -23,9 +23,7 @@
+  * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+- * DEALINGS
+- * IN THE SOFTWARE.
+- *
++ * DEALINGS IN THE SOFTWARE.
+  */
+ 
+ #ifndef LINUX_VGA_H
+@@ -96,7 +94,7 @@ static inline int vga_client_register(struct pci_dev *pdev,
+ static inline int vga_get_interruptible(struct pci_dev *pdev,
+ 					unsigned int rsrc)
+ {
+-       return vga_get(pdev, rsrc, 1);
++	return vga_get(pdev, rsrc, 1);
  }
  
--/**
-+/*
-  * Sets up registers for the given mode/adjusted_mode pair.
-  *
-  * The clocks, CRTCs and outputs attached to this CRTC must be off.
-@@ -1263,9 +1263,9 @@ static const struct drm_crtc_helper_funcs nv04_crtc_helper_funcs = {
- };
+ /**
+@@ -111,7 +109,7 @@ static inline int vga_get_interruptible(struct pci_dev *pdev,
+ static inline int vga_get_uninterruptible(struct pci_dev *pdev,
+ 					  unsigned int rsrc)
+ {
+-       return vga_get(pdev, rsrc, 0);
++	return vga_get(pdev, rsrc, 0);
+ }
  
- static const uint32_t modeset_formats[] = {
--        DRM_FORMAT_XRGB8888,
--        DRM_FORMAT_RGB565,
--        DRM_FORMAT_XRGB1555,
-+	DRM_FORMAT_XRGB8888,
-+	DRM_FORMAT_RGB565,
-+	DRM_FORMAT_XRGB1555,
- };
- 
- static const struct drm_plane_funcs nv04_primary_plane_funcs = {
+ static inline void vga_client_unregister(struct pci_dev *pdev)
 -- 
 2.25.1
 
