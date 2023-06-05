@@ -4,44 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8197EB64D7
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DFB4EB64DB
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 335D410E0E6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EC2B10E313;
 	Tue, 20 Jun 2023 18:20:14 +0000 (UTC)
-Received: from 189.cn (ptr.189.cn [183.61.185.101])
- by gabe.freedesktop.org (Postfix) with ESMTP id 714A410E21B;
- Tue,  6 Jun 2023 10:27:17 +0000 (UTC)
-HMM_SOURCE_IP: 10.64.8.43:56328.1404265272
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
- by 189.cn (HERMES) with SMTP id EFA0E1002A9;
- Tue,  6 Jun 2023 18:27:10 +0800 (CST)
-Received: from  ([114.242.206.180])
- by gateway-151646-dep-75648544bd-7vx9t with ESMTP id
- b5e6b79af1f8443dafae01c9526be680 for suijingfeng@loongson.cn; 
- Tue, 06 Jun 2023 18:27:14 CST
-X-Transaction-ID: b5e6b79af1f8443dafae01c9526be680
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-Message-ID: <680cea2e-7984-5f26-c440-46047f4733fa@189.cn>
-Date: Tue, 6 Jun 2023 18:27:05 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-To: Sui Jingfeng <suijingfeng@loongson.cn>,
- Andi Shyti <andi.shyti@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47A4F10E167;
+ Mon,  5 Jun 2023 22:16:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686003380; x=1717539380;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=j6OmYXev5dSof4jSEuXxwO0jYGsXKhESRMOiQiPGbO8=;
+ b=ek/6TtVrlrqh5Jr2gADyO4L7zr0YpEXKhi2HY0GTbFru+FdnESVB1z/S
+ ez6GBO9gABtf8Jzzob+cARTRjG7OhNb+z1ELcAfc+lplYVki1W4wdHfar
+ +sEpG9pzqqQGn0ejWMNWDB5ltH35ztaYVqa7wWZAoWGg1GxBfJKz4wXz8
+ +fYVk0RpmbwtY5qFpPPvfTq2Tir5zP2Qw4HWT6wrvUsoF2eMDCr9N+QEw
+ cv0n/hEOvW7pRkmibrYLknOZq0BFhC3FaN7XymsyVAt3W0EeXa/fhpEwb
+ 84ZBk+dKEwcvSkcKUwbHePXkQEZRa7/MkDUsMov43qd7wjnsZalvQ/E1Q w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="359812698"
+X-IronPort-AV: E=Sophos;i="6.00,218,1681196400"; d="scan'208";a="359812698"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2023 15:16:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="686267039"
+X-IronPort-AV: E=Sophos;i="6.00,218,1681196400"; d="scan'208";a="686267039"
+Received: from twgeistx-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.249.42.176])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2023 15:16:09 -0700
+Date: Tue, 6 Jun 2023 00:16:04 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Sui Jingfeng <15330273260@189.cn>
+Message-ID: <ZH5epG6rfTOWT6CS@ashyti-mobl2.lan>
 References: <20230604205831.3357596-1-15330273260@189.cn>
- <ZH5epG6rfTOWT6CS@ashyti-mobl2.lan>
- <f9e67fe9-a93b-75ab-1fdb-87d3783fe5fc@loongson.cn>
-Content-Language: en-US
-From: Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <f9e67fe9-a93b-75ab-1fdb-87d3783fe5fc@loongson.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:11 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230604205831.3357596-1-15330273260@189.cn>
+X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
 Subject: Re: [Nouveau] [Intel-gfx] [PATCH v2 1/2] vgaarb: various coding
  style and comments fix
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -60,6 +64,7 @@ Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
  Mario Limonciello <mario.limonciello@amd.com>,
+ Sui Jingfeng <suijingfeng@loongson.cn>,
  Ville Syrjala <ville.syrjala@linux.intel.com>, Yi Liu <yi.l.liu@intel.com>,
  kvm@vger.kernel.org, amd-gfx@lists.freedesktop.org,
  Jason Gunthorpe <jgg@ziepe.ca>, Ben Skeggs <bskeggs@redhat.com>,
@@ -81,19 +86,58 @@ Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
+Hi Sui,
 
-On 2023/6/6 10:06, Sui Jingfeng wrote:
-> Originally, I also want to express the opinion. 
+On Mon, Jun 05, 2023 at 04:58:30AM +0800, Sui Jingfeng wrote:
+> From: Sui Jingfeng <suijingfeng@loongson.cn>
+> 
+> To keep consistent with vga_iostate_to_str() function, the third argument
+> of vga_str_to_iostate() function should be 'unsigned int *'.
 
+I think the real reason is not to keep consistent with
+vga_iostate_to_str() but because vga_str_to_iostate() is actually
+only taking "unsigned int *" parameters.
 
-Originally,  I want to express the same opinion as you told me.
+> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+> ---
+>  drivers/pci/vgaarb.c   | 29 +++++++++++++++--------------
+>  include/linux/vgaarb.h |  8 +++-----
+>  2 files changed, 18 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+> index 5a696078b382..e40e6e5e5f03 100644
+> --- a/drivers/pci/vgaarb.c
+> +++ b/drivers/pci/vgaarb.c
+> @@ -61,7 +61,6 @@ static bool vga_arbiter_used;
+>  static DEFINE_SPINLOCK(vga_lock);
+>  static DECLARE_WAIT_QUEUE_HEAD(vga_wait_queue);
+>  
+> -
 
-Because vga_iostate_to_str() function is taking unsigned int parameter.
+drop this change
 
-so, I think, using 'unsigned int *' type as the third parameter 
-vga_str_to_iostate() function is more suitable.
+>  static const char *vga_iostate_to_str(unsigned int iostate)
+>  {
+>  	/* Ignore VGA_RSRC_IO and VGA_RSRC_MEM */
+> @@ -77,10 +76,12 @@ static const char *vga_iostate_to_str(unsigned int iostate)
+>  	return "none";
+>  }
+>  
+> -static int vga_str_to_iostate(char *buf, int str_size, int *io_state)
+> +static int vga_str_to_iostate(char *buf, int str_size, unsigned int *io_state)
 
+this is OK, it's actually what you are describing in the commit
+log, but...
 
-But this patch is too trivial, so I smash them into one patch.
+>  {
+> -	/* we could in theory hand out locks on IO and mem
+> -	 * separately to userspace but it can cause deadlocks */
+> +	/*
+> +	 * we could in theory hand out locks on IO and mem
+> +	 * separately to userspace but it can cause deadlocks
+> +	 */
 
+... all the rest needs to go on different patches as it doesn't
+have anything to do with what you describe.
+
+Andi
