@@ -4,42 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85756EB64D8
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40170EB64DD
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64D0110E364;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A892610E366;
 	Tue, 20 Jun 2023 18:20:46 +0000 (UTC)
-Received: from mail.nfschina.com (unknown [42.101.60.195])
- by gabe.freedesktop.org (Postfix) with SMTP id B532F10E7D7;
- Fri, 26 May 2023 10:18:16 +0000 (UTC)
-Received: from [172.30.38.103] (unknown [180.167.10.98])
- by mail.nfschina.com (Maildata Gateway V2.8.8) with ESMTPSA id CBC5B1801278C3; 
- Fri, 26 May 2023 18:18:09 +0800 (CST)
-Message-ID: <5f2f2e0e-506d-8527-dd8f-2ec6da4601a6@nfschina.com>
-Date: Fri, 26 May 2023 18:18:09 +0800
+Received: from 189.cn (ptr.189.cn [183.61.185.103])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D1FD810E262;
+ Thu,  8 Jun 2023 11:43:41 +0000 (UTC)
+HMM_SOURCE_IP: 10.64.8.41:48916.660287130
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
+ by 189.cn (HERMES) with SMTP id CC14D1002A6;
+ Thu,  8 Jun 2023 19:43:35 +0800 (CST)
+Received: from  ([114.242.206.180])
+ by gateway-151646-dep-75648544bd-xwndj with ESMTP id
+ 2966c463e9d240d7a1935434913645a0 for alexander.deucher@amd.com; 
+ Thu, 08 Jun 2023 19:43:38 CST
+X-Transaction-ID: 2966c463e9d240d7a1935434913645a0
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+From: Sui Jingfeng <15330273260@189.cn>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Christian Konig <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Hawking Zhang <Hawking.Zhang@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ Bokun Zhang <Bokun.Zhang@amd.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>, Li Yi <liyi@loongson.cn>,
+ Sui Jingfeng <suijingfeng@loongson.cn>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Kevin Tian <kevin.tian@intel.com>, Cornelia Huck <cohuck@redhat.com>,
+ Yishai Hadas <yishaih@nvidia.com>, Abhishek Sahu <abhsahu@nvidia.com>,
+ Yi Liu <yi.l.liu@intel.com>
+Date: Thu,  8 Jun 2023 19:43:21 +0800
+Message-Id: <20230608114322.604887-4-15330273260@189.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230608114322.604887-1-15330273260@189.cn>
+References: <20230608114322.604887-1-15330273260@189.cn>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch, evan.quan@amd.com,
- l.stach@pengutronix.de, linux+etnaviv@armlinux.org.uk,
- christian.gmeiner@gmail.com, bskeggs@redhat.com, kherbst@redhat.com,
- lyude@redhat.com, tomba@kernel.org, emma@anholt.net, airlied@redhat.com,
- kraxel@redhat.com, abrodkin@synopsys.com, ray.huang@amd.com,
- gurchetansingh@chromium.org, olvaffe@gmail.com, zackr@vmware.com,
- linux-graphics-maintainer@vmware.com, sumit.semwal@linaro.org
-X-MD-Sfrom: suhui@nfschina.com
-X-MD-SrcIP: 180.167.10.98
-From: Su Hui <suhui@nfschina.com>
-In-Reply-To: <5b5c7b06-ef99-d275-3693-b2e3d114cac9@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:11 +0000
-Subject: Re: [Nouveau] [PATCH] drm: Remove unnecessary (void*) conversions
+X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
+Subject: [Nouveau] [PATCH v3 3/4] PCI/VGA: only deal with VGA class devices
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,272 +71,87 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- etnaviv@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org, linaro-mm-sig@lists.linaro.org,
- amd-gfx@lists.freedesktop.org, spice-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+Cc: kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, loongson-kernel@lists.loongnix.cn,
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 2023/5/26 15:27, Christian König wrote:
-> Am 26.05.23 um 05:32 schrieb Su Hui:
->> Pointer variables of (void*) type do not require type cast.
->
-> Please split that up by subsystem/driver. Taking it through the misc 
-> tree might just cause merge conflicts.
->
-Sorry for that, I will split it and send again.
-Thanks for your reply!
+From: Sui Jingfeng <suijingfeng@loongson.cn>
 
-Su Hui
+vgaarb only deal with the VGA devcie(pdev->class == 0x0300), so replace the
+pci_get_subsys() function with pci_get_class(). Filter the non pci display
+device out. There no need to process the non display PCI device.
 
-> Christian.
->
->>
->> Signed-off-by: Su Hui <suhui@nfschina.com>
->> ---
->>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 2 +-
->>   drivers/gpu/drm/amd/pm/amdgpu_pm.c                        | 2 +-
->>   drivers/gpu/drm/etnaviv/etnaviv_drv.c                     | 4 ++--
->>   drivers/gpu/drm/nouveau/nouveau_debugfs.c                 | 2 +-
->>   drivers/gpu/drm/omapdrm/omap_debugfs.c                    | 6 +++---
->>   drivers/gpu/drm/pl111/pl111_debugfs.c                     | 2 +-
->>   drivers/gpu/drm/qxl/qxl_debugfs.c                         | 4 ++--
->>   drivers/gpu/drm/tiny/arcpgu.c                             | 2 +-
->>   drivers/gpu/drm/ttm/ttm_resource.c                        | 3 +--
->>   drivers/gpu/drm/virtio/virtgpu_debugfs.c                  | 6 +++---
->>   drivers/gpu/drm/vmwgfx/ttm_object.c                       | 5 ++---
->>   drivers/gpu/drm/vmwgfx/vmwgfx_gem.c                       | 2 +-
->>   12 files changed, 19 insertions(+), 21 deletions(-)
->>
->> diff --git 
->> a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c 
->> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
->> index 827fcb4fb3b3..8a2c39927167 100644
->> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
->> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
->> @@ -3312,7 +3312,7 @@ static ssize_t dtn_log_write(
->>     static int mst_topo_show(struct seq_file *m, void *unused)
->>   {
->> -    struct amdgpu_device *adev = (struct amdgpu_device *)m->private;
->> +    struct amdgpu_device *adev = m->private;
->>       struct drm_device *dev = adev_to_drm(adev);
->>       struct drm_connector *connector;
->>       struct drm_connector_list_iter conn_iter;
->> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c 
->> b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->> index 58c2246918fd..e6c870bd307b 100644
->> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
->> @@ -3671,7 +3671,7 @@ static void amdgpu_parse_cg_state(struct 
->> seq_file *m, u64 flags)
->>     static int amdgpu_debugfs_pm_info_show(struct seq_file *m, void 
->> *unused)
->>   {
->> -    struct amdgpu_device *adev = (struct amdgpu_device *)m->private;
->> +    struct amdgpu_device *adev = m->private;
->>       struct drm_device *dev = adev_to_drm(adev);
->>       u64 flags = 0;
->>       int r;
->> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_drv.c 
->> b/drivers/gpu/drm/etnaviv/etnaviv_drv.c
->> index 31a7f59ccb49..dd57f7164e9a 100644
->> --- a/drivers/gpu/drm/etnaviv/etnaviv_drv.c
->> +++ b/drivers/gpu/drm/etnaviv/etnaviv_drv.c
->> @@ -198,7 +198,7 @@ static int etnaviv_ring_show(struct etnaviv_gpu 
->> *gpu, struct seq_file *m)
->>     static int show_unlocked(struct seq_file *m, void *arg)
->>   {
->> -    struct drm_info_node *node = (struct drm_info_node *) m->private;
->> +    struct drm_info_node *node = m->private;
->>       struct drm_device *dev = node->minor->dev;
->>       int (*show)(struct drm_device *dev, struct seq_file *m) =
->>               node->info_ent->data;
->> @@ -208,7 +208,7 @@ static int show_unlocked(struct seq_file *m, void 
->> *arg)
->>     static int show_each_gpu(struct seq_file *m, void *arg)
->>   {
->> -    struct drm_info_node *node = (struct drm_info_node *) m->private;
->> +    struct drm_info_node *node = m->private;
->>       struct drm_device *dev = node->minor->dev;
->>       struct etnaviv_drm_private *priv = dev->dev_private;
->>       struct etnaviv_gpu *gpu;
->> diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c 
->> b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
->> index 2a36d1ca8fda..96b59d5d68ed 100644
->> --- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
->> +++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
->> @@ -37,7 +37,7 @@
->>   static int
->>   nouveau_debugfs_vbios_image(struct seq_file *m, void *data)
->>   {
->> -    struct drm_info_node *node = (struct drm_info_node *) m->private;
->> +    struct drm_info_node *node = m->private;
->>       struct nouveau_drm *drm = nouveau_drm(node->minor->dev);
->>       int i;
->>   diff --git a/drivers/gpu/drm/omapdrm/omap_debugfs.c 
->> b/drivers/gpu/drm/omapdrm/omap_debugfs.c
->> index a3d470468e5b..a94ce502e152 100644
->> --- a/drivers/gpu/drm/omapdrm/omap_debugfs.c
->> +++ b/drivers/gpu/drm/omapdrm/omap_debugfs.c
->> @@ -19,7 +19,7 @@
->>     static int gem_show(struct seq_file *m, void *arg)
->>   {
->> -    struct drm_info_node *node = (struct drm_info_node *) m->private;
->> +    struct drm_info_node *node = m->private;
->>       struct drm_device *dev = node->minor->dev;
->>       struct omap_drm_private *priv = dev->dev_private;
->>   @@ -33,7 +33,7 @@ static int gem_show(struct seq_file *m, void *arg)
->>     static int mm_show(struct seq_file *m, void *arg)
->>   {
->> -    struct drm_info_node *node = (struct drm_info_node *) m->private;
->> +    struct drm_info_node *node = m->private;
->>       struct drm_device *dev = node->minor->dev;
->>       struct drm_printer p = drm_seq_file_printer(m);
->>   @@ -45,7 +45,7 @@ static int mm_show(struct seq_file *m, void *arg)
->>   #ifdef CONFIG_DRM_FBDEV_EMULATION
->>   static int fb_show(struct seq_file *m, void *arg)
->>   {
->> -    struct drm_info_node *node = (struct drm_info_node *) m->private;
->> +    struct drm_info_node *node = m->private;
->>       struct drm_device *dev = node->minor->dev;
->>       struct drm_fb_helper *helper = dev->fb_helper;
->>       struct drm_framebuffer *fb;
->> diff --git a/drivers/gpu/drm/pl111/pl111_debugfs.c 
->> b/drivers/gpu/drm/pl111/pl111_debugfs.c
->> index 6744fa16f464..4df03ec5d368 100644
->> --- a/drivers/gpu/drm/pl111/pl111_debugfs.c
->> +++ b/drivers/gpu/drm/pl111/pl111_debugfs.c
->> @@ -32,7 +32,7 @@ static const struct {
->>     static int pl111_debugfs_regs(struct seq_file *m, void *unused)
->>   {
->> -    struct drm_info_node *node = (struct drm_info_node *)m->private;
->> +    struct drm_info_node *node = m->private;
->>       struct drm_device *dev = node->minor->dev;
->>       struct pl111_drm_dev_private *priv = dev->dev_private;
->>       int i;
->> diff --git a/drivers/gpu/drm/qxl/qxl_debugfs.c 
->> b/drivers/gpu/drm/qxl/qxl_debugfs.c
->> index 2d9ed3b94574..5b4fe3049529 100644
->> --- a/drivers/gpu/drm/qxl/qxl_debugfs.c
->> +++ b/drivers/gpu/drm/qxl/qxl_debugfs.c
->> @@ -38,7 +38,7 @@
->>   static int
->>   qxl_debugfs_irq_received(struct seq_file *m, void *data)
->>   {
->> -    struct drm_info_node *node = (struct drm_info_node *) m->private;
->> +    struct drm_info_node *node = m->private;
->>       struct qxl_device *qdev = to_qxl(node->minor->dev);
->>         seq_printf(m, "%d\n", atomic_read(&qdev->irq_received));
->> @@ -52,7 +52,7 @@ qxl_debugfs_irq_received(struct seq_file *m, void 
->> *data)
->>   static int
->>   qxl_debugfs_buffers_info(struct seq_file *m, void *data)
->>   {
->> -    struct drm_info_node *node = (struct drm_info_node *) m->private;
->> +    struct drm_info_node *node = m->private;
->>       struct qxl_device *qdev = to_qxl(node->minor->dev);
->>       struct qxl_bo *bo;
->>   diff --git a/drivers/gpu/drm/tiny/arcpgu.c 
->> b/drivers/gpu/drm/tiny/arcpgu.c
->> index e5b10e41554a..09f728355aba 100644
->> --- a/drivers/gpu/drm/tiny/arcpgu.c
->> +++ b/drivers/gpu/drm/tiny/arcpgu.c
->> @@ -338,7 +338,7 @@ static int arcpgu_unload(struct drm_device *drm)
->>   #ifdef CONFIG_DEBUG_FS
->>   static int arcpgu_show_pxlclock(struct seq_file *m, void *arg)
->>   {
->> -    struct drm_info_node *node = (struct drm_info_node *)m->private;
->> +    struct drm_info_node *node = m->private;
->>       struct drm_device *drm = node->minor->dev;
->>       struct arcpgu_drm_private *arcpgu = dev_to_arcpgu(drm);
->>       unsigned long clkrate = clk_get_rate(arcpgu->clk);
->> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c 
->> b/drivers/gpu/drm/ttm/ttm_resource.c
->> index 7333f7a87a2f..540faabcf8a4 100644
->> --- a/drivers/gpu/drm/ttm/ttm_resource.c
->> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
->> @@ -727,9 +727,8 @@ ttm_kmap_iter_linear_io_fini(struct 
->> ttm_kmap_iter_linear_io *iter_io,
->>     static int ttm_resource_manager_show(struct seq_file *m, void 
->> *unused)
->>   {
->> -    struct ttm_resource_manager *man =
->> -        (struct ttm_resource_manager *)m->private;
->>       struct drm_printer p = drm_seq_file_printer(m);
->> +    struct ttm_resource_manager *man = m->private;
->>       ttm_resource_manager_debug(man, &p);
->>       return 0;
->>   }
->> diff --git a/drivers/gpu/drm/virtio/virtgpu_debugfs.c 
->> b/drivers/gpu/drm/virtio/virtgpu_debugfs.c
->> index 853dd9aa397e..577691af9707 100644
->> --- a/drivers/gpu/drm/virtio/virtgpu_debugfs.c
->> +++ b/drivers/gpu/drm/virtio/virtgpu_debugfs.c
->> @@ -43,7 +43,7 @@ static void virtio_gpu_add_int(struct seq_file *m, 
->> const char *name, int value)
->>     static int virtio_gpu_features(struct seq_file *m, void *data)
->>   {
->> -    struct drm_info_node *node = (struct drm_info_node *)m->private;
->> +    struct drm_info_node *node = m->private;
->>       struct virtio_gpu_device *vgdev = node->minor->dev->dev_private;
->>         virtio_gpu_add_bool(m, "virgl", vgdev->has_virgl_3d);
->> @@ -68,7 +68,7 @@ static int virtio_gpu_features(struct seq_file *m, 
->> void *data)
->>   static int
->>   virtio_gpu_debugfs_irq_info(struct seq_file *m, void *data)
->>   {
->> -    struct drm_info_node *node = (struct drm_info_node *) m->private;
->> +    struct drm_info_node *node = m->private;
->>       struct virtio_gpu_device *vgdev = node->minor->dev->dev_private;
->>         seq_printf(m, "fence %llu %lld\n",
->> @@ -80,7 +80,7 @@ virtio_gpu_debugfs_irq_info(struct seq_file *m, 
->> void *data)
->>   static int
->>   virtio_gpu_debugfs_host_visible_mm(struct seq_file *m, void *data)
->>   {
->> -    struct drm_info_node *node = (struct drm_info_node *)m->private;
->> +    struct drm_info_node *node = m->private;
->>       struct virtio_gpu_device *vgdev = node->minor->dev->dev_private;
->>       struct drm_printer p;
->>   diff --git a/drivers/gpu/drm/vmwgfx/ttm_object.c 
->> b/drivers/gpu/drm/vmwgfx/ttm_object.c
->> index ddf8373c1d77..e9e3cc8f5b49 100644
->> --- a/drivers/gpu/drm/vmwgfx/ttm_object.c
->> +++ b/drivers/gpu/drm/vmwgfx/ttm_object.c
->> @@ -513,8 +513,7 @@ static void ttm_prime_refcount_release(struct 
->> ttm_base_object **p_base)
->>    */
->>   static void ttm_prime_dmabuf_release(struct dma_buf *dma_buf)
->>   {
->> -    struct ttm_prime_object *prime =
->> -        (struct ttm_prime_object *) dma_buf->priv;
->> +    struct ttm_prime_object *prime = dma_buf->priv;
->>       struct ttm_base_object *base = &prime->base;
->>       struct ttm_object_device *tdev = base->tfile->tdev;
->>   @@ -554,7 +553,7 @@ int ttm_prime_fd_to_handle(struct 
->> ttm_object_file *tfile,
->>       if (dma_buf->ops != &tdev->ops)
->>           return -ENOSYS;
->>   -    prime = (struct ttm_prime_object *) dma_buf->priv;
->> +    prime = dma_buf->priv;
->>       base = &prime->base;
->>       *handle = base->handle;
->>       ret = ttm_ref_object_add(tfile, base, NULL, false);
->> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c 
->> b/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
->> index c0da89e16e6f..3267a4e61382 100644
->> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
->> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
->> @@ -220,7 +220,7 @@ static void vmw_bo_print_info(int id, struct 
->> vmw_bo *bo, struct seq_file *m)
->>     static int vmw_debugfs_gem_info_show(struct seq_file *m, void 
->> *unused)
->>   {
->> -    struct vmw_private *vdev = (struct vmw_private *)m->private;
->> +    struct vmw_private *vdev = m->private;
->>       struct drm_device *dev = &vdev->drm;
->>       struct drm_file *file;
->>       int r;
->
+Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+---
+ drivers/pci/vgaarb.c | 22 ++++++++++++----------
+ 1 file changed, 12 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+index 7f0347f4f6fd..b0bf4952a95d 100644
+--- a/drivers/pci/vgaarb.c
++++ b/drivers/pci/vgaarb.c
+@@ -756,10 +756,6 @@ static bool vga_arbiter_add_pci_device(struct pci_dev *pdev)
+ 	struct pci_dev *bridge;
+ 	u16 cmd;
+ 
+-	/* Only deal with VGA class devices */
+-	if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
+-		return false;
+-
+ 	/* Allocate structure */
+ 	vgadev = kzalloc(sizeof(struct vga_device), GFP_KERNEL);
+ 	if (vgadev == NULL) {
+@@ -1499,7 +1495,9 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
+ 	struct pci_dev *pdev = to_pci_dev(dev);
+ 	bool notify = false;
+ 
+-	vgaarb_dbg(dev, "%s\n", __func__);
++	/* Only deal with VGA class devices */
++	if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
++		return 0;
+ 
+ 	/* For now we're only intereted in devices added and removed. I didn't
+ 	 * test this thing here, so someone needs to double check for the
+@@ -1509,6 +1507,8 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
+ 	else if (action == BUS_NOTIFY_DEL_DEVICE)
+ 		notify = vga_arbiter_del_pci_device(pdev);
+ 
++	vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
++
+ 	if (notify)
+ 		vga_arbiter_notify_clients();
+ 	return 0;
+@@ -1533,8 +1533,8 @@ static struct miscdevice vga_arb_device = {
+ 
+ static int __init vga_arb_device_init(void)
+ {
++	struct pci_dev *pdev = NULL;
+ 	int rc;
+-	struct pci_dev *pdev;
+ 
+ 	rc = misc_register(&vga_arb_device);
+ 	if (rc < 0)
+@@ -1545,11 +1545,13 @@ static int __init vga_arb_device_init(void)
+ 	/* We add all PCI devices satisfying VGA class in the arbiter by
+ 	 * default
+ 	 */
+-	pdev = NULL;
+-	while ((pdev =
+-		pci_get_subsys(PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
+-			       PCI_ANY_ID, pdev)) != NULL)
++	while (1) {
++		pdev = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, pdev);
++		if (!pdev)
++			break;
++
+ 		vga_arbiter_add_pci_device(pdev);
++	};
+ 
+ 	pr_info("loaded\n");
+ 	return rc;
+-- 
+2.25.1
+
