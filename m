@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3364EB64D7
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC1C3EB64DB
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BD5210E360;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E03B410E36B;
 	Tue, 20 Jun 2023 18:20:47 +0000 (UTC)
 Received: from 189.cn (ptr.189.cn [183.61.185.103])
- by gabe.freedesktop.org (Postfix) with ESMTP id 855C510E034
- for <nouveau@lists.freedesktop.org>; Sun,  4 Jun 2023 21:06:12 +0000 (UTC)
-HMM_SOURCE_IP: 10.64.8.43:47878.118806016
+ by gabe.freedesktop.org (Postfix) with ESMTP id 81FF010E26B;
+ Thu,  8 Jun 2023 11:43:43 +0000 (UTC)
+HMM_SOURCE_IP: 10.64.8.41:48916.660287130
 HMM_ATTACHE_NUM: 0000
 HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
- by 189.cn (HERMES) with SMTP id B96AD10029F;
- Mon,  5 Jun 2023 04:58:36 +0800 (CST)
+Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
+ by 189.cn (HERMES) with SMTP id 7246D1002AF;
+ Thu,  8 Jun 2023 19:43:38 +0800 (CST)
 Received: from  ([114.242.206.180])
- by gateway-151646-dep-75648544bd-7vx9t with ESMTP id
- b5b118ae41ab49e0a154bdb74caa128c for alexander.deucher@amd.com; 
- Mon, 05 Jun 2023 04:58:39 CST
-X-Transaction-ID: b5b118ae41ab49e0a154bdb74caa128c
+ by gateway-151646-dep-75648544bd-xwndj with ESMTP id
+ be5be8aede204d31a3c846f914d94a56 for alexander.deucher@amd.com; 
+ Thu, 08 Jun 2023 19:43:42 CST
+X-Transaction-ID: be5be8aede204d31a3c846f914d94a56
 X-Real-From: 15330273260@189.cn
 X-Receive-IP: 114.242.206.180
 X-MEDUSA-Status: 0
@@ -51,16 +51,16 @@ To: Alex Deucher <alexander.deucher@amd.com>,
  Kevin Tian <kevin.tian@intel.com>, Cornelia Huck <cohuck@redhat.com>,
  Yishai Hadas <yishaih@nvidia.com>, Abhishek Sahu <abhsahu@nvidia.com>,
  Yi Liu <yi.l.liu@intel.com>
-Date: Mon,  5 Jun 2023 04:58:31 +0800
-Message-Id: <20230604205831.3357596-2-15330273260@189.cn>
+Date: Thu,  8 Jun 2023 19:43:22 +0800
+Message-Id: <20230608114322.604887-5-15330273260@189.cn>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230604205831.3357596-1-15330273260@189.cn>
-References: <20230604205831.3357596-1-15330273260@189.cn>
+In-Reply-To: <20230608114322.604887-1-15330273260@189.cn>
+References: <20230608114322.604887-1-15330273260@189.cn>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:11 +0000
-Subject: [Nouveau] [PATCH v2 2/2] vgaarb: introduce is_boot_device callback
- function to vga_client_register
+X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
+Subject: [Nouveau] [PATCH v3 4/4] PCI/VGA: introduce is_boot_device function
+ callback to vga_client_register
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,26 +81,28 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 From: Sui Jingfeng <suijingfeng@loongson.cn>
 
-The vga_is_firmware_default() function is arch-dependent, which dosen't
-sound right. At least, It also works on Mips and LoongArch platform with
-the drm/AMDGPU and drm/radeon driver. However, it's difficult to enumerate
-all Arch-driver combination. I'm wrong if there are only one exception.
+The vga_is_firmware_default() function is arch-dependent, which doesn't
+sound right. At least, it also works on the Mips and LoongArch platforms.
+Tested with the drm/amdgpu and drm/radeon drivers. However, it's difficult
+to enumerate all arch-driver combinations. I'm wrong if there is only one
+exception.
 
-With the observation that device drivers typically has better knowledge
-about which PCI bar contains the firmware framebuffer, Which could helps
-to avoids the need to iterate all of the PCI BARs. But As a PCI core
-function at pci/vgaarb.c, vga_is_firmware_default funciton is embarrasing
-to make optimization for a specific device.
+With the observation that device drivers typically have better knowledge
+about which PCI bar contains the firmware framebuffer, which could avoid
+the need to iterate all of the PCI BARs.
 
-There also has PCI display controller don't has a dedicated VRAM bar in
-the world, this function will lost the effectiveness on such a case.
+But as a PCI function at pci/vgaarb.c, vga_is_firmware_default() is
+probably not suitable to make such an optimization for a specific device.
 
-Luckily, device driver can do the accurate workaround. We add a callback
-then, to let the device driver make the decision. Device drivers know what
-archs it could works, device driver also can shipping this decision to
-whatever arch its device can reach, not only the X86 and IA64.
+There are PCI display controllers that don't have a dedicated VRAM bar,
+this function will lose its effectiveness in such a case. Luckily, the
+device driver can provide an accurate workaround.
 
-Also honor the comment: "Clients have two callback mechanisms they can use"
+Therefore, this patch introduces a callback that allows the device driver
+to tell the VGAARB if the device is the default boot device. This patch
+only intends to introduce the mechanism, while the implementation is left
+to the device driver authors. Also honor the comment: "Clients have two
+callback mechanisms they can use"
 
 Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
 ---
@@ -174,7 +176,7 @@ index afbb3a80c0c6..71f2ff39d6a1 100644
  	if (rdev->flags & RADEON_IS_PX)
  		runtime = true;
 diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
-index e40e6e5e5f03..4576c4197551 100644
+index b0bf4952a95d..d3dab61e0ef2 100644
 --- a/drivers/pci/vgaarb.c
 +++ b/drivers/pci/vgaarb.c
 @@ -53,6 +53,7 @@ struct vga_device {
@@ -185,7 +187,7 @@ index e40e6e5e5f03..4576c4197551 100644
  };
  
  static LIST_HEAD(vga_list);
-@@ -615,10 +616,17 @@ static bool vga_is_boot_device(struct vga_device *vgadev)
+@@ -614,10 +615,17 @@ static bool vga_is_boot_device(struct vga_device *vgadev)
  	if (boot_vga && boot_vga->is_firmware_default)
  		return false;
  
@@ -206,7 +208,7 @@ index e40e6e5e5f03..4576c4197551 100644
  
  	/*
  	 * A legacy VGA device has MEM and IO enabled and any bridges
-@@ -958,6 +966,10 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
+@@ -954,6 +962,10 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
   * @set_decode callback: If a client can disable its GPU VGA resource, it
   * will get a callback from this to set the encode/decode state.
   *
@@ -217,7 +219,7 @@ index e40e6e5e5f03..4576c4197551 100644
   * Rationale: we cannot disable VGA decode resources unconditionally, some
   * single GPU laptops seem to require ACPI or BIOS access to the VGA registers
   * to control things like backlights etc. Hopefully newer multi-GPU laptops do
-@@ -973,7 +985,8 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
+@@ -969,7 +981,8 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
   * Returns: 0 on success, -1 on failure
   */
  int vga_client_register(struct pci_dev *pdev,
@@ -227,7 +229,7 @@ index e40e6e5e5f03..4576c4197551 100644
  {
  	int ret = -ENODEV;
  	struct vga_device *vgadev;
-@@ -985,6 +998,7 @@ int vga_client_register(struct pci_dev *pdev,
+@@ -981,6 +994,7 @@ int vga_client_register(struct pci_dev *pdev,
  		goto bail;
  
  	vgadev->set_decode = set_decode;
