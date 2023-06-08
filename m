@@ -4,39 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78041EB64D8
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67442EB64DB
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7F2F10E343;
-	Tue, 20 Jun 2023 18:20:32 +0000 (UTC)
-X-Greylist: delayed 488 seconds by postgrey-1.36 at gabe;
- Fri, 26 May 2023 03:41:30 UTC
-Received: from mail.nfschina.com (unknown [42.101.60.195])
- by gabe.freedesktop.org (Postfix) with SMTP id 7A6A810E7A1;
- Fri, 26 May 2023 03:41:30 +0000 (UTC)
-Received: from localhost.localdomain (unknown [180.167.10.98])
- by mail.nfschina.com (Maildata Gateway V2.8.8) with ESMTPA id B711818010A35A; 
- Fri, 26 May 2023 11:32:27 +0800 (CST)
-X-MD-Sfrom: suhui@nfschina.com
-X-MD-SrcIP: 180.167.10.98
-From: Su Hui <suhui@nfschina.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com,
- Xinhui.Pan@amd.com, airlied@gmail.com, daniel@ffwll.ch, evan.quan@amd.com,
- l.stach@pengutronix.de, linux+etnaviv@armlinux.org.uk,
- christian.gmeiner@gmail.com, bskeggs@redhat.com, kherbst@redhat.com,
- lyude@redhat.com, tomba@kernel.org, emma@anholt.net, airlied@redhat.com,
- kraxel@redhat.com, abrodkin@synopsys.com, ray.huang@amd.com,
- gurchetansingh@chromium.org, olvaffe@gmail.com, zackr@vmware.com,
- linux-graphics-maintainer@vmware.com, sumit.semwal@linaro.org
-Date: Fri, 26 May 2023 11:32:25 +0800
-Message-Id: <20230526033225.1310824-1-suhui@nfschina.com>
-X-Mailer: git-send-email 2.30.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 224F210E348;
+	Tue, 20 Jun 2023 18:20:33 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45DCD10E5FB;
+ Thu,  8 Jun 2023 17:19:16 +0000 (UTC)
+Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi
+ [91.154.35.171])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 869151424;
+ Thu,  8 Jun 2023 19:18:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1686244727;
+ bh=QCp8g9xbRRzi5prPR0P8JsS2fOCtTw24NgdzRtNAQkA=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=ivurqXuacySqj7S5bBj29CW1kOJEhzPVX1wUbbe7JjGtmaeDnNDrp9ES7xz5sou7/
+ 9SxWEvF253nRIvAd0xO3RIxe1NHh8UBjYsr6TpHlRJXbv0I3E64FJ/IqZp0bSQeO4O
+ iBcyUJnbVzHVylvQf0/AKIbigSnsRT2cigQiHQWY=
+Message-ID: <2b8ccac8-2828-1279-93aa-a601d8d72e43@ideasonboard.com>
+Date: Thu, 8 Jun 2023 20:19:02 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Doug Anderson <dianders@chromium.org>
+References: <20230507162616.1368908-1-u.kleine-koenig@pengutronix.de>
+ <20230601154002.uv2wfatpb7b45duz@pengutronix.de>
+ <CAD=FV=WvP--wJwBQtnSoW_xb57R1Wf9dH0XzWxe+NorczXfeAw@mail.gmail.com>
+ <20230608162642.GA23400@pendragon.ideasonboard.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20230608162642.GA23400@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:11 +0000
-Subject: [Nouveau] [PATCH] drm: Remove unnecessary (void*) conversions
+Subject: Re: [Nouveau] [PATCH 00/53] drm: Convert to platform remove
+ callback returning void
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,255 +54,170 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Su Hui <suhui@nfschina.com>, nouveau@lists.freedesktop.org,
- kernel-janitors@vger.kernel.org, etnaviv@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, amd-gfx@lists.freedesktop.org,
- spice-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org
+Cc: =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+ Xinliang Liu <xinliang.liu@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
+ Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Steven Price <steven.price@arm.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>, linux-samsung-soc@vger.kernel.org,
+ Robert Foss <rfoss@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ =?UTF-8?Q?Ma=c3=adra_Canal?= <mcanal@igalia.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ Akhil P Oommen <quic_akhilpo@quicinc.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Miaoqian Lin <linmq006@gmail.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+ linux-sunxi@lists.linux.dev, Rahul T R <r-ravikumar@ti.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+ Jani Nikula <jani.nikula@intel.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ etnaviv@lists.freedesktop.org, Stephen Boyd <swboyd@chromium.org>,
+ Inki Dae <inki.dae@samsung.com>, Sean Paul <sean@poorly.run>,
+ Johan Hovold <johan+linaro@kernel.org>, Hyun Kwon <hyun.kwon@xilinx.com>,
+ Andrew Jeffery <andrew@aj.id.au>, Jingoo Han <jingoohan1@gmail.com>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>, kernel@pengutronix.de,
+ Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
+ Claudiu Beznea <claudiu.beznea@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
+ Thierry Reding <thierry.reding@gmail.com>, John Stultz <jstultz@google.com>,
+ Mihail Atanassov <mihail.atanassov@arm.com>, Liang He <windhl@126.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ lima@lists.freedesktop.org, Chunyan Zhang <zhang.lyra@gmail.com>,
+ Alexey Brodkin <abrodkin@synopsys.com>, Minghao Chi <chi.minghao@zte.com.cn>,
+ linux-rockchip@lists.infradead.org, Ben Skeggs <bskeggs@redhat.com>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Alain Volmat <alain.volmat@foss.st.com>, Liu Ying <victor.liu@nxp.com>,
+ linux-arm-msm@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Boris Brezillon <bbrezillon@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Brian Starkey <brian.starkey@arm.com>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Yuan Can <yuancan@huawei.com>, Stefan Agner <stefan@agner.ch>,
+ Michal Simek <michal.simek@xilinx.com>, linux-tegra@vger.kernel.org,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Rob Herring <robh@kernel.org>, Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Mali DP Maintainers <malidp@foss.arm.com>, Joel Stanley <joel@jms.id.au>,
+ Orson Zhai <orsonzhai@gmail.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Arnd Bergmann <arnd@arndb.de>, Guo Zhengkui <guozhengkui@vivo.com>,
+ Konrad Dybcio <konrad.dybcio@somainline.org>,
+ Alison Wang <alison.wang@nxp.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Maxime Ripard <maxime@cerno.tech>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Liu Shixin <liushixin2@huawei.com>, Tomi Valkeinen <tomba@kernel.org>,
+ Deepak R Varma <drv@mailo.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Ricardo Ribalda <ribalda@chromium.org>, Tian Tao <tiantao6@hisilicon.com>,
+ Shawn Guo <shawnguo@kernel.org>, Yannick Fertre <yannick.fertre@foss.st.com>,
+ linux-stm32@st-md-mailman.stormreply.com, Emma Anholt <emma@anholt.net>,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, linux-mips@vger.kernel.org,
+ Paul Cercueil <paul@crapouillou.net>, Marek Vasut <marex@denx.de>,
+ linux-renesas-soc@vger.kernel.org, Yongqin Liu <yongqin.liu@linaro.org>,
+ Jayshri Pawar <jpawar@cadence.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Rob Clark <robdclark@gmail.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Philippe Cornu <philippe.cornu@foss.st.com>, Melissa Wen <mwen@igalia.com>,
+ linux-mediatek@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Qiang Yu <yuq825@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Jyri Sarha <jyri.sarha@iki.fi>,
+ Lucas Stach <l.stach@pengutronix.de>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Pointer variables of (void*) type do not require type cast.
+On 08/06/2023 19:26, Laurent Pinchart wrote:
+> Hi Doug,
+> 
+> On Thu, Jun 08, 2023 at 09:08:15AM -0700, Doug Anderson wrote:
+>> On Thu, Jun 1, 2023 at 8:40 AM Uwe Kleine-König wrote:
+>>> On Sun, May 07, 2023 at 06:25:23PM +0200, Uwe Kleine-König wrote:
+>>>> this patch series adapts the platform drivers below drivers/gpu/drm
+>>>> to use the .remove_new() callback. Compared to the traditional .remove()
+>>>> callback .remove_new() returns no value. This is a good thing because
+>>>> the driver core doesn't (and cannot) cope for errors during remove. The
+>>>> only effect of a non-zero return value in .remove() is that the driver
+>>>> core emits a warning. The device is removed anyhow and an early return
+>>>> from .remove() usually yields a resource leak.
+>>>>
+>>>> By changing the remove callback to return void driver authors cannot
+>>>> reasonably (but wrongly) assume any more that there happens some kind of
+>>>> cleanup later.
+>>>
+>>> I wonder if someone would volunteer to add the whole series to
+>>> drm-misc-next?!
+>>
+>> It looks as if Neil applied quite a few of them already, so I looked
+>> at what was left...
+>>
+>> I'm a little hesitant to just apply the whole kit-and-caboodle to
+>> drm-misc-next since there are specific DRM trees for a bunch of them
+>> and it would be better if they landed there. ...so I went through all
+>> the patches that still applied to drm-misc-next, then used
+>> 'scripts/get_maintainer.pl --scm' to check if they were maintained
+>> through drm-misc. That still left quite a few patches. I've applied
+>> those ones and pushed to drm-misc-next:
+>>
+>> 71722685cd17 drm/xlnx/zynqmp_dpsub: Convert to platform remove
+>> callback returning void
+>> 1ed54a19f3b3 drm/vc4: Convert to platform remove callback returning void
+>> b957812839f8 drm/v3d: Convert to platform remove callback returning void
+>> e2fd3192e267 drm/tve200: Convert to platform remove callback returning void
+>> 84e6da7ad553 drm/tiny: Convert to platform remove callback returning void
+>> 34cdd1f691ad drm/tidss: Convert to platform remove callback returning void
+>> d665e3c9d37a drm/sun4i: Convert to platform remove callback returning void
+>> 0c259ab19146 drm/stm: Convert to platform remove callback returning void
+>> 9a865e45884a drm/sti: Convert to platform remove callback returning void
+>> 3c855610840e drm/rockchip: Convert to platform remove callback returning void
+>> e41977a83b71 drm/panfrost: Convert to platform remove callback returning void
+>> cef3776d0b5a drm/panel: Convert to platform remove callback returning void
+>> bd296a594e87 drm/mxsfb: Convert to platform remove callback returning void
+>> 38ca2d93d323 drm/meson: Convert to platform remove callback returning void
+>> fd1457d84bae drm/mcde: Convert to platform remove callback returning void
+>> 41a56a18615c drm/logicvc: Convert to platform remove callback returning void
+>> 980ec6444372 drm/lima: Convert to platform remove callback returning void
+>> 82a2c0cc1a22 drm/hisilicon: Convert to platform remove callback returning void
+>> c3b28b29ac0a drm/fsl-dcu: Convert to platform remove callback returning void
+>> a118fc6e71f9 drm/atmel-hlcdc: Convert to platform remove callback returning void
+>> 9a32dd324c46 drm/aspeed: Convert to platform remove callback returning void
+>> 2c7d291c498c drm/arm/malidp: Convert to platform remove callback returning void
+>> a920028df679 drm/arm/hdlcd: Convert to platform remove callback returning void
+>> 1bf3d76a7d15 drm/komeda: Convert to platform remove callback returning void
+>>
+>> The following ones appeared to apply to the top of drm-misc-next, but
+>> I didn't apply them since get_maintainer didn't say they were part of
+>> drm-misc-next:
+>>
+>> drm/tiny: Convert to platform remove callback returning void
+>> drm/tilcdc: Convert to platform remove callback returning void
+>> drm/sprd: Convert to platform remove callback returning void
+>> drm/shmobile: Convert to platform remove callback returning void
+>> drm/rcar-du: Convert to platform remove callback returning void
+> 
+> If you don't mind, could you take the rcar-du patch through drm-misc too
+> ? I don't plan to send another pull request for v6.5.
+> 
+>> drm/omap: Convert to platform remove callback returning void
+> 
+> Tomi, should drm/omap moved to being maintained through drm-misc ?
 
-Signed-off-by: Su Hui <suhui@nfschina.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 2 +-
- drivers/gpu/drm/amd/pm/amdgpu_pm.c                        | 2 +-
- drivers/gpu/drm/etnaviv/etnaviv_drv.c                     | 4 ++--
- drivers/gpu/drm/nouveau/nouveau_debugfs.c                 | 2 +-
- drivers/gpu/drm/omapdrm/omap_debugfs.c                    | 6 +++---
- drivers/gpu/drm/pl111/pl111_debugfs.c                     | 2 +-
- drivers/gpu/drm/qxl/qxl_debugfs.c                         | 4 ++--
- drivers/gpu/drm/tiny/arcpgu.c                             | 2 +-
- drivers/gpu/drm/ttm/ttm_resource.c                        | 3 +--
- drivers/gpu/drm/virtio/virtgpu_debugfs.c                  | 6 +++---
- drivers/gpu/drm/vmwgfx/ttm_object.c                       | 5 ++---
- drivers/gpu/drm/vmwgfx/vmwgfx_gem.c                       | 2 +-
- 12 files changed, 19 insertions(+), 21 deletions(-)
+Yes. tilcdc, tidss and omapdrm are all maintained through drm-misc. But 
+I guess I need to add something to the MAINTAINERS to make this clear. 
+I'll look at it.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index 827fcb4fb3b3..8a2c39927167 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -3312,7 +3312,7 @@ static ssize_t dtn_log_write(
- 
- static int mst_topo_show(struct seq_file *m, void *unused)
- {
--	struct amdgpu_device *adev = (struct amdgpu_device *)m->private;
-+	struct amdgpu_device *adev = m->private;
- 	struct drm_device *dev = adev_to_drm(adev);
- 	struct drm_connector *connector;
- 	struct drm_connector_list_iter conn_iter;
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index 58c2246918fd..e6c870bd307b 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -3671,7 +3671,7 @@ static void amdgpu_parse_cg_state(struct seq_file *m, u64 flags)
- 
- static int amdgpu_debugfs_pm_info_show(struct seq_file *m, void *unused)
- {
--	struct amdgpu_device *adev = (struct amdgpu_device *)m->private;
-+	struct amdgpu_device *adev = m->private;
- 	struct drm_device *dev = adev_to_drm(adev);
- 	u64 flags = 0;
- 	int r;
-diff --git a/drivers/gpu/drm/etnaviv/etnaviv_drv.c b/drivers/gpu/drm/etnaviv/etnaviv_drv.c
-index 31a7f59ccb49..dd57f7164e9a 100644
---- a/drivers/gpu/drm/etnaviv/etnaviv_drv.c
-+++ b/drivers/gpu/drm/etnaviv/etnaviv_drv.c
-@@ -198,7 +198,7 @@ static int etnaviv_ring_show(struct etnaviv_gpu *gpu, struct seq_file *m)
- 
- static int show_unlocked(struct seq_file *m, void *arg)
- {
--	struct drm_info_node *node = (struct drm_info_node *) m->private;
-+	struct drm_info_node *node = m->private;
- 	struct drm_device *dev = node->minor->dev;
- 	int (*show)(struct drm_device *dev, struct seq_file *m) =
- 			node->info_ent->data;
-@@ -208,7 +208,7 @@ static int show_unlocked(struct seq_file *m, void *arg)
- 
- static int show_each_gpu(struct seq_file *m, void *arg)
- {
--	struct drm_info_node *node = (struct drm_info_node *) m->private;
-+	struct drm_info_node *node = m->private;
- 	struct drm_device *dev = node->minor->dev;
- 	struct etnaviv_drm_private *priv = dev->dev_private;
- 	struct etnaviv_gpu *gpu;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-index 2a36d1ca8fda..96b59d5d68ed 100644
---- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-@@ -37,7 +37,7 @@
- static int
- nouveau_debugfs_vbios_image(struct seq_file *m, void *data)
- {
--	struct drm_info_node *node = (struct drm_info_node *) m->private;
-+	struct drm_info_node *node = m->private;
- 	struct nouveau_drm *drm = nouveau_drm(node->minor->dev);
- 	int i;
- 
-diff --git a/drivers/gpu/drm/omapdrm/omap_debugfs.c b/drivers/gpu/drm/omapdrm/omap_debugfs.c
-index a3d470468e5b..a94ce502e152 100644
---- a/drivers/gpu/drm/omapdrm/omap_debugfs.c
-+++ b/drivers/gpu/drm/omapdrm/omap_debugfs.c
-@@ -19,7 +19,7 @@
- 
- static int gem_show(struct seq_file *m, void *arg)
- {
--	struct drm_info_node *node = (struct drm_info_node *) m->private;
-+	struct drm_info_node *node = m->private;
- 	struct drm_device *dev = node->minor->dev;
- 	struct omap_drm_private *priv = dev->dev_private;
- 
-@@ -33,7 +33,7 @@ static int gem_show(struct seq_file *m, void *arg)
- 
- static int mm_show(struct seq_file *m, void *arg)
- {
--	struct drm_info_node *node = (struct drm_info_node *) m->private;
-+	struct drm_info_node *node = m->private;
- 	struct drm_device *dev = node->minor->dev;
- 	struct drm_printer p = drm_seq_file_printer(m);
- 
-@@ -45,7 +45,7 @@ static int mm_show(struct seq_file *m, void *arg)
- #ifdef CONFIG_DRM_FBDEV_EMULATION
- static int fb_show(struct seq_file *m, void *arg)
- {
--	struct drm_info_node *node = (struct drm_info_node *) m->private;
-+	struct drm_info_node *node = m->private;
- 	struct drm_device *dev = node->minor->dev;
- 	struct drm_fb_helper *helper = dev->fb_helper;
- 	struct drm_framebuffer *fb;
-diff --git a/drivers/gpu/drm/pl111/pl111_debugfs.c b/drivers/gpu/drm/pl111/pl111_debugfs.c
-index 6744fa16f464..4df03ec5d368 100644
---- a/drivers/gpu/drm/pl111/pl111_debugfs.c
-+++ b/drivers/gpu/drm/pl111/pl111_debugfs.c
-@@ -32,7 +32,7 @@ static const struct {
- 
- static int pl111_debugfs_regs(struct seq_file *m, void *unused)
- {
--	struct drm_info_node *node = (struct drm_info_node *)m->private;
-+	struct drm_info_node *node = m->private;
- 	struct drm_device *dev = node->minor->dev;
- 	struct pl111_drm_dev_private *priv = dev->dev_private;
- 	int i;
-diff --git a/drivers/gpu/drm/qxl/qxl_debugfs.c b/drivers/gpu/drm/qxl/qxl_debugfs.c
-index 2d9ed3b94574..5b4fe3049529 100644
---- a/drivers/gpu/drm/qxl/qxl_debugfs.c
-+++ b/drivers/gpu/drm/qxl/qxl_debugfs.c
-@@ -38,7 +38,7 @@
- static int
- qxl_debugfs_irq_received(struct seq_file *m, void *data)
- {
--	struct drm_info_node *node = (struct drm_info_node *) m->private;
-+	struct drm_info_node *node = m->private;
- 	struct qxl_device *qdev = to_qxl(node->minor->dev);
- 
- 	seq_printf(m, "%d\n", atomic_read(&qdev->irq_received));
-@@ -52,7 +52,7 @@ qxl_debugfs_irq_received(struct seq_file *m, void *data)
- static int
- qxl_debugfs_buffers_info(struct seq_file *m, void *data)
- {
--	struct drm_info_node *node = (struct drm_info_node *) m->private;
-+	struct drm_info_node *node = m->private;
- 	struct qxl_device *qdev = to_qxl(node->minor->dev);
- 	struct qxl_bo *bo;
- 
-diff --git a/drivers/gpu/drm/tiny/arcpgu.c b/drivers/gpu/drm/tiny/arcpgu.c
-index e5b10e41554a..09f728355aba 100644
---- a/drivers/gpu/drm/tiny/arcpgu.c
-+++ b/drivers/gpu/drm/tiny/arcpgu.c
-@@ -338,7 +338,7 @@ static int arcpgu_unload(struct drm_device *drm)
- #ifdef CONFIG_DEBUG_FS
- static int arcpgu_show_pxlclock(struct seq_file *m, void *arg)
- {
--	struct drm_info_node *node = (struct drm_info_node *)m->private;
-+	struct drm_info_node *node = m->private;
- 	struct drm_device *drm = node->minor->dev;
- 	struct arcpgu_drm_private *arcpgu = dev_to_arcpgu(drm);
- 	unsigned long clkrate = clk_get_rate(arcpgu->clk);
-diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-index 7333f7a87a2f..540faabcf8a4 100644
---- a/drivers/gpu/drm/ttm/ttm_resource.c
-+++ b/drivers/gpu/drm/ttm/ttm_resource.c
-@@ -727,9 +727,8 @@ ttm_kmap_iter_linear_io_fini(struct ttm_kmap_iter_linear_io *iter_io,
- 
- static int ttm_resource_manager_show(struct seq_file *m, void *unused)
- {
--	struct ttm_resource_manager *man =
--		(struct ttm_resource_manager *)m->private;
- 	struct drm_printer p = drm_seq_file_printer(m);
-+	struct ttm_resource_manager *man = m->private;
- 	ttm_resource_manager_debug(man, &p);
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/virtio/virtgpu_debugfs.c b/drivers/gpu/drm/virtio/virtgpu_debugfs.c
-index 853dd9aa397e..577691af9707 100644
---- a/drivers/gpu/drm/virtio/virtgpu_debugfs.c
-+++ b/drivers/gpu/drm/virtio/virtgpu_debugfs.c
-@@ -43,7 +43,7 @@ static void virtio_gpu_add_int(struct seq_file *m, const char *name, int value)
- 
- static int virtio_gpu_features(struct seq_file *m, void *data)
- {
--	struct drm_info_node *node = (struct drm_info_node *)m->private;
-+	struct drm_info_node *node = m->private;
- 	struct virtio_gpu_device *vgdev = node->minor->dev->dev_private;
- 
- 	virtio_gpu_add_bool(m, "virgl", vgdev->has_virgl_3d);
-@@ -68,7 +68,7 @@ static int virtio_gpu_features(struct seq_file *m, void *data)
- static int
- virtio_gpu_debugfs_irq_info(struct seq_file *m, void *data)
- {
--	struct drm_info_node *node = (struct drm_info_node *) m->private;
-+	struct drm_info_node *node = m->private;
- 	struct virtio_gpu_device *vgdev = node->minor->dev->dev_private;
- 
- 	seq_printf(m, "fence %llu %lld\n",
-@@ -80,7 +80,7 @@ virtio_gpu_debugfs_irq_info(struct seq_file *m, void *data)
- static int
- virtio_gpu_debugfs_host_visible_mm(struct seq_file *m, void *data)
- {
--	struct drm_info_node *node = (struct drm_info_node *)m->private;
-+	struct drm_info_node *node = m->private;
- 	struct virtio_gpu_device *vgdev = node->minor->dev->dev_private;
- 	struct drm_printer p;
- 
-diff --git a/drivers/gpu/drm/vmwgfx/ttm_object.c b/drivers/gpu/drm/vmwgfx/ttm_object.c
-index ddf8373c1d77..e9e3cc8f5b49 100644
---- a/drivers/gpu/drm/vmwgfx/ttm_object.c
-+++ b/drivers/gpu/drm/vmwgfx/ttm_object.c
-@@ -513,8 +513,7 @@ static void ttm_prime_refcount_release(struct ttm_base_object **p_base)
-  */
- static void ttm_prime_dmabuf_release(struct dma_buf *dma_buf)
- {
--	struct ttm_prime_object *prime =
--		(struct ttm_prime_object *) dma_buf->priv;
-+	struct ttm_prime_object *prime = dma_buf->priv;
- 	struct ttm_base_object *base = &prime->base;
- 	struct ttm_object_device *tdev = base->tfile->tdev;
- 
-@@ -554,7 +553,7 @@ int ttm_prime_fd_to_handle(struct ttm_object_file *tfile,
- 	if (dma_buf->ops != &tdev->ops)
- 		return -ENOSYS;
- 
--	prime = (struct ttm_prime_object *) dma_buf->priv;
-+	prime = dma_buf->priv;
- 	base = &prime->base;
- 	*handle = base->handle;
- 	ret = ttm_ref_object_add(tfile, base, NULL, false);
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c b/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-index c0da89e16e6f..3267a4e61382 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-@@ -220,7 +220,7 @@ static void vmw_bo_print_info(int id, struct vmw_bo *bo, struct seq_file *m)
- 
- static int vmw_debugfs_gem_info_show(struct seq_file *m, void *unused)
- {
--	struct vmw_private *vdev = (struct vmw_private *)m->private;
-+	struct vmw_private *vdev = m->private;
- 	struct drm_device *dev = &vdev->drm;
- 	struct drm_file *file;
- 	int r;
--- 
-2.30.2
+  Tomi
 
