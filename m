@@ -4,71 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 254C9C0015E
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AC01EB64DD
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9586110E346;
-	Tue, 20 Jun 2023 18:20:37 +0000 (UTC)
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com
- [IPv6:2607:f8b0:4864:20::d2e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E75610E0F5
- for <nouveau@lists.freedesktop.org>; Thu,  8 Jun 2023 16:15:37 +0000 (UTC)
-Received: by mail-io1-xd2e.google.com with SMTP id
- ca18e2360f4ac-777a9d7efabso28467839f.0
- for <nouveau@lists.freedesktop.org>; Thu, 08 Jun 2023 09:15:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1686240936; x=1688832936;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=yZrPvXOaXEQPKsXtUpbfz4WhJ7pTJywi1kpaIctsmkU=;
- b=Rt++Uf5x1Kh7AMz6x7DYnj4QP6v6l5PgKyWsk6gzsDQ/N4lzdL/4LYpBC/9JNsC2t1
- tUrwC0AIekOckbfCXhFlknhU9qgMNcb5UAVClMhgGylAJYMILHTe1tH8PNDQL9dSYxGQ
- yTdIcw7lYklLaZiwPcM8Edeuc0awnSf9oAt1A=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1686240936; x=1688832936;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=yZrPvXOaXEQPKsXtUpbfz4WhJ7pTJywi1kpaIctsmkU=;
- b=GziVxyuGYuWjlz9luffi3/r44wyFSIjLSfuv4KJKLFQd5sukSgdbXYzPpMKAhxkHWt
- NzvtM3Rs6+WXUSUk4yu4kEoWWSn9FFC2/PaUT1VQYP5rrVelAMDe9vC5mF5gptxyevH/
- oE1ybmhFDg5swxM9q/WgE1IAWVNYmw0LjYrw1vdVwVtKaqdJXVPcJIS1518DfyP1CYb7
- gEXLnAYaby7nsxYzW1A8VR0vmgn3OtnbShA9Z8nk+aIbuTY74L9L2frOsnwToExsTIUT
- iE9LPmGgee6KiIJhxeJrKu8Nsd1y8IZwx0R/sRL6lsffEhvsTix/EwnS8r4jqPfh2wm6
- Ql/g==
-X-Gm-Message-State: AC+VfDyNZQsBc532Qs2DfBACZp+IIKNxpK2lsdTvJylA5nb5fukwMeG9
- vt5HBsfeUNsDXngPhRtc0jSjRgxie3t5hdolGWKd2Q==
-X-Google-Smtp-Source: ACHHUZ6Ln+xNTWK6QCl+sYQf6bqus5CJs9gHhjVfQRz9TMrDQBHcjgO2J6ZUcRGltFVHPvj+ewh4Dw==
-X-Received: by 2002:a5e:c10b:0:b0:76c:5ba7:7ef with SMTP id
- v11-20020a5ec10b000000b0076c5ba707efmr11537050iol.3.1686240936405; 
- Thu, 08 Jun 2023 09:15:36 -0700 (PDT)
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com.
- [209.85.166.169]) by smtp.gmail.com with ESMTPSA id
- w12-20020a02cf8c000000b0041653d00c1fsm362907jar.72.2023.06.08.09.15.35
- for <nouveau@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 08 Jun 2023 09:15:36 -0700 (PDT)
-Received: by mail-il1-f169.google.com with SMTP id
- e9e14a558f8ab-33d928a268eso139455ab.0
- for <nouveau@lists.freedesktop.org>; Thu, 08 Jun 2023 09:15:35 -0700 (PDT)
-X-Received: by 2002:a05:6e02:1a22:b0:330:af65:de3d with SMTP id
- g2-20020a056e021a2200b00330af65de3dmr115540ile.11.1686240508041; Thu, 08 Jun
- 2023 09:08:28 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5096010E35C;
+	Tue, 20 Jun 2023 18:20:38 +0000 (UTC)
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 67D6F10E09C;
+ Fri,  9 Jun 2023 02:11:37 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8DxSupXioJkANgAAA--.2712S3;
+ Fri, 09 Jun 2023 10:11:35 +0800 (CST)
+Received: from [10.20.42.43] (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8DxbMpXioJk2nYJAA--.20758S3; 
+ Fri, 09 Jun 2023 10:11:35 +0800 (CST)
+Message-ID: <83b2f92f-eab5-a19c-7d6b-3a70e66b9aae@loongson.cn>
+Date: Fri, 9 Jun 2023 10:11:34 +0800
 MIME-Version: 1.0
-References: <20230507162616.1368908-1-u.kleine-koenig@pengutronix.de>
- <20230601154002.uv2wfatpb7b45duz@pengutronix.de>
-In-Reply-To: <20230601154002.uv2wfatpb7b45duz@pengutronix.de>
-From: Doug Anderson <dianders@chromium.org>
-Date: Thu, 8 Jun 2023 09:08:15 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WvP--wJwBQtnSoW_xb57R1Wf9dH0XzWxe+NorczXfeAw@mail.gmail.com>
-Message-ID: <CAD=FV=WvP--wJwBQtnSoW_xb57R1Wf9dH0XzWxe+NorczXfeAw@mail.gmail.com>
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:11 +0000
-Subject: Re: [Nouveau] [PATCH 00/53] drm: Convert to platform remove
- callback returning void
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: Bjorn Helgaas <helgaas@kernel.org>, Sui Jingfeng <15330273260@189.cn>
+References: <20230608191221.GA1209912@bhelgaas>
+From: Sui Jingfeng <suijingfeng@loongson.cn>
+Organization: Loongson
+In-Reply-To: <20230608191221.GA1209912@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID: AQAAf8DxbMpXioJk2nYJAA--.20758S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoWxXrWDXr1fCry3ArW5uF4Dtrc_yoW5Kry8pa
+ yrGayFkFW8W347Gry2qF4UZFyavrWkta4Syr4Yk34FkFWqkF18tFyrCry5Z343ArZ5GF1I
+ qay2yF17Ww45tagCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUPSb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+ xVW8Jr0_Cr1UM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
+ AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
+ AVWUtwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI4
+ 8JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vI
+ r41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67
+ AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26rWY6r4UJwCI
+ c40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267
+ AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_
+ Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IUnsZ23
+ UUUUU==
+X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
+Subject: Re: [Nouveau] [Intel-gfx] [PATCH v3 3/4] PCI/VGA: only deal with
+ VGA class devices
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,181 +66,143 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Xinliang Liu <xinliang.liu@linaro.org>,
- Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
- Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>,
- Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Steven Price <steven.price@arm.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- Jerome Brunet <jbrunet@baylibre.com>, linux-samsung-soc@vger.kernel.org,
- Robert Foss <rfoss@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Kevin Hilman <khilman@baylibre.com>,
- =?UTF-8?B?TWHDrXJhIENhbmFs?= <mcanal@igalia.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Akhil P Oommen <quic_akhilpo@quicinc.com>, NXP Linux Team <linux-imx@nxp.com>,
- Miaoqian Lin <linmq006@gmail.com>, linux-sunxi@lists.linux.dev,
- Rahul T R <r-ravikumar@ti.com>,
- Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
- Jani Nikula <jani.nikula@intel.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- etnaviv@lists.freedesktop.org, Stephen Boyd <swboyd@chromium.org>,
- Inki Dae <inki.dae@samsung.com>, Sean Paul <sean@poorly.run>,
- Johan Hovold <johan+linaro@kernel.org>, Hyun Kwon <hyun.kwon@xilinx.com>,
- Andrew Jeffery <andrew@aj.id.au>, Jingoo Han <jingoohan1@gmail.com>,
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>, kernel@pengutronix.de,
- Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
- Claudiu Beznea <claudiu.beznea@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-aspeed@lists.ozlabs.org,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Thierry Reding <thierry.reding@gmail.com>, John Stultz <jstultz@google.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>, Liang He <windhl@126.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- lima@lists.freedesktop.org, Chunyan Zhang <zhang.lyra@gmail.com>,
- Alexey Brodkin <abrodkin@synopsys.com>, Minghao Chi <chi.minghao@zte.com.cn>,
- linux-rockchip@lists.infradead.org, Ben Skeggs <bskeggs@redhat.com>,
- Russell King <linux+etnaviv@armlinux.org.uk>,
- Alain Volmat <alain.volmat@foss.st.com>, Liu Ying <victor.liu@nxp.com>,
- linux-arm-msm@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Boris Brezillon <bbrezillon@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Brian Starkey <brian.starkey@arm.com>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Yuan Can <yuancan@huawei.com>, Stefan Agner <stefan@agner.ch>,
- Michal Simek <michal.simek@xilinx.com>, linux-tegra@vger.kernel.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- Rob Herring <robh@kernel.org>, Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Mali DP Maintainers <malidp@foss.arm.com>, Joel Stanley <joel@jms.id.au>,
- nouveau@lists.freedesktop.org, Orson Zhai <orsonzhai@gmail.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Guo Zhengkui <guozhengkui@vivo.com>,
- Konrad Dybcio <konrad.dybcio@somainline.org>,
- Alison Wang <alison.wang@nxp.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Mark Brown <broonie@kernel.org>, Maxime Ripard <maxime@cerno.tech>,
- Baolin Wang <baolin.wang@linux.alibaba.com>, Daniel Vetter <daniel@ffwll.ch>,
- Liu Shixin <liushixin2@huawei.com>, Tomi Valkeinen <tomba@kernel.org>,
- Deepak R Varma <drv@mailo.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Ricardo Ribalda <ribalda@chromium.org>, Tian Tao <tiantao6@hisilicon.com>,
- Shawn Guo <shawnguo@kernel.org>, Yannick Fertre <yannick.fertre@foss.st.com>,
- linux-stm32@st-md-mailman.stormreply.com, Emma Anholt <emma@anholt.net>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, linux-mips@vger.kernel.org,
- Paul Cercueil <paul@crapouillou.net>, Marek Vasut <marex@denx.de>,
- linux-renesas-soc@vger.kernel.org, Yongqin Liu <yongqin.liu@linaro.org>,
- Jayshri Pawar <jpawar@cadence.com>, Jonas Karlman <jonas@kwiboo.se>,
- Rob Clark <robdclark@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Philippe Cornu <philippe.cornu@foss.st.com>, Melissa Wen <mwen@igalia.com>,
- linux-mediatek@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Qiang Yu <yuq825@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Jyri Sarha <jyri.sarha@iki.fi>,
- Lucas Stach <l.stach@pengutronix.de>
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ nouveau@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>, Yi Liu <yi.l.liu@intel.com>,
+ kvm@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Jason Gunthorpe <jgg@ziepe.ca>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-pci@vger.kernel.org, Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Kevin Tian <kevin.tian@intel.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Bokun Zhang <Bokun.Zhang@amd.com>,
+ intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, loongson-kernel@lists.loongnix.cn,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Abhishek Sahu <abhsahu@nvidia.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Yishai Hadas <yishaih@nvidia.com>, Li Yi <liyi@loongson.cn>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ Cornelia Huck <cohuck@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Christian Konig <christian.koenig@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 Hi,
 
-On Thu, Jun 1, 2023 at 8:40=E2=80=AFAM Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@pengutronix.de> wrote:
+On 2023/6/9 03:12, Bjorn Helgaas wrote:
+> Start with verb and capitalize to match ("Deal only with ...")
 >
-> Hello,
+> On Thu, Jun 08, 2023 at 07:43:21PM +0800, Sui Jingfeng wrote:
+>> From: Sui Jingfeng <suijingfeng@loongson.cn>
+>>
+>> vgaarb only deal with the VGA devcie(pdev->class == 0x0300), so replace the
+>> pci_get_subsys() function with pci_get_class(). Filter the non pci display
+>> device out. There no need to process the non display PCI device.
+> s/non pci/non-PCI/
+> s/non display/non-display/
+
+Will be fixed at next version, thanks for the strict checking,
+
+I will try to bring this rigorous to the other patch of myself in the 
+future.
+
+> This is fine, and I'll merge this, but someday I would like to get rid
+> of the bus_register_notifier() and call vga_arbiter_add_pci_device()
+> and vga_arbiter_del_pci_device() directly from the PCI core.
 >
-> On Sun, May 07, 2023 at 06:25:23PM +0200, Uwe Kleine-K=C3=B6nig wrote:
-> > this patch series adapts the platform drivers below drivers/gpu/drm
-> > to use the .remove_new() callback. Compared to the traditional .remove(=
-)
-> > callback .remove_new() returns no value. This is a good thing because
-> > the driver core doesn't (and cannot) cope for errors during remove. The
-> > only effect of a non-zero return value in .remove() is that the driver
-> > core emits a warning. The device is removed anyhow and an early return
-> > from .remove() usually yields a resource leak.
-> >
-> > By changing the remove callback to return void driver authors cannot
-> > reasonably (but wrongly) assume any more that there happens some kind o=
-f
-> > cleanup later.
+> Or if you wanted to do that now, that would be even better :)
+
+I think, I probably should only do what I'm good at.
+
+
+The "good at" here means that It's under prepared,
+
+already matured with thinking(or consideration) by myself.
+
+And also including testing(on two or three architecture).
+
+
+That idea is belong to you, I would like to see how does it going to 
+happen only.
+
+> Bjorn
 >
-> I wonder if someone would volunteer to add the whole series to
-> drm-misc-next?!
+>> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+>> ---
+>>   drivers/pci/vgaarb.c | 22 ++++++++++++----------
+>>   1 file changed, 12 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+>> index 7f0347f4f6fd..b0bf4952a95d 100644
+>> --- a/drivers/pci/vgaarb.c
+>> +++ b/drivers/pci/vgaarb.c
+>> @@ -756,10 +756,6 @@ static bool vga_arbiter_add_pci_device(struct pci_dev *pdev)
+>>   	struct pci_dev *bridge;
+>>   	u16 cmd;
+>>   
+>> -	/* Only deal with VGA class devices */
+>> -	if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
+>> -		return false;
+>> -
+>>   	/* Allocate structure */
+>>   	vgadev = kzalloc(sizeof(struct vga_device), GFP_KERNEL);
+>>   	if (vgadev == NULL) {
+>> @@ -1499,7 +1495,9 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
+>>   	struct pci_dev *pdev = to_pci_dev(dev);
+>>   	bool notify = false;
+>>   
+>> -	vgaarb_dbg(dev, "%s\n", __func__);
+>> +	/* Only deal with VGA class devices */
+>> +	if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
+>> +		return 0;
+>>   
+>>   	/* For now we're only intereted in devices added and removed. I didn't
+>>   	 * test this thing here, so someone needs to double check for the
+>> @@ -1509,6 +1507,8 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
+>>   	else if (action == BUS_NOTIFY_DEL_DEVICE)
+>>   		notify = vga_arbiter_del_pci_device(pdev);
+>>   
+>> +	vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
+>> +
+>>   	if (notify)
+>>   		vga_arbiter_notify_clients();
+>>   	return 0;
+>> @@ -1533,8 +1533,8 @@ static struct miscdevice vga_arb_device = {
+>>   
+>>   static int __init vga_arb_device_init(void)
+>>   {
+>> +	struct pci_dev *pdev = NULL;
+>>   	int rc;
+>> -	struct pci_dev *pdev;
+>>   
+>>   	rc = misc_register(&vga_arb_device);
+>>   	if (rc < 0)
+>> @@ -1545,11 +1545,13 @@ static int __init vga_arb_device_init(void)
+>>   	/* We add all PCI devices satisfying VGA class in the arbiter by
+>>   	 * default
+>>   	 */
+>> -	pdev = NULL;
+>> -	while ((pdev =
+>> -		pci_get_subsys(PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
+>> -			       PCI_ANY_ID, pdev)) != NULL)
+>> +	while (1) {
+>> +		pdev = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, pdev);
+>> +		if (!pdev)
+>> +			break;
+>> +
+>>   		vga_arbiter_add_pci_device(pdev);
+>> +	};
+>>   
+>>   	pr_info("loaded\n");
+>>   	return rc;
+>> -- 
+>> 2.25.1
+>>
+-- 
+Jingfeng
 
-It looks as if Neil applied quite a few of them already, so I looked
-at what was left...
-
-I'm a little hesitant to just apply the whole kit-and-caboodle to
-drm-misc-next since there are specific DRM trees for a bunch of them
-and it would be better if they landed there. ...so I went through all
-the patches that still applied to drm-misc-next, then used
-'scripts/get_maintainer.pl --scm' to check if they were maintained
-through drm-misc. That still left quite a few patches. I've applied
-those ones and pushed to drm-misc-next:
-
-71722685cd17 drm/xlnx/zynqmp_dpsub: Convert to platform remove
-callback returning void
-1ed54a19f3b3 drm/vc4: Convert to platform remove callback returning void
-b957812839f8 drm/v3d: Convert to platform remove callback returning void
-e2fd3192e267 drm/tve200: Convert to platform remove callback returning void
-84e6da7ad553 drm/tiny: Convert to platform remove callback returning void
-34cdd1f691ad drm/tidss: Convert to platform remove callback returning void
-d665e3c9d37a drm/sun4i: Convert to platform remove callback returning void
-0c259ab19146 drm/stm: Convert to platform remove callback returning void
-9a865e45884a drm/sti: Convert to platform remove callback returning void
-3c855610840e drm/rockchip: Convert to platform remove callback returning vo=
-id
-e41977a83b71 drm/panfrost: Convert to platform remove callback returning vo=
-id
-cef3776d0b5a drm/panel: Convert to platform remove callback returning void
-bd296a594e87 drm/mxsfb: Convert to platform remove callback returning void
-38ca2d93d323 drm/meson: Convert to platform remove callback returning void
-fd1457d84bae drm/mcde: Convert to platform remove callback returning void
-41a56a18615c drm/logicvc: Convert to platform remove callback returning voi=
-d
-980ec6444372 drm/lima: Convert to platform remove callback returning void
-82a2c0cc1a22 drm/hisilicon: Convert to platform remove callback returning v=
-oid
-c3b28b29ac0a drm/fsl-dcu: Convert to platform remove callback returning voi=
-d
-a118fc6e71f9 drm/atmel-hlcdc: Convert to platform remove callback returning=
- void
-9a32dd324c46 drm/aspeed: Convert to platform remove callback returning void
-2c7d291c498c drm/arm/malidp: Convert to platform remove callback returning =
-void
-a920028df679 drm/arm/hdlcd: Convert to platform remove callback returning v=
-oid
-1bf3d76a7d15 drm/komeda: Convert to platform remove callback returning void
-
-The following ones appeared to apply to the top of drm-misc-next, but
-I didn't apply them since get_maintainer didn't say they were part of
-drm-misc-next:
-
-drm/tiny: Convert to platform remove callback returning void
-drm/tilcdc: Convert to platform remove callback returning void
-drm/sprd: Convert to platform remove callback returning void
-drm/shmobile: Convert to platform remove callback returning void
-drm/rcar-du: Convert to platform remove callback returning void
-drm/omap: Convert to platform remove callback returning void
-drm/nouveau: Convert to platform remove callback returning void
-drm/mediatek: Convert to platform remove callback returning void
-drm/kmb: Convert to platform remove callback returning void
-drm/ingenic: Convert to platform remove callback returning void
-drm/imx/ipuv3: Convert to platform remove callback returning void
-drm/imx/dcss: Convert to platform remove callback returning void
-drm/etnaviv: Convert to platform remove callback returning void
-drm/armada: Convert to platform remove callback returning void
-
--Doug
