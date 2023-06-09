@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65DF2EB64DB
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21D63EB64D8
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FBFF10E315;
-	Tue, 20 Jun 2023 18:20:14 +0000 (UTC)
-Received: from 189.cn (ptr.189.cn [183.61.185.101])
- by gabe.freedesktop.org (Postfix) with ESMTP id EFF9B10E035;
- Wed,  7 Jun 2023 06:16:41 +0000 (UTC)
-HMM_SOURCE_IP: 10.64.8.43:37502.551464108
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E03110E319;
+	Tue, 20 Jun 2023 18:20:15 +0000 (UTC)
+Received: from 189.cn (ptr.189.cn [183.61.185.102])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5C05210E157;
+ Fri,  9 Jun 2023 17:43:47 +0000 (UTC)
+HMM_SOURCE_IP: 10.64.8.43:47690.1937665454
 HMM_ATTACHE_NUM: 0000
 HMM_SOURCE_TYPE: SMTP
 Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
- by 189.cn (HERMES) with SMTP id 0EAFE1002C5;
- Wed,  7 Jun 2023 14:16:34 +0800 (CST)
+ by 189.cn (HERMES) with SMTP id AEDBE100212;
+ Sat, 10 Jun 2023 01:43:39 +0800 (CST)
 Received: from  ([114.242.206.180])
  by gateway-151646-dep-75648544bd-7vx9t with ESMTP id
- 63d46740575b4bae9c59180969e45e00 for helgaas@kernel.org; 
- Wed, 07 Jun 2023 14:16:39 CST
-X-Transaction-ID: 63d46740575b4bae9c59180969e45e00
+ 0877e90f4b584cbe94a878d807b39f22 for helgaas@kernel.org; 
+ Sat, 10 Jun 2023 01:43:43 CST
+X-Transaction-ID: 0877e90f4b584cbe94a878d807b39f22
 X-Real-From: 15330273260@189.cn
 X-Receive-IP: 114.242.206.180
 X-MEDUSA-Status: 0
-Message-ID: <a540daba-d61f-1de0-a3dd-eab733a25706@189.cn>
-Date: Wed, 7 Jun 2023 14:16:31 +0800
+Message-ID: <2cf50ad0-e4fa-17a3-3e22-7fd8d4a316ed@189.cn>
+Date: Sat, 10 Jun 2023 01:43:39 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
+To: Bjorn Helgaas <helgaas@kernel.org>, Sui Jingfeng <suijingfeng@loongson.cn>
+References: <20230609164850.GA1251187@bhelgaas>
 Content-Language: en-US
-To: Bjorn Helgaas <helgaas@kernel.org>
-References: <20230606194921.GA1139774@bhelgaas>
 From: Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <20230606194921.GA1139774@bhelgaas>
+In-Reply-To: <20230609164850.GA1251187@bhelgaas>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:11 +0000
-Subject: Re: [Nouveau] [Intel-gfx] [PATCH v2 1/2] vgaarb: various coding
- style and comments fix
+X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
+Subject: Re: [Nouveau] [Intel-gfx] [PATCH v3 4/4] PCI/VGA: introduce
+ is_boot_device function callback to vga_client_register
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,19 +52,17 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+Cc: Pan Xinhui <Xinhui.Pan@amd.com>, kvm@vger.kernel.org,
  nouveau@lists.freedesktop.org,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
  Mario Limonciello <mario.limonciello@amd.com>,
- Sui Jingfeng <suijingfeng@loongson.cn>,
  Ville Syrjala <ville.syrjala@linux.intel.com>, Yi Liu <yi.l.liu@intel.com>,
- kvm@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Jason Gunthorpe <jgg@ziepe.ca>, Ben Skeggs <bskeggs@redhat.com>,
- linux-pci@vger.kernel.org, Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ amd-gfx@lists.freedesktop.org, Jason Gunthorpe <jgg@ziepe.ca>,
+ Ben Skeggs <bskeggs@redhat.com>, linux-pci@vger.kernel.org,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
  Kevin Tian <kevin.tian@intel.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Bokun Zhang <Bokun.Zhang@amd.com>,
- intel-gfx@lists.freedesktop.org,
+ Bokun Zhang <Bokun.Zhang@amd.com>, intel-gfx@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, loongson-kernel@lists.loongnix.cn,
  Alex Williamson <alex.williamson@redhat.com>,
@@ -72,80 +70,75 @@ Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, Bjorn Helgaas <bhelgaas@google.com>,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  Yishai Hadas <yishaih@nvidia.com>, Li Yi <liyi@loongson.cn>,
- Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
  Cornelia Huck <cohuck@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
  Christian Konig <christian.koenig@amd.com>,
  Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
 
-On 2023/6/7 03:49, Bjorn Helgaas wrote:
-> Match the subject line style:
->
->    $ git log --oneline drivers/pci/vgaarb.c
->    f321c35feaee PCI/VGA: Replace full MIT license text with SPDX identifier
->    d5109fe4d1ec PCI/VGA: Use unsigned format string to print lock counts
->    4e6c91847a7f PCI/VGA: Log bridge control messages when adding devices
->    dc593fd48abb PCI/VGA: Remove empty vga_arb_device_card_gone()
->    ...
->
-> Subject line should be a summary of the commit log, not just "various
-> style fixes".  This one needs to say something about
-> vga_str_to_iostate().
-
-Ok, thanks for the educating .
-
-> On Mon, Jun 05, 2023 at 04:58:30AM +0800, Sui Jingfeng wrote:
->> From: Sui Jingfeng <suijingfeng@loongson.cn>
+On 2023/6/10 00:48, Bjorn Helgaas wrote:
+> On Fri, Jun 09, 2023 at 10:27:39AM +0800, Sui Jingfeng wrote:
+>> On 2023/6/9 03:19, Bjorn Helgaas wrote:
+>>> On Thu, Jun 08, 2023 at 07:43:22PM +0800, Sui Jingfeng wrote:
+>>>> From: Sui Jingfeng <suijingfeng@loongson.cn>
+>>>>
+>>>> The vga_is_firmware_default() function is arch-dependent, which doesn't
+>>>> sound right. At least, it also works on the Mips and LoongArch platforms.
+>>>> Tested with the drm/amdgpu and drm/radeon drivers. However, it's difficult
+>>>> to enumerate all arch-driver combinations. I'm wrong if there is only one
+>>>> exception.
+>>>>
+>>>> With the observation that device drivers typically have better knowledge
+>>>> about which PCI bar contains the firmware framebuffer, which could avoid
+>>>> the need to iterate all of the PCI BARs.
+>>>>
+>>>> But as a PCI function at pci/vgaarb.c, vga_is_firmware_default() is
+>>>> probably not suitable to make such an optimization for a specific device.
+>>>>
+>>>> There are PCI display controllers that don't have a dedicated VRAM bar,
+>>>> this function will lose its effectiveness in such a case. Luckily, the
+>>>> device driver can provide an accurate workaround.
+>>>>
+>>>> Therefore, this patch introduces a callback that allows the device driver
+>>>> to tell the VGAARB if the device is the default boot device. This patch
+>>>> only intends to introduce the mechanism, while the implementation is left
+>>>> to the device driver authors. Also honor the comment: "Clients have two
+>>>> callback mechanisms they can use"
+>>> s/bar/BAR/ (several)
+>>>
+>>> Nothing here uses the callback.  I don't want to merge this until we
+>>> have a user.
+>> This is chicken and egg question.
 >>
->> To keep consistent with vga_iostate_to_str() function, the third argument
->> of vga_str_to_iostate() function should be 'unsigned int *'.
+>> If you could help get this merge first, I will show you the first user.
 >>
->> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
->> ---
->>   drivers/pci/vgaarb.c   | 29 +++++++++++++++--------------
->>   include/linux/vgaarb.h |  8 +++-----
->>   2 files changed, 18 insertions(+), 19 deletions(-)
+>>> I'm not sure why the device driver should know whether its device is
+>>> the default boot device.
+>> It's not that the device driver should know,
 >>
->> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
->> index 5a696078b382..e40e6e5e5f03 100644
->> --- a/drivers/pci/vgaarb.c
->> +++ b/drivers/pci/vgaarb.c
->> @@ -61,7 +61,6 @@ static bool vga_arbiter_used;
->>   static DEFINE_SPINLOCK(vga_lock);
->>   static DECLARE_WAIT_QUEUE_HEAD(vga_wait_queue);
->>   
->> -
->>   static const char *vga_iostate_to_str(unsigned int iostate)
->>   {
->>   	/* Ignore VGA_RSRC_IO and VGA_RSRC_MEM */
->> @@ -77,10 +76,12 @@ static const char *vga_iostate_to_str(unsigned int iostate)
->>   	return "none";
->>   }
->>   
->> -static int vga_str_to_iostate(char *buf, int str_size, int *io_state)
->> +static int vga_str_to_iostate(char *buf, int str_size, unsigned int *io_state)
->>   {
->> -	/* we could in theory hand out locks on IO and mem
->> -	 * separately to userspace but it can cause deadlocks */
->> +	/*
->> +	 * we could in theory hand out locks on IO and mem
->> +	 * separately to userspace but it can cause deadlocks
->> +	 */
-> Omit all the comment formatting changes.  They are distractions from the
-> vga_str_to_iostate() parameter change.
->
-> I think this patch should be the single line change to the
-> vga_str_to_iostate() prototype so it matches the callers.
->
-> If you want to do the other comment formatting changes, they're fine,
-> but they should be all together in a separate patch that clearly
-> doesn't change the generated code.
+>> but it's about that the device driver has the right to override.
+>>
+>> Device driver may have better approach to identify the default boot
+>> device.
+> The way we usually handle this is to include the new callback in the
+> same series as the first user of it.  That has two benefits:
+> (1) everybody can review the whole picture and possibly suggest
+> different approaches, and (2) when we merge the infrastructure,
+> we also merge a user of it at the same time, so the whole thing can be
+> tested and we don't end up with unused code.
 
-Ok, no problem.
+OK, acceptable
 
-Will be improved at next version.
+I will try to prepare the user code of this callback and respin the patch.
+
+I may resend it with another patch set in the future, this series 
+already drop it,
+
+see v5[1]
+
+[1] https://patchwork.freedesktop.org/series/119134/
 
 > Bjorn
