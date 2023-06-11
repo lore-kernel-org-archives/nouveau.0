@@ -4,78 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF2A6EB64D7
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31448EB64DB
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D48610E369;
-	Tue, 20 Jun 2023 18:21:55 +0000 (UTC)
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com
- [66.111.4.25])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ABBB10E53E
- for <nouveau@lists.freedesktop.org>; Thu, 18 May 2023 18:18:47 +0000 (UTC)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailout.nyi.internal (Postfix) with ESMTP id 467EA5C0189;
- Thu, 18 May 2023 14:18:45 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute1.internal (MEProxy); Thu, 18 May 2023 14:18:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- invisiblethingslab.com; h=cc:cc:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:sender:subject:subject:to:to; s=fm3; t=
- 1684433925; x=1684520325; bh=8axqpDZcBJUL6/RSlQEGx3UykZkeYDfsoFq
- sKS4DlH8=; b=LTDJ72ZJBNU4Q+wdQtTMHbKI7Rf7xCwPmPlFPa/OWtk6KR2yIsb
- wUx4TgI9fwxNTiD9tCkEW9fGhx6uFOOexL8CANKKVptANJ3uJC8nIcLpDQnNeuJ5
- 9tieBz0pNDhKd4uSNPNux7XAJUkWci2MO18bTW3KhOKheIthnn54/C2EIz2B7n0p
- ArsV7dtXoA+8i7LqZVw5QBTuof9aSMA381lGLdwimEdPy6/4q2hSQupv4lFLphcq
- Xz1nGSd9blAmwB1xoafB3KUXW/7h0gRdkot2+/Ph2RsVSc6V0quQymU13VP2wcXw
- AuAa+ike1zV5TPGd9EvSg2UdVQTk5IVi74g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:content-type:date:date
- :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
- :x-sasl-enc; s=fm1; t=1684433925; x=1684520325; bh=8axqpDZcBJUL6
- /RSlQEGx3UykZkeYDfsoFqsKS4DlH8=; b=ahTrDDMNHMprtR6j7zsInmHT0unIR
- qAyeVpbtq7fyzs/HsksHaOtng51EzIdD1Y4DmO8WoPBkTWZ5M3rG0m/mcJ6JDmPw
- Ecy4AFX/C+Uewwq8xxSQ0sk7Is2WYhYYslyESxZijdWH/cei3IxLH5Fq8X6pTphq
- SxFdOZPf2JQXVzxxMxEilNQPw4mbB+ZrezIiDlKcdSqxv2j25fEZnzUl0MJ8yfLX
- 4IBsMTnU58G/IcA7jgPp15uxmuqzn8dHYvRHo01VfoDYtRBqchFq9RUOtpPcUI9N
- ZflIOipXAScjPuYZeecwD2XoSt2p9rjtUfsNR+ACw3XeX8tFtlst0182g==
-X-ME-Sender: <xms:BGxmZEHwrxvzj2rUdyQFtkeClxzfILEtdDb-xaRPscDsugNfa_gRhg>
- <xme:BGxmZNXNpf0AMvINhbKCxiq-tUTzBaefoJnHwWVNaDikDkZjQkGPm_8uhSk2JyFpn
- 4sOIN4kpu3nRQ>
-X-ME-Received: <xmr:BGxmZOJZQmSuEVRCprIH4kzePADrtGYRp1bSQUHUENFrUWHdOe2cZ4QgvTtelEMwRsTpyFOh_IZf-gSqvSecmq8Ebl-rrYiRAFA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeeifedguddvfecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
- enucfjughrpeffhffvvefukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforghr
- vghkucforghrtgiihihkohifshhkihdqifpkrhgvtghkihcuoehmrghrmhgrrhgvkhesih
- hnvhhishhisghlvghthhhinhhgshhlrggsrdgtohhmqeenucggtffrrghtthgvrhhnpefg
- udelteefvefhfeehieetleeihfejhfeludevteetkeevtedtvdegueetfeejudenucevlh
- hushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrghrmhgrrhgv
- khesihhnvhhishhisghlvghthhhinhhgshhlrggsrdgtohhm
-X-ME-Proxy: <xmx:BGxmZGG9PGqozfwHtPqImZp0h9jq6zXETkRQMUn2ych4Vg8Ht-Fv7g>
- <xmx:BGxmZKWMsb0cJjwvkTZF5RgdlJXSFKEsQNnO8v9cj_4G3rifEk9oVA>
- <xmx:BGxmZJO894ds2AjAhhHmsTz7sH_UR233C-BOjr4cInJFMiOoHG__fw>
- <xmx:BWxmZDVQItjPzKlagxJxlOPA1P5hwMRsW1KjHLFzxth6sl8DCB60tA>
-Feedback-ID: i1568416f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 18 May 2023 14:18:42 -0400 (EDT)
-Date: Thu, 18 May 2023 20:18:39 +0200
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?=
- <marmarek@invisiblethingslab.com>
-To: Christoph Hellwig <hch@lst.de>
-Message-ID: <ZGZr/xgbUmVqpOpN@mail-itl>
-References: <20230518134253.909623-1-hch@lst.de>
- <20230518134253.909623-3-hch@lst.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E27810E370;
+	Tue, 20 Jun 2023 18:21:56 +0000 (UTC)
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AC3BD10E0BB;
+ Sun, 11 Jun 2023 06:59:28 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8Cx8OjNcIVkMI8CAA--.4031S3;
+ Sun, 11 Jun 2023 14:59:26 +0800 (CST)
+Received: from [10.20.42.43] (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8AxPMrNcIVk8bIRAA--.42850S3; 
+ Sun, 11 Jun 2023 14:59:25 +0800 (CST)
+Message-ID: <a4256a0e-c175-8006-c1e0-07f0fe782f95@loongson.cn>
+Date: Sun, 11 Jun 2023 14:59:25 +0800
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="CsM+DO8kg05XbydD"
-Content-Disposition: inline
-In-Reply-To: <20230518134253.909623-3-hch@lst.de>
-X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:11 +0000
-Subject: Re: [Nouveau] [PATCH 2/4] x86: always initialize xen-swiotlb when
- xen-pcifront is enabling
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+To: Lee Jones <lee@kernel.org>
+References: <20230609081732.3842341-13-lee@kernel.org>
+Content-Language: en-US
+From: Sui Jingfeng <suijingfeng@loongson.cn>
+Organization: Loongson
+In-Reply-To: <20230609081732.3842341-13-lee@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID: AQAAf8AxPMrNcIVk8bIRAA--.42850S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoW7Cw1Utw4fuF15tr15CF4Utrc_yoW8CrWDpa
+ 17GF1F9rWkta1rK3WIyF929FWrGa93KFW3K3ZxJ34ruwnIyr1jvr4YkF1aqryDXF17Cw4f
+ trn7Kryaga1fZFbCm3ZEXasCq-sJn29KB7ZKAUJUUUU5529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUvYb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
+ Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx1l5I
+ 8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1q6rW5McIj6I8E87Iv67AK
+ xVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07AlzV
+ AYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E
+ 14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_JF0_Jw1lIx
+ kGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAF
+ wI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F
+ 4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jOdb8U
+ UUUU=
+X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
+Subject: Re: [Nouveau] [RESEND,
+ 12/15] drm/nouveau/dispnv04/crtc: Demote kerneldoc abuses
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,161 +65,55 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>, nouveau@lists.freedesktop.org,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Ben Skeggs <bskeggs@redhat.com>, "H. Peter Anvin" <hpa@zytor.com>,
- xen-devel@lists.xenproject.org, Thomas Gleixner <tglx@linutronix.de>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+Reviewed-by: Sui Jingfeng <suijingfeng@loongson.cn>
 
---CsM+DO8kg05XbydD
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 18 May 2023 20:18:39 +0200
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?= <marmarek@invisiblethingslab.com>
-To: Christoph Hellwig <hch@lst.de>
-Cc: Juergen Gross <jgross@suse.com>,
-	Stefano Stabellini <sstabellini@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>, Ben Skeggs <bskeggs@redhat.com>,
-	Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
-	xen-devel@lists.xenproject.org, iommu@lists.linux.dev,
-	linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
-Subject: Re: [PATCH 2/4] x86: always initialize xen-swiotlb when xen-pcifront
- is enabling
-
-On Thu, May 18, 2023 at 03:42:51PM +0200, Christoph Hellwig wrote:
-> Remove the dangerous late initialization of xen-swiotlb in
-> pci_xen_swiotlb_init_late and instead just always initialize
-> xen-swiotlb in the boot code if CONFIG_XEN_PCIDEV_FRONTEND is enabled.
->=20
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
-
-Doesn't it mean all the PV guests will basically waste 64MB of RAM
-by default each if they don't really have PCI devices?
-
+On 2023/6/9 16:17, Lee Jones wrote:
+> Fixes the following W=1 kernel build warning(s):
+>
+>   drivers/gpu/drm/nouveau/dispnv04/crtc.c:453: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+>   drivers/gpu/drm/nouveau/dispnv04/crtc.c:629: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+>
+> Cc: Ben Skeggs <bskeggs@redhat.com>
+> Cc: Karol Herbst <kherbst@redhat.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: nouveau@lists.freedesktop.org
+> Signed-off-by: Lee Jones <lee@kernel.org>
+> Reviewed-by: Karol Herbst <kherbst@redhat.com>
 > ---
->  arch/x86/include/asm/xen/swiotlb-xen.h |  6 ------
->  arch/x86/kernel/pci-dma.c              | 25 +++----------------------
->  drivers/pci/xen-pcifront.c             |  6 ------
->  3 files changed, 3 insertions(+), 34 deletions(-)
->=20
-> diff --git a/arch/x86/include/asm/xen/swiotlb-xen.h b/arch/x86/include/as=
-m/xen/swiotlb-xen.h
-> index 77a2d19cc9909e..abde0f44df57dc 100644
-> --- a/arch/x86/include/asm/xen/swiotlb-xen.h
-> +++ b/arch/x86/include/asm/xen/swiotlb-xen.h
-> @@ -2,12 +2,6 @@
->  #ifndef _ASM_X86_SWIOTLB_XEN_H
->  #define _ASM_X86_SWIOTLB_XEN_H
-> =20
-> -#ifdef CONFIG_SWIOTLB_XEN
-> -extern int pci_xen_swiotlb_init_late(void);
-> -#else
-> -static inline int pci_xen_swiotlb_init_late(void) { return -ENXIO; }
-> -#endif
-> -
->  int xen_swiotlb_fixup(void *buf, unsigned long nslabs);
->  int xen_create_contiguous_region(phys_addr_t pstart, unsigned int order,
->  				unsigned int address_bits,
-> diff --git a/arch/x86/kernel/pci-dma.c b/arch/x86/kernel/pci-dma.c
-> index f887b08ac5ffe4..c4a7ead9eb674e 100644
-> --- a/arch/x86/kernel/pci-dma.c
-> +++ b/arch/x86/kernel/pci-dma.c
-> @@ -81,27 +81,6 @@ static void __init pci_xen_swiotlb_init(void)
->  	if (IS_ENABLED(CONFIG_PCI))
->  		pci_request_acs();
->  }
-> -
-> -int pci_xen_swiotlb_init_late(void)
-> -{
-> -	if (dma_ops =3D=3D &xen_swiotlb_dma_ops)
-> -		return 0;
-> -
-> -	/* we can work with the default swiotlb */
-> -	if (!io_tlb_default_mem.nslabs) {
-> -		int rc =3D swiotlb_init_late(swiotlb_size_or_default(),
-> -					   GFP_KERNEL, xen_swiotlb_fixup);
-> -		if (rc < 0)
-> -			return rc;
-> -	}
-> -
-> -	/* XXX: this switches the dma ops under live devices! */
-> -	dma_ops =3D &xen_swiotlb_dma_ops;
-> -	if (IS_ENABLED(CONFIG_PCI))
-> -		pci_request_acs();
-> -	return 0;
-> -}
-> -EXPORT_SYMBOL_GPL(pci_xen_swiotlb_init_late);
->  #else
->  static inline void __init pci_xen_swiotlb_init(void)
->  {
-> @@ -111,7 +90,9 @@ static inline void __init pci_xen_swiotlb_init(void)
->  void __init pci_iommu_alloc(void)
->  {
->  	if (xen_pv_domain()) {
-> -		if (xen_initial_domain() || x86_swiotlb_enable)
-> +		if (xen_initial_domain() ||
-> +		    IS_ENABLED(CONFIG_XEN_PCIDEV_FRONTEND) ||
-> +		    x86_swiotlb_enable)
->  			pci_xen_swiotlb_init();
->  		return;
->  	}
-> diff --git a/drivers/pci/xen-pcifront.c b/drivers/pci/xen-pcifront.c
-> index 83c0ab50676dff..11636634ae512f 100644
-> --- a/drivers/pci/xen-pcifront.c
-> +++ b/drivers/pci/xen-pcifront.c
-> @@ -22,7 +22,6 @@
->  #include <linux/bitops.h>
->  #include <linux/time.h>
->  #include <linux/ktime.h>
-> -#include <linux/swiotlb.h>
->  #include <xen/platform_pci.h>
-> =20
->  #include <asm/xen/swiotlb-xen.h>
-> @@ -669,11 +668,6 @@ static int pcifront_connect_and_init_dma(struct pcif=
-ront_device *pdev)
-> =20
->  	spin_unlock(&pcifront_dev_lock);
-> =20
-> -	if (!err && !is_swiotlb_active(&pdev->xdev->dev)) {
-> -		err =3D pci_xen_swiotlb_init_late();
-> -		if (err)
-> -			dev_err(&pdev->xdev->dev, "Could not setup SWIOTLB!\n");
-> -	}
->  	return err;
->  }
-> =20
-> --=20
-> 2.39.2
->=20
->=20
+>   drivers/gpu/drm/nouveau/dispnv04/crtc.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+> index a6f2e681bde98..7794902df17d5 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+> @@ -449,7 +449,7 @@ nv_crtc_mode_set_vga(struct drm_crtc *crtc, struct drm_display_mode *mode)
+>   	regp->Attribute[NV_CIO_AR_CSEL_INDEX] = 0x00;
+>   }
+>   
+> -/**
+> +/*
+>    * Sets up registers for the given mode/adjusted_mode pair.
+>    *
+>    * The clocks, CRTCs and outputs attached to this CRTC must be off.
+> @@ -625,7 +625,7 @@ nv_crtc_swap_fbs(struct drm_crtc *crtc, struct drm_framebuffer *old_fb)
+>   	return ret;
+>   }
+>   
+> -/**
+> +/*
+>    * Sets up registers for the given mode/adjusted_mode pair.
+>    *
+>    * The clocks, CRTCs and outputs attached to this CRTC must be off.
 
---=20
-Best Regards,
-Marek Marczykowski-G=C3=B3recki
-Invisible Things Lab
+-- 
+Jingfeng
 
---CsM+DO8kg05XbydD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEhrpukzGPukRmQqkK24/THMrX1ywFAmRma/8ACgkQ24/THMrX
-1yzT+gf/S1uwHKmjBfQtKqzw50EE/PUeNAO8869wN0cpWYT6WkKJT5BxXOVgbJfW
-9mibLfMCcVO0H1cE8+PCxvC9BIv3ldhC7KVtSQks99V24zf0mPiqBiGM2mAI9VRD
-SYMwmipIXDSRFERIcBo1XomAt4ytJj/BkqCv+Xy5PgYIqdABz9R4G3HT2q6rN0Lq
-M2sLnKWdGwoYdk8hOmlTY5F3/iYdv/Zlel4Ki2s5ZzLUBxCZ1IKErb31wRaRid8p
-APcTnrs8RZE8+YBL7nzdr9HudKMlaChsiZsPkIo0v0aI5oFa+OHs6Z5sOXOP0RAB
-qmCDKShHiVUc6Lqc1gT6VHLmZdEEig==
-=Y97F
------END PGP SIGNATURE-----
-
---CsM+DO8kg05XbydD--
