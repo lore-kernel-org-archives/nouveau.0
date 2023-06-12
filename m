@@ -4,53 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C2CCEB64DD
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6BE1EB64D7
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31B4910E338;
-	Tue, 20 Jun 2023 18:20:35 +0000 (UTC)
-X-Greylist: delayed 348 seconds by postgrey-1.36 at gabe;
- Mon, 22 May 2023 07:58:29 UTC
-Received: from bee.tesarici.cz (bee.tesarici.cz [77.93.223.253])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B60710E262
- for <nouveau@lists.freedesktop.org>; Mon, 22 May 2023 07:58:29 +0000 (UTC)
-Received: from meshulam.tesarici.cz
- (dynamic-2a00-1028-83b8-1e7a-4427-cc85-6706-c595.ipv6.o2.cz
- [IPv6:2a00:1028:83b8:1e7a:4427:cc85:6706:c595])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
- SHA256) (No client certificate requested)
- by bee.tesarici.cz (Postfix) with ESMTPSA id EF59213B56F;
- Mon, 22 May 2023 09:52:36 +0200 (CEST)
-Authentication-Results: mail.tesarici.cz;
- dmarc=fail (p=none dis=none) header.from=tesarici.cz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tesarici.cz; s=mail;
- t=1684741957; bh=jsaH7ZUR8wFCXeTPqJ2mL6nQoFiuy/hnhhZO4oD2tJI=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=fXLslpJh2pwyFKw46yDmLuFNtmDG417D/1pluDHbFUpLWOwxyyXphbZ+9lLt3heq7
- TOb5LFM2ep8I/lYW4Rxr5pHLuRjmIlNZoYtrmqI1HI1Aj8EtmH0K1aKdNONSyGD1Py
- XdEor7u4dVunv3kxrnDKD6H6CPX2AwcjRZNJe7gb2lMO9/J9SGd4Q4jlhu1PXBOR9X
- umCg5oPeTTUZBH6IYcTRYkSLv2mz+GU1YhZ1d2/UJvK2yGwyYjAY4LOa34SP/h5Vwo
- 3uqicj2hzNb+4IDukPrPnygCZF3c4jC6VDTzVjC0Yz6vqF4Y4Ik5ldeKmw8O39I5xE
- IgfjiqYv6v6TQ==
-Date: Mon, 22 May 2023 09:52:36 +0200
-From: Petr =?UTF-8?B?VGVzYcWZw61r?= <petr@tesarici.cz>
-To: Christoph Hellwig <hch@lst.de>
-Message-ID: <20230522095236.27460d93@meshulam.tesarici.cz>
-In-Reply-To: <20230520062103.GA1225@lst.de>
-References: <20230518134253.909623-1-hch@lst.de>
- <20230518134253.909623-3-hch@lst.de> <ZGZr/xgbUmVqpOpN@mail-itl>
- <20230519040405.GA10818@lst.de> <ZGdLErBzi9MANL3i@mail-itl>
- <20230519124118.GA5869@lst.de>
- <8617570c-6dc4-74f5-7418-98f04f7e0ece@citrix.com>
- <20230519125857.GA6994@lst.de> <20230520062103.GA1225@lst.de>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-suse-linux-gnu)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF72010E356;
+	Tue, 20 Jun 2023 18:20:34 +0000 (UTC)
+Received: from 189.cn (ptr.189.cn [183.61.185.102])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7967F10E2CA;
+ Mon, 12 Jun 2023 19:26:13 +0000 (UTC)
+HMM_SOURCE_IP: 10.64.8.41:42778.1249123675
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
+ by 189.cn (HERMES) with SMTP id 4C72D1002BE;
+ Tue, 13 Jun 2023 03:26:09 +0800 (CST)
+Received: from  ([114.242.206.180])
+ by gateway-151646-dep-75648544bd-xwndj with ESMTP id
+ b0e3610dd26740b199961e43479640c6 for alexander.deucher@amd.com; 
+ Tue, 13 Jun 2023 03:26:12 CST
+X-Transaction-ID: b0e3610dd26740b199961e43479640c6
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+From: Sui Jingfeng <15330273260@189.cn>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Christian Konig <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Hawking Zhang <Hawking.Zhang@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ Bokun Zhang <Bokun.Zhang@amd.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>, Li Yi <liyi@loongson.cn>,
+ Sui Jingfeng <suijingfeng@loongson.cn>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Kevin Tian <kevin.tian@intel.com>, Cornelia Huck <cohuck@redhat.com>,
+ Yishai Hadas <yishaih@nvidia.com>, Abhishek Sahu <abhsahu@nvidia.com>,
+ Yi Liu <yi.l.liu@intel.com>
+Date: Tue, 13 Jun 2023 03:25:46 +0800
+Message-Id: <20230612192550.197053-5-15330273260@189.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230612192550.197053-1-15330273260@189.cn>
+References: <20230612192550.197053-1-15330273260@189.cn>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: Re: [Nouveau] [PATCH 2/4] x86: always initialize xen-swiotlb when
- xen-pcifront is enabling
+Subject: [Nouveau] [PATCH v6 4/8] PCI/VGA: Replace full MIT license text
+ with SPDX identifier
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,81 +72,66 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>, x86@kernel.org,
- Stefano Stabellini <sstabellini@kernel.org>,
- Andrew Cooper <andrew.cooper3@citrix.com>,
- Dave Hansen <dave.hansen@linux.intel.com>,
- Marek =?UTF-8?B?TWFyY3p5?= =?UTF-8?B?a293c2tpLUfDs3JlY2tp?=
- <marmarek@invisiblethingslab.com>, linux-kernel@vger.kernel.org,
- iommu@lists.linux.dev, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, Ben Skeggs <bskeggs@redhat.com>,
- "H. Peter Anvin" <hpa@zytor.com>, nouveau@lists.freedesktop.org,
- xen-devel@lists.xenproject.org, Thomas Gleixner <tglx@linutronix.de>
+Cc: kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, loongson-kernel@lists.loongnix.cn,
+ amd-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ linux-pci@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Christoph,
+From: Sui Jingfeng <suijingfeng@loongson.cn>
 
-On Sat, 20 May 2023 08:21:03 +0200
-Christoph Hellwig <hch@lst.de> wrote:
+Per Documentation/process/license-rules.rst, the SPDX MIT identifier is
+equivalent to including the entire MIT license text from
+LICENSES/preferred/MIT.
 
-> On Fri, May 19, 2023 at 02:58:57PM +0200, Christoph Hellwig wrote:
-> > On Fri, May 19, 2023 at 01:49:46PM +0100, Andrew Cooper wrote:  
-> > > > The alternative would be to finally merge swiotlb-xen into swiotlb, in
-> > > > which case we might be able to do this later.  Let me see what I can
-> > > > do there.  
-> > > 
-> > > If that is an option, it would be great to reduce the special-cashing.  
-> > 
-> > I think it's doable, and I've been wanting it for a while.  I just
-> > need motivated testers, but it seems like I just found at least two :)  
-> 
-> So looking at swiotlb-xen it does these off things where it takes a value
-> generated originally be xen_phys_to_dma, then only does a dma_to_phys
-> to go back and call pfn_valid on the result.  Does this make sense, or
-> is it wrong and just works by accident?  I.e. is the patch below correct?
-> 
-> 
-> diff --git a/drivers/xen/swiotlb-xen.c b/drivers/xen/swiotlb-xen.c
-> index 67aa74d201627d..3396c5766f0dd8 100644
-> --- a/drivers/xen/swiotlb-xen.c
-> +++ b/drivers/xen/swiotlb-xen.c
-> @@ -90,9 +90,7 @@ static inline int range_straddles_page_boundary(phys_addr_t p, size_t size)
->  
->  static int is_xen_swiotlb_buffer(struct device *dev, dma_addr_t dma_addr)
->  {
-> -	unsigned long bfn = XEN_PFN_DOWN(dma_to_phys(dev, dma_addr));
-> -	unsigned long xen_pfn = bfn_to_local_pfn(bfn);
-> -	phys_addr_t paddr = (phys_addr_t)xen_pfn << XEN_PAGE_SHIFT;
-> +	phys_addr_t paddr = xen_dma_to_phys(dev, dma_addr);
+Replace the MIT license text with the equivalent SPDX identifier.
 
+Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+ include/linux/vgaarb.h | 23 ++---------------------
+ 1 file changed, 2 insertions(+), 21 deletions(-)
 
-I'm no big Xen expert, but I think this is wrong. Let's go through it
-line by line:
+diff --git a/include/linux/vgaarb.h b/include/linux/vgaarb.h
+index 6d5465f8c3f2..97129a1bbb7d 100644
+--- a/include/linux/vgaarb.h
++++ b/include/linux/vgaarb.h
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: MIT */
++
+ /*
+  * The VGA aribiter manages VGA space routing and VGA resource decode to
+  * allow multiple VGA devices to be used in a system in a safe way.
+@@ -5,27 +7,6 @@
+  * (C) Copyright 2005 Benjamin Herrenschmidt <benh@kernel.crashing.org>
+  * (C) Copyright 2007 Paulo R. Zanoni <przanoni@gmail.com>
+  * (C) Copyright 2007, 2009 Tiago Vignatti <vignatti@freedesktop.org>
+- *
+- * Permission is hereby granted, free of charge, to any person obtaining a
+- * copy of this software and associated documentation files (the "Software"),
+- * to deal in the Software without restriction, including without limitation
+- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+- * and/or sell copies of the Software, and to permit persons to whom the
+- * Software is furnished to do so, subject to the following conditions:
+- *
+- * The above copyright notice and this permission notice (including the next
+- * paragraph) shall be included in all copies or substantial portions of the
+- * Software.
+- *
+- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+- * DEALINGS
+- * IN THE SOFTWARE.
+- *
+  */
+ 
+ #ifndef LINUX_VGA_H
+-- 
+2.25.1
 
-- bfn = XEN_PFN_DOWN(dma_to_phys(dev, dma_addr));
-
-  Take the DMA address (as seen by devices on the bus), convert it to a
-  physical address (as seen by the CPU on the bus) and shift it right
-  by XEN_PAGE_SHIFT. The result is a Xen machine PFN.
-
-- xen_pfn = bfn_to_local_pfn(bfn);
-
-  Take the machine PFN and converts it to a physical PFN.
-
-- paddr = (phys_addr_t)xen_pfn << XEN_PAGE_SHIFT;
-
-  Convert the physical PFN to a physical address.
-
-The important thing here is that Xen PV does not have auto-translated
-physical addresses, so physical address != machine address. Physical
-addresses in Xen PV domains are "artificial", used by the kernel to
-index the mem_map array, so a PFN can be easily converted to a struct
-page pointer and back. However, these addresses are never used by
-hardware, not even by CPU. The addresses used by the CPU are called
-machine addresses. There is no address translation between VCPUs and
-CPUs, because a PV domain runs directly on the CPU. After all, that's
-why it is called _para_virtualized.
-
-HTH
-Petr T
