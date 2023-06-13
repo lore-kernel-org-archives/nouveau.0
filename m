@@ -4,51 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82FDFEB64DC
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AC76EB64DB
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4D7010E350;
-	Tue, 20 Jun 2023 18:20:39 +0000 (UTC)
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
- [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B69710E0B1
- for <nouveau@lists.freedesktop.org>; Sun, 18 Jun 2023 16:31:43 +0000 (UTC)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1qAvIE-0007iI-Ow; Sun, 18 Jun 2023 18:30:22 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
- by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1qAvHk-008Jb7-8Z; Sun, 18 Jun 2023 18:29:52 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1qAvHi-00FKRv-H8; Sun, 18 Jun 2023 18:29:50 +0200
-Date: Sun, 18 Jun 2023 18:29:50 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Maxime Ripard <mripard@kernel.org>
-Message-ID: <20230618162950.6th2yo66baqay5mv@pengutronix.de>
-References: <20230507162616.1368908-1-u.kleine-koenig@pengutronix.de>
- <20230601154002.uv2wfatpb7b45duz@pengutronix.de>
- <CAD=FV=WvP--wJwBQtnSoW_xb57R1Wf9dH0XzWxe+NorczXfeAw@mail.gmail.com>
- <20230617161222.wy55pbomnrrlfy5u@pengutronix.de>
- <CAD=FV=U5gbMUNteyyFcTvHVBDWzfthM0aDirJC+yXGovDwMOBA@mail.gmail.com>
- <20230618123915.hmy66z7e532jhwgk@pengutronix.de>
- <jlq2xayh4dxfigfsh2fms2kt4hlrqcwxblffmqq7czbhqhhvz7@hsvol72f5i3y>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91A0A10E33B;
+	Tue, 20 Jun 2023 18:20:44 +0000 (UTC)
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 132FB10E004;
+ Tue, 13 Jun 2023 03:00:41 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8DxDevV24dkQmMEAA--.9387S3;
+ Tue, 13 Jun 2023 11:00:37 +0800 (CST)
+Received: from openarena.loongson.cn (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8BxC8rV24dkOkAYAA--.60391S2; 
+ Tue, 13 Jun 2023 11:00:37 +0800 (CST)
+From: Sui Jingfeng <suijingfeng@loongson.cn>
+To: Bjorn Helgaas <bhelgaas@google.com>
+Date: Tue, 13 Jun 2023 11:00:27 +0800
+Message-Id: <20230613030035.216556-1-suijingfeng@loongson.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="56squ37ki3ucgp5d"
-Content-Disposition: inline
-In-Reply-To: <jlq2xayh4dxfigfsh2fms2kt4hlrqcwxblffmqq7czbhqhhvz7@hsvol72f5i3y>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: nouveau@lists.freedesktop.org
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8BxC8rV24dkOkAYAA--.60391S2
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoW7ZrWUZF45Zr4kur18tFW3XFc_yoW8trWkpF
+ 45KF9xAr95JF4akry7Aw4xZFy5Zan7CayfKr9rCw1a93W5Cry8trWqyFWrK34DJrWxAF4r
+ tr9xKry7GF1qvrXCm3ZEXasCq-sJn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUkFb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
+ 6r4UJVWxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27w
+ Aqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE
+ 14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCF04k20xvY0x
+ 0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E
+ 7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcV
+ C0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF
+ 04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7
+ CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jOuc_UUUUU=
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: Re: [Nouveau] patches dropped from drm-misc-next [Was: Re: [PATCH
- 00/53] drm: Convert to platform remove callback returning] void
+Subject: [Nouveau] [PATCH v7 0/8] PCI/VGA: Introduce is_boot_device function
+ callback to vga_client_register
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,239 +58,61 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Raymond Tan <raymond.tan@intel.com>,
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Akhil P Oommen <quic_akhilpo@quicinc.com>,
- Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
- Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Sumit Semwal <sumit.semwal@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
- linux-samsung-soc@vger.kernel.org, Robert Foss <rfoss@kernel.org>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Samuel Holland <samuel@sholland.org>, Kevin Hilman <khilman@baylibre.com>,
- =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Kuogee Hsieh <quic_khsieh@quicinc.com>, Xinliang Liu <xinliang.liu@linaro.org>,
- NXP Linux Team <linux-imx@nxp.com>, linux-sunxi@lists.linux.dev,
- Rahul T R <r-ravikumar@ti.com>,
- Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
- Jani Nikula <jani.nikula@intel.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- etnaviv@lists.freedesktop.org, Yuan Can <yuancan@huawei.com>,
- Inki Dae <inki.dae@samsung.com>, Jessica Zhang <quic_jesszhan@quicinc.com>,
- Sean Paul <sean@poorly.run>, Johan Hovold <johan+linaro@kernel.org>,
- Hyun Kwon <hyun.kwon@xilinx.com>, Andrew Jeffery <andrew@aj.id.au>,
- Jingoo Han <jingoohan1@gmail.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>, kernel@pengutronix.de,
- Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
- Claudiu Beznea <claudiu.beznea@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-aspeed@lists.ozlabs.org,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Thierry Reding <thierry.reding@gmail.com>, John Stultz <jstultz@google.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>, Liang He <windhl@126.com>,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- lima@lists.freedesktop.org, Chunyan Zhang <zhang.lyra@gmail.com>,
- Alexey Brodkin <abrodkin@synopsys.com>, Minghao Chi <chi.minghao@zte.com.cn>,
- Steven Price <steven.price@arm.com>, linux-rockchip@lists.infradead.org,
- Ben Skeggs <bskeggs@redhat.com>, Russell King <linux+etnaviv@armlinux.org.uk>,
- Alain Volmat <alain.volmat@foss.st.com>, Liu Ying <victor.liu@nxp.com>,
- linux-arm-msm@vger.kernel.org, Nicolas Ferre <nicolas.ferre@microchip.com>,
- Wang Jianzheng <wangjianzheng@vivo.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Boris Brezillon <bbrezillon@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Brian Starkey <brian.starkey@arm.com>, Miaoqian Lin <linmq006@gmail.com>,
- Stefan Agner <stefan@agner.ch>, Michal Simek <michal.simek@xilinx.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- Rob Herring <robh@kernel.org>, Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Mali DP Maintainers <malidp@foss.arm.com>, Joel Stanley <joel@jms.id.au>,
- nouveau@lists.freedesktop.org, Orson Zhai <orsonzhai@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Guo Zhengkui <guozhengkui@vivo.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Alison Wang <alison.wang@nxp.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Mark Brown <broonie@kernel.org>, Baolin Wang <baolin.wang@linux.alibaba.com>,
- Paul Cercueil <paul@crapouillou.net>, Tomi Valkeinen <tomba@kernel.org>,
- Deepak R Varma <drv@mailo.com>,
- Karol Wachowski <karol.wachowski@linux.intel.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Ricardo Ribalda <ribalda@chromium.org>, Tian Tao <tiantao6@hisilicon.com>,
- Shawn Guo <shawnguo@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- linux-stm32@st-md-mailman.stormreply.com, Emma Anholt <emma@anholt.net>,
- Konrad Dybcio <konrad.dybcio@somainline.org>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Doug Anderson <dianders@chromium.org>, Liu Shixin <liushixin2@huawei.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Laura Nao <laura.nao@collabora.com>, Marek Vasut <marex@denx.de>,
- linux-renesas-soc@vger.kernel.org, Yongqin Liu <yongqin.liu@linaro.org>,
- Jayshri Pawar <jpawar@cadence.com>, Jonas Karlman <jonas@kwiboo.se>,
- Russell King <linux@armlinux.org.uk>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Qiang Yu <yuq825@gmail.com>, Melissa Wen <mwen@igalia.com>,
- linux-mediatek@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, linux-tegra@vger.kernel.org,
- Stephen Boyd <swboyd@chromium.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Yannick Fertre <yannick.fertre@foss.st.com>, linux-mips@vger.kernel.org,
- Rob Clark <robdclark@gmail.com>, Philippe Cornu <philippe.cornu@foss.st.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Jyri Sarha <jyri.sarha@iki.fi>,
- Lucas Stach <l.stach@pengutronix.de>
+Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Sui Jingfeng <15330273260@189.cn>, amd-gfx@lists.freedesktop.org,
+ linux-pci@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+From: Sui Jingfeng <15330273260@189.cn>
 
---56squ37ki3ucgp5d
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The vga_is_firmware_default() function is arch-dependent, it's probably
+wrong if we simply remove the arch guard. As the VRAM BAR which contains
+firmware framebuffer may move, while the lfb_base and lfb_size members of
+the screen_info does not change accordingly. In short, it should take the
+re-allocation of the PCI BAR into consideration.
 
-Hello Maxime,
+With the observation that device drivers or video aperture helpers may
+have better knowledge about which PCI bar contains the firmware fb,
+which could avoid the need to iterate all of the PCI BARs. But as a PCI
+function at pci/vgaarb.c, vga_is_firmware_default() is not suitable to
+make such an optimization since it is loaded too early.
 
-On Sun, Jun 18, 2023 at 04:32:55PM +0200, Maxime Ripard wrote:
-> On Sun, Jun 18, 2023 at 02:39:15PM +0200, Uwe Kleine-K=C3=B6nig wrote:
-> > On Sat, Jun 17, 2023 at 10:57:23AM -0700, Doug Anderson wrote:
-> > > On Sat, Jun 17, 2023 at 9:15=E2=80=AFAM Uwe Kleine-K=C3=B6nig
-> > > <u.kleine-koenig@pengutronix.de> wrote:
-> > > > Together with the patches that were applied later the topmost commit
-> > > > from this series is c2807ecb5290 ("drm/omap: Convert to platform re=
-move
-> > > > callback returning void"). This commit was part for the following n=
-ext
-> > > > tags:
-> > > >
-> > > >         $ git tag -l --contains c2807ecb5290
-> > > >         next-20230609
-> > > >         next-20230613
-> > > >         next-20230614
-> > > >         next-20230615
-> > > >
-> > > > However in next-20230616 they are missing. In next-20230616
-> > > > drm-misc/for-linux-next was cf683e8870bd4be0fd6b98639286700a3508866=
-0.
-> > > > Compared to c2807ecb5290 this adds 1149 patches but drops 37 (that =
-are
-> > > > also not included with a different commit id). The 37 patches dropp=
-ed
-> > > > are 13cdd12a9f934158f4ec817cf048fcb4384aa9dc..c2807ecb5290:
-> > > >
-> > > >         $ git shortlog -s 13cdd12a9f934158f4ec817cf048fcb4384aa9dc.=
-=2Ec2807ecb5290
-> > > >              1  Christophe JAILLET
-> > > >              2  Jessica Zhang
-> > > >              5  Karol Wachowski
-> > > >              1  Laura Nao
-> > > >             27  Uwe Kleine-K=C3=B6nig
-> > > >              1  Wang Jianzheng
-> > > >
-> > > >
-> > > > I guess this was done by mistake because nobody told me about dropp=
-ing
-> > > > my/these patches? Can c2807ecb5290 please be merged into drm-misc-n=
-ext
-> > > > again?
-> > >=20
-> > > Actually, it was probably a mistake that these patches got merged to
-> > > linuxnext during the 4 days that you noticed. However, your patches
-> > > aren't dropped and are still present in drm-misc-next.
-> > >=20
-> > > drm-misc has a bit of a unique model and it's documented fairly well =
-here:
-> > >=20
-> > > https://drm.pages.freedesktop.org/maintainer-tools/drm-misc.html
-> >=20
-> > Is there a flaw then in this unique model (or its implementation) when
-> > drm-misc/for-linux-next moves in a non-fast-forward manner? This isn't
-> > expected, is it?
->=20
-> There's no expectation afaik. Any tree merged in linux-next can be
-> rebased, drop a patch, amend one, etc. without any concern.
+There are PCI display controllers that don't have a dedicated VRAM bar,
+this function will lose its effectiveness in such a case. Luckily, the
+device driver can provide an accurate workaround.
 
-I agree that there are no rules broken for a tree that is included in
-next and a maintainer is free to rewrite their tree independant of the
-tree being included in next.
+Therefore, this patch introduces a callback that allows the device driver
+to tell the VGAARB if the device is the default boot device. Also honor
+the comment: "Clients have two callback mechanisms they can use"
 
-Still I think that shouldn't be used as an excuse. For me, if a
-maintainer puts some patch into next that's a statement saying
-(approximately) "I think this patch is fine and I intend to send it to
-Linus during the next merge window.". So my expectation is that if a
-patch is dropped again from next, there was a problem and it would be
-fair if the maintainer tells the author/submitter about this problem and
-that the patch was dropped.
+Sui Jingfeng (8):
+  PCI/VGA: Use unsigned type for the io_state variable
+  PCI/VGA: Deal only with VGA class devices
+  PCI/VGA: Tidy up the code and comment format
+  PCI/VGA: Replace full MIT license text with SPDX identifier
+  video/aperture: Add a helper to detect if an aperture contains
+    firmware FB
+  PCI/VGA: Introduce is_boot_device function callback to
+    vga_client_register
+  drm/amdgpu: Implement the is_boot_device callback function
+  drm/radeon: Implement the is_boot_device callback function
 
-So my concern is not about rule breaking, but about the strange signal
-that is sent to contributors by including their work in next for some
-time and then dropping it again without comment.
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  12 +-
+ drivers/gpu/drm/drm_aperture.c             |  16 +++
+ drivers/gpu/drm/i915/display/intel_vga.c   |   3 +-
+ drivers/gpu/drm/nouveau/nouveau_vga.c      |   2 +-
+ drivers/gpu/drm/radeon/radeon_device.c     |  12 +-
+ drivers/pci/vgaarb.c                       | 153 +++++++++++++--------
+ drivers/vfio/pci/vfio_pci_core.c           |   2 +-
+ drivers/video/aperture.c                   |  29 ++++
+ include/drm/drm_aperture.h                 |   2 +
+ include/linux/aperture.h                   |   7 +
+ include/linux/vgaarb.h                     |  35 ++---
+ 11 files changed, 184 insertions(+), 89 deletions(-)
 
-> It's also why linux-next is rebuilt entirely every day.
->=20
-> > > The key is that committers can commit to drm-misc-next _at any time_
-> > > regardless of the merge window. The drm-misc merge strategy makes this
-> > > OK. Specifically, when it's late in the linux cycle then drm-misc-next
-> > > is supposed to stop merging to linuxnext. Then, shortly after the
-> > > merge window closes, patches will start flowing again.
-> > >=20
-> > > So basically your patches are landed and should even keep the same git
-> > > hashes when they eventually make it to Linux. They just won't land for
-> > > another release cycle of Linux.
-> >=20
-> > OK, c2807ecb5290 is still included in drm-misc-next. So while I don't
-> > understand the whole model, the patches at least seem to be scheduled to
-> > go in during the next merge window.
->=20
-> It's not that complicated.
->=20
-> drm-misc-next is always open, and we start targeting release X + 2 when
-> X-rc6 is released.
->=20
-> This is due to Linus wanting all the commits sent as part of the PR in
-> linux-next for two weeks.
->=20
-> In order to converge towards (X + 1)-rc1 in linux-next, as soon as X-rc6
-> is released, we remove drm-misc-next from the linux-next branch. All the
-> patches in drm-misc-next that were targetting X + 1 are in drm/next by
-> then, so it's not a concern.
+-- 
+2.25.1
 
-So if I were a maintainer of drm-misc, I'd want that no commit from
-drm-misc-next migrates to next after -rc6.
-
-Also note that the branch head in question (i.e. c2807ecb5290) was
-included in next-20230609, while v6.4-rc6 was tagged on Jun 11. So
-according to the rules you described c2807ecb5290 could have been
-qualified to go into v6.5-rc1?!
-
-Best regards
-Uwe
-
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
-   |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---56squ37ki3ucgp5d
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmSPMP0ACgkQj4D7WH0S
-/k5slQf/QGa59eGA08Ft03sMAU0WPOe2pro9UKpdc0k/xBm24fC7BCSdOSlR7bXI
-Yk6FDfiYpZII3/lP8R+rQrHLhbqjpimjuGjXcKbGq60shljeQf3zOEMwL5Q4yUgD
-Rd/FHwMdOLAtsOPYEYABK+DXld46QIlTPcKncCp4HXgsTSP4hL68rUM1rBHehmwQ
-V9Au18gv810TLMbgaBZ32xzFXKId31Myw7Nya2Rhuv9iuardyCfKxfrh95WUVM2N
-iihFikVUtNTP0rOe0qJHF65A6l0wvexZ4OuL5fc3DZonv3/D6RNu5Jl/Tm4h2RgE
-EPFxcFKuIo9eFOU4Yvtn2yIKvB6YWQ==
-=ov7F
------END PGP SIGNATURE-----
-
---56squ37ki3ucgp5d--
