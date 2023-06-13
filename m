@@ -4,64 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 853DFEB64D7
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74340EB64D8
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1A4510E32D;
-	Tue, 20 Jun 2023 18:20:17 +0000 (UTC)
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com
- [IPv6:2607:f8b0:4864:20::52d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9C8E10E0C2;
- Fri, 12 May 2023 19:26:21 +0000 (UTC)
-Received: by mail-pg1-x52d.google.com with SMTP id
- 41be03b00d2f7-52c30fa5271so5450870a12.0; 
- Fri, 12 May 2023 12:26:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1683919581; x=1686511581;
- h=content-disposition:mime-version:message-id:subject:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=Yz4DYKSNmBeEVN5VVceILj1aZ1bLp7+YNm7+Yoele00=;
- b=GdGO7tJ4IIUXweKlz+dCEQNC4Jf9giqrZ6IQWsiG1yctoFoJUmWBZf1pDY+NSPN5EF
- 8QHk5X08ZDhLvo1aTU9OeDLX7TNJt7TYJiZn3Ddz38fWq//zCdSzINTj/mdDUd0ryo43
- kpyAnVNpeI6uFrEAFnQkIrmNluVRMi8FDSTuho8UK8nD02zBM1GLG78rAVDqdqzhvlBj
- TTlB554DoFhi6MzAJYNLUUDhY9H6/IoYnPKa1GwkYcZteDq0Ae0iVRqpkkyOLY2cYk1c
- hjH8FdKRI9UuLEhJPsWUzT/CmUi0ThL8rox40SCNkRv4N87OV8bbNKARNFVU0A3Mb77a
- lllw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1683919581; x=1686511581;
- h=content-disposition:mime-version:message-id:subject:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Yz4DYKSNmBeEVN5VVceILj1aZ1bLp7+YNm7+Yoele00=;
- b=aeQxa2rhLCi0MeilFmzS22KVBxSvpfhXC01Zl0kBeKdFpwpT+a5vl3YVE+eHjhCbm4
- ZZ/3fEd1KsQa3fC+g09HDWKd0VXTFA1bxstR5MUkQJ13jEBoIIhg2v8KzD1wkGEnb91T
- Yg9EMXdSrM4zzBK0LreEtA0gKo4Ed3TCMHuA14jaYSlooZAtZTRA4YqNHhecp1qdiTcI
- 7OIBg/AKUb4QuyBTDWx0COVLXK0oFte+yzx9dz8G7z1470lMOm16uYjfXdmnE87yyTQQ
- 6u7gTF6LetIe5TDTlbuL6zfqiSjVSPToEmJ4Pjav3+vwLnEtCK7DcZVmNStRkm06VwN2
- QnhQ==
-X-Gm-Message-State: AC+VfDyPxqJGMP3SloeXuDPFLBr4IKnLkJBkYfA3FZfYK1XK0xYFKmvs
- SB8XTfR5x5zyPuFzQ3XJKkY=
-X-Google-Smtp-Source: ACHHUZ4oAT/GxHasWc1+hnu5yWxpHeEJ05uQYZwgtlcpevP5ZF9ks5XZ87fIDTRvaTXgidAuos4Pww==
-X-Received: by 2002:a17:902:e54b:b0:1ac:712d:2032 with SMTP id
- n11-20020a170902e54b00b001ac712d2032mr25367398plf.50.1683919580676; 
- Fri, 12 May 2023 12:26:20 -0700 (PDT)
-Received: from yoga ([2400:1f00:13:5d8c:29b4:3ace:81ca:10f])
- by smtp.gmail.com with ESMTPSA id
- x1-20020a63f701000000b0051b8172fa68sm7171336pgh.38.2023.05.12.12.26.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 12 May 2023 12:26:20 -0700 (PDT)
-Date: Sat, 13 May 2023 00:56:13 +0530
-From: Anup Sharma <anupnewsmail@gmail.com>
-To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Message-ID: <ZF6S1bg2AzuBjhxW@yoga>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A88910E330;
+	Tue, 20 Jun 2023 18:20:18 +0000 (UTC)
+Received: from 189.cn (ptr.189.cn [183.61.185.102])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0190C10E301;
+ Tue, 13 Jun 2023 03:01:57 +0000 (UTC)
+HMM_SOURCE_IP: 10.64.8.43:47948.1267835893
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
+ by 189.cn (HERMES) with SMTP id CFD121002CE;
+ Tue, 13 Jun 2023 11:01:53 +0800 (CST)
+Received: from  ([114.242.206.180])
+ by gateway-151646-dep-75648544bd-7vx9t with ESMTP id
+ 959ce8b3422a4ec298e3af6accf345e8 for bhelgaas@google.com; 
+ Tue, 13 Jun 2023 11:01:54 CST
+X-Transaction-ID: 959ce8b3422a4ec298e3af6accf345e8
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+From: Sui Jingfeng <15330273260@189.cn>
+To: Bjorn Helgaas <bhelgaas@google.com>
+Date: Tue, 13 Jun 2023 11:01:43 +0800
+Message-Id: <20230613030151.216625-1-15330273260@189.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: [Nouveau] [PATCH] gpu: drm: nouveau: nvkm: engine: gr: Remove
- Unneeded semicolon
+Subject: [Nouveau] [PATCH v7 0/8] PCI/VGA: Introduce is_boot_device function
+ callback to vga_client_register
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,32 +47,58 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Remove the extra semicolon at end. Issue identified using
-semicolon.cocci Coccinelle semantic patch.
-Warning:
-drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c:423:31-32: Unneeded semicolon
+The vga_is_firmware_default() function is arch-dependent, it's probably
+wrong if we simply remove the arch guard. As the VRAM BAR which contains
+firmware framebuffer may move, while the lfb_base and lfb_size members of
+the screen_info does not change accordingly. In short, it should take the
+re-allocation of the PCI BAR into consideration.
 
-Signed-off-by: Anup Sharma <anupnewsmail@gmail.com>
----
- drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+With the observation that device drivers or video aperture helpers may
+have better knowledge about which PCI bar contains the firmware fb,
+which could avoid the need to iterate all of the PCI BARs. But as a PCI
+function at pci/vgaarb.c, vga_is_firmware_default() is not suitable to
+make such an optimization since it is loaded too early.
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-index 5f20079c3660..204516891ece 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
-@@ -420,7 +420,7 @@ gf100_gr_chan_new(struct nvkm_gr *base, struct nvkm_fifo_chan *fifoch,
- 			return ret;
- 	} else {
- 		ret = nvkm_memory_map(gr->attrib_cb, 0, chan->vmm, chan->attrib_cb,
--				      &args, sizeof(args));;
-+				      &args, sizeof(args));
- 		if (ret)
- 			return ret;
- 	}
+There are PCI display controllers that don't have a dedicated VRAM bar,
+this function will lose its effectiveness in such a case. Luckily, the
+device driver can provide an accurate workaround.
+
+Therefore, this patch introduces a callback that allows the device driver
+to tell the VGAARB if the device is the default boot device. Also honor
+the comment: "Clients have two callback mechanisms they can use"
+
+Sui Jingfeng (8):
+  PCI/VGA: Use unsigned type for the io_state variable
+  PCI/VGA: Deal only with VGA class devices
+  PCI/VGA: Tidy up the code and comment format
+  PCI/VGA: Replace full MIT license text with SPDX identifier
+  video/aperture: Add a helper to detect if an aperture contains
+    firmware FB
+  PCI/VGA: Introduce is_boot_device function callback to
+    vga_client_register
+  drm/amdgpu: Implement the is_boot_device callback function
+  drm/radeon: Implement the is_boot_device callback function
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  12 +-
+ drivers/gpu/drm/drm_aperture.c             |  16 +++
+ drivers/gpu/drm/i915/display/intel_vga.c   |   3 +-
+ drivers/gpu/drm/nouveau/nouveau_vga.c      |   2 +-
+ drivers/gpu/drm/radeon/radeon_device.c     |  12 +-
+ drivers/pci/vgaarb.c                       | 153 +++++++++++++--------
+ drivers/vfio/pci/vfio_pci_core.c           |   2 +-
+ drivers/video/aperture.c                   |  29 ++++
+ include/drm/drm_aperture.h                 |   2 +
+ include/linux/aperture.h                   |   7 +
+ include/linux/vgaarb.h                     |  35 ++---
+ 11 files changed, 184 insertions(+), 89 deletions(-)
+
 -- 
-2.34.1
+2.25.1
 
