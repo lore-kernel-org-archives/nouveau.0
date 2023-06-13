@@ -4,34 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56500EB64D7
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BD37EB64D8
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFE4410E334;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC8810E345;
 	Tue, 20 Jun 2023 18:20:20 +0000 (UTC)
-X-Greylist: delayed 525 seconds by postgrey-1.36 at gabe;
- Mon, 19 Jun 2023 03:11:37 UTC
-Received: from angie.orcam.me.uk (angie.orcam.me.uk [IPv6:2001:4190:8020::34])
- by gabe.freedesktop.org (Postfix) with ESMTP id E92A810E18B;
- Mon, 19 Jun 2023 03:11:37 +0000 (UTC)
-Received: by angie.orcam.me.uk (Postfix, from userid 500)
- id BF25592009C; Mon, 19 Jun 2023 05:02:48 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
- by angie.orcam.me.uk (Postfix) with ESMTP id B0C1092009B;
- Mon, 19 Jun 2023 04:02:48 +0100 (BST)
-Date: Mon, 19 Jun 2023 04:02:48 +0100 (BST)
-From: "Maciej W. Rozycki" <macro@orcam.me.uk>
-To: Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <20230613030151.216625-3-15330273260@189.cn>
-Message-ID: <alpine.DEB.2.21.2306190339590.14084@angie.orcam.me.uk>
+Received: from 189.cn (ptr.189.cn [183.61.185.102])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 69ECC10E316;
+ Tue, 13 Jun 2023 03:02:11 +0000 (UTC)
+HMM_SOURCE_IP: 10.64.8.43:47948.1267835893
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
+ by 189.cn (HERMES) with SMTP id 59CA0100302;
+ Tue, 13 Jun 2023 11:02:07 +0800 (CST)
+Received: from  ([114.242.206.180])
+ by gateway-151646-dep-75648544bd-7vx9t with ESMTP id
+ 94e06592384f4442af9040d995fc581c for bhelgaas@google.com; 
+ Tue, 13 Jun 2023 11:02:10 CST
+X-Transaction-ID: 94e06592384f4442af9040d995fc581c
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+From: Sui Jingfeng <15330273260@189.cn>
+To: Bjorn Helgaas <bhelgaas@google.com>
+Date: Tue, 13 Jun 2023 11:01:47 +0800
+Message-Id: <20230613030151.216625-5-15330273260@189.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230613030151.216625-1-15330273260@189.cn>
 References: <20230613030151.216625-1-15330273260@189.cn>
- <20230613030151.216625-3-15330273260@189.cn>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:11 +0000
-Subject: Re: [Nouveau] [PATCH v7 2/8] PCI/VGA: Deal only with VGA class
- devices
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
+Subject: [Nouveau] [PATCH v7 4/8] PCI/VGA: Replace full MIT license text
+ with SPDX identifier
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,43 +49,74 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Sui Jingfeng <suijingfeng@loongson.cn>,
- kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>
+Cc: Maxime Ripard <mripard@kernel.org>, linux-fbdev@vger.kernel.org,
+ Sui Jingfeng <suijingfeng@loongson.cn>, kvm@vger.kernel.org,
+ Andi Shyti <andi.shyti@linux.intel.com>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ linux-pci@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, 13 Jun 2023, Sui Jingfeng wrote:
+From: Sui Jingfeng <suijingfeng@loongson.cn>
 
-> Deal only with the VGA devcie(pdev->class == 0x0300), so replace the
+Per Documentation/process/license-rules.rst, the SPDX MIT identifier is
+equivalent to including the entire MIT license text from
+LICENSES/preferred/MIT.
 
- Typo here: s/devcie/device/.
+Replace the MIT license text with the equivalent SPDX identifier.
 
-> pci_get_subsys() function with pci_get_class(). Filter the non-PCI display
-> device(pdev->class != 0x0300) out. There no need to process the non-display
-> PCI device.
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+ include/linux/vgaarb.h | 23 ++---------------------
+ 1 file changed, 2 insertions(+), 21 deletions(-)
 
- I've only come across this patch series now.  Without diving into what 
-this code actually does I have just one question as a matter of interest.
+diff --git a/include/linux/vgaarb.h b/include/linux/vgaarb.h
+index 6d5465f8c3f2..97129a1bbb7d 100644
+--- a/include/linux/vgaarb.h
++++ b/include/linux/vgaarb.h
+@@ -1,3 +1,5 @@
++/* SPDX-License-Identifier: MIT */
++
+ /*
+  * The VGA aribiter manages VGA space routing and VGA resource decode to
+  * allow multiple VGA devices to be used in a system in a safe way.
+@@ -5,27 +7,6 @@
+  * (C) Copyright 2005 Benjamin Herrenschmidt <benh@kernel.crashing.org>
+  * (C) Copyright 2007 Paulo R. Zanoni <przanoni@gmail.com>
+  * (C) Copyright 2007, 2009 Tiago Vignatti <vignatti@freedesktop.org>
+- *
+- * Permission is hereby granted, free of charge, to any person obtaining a
+- * copy of this software and associated documentation files (the "Software"),
+- * to deal in the Software without restriction, including without limitation
+- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+- * and/or sell copies of the Software, and to permit persons to whom the
+- * Software is furnished to do so, subject to the following conditions:
+- *
+- * The above copyright notice and this permission notice (including the next
+- * paragraph) shall be included in all copies or substantial portions of the
+- * Software.
+- *
+- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+- * DEALINGS
+- * IN THE SOFTWARE.
+- *
+  */
+ 
+ #ifndef LINUX_VGA_H
+-- 
+2.25.1
 
-> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
-> index c1bc6c983932..22a505e877dc 100644
-> --- a/drivers/pci/vgaarb.c
-> +++ b/drivers/pci/vgaarb.c
-> @@ -1500,7 +1496,9 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
->  	struct pci_dev *pdev = to_pci_dev(dev);
->  	bool notify = false;
->  
-> -	vgaarb_dbg(dev, "%s\n", __func__);
-> +	/* Only deal with VGA class devices */
-> +	if (pdev->class != PCI_CLASS_DISPLAY_VGA << 8)
-> +		return 0;
-
- Hmm, shouldn't this also handle PCI_CLASS_NOT_DEFINED_VGA?  As far as I 
-know it is the equivalent of PCI_CLASS_DISPLAY_VGA for PCI <= 2.0 devices 
-that were implemented before the idea of PCI device classes has developed 
-into its current form.  I may have such a VGA device somewhere.
-
-  Maciej
