@@ -4,52 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C43BEB64DD
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98617EB64DB
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 343BD10E339;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9825F10E340;
 	Tue, 20 Jun 2023 18:20:19 +0000 (UTC)
-Received: from 189.cn (ptr.189.cn [183.61.185.104])
- by gabe.freedesktop.org (Postfix) with ESMTP id 604F610E108;
- Mon, 19 Jun 2023 02:17:32 +0000 (UTC)
-HMM_SOURCE_IP: 10.64.8.43:35506.1764402843
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
- by 189.cn (HERMES) with SMTP id 2B4E01001CA;
- Mon, 19 Jun 2023 10:17:25 +0800 (CST)
-Received: from  ([114.242.206.180])
- by gateway-151646-dep-75648544bd-7vx9t with ESMTP id
- cbd68cba8c4f443bb65940078c2927dd for suijingfeng@loongson.cn; 
- Mon, 19 Jun 2023 10:17:28 CST
-X-Transaction-ID: cbd68cba8c4f443bb65940078c2927dd
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-Message-ID: <827ede8b-b7b8-5aae-0816-244928b16897@189.cn>
-Date: Mon, 19 Jun 2023 10:17:24 +0800
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 94A8A10E2FA;
+ Tue, 13 Jun 2023 03:00:42 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8BxZ+nW24dkSWMEAA--.7406S3;
+ Tue, 13 Jun 2023 11:00:38 +0800 (CST)
+Received: from openarena.loongson.cn (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8BxC8rV24dkOkAYAA--.60391S4; 
+ Tue, 13 Jun 2023 11:00:38 +0800 (CST)
+From: Sui Jingfeng <suijingfeng@loongson.cn>
+To: Bjorn Helgaas <bhelgaas@google.com>
+Date: Tue, 13 Jun 2023 11:00:29 +0800
+Message-Id: <20230613030035.216556-3-suijingfeng@loongson.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230613030035.216556-1-suijingfeng@loongson.cn>
+References: <20230613030035.216556-1-suijingfeng@loongson.cn>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Sui Jingfeng <suijingfeng@loongson.cn>,
- Alex Deucher <alexdeucher@gmail.com>
-References: <20230613030151.216625-1-15330273260@189.cn>
- <20230613030151.216625-3-15330273260@189.cn>
- <dbf0d89f-717a-1f78-aef2-f30506751d4d@loongson.cn>
- <CADnq5_N6vVtzH6tzguZdHnP_TdRoG1G-Cr94O+X03jvtk=vhag@mail.gmail.com>
- <3c1c86ab-96ea-aa1c-c9c5-9a4012644fd6@loongson.cn>
- <CADnq5_Px-HWfwetv8LZsCnCeV7SMt_uqtLwMVK7648ZQiP2RCQ@mail.gmail.com>
- <f08b6a76-6c90-b59b-ff43-c779ef759d09@loongson.cn>
- <CADnq5_PFoM2O8mCd6+VFfu9Nc-Hg_HTnwEMxrq0FGRpva1kKiA@mail.gmail.com>
- <c2cdc3ca-20de-0133-b198-1118fcea7902@loongson.cn>
-From: Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <c2cdc3ca-20de-0133-b198-1118fcea7902@loongson.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8BxC8rV24dkOkAYAA--.60391S4
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoW7WFW8Kr47tw4kJw1xCFy8WFX_yoW8Kw17pa
+ yrJFWrKry8Ww17Ga12qF1kZFy5ZrZ2ka4ftr4Ik34SkFZrCrW0qasYkry5A34fJrZ5JF1I
+ qay2yF1UXw47GabCm3ZEXasCq-sJn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUkFb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r126r13M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
+ 6r4UJVWxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27w
+ Aqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE
+ 14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCF04k20xvY0x
+ 0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E
+ 7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcV
+ C0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF
+ 04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7
+ CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j5l1kUUUUU=
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: Re: [Nouveau] [PATCH v7 2/8] PCI/VGA: Deal only with VGA class
- devices
+Subject: [Nouveau] [PATCH v7 2/8] PCI/VGA: Deal only with VGA class devices
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,16 +62,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org,
  nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org,
- Bjorn Helgaas <bhelgaas@google.com>
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
+Deal only with the VGA devcie(pdev->class == 0x0300), so replace the
+pci_get_subsys() function with pci_get_class(). Filter the non-PCI display
+device(pdev->class != 0x0300) out. There no need to process the non-display
+PCI device.
 
-On 2023/6/18 20:11, Sui Jingfeng wrote:
-> call back to use if successful
+Cc: Bjorn Helgaas <bhelgaas@google.com>
+Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+---
+ drivers/pci/vgaarb.c | 22 ++++++++++++----------
+ 1 file changed, 12 insertions(+), 10 deletions(-)
 
-
-Call back to us if the drm device driver bound to the PCI GPU successfully
+diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+index c1bc6c983932..22a505e877dc 100644
+--- a/drivers/pci/vgaarb.c
++++ b/drivers/pci/vgaarb.c
+@@ -754,10 +754,6 @@ static bool vga_arbiter_add_pci_device(struct pci_dev *pdev)
+ 	struct pci_dev *bridge;
+ 	u16 cmd;
+ 
+-	/* Only deal with VGA class devices */
+-	if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
+-		return false;
+-
+ 	/* Allocate structure */
+ 	vgadev = kzalloc(sizeof(struct vga_device), GFP_KERNEL);
+ 	if (vgadev == NULL) {
+@@ -1500,7 +1496,9 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
+ 	struct pci_dev *pdev = to_pci_dev(dev);
+ 	bool notify = false;
+ 
+-	vgaarb_dbg(dev, "%s\n", __func__);
++	/* Only deal with VGA class devices */
++	if (pdev->class != PCI_CLASS_DISPLAY_VGA << 8)
++		return 0;
+ 
+ 	/* For now we're only intereted in devices added and removed. I didn't
+ 	 * test this thing here, so someone needs to double check for the
+@@ -1510,6 +1508,8 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
+ 	else if (action == BUS_NOTIFY_DEL_DEVICE)
+ 		notify = vga_arbiter_del_pci_device(pdev);
+ 
++	vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
++
+ 	if (notify)
+ 		vga_arbiter_notify_clients();
+ 	return 0;
+@@ -1534,8 +1534,8 @@ static struct miscdevice vga_arb_device = {
+ 
+ static int __init vga_arb_device_init(void)
+ {
++	struct pci_dev *pdev = NULL;
+ 	int rc;
+-	struct pci_dev *pdev;
+ 
+ 	rc = misc_register(&vga_arb_device);
+ 	if (rc < 0)
+@@ -1545,11 +1545,13 @@ static int __init vga_arb_device_init(void)
+ 
+ 	/* We add all PCI devices satisfying VGA class in the arbiter by
+ 	 * default */
+-	pdev = NULL;
+-	while ((pdev =
+-		pci_get_subsys(PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
+-			       PCI_ANY_ID, pdev)) != NULL)
++	while (1) {
++		pdev = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, pdev);
++		if (!pdev)
++			break;
++
+ 		vga_arbiter_add_pci_device(pdev);
++	}
+ 
+ 	pr_info("loaded\n");
+ 	return rc;
+-- 
+2.25.1
 
