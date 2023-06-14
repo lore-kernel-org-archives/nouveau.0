@@ -4,53 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 377A2EB64D7
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E5B8EB64DB
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B278C10E344;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8610710E35F;
 	Tue, 20 Jun 2023 18:20:35 +0000 (UTC)
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
- [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 808BF10E1E9
- for <nouveau@lists.freedesktop.org>; Mon, 19 Jun 2023 10:55:31 +0000 (UTC)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1qBCWL-0002p6-AF; Mon, 19 Jun 2023 12:54:05 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
- by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1qBCVz-008UH9-M6; Mon, 19 Jun 2023 12:53:43 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1qBCVy-00FYHN-RS; Mon, 19 Jun 2023 12:53:42 +0200
-Date: Mon, 19 Jun 2023 12:53:42 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Maxime Ripard <mripard@kernel.org>
-Message-ID: <20230619105342.ugf5gz26gcalcsi6@pengutronix.de>
-References: <20230507162616.1368908-1-u.kleine-koenig@pengutronix.de>
- <20230601154002.uv2wfatpb7b45duz@pengutronix.de>
- <CAD=FV=WvP--wJwBQtnSoW_xb57R1Wf9dH0XzWxe+NorczXfeAw@mail.gmail.com>
- <20230617161222.wy55pbomnrrlfy5u@pengutronix.de>
- <CAD=FV=U5gbMUNteyyFcTvHVBDWzfthM0aDirJC+yXGovDwMOBA@mail.gmail.com>
- <20230618123915.hmy66z7e532jhwgk@pengutronix.de>
- <jlq2xayh4dxfigfsh2fms2kt4hlrqcwxblffmqq7czbhqhhvz7@hsvol72f5i3y>
- <20230618162950.6th2yo66baqay5mv@pengutronix.de>
- <vxjp5c4wojcvbnp3ghsspwkgrc4mjmskzl56jkuxlgfhcji7kx@m3hg525p7y6a>
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0116A10E24E;
+ Wed, 14 Jun 2023 10:50:36 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8AxW+p7m4lkURgFAA--.10857S3;
+ Wed, 14 Jun 2023 18:50:35 +0800 (CST)
+Received: from [10.20.42.43] (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8DxK8p6m4lkKIUaAA--.1634S3; 
+ Wed, 14 Jun 2023 18:50:34 +0800 (CST)
+Message-ID: <dbf0d89f-717a-1f78-aef2-f30506751d4d@loongson.cn>
+Date: Wed, 14 Jun 2023 18:50:34 +0800
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="mvpkprqqq4uvoixx"
-Content-Disposition: inline
-In-Reply-To: <vxjp5c4wojcvbnp3ghsspwkgrc4mjmskzl56jkuxlgfhcji7kx@m3hg525p7y6a>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: nouveau@lists.freedesktop.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+To: Sui Jingfeng <15330273260@189.cn>, Bjorn Helgaas <bhelgaas@google.com>
+References: <20230613030151.216625-1-15330273260@189.cn>
+ <20230613030151.216625-3-15330273260@189.cn>
+Content-Language: en-US
+From: Sui Jingfeng <suijingfeng@loongson.cn>
+Organization: Loongson
+In-Reply-To: <20230613030151.216625-3-15330273260@189.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8DxK8p6m4lkKIUaAA--.1634S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoWxXr43WFyxtr4ruFWDXr4xAFc_yoW5tr1xpF
+ yrGa45KrW8Ga4xW3y2qF18ZFy5ZFZ0ka4rtr42k34FkFWqkw1qqF95GFyYq343JrWkJF1I
+ qa1ayrnruanFgabCm3ZEXasCq-sJn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUv2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v2
+ 6rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx1l5I
+ 8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AK
+ xVWxJVW8Jr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JMxk0xIA0c2IEe2xFo4
+ CEbIxvr21l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG
+ 67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MI
+ IYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E
+ 14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWxJV
+ W8Jr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU13E
+ fUUUUUU==
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: Re: [Nouveau] patches dropped from drm-misc-next [Was: Re: [PATCH
- 00/53] drm: Convert to platform remove callback returning] void
+Subject: Re: [Nouveau] [PATCH v7 2/8] PCI/VGA: Deal only with VGA class
+ devices
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,246 +66,126 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Raymond Tan <raymond.tan@intel.com>,
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Akhil P Oommen <quic_akhilpo@quicinc.com>,
- Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
- Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Steven Price <steven.price@arm.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- Jerome Brunet <jbrunet@baylibre.com>, linux-samsung-soc@vger.kernel.org,
- Robert Foss <rfoss@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Kevin Hilman <khilman@baylibre.com>,
- =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Kuogee Hsieh <quic_khsieh@quicinc.com>, Xinliang Liu <xinliang.liu@linaro.org>,
- NXP Linux Team <linux-imx@nxp.com>, Miaoqian Lin <linmq006@gmail.com>,
- linux-sunxi@lists.linux.dev, Rob Clark <robdclark@gmail.com>,
- Rahul T R <r-ravikumar@ti.com>,
- Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
- Jani Nikula <jani.nikula@intel.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- etnaviv@lists.freedesktop.org, Stephen Boyd <swboyd@chromium.org>,
- Inki Dae <inki.dae@samsung.com>, Alain Volmat <alain.volmat@foss.st.com>,
- Sean Paul <sean@poorly.run>, Johan Hovold <johan+linaro@kernel.org>,
- Hyun Kwon <hyun.kwon@xilinx.com>, Andrew Jeffery <andrew@aj.id.au>,
- Jingoo Han <jingoohan1@gmail.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>, kernel@pengutronix.de,
- Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
- Claudiu Beznea <claudiu.beznea@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-aspeed@lists.ozlabs.org,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Thierry Reding <thierry.reding@gmail.com>, John Stultz <jstultz@google.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>, Liang He <windhl@126.com>,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- lima@lists.freedesktop.org, Chunyan Zhang <zhang.lyra@gmail.com>,
- Alexey Brodkin <abrodkin@synopsys.com>, Minghao Chi <chi.minghao@zte.com.cn>,
- linux-rockchip@lists.infradead.org, Ben Skeggs <bskeggs@redhat.com>,
- Russell King <linux+etnaviv@armlinux.org.uk>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, linux-mips@vger.kernel.org,
- Liu Ying <victor.liu@nxp.com>, linux-arm-msm@vger.kernel.org,
- Wang Jianzheng <wangjianzheng@vivo.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Boris Brezillon <bbrezillon@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- linux-mediatek@lists.infradead.org, Brian Starkey <brian.starkey@arm.com>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Yuan Can <yuancan@huawei.com>, Stefan Agner <stefan@agner.ch>,
- Michal Simek <michal.simek@xilinx.com>, linux-tegra@vger.kernel.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- Rob Herring <robh@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Mali DP Maintainers <malidp@foss.arm.com>, Joel Stanley <joel@jms.id.au>,
- nouveau@lists.freedesktop.org, Orson Zhai <orsonzhai@gmail.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Guo Zhengkui <guozhengkui@vivo.com>,
- Konrad Dybcio <konrad.dybcio@somainline.org>,
- Alison Wang <alison.wang@nxp.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Mark Brown <broonie@kernel.org>, Baolin Wang <baolin.wang@linux.alibaba.com>,
- Daniel Vetter <daniel@ffwll.ch>, Liu Shixin <liushixin2@huawei.com>,
- Tomi Valkeinen <tomba@kernel.org>, Deepak R Varma <drv@mailo.com>,
- Karol Wachowski <karol.wachowski@linux.intel.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Ricardo Ribalda <ribalda@chromium.org>, Tian Tao <tiantao6@hisilicon.com>,
- Shawn Guo <shawnguo@kernel.org>, Yannick Fertre <yannick.fertre@foss.st.com>,
- linux-stm32@st-md-mailman.stormreply.com, Emma Anholt <emma@anholt.net>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Doug Anderson <dianders@chromium.org>, Paul Cercueil <paul@crapouillou.net>,
- Laura Nao <laura.nao@collabora.com>, Marek Vasut <marex@denx.de>,
- linux-renesas-soc@vger.kernel.org, Yongqin Liu <yongqin.liu@linaro.org>,
- Jayshri Pawar <jpawar@cadence.com>, Jonas Karlman <jonas@kwiboo.se>,
- Russell King <linux@armlinux.org.uk>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Philippe Cornu <philippe.cornu@foss.st.com>, Melissa Wen <mwen@igalia.com>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Fabio Estevam <festevam@gmail.com>,
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Qiang Yu <yuq825@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Jyri Sarha <jyri.sarha@iki.fi>,
- Lucas Stach <l.stach@pengutronix.de>
+Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+Hi,
 
---mvpkprqqq4uvoixx
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2023/6/13 11:01, Sui Jingfeng wrote:
+> From: Sui Jingfeng <suijingfeng@loongson.cn>
+>
+> Deal only with the VGA devcie(pdev->class == 0x0300), so replace the
+> pci_get_subsys() function with pci_get_class(). Filter the non-PCI display
+> device(pdev->class != 0x0300) out. There no need to process the non-display
+> PCI device.
+>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+> ---
+>   drivers/pci/vgaarb.c | 22 ++++++++++++----------
+>   1 file changed, 12 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+> index c1bc6c983932..22a505e877dc 100644
+> --- a/drivers/pci/vgaarb.c
+> +++ b/drivers/pci/vgaarb.c
+> @@ -754,10 +754,6 @@ static bool vga_arbiter_add_pci_device(struct pci_dev *pdev)
+>   	struct pci_dev *bridge;
+>   	u16 cmd;
+>   
+> -	/* Only deal with VGA class devices */
+> -	if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
+> -		return false;
+> -
 
-On Mon, Jun 19, 2023 at 11:45:37AM +0200, Maxime Ripard wrote:
-> On Sun, Jun 18, 2023 at 06:29:50PM +0200, Uwe Kleine-K=C3=B6nig wrote:
-> > Hello Maxime,
-> >=20
-> > On Sun, Jun 18, 2023 at 04:32:55PM +0200, Maxime Ripard wrote:
-> > > On Sun, Jun 18, 2023 at 02:39:15PM +0200, Uwe Kleine-K=C3=B6nig wrote:
-> > > > On Sat, Jun 17, 2023 at 10:57:23AM -0700, Doug Anderson wrote:
-> > > > > On Sat, Jun 17, 2023 at 9:15=E2=80=AFAM Uwe Kleine-K=C3=B6nig
-> > > > > <u.kleine-koenig@pengutronix.de> wrote:
-> > > > > > Together with the patches that were applied later the topmost c=
-ommit
-> > > > > > from this series is c2807ecb5290 ("drm/omap: Convert to platfor=
-m remove
-> > > > > > callback returning void"). This commit was part for the followi=
-ng next
-> > > > > > tags:
-> > > > > >
-> > > > > >         $ git tag -l --contains c2807ecb5290
-> > > > > >         next-20230609
-> > > > > >         next-20230613
-> > > > > >         next-20230614
-> > > > > >         next-20230615
-> > > > > >
-> > > > > > However in next-20230616 they are missing. In next-20230616
-> > > > > > drm-misc/for-linux-next was cf683e8870bd4be0fd6b98639286700a350=
-88660.
-> > > > > > Compared to c2807ecb5290 this adds 1149 patches but drops 37 (t=
-hat are
-> > > > > > also not included with a different commit id). The 37 patches d=
-ropped
-> > > > > > are 13cdd12a9f934158f4ec817cf048fcb4384aa9dc..c2807ecb5290:
-> > > > > >
-> > > > > >         $ git shortlog -s 13cdd12a9f934158f4ec817cf048fcb4384aa=
-9dc..c2807ecb5290
-> > > > > >              1  Christophe JAILLET
-> > > > > >              2  Jessica Zhang
-> > > > > >              5  Karol Wachowski
-> > > > > >              1  Laura Nao
-> > > > > >             27  Uwe Kleine-K=C3=B6nig
-> > > > > >              1  Wang Jianzheng
-> > > > > >
-> > > > > >
-> > > > > > I guess this was done by mistake because nobody told me about d=
-ropping
-> > > > > > my/these patches? Can c2807ecb5290 please be merged into drm-mi=
-sc-next
-> > > > > > again?
-> > > > >=20
-> > > > > Actually, it was probably a mistake that these patches got merged=
- to
-> > > > > linuxnext during the 4 days that you noticed. However, your patch=
-es
-> > > > > aren't dropped and are still present in drm-misc-next.
-> > > > >=20
-> > > > > drm-misc has a bit of a unique model and it's documented fairly w=
-ell here:
-> > > > >=20
-> > > > > https://drm.pages.freedesktop.org/maintainer-tools/drm-misc.html
-> > > >=20
-> > > > Is there a flaw then in this unique model (or its implementation) w=
-hen
-> > > > drm-misc/for-linux-next moves in a non-fast-forward manner? This is=
-n't
-> > > > expected, is it?
-> > >=20
-> > > There's no expectation afaik. Any tree merged in linux-next can be
-> > > rebased, drop a patch, amend one, etc. without any concern.
-> >=20
-> > I agree that there are no rules broken for a tree that is included in
-> > next and a maintainer is free to rewrite their tree independant of the
-> > tree being included in next.
-> >=20
-> > Still I think that shouldn't be used as an excuse.
->=20
-> As an excuse for what?
+Hi, here is probably a bug fixing.
 
-Just because the rules for trees in next allow the merged branch to be
-rewritten, shouldn't be used to justify rewriting the branch.
+For an example, nvidia render only GPU typically has 0x0380.
 
-IMHO you still should ensure that only commits make it into any next
-snapshot via your tree before X-rc1 for some X (e.g. v6.5) that you
-intend to be included in X-rc1.
+at its PCI class number, but  render only GPU should not participate in 
+the arbitration.
 
-> > For me, if a maintainer puts some patch into next that's a statement
-> > saying (approximately) "I think this patch is fine and I intend to
-> > send it to Linus during the next merge window.".
->=20
-> I mean, that's what we're saying and doing?
+As it shouldn't snoop the legacy fixed VGA address.
 
-No, on 2023-06-09 I assumed that my patches will go into v6.5-rc1 (as it
-was part of next-20230609). A few days later however the patches were
-dropped.
-
-The two options that would have made the experience smoother for me are:
-
- a) keep c2807ecb5290 in next and send it for v6.5-rc1; or
- b) keep c2807ecb5290 in a branch that doesn't result it entering next
-    before v6.5-rc1.
-
-> > So my expectation is that if a patch is dropped again from next, there
-> > was a problem and it would be fair if the maintainer tells the
-> > author/submitter about this problem and that the patch was dropped.
->=20
-> But it wasn't dropped,
-
-=46rom my POV it was dropped from next as it was part of next between
-next-20230609 and next-20230615 but not any more since next-20230616.
-You talk about (not) being dropped from some branch in drm-misc, that's
-irrelevant for the thing I'm complaining about.
-
-> it's still very much to be sent to Linus during the next merge window.
-
-"next merge window" as in the one leading to 6.5-rc1? Either we mean
-different things when we say "next merge window", or there is a
-misunderstanding I don't see yet.
-
-Best regards
-Uwe
+It(render only GPU) can not display anything.
 
 
+But 0x0380 >> 8 = 0x03, the filter  failed.
 
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
-   |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+>   	/* Allocate structure */
+>   	vgadev = kzalloc(sizeof(struct vga_device), GFP_KERNEL);
+>   	if (vgadev == NULL) {
+> @@ -1500,7 +1496,9 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
+>   	struct pci_dev *pdev = to_pci_dev(dev);
+>   	bool notify = false;
+>   
+> -	vgaarb_dbg(dev, "%s\n", __func__);
+> +	/* Only deal with VGA class devices */
+> +	if (pdev->class != PCI_CLASS_DISPLAY_VGA << 8)
+> +		return 0;
 
---mvpkprqqq4uvoixx
-Content-Type: application/pgp-signature; name="signature.asc"
+So here we only care 0x0300, my initial intent is to make an optimization,
 
------BEGIN PGP SIGNATURE-----
+nowadays sane display graphic card should all has 0x0300 as its PCI 
+class number, is this complete right?
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmSQM7UACgkQj4D7WH0S
-/k5Ixgf/Xgm0USxBI9N1ZZCA+kshTeAUthayxBg8SxLjieh642COZiY1XJeafq5D
-0q+p03nZWDIWbfX9/OZIucjSM5yqLBSowvH88x8xpTpy7byu7BmMV4T+EJ5LGQk2
-lgV8cjYF0QrYmMs2A3ALwGahaSL+rI+rv7EMepAYh5ZYrQ1QuNXOTUAGt8Km25fq
-RGjQnUIMJOaB+24HEkSDBpFBFa1J8I/HbUH2udU8HWJ1rDJrlEk6frRM3tEi3rSk
-CBOLLDzPWGGdPr4kOZrMoga8GnB0dLbjzVigb4kXbTYjfMHQtY2LX2d7pH45Snqs
-rrU3Nu2sd/iPuOusJaoyii8/117yjA==
-=SAIF
------END PGP SIGNATURE-----
+```
 
---mvpkprqqq4uvoixx--
+#define PCI_BASE_CLASS_DISPLAY        0x03
+#define PCI_CLASS_DISPLAY_VGA        0x0300
+#define PCI_CLASS_DISPLAY_XGA        0x0301
+#define PCI_CLASS_DISPLAY_3D        0x0302
+#define PCI_CLASS_DISPLAY_OTHER        0x0380
+
+```
+
+Any ideas ?
+
+>   	/* For now we're only intereted in devices added and removed. I didn't
+>   	 * test this thing here, so someone needs to double check for the
+> @@ -1510,6 +1508,8 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
+>   	else if (action == BUS_NOTIFY_DEL_DEVICE)
+>   		notify = vga_arbiter_del_pci_device(pdev);
+>   
+> +	vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
+> +
+>   	if (notify)
+>   		vga_arbiter_notify_clients();
+>   	return 0;
+> @@ -1534,8 +1534,8 @@ static struct miscdevice vga_arb_device = {
+>   
+>   static int __init vga_arb_device_init(void)
+>   {
+> +	struct pci_dev *pdev = NULL;
+>   	int rc;
+> -	struct pci_dev *pdev;
+>   
+>   	rc = misc_register(&vga_arb_device);
+>   	if (rc < 0)
+> @@ -1545,11 +1545,13 @@ static int __init vga_arb_device_init(void)
+>   
+>   	/* We add all PCI devices satisfying VGA class in the arbiter by
+>   	 * default */
+> -	pdev = NULL;
+> -	while ((pdev =
+> -		pci_get_subsys(PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
+> -			       PCI_ANY_ID, pdev)) != NULL)
+> +	while (1) {
+> +		pdev = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, pdev);
+> +		if (!pdev)
+> +			break;
+> +
+>   		vga_arbiter_add_pci_device(pdev);
+> +	}
+>   
+>   	pr_info("loaded\n");
+>   	return rc;
+
+-- 
+Jingfeng
+
