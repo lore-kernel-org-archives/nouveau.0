@@ -4,63 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC1C3EB64DB
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E19D0EB64D8
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E03B410E36B;
-	Tue, 20 Jun 2023 18:20:47 +0000 (UTC)
-Received: from 189.cn (ptr.189.cn [183.61.185.103])
- by gabe.freedesktop.org (Postfix) with ESMTP id 81FF010E26B;
- Thu,  8 Jun 2023 11:43:43 +0000 (UTC)
-HMM_SOURCE_IP: 10.64.8.41:48916.660287130
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
- by 189.cn (HERMES) with SMTP id 7246D1002AF;
- Thu,  8 Jun 2023 19:43:38 +0800 (CST)
-Received: from  ([114.242.206.180])
- by gateway-151646-dep-75648544bd-xwndj with ESMTP id
- be5be8aede204d31a3c846f914d94a56 for alexander.deucher@amd.com; 
- Thu, 08 Jun 2023 19:43:42 CST
-X-Transaction-ID: be5be8aede204d31a3c846f914d94a56
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-From: Sui Jingfeng <15330273260@189.cn>
-To: Alex Deucher <alexander.deucher@amd.com>,
- Christian Konig <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Hawking Zhang <Hawking.Zhang@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
- Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- Bokun Zhang <Bokun.Zhang@amd.com>,
- Ville Syrjala <ville.syrjala@linux.intel.com>, Li Yi <liyi@loongson.cn>,
- Sui Jingfeng <suijingfeng@loongson.cn>, Jason Gunthorpe <jgg@ziepe.ca>,
- Kevin Tian <kevin.tian@intel.com>, Cornelia Huck <cohuck@redhat.com>,
- Yishai Hadas <yishaih@nvidia.com>, Abhishek Sahu <abhsahu@nvidia.com>,
- Yi Liu <yi.l.liu@intel.com>
-Date: Thu,  8 Jun 2023 19:43:22 +0800
-Message-Id: <20230608114322.604887-5-15330273260@189.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230608114322.604887-1-15330273260@189.cn>
-References: <20230608114322.604887-1-15330273260@189.cn>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 162FF10E357;
+	Tue, 20 Jun 2023 18:20:56 +0000 (UTC)
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3524910E11A;
+ Thu, 15 Jun 2023 06:51:53 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8Bx7eoGtYpkb3YFAA--.11707S3;
+ Thu, 15 Jun 2023 14:51:50 +0800 (CST)
+Received: from [10.20.42.43] (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8CxhuQFtYpkQKEbAA--.13222S3; 
+ Thu, 15 Jun 2023 14:51:49 +0800 (CST)
+Message-ID: <1b5e3b60-28dc-60f1-b963-2eab2c787244@loongson.cn>
+Date: Thu, 15 Jun 2023 14:51:49 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+To: Sui Jingfeng <15330273260@189.cn>, Bjorn Helgaas <bhelgaas@google.com>
+References: <20230613030151.216625-1-15330273260@189.cn>
+ <20230613030151.216625-8-15330273260@189.cn>
+Content-Language: en-US
+From: Sui Jingfeng <suijingfeng@loongson.cn>
+Organization: Loongson
+In-Reply-To: <20230613030151.216625-8-15330273260@189.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8CxhuQFtYpkQKEbAA--.13222S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoWxArWUWw17ZFWDCrWDuF4rJFc_yoWrurW5pw
+ 48Ga13Wr48Jr1Skryj9Fn8GF1Y9F95AayDArn7tw18Cr47Ka10qF9Iqa1Yg3ZxAr4IvrnI
+ qrn2y340y34DZagCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUPab4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+ xVW8Jr0_Cr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
+ AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
+ XVWUAwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI4
+ 8JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vI
+ r41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG67
+ AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIY
+ rxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14
+ v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8
+ JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU43xhDU
+ UUU
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: [Nouveau] [PATCH v3 4/4] PCI/VGA: introduce is_boot_device function
- callback to vga_client_register
+Subject: Re: [Nouveau] [PATCH v7 7/8] drm/amdgpu: Implement the
+ is_boot_device callback function
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,217 +67,133 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, loongson-kernel@lists.loongnix.cn,
- amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
+Cc: Mario Limonciello <mario.limonciello@amd.com>, linux-fbdev@vger.kernel.org,
+ Lijo Lazar <lijo.lazar@amd.com>, kvm@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ linux-pci@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
+ Bokun Zhang <Bokun.Zhang@amd.com>, Likun Gao <Likun.Gao@amd.com>,
+ Christian Konig <christian.koenig@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Sui Jingfeng <suijingfeng@loongson.cn>
+Hi,
 
-The vga_is_firmware_default() function is arch-dependent, which doesn't
-sound right. At least, it also works on the Mips and LoongArch platforms.
-Tested with the drm/amdgpu and drm/radeon drivers. However, it's difficult
-to enumerate all arch-driver combinations. I'm wrong if there is only one
-exception.
 
-With the observation that device drivers typically have better knowledge
-about which PCI bar contains the firmware framebuffer, which could avoid
-the need to iterate all of the PCI BARs.
+Does anyone has the bandwidth to review this?
 
-But as a PCI function at pci/vgaarb.c, vga_is_firmware_default() is
-probably not suitable to make such an optimization for a specific device.
+I provide more additional information here, hope it helps.
 
-There are PCI display controllers that don't have a dedicated VRAM bar,
-this function will lose its effectiveness in such a case. Luckily, the
-device driver can provide an accurate workaround.
 
-Therefore, this patch introduces a callback that allows the device driver
-to tell the VGAARB if the device is the default boot device. This patch
-only intends to introduce the mechanism, while the implementation is left
-to the device driver authors. Also honor the comment: "Clients have two
-callback mechanisms they can use"
+On a non-x86 multiple platform, the discrete AMDGPU fails to override 
+the integrated one.
 
-Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 +-
- drivers/gpu/drm/i915/display/intel_vga.c   |  3 +--
- drivers/gpu/drm/nouveau/nouveau_vga.c      |  2 +-
- drivers/gpu/drm/radeon/radeon_device.c     |  2 +-
- drivers/pci/vgaarb.c                       | 22 ++++++++++++++++++----
- drivers/vfio/pci/vfio_pci_core.c           |  2 +-
- include/linux/vgaarb.h                     |  8 +++++---
- 7 files changed, 28 insertions(+), 13 deletions(-)
+because the PCI BAR 0 of the AMDGPU gets moved.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 5c7d40873ee2..7a096f2d5c16 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3960,7 +3960,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 	/* this will fail for cards that aren't VGA class devices, just
- 	 * ignore it */
- 	if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
--		vga_client_register(adev->pdev, amdgpu_device_vga_set_decode);
-+		vga_client_register(adev->pdev, amdgpu_device_vga_set_decode, NULL);
- 
- 	px = amdgpu_device_supports_px(ddev);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
-index 286a0bdd28c6..98d7d4dffe9f 100644
---- a/drivers/gpu/drm/i915/display/intel_vga.c
-+++ b/drivers/gpu/drm/i915/display/intel_vga.c
-@@ -115,7 +115,6 @@ intel_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
- 
- int intel_vga_register(struct drm_i915_private *i915)
- {
--
- 	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	int ret;
- 
-@@ -127,7 +126,7 @@ int intel_vga_register(struct drm_i915_private *i915)
- 	 * then we do not take part in VGA arbitration and the
- 	 * vga_client_register() fails with -ENODEV.
- 	 */
--	ret = vga_client_register(pdev, intel_vga_set_decode);
-+	ret = vga_client_register(pdev, intel_vga_set_decode, NULL);
- 	if (ret && ret != -ENODEV)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouveau/nouveau_vga.c
-index f8bf0ec26844..162b4f4676c7 100644
---- a/drivers/gpu/drm/nouveau/nouveau_vga.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
-@@ -92,7 +92,7 @@ nouveau_vga_init(struct nouveau_drm *drm)
- 		return;
- 	pdev = to_pci_dev(dev->dev);
- 
--	vga_client_register(pdev, nouveau_vga_set_decode);
-+	vga_client_register(pdev, nouveau_vga_set_decode, NULL);
- 
- 	/* don't register Thunderbolt eGPU with vga_switcheroo */
- 	if (pci_is_thunderbolt_attached(pdev))
-diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
-index afbb3a80c0c6..71f2ff39d6a1 100644
---- a/drivers/gpu/drm/radeon/radeon_device.c
-+++ b/drivers/gpu/drm/radeon/radeon_device.c
-@@ -1425,7 +1425,7 @@ int radeon_device_init(struct radeon_device *rdev,
- 	/* if we have > 1 VGA cards, then disable the radeon VGA resources */
- 	/* this will fail for cards that aren't VGA class devices, just
- 	 * ignore it */
--	vga_client_register(rdev->pdev, radeon_vga_set_decode);
-+	vga_client_register(rdev->pdev, radeon_vga_set_decode, NULL);
- 
- 	if (rdev->flags & RADEON_IS_PX)
- 		runtime = true;
-diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
-index b0bf4952a95d..d3dab61e0ef2 100644
---- a/drivers/pci/vgaarb.c
-+++ b/drivers/pci/vgaarb.c
-@@ -53,6 +53,7 @@ struct vga_device {
- 	bool bridge_has_one_vga;
- 	bool is_firmware_default;	/* device selected by firmware */
- 	unsigned int (*set_decode)(struct pci_dev *pdev, bool decode);
-+	bool (*is_boot_device)(struct pci_dev *pdev);
- };
- 
- static LIST_HEAD(vga_list);
-@@ -614,10 +615,17 @@ static bool vga_is_boot_device(struct vga_device *vgadev)
- 	if (boot_vga && boot_vga->is_firmware_default)
- 		return false;
- 
--	if (vga_is_firmware_default(pdev)) {
--		vgadev->is_firmware_default = true;
-+	/*
-+	 * Ask the device driver first, if registered. Fallback to the
-+	 * default implement if the callback is non-exist.
-+	 */
-+	if (vgadev->is_boot_device)
-+		vgadev->is_firmware_default = vgadev->is_boot_device(pdev);
-+	else
-+		vgadev->is_firmware_default = vga_is_firmware_default(pdev);
-+
-+	if (vgadev->is_firmware_default)
- 		return true;
--	}
- 
- 	/*
- 	 * A legacy VGA device has MEM and IO enabled and any bridges
-@@ -954,6 +962,10 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
-  * @set_decode callback: If a client can disable its GPU VGA resource, it
-  * will get a callback from this to set the encode/decode state.
-  *
-+ * @is_boot_device: callback to the device driver, query if a client is the
-+ * default boot device, as the device driver typically has better knowledge
-+ * if specific device is the boot device. But this callback is optional.
-+ *
-  * Rationale: we cannot disable VGA decode resources unconditionally, some
-  * single GPU laptops seem to require ACPI or BIOS access to the VGA registers
-  * to control things like backlights etc. Hopefully newer multi-GPU laptops do
-@@ -969,7 +981,8 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
-  * Returns: 0 on success, -1 on failure
-  */
- int vga_client_register(struct pci_dev *pdev,
--		unsigned int (*set_decode)(struct pci_dev *pdev, bool decode))
-+		unsigned int (*set_decode)(struct pci_dev *pdev, bool decode),
-+		bool (*is_boot_device)(struct pci_dev *pdev))
- {
- 	int ret = -ENODEV;
- 	struct vga_device *vgadev;
-@@ -981,6 +994,7 @@ int vga_client_register(struct pci_dev *pdev,
- 		goto bail;
- 
- 	vgadev->set_decode = set_decode;
-+	vgadev->is_boot_device = is_boot_device;
- 	ret = 0;
- 
- bail:
-diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
-index a5ab416cf476..2a8873a330ba 100644
---- a/drivers/vfio/pci/vfio_pci_core.c
-+++ b/drivers/vfio/pci/vfio_pci_core.c
-@@ -2067,7 +2067,7 @@ static int vfio_pci_vga_init(struct vfio_pci_core_device *vdev)
- 	if (ret)
- 		return ret;
- 
--	ret = vga_client_register(pdev, vfio_pci_set_decode);
-+	ret = vga_client_register(pdev, vfio_pci_set_decode, NULL);
- 	if (ret)
- 		return ret;
- 	vga_set_legacy_decoding(pdev, vfio_pci_set_decode(pdev, false));
-diff --git a/include/linux/vgaarb.h b/include/linux/vgaarb.h
-index d36225c582ee..66fe80ffad76 100644
---- a/include/linux/vgaarb.h
-+++ b/include/linux/vgaarb.h
-@@ -50,7 +50,8 @@ struct pci_dev *vga_default_device(void);
- void vga_set_default_device(struct pci_dev *pdev);
- int vga_remove_vgacon(struct pci_dev *pdev);
- int vga_client_register(struct pci_dev *pdev,
--		unsigned int (*set_decode)(struct pci_dev *pdev, bool state));
-+		unsigned int (*set_decode)(struct pci_dev *pdev, bool state),
-+		bool (*is_boot_device)(struct pci_dev *pdev));
- #else /* CONFIG_VGA_ARB */
- static inline void vga_set_legacy_decoding(struct pci_dev *pdev,
- 		unsigned int decodes)
-@@ -76,7 +77,8 @@ static inline int vga_remove_vgacon(struct pci_dev *pdev)
- 	return 0;
- }
- static inline int vga_client_register(struct pci_dev *pdev,
--		unsigned int (*set_decode)(struct pci_dev *pdev, bool state))
-+		unsigned int (*set_decode)(struct pci_dev *pdev, bool state),
-+		bool (*is_boot_device)(struct pci_dev *pdev))
- {
- 	return 0;
- }
-@@ -114,7 +116,7 @@ static inline int vga_get_uninterruptible(struct pci_dev *pdev,
- 
- static inline void vga_client_unregister(struct pci_dev *pdev)
- {
--	vga_client_register(pdev, NULL);
-+	vga_client_register(pdev, NULL, NULL);
- }
- 
- #endif /* LINUX_VGA_H */
+Below is the log of 'dmesg | grep vgaarb'.
+
+So relaying on screen_info is not always reliable.
+
+
+[    0.361928] pci 0000:00:06.1: vgaarb: setting as boot VGA device
+[    0.361932] pci 0000:00:06.1: vgaarb: bridge control possible
+[    0.361933] pci 0000:00:06.1: vgaarb: VGA device added: decodes=io+mem,owns=io+mem,locks=none
+[    0.361940] pci 0000:05:00.0: vgaarb: bridge control possible
+[    0.361941] pci 0000:05:00.0: vgaarb: VGA device added: decodes=io+mem,owns=none,locks=none
+[    0.361943] vgaarb: loaded
+[   11.352087] amdgpu 0000:05:00.0: vgaarb: Set as boot device (dictated by driver)
+[   11.575505] loongson 0000:00:06.1: vgaarb: changed VGA decodes: olddecodes=io+mem,decodes=none:owns=io+mem
+[   11.585100] amdgpu 0000:05:00.0: vgaarb: changed VGA decodes: olddecodes=io+mem,decodes=none:owns=none
+
+
+dmesg | grep efifb:
+
+
+[    0.356355] pci 0000:05:00.0: BAR 0: assigned to efifb
+[    0.375793] efifb: probing for efifb
+[    0.375795] pci 0000:05:00.0: BAR has moved, updating efifb address
+[    0.375803] efifb: framebuffer at 0xe0030000000, using 976k, total 975k
+[    0.375805] efifb: mode is 800x600x16, linelength=1664, pages=1
+[    0.375806] efifb: scrolling: redraw
+[    0.375808] efifb: Truecolor: size=0:5:6:5, shift=0:11:5:0
+
+
+efifb can also prove that "BAR has been moved"
+
+
+ From dmesg |  grep "pci 0000:05:00.0":
+
+
+[    0.356286] pci 0000:05:00.0: [1002:699f] type 00 class 0x030000
+[    0.356303] pci 0000:05:00.0: reg 0x10: [mem 
+0xe0020000000-0xe002fffffff 64bit pref]
+[    0.356315] pci 0000:05:00.0: reg 0x18: [mem 
+0xe0030000000-0xe00301fffff 64bit pref]
+[    0.356323] pci 0000:05:00.0: reg 0x20: [io  0x40000-0x400ff]
+[    0.356331] pci 0000:05:00.0: reg 0x24: [mem 0xe0053100000-0xe005313ffff]
+[    0.356339] pci 0000:05:00.0: reg 0x30: [mem 0xfffe0000-0xffffffff pref]
+[    0.356346] pci 0000:05:00.0: enabling Extended Tags
+[    0.356355] pci 0000:05:00.0: BAR 0: assigned to efifb
+[    0.356421] pci 0000:05:00.0: supports D1 D2
+[    0.356422] pci 0000:05:00.0: PME# supported from D1 D2 D3hot D3cold
+[    0.356858] pci 0000:05:00.0: BAR 0: assigned [mem 
+0xe0030000000-0xe003fffffff 64bit pref]
+[    0.356866] pci 0000:05:00.0: BAR 2: assigned [mem 
+0xe0040000000-0xe00401fffff 64bit pref]
+[    0.356875] pci 0000:05:00.0: BAR 5: assigned [mem 
+0xe0049000000-0xe004903ffff]
+[    0.356878] pci 0000:05:00.0: BAR 6: assigned [mem 
+0xe0049040000-0xe004905ffff pref]
+[    0.356889] pci 0000:05:00.0: BAR 4: assigned [io 0x4000-0x40ff]
+[    0.361940] pci 0000:05:00.0: vgaarb: bridge control possible
+[    0.361941] pci 0000:05:00.0: vgaarb: VGA device added: 
+decodes=io+mem,owns=none,locks=none
+[    0.375795] pci 0000:05:00.0: BAR has moved, updating efifb address
+
+We can see that the Bar 0 of AMDGPU
+
+moved from '0xe0020000000-0xe002fffffff'  to '0xe0030000000-0xe003fffffff'
+
+while the fb location information recorded by the screen_info still 
+belong to '0xe0020000000-0xe002fffffff'
+
+
+I suspect this is also the reason that video/aperture don't relay on the 
+information provided by screen_info
+
+in the contrast, it require the firmware framebuffer driver(efifb) to call
+
+devm_aperture_acquire_from_firmware() function, only in this way 
+video/aperture
+
+could record the correct information about the aperture being used the 
+by the firmware framebuffe.
+
+
+While vgaarb is loaded too early, even before efifb.
+
+so that we can only relay on the pci_notifier call back to us.
+
+
+On 2023/6/13 11:01, Sui Jingfeng wrote:
+> From: Sui Jingfeng <suijingfeng@loongson.cn>
+>
+> [why]
+>
+> The vga_is_firmware_default() defined in drivers/pci/vgaarb.c is
+> arch-dependent, it's a dummy on non-x86 architectures currently.
+> This made VGAARB lost an important condition for the arbitration.
+> It could still be wrong even if we remove the #ifdef and #endif guards.
+> because the PCI bar will move (resource re-allocation).
+>
+> [how]
+>
+> The device that owns the firmware framebuffer should be the default boot
+> device. This patch adds an arch-independent function to enforce this rule
+
 -- 
-2.25.1
+Jingfeng
 
