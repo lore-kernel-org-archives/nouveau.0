@@ -4,161 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 262CBEB64DD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3F2CEB64DC
 	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57A1C10E36E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AB2110E365;
 	Tue, 20 Jun 2023 18:20:56 +0000 (UTC)
-X-Greylist: delayed 1418 seconds by postgrey-1.36 at gabe;
- Fri, 09 Jun 2023 12:20:27 UTC
-Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com
- [185.132.180.163])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7792B10E25B
- for <nouveau@lists.freedesktop.org>; Fri,  9 Jun 2023 12:20:27 +0000 (UTC)
-Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
- by mx07-00376f01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id
- 3599Jj85013211; Fri, 9 Jun 2023 12:56:09 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=
- from:to:cc:subject:date:message-id:references:in-reply-to
- :content-type:content-id:content-transfer-encoding:mime-version;
- s=dk201812; bh=CVMuXDgiUQmNpFRsGUpFG1KvZS/OaHsl5qg9ku/hqqA=; b=
- E5hmkoS5Y+mzhut3oKjQRA8BlMeBiYOTjGfpaT2kCWSJk1A0RPEQQmT1Wtc24sex
- +ZIQhtV583DJJzmZBkBi0f7gApY07Wx3Mv+kSA//ZGEYGsgB7k36H4WYCplYe+IE
- a5BUCRzy0/B6N/fiCyHtDkTh9KJ8xXwF2c5AcomMFAxLzFomzI+3Yv/TKgZoF5cO
- 2ZI/U8tYdsNJp/SAuc9+bQ38rUkmV4L3EuOz9EzzJEQNXu0Ob4I5vuScXZ98hBGH
- EiyMNKbc2pfpVLspDCBh/w2hfCeIQrBOBHipCYPT0nqHbbY52OyjsmgHt98y4C6B
- 52NYXsIflF9qEHBZLz1hVg==
-Received: from hhmail04.hh.imgtec.org ([217.156.249.195])
- by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 3r3w9nr81y-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
- Fri, 09 Jun 2023 12:56:09 +0100 (BST)
-Received: from HHMAIL05.hh.imgtec.org (10.100.10.120) by
- HHMAIL04.hh.imgtec.org (10.100.10.119) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 9 Jun 2023 12:56:08 +0100
-Received: from GBR01-LO2-obe.outbound.protection.outlook.com (104.47.21.54) by
- email.imgtec.com (10.100.10.121) with Microsoft SMTP Server
- (version=TLS1_2, 
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23 via Frontend
- Transport; Fri, 9 Jun 2023 12:56:08 +0100
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dsK/t57oWysQKvgXpSKvsBi4ft0yhhI4eH53drVzjAWWHiQoKVV1RqfYqTT5T9H/+a8b7025I+UjZm46Jfv5GQCkY2cew08w9S/semf9HV8TSF+NdsmpSVO2+47RMmbWUzafcd9J5TUM4w6KVB94kslUvte/34lgHQVooWyl1x5WReSFZXxtN3DcdpVwn4PircdLED8quGc1mWTfwg/6fLHX2xom5g2UjbufPd2bq15kdvuNCuW4DzffZIqdSD70tpwJ7QC2yxCuGBSpsL1roam7xvVFnCSI12JrTsnySDKSCUfQX1fNeYI3t5ua23o8hZI7NE2l64QDLp+r13fMJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CVMuXDgiUQmNpFRsGUpFG1KvZS/OaHsl5qg9ku/hqqA=;
- b=aqn3GG3NHFU4PH5LCkkrr6kct93zHJHpPHhs+NfGnugLJ4YF1OdcqlX5EyxjGE8L4LEJwizKbn8XJLIK29sYpWFWYw24rxhIES/isZAt3nXvHGoEbTIqJE6HNlsGJp0MAuNcgyQV5lSuFwq7/EQ6h4AlDiXMSmoBJfB0HEF2k3Uf48hw8RW0JqIVy4EAx4dqUWQ0KymJ4jiSDj72dd3vhXeGhC45Jzv3X++o1h/5B5YwdgHVJh6rDa21u1rFkuwSQF92vNp2W0A7RDMN31n6b10FNoJmXyO/wx8aS3H6bnncjAkAI8HDTGTFqSLxIBmK492mAnWMfEkeMPPsi+DqPA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=imgtec.com; dmarc=pass action=none header.from=imgtec.com;
- dkim=pass header.d=imgtec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=IMGTecCRM.onmicrosoft.com; s=selector2-IMGTecCRM-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CVMuXDgiUQmNpFRsGUpFG1KvZS/OaHsl5qg9ku/hqqA=;
- b=bIZLSVjpjVbOpTE6RwlBWM0BED/uj1z5aIDBzwdqgG/TEGWtGwbqS4hZbyDJTezdiamHfmfllkWU823ohYa/DwApJZ6RZPue0lbhTHK/3OGO10FFmS3T3ukt9tFE0VU054Ggpp+MOGzRSnPUfuInoBxvfQCzMDVo+5YYyxv2aY4=
-Received: from CWLP265MB5770.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:1a0::8)
- by CWLP265MB7312.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:1f5::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.14; Fri, 9 Jun
- 2023 11:56:07 +0000
-Received: from CWLP265MB5770.GBRP265.PROD.OUTLOOK.COM
- ([fe80::8419:9724:ffd0:21d1]) by CWLP265MB5770.GBRP265.PROD.OUTLOOK.COM
- ([fe80::8419:9724:ffd0:21d1%6]) with mapi id 15.20.6477.016; Fri, 9 Jun 2023
- 11:56:07 +0000
-From: Donald Robson <Donald.Robson@imgtec.com>
-To: "corbet@lwn.net" <corbet@lwn.net>, "jason@jlekstrand.net"
- <jason@jlekstrand.net>, "willy@infradead.org" <willy@infradead.org>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "bagasdotme@gmail.com" <bagasdotme@gmail.com>,
- "mripard@kernel.org" <mripard@kernel.org>, "matthew.brost@intel.com"
- <matthew.brost@intel.com>, "bskeggs@redhat.com" <bskeggs@redhat.com>,
- "dakr@redhat.com" <dakr@redhat.com>, "ogabbay@kernel.org"
- <ogabbay@kernel.org>, "boris.brezillon@collabora.com"
- <boris.brezillon@collabora.com>, "Liam.Howlett@oracle.com"
- <Liam.Howlett@oracle.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
- "alexdeucher@gmail.com" <alexdeucher@gmail.com>, "airlied@gmail.com"
- <airlied@gmail.com>
-Thread-Topic: [PATCH drm-next v4 00/14] [RFC] DRM GPUVA Manager & Nouveau
- VM_BIND UAPI
-Thread-Index: AQHZmMazG2PFLAis/0WnT3tapfBvdq+CYTAA
-Date: Fri, 9 Jun 2023 11:56:07 +0000
-Message-ID: <f5723444623b41d58f93c3f0ab662e9b37105765.camel@imgtec.com>
-References: <20230606223130.6132-1-dakr@redhat.com>
-In-Reply-To: <20230606223130.6132-1-dakr@redhat.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CWLP265MB5770:EE_|CWLP265MB7312:EE_
-x-ms-office365-filtering-correlation-id: 2d180528-d99e-4fbf-584b-08db68e0826e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: w5r0diTF/+kXg1KZJ1VpnoCIrcaP2wS4PQQcZDdaF0evRt8HLhNz7FM6Krp8r8h+UcMr9JwMz2diy+RvHEqPagOcgCea8IMmjJGSEGFcbFLt/NODFrGy4O/N9jFuwTb/z3kOVCLOlEoaiNiI/sRbt1muzJJxqNIZVlfVPtg9z/2q6hQ+TfYQmvVIJy6Pe8FThN4uNcY8MXtUE5NgMNh3jhuIWI9iTeKSSPOE5ZXTDHzkNWt0evVpdB1w7hGypiDqw5NCH2BzhrywfM6LAWa6WFx6BUXBwA+ts0DwS6nm/wehKZQij6LOQ39EMXev6ofKarE1D9ny8EZMdQxw73HHOs1l0EDnlTBUJsNYriCc72vStuYncdMEDojLIV8K25se5YdgIfuqm++ACHLrq6CSIaf3RvhDQnOlskKACMjRjkkwtuH59VWW9mBADkSvq8vG98P1MfK+VVR2WkQViQbPB+LRE85vp1YLNyF1sfPZWFwcATFB43UHFiHvQa6OCMn9p7xjCBN/nivNxv4qe/7kOor805UcbROxP7C1KxwAlot37SdtMX9aVLF3TW+5YQHVK8UYP09YOwFZt+Ez/z8vTA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CWLP265MB5770.GBRP265.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(13230028)(396003)(39850400004)(366004)(136003)(346002)(376002)(451199021)(6486002)(478600001)(71200400001)(36756003)(2616005)(186003)(66574015)(83380400001)(38100700002)(86362001)(38070700005)(921005)(122000001)(26005)(6506007)(6512007)(966005)(8936002)(8676002)(41300700001)(5660300002)(7416002)(2906002)(91956017)(110136005)(54906003)(76116006)(4326008)(66946007)(64756008)(66446008)(66476007)(66556008)(316002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WkxRMlpYVmNTZnY0OHhzYjdRWlUxNWxjLzZCbFFDSS8vWUZycDd6RGt4RUxO?=
- =?utf-8?B?U2x0dVVmK0JRUmFxay9kbFFuRFFtOEJzMmYwYzBmK3QySzV1NDBoUDRJTmZP?=
- =?utf-8?B?NUVlTUdyY2EvNWd6WUZhd3ZOVFU0dTc5VDFhZlZOSHU1RkR4UEZqenp2clhD?=
- =?utf-8?B?a0oxcDE4L1lwb0VHTENlTk1tOXJ5T0liU2tzcU1uZDI5aitBcDRvZC9YTzdP?=
- =?utf-8?B?UURzYWhoL0FGK1pFNUwzWWFhTiswRityMDRkMyt3US9FdVB6blJGTTloS1l3?=
- =?utf-8?B?S1B4S0tUMndVTVhxbm9uQjVNV2g1bzBwemwvTEI3QlhTWUlzNVFab21vUkU5?=
- =?utf-8?B?TzZwSFNYMmVBemRFdEpHd0I1WExCaDZBd0VHL1R6a2VEejBva0lBUm0vQ3By?=
- =?utf-8?B?Zk9vQlhqaUxqNnNqS0tWR1V5SkVOSHBOWEJ1YjY2Q1N1VldmZ0J5Q1BPT1A3?=
- =?utf-8?B?MytaazFKajY1RWoxc1VZM3d5aUE4MVJKY3Zaam50VjdJcmxGRGhCM2Q1RDZj?=
- =?utf-8?B?RGhzZWlINDBHcXpCU1RtOFhtOGJ3Y3JNZnF1UnNpa2pWL2JjNHl5NWsxSVNw?=
- =?utf-8?B?QmEvdE5LR3E4Uk9ROGFMTnQ0U2UrYnVTSlo1NTBFODc3Z3JDK2JsU1RPT2lP?=
- =?utf-8?B?cDFnakVNdTlpVVc0ak5oTTdWdXA1RDBKcGpmVnZ4L3BReEdwMk9nYUM1bE5i?=
- =?utf-8?B?V0tWazdWRnRsQW5Yd2c3RW5lbWwxbGUyeFZ3Lzk3ZWNkUVVGdnVmM0owYW5y?=
- =?utf-8?B?cTdacXZ4bXQ0bXpXaHJwbTlnR29mN2VKRFdkMytCRWxxOEp4Uzg4NTZhMUpH?=
- =?utf-8?B?YUIzYkVoUVlwdDN4UGhBYW1uSWVKbVdramRrMzNoR2ZpYVcvcHhtUmliZlkx?=
- =?utf-8?B?aDJVcWFMY2JEOTJ6K2pqTkQwdE14WUlhWW9yZFM1OHZ1RG1XNURSc1hnRERw?=
- =?utf-8?B?bGlrQUZDZlROZ2FQNHdqNE92SUhNeGNJNk92L05TOTZicFpXYnVoVHA1cGF5?=
- =?utf-8?B?SUU5MkZiVzJxeDVEVGRISktSVGF2NGgyQjV1SXpBZHdkdjRubThXNWVyVmNq?=
- =?utf-8?B?RWhqQUcwWVdrSHlDR0lPMmUwN1RnOVhVa2M4VjVtUzFKeDRDQU1MeTUzODRL?=
- =?utf-8?B?cmhKNTA4OC9IKzV2V2F3aFFqeWhNWWJaa3RlYnQxSkRrZU11dzcvaC9weWFr?=
- =?utf-8?B?Y3YxMndrdEwxazhtbmRBdnNFMHdUdnY4OGpZa1J3QmZqZWJrV25tamdIWWhw?=
- =?utf-8?B?OS9KS0p0aFFrMkh2K2N4NklmY1VzQTFNajc5MlorTDNVd1hyelljcEZML1dq?=
- =?utf-8?B?NHB3NmJiNGsza2UrbFFpS3dCU2hLSmhITlMvZktQTFFBWE5rYTIybXJmZ25Y?=
- =?utf-8?B?ekxXcGM4b3lwNExuRXZ0WndrZEdpS3ExYWdWRWZjOG1KVTdpRENHcUgyWk5q?=
- =?utf-8?B?aWd3RmVJeFh5STAvRGZnUUExNDFjc0xvbmdBQmIvK3ppb1p4dElBc2dsY0Zj?=
- =?utf-8?B?UFVhcC9jSWhrYi8rTEdVZ202SXFsY0pOcExFdTc4RldqSDFydE5hWUV1WVZ5?=
- =?utf-8?B?dzdLSFo4VElXRzVJcjBvK2RNKzBVQURXWHZpODIxQXBKWmtrVnRPWjJ3YmZ5?=
- =?utf-8?B?VlI3THY4VVUzeXBsWXljamJxcm1VV040M1NSSWYxQm81YVczUlRvMlJZMldN?=
- =?utf-8?B?OFNTd2RZenpsU2o3bmhBYTUxZENRbDE5ejRaQ29qeG8wWW1mTWVhSzhkMVB4?=
- =?utf-8?B?US9oL0Iza2pVcWl1Ynp4V0RNZ2lDWWVTQUJ1bFk1Nnd5eU1GMmFvdytORHB3?=
- =?utf-8?B?UVFrdm1YdWdCNDZDeGdISVBNNFNPb3NlQ2dJL0FLa3RPZDNRMG5IL3N1eTlG?=
- =?utf-8?B?bVRxb0VzL3pKWnZBWVZZcGJDVUxPNEZnSVluUUMvVjNPTktxMy9uc3B6THlv?=
- =?utf-8?B?MkZWQllsbFJnZy9XK3AyYmhKcnNJSURzWHFCQkJKY2pSLzdBalBuY3hZdU5q?=
- =?utf-8?B?dUZ0VDlrdkUzcVJ0alpabm54RXgzSHpSbjF1QVRibStpS1laWHdKOVFxQ2Vs?=
- =?utf-8?B?ZmpIRU0yaHNlNUtEM1psNDRHWEIvbnd6ZzB4WkRBRmlEZWR3Z1pPOU1QaXpn?=
- =?utf-8?B?ODlkVklKbWcrNkFtZEpyZ3IwY3d5bHhpMXBaN3ZFMVhJVXVuT0tXOGNOSmp1?=
- =?utf-8?B?dXc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <86984F17FC4CEC44A4CF4F468CD26DA1@GBRP265.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7E53210E084;
+ Sun, 18 Jun 2023 12:11:21 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8Cxd+ln9I5knIQGAA--.11592S3;
+ Sun, 18 Jun 2023 20:11:19 +0800 (CST)
+Received: from [10.20.42.43] (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8AxJeRn9I5kzfseAA--.21964S3; 
+ Sun, 18 Jun 2023 20:11:19 +0800 (CST)
+Message-ID: <c2cdc3ca-20de-0133-b198-1118fcea7902@loongson.cn>
+Date: Sun, 18 Jun 2023 20:11:19 +0800
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CWLP265MB5770.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2d180528-d99e-4fbf-584b-08db68e0826e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jun 2023 11:56:07.2990 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0d5fd8bb-e8c2-4e0a-8dd5-2c264f7140fe
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mMT0/fzaNU2FaWa7TuFEwCk5coTsauwWNf0iGqf6WNDsivbqB8ypQJKuKFcj2zJTUrbhSl2EHfKhMKA9jytY0KMLh7nloXhIrUc7xyPluAg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP265MB7312
-X-OriginatorOrg: imgtec.com
-X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
-X-Proofpoint-ORIG-GUID: Jtn6ElJ70EUe7hU90NzMZXfzoI24bekj
-X-Proofpoint-GUID: Jtn6ElJ70EUe7hU90NzMZXfzoI24bekj
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: Alex Deucher <alexdeucher@gmail.com>
+References: <20230613030151.216625-1-15330273260@189.cn>
+ <20230613030151.216625-3-15330273260@189.cn>
+ <dbf0d89f-717a-1f78-aef2-f30506751d4d@loongson.cn>
+ <CADnq5_N6vVtzH6tzguZdHnP_TdRoG1G-Cr94O+X03jvtk=vhag@mail.gmail.com>
+ <3c1c86ab-96ea-aa1c-c9c5-9a4012644fd6@loongson.cn>
+ <CADnq5_Px-HWfwetv8LZsCnCeV7SMt_uqtLwMVK7648ZQiP2RCQ@mail.gmail.com>
+ <f08b6a76-6c90-b59b-ff43-c779ef759d09@loongson.cn>
+ <CADnq5_PFoM2O8mCd6+VFfu9Nc-Hg_HTnwEMxrq0FGRpva1kKiA@mail.gmail.com>
+From: Sui Jingfeng <suijingfeng@loongson.cn>
+Organization: Loongson
+In-Reply-To: <CADnq5_PFoM2O8mCd6+VFfu9Nc-Hg_HTnwEMxrq0FGRpva1kKiA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8AxJeRn9I5kzfseAA--.21964S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoW3Zr4kXFW7uF1fWr1kJF47Awc_yoWDAr47pF
+ WrGFW5KF4kJr17Gr12qw18JFyYvryrJFyrXr1rJw1Ykrn0yr1UJryrKr45u34xJrs5Gr12
+ vr4UJry7uF15ZagCm3ZEXasCq-sJn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUvIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAF
+ wI0_Cr1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
+ 1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv
+ 67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07
+ AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
+ F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GF
+ ylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
+ xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
+ 4j6F4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jO
+ F4_UUUUU=
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: Re: [Nouveau] [PATCH drm-next v4 00/14] [RFC] DRM GPUVA Manager &
- Nouveau VM_BIND UAPI
+Subject: Re: [Nouveau] [PATCH v7 2/8] PCI/VGA: Deal only with VGA class
+ devices
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,47 +72,313 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-mm@kvack.org" <linux-mm@kvack.org>
+Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Sui Jingfeng <15330273260@189.cn>, amd-gfx@lists.freedesktop.org,
+ linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIzLTA2LTA3IGF0IDAwOjMxICswMjAwLCBEYW5pbG8gS3J1bW1yaWNoIHdyb3Rl
-Og0KPiANCj4gQ2hyaXN0aWFuIEvDtm5pZyAoMSk6DQo+ICAgZHJtOiBleGVjdXRpb24gY29udGV4
-dCBmb3IgR0VNIGJ1ZmZlcnMgdjQNCj4gDQo+IERhbmlsbyBLcnVtbXJpY2ggKDEzKToNCj4gICBt
-YXBsZV90cmVlOiBzcGxpdCB1cCBNQV9TVEFURSgpIG1hY3JvDQo+ICAgZHJtOiBtYW5hZ2VyIHRv
-IGtlZXAgdHJhY2sgb2YgR1BVcyBWQSBtYXBwaW5ncw0KDQpJIGhhdmUgdGVzdGVkIHRoZSBkcm0g
-R1BVVkEgbWFuYWdlciBhcyBwYXJ0IG9mIHVzaW5nIGl0IHdpdGggb3VyIG5ldw0KZHJpdmVyLiAg
-VGhlIGxpbmsgYmVsb3cgc2hvd3MgdXNlIG9mIHRoZSBkcm1fZ3B1dmFfc21fW3VuXW1hcCgpDQpm
-dW5jdGlvbnMuICBJIHRoaW5rIHRoaXMgaXMgYmFzZWQgb24gdGhlIHYzIHBhdGNoZXMsIGJ1dCBJ
-IGhhdmUgYWxzbw0KdHJpZWQgaXQgbG9jYWxseSB1c2luZyB2NCBwYXRjaGVzLiAgV2Ugd2lsbCBi
-ZSBzdWJtaXR0aW5nIHRoaXMNCmRyaXZlciBmb3IgcmV2aWV3IHNvb24uDQoNCmh0dHBzOi8vZ2l0
-bGFiLmZyZWVkZXNrdG9wLm9yZy9zYXJhaC13YWxrZXItaW1ndGVjL3Bvd2VydnIvLS9ibG9iL2Rl
-di92My9kcml2ZXJzL2dwdS9kcm0vaW1hZ2luYXRpb24vcHZyX3ZtLmMNCg0KSW4gYSBwcmV2aW91
-cyBpbmNhcm5hdGlvbiwgSSB1c2VkIHRoZSBkcm1fZ3B1dmFfaW5zZXJ0KCkgYW5kDQpkcm1fZ3B1
-dmFfcmVtb3ZlKCkgZnVuY3Rpb25zIGRpcmVjdGx5LiAgSW4gc29tZSBub3cgYWJhbmRvbmVkIHdv
-cmsgSQ0KdXNlZCB0aGUgZHJtX2dwdXZhX3NtX1t1bl1tYXBfb3BzX2NyZWF0ZSgpIHJvdXRlLg0K
-DQpUaGUgb25seSBwcm9ibGVtIEkgZW5jb3VudGVyZWQgYWxvbmcgdGhlIHdheSB3YXMgdGhlIG1h
-cGxlIHRyZWUgaW5pdA0KaXNzdWUgYWxyZWFkeSByZXBvcnRlZCBieSBCb3JpcyBhbmQgZml4ZWQg
-aW4gdjQuICBPbmUgY2F2ZWF0IC0gYXMNCm91ciBkcml2ZXIgaXMgYSB3b3JrIGluIHByb2dyZXNz
-IG91ciB0ZXN0aW5nIGlzIGxpbWl0ZWQgdG8gY2VydGFpbg0KU2FzY2hhIFdpbGxlbSB0ZXN0cy4N
-Cg0KSSBkaWQgZmluZCBpdCBxdWl0ZSBkaWZmaWN1bHQgdG8gZ2V0IHRoZSBwcmVhbGxvYyByb3V0
-ZSB3aXRoDQpkcm1fZ3B1dmFfc21fW3VuXW1hcCgpIHdvcmtpbmcuICBJJ20gbm90IHN1cmUgdG8g
-d2hhdCBkZWdyZWUgdGhpcw0KcmVmbGVjdHMgbWUgYmVpbmcgYSBub3ZpY2Ugb24gbWF0dGVycyBE
-Uk0sIGJ1dCBJIGRpZCBmaW5kIG15c2VsZg0Kd2lzaGluZyBmb3IgbW9yZSBkaXJlY3Rpb24sIGV2
-ZW4gd2l0aCBCb3JpcydzIGhlbHAuDQoNClRlc3RlZC1ieTogRG9uYWxkIFJvYnNvbiA8ZG9uYWxk
-LnJvYnNvbkBpbWd0ZWMuY29tPg0KDQo+ICAgZHJtOiBkZWJ1Z2ZzOiBwcm92aWRlIGluZnJhc3Ry
-dWN0dXJlIHRvIGR1bXAgYSBEUk0gR1BVIFZBIHNwYWNlDQo+ICAgZHJtL25vdXZlYXU6IG5ldyBW
-TV9CSU5EIHVhcGkgaW50ZXJmYWNlcw0KPiAgIGRybS9ub3V2ZWF1OiBnZXQgdm1tIHZpYSBub3V2
-ZWF1X2NsaV92bW0oKQ0KPiAgIGRybS9ub3V2ZWF1OiBibzogaW5pdGlhbGl6ZSBHRU0gR1BVIFZB
-IGludGVyZmFjZQ0KPiAgIGRybS9ub3V2ZWF1OiBtb3ZlIHVzZXJjb3B5IGhlbHBlcnMgdG8gbm91
-dmVhdV9kcnYuaA0KPiAgIGRybS9ub3V2ZWF1OiBmZW5jZTogc2VwYXJhdGUgZmVuY2UgYWxsb2Mg
-YW5kIGVtaXQNCj4gICBkcm0vbm91dmVhdTogZmVuY2U6IGZhaWwgdG8gZW1pdCB3aGVuIGZlbmNl
-IGNvbnRleHQgaXMga2lsbGVkDQo+ICAgZHJtL25vdXZlYXU6IGNoYW46IHByb3ZpZGUgbm91dmVh
-dV9jaGFubmVsX2tpbGwoKQ0KPiAgIGRybS9ub3V2ZWF1OiBudmttL3ZtbTogaW1wbGVtZW50IHJh
-dyBvcHMgdG8gbWFuYWdlIHV2bW0NCj4gICBkcm0vbm91dmVhdTogaW1wbGVtZW50IG5ldyBWTV9C
-SU5EIHVBUEkNCj4gICBkcm0vbm91dmVhdTogZGVidWdmczogaW1wbGVtZW50IERSTSBHUFUgVkEg
-ZGVidWdmcw0KPiANCg==
+Hi,
+
+On 2023/6/16 22:34, Alex Deucher wrote:
+> On Fri, Jun 16, 2023 at 10:22 AM Sui Jingfeng <suijingfeng@loongson.cn> wrote:
+>>
+>> On 2023/6/16 21:41, Alex Deucher wrote:
+>>> On Fri, Jun 16, 2023 at 3:11 AM Sui Jingfeng <suijingfeng@loongson.cn> wrote:
+>>>> Hi,
+>>>>
+>>>> On 2023/6/16 05:11, Alex Deucher wrote:
+>>>>> On Wed, Jun 14, 2023 at 6:50 AM Sui Jingfeng <suijingfeng@loongson.cn> wrote:
+>>>>>> Hi,
+>>>>>>
+>>>>>> On 2023/6/13 11:01, Sui Jingfeng wrote:
+>>>>>>> From: Sui Jingfeng <suijingfeng@loongson.cn>
+>>>>>>>
+>>>>>>> Deal only with the VGA devcie(pdev->class == 0x0300), so replace the
+>>>>>>> pci_get_subsys() function with pci_get_class(). Filter the non-PCI display
+>>>>>>> device(pdev->class != 0x0300) out. There no need to process the non-display
+>>>>>>> PCI device.
+>>>>>>>
+>>>>>>> Cc: Bjorn Helgaas <bhelgaas@google.com>
+>>>>>>> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+>>>>>>> ---
+>>>>>>>      drivers/pci/vgaarb.c | 22 ++++++++++++----------
+>>>>>>>      1 file changed, 12 insertions(+), 10 deletions(-)
+>>>>>>>
+>>>>>>> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+>>>>>>> index c1bc6c983932..22a505e877dc 100644
+>>>>>>> --- a/drivers/pci/vgaarb.c
+>>>>>>> +++ b/drivers/pci/vgaarb.c
+>>>>>>> @@ -754,10 +754,6 @@ static bool vga_arbiter_add_pci_device(struct pci_dev *pdev)
+>>>>>>>          struct pci_dev *bridge;
+>>>>>>>          u16 cmd;
+>>>>>>>
+>>>>>>> -     /* Only deal with VGA class devices */
+>>>>>>> -     if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
+>>>>>>> -             return false;
+>>>>>>> -
+>>>>>> Hi, here is probably a bug fixing.
+>>>>>>
+>>>>>> For an example, nvidia render only GPU typically has 0x0380.
+>>>>>>
+>>>>>> as its PCI class number, but render only GPU should not participate in
+>>>>>> the arbitration.
+>>>>>>
+>>>>>> As it shouldn't snoop the legacy fixed VGA address.
+>>>>>>
+>>>>>> It(render only GPU) can not display anything.
+>>>>>>
+>>>>>>
+>>>>>> But 0x0380 >> 8 = 0x03, the filter  failed.
+>>>>>>
+>>>>>>
+>>>>>>>          /* Allocate structure */
+>>>>>>>          vgadev = kzalloc(sizeof(struct vga_device), GFP_KERNEL);
+>>>>>>>          if (vgadev == NULL) {
+>>>>>>> @@ -1500,7 +1496,9 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
+>>>>>>>          struct pci_dev *pdev = to_pci_dev(dev);
+>>>>>>>          bool notify = false;
+>>>>>>>
+>>>>>>> -     vgaarb_dbg(dev, "%s\n", __func__);
+>>>>>>> +     /* Only deal with VGA class devices */
+>>>>>>> +     if (pdev->class != PCI_CLASS_DISPLAY_VGA << 8)
+>>>>>>> +             return 0;
+>>>>>> So here we only care 0x0300, my initial intent is to make an optimization,
+>>>>>>
+>>>>>> nowadays sane display graphic card should all has 0x0300 as its PCI
+>>>>>> class number, is this complete right?
+>>>>>>
+>>>>>> ```
+>>>>>>
+>>>>>> #define PCI_BASE_CLASS_DISPLAY        0x03
+>>>>>> #define PCI_CLASS_DISPLAY_VGA        0x0300
+>>>>>> #define PCI_CLASS_DISPLAY_XGA        0x0301
+>>>>>> #define PCI_CLASS_DISPLAY_3D        0x0302
+>>>>>> #define PCI_CLASS_DISPLAY_OTHER        0x0380
+>>>>>>
+>>>>>> ```
+>>>>>>
+>>>>>> Any ideas ?
+>>>>> I'm not quite sure what you are asking about here.
+>>>> To be honest, I'm worried about the PCI devices which has a
+>>>>
+>>>> PCI_CLASS_DISPLAY_XGA as its PCI class number.
+>>>>
+>>>> As those devices are very uncommon in the real world.
+>>>>
+>>>>
+>>>> $ find . -name "*.c" -type f | xargs grep "PCI_CLASS_DISPLAY_XGA"
+>>>>
+>>>>
+>>>> Grep the "PCI_CLASS_DISPLAY_XGA" in the linux kernel tree got ZERO,
+>>>>
+>>>> there no code reference this macro. So I think it seems safe to ignore
+>>>> the XGA ?
+>>>>
+>>>>
+>>>> PCI_CLASS_DISPLAY_3D and PCI_CLASS_DISPLAY_OTHER are used to annotate
+>>>> the render-only GPU.
+>>>>
+>>>> And render-only GPU can't decode the fixed VGA address space, it is safe
+>>>> to ignore them.
+>>>>
+>>>>
+>>>>>     For vga_arb, we
+>>>>> only care about VGA class devices since those should be on the only
+>>>>> ones that might have VGA routed to them.
+>>>>>     However, as VGA gets deprecated,
+>>>> We need the vgaarb for a system with multiple video card.
+>>>>
+>>>> Not only because some Legacy VGA devices implemented
+>>>>
+>>>> on PCI will typically have the same "hard-decoded" addresses;
+>>>>
+>>>> But also these video card need to participate in the arbitration,
+>>>>
+>>>> determine the default boot device.
+>>> But couldn't the boot device be determined via what whatever resources
+>>> were used by the pre-OS console?
+>> I don't know what you are refer to by saying  pre-OS console, UEFI
+>> SHELL,  UEFI GOP  or something like that.
+>>
+> Right.  Before the OS loads the platform firmware generally sets up
+> something for display.  That could be GOP or vesa or some other
+> platform specific protocol.
+>
+>> If you are referring to the framebuffer driver which light up the screen
+>> before the Linux kernel is loaded .
+>>
+>>
+>> Then, what you have said is true,  the boot device is determined by the
+>> pre-OS console.
+>>
+>> But the problem is how does the Linux kernel(vgaarb) could know which
+>> one is the default boot device
+>>
+>> on a multiple GPU machine.  Relaying on the firmware fb's address and
+>> size is what the mechanism
+>>
+>> we already in using.
+> Right.  It shouldn't need to depend on vgaarb.
+>
+>>
+>>>    I feel like that should be separate from vgaarb.
+>> Emm, this really deserved another patch, please ?
+>>
+>>>    vgaarb should handle PCI VGA routing and some other
+>>> mechanism should be used to determine what device provided the pre-OS
+>>> console.
+>> If the new mechanism need the firmware changed, then this probably break
+>> the old machine.
+>>
+>> Also, this probably will get all arch involved. to get the new mechanism
+>> supported.
+>>
+>> The testing pressure and review power needed is quite large.
+>>
+>> drm/amdgpu and drm/radeon already being used on X86, ARM64,  Mips and
+>> more arch...
+>>
+>> The reviewing process will became quite difficult then.
+>>
+>> vgaarb is really what we already in use, and being used more than ten
+>> years ...
+
+This base class is defined for all types of display controllers.
+
+For VGA devices (Sub-Class 00h), the Programming Interface byte is 
+divided into a bit field that identifies additional video controller 
+compatibilities.
+
+A device can support multiple interfaces by using the bit map to 
+indicate which interfaces are supported.
+
+For the XGA devices (Sub-Class 01h), only the standard XGA interface is 
+defined.
+
+Sub-Class 02h is for controllers that have hardware support for 3D 
+operations and are not VGA compatible.
+
+
+> Yes, it works for x86 (and a few other platforms) today because of the
+> VGA legacy, so we can look at VGA routing to determine this.  But even
+> today, we don't need VGA routing to determine what was the primary
+> display before starting the OS.  We could probably have a platform
+> independent way to handle this by looking at the bread crumbs leftover
+> from the pre-OS environment.
+
+Yes, I agree with you.
+
+>   E.g., for pre-UEFI platforms, we can
+> look at VGA routing.  For UEFI platforms we can look at what GOP left
+> us.  For various non-UEFI ARM/PPC/MIPS/etc. platforms we can look at
+> whatever breadcrumbs those pre-OS environments left.  That way when
+> VGA goes away, we can have a clean break and you won't need vgaarb if
+> the platform has no VGA devices.
+
+Yes, I agree with you.
+
+
+Then, move vga_is_firmware_default() function to video/aperture.c also ?
+
+Because this function shouldn't be platform dependent,
+
+can be usable as long as the PCI resource relocation don't happen  (The 
+vram bar don't move),
+
+And screen_info is more about video specifci thing.
+
+
+Yes your are right, it seems that the selection of the default boot 
+device shouldn't depend on vgaarb.
+
+As vgaarb is only for PCI vga compatible display controller.
+
+It seems that platform display controller device should also 
+participated in the arbitration.
+
+Emm, but that may a bit difficult. Because we rely on the PCI notifier 
+to snoop the bound between the drm driver and device,
+
+call back to use if successful. So, what should I do next?  as a first step?
+
+> Alex
+>
+>>
+>>> Alex
+>>>
+>>>> Nowadays, the 'VGA devices' here is stand for the Graphics card
+>>>>
+>>>> which is capable of display something on the screen.
+>>>>
+>>>> We still need vgaarb to select the default boot device.
+>>>>
+>>>>
+>>>>> you'll have more non VGA PCI classes for devices which
+>>>>> could be the pre-OS console device.
+>>>> Ah, we still want  do this(by applying this patch) first,
+>>>>
+>>>> and then we will have the opportunity to see who will crying if
+>>>> something is broken. Will know more then.
+>>>>
+>>>> But drop this patch or revise it with more consideration is also
+>>>> acceptable.
+>>>>
+>>>>
+>>>> I asking about suggestion and/or review.
+>>>>
+>>>>> Alex
+>>>>>
+>>>>>>>          /* For now we're only intereted in devices added and removed. I didn't
+>>>>>>>           * test this thing here, so someone needs to double check for the
+>>>>>>> @@ -1510,6 +1508,8 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
+>>>>>>>          else if (action == BUS_NOTIFY_DEL_DEVICE)
+>>>>>>>                  notify = vga_arbiter_del_pci_device(pdev);
+>>>>>>>
+>>>>>>> +     vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
+>>>>>>> +
+>>>>>>>          if (notify)
+>>>>>>>                  vga_arbiter_notify_clients();
+>>>>>>>          return 0;
+>>>>>>> @@ -1534,8 +1534,8 @@ static struct miscdevice vga_arb_device = {
+>>>>>>>
+>>>>>>>      static int __init vga_arb_device_init(void)
+>>>>>>>      {
+>>>>>>> +     struct pci_dev *pdev = NULL;
+>>>>>>>          int rc;
+>>>>>>> -     struct pci_dev *pdev;
+>>>>>>>
+>>>>>>>          rc = misc_register(&vga_arb_device);
+>>>>>>>          if (rc < 0)
+>>>>>>> @@ -1545,11 +1545,13 @@ static int __init vga_arb_device_init(void)
+>>>>>>>
+>>>>>>>          /* We add all PCI devices satisfying VGA class in the arbiter by
+>>>>>>>           * default */
+>>>>>>> -     pdev = NULL;
+>>>>>>> -     while ((pdev =
+>>>>>>> -             pci_get_subsys(PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
+>>>>>>> -                            PCI_ANY_ID, pdev)) != NULL)
+>>>>>>> +     while (1) {
+>>>>>>> +             pdev = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, pdev);
+>>>>>>> +             if (!pdev)
+>>>>>>> +                     break;
+>>>>>>> +
+>>>>>>>                  vga_arbiter_add_pci_device(pdev);
+>>>>>>> +     }
+>>>>>>>
+>>>>>>>          pr_info("loaded\n");
+>>>>>>>          return rc;
+>>>>>> --
+>>>>>> Jingfeng
+>>>>>>
+>>>> --
+>>>> Jingfeng
+>>>>
+>> --
+>> Jingfeng
+>>
+-- 
+Jingfeng
+
