@@ -4,63 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6BE1EB64D7
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9677CEB64D8
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF72010E356;
-	Tue, 20 Jun 2023 18:20:34 +0000 (UTC)
-Received: from 189.cn (ptr.189.cn [183.61.185.102])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7967F10E2CA;
- Mon, 12 Jun 2023 19:26:13 +0000 (UTC)
-HMM_SOURCE_IP: 10.64.8.41:42778.1249123675
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75CE910E35E;
+	Tue, 20 Jun 2023 18:20:35 +0000 (UTC)
+Received: from 189.cn (ptr.189.cn [183.61.185.104])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3D1A510E098;
+ Mon, 19 Jun 2023 02:23:56 +0000 (UTC)
+HMM_SOURCE_IP: 10.64.8.41:49476.941168508
 HMM_ATTACHE_NUM: 0000
 HMM_SOURCE_TYPE: SMTP
 Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
- by 189.cn (HERMES) with SMTP id 4C72D1002BE;
- Tue, 13 Jun 2023 03:26:09 +0800 (CST)
+ by 189.cn (HERMES) with SMTP id 1E2E1102981;
+ Mon, 19 Jun 2023 10:23:44 +0800 (CST)
 Received: from  ([114.242.206.180])
  by gateway-151646-dep-75648544bd-xwndj with ESMTP id
- b0e3610dd26740b199961e43479640c6 for alexander.deucher@amd.com; 
- Tue, 13 Jun 2023 03:26:12 CST
-X-Transaction-ID: b0e3610dd26740b199961e43479640c6
+ 98b384fdfd3f4a748b7a9c050bde1861 for suijingfeng@loongson.cn; 
+ Mon, 19 Jun 2023 10:23:55 CST
+X-Transaction-ID: 98b384fdfd3f4a748b7a9c050bde1861
 X-Real-From: 15330273260@189.cn
 X-Receive-IP: 114.242.206.180
 X-MEDUSA-Status: 0
-From: Sui Jingfeng <15330273260@189.cn>
-To: Alex Deucher <alexander.deucher@amd.com>,
- Christian Konig <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Hawking Zhang <Hawking.Zhang@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
- Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- Bokun Zhang <Bokun.Zhang@amd.com>,
- Ville Syrjala <ville.syrjala@linux.intel.com>, Li Yi <liyi@loongson.cn>,
- Sui Jingfeng <suijingfeng@loongson.cn>, Jason Gunthorpe <jgg@ziepe.ca>,
- Kevin Tian <kevin.tian@intel.com>, Cornelia Huck <cohuck@redhat.com>,
- Yishai Hadas <yishaih@nvidia.com>, Abhishek Sahu <abhsahu@nvidia.com>,
- Yi Liu <yi.l.liu@intel.com>
-Date: Tue, 13 Jun 2023 03:25:46 +0800
-Message-Id: <20230612192550.197053-5-15330273260@189.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230612192550.197053-1-15330273260@189.cn>
-References: <20230612192550.197053-1-15330273260@189.cn>
+Message-ID: <bef70e09-491a-9f40-1cad-1b413896de2e@189.cn>
+Date: Mon, 19 Jun 2023 10:23:43 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: Sui Jingfeng <suijingfeng@loongson.cn>,
+ Alex Deucher <alexdeucher@gmail.com>
+References: <20230613030151.216625-1-15330273260@189.cn>
+ <20230613030151.216625-3-15330273260@189.cn>
+ <dbf0d89f-717a-1f78-aef2-f30506751d4d@loongson.cn>
+ <CADnq5_N6vVtzH6tzguZdHnP_TdRoG1G-Cr94O+X03jvtk=vhag@mail.gmail.com>
+ <3c1c86ab-96ea-aa1c-c9c5-9a4012644fd6@loongson.cn>
+ <CADnq5_Px-HWfwetv8LZsCnCeV7SMt_uqtLwMVK7648ZQiP2RCQ@mail.gmail.com>
+ <f08b6a76-6c90-b59b-ff43-c779ef759d09@loongson.cn>
+ <CADnq5_PFoM2O8mCd6+VFfu9Nc-Hg_HTnwEMxrq0FGRpva1kKiA@mail.gmail.com>
+ <c2cdc3ca-20de-0133-b198-1118fcea7902@loongson.cn>
+From: Sui Jingfeng <15330273260@189.cn>
+In-Reply-To: <c2cdc3ca-20de-0133-b198-1118fcea7902@loongson.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: [Nouveau] [PATCH v6 4/8] PCI/VGA: Replace full MIT license text
- with SPDX identifier
+Subject: Re: [Nouveau] [PATCH v7 2/8] PCI/VGA: Deal only with VGA class
+ devices
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,66 +61,18 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, loongson-kernel@lists.loongnix.cn,
- amd-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
- linux-pci@vger.kernel.org
+Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org,
+ Bjorn Helgaas <bhelgaas@google.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Sui Jingfeng <suijingfeng@loongson.cn>
 
-Per Documentation/process/license-rules.rst, the SPDX MIT identifier is
-equivalent to including the entire MIT license text from
-LICENSES/preferred/MIT.
+On 2023/6/18 20:11, Sui Jingfeng wrote:
+> And screen_info is more about video specifci thing. 
 
-Replace the MIT license text with the equivalent SPDX identifier.
 
-Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
----
- include/linux/vgaarb.h | 23 ++---------------------
- 1 file changed, 2 insertions(+), 21 deletions(-)
-
-diff --git a/include/linux/vgaarb.h b/include/linux/vgaarb.h
-index 6d5465f8c3f2..97129a1bbb7d 100644
---- a/include/linux/vgaarb.h
-+++ b/include/linux/vgaarb.h
-@@ -1,3 +1,5 @@
-+/* SPDX-License-Identifier: MIT */
-+
- /*
-  * The VGA aribiter manages VGA space routing and VGA resource decode to
-  * allow multiple VGA devices to be used in a system in a safe way.
-@@ -5,27 +7,6 @@
-  * (C) Copyright 2005 Benjamin Herrenschmidt <benh@kernel.crashing.org>
-  * (C) Copyright 2007 Paulo R. Zanoni <przanoni@gmail.com>
-  * (C) Copyright 2007, 2009 Tiago Vignatti <vignatti@freedesktop.org>
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice (including the next
-- * paragraph) shall be included in all copies or substantial portions of the
-- * Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-- * DEALINGS
-- * IN THE SOFTWARE.
-- *
-  */
- 
- #ifndef LINUX_VGA_H
--- 
-2.25.1
+screen_info is something more about video specific thing.
 
