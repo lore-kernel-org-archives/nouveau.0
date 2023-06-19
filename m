@@ -4,73 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71A9EEB64DB
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19A24EB64D8
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3F6410E362;
-	Tue, 20 Jun 2023 18:20:38 +0000 (UTC)
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id AA64F10E041;
- Sun,  4 Jun 2023 20:55:39 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8CxZ_FJ+nxkV2gEAA--.9186S3;
- Mon, 05 Jun 2023 04:55:37 +0800 (CST)
-Received: from openarena.loongson.cn (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8BxLL5I+nxkF7SJAA--.24647S2; 
- Mon, 05 Jun 2023 04:55:36 +0800 (CST)
-From: Sui Jingfeng <suijingfeng@loongson.cn>
-To: Alex Deucher <alexander.deucher@amd.com>,
- Christian Konig <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Hawking Zhang <Hawking.Zhang@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
- Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- Bokun Zhang <Bokun.Zhang@amd.com>,
- Ville Syrjala <ville.syrjala@linux.intel.com>, Li Yi <liyi@loongson.cn>,
- Sui Jingfeng <suijingfeng@loongson.cn>, Jason Gunthorpe <jgg@ziepe.ca>,
- Kevin Tian <kevin.tian@intel.com>, Cornelia Huck <cohuck@redhat.com>,
- Yishai Hadas <yishaih@nvidia.com>, Abhishek Sahu <abhsahu@nvidia.com>,
- Yi Liu <yi.l.liu@intel.com>
-Date: Mon,  5 Jun 2023 04:55:35 +0800
-Message-Id: <20230604205536.3357439-1-suijingfeng@loongson.cn>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3174510E347;
+	Tue, 20 Jun 2023 18:20:39 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80BC410E1CB;
+ Mon, 19 Jun 2023 09:45:42 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 838AC60AF5;
+ Mon, 19 Jun 2023 09:45:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 082AAC433C9;
+ Mon, 19 Jun 2023 09:45:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1687167940;
+ bh=Lp4u3T+2xiedusJigDkWh4ix2i0wqp11sPPDYaU3Yo0=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=uTs+Es5MJdQAH06s+4uVkVptqIjhO5PlC4tbhRLzHbhg/jvVFuwTvNh59ROQwqwlI
+ FXKrTblcrG9mDZ/TJcMmYqLR2B7PXuxSi+QUizGiyfHcrUjYh69jXXHHFYdHc8FQ8Z
+ utFJ+k51BLx2/k90s2dW6WrKqtXXnhUdkuS3Z5CJ1y3d6aKJ4O9d8A122C2R6Ym6c+
+ cUPXt0Zryk1mw0GYYVLBKXFlKgEGOJiVvQ2x4DktJoUVQCzZow35a2hUPFH9SbumWV
+ hxree4wzoiY6yiZMtFeAigy/yZsqjLyvq4ILxIMoPA7sCEJ1yQVV3K+UaP/p9aEdnF
+ 3Ul7qcM/T/eqA==
+Date: Mon, 19 Jun 2023 11:45:37 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Message-ID: <vxjp5c4wojcvbnp3ghsspwkgrc4mjmskzl56jkuxlgfhcji7kx@m3hg525p7y6a>
+References: <20230507162616.1368908-1-u.kleine-koenig@pengutronix.de>
+ <20230601154002.uv2wfatpb7b45duz@pengutronix.de>
+ <CAD=FV=WvP--wJwBQtnSoW_xb57R1Wf9dH0XzWxe+NorczXfeAw@mail.gmail.com>
+ <20230617161222.wy55pbomnrrlfy5u@pengutronix.de>
+ <CAD=FV=U5gbMUNteyyFcTvHVBDWzfthM0aDirJC+yXGovDwMOBA@mail.gmail.com>
+ <20230618123915.hmy66z7e532jhwgk@pengutronix.de>
+ <jlq2xayh4dxfigfsh2fms2kt4hlrqcwxblffmqq7czbhqhhvz7@hsvol72f5i3y>
+ <20230618162950.6th2yo66baqay5mv@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8BxLL5I+nxkF7SJAA--.24647S2
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXw4kur1fXFWrtrW3ZrWDurg_yoWrKw1Upr
- Zakas8CrW8XFs7ZrsrXF4rGF1Y9393CFyfArWakwn3AF15JFn2qF9YyryYv3yfJ392kF4I
- qan8tF4UuF4UJFJanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
- qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
- bS8YFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
- 1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
- wVC0I7IYx2IY67AKxVWUCVW8JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
- x0Y4vEx4A2jsIE14v26F4j6r4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2kK
- e7AKxVWUAVWUtwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI
- 0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280
- aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxkF7I0En4
- kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI
- 1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_Jr
- Wlx4CE17CEb7AF67AKxVWrXVW8Jr1lIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWU
- CVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r
- 1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1U
- YxBIdaVFxhVjvjDU0xZFpf9x07j0mhrUUUUU=
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="gnbs5xikge2uwekh"
+Content-Disposition: inline
+In-Reply-To: <20230618162950.6th2yo66baqay5mv@pengutronix.de>
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: [Nouveau] [PATCH v2 1/2] vgaarb: various coding style and comments
- fix
+Subject: Re: [Nouveau] patches dropped from drm-misc-next [Was: Re: [PATCH
+ 00/53] drm: Convert to platform remove callback returning] void
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,142 +61,248 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, loongson-kernel@lists.loongnix.cn,
- amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
+Cc: Raymond Tan <raymond.tan@intel.com>,
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Akhil P Oommen <quic_akhilpo@quicinc.com>,
+ Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
+ Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Sumit Semwal <sumit.semwal@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-samsung-soc@vger.kernel.org, Robert Foss <rfoss@kernel.org>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Samuel Holland <samuel@sholland.org>, Kevin Hilman <khilman@baylibre.com>,
+ =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Kuogee Hsieh <quic_khsieh@quicinc.com>, Xinliang Liu <xinliang.liu@linaro.org>,
+ NXP Linux Team <linux-imx@nxp.com>, linux-sunxi@lists.linux.dev,
+ Rahul T R <r-ravikumar@ti.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+ Jani Nikula <jani.nikula@intel.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ etnaviv@lists.freedesktop.org, Yuan Can <yuancan@huawei.com>,
+ Inki Dae <inki.dae@samsung.com>, Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Sean Paul <sean@poorly.run>, Johan Hovold <johan+linaro@kernel.org>,
+ Hyun Kwon <hyun.kwon@xilinx.com>, Andrew Jeffery <andrew@aj.id.au>,
+ Jingoo Han <jingoohan1@gmail.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>, kernel@pengutronix.de,
+ Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
+ Claudiu Beznea <claudiu.beznea@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ linux-aspeed@lists.ozlabs.org,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Thierry Reding <thierry.reding@gmail.com>, John Stultz <jstultz@google.com>,
+ Mihail Atanassov <mihail.atanassov@arm.com>, Liang He <windhl@126.com>,
+ Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ lima@lists.freedesktop.org, Chunyan Zhang <zhang.lyra@gmail.com>,
+ Alexey Brodkin <abrodkin@synopsys.com>, Minghao Chi <chi.minghao@zte.com.cn>,
+ Steven Price <steven.price@arm.com>, linux-rockchip@lists.infradead.org,
+ Ben Skeggs <bskeggs@redhat.com>, Russell King <linux+etnaviv@armlinux.org.uk>,
+ Alain Volmat <alain.volmat@foss.st.com>, Liu Ying <victor.liu@nxp.com>,
+ linux-arm-msm@vger.kernel.org, Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Wang Jianzheng <wangjianzheng@vivo.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Boris Brezillon <bbrezillon@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Brian Starkey <brian.starkey@arm.com>, Miaoqian Lin <linmq006@gmail.com>,
+ Stefan Agner <stefan@agner.ch>, Michal Simek <michal.simek@xilinx.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Rob Herring <robh@kernel.org>, Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Mali DP Maintainers <malidp@foss.arm.com>, Joel Stanley <joel@jms.id.au>,
+ nouveau@lists.freedesktop.org, Orson Zhai <orsonzhai@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Guo Zhengkui <guozhengkui@vivo.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Alison Wang <alison.wang@nxp.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Paul Cercueil <paul@crapouillou.net>, Tomi Valkeinen <tomba@kernel.org>,
+ Deepak R Varma <drv@mailo.com>,
+ Karol Wachowski <karol.wachowski@linux.intel.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Ricardo Ribalda <ribalda@chromium.org>, Tian Tao <tiantao6@hisilicon.com>,
+ Shawn Guo <shawnguo@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ linux-stm32@st-md-mailman.stormreply.com, Emma Anholt <emma@anholt.net>,
+ Konrad Dybcio <konrad.dybcio@somainline.org>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Doug Anderson <dianders@chromium.org>, Liu Shixin <liushixin2@huawei.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Laura Nao <laura.nao@collabora.com>, Marek Vasut <marex@denx.de>,
+ linux-renesas-soc@vger.kernel.org, Yongqin Liu <yongqin.liu@linaro.org>,
+ Jayshri Pawar <jpawar@cadence.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Russell King <linux@armlinux.org.uk>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Qiang Yu <yuq825@gmail.com>, Melissa Wen <mwen@igalia.com>,
+ linux-mediatek@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, linux-tegra@vger.kernel.org,
+ Stephen Boyd <swboyd@chromium.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Yannick Fertre <yannick.fertre@foss.st.com>, linux-mips@vger.kernel.org,
+ Rob Clark <robdclark@gmail.com>, Philippe Cornu <philippe.cornu@foss.st.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Jyri Sarha <jyri.sarha@iki.fi>,
+ Lucas Stach <l.stach@pengutronix.de>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-To keep consistent with vga_iostate_to_str() function, the third argument
-of vga_str_to_iostate() function should be 'unsigned int *'.
 
-Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
----
- drivers/pci/vgaarb.c   | 29 +++++++++++++++--------------
- include/linux/vgaarb.h |  8 +++-----
- 2 files changed, 18 insertions(+), 19 deletions(-)
+--gnbs5xikge2uwekh
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
-index 5a696078b382..e40e6e5e5f03 100644
---- a/drivers/pci/vgaarb.c
-+++ b/drivers/pci/vgaarb.c
-@@ -61,7 +61,6 @@ static bool vga_arbiter_used;
- static DEFINE_SPINLOCK(vga_lock);
- static DECLARE_WAIT_QUEUE_HEAD(vga_wait_queue);
- 
--
- static const char *vga_iostate_to_str(unsigned int iostate)
- {
- 	/* Ignore VGA_RSRC_IO and VGA_RSRC_MEM */
-@@ -77,10 +76,12 @@ static const char *vga_iostate_to_str(unsigned int iostate)
- 	return "none";
- }
- 
--static int vga_str_to_iostate(char *buf, int str_size, int *io_state)
-+static int vga_str_to_iostate(char *buf, int str_size, unsigned int *io_state)
- {
--	/* we could in theory hand out locks on IO and mem
--	 * separately to userspace but it can cause deadlocks */
-+	/*
-+	 * we could in theory hand out locks on IO and mem
-+	 * separately to userspace but it can cause deadlocks
-+	 */
- 	if (strncmp(buf, "none", 4) == 0) {
- 		*io_state = VGA_RSRC_NONE;
- 		return 1;
-@@ -99,7 +100,7 @@ static int vga_str_to_iostate(char *buf, int str_size, int *io_state)
- 	return 1;
- }
- 
--/* this is only used a cookie - it should not be dereferenced */
-+/* This is only used as cookie, it should not be dereferenced */
- static struct pci_dev *vga_default;
- 
- /* Find somebody in our list */
-@@ -194,13 +195,15 @@ int vga_remove_vgacon(struct pci_dev *pdev)
- EXPORT_SYMBOL(vga_remove_vgacon);
- 
- /* If we don't ever use VGA arb we should avoid
--   turning off anything anywhere due to old X servers getting
--   confused about the boot device not being VGA */
-+ * turning off anything anywhere due to old X servers getting
-+ * confused about the boot device not being VGA
-+ */
- static void vga_check_first_use(void)
- {
- 	/* we should inform all GPUs in the system that
- 	 * VGA arb has occurred and to try and disable resources
--	 * if they can */
-+	 * if they can
-+	 */
- 	if (!vga_arbiter_used) {
- 		vga_arbiter_used = true;
- 		vga_arbiter_notify_clients();
-@@ -865,8 +868,7 @@ static bool vga_arbiter_del_pci_device(struct pci_dev *pdev)
- }
- 
- /* this is called with the lock */
--static inline void vga_update_device_decodes(struct vga_device *vgadev,
--					     int new_decodes)
-+static void vga_update_device_decodes(struct vga_device *vgadev, int new_decodes)
- {
- 	struct device *dev = &vgadev->pdev->dev;
- 	int old_decodes, decodes_removed, decodes_unlocked;
-@@ -956,9 +958,9 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
-  * @set_decode callback: If a client can disable its GPU VGA resource, it
-  * will get a callback from this to set the encode/decode state.
-  *
-- * Rationale: we cannot disable VGA decode resources unconditionally some single
-- * GPU laptops seem to require ACPI or BIOS access to the VGA registers to
-- * control things like backlights etc.  Hopefully newer multi-GPU laptops do
-+ * Rationale: we cannot disable VGA decode resources unconditionally, some
-+ * single GPU laptops seem to require ACPI or BIOS access to the VGA registers
-+ * to control things like backlights etc. Hopefully newer multi-GPU laptops do
-  * something saner, and desktops won't have any special ACPI for this. The
-  * driver will get a callback when VGA arbitration is first used by userspace
-  * since some older X servers have issues.
-@@ -988,7 +990,6 @@ int vga_client_register(struct pci_dev *pdev,
- bail:
- 	spin_unlock_irqrestore(&vga_lock, flags);
- 	return ret;
--
- }
- EXPORT_SYMBOL(vga_client_register);
- 
-diff --git a/include/linux/vgaarb.h b/include/linux/vgaarb.h
-index b4b9137f9792..d36225c582ee 100644
---- a/include/linux/vgaarb.h
-+++ b/include/linux/vgaarb.h
-@@ -23,9 +23,7 @@
-  * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-- * DEALINGS
-- * IN THE SOFTWARE.
-- *
-+ * DEALINGS IN THE SOFTWARE.
-  */
- 
- #ifndef LINUX_VGA_H
-@@ -96,7 +94,7 @@ static inline int vga_client_register(struct pci_dev *pdev,
- static inline int vga_get_interruptible(struct pci_dev *pdev,
- 					unsigned int rsrc)
- {
--       return vga_get(pdev, rsrc, 1);
-+	return vga_get(pdev, rsrc, 1);
- }
- 
- /**
-@@ -111,7 +109,7 @@ static inline int vga_get_interruptible(struct pci_dev *pdev,
- static inline int vga_get_uninterruptible(struct pci_dev *pdev,
- 					  unsigned int rsrc)
- {
--       return vga_get(pdev, rsrc, 0);
-+	return vga_get(pdev, rsrc, 0);
- }
- 
- static inline void vga_client_unregister(struct pci_dev *pdev)
--- 
-2.25.1
+On Sun, Jun 18, 2023 at 06:29:50PM +0200, Uwe Kleine-K=C3=B6nig wrote:
+> Hello Maxime,
+>=20
+> On Sun, Jun 18, 2023 at 04:32:55PM +0200, Maxime Ripard wrote:
+> > On Sun, Jun 18, 2023 at 02:39:15PM +0200, Uwe Kleine-K=C3=B6nig wrote:
+> > > On Sat, Jun 17, 2023 at 10:57:23AM -0700, Doug Anderson wrote:
+> > > > On Sat, Jun 17, 2023 at 9:15=E2=80=AFAM Uwe Kleine-K=C3=B6nig
+> > > > <u.kleine-koenig@pengutronix.de> wrote:
+> > > > > Together with the patches that were applied later the topmost com=
+mit
+> > > > > from this series is c2807ecb5290 ("drm/omap: Convert to platform =
+remove
+> > > > > callback returning void"). This commit was part for the following=
+ next
+> > > > > tags:
+> > > > >
+> > > > >         $ git tag -l --contains c2807ecb5290
+> > > > >         next-20230609
+> > > > >         next-20230613
+> > > > >         next-20230614
+> > > > >         next-20230615
+> > > > >
+> > > > > However in next-20230616 they are missing. In next-20230616
+> > > > > drm-misc/for-linux-next was cf683e8870bd4be0fd6b98639286700a35088=
+660.
+> > > > > Compared to c2807ecb5290 this adds 1149 patches but drops 37 (tha=
+t are
+> > > > > also not included with a different commit id). The 37 patches dro=
+pped
+> > > > > are 13cdd12a9f934158f4ec817cf048fcb4384aa9dc..c2807ecb5290:
+> > > > >
+> > > > >         $ git shortlog -s 13cdd12a9f934158f4ec817cf048fcb4384aa9d=
+c..c2807ecb5290
+> > > > >              1  Christophe JAILLET
+> > > > >              2  Jessica Zhang
+> > > > >              5  Karol Wachowski
+> > > > >              1  Laura Nao
+> > > > >             27  Uwe Kleine-K=C3=B6nig
+> > > > >              1  Wang Jianzheng
+> > > > >
+> > > > >
+> > > > > I guess this was done by mistake because nobody told me about dro=
+pping
+> > > > > my/these patches? Can c2807ecb5290 please be merged into drm-misc=
+-next
+> > > > > again?
+> > > >=20
+> > > > Actually, it was probably a mistake that these patches got merged to
+> > > > linuxnext during the 4 days that you noticed. However, your patches
+> > > > aren't dropped and are still present in drm-misc-next.
+> > > >=20
+> > > > drm-misc has a bit of a unique model and it's documented fairly wel=
+l here:
+> > > >=20
+> > > > https://drm.pages.freedesktop.org/maintainer-tools/drm-misc.html
+> > >=20
+> > > Is there a flaw then in this unique model (or its implementation) when
+> > > drm-misc/for-linux-next moves in a non-fast-forward manner? This isn't
+> > > expected, is it?
+> >=20
+> > There's no expectation afaik. Any tree merged in linux-next can be
+> > rebased, drop a patch, amend one, etc. without any concern.
+>=20
+> I agree that there are no rules broken for a tree that is included in
+> next and a maintainer is free to rewrite their tree independant of the
+> tree being included in next.
+>=20
+> Still I think that shouldn't be used as an excuse.
 
+As an excuse for what?
+
+> For me, if a maintainer puts some patch into next that's a statement
+> saying (approximately) "I think this patch is fine and I intend to
+> send it to Linus during the next merge window.".
+
+I mean, that's what we're saying and doing?
+
+> So my expectation is that if a patch is dropped again from next, there
+> was a problem and it would be fair if the maintainer tells the
+> author/submitter about this problem and that the patch was dropped.
+
+But it wasn't dropped, it's still very much to be sent to Linus during
+the next merge window.
+
+> So my concern is not about rule breaking, but about the strange signal
+> that is sent to contributors by including their work in next for some
+> time and then dropping it again without comment.
+>=20
+> > It's also why linux-next is rebuilt entirely every day.
+> >=20
+> > > > The key is that committers can commit to drm-misc-next _at any time_
+> > > > regardless of the merge window. The drm-misc merge strategy makes t=
+his
+> > > > OK. Specifically, when it's late in the linux cycle then drm-misc-n=
+ext
+> > > > is supposed to stop merging to linuxnext. Then, shortly after the
+> > > > merge window closes, patches will start flowing again.
+> > > >=20
+> > > > So basically your patches are landed and should even keep the same =
+git
+> > > > hashes when they eventually make it to Linux. They just won't land =
+for
+> > > > another release cycle of Linux.
+> > >=20
+> > > OK, c2807ecb5290 is still included in drm-misc-next. So while I don't
+> > > understand the whole model, the patches at least seem to be scheduled=
+ to
+> > > go in during the next merge window.
+> >=20
+> > It's not that complicated.
+> >=20
+> > drm-misc-next is always open, and we start targeting release X + 2 when
+> > X-rc6 is released.
+> >=20
+> > This is due to Linus wanting all the commits sent as part of the PR in
+> > linux-next for two weeks.
+> >=20
+> > In order to converge towards (X + 1)-rc1 in linux-next, as soon as X-rc6
+> > is released, we remove drm-misc-next from the linux-next branch. All the
+> > patches in drm-misc-next that were targetting X + 1 are in drm/next by
+> > then, so it's not a concern.
+>=20
+> So if I were a maintainer of drm-misc, I'd want that no commit from
+> drm-misc-next migrates to next after -rc6.
+>=20
+> Also note that the branch head in question (i.e. c2807ecb5290) was
+> included in next-20230609, while v6.4-rc6 was tagged on Jun 11. So
+> according to the rules you described c2807ecb5290 could have been
+> qualified to go into v6.5-rc1?!
+
+Yes, could have, but barely missed the last drm-misc-next PR we sent to
+Dave that usually occurs on Thursday (8/6) so Dave can merge it on
+Friday (9/6), the last working day before -rc6 was released.
+
+Maxime
+
+--gnbs5xikge2uwekh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZJAjwQAKCRDj7w1vZxhR
+xYaiAQDfltJZK/mNcp80pbD5Rf8rxBnU/bjLH8PwdZ4323+NNAD6An01V/1Zatms
+3vBQYpLxFoCG3f+iuR0DoZgvGKSPVAw=
+=UgXg
+-----END PGP SIGNATURE-----
+
+--gnbs5xikge2uwekh--
