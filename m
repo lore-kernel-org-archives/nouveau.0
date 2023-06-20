@@ -4,50 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50972C0015E
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:20:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D6D4EB64D7
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 18:21:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C85310E34B;
-	Tue, 20 Jun 2023 18:20:33 +0000 (UTC)
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
- [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E12E810E0A7
- for <nouveau@lists.freedesktop.org>; Sun, 18 Jun 2023 14:04:28 +0000 (UTC)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1qAszk-0002xh-Qi; Sun, 18 Jun 2023 16:03:08 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
- by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1qAszJ-008HxW-4T; Sun, 18 Jun 2023 16:02:41 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1qAszI-00FI3d-DW; Sun, 18 Jun 2023 16:02:40 +0200
-Date: Sun, 18 Jun 2023 16:02:40 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Doug Anderson <dianders@chromium.org>
-Message-ID: <20230618140240.4gx4hmcf6rv5qvfi@pengutronix.de>
-References: <20230507162616.1368908-1-u.kleine-koenig@pengutronix.de>
- <20230601154002.uv2wfatpb7b45duz@pengutronix.de>
- <CAD=FV=WvP--wJwBQtnSoW_xb57R1Wf9dH0XzWxe+NorczXfeAw@mail.gmail.com>
- <20230617161222.wy55pbomnrrlfy5u@pengutronix.de>
- <CAD=FV=U5gbMUNteyyFcTvHVBDWzfthM0aDirJC+yXGovDwMOBA@mail.gmail.com>
- <20230618123915.hmy66z7e532jhwgk@pengutronix.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6085B10E34E;
+	Tue, 20 Jun 2023 18:20:34 +0000 (UTC)
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 60B4210E16F;
+ Tue, 20 Jun 2023 03:13:48 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8Ax0OhqGZFkqgcHAA--.12544S3;
+ Tue, 20 Jun 2023 11:13:46 +0800 (CST)
+Received: from [10.20.42.43] (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8DxbMpnGZFkax4hAA--.18888S3; 
+ Tue, 20 Jun 2023 11:13:43 +0800 (CST)
+Message-ID: <5c3b5f2e-00c6-efba-1239-cdf96285d6a2@loongson.cn>
+Date: Tue, 20 Jun 2023 11:13:43 +0800
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="eb4c3srj26vyfosz"
-Content-Disposition: inline
-In-Reply-To: <20230618123915.hmy66z7e532jhwgk@pengutronix.de>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: nouveau@lists.freedesktop.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: "Limonciello, Mario" <mario.limonciello@amd.com>,
+ Sui Jingfeng <15330273260@189.cn>, Alex Deucher <alexander.deucher@amd.com>,
+ Christian Konig <christian.koenig@amd.com>, Pan Xinhui <Xinhui.Pan@amd.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Hawking Zhang <Hawking.Zhang@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ YiPeng Chai <YiPeng.Chai@amd.com>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ Bokun Zhang <Bokun.Zhang@amd.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>, Li Yi <liyi@loongson.cn>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
+ Cornelia Huck <cohuck@redhat.com>, Yishai Hadas <yishaih@nvidia.com>,
+ Abhishek Sahu <abhsahu@nvidia.com>, Yi Liu <yi.l.liu@intel.com>
+References: <20230612192550.197053-1-15330273260@189.cn>
+ <20230612192550.197053-3-15330273260@189.cn>
+ <5b6fdf65-b354-94a9-f883-be820157efad@amd.com>
+From: Sui Jingfeng <suijingfeng@loongson.cn>
+Organization: Loongson
+In-Reply-To: <5b6fdf65-b354-94a9-f883-be820157efad@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8DxbMpnGZFkax4hAA--.18888S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoWxGF4UCF4xWFy8AFW5CF1Dtwc_yoW5KrWDpF
+ ykJFW5GryUWwn7Gw12qr1UXFy5XrWUJa4DJr409a4jkr4UAryjqFy8XryYgr1UJrWkJF1U
+ Jr1Utr17Z3W7JabCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUPab4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
+ 6r4UJVWxJr1ln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
+ xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
+ 6r1DMcIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr4
+ 1lc7I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxG
+ rwCFx2IqxVCFs4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14
+ v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Wrv_Gr1UMIIY
+ rxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_JFI_Gr1lIxAIcVC0I7IYx2IY6xkF7I0E14
+ v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8
+ JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU3jjgUU
+ UUU
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:20:12 +0000
-Subject: Re: [Nouveau] patches dropped from drm-misc-next [Was: Re: [PATCH
- 00/53] drm: Convert to platform remove callback returning] void
+Subject: Re: [Nouveau] [PATCH v6 2/8] PCI/VGA: Deal only with VGA class
+ devices
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,246 +89,105 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Raymond Tan <raymond.tan@intel.com>,
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Akhil P Oommen <quic_akhilpo@quicinc.com>,
- Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
- Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Sumit Semwal <sumit.semwal@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
- linux-samsung-soc@vger.kernel.org, Robert Foss <rfoss@kernel.org>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Samuel Holland <samuel@sholland.org>, Kevin Hilman <khilman@baylibre.com>,
- =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
- Michal Simek <michal.simek@xilinx.com>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Xinliang Liu <xinliang.liu@linaro.org>, NXP Linux Team <linux-imx@nxp.com>,
- linux-sunxi@lists.linux.dev, Rahul T R <r-ravikumar@ti.com>,
- Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
- Jani Nikula <jani.nikula@intel.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- etnaviv@lists.freedesktop.org, Yuan Can <yuancan@huawei.com>,
- Inki Dae <inki.dae@samsung.com>, Jessica Zhang <quic_jesszhan@quicinc.com>,
- Sean Paul <sean@poorly.run>, Johan Hovold <johan+linaro@kernel.org>,
- Hyun Kwon <hyun.kwon@xilinx.com>, Andrew Jeffery <andrew@aj.id.au>,
- Jingoo Han <jingoohan1@gmail.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>, kernel@pengutronix.de,
- Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
- Claudiu Beznea <claudiu.beznea@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-aspeed@lists.ozlabs.org,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Thierry Reding <thierry.reding@gmail.com>, John Stultz <jstultz@google.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>, Liang He <windhl@126.com>,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- lima@lists.freedesktop.org, Chunyan Zhang <zhang.lyra@gmail.com>,
- Alexey Brodkin <abrodkin@synopsys.com>, Minghao Chi <chi.minghao@zte.com.cn>,
- Steven Price <steven.price@arm.com>, linux-rockchip@lists.infradead.org,
- Ben Skeggs <bskeggs@redhat.com>, Russell King <linux+etnaviv@armlinux.org.uk>,
- Alain Volmat <alain.volmat@foss.st.com>, Liu Ying <victor.liu@nxp.com>,
- linux-arm-msm@vger.kernel.org, Wang Jianzheng <wangjianzheng@vivo.com>,
- Maxime Ripard <mripard@kernel.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Boris Brezillon <bbrezillon@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Brian Starkey <brian.starkey@arm.com>, Miaoqian Lin <linmq006@gmail.com>,
- Stefan Agner <stefan@agner.ch>, Javier Martinez Canillas <javierm@redhat.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- Rob Herring <robh@kernel.org>, Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Mali DP Maintainers <malidp@foss.arm.com>, Joel Stanley <joel@jms.id.au>,
- nouveau@lists.freedesktop.org, Orson Zhai <orsonzhai@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Guo Zhengkui <guozhengkui@vivo.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Alison Wang <alison.wang@nxp.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Mark Brown <broonie@kernel.org>, Maxime Ripard <maxime@cerno.tech>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Paul Cercueil <paul@crapouillou.net>, Tomi Valkeinen <tomba@kernel.org>,
- Deepak R Varma <drv@mailo.com>,
- Karol Wachowski <karol.wachowski@linux.intel.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Ricardo Ribalda <ribalda@chromium.org>, Tian Tao <tiantao6@hisilicon.com>,
- Shawn Guo <shawnguo@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- linux-stm32@st-md-mailman.stormreply.com, Emma Anholt <emma@anholt.net>,
- Konrad Dybcio <konrad.dybcio@somainline.org>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Liu Shixin <liushixin2@huawei.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Laura Nao <laura.nao@collabora.com>, Marek Vasut <marex@denx.de>,
- linux-renesas-soc@vger.kernel.org, Yongqin Liu <yongqin.liu@linaro.org>,
- Jayshri Pawar <jpawar@cadence.com>, Jonas Karlman <jonas@kwiboo.se>,
- Russell King <linux@armlinux.org.uk>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Qiang Yu <yuq825@gmail.com>, Melissa Wen <mwen@igalia.com>,
- linux-mediatek@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, linux-tegra@vger.kernel.org,
- Stephen Boyd <swboyd@chromium.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Yannick Fertre <yannick.fertre@foss.st.com>, linux-mips@vger.kernel.org,
- Rob Clark <robdclark@gmail.com>, Philippe Cornu <philippe.cornu@foss.st.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Jyri Sarha <jyri.sarha@iki.fi>,
- Lucas Stach <l.stach@pengutronix.de>
+Cc: kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, loongson-kernel@lists.loongnix.cn,
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+Hi,
 
---eb4c3srj26vyfosz
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2023/6/20 02:12, Limonciello, Mario wrote:
+>
+> On 6/12/2023 2:25 PM, Sui Jingfeng wrote:
+>> From: Sui Jingfeng <suijingfeng@loongson.cn>
+>>
+>> Deal only with the VGA devcie(pdev->class == 0x0300), so replace the
+>> pci_get_subsys() function with pci_get_class(). Filter the non-PCI 
+>> display
+>> device(pdev->class != 0x0300) out. There no need to process the 
+>> non-display
+>> PCI device.
+>>
+>> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+>> ---
+> This also means that deleting a PCI device no longer needs
+> to walk the list.
+>
+> Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
+>
+Thanks a lot,
 
-Hello again,
+can you help to resend this precious R-B to the V7 of this series [1],
 
-On Sun, Jun 18, 2023 at 02:39:15PM +0200, Uwe Kleine-K=F6nig wrote:
-> > Actually, it was probably a mistake that these patches got merged to
-> > linuxnext during the 4 days that you noticed. However, your patches
-> > aren't dropped and are still present in drm-misc-next.
-> >=20
-> > drm-misc has a bit of a unique model and it's documented fairly well he=
-re:
-> >=20
-> > https://drm.pages.freedesktop.org/maintainer-tools/drm-misc.html
->=20
-> Is there a flaw then in this unique model (or its implementation) when
-> drm-misc/for-linux-next moves in a non-fast-forward manner? This isn't
-> expected, is it?
+This is V6.
 
-FTR, I checked historic next trees to find other trees where
-for-linux-next were moved in a non-fast-forward manner[1]. I found:
+[1] https://patchwork.freedesktop.org/series/119250/
 
-	$ git for-each-ref --format=3D'%(refname)' refs/tags/next-* | while read n=
-; do hn=3D$(git show $n:Next/SHA1s 2>/dev/null | awk '$1 =3D=3D "drm-misc" =
-{ print $2 }'); if test -z "$hn"; then continue; fi; if test -n "$prevhn" &=
-& ! git merge-base --is-ancestor "$prevhn" "$hn"; then if git merge-base --=
-is-ancestor "$hn" linus/master; then merged=3Dx; else merged=3D"-"; fi; ech=
-o "$n ($prevhn -> $hn) [$merged]"; fi; prevhn=3D$hn; done
-	refs/tags/next-20151231 (e8b4855b5dd3e285d0ec18ed15468025abc1be9a -> e112e=
-593b215c394c0303dbf0534db0928e87967) [x]
-	refs/tags/next-20160212 (e24bfdd5052ca65e99fb835838da9d64b36ddc88 -> 382ab=
-95d1af85381d8a5dff09b16a80c7e492534) [x]
-	refs/tags/next-20170613 (18e51064c42ca3945b94dd4652156b62457962bc -> 2d7b5=
-6378d32b0cf006f8944cbba4046df45dd25) [x]
-	refs/tags/next-20180406 (3ae7fb202d86b7847f237daa474f3946bdc3b0c6 -> 41613=
-a1a7df27a0aa34bf77d51278bbe8e108a8f) [x]
-	refs/tags/next-20180517 (3131f209468d1514af378dd46eb34123d0af84ff -> 2045b=
-22461c07a88dc3d2bab3cbfc6dc0c602fd4) [x]
-	refs/tags/next-20190320 (e552f0851070fe4975d610a99910be4e9bf5d7bd -> 29054=
-230f3e11ea818eccfa7bb4e4b3e89544164) [x]
-	refs/tags/next-20190617 (9f9b25593ab4197318e3621201588ad8cd525c9b -> b1622=
-cb3be4557fd086831ca7426eafe5f1acc2e) [x]
-	refs/tags/next-20190723 (7aaddd96d5febcf5b24357a326b3038d49a20532 -> d8080=
-97627e51d53cf9b1aa13239b5c4a6adaefb) [x]
-	refs/tags/next-20190829 (66c2dee4ae10a2d841c40b9dd9c7141eb23eee76 -> 578d2=
-342ec702e5fb8a77983fabb3754ae3e9660) [x]
-	refs/tags/next-20191004 (d7d44b6fe40a98e960be92ea8617954c2596d140 -> 4092d=
-e1ba34eb376791809fb366bc15f8a9e0b7c) [x]
-	refs/tags/next-20191106 (8a537de0f3d8b655cb901c948ed863bf0b23277b -> cea35=
-f5ad5ffac06ea29e0d7a7f748683e1f1b7d) [x]
-	refs/tags/next-20191216 (0a5239985a3bc084738851afdf3fceb7d5651b0c -> d4e6a=
-62d3769ef09bfe116b261a61ef871dea4f9) [x]
-	refs/tags/next-20200123 (73896f60d4865657740c64821a7b18825a9bf96c -> db735=
-fc4036bbe1fbe606819b5f0ff26cc76cdff) [x]
-	refs/tags/next-20200415 (152cce0006abf7e17dfb7dc94896b044bda4e588 -> 74aae=
-1c42f4a7f69934762f9e9f90a3ec335fef2) [x]
-	refs/tags/next-20200521 (5bebaeadb30e8d1ed694bd9b63d4e424d333fe36 -> 0df3f=
-f451287d71c620384eb7bb2cd3a8106412c) [x]
-	refs/tags/next-20200617 (291ddeb621e4a9f1ced8302a777fbd7fbda058c6 -> cfe28=
-f909ddd6ca854568870a7a9b46454e52b6f) [x]
-	refs/tags/next-20200724 (9fadd6d1e2977bbd449d4fb99cde41ed6f71f668 -> 20673=
-9119508d5ab4b42ab480ff61a7e6cd72d7c) [x]
-	refs/tags/next-20200924 (ad44c03208e46b83e4ae3269e32c9e524aa71cf8 -> de194=
-561359788871f7d8f5f7797557a2a166b4e) [x]
-	refs/tags/next-20201027 (2580a493a97da4a302cb66251b558bfc04c16e68 -> 70bb9=
-193728627e84e02eb0960b0aa138ae2cef5) [x]
-	refs/tags/next-20201214 (c365d304d69ab2a38e1431323d17a216b7930e32 -> 05faf=
-1559de52465f1e753e31883aa294e6179c1) [x]
-	refs/tags/next-20210211 (5ceeb328637a01e0e54e2618cff129c6a1c31dba -> e2183=
-fb135a7f62d317aa1c61eb3d1919080edba) [x]
-	refs/tags/next-20210319 (5fd3de7a51855e086d9ce9d2d752489e9c15b850 -> 4cf1d=
-8719aab0ad89690abb1d37ecf4552778420) [x]
-	refs/tags/next-20210409 (167b400217121338a2beb78e09e2c77bd95491f5 -> 9c0fe=
-d84d5750e1eea6c664e073ffa2534a17743) [x]
-	refs/tags/next-20210615 (a3a5f9d0fb15da90820254ba735491887cc12099 -> 1bd8a=
-7dc28c1c410f1ceefae1f2a97c06d1a67c2) [x]
-	refs/tags/next-20210714 (34bd46bcf3de72cbffcdc42d3fa67e543d1c869b -> 35d28=
-3658a6196b2057be562096610c6793e1219) [x]
-	refs/tags/next-20210715 (35d283658a6196b2057be562096610c6793e1219 -> 85fd4=
-a8a84316166640102676a356755ddec80e0) [-]
-	refs/tags/next-20210726 (85fd4a8a84316166640102676a356755ddec80e0 -> 03b7c=
-552d081b73ba814eefc257c704b4d096d93) [x]
-	refs/tags/next-20210727 (03b7c552d081b73ba814eefc257c704b4d096d93 -> 87360=
-168759879d68550b0c052bbcc2a0339ff74) [-]
-	refs/tags/next-20210817 (87360168759879d68550b0c052bbcc2a0339ff74 -> 80cbd=
-8808f85017b8aff4b223db68926b470be12) [x]
-	refs/tags/next-20211101 (2b3374306b315be02db0f67d3102a0d1e1357270 -> b3ec8=
-cdf457e5e63d396fe1346cc788cf7c1b578) [x]
-	refs/tags/next-20211117 (bcae3af286f49bf4f6cda03f165fbe530f4a6bed -> a193f=
-3b4e050e35c506a34d0870c838d8e0b0449) [x]
-	refs/tags/next-20211217 (43d5ac7d07023cd133b978de473b3400edad941f -> d6c75=
-c295f67b26fad8ba2e72db80e0f744e9da9) [x]
-	refs/tags/next-20220317 (07f380da3ebd8d84fc866ccf83d93c667fcaaeaa -> f6d79=
-0e5a7fe42706756c7fa1686d08d230610fc) [x]
-	refs/tags/next-20220406 (67bae5f28c895f8737a1974c3f31cf12b9170b14 -> 21d13=
-9a95682c6ade89a2151e44012c9797c0309) [x]
-	refs/tags/next-20220513 (aebeb02dfccb61d6930112aede2db3db5b8e974e -> 6071c=
-4c2a319da360b0bf2bc397d4fefad10b2c8) [x]
-	refs/tags/next-20220610 (5ee8c8f930ba7d20717c4fc2d9f1ce0e757d1155 -> efeea=
-efe9be56e8ae5e5b4e9ff6d2275ec977ec5) [x]
-	refs/tags/next-20220715 (887ddf3251928dc39bfc58c5c62083d38a633c14 -> c96cf=
-af8fc02d4bb70727dfa7ce7841a3cff9be2) [x]
-	refs/tags/next-20220818 (2939deac1fa220bc82b89235f146df1d9b52e876 -> 8ba92=
-49396bef37cb68be9e8dee7847f1737db9d) [x]
-	refs/tags/next-20221007 (fdd0640b639070efb58226c96cea5861150e8dce -> 39dd0=
-cc2e5bd0d5188dd69f27e18783cea7ff06a) [x]
-	refs/tags/next-20221122 (e3ddd2d25533d1cc6f9fea421e4a5f16b60b3434 -> 29583=
-dfcd2dd72c766422bd05c16f06c6b1fb356) [x]
-	refs/tags/next-20230106 (03dec92c4f788c54a7c01b40a018f601eb8a6c52 -> 4c00a=
-c500d0edd1a6730c4e8293834a694c1b304) [x]
-	refs/tags/next-20230201 (d023d6f741c85bb00d2ca43d338327fbc150c113 -> aebd8=
-f0c6f8280ba35bc989f4a9ea47469d3589a) [x]
-	refs/tags/next-20230616 (c2807ecb529004ea6f2c2be823c495dc8491e205 -> cf683=
-e8870bd4be0fd6b98639286700a35088660) [-]
+>>   drivers/pci/vgaarb.c | 22 ++++++++++++----------
+>>   1 file changed, 12 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+>> index c1bc6c983932..22a505e877dc 100644
+>> --- a/drivers/pci/vgaarb.c
+>> +++ b/drivers/pci/vgaarb.c
+>> @@ -754,10 +754,6 @@ static bool vga_arbiter_add_pci_device(struct 
+>> pci_dev *pdev)
+>>       struct pci_dev *bridge;
+>>       u16 cmd;
+>>   -    /* Only deal with VGA class devices */
+>> -    if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
+>> -        return false;
+>> -
+>>       /* Allocate structure */
+>>       vgadev = kzalloc(sizeof(struct vga_device), GFP_KERNEL);
+>>       if (vgadev == NULL) {
+>> @@ -1500,7 +1496,9 @@ static int pci_notify(struct notifier_block 
+>> *nb, unsigned long action,
+>>       struct pci_dev *pdev = to_pci_dev(dev);
+>>       bool notify = false;
+>>   -    vgaarb_dbg(dev, "%s\n", __func__);
+>> +    /* Only deal with VGA class devices */
+>> +    if (pdev->class != PCI_CLASS_DISPLAY_VGA << 8)
+>> +        return 0;
+>>         /* For now we're only intereted in devices added and removed. 
+>> I didn't
+>>        * test this thing here, so someone needs to double check for the
+>> @@ -1510,6 +1508,8 @@ static int pci_notify(struct notifier_block 
+>> *nb, unsigned long action,
+>>       else if (action == BUS_NOTIFY_DEL_DEVICE)
+>>           notify = vga_arbiter_del_pci_device(pdev);
+>>   +    vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
+>> +
+>>       if (notify)
+>>           vga_arbiter_notify_clients();
+>>       return 0;
+>> @@ -1534,8 +1534,8 @@ static struct miscdevice vga_arb_device = {
+>>     static int __init vga_arb_device_init(void)
+>>   {
+>> +    struct pci_dev *pdev = NULL;
+>>       int rc;
+>> -    struct pci_dev *pdev;
+>>         rc = misc_register(&vga_arb_device);
+>>       if (rc < 0)
+>> @@ -1545,11 +1545,13 @@ static int __init vga_arb_device_init(void)
+>>         /* We add all PCI devices satisfying VGA class in the arbiter by
+>>        * default */
+>> -    pdev = NULL;
+>> -    while ((pdev =
+>> -        pci_get_subsys(PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
+>> -                   PCI_ANY_ID, pdev)) != NULL)
+>> +    while (1) {
+>> +        pdev = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, pdev);
+>> +        if (!pdev)
+>> +            break;
+>> +
+>>           vga_arbiter_add_pci_device(pdev);
+>> +    }
+>>         pr_info("loaded\n");
+>>       return rc;
 
-so up to now it happend only three times (i.e. the lines with [-]) that
-drm-misc/for-linux-next changed in a non-ff way and the commit wasn't
-included later in the mainline (and for refs/tags/next-20230616 we
-assume this will change to [x] during the next merge window)
+-- 
+Jingfeng
 
-So it seems to happen every few weeks ...
-
-Best regards
-Uwe
-
-[1] My collection of historic next tags is incomplete, so there might be
-more.
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---eb4c3srj26vyfosz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmSPDn8ACgkQj4D7WH0S
-/k7L6gf/cytqkBFkHVXDoBVXRxPM1OePNsw21ry/f3tW70K2nNc4HnmoAL9mFRQ8
-5wG1yAZjKMasYxKAfcYJMLYLtzHN4Y9Qp8sc1hxVSMIMocvRl3ZIiWzJfreVjIAe
-7FTXkufJanMn7c9Qdh/J8JOtKpklVEZUUfRzINRBM+76I5EHPiQbJa6tn5LfA2Th
-sRsDEpNjPqCakHoSrXXjaI+Hr96WW17ZMBahDJWoTbWsZxgT3iYw66xrHfCtfe9b
-cvNTvLg1zU7Pss91qpOXPmy20SpgFp+azkcgV4fuRDBBzOWy8o60c+sHOakVGqEt
-X09GAkhhnxYXlTriqgI34p9H1ew/0g==
-=v7dB
------END PGP SIGNATURE-----
-
---eb4c3srj26vyfosz--
