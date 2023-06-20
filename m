@@ -4,14 +4,14 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6DE5EB64D9
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 00:43:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C8BEEB64DA
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jun 2023 00:43:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB0F10E23D;
-	Tue, 20 Jun 2023 00:43:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FB6110E23F;
+	Tue, 20 Jun 2023 00:43:05 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DF2710E23B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B76A10E23D
  for <nouveau@lists.freedesktop.org>; Tue, 20 Jun 2023 00:43:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
  s=mimecast20190719; t=1687221781;
@@ -19,53 +19,53 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=VAsnh4By1Dlsxa7yVRPYZeW4lQVXq7K2JYovOcCMg38=;
- b=gNMb0Yq5NONlEWbZ6w2dFtl7FJsSBAQa/U2/HRjxn4u+g0kqGs31zxUwGbf9aje8hq74tZ
- m/XGt1o45BTCCPj9yK/NJsUBjfzWPPLusLW353+qqmTWjFoh8FjA7sO5nWL3z/mN9hjo6g
- 2H9SLMVfqrqbNe8it8LGT5k3Xlb4+zA=
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
- [209.85.218.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=N2u1hP2d/8CjIhjRb+gqUMgVIAuG2+DtyciZrujYDGU=;
+ b=EaEjd8nIgiXiVrBhpVjalw46zA4ATFpM4l1a5tpIpF5MOTIA1ieew1w3I3rxNW8MMcM2iA
+ cUBWXgJHVPJ1xg6Hlmz9PWBf4dDwl8zTm1ujFnuMOymYggclrPK2dGnmtUHliHgzg4yG9e
+ wEoDrFADG6+gQhg8CD3RWLROCXfLbMc=
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-283-miJO1gyEPDi51ByaCujn_A-1; Mon, 19 Jun 2023 20:43:00 -0400
-X-MC-Unique: miJO1gyEPDi51ByaCujn_A-1
-Received: by mail-ej1-f72.google.com with SMTP id
- a640c23a62f3a-986db3313f0so220236866b.3
+ us-mta-307-sOh5bTyVNlmA1DzbaaBjJQ-1; Mon, 19 Jun 2023 20:43:00 -0400
+X-MC-Unique: sOh5bTyVNlmA1DzbaaBjJQ-1
+Received: by mail-ed1-f72.google.com with SMTP id
+ 4fb4d7f45d1cf-50a16ab50e6so1959166a12.0
  for <nouveau@lists.freedesktop.org>; Mon, 19 Jun 2023 17:43:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1687221764; x=1689813764;
+ d=1e100.net; s=20221208; t=1687221779; x=1689813779;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=VAsnh4By1Dlsxa7yVRPYZeW4lQVXq7K2JYovOcCMg38=;
- b=BnYFnOeeKZHgGNM8VUgQ9EDevwgDkPnAanhI/Rb2EstUm0HqYacu6j8/Yd/3bVDVsS
- kf3Vue+tAtRsYda6bOmfPD+paSmvSBzXGYUJ03lQ9Sqk8HEA1yWvcs7l4CR671T2xQB1
- xiYJlzv3q/Ks0dpgoKuxtBq9tO/UfNaJvsOEMv+W8KjmiZxg0UuT1SiBiS1cr28IY9Dk
- FbEG8q43zQO6tf+UmeCAYsKQtb/qIlbzNQiyG/cERDPMnsVJFUh3pnKbfYdT2JfqHm3t
- xH+FOrKCnIwQIL6rMeHg9iMo0QU9hG9CJGLeQsjwTf8o9TIdrA9lCJXRYEVB5xRzrpxO
- 5knQ==
-X-Gm-Message-State: AC+VfDzYlfQfkRvFvZikbUIPbWRwq9Snb54kEJaEt3StEkjx4bttDITr
- axljRjzu6cDOubFMt2Y5c4nJ3eJW11JIkGfhgNd+XGcmTfruRPm1fe90WTA4+cTyVi+D2cwWb3l
- qfJtxV1qygEMLS4GQCOBxlrSX1w==
-X-Received: by 2002:a17:907:36c3:b0:988:fa98:2e7f with SMTP id
- bj3-20020a17090736c300b00988fa982e7fmr1299790ejc.38.1687221764010; 
- Mon, 19 Jun 2023 17:42:44 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ7HGMiGgWF6PMVUZoQgQKDhuvm3Qm7rw1HXP9heC2ekHKnGIcfwVvW2zWncnuxi/qoMwFCVhw==
-X-Received: by 2002:a17:907:36c3:b0:988:fa98:2e7f with SMTP id
- bj3-20020a17090736c300b00988fa982e7fmr1299766ejc.38.1687221763782; 
- Mon, 19 Jun 2023 17:42:43 -0700 (PDT)
+ bh=N2u1hP2d/8CjIhjRb+gqUMgVIAuG2+DtyciZrujYDGU=;
+ b=iM97F2BxSn0j4ESzN4l3Nch7+d8JCd1zDjAysJImns98uPCNUGX1F/Rbl3lBWzvPTE
+ WeUqMiNrNOFjIpAJpWxqOhk42OqaFPxQnu6KA8VVadb0O4ZLwjOpn1GHDgpbBmXYx3jN
+ nKjRJ2FjaITn6ajgQeG3u2ot16kdB/FVZKrYzdpsZN2ei3ZfzeNiDvv4jMRogoonOoDt
+ 1io10VBiVSn68CZhBCyVSmTS/eR/FVDwrzXjTyy7n/Xgdh+Wo5LAHN4xjsWyN8Y6pysx
+ F1K16d2oJz2vrJxhmXhVxlkjxSi+vz7Z7p1r878palGGRkTzRYnQBH+JVAvFUXBuLCcN
+ QkVw==
+X-Gm-Message-State: AC+VfDzw1yxCLm3Ow4lPD2Na8prqMvdnZOVLgUrXh8bbmfk8F3ZkNP0c
+ STabzXsH0bpD/dArj6PfbMQ2hpoEghyvdtYBC+ojHnWrPulUKaHgypcLauWqI/3yCkp8lH4HalO
+ 0l/N3KiEQlnVXre1jExh22M0yzQ==
+X-Received: by 2002:aa7:cd45:0:b0:514:994c:2982 with SMTP id
+ v5-20020aa7cd45000000b00514994c2982mr6151194edw.40.1687221779491; 
+ Mon, 19 Jun 2023 17:42:59 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ65FSvnjaoggF9h58zTqyT2DOkL9H5Vbq5o8fo2niPqP1lOxX39BSK0TAWF98v1OjzcZEYMlQ==
+X-Received: by 2002:aa7:cd45:0:b0:514:994c:2982 with SMTP id
+ v5-20020aa7cd45000000b00514994c2982mr6151166edw.40.1687221779253; 
+ Mon, 19 Jun 2023 17:42:59 -0700 (PDT)
 Received: from cassiopeiae.. ([2a02:810d:4b3f:de9c:642:1aff:fe31:a19f])
  by smtp.gmail.com with ESMTPSA id
- n22-20020a170906b31600b00982c0ac984asm386091ejz.176.2023.06.19.17.42.41
+ d8-20020a056402078800b005187a42b44fsm310743edy.58.2023.06.19.17.42.57
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 19 Jun 2023 17:42:43 -0700 (PDT)
+ Mon, 19 Jun 2023 17:42:58 -0700 (PDT)
 From: Danilo Krummrich <dakr@redhat.com>
 To: airlied@gmail.com, daniel@ffwll.ch, tzimmermann@suse.de,
  mripard@kernel.org, corbet@lwn.net, christian.koenig@amd.com,
  bskeggs@redhat.com, Liam.Howlett@oracle.com, matthew.brost@intel.com,
  boris.brezillon@collabora.com, alexdeucher@gmail.com, ogabbay@kernel.org,
  bagasdotme@gmail.com, willy@infradead.org, jason@jlekstrand.net
-Date: Tue, 20 Jun 2023 02:42:07 +0200
-Message-Id: <20230620004217.4700-5-dakr@redhat.com>
+Date: Tue, 20 Jun 2023 02:42:10 +0200
+Message-Id: <20230620004217.4700-8-dakr@redhat.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230620004217.4700-1-dakr@redhat.com>
 References: <20230620004217.4700-1-dakr@redhat.com>
@@ -74,8 +74,8 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset="US-ASCII"; x-default=true
-Subject: [Nouveau] [PATCH drm-next v5 04/14] drm: debugfs: provide
- infrastructure to dump a DRM GPU VA space
+Subject: [Nouveau] [PATCH drm-next v5 07/14] drm/nouveau: bo: initialize GEM
+ GPU VA interface
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,129 +93,33 @@ Cc: linux-doc@vger.kernel.org, nouveau@lists.freedesktop.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This commit adds a function to dump a DRM GPU VA space and a macro for
-drivers to register the struct drm_info_list 'gpuvas' entry.
-
-Most likely, most drivers might maintain one DRM GPU VA space per struct
-drm_file, but there might also be drivers not having a fixed relation
-between DRM GPU VA spaces and a DRM core infrastructure, hence we need the
-indirection via the driver iterating it's maintained DRM GPU VA spaces.
+Initialize the GEM's DRM GPU VA manager interface in preparation for the
+(u)vmm implementation, provided by subsequent commits, to make use of it.
 
 Signed-off-by: Danilo Krummrich <dakr@redhat.com>
 ---
- drivers/gpu/drm/drm_debugfs.c | 41 +++++++++++++++++++++++++++++++++++
- include/drm/drm_debugfs.h     | 25 +++++++++++++++++++++
- 2 files changed, 66 insertions(+)
+ drivers/gpu/drm/nouveau/nouveau_bo.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugfs.c
-index 4855230ba2c6..82180fb1c200 100644
---- a/drivers/gpu/drm/drm_debugfs.c
-+++ b/drivers/gpu/drm/drm_debugfs.c
-@@ -39,6 +39,7 @@
- #include <drm/drm_file.h>
- #include <drm/drm_gem.h>
- #include <drm/drm_managed.h>
-+#include <drm/drm_gpuva_mgr.h>
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index 7724fe63067d..057bc995f19b 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -215,11 +215,14 @@ nouveau_bo_alloc(struct nouveau_cli *cli, u64 *size, int *align, u32 domain,
+ 	nvbo = kzalloc(sizeof(struct nouveau_bo), GFP_KERNEL);
+ 	if (!nvbo)
+ 		return ERR_PTR(-ENOMEM);
++
+ 	INIT_LIST_HEAD(&nvbo->head);
+ 	INIT_LIST_HEAD(&nvbo->entry);
+ 	INIT_LIST_HEAD(&nvbo->vma_list);
+ 	nvbo->bo.bdev = &drm->ttm.bdev;
  
- #include "drm_crtc_internal.h"
- #include "drm_internal.h"
-@@ -175,6 +176,46 @@ static const struct file_operations drm_debugfs_fops = {
- 	.release = single_release,
- };
- 
-+/**
-+ * drm_debugfs_gpuva_info - dump the given DRM GPU VA space
-+ * @m: pointer to the &seq_file to write
-+ * @mgr: the &drm_gpuva_manager representing the GPU VA space
-+ *
-+ * Dumps the GPU VA mappings of a given DRM GPU VA manager.
-+ *
-+ * For each DRM GPU VA space drivers should call this function from their
-+ * &drm_info_list's show callback.
-+ *
-+ * Returns: 0 on success, -ENODEV if the &mgr is not initialized
-+ */
-+int drm_debugfs_gpuva_info(struct seq_file *m,
-+			   struct drm_gpuva_manager *mgr)
-+{
-+	DRM_GPUVA_ITER(it, mgr, 0);
-+	struct drm_gpuva *va, *kva = &mgr->kernel_alloc_node;
++	drm_gem_gpuva_init(&nvbo->bo.base);
 +
-+	if (!mgr->name)
-+		return -ENODEV;
-+
-+	seq_printf(m, "DRM GPU VA space (%s) [0x%016llx;0x%016llx]\n",
-+		   mgr->name, mgr->mm_start, mgr->mm_start + mgr->mm_range);
-+	seq_printf(m, "Kernel reserved node [0x%016llx;0x%016llx]\n",
-+		   kva->va.addr, kva->va.addr + kva->va.range);
-+	seq_puts(m, "\n");
-+	seq_puts(m, " VAs | start              | range              | end                | object             | object offset\n");
-+	seq_puts(m, "-------------------------------------------------------------------------------------------------------------\n");
-+	drm_gpuva_iter_for_each(va, it) {
-+		if (unlikely(va == &mgr->kernel_alloc_node))
-+			continue;
-+
-+		seq_printf(m, "     | 0x%016llx | 0x%016llx | 0x%016llx | 0x%016llx | 0x%016llx\n",
-+			   va->va.addr, va->va.range, va->va.addr + va->va.range,
-+			   (u64)va->gem.obj, va->gem.offset);
-+	}
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(drm_debugfs_gpuva_info);
- 
- /**
-  * drm_debugfs_create_files - Initialize a given set of debugfs files for DRM
-diff --git a/include/drm/drm_debugfs.h b/include/drm/drm_debugfs.h
-index 7616f457ce70..cb2c1956a214 100644
---- a/include/drm/drm_debugfs.h
-+++ b/include/drm/drm_debugfs.h
-@@ -34,6 +34,22 @@
- 
- #include <linux/types.h>
- #include <linux/seq_file.h>
-+
-+#include <drm/drm_gpuva_mgr.h>
-+
-+/**
-+ * DRM_DEBUGFS_GPUVA_INFO - &drm_info_list entry to dump a GPU VA space
-+ * @show: the &drm_info_list's show callback
-+ * @data: driver private data
-+ *
-+ * Drivers should use this macro to define a &drm_info_list entry to provide a
-+ * debugfs file for dumping the GPU VA space regions and mappings.
-+ *
-+ * For each DRM GPU VA space drivers should call drm_debugfs_gpuva_info() from
-+ * their @show callback.
-+ */
-+#define DRM_DEBUGFS_GPUVA_INFO(show, data) {"gpuvas", show, DRIVER_GEM_GPUVA, data}
-+
- /**
-  * struct drm_info_list - debugfs info list entry
-  *
-@@ -134,6 +150,9 @@ void drm_debugfs_add_file(struct drm_device *dev, const char *name,
- 
- void drm_debugfs_add_files(struct drm_device *dev,
- 			   const struct drm_debugfs_info *files, int count);
-+
-+int drm_debugfs_gpuva_info(struct seq_file *m,
-+			   struct drm_gpuva_manager *mgr);
- #else
- static inline void drm_debugfs_create_files(const struct drm_info_list *files,
- 					    int count, struct dentry *root,
-@@ -155,6 +174,12 @@ static inline void drm_debugfs_add_files(struct drm_device *dev,
- 					 const struct drm_debugfs_info *files,
- 					 int count)
- {}
-+
-+static inline int drm_debugfs_gpuva_info(struct seq_file *m,
-+					 struct drm_gpuva_manager *mgr)
-+{
-+	return 0;
-+}
- #endif
- 
- #endif /* _DRM_DEBUGFS_H_ */
+ 	/* This is confusing, and doesn't actually mean we want an uncached
+ 	 * mapping, but is what NOUVEAU_GEM_DOMAIN_COHERENT gets translated
+ 	 * into in nouveau_gem_new().
 -- 
 2.40.1
 
