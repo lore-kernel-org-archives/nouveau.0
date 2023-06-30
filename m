@@ -4,41 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 962CAEB64D9
-	for <nouveau@archiver.kernel.org>; Mon, 10 Jul 2023 07:23:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5949BC001DF
+	for <nouveau@archiver.kernel.org>; Mon, 10 Jul 2023 07:23:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 115B710E1E5;
-	Mon, 10 Jul 2023 07:23:38 +0000 (UTC)
-Received: from out-32.mta0.migadu.com (out-32.mta0.migadu.com [91.218.175.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 050C410E452
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA30310E1E3;
+	Mon, 10 Jul 2023 07:23:37 +0000 (UTC)
+X-Greylist: delayed 344 seconds by postgrey-1.36 at gabe;
+ Fri, 30 Jun 2023 11:08:38 UTC
+Received: from out-3.mta0.migadu.com (out-3.mta0.migadu.com [91.218.175.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 006B510E451
  for <nouveau@lists.freedesktop.org>; Fri, 30 Jun 2023 11:08:38 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1688122974;
+ t=1688122987;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=GIsbNY4Mb47GZOP1sDLnLj7sNU75tuWjGzp78R/rGnQ=;
- b=be4Jlsr6Jt+Jwj8DCkyi24b4KG/0dC9GA3XAp6Tqzael5epiL0oGvLIoEqH6ypgRU3THZo
- If0i2i+iFj+0eanEWnnKQVV6cb/ALlv3+XOOVpv1dO+mZ1xbCKWgAxVRUifcretEgYYgmA
- l9Yeu0TPku1CZuAfdKvfi8eiimFC94w=
+ bh=9VT31crvj/hSyen+1yeJunQKIe6CJXCWJLM4jAJyVsI=;
+ b=baipea9BUYs+P0aSm1rKe8ypQy05pAEnnX7yI+xyO3DhMiuV88ZCgKuCedMWIPlu3wl0ii
+ sidhXI/6FlI7dKPOv9whb+Z5DbTB4LHG7HmNOGxpJ8Gb61ZM+dJPIagjFPFg3w4wuSHtRv
+ FVowlwMUWuFeVO9zZjqa4KX7snhvraM=
 From: Sui Jingfeng <sui.jingfeng@linux.dev>
 To: Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
  Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
  Maxime Ripard <mripard@kernel.org>,
  Jani Nikula <jani.nikula@linux.intel.com>
-Date: Fri, 30 Jun 2023 19:02:40 +0800
-Message-Id: <20230630110243.141671-2-sui.jingfeng@linux.dev>
+Date: Fri, 30 Jun 2023 19:02:42 +0800
+Message-Id: <20230630110243.141671-4-sui.jingfeng@linux.dev>
 In-Reply-To: <20230630110243.141671-1-sui.jingfeng@linux.dev>
 References: <20230630110243.141671-1-sui.jingfeng@linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Mon, 10 Jul 2023 07:23:34 +0000
-Subject: [Nouveau] [PATCH v1 1/4] video/aperture: Add a helper to detect if
- an aperture contains firmware FB
+Subject: [Nouveau] [PATCH v1 3/4] drm/amdgpu: Implement the is_boot_device
+ callback function
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,159 +52,81 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Sui Jingfeng <suijingfeng@loongson.cn>,
+Cc: Mario Limonciello <mario.limonciello@amd.com>, linux-fbdev@vger.kernel.org,
+ Lijo Lazar <lijo.lazar@amd.com>, Sui Jingfeng <suijingfeng@loongson.cn>,
  kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, Pan Xinhui <Xinhui.Pan@amd.com>,
  linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Javier Martinez Canillas <javierm@redhat.com>, dri-devel@lists.freedesktop.org,
- linux-pci@vger.kernel.org, Helge Deller <deller@gmx.de>
+ YiPeng Chai <YiPeng.Chai@amd.com>, dri-devel@lists.freedesktop.org,
+ Bokun Zhang <Bokun.Zhang@amd.com>, linux-pci@vger.kernel.org,
+ Likun Gao <Likun.Gao@amd.com>, Christian Konig <christian.koenig@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 From: Sui Jingfeng <suijingfeng@loongson.cn>
 
-This patch adds the aperture_contain_firmware_fb() function to do the
-determination. Unfortunately due to the fact that apertures list will be
-freed dynamically, the location and size information of the firmware fb
-will be lost after dedicated drivers call
-aperture_remove_conflicting_devices(),
-aperture_remove_conflicting_pci_devices() or
-aperture_remove_all_conflicting_devices() functions
+[why]
 
-We handle this problem by introducing two static variables which record the
-firmware framebuffer's start addrness and end addrness. It assumes that the
-system has only one active firmware framebuffer driver at a time.
+The vga_is_firmware_default() defined in drivers/pci/vgaarb.c is
+arch-dependent, it's a dummy on non-x86 architectures currently.
+This made VGAARB lost an important condition for the arbitration.
+It could still be wrong even if we remove the #ifdef and #endif guards.
+because the PCI bar will move (resource re-allocation).
 
-We don't use the global structure screen_info here, because PCI resource
-may get reallocated(the VRAM BAR could be moved) at kernel boot stage.
+[how]
 
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
+The device that owns the firmware framebuffer should be the default boot
+device. This patch adds an arch-independent function to enforce this rule.
+The vgaarb subsystem will call back to amdgpu_is_boot_device() function
+when drm/amdgpu is successfully bound to an AMDGPU device.
+
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Christian Konig <christian.koenig@amd.com>
+Cc: Pan Xinhui <Xinhui.Pan@amd.com>
 Cc: David Airlie <airlied@gmail.com>
 Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Helge Deller <deller@gmx.de>
+Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Mario Limonciello <mario.limonciello@amd.com>
+Cc: Lijo Lazar <lijo.lazar@amd.com>
+Cc: YiPeng Chai <YiPeng.Chai@amd.com>
+Cc: Bokun Zhang <Bokun.Zhang@amd.com>
+CC: Likun Gao <Likun.Gao@amd.com>
 Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
 ---
- drivers/gpu/drm/drm_aperture.c | 16 ++++++++++++++++
- drivers/video/aperture.c       | 29 +++++++++++++++++++++++++++++
- include/drm/drm_aperture.h     |  2 ++
- include/linux/aperture.h       |  7 +++++++
- 4 files changed, 54 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_aperture.c b/drivers/gpu/drm/drm_aperture.c
-index 5729f3bb4398..6e5d8a08683c 100644
---- a/drivers/gpu/drm/drm_aperture.c
-+++ b/drivers/gpu/drm/drm_aperture.c
-@@ -190,3 +190,19 @@ int drm_aperture_remove_conflicting_pci_framebuffers(struct pci_dev *pdev,
- 	return aperture_remove_conflicting_pci_devices(pdev, req_driver->name);
- }
- EXPORT_SYMBOL(drm_aperture_remove_conflicting_pci_framebuffers);
-+
-+/**
-+ * drm_aperture_contain_firmware_fb - Determine if a aperture contains firmware framebuffer
-+ *
-+ * @base: the aperture's base address in physical memory
-+ * @size: aperture size in bytes
-+ *
-+ * Returns:
-+ * true on if there is a firmware framebuffer belong to the aperture passed in,
-+ * or false otherwise.
-+ */
-+bool drm_aperture_contain_firmware_fb(resource_size_t base, resource_size_t size)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index c5bdf6eff29e..2f54250f9d58 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -3673,6 +3673,15 @@ static const struct attribute *amdgpu_dev_attributes[] = {
+ 	NULL
+ };
+ 
++static bool amdgpu_is_boot_device(struct pci_dev *pdev)
 +{
-+	return aperture_contain_firmware_fb(base, base + size);
++	struct drm_device *dev = pci_get_drvdata(pdev);
++	struct amdgpu_device *adev = drm_to_adev(dev);
++	struct amdgpu_gmc *gmc = &adev->gmc;
++
++	return drm_aperture_contain_firmware_fb(gmc->aper_base, gmc->aper_size);
 +}
-+EXPORT_SYMBOL(drm_aperture_contain_firmware_fb);
-diff --git a/drivers/video/aperture.c b/drivers/video/aperture.c
-index 561be8feca96..5a5422cec669 100644
---- a/drivers/video/aperture.c
-+++ b/drivers/video/aperture.c
-@@ -141,6 +141,9 @@ struct aperture_range {
- static LIST_HEAD(apertures);
- static DEFINE_MUTEX(apertures_lock);
- 
-+static resource_size_t firm_fb_start;
-+static resource_size_t firm_fb_end;
 +
- static bool overlap(resource_size_t base1, resource_size_t end1,
- 		    resource_size_t base2, resource_size_t end2)
- {
-@@ -170,6 +173,9 @@ static int devm_aperture_acquire(struct device *dev,
- 
- 	mutex_lock(&apertures_lock);
- 
-+	firm_fb_start = base;
-+	firm_fb_end = end;
-+
- 	list_for_each(pos, &apertures) {
- 		ap = container_of(pos, struct aperture_range, lh);
- 		if (overlap(base, end, ap->base, ap->base + ap->size)) {
-@@ -377,3 +383,26 @@ int aperture_remove_conflicting_pci_devices(struct pci_dev *pdev, const char *na
- 
- }
- EXPORT_SYMBOL(aperture_remove_conflicting_pci_devices);
-+
-+/**
-+ * aperture_contain_firmware_fb - Detect if the firmware framebuffer belong to
-+ *                                a aperture.
-+ * @ap_start: the aperture's start address in physical memory
-+ * @ap_end: the aperture's end address in physical memory
-+ *
-+ * Returns:
-+ * true on if there is a firmware framebuffer belong to the aperture passed in,
-+ * or false otherwise.
-+ */
-+bool aperture_contain_firmware_fb(resource_size_t ap_start, resource_size_t ap_end)
-+{
-+	/* No firmware framebuffer support */
-+	if (!firm_fb_start || !firm_fb_end)
-+		return false;
-+
-+	if (firm_fb_start >= ap_start && firm_fb_end <= ap_end)
-+		return true;
-+
-+	return false;
-+}
-+EXPORT_SYMBOL(aperture_contain_firmware_fb);
-diff --git a/include/drm/drm_aperture.h b/include/drm/drm_aperture.h
-index cbe33b49fd5d..6a0b9bacb081 100644
---- a/include/drm/drm_aperture.h
-+++ b/include/drm/drm_aperture.h
-@@ -35,4 +35,6 @@ drm_aperture_remove_framebuffers(const struct drm_driver *req_driver)
- 							    req_driver);
- }
- 
-+bool drm_aperture_contain_firmware_fb(resource_size_t base, resource_size_t size);
-+
- #endif
-diff --git a/include/linux/aperture.h b/include/linux/aperture.h
-index 1a9a88b11584..d4dc5917c49b 100644
---- a/include/linux/aperture.h
-+++ b/include/linux/aperture.h
-@@ -19,6 +19,8 @@ int aperture_remove_conflicting_devices(resource_size_t base, resource_size_t si
- int __aperture_remove_legacy_vga_devices(struct pci_dev *pdev);
- 
- int aperture_remove_conflicting_pci_devices(struct pci_dev *pdev, const char *name);
-+
-+bool aperture_contain_firmware_fb(resource_size_t ap_start, resource_size_t ap_end);
- #else
- static inline int devm_aperture_acquire_for_platform_device(struct platform_device *pdev,
- 							    resource_size_t base,
-@@ -42,6 +44,11 @@ static inline int aperture_remove_conflicting_pci_devices(struct pci_dev *pdev,
- {
- 	return 0;
- }
-+
-+static inline bool aperture_contain_firmware_fb(resource_size_t ap_start, resource_size_t ap_end)
-+{
-+	return false;
-+}
- #endif
- 
  /**
+  * amdgpu_device_init - initialize the driver
+  *
+@@ -4082,7 +4091,8 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 	/* this will fail for cards that aren't VGA class devices, just
+ 	 * ignore it */
+ 	if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
+-		vga_client_register(adev->pdev, amdgpu_device_vga_set_decode, NULL);
++		vga_client_register(adev->pdev, amdgpu_device_vga_set_decode,
++				    amdgpu_is_boot_device);
+ 
+ 	px = amdgpu_device_supports_px(ddev);
+ 
 -- 
 2.25.1
 
