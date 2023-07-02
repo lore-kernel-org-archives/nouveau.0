@@ -4,52 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75727C001E0
-	for <nouveau@archiver.kernel.org>; Mon, 10 Jul 2023 07:23:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D7CEEB64DA
+	for <nouveau@archiver.kernel.org>; Mon, 10 Jul 2023 07:23:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5719110E1EA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEF1610E1F2;
 	Mon, 10 Jul 2023 07:23:38 +0000 (UTC)
-Received: from mail.208.org (unknown [183.242.55.162])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C46710E1AB
- for <nouveau@lists.freedesktop.org>; Mon, 10 Jul 2023 06:37:05 +0000 (UTC)
-Received: from mail.208.org (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTP id 4QzvRx51rzzBHXhB
- for <nouveau@lists.freedesktop.org>; Mon, 10 Jul 2023 14:37:01 +0800 (CST)
-Authentication-Results: mail.208.org (amavisd-new); dkim=pass
- reason="pass (just generated, assumed good)" header.d=208.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
- content-transfer-encoding:content-type:message-id:user-agent
- :references:in-reply-to:subject:to:from:date:mime-version; s=
- dkim; t=1688971021; x=1691563022; bh=lCQQ6bZ2yko3g+i53phatiilgdz
- 4TTN3JzNAMdsBb/c=; b=MXZcKlhWuxsqkJ3IP5TCBw7LTwnZiDyxzn5OrkT2+5Y
- M0TFW9QiHDvr6ZORHqmBye64aNQhHGBaS9BuyTjaSddbtfMl61jqSe6ovzbygsT1
- Dsvf2N9gzFyaS779kC3KyI4oTOoAQTdopYZ8xkPJYe88VU9eRtRxONN+DFpmNLji
- AYWFSQlBCu8jaL1mNlo7eqoiRa5MP81t74uyBLv0Y9OloI6OV3kNbOFtOB+SNyWq
- uTWSNoVQEfA8r7G2mfhttC22lnKeHGtKeW4WnYh5TNuP/eG6YNi2udqG4knnLQvp
- c3SCnCJpqHD63UMF3NOIPyMCzzLMflSY88NGzSfxvVg==
-X-Virus-Scanned: amavisd-new at mail.208.org
-Received: from mail.208.org ([127.0.0.1])
- by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id UKU_zZn57Gte for <nouveau@lists.freedesktop.org>;
- Mon, 10 Jul 2023 14:37:01 +0800 (CST)
-Received: from localhost (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTPSA id 4QzvRx2nWnzBHXgl;
- Mon, 10 Jul 2023 14:37:01 +0800 (CST)
+Received: from out-55.mta0.migadu.com (out-55.mta0.migadu.com
+ [IPv6:2001:41d0:1004:224b::37])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BAD110E175
+ for <nouveau@lists.freedesktop.org>; Sun,  2 Jul 2023 18:28:38 +0000 (UTC)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1688322516;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=JD+BSfEOubeM4NaunZhKuggns+1jx3KG/ygiczCTpQY=;
+ b=hsPJDuYj9iRgllcgTdnKnVeIWHI4dbFO6cetTcGBRitOohcizdBhNOgpXttZSEDOrRYB5m
+ YFJNaZLsmoLXvdcfKsN/KjXlvPsWffQ20eToqWq6ZBWru43mzpRqHFZmlFwwfPaOHCHF4R
+ FpaJ05EzBAAFuai3Fohx7nkMzTFuZlM=
+From: Sui Jingfeng <sui.jingfeng@linux.dev>
+To: Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maxime Ripard <mripard@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
+Date: Mon,  3 Jul 2023 02:27:44 +0800
+Message-Id: <20230702182744.755467-7-sui.jingfeng@linux.dev>
+In-Reply-To: <20230702182744.755467-1-sui.jingfeng@linux.dev>
+References: <20230702182744.755467-1-sui.jingfeng@linux.dev>
 MIME-Version: 1.0
-Date: Mon, 10 Jul 2023 14:37:01 +0800
-From: sunran001@208suo.com
-To: airlied@gmail.com, daniel@ffwll.ch
-In-Reply-To: <20230710063529.53769-1-xujianghui@cdjrlc.com>
-References: <20230710063529.53769-1-xujianghui@cdjrlc.com>
-User-Agent: Roundcube Webmail
-Message-ID: <2156ff3c1fcec8914f1493ac6d7cd807@208suo.com>
-X-Sender: sunran001@208suo.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Mon, 10 Jul 2023 07:23:34 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/i2c: do not use assignment in if
- condition
+Subject: [Nouveau] [PATCH v2 6/6] drm/ast: Register as a vga client to
+ vgaarb by calling vga_client_register()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,33 +53,83 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org, Sui Jingfeng <suijingfeng@loongson.cn>,
+ kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Jocelyn Falempe <jfalempe@redhat.com>,
+ dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Assignments in if condition are less readable and error-prone.  Fixes
-also checkpatch warning:
+From: Sui Jingfeng <suijingfeng@loongson.cn>
 
-ERROR: do not use assignment in if condition
+Becasuse the VGA Display Controller in the ASpeed BMC chip is also a PCIe
+device, the Software Programming guide of AST2400 say that it is Fully
+IBM VGA compliant, thus, it should also particiate in the arbitration.
 
-Signed-off-by: Ran Sun <sunran001@208suo.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Jocelyn Falempe <jfalempe@redhat.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
 ---
-  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/busgf119.c | 3 ++-
-  1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/ast/ast_drv.c | 29 +++++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/busgf119.c 
-b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/busgf119.c
-index 96bbdda0f439..a1cf406ff141 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/busgf119.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/busgf119.c
-@@ -85,7 +85,8 @@ gf119_i2c_bus_new(struct nvkm_i2c_pad *pad, int id, u8 
-drive,
-  {
-      struct gf119_i2c_bus *bus;
+diff --git a/drivers/gpu/drm/ast/ast_drv.c b/drivers/gpu/drm/ast/ast_drv.c
+index e1224ef4ad83..5ce681142679 100644
+--- a/drivers/gpu/drm/ast/ast_drv.c
++++ b/drivers/gpu/drm/ast/ast_drv.c
+@@ -28,6 +28,7 @@
+ 
+ #include <linux/module.h>
+ #include <linux/pci.h>
++#include <linux/vgaarb.h>
+ 
+ #include <drm/drm_aperture.h>
+ #include <drm/drm_atomic_helper.h>
+@@ -89,6 +90,32 @@ static const struct pci_device_id ast_pciidlist[] = {
+ 
+ MODULE_DEVICE_TABLE(pci, ast_pciidlist);
+ 
++static bool ast_is_boot_device(struct pci_dev *pdev)
++{
++	struct drm_device *drm = pci_get_drvdata(pdev);
++	struct ast_device *ast = to_ast_device(drm);
++
++	return drm_aperture_contain_firmware_fb(ast->vram_base, ast->vram_size);
++}
++
++static unsigned int ast_vga_set_decode(struct pci_dev *pdev, bool state)
++{
++	struct drm_device *drm = pci_get_drvdata(pdev);
++	struct ast_device *ast = to_ast_device(drm);
++
++	if (state) {
++		/* Enable standard VGA decode and Enable normal VGA decode */
++		ast_set_index_reg(ast, AST_IO_CRTC_PORT, 0xa1, 0x04);
++
++		return VGA_RSRC_LEGACY_IO | VGA_RSRC_LEGACY_MEM |
++		       VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
++	}
++
++	ast_set_index_reg(ast, AST_IO_CRTC_PORT, 0xa1, 0x07);
++
++	return VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
++}
++
+ static int ast_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ {
+ 	struct ast_device *ast;
+@@ -112,6 +139,8 @@ static int ast_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	if (ret)
+ 		return ret;
+ 
++	vga_client_register(pdev, ast_vga_set_decode, ast_is_boot_device);
++
+ 	drm_fbdev_generic_setup(dev, 32);
+ 
+ 	return 0;
+-- 
+2.25.1
 
--    if (!(bus = kzalloc(sizeof(*bus), GFP_KERNEL)))
-+    bus = kzalloc(sizeof(*bus), GFP_KERNEL);
-+    if (!bus)
-          return -ENOMEM;
-      *pbus = &bus->base;
