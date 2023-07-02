@@ -4,38 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FDEAEB64D9
-	for <nouveau@archiver.kernel.org>; Mon, 10 Jul 2023 07:23:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98B8FC001B0
+	for <nouveau@archiver.kernel.org>; Mon, 10 Jul 2023 07:23:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9340110E1B9;
-	Mon, 10 Jul 2023 07:23:35 +0000 (UTC)
-Received: from out-47.mta0.migadu.com (out-47.mta0.migadu.com [91.218.175.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2470B10E453
- for <nouveau@lists.freedesktop.org>; Fri, 30 Jun 2023 11:08:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E00DA10E1D6;
+	Mon, 10 Jul 2023 07:23:36 +0000 (UTC)
+Received: from out-40.mta0.migadu.com (out-40.mta0.migadu.com
+ [IPv6:2001:41d0:1004:224b::28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E8F410E160
+ for <nouveau@lists.freedesktop.org>; Sun,  2 Jul 2023 18:28:25 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1688122970;
+ t=1688322503;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=cVG0vYo3/T6AYLTc+lVhTKp0CFi2Q+EH9QFPQ8sIsCY=;
- b=QJBgFt91Udo2cXx8LVpCoBtf7Y4/HJOpcgBM5f7wsHRC7s8fn0Gq0+gjEx8Kdqa8vLzzux
- ImcisPtx/765642G+b1B9DPM0cwQmRH7G6DfBumi4NU28u+y6k1b891sHZhyldmWbhiRGW
- 1E3abKbe5vxdsoxrSChe7QJ6GbCbOoo=
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=9VT31crvj/hSyen+1yeJunQKIe6CJXCWJLM4jAJyVsI=;
+ b=VWF57D2RseclrzcKi119DMJUFZtaHElS7q8jbbh1XWQr8bBCK8JJYFDv5kCFqfSUbl8Zxj
+ OfeNWV8lWl7Z/3X4/oZsFJHS6v2PhXoEiYBdlpE02JaUy3Qqzzt1+3bGGp3Lm9+gp8wrVW
+ 1d/YvTbmfmhNSt2c7WBL8ZsgF8ys6Yg=
 From: Sui Jingfeng <sui.jingfeng@linux.dev>
 To: Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
  Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
  Maxime Ripard <mripard@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Date: Fri, 30 Jun 2023 19:02:39 +0800
-Message-Id: <20230630110243.141671-1-sui.jingfeng@linux.dev>
+ Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
+Date: Mon,  3 Jul 2023 02:27:41 +0800
+Message-Id: <20230702182744.755467-4-sui.jingfeng@linux.dev>
+In-Reply-To: <20230702182744.755467-1-sui.jingfeng@linux.dev>
+References: <20230702182744.755467-1-sui.jingfeng@linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Mon, 10 Jul 2023 07:23:34 +0000
-Subject: [Nouveau] [PATCH v1 0/4] PCI/VGA: Improve the default VGA device
- selection
+Subject: [Nouveau] [PATCH v2 3/6] drm/amdgpu: Implement the is_boot_device
+ callback function
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,60 +53,81 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Sui Jingfeng <suijingfeng@loongson.cn>,
- kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-pci@vger.kernel.org
+Cc: linux-fbdev@vger.kernel.org, Lijo Lazar <lijo.lazar@amd.com>,
+ Sui Jingfeng <suijingfeng@loongson.cn>, kvm@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
+ dri-devel@lists.freedesktop.org, Bokun Zhang <Bokun.Zhang@amd.com>,
+ linux-pci@vger.kernel.org, Likun Gao <Likun.Gao@amd.com>,
+ Christian Konig <christian.koenig@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 From: Sui Jingfeng <suijingfeng@loongson.cn>
 
-Currently, the default VGA device selection is not perfect. Potential
-problems are:
+[why]
 
-1) This function is a no-op on non-x86 architectures.
-2) It does not take the PCI Bar may get relocated into consideration.
-3) It is not effective for the PCI device without a dedicated VRAM Bar.
-4) It is device-agnostic, thus it has to waste the effort to iterate all
-   of the PCI Bar to find the VRAM aperture.
-5) It has invented lots of methods to determine which one is the default
-   boot device on a multiple video card coexistence system. But this is
-   still a policy because it doesn't give the user a choice to override.
+The vga_is_firmware_default() defined in drivers/pci/vgaarb.c is
+arch-dependent, it's a dummy on non-x86 architectures currently.
+This made VGAARB lost an important condition for the arbitration.
+It could still be wrong even if we remove the #ifdef and #endif guards.
+because the PCI bar will move (resource re-allocation).
 
-With the observation that device drivers or video aperture helpers may
-have better knowledge about which PCI bar contains the firmware FB,
+[how]
 
-This patch tries to solve the above problems by introducing a function
-callback to the vga_client_register() function interface. DRM device
-drivers for the PCI device need to register the is_boot_device() function
-callback during the driver loading time. Once the driver binds the device
-successfully, VRAARB will call back to the driver. This gives the device
-drivers a chance to provide accurate boot device identification. Which in
-turn unlock the abitration service to non-x86 architectures. A device
-driver can also pass a NULL pointer to the keep the original behavior.
+The device that owns the firmware framebuffer should be the default boot
+device. This patch adds an arch-independent function to enforce this rule.
+The vgaarb subsystem will call back to amdgpu_is_boot_device() function
+when drm/amdgpu is successfully bound to an AMDGPU device.
 
-Sui Jingfeng (4):
-  video/aperture: Add a helper to detect if an aperture contains
-    firmware FB
-  PCI/VGA: Improve the default VGA device selection
-  drm/amdgpu: Implement the is_boot_device callback function
-  drm/radeon: Implement the is_boot_device callback function
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Christian Konig <christian.koenig@amd.com>
+Cc: Pan Xinhui <Xinhui.Pan@amd.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Mario Limonciello <mario.limonciello@amd.com>
+Cc: Lijo Lazar <lijo.lazar@amd.com>
+Cc: YiPeng Chai <YiPeng.Chai@amd.com>
+Cc: Bokun Zhang <Bokun.Zhang@amd.com>
+CC: Likun Gao <Likun.Gao@amd.com>
+Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 12 ++++++++-
- drivers/gpu/drm/drm_aperture.c             | 16 ++++++++++++
- drivers/gpu/drm/i915/display/intel_vga.c   |  3 +--
- drivers/gpu/drm/nouveau/nouveau_vga.c      |  2 +-
- drivers/gpu/drm/radeon/radeon_device.c     | 12 ++++++++-
- drivers/pci/vgaarb.c                       | 21 +++++++++++++++-
- drivers/vfio/pci/vfio_pci_core.c           |  2 +-
- drivers/video/aperture.c                   | 29 ++++++++++++++++++++++
- include/drm/drm_aperture.h                 |  2 ++
- include/linux/aperture.h                   |  7 ++++++
- include/linux/vgaarb.h                     |  8 +++---
- 11 files changed, 104 insertions(+), 10 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index c5bdf6eff29e..2f54250f9d58 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -3673,6 +3673,15 @@ static const struct attribute *amdgpu_dev_attributes[] = {
+ 	NULL
+ };
+ 
++static bool amdgpu_is_boot_device(struct pci_dev *pdev)
++{
++	struct drm_device *dev = pci_get_drvdata(pdev);
++	struct amdgpu_device *adev = drm_to_adev(dev);
++	struct amdgpu_gmc *gmc = &adev->gmc;
++
++	return drm_aperture_contain_firmware_fb(gmc->aper_base, gmc->aper_size);
++}
++
+ /**
+  * amdgpu_device_init - initialize the driver
+  *
+@@ -4082,7 +4091,8 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 	/* this will fail for cards that aren't VGA class devices, just
+ 	 * ignore it */
+ 	if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
+-		vga_client_register(adev->pdev, amdgpu_device_vga_set_decode, NULL);
++		vga_client_register(adev->pdev, amdgpu_device_vga_set_decode,
++				    amdgpu_is_boot_device);
+ 
+ 	px = amdgpu_device_supports_px(ddev);
+ 
 -- 
 2.25.1
 
