@@ -4,159 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1C0EEB64D9
-	for <nouveau@archiver.kernel.org>; Thu,  6 Jul 2023 15:58:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80A35EB64D9
+	for <nouveau@archiver.kernel.org>; Fri,  7 Jul 2023 12:32:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE8E110E46D;
-	Thu,  6 Jul 2023 15:58:22 +0000 (UTC)
-X-Greylist: delayed 743 seconds by postgrey-1.36 at gabe;
- Thu, 06 Jul 2023 15:58:19 UTC
-Received: from mx08-00376f01.pphosted.com (mx08-00376f01.pphosted.com
- [91.207.212.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA85E10E443
- for <nouveau@lists.freedesktop.org>; Thu,  6 Jul 2023 15:58:19 +0000 (UTC)
-Received: from pps.filterd (m0168888.ppops.net [127.0.0.1])
- by mx08-00376f01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id
- 3668moGT005401; Thu, 6 Jul 2023 16:45:08 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=
- from:to:cc:subject:date:message-id:references:in-reply-to
- :content-type:content-id:content-transfer-encoding:mime-version;
- s=dk201812; bh=N8f/aQKB8+497pyVgB+T7ci2teqbRKd4a3QMu+7nq1Q=; b=
- BLSLfHI8ZEvWhgdaWeBzveNtu1v2Sy8YHlSzLRn/UntLLCsLHF3VuYbaxUmy4ge8
- BzvTgEGPRPecDOtNorhss4LoEFi0XpiNtvu8MHMbG+X2z7OL+/y3A35KkVeYHeMA
- 3/mz7KHwNZgXJZ/2pQ3bwAOSK2HhScchz2EQ36uyh0RF3VbmzETJhek8mqlm+pb2
- P1kp1C+akSONRekbuyU6XHIYDH7n9Y578NjvxZw4uE2zCCpWkdyd0RXQkLbWrxk+
- zT6jCji0aN5SVBLCSsfcv4oWA1JLLG1SC470OPcFEYK0PRe4MK8ACHt8QeGmF/cX
- vurNlpm5fSmxYJ6JNELRbA==
-Received: from hhmail05.hh.imgtec.org ([217.156.249.195])
- by mx08-00376f01.pphosted.com (PPS) with ESMTPS id 3rjadqm42v-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
- Thu, 06 Jul 2023 16:45:08 +0100 (BST)
-Received: from HHMAIL05.hh.imgtec.org (10.100.10.120) by
- HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 6 Jul 2023 16:45:07 +0100
-Received: from GBR01-CWL-obe.outbound.protection.outlook.com (104.47.20.58) by
- email.imgtec.com (10.100.10.121) with Microsoft SMTP Server
- (version=TLS1_2, 
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27 via Frontend
- Transport; Thu, 6 Jul 2023 16:45:07 +0100
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KBxoof1M7fVQwQfopJbJjK06lOb3yoNxUuQaU0hkXMRJBSi/TS4UxHa7Qdw6rHg8JCp8F7V6fjxZOVDpRJadR2TYepyRCYP8bGXnWQywupg9IIYiZCmfZEoM+77NT58T2K3reztd96BDYsAdNt39smEfBhRq2aoUXBrxTZDqtRTx6TozgKiazNTO6Dq8YeLQG+YhKOE6XSwrzLVgD9N01zgDTELaTLOiEYl4swLnaC7hvWDxPxoLsRz4lG3Eq5pr/CRzPY8BZQ3aPqHq/N8V8Cv+aH3Ur7K0GLJXqp7FQhmRn0sAICff+txtKTzNB0fQqICsihAmLz0/ZewOk/zGvA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N8f/aQKB8+497pyVgB+T7ci2teqbRKd4a3QMu+7nq1Q=;
- b=LId0wupFBKANyNP3uTzAcqT754yWk2eMm9DWz8yakw2TALwc+weI9k14Q8HrPRuBZ0Wdu0mB3pNivPZq1QyD1XrgTxLr+2a20rRS8w29r5K4u4IMGhthiU1JOyK1wIMVzxsLr4uOzWzRPeWNB107pStXDQt7JWFwwbCHW0CDg/7QSxYIaykM+Cn3hVCsRnQKfXmi3/5fG1uku7Le4qVFJlkO0Yp+VgQjRKUQtmoiLLFNKlSCq+BXaeGtxpzYm2vBIl9jbTF5lEzpqd1yBWQyKjxgdc3XFmDYI/W+v71HE1rid9nf6lbHOezjoP/zYqLdENNEP+iK/jUxeo+icxa0CA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=imgtec.com; dmarc=pass action=none header.from=imgtec.com;
- dkim=pass header.d=imgtec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=IMGTecCRM.onmicrosoft.com; s=selector2-IMGTecCRM-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N8f/aQKB8+497pyVgB+T7ci2teqbRKd4a3QMu+7nq1Q=;
- b=FUPmXuKwV8pZZXyjWogpg7FDRKwkGuFT4/g5miw3H8eIzJ9DJwyl9mSvwQDA/zPSw+IPT/k/YQEcoMew67h2qtfFVx9I2E3D1mN/FSdBzn3aoriOYR/sNEj24nJdzAGSMa2/4mqB4Go1zgYGxVWibJ4YkE3RPKdTJzNwok9V1t4=
-Received: from CWLP265MB5770.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:1a0::8)
- by CWXP265MB5650.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:159::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.17; Thu, 6 Jul
- 2023 15:45:05 +0000
-Received: from CWLP265MB5770.GBRP265.PROD.OUTLOOK.COM
- ([fe80::4694:a4a9:5649:14eb]) by CWLP265MB5770.GBRP265.PROD.OUTLOOK.COM
- ([fe80::4694:a4a9:5649:14eb%4]) with mapi id 15.20.6565.016; Thu, 6 Jul 2023
- 15:45:05 +0000
-From: Donald Robson <Donald.Robson@imgtec.com>
-To: "corbet@lwn.net" <corbet@lwn.net>, "jason@jlekstrand.net"
- <jason@jlekstrand.net>, "willy@infradead.org" <willy@infradead.org>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "bagasdotme@gmail.com" <bagasdotme@gmail.com>,
- "mripard@kernel.org" <mripard@kernel.org>, "matthew.brost@intel.com"
- <matthew.brost@intel.com>, "bskeggs@redhat.com" <bskeggs@redhat.com>,
- "dakr@redhat.com" <dakr@redhat.com>, "ogabbay@kernel.org"
- <ogabbay@kernel.org>, "boris.brezillon@collabora.com"
- <boris.brezillon@collabora.com>, "Liam.Howlett@oracle.com"
- <Liam.Howlett@oracle.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
- "alexdeucher@gmail.com" <alexdeucher@gmail.com>, "airlied@gmail.com"
- <airlied@gmail.com>
-Thread-Topic: [PATCH drm-next v6 02/13] drm: manager to keep track of GPUs VA
- mappings
-Thread-Index: AQHZsCDVszc+u6AXYEi0dgSKg2mf4A==
-Date: Thu, 6 Jul 2023 15:45:05 +0000
-Message-ID: <8d01cb3add315277c86cf4b28d6901fed1977448.camel@imgtec.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AD8410E57A;
+	Fri,  7 Jul 2023 12:32:39 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 587EA10E576
+ for <nouveau@lists.freedesktop.org>; Fri,  7 Jul 2023 12:32:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1688733155;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=nn3h1EpL0DqV/dmxdwYAjo6rDt1igIdvshyB/2r4DI8=;
+ b=iyRPSCj9k+TFdbeDuRsMVZSvlOZY9tZ3ZqzWTC5szkuwFPBK1CrPWSH1Lofr+815RK5xU+
+ 3J7liBnH0EvqTmJqrmq8U/bu1bUkA56f8AUjnb1KBIG1ow7vAu/5ttMwGRYGmAIvAuNe70
+ zl4tEY/SwpzWN5GkG5N8f+VtFyT+kGs=
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
+ [209.85.218.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-73--qAPCoOaMwuHIjfaOo9MZw-1; Fri, 07 Jul 2023 08:32:34 -0400
+X-MC-Unique: -qAPCoOaMwuHIjfaOo9MZw-1
+Received: by mail-ej1-f72.google.com with SMTP id
+ a640c23a62f3a-993d5006993so35529066b.3
+ for <nouveau@lists.freedesktop.org>; Fri, 07 Jul 2023 05:32:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1688733153; x=1691325153;
+ h=content-transfer-encoding:in-reply-to:organization:from:references
+ :cc:to:content-language:subject:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=nn3h1EpL0DqV/dmxdwYAjo6rDt1igIdvshyB/2r4DI8=;
+ b=eCd9yRmp2nIbg45mDl1V1MSkkFGMG7hknPfja2lBgDBAZv6Gq6lSocJYHXidxt+fwu
+ NtrNhOXvUSZ+CKi2UCt2poBWnoW/luZvzMY3emxe4vzdYzcNyA3DfzppCi+EkouNLYUl
+ 7gs8ASk9+iTewG6qhDkOWH79JCxNLckQRJwhw/4lar5DmDXH5b9MvpcJmsiw/WLpq4XP
+ 7Ldiu5OJ0a+Ujh5Lh39JAZUwUbOwNRqZ6hcId4tmIyJ92H3Wx1epF6B6+J3gFZfpIjKv
+ +5B2efQqQMJNunZCE36Zyh1Skx2bNsCf6qZnUdV4I+VoD42epDhjLZO8eBPtENSQNm7G
+ zvTA==
+X-Gm-Message-State: ABy/qLYjp2dCesovpAbNQF7xpR9kMvI/QoQ425uGcEXwoW6gtsXYBc1x
+ dfeZ3iIu2hVGnSaDGJVpiiiwuJbeeS12nfnabWJr9qPP0NAKMM8dx9iGWNkJqT8h/ujkmF2Qohv
+ NUfY+4aZ9b7UcdCVnvNPFyR+zDg==
+X-Received: by 2002:a17:906:7a52:b0:993:d700:8a46 with SMTP id
+ i18-20020a1709067a5200b00993d7008a46mr737160ejo.16.1688733153140; 
+ Fri, 07 Jul 2023 05:32:33 -0700 (PDT)
+X-Google-Smtp-Source: APBJJlFRlTP4tlTIrMee4dualKZyn/YQvF5j+qEUu7LZCaQF464CIAp+SYm449fXhMCnrDIsRDqEmA==
+X-Received: by 2002:a17:906:7a52:b0:993:d700:8a46 with SMTP id
+ i18-20020a1709067a5200b00993d7008a46mr737147ejo.16.1688733152784; 
+ Fri, 07 Jul 2023 05:32:32 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:4b3f:de9c:642:1aff:fe31:a15c?
+ ([2a02:810d:4b3f:de9c:642:1aff:fe31:a15c])
+ by smtp.gmail.com with ESMTPSA id
+ s6-20020a170906c30600b009934b1eb577sm2149724ejz.77.2023.07.07.05.32.31
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 07 Jul 2023 05:32:32 -0700 (PDT)
+Message-ID: <dab8bc29-f053-09e4-40ba-5009d1787c26@redhat.com>
+Date: Fri, 7 Jul 2023 14:32:30 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+To: Boris Brezillon <boris.brezillon@collabora.com>
 References: <20230629222651.3196-1-dakr@redhat.com>
  <20230629222651.3196-3-dakr@redhat.com>
-In-Reply-To: <20230629222651.3196-3-dakr@redhat.com>
-Accept-Language: en-GB, en-US
+ <20230706202642.4cbc7227@collabora.com>
+ <20230707095754.5d365f8e@collabora.com>
+From: Danilo Krummrich <dakr@redhat.com>
+Organization: RedHat
+In-Reply-To: <20230707095754.5d365f8e@collabora.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CWLP265MB5770:EE_|CWXP265MB5650:EE_
-x-ms-office365-filtering-correlation-id: 6fba4e03-a841-4e00-64ab-08db7e37f839
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 8wVAtJZ4XnWG/shEniPLEoBbescBXfempfylRjOsLwWYTvN7sPTzPeEQozNMwaAeAtT/DwirS1B9NOu6FSTVdoMKhFhH29Q/ETLTa4qaSvZ8UWCTdCfv/pTkt+//EVzR3VuQrINEa0CB5O81fgIAIwXW+C//XrLDqIRBdc5JyU6jnpZAJ+vZmdZtwVm0hpDQpntTJLxm6MErXZQ6bvX2fGHa2zCMeJlen/b9Ct5QCc2OoOfXbxoyaqXoGtQSycUryReph8uSyhM3Ohc5v3eXruoysUl0GKvqyOXT05y49fwNbHaGnp8vQUqnQ9V0rtu7T+1IlljBT+v/YDOkWSwkusM3iLHXn51NI/pDJYyKAZmamNzgoiRCDxX2I+/GlR6dzgdvowbDSeJPywrlA09g2nXRBsIOFC/F8LDoTM5DM6aOYJUhDOzXNaUG9LFbCVGgYNjstIM00faKUPmXiw3IbwSLfoykP2DFvP6/OSwGm0XAMYjR1g3uKrIYakCNtDTTAZ3pI5QE5uMhdVeP5/07eTpW+GX5Hesr5gfCN/SP/vFiYEzGZYG/+6GJ0xeOUOx9vUihxZqjPhpvj6ZtoK0NBS8UkIWhQ3yoG5gX2mznC17abBwN16myf+u6Gvb0Z1gD
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CWLP265MB5770.GBRP265.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(39850400004)(366004)(346002)(136003)(396003)(451199021)(54906003)(5660300002)(8936002)(8676002)(41300700001)(316002)(2906002)(83380400001)(7416002)(122000001)(921005)(76116006)(2616005)(4326008)(66946007)(66556008)(91956017)(38100700002)(64756008)(66476007)(66446008)(478600001)(86362001)(186003)(26005)(110136005)(6506007)(36756003)(6486002)(38070700005)(6512007)(71200400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OGVZc290NXVoUU5kTG5xUVpQSmtCTmdJbVJTWnpRbTY0cmVVTTl0NzJDNnlz?=
- =?utf-8?B?STlUdW9rdlNtUExXV25pT0lYZ3FmUGVGQXFZK1BDc0M2SEdwWVZleGFSajhL?=
- =?utf-8?B?S1pXSVBUOWhqQm1kL1ZqcEg5WWtXZzB3ZW1XWXF5dmpWNFhqUjE1SzNaS0I0?=
- =?utf-8?B?WXNEUGpRclpTZkdUMlV4SW1KcnhWNW5hWGFPaFRWSnZKOSt3Rkwrc3J2NEMr?=
- =?utf-8?B?SldmcmxyUyttRThQQ3NEbkFZODZnTVF1T0FmZ0Nockp3alA1YTFRS2ZxK3Fu?=
- =?utf-8?B?WWlwUVFCQ2VibEt1U2c4QjM0YVJ4cUlJbXd0K0hQUGhZOHI0NlNXWGZuSmp4?=
- =?utf-8?B?cVlWSzVoOHZiOWxucDJEWjRpNWZBeVZUNzF4ODV0dGJKOGViWjk0L1lneDls?=
- =?utf-8?B?SEh6OURuQzBqOGhCbEt3TFVGUVNobHhLL2pVc3NWalZ5czRCd3ZqSWYvNHFp?=
- =?utf-8?B?b0Y0RWJkb2IyWUFsZFdObUVwcW5yUkg4NUN1aWppMGNmOEhlcHNlMzZleXNK?=
- =?utf-8?B?R3JsbmtOR2pZT2FFdVJUODZNbFYwblJoalU2MVowc0c5NU53MUVrOG5pVmIv?=
- =?utf-8?B?OUNyRUhpeVk2dzNRQWg1SW1UdFUwWHJubnk0TGlPYlc5cW1LUEdneDRZRHNa?=
- =?utf-8?B?K1QrZjYxSXVwQ1RHNXBNMjF2LytFL0VWaTMzWGgzMjVpRUQvemR6VVZ3cU9X?=
- =?utf-8?B?STVic09JVDlzS21Nd1hqSHJudFRIRjZvcXVuN1FmTjRzY3dnUEQrQm1RSVlV?=
- =?utf-8?B?NHkvSndYczZ2SDFYTVoralpyVFdUaG12b0NiSkdpYzZqVGhqaWJLZmxHb1py?=
- =?utf-8?B?dUJyVmdDMElnVm1SMnFCZ00xbkdmOXQ4a1g3L2N1R0VqOEhGcExpWHpKK1Zn?=
- =?utf-8?B?SGx3M2ltWG5mNFpnaVdIKzgzdjU1UlhaWlp5eUkvcUV6L2FTMUtJeGNsMktZ?=
- =?utf-8?B?cWw3MVBmWHRadkJlVkYrOEtXaWdCcnU1MXdkNTRnRmJCdVp3Ym45RkUwNzRk?=
- =?utf-8?B?WklTeVhncWo1T0w2a1NxMWp2bUxVVXViQlNWVU1MN0l0aEMremp5TldLczlr?=
- =?utf-8?B?TnVsV25sVklEeGFObG5qVzYyVmlNY1VkMmFOTDErU1BrZmUzZjc5bTROREtF?=
- =?utf-8?B?NzhrQmNDTnhjVW1Fa2pycHh1azQ5L2M1OHhRbldKbnU3WE1LdEZ3ZWc5WHlT?=
- =?utf-8?B?azdBOHNtOTF5bHpYYnJ5aDArUlVTOVl2L1pvZHQvZVNJcXZQbTgybnV6aFh0?=
- =?utf-8?B?TStmKzdzN01VT0JnSmFoYThEbDdhU1RlYXNPV0g4dldZV0lwVDBKREhULy9M?=
- =?utf-8?B?cldiT2pia29vbVVuUU1lQm5Panp2R3FwY1pNRnM2dURETTlsOWVuNGU3cldo?=
- =?utf-8?B?ZGJveTQ1clh0bGVaSyt3Smgvc1d6MlVHR3U5UitvaFdLYzBJVThMSFE2VlEv?=
- =?utf-8?B?dWtpZEF1cU1xc29HTHhYeUROL3NjWm9yb1NkZVJrMEZ4a0lKbFFkeEpKc1pG?=
- =?utf-8?B?SUliYlJ4TS9JWTVHOWVkSitWMjZsVVo0aGZLTDBIUWFES1JybHgrTG1MT1I4?=
- =?utf-8?B?eEhrODBSRmRNeU9sLzQ0UFZIb0NJSDgwNjFUKzdQV0RzNU9NREY4eEVSM255?=
- =?utf-8?B?Q2ZlZkE1TFd2NWNtVlBHZVpwL2JITVVQRGc0QjZKRzNXL2F5OFhXb212N2FT?=
- =?utf-8?B?b2FsbTNTVWVSK0x6R0hWaWlCZW9NOTFMa0llU0dKbUg0WGpqVzFxZTMxeXUx?=
- =?utf-8?B?VUlBUEcvNmhUekp6NzhVNC91OFNDSHd6TEhJaTFobEJiOEpDellXNzg0SW5o?=
- =?utf-8?B?VG1Ka1dYaStxUnI2SVRtd2FlVHI2dzJtcXdNek9CelA1cnBuN2FoaEhQS0Ur?=
- =?utf-8?B?MXk1U0YwNkV1S3lQYTFHUktDRXhodERuZ25TM1BmSUxVN1VPRkFQclZUZTFT?=
- =?utf-8?B?djRyWE1NbXgwRjk5RzhkYmhFZmprRTRwUWR6TlQvYmROaFYvaFY4SXlSUEZ0?=
- =?utf-8?B?L1hPRG5wZlJyL3ZkUFgzOEtnMVYzT1EzcHdvYlNjNzc4a3IvOFB0bU9YU2ll?=
- =?utf-8?B?dm5nd0dJU1c0blZaeEtMRHJrWEtJaVJOd0Vxbnh2WDhacENRQTJTaTFnVlY1?=
- =?utf-8?B?RlZMN0FyTGVHaVBnVnBpdjNTUG1BQVU4V29yRWJuNzR6b1hzbk01NGhURTk0?=
- =?utf-8?B?RGc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <44FCC495D5E8F2499AF1C33EDBDA5C86@GBRP265.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CWLP265MB5770.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6fba4e03-a841-4e00-64ab-08db7e37f839
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jul 2023 15:45:05.5597 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0d5fd8bb-e8c2-4e0a-8dd5-2c264f7140fe
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: UoMDqqbDpDehv1T0bCOcy9HoxHxU1a/3iodj/UV1UvmlyySdfYreQYLqZ+ouOH2roMzNwbPHSxv/LwbMpWir2Av3jT/5wgsjgiZxla3GyOA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP265MB5650
-X-OriginatorOrg: imgtec.com
-X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
-X-Proofpoint-ORIG-GUID: Tt50dFvZAKIj1sP-Nm-zF4LTJHHMSvX9
-X-Proofpoint-GUID: Tt50dFvZAKIj1sP-Nm-zF4LTJHHMSvX9
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Subject: Re: [Nouveau] [PATCH drm-next v6 02/13] drm: manager to keep track
  of GPUs VA mappings
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -170,33 +91,280 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "airlied@redhat.com" <airlied@redhat.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
+Cc: matthew.brost@intel.com, willy@infradead.org, daniel@ffwll.ch,
+ dri-devel@lists.freedesktop.org, corbet@lwn.net, nouveau@lists.freedesktop.org,
+ ogabbay@kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ mripard@kernel.org, alexdeucher@gmail.com, bskeggs@redhat.com,
+ Liam.Howlett@oracle.com, Dave Airlie <airlied@redhat.com>,
+ bagasdotme@gmail.com, christian.koenig@amd.com, jason@jlekstrand.net,
+ Donald Robson <donald.robson@imgtec.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIzLTA2LTMwIGF0IDAwOjI1ICswMjAwLCBEYW5pbG8gS3J1bW1yaWNoIHdyb3Rl
-Og0KPiANCj4gKyNpZmRlZiBDT05GSUdfTE9DS0RFUA0KPiArdHlwZWRlZiBzdHJ1Y3QgbG9ja2Rl
-cF9tYXAgKmxvY2tkZXBfbWFwX3A7DQo+ICsjZGVmaW5lIGRybV9ncHV2YV9tYW5hZ2VyX2V4dF9h
-c3NlcnRfaGVsZChtZ3IpCQlcDQo+ICsJbG9ja2RlcF9hc3NlcnQobG9ja19pc19oZWxkKChtZ3Ip
-LT5leHRfbG9jaykgIT0gTE9DS19TVEFURV9OT1RfSEVMRCkNCj4gKy8qKg0KPiArICogZHJtX2dw
-dXZhX21hbmFnZXJfc2V0X2V4dF9sb2NrIC0gc2V0IHRoZSBleHRlcm5hbCBsb2NrIGFjY29yZGlu
-ZyB0bw0KPiArICogQERSTV9HUFVWQV9NQU5BR0VSX0xPQ0tfRVhURVJODQo+ICsgKiBAbWdyOiB0
-aGUgJmRybV9ncHV2YV9tYW5hZ2VyIHRvIHNldCB0aGUgbG9jayBmb3INCj4gKyAqIEBsb2NrOiB0
-aGUgbG9jayB0byBzZXQNCj4gKyAqDQo+ICsgKiBJZiBARFJNX0dQVVZBX01BTkFHRVJfTE9DS19F
-WFRFUk4gaXMgc2V0LCBkcml2ZXJzIG5lZWQgdG8gY2FsbCB0aGlzIGZ1bmN0aW9uDQo+ICsgKiB0
-byBwcm92aWRlIHRoZSBsb2NrIHVzZWQgdG8gbG9jayBsaW5raW5nIGFuZCB1bmxpbmtpbmcgb2Yg
-JmRybV9ncHV2YXMgdG8gdGhlDQo+ICsgKiAmZHJtX2dlbV9vYmplY3RzIEdQVVZBIGxpc3QuDQo+
-ICsgKi8NCj4gKyNkZWZpbmUgZHJtX2dwdXZhX21hbmFnZXJfc2V0X2V4dF9sb2NrKG1nciwgbG9j
-aykJXA0KPiArCShtZ3IpLT5leHRfbG9jayA9ICYobG9jayktPmRlcF9tYXANCj4gKyNlbHNlDQo+
-ICt0eXBlZGVmIHN0cnVjdCB7IC8qIG5vdGhpbmcgKi8gfSBsb2NrZGVwX21hcF9wOw0KDQpsb2Nr
-ZGVwX21hcF9wIGNvbmZsaWN0cyB3aXRoIGFuIGlkZW50aWNhbCB0eXBlZGVmIGluIG1hcGxlX3Ry
-ZWUuaCB3aGVuIENPTkZJR19MT0NLREVQIGlzDQpub3Qgc2V0IChpdCdzIGJlaW5nIHB1bGxlZCBp
-biBieSBtbS5oIGluIGRybV92bWFfbWFuYWdlci5oKS4gSSdsbCBqdXN0IGNvbW1lbnQgdGhlIGxp
-bmUNCm91dCBmb3Igbm93Lg0KDQo+ICsjZGVmaW5lIGRybV9ncHV2YV9tYW5hZ2VyX2V4dF9hc3Nl
-cnRfaGVsZChtZ3IpCQlkbyB7ICh2b2lkKShtZ3IpOyB9IHdoaWxlICgwKQ0KPiArI2RlZmluZSBk
-cm1fZ3B1dmFfbWFuYWdlcl9zZXRfZXh0X2xvY2sobWdyLCBsb2NrKQlkbyB7IH0gd2hpbGUgKDAp
-DQo+ICsjZW5kaWYNCj4gKw0K
+On 7/7/23 09:57, Boris Brezillon wrote:
+> On Thu, 6 Jul 2023 20:26:42 +0200
+> Boris Brezillon <boris.brezillon@collabora.com> wrote:
+> 
+>> On Fri, 30 Jun 2023 00:25:18 +0200
+>> Danilo Krummrich <dakr@redhat.com> wrote:
+>>
+>>> +#ifdef CONFIG_LOCKDEP
+>>> +typedef struct lockdep_map *lockdep_map_p;
+>>> +#define drm_gpuva_manager_ext_assert_held(mgr)		\
+>>> +	lockdep_assert(lock_is_held((mgr)->ext_lock) != LOCK_STATE_NOT_HELD)
+>>> +/**
+>>> + * drm_gpuva_manager_set_ext_lock - set the external lock according to
+>>> + * @DRM_GPUVA_MANAGER_LOCK_EXTERN
+>>> + * @mgr: the &drm_gpuva_manager to set the lock for
+>>> + * @lock: the lock to set
+>>> + *
+>>> + * If @DRM_GPUVA_MANAGER_LOCK_EXTERN is set, drivers need to call this function
+>>> + * to provide the lock used to lock linking and unlinking of &drm_gpuvas to the
+>>> + * &drm_gem_objects GPUVA list.
+>>> + */
+>>> +#define drm_gpuva_manager_set_ext_lock(mgr, lock)	\
+>>> +	(mgr)->ext_lock = &(lock)->dep_map
+>>
+>> Okay, so, IIUC, this is the lock protecting the GEM's active mappings
+>> list, meaning the lock is likely to be attached to the GEM object. Are
+>> we expected to call drm_gpuva_manager_set_ext_lock() every time we call
+>> drm_gpuva_[un]link(), or are we supposed to have some lock at the
+>> device level serializing all drm_gpuva_[un]link() calls across VMs? The
+>> later doesn't sound like a good option to me, and the former feels a bit
+>> weird. I'm wondering if we shouldn't just drop this assert_held() check
+>> when DRM_GPUVA_MANAGER_LOCK_EXTERN is set. Alternatively, we could say
+>> that any driver wanting to use a custom lock (which is basically all
+>> drivers modifying the VA space asynchronously in the ::run_job() path)
+>> has to provide its own variant of drm_gpuva_[un]link() (maybe with its
+>> own VA list too), which doesn't sound like a good idea either.
+> 
+> Or we could just attach the dep_map to drm_gem_object::gpuva::lock, and
+> let drivers overload the default lock in their GEM creation function if
+> they want to use a custom lock (see the following diff).
+
+Uh, I like that. Will pick it up, thanks!
+
+> 
+> ---
+> 
+> diff --git a/drivers/gpu/drm/drm_gpuva_mgr.c b/drivers/gpu/drm/drm_gpuva_mgr.c
+> index e47747f22126..6427c88c22ba 100644
+> --- a/drivers/gpu/drm/drm_gpuva_mgr.c
+> +++ b/drivers/gpu/drm/drm_gpuva_mgr.c
+> @@ -675,8 +675,7 @@ drm_gpuva_manager_init(struct drm_gpuva_manager *mgr,
+>   		       const char *name,
+>   		       u64 start_offset, u64 range,
+>   		       u64 reserve_offset, u64 reserve_range,
+> -		       const struct drm_gpuva_fn_ops *ops,
+> -		       enum drm_gpuva_manager_flags flags)
+> +		       const struct drm_gpuva_fn_ops *ops)
+>   {
+>   	mgr->rb.tree = RB_ROOT_CACHED;
+>   	INIT_LIST_HEAD(&mgr->rb.list);
+> @@ -686,7 +685,6 @@ drm_gpuva_manager_init(struct drm_gpuva_manager *mgr,
+>   	mgr->mm_range = range;
+>   
+>   	mgr->name = name ? name : "unknown";
+> -	mgr->flags = flags;
+>   	mgr->ops = ops;
+>   
+>   	memset(&mgr->kernel_alloc_node, 0, sizeof(struct drm_gpuva));
+> @@ -822,16 +820,12 @@ EXPORT_SYMBOL(drm_gpuva_remove);
+>   void
+>   drm_gpuva_link(struct drm_gpuva *va)
+>   {
+> -	struct drm_gpuva_manager *mgr = va->mgr;
+>   	struct drm_gem_object *obj = va->gem.obj;
+>   
+>   	if (unlikely(!obj))
+>   		return;
+>   
+> -	if (drm_gpuva_manager_external_lock(mgr))
+> -		drm_gpuva_manager_ext_assert_held(mgr);
+> -	else
+> -		dma_resv_assert_held(obj->resv);
+> +	drm_gem_gpuva_assert_lock_held(obj);
+>   
+>   	list_add_tail(&va->gem.entry, &obj->gpuva.list);
+>   }
+> @@ -850,16 +844,12 @@ EXPORT_SYMBOL(drm_gpuva_link);
+>   void
+>   drm_gpuva_unlink(struct drm_gpuva *va)
+>   {
+> -	struct drm_gpuva_manager *mgr = va->mgr;
+>   	struct drm_gem_object *obj = va->gem.obj;
+>   
+>   	if (unlikely(!obj))
+>   		return;
+>   
+> -	if (drm_gpuva_manager_external_lock(mgr))
+> -		drm_gpuva_manager_ext_assert_held(mgr);
+> -	else
+> -		dma_resv_assert_held(obj->resv);
+> +	drm_gem_gpuva_assert_lock_held(obj);
+>   
+>   	list_del_init(&va->gem.entry);
+>   }
+> @@ -1680,10 +1670,7 @@ drm_gpuva_gem_unmap_ops_create(struct drm_gpuva_manager *mgr,
+>   	struct drm_gpuva *va;
+>   	int ret;
+>   
+> -	if (drm_gpuva_manager_external_lock(mgr))
+> -		drm_gpuva_manager_ext_assert_held(mgr);
+> -	else
+> -		dma_resv_assert_held(obj->resv);
+> +	drm_gem_gpuva_assert_lock_held(obj);
+>   
+>   	ops = kzalloc(sizeof(*ops), GFP_KERNEL);
+>   	if (!ops)
+> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+> index 5ec8148a30ee..572d7a538324 100644
+> --- a/include/drm/drm_gem.h
+> +++ b/include/drm/drm_gem.h
+> @@ -387,10 +387,14 @@ struct drm_gem_object {
+>   	 * Provides the list of GPU VAs attached to this GEM object.
+>   	 *
+>   	 * Drivers should lock list accesses with the GEMs &dma_resv lock
+> -	 * (&drm_gem_object.resv).
+> +	 * (&drm_gem_object.resv) or a custom lock if one is provided.
+>   	 */
+>   	struct {
+>   		struct list_head list;
+> +
+> +#ifdef CONFIG_LOCKDEP
+> +		struct lockdep_map *lock_dep_map;
+> +#endif
+>   	} gpuva;
+>   
+>   	/**
+> @@ -540,6 +544,26 @@ unsigned long drm_gem_lru_scan(struct drm_gem_lru *lru,
+>   
+>   int drm_gem_evict(struct drm_gem_object *obj);
+>   
+> +#ifdef CONFIG_LOCKDEP
+> +/*
+> + * drm_gem_gpuva_set_lock() - Set the lock protecting accesses to the gpuva list.
+> + * @obj: the &drm_gem_object
+> + * @lock: the lock used to protect the gpuva list. The locking primitive
+> + * must contain a dep_map field.
+> + *
+> + * Call this if you're not proctecting access to the gpuva list
+> + * with the resv lock, otherwise, drm_gem_gpuva_init() takes case
+> + * of initializing the lock_dep_map for you.
+> + */
+> +#define drm_gem_gpuva_set_lock(obj, lock) \
+> +	obj->gpuva.lock_dep_map = &(lock)->dep_map
+> +#define drm_gem_gpuva_assert_lock_held(obj) \
+> +	lockdep_assert(lock_is_held(obj->gpuva.lock_dep_map))
+> +#else
+> +#define drm_gem_gpuva_set_lock(obj, lock) do {} while(0)
+> +#define drm_gem_gpuva_assert_lock_held(obj) do {} while(0)
+> +#endif
+> +
+>   /**
+>    * drm_gem_gpuva_init - initialize the gpuva list of a GEM object
+>    * @obj: the &drm_gem_object
+> @@ -552,6 +576,7 @@ int drm_gem_evict(struct drm_gem_object *obj);
+>   static inline void drm_gem_gpuva_init(struct drm_gem_object *obj)
+>   {
+>   	INIT_LIST_HEAD(&obj->gpuva.list);
+> +	drm_gem_gpuva_set_lock(obj, &obj->resv->lock.base);
+>   }
+>   
+>   /**
+> diff --git a/include/drm/drm_gpuva_mgr.h b/include/drm/drm_gpuva_mgr.h
+> index 4f23aaf726dd..4ad56b67e244 100644
+> --- a/include/drm/drm_gpuva_mgr.h
+> +++ b/include/drm/drm_gpuva_mgr.h
+> @@ -185,44 +185,6 @@ static inline bool drm_gpuva_invalidated(struct drm_gpuva *va)
+>   	return va->flags & DRM_GPUVA_INVALIDATED;
+>   }
+>   
+> -#ifdef CONFIG_LOCKDEP
+> -typedef struct lockdep_map *lockdep_map_p;
+> -#define drm_gpuva_manager_ext_assert_held(mgr)		\
+> -	lockdep_assert(lock_is_held((mgr)->ext_lock) != LOCK_STATE_NOT_HELD)
+> -/**
+> - * drm_gpuva_manager_set_ext_lock - set the external lock according to
+> - * @DRM_GPUVA_MANAGER_LOCK_EXTERN
+> - * @mgr: the &drm_gpuva_manager to set the lock for
+> - * @lock: the lock to set
+> - *
+> - * If @DRM_GPUVA_MANAGER_LOCK_EXTERN is set, drivers need to call this function
+> - * to provide the lock used to lock linking and unlinking of &drm_gpuvas to the
+> - * &drm_gem_objects GPUVA list.
+> - */
+> -#define drm_gpuva_manager_set_ext_lock(mgr, lock)	\
+> -	(mgr)->ext_lock = &(lock)->dep_map
+> -#else
+> -typedef struct { /* nothing */ } lockdep_map_p;
+> -#define drm_gpuva_manager_ext_assert_held(mgr)		do { (void)(mgr); } while (0)
+> -#define drm_gpuva_manager_set_ext_lock(mgr, lock)	do { } while (0)
+> -#endif
+> -
+> -/**
+> - * enum drm_gpuva_manager_flags - the feature flags for the &drm_gpuva_manager
+> - */
+> -enum drm_gpuva_manager_flags {
+> -	/**
+> -	 * @DRM_GPUVA_MANAGER_LOCK_EXTERN:
+> -	 *
+> -	 * Indicates the driver has it's own external lock for linking and
+> -	 * unlinking &drm_gpuvas to the &drm_gem_objects GPUVA list.
+> -	 *
+> -	 * When setting this flag it is rquired to set a lock via
+> -	 * drm_gpuva_set_ext_lock().
+> -	 */
+> -	DRM_GPUVA_MANAGER_LOCK_EXTERN = (1 << 0),
+> -};
+> -
+>   /**
+>    * struct drm_gpuva_manager - DRM GPU VA Manager
+>    *
+> @@ -241,11 +203,6 @@ struct drm_gpuva_manager {
+>   	 */
+>   	const char *name;
+>   
+> -	/**
+> -	 * @flags: the feature flags of the &drm_gpuva_manager
+> -	 */
+> -	enum drm_gpuva_manager_flags flags;
+> -
+>   	/**
+>   	 * @mm_start: start of the VA space
+>   	 */
+> @@ -283,31 +240,15 @@ struct drm_gpuva_manager {
+>   	 * @ops: &drm_gpuva_fn_ops providing the split/merge steps to drivers
+>   	 */
+>   	const struct drm_gpuva_fn_ops *ops;
+> -
+> -	/**
+> -	 * @ext_lock: &lockdep_map according to @DRM_GPUVA_MANAGER_LOCK_EXTERN
+> -	 */
+> -	lockdep_map_p ext_lock;
+>   };
+>   
+>   void drm_gpuva_manager_init(struct drm_gpuva_manager *mgr,
+>   			    const char *name,
+>   			    u64 start_offset, u64 range,
+>   			    u64 reserve_offset, u64 reserve_range,
+> -			    const struct drm_gpuva_fn_ops *ops,
+> -			    enum drm_gpuva_manager_flags flags);
+> +			    const struct drm_gpuva_fn_ops *ops);
+>   void drm_gpuva_manager_destroy(struct drm_gpuva_manager *mgr);
+>   
+> -/**
+> - * drm_gpuva_manager_external_lock - indicates whether the
+> - * @DRM_GPUVA_MANAGER_LOCK_EXTERN flag is set
+> - * @mgr: the &drm_gpuva_manager to check the flag for
+> - */
+> -static inline bool drm_gpuva_manager_external_lock(struct drm_gpuva_manager *mgr)
+> -{
+> -	return mgr->flags & DRM_GPUVA_MANAGER_LOCK_EXTERN;
+> -}
+> -
+>   /**
+>    * drm_gpuva_for_each_va_range - iternator to walk over a range of &drm_gpuvas
+>    * @va__: &drm_gpuva structure to assign to in each iteration step
+> 
+
