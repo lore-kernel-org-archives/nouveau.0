@@ -4,44 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DBF6EB64D9
-	for <nouveau@archiver.kernel.org>; Mon, 10 Jul 2023 07:23:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 233DEEB64DC
+	for <nouveau@archiver.kernel.org>; Mon, 10 Jul 2023 07:23:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17BDD10E1D9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59F6710E1DC;
 	Mon, 10 Jul 2023 07:23:37 +0000 (UTC)
-X-Greylist: delayed 346 seconds by postgrey-1.36 at gabe;
- Fri, 30 Jun 2023 11:08:38 UTC
-Received: from out-25.mta0.migadu.com (out-25.mta0.migadu.com
- [IPv6:2001:41d0:1004:224b::19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23A8210E44F
- for <nouveau@lists.freedesktop.org>; Fri, 30 Jun 2023 11:08:38 +0000 (UTC)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1688122990;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=btfhp53flz2znRJhVRVROxzr2+xJwf5jWKVzzdMQNCg=;
- b=T73HFHyypfPukJHUCivjqAqiND6lcrXP+g0ZSla4MUTvXmqJbQrwuT16aoxpOada4b8PuN
- Zb0G/hybooeV4zLJKuZI6dmV348rzV47I3c7QaAf/CWaoV1LLUZGqtqBRZZ0N54w/EswIc
- 92ry4Yxu6TJa1mUgnhkXb/bif7YjLxY=
-From: Sui Jingfeng <sui.jingfeng@linux.dev>
-To: Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maxime Ripard <mripard@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Date: Fri, 30 Jun 2023 19:02:43 +0800
-Message-Id: <20230630110243.141671-5-sui.jingfeng@linux.dev>
-In-Reply-To: <20230630110243.141671-1-sui.jingfeng@linux.dev>
-References: <20230630110243.141671-1-sui.jingfeng@linux.dev>
+Received: from mail.208.org (unknown [183.242.55.162])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DBF110E15F
+ for <nouveau@lists.freedesktop.org>; Mon, 10 Jul 2023 04:07:18 +0000 (UTC)
+Received: from mail.208.org (email.208.org [127.0.0.1])
+ by mail.208.org (Postfix) with ESMTP id 4Qzr765SD7zBHXgj
+ for <nouveau@lists.freedesktop.org>; Mon, 10 Jul 2023 12:07:14 +0800 (CST)
+Authentication-Results: mail.208.org (amavisd-new); dkim=pass
+ reason="pass (just generated, assumed good)" header.d=208.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
+ content-transfer-encoding:content-type:message-id:user-agent
+ :references:in-reply-to:subject:to:from:date:mime-version; s=
+ dkim; t=1688962034; x=1691554035; bh=gRcZ3CLGEDPxZrkiTCKDOKBlXr/
+ +k73D4egciW6sOpk=; b=eWvhsixi8tKjM7NCs0B685IGtqjz+l+82IYFkC6Q6Kt
+ KS7HOty57NlUX61nnsMm8JaH530Opl2oTRhp35xMGB3GsAo5KO+LyMzK9e36K7Wn
+ x0bIcFxIwFlGRmYjhOb6kYHG1B1aR3ra4LjkEi12memAeQUnZnYT7/L5dE7Pp+dh
+ ulAXNVs7BY4DD1r8KdB9IP8qp+BwlpCzdfMfmR4VXOccx86/iVztg4qo1df+HSMT
+ od/iIl4mMmKNHpreU6MMpp0DUWuW/DOLVMCSxc5Eh+K6UfLD4DyBPvfZfignm7lT
+ NXzt+ky51giZ2x1NOVfHAvm9PeWGaZTZIBiaSekhDmA==
+X-Virus-Scanned: amavisd-new at mail.208.org
+Received: from mail.208.org ([127.0.0.1])
+ by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id c13Yy1dWVYHG for <nouveau@lists.freedesktop.org>;
+ Mon, 10 Jul 2023 12:07:14 +0800 (CST)
+Received: from localhost (email.208.org [127.0.0.1])
+ by mail.208.org (Postfix) with ESMTPSA id 4Qzr762vBwzBHXgf;
+ Mon, 10 Jul 2023 12:07:14 +0800 (CST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Date: Mon, 10 Jul 2023 12:07:14 +0800
+From: sunran001@208suo.com
+To: airlied@gmail.com, daniel@ffwll.ch
+In-Reply-To: <20230710032131.52747-1-xujianghui@cdjrlc.com>
+References: <20230710032131.52747-1-xujianghui@cdjrlc.com>
+User-Agent: Roundcube Webmail
+Message-ID: <decd9e6f68cbebda22d6648fa7b9b737@208suo.com>
+X-Sender: sunran001@208suo.com
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 10 Jul 2023 07:23:34 +0000
-Subject: [Nouveau] [PATCH v1 4/4] drm/radeon: Implement the is_boot_device
- callback function
+Subject: [Nouveau] [PATCH] drm/nouveau/nvkm: do not use assignment in if
+ condition
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,79 +61,34 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Sui Jingfeng <suijingfeng@loongson.cn>,
- kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Pan Xinhui <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org,
- Christian Konig <christian.koenig@amd.com>
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Sui Jingfeng <suijingfeng@loongson.cn>
+Assignments in if condition are less readable and error-prone.  Fixes
+also checkpatch warning:
 
-[why]
+ERROR: do not use assignment in if condition
 
-The vga_is_firmware_default() defined in drivers/pci/vgaarb.c is
-arch-dependent, it's a dummy on non-x86 architectures currently.
-This made VGAARB lost an important condition for the arbitration.
-It could still be wrong even if we remove the #ifdef and #endif guards.
-because the PCI bar will move (resource re-allocation).
-
-[how]
-
-The device that owns the firmware framebuffer should be the default boot
-device. This patch adds an arch-independent function to enforce this rule.
-The vgaarb subsystem will call back to radeon_is_boot_device() function
-when drm/radeon is successfully bound to a radeon GPU device.
-
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Christian Konig <christian.koenig@amd.com>
-Cc: Pan Xinhui <Xinhui.Pan@amd.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+Signed-off-by:Ran Sun <sunran001@208suo.com>
 ---
- drivers/gpu/drm/radeon/radeon_device.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c | 3 ++-
+  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
-index 71f2ff39d6a1..afb49000830c 100644
---- a/drivers/gpu/drm/radeon/radeon_device.c
-+++ b/drivers/gpu/drm/radeon/radeon_device.c
-@@ -34,6 +34,7 @@
- #include <linux/vga_switcheroo.h>
- #include <linux/vgaarb.h>
- 
-+#include <drm/drm_aperture.h>
- #include <drm/drm_cache.h>
- #include <drm/drm_crtc_helper.h>
- #include <drm/drm_device.h>
-@@ -1263,6 +1264,15 @@ static const struct vga_switcheroo_client_ops radeon_switcheroo_ops = {
- 	.can_switch = radeon_switcheroo_can_switch,
- };
- 
-+static bool radeon_is_boot_device(struct pci_dev *pdev)
-+{
-+	struct drm_device *dev = pci_get_drvdata(pdev);
-+	struct radeon_device *rdev = dev->dev_private;
-+	struct radeon_mc *gmc = &rdev->mc;
-+
-+	return drm_aperture_contain_firmware_fb(gmc->aper_base, gmc->aper_size);
-+}
-+
- /**
-  * radeon_device_init - initialize the driver
-  *
-@@ -1425,7 +1435,7 @@ int radeon_device_init(struct radeon_device *rdev,
- 	/* if we have > 1 VGA cards, then disable the radeon VGA resources */
- 	/* this will fail for cards that aren't VGA class devices, just
- 	 * ignore it */
--	vga_client_register(rdev->pdev, radeon_vga_set_decode, NULL);
-+	vga_client_register(rdev->pdev, radeon_vga_set_decode, radeon_is_boot_device);
- 
- 	if (rdev->flags & RADEON_IS_PX)
- 		runtime = true;
--- 
-2.25.1
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c 
+b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
+index 976539de4220..054fa42f1d04 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
+@@ -286,7 +286,8 @@ nvkm_i2c_new_(const struct nvkm_i2c_func *func, 
+struct nvkm_device *device,
 
+          if (ccbE.share != DCB_I2C_UNUSED) {
+              const int id = NVKM_I2C_PAD_HYBRID(ccbE.share);
+-            if (!(pad = nvkm_i2c_pad_find(i2c, id)))
++            pad = nvkm_i2c_pad_find(i2c, id);
++            if (!pad)
+                  ret = func->pad_s_new(i2c, id, &pad);
+              else
+                  ret = 0;
