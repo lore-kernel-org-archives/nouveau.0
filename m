@@ -4,41 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0DB5C001B0
-	for <nouveau@archiver.kernel.org>; Mon, 10 Jul 2023 07:23:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 890A8C001DF
+	for <nouveau@archiver.kernel.org>; Mon, 10 Jul 2023 07:23:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97CB210E1DE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 779EC10E1DD;
 	Mon, 10 Jul 2023 07:23:37 +0000 (UTC)
-Received: from out-5.mta0.migadu.com (out-5.mta0.migadu.com [91.218.175.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6E4310E057
- for <nouveau@lists.freedesktop.org>; Sun,  2 Jul 2023 18:28:08 +0000 (UTC)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1688322485;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=c8oIOXLUyu6Hy3euIb+35kAKURoMMfCL4+zt+LpgQrI=;
- b=cj5i7X8NIGfrWOZux8pWRT6wSPgfMb6og8nVfn9C+hC3/QDZo2zIbH5h7ncrhXIklQCVrX
- 6sITBq6QW4gJjbqqGZFN3lcWgbJ1Qxrx8UY03BDxOWGGVbOpuqz6kYpL8d6nWQmT14fnfl
- 1JU2TEA88cvmiWUcyHCZqsveRzQOEyg=
-From: Sui Jingfeng <sui.jingfeng@linux.dev>
-To: Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maxime Ripard <mripard@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Mario Limonciello <mario.limonciello@amd.com>
-Date: Mon,  3 Jul 2023 02:27:38 +0800
-Message-Id: <20230702182744.755467-1-sui.jingfeng@linux.dev>
+Received: from mail.208.org (unknown [183.242.55.162])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C87810E1B8
+ for <nouveau@lists.freedesktop.org>; Mon, 10 Jul 2023 07:06:52 +0000 (UTC)
+Received: from mail.208.org (email.208.org [127.0.0.1])
+ by mail.208.org (Postfix) with ESMTP id 4Qzw6J2TtnzBHXhF
+ for <nouveau@lists.freedesktop.org>; Mon, 10 Jul 2023 15:06:48 +0800 (CST)
+Authentication-Results: mail.208.org (amavisd-new); dkim=pass
+ reason="pass (just generated, assumed good)" header.d=208.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
+ content-transfer-encoding:content-type:message-id:user-agent
+ :references:in-reply-to:subject:to:from:date:mime-version; s=
+ dkim; t=1688972808; x=1691564809; bh=BVbkB5h19AUC2qXDaTRj4Iv4202
+ uUhLlZMpa8f2uMTA=; b=Z8qGrsD36Ynz7iCv+V2O2wk50AhLMYQzwSzzdPxZvUp
+ 2hNn8EZ+RygiqTusv96oNn7B7BjRG0t6x6HEgevU3kP0X1MSn+o1I4Af3aCISYKg
+ rFnWQVjUuP6A8DDqeC4IWS0FQXer3af/O618s8vO2YNj6iMmEKtSMgnodVUOhydd
+ LomQebCBBc8UCEB4co9CfyrGBKogD01ubhgtEP7I5gCLLJbP+r/Gg9r7T/wd4ZGm
+ SZcI5g4YUd1dldpuHgo/6YZlD7S6vLWtd3r5TQtTs2pnfxQ1BLI94+QvFIO8VB6N
+ Sk+blS6miJ/2nzp5KBYvHXOFCn760NLyE0wOxXb1Pcg==
+X-Virus-Scanned: amavisd-new at mail.208.org
+Received: from mail.208.org ([127.0.0.1])
+ by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id 3t-Lk3USknR0 for <nouveau@lists.freedesktop.org>;
+ Mon, 10 Jul 2023 15:06:48 +0800 (CST)
+Received: from localhost (email.208.org [127.0.0.1])
+ by mail.208.org (Postfix) with ESMTPSA id 4Qzw6J0NQhzBHXh3;
+ Mon, 10 Jul 2023 15:06:48 +0800 (CST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Date: Mon, 10 Jul 2023 15:06:47 +0800
+From: sunran001@208suo.com
+To: airlied@gmail.com, daniel@ffwll.ch
+In-Reply-To: <20230710070505.53916-1-xujianghui@cdjrlc.com>
+References: <20230710070505.53916-1-xujianghui@cdjrlc.com>
+User-Agent: Roundcube Webmail
+Message-ID: <1ddf673283e93e83d912066f2241b976@208suo.com>
+X-Sender: sunran001@208suo.com
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 10 Jul 2023 07:23:34 +0000
-Subject: [Nouveau] [PATCH v2 0/6] PCI/VGA: Improve the default VGA device
- selection
+Subject: [Nouveau] [PATCH] drm/nouveau/iccsense:
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,73 +60,34 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Sui Jingfeng <suijingfeng@loongson.cn>,
- kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-pci@vger.kernel.org
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Sui Jingfeng <suijingfeng@loongson.cn>
+Fixed error: 'do not use assignment in if condition'
 
-Currently, the default VGA device selection is not perfect. Potential
-problems are:
+This patch fixes error: 'do not use assignment in if condition'
+in drm/nouveau/iccsense
 
-1) This function is a no-op on non-x86 architectures.
-2) It does not take the PCI Bar may get relocated into consideration.
-3) It is not effective for the PCI device without a dedicated VRAM Bar.
-4) It is device-agnostic, thus it has to waste the effort to iterate all
-   of the PCI Bar to find the VRAM aperture.
-5) It has invented lots of methods to determine which one is the default
-   boot device on a multiple video card coexistence system. But this is
-   still a policy because it doesn't give the user a choice to override.
+Signed-off-by: Ran Sun <sunran001@208suo.com>
+---
+  drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c | 3 ++-
+  1 file changed, 2 insertions(+), 1 deletion(-)
 
-With the observation that device drivers or video aperture helpers may
-have better knowledge about which PCI bar contains the firmware FB,
-
-This patch tries to solve the above problems by introducing a function
-callback to the vga_client_register() function interface. DRM device
-drivers for the PCI device need to register the is_boot_device() function
-callback during the driver loading time. Once the driver binds the device
-successfully, VRAARB will call back to the driver. This gives the device
-drivers a chance to provide accurate boot device identification. Which in
-turn unlock the abitration service to non-x86 architectures. A device
-driver can also pass a NULL pointer to keep the original behavior.
-
-This series is applied on the drm-tip branch (with a cleanup patch set[1]
-applied beforehand)
-
-[1] https://patchwork.freedesktop.org/series/120053/
-
-v2:
-	* Add a simple implemment for drm/i915 and drm/ast
-	* Pick up all tags (Mario)
-
-Sui Jingfeng (6):
-  video/aperture: Add a helper to detect if an aperture contains
-    firmware FB
-  PCI/VGA: Improve the default VGA device selection
-  drm/amdgpu: Implement the is_boot_device callback function
-  drm/radeon: Implement the is_boot_device callback function
-  drm/i915: Implement the is_boot_device callback function
-  drm/ast: Register as a vga client to vgaarb by calling
-    vga_client_register()
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 12 +++++++-
- drivers/gpu/drm/ast/ast_drv.c              | 29 ++++++++++++++++++++
- drivers/gpu/drm/drm_aperture.c             | 16 +++++++++++
- drivers/gpu/drm/i915/display/intel_vga.c   | 32 ++++++++++++++++++++--
- drivers/gpu/drm/nouveau/nouveau_vga.c      |  2 +-
- drivers/gpu/drm/radeon/radeon_device.c     | 12 +++++++-
- drivers/pci/vgaarb.c                       | 21 +++++++++++++-
- drivers/vfio/pci/vfio_pci_core.c           |  2 +-
- drivers/video/aperture.c                   | 29 ++++++++++++++++++++
- include/drm/drm_aperture.h                 |  2 ++
- include/linux/aperture.h                   |  7 +++++
- include/linux/vgaarb.h                     |  8 ++++--
- 12 files changed, 162 insertions(+), 10 deletions(-)
-
--- 
-2.25.1
-
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c 
+b/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c
+index 8f0ccd3664eb..2428f3d6e477 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c
+@@ -322,7 +322,8 @@ int
+  nvkm_iccsense_new_(struct nvkm_device *device, enum nvkm_subdev_type 
+type, int inst,
+             struct nvkm_iccsense **iccsense)
+  {
+-    if (!(*iccsense = kzalloc(sizeof(**iccsense), GFP_KERNEL)))
++    *iccsense = kzalloc(sizeof(**iccsense), GFP_KERNEL);
++    if (!*iccsense)
+          return -ENOMEM;
+      INIT_LIST_HEAD(&(*iccsense)->sensors);
+      INIT_LIST_HEAD(&(*iccsense)->rails);
