@@ -4,54 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13D40C001DC
-	for <nouveau@archiver.kernel.org>; Sun, 23 Jul 2023 09:24:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21621C001DE
+	for <nouveau@archiver.kernel.org>; Sun, 23 Jul 2023 09:24:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DDA810E16C;
-	Sun, 23 Jul 2023 09:24:11 +0000 (UTC)
-Received: from mail.208.org (unknown [183.242.55.162])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38E9610E7CD
- for <nouveau@lists.freedesktop.org>; Fri, 14 Jul 2023 06:58:52 +0000 (UTC)
-Received: from mail.208.org (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTP id 4R2MlG0F84zBR9sm
- for <nouveau@lists.freedesktop.org>; Fri, 14 Jul 2023 14:58:50 +0800 (CST)
-Authentication-Results: mail.208.org (amavisd-new); dkim=pass
- reason="pass (just generated, assumed good)" header.d=208.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
- content-type:message-id:user-agent:references:subject:to:from
- :date:mime-version; s=dkim; t=1689317929; x=1691909930; bh=BmX7S
- FBwPUkYefMqVZRLt8+DjQinCnGYUMgeD5Nrou8=; b=p+aV0JQwQuQGLzJ5U8P4y
- bsVBOfnGlNpNblyqX5HPNdgYKv58IIHjULxmXz0w4q060CDM6ABNgFBq8Xb5Kw2e
- U4nso7ngs4Bu2FCHtz8uIuBz28J0zRpnWn5YH63HH3WdpG2KfvlZfUENxX3Wev+8
- V0f9BR1QItP3dRvdiqfhb1K/WQnW7UY2KK2SQaE/8l9eQmsmF2tF36BUP8iX7kKE
- K+iOTwTNe1ftS0h38y+bP0iZJlX6+5PJ9t+1K0TCVOVCrizNg6MU491nKsny0taA
- tDhV64HrITS0EVf8k1WZFkXJBHgFG2mdSIpwSRgvg0b6dNhhcJKU7cCyBMqF4L0K
- w==
-X-Virus-Scanned: amavisd-new at mail.208.org
-Received: from mail.208.org ([127.0.0.1])
- by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id oHnSAdgMuw0h for <nouveau@lists.freedesktop.org>;
- Fri, 14 Jul 2023 14:58:49 +0800 (CST)
-Received: from localhost (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTPSA id 4R2MlF427CzBR9sv;
- Fri, 14 Jul 2023 14:58:49 +0800 (CST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48B6B10E1F9;
+	Sun, 23 Jul 2023 09:24:13 +0000 (UTC)
+X-Greylist: delayed 433 seconds by postgrey-1.36 at gabe;
+ Wed, 12 Jul 2023 11:15:18 UTC
+Received: from mail3-relais-sop.national.inria.fr
+ (mail3-relais-sop.national.inria.fr [192.134.164.104])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 353B510E4D1;
+ Wed, 12 Jul 2023 11:15:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=inria.fr; s=dc;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=ZJpBQTRvYf3xLQYim5PgpqIBO472OK4qQBRBn5wK5Lo=;
+ b=LiXL1vdteb3LQ9kRIyiqac+rKgCW2hgh2hum23eyRXq5g9LP+B8eU6Dp
+ yAXUq+WJAba1z7ssx8t9t2gLhg3oemVZYeyt9D+AD8e0OAjokLOSxIaFX
+ 9WTYl28HsAaDebnlB3oyseEPBOV0bXJ9JOXjVMF/PU7HUlTO1JHrhIytd 4=;
+Authentication-Results: mail3-relais-sop.national.inria.fr;
+ dkim=none (message not signed) header.i=none;
+ spf=SoftFail smtp.mailfrom=julia.lawall@inria.fr;
+ dmarc=fail (p=none dis=none) d=inria.fr
+X-IronPort-AV: E=Sophos;i="6.01,199,1684792800"; d="scan'208";a="61228938"
+Received: from hstsheraton06.h.subnet.rcn.com (HELO hadrien) ([207.180.135.5])
+ by mail3-relais-sop.national.inria.fr with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jul 2023 13:07:34 +0200
+Date: Wed, 12 Jul 2023 07:07:32 -0400 (EDT)
+From: Julia Lawall <julia.lawall@inria.fr>
+To: =?ISO-8859-15?Q?Uwe_Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20230712110253.paoyrmcbvlhpfxbf@pengutronix.de>
+Message-ID: <acd7913-3c42-7354-434-a826b6c8718@inria.fr>
+References: <20230712094702.1770121-1-u.kleine-koenig@pengutronix.de>
+ <94eb6e4d-9384-152f-351b-ebb217411da9@amd.com>
+ <20230712110253.paoyrmcbvlhpfxbf@pengutronix.de>
 MIME-Version: 1.0
-Date: Fri, 14 Jul 2023 14:58:49 +0800
-From: huzhi001@208suo.com
-To: bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com,
- airlied@gmail.com, daniel@ffwll.ch
-References: <5c894d0a8a178628ca200d054004be3c@208suo.com>
- <f25017a660f8a3a4e49258a1d96003dc@208suo.com>
- <2f4a7303e305d07fdd9c15a9dc95dc5f@208suo.com>
- <d0d767fb0dd3a9b7642559f379dbb0d6@208suo.com>
-User-Agent: Roundcube Webmail
-Message-ID: <0ad4154429aaa41ca26da859c3f35784@208suo.com>
-X-Sender: huzhi001@208suo.com
-Content-Type: multipart/mixed;
- boundary="=_ff68884a3fac4130d787939fa0c53b83"
+Content-Type: multipart/mixed; boundary="8323329-1690266391-1689160075=:3129"
 X-Mailman-Approved-At: Sun, 23 Jul 2023 09:23:50 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/fifo:Fix Nineteen occurrences of the
- gk104.c error: ERROR: : trailing statements should be on next line
+Subject: Re: [Nouveau] [PATCH RFC v1 00/52] drm/crtc: Rename struct
+ drm_crtc::dev to drm_dev
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,501 +54,265 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Cc: =?ISO-8859-15?Q?Heiko_St=FCbner?= <heiko@sntech.de>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Xinliang Liu <xinliang.liu@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+ Alexey Kodanev <aleksei.kodanev@bell-sw.com>, dri-devel@lists.freedesktop.org,
+ Vandita Kulkarni <vandita.kulkarni@intel.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Arun R Murthy <arun.r.murthy@intel.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Liu Shixin <liushixin2@huawei.com>, linux-samsung-soc@vger.kernel.org,
+ Samuel Holland <samuel@sholland.org>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+ Wenjing Liu <wenjing.liu@amd.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ NXP Linux Team <linux-imx@nxp.com>, spice-devel@lists.freedesktop.org,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ linux-sunxi@lists.linux.dev, Tim Huang <Tim.Huang@amd.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>,
+ =?ISO-8859-15?Q?Andr=E9_Almeida?= <andrealmeid@igalia.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>, Yifan Zhang <yifan1.zhang@amd.com>,
+ Jani Nikula <jani.nikula@intel.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Inki Dae <inki.dae@samsung.com>,
+ Hersen Wu <hersenxs.wu@amd.com>, Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ =?ISO-8859-2?Q?=A3ukasz_Bartosik?= <lb@semihalf.com>,
+ Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
+ Andrew Jeffery <andrew@aj.id.au>, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ =?ISO-8859-15?Q?Noralf_Tr=F8nnes?= <noralf@tronnes.org>, kernel@pengutronix.de,
+ Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
+ Claudiu Beznea <claudiu.beznea@microchip.com>, Zack Rusin <zackr@vmware.com>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
+ Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ =?ISO-8859-15?Q?Jos=E9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ virtualization@lists.linux-foundation.org,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Yongqin Liu <yongqin.liu@linaro.org>,
+ Mario Limonciello <mario.limonciello@amd.com>, Fei Yang <fei.yang@intel.com>,
+ =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ David Lechner <david@lechnology.com>, Julia Lawall <Julia.Lawall@inria.fr>,
+ Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ "Jiri Slaby \(SUSE\)" <jirislaby@kernel.org>,
+ David Francis <David.Francis@amd.com>, Aaron Liu <aaron.liu@amd.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Vinod Polimera <quic_vpolimer@quicinc.com>, linux-rockchip@lists.infradead.org,
+ Fangzhi Zuo <jerry.zuo@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
+ Ben Skeggs <bskeggs@redhat.com>,
+ =?ISO-8859-15?Q?Jouni_H=F6gander?= <jouni.hogander@intel.com>,
+ Dave Airlie <airlied@redhat.com>, linux-mips@vger.kernel.org,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-arm-msm@vger.kernel.org, Animesh Manna <animesh.manna@intel.com>,
+ linux-renesas-soc@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Biju Das <biju.das.jz@bp.renesas.com>, linux-amlogic@lists.infradead.org,
+ Evan Quan <evan.quan@amd.com>, Michal Simek <michal.simek@amd.com>,
+ linux-arm-kernel@lists.infradead.org, Sean Paul <sean@poorly.run>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+ Boris Brezillon <bbrezillon@kernel.org>, Chunyan Zhang <zhang.lyra@gmail.com>,
+ Qingqing Zhuo <qingqing.zhuo@amd.com>, Sandy Huang <hjc@rock-chips.com>,
+ Swati Sharma <swati2.sharma@intel.com>, John Stultz <jstultz@google.com>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Drew Davenport <ddavenport@chromium.org>, Kevin Hilman <khilman@baylibre.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>,
+ Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Anusha Srivatsa <anusha.srivatsa@intel.com>, Dan Carpenter <error27@gmail.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ linux-hyperv@vger.kernel.org, Stefan Agner <stefan@agner.ch>,
+ Melissa Wen <melissa.srw@gmail.com>,
+ =?ISO-8859-15?Q?Ma=EDra_Canal?= <mairacanal@riseup.net>,
+ Luca Coelho <luciano.coelho@intel.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Likun Gao <Likun.Gao@amd.com>,
+ Sam Ravnborg <sam@ravnborg.org>, Alain Volmat <alain.volmat@foss.st.com>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Deepak Rawat <drawat.floss@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Joel Stanley <joel@jms.id.au>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, Alan Liu <haoping.liu@amd.com>,
+ Philip Yang <Philip.Yang@amd.com>, intel-gfx@lists.freedesktop.org,
+ Alison Wang <alison.wang@nxp.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Mikko Perttunen <mperttunen@nvidia.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
+ Tomi Valkeinen <tomba@kernel.org>, Deepak R Varma <drv@mailo.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Chia-I Wu <olvaffe@gmail.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Tian Tao <tiantao6@hisilicon.com>, Shawn Guo <shawnguo@kernel.org>,
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>,
+ Khaled Almahallawy <khaled.almahallawy@intel.com>,
+ linux-stm32@st-md-mailman.stormreply.com, Emma Anholt <emma@anholt.net>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, Imre Deak <imre.deak@intel.com>,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, Roman Li <roman.li@amd.com>,
+ Paul Cercueil <paul@crapouillou.net>, Rob Clark <robdclark@gmail.com>,
+ Hamza Mahfooz <hamza.mahfooz@amd.com>, Marek Vasut <marex@denx.de>,
+ Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ xen-devel@lists.xenproject.org, Guchun Chen <guchun.chen@amd.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Russell King <linux@armlinux.org.uk>, Leo Li <sunpeng.li@amd.com>,
+ Uma Shankar <uma.shankar@intel.com>, Mika Kahola <mika.kahola@intel.com>,
+ Jiasheng Jiang <jiasheng@iscas.ac.cn>,
+ Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ linux-tegra@vger.kernel.org,
+ =?ISO-8859-15?Q?Marek_Ol=A8=E1k?= <marek.olsak@amd.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ =?ISO-8859-15?Q?Joaqu=EDn_Ignacio_Aramend=EDa?= <samsagax@gmail.com>,
+ Melissa Wen <mwen@igalia.com>, Hans de Goede <hdegoede@redhat.com>,
+ linux-mediatek@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ David Tadokoro <davidbtadokoro@usp.br>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Orson Zhai <orsonzhai@gmail.com>, amd-gfx@lists.freedesktop.org,
+ Jyri Sarha <jyri.sarha@iki.fi>, Yannick Fertre <yannick.fertre@foss.st.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Philippe Cornu <philippe.cornu@foss.st.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Wayne Lin <Wayne.Lin@amd.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Nirmoy Das <nirmoy.das@intel.com>, Lang Yu <Lang.Yu@amd.com>,
+ Lucas Stach <l.stach@pengutronix.de>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
---=_ff68884a3fac4130d787939fa0c53b83
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Signed-off-by: ZhiHu <huzhi001@208suo.com>
----
-  .../gpu/drm/nouveau/nvkm/engine/fifo/gk104.c  | 40 ++++++++++++++-----
-  1 file changed, 29 insertions(+), 11 deletions(-)
+--8323329-1690266391-1689160075=:3129
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8BIT
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c 
-b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-index d8a4d773a58c..b99e0a7c96bb 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-@@ -137,15 +137,29 @@ gk104_ectx_bind(struct nvkm_engn *engn, struct 
-nvkm_cctx *cctx, struct nvkm_chan
-      u64 addr = 0ULL;
 
-      switch (engn->engine->subdev.type) {
--    case NVKM_ENGINE_SW    : return;
--    case NVKM_ENGINE_GR    : ptr0 = 0x0210; break;
--    case NVKM_ENGINE_SEC   : ptr0 = 0x0220; break;
--    case NVKM_ENGINE_MSPDEC: ptr0 = 0x0250; break;
--    case NVKM_ENGINE_MSPPP : ptr0 = 0x0260; break;
--    case NVKM_ENGINE_MSVLD : ptr0 = 0x0270; break;
--    case NVKM_ENGINE_VIC   : ptr0 = 0x0280; break;
--    case NVKM_ENGINE_MSENC : ptr0 = 0x0290; break;
--    case NVKM_ENGINE_NVDEC :
-+    case NVKM_ENGINE_SW:
-+        return;
-+    case NVKM_ENGINE_GR:
-+        ptr0 = 0x0210;
-+        break;
-+    case NVKM_ENGINE_SEC:
-+        ptr0 = 0x0220;
-+        break;
-+    case NVKM_ENGINE_MSPDEC:
-+        ptr0 = 0x0250;
-+        break;
-+    case NVKM_ENGINE_MSPPP:
-+        ptr0 = 0x0260;
-+        break;
-+    case NVKM_ENGINE_MSVLD:
-+        ptr0 = 0x0270;
-+        break;
-+    case NVKM_ENGINE_VIC:
-+        ptr0 = 0x0280; break;
-+    case NVKM_ENGINE_MSENC:
-+        ptr0 = 0x0290;
-+        break;
-+    case NVKM_ENGINE_NVDEC:
-          ptr1 = 0x0270;
-          ptr0 = 0x0210;
-          break;
-@@ -435,8 +449,12 @@ gk104_runl_commit(struct nvkm_runl *runl, struct 
-nvkm_memory *memory, u32 start,
-      int target;
 
-      switch (nvkm_memory_target(memory)) {
--    case NVKM_MEM_TARGET_VRAM: target = 0; break;
--    case NVKM_MEM_TARGET_NCOH: target = 3; break;
-+    case NVKM_MEM_TARGET_VRAM:
-+        target = 0;
-+        break;
-+    case NVKM_MEM_TARGET_NCOH:
-+        target = 3;
-+        break;
-      default:
-          WARN_ON(1);
-          return;
---=_ff68884a3fac4130d787939fa0c53b83
-Content-Type: message/rfc822;
- name="=?UTF-8?Q?=5BPATCH=5D_drm/nouveau/fifo=3AFix_Nineteen_occurrences_?=
- =?UTF-8?Q?of_the_gk104=2Ec=2Eeml?="
-Content-Disposition: attachment;
- filename*0*=UTF-8''%5BPATCH%5D%20drm%2Fnouveau%2Ffifo%3AFix%20Nineteen%20;
- filename*1*=occurrences%20of%20the%20gk104.c.eml;
- size=4891
-Content-Transfer-Encoding: 7bit
+On Wed, 12 Jul 2023, Uwe Kleine-König wrote:
 
-MIME-Version: 1.0
-Date: Fri, 14 Jul 2023 11:51:25 +0800
-From: huzhi001@208suo.com
-To: bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com,
- airlied@gmail.com, daniel@ffwll.ch
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/nouveau/fifo:Fix Nineteen occurrences of the gk104.c
- error: ERROR: space prohibited before that ':' (ctx:WxW) ERROR: trailing
- statements should be on next line ERROR: space prohibited before that ':'
- (ctx:WxW) ERROR: trailing statements should be on next line ERROR: space
- prohibited before that ':' (ctx:WxW) ERROR: trailing statements should be on
- next line ERROR: trailing statements should be on next line ERROR: space
- prohibited before that ':' (ctx:WxW) ERROR: trailing statements should be on
- next line ERROR: space prohibited before that ':' (ctx:WxW) ERROR: trailing
- statements should be on next line ERROR: space prohibited before that ':'
- (ctx:WxW) ERROR: trailing statements should be on next line ERROR: space
- prohibited before that ':' (ctx:WxW) ERROR: trailing statements should be on
- next line ERROR: space prohibited before that ':' (ctx:WxE) ERROR: space
- prohibited before that ':' (ctx:WxE) ERROR: trailing statements should be on
- next line ERROR: trailing s tatements should be on next line
-In-Reply-To: <tencent_0FA6AE16A21AAA2E9481C6FE598BA70CC405@qq.com>
-References: <tencent_0FA6AE16A21AAA2E9481C6FE598BA70CC405@qq.com>
-User-Agent: Roundcube Webmail
-Message-ID: <5c894d0a8a178628ca200d054004be3c@208suo.com>
-X-Sender: huzhi001@208suo.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+> On Wed, Jul 12, 2023 at 12:46:33PM +0200, Christian König wrote:
+> > Am 12.07.23 um 11:46 schrieb Uwe Kleine-König:
+> > > Hello,
+> > >
+> > > while I debugged an issue in the imx-lcdc driver I was constantly
+> > > irritated about struct drm_device pointer variables being named "dev"
+> > > because with that name I usually expect a struct device pointer.
+> > >
+> > > I think there is a big benefit when these are all renamed to "drm_dev".
+> > > I have no strong preference here though, so "drmdev" or "drm" are fine
+> > > for me, too. Let the bikesheding begin!
+> > >
+> > > Some statistics:
+> > >
+> > > $ git grep -ohE 'struct drm_device *\* *[^ (),;]*' v6.5-rc1 | sort | uniq -c | sort -n
+> > >        1 struct drm_device *adev_to_drm
+> > >        1 struct drm_device *drm_
+> > >        1 struct drm_device          *drm_dev
+> > >        1 struct drm_device        *drm_dev
+> > >        1 struct drm_device *pdev
+> > >        1 struct drm_device *rdev
+> > >        1 struct drm_device *vdev
+> > >        2 struct drm_device *dcss_drv_dev_to_drm
+> > >        2 struct drm_device **ddev
+> > >        2 struct drm_device *drm_dev_alloc
+> > >        2 struct drm_device *mock
+> > >        2 struct drm_device *p_ddev
+> > >        5 struct drm_device *device
+> > >        9 struct drm_device * dev
+> > >       25 struct drm_device *d
+> > >       95 struct drm_device *
+> > >      216 struct drm_device *ddev
+> > >      234 struct drm_device *drm_dev
+> > >      611 struct drm_device *drm
+> > >     4190 struct drm_device *dev
+> > >
+> > > This series starts with renaming struct drm_crtc::dev to drm_dev. If
+> > > it's not only me and others like the result of this effort it should be
+> > > followed up by adapting the other structs and the individual usages in
+> > > the different drivers.
+> > >
+> > > To make this series a bit easier handleable, I first added an alias for
+> > > drm_crtc::dev, then converted the drivers one after another and the last
+> > > patch drops the "dev" name. This has the advantage of being easier to
+> > > review, and if I should have missed an instance only the last patch must
+> > > be dropped/reverted. Also this series might conflict with other patches,
+> > > in this case the remaining patches can still go in (apart from the last
+> > > one of course). Maybe it also makes sense to delay applying the last
+> > > patch by one development cycle?
+> >
+> > When you automatically generate the patch (with cocci for example) I usually
+> > prefer a single patch instead.
+>
+> Maybe I'm too stupid, but only parts of this patch were created by
+> coccinelle. I failed to convert code like
+>
+> -       spin_lock_irq(&crtc->dev->event_lock);
+> +       spin_lock_irq(&crtc->drm_dev->event_lock);
+>
+> Added Julia to Cc, maybe she has a hint?!
 
-Fix Nineteen occurrences of the checkpatch.pl error:
-ERROR: space prohibited before that ':' (ctx:WxW)
-ERROR: trailing statements should be on next line
-ERROR: space prohibited before that ':' (ctx:WxW)
-ERROR: trailing statements should be on next line
-ERROR: space prohibited before that ':' (ctx:WxW)
-ERROR: trailing statements should be on next line
-ERROR: trailing statements should be on next line
-ERROR: space prohibited before that ':' (ctx:WxW)
-ERROR: trailing statements should be on next line
-ERROR: space prohibited before that ':' (ctx:WxW)
-ERROR: trailing statements should be on next line
-ERROR: space prohibited before that ':' (ctx:WxW)
-ERROR: trailing statements should be on next line
-ERROR: space prohibited before that ':' (ctx:WxW)
-ERROR: trailing statements should be on next line
-ERROR: space prohibited before that ':' (ctx:WxE)
-ERROR: space prohibited before that ':' (ctx:WxE)
-ERROR: trailing statements should be on next line
-ERROR: trailing statements should be on next line
-Signed-off-by: ZhiHu <huzhi001@208suo.com>
----
-  .../gpu/drm/nouveau/nvkm/engine/fifo/gk104.c  | 40 ++++++++++++++-----
-  1 file changed, 29 insertions(+), 11 deletions(-)
+A priori, I see no reason why the rule below should not apply to the above
+code.  Is there a parsing problem in the containing function?  You can run
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c 
-b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-index d8a4d773a58c..b99e0a7c96bb 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-@@ -137,15 +137,29 @@ gk104_ectx_bind(struct nvkm_engn *engn, struct 
-nvkm_cctx *cctx, struct nvkm_chan
-      u64 addr = 0ULL;
+spatch --parse-c file.c
 
-      switch (engn->engine->subdev.type) {
--    case NVKM_ENGINE_SW    : return;
--    case NVKM_ENGINE_GR    : ptr0 = 0x0210; break;
--    case NVKM_ENGINE_SEC   : ptr0 = 0x0220; break;
--    case NVKM_ENGINE_MSPDEC: ptr0 = 0x0250; break;
--    case NVKM_ENGINE_MSPPP : ptr0 = 0x0260; break;
--    case NVKM_ENGINE_MSVLD : ptr0 = 0x0270; break;
--    case NVKM_ENGINE_VIC   : ptr0 = 0x0280; break;
--    case NVKM_ENGINE_MSENC : ptr0 = 0x0290; break;
--    case NVKM_ENGINE_NVDEC :
-+    case NVKM_ENGINE_SW:
-+        return;
-+    case NVKM_ENGINE_GR:
-+        ptr0 = 0x0210;
-+        break;
-+    case NVKM_ENGINE_SEC:
-+        ptr0 = 0x0220;
-+        break;
-+    case NVKM_ENGINE_MSPDEC:
-+        ptr0 = 0x0250;
-+        break;
-+    case NVKM_ENGINE_MSPPP:
-+        ptr0 = 0x0260;
-+        break;
-+    case NVKM_ENGINE_MSVLD:
-+        ptr0 = 0x0270;
-+        break;
-+    case NVKM_ENGINE_VIC:
-+        ptr0 = 0x0280; break;
-+    case NVKM_ENGINE_MSENC:
-+        ptr0 = 0x0290;
-+        break;
-+    case NVKM_ENGINE_NVDEC:
-          ptr1 = 0x0270;
-          ptr0 = 0x0210;
-          break;
-@@ -435,8 +449,12 @@ gk104_runl_commit(struct nvkm_runl *runl, struct 
-nvkm_memory *memory, u32 start,
-      int target;
+If there is a paring problem, please let me know and i will try to fix it
+so the while thing can be done automatically.
 
-      switch (nvkm_memory_target(memory)) {
--    case NVKM_MEM_TARGET_VRAM: target = 0; break;
--    case NVKM_MEM_TARGET_NCOH: target = 3; break;
-+    case NVKM_MEM_TARGET_VRAM:
-+        target = 0;
-+        break;
-+    case NVKM_MEM_TARGET_NCOH:
-+        target = 3;
-+        break;
-      default:
-          WARN_ON(1);
-          return;
---=_ff68884a3fac4130d787939fa0c53b83
-Content-Type: message/rfc822;
- name="=?UTF-8?Q?=5BPATCH=5D_drm/nouveau/fifo=3AFix_Nineteen_occurrences_?=
- =?UTF-8?Q?of_the_gk104=2Ec=5F2=2Eeml?="
-Content-Disposition: attachment;
- filename*0*=UTF-8''%5BPATCH%5D%20drm%2Fnouveau%2Ffifo%3AFix%20Nineteen%20;
- filename*1*=occurrences%20of%20the%20gk104.c_2.eml;
- size=3868
-Content-Transfer-Encoding: 7bit
+julia
 
-MIME-Version: 1.0
-Date: Fri, 14 Jul 2023 13:14:34 +0800
-From: huzhi001@208suo.com
-To: bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com,
- airlied@gmail.com, daniel@ffwll.ch
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/nouveau/fifo:Fix Nineteen occurrences of the gk104.c
- error: ERROR: space prohibited before that ':' (ctx:WxW) ERROR: trailing
- statements should be on next line ERROR: space prohibited before that ':'
- (ctx:WxW) ERROR: trailing statements should be on next line ERROR: space
- prohibited before that ':' (ctx:WxW) ERROR: trailing statements should be on
- next line ERROR: trailing statements should be on next line ERROR: space
- prohibited before that ':' (ctx:WxW) ERROR: trailing statements should be on
- next line ERROR: space prohibited before that ':' (ctx:WxW) ERROR: trailing
- statements should be on next line ERROR: space prohibited before that ':'
- (ctx:WxW) ERROR: trailing statements should be on next line ERROR: space
- prohibited before that ':' (ctx:WxW) ERROR: trailing statements should be on
- next line ERROR: space prohibited before that ':' (ctx:WxE) ERROR: space
- prohibited before that ':' (ctx:WxE) ERROR: trailing statements should be on
- next line ERROR: trailing s tatements should be on next line
-In-Reply-To: <tencent_0FA6AE16A21AAA2E9481C6FE598BA70CC405@qq.com>
-References: <tencent_0FA6AE16A21AAA2E9481C6FE598BA70CC405@qq.com>
-User-Agent: Roundcube Webmail
-Message-ID: <f25017a660f8a3a4e49258a1d96003dc@208suo.com>
-X-Sender: huzhi001@208suo.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-
-Signed-off-by: ZhiHu <huzhi001@208suo.com>
----
-  .../gpu/drm/nouveau/nvkm/engine/fifo/gk104.c  | 40 ++++++++++++++-----
-  1 file changed, 29 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c 
-b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-index d8a4d773a58c..b99e0a7c96bb 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-@@ -137,15 +137,29 @@ gk104_ectx_bind(struct nvkm_engn *engn, struct 
-nvkm_cctx *cctx, struct nvkm_chan
-      u64 addr = 0ULL;
-
-      switch (engn->engine->subdev.type) {
--    case NVKM_ENGINE_SW    : return;
--    case NVKM_ENGINE_GR    : ptr0 = 0x0210; break;
--    case NVKM_ENGINE_SEC   : ptr0 = 0x0220; break;
--    case NVKM_ENGINE_MSPDEC: ptr0 = 0x0250; break;
--    case NVKM_ENGINE_MSPPP : ptr0 = 0x0260; break;
--    case NVKM_ENGINE_MSVLD : ptr0 = 0x0270; break;
--    case NVKM_ENGINE_VIC   : ptr0 = 0x0280; break;
--    case NVKM_ENGINE_MSENC : ptr0 = 0x0290; break;
--    case NVKM_ENGINE_NVDEC :
-+    case NVKM_ENGINE_SW:
-+        return;
-+    case NVKM_ENGINE_GR:
-+        ptr0 = 0x0210;
-+        break;
-+    case NVKM_ENGINE_SEC:
-+        ptr0 = 0x0220;
-+        break;
-+    case NVKM_ENGINE_MSPDEC:
-+        ptr0 = 0x0250;
-+        break;
-+    case NVKM_ENGINE_MSPPP:
-+        ptr0 = 0x0260;
-+        break;
-+    case NVKM_ENGINE_MSVLD:
-+        ptr0 = 0x0270;
-+        break;
-+    case NVKM_ENGINE_VIC:
-+        ptr0 = 0x0280; break;
-+    case NVKM_ENGINE_MSENC:
-+        ptr0 = 0x0290;
-+        break;
-+    case NVKM_ENGINE_NVDEC:
-          ptr1 = 0x0270;
-          ptr0 = 0x0210;
-          break;
-@@ -435,8 +449,12 @@ gk104_runl_commit(struct nvkm_runl *runl, struct 
-nvkm_memory *memory, u32 start,
-      int target;
-
-      switch (nvkm_memory_target(memory)) {
--    case NVKM_MEM_TARGET_VRAM: target = 0; break;
--    case NVKM_MEM_TARGET_NCOH: target = 3; break;
-+    case NVKM_MEM_TARGET_VRAM:
-+        target = 0;
-+        break;
-+    case NVKM_MEM_TARGET_NCOH:
-+        target = 3;
-+        break;
-      default:
-          WARN_ON(1);
-          return;
---=_ff68884a3fac4130d787939fa0c53b83
-Content-Type: message/rfc822;
- name="=?UTF-8?Q?=5BPATCH=5D_drm/nouveau/fifo=3AFix_Nineteen_occurrences_?=
- =?UTF-8?Q?of_the_gk104=2Ec=5F3=2Eeml?="
-Content-Disposition: attachment;
- filename*0*=UTF-8''%5BPATCH%5D%20drm%2Fnouveau%2Ffifo%3AFix%20Nineteen%20;
- filename*1*=occurrences%20of%20the%20gk104.c_3.eml;
- size=2997
-Content-Transfer-Encoding: 7bit
-
-MIME-Version: 1.0
-Date: Fri, 14 Jul 2023 13:17:10 +0800
-From: huzhi001@208suo.com
-To: bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com,
- airlied@gmail.com, daniel@ffwll.ch
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/nouveau/fifo:Fix Nineteen occurrences of the gk104.c
- error: ERROR: space prohibited before that ':' (ctx:WxW) ERROR: : trailing
- statements should be on next line
-In-Reply-To: <tencent_0FA6AE16A21AAA2E9481C6FE598BA70CC405@qq.com>
-References: <tencent_0FA6AE16A21AAA2E9481C6FE598BA70CC405@qq.com>
-User-Agent: Roundcube Webmail
-Message-ID: <2f4a7303e305d07fdd9c15a9dc95dc5f@208suo.com>
-X-Sender: huzhi001@208suo.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-
-Signed-off-by: ZhiHu <huzhi001@208suo.com>
----
-  .../gpu/drm/nouveau/nvkm/engine/fifo/gk104.c  | 40 ++++++++++++++-----
-  1 file changed, 29 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c 
-b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-index d8a4d773a58c..b99e0a7c96bb 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-@@ -137,15 +137,29 @@ gk104_ectx_bind(struct nvkm_engn *engn, struct 
-nvkm_cctx *cctx, struct nvkm_chan
-      u64 addr = 0ULL;
-
-      switch (engn->engine->subdev.type) {
--    case NVKM_ENGINE_SW    : return;
--    case NVKM_ENGINE_GR    : ptr0 = 0x0210; break;
--    case NVKM_ENGINE_SEC   : ptr0 = 0x0220; break;
--    case NVKM_ENGINE_MSPDEC: ptr0 = 0x0250; break;
--    case NVKM_ENGINE_MSPPP : ptr0 = 0x0260; break;
--    case NVKM_ENGINE_MSVLD : ptr0 = 0x0270; break;
--    case NVKM_ENGINE_VIC   : ptr0 = 0x0280; break;
--    case NVKM_ENGINE_MSENC : ptr0 = 0x0290; break;
--    case NVKM_ENGINE_NVDEC :
-+    case NVKM_ENGINE_SW:
-+        return;
-+    case NVKM_ENGINE_GR:
-+        ptr0 = 0x0210;
-+        break;
-+    case NVKM_ENGINE_SEC:
-+        ptr0 = 0x0220;
-+        break;
-+    case NVKM_ENGINE_MSPDEC:
-+        ptr0 = 0x0250;
-+        break;
-+    case NVKM_ENGINE_MSPPP:
-+        ptr0 = 0x0260;
-+        break;
-+    case NVKM_ENGINE_MSVLD:
-+        ptr0 = 0x0270;
-+        break;
-+    case NVKM_ENGINE_VIC:
-+        ptr0 = 0x0280; break;
-+    case NVKM_ENGINE_MSENC:
-+        ptr0 = 0x0290;
-+        break;
-+    case NVKM_ENGINE_NVDEC:
-          ptr1 = 0x0270;
-          ptr0 = 0x0210;
-          break;
-@@ -435,8 +449,12 @@ gk104_runl_commit(struct nvkm_runl *runl, struct 
-nvkm_memory *memory, u32 start,
-      int target;
-
-      switch (nvkm_memory_target(memory)) {
--    case NVKM_MEM_TARGET_VRAM: target = 0; break;
--    case NVKM_MEM_TARGET_NCOH: target = 3; break;
-+    case NVKM_MEM_TARGET_VRAM:
-+        target = 0;
-+        break;
-+    case NVKM_MEM_TARGET_NCOH:
-+        target = 3;
-+        break;
-      default:
-          WARN_ON(1);
-          return;
---=_ff68884a3fac4130d787939fa0c53b83
-Content-Type: message/rfc822;
- name="=?UTF-8?Q?=5BPATCH=5D_drm/nouveau/fifo=3AFix_Nineteen_occurrences_?=
- =?UTF-8?Q?of_the_gk104=2Ec=5F4=2Eeml?="
-Content-Disposition: attachment;
- filename*0*=UTF-8''%5BPATCH%5D%20drm%2Fnouveau%2Ffifo%3AFix%20Nineteen%20;
- filename*1*=occurrences%20of%20the%20gk104.c_4.eml;
- size=2945
-Content-Transfer-Encoding: 7bit
-
-MIME-Version: 1.0
-Date: Fri, 14 Jul 2023 13:21:22 +0800
-From: huzhi001@208suo.com
-To: bskeggs@redhat.com, kherbst@redhat.com, lyude@redhat.com,
- airlied@gmail.com, daniel@ffwll.ch
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/nouveau/fifo:Fix Nineteen occurrences of the gk104.c
- error: ERROR: : trailing statements should be on next line
-In-Reply-To: <tencent_0FA6AE16A21AAA2E9481C6FE598BA70CC405@qq.com>
-References: <tencent_0FA6AE16A21AAA2E9481C6FE598BA70CC405@qq.com>
-User-Agent: Roundcube Webmail
-Message-ID: <d0d767fb0dd3a9b7642559f379dbb0d6@208suo.com>
-X-Sender: huzhi001@208suo.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-
-Signed-off-by: ZhiHu <huzhi001@208suo.com>
----
-  .../gpu/drm/nouveau/nvkm/engine/fifo/gk104.c  | 40 ++++++++++++++-----
-  1 file changed, 29 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c 
-b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-index d8a4d773a58c..b99e0a7c96bb 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-@@ -137,15 +137,29 @@ gk104_ectx_bind(struct nvkm_engn *engn, struct 
-nvkm_cctx *cctx, struct nvkm_chan
-      u64 addr = 0ULL;
-
-      switch (engn->engine->subdev.type) {
--    case NVKM_ENGINE_SW    : return;
--    case NVKM_ENGINE_GR    : ptr0 = 0x0210; break;
--    case NVKM_ENGINE_SEC   : ptr0 = 0x0220; break;
--    case NVKM_ENGINE_MSPDEC: ptr0 = 0x0250; break;
--    case NVKM_ENGINE_MSPPP : ptr0 = 0x0260; break;
--    case NVKM_ENGINE_MSVLD : ptr0 = 0x0270; break;
--    case NVKM_ENGINE_VIC   : ptr0 = 0x0280; break;
--    case NVKM_ENGINE_MSENC : ptr0 = 0x0290; break;
--    case NVKM_ENGINE_NVDEC :
-+    case NVKM_ENGINE_SW:
-+        return;
-+    case NVKM_ENGINE_GR:
-+        ptr0 = 0x0210;
-+        break;
-+    case NVKM_ENGINE_SEC:
-+        ptr0 = 0x0220;
-+        break;
-+    case NVKM_ENGINE_MSPDEC:
-+        ptr0 = 0x0250;
-+        break;
-+    case NVKM_ENGINE_MSPPP:
-+        ptr0 = 0x0260;
-+        break;
-+    case NVKM_ENGINE_MSVLD:
-+        ptr0 = 0x0270;
-+        break;
-+    case NVKM_ENGINE_VIC:
-+        ptr0 = 0x0280; break;
-+    case NVKM_ENGINE_MSENC:
-+        ptr0 = 0x0290;
-+        break;
-+    case NVKM_ENGINE_NVDEC:
-          ptr1 = 0x0270;
-          ptr0 = 0x0210;
-          break;
-@@ -435,8 +449,12 @@ gk104_runl_commit(struct nvkm_runl *runl, struct 
-nvkm_memory *memory, u32 start,
-      int target;
-
-      switch (nvkm_memory_target(memory)) {
--    case NVKM_MEM_TARGET_VRAM: target = 0; break;
--    case NVKM_MEM_TARGET_NCOH: target = 3; break;
-+    case NVKM_MEM_TARGET_VRAM:
-+        target = 0;
-+        break;
-+    case NVKM_MEM_TARGET_NCOH:
-+        target = 3;
-+        break;
-      default:
-          WARN_ON(1);
-          return;
---=_ff68884a3fac4130d787939fa0c53b83--
+>
+> (Up to now it's only
+>
+> @@
+> struct drm_crtc *crtc;
+> @@
+> -crtc->dev
+> +crtc->drm_dev
+>
+> )
+>
+> > Background is that this makes merge conflicts easier to handle and detect.
+>
+> Really? Each file (apart from include/drm/drm_crtc.h) is only touched
+> once. So unless I'm missing something you don't get less or easier
+> conflicts by doing it all in a single patch. But you gain the freedom to
+> drop a patch for one driver without having to drop the rest with it. So
+> I still like the split version better, but I'm open to a more verbose
+> reasoning from your side.
+>
+> > When you have multiple patches and a merge conflict because of some added
+> > lines using the old field the build breaks only on the last patch which
+> > removes the old field.
+>
+> Then you can revert/drop the last patch without having to respin the
+> whole single patch and thus caring for still more conflicts that arise
+> until the new version is sent.
+>
+> Best regards
+> Uwe
+>
+> --
+> Pengutronix e.K.                           | Uwe Kleine-König            |
+> Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+>
+--8323329-1690266391-1689160075=:3129--
