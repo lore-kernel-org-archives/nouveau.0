@@ -4,59 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BF45C001DE
-	for <nouveau@archiver.kernel.org>; Sun, 23 Jul 2023 09:24:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2B9BC001DF
+	for <nouveau@archiver.kernel.org>; Sun, 23 Jul 2023 09:24:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A25EB10E208;
-	Sun, 23 Jul 2023 09:24:15 +0000 (UTC)
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
- [IPv6:2a00:1450:4864:20::62c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E5F110E70F
- for <nouveau@lists.freedesktop.org>; Fri, 21 Jul 2023 22:58:49 +0000 (UTC)
-Received: by mail-ej1-x62c.google.com with SMTP id
- a640c23a62f3a-986d8332f50so376688766b.0
- for <nouveau@lists.freedesktop.org>; Fri, 21 Jul 2023 15:58:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gfxstrand-net.20221208.gappssmtp.com; s=20221208; t=1689980328; x=1690585128;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=3TdhF2mBxzZnAG60L9IldpXYtbQ3cNWwPE+SC4e7ZHA=;
- b=yQAMellr1BOOTOUYs0dRkjMxjgdrRlmKX9YYPFSOwwN1lpRmdc5KcOd5mvxcz9CI8m
- QhrRl9bG0IHMPbCfyMKTw4FMzwEClhffAlsF0WIlQCrDObjjl1eTcZaOZl5/GUrVKxw7
- GBOVkQB6fieFh6ypWmOOTLDDhcer5usa38Q2ENdykPmscfzk++U4e0M/hnjXzZYt1g/a
- ctibcru7dyt9l9xjMgGmMZSXAJ6+7ozBF4A86gKhLuOOd7MXd0o+aAlamIvp8pvRTUJ4
- f/zf15Xzon0d7O8vDYfHedp+p68OfivrPK0kNS22Ag2Uq9eezLz48GjFYL8GHR0LFO0B
- NKGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1689980328; x=1690585128;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=3TdhF2mBxzZnAG60L9IldpXYtbQ3cNWwPE+SC4e7ZHA=;
- b=jfjMoti0sXgYx73Cfl71mxDqT9A4119po7W2notFRyCKpavCXKScPQldjXPljUVn2I
- jPCaJhp5qjkvvDM3cy8HSypxanr+ZZoZUs+n6JHXoSOH23VWJBIV2ZXtCHMRrx3iAW0u
- 2C1U7xVNH8kykV3/lRXCvea9YqRCtlsn23RHCEKHDoWcLD5UlntAnEeSLXM1mp6APsbm
- aOSsbt8/ycfrctQnX6WQ/7DxMlIckNfwy/eQfMr+PyLEXs2h2alsxcyL9Oy21TOEjZv0
- 5RB2x4Itti7sJPcrlGHERMq3V3q8q0v+GW8fimMqC9PGrY4aEURe3zdvCvZdSN5D0EF3
- HZkA==
-X-Gm-Message-State: ABy/qLbpfZWEdR87n9UT6M8hGDeAwK0uC5bSHoZDCKtDn+rasfVsYyf2
- zYWhAIoQZ3nGnEHdvSJcDha6hsgm4u1pylhOF6UB3Q==
-X-Google-Smtp-Source: APBJJlFikxB6VkPOGpxNFsoJHEWztjJiV6wMOsiRwZHbdyeOXAkXCXKJvS4M+W9u0dURWl9vMkQ7Pc2fEcOlvRAlIOw=
-X-Received: by 2002:a17:907:771a:b0:993:d617:bdc5 with SMTP id
- kw26-20020a170907771a00b00993d617bdc5mr2810745ejc.37.1689980327687; Fri, 21
- Jul 2023 15:58:47 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1985D10E202;
+	Sun, 23 Jul 2023 09:24:18 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2768110E534;
+ Wed, 12 Jul 2023 13:53:06 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id B9C64617D6;
+ Wed, 12 Jul 2023 13:53:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A345AC433C7;
+ Wed, 12 Jul 2023 13:53:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1689169984;
+ bh=0sbyIiczIJDnx26Ch8e9l+qxXeZZ0rwKcMQ0zWjPG2E=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=hjUTKto8Ioz8iKBRqNaRabBf11Oc7eHOlmTK9M/ZTt8ltDoWCX6CFOzjIGxRlGFY3
+ Gx5jqcVwy1TF/krIPVc4UMyuHZxNLbDekq6CNc/YFW9XZuZPgy9H7AxolbKkWLgnAi
+ r9fpm9kzzSwMYN6Psfg7TVfTW8n0B+mvlh2FTRcCYAZ0ciN3u0JY7dyza48kXnOA9n
+ WMci9hbcuhVOWKEEdS8SZtYhWg6pK+ZLR69YBjxKaOmTAGDWdtxl6Adlqjo21243Qn
+ XbsKfbvDJLN7WkAM0aaNNMoLWVYfSKf0LdY3uyS6mKtDCMS2NYJoRkpPzq+x8hypZP
+ ozEduvqpUbjZw==
+Date: Wed, 12 Jul 2023 15:53:00 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Message-ID: <a7h7uovevwdsuuwdqh7g36qgfyq3bt5sx3eba2npyduoyu2icc@pwygetstxdp3>
+References: <20230712094702.1770121-1-u.kleine-koenig@pengutronix.de>
+ <94eb6e4d-9384-152f-351b-ebb217411da9@amd.com>
+ <20230712110253.paoyrmcbvlhpfxbf@pengutronix.de>
+ <o3dc4q27ap6rajsvpfwfvs3z3afekkwbhnclvswkaietciy2kc@unjf67gz5tur>
+ <20230712133803.rf26cbg5wz7wsmgl@pengutronix.de>
 MIME-Version: 1.0
-References: <20230720001443.2380-1-dakr@redhat.com>
- <20230720001443.2380-4-dakr@redhat.com>
-In-Reply-To: <20230720001443.2380-4-dakr@redhat.com>
-From: Faith Ekstrand <faith@gfxstrand.net>
-Date: Fri, 21 Jul 2023 17:58:35 -0500
-Message-ID: <CAOFGe95kS0KzSUhjWiikBcx9vRQKnqipFE+a=FPobCgEi=ysAw@mail.gmail.com>
-To: Danilo Krummrich <dakr@redhat.com>
-Content-Type: multipart/alternative; boundary="0000000000001c0ff60601073543"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="jyn7gwdek3zlokhs"
+Content-Disposition: inline
+In-Reply-To: <20230712133803.rf26cbg5wz7wsmgl@pengutronix.de>
 X-Mailman-Approved-At: Sun, 23 Jul 2023 09:23:50 +0000
-Subject: Re: [Nouveau] [PATCH drm-misc-next v8 03/12] drm/nouveau: new
- VM_BIND uapi interfaces
+Subject: Re: [Nouveau] [PATCH RFC v1 00/52] drm/crtc: Rename struct
+ drm_crtc::dev to drm_dev
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,773 +58,221 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.brost@intel.com, willy@infradead.org, daniel@ffwll.ch,
- dri-devel@lists.freedesktop.org, corbet@lwn.net, nouveau@lists.freedesktop.org,
- ogabbay@kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- mripard@kernel.org, alexdeucher@gmail.com, boris.brezillon@collabora.com,
- bskeggs@redhat.com, Liam.Howlett@oracle.com, Dave Airlie <airlied@redhat.com>,
- bagasdotme@gmail.com, christian.koenig@amd.com, jason@jlekstrand.net,
- donald.robson@imgtec.com
+Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Xinliang Liu <xinliang.liu@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alexey Kodanev <aleksei.kodanev@bell-sw.com>, dri-devel@lists.freedesktop.org,
+ Vandita Kulkarni <vandita.kulkarni@intel.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Arun R Murthy <arun.r.murthy@intel.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-samsung-soc@vger.kernel.org, Samuel Holland <samuel@sholland.org>,
+ Matt Roper <matthew.d.roper@intel.com>, Wenjing Liu <wenjing.liu@amd.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ NXP Linux Team <linux-imx@nxp.com>, spice-devel@lists.freedesktop.org,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, linux-sunxi@lists.linux.dev,
+ Matthias Brugger <matthias.bgg@gmail.com>, Tim Huang <Tim.Huang@amd.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>,
+ =?utf-8?B?QW5kcsOp?= Almeida <andrealmeid@igalia.com>,
+ Mika Kahola <mika.kahola@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Inki Dae <inki.dae@samsung.com>,
+ Hersen Wu <hersenxs.wu@amd.com>, Dave Airlie <airlied@redhat.com>,
+ Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+ =?utf-8?Q?=C5=81ukasz?= Bartosik <lb@semihalf.com>,
+ Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
+ Andrew Jeffery <andrew@aj.id.au>, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>, kernel@pengutronix.de,
+ Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
+ Claudiu Beznea <claudiu.beznea@microchip.com>, Zack Rusin <zackr@vmware.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
+ Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ =?utf-8?B?Sm9zw6k=?= Roberto de Souza <jose.souza@intel.com>,
+ virtualization@lists.linux-foundation.org,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Yongqin Liu <yongqin.liu@linaro.org>,
+ Mario Limonciello <mario.limonciello@amd.com>, Fei Yang <fei.yang@intel.com>,
+ Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, David Francis <David.Francis@amd.com>,
+ Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ Aaron Liu <aaron.liu@amd.com>, Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Vinod Polimera <quic_vpolimer@quicinc.com>, linux-rockchip@lists.infradead.org,
+ Fangzhi Zuo <jerry.zuo@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
+ Ben Skeggs <bskeggs@redhat.com>,
+ Jouni =?utf-8?B?SMO2Z2FuZGVy?= <jouni.hogander@intel.com>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-arm-msm@vger.kernel.org, Animesh Manna <animesh.manna@intel.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Tian Tao <tiantao6@hisilicon.com>, Biju Das <biju.das.jz@bp.renesas.com>,
+ linux-amlogic@lists.infradead.org, Evan Quan <evan.quan@amd.com>,
+ Michal Simek <michal.simek@amd.com>, linux-arm-kernel@lists.infradead.org,
+ Sean Paul <sean@poorly.run>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+ Boris Brezillon <bbrezillon@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Qingqing Zhuo <qingqing.zhuo@amd.com>, Sandy Huang <hjc@rock-chips.com>,
+ Swati Sharma <swati2.sharma@intel.com>, linux-renesas-soc@vger.kernel.org,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Paul Cercueil <paul@crapouillou.net>,
+ Anusha Srivatsa <anusha.srivatsa@intel.com>, Dan Carpenter <error27@gmail.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ linux-hyperv@vger.kernel.org, Stefan Agner <stefan@agner.ch>,
+ Melissa Wen <melissa.srw@gmail.com>,
+ =?utf-8?B?TWHDrXJh?= Canal <mairacanal@riseup.net>,
+ Luca Coelho <luciano.coelho@intel.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Likun Gao <Likun.Gao@amd.com>,
+ "Jiri Slaby \(SUSE\)" <jirislaby@kernel.org>, Emma Anholt <emma@anholt.net>,
+ Alain Volmat <alain.volmat@foss.st.com>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Deepak Rawat <drawat.floss@gmail.com>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>, Joel Stanley <joel@jms.id.au>,
+ Orson Zhai <orsonzhai@gmail.com>, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Harry Wentland <harry.wentland@amd.com>, Chia-I Wu <olvaffe@gmail.com>,
+ Alan Liu <haoping.liu@amd.com>, Philip Yang <Philip.Yang@amd.com>,
+ intel-gfx@lists.freedesktop.org, Alison Wang <alison.wang@nxp.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Mikko Perttunen <mperttunen@nvidia.com>,
+ Yifan Zhang <yifan1.zhang@amd.com>,
+ Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
+ Tomi Valkeinen <tomba@kernel.org>, Deepak R Varma <drv@mailo.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Julia Lawall <Julia.Lawall@inria.fr>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ John Stultz <jstultz@google.com>, Roman Li <roman.li@amd.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Khaled Almahallawy <khaled.almahallawy@intel.com>,
+ linux-stm32@st-md-mailman.stormreply.com, Sam Ravnborg <sam@ravnborg.org>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, Imre Deak <imre.deak@intel.com>,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Liu Shixin <liushixin2@huawei.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Hamza Mahfooz <hamza.mahfooz@amd.com>, Marek Vasut <marex@denx.de>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>, Lang Yu <Lang.Yu@amd.com>,
+ xen-devel@lists.xenproject.org, Guchun Chen <guchun.chen@amd.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Russell King <linux@armlinux.org.uk>, Leo Li <sunpeng.li@amd.com>,
+ Uma Shankar <uma.shankar@intel.com>, Andi Shyti <andi.shyti@linux.intel.com>,
+ Jiasheng Jiang <jiasheng@iscas.ac.cn>,
+ Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ David Lechner <david@lechnology.com>,
+ Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ Marek =?utf-8?B?T2zFocOhaw==?= <marek.olsak@amd.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ =?utf-8?Q?Joaqu=C3=ADn_Ignacio_Aramend=C3=ADa?= <samsagax@gmail.com>,
+ Melissa Wen <mwen@igalia.com>, Hans de Goede <hdegoede@redhat.com>,
+ linux-mediatek@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, linux-tegra@vger.kernel.org,
+ David Tadokoro <davidbtadokoro@usp.br>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ amd-gfx@lists.freedesktop.org, Yannick Fertre <yannick.fertre@foss.st.com>,
+ linux-mips@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
+ Philippe Cornu <philippe.cornu@foss.st.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Wayne Lin <Wayne.Lin@amd.com>,
+ Drew Davenport <ddavenport@chromium.org>, Nirmoy Das <nirmoy.das@intel.com>,
+ Jyri Sarha <jyri.sarha@iki.fi>, Lucas Stach <l.stach@pengutronix.de>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
---0000000000001c0ff60601073543
-Content-Type: text/plain; charset="UTF-8"
+
+--jyn7gwdek3zlokhs
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 19, 2023 at 7:15=E2=80=AFPM Danilo Krummrich <dakr@redhat.com> =
-wrote:
+On Wed, Jul 12, 2023 at 03:38:03PM +0200, Uwe Kleine-K=F6nig wrote:
+> Hello Maxime,
+>=20
+> On Wed, Jul 12, 2023 at 02:52:38PM +0200, Maxime Ripard wrote:
+> > On Wed, Jul 12, 2023 at 01:02:53PM +0200, Uwe Kleine-K=F6nig wrote:
+> > > > Background is that this makes merge conflicts easier to handle and =
+detect.
+> > >=20
+> > > Really?
+> >=20
+> > FWIW, I agree with Christian here.
+> >=20
+> > > Each file (apart from include/drm/drm_crtc.h) is only touched once. So
+> > > unless I'm missing something you don't get less or easier conflicts by
+> > > doing it all in a single patch. But you gain the freedom to drop a
+> > > patch for one driver without having to drop the rest with it.
+> >=20
+> > Not really, because the last patch removed the union anyway. So you have
+> > to revert both the last patch, plus that driver one. And then you need
+> > to add a TODO to remove that union eventually.
+>=20
+> Yes, with a single patch you have only one revert (but 194 files changed,
+> 1264 insertions(+), 1296 deletions(-)) instead of two (one of them: 1
+> file changed, 9 insertions(+), 1 deletion(-); the other maybe a bit
+> bigger). (And maybe you get away with just reverting the last patch.)
+>=20
+> With a single patch the TODO after a revert is "redo it all again (and
+> prepare for a different set of conflicts)" while with the split series
+> it's only "fix that one driver that was forgotten/borked" + reapply that
+> 10 line patch. As the one who gets that TODO, I prefer the latter.
+>=20
+> So in sum: If your metric is "small count of reverted commits", you're
+> right. If however your metric is: Better get 95% of this series' change
+> in than maybe 0%, the split series is the way to do it.
 
-> This commit provides the interfaces for the new UAPI motivated by the
-> Vulkan API. It allows user mode drivers (UMDs) to:
->
-> 1) Initialize a GPU virtual address (VA) space via the new
->    DRM_IOCTL_NOUVEAU_VM_INIT ioctl. UMDs can provide a kernel reserved
->    VA area.
->
-> 2) Bind and unbind GPU VA space mappings via the new
->    DRM_IOCTL_NOUVEAU_VM_BIND ioctl.
->
-> 3) Execute push buffers with the new DRM_IOCTL_NOUVEAU_EXEC ioctl.
->
-> Both, DRM_IOCTL_NOUVEAU_VM_BIND and DRM_IOCTL_NOUVEAU_EXEC support
-> asynchronous processing with DRM syncobjs as synchronization mechanism.
->
-> The default DRM_IOCTL_NOUVEAU_VM_BIND is synchronous processing,
-> DRM_IOCTL_NOUVEAU_EXEC supports asynchronous processing only.
->
-> Co-authored-by: Dave Airlie <airlied@redhat.com>
-> Signed-off-by: Danilo Krummrich <dakr@redhat.com>
-> ---
->  Documentation/gpu/driver-uapi.rst |   8 ++
->  include/uapi/drm/nouveau_drm.h    | 209 ++++++++++++++++++++++++++++++
->  2 files changed, 217 insertions(+)
->
-> diff --git a/Documentation/gpu/driver-uapi.rst
-> b/Documentation/gpu/driver-uapi.rst
-> index 4411e6919a3d..9c7ca6e33a68 100644
-> --- a/Documentation/gpu/driver-uapi.rst
-> +++ b/Documentation/gpu/driver-uapi.rst
-> @@ -6,3 +6,11 @@ drm/i915 uAPI
->  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->
->  .. kernel-doc:: include/uapi/drm/i915_drm.h
-> +
-> +drm/nouveau uAPI
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +VM_BIND / EXEC uAPI
-> +-------------------
-> +
-> +.. kernel-doc:: include/uapi/drm/nouveau_drm.h
-> diff --git a/include/uapi/drm/nouveau_drm.h
-> b/include/uapi/drm/nouveau_drm.h
-> index 853a327433d3..4d3a70529637 100644
-> --- a/include/uapi/drm/nouveau_drm.h
-> +++ b/include/uapi/drm/nouveau_drm.h
-> @@ -126,6 +126,209 @@ struct drm_nouveau_gem_cpu_fini {
->         __u32 handle;
->  };
->
-> +/**
-> + * struct drm_nouveau_sync - sync object
-> + *
-> + * This structure serves as synchronization mechanism for (potentially)
-> + * asynchronous operations such as EXEC or VM_BIND.
-> + */
-> +struct drm_nouveau_sync {
-> +       /**
-> +        * @flags: the flags for a sync object
-> +        *
-> +        * The first 8 bits are used to determine the type of the sync
-> object.
-> +        */
-> +       __u32 flags;
-> +#define DRM_NOUVEAU_SYNC_SYNCOBJ 0x0
-> +#define DRM_NOUVEAU_SYNC_TIMELINE_SYNCOBJ 0x1
-> +#define DRM_NOUVEAU_SYNC_TYPE_MASK 0xf
-> +       /**
-> +        * @handle: the handle of the sync object
-> +        */
-> +       __u32 handle;
-> +       /**
-> +        * @timeline_value:
-> +        *
-> +        * The timeline point of the sync object in case the syncobj is o=
-f
-> +        * type DRM_NOUVEAU_SYNC_TIMELINE_SYNCOBJ.
-> +        */
-> +       __u64 timeline_value;
-> +};
-> +
-> +/**
-> + * struct drm_nouveau_vm_init - GPU VA space init structure
-> + *
-> + * Used to initialize the GPU's VA space for a user client, telling the
-> kernel
-> + * which portion of the VA space is managed by the UMD and kernel
-> respectively.
->
+I guess that's where we disagree: I don't see the point of having 95% of
+it, either 0 or 100.
 
-I assume this has to be called quite early. Like maybe before any BOs or
-channels are created? In any case, it'd be nice to have that documented.
+> With me having spend ~3h on this series' changes, it's maybe
+> understandable that I did it the way I did.
 
+I'm sorry, but that's never been an argument? I'm sure you and I both
+have had series that took much longer dropped because it wasn't the
+right approach.
 
-> + */
-> +struct drm_nouveau_vm_init {
-> +       /**
-> +        * @unmanaged_addr: start address of the kernel managed VA space
-> region
-> +        */
-> +       __u64 unmanaged_addr;
-> +       /**
-> +        * @unmanaged_size: size of the kernel managed VA space region in
-> bytes
-> +        */
-> +       __u64 unmanaged_size;
->
+> FTR: This series was created on top of v6.5-rc1. If you apply it to
+> drm-misc-next you get a (trivial) conflict in patch #2. If I consider to
+> be the responsible maintainer who applies this series, I like being able
+> to just do git am --skip then.=20
 
-Over-all, I think this is the right API. My only concern is with the word
-"unmanaged". None of the VA space is unmanaged. Some is userspace-managed
-and some is kernel-managed.  I guess "unmanaged" kinda makes sense because
-this is coming from userspace and it's saying which bits it manages and
-which bits it doesn't.  Still seems clunky to me.  Maybe kernel_managed?
-IDK, that feels weird too. Since we're already using UMD in this file, we
-could call it kmd_managed. IDK. =F0=9F=A4=B7=F0=9F=8F=BB=E2=80=8D=E2=99=80=
-=EF=B8=8F
+Or we can ask that the driver is based on drm-misc-next ...
 
-Yeah, I know this is a total bikeshed color thing and I'm not going to
-block anything based on it. =F0=9F=98=85 Just wanted to see if we can come =
-up with
-anything better.  It's documented and that's the important thing.
+> FTR#2: In drm-misc-next is a new driver
+> (drivers/gpu/drm/loongson/lsdc_crtc.c) so skipping the last patch for
+> now might indeed be a good idea.
 
+=2E.. which is going to fix that one too.
 
-> +};
-> +
-> +/**
-> + * struct drm_nouveau_vm_bind_op - VM_BIND operation
-> + *
-> + * This structure represents a single VM_BIND operation. UMDs should pas=
-s
-> + * an array of this structure via struct drm_nouveau_vm_bind's &op_ptr
-> field.
-> + */
-> +struct drm_nouveau_vm_bind_op {
-> +       /**
-> +        * @op: the operation type
-> +        */
-> +       __u32 op;
-> +/**
-> + * @DRM_NOUVEAU_VM_BIND_OP_MAP:
-> + *
-> + * Map a GEM object to the GPU's VA space. Optionally, the
-> + * &DRM_NOUVEAU_VM_BIND_SPARSE flag can be passed to instruct the kernel
-> to
-> + * create sparse mappings for the given range.
-> + */
-> +#define DRM_NOUVEAU_VM_BIND_OP_MAP 0x0
-> +/**
-> + * @DRM_NOUVEAU_VM_BIND_OP_UNMAP:
-> + *
-> + * Unmap an existing mapping in the GPU's VA space. If the region the
-> mapping
-> + * is located in is a sparse region, new sparse mappings are created
-> where the
-> + * unmapped (memory backed) mapping was mapped previously. To remove a
-> sparse
-> + * region the &DRM_NOUVEAU_VM_BIND_SPARSE must be set.
-> + */
-> +#define DRM_NOUVEAU_VM_BIND_OP_UNMAP 0x1
-> +       /**
-> +        * @flags: the flags for a &drm_nouveau_vm_bind_op
-> +        */
-> +       __u32 flags;
-> +/**
-> + * @DRM_NOUVEAU_VM_BIND_SPARSE:
-> + *
-> + * Indicates that an allocated VA space region should be sparse.
-> + */
-> +#define DRM_NOUVEAU_VM_BIND_SPARSE (1 << 8)
-> +       /**
-> +        * @handle: the handle of the DRM GEM object to map
-> +        */
-> +       __u32 handle;
-> +       /**
-> +        * @pad: 32 bit padding, should be 0
-> +        */
-> +       __u32 pad;
-> +       /**
-> +        * @addr:
-> +        *
-> +        * the address the VA space region or (memory backed) mapping
-> should be mapped to
-> +        */
-> +       __u64 addr;
-> +       /**
-> +        * @bo_offset: the offset within the BO backing the mapping
-> +        */
-> +       __u64 bo_offset;
-> +       /**
-> +        * @range: the size of the requested mapping in bytes
-> +        */
-> +       __u64 range;
-> +};
-> +
-> +/**
-> + * struct drm_nouveau_vm_bind - structure for DRM_IOCTL_NOUVEAU_VM_BIND
-> + */
-> +struct drm_nouveau_vm_bind {
-> +       /**
-> +        * @op_count: the number of &drm_nouveau_vm_bind_op
-> +        */
-> +       __u32 op_count;
->
+Maxime
 
-I've chatted a bit with Dave on IRC about this but both VM_BIND and EXEC
-should support `op_count =3D=3D 0` and do exactly the same thing that they
-would do if there were real ops. In the case of vm_bind, that just means
-wait on the waits and then signal the signals. In particular, it should NOT
-just return success and do nothing. Dave has a patch for this for EXEC but
-IDK if VM_BIND needs any attention.  Of course, if it's not ASYNC, then
-quickly doing nothing after validating inputs is acceptable.
+--jyn7gwdek3zlokhs
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-> +       /**
-> +        * @flags: the flags for a &drm_nouveau_vm_bind ioctl
-> +        */
-> +       __u32 flags;
-> +/**
-> + * @DRM_NOUVEAU_VM_BIND_RUN_ASYNC:
-> + *
-> + * Indicates that the given VM_BIND operation should be executed
-> asynchronously
-> + * by the kernel.
-> + *
-> + * If this flag is not supplied the kernel executes the associated
-> operations
-> + * synchronously and doesn't accept any &drm_nouveau_sync objects.
-> + */
-> +#define DRM_NOUVEAU_VM_BIND_RUN_ASYNC 0x1
-> +       /**
-> +        * @wait_count: the number of wait &drm_nouveau_syncs
-> +        */
-> +       __u32 wait_count;
-> +       /**
-> +        * @sig_count: the number of &drm_nouveau_syncs to signal when
-> finished
-> +        */
-> +       __u32 sig_count;
-> +       /**
-> +        * @wait_ptr: pointer to &drm_nouveau_syncs to wait for
-> +        */
-> +       __u64 wait_ptr;
-> +       /**
-> +        * @sig_ptr: pointer to &drm_nouveau_syncs to signal when finishe=
-d
-> +        */
-> +       __u64 sig_ptr;
-> +       /**
-> +        * @op_ptr: pointer to the &drm_nouveau_vm_bind_ops to execute
-> +        */
-> +       __u64 op_ptr;
-> +};
-> +
-> +/**
-> + * struct drm_nouveau_exec_push - EXEC push operation
-> + *
-> + * This structure represents a single EXEC push operation. UMDs should
-> pass an
-> + * array of this structure via struct drm_nouveau_exec's &push_ptr field=
-.
-> + */
-> +struct drm_nouveau_exec_push {
-> +       /**
-> +        * @va: the virtual address of the push buffer mapping
-> +        */
-> +       __u64 va;
-> +       /**
-> +        * @va_len: the length of the push buffer mapping
-> +        */
-> +       __u64 va_len;
-> +};
-> +
-> +/**
-> + * struct drm_nouveau_exec - structure for DRM_IOCTL_NOUVEAU_EXEC
-> + */
-> +struct drm_nouveau_exec {
-> +       /**
-> +        * @channel: the channel to execute the push buffer in
-> +        */
-> +       __u32 channel;
-> +       /**
-> +        * @push_count: the number of &drm_nouveau_exec_push ops
-> +        */
-> +       __u32 push_count;
->
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZK6wPAAKCRDj7w1vZxhR
+xY/cAP9MfcZQUQhgCUm7SZclTdLuVOlNrClVj1izsCv4zrFrtQD+JUUX9b9K3JdO
+tDqchM2qQCmIMTRzt6ZwyV0l4KQkjgM=
+=G8dy
+-----END PGP SIGNATURE-----
 
-Same comment as above. We want `push_count =3D=3D 0` to behave the same as =
-any
-other EXEC just without anything new. In particular, it needs to wait on
-all the waits as well as the previous EXECs on that channel and then signal
-the sigs. I know Dave has a patch for this and it's working quite well in
-my testing.
-
-Other than that, everything looks good.  I'm still re-reading all the NVK
-patches but they've been working quite well in my testing this week apart
-from a perf issue I need to dig into. I'll give a real RB once we're sure
-we all agree on the semantics of _count.
-
-~Faith
-
-
-> +       /**
-> +        * @wait_count: the number of wait &drm_nouveau_syncs
-> +        */
-> +       __u32 wait_count;
-> +       /**
-> +        * @sig_count: the number of &drm_nouveau_syncs to signal when
-> finished
-> +        */
-> +       __u32 sig_count;
-> +       /**
-> +        * @wait_ptr: pointer to &drm_nouveau_syncs to wait for
-> +        */
-> +       __u64 wait_ptr;
-> +       /**
-> +        * @sig_ptr: pointer to &drm_nouveau_syncs to signal when finishe=
-d
-> +        */
-> +       __u64 sig_ptr;
-> +       /**
-> +        * @push_ptr: pointer to &drm_nouveau_exec_push ops
-> +        */
-> +       __u64 push_ptr;
-> +};
-> +
->  #define DRM_NOUVEAU_GETPARAM           0x00 /* deprecated */
->  #define DRM_NOUVEAU_SETPARAM           0x01 /* deprecated */
->  #define DRM_NOUVEAU_CHANNEL_ALLOC      0x02 /* deprecated */
-> @@ -136,6 +339,9 @@ struct drm_nouveau_gem_cpu_fini {
->  #define DRM_NOUVEAU_NVIF               0x07
->  #define DRM_NOUVEAU_SVM_INIT           0x08
->  #define DRM_NOUVEAU_SVM_BIND           0x09
-> +#define DRM_NOUVEAU_VM_INIT            0x10
-> +#define DRM_NOUVEAU_VM_BIND            0x11
-> +#define DRM_NOUVEAU_EXEC               0x12
->  #define DRM_NOUVEAU_GEM_NEW            0x40
->  #define DRM_NOUVEAU_GEM_PUSHBUF        0x41
->  #define DRM_NOUVEAU_GEM_CPU_PREP       0x42
-> @@ -197,6 +403,9 @@ struct drm_nouveau_svm_bind {
->  #define DRM_IOCTL_NOUVEAU_GEM_CPU_FINI       DRM_IOW (DRM_COMMAND_BASE +
-> DRM_NOUVEAU_GEM_CPU_FINI, struct drm_nouveau_gem_cpu_fini)
->  #define DRM_IOCTL_NOUVEAU_GEM_INFO           DRM_IOWR(DRM_COMMAND_BASE +
-> DRM_NOUVEAU_GEM_INFO, struct drm_nouveau_gem_info)
->
-> +#define DRM_IOCTL_NOUVEAU_VM_INIT            DRM_IOWR(DRM_COMMAND_BASE +
-> DRM_NOUVEAU_VM_INIT, struct drm_nouveau_vm_init)
-> +#define DRM_IOCTL_NOUVEAU_VM_BIND            DRM_IOWR(DRM_COMMAND_BASE +
-> DRM_NOUVEAU_VM_BIND, struct drm_nouveau_vm_bind)
-> +#define DRM_IOCTL_NOUVEAU_EXEC               DRM_IOWR(DRM_COMMAND_BASE +
-> DRM_NOUVEAU_EXEC, struct drm_nouveau_exec)
->  #if defined(__cplusplus)
->  }
->  #endif
-> --
-> 2.41.0
->
->
-
---0000000000001c0ff60601073543
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Wed, Jul 19, 2023 at 7:15=E2=80=AFPM Danilo Krummrich &lt;<a =
-href=3D"mailto:dakr@redhat.com">dakr@redhat.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex">This commit provides the int=
-erfaces for the new UAPI motivated by the<br>
-Vulkan API. It allows user mode drivers (UMDs) to:<br>
-<br>
-1) Initialize a GPU virtual address (VA) space via the new<br>
-=C2=A0 =C2=A0DRM_IOCTL_NOUVEAU_VM_INIT ioctl. UMDs can provide a kernel res=
-erved<br>
-=C2=A0 =C2=A0VA area.<br>
-<br>
-2) Bind and unbind GPU VA space mappings via the new<br>
-=C2=A0 =C2=A0DRM_IOCTL_NOUVEAU_VM_BIND ioctl.<br>
-<br>
-3) Execute push buffers with the new DRM_IOCTL_NOUVEAU_EXEC ioctl.<br>
-<br>
-Both, DRM_IOCTL_NOUVEAU_VM_BIND and DRM_IOCTL_NOUVEAU_EXEC support<br>
-asynchronous processing with DRM syncobjs as synchronization mechanism.<br>
-<br>
-The default DRM_IOCTL_NOUVEAU_VM_BIND is synchronous processing,<br>
-DRM_IOCTL_NOUVEAU_EXEC supports asynchronous processing only.<br>
-<br>
-Co-authored-by: Dave Airlie &lt;<a href=3D"mailto:airlied@redhat.com" targe=
-t=3D"_blank">airlied@redhat.com</a>&gt;<br>
-Signed-off-by: Danilo Krummrich &lt;<a href=3D"mailto:dakr@redhat.com" targ=
-et=3D"_blank">dakr@redhat.com</a>&gt;<br>
----<br>
-=C2=A0Documentation/gpu/driver-uapi.rst |=C2=A0 =C2=A08 ++<br>
-=C2=A0include/uapi/drm/nouveau_drm.h=C2=A0 =C2=A0 | 209 +++++++++++++++++++=
-+++++++++++<br>
-=C2=A02 files changed, 217 insertions(+)<br>
-<br>
-diff --git a/Documentation/gpu/driver-uapi.rst b/Documentation/gpu/driver-u=
-api.rst<br>
-index 4411e6919a3d..9c7ca6e33a68 100644<br>
---- a/Documentation/gpu/driver-uapi.rst<br>
-+++ b/Documentation/gpu/driver-uapi.rst<br>
-@@ -6,3 +6,11 @@ drm/i915 uAPI<br>
-=C2=A0=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-<br>
-=C2=A0.. kernel-doc:: include/uapi/drm/i915_drm.h<br>
-+<br>
-+drm/nouveau uAPI<br>
-+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-+<br>
-+VM_BIND / EXEC uAPI<br>
-+-------------------<br>
-+<br>
-+.. kernel-doc:: include/uapi/drm/nouveau_drm.h<br>
-diff --git a/include/uapi/drm/nouveau_drm.h b/include/uapi/drm/nouveau_drm.=
-h<br>
-index 853a327433d3..4d3a70529637 100644<br>
---- a/include/uapi/drm/nouveau_drm.h<br>
-+++ b/include/uapi/drm/nouveau_drm.h<br>
-@@ -126,6 +126,209 @@ struct drm_nouveau_gem_cpu_fini {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 __u32 handle;<br>
-=C2=A0};<br>
-<br>
-+/**<br>
-+ * struct drm_nouveau_sync - sync object<br>
-+ *<br>
-+ * This structure serves as synchronization mechanism for (potentially)<br=
->
-+ * asynchronous operations such as EXEC or VM_BIND.<br>
-+ */<br>
-+struct drm_nouveau_sync {<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @flags: the flags for a sync object<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * The first 8 bits are used to determine the t=
-ype of the sync object.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 flags;<br>
-+#define DRM_NOUVEAU_SYNC_SYNCOBJ 0x0<br>
-+#define DRM_NOUVEAU_SYNC_TIMELINE_SYNCOBJ 0x1<br>
-+#define DRM_NOUVEAU_SYNC_TYPE_MASK 0xf<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @handle: the handle of the sync object<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 handle;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @timeline_value:<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * The timeline point of the sync object in cas=
-e the syncobj is of<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * type DRM_NOUVEAU_SYNC_TIMELINE_SYNCOBJ.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 timeline_value;<br>
-+};<br>
-+<br>
-+/**<br>
-+ * struct drm_nouveau_vm_init - GPU VA space init structure<br>
-+ *<br>
-+ * Used to initialize the GPU&#39;s VA space for a user client, telling th=
-e kernel<br>
-+ * which portion of the VA space is managed by the UMD and kernel respecti=
-vely.<br></blockquote><div><br></div><div>I assume this has to be called qu=
-ite early.  Like maybe before any BOs or channels are created?  In any case=
-, it&#39;d be nice to have that documented.</div><div>=C2=A0</div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
-solid rgb(204,204,204);padding-left:1ex">
-+ */<br>
-+struct drm_nouveau_vm_init {<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @unmanaged_addr: start address of the kernel=
- managed VA space region<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 unmanaged_addr;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @unmanaged_size: size of the kernel managed =
-VA space region in bytes<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 unmanaged_size;<br></blockquote><div><br>=
-</div><div>Over-all, I think this is the right API. My only concern is with=
- the word &quot;unmanaged&quot;. None of the VA space is unmanaged. Some is=
- userspace-managed and some is kernel-managed.=C2=A0 I guess &quot;unmanage=
-d&quot; kinda makes sense because this is coming from userspace and it&#39;=
-s saying which bits it manages and which bits it doesn&#39;t.=C2=A0 Still s=
-eems clunky to me.=C2=A0 Maybe kernel_managed? IDK, that feels weird too. S=
-ince we&#39;re already using UMD in this file, we could call it kmd_managed=
-. IDK. =F0=9F=A4=B7=F0=9F=8F=BB=E2=80=8D=E2=99=80=EF=B8=8F</div><div><br></=
-div><div>Yeah, I know this is a total bikeshed color thing and I&#39;m not =
-going to block anything based on it. =F0=9F=98=85 Just wanted to see if we =
-can come up with anything better.=C2=A0 It&#39;s documented and that&#39;s =
-the important thing.<br></div><div>=C2=A0</div><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
-04);padding-left:1ex">
-+};<br>
-+<br>
-+/**<br>
-+ * struct drm_nouveau_vm_bind_op - VM_BIND operation<br>
-+ *<br>
-+ * This structure represents a single VM_BIND operation. UMDs should pass<=
-br>
-+ * an array of this structure via struct drm_nouveau_vm_bind&#39;s &amp;op=
-_ptr field.<br>
-+ */<br>
-+struct drm_nouveau_vm_bind_op {<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @op: the operation type<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 op;<br>
-+/**<br>
-+ * @DRM_NOUVEAU_VM_BIND_OP_MAP:<br>
-+ *<br>
-+ * Map a GEM object to the GPU&#39;s VA space. Optionally, the<br>
-+ * &amp;DRM_NOUVEAU_VM_BIND_SPARSE flag can be passed to instruct the kern=
-el to<br>
-+ * create sparse mappings for the given range.<br>
-+ */<br>
-+#define DRM_NOUVEAU_VM_BIND_OP_MAP 0x0<br>
-+/**<br>
-+ * @DRM_NOUVEAU_VM_BIND_OP_UNMAP:<br>
-+ *<br>
-+ * Unmap an existing mapping in the GPU&#39;s VA space. If the region the =
-mapping<br>
-+ * is located in is a sparse region, new sparse mappings are created where=
- the<br>
-+ * unmapped (memory backed) mapping was mapped previously. To remove a spa=
-rse<br>
-+ * region the &amp;DRM_NOUVEAU_VM_BIND_SPARSE must be set.<br>
-+ */<br>
-+#define DRM_NOUVEAU_VM_BIND_OP_UNMAP 0x1<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @flags: the flags for a &amp;drm_nouveau_vm_=
-bind_op<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 flags;<br>
-+/**<br>
-+ * @DRM_NOUVEAU_VM_BIND_SPARSE:<br>
-+ *<br>
-+ * Indicates that an allocated VA space region should be sparse.<br>
-+ */<br>
-+#define DRM_NOUVEAU_VM_BIND_SPARSE (1 &lt;&lt; 8)<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @handle: the handle of the DRM GEM object to=
- map<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 handle;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @pad: 32 bit padding, should be 0<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 pad;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @addr:<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * the address the VA space region or (memory b=
-acked) mapping should be mapped to<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 addr;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @bo_offset: the offset within the BO backing=
- the mapping<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 bo_offset;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @range: the size of the requested mapping in=
- bytes<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 range;<br>
-+};<br>
-+<br>
-+/**<br>
-+ * struct drm_nouveau_vm_bind - structure for DRM_IOCTL_NOUVEAU_VM_BIND<br=
->
-+ */<br>
-+struct drm_nouveau_vm_bind {<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @op_count: the number of &amp;drm_nouveau_vm=
-_bind_op<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 op_count;<br></blockquote><div><br></div>=
-<div>I&#39;ve chatted a bit with Dave on IRC about this but both VM_BIND an=
-d EXEC should support `op_count =3D=3D 0` and do exactly the same thing tha=
-t they would do if there were real ops. In the case of vm_bind, that just m=
-eans wait on the waits and then signal the signals. In particular, it shoul=
-d NOT just return success and do nothing. Dave has a patch for this for EXE=
-C but IDK if VM_BIND needs any attention.=C2=A0 Of course, if it&#39;s not =
-ASYNC, then quickly doing nothing after validating inputs is acceptable.<br=
-></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @flags: the flags for a &amp;drm_nouveau_vm_=
-bind ioctl<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 flags;<br>
-+/**<br>
-+ * @DRM_NOUVEAU_VM_BIND_RUN_ASYNC:<br>
-+ *<br>
-+ * Indicates that the given VM_BIND operation should be executed asynchron=
-ously<br>
-+ * by the kernel.<br>
-+ *<br>
-+ * If this flag is not supplied the kernel executes the associated operati=
-ons<br>
-+ * synchronously and doesn&#39;t accept any &amp;drm_nouveau_sync objects.=
-<br>
-+ */<br>
-+#define DRM_NOUVEAU_VM_BIND_RUN_ASYNC 0x1<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @wait_count: the number of wait &amp;drm_nou=
-veau_syncs<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 wait_count;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @sig_count: the number of &amp;drm_nouveau_s=
-yncs to signal when finished<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 sig_count;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @wait_ptr: pointer to &amp;drm_nouveau_syncs=
- to wait for<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 wait_ptr;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @sig_ptr: pointer to &amp;drm_nouveau_syncs =
-to signal when finished<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 sig_ptr;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @op_ptr: pointer to the &amp;drm_nouveau_vm_=
-bind_ops to execute<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 op_ptr;<br>
-+};<br>
-+<br>
-+/**<br>
-+ * struct drm_nouveau_exec_push - EXEC push operation<br>
-+ *<br>
-+ * This structure represents a single EXEC push operation. UMDs should pas=
-s an<br>
-+ * array of this structure via struct drm_nouveau_exec&#39;s &amp;push_ptr=
- field.<br>
-+ */<br>
-+struct drm_nouveau_exec_push {<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @va: the virtual address of the push buffer =
-mapping<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 va;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @va_len: the length of the push buffer mappi=
-ng<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 va_len;<br>
-+};<br>
-+<br>
-+/**<br>
-+ * struct drm_nouveau_exec - structure for DRM_IOCTL_NOUVEAU_EXEC<br>
-+ */<br>
-+struct drm_nouveau_exec {<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @channel: the channel to execute the push bu=
-ffer in<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 channel;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @push_count: the number of &amp;drm_nouveau_=
-exec_push ops<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 push_count;<br></blockquote><div><br></di=
-v><div>Same comment as above. We want `push_count =3D=3D 0` to behave the s=
-ame as any other EXEC just without anything new. In particular, it needs to=
- wait on all the waits as well as the previous EXECs on that channel and th=
-en signal the sigs. I know Dave has a patch for this and it&#39;s working q=
-uite well in my testing.</div><div><br></div><div>Other than that, everythi=
-ng looks good.=C2=A0 I&#39;m still re-reading all the NVK patches but they&=
-#39;ve been working quite well in my testing this week apart from a perf is=
-sue I need to dig into. I&#39;ll give a real RB once we&#39;re sure we all =
-agree on the semantics of _count.</div><div><br></div><div>~Faith<br></div>=
-<div>=C2=A0<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @wait_count: the number of wait &amp;drm_nou=
-veau_syncs<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 wait_count;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @sig_count: the number of &amp;drm_nouveau_s=
-yncs to signal when finished<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 sig_count;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @wait_ptr: pointer to &amp;drm_nouveau_syncs=
- to wait for<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 wait_ptr;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @sig_ptr: pointer to &amp;drm_nouveau_syncs =
-to signal when finished<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 sig_ptr;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/**<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 * @push_ptr: pointer to &amp;drm_nouveau_exec_=
-push ops<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 push_ptr;<br>
-+};<br>
-+<br>
-=C2=A0#define DRM_NOUVEAU_GETPARAM=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-0x00 /* deprecated */<br>
-=C2=A0#define DRM_NOUVEAU_SETPARAM=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-0x01 /* deprecated */<br>
-=C2=A0#define DRM_NOUVEAU_CHANNEL_ALLOC=C2=A0 =C2=A0 =C2=A0 0x02 /* depreca=
-ted */<br>
-@@ -136,6 +339,9 @@ struct drm_nouveau_gem_cpu_fini {<br>
-=C2=A0#define DRM_NOUVEAU_NVIF=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A00x07<br>
-=C2=A0#define DRM_NOUVEAU_SVM_INIT=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-0x08<br>
-=C2=A0#define DRM_NOUVEAU_SVM_BIND=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-0x09<br>
-+#define DRM_NOUVEAU_VM_INIT=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 0x10<=
-br>
-+#define DRM_NOUVEAU_VM_BIND=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 0x11<=
-br>
-+#define DRM_NOUVEAU_EXEC=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A00x12<br>
-=C2=A0#define DRM_NOUVEAU_GEM_NEW=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-0x40<br>
-=C2=A0#define DRM_NOUVEAU_GEM_PUSHBUF=C2=A0 =C2=A0 =C2=A0 =C2=A0 0x41<br>
-=C2=A0#define DRM_NOUVEAU_GEM_CPU_PREP=C2=A0 =C2=A0 =C2=A0 =C2=A00x42<br>
-@@ -197,6 +403,9 @@ struct drm_nouveau_svm_bind {<br>
-=C2=A0#define DRM_IOCTL_NOUVEAU_GEM_CPU_FINI=C2=A0 =C2=A0 =C2=A0 =C2=A0DRM_=
-IOW (DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_CPU_FINI, struct drm_nouveau_gem_cp=
-u_fini)<br>
-=C2=A0#define DRM_IOCTL_NOUVEAU_GEM_INFO=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_INFO, struct drm_nouveau_=
-gem_info)<br>
-<br>
-+#define DRM_IOCTL_NOUVEAU_VM_INIT=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_VM_INIT, struct drm_nouveau_vm_ini=
-t)<br>
-+#define DRM_IOCTL_NOUVEAU_VM_BIND=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_VM_BIND, struct drm_nouveau_vm_bin=
-d)<br>
-+#define DRM_IOCTL_NOUVEAU_EXEC=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_EXEC, struct drm_nouve=
-au_exec)<br>
-=C2=A0#if defined(__cplusplus)<br>
-=C2=A0}<br>
-=C2=A0#endif<br>
--- <br>
-2.41.0<br>
-<br>
-</blockquote></div></div>
-
---0000000000001c0ff60601073543--
+--jyn7gwdek3zlokhs--
