@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64828C001DD
-	for <nouveau@archiver.kernel.org>; Thu, 13 Jul 2023 17:04:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A339C001B0
+	for <nouveau@archiver.kernel.org>; Thu, 13 Jul 2023 17:05:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD8D010E72D;
-	Thu, 13 Jul 2023 17:04:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4914D10E731;
+	Thu, 13 Jul 2023 17:05:01 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EA5E10E72D
- for <nouveau@lists.freedesktop.org>; Thu, 13 Jul 2023 17:04:50 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F192810E735
+ for <nouveau@lists.freedesktop.org>; Thu, 13 Jul 2023 17:04:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1689267889;
+ s=mimecast20190719; t=1689267898;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=mDBNWdVA4hQ8PRBsFs3dd+X68qTkUgeiN1mzO/5EjB0=;
- b=UTHB44qGjIGMac+iXh4PuoY7GC9Zvb1IwnqLFAy7h2Z5M+KQmjBFPgPCKKAuPI1iQp98eV
- bqNm3Fhmn/Yqs5nVYrdWjnpNidoT5fyeye1RM72tJsvktRIxTWAJ+4hgFd7DfHvbU3ES2V
- exlxMJz+acpsBk90DuFaCRF/2HRly9U=
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
- [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=DNvPFmPephzOlef4HOM2AR90BUKB3CUNAq245FGhm7Y=;
+ b=Wc0sIN//yYM8beTAVluvh7FmCorJ4SfSNwWehmct2OKccPpxTKY6Xj0BQDIzYFgAU1JGGO
+ EZYe/zT6m1eDz2wlcE/mPGHi0blQYnZxTEdKaCyG61+Vuoi1qiOH5UODDihgMAPODFmP0Q
+ uLZxFR65cZKExHIlNVErv1Ei8bHlKFI=
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-561-7TY59efpP2G2546DiyAL9A-1; Thu, 13 Jul 2023 13:04:48 -0400
-X-MC-Unique: 7TY59efpP2G2546DiyAL9A-1
-Received: by mail-ej1-f71.google.com with SMTP id
- a640c23a62f3a-993c24f3246so115660866b.1
- for <nouveau@lists.freedesktop.org>; Thu, 13 Jul 2023 10:04:47 -0700 (PDT)
+ us-mta-528-RePTa9AuMjSnvh9_wN0lyg-1; Thu, 13 Jul 2023 13:04:56 -0400
+X-MC-Unique: RePTa9AuMjSnvh9_wN0lyg-1
+Received: by mail-ed1-f72.google.com with SMTP id
+ 4fb4d7f45d1cf-51df83a05eeso581269a12.1
+ for <nouveau@lists.freedesktop.org>; Thu, 13 Jul 2023 10:04:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1689267887; x=1691859887;
+ d=1e100.net; s=20221208; t=1689267895; x=1691859895;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=mDBNWdVA4hQ8PRBsFs3dd+X68qTkUgeiN1mzO/5EjB0=;
- b=fsXaRy0dFzBpKnYa9ajNYfCO/tW2Cr+H9tLR69EXqGMpPug5RzxA2cGp/NcVpvUCX4
- cp0GI0XQrOZ4ZVrXHnUJaJg3t00oh4+OWdKJbP4VIbg2J5ToFVNEbYkbHKHePcHpr5AK
- TZG4GTS2tYsF3mefOdo0QYIQBnXFnezlM+BwevaZpop68hHn3iH83YpV+52u426j4Zdq
- jBy/PuuKVsq4Di+TMAQHqVpSIaf1kqYyANDy963i1BxpsGG2izXtNRA5sYT2l+BhS2eP
- zw1IFNRqJDIiMGtpnGIxQvpH5xNrAKl+kGsJT1eLHTMLkCPhPz5to5n8wZ6X1Gk0cPGS
- xjpQ==
-X-Gm-Message-State: ABy/qLao2CGXl7EoHxN8445jl6P+tyY+OGG8i3D5RsiKLMKpz40EfF6o
- HZWTuq2YiI7Ax9ZXNS8nETp9w7REzjQzm/F6tUB/bXqYa/ubXNJWzkkrO7DCIh0ZGzuzSkKscyH
- UUbvdi45cXbhrKoS0pX7lyFqKcw==
-X-Received: by 2002:a17:907:3e16:b0:994:fec:e1b7 with SMTP id
- hp22-20020a1709073e1600b009940fece1b7mr518199ejc.0.1689267887041; 
- Thu, 13 Jul 2023 10:04:47 -0700 (PDT)
-X-Google-Smtp-Source: APBJJlGEK9zwgwIvcV78kzBO+an/C8r29yGgBppuA0+fFB5RqHcVSTcqkMZhih2uvBUHUCcn0UY5eQ==
-X-Received: by 2002:a17:907:3e16:b0:994:fec:e1b7 with SMTP id
- hp22-20020a1709073e1600b009940fece1b7mr518148ejc.0.1689267886716; 
- Thu, 13 Jul 2023 10:04:46 -0700 (PDT)
+ bh=DNvPFmPephzOlef4HOM2AR90BUKB3CUNAq245FGhm7Y=;
+ b=mCaZ7OA3DG9h5VLV8dIVYCYvnYV7tlPwBoj3AUp/jq1tejtbngTtIR8GaGc0c0ni/3
+ lPQ46ToW1PTJWLxC6+9nUrFpRNijWmtiu+dWumD3WntJQPevvmJ1os8ezHNLqRB8siR7
+ oZtxYNdpBYEEuoIQHCe3iIxLAycZePDa9Oyfeaq6CmFjxd9fvnsBtzkF40GSJuep6oRy
+ BAcVxab/YeyvjRCQeYYoI/9I2KuQNwrcKuNAG03T9mYWkJ8a/1CIkj0HfN/QG1ngqCI2
+ 9L2UKKKzQ1Wp1tAjIVilpPEecN55jAzGUG72SEY8WavHAuCRqPgWdJurldzI70x5+hiM
+ ZESw==
+X-Gm-Message-State: ABy/qLbxx1czkyLcOcAIXJO5qbWsW/znGjn/F0l/GlKhjY8qCo/nLoG1
+ wZZeEt6dpVkkyGuUlp+Ow8F1dBvYcLI/42f+ibwh0qMBJkjLcSr7QxzpB9NbwFUZkmAWSpSlYc9
+ IYsHjbmmeH5tg7V/MFMWHx3Gefw==
+X-Received: by 2002:aa7:c6cf:0:b0:51e:1a3c:e729 with SMTP id
+ b15-20020aa7c6cf000000b0051e1a3ce729mr2086200eds.15.1689267895627; 
+ Thu, 13 Jul 2023 10:04:55 -0700 (PDT)
+X-Google-Smtp-Source: APBJJlF5IUDTcOmzI862cFLihEPEpUv+wgsJ8Iqnqe8GFmRrE497P/SH64cav8H+jI7si0FlAG29VQ==
+X-Received: by 2002:aa7:c6cf:0:b0:51e:1a3c:e729 with SMTP id
+ b15-20020aa7c6cf000000b0051e1a3ce729mr2086181eds.15.1689267895346; 
+ Thu, 13 Jul 2023 10:04:55 -0700 (PDT)
 Received: from cassiopeiae.. ([2a02:810d:4b3f:de9c:642:1aff:fe31:a19f])
  by smtp.gmail.com with ESMTPSA id
- x25-20020a170906135900b00992acab8c45sm4266461ejb.12.2023.07.13.10.04.45
+ r14-20020aa7da0e000000b0051dd16f7e50sm4528065eds.44.2023.07.13.10.04.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 13 Jul 2023 10:04:46 -0700 (PDT)
+ Thu, 13 Jul 2023 10:04:55 -0700 (PDT)
 From: Danilo Krummrich <dakr@redhat.com>
 To: airlied@gmail.com, daniel@ffwll.ch, tzimmermann@suse.de,
  mripard@kernel.org, corbet@lwn.net, christian.koenig@amd.com,
@@ -65,8 +65,8 @@ To: airlied@gmail.com, daniel@ffwll.ch, tzimmermann@suse.de,
  boris.brezillon@collabora.com, alexdeucher@gmail.com, ogabbay@kernel.org,
  bagasdotme@gmail.com, willy@infradead.org, jason@jlekstrand.net,
  donald.robson@imgtec.com
-Date: Thu, 13 Jul 2023 19:03:58 +0200
-Message-ID: <20230713170429.2964-4-dakr@redhat.com>
+Date: Thu, 13 Jul 2023 19:04:00 +0200
+Message-ID: <20230713170429.2964-6-dakr@redhat.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230713170429.2964-1-dakr@redhat.com>
 References: <20230713170429.2964-1-dakr@redhat.com>
@@ -75,8 +75,8 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset="US-ASCII"; x-default=true
-Subject: [Nouveau] [PATCH drm-next v7 03/13] drm: debugfs: provide
- infrastructure to dump a DRM GPU VA space
+Subject: [Nouveau] [PATCH drm-next v7 05/13] drm/nouveau: get vmm via
+ nouveau_cli_vmm()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,129 +93,95 @@ Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This commit adds a function to dump a DRM GPU VA space and a macro for
-drivers to register the struct drm_info_list 'gpuvas' entry.
+Provide a getter function for the client's current vmm context. Since
+we'll add a new (u)vmm context for UMD bindings in subsequent commits,
+this will keep the code clean.
 
-Most likely, most drivers might maintain one DRM GPU VA space per struct
-drm_file, but there might also be drivers not having a fixed relation
-between DRM GPU VA spaces and a DRM core infrastructure, hence we need the
-indirection via the driver iterating it's maintained DRM GPU VA spaces.
-
-Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
 Signed-off-by: Danilo Krummrich <dakr@redhat.com>
 ---
- drivers/gpu/drm/drm_debugfs.c | 40 +++++++++++++++++++++++++++++++++++
- include/drm/drm_debugfs.h     | 25 ++++++++++++++++++++++
- 2 files changed, 65 insertions(+)
+ drivers/gpu/drm/nouveau/nouveau_bo.c   | 2 +-
+ drivers/gpu/drm/nouveau/nouveau_chan.c | 2 +-
+ drivers/gpu/drm/nouveau/nouveau_drv.h  | 9 +++++++++
+ drivers/gpu/drm/nouveau/nouveau_gem.c  | 6 +++---
+ 4 files changed, 14 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugfs.c
-index 4855230ba2c6..c90dbcffa0dc 100644
---- a/drivers/gpu/drm/drm_debugfs.c
-+++ b/drivers/gpu/drm/drm_debugfs.c
-@@ -39,6 +39,7 @@
- #include <drm/drm_file.h>
- #include <drm/drm_gem.h>
- #include <drm/drm_managed.h>
-+#include <drm/drm_gpuva_mgr.h>
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index c2ec91cc845d..7724fe63067d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -204,7 +204,7 @@ nouveau_bo_alloc(struct nouveau_cli *cli, u64 *size, int *align, u32 domain,
+ 	struct nouveau_drm *drm = cli->drm;
+ 	struct nouveau_bo *nvbo;
+ 	struct nvif_mmu *mmu = &cli->mmu;
+-	struct nvif_vmm *vmm = cli->svm.cli ? &cli->svm.vmm : &cli->vmm.vmm;
++	struct nvif_vmm *vmm = &nouveau_cli_vmm(cli)->vmm;
+ 	int i, pi = -1;
  
- #include "drm_crtc_internal.h"
- #include "drm_internal.h"
-@@ -175,6 +176,45 @@ static const struct file_operations drm_debugfs_fops = {
- 	.release = single_release,
+ 	if (!*size) {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
+index e648ecd0c1a0..1068abe41024 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_chan.c
++++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
+@@ -148,7 +148,7 @@ nouveau_channel_prep(struct nouveau_drm *drm, struct nvif_device *device,
+ 
+ 	chan->device = device;
+ 	chan->drm = drm;
+-	chan->vmm = cli->svm.cli ? &cli->svm : &cli->vmm;
++	chan->vmm = nouveau_cli_vmm(cli);
+ 	atomic_set(&chan->killed, 0);
+ 
+ 	/* allocate memory for dma push buffer */
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
+index b5de312a523f..81350e685b50 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.h
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
+@@ -112,6 +112,15 @@ struct nouveau_cli_work {
+ 	struct dma_fence_cb cb;
  };
  
-+/**
-+ * drm_debugfs_gpuva_info - dump the given DRM GPU VA space
-+ * @m: pointer to the &seq_file to write
-+ * @mgr: the &drm_gpuva_manager representing the GPU VA space
-+ *
-+ * Dumps the GPU VA mappings of a given DRM GPU VA manager.
-+ *
-+ * For each DRM GPU VA space drivers should call this function from their
-+ * &drm_info_list's show callback.
-+ *
-+ * Returns: 0 on success, -ENODEV if the &mgr is not initialized
-+ */
-+int drm_debugfs_gpuva_info(struct seq_file *m,
-+			   struct drm_gpuva_manager *mgr)
++static inline struct nouveau_vmm *
++nouveau_cli_vmm(struct nouveau_cli *cli)
 +{
-+	struct drm_gpuva *va, *kva = &mgr->kernel_alloc_node;
++	if (cli->svm.cli)
++		return &cli->svm;
 +
-+	if (!mgr->name)
-+		return -ENODEV;
-+
-+	seq_printf(m, "DRM GPU VA space (%s) [0x%016llx;0x%016llx]\n",
-+		   mgr->name, mgr->mm_start, mgr->mm_start + mgr->mm_range);
-+	seq_printf(m, "Kernel reserved node [0x%016llx;0x%016llx]\n",
-+		   kva->va.addr, kva->va.addr + kva->va.range);
-+	seq_puts(m, "\n");
-+	seq_puts(m, " VAs | start              | range              | end                | object             | object offset\n");
-+	seq_puts(m, "-------------------------------------------------------------------------------------------------------------\n");
-+	drm_gpuva_for_each_va(va, mgr) {
-+		if (unlikely(va == kva))
-+			continue;
-+
-+		seq_printf(m, "     | 0x%016llx | 0x%016llx | 0x%016llx | 0x%016llx | 0x%016llx\n",
-+			   va->va.addr, va->va.range, va->va.addr + va->va.range,
-+			   (u64)va->gem.obj, va->gem.offset);
-+	}
-+
-+	return 0;
++	return &cli->vmm;
 +}
-+EXPORT_SYMBOL(drm_debugfs_gpuva_info);
++
+ void nouveau_cli_work_queue(struct nouveau_cli *, struct dma_fence *,
+ 			    struct nouveau_cli_work *);
  
- /**
-  * drm_debugfs_create_files - Initialize a given set of debugfs files for DRM
-diff --git a/include/drm/drm_debugfs.h b/include/drm/drm_debugfs.h
-index 7616f457ce70..cb2c1956a214 100644
---- a/include/drm/drm_debugfs.h
-+++ b/include/drm/drm_debugfs.h
-@@ -34,6 +34,22 @@
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index ab9062e50977..45ca4eb98f54 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -103,7 +103,7 @@ nouveau_gem_object_open(struct drm_gem_object *gem, struct drm_file *file_priv)
+ 	struct nouveau_bo *nvbo = nouveau_gem_object(gem);
+ 	struct nouveau_drm *drm = nouveau_bdev(nvbo->bo.bdev);
+ 	struct device *dev = drm->dev->dev;
+-	struct nouveau_vmm *vmm = cli->svm.cli ? &cli->svm : &cli->vmm;
++	struct nouveau_vmm *vmm = nouveau_cli_vmm(cli);
+ 	struct nouveau_vma *vma;
+ 	int ret;
  
- #include <linux/types.h>
- #include <linux/seq_file.h>
-+
-+#include <drm/drm_gpuva_mgr.h>
-+
-+/**
-+ * DRM_DEBUGFS_GPUVA_INFO - &drm_info_list entry to dump a GPU VA space
-+ * @show: the &drm_info_list's show callback
-+ * @data: driver private data
-+ *
-+ * Drivers should use this macro to define a &drm_info_list entry to provide a
-+ * debugfs file for dumping the GPU VA space regions and mappings.
-+ *
-+ * For each DRM GPU VA space drivers should call drm_debugfs_gpuva_info() from
-+ * their @show callback.
-+ */
-+#define DRM_DEBUGFS_GPUVA_INFO(show, data) {"gpuvas", show, DRIVER_GEM_GPUVA, data}
-+
- /**
-  * struct drm_info_list - debugfs info list entry
-  *
-@@ -134,6 +150,9 @@ void drm_debugfs_add_file(struct drm_device *dev, const char *name,
+@@ -180,7 +180,7 @@ nouveau_gem_object_close(struct drm_gem_object *gem, struct drm_file *file_priv)
+ 	struct nouveau_bo *nvbo = nouveau_gem_object(gem);
+ 	struct nouveau_drm *drm = nouveau_bdev(nvbo->bo.bdev);
+ 	struct device *dev = drm->dev->dev;
+-	struct nouveau_vmm *vmm = cli->svm.cli ? &cli->svm : & cli->vmm;
++	struct nouveau_vmm *vmm = nouveau_cli_vmm(cli);
+ 	struct nouveau_vma *vma;
+ 	int ret;
  
- void drm_debugfs_add_files(struct drm_device *dev,
- 			   const struct drm_debugfs_info *files, int count);
-+
-+int drm_debugfs_gpuva_info(struct seq_file *m,
-+			   struct drm_gpuva_manager *mgr);
- #else
- static inline void drm_debugfs_create_files(const struct drm_info_list *files,
- 					    int count, struct dentry *root,
-@@ -155,6 +174,12 @@ static inline void drm_debugfs_add_files(struct drm_device *dev,
- 					 const struct drm_debugfs_info *files,
- 					 int count)
- {}
-+
-+static inline int drm_debugfs_gpuva_info(struct seq_file *m,
-+					 struct drm_gpuva_manager *mgr)
-+{
-+	return 0;
-+}
- #endif
+@@ -269,7 +269,7 @@ nouveau_gem_info(struct drm_file *file_priv, struct drm_gem_object *gem,
+ {
+ 	struct nouveau_cli *cli = nouveau_cli(file_priv);
+ 	struct nouveau_bo *nvbo = nouveau_gem_object(gem);
+-	struct nouveau_vmm *vmm = cli->svm.cli ? &cli->svm : &cli->vmm;
++	struct nouveau_vmm *vmm = nouveau_cli_vmm(cli);
+ 	struct nouveau_vma *vma;
  
- #endif /* _DRM_DEBUGFS_H_ */
+ 	if (is_power_of_2(nvbo->valid_domains))
 -- 
 2.41.0
 
