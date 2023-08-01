@@ -4,91 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E1F4C001DF
-	for <nouveau@archiver.kernel.org>; Tue,  1 Aug 2023 11:03:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14AD6C0015E
+	for <nouveau@archiver.kernel.org>; Tue,  1 Aug 2023 15:15:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFE6310E3DD;
-	Tue,  1 Aug 2023 11:03:49 +0000 (UTC)
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
- [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A1D910E39F
- for <nouveau@lists.freedesktop.org>; Tue,  1 Aug 2023 11:03:48 +0000 (UTC)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1qQn9L-0006er-TG; Tue, 01 Aug 2023 13:02:47 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
- by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1qQn9G-000MYc-Qz; Tue, 01 Aug 2023 13:02:42 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1qQn9F-009bb2-Rs; Tue, 01 Aug 2023 13:02:41 +0200
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Russell King <linux@armlinux.org.uk>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>,
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Paul Cercueil <paul@crapouillou.net>,
- Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
- Edmund Dea <edmund.j.dea@intel.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Johan Hovold <johan+linaro@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- "Joel Fernandes (Google)" <joel@joelfernandes.org>,
- Akhil P Oommen <quic_akhilpo@quicinc.com>,
- Jessica Zhang <quic_jesszhan@quicinc.com>,
- Liu Shixin <liushixin2@huawei.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Su Hui <suhui@nfschina.com>,
- Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Vinod Polimera <quic_vpolimer@quicinc.com>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Dan Carpenter <dan.carpenter@linaro.org>, Rob Herring <robh@kernel.org>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Jyri Sarha <jyri.sarha@iki.fi>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Sam Ravnborg <sam@ravnborg.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Danilo Krummrich <dakr@redhat.com>, Biju Das <biju.das.jz@bp.renesas.com>,
- Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Deepak R Varma <drv@mailo.com>,
- Steven Price <steven.price@arm.com>, Thierry Reding <treding@nvidia.com>,
- Jani Nikula <jani.nikula@intel.com>, Alexey Brodkin <abrodkin@synopsys.com>
-Date: Tue,  1 Aug 2023 13:02:27 +0200
-Message-Id: <20230801110239.831099-1-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61E1B10E08C;
+	Tue,  1 Aug 2023 15:15:37 +0000 (UTC)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
+ [IPv6:2a00:1450:4864:20::52c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86C1A10E08C
+ for <nouveau@lists.freedesktop.org>; Tue,  1 Aug 2023 15:15:36 +0000 (UTC)
+Received: by mail-ed1-x52c.google.com with SMTP id
+ 4fb4d7f45d1cf-52227884855so8831085a12.1
+ for <nouveau@lists.freedesktop.org>; Tue, 01 Aug 2023 08:15:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gfxstrand-net.20221208.gappssmtp.com; s=20221208; t=1690902935; x=1691507735;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=D2fr4llh8QF9+8/MYj5l2qMqH1e+8yQ19n/WF18BWRk=;
+ b=maLWNPX/e6luVIOwWin8TSV2gJDc7ItyW2tO0bSezp02Cp/RHPDQpkjp4MFmKdQ/aQ
+ fadeR5hfo1l9BPDY1WzmTFXVpUadxp2J7vIfvJ+h82Ua7R8QiadPed8pDK/K6C1gpa7Z
+ vvmxtrHWlliGpEiMGy/Gm3EfbF6jlay6NdiBYipiOLZKU/M9m+qa14eN3sJ29U6zd6La
+ BLJmjRhbrnIwTRGmlLXGP5Hct0LkLKbBH/kCvJzSn/vcPYZODdJJFpq3Y8UA2fXjxOgq
+ 6ObvKM2iYrnXPsUUeALHfkBGW9fiYjYqGyzxORbqJWL4FWSBBLO5t0CWVpQf9k1qYPLs
+ cAqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1690902935; x=1691507735;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=D2fr4llh8QF9+8/MYj5l2qMqH1e+8yQ19n/WF18BWRk=;
+ b=TloR9p+qsU5mCbUSkLATqsyXEua3Wo2KYRjmqZRW1jGRGjpytN+NTaq6y13lVkY6/n
+ nJmPiKc77cX4R8Q73F1oNWYROOULEPwMrRRZbUSbJ3yEnMqjPrSkHEtyzpJHEalL5o11
+ aJQKWmfuJzXGdF8Iuy9Jl3qH61PL7rpNC+LLQyU9MgNOCv2Nxjd5d3MWat6XDDO+yt6g
+ NRoT1ez6Oa0yt90uZOPwgfzAlgdrx7ncpQjVPzmckEuF7e6twXNYUROD3p47vbuGdkkz
+ StCxa7Wn75F+ElUSemkmqjknebKMlwmN2pTlFJhjxUNiQL2kruLzaiMT3m6u9DYT0/JB
+ pd8Q==
+X-Gm-Message-State: ABy/qLZCTBbA33vzqa4XkCeK39lno8rd+0lnOutPJZ79iihmmwGHA1c7
+ Sofp5M+qeQGLXW/Xbtf3ZkXXtZk5RQLwD3kwb3nu9Q==
+X-Google-Smtp-Source: APBJJlE7uox+xSmDrq7sgSGUbkfxmKUkIyPdPNtrWz7hPSia2WgVxQ7934XsxXUZd9LO3/OHZdBBm42C3Xsi0ZjCHSs=
+X-Received: by 2002:a17:906:648e:b0:99b:493b:63b1 with SMTP id
+ e14-20020a170906648e00b0099b493b63b1mr3058156ejm.38.1690902934778; Tue, 01
+ Aug 2023 08:15:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4647;
- i=u.kleine-koenig@pengutronix.de; h=from:subject;
- bh=lLYOduakdAZPV7h2t7p0GtcJJgBTffjjiGktWPRzcYQ=;
- b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBkyOWz7AY2J/amMZa1ly1xZnt1qVfdI+rjtzZOC
- 8JCyUY0p4KJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZMjlswAKCRCPgPtYfRL+
- ToYFCACzSxwyZvnMzJgJyOkvEePf/ZXRnGrtlXaVQ3ZoUTHkj+i/+jpBQWVCP7WrMGN7DsJJNtK
- 0JA9E3Yn8ljBPqK2hZbNAJIiaj3l1RjP00t00TVHzUaRcD8bpf0MQbCl7XVh+S1lGpscwAhUhU5
- EuB/uIagIPze58OicfVqTEO6iH3tvWG6Tiw+Vj2etWniKNEhnyG94qzpKxsJ1UQxqjG+th5ODs2
- R/fbiH6ltN6uLcrT7oBmUbtwgnmFm0z6KSzEqBKSAi6WhI4Cz6iIb1+Kt+G3TH2c0+5ZjkMcAix
- V3zjdSfyyffaoQc3LkxVPtw9eSDLh/jJp7lNI4Ci05e+WBPm
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp;
- fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: nouveau@lists.freedesktop.org
-Subject: [Nouveau] [PATCH v2 00/12] drm: Convert to platform remove callback
- returning void
+References: <20230731191557.4179175-1-airlied@gmail.com>
+ <CACO55tuV8A_sLmQ=7yBdmsW7WWGoMs1oLmfszUg+RHW4_P8sNQ@mail.gmail.com>
+In-Reply-To: <CACO55tuV8A_sLmQ=7yBdmsW7WWGoMs1oLmfszUg+RHW4_P8sNQ@mail.gmail.com>
+From: Faith Ekstrand <faith@gfxstrand.net>
+Date: Tue, 1 Aug 2023 10:15:23 -0500
+Message-ID: <CAOFGe94=eT9JUqtdrWb42pRybZ9E5TP2P144eT=pBXu+V2HUyA@mail.gmail.com>
+To: Karol Herbst <kherbst@redhat.com>
+Content-Type: multipart/alternative; boundary="000000000000c7092f0601de04ec"
+Subject: Re: [Nouveau] [PATCH] drm/nouveau: fixup the uapi header file.
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,106 +66,470 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: freedreno@lists.freedesktop.org, Sean Paul <sean@poorly.run>,
- linux-arm-msm@vger.kernel.org, etnaviv@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-mips@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- linux-mediatek@lists.infradead.org, NXP Linux Team <linux-imx@nxp.com>,
- kernel@pengutronix.de, Russell King <linux+etnaviv@armlinux.org.uk>,
- nouveau@lists.freedesktop.org, Marijn Suijten <marijn.suijten@somainline.org>,
- Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hello,
+--000000000000c7092f0601de04ec
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-(implicit) v1 of this series can be found at
-https://lore.kernel.org/dri-devel/20230507162616.1368908-1-u.kleine-koenig@pengutronix.de
+On Tue, Aug 1, 2023 at 4:37=E2=80=AFAM Karol Herbst <kherbst@redhat.com> wr=
+ote:
 
-Back then the series contained 53 patches. A big bunch was already
-applied to drm-misc, this is the remainder; with only little changes
-compared to v1:
+> On Mon, Jul 31, 2023 at 9:16=E2=80=AFPM Dave Airlie <airlied@gmail.com> w=
+rote:
+> >
+> > From: Dave Airlie <airlied@redhat.com>
+> >
+> > nouveau > 10 years ago had a plan for new multiplexer inside a
+> multiplexer
+> > API using nvif. It never fully reached fruition, fast forward 10 years,
+> > and the new vulkan driver is avoiding libdrm and calling ioctls, and
+> > these 3 ioctls, getparam, channel alloc + free don't seem to be things
+> > we'd want to use nvif for.
+> >
+> > Undeprecate and put them into the uapi header so we can just copy it
+> > into mesa later.
+> >
+> > Signed-off-by: Dave Airlie <airlied@redhat.com>
+> > ---
+> >  drivers/gpu/drm/nouveau/nouveau_abi16.h | 41 ---------------------
+> >  include/uapi/drm/nouveau_drm.h          | 48 +++++++++++++++++++++++--
+> >  2 files changed, 45 insertions(+), 44 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.h
+> b/drivers/gpu/drm/nouveau/nouveau_abi16.h
+> > index 27eae85f33e6..d5d80d0d9011 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_abi16.h
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_abi16.h
+> > @@ -43,28 +43,6 @@ int  nouveau_abi16_usif(struct drm_file *, void
+> *data, u32 size);
+> >  #define NOUVEAU_GEM_DOMAIN_VRAM      (1 << 1)
+> >  #define NOUVEAU_GEM_DOMAIN_GART      (1 << 2)
+> >
+> > -struct drm_nouveau_channel_alloc {
+> > -       uint32_t     fb_ctxdma_handle;
+> > -       uint32_t     tt_ctxdma_handle;
+> > -
+> > -       int          channel;
+> > -       uint32_t     pushbuf_domains;
+> > -
+> > -       /* Notifier memory */
+> > -       uint32_t     notifier_handle;
+> > -
+> > -       /* DRM-enforced subchannel assignments */
+> > -       struct {
+> > -               uint32_t handle;
+> > -               uint32_t grclass;
+> > -       } subchan[8];
+> > -       uint32_t nr_subchan;
+> > -};
+> > -
+> > -struct drm_nouveau_channel_free {
+> > -       int channel;
+> > -};
+> > -
+> >  struct drm_nouveau_grobj_alloc {
+> >         int      channel;
+> >         uint32_t handle;
+> > @@ -83,31 +61,12 @@ struct drm_nouveau_gpuobj_free {
+> >         uint32_t handle;
+> >  };
+> >
+> > -#define NOUVEAU_GETPARAM_PCI_VENDOR      3
+> > -#define NOUVEAU_GETPARAM_PCI_DEVICE      4
+> > -#define NOUVEAU_GETPARAM_BUS_TYPE        5
+> > -#define NOUVEAU_GETPARAM_FB_SIZE         8
+> > -#define NOUVEAU_GETPARAM_AGP_SIZE        9
+> > -#define NOUVEAU_GETPARAM_CHIPSET_ID      11
+> > -#define NOUVEAU_GETPARAM_VM_VRAM_BASE    12
+> > -#define NOUVEAU_GETPARAM_GRAPH_UNITS     13
+> > -#define NOUVEAU_GETPARAM_PTIMER_TIME     14
+> > -#define NOUVEAU_GETPARAM_HAS_BO_USAGE    15
+> > -#define NOUVEAU_GETPARAM_HAS_PAGEFLIP    16
+> > -struct drm_nouveau_getparam {
+> > -       uint64_t param;
+> > -       uint64_t value;
+> > -};
+> > -
+> >  struct drm_nouveau_setparam {
+> >         uint64_t param;
+> >         uint64_t value;
+> >  };
+> >
+> > -#define DRM_IOCTL_NOUVEAU_GETPARAM           DRM_IOWR(DRM_COMMAND_BASE
+> + DRM_NOUVEAU_GETPARAM, struct drm_nouveau_getparam)
+> >  #define DRM_IOCTL_NOUVEAU_SETPARAM           DRM_IOWR(DRM_COMMAND_BASE
+> + DRM_NOUVEAU_SETPARAM, struct drm_nouveau_setparam)
+> > -#define DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC      DRM_IOWR(DRM_COMMAND_BASE
+> + DRM_NOUVEAU_CHANNEL_ALLOC, struct drm_nouveau_channel_alloc)
+> > -#define DRM_IOCTL_NOUVEAU_CHANNEL_FREE       DRM_IOW (DRM_COMMAND_BASE
+> + DRM_NOUVEAU_CHANNEL_FREE, struct drm_nouveau_channel_free)
+> >  #define DRM_IOCTL_NOUVEAU_GROBJ_ALLOC        DRM_IOW (DRM_COMMAND_BASE
+> + DRM_NOUVEAU_GROBJ_ALLOC, struct drm_nouveau_grobj_alloc)
+> >  #define DRM_IOCTL_NOUVEAU_NOTIFIEROBJ_ALLOC  DRM_IOWR(DRM_COMMAND_BASE
+> + DRM_NOUVEAU_NOTIFIEROBJ_ALLOC, struct drm_nouveau_notifierobj_alloc)
+> >  #define DRM_IOCTL_NOUVEAU_GPUOBJ_FREE        DRM_IOW (DRM_COMMAND_BASE
+> + DRM_NOUVEAU_GPUOBJ_FREE, struct drm_nouveau_gpuobj_free)
+> > diff --git a/include/uapi/drm/nouveau_drm.h
+> b/include/uapi/drm/nouveau_drm.h
+> > index 853a327433d3..1cd97b3d8eda 100644
+> > --- a/include/uapi/drm/nouveau_drm.h
+> > +++ b/include/uapi/drm/nouveau_drm.h
+> > @@ -33,6 +33,44 @@
+> >  extern "C" {
+> >  #endif
+> >
+> > +#define NOUVEAU_GETPARAM_PCI_VENDOR      3
+> > +#define NOUVEAU_GETPARAM_PCI_DEVICE      4
+> > +#define NOUVEAU_GETPARAM_BUS_TYPE        5
+> > +#define NOUVEAU_GETPARAM_FB_SIZE         8
+> > +#define NOUVEAU_GETPARAM_AGP_SIZE        9
+> > +#define NOUVEAU_GETPARAM_CHIPSET_ID      11
+> > +#define NOUVEAU_GETPARAM_VM_VRAM_BASE    12
+> > +#define NOUVEAU_GETPARAM_GRAPH_UNITS     13
+> > +#define NOUVEAU_GETPARAM_PTIMER_TIME     14
+> > +#define NOUVEAU_GETPARAM_HAS_BO_USAGE    15
+> > +#define NOUVEAU_GETPARAM_HAS_PAGEFLIP    16
+> > +struct drm_nouveau_getparam {
+> > +       uint64_t param;
+> > +       uint64_t value;
+> > +};
+> > +
+> > +struct drm_nouveau_channel_alloc {
+> > +       uint32_t     fb_ctxdma_handle;
+>
 
- - rebased to todays drm-misc-next
- - Squashed together the two mediatek patches
- - Adapted the subject prefix for the arcpgu as pointed out by Thomas
-   Zimmermann. (This affected two patches originally, one of them was merged
-   already before anyhow (next-20230801~41^2~34^2~179).)
+Do we want to use `uint32_t` or `__u32` here? It looks like the original
+headers used `uint32_t` and then it got switched to `__u32` after the
+deprecation happened.  We probably want `__u32` given that this is a uapi
+header.
 
-All these patches are pairwise independant of each other and so can be
-applied individually to their respective maintainer trees. I'm open to
-get these all in together via drm-misc, but each maintainer picking the
-individual patches that they are repsonsible for is maybe the easier
-approach?!
 
-Best regards
-Uwe
-   
+> > +       uint32_t     tt_ctxdma_handle;
+> > +
+> > +       int          channel;
+>
 
-Uwe Kleine-König (12):
-  drm/armada: Convert to platform remove callback returning void
-  drm/etnaviv: Convert to platform remove callback returning void
-  drm/imx/dcss: Convert to platform remove callback returning void
-  drm/imx/ipuv3: Convert to platform remove callback returning void
-  drm/ingenic: Convert to platform remove callback returning void
-  drm/kmb: Convert to platform remove callback returning void
-  drm/mediatek: Convert to platform remove callback returning void
-  drm/msm: Convert to platform remove callback returning void
-  drm/nouveau: Convert to platform remove callback returning void
-  drm/shmobile: Convert to platform remove callback returning void
-  drm/sprd: Convert to platform remove callback returning void
-  drm/arcpgu: Convert to platform remove callback returning void
+IDK what to do about this one. I want to make it __s32. I think that should
+be safe on all the hardware we care about. Having an unsized type in a UAPI
+header is concerning.
 
- drivers/gpu/drm/armada/armada_crtc.c             | 5 ++---
- drivers/gpu/drm/armada/armada_drv.c              | 5 ++---
- drivers/gpu/drm/etnaviv/etnaviv_drv.c            | 6 ++----
- drivers/gpu/drm/etnaviv/etnaviv_gpu.c            | 5 ++---
- drivers/gpu/drm/imx/dcss/dcss-drv.c              | 6 ++----
- drivers/gpu/drm/imx/ipuv3/dw_hdmi-imx.c          | 6 ++----
- drivers/gpu/drm/imx/ipuv3/imx-drm-core.c         | 5 ++---
- drivers/gpu/drm/imx/ipuv3/imx-ldb.c              | 5 ++---
- drivers/gpu/drm/imx/ipuv3/imx-tve.c              | 5 ++---
- drivers/gpu/drm/imx/ipuv3/ipuv3-crtc.c           | 5 ++---
- drivers/gpu/drm/imx/ipuv3/parallel-display.c     | 6 ++----
- drivers/gpu/drm/ingenic/ingenic-drm-drv.c        | 6 ++----
- drivers/gpu/drm/ingenic/ingenic-ipu.c            | 5 ++---
- drivers/gpu/drm/kmb/kmb_drv.c                    | 5 ++---
- drivers/gpu/drm/mediatek/mtk_cec.c               | 5 ++---
- drivers/gpu/drm/mediatek/mtk_disp_aal.c          | 6 ++----
- drivers/gpu/drm/mediatek/mtk_disp_ccorr.c        | 6 ++----
- drivers/gpu/drm/mediatek/mtk_disp_color.c        | 6 ++----
- drivers/gpu/drm/mediatek/mtk_disp_gamma.c        | 6 ++----
- drivers/gpu/drm/mediatek/mtk_disp_merge.c        | 6 ++----
- drivers/gpu/drm/mediatek/mtk_disp_ovl.c          | 6 ++----
- drivers/gpu/drm/mediatek/mtk_disp_rdma.c         | 6 ++----
- drivers/gpu/drm/mediatek/mtk_dp.c                | 6 ++----
- drivers/gpu/drm/mediatek/mtk_dpi.c               | 6 ++----
- drivers/gpu/drm/mediatek/mtk_drm_drv.c           | 6 ++----
- drivers/gpu/drm/mediatek/mtk_dsi.c               | 6 ++----
- drivers/gpu/drm/mediatek/mtk_hdmi.c              | 5 ++---
- drivers/gpu/drm/mediatek/mtk_hdmi_ddc.c          | 6 ++----
- drivers/gpu/drm/mediatek/mtk_mdp_rdma.c          | 5 ++---
- drivers/gpu/drm/msm/adreno/adreno_device.c       | 5 ++---
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c          | 6 ++----
- drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c         | 6 ++----
- drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c         | 5 ++---
- drivers/gpu/drm/msm/dp/dp_display.c              | 6 ++----
- drivers/gpu/drm/msm/dsi/dsi.c                    | 6 ++----
- drivers/gpu/drm/msm/hdmi/hdmi.c                  | 6 ++----
- drivers/gpu/drm/msm/hdmi/hdmi_phy.c              | 6 ++----
- drivers/gpu/drm/msm/msm_drv.c                    | 6 ++----
- drivers/gpu/drm/msm/msm_mdss.c                   | 6 ++----
- drivers/gpu/drm/nouveau/nouveau_platform.c       | 5 ++---
- drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c | 6 ++----
- drivers/gpu/drm/sprd/sprd_dpu.c                  | 6 ++----
- drivers/gpu/drm/sprd/sprd_drm.c                  | 5 ++---
- drivers/gpu/drm/sprd/sprd_dsi.c                  | 6 ++----
- drivers/gpu/drm/tiny/arcpgu.c                    | 6 ++----
- 45 files changed, 90 insertions(+), 164 deletions(-)
+~Faith
 
-base-commit: 290cdd7959a734a0ef20ec096af7810177c4b9f8
--- 
-2.39.2
 
+> > +       uint32_t     pushbuf_domains;
+> > +
+> > +       /* Notifier memory */
+> > +       uint32_t     notifier_handle;
+> > +
+> > +       /* DRM-enforced subchannel assignments */
+> > +       struct {
+> > +               uint32_t handle;
+> > +               uint32_t grclass;
+> > +       } subchan[8];
+> > +       uint32_t nr_subchan;
+> > +};
+> > +
+> > +struct drm_nouveau_channel_free {
+> > +       int channel;
+> > +};
+> > +
+> >  #define NOUVEAU_GEM_DOMAIN_CPU       (1 << 0)
+> >  #define NOUVEAU_GEM_DOMAIN_VRAM      (1 << 1)
+> >  #define NOUVEAU_GEM_DOMAIN_GART      (1 << 2)
+> > @@ -126,10 +164,10 @@ struct drm_nouveau_gem_cpu_fini {
+> >         __u32 handle;
+> >  };
+> >
+> > -#define DRM_NOUVEAU_GETPARAM           0x00 /* deprecated */
+> > +#define DRM_NOUVEAU_GETPARAM           0x00
+> >  #define DRM_NOUVEAU_SETPARAM           0x01 /* deprecated */
+> > -#define DRM_NOUVEAU_CHANNEL_ALLOC      0x02 /* deprecated */
+> > -#define DRM_NOUVEAU_CHANNEL_FREE       0x03 /* deprecated */
+> > +#define DRM_NOUVEAU_CHANNEL_ALLOC      0x02
+> > +#define DRM_NOUVEAU_CHANNEL_FREE       0x03
+> >  #define DRM_NOUVEAU_GROBJ_ALLOC        0x04 /* deprecated */
+> >  #define DRM_NOUVEAU_NOTIFIEROBJ_ALLOC  0x05 /* deprecated */
+> >  #define DRM_NOUVEAU_GPUOBJ_FREE        0x06 /* deprecated */
+> > @@ -188,6 +226,10 @@ struct drm_nouveau_svm_bind {
+> >  #define NOUVEAU_SVM_BIND_TARGET__GPU_VRAM               (1UL << 31)
+> >
+> >
+> > +#define DRM_IOCTL_NOUVEAU_GETPARAM           DRM_IOWR(DRM_COMMAND_BASE
+> + DRM_NOUVEAU_GETPARAM, struct drm_nouveau_getparam)
+> > +#define DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC      DRM_IOWR(DRM_COMMAND_BASE
+> + DRM_NOUVEAU_CHANNEL_ALLOC, struct drm_nouveau_channel_alloc)
+> > +#define DRM_IOCTL_NOUVEAU_CHANNEL_FREE       DRM_IOW (DRM_COMMAND_BASE
+> + DRM_NOUVEAU_CHANNEL_FREE, struct drm_nouveau_channel_free)
+> > +
+> >  #define DRM_IOCTL_NOUVEAU_SVM_INIT           DRM_IOWR(DRM_COMMAND_BASE
+> + DRM_NOUVEAU_SVM_INIT, struct drm_nouveau_svm_init)
+> >  #define DRM_IOCTL_NOUVEAU_SVM_BIND           DRM_IOWR(DRM_COMMAND_BASE
+> + DRM_NOUVEAU_SVM_BIND, struct drm_nouveau_svm_bind)
+> >
+> > --
+> > 2.41.0
+> >
+>
+> Reviewed-by: Karol Herbst <kherbst@redhat.com>
+>
+>
+
+--000000000000c7092f0601de04ec
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Tue, Aug 1, 2023 at 4:37=E2=80=AFAM Karol Herbst &lt;<a href=3D"m=
+ailto:kherbst@redhat.com">kherbst@redhat.com</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex">On Mon, Jul 31, 2023 at 9:16=E2=
+=80=AFPM Dave Airlie &lt;<a href=3D"mailto:airlied@gmail.com" target=3D"_bl=
+ank">airlied@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; From: Dave Airlie &lt;<a href=3D"mailto:airlied@redhat.com" target=3D"=
+_blank">airlied@redhat.com</a>&gt;<br>
+&gt;<br>
+&gt; nouveau &gt; 10 years ago had a plan for new multiplexer inside a mult=
+iplexer<br>
+&gt; API using nvif. It never fully reached fruition, fast forward 10 years=
+,<br>
+&gt; and the new vulkan driver is avoiding libdrm and calling ioctls, and<b=
+r>
+&gt; these 3 ioctls, getparam, channel alloc + free don&#39;t seem to be th=
+ings<br>
+&gt; we&#39;d want to use nvif for.<br>
+&gt;<br>
+&gt; Undeprecate and put them into the uapi header so we can just copy it<b=
+r>
+&gt; into mesa later.<br>
+&gt;<br>
+&gt; Signed-off-by: Dave Airlie &lt;<a href=3D"mailto:airlied@redhat.com" t=
+arget=3D"_blank">airlied@redhat.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 drivers/gpu/drm/nouveau/nouveau_abi16.h | 41 -------------------=
+--<br>
+&gt;=C2=A0 include/uapi/drm/nouveau_drm.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ | 48 +++++++++++++++++++++++--<br>
+&gt;=C2=A0 2 files changed, 45 insertions(+), 44 deletions(-)<br>
+&gt;<br>
+&gt; diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.h b/drivers/gpu/drm=
+/nouveau/nouveau_abi16.h<br>
+&gt; index 27eae85f33e6..d5d80d0d9011 100644<br>
+&gt; --- a/drivers/gpu/drm/nouveau/nouveau_abi16.h<br>
+&gt; +++ b/drivers/gpu/drm/nouveau/nouveau_abi16.h<br>
+&gt; @@ -43,28 +43,6 @@ int=C2=A0 nouveau_abi16_usif(struct drm_file *, voi=
+d *data, u32 size);<br>
+&gt;=C2=A0 #define NOUVEAU_GEM_DOMAIN_VRAM=C2=A0 =C2=A0 =C2=A0 (1 &lt;&lt; =
+1)<br>
+&gt;=C2=A0 #define NOUVEAU_GEM_DOMAIN_GART=C2=A0 =C2=A0 =C2=A0 (1 &lt;&lt; =
+2)<br>
+&gt;<br>
+&gt; -struct drm_nouveau_channel_alloc {<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t=C2=A0 =C2=A0 =C2=A0fb_ctxdma_hand=
+le;<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t=C2=A0 =C2=A0 =C2=A0tt_ctxdma_hand=
+le;<br>
+&gt; -<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0int=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 chan=
+nel;<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t=C2=A0 =C2=A0 =C2=A0pushbuf_domain=
+s;<br>
+&gt; -<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0/* Notifier memory */<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t=C2=A0 =C2=A0 =C2=A0notifier_handl=
+e;<br>
+&gt; -<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0/* DRM-enforced subchannel assignments */<=
+br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0struct {<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t handl=
+e;<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t grcla=
+ss;<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0} subchan[8];<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t nr_subchan;<br>
+&gt; -};<br>
+&gt; -<br>
+&gt; -struct drm_nouveau_channel_free {<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0int channel;<br>
+&gt; -};<br>
+&gt; -<br>
+&gt;=C2=A0 struct drm_nouveau_grobj_alloc {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0int=C2=A0 =C2=A0 =C2=A0 channel;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t handle;<br>
+&gt; @@ -83,31 +61,12 @@ struct drm_nouveau_gpuobj_free {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t handle;<br>
+&gt;=C2=A0 };<br>
+&gt;<br>
+&gt; -#define NOUVEAU_GETPARAM_PCI_VENDOR=C2=A0 =C2=A0 =C2=A0 3<br>
+&gt; -#define NOUVEAU_GETPARAM_PCI_DEVICE=C2=A0 =C2=A0 =C2=A0 4<br>
+&gt; -#define NOUVEAU_GETPARAM_BUS_TYPE=C2=A0 =C2=A0 =C2=A0 =C2=A0 5<br>
+&gt; -#define NOUVEAU_GETPARAM_FB_SIZE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A08<b=
+r>
+&gt; -#define NOUVEAU_GETPARAM_AGP_SIZE=C2=A0 =C2=A0 =C2=A0 =C2=A0 9<br>
+&gt; -#define NOUVEAU_GETPARAM_CHIPSET_ID=C2=A0 =C2=A0 =C2=A0 11<br>
+&gt; -#define NOUVEAU_GETPARAM_VM_VRAM_BASE=C2=A0 =C2=A0 12<br>
+&gt; -#define NOUVEAU_GETPARAM_GRAPH_UNITS=C2=A0 =C2=A0 =C2=A013<br>
+&gt; -#define NOUVEAU_GETPARAM_PTIMER_TIME=C2=A0 =C2=A0 =C2=A014<br>
+&gt; -#define NOUVEAU_GETPARAM_HAS_BO_USAGE=C2=A0 =C2=A0 15<br>
+&gt; -#define NOUVEAU_GETPARAM_HAS_PAGEFLIP=C2=A0 =C2=A0 16<br>
+&gt; -struct drm_nouveau_getparam {<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0uint64_t param;<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0uint64_t value;<br>
+&gt; -};<br>
+&gt; -<br>
+&gt;=C2=A0 struct drm_nouveau_setparam {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0uint64_t param;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0uint64_t value;<br>
+&gt;=C2=A0 };<br>
+&gt;<br>
+&gt; -#define DRM_IOCTL_NOUVEAU_GETPARAM=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GETPARAM, struct drm_nouveau_=
+getparam)<br>
+&gt;=C2=A0 #define DRM_IOCTL_NOUVEAU_SETPARAM=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_SETPARAM, struct drm_n=
+ouveau_setparam)<br>
+&gt; -#define DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC=C2=A0 =C2=A0 =C2=A0 DRM_IOWR(=
+DRM_COMMAND_BASE + DRM_NOUVEAU_CHANNEL_ALLOC, struct drm_nouveau_channel_al=
+loc)<br>
+&gt; -#define DRM_IOCTL_NOUVEAU_CHANNEL_FREE=C2=A0 =C2=A0 =C2=A0 =C2=A0DRM_=
+IOW (DRM_COMMAND_BASE + DRM_NOUVEAU_CHANNEL_FREE, struct drm_nouveau_channe=
+l_free)<br>
+&gt;=C2=A0 #define DRM_IOCTL_NOUVEAU_GROBJ_ALLOC=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ DRM_IOW (DRM_COMMAND_BASE + DRM_NOUVEAU_GROBJ_ALLOC, struct drm_nouveau_gr=
+obj_alloc)<br>
+&gt;=C2=A0 #define DRM_IOCTL_NOUVEAU_NOTIFIEROBJ_ALLOC=C2=A0 DRM_IOWR(DRM_C=
+OMMAND_BASE + DRM_NOUVEAU_NOTIFIEROBJ_ALLOC, struct drm_nouveau_notifierobj=
+_alloc)<br>
+&gt;=C2=A0 #define DRM_IOCTL_NOUVEAU_GPUOBJ_FREE=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ DRM_IOW (DRM_COMMAND_BASE + DRM_NOUVEAU_GPUOBJ_FREE, struct drm_nouveau_gp=
+uobj_free)<br>
+&gt; diff --git a/include/uapi/drm/nouveau_drm.h b/include/uapi/drm/nouveau=
+_drm.h<br>
+&gt; index 853a327433d3..1cd97b3d8eda 100644<br>
+&gt; --- a/include/uapi/drm/nouveau_drm.h<br>
+&gt; +++ b/include/uapi/drm/nouveau_drm.h<br>
+&gt; @@ -33,6 +33,44 @@<br>
+&gt;=C2=A0 extern &quot;C&quot; {<br>
+&gt;=C2=A0 #endif<br>
+&gt;<br>
+&gt; +#define NOUVEAU_GETPARAM_PCI_VENDOR=C2=A0 =C2=A0 =C2=A0 3<br>
+&gt; +#define NOUVEAU_GETPARAM_PCI_DEVICE=C2=A0 =C2=A0 =C2=A0 4<br>
+&gt; +#define NOUVEAU_GETPARAM_BUS_TYPE=C2=A0 =C2=A0 =C2=A0 =C2=A0 5<br>
+&gt; +#define NOUVEAU_GETPARAM_FB_SIZE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A08<b=
+r>
+&gt; +#define NOUVEAU_GETPARAM_AGP_SIZE=C2=A0 =C2=A0 =C2=A0 =C2=A0 9<br>
+&gt; +#define NOUVEAU_GETPARAM_CHIPSET_ID=C2=A0 =C2=A0 =C2=A0 11<br>
+&gt; +#define NOUVEAU_GETPARAM_VM_VRAM_BASE=C2=A0 =C2=A0 12<br>
+&gt; +#define NOUVEAU_GETPARAM_GRAPH_UNITS=C2=A0 =C2=A0 =C2=A013<br>
+&gt; +#define NOUVEAU_GETPARAM_PTIMER_TIME=C2=A0 =C2=A0 =C2=A014<br>
+&gt; +#define NOUVEAU_GETPARAM_HAS_BO_USAGE=C2=A0 =C2=A0 15<br>
+&gt; +#define NOUVEAU_GETPARAM_HAS_PAGEFLIP=C2=A0 =C2=A0 16<br>
+&gt; +struct drm_nouveau_getparam {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0uint64_t param;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0uint64_t value;<br>
+&gt; +};<br>
+&gt; +<br>
+&gt; +struct drm_nouveau_channel_alloc {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t=C2=A0 =C2=A0 =C2=A0fb_ctxdma_hand=
+le;<br></blockquote><div><br></div><div>Do we want to use `uint32_t` or `__=
+u32` here? It looks like the original headers used `uint32_t` and then it g=
+ot switched to `__u32` after the deprecation happened.=C2=A0 We probably wa=
+nt `__u32` given that this is a uapi header.<br></div><div>=C2=A0</div><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
+:1px solid rgb(204,204,204);padding-left:1ex">
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t=C2=A0 =C2=A0 =C2=A0tt_ctxdma_hand=
+le;<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0int=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 chan=
+nel;<br></blockquote><div><br></div><div>IDK what to do about this one. I w=
+ant to make it __s32. I think that should be safe on all the hardware we ca=
+re about. Having an unsized type in a UAPI header is concerning.</div><div>=
+<br></div><div>~Faith<br></div><div>=C2=A0</div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex">
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t=C2=A0 =C2=A0 =C2=A0pushbuf_domain=
+s;<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0/* Notifier memory */<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t=C2=A0 =C2=A0 =C2=A0notifier_handl=
+e;<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0/* DRM-enforced subchannel assignments */<=
+br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0struct {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t handl=
+e;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t grcla=
+ss;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0} subchan[8];<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t nr_subchan;<br>
+&gt; +};<br>
+&gt; +<br>
+&gt; +struct drm_nouveau_channel_free {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0int channel;<br>
+&gt; +};<br>
+&gt; +<br>
+&gt;=C2=A0 #define NOUVEAU_GEM_DOMAIN_CPU=C2=A0 =C2=A0 =C2=A0 =C2=A0(1 &lt;=
+&lt; 0)<br>
+&gt;=C2=A0 #define NOUVEAU_GEM_DOMAIN_VRAM=C2=A0 =C2=A0 =C2=A0 (1 &lt;&lt; =
+1)<br>
+&gt;=C2=A0 #define NOUVEAU_GEM_DOMAIN_GART=C2=A0 =C2=A0 =C2=A0 (1 &lt;&lt; =
+2)<br>
+&gt; @@ -126,10 +164,10 @@ struct drm_nouveau_gem_cpu_fini {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 handle;<br>
+&gt;=C2=A0 };<br>
+&gt;<br>
+&gt; -#define DRM_NOUVEAU_GETPARAM=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+0x00 /* deprecated */<br>
+&gt; +#define DRM_NOUVEAU_GETPARAM=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+0x00<br>
+&gt;=C2=A0 #define DRM_NOUVEAU_SETPARAM=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A00x01 /* deprecated */<br>
+&gt; -#define DRM_NOUVEAU_CHANNEL_ALLOC=C2=A0 =C2=A0 =C2=A0 0x02 /* depreca=
+ted */<br>
+&gt; -#define DRM_NOUVEAU_CHANNEL_FREE=C2=A0 =C2=A0 =C2=A0 =C2=A00x03 /* de=
+precated */<br>
+&gt; +#define DRM_NOUVEAU_CHANNEL_ALLOC=C2=A0 =C2=A0 =C2=A0 0x02<br>
+&gt; +#define DRM_NOUVEAU_CHANNEL_FREE=C2=A0 =C2=A0 =C2=A0 =C2=A00x03<br>
+&gt;=C2=A0 #define DRM_NOUVEAU_GROBJ_ALLOC=C2=A0 =C2=A0 =C2=A0 =C2=A0 0x04 =
+/* deprecated */<br>
+&gt;=C2=A0 #define DRM_NOUVEAU_NOTIFIEROBJ_ALLOC=C2=A0 0x05 /* deprecated *=
+/<br>
+&gt;=C2=A0 #define DRM_NOUVEAU_GPUOBJ_FREE=C2=A0 =C2=A0 =C2=A0 =C2=A0 0x06 =
+/* deprecated */<br>
+&gt; @@ -188,6 +226,10 @@ struct drm_nouveau_svm_bind {<br>
+&gt;=C2=A0 #define NOUVEAU_SVM_BIND_TARGET__GPU_VRAM=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(1UL &lt;&lt; 31)<br>
+&gt;<br>
+&gt;<br>
+&gt; +#define DRM_IOCTL_NOUVEAU_GETPARAM=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GETPARAM, struct drm_nouveau_=
+getparam)<br>
+&gt; +#define DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC=C2=A0 =C2=A0 =C2=A0 DRM_IOWR(=
+DRM_COMMAND_BASE + DRM_NOUVEAU_CHANNEL_ALLOC, struct drm_nouveau_channel_al=
+loc)<br>
+&gt; +#define DRM_IOCTL_NOUVEAU_CHANNEL_FREE=C2=A0 =C2=A0 =C2=A0 =C2=A0DRM_=
+IOW (DRM_COMMAND_BASE + DRM_NOUVEAU_CHANNEL_FREE, struct drm_nouveau_channe=
+l_free)<br>
+&gt; +<br>
+&gt;=C2=A0 #define DRM_IOCTL_NOUVEAU_SVM_INIT=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_SVM_INIT, struct drm_n=
+ouveau_svm_init)<br>
+&gt;=C2=A0 #define DRM_IOCTL_NOUVEAU_SVM_BIND=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_SVM_BIND, struct drm_n=
+ouveau_svm_bind)<br>
+&gt;<br>
+&gt; --<br>
+&gt; 2.41.0<br>
+&gt;<br>
+<br>
+Reviewed-by: Karol Herbst &lt;<a href=3D"mailto:kherbst@redhat.com" target=
+=3D"_blank">kherbst@redhat.com</a>&gt;<br>
+<br>
+</blockquote></div></div>
+
+--000000000000c7092f0601de04ec--
