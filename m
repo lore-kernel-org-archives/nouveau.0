@@ -4,67 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFD1CEB64DD
-	for <nouveau@archiver.kernel.org>; Tue,  1 Aug 2023 09:37:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BDCEC001E0
+	for <nouveau@archiver.kernel.org>; Tue,  1 Aug 2023 11:03:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A8C510E383;
-	Tue,  1 Aug 2023 09:37:48 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EBAF10E37B
- for <nouveau@lists.freedesktop.org>; Tue,  1 Aug 2023 09:37:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1690882664;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=vOvZgebHhV2X/IS76eyWQ9bR6nPimMpn+dZuHOTy76Q=;
- b=dahlRYS9w9X8gkE/dp46Fz0s1cZS2PYWpTbL3c/LjcsATnCLorxkqINAIeb27kKOA3V7lK
- WDyiD402RDfUb8VwKA5UKQ3prUFOL0yjmnm5yosIiKoGguD3Oo9T4/sO6jqBRIP02R2pO3
- aOKfWHMXqTzGlBSVPiaF9lOhEPq/YcE=
-Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com
- [209.85.208.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-550-VIw9_eiKP4K24i9HKBjdRA-1; Tue, 01 Aug 2023 05:37:43 -0400
-X-MC-Unique: VIw9_eiKP4K24i9HKBjdRA-1
-Received: by mail-lj1-f200.google.com with SMTP id
- 38308e7fff4ca-2b6fdb8d0acso10494521fa.0
- for <nouveau@lists.freedesktop.org>; Tue, 01 Aug 2023 02:37:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1690882662; x=1691487462;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=vOvZgebHhV2X/IS76eyWQ9bR6nPimMpn+dZuHOTy76Q=;
- b=BmSIqh4vH6fD42EzJMeZS2KntQjR7OXW1DA/T9Jkb4z0oD1GhJgZwPSLUSlGXO7io5
- myouuT05nTytkV4Q2Lbua5bAJCnr6QUpB60Qhbz/Ec9qExwT+PYqn/EbGBt7ay6Y1oqH
- 2RkOr19yoCIu+Xrqm7aat7dFRXeq8N6hXo3NyMw+83LnGoOdrlQ3SjxvZcN1YCuH9KCL
- AXfX4CoJo7pHXhSh/xgVM7sDzDkI4ogJcVlMcuqUykoshfAZTM5W5NNSPqYFIERjBEwm
- Tso75tD+MzcyT0FqR84bFlbQJxi1aYBDH+3OToi9e+CmMlY2p8f0KOV7XLh1Ivd9rtyY
- Qxpg==
-X-Gm-Message-State: ABy/qLbMioCyFWyoW+puLP4YqqTQ3a4g0uxpYp+WoHLUMxsSN1j4ZNpi
- XK7xJpk2xdWjCXtXm0pYDkeRDpAz2WGUhvDcfJOe30Faz8CiTN1eTjIlZqonGR8oaH2JpUwcNoe
- /0vY7HHxmvOZP9gkfpw8Wp+LiiHy5rh6TZlIra/x9+A==
-X-Received: by 2002:a2e:bc84:0:b0:2b9:54bd:caed with SMTP id
- h4-20020a2ebc84000000b002b954bdcaedmr6000415ljf.1.1690882661792; 
- Tue, 01 Aug 2023 02:37:41 -0700 (PDT)
-X-Google-Smtp-Source: APBJJlHhkiWwGT7vC2QWuh3taZnSoR+s9GN7DTg0C69McemaKSXMKG8Sq8EFza9kx3EhI8MJ9mYhn5qCueXDQVY29ek=
-X-Received: by 2002:a2e:bc84:0:b0:2b9:54bd:caed with SMTP id
- h4-20020a2ebc84000000b002b954bdcaedmr6000400ljf.1.1690882661387; Tue, 01 Aug
- 2023 02:37:41 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B138110E3D6;
+	Tue,  1 Aug 2023 11:02:57 +0000 (UTC)
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
+ [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A04E010E3D1
+ for <nouveau@lists.freedesktop.org>; Tue,  1 Aug 2023 11:02:51 +0000 (UTC)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1qQn9J-0006fw-FB; Tue, 01 Aug 2023 13:02:45 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+ by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1qQn9I-000MZ8-IA; Tue, 01 Aug 2023 13:02:44 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1qQn9H-009bbY-Tg; Tue, 01 Aug 2023 13:02:43 +0200
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+Date: Tue,  1 Aug 2023 13:02:36 +0200
+Message-Id: <20230801110239.831099-10-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230801110239.831099-1-u.kleine-koenig@pengutronix.de>
+References: <20230801110239.831099-1-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-References: <20230731191557.4179175-1-airlied@gmail.com>
-In-Reply-To: <20230731191557.4179175-1-airlied@gmail.com>
-From: Karol Herbst <kherbst@redhat.com>
-Date: Tue, 1 Aug 2023 11:37:30 +0200
-Message-ID: <CACO55tuV8A_sLmQ=7yBdmsW7WWGoMs1oLmfszUg+RHW4_P8sNQ@mail.gmail.com>
-To: Dave Airlie <airlied@gmail.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Nouveau] [PATCH] drm/nouveau: fixup the uapi header file.
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1738;
+ i=u.kleine-koenig@pengutronix.de; h=from:subject;
+ bh=RhFT9/c+gtNi5UR59dmoLfvCKt6Y4L4WX0uelf0vaF0=;
+ b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBkyOW+StYSbg3XWvyhBK1kYv6cX+g10tQx2Le4e
+ kQYKWJ2XfyJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZMjlvgAKCRCPgPtYfRL+
+ TvMTB/9hClXLQ9nBSjRexGNFe99QI8cxdNCdon5icqhH9FOZ/yNHlexRyJL7tbp72zdIWn7im0g
+ tGD6Mgx1Nq17H5LobbobAUtvKWG7hlrI7JvF5adP7XG222j1dhbbwXWfHgOP6Wwi5ksrpRkUTDz
+ 1NJJE4vCQztkkpqtWCv7AWOrZvI8XBIdEw3eY5IdmHBWjoQWsLOUbFDDUSRUbVOmA4sicbdPEzr
+ 6scsAzmzOFQOGt8Zz1WU6M5CFaTY+6SIp1UeYaLD7Rfohu+lUOph6OP7ExTKSOY7BHHYye+zPoT
+ EEAUpYsGeHxktrIyoRNziz2O0r+2AeI3gML8Np1p6Alb+TZb
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp;
+ fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: nouveau@lists.freedesktop.org
+Subject: [Nouveau] [PATCH v2 09/12] drm/nouveau: Convert to platform remove
+ callback returning void
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,188 +67,53 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, Jyri Sarha <jyri.sarha@iki.fi>,
+ kernel@pengutronix.de, dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Jul 31, 2023 at 9:16=E2=80=AFPM Dave Airlie <airlied@gmail.com> wro=
-te:
->
-> From: Dave Airlie <airlied@redhat.com>
->
-> nouveau > 10 years ago had a plan for new multiplexer inside a multiplexe=
-r
-> API using nvif. It never fully reached fruition, fast forward 10 years,
-> and the new vulkan driver is avoiding libdrm and calling ioctls, and
-> these 3 ioctls, getparam, channel alloc + free don't seem to be things
-> we'd want to use nvif for.
->
-> Undeprecate and put them into the uapi header so we can just copy it
-> into mesa later.
->
-> Signed-off-by: Dave Airlie <airlied@redhat.com>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_abi16.h | 41 ---------------------
->  include/uapi/drm/nouveau_drm.h          | 48 +++++++++++++++++++++++--
->  2 files changed, 45 insertions(+), 44 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.h b/drivers/gpu/drm/no=
-uveau/nouveau_abi16.h
-> index 27eae85f33e6..d5d80d0d9011 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_abi16.h
-> +++ b/drivers/gpu/drm/nouveau/nouveau_abi16.h
-> @@ -43,28 +43,6 @@ int  nouveau_abi16_usif(struct drm_file *, void *data,=
- u32 size);
->  #define NOUVEAU_GEM_DOMAIN_VRAM      (1 << 1)
->  #define NOUVEAU_GEM_DOMAIN_GART      (1 << 2)
->
-> -struct drm_nouveau_channel_alloc {
-> -       uint32_t     fb_ctxdma_handle;
-> -       uint32_t     tt_ctxdma_handle;
-> -
-> -       int          channel;
-> -       uint32_t     pushbuf_domains;
-> -
-> -       /* Notifier memory */
-> -       uint32_t     notifier_handle;
-> -
-> -       /* DRM-enforced subchannel assignments */
-> -       struct {
-> -               uint32_t handle;
-> -               uint32_t grclass;
-> -       } subchan[8];
-> -       uint32_t nr_subchan;
-> -};
-> -
-> -struct drm_nouveau_channel_free {
-> -       int channel;
-> -};
-> -
->  struct drm_nouveau_grobj_alloc {
->         int      channel;
->         uint32_t handle;
-> @@ -83,31 +61,12 @@ struct drm_nouveau_gpuobj_free {
->         uint32_t handle;
->  };
->
-> -#define NOUVEAU_GETPARAM_PCI_VENDOR      3
-> -#define NOUVEAU_GETPARAM_PCI_DEVICE      4
-> -#define NOUVEAU_GETPARAM_BUS_TYPE        5
-> -#define NOUVEAU_GETPARAM_FB_SIZE         8
-> -#define NOUVEAU_GETPARAM_AGP_SIZE        9
-> -#define NOUVEAU_GETPARAM_CHIPSET_ID      11
-> -#define NOUVEAU_GETPARAM_VM_VRAM_BASE    12
-> -#define NOUVEAU_GETPARAM_GRAPH_UNITS     13
-> -#define NOUVEAU_GETPARAM_PTIMER_TIME     14
-> -#define NOUVEAU_GETPARAM_HAS_BO_USAGE    15
-> -#define NOUVEAU_GETPARAM_HAS_PAGEFLIP    16
-> -struct drm_nouveau_getparam {
-> -       uint64_t param;
-> -       uint64_t value;
-> -};
-> -
->  struct drm_nouveau_setparam {
->         uint64_t param;
->         uint64_t value;
->  };
->
-> -#define DRM_IOCTL_NOUVEAU_GETPARAM           DRM_IOWR(DRM_COMMAND_BASE +=
- DRM_NOUVEAU_GETPARAM, struct drm_nouveau_getparam)
->  #define DRM_IOCTL_NOUVEAU_SETPARAM           DRM_IOWR(DRM_COMMAND_BASE +=
- DRM_NOUVEAU_SETPARAM, struct drm_nouveau_setparam)
-> -#define DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC      DRM_IOWR(DRM_COMMAND_BASE +=
- DRM_NOUVEAU_CHANNEL_ALLOC, struct drm_nouveau_channel_alloc)
-> -#define DRM_IOCTL_NOUVEAU_CHANNEL_FREE       DRM_IOW (DRM_COMMAND_BASE +=
- DRM_NOUVEAU_CHANNEL_FREE, struct drm_nouveau_channel_free)
->  #define DRM_IOCTL_NOUVEAU_GROBJ_ALLOC        DRM_IOW (DRM_COMMAND_BASE +=
- DRM_NOUVEAU_GROBJ_ALLOC, struct drm_nouveau_grobj_alloc)
->  #define DRM_IOCTL_NOUVEAU_NOTIFIEROBJ_ALLOC  DRM_IOWR(DRM_COMMAND_BASE +=
- DRM_NOUVEAU_NOTIFIEROBJ_ALLOC, struct drm_nouveau_notifierobj_alloc)
->  #define DRM_IOCTL_NOUVEAU_GPUOBJ_FREE        DRM_IOW (DRM_COMMAND_BASE +=
- DRM_NOUVEAU_GPUOBJ_FREE, struct drm_nouveau_gpuobj_free)
-> diff --git a/include/uapi/drm/nouveau_drm.h b/include/uapi/drm/nouveau_dr=
-m.h
-> index 853a327433d3..1cd97b3d8eda 100644
-> --- a/include/uapi/drm/nouveau_drm.h
-> +++ b/include/uapi/drm/nouveau_drm.h
-> @@ -33,6 +33,44 @@
->  extern "C" {
->  #endif
->
-> +#define NOUVEAU_GETPARAM_PCI_VENDOR      3
-> +#define NOUVEAU_GETPARAM_PCI_DEVICE      4
-> +#define NOUVEAU_GETPARAM_BUS_TYPE        5
-> +#define NOUVEAU_GETPARAM_FB_SIZE         8
-> +#define NOUVEAU_GETPARAM_AGP_SIZE        9
-> +#define NOUVEAU_GETPARAM_CHIPSET_ID      11
-> +#define NOUVEAU_GETPARAM_VM_VRAM_BASE    12
-> +#define NOUVEAU_GETPARAM_GRAPH_UNITS     13
-> +#define NOUVEAU_GETPARAM_PTIMER_TIME     14
-> +#define NOUVEAU_GETPARAM_HAS_BO_USAGE    15
-> +#define NOUVEAU_GETPARAM_HAS_PAGEFLIP    16
-> +struct drm_nouveau_getparam {
-> +       uint64_t param;
-> +       uint64_t value;
-> +};
-> +
-> +struct drm_nouveau_channel_alloc {
-> +       uint32_t     fb_ctxdma_handle;
-> +       uint32_t     tt_ctxdma_handle;
-> +
-> +       int          channel;
-> +       uint32_t     pushbuf_domains;
-> +
-> +       /* Notifier memory */
-> +       uint32_t     notifier_handle;
-> +
-> +       /* DRM-enforced subchannel assignments */
-> +       struct {
-> +               uint32_t handle;
-> +               uint32_t grclass;
-> +       } subchan[8];
-> +       uint32_t nr_subchan;
-> +};
-> +
-> +struct drm_nouveau_channel_free {
-> +       int channel;
-> +};
-> +
->  #define NOUVEAU_GEM_DOMAIN_CPU       (1 << 0)
->  #define NOUVEAU_GEM_DOMAIN_VRAM      (1 << 1)
->  #define NOUVEAU_GEM_DOMAIN_GART      (1 << 2)
-> @@ -126,10 +164,10 @@ struct drm_nouveau_gem_cpu_fini {
->         __u32 handle;
->  };
->
-> -#define DRM_NOUVEAU_GETPARAM           0x00 /* deprecated */
-> +#define DRM_NOUVEAU_GETPARAM           0x00
->  #define DRM_NOUVEAU_SETPARAM           0x01 /* deprecated */
-> -#define DRM_NOUVEAU_CHANNEL_ALLOC      0x02 /* deprecated */
-> -#define DRM_NOUVEAU_CHANNEL_FREE       0x03 /* deprecated */
-> +#define DRM_NOUVEAU_CHANNEL_ALLOC      0x02
-> +#define DRM_NOUVEAU_CHANNEL_FREE       0x03
->  #define DRM_NOUVEAU_GROBJ_ALLOC        0x04 /* deprecated */
->  #define DRM_NOUVEAU_NOTIFIEROBJ_ALLOC  0x05 /* deprecated */
->  #define DRM_NOUVEAU_GPUOBJ_FREE        0x06 /* deprecated */
-> @@ -188,6 +226,10 @@ struct drm_nouveau_svm_bind {
->  #define NOUVEAU_SVM_BIND_TARGET__GPU_VRAM               (1UL << 31)
->
->
-> +#define DRM_IOCTL_NOUVEAU_GETPARAM           DRM_IOWR(DRM_COMMAND_BASE +=
- DRM_NOUVEAU_GETPARAM, struct drm_nouveau_getparam)
-> +#define DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC      DRM_IOWR(DRM_COMMAND_BASE +=
- DRM_NOUVEAU_CHANNEL_ALLOC, struct drm_nouveau_channel_alloc)
-> +#define DRM_IOCTL_NOUVEAU_CHANNEL_FREE       DRM_IOW (DRM_COMMAND_BASE +=
- DRM_NOUVEAU_CHANNEL_FREE, struct drm_nouveau_channel_free)
-> +
->  #define DRM_IOCTL_NOUVEAU_SVM_INIT           DRM_IOWR(DRM_COMMAND_BASE +=
- DRM_NOUVEAU_SVM_INIT, struct drm_nouveau_svm_init)
->  #define DRM_IOCTL_NOUVEAU_SVM_BIND           DRM_IOWR(DRM_COMMAND_BASE +=
- DRM_NOUVEAU_SVM_BIND, struct drm_nouveau_svm_bind)
->
-> --
-> 2.41.0
->
+The .remove() callback for a platform driver returns an int which makes
+many driver authors wrongly assume it's possible to do error handling by
+returning an error code. However the value returned is (mostly) ignored
+and this typically results in resource leaks. To improve here there is a
+quest to make the remove callback return void. In the first step of this
+quest all drivers are converted to .remove_new() which already returns
+void.
 
-Reviewed-by: Karol Herbst <kherbst@redhat.com>
+Trivially convert this driver from always returning zero in the remove
+callback to the void returning variant.
+
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Jyri Sarha <jyri.sarha@iki.fi>
+Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+---
+ drivers/gpu/drm/nouveau/nouveau_platform.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_platform.c b/drivers/gpu/drm/nouveau/nouveau_platform.c
+index 23cd43a7fd19..bf2dc7567ea4 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_platform.c
++++ b/drivers/gpu/drm/nouveau/nouveau_platform.c
+@@ -43,11 +43,10 @@ static int nouveau_platform_probe(struct platform_device *pdev)
+ 	return 0;
+ }
+ 
+-static int nouveau_platform_remove(struct platform_device *pdev)
++static void nouveau_platform_remove(struct platform_device *pdev)
+ {
+ 	struct drm_device *dev = platform_get_drvdata(pdev);
+ 	nouveau_drm_device_remove(dev);
+-	return 0;
+ }
+ 
+ #if IS_ENABLED(CONFIG_OF)
+@@ -93,5 +92,5 @@ struct platform_driver nouveau_platform_driver = {
+ 		.of_match_table = of_match_ptr(nouveau_platform_match),
+ 	},
+ 	.probe = nouveau_platform_probe,
+-	.remove = nouveau_platform_remove,
++	.remove_new = nouveau_platform_remove,
+ };
+-- 
+2.39.2
 
