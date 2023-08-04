@@ -4,100 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35805C0015E
-	for <nouveau@archiver.kernel.org>; Sat, 12 Aug 2023 06:12:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97B1BC04A94
+	for <nouveau@archiver.kernel.org>; Sat, 12 Aug 2023 06:12:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDF0910E1B0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD9CE10E1AF;
 	Sat, 12 Aug 2023 06:12:27 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3578910E138;
- Sat, 12 Aug 2023 00:29:47 +0000 (UTC)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 37C0BQPe013062; Sat, 12 Aug 2023 00:28:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com;
- h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=qYH12/iPlU8v63BB6B/eawPaI6tpN34REP1QbZ/mXAw=;
- b=N3J8OrKymS16F5cxSaXkaN5mzFUX93QnwUNuhPgoV34lm9SZg8yiFt6PS/jk4Ya4tytB
- TmMnW3ZYX5cENUsujWmD01SCQ70uvLqGTroKsoW1c/E+/A2MsPsjWztwpZxWvKScTWY+
- 1zV2DU9ZjYhpZjVZjUbQ5J0BsW7oqRc7+9/53UyO651n3IxDEKgoYlsQW5NfhuCZBIgU
- yRGrh3CMaXR8WwfWsSAV00WtAvb176HkPkru/lLRSe2FV9GfhU2WBQk0ddzZhDXNXz1/
- jEuwSyYIS8cXZbaePcIOX5dgIdvLxG2tIh25jCVxEVChXH7x8+bZjPK8RbDikNlYwIXM zg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sd8yuk36w-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Sat, 12 Aug 2023 00:28:49 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37C0SmSf008800
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Sat, 12 Aug 2023 00:28:48 GMT
-Received: from [10.110.20.185] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 11 Aug
- 2023 17:28:44 -0700
-Message-ID: <75c88834-a931-86d6-91d0-5bdba24bca34@quicinc.com>
-Date: Fri, 11 Aug 2023 17:28:43 -0700
+X-Greylist: delayed 141449 seconds by postgrey-1.36 at gabe;
+ Fri, 04 Aug 2023 12:48:39 UTC
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
+ [85.215.255.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1656410E6E7;
+ Fri,  4 Aug 2023 12:48:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1691153230; cv=none;
+ d=strato.com; s=strato-dkim-0002;
+ b=fPPfv7Wf/FPOe0PdLkcNWUDqB504GCex5b6XdweL4YxnJv+RFTy4CwiRsab2hEgo/L
+ es3BMNAc2VeihGIszGXKR4L7dDPDX9mg7cCIpPki0BjjqFQEuuxdwTT/0uNJWF/KK/rN
+ HuEZ1S98YS+p+rnr8OULRTSi8+/Uymuinq/pp6n5fUGIOfrygdQY4a31VmSD1wkN5cYP
+ KXhwQ/MyqXFkOS2l0LwCXL4gOUcPFyNzBRudAk1NMrY8kgaTAvQBjXRUTS+8hPxt6bmZ
+ ZhHbqf5F81dYQkZ7a8SpjNRl2kD3P2wQDseDluqln8M1Bs8gIPL2KdUIeJZ08k+Q6dz4
+ TABQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1691153230;
+ s=strato-dkim-0002; d=strato.com;
+ h=References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Cc:Date:
+ From:Subject:Sender;
+ bh=9EYPZh3bK4/rfwAilTxfULasm0qSCr/n1iUN2yQEIqw=;
+ b=ODI6w+7xrbc1jEyW1ONt9mGBMp9KjaXKL5ffdUkSVo9d2yQaHChirp30CJu3CBvGUE
+ 9HmBtNCMoFtU8EEKcrx1exVtasMuv3z2Y1w15Ii/X+zVPP9Psv/jeTPe8Br8LeoatpEo
+ n47unxX1OU6e6d8BWzp5LtTuwYfOBgXjHRCpeqtpYnfYg9Vqt5sP96DGLLyTHcAGIUSK
+ Mh0EUo2PAPrs0zdIA2SK0/PHwbHFo8qkOgvbwRJF0SeNWxdQe8LAC8ekGc2HV70ULHuu
+ Dihv6z/GtdjVGxi8KaHjcKnj4fpf/N9NZ99eGgKQVdgybuqKiJEYZwKuTpa85SI7htZh
+ 6aKw==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1691153230;
+ s=strato-dkim-0002; d=kravcenko.com;
+ h=References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Cc:Date:
+ From:Subject:Sender;
+ bh=9EYPZh3bK4/rfwAilTxfULasm0qSCr/n1iUN2yQEIqw=;
+ b=TqP2h85NJh2aEUoJOlpNH4jD4fVeXC9Q6PdsyJuA/BG7vvkQCKJrfA9Hcfy9G7Ay7R
+ /I6a3O5rvESDswGGPi7vz8RSM9d0osvWgtrYqy8oY4Ym7r40oYwH8tJLm4uKqziyIhQp
+ vqk5El8IZEpNO62k/kt7Fsub/ClLMmzMjH9FBHWswEinm6q2RrP3vDDDMN90IpBxhd3d
+ dGwSSrkPrgTwcUbxbLDyK9x4fZGz5Z5Qlc4oslNa/OyvH0ay7RyqHbVKSFUE1AO08Dso
+ fZhb751cJoUjZs+mI0PZIZdCywMeeKUCJH8shC5+gXsA/dQnmFmCl2UzfVJ/6awrbTVt
+ T0ug==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1691153230;
+ s=strato-dkim-0003; d=kravcenko.com;
+ h=References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Cc:Date:
+ From:Subject:Sender;
+ bh=9EYPZh3bK4/rfwAilTxfULasm0qSCr/n1iUN2yQEIqw=;
+ b=HDQWQS8l+d70MoVSgEaj3hlj6tipBNWp3rmySPugmybXsoFbfiuW4pdizNDCMZWTJW
+ RkaT62lHLgj7q6st+NBQ==
+X-RZG-AUTH: ":I2AFc2Cjaf5HiRB0lhnvZ9elhwku56KjVuxY6AZJWRy8C0aEhFGbVIvMVnbXlOZqFTX/PnlW"
+Received: from duane.cam.uni-heidelberg.de
+ by smtp.strato.de (RZmta 49.6.6 AUTH) with ESMTPSA id dd2654z74ClAWsx
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+ (Client did not present a certificate);
+ Fri, 4 Aug 2023 14:47:10 +0200 (CEST)
+Date: Fri, 4 Aug 2023 14:46:54 +0200 (CEST)
+From: Olaf Skibbe <news@kravcenko.com>
+To: Karol Herbst <kherbst@redhat.com>
+In-Reply-To: <CACO55ttcUEUjdVgx4y7pv26VAGeHS5q1wVKWrMw5=o9QLaJLZw@mail.gmail.com>
+Message-ID: <0a5084b7-732b-6658-653e-7ece4c0768c9@kravcenko.com>
+References: <20be6650-5db3-b72a-a7a8-5e817113cff5@kravcenko.com>
+ <c27fb4dd-b2dc-22de-4425-6c7db5f543ba@leemhuis.info>
+ <CACO55ttcUEUjdVgx4y7pv26VAGeHS5q1wVKWrMw5=o9QLaJLZw@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Ruan Jinjie <ruanjinjie@huawei.com>, <Felix.Kuehling@amd.com>,
- <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <Xinhui.Pan@amd.com>, <airlied@gmail.com>, <daniel@ffwll.ch>,
- <harry.wentland@amd.com>, <sunpeng.li@amd.com>,
- <Rodrigo.Siqueira@amd.com>, <maarten.lankhorst@linux.intel.com>,
- <mripard@kernel.org>, <tzimmermann@suse.de>, <inki.dae@samsung.com>,
- <sw0312.kim@samsung.com>, <kyungmin.park@samsung.com>,
- <krzysztof.kozlowski@linaro.org>, <alim.akhtar@samsung.com>,
- <robdclark@gmail.com>, <dmitry.baryshkov@linaro.org>,
- <sean@poorly.run>, <marijn.suijten@somainline.org>,
- <bskeggs@redhat.com>, <kherbst@redhat.com>, <lyude@redhat.com>,
- <kraxel@redhat.com>, <gurchetansingh@chromium.org>,
- <olvaffe@gmail.com>, <paulo.miguel.almeida.rodenas@gmail.com>,
- <wenjing.liu@amd.com>, <haoping.liu@amd.com>, <Charlene.Liu@amd.com>,
- <chiahsuan.chung@amd.com>, <george.shen@amd.com>, <sancchen@amd.com>,
- <tony.tascioglu@amd.com>, <jaehyun.chung@amd.com>,
- <tales.aparecida@gmail.com>, <drv@mailo.com>,
- <aurabindo.pillai@amd.com>, <quic_vpolimer@quicinc.com>,
- <jiasheng@iscas.ac.cn>, <noralf@tronnes.org>,
- <jose.exposito89@gmail.com>, <javierm@redhat.com>,
- <mairacanal@riseup.net>, <davidgow@google.com>,
- <arthurgrillo@riseup.net>, <amd-gfx@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-samsung-soc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <freedreno@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>,
- <virtualization@lists.linux-foundation.org>
-References: <20230809034445.434902-1-ruanjinjie@huawei.com>
- <20230809034445.434902-4-ruanjinjie@huawei.com>
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20230809034445.434902-4-ruanjinjie@huawei.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; format=flowed; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: 8JUTKJ4SUFP-OUokVlxpVpG_EeUxAsA0
-X-Proofpoint-ORIG-GUID: 8JUTKJ4SUFP-OUokVlxpVpG_EeUxAsA0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-08-11_15,2023-08-10_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 spamscore=0
- priorityscore=1501 impostorscore=0 bulkscore=0 mlxscore=0 suspectscore=0
- phishscore=0 lowpriorityscore=0 mlxlogscore=999 adultscore=0 clxscore=1011
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
- definitions=main-2308120001
 X-Mailman-Approved-At: Sat, 12 Aug 2023 06:12:24 +0000
-Subject: Re: [Nouveau] [PATCH -next 3/7] drm/msm: Remove unnecessary NULL
- values
+Subject: Re: [Nouveau] nouveau bug in linux/6.1.38-2
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,21 +86,29 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Cc: Linux kernel regressions list <regressions@lists.linux.dev>,
+ nouveau@lists.freedesktop.org, 1042753@bugs.debian.org,
+ dri-devel@lists.freedesktop.org, Thorsten Leemhuis <regressions@leemhuis.info>,
+ Ben Skeggs <bskeggs@redhat.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+On Fri, 4 Aug 2023 at 14:15, Karol Herbst wrote:
 
+> mind retrying with only fb725beca62d and 62aecf23f3d1 reverted?
 
-On 8/8/2023 8:44 PM, Ruan Jinjie wrote:
-> The NULL initialization of the pointers assigned by kzalloc() first is
-> not necessary, because if the kzalloc() failed, the pointers will be
-> assigned NULL, otherwise it works as usual. so remove it.
-> 
-> Signed-off-by: Ruan Jinjie <ruanjinjie@huawei.com>
-> ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c | 2 +-
->   drivers/gpu/drm/msm/disp/mdp5/mdp5_smp.c | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
-> 
+I will do this later this day (takes some time, it is a slow machine).
 
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> Would be weird if the other two commits are causing it. If that's the 
+> case, it's a bit worrying that reverting either of the those causes 
+> issues, but maybe there is a good reason for it. Anyway, mind figuring 
+> out which of the two you need reverted to fix your issue? Thanks!
+
+I can do this. But if I build two kernels anyway, isn't it faster to 
+build each with only one of the patches applied? Or do you expect the 
+patches to interact (so that the bug would only be present when both are 
+applied)?
+
+Cheers,
+Olaf
