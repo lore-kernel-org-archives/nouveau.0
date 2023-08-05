@@ -4,71 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E0E2C0015E
-	for <nouveau@archiver.kernel.org>; Sat, 12 Aug 2023 06:12:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A574CC04A6A
+	for <nouveau@archiver.kernel.org>; Sat, 12 Aug 2023 06:12:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C90410E1BB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0AEB10E1B4;
 	Sat, 12 Aug 2023 06:12:28 +0000 (UTC)
-Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5851810E428;
- Wed,  9 Aug 2023 12:21:11 +0000 (UTC)
-Received: from mx0.riseup.net (mx0-pn.riseup.net [10.0.1.42])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx1.riseup.net (Postfix) with ESMTPS id 4RLTgC0Y1rzDqP5;
- Wed,  9 Aug 2023 12:21:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
- t=1691583671; bh=tOT1osPBkbssLomMjoThRwJE147WBpwQAMeRtw90GuY=;
- h=Date:Subject:To:References:From:In-Reply-To:From;
- b=S/AL4VGuEf38y8ho9WfSp26FJUJ9VXV0gA8V3Db5onRGJmQlkRZzdpB1XAQLt8A5c
- GkNufgPDhTRkjNX5kzjhOpAtz3ktcSC6yIJqZwBvAp59rUbG00gJOCKZCD4O/OcYYH
- fCiXHKHTMXc28WfLrtiVWiZwg3P+RdVbzskpktug=
-Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx0.riseup.net (Postfix) with ESMTPS id 4RLTg92cT2z9tDM;
- Wed,  9 Aug 2023 12:21:09 +0000 (UTC)
-X-Riseup-User-ID: 1B173ED595774DAA80A1634FEEC2C579ED06EC718622D16C28AC21164FC3FA17
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4RLTfs23FLzJmsF;
- Wed,  9 Aug 2023 12:20:52 +0000 (UTC)
-Message-ID: <28268a1b-090c-237a-79dd-ca58de712a1e@riseup.net>
-Date: Wed, 9 Aug 2023 09:20:50 -0300
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
+ [81.169.146.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2BDF10E0BE;
+ Sat,  5 Aug 2023 09:44:45 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1691228664; cv=none;
+ d=strato.com; s=strato-dkim-0002;
+ b=k65bXpFg59UkmcwFt/FZzawuToBa6mWZK+5iwuRrYcLyHOmcLUJwG+Nxs3uP0AOB/n
+ ZTyfrVwrR1T0Z8xyT44lTxLcpzRqBuWCgQWXv9lMAYRgyL6yd1Yy+izLn7JBnmm1g9Zg
+ 7UJ2VrTRarHxVwYBqErte555diOYRxq18a+goGLih9k6MfVTRnt0AA/OsxQIHCPSOvpQ
+ BIANJ+sc5jYykbYw73HT3A4lF/jHl7cozjCNgktdU3PmFTvOHGwbStJ+f/422IFE/aUF
+ EtgNIxgqS0utbab2pE82S/u44w3OnvZDi9vgAc/kbAVXsOsJNlpJ6Wt4Z5ZiZz710ECm
+ 1w+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1691228664;
+ s=strato-dkim-0002; d=strato.com;
+ h=References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Cc:Date:
+ From:Subject:Sender;
+ bh=GjUjP+DGWGUn/BiSDuX2B6VLpikBHTUWFpI5Xmu0UTA=;
+ b=lGmi7VIe156KxIzW6uKdWZWWY0empbUZyPMOyvlH/rKs0s31Um20hgMQXGkeDJE29H
+ g6kAe2hklgQ3M2k4EUl1zIviMzYLPbfx5SqQ6KvBmnqG3RB53GwSnkkUE1ApTtukF3d5
+ TeJyz2HoMmn2RIUdNagrvhW/Rw+ocyyN91m+gnZLo2ixE4FPGbeQK5NRy7IEfBk2ePTK
+ J65cQlL4vX+h6qkPRzyYwHdqopKbA0Iop0MBdU2l8sqjJGXjx3fr7h7U66EteneejoJ9
+ xlBaUzEzQm1YcQ6qFW/JglETWDWks4bhmAlcz/KhKkNFdDop/rSsYFAbDNgiDfE8g9oJ
+ SJXA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1691228664;
+ s=strato-dkim-0002; d=kravcenko.com;
+ h=References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Cc:Date:
+ From:Subject:Sender;
+ bh=GjUjP+DGWGUn/BiSDuX2B6VLpikBHTUWFpI5Xmu0UTA=;
+ b=L3psWUszTXjU+IowLlmpZHF4CMbvgXBrvdxRy8a6yLNrs46SmP9OsYVoUWILQOwx3J
+ F9kmQ3oc9hI99MthD2//X5ajLTJsQNMyQT8Wkaz/MvddII+IoaugBtumOJKP572ufOjN
+ vlXPvyU8MxYJoouBaf5GGuGqaZUWNeDPm+pAaADzWTLVNXlfoFwfGmKLniYCqyYcn1na
+ KGmKMmnc9ddadHIyi+Svu/Ji8nhwPmLmlwmDb7HKBwrLcPURmeq78V8IqP+o7oSJCRjR
+ lmkb0f+W/h/K5c5HnyGxlmmQw3BRpDXYgU2PKgNKjcLOELYzxz/RofiBN0uZd4/q3z15
+ +dYw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1691228664;
+ s=strato-dkim-0003; d=kravcenko.com;
+ h=References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Cc:Date:
+ From:Subject:Sender;
+ bh=GjUjP+DGWGUn/BiSDuX2B6VLpikBHTUWFpI5Xmu0UTA=;
+ b=TQp4xLYPqY1m2Az0TUmNocmSfPbvHUmVBzGK0RRhNesANRFj2jb7vFMwk1toD9cfFB
+ cTlfGiWfiPTRTC+tGzCw==
+X-RZG-AUTH: ":I2AFc2Cjaf5HiRB0lhnvZ9elhwku56KjVuxY6AZJWRy8C0aEhFGYVtZdsoywGOIVpSHY0o63PckPhiSO1IhQGG0mBjo18W4hBO/Ijw=="
+Received: from p200300c7f704d301468a5bfffe84f964.dip0.t-ipconnect.de
+ by smtp.strato.de (RZmta 49.6.6 AUTH) with ESMTPSA id dd2654z759iNY7J
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+ (Client did not present a certificate);
+ Sat, 5 Aug 2023 11:44:23 +0200 (CEST)
+Date: Sat, 5 Aug 2023 11:44:22 +0200 (CEST)
+From: Olaf Skibbe <news@kravcenko.com>
+To: Karol Herbst <kherbst@redhat.com>
+In-Reply-To: <CACO55tvq=GoPJZxouiTT0tty9A0fEeyS1uGjWLHjfJgq=VA4ug@mail.gmail.com>
+Message-ID: <3d58b37b-b6c2-7c4b-fa6b-3dac859dc20b@kravcenko.com>
+References: <20be6650-5db3-b72a-a7a8-5e817113cff5@kravcenko.com>
+ <c27fb4dd-b2dc-22de-4425-6c7db5f543ba@leemhuis.info>
+ <CACO55ttcUEUjdVgx4y7pv26VAGeHS5q1wVKWrMw5=o9QLaJLZw@mail.gmail.com>
+ <977ac5b0-4ab8-7782-10e1-b4bee6b58030@kravcenko.com>
+ <CACO55tvq=GoPJZxouiTT0tty9A0fEeyS1uGjWLHjfJgq=VA4ug@mail.gmail.com>
+User-Agent: Alpine 2.26 (DEB 649 2022-06-02)
 MIME-Version: 1.0
-Content-Language: en-US
-To: Ruan Jinjie <ruanjinjie@huawei.com>, Felix.Kuehling@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch, harry.wentland@amd.com,
- sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- inki.dae@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com,
- krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com,
- robdclark@gmail.com, quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
- sean@poorly.run, marijn.suijten@somainline.org, bskeggs@redhat.com,
- kherbst@redhat.com, lyude@redhat.com, kraxel@redhat.com,
- gurchetansingh@chromium.org, olvaffe@gmail.com,
- paulo.miguel.almeida.rodenas@gmail.com, wenjing.liu@amd.com,
- haoping.liu@amd.com, Charlene.Liu@amd.com, chiahsuan.chung@amd.com,
- george.shen@amd.com, sancchen@amd.com, tony.tascioglu@amd.com,
- jaehyun.chung@amd.com, tales.aparecida@gmail.com, drv@mailo.com,
- aurabindo.pillai@amd.com, quic_vpolimer@quicinc.com, jiasheng@iscas.ac.cn,
- noralf@tronnes.org, jose.exposito89@gmail.com, javierm@redhat.com,
- mairacanal@riseup.net, davidgow@google.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org
-References: <20230809034445.434902-1-ruanjinjie@huawei.com>
- <20230809034445.434902-7-ruanjinjie@huawei.com>
-From: Arthur Grillo <arthurgrillo@riseup.net>
-In-Reply-To: <20230809034445.434902-7-ruanjinjie@huawei.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; format=flowed; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Sat, 12 Aug 2023 06:12:24 +0000
-Subject: Re: [Nouveau] [PATCH -next 6/7] drm/format-helper: Remove
- unnecessary NULL values
+Subject: Re: [Nouveau] nouveau bug in linux/6.1.38-2
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,155 +87,22 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Cc: Linux kernel regressions list <regressions@lists.linux.dev>,
+ nouveau@lists.freedesktop.org, 1042753@bugs.debian.org,
+ dri-devel@lists.freedesktop.org, Thorsten Leemhuis <regressions@leemhuis.info>,
+ Ben Skeggs <bskeggs@redhat.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+On Sat, 5 Aug 2023 at 01:09, Karol Herbst wrote:
 
+> Mind checking if instead of reverting the entire commit that this is
+> enough to fix it as well?
+>
+> https://gitlab.freedesktop.org/karolherbst/nouveau/-/commit/f99ae069876f7ffeb6368da0381485e8c3adda43.patch
 
-On 09/08/23 00:44, Ruan Jinjie wrote:
-> The NULL initialization of the pointers assigned by
-> kunit_kzalloc() first is not necessary, because if kunit_kzalloc()
-> failed, the pointers will be assigned NULL, otherwise it works
-> as usual. so remove it.
-> 
-> Signed-off-by: Ruan Jinjie <ruanjinjie@huawei.com>
-> ---
->  .../gpu/drm/tests/drm_format_helper_test.c    | 28 +++++++++----------
->  1 file changed, 14 insertions(+), 14 deletions(-)
+This patch does fix the problem as well: Screen works.
 
-Reviewed-by: Arthur Grillo <arthurgrillo@riseup.net>
-
-Best Regards,
-~Arthur Grillo
-
-> 
-> diff --git a/drivers/gpu/drm/tests/drm_format_helper_test.c b/drivers/gpu/drm/tests/drm_format_helper_test.c
-> index 474bb7a1c4ee..1db12d8ed23c 100644
-> --- a/drivers/gpu/drm/tests/drm_format_helper_test.c
-> +++ b/drivers/gpu/drm/tests/drm_format_helper_test.c
-> @@ -452,7 +452,7 @@ static size_t conversion_buf_size(u32 dst_format, unsigned int dst_pitch,
->  
->  static u16 *le16buf_to_cpu(struct kunit *test, const __le16 *buf, size_t buf_size)
->  {
-> -	u16 *dst = NULL;
-> +	u16 *dst;
->  	int n;
->  
->  	dst = kunit_kzalloc(test, sizeof(*dst) * buf_size, GFP_KERNEL);
-> @@ -467,7 +467,7 @@ static u16 *le16buf_to_cpu(struct kunit *test, const __le16 *buf, size_t buf_siz
->  
->  static u32 *le32buf_to_cpu(struct kunit *test, const __le32 *buf, size_t buf_size)
->  {
-> -	u32 *dst = NULL;
-> +	u32 *dst;
->  	int n;
->  
->  	dst = kunit_kzalloc(test, sizeof(*dst) * buf_size, GFP_KERNEL);
-> @@ -482,7 +482,7 @@ static u32 *le32buf_to_cpu(struct kunit *test, const __le32 *buf, size_t buf_siz
->  
->  static __le32 *cpubuf_to_le32(struct kunit *test, const u32 *buf, size_t buf_size)
->  {
-> -	__le32 *dst = NULL;
-> +	__le32 *dst;
->  	int n;
->  
->  	dst = kunit_kzalloc(test, sizeof(*dst) * buf_size, GFP_KERNEL);
-> @@ -509,7 +509,7 @@ static void drm_test_fb_xrgb8888_to_gray8(struct kunit *test)
->  	const struct convert_xrgb8888_case *params = test->param_value;
->  	const struct convert_to_gray8_result *result = &params->gray8_result;
->  	size_t dst_size;
-> -	u8 *buf = NULL;
-> +	u8 *buf;
->  	__le32 *xrgb8888 = NULL;
->  	struct iosys_map dst, src;
->  
-> @@ -539,7 +539,7 @@ static void drm_test_fb_xrgb8888_to_rgb332(struct kunit *test)
->  	const struct convert_xrgb8888_case *params = test->param_value;
->  	const struct convert_to_rgb332_result *result = &params->rgb332_result;
->  	size_t dst_size;
-> -	u8 *buf = NULL;
-> +	u8 *buf;
->  	__le32 *xrgb8888 = NULL;
->  	struct iosys_map dst, src;
->  
-> @@ -569,7 +569,7 @@ static void drm_test_fb_xrgb8888_to_rgb565(struct kunit *test)
->  	const struct convert_xrgb8888_case *params = test->param_value;
->  	const struct convert_to_rgb565_result *result = &params->rgb565_result;
->  	size_t dst_size;
-> -	u16 *buf = NULL;
-> +	u16 *buf;
->  	__le32 *xrgb8888 = NULL;
->  	struct iosys_map dst, src;
->  
-> @@ -605,7 +605,7 @@ static void drm_test_fb_xrgb8888_to_xrgb1555(struct kunit *test)
->  	const struct convert_xrgb8888_case *params = test->param_value;
->  	const struct convert_to_xrgb1555_result *result = &params->xrgb1555_result;
->  	size_t dst_size;
-> -	u16 *buf = NULL;
-> +	u16 *buf;
->  	__le32 *xrgb8888 = NULL;
->  	struct iosys_map dst, src;
->  
-> @@ -636,7 +636,7 @@ static void drm_test_fb_xrgb8888_to_argb1555(struct kunit *test)
->  	const struct convert_xrgb8888_case *params = test->param_value;
->  	const struct convert_to_argb1555_result *result = &params->argb1555_result;
->  	size_t dst_size;
-> -	u16 *buf = NULL;
-> +	u16 *buf;
->  	__le32 *xrgb8888 = NULL;
->  	struct iosys_map dst, src;
->  
-> @@ -667,7 +667,7 @@ static void drm_test_fb_xrgb8888_to_rgba5551(struct kunit *test)
->  	const struct convert_xrgb8888_case *params = test->param_value;
->  	const struct convert_to_rgba5551_result *result = &params->rgba5551_result;
->  	size_t dst_size;
-> -	u16 *buf = NULL;
-> +	u16 *buf;
->  	__le32 *xrgb8888 = NULL;
->  	struct iosys_map dst, src;
->  
-> @@ -698,7 +698,7 @@ static void drm_test_fb_xrgb8888_to_rgb888(struct kunit *test)
->  	const struct convert_xrgb8888_case *params = test->param_value;
->  	const struct convert_to_rgb888_result *result = &params->rgb888_result;
->  	size_t dst_size;
-> -	u8 *buf = NULL;
-> +	u8 *buf;
->  	__le32 *xrgb8888 = NULL;
->  	struct iosys_map dst, src;
->  
-> @@ -732,7 +732,7 @@ static void drm_test_fb_xrgb8888_to_argb8888(struct kunit *test)
->  	const struct convert_xrgb8888_case *params = test->param_value;
->  	const struct convert_to_argb8888_result *result = &params->argb8888_result;
->  	size_t dst_size;
-> -	u32 *buf = NULL;
-> +	u32 *buf;
->  	__le32 *xrgb8888 = NULL;
->  	struct iosys_map dst, src;
->  
-> @@ -763,7 +763,7 @@ static void drm_test_fb_xrgb8888_to_xrgb2101010(struct kunit *test)
->  	const struct convert_xrgb8888_case *params = test->param_value;
->  	const struct convert_to_xrgb2101010_result *result = &params->xrgb2101010_result;
->  	size_t dst_size;
-> -	u32 *buf = NULL;
-> +	u32 *buf;
->  	__le32 *xrgb8888 = NULL;
->  	struct iosys_map dst, src;
->  
-> @@ -794,7 +794,7 @@ static void drm_test_fb_xrgb8888_to_argb2101010(struct kunit *test)
->  	const struct convert_xrgb8888_case *params = test->param_value;
->  	const struct convert_to_argb2101010_result *result = &params->argb2101010_result;
->  	size_t dst_size;
-> -	u32 *buf = NULL;
-> +	u32 *buf;
->  	__le32 *xrgb8888 = NULL;
->  	struct iosys_map dst, src;
->  
-> @@ -825,7 +825,7 @@ static void drm_test_fb_xrgb8888_to_mono(struct kunit *test)
->  	const struct convert_xrgb8888_case *params = test->param_value;
->  	const struct convert_to_mono_result *result = &params->mono_result;
->  	size_t dst_size;
-> -	u8 *buf = NULL;
-> +	u8 *buf;
->  	__le32 *xrgb8888 = NULL;
->  	struct iosys_map dst, src;
->  
+Cheers,
+Olaf
