@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F411C04A6A
-	for <nouveau@archiver.kernel.org>; Mon,  7 Aug 2023 16:33:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F158AC04A6A
+	for <nouveau@archiver.kernel.org>; Mon,  7 Aug 2023 16:33:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A064110E2C1;
-	Mon,  7 Aug 2023 16:33:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E819910E2C9;
+	Mon,  7 Aug 2023 16:33:26 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3865110E2C2
- for <nouveau@lists.freedesktop.org>; Mon,  7 Aug 2023 16:32:57 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4457510E2C2
+ for <nouveau@lists.freedesktop.org>; Mon,  7 Aug 2023 16:33:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1691425975;
+ s=mimecast20190719; t=1691425984;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=FSJyklWcOYLh1Y7SYk3LyH530BHSBws8fX+6+9YjAp4=;
- b=MtEJbI4EjWpaLn7MKtyAxNnVJ4s4FBr1xF62qmo84txGfsogi/aM7QRRqbxM7LECQ99AN1
- RknfW8IOAVPtP9ocXlSCY41Rh8aw7Kmga/2EA1M4/cZmmZUSo/VHdobGrDUpPbiCMgK1db
- LGviCdCqkOfFbisujuobVJ5hWZrds6Q=
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com
- [209.85.167.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=7zFP8XpgqMd1ZR+xUc/aq9ardUQohRgS98TLoMxhZWU=;
+ b=JAjmgy5OSbvlz/45hbCxM6lEmxV+oVMV03enNWsNDHGny/gOy2Pt9d97yFgoxBMVaPKaAN
+ pFK/AD65tlDwSgARMZxPZkMo5TAfyRzTBbkB9dmiBMbA4zUdyz3Ugdirq03ib6Xzo0yoPn
+ 3J7yVl8IigZIP+MujsQzDwITIbuYLMc=
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
+ [209.85.218.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-685-ef_jPjxsMvazBR8rk744jQ-1; Mon, 07 Aug 2023 12:32:52 -0400
-X-MC-Unique: ef_jPjxsMvazBR8rk744jQ-1
-Received: by mail-lf1-f69.google.com with SMTP id
- 2adb3069b0e04-4fe2631f5a6so4479061e87.0
- for <nouveau@lists.freedesktop.org>; Mon, 07 Aug 2023 09:32:52 -0700 (PDT)
+ us-mta-16-FjOpBA3ZOAC5Y2hrV0EMvA-1; Mon, 07 Aug 2023 12:33:03 -0400
+X-MC-Unique: FjOpBA3ZOAC5Y2hrV0EMvA-1
+Received: by mail-ej1-f69.google.com with SMTP id
+ a640c23a62f3a-993831c639aso319650466b.2
+ for <nouveau@lists.freedesktop.org>; Mon, 07 Aug 2023 09:32:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1691425971; x=1692030771;
+ d=1e100.net; s=20221208; t=1691425979; x=1692030779;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=FSJyklWcOYLh1Y7SYk3LyH530BHSBws8fX+6+9YjAp4=;
- b=VyeAMh+DFYFoiLxymAidpzMKxi6Wry1yJuDDQwrdh+f6J39j8ePR5BjCM0mckBm+GB
- TIOoJzxDoyW1sycB0wTeK+mPDGdbBcXiylJoVUKBf+DdD6heaU9VROTkN2QJvHP5as1f
- Bp0pftU6IsPtwIyzAPeCdjfXwxcLaWpsmc1GGmX9FqDzuKzmiGC6m737NNQe+sODuTUH
- yibllhtb5sxALug2oOQurqLVK9aWdyL2H398/TwnvNSvMdSd6u+x+gu57m2f/aO7VYHQ
- FMw5N8shIp5gVfwUsckahTr/54AmK0VOPsyTBtQMxeiYf46WWJ4sj9ftFTY4+6g11Lf6
- tuew==
-X-Gm-Message-State: AOJu0YzWmswEn1qHVJxvcfAob0nGThVfo3q9QPRr9/NFNad5xYSMmX7x
- rzt0KJPnecvkZNVLI6VE5wPzEETrG7Ha2+iwqacg05KNQt0DTm4BmQu3TNQTCul6aIUE8LcaD/C
- V6R1EMUfTb5zWWx2iFkWAXFGS8w==
-X-Received: by 2002:a05:6512:280c:b0:4fb:744e:17db with SMTP id
- cf12-20020a056512280c00b004fb744e17dbmr7711100lfb.1.1691425971022; 
- Mon, 07 Aug 2023 09:32:51 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGFTmw8BlSLd66bLQQphUvYc14k91eYxq6U+Y6ebxxfanOvKoolnZuNuEXZTLdCuMfe0V95eA==
-X-Received: by 2002:a05:6512:280c:b0:4fb:744e:17db with SMTP id
- cf12-20020a056512280c00b004fb744e17dbmr7711084lfb.1.1691425970741; 
- Mon, 07 Aug 2023 09:32:50 -0700 (PDT)
+ bh=7zFP8XpgqMd1ZR+xUc/aq9ardUQohRgS98TLoMxhZWU=;
+ b=hh+GOKAlvsiqONM8k5aaPxFTwYw2dGk1uObnEBiUsQI0usRfx9If/d4EjAPXQNGSpK
+ bJ0v0FHPi+Nna+eFinO+tlgb40v6qY8KvGIUIZ321LWEV/6JFoe6I3JxXLFwXRDrm0LS
+ dV5Ss4YoxWte0rycr93tkb21VBVf4X2dYUyQ1H2s5kZaia58gvBhi6qCowmvBuBU7/CF
+ deeUzx2NlPKWjV36Ak/79KDqH/LDiAhKTm3qcxybSfSyaqOeTXEzPdIApwSRIpeklC3+
+ sfTeCuwb+0jmxsg3oZm562XaQ/E+MQbMUKzYTcedbAGYIiJXDmrvBltvn4Mh2n2fcf8G
+ wpnA==
+X-Gm-Message-State: AOJu0Yyek1/MylcvLujnEfDMKHI6KsAkWxrkkauRwGQuu2+zVV3dK9F5
+ ZqNX1hCbJgP7HdbtKhVM1eXyQlMn6TYF2xJW7ogNO2WgDy1GKYjgmpOBt5u3gOkQDmcsNsycMcj
+ dbwla0jXqQVtpPXmuwOaamIwVPA==
+X-Received: by 2002:a17:906:5dce:b0:99c:aa43:b20c with SMTP id
+ p14-20020a1709065dce00b0099caa43b20cmr6276319ejv.33.1691425978963; 
+ Mon, 07 Aug 2023 09:32:58 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFzwa0036YfN6zZ9wxNCsP6a+2soTFVv0lKi71JnNJfbR+fIxNYwVKxG8hEDVJBGDY4OrEouA==
+X-Received: by 2002:a17:906:5dce:b0:99c:aa43:b20c with SMTP id
+ p14-20020a1709065dce00b0099caa43b20cmr6276305ejv.33.1691425978678; 
+ Mon, 07 Aug 2023 09:32:58 -0700 (PDT)
 Received: from cassiopeiae.. ([2a02:810d:4b3f:de9c:642:1aff:fe31:a19f])
  by smtp.gmail.com with ESMTPSA id
- e26-20020a50ec9a000000b0051873c201a0sm5377862edr.26.2023.08.07.09.32.48
+ bn10-20020a170906c0ca00b00992b0745548sm5435523ejb.152.2023.08.07.09.32.57
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Aug 2023 09:32:50 -0700 (PDT)
+ Mon, 07 Aug 2023 09:32:58 -0700 (PDT)
 From: Danilo Krummrich <dakr@redhat.com>
 To: airlied@gmail.com, daniel@ffwll.ch, bskeggs@redhat.com, kherbst@redhat.com,
  lyude@redhat.com, sfr@canb.auug.org.au
-Date: Mon,  7 Aug 2023 18:32:23 +0200
-Message-ID: <20230807163238.2091-3-dakr@redhat.com>
+Date: Mon,  7 Aug 2023 18:32:25 +0200
+Message-ID: <20230807163238.2091-5-dakr@redhat.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230807163238.2091-1-dakr@redhat.com>
 References: <20230807163238.2091-1-dakr@redhat.com>
@@ -71,8 +71,8 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset="US-ASCII"; x-default=true
-Subject: [Nouveau] [PATCH drm-misc-next 2/5] drm/nouveau: nvkm: vmm: silence
- warning from cast
+Subject: [Nouveau] [PATCH drm-misc-next 4/5] drm/nouveau: uvmm: remove
+ incorrect calls to mas_unlock()
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,40 +89,39 @@ Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Cast the integer to a pointer-sized type first to keep the compiler
-happy.
+Remove incorrect calls to mas_unlock() in the unwind path of
+__nouveau_uvma_region_insert(). The region maple tree uses an external
+lock instead, namely the global uvmm lock.
 
-Fixes: 6b252cf42281 ("drm/nouveau: nvkm/vmm: implement raw ops to manage uvmm")
+Fixes: b88baab82871 ("drm/nouveau: implement new VM_BIND uAPI")
 Reported-by: kernel test robot <lkp@intel.com>
-Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
 Signed-off-by: Danilo Krummrich <dakr@redhat.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c
-index 38b7ced934b1..46cbd4cedb78 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c
-@@ -399,6 +399,8 @@ nvkm_uvmm_mthd_raw_map(struct nvkm_uvmm *uvmm, struct nvif_vmm_raw_v0 *args)
- 		.no_comp = true,
- 	};
- 	struct nvkm_memory *memory;
-+	void *argv = (void *)(uintptr_t)args->argv;
-+	int argc = args->argc;
- 	u64 handle = args->memory;
- 	u8 refd;
- 	int ret;
-@@ -418,8 +420,7 @@ nvkm_uvmm_mthd_raw_map(struct nvkm_uvmm *uvmm, struct nvif_vmm_raw_v0 *args)
- 		return PTR_ERR(memory);
- 	}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+index 2acbac73e57a..91b964ef98b1 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+@@ -279,15 +279,11 @@ __nouveau_uvma_region_insert(struct nouveau_uvmm *uvmm,
+ 	u64 last = addr + range - 1;
+ 	MA_STATE(mas, &uvmm->region_mt, addr, addr);
  
--	ret = nvkm_memory_map(memory, args->offset, vmm, &vma,
--			      (void *)args->argv, args->argc);
-+	ret = nvkm_memory_map(memory, args->offset, vmm, &vma, argv, argc);
+-	if (unlikely(mas_walk(&mas))) {
+-		mas_unlock(&mas);
++	if (unlikely(mas_walk(&mas)))
+ 		return -EEXIST;
+-	}
  
- 	nvkm_memory_unref(&vma.memory);
- 	nvkm_memory_unref(&memory);
+-	if (unlikely(mas.last < last)) {
+-		mas_unlock(&mas);
++	if (unlikely(mas.last < last))
+ 		return -EEXIST;
+-	}
+ 
+ 	mas.index = addr;
+ 	mas.last = last;
 -- 
 2.41.0
 
