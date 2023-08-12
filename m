@@ -4,78 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A8D8C0015E
-	for <nouveau@archiver.kernel.org>; Sat, 12 Aug 2023 06:12:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35805C0015E
+	for <nouveau@archiver.kernel.org>; Sat, 12 Aug 2023 06:12:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AC3B10E1A3;
-	Sat, 12 Aug 2023 06:12:26 +0000 (UTC)
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
- [85.215.255.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E6D010E083;
- Fri,  4 Aug 2023 13:12:03 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1691154707; cv=none;
- d=strato.com; s=strato-dkim-0002;
- b=N8QPmQRPBmmcwZIXzOCbMrg7bVt0ORNpLTpvCJryhj7//qYYWLNxviKvRY0Uc1y7mO
- O+y/HHmLT+Z2nuQh6UmUN7eh+SjSta9Uts5T7xcXrpWnDruWWUthLSmvg8RLpHraxkNL
- wtOTaRAzbGlHRWjRL7sOdU9Ny01ImWiexV6QwMHunONU/1KajmI5jBH7kBmT7dP1ZjoN
- vifOD8siIS/btzIUAs+BHwV0aiZP+s3i16vKDSFM0e6EauqJRsxr6ULN9vvY8mseUZ96
- JjkJeYHrYz0vTKAc1DP2onVkTFqh8cgej0tx5Ret+LwoKDwm/ONEoOYC6y3KveFoBdED
- /WEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1691154707;
- s=strato-dkim-0002; d=strato.com;
- h=References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Cc:Date:
- From:Subject:Sender;
- bh=vIQtdrkQZ/mwLTpAq2v2mFxTNyKyXCo1I0JLGZ9R+q4=;
- b=GtvqbyQ2722eGk83jV8pInbWiusFZOCFOyz6Queu8XBRYEIAHgSJTneHk0DPSkiJvw
- 5cXW7c57ZIQI4/scN3ATvYLfuB3YcqzcuyuLqxIxkXMbeHvmXTesodJfDXxuW5hYYh6u
- BcX5YkQSDBigOA/6a6PFAj89RcS1iUyDsZZ2Qj9qoRN+u4PPOJFgaNhQGoPwUJWR7aUm
- 8zcXXNG1WUAXSsbfgHisHNN0szSLiNv8748MfYYlmO4A/Wsv8sp6ozFM9OvXmeZLLHJH
- Nn6WKZ1IGZojwAg2WXXzeJp8IHJGOmuSQqBLRyBTE4wr2pLGV89+k59u7uFE4z4hGMY0
- 9IOA==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1691154707;
- s=strato-dkim-0002; d=kravcenko.com;
- h=References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Cc:Date:
- From:Subject:Sender;
- bh=vIQtdrkQZ/mwLTpAq2v2mFxTNyKyXCo1I0JLGZ9R+q4=;
- b=rd1gi8x2/bMLWP6RGMuN/ax6souAbf1W7OX7tL1fyNyFYzmwHEy6VPUVCMYp/E4kr3
- bCrQP1Q1maDiaVflqQnVnSaePi4is1lkam1sk/iO7JFzntUK7VtICcCFfw+FHVIchRdL
- 5sehAO0RJI8dBK5awrYdt576txXpSyzhB6YWptkBXTEdXooANyRh189WSh81L7au79xi
- V9yj7S2gXQW4n541pOYB1/HNpnymeP+stmXQTbVIICWDMITS1jNFwPTjzeyocYeF4EUe
- xCriocqeIgby3vj9xfVuKX9GgG+6DFVwmPoEdYttSshJIuvh8p8x9dVU4Lbji6J479+X
- ALoQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1691154707;
- s=strato-dkim-0003; d=kravcenko.com;
- h=References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Cc:Date:
- From:Subject:Sender;
- bh=vIQtdrkQZ/mwLTpAq2v2mFxTNyKyXCo1I0JLGZ9R+q4=;
- b=fhKFqYGec4nOjbDEUSIgjyChh0R4FRKzjV76fRoQcarog/BgHpCEs02Ar9kYSdxg3K
- BNDFlA8wcoXuyV40FFCg==
-X-RZG-AUTH: ":I2AFc2Cjaf5HiRB0lhnvZ9elhwku56KjVuxY6AZJWRy8C0aEhFGbVIvMVnbXlOZqFTX/PnlW"
-Received: from duane.cam.uni-heidelberg.de
- by smtp.strato.de (RZmta 49.6.6 AUTH) with ESMTPSA id dd2654z74DBlWx7
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
- (Client did not present a certificate);
- Fri, 4 Aug 2023 15:11:47 +0200 (CEST)
-Date: Fri, 4 Aug 2023 15:11:46 +0200 (CEST)
-From: Olaf Skibbe <news@kravcenko.com>
-To: Karol Herbst <kherbst@redhat.com>
-In-Reply-To: <CACO55tvu4X3u8K-FGUeN2CBw1BnumRPBNEEqjn+EPzNCCCQYyg@mail.gmail.com>
-Message-ID: <b12e2b00-de18-df9c-eb4a-c6704aad2c97@kravcenko.com>
-References: <20be6650-5db3-b72a-a7a8-5e817113cff5@kravcenko.com>
- <c27fb4dd-b2dc-22de-4425-6c7db5f543ba@leemhuis.info>
- <CACO55ttcUEUjdVgx4y7pv26VAGeHS5q1wVKWrMw5=o9QLaJLZw@mail.gmail.com>
- <0a5084b7-732b-6658-653e-7ece4c0768c9@kravcenko.com>
- <CACO55tvu4X3u8K-FGUeN2CBw1BnumRPBNEEqjn+EPzNCCCQYyg@mail.gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDF0910E1B0;
+	Sat, 12 Aug 2023 06:12:27 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3578910E138;
+ Sat, 12 Aug 2023 00:29:47 +0000 (UTC)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 37C0BQPe013062; Sat, 12 Aug 2023 00:28:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com;
+ h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=qYH12/iPlU8v63BB6B/eawPaI6tpN34REP1QbZ/mXAw=;
+ b=N3J8OrKymS16F5cxSaXkaN5mzFUX93QnwUNuhPgoV34lm9SZg8yiFt6PS/jk4Ya4tytB
+ TmMnW3ZYX5cENUsujWmD01SCQ70uvLqGTroKsoW1c/E+/A2MsPsjWztwpZxWvKScTWY+
+ 1zV2DU9ZjYhpZjVZjUbQ5J0BsW7oqRc7+9/53UyO651n3IxDEKgoYlsQW5NfhuCZBIgU
+ yRGrh3CMaXR8WwfWsSAV00WtAvb176HkPkru/lLRSe2FV9GfhU2WBQk0ddzZhDXNXz1/
+ jEuwSyYIS8cXZbaePcIOX5dgIdvLxG2tIh25jCVxEVChXH7x8+bZjPK8RbDikNlYwIXM zg== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sd8yuk36w-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Sat, 12 Aug 2023 00:28:49 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37C0SmSf008800
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Sat, 12 Aug 2023 00:28:48 GMT
+Received: from [10.110.20.185] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 11 Aug
+ 2023 17:28:44 -0700
+Message-ID: <75c88834-a931-86d6-91d0-5bdba24bca34@quicinc.com>
+Date: Fri, 11 Aug 2023 17:28:43 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; CHARSET=US-ASCII; format=flowed
-Content-ID: <f4af53b7-f8ea-1825-731c-cb2bd0e71968@cam.uni-heidelberg.de>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: Ruan Jinjie <ruanjinjie@huawei.com>, <Felix.Kuehling@amd.com>,
+ <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
+ <Xinhui.Pan@amd.com>, <airlied@gmail.com>, <daniel@ffwll.ch>,
+ <harry.wentland@amd.com>, <sunpeng.li@amd.com>,
+ <Rodrigo.Siqueira@amd.com>, <maarten.lankhorst@linux.intel.com>,
+ <mripard@kernel.org>, <tzimmermann@suse.de>, <inki.dae@samsung.com>,
+ <sw0312.kim@samsung.com>, <kyungmin.park@samsung.com>,
+ <krzysztof.kozlowski@linaro.org>, <alim.akhtar@samsung.com>,
+ <robdclark@gmail.com>, <dmitry.baryshkov@linaro.org>,
+ <sean@poorly.run>, <marijn.suijten@somainline.org>,
+ <bskeggs@redhat.com>, <kherbst@redhat.com>, <lyude@redhat.com>,
+ <kraxel@redhat.com>, <gurchetansingh@chromium.org>,
+ <olvaffe@gmail.com>, <paulo.miguel.almeida.rodenas@gmail.com>,
+ <wenjing.liu@amd.com>, <haoping.liu@amd.com>, <Charlene.Liu@amd.com>,
+ <chiahsuan.chung@amd.com>, <george.shen@amd.com>, <sancchen@amd.com>,
+ <tony.tascioglu@amd.com>, <jaehyun.chung@amd.com>,
+ <tales.aparecida@gmail.com>, <drv@mailo.com>,
+ <aurabindo.pillai@amd.com>, <quic_vpolimer@quicinc.com>,
+ <jiasheng@iscas.ac.cn>, <noralf@tronnes.org>,
+ <jose.exposito89@gmail.com>, <javierm@redhat.com>,
+ <mairacanal@riseup.net>, <davidgow@google.com>,
+ <arthurgrillo@riseup.net>, <amd-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-samsung-soc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <freedreno@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>,
+ <virtualization@lists.linux-foundation.org>
+References: <20230809034445.434902-1-ruanjinjie@huawei.com>
+ <20230809034445.434902-4-ruanjinjie@huawei.com>
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <20230809034445.434902-4-ruanjinjie@huawei.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-GUID: 8JUTKJ4SUFP-OUokVlxpVpG_EeUxAsA0
+X-Proofpoint-ORIG-GUID: 8JUTKJ4SUFP-OUokVlxpVpG_EeUxAsA0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-08-11_15,2023-08-10_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0
+ priorityscore=1501 impostorscore=0 bulkscore=0 mlxscore=0 suspectscore=0
+ phishscore=0 lowpriorityscore=0 mlxlogscore=999 adultscore=0 clxscore=1011
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2308120001
 X-Mailman-Approved-At: Sat, 12 Aug 2023 06:12:24 +0000
-Subject: Re: [Nouveau] nouveau bug in linux/6.1.38-2
+Subject: Re: [Nouveau] [PATCH -next 3/7] drm/msm: Remove unnecessary NULL
+ values
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,28 +109,21 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux kernel regressions list <regressions@lists.linux.dev>,
- nouveau@lists.freedesktop.org, 1042753@bugs.debian.org,
- dri-devel@lists.freedesktop.org, Thorsten Leemhuis <regressions@leemhuis.info>,
- Ben Skeggs <bskeggs@redhat.com>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, 4 Aug 2023 at 14:51, Karol Herbst wrote:
 
-> How are you building the kernel? Because normally from git reverting 
-> one of those shouldn't take long, because it doesn't recompile the 
-> entire kernel. But yeah, you can potentially just revert one of one 
-> for now and it should be fine.
 
-I am using the `test-patches` script described here: 
-https://kernel-team.pages.debian.net/kernel-handbook/ch-common-tasks.html#id-1.6.6.4 
-This worked for my limited knowledge (first kernel I ever compiled).
+On 8/8/2023 8:44 PM, Ruan Jinjie wrote:
+> The NULL initialization of the pointers assigned by kzalloc() first is
+> not necessary, because if the kzalloc() failed, the pointers will be
+> assigned NULL, otherwise it works as usual. so remove it.
+> 
+> Signed-off-by: Ruan Jinjie <ruanjinjie@huawei.com>
+> ---
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c | 2 +-
+>   drivers/gpu/drm/msm/disp/mdp5/mdp5_smp.c | 2 +-
+>   2 files changed, 2 insertions(+), 2 deletions(-)
+> 
 
-(On the occasion a maybe silly question: am I right assuming that the 
-kernel has to be build on the machine we want to reproduce the bug on? 
-Otherwise it could use much faster hardware (running also bookworm).)
-
-Cheers,
-Olaf
+Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
