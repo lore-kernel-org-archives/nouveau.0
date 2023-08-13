@@ -4,41 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 695BBEB64DD
-	for <nouveau@archiver.kernel.org>; Sun, 13 Aug 2023 21:40:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B08C0EB64DD
+	for <nouveau@archiver.kernel.org>; Sun, 13 Aug 2023 21:43:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20F0F10E0F6;
-	Sun, 13 Aug 2023 21:40:03 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C736010E0F6
- for <nouveau@lists.freedesktop.org>; Sun, 13 Aug 2023 21:40:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 467CA10E106;
+	Sun, 13 Aug 2023 21:43:53 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F285A10E106
+ for <nouveau@lists.freedesktop.org>; Sun, 13 Aug 2023 21:43:51 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 40764622CB;
- Sun, 13 Aug 2023 21:40:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 517CCC433C8;
- Sun, 13 Aug 2023 21:39:59 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 4C50361A2D;
+ Sun, 13 Aug 2023 21:43:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FF8DC433C7;
+ Sun, 13 Aug 2023 21:43:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1691962799;
+ s=korg; t=1691963030;
  bh=hOabV+KorJK9yJKufh1IhqTLOa1UUsSKa8xLx0V0TvE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=RyYFlOS4lhB1QNoRHOTZS4R5TQhtXWpLBzaaUk+w4K3gTY+ieIcvoQuX63v176aVR
- I7rlzmpSy9Mi00TaJJJ0U5653UjrqM2oTUOR+ibrXlOy50rwTqeLUeyCb0SG/Xq/CI
- 5Lf+Td9o3h21vAnmAuGxVnXFBeQK2YtgG9uZ/VRE=
+ b=vnoSqcCJd9xAfBLyrKnsobJfBr322FIo+bIqPf85dRkGxJizOBo0FRjs6dUTNEhNO
+ LIkXRW3YnfoXHi7xWzCeL+6IFXZwBUxxOfRQYK7bbedpawbMPACrYobftnUKJWITAE
+ t3Y8H1INTBm6oTVuU+tCEsTqpZPPrY6LQiPKevU4=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
-Date: Sun, 13 Aug 2023 23:19:13 +0200
-Message-ID: <20230813211708.530365128@linuxfoundation.org>
+Date: Sun, 13 Aug 2023 23:18:59 +0200
+Message-ID: <20230813211711.029282242@linuxfoundation.org>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230813211708.149630011@linuxfoundation.org>
-References: <20230813211708.149630011@linuxfoundation.org>
+In-Reply-To: <20230813211710.787645394@linuxfoundation.org>
+References: <20230813211710.787645394@linuxfoundation.org>
 User-Agent: quilt/0.67
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH 5.10 12/68] drm/nouveau/gr: enable memory loads on
+Subject: [Nouveau] [PATCH 5.15 08/89] drm/nouveau/gr: enable memory loads on
  helper invocation on all channels
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
