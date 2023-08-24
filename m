@@ -4,115 +4,115 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17C44C3DA66
-	for <nouveau@archiver.kernel.org>; Fri, 25 Aug 2023 13:18:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42968C83F10
+	for <nouveau@archiver.kernel.org>; Sun, 27 Aug 2023 08:16:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0466B10E693;
-	Fri, 25 Aug 2023 13:18:23 +0000 (UTC)
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2061d.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe59::61d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8183510E687;
- Fri, 25 Aug 2023 13:18:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3BF510E1A5;
+	Sun, 27 Aug 2023 08:16:43 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2047.outbound.protection.outlook.com [40.107.93.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E1FF10E53A;
+ Thu, 24 Aug 2023 12:14:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MybZH0VOKyI5sjmVBkinzdWWvW8WA/OCB0bE6b9M/DVW7V0wLbwxFjOs6yny7FJ9irZrEy11/WqkgKTIrmG+sQ6jYEmOKa8ct3DYWd7ijSa+aAzrauvW6GleYLc96ZJfuLQX1VEpC6TqcWScepwIAiVR/+b5LgHfPY4LcGs77ielbe0jURGFxaf1KT5GSqoJ8w/WG1WoNsB5dxWSMO9urQdjhEA5A4zgfLEjdBPv8ivv7xU4Nar5HPTRHoXxyjVOmoLSH1hkAWfAjJ5S9RK/b0cQoPRMFlAM/Xzu6QoCuies09NoqLFUbqX9p7xz8pIfWLSc3fmLqXafUu9YBiLufg==
+ b=Oqm1nEZNUaWXQ7ic+3+TUqB5pwwKbJzDpxL6dzq7HOQWkCUZmbVYMNHN5MLrf950Bzz8UvT86cigPleL4csro9ei5t5+Fd21RKkuub/ETYR/sYdIWaHtqbFdFlMlFczBlu64NqFrfYcywlApbADMqNv16b+ILtn1AVcAdkYYDcmTUGpj4k9PKrT3ekw+nENgZKFGy3Rnvql4uiP6Rudg4kjoYDqXNFQk/N1pkdC82OfIbQgYI6RLLyfUTvPteq6UtfJ8h2xxusZtbVz3wEMXQhMCi04THIh8pVeaqOaEQKVM6nW8cnj7rRM0a4lQ2fRBT5GB6O6gLU6o53Yo28p8Fw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1jfqGI/NCKAHGgCCjvVGBsLmnm2CyACi96juBAixLPg=;
- b=i1c2bysrwQhSm6cqXHJKb7V6hO5z6VaGc0eDif3TdlBp5Y6vOTTaqNtQk2RlL0lbc7juTmfLcc9UNg9nnYNjAg2auGnVANEGpC3dxp0LR7jRd5HvceFNjGuwEvIXD0QZnjCacNyXihqOhZGZgUbOZZNbgorjgWdBA7Zzu0eRAQyOwo4Ab1uF0NVOMI39Rp0nW/aRpccU4qgI7USIkiS+Z0xw/fqofgr5O4Ol+0YNFw2LwP0/VsaHM1F+uc0cO4Byzbe07vthYlJ+BHALnFlAxZGDSG7YOo/EdYNI+f+ZCwLQ0EDWyvWKsbuJXdPpTV1YOIqxU+z7ebsTS11MSJFUzA==
+ bh=3Zo+CsY04YIaWE3Q+dAIa64vt+otS7yVI6VMJBMcN84=;
+ b=mPHdRJmxmtcRNCTasU5mmAAoeaL0l5cJkkOM5cdG4cJvoZ9bJ97lNFRJbuWjWwZ6phOA6SCn1HDHwHDq+f9ky5H51DPSx5IDidXF8SVUtc5Fx+3amF5QA9IrRZxM3ABRjpOkRJbtQqTRfdgh+64R1RvO+EP5umhOWoXYarYtNVnPvatX5P7R8K9KQQfbpp7oWtvNXZU4GLihfRudb6gBvHtogLym4yD1HXbSJwKOoHuwCr8OFcLNLUZvQfJ/QewGc06SzMAqpMniXjF/gxg0FeCnpoTKN8X212YZjJiKsR4whZxCWNp8Wo5VeNhxi7CEDiINEDMgiWTZPbqLUTUyYA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1jfqGI/NCKAHGgCCjvVGBsLmnm2CyACi96juBAixLPg=;
- b=0lXiIFhQeKJmVrDSVWkajwHG3BikWHhQojtBwOIg/fqecrFC3XfqL47Mob3iadWsTiSGxU47UqF3dEb1zrGNQBFT8CxPY+6meVjuXxHoD3zJB1dAw5ePaDKI7vzsq3EPDtwfCl5EkmN6sam3nPyGprTwKi4599tNGzgexQ5v4cE=
-Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
- by CH3PR12MB7499.namprd12.prod.outlook.com (2603:10b6:610:142::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.29; Fri, 25 Aug
- 2023 13:18:17 +0000
-Received: from BL1PR12MB5144.namprd12.prod.outlook.com
- ([fe80::bcfa:7757:68bd:f905]) by BL1PR12MB5144.namprd12.prod.outlook.com
- ([fe80::bcfa:7757:68bd:f905%5]) with mapi id 15.20.6699.028; Fri, 25 Aug 2023
- 13:18:16 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: Sui Jingfeng <sui.jingfeng@linux.dev>, Bjorn Helgaas <bhelgaas@google.com>
-Thread-Topic: [PATCH 0/5] Add the pci_get_base_class() helper and use it
-Thread-Index: AQHZ11ReS6Xid6VNaEKMobHHYXT4ka/6/l7w
-Date: Fri, 25 Aug 2023 13:18:16 +0000
-Message-ID: <BL1PR12MB514444DF0C2E304A46DE0F4BF7E3A@BL1PR12MB5144.namprd12.prod.outlook.com>
-References: <20230825062714.6325-1-sui.jingfeng@linux.dev>
-In-Reply-To: <20230825062714.6325-1-sui.jingfeng@linux.dev>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ActionId=7d9e38cd-c401-4f88-b4eb-d41d75060a99;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=0;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=true;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public-AIP
- 2.0;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2023-08-25T13:17:44Z;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
+ bh=3Zo+CsY04YIaWE3Q+dAIa64vt+otS7yVI6VMJBMcN84=;
+ b=q9bOpr8i4nfTJjN940s5Rt40CuUE6H61zkjGYm8S3VEkx+2k7rcRAu4IcG7cKVhzwKQ7H5WQU1C9/7LsXMIG3hfIF0J1hVNMncprOjOwQnD4UeyDY62InVr/x14oesHF2yknKIE19VG+qLBTr9yRqJJzc986BxgiMYoFR0cZ0o4=
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL1PR12MB5144:EE_|CH3PR12MB7499:EE_
-x-ms-office365-filtering-correlation-id: 6672d42b-a1b4-40aa-5e71-08dba56dbe0d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: CPc8iPhpAJ+LrRVonZFZT9asQKX0IxfbGpo9SWBfgBukgLMvnYKREAlT5PvQlFY/2jAegVefBF0K5bLEVKHaP1CLO1ZJOW0LT+fvGlgsOIr5knwUHhJqq88kw8T/gm9YBOHNmP0PLn+pWnutkzfMgDWPUYQYRWvv3A/Hetwa7wIb8KOXemh7WomxQLjRFyNpsltFpd9Y1ORGtOJegsMXx4a1RcuRpbGQBkuV7DW3/iQpOgtpIK8Hu3VrCG8u6516otO9iq/Nal3frcvnW28xK/ovpvajTbK9SeoUcHE79RWg8DBW8TB6GiSC2fiJncF1RB979vrQz/gELkPMsK7jpy3S3GsHcLGr3j5cG7RAlxIVZpDONRyWZru4DnvuJuSLyS25/kZQniccNCe5qCpVnVwVT1VWmyBaa7GK9an1Kn+rJLi8w/iapk41nBcvSRaFKBAcapxlvBV5GICvg0QRg2ud6BS9QhDwF+YCRY9rLKFD6AUnLcszLIjKbtkTvcpg/pU8INwFL+4Ot4crOmHuqUpqFyRCDODFicDjB/FymM0Xjf7wGTps7YMLm0Vvtadqa8EY0Tpmq5rD0qq1xpRpI6iBeLthihdiQqRAwYAuI8s6AcCM0kNYKB8YB5zg7rIz
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(396003)(346002)(366004)(39860400002)(376002)(1800799009)(451199024)(186009)(83380400001)(9686003)(478600001)(26005)(55016003)(5660300002)(52536014)(2906002)(8676002)(8936002)(4326008)(38070700005)(38100700002)(122000001)(66556008)(66946007)(76116006)(66476007)(86362001)(71200400001)(41300700001)(54906003)(64756008)(53546011)(33656002)(110136005)(7696005)(66446008)(316002)(6506007);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?FG1S/nkUFoGcXqkXyLbjM8ER3OMvL3krfxPS5bFo9COWvvlUWU41hS4g+WqJ?=
- =?us-ascii?Q?iKEqcmwGZZiWoFgH34H6rhhBG6lHiF9RnRGkurhhqS3QqvC7C+jKVMSA3CmN?=
- =?us-ascii?Q?rFGPk0/40yXlTKDsxMnXTZieYbJ8azuk0opWE2Gfe7cwr4DuaV1Rd39drAZl?=
- =?us-ascii?Q?QgBx1BVcoizSP04VSRdFUqY55v0MlUEqmfrgJ9LMXoOPei2OsX7f7SiN3Som?=
- =?us-ascii?Q?DAviocqvGaNrd2zJjbK8GT5rYAI+k6RMYM6AUtZvJT+fjyfXgHcLA4VKdD0C?=
- =?us-ascii?Q?AyODrNbjZsJrqhZI6Kv1Ghuq61Q9t1EFAXl0PmdLcT/rw5ghyGk7zqgMdrv1?=
- =?us-ascii?Q?yTs2YQ6Pxy7N37zBuZNSpDXLpQzOg6jmzZt6twGJwBIC8BP3bmghiD4nvZeb?=
- =?us-ascii?Q?8VQgMKBG+Mi59M5mQH5nGFM7d4YTlZPDBRVQ8WOkxGWlcHE85LolnffYX7TS?=
- =?us-ascii?Q?n5qv/7GEJN+yuZH8HxwJhLi0BOrUZb7bkylModTqiCfTT4/NhXzEO5spDTcB?=
- =?us-ascii?Q?mkdvluemPjvunI8dVjlVvYbOyfvlaycs+qBxBrchM8ppkpp0stEPTrww6p7F?=
- =?us-ascii?Q?OMl+hlmnTBQb2gb8HylGXkvHuArGWClCEBE+P+wKYn67llC5ug5IxIZ5fVE8?=
- =?us-ascii?Q?YEouf9npCoKznfkIG3uh8qMKqnmdZfCepU6W4p0qtozhH2XiqVfU6h7Cyc8g?=
- =?us-ascii?Q?AXF0F6h/U3IcJC6VBqnsJrEuBkCv/0iC8GKokPEvuOZgX66v8Zjgyma0dCRQ?=
- =?us-ascii?Q?LbmWswvSuZ10cbIn0DRigH2MxQR4SXPUTq6QhFg2vlfw77Z8cwDg9T/fwRbc?=
- =?us-ascii?Q?YOtgQIlEHev5FstkxAGnR5fm0e9VMeP2/6Khgrztney2F/04E7TVnnMk2+hE?=
- =?us-ascii?Q?FLEkFaXsbXww9Ez/sr+HWSa+DkC/mKj7+10qR6V4/+LcAi50PNzoWYvD32Fl?=
- =?us-ascii?Q?4sJrjz8MS8oMM+QL8OaesNydS3dTA+rI8fqS9ArnbiJ5EjvJdMv3TuFxQsVb?=
- =?us-ascii?Q?Hp9TAjllO8JbcHYJkHk0FbbFPtULwuaa53jPJb2EqHQOy8hPRBUHVW3yLeTr?=
- =?us-ascii?Q?2+6bDQyxcvYEPfmMiTbecqz8TpKRhaWNp6ZwjlbhH2l7gBOxqpCEp1rmv0an?=
- =?us-ascii?Q?Z74a0PIaYM+C/O+wgSXbc2Go4rn2yB5P1jyth4Np1caiv5t/M7jZoIKLGYyI?=
- =?us-ascii?Q?M+kDRPQkV3svKwvi/ZKLKrKjfcVx62vr6ubdA6vu5/KWc7Bs+UE4iuSdPaoO?=
- =?us-ascii?Q?UGCQFi0IsMbhza1Go/mGXTRmOJfiBr3v+e87LsoaiC8eNcZ4fGqieThkV7Gw?=
- =?us-ascii?Q?X7w3MT5DeDaefqLi3NCOGDok3vruWUSBTRunO9CjqD6xyUEgy9A42O5WNiP8?=
- =?us-ascii?Q?mmGdi+DfdesL4qcWA1SUb8pBY1zqXOAk+enjIrnIA1sJImqdPJaYqD9XUAmy?=
- =?us-ascii?Q?qAagyBcSVoCNapCAeVPLTJCAk9ARrEkWtqzEUCv1JCW/0jMCv+G6bEUgA7x/?=
- =?us-ascii?Q?gLjspB9wDYZN+dscgJ4SO8YsnakQ5iAmm5YBDVO3Y/uZXH5CaT6DcWcQ1Kad?=
- =?us-ascii?Q?KBsKlHeMPzCW5W8PeIA=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from DM4PR12MB6280.namprd12.prod.outlook.com (2603:10b6:8:a2::11) by
+ PH8PR12MB8608.namprd12.prod.outlook.com (2603:10b6:510:1bc::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6699.27; Thu, 24 Aug 2023 12:14:32 +0000
+Received: from DM4PR12MB6280.namprd12.prod.outlook.com
+ ([fe80::4196:c9c9:dfe9:8079]) by DM4PR12MB6280.namprd12.prod.outlook.com
+ ([fe80::4196:c9c9:dfe9:8079%3]) with mapi id 15.20.6699.027; Thu, 24 Aug 2023
+ 12:14:32 +0000
+Message-ID: <a3c4c781-2f74-4b09-9db4-7b947897ef5a@amd.com>
+Date: Thu, 24 Aug 2023 08:14:26 -0400
+User-Agent: Mozilla Thunderbird
+To: Lee Jones <lee@kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>
+References: <20230824073710.2677348-1-lee@kernel.org>
+ <87wmxk4xt3.fsf@intel.com> <20230824120735.GS1380343@google.com>
+Content-Language: en-US
+From: Hamza Mahfooz <hamza.mahfooz@amd.com>
+In-Reply-To: <20230824120735.GS1380343@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YQZPR01CA0176.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:8b::25) To DM4PR12MB6280.namprd12.prod.outlook.com
+ (2603:10b6:8:a2::11)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB6280:EE_|PH8PR12MB8608:EE_
+X-MS-Office365-Filtering-Correlation-Id: f238e3d8-548c-4cd4-3d73-08dba49bac4e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: OgDGeuFeN9MW1Xj7fkLtmJWsYhvIQYoI8kb+ljMkqrwB+q2IHN6gzcYnR1qPrKxSm/9JvJUYl05TDDo1/FyBoVLI1hbuvak1vcE6IKJYHdQeufSNUBBWNjHIdZ6YA4gwtopTBjapWbkTrxt20No0CQcrjKVoNs7p2ubyqUE48i9uEzKI6ooTGqPnvgiOH/iUjksZwfFPdxIH7b459eJ1XJlPwOXAv/avzeTm/6HyIL4ZgjXXYfhUcfYj/sRia8ubXRDpSxUcW3KcBvGdnAqLWew6qSbVoa1LYrAhs3aJlcHupiIuiKucYWg/OQOgoMO3LRchLvW4aV67isFI4oOZAFM7EP7qzpeofP+I0phDzLVOUdl2KgODCdyX3+Cj1WblUl5EMuQuIOxmHPZ5Ku2mLImWViJuEX8aVluFz0Op+5r97PuBRJ7RqnxR2osp9Jn3gEoAjtRYq+yILUjxGVwF2SmjG5Es5M8JMtwT1uiL10W6b/3pdb9A75aV55+qPwv7m5E62VE1Dvqkwr5//eEeqlOCYCYY5OSFNc6Vcn0ktnJQ17+ThleMKGRtYubNJbxkurl1CRD1D5MKKdueCUUH8eaArNDjKu4eyARFJhhzY69LitY1CsQn7SFjHa/BMW1J4Mnfyg6vU45Ls6CtWCrqpw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB6280.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(396003)(366004)(346002)(39860400002)(136003)(1800799009)(186009)(451199024)(2616005)(4326008)(8676002)(8936002)(83380400001)(5660300002)(36756003)(7416002)(44832011)(26005)(6666004)(38100700002)(66946007)(66556008)(54906003)(66476007)(316002)(110136005)(478600001)(966005)(31686004)(41300700001)(2906002)(6512007)(6486002)(53546011)(31696002)(86362001)(6506007)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VVRVRXB5NnU1WTV1TkU3RS85d041OEp3dHorR0JTNEttSktiQWtOd2hjYXdN?=
+ =?utf-8?B?ajU1U3A5RE1waG8vS2tRUnBtVTdkWFVnNjRGSUVLSURsSjFzU05wMUtaNGw1?=
+ =?utf-8?B?N3pZQ0c1ZElwcGxVeURTYk8xNWVlbm04Mm5YYkZ3OFhSKzZkWDVIUHp6aGtv?=
+ =?utf-8?B?eFZVS29LNWl4a1BSU0haenlXVVd2ZFd1V3dGcnNPUmhvdklKNVpCbTJVK1c0?=
+ =?utf-8?B?UDJEZWRaS1JVNzdMMVM5K0lyMjlKZEVTSTJuYkthWmlDQTMvSFI2cWYvb29q?=
+ =?utf-8?B?T3BGOE16ZjBPZHBCR1FSbzJkd2hBTWhsUVhIMW5pelk5eVRWbzY2ZTY1Y04y?=
+ =?utf-8?B?S0Z4YTlGVlZqdU9LdVRGU0NUNXhLSzBrdnJoZzhxUHJVT1JtUWp4bkdyNkpY?=
+ =?utf-8?B?STBnOFJVSkp6blBrVFg2Z0NqNVZielhPbC9KK1FVbkprMXdCVS9ER1lzV2ZJ?=
+ =?utf-8?B?WnNjdEM2N1dHNGYwYWQ0cmJQSTJHMDZBSUg4R1YxK1Q4SEs3UFlNeTJnbzJD?=
+ =?utf-8?B?bFppTjNMQjJGYXhpbHhaNWJ4T01qaUxjSDIvenhmcmxtdkc5MC9tcUNTSURo?=
+ =?utf-8?B?V3lsQXRxQzZyTkxGVWh3RnhoanN4SjcweFdhZ01OeEFhL2dEWnp5K1lLanhW?=
+ =?utf-8?B?Wk5QSUhud3NVZUVtRzJHdGpmUUdNSmtPODJLZmFweCtzOTVwZnJsci9jbk1T?=
+ =?utf-8?B?NG9rdmtNazRsbVMxWkhEY0VRbzZ3N1cvc2Vib2EyL2Q0VnBubHY1N2U2RExu?=
+ =?utf-8?B?OXNWdUR1Z04reFNQZjJsWEtnSmJWUGJ4RHF5OTBaSjZqTmp1ZE82UnB6TkE3?=
+ =?utf-8?B?T3lldW5ORithYVJ5V2pSVm9rWTRkWDdIR2ZYU1Y3YVo3ZkQ2U2xFMUJ6VWsz?=
+ =?utf-8?B?cVMvcHN5ZXNtMGp4THp1d2hlc0V0T21pamdIU28wNlhUZDZHRmt3UmRwRTZ4?=
+ =?utf-8?B?cWpFOTRyQi9SS1FpN2N3VW42Ri9kWGV5QjJnWTYzUUZmUXpibFBsOHpDODQ3?=
+ =?utf-8?B?YnN1WnhQeXZYK1UzM3c4UVFQQXRxY21oVnQzNzF6cXFrWCtwQUQranp3QUlW?=
+ =?utf-8?B?WlovOVJpd056QXdIZytkNlRhOTFjWWcreitwMGNBRXBBMFdybXFFSVZ0K1dj?=
+ =?utf-8?B?dDNlQ1pDUEZaZGVkS0xGZWhxRDIxTzhmV2ppbURqQTVKbSsvT1hneE95dXpY?=
+ =?utf-8?B?YmVuVFRpOTVxVk5YWEpvQnZuSVR2TlRGUVY4Tk1URk1KZXpWelo5VjBXd1d3?=
+ =?utf-8?B?akl6WlU0TnQyczJQNUttS2MyelZpSml1cWdqUVloSTdiOVpUbTNlbVpTQ2ZV?=
+ =?utf-8?B?c1RDMzQxa1Bwbmx6aGlKYTBKSGVicXNoemg4QTIwTEtMUUdMMEVTMmNjcm54?=
+ =?utf-8?B?ZFJuZzJLSnB2eTgreE8wamNYVi80SWgvS1Q4QkZEUUZ6dDMrc2lkUjZzMmtJ?=
+ =?utf-8?B?K0JyclpOTGxTbG16YXkyN2E2RW9VbmswT3Z0UmRrbHhYVXZJWnVJQ1VybS9G?=
+ =?utf-8?B?ekUzVHZMN3Zyc0VlMHZna2N4bS9nOUN2blUwc1Qxc1BLZEZhQklGVFZnN0cw?=
+ =?utf-8?B?RFpCd3E2RCtveVVyZmVzUHFGYUhkbS9sayt0cWo1MVVpczNkMjVKTTRWWWd0?=
+ =?utf-8?B?MFArSnRuejUyRjllRVBTZFdjWFhzeEJZMytGTE1oNzYwSXlmUFo0VDBUcldi?=
+ =?utf-8?B?U3llbUN5alNrRDNod0dNL3htUHRUUDk1MWVubVAwdUttMEhoczNvWmlkRit0?=
+ =?utf-8?B?bGVnREdFTzVGRkNYd1FjQ2FqZHA0aHM1YWcvSjhSRUJLVlFWRzV0T1A3WHNo?=
+ =?utf-8?B?ejdybnZVaTlyaHI1TjhEckNnaWdwOE9jUHBucFlIYjlQUkZ3aXZYd3d0WmU4?=
+ =?utf-8?B?WHBmOUJ2S09TRFJpeTFjNUh5OWFmS3NRNGZXc1JHUlVrcllLK0lEWGVhdWVN?=
+ =?utf-8?B?NDhnVFZGSWQreGZMMk8xZDJuNHBoQ2dNM0dnaHdvRjd1clRlRkdCU1RNa0Qw?=
+ =?utf-8?B?N2ZwRDBPbk5LZ1ZPWUkrdG9jMnN1ZVJJYkU5OUN2bmtVQlhFc1ArNHpYcUIr?=
+ =?utf-8?B?MEprRzZKNU53eGlqRmNGZGhWcTFhTG1QQ2NUZDZFYS9oSkFrTGFpUG04ODNy?=
+ =?utf-8?Q?iZ6v/AZxS78ixomVd1O49p5/1?=
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f238e3d8-548c-4cd4-3d73-08dba49bac4e
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6280.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6672d42b-a1b4-40aa-5e71-08dba56dbe0d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Aug 2023 13:18:16.1492 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lBprIzw37io+C1NC1cCKSHBQPzyfhk7T7qF+Ro2JZj4ORY3AgSWzeeuj8i+oYnUMP6i9KftGJ0XvdaWBqORL4g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7499
-Subject: Re: [Nouveau] [PATCH 0/5] Add the pci_get_base_class() helper and
- use it
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2023 12:14:32.2402 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: V1FnG434c7Ma3mBdV/gKKwFyrkOYZp2ByAqir9ULENp73ypqd8SA9+Lrffbyegt0H5uG3wjFb6puZ8sBf+IeUA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB8608
+X-Mailman-Approved-At: Sun, 27 Aug 2023 08:16:42 +0000
+Subject: Re: [Nouveau] [PATCH (set 1) 00/20] Rid W=1 warnings from GPU
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,71 +124,70 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
- Sui Jingfeng <suijingfeng@loongson.cn>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ =?UTF-8?Q?Ma=C3=ADra_Canal?= <mairacanal@riseup.net>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Shashank Sharma <shashank.sharma@amd.com>,
+ Michal Simek <michal.simek@xilinx.com>, amd-gfx@lists.freedesktop.org,
+ Luben Tuikov <luben.tuikov@amd.com>, Ben Skeggs <bskeggs@redhat.com>,
+ Stanley Yang <Stanley.Yang@amd.com>, linux-media@vger.kernel.org,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Maxime Ripard <mripard@kernel.org>,
+ linaro-mm-sig@lists.linaro.org, linux-tegra@vger.kernel.org,
+ NXP Linux Team <linux-imx@nxp.com>, linux-arm-kernel@lists.infradead.org,
+ Hyun Kwon <hyun.kwon@xilinx.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, Jerome Glisse <glisse@freedesktop.org>,
+ Alex Deucher <alexander.deucher@amd.com>, Gourav Samaiya <gsamaiya@nvidia.com>,
+ Shawn Guo <shawnguo@kernel.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-[Public]
 
-> -----Original Message-----
-> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Sui
-> Jingfeng
-> Sent: Friday, August 25, 2023 2:27 AM
-> To: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: alsa-devel@alsa-project.org; Sui Jingfeng <suijingfeng@loongson.cn>;
-> nouveau@lists.freedesktop.org; linux-kernel@vger.kernel.org; dri-
-> devel@lists.freedesktop.org; amd-gfx@lists.freedesktop.org; linux-
-> pci@vger.kernel.org
-> Subject: [PATCH 0/5] Add the pci_get_base_class() helper and use it
->
-> From: Sui Jingfeng <suijingfeng@loongson.cn>
->
-> There is no function that can be used to get all PCI(e) devices in a syst=
-em by
-> matching against its the PCI base class code only, while keep the sub-cla=
-ss code
-> and the programming interface ignored. Therefore, add the
-> pci_get_base_class() function to suit the need.
->
-> For example, if an application want to process all PCI(e) display devices=
- in a
-> system, it can achieve such goal by writing the code as following:
->
->     pdev =3D NULL;
->     do {
->         pdev =3D pci_get_base_class(PCI_BASE_CLASS_DISPLAY, pdev);
->         if (!pdev)
->             break;
->
->         do_something_for_pci_display_device(pdev);
->     } while (1);
->
-> Sui Jingfeng (5):
->   PCI: Add the pci_get_base_class() helper
->   ALSA: hda/intel: Use pci_get_base_class() to reduce duplicated code
->   drm/nouveau: Use pci_get_base_class() to reduce duplicated code
->   drm/amdgpu: Use pci_get_base_class() to reduce duplicated code
->   drm/radeon: Use pci_get_base_class() to reduce duplicated code
->
+On 8/24/23 08:07, Lee Jones wrote:
+> On Thu, 24 Aug 2023, Jani Nikula wrote:
+> 
+>> On Thu, 24 Aug 2023, Lee Jones <lee@kernel.org> wrote:
+>>> This set is part of a larger effort attempting to clean-up W=1
+>>> kernel builds, which are currently overwhelmingly riddled with
+>>> niggly little warnings.
+>>
+>> The next question is, how do we keep it W=1 clean going forward?
+> 
+> My plan was to fix them all, then move each warning to W=0.
+> 
+> Arnd recently submitted a set doing just that for a bunch of them.
+> 
+> https://lore.kernel.org/all/20230811140327.3754597-1-arnd@kernel.org/
+> 
+> I like to think a bunch of this is built on top of my previous efforts.
+> 
+> GPU is a particularly tricky though - the warnings seem to come in faster
+> than I can squash them.  Maybe the maintainers can find a way to test
+> new patches on merge?
 
-Series is:
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+I guess on that note, do you know if there is a way to run
+`scripts/kernel-doc` on patches instead of whole files? That would make
+much easier to block new kernel-doc issues from appearing.
 
->  drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 11 +++------
-> drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 20 ++++-----------
->  drivers/gpu/drm/nouveau/nouveau_acpi.c   | 11 +++------
->  drivers/gpu/drm/radeon/radeon_bios.c     | 20 ++++-----------
->  drivers/pci/search.c                     | 31 ++++++++++++++++++++++++
->  include/linux/pci.h                      |  5 ++++
->  sound/pci/hda/hda_intel.c                | 16 ++++--------
->  7 files changed, 59 insertions(+), 55 deletions(-)
->
-> --
-> 2.34.1
+> 
+>> Most people don't use W=1 because it's too noisy, so it's a bit of a
+>> catch-22.
+>>
+>> In i915, we enable a lot of W=1 warnings using subdir-ccflags-y in our
+>> Makefile. For CI/developer use we also enable kernel-doc warnings by
+>> default.
+>>
+>> Should we start enabling some of those warning flags in drm/Makefile to
+>> to keep the entire subsystem warning free?
+> 
+> That would we awesome!  We'd just need buy-in.
+> 
+-- 
+Hamza
 
