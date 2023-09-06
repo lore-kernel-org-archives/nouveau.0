@@ -4,79 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C664EE57D7
-	for <nouveau@archiver.kernel.org>; Fri,  8 Sep 2023 06:59:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01E16EEB565
+	for <nouveau@archiver.kernel.org>; Sat,  9 Sep 2023 00:14:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E48A10E879;
-	Fri,  8 Sep 2023 06:59:42 +0000 (UTC)
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
- [IPv6:2a00:1450:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC00E10E875;
- Fri,  8 Sep 2023 06:59:39 +0000 (UTC)
-Received: by mail-wr1-x42e.google.com with SMTP id
- ffacd0b85a97d-31f6ddb3047so1498652f8f.1; 
- Thu, 07 Sep 2023 23:59:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1694156378; x=1694761178; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=mjDLcllXuQB9fMiD1YO8Am5UOuvL3MHNOtNmYPG4ZJ8=;
- b=nsYnMRug3i8J3u46XuraHTE5RS6fxbzISw+qtYyeGoKZ8pCtLAFwFi13d0f6QxcA6O
- c2u4HdogjXTPg1C3pjr70gjsVD3e+XRnwO2+tAR9fMoFE/3AHsmZHfUgXdAHp5P1ppg2
- hJL/OWngUKEKu5M/BAzz8FPr3aDztDDdPxbOW420q/7rA2gNGm7t5s3hxA2SQb69mVyC
- W/0gvO7rD3h41ux1Nz/nCeHaCLuyL2dXGihXHyTbfQSQ64i/yeNiC27+Ef92bxBLPlGg
- dCm/GyfBeebbzgpzs4FcbVC51qtBQn4eYVqXprpOc4mpany1EEubdwvFkTSMIBderWOV
- Q58w==
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9807B10E21A;
+	Sat,  9 Sep 2023 00:14:34 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3ED6910E1E0
+ for <nouveau@lists.freedesktop.org>; Wed,  6 Sep 2023 19:29:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1694028550;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=OwwduPqGCVJn22tqbOPsTtJSzzPqAt4KVB85T+OdR9M=;
+ b=N7WNtkXQDquXfaQ4FGVCFu5ahGgxelHGSNQD5HB/LFgg5vggIidaOpiHfVCzl7murlPUmX
+ f/lZV6xbdDTXD3zj4gx/WUwRSjO5pw/dl8/YXoOVtL0fa5CP1L+bxv+nyu2dVlfXrh2PnA
+ UahjfqdoW1rmi7iOPXCmALd8UjKC8lc=
+Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
+ [209.85.166.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-60-mzhwNoP-O_WZp0y9hwEdxw-1; Wed, 06 Sep 2023 15:29:07 -0400
+X-MC-Unique: mzhwNoP-O_WZp0y9hwEdxw-1
+Received: by mail-il1-f200.google.com with SMTP id
+ e9e14a558f8ab-34f1d8e4ec6so1399705ab.1
+ for <nouveau@lists.freedesktop.org>; Wed, 06 Sep 2023 12:29:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1694156378; x=1694761178;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=mjDLcllXuQB9fMiD1YO8Am5UOuvL3MHNOtNmYPG4ZJ8=;
- b=CbB0nvM8UJSgubvBskqs+RBZLB9y2K/NfWzLhZxT8fw6xDeC9iTRbfvIh20xXum/KL
- mup3LwgGjinT/SjM/71mEHSnzyaQIOGNwb3SGk/jHIavrt2VeyxZM/5s8F/A455MzLNF
- GmG3T7MV5m1/ezN94wWTbVVP5KhbucrfBlXnQINGSdIdkQLqkbXq9mmrHV5J+PDllXsM
- RzlxSG+gONQUBrD8+YUwBTdjQuFAKaHqDAPjySeLNDL10Vd4x6tcavvHXfIBVsKDSyv0
- g+ic8YnpJHQKSiZ1SyRxt/h/HoMyEBPP+zvZo1EvaBSQxEHM0szSeJt70ShwHGSYb/lO
- RPJQ==
-X-Gm-Message-State: AOJu0YynUY0fCWKgpJRNtey42E5w3mcpBy3qGoMYujj190wnqVoYWyiy
- syi4KwC/mWDDqAqO4Fb2yD4=
-X-Google-Smtp-Source: AGHT+IGM1JfDgyy/2dl6TEtwz/XvcIH37J3N2Fej+DS87LarA2/uYFOpOKc2ATIxC/1AxjCVyF/5iw==
-X-Received: by 2002:a05:6000:1081:b0:30e:3caa:971b with SMTP id
- y1-20020a056000108100b0030e3caa971bmr1187063wrw.51.1694156378079; 
- Thu, 07 Sep 2023 23:59:38 -0700 (PDT)
-Received: from [10.254.108.106] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- c16-20020a5d4150000000b00317a29af4b2sm1250339wrq.68.2023.09.07.23.59.36
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 07 Sep 2023 23:59:37 -0700 (PDT)
-Message-ID: <c9f33bc8-85be-5234-5bc8-7f50abc2dadd@gmail.com>
-Date: Fri, 8 Sep 2023 08:59:35 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Content-Language: en-US
-To: suijingfeng <suijingfeng@loongson.cn>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Sui Jingfeng <sui.jingfeng@linux.dev>,
- Thomas Zimmermann <tzimmermann@suse.de>, Bjorn Helgaas
- <bhelgaas@google.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>
+ d=1e100.net; s=20221208; t=1694028546; x=1694633346;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=BkNqqrFNSye+85FOkqcxyjqr5JGuixiZESeFlYs5s54=;
+ b=KRuNwaGoYd6zuZnKHS++a86VJmxbPG9+QUBVyFZgQwmLZN+gSZm7Vj1aGvvpubvnd4
+ fUIpJSqAHCzd07vNx1Wy8eKwVTuifmFg2vjCH2El7IrsIstFBcSAS8akv6X4INxQY4Sy
+ XybHtDjzPJoBktG6HlCtJXFBB4C9Ct7jojnoH6bDQFk6tEPOPoeGX6dRQEHG72GIV6wB
+ Fa25oAoC9RyssNAYfSeJeCHyeiGHVbHDkx26X185mn3AVhahAnm6yherv1qea7WOP5BP
+ 3nx7NU2xyJl961WsnHncRcoj7l21FNu6CAkeJwh8oWkr1ET0I3ZdN5SjqTmJuUrIwgim
+ M4eg==
+X-Gm-Message-State: AOJu0YwOaBGGt1CKNsaVuFr2h2gG3/UU9oqfMQcBA9OmrewcrZCgGxOn
+ WGWT/8EX1cFyv/yv92DbHByZHZZ9NjQkUdxMGDftIcvwcnvNg2rLasJ7ZsTPt5ib4lwreUj/+qd
+ W+X+GS/jkNJKtOFpKF2roW3Yu9A==
+X-Received: by 2002:a05:6e02:1d11:b0:347:6b30:5bd3 with SMTP id
+ i17-20020a056e021d1100b003476b305bd3mr21867136ila.13.1694028546540; 
+ Wed, 06 Sep 2023 12:29:06 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEyKFIvkN7zuLMbU6PvggO334g+2dgeQZvJcZ8JKJqA6E6EEEA4iTKmp69E/q99AN/ZBKFIOQ==
+X-Received: by 2002:a05:6e02:1d11:b0:347:6b30:5bd3 with SMTP id
+ i17-20020a056e021d1100b003476b305bd3mr21867112ila.13.1694028546213; 
+ Wed, 06 Sep 2023 12:29:06 -0700 (PDT)
+Received: from redhat.com ([38.15.60.12]) by smtp.gmail.com with ESMTPSA id
+ m11-20020a92710b000000b0034e28100d1csm3233596ilc.58.2023.09.06.12.29.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 06 Sep 2023 12:29:05 -0700 (PDT)
+Date: Wed, 6 Sep 2023 13:29:04 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Sui Jingfeng <sui.jingfeng@linux.dev>
+Message-ID: <20230906132904.4e49e269.alex.williamson@redhat.com>
+In-Reply-To: <a6337007-b6fa-2ce9-d0cd-46465b540205@linux.dev>
 References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
- <44ec8549-dc36-287e-4359-abd3ec8d22d6@suse.de>
- <5afd2efb-f838-f9b7-02a9-2cf4d4fd2382@loongson.cn>
- <2adfa653-ac35-d560-be52-c92848a1eef5@gmail.com>
- <b51d49f3-e3de-6b8d-9cb4-df5c03f3cdc0@loongson.cn>
- <10509692-ce04-e225-5a27-abc955554bdc@gmail.com>
- <a9af88c5-4509-96ff-a7fd-a0f72d2f1e6a@linux.dev>
- <127fab21-bc5c-f782-e42b-1092fbb8df34@amd.com>
- <39736dad-41e3-8b24-ccef-ac3425a6c9f4@loongson.cn>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <39736dad-41e3-8b24-ccef-ac3425a6c9f4@loongson.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+ <20230905085243.4b22725e.alex.williamson@redhat.com>
+ <a6337007-b6fa-2ce9-d0cd-46465b540205@linux.dev>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 09 Sep 2023 00:14:33 +0000
 Subject: Re: [Nouveau] [RFC,
  drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select the
  primary video adapter at boot time
@@ -91,69 +86,149 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
+Cc: Sui Jingfeng <suijingfeng@loongson.cn>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Am 07.09.23 um 18:33 schrieb suijingfeng:
+On Wed, 6 Sep 2023 11:51:59 +0800
+Sui Jingfeng <sui.jingfeng@linux.dev> wrote:
+
 > Hi,
->
->
-> On 2023/9/7 17:08, Christian König wrote:
->
->
->> I strongly suggest that you just completely drop this here 
->
->
-> Drop this is OK, no problem. Then I will go to develop something else.
-> This version is not intended to merge originally, as it's a RFC.
-> Also, the core mechanism already finished, it is the first patch in 
-> this series.
-> Things left are just policy (how to specify one and parse the kernel 
-> CMD line) and nothing interesting left.
-> It is actually to fulfill my promise at V3 which is to give some 
-> examples as usage cases.
->
->
->> and go into the AST driver and try to fix it. 
->
-> Well, someone tell me that this is well defined behavior yesterday,
-> which imply that it is not a bug. I'm not going to fix a non-bug.
+>=20
+>=20
+> On 2023/9/5 22:52, Alex Williamson wrote:
+> > On Tue,  5 Sep 2023 03:57:15 +0800
+> > Sui Jingfeng <sui.jingfeng@linux.dev> wrote:
+> > =20
+> >> From: Sui Jingfeng <suijingfeng@loongson.cn>
+> >>
+> >> On a machine with multiple GPUs, a Linux user has no control over whic=
+h
+> >> one is primary at boot time. This series tries to solve above mentione=
+d
+> >> problem by introduced the ->be_primary() function stub. The specific
+> >> device drivers can provide an implementation to hook up with this stub=
+ by
+> >> calling the vga_client_register() function.
+> >>
+> >> Once the driver bound the device successfully, VGAARB will call back t=
+o
+> >> the device driver. To query if the device drivers want to be primary o=
+r
+> >> not. Device drivers can just pass NULL if have no such needs.
+> >>
+> >> Please note that:
+> >>
+> >> 1) The ARM64, Loongarch, Mips servers have a lot PCIe slot, and I woul=
+d
+> >>     like to mount at least three video cards.
+> >>
+> >> 2) Typically, those non-86 machines don't have a good UEFI firmware
+> >>     support, which doesn't support select primary GPU as firmware stag=
+e.
+> >>     Even on x86, there are old UEFI firmwares which already made undes=
+ired
+> >>     decision for you.
+> >>
+> >> 3) This series is attempt to solve the remain problems at the driver l=
+evel,
+> >>     while another series[1] of me is target to solve the majority of t=
+he
+> >>     problems at device level.
+> >>
+> >> Tested (limited) on x86 with four video card mounted, Intel UHD Graphi=
+cs
+> >> 630 is the default boot VGA, successfully override by ast2400 with
+> >> ast.modeset=3D10 append at the kernel cmd line.
+> >>
+> >> $ lspci | grep VGA
+> >>
+> >>   00:02.0 VGA compatible controller: Intel Corporation CoffeeLake-S GT=
+2 [UHD Graphics 630] =20
+> > In all my previous experiments with VGA routing and IGD I found that
+> > IGD can't actually release VGA routing and Intel confirmed the hardware
+> > doesn't have the ability to do so. =20
+>=20
+> Which model of the IGD you are using?=C2=A0even for the IGD in Atom D2550=
+,
+> the legacy 128KB VGA memory range can be=C2=A0tuned to be mapped to IGD
+> or to the DMI Interface. See the 1.7.3.2 section of the N2000 datasheet[1=
+].
 
-Sorry for that, I wasn't realizing what you are actually trying to do.
+I believe it's the VGA I/O that can't be disabled, there's no means to
+do so other than the I/O enable bit in the command register and iirc
+the driver depends on this for other features.  The history of this is
+pretty old, but here are some links:
 
-> But if thomas ask me to fix it, then I probably have to try to fix.
-> But I suggest if things not broken, don't fix it. Otherwise this may
-> incur more big trouble. For server's single display use case, it is
-> good enough.
+https://lore.kernel.org/all/1376486637.31494.19.camel@ul30vt.home/
+https://bbs.archlinux.org/viewtopic.php?pid=3D1400212#p1400212
+https://lore.kernel.org/all/20130815223917.27890.28003.stgit@bling.home/
+https://lore.kernel.org/all/20130824144701.23370.42110.stgit@bling.home/
+https://lore.kernel.org/all/20140509201655.2849.97478.stgit@bling.home/
 
-Yeah, exactly that's the reason why you shouldn't mess with this.
+I think the issue was that i915 doesn't claim to the VGA arbiter to be
+controlling legacy VGA ranges, but in fact the hardware does claim
+those ranges.  We can "fix" i915 to report that VGA MMIO space is
+owned and can be controlled, but then Xorg likely sees multiple VGA
+arbiter clients and disables DRI because it wants to mmap VGA MMIO
+space.
 
-In theory you could try to re-program the necessary north bridge blocks 
-to make integrated graphics work even if you installed a dedicated VGA 
-adapter, but you will most likely be missing something.
+Therefore unless something has changed in the past 10yrs, i915 owns but
+does not advertise ownership of the VGA address spaces and therefore
+the arbiter can't and doesn't know to change VGA routing to enable a
+"be_primary" path to another device.
+=20
+> If a specific model of Intel has a bug in the VGA routing hardware logic =
+unit,
+> I would like to ignore it. Or switch to the UEFI firmware on such hardwar=
+e.
 
-The only real fix is to tell the BIOS that you want to use the 
-integrated VGA device even if a dedicated one is detected.
+That's a convenient and impractical approach.  I expect all Intel HD
+graphics has this issue.  Unknown for Xe.
 
-If you want to learn more about the background AMD has a bunch of 
-documentation around this on their website: 
-https://www.amd.com/en/search/documentation/hub.html
+> It is the hardware engineer's responsibility, I will not worry about it.
 
-The most interesting document for you is probably the BIOS programming 
-manual, but don't ask me what exactly the title of that one. @Alex do 
-you remember what that was called?
+We often need to deal with broken hardware in the kernel.
 
-IIRC Intel had similar documentations public, but I don't know where to 
-find those of hand.
+> Thanks for you tell this.
+>=20
+> [1] https://www.intel.com/content/dam/doc/datasheet/atom-d2000-n2000-vol-=
+2-datasheet.pdf
+>=20
+>=20
+> >   It will always be primary from a
+> > VGA routing perspective.  Was this actually tested with non-UEFI? =20
+>=20
+>=20
+> As you already said,=C2=A0the generous Intel already have confirmed that =
+the hardware defect.
+> So probably this is a good chance to switch to UEFI to solve the problem.=
+ Then, no
+> testing for legacy is needed.
 
-Regards,
-Christian.
+Then why are we hacking on VGA arbitration in this series at all?
 
->
->
-> Thanks.
->
+> > I suspect it might only work in UEFI mode where we probably don't
+> > actually have a dependency on VGA routing.  This is essentially why
+> > vfio requires UEFI ROMs when assigning GPUs to VMs, VGA routing is too
+> > broken to use on Intel systems with IGD.  Thanks, =20
+>=20
+> Thanks for you tell me this.
+>=20
+> To be honest, I have only tested my patch on machines with UEFI=C2=A0firm=
+ware.
+> Since UEFI because the main stream, but if this patch is really useful fo=
+r
+> majority machine, I'm satisfied. The results is not too bad.
+
+This looks like a pretty significant scoping issue if you're proposing
+changes to the VGA arbiter which specifically handles the routing of
+legacy VGA address spaces but are not willing to commit to testing
+legacy configurations.  Thanks,
+
+Alex
 
