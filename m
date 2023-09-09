@@ -4,77 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C5F9EEB565
-	for <nouveau@archiver.kernel.org>; Sat,  9 Sep 2023 00:14:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24836EEB572
+	for <nouveau@archiver.kernel.org>; Sat,  9 Sep 2023 14:37:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1234410E245;
-	Sat,  9 Sep 2023 00:14:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FFCF10E1A9;
+	Sat,  9 Sep 2023 14:37:35 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C003E10E3B3
- for <nouveau@lists.freedesktop.org>; Tue,  5 Sep 2023 16:39:31 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C402310E1A9
+ for <nouveau@lists.freedesktop.org>; Sat,  9 Sep 2023 14:37:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1693931970;
+ s=mimecast20190719; t=1694270252;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=1FYmV1SAUAP6clEqFptERvvV4+Mtfaips/SG+vcFGBs=;
- b=i+dGR3jD5z9Tog76fxTjg51O4NcW6m6KItmgEUbQ6y0GDe65VdLf7hhL0EC4F5vdglkN4S
- KO4okYydQ7KvvPP1nyqpiQeAZGgARNLHRcMUpLdPHSAXfDYziS0zbFYrZDyF7q8nltjRoF
- kKCDAFEezzVtmi8VvUQlNle9/XORfNs=
-Received: from mail-io1-f72.google.com (mail-io1-f72.google.com
- [209.85.166.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=eRcOkbLQiqXFau3Lzv+lkDuNMwp9k8LF7/IY5MKHdsU=;
+ b=Ekf6PoiE+uQ9x88AYf4zRfx2CZ4HUSwTWAy6jueKhvlxWQvPU07NpxTYR4Pifoul6PvRCp
+ GiAFHD4SxPQED2r3f2VACAFcB+86bf3p46XrLo6aSLKhRQyERax0G3I/JqIza5n1VqfHUR
+ xKf8tK6fwiquMNSCboljOwNHaPXhXls=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-487-7KpSnHTIM3mN9nYGbdBu2g-1; Tue, 05 Sep 2023 12:39:29 -0400
-X-MC-Unique: 7KpSnHTIM3mN9nYGbdBu2g-1
-Received: by mail-io1-f72.google.com with SMTP id
- ca18e2360f4ac-786ca3e9160so729739f.1
- for <nouveau@lists.freedesktop.org>; Tue, 05 Sep 2023 09:39:29 -0700 (PDT)
+ us-mta-642-JTWCy9a1OUq8mRsPSHbpwQ-1; Sat, 09 Sep 2023 10:37:31 -0400
+X-MC-Unique: JTWCy9a1OUq8mRsPSHbpwQ-1
+Received: by mail-wm1-f70.google.com with SMTP id
+ 5b1f17b1804b1-3fbdf341934so23534815e9.3
+ for <nouveau@lists.freedesktop.org>; Sat, 09 Sep 2023 07:37:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693931968; x=1694536768;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1694270250; x=1694875050;
+ h=content-transfer-encoding:mime-version:message-id:date:references
+ :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=1FYmV1SAUAP6clEqFptERvvV4+Mtfaips/SG+vcFGBs=;
- b=QIGgxCCRnYKoYXBdt/D3F0/uXWoaO2RskXECgBGb0a9OamRVpsQUTTs9wiAC3VWMmc
- 0fM7EocO76MnbeC0bKl6om0vpBeND2gwignwXygcAFllQd9Vl3S3KDuLCzgt7sZhx15n
- r8sYdfqagOADnniWLRzMPGXwlaNPhAOK2a4Bci/efOfmZGPKcxZtqR0z1Iuj9XjuMoKw
- n9kmOFRN4I+v8NLMlykzT6ikPUwTqXdsaK7coqArbRegoo5ghnSw42N/MYhq384BBHuA
- VmSCVCo5O4n+H5g4aRcy30wBig+0KJU64bV9+nJ7mJ9FEwuEVUdFQ1l9wMtKWcHFkq5j
- /kmQ==
-X-Gm-Message-State: AOJu0Yz7ixhlcZjZ4rbS6eNIb0sGKkaMbiSpacqHRIWDK5EVUllv4+z2
- 5fSxsBEutcGwa03ePdXQD28RMETBGEke86VoCmYLSXmIq72aM4s2UOI1VyzThpdLzx6jCTvxVAf
- vHB4Y0JFCJs+9hTcabBbE6NU/pQ==
-X-Received: by 2002:a05:6602:3707:b0:790:83e7:5000 with SMTP id
- bh7-20020a056602370700b0079083e75000mr15181199iob.2.1693931968720; 
- Tue, 05 Sep 2023 09:39:28 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGrWgqWuvOjsPoQobmizp2yeXMxuOnvBLg+UYg0lVO0d7NoPYToo5iwU98Xj9J9TSkNPuS/Gw==
-X-Received: by 2002:a05:6602:3707:b0:790:83e7:5000 with SMTP id
- bh7-20020a056602370700b0079083e75000mr15181190iob.2.1693931968466; 
- Tue, 05 Sep 2023 09:39:28 -0700 (PDT)
-Received: from redhat.com ([38.15.60.12]) by smtp.gmail.com with ESMTPSA id
- l14-20020a02ccee000000b0042b929d3d2fsm4177089jaq.86.2023.09.05.09.39.27
+ bh=eRcOkbLQiqXFau3Lzv+lkDuNMwp9k8LF7/IY5MKHdsU=;
+ b=aWAQXzKPj0fTz9l4KGKpZx/rTDuy3bMrpJrNiQb2sOXNXCqrfa2D3lebYValob8TNO
+ FKKXx5MPf/PEkiA/ZmTOKGk5+AJZgHCL2apaLDquoDSd2LAj4R8bdL+BMtUQwTc6owU5
+ LIalxNLhN+c6N8jjQp4J6dgb8dom5eaqz2WWpvAIY4gaqKUSsICW/abi0RyN81L/W3wf
+ KlAYeYM6vMxiu/hKmYwiR14Mu3Rl5mkGhf02WUEPoutkom/MRFfHauIo1rl44xxGDGtl
+ NyHKVu0kAeYlT/rg9m2JQmL0VvyW8B0Lxk9HDpBFp2zZY1mXmG7IV4RGHa2edngpejJL
+ f4LQ==
+X-Gm-Message-State: AOJu0YzUUEgp1DpQntEi3IY0e2AISHWRI0JtDDaML8qI9Q6TgCsKNjm1
+ BwNrvk9CZErKy4Y4IRhRQXpXrOnh5BvP7AYDB6JWovQe8FduCxdxf7gFi8hOf6hI6twcIE/Dwyq
+ WrHFjovLvpEN8DHp83x1Faokrjw==
+X-Received: by 2002:a05:600c:2483:b0:401:d2cb:e6f3 with SMTP id
+ 3-20020a05600c248300b00401d2cbe6f3mr5088939wms.1.1694270250170; 
+ Sat, 09 Sep 2023 07:37:30 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFuI0CHTrTRuHu7U+ySuZ17CrBG1YsmWNBf7nwWhsv6ytgzHpvaJlIL3zjF99nLHiP4wc2jkQ==
+X-Received: by 2002:a05:600c:2483:b0:401:d2cb:e6f3 with SMTP id
+ 3-20020a05600c248300b00401d2cbe6f3mr5088899wms.1.1694270249806; 
+ Sat, 09 Sep 2023 07:37:29 -0700 (PDT)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es.
+ [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
+ k20-20020a7bc414000000b003fd2e898aa3sm3071184wmi.0.2023.09.09.07.37.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 05 Sep 2023 09:39:27 -0700 (PDT)
-Date: Tue, 5 Sep 2023 10:39:26 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: suijingfeng <suijingfeng@loongson.cn>
-Message-ID: <20230905103926.2eda2c36.alex.williamson@redhat.com>
-In-Reply-To: <ce81413d-4872-8804-d816-0f1ef88b82cb@loongson.cn>
-References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
- <20230905085243.4b22725e.alex.williamson@redhat.com>
- <ce81413d-4872-8804-d816-0f1ef88b82cb@loongson.cn>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+ Sat, 09 Sep 2023 07:37:28 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20230507162616.1368908-1-u.kleine-koenig@pengutronix.de>
+References: <20230507162616.1368908-1-u.kleine-koenig@pengutronix.de>
+Date: Sat, 09 Sep 2023 16:37:28 +0200
+Message-ID: <8734znjtuf.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 09 Sep 2023 00:14:33 +0000
-Subject: Re: [Nouveau] [RFC,
- drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select the
- primary video adapter at boot time
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Nouveau] [PATCH 00/53] drm: Convert to platform remove
+ callback returning void
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,92 +82,79 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sui Jingfeng <sui.jingfeng@linux.dev>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>
+Cc: linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, John Stultz <jstultz@google.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Fabio Estevam <festevam@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-samsung-soc@vger.kernel.org, lima@lists.freedesktop.org,
+ Steven Price <steven.price@arm.com>, linux-rockchip@lists.infradead.org,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Mali DP Maintainers <malidp@foss.arm.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Russell King <linux+etnaviv@armlinux.org.uk>, linux-sunxi@lists.linux.dev,
+ Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+ Jonas Karlman <jonas@kwiboo.se>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-arm-msm@vger.kernel.org, etnaviv@lists.freedesktop.org,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, Sean Paul <sean@poorly.run>,
+ linux-arm-kernel@lists.infradead.org,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Andrew Jeffery <andrew@aj.id.au>, linux-stm32@st-md-mailman.stormreply.com,
+ linux-mips@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ kernel@pengutronix.de, Yongqin Liu <yongqin.liu@linaro.org>,
+ freedreno@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, 6 Sep 2023 00:21:09 +0800
-suijingfeng <suijingfeng@loongson.cn> wrote:
+Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> writes:
 
-> Hi,
-> 
-> On 2023/9/5 22:52, Alex Williamson wrote:
-> > On Tue,  5 Sep 2023 03:57:15 +0800
-> > Sui Jingfeng <sui.jingfeng@linux.dev> wrote:
-> >  
-> >> From: Sui Jingfeng <suijingfeng@loongson.cn>
-> >>
-> >> On a machine with multiple GPUs, a Linux user has no control over which
-> >> one is primary at boot time. This series tries to solve above mentioned
-> >> problem by introduced the ->be_primary() function stub. The specific
-> >> device drivers can provide an implementation to hook up with this stub by
-> >> calling the vga_client_register() function.
-> >>
-> >> Once the driver bound the device successfully, VGAARB will call back to
-> >> the device driver. To query if the device drivers want to be primary or
-> >> not. Device drivers can just pass NULL if have no such needs.
-> >>
-> >> Please note that:
-> >>
-> >> 1) The ARM64, Loongarch, Mips servers have a lot PCIe slot, and I would
-> >>     like to mount at least three video cards.
-> >>
-> >> 2) Typically, those non-86 machines don't have a good UEFI firmware
-> >>     support, which doesn't support select primary GPU as firmware stage.
-> >>     Even on x86, there are old UEFI firmwares which already made undesired
-> >>     decision for you.
-> >>
-> >> 3) This series is attempt to solve the remain problems at the driver level,
-> >>     while another series[1] of me is target to solve the majority of the
-> >>     problems at device level.
-> >>
-> >> Tested (limited) on x86 with four video card mounted, Intel UHD Graphics
-> >> 630 is the default boot VGA, successfully override by ast2400 with
-> >> ast.modeset=10 append at the kernel cmd line.
-> >>
-> >> $ lspci | grep VGA
-> >>
-> >>   00:02.0 VGA compatible controller: Intel Corporation CoffeeLake-S GT2 [UHD Graphics 630]  
-> > In all my previous experiments with VGA routing and IGD I found that
-> > IGD can't actually release VGA routing and Intel confirmed the hardware
-> > doesn't have the ability to do so.  It will always be primary from a
-> > VGA routing perspective.  Was this actually tested with non-UEFI?  
-> 
-> Yes, I have tested on my aspire e471 notebook (i5 5200U),
-> because that notebook using legacy firmware (also have UEFI, double firmware).
-> But this machine have difficult in install ubuntu under UEFI firmware in the past.
-> So I keep it using the legacy firmware.
-> 
-> It have two video card, IGD and nvidia video card(GFORCE 840M).
-> nvidia call its video card as 3D controller (pci->class = 0x030200)
-> 
-> I have tested this patch and another patch mention at [1] together.
-> I can tell you that the firmware framebuffer of this notebook using vesafb, not efifb.
-> And the framebuffer size (lfb.size) is very small. This is very strange,
-> but I don't have enough time to look in details. But still works.
-> 
-> I'm using and tesing my patch whenever and wherever possible.
+Hello Uwe,
 
-So you're testing VGA routing using a non-VGA 3D controller through the
-VESA address space?  How does that test anything about VGA routing?
+> Hello,
+>
+> this patch series adapts the platform drivers below drivers/gpu/drm
+> to use the .remove_new() callback. Compared to the traditional .remove()
+> callback .remove_new() returns no value. This is a good thing because
+> the driver core doesn't (and cannot) cope for errors during remove. The
+> only effect of a non-zero return value in .remove() is that the driver
+> core emits a warning. The device is removed anyhow and an early return
+> from .remove() usually yields a resource leak.
+>
+> By changing the remove callback to return void driver authors cannot
+> reasonably (but wrongly) assume any more that there happens some kind of
+> cleanup later.
+>
+> Best regards
+> Uwe
+>
+> Uwe Kleine-K=C3=B6nig (53):
 
-> > I suspect it might only work in UEFI mode where we probably don't
-> > actually have a dependency on VGA routing.  This is essentially why
-> > vfio requires UEFI ROMs when assigning GPUs to VMs, VGA routing is too
-> > broken to use on Intel systems with IGD.  Thanks,  
-> 
-> 
-> What you tell me here is the side effect come with the VGA-compatible,
-> but I'm focus on the arbitration itself. I think there no need to keep
-> the VGA routing hardware features nowadays except that hardware vendor
-> want keep the backward compatibility and/or comply the PCI VGA compatible spec.
+[...]
 
-"VGA arbitration" is the mediation of VGA routing between devices, so
-I'm confused how you can be focused on the arbitration without the
-routing itself.  Thanks,
+>   drm/imx/ipuv3: Convert to platform remove callback returning void
+>   drm/ingenic: Convert to platform remove callback returning void
 
-Alex
+[...]
+
+>   drm/mediatek: Convert to platform remove callback returning void
+>   drm/mediatek: Convert to platform remove callback returning void
+
+[...]
+
+>   drm/msm: Convert to platform remove callback returning void
+
+[...]
+
+>   drm/shmobile: Convert to platform remove callback returning void
+
+Pushed these to drm-misc (drm-misc-next). Thanks!
+
+--=20
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
