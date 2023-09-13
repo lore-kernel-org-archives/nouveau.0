@@ -4,69 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9060EDEC72
-	for <nouveau@archiver.kernel.org>; Wed, 13 Sep 2023 15:16:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09374EDEC71
+	for <nouveau@archiver.kernel.org>; Wed, 13 Sep 2023 15:18:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6540B10E461;
-	Wed, 13 Sep 2023 15:15:56 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C98210E31D
- for <nouveau@lists.freedesktop.org>; Wed, 13 Sep 2023 15:15:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1694618152;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=GPczWAfUlvg8P+nc+fxhWAsuQKg0IcsYbEVdZwNmiA8=;
- b=Q0P3L7rSBfKHsd11z7K3MiW1u09PzrZxLbj2Y8pK/sw1AEMV8RS50Qz1GKFFP2lE7nW17y
- nMlLUpM1xSH5PPqA5KlEHS/5wZ/oopdELEKkKqMhwoQP/nHbJBBAf7N65kghX6duva/7ci
- NrYfrhLbUXdvUWAceS+u06TDLTIxoX8=
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
- [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-78-Zlo8vi0jMm-FZPjgmCADCA-1; Wed, 13 Sep 2023 11:15:50 -0400
-X-MC-Unique: Zlo8vi0jMm-FZPjgmCADCA-1
-Received: by mail-ej1-f71.google.com with SMTP id
- a640c23a62f3a-9ad8a967a30so142278666b.0
- for <nouveau@lists.freedesktop.org>; Wed, 13 Sep 2023 08:15:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1694618149; x=1695222949;
- h=content-transfer-encoding:in-reply-to:organization:from:references
- :cc:to:content-language:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=GPczWAfUlvg8P+nc+fxhWAsuQKg0IcsYbEVdZwNmiA8=;
- b=OPlfxG3KDR69vnhzs4KV6Mgl6O4ZLECbSa6wBGK7b53izjhmtDrZqy7ep/3/K2Czh1
- gEM9/yszGMExK/VhZVHzciyY1CnZwfOVrtmi7ibrGUACsYEczjgQVM5zFlsGQWH8BW+8
- QKXq41cfKVQ0CCMYqaJc43Bu8QIlb6kJaYq8L96VzKphMMhEWxkmJaQbLxcFyjgPxsQu
- n4c7UyCAeQIT8YvqTpOCcZzcZEGdCu4si77uILzym1+nBmEa94M2fIXJWGdxN62l6BNS
- ySAN50DWP0sg9MshHnh5hrsbKpbPSKr8Ytm6ZdK9E51uo9u5ptsK10hB1owPq1RoHgr7
- gD7w==
-X-Gm-Message-State: AOJu0Yxbh7d1HY1TKOQH9lo9NLbAp6R6gzgG6xn/HE4yXHZtPbeSV4zT
- IdJj5JuM1WAYlaXYSLh+wukvAe515eNbtzCOU7qAbDIrD2g1h/GhkBn3tUTH8Ak/9czCE20T+wg
- Hki+Ho0G65M4uEKNmEu0twVoZCA==
-X-Received: by 2002:a17:906:8f:b0:9aa:1c70:1654 with SMTP id
- 15-20020a170906008f00b009aa1c701654mr2251816ejc.54.1694618148416; 
- Wed, 13 Sep 2023 08:15:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGela5V7fLF4FagJm8MENmlJRn6EuQZJQlH8PQt6Dv0YXUZwY3AW9a+o9ZQIRHQObqWY7Oj/w==
-X-Received: by 2002:a17:906:8f:b0:9aa:1c70:1654 with SMTP id
- 15-20020a170906008f00b009aa1c701654mr2251782ejc.54.1694618147533; 
- Wed, 13 Sep 2023 08:15:47 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:4b3f:de9c:642:1aff:fe31:a15c?
- ([2a02:810d:4b3f:de9c:642:1aff:fe31:a15c])
- by smtp.gmail.com with ESMTPSA id
- g14-20020a17090669ce00b0099b42c90830sm8632530ejs.36.2023.09.13.08.15.46
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 13 Sep 2023 08:15:47 -0700 (PDT)
-Message-ID: <5f66db4e-f580-bbfb-d9fc-ac78afdbf01a@redhat.com>
-Date: Wed, 13 Sep 2023 17:15:45 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AAA410E3B2;
+	Wed, 13 Sep 2023 15:18:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F34CA10E455;
+ Wed, 13 Sep 2023 15:18:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694618316; x=1726154316;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=1d4Am+dlVF1OEj+0xF75SmyjEU7kH/TNopyC9v9Nc60=;
+ b=CU/iE2liGzt8yTgj5ZPgzWZ/YFSfS7Yqeut/tjp6UbBQUdgqZumtAy4f
+ KVlTBgcL2JlXdyx5iItYSnQ1nUdCoNP4Y9VNhdkEq5yda8PW8ccX6lxJL
+ op+SxtPoHU2kg0GMIWOoZ4Jb+XTHjX6IOAH4BC5iiMeC0HRVqRzF+ZQtg
+ 8mkGeq0Ie71wzVe4EfEc1meNPR+JiKygnNCVo2uRTQtiDtFhTaj9N9W+5
+ Dq4I4wNPOrTId9oEo1D4xe/XZtAXwSmo5J9bfjQe7vXjOkPHMC+aTAKKg
+ cAHPp3unL1vALocMW9SD2prHpvqDoGZocoilefl2IRGqp77FsD7rRUU3Z A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="465061318"
+X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; d="scan'208";a="465061318"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2023 08:13:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="747336648"
+X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; d="scan'208";a="747336648"
+Received: from olindum-mobl1.ger.corp.intel.com (HELO [10.249.254.211])
+ ([10.249.254.211])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2023 08:13:37 -0700
+Message-ID: <34efce70-97d4-c7be-94cd-e44a50b414e3@linux.intel.com>
+Date: Wed, 13 Sep 2023 17:13:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
+Content-Language: en-US
 To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+ Danilo Krummrich <dakr@redhat.com>
 References: <20230909153125.30032-1-dakr@redhat.com>
  <20230909153125.30032-7-dakr@redhat.com>
  <a9ef04d2-2525-65c0-2eda-45ca9a95a3a0@linux.intel.com>
@@ -75,12 +52,8 @@ References: <20230909153125.30032-1-dakr@redhat.com>
  <ZQD2FFLP28bFgHXT@pollux>
  <cbff08ca845655dee44fbf498cdb37a3d5251bf3.camel@linux.intel.com>
  <ZQGoNovGz/4Y3xvf@pollux> <96af067a-ca48-891c-2adf-9faf271e3629@amd.com>
-From: Danilo Krummrich <dakr@redhat.com>
-Organization: RedHat
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
 In-Reply-To: <96af067a-ca48-891c-2adf-9faf271e3629@amd.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Subject: Re: [Nouveau] [PATCH drm-misc-next v3 6/7] drm/gpuvm: generalize
@@ -103,39 +76,40 @@ Cc: matthew.brost@intel.com, sarah.walker@imgtec.com,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+Hi Christian
+
 On 9/13/23 16:26, Christian König wrote:
 > Am 13.09.23 um 14:16 schrieb Danilo Krummrich:
->> As mentioned in a different mail thread, the reply is based on the assumption
+>> As mentioned in a different mail thread, the reply is based on the 
+>> assumption
 >> that we don't support anything else than GPUVM updates from the IOCTL.
-> 
+>
 > I think that this assumption is incorrect.
+>
+> Vulkan is just once specific use case, but this here should probably 
+> be able to handle other use cases as well.
+>
+> Especially with HMM you get the requirement that you need to be able 
+> to invalidate GPUVM mappings without grabbing a reservation lock.
 
-Well, more precisely I should have said "don't support GPUVM updated from within
-fence signaling critical sections". And looking at the code, that doesn't seem what
-you're doing there.
+Are you referring to the MMU range invalidation notifiers here?
 
-> 
-> Vulkan is just once specific use case, but this here should probably be able to handle other use cases as well.
-> 
-> Especially with HMM you get the requirement that you need to be able to invalidate GPUVM mappings without grabbing a reservation lock.
-
-What do you mean with "invalidate GPUVM mappings" in this context? drm_gpuvm_bo_evict()
-should only be called from a ttm_device_funcs::move callback, we should hold the dma-resv
-lock there.
-
-> 
+>
 > See what the eviction lock in amdgpu is doing for example.
 
-The eviction_lock seems to protect a VM state "evicting" of whether any BO that
-is associated with the VM is currently evicting. At the same time amdgpu protects
-the eviceted list of the VM with a different lock. So this seems to be entirely
-unrelated. Tracking a "currently evicting" state is not part of the GPUVM
-implementation currently and hence nothing would change for amdgpu there.
+IMO the statement regarding GPUVM updates from the IOCTL mostly refers 
+to the need to protect the evicted- and extobj lists with additional 
+spinlocks. Supporting userptr and faulting will ofc require additional 
+locks / locking mechanisms. But this code doesn't do that yet. Is your 
+concern that these particular spinlocks for these lists are indeed needed?
 
-> 
+/Thomas
+
+
+>
 > Regards,
 > Christian.
-> 
+>
 >>
 >> On Wed, Sep 13, 2023 at 11:14:46AM +0200, Thomas Hellström wrote:
 >>> Hi!
@@ -339,9 +313,12 @@ implementation currently and hence nothing would change for amdgpu there.
 >>> by the vm's resv lock. That means anybody calling unlink() must also
 >>> hold the vm's resv lock. (Which is OK from an UAF point of view, but
 >>> perhaps not from a locking inversion POW from an async list update).
->> This would mean that on unlink() we'd need to hold the VM's resv lock and the
->> corresponding GEM's resv lock (in case they're not the same anyways) because the
->> VM's resv lock would protect the external / evicted object lists and the GEM
+>> This would mean that on unlink() we'd need to hold the VM's resv lock 
+>> and the
+>> corresponding GEM's resv lock (in case they're not the same anyways) 
+>> because the
+>> VM's resv lock would protect the external / evicted object lists and 
+>> the GEM
 >> objects resv lock protects the GEM's list of drm_gpuvm_bos and the
 >> drm_gpuvm_bo's list of drm_gpuvas.
 >>
@@ -401,7 +378,8 @@ implementation currently and hence nothing would change for amdgpu there.
 >>> The whole point of this scheme is to rely on locks that you already are
 >>> supposed to be holding for various reasons and is simple to comprehend.
 >> I don't agree that we're supposed to hold the VM's resv lock anyways for
->> functions like drm_gpuvm_bo_put() or drm_gpuva_unlink(), but I'm fine using it
+>> functions like drm_gpuvm_bo_put() or drm_gpuva_unlink(), but I'm fine 
+>> using it
 >> for that purpose nevertheless.
 >>
 >>>> In order to at least place lockdep checks, the driver would need to
@@ -410,7 +388,8 @@ implementation currently and hence nothing would change for amdgpu there.
 >>>> know about
 >>>> the lock.
 >>> Yes, that sounds reasonable. One lockdep map per list.
->> I'd really like to avoid that, especially now that everything got simpler. We
+>> I'd really like to avoid that, especially now that everything got 
+>> simpler. We
 >> should define the actual locks to take instead.
 >>
 >>>> Out of curiosity, what is the overhead of a spin_lock() that doesn't
@@ -464,7 +443,8 @@ implementation currently and hence nothing would change for amdgpu there.
 >>> wanting to do that? If so, they will either need to resort to the
 >>> current spinlock solution or they will need to call unlink from a
 >>> workqueue item.
->> As Boris already mentioned we have the dma-resv lock by default or a driver
+>> As Boris already mentioned we have the dma-resv lock by default or a 
+>> driver
 >> specific GEM gpuva lock as opt-in. Now, we can get rid of the latter.
 >>
 >>>> Also, what if the object is an external object? We can't use the VM's
@@ -496,7 +476,8 @@ implementation currently and hence nothing would change for amdgpu there.
 >>> drm_gpuvm_bo::entry::gem list protection (bo resv or internal spinlock)
 >>> I don't have a strong preference.
 >> We can keep the GEM objects dma-resv lock, however as mentioned above
->> drm_gpuva_unlink() and drm_gpuvm_bo_put() then requires both the VM's resv lock
+>> drm_gpuva_unlink() and drm_gpuvm_bo_put() then requires both the VM's 
+>> resv lock
 >> and the GEM's resv lock in case they differ.
 >>
 >>>>   All those problems go away with a dedicated
@@ -553,7 +534,7 @@ implementation currently and hence nothing would change for amdgpu there.
 >>>>>>>>> __list_name.list)) {                     \
 >>>>>>>> +                       __vm_bo =
 >>>>>>>> list_first_entry(&(__gpuvm)->__list_name.list,        \
->>>>>>>> +                                                  struct
+>>>>>>>> + struct
 >>>>>>>> drm_gpuvm_bo,                 \
 >>>>>>>> +
 >>>>>>>> list.entry.__list_name);             \
@@ -682,7 +663,7 @@ implementation currently and hence nothing would change for amdgpu there.
 >>>>>>>>> list.entry.__list_name))             \
 >>>>>>>> +                       list_add_tail(&(__vm_bo)-
 >>>>>>>>> list.entry.__list_name,       \
->>>>>>>> +                                     &(__vm_bo)->vm-
+>>>>>>>> + &(__vm_bo)->vm-
 >>>>>>>>> __list_name.list);        \
 >>>>>>>> +               spin_unlock(&(__vm_bo)->vm-
 >>>>>>>>> __list_name.lock);                  \
@@ -915,7 +896,7 @@ implementation currently and hence nothing would change for amdgpu there.
 >>>>>>>> +
 >>>>>>>> +       return drm_exec_prepare_array(&vm_exec->exec, args-
 >>>>>>>>> objs,
->>>>>>>> +                                     args->num_objs,
+>>>>>>>> + args->num_objs,
 >>>>>>>> num_fences);
 >>>>>>>> +}
 >>>>>>>> +
@@ -993,7 +974,7 @@ implementation currently and hence nothing would change for amdgpu there.
 >>>>>>>> +       drm_exec_until_all_locked(exec) {
 >>>>>>>> +               ret = drm_gpuvm_prepare_range(gpuvm, exec,
 >>>>>>>> addr, range,
->>>>>>>> +                                             num_fences);
+>>>>>>>> + num_fences);
 >>>>>>>> +               drm_exec_retry_on_contention(exec);
 >>>>>>>> +               if (ret)
 >>>>>>>> +                       goto err;
@@ -1065,7 +1046,7 @@ implementation currently and hence nothing would change for amdgpu there.
 >>>>>>>> +       drm_exec_for_each_locked_object(exec, index, obj) {
 >>>>>>>> +               dma_resv_assert_held(obj->resv);
 >>>>>>>> +               dma_resv_add_fence(obj->resv, fence,
->>>>>>>> +                                  drm_gpuvm_is_extobj(gpuvm,
+>>>>>>>> + drm_gpuvm_is_extobj(gpuvm,
 >>>>>>>> obj) ?
 >>>>>>>> +                                  private_usage :
 >>>>>>>> extobj_usage);
@@ -1469,5 +1450,4 @@ implementation currently and hence nothing would change for amdgpu there.
 >>>>>>>> +       int (*bo_validate)(struct drm_gem_object *obj);
 >>>>>>>>     };
 >>>>>>>>     int drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
-> 
-
+>
