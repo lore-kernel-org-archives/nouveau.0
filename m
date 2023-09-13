@@ -4,39 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBD57E743C6
-	for <nouveau@archiver.kernel.org>; Thu, 28 Sep 2023 21:56:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15E84E743FA
+	for <nouveau@archiver.kernel.org>; Fri, 29 Sep 2023 08:42:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09E9D10E6B7;
-	Thu, 28 Sep 2023 21:56:50 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E0B810E6B5;
- Thu, 28 Sep 2023 21:56:47 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 0309161DB8;
- Thu, 28 Sep 2023 21:56:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61D58C433C7;
- Thu, 28 Sep 2023 21:56:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1695938205;
- bh=CCOmPtaIPAksl9FwVME2X9kGTjH7x0T2LVT+vz1R4gI=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=s4LDK5ARohl7qAnovUvynqNIvU0/b3bTTmaLsUmuJtrcWtxe92gX+eqwyvILh6IHq
- uDpLdB+qdEj1x/WA1mYpzeaCdaYK5cvYmK4HX1T5kemXL2PcdefesTsa+WhXnqesjE
- WMjak6vKupls/2afH4o7RKu3w8LANEbobTxzY9l6fo6iK+op3M/5KYbo0c8KyxZH0O
- 719btZeOdZf4US21Wm0jATfP1Sh3NI8phBKTfiTYSgm1yEyEojpkG+T9oWSV8CXvuz
- bQHoyPhW2ITiU9HDQNup/JW99w6piiXTnTMEwLWomQAwUzRwdkvdOxMPrZ3BV1Sj/y
- XgYHOwGXxa/8Q==
-Date: Thu, 28 Sep 2023 16:56:43 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Sui Jingfeng <sui.jingfeng@linux.dev>
-Message-ID: <20230928215643.GA506151@bhelgaas>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7A2510E6E2;
+	Fri, 29 Sep 2023 08:42:16 +0000 (UTC)
+X-Greylist: delayed 457 seconds by postgrey-1.36 at gabe;
+ Wed, 13 Sep 2023 09:19:31 UTC
+Received: from cstnet.cn (smtp20.cstnet.cn [159.226.251.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ECFE10E48F;
+ Wed, 13 Sep 2023 09:19:31 +0000 (UTC)
+Received: from sunying$isrc.iscas.ac.cn ( [180.111.102.117] ) by
+ ajax-webmail-APP-10 (Coremail) ; Wed, 13 Sep 2023 17:11:50 +0800
+ (GMT+08:00)
+X-Originating-IP: [180.111.102.117]
+Date: Wed, 13 Sep 2023 17:11:50 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: sunying@isrc.iscas.ac.cn
+To: airlied@gmail.com, daniel@ffwll.ch
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.15 build 20230321(1bf45b10)
+ Copyright (c) 2002-2023 www.mailtech.cn cnic.cn
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230825062714.6325-1-sui.jingfeng@linux.dev>
-Subject: Re: [Nouveau] [PATCH 0/5] Add the pci_get_base_class() helper and
- use it
+Message-ID: <501c0133.60683.18a8dcfa512.Coremail.sunying@isrc.iscas.ac.cn>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: tACowAD3_1_WfAFlSG4KAA--.54825W
+X-CM-SenderInfo: 5vxq5x1qj6x21ufox2xfdvhtffof0/1tbiCgUNCmUBThuxbAAAsk
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+ CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+ daVFxhVjvjDU=
+X-Mailman-Approved-At: Fri, 29 Sep 2023 08:42:15 +0000
+Subject: [Nouveau] drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bit.c and bus.c
+ with a series of the non-existing config "NOUVEAU_I2C_INTERNAL"
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,47 +49,18 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, Sui Jingfeng <suijingfeng@loongson.cn>,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>
+Cc: nouveau@lists.freedesktop.org, renyanjie01@gmail.com, pengpeng@iscas.ac.cn,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Aug 25, 2023 at 02:27:09PM +0800, Sui Jingfeng wrote:
-> From: Sui Jingfeng <suijingfeng@loongson.cn>
-> 
-> There is no function that can be used to get all PCI(e) devices in a
-> system by matching against its the PCI base class code only, while keep
-> the sub-class code and the programming interface ignored. Therefore, add
-> the pci_get_base_class() function to suit the need.
-> 
-> For example, if an application want to process all PCI(e) display devices
-> in a system, it can achieve such goal by writing the code as following:
-> 
->     pdev = NULL;
->     do {
->         pdev = pci_get_base_class(PCI_BASE_CLASS_DISPLAY, pdev);
->         if (!pdev)
->             break;
-> 
->         do_something_for_pci_display_device(pdev);
->     } while (1);
-> 
-> Sui Jingfeng (5):
->   PCI: Add the pci_get_base_class() helper
->   ALSA: hda/intel: Use pci_get_base_class() to reduce duplicated code
->   drm/nouveau: Use pci_get_base_class() to reduce duplicated code
->   drm/amdgpu: Use pci_get_base_class() to reduce duplicated code
->   drm/radeon: Use pci_get_base_class() to reduce duplicated code
-> 
->  drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 11 +++------
->  drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 20 ++++-----------
->  drivers/gpu/drm/nouveau/nouveau_acpi.c   | 11 +++------
->  drivers/gpu/drm/radeon/radeon_bios.c     | 20 ++++-----------
->  drivers/pci/search.c                     | 31 ++++++++++++++++++++++++
->  include/linux/pci.h                      |  5 ++++
->  sound/pci/hda/hda_intel.c                | 16 ++++--------
->  7 files changed, 59 insertions(+), 55 deletions(-)
-
-Applied to pci/enumeration for v6.7, thanks.
+SW4gdGhlIHNvdXJjZSBmaWxlcyBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9p
+MmMvYml0LmM6MjYgYW5kCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pMmMv
+YnVzLmM6MjE0IHJlZmVyIHRvCiBjb25maWd1cmF0aW9uIG9wdGlvbnMgIkNPTkZJR19OT1VWRUFV
+X0kyQ19JTlRFUk5BTCIgYW5kIAoiQ09ORklHX05PVVZFQVVfSTJDX0lOVEVSTkFMX0RFRkFVTFQi
+IGZvciBjb25kaXRpb25hbCBjb21waWxhdGlvbiwKYnV0IHRoZXNlIGNvbmZpZ3VyYXRpb24gb3B0
+aW9ucyBhcmUgbm90IGRlZmluZWQgaW4gYW55IGtjb25maWcgZmlsZXMsCndoaWNoIG1lYW5zIHRo
+ZSAiI2lmZGVmIENPTkZJR19OT1VWRUFVX0kyQ19JTlRFUk5BTF94eHgiIGNvbmRpdGlvbiBjb250
+YWlucyBkZWFkIGNvZGUuCgpEbyB0aGVzZSBjb25maWd1cmF0aW9uIG9wdGlvbnMgbmVlZCB0byBi
+ZSByZXRhaW5lZCBhbmQgYWRkZWQgbGF0ZXI/CiBPciBjYW4gd2Ugc2ltcGx5IGRyb3AgdGhlIGRl
+YWQgY29kZT8KCgpCZXN0IHJlZ2FyZHMsCllhbmppZSBSZW4KWWluZyBTdW4KCgo=
