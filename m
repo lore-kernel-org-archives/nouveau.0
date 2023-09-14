@@ -4,60 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3198AE743FB
-	for <nouveau@archiver.kernel.org>; Fri, 29 Sep 2023 08:42:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE4AEE743F8
+	for <nouveau@archiver.kernel.org>; Fri, 29 Sep 2023 08:42:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3787A10E6EA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3504C10E6E3;
 	Fri, 29 Sep 2023 08:42:35 +0000 (UTC)
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com
- [IPv6:2607:f8b0:4864:20::629])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2686F10E575;
- Wed, 27 Sep 2023 16:55:31 +0000 (UTC)
-Received: by mail-pl1-x629.google.com with SMTP id
- d9443c01a7336-1c3f97f2239so104430715ad.0; 
- Wed, 27 Sep 2023 09:55:31 -0700 (PDT)
+Received: from mail-yw1-x114a.google.com (mail-yw1-x114a.google.com
+ [IPv6:2607:f8b0:4864:20::114a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B41F810E58D
+ for <nouveau@lists.freedesktop.org>; Thu, 14 Sep 2023 21:30:39 +0000 (UTC)
+Received: by mail-yw1-x114a.google.com with SMTP id
+ 00721157ae682-58cb845f2f2so18879487b3.1
+ for <nouveau@lists.freedesktop.org>; Thu, 14 Sep 2023 14:30:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1695833730; x=1696438530; darn=lists.freedesktop.org;
- h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=4l9UDvCbv8erE71IF5bB14OddV2GDc72p6otw4VVCo8=;
- b=ItLwrl4eznGfM5kltrlpqiqkAGVKL22JUbuHSP3Csy06MdD01JnBpRrK3GXe1tsb6W
- RNftv77876CxKDYX4G4K3qgZspI0Zx1J9fOy5JOF2YD8G9BU9rfEQYgq6hHpsMwAF5TQ
- 16eBI6YihogCsX1JJfA6yqkyctBoohA6m5hQydkMGe+Y4UZV7jY8EDQlqeTZE9ExyqEh
- gg6tXKDG0eeOU2HHYp5Q/2y5R03eN3unPzaTHzNvBXjmRpsIIZCItPgnld226IXdJHak
- gybLtKOKpECJV462zdliZUVPXyDuetzFjVnKLisz0UQ+QZXTO8f6wxPTPz47XvDRpHAW
- oaPg==
+ d=google.com; s=20230601; t=1694727039; x=1695331839;
+ darn=lists.freedesktop.org; 
+ h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=tHD/q/SJLFYWSfqzhKThHqH+If9tHeimdGSeLbCxs0o=;
+ b=fx8mvjfTB46z3jybINWn4SufMmEgQk627PfVB9d08qh6BN2wydXlK3NH2coaJwixIQ
+ tDSr2uZwCRmBXYAFB6c8dfObMe288gfdN6rWsI4Y7ladMHkLDDcy2q/V+XjijPSWfIbG
+ izFqpxIKgZjMOfM+h33cGZrpEUl4Nt/PFUw4VaebX+FImssNM7UR2tR4O6t0BjCyJKgr
+ zLDAluUPc7FgjGyqCaeO7GxyQBIrEJhS4qinrlbf2/zJR2KKq1S850Ea6zPXzHb2Y19i
+ O2cEvWsaWnKIJV1DDUNHKC90UIP6AIQvPwRFUkyLakk1zr//DXyQdOMa0TIgracltmIW
+ 8iOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695833730; x=1696438530;
- h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=4l9UDvCbv8erE71IF5bB14OddV2GDc72p6otw4VVCo8=;
- b=ULZcQkaHBLHqjqj9oqsnVizHEfH9hWUarXFLCfH38bBmK/mz7yhclIGQB7YUMFzNrv
- 99Yk56N9Qhe5MmOesfPSWAkTMKYkWLtFv+r8OTJB5+K+IjcwVOfwPGwKCxROcg2zQ5Uq
- AkcfcYxZXneTEob4CSTyVtvMFeCrzMToeHAJS8YW0egHqXGVtrc1Of6Kp0YduvF8dvVq
- ptITEcGzkwwBi9W5CfvpwtsdZHd8UGNyEJkic2trca/tMOuJh+Vzp7tRGOd3z3vpSZOM
- nfQm0jbWjJh7ANlyS0Rg/plqNG71h5JVoWVzT9ZnP7KKsv7gghs5tnC+A8DuVqgGErpg
- dnNQ==
-X-Gm-Message-State: AOJu0YySKTG/W+N3tbtXJ6JID7+0b1SdfUzMcSdwC0g7Tsct6lK6DiZj
- 2mCtoeI9KSjjlXrrjhKExtI=
-X-Google-Smtp-Source: AGHT+IGWIL8MNB2aNny7VvLXmLZnLXuGexINxd6mcLllIv9ZwN5xF64TeTVfNog1WEGt/rSPD7LLjA==
-X-Received: by 2002:a17:902:b58c:b0:1b9:e241:ad26 with SMTP id
- a12-20020a170902b58c00b001b9e241ad26mr2096808pls.9.1695833730513; 
- Wed, 27 Sep 2023 09:55:30 -0700 (PDT)
-Received: from 377044c6c369.cse.ust.hk (191host097.mobilenet.cse.ust.hk.
- [143.89.191.97]) by smtp.gmail.com with ESMTPSA id
- e10-20020a170902744a00b001c61e628e98sm6267704plt.175.2023.09.27.09.55.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 27 Sep 2023 09:55:29 -0700 (PDT)
-From: Chengfeng Ye <dg573847474@gmail.com>
-To: kherbst@redhat.com, lyude@redhat.com, airlied@gmail.com, daniel@ffwll.ch,
- bskeggs@redhat.com
-Date: Wed, 27 Sep 2023 16:55:17 +0000
-Message-Id: <20230927165517.45066-1-dg573847474@gmail.com>
-X-Mailer: git-send-email 2.17.1
+ d=1e100.net; s=20230601; t=1694727039; x=1695331839;
+ h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=tHD/q/SJLFYWSfqzhKThHqH+If9tHeimdGSeLbCxs0o=;
+ b=KCXTCdHu+pRU4RKmTd/vszqBr8HXJjHTyALZNhQw7+qcY2PnQliFG3Pnq7/ajSYHc0
+ rjVZibOI0VarbN13M73l/B/vhrpxbQFwd/bplTRce+lUJtI0qCpMLxgb1lZJJ+b1ZxLl
+ pO8T6i2TA17dTyvOJonCup1ce+WnBSkCPM5KtArjpdrpO76mt/eGgfbjN+f0ZMmwUpZn
+ TbXaKUEhrI/YUCpRZoq8utIXqgwjcWw6EWfZjtvG/VCdubEQ8pGu6g6fD/hVvqAPW8LL
+ EDOodRU7DOBptFnkSZ2qAe00rVqrMuYS/zxOwUSbUtYAtbJ8WQraoKVwg3nkBhvAR6Tk
+ xqVA==
+X-Gm-Message-State: AOJu0YwvO4UOMzG8rapVXkpA23rW8n8ZI4MhjilVPnbELVkpmqE7x/gz
+ nm+XgmJd7ClnWJiL4o3h3nkOEtgfWX0+NvB1YA==
+X-Google-Smtp-Source: AGHT+IGX8yvrtUoKVn7mJlx7ANqKychzQ3OooCdQznWtzGJrkQcp6QG1fyYuUP8f+T6DjKoeAxURtoAR54eD/SD2gQ==
+X-Received: from jstitt-linux1.c.googlers.com
+ ([fda3:e722:ac3:cc00:2b:ff92:c0a8:23b5])
+ (user=justinstitt job=sendgmr) by 2002:a81:450c:0:b0:586:a8ab:f8fe with SMTP
+ id s12-20020a81450c000000b00586a8abf8femr176035ywa.10.1694727038901; Thu, 14
+ Sep 2023 14:30:38 -0700 (PDT)
+Date: Thu, 14 Sep 2023 21:30:37 +0000
+Mime-Version: 1.0
+X-B4-Tracking: v=1; b=H4sIAHx7A2UC/x2NQQ6CQAxFr0K6tgnMqBGvYlxgKdhEy6RlJhrC3
+ Z24e2/x/t/A2YQdrs0GxkVcFq3SHRqg56Azo4zVIbQhtn13RF9NKX1xNClsjnPKld+oSy48ZNQ
+ iE9JLWFckvIRHDSme+1OEupmMJ/n8/273ff8B4I28qX8AAAA=
+X-Developer-Key: i=justinstitt@google.com; a=ed25519;
+ pk=tC3hNkJQTpNX/gLKxTNQKDmiQl6QjBNCGKJINqAdJsE=
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1694727038; l=1659;
+ i=justinstitt@google.com; s=20230717; h=from:subject:message-id;
+ bh=Q5CFsZyxCfw6hgNgrBpo5UsVYRuZcWL5zSBOa/5AHCg=;
+ b=J+RLdusJNzQ1fs2a8n+U6McsahNsvZ0DMJXnqsKtVDvGrjExGw+WOkTee3/eBqCw8pmFfoQkt
+ 3+dBjHWINIqCOHsLbFQ4KpmqaC+OrdCs40Utc/nsxWtXyWMQ05+y3O9
+X-Mailer: b4 0.12.3
+Message-ID: <20230914-strncpy-drivers-gpu-drm-nouveau-nvif-client-c-v1-1-dc3b3719fcb4@google.com>
+From: Justin Stitt <justinstitt@google.com>
+To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>, 
+ Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="utf-8"
 X-Mailman-Approved-At: Fri, 29 Sep 2023 08:42:15 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau/flcn/msgq: fix potential deadlock on
- &msgq->lock
+Subject: [Nouveau] [PATCH] drm/nouveau/nvif: refactor deprecated strncpy
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,59 +79,51 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chengfeng Ye <dg573847474@gmail.com>, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, Justin Stitt <justinstitt@google.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-hardening@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-As &msgq->lock is acquired under both irq context from
-gp102_sec2_intr() and softirq context from gm20b_pmu_recv(),
-thus irq should be disabled while acquiring that lock, otherwise
-there would be potential deadlock.
+`strncpy` is deprecated and as such we should prefer more robust and
+less ambiguous string interfaces.
 
-gm20b_pmu_recv()
---> nvkm_falcon_msgq_recv()
---> nvkm_falcon_msgq_open()
---> spin_lock(&msgq->lock)
-<interrupt>
-   --> gp102_sec2_intr()
-   --> nvkm_falcon_msgq_recv()
-   --> nvkm_falcon_msgq_open()
-   --> spin_lock(&msgq->lock)
+A suitable replacement is `strscpy_pad` due to the fact that it
+guarantees NUL-termination on the destination buffer whilst also
+maintaining the NUL-padding behavior that `strncpy` provides. I am not
+sure whether NUL-padding is strictly needed but I see in
+`nvif_object_ctor()` args is memcpy'd elsewhere so I figured we'd keep
+the same functionality.
 
-This flaw was found by an experimental static analysis tool I am
-developing for irq-related deadlock.
-
-To prevent the potential problem, I change to spin_lock_irq() and
-spin_unlock_irq() on the lock.
-
-Signed-off-by: Chengfeng Ye <dg573847474@gmail.com>
+Link: https://www.kernel.org/doc/html/latest/process/deprecated.html#strncpy-on-nul-terminated-strings [1]
+Link: https://github.com/KSPP/linux/issues/90
+Cc: linux-hardening@vger.kernel.org
+Signed-off-by: Justin Stitt <justinstitt@google.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/falcon/msgq.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Note: build-tested only.
+---
+ drivers/gpu/drm/nouveau/nvif/client.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/falcon/msgq.c b/drivers/gpu/drm/nouveau/nvkm/falcon/msgq.c
-index 16b246fda666..5c3b43216ee8 100644
---- a/drivers/gpu/drm/nouveau/nvkm/falcon/msgq.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/falcon/msgq.c
-@@ -25,7 +25,7 @@
- static void
- nvkm_falcon_msgq_open(struct nvkm_falcon_msgq *msgq)
- {
--	spin_lock(&msgq->lock);
-+	spin_lock_irq(&msgq->lock);
- 	msgq->position = nvkm_falcon_rd32(msgq->qmgr->falcon, msgq->tail_reg);
- }
+diff --git a/drivers/gpu/drm/nouveau/nvif/client.c b/drivers/gpu/drm/nouveau/nvif/client.c
+index a3264a0e933a..3a27245f467f 100644
+--- a/drivers/gpu/drm/nouveau/nvif/client.c
++++ b/drivers/gpu/drm/nouveau/nvif/client.c
+@@ -69,7 +69,7 @@ nvif_client_ctor(struct nvif_client *parent, const char *name, u64 device,
+ 	} nop = {};
+ 	int ret;
  
-@@ -37,7 +37,7 @@ nvkm_falcon_msgq_close(struct nvkm_falcon_msgq *msgq, bool commit)
- 	if (commit)
- 		nvkm_falcon_wr32(falcon, msgq->tail_reg, msgq->position);
- 
--	spin_unlock(&msgq->lock);
-+	spin_unlock_irq(&msgq->lock);
- }
- 
- bool
--- 
-2.17.1
+-	strncpy(args.name, name, sizeof(args.name));
++	strscpy_pad(args.name, name, sizeof(args.name));
+ 	ret = nvif_object_ctor(parent != client ? &parent->object : NULL,
+ 			       name ? name : "nvifClient", 0,
+ 			       NVIF_CLASS_CLIENT, &args, sizeof(args),
+
+---
+base-commit: 3669558bdf354cd352be955ef2764cde6a9bf5ec
+change-id: 20230914-strncpy-drivers-gpu-drm-nouveau-nvif-client-c-82b023c36953
+
+Best regards,
+--
+Justin Stitt <justinstitt@google.com>
 
