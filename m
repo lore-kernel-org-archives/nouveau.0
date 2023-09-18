@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E800CD37B0
-	for <nouveau@archiver.kernel.org>; Mon, 18 Sep 2023 20:22:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1828CD37B0
+	for <nouveau@archiver.kernel.org>; Mon, 18 Sep 2023 20:22:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09D7B10E325;
-	Mon, 18 Sep 2023 20:22:57 +0000 (UTC)
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com
- [IPv6:2607:f8b0:4864:20::52d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C72D10E325
- for <nouveau@lists.freedesktop.org>; Mon, 18 Sep 2023 20:22:55 +0000 (UTC)
-Received: by mail-pg1-x52d.google.com with SMTP id
- 41be03b00d2f7-565334377d0so4047110a12.2
- for <nouveau@lists.freedesktop.org>; Mon, 18 Sep 2023 13:22:55 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8036310E327;
+	Mon, 18 Sep 2023 20:22:59 +0000 (UTC)
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com
+ [IPv6:2607:f8b0:4864:20::42e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D50C10E326
+ for <nouveau@lists.freedesktop.org>; Mon, 18 Sep 2023 20:22:57 +0000 (UTC)
+Received: by mail-pf1-x42e.google.com with SMTP id
+ d2e1a72fcca58-68c576d35feso4554615b3a.2
+ for <nouveau@lists.freedesktop.org>; Mon, 18 Sep 2023 13:22:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1695068574; x=1695673374; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1695068576; x=1695673376; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=b+GwL34UY3LMOuiijNWiWYqgdtGcgymMT45lfWo9WBA=;
- b=DiSnhE5hrqYTLtwmG/sm2wOYCXW3lNxwsXNgohSEXu0thHlYPi0LOOmm7dFH+LuApM
- bYRi5mfGiY4H3aBv2pVgW8cooRV9u7VeJ1SRraJmYJ6eYUazw2wRH4plNb5mwzuOC3gr
- kUZKJ+VfKCxtFy/Sr8DCEO5yf89bnH/KF6tPwA9DNnlCg9PAG9UBxlV38hTPXcrn13BU
- 8oiIQ39qfPhg3xnilAv39QSJl+ZMzZykfUb8OR0vmBw5vk093l6oF7zmI7pRMeobZKpK
- REbOSdzydyB44O/rsVc7On2ofc1rkbWYOWWt8I0sPxgmLnjc6FSXs3e6Nzp0BRhE4arz
- OArQ==
+ bh=bF9V8kLUSibQTBGFALm5fhs6ScB4UyQZ35SaEGi9EP8=;
+ b=bIcnlJ7uOPyDhpUhO8KYZgW3ImqCpA02sktLNVbxHIJ9Yo0O55nW3otOnzLZcExq3U
+ lh2nogJfuGdPweIbc0UfSH6XP7Wa5CcIHI93A8+5VJI5tpl3I4mXjZ3ZY7N+3EsoRJS3
+ s24Qm2K+3HuivI/Mp8GdCC0JSxttdcVJv0ZvOeIMVJ5qmCh7WZzc2jVita6eXewgwrLb
+ T+Zxtvy3ToDcUt6F1adrzf6twWaUidnzuhlKu1nvvay6O+a3BZT+7eCyJhlTVNzMlJKp
+ k+lDN7a1/N6XfG9S97IuDC2bSmUQPZShMl/tcAE+neA/diYkuMh/D920h643lWcDjCbo
+ iLpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695068574; x=1695673374;
+ d=1e100.net; s=20230601; t=1695068576; x=1695673376;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=b+GwL34UY3LMOuiijNWiWYqgdtGcgymMT45lfWo9WBA=;
- b=t80WE5l66DG7dd2UuY/PggtHcCpxDvbMOYGx7fBLQD23kxNX4Hc6yblrF3dm++QsGH
- 9MsLJFjJpEDhnmKPs6SRFDAQSfpO8wRT0k+ScRM1Igh+9g0ThCQQ+iW7t0mfgMww+vyK
- pihqI+vRzn2U/M2OxBi0RqK7R4NOij3JpCYT6XIoDDNsFLhMeOmGd8y+TwImTfAtmiFM
- qBT0RgPcBuX95ENzWRsjCI/hB7r4DMs2WSIaegoKMAQpw3pIGQJBE7sYCTu2053HKjlT
- 6To3VW3XzUnMUaQIzSg+ha0Z1c5Lh46e6GXCK6SI/1IOefkakfeavLToCDPf08BNNKEj
- aB6Q==
-X-Gm-Message-State: AOJu0Yy1Fig+HYa6wa/6TDD3WeYbRhmqY5IxDw7FLdNWUKwkgrk1sCOh
- XUdq1L8gJ7HJGfqAnZnIrzFwLfk7+BM=
-X-Google-Smtp-Source: AGHT+IGRYM4fbLYsrpUvNP5KibDPXYLV0v6NYHEBcTNgpWiS7trgwZtK75430MRTuxS7XP+xBFei2A==
-X-Received: by 2002:a05:6a21:498a:b0:159:ee0f:b9e9 with SMTP id
- ax10-20020a056a21498a00b00159ee0fb9e9mr10406587pzc.53.1695068574094; 
- Mon, 18 Sep 2023 13:22:54 -0700 (PDT)
+ bh=bF9V8kLUSibQTBGFALm5fhs6ScB4UyQZ35SaEGi9EP8=;
+ b=kkJDN0WqcEzBOCLP8F152HEF2yjbfUr3db3Fx6DttC74j7h3y7DEy1FhSrCV5XfHHk
+ n2YEEPCl0nl7OfMLtFBOY3ERGyyvDyXr9uQ/eH3+G8f41m9hsqF/26taOMpi+JMii75x
+ OPemTdMQsrD3uuAidAnyxwTS5Ljs2saJqrpjra5gwJ7nXikFLwmTQdi5RQHIXBBHZO1a
+ D8tn5J9NtxgttMzOKz462UlDFujA4SWjBjRtzNvPFy4CHeH7H8V9khdX+SpUDDj8kcMn
+ FgPnbDbXLQTEhe56GmziunUmGpTekrAM+73zTrZsUqwimek7n1YKkUDQ7/INbEhF7OL6
+ CBFg==
+X-Gm-Message-State: AOJu0Yz8R0YOwr4mThgZkR8/RwBj7kbF/TVHuT2CMXPRoqeiGdQFPDMt
+ orfmJLK8ivobktGoPcCLvTIEJnuHyYM=
+X-Google-Smtp-Source: AGHT+IGbhID3BH+Mw7dtYyew/2Gq/Uju1sDs64NGetYhxAzWG6P9X0V9kFoQ/U3VY30thyUFN+XbqA==
+X-Received: by 2002:a05:6a00:139b:b0:690:41a1:9b6a with SMTP id
+ t27-20020a056a00139b00b0069041a19b6amr13229105pfg.5.1695068576253; 
+ Mon, 18 Sep 2023 13:22:56 -0700 (PDT)
 Received: from localhost.localdomain (87-121-74-45.dyn.launtel.net.au.
  [87.121.74.45]) by smtp.gmail.com with ESMTPSA id
- p21-20020aa78615000000b006889348ba6asm7446067pfn.81.2023.09.18.13.22.52
+ p21-20020aa78615000000b006889348ba6asm7446067pfn.81.2023.09.18.13.22.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 18 Sep 2023 13:22:53 -0700 (PDT)
+ Mon, 18 Sep 2023 13:22:55 -0700 (PDT)
 From: Ben Skeggs <skeggsb@gmail.com>
 To: nouveau@lists.freedesktop.org
-Date: Tue, 19 Sep 2023 06:21:28 +1000
-Message-ID: <20230918202149.4343-24-skeggsb@gmail.com>
+Date: Tue, 19 Sep 2023 06:21:29 +1000
+Message-ID: <20230918202149.4343-25-skeggsb@gmail.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230918202149.4343-1-skeggsb@gmail.com>
 References: <20230918202149.4343-1-skeggsb@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH 23/44] drm/nouveau/ce/tu102-: prepare for GSP-RM
+Subject: [Nouveau] [PATCH 24/44] drm/nouveau/disp/tu102-: prepare for GSP-RM
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,78 +79,171 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 From: Ben Skeggs <bskeggs@redhat.com>
 
 - (temporarily) disable if GSP-RM detected, will be added later
+- pass "suspend" flag down to chipset-specific DISP code
 
 Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/engine/ce/ga100.c | 4 ++++
- drivers/gpu/drm/nouveau/nvkm/engine/ce/ga102.c | 5 +++++
- drivers/gpu/drm/nouveau/nvkm/engine/ce/tu102.c | 5 +++++
- 3 files changed, 14 insertions(+)
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c  |  5 ++++-
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/ga102.c |  4 ++++
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/gf119.c |  2 +-
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c |  2 +-
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c  |  2 +-
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/priv.h  | 11 ++++++-----
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c |  4 ++++
+ 7 files changed, 21 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/ce/ga100.c b/drivers/gpu/drm/nouveau/nvkm/engine/ce/ga100.c
-index 315a69f7fdd1..1c0c60138706 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/ce/ga100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/ce/ga100.c
-@@ -21,6 +21,7 @@
-  */
- #include "priv.h"
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c
+index 39f7e7ce9f4a..7356e20e5770 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c
+@@ -105,7 +105,7 @@ nvkm_disp_fini(struct nvkm_engine *engine, bool suspend)
+ 	struct nvkm_outp *outp;
  
-+#include <subdev/gsp.h>
- #include <subdev/vfn.h>
+ 	if (disp->func->fini)
+-		disp->func->fini(disp);
++		disp->func->fini(disp, suspend);
  
- #include <nvif/class.h>
-@@ -88,5 +89,8 @@ int
- ga100_ce_new(struct nvkm_device *device, enum nvkm_subdev_type type, int inst,
- 	     struct nvkm_engine **pengine)
- {
-+	if (nvkm_gsp_rm(device->gsp))
-+		return -ENODEV;
+ 	list_for_each_entry(outp, &disp->outps, head) {
+ 		if (outp->func->fini)
+@@ -208,6 +208,9 @@ nvkm_disp_dtor(struct nvkm_engine *engine)
+ 		nvkm_head_del(&head);
+ 	}
+ 
++	if (disp->func->dtor)
++		disp->func->dtor(disp);
 +
- 	return nvkm_engine_new_(&ga100_ce, device, type, inst, true, pengine);
+ 	return data;
  }
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/ce/ga102.c b/drivers/gpu/drm/nouveau/nvkm/engine/ce/ga102.c
-index 461b73c7e2e0..9359c5e7aa3a 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/ce/ga102.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/ce/ga102.c
-@@ -21,6 +21,8 @@
-  */
- #include "priv.h"
+ 
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/ga102.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/ga102.c
+index efe66ba3c61f..d632c09d962e 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/ga102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/ga102.c
+@@ -24,6 +24,7 @@
+ #include "head.h"
+ #include "ior.h"
  
 +#include <subdev/gsp.h>
-+
- #include <nvif/class.h>
+ #include <subdev/timer.h>
  
- static const struct nvkm_engine_func
-@@ -41,5 +43,8 @@ int
- ga102_ce_new(struct nvkm_device *device, enum nvkm_subdev_type type, int inst,
- 	     struct nvkm_engine **pengine)
+ #include <nvif/class.h>
+@@ -147,5 +148,8 @@ int
+ ga102_disp_new(struct nvkm_device *device, enum nvkm_subdev_type type, int inst,
+ 	       struct nvkm_disp **pdisp)
  {
 +	if (nvkm_gsp_rm(device->gsp))
 +		return -ENODEV;
 +
- 	return nvkm_engine_new_(&ga102_ce, device, type, inst, true, pengine);
+ 	return nvkm_disp_new_(&ga102_disp, device, type, inst, pdisp);
  }
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/ce/tu102.c b/drivers/gpu/drm/nouveau/nvkm/engine/ce/tu102.c
-index 9563c0175142..67d0545cf902 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/ce/tu102.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/ce/tu102.c
-@@ -21,6 +21,8 @@
-  */
- #include "priv.h"
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gf119.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gf119.c
+index b48ead31da30..83a1323600ae 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gf119.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gf119.c
+@@ -1154,7 +1154,7 @@ gf119_disp_intr(struct nvkm_disp *disp)
+ }
  
+ void
+-gf119_disp_fini(struct nvkm_disp *disp)
++gf119_disp_fini(struct nvkm_disp *disp, bool suspend)
+ {
+ 	struct nvkm_device *device = disp->engine.subdev.device;
+ 	/* disable all interrupts */
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c
+index e1634f7bca56..9fde83fe2e2f 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c
+@@ -1115,7 +1115,7 @@ gv100_disp_intr(struct nvkm_disp *disp)
+ }
+ 
+ void
+-gv100_disp_fini(struct nvkm_disp *disp)
++gv100_disp_fini(struct nvkm_disp *disp, bool suspend)
+ {
+ 	struct nvkm_device *device = disp->engine.subdev.device;
+ 	nvkm_wr32(device, 0x611db0, 0x00000000);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
+index 2d05e2f7e46b..03a5f88a4b99 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
+@@ -1504,7 +1504,7 @@ nv50_disp_intr(struct nvkm_disp *disp)
+ }
+ 
+ void
+-nv50_disp_fini(struct nvkm_disp *disp)
++nv50_disp_fini(struct nvkm_disp *disp, bool suspend)
+ {
+ 	struct nvkm_device *device = disp->engine.subdev.device;
+ 	/* disable all interrupts */
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/priv.h b/drivers/gpu/drm/nouveau/nvkm/engine/disp/priv.h
+index ec5292a8f3c8..13ef71f428b8 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/priv.h
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/priv.h
+@@ -15,9 +15,10 @@ int nvkm_disp_new_(const struct nvkm_disp_func *, struct nvkm_device *, enum nvk
+ void nvkm_disp_vblank(struct nvkm_disp *, int head);
+ 
+ struct nvkm_disp_func {
++	void (*dtor)(struct nvkm_disp *);
+ 	int (*oneinit)(struct nvkm_disp *);
+ 	int (*init)(struct nvkm_disp *);
+-	void (*fini)(struct nvkm_disp *);
++	void (*fini)(struct nvkm_disp *, bool suspend);
+ 	void (*intr)(struct nvkm_disp *);
+ 	void (*intr_error)(struct nvkm_disp *, int chid);
+ 
+@@ -32,7 +33,7 @@ struct nvkm_disp_func {
+ 
+ 	u16 ramht_size;
+ 
+-	const struct nvkm_sclass root;
++	struct nvkm_sclass root;
+ 
+ 	struct nvkm_disp_user {
+ 		struct nvkm_sclass base;
+@@ -44,7 +45,7 @@ struct nvkm_disp_func {
+ 
+ int nv50_disp_oneinit(struct nvkm_disp *);
+ int nv50_disp_init(struct nvkm_disp *);
+-void nv50_disp_fini(struct nvkm_disp *);
++void nv50_disp_fini(struct nvkm_disp *, bool suspend);
+ void nv50_disp_intr(struct nvkm_disp *);
+ extern const struct nvkm_enum nv50_disp_intr_error_type[];
+ void nv50_disp_super(struct work_struct *);
+@@ -56,12 +57,12 @@ void nv50_disp_super_2_2(struct nvkm_disp *, struct nvkm_head *);
+ void nv50_disp_super_3_0(struct nvkm_disp *, struct nvkm_head *);
+ 
+ int gf119_disp_init(struct nvkm_disp *);
+-void gf119_disp_fini(struct nvkm_disp *);
++void gf119_disp_fini(struct nvkm_disp *, bool suspend);
+ void gf119_disp_intr(struct nvkm_disp *);
+ void gf119_disp_super(struct work_struct *);
+ void gf119_disp_intr_error(struct nvkm_disp *, int);
+ 
+-void gv100_disp_fini(struct nvkm_disp *);
++void gv100_disp_fini(struct nvkm_disp *, bool suspend);
+ void gv100_disp_intr(struct nvkm_disp *);
+ void gv100_disp_super(struct work_struct *);
+ int gv100_disp_wndw_cnt(struct nvkm_disp *, unsigned long *);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c
+index 19f5d3a6035e..02b6c9fcb973 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c
+@@ -25,6 +25,7 @@
+ #include "ior.h"
+ 
+ #include <core/gpuobj.h>
 +#include <subdev/gsp.h>
-+
- #include <nvif/class.h>
+ #include <subdev/timer.h>
  
- static const struct nvkm_engine_func
-@@ -37,5 +39,8 @@ int
- tu102_ce_new(struct nvkm_device *device, enum nvkm_subdev_type type, int inst,
- 	     struct nvkm_engine **pengine)
+ #include <nvif/class.h>
+@@ -233,5 +234,8 @@ int
+ tu102_disp_new(struct nvkm_device *device, enum nvkm_subdev_type type, int inst,
+ 	       struct nvkm_disp **pdisp)
  {
 +	if (nvkm_gsp_rm(device->gsp))
 +		return -ENODEV;
 +
- 	return nvkm_engine_new_(&tu102_ce, device, type, inst, true, pengine);
+ 	return nvkm_disp_new_(&tu102_disp, device, type, inst, pdisp);
  }
 -- 
 2.41.0
