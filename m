@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62FA0CE79A9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B85BFCE79A8
 	for <nouveau@archiver.kernel.org>; Tue, 19 Sep 2023 22:07:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF27510E403;
-	Tue, 19 Sep 2023 22:07:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02B7010E407;
+	Tue, 19 Sep 2023 22:07:41 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 211F410E403
- for <nouveau@lists.freedesktop.org>; Tue, 19 Sep 2023 22:07:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55F9E10E403
+ for <nouveau@lists.freedesktop.org>; Tue, 19 Sep 2023 22:07:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1695161258;
+ s=mimecast20190719; t=1695161257;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=zFieiXbaBTjfuTiZca2mPcFhbLUov1B8cBzL+moIOfI=;
- b=dJSyCSDYWCf0lKWVsiYO07DMbxfOkLqXDw0n0CQKqUAIBYF9Ygl22oS1W6BRfrzHuiAfto
- CrUZP5Vqs74hE4hgKbT1JhUNdJedFraxg92G2h7AqlSX6xTcokbBM7s5G/Ki9SDuMjq52/
- ciJNxO3YtldIsVj//mXVcdGD788XHUo=
+ bh=BCAfXJvvF84aMRX4wn8THN8Hfy1i9CyxygmzANiShPI=;
+ b=M4txGixnPhc4rvoYvxw+SjM7KKoR8lIknY/manUI3Z7s3Z+69g22vM0Pn8p9j08xDO/ulP
+ EUQBpVDq0E0/t7fO65jkBhEkQio9df4DbLELESEWt0FCrbE7IokfZXEX8DeMjhUHStgeip
+ /vytEhdQ9jqV5C5E38fh+oZcjFp+5fg=
 Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
  [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-474-u6ZPMQjhPmGjAgPc6Tpi0Q-1; Tue, 19 Sep 2023 18:07:36 -0400
-X-MC-Unique: u6ZPMQjhPmGjAgPc6Tpi0Q-1
+ us-mta-528-EJw0itI4NE2WF2abZfbhXA-1; Tue, 19 Sep 2023 18:07:34 -0400
+X-MC-Unique: EJw0itI4NE2WF2abZfbhXA-1
 Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.rdu2.redhat.com
  [10.11.54.1])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 69C32800883;
- Tue, 19 Sep 2023 22:07:36 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id DEA38800888;
+ Tue, 19 Sep 2023 22:07:33 +0000 (UTC)
 Received: from emerald.lyude.net (unknown [10.22.18.67])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 0920A40C2064;
- Tue, 19 Sep 2023 22:07:36 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 8564440C2064;
+ Tue, 19 Sep 2023 22:07:33 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: dri-devel@lists.freedesktop.org,
 	nouveau@lists.freedesktop.org
-Date: Tue, 19 Sep 2023 17:56:35 -0400
-Message-ID: <20230919220442.202488-41-lyude@redhat.com>
+Date: Tue, 19 Sep 2023 17:56:33 -0400
+Message-ID: <20230919220442.202488-39-lyude@redhat.com>
 In-Reply-To: <20230919220442.202488-1-lyude@redhat.com>
 References: <20230919220442.202488-1-lyude@redhat.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Scanned-By: MIMEDefang 3.1 on 10.11.54.1
-Subject: [Nouveau] [PATCH v3 40/44] drm/nouveau/kms/nv50-: create heads
- after outps/conns
+Subject: [Nouveau] [PATCH v3 38/44] drm/nouveau/disp/nv50-: skip
+ DCB_OUTPUT_TV
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,104 +61,41 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: open list <linux-kernel@vger.kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>, Wayne Lin <Wayne.Lin@amd.com>
+ Daniel Vetter <daniel@ffwll.ch>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 From: Ben Skeggs <bskeggs@redhat.com>
 
-- output info will be used later to determine MST support
+We've never supported it.
 
 Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
-Reviewed-by: Lyude Paul <lyude@redhat.com>
 Acked-by: Danilo Krummrich <me@dakr.org>
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 ---
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 64 ++++++++++++-------------
- 1 file changed, 32 insertions(+), 32 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 2134502ec04e2..26d59346703e3 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -2774,38 +2774,6 @@ nv50_display_create(struct drm_device *dev)
- 		dev->mode_config.cursor_height = 64;
- 	}
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
+index 4be09ec4fd5c2..2d05e2f7e46b8 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
+@@ -1656,7 +1656,6 @@ nv50_disp_oneinit(struct nvkm_disp *disp)
  
--	/* create crtc objects to represent the hw heads */
--	for_each_set_bit(i, &disp->disp->head_mask, sizeof(disp->disp->head_mask) * 8) {
--		struct nv50_head *head;
--
--		head = nv50_head_create(dev, i);
--		if (IS_ERR(head)) {
--			ret = PTR_ERR(head);
--			goto out;
--		}
--
--		if (has_mst) {
--			head->msto = nv50_msto_new(dev, head, i);
--			if (IS_ERR(head->msto)) {
--				ret = PTR_ERR(head->msto);
--				head->msto = NULL;
--				goto out;
--			}
--
--			/*
--			 * FIXME: This is a hack to workaround the following
--			 * issues:
--			 *
--			 * https://gitlab.gnome.org/GNOME/mutter/issues/759
--			 * https://gitlab.freedesktop.org/xorg/xserver/merge_requests/277
--			 *
--			 * Once these issues are closed, this should be
--			 * removed
--			 */
--			head->msto->encoder.possible_crtcs = disp->disp->head_mask;
--		}
--	}
--
- 	/* create encoder/connector objects based on VBIOS DCB table */
- 	for (i = 0, dcbe = &dcb->entry[0]; i < dcb->entries; i++, dcbe++) {
- 		struct nouveau_encoder *outp;
-@@ -2868,6 +2836,38 @@ nv50_display_create(struct drm_device *dev)
- 		connector->funcs->destroy(connector);
- 	}
- 
-+	/* create crtc objects to represent the hw heads */
-+	for_each_set_bit(i, &disp->disp->head_mask, sizeof(disp->disp->head_mask) * 8) {
-+		struct nv50_head *head;
-+
-+		head = nv50_head_create(dev, i);
-+		if (IS_ERR(head)) {
-+			ret = PTR_ERR(head);
-+			goto out;
-+		}
-+
-+		if (has_mst) {
-+			head->msto = nv50_msto_new(dev, head, i);
-+			if (IS_ERR(head->msto)) {
-+				ret = PTR_ERR(head->msto);
-+				head->msto = NULL;
-+				goto out;
-+			}
-+
-+			/*
-+			 * FIXME: This is a hack to workaround the following
-+			 * issues:
-+			 *
-+			 * https://gitlab.gnome.org/GNOME/mutter/issues/759
-+			 * https://gitlab.freedesktop.org/xorg/xserver/merge_requests/277
-+			 *
-+			 * Once these issues are closed, this should be
-+			 * removed
-+			 */
-+			head->msto->encoder.possible_crtcs = disp->disp->head_mask;
-+		}
-+	}
-+
- 	/* Disable vblank irqs aggressively for power-saving, safe on nv50+ */
- 	dev->vblank_disable_immediate = true;
- 
+ 		switch (dcbE.type) {
+ 		case DCB_OUTPUT_ANALOG:
+-		case DCB_OUTPUT_TV:
+ 		case DCB_OUTPUT_TMDS:
+ 		case DCB_OUTPUT_LVDS:
+ 			ret = nvkm_outp_new(disp, i, &dcbE, &outp);
+@@ -1664,6 +1663,7 @@ nv50_disp_oneinit(struct nvkm_disp *disp)
+ 		case DCB_OUTPUT_DP:
+ 			ret = nvkm_dp_new(disp, i, &dcbE, &outp);
+ 			break;
++		case DCB_OUTPUT_TV:
+ 		case DCB_OUTPUT_WFD:
+ 			/* No support for WFD yet. */
+ 			ret = -ENODEV;
 -- 
 2.41.0
 
