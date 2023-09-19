@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B329CCE79AA
-	for <nouveau@archiver.kernel.org>; Tue, 19 Sep 2023 22:07:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC323CE79A9
+	for <nouveau@archiver.kernel.org>; Tue, 19 Sep 2023 22:07:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71AF710E40C;
-	Tue, 19 Sep 2023 22:07:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2417610E411;
+	Tue, 19 Sep 2023 22:07:50 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D9C210E407
- for <nouveau@lists.freedesktop.org>; Tue, 19 Sep 2023 22:07:40 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30C4710E40C
+ for <nouveau@lists.freedesktop.org>; Tue, 19 Sep 2023 22:07:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1695161259;
+ s=mimecast20190719; t=1695161265;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=gQzNl7BPRCbZcHRJ+ePBRAVCQIpW++mVHMaECTekODM=;
- b=FktcGnX3nkSVqKcMGP+a+cI3ZBsUVQA5wlOE61pQOSTih+1HJq0QBF8/VGOZdzQ95ndQzP
- 7kKxF4q1hruldXeP3ACww+BJkwrKsxCHhOTlLyjqp9nKtM3rc+P6yHQlKKaHFACWAStWQz
- sAm5hankXFBrBledNXalKko4oO36F90=
+ bh=IB/UOO+ry7vmqCSm4AfJjhf4pfUzv9fJwJ5uY+01svk=;
+ b=eALiQmDg522o4VedGwnZS0XrZYaTTt/A1mqa1dGKWRRjt+l4QYnmOUQxtes0spUUOXmlzF
+ mDOGFCluPcSFaQ27HoRegc9fkNrpsDiea8itpDjmB8tMYRy6TymGBp4z5u5lQrJ8Ga1fOY
+ Xvv6eYtsW/DBXhK/JVK+OM+y4Fy5zNk=
 Received: from mimecast-mx02.redhat.com (mx-ext.redhat.com [66.187.233.73])
  by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-613-4v-SpbJlPYiKMHYFGw_hkQ-1; Tue, 19 Sep 2023 18:07:33 -0400
-X-MC-Unique: 4v-SpbJlPYiKMHYFGw_hkQ-1
+ us-mta-654-c3enReCVOu2xRgESCR7nkQ-1; Tue, 19 Sep 2023 18:07:42 -0400
+X-MC-Unique: c3enReCVOu2xRgESCR7nkQ-1
 Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.rdu2.redhat.com
  [10.11.54.1])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id B6EBF1E441DE;
- Tue, 19 Sep 2023 22:07:32 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id BE5733822568;
+ Tue, 19 Sep 2023 22:07:41 +0000 (UTC)
 Received: from emerald.lyude.net (unknown [10.22.18.67])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 5DE7440C2064;
- Tue, 19 Sep 2023 22:07:32 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 5902C40C2064;
+ Tue, 19 Sep 2023 22:07:41 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: dri-devel@lists.freedesktop.org,
 	nouveau@lists.freedesktop.org
-Date: Tue, 19 Sep 2023 17:56:32 -0400
-Message-ID: <20230919220442.202488-38-lyude@redhat.com>
+Date: Tue, 19 Sep 2023 17:56:37 -0400
+Message-ID: <20230919220442.202488-43-lyude@redhat.com>
 In-Reply-To: <20230919220442.202488-1-lyude@redhat.com>
 References: <20230919220442.202488-1-lyude@redhat.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Scanned-By: MIMEDefang 3.1 on 10.11.54.1
-Subject: [Nouveau] [PATCH v3 37/44] drm/nouveau/disp: move outp init/fini
- paths to chipset code
+Subject: [Nouveau] [PATCH v3 42/44] drm/nouveau/kms/nv50-: create connectors
+ based on nvkm info
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,13 +61,12 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: open list <linux-kernel@vger.kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>
+ Daniel Vetter <daniel@ffwll.ch>, Wayne Lin <Wayne.Lin@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 From: Ben Skeggs <bskeggs@redhat.com>
 
-- pre-nv5x doesn't use any of this
 - preparation for GSP-RM
 
 Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
@@ -75,218 +74,348 @@ Reviewed-by: Lyude Paul <lyude@redhat.com>
 Acked-by: Danilo Krummrich <me@dakr.org>
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 ---
- .../gpu/drm/nouveau/nvkm/engine/disp/base.c   | 31 +++----------------
- .../gpu/drm/nouveau/nvkm/engine/disp/conn.c   | 10 ------
- .../gpu/drm/nouveau/nvkm/engine/disp/conn.h   |  2 --
- drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.c |  1 +
- .../gpu/drm/nouveau/nvkm/engine/disp/nv50.c   | 14 +++++++++
- .../gpu/drm/nouveau/nvkm/engine/disp/outp.c   | 20 ++----------
- 6 files changed, 22 insertions(+), 56 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv04/disp.c       |   2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c       |   2 +-
+ drivers/gpu/drm/nouveau/include/nvif/conn.h   |  15 ++
+ drivers/gpu/drm/nouveau/include/nvif/if0011.h |  10 ++
+ drivers/gpu/drm/nouveau/nouveau_connector.c   | 131 +++++++++---------
+ drivers/gpu/drm/nouveau/nouveau_connector.h   |   3 +-
+ drivers/gpu/drm/nouveau/nvif/conn.c           |  22 ++-
+ .../gpu/drm/nouveau/nvkm/engine/disp/uconn.c  |  26 ++++
+ 8 files changed, 139 insertions(+), 72 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c
-index 1dbe68f9a0e07..39f7e7ce9f4a2 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c
-@@ -102,18 +102,14 @@ static int
- nvkm_disp_fini(struct nvkm_engine *engine, bool suspend)
- {
- 	struct nvkm_disp *disp = nvkm_disp(engine);
--	struct nvkm_conn *conn;
- 	struct nvkm_outp *outp;
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/disp.c b/drivers/gpu/drm/nouveau/dispnv04/disp.c
+index e9ac3fb27ff78..13705c5f14973 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/disp.c
+@@ -256,7 +256,7 @@ nv04_display_create(struct drm_device *dev)
+ 	for (i = 0; i < dcb->entries; i++) {
+ 		struct dcb_output *dcbent = &dcb->entry[i];
  
- 	if (disp->func->fini)
- 		disp->func->fini(disp);
+-		connector = nouveau_connector_create(dev, dcbent);
++		connector = nouveau_connector_create(dev, dcbent->connector);
+ 		if (IS_ERR(connector))
+ 			continue;
  
- 	list_for_each_entry(outp, &disp->outps, head) {
--		nvkm_outp_fini(outp);
--	}
--
--	list_for_each_entry(conn, &disp->conns, head) {
--		nvkm_conn_fini(conn);
-+		if (outp->func->fini)
-+			outp->func->fini(outp);
- 	}
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index 26d59346703e3..e2fa748e66f16 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -2788,7 +2788,7 @@ nv50_display_create(struct drm_device *dev)
+ 			continue;
+ 		}
  
- 	return 0;
-@@ -123,16 +119,12 @@ static int
- nvkm_disp_init(struct nvkm_engine *engine)
- {
- 	struct nvkm_disp *disp = nvkm_disp(engine);
--	struct nvkm_conn *conn;
- 	struct nvkm_outp *outp;
- 	struct nvkm_ior *ior;
+-		connector = nouveau_connector_create(dev, dcbe);
++		connector = nouveau_connector_create(dev, dcbe->connector);
+ 		if (IS_ERR(connector)) {
+ 			nvif_outp_dtor(&outp->outp);
+ 			kfree(outp);
+diff --git a/drivers/gpu/drm/nouveau/include/nvif/conn.h b/drivers/gpu/drm/nouveau/include/nvif/conn.h
+index 8a6017a358976..406c12a111f9d 100644
+--- a/drivers/gpu/drm/nouveau/include/nvif/conn.h
++++ b/drivers/gpu/drm/nouveau/include/nvif/conn.h
+@@ -7,6 +7,21 @@ struct nvif_disp;
  
--	list_for_each_entry(conn, &disp->conns, head) {
--		nvkm_conn_init(conn);
--	}
--
- 	list_for_each_entry(outp, &disp->outps, head) {
--		nvkm_outp_init(outp);
-+		if (outp->func->init)
-+			outp->func->init(outp);
- 	}
+ struct nvif_conn {
+ 	struct nvif_object object;
++	u32 id;
++
++	struct {
++		enum {
++			NVIF_CONN_VGA,
++			NVIF_CONN_TV,
++			NVIF_CONN_DVI_I,
++			NVIF_CONN_DVI_D,
++			NVIF_CONN_LVDS,
++			NVIF_CONN_LVDS_SPWG,
++			NVIF_CONN_HDMI,
++			NVIF_CONN_DP,
++			NVIF_CONN_EDP,
++		} type;
++	} info;
+ };
  
- 	if (disp->func->init) {
-@@ -156,9 +148,7 @@ nvkm_disp_oneinit(struct nvkm_engine *engine)
- {
- 	struct nvkm_disp *disp = nvkm_disp(engine);
- 	struct nvkm_subdev *subdev = &disp->engine.subdev;
--	struct nvkm_outp *outp;
- 	struct nvkm_head *head;
--	struct nvkm_ior *ior;
- 	int ret, i;
+ int nvif_conn_ctor(struct nvif_disp *, const char *name, int id, struct nvif_conn *);
+diff --git a/drivers/gpu/drm/nouveau/include/nvif/if0011.h b/drivers/gpu/drm/nouveau/include/nvif/if0011.h
+index 0c25288a5a789..3ed0ddd75bd8f 100644
+--- a/drivers/gpu/drm/nouveau/include/nvif/if0011.h
++++ b/drivers/gpu/drm/nouveau/include/nvif/if0011.h
+@@ -7,6 +7,16 @@ union nvif_conn_args {
+ 		__u8 version;
+ 		__u8 id;	/* DCB connector table index. */
+ 		__u8 pad02[6];
++#define NVIF_CONN_V0_VGA       0x00
++#define NVIF_CONN_V0_TV        0x01
++#define NVIF_CONN_V0_DVI_I     0x02
++#define NVIF_CONN_V0_DVI_D     0x03
++#define NVIF_CONN_V0_LVDS      0x04
++#define NVIF_CONN_V0_LVDS_SPWG 0x05
++#define NVIF_CONN_V0_HDMI      0x06
++#define NVIF_CONN_V0_DP        0x07
++#define NVIF_CONN_V0_EDP       0x08
++		__u8 type;
+ 	} v0;
+ };
  
- 	if (disp->func->oneinit) {
-@@ -167,19 +157,6 @@ nvkm_disp_oneinit(struct nvkm_engine *engine)
- 			return ret;
- 	}
- 
--	/* Enforce identity-mapped SOR assignment for panels, which have
--	 * certain bits (ie. backlight controls) wired to a specific SOR.
--	 */
--	list_for_each_entry(outp, &disp->outps, head) {
--		if (outp->conn->info.type == DCB_CONNECTOR_LVDS ||
--		    outp->conn->info.type == DCB_CONNECTOR_eDP) {
--			ior = nvkm_ior_find(disp, SOR, ffs(outp->info.or) - 1);
--			if (!WARN_ON(!ior))
--				ior->identity = true;
--			outp->identity = true;
--		}
--	}
--
- 	i = 0;
- 	list_for_each_entry(head, &disp->heads, head)
- 		i = max(i, head->id + 1);
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/conn.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/conn.c
-index fbdae11378646..ff88a5a5253a7 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/conn.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/conn.c
-@@ -29,16 +29,6 @@
- 
- #include <nvif/event.h>
- 
--void
--nvkm_conn_fini(struct nvkm_conn *conn)
--{
--}
--
--void
--nvkm_conn_init(struct nvkm_conn *conn)
--{
--}
--
- void
- nvkm_conn_del(struct nvkm_conn **pconn)
- {
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/conn.h b/drivers/gpu/drm/nouveau/nvkm/engine/disp/conn.h
-index a0600e72b0ecd..01c3146c7066f 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/conn.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/conn.h
-@@ -19,8 +19,6 @@ struct nvkm_conn {
- int nvkm_conn_new(struct nvkm_disp *, int index, struct nvbios_connE *,
- 		  struct nvkm_conn **);
- void nvkm_conn_del(struct nvkm_conn **);
--void nvkm_conn_init(struct nvkm_conn *);
--void nvkm_conn_fini(struct nvkm_conn *);
- 
- #define CONN_MSG(c,l,f,a...) do {                                              \
- 	struct nvkm_conn *_conn = (c);                                    \
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.c
-index aaa7796946ceb..b35fae96d855d 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.c
-@@ -603,6 +603,7 @@ nvkm_dp_fini(struct nvkm_outp *outp)
- static void
- nvkm_dp_init(struct nvkm_outp *outp)
- {
-+	nvkm_outp_init(outp);
- 	nvkm_dp_enable(outp, outp->dp.enabled);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 73657736ce838..21cc8dfcb7add 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -1275,15 +1275,13 @@ drm_conntype_from_dcb(enum dcb_connector_type dcb)
  }
  
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
-index 7343b24f10eb7..4be09ec4fd5c2 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
-@@ -1586,6 +1586,7 @@ nv50_disp_oneinit(struct nvkm_disp *disp)
- 	struct nvkm_bios *bios = device->bios;
- 	struct nvkm_outp *outp, *outt, *pair;
- 	struct nvkm_conn *conn;
-+	struct nvkm_ior *ior;
- 	int ret, i;
- 	u8  ver, hdr;
- 	u32 data;
-@@ -1747,6 +1748,19 @@ nv50_disp_oneinit(struct nvkm_disp *disp)
- 		list_add_tail(&outp->conn->head, &disp->conns);
+ struct drm_connector *
+-nouveau_connector_create(struct drm_device *dev,
+-			 const struct dcb_output *dcbe)
++nouveau_connector_create(struct drm_device *dev, int index)
+ {
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nouveau_display *disp = nouveau_display(dev);
+ 	struct nouveau_connector *nv_connector = NULL;
+ 	struct drm_connector *connector;
+ 	struct drm_connector_list_iter conn_iter;
+-	int index = dcbe->connector;
+ 	int type, ret = 0;
+ 	bool dummy;
+ 
+@@ -1305,70 +1303,76 @@ nouveau_connector_create(struct drm_device *dev,
+ 	nv_connector->index = index;
+ 	INIT_WORK(&nv_connector->irq_work, nouveau_dp_irq);
+ 
+-	/* attempt to parse vbios connector type and hotplug gpio */
+-	nv_connector->dcb = olddcb_conn(dev, index);
+-	if (nv_connector->dcb) {
+-		u32 entry = ROM16(nv_connector->dcb[0]);
+-		if (olddcb_conntab(dev)[3] >= 4)
+-			entry |= (u32)ROM16(nv_connector->dcb[2]) << 16;
+-
+-		nv_connector->type = nv_connector->dcb[0];
+-		if (drm_conntype_from_dcb(nv_connector->type) ==
+-					  DRM_MODE_CONNECTOR_Unknown) {
+-			NV_WARN(drm, "unknown connector type %02x\n",
+-				nv_connector->type);
+-			nv_connector->type = DCB_CONNECTOR_NONE;
++	if (disp->disp.conn_mask & BIT(nv_connector->index)) {
++		ret = nvif_conn_ctor(&disp->disp, nv_connector->base.name, nv_connector->index,
++				     &nv_connector->conn);
++		if (ret) {
++			kfree(nv_connector);
++			return ERR_PTR(ret);
+ 		}
+ 
+-		/* Gigabyte NX85T */
+-		if (nv_match_device(dev, 0x0421, 0x1458, 0x344c)) {
+-			if (nv_connector->type == DCB_CONNECTOR_HDMI_1)
+-				nv_connector->type = DCB_CONNECTOR_DVI_I;
++		switch (nv_connector->conn.info.type) {
++		case NVIF_CONN_VGA      : type = DCB_CONNECTOR_VGA; break;
++		case NVIF_CONN_DVI_I    : type = DCB_CONNECTOR_DVI_I; break;
++		case NVIF_CONN_DVI_D    : type = DCB_CONNECTOR_DVI_D; break;
++		case NVIF_CONN_LVDS     : type = DCB_CONNECTOR_LVDS; break;
++		case NVIF_CONN_LVDS_SPWG: type = DCB_CONNECTOR_LVDS_SPWG; break;
++		case NVIF_CONN_DP       : type = DCB_CONNECTOR_DP; break;
++		case NVIF_CONN_EDP      : type = DCB_CONNECTOR_eDP; break;
++		case NVIF_CONN_HDMI     : type = DCB_CONNECTOR_HDMI_0; break;
++		default:
++			WARN_ON(1);
++			return NULL;
+ 		}
+ 
+-		/* Gigabyte GV-NX86T512H */
+-		if (nv_match_device(dev, 0x0402, 0x1458, 0x3455)) {
+-			if (nv_connector->type == DCB_CONNECTOR_HDMI_1)
+-				nv_connector->type = DCB_CONNECTOR_DVI_I;
+-		}
++		nv_connector->type = type;
+ 	} else {
+-		nv_connector->type = DCB_CONNECTOR_NONE;
+-	}
++		u8 *dcb = olddcb_conn(dev, nv_connector->index);
+ 
+-	/* no vbios data, or an unknown dcb connector type - attempt to
+-	 * figure out something suitable ourselves
+-	 */
+-	if (nv_connector->type == DCB_CONNECTOR_NONE) {
+-		struct nouveau_drm *drm = nouveau_drm(dev);
+-		struct dcb_table *dcbt = &drm->vbios.dcb;
+-		u32 encoders = 0;
+-		int i;
+-
+-		for (i = 0; i < dcbt->entries; i++) {
+-			if (dcbt->entry[i].connector == nv_connector->index)
+-				encoders |= (1 << dcbt->entry[i].type);
++		if (dcb)
++			nv_connector->type = dcb[0];
++		else
++			nv_connector->type = DCB_CONNECTOR_NONE;
++
++		/* attempt to parse vbios connector type and hotplug gpio */
++		if (nv_connector->type != DCB_CONNECTOR_NONE) {
++			if (drm_conntype_from_dcb(nv_connector->type) ==
++						  DRM_MODE_CONNECTOR_Unknown) {
++				NV_WARN(drm, "unknown connector type %02x\n",
++					nv_connector->type);
++				nv_connector->type = DCB_CONNECTOR_NONE;
++			}
+ 		}
+ 
+-		if (encoders & (1 << DCB_OUTPUT_DP)) {
+-			if (encoders & (1 << DCB_OUTPUT_TMDS))
+-				nv_connector->type = DCB_CONNECTOR_DP;
+-			else
+-				nv_connector->type = DCB_CONNECTOR_eDP;
+-		} else
+-		if (encoders & (1 << DCB_OUTPUT_TMDS)) {
+-			if (encoders & (1 << DCB_OUTPUT_ANALOG))
+-				nv_connector->type = DCB_CONNECTOR_DVI_I;
+-			else
+-				nv_connector->type = DCB_CONNECTOR_DVI_D;
+-		} else
+-		if (encoders & (1 << DCB_OUTPUT_ANALOG)) {
+-			nv_connector->type = DCB_CONNECTOR_VGA;
+-		} else
+-		if (encoders & (1 << DCB_OUTPUT_LVDS)) {
+-			nv_connector->type = DCB_CONNECTOR_LVDS;
+-		} else
+-		if (encoders & (1 << DCB_OUTPUT_TV)) {
+-			nv_connector->type = DCB_CONNECTOR_TV_0;
++		/* no vbios data, or an unknown dcb connector type - attempt to
++		 * figure out something suitable ourselves
++		 */
++		if (nv_connector->type == DCB_CONNECTOR_NONE &&
++		    !WARN_ON(drm->client.device.info.family >= NV_DEVICE_INFO_V0_TESLA)) {
++			struct dcb_table *dcbt = &drm->vbios.dcb;
++			u32 encoders = 0;
++			int i;
++
++			for (i = 0; i < dcbt->entries; i++) {
++				if (dcbt->entry[i].connector == nv_connector->index)
++					encoders |= (1 << dcbt->entry[i].type);
++			}
++
++			if (encoders & (1 << DCB_OUTPUT_TMDS)) {
++				if (encoders & (1 << DCB_OUTPUT_ANALOG))
++					nv_connector->type = DCB_CONNECTOR_DVI_I;
++				else
++					nv_connector->type = DCB_CONNECTOR_DVI_D;
++			} else
++			if (encoders & (1 << DCB_OUTPUT_ANALOG)) {
++				nv_connector->type = DCB_CONNECTOR_VGA;
++			} else
++			if (encoders & (1 << DCB_OUTPUT_LVDS)) {
++				nv_connector->type = DCB_CONNECTOR_LVDS;
++			} else
++			if (encoders & (1 << DCB_OUTPUT_TV)) {
++				nv_connector->type = DCB_CONNECTOR_TV_0;
++			}
+ 		}
  	}
  
-+	/* Enforce identity-mapped SOR assignment for panels, which have
-+	 * certain bits (ie. backlight controls) wired to a specific SOR.
-+	 */
-+	list_for_each_entry(outp, &disp->outps, head) {
-+		if (outp->conn->info.type == DCB_CONNECTOR_LVDS ||
-+		    outp->conn->info.type == DCB_CONNECTOR_eDP) {
-+			ior = nvkm_ior_find(disp, SOR, ffs(outp->info.or) - 1);
-+			if (!WARN_ON(!ior))
-+				ior->identity = true;
-+			outp->identity = true;
-+		}
+@@ -1414,14 +1418,7 @@ nouveau_connector_create(struct drm_device *dev,
+ 	drm_connector_helper_add(connector, &nouveau_connector_helper_funcs);
+ 	connector->polled = DRM_CONNECTOR_POLL_CONNECT;
+ 
+-	if (nv_connector->dcb && (disp->disp.conn_mask & BIT(nv_connector->index))) {
+-		ret = nvif_conn_ctor(&disp->disp, nv_connector->base.name, nv_connector->index,
+-				     &nv_connector->conn);
+-		if (ret) {
+-			kfree(nv_connector);
+-			return ERR_PTR(ret);
+-		}
+-
++	if (nvif_object_constructed(&nv_connector->conn.object)) {
+ 		ret = nvif_conn_event_ctor(&nv_connector->conn, "kmsHotplug",
+ 					   nouveau_connector_hotplug,
+ 					   NVIF_CONN_EVENT_V0_PLUG | NVIF_CONN_EVENT_V0_UNPLUG,
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.h b/drivers/gpu/drm/nouveau/nouveau_connector.h
+index 35bcb541722b8..a2df4918340cb 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.h
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.h
+@@ -121,7 +121,6 @@ struct nouveau_connector {
+ 	struct drm_connector base;
+ 	enum dcb_connector_type type;
+ 	u8 index;
+-	u8 *dcb;
+ 
+ 	struct nvif_conn conn;
+ 	u64 hpd_pending;
+@@ -200,7 +199,7 @@ nouveau_crtc_connector_get(struct nouveau_crtc *nv_crtc)
+ }
+ 
+ struct drm_connector *
+-nouveau_connector_create(struct drm_device *, const struct dcb_output *);
++nouveau_connector_create(struct drm_device *, int id);
+ void nouveau_connector_hpd(struct nouveau_connector *, u64 bits);
+ 
+ extern int nouveau_tv_disable;
+diff --git a/drivers/gpu/drm/nouveau/nvif/conn.c b/drivers/gpu/drm/nouveau/nvif/conn.c
+index 879569d4ba4cc..9ee18cb992644 100644
+--- a/drivers/gpu/drm/nouveau/nvif/conn.c
++++ b/drivers/gpu/drm/nouveau/nvif/conn.c
+@@ -63,5 +63,25 @@ nvif_conn_ctor(struct nvif_disp *disp, const char *name, int id, struct nvif_con
+ 	ret = nvif_object_ctor(&disp->object, name ?: "nvifConn", id, NVIF_CLASS_CONN,
+ 			       &args, sizeof(args), &conn->object);
+ 	NVIF_ERRON(ret, &disp->object, "[NEW conn id:%d]", id);
+-	return ret;
++	if (ret)
++		return ret;
++
++	conn->id = id;
++
++	switch (args.type) {
++	case NVIF_CONN_V0_VGA      : conn->info.type = NVIF_CONN_VGA; break;
++	case NVIF_CONN_V0_TV       : conn->info.type = NVIF_CONN_TV; break;
++	case NVIF_CONN_V0_DVI_I    : conn->info.type = NVIF_CONN_DVI_I; break;
++	case NVIF_CONN_V0_DVI_D    : conn->info.type = NVIF_CONN_DVI_D; break;
++	case NVIF_CONN_V0_LVDS     : conn->info.type = NVIF_CONN_LVDS; break;
++	case NVIF_CONN_V0_LVDS_SPWG: conn->info.type = NVIF_CONN_LVDS_SPWG; break;
++	case NVIF_CONN_V0_HDMI     : conn->info.type = NVIF_CONN_HDMI; break;
++	case NVIF_CONN_V0_DP       : conn->info.type = NVIF_CONN_DP; break;
++	case NVIF_CONN_V0_EDP      : conn->info.type = NVIF_CONN_EDP; break;
++	default:
++		break;
 +	}
 +
- 	return 0;
++	return 0;
++
  }
- 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.c
-index f1a3e623bb222..bfb2a4db8d644 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.c
-@@ -287,13 +287,6 @@ nvkm_outp_acquire(struct nvkm_outp *outp, bool hda)
- 	return 0;
- }
- 
--void
--nvkm_outp_fini(struct nvkm_outp *outp)
--{
--	if (outp->func->fini)
--		outp->func->fini(outp);
--}
--
- struct nvkm_ior *
- nvkm_outp_inherit(struct nvkm_outp *outp)
- {
-@@ -332,8 +325,8 @@ nvkm_outp_inherit(struct nvkm_outp *outp)
- 	return ior;
- }
- 
--static void
--nvkm_outp_init_route(struct nvkm_outp *outp)
-+void
-+nvkm_outp_init(struct nvkm_outp *outp)
- {
- 	enum nvkm_ior_proto proto;
- 	enum nvkm_ior_type type;
-@@ -365,14 +358,6 @@ nvkm_outp_init_route(struct nvkm_outp *outp)
- 	ior->arm.outp = outp;
- }
- 
--void
--nvkm_outp_init(struct nvkm_outp *outp)
--{
--	nvkm_outp_init_route(outp);
--	if (outp->func->init)
--		outp->func->init(outp);
--}
--
- void
- nvkm_outp_del(struct nvkm_outp **poutp)
- {
-@@ -420,6 +405,7 @@ nvkm_outp_new_(const struct nvkm_outp_func *func, struct nvkm_disp *disp,
- 
- static const struct nvkm_outp_func
- nvkm_outp = {
-+	.init = nvkm_outp_init,
- 	.detect = nvkm_outp_detect,
- 	.inherit = nvkm_outp_inherit,
- 	.acquire = nvkm_outp_acquire,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c
+index 971cccc0892cc..c6eeb8e44c15f 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c
+@@ -142,6 +142,32 @@ nvkm_uconn_new(const struct nvkm_oclass *oclass, void *argv, u32 argc, struct nv
+ 	ret = -EBUSY;
+ 	spin_lock(&disp->client.lock);
+ 	if (!conn->object.func) {
++		switch (conn->info.type) {
++		case DCB_CONNECTOR_VGA      : args->v0.type = NVIF_CONN_V0_VGA; break;
++		case DCB_CONNECTOR_TV_0     :
++		case DCB_CONNECTOR_TV_1     :
++		case DCB_CONNECTOR_TV_3     : args->v0.type = NVIF_CONN_V0_TV; break;
++		case DCB_CONNECTOR_DMS59_0  :
++		case DCB_CONNECTOR_DMS59_1  :
++		case DCB_CONNECTOR_DVI_I    : args->v0.type = NVIF_CONN_V0_DVI_I; break;
++		case DCB_CONNECTOR_DVI_D    : args->v0.type = NVIF_CONN_V0_DVI_D; break;
++		case DCB_CONNECTOR_LVDS     : args->v0.type = NVIF_CONN_V0_LVDS; break;
++		case DCB_CONNECTOR_LVDS_SPWG: args->v0.type = NVIF_CONN_V0_LVDS_SPWG; break;
++		case DCB_CONNECTOR_DMS59_DP0:
++		case DCB_CONNECTOR_DMS59_DP1:
++		case DCB_CONNECTOR_DP       :
++		case DCB_CONNECTOR_mDP      :
++		case DCB_CONNECTOR_USB_C    : args->v0.type = NVIF_CONN_V0_DP; break;
++		case DCB_CONNECTOR_eDP      : args->v0.type = NVIF_CONN_V0_EDP; break;
++		case DCB_CONNECTOR_HDMI_0   :
++		case DCB_CONNECTOR_HDMI_1   :
++		case DCB_CONNECTOR_HDMI_C   : args->v0.type = NVIF_CONN_V0_HDMI; break;
++		default:
++			WARN_ON(1);
++			ret = -EINVAL;
++			break;
++		}
++
+ 		nvkm_object_ctor(&nvkm_uconn, oclass, &conn->object);
+ 		*pobject = &conn->object;
+ 		ret = 0;
 -- 
 2.41.0
 
