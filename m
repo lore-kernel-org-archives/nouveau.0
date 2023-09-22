@@ -4,79 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A2A0CD484A
-	for <nouveau@archiver.kernel.org>; Fri, 22 Sep 2023 17:32:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EEC0CD484B
+	for <nouveau@archiver.kernel.org>; Fri, 22 Sep 2023 17:33:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFB0710E6BE;
-	Fri, 22 Sep 2023 17:32:51 +0000 (UTC)
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com
- [IPv6:2607:f8b0:4864:20::630])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04EA110E6B5
- for <nouveau@lists.freedesktop.org>; Fri, 22 Sep 2023 17:32:24 +0000 (UTC)
-Received: by mail-pl1-x630.google.com with SMTP id
- d9443c01a7336-1c364fb8a4cso22829695ad.1
- for <nouveau@lists.freedesktop.org>; Fri, 22 Sep 2023 10:32:24 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD6B110E6BD;
+	Fri, 22 Sep 2023 17:32:59 +0000 (UTC)
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com
+ [IPv6:2607:f8b0:4864:20::633])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E91D010E6BE
+ for <nouveau@lists.freedesktop.org>; Fri, 22 Sep 2023 17:32:19 +0000 (UTC)
+Received: by mail-pl1-x633.google.com with SMTP id
+ d9443c01a7336-1c44a25bd0bso28515565ad.0
+ for <nouveau@lists.freedesktop.org>; Fri, 22 Sep 2023 10:32:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1695403943; x=1696008743;
+ d=chromium.org; s=google; t=1695403939; x=1696008739;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=0+TspM6FqnyWCQqgdT3WqLoCMBUMYLUrvB7POKzIF40=;
- b=N99+lTXXBdw2FS6VqJFobDd7VwEw6H3StWC+hBm88qqivu08ytiF4GcQ0LaaFfUur2
- MhY3yDDPHCAbmhnWnTveH8w20AgKhgpx8JzM/xO6k2AxEwSoz1N501x+hjGc8cbTmSPT
- 6FtYWxeNCgEAYu5ExjN3X/ucNVgIykRHR8MN4=
+ bh=a+ctTEyoq7sOv+FAZHxESomcnOOr3ZQuAJoEIOqh0C4=;
+ b=Bg1JoqmeszBQYiEs9zR8EwDflyoMk8UWycHq9gTeUd1dewLTemNj/kpRwrA73TOI4A
+ GcI0Dw3VOfsoZs/WHYJ0Y2uhybzyK2/vGdNmc08TpciI4ubetHwex+/LUm4SMJs5h8Wj
+ QmEnOxfEdoMffTIZHV6ehhvk9myfivjQCWPh4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695403943; x=1696008743;
+ d=1e100.net; s=20230601; t=1695403939; x=1696008739;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=0+TspM6FqnyWCQqgdT3WqLoCMBUMYLUrvB7POKzIF40=;
- b=NxaFgDK2BuGyZGelglSpHC67Kx2loe+FStwek8+a70HXL5BAsZZzPKLWT/H6GHgd+l
- 7veMAIUq8zXklnsYhcXhTbjsCONMH1j2DbiERALknMxiulNx+0KPV0CylHGhriOIYh5a
- jrHyxgEbbD9J6ewMMk/9m4zyxOdxJqV88vFeSc6PXTN5ChkDeCCysDV3GzQFggxnfgBw
- QXA9+v3iFd6hxT+D6u/x3EcP83LPHrUKYLJVHqYKNtj9u/BRDQOZUVKkgQmHXYYzfPHj
- sR69jYLc6eb+UZifpUQCj0s+kHUJT9iZ9MjClYNw3tkOaoPVDgjmYkbGYqcfSVHMVho5
- WUbQ==
-X-Gm-Message-State: AOJu0YweTAYpW2MxkE+AXmx293bzL9+AYUT/UKHAC4EEuHNHTQM+vYYo
- SrOCYe+csnIobqdYqLxLMRiH1w==
-X-Google-Smtp-Source: AGHT+IGM2cgwn42K1WN8W9Zq/dfNXRG8PNtjzN+GwImGnEoLu2Sgi5BNiv1fIm5lYau2SjWWAldPQg==
-X-Received: by 2002:a17:90a:2a4a:b0:26d:2bac:a0bb with SMTP id
- d10-20020a17090a2a4a00b0026d2baca0bbmr347669pjg.6.1695403943655; 
- Fri, 22 Sep 2023 10:32:23 -0700 (PDT)
+ bh=a+ctTEyoq7sOv+FAZHxESomcnOOr3ZQuAJoEIOqh0C4=;
+ b=O6Q99HnezQfqa6gojvu1CiP2mhBjhl4TEvP5uLr87cyMh5r4Q9JwpGbqAiYPl8bpY2
+ FIAS5/88/4rrpEr9aJUgsP3aY8yL0mlAXtqrpMxOO6gu5jXX3kAVD5DuotrqfcK2hX4w
+ DqEIxDDYXYqzHzde2ZemmIQ8uapg+7RCocXK0wHFZkoaAtjC+Zbb2+8tUddz99MoynEb
+ 0DatVobP7E9J8eOub7a/u5eLLlRFDnnPqV9UVQaWQQcq6MB8i3lCihmEqFnBI/NHqg8A
+ 79K6cV2mi14ZFrkeY68xgF3dn0U60zWB8GNkRz+zQmNoaL4FnJjH6UJObQL/1CBXeX8k
+ xeHQ==
+X-Gm-Message-State: AOJu0YwS7cn1kWhYyXEx8XMlBGQWYEnpc7/G1L/vVpHsH9davu9evzLE
+ a08nYBzQ4WTtMaBtmVbuEbfkPA==
+X-Google-Smtp-Source: AGHT+IGC6/6NdvEqz8he++fdJuEaamt9Op5nnYZ05uajn7JWoal4nRh6sAA+e6vH/dWEyyl5jl0kkA==
+X-Received: by 2002:a17:903:32cf:b0:1c0:e87e:52ba with SMTP id
+ i15-20020a17090332cf00b001c0e87e52bamr547482plr.2.1695403939425; 
+ Fri, 22 Sep 2023 10:32:19 -0700 (PDT)
 Received: from www.outflux.net (198-0-35-241-static.hfc.comcastbusiness.net.
  [198.0.35.241]) by smtp.gmail.com with ESMTPSA id
- gq7-20020a17090b104700b0025bd4db25f0sm3547696pjb.53.2023.09.22.10.32.19
+ j5-20020a170902da8500b001c57aac6e5esm3763379plx.23.2023.09.22.10.32.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 22 Sep 2023 10:32:22 -0700 (PDT)
+ Fri, 22 Sep 2023 10:32:17 -0700 (PDT)
 From: Kees Cook <keescook@chromium.org>
 To: David Airlie <airlied@gmail.com>
-Date: Fri, 22 Sep 2023 10:32:11 -0700
-Message-Id: <20230922173216.3823169-6-keescook@chromium.org>
+Date: Fri, 22 Sep 2023 10:32:07 -0700
+Message-Id: <20230922173216.3823169-2-keescook@chromium.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230922173110.work.084-kees@kernel.org>
 References: <20230922173110.work.084-kees@kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1277; i=keescook@chromium.org; 
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1428; i=keescook@chromium.org; 
  h=from:subject;
- bh=4ERTESaqnYz8ImDqyHPyzXy0AuquVom9vq+hq0gy89g=; 
- b=owEBbQKS/ZANAwAKAYly9N/cbcAmAcsmYgBlDc+eg2zdwhFFl6K23RVdCG+VU9OV+t2/BviGN
- QnAc1heAtyJAjMEAAEKAB0WIQSlw/aPIp3WD3I+bhOJcvTf3G3AJgUCZQ3PngAKCRCJcvTf3G3A
- JvO0D/4+c0QkeKEEEd/HWEG0VvFv4kIlOeqfDMOPwJ1QkN1jVwlbiQVdn9lWjRgUq77jqzdpagc
- 0e9qirU7jL0cbTe+JOBsFEQkZYwnIV0EUxV5Wb9g3csLF1vPRQafhR8984UzEKRtulAS9kQTSMT
- xYBkkYy+pbMJZNux38iCGgJFdWD057RPEazeM0Aatd5kaNk0HGNFRG/lz7HPcD9XIged7BCjFe4
- O5fJlM/WnYAAAK2cZn9AtONFzhR65gyQwb4pt0CXxC/kBS6pb6GBT8V9AsVWH8zu6CsMIVjafAT
- OdJEF/tJGI7jp48gN51zXgv1VAdOAJOLBc/kciYavjyryrGgXYANueMuiXx+r42kxUG0yZkO3/X
- uq+N33+UiId1hMftODv6WGPcCbwFJtgAfev1bfSRgKYiKQyjWPcbW5NPGeYVKKsvsew1qqGZWpN
- ASd96EwnB4kIHBeIp1k14aTdlgBVRePuuE2Vrf/gjb9uTNMh605/Yq2hNu83sG0S0fKskR2pH6r
- /VbQ9GYa6Dm3r4bYE6S0RRzMROjl3MXFBv4R99QF1UUF4V4iGgkcUUE3tdB+iCxIW1I5SuGR620
- 4ajKmF3Z9xPkw56NlVdKBjnhCKGSlHNQv+Rh5xh0IeFJzR6f8SO8/u45ADDZHCkCqxoc7tiLP68
- zupfltyyH8r66bw==
+ bh=i2UpbGfuADbvlbxlhkLDZa/xyj6FED75tdnO2fZlmjo=; 
+ b=owEBbQKS/ZANAwAKAYly9N/cbcAmAcsmYgBlDc+dEehHl9nbm4bhCFwpbMmpO3Xxql5kFxhRj
+ Diayf24WdaJAjMEAAEKAB0WIQSlw/aPIp3WD3I+bhOJcvTf3G3AJgUCZQ3PnQAKCRCJcvTf3G3A
+ JvkkEACyRaaPJcAJJrT69OHPNJ7Sh8M7AKH2fzwSzceuPqxB6RysYYS6VR2iPdaDZg9zSS+vTbb
+ fL60uv9o1ah81G8VJPhZppP9CtgmmA8a42Bpbs53luiTn/LGzycDXWPETOIgJGNsrJMgTFQyPMo
+ 241VVShLmM8kxtLnJkLOnDZEqzjh4lSZG5ygNcH9YpR0LH3S9yhYSaBm0oamf3UpID1Xs/g89RE
+ 2GjQlWgZzPdM7WCNcNNAIhK00fTWSD5DmnFGm50TziH8XWc8eGZZ2VknCk1GbO1UtJO7OW7lysZ
+ dzxYyw9Eifo8NVwr14wp43rm0towIlCQv++/9z7OLpwblt6E0YNRNpTjv9DQV+xS5euSf4ETfjV
+ IJ9vdSq6WjnidZkTBKdhROCuszJxRQ9b3HqXm169h7IYEdXvDeMvTQ2xgv9UwiFYpPlLImhrCYh
+ r/oOkRSzfxf22LJvTsqX/WXIRpOCLm1gQa2ApJjyfzEXAegAaVehjC7856bxlgo+pE5tqm7PAvm
+ JLb5hweD/O8L+7Tf7ij2oggZ9HmU2VGBIGVs0/EP7R6GeKLWO5KBBVa3/aADP01hJ2ZTfyjJsLl
+ NqBiuVwLDZSWs6x18B1633XvJJtLwLIUg5eA8U/N4Q1qXUMezt3ySBuq4TSxO56Xod8iBUwzCfw
+ TsBbpN+0JCLa/Ag==
 X-Developer-Key: i=keescook@chromium.org; a=openpgp;
  fpr=A5C3F68F229DD60F723E6E138972F4DFDC6DC026
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH 6/9] drm/vc4: Annotate struct vc4_perfmon with
- __counted_by
+Subject: [Nouveau] [PATCH 2/9] drm/amdgpu/discovery: Annotate struct
+ ip_hw_instance with __counted_by
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,33 +132,36 @@ their accesses bounds-checked at run-time checking via CONFIG_UBSAN_BOUNDS
 (for array indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family
 functions).
 
-As found with Coccinelle[1], add __counted_by for struct vc4_perfmon.
+As found with Coccinelle[1], add __counted_by for struct ip_hw_instance.
 
 [1] https://github.com/kees/kernel-tools/blob/trunk/coccinelle/examples/counted_by.cocci
 
-Cc: Emma Anholt <emma@anholt.net>
-Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
 Cc: David Airlie <airlied@gmail.com>
 Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org
 Signed-off-by: Kees Cook <keescook@chromium.org>
 ---
- drivers/gpu/drm/vc4/vc4_drv.h | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_drv.h
-index bf66499765fb..ab61e96e7e14 100644
---- a/drivers/gpu/drm/vc4/vc4_drv.h
-+++ b/drivers/gpu/drm/vc4/vc4_drv.h
-@@ -76,7 +76,7 @@ struct vc4_perfmon {
- 	 * Note that counter values can't be reset, but you can fake a reset by
- 	 * destroying the perfmon and creating a new one.
- 	 */
--	u64 counters[];
-+	u64 counters[] __counted_by(ncounters);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+index d1bc7b212520..be4c97a3d7bf 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -662,7 +662,7 @@ struct ip_hw_instance {
+ 	u8  harvest;
+ 
+ 	int num_base_addresses;
+-	u32 base_addr[];
++	u32 base_addr[] __counted_by(num_base_addresses);
  };
  
- struct vc4_dev {
+ struct ip_hw_id {
 -- 
 2.34.1
 
