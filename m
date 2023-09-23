@@ -4,76 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D735CD4850
-	for <nouveau@archiver.kernel.org>; Fri, 22 Sep 2023 19:01:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F4DDCE7A88
+	for <nouveau@archiver.kernel.org>; Fri, 22 Sep 2023 20:29:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69DE010E08D;
-	Fri, 22 Sep 2023 19:01:05 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B50910E6FD
- for <nouveau@lists.freedesktop.org>; Fri, 22 Sep 2023 19:00:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1695409252;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=NE66f7DfP4/A2VOZXmvxuXHt1FmCuY2Q51yLIoHLwck=;
- b=VK9ia1C69p2AuLThkIIK0LKPkgnCxZHYupo7R9S74tkSAk8r6gwbVDQYYrsAM0Ip6iNFy9
- j4M8VDrWQznepxL1eNNSw8ofkdCPXkJuawhjH+UUt6dWoENcXeICIbyE5BfWbZ8nOwiciT
- z+uoTgfOxo+fBYy6496qiNDjRRGDQYM=
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-466-sK2u3HGsNM60Yp40Ar8m3Q-1; Fri, 22 Sep 2023 15:00:51 -0400
-X-MC-Unique: sK2u3HGsNM60Yp40Ar8m3Q-1
-Received: by mail-qv1-f70.google.com with SMTP id
- 6a1803df08f44-65648d20aeeso24657256d6.1
- for <nouveau@lists.freedesktop.org>; Fri, 22 Sep 2023 12:00:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695409250; x=1696014050;
- h=mime-version:user-agent:content-transfer-encoding:organization
- :references:in-reply-to:date:cc:to:from:subject:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=llC9/wUzzd4JVzDSD0PHMCO4lX+W74lZOeDntPKMIjc=;
- b=qf9y3g1aFsQOv84g/+bkn8JUXDfoEF1ZZnNZ/dtk4alLX1geOTcvhx93STp8xfZJ+Z
- xtM3giuUOJ3hcltIeqfYFJIkwMk9X6ANb56BE7cDMk6rjxkqN6Ch503EjZE0D5Nvv1Ir
- /TvvNLi/+EtMC0x551deraMbDQbLump4Fbnt3GnzFGadf6Adi+EmYHCIS+weXIwiMIkN
- hZhh8TtjrJHs9cQDIrBfCwEFIWeVkTkLU3YsRPlKnFcYYebTiqzl2uQU1g4Tli9oVGr3
- N7tmvq2Cu5b8oUgm68VidYDqvmmCTM1mcSfqDttAKgiba6yhUdzh5JmAxmJuzSK6cWRE
- m6yg==
-X-Gm-Message-State: AOJu0YypPDmC5ngWFRjNmLve8abfk1cvP3vC5LZILr8+h5D1uWUXbVrM
- Qh7RuUfak+5X+EASBqHk5bup9kYnsTuSKiGNFDAh8P0lL7VWAwIhJ4FcGUNFUG+h4uhQHDmhs2G
- kU+6Eis/QGWIWg0AvFN/bdBtAwA==
-X-Received: by 2002:a05:6214:1845:b0:655:d2c7:a9d1 with SMTP id
- d5-20020a056214184500b00655d2c7a9d1mr187734qvy.14.1695409250670; 
- Fri, 22 Sep 2023 12:00:50 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHcAhYi3agHEIh1mExaRpOkIAUDfxEWkbuUfbk0Y5Ex6ReRQkYaRYp/G33/F11gHisOBD3h3Q==
-X-Received: by 2002:a05:6214:1845:b0:655:d2c7:a9d1 with SMTP id
- d5-20020a056214184500b00655d2c7a9d1mr187719qvy.14.1695409250417; 
- Fri, 22 Sep 2023 12:00:50 -0700 (PDT)
-Received: from ?IPv6:2600:4040:5c6c:a300::feb? ([2600:4040:5c6c:a300::feb])
- by smtp.gmail.com with ESMTPSA id
- w6-20020a0ce106000000b0064f50e2c551sm1671895qvk.1.2023.09.22.12.00.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 22 Sep 2023 12:00:49 -0700 (PDT)
-Message-ID: <1fc22ed54041660dfff5b7f3cc69708fd4ac0472.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Kees Cook <keescook@chromium.org>, David Airlie <airlied@gmail.com>
-Date: Fri, 22 Sep 2023 15:00:47 -0400
-In-Reply-To: <20230922173216.3823169-5-keescook@chromium.org>
-References: <20230922173110.work.084-kees@kernel.org>
- <20230922173216.3823169-5-keescook@chromium.org>
-Organization: Red Hat Inc.
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA24F10E711;
+	Fri, 22 Sep 2023 20:29:16 +0000 (UTC)
+X-Greylist: delayed 446 seconds by postgrey-1.36 at gabe;
+ Fri, 22 Sep 2023 20:29:13 UTC
+Received: from omta34.uswest2.a.cloudfilter.net
+ (omta34.uswest2.a.cloudfilter.net [35.89.44.33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7595410E70E;
+ Fri, 22 Sep 2023 20:29:13 +0000 (UTC)
+Received: from eig-obgw-6009a.ext.cloudfilter.net ([10.0.30.184])
+ by cmsmtp with ESMTP
+ id jkNTqgJYZOzKljmepqENlC; Fri, 22 Sep 2023 20:21:47 +0000
+Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with ESMTPS
+ id jmeoqPwvGpBSmjmeoqDmlC; Fri, 22 Sep 2023 20:21:47 +0000
+X-Authority-Analysis: v=2.4 cv=BbzLb5h2 c=1 sm=1 tr=0 ts=650df75b
+ a=1YbLdUo/zbTtOZ3uB5T3HA==:117 a=P7XfKmiOJ4/qXqHZrN7ymg==:17
+ a=OWjo9vPv0XrRhIrVQ50Ab3nP57M=:19 a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19
+ a=IkcTkHD0fZMA:10 a=zNV7Rl7Rt7sA:10 a=wYkD_t78qR0A:10 a=NEAV23lmAAAA:8
+ a=zd2uoN0lAAAA:8 a=pGLkceISAAAA:8 a=e5mUnYsNAAAA:8 a=cm27Pg_UAAAA:8
+ a=VwQbUJbxAAAA:8 a=2wB7VPZBpCe0CuILneIA:9 a=QEXdDO2ut3YA:10
+ a=Vxmtnl_E_bksehYqCbjh:22 a=xmb-EsYY8bH0VWELuYED:22 a=AjGcO6oz07-iQ99wixmX:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=uilWM61trubKM2ejy0VnaxrpRmVV7jUvqNgJorf6Qao=; b=iNhF5ZGKjJCvmxMwvJhJsVex5N
+ +kDQxgkwTRsW2hflZt3y1HL+m5qOESNqeZ7r9l0JUKw0+k7tF+DQJ7B4JY+FR1k3JAu1uVBTCJniM
+ clR2EmCJnOIxb2shrvyyzwNYFVGhaHJdXEXOAqmy9mgi1M3S+Psg1dAbnP3QwQap5mXn8i7p0hmlA
+ 470q9M9RNJboyPgGKhTcngTDuhLhIwycFUy1wGOz3GIp5zfeWiGf9TOG/ubAU70XbaYyKO1mQqKMo
+ ZAPERXNKSQfiwYWiOdMgVWDzrdJmYEguKAjVL22EKimaO8bjHwiwQUoz0Uf+MjORxXnl+iyAKqQqn
+ JLfivoIg==;
+Received: from [94.239.20.48] (port=33658 helo=[192.168.1.98])
+ by gator4166.hostgator.com with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.96)
+ (envelope-from <gustavo@embeddedor.com>) id 1qjkeQ-000MuO-28;
+ Fri, 22 Sep 2023 13:13:14 -0500
+Message-ID: <4b64e969-633a-c59a-90e4-5f6368ad76b6@embeddedor.com>
+Date: Fri, 22 Sep 2023 20:14:06 -0600
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Nouveau] [PATCH 5/9] drm/nouveau/pm: Annotate struct
- nvkm_perfdom with __counted_by
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Kees Cook <keescook@chromium.org>, David Airlie <airlied@gmail.com>
+References: <20230922173110.work.084-kees@kernel.org>
+ <20230922173216.3823169-2-keescook@chromium.org>
+From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+In-Reply-To: <20230922173216.3823169-2-keescook@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - embeddedor.com
+X-BWhitelist: no
+X-Source-IP: 94.239.20.48
+X-Source-L: No
+X-Exim-ID: 1qjkeQ-000MuO-28
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.1.98]) [94.239.20.48]:33658
+X-Source-Auth: gustavo@embeddedor.com
+X-Email-Count: 0
+X-Org: HG=hgshared;ORG=hostgator;
+X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfN6TMmf43+R9DIHf7hVzoIEti0cxT31O9Pbz9CUPEX43soVkml871NCau5hY9+fScxRrjT5jWMy3oN5Yz+gOH+Au9DBvUjIUzOqJOIUXyBhicIuQGEMu
+ K1EVtLiDlVRSZ/bPCL2jdTJtrp27qmGNvlyHeMkkliAZ2c3YDAU9P04AVyYuogfdNZ0zXXSKjPgcSAtR2XwbnthQP3/x1o1N6v+18V12eANeX6y+h6VynH3g
+ y0+xhjdD7HDcpbE8iJ4nA7jfhpBm7OLGxl8uB+plCSlt/UZl7e8HJ2RaZGQ8Cq0E3SV028XHKSjZmP8nQ+6ouEJfw9pOSJEXTHjjYJ2TKJVnMd4rUHZos8++
+ nORx2SWD6MG0NwitBtSQswmSwoJsDiMAYlhfV1/vPLh+lceGLNU=
+Subject: Re: [Nouveau] [PATCH 2/9] drm/amdgpu/discovery: Annotate struct
+ ip_hw_instance with __counted_by
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,18 +93,19 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>, nouveau@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, llvm@lists.linux.dev,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Prike Liang <Prike.Liang@amd.com>, Huang Rui <ray.huang@amd.com>,
- Gerd Hoffmann <kraxel@redhat.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>, Emma Anholt <emma@anholt.net>,
+ Tom Rix <trix@redhat.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ llvm@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Prike Liang <Prike.Liang@amd.com>,
+ Huang Rui <ray.huang@amd.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
  Marijn Suijten <marijn.suijten@somainline.org>,
- Matthew Brost <matthew.brost@intel.com>, Emma Anholt <emma@anholt.net>,
+ Matthew Brost <matthew.brost@intel.com>,
  Neil Armstrong <neil.armstrong@linaro.org>, amd-gfx@lists.freedesktop.org,
  Kuogee Hsieh <quic_khsieh@quicinc.com>, Nathan Chancellor <nathan@kernel.org>,
  VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
  Ben Skeggs <bskeggs@redhat.com>, Andi Shyti <andi.shyti@linux.intel.com>,
- Tom Rix <trix@redhat.com>, David Airlie <airlied@redhat.com>,
+ nouveau@lists.freedesktop.org, David Airlie <airlied@redhat.com>,
  virtualization@lists.linux-foundation.org, Chia-I Wu <olvaffe@gmail.com>,
  linux-hardening@vger.kernel.org, Lijo Lazar <lijo.lazar@amd.com>,
  Yifan Zhang <yifan1.zhang@amd.com>, linux-arm-msm@vger.kernel.org,
@@ -115,59 +124,55 @@ Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>, nouveau@lists.freedesktop.org,
  Zack Rusin <zackr@vmware.com>, Daniel Vetter <daniel@ffwll.ch>,
  Alex Deucher <alexander.deucher@amd.com>, Nirmoy Das <nirmoy.das@intel.com>,
  Lang Yu <Lang.Yu@amd.com>,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
  John Harrison <john.c.harrison@Intel.com>,
  Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-Thanks!
 
-On Fri, 2023-09-22 at 10:32 -0700, Kees Cook wrote:
-> Prepare for the coming implementation by GCC and Clang of the __counted_b=
-y
+On 9/22/23 11:32, Kees Cook wrote:
+> Prepare for the coming implementation by GCC and Clang of the __counted_by
 > attribute. Flexible array members annotated with __counted_by can have
-> their accesses bounds-checked at run-time checking via CONFIG_UBSAN_BOUND=
-S
+> their accesses bounds-checked at run-time checking via CONFIG_UBSAN_BOUNDS
 > (for array indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family
 > functions).
->=20
-> As found with Coccinelle[1], add __counted_by for struct nvkm_perfdom.
->=20
-> [1] https://github.com/kees/kernel-tools/blob/trunk/coccinelle/examples/c=
-ounted_by.cocci
->=20
-> Cc: Ben Skeggs <bskeggs@redhat.com>
-> Cc: Karol Herbst <kherbst@redhat.com>
-> Cc: Lyude Paul <lyude@redhat.com>
+> 
+> As found with Coccinelle[1], add __counted_by for struct ip_hw_instance.
+> 
+> [1] https://github.com/kees/kernel-tools/blob/trunk/coccinelle/examples/counted_by.cocci
+> 
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: "Christian König" <christian.koenig@amd.com>
+> Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
 > Cc: David Airlie <airlied@gmail.com>
 > Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+> Cc: amd-gfx@lists.freedesktop.org
 > Cc: dri-devel@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.org
 > Signed-off-by: Kees Cook <keescook@chromium.org>
+
+Reviewed-by: Gustavo A. R. Silva <gustavoars@kernel.org>
+
+Thanks
+-- 
+Gustavo
+
 > ---
->  drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h b/drivers/gpu/=
-drm/nouveau/nvkm/engine/pm/priv.h
-> index 6ae25d3e7f45..c011227f7052 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h
-> @@ -82,7 +82,7 @@ struct nvkm_perfdom {
->  =09u8  mode;
->  =09u32 clk;
->  =09u16 signal_nr;
-> -=09struct nvkm_perfsig signal[];
-> +=09struct nvkm_perfsig signal[] __counted_by(signal_nr);
->  };
-> =20
->  struct nvkm_funcdom {
-
---=20
-Cheers,
- Lyude Paul (she/her)
- Software Engineer at Red Hat
-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> index d1bc7b212520..be4c97a3d7bf 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> @@ -662,7 +662,7 @@ struct ip_hw_instance {
+>   	u8  harvest;
+>   
+>   	int num_base_addresses;
+> -	u32 base_addr[];
+> +	u32 base_addr[] __counted_by(num_base_addresses);
+>   };
+>   
+>   struct ip_hw_id {
