@@ -4,39 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54D34E743FB
-	for <nouveau@archiver.kernel.org>; Fri, 29 Sep 2023 08:42:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7445DE728D6
+	for <nouveau@archiver.kernel.org>; Fri, 29 Sep 2023 18:20:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2FB010E6EC;
-	Fri, 29 Sep 2023 08:42:38 +0000 (UTC)
-X-Greylist: delayed 574 seconds by postgrey-1.36 at gabe;
- Tue, 12 Sep 2023 16:40:39 UTC
-Received: from w1.tutanota.de (w1.tutanota.de [81.3.6.162])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49F8A10E43B
- for <nouveau@lists.freedesktop.org>; Tue, 12 Sep 2023 16:40:39 +0000 (UTC)
-Received: from tutadb.w10.tutanota.de (unknown [192.168.1.10])
- by w1.tutanota.de (Postfix) with ESMTP id 43D8BFBFBB4
- for <nouveau@lists.freedesktop.org>; Tue, 12 Sep 2023 16:31:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1694536263; 
- s=s1; d=tuta.io;
- h=From:From:To:To:Subject:Subject:Content-Description:Content-ID:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Cc:Date:Date:In-Reply-To:MIME-Version:MIME-Version:Message-ID:Message-ID:Reply-To:References:Sender;
- bh=Puh9NOWNjsc5lU/aMVa/EJEHx9cEfQEx1pxPoyK0dkU=;
- b=xLl4h5VX0ekQ2l+kWPf9Yi6rqt+PAcTJlJudFlWbHrP+kSvMAuS0lvq4OhPmpZ+g
- IndV/8yH4GQ4tKYSwBOP63LTuKOjNqLvQ/7prWMuE2OciPCv3ERZjh2qT32n8FLUKYF
- vyZw6oSPCD07r3JjP7L928k0BfETLCJiWHO0Z7+QIAD58uWdSIBh1fIarOqcHs5kn+c
- rPVbJebRNWMoUs2OK+xppHKq6V85NF+0sHZhXtEi7/0/IOGQW/Vs2Z6NrZZTKGU3Kf7
- yE/u5cgUKGh1M+JcuaEuKMCTMUdYwbe7dRwhB31jXDSxQSz75c2gOquNHUA/vwmP/Ji
- baCQ2cyixQ==
-Date: Tue, 12 Sep 2023 18:31:03 +0200 (CEST)
-From: stratus@tuta.io
-To: Nouveau <nouveau@lists.freedesktop.org>
-Message-ID: <Ne9DqFj--3-9@tuta.io>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA26010E172;
+	Fri, 29 Sep 2023 18:20:29 +0000 (UTC)
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com
+ [IPv6:2607:f8b0:4864:20::632])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C98110E1A6
+ for <nouveau@lists.freedesktop.org>; Fri, 29 Sep 2023 18:20:27 +0000 (UTC)
+Received: by mail-pl1-x632.google.com with SMTP id
+ d9443c01a7336-1c723f1c80fso42999535ad.1
+ for <nouveau@lists.freedesktop.org>; Fri, 29 Sep 2023 11:20:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1696011627; x=1696616427;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=H/kevk4tNSCK4yq8Y8Eq8euOICXuk1g8ja9WwJ3j9fE=;
+ b=SyNBCNdT5WKQAIZ8s6vPzq4kdrnQBUqsBXXPE3U4TIojTAYPsWFTzW849qnMZx081c
+ Q0CXh2NzXZSCWWUFpEP4Nj9ZXVNlKBj7ylFZlkFZ4jwyaZjW/BqvHe+x1YEysPGKlEWP
+ 9ZMPb7pB9e0tWuWnB+PVREC6rLTmbzpJoAQ/c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1696011627; x=1696616427;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=H/kevk4tNSCK4yq8Y8Eq8euOICXuk1g8ja9WwJ3j9fE=;
+ b=CXvo0BFGWxfA5fobXUsGHpo70klnmaS6cE1D1naMftasuWLI763r0KMCiCBr7zeiXF
+ 3C8dzLsKIZJKnqXCEYilm0F9nx4Udj9WIdjLMaOLRL76lnniec8b3SRROFfXQMlsUqKb
+ 9Zs7cGY9Po4YGSnJ7h3xWZI6AdjoujvNuqLtGkWfXDsvd/nqFO2/+Qv3zhe081zEwDL0
+ JRArH25fkdU3E4PIF+GapslP5NFaxtFvoP21etos5M5g/dyIvYWDBL/5/ck/HRVrhRNB
+ 3Gj/I307a0nvYE8i+P1Gj6PZrNe58gWh87Ag0pznj995mOLSqclWo7BwXrj3ubFJ7wBc
+ DUug==
+X-Gm-Message-State: AOJu0YwiTy3HqUrNflIoLt0IdNBdRXle60wmRnpu9UWL2gqHZ7r/TCmJ
+ tYVqCYFOWFK7/mv/cVBSc84ULg==
+X-Google-Smtp-Source: AGHT+IGcMZNuu5by/ybQZhXigau4jvxccIHAaE4PpspYWQGaz1tg3yDDLn1/20+ox//v17UMP49BKA==
+X-Received: by 2002:a17:902:d2c7:b0:1bd:a42a:215e with SMTP id
+ n7-20020a170902d2c700b001bda42a215emr5862019plc.38.1696011626675; 
+ Fri, 29 Sep 2023 11:20:26 -0700 (PDT)
+Received: from www.outflux.net (198-0-35-241-static.hfc.comcastbusiness.net.
+ [198.0.35.241]) by smtp.gmail.com with ESMTPSA id
+ v3-20020a1709029a0300b001b850c9d7b3sm17135700plp.249.2023.09.29.11.20.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 29 Sep 2023 11:20:26 -0700 (PDT)
+From: Kees Cook <keescook@chromium.org>
+To: Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Date: Fri, 29 Sep 2023 11:20:01 -0700
+Message-Id: <169601159821.3006883.15782981674963813068.b4-ty@chromium.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1692208802.git.gustavoars@kernel.org>
+References: <cover.1692208802.git.gustavoars@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Fri, 29 Sep 2023 08:42:15 +0000
-Subject: [Nouveau] Some monitors not working after 6.2 kernel due to Nouveau
- commit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Nouveau] [PATCH 0/2][next] nouveau/svm: Replace one-element
+ array with flexible-array member
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,43 +75,35 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Cc: nouveau@lists.freedesktop.org, linux-hardening@vger.kernel.org,
+ Kees Cook <keescook@chromium.org>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Dear Nouveau developers,
-I encountered this problem using Artix Linux:
-https://forum.artixlinux.org/index.php/topic,5859
+On Wed, 16 Aug 2023 12:03:06 -0600, Gustavo A. R. Silva wrote:
+> This small series aims to replace a one-element array with a
+> flexible-array member in struct nouveau_svm. And, while at it,
+> fix a checkpatch.pl error.
+> 
+> Gustavo A. R. Silva (2):
+>   nouveau/svm: Replace one-element array with flexible-array member in
+>     struct nouveau_svm
+>   nouveau/svm: Split assignment from if conditional
+> 
+> [...]
 
-On 2 laptops (Dell M4400 and M4500, Nvidia graphics using Nouveau) which ha=
-ve a VGA port, a Maxim MX11-LCD15 TV with a VGA port stopped working, also =
-another Panasonic TX-26LXD500 TV using VGA. These are older TV's, from the =
-2000's, I guess the EDID might not be entirely compliant with modern standa=
-rds. A newish AEC monitor (not TV) did work with the latest kernels so not =
-all VGA connected monitors are affected.
+These look trivially correct and haven't had further feedback for over a month.
 
-From searching online it seems that there are numerous reports of monitors =
-stopping working with the 6.2 kernel in various distros.
+Applied to for-next/hardening, thanks!
 
-This is the commit where the problem apparently first appears:
-https://cgit.freedesktop.org/drm-intel/commit/?h=3Ddrm-intel-fixes&id=3Df53=
-0bc60a30bee47ff51b7fb71511fdd058b774a
+[1/2] nouveau/svm: Replace one-element array with flexible-array member in struct nouveau_svm
+      https://git.kernel.org/kees/c/6ad33b53c9b8
+[2/2] nouveau/svm: Split assignment from if conditional
+      https://git.kernel.org/kees/c/4cb2e89fea5f
 
-commit f530bc60a30bee47ff51b7fb71511fdd058b774a (HEAD)
-Author: Ben Skeggs <bskeggs@redhat.com>
-Date:=C2=A0=C2=A0 Wed Jun 1 20:46:33 2022 +1000
+Take care,
 
-=C2=A0 =C2=A0 drm/nouveau/disp: move HDMI config into acquire + infoframe m=
-ethods
-=C2=A0 =C2=A0=20
-=C2=A0 =C2=A0 v2:
-=C2=A0 =C2=A0 - fix typo in sorhdmi/g84 struct initialiser (kbuild test rob=
-ot)
-=C2=A0 =C2=A0 v3:
-=C2=A0 =C2=A0 - less convoluted flow control in nvkm_uoutp_mthd_acquire_tmd=
-s() (lyude)
-=C2=A0 =C2=A0 v4:
-=C2=A0 =C2=A0 - we don't support hdmi on original nv50, don't try
-=C2=A0 =C2=A0=20
-=C2=A0 =C2=A0 Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
-=C2=A0 =C2=A0 Reviewed-by: Lyude Paul <lyude@redhat.com>
+-- 
+Kees Cook
 
