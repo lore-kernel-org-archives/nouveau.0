@@ -4,76 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67A60E784AC
-	for <nouveau@archiver.kernel.org>; Mon,  2 Oct 2023 13:51:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82566E784BE
+	for <nouveau@archiver.kernel.org>; Mon,  2 Oct 2023 15:06:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CCDE10E2BB;
-	Mon,  2 Oct 2023 13:50:52 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D900410E2B5
- for <nouveau@lists.freedesktop.org>; Mon,  2 Oct 2023 13:50:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1696254631;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=/Nbhk/39NZ1l6uBmAD3wSLQe9P3Plz1M/2g+jaVSYB0=;
- b=ZqQHdLcT8tvb36Q4c7LzlpfI/wM1asPpIp+qJTI4oQFVNheQ5xfqvRq7nXvX9bV68wuzwI
- r/Ut3nu/35fbJJ7+EcYPyy/E7RsTXQlQyFjjoEtMenIy5Z20ix8KmzZUrF8CClXMrxWOku
- 68+1bxitgycrXxGUWuiyxp7mv2HfFU4=
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-260-_tWkQv31NbqjOoHA2NX8iw-1; Mon, 02 Oct 2023 09:50:19 -0400
-X-MC-Unique: _tWkQv31NbqjOoHA2NX8iw-1
-Received: by mail-ed1-f69.google.com with SMTP id
- 4fb4d7f45d1cf-53342507b7fso12814992a12.3
- for <nouveau@lists.freedesktop.org>; Mon, 02 Oct 2023 06:50:19 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45A6C10E2D0;
+	Mon,  2 Oct 2023 15:06:35 +0000 (UTC)
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com
+ [IPv6:2607:f8b0:4864:20::32d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A86AC88E26;
+ Mon,  2 Oct 2023 15:06:31 +0000 (UTC)
+Received: by mail-ot1-x32d.google.com with SMTP id
+ 46e09a7af769-6bf58009a8dso9892354a34.1; 
+ Mon, 02 Oct 2023 08:06:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1696259191; x=1696863991; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=c0wIcnLi0eW3KIpAYRJEn1N+1DF/SZtUbN/0mO//zy4=;
+ b=I1ra9ji8G8Gw+IhCfKKz7yTW+qJiR4KI1kig0rnxcjQh4v5eh7Vblv4fX+cIknaLKq
+ jgKUnfN0IJxk7ZvIRM1It+NOS6fjTrpseFqmwcCMO7G4nkZNzT46PAgINYQMqTlnhUZA
+ ZZD0DUYcGChwdkESPP5SPjSc6zg7jmTnKOVTZzKFGibhCAmMQQbl3V+RcjlNltpD3dtv
+ inVlg+OtOVbDt51Nc/zOZ30O6n2SdZuJsIXWZA1EuKBWJxoko20X69/y4jZO+DtV24VQ
+ zUAlY0PD6ZolNUwfscrQ7xtVeaOnuudatuCG6nk0oibo+J2Cq2WCm0f4+QLD+SSC2lyn
+ vZqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1696254618; x=1696859418;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1696259191; x=1696863991;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=/Nbhk/39NZ1l6uBmAD3wSLQe9P3Plz1M/2g+jaVSYB0=;
- b=HSWPkCMXcoGt0t+AzQM4WDuNp8dg1EIE0TUGgAh5wSVTHij2bJwG8eCsJrvg9tY38C
- oWeiLKCBnwMOFLYNm0ljuVtVGb+NcgCmoeYgfvdDBsvogdfnm5lAlTweG3S95fHqiQMJ
- Y9jqHG/05KWlMOnHcUACNvZWIpDrWiNNGEu6ANCMWV37n/rThBhffP/GMYnKKOxm02D2
- N1ofHCJx8vH4GH9x3UHR4SIBaQ6GEqFawE+BHxIk2jtMD+sDfuQXVAStWdo128YryraD
- T6sm5uj58txoju+0nISXyPmA2vnzi7yZCWcfyRzLZGFpPISFTeHOcQjAKkvK9oWsjFfS
- IAGg==
-X-Gm-Message-State: AOJu0YxK6figSAYK6UnI43KxHBQnik78Sp95iA4JpNKQnQAPf5bVpKiK
- O84kce6xqrAm13AZCc4cn7OYn4pW3wExNi+5zTs7GxHFsuS5MrkKO6ssaCFAKBcbIcdIZCLDDIi
- zQvOoksVODDxcLsWp4DXFzS5abXdNp4zgkQnD9CekyAvo3ixulCH27dZ1Hr+OhtiWGfDgyePPtm
- PNGE7O
-X-Received: by 2002:a05:6402:1f0e:b0:530:7ceb:334 with SMTP id
- b14-20020a0564021f0e00b005307ceb0334mr11528608edb.3.1696254618568; 
- Mon, 02 Oct 2023 06:50:18 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGd1NWIuOJNKo794dBiPjMLVNbO5xTqJg9iWglcHaQvaejWHQyVJof01QCvXoSO3BIM2RQpyw==
-X-Received: by 2002:a05:6402:1f0e:b0:530:7ceb:334 with SMTP id
- b14-20020a0564021f0e00b005307ceb0334mr11528588edb.3.1696254618202; 
- Mon, 02 Oct 2023 06:50:18 -0700 (PDT)
-Received: from cassiopeiae.. ([2a02:810d:4b3f:de9c:642:1aff:fe31:a19f])
- by smtp.gmail.com with ESMTPSA id
- cm15-20020a0564020c8f00b0053537ad3936sm7981444edb.21.2023.10.02.06.50.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Oct 2023 06:50:17 -0700 (PDT)
-From: Danilo Krummrich <dakr@redhat.com>
-To: nouveau@lists.freedesktop.org,
-	faith@gfxstrand.net
-Date: Mon,  2 Oct 2023 15:46:47 +0200
-Message-ID: <20231002135008.10651-2-dakr@redhat.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231002135008.10651-1-dakr@redhat.com>
-References: <20231002135008.10651-1-dakr@redhat.com>
+ bh=c0wIcnLi0eW3KIpAYRJEn1N+1DF/SZtUbN/0mO//zy4=;
+ b=BxQb1xvb9kg/mpheLvvjSGdVPKaJ6njHE/bNcaAr5wYkKU1R1yccWMEVk1wfAwHwaJ
+ i8QAhAWOiqtGSYf8017D83I57H4nE5iueStmF5axCiUuLsSlMPTI/Jbkbj/sMk1UUWVi
+ RCl4GLlSZ1GhwAUmCrKxjA3dtAqeDzB5dYFM/Va/o4UM+nI7fQxzrcI5hNV/vv64Gsp0
+ afVFc6+gwgsVvFe64HziU2bsuxb8R+K5apG9CFPYtW0UgEWj+d2dS9o3UNgmCTV4boz/
+ c46Im0d9bC+by5BikFscPuvb1pUMPVTCnAmUjSe9JBssXAqLlpKeRA6iMEBJtHWFQ63g
+ ZLKQ==
+X-Gm-Message-State: AOJu0YxvoZauq8Ne8p+7Ze73kTeaMRPuJQtcUkQb8J+gPnIrNDMDbiAl
+ LrULL5mE9ltbXGL85N2AydUnYZDnx+/cpgkE9Vg=
+X-Google-Smtp-Source: AGHT+IEX1je+61h+JUKWDKJZA+eu4NOUlivFnUEzoxSozC/G9+CulawvWCmD9DLQxtVZD1wdvqrdGNPyL3ZP6lrp6ME=
+X-Received: by 2002:a05:6870:a115:b0:1dd:7fa9:ed52 with SMTP id
+ m21-20020a056870a11500b001dd7fa9ed52mr15044564oae.17.1696259190738; Mon, 02
+ Oct 2023 08:06:30 -0700 (PDT)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
-Subject: [Nouveau] [PATCH v2 2/3] drm/nouveau: chan: use channel class
- definitions
+References: <20230922173110.work.084-kees@kernel.org>
+ <169601600138.3014939.8511343741428844249.b4-ty@chromium.org>
+ <83cd056c-52ae-01dd-7576-42d41da64c26@gmail.com>
+In-Reply-To: <83cd056c-52ae-01dd-7576-42d41da64c26@gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 2 Oct 2023 11:06:19 -0400
+Message-ID: <CADnq5_Ma2CrLYggJHKFEObsNmUoqJwb2p1xai5DfL=m43U6zEA@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Nouveau] [PATCH 0/9] drm: Annotate structs with __counted_by
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,36 +69,108 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>, Tom Rix <trix@redhat.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, llvm@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Prike Liang <Prike.Liang@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Gerd Hoffmann <kraxel@redhat.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Matthew Brost <matthew.brost@intel.com>, Emma Anholt <emma@anholt.net>,
+ Neil Armstrong <neil.armstrong@linaro.org>, amd-gfx@lists.freedesktop.org,
+ Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Andi Shyti <andi.shyti@linux.intel.com>,
+ nouveau@lists.freedesktop.org, David Airlie <airlied@redhat.com>,
+ virtualization@lists.linux-foundation.org, Chia-I Wu <olvaffe@gmail.com>,
+ linux-hardening@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, Kees Cook <keescook@chromium.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Kevin Wang <kevin1.wang@amd.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Nathan Chancellor <nathan@kernel.org>, Le Ma <le.ma@amd.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Evan Quan <evan.quan@amd.com>, Sean Paul <sean@poorly.run>,
+ Yifan Zhang <yifan1.zhang@amd.com>, Xiaojian Du <Xiaojian.Du@amd.com>,
+ freedreno@lists.freedesktop.org, Bjorn Andersson <andersson@kernel.org>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Nick Desaulniers <ndesaulniers@google.com>,
+ linux-kernel@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
+ Melissa Wen <mwen@igalia.com>, Zack Rusin <zackr@vmware.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Nirmoy Das <nirmoy.das@intel.com>, Lang Yu <Lang.Yu@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ John Harrison <john.c.harrison@intel.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Use channel class definitions instead of magic numbers.
+On Mon, Oct 2, 2023 at 5:20=E2=80=AFAM Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
+>
+> Am 29.09.23 um 21:33 schrieb Kees Cook:
+> > On Fri, 22 Sep 2023 10:32:05 -0700, Kees Cook wrote:
+> >> This is a batch of patches touching drm for preparing for the coming
+> >> implementation by GCC and Clang of the __counted_by attribute. Flexibl=
+e
+> >> array members annotated with __counted_by can have their accesses
+> >> bounds-checked at run-time checking via CONFIG_UBSAN_BOUNDS (for array
+> >> indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family function=
+s).
+> >>
+> >> As found with Coccinelle[1], add __counted_by to structs that would
+> >> benefit from the annotation.
+> >>
+> >> [...]
+> > Since this got Acks, I figure I should carry it in my tree. Let me know
+> > if this should go via drm instead.
+> >
+> > Applied to for-next/hardening, thanks!
+> >
+> > [1/9] drm/amd/pm: Annotate struct smu10_voltage_dependency_table with _=
+_counted_by
+> >        https://git.kernel.org/kees/c/a6046ac659d6
+>
+> STOP! In a follow up discussion Alex and I figured out that this won't wo=
+rk.
+>
+> The value in the structure is byte swapped based on some firmware
+> endianness which not necessary matches the CPU endianness.
 
-Signed-off-by: Danilo Krummrich <dakr@redhat.com>
----
- drivers/gpu/drm/nouveau/nouveau_chan.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+SMU10 is APU only so the endianess of the SMU firmware and the CPU
+will always match.
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
-index dffbee59be6a..ac56f4689ee3 100644
---- a/drivers/gpu/drm/nouveau/nouveau_chan.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
-@@ -442,9 +442,11 @@ nouveau_channel_init(struct nouveau_channel *chan, u32 vram, u32 gart)
- 	}
- 
- 	/* initialise dma tracking parameters */
--	switch (chan->user.oclass & 0x00ff) {
--	case 0x006b:
--	case 0x006e:
-+	switch (chan->user.oclass) {
-+	case NV03_CHANNEL_DMA:
-+	case NV10_CHANNEL_DMA:
-+	case NV17_CHANNEL_DMA:
-+	case NV40_CHANNEL_DMA:
- 		chan->user_put = 0x40;
- 		chan->user_get = 0x44;
- 		chan->dma.max = (0x10000 / 4) - 2;
--- 
-2.41.0
+Alex
 
+>
+> Please revert that one from going upstream if it's already on it's way.
+>
+> And because of those reasons I strongly think that patches like this
+> should go through the DRM tree :)
+>
+> Regards,
+> Christian.
+>
+> > [2/9] drm/amdgpu/discovery: Annotate struct ip_hw_instance with __count=
+ed_by
+> >        https://git.kernel.org/kees/c/4df33089b46f
+> > [3/9] drm/i915/selftests: Annotate struct perf_series with __counted_by
+> >        https://git.kernel.org/kees/c/ffd3f823bdf6
+> > [4/9] drm/msm/dpu: Annotate struct dpu_hw_intr with __counted_by
+> >        https://git.kernel.org/kees/c/2de35a989b76
+> > [5/9] drm/nouveau/pm: Annotate struct nvkm_perfdom with __counted_by
+> >        https://git.kernel.org/kees/c/188aeb08bfaa
+> > [6/9] drm/vc4: Annotate struct vc4_perfmon with __counted_by
+> >        https://git.kernel.org/kees/c/59a54dc896c3
+> > [7/9] drm/virtio: Annotate struct virtio_gpu_object_array with __counte=
+d_by
+> >        https://git.kernel.org/kees/c/5cd476de33af
+> > [8/9] drm/vmwgfx: Annotate struct vmw_surface_dirty with __counted_by
+> >        https://git.kernel.org/kees/c/b426f2e5356a
+> > [9/9] drm/v3d: Annotate struct v3d_perfmon with __counted_by
+> >        https://git.kernel.org/kees/c/dc662fa1b0e4
+> >
+> > Take care,
+> >
+>
