@@ -4,64 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51B16E95A97
-	for <nouveau@archiver.kernel.org>; Mon,  9 Oct 2023 08:05:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EBD8E95A91
+	for <nouveau@archiver.kernel.org>; Mon,  9 Oct 2023 08:05:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A53D110E225;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC6E510E229;
 	Mon,  9 Oct 2023 08:05:48 +0000 (UTC)
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com
- [IPv6:2607:f8b0:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10AFE10E060;
- Sun,  8 Oct 2023 17:27:58 +0000 (UTC)
-Received: by mail-pf1-x432.google.com with SMTP id
- d2e1a72fcca58-690fe10b6a4so3116035b3a.3; 
- Sun, 08 Oct 2023 10:27:58 -0700 (PDT)
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com
+ [IPv6:2a00:1450:4864:20::229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29FB510E195
+ for <nouveau@lists.freedesktop.org>; Sun,  8 Oct 2023 14:01:29 +0000 (UTC)
+Received: by mail-lj1-x229.google.com with SMTP id
+ 38308e7fff4ca-2c17de836fbso46635141fa.1
+ for <nouveau@lists.freedesktop.org>; Sun, 08 Oct 2023 07:01:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1696786078; x=1697390878; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=BzfXCsQu/Q0hXc6cMTaBxtMOorrmDS4rTq/PmtsDLkg=;
- b=k0tLksv9iFziN5YkMTMQ2Gl9kh/h7Sme/VgG8K9pZ0yZcX4VzOMEFedYXo51wo47u5
- gtmf4wFLpCuOPYFQDN8OR4BCjCtyZ6o7llr/oQUSKqxQ8o7v9n0gRvLHu3s9lGogJjxr
- 11NGdvkop5Y0xrsp0EFHQ+rOufEKdiXW32U9cC9/GwewB8DaI14AZJCErr665UMh8ruw
- FSUXyjVrwbNjC6fBBdrr4M4S8oItR97yRu9l1TTLYlBIT4cp4ZToYq1ibKtIzWrUxC6n
- HOrkCMTIvdWrT5SR4hSWSdGGOjLbzrj2hQeD8WbjiQUXA7Lj+TBdabdb/heWBwhgdrj1
- j9Yg==
+ d=linaro.org; s=google; t=1696773687; x=1697378487; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=zxakH265LpATzSTaf30OW9So30zUQfcE2yrNl/MhWDo=;
+ b=OK61mQ8jqLGUke1cuPXx8NXCdLPNvyoTrR7SeDFVNjKoxG1Mz6EipnwL8t+GjVmaDg
+ bBoxuTKfLmFuMJ1RGP1DqvD43wgRo2TEUQVz22LsyVqkuV+6ouI4rJNqM3m9bgqYEhfD
+ jF3ULFaA9I8yhgDmGNjtx0jlRZIf1pZd2R8m5PDnBZY/QV5wAMi4bVLJ29BKx5Zyhqhh
+ BzFGOHVRSnswkXL7/ZvooqutSGX15CRExpXKyfSGSQAuOKew+8NKNDF7SzSDoPIs4ZwS
+ UxCwJaUqTF6NpkLwGdJW4Gvm122hlQh7occexF1UDeBqxA6oi8TssMOLgttPO4g1xP5T
+ GVgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1696786078; x=1697390878;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=BzfXCsQu/Q0hXc6cMTaBxtMOorrmDS4rTq/PmtsDLkg=;
- b=dOzjxrT/KwFV1lU0FYPnCjxTDRsACULRPdm3fiq2I2L0FZv0jXhurP2fxbV3vLKcQN
- n/cUOLXxmTw9/Ir7ObHlRH/a6CVzqXsWcUgqwSq+rAsrwK8KMn+8G51a9x2Wlh5dT8Zj
- KCvcvkMATZYcXu0bH0Lo29ecUcw0e+JLEY7A98KXhw258Jd/eheIB7d9TmznzcFWLEye
- mj017ESHi2zQAht9OxOpfs1VBYd0zPJ9MCf4oKpqAGlcI6BPi43jQXy1u90jWB8xdlB0
- SDbHu13248WZKzSxC58h0GdwUseUKxdHnQ0Y4DPxq92Gi+A2KSvipnC6uQme/8yYPyAC
- RCcA==
-X-Gm-Message-State: AOJu0YyQ+/sZZuEdZ6TChLkWvA8sV3NPKkZB10kc7amHL/z7/02QcAX+
- vcYeAoVZQz4sPV0qcN1Yc+A=
-X-Google-Smtp-Source: AGHT+IGVV1a8Zl3qzOuqXTOr9NjpPrkVpV2NcWSVfv6hw4u0w8K/y495AYJteCxRj6PggadLQjlKQA==
-X-Received: by 2002:a05:6a00:2d8c:b0:68f:c078:b0b6 with SMTP id
- fb12-20020a056a002d8c00b0068fc078b0b6mr16178897pfb.10.1696786078493; 
- Sun, 08 Oct 2023 10:27:58 -0700 (PDT)
-Received: from localhost.localdomain ([27.5.160.191])
+ d=1e100.net; s=20230601; t=1696773687; x=1697378487;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=zxakH265LpATzSTaf30OW9So30zUQfcE2yrNl/MhWDo=;
+ b=kVeoK88LROqBLDOq92i1k/hSgxHHiQIWft0Q8um4MONKVGOaglTWNlqKMcfBKAhLyd
+ +deAnku8w+GjxXLl7gdLUuxmpd/HDQOgMva7xjHEccFJ+ccSsjV1YMAhHmaTqlPQVOKz
+ eN1TGWOBp6gdesaBd1lB9BtrRzegdma9vMWHwPzlzxlI7c7BRlf8+B0F0pcq/WE3I0wi
+ tsmRP4Sx+SayTmB98q+iJMqQIy8TU4Dyg/EUWAPr3/IIrz64SrBpLGRkZCuSYv0PU3sh
+ M3qmR/qBN2buJdiXqBy6ESAq1Nm/no2I2oKXpaEHTCMg57+d1opaIeGZ5A6958r4Ze97
+ CQ5g==
+X-Gm-Message-State: AOJu0YyKhUrlTCnQz1FTvzucGZFt5AfZ8wYA68TWmD5j14wCBVRe3cDr
+ f73ktvMIpL3+/wExHBPF53aBjA==
+X-Google-Smtp-Source: AGHT+IEZhcTkbfnDMA0TmtMUY6GUYhyBTjDeQoEWBa7c/RqNiiO7pOQy12FcGXqIQaqK7WTV5qhK2g==
+X-Received: by 2002:a19:910c:0:b0:501:c1d4:cf68 with SMTP id
+ t12-20020a19910c000000b00501c1d4cf68mr9460445lfd.15.1696773687355; 
+ Sun, 08 Oct 2023 07:01:27 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.91])
  by smtp.gmail.com with ESMTPSA id
- m9-20020aa79009000000b00690d4c16296sm4789435pfo.154.2023.10.08.10.27.55
+ q14-20020ac24a6e000000b00504211d2a73sm1080455lfp.230.2023.10.08.07.01.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 08 Oct 2023 10:27:58 -0700 (PDT)
-From: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
-To: kherbst@redhat.com, lyude@redhat.com, dakr@redhat.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, daniel@ffwll.ch
-Date: Sun,  8 Oct 2023 22:57:51 +0530
-Message-Id: <20231008172751.21953-1-bragathemanick0908@gmail.com>
-X-Mailer: git-send-email 2.34.1
+ Sun, 08 Oct 2023 07:01:26 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Felix.Kuehling@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
+ daniel@ffwll.ch, harry.wentland@amd.com, sunpeng.li@amd.com,
+ Rodrigo.Siqueira@amd.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, inki.dae@samsung.com,
+ sw0312.kim@samsung.com, kyungmin.park@samsung.com,
+ krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com,
+ robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run,
+ marijn.suijten@somainline.org, bskeggs@redhat.com, kherbst@redhat.com,
+ lyude@redhat.com, kraxel@redhat.com, gurchetansingh@chromium.org,
+ olvaffe@gmail.com, paulo.miguel.almeida.rodenas@gmail.com,
+ wenjing.liu@amd.com, haoping.liu@amd.com, Charlene.Liu@amd.com,
+ chiahsuan.chung@amd.com, george.shen@amd.com, sancchen@amd.com,
+ tony.tascioglu@amd.com, jaehyun.chung@amd.com, tales.aparecida@gmail.com,
+ drv@mailo.com, aurabindo.pillai@amd.com, quic_vpolimer@quicinc.com,
+ jiasheng@iscas.ac.cn, noralf@tronnes.org, jose.exposito89@gmail.com,
+ javierm@redhat.com, mairacanal@riseup.net, davidgow@google.com,
+ arthurgrillo@riseup.net, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org,
+ Ruan Jinjie <ruanjinjie@huawei.com>
+Date: Sun,  8 Oct 2023 17:01:18 +0300
+Message-Id: <169677306919.2570646.8217027380730287216.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230809034445.434902-1-ruanjinjie@huawei.com>
+References: <20230809034445.434902-1-ruanjinjie@huawei.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 09 Oct 2023 08:05:46 +0000
-Subject: [Nouveau] [PATCH] drm/nouveau: Fixing indentation and adding
- License Identifier tag
+Subject: Re: [Nouveau] [PATCH -next 0/7] drm: Remove many unnecessary NULL
+ values
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,55 +96,32 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On running checkpatch.pl to nouveau_drm.h identified
-few warnings. Fixing them in this patch
 
-WARNING: Missing or malformed SPDX-License-Identifier tag in line 1
-+/*
+On Wed, 09 Aug 2023 11:44:38 +0800, Ruan Jinjie wrote:
+> The NULL initialization of the pointers assigned by kzalloc() or
+> kunit_kzalloc() first is not necessary, because if the kzalloc() or
+> kunit_kzalloc() failed, the pointers will be assigned NULL, otherwise
+> it works as usual. so remove it.
+> 
+> Ruan Jinjie (7):
+>   drm/amdkfd: Remove unnecessary NULL values
+>   drm/amd/display: Remove unnecessary NULL values
+>   drm/msm: Remove unnecessary NULL values
+>   drm/radeon: Remove unnecessary NULL values
+>   drm/virtio: Remove an unnecessary NULL value
+>   drm/format-helper: Remove unnecessary NULL values
+>   drm: Remove unnecessary NULL values
+> 
+> [...]
 
-WARNING: space prohibited between function name and open parenthesis '('
-+#define DRM_IOCTL_NOUVEAU_CHANNEL_FREE       DRM_IOW (DRM_COMMAND_BASE +
-DRM_NOUVEAU_CHANNEL_FREE, struct drm_nouveau_channel_free)
+Applied, thanks!
 
-Signed-off-by: Bragatheswaran Manickavel <bragathemanick0908@gmail.com>
----
- include/uapi/drm/nouveau_drm.h | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+[3/7] drm/msm: Remove unnecessary NULL values
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/92a48b6ed510
 
-diff --git a/include/uapi/drm/nouveau_drm.h b/include/uapi/drm/nouveau_drm.h
-index 8d7402c13e56..900ca4f1ebe5 100644
---- a/include/uapi/drm/nouveau_drm.h
-+++ b/include/uapi/drm/nouveau_drm.h
-@@ -1,3 +1,4 @@
-+/* SPDX-License-Identifier: MIT */
- /*
-  * Copyright 2005 Stephane Marchesin.
-  * All Rights Reserved.
-@@ -448,15 +449,15 @@ struct drm_nouveau_svm_bind {
- 
- #define DRM_IOCTL_NOUVEAU_GETPARAM           DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GETPARAM, struct drm_nouveau_getparam)
- #define DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC      DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_CHANNEL_ALLOC, struct drm_nouveau_channel_alloc)
--#define DRM_IOCTL_NOUVEAU_CHANNEL_FREE       DRM_IOW (DRM_COMMAND_BASE + DRM_NOUVEAU_CHANNEL_FREE, struct drm_nouveau_channel_free)
-+#define DRM_IOCTL_NOUVEAU_CHANNEL_FREE       DRM_IOW(DRM_COMMAND_BASE + DRM_NOUVEAU_CHANNEL_FREE, struct drm_nouveau_channel_free)
- 
- #define DRM_IOCTL_NOUVEAU_SVM_INIT           DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_SVM_INIT, struct drm_nouveau_svm_init)
- #define DRM_IOCTL_NOUVEAU_SVM_BIND           DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_SVM_BIND, struct drm_nouveau_svm_bind)
- 
- #define DRM_IOCTL_NOUVEAU_GEM_NEW            DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_NEW, struct drm_nouveau_gem_new)
- #define DRM_IOCTL_NOUVEAU_GEM_PUSHBUF        DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_PUSHBUF, struct drm_nouveau_gem_pushbuf)
--#define DRM_IOCTL_NOUVEAU_GEM_CPU_PREP       DRM_IOW (DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_CPU_PREP, struct drm_nouveau_gem_cpu_prep)
--#define DRM_IOCTL_NOUVEAU_GEM_CPU_FINI       DRM_IOW (DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_CPU_FINI, struct drm_nouveau_gem_cpu_fini)
-+#define DRM_IOCTL_NOUVEAU_GEM_CPU_PREP       DRM_IOW(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_CPU_PREP, struct drm_nouveau_gem_cpu_prep)
-+#define DRM_IOCTL_NOUVEAU_GEM_CPU_FINI       DRM_IOW(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_CPU_FINI, struct drm_nouveau_gem_cpu_fini)
- #define DRM_IOCTL_NOUVEAU_GEM_INFO           DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_INFO, struct drm_nouveau_gem_info)
- 
- #define DRM_IOCTL_NOUVEAU_VM_INIT            DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_VM_INIT, struct drm_nouveau_vm_init)
+Best regards,
 -- 
-2.34.1
-
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
