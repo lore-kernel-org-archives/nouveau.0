@@ -4,42 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D508DC4332F
-	for <nouveau@archiver.kernel.org>; Tue, 31 Oct 2023 05:20:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EAC3C4332F
+	for <nouveau@archiver.kernel.org>; Tue, 31 Oct 2023 09:39:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CFBD10E3FE;
-	Tue, 31 Oct 2023 05:20:07 +0000 (UTC)
-Received: from us-smtp-delivery-44.mimecast.com (unknown [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBAE010E3FE
- for <nouveau@lists.freedesktop.org>; Tue, 31 Oct 2023 05:20:03 +0000 (UTC)
-Received: from mimecast-mx02.redhat.com (mx-ext.redhat.com [66.187.233.73])
- by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-637-m33VZhpzPjqbj3hie0Kr1Q-1; Tue,
- 31 Oct 2023 01:19:51 -0400
-X-MC-Unique: m33VZhpzPjqbj3hie0Kr1Q-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.rdu2.redhat.com
- [10.11.54.2])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 37D773810B03;
- Tue, 31 Oct 2023 05:19:51 +0000 (UTC)
-Received: from dreadlord.redhat.com (unknown [10.64.136.133])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 37E0240C6EB9;
- Tue, 31 Oct 2023 05:19:49 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Date: Tue, 31 Oct 2023 15:18:46 +1000
-Message-ID: <20231031051943.1957328-3-airlied@gmail.com>
-In-Reply-To: <20231031051943.1957328-1-airlied@gmail.com>
-References: <20231031051943.1957328-1-airlied@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0213010E10F;
+	Tue, 31 Oct 2023 09:39:43 +0000 (UTC)
+X-Greylist: delayed 1247 seconds by postgrey-1.36 at gabe;
+ Tue, 31 Oct 2023 09:39:41 UTC
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [80.237.130.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7651510E10F
+ for <nouveau@lists.freedesktop.org>; Tue, 31 Oct 2023 09:39:41 +0000 (UTC)
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1qxktf-0002kf-K2; Tue, 31 Oct 2023 10:18:51 +0100
+Message-ID: <5ecf0eac-a089-4da9-b76e-b45272c98393@leemhuis.info>
+Date: Tue, 31 Oct 2023 10:18:50 +0100
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.11.54.2
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: gmail.com
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=WINDOWS-1252; x-default=true
-Subject: [Nouveau] [PATCH 2/3] nouveau/gsp: fix message signature.
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US, de-DE
+To: "Owen T. Heisler" <writer@owenh.net>, stable@vger.kernel.org
+References: <6f027566-c841-4415-bc85-ce11a5832b14@owenh.net>
+From: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+In-Reply-To: <6f027566-c841-4415-bc85-ce11a5832b14@owenh.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1698745181;
+ f839e281; 
+X-HE-SMSGID: 1qxktf-0002kf-K2
+Subject: Re: [Nouveau] [REGRESSION]: nouveau: Asynchronous wait on fence
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,34 +46,47 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
+Cc: Sasha Levin <sashal@kernel.org>, regressions@lists.linux.dev,
+ nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+On 28.10.23 04:46, Owen T. Heisler wrote:
+> #regzbot introduced: d386a4b54607cf6f76e23815c2c9a3abc1d66882
+> #regzbot link: https://gitlab.freedesktop.org/drm/nouveau/-/issues/180
+> 
+> ## Problem
+> 
+> 1. Connect external display to DVI port on dock and run X with both
+>    displays in use.
+> 2. Wait hours or days.
+> 3. Suddenly the secondary Nvidia-connected display turns off and X stops
+>    responding to keyboard/mouse input. In *some* cases it is possible to
+>    switch to a virtual TTY with Ctrl+Alt+Fn and log in there. In any
+>    case, shutdown/reboot after this happens is *usually* not successful
+>    (forced power-off is required).
+> 
+> This started happening after the upgrade to Debian bullseye, and the
+> problem remains with Debian bookworm.
+> [...] 
 
-This original one was backwards, compared to traces from nvidia driver.
+Thanks for your report. With a bit of luck someone will look into this,
+But I doubt it, as this report has some aspects why it might be ignored.
+Mainly: (a) the report was about a stable/longterm kernel and (b)it's
+afaics unclear if the problem even happens with the latest mainline
+kernel. For details about these aspects, see:
+https://linux-regtracking.leemhuis.info/post/frequent-reasons-why-linux-kernel-bug-reports-are-ignored/
 
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+You thus might want to check if the problem occurs with 6.6 -- and
+ideally also check if reverting the culprit there fixes things for you.
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c b/drivers/gpu/d=
-rm/nouveau/nvkm/subdev/gsp/r535.c
-index 47138d797748..b6f6b5e747d4 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-@@ -693,7 +693,7 @@ r535_gsp_rpc_get(struct nvkm_gsp *gsp, u32 fn, u32 argc=
-)
- =09=09return NULL;
-=20
- =09rpc->header_version =3D 0x03000000;
--=09rpc->signature =3D ('V' << 24) | ('R' << 16) | ('P' << 8) | 'C';
-+=09rpc->signature =3D ('C' << 24) | ('P' << 16) | ('R' << 8) | 'V';
- =09rpc->function =3D fn;
- =09rpc->rpc_result =3D 0xffffffff;
- =09rpc->rpc_result_private =3D 0xffffffff;
---=20
-2.41.0
+That might help getting things rolling, but it's a pretty old
+regression, which complicates things.
+
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+--
+Everything you wanna know about Linux kernel regression tracking:
+https://linux-regtracking.leemhuis.info/about/#tldr
+If I did something stupid, please tell me, as explained on that page.
 
