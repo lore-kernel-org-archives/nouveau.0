@@ -4,58 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0809C47077
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:50:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD809C47077
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:50:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81F4A10E4E7;
-	Tue, 16 Jan 2024 11:48:16 +0000 (UTC)
-X-Greylist: delayed 399 seconds by postgrey-1.36 at gabe;
- Wed, 03 Jan 2024 12:37:40 UTC
-Received: from mail.kernel-space.org (mail.kernel-space.org [195.201.34.187])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 022C510E280;
- Wed,  3 Jan 2024 12:37:40 +0000 (UTC)
-Received: from kernel-space.org (localhost [127.0.0.1])
- by kernel-space.org (OpenSMTPD) with ESMTP id 5225f19b;
- Wed, 3 Jan 2024 12:29:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=kernel-space.org; h=
- message-id:date:mime-version:from:to:subject:content-type
- :content-transfer-encoding; s=s1; bh=jJ51hW6QK8xSwgliZjmDtf2wAhE
- =; b=euk35juEWF/iGRUkt0AjfmTmCgQWJnaF7pXerXVMmzq1EonAZXOt1TEQ4Vz
- w0hDJWW4LH5BJ3y+/lgmhAKg69TgF4SJ1WB7BXM4u4DM13nc+MJLBTS5oaOOBCyP
- RQ+99hPoVjWw5zXtAO9ogVPovv3bpzbaExT3AsDo93WSap4o=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=kernel-space.org; h=
- message-id:date:mime-version:from:to:subject:content-type
- :content-transfer-encoding; q=dns; s=s1; b=ClvWMrhhxoW9NbhZSVzIi
- U0J+/C6oO8TJmCjBrR0/NtKpgm/6/WTQZ7WZYTZqyPr5hXtS8zFozKT87T+SCpM3
- dNvrJqISMkmLpczUmQC20AQkR6WmzBAirEcXJ3xESLdcUrzGTjkL0PV5ImpQfT0l
- UwnO1BVeFxq5PHm/rihhX4=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel-space.org;
- s=s1; t=1704284994;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22E6310E4E9;
+	Tue, 16 Jan 2024 11:48:22 +0000 (UTC)
+X-Greylist: delayed 381 seconds by postgrey-1.36 at gabe;
+ Thu, 02 Nov 2023 04:17:43 UTC
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5293710E7F6
+ for <nouveau@lists.freedesktop.org>; Thu,  2 Nov 2023 04:17:43 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4SLVmk1wmwz9sjT;
+ Thu,  2 Nov 2023 05:11:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=owenh.net; s=MBO0001; 
+ t=1698898278;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=Jso+kg0PCrUfKK3VrwCFHag8Ddx6YoUU5qjOQHaiT0g=;
- b=zjFq6HYUOZUhQR46j0UkdkWAltPLbvU7dN1ANsDZmmEi87BGGlbEHelvWXt8/f71V/UPJi
- MgfJgSDNYKKkUS9xNkj7Sgnm2p/G8Pi82cqrhEMVjswllCFIRpQT1K4LkjfVRDAuWrNYzj
- tWDAiUKUbA5oI0aUB2zbllh+YagnvuY=
-Received: from [192.168.0.2] (host-79-41-232-3.retail.telecomitalia.it
- [79.41.232.3])
- by kernel-space.org (OpenSMTPD) with ESMTPSA id 20df6116
- (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO); 
- Wed, 3 Jan 2024 12:29:54 +0000 (UTC)
-Message-ID: <3419b50b-2ac7-c7b7-1289-d8eb5cc467f8@kernel-space.org>
-Date: Wed, 3 Jan 2024 13:30:17 +0100
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=WN5fmOdVvci8BiTSNTkQ11/6+0Vp0IU6VwTOPcaqcaQ=;
+ b=rrGbY2xW1+rXEaQIHig+TA8Z9R5mZ/w4e0xwsXUEFojPDzbZ7sKhEhVYzH4xpRTZ5H2X48
+ T6h7IdM00xkClDJDZ/H+03qZJouT0nZsDaEAW5h08dbXKz0qnv3dn1IOlacW3CzfbIAUgM
+ LJ4GU4G9hQo5ihfIGvHxYZ5B6uoH9TC+FDTgO1EEEH4qSyrbMwEUHZcTmH9wHyohUhP95Z
+ raj36ltUy+sBcX7xMgoch2fn5ihKDCD3yIqZbMLXYVTjaKmo1NHanvnKxElj34B6U+pWEK
+ crFALFWXUoXJLH9eTsYjEYg5zzQL86vvSp5iZwQdxyRh50wzB+3D2JdeD5zjHw==
+Message-ID: <f98d5544-34f8-4b35-9466-80fa9671686d@owenh.net>
+Date: Wed, 1 Nov 2023 23:11:08 -0500
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Betterbird/102.11.0
-Content-Language: en-US, it
-From: Angelo Dureghello <angelo@kernel-space.org>
-To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- dakr@redhat.com, bskeggs@redhat.com
-Subject: AD107M (197), black screen
+Subject: Re: [REGRESSION]: nouveau: Asynchronous wait on fence
+Content-Language: en-US
+To: Linux regressions mailing list <regressions@lists.linux.dev>,
+ stable@vger.kernel.org
+References: <6f027566-c841-4415-bc85-ce11a5832b14@owenh.net>
+ <5ecf0eac-a089-4da9-b76e-b45272c98393@leemhuis.info>
+From: "Owen T. Heisler" <writer@owenh.net>
+In-Reply-To: <5ecf0eac-a089-4da9-b76e-b45272c98393@leemhuis.info>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:28 +0000
+X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,18 +57,31 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Cc: Sasha Levin <sashal@kernel.org>, nouveau@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi all,
+On 10/31/23 04:18, Linux regression tracking (Thorsten Leemhuis) wrote:
+> Thanks for your report. With a bit of luck someone will look into this,
+> But I doubt it, as this report has some aspects why it might be ignored.
+> Mainly: (a) the report was about a stable/longterm kernel and (b)it's
+> afaics unclear if the problem even happens with the latest mainline
+> kernel.
 
-i am testing current mainline (6.7.rc8), on
-a lenovo legion, with AD107M (chipset 197000a1).
+> You thus might want to check if the problem occurs with 6.6 -- and
+> ideally also check if reverting the culprit there fixes things for you.
 
-Looks like somewhere at driver probe, screen turns
-black and stays forever. If any hint, welcome.
+Thorsten,
 
-I can help debugging, rebuilding and testing in case.
+Thank you for your reply and suggestions. I will try (a) testing on 
+mainline (when I tried before I was interrupted by another, unrelated 
+regression) and (b) reverting the culprit commit there if I am able to 
+reproduce the problem.
 
-Regards,
-Angelo Dureghello
+Thanks,
+Owen
+
+--
+Owen T. Heisler
+https://owenh.net
