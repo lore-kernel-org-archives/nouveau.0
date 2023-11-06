@@ -4,40 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D2EBC4706C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 637B6C47077
 	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:47:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C83410E32F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0A2710E45E;
 	Tue, 16 Jan 2024 11:47:30 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCC5B10E1CA;
- Wed, 29 Nov 2023 12:55:24 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id C2512615B9;
- Wed, 29 Nov 2023 12:55:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E359C433C8;
- Wed, 29 Nov 2023 12:55:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1701262523;
- bh=EjcKHBcdIRPeS1Jr3Xl1RByJy2jdZRnaeHgtLca5xvw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=B7LzFukE5dLDnjFimKjS9MzsDlyjw2TystsfEqKZQoF3X0ypDR27ShYPrtl8a4hDA
- NJpjxQGGyxZWEsXW8iuNcZhKohbcA/aqSnTm0M4FaNA2iGO+NYSrUn6Py4Nri/ePlp
- 6q+xpqSCX/D4UrdrxiaqNtzCTiHavix0EiBQCRhmLqMpgR0ZYgs/JzAEoWb+9i5JTB
- Oe+1+75v5eXMmJzgFHrdDl81TfuAg+2NbIX93el81U7iGTeg6IV4SGN5q4PuHW91Kd
- ubXJDdo+ZPM5cWSGL7AsbHeYdmv+aYCsKzrJkAOks6DDY5k/SnNe6msZhjyp96wYb4
- GEiHLnbD5cmcA==
-Date: Wed, 29 Nov 2023 13:55:04 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Subject: Re: [PATCH 10/10] ACPI: IORT: Allow COMPILE_TEST of IORT
-Message-ID: <ZWc0qPWzNWPkL8vt@lpieralisi>
-References: <0-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
- <10-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAD6110E061;
+ Mon,  6 Nov 2023 12:25:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1699273536; x=1730809536;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=2pR8X4BMVcOGKWPNkgcioekUqSx5/pk8Jhwvb4ict+4=;
+ b=i1ILJryameQME2wCRiiRbVH+TQb/wd1dauLPCNARzBp00uPXWi8Scw5z
+ 1PKdTA9jabyoy9/DLJWxDsU7i/1t6mIraTua7+YHkF1YFmd08tQG/YkQV
+ 6kFQqMUsV1QpBQWl/sZQgBvOhG9I/lKWHAE7A9q3mHG+T2H5qxzphMs9n
+ oh6mFO4jU8hLWO/cUJbHw+mKEi5KH1u9gGVexCfS6s5eh05rAz9nATEK5
+ XY4U9JB6/7PRs+pryVjUn0EXe3hOFhEAAgMNFLY2XjPWxuDS4s+2QGZyn
+ voVw4s1RDMdkqSQd8ObwX6ioj8qAPohuGbclSgHI6FrqzVTsVcTLA1e58 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="420376188"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="420376188"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2023 04:25:36 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="828193825"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="828193825"
+Received: from rmstoi-mobl.ger.corp.intel.com ([10.251.216.76])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2023 04:25:27 -0800
+Date: Mon, 6 Nov 2023 14:25:24 +0200 (EET)
+From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: Mario Limonciello <mario.limonciello@amd.com>
+Subject: Re: [PATCH v2 1/9] drm/nouveau: Switch from
+ pci_is_thunderbolt_attached() to dev_is_removable()
+In-Reply-To: <20231103190758.82911-2-mario.limonciello@amd.com>
+Message-ID: <55563d57-60c3-1789-1e7c-5e618fbd6253@linux.intel.com>
+References: <20231103190758.82911-1-mario.limonciello@amd.com>
+ <20231103190758.82911-2-mario.limonciello@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <10-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+Content-Type: text/plain; charset=US-ASCII
 X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -50,129 +58,71 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hyperv@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Jerry Snitselaar <jsnitsel@redhat.com>, dri-devel@lists.freedesktop.org,
- patches@lists.linux.dev, Laxman Dewangan <ldewangan@nvidia.com>,
- Hanjun Guo <guohanjun@huawei.com>, linux-riscv@lists.infradead.org,
- "K. Y. Srinivasan" <kys@microsoft.com>, Frank Rowand <frowand.list@gmail.com>,
- Christoph Hellwig <hch@lst.de>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>,
- Wei Liu <wei.liu@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
- Dexuan Cui <decui@microsoft.com>, Russell King <linux@armlinux.org.uk>,
- linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
- nouveau@lists.freedesktop.org, linux-snps-arc@lists.infradead.org,
- Len Brown <lenb@kernel.org>, devicetree@vger.kernel.org,
- Albert Ou <aou@eecs.berkeley.edu>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- Will Deacon <will@kernel.org>, Sven Peter <sven@svenpeter.dev>,
- Haiyang Zhang <haiyangz@microsoft.com>, Vineet Gupta <vgupta@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Moritz Fischer <mdf@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, linux-tegra@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Robin Murphy <robin.murphy@arm.com>, Hector Martin <marcan@marcan.st>,
- linux-mips@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Thierry Reding <thierry.reding@gmail.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- asahi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- Sudeep Holla <sudeep.holla@arm.com>, dmaengine@vger.kernel.org,
- David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>
+Cc: "open list:THUNDERBOLT DRIVER" <linux-usb@vger.kernel.org>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <dri-devel@lists.freedesktop.org>,
+ "open list:X86 PLATFORM DRIVERS" <platform-driver-x86@vger.kernel.org>,
+ Andreas Noever <andreas.noever@gmail.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?ISO-8859-15?Q?Marek_Beh=FAn?= <kabel@kernel.org>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:ACPI" <linux-acpi@vger.kernel.org>,
+ "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Michael Jamet <michael.jamet@intel.com>, Mark Gross <markgross@kernel.org>,
+ Hans de Goede <hdegoede@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, open list <linux-kernel@vger.kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Yehezkel Bernat <YehezkelShB@gmail.com>,
+ =?ISO-8859-15?Q?Pali_Roh=E1r?= <pali@kernel.org>,
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>,
+ "Maciej W . Rozycki" <macro@orcam.me.uk>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Nov 28, 2023 at 08:48:06PM -0400, Jason Gunthorpe wrote:
-> The arm-smmu driver can COMPILE_TEST on x86, so expand this to also
-> enable the IORT code so it can be COMPILE_TEST'd too.
-> 
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+On Fri, 3 Nov 2023, Mario Limonciello wrote:
+
+> pci_is_thunderbolt_attached() only works for Intel TBT devices. Switch to
+> using dev_is_removable() to be able to detect USB4 devices as well.
+
+Please extend this with more details. I had to lookup the TBT change to 
+be able to make any guess why you're doing this (and it's still a guess 
+at best).
+
+-- 
+ i.
+
+
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 > ---
->  drivers/acpi/Kconfig        | 2 --
->  drivers/acpi/Makefile       | 2 +-
->  drivers/acpi/arm64/Kconfig  | 1 +
->  drivers/acpi/arm64/Makefile | 2 +-
->  drivers/iommu/Kconfig       | 1 +
->  5 files changed, 4 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/nouveau/nouveau_vga.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/acpi/Kconfig b/drivers/acpi/Kconfig
-> index f819e760ff195a..3b7f77b227d13a 100644
-> --- a/drivers/acpi/Kconfig
-> +++ b/drivers/acpi/Kconfig
-> @@ -541,9 +541,7 @@ config ACPI_PFRUT
->  	  To compile the drivers as modules, choose M here:
->  	  the modules will be called pfr_update and pfr_telemetry.
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouveau/nouveau_vga.c
+> index f8bf0ec26844..14215b7ca187 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_vga.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
+> @@ -94,8 +94,8 @@ nouveau_vga_init(struct nouveau_drm *drm)
 >  
-> -if ARM64
->  source "drivers/acpi/arm64/Kconfig"
-> -endif
+>  	vga_client_register(pdev, nouveau_vga_set_decode);
 >  
->  config ACPI_PPTT
->  	bool
-> diff --git a/drivers/acpi/Makefile b/drivers/acpi/Makefile
-> index eaa09bf52f1760..4e77ae37b80726 100644
-> --- a/drivers/acpi/Makefile
-> +++ b/drivers/acpi/Makefile
-> @@ -127,7 +127,7 @@ obj-y				+= pmic/
->  video-objs			+= acpi_video.o video_detect.o
->  obj-y				+= dptf/
+> -	/* don't register Thunderbolt eGPU with vga_switcheroo */
+> -	if (pci_is_thunderbolt_attached(pdev))
+> +	/* don't register USB4/Thunderbolt eGPU with vga_switcheroo */
+> +	if (dev_is_removable(&pdev->dev))
+>  		return;
 >  
-> -obj-$(CONFIG_ARM64)		+= arm64/
-> +obj-y				+= arm64/
+>  	vga_switcheroo_register_client(pdev, &nouveau_switcheroo_ops, runtime);
+> @@ -118,7 +118,7 @@ nouveau_vga_fini(struct nouveau_drm *drm)
 >  
->  obj-$(CONFIG_ACPI_VIOT)		+= viot.o
+>  	vga_client_unregister(pdev);
 >  
-> diff --git a/drivers/acpi/arm64/Kconfig b/drivers/acpi/arm64/Kconfig
-> index b3ed6212244c1e..537d49d8ace69e 100644
-> --- a/drivers/acpi/arm64/Kconfig
-> +++ b/drivers/acpi/arm64/Kconfig
-> @@ -11,6 +11,7 @@ config ACPI_GTDT
+> -	if (pci_is_thunderbolt_attached(pdev))
+> +	if (dev_is_removable(&pdev->dev))
+>  		return;
 >  
->  config ACPI_AGDI
->  	bool "Arm Generic Diagnostic Dump and Reset Device Interface"
-> +	depends on ARM64
->  	depends on ARM_SDE_INTERFACE
->  	help
->  	  Arm Generic Diagnostic Dump and Reset Device Interface (AGDI) is
-> diff --git a/drivers/acpi/arm64/Makefile b/drivers/acpi/arm64/Makefile
-> index 143debc1ba4a9d..71d0e635599390 100644
-> --- a/drivers/acpi/arm64/Makefile
-> +++ b/drivers/acpi/arm64/Makefile
-> @@ -4,4 +4,4 @@ obj-$(CONFIG_ACPI_IORT) 	+= iort.o
->  obj-$(CONFIG_ACPI_GTDT) 	+= gtdt.o
->  obj-$(CONFIG_ACPI_APMT) 	+= apmt.o
->  obj-$(CONFIG_ARM_AMBA)		+= amba.o
-> -obj-y				+= dma.o init.o
-> +obj-$(CONFIG_ARM64)		+= dma.o init.o
-> diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
-> index 7673bb82945b6c..309378e76a9bc9 100644
-> --- a/drivers/iommu/Kconfig
-> +++ b/drivers/iommu/Kconfig
-> @@ -318,6 +318,7 @@ config ARM_SMMU
->  	select IOMMU_API
->  	select IOMMU_IO_PGTABLE_LPAE
->  	select ARM_DMA_USE_IOMMU if ARM
-> +	select ACPI_IORT if ACPI
->  	help
->  	  Support for implementations of the ARM System MMU architecture
->  	  versions 1 and 2.
-> -- 
-
-I don't think it should be done this way. Is the goal compile testing
-IORT code ? If so, why are we forcing it through the SMMU (only because
-it can be compile tested while eg SMMUv3 driver can't ?) menu entry ?
-
-This looks a bit artificial (and it is unclear from the Kconfig
-file why only that driver selects IORT, it looks like eg the SMMUv3
-does not have the same dependency - there is also the SMMUv3 perf
-driver to consider).
-
-Maybe we can move IORT code into drivers/acpi and add a silent config
-option there with a dependency on ARM64 || COMPILE_TEST.
-
-Don't know but at least it is clearer. As for the benefits of compile
-testing IORT code - yes the previous patch is a warning to fix but
-I am not so sure about the actual benefits.
-
-Thanks,
-Lorenzo
+>  	vga_switcheroo_unregister_client(pdev);
+> 
